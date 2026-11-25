@@ -37,10 +37,8 @@ class TongYiAdapter(BaseAdapter):
         for key in ("temperature", "max_tokens", "top_p"):
             if key in kwargs and kwargs[key] is not None:
                 payload[key] = kwargs[key]
-        if "tools" in kwargs and kwargs["tools"]:
-            payload["tools"] = kwargs["tools"]
-            if "tool_choice" in kwargs:
-                payload["tool_choice"] = kwargs["tool_choice"]
+        # v2.1.0: FC normalized via shared base helper
+        self.apply_function_calling(payload, kwargs)
         return payload
 
     def chat(self, messages: List[ChatMessage], *,

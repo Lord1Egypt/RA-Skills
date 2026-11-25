@@ -1,6 +1,6 @@
 ## Description:
 
-Zernio API is an API reference for building integrations that schedule posts across 14 social media platforms, covering authentication, endpoints, webhooks, and platform-specific features.
+Official Zernio API reference for scheduling posts across 18 social and messaging platforms, running paid ads on 9 ad networks, and sending server-side conversions. Covers authentication, endpoints, webhooks, ads, conversions, automations, and platform-specific features. Use when building with the Zernio Social Media Scheduling API.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Developers and engineers use this skill to build Zernio API integrations for creating profiles, connecting social accounts, scheduling or publishing posts, configuring webhooks, uploading media, managing queues, and reading analytics.
+Developers use this reference to build integrations with the Zernio Social Media Scheduling API, including authentication, publishing and scheduling, account connections, paid ads, server-side conversions, messaging, and webhooks.
 
 ### Deployment Geography for Use:
 
@@ -22,43 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Examples include live posting, retry, DELETE, queue, media download, and webhook configuration operations that can affect connected social accounts or transmit data.
+Risk: The security review flags unpinned package versions in installation instructions.
 
-Mitigation: Review generated commands before execution, use test profiles or sandbox accounts first, and require explicit confirmation before running calls that publish, delete, retry, change queues, download media, or configure webhooks.
+Mitigation: Review package versions and pin dependencies before installing.
 
-Risk: The skill uses Zernio API keys, app passwords, bot tokens, and webhook secrets in examples.
+Risk: Examples may involve credentials, uploaded content, publishing, or messaging, and the skill covers broad account capabilities.
 
-Mitigation: Keep credentials server-side, load them from environment variables or a secret manager, avoid logging them, and rotate any secret that appears in chat, code, logs, or shared files.
+Mitigation: Review the required permissions and example actions; confirm before sending messages, uploading files, or publishing content.
 
-Risk: Webhook configuration examples can send event payloads to user-controlled URLs.
+Risk: The security review reports that some files were only partly inspected.
 
-Mitigation: Use HTTPS endpoints, verify Zernio webhook signatures, scope webhook events to what the integration needs, and test delivery before enabling production workflows.
-
-Risk: API behavior depends on third-party social platform permissions, rate limits, media limits, and token health.
-
-Mitigation: Handle rate limits and platform-specific errors, check account health before publishing, and validate media constraints for each target platform.
+Mitigation: Review package contents, especially partially inspected files, before relying on them.
 
 ## Reference(s):
 
 - [Zernio API documentation](https://docs.zernio.com)
-- [Zernio API base URL](https://zernio.com/api/v1)
-- [Zernio dashboard](https://zernio.com/dashboard)
-- [Zernio API keys](https://zernio.com/dashboard/api-keys)
-- [ClawHub release page](https://clawhub.ai/mikipalet/skills/zernio-api)
+- [Zernio website](https://zernio.com)
+- [Zernio API skill on ClawHub](https://clawhub.ai/mikipalet/skills/zernio-api)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+**Output Type(s):** [API guidance, Code, Shell commands, Configuration instructions]
 
 **Output Format:** [Markdown with inline curl, TypeScript, Python, and JSON examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Documentation-only guidance for Zernio API usage; examples may describe live API calls that affect connected accounts when executed.]
+**Other Properties Related to Output:** [Reference guidance and examples; no output files are required.]
 
 ## Skill Version(s):
 
-1.0.3 (source: server release evidence)
+1.2.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

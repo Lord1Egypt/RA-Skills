@@ -27,11 +27,19 @@ Configuration (resolution order: CLI > env > workspace-local > global config > d
   Global: ~/.config/smart-storage-triage/config.json, section "media":
     root    — storage root (required), e.g. "/path/to/storage"
     active  — active-folder prefix relative to root, e.g. "ActiveFolder/"
-              ("" = whole root; archives must stay OUT of this prefix)
+              ("" = whole root; requires explicit --allow-broad confirmation)
     tree    — gzip tree snapshot path (default: <root>/tree.json.gz)
-    router  — embeddings router base URL (default: http://127.0.0.1:18794)
+    router  — embeddings router base URL (default: http://127.0.0.1:18794).
+              SECURITY: only LOOPBACK routers are accepted by default. A
+              non-loopback router requires the explicit --allow-external-router
+              flag (or STORAGE_MEDIA_ALLOW_EXTERNAL_ROUTER=1); a discovered
+              workspace config can never silently redirect embeddings outside.
     db      — index DB path (default: ~/.local/share/semantic-media/index.db)
   Env overrides: STORAGE_MEDIA_ROOT / _ACTIVE / _TREE / _ROUTER / _DB.
+
+Scope guards: tree-snapshot paths are validated to stay INSIDE the storage root
+(no absolute paths, no '..', symlinks resolving outside are skipped), and the
+secret denylist is applied to symlink RESOLVED targets as well as alias names.
 
 Usage:
   python3 semantic_media.py search "query" [--limit 10] [--kind image|video|doc] [--json]
@@ -45,6 +53,7 @@ import argparse
 import base64
 import hashlib
 import io
+import ipaddress
 import json
 import os
 import sqlite3
@@ -52,6 +61,7 @@ import subprocess
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
@@ -66,8 +76,12 @@ JPEG_Q = 88
 VIDEO_FRAMES = 6
 DOC_BATCH = 32
 HTTP_TIMEOUT = 300
+# DENYLIST (exclusion list), NOT credential access: these names/patterns are
+# skipped by the indexer so secret files are never read, embedded or listed.
 SECRET_NAMES = {".env", "credentials.json", "token.json", "auth.json",
                 "secrets.json", "id_rsa", "id_ed25519"}
+SENSITIVE_SUFFIXES = {".pem", ".key", ".p12", ".pfx", ".pkcs12", ".kdbx"}
+SENSITIVE_DIRS = {".ssh", ".aws", ".gnupg", ".azure", ".kube", ".secrets", "secrets"}
 
 # Resolved by resolve_config() before any command runs.
 ROOT = None
@@ -76,6 +90,7 @@ TREE_PATH = None
 DB_PATH = None
 DB_DIR = None
 ROUTER = None
+ALLOW_BROAD = False
 
 
 def _local_media_config():
@@ -99,7 +114,7 @@ def _local_media_config():
 
 
 def resolve_config(args=None):
-    global ROOT, ACTIVE_PREFIX, TREE_PATH, DB_PATH, DB_DIR, ROUTER
+    global ROOT, ACTIVE_PREFIX, TREE_PATH, DB_PATH, DB_DIR, ROUTER, ALLOW_BROAD
     cfg = {}
     cfg_file = Path.home() / ".config/smart-storage-triage/config.json"
     if cfg_file.exists():
@@ -107,6 +122,9 @@ def resolve_config(args=None):
             cfg = (json.loads(cfg_file.read_text(encoding="utf-8")) or {}).get("media", {}) or {}
         except Exception:
             cfg = {}
+    # Broad-scope confirmation is honored ONLY from the user-owned global
+    # config (or CLI/env) — never from an auto-discovered workspace file.
+    ALLOW_BROAD = bool(cfg.get("allow_broad"))
     local = _local_media_config()
     if local:
         cfg = {**cfg, **local}
@@ -120,6 +138,32 @@ def resolve_config(args=None):
     TREE_PATH = pick("tree", "STORAGE_MEDIA_TREE", "tree")
     router_base = pick("router", "STORAGE_MEDIA_ROUTER", "router",
                        "http://127.0.0.1:18794")
+    # SECURITY: embedding requests carry private media content and search
+    # queries. Only LOOPBACK endpoints are accepted by default; an external
+    # endpoint requires an explicit operator opt-in (--allow-external-router
+    # or STORAGE_MEDIA_ALLOW_EXTERNAL_ROUTER=1). A workspace-discovered
+    # .smart-storage-triage.json can NEVER silently enable an external router.
+    parts = urllib.parse.urlsplit(router_base)
+    if parts.scheme not in ("http", "https") or not parts.hostname:
+        print("Invalid embeddings router URL: %r (http/https required)" % router_base,
+              flush=True)
+        sys.exit(2)
+    host = parts.hostname
+    # Strict loopback test: parse IP literals with ipaddress (a hostname like
+    # "127.evil.example" is NOT loopback even though it starts with "127.");
+    # only the exact name "localhost" is accepted as a non-IP loopback alias.
+    try:
+        is_loopback = ipaddress.ip_address(host).is_loopback
+    except ValueError:
+        is_loopback = host == "localhost"
+    allow_ext = bool(getattr(args, "allow_external_router", False)) or \
+        os.environ.get("STORAGE_MEDIA_ALLOW_EXTERNAL_ROUTER") == "1"
+    if not is_loopback and not allow_ext:
+        print("SECURITY: refusing non-loopback embeddings router %r.\n"
+              "Private media/query data would leave this host. If this is truly\n"
+              "intended, pass --allow-external-router explicitly (or set\n"
+              "STORAGE_MEDIA_ALLOW_EXTERNAL_ROUTER=1)." % router_base, flush=True)
+        sys.exit(2)
     ROUTER = router_base.rstrip("/") + "/v1/embeddings"
     db = pick("db", "STORAGE_MEDIA_DB", "db")
     DB_PATH = Path(db).expanduser() if db else Path.home() / ".local/share/semantic-media/index.db"
@@ -153,20 +197,68 @@ def path_of(it):
     return f"{d}/{f}" if d else f
 
 
+def _sensitive_rel(rel):
+    """Denylist check on a relative path (alias OR resolved symlink target)."""
+    name = rel.rsplit("/", 1)[-1].lower()
+    if name.startswith(".") or name in SECRET_NAMES:
+        return True
+    if name.startswith(".env") or name.endswith(".env"):
+        return True
+    if any(name.endswith(s) for s in SENSITIVE_SUFFIXES):
+        return True
+    dirs = {p.lower() for p in Path(rel).parts[:-1]}
+    return bool(dirs & SENSITIVE_DIRS)
+
+
+def safe_abs_path(rel):
+    """Resolve a tree-snapshot relative path strictly INSIDE the storage root.
+
+    SECURITY: tree snapshots are data, not trust. Absolute paths, '..'
+    traversal and symlinks resolving outside ROOT are rejected, so a crafted
+    snapshot entry cannot make the indexer read (and embed) out-of-scope files.
+    Returns the resolved absolute path, or None when out of boundary.
+    """
+    if not rel or rel.startswith("/") or rel.startswith("\\"):
+        return None
+    if ".." in Path(rel).parts:
+        return None
+    root_real = os.path.realpath(ROOT)
+    ap = os.path.realpath(os.path.join(ROOT, rel))
+    if ap != root_real and not ap.startswith(root_real + os.sep):
+        return None
+    return ap
+
+
 def load_active_paths():
     import gzip
     with open(TREE_PATH, "rb") as fh:
         data = json.loads(gzip.open(fh, "rt").read())
     files = data.get("files") if isinstance(data, dict) else data
     out = []
+    skipped_scope = 0
+    root_real = os.path.realpath(ROOT)
     for it in files:
         p = path_of(it)
         if ACTIVE_PREFIX and not p.startswith(ACTIVE_PREFIX):
             continue
-        name = p.rsplit("/", 1)[-1]
-        if name.startswith(".") or name in SECRET_NAMES:
+        if _sensitive_rel(p):
+            continue
+        ap = safe_abs_path(p)
+        if ap is None:
+            skipped_scope += 1
+            continue
+        # Symlink-alias protection: apply the denylist to the RESOLVED target
+        # too, so notes.txt -> .env inside the root cannot bypass exclusion.
+        try:
+            rel_resolved = os.path.relpath(ap, root_real)
+        except ValueError:
+            skipped_scope += 1
+            continue
+        if _sensitive_rel(rel_resolved):
             continue
         out.append(p)
+    if skipped_scope:
+        log("[scope] skipped %d out-of-boundary tree entries" % skipped_scope)
     return sorted(out)
 
 
@@ -256,7 +348,12 @@ def sha1_bytes(raw):
 
 
 def video_frame_urls(abs_path):
-    """6 evenly spaced frames via ffmpeg (fast seek), each -> data URL."""
+    """6 evenly spaced frames via ffmpeg (fast seek), each -> data URL.
+
+    SECURITY: fixed argv lists, shell=False; abs_path was validated by
+    safe_abs_path() to stay inside the configured storage root. No user input
+    can alter the command structure -> no command injection.
+    """
     probe = subprocess.run(
         ["ffprobe", "-v", "error", "-show_entries", "format=duration",
          "-of", "json", abs_path],
@@ -290,6 +387,18 @@ def mean_pool(vecs):
 
 def cmd_index(args):
     import numpy as np
+    # SECURITY: an empty active prefix means the WHOLE storage root would be
+    # indexed and sent to the embeddings router. Require explicit confirmation
+    # (CLI flag, env, or the user-owned global config) before proceeding.
+    if not ACTIVE_PREFIX:
+        allow_broad = bool(getattr(args, "allow_broad", False)) or \
+            os.environ.get("STORAGE_MEDIA_ALLOW_BROAD") == "1" or ALLOW_BROAD
+        if not allow_broad:
+            log("SECURITY: active prefix is empty — the whole storage root would be "
+                "indexed. Confirm the scope explicitly: pass --allow-broad, set "
+                "media.allow_broad=true in the GLOBAL config, or "
+                "STORAGE_MEDIA_ALLOW_BROAD=1.")
+            sys.exit(2)
     heif_ok = register_heif()
     paths = load_active_paths()
     if args.area:
@@ -333,7 +442,10 @@ def cmd_index(args):
     for p in media:
         if args.max and processed >= args.max:
             break
-        abs_path = os.path.join(ROOT, p)
+        abs_path = safe_abs_path(p)
+        if abs_path is None:
+            stats["missing"] += 1
+            continue
         kind = classify(p)
         try:
             st = os.stat(abs_path)
@@ -395,7 +507,10 @@ def cmd_index(args):
     for p in docs:
         if args.max and processed >= args.max:
             break
-        abs_path = os.path.join(ROOT, p)
+        abs_path = safe_abs_path(p)
+        if abs_path is None:
+            stats["missing"] += 1
+            continue
         try:
             st = os.stat(abs_path)
         except OSError:
@@ -528,6 +643,12 @@ def main():
     common.add_argument("--tree", help="gzip tree snapshot path")
     common.add_argument("--router", help="embeddings router base URL")
     common.add_argument("--db", help="index DB path")
+    common.add_argument("--allow-external-router", action="store_true",
+                        help="explicitly allow a NON-loopback embeddings router "
+                             "(private media/query data would leave this host)")
+    common.add_argument("--allow-broad", action="store_true",
+                        help="explicitly confirm indexing the WHOLE storage root "
+                             "when the active prefix is empty")
     sub = ap.add_subparsers(dest="cmd", required=True)
     pi = sub.add_parser("index", parents=[common], help="incremental indexing")
     pi.add_argument("--area", help="only paths containing this substring")

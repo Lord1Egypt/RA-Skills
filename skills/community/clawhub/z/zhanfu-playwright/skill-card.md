@@ -1,6 +1,6 @@
 ## Description:
 
-Automates the ZhanFu WebDriver client and store browsers with local HTTP calls before connecting Playwright over CDP for user-directed browser tasks.
+Automates ZhanFu storefront workflows through its WebDriver client, using Playwright for browser tasks after a store is opened.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users, developers, and store operators use this skill to open, close, create, list, and configure ZhanFu stores, then perform guided Playwright automation in the store browser after a WebDriver port is available.
+Agents use it to manage ZhanFu stores and automate pages in store browsers with Playwright.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill handles high-value ZhanFu account credentials and store-management actions.
+Risk: ClawScan rated the release suspicious with medium confidence, citing client and store management workflows that can terminate processes or delete caches without a required confirmation gate; analysis of much of the package was incomplete.
 
-Mitigation: Use it only on trusted local machines, avoid entering owner or store passwords on shared or monitored systems, and provide credentials only when needed for the requested workflow.
-
-Risk: Local automation can contact the wrong local service or an untrusted ZhanFu workflow if the environment is not verified.
-
-Mitigation: Verify the real ZhanFu client is listening before login or store operations and stop when local communication cannot be confirmed.
-
-Risk: Cache clearing, account changes, plugin changes, and client termination can alter store state or interrupt active work.
-
-Mitigation: Require explicit user confirmation before running cache clearing, account update, plugin update, or client exit actions.
+Mitigation: Review recovery and cache deletion safeguards before use, verify the bundled Playwright files and dependency lockfile, and confirm watcher and required environment, network, or shell access is acceptable.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/zhangzhang1997/skills/zhanfu-playwright)
+- [ClawHub release page](https://clawhub.ai/zhangzhang1997/skills/zhanfu-playwright)
 - [ZhanFu WebDriver API reference](artifact/reference.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+**Output Type(s):** [Text, Browser actions, Guidance]
 
-**Output Format:** [Markdown guidance with Python and shell command examples, plus JSON HTTP request examples.]
+**Output Format:** [Concise status text and browser interactions]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Outputs may operate a local ZhanFu client, store accounts, browser sessions, plugins, download paths, and cache settings.]
+**Other Properties Related to Output:** [Requires Node.js 18 or newer; some store management actions are Windows only.]
 
 ## Skill Version(s):
 
-1.0.6 (source: server release metadata)
+1.0.8 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

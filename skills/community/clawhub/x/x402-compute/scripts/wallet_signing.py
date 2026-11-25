@@ -15,10 +15,12 @@ import stat
 import subprocess
 import time
 import uuid
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Tuple
 
 from eth_account import Account
 from eth_account.messages import encode_defunct
+
+import x402_wire
 
 # Pinned so a wallet operation never runs whatever version the registry happens to serve.
 # Kept in step with scripts/ows_cli.py.
@@ -389,6 +391,26 @@ class PaymentSigner:
     def create_x402_payment_header(self, pay_to: str, amount: int, network: str = "base") -> str:
         payload = self.create_x402_payment_payload(pay_to=pay_to, amount=amount, network=network)
         return base64.b64encode(json.dumps(payload).encode()).decode()
+
+    def create_payment_header(self, challenge: Dict[str, Any], option: Dict[str, Any], network: str) -> Tuple[str, str]:
+        """(header name, value) paying an EVM `option` from `challenge` (x402_wire.read_challenge).
+
+        v2 challenge -> PAYMENT-SIGNATURE (same signed EIP-3009 payload, v2 envelope).
+        v1 challenge -> X-Payment, byte-for-byte what create_x402_payment_header sends.
+        """
+        amount = x402_wire.parse_atomic(str(option.get("maxAmountRequired", "")))
+        if amount is None or amount <= 0:
+            raise ValueError(f"Malformed payment amount: {option.get('maxAmountRequired')!r}. Nothing was signed.")
+        pay_to = option["payTo"]
+        if not x402_wire.uses_v2(challenge, option):
+            return x402_wire.HEADER_X_PAYMENT, self.create_x402_payment_header(pay_to=pay_to, amount=amount, network=network)
+        asset = EVM_ASSETS.get(str(network).lower())
+        if asset is None or x402_wire.network_name(option.get("network")) != asset["network"]:
+            raise ValueError(f"Payment option network {option.get('network')!r} does not match --network {network!r}")
+        if not x402_wire.same_address("evm", option.get("asset"), asset["address"]):
+            raise ValueError(f"Unexpected token {option.get('asset')!r} for {network}. Nothing was signed.")
+        inner = self.create_x402_payment_payload(pay_to=pay_to, amount=amount, network=network)["payload"]
+        return x402_wire.v2_payment_header(challenge, option, inner)
 
 
 def load_payment_signer() -> PaymentSigner:

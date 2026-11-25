@@ -40,12 +40,12 @@ EXPECTED_BASELINES = {
 _FRESHNESS_INTERVAL_DAYS = 35
 
 
-def status(json_out=False):
+def status(json_out=False, results_dir=None):
     """v5.4.0: 保鲜状态自检——最近执行记录/最新评测锚点/基线漂移旗标/到期提醒。"""
     import json as _json
     import time as _time
     root = Path(HERE).parent
-    res_dir = root / "eval" / "results"
+    res_dir = Path(results_dir) if results_dir else root / "eval" / "results"
     log_dir = root / "eval" / "freshness_log"
 
     logs = sorted(log_dir.glob("*.md")) if log_dir.exists() else []
@@ -59,17 +59,26 @@ def status(json_out=False):
             latest_file, latest_mtime = f, f.stat().st_mtime
     latest_eval = f"{latest_file.name} ({_time.strftime('%Y-%m-%d', _time.localtime(latest_mtime))})" if latest_file else None
 
+    # v7.8.0 根修：基线文件解析 archive 感知（v480_rules_* 实存 archive/，旧代码只查
+    # 顶层且 except-pass 静默吞错——rules 档基线漂移检测曾整体失效而不自知）。
+    # 缺失/读取失败一律如实上报，禁止静默伪装成"无漂移"。
     drift = []
+    missing = []
     _pairs = [("v35ctl_oldgen.json", "fused_oldgen"), ("v35ctl_gen2026.json", "fused_current"),
-              ("v480_rules_oldgen.json", "rules_oldgen"), ("v480_rules_gen2026.json", "rules_current")]
+              ("archive/v480_rules_oldgen.json", "rules_oldgen"),
+              ("archive/v480_rules_gen2026.json", "rules_current")]
     for fname, key in _pairs:
         fp = res_dir / fname
+        if not fp.is_file():
+            missing.append(fname)
+            continue
         try:
             got = _json.load(open(fp, encoding="utf-8")).get("auroc")
-            if got is not None and abs(float(got) - EXPECTED_BASELINES[key]) > 1e-6:
-                drift.append(f"{fname}: {got} != 已发布 {EXPECTED_BASELINES[key]}")
-        except Exception:
-            pass
+        except Exception as e:
+            drift.append(f"{fname}: 读取失败 {e}（基线对账不可执行——不得静默跳过）")
+            continue
+        if got is not None and abs(float(got) - EXPECTED_BASELINES[key]) > 1e-6:
+            drift.append(f"{fname}: {got} != 已发布 {EXPECTED_BASELINES[key]}")
 
     due = (last_refresh is None) or (
         (_time.time() - _time.mktime(_time.strptime(last_refresh, "%Y-%m-%d"))) / 86400 > _FRESHNESS_INTERVAL_DAYS)
@@ -78,6 +87,7 @@ def status(json_out=False):
         "last_refresh": last_refresh,
         "latest_eval_record": latest_eval,
         "baseline_drift": drift,
+        "baselines_missing": missing,
         "baselines_expected": EXPECTED_BASELINES,
         "due_for_refresh": due,
         "interval_days": _FRESHNESS_INTERVAL_DAYS,
@@ -99,7 +109,10 @@ def status(json_out=False):
 def main():
     ap = argparse.ArgumentParser()
     if "--status" in sys.argv:
-        return status(json_out="--json" in sys.argv)
+        _rd = None
+        if "--results-dir" in sys.argv:
+            _rd = sys.argv[sys.argv.index("--results-dir") + 1]
+        return status(json_out="--json" in sys.argv, results_dir=_rd)
     ap.add_argument("--corpus", default=os.path.join(
         "pp_corpus", "eval_zh.jsonl"),
         help="基础语料(大语料jsonl)")

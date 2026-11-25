@@ -13,6 +13,42 @@ has so far.
 
 ## [Unreleased]
 
+## [0.3.9] — 2026-11-21
+
+### Changed
+
+- MCP `initialize` instructions now carry agent guidance: what each page skin
+  looks like (Gleam-style and KickoffLabs-style map to `basic-new`), a recipe
+  for building a page from a description or screenshot, and a rule to ask the
+  user before any call that changes a public page or reaches real people.
+- `pages_update`'s `template` description now says what each skin looks like.
+
+### Added
+
+- `pages:update` takes `--card-mode dark|gradient|light`, `--card-color
+  <#rrggbb>` and `--card-gradient harmony|vignette`, and the MCP
+  `pages_update` tool takes the matching fields. They set the entry card's
+  look. Whole-section lock blurs still show the gradient through.
+- `pages_update` and `pages:update --data` accept `standalone_actions`, with
+  `survey` (Share Feedback), `quick_question` and `secret_code` sub-objects.
+  Only the fields you send change, and `pages_get` returns the same shape.
+  Secret codes themselves are still uploaded in the Tokei dashboard.
+- The MCP instructions no longer say survey questions and secret codes are
+  dashboard-only. Survey, Quick Question and the Secret Code toggle are
+  settable. Secret codes, daily-bonus and referral settings, country
+  restrictions and email-provider connections still are.
+
+### Changed (API behaviour the tools pass through)
+
+- On `entry_methods`, a non-zero `points` on a row whose type has an
+  `entryValueSettingKey` now sets that type's entry value for the whole page.
+  It is capped at 99 for those types (link rows and `tokei_cross_promote` keep
+  0-100), and duplicate rows of one type that send different non-zero points
+  are a 422.
+- A link row labelled `Visit Our ` (capital O) is a 422 unless its link is the
+  page's campaign URL. Label a Custom Link `Visit our ...` with a lowercase o.
+  The MCP guidance and `entry_methods` description say so.
+
 ## [0.3.8] — 2026-10-23
 
 ### Changed
@@ -303,7 +339,8 @@ the 0.3.6 tarball on npm carries no entry for itself.
   auth, JSON-only stdout with a top-level `rate_limit` object, zero runtime
   dependencies.
 
-[unreleased]: https://github.com/gilesdawe/tokei-agent/compare/v0.3.8...HEAD
+[unreleased]: https://github.com/gilesdawe/tokei-agent/compare/v0.3.9...HEAD
+[0.3.9]: https://www.npmjs.com/package/tokei-agent/v/0.3.9
 [0.3.8]: https://www.npmjs.com/package/tokei-agent/v/0.3.8
 [0.3.7]: https://www.npmjs.com/package/tokei-agent/v/0.3.7
 [0.3.6]: https://www.npmjs.com/package/tokei-agent/v/0.3.6

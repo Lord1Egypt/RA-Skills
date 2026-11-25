@@ -1,6 +1,6 @@
 ## Description:
 
-Analyze past skill improvements to detect regressions and improve the improvement process.
+Analyze and improve the improvement process. Use for detecting regressions and meta-optimization.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill after groups of skill changes, regressions, or declining effectiveness to analyze outcomes, identify patterns, and prepare recommendations for improving future changes.
+Developers use this skill to review improvement outcomes, identify patterns behind regressions or successes, and refine future skill-improvement strategies. It can also propose changes to the skill-improver for review.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Automatic trace capture may retain sensitive workflow details without warning or filtering; the security analysis is partial.
+Risk: The security scan is benign with medium confidence but only partially complete; some referenced local paths were not included in the scan.
 
-Mitigation: Review which workflow details are recorded before use, limit capture to approved information and the least detailed available mode, and check storage and retention controls.
+Mitigation: Review those references and the persistence note before installing if they matter to your use.
+
+Risk: Execution traces can retain tool targets, decision rationales, and outcomes, while aggregate improvement insights are stored persistently.
+
+Mitigation: Choose an appropriate capture mode and review trace and insight retention for your environment.
 
 ## Reference(s):
 
-- [Skill project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
-- [ClawHub release](https://clawhub.ai/athola/skills/nm-abstract-metacognitive-self-mod)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, JSON, Guidance]
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [Written analysis report and structured improvement-memory entries]
+**Output Format:** [Markdown report with improvement metrics, patterns, and strategy recommendations]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include outcome summaries, causal hypotheses, trend analysis, and proposed strategy changes.]
+**Other Properties Related to Output:** [Recommendations to change the skill-improver are proposals for user approval.]
 
 ## Skill Version(s):
 
-1.10.3 (source: SKILL.md frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

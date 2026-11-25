@@ -1,6 +1,6 @@
 ## Description:
 
-Curates Apple Music playlists from listening history and offers personalized discoveries, taste insights, and optional account updates.
+An Apple Music curator that analyzes listening history, builds personalized playlists, imports Spotify playlists, and provides music discovery and listening insights.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT No Attribution
 
 ## Use Case:
 
-Apple Music subscribers use this skill to discover songs, build personalized playlists, compare listening tastes, and review their music history. A no-token demo lets prospective users explore its features first.
+Apple Music listeners use the skill through an AI agent to understand their listening tastes, discover and organize music, import playlists, and review listening trends.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Access to Apple Music developer and user tokens exposes music-account credentials.
+Risk: ClawScan rates this release suspicious with medium confidence, citing possible account changes without the promised confirmation, behavior or activation phrases beyond the stated scope, and incomplete file inspection.
 
-Mitigation: Run token setup yourself and try the no-token demo before connecting your account.
-
-Risk: Playlist, favorite, rating, and library changes can alter the user's music account.
-
-Mitigation: Review previews and confirm the intended changes before enabling --create, --yes, or --apply.
-
-Risk: Installed scheduled jobs can keep running and may make unattended changes.
-
-Mitigation: Review the proposed cron jobs before installation, especially any job that creates playlists, and remove jobs when no longer needed.
+Mitigation: Consider avoiding installation until the account-change confirmation behavior and unattended playlist creation are reviewed and the partial scan coverage is resolved.
 
 ## Reference(s):
 
-- [ClawHub release](https://clawhub.ai/and3rn3t/skills/apple-music-dj)
-- [Project homepage](https://github.com/and3rn3t/apple-music-dj)
-- [Apple Music API reference](artifact/references/api-reference.md)
-- [Authentication setup](artifact/references/auth-setup.md)
-- [Playlist strategies](artifact/references/playlist-strategies.md)
-- [Spotify import](artifact/references/spotify-import.md)
+- [Feature guide](references/features.md)
+- [Playlist strategies](references/playlist-strategies.md)
+- [Authentication setup](references/auth-setup.md)
+- [Spotify playlist import](references/spotify-import.md)
+- [Security policy](SECURITY.md)
+- [Apple Music API](https://api.music.apple.com)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance, SVG]
+**Output Type(s):** [Text, JSON, Markdown, Shell commands, Configuration, Files]
 
-**Output Format:** [Conversational text and playlist previews; optional SVG taste card]
+**Output Format:** [Text and JSON reports, Markdown guidance, shell and Python commands, and optional playlist and profile files]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Playlist creation and account changes are opt-in; a no-token demo is available.]
+**Other Properties Related to Output:** [May interact with the user's Apple Music account and local listening data; review account changes and scheduled jobs before use.]
 
 ## Skill Version(s):
 
-3.4.1 (source: skill frontmatter and ClawHub release)
+3.5.1 (source: release evidence and SKILL.md frontmatter)
 
 ## Ethical Considerations:
 

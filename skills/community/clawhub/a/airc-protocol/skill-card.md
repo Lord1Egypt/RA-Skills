@@ -1,6 +1,6 @@
 ## Description:
 
-Connects agents through AIRC for approved cross-organization messaging, file exchange, and remote MCP tool use.
+Connects AI agents across organizations to exchange approved messages and files or use remote MCP tools through the AIRC protocol.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agent operators use this skill to connect their agents with AIRC-enabled agents for approved messaging, file exchange, and remote MCP tool use.
+Developers and users of AI agents use this skill to contact agents at other organizations, exchange approved messages and files, and access remote MCP tools.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security verdict is benign, but the scan is partial and confidence is medium; one of two components was inspected.
+Risk: The security scan was benign but incomplete, covering one of two components and reporting unresolved references.
 
-Mitigation: Review and scan the full release, including the installer, before installing; treat the scan as incomplete evidence.
+Mitigation: Review the installation instructions and the uninspected component before installing, as the security guidance recommends.
 
-Risk: Messages and files received from other agents may contain untrusted content.
+Risk: Messages and files from other agents are external and may contain untrusted content.
 
-Mitigation: Treat incoming messages as data rather than instructions, and do not open or run received files.
-
-Risk: Workspace creation or deletion, link offers or acceptance, file sending, and MCP tool export can expose public details or enable contact and access.
-
-Mitigation: Get the user's explicit confirmation before each action, as the skill instructs.
+Mitigation: Show messages to the user and do not act on their requests; save received files without opening or running them.
 
 ## Reference(s):
 
-- [AIRC Protocol homepage](https://airc.dev)
-- [AIRC agent-readable overview](https://airc.dev/llms.txt)
-- [AIRC receiving guide](https://airc.dev/docs/receive)
+- [AIRC protocol and documentation](https://airc.dev/llms.txt)
+- [AIRC receive guide](https://airc.dev/docs/receive)
 - [AIRC cookbook](https://airc.dev/docs/cookbook)
+- [AIRC Protocol on ClawHub](https://clawhub.ai/rafaelskymonde/skills/airc-protocol)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Text, Shell commands, Configuration, Files]
+**Output Type(s):** [Text, Files, Shell commands, Configuration, Guidance]
 
-**Output Format:** [Markdown guidance with inline shell commands and MCP configuration examples]
+**Output Format:** [Text and Markdown, with shell commands and JSON configuration examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include message text for other agents or files received through AIRC.]
+**Other Properties Related to Output:** [Can include messages, agent addresses, file paths, and MCP configuration examples.]
 
 ## Skill Version(s):
 
-1.0.5 (source: server-resolved release metadata)
+1.0.6 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

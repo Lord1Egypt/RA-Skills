@@ -1,6 +1,6 @@
 ## Description:
 
-Provides a structured framework for Chinese mainland corporate bank credit due diligence, including borrower, financial, industry, ESG, and risk analysis with draft recommendations for human review.
+Provides a structured framework for pre-loan corporate credit due diligence, including borrower profiles, financial checks, industry and risk assessment, report outlines, and draft credit recommendations for qualified staff to review.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,43 +14,39 @@ MIT-0
 
 ## Use Case:
 
-Bank credit officers, loan analysts, and risk managers use it to structure pre-loan corporate borrower reviews and prepare draft reports and credit recommendations for authorized review.
+Bank credit officers, loan analysts, and risk managers use it to organize borrower due diligence, cross-check financial information, assess industry and ESG risks, and prepare draft investigation reports and credit recommendations. Outputs are reference drafts for qualified staff to verify; it does not make final credit decisions.
 
 ### Deployment Geography for Use:
 
-China (Mainland)
+China (mainland)
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan was benign with medium confidence but only partially inspected the Markdown skill and could not resolve a local reference.
+Risk: The security review was benign but partial, so it did not fully inspect the only component.
 
-Mitigation: Review the skill and the unresolved local reference before installation.
+Mitigation: Review the complete skill and resolve the noted local path-like reference before installation.
 
-Risk: Due diligence may involve sensitive borrower and financial information.
+Risk: Due diligence may involve sensitive borrower financial or personal information.
 
-Mitigation: Use aggregated or de-identified inputs and follow institutional data-handling rules.
-
-Risk: Draft ratings or recommendations could be mistaken for a final credit decision.
-
-Mitigation: Authorized credit staff should verify source data, calculations, and current requirements, then approve and sign off through institutional procedures.
+Mitigation: Use aggregated, de-identified information and follow institutional data-handling rules; have authorized staff verify all analysis before use.
 
 ## Reference(s):
 
-- [Bank Credit Due Diligence on ClawHub](https://clawhub.ai/gechengling/skills/bank-credit-due-diligence)
+- [ClawHub Skill Listing](https://clawhub.ai/gechengling/skills/bank-credit-due-diligence)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Text]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Chinese-language conversational analysis and Markdown report or checklist drafts]
+**Output Format:** [Markdown prose, checklists, tables, and draft report structures]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reference guidance and draft recommendations require fact checking and authorized human review; no final credit decision.]
+**Other Properties Related to Output:** [Reference drafts requiring qualified human review; minimize and de-identify sensitive borrower data.]
 
 ## Skill Version(s):
 
-4.1.4 (source: frontmatter)
+4.1.5 (source: frontmatter)
 
 ## Ethical Considerations:
 

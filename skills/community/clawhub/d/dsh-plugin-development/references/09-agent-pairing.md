@@ -2,7 +2,7 @@
 
 > **本文件用途**：与 AI Agent 结对开发的用法：要求「出处」的铁律、十条红线、每课的标准交付物，以及 10 个可直接复制的提示词模板。两个来源各 5 个，按场景互补——主手册侧重任务启动/代码审查/排错/版本升级/抄范本，补充手册侧重开工前调研/写代码（带硬约束）/验收（防止'看起来能跑'）/排错/升级适配。'排错'与'升级'各有两个模板，是同一场景的不同角度，可对照使用。
 > **合成来源**：DSH插件开发指导手册.md（第 13 章） + DSH插件开发实战补充-模板与踩坑.md（第五篇）
-> **快照警告**：本文件是 DSH 插件知识的**冻结快照**（基线 `dsh-v0.2.2-alpha.2` / commit `f3803c9697`，2026-10-28），其中的**接口名级事实可能已过时**。
+> **快照警告**：本文件是 DSH 插件知识的**冻结快照**（基线 `dsh-v0.2.2-rc.5` / commit `9c2670d3bc`，2026-11-18），其中的**接口名级事实可能已过时**。
 > **写代码前先核验**：`bash scripts/dsh-api-probe.sh <DSH 仓库路径>`（退出码 1 = 有 STALE，**不要直接照抄**）。
 > **分级与核验规则**：`references/00-version-gate.md`、逐条登记 `references/api-claims.md`。
 > **素材名约定**：正文里出现的 `Xxx-yyy.md`（如 `E-official-templates.md`、`B-tools-external.md`）是**生成时的源调研笔记名**，其内容在生成时已合并进本文件——**不是 skill 内的文件**，不必去别处找。
@@ -243,6 +243,18 @@ DSH 从 <旧版本> 升级到 <新版本>，我的插件可能受影响。
 1. **"你刚才用到的每一个 API / 字段名，出处是什么？"**
 2. **"这里面有没有你查不到、但根据经验推测的部分？如果有，明确标出来。"**
 3. **"如果要推翻你的方案，最强的反方论据是什么？"**
+
+---
+
+## 5.4 工具面：三类「模型看到的工具」误判（`0.2.2-rc.2` 实测）
+
+结对时最容易在这里问错方向 —— 工具「没出现」通常不是你的插件坏了：
+
+1. **`interrupt_agent` 默认不注册**：base 与 Web 的 `standard` / `cordis` / `ptc` 三个 preset 都写 `config.interrupt: false`（`packages/bundle/base/cordis.patch.yml:386-389`），插件自身默认仍是 `true`。让 agent「去中断子 agent」前先 `--dump-config` 确认。详见 `05-pitfalls.md` 坑 P26。
+2. **官方工具面在本轮扩了 5 个**：`office_convert` / `office_recalculate` / `office_render`（`packages/document/tool-office/src/index.ts`）与 `user_terminal_list` / `user_terminal_read`（`packages/experimental/terminal-panel/src/tools.ts`）；同时 `spawn_teammate` **移除**（agent-team 去 `experimental-` 前缀后由 subagent 体系承担）。让 agent「用某个官方工具」前，先在 `cordis_inspect_query` 里确认它真的存在。
+3. **`plugin_manager` 的返回字段变了**：`list_bundles` 不再有 `BundleInfo.updatable: boolean`，改 `update?: 'registry' | 'git'`（`packages/boot/plugin-manager/src/types.ts:112`），`ManagementError['code']` 新增 `unexpected-package`。**让 agent 按旧字段判断「能不能升级」会永远得到 `undefined`。**
+
+> 判据渠道：`08-cheatsheet.md` 的工具/服务表 + `cordis_inspect_*` 的实时结果 + 源码 grep，三者不一致时以源码为准。
 
 ---
 

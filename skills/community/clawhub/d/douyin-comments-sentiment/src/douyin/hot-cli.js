@@ -6,7 +6,8 @@ const utils = require("../utils/utils");
 const {
   emitError,
   emitEmpty,
-  printSuccessEnvelope,
+  buildSuccessEnvelope,
+  finishSuccess,
   emitUncaught,
 } = require("../utils/output");
 
@@ -71,14 +72,16 @@ async function main() {
     return;
   }
 
-  printSuccessEnvelope(
+  const finalOutput = buildSuccessEnvelope(
     "获取抖音热榜任务完成",
     startTime,
     { command: "hot" },
     hotTask,
     hotTask.length,
   );
-  utils.printSuccess(`抖音热榜任务完成, 共 ${hotTask.length} 条记录`);
+  await finishSuccess(finalOutput, {
+    stderrMessage: `抖音热榜任务完成, 共 ${hotTask.length} 条记录`,
+  });
 }
 
 main().catch((error) => {

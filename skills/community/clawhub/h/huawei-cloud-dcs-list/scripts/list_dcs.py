@@ -4,10 +4,10 @@ via KooCLI `hcloud DCS ListInstances` (read-only GET /v2/{project_id}/instances)
 
 Primary execution path is KooCLI; when hcloud is not installed, the script falls
 back to the official `huaweicloudsdkdcs` v2 SDK (`DcsClient.list_instances`).
-Reads nothing but the active credential profile / environment. Supports four
-output modes (--names-only / table / --json / Markdown table), --name /
---instance-id / --ip / --status / --tags filtering, optional --sort-by
-name|created ordering (client-side, case-insensitive name / ascending
+Reads nothing but the active credential profile / environment. Supports five
+output modes (--names-only / table / --json / Markdown table / CSV table),
+--name / --instance-id / --ip / --status / --tags filtering, optional
+--sort-by name|created ordering (client-side, case-insensitive name / ascending
 created_at, stable) and automatic --limit / --offset paging (the real
 ListInstances API parameters, verified against `hcloud DCS ListInstances
 --help` and the huaweicloudsdkdcs v2 ListInstancesRequest model), plus a
@@ -20,10 +20,20 @@ columns match huawei-cloud-dcs-export-markdown verbatim (名称/ID/引擎/版本
 optionally persist exactly that text with --md-output <path> (temp file +
 atomic rename).
 
+CSV mode (--csv / --format csv) prints an RFC4180 table with the same ten
+columns (missing values rendered as an empty field), escaped by the standard
+``csv`` module (CRLF line endings), and can atomically persist exactly that
+text with --csv-output [<path>] (temp file + fsync + atomic rename); an
+optional --csv-bom prepends the UTF-8 BOM so spreadsheet tools detect the
+encoding. --csv-output without a path (or pointing at a directory) uses the
+default name dcs_instances_<region>_<timestamp>.csv.
+
 Usage:
     python3 scripts/list_dcs.py [--region cn-north-4]
-                                 [--names-only | --table | --json | --md]
-                                 [--format names|table|json|md] [--md-output <path>]
+                                 [--names-only | --table | --json | --md | --csv]
+                                 [--format names|table|json|md|csv]
+                                 [--md-output <path>]
+                                 [--csv-output [<path>]] [--csv-bom]
                                  [--name cache] [--instance-id <id>] [--ip <ip>]
                                  [--status RUNNING] [--tags env=prod]
                                  [--sort-by name|created]
@@ -35,12 +45,15 @@ Environment overrides (mostly for tests):
 """
 
 import argparse
+import csv
+import io
 import json
 import os
 import re
 import subprocess
 import sys
 import tempfile
+from datetime import datetime, timezone
 
 # Keep the shipped skill directory clean: never emit __pycache__/*.pyc.
 sys.dont_write_bytecode = True
@@ -56,7 +69,8 @@ MODE_NAMES = "names"
 MODE_TABLE = "table"
 MODE_JSON = "json"
 MODE_MD = "md"
-MODE_CHOICES = (MODE_NAMES, MODE_TABLE, MODE_JSON, MODE_MD)
+MODE_CSV = "csv"
+MODE_CHOICES = (MODE_NAMES, MODE_TABLE, MODE_JSON, MODE_MD, MODE_CSV)
 DEFAULT_MODE = MODE_NAMES
 
 # Client-side ordering (--sort-by). Both orders are ascending and stable.
@@ -178,6 +192,9 @@ PREFERRED_COLUMNS = [
     "sub_status",
 ]
 
+# ListInstances responses expose the list under one of these keys depending on
+# the KooCLI/SDK version; keep the order stable so the canonical `instances`
+# key wins when more than one is present.
 _INSTANCE_LIST_KEYS = ("instances", "instance_list", "instances_detail")
 
 _CREDENTIAL_MISSING_PATTERNS = (
@@ -593,6 +610,8 @@ def list_instances(region, name=None, instance_id=None, ip=None, status=None,
     return instances
 
 
+# DCS returns az_codes / tags as JSON arrays; flatten them into comma-separated
+# cells so table and Markdown output stay single-line and deterministic.
 def normalize_instance(instance):
     """Flatten az_codes / tags lists into table-friendly cells."""
     flat = dict(instance)
@@ -730,7 +749,7 @@ def render_markdown(instances):
 
 
 class OutputError(DcsListError):
-    """The Markdown output file could not be written."""
+    """A rendered output file (Markdown / CSV) could not be written."""
 
 
 def write_markdown_file(text, output_path):
@@ -770,14 +789,119 @@ def write_markdown_file(text, output_path):
     return path
 
 
+# --------------------------------------------------------------------- CSV ---
+
+CSV_DEFAULT_PREFIX = "dcs_instances"
+CSV_LINE_TERMINATOR = "\r\n"  # RFC4180
+CSV_ENCODING = "utf-8"
+CSV_ENCODING_BOM = "utf-8-sig"
+CSV_BOM_CHAR = chr(0xFEFF)  # UTF-8 BOM, built from a code point (no literal escape)
+
+
+def _csv_cell(value):
+    """Render one CSV field: raw text, empty string when the field is missing.
+
+    Commas / double quotes / line breaks are left untouched — ``csv.writer``
+    applies RFC4180 quoting (QUOTE_MINIMAL). Lists/dicts are JSON-encoded,
+    matching the table view, so the ten-column contract stays identical.
+    """
+    if value is None or value == "":
+        return ""
+    if isinstance(value, (dict, list)):
+        return json.dumps(value, ensure_ascii=False, separators=(",", ":"))
+    return str(value)
+
+
+def csv_row(instance):
+    """Map a DCS instance to the fixed ten-column CSV order (missing -> "")."""
+    flat = normalize_instance(instance)
+    return [_csv_cell(_field(flat, *keys, default=None)) for keys in MD_COLUMNS]
+
+
+def render_csv(instances):
+    """Render the instance list as an RFC4180 CSV table (CRLF, no BOM).
+
+    The header row uses the same ten columns as the Markdown/export-markdown
+    contract. Quoting/escaping is delegated to the standard ``csv`` module
+    (QUOTE_MINIMAL), so values containing commas, double quotes or line breaks
+    are quoted per RFC4180 instead of being hand-escaped.
+    """
+    buffer = io.StringIO(newline="")
+    writer = csv.writer(
+        buffer, lineterminator=CSV_LINE_TERMINATOR, quoting=csv.QUOTE_MINIMAL)
+    writer.writerow(MD_HEADERS)
+    for instance in instances:
+        writer.writerow(csv_row(instance))
+    return buffer.getvalue()
+
+
+def default_csv_filename(region, now=None):
+    """Build the default CSV file name: dcs_instances_<region>_<timestamp>.csv."""
+    moment = now or datetime.now(timezone.utc)
+    stamp = moment.strftime("%Y%m%dT%H%M%SZ")
+    safe_region = re.sub(r"[^A-Za-z0-9._-]+", "-", str(region or "region")).strip("-")
+    return "%s_%s_%s.csv" % (CSV_DEFAULT_PREFIX, safe_region or "region", stamp)
+
+
+def resolve_csv_output_path(output_path, region, now=None):
+    """Resolve --csv-output: empty value or a directory -> default file name."""
+    if output_path is None:
+        return None
+    if output_path == "" or output_path in (".", "./"):
+        return default_csv_filename(region, now)
+    if output_path.endswith(("/", os.sep)) or os.path.isdir(output_path):
+        return os.path.join(output_path, default_csv_filename(region, now))
+    return output_path
+
+
+def write_csv_file(text, output_path, bom=False):
+    """Write ``text`` to ``output_path`` atomically; returns the absolute path.
+
+    A temp file inside the destination directory is fsynced and renamed over
+    the target, so an interrupted/failed write never leaves a partial file.
+    ``bom=True`` writes the UTF-8 BOM once (encoding ``utf-8-sig``), matching
+    the bytes printed to stdout in --csv-bom mode.
+    """
+    if not output_path:
+        raise OutputError("--csv-output 需要非空的文件路径。")
+    path = os.path.abspath(output_path)
+    out_dir = os.path.dirname(path) or "."
+    encoding = CSV_ENCODING_BOM if bom else CSV_ENCODING
+    tmp_path = None
+    try:
+        if out_dir and not os.path.isdir(out_dir):
+            os.makedirs(out_dir, exist_ok=True)
+        fd, tmp_path = tempfile.mkstemp(
+            prefix=".dcs_list_csv.", suffix=".tmp", dir=out_dir)
+        with os.fdopen(fd, "w", encoding=encoding, newline="") as handle:
+            handle.write(text)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(tmp_path, path)
+        tmp_path = None
+    except OSError as exc:
+        raise OutputError(
+            "CSV 文件写入失败（%s）：%s。未留下残缺文件。" % (path, exc)
+        )
+    finally:
+        if tmp_path and os.path.exists(tmp_path):
+            try:
+                os.remove(tmp_path)
+            except OSError:
+                pass
+    return path
+
+
 # ------------------------------------------------------- mode / empty hint ---
 
 def resolve_mode(fmt=None, as_json=False, as_table=False, names_only=False,
-                 as_md=False):
+                 as_md=False, as_csv=False):
     """Resolve the effective output mode, keeping the legacy precedence.
 
     Backwards compatible order: ``--json`` > ``--names-only`` (default) >
-    ``--table`` > ``--md`` > ``--format`` value > default names list.
+    ``--table`` > ``--md`` > ``--csv`` > ``--format`` value > default names
+    list. Contradictory combinations are rejected in ``main()`` before this
+    chain is consulted.
     """
     if as_json:
         return MODE_JSON
@@ -787,6 +911,8 @@ def resolve_mode(fmt=None, as_json=False, as_table=False, names_only=False,
         return MODE_TABLE
     if as_md:
         return MODE_MD
+    if as_csv:
+        return MODE_CSV
     if fmt:
         return fmt
     return DEFAULT_MODE
@@ -809,9 +935,11 @@ def _empty_hint(region, args):
     return "当前区域（%s）无 DCS 实例%s。" % (region, suffix)
 
 
-# The local Markdown output path is not a DCS operation — it is stripped from
-# the write-intent scan so a path such as ``.../dcs-backup.md`` never trips it.
+# The local Markdown / CSV output paths are not DCS operations — they are
+# stripped from the write-intent scan so a path such as ``.../dcs-backup.csv``
+# never trips it.
 _MD_OUTPUT_FLAGS = ("--md-output", "--md_output")
+_CSV_OUTPUT_FLAGS = ("--csv-output", "--csv_output")
 # --sort-by values are ordering choices, not DCS operations. The value
 # ``created`` contains the substring ``create``, so the value must be skipped
 # (the argument itself is still validated against SORT_CHOICES in main()).
@@ -819,7 +947,12 @@ _SORT_BY_FLAGS = ("--sort-by", "--sort_by")
 
 
 def guard_argv(argv):
-    """Scan user argv for write intent, ignoring --md-output/--sort-by values."""
+    """Scan user argv for write intent, ignoring local output / ordering values.
+
+    ``--md-output`` / ``--csv-output`` paths and ``--sort-by`` values are
+    filesystem targets / ordering choices, not DCS operations, so they are
+    exempt (both ``--flag value`` and ``--flag=value`` forms).
+    """
     tokens = []
     skip_next = False
     for token in argv:
@@ -827,10 +960,13 @@ def guard_argv(argv):
             skip_next = False
             continue
         name = str(token)
-        if name in _MD_OUTPUT_FLAGS or name in _SORT_BY_FLAGS:
+        if (name in _MD_OUTPUT_FLAGS or name in _CSV_OUTPUT_FLAGS
+                or name in _SORT_BY_FLAGS):
             skip_next = True
             continue
         if (name.startswith("--md-output=") or name.startswith("--md_output=")
+                or name.startswith("--csv-output=")
+                or name.startswith("--csv_output=")
                 or name.startswith("--sort-by=") or name.startswith("--sort_by=")):
             continue
         tokens.append(name)
@@ -851,16 +987,25 @@ def main(argv=None):
                         help="输出全字段表格（名称/ID/引擎/容量/状态/连接地址/端口等）")
     parser.add_argument("--md", action="store_true", dest="as_md",
                         help="输出 Markdown 表格（固定 10 列，与 dcs-export-markdown 口径一致）")
+    parser.add_argument("--csv", action="store_true", dest="as_csv",
+                        help="输出 CSV 表格（与 --format csv 等价；固定 10 列，RFC4180）")
     parser.add_argument("--format", dest="fmt", choices=MODE_CHOICES,
                         default=None,
-                        help="输出格式：names（默认）/ table / json / md")
+                        help="输出格式：names（默认）/ table / json / md / csv")
     parser.add_argument("--md-output", dest="md_output", default=None,
                         help="md 模式可选：把表格原子写入该 .md 文件（内容与 stdout 一致）")
+    parser.add_argument("--csv-output", dest="csv_output", nargs="?", const="",
+                        default=None,
+                        help="csv 模式可选：把表格原子写入该 .csv 文件（内容与 stdout 一致）；"
+                             "省略路径或传目录时使用默认文件名 "
+                             "dcs_instances_<region>_<timestamp>.csv")
+    parser.add_argument("--csv-bom", action="store_true", dest="csv_bom",
+                        help="csv 模式可选：输出/落盘时带上 UTF-8 BOM（Excel 识别中文）")
     parser.add_argument("--name",
-                        help="按实例名称过滤（服务端查询参数，模糊匹配；"
-                             "name_equal 精确匹配开关由 --name-equal 提供）")
+                        help="按实例名称过滤（服务端模糊查询；精确匹配请配合 "
+                             "--name-equal，由客户端本地过滤）")
     parser.add_argument("--name-equal", action="store_true", dest="name_equal",
-                        help="按实例名称精确匹配（转发服务端 name_equal=true）")
+                        help="按实例名称精确匹配（客户端过滤、大小写不敏感；需配合 --name）")
     parser.add_argument("--instance-id", dest="instance_id",
                         help="按实例 ID 过滤（服务端查询参数）")
     parser.add_argument("--ip",
@@ -896,12 +1041,37 @@ def main(argv=None):
             raise ApiError(
                 "--sort-by 取值非法：%r。仅支持 %s（按实例名升序）或 %s"
                 "（按创建时间升序）。" % (args.sort_by, SORT_NAME, SORT_CREATED))
+        csv_requested = args.as_csv or args.fmt == MODE_CSV
+        if csv_requested:
+            conflicts = []
+            if args.as_json:
+                conflicts.append("--json")
+            if args.as_table:
+                conflicts.append("--table")
+            if args.as_md:
+                conflicts.append("--md")
+            if args.names_only:
+                conflicts.append("--names-only")
+            if args.fmt and args.fmt != MODE_CSV:
+                conflicts.append("--format %s" % args.fmt)
+            if conflicts:
+                raise ApiError(
+                    "--csv 不能与 %s 组合使用：CSV 是独立的输出模式，请只选择一种"
+                    "输出格式（--csv / --format csv）。" % " / ".join(conflicts))
         mode = resolve_mode(args.fmt, as_json=args.as_json,
                             as_table=args.as_table, names_only=args.names_only,
-                            as_md=args.as_md)
+                            as_md=args.as_md, as_csv=args.as_csv)
         if args.md_output and mode != MODE_MD:
             raise ApiError(
                 "--md-output 仅在 Markdown 模式（--md / --format md）下可用，"
+                "当前输出模式为 %s。" % mode)
+        if args.csv_output is not None and mode != MODE_CSV:
+            raise ApiError(
+                "--csv-output 仅在 CSV 模式（--csv / --format csv）下可用，"
+                "当前输出模式为 %s。" % mode)
+        if args.csv_bom and mode != MODE_CSV:
+            raise ApiError(
+                "--csv-bom 仅在 CSV 模式（--csv / --format csv）下可用，"
                 "当前输出模式为 %s。" % mode)
         instances = list_instances(
             args.region,
@@ -909,7 +1079,9 @@ def main(argv=None):
             instance_id=args.instance_id,
             ip=args.ip,
             status=args.status,
-            tags=args.tags if not args.name_equal else None,
+            # Keep server-side tag filtering even with client-side --name-equal;
+            # only the fuzzy name parameter is dropped.
+            tags=args.tags,
             limit=args.page_size,
             project_id=args.project_id,
         )
@@ -952,6 +1124,21 @@ def main(argv=None):
         if args.md_output:
             try:
                 written = write_markdown_file(text, args.md_output)
+            except DcsListError as exc:
+                print("[错误] %s" % exc, file=sys.stderr)
+                return 1
+            print("[已写入] %s" % written, file=sys.stderr)
+        return 0
+
+    if mode == MODE_CSV:
+        text = render_csv(instances)
+        if args.csv_bom:
+            sys.stdout.write(CSV_BOM_CHAR)
+        sys.stdout.write(text)
+        if args.csv_output is not None:
+            target = resolve_csv_output_path(args.csv_output, args.region)
+            try:
+                written = write_csv_file(text, target, bom=args.csv_bom)
             except DcsListError as exc:
                 print("[错误] %s" % exc, file=sys.stderr)
                 return 1

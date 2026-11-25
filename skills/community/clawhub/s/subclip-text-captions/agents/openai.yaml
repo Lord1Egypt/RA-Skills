@@ -1,0 +1,4 @@
+interface:
+  display_name: "Subclip Text and Captions"
+  short_description: "Create readable text overlays and dynamic captions"
+  default_prompt: "Use -text-captions to design the text and captions for this video."

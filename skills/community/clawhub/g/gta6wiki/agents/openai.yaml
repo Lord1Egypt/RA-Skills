@@ -1,0 +1,4 @@
+interface:
+  display_name: 'GTA6 Wiki'
+  short_description: 'Search GTA 6 Wiki entries, 3,843 Leonida map landmarks, missions, and 61 cheats'
+  default_prompt: 'Use $gta6wiki to look up Vice City landmarks, enterable interiors, and story mission walkthroughs on GTA6 Wiki.'

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Subclip Media Editing"
+  short_description: "Place and transform video and image layers"
+  default_prompt: "Use -media-editing to add and arrange media in this project."

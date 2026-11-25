@@ -1,1 +1,1 @@
-- fix: keep genuinely identical transactions instead of collapsing them
+- fix: closing balance is the newest posting of the day, not the opening one

@@ -1,6 +1,6 @@
 ## Description:
 
-Universal smart search and storage triage for codebases, local files, documents, and archives using full-text, path, and semantic media search.
+Universal smart search and storage triage for codebases, local files, documents, and archives. SQLite FTS5 (BM25), gzip tree snapshots, and semantic media search (photos/videos/document names) via local EmbeddingGemma2 embeddings with same-model failover. Requires user confirmation before broad directory indexing.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and AI agents use this skill to search codebases, documents, local files, archives, and configured media collections. It provides relevant paths and content snippets while helping users manage indexing scope.
+Developers and AI agents use this skill to find relevant code, documents, archived files, photos, and videos across configured local storage, returning focused snippets or paths for follow-up.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Indexing may send private media or search data to a configurable embedding destination.
+Risk: ClawScan reports a risk that private or out-of-scope files could enter an index or pass through a configured proxy.
 
-Mitigation: Verify the embedding destination before use and restrict indexing to storage you intend to include.
+Mitigation: Review the target storage scope and configured router before use; follow the skill's explicit confirmation requirement for broad indexing and opt-in requirement for non-loopback routers.
 
-Risk: Indexing may include files outside the intended scope.
+Risk: The security scan was partial, and some referenced paths could not be matched to bundled files.
 
-Mitigation: Confirm the target directory and scope before indexing, and keep broad system locations out of the indexed area.
+Mitigation: Review the unresolved references before installation, as recommended by the security guidance.
 
 ## Reference(s):
 
-- [Smart Storage Triage on ClawHub](https://clawhub.ai/synthet1x/skills/smart-storage-triage)
+- [ClawHub skill page](https://clawhub.ai/synthet1x/skills/smart-storage-triage)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Guidance, Shell commands, Configuration instructions]
+**Output Type(s):** [Text, Markdown, Code, File paths, Search snippets, Configuration guidance]
 
-**Output Format:** [Text search results and Markdown guidance, with shell commands and JSON configuration examples]
+**Output Format:** [Markdown text with file paths, excerpts, and media search matches]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results can include file paths, content snippets, line or page references, and semantic match scores.]
+**Other Properties Related to Output:** [Search results reflect the configured local indexes and may include relevant excerpts or paths.]
 
 ## Skill Version(s):
 
-1.6.0 (source: release evidence and SKILL.md)
+1.7.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -4,7 +4,7 @@ This module is unofficial and not affiliated with Klavis AI.
 
 ## Requirements
 
-- Go 1.26.10 or newer, per the module's `go.mod`.
+- Go 1.26.11 or newer, per the module's `go.mod`.
 - A Klavis AI API key exported as `KLAVIS_API_KEY`.
 
 ## Install

@@ -1,6 +1,6 @@
 ## Description:
 
-Produces concise Bitcoin market briefs with live price, derivatives, liquidation, and notable-signal data for on-demand or morning updates.
+A short, data-backed Bitcoin market brief on demand or each morning - price and 24h change across exchanges, funding and basis, liquidations, notable signals and what is unusual right now. Uses AgentReeve's live multi-exchange data; free preview, full brief per request over x402 (USDC on Base).
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Bitcoin-focused users and agents use this skill to review a current market snapshot on demand or in a morning update. It summarizes market observations and is not financial advice.
+External users can request an on-demand or morning Bitcoin market summary to understand recent price moves, derivatives positioning, liquidations, and notable signals. The brief is observational market data, not financial advice.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment flags broad activation guidance, which may cause the skill to run on loosely related requests.
+Risk: Paid calls can spend up to $0.25 per task without an approval prompt.
 
-Mitigation: Activate it only for explicit Bitcoin market questions or requested morning briefs; clarify ambiguous requests.
+Mitigation: Use the free preview when sufficient; verify the payment quote's recipient, Base network, and USDC asset before paying, and ask for approval above $0.25.
 
-Risk: Paid data calls can spend up to $0.25 per task without asking.
+Risk: The skill may activate for unrelated quick-status requests.
 
-Mitigation: Use the free preview first, verify the quoted recipient, Base network, and USDC asset before payment, and ask for approval above $0.25.
+Mitigation: Use it only for Bitcoin market requests, and run recurring briefs no more than once daily unless the user asks otherwise.
 
 ## Reference(s):
 
-- [Server-resolved GitHub source](https://github.com/shakeelamjid/agentreeve-skills/tree/main/btc-market-brief)
-- [BTC Market Brief on ClawHub](https://clawhub.ai/shakeelamjid/skills/btc-market-brief)
-- [AgentReeve Bitcoin preview API](https://agentreeve.com/api/v1/btc/preview)
-- [AgentReeve Bitcoin brief API](https://agentreeve.com/api/v1/btc/brief)
-- [AgentReeve Bitcoin signals API](https://agentreeve.com/api/v1/btc/signals?days=30)
+- [Source repository (btc-market-brief)](https://github.com/shakeelamjid/agentreeve-skills/tree/main/btc-market-brief)
+- [AgentReeve free preview API](https://agentreeve.com/api/v1/preview)
+- [AgentReeve Bitcoin brief API](https://agentreeve.com/api/v1/brief)
+- [AgentReeve market signals API](https://agentreeve.com/api/v1/signals?days=30)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown]
+**Output Type(s):** [Text, Markdown, Analysis]
 
-**Output Format:** [Four to six line market brief]
+**Output Format:** [A concise Markdown brief, typically 4-6 lines]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes the data timestamp; market observations are not financial advice.]
+**Other Properties Related to Output:** [Includes an as-of timestamp; observational market data, not financial advice.]
 
 ## Skill Version(s):
 
-0.1.1 (source: server-resolved release evidence and target metadata)
+0.1.2 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

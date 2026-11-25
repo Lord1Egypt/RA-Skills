@@ -1,7 +1,7 @@
 ---
 name: imagegen-swarm
-description: "Use when the user asks to generate an image, draw, edit an image, use reference images, make a video, or do text-to-image or text-to-video. Also use when the request names Codex, Grok, Grok Imagine, Gemini, nano banana, Antigravity, Jimeng, Dreamina, Muse, Lovart, gpt-image, or a pay-per-image API. Jimeng and Grok can make video. An optional pay-per-image API line (OpenAI or Gemini API) runs when a job names api, or when no enabled subscription engine can take that job. Jimeng can edit from up to 10 reference images. Antigravity Gemini edits up to 3 reference images. The optional paid Gemini API allows 3 references for gemini-2.5-flash-image and 14 for later Gemini image models. For a shared character, brand, mascot, or cover series, ask before enabling series mode. Not for crop, resize, convert, or other ordinary local image processing."
-version: 1.3.3
+description: "AI image generation for stills and video (text-to-image, text-to-video, image-to-video, and image edits) by pooling leftover quotas from multiple engines into a single batch. Use when the user asks to generate or edit an image, draw, use reference images, make a video, or run text-to-image, text-to-video, or image-to-video, or mentions Codex, Grok, Grok Imagine, Gemini, nano banana, Antigravity, Jimeng, Dreamina, Muse, Lovart, gpt-image, or a pay-per-image API. Enabled engines start together on one queue and keep running if one runs out of quota. Jimeng and Grok can generate video; Jimeng also does image-to-video from the first reference and edits with up to 10 reference images; Antigravity Gemini edits with up to 3. An optional paid OpenAI or Gemini API line runs only when a job specifies api, or when no enabled subscription engine can take that job. For a shared character, brand, mascot, or cover series, ask before enabling series mode. Not for ordinary local crop, resize, or convert tasks."
+version: 1.4.6
 allowed-tools: Bash Read Write WebFetch Env
 metadata:
   openclaw:
@@ -21,6 +21,14 @@ metadata:
         - $HOME/.config/imagegen-swarm/api-spend.jsonl
         - $HOME/.config/imagegen-swarm/engine-off
         - $HOME/.config/imagegen-swarm/muse-browser
+        - $HOME/.config/imagegen-swarm/models
+        - $HOME/.config/imagegen-swarm/smoke-last.json
+        - $HOME/.config/image-gen/engine-off
+        - $HOME/.config/image-gen/muse-browser
+        - $HOME/.codex/auth.json
+        - $HOME/.codex/generated_images
+        - $HOME/.gemini/antigravity-cli/brain
+        - $HOME/.grok/sessions
     envVars:
       - name: PYTHON
         required: false
@@ -45,19 +53,19 @@ metadata:
         description: Lovart secret key. Read from the environment or from the file $HOME/.lovart/env. That file is read as text and is not executed.
       - name: LOVART_ENV
         required: false
-        description: Lovart credentials file. Defaults to $HOME/.lovart/env, must be owner-only, and is read as text.
+        description: Lovart credentials file. Defaults to $HOME/.lovart/env and is read as text. Group or other write access is refused. Read access produces a warning.
       - name: LOVART_BASE_URL
         required: false
         description: "Lovart API base URL. Defaults to https://lgw.lovart.ai."
       - name: LOVART_LV
         required: false
-        description: Optional Lovart wrapper path. The shipped client is scripts/lovart_agent.py.
+        description: Optional Lovart wrapper path. An existing wrapper takes precedence over scripts/lovart_agent.py.
       - name: LOVART_AGENT_SKILL
         required: false
-        description: Optional override for the Lovart client script. Defaults to scripts/lovart_agent.py.
+        description: Read only by an optional user-made lv wrapper to locate scripts/lovart_agent.py. The bundled scripts do not read it; check.mjs passes it through to its probes.
       - name: OPENAI_API_KEY
         required: false
-        description: Optional pay-per-image key when api.json uses the OpenAI provider.
+        description: Optional pay-per-image key when api.json uses the OpenAI provider. api.json may name a different variable with key_env; that variable is read the same way.
       - name: GEMINI_API_KEY
         required: false
         description: Optional pay-per-image key when api.json uses the Gemini provider.
@@ -76,15 +84,48 @@ metadata:
       - name: IMAGE_GEN_MUSE_PROFILE
         required: false
         description: Muse browser profile directory. Defaults to $HOME/.config/imagegen-swarm/muse-browser. Created only by muse-image.py --login.
+      - name: IMAGE_GEN_MUSE_REMOTE_DIR
+        required: false
+        description: Cloud save directory under /home/hatch/. Defaults to /home/hatch/workspace/image-gen for the legacy profile and /home/hatch/workspace/imagegen-swarm otherwise.
+      - name: IMAGE_GEN_MUSE_APPROVAL
+        required: false
+        description: Default and legacy accept narrowly scoped exact-file Allow once cards. Strict requires a fully decoded single-image save.
+      - name: IMAGE_GEN_GROK_MODE
+        required: false
+        description: Pin scoped or legacy. Default and scoped use the job tool allowlist only and fail closed on a refusal. Set legacy to opt in to the workspace-sandboxed --always-approve path, with Bash and web tools still denied.
+      - name: IMAGE_GEN_SMOKE_CACHE
+        required: false
+        description: Optional override for the local smoke readiness cache path.
+      - name: IMAGE_GEN_SMOKE_SCRIPTS_DIR
+        required: false
+        description: Offline smoke fixture directory. Fixture runs save their result beside the test output instead of updating account readiness.
       - name: HTTPS_PROXY
         required: false
         description: Optional proxy for the Muse browser only.
+      - name: IMAGE_GEN_CLIP_MODEL
+        required: false
+        description: Optional local CLIP ONNX file for the series-mode clip score. Defaults to $HOME/.config/imagegen-swarm/models/clip-vit-b32-vision-q8.onnx. Read only; never downloaded by the skill.
+      - name: IMAGE_GEN_CLIP_ALLOW_UNVERIFIED
+        required: false
+        description: Set to yes only if the user explicitly trusts a CLIP ONNX file whose SHA-256 is outside the validated list.
+      - name: https_proxy
+        required: false
+        description: Lower-case form of HTTPS_PROXY, read only when HTTPS_PROXY is unset or empty. Muse browser only.
       - name: IMAGE_GEN_RUN_ID
         required: false
         description: Set by batch.mjs for one run. Work directories are deleted only when they carry this run's marker.
       - name: IMAGE_GEN_SANDBOX_ESCALATE
         required: false
         description: Set to yes only by the user, after they approve a Codex retry outside workspace-write. The agent must not set it.
+      - name: IMAGE_GEN_SCRIPT_DIR
+        required: false
+        description: Test hook. batch.mjs uses this engine-script directory only when IMAGE_GEN_TEST_SCRIPTS is yes. Used by the repository tests.
+      - name: IMAGE_GEN_TEST_SCRIPTS
+        required: false
+        description: Test hook. Set to yes by the repository tests so batch.mjs uses IMAGE_GEN_SCRIPT_DIR.
+      - name: IMAGE_GEN_TEST_NO_KEY
+        required: false
+        description: Test fixture key name. A fake api.json may select it with key_env.
 ---
 
 # imagegen-swarm
@@ -115,7 +156,7 @@ Privacy: a prompt and any reference images are sent to the external service for 
 actually runs that job (OpenAI, Dreamina, xAI, Google, Muse, Lovart, or the API host in the
 pay-per-image setup). Lovart generation uploads only the reference files named in that job's `ref`
 list (or `--ref` on a single call). `scripts/lovart.mjs` passes each of those paths to
-`upload --file`, and `upload_file` sends that one file to Lovart's CDN. It does not upload the
+`upload --file`, and `upload_reference_image` in `scripts/lovart_client.py` sends that one file to Lovart's CDN (`POST https://lgw.lovart.ai/v1/openapi/file/upload`). It does not upload the
 credentials file, the state file, or any path the user did not name. The `upload` command does the
 same for the single `--file` the user gave it. In series mode, the shared style guide and any series
 reference images are sent to every engine that runs a job in that batch, the same way a job prompt
@@ -123,8 +164,10 @@ and a job reference are. Do not send sensitive, confidential, or personal
 content unless the user has agreed that this provider may see it. Add another provider only after
 the user names that provider and agrees.
 
-An example job list has one object per image. Only `id` and `prompt` are required. A sample file
-lives in the git repository at `examples/jobs.example.json`; it is not part of the installed skill.
+An example job list has one object per image. Only `id` and `prompt` are required. An ID has 1–100 characters,
+starts with a Unicode letter or number, and then permits letters, numbers, `.`, `_` and `-`. A sample file
+lives in the git repository at <https://github.com/Ekko237/imagegen-swarm/blob/main/examples/jobs.example.json>;
+it is not part of the installed skill.
 
 ```bash
 node scripts/batch.mjs --jobs jobs.json --out out/
@@ -242,6 +285,33 @@ environment into those probes. A batch keeps the environment of the process that
 Lovart generation does the same, adding the three credential names when they were read from the
 credentials file. That file is read as text; only the three names in the table are kept.
 
+## Network and credentials
+
+Every outbound connection the bundled scripts make, and every secret they read. Nothing here runs
+until the user asks for an image or runs a readiness or smoke check. Each engine is optional: its files
+and variables matter only if the user set that engine up. ClawHub lists every `requires.config`
+entry as required; all of them are optional per engine.
+
+| Script | Talks to | When | Credential it reads | What is sent |
+|---|---|---|---|---|
+| `codex-image.mjs` | OpenAI, through the user's `codex` CLI | A job runs on codex | None; `codex` uses its own login | Prompt, reference images |
+| `grok-image.mjs` | xAI, through the user's `grok` CLI | A job runs on grok | None; `grok` uses its own login | Prompt, one reference image |
+| `gemini-image.mjs` | Google, through the user's `agy` (Antigravity) CLI | A job runs on gemini | None; `agy` uses its own login | Prompt, up to 3 reference images |
+| `jimeng-image.mjs`, `jimeng.mjs` | Dreamina, through the user's `dreamina` CLI | A job runs on jimeng | None; `dreamina` uses its own login | Prompt, reference images |
+| `muse-image.py` | `https://muse.ai` in a local Playwright Chromium | A job runs on muse, `--login`, `--list-chats` | Browser session in the Muse profile directory (`IMAGE_GEN_MUSE_PROFILE`) | Prompt, reference images; optional proxy from `HTTPS_PROXY` / `https_proxy` |
+| `lovart.mjs` → `lovart_agent.py` → `lovart_client.py` | `https://lgw.lovart.ai/v1/openapi/...` (or `LOVART_BASE_URL`): `file/upload`, `chat`, `chat/status`, `chat/result`, `project/*`, `mode/*`; then the artifact URLs that Lovart returns | A job runs on lovart | `LOVART_ACCESS_KEY` / `LOVART_SECRET_KEY` from the environment or the file `$HOME/.lovart/env` (`LOVART_ENV`); the access key goes in the `X-Access-Key` header; the secret key only signs each request (HMAC-SHA256) and is never sent | Prompt, the reference files named for the job, project and thread ids |
+| `api-image.mjs` | `https://api.openai.com` (`/v1/images/generations`, `/v1/images/edits`) or `https://generativelanguage.googleapis.com` (`/v1beta/interactions`), or `base_url` from `api.json` | A job runs on the optional paid line | `OPENAI_API_KEY` / `GEMINI_API_KEY`, the variable named by `key_env`, or the mode-600 `key_file` from `api.json` | Prompt, reference images, the key as the provider's auth header |
+| `check.mjs` | Same CLIs and hosts: `grok models`, `agy models`, `dreamina user_credit`, `scripts/muse-image.py --list-chats`, Lovart `mode/query`, and `GET /v1/models` (OpenAI) or `/v1beta/models` (Gemini) | The user runs the check | Same as the engine it probes. For Codex it only tests that `CODEX_HOME/auth.json` exists | No prompts or images in probe-only mode. The paid-line check sends only the key |
+| `smoke.mjs` or `check.mjs --live` | The checks above and the selected engines | The user starts generation smoke | Same credentials as the engine | A fixed red-circle prompt with no references |
+
+`batch.mjs`, `imgtool.py`, `lovart_state.py`, and the other helper modules make no network calls.
+Engine CLIs keep their own logins; the scripts never read their contents or copy them. Local files read for
+generation: `$HOME/.gemini/antigravity-cli/brain/<conversation>/.system_generated/logs` (the
+transcript of the agy conversation this job started, to find its output), `$HOME/.grok/sessions`
+(media file names and hashes, to reject a reused image), and `CODEX_HOME/generated_images` (hashes
+only). `IMAGE_GEN_SCRIPT_DIR` and `IMAGE_GEN_TEST_SCRIPTS` are test hooks used by the repository
+tests only.
+
 ## Engines
 
 | Engine | Script | Can do | Aspect ratio | Time per image (generation time only) | Quota |
@@ -274,9 +344,11 @@ and video only goes to jimeng and grok (only jimeng does video without a referen
   auth, config, sessions, or any other file there. See [references/codex.md](references/codex.md).
 - **grok**: `grok-image.mjs` is the whole procedure. No `--ref` → text to image; `--ref` → edit
   (keeps the source aspect ratio); `--video --ref` → 6 s 720p video (`--out` must be .mp4, `--ratio`
-  cannot be auto). The Grok CLI runs in the work directory with sandbox profile `workspace` and
-  permission mode `dontAsk`, and may use only the one imagine tool this job needs (`image_gen`,
-  `image_edit`, or `reference_to_video`) plus `Write`. Shell, web fetch, and web search are denied.
+  cannot be auto). The first attempt uses the workspace sandbox and `dontAsk`, scoped to the
+  job's imagine tool and `Write`. A tool refusal fails closed; it does not automatically retry
+  with `--always-approve`. Set `IMAGE_GEN_GROK_MODE=legacy` to opt in to those flags inside the
+  workspace sandbox. Both modes deny Bash, WebFetch, and WebSearch. `auto` and `scoped` use the
+  same allowlist. Success JSON reports the mode in `grok_mode`.
   Video needs Grok data sharing set to Opt in; on a "zero data retention" error, tell the user
   rather than changing the setting.
 - **jimeng**: uses the official Dreamina CLI (`dreamina`), which the user installs from the pinned
@@ -304,23 +376,31 @@ and video only goes to jimeng and grok (only jimeng does video without a referen
   fails or times out, the script logs one warning, closes any dialog, and keeps generating. It does
   not rename a row it cannot prove is this side chat. It deletes a side chat only when this run
   recorded that chat's id, on success and on failure. If the id was never recorded, it does not
-  delete any chat. Before Muse is started, batch creates the output directory and uses its real
-  path, and `muse-image.py` creates that file's parent again. Muse is told to write the PNG at one
-  exact cloud path and not to create a directory or a temporary name. If Muse asks for approval,
-  the policy permits only "Allow once" for exactly one decoded image-save operation with exactly
-  one path equal to this run's output file. `~` is read as `/home/hatch`, `.` and `..` are removed,
-  and existing symlinks are resolved before comparison. Directory creation, extra operations or
-  paths, commands, reads, network access, and unknown arguments are refused. Free-text descriptions
-  never grant permission. No captured approval card currently establishes a verified operation/path
-  layout, so the script fails closed on all live approval cards: the job stops with a RuntimeError
-  saying the shape was not recognized and was not clicked. Jobs without approval cards continue.
-  See [references/muse.md](references/muse.md) for the evidence and decoder requirements.
+  delete any chat. If deleting the side chat fails after the PNG is saved, the job still succeeds
+  (exit 0) and the success JSON gains a `warnings` list; the key appears only when cleanup produced a warning.
+  Generation failures still exit 1. Before Muse is started, batch creates the output directory and uses its real
+  path, and `muse-image.py` creates that file's parent again. A relative `--out` is resolved against
+  the current working directory, like the other engine scripts (before 1.3.4 Muse resolved it
+  against `$HOME`); `~` still means the local home. The cloud directory is
+  `/home/hatch/workspace/imagegen-swarm`, or `/home/hatch/workspace/image-gen` when the legacy browser
+  profile is selected. `IMAGE_GEN_MUSE_REMOTE_DIR` overrides it with an absolute directory under
+  `/home/hatch/`, using only letters, digits, underscores, dots, slashes and hyphens and containing no
+  `..`. Create the directory first on a new environment or handle its creation approval
+  manually; the script always refuses directory-creation cards. Default and `legacy` accept
+  an `Allow once` text card only when every parsed path identifies this run's exact PNG
+  and the card passes the command and metacharacter checks. `IMAGE_GEN_MUSE_APPROVAL=strict`
+  requires a fully decoded single-image save. The live extractor currently returns
+  `request: null`. A refused card stops the job without a click.
+  See [references/muse.md](references/muse.md).
   Ask the user before approving a stopped request. `IMAGE_GEN_MUSE_PROFILE` must resolve
   under `$HOME/.config/imagegen-swarm` or be the legacy default
   `$HOME/.config/image-gen/muse-browser`. Anything else is refused. One process at a time can use
   the browser. An existing profile in the previous `image-gen` folder is still used until the user
   moves it.
-- **lovart**: `scripts/lovart.mjs` runs `scripts/lovart_agent.py` (the command entry). HTTP calls
+- **lovart**: An existing `lv` wrapper takes precedence over the bundled `lovart_agent.py`.
+  The script queries billing before generation. Pass `--require-free` to require unlimited mode and a
+  whitelisted model. Without `--require-free`, a mode or model that spends credits
+  triggers a warning and generation proceeds with credits. Lovart JSON includes `auth` and `billing_mode`. HTTP calls
   are in `scripts/lovart_client.py` and the local project list is in `scripts/lovart_state.py`,
   split from the readable v1.1.1 client so each file stays small enough to review. It opens a fresh
   thread every call (concurrent jobs on one thread return 409). A passing `query-mode` does not
@@ -388,8 +468,8 @@ node scripts/batch.mjs --jobs jobs.json --out out/ --series --style-file style.t
 ```
 
 This command generates each job through the engine queue and appends the style guide from
-`style.txt` to its prompt. It scores each returned image locally with Pillow against
-`anchors/hero.png`, using a palette histogram and luminance grid, with no network call for scoring.
+`style.txt` to its prompt. It scores each returned image locally against `anchors/hero.png`
+(method `auto`, see below), with no network call for scoring.
 Low-score images are discarded and requeued up to `max_retries`. Every charged paid image
 counts toward both the batch and month caps, even if discarded. Before a redo, both caps are
 checked again. If another paid image would exceed either cap and no subscription engine can
@@ -401,6 +481,7 @@ take the job, the redo stops and the job is reported as stopped by the paid budg
     "style": "the same illustrated heroine, flat gouache, muted teal and cream, thick ink outlines, no text",
     "ref": ["anchors/hero.png"],
     "threshold": 0.72,
+    "method": "auto",
     "max_retries": 2,
     "engines": ["jimeng", "gemini"],
     "prefer": "consistent"
@@ -413,7 +494,8 @@ take the job, the redo stops and the job is reported as stopped by the paid budg
 ```
 
 `ref` paths are relative to the job file. A sample file lives in the git repository at
-`examples/series.jobs.example.json`; it is not part of the installed skill.
+<https://github.com/Ekko237/imagegen-swarm/blob/main/examples/series.jobs.example.json>; it is not part of the
+installed skill.
 
 Style reference images are placed in front of the job's own references, and only as far as that
 engine's limit (Jimeng 10, Gemini 3, Grok 1; Codex, Muse, and Lovart take the references they are
@@ -422,12 +504,35 @@ that slot is the motion source. When the slot is already full, that engine gets 
 only. The first time this happens, the log has `style_text_only` (no style image attached) or
 `style_refs_partial` (some of the style images attached). The summary lists those engines.
 
-After an engine writes an image, batch scores it locally with Pillow (`imgtool.py style`). There is
-no CLIP model and no network call. The method is `palette-histogram`: resize to 64×64, then
-0.8 × the cosine similarity of an 8-bin joint RGB histogram, plus 0.2 × the cosine similarity of a
-4×4 luminance grid. The score is from 0 to 1. On solid-color fixtures, an identical image scores 1
-and a complementary color scores 0.2. A real multi-engine series was not measured. The default
-threshold is 0.72 (`--style-threshold` or `series.threshold`).
+After an engine writes an image, batch scores it locally (`imgtool.py style`), with no network
+call. The method (`series.method` or `--style-method`) is one of:
+
+| Method | Needs | What it compares |
+|---|---|---|
+| `auto` (default) | — | `clip` when its optional backend is installed, otherwise `structure`. Chosen once per batch; the log line `lanes` and the summary show the method used and why |
+| `structure` | Pillow | 0.4 × grayscale SSIM + 0.5 × a 4×4 grid of gradient-orientation histograms (HOG-like) + 0.1 × the palette score, at 64×64. Layout, linework and rendering |
+| `clip` | numpy, onnxruntime and a CLIP ViT-B/32 ONNX file the user installed (SETUP.md, Series consistency) | cosine similarity of CLIP image embeddings. Closest to "same subject" |
+| `palette-histogram` (or `palette`) | Pillow | the 1.3.x score: 0.8 × cosine of an 8-bin RGB histogram + 0.2 × cosine of a 4×4 luminance grid |
+
+Never download the CLIP model, or install numpy or onnxruntime, for the user. If they ask for the
+clip method, point them to SETUP.md and let them do it. An explicit `clip` request without the
+backend stops before any engine starts; `auto` falls back to `structure`.
+
+Every score is from 0 to 1 and the default threshold is 0.72 for every method (`--style-threshold`
+or `series.threshold`). `structure` and `clip` are calibrated so that 0.72 is each one's measured
+operating point; `palette-histogram` is unchanged. Measured on 4,947 labeled real-image pairs
+(docs/series-consistency-validation.md in the git repository), at 0.72:
+
+| Method | Different subjects kept | Same subjects rejected | AUC |
+|---|---:|---:|---:|
+| `palette-histogram` | 6% | 76% | 0.69 |
+| `structure` | 31% | 26% | 0.79 |
+| `clip` (int8 model) | 11% | 10% | 0.96 |
+
+The palette score rejected most real same-subject pairs and could not tell two different subjects
+with the same colors apart. `structure` is a coarse layout screen; it cannot tell two characters
+drawn by the same artist apart. `clip` is the only one that tracks the subject, and it is still
+wrong about one time in ten.
 
 With style reference images, every output is scored against each reference and the highest of
 those scores is used. With text only, the first kept image becomes the visual anchor and is not
@@ -442,9 +547,13 @@ list. `prefer: "off"` keeps the full swarm and still screens.
 
 `elapsed_seconds` stays generation time. `delivery_seconds` is the wall clock through the summary,
 including style screening and style redos. Both are on the summary line and in
-`out/batch-results.json`, with each kept image's `style_score`.
+`out/batch-results.json`, with each kept image's `style_score` (calibrated), `style_raw_score` and
+`style_components` (for `structure`: `ssim`, `hog`, `palette`; for `clip`: `clip_cosine`; for
+`palette-histogram`: `histogram`, `luminance_grid`). Redo events and failed jobs carry the
+components too. The summary's `series` has `method` (used), `method_requested`, `method_reason`
+when `auto` decided, `components` (the weights) and `threshold`.
 
-Screening does not recognize a face, a character, or a logo. Look at every kept image before
+No method guarantees the same face, character, or logo. Look at every kept image before
 delivering it. An output that already exists is skipped and is not scored. Grok and Jimeng treat a
 reference as an edit, so one style reference turns a text-to-image call into an edit. A Grok edit
 keeps the source aspect ratio.
@@ -454,6 +563,7 @@ keeps the source aspect ratio.
 | style text | `series.style`, or `series` as a string | `--style` or `--style-file` | required when series mode is on |
 | reference images | `series.ref` | `--style-ref`, repeatable | none |
 | threshold | `series.threshold` | `--style-threshold` | 0.72 |
+| method | `series.method` | `--style-method auto`, `structure`, `clip`, or `palette-histogram` | `auto` |
 | retries | `series.max_retries` | `--style-retries` | 2 |
 | engines | `series.engines` | `--series-engines` | every engine in this batch |
 | routing | `series.prefer` | `--series-prefer consistent` or `off` | `consistent` |
@@ -468,12 +578,17 @@ the user named fails, report it instead of switching to the web.
 
 ## Checks
 
-- `node scripts/check.mjs`: login status of all six engines (Dreamina also shows remaining credits).
+- `node scripts/check.mjs`: current login probes and recent smoke readiness of all seven routes.
+- `node scripts/smoke.mjs --engines <list>`: test selected routes one at a time with one square PNG.
+  `--timeout <seconds>` caps each engine (default 300). Progress prints as each row runs.
+  The run folder keeps `SMOKE_TABLE.txt` after a timeout or SIGINT/SIGTERM.
+  Confirm Muse billing before selecting it. Jimeng and the paid API are skipped by default.
+  Lovart's default smoke requires unlimited mode and the whitelisted default model.
   With the api line configured, it checks the key against the free model-list endpoint and shows
   this month's spend and budget.
-- After changing a script, run `node tests/reliability.test.mjs` and `node tests/series.test.mjs`
-  from the git repository first (no paid images; series tests use mock engines and solid-color
-  fixtures). `reliability.test.mjs` runs `batch.mjs` for real to check when the paid line does and
+- After changing a script, run `node tests/reliability.test.mjs`, `node tests/series.test.mjs` and
+  `node tests/series-consistency.test.mjs` from the git repository first (no paid images; series
+  tests use mock engines, procedural images and six small licensed fixtures). `reliability.test.mjs` runs `batch.mjs` for real to check when the paid line does and
   does not take an image. Those tests are not part of the installed skill.
 - Look at every image before delivering it; sample frames from videos.
 - The fixed image tasks live in the git repository at `tests/evals/`, not in the installed skill.

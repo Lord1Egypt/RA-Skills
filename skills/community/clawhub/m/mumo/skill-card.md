@@ -1,6 +1,6 @@
 ## Description:
 
-mumo helps an agent run multi-model deliberation through mumo's MCP server for architecture, design, security-sensitive review, and other decisions where independent perspectives are valuable.
+Runs a multi-model deliberation across models from different labs (Claude, GPT, Gemini, Grok, DeepSeek, Kimi, and more) via mumo's MCP server, returning full responses plus typed cross-model reactions. Use when independent perspectives are needed on architecture/product decisions, design and plan review before implementation, pre-launch pressure tests, tradeoffs with multiple defensible framings, or explicit user requests for a mumo panel. Especially valuable for pre-implementation review of anything touching auth, security, tokens, payments, data exposure, or migrations. Requires a mumo platform API key (mmo_live_*) registered with `openclaw mcp set mumo`.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agent operators use this skill to ask an OpenClaw agent to convene a multi-model panel for design review, contested technical decisions, red-team analysis, uncertainty expansion, and synthesis of model perspectives before acting.
+Developers and product teams use the skill to gather independent model perspectives on architecture, design, launch, and other high-impact decisions, then review areas of agreement and disagreement before choosing a course of action.
 
 ### Deployment Geography for Use:
 
@@ -22,45 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Review prompts and included specifications may be sent to mumo and external model providers.
+Risk: Decision context provided to the skill may be shared with participating external model providers; safeguards for sensitive decisions are not fully clear.
 
-Mitigation: Minimize excerpts, redact secrets, and ask before transmitting auth flows, tokens, payment logic, customer data, or unreleased security findings.
-
-Risk: Public session-sharing can expose sensitive deliberation content.
-
-Mitigation: Review session contents before sharing and avoid public links for sessions containing confidential or security-sensitive material.
-
-Risk: Panel consensus and individual model responses are advisory and can still be wrong.
-
-Mitigation: Verify recommendations with tests, source checks, and user review before changing code, configuration, or operational plans.
+Mitigation: Do not include secrets or sensitive information unless sharing it is appropriate and authorized. Review the context before submitting it to a panel.
 
 ## Reference(s):
 
+- [ClawHub skill listing](https://clawhub.ai/ericatmumo/skills/mumo)
 - [mumo product](https://mumo.chat)
 - [mumo MCP documentation](https://mumo.chat/docs/mcp)
-- [mumo REST API documentation](https://mumo.chat/docs/api)
-- [mumo OpenClaw install guide](https://mumo.chat/install/openclaw)
-- [ClawHub mumo listing](https://clawhub.ai/ericatmumo/skills/mumo)
-- [Claim Maps](references/claim-maps.md)
-- [Model Selection](references/model-selection.md)
-- [Operating Notes](references/operating-notes.md)
-- [Snippets](references/snippets.md)
-- [Synthesis](references/synthesis.md)
-- [Takeaway](references/takeaway.md)
+- [mumo API documentation](https://mumo.chat/docs/api)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [Reading reactions](artifact/references/reading-reactions.md)
+- [Writing reactions](artifact/references/writing-reactions.md)
+- [Synthesis](artifact/references/synthesis.md)
+- [Model selection](artifact/references/model-selection.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, API calls]
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
 
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration, and MCP tool-call instructions]
+**Output Format:** [Text and Markdown containing model responses, typed reactions, and a synthesized summary]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include full model responses, typed cross-model reactions, claim-map links, snippets, and optional round takeaways returned by the mumo service.]
+**Other Properties Related to Output:** [Response length and detail vary with the deliberation and participating models.]
 
 ## Skill Version(s):
 
-0.6.2 (source: server release metadata and changelog, released 2026-09-09)
+0.9.1 (source: CHANGELOG, released 2026-11-24)
 
 ## Ethical Considerations:
 

@@ -2,18 +2,44 @@
 
 中文 ｜ [English](README_EN.md)
 
-> **一句话，四路并行，全审计裁决。**
-> 这是 [避雷.skill](https://github.com/zhashushu/bilei-skill) 的**多 Agent 重型版**——日常快问快答用轻快版，大件和安全关键品类用本版。
+> **四角色协作，按证据裁决；查不到就写查不到。**
+> 这是 [避雷.skill](https://github.com/zhashushu/bilei-skill) 的**多 Agent 重型版**——日常快问快答用轻快版，大件和安全关键品类用本版。没有可靠选项就说「目前没有」。
 
-## 和避雷.skill 的分工
+## 安装
 
-| | [避雷.skill](https://github.com/zhashushu/bilei-skill) | **避雷选品团.skill（本仓库）** |
+打开你正在用的 Agent（Claude Code / Cursor / Codex / WorkBuddy 等），对它说：**「帮我安装这个 skill：https://github.com/zhashushu/bilei-team-skill」**
+
+或者用通用 CLI 安装器：
+
+```bash
+npx skills add zhashushu/bilei-team-skill
+```
+
+也可以手动：把整个文件夹放进你所用 Agent 的技能目录（如 `~/.claude/skills/`、`~/.workbuddy/skills/`）。文件夹名可以随便改，界面显示的技能名以 SKILL.md 里的 `display_name` 为准。
+
+## 和普通 AI 推荐的差别
+
+- 行政处罚、抽检不合格、召回公告优先；型号级 L1 原文命中，剥夺推荐资格。
+- SGS / TÜV 送测记 L3b，不因机构 logo 升成 L2。
+- 同一篇通稿无论转载多少次，只计 1 个信源。
+- 四个角色隔离：取证的不许推荐，算数的不许下结论；价格情报官在裁决之后才派出。
+- 没有可靠选项就说「目前没有」。
+
+## 轻快版 / 重型版
+
+| | [避雷.skill](https://github.com/zhashushu/bilei-skill) 轻快版 | **避雷选品团.skill（本仓库）** 重型版 |
 |---|---|---|
 | 形态 | 单 Agent，无编排依赖 | 多 Agent 协作（4 个角色） |
 | 成本 | 约十分之一 | 全套手册加载 × 4 线 |
 | 适合 | 日常购物、快问快答、低价小件 | >¥2000 大件、安全关键品类、要完整审计链路 |
 
 **怎么选**：平时用避雷.skill；买空调、热水器、儿童安全座椅、电动车这类「错一次代价大」的东西，或者想要逐条可反查的完整审计报告时，换本版。
+
+## 用法
+
+对它说品类或需求即可，例如：「想买个扫地机器人」「3000 以内 4K 显示器剪辑用」「这型号值不值得买」。
+
+若这份说明对你有用，欢迎给仓库点个 star，也欢迎在 issue 里点名下一个品类。
 
 ## 它派四个角色干活
 
@@ -28,31 +54,28 @@
 
 13 类品类的门槛规格 / 关键指标 / 垂类信源档案 + 表外品类兜底四问 + 非实物类（服务/软件/保险/课程）专属规则——换品类不用改规则。
 
+## 与单 Agent 版一致的基础能力（v6.1 补齐）
+
+- **标准排查**：查强制国标/认证 + 有无更严标准（须给指标数值对比）+ 结论落款"遵循哪个标准"，无遵循证据不得作首选
+- **制造商审计**：自产/代工/贴牌四模式 + 按厂名查代工厂黑历史，纯代工/贴牌降一级
+- **信源黑名单**：官方名单随包 + 用户自定义黑名单（更新技能不丢），名单优先 + 特征兜底；一句话即可增删
+- **二手保值率**：闲鱼近期成交 → 二手价/折价/保值率，作横评辅助项
+- **版本自检**：调用时查一次新版本，仅末尾一行提示，不打断主流程
+
+> 本版独有的更强能力（预算分级、三层输出、分享版、信源可信度七类审计）保持不变。
+
 ## 三条纪律（与避雷.skill 一脉相承）
 
 1. **推荐强度 ≤ 证据强度**，证据的强度不能超过信源的强度
 2. **不编数据**——查不到就写查不到，没有可靠选项就说「目前没有」
 3. **利益冲突只削评价层，不削事实层**——收钱的评测源，弃用它的结论，保留它的拆解照片和实测数据
 
-## 安装
-
-只需两步：
-
-1. 打开你正在用的 Agent（Claude Code / Cursor / Codex / WorkBuddy 等）
-2. 对它说：**「帮我安装这个 skill：https://github.com/zhashushu/bilei-team-skill」**
-
-或者用通用 CLI 安装器：
-
-```bash
-npx skills add zhashushu/bilei-team-skill
-```
-
-也可以手动：把整个文件夹放进你所用 Agent 的技能目录（如 `~/.claude/skills/`、`~/.workbuddy/skills/`）。文件夹名可以随便改，界面显示的技能名以 SKILL.md 里的 `display_name` 为准。
-
 ## 定量脚本
 
 - `scripts/premium_decision.py` —— 溢价-风险对价计算器（零依赖，Python 3.8+）：TCO/EAC、临界故障率 p\*、溢价 ROI、公允价格上限、QPR
 - `scripts/manmanbuy_price.py` —— 慢慢买免登录比价（仅实物电商）：一条命令拿爆料价 + 商城 + 日期 + 价格标签
+- `scripts/custom_blocklist.py` —— 用户自定义信源黑名单（add / remove / list / check / path），名单存 `~/.bilei/user-blocklist.md`，更新技能不丢
+- `scripts/check_update.py` —— 版本自检（多源回退 + 24h 缓存 + 失败静默）
 
 ```bash
 python3 scripts/premium_decision.py selftest   # 自检
@@ -72,10 +95,14 @@ bilei-team-skill/
 │   ├── output_template.md          # 三层输出模板（零层/一层/二层 + 分享版）
 │   ├── cases.md                    # 翻车案例集（规则由来）
 │   ├── changelog.md                # 完整变更史
-│   └── case_example.json           # 定量脚本输入示例
+│   ├── case_example.json           # 定量脚本输入示例
+│   ├── manufacturer-audit.md       # 制造商/供应链审计（自产/代工/贴牌）
+│   └── source-blocklist.md         # 官方信源黑名单（随包分发）
 └── scripts/
     ├── premium_decision.py         # 溢价-风险对价计算器
-    └── manmanbuy_price.py          # 慢慢买免登录比价
+    ├── manmanbuy_price.py          # 慢慢买免登录比价
+    ├── custom_blocklist.py         # 用户自定义信源黑名单
+    └── check_update.py             # 版本自检
 ```
 
 ## 关于准确度的实话

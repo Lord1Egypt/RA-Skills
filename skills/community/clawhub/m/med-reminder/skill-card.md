@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-People who want medication reminders in a messaging channel can use this skill to configure schedules, receive reminders and follow-ups, and record dose replies. It can also calculate syringe units from reconstituted medication concentrations; it is a reminder aid, not a medical device.
+People using OpenClaw use this skill to create and manage medication schedules, receive reminders and digests through their configured messaging channel, and record dose replies. It is a reminder tool and does not diagnose, prescribe, or verify medical details.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The current release may disable other reminders during scheduler setup or record a dose as taken without an explicit confirmation.
+Risk: A reminder may repeat after a dose is taken or skipped, or after a delivery retry.
 
-Mitigation: Use a corrected release before relying on the reminders; preview setup changes and confirm unrelated scheduler configurations remain enabled. Record doses as taken only after an explicit confirmation.
+Mitigation: Check the recorded dose status before treating a repeated reminder as a new dose prompt.
 
-Risk: History recovery and timing defects may affect dose records or reminder delivery.
+Risk: Medication names and dose times are visible to the configured messaging provider and chat members.
 
-Mitigation: Use a corrected release before relying on dose history or reminder timing.
+Mitigation: Use a private messaging channel that you have explicitly approved.
 
-Risk: Medication details are disclosed to the configured messaging service and message recipients.
+Risk: Scheduled-run behavior and Windows task cleanup can affect reminder delivery or remove tasks.
 
-Mitigation: Review the configured sender and recipients, protect the medication state and history files, and enable log redaction where appropriate.
+Mitigation: Review the scheduler and retry behavior, and inspect Windows cleanup targets before using cleanup options.
+
+Risk: Security scan coverage was partial, with some static checks degraded.
+
+Mitigation: Review the partially inspected components and degraded checks before relying on the release.
 
 ## Reference(s):
 
-- [Med Reminder release page](https://clawhub.ai/thegizmopro/skills/med-reminder)
+- [ClawHub security audit](https://clawhub.ai/thegizmopro/skills/med-reminder/security-audit)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Configuration, Shell commands, Guidance]
+**Output Type(s):** [Configuration, Text, Guidance]
 
-**Output Format:** [Medication reminder messages, JSON configuration, and shell commands]
+**Output Format:** [JSON medication schedule configuration and plain-language reminder messages and responses]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reminder content can include medication details and is sent through the user's configured messaging channel.]
+**Other Properties Related to Output:** [Contains user-provided medication names, doses, and schedules; does not provide medical advice.]
 
 ## Skill Version(s):
 
-1.0.2 (source: server-resolved release)
+1.0.3 (source: ClawHub release evidence)
 
 ## Ethical Considerations:
 

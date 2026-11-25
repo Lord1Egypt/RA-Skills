@@ -1,6 +1,6 @@
 ## Description:
 
-Guides skill authors through auditing, sanitizing, verifying, and publishing agent skills to ClawHub, SkillHub, and GitHub.
+An audit-first workflow that helps developers sanitize, verify, and publish OpenClaw skills to ClawHub, SkillHub, and GitHub while protecting private data and credentials.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and skill authors use this workflow to audit source content for personal data, credentials, and other publishing concerns, then prepare and verify a release. Publishing stages include explicit approval gates before external publication.
+Developers use this skill to prepare OpenClaw skills for release by auditing and sanitizing content, checking the staged files, and guiding an approval-based publish and install check.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates the release suspicious, citing reported source-file overwrite and safeguard concerns; scan coverage is incomplete (7 of 9 components) and some checks were partial.
+Risk: The security review flags an approval gap in a publishing helper and concerns about network permissions.
 
-Mitigation: Review the reported overwrite behavior, approval safeguards, and network permissions before use. Inspect proposed file changes and require explicit approval before publishing.
+Mitigation: Review the publishing steps and declared permissions, and require explicit approval before any public upload.
+
+Risk: The security scan was partial; some instruction text and references were not fully evaluated.
+
+Mitigation: Review the remaining components and references before installing or invoking publishing features.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/haiyangchenbj/skills/skill-audit-publish)
-- [Publish rules](references/publish-rules.md)
+- [ClawHub release page](https://clawhub.ai/haiyangchenbj/skills/skill-audit-publish)
+- [Publish rules for ClawHub and GitHub](references/publish-rules.md)
 - [SkillHub publishing guide](references/skillhub-publish.md)
+- [GitHub sync helper](scripts/sync_skill_to_github.js)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Files, Shell commands, Guidance]
+**Output Type(s):** [Analysis, Markdown, Files, Shell commands, Code, Configuration guidance]
 
-**Output Format:** [Audit summaries and approval details in text or Markdown, publishing files, and command examples.]
+**Output Format:** [Markdown checklists and approval summaries, with shell commands and code examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Files and summaries depend on the source skill and selected publishing stages.]
+**Other Properties Related to Output:** [May include a sanitized staging folder, file manifest, and reviewable publish details.]
 
 ## Skill Version(s):
 
-1.5.12 (source: frontmatter and server-resolved release metadata)
+1.5.13 (source: frontmatter)
 
 ## Ethical Considerations:
 

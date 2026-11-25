@@ -35,10 +35,18 @@ async function post(url, body, { key, timeoutMs = 6000 } = {}) {
     finally { clearTimeout(timer); }
   }
 }
-const env = names => names.map(n => process.env[n]).find(Boolean);
+import { readKey as env, checkKeyEnv } from '../core/keys.mjs';
+// A keyed request goes over https, or plain http only to this machine (self-hosted proxy, tests).
+function checkUrl(url, keyEnv, who) {
+  const u = new URL(url);
+  const local = ['localhost', '127.0.0.1', '[::1]'].includes(u.hostname);
+  if (u.protocol !== 'https:' && !(u.protocol === 'http:' && local)) throw new Error(`适配器 ${who} 的 url 必须是 https（或本机 http）：${url}`);
+  checkKeyEnv(keyEnv, who);
+}
 
 // native: one System One call per state, `concurrency` at a time
 export function nativeAdapter({ name, url, keyEnv = [], anonymousKey, concurrency = 4, keyedConcurrency = 16, model = 'jev-latest', describe }) {
+  checkUrl(url, keyEnv, name);
   return {
     name, kind: 'native', describe,
     available: () => !!(env(keyEnv) || anonymousKey),
@@ -53,6 +61,7 @@ export function nativeAdapter({ name, url, keyEnv = [], anonymousKey, concurrenc
 
 // shim: emulate System One on a batch classifier; one request per question, all states at once
 export function shimAdapter({ name, url, keyEnv = [], concurrency = 4, keyedConcurrency = 16, describe }) {
+  checkUrl(url, keyEnv, name);
   return {
     name, kind: 'shim', describe,
     available: () => true,
@@ -85,7 +94,7 @@ export function shimAdapter({ name, url, keyEnv = [], concurrency = 4, keyedConc
 }
 
 // Built-in adapters. Users add their own in config: { "adapters": [{ "name": "my-proxy", "kind": "native",
-// "url": "https://…/v1/systemone", "keyEnv": ["MY_KEY"] }] }
+// "url": "https://…/v1/systemone", "keyEnv": ["PE_KEY_MY_PROXY"] }] } — user config only
 export const BUILTIN_ADAPTERS = [
   nativeAdapter({ name: 'typesafe', url: 'https://api.typesafe.ai/v1/systemone', keyEnv: ['TYPESAFE_API_KEY'], describe: 'TypeSafe 直连 System One（需 TYPESAFE_API_KEY）' }),
   nativeAdapter({ name: 'classifier-systemone', url: 'https://classifier.dev/v1/systemone', keyEnv: ['CLASSIFIER_API_KEY', 'CLASSIFY_API_KEY'], anonymousKey: 'unused', keyedConcurrency: 4, describe: 'classifier.dev 转发的 System One（无 key 用 IP 免费额度，4 并发）' }),

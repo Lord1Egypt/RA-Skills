@@ -1,6 +1,6 @@
 ## Description:
 
-Collects public Douyin search, trending, post, creator, and comment data as structured JSON to support performance reviews and testable content strategies.
+Collects public Douyin posts, comments, engagement metrics, and trending topics, then supports content performance reviews and evidence-based next-step strategies.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Social media operators, content analysts, and marketing teams use this skill to review public Douyin posts and engagement, monitor creators and trends, analyze comments, and shape testable content strategies.
+Content teams, social media analysts, marketers, and customer support teams use the skill to review public Douyin content, track trends and competitors, understand audience feedback, and identify content opportunities.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,42 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Security scan coverage is incomplete: 18 of 42 components were only partially inspected.
+Risk: Search terms, links, and IDs supplied to the skill are sent to the GUAIKEI third-party API.
 
-Mitigation: Review the skill before installation and use it only in an environment where its required access is acceptable.
+Mitigation: Review the provider's terms and data handling, and submit only the identifiers needed for the requested analysis.
 
-Risk: The skill sends the supplied Douyin keyword or link and an API token to the GUAIKEI service to retrieve data.
+Risk: Account discovery and identifiable lead generation can expose personal information or enable unwanted contact.
 
-Mitigation: Use only public, non-sensitive queries and keep GUAIKEI_API_TOKEN private in a trusted secret store.
+Mitigation: Use results only for authorized internal analysis, minimize retained identifiers, and do not use them for unsolicited outreach or resale.
 
-Risk: Retrieved data may include public user comments and engagement information that should not be redistributed without care.
+Risk: The security scan was benign with medium confidence, but several files were only partially analyzed.
 
-Mitigation: Keep analysis within personal or team use, consistent with the skill documentation.
+Mitigation: Review the skill and its dependencies before deployment, and reassess if the skill or its permissions change.
 
 ## Reference(s):
 
-- [GUAIKEI service and API access](https://www.guaikei.com)
-- [ClawHub release](https://clawhub.ai/why20261/skills/douyin-performance-review)
-- [Demand mining guide](references/demand-mining.md)
-- [Command options](references/options.md)
-- [Changelog](references/changelog.md)
+- [Skill overview and command guide](artifact/readme.md)
+- [Output contract](artifact/references/contract.md)
+- [Command options](artifact/references/options.md)
+- [Comment analysis and demand mining](artifact/references/demand-mining.md)
+- [Public lead handling guidance](artifact/references/customer-acquisition.md)
+- [Error handling](artifact/references/errors.md)
+- [ClawHub skill page](https://clawhub.ai/why20261/skills/douyin-performance-review)
+- [GUAIKEI service and access](https://www.guaikei.com)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis, Markdown]
+**Output Type(s):** [JSON, Analysis, Guidance]
 
-**Output Format:** [Structured JSON data with concise content performance analysis and recommendations]
+**Output Format:** [Structured JSON data with concise analysis and recommendations]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Uses public Douyin data. Query limits depend on the API token plan; media and share links may expire.]
+**Other Properties Related to Output:** [Results include content, author, engagement, comment, and trend fields; the agent should report relevant fields rather than paste full result payloads.]
 
 ## Skill Version(s):
 
-1.4.2 (source: frontmatter, package.json, server release)
+1.5.0 (source: SKILL.md frontmatter, package.json)
 
 ## Ethical Considerations:
 

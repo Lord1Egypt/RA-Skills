@@ -1,6 +1,6 @@
 ## Description:
 
-Discovers Azure-hosted AI and MCP-relevant assets and produces canonical agent-bom inventory JSON for optional scanning.
+Discover Azure-hosted AI agent and MCP-relevant assets from the operator's environment, emit canonical agent-bom inventory JSON, and scan it without giving agent-bom long-lived Azure credentials.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-Apache-2.0
+MIT-0
 
 ## Use Case:
 
-Developers and cloud security engineers use this skill to inventory Azure AI and agentic workloads through approved, read-only Azure access, then optionally scan the resulting inventory with agent-bom.
+Cloud platform, security, and AI infrastructure teams use this skill to inventory Azure-hosted AI and agent workloads as canonical agent-bom JSON, then optionally scan that inventory when requested.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Azure discovery uses the operator's Azure identity, and the security review has medium confidence with incomplete analysis because a referenced local path could not be resolved.
+Risk: The security review is partial because the referenced Azure adapter was unavailable for assessment.
 
-Mitigation: Use only approved subscriptions with read-only access, and review the unresolved local-path issue before running.
+Mitigation: Review the adapter before installation and use only approved Azure subscriptions with read-only identities.
 
-Risk: The workflow writes Azure inventory to a path chosen by the operator.
+Risk: Discovery uses the operator's existing Azure identity to read Azure resource and service metadata.
 
-Mitigation: Choose a protected operator-controlled path and review the inventory before sharing it.
+Mitigation: Use an approved read-only identity, keep secrets and tokens out of prompts, and write inventory only to a path you choose.
 
 ## Reference(s):
 
-- [agent-bom project homepage](https://github.com/koda-ai-studio/agent-bom)
+- [ClawHub skill release](https://clawhub.ai/msaad00/skills/agent-bom-discover-azure)
+- [agent-bom project](https://github.com/koda-ai-studio/agent-bom)
 - [agent-bom on PyPI](https://pypi.org/project/agent-bom/)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Shell commands, Guidance]
+**Output Type(s):** [JSON, Shell commands]
 
-**Output Format:** [Canonical inventory JSON file and Markdown instructions with inline shell commands]
+**Output Format:** [Canonical agent-bom inventory JSON, with optional scan findings JSON]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Writes to an operator-selected path; scanning is optional and requires an explicit request.]
+**Other Properties Related to Output:** [Writes inventory to an operator-selected path; scanning is optional and only runs when requested.]
 
 ## Skill Version(s):
 
-0.115.3 (source: frontmatter)
+0.115.6 (source: release evidence and skill frontmatter)
 
 ## Ethical Considerations:
 

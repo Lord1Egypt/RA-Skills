@@ -7,8 +7,10 @@ thin __main__ wrapper, and vp.main() through the wrapper function."""
 import sys
 
 from verify_pmids import *  # noqa: F401,F403
-from verify_pmids import (
-    _cache_init, _cache_load, _cache_path, _cache_save_fresh,     _cited_sort_key, _input_guard_note, _retraction_reason_from_notice, _second_opinion_title,     _sequence_similarity, apply_retraction_cap, classify_unverified, cross_check_citation,     find_pmid_by_doi, keyword_match, run_check_net, run_claims_lint,     run_doctor, run_self_check, suggest_correct_pmid, suggest_retraction_replacements,     verify_arxiv_entry, verify_doi_entry, verify_title_entry)
+# v7.1.0: the former explicit 23-name re-import is gone — verify_pmids'
+# dynamic __all__ (recomputed at true module end, v6.4.0) already carries
+# every name including the underscore-prefixed ones; the duplicate import
+# block was flagged by the accuracy judge as an internal inconsistency.
 
 def _validate_args(args) -> None:
     """Immediate flag validation with the written error contract (v5.8.0):

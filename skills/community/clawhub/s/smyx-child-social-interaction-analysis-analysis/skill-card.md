@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes fixed-camera video from early education settings to summarize children's social interactions and generate reports and heatmaps for educators.
+Using fixed cameras in early-childhood settings, this skill analyzes children’s social interactions and produces pairwise frequency and duration statistics with a social-interaction report.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Teachers and early education staff use the reports to review pairwise interaction frequency, duration, and initiators, and to guide classroom support.
+Teachers and early-childhood staff can use the skill to review interaction patterns in classroom or play-area video and consult structured summaries as educational observations.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security evidence flags uncertainty about what video and identity data are sent, who receives it, and whether export-only use may still trigger analysis; scan coverage is incomplete.
+Risk: Processing may involve uploading sensitive video of children, and the scan summary says task-specific authorization is unclear.
 
-Mitigation: Before use, verify the data flow, recipient, and export-only behavior. Follow the skill's guidance to obtain guardian or school consent and protect recordings.
+Mitigation: Obtain guardian and institution authorization before processing; limit access to recordings and reports, protect them, and retain them only as needed.
 
-Risk: Interaction estimates and low-interaction flags can be unreliable when camera coverage or distance calibration is inadequate, and may be mistaken for a clinical assessment.
+Risk: Account or credential handling is not clearly tied to the skill’s stated analysis purpose.
 
-Mitigation: Use a stable view that covers the activity area, provide calibration where available, and treat results as educational reference rather than diagnosis.
+Mitigation: Use an authorized, trusted service configuration and restrict credentials to the people and systems that need them.
+
+Risk: Interaction summaries or low-interaction flags could be mistaken for a developmental or mental-health assessment.
+
+Mitigation: Use results only as educational observations; do not diagnose from them, and refer developmental concerns to qualified professionals.
 
 ## Reference(s):
 
-- [API documentation](references/api_doc.md)
+- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-child-social-interaction-analysis-analysis)
+- [API interface notes](references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
-- [ClawHub release](https://clawhub.ai/18072937735/skills/smyx-child-social-interaction-analysis-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, JSON]
+**Output Type(s):** [Analysis, JSON, Markdown]
 
-**Output Format:** [Structured interaction report in Markdown or JSON, with report and heatmap links]
+**Output Format:** [Structured interaction report with counts, durations, initiator summaries, heatmap or report links; Markdown report listings]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes pairwise interaction counts and durations, initiator statistics, heatmap links, and low-interaction candidates.]
+**Other Properties Related to Output:** [May identify low-interaction candidates; results are visual behavior summaries, not diagnoses.]
 
 ## Skill Version(s):
 
-1.0.17 (source: server-resolved ClawHub release metadata)
+1.0.19 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

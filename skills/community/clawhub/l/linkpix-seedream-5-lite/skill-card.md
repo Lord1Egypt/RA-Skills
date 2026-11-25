@@ -1,6 +1,6 @@
 ## Description:
 
-使用 LinkPix 的 qhkit 命令为电商商品图、营销图和海报生成图片 5.0 Flash 图像，支持文字提示和参考图。
+通过 LinkPix 的图片 5.0 Flash，根据文字提示或可选参考图生成电商商品图与营销素材。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External sellers and marketing teams use the skill to create product images, promotional visuals, and posters from text prompts or reference images. It provides guidance for selecting image options, estimating cost, and preparing generation requests.
+电商运营者和营销创作者可用它快速制作商品主图、促销海报、卖点图和社交媒体配图，并可从文字提示或商品参考图开始。
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill's setup instructions ask users to share an API key in chat.
+Risk: Reference images are uploaded to an external service during generation.
 
-Mitigation: Configure credentials locally outside chat; replace any key already shared.
+Mitigation: Avoid sensitive images unless you understand and accept that transfer.
 
-Risk: Reference images are uploaded to iqinghu.com during generation preparation, including prompt polishing.
+Risk: The documented CLI package installation may retrieve changing package versions, creating supply-chain exposure.
 
-Mitigation: Use only reference images that are appropriate to send to iqinghu.com, including during prompt polishing.
-
-Risk: The external CLI implementation and the service's image-retention practices were not verified.
-
-Mitigation: Review dependency installations and upgrades, and avoid sending images whose contents or retention would be unacceptable.
+Mitigation: Review the package and version source before installation, and use a trusted package registry.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-seedream-5-lite)
-- [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
+- [qhkit on npm](https://www.npmjs.com/package/@iqinghu/qhkit)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Text, Shell commands, Configuration instructions]
+**Output Type(s):** [Image files, Shell commands, Guidance]
 
-**Output Format:** [Generated image URLs with concise Markdown guidance and shell command examples]
+**Output Format:** [Generated image URLs or files, with Markdown guidance and shell commands]
 
-**Output Parameters:** [1D]
+**Output Parameters:** [Prompt, optional reference images, model, image count, image size, and quality]
 
-**Other Properties Related to Output:** [Generation requests require user confirmation of parameters and estimated credit cost before submission.]
+**Other Properties Related to Output:** [Prompts are limited to 5,000 characters; image counts are 1, 2, 4, 6, 8, or 10. 1K is the default, with model-specific 2K presets available.]
 
 ## Skill Version(s):
 
-0.1.4 (source: server-resolved release metadata)
+0.1.5 (source: release evidence)
 
 ## Ethical Considerations:
 

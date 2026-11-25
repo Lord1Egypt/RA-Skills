@@ -1,6 +1,6 @@
 ## Description:
 
-Searches public Kuaishou videos, retrieves creators' public posts and video comments, and provides structured data for news briefs and audience analysis.
+Search public Kuaishou videos, creator posts, and comments, then return structured data for briefings and trend analysis.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Content creators, marketing teams, and analysts use the skill to research public Kuaishou videos, track creator posts, and examine comments for trends, competitor monitoring, and briefings.
+Content creators, marketers, and analysts can search public Kuaishou videos by keyword, inspect a creator's public posts, and review video comments. The resulting data supports topic research, competitor monitoring, and public-opinion analysis.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Kuaishou keywords, profile or video URLs, and the GUAIKEI API token are sent to a third-party service.
+Risk: Search terms and links are sent to guaikei.com for processing; security scan coverage was partial.
 
-Mitigation: Use only if that transfer is acceptable; keep the token secret and avoid sending sensitive search terms or links.
-
-Risk: Locally saved results may include public comments and account or post data.
-
-Mitigation: Restrict access to logs/ and delete retained results when no longer needed.
+Mitigation: Avoid confidential queries and submit only public-content links and search terms you are comfortable sharing with the service.
 
 ## Reference(s):
 
-- [GUAIKEI service](https://www.guaikei.com)
-- [Usage options](references/options.md)
-- [Demand research workflow](references/demand-mining.md)
+- [GUAIKEI service and token information](https://www.guaikei.com)
+- [Command options](artifact/references/options.md)
+- [ClawHub skill page](https://clawhub.ai/why20261/skills/kuaishou-news-brief)
 
 ## Skill Output:
 
-**Output Type(s):** [Structured data, Analysis, Guidance]
+**Output Type(s):** [JSON, Structured data]
 
-**Output Format:** [JSON results with optional text or Markdown summaries]
+**Output Format:** [JSON]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Successful results are also saved locally under logs/.]
+**Other Properties Related to Output:** [Public video, creator, or comment records; results may be empty or subject to service plan limits.]
 
 ## Skill Version(s):
 
-1.0.0 (source: release metadata, skill frontmatter, package.json and changelog)
+1.1.2 (source: SKILL.md frontmatter, server release evidence)
 
 ## Ethical Considerations:
 

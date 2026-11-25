@@ -2,22 +2,33 @@ import { spawn } from 'node:child_process';
 import { randomBytes } from 'node:crypto';
 import { existsSync, readdirSync } from 'node:fs';
 import { homedir, totalmem } from 'node:os';
-import { mkdir, readFile, realpath, rm, stat, writeFile } from 'node:fs/promises';
+import { lstat, mkdir, readFile, realpath, rm, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isInvokedDirectly } from './direct.mjs';
 import { engineSpec, hasPaidSpend, loadApiConfig, readLedger } from './api-image.mjs';
 import { ATTEMPT_IGNORED } from './attempt-outcomes.mjs';
 import {
-  RATE_LIMIT_STRIKES, STEAL_FACTOR, applyEngineFailure, attemptDisposition, classifyEngineError, failureText,
+  RATE_LIMIT_STRIKES, STEAL_FACTOR, applyEngineFailure, attemptDisposition, classifyEngineError, engineSetupReason, failureText,
   keepCounts, medianSeconds, paidBudgetLeft, paidMayTake, shouldSteal,
 } from './batch-policy.mjs';
 import {
-  recordStyleScore, resolveSeriesConfig, shouldHintSeries, splitJobsDocument, styleMeans, stylePrompt,
+  recordStyleScore, resolveSeriesConfig, resolveStyleMethod, shouldHintSeries, splitJobsDocument, styleMeans, stylePrompt,
   styleRefsForEngine, styleRouteAllows, takeStyleScreen,
 } from './series-policy.mjs';
 import { RUN_MARKER_FILE, removableWorkPath } from './safety.mjs';
 import { STDIO_DISCARD, STDIO_PIPE } from './stdio-modes.mjs';
+
+export const JOB_ID_RE = /^[\p{L}\p{N}][\p{L}\p{N}._-]{0,99}$/u;
+
+export function isValidJobId(id) {
+  return typeof id === "string" && JOB_ID_RE.test(id);
+}
+
+export function jobFileInsideOut(outDir, file) {
+  const rel = path.relative(outDir, file);
+  return rel !== "" && !rel.startsWith("..") && !path.isAbsolute(rel);
+}
 
 export {
   RATE_LIMIT_STRIKES, STEAL_FACTOR, applyEngineFailure, attemptDisposition, classifyEngineError,
@@ -80,14 +91,14 @@ function parse(argv) {
   const o = {
     engines: Object.keys(ENGINES), lanes: { ...DEFAULT_LANES }, tries: 3, series: false,
     style: null, styleFile: null, styleRefs: [], styleThreshold: null, styleRetries: null,
-    seriesEngines: null, seriesPrefer: null,
+    seriesEngines: null, seriesPrefer: null, styleMethod: null,
   };
   for (let i = 0; i < argv.length; i++) {
     const flag = argv[i];
     if (flag === '--help' || flag === '-h') {
       console.log('batch.mjs --jobs <jobs.json> --out <dir> [--engines gemini,jimeng,codex,grok,lovart,muse,api] [--lanes gemini=2,muse=1] [--tries 3]\n' +
         '[--series] [--style <text> | --style-file <path>] [--style-ref <image>]... [--style-threshold 0.72] [--style-retries 2]\n' +
-        '[--series-engines gemini,jimeng] [--series-prefer consistent|off]\n' +
+        '[--series-engines gemini,jimeng] [--series-prefer consistent|off] [--style-method auto|structure|clip|palette-histogram]\n' +
         'api is the pay-per-image last resort. It runs only after the user sets it up (see SETUP.md).\n' +
         'It spends price_per_image on images in this job list that no subscription engine can take, and stops at the budgets in that setup.\n' +
         'jobs.json: [{"id": "cat", "prompt": "...", "ref": ["a.png"], "aspect": "1:1", "video": false, "engine": "gemini"}]（ref、aspect、video、engine 可省）\n' +
@@ -109,6 +120,7 @@ function parse(argv) {
     else if (flag === '--style-retries') o.styleRetries = value;
     else if (flag === '--series-engines') o.seriesEngines = value.split(',').map(name => name.trim()).filter(Boolean);
     else if (flag === '--series-prefer') o.seriesPrefer = value;
+    else if (flag === '--style-method') o.styleMethod = value;
     else throw new Error("invalid argument: " + (flag));
   }
   if (!o.jobs || !o.out) throw new Error('require --jobs and --out');
@@ -143,12 +155,19 @@ function runProcess(bin, args, onChild) {
 
 // 清单写了比例的图，交回的宽高比差超过 3% 就不算数（codex、lovart、muse 的比例只写在说明里，偶尔不照做）
 const PY = process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3');
-async function scoreStyle(file, anchors) {
-  const r = await runProcess(PY, [path.join(here, 'imgtool.py'), 'style', file, ...anchors]);
+// Returns the imgtool JSON: method, score (0 to 1), raw_score and components.
+async function scoreStyle(file, anchors, method) {
+  const r = await runProcess(PY, [path.join(here, 'imgtool.py'), 'style', file, ...anchors, '--method', method]);
   if (r.code !== 0) throw new Error("imgtool style failed on " + (file) + ": " + (r.stderr));
-  const score = Number(JSON.parse(r.stdout).score);
-  if (!Number.isFinite(score)) throw new Error("imgtool style returned no score");
-  return score;
+  const result = JSON.parse(r.stdout);
+  if (!Number.isFinite(Number(result.score))) throw new Error("imgtool style returned no score");
+  return { ...result, score: Number(result.score) };
+}
+// Which optional scoring backends are installed. Local check only; never downloads a model.
+async function styleBackends() {
+  const r = await runProcess(PY, [path.join(here, 'imgtool.py'), 'backends']);
+  if (r.code !== 0) throw new Error("imgtool backends failed: " + (r.stderr));
+  return JSON.parse(r.stdout);
 }
 async function ratioOff(file, aspect) {
   const r = await runProcess(PY, [path.join(here, 'imgtool.py'), 'size', file]);
@@ -179,17 +198,20 @@ async function main() {
     flag: o.series, fileSeries: split.series, root: split.root,
     cli: {
       style: styleText, threshold: o.styleThreshold, maxRetries: o.styleRetries,
-      engines: o.seriesEngines, prefer: o.seriesPrefer, refs: o.styleRefs,
+      engines: o.seriesEngines, prefer: o.seriesPrefer, refs: o.styleRefs, method: o.styleMethod,
     },
   });
-  const seriesOptions = o.style || o.styleFile || o.styleRefs.length || o.seriesEngines || o.styleThreshold || o.styleRetries || o.seriesPrefer;
+  const seriesOptions = o.style || o.styleFile || o.styleRefs.length || o.seriesEngines || o.styleThreshold || o.styleRetries || o.seriesPrefer || o.styleMethod;
   if (!series.enabled && seriesOptions) throw new Error('series options need --series, or "series" in the jobs file');
   const jobs = split.jobs;
   const base = path.dirname(o.jobs);
   const seriesHint = shouldHintSeries({ flag: o.series, root: split.root, jobs, base });
   const ids = new Set();
   for (const job of jobs) {
-    if (!job.id || !job.prompt) throw new Error("every job needs id and prompt: " + (JSON.stringify(job)));
+    if (!job.prompt) throw new Error("every job needs id and prompt: " + (JSON.stringify(job)));
+    if (!isValidJobId(job.id)) {
+      throw new Error("job id may only use letters, digits, '.', '_' and '-' (max 100 characters, starting with a letter or digit): " + JSON.stringify(job.id));
+    }
     if (ids.has(job.id)) throw new Error("duplicate job id: " + (job.id));
     ids.add(job.id);
     job.ref = (job.ref ?? []).map(r => path.resolve(base, r));
@@ -213,6 +235,14 @@ async function main() {
       if (!available.length) throw new Error("series engines are not in this batch: " + (series.engines.join(',')));
       series.engines = available;
     }
+    // One method for the whole batch, so engine means compare like with like.
+    // The probe also checks Python and Pillow before any engine starts.
+    series.methodRequested = series.method;
+    const backends = await styleBackends();
+    const resolved = resolveStyleMethod(series.method, backends);
+    series.method = resolved.method;
+    series.methodReason = resolved.reason;
+    series.components = backends.methods?.[series.method]?.weights ?? null;
   }
   o.out = await prepareOutputDir(o.out);
   if (seriesHint) {
@@ -222,8 +252,13 @@ async function main() {
     }));
   }
   for (const job of jobs) job.file = path.join(o.out, (job.id) + "." + (job.video ? 'mp4' : 'png'));
+  for (const job of jobs) {
+    if (!jobFileInsideOut(o.out, job.file)) throw new Error("job file would be written outside --out: " + JSON.stringify(job.id));
+  }
   const start = Date.now();
   const down = new Map();
+  const setupReasons = new Map();
+  let sawNonSetupFailure = false;
   const rateStrikes = new Map();
   const rateBackoffUntil = new Map();
   const done = [], failed = [];
@@ -323,6 +358,11 @@ async function main() {
     // 先写临时文件，赢了才改成正式文件名
     const temp = path.join(o.out, ".attempt-" + (job.id) + "-" + (engine) + "-" + (serial++) + (path.extname(job.file)));
     const spendId = e.paid ? randomBytes(16).toString('hex') : null;
+    const existing = await lstat(temp).catch(error => {
+      if (error.code !== 'ENOENT') throw error;
+      return null;
+    });
+    if (existing?.isSymbolicLink()) throw new Error("Refusing batch attempt output symlink: " + path.basename(temp));
     ownedNames.add(path.basename(temp));
     const script = engineScript(e.script);
     // The parent of the temp output exists before Muse (or any other engine) is started.
@@ -348,7 +388,11 @@ async function main() {
       ...(spendId ? ['--spend-id', spendId] : []),
       ...refs.flatMap(r => ['--ref', r]), ...(job.aspect ? [e.ratioFlag, job.aspect] : []), ...(job.video ? ['--video'] : [])];
     log({ event: job.active.length > 1 ? 'steal' : 'start', id: job.id, engine, lane: n });
-    const r = await runProcess(script.endsWith('.py') ? PY : process.execPath, args, child => { record.child = child; });
+    const usesPython = script.endsWith('.py');
+    const r = await runProcess(usesPython ? PY : process.execPath, args, child => { record.child = child; }).catch(error => {
+      if (!usesPython || error.code !== 'ENOENT') throw error;
+      return { code: 1, stdout: '', stderr: 'Python runtime not installed' };
+    });
     delete record.child;
     record.finished = record.finished ?? new Date().toISOString();
     job.active.splice(job.active.indexOf(record), 1);
@@ -395,7 +439,7 @@ async function main() {
     if (disposition === 'win' && series.enabled && !job.video) {
       let screened = null;
       try {
-        screened = await takeStyleScreen(series, job, anchors => scoreStyle(temp, anchors), undefined);
+        screened = await takeStyleScreen(series, job, anchors => scoreStyle(temp, anchors, series.method), undefined);
       } catch (error) {
         if (job.won || record.outcome === 'cancelled') {
           if (series.anchorJob === job.id && !series.visualAnchor) series.anchorJob = null;
@@ -418,18 +462,19 @@ async function main() {
           await rm(temp, { force: true });
           record.outcome = screened.action === 'redo' ? 'style_redo' : 'style_rejected';
           record.style_score = screened.score;
+          if (screened.detail?.components) record.style_components = screened.detail.components;
           recordStyleScore(series.stats, engine, screened.score);
           job.styleRedos = screened.redos;
           const reason = "style score " + (screened.score) + " below " + (series.threshold);
           job.reason = reason;
-          log({ event: record.outcome, id: job.id, engine, score: screened.score, redos: screened.redos, threshold: series.threshold });
+          log({ event: record.outcome, id: job.id, engine, score: screened.score, redos: screened.redos, threshold: series.threshold, method: series.method, components: screened.detail?.components });
           if (screened.action === 'redo') untry(job, engine);
           else job.styleExhausted = true;
           if (!job.won && !job.active.length) {
             if (screened.action === 'redo') {
               requeue(job);
             } else {
-              failed.push({ id: job.id, tried: job.tried, reason, style_score: screened.score, style_redos: screened.redos });
+              failed.push({ id: job.id, tried: job.tried, reason, style_score: screened.score, style_redos: screened.redos, style_components: screened.detail?.components });
               log({ event: 'failed', id: job.id, reason });
             }
           }
@@ -438,6 +483,8 @@ async function main() {
         if (typeof screened.score === 'number') {
           recordStyleScore(series.stats, engine, screened.score);
           record.style_score = screened.score;
+          if (screened.detail?.components) record.style_components = screened.detail.components;
+          if (screened.detail?.raw_score != null) record.style_raw_score = screened.detail.raw_score;
         }
         if (screened.claim) record.style_anchor = true;
       }
@@ -459,6 +506,8 @@ async function main() {
       const seconds = Math.round((Date.parse(record.finished) - Date.parse(record.started)) / 1000);
       const saved = { id: job.id, file: job.file, engine, lane: n, seconds, started: record.started, finished: record.finished };
       if (record.style_score != null) saved.style_score = record.style_score;
+      if (record.style_raw_score != null) saved.style_raw_score = record.style_raw_score;
+      if (record.style_components) saved.style_components = record.style_components;
       if (record.style_anchor) saved.style_anchor = true;
       done.push(saved);
       log({ event: 'done', id: job.id, engine, seconds });
@@ -476,11 +525,15 @@ async function main() {
     }
     await rm(temp, { force: true });
     record.outcome = 'failed';
-    job.reason = (engine) + ": " + (failureText(report)).slice(0, 600);
-    const next = applyEngineFailure({ strikes: rateStrikes.get(engine) ?? 0 }, job.reason);
+    const detail = failureText(report);
+    const setupReason = engineSetupReason(detail);
+    if (!setupReason || record.produced) sawNonSetupFailure = true;
+    job.reason = (engine) + ": " + (setupReason && /[\r\n]/.test(detail.trim()) ? setupReason : detail.slice(0, 600));
+    const next = applyEngineFailure({ strikes: rateStrikes.get(engine) ?? 0 }, detail);
     rateStrikes.set(engine, next.strikes);
     if (next.action === 'down') {
       down.set(engine, job.reason);
+      if (setupReason) setupReasons.set(engine, setupReason);
       untry(job, engine);
       log({ event: 'engine_down', engine, reason: job.reason, ...(next.strikes ? { rate_limit_strikes: next.strikes } : {}) });
     } else if (next.action === 'backoff') {
@@ -494,7 +547,7 @@ async function main() {
     // 别家还在做这张就不退回队列。风格次数用尽后不再退回。
     if (!job.active.length && !job.won) {
       if (job.styleExhausted) {
-        failed.push({ id: job.id, tried: job.tried, reason: job.reason, style_score: record.style_score, style_redos: job.styleRedos });
+        failed.push({ id: job.id, tried: job.tried, reason: job.reason, style_score: record.style_score, style_redos: job.styleRedos, style_components: record.style_components });
         log({ event: 'failed', id: job.id, reason: job.reason });
       } else {
         requeue(job);
@@ -558,7 +611,7 @@ async function main() {
   log({
     event: 'lanes', memory_gb: Math.round(MEMORY_GB),
     lanes: Object.fromEntries(o.engines.map(engine => [engine, o.lanes[engine] ?? 0])),
-    ...(series.enabled ? { series: { method: series.method, threshold: series.threshold, max_retries: series.maxRetries, prefer: series.prefer, engines: series.engines } } : {}),
+    ...(series.enabled ? { series: { method: series.method, method_requested: series.methodRequested, method_reason: series.methodReason ?? undefined, threshold: series.threshold, max_retries: series.maxRetries, prefer: series.prefer, engines: series.engines } } : {}),
   });
   const lanes = o.engines.flatMap(engine => Array.from({ length: o.lanes[engine] ?? 0 }, (_, n) => lane(engine, n + 1)));
   await Promise.all(lanes);
@@ -592,16 +645,28 @@ async function main() {
   const keep = { ...keepCounts(attempts), resumed: done.filter(d => d.engine === 'existing').length };
   const delivery_seconds = Math.round((Date.now() - start) / 1000);
   const seriesReport = series.enabled ? {
-    method: series.method, threshold: series.threshold, max_retries: series.maxRetries, prefer: series.prefer,
+    method: series.method, method_requested: series.methodRequested, ...(series.methodReason ? { method_reason: series.methodReason } : {}),
+    ...(series.components ? { components: series.components } : {}),
+    threshold: series.threshold, max_retries: series.maxRetries, prefer: series.prefer,
     engines: series.engines, text_only_engines: [...series.textOnly], partial_ref_engines: [...series.partial],
     engine_style: styleMeans(series.stats),
   } : undefined;
-  const summary = { status: failed.length ? 'partial' : 'ok', done: done.length, failed: failed.length, by_engine: byEngine, paid,
+  const selected = [...new Set(o.engines)];
+  const setupNeeded = failed.length > 0 && !done.length && !sawNonSetupFailure
+    && !failed.some(job => job.stopped_by_budget)
+    && selected.length > 0 && selected.every(engine => setupReasons.has(engine));
+  const summary = { status: setupNeeded ? 'setup_needed' : failed.length ? 'partial' : 'ok', done: done.length, failed: failed.length, by_engine: byEngine, paid,
     keep, engines_down: Object.fromEntries(down), elapsed_seconds: Math.round(((last.length ? Math.max(...last) : Date.now()) - start) / 1000),
     delivery_seconds, ...(seriesReport ? { series: seriesReport } : {}), ...(seriesHint ? { series_hint: true } : {}),
     results: { done, failed, attempts } };
   await writeFile(path.join(o.out, 'batch-results.json'), JSON.stringify(summary, null, 2));
   log({ event: 'summary', ...summary, results: undefined });
+  if (setupNeeded) {
+    console.error(['No selected engine could run:',
+      ...selected.map(engine => '  ' + engine + ': ' + setupReasons.get(engine)),
+      'See SETUP.md for installation and sign-in instructions.',
+    ].join('\n'));
+  }
   if (failed.length) process.exitCode = 1;
 }
 

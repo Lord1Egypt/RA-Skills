@@ -1,9 +1,14 @@
 ---
+slug: cn-model-gateway
+displayName: 国产模型 MCP 服务器
 name: cn-model-gateway
-description: "国产大模型统一 MCP 服务器，通过标准 JSON-RPC 2.0 协议为 Claude Code / Cursor / Cline 等 Agent 框架提供 DeepSeek、通义千问、智谱 GLM、Kimi、腾讯混元、火山豆包、MiniMax、零一万物、百川智能、阶跃星辰十家模型的统一调用接口。11 个 MCP 工具（ask_model/describe_image/embed_text/rerank/audio_transcribe/video_understand/batch_submit/batch_result/list_providers/health_check/health_report）+ 单一网关状态资源 + 2 个 prompt 模板。内置统一错误映射（v1.9.0 新增 429/451/余额不足/内容审查四类错误 + 中文处置建议）、流式 SSE 输出+心跳保活+断线重连、每日健康晨报 + 厂商变更雷达（3σ 异常检测）、使用量统计、硬件感知并发控制、SQLite WAL 批量任务队列、自动故障转移、环境变量优先读取 API key。支持 Function Calling、多模态视觉、5 个非 MCP 框架适配器（LangChain/AutoGPT/CrewAI/Coze/Dify）、性能基准测试和 Token 价格追踪。config.json 填写 api_key 即可启动，无需 GPU、不做微调、不做私有部署，只做标准 MCP 协议网关。"
-version: 1.9.0
+description: "国产大模型统一 MCP 服务器（v2.1.0 网关 2.0），通过标准 JSON-RPC 2.0 协议为 Claude Code / Cursor / Cline 等 Agent 框架提供 DeepSeek、通义千问、智谱 GLM、Kimi、腾讯混元、火山豆包、MiniMax、零一万物、百川智能、阶跃星辰十家模型的统一调用接口。13 个 MCP 工具（ask_model/describe_image/embed_text/rerank/audio_transcribe/video_understand/batch_submit/batch_result/list_providers/health_check/health_report/key_pool_health/member_report）+ 3 个标准资源（models://catalog 模型目录/usage://summary 用量快照/cn-model-gateway://status 网关状态，支持订阅变更）+ 2 个 prompt 模板。内置采样级策略路由（auto/cheap/quality，与 router 同源决策）、Key 池（同厂商多 Key 轮询+429 自动换 Key）、局域网多租户（成员用量分摊）、统一错误映射（429/451/余额不足/内容审查四类 + 中文处置建议）、Function Calling 归一（6 厂商 OpenAI 风格出入参 + 多轮链路）、流式 SSE 输出+心跳保活+断线重连、每日健康晨报 + 厂商变更雷达（3σ 异常检测）、使用量统计、硬件感知并发控制、SQLite WAL 批量任务队列、自动故障转移、环境变量优先读取 API key。支持多模态视觉、5 个非 MCP 框架适配器、性能基准测试和 Token 价格追踪。config.json 填写 api_key（单值或数组）即可启动，无需 GPU、不做微调、不做私有部署，只做标准 MCP 协议网关。"
+version: 2.1.0
+tags: ["mcp", "llm", "deepseek", "tongyi", "zhipu", "kimi", "hunyuan", "doubao", "minimax", "lingyi", "baichuan", "stepfun", "agent", "json-rpc", "claude-code", "cursor", "model-gateway", "chinese-ai", "embedding", "rerank", "audio", "video"]
+icon: "🔌"
+author: "njskills"
+license: "MIT"
 ---
-
 
 # 国产模型 MCP 服务器
 
@@ -35,6 +40,10 @@ CN Model Gateway 是一个**纯 Python、零运行时依赖**的国产大模型�
 | 你希望在低配电脑上用，不希望 AI 把你的内存吃满 | ✅ 硬件感知并发控制（自动采集 CPU/内存 → 动态限制并发数） |
 | 你希望每天自动检查各厂商 API 是否可用，晨报推送异常 | ✅ 每日健康晨报（最小调用控制成本 <0.1 元/天，本地 HTML + 可选 webhook） |
 | 你希望厂商接口变更或故障时第一时间知道 | ✅ 厂商变更雷达（滑动窗口 + 3σ 异常检测，晨报置顶告警） |
+| 你不想在框架里硬编码模型名，希望模型上下架自动同步 | ✅ 标准资源 `models://catalog`，框架「读目录」即可，支持订阅变更 |
+| 你希望按 cheap/quality 策略自动选模型，而不是自己判断 | ✅ 采样级策略路由（ask_model 传 `strategy`，与 router 同源决策） |
+| 你单 Key 被限流卡住批量任务，想多注册几个 Key 平滑扩容 | ✅ Key 池（api_key 填数组，429/额度不足自动换 Key 重试） |
+| 团队共用一台网关，想按成员分摊用量 | ✅ 局域网多租户（member 标识进用量记录，`member-report` 按成员报表） |
 | 你有一个国产模型 API key，想把它接到你的 Agent 工作流里 | ✅ 填 config.json 启动即可 |
 
 ---
@@ -79,7 +88,7 @@ cp config/config.json.example config/config.json
 }
 ```
 
-启动 Agent 框架后，即可自动发现 8 个工具 + 2 个资源 + 2 个 prompt 模板。
+启动 Agent 框架后，即可自动发现 13 个工具 + 3 个标准资源（支持订阅变更）+ 2 个 prompt 模板。
 
 ### 方式二：命令行直接提问
 
@@ -92,6 +101,10 @@ python main.py ask "写一个快速排序" -p deepseek
 
 # 对比多个模型
 python main.py ask "解释量子计算" --providers deepseek tongyi zhipu
+
+# 按策略路由提问（auto/cheap/quality，与 router 同源决策）
+python main.py ask "写一个快速排序" --strategy cheap
+python main.py ask "写一段复杂推理" --strategy quality
 
 # 描述一张图片
 python main.py describe_image "https://example.com/photo.jpg" -p tongyi
@@ -121,6 +134,12 @@ python main.py health
 python main.py report
 python main.py report --webhook https://your-webhook-url
 
+# 查看 Key 池健康度（成功率/延迟/当前 Key）
+python main.py keypool
+
+# 查看多租户成员用量分摊报表
+python main.py member-report
+
 # 启动 MCP 服务器
 python main.py run
 ```
@@ -147,7 +166,7 @@ print(resp.content)
 
 | 工具名 | 描述 | 关键参数 |
 |--------|------|---------|
-| `ask_model` | 向模型提问（单家/多家对比/Function Calling） | `question`（必填）, `provider`（可选）, `providers`（可选列表，指定 2+ 家对比）, `model`（可选）, `temperature`（可选）, `tools`（可选，Function Calling 工具定义） |
+| `ask_model` | 向模型提问（单家/多家对比/策略路由/Function Calling） | `question`（必填）, `provider`（可选）, `providers`（可选列表，指定 2+ 家对比）, `model`（可选）, `temperature`（可选）, `strategy`（可选，auto/cheap/quality 策略路由）, `member`（可选，多租户成员标识）, `tools`（可选，Function Calling 工具定义） |
 | `describe_image` | 向视觉模型发送图片，返回描述或回答 | `image`（必填，URL/base64/文件路径）, `prompt`（可选，默认"请描述这张图片"）, `provider`（可选）, `model`（可选） |
 | `embed_text` | 将文本转换为向量嵌入（embedding） | `texts`（必填，文本列表）, `provider`（可选）, `model`（可选） |
 | `rerank` | 对文档列表按查询相关性重排序 | `query`（必填）, `documents`（必填，文档列表）, `provider`（可选）, `model`（可选） |
@@ -158,6 +177,8 @@ print(resp.content)
 | `list_providers` | 列出所有已配置且可用的模型提供商 | 无 |
 | `health_check` | 检查所有已配置提供商的连通性 | 无 |
 | `health_report` | 生成每日健康晨报（本地 HTML），含各厂商成功率/延迟/配额余量 + 厂商变更雷达（3σ 异常检测） | `save`（可选，默认 true）、`days`（可选，默认 1，最大 7） |
+| `key_pool_health` | 查看 Key 池健康度面板：各厂商 Key 数量、成功率、平均延迟、当前使用中的 Key | 无 |
+| `member_report` | 查看多租户成员用量分摊报表：各成员调用次数/占比、工具/厂商分布 | 无 |
 
 ---
 
@@ -165,7 +186,11 @@ print(resp.content)
 
 | 资源 URI | 描述 |
 |----------|------|
+| `models://catalog` | 模型目录（v2.1.0）——所有厂商的能力画像、上下文窗口、档案价、更新日期。框架「读目录」即可，模型上下架不改客户端配置 |
+| `usage://summary` | 用量快照（v2.1.0）——今日/累计用量与各厂商调用分布 |
 | `cn-model-gateway://status` | 网关状态总览——当前配置（不含 api_key 明文）+ 使用统计 + 配额告警，一屏汇总 |
+
+三个资源均支持 MCP 订阅：`resources/subscribe` 后，用量变化会通过 `notifications/resources/updated` 推送（initialize 声明 `resources.subscribe=true`）。
 
 ---
 
@@ -184,7 +209,8 @@ print(resp.content)
 
 ```json
 {
-  "deepseek": { "api_key": "sk-xxx" },
+  "member": "team-alpha",
+  "deepseek": { "api_key": ["sk-key-1", "sk-key-2", "sk-key-3"] },
   "tongyi": { "api_key": "sk-xxx" },
   "zhipu": { "api_key": "your-key" },
   "kimi": { "api_key": "your-key" },
@@ -192,6 +218,12 @@ print(resp.content)
   "doubao": { "api_key": "your-key" }
 }
 ```
+
+**v2.1.0 兼容升级：**
+- `api_key` 支持**单值（旧）或数组（新）**，旧配置零迁移、零告警启动
+- `key` 可作为 `api_key` 的别名
+- 数组形式启用 Key 池：`api_key: ["k1", "k2"]` → 轮询 + 429/额度不足自动换 Key 重试
+- 顶层 `member`（可选）：多租户成员标识，进用量记录用于分摊报表
 
 ### API Key 读取优先级（v1.4.0）
 
@@ -275,6 +307,11 @@ gh release list --repo your-org/cn-model-gateway
 - 支持 Function Calling / Tool Use（v1.5.0 新增，通过 `tools` 参数传入）
 - 支持批量异步调用（v1.8.0 新增）：`batch_submit` 提交任务列表 → 后台顺序执行 → `batch_result` 轮询结果；失败自动重试一次
 - 支持 SSE 心跳保活（30s ping）+ 断线重连（v1.8.0 新增）：客户端断开后凭请求 ID 重连续传，网络抖动不导致长回答作废重计费
+- 支持采样级策略路由（v2.1.0 新增）：ask_model 传 `strategy=auto/cheap/quality`，决策引擎在 llm_core 单源，gateway 与 router 同源一致
+- 支持标准资源目录与订阅（v2.1.0 新增）：`models://catalog`（能力/上下文/档案价/更新日期）、`usage://summary`（用量快照），框架读目录代替硬编码模型名，支持 `resources/subscribe` 变更推送
+- 支持 Key 池（v2.1.0 新增）：同厂商多 Key 轮询 + 429/额度不足自动换 Key 重试，健康度面板含成功率/延迟/调用数
+- 支持局域网多租户（v2.1.0 新增）：member 标识进用量记录，`member-report` 按成员分摊；独立实现，不桥接其他 skill
+- 支持 Function Calling 归一（v2.1.0 新增）：各 OpenAI 兼容厂商统一为 OpenAI 风格 tool 出入参，含多轮 tool_call 链路，6 厂商回归通过
 - 支持每日健康晨报（v1.9.0 新增）：最小真实调用（"hi" ~2 token/厂商），SQLite 记录延迟/成功率/配额余量，异常晨报置顶告警
 - 支持厂商变更雷达（v1.9.0 新增）：滑动窗口（24h vs 7d 基线）+ 3σ 异常检测，自动标注"疑似接口变更/故障"
 - 不支持本地模型推理或 GPU 部署
@@ -326,6 +363,18 @@ A: 系统持续记录每次健康检查结果到 SQLite。晨报生成时，对�
 **Q: 健康检查的成本是多少？**
 A: 每次健康检查对每家已配 Key 的厂商发送最小 prompt（"hi"，~2 token），10 家厂商单次约 20 token。按每日一次计算，日均成本 <0.1 元（以 DeepSeek 为例，20 token ≈ ¥0.00004）。可在 `config.json` 中设置 `health_check.enabled: false` 关闭。
 
+**Q: 策略路由 auto/cheap/quality 有什么区别？**
+A: `auto`（默认）= 能力画像 × 健康状态综合选最优；`cheap` = 按档案价选最便宜的可用厂商；`quality` = 按 benchmark 跑分选最高的。在 ask_model 传 `strategy` 参数或 CLI 用 `--strategy`。决策引擎在 llm_core 单源，gateway 与 router 决策完全一致。
+
+**Q: 框架里怎么读取模型目录，不用硬编码模型名？**
+A: 调用 MCP 资源 `resources/read {"uri":"models://catalog"}`，返回所有厂商的能力、上下文窗口、档案价、更新日期。可用 `resources/subscribe` 订阅，模型上下架时框架会收到 `notifications/resources/updated`。
+
+**Q: 如何用 Key 池避免单 Key 限流？**
+A: 在 config.json 把某厂商的 `api_key` 填成数组（如 `["sk-1","sk-2","sk-3"]`）。调用时轮询选用，遇到 429/额度不足自动换下一把 Key 重试，直到成功。用 `python main.py keypool` 查看各 Key 健康度。旧的单值写法完全兼容。
+
+**Q: 团队共用网关，怎么做用量分摊？**
+A: 在 config.json 顶层填 `member: "团队名"`，或在 ask_model 传 `member` 参数。用量记录会带上成员标识，用 `python main.py member-report` 或 `member_report` 工具查看各成员调用次数与占比。
+
 **Q: 各家模型的默认模型是什么？**
 A: deepseek-chat / qwen-turbo / glm-4-flash / moonshot-v1-8k / hunyuan-standard / doubao 系列。可通过 `model` 参数覆盖。
 
@@ -353,6 +402,7 @@ A: 完全不需要。本 skill 只做 API 网关，不进行本地推理。
 
 ## 更新日志
 
+| v2.1.0 | 2026-11-18 | 新增网关 2.0 标准资源目录：models://catalog（能力画像/上下文窗口/档案价/更新日期）+ usage://summary（用量快照），支持 resources/subscribe 订阅与变更推送，框架读目录代替硬编码模型名；新增采样级策略路由：ask_model 支持 strategy=auto/cheap/quality，决策引擎下沉 llm_core 单源、gateway 与 router 同源一致；新增 Key 池：同厂商多 Key 轮询 + 429/额度不足自动换 Key 重试 + 健康度面板（复用健康数据）；新增局域网多租户：member 标识进用量记录 + 按成员分摊报表，独立实现不桥接其他 skill；config.json 兼容升级：api_key 支持单值/数组、key 别名、member 可选，旧配置零迁移零告警；Function Calling 归一：9 家 OpenAI 兼容适配器统一走 format_tools/parse_tool_calls，支持多轮 tool_call 链路与 legacy function_call 兼容，6 厂商回归通过；新增 key_pool_health/member_report 两个 MCP 工具与 keypool/member-report CLI 子命令；新增 31 个单元测试（总计 165 个） |
 | v1.9.0 | 2026-10-09 | 新增每日健康晨报：HealthScheduler 调度器对已配 Key 厂商做最小真实调用（"hi" ~2 token），SQLite WAL 记录延迟/成功率/配额余量，异常晨报置顶告警；新增厂商变更雷达：滑动窗口（24h vs 7d 基线）+ 3σ 异常检测，自动标注"疑似接口变更/故障"；新增 health_report MCP 工具 + health/report CLI 子命令；统一错误映射扩容：新增 429 限流/451 地区限制/余额不足/内容审查触发四类错误，全部附带中文处置建议（"等 60 秒重试""检查余额页""修改提示词重试"）；错误映射表 YAML 外置（references/error_map.yaml），支持热更新；SKILL.md 更新工具列表（11 个工具）、FAQ、能力边界、错误映射说明 |
 | v1.8.0 | 2026-08-24 | 新增批量异步任务引擎：batch_submit 提交任务列表立即返回 ID，后台顺序执行（复用硬件自适应并发），batch_result 轮询状态与结果，失败自动重试一次并保留错误详情；新增 SSE 心跳保活（30s ping）+ 断线重连（chunk ring buffer，凭请求 ID 从断点续传，保护长输出与成本）；MCP 资源合并：config + usage 两个资源合并为 cn-model-gateway://status 单一资源（配置+使用统计+配额告警一屏汇总）；新增 batch_queue.py 任务队列模块（SQLite WAL + 后台 worker 线程）；MCPServer 启动时自动启动 batch_worker，新增 shutdown() 优雅停止；SKILL.md 更新工具列表（10 个工具）、资源列表、能力边界、FAQ |
 | v1.6.0 | 2026-08-24 | 新增共享内核（llm-core monorepo）：抽取 src/llm_core/ 共享内核模块，支持 MCP 形态与 CLI 形态共用同一份 core（adapters/router/error_map/cost/cache/monitor/benchmark），构建时注入同版副本+版本锁；新增 4 个 MCP 工具：embed_text（文本向量嵌入，支持 deepseek/zhipu/doubao/tongyi）、rerank（文档重排序，支持 zhipu）、audio_transcribe（语音转文字）、video_understand（关键帧抽取+视觉模型描述→视频摘要）；BaseAdapter 新增 4 个抽象方法（embed_text/rerank/audio_transcribe/video_understand）+ 降级 NotImplementedError 机制；CLI 新增 4 个子命令（embed/rerank/transcribe/video）；SKILL.md 全面更新工具列表/能力边界/FAQ |

@@ -1,6 +1,6 @@
 ## Description:
 
-Aggregates AI and technology news from 100+ RSS feeds with interest scoring, cross-day deduplication, and prefetching.
+Provides a reference workflow and templates for aggregating public AI, technology, and financial news, assessing sources, and preparing summaries.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Users can gather and summarize recent AI and technology news, find papers and trending projects, and organize finance stories into briefings or event timelines.
+Editors and analysts use this skill to structure reviews of public AI, technology, and financial news. It provides source-checking guidance and draft daily, weekly, and topic-report formats.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: News summaries and sentiment assessments may be incomplete; the GitHub trend feature and automatic Chinese translation may not suit every user.
+Risk: The security scan flags a mismatch between the advisory-only description and documented Python execution and temporary-file write commands; the referenced scripts were unavailable to the scanner, so their behavior could not be checked.
 
-Mitigation: Check original reporting and official announcements, review the trend and translation behavior before use, and treat market commentary as informational.
+Mitigation: Review the referenced scripts and commands before running them, and treat their behavior as unverified until that review is complete.
 
 ## Reference(s):
 
-- [Imported source repository](https://github.com/gechengling/finance-news-aggregator)
-- [Resolved source commit e917d56](https://github.com/gechengling/finance-news-aggregator/commit/e917d56d81640ffcf7878e463c2a112f1166dded)
-- [ClawHub release page](https://clawhub.ai/gechengling/skills/finance-news-aggregator)
+- [AI News Aggregator on ClawHub](https://clawhub.ai/gechengling/skills/finance-news-aggregator)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, JSON, Guidance]
+**Output Type(s):** [Guidance, Analysis, Markdown, Shell commands, Code, Configuration]
 
-**Output Format:** [Categorized news summaries, briefings, event timelines, and optional JSON results.]
+**Output Format:** [Markdown with tables and inline shell, Python, and JSON examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [News date range, source category, and result limit can be selected.]
+**Other Properties Related to Output:** [Includes draft report templates and source-review checklists; outputs require human review.]
 
 ## Skill Version(s):
 
-5.0.7 (source: server-resolved release metadata; artifact frontmatter reports 5.0.0)
+5.0.8 (source: skill frontmatter, release metadata)
 
 ## Ethical Considerations:
 

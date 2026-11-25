@@ -1,6 +1,6 @@
 ## Description:
 
-Unofficial Go client for the Trading 212 Public API, generated with oapi-codegen from the OpenAPI document Trading 212 publishes. Package `trading212` (`github.com/psyb0t/go-trading212`) has a typed `...WithResponse` method for every endpoint: account summary, positions, open orders, limit, market, stop and stop-limit orders, order, dividend and transaction history, CSV report exports, exchange and instrument metadata, and pies. Prices and amounts are `float64`. Use when Go code needs to read a Trading 212 account or place Trading 212 orders, or already imports go-trading212.
+Provides Go developers with a typed client for reading Trading 212 account data and managing orders and pies through the Trading 212 Public API.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to integrate Go applications with the Trading 212 Public API, read account data and history, or make account changes when explicitly requested.
+Go developers use this client to read account, position, order, and history data, or to place and manage orders and pies when requested. It supports projects that already use github.com/psyb0t/go-trading212.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Live orders and pie changes can affect real investments.
+Risk: Order and pie operations can change a Trading 212 account, including a live account.
 
-Mitigation: Start with demo credentials, use the live environment only when explicitly requested, and authorize each account change explicitly.
+Mitigation: Use the demo environment by default; perform only the exact account action the user requested, and use the live environment only when the user explicitly asks for it.
 
-Risk: API credentials could expose account access if disclosed.
+Risk: Security review coverage is incomplete because two local references were unresolved.
 
-Mitigation: Read credentials from environment variables and never hardcode, commit, or log them.
+Mitigation: Review the installation steps and setup guidance, including the documented order and pie deletion operations, before installing or using the client.
 
 ## Reference(s):
 
-- [Setup and API reference](artifact/references/setup.md)
-- [Go Trading212 project](https://github.com/psyb0t/go-trading212)
-- [Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-trading212)
+- [Setup and API reference](references/setup.md)
+- [go-trading212 project homepage](https://github.com/psyb0t/go-trading212)
+- [go-trading212 package documentation](https://pkg.go.dev/github.com/psyb0t/go-trading212)
+- [ClawHub skill release](https://clawhub.ai/psyb0t/skills/go-trading212)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Shell commands, Configuration instructions]
+**Output Type(s):** [Code, Configuration instructions]
 
-**Output Format:** [Go source code, shell commands, and concise Markdown guidance]
+**Output Format:** [Go code with setup and API usage guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Go integration examples; account changes require an explicit user request.]
+**Other Properties Related to Output:** [Uses API credentials supplied through environment variables; account-changing operations require explicit user direction.]
 
 ## Skill Version(s):
 
-0.1.5 (source: server-resolved release evidence)
+0.1.6 (source: server-resolved ClawHub release metadata)
 
 ## Ethical Considerations:
 

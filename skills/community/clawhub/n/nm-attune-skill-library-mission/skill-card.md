@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and project maintainers use this skill to discover a repository's operational knowledge, build a project skill library, and review it for accuracy and consistency.
+Developers and engineering teams use this skill to discover, create, and review a project-specific skill library that preserves operational knowledge for onboarding and handoffs.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review notes a possible skill-listing instruction and incomplete coverage of five local references.
+Risk: ClawScan reports medium confidence and partial coverage; its guidance calls for reviewing the skill behavior and a flagged skill-listing command.
 
-Mitigation: Review the reported listing behavior and resolve the five references the security analysis could not inspect before installation.
+Mitigation: Review the complete plugin and assess the command in context before running the workflow.
 
 ## Reference(s):
 
-- [Clawdis homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/attune)
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-attune-skill-library-mission)
+- [Claude Night Market Attune plugin](https://github.com/athola/claude-night-market/tree/master/plugins/attune)
 
 ## Skill Output:
 
-**Output Type(s):** [Files, Markdown, Configuration instructions, Agent instructions]
+**Output Type(s):** [Markdown, JSON configuration, Shell commands, Guidance]
 
-**Output Format:** [Repository-specific skill files, Markdown guidance and review reports, and JSON mission-state configuration]
+**Output Format:** [Markdown skill documents, JSON mission state, and procedural guidance with shell commands.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Organizes work into discovery, authoring, and review phases.]
+**Other Properties Related to Output:** [Project-specific content grounded in repository discovery and review.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata; artifact frontmatter lists 1.10.3)
 
 ## Ethical Considerations:
 

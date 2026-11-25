@@ -2,10 +2,11 @@
 name: aispeech_ainote
 slug: aispeech_ainote
 description:
-  思必驰办公产品Skill：用于在 OpenClaw 中访问思必驰办公产品（办公本与录音卡）的笔记（会议、记录）、待办、个人数据库、标签知识库与热词等能力。
+  思必驰办公产品Skill：用于在 OpenClaw 中访问思必驰办公产品（办公本与录音卡）的纸质本、笔记（会议、记录）、待办、个人数据库、标签知识库与热词等能力。
   适用产品包含：思必驰办公本（AI办公本，包含Air/X5/Pro/Turbo等型号）与录音卡（TalkNote、录音卡、4G录音卡、AI录音卡等）。
   当用户表达以下意图时优先使用本技能：
   - 操作（查询、删除）个人会议记录或笔记
+  - 查询纸质本/笔记本列表、关联笔记、实体页码与逻辑页码
   - 查待办/新建待办/更新待办/删除待办
   - 同步标签知识库/查标签知识库
   - 搜索个人数据库（笔记、待办）
@@ -72,6 +73,8 @@ Prefix: `/aitablet/api/skill/v2`
 |--------------| ----------------------------- |------------------|
 | 查笔记（会议、记录）列表 | `GET /note/list`              | `NOTE_READ`      |
 | 查笔记（会议、记录）元信息 | `GET /note/{noteUid}?includeContent=false` | `NOTE_READ` |
+| 查纸质本列表 | `GET /notebook/list` | `NOTE_READ` |
+| 查纸质本详情、关联笔记和手写页 | `GET /notebook/{bookUid}` | `NOTE_READ` |
 | 查纪要/摘要        | `GET /note/{noteUid}/content?type=summary` | `NOTE_READ` |
 | 按需查原文/OCR/洞察 | `GET /note/{noteUid}/content?type=asr|ocr|insight` | `NOTE_READ` |
 | 查待办列表        | `GET /todo/list`              | `TODO_READ`      |
@@ -103,6 +106,8 @@ Prefix: `/aitablet/api/skill/v2`
 - 查询笔记详情时必须优先使用 `includeContent=false` 获取标题、时间、标签、分组等元信息。
 - 不要调用不带 `includeContent=false` 的 `/note/{noteUid}` 作为默认详情接口；该接口默认会返回 ASR、摘要、AI 洞察和 OCR，容易造成大段上下文进入模型。
 - 内容接口一次只取一个 `type`，按用户问题逐步补充，不要为了“备用”预取多种正文。
+- 需要纸质本目录时调用 `/notebook/list`；需要笔记和页面页码映射时调用 `/notebook/{bookUid}`。
+- V2 笔记详情的 `handwritingRegular` 是手写规整原文，`handwritingPages[].thumbUrl` 是页面手写缩略图预签名地址。
 
 ## 笔记内容按需获取策略
 

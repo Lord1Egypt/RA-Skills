@@ -1,45 +1,61 @@
-## Description: <br>
-Guides AI coding assistants through installing and using chrome-devtools-mcp to control and debug Chrome with screenshots, performance traces, network inspection, console diagnostics, and browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to install and use Chrome DevTools MCP so they can control and debug a real Chrome browser for screenshots, console inspection, network analysis, performance tracing, and browser automation.
 
-## Publisher: <br>
-[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure Chrome DevTools MCP for AI-assisted front-end debugging, browser automation, visual checks, network inspection, and performance analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill normalizes granting an AI assistant Chrome DevTools-level access to browser sessions, network traffic, page state, and potentially stored tokens or cookies. <br>
-Mitigation: Use a dedicated temporary Chrome profile and test accounts, avoid personal or production sessions, and do not ask the assistant to read tokens or cookies. <br>
-Risk: User-wide MCP installation can persist across projects and broaden browser access beyond the immediate task. <br>
-Mitigation: Review the user-wide MCP configuration before allowing it to persist, and remove or scope the server when the debugging task is complete. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure an AI coding assistant with Chrome DevTools MCP and run browser-based debugging workflows against local or remote web pages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cn-big-cabbage/cn-chrome-devtools-mcp) <br>
-- [Chrome DevTools MCP homepage](https://github.com/ChromeDevTools/chrome-devtools-mcp) <br>
-- [Chrome DevTools MCP tool reference](https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/docs/tool-reference.md) <br>
-- [Chrome DevTools MCP slim tool reference](https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/docs/slim-tool-reference.md) <br>
-- [Chrome DevTools MCP troubleshooting](https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/docs/troubleshooting.md) <br>
-- [Chrome DevTools MCP design principles](https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/docs/design-principles.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with command and JSON/TOML configuration examples plus diagnostic summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide an agent to inspect browser console output, network data, screenshots, page state, and performance traces through Chrome DevTools MCP.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill enables broad AI-assisted control over Chrome, including page navigation, JavaScript execution, screenshots, console inspection, and network inspection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated disposable browser profile and avoid personal or production logged-in sessions.
+
+Risk: The artifact recommends unpinned runtime installation with @latest.
+
+Mitigation: Pin chrome-devtools-mcp to a reviewed npm package version before deployment.
+
+Risk: The artifact includes an example that reads a user token from localStorage.
+
+Mitigation: Do not ask the agent to read tokens, cookies, authorization headers, or other secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cn-big-cabbage/skills/cn-chrome-devtools-mcp)
+- [Chrome DevTools MCP project homepage](https://github.com/ChromeDevTools/chrome-devtools-mcp)
+- [Chrome DevTools MCP tool reference](https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/docs/tool-reference.md)
+- [Chrome DevTools MCP slim tool reference](https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/docs/slim-tool-reference.md)
+- [Chrome DevTools MCP troubleshooting](https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/docs/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON or TOML configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide an agent to operate Chrome and inspect browser state after the MCP server is configured.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

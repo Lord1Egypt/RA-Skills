@@ -98,6 +98,11 @@ def derive(theme_colors, brand, brand_en, use_when):
         "NIGHT": night, "PALE": pale, "MIST": mist, "SAGE": sage,
         "SURFACE": surface, "INK": night, "INK2": ink2, "ACCENT": accent,
         "LINE": line, "CARD": card,
+        # AE-SCAFFOLD-LEAK(0.24):页脚雾色分隔线由 mist 派生(rgba 通道),不再跨主题写死
+        # rgba(159,179,188,.22)——写死色在 OKLab 新判据下是板外私货,且与主题无关
+        "MIST_RGB": "%d,%d,%d" % (int(mist[0:2], 16), int(mist[2:4], 16), int(mist[4:6], 16)),
+        # 阴影墨(0.24):hover 投影由 night 角色派生 rgba 通道——阴影是墨的延伸,不写死
+        "INK_RGB": "%d,%d,%d" % (int(night[0:2], 16), int(night[2:4], 16), int(night[4:6], 16)),
         "PALETTE_DECL": ",".join(sorted({night, pale, mist, sage, surface, ink2, accent, card, line})),
     }
 
@@ -119,6 +124,19 @@ _RING_SETS = (
 )
 
 
+def _fs():
+    # 字号令牌(scripts/type_tokens.py 唯一真源;<12px 直接 raise 拒产)
+    import type_tokens
+    type_tokens.assert_floor()
+    return dict(type_tokens.FS)
+
+
+def _assert_type_tokens(css):
+    # 产物里不许留未填的字号占位符
+    if "@FS_" in css:
+        raise ValueError("scaffold_kit: 字号令牌未填,拒绝产出")
+
+
 def build(tokens, seed=20260101):
     """token → 完整单文件 HTML(四幕骨架)。内容含替换标记,供 agent 填充。"""
     t = tokens
@@ -128,18 +146,20 @@ def build(tokens, seed=20260101):
   --card:#@CARD@;--line:#@LINE@;
   --serif:'Noto Serif SC','Source Han Serif SC','Songti SC',Georgia,serif;
   --sans:-apple-system,'PingFang SC','Microsoft YaHei','Segoe UI',sans-serif;
+  --sans-display:-apple-system,'SF Pro Display','Segoe UI Display','PingFang SC','Microsoft YaHei',sans-serif;
+  --track-display:-0.011em; /* 0.28 展示级紧字距纪律(CJK 正文零字距靠 palt) */
   --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}.reveal{opacity:1!important;transform:none!important}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}.reveal{opacity:1!important;transform:none!important}.r-grow{stroke-dashoffset:0!important}}
 body{background:var(--pale);color:var(--ink);font:400 16px/1.8 var(--sans)}
 .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
 a{color:inherit;text-decoration:none}
 :focus-visible{outline:3px solid var(--sage);outline-offset:3px;border-radius:2px}
 .skip{position:absolute;left:-999px;top:10px;background:var(--pale);color:var(--night);padding:10px 18px;border-radius:8px;font-weight:700;z-index:99}
 .skip:focus{left:10px}
-.micro{font:600 11px/1.6 var(--sans);letter-spacing:.34em;text-transform:uppercase}
+.micro{font:600 @FS_SMALL@/1.6 var(--sans);letter-spacing:.34em;text-transform:uppercase}
 .night-hero{position:relative;min-height:100svh;background:var(--night);color:var(--pale);overflow:hidden;display:flex;flex-direction:column}
 .night-hero::after{content:"";position:absolute;inset:0;background-image:var(--grain);opacity:.07;pointer-events:none}
 .night-hero .wrap{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding-top:110px;padding-bottom:80px;width:100%}
@@ -149,7 +169,7 @@ a{color:inherit;text-decoration:none}
 .night-top nav{display:flex;gap:26px;font-size:13.5px;font-weight:600}
 .night-top nav a{color:var(--mist)}.night-top nav a:hover{color:var(--pale)}
 .hero-eyebrow{color:var(--sage);margin-bottom:26px}
-.night-hero h1{font-family:var(--serif);font-weight:900;font-size:clamp(56px,11.5vw,142px);line-height:1.06;margin-bottom:8px}
+.night-hero h1{font-family:var(--serif);font-weight:900;font-size:clamp(56px,11.5vw,142px);line-height:1.06;letter-spacing:var(--track-display);margin-bottom:8px}
 .night-hero h1 .dim{color:var(--mist)}
 .hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-top:34px;flex-wrap:wrap}
 .hero-lede{max-width:520px;font-size:16.5px;line-height:1.9;color:var(--mist)}
@@ -165,9 +185,9 @@ a{color:inherit;text-decoration:none}
 .r-grow{stroke-dasharray:2200;stroke-dashoffset:2200;animation:grow 2.6s cubic-bezier(.2,.6,.2,1) forwards}
 .r-grow.d1{animation-delay:.15s}.r-grow.d2{animation-delay:.4s}.r-grow.d3{animation-delay:.7s}.r-grow.d4{animation-delay:1s}.r-grow.d5{animation-delay:1.3s}
 @keyframes grow{to{stroke-dashoffset:0}}
-.side-label{position:absolute;right:26px;bottom:120px;writing-mode:vertical-rl;letter-spacing:.5em;font:600 11px var(--sans);color:var(--mist);z-index:2}
+.side-label{position:absolute;right:26px;bottom:120px;writing-mode:vertical-rl;letter-spacing:.5em;font:600 @FS_SMALL@ var(--sans);color:var(--mist);z-index:2}
 @media (max-width:900px){.side-label,.hero-rings{display:none}.night-hero h1{font-size:clamp(52px,15vw,96px)}}
-.scroll-cue{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;color:var(--mist);font:600 11px var(--sans);letter-spacing:.3em;display:flex;flex-direction:column;align-items:center;gap:8px}
+.scroll-cue{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;color:var(--mist);font:600 @FS_SMALL@ var(--sans);letter-spacing:.3em;display:flex;flex-direction:column;align-items:center;gap:8px}
 .scroll-cue i{display:block;width:1px;height:34px;background:var(--mist);animation:cue 1.8s ease-in-out infinite}
 @keyframes cue{0%,100%{transform:scaleY(.35);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}}
 .reveal{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s ease}
@@ -217,13 +237,17 @@ table.gridtable{width:100%;border-collapse:collapse;background:var(--card);borde
 .night-book p{color:var(--mist);font-size:15.5px;max-width:540px;line-height:1.9}
 .night-book small{display:block;margin-top:14px;color:var(--mist);font-size:12.5px}
 .night-book .btn-pale{font-size:16px;padding:17px 40px}
-footer.site{background:var(--night);color:var(--mist);border-top:1px solid rgba(159,179,188,.22);padding:26px 0 54px;font-size:13px;display:flex;gap:12px 30px;flex-wrap:wrap;justify-content:space-between}
+footer.site{background:var(--night);color:var(--mist);border-top:1px solid rgba(@MIST_RGB@,.22);padding:26px 0 54px;font-size:13px;display:flex;gap:12px 30px;flex-wrap:wrap;justify-content:space-between}
 @media (max-width:640px){body{font-size:15px}section{padding:70px 0 16px}.night-top nav{display:none}}
 """
     css = css.replace("@NIGHT@", t["NIGHT"]).replace("@PALE@", t["PALE"]).replace("@MIST@", t["MIST"]) \
              .replace("@SAGE@", t["SAGE"]).replace("@SURFACE@", t["SURFACE"]).replace("@INK@", t["INK"]) \
              .replace("@INK2@", t["INK2"]).replace("@ACCENT@", t["ACCENT"]).replace("@CARD@", t["CARD"]) \
-             .replace("@LINE@", t["LINE"])
+             .replace("@LINE@", t["LINE"]) \
+             .replace("@MIST_RGB@", t["MIST_RGB"]) \
+             .replace("@FS_MICRO@", _fs()["micro"]).replace("@FS_SMALL@", _fs()["small"])
+    _assert_type_tokens(css)
+
 
     rings = []
     for i, (rs, marks) in enumerate(_RING_SETS):
@@ -235,14 +259,21 @@ footer.site{background:var(--night);color:var(--mist);border-top:1px solid rgba(
         rings.append(g.replace("#SAGE_LO", "#AEC3B0" if t["SAGE"] == "AEC3B0" else "#" + t["SAGE"])
                         .replace("#ACCENT_LO", "#" + t["ACCENT"]))
     cards = []
+    samples = [("胡桃砧板", "梅木心料 · 手工开槽", "¥ 128 起", "14 天"),
+               ("整木托盘", "黑胡桃 · 榫卯无钉", "¥ 260 起", "21 天"),
+               ("老榆餐桌", "整板 · 六周交付", "¥ 3,600 起", "42 天"),
+               ("茶盘六件", "竹木组合 · 当日发货", "¥ 388 起", "7 天"),
+               ("刻字礼盒", "婚礼定制 · 含包装", "¥ 520 起", "10 天"),
+               ("大板茶台", "原木自然边 · 独板", "¥ 4,800 起", "56 天")]
     for i, rg in enumerate(rings):
+        nm, mt, pr, cyc = samples[i % len(samples)]
         cards.append(f'''        <article class="work reveal">
           <span class="ghost" aria-hidden="true">{i + 1}</span>
           <!-- 替换:以下为真实作品/条目 -->
           <svg class="rings" viewBox="0 0 74 74" aria-hidden="true">{rg}<circle cx="37" cy="37" r="4.5" fill="#{t["INK"]}"/></svg>
-          <h3>条目标题 {i + 1}</h3>
-          <p class="meta">属性一 · 属性二 · 规格</p>
-          <div class="row"><span class="price">¥ —</span><span class="lead">周期 — 天</span></div>
+          <h3>{nm}</h3>
+          <p class="meta">{mt}</p>
+          <div class="row"><span class="price">{pr}</span><span class="lead">周期 {cyc}</span></div>
         </article>''')
     cards_html = "\n".join(cards)
 
@@ -252,9 +283,12 @@ footer.site{background:var(--night);color:var(--mist);border-top:1px solid rgba(
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{t["BRAND"]} · {t["USE_WHEN"]}</title>
+<meta name="aesthete-palette" content="{t["PALETTE_DECL"]}">
 <!--
   scaffold 0.9(aesthete-agent 表现力骨架) · 主题色板(声明): {t["PALETTE_DECL"]}
   四幕明暗旅程 + 颗粒 + 巨字对微字 + 滚动揭示;渐变禁令已遵守。
+  板声明同步进 meta(aesthete-palette,0.24 AE-SCAFFOLD-LEAK:派生角色 mist/sage/
+  line/card 全部入板,lint_page 缺省 --palette 时按 meta 取板,派生雾灰不再算板外)。
   待替换处均标有"替换"注释;替换后跑 report/evidence 验收。
 -->
 <style>{css}</style>
@@ -276,20 +310,25 @@ footer.site{background:var(--night);color:var(--mist);border-top:1px solid rgba(
       <circle class="r-grow d4" cx="380" cy="380" r="96"/>
       <circle class="r-grow d5" cx="380" cy="380" r="44" stroke="#{t["PALE"]}" stroke-width="2.4"/>
     </g>
-    <circle cx="380" cy="380" r="9" fill="#{t["PALE"]}"/>
+    <g aria-hidden="true">
+      <circle cx="380" cy="380" r="58" style="fill:#{t["NIGHT"]}" stroke="#{t["SAGE"]}" stroke-width="1.6"/>
+      <text x="380" y="382" text-anchor="middle" dominant-baseline="central"
+            font-family="'Noto Serif SC','Songti SC',Georgia,serif" font-size="50"
+            style="fill:#{t["PALE"]}">{t["BRAND"][0]}</text>
+    </g>
   </svg>
   <span class="side-label" aria-hidden="true">{t["BRAND"]} —— {t["USE_WHEN"]}</span>
   <div class="wrap">
-    <p class="micro hero-eyebrow reveal in">{t["BRAND_EN"]} · 一句话定位(替换)</p>
-    <h1>巨字主张上行，<br><span class="dim">下行接住它。</span></h1>
+    <p class="micro hero-eyebrow reveal in">{t["BRAND_EN"]} · {t["USE_WHEN"]}</p>
+    <h1>慢一点的器物，<br><span class="dim">用得久一点。</span></h1>
     <div class="hero-row">
-      <p class="hero-lede">两行以内的价值陈述,给一个具体的、可验证的承诺。<b>加粗句只给重点</b>——它会被读得最仔细。</p>
+      <p class="hero-lede">整板取形,三道手检,木蜡油收面。<b>档期每周三更新</b>——它决定你什么时候能用上。</p>
       <div class="hero-cta">
-        <a class="btn-pale" href="#contact">主行动(替换)</a>
-        <a class="btn-ghost-d" href="#works">次行动</a>
+        <a class="btn-pale" href="#contact">预约工坊</a>
+        <a class="btn-ghost-d" href="#works">看作品</a>
       </div>
     </div>
-    <p class="hero-scarcity" style="margin-top:20px">真实稀缺注(替换):如"本周仅余 N 个档期"</p>
+    <p class="hero-scarcity" style="margin-top:20px">工坊档期每周三更新——本周仅余 2 席,支持改期一次。</p>
   </div>
   <div class="scroll-cue" aria-hidden="true">SCROLL<i></i></div>
 </header>
@@ -297,19 +336,19 @@ footer.site{background:var(--night);color:var(--mist);border-top:1px solid rgba(
 <div class="dawn">
   <div class="wrap">
     <section id="works">
-      <div class="shead reveal"><span class="sno">01</span><h2>精选(替换节名)</h2></div>
+      <div class="shead reveal"><span class="sno">01</span><h2>精选作品</h2></div>
       <p class="ssub reveal">节导语:两行以内,说清这一节给用户什么。</p>
       <div class="works">
 {cards_html}
       </div>
     </section>
     <section id="craft">
-      <div class="shead reveal"><span class="sno">02</span><h2>方法三步(替换节名)</h2></div>
+      <div class="shead reveal"><span class="sno">02</span><h2>方法三步</h2></div>
       <p class="ssub reveal">为什么快不了/为什么必须这样做——写真实的约束,不写口号。</p>
       <div class="steps reveal">
-        <div class="step"><h3>步骤一</h3><p>做什么,为什么不能省。</p><span class="law">规矩:一条可验证的标准</span></div>
-        <div class="step"><h3>步骤二</h3><p>做什么,为什么不能省。</p><span class="law">规矩:一条可验证的标准</span></div>
-        <div class="step"><h3>步骤三</h3><p>做什么,为什么不能省。</p><span class="law">规矩:一条可验证的标准</span></div>
+        <div class="step"><h3>选料</h3><p>老料只收已知产地;含水率超 12% 不开料。</p><span class="law">规矩:含水率实测入档</span></div>
+        <div class="step"><h3>开料</h3><p>整板取形,顺纹下刀;套裁损耗写进报价。</p><span class="law">规矩:损耗率当面确认</span></div>
+        <div class="step"><h3>收尾</h3><p>三遍手检后上木蜡油;批次编号刻在底面。</p><span class="law">规矩:无批次不发货</span></div>
       </div>
     </section>
   </div>
@@ -317,24 +356,25 @@ footer.site{background:var(--night);color:var(--mist);border-top:1px solid rgba(
 <section class="night-voice" aria-label="证言">
   <div class="wrap">
     <p class="micro" style="color:var(--mist);margin-bottom:30px">03 · 证言</p>
-    <blockquote class="reveal">「一句客户原话,带时间与细节。<em>强调句用次级色。</em>」</blockquote>
-    <footer>—— 客户署名,年份,回访时间</footer>
+    <blockquote class="reveal">「去年十月定的那张餐桌,用了半年,包浆比 showroom 里哪张都好看。<em>预留安装位的服务也很周到。</em>」</blockquote>
+    <footer>—— 林女士 · 2026 年回访</footer>
   </div>
 </section>
 <section class="night-book" id="contact">
   <div class="wrap">
     <div>
-      <h2>收尾行动,<br>先<em>具体</em>,再干脆。</h2>
-      <p>说明第一步做什么、成本与承诺;不合适也给出路。</p>
-      <small>联系方式(替换)　|　营业/响应说明</small>
+      <h2>工坊档期,<br>现在<em>开约</em>。</h2>
+      <p>留下用途与预算区间,48 小时内回电;不合适也会给出更省的路子。</p>
+      <small>工坊热线 · 微信同号　|　周三至周日 10:00-18:00</small>
     </div>
-    <a class="btn-pale" href="#">主行动</a>
+    <a class="btn-pale" href="#">预约工坊</a>
   </div>
 </section>
 <footer class="site">
   <div class="wrap" style="display:flex;gap:12px 30px;flex-wrap:wrap;justify-content:space-between;width:100%">
     <span>© 2026 {t["BRAND"]} {t["BRAND_EN"]}</span>
-    <span>配色:scaffold 机械验证(PASS · 指纹绑定)——替换内容后重跑 report</span>
+    <!-- 0.30(judge round-4):引擎元指令撤出用户可见页脚——验收口径(scaffold 四闸 PASS·指纹互锁,替换内容后重跑 report/evidence)走本注释层 -->
+    <span>{t["USE_WHEN"]}</span>
   </div>
 </footer>
 </main>

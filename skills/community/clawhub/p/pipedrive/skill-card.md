@@ -1,6 +1,6 @@
 ## Description:
 
-Pipedrive helps agents manage Pipedrive CRM workflows, including record discovery, search, lead conversion, deal and contact updates, activities, notes, files, and webhooks through AgentPMT-hosted tool calls.
+Pipedrive: Manage Pipedrive sales workflows: discover fields and users, search CRM records, create and update deals, persons, organizations, activities, products, leads, and notes, move records through pipelines and stages. Use when an agent needs pipedrive, capture and convert inbound leads, create and update deals contacts and organizations, move deals through pipeline stages, schedule follow up calls and log notes, convert lead, lead id, data through AgentPMT-hosted remote tool calls.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and CRM operators use this skill to let an agent search and manage Pipedrive records, capture and convert leads, update deals and contacts, schedule follow-up activities, attach files, and configure webhooks.
+External sales teams and agents use this skill to manage Pipedrive records, leads, deals, pipelines, and follow-up activities through AgentPMT.
 
 ### Deployment Geography for Use:
 
@@ -22,48 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Broad CRM write and delete authority can create, update, convert, or remove business records.
+Risk: The skill can create persistent webhooks and delete CRM records.
 
-Mitigation: Use least-privilege Pipedrive scopes and require explicit user confirmation before delete operations, lead conversion, stage movement, or other material CRM changes.
+Mitigation: Use these actions only when needed; verify the webhook destination and event scope, and confirm the target record before deletion.
 
-Risk: File transfer actions can move Pipedrive-hosted files or File Manager files between systems.
+Risk: Installation guidance is unpinned, and the scan could not review some referenced material.
 
-Mitigation: Confirm the file id, record association, destination, and retention settings before upload or download actions, and avoid transferring sensitive files unless the user has approved it.
-
-Risk: Webhook creation can send CRM change events to external URLs and wildcard subscriptions can over-collect events.
-
-Mitigation: Use verified HTTPS destinations, avoid wildcard event_action or event_object values when possible, and prefer narrow webhook subscriptions tied to the minimum required event.
-
-Risk: Unpinned setup commands can install changing dependencies over time.
-
-Mitigation: Prefer pinned setup dependencies over unpinned npx commands when installing related setup skills.
-
-Risk: Pass-through data and options fields can carry unintended CRM body or query values.
-
-Mitigation: Review JSON payloads before write operations, keep inputs scoped to the requested task, and verify the resulting Pipedrive record after each write.
+Mitigation: Review the installer and skill source, pin them to reviewed versions, and check referenced material before relying on the skill.
 
 ## Reference(s):
 
-- [AgentPMT Pipedrive marketplace](https://www.agentpmt.com/marketplace/pipedrive)
-- [ClawHub Pipedrive skill page](https://clawhub.ai/agentpmt/skills/pipedrive)
-- [Generated Pipedrive action schema](artifact/schema.md)
-- [Related File Management skill](https://clawhub.ai/agentpmt/file-management)
-- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
-- [What AgentPMT is](https://clawhub.ai/agentpmt/what-is-agentpmt)
+- [AgentPMT Pipedrive marketplace page](https://www.agentpmt.com/marketplace/pipedrive)
+- [Pipedrive skill on ClawHub](https://clawhub.ai/agentpmt/skills/pipedrive)
+- [AgentPMT account MCP and REST API setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Configuration, API Calls, Shell commands]
+**Output Type(s):** [API calls, JSON, Guidance]
 
-**Output Format:** [Markdown with JSON examples and bash setup commands]
+**Output Format:** [AgentPMT tool-call JSON with concise operational guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes Pipedrive action names, JSON argument schemas, permission notes, pagination guidance, response handling guidance, and AgentPMT setup routes.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.0.0 (source: frontmatter and server release evidence)
+1.0.1 (source: frontmatter)
 
 ## Ethical Considerations:
 

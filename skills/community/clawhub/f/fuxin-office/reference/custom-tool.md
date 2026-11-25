@@ -86,7 +86,7 @@ FuxinAiService（端口见 `bridge.md`「运行端口」） → FuxinOfficeWord 
    ```
 4. **高亮标记**：（可选）对命中重点项高亮
    ```json
-   { "targets": [{"text": "合同金额", "highlightColor": 1}] }
+   { "targets": [{"text": "合同金额", "highlightColorIndex": 1}] }
    ```
 5. **汇报**：汇总各步结果，说明成功/失败项与如何撤销
 

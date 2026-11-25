@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Researchers and other users with an active tome research session can explore a subtopic or narrow the search to a channel, then review the merged and re-ranked findings in the updated report.
+Researchers and analysts use Dig after an initial Tome research session to explore a subtopic or narrow findings to a channel such as papers. It adds findings to and re-ranks the existing session report.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Targeted searches may miss relevant material or rank findings imperfectly.
+Risk: Search results or reranking may introduce irrelevant material into the existing report.
 
-Mitigation: Check source coverage and review the updated report before relying on or sharing its conclusions.
+Mitigation: Check the selected channel, review the new findings and their sources, and inspect the updated ranking before relying on or sharing the report.
 
 ## Reference(s):
 
-- [Related Night Market tome plugin](https://github.com/athola/claude-night-market/tree/master/plugins/tome)
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-tome-dig)
+- [Tome project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/tome)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-tome-dig)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown]
+**Output Type(s):** [Text, Analysis, Guidance]
 
-**Output Format:** [Conversational findings and an updated Markdown research report]
+**Output Format:** [Research findings presented to the user and an updated saved session report]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Adds targeted findings to the active session, re-ranks the report, and presents the new findings.]
+**Other Properties Related to Output:** [Refines an existing research session; channel filters are limited to channels in that session.]
 
 ## Skill Version(s):
 
-1.10.3 (source: ClawHub release metadata)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

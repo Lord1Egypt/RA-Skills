@@ -81,14 +81,14 @@ This session already acts as your agent, because it ran `register_agent`. In a n
 MCP prove_agent_identity {"agent_did": "<your did>", "credential_id": "<data.credential.id>"}
 ```
 
-Then search, and book one of the results for a practice traveller:
+Then search, and book one of the results for a practice traveler:
 
 ```
-MCP search_hotels {"city": "Lisbon", "country": "PT", "check_in": "2026-12-01", "check_out": "2026-12-04"}
+MCP search_hotels {"city": "London", "country": "GB", "check_in": "2026-12-01", "check_out": "2026-12-08"}
 ```
 
 ```
-MCP create_booking {"property_id": "<one property_id from the search>", "agent_did": "<your did>", "room_type": "standard", "check_in": "2026-12-01", "check_out": "2026-12-04", "traveler_id": "practice-a"}
+MCP create_booking {"property_id": "<one property_id from the search>", "agent_did": "<your did>", "room_type": "standard", "check_in": "2026-12-01", "check_out": "2026-12-08", "traveler_id": "practice-a"}
 ```
 
 That one booking earns `chose_from_options`, as long as the search returned two or more properties. Continue with [../reference/training-and-certification.md](../reference/training-and-certification.md), and check what is left:

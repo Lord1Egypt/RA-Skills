@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: recon-cli
+Version: 0.1.0
+Summary: Low-volume web configuration auditor with JS-bundle security analysis. Probes headers, DNS, TLS, config exposure, and XSS patterns.
+Author: z-hussein
+License: MIT
+Keywords: web,audit,security,cli,dns,tls,headers
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file

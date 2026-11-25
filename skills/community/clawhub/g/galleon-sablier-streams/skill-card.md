@@ -1,6 +1,6 @@
 ## Description:
 
-Guides Sablier Flow stream and Lockup vesting actions with product-specific obligations, current rights checks, and evidence-backed reconciliation.
+Use when creating, funding, withdrawing, pausing or cancelling Sablier Flow streams or Lockup vesting, or diagnosing covered versus uncovered stream debt. Resolve product, deployment and current NFT rights before preparing a bounded payment action.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Developers and operators use this skill to plan or review Sablier stream creation, funding, withdrawals, pausing and cancellation, and to distinguish accrued obligations from funds actually available or received.
+Developers and payment operators use the skill to interpret Sablier Flow and Lockup stream state, calculate obligations, and prepare bounded create, fund, withdraw, pause, or cancellation actions. It helps agents report current rights, covered debt or vesting, and the evidence needed to reconcile a payment action.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: An incorrect chain, recipient, token, amount, or approval could move funds unexpectedly.
+Risk: Security review found one unresolved local reference in SKILL.md, so the available evidence is incomplete.
 
-Mitigation: Review the exact chain, deployment, current rights, recipient, amount, approval, calldata, simulation, and receipt before signing.
-
-Risk: Stream debt or vested value may be mistaken for tokens already received.
-
-Mitigation: Report accrued, covered, uncovered, withdrawable, and received amounts separately using observed onchain state.
-
-Risk: Cancelling or voiding a stream may be irreversible or exceed the requested action.
-
-Mitigation: Confirm the requested scope and current permissions; distinguish a pause from termination and reconcile each committed change.
+Mitigation: Check the cited module procedure against current official Sablier documentation and the exact chain deployment before preparing a payment action.
 
 ## Reference(s):
 
-- [Sablier module procedures and sources](artifact/references/modules.md)
-- [Sablier worked calculations and recovery](artifact/references/examples.md)
 - [Sablier Flow overview](https://docs.sablier.com/concepts/flow/overview)
-- [Sablier Flow deployments](https://docs.sablier.com/guides/flow/deployments)
+- [Flow deployments](https://docs.sablier.com/guides/flow/deployments)
 - [Sablier cancelability](https://docs.sablier.com/concepts/cancelability)
+- [Official Flow creation procedure](https://github.com/sablier-labs/sablier-skills/blob/main/skills/sablier-create-open-ended-stream/references/evm-onchain.md)
+- [Official Flow cancellation procedure](https://github.com/sablier-labs/sablier-skills/blob/main/skills/sablier-cancel-open-ended-stream/references/cli.md)
+- [Official Lockup creation procedure](https://github.com/sablier-labs/sablier-skills/blob/main/skills/sablier-create-vesting/references/evm-onchain.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Unsigned transaction calls]
+**Output Type(s):** [Guidance, Analysis, API Calls, Markdown]
 
-**Output Format:** [Markdown with amounts, state evidence, and optional unsigned calls or observed receipts]
+**Output Format:** [Markdown decision record with stream state, obligation calculations, and reviewed unsigned calls or transaction receipts]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Identifies chain, deployment, current rights, obligations, observation time, and missing facts.]
+**Other Properties Related to Output:** [Bounded to the requested stream action and supported by observed product, deployment, rights, and payment evidence.]
 
 ## Skill Version(s):
 
-0.2.1 (source: release metadata and skill frontmatter)
+0.3.0 (source: evidence release and frontmatter)
 
 ## Ethical Considerations:
 

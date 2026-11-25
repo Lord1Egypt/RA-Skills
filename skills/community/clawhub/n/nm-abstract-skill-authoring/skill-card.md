@@ -1,6 +1,6 @@
 ## Description:
 
-Guides developers in creating Claude Code skills using test-driven development and persuasion principles.
+Guide creating Claude Code skills with TDD and persuasion principles. Use for new skill development
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to design and validate Claude Code skills through test-driven development, description writing, modular documentation, and deployment checks.
+Developers authoring Claude Code skills use this guide to design skill content, descriptions, modular documentation, and validation workflows. It covers TDD-based skill development, testing, troubleshooting, and deployment checks.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,40 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Deployment guidance may overwrite an existing skill.
+Risk: The security review reports an authenticated network request whose purpose may be unclear.
 
-Mitigation: Inspect deployment targets and preserve or back up existing skill files before applying changes.
+Mitigation: Review the request and establish its purpose before installing the skill.
 
-Risk: Testing advice may reuse real prompts or transcripts without a stated sanitization step.
+Risk: Deployment guidance could replace existing files without a clear pre-replacement check.
 
-Mitigation: Use synthetic examples where practical; otherwise remove identifying or confidential details and confirm the material is authorized for reuse.
+Mitigation: Review deployment steps and check target files before replacing them.
 
-Risk: The security analysis is incomplete because it reports missing referenced paths.
+Risk: Testing workflows may replay or store real prompts containing sensitive information.
 
-Mitigation: Resolve and review referenced files in the installed release before relying on its deployment or testing guidance.
+Mitigation: Review and sanitize prompts before replaying or storing them.
+
+Risk: Security scan coverage is incomplete because some referenced paths were missing.
+
+Mitigation: Treat the security evidence as incomplete and review the available files before installation.
 
 ## Reference(s):
 
-- [TDD methodology](modules/tdd-methodology.md)
-- [Description writing](modules/description-writing.md)
-- [Progressive disclosure](modules/progressive-disclosure.md)
-- [Validation](modules/validation.md)
-- [Deployment checklist](modules/deployment-checklist.md)
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-abstract-skill-authoring)
+- [Metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown guidance with example code and shell commands]
+**Output Format:** [Markdown guidance with code examples, shell commands, and configuration snippets]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Task-dependent; may include a skill definition and supporting modules.]
+**Other Properties Related to Output:** [Content varies with the skill being authored.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

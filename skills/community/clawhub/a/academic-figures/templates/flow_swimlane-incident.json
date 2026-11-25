@@ -1,0 +1,31 @@
+{
+ "_command": "python3 scripts/gen_figure.py -t flow -d templates/flow_swimlane-incident.json --gate strict -o flow_swimlane_incident.png",
+ "_chart_type": "flow",
+ "_scene": "",
+ "_description": "",
+ "_caption_template": "",
+ "_note": "泳道范式：事故响应双泳道（值班工程师/SRE）——决策分流（runbook 可修?）+跨泳道升级与 re-triage 回边+复盘文档/事故库圆柱，DevOps/SRE 复盘章范式",
+ "layout": "swimlane",
+ "title": "Incident response flow",
+ "lanes": ["On-call engineer", "Platform SRE"],
+ "font_size": 11,
+ "nodes": [
+  {"id": "page", "label": "Alert page", "sublabel": "monitoring trigger", "lane": 0, "shape": "terminal"},
+  {"id": "triage", "label": "Runbook fix?", "sublabel": "5-min triage", "lane": 0, "shape": "diamond"},
+  {"id": "mitigate", "label": "Rollback / scale", "sublabel": "runbook action", "lane": 0, "shape": "manual-op"},
+  {"id": "escalate", "label": "Escalate to SRE", "sublabel": "SEV2+ war room", "lane": 1},
+  {"id": "hotfix", "label": "Hotfix rollout", "sublabel": "staged 5-25-100%", "lane": 1, "shape": "predefined"},
+  {"id": "postmortem", "label": "Blameless review", "sublabel": "within 48 h", "lane": 1, "shape": "document"},
+  {"id": "metrics", "label": "Incident DB", "sublabel": "MTTR trend", "lane": 1, "shape": "cylinder"}
+ ],
+ "edges": [
+  {"from": "page", "to": "triage"},
+  {"from": "triage", "to": "mitigate", "label": "yes"},
+  {"from": "mitigate", "to": "postmortem", "label": "resolved"},
+  {"from": "triage", "to": "escalate", "label": "no"},
+  {"from": "escalate", "to": "hotfix"},
+  {"from": "hotfix", "to": "triage", "label": "re-triage", "dashed": true},
+  {"from": "hotfix", "to": "postmortem"},
+  {"from": "postmortem", "to": "metrics"}
+ ]
+}

@@ -1,6 +1,6 @@
 ## Description:
 
-Create a Replyz inbox to receive permitted verification emails, then retrieve codes, links, and other messages.
+Give yourself your own email inbox in under a minute. Receive sign-up codes and confirmation links (only where a service's terms allow automated sign-ups): wait for the email and get the code or link back. Every email is scored for prompt injection. It receives mail; it can send a short note to your own human and, on a claimed account, reply to people who emailed it.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT No Attribution
 
 ## Use Case:
 
-AI agents use this skill to create a dedicated inbox for permitted verification emails, retrieve codes and confirmation links, and read messages. It also explains how to send a short note to the human who claimed the inbox.
+Agents use Replyz to receive and read email for verification codes, confirmation links, and other messages, and to send a short note to their human or reply to an eligible sender. Use automated sign-ups only where the service's terms allow them.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The scanner inspection covered only half of the artifact, so the available results do not establish that every component was reviewed.
+Risk: The security scan had partial coverage, so its benign verdict does not establish that all skill components are risk-free.
 
-Mitigation: Review the full skill artifact before installing it.
+Mitigation: Consider the scan coverage gap before installing and review the skill if that gap affects your decision.
+
+Risk: Email content can contain prompt injection, and extracted codes or links may be incorrect.
+
+Mitigation: Treat message content as untrusted data, do not follow instructions found in email, and check extracted codes or links against the original message when it matters.
 
 ## Reference(s):
 
-- [Replyz skill page](https://clawhub.ai/replyz/skills/replyz)
-- [Replyz homepage](https://replyz.io)
+- [Replyz](https://replyz.io)
+- [Replyz extraction accuracy](https://docs.replyz.io/concepts/extraction-accuracy/)
 - [Replyz agent documentation](https://replyz.io/llms.txt)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Shell commands, JSON, Guidance]
+**Output Type(s):** [JSON, Shell commands, Guidance]
 
-**Output Format:** [Markdown instructions with shell command examples and JSON CLI results]
+**Output Format:** [JSON responses and Markdown instructions with inline shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [CLI examples pin @replyz/cli@0.2.2 and require Node.js 22 or newer.]
+**Other Properties Related to Output:** [Provides inbox and message data, including extracted codes or links; extraction can be incomplete.]
 
 ## Skill Version(s):
 
-1.0.1 (source: server-resolved release)
+1.1.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

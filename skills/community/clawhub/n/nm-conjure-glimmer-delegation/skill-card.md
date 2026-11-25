@@ -1,6 +1,6 @@
 ## Description:
 
-Delegates to a local Muse Glimmer via ollama
+Delegates to a local Muse Glimmer via ollama.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to delegate a task to a locally hosted Muse Glimmer model through Ollama when the prompt must stay on the machine or other providers are exhausted.
+Developers use this skill to delegate tasks to a locally hosted Muse Glimmer model through Ollama, including when prompts must stay on the machine.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Installation pipes a downloaded script directly into a shell, creating a significant supply-chain risk.
+Risk: The installation instructions pipe a downloaded Ollama installer directly into a shell, which could run unverified remote code.
 
-Mitigation: Inspect or independently verify the installer first, or use a trusted package manager; understand and approve the system changes before installing.
-
-Risk: The security scan was partial because two local path-like references could not be resolved.
-
-Mitigation: Resolve and review those references before relying on behavior the scan did not cover.
+Mitigation: Avoid the direct download-to-shell command. Use an existing Ollama installation or a trusted signed package, and review and verify any installer before running it. The scan was partial and did not establish that all referenced material was assessed.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-conjure-glimmer-delegation)
-- [Project homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/conjure)
+- [Conjure plugin homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/conjure)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions]
+**Output Type(s):** [Text, Markdown]
 
-**Output Format:** [Markdown guidance with shell command examples and delegated text output]
+**Output Format:** [Markdown response saved as a delegation result]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Delegated output is saved as a timestamped Markdown file.]
+**Other Properties Related to Output:** [Prompt and file context are sent to a locally served Muse Glimmer model through Ollama.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

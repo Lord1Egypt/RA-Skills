@@ -4,7 +4,7 @@ This module is unofficial and not affiliated with Comet.
 
 ## Requirements
 
-- Go 1.26.10 or newer, per `go.mod`.
+- Go 1.26.11 or newer, per `go.mod`.
 - For Opik Cloud, an API key in `OPIK_API_KEY` and a workspace name in `OPIK_WORKSPACE`.
 
 ## Install

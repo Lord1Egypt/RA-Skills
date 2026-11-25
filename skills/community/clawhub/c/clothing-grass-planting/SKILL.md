@@ -1,6 +1,6 @@
 ---
 name: clothing-grass-planting
-version: 1.0.32
+version: 1.0.35
 description: 同款穿搭换模特换场景做种草图。穿搭图 → 社交平台风格的种草图。当用户说「种草图」「小红书风格」「换场景发帖」「达人图」时使用。
 ---
 

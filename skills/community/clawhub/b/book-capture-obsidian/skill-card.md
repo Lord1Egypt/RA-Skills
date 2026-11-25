@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Obsidian users can capture books from photos, ISBNs, titles or Goodreads exports and maintain searchable book notes and a library dashboard. They can also enrich book metadata from Google Books or Open Library.
+Obsidian users can capture books from photos or ISBN and title lookups, import Goodreads exports, and organize their reading lists as notes and a library dashboard.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security guidance calls out external pip cache writes by the setup script and undeclared tool scope as items to review.
+Risk: Setup may write package caches outside the skill's virtual environment, and runtime permission limits were not verified.
 
-Mitigation: Before setup, inspect the script's cache paths and requested tool scope and confirm they fit the intended environment.
+Mitigation: Review setup behavior and run it with only the permissions you intend.
+
+Risk: ISBNs, titles, and author names are sent to the selected metadata providers during lookups or enrichment.
+
+Mitigation: Choose the provider mode deliberately; use --no-enrich for local Goodreads imports and keep API keys private.
 
 ## Reference(s):
 
-- [Configuration and metadata providers](references/configuration.md)
-- [Book fields and data contracts](references/data-contracts.md)
+- [ClawHub release page](https://clawhub.ai/ricardodpalmeida/skills/book-capture-obsidian)
+- [Project homepage](https://github.com/Ricardodpalmeida/book-capture-obsidian-skill)
+- [Configuration](references/configuration.md)
+- [Data contracts](references/data-contracts.md)
 - [Goodreads migration runbook](references/migration-runbook.md)
-- [Troubleshooting](references/troubleshooting.md)
 - [Google Books API documentation](https://developers.google.com/books/docs/v1/using#auth)
 - [Open Library API documentation](https://openlibrary.org/developers/api)
-- [Project homepage (metadata.clawdis homepage)](https://github.com/Ricardodpalmeida/book-capture-obsidian-skill)
-- [ClawHub release page](https://clawhub.ai/ricardodpalmeida/skills/book-capture-obsidian)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Files, JSON, Guidance]
+**Output Type(s):** [Markdown, JSON, Shell commands, Configuration]
 
-**Output Format:** [Obsidian-compatible Markdown book notes and dashboard, with JSON operation results]
+**Output Format:** [Obsidian Markdown book notes and dashboard, with JSON workflow results and setup commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Writes within the selected Obsidian vault; preserves user content below the User Notes section.]
+**Other Properties Related to Output:** [Writes notes and dashboards to the selected Obsidian vault; dashboard queries require the Dataview plugin.]
 
 ## Skill Version(s):
 
-1.4.4 (source: server-resolved release metadata)
+1.4.5 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

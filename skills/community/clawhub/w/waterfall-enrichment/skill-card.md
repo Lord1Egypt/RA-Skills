@@ -1,6 +1,6 @@
 ## Description:
 
-Routes contact or company lookups through prioritized vendors, trying later providers when earlier ones find no match.
+Cascade contact or company enrichment across providers in priority order, then verify returned email addresses.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-RevOps and GTM engineering teams use the CLI to enrich contact or company records with prioritized provider fallback. They can verify returned email addresses and estimate cost on a sample before processing a full list.
+Revenue operations and GTM engineering teams use this skill to enrich contact or company records through provider fallbacks, verify returned email addresses, and control credit spend with small sample runs.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Contact records may include personal information shared with Cargo and its providers.
+Risk: Contact and company records may be sent to external enrichment providers, and batch costs grow with the number of records.
 
-Mitigation: Use only records you are authorized to share, including the initial sample.
+Mitigation: Confirm you are authorized to share the records, sample 10–20 records, and review hit rate and credit cost before running a full batch.
 
-Risk: A full batch can incur substantial credit costs as charges scale with records processed.
+Risk: The install command uses the unpinned @latest CLI package, and the workflow includes email-verification and repository-starring prompts.
 
-Mitigation: Start with a 10–20 record sample, review observed cost and hit rate, then approve the full batch using its record count and credit estimate.
-
-Risk: The CLI package and optional Cargo pack are external dependencies whose contents are not included with this skill.
-
-Mitigation: Review their versions and contents separately before use.
+Mitigation: Review and trust the package source before installation; proceed with verification or starring only when those actions match your intent.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/cargo-ai/skills/waterfall-enrichment)
-- [Declared skill homepage](https://github.com/getcargohq/gtm-skills)
+- [Cargo skill repository homepage](https://github.com/getcargohq/gtm-skills)
 - [Cargo waterfall provider playbook](https://github.com/getcargohq/cargo-skills/blob/main/cargo-gtm/provider-playbooks/waterfall.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Shell commands, Guidance]
+**Output Type(s):** [Shell commands, Guidance, Analysis]
 
-**Output Format:** [Markdown instructions with inline shell command examples]
+**Output Format:** [Markdown with inline shell commands and tables]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Examples use fictional records; batch costs vary with record count.]
+**Other Properties Related to Output:** [Commands can start asynchronous enrichment batches and incur per-record credit costs.]
 
 ## Skill Version(s):
 
-1.0.4 (source: frontmatter)
+1.0.5 (source: frontmatter)
 
 ## Ethical Considerations:
 

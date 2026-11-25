@@ -1,6 +1,6 @@
 {
   "name": "@openclaw/skill-vettr",
-  "version": "2.0.3",
+  "version": "2.0.8",
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
@@ -9,15 +9,15 @@
     "test": "node --test dist/__tests__/**/*.test.js"
   },
   "dependencies": {
-    "tree-sitter-javascript": "^0.25.0",
-    "tree-sitter-typescript": "^0.23.2",
-    "web-tree-sitter": "^0.26.0",
-    "yaml": "^2.4.0"
+    "tree-sitter-javascript": "0.25.0",
+    "tree-sitter-typescript": "0.23.2",
+    "web-tree-sitter": "0.26.5",
+    "yaml": "2.9.1"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
-    "fast-check": "^4.5.3",
-    "typescript": "^5.3.0"
+    "@types/node": "20.19.32",
+    "fast-check": "4.5.3",
+    "typescript": "5.9.3"
   },
   "engines": {
     "node": ">=20.0.0"

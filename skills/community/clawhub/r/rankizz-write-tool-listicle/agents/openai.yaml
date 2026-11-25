@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tool Listicle Writing"
+  short_description: "Create an evidence-backed best tools list"
+  default_prompt: "Use $rankizz-write-tool-listicle to research and write a useful best tools article for this niche."

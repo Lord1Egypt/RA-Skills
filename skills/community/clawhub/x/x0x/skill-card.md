@@ -1,6 +1,6 @@
 ## Description:
 
-Helps AI agents establish secure peer-to-peer networks for messaging, group collaboration, and shared state.
+Guides AI agents through using x0x for peer-to-peer messaging, gossip, shared data, and encrypted groups.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT OR Apache-2.0
 
 ## Use Case:
 
-Developers and AI agent operators use x0x to connect agents across computers, exchange direct and group messages, and coordinate tasks and shared data.
+Developers use this skill to install and operate x0x agents, connect peers, and follow documented messaging and collaboration workflows.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Installation can start a persistent networking daemon, and the raw shell installer lacks signature verification.
+Risk: ClawScan marked this release suspicious with medium confidence, citing a mutable unsigned shell installer that starts the daemon automatically and reported capabilities beyond the stated networking purpose. Its coverage was incomplete because referenced local paths were missing; the scanners did not establish malicious intent or data exfiltration.
 
-Mitigation: Review and authorize installation first; prefer a verified or checksum-pinned download, and avoid the raw installer unless approved.
-
-Risk: A leaked durable bearer token or non-local API exposure could enable unauthorized daemon control.
-
-Mitigation: Protect the token and bind the API to loopback; require explicit approval before any non-local exposure.
-
-Risk: Remote execution, self-update, and autostart can change system behavior beyond messaging.
-
-Mitigation: Require explicit human approval for remote execution, self-update, and autostart.
+Mitigation: Review the installation options and relevant source before installing. Avoid the shell installer unless its behavior is understood and daemon startup is authorized; the documented install.py checks pinned GPG signatures, and verification failures should not be bypassed.
 
 ## Reference(s):
 
-- [ClawHub x0x skill release](https://clawhub.ai/jimcollinson/skills/x0x)
-- [x0x API reference (linked in skill)](https://github.com/saorsa-labs/x0x/blob/main/docs/api-reference.md)
-- [x0x security documentation (linked in skill)](https://github.com/saorsa-labs/x0x/blob/main/docs/security.md)
-- [x0x operations documentation (linked in skill)](https://github.com/saorsa-labs/x0x/blob/main/docs/skill/operations.md)
-- [Linux x64 download (listed in install metadata)](https://github.com/saorsa-labs/x0x/releases/latest/download/x0x-linux-x64-gnu.tar.gz)
+- [x0x on ClawHub](https://clawhub.ai/jimcollinson/skills/x0x)
+- [x0x project repository](https://github.com/saorsa-labs/x0x)
+- [Security and cryptography](https://github.com/saorsa-labs/x0x/blob/main/docs/security.md)
+- [Operations guide](https://github.com/saorsa-labs/x0x/blob/main/docs/skill/operations.md)
+- [Owner and agent guide](https://github.com/saorsa-labs/x0x/blob/main/docs/skill/owner.md)
+- [Messaging guide](https://github.com/saorsa-labs/x0x/blob/main/docs/skill/messaging.md)
+- [Stores, files, and history guide](https://github.com/saorsa-labs/x0x/blob/main/docs/skill/stores.md)
+- [x0x website](https://saorsalabs.com)
+- [Install for macOS ARM64](https://github.com/saorsa-labs/x0x/releases/latest/download/x0x-macos-arm64.tar.gz)
+- [Install for macOS x64](https://github.com/saorsa-labs/x0x/releases/latest/download/x0x-macos-x64.tar.gz)
+- [Install for Linux x64](https://github.com/saorsa-labs/x0x/releases/latest/download/x0x-linux-x64-gnu.tar.gz)
+- [Install for Linux ARM64](https://github.com/saorsa-labs/x0x/releases/latest/download/x0x-linux-arm64-gnu.tar.gz)
+- [Install for Windows x64](https://github.com/saorsa-labs/x0x/releases/latest/download/x0x-windows-x64.zip)
 
 ## Skill Output:
 
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Code]
 
-**Output Format:** [Markdown with shell commands and JSON API examples]
+**Output Format:** [Markdown with shell commands, REST examples, and JSON configuration snippets]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Provides instructions for operating a persistent networking daemon; privileged actions require operator approval.]
+**Other Properties Related to Output:** [Step-by-step instructions for installing and operating x0x, with links to topic-specific documentation.]
 
 ## Skill Version(s):
 
-0.48.1 (source: ClawHub release metadata and skill frontmatter)
+0.49.1 (source: frontmatter)
 
 ## Ethical Considerations:
 

@@ -1,74 +1,81 @@
-const utils = require("../utils/utils");
-
 /**
- * 检查搜索关键词是否符合要求
- * @param {string} keyword - 搜索关键词
- * @returns {boolean} - 是否有效
+ * 关键词与枚举校验。非法值直接失败，不改写成默认值。
+ * 长度按 Unicode 码点计算，与后端按字符计数一致。
  */
-function isKeywordValid(keyword) {
-  keyword = keyword.trim();
-  if (keyword.length < 2) {
-    utils.printError(`搜索关键词长度不能小于 2 个字符`);
-    return false;
-  }
-  if (keyword.length > 100) {
-    utils.printError(`搜索关键词长度不能超过 100 个字符`);
-    return false;
-  }
-  if (/[<>\"'&]/g.test(keyword)) {
-    utils.printError(`搜索关键词包含特殊字符, 请输入普通关键词, 例如: AI`);
-    return false;
-  }
-  if (keyword.includes("http")) {
-    utils.printError(`搜索关键词包含 http 链接, 请输入普通关键词, 例如: AI`);
-    return false;
-  }
-  return true;
+
+function codePointLength(value) {
+  return Array.from(value).length;
 }
 
 /**
- * 清洗搜索关键词，移除非法字符
- * @param {string} keyword - 原始关键词
- * @returns {string} - 清洗后的搜索关键词
+ * 去掉控制字符和零宽字符，连续空白收敛为一个空格。
+ * 保留 emoji，TikTok 搜索会用到。
+ * @param {string} keyword
+ * @returns {string}
  */
-function cleanKeyword(keyword) {
-  keyword = keyword.trim();
-  keyword = keyword.replace(/\s+/g, " "); // 合并连续空格
-  return keyword;
+function normalizeKeyword(keyword) {
+  if (typeof keyword !== "string") return "";
+  return keyword
+    .replace(/[\u0000-\u001f\u007f\u200b-\u200f\ufeff]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 /**
- * 格式化并验证搜索选项
- * @param {number} sort - 排序依据 (0:综合, 1:最多点赞)
- * @param {number} time - 时间范围 (0:全部, 1:一天内, 7:七天内, 30:一个月内, 90:三个月内, 180:半年内)
- * @param {number} limit - 搜索数量 (1-10000)
- * @returns {[number, number, number, number]} 格式化后的选项数组
+ * @param {string} keyword
+ * @returns {string} 空字符串表示合法，否则是给人和 agent 看的原因
  */
-function optionFormat(sort, time, limit) {
-  sort = Number.isFinite(sort) ? sort : 0;
-  time = Number.isFinite(time) ? time : 0;
-  limit = Number.isFinite(limit) ? limit : 10;
-  if (![0, 1].includes(sort)) {
-    utils.printError(
-      `排序依据 ${sort} 无效, 请使用 0(相关度) / 1(最多点赞)。已回退为 0`,
-    );
-    sort = 0;
+function keywordError(keyword) {
+  if (typeof keyword !== "string" || keyword.trim() === "") {
+    return "关键词不能为空";
   }
-  if (![0, 1, 7, 30, 90, 180].includes(time)) {
-    utils.printError(
-      `发布时间 ${time} 无效, 请使用 0/1/7/30/90/180。已回退为 0`,
-    );
-    time = 0;
+  const length = codePointLength(keyword);
+  if (length < 1 || length > 100) {
+    return "关键词长度需为 1-100 个字符";
   }
-  if (limit < 1 || limit > 10000) {
-    utils.printError(`数量 ${limit} 无效, 请使用 1-10000。已回退为 10`);
-    limit = 10;
+  if (/[<>"']/.test(keyword)) {
+    return "关键词不能包含 < > \" '";
   }
+  if (
+    /https?:\/\//i.test(keyword) ||
+    /tiktok\.com/i.test(keyword) ||
+    /www\./i.test(keyword)
+  ) {
+    return "关键词不能是链接。博主主页请用 post-cli，视频评论请用 comment-cli";
+  }
+  return "";
+}
+
+function assertChoice(value, allowed, label) {
+  const n = Number(value);
+  if (!allowed.includes(n)) {
+    throw new Error(`${label} ${value} 无效, 允许值: ${allowed.join(", ")}`);
+  }
+  return n;
+}
+
+function assertIntegerRange(value, min, max, label) {
+  const n = Number(value);
+  if (!Number.isInteger(n) || n < min || n > max) {
+    throw new Error(`${label} ${value} 无效, 允许 ${min}-${max} 的整数`);
+  }
+  return n;
+}
+
+/**
+ * @returns {[number, number, number]}
+ */
+function assertSearchOptions(sort, time, limit) {
+  sort = assertChoice(sort, [0, 1], "排序 sort");
+  time = assertChoice(time, [0, 1, 7, 30, 90, 180], "发布时间 time");
+  limit = assertIntegerRange(limit, 1, 10000, "搜索数量 limit");
   return [sort, time, limit];
 }
 
 module.exports = {
-  isKeywordValid,
-  cleanKeyword,
-  optionFormat,
+  normalizeKeyword,
+  keywordError,
+  assertSearchOptions,
+  assertChoice,
+  assertIntegerRange,
 };

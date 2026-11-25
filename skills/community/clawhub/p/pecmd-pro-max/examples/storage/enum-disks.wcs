@@ -1,0 +1,399 @@
+//https://learn.microsoft.com/zh-cn/windows/win32/api/setupapi/nf-setupapi-setupdigetclassdevsw
+//https://learn.microsoft.com/zh-cn/windows/win32/api/setupapi/nf-setupapi-setupdienumdeviceinterfaces
+//https://learn.microsoft.com/zh-cn/windows/win32/api/setupapi/nf-setupapi-setupdigetdeviceinterfacedetailw
+//https://blog.csdn.net/lengye7/article/details/122953234
+
+set^ EnviMode=1
+set^ ForceLocal=1
+set$ nl=0d 0a
+envi rnl=
+envi DeviceInformation=
+
+set expression4={\a\a}{\a\a}{\a\a}{\a\a}-{\a\a}{\a\a}-{\a\a}{\a\a}-{\a\a}{\a\a}-{\a\a}{\a\a}{\a\a}{\a\a}{\a\a}{\a\a}
+set expression5=0x\004 0x\003 0x\002 0x\001 0x\006 0x\005 0x\008 0x\007 0x\009 0x\010 0x\011 0x\012 0x\013 0x\014 0x\015 0x\016
+
+//set#$$ guid_devinterface_disk=53f56307 b6bf 11d0 94 f2 00 a0 c9 1e fb 8b
+call MakeGuid3 guid_devinterface_disk 53f56307-b6bf-11d0-94f2-00a0c91efb8b
+
+set digcf_present=0x00000002  //仅返回系统中当前存在的设备
+set digcf_deviceinterface=0x00000010  //返回支持指定设备接口类的设备。 如果枚举器参数指定设备实例 ID，则必须在 Flags 参数中设置此标志。
+calc Flags=%digcf_present% | %digcf_deviceinterface%
+call $--qd --ret:Handle Setupapi.dll,SetupDiGetClassDevsW,*guid_devinterface_disk,#0,#0,#%Flags%   //如果操作成功， SetupDiGetClassDevs 将返回设备 信息集 的句柄，其中包含与提供的参数匹配的所有已安装设备。 如果操作失败，函数将返回INVALID_HANDLE_VALUE (-1)。 要获得更多的错误信息，请调用 GetLastError。
+ifex $%Handle%<>-1,
+{
+	set MemberIndex=0
+	loop #1=1,
+	{
+		//%&::bX64%=0, PECMD32+Win32  //%&::bX64%=1, PECMD32+WIN64  //%&::bX64%=3, PECMD64+WIN64
+		ifex $%::bX64%<3, calc DataSize=28! calc DataSize=32
+		set$# DeviceInterfaceData=*%DataSize% 0  //结构体 sp_device_interface_data
+		set-long pDataSize=%DataSize%
+		set-copy DeviceInterfaceData=pDataSize;0;4;0
+		call $--qd --bool --ret:retInterfaces Setupapi.dll,SetupDiEnumDeviceInterfaces,#%Handle%,#0,*guid_devinterface_disk,#%MemberIndex%,*DeviceInterfaceData   //如果函数未出错，SetupDiEnumDeviceInterfaces 将返回 TRUE (1)。 如果函数完成并出现错误，则返回 FALSE (0)，可以通过调用 GetLastError 来检索失败的错误代码。
+		ifex $%retInterfaces%=1,
+		{
+			set$# RequiredSize=*8 0
+			call $--qd Kernel32.dll,SetLastError,#0  //无返回值
+			call $--qd --bool --ret:retDetail1 Setupapi.dll,SetupDiGetDeviceInterfaceDetailW,#%Handle%,*DeviceInterfaceData,#0,#0,*RequiredSize,#0   //先查询结构体 sp_device_interface_detail_data 大小  //SetupDiGetDeviceInterfaceDetail 如果函数已完成且未出错，则返回 TRUE (1)。 如果函数已完成并出现错误，则返回 FALSE (0)，可以通过调用 GetLastError 来检索失败的错误代码。
+			call $--qd --ret:GetLastErrorRet Kernel32.dll,GetLastError
+			ifex $%GetLastErrorRet%=122,  //(0x7A) error_insufficient_buffer。 传递给系统调用的数据区域太小。因为将 DeviceInterfaceDetailDataSize 大小设置为0，所以返回122
+			{
+				set?longlong RequiredSize=DeviceInterfaceDetailDataSize
+				set$# DeviceInterfaceDetailData=*%DeviceInterfaceDetailDataSize% 0    //结构体 sp_device_interface_detail_data
+				ifex $%::bX64%<3, set-long pdDataSize=6! set-long pdDataSize=8  //结构体 sp_device_interface_detail_data 固定部分的大小，不包含末尾可变长度字符串的大小
+				set-copy DeviceInterfaceDetailData=pdDataSize;0;4;0
+				call $--qd --bool --ret:retDetail2 Setupapi.dll,SetupDiGetDeviceInterfaceDetailW,#%Handle%,*DeviceInterfaceData,*DeviceInterfaceDetailData,#%DeviceInterfaceDetailDataSize%,#0,#0   //SetupDiGetDeviceInterfaceDetail 如果函数已完成且未出错，则返回 TRUE (1)。 如果函数已完成并出现错误，则返回 FALSE (0)，可以通过调用 GetLastError 来检索失败的错误代码。
+				ifex $%retDetail2%=1,
+				{
+					set-make DevicePath=&DeviceInterfaceDetailData@4
+					set< DeviceInformation=%rnl%%DevicePath%
+					set rnl=%nl%
+				}
+			}
+		}!
+		{
+			exit
+		}
+		calc MemberIndex=%MemberIndex% + 1
+	}
+	call $--qd --bool --ret:retDestroy Setupapi.dll,SetupDiDestroyDeviceInfoList,#%Handle%  //如果函数成功，则返回 TRUE (1)。 否则，它会返回 FALSE (0)，可以通过调用 GetLastError 来检索记录的错误。
+}
+find *=DeviceInformation, mess=+icon6. 枚举失败！@错误#ok*3000! mess. %DeviceInformation%
+exit
+
+//guid转换成二进制数据
+_sub MakeGuid3
+	set$# pclsid=*16 0  //仅guid数字、字母部分，不带括号和连接符
+	call $--qd --ret:RetCLSIDFromString Ole32.dll,CLSIDFromString,${%~2},*pclsid  //此函数可以返回E_INVALIDARG (0x80070057) 的标准返回值、NOERROR (0) 已成功获取 CLSID、CO_E_CLASSSTRING (0x800401F3) 类字符串的格式不正确
+	find [ *=pclsid | %RetCLSIDFromString%<>0 ],
+	{
+		//set#$$ guid_devinterface_disk=53f56307 b6bf 11d0 94 f2 00 a0 c9 1e fb 8b
+		sed ClassGuidHex=0,%expression4%,%expression5%,%~2
+		set$# pclsid=%ClassGuidHex%
+	}
+	set-ret %~1=%pclsid%
+_end
+
+
+
+
+
+
+// GUID_DEVINTERFACE_DISK    53f56307-b6bf-11d0-94f2-00a0c91efb8b    (guid_devinterface_disk)
+// GUID_DEVINTERFACE_CDROM    53f56308-b6bf-11d0-94f2-00a0c91efb8b    (guid_devinterface_cdrom)
+// GUID_DEVINTERFACE_PARTITION    53f5630a-b6bf-11d0-94f2-00a0c91efb8b    (guid_devinterface_partition)
+// GUID_DEVINTERFACE_TAPE    53f5630b-b6bf-11d0-94f2-00a0c91efb8b    (guid_devinterface_tape)
+// GUID_DEVINTERFACE_WRITEONCEDISK    53f5630c-b6bf-11d0-94f2-00a0c91efb8b    (guid_devinterface_writeoncedisk)
+// GUID_DEVINTERFACE_VOLUME    53f5630d-b6bf-11d0-94f2-00a0c91efb8b    (guid_devinterface_volume)
+// GUID_DEVINTERFACE_MEDIUMCHANGER    53f56310-b6bf-11d0-94f2-00a0c91efb8b    (guid_devinterface_mediumchanger)
+// GUID_DEVINTERFACE_FLOPPY    53f56311-b6bf-11d0-94f2-00a0c91efb8b    (guid_devinterface_floppy)
+// GUID_DEVINTERFACE_CDCHANGER    53f56312-b6bf-11d0-94f2-00a0c91efb8b    (guid_devinterface_cdchanger)
+// GUID_DEVINTERFACE_STORAGEPORT    2accfe60-c130-11d2-b082-00a0c91efb8b    (guid_devinterface_storageport)
+// GUID_DEVINTERFACE_VMLUN    6f416619-9f29-42a5-b20b-37e219ca02b0    (guid_devinterface_vmlun)
+// GUID_DEVINTERFACE_SES    1790c9ec-47d5-4df3-b5af-9adf3cf23e48    (guid_devinterface_ses)
+// GUID_DEVINTERFACE_ZNSDISK    b87941c5-ffdb-43c7-b6b1-20b632f0b109    (guid_devinterface_znsdisk)
+// WDI_STORAGE_PREDICT_FAILURE_DPS_GUID    e9f2d03a-747c-41c2-bb9a-02c62b6d5fcb    (wdi_storage_predict_failure_dps_guid)
+// GUID_DEVINTERFACE_SERVICE_VOLUME    6ead3d82-25ec-46bc-b7fd-c1f0df8f5037    (guid_devinterface_service_volume)
+// GUID_DEVINTERFACE_HIDDEN_VOLUME    7f108a28-9833-4b3b-b780-2c6b5fa5c062    (guid_devinterface_hidden_volume)
+// GUID_DEVINTERFACE_UNIFIED_ACCESS_RPMB    27447c21-bcc3-4d07-a05b-a3395bb4eee7    (guid_devinterface_unified_access_rpmb)
+// GUID_DEVINTERFACE_SCM_PHYSICAL_DEVICE    4283609d-4dc2-43be-bbb4-4f15dfce2c61    (guid_devinterface_scm_physical_device)
+// GUID_SCM_PD_HEALTH_NOTIFICATION    9da2d386-72f5-4ee3-8155-eca0678e3b6    (guid_scm_pd_health_notification)
+// GUID_SCM_PD_PASSTHROUGH_INVDIMM    4309ac30-0d11-11e4-9191-0800200c9a66    (guid_scm_pd_passthrough_invdimm)
+// GUID_DEVINTERFACE_COMPORT    86e0d1e0-8089-11d0-9ce4-08003e301f73    (guid_devinterface_comport)
+// GUID_DEVINTERFACE_SERENUM_BUS_ENUMERATOR    4d36e978-e325-11ce-bfc1-08002be10318    (guid_devinterface_serenum_bus_enumerator)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//https://learn.microsoft.com/zh-cn/windows/win32/api/setupapi/nf-setupapi-setupdigetclassdevsw
+//https://learn.microsoft.com/zh-cn/windows/win32/api/setupapi/nf-setupapi-setupdienumdeviceinterfaces
+//https://learn.microsoft.com/zh-cn/windows/win32/api/setupapi/nf-setupapi-setupdigetdeviceinterfacedetailw
+//https://blog.csdn.net/lengye7/article/details/122953234
+
+set^ EnviMode=1
+set^ ForceLocal=1
+set$ nl=0d 0a
+envi DeviceInformation=
+
+set expression4={\a\a}{\a\a}{\a\a}{\a\a}-{\a\a}{\a\a}-{\a\a}{\a\a}-{\a\a}{\a\a}-{\a\a}{\a\a}{\a\a}{\a\a}{\a\a}{\a\a}
+set expression5=0x\004 0x\003 0x\002 0x\001 0x\006 0x\005 0x\008 0x\007 0x\009 0x\010 0x\011 0x\012 0x\013 0x\014 0x\015 0x\016
+
+//set#$$ guid_devinterface_disk=53f56307 b6bf 11d0 94 f2 00 a0 c9 1e fb 8b
+call MakeGuid3 guid_devinterface_disk 53f56307-b6bf-11d0-94f2-00a0c91efb8b
+
+set digcf_present=0x00000002 //仅返回系统中当前存在的设备
+set digcf_deviceinterface=0x00000010 //返回支持指定设备接口类的设备。 如果枚举器参数指定设备实例 ID，则必须在 Flags 参数中设置此标志。
+calc Flags=%digcf_present% | %digcf_deviceinterface%
+call $--qd --ret:Handle Setupapi.dll,SetupDiGetClassDevsW,*guid_devinterface_disk,#0,#0,#%Flags% //如果操作成功， SetupDiGetClassDevs 将返回设备 信息集 的句柄，其中包含与提供的参数匹配的所有已安装设备。 如果操作失败，函数将返回INVALID_HANDLE_VALUE (-1)。 要获得更多的错误信息，请调用 GetLastError。
+ifex $%Handle%<>-1,
+{
+	set MemberIndex=0
+	loop #1=1,
+	{
+		//%&::bX64%=0, PECMD32+Win32 //%&::bX64%=1, PECMD32+WIN64 //%&::bX64%=3, PECMD64+WIN64
+		ifex $%::bX64%<3, calc DataSize=28! calc DataSize=32
+		set$# DeviceInterfaceData=*%DataSize% 0 //结构体 sp_device_interface_data
+		set-long pDataSize=%DataSize%
+		set-copy DeviceInterfaceData=pDataSize;0;4;0
+		call $--qd --bool --ret:retInterfaces Setupapi.dll,SetupDiEnumDeviceInterfaces,#%Handle%,#0,*guid_devinterface_disk,#%MemberIndex%,*DeviceInterfaceData //如果函数未出错，SetupDiEnumDeviceInterfaces 将返回 TRUE (1)。 如果函数完成并出现错误，则返回 FALSE (0)，可以通过调用 GetLastError 来检索失败的错误代码。
+		ifex $%retInterfaces%=1,
+		{
+			set$# RequiredSize=*8 0
+			call $--qd Kernel32.dll,SetLastError,#0 //无返回值
+			call $--qd --bool --ret:retDetail1 Setupapi.dll,SetupDiGetDeviceInterfaceDetailW,#%Handle%,*DeviceInterfaceData,#0,#0,*RequiredSize,#0 //先查询结构体 sp_device_interface_detail_data 大小 //SetupDiGetDeviceInterfaceDetail 如果函数已完成且未出错，则返回 TRUE (1)。 如果函数已完成并出现错误，则返回 FALSE (0)，可以通过调用 GetLastError 来检索失败的错误代码。
+			call $--qd --ret:GetLastErrorRet Kernel32.dll,GetLastError
+			ifex $%GetLastErrorRet%=122, //(0x7A) error_insufficient_buffer。 传递给系统调用的数据区域太小。因为将 DeviceInterfaceDetailDataSize 大小设置为0，所以返回122
+			{
+				set?longlong RequiredSize=DeviceInterfaceDetailDataSize
+				set$# DeviceInterfaceDetailData=*%DeviceInterfaceDetailDataSize% 0 //结构体 sp_device_interface_detail_data
+				ifex $%::bX64%<3, set-long pdDataSize=6! set-long pdDataSize=8 //结构体 sp_device_interface_detail_data 固定部分的大小，不包含末尾可变长度字符串的大小
+				set-copy DeviceInterfaceDetailData=pdDataSize;0;4;0
+				call $--qd --bool --ret:retDetail2 Setupapi.dll,SetupDiGetDeviceInterfaceDetailW,#%Handle%,*DeviceInterfaceData,*DeviceInterfaceDetailData,#%DeviceInterfaceDetailDataSize%,#0,#0 //SetupDiGetDeviceInterfaceDetail 如果函数已完成且未出错，则返回 TRUE (1)。 如果函数已完成并出现错误，则返回 FALSE (0)，可以通过调用 GetLastError 来检索失败的错误代码。
+				ifex $%retDetail2%=1,
+				{
+					set-make DevicePath=&DeviceInterfaceDetailData@4
+					call $--qd --ret:h Kernel32.dll,CreateFileW,$%DevicePath%,#2147483648,#3,#0,#3,#0,#0 //如果函数成功，则返回值是指定文件、设备、命名管道或邮件槽的打开句柄。如果函数失败，则返回值为 INVALID_HANDLE_VALUE (-1)。 要获得更多的错误信息，请调用 GetLastError。
+					ifex $%h%<>-1,
+					{
+
+						ifex $%::bX64%<3, set lpdword=4! set lpdword=8
+						set nOutBufferSize=0xC //结构体 storage_device_number 的长度
+						set$# lpOutBuffer=*%nOutBufferSize% 0
+						set$# lpBytesReturned=*%lpdword% 0 //LPDWORD 实际就是DWORD类型，int
+						call $--qd --ret:RetDeviceIoControl Kernel32.dll,DeviceIoControl,#%h%,#2953344,#0,#0,*lpOutBuffer,#%nOutBufferSize%,*lpBytesReturned,#0 //如果操作成功完成，则返回值为非零 (TRUE) 。如果操作失败或挂起，则返回值为零。 要获得更多的错误信息，请调用 GetLastError。
+						call $--qd --bool --ret:RetCloseHandle Kernel32.dll,CloseHandle,#%h% //如果函数成功，则返回值为非零值。如果函数失败，则返回值为零。若要获取扩展的错误信息，请调用 GetLastError。如果应用程序在调试器下运行，则函数在收到无效的句柄值或伪句柄值时将引发异常。如果关闭句柄两次，或者对 FindFirstFile 函数返回的句柄调用 CloseHandle，而不是调用 FindClose 函数，则可能会发生这种情况。
+						ifex $%RetDeviceIoControl%<>0,
+						{
+							set?int lpOutBuffer=DeviceNumber:4
+							team set< DeviceInformation=%DeviceNumber% |
+						}
+					}
+				}
+			}
+		}!
+		{
+			exit
+		}
+		calc MemberIndex=%MemberIndex% + 1
+	}
+	call $--qd --bool --ret:retDestroy Setupapi.dll,SetupDiDestroyDeviceInfoList,#%Handle% //如果函数成功，则返回 TRUE (1)。 否则，它会返回 FALSE (0)，可以通过调用 GetLastError 来检索记录的错误。
+}
+find *=DeviceInformation, mess=+icon6. 枚举失败！@错误#ok*3000! mess. %DeviceInformation%
+exit
+
+//guid转换成二进制数据
+_sub MakeGuid3
+	set$# pclsid=*16 0 //仅guid数字、字母部分，不带括号和连接符
+	call $--qd --ret:RetCLSIDFromString Ole32.dll,CLSIDFromString,${%~2},*pclsid //此函数可以返回E_INVALIDARG (0x80070057) 的标准返回值、NOERROR (0) 已成功获取 CLSID、CO_E_CLASSSTRING (0x800401F3) 类字符串的格式不正确
+	find [ *=pclsid | %RetCLSIDFromString%<>0 ],
+	{
+		//set#$$ guid_devinterface_disk=53f56307 b6bf 11d0 94 f2 00 a0 c9 1e fb 8b
+		sed ClassGuidHex=0,%expression4%,%expression5%,%~2
+		set$# pclsid=%ClassGuidHex%
+	}
+	set-ret %~1=%pclsid%
+_end
+
+// GUID_DEVINTERFACE_DISK 53f56307-b6bf-11d0-94f2-00a0c91efb8b (guid_devinterface_disk)
+// GUID_DEVINTERFACE_CDROM 53f56308-b6bf-11d0-94f2-00a0c91efb8b (guid_devinterface_cdrom)
+// GUID_DEVINTERFACE_PARTITION 53f5630a-b6bf-11d0-94f2-00a0c91efb8b (guid_devinterface_partition)
+// GUID_DEVINTERFACE_TAPE 53f5630b-b6bf-11d0-94f2-00a0c91efb8b (guid_devinterface_tape)
+// GUID_DEVINTERFACE_WRITEONCEDISK 53f5630c-b6bf-11d0-94f2-00a0c91efb8b (guid_devinterface_writeoncedisk)
+// GUID_DEVINTERFACE_VOLUME 53f5630d-b6bf-11d0-94f2-00a0c91efb8b (guid_devinterface_volume)
+// GUID_DEVINTERFACE_MEDIUMCHANGER 53f56310-b6bf-11d0-94f2-00a0c91efb8b (guid_devinterface_mediumchanger)
+// GUID_DEVINTERFACE_FLOPPY 53f56311-b6bf-11d0-94f2-00a0c91efb8b (guid_devinterface_floppy)
+// GUID_DEVINTERFACE_CDCHANGER 53f56312-b6bf-11d0-94f2-00a0c91efb8b (guid_devinterface_cdchanger)
+// GUID_DEVINTERFACE_STORAGEPORT 2accfe60-c130-11d2-b082-00a0c91efb8b (guid_devinterface_storageport)
+// GUID_DEVINTERFACE_VMLUN 6f416619-9f29-42a5-b20b-37e219ca02b0 (guid_devinterface_vmlun)
+// GUID_DEVINTERFACE_SES 1790c9ec-47d5-4df3-b5af-9adf3cf23e48 (guid_devinterface_ses)
+// GUID_DEVINTERFACE_ZNSDISK b87941c5-ffdb-43c7-b6b1-20b632f0b109 (guid_devinterface_znsdisk)
+// WDI_STORAGE_PREDICT_FAILURE_DPS_GUID e9f2d03a-747c-41c2-bb9a-02c62b6d5fcb (wdi_storage_predict_failure_dps_guid)
+// GUID_DEVINTERFACE_SERVICE_VOLUME 6ead3d82-25ec-46bc-b7fd-c1f0df8f5037 (guid_devinterface_service_volume)
+// GUID_DEVINTERFACE_HIDDEN_VOLUME 7f108a28-9833-4b3b-b780-2c6b5fa5c062 (guid_devinterface_hidden_volume)
+// GUID_DEVINTERFACE_UNIFIED_ACCESS_RPMB 27447c21-bcc3-4d07-a05b-a3395bb4eee7 (guid_devinterface_unified_access_rpmb)
+// GUID_DEVINTERFACE_SCM_PHYSICAL_DEVICE 4283609d-4dc2-43be-bbb4-4f15dfce2c61 (guid_devinterface_scm_physical_device)
+// GUID_SCM_PD_HEALTH_NOTIFICATION 9da2d386-72f5-4ee3-8155-eca0678e3b6 (guid_scm_pd_health_notification)
+// GUID_SCM_PD_PASSTHROUGH_INVDIMM 4309ac30-0d11-11e4-9191-0800200c9a66 (guid_scm_pd_passthrough_invdimm)
+// GUID_DEVINTERFACE_COMPORT 86e0d1e0-8089-11d0-9ce4-08003e301f73 (guid_devinterface_comport)
+// GUID_DEVINTERFACE_SERENUM_BUS_ENUMERATOR 4d36e978-e325-11ce-bfc1-08002be10318 (guid_devinterface_serenum_bus_enumerator)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//https://learn.microsoft.com/zh-cn/windows/win32/api/setupapi/nf-setupapi-setupdigetclassdevsw
+//https://learn.microsoft.com/zh-cn/windows/win32/api/setupapi/nf-setupapi-setupdienumdeviceinterfaces
+//https://learn.microsoft.com/zh-cn/windows/win32/api/setupapi/nf-setupapi-setupdigetdeviceinterfacedetailw
+//https://blog.csdn.net/lengye7/article/details/122953234
+
+set^ EnviMode=1
+set^ ForceLocal=1
+set$ nl=0d 0a
+envi DeviceInformation=
+
+set expression4={\a\a}{\a\a}{\a\a}{\a\a}-{\a\a}{\a\a}-{\a\a}{\a\a}-{\a\a}{\a\a}-{\a\a}{\a\a}{\a\a}{\a\a}{\a\a}{\a\a}
+set expression5=0x\004 0x\003 0x\002 0x\001 0x\006 0x\005 0x\008 0x\007 0x\009 0x\010 0x\011 0x\012 0x\013 0x\014 0x\015 0x\016
+
+//set#$$ guid_devinterface_disk=53f56307 b6bf 11d0 94 f2 00 a0 c9 1e fb 8b
+call MakeGuid3 guid_devinterface_disk 53f56307-b6bf-11d0-94f2-00a0c91efb8b
+
+set digcf_present=0x00000002 //仅返回系统中当前存在的设备
+set digcf_deviceinterface=0x00000010 //返回支持指定设备接口类的设备。 如果枚举器参数指定设备实例 ID，则必须在 Flags 参数中设置此标志。
+calc Flags=%digcf_present% | %digcf_deviceinterface%
+call $--qd --ret:Handle Setupapi.dll,SetupDiGetClassDevsW,*guid_devinterface_disk,#0,#0,#%Flags% //如果操作成功， SetupDiGetClassDevs 将返回设备 信息集 的句柄，其中包含与提供的参数匹配的所有已安装设备。 如果操作失败，函数将返回INVALID_HANDLE_VALUE (-1)。 要获得更多的错误信息，请调用 GetLastError。
+ifex $%Handle%<>-1,
+{
+	set MemberIndex=0
+	loop #1=1,
+	{
+		//%&::bX64%=0, PECMD32+Win32 //%&::bX64%=1, PECMD32+WIN64 //%&::bX64%=3, PECMD64+WIN64
+		ifex $%::bX64%<3, calc DataSize=28! calc DataSize=32
+		set$# DeviceInterfaceData=*%DataSize% 0 //结构体 sp_device_interface_data
+		set-long pDataSize=%DataSize%
+		set-copy DeviceInterfaceData=pDataSize;0;4;0
+		call $--qd --bool --ret:retInterfaces Setupapi.dll,SetupDiEnumDeviceInterfaces,#%Handle%,#0,*guid_devinterface_disk,#%MemberIndex%,*DeviceInterfaceData //如果函数未出错，SetupDiEnumDeviceInterfaces 将返回 TRUE (1)。 如果函数完成并出现错误，则返回 FALSE (0)，可以通过调用 GetLastError 来检索失败的错误代码。
+		ifex $%retInterfaces%=1,
+		{
+			set$# RequiredSize=*8 0
+			call $--qd Kernel32.dll,SetLastError,#0 //无返回值
+			call $--qd --bool --ret:retDetail1 Setupapi.dll,SetupDiGetDeviceInterfaceDetailW,#%Handle%,*DeviceInterfaceData,#0,#0,*RequiredSize,#0 //先查询结构体 sp_device_interface_detail_data 大小 //SetupDiGetDeviceInterfaceDetail 如果函数已完成且未出错，则返回 TRUE (1)。 如果函数已完成并出现错误，则返回 FALSE (0)，可以通过调用 GetLastError 来检索失败的错误代码。
+			call $--qd --ret:GetLastErrorRet Kernel32.dll,GetLastError
+			ifex $%GetLastErrorRet%=122, //(0x7A) error_insufficient_buffer。 传递给系统调用的数据区域太小。因为将 DeviceInterfaceDetailDataSize 大小设置为0，所以返回122
+			{
+				set?longlong RequiredSize=DeviceInterfaceDetailDataSize
+				set$# DeviceInterfaceDetailData=*%DeviceInterfaceDetailDataSize% 0 //结构体 sp_device_interface_detail_data
+				ifex $%::bX64%<3, set-long pdDataSize=6! set-long pdDataSize=8 //结构体 sp_device_interface_detail_data 固定部分的大小，不包含末尾可变长度字符串的大小
+				set-copy DeviceInterfaceDetailData=pdDataSize;0;4;0
+				call $--qd --bool --ret:retDetail2 Setupapi.dll,SetupDiGetDeviceInterfaceDetailW,#%Handle%,*DeviceInterfaceData,*DeviceInterfaceDetailData,#%DeviceInterfaceDetailDataSize%,#0,#0 //SetupDiGetDeviceInterfaceDetail 如果函数已完成且未出错，则返回 TRUE (1)。 如果函数已完成并出现错误，则返回 FALSE (0)，可以通过调用 GetLastError 来检索失败的错误代码。
+				ifex $%retDetail2%=1,
+				{
+					set-make DevicePath=&DeviceInterfaceDetailData@4
+					call $--qd --ret:h Kernel32.dll,CreateFileW,$%DevicePath%,#2147483648,#3,#0,#3,#0,#0 //如果函数成功，则返回值是指定文件、设备、命名管道或邮件槽的打开句柄。如果函数失败，则返回值为 INVALID_HANDLE_VALUE (-1)。 要获得更多的错误信息，请调用 GetLastError。
+					ifex $%h%<>-1,
+					{
+
+						ifex $%::bX64%<3, set lpdword=4! set lpdword=8
+						set nOutBufferSize=0xC //结构体 storage_device_number 的长度
+						set$# lpOutBuffer=*%nOutBufferSize% 0
+						set$# lpBytesReturned=*%lpdword% 0 //LPDWORD 实际就是DWORD类型，int
+						call $--qd --ret:RetDeviceIoControl Kernel32.dll,DeviceIoControl,#%h%,#2953344,#0,#0,*lpOutBuffer,#%nOutBufferSize%,*lpBytesReturned,#0 //如果操作成功完成，则返回值为非零 (TRUE) 。如果操作失败或挂起，则返回值为零。 要获得更多的错误信息，请调用 GetLastError。
+						call $--qd --bool --ret:RetCloseHandle Kernel32.dll,CloseHandle,#%h% //如果函数成功，则返回值为非零值。如果函数失败，则返回值为零。若要获取扩展的错误信息，请调用 GetLastError。如果应用程序在调试器下运行，则函数在收到无效的句柄值或伪句柄值时将引发异常。如果关闭句柄两次，或者对 FindFirstFile 函数返回的句柄调用 CloseHandle，而不是调用 FindClose 函数，则可能会发生这种情况。
+						ifex $%RetDeviceIoControl%<>0,
+						{
+							set?int lpOutBuffer=DeviceNumber:4
+							team set< DeviceInformation=%DeviceNumber% |
+						}
+					}
+				}
+			}
+		}!
+		{
+			exit
+		}
+		calc MemberIndex=%MemberIndex% + 1
+	}
+	call $--qd --bool --ret:retDestroy Setupapi.dll,SetupDiDestroyDeviceInfoList,#%Handle% //如果函数成功，则返回 TRUE (1)。 否则，它会返回 FALSE (0)，可以通过调用 GetLastError 来检索记录的错误。
+}
+call sortnum DeviceInformation %DeviceInformation%
+find *=DeviceInformation, mess=+icon6. 枚举失败！@错误#ok*3000! mess. %DeviceInformation%
+exit
+
+_sub sortnum
+	set num=%#
+	set retNm=%~1
+	set I=2
+	loop #%I%<%Num%, team ^set v[%I%]=%%~%I%| calc #I=%I%+1
+	set I=2
+	loop #%I%<%Num%,
+	{*
+		calc #J=%I% + 1
+		loop #%J%<%Num%,
+		{*
+			^ifex $%%v[%J%]%%<%%v[%I%]%%, team set t=%%v[%I%]%%| set v[%I%]=%%v[%J%]%%| set v[%J%]=%%t%%! ^ifex $%%v[%J%]%%=%%v[%I%]%%, set v[%I%]=
+			calc #J=%J% + 1
+		}
+		calc #I=%I% + 1
+	}
+	set ret=
+	set I=2
+	loop #%I%<%Num%, team ^find *<>v[%I%], ^set< ret=%%v[%I%]%% | calc #I=%I%+1
+	set-ret %retNm%=%ret%
+_end
+
+//guid转换成二进制数据
+_sub MakeGuid3
+	set$# pclsid=*16 0 //仅guid数字、字母部分，不带括号和连接符
+	call $--qd --ret:RetCLSIDFromString Ole32.dll,CLSIDFromString,${%~2},*pclsid //此函数可以返回E_INVALIDARG (0x80070057) 的标准返回值、NOERROR (0) 已成功获取 CLSID、CO_E_CLASSSTRING (0x800401F3) 类字符串的格式不正确
+	find [ *=pclsid | %RetCLSIDFromString%<>0 ],
+	{
+		//set#$$ guid_devinterface_disk=53f56307 b6bf 11d0 94 f2 00 a0 c9 1e fb 8b
+		sed ClassGuidHex=0,%expression4%,%expression5%,%~2
+		set$# pclsid=%ClassGuidHex%
+	}
+	set-ret %~1=%pclsid%
+_end
+
+// GUID_DEVINTERFACE_DISK 53f56307-b6bf-11d0-94f2-00a0c91efb8b (guid_devinterface_disk)
+// GUID_DEVINTERFACE_CDROM 53f56308-b6bf-11d0-94f2-00a0c91efb8b (guid_devinterface_cdrom)
+// GUID_DEVINTERFACE_PARTITION 53f5630a-b6bf-11d0-94f2-00a0c91efb8b (guid_devinterface_partition)
+// GUID_DEVINTERFACE_TAPE 53f5630b-b6bf-11d0-94f2-00a0c91efb8b (guid_devinterface_tape)
+// GUID_DEVINTERFACE_WRITEONCEDISK 53f5630c-b6bf-11d0-94f2-00a0c91efb8b (guid_devinterface_writeoncedisk)
+// GUID_DEVINTERFACE_VOLUME 53f5630d-b6bf-11d0-94f2-00a0c91efb8b (guid_devinterface_volume)
+// GUID_DEVINTERFACE_MEDIUMCHANGER 53f56310-b6bf-11d0-94f2-00a0c91efb8b (guid_devinterface_mediumchanger)
+// GUID_DEVINTERFACE_FLOPPY 53f56311-b6bf-11d0-94f2-00a0c91efb8b (guid_devinterface_floppy)
+// GUID_DEVINTERFACE_CDCHANGER 53f56312-b6bf-11d0-94f2-00a0c91efb8b (guid_devinterface_cdchanger)
+// GUID_DEVINTERFACE_STORAGEPORT 2accfe60-c130-11d2-b082-00a0c91efb8b (guid_devinterface_storageport)
+// GUID_DEVINTERFACE_VMLUN 6f416619-9f29-42a5-b20b-37e219ca02b0 (guid_devinterface_vmlun)
+// GUID_DEVINTERFACE_SES 1790c9ec-47d5-4df3-b5af-9adf3cf23e48 (guid_devinterface_ses)
+// GUID_DEVINTERFACE_ZNSDISK b87941c5-ffdb-43c7-b6b1-20b632f0b109 (guid_devinterface_znsdisk)
+// WDI_STORAGE_PREDICT_FAILURE_DPS_GUID e9f2d03a-747c-41c2-bb9a-02c62b6d5fcb (wdi_storage_predict_failure_dps_guid)
+// GUID_DEVINTERFACE_SERVICE_VOLUME 6ead3d82-25ec-46bc-b7fd-c1f0df8f5037 (guid_devinterface_service_volume)
+// GUID_DEVINTERFACE_HIDDEN_VOLUME 7f108a28-9833-4b3b-b780-2c6b5fa5c062 (guid_devinterface_hidden_volume)
+// GUID_DEVINTERFACE_UNIFIED_ACCESS_RPMB 27447c21-bcc3-4d07-a05b-a3395bb4eee7 (guid_devinterface_unified_access_rpmb)
+// GUID_DEVINTERFACE_SCM_PHYSICAL_DEVICE 4283609d-4dc2-43be-bbb4-4f15dfce2c61 (guid_devinterface_scm_physical_device)
+// GUID_SCM_PD_HEALTH_NOTIFICATION 9da2d386-72f5-4ee3-8155-eca0678e3b6 (guid_scm_pd_health_notification)
+// GUID_SCM_PD_PASSTHROUGH_INVDIMM 4309ac30-0d11-11e4-9191-0800200c9a66 (guid_scm_pd_passthrough_invdimm)
+// GUID_DEVINTERFACE_COMPORT 86e0d1e0-8089-11d0-9ce4-08003e301f73 (guid_devinterface_comport)
+// GUID_DEVINTERFACE_SERENUM_BUS_ENUMERATOR 4d36e978-e325-11ce-bfc1-08002be10318 (guid_devinterface_serenum_bus_enumerator)

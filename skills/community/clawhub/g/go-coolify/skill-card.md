@@ -1,6 +1,6 @@
 ## Description:
 
-Writes Go code with go-coolify (package coolify, github.com/psyb0t/go-coolify), an unofficial generated client for the Coolify API covering applications, deployments, databases, services, projects, servers and teams.
+Writes Go code with the unofficial go-coolify client for the Coolify API, covering applications, deployments, databases, services, projects, servers, and teams.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Go developers use this skill to add or update Go code that reads or changes Coolify resources through the unofficial go-coolify client. It provides setup, authentication, operation selection, and response-handling guidance.
+Developers use this skill to write Go code that integrates with Coolify through the unofficial go-coolify client, including inspecting resources and making infrastructure changes when requested.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan was partial and could not resolve one local path-like reference, so its benign result has medium confidence.
+Risk: The security review is partial and notes a low-confidence concern about autonomous decisions.
 
-Mitigation: Review the operation guidance before installing, especially guidance about infrastructure-changing actions and retries.
+Mitigation: Review the skill instructions before installing, and check outcomes before retrying infrastructure changes.
 
-Risk: Retrying a Coolify operation that changes infrastructure may repeat an action whose first attempt already succeeded.
+Risk: Coolify operations can change or delete user infrastructure, and API requests use a bearer token.
 
-Mitigation: Check whether the action succeeded before retrying, and use changing operations only when the user requested them.
+Mitigation: Run mutating operations only when requested; send the token only to the intended HTTPS instance, and never hardcode, commit, or log it.
 
 ## Reference(s):
 
-- [Setup and API reference](references/setup.md)
-- [go-coolify on pkg.go.dev](https://pkg.go.dev/github.com/psyb0t/go-coolify)
-- [go-coolify source repository](https://github.com/psyb0t/go-coolify)
+- [Setup and API usage](references/setup.md)
+- [Project homepage](https://github.com/psyb0t/go-coolify)
+- [Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-coolify)
+- [ClawHub release page](https://clawhub.ai/psyb0t/skills/go-coolify)
 
 ## Skill Output:
 
 **Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown guidance with Go and shell code blocks]
+**Output Format:** [Go source code and Markdown setup guidance with shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Examples and setup guidance; no files are produced directly by the skill.]
+**Other Properties Related to Output:** [The skill guides callers to use a user-supplied Coolify API URL and token; infrastructure-changing operations are performed only when requested.]
 
 ## Skill Version(s):
 
-0.12.0 (source: server-resolved release)
+0.13.0 (source: server-resolved ClawHub release metadata)
 
 ## Ethical Considerations:
 

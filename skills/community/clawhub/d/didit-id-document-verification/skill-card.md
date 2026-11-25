@@ -1,6 +1,6 @@
 ## Description:
 
-Verifies identity documents via the Didit standalone API for passports, ID cards, driver's licenses, and residence permits, including OCR extraction, MRZ parsing, document authenticity checks, and KYC document validation.
+Helps agents write backend integrations with Didit's standalone APIs for identity document verification and digital ID wallet sign-in.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,10 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
+MIT-0
 
 ## Use Case:
 
-Developers and identity/KYC teams use this skill to submit passport, ID card, driver's license, or residence permit images to Didit's standalone API and interpret OCR, MRZ, authenticity, liveness, warning, and verification status results.
+Developers use this skill to build integrations that submit identity document images or PDFs to Didit's verification APIs, handle verification results, or start supported digital ID wallet sign-ins.
 
 ### Deployment Geography for Use:
 
@@ -21,39 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Government ID images and verification responses can expose sensitive personal information.
+Risk: Verification requests involve identity document images and an API key, and saved API requests may retain verification sessions and images.
 
-Mitigation: Use the skill only with informed consent, redact sensitive response fields before sharing logs or transcripts, and avoid running the helper script in shared terminals or CI logs.
+Mitigation: Share document data only when approved for the use case, keep DIDIT_API_KEY in a secret store, and set save_api_request to false when session storage is unnecessary.
 
-Risk: The helper script saves API requests by default, which may retain document data in the vendor console.
+Risk: The security review reports incomplete reference-resolution coverage, so its benign verdict does not establish that the artifact is risk-free.
 
-Mitigation: Use --no-save unless retention is explicitly required and approved for the workflow.
-
-Risk: vendor_data may become a persistent identifier associated with a verification session.
-
-Mitigation: Use a non-sensitive opaque identifier for vendor_data and avoid names, document numbers, addresses, or other personal data.
+Mitigation: Review the skill and its referenced components before deployment, and confirm that the required data sharing and credential scope fit the application.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/rosasalberto/skills/didit-id-document-verification)
-- [Didit documentation](https://docs.didit.me)
-- [Didit ID Verification API reference](https://docs.didit.me/standalone-apis/id-verification)
-- [Didit ID Verification feature guide](https://docs.didit.me/core-technology/id-verification/overview)
-- [Didit supported documents](https://docs.didit.me/core-technology/id-verification/supported-documents-id-verification)
+- [Didit ID Verification API Reference](https://docs.didit.me/standalone-apis/id-verification)
+- [Didit Digital ID Wallets API Reference](https://docs.didit.me/standalone-apis/digital-id-wallets)
+- [ID Verification Feature Guide](https://docs.didit.me/core-technology/id-verification/overview)
+- [ID Verification Warnings](https://docs.didit.me/core-technology/id-verification/warnings-id-verification)
+- [Supported Documents](https://docs.didit.me/core-technology/id-verification/supported-documents-id-verification)
+- [Didit Pricing](https://docs.didit.me/getting-started/pricing)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+**Output Type(s):** [Code, API Calls, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown guidance with API examples, shell commands, and JSON response interpretation]
+**Output Format:** [Markdown with Python and TypeScript examples, JSON payloads, and shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include helper-script output from the Didit API; responses can contain sensitive personal data from identity documents.]
+**Other Properties Related to Output:** [Includes request setup, response handling, and operational guidance for identity verification integrations.]
 
 ## Skill Version(s):
 
-1.2.0 (source: frontmatter and server release evidence)
+1.4.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-将已生成的短剧镜头剪成成片，记录入出点、镜序、声音、字幕与交付规格。用于套剪、加字幕、统一响度、调整节奏或导出精修素材；需要补素材或修改故事时转回对应创作阶段。
+将已生成的短剧镜头与配音剪成成片，编写剪辑单并完成渲染验收。用于“剪成成片/套剪”“加字幕/画面文字”“统一响度”“调整成片剪辑节奏、配乐/字幕混音与渲染导出”或导出精修素材；需补素材或改故事时转回上游阶段。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-短剧创作者和剪辑人员可用此技能依据分镜与剧本整理逐镜素材，设置切点、声音和字幕，并检查、导出成片。
+短剧创作者和剪辑人员可用此技能依据已有镜头与配音编写剪辑单、安排镜序和字幕，并渲染及验收短剧成片。
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates this skill suspicious for substantial resource and file-write risks; only part of the artifact was fully scanned, so the scan cannot establish that it is safe.
+Risk: 安全扫描报告了路径重定向导致写入预期输出目录以外位置的风险，且扫描未完成。
 
-Mitigation: Before use, review media-processing limits and output-write destinations, restrict runs to intended project and output directories, and try bounded inputs on copies.
+Mitigation: 安装前检查技能权限和输出路径；仅在意外文件修改范围受限的环境中使用，并结合不完整扫描审查技能。
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/worldwonderer/skills/short-drama-edit)
+- [剪辑单格式规范](references/format-spec.md)
 - [短剧剪辑实务指南](references/editing-guide.md)
-- [剪辑阶段职责与规则](references/stage-contract.md)
+- [阶段职责与规则](references/stage-contract.md)
 - [Remotion 图文叠加层说明](assets/remotion/README.md)
-- [Remotion license terms](https://github.com/remotion-dev/remotion/blob/main/LICENSE.md)
+- [ClawHub 技能页面](https://clawhub.ai/worldwonderer/skills/short-drama-edit)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Shell commands, Video files]
+**Output Type(s):** [Markdown, Video, Shell commands]
 
-**Output Format:** [Markdown 剪辑单、用于检查与渲染的 shell 命令，以及渲染后的 MP4 成片]
+**Output Format:** [Markdown 剪辑单与渲染后的成片视频]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [剪辑单记录分段、时间点、声音、字幕和交付规格；成片规格由剪辑单设定。]
+**Other Properties Related to Output:** [可选输出字幕、图文叠加层及分段中间文件。]
 
 ## Skill Version(s):
 
-1.0.19 (source: server-resolved release metadata)
+1.0.25 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

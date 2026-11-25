@@ -1,6 +1,6 @@
 ## Description:
 
-Reviews bank marketing materials, KYC/AML cases, and regulatory compliance workflows, producing draft opinions and checklists for qualified compliance staff to review.
+Supports bank compliance staff with draft reviews of marketing materials, KYC and AML cases, regulatory controls, and reporting checklists.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,25 +14,25 @@ MIT-0
 
 ## Use Case:
 
-Bank compliance officers, legal counsel, KYC/AML analysts, and product managers use it to review marketing materials, customer due diligence, AML alerts, regulatory checklists, and reporting drafts within its China-focused scope.
+Bank compliance officers and KYC/AML analysts use it to draft checklists and preliminary review notes for promotional materials, customer due diligence, alerts, regulatory controls, and reporting. Qualified staff must verify the drafts; the skill does not make final compliance determinations, provide formal legal opinions, or submit reports.
 
 ### Deployment Geography for Use:
 
-China
+China; the skill states that it does not cover compliance determinations under overseas regulatory systems.
 
 ## Known Risks and Mitigations:
 
-Risk: The security inspection was partial and noted a medium-severity concern about decisions made without approval.
+Risk: The security evidence reports a partial inspection with zero-percent coverage, a malformed manifest, an unresolved local reference, and a possible instruction-scope concern.
 
-Mitigation: Have an authorized compliance professional review and approve any proposed action, and consider the partial inspection when assessing the release.
+Mitigation: Treat the benign verdict as limited evidence, consider the scanner guidance before installing, and review the package and unresolved manifest/reference issues.
 
-Risk: Compliance guidance may be outdated or may not fit the applicable jurisdiction or institution.
+Risk: Compliance examples may involve sensitive personal, account, or transaction information.
 
-Mitigation: Verify current requirements against official sources and the institution's policies before relying on a draft.
+Mitigation: Provide only necessary information, replace direct identifiers with placeholders, and use aggregated transaction descriptions where possible.
 
-Risk: Review tasks can involve sensitive customer and account information.
+Risk: Draft reviews may be incomplete or outdated and could be mistaken for a final compliance decision.
 
-Mitigation: Minimize input and redact personal identifiers; use aggregate transaction descriptions where possible.
+Mitigation: Have qualified staff verify current official requirements and internal procedures before relying on or sharing a draft; do not treat it as a legal opinion or final customer determination.
 
 ## Reference(s):
 
@@ -40,17 +40,17 @@ Mitigation: Minimize input and redact personal identifiers; use aggregate transa
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [Chinese-language review drafts, checklists, and suggested edits in Markdown or plain text]
+**Output Format:** [Chinese-language text or Markdown checklists, review notes, and draft reports]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Draft guidance for qualified staff review; does not make final compliance determinations or submit regulatory reports.]
+**Other Properties Related to Output:** [Reference drafts for human review; no regulatory-system or external-database connection, report submission, or file writing.]
 
 ## Skill Version(s):
 
-4.1.4 (source: server-resolved release metadata)
+4.1.5 (source: SKILL.md frontmatter, server release)
 
 ## Ethical Considerations:
 

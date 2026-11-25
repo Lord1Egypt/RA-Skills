@@ -7,7 +7,7 @@ Each entry lists what the role owns, what it refuses, and who it typically repor
 ## Coordination
 
 **Assistant**
-Owns: room setup, recording durable project and client facts, answering questions about state.
+Owns: project setup, recording durable project and client facts, answering questions about state.
 Refuses: doing specialist work itself.
 Reports to: the human.
 
@@ -93,4 +93,4 @@ Model choice belongs to the role, not the account. Rough guidance:
 
 Spend the most on the roles whose mistakes are expensive to catch later, which in practice means the reviewer and anything that defines scope.
 
-This roster mirrors the prebuilt one described at https://aldena.ai/features/agents, which is a reasonable reference implementation if you want to see the boundaries written out in full.
+Aldena's prebuilt roster, described at https://aldena.ai/features/agents, ships these eleven roles under job names (Project Setup, Intake, Requirements, Architecture, Backlog Planning, Delivery, Backend Build, Frontend Build, Full-Stack Build, Code Review, Bug Fix). It is a reasonable reference implementation if you want to see the boundaries written out in full.

@@ -1,6 +1,6 @@
 ## Description:
 
-当用户需要提炼商品主图卖点、主副标题或安排商品图片信息层次时使用。提供商品链接或商品资料，输出主图标题、副标题、卖点短句与配图建议；可按需参考同类商品。在线商品能力支持抖音与小红书，已有资料可直接写作。来自 SocialDataX 社媒数据助手。
+当用户需要提炼商品主图卖点、主副标题或安排商品图片信息层次时使用。提供商品链接或商品资料，输出主图标题、副标题、卖点短句与配图建议；可按需参考同类商品。在线商品能力支持抖音与小红书，已有资料可直接写作。来自社媒数据助手 SocialDataX。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External sellers and product marketers use this skill to turn product details into concise main-image titles, subtitles, selling-point phrases, and image suggestions. It can read supported Douyin or Xiaohongshu product listings and refer to a small number of comparable products when requested.
+外部电商卖家和商品内容团队可用此技能，根据商品资料或支持的平台商品详情整理主图标题、副标题、卖点短句和配图建议。
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan marks the skill suspicious because it repeatedly invokes the mutable SocialDataX CLI @latest, creating a supply-chain risk; the available scan is incomplete.
+Risk: Repeated use of an unpinned latest CLI release creates a supply-chain risk.
 
-Mitigation: Review the CLI package and version before execution, and prefer a reviewed fixed version over @latest when available.
+Mitigation: Review the CLI package and its maintainers before installing it or entering an API key.
 
-Risk: Online product lookups may send product URLs or other lookup inputs to SocialDataX.
+Risk: The security analysis was partial because several referenced paths were missing, so the evidence is incomplete.
 
-Mitigation: Use online lookup only for inputs the user is comfortable sharing with SocialDataX; use supplied product details directly when appropriate.
+Mitigation: Treat the scan as incomplete and review the missing paths before relying on its result.
 
 ## Reference(s):
 
+- [SocialDataX API and account information](https://socialdatax.com/ai?from=clawhub)
 - [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/ecommerce-main-image-copywriter)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Markdown copy with titles, subtitles, selling-point phrases, image suggestions, and source notes]
+**Output Format:** [Markdown, typically organized as a table of product-image copy and visual suggestions]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Usually three variants; each has one title, one subtitle, up to three selling-point phrases, and an image suggestion. Facts are limited to user-provided material or returned product data.]
+**Other Properties Related to Output:** [May include up to three copy variations, factual bases, and missing information.]
 
 ## Skill Version(s):
 
-0.1.6 (source: server-resolved release metadata)
+0.1.7 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

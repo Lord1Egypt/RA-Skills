@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenAI Swiss Modernist — Design System & UI/UX Showcase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ================================================================
+       OpenAI Swiss Modernist — Design Tokens (Light & Dark)
+       Font Stack: Inter / DM Sans (OpenAI Sans eq.) + JetBrains Mono
+       Principles: Swiss Clarity, Borderless Pearl Surfaces, Prompt-First UX
+       ================================================================ */
+    :root {
+      --bg: #ffffff;
+      --surface: #f5f5f5;
+      --surface-warm: #ececec;
+      --surface-mist: #fafafa;
+
+      --fg: #0d0d0d;
+      --fg-2: #1a1a1a;
+      --muted: #6e6e6e;
+      --meta: #8e8ea0;
+
+      --border: #e5e5e5;
+      --border-soft: #efefef;
+
+      --accent: #10a37f;
+      --accent-hover: #0a7a5e;
+      --accent-soft: #e8f5f0;
+
+      --gradient-horizon: linear-gradient(135deg, #dbeafe 0%, #fef3c7 55%, #fde68a 100%);
+      --gradient-aurora: linear-gradient(135deg, #d1fae5 0%, #e0f2fe 50%, #ede9fe 100%);
+      --gradient-dusk: linear-gradient(135deg, #fce7f3 0%, #ede9fe 50%, #dbeafe 100%);
+
+      --font-sans: 'Inter', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --radius-full: 9999px;
+
+      --prompt-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    html.dark {
+      --bg: #000000;
+      --surface: #171717;
+      --surface-warm: #212121;
+      --surface-mist: #0d0d0d;
+
+      --fg: #ffffff;
+      --fg-2: #ececec;
+      --muted: #9b9b9b;
+      --meta: #6e6e80;
+
+      --border: rgba(255, 255, 255, 0.10);
+      --border-soft: rgba(255, 255, 255, 0.05);
+
+      --accent: #10a37f;
+      --accent-hover: #1abc94;
+      --accent-soft: rgba(16, 163, 127, 0.15);
+
+      --gradient-horizon: linear-gradient(135deg, #1e3a8a 0%, #4c1d95 55%, #7c2d12 100%);
+      --gradient-aurora: linear-gradient(135deg, #064e3b 0%, #0c4a6e 50%, #312e81 100%);
+      --gradient-dusk: linear-gradient(135deg, #831843 0%, #4c1d95 50%, #1e3a8a 100%);
+
+      --prompt-shadow: 0 12px 36px rgba(0, 0, 0, 0.55);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-sans);
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 200ms var(--ease), color 200ms var(--ease);
+    }
+
+    /* App Layout: Persistent Left Rail + Theater Canvas */
+    .app-layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      min-height: 100vh;
+    }
+    @media (max-width: 900px) {
+      .app-layout { grid-template-columns: 1fr; }
+      .left-rail { display: none; }
+    }
+
+    /* Persistent Left Navigation Rail */
+    .left-rail {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 1px solid var(--border-soft);
+    }
+    .brand-logo {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+    .logo-circle {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2.5px solid var(--fg);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--accent);
+    }
+    .rail-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .rail-nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+      transition: all 150ms var(--ease);
+    }
+    .rail-nav a:hover, .rail-nav a.active {
+      color: var(--fg);
+      background-color: var(--surface);
+    }
+
+    /* Main Theater Canvas */
+    .main-canvas {
+      max-width: 1240px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 28px 48px 96px;
+    }
+    @media (max-width: 640px) {
+      .main-canvas { padding: 20px 20px 64px; }
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+
+    /* Stadium Pill Buttons (9999px) */
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 38px;
+      padding: 0 18px;
+      border-radius: var(--radius-full);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: all 180ms var(--ease);
+    }
+    .pill-btn-primary {
+      background-color: var(--fg);
+      color: var(--bg);
+    }
+    .pill-btn-primary:hover { opacity: 0.84; }
+    .pill-btn-secondary {
+      background-color: var(--surface);
+      color: var(--fg);
+    }
+    .pill-btn-secondary:hover { background-color: var(--surface-warm); }
+    .pill-btn-teal {
+      background-color: var(--accent);
+      color: #ffffff;
+    }
+    .pill-btn-teal:hover { background-color: var(--accent-hover); }
+
+    /* Hero & Prompt-First Wayfinding */
+    .hero-center {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 88px;
+    }
+    .display-title {
+      font-size: clamp(34px, 4.5vw, 52px);
+      font-weight: 500;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-bottom: 32px;
+    }
+
+    /* Floating Prompt Input Box */
+    .prompt-container {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 16px 20px;
+      box-shadow: var(--prompt-shadow);
+      text-align: left;
+      margin-bottom: 18px;
+      transition: border-color 180ms var(--ease), box-shadow 180ms var(--ease);
+    }
+    .prompt-container:focus-within {
+      border-color: var(--fg);
+    }
+    .prompt-input {
+      width: 100%;
+      border: none;
+      background: transparent;
+      color: var(--fg);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      outline: none;
+      margin-bottom: 16px;
+    }
+    .prompt-input::placeholder { color: var(--meta); }
+    .prompt-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .prompt-modes {
+      display: flex;
+      gap: 8px;
+    }
+    .mode-chip {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 150ms var(--ease);
+    }
+    .mode-chip:hover, .mode-chip.active {
+      color: var(--fg);
+      border-color: var(--fg);
+    }
+    .submit-orb {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: var(--fg);
+      color: var(--bg);
+      border: none;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 150ms var(--ease), opacity 150ms var(--ease);
+    }
+    .submit-orb:hover { transform: scale(1.06); opacity: 0.9; }
+
+    .starter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+    .starter-pill {
+      font-size: 13px;
+      color: var(--muted);
+      background-color: var(--surface);
+      padding: 7px 14px;
+      border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      transition: all 150ms var(--ease);
+    }
+    .starter-pill:hover {
+      background-color: var(--surface-warm);
+      color: var(--fg);
+    }
+
+    /* Section Headers */
+    .section-block { margin-bottom: 80px; }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 24px;
+    }
+    .section-header h2 {
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+    .section-header span {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* Atmospheric Media Gallery Cards */
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 24px;
+    }
+    .media-card {
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+    .media-visual {
+      aspect-ratio: 4 / 3;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 350ms var(--ease);
+    }
+    .media-card:hover .media-visual {
+      transform: scale(1.02);
+    }
+    .glass-tag {
+      align-self: flex-start;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.72);
+      color: #0d0d0d;
+      backdrop-filter: blur(12px);
+    }
+    .media-caption { padding-top: 14px; }
+    .media-meta {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .media-title {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      line-height: 1.3;
+    }
+
+    /* Borderless Pearl Bento Cards & Swatches */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .bento-swatch {
+      background-color: var(--surface);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      cursor: pointer;
+      transition: background-color 180ms var(--ease);
+    }
+    .bento-swatch:hover { background-color: var(--surface-warm); }
+    .swatch-preview {
+      height: 72px;
+      border-radius: var(--radius-md);
+      margin-bottom: 12px;
+      border: 1px solid rgba(128, 128, 128, 0.15);
+    }
+    .swatch-title { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Code Block */
+    .code-panel {
+      background-color: var(--surface);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.55;
+      overflow-x: auto;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: var(--fg);
+      color: var(--bg);
+      padding: 10px 18px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 180ms var(--ease);
+    }
+    .toast.visible { opacity: 1; }
+  </style>
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- Persistent Left Sidebar Navigation -->
+    <aside class="left-rail">
+      <div>
+        <a href="#" class="brand-logo">
+          <span class="logo-circle"><span class="logo-dot"></span></span>
+          OpenAI Modern
+        </a>
+        <nav class="rail-nav">
+          <a href="#prompt" class="active">Prompt UX</a>
+          <a href="#gallery">Atmospheric Media</a>
+          <a href="#palette">Swiss Palette</a>
+          <a href="#tokens">shadcn Tokens</a>
+        </nav>
+      </div>
+      <div style="font-size: 12px; color: var(--muted);">
+        Swiss Modernist Spec v0.1<br/>Borderless Pearl Architecture
+      </div>
+    </aside>
+
+    <!-- Main Theater Canvas -->
+    <main class="main-canvas">
+      <div class="top-bar">
+        <a href="#tokens" class="pill-btn pill-btn-secondary">Copy Tokens</a>
+        <button class="pill-btn pill-btn-primary" onclick="toggleTheme()">
+          ◐ Toggle Light / Obsidian
+        </button>
+      </div>
+
+      <!-- Prompt-First Hero Section -->
+      <section class="hero-center" id="prompt">
+        <h1 class="display-title">What can I help with?</h1>
+
+        <div class="prompt-container">
+          <input
+            id="promptInput"
+            type="text"
+            class="prompt-input"
+            placeholder="Ask anything, generate UI specs, or explore research..."
+          />
+          <div class="prompt-actions">
+            <div class="prompt-modes">
+              <button class="mode-chip active">Search</button>
+              <button class="mode-chip">Reason</button>
+              <button class="mode-chip">Canvas</button>
+            </div>
+            <button class="submit-orb" onclick="submitPrompt()" title="Send prompt">↑</button>
+          </div>
+        </div>
+
+        <div class="starter-pills">
+          <button class="starter-pill" onclick="fillPrompt('Design a borderless bento dashboard with OpenAI Sans typography')">
+            ✦ Borderless bento dashboard
+          </button>
+          <button class="starter-pill" onclick="fillPrompt('Generate atmospheric horizon gradient media cards')">
+            ✦ Atmospheric media cards
+          </button>
+          <button class="starter-pill" onclick="fillPrompt('Configure Tailwind &amp; shadcn/ui variables for Obsidian Dark mode')">
+            ✦ Obsidian dark tokens
+          </button>
+        </div>
+      </section>
+
+      <!-- Atmospheric Horizon Media Cards -->
+      <section class="section-block" id="gallery">
+        <div class="section-header">
+          <h2>Atmospheric Media Tiles</h2>
+          <span>Borderless 16px radius · Horizon Gradients</span>
+        </div>
+        <div class="media-grid">
+          <div class="media-card" onclick="showToast('Opened Frontier Reasoning Report')">
+            <div class="media-visual" style="background: var(--gradient-horizon);">
+              <span class="glass-tag">Reasoning</span>
+              <div style="font-family: var(--font-mono); font-size: 12px; color: rgba(13,13,13,0.7);">o-Series Architecture</div>
+            </div>
+            <div class="media-caption">
+              <div class="media-meta">Research · Oct 2026</div>
+              <h3 class="media-title">Scaling Test-Time Compute &amp; Deliberative Alignment</h3>
+            </div>
+          </div>
+
+          <div class="media-card" onclick="showToast('Opened Multimodal Voice Showcase')">
+            <div class="media-visual" style="background: var(--gradient-aurora);">
+              <span class="glass-tag">Multimodal</span>
+              <div style="font-family: var(--font-mono); font-size: 12px; color: rgba(13,13,13,0.7);">Realtime Audio &amp; Vision</div>
+            </div>
+            <div class="media-caption">
+              <div class="media-meta">Product · Sep 2026</div>
+              <h3 class="media-title">Designing Low-Latency Conversational Interfaces</h3>
+            </div>
+          </div>
+
+          <div class="media-card" onclick="showToast('Opened Sora Visual Study')">
+            <div class="media-visual" style="background: var(--gradient-dusk);">
+              <span class="glass-tag">Generative Media</span>
+              <div style="font-family: var(--font-mono); font-size: 12px; color: rgba(13,13,13,0.7);">World Simulation</div>
+            </div>
+            <div class="media-caption">
+              <div class="media-meta">Safety &amp; Art · Aug 2026</div>
+              <h3 class="media-title">Cinematic Pacing in High-Contrast Gallery Layouts</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Swiss Monochrome & Teal Palette -->
+      <section class="section-block" id="palette">
+        <div class="section-header">
+          <h2>Swiss Monochrome &amp; Emerald Teal</h2>
+          <span>Click any tile to copy HEX</span>
+        </div>
+        <div class="bento-grid">
+          <div class="bento-swatch" onclick="copyHex('#FFFFFF', '--bg')">
+            <div class="swatch-preview" style="background: #FFFFFF;"></div>
+            <div class="swatch-title">Gallery White</div>
+            <div class="swatch-hex"><span>--bg</span><span>#FFFFFF</span></div>
+          </div>
+          <div class="bento-swatch" onclick="copyHex('#F5F5F5', '--surface')">
+            <div class="swatch-preview" style="background: #F5F5F5;"></div>
+            <div class="swatch-title">Pearl Surface</div>
+            <div class="swatch-hex"><span>--surface</span><span>#F5F5F5</span></div>
+          </div>
+          <div class="bento-swatch" onclick="copyHex('#0D0D0D', '--fg')">
+            <div class="swatch-preview" style="background: #0D0D0D;"></div>
+            <div class="swatch-title">Obsidian Ink</div>
+            <div class="swatch-hex"><span>--fg</span><span>#0D0D0D</span></div>
+          </div>
+          <div class="bento-swatch" onclick="copyHex('#171717', 'dark --surface')">
+            <div class="swatch-preview" style="background: #171717;"></div>
+            <div class="swatch-title">Carbon Surface</div>
+            <div class="swatch-hex"><span>dark</span><span>#171717</span></div>
+          </div>
+          <div class="bento-swatch" onclick="copyHex('#10A37F', '--accent')">
+            <div class="swatch-preview" style="background: #10A37F;"></div>
+            <div class="swatch-title">OpenAI Teal</div>
+            <div class="swatch-hex"><span>--accent</span><span>#10A37F</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tailwind & shadcn Tokens -->
+      <section class="section-block" id="tokens">
+        <div class="section-header">
+          <h2>Tailwind CSS &amp; shadcn/ui Variables</h2>
+          <button class="pill-btn pill-btn-teal" onclick="copyCode()">Copy globals.css</button>
+        </div>
+        <div class="code-panel">
+<pre id="codeBlock">:root {
+  --background: #ffffff;
+  --foreground: #0d0d0d;
+  --card: #f5f5f5;
+  --primary: #0d0d0d;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f5f5;
+  --muted-foreground: #6e6e6e;
+  --accent: #10a37f;
+  --border: #e5e5e5;
+  --radius: 0.75rem; /* 12px cards, 9999px buttons */
+}</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast">Copied</div>
+
+  <script>
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+      const isDark = document.documentElement.classList.contains('dark');
+      showToast(isDark ? 'Obsidian Dark Mode Enabled' : 'Gallery White Light Mode Enabled');
+    }
+    function fillPrompt(text) {
+      document.getElementById('promptInput').value = text;
+      document.getElementById('promptInput').focus();
+    }
+    function submitPrompt() {
+      const val = document.getElementById('promptInput').value || 'Default query';
+      showToast('Prompt dispatched: ' + val.slice(0, 32) + '...');
+    }
+    function copyHex(hex, name) {
+      if (navigator.clipboard) navigator.clipboard.writeText(hex);
+      showToast('Copied ' + name + ' (' + hex + ')');
+    }
+    function copyCode() {
+      const text = document.getElementById('codeBlock').innerText;
+      if (navigator.clipboard) navigator.clipboard.writeText(text);
+      showToast('Copied OpenAI shadcn/Tailwind tokens');
+    }
+    function showToast(msg) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.classList.add('visible');
+      clearTimeout(window.__timer);
+      window.__timer = setTimeout(() => el.classList.remove('visible'), 2000);
+    }
+  </script>
+</body>
+</html>
+

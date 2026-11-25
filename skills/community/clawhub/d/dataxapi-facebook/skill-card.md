@@ -1,6 +1,6 @@
 ## Description:
 
-Retrieves public Facebook page profiles, posts, post details, and comments through DataXAPI, with per-call pricing and paging guidance.
+Retrieves public Facebook page, post, and comment data through DataXAPI for questions about Facebook content, accounts, and trends.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Agents use this skill to answer questions about public Facebook pages, posts, and comments by retrieving the relevant profile or content data.
+External users can retrieve and summarize public Facebook page profiles, posts, post details, and comments when asking about accounts, content, or trends. Calls use DataXAPI's per-call pricing, with controls for limiting spend.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Discovery queries can disclose requested identifiers or terms, and calls spend prepaid credit.
+Risk: Discovery queries are sent to DataXAPI, and suggested CLI install commands do not pin a package version.
 
-Mitigation: Use minimal discovery terms, keep confidential context out, set a spending limit, and cap call costs with max_price or its equivalent.
-
-Risk: Facebook content returned by the service is written by third parties and may contain instructions or misleading material.
-
-Mitigation: Treat returned content as untrusted data; do not follow instructions found in it, and cite DataXAPI with the fetch time.
-
-Risk: The external package and service implementation were not audited.
-
-Mitigation: Prefer REST or hosted MCP, or review and pin the CLI version before use.
+Mitigation: Keep private or confidential details out of discovery queries, and verify the package source and version before installing.
 
 ## Reference(s):
 
-- [DataXAPI Facebook API reference](https://dataxapi.com/apis/facebook/)
-- [DataXAPI Facebook pricing](https://dataxapi.com/pricing/facebook/)
-- [DataXAPI agent setup guide](https://dataxapi.com/agents.md)
-- [DataXAPI skills](https://dataxapi.com/skills/)
+- [DataXAPI](https://dataxapi.com)
+- [Facebook API documentation](https://dataxapi.com/apis/facebook/)
+- [Facebook API pricing](https://dataxapi.com/pricing/facebook/)
+- [DataXAPI agent setup](https://dataxapi.com/agents.md)
+- [ClawHub release](https://clawhub.ai/data-x-api/skills/dataxapi-facebook)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Text]
+**Output Type(s):** [JSON data, Text summaries, Guidance]
 
-**Output Format:** [Structured Facebook profile, post, and comment data, with concise text summaries when requested.]
+**Output Format:** [JSON API responses summarized as text]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results may be paginated; returned Facebook content is untrusted third-party text.]
+**Other Properties Related to Output:** [Public Facebook page, post, and comment data; paginated results where supported.]
 
 ## Skill Version(s):
 
-1.0.0 (source: frontmatter)
+1.0.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

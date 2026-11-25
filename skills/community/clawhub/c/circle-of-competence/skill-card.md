@@ -1,6 +1,6 @@
 ## Description:
 
-Circle of Competence helps agents coach users through consequential decisions by testing whether the user has calibrated expertise, then recommending decisive action, deferral, waiting, or a smaller bet.
+Guides users in assessing whether a consequential decision falls within their competence and choosing whether to act, defer, wait, or make a smaller bet.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and business decision-makers use this skill to assess whether an investment, acquisition, hire, market entry, AI initiative, or other consequential decision sits inside their demonstrated competence. The skill guides the agent to identify the domain boundary, document calibration evidence, and choose act, defer, wait, or small-bet responses.
+For employees, founders, investors, board members, and other decision-makers weighing consequential investments, acquisitions, hires, market entries, or technology choices, the skill helps assess whether they have calibrated competence to judge the decision. It guides users to act decisively within their expertise or defer, wait, or limit the bet when outside it.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Users may treat coaching output as authoritative advice for investment, hiring, legal, or business decisions.
+Risk: The security scan reports that one referenced example was only partly inspected.
 
-Mitigation: Present the output as decision coaching, require qualified human or domain-expert review, and keep accountability with the user for consequential decisions.
+Mitigation: Review the partly inspected example before relying on it or installing the skill.
 
-Risk: The framework may over-discourage action in unfamiliar but learnable or frontier domains.
+Risk: The framework may inform consequential investment, hiring, acquisition, or market-entry decisions.
 
-Mitigation: Apply the skill's documented exceptions for small reversible learning bets and genuinely frontier domains, and size exploratory bets to uncertainty.
-
-Risk: The circle classification depends on user-provided self-assessment, which can be biased or incomplete.
-
-Mitigation: Ask for measurable past outcomes, calibration data, articulable drivers, and expert credibility before classifying a decision as inside the user's circle.
+Mitigation: Verify relevant facts and consult qualified domain experts before acting on high-stakes decisions.
 
 ## Reference(s):
 
-- [Primary Sources](references/sources.md)
-- [Buffett 1996 Letter to Shareholders](https://www.berkshirehathaway.com/letters/1996.html)
-- [How Snapple Got Its Juice Back](https://hbr.org/2002/01/how-snapple-got-its-juice-back)
-- [FTC: Keep Your AI Claims in Check](https://www.ftc.gov/business-guidance/blog/2023/02/keep-your-ai-claims-check)
-- [SEC Press Release 2024-36](https://www.sec.gov/newsroom/press-releases/2024-36)
+- [Circle of Competence on ClawHub](https://clawhub.ai/deciqai/skills/circle-of-competence)
+- [Buffett, 1996 Shareholder Letter](https://www.berkshirehathaway.com/letters/1996.html)
+- [How Snapple Got Its Juice Back (Harvard Business Review)](https://hbr.org/2002/01/how-snapple-got-its-juice-back)
+- [FTC: Keep your AI claims in check](https://www.ftc.gov/business-guidance/blog/2023/02/keep-your-ai-claims-check)
+- [SEC Press Release 2024-36 on AI-related statements](https://www.sec.gov/newsroom/press-releases/2024-36)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, guidance]
+**Output Type(s):** [Analysis, Guidance, Markdown]
 
-**Output Format:** [Markdown decision-coaching response or filled circle-evaluation template]
+**Output Format:** [Structured circle assessment with a decision, confidence, test results, verdict, response plan, and competence boundary.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May pause for user input during novice coaching; no tool calls or code execution are described.]
+**Other Properties Related to Output:** [In coaching mode, asks one question at a time and waits for the user's response before continuing.]
 
 ## Skill Version(s):
 
-1.0.5 (source: server release evidence)
+1.0.6 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

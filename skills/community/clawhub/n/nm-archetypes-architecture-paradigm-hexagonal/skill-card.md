@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to decide when ports-and-adapters architecture fits and to plan domain ports, edge adapters, use cases, contract tests, and dependency rules. It also helps teams avoid unnecessary abstraction for small utilities and prototypes.
+Developers and software architects use this skill to decide when to apply ports-and-adapters architecture and to plan domain ports, adapters, contract tests, and dependency boundaries.
 
 ### Deployment Geography for Use:
 
@@ -24,26 +24,26 @@ Global
 
 Risk: Too many ports can increase maintenance overhead.
 
-Mitigation: Group related operations into cohesive, higher-level ports, often around domain aggregates.
+Mitigation: Group related operations into cohesive, higher-level ports around domain aggregates.
 
-Risk: Ports can leak transport details and couple the domain to infrastructure.
+Risk: Ports that expose transport details can make the domain dependent on infrastructure concerns.
 
-Mitigation: Keep port interfaces domain-centered and use domain-focused data transfer objects instead of transport-specific fields.
+Mitigation: Use domain-centered data types in port interfaces instead of transport-specific details.
 
-Risk: Adapters can drift out of sync with the external systems they represent.
+Risk: Adapters can drift from the external systems or schemas they represent.
 
-Mitigation: Regularly validate adapters against their contracts and check that changes such as database migrations still meet the persistence port's expectations.
+Mitigation: Regularly validate adapters against their port contracts and current external schemas.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-hexagonal)
-- [Project page from skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
+- [Archetypes project page](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown]
+**Output Type(s):** [Text, Markdown, Code, Configuration]
 
-**Output Format:** [Markdown prose with lists and architecture terminology]
+**Output Format:** [Markdown guidance and architecture design artifacts]
 
 **Output Parameters:** [1D]
 
@@ -51,7 +51,7 @@ Mitigation: Regularly validate adapters against their contracts and check that c
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

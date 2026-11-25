@@ -1,6 +1,6 @@
 ## Description:
 
-Helps social media marketers adapt the structure of popular short videos into product video scripts and generate Seedance 2.0 videos through the Qinghu AI service.
+Helps short-form video marketers analyze a reference clip and adapt its composition and pacing into an original product video using Seedance 2.0 through Qinghu AI.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,44 +14,36 @@ MIT-0
 
 ## Use Case:
 
-Social media and ecommerce marketers use this skill to analyze a reference short video, adapt its pacing and shot structure for their product, and generate a promotional video after approving the script and estimated credit cost.
+External social commerce and short-form video teams use this skill to analyze a reference clip, adapt its shot structure and pacing to their product, and generate a Seedance 2.0 video. The workflow calls for reviewing the rewritten script before submitting the video task.
 
 ### Deployment Geography for Use:
 
-Global
+China (Qinghu AI domestic service); workflows also target cross-border e-commerce markets.
 
 ## Known Risks and Mitigations:
 
-Risk: Automatic installation or updates of unpinned Node and qhkit tooling may introduce unreviewed code.
+Risk: The security summary flags unpinned package downloads and instructions that ask users to share an API key in chat; the scan is partial because referenced local paths were missing.
 
-Mitigation: Use a disposable workspace and preinstall a reviewed qhkit version when possible.
-
-Risk: Service credentials and reference media may be stored locally or sent to the Qinghu AI service.
-
-Mitigation: Protect the API token and avoid uploading sensitive videos or product images.
-
-Risk: Generating a video spends credits and the task cannot be canceled after submission.
-
-Mitigation: Check the quoted credit cost and generation parameters, then obtain explicit approval before submitting.
+Mitigation: Review the package-install and credential instructions before installing. Keep API keys out of chat and enter them through a protected local method; treat the partial scan as incomplete evidence.
 
 ## Reference(s):
 
-- [ClawHub skill listing](https://clawhub.ai/autoagc/skills/linkpix-seedance-2-clone)
-- [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
+- [QHKIT npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
+- [ClawHub release page](https://clawhub.ai/autoagc/skills/linkpix-seedance-2-clone)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Shell commands, Video links]
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown with script comparison, task status, and generated video URLs]
+**Output Format:** [Markdown script drafts and qhkit command examples with JSON parameters]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports estimated credits before generation and actual credits upon delivery.]
+**Other Properties Related to Output:** [May include a reference script and rewritten product-video script for user review, plus task status and video result links.]
 
 ## Skill Version(s):
 
-0.1.4 (source: ClawHub release evidence)
+0.1.6 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -1,0 +1,25 @@
+name: shop-order-status-digest-free
+slug: shop-order-status-digest-free
+display_name: 店铺订单状态清单
+description: 在当前请求已明确为本人或获授权查看的店铺订单页面中，使用用户指定的 Easy WebBridge 浏览器环境只读整理可见订单列表；如归属或授权不清楚则询问：按已确认的日期和状态筛选，最多汇总 20 单，交付状态计数、需要商家处理的订单、可见证据位置及缺项。未确认筛选时明确拒绝报告全店总数，自动遮盖敏感信息，严格只读，不修改页面或订单，也不发送消息。
+version: 1.0.2
+icon: icon-512.png
+repository: https://github.com/xxjrq/shop-order-status-digest-free
+license: MIT-0
+tags:
+  - ecommerce
+  - order-management
+  - browser-automation
+  - privacy
+  - reporting
+trigger_words:
+  - 订单状态汇总
+  - 店铺订单清单
+  - 订单待处理
+interface:
+  display_name: 店铺订单状态清单
+  short_description: 只读汇总已确认范围内订单状态、待办事项与可见证据位置
+  default_prompt: 使用我指定的 browserId 和日期范围，只读汇总当前可见订单列表；最多 20 单，遮盖敏感信息，不修改订单或发送消息。
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+self_test: node scripts/self-test.mjs

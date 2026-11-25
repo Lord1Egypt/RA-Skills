@@ -1,6 +1,6 @@
 {
   "slug": "ai-video-maker",
-  "version": "2.1.0",
+  "version": "2.1.4",
   "primaryCredential": "AIVIDEO_API_KEY",
   "requires": {
     "env": ["AIVIDEO_API_KEY"],

@@ -35,6 +35,7 @@ OPENCC = ["opencc", "-c", "s2twp.json"]
 # between occurrences. Each (from, to) pair is applied in order to the converted
 # Traditional text. Keep this list small and specific; it survives every re-sync.
 OVERRIDES = [
+    ("隻能", "只能"),
     ("嵇喜來吊", "嵇喜來弔"),
     ("注莊", "註莊"),
     ("舊注", "舊註"),

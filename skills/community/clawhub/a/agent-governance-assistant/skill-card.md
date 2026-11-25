@@ -1,6 +1,6 @@
 ## Description:
 
-Provides a bilingual, text-based framework for enterprise AI agent inventory, risk assessment, governance policies, shadow AI review, maturity assessment, and audit report drafting.
+Provides a bilingual, text-based framework for enterprise AI agent governance, covering inventory, risk classification, policy review, shadow AI assessment, maturity self-assessment, and governance reporting.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,43 +14,39 @@ MIT-0
 
 ## Use Case:
 
-IT risk managers, compliance teams, and enterprise AI leaders can use the skill to draft agent inventories, risk assessments, governance checklists, policy templates, and audit reports. It provides reference text and does not scan systems, make formal compliance determinations, or execute controls.
+IT risk managers, compliance officers, and enterprise AI leaders use it to draft AI agent inventories, risk reviews, policy gap analyses, shadow AI assessments, and governance reports, especially for regulated financial institutions. Treat the material as a starting point for human review, not a formal compliance or legal determination.
 
 ### Deployment Geography for Use:
 
-Global, with China-focused financial-sector examples
+Global; examples emphasize China-regulated financial institutions.
 
 ## Known Risks and Mitigations:
 
-Risk: Regulatory and industry guidance in the skill may become outdated or may not fit a specific jurisdiction or institution.
+Risk: The security review was incomplete because a local reference in the skill could not be resolved.
 
-Mitigation: Verify current requirements against official sources and have qualified internal reviewers assess applicability before relying on the drafts.
+Mitigation: Resolve and inspect the missing reference before relying on affected material.
 
-Risk: Draft assessments could be mistaken for verified system findings or formal compliance conclusions, although the skill has no system access and does not perform those tasks.
+Risk: Regulatory and governance guidance may be incomplete or out of date for a specific organization or jurisdiction.
 
-Mitigation: Treat outputs as working drafts, validate findings in the institution's own evidence sources, and obtain the required professional review before making decisions or external submissions.
-
-Risk: Security scan coverage was partial because one local reference was unresolved.
-
-Mitigation: Review the skill instructions and resolve the missing local reference before installation if it affects your use.
+Mitigation: Check current official sources and have qualified internal reviewers confirm applicability before making compliance decisions or preparing formal filings.
 
 ## Reference(s):
 
-- [Agent Governance Assistant on ClawHub](https://clawhub.ai/gechengling/skills/agent-governance-assistant)
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/agent-governance-assistant)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Text, Markdown]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Bilingual text and Markdown checklists, tables, policy templates, and report drafts]
+**Output Format:** [Bilingual Markdown with tables, checklists, and report templates]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reference drafts only; no system scanning or control execution.]
+**Other Properties Related to Output:** [Draft methodology material; users must perform any assessment in their own systems and review outputs before use.]
 
 ## Skill Version(s):
 
-5.0.3 (source: frontmatter)
+5.0.4 (source: frontmatter)
 
 ## Ethical Considerations:
 

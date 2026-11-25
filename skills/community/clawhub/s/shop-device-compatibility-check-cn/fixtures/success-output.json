@@ -1,0 +1,23 @@
+{
+  "scope_note": "仅核对明确提供的适配条件；不做实际测试，不承诺电气性能，也不因插头相同推断全功能兼容。",
+  "results": [
+    {
+      "device_model": "X2",
+      "accessory_specification": "配件A",
+      "status": "确认适配",
+      "basis": "厂家适配表（2026-01）列明：X2 支持配件A。"
+    },
+    {
+      "device_model": "X1",
+      "accessory_specification": "配件A",
+      "status": "明确不适配",
+      "basis": "厂家排除表（2026-01）列明：X1 不支持配件A。"
+    },
+    {
+      "device_model": "X2 Pro",
+      "accessory_specification": "配件A",
+      "status": "未知",
+      "basis": "厂家资料未列出该设备型号；请补充完整型号及厂家适配/排除表。"
+    }
+  ]
+}

@@ -13,14 +13,11 @@ Or clone and point your agent at `seo-quick-audit-lite/SKILL.md`.
 ## Run
 
 ```bash
-node scripts/audit.mjs page.html
+node scripts/audit.js page.html
 ```
 
 JSON report on stdout; exit `1` on warn/fail (CI-gateable).
 
 ## Full version
 
-The paid version audits **live URLs** — fetches the page plus `/robots.txt` and `/sitemap.xml`, checks twitter-card meta, follows redirects:
-
-- SkillHQ: https://skillhq.dev/skills/sone94/seo-quick-audit
-- Agensi: https://agensi.io/skills/seo-quick-audit
+The full `seo-quick-audit` skill ($12) audits **live URLs** — fetches the page plus `/robots.txt` and `/sitemap.xml`, checks twitter-card meta, follows redirects. Ask for it by slug.

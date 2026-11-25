@@ -1,0 +1,10 @@
+{
+  "name": "b-collect",
+  "version": "1.0.0",
+  "private": true,
+  "description": "B站视频稿互动数采集 Skill CLI (播放/弹幕/评论/收藏/投币/分享/点赞, 1 条视频 = 1 点数)",
+  "main": "cli.js",
+  "engines": {
+    "node": ">=18"
+  }
+}

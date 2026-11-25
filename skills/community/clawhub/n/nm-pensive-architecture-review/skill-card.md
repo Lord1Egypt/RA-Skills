@@ -1,6 +1,6 @@
 ## Description:
 
-Assesses architecture decisions, ADR compliance, and coupling
+Assesses architecture decisions, ADR compliance, and coupling.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use this skill to review system design changes, refactoring, and dependency restructuring. It helps assess ADR compliance, module interactions, design principles, and architecture risks before changes are merged.
+Developers and architects use this skill to review design changes, refactors, and new services for ADR compliance, coupling, and design principle issues before merging.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security evidence reports behavior beyond architecture review, and scanner coverage is partial because three local references were missing.
+Risk: Review examples may not fit the architecture task, and an existing `.review/findings.json` may affect a run.
 
-Mitigation: Review the listed configuration dependencies and any available local references, then limit repository and data access to what the architecture review needs.
+Mitigation: Check the examples against the review scope and inspect the existing findings file before using the workflow.
+
+Risk: Some referenced paths may be missing, leaving the review evidence incomplete.
+
+Mitigation: Confirm referenced paths are available and treat findings as unverified when their supporting evidence cannot be checked.
 
 ## Reference(s):
 
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-pensive-architecture-review)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
 - [FPF Framework](https://github.com/ailev/FPF)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, JSON]
+**Output Type(s):** [Analysis, Guidance, Markdown, JSON]
 
-**Output Format:** [Structured Markdown architecture review with optional JSON findings]
+**Output Format:** [Markdown review report and JSON findings]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Findings are expected to include file locations and supporting code anchors.]
+**Other Properties Related to Output:** [Findings should include verified file locations and quoted anchors, or be labeled UNVERIFIED.]
 
 ## Skill Version(s):
 
-1.10.3 (source: SKILL.md frontmatter, release evidence)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

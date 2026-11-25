@@ -1,0 +1,24 @@
+{
+  "openapi": "3.0.3",
+  "info": {"title": "Pet store", "version": "1.0.0"},
+  "servers": [{"url": "https://api.example.test/v1?api_key=fixture-secret-query"}],
+  "paths": {
+    "/pets/{petId}": {
+      "get": {
+        "operationId": "getPet",
+        "parameters": [
+          {"name": "petId", "in": "path", "required": true, "schema": {"type": "string"}},
+          {"name": "api_key", "in": "query", "schema": {"type": "string", "default": "fixture-secret-query"}}
+        ],
+        "responses": {"200": {"description": "A pet"}}
+      }
+    },
+    "/pets": {
+      "post": {
+        "operationId": "createPet",
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"type": "object"}}}},
+        "responses": {"201": {"description": "Created"}}
+      }
+    }
+  }
+}

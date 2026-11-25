@@ -1,6 +1,6 @@
 ## Description:
 
-短篇网文写作，辅助短篇小说创作，从构思到成稿，聚焦情绪拉扯与节奏把控。
+面向中文商业网文平台，协助作者从选题规划到成稿检查完成短篇小说创作。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-面向中文网文作者及写作助手，用于围绕目标情绪和题材完成短篇小说构思、分节大纲、正文起草与精修。
+外部网文作者可用它确定题材与平台方向，规划并撰写中文商业短篇小说，再检查篇章结构、节奏和交付要求。
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The writing workflow can store author preferences across sessions.
+Risk: Persistent author preferences and retained histories may not fit every workspace's needs.
 
-Mitigation: Review what preferences are retained and use the skill's author-memory controls when you want to change or remove them.
+Mitigation: Review what information may be retained and decide whether author-memory features suit the project before using them.
 
-Risk: The security scan was partial, and the skill includes workspace file and shell-check capabilities.
+Risk: Several scripts were only partially analyzed, and the scan did not establish runtime permissions.
 
-Mitigation: Keep access scoped to the intended writing workspace and review file changes and commands before relying on their results.
+Mitigation: Review the scripts and the host permissions available to the skill before installation.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/worldwonderer/skills/story-short-write)
-- [Workflow design](references/workflow-design.md)
-- [Drafting workflow](references/workflow-draft.md)
-- [Revision workflow](references/workflow-revision.md)
-- [Short story format](references/short-format.md)
-- [Author memory guidance](references/author-memory.md)
+- [ClawHub release page](https://clawhub.ai/worldwonderer/skills/story-short-write)
+- [通用短篇 genre guide](artifact/references/genre-styles/通用短篇.md)
+- [悬疑 genre guide](artifact/references/genre-styles/悬疑.md)
+- [复仇打脸 genre guide](artifact/references/genre-styles/复仇打脸.md)
+- [甜宠 genre guide](artifact/references/genre-styles/甜宠.md)
+- [author memory guide](artifact/references/author-memory.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Text, Markdown]
 
-**Output Format:** [Chinese prose and Markdown story-planning and manuscript files]
+**Output Format:** [Chinese prose and Markdown planning documents]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May produce story settings, section outlines, and a complete short story according to the user's requested genre, tone, and constraints.]
+**Other Properties Related to Output:** [May include a story premise, outline, short-fiction draft, and concise review notes.]
 
 ## Skill Version(s):
 
-1.2.12 (source: server-resolved release metadata)
+1.2.21 (source: ClawHub release metadata; artifact frontmatter states 2.0.0)
 
 ## Ethical Considerations:
 

@@ -1,14 +1,16 @@
-﻿# visual-qa-check.ps1 — 浏览器视觉验收能力探测（只读探测 + 明确提示权限不足）
+﻿# visual-qa-check.ps1 — 浏览器视觉验收能力探测（会写文件：探测 HTML/PNG 与临时 Chrome profile；只删自己创建的临时 profile）
 # 兼容 Windows PowerShell 5.1；含中文，必须保存为 UTF-8 带 BOM。
 # 用途：设计/视觉验收开始前先跑一次，明确回答「A 路径能不能用」；不能用时**显式提示用户**该切权限/给截图/标未实测，不许静默跳过。
-# 用法：powershell -NoProfile -ExecutionPolicy Bypass -File .\visual-qa-check.ps1 [-OutDir <目录>] [-ChromePath <exe>] [-Json] [-SimulateBlocked（仅测试提示话术）]
+# 写盘边界：只写 -OutDir（默认 <工作区>/.tmp/visual-qa）；OutDir 必须位于工作区或 %TEMP% 下，否则拒绝运行（-AllowOutsideOutDir 可显式放行）。
+# 用法：powershell -NoProfile -ExecutionPolicy Bypass -File .\visual-qa-check.ps1 [-OutDir <目录>] [-ChromePath <exe>] [-Json] [-SimulateBlocked（仅测试提示话术）] [-AllowOutsideOutDir]
 # 退出码：0 = A 路径可用（Chrome headless 截图成功）；2 = 权限/环境受限（需 A/B/C 选择）；1 = 其它失败（Chrome 缺失/参数错误）
 [CmdletBinding()]
 param(
     [string]$OutDir = '',
     [string]$ChromePath = '',
     [switch]$Json,
-    [switch]$SimulateBlocked
+    [switch]$SimulateBlocked,
+    [switch]$AllowOutsideOutDir
 )
 
 $ErrorActionPreference = 'Continue'
@@ -16,6 +18,19 @@ Set-StrictMode -Version 2.0
 
 $workspace = (Get-Location).Path
 if (-not $OutDir) { $OutDir = Join-Path $workspace '.tmp\visual-qa' }
+# 写盘边界：默认只允许工作区或 %TEMP% 下的目录；避免把探测产物写到任意位置。
+$outFull = [System.IO.Path]::GetFullPath($OutDir)
+$allowedRoots = @([System.IO.Path]::GetFullPath($workspace))
+if ($env:TEMP) { $allowedRoots += [System.IO.Path]::GetFullPath($env:TEMP) }
+$inside = $false
+foreach ($root in $allowedRoots) {
+    if ($outFull.StartsWith($root, [System.StringComparison]::OrdinalIgnoreCase)) { $inside = $true; break }
+}
+if (-not $inside -and -not $AllowOutsideOutDir) {
+    Write-Host ('[FAIL] -OutDir 不在工作区或 %TEMP% 下：' + $outFull) -ForegroundColor Red
+    Write-Host '       如确需写到别处，显式加 -AllowOutsideOutDir；本脚本只应写自己的临时产物。' -ForegroundColor Yellow
+    exit 2
+}
 try { New-Item -ItemType Directory -Force -Path $OutDir | Out-Null } catch { }
 
 function Fail([string]$msg, [int]$code) {

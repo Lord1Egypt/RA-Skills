@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-面向需要核对研报、新闻、尽调数据或市场传言的用户，调用 Cue 对原文进行多源交叉验证，检查时间、数据和表述偏差，并生成带来源链接的结构化核查报告。
+面向研究分析师、记者及尽调人员，用于核查研报、新闻、经营数据和市场传言中的事实。它通过多源对照识别时间错位、数字偏差或误导性表述，并生成带有纠偏证据和来源链接的报告。
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The API key setup described by the skill may expose credentials when a key is shared in chat.
+Risk: The security evidence reports that an unpinned external runner executes with the agent’s permissions.
 
-Mitigation: Store the key in local configuration or a secret manager, and avoid sending the key in chat.
+Mitigation: Avoid installation until the runner is pinned to a reviewed version; inspect and approve the runner before use.
 
-Risk: The external Cue runner is cloned or updated without a pinned revision.
+Risk: The skill’s API key setup could lead users to share a secret in chat.
 
-Mitigation: Review the runner source and pin a trusted revision before installation or updates.
+Mitigation: Store the API key in the local configuration or CUE_API_KEY environment variable and do not paste it into chat.
 
-Risk: Some document conversion instructions may not fit the skill's fact-checking purpose.
+Risk: The scan reports a mismatch between the fact-checking description and some behavior, and its results are incomplete.
 
-Mitigation: Review conversion steps and dependencies before use; run them only when document conversion is intended.
+Mitigation: Review the skill behavior before use and independently verify report claims against cited sources.
 
 ## Reference(s):
 
+- [事实核查技能发布页](https://clawhub.ai/panting09266-ai/skills/cue-fact-check)
 - [Cue 平台](https://cuecue.cn)
-- [示例核查报告](https://cuecue.cn/share/680abf29664d)
+- [Cue API Key 管理](https://cuecue.cn/api-key?src=clawhub-fact-check)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [结构化 Markdown 事实核查报告，包含原文对照、核查结论、纠偏证据和来源链接]
+**Output Format:** [结构化中文事实核查报告（Markdown）]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [来源不可用时，结论可能为无法核实。]
+**Other Properties Related to Output:** [逐条呈现待核查原文、结论、纠偏证据、独立信源对照、偏差分析和来源链接。]
 
 ## Skill Version(s):
 
-1.0.13 (source: server-resolved release)
+1.0.17 (source: server release evidence)
 
 ## Ethical Considerations:
 

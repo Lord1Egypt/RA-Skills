@@ -62,9 +62,10 @@ def allowed_profile(path):
     return resolved
 
 
-def default_profile():
+def default_profile(env=None):
     # 新安装写到 imagegen-swarm。旧资料夹还在、新的还没建时继续用旧的，免得改名后要重新登录 Muse。
-    chosen = os.environ.get("IMAGE_GEN_MUSE_PROFILE")
+    env = os.environ if env is None else env
+    chosen = env.get("IMAGE_GEN_MUSE_PROFILE")
     if chosen:
         return allowed_profile(chosen)
     roots = profile_roots()
@@ -76,9 +77,51 @@ def default_profile():
 
 
 PROFILE = default_profile()
-REMOTE_DIR = "/home/hatch/workspace/imagegen-swarm"
 # Muse's cloud computer home. "~" in an approval is this home, not the machine running the script.
 CLOUD_HOME = Path("/home/hatch")
+REMOTE_LEGACY = "/home/hatch/workspace/image-gen"
+REMOTE_SWARM = "/home/hatch/workspace/imagegen-swarm"
+_REMOTE_DIR_CHARS = re.compile(r"^[A-Za-z0-9_./-]+$")
+
+
+def validate_remote_dir(value):
+    text = str(value)
+    if not text:
+        raise RuntimeError("IMAGE_GEN_MUSE_REMOTE_DIR is empty")
+    if ".." in text:
+        raise RuntimeError("IMAGE_GEN_MUSE_REMOTE_DIR must not contain '..': " + text)
+    if not _REMOTE_DIR_CHARS.fullmatch(text):
+        raise RuntimeError("IMAGE_GEN_MUSE_REMOTE_DIR may only use letters, digits, '_', '.', '/' and '-': " + text)
+    if not text.startswith("/home/hatch/"):
+        raise RuntimeError("IMAGE_GEN_MUSE_REMOTE_DIR must be an absolute path under /home/hatch/: " + text)
+    normalized = os.path.normpath(text)
+    if normalized == "/home/hatch" or not normalized.startswith("/home/hatch/"):
+        raise RuntimeError("IMAGE_GEN_MUSE_REMOTE_DIR must be a directory under /home/hatch/: " + text)
+    return normalized
+
+
+def resolve_remote_dir(profile=None, env=None):
+    """Cloud save directory for this run.
+
+    IMAGE_GEN_MUSE_REMOTE_DIR overrides. Otherwise a legacy Muse profile
+    (~/.config/image-gen/muse-browser) keeps the old /home/hatch/workspace/image-gen folder
+    that already exists on those cloud computers; new profiles use imagegen-swarm.
+    """
+    env = os.environ if env is None else env
+    if "IMAGE_GEN_MUSE_REMOTE_DIR" in env:
+        return validate_remote_dir(env["IMAGE_GEN_MUSE_REMOTE_DIR"])
+    profile = Path(profile if profile is not None else default_profile(env)).expanduser().resolve()
+    legacy = profile_roots()["legacy"]
+    if profile == legacy:
+        return REMOTE_LEGACY
+    return REMOTE_SWARM
+
+
+# Documented default for new profiles and for tests. generate() and --list-chats
+# call resolve_remote_dir() at runtime so a legacy browser profile still uses
+# /home/hatch/workspace/image-gen. Do not resolve at import time: a developer
+# machine with only the legacy profile would change REMOTE_DIR and break tests.
+REMOTE_DIR = REMOTE_SWARM
 RATIOS = ("1:1", "2:3", "3:2", "3:4", "4:3", "9:16", "16:9")
 THREAD_RE = re.compile(r"/thread/([0-9a-f-]{36})")
 IDLE_SECONDS = 8
@@ -120,8 +163,27 @@ def browser(headless=True, create_profile=False):
             if parts.username:
                 proxy.update(username=parts.username, password=parts.password or "")
         with sync_playwright() as p:
-            context = p.chromium.launch_persistent_context(str(PROFILE), headless=headless, viewport={"width": 1280, "height": 860},
-                                                           accept_downloads=True, proxy=proxy)
+            launch = {"headless": headless, "viewport": {"width": 1280, "height": 860},
+                      "accept_downloads": True, "proxy": proxy}
+            try:
+                context = p.chromium.launch_persistent_context(str(PROFILE), **launch)
+            except Exception as error:
+                detail = str(error)
+                if re.search(r"profile.*(?:lock|in use|already running|does not exist)|"
+                             r"ProcessSingleton|SingletonLock|user data directory is already in use", detail, re.I):
+                    raise
+                if not re.search(r"Executable (?:doesn't|does not) exist|playwright install|\bspawn\b|-88|"
+                                 r"failed to launch|error while loading shared libraries|cannot open shared object|"
+                                 r"chromium-\d+", detail, re.I):
+                    raise
+                try:
+                    context = p.chromium.launch_persistent_context(str(PROFILE), channel="chrome", **launch)
+                except Exception as fallback_error:
+                    raise MuseGenerationError(
+                        "playwright_browser_missing",
+                        "Playwright could not launch bundled Chromium or system Google Chrome. "
+                        "Run python3 -m playwright install chromium."
+                    ) from fallback_error
             try:
                 yield context.pages[0] if context.pages else context.new_page()
             finally:
@@ -389,14 +451,23 @@ SENT_IMAGES = r'''before => {
 }'''
 # Only the Allow/Deny controls and containing text are evidenced by the existing
 # implementation. No captured approval establishes operation/argument selectors
-# or a whole-card grammar. Do not infer permissions from that text. See references/muse.md.
-APPROVALS = r'''() => [...document.querySelectorAll('button')].filter(b => /^allow\b/i.test(b.textContent.trim())).map(b => {
+# or a whole-card grammar. See references/muse.md for the exact-file text policy.
+APPROVALS = r'''() => {
     const controls = node => [...node.querySelectorAll('button')].map(n => n.textContent.trim());
-    let node = b.parentElement;
-    while (node && !controls(node).includes('Deny')) node = node.parentElement;
-    return {label: b.textContent.trim(), detail: node ? node.innerText.trim() : '',
-            controls: node ? controls(node) : [], request: null};
-})'''
+    const cards = new Set(), approvals = [];
+    for (const button of document.querySelectorAll('button')) {
+        const label = button.textContent.trim();
+        if (!/^(?:allow\b|always allow\b)/i.test(label)) continue;
+        let node = button.parentElement;
+        while (node && !controls(node).includes('Deny')) node = node.parentElement;
+        if (node && cards.has(node)) continue;
+        if (node) cards.add(node);
+        const labels = node ? controls(node) : [];
+        approvals.push({label: labels.includes('Allow once') ? 'Allow once' : label,
+                        detail: node ? node.innerText.trim() : '', controls: labels, request: null});
+    }
+    return approvals;
+}'''
 
 
 def send(page, text, images):
@@ -427,17 +498,18 @@ def approvals(page):
     tab = page.get_by_role("button", name="Approvals", exact=True)
     if tab.count() == 0:
         return []
-    tab.click()
+    tab.click(timeout=3000)
     page.wait_for_timeout(500)
     return page.evaluate(APPROVALS)
 
 
-def canonical_output_path(path, home=CLOUD_HOME):
+def canonical_output_path(path, home=CLOUD_HOME, base=None):
     """One spelling for an output path: ~ expansion, . and .., then realpath of existing parents.
 
     The file itself may not exist yet. Symlinks in directories that already exist are resolved,
     and the missing tail is appended unchanged. "~" uses `home` (the cloud home for an approval,
-    the local home for --out).
+    the local home for --out). A relative path is joined to `base`, or to `home` when `base` is
+    None (an approval path; --out passes the current working directory).
     """
     text = str(path).strip().strip("'\"")
     home = Path(home)
@@ -447,36 +519,32 @@ def canonical_output_path(path, home=CLOUD_HOME):
         text = str(home / text[2:])
     elif text == "~hatch" or text.startswith("~hatch/"):
         text = str(CLOUD_HOME / text[len("~hatch"):].lstrip("/"))
-    normalized = os.path.normpath(text)
-    if not os.path.isabs(normalized):
-        normalized = os.path.normpath(str(home / normalized))
-    current = Path(normalized)
-    missing = []
-    while current != current.parent and not current.exists():
-        missing.append(current.name)
-        current = current.parent
-    try:
-        resolved = current.resolve()
-    except OSError:
-        resolved = current
-    for name in reversed(missing):
-        resolved = resolved / name
-    return Path(os.path.normpath(str(resolved)))
+    candidate = Path(text)
+    if not candidate.is_absolute():
+        candidate = Path(base if base is not None else home) / candidate
+    # The cloud home typically does not exist on the local machine. In that
+    # case a local /home mount or symlink says nothing about the cloud path.
+    if home == CLOUD_HOME and candidate.is_relative_to(home) and not home.exists():
+        return Path(os.path.normpath(candidate))
+    return candidate.resolve(strict=False)
 
 
 def prepare_local_output(out):
-    """Create the local output's parent before Muse is asked to do anything, and return its real path."""
-    path = canonical_output_path(out, home=Path.home())
+    """Create the local output's parent before Muse is asked to do anything, and return its real path.
+
+    A relative --out is resolved against the current working directory, like the other engine scripts.
+    """
+    path = canonical_output_path(out, home=Path.home(), base=Path.cwd())
     path.parent.mkdir(parents=True, exist_ok=True)
     return path
 
 
-def scoped_save_approval(approval, remote):
+def scoped_save_approval(approval, remote, remote_dir=None):
     """Check an internally decoded request, never free-text approval descriptions.
 
     `request` is our internal policy representation, NOT a Muse wire protocol.
     APPROVALS leaves it null until a real captured card supports a complete,
-    evidence-backed decoder. Thus all currently unrecognized live cards stop.
+    evidence-backed decoder.
     A future decoder must account for the entire card, including every argument;
     it must not turn a summary or a subset of a compound request into this shape.
     """
@@ -495,25 +563,92 @@ def scoped_save_approval(approval, remote):
     if not re.fullmatch(r"[A-Za-z0-9_./~@+=-]+", paths[0]):
         return False
     try:
-        return canonical_output_path(paths[0]) == canonical_output_path(remote)
+        expected = canonical_output_path(remote)
+        directory = canonical_output_path(remote_dir if remote_dir is not None else Path(remote).parent)
+        if not expected.is_relative_to(directory) or expected == directory:
+            return False
+        return canonical_output_path(paths[0]) == expected
     except (OSError, ValueError, RuntimeError):
         return False
 
 
-def wait_done(page, since, deadline, approved, cancel_file, remote):
-    # 持续空闲满 IDLE_SECONDS 才算做完（回复生成中 Stop 会短暂消失）。
-    # 只点可完整解析的单个保存请求「Allow once」，路径必须是本轮输出文件；未知卡片不点。
-    # 调用方（抢活脚本）要取消时会建 cancel_file：看到就按出错流程走，删掉侧聊天再退出
+_SHELL_META = re.compile(r"[;|&`$<>*?{}\\]")
+_CLOUD_PATH = re.compile(r"(?<![\w/])(?:(?:~[^/\s]*|[\w.+-]*)/[^\s'\"<>)\]},]*|[\w-]+\.[\w-]+)")
+_FORBIDDEN_WORDS = ("rm ", "curl", "wget", "chmod", "sudo", "mkdir", "create directory",
+                    "create_directory", "create a directory", "创建目录", "新建", "bash", "eval", "http://",
+                    "run command", "execute command", "read file", "delete file", "powershell", "python", "touch ")
+
+
+def legacy_scoped_approval(card, remote, remote_dir):
+    """Allow the exact-file subset of the older free-text approval cards."""
+    if not isinstance(card, dict) or card.get("label") != "Allow once":
+        return False
+    detail = str(card.get("detail") or "")
+    if _SHELL_META.search(detail) or any(word in detail.lower() for word in _FORBIDDEN_WORDS):
+        return False
+    paths = _CLOUD_PATH.findall(detail)
+    if not paths:
+        return False
+    try:
+        expected = canonical_output_path(remote)
+        directory = canonical_output_path(remote_dir)
+        if expected.parent != directory:
+            return False
+        for raw in paths:
+            if not re.fullmatch(r"[A-Za-z0-9_./~-]+", raw) or ".." in Path(raw).parts:
+                return False
+            # Expand cloud-home aliases. A different spelling may not point through a local symlink.
+            absolute = re.sub(r"^~(?:hatch)?(?=/)", str(CLOUD_HOME), raw)
+            if Path(absolute) != Path(remote) or canonical_output_path(raw) != expected:
+                return False
+    except (OSError, ValueError, RuntimeError):
+        return False
+    return True
+
+
+def muse_approval_mode(env=None):
+    env = os.environ if env is None else env
+    mode = (env.get("IMAGE_GEN_MUSE_APPROVAL") or "").strip().lower()
+    return mode if mode in ("strict", "legacy") else "legacy"
+
+
+def approval_allowed(card, remote, remote_dir, env=None):
+    if not isinstance(card, dict):
+        return False
+    if card.get("request") is not None:
+        return scoped_save_approval(card, remote, remote_dir)
+    if muse_approval_mode(env) == "legacy":
+        return legacy_scoped_approval(card, remote, remote_dir)
+    return False
+
+
+class MuseGenerationError(RuntimeError):
+    def __init__(self, kind, message):
+        super().__init__(message)
+        self.kind = kind
+
+
+APPROVAL_WAIT_SECONDS = 75
+
+
+def wait_done(page, since, deadline, approved, cancel_file, remote, remote_dir=None):
+    # Wait for stable idle after an assistant reply. Bound a stalled pre-approval turn separately.
+    if remote_dir is None:
+        remote_dir = str(Path(remote).parent)
     idle = None
+    approval_deadline = time.monotonic() + APPROVAL_WAIT_SECONDS
     while True:
+        if time.monotonic() >= deadline:
+            raise MuseGenerationError("timeout", "Muse generation timed out.")
         if cancel_file and Path(cancel_file).exists():
             raise RuntimeError("cancelled: another engine finished this image first")
         asks = approvals(page)
         if asks:
-            if not all(scoped_save_approval(a, remote) for a in asks):
-                raise RuntimeError("Muse approval shape was not recognized or was outside this run's single-image save scope; "
-                                   f"was not clicked: {json.dumps(asks, ensure_ascii=False)[:1500]}")
-            page.get_by_role("button", name="Allow once", exact=True).first.click()
+            if not all(approval_allowed(a, remote, remote_dir) for a in asks):
+                raise MuseGenerationError("approval_refused",
+                                          "Muse approval shape was not recognized or was outside this run's "
+                                          "single-image save scope. The card was not clicked.")
+            page.get_by_role("button", name="Allow once", exact=True).first.click(timeout=3000)
             approved.append(asks[0]["detail"])
             idle = None
             continue
@@ -524,8 +659,8 @@ def wait_done(page, since, deadline, approved, cancel_file, remote):
             idle = time.monotonic()
         elif time.monotonic() - idle >= IDLE_SECONDS:
             return messages(page)[since:]
-        if time.monotonic() > deadline:
-            raise RuntimeError("Muse 超时没做完")
+        if not approved and idle is None and time.monotonic() >= approval_deadline:
+            raise MuseGenerationError("approval_card_timeout", "Muse produced no approvable card or completed reply within 75 seconds.")
         page.wait_for_timeout(3000)
 
 
@@ -566,12 +701,13 @@ def generate(args):
             staged.write_bytes(Path(ref).read_bytes())
             ref_hashes.add(fingerprint(staged))
             refs.append(staged)
-        remote = f"{REMOTE_DIR}/img-{int(time.time() * 1000)}-{secrets.token_hex(4)}.png"
+        remote_dir = resolve_remote_dir(PROFILE)
+        remote = f"{remote_dir}/img-{int(time.time() * 1000)}-{secrets.token_hex(4)}.png"
         text = ("运行环境：你在自己的云端电脑上运行，读不到用户本机的文件。\n"
                 "任务：用你自己的出图工具生成 1 张图，只调用一次出图工具，不要上网找图，不要复制或改用任何现成图片。\n"
                 f"画面比例 {args.aspect}。" + (f"附件 {'、'.join(r.name for r in refs)} 是参考图，按提示词参照它们。" if refs else "") + "\n"
                 f"提示词（两行标记之间的原文，逐字使用，不改写、不增减）：\n<<<PROMPT\n{prompt}\nPROMPT>>>\n"
-                f"生成后只把 PNG 写入这个精确路径，不要创建目录，不要先写临时文件再改名，不要另存其它文件：{remote}。最后一条回复单独一行写「产出文件：{remote}」。\n"
+                f"生成后把 PNG 写入这个精确路径：{remote}。目录必须已存在。如果目录不存在，请报告并结束。不要先写临时文件再改名，不要另存其它文件。最后一条回复单独一行写「产出文件：{remote}」。\n"
                 "出图工具失败或做不了就写明原因后结束，不要交别的图。")
         approved = []
         with browser() as page:
@@ -581,29 +717,38 @@ def generate(args):
                 # Muse 会去掉标题两头的空格。改名失败只打一条警告，出图继续。
                 rename_or_continue(page, chat, (args.title or f"imagegen-swarm：{prompt[:24]}").strip())
                 open_url(page, f"{BASE}/thread/{chat}")
-                replies = wait_done(page, since, start + args.timeout / 1000, approved, args.cancel_file, remote)
+                replies = wait_done(page, since, start + args.timeout / 1000, approved, args.cancel_file, remote, remote_dir)
                 last = next((m["text"] for m in reversed(replies) if m["role"] == "assistant"), "")
                 delivered = [item.rstrip(".,);]\"'") for item in re.findall(r"产出文件[:：]\s*(\S+)", last)]
                 if not any(canonical_output_path(item) == canonical_output_path(remote) for item in delivered):
-                    raise RuntimeError(f"Muse 没交出 {remote}；最后回复：{last[-1500:]}")
+                    raise MuseGenerationError("no_image", f"Muse finished without delivering {remote}.")
                 saved = download(page, remote, work)
                 if fingerprint(saved) in ref_hashes:
                     raise RuntimeError("stale output: matches a reference image")
                 with Image.open(saved) as image:
                     image.save(out, "PNG")
                     width, height = image.width, image.height
-            except BaseException as error:
+            except BaseException:
                 # 只删本轮已经记下编号的侧聊天。编号还没拿到时不动其它聊天。
                 try:
                     if chat:
                         delete(page, chat)
                 except Exception as cleanup:
-                    raise RuntimeError(f"{error}；另外：{cleanup}") from error
+                    print(f"muse: side-chat cleanup failed ({type(cleanup).__name__})", file=sys.stderr)
                 raise
+            # The PNG is already saved. A failed side-chat cleanup is a warning, not a lost result.
+            warnings = []
             if chat:
-                delete(page, chat)
-    return {"status": "ok", "path": str(out), "engine": "muse", "source_path": remote, "width": width, "height": height,
-            "aspect": args.aspect, "approved": approved, "bytes": out.stat().st_size, "elapsed_seconds": round(time.monotonic() - start)}
+                try:
+                    delete(page, chat)
+                except Exception as cleanup:
+                    warnings.append(f"side chat cleanup failed: {cleanup}")
+                    print(f"muse: side chat cleanup failed ({cleanup}); image already saved", file=sys.stderr)
+    result = {"status": "ok", "path": str(out), "engine": "muse", "source_path": remote, "width": width, "height": height,
+              "aspect": args.aspect, "approved": approved, "bytes": out.stat().st_size, "elapsed_seconds": round(time.monotonic() - start)}
+    if warnings:
+        result["warnings"] = warnings
+    return result
 
 
 def main():
@@ -614,7 +759,7 @@ def main():
     parser.add_argument("--ref", action="append", default=[])
     parser.add_argument("--aspect", default="1:1", choices=RATIOS)
     parser.add_argument("--title", help="侧聊天标题，用户在 Muse 里看得见")
-    parser.add_argument("--timeout", type=float, default=900000, help="毫秒")
+    parser.add_argument("--timeout", type=float, default=300000, help="毫秒")
     parser.add_argument("--cancel-file", help="这个文件出现时放弃本张、删掉侧聊天后退出（抢活脚本用）")
     parser.add_argument("--login", action="store_true", help="打开有界面的浏览器，让用户自己登录 Muse")
     parser.add_argument("--list-chats", action="store_true", help="列出侧聊天（体检和测试用）")
@@ -626,18 +771,24 @@ def main():
             composer(page).wait_for(state="visible", timeout=LOGIN_WAIT_MS)
         print(json.dumps({"status": "ok", "logged_in": True}))
         return
-    if args.list_chats:
-        with browser() as page:
-            print(json.dumps({"status": "ok", "chats": side_chats(page)}, ensure_ascii=False))
-        return
-    if not args.out or bool(args.prompt) == bool(args.prompt_file):
-        parser.error("require --out and exactly one of --prompt / --prompt-file")
-    if Path(args.out).suffix.lower() != ".png":
-        parser.error("--out extension must be .png")
+    if not args.list_chats:
+        if not args.out or bool(args.prompt) == bool(args.prompt_file):
+            parser.error("require --out and exactly one of --prompt / --prompt-file")
+        if Path(args.out).suffix.lower() != ".png":
+            parser.error("--out extension must be .png")
     try:
-        print(json.dumps(generate(args), ensure_ascii=False))
+        if args.list_chats:
+            remote_dir = resolve_remote_dir(PROFILE)
+            with browser() as page:
+                result = {"status": "ok", "chats": side_chats(page), "remote_dir": remote_dir}
+        else:
+            result = generate(args)
+        print(json.dumps(result, ensure_ascii=False))
     except Exception as error:
-        print(json.dumps({"status": "error", "engine": "muse", "reason": str(error)}, ensure_ascii=False))
+        report = {"status": "error", "engine": "muse", "reason": str(error)}
+        if isinstance(error, MuseGenerationError):
+            report["error_kind"] = error.kind
+        print(json.dumps(report, ensure_ascii=False))
         sys.exit(1)
 
 

@@ -91,6 +91,7 @@ class ReviewerSelectionTests(unittest.TestCase):
         commits=None,
         fresh_commits=None,
         user_emails=None,
+        receipt_overrides=None,
     ):
         linked_items = [] if linked_items is None else linked_items
         members = MEMBERS if members is None else members
@@ -151,13 +152,18 @@ class ReviewerSelectionTests(unittest.TestCase):
             raise AssertionError(endpoint)
 
         object_calls = {"mr": 0}
+        persisted_reviewers = selected_mr["reviewers"]
+        approval_performed = False
 
         def objects(endpoint, description):
             if endpoint.split("?", 1)[0] == "projects/example%2Fproject/merge_requests/7":
                 self.assertIn("include_rebase_in_progress=true", endpoint)
                 self.assertIn("include_diverged_commits_count=true", endpoint)
+                if description == "reviewer assignment receipt":
+                    return {**fresh_mr, "reviewers": persisted_reviewers,
+                            **(receipt_overrides or {})}
                 object_calls["mr"] += 1
-                if object_calls["mr"] > 2 and post_approval_mr_change is not None:
+                if approval_performed and post_approval_mr_change is not None:
                     return {**fresh_mr, **post_approval_mr_change}
                 return fresh_mr if object_calls["mr"] > 1 else selected_mr
             return object_for(endpoint, description)
@@ -187,8 +193,15 @@ class ReviewerSelectionTests(unittest.TestCase):
             return agents_markdown
 
         def run_command(args, **_kwargs):
+            nonlocal persisted_reviewers, approval_performed
+            if "input" in _kwargs:
+                ids = json.loads(_kwargs["input"])["reviewer_ids"]
+                identities = {m["id"]: m for m in [*members, *selected_mr["reviewers"]]}
+                persisted_reviewers = [identities[i] for i in ids]
             if approval_fails and any("/approve" in part for part in args):
                 raise subprocess.CalledProcessError(403, args)
+            if any("/approve" in part for part in args):
+                approval_performed = True
             return Mock(stdout='{"state":"merged"}')
 
         command = Mock(side_effect=run_command)
@@ -207,6 +220,43 @@ class ReviewerSelectionTests(unittest.TestCase):
                 ["example/project", "7"]
             )
         return json.loads(stdout.getvalue()), command
+
+    def test_http_success_without_persisted_candidate_fails_closed(self):
+        errors = io.StringIO()
+        with redirect_stderr(errors), self.assertRaises(SystemExit) as error:
+            self.run_selection(receipt_overrides={"reviewers": MR["reviewers"]})
+        self.assertEqual(error.exception.code, 78)
+        self.assertIn("did not confirm", errors.getvalue())
+        self.last_command.assert_called_once()
+
+    def test_incomplete_or_dropped_existing_reviewers_never_approve(self):
+        for reviewers in (None, "invalid", [{"id": 99}], [], [ME]):
+            with self.subTest(reviewers=reviewers), redirect_stderr(io.StringIO()), \
+                    self.assertRaises(SystemExit):
+                self.run_selection(self_review=True, optional=True,
+                                   mr_overrides={"reviewers": MR["reviewers"]},
+                                   receipt_overrides={"reviewers": reviewers})
+            self.last_command.assert_called_once()
+
+    def test_unpersisted_self_reviewer_cannot_approve_or_merge(self):
+        with redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
+            self.run_selection(self_review=True, optional=True,
+                               receipt_overrides={"reviewers": []})
+        self.last_command.assert_called_once()
+
+    def test_changed_source_after_write_cannot_approve_or_merge(self):
+        for changed in ({"sha": "new-source"}, {"target_branch": "other"}, {"iid": 8}):
+            with self.subTest(changed=changed), redirect_stderr(io.StringIO()), \
+                    self.assertRaises(SystemExit):
+                self.run_selection(self_review=True, optional=True,
+                                   receipt_overrides=changed)
+            self.last_command.assert_called_once()
+
+    def test_extra_concurrent_reviewer_is_preserved(self):
+        result, command = self.run_selection(receipt_overrides={"reviewers": [
+            *MR["reviewers"], MEMBERS[1], {"id": 88, "username": "concurrent"}]})
+        self.assertTrue(result["applied"])
+        command.assert_called_once()
 
     def assert_dod_failure(self, expected, **arguments):
         errors = io.StringIO()

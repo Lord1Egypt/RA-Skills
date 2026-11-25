@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Sales, revenue operations, and market research teams can use this skill to enrich company domains or names, filter lists against an ideal customer profile, build prospect lists, and map markets.
+Sales, business development, and market research teams use this skill to enrich domains or company names, filter account lists against an ideal customer profile, and map markets using company data such as firmographics, technology, headcount, funding, competitors, and domain email information.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Company domains, names, and enrichment requests are sent to Superagnt's external API, authenticated with an API key.
+Risk: The skill contacts Superagnt's API and performs an account-credit check that may not match the company-research task.
 
-Mitigation: Only submit company information you are authorized to share, and keep SUPERAGNT_API_KEY in the environment rather than placing it in prompts or command text.
+Mitigation: Confirm the external API contact and credit check fit your needs before running the skill, and keep the Superagnt API key private.
 
 ## Reference(s):
 
 - [Company Enrichment documentation](https://superagnt.com/r/ch-company-enrichment-docs)
-- [Scoped Company Enrichment MCP server](https://mcp.superagnt.com/mcp/company-enrichment)
+- [Company Enrichment MCP server](https://mcp.superagnt.com/mcp/company-enrichment)
 - [ClawHub listing](https://clawhub.ai/superagnt/skills/company-enrichment)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Company intelligence]
+**Output Type(s):** [JSON, Analysis]
 
-**Output Format:** [Structured company records, including firmographics, headcount, funding, competitors, technographics, and domain email data]
+**Output Format:** [Structured JSON company records returned through API calls]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Supports individual enrichment, search, discovery, and bulk enrichment; requires a SUPERAGNT_API_KEY for the documented curl workflow.]
+**Other Properties Related to Output:** [Company enrichment and intelligence data can include firmographics, headcount, funding, competitors, technographics, and domain email information.]
 
 ## Skill Version(s):
 
-2.0.14 (source: frontmatter, server release)
+2.0.19 (source: frontmatter)
 
 ## Ethical Considerations:
 

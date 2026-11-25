@@ -1,6 +1,6 @@
 ## Description:
 
-Searches Douyin public content, creator posts, comments, individual post details, and trending topics for social media research.
+This skill retrieves public Douyin search, trending, creator-post, video-detail, and comment data through Guaikei and returns structured results for content research.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Content strategists, marketers, and analysts use this skill to research public Douyin videos, creator activity, comments, and trends for topic discovery, competitor monitoring, and audience research.
+Content, marketing, and data analysts use the skill to find public Douyin videos and creators, follow trends, and review public engagement for content planning, competitor research, and sentiment analysis.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates the skill benign with medium confidence and reports that some source files were not fully inspected.
+Risk: Search terms and supplied Douyin links or IDs may be sent to www.guaikei.com, and API access requires a GUAIKEI_API_TOKEN.
 
-Mitigation: Review the package contents before installation and keep the API token private.
+Mitigation: Review query terms and links before each lookup, avoid sending sensitive information, and keep the token in the environment rather than placing it in commands or shared output.
 
-Risk: The scan notes an individual post-detail lookup beyond the stated capability list.
+Risk: The security scan was partial and reports medium confidence, so its benign verdict does not establish that every artifact file was fully inspected.
 
-Mitigation: Confirm that retrieving individual post details fits the intended use.
-
-Risk: Search terms and Douyin links are sent to Guaikei's third-party API.
-
-Mitigation: Use public content and send only queries or links you are authorized to share with that service.
+Mitigation: Review the skill files and requested account-search or post-detail features before installation, especially if they are outside the intended use.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/why20261/skills/douyin-search-guaikei)
-- [Guaikei service and access](https://www.guaikei.com)
-- [Parameter options](references/options.md)
-- [Comment demand mining guide](references/demand-mining.md)
-- [Changelog](references/changelog.md)
+- [Guaikei service and token access](https://www.guaikei.com)
+- [Usage guide and command examples](readme.md)
+- [Output contract](references/contract.md)
+- [Command options](references/options.md)
+- [Errors and retry guidance](references/errors.md)
+- [Demand analysis guide](references/demand-mining.md)
+- [Customer acquisition guide](references/customer-acquisition.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis]
+**Output Type(s):** [JSON, Analysis, Markdown, Tables]
 
-**Output Format:** [Structured JSON response envelopes with search, creator, comment, post detail, and trending data.]
+**Output Format:** [Structured JSON results with concise text or Markdown summaries and analysis]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Media links may expire; result limits depend on the API plan.]
+**Other Properties Related to Output:** [May include public video, creator, engagement, trend, and comment data for follow-up analysis.]
 
 ## Skill Version(s):
 
-1.4.2 (source: release evidence, changelog, released 2026-11-04)
+1.5.0 (source: SKILL.md frontmatter, package.json, and server-resolved release)
 
 ## Ethical Considerations:
 

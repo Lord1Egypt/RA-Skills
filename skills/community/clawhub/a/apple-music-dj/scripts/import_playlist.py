@@ -19,9 +19,9 @@ Requires: APPLE_MUSIC_DEV_TOKEN and APPLE_MUSIC_USER_TOKEN env vars.
 
 import sys
 
-if sys.version_info < (3, 10):
+if sys.version_info < (3, 11):
     sys.exit(
-        f"ERROR: Python 3.10+ is required (you have "
+        f"ERROR: Python 3.11+ is required (you have "
         f"{sys.version_info.major}.{sys.version_info.minor}). Please upgrade."
     )
 
@@ -31,6 +31,7 @@ import difflib
 import io
 import json
 import re
+from collections.abc import Sequence
 from pathlib import Path
 
 from _common import call_api, get_storefront, load_config, require_env_tokens
@@ -56,7 +57,7 @@ def _first_artist(value: str) -> str:
     return re.split(r"[;]", value)[0].strip()
 
 
-def _column(header: list[str], names: tuple[str, ...]) -> str | None:
+def _column(header: Sequence[str], names: tuple[str, ...]) -> str | None:
     lowered = {h.strip().lower(): h for h in header}
     return next((lowered[n] for n in names if n in lowered), None)
 

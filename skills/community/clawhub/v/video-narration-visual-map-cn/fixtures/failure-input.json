@@ -1,0 +1,7 @@
+{
+  "narration": [
+    {"id": "N1", "text": "点击生成后，系统已经生成一张海报。"}
+  ],
+  "viewer_benefit": "确认生成操作交付了可用海报",
+  "required_evidence": ["最终生成海报"]
+}

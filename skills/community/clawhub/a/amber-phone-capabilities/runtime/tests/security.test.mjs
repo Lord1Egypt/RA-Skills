@@ -53,6 +53,11 @@ test('actual bridge rejects unsigned events, browser-origin calls, and confirmat
  assert.equal((await post('/call/preview',plan,{Origin:'https://evil.example'})).status,403);
  assert.equal((await post('/call/preview',plan,{'Sec-Fetch-Site':'cross-site'})).status,403);
  const preview=await (await post('/call/preview',plan)).json();assert(preview.approvalToken);
+ assert.equal(preview.preview.model,'gpt-realtime-2.1');
+ const miniPreview=await (await post('/call/preview',{...plan,model:'gpt-realtime-2.1-mini'})).json();
+ assert.equal(miniPreview.preview.model,'gpt-realtime-2.1-mini');
+ assert.equal((await post('/call/outbound',{...plan,model:'gpt-realtime-2.1',confirmed:true,approvalToken:miniPreview.approvalToken})).status,409);
+ assert.equal((await post('/call/preview',{...plan,model:'unsupported-model'})).status,400);
  assert.equal((await post('/call/outbound',{...plan,to:'+15555550124',confirmed:true,approvalToken:preview.approvalToken})).status,409);
  assert.equal((await post('/call/outbound',{...plan,confirmed:true,approvalToken:preview.approvalToken})).status,409);
  } finally {await proc.stop();fs.rmSync(tokenDir,{recursive:true,force:true});}
@@ -67,8 +72,16 @@ test('dashboard denies cross-site/simple/DNS-rebound requests; same-origin previ
  const reboundStatus=await new Promise((resolve,reject)=>{const req=http.request(base+'/api/call',{method:'POST',headers:{Host:`evil.example:${port}`,Origin:base,'Content-Type':'application/json'}},res=>{res.resume();resolve(res.statusCode);});req.on('error',reject);req.end(JSON.stringify(plan));});assert.equal(reboundStatus,403);
  assert.equal((await post('/api/call',{},'text/plain')).status,403);assert.equal(requests.length,0);
  assert.equal((await post('/api/call/preview')).status,200);
- const call=await fetch(base+'/api/call',{method:'POST',headers:{Origin:base,'Content-Type':'application/json'},body:JSON.stringify({...plan,confirmed:true,approvalToken:'mock-token'})});assert.equal(call.status,200);assert.equal(requests[0].url,'/call/preview');assert.equal(requests[0].authorization,'Bearer '+fs.readFileSync(path.join(tmp,'token'),'utf8').trim());assert.equal(requests[1].body.approvalToken,'mock-token');assert.equal(requests[1].body.confirmed,true);
- const sync=await fetch(base+'/api/sync',{method:'POST',headers:{Origin:base,'Content-Type':'application/json'},body:'{}'});assert.equal(sync.status,200);
+ const call=await fetch(base+'/api/call',{method:'POST',headers:{Origin:base,'Content-Type':'application/json'},body:JSON.stringify({...plan,confirmed:true,approvalToken:'mock-token'})});assert.equal(call.status,200);assert.equal(requests[0].url,'/call/preview');assert.equal(requests[0].body.model,'gpt-realtime-2.1');assert.equal(requests[0].authorization,'Bearer '+fs.readFileSync(path.join(tmp,'token'),'utf8').trim());assert.equal(requests[1].body.approvalToken,'mock-token');assert.equal(requests[1].body.confirmed,true);
+ const legacyMini=await fetch(base+'/api/call/preview',{method:'POST',headers:{Origin:base,'Content-Type':'application/json'},body:JSON.stringify({...plan,model:'gpt-realtime-mini'})});
+ assert.equal(legacyMini.status,200);assert.equal(requests[2].body.model,'gpt-realtime-2.1-mini');
+ fs.writeFileSync(path.join(tmp,'rtc_sync_fixture.txt'),'CALLER: Sample for dashboard sync');
+ const sync=()=>fetch(base+'/api/sync',{method:'POST',headers:{Origin:base,'Content-Type':'application/json'},body:'{}'});
+ const syncResults=await Promise.all([sync(),sync()]);
+ for(const result of syncResults){assert.equal(result.status,200);assert.equal((await result.json()).calls,1);}
+ const dashboardCalls=await (await fetch(base+'/data/calls.json')).json();
+ assert.equal(dashboardCalls.length,1);
+ assert.match(dashboardCalls[0].transcript,/Sample for dashboard sync/);
  } finally {await proc.stop();await new Promise(r=>mock.close(r));fs.rmSync(tmp,{recursive:true,force:true});}
 });
 test('MCP first-call confirmation is rejected, preview token is returned and forwarded only on confirmation',async()=>{

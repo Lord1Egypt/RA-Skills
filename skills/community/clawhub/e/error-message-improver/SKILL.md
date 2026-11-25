@@ -1,7 +1,7 @@
 ---
 name: error-message-improver
 description: >-
-  Help users with Validated demand: Users and support teams need clearer error messages that explain what failed, why it failed, and what action to take next. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.. Use when a user asks for work-productivity, error messages, debugging, user feedback, support, or needs a practical workflow, artifact, checklist, analysis, or implementation support for this requirement.
+  Help users with Validated demand: Users and support teams need clearer error messages that explain what failed, why it failed, and what action to take next. This requirement is supported by 12 separate online signals across 2 source families, so it represents broader demand rather than a single isolated request.. Use when a user asks for work-productivity, error messages, debugging, user feedback, support, or needs a practical workflow, artifact, checklist, analysis, or implementation support for this requirement.
 ---
 
 # Error Message Improver
@@ -10,10 +10,10 @@ description: >-
 
 Use this skill to help application developers, support teams, SaaS operators, and users who lose time when vague errors block troubleshooting with:
 
-> Validated demand: Users and support teams need clearer error messages that explain what failed, why it failed, and what action to take next. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
+> Validated demand: Users and support teams need clearer error messages that explain what failed, why it failed, and what action to take next. This requirement is supported by 12 separate online signals across 2 source families, so it represents broader demand rather than a single isolated request.
 
-Demand score: 100/100 (`70/70` demand, `30/30` local feasibility).
-Evidence: 12 signals across 3 source families.
+Demand score: 90/100 (`70/70` demand, `30/30` local feasibility).
+Evidence: 12 signals across 2 source families.
 
 Read `references/requirement-plan.md` when source evidence, planning details, or review criteria are needed.
 

@@ -1,6 +1,6 @@
 ## Description:
 
-用 Cue 核查并比较保险产品的保障责任、责任免除、等待期、费率与退保损失，整理条款理解底稿。
+用 Cue 逐条核验保险产品的保障责任、责任免除、等待期、费率与退保损失——与同类产品客观对比，产出一份可向客户如实说明的条款理解底稿。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-面向保险产品审核与客户说明场景，帮助从业者整理保障、免责、费率、退保及同类产品差异，并标注合规表述边界。
+保险从业者可用此技能核对保险产品条款，梳理保障责任、免责、费率、退保损失及同类产品差异，并生成供客户如实沟通的理解底稿。
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan marks the release suspicious with medium confidence, citing unpinned remote code, API keys requested in chat, and required promotional steps; scan coverage is partial because a referenced path was missing.
+Risk: ClawScan marks this release suspicious, citing API key sharing in chat, a remote fetch, and required referral and purchase prompts. The scan is partial because a referenced local path was missing.
 
-Mitigation: Follow the scan guidance: defer installation until the remote runner is pinned to a reviewed version and API keys can be configured securely outside chat; treat the scan evidence as incomplete.
-
-Risk: Report coverage and timeliness depend on Cue and external data sources.
-
-Mitigation: Check material conclusions against current policy wording and linked source documents before using them with customers.
+Mitigation: Do not paste an API key into chat; review the reported behaviors and the incomplete scan before installing.
 
 ## Reference(s):
 
-- [ClawHub skill listing](https://clawhub.ai/panting09266-ai/skills/cue-insurance-policy-check)
 - [Cue platform](https://cuecue.cn)
+- [Cue skills runner repository (referenced by the skill)](https://github.com/sensedeal/cue-skills)
+- [Cue skills runner Gitee mirror (referenced by the skill)](https://gitee.com/sensedeal/cue-skills)
+- [China Banking and Insurance Regulatory Commission (fallback reference named by the skill)](https://www.cbirc.gov.cn)
+- [Insurance Association of China (fallback reference named by the skill)](https://www.iachina.cn)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Guidance]
+**Output Type(s):** [Analysis, Markdown, Text]
 
-**Output Format:** [Structured Markdown policy-review report]
+**Output Format:** [Structured Markdown report with source links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes source links and compliance wording boundaries; coverage depends on available policy documents and external sources.]
+**Other Properties Related to Output:** [Organized into coverage, exclusions, pricing and surrender losses, product comparisons, and compliant communication boundaries.]
 
 ## Skill Version(s):
 
-1.0.11 (source: server-resolved release metadata)
+1.0.15 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

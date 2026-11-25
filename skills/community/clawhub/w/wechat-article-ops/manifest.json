@@ -1,0 +1,58 @@
+{
+  "changelog": "An article now includes its cover, section pictures, a Moments picture, and an optional spoken opening.",
+  "display_name": "WeChat Article and Operating Plan",
+  "entry": "SKILL.md",
+  "homepage": "https://beatra.ai/skills/wechat-article-ops",
+  "icon": "https://beatra.ai/textures/icons/wechat-article-visual-story-0.2.5.png",
+  "localized": {
+    "en": {
+      "description": "Write a WeChat Official Account article with its cover, in-article pictures, and a short operating plan. This article workflow returns title options, the article, a lead cover, section pictures, and a two-week posting note. Use it when one topic should become a publishable article and a simple plan for what to post next.",
+      "display_name": "WeChat Article and Operating Plan",
+      "summary": "A WeChat article, its cover and section pictures, and a two-week posting note.",
+      "tags": [
+        "WeChat article",
+        "Official Account cover",
+        "article illustrations",
+        "posting plan",
+        "WeChat operations"
+      ],
+      "title": "WeChat Article and Operating Plan"
+    },
+    "ja": {
+      "description": "一つのテーマから、WeChat公式アカウントの記事、表紙、節ごとの図、二週間の投稿メモを作ります。本文を確認してから図を作ります。投稿メモはあなたが指定するコラムと頻度に沿って作ります。",
+      "display_name": "WeChat記事と運用",
+      "summary": "WeChat公式アカウントの記事、表紙、節ごとの図、二週間の投稿メモ。",
+      "tags": [
+        "WeChat公式アカウント",
+        "公式アカウント",
+        "記事",
+        "表紙",
+        "投稿メモ"
+      ],
+      "title": "WeChat記事と運用"
+    },
+    "zh": {
+      "description": "把一个选题做成公众号图文与运营的一组成品：标题、正文、公众号封面、文章配图，以及接下来两周发什么。公众号图文先出可改的正文，确认后再出封面和配图。公众号运营按你给出的栏目和频率排期。适合品牌号、个人号和门店号的下一篇。",
+      "display_name": "公众号图文与运营",
+      "summary": "一篇公众号文章、封面和配图，加上两周的发布安排。",
+      "tags": [
+        "公众号图文与运营",
+        "公众号图文",
+        "公众号运营",
+        "公众号封面",
+        "文章配图"
+      ],
+      "title": "公众号图文与运营"
+    }
+  },
+  "mcp": {
+    "authentication": "device-bearer",
+    "credential_file": "~/.beatra/credentials.json",
+    "name": "beatra",
+    "transport": "streamable-http",
+    "url": "https://mcp.beatra.ai/mcp"
+  },
+  "name": "wechat-article-ops",
+  "schema_version": 1,
+  "version": "0.1.2"
+}

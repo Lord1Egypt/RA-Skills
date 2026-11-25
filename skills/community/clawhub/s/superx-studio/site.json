@@ -1,0 +1,26 @@
+{
+  "id": "superx",
+  "name": "superx-studio",
+  "brand": "SuperX",
+  "baseUrl": "https://superx.chat",
+  "home": "https://superx.chat/art/",
+  "artPrefix": "/art/api",
+  "authPage": "https://superx.chat/art/agent-auth/",
+  "pointName": "点数",
+  "ossBase": "https://oc.superx360.com",
+  "mjOssBase": "https://och.superx360.com",
+  "mjOssTypes": [
+    "mj",
+    "midjourney",
+    "sd",
+    "stable-diffusion",
+    "dalle",
+    "dalle2",
+    "dalle3"
+  ],
+  "skillBase": "https://oc.superx360.com/agent-skills",
+  "skillBaseFallback": "https://midjour.oss-cn-beijing.aliyuncs.com/agent-skills",
+  "packages": "v1",
+  "coupon": true,
+  "recordsPage": "https://superx.chat/art/my/records/"
+}

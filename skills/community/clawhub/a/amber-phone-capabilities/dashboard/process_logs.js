@@ -572,21 +572,21 @@ async function processLogsWithOptions(options) {
                 const callId = data?.data?.call_id;
                 if (!callId) continue;
 
-                const sipHeaders = data?.data?.sip_headers || [];
-                const phoneNumbers = extractPhoneNumbersFromSipHeaders(sipHeaders);
+                const routing = data.data.callRouting;
+                const phoneNumbers = routing || extractPhoneNumbersFromSipHeaders(data.data.sip_headers);
 
                 const tsFromName = parseTimestampMsFromIncomingFilename(file);
                 const tsFromCreatedAt = typeof data.created_at === 'number' ? data.created_at * 1000 : null;
                 const timestampMs = tsFromName || tsFromCreatedAt || fs.statSync(filePath).mtimeMs;
 
-                // Determine direction: if From is our Twilio number, it's outbound
-                const direction = (phoneNumbers.from === TWILIO_NUMBER) ? 'outbound' : 'inbound';
+                // New records carry the verified direction. Legacy records use the caller number.
+                const direction = routing?.direction
+                    || ((phoneNumbers.from === TWILIO_NUMBER) ? 'outbound' : 'inbound');
 
                 callMetadata[callId] = {
                     timestamp: timestampMs,
                     direction,
                     ...phoneNumbers,
-                    incomingEvent: data,
                     incomingFile: file
                 };
             } catch (e) {
@@ -760,7 +760,10 @@ async function processLogsWithOptions(options) {
 
 // Run if called directly
 if (require.main === module) {
-    const args = parseArgs(process.argv);
+    const syncFromDashboard = process.argv[2] === '--dashboard-sync' && typeof process.send === 'function';
+    const args = syncFromDashboard
+        ? { logsDir: process.env.LOGS_DIR, outputDir: path.join(__dirname, 'data') }
+        : parseArgs(process.argv);
     if (args.help) {
         console.log('Usage: node process_logs.js [--logs <dir>] [--out <dir>] [--no-sample]');
         console.log('');
@@ -774,6 +777,10 @@ if (require.main === module) {
         process.exit(0);
     }
     processLogsWithOptions(args).then(calls => {
+        if (syncFromDashboard) {
+            process.send({ count: calls.length }, error => process.exit(error ? 1 : 0));
+            return;
+        }
         console.log('Call log processing complete');
         process.exit(0);
     }).catch(err => {

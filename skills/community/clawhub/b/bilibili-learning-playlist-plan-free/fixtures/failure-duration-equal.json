@@ -1,0 +1,13 @@
+{
+  "fixture_notice": "离线页面资料模拟：时长字段互斥合同测试，不是在线采集结果。",
+  "goal": "时长测试",
+  "dailyMinutes": 30,
+  "items": [
+    {
+      "title": "两个字段同时提供",
+      "source": "https://www.bilibili.com/video/BVdemo-both",
+      "visibleMinutes": 10,
+      "visibleDuration": "10:00"
+    }
+  ]
+}

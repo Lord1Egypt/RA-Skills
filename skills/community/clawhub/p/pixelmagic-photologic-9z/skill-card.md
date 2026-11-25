@@ -1,40 +1,54 @@
-## Description: <br>
-PixelMagic-PhotoLogic-9z helps agents edit and batch-process photos locally with ImageMagick presets for styles such as cinematic apocalyptic, fresh Japanese, vintage film, and high-contrast black-and-white looks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PixelMagic-PhotoLogic-9z helps agents apply preset and custom ImageMagick photo edits to RAW, JPG, PNG, TIFF, and related image formats for single-image and batch workflows.
 
-## Publisher: <br>
-[couplefishes](https://clawhub.ai/user/couplefishes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[couplefishes](https://clawhub.ai/user/couplefishes)
 
-## Use Case: <br>
-External users, creators, and developers use this skill to retouch, color-grade, filter, and batch-process RAW, JPG, PNG, and TIFF photos while preserving originals and final output paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on local ImageMagick commands and may suggest package-manager installation commands. <br>
-Mitigation: Review installation commands before running them and keep ImageMagick updated. <br>
-Risk: Photo processing can leave originals, intermediate files, logs, parameters, and final derivatives in a local work directory. <br>
-Mitigation: Process sensitive photos only in a directory you control and delete the generated work folder when retention is not desired. <br>
+## Use Case:
 
+External users and developers use this skill to retouch, color-grade, filter, and batch process photos with ImageMagick-based presets while preserving source images and producing edited output files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/couplefishes/pixelmagic-photologic-9z) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples plus local image file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a local image-editor-work directory with originals, intermediate files when retained, logs, parameter records, and final edited images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and artifact metadata) <br>
+Risk: Local file writes are insufficiently constrained and could place output or preset files outside the intended folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated paths before execution, use a dedicated workspace, and fix path validation before broad or automated use.
+
+Risk: ImageMagick processing can expose the host to dependency and decoder risks when handling untrusted images or outdated installations.
+
+Mitigation: Process only trusted images, install ImageMagick from trusted sources, and keep it current with security patches.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/couplefishes/skills/pixelmagic-photologic-9z)
+- [ClawHub publisher profile](https://clawhub.ai/user/couplefishes)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Image files plus concise Markdown status with file paths and optional command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create working, temporary, parameter, log, and final output files during image editing.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence and _skillhub_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

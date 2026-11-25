@@ -1,0 +1,4 @@
+interface:
+  display_name: "Consent-First Email Drafter"
+  short_description: "Draft allowlisted emails for human review without sending."
+  default_prompt: "Use $consent-first-email-drafter to create an allowlisted email draft and approval checklist without sending it."

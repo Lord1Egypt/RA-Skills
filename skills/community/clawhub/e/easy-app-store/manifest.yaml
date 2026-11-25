@@ -1,0 +1,22 @@
+name: easy-app-store
+display_name: easyAppStore
+slug: easy-app-store
+version: 0.2.3
+category: 应用发布 / App Release
+author: xxjrq
+description: 通过 Easy WebBridge 复用已登录浏览器，完成 iOS 构建、资料填写、上传、提交审核和状态检查。
+trigger_words:
+  - App Store 自动上架
+  - iOS 自动上架
+  - 提交 App Store 审核
+  - 检查苹果审核
+  - 处理苹果审核拒绝
+tags:
+  - ios
+  - app-store-connect
+  - app-release
+  - easy-webbridge
+  - 自动上架
+license: MIT-0
+repository: https://github.com/xxjrq/easy-app-store
+icon: assets/icon-512.png

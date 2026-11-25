@@ -1,6 +1,6 @@
 ## Description:
 
-Collects public Kuaishou videos, creator posts, comments, and engagement metrics through keyword, profile, or video-link queries, returning structured data for content research and analysis.
+Retrieves public Kuaishou videos, creator posts, and comments and returns structured engagement data for content research and comparison.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Kuaishou creators, marketers, and analysts can search public videos, review a creator’s public posts, and examine video comments and engagement metrics to support content planning, competitor research, and audience analysis.
+Creators, marketers, and analysts use this skill to research Kuaishou topics, compare public creator posts, screen creators, and review video comments. It returns structured engagement data for follow-up analysis.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search terms and video or profile links are sent to the GUAIKEI third-party service.
+Risk: Scanner confidence is medium because inspection was partial, and queries send search terms or links to a third-party service.
 
-Mitigation: Avoid submitting confidential queries or links, and use the service only when that data sharing is acceptable.
-
-Risk: Security analysis was incomplete for some skill components.
-
-Mitigation: Review the skill before installation and use, especially if it will handle sensitive workflows.
+Mitigation: Review the service's privacy practices and only submit public-data queries you are comfortable sharing; inspect the scripts before installation.
 
 ## Reference(s):
 
 - [Command options](references/options.md)
-- [GUAIKEI service and token access](https://www.guaikei.com)
+- [Release changelog](references/changelog.md)
+- [Kuaishou data service](https://www.guaikei.com)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis, Guidance]
+**Output Type(s):** [JSON, Analysis]
 
-**Output Format:** [Structured JSON results with concise natural-language summaries]
+**Output Format:** [Structured JSON envelopes containing search results, creator data, or comments]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results depend on whether the request searches videos, retrieves creator posts, or retrieves comments; engagement counts may be numeric or strings.]
+**Other Properties Related to Output:** [Engagement fields vary by command; empty results and errors use the documented response envelope.]
 
 ## Skill Version(s):
 
-1.1.1 (source: SKILL.md frontmatter, package.json, server-resolved release)
+1.1.2 (source: server-resolved release metadata, SKILL.md frontmatter, package.json, changelog)
 
 ## Ethical Considerations:
 

@@ -1,0 +1,4544 @@
+[
+  {
+    "industry": "全国国有企业",
+    "size": "全行业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "全国国有企业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "全国国有企业",
+    "size": "中型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "全国国有企业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "工业",
+    "size": "全行业",
+    "present_count": 9,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "lp",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "工业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "工业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "工业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "煤炭工业",
+    "size": "全行业",
+    "present_count": 9,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "lp",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "煤炭工业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "煤炭工业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "煤炭工业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "石油石化工业",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "石油石化工业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "石油石化工业",
+    "size": "中型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "石油石化工业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "石油和天然气开采业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "石油和天然气开采业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "石油和天然气开采业",
+    "size": "中型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "石油和天然气开采业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "石油加工及炼焦业",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "石油加工及炼焦业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "石油加工及炼焦业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "石油加工及炼焦业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "冶金工业",
+    "size": "全行业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "冶金工业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "冶金工业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "冶金工业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "黑色金属矿采选业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "有色金属矿采选业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "黑色金属冶炼业",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "有色金属冶炼业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "建材工业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "建材工业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "建材工业",
+    "size": "中型企业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "建材工业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "建筑用矿石采选业",
+    "size": "全行业",
+    "present_count": 14,
+    "missing": [
+      "opm",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "水泥及石膏制造业",
+    "size": "大型企业",
+    "present_count": 14,
+    "missing": [
+      "opm",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "水泥及石膏制造业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "砖瓦、石材等建筑材料制造业",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "平板玻璃制品业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "结构性金属制品制造业",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "建筑、安全用金属制品制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "化学工业",
+    "size": "全行业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "化学工业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "化学工业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "化学工业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "基础化学原料制造业",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "基础化学原料制造业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "基础化学原料制造业",
+    "size": "中型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "基础化学原料制造业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "肥料制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "农药制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "日用化学产品制造业",
+    "size": "全行业",
+    "present_count": 9,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "lp",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "化学纤维制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "橡胶制品业",
+    "size": "全行业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "塑料制品业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "森林工业",
+    "size": "全行业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "食品工业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "食品工业",
+    "size": "大型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "食品工业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "食品工业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "农副食品加工业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "食品制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "纺织工业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "纺织工业",
+    "size": "大型企业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "纺织工业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "纺织工业",
+    "size": "小型企业",
+    "present_count": 9,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "lp",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "棉化纤纺织业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "医药工业",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "医药工业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "医药工业",
+    "size": "中型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "医药工业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "化学药品制造业",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "中药材及中成药加工业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "机械工业",
+    "size": "全行业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "机械工业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "机械工业",
+    "size": "中型企业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "机械工业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "金属制品业",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "金属工具制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "通用设备制造业",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "通用设备制造业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "通用设备制造业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "通用设备制造业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "锅炉及原动设备制造业",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "金属加工机械制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "其他通用设备制造业",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "轴承制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "专用设备制造业",
+    "size": "全行业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "专用设备制造业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "专用设备制造业",
+    "size": "中型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "专用设备制造业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "冶金矿山建筑设备制造业",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "矿山机械制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "建筑工程用机械制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "冶金专用设备制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "化工、木材、非金属加工设备制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "轻纺设备制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电子和电工机械专用设备制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "农林牧渔专用机械制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "医疗仪器设备制造业",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "交通运输设备制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "交通运输设备制造业",
+    "size": "大型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "交通运输设备制造业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "交通运输设备制造业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "汽车制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "汽车制造业",
+    "size": "大型企业",
+    "present_count": 9,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "lp",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "汽车制造业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "汽车制造业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "汽车整车制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "汽车零部件及配件制造业",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "铁路运输设备制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "船舶制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "船舶制造业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "船舶制造业",
+    "size": "中型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "船舶制造业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "摩托车制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电气机械和器材制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电气机械和器材制造业",
+    "size": "大型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电气机械和器材制造业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电气机械和器材制造业",
+    "size": "小型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电机制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "输配电及控制设备制造业",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电工器材制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "家用电力器具制造业",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "照明器具制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "仪器仪表制造业",
+    "size": "全行业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "仪器仪表制造业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "仪器仪表制造业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "仪器仪表制造业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "通用仪器仪表制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "专用仪器仪表制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电子工业",
+    "size": "全行业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电子工业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电子工业",
+    "size": "中型企业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电子工业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "计算机制造业",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "通信设备制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "广播电视设备制造业",
+    "size": "全行业",
+    "present_count": 9,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "lp",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "家用影视设备制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电子元、器件制造业",
+    "size": "全行业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电力热力燃气工业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电力热力燃气工业",
+    "size": "大型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电力热力燃气工业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电力热力燃气工业",
+    "size": "小型企业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电力生产业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电力生产业",
+    "size": "大型企业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电力生产业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电力生产业",
+    "size": "小型企业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "火力发电业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "火力发电业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "火力发电业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "火力发电业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "水力发电业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "水力发电业",
+    "size": "大型企业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "水力发电业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "水力发电业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "风力发电业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "风力发电业",
+    "size": "大型企业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "风力发电业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "风力发电业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "太阳能发电业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "太阳能发电业",
+    "size": "大型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "太阳能发电业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "太阳能发电业",
+    "size": "小型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电力供应业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电力供应业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电力供应业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电力供应业",
+    "size": "小型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "热力生产和供应业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "燃气生产和供应业",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "水生产与供应业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "自来水生产和供应业",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "污水处理及其再生利用业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "轻工业",
+    "size": "全行业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "轻工业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "轻工业",
+    "size": "中型企业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "轻工业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "采盐业",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "酒、饮料和精制茶制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "酒、饮料和精制茶制造业",
+    "size": "大型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "酒、饮料和精制茶制造业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "酒、饮料和精制茶制造业",
+    "size": "小型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "白酒制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "啤酒制造业",
+    "size": "全行业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "精制茶加工业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "纺织服装服饰业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "皮革毛皮羽绒及其制品业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "家具制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "造纸及纸制品业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "印刷和记录媒介复制业",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "文教体育用品制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "工艺品及其他制造业",
+    "size": "全行业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "其他工业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "其他工业",
+    "size": "大型企业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "其他工业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "其他工业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "建筑业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "建筑业",
+    "size": "大型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "建筑业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "建筑业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "房屋和土木工程建筑业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "房屋和土木工程建筑业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "房屋和土木工程建筑业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "房屋和土木工程建筑业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "房屋建筑业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "房屋建筑业",
+    "size": "大型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "房屋建筑业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "房屋建筑业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "土木工程建筑业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "建筑安装业",
+    "size": "全行业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "建筑安装业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "建筑安装业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "建筑安装业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "建筑装饰业",
+    "size": "全行业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "交通运输仓储及邮政业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "交通运输仓储及邮政业",
+    "size": "大型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "交通运输仓储及邮政业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "交通运输仓储及邮政业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "铁路运输业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "道路运输业",
+    "size": "全行业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "道路运输业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "道路运输业",
+    "size": "中型企业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "道路运输业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "高速公路",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "城市公共交通业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "公共电汽车客运业",
+    "size": "全行业",
+    "present_count": 9,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "lp",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "城市轨道交通业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "水上运输业",
+    "size": "全行业",
+    "present_count": 9,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "lp",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "水上运输业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "水上运输业",
+    "size": "中型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "水上运输业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "港口业",
+    "size": "全行业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "航空运输业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "机场",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "机场",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "机场",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "机场",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "仓储业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "仓储业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "仓储业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "仓储业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "信息技术服务业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "信息技术服务业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "信息技术服务业",
+    "size": "中型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "信息技术服务业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "电信业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "软件和信息技术服务业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "批发和零售业",
+    "size": "全行业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "批发和零售业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "批发和零售业",
+    "size": "中型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "批发和零售业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "商业贸易",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "商业贸易",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "商业贸易",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "商业贸易",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "食品、饮料及烟草制品批发与零售",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "纺织、服装及日用品批发与零售",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "文化、体育用品及器材批发与零售",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "医药及医疗器材批发与零售",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "综合零售",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "物资贸易",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "物资贸易",
+    "size": "大型企业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "物资贸易",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "物资贸易",
+    "size": "小型企业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "矿产品、建材及化工产品批发",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "机械设备、五金及电子产品批发",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "汽车、摩托车、燃料及零配件专门零售",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "粮食业",
+    "size": "全行业",
+    "present_count": 9,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "lp",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "粮食业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "粮食业",
+    "size": "中型企业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "粮食业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "粮油批发与零售",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "粮油仓储",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "住宿和餐饮业",
+    "size": "全行业",
+    "present_count": 9,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "lp",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "住宿和餐饮业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "住宿和餐饮业",
+    "size": "中型企业",
+    "present_count": 9,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "lp",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "住宿和餐饮业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "住宿业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "住宿业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "住宿业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "住宿业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "餐饮业",
+    "size": "全行业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "房地产业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "房地产业",
+    "size": "大型企业",
+    "present_count": 9,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "lp",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "房地产业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "房地产业",
+    "size": "小型企业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "房地产开发经营业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "房地产开发经营业",
+    "size": "大型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "房地产开发经营业",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "房地产开发经营业",
+    "size": "小型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "物业管理业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "社会服务业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "社会服务业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "社会服务业",
+    "size": "中型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "社会服务业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "投资公司",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "信息咨询服务业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "人力资源服务业",
+    "size": "全行业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "大旅游",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "大旅游",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "大旅游",
+    "size": "中型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "大旅游",
+    "size": "小型企业",
+    "present_count": 9,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "lp",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "科研设计企业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "工程管理服务业",
+    "size": "全行业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "地质勘查业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "公共设施管理业",
+    "size": "全行业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "汽车维修与维护服务业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "文化、体育和娱乐业",
+    "size": "全行业",
+    "present_count": 9,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "lp",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "出版业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "广播电影电视业",
+    "size": "全行业",
+    "present_count": 9,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "lp",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "文化艺术业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "农林牧渔业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "农林牧渔业",
+    "size": "大型企业",
+    "present_count": 19,
+    "missing": [
+      "two_gold",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "农林牧渔业",
+    "size": "中型企业",
+    "present_count": 18,
+    "missing": [
+      "cash_cov",
+      "cash_debt",
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "农林牧渔业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "农业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "农业",
+    "size": "大型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "农业",
+    "size": "中型企业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "农业",
+    "size": "小型企业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "林业",
+    "size": "全行业",
+    "present_count": 10,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "eva",
+      "ocf_ratio",
+      "ebitda",
+      "cost_per",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "畜牧业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "渔业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "ebitda",
+      "cost_per",
+      "profit_g",
+      "rev_g"
+    ]
+  },
+  {
+    "industry": "石油石化工业",
+    "size": "全行业",
+    "present_count": 12,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "soc",
+      "ocf_ratio",
+      "soc_return",
+      "ebitda",
+      "quick",
+      "profit_g"
+    ]
+  },
+  {
+    "industry": "黑色金属冶炼",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "soc",
+      "soc_return",
+      "ebitda",
+      "cost_per"
+    ]
+  },
+  {
+    "industry": "有色金属业",
+    "size": "全行业",
+    "present_count": 12,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "soc",
+      "ocf_ratio",
+      "soc_return",
+      "ebitda",
+      "quick",
+      "profit_g"
+    ]
+  },
+  {
+    "industry": "煤炭工业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "soc",
+      "soc_return",
+      "ebitda",
+      "cost_per"
+    ]
+  },
+  {
+    "industry": "电力生产业",
+    "size": "全行业",
+    "present_count": 12,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "soc",
+      "ocf_ratio",
+      "soc_return",
+      "ebitda",
+      "quick",
+      "profit_g"
+    ]
+  },
+  {
+    "industry": "电力供应业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "soc",
+      "soc_return",
+      "ebitda",
+      "cost_per"
+    ]
+  },
+  {
+    "industry": "通信业",
+    "size": "全行业",
+    "present_count": 12,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "soc",
+      "ocf_ratio",
+      "soc_return",
+      "ebitda",
+      "quick",
+      "profit_g"
+    ]
+  },
+  {
+    "industry": "商贸业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "soc",
+      "soc_return",
+      "ebitda",
+      "cost_per"
+    ]
+  },
+  {
+    "industry": "航空航天",
+    "size": "全行业",
+    "present_count": 12,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "soc",
+      "ocf_ratio",
+      "soc_return",
+      "ebitda",
+      "quick",
+      "profit_g"
+    ]
+  },
+  {
+    "industry": "船舶工业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "soc",
+      "soc_return",
+      "ebitda",
+      "cost_per"
+    ]
+  },
+  {
+    "industry": "航空运输业",
+    "size": "全行业",
+    "present_count": 12,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "soc",
+      "ocf_ratio",
+      "soc_return",
+      "ebitda",
+      "quick",
+      "profit_g"
+    ]
+  },
+  {
+    "industry": "水上运输业",
+    "size": "全行业",
+    "present_count": 19,
+    "missing": [
+      "two_gold",
+      "soc",
+      "soc_return",
+      "ebitda",
+      "cost_per"
+    ]
+  },
+  {
+    "industry": "建筑业",
+    "size": "全行业",
+    "present_count": 12,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "soc",
+      "ocf_ratio",
+      "soc_return",
+      "ebitda",
+      "quick",
+      "profit_g"
+    ]
+  },
+  {
+    "industry": "汽车工业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "soc",
+      "soc_return",
+      "ebitda",
+      "cost_per"
+    ]
+  },
+  {
+    "industry": "化学工业",
+    "size": "全行业",
+    "present_count": 12,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "soc",
+      "ocf_ratio",
+      "soc_return",
+      "ebitda",
+      "quick",
+      "profit_g"
+    ]
+  },
+  {
+    "industry": "机电设备制造业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "soc",
+      "soc_return",
+      "ebitda",
+      "cost_per"
+    ]
+  },
+  {
+    "industry": "通信设备制造业",
+    "size": "全行业",
+    "present_count": 12,
+    "missing": [
+      "opm",
+      "cash_cov",
+      "two_gold",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "soc",
+      "ocf_ratio",
+      "soc_return",
+      "ebitda",
+      "quick",
+      "profit_g"
+    ]
+  },
+  {
+    "industry": "建材工业",
+    "size": "全行业",
+    "present_count": 20,
+    "missing": [
+      "soc",
+      "soc_return",
+      "ebitda",
+      "cost_per"
+    ]
+  },
+  {
+    "industry": "医药工业",
+    "size": "全行业",
+    "present_count": 0,
+    "missing": [
+      "roe",
+      "opm",
+      "roa",
+      "cash_cov",
+      "tat",
+      "art",
+      "cat",
+      "two_gold",
+      "dar",
+      "cash_debt",
+      "int_debt",
+      "icr",
+      "rd",
+      "lp",
+      "eva",
+      "soc",
+      "ocf_ratio",
+      "soc_return",
+      "ebitda",
+      "cost_per",
+      "inv_turn",
+      "quick",
+      "profit_g",
+      "rev_g"
+    ]
+  }
+]

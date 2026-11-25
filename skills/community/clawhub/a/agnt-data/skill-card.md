@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and AI agents use this skill to retrieve structured social, web, and SEO data across supported platforms, and to receive and process hosted webhook events.
+Developers and AI agents use the skill to retrieve structured social, web, and SEO data through one API, and to receive and process hosted webhook deliveries.
 
 ### Deployment Geography for Use:
 
@@ -22,45 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The service receives the API key and data sent through its API.
+Risk: Webhook receive URLs are the only authentication, and incoming events are not signature-verified.
 
-Mitigation: Install only if you trust the service, and protect the API key as a credential.
+Mitigation: Treat each receive URL as a secret and verify event authenticity through another trusted channel before acting on consequential events.
 
-Risk: Incoming webhook payloads are accepted without vendor signature verification and may be untrusted.
+Risk: The security scan was partial, covering 10 of 11 components, with a degraded tool-misuse check.
 
-Mitigation: Independently verify consequential events before acting on them; treat the receive URL as a secret.
-
-Risk: The security scan covered 10 of 11 components and one analyzer was degraded, leaving incomplete evidence.
-
-Mitigation: Review the skill and its behavior before installing or deploying it.
+Mitigation: Review the unscanned component and complete a full security assessment before relying on the skill in production.
 
 ## Reference(s):
 
 - [Social Data documentation](https://superagnt.com/r/ch-social-data-docs)
-- [Social Data MCP server](https://mcp.superagnt.com/mcp/social-data)
-- [Facebook API reference](references/facebook/README.md)
-- [Instagram API reference](references/instagram/README.md)
-- [LinkedIn API reference](references/linkedin/README.md)
-- [Reddit API reference](references/reddit/README.md)
-- [SEO API reference](references/seo/README.md)
-- [TikTok API reference](references/tiktok/README.md)
-- [Web API reference](references/web/README.md)
-- [X API reference](references/x/README.md)
-- [YouTube API reference](references/youtube/README.md)
+- [Scoped Social Data MCP server](https://mcp.superagnt.com/mcp/social-data)
+- [Social Data ClawHub listing](https://clawhub.ai/superagnt/skills/social-data)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON data, Markdown]
+**Output Type(s):** [JSON, Markdown, Guidance]
 
-**Output Format:** [Structured JSON API results and scraped page content as Markdown]
+**Output Format:** [Structured JSON data, Markdown page content, and setup and workflow guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results depend on the selected platform endpoint and the user's service access.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-2.0.14 (source: frontmatter, server release)
+2.0.19 (source: frontmatter)
 
 ## Ethical Considerations:
 

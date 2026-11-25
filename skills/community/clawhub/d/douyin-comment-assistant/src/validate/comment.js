@@ -1,36 +1,35 @@
-const utils = require("../utils/utils");
+const { extractDouyinUrl } = require("./url");
 
-/**
- * 规范抖音视频URL
- * @param {string} url - 输入的URL
- * @returns {string} 规范后的URL
- */
-function douyinPostUrl(url) {
-  url = url.trim();
-  if (url.includes("https://www.douyin.com/note/")) {
-    url = url.substring(url.indexOf("https://www.douyin.com/note/"));
-  } else if (url.includes("https://www.douyin.com/video/")) {
-    url = url.substring(url.indexOf("https://www.douyin.com/video/"));
-  } else {
-    url = url.replace(/[^a-zA-Z0-9_ -]/g, "");
+function parseDouyinAweme(url) {
+  const extracted = extractDouyinUrl(url);
+  if (extracted) {
+    if (
+      /\/(video|note)\//i.test(extracted) ||
+      /v\.douyin\.com\//i.test(extracted)
+    ) {
+      return extracted;
+    }
+    return null;
   }
 
-  if (url.includes(" ")) {
-    url = url.substring(0, url.indexOf(" "));
+  const s = String(url ?? "")
+    .trim()
+    .replace(/[^0-9a-zA-Z_-]/g, "");
+  if (!s || !/^\d+$/.test(s)) {
+    return null;
   }
-  return url;
+  return s;
 }
 
-function optionFormat(limit) {
-  limit = Number(limit);
-  if (limit < 1 || limit > 10000) {
-    utils.printError("获取的评论数量必须在1-10000之间");
-    limit = 10;
+function assertCommentLimit(limit) {
+  const n = Number(limit);
+  if (!Number.isInteger(n) || n < 1 || n > 10000) {
+    throw new Error(`评论数量 limit ${limit} 无效, 允许 1-10000 的整数`);
   }
-  return limit;
+  return n;
 }
 
 module.exports = {
-  douyinPostUrl,
-  optionFormat,
+  parseDouyinAweme,
+  assertCommentLimit,
 };

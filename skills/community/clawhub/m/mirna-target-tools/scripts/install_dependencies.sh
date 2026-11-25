@@ -1,72 +1,53 @@
-#!/bin/bash
-# Install dependencies for bioinformatics skill
+#!/usr/bin/env bash
+# Install optional dependencies for mirna-target-tools.
+#
+# Security posture:
+#   * never calls sudo and never installs system packages
+#   * installs the real miRanda 3.3a from bioconda (no source-build fallback)
+#   * Python packages go to the user site; R packages go to ~/R/library
+#
+# Usage:
+#   bash scripts/install_dependencies.sh
+set -euo pipefail
 
-set -e
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-echo "Installing bioinformatics dependencies..."
+usage() {
+    sed -n '2,12p' "$0" | sed 's/^# \{0,1\}//'
+}
 
-# Detect OS
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    echo "Detected Linux"
-    sudo apt-get update
-    sudo apt-get install -y wget tar build-essential python3-pandas python3-numpy
-    
-    # Python deps for annotation / plotting (optional)
-    pip3 install --user mygene matplotlib
-    
-    # Install miRanda from GitHub mirror (original site down)
-    echo "Installing miRanda from GitHub mirror..."
-    cd /tmp
-    wget https://github.com/miRanda/miRanda/archive/refs/tags/3.3a.tar.gz -O miRanda-3.3a.tar.gz
-    tar xzf miRanda-3.3a.tar.gz
-    cd miRanda-3.3a
-    ./configure
-    make
-    sudo make install
-    cd /tmp
-    rm -rf miRanda-3.3a.tar.gz miRanda-3.3a
-    
-    # Install TargetScan (requires Perl)
-    echo "Installing TargetScan (perl libraries)..."
-    sudo apt-get install -y perl perl-doc libxml-perl
-    echo "Note: You need to download TargetScan database separately from:"
-    echo "https://www.targetscan.org/cgi-bin/targetscan/data_download.cgi"
-    
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-    echo "Detected macOS"
-    if ! command -v brew &> /dev/null; then
-        echo "Homebrew not found. Please install Homebrew first from https://brew.sh/"
-        exit 1
-    fi
-    
-    brew install python3 wget
-    pip3 install pandas numpy mygene matplotlib
-    
-    echo "Installing miRanda from GitHub mirror..."
-    cd /tmp
-    curl -LO https://github.com/miRanda/miRanda/archive/refs/tags/3.3a.tar.gz -o miRanda-3.3a.tar.gz
-    tar xzf miRanda-3.3a.tar.gz
-    cd miRanda-3.3a
-    ./configure
-    make
-    sudo make install
-    cd /tmp
-    rm -rf miRanda-3.3a.tar.gz miRanda-3.3a
-    
-    echo "Note: TargetScan database needs to be downloaded separately from:"
-    echo "https://www.targetscan.org/cgi-bin/targetscan/data_download.cgi"
-    
-    echo "For Cytoscape, download from: https://cytoscape.org/download.html"
-else
-    echo "Unsupported OS. Please install tools manually."
+case "${1:-}" in
+    -h|--help) usage; exit 0 ;;
+    "") ;;
+    *) echo "Error: unknown option '$1'" >&2; exit 2 ;;
+esac
+
+echo "Installing optional dependencies for mirna-target-tools..."
+echo "System packages are NEVER installed automatically (no sudo in this script)."
+echo
+
+echo "Installing Python packages (user site, no sudo) ..."
+if ! python3 -m pip install --user --upgrade pandas numpy mygene matplotlib; then
+    echo "  pip install failed. Use a virtualenv or your distro packages instead." >&2
     exit 1
 fi
 
-# Install Cytoscape - optional, user can install GUI themselves
-echo ""
-echo "✅ Basic dependencies installed!"
-echo ""
-echo "Next steps:"
-echo "1. Download TargetScan database from https://www.targetscan.org/"
-echo "2. Install Cytoscape from https://cytoscape.org/ for visualization"
-echo "3. Run check_env.py again to verify installation"
+echo
+echo "Installing the real miRanda 3.3a with conda (no sudo, no source build) ..."
+bash "${SCRIPT_DIR}/install_miranda_conda.sh"
+
+cat <<'EOF'
+
+TargetScan is not distributed here. Download it yourself from:
+  https://www.targetscan.org/cgi-bin/targetscan/data_download.cgi
+
+Cytoscape (optional GUI) is available from:
+  https://cytoscape.org/download.html
+
+Finally, verify the environment:
+  python3 scripts/check_env.py
+
+Real miRanda 3.3a is required by the default workflow.
+Verify it directly with:
+  bash scripts/install_miranda_conda.sh --check
+EOF

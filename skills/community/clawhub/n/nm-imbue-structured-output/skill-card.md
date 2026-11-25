@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Reviewers and analysts use this skill when finalizing reviews or analyses to turn findings into consistent, actionable deliverables for stakeholders or documentation.
+Developers and reviewers use this skill when finalizing a review or analysis to present findings consistently, assign actionable follow-ups, and attach supporting evidence.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Report appendices may include credentials, personal information, or confidential material from evidence and raw data.
+Risk: Sharing full evidence or raw data without checking sensitivity could expose confidential information.
 
-Mitigation: Review and redact sensitive content before attaching commands, evidence logs, or raw data.
+Mitigation: Review supporting material before sharing, redact sensitive information, and provide only necessary excerpts to appropriate recipients.
 
-Risk: The security scan was partial because a referenced local script was missing, leaving the review incomplete.
+Risk: The security scan was partial because a referenced local script was unavailable, so that script's behavior remains unassessed.
 
-Mitigation: Confirm that all referenced local components are present and review them before installing or using the skill.
+Mitigation: Review the referenced script and its behavior before relying on the skill.
 
 ## Reference(s):
 
-- [ClawHub-listed plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
+- [Night Market Imbue plugin](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Guidance]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Structured Markdown deliverable]
+**Output Format:** [Structured Markdown sections and lists]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Sections depend on the deliverable template and may include findings, recommendations, action items, and appendices.]
+**Other Properties Related to Output:** [Organized findings, action items, and supporting material for review deliverables]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

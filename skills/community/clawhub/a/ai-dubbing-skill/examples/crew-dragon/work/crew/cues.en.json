@@ -1,0 +1,124 @@
+{
+ "language": "en",
+ "cues": [
+  {
+   "start": 0.0,
+   "end": 4.957,
+   "tokens": [
+    "I",
+    "think",
+    "another",
+    "piece",
+    "of",
+    "it",
+    "is",
+    "kind",
+    "of",
+    "coming",
+    "up",
+    "with",
+    "a",
+    "concept",
+    "of",
+    "how,"
+   ],
+   "i": 1,
+   "text": "I think another piece of it is kind of coming up with a concept of how,"
+  },
+  {
+   "start": 5.04,
+   "end": 10.357,
+   "tokens": [
+    "for",
+    "a",
+    "highly",
+    "automated",
+    "vehicle,",
+    "you",
+    "don't",
+    "lose",
+    "sight",
+    "of",
+    "kind",
+    "of",
+    "the",
+    "need"
+   ],
+   "i": 2,
+   "text": "for a highly automated vehicle, you don't lose sight of kind of the need"
+  },
+  {
+   "start": 10.44,
+   "end": 14.017,
+   "tokens": [
+    "for",
+    "the",
+    "crew",
+    "to",
+    "always",
+    "have",
+    "a",
+    "safe",
+    "path",
+    "home."
+   ],
+   "i": 3,
+   "text": "for the crew to always have a safe path home."
+  },
+  {
+   "start": 14.1,
+   "end": 16.617,
+   "tokens": [
+    "You",
+    "don't",
+    "necessarily",
+    "have",
+    "to",
+    "save",
+    "the",
+    "mission",
+    "with",
+    "the",
+    "crew,"
+   ],
+   "i": 4,
+   "text": "You don't necessarily have to save the mission with the crew,"
+  },
+  {
+   "start": 16.7,
+   "end": 18.457,
+   "tokens": [
+    "but",
+    "you",
+    "need",
+    "to",
+    "save",
+    "the",
+    "crew",
+    "with",
+    "the",
+    "crew,"
+   ],
+   "i": 5,
+   "text": "but you need to save the crew with the crew,"
+  },
+  {
+   "start": 18.54,
+   "end": 21.4,
+   "tokens": [
+    "is",
+    "kind",
+    "of",
+    "the",
+    "mindset",
+    "that",
+    "we've",
+    "put",
+    "out",
+    "there."
+   ],
+   "i": 6,
+   "text": "is kind of the mindset that we've put out there."
+  }
+ ]
+}

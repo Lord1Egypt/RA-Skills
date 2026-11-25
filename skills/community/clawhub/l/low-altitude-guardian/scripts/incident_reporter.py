@@ -16,6 +16,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
 
+from path_safety import safe_component, safe_join
+
 PROJECT_ROOT = Path(__file__).parent.parent
 INCIDENTS_DIR = PROJECT_ROOT / ".guardian" / "incidents"
 FEEDBACK_DIR = PROJECT_ROOT / ".guardian" / "feedback"
@@ -152,7 +154,7 @@ def save_incident(report: IncidentReport, output_path: str = None) -> str:
     """保存事件报告。"""
     if output_path is None:
         INCIDENTS_DIR.mkdir(parents=True, exist_ok=True)
-        output_path = str(INCIDENTS_DIR / f"{report.incident_id}.json")
+        output_path = str(safe_join(INCIDENTS_DIR, f"{safe_component(report.incident_id)}.json"))
 
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(asdict(report), f, ensure_ascii=False, indent=2)
@@ -267,7 +269,7 @@ def generate_model_feedback(report: IncidentReport) -> dict:
 
     # 保存反馈数据
     FEEDBACK_DIR.mkdir(parents=True, exist_ok=True)
-    feedback_path = FEEDBACK_DIR / f"feedback_{report.incident_id}.json"
+    feedback_path = safe_join(FEEDBACK_DIR, f"feedback_{safe_component(report.incident_id)}.json")
     with open(feedback_path, "w", encoding="utf-8") as f:
         json.dump(feedback, f, ensure_ascii=False, indent=2)
 
@@ -483,7 +485,7 @@ def _list_incidents():
 
 def _load_and_display(incident_id: str):
     """加载并显示事件报告。"""
-    incident_file = INCIDENTS_DIR / f"{incident_id}.json"
+    incident_file = safe_join(INCIDENTS_DIR, f"{safe_component(incident_id)}.json")
     if not incident_file.exists():
         print(f"错误: 事件 {incident_id} 不存在")
         sys.exit(1)

@@ -1,0 +1,289 @@
+/* 基础模板的示例色；正式课件通过主题变量自行配色。
+   SVG 内写死的颜色需随主题一同检查。 */
+:root {
+  --bg: #18232d;
+  --ink: #e8eef2;
+  --muted: #aebbc5;
+  --grid: #40515e;
+  --accent: #f2e85c;
+  --accent-2: #8fe3e6;
+  --pale: #d4dde3;
+  --side: #111a21;
+}
+
+/* 字体定义由每份课件的主题文件加载，示例字集不能充当通用中文字库。 */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #0b1218;
+  color: var(--ink);
+  font-family: "Latin Modern Roman", "Noto Serif SC", "SimSun", serif;
+}
+
+/* 外壳：左侧关键帧总览、右侧舞台、底部工具条 */
+.deck {
+  display: flex;
+  height: 100%;
+}
+
+.deck-side {
+  width: 168px;
+  flex: 0 0 168px;
+  padding: 10px;
+  overflow-y: auto;
+  background: var(--side);
+  border-right: 1px solid var(--grid);
+}
+
+.deck-thumbs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.thumb {
+  position: relative;
+  width: 148px;
+  height: 83.25px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--grid);
+  background: var(--bg);
+  cursor: pointer;
+}
+
+.thumb.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.thumb-inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1280px;
+  height: 720px;
+  transform: scale(0.115625);
+  transform-origin: 0 0;
+  pointer-events: none;
+}
+
+.deck-main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  background: #0b1218;
+}
+
+.deck-stage-wrap {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.stage {
+  position: relative;
+  flex: 0 0 auto;
+  overflow: hidden;
+  background: var(--bg);
+  transform-origin: center center;
+}
+
+.deck-bar {
+  display: flex;
+  height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  border-top: 1px solid var(--grid);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.deck-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.deck-bar button {
+  padding: 5px 12px;
+  border: 1px solid var(--grid);
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.deck-bar button:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #18232d;
+}
+
+.deck.presenting .deck-side,
+.deck.presenting .deck-bar {
+  display: none;
+}
+
+.deck.presenting .deck-main {
+  background: #000;
+}
+
+/* 帧内元素一律绝对定位，帧文件只写 left/top/width */
+.frame {
+  position: absolute;
+  inset: 0;
+  display: none;
+}
+
+.frame > * {
+  position: absolute;
+}
+
+.frame h1 {
+  margin: 0;
+  font-family: "Latin Modern Roman", "FZXiaoBiaoSong-B05S", "Noto Serif SC", "SimSun", serif;
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: 0.01em;
+}
+
+.frame .sub {
+  margin: 0;
+  color: var(--muted);
+  font-size: 32px;
+  line-height: 1.5;
+}
+
+.frame .tag {
+  font-size: 21px;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.frame .fig {
+  transform-origin: 0 0;
+}
+
+.frame .fig svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.frame .bullet {
+  margin: 0 0 10px;
+  font-size: 32px;
+  line-height: 1.45;
+}
+
+.frame .bullet b {
+  color: var(--accent-2);
+  font-weight: 400;
+}
+
+.frame .bullet::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin: 0 10px 2px 0;
+  background: var(--accent);
+}
+
+.frame .step {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--grid);
+}
+
+.frame .step-num {
+  font-size: 19px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.frame .step h3 {
+  margin: 6px 0 0;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.frame .step p {
+  margin: 6px 0 0;
+  font-size: 27px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* 许可全文在放映时可打开查阅，收起时不覆盖翻页区域。 */
+#levermath-licenses {
+  position: fixed;
+  left: 8px;
+  bottom: 8px;
+  z-index: 999999;
+  max-width: min(560px, 95vw);
+  max-height: 80vh;
+  overflow: auto;
+  border: 1px solid #aaa;
+  background: #fff;
+  color: #222;
+  padding: 6px;
+  font: 12px sans-serif;
+}
+
+#levermath-licenses summary { cursor: pointer; }
+#levermath-licenses:not([open]) { pointer-events: none; }
+#levermath-licenses:not([open]) summary { pointer-events: auto; }
+
+/* 帧内平移示例：物体在整个过程中保持可见 */
+.frame .motion-track {
+  border: 1px solid var(--grid);
+}
+
+.frame .motion-track-line {
+  position: absolute;
+  left: 52px;
+  right: 80px;
+  top: 55px;
+  border-top: 2px dashed var(--grid);
+}
+
+.frame .motion-object {
+  position: absolute;
+  left: 40px;
+  top: 20px;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--bg);
+  font: 38px "Latin Modern Roman", serif;
+  display: grid;
+  place-items: center;
+  will-change: transform;
+}
+
+.frame .motion-goal {
+  position: absolute;
+  right: 40px;
+  top: 37px;
+  color: var(--muted);
+  font-size: 22px;
+}
+
+[data-tex] .katex {
+  font-size: 1em;
+}

@@ -1,6 +1,6 @@
 ## Description:
 
-Helps agents write and troubleshoot PECMD2012 WinPE scripts for lightweight Windows GUI tools, system utilities, boot and startup automation, disk and registry tasks, and debugging.
+Guides developers in writing PECMD2012 WinPE scripts for lightweight Windows GUIs, system tools, startup tasks, automation, and debugging.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use this skill to generate and troubleshoot PECMD2012 scripts for WinPE automation, GUI utilities, startup initialization, disk partitioning, registry work, process control, and system information collection.
+Developers creating WinPE utilities can use this skill to write or debug PECMD startup scripts, GUI tools, and system, storage, and networking utilities.
 
 ### Deployment Geography for Use:
 
@@ -22,44 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Generated scripts may include privileged WinPE or administrator operations such as disk partitioning, registry edits, process termination, shutdown, shell changes, network configuration, direct DLL calls, or DeviceIoControl calls.
+Risk: ClawScan flags example scripts involving disk repartitioning and attacker-controlled input reaching executable GUI syntax; some bundled files were only partly analyzed.
 
-Mitigation: Review generated scripts before running them, test in a VM or disposable PE image, and back up disks and registry hives before applying changes.
-
-Risk: Generated examples can expose sensitive network settings or credentials, especially in ADSL or WiFi connection patterns.
-
-Mitigation: Avoid hardcoded credentials and use runtime input or operator-provided values for secrets.
-
-Risk: Dynamic script evaluation patterns can execute untrusted file content.
-
-Mitigation: Do not copy the rules.ini dynamic-evaluation pattern for untrusted files; validate and constrain external script or configuration input before loading it.
+Mitigation: Have the examples and bundled executables independently reviewed before installation. Do not run examples on systems or disks containing data you need, and treat the scan as incomplete.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/virtualhotbar/skills/pecmd-pro-max)
-- [PECMD2012 interpreter](https://pecmd.net)
 - [PECMD command reference](references/commands-full.md)
 - [PECMD GUI reference](references/pecmd-gui.md)
-- [WinPE startup reference](references/pe-startup.md)
-- [Storage, registry, and device how-tos](references/how-tos/storage.md)
-- [System, process, and thread how-tos](references/how-tos/system.md)
-- [GUI how-tos](references/how-tos/gui.md)
-- [Network, SOCK, COM, and WMI how-tos](references/how-tos/net.md)
+- [WinPE startup guide](references/pe-startup.md)
+- [Storage how-tos](references/how-tos/storage.md)
+- [System how-tos](references/how-tos/system.md)
 - [Troubleshooting guide](references/troubleshooting.md)
+- [PECMD](https://pecmd.net)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+**Output Type(s):** [Code, Configuration, Guidance]
 
-**Output Format:** [Markdown guidance with PECMD script snippets and command examples]
+**Output Format:** [PECMD .wcs, .wci, .wce, or .ini scripts with explanatory text]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include privileged WinPE commands that require human review before execution.]
+**Other Properties Related to Output:** [Scripts and guidance tailored to the requested WinPE task.]
 
 ## Skill Version(s):
 
-1.7.1 (source: ClawHub release metadata; artifact frontmatter shows 1.5.5 and README badge shows 1.5.1)
+1.8.1 (source: frontmatter and server release evidence)
 
 ## Ethical Considerations:
 

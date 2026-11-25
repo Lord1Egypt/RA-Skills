@@ -84,15 +84,36 @@ export default defineConfig({
 })
 ```
 
-This runner-level setting applies to the one code bundle shared by all Playwright Check Suites. An unset or empty-string value leaves the cache key unchanged, so an optional environment variable is safe. The old `caching.dependencyCache.version` location is deprecated but still works with a warning. Upgrade every environment that runs the CLI before migrating, then remove the old property and set `runner.cache.install.version`; declaring both locations is a fatal config error. For one ad-hoc reinstall, use `--refresh-cache` with `checkly test`, `checkly pw-test`, `checkly trigger`, or `checkly checks run` instead of changing committed configuration.
+This runner-level setting applies to the one code bundle shared by all Playwright Check Suites. An unset or empty-string value leaves the cache key unchanged, so an optional environment variable is safe. Migration warning: `caching` is removed and fails configuration loading. Replace `caching.dependencyCache.version` with `runner.cache.install.version` and ensure every environment uses a CLI that supports the current setting. For one ad-hoc reinstall, use `--refresh-cache` with `checkly test`, `checkly pw-test`, `checkly trigger`, or `checkly checks run` instead of changing committed configuration.
 
 ## Configuration validation diagnostics
 
 Commands that load `checkly.config.*` collect configuration problems and render them with config-file attribution instead of stopping at the first error. `test`, `pw-test`, `validate`, `deploy`, and `import plan` show config diagnostics before project or construct diagnostics; fatal config diagnostics exit with status 1. Read and fix the full set before rerunning rather than addressing only the first line.
 
-`checkly trigger` also rejects an invalid config instead of silently continuing. A missing or otherwise unloadable config can still be tolerated by trigger-only workflows, so use `npx checkly validate` when the config itself must be proved valid. Deprecation diagnostics such as the legacy cache-property warning are non-fatal, but should still be migrated after every CLI environment is current. Diagnostics may be rendered on stdout; automation must use the process exit status rather than assuming stderr contains every failure.
+`checkly trigger` also rejects an invalid config instead of silently continuing. A missing or otherwise unloadable config can still be tolerated by trigger-only workflows, so use `npx checkly validate` when the config itself must be proved valid. Human-readable diagnostics go to stderr; command results go to stdout. Use exit status to distinguish failure (1), invalid arguments (2), and pending confirmation (3). Removed properties are errors, including when passed through JavaScript or type casts.
 
 Constructs may be declared directly in `checkly.config.*`. The CLI records that config file as their declaring source, so relative paths on those constructs resolve from the config file's directory rather than the shell's working directory. This includes a config-declared `CheckGroup`'s `browserChecks.testMatch` and a setup script's `entrypoint`; keep those paths relative to the config file and do not rewrite them as process-relative workarounds.
+
+## Deployment defaults and runtime diagnostics
+
+Dashboard display settings belong on the `Dashboard` construct, not a new `checkly.config.ts` key. CLI **10.4.0+** accepts `sortByStatus` (default `false`, failing checks first), `showCheckRunLinks` (default `false`, bar-chart run links), and `showGroupNames` (default `true`). Only omitted text properties are cleared: `logo` and `header` to `''`; `customUrl`, `customDomain`, `favicon`, `link`, `description` to `null`. Every other omitted Dashboard property preserves its stored value, including web edits; this includes tags, layout, refresh/pagination, display/privacy booleans and custom CSS. Set intended values explicitly. [Immutable construct source](https://github.com/checkly/checkly-cli/blob/34833c407768368d6ce64c759a979aec029b732f/packages/cli/src/constructs/dashboard.ts) and [CSS bundle source](https://github.com/checkly/checkly-cli/blob/34833c407768368d6ce64c759a979aec029b732f/packages/cli/src/constructs/dashboard-bundle.ts).
+
+Deploy writes properties carried in its payload; omission behavior is resource- and property-specific, not universal ownership of stored values. For checks, omitting description/intent clears it; omitting automatic repair restores account inheritance. Retry defaults and alert-channel/dashboard/private-location/maintenance resets are listed in `checkly-deploy`; review the plan before applying web-only values that code would reset.
+
+`checks.shouldFail` applies only to `ApiCheck`, `UrlMonitor` and `TcpMonitor`. It does not invert other check types. Migration warning: remove `checks.browserChecks.shouldFail` and `checks.multiStepChecks.shouldFail`, even when false. Other types that previously inherited true now deploy false, changing their pass/fail interpretation.
+
+Deploy and validate warn when a check has neither public nor private locations after defaults/group settings are resolved. Set `checks.locations`, `checks.privateLocations`, or explicit group/check locations. The warning does not block deployment.
+
+A `SlackAppAlertChannel` with nonempty `slackChannels` fails `validate`, `deploy`, `test` and `pw-test` when the account reports the Checkly Slack app as disconnected, including previously deployed channels. Connect the app in the account integration settings or remove the channel. If the API omits Slack integration state, this check is skipped; that does not establish deliverability.
+
+The native `oxc-parser` reads TypeScript without loading the project's TypeScript compiler, including projects using TypeScript 7. Stricter syntax parsing rejects constructs such as an uninitialized `const` or `await` as an identifier; accessor class fields are supported. A missing platform-native parser package requires reinstalling dependencies with optional packages on the target OS, rather than copying `node_modules` across systems. Malformed `tsconfig.json` is ignored as absent; validate its syntax independently when module/path settings matter.
+
+Check bundling excludes dependencies reached only through declaration-level `import type`, `export type { X } from`, or `export type * from`. It still follows `import { type X } from`: although Checkly's runtime erases that import, a project compiled with `verbatimModuleSyntax` can retain a side-effect import. This is not a blanket exclusion of files containing only types.
+
+Each construct is attributed to the file that declares it, including shared modules. This controls deploy-plan source labels, test file filters, list grouping and relative `entrypoint` paths. When `repoUrl` is unset, deploy/test resolve it from GitHub Actions repository variables, then git `origin`, converting SSH URLs to HTTPS and removing credentials. `init` records the resolved URL in generated config.
+
+Set authentication environment variables before the command starts; loading another `.env` from config/check code cannot change the authenticated account or endpoint mid-run. See `checkly-auth`.
+
 
 ## Configuration file structure
 
@@ -140,7 +161,8 @@ Configure defaults that apply to all checks:
 
 **Example with comprehensive defaults:**
 ```typescript
-import { defineConfig, RetryStrategyBuilder } from 'checkly'
+import { defineConfig } from 'checkly'
+import { RetryStrategyBuilder } from 'checkly/constructs'
 
 export default defineConfig({
   projectName: 'Production Monitoring',
@@ -153,7 +175,7 @@ export default defineConfig({
     
     retryStrategy: RetryStrategyBuilder.fixedStrategy({
       baseBackoffSeconds: 60,
-      maxAttempts: 2,
+      maxRetries: 2,
       maxDurationSeconds: 600,
       sameRegion: true,
     }),
@@ -229,6 +251,7 @@ export default defineConfig({
     
     playwrightChecks: [
       {
+        logicalId: 'e2e-test-suite',
         name: 'E2E Test Suite',
         frequency: 10,
         testCommand: 'npm run test:e2e',
@@ -242,7 +265,7 @@ export default defineConfig({
 
 ### CLI configuration
 
-Configure CLI behavior:
+Configure CLI behavior. Omit `reporters` for automatic `ci` output in CI/agent mode and `list` elsewhere; set it only for an intentional override:
 
 ```typescript
 {
@@ -252,6 +275,7 @@ Configure CLI behavior:
     verbose: boolean,               // Show full logs
     reporters: string[],            // Default reporters
     retries: number,                // Test retry attempts (0-3)
+    maxFailures: number,            // Stop test/trigger after n final failures (integer >= 1)
   }
 }
 ```
@@ -262,7 +286,6 @@ export default defineConfig({
   cli: {
     runLocation: 'us-east-1',
     verbose: false,
-    reporters: ['list'],
     retries: 1,
   },
 })
@@ -364,6 +387,8 @@ new ApiCheck('auth-api', {
 
 ### Available locations
 
+`me-south-1` (Bahrain) is retired. Remove or replace it in check, monitor and group `locations`, shared `checks.locations`, and `cli.runLocation`. TypeScript no longer accepts it; JavaScript or casts fail configuration validation in `validate`, `deploy`, `test` and `pw-test`. An explicit `--location me-south-1` on `test`, `pw-test` or `trigger` is invalid input (exit 2); a retired configured run location is a configuration error (exit 1). Import-generated code omits the retired region.
+
 Common Checkly datacenter locations:
 
 | Region | Location Code |
@@ -371,7 +396,7 @@ Common Checkly datacenter locations:
 | US East (N. Virginia) | `us-east-1` |
 | US West (California) | `us-west-1` |
 | Europe (Ireland) | `eu-west-1` |
-| Europe (Paris) | `eu-central-1` |
+| Europe (Frankfurt) | `eu-central-1` |
 | Asia Pacific (Singapore) | `ap-southeast-1` |
 | Asia Pacific (Tokyo) | `ap-northeast-1` |
 | South America (São Paulo) | `sa-east-1` |

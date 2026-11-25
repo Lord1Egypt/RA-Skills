@@ -1,0 +1,46 @@
+{
+  "name": "codex-workbuddy-control",
+  "version": "0.1.0",
+  "author": "codex-workbuddy-control contributors",
+  "license": "MIT",
+  "entry": "SKILL.md",
+  "requires": {
+    "python": ">=3.10"
+  },
+  "scripts": [
+    "scripts/wb_bus.py",
+    "scripts/self_test.py"
+  ],
+  "references": [
+    "README.md",
+    "README.en.md",
+    "LICENSE.md",
+    "NOTICE.md",
+    "CHANGELOG.md",
+    "agents/openai.yaml",
+    "references/architecture.md",
+    "references/setup.md",
+    "references/commands.md",
+    "references/troubleshooting.md",
+    "references/开工提示词.md",
+    "references/step-prompts.md",
+    "templates/任务包.md",
+    "templates/回执包.md",
+    "templates/验证请求.md",
+    "templates/验证结果.md"
+  ],
+  "tests": [
+    "scripts/self_test.py"
+  ],
+  "description": "Codex 与 WorkBuddy 的文件任务总线：普通派发、WBV 只读独立验收、WBC 隔离候选交接、共享台账与月度复盘。",
+  "privacy": "不包含业务数据或机器专用路径；任务内容由使用者在本机配置的目录中生成。",
+  "platforms": [
+    "macos",
+    "windows",
+    "linux"
+  ],
+  "icons": [
+    "icons/icon.png",
+    "icons/icon-256.png"
+  ]
+}

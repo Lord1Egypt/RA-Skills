@@ -1,6 +1,6 @@
 ## Description:
 
-YuanGe helps agent users choose and combine YottaMeta skills, inspect installed skills, and install or update selected packages.
+元阁 (YuanGe) recommends YottaMeta skill combinations for a task, inventories installed skills, and provides commands to install, update, and manage the skill family across supported agents and directories.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Developers and agent users use it to map a task to YottaMeta skill combinations, check what is installed, and manage installation across supported agent directories.
+Developers and agent users use this skill to choose combinations of YottaMeta skills for a task, inspect local skill installations, and manage installation or updates across agent directories.
 
 ### Deployment Geography for Use:
 
@@ -22,9 +22,17 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The supplied partial scan reports serious execution, filesystem-scope, server-exposure, and unpinned installer risks.
+Risk: Installation examples use an unpinned package, which can change between runs.
 
-Mitigation: Review the reported issues and the installation behavior independently before use; avoid installing until that review is complete.
+Mitigation: Review the release and pin the installer version before execution; use --dry-run to inspect the planned skill and destination changes, and retain the package's exact-version pinning behavior.
+
+Risk: The security evidence reports filesystem and network-exposure issues in adoption paths and installation guidance.
+
+Mitigation: Review the target directories and network activity, and evaluate the installer in an isolated environment with only the filesystem access it needs.
+
+Risk: The scan inspected only 15 of 58 components and reports difficult-to-interpret content and unresolved references.
+
+Mitigation: Review the remaining components and resolve the flagged references before relying on the package in a production environment.
 
 ## Reference(s):
 
@@ -32,22 +40,23 @@ Mitigation: Review the reported issues and the installation behavior independent
 - [Installation flow](references/install-flow.md)
 - [Hub guide](references/hub.md)
 - [Provider protocol](references/provider-protocol.md)
+- [Yotta Skills project repository](https://github.com/YottaMeta/yotta-skills)
+- [Yotta Skills npm package](https://www.npmjs.com/package/@yottameta/yotta-skills)
 - [ClawHub release page](https://clawhub.ai/yottameta/skills/yotta-skills)
-- [npm package](https://www.npmjs.com/package/@yottameta/yotta-skills)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Text, Markdown, Shell commands, Configuration, JSON]
+**Output Type(s):** [Guidance, Text, Shell commands, Configuration]
 
-**Output Format:** [Concise recommendations and command examples; JSON when requested]
+**Output Format:** [Text or JSON reports and Markdown guidance with shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include suggested skill combinations, order, rationale, inventory status, and installation or update commands.]
+**Other Properties Related to Output:** [Commands may install or update skills in a selected directory; routing and inventory can provide recommendations and local reports.]
 
 ## Skill Version(s):
 
-0.30.14 (source: SKILL.md frontmatter, package.json, ClawHub release)
+0.30.16 (source: SKILL.md frontmatter, package.json)
 
 ## Ethical Considerations:
 

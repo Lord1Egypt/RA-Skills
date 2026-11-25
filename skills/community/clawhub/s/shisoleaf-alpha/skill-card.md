@@ -1,6 +1,6 @@
 ## Description:
 
-Provides a structured framework for researching supply-chain bottlenecks by mapping upstream dependencies, testing supplier concentration and substitutability, and checking claims against public sources.
+Applies the ShisoLeaf framework to map supply-chain dependencies and assess potential bottlenecks using public information.
 
 This skill is for research and development only.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Investors and industry researchers can use this skill to map supply-chain layers, identify potential bottlenecks, and organize public evidence for review. It is intended for methodology learning and draft analysis, not individualized investment advice or trade execution.
+Researchers and investors can use it to structure public-source analysis of supply-chain bottlenecks, test assumptions, and record evidence gaps. It supports educational research drafts and does not provide investment recommendations or trading instructions.
 
 ### Deployment Geography for Use:
 
@@ -22,13 +22,17 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Scanner coverage was partial because the skill manifest could not be parsed, so the clean verdict does not establish complete safety.
+Risk: The security review is incomplete because the scanner inspected only part of the Markdown file after a manifest parsing error.
 
-Mitigation: Review the full skill and complete a security scan before installation.
+Mitigation: Review the full SKILL.md manually before use, as the scanner guidance recommends.
 
-Risk: Unverified or stale public information and supply estimates could lead to misleading research conclusions.
+Risk: The framework discusses concentrated small-cap investments and includes performance claims that the skill says are not independently verified.
 
-Mitigation: Check current primary sources, distinguish facts from assumptions, and obtain qualified human review before relying on conclusions.
+Mitigation: Treat the material as educational, verify claims against primary sources, and do not copy positions, leverage, or trading behavior.
+
+Risk: Market and industry examples can become outdated.
+
+Mitigation: Recheck official and company disclosures before relying on dated figures or examples.
 
 ## Reference(s):
 
@@ -36,17 +40,17 @@ Mitigation: Check current primary sources, distinguish facts from assumptions, a
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Markdown]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Markdown with supply-chain breakdowns, evidence checklists, and review notes]
+**Output Format:** [Markdown analysis with tables and structured research notes]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Draft research guidance for human review; does not provide real-time market data, personal risk assessment, or trade execution.]
+**Other Properties Related to Output:** [Research drafts only; no real-time market data, personalized recommendations, price targets, or trade execution.]
 
 ## Skill Version(s):
 
-1.0.3 (source: release evidence and frontmatter)
+1.0.4 (source: artifact frontmatter and server-resolved release)
 
 ## Ethical Considerations:
 

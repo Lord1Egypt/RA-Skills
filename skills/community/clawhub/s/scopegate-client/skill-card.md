@@ -1,42 +1,55 @@
-## Description: <br>
-Use ScopeGate to verify agent scope before any consequential action involving money, data writes, external API calls, or file system changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use ScopeGate to verify agent scope before any consequential action involving money, data writes, external API calls, or file system changes.
 
-## Publisher: <br>
-[clauderodriguez2026-boop](https://clawhub.ai/user/clauderodriguez2026-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clauderodriguez2026-boop](https://clawhub.ai/user/clauderodriguez2026-boop)
 
-## Use Case: <br>
-Developers and agent operators use this skill to require a ScopeGate authorization check before actions involving money, data writes, external API calls, file system changes, or work that was not explicitly pre-authorized in the session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The verification request sends requested action details and an API key to the configured ScopeGate service. <br>
-Mitigation: Use a trusted ScopeGate URL, protect and rotate the API key if exposed, and avoid placing unnecessary sensitive details in requested_action. <br>
-Risk: Proceeding when authorization is unavailable or denied could allow consequential actions outside the intended scope. <br>
-Mitigation: Treat denied or unreachable ScopeGate responses as stop conditions and call ScopeGate fresh for every consequential action. <br>
+## Use Case:
 
+Agents and agent operators use this skill to require ScopeGate authorization checks before consequential actions such as payments, data writes, external API calls, and file system changes.
 
-## Reference(s): <br>
-- [ScopeGate Client on ClawHub](https://clawhub.ai/clauderodriguez2026-boop/scopegate-client) <br>
-- [ScopeGate service](https://scopegate.ai) <br>
-- [ScopeGate verification endpoint](https://api.scopegate.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a grant ID, agent ID, requested action, and API key for each verification call.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill gives a third-party service control over whether covered agent actions proceed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when ScopeGate is intended to gate consequential actions, and review denials or service outages as stop conditions.
+
+Risk: Authorization details are sent to a configurable endpoint.
+
+Mitigation: Use trusted SCOPEGATE_URL values and narrowly scoped, revocable credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clauderodriguez2026-boop/skills/scopegate-client)
+- [ScopeGate](https://scopegate.ai)
+- [ScopeGate API endpoint](https://api.scopegate.ai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Directs agents to stop when ScopeGate denies or cannot verify a covered action.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

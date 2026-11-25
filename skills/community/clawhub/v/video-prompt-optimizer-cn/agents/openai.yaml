@@ -1,0 +1,4 @@
+interface:
+  display_name: AI视频提示词优化
+  short_description: 将中文视频想法整理成可复制提示词、镜头动作顺序与人物场景连续性约束
+  default_prompt: 请提供原始 AI 视频提示词和目标画面意图；我会输出可复制提示词、镜头动作顺序和连续性约束，不调用视频生成 API。

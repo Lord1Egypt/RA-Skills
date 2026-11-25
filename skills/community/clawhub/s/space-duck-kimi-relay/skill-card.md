@@ -1,6 +1,6 @@
 ## Description:
 
-This optional Space Duck add-on signs users in to Kimi locally and provides a localhost proxy for inference through their Kimi membership.
+Runs a local Kimi device-code sign-in and localhost proxy so self-hosted Space Duck instances can use the owner's Kimi membership, with an optional capped OpenRouter fallback.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,49 +14,43 @@ MIT-0
 
 ## Use Case:
 
-Developers running self-hosted Space Duck installations use this skill to sign in to Kimi with a browser-approved device flow and connect their runtime to a local inference proxy.
+Developers running Space Duck on their own infrastructure can sign in to a Kimi membership and connect a compatible runtime through a local proxy. They can optionally configure a metered OpenRouter fallback.
 
 ### Deployment Geography for Use:
 
-Global, except for workloads requiring Western data residency; Kimi inference is processed in China.
+Global (Kimi inference is processed in China).
 
 ## Known Risks and Mitigations:
 
-Risk: Overridden endpoints can receive authentication credentials.
+Risk: Changed authentication or API endpoint settings could route tokens and prompts to an unintended host.
 
-Mitigation: Keep the default HTTPS endpoints and bearer authentication enabled; change endpoints only when you trust the destination.
+Mitigation: Keep endpoint overrides unset unless needed, and confirm the destination hosts are trusted before signing in or sending prompts.
 
-Risk: Concurrent paid fallback requests can exceed the advertised local daily cap.
+Risk: Concurrent fallback requests may exceed the stated daily cap and increase pay-per-token spend.
 
-Mitigation: Enable OpenRouter fallback only if you accept paid requests, and set provider-side spending limits because the local cap is not reliable under concurrency.
+Mitigation: Leave OPENROUTER_API_KEY unset unless fallback is needed; when enabled, monitor usage and limit concurrent fallback requests.
 
-Risk: Kimi inference is processed in China, without Western data residency.
+Risk: Disabling proxy authentication may allow other local processes or users to use the proxy and spend the account's quota.
 
-Mitigation: Do not route conversations through this skill when Western data residency is required.
-
-Risk: Printed credentials or an always-on background service can expose secrets or run when unwanted.
-
-Mitigation: Protect printed secrets and install the background service only when wanted.
+Mitigation: Keep bearer authentication enabled except on an isolated single-user machine.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/askegor/skills/space-duck-kimi-relay)
-- [Kimi authentication service](https://auth.kimi.com)
-- [OpenRouter API (optional paid fallback)](https://openrouter.ai/api/v1)
+- [ClawHub release](https://clawhub.ai/askegor/skills/space-duck-kimi-relay)
 
 ## Skill Output:
 
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [API calls, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Text and Markdown with shell commands and endpoint configuration]
+**Output Format:** [Command-line interaction and OpenAI-compatible JSON or SSE responses]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May print a short-lived access token when the token command is explicitly requested; protect printed secrets.]
+**Other Properties Related to Output:** [Optional pay-per-token fallback; default daily cap is 200 calls.]
 
 ## Skill Version(s):
 
-0.10.4 (source: server-resolved release evidence)
+0.10.5 (source: artifact/_meta.json and server-resolved release evidence)
 
 ## Ethical Considerations:
 

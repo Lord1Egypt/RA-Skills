@@ -2,8 +2,11 @@
 // v0.12.0 — 默认内置 light 后端（零 npm 依赖）；evolver 为可选集成（--engine evolver）
 /**
  * pi_evolve.mjs — Pi × EvoX 闭环编排器
- * 默认本地运行（无外发）、人工审核门默认开启；唯一外发路径 --llm-refine 为显式 opt-in
- * （端点未配置时自动禁用），且与 --auto-approve 组合默认拒绝（需 --allow-unreviewed-refine）。
+ * 外发边界两轴（0.43 O08 精确化，勿混）：①进程与存储（引擎/CLI/钩子/基因库）全部本地；
+ * ②模型请求为**显式 opt-in 的外发**——本编排器会把任务文本与代码发给用户配置的 provider
+ * （必须显式传 --provider/--model/--api-key 才会发起）；--llm-refine 为另一条独立 opt-in
+ * 外发路径（端点未配置时自动禁用），且与 --auto-approve 组合默认拒绝（需 --allow-unreviewed-refine）。
+ * 人工审核门默认开启。
  *
  * 一条命令跑通：Pi 执行 R1 → 适配器转换 session → evolver ingest --distill（自动起草基因）
  *   → [人工审核门：evolver review --approve] → evolver inject → Pi 执行 R2（注入基因）
@@ -316,6 +319,13 @@ try {
   }
   if (stagedEntries.length) log(`[stage] 已预置模板内容到 LAB 根: ${stagedEntries.join(', ')}`);
 } catch (e) { log(`[stage] 预置失败: ${String(e).slice(0, 120)}`); }
+// 0.43 O08（ClawHub #5 提级修复）：extra 清理候选（analyze.py 等）的预存状态**显式记录**——
+// 0.38 的保护只覆盖模板同名条目（preExistingLabArtifacts 仅由 templateDir 条目构建），
+// 「LAB 根预存在 analyze.py 但模板无此文件」时表值为 undefined → cleanup 仍会删除用户预存文件
+// （0.43 探针 case1 实测复现）。补齐：extra 候选无论模板是否包含，均记录运行前存在性。
+for (const extra of ['analyze.py']) {
+  preExistingLabArtifacts[extra] = fs.existsSync(path.join(LAB, extra));
+}
 
 // ---------- 主循环 ----------
 const results = [];

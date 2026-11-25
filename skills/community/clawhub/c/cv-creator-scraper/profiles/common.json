@@ -1,0 +1,9 @@
+{
+  "profile": "common",
+  "auth_mode": "env",
+  "enable_skill_update": true,
+  "default_service_level": null,
+  "hide_cv_meta": false,
+  "balance_precheck": false,
+  "partner_code": ""
+}

@@ -1,6 +1,6 @@
 ## Description:
 
-Shopify (shopify.com). Use this skill for ANY Shopify request — reading, creating, updating, and deleting data. Whenever a task involves Shopify, use this skill instead of calling the API directly.
+Use an OOMOL-connected Shopify account to read, create, update, and delete Shopify data.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Shopify store operators and developers use the skill to read and manage data in a connected Shopify account. It supports catalog, orders, customers, inventory, content, and other Shopify resources.
+External Shopify users can use the skill through their connected OOMOL account to inspect and manage store data, including products, orders, customers, inventory, and content. The skill uses the oo CLI to run the selected Shopify action and return its result.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Fallback setup downloads and runs software without a separate installation approval step.
+Risk: The security scan rated this skill suspicious because setup runs an unpinned external script and scan coverage was incomplete.
 
-Mitigation: Review and approve the CLI installation separately, preferably using a fixed release whose integrity you can verify.
-
-Risk: OOMOL handles connector requests and manages the Shopify connection; its remote implementation and installer contents were not verified.
-
-Mitigation: Grant only necessary Shopify permissions, require approval for refunds, publishing, updates, and deletions, and review bundled-skill synchronization before allowing persistent agent changes.
+Mitigation: Verify the CLI and installer through a trusted source before installing, and review the installer before running it.
 
 ## Reference(s):
 
-- [Shopify Admin API documentation](https://shopify.dev/docs/api/admin-rest)
-- [Shopify](https://www.shopify.com)
-- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Shopify homepage](https://www.shopify.com)
+- [Shopify Admin REST API documentation](https://shopify.dev/docs/api/admin-rest)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+- [ClawHub listing](https://clawhub.ai/oomol/skills/oo-shopify)
 
 ## Skill Output:
 
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance]
+**Output Type(s):** [JSON, Text, Shell commands, Guidance]
 
-**Output Format:** [CLI commands with JSON request payloads and concise instructions]
+**Output Format:** [JSON action results with Markdown guidance and inline shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Write and destructive actions require user confirmation.]
+**Other Properties Related to Output:** [Results vary by Shopify action and may include records, operation status, or errors.]
 
 ## Skill Version(s):
 
-1.0.6 (source: frontmatter)
+1.0.7 (source: frontmatter)
 
 ## Ethical Considerations:
 

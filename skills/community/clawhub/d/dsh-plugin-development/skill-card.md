@@ -1,6 +1,6 @@
 ## Description:
 
-This skill guides developers and AI agents through building, debugging, packaging, and publishing DSH/Cordis plugins, with templates and a version gate for the pre-stable upstream.
+Guides developers and AI agents through building, debugging, packaging, and publishing DSH (DeepSeek Harness / Cordis) plugins, with a version gate for the pre-stable upstream.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use this guide to choose a DSH/Cordis plugin form, implement or troubleshoot plugin features, and package a plugin for distribution. It is development guidance and tooling, not an installable DSH plugin.
+Developers use this skill to choose a DSH plugin form, implement and troubleshoot plugin features, and verify packaging and installation. It provides templates, API guidance, version checks, and release workflows for DSH and Cordis plugins.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,40 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Some troubleshooting guidance approves all dependency scripts and keeps notes outside the project.
+Risk: Some package examples are unpinned.
 
-Mitigation: Use a separate development profile, approve dependency build scripts individually, keep recovery notes in the project unless shared agent memory is intended, pin external packages, forward only necessary credentials, and redact configurations before sharing.
+Mitigation: Pin dependency versions and verify package sources before installing them.
+
+Risk: Some testing guidance uses real profiles and live sources.
+
+Mitigation: Use a disposable test profile and non-production data or credentials for live tests.
+
+Risk: The skill includes persistent-memory guidance.
+
+Mitigation: Review what will be retained and exclude secrets and sensitive user data.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/liupengyang-1008/skills/dsh-plugin-development)
-- [Project homepage](https://github.com/liupengyang-1008/dsh-plugin-development)
-- [Version gate and freshness guidance](references/00-version-gate.md)
-- [Plugin templates](references/02-templates.md)
-- [API cookbook](references/03-api-cookbook.md)
-- [Development and packaging workflow](references/06-workflow.md)
-- [Scope and maintenance guidance](references/15-skill-scope-and-maintenance.md)
+- [Version gate](artifact/references/00-version-gate.md)
+- [Plugin templates](artifact/references/02-templates.md)
+- [API cookbook](artifact/references/03-api-cookbook.md)
+- [Workflow and packaging](artifact/references/06-workflow.md)
+- [Common pitfalls](artifact/references/05-pitfalls.md)
+- [Version history](artifact/references/13-version-history.md)
 
 ## Skill Output:
 
 **Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
 
-**Output Format:** [Markdown with code templates, configuration examples, shell commands, and checklists]
+**Output Format:** [Markdown guidance with code examples, shell commands, and configuration templates]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Version-specific examples should be checked against the target DSH release.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.8.1 (source: frontmatter)
+1.11.0 (source: SKILL.md frontmatter, server release evidence)
 
 ## Ethical Considerations:
 

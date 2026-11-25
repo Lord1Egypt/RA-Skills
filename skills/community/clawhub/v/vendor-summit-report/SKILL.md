@@ -3,7 +3,7 @@ name: vendor-summit-report
 description: Build an executive-oriented deep-dive industry report for a major data/AI vendor conference (e.g. Snowflake Summit, Databricks Data+AI Summit / DAIS, Microsoft Build, Google Cloud Next, AWS re:Invent). Use this when the user wants a "深度专题报告" / "专题报告" / "summit report" / "大会报告" for a vendor event, especially as a follow-up to a previous one (e.g. "等 databricks 大会过后用这个做报告"). Produces three aligned deliverables — light-theme HTML, full Markdown, and a WeCom (企微) push version — using a fixed 8-section structure optimized for an industry-insider / executive reader, held to Gartner/Forrester analyst-note standards (state-don't-instruct, vendor-data caveats, a role-based buyer-recommendations section, and confidence-tagged Strategic Planning Assumptions). The HTML follows a judgment-headline + lead + bullet-point reading contract and is optionally put through a reader-fit review. The STRUCTURE and VISUAL STYLE are the reusable asset; the CONTENT (insights, analysis frameworks, industry extension) must be freshly derived from the actual conference — never copy the previous report's specific analytical frameworks (e.g. a "七层治理生态") into a new vendor's report. Covers the proven workflow: research → core judgment → insights-first → product panorama as support → customer evidence → competitive landscape → buyer recommendations → conference-specific industry extension → summary.
 description_zh: 厂商大会深度专题报告
 description_en: Vendor summit deep-dive report
-version: "1.0.4"
+version: "1.0.5"
 agent_created: true
 ---
 
@@ -147,7 +147,7 @@ agent_created: true
    - **R5 限定修订范围**：只改 must-fix + suggested，不重写全文。**修订不得改写内容**，只允许切分、强调、调序、补 caveat。
    - **优先级顺序**：factual correctness → positioning integrity → core comprehension → technical depth → elegance → distribution preference。
    - **高频共识障碍（本类报告实测）**：① 表格与标题层的断言强度强于正文与观察层口径，读者会采信更硬的那一侧——表格里的口径必须与正文同级；② 多口径并行时 caveat 只写在一份材料里，另外两份读者看不到；③ 竞争格局若只写厂商自述定位，读者会当成结论。
-8. **交付**：deliver_attachments 交付三个文件（HTML 第一、MD 第二、企微第三）。如需推送，复用项目 `push_*.py` 脚本模式（WeComChannel + GitHubPagesChannel）：照抄一份现成 `push_*.py`（如 push_ffa_report.py），只改 md_path/html_path/GITHUB_REMOTE_PATH/commit 文案；企微走正式群前按"对外操作先确认"跟用户核对渠道与目标群；GitHub Pages 部署到 `analyst-perspectives/<slug>.html` 独立路径，不覆盖日报 index.html。**Pages 上传成功不等于立即可访问**，构建期间返回 404，需轮询（每次 10 秒，交叉验证一个已知可用路径先确认 Pages 本身正常）。
+8. **交付**：deliver_attachments 交付三个文件（HTML 第一、MD 第二、企微第三）。如需推送，复用项目 `push_*.py` 脚本模式（WeComChannel + GitHubPagesChannel）：照抄一份现成 `push_*.py`（如 push_ffa_report.py），只改 md_path/html_path/GITHUB_REMOTE_PATH/commit 文案；企微走正式群前按"对外操作先确认"跟用户核对渠道与目标群；GitHub Pages 部署到 `analyst-perspectives/<slug>.html` 独立路径，不覆盖日报 index.html。**⚠️ 公开提示：GitHub Pages 部署会把报告发布到公网可访问的 URL（并留存提交历史）；部署前须向用户确认报告内容可以公开，含未公开/内部信息的报告不得部署。****Pages 上传成功不等于立即可访问**，构建期间返回 404，需轮询（每次 10 秒，交叉验证一个已知可用路径先确认 Pages 本身正常）。
 
 ## 模板文件
 

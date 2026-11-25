@@ -1,6 +1,6 @@
 ## Description:
 
-Provides templates and drafts for financial office documents, email, report summaries, and approval workflow mapping.
+Provides templates, checklists, document drafts, and workflow maps for financial office work; it does not execute approvals, send mail, or access institutional systems.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,43 +14,43 @@ MIT-0
 
 ## Use Case:
 
-Financial institution office, operations, and administrative staff can use it to prepare document and meeting templates, draft correspondence, summarize reports, track action items, and map approval workflows. Outputs are reference drafts that require review under the institution's policies by authorized personnel.
+Employees in financial institution administration, operations, and support teams can use the skill to draft meeting minutes, emails, reports, checklists, and workflow maps. Its outputs are reference drafts that require review under the institution's policies before operational use.
 
 ### Deployment Geography for Use:
 
-China (the skill's regulatory examples focus on Chinese financial authorities; verify local applicability).
+Global
 
 ## Known Risks and Mitigations:
 
-Risk: The available security scans found no issues, but inspection was partial and the evidence is incomplete.
+Risk: The security review was incomplete; the absence of scanner findings does not establish that the skill is risk-free.
 
-Mitigation: Review the skill source and obtain complete security inspection before installation, as advised by the security evidence.
+Mitigation: Consider the review limitation before installing and review the skill contents before use.
 
-Risk: Pasted meeting, customer, or institutional material could expose personal or confidential information.
+Risk: User-provided financial or personal information could be included in prompts or drafts.
 
-Mitigation: Remove unnecessary personal data, use placeholders, and do not provide unpublished customer or business information.
+Mitigation: Remove unnecessary personal fields, replace identifiers with placeholders, and avoid entering non-public customer or business data.
 
-Risk: Generated regulatory or workflow guidance may be outdated or conflict with current institutional policy.
+Risk: Regulatory summaries, sample thresholds, and workflow guidance may be outdated or differ from institutional requirements.
 
-Mitigation: Check current official guidance and internal procedures, and have an authorized person review drafts before formal use.
+Mitigation: Check current official sources and institutional policies, and have an authorized person review drafts before operational use.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/gechengling/skills/finance-office-automation)
+- [Finance Office Automation on ClawHub](https://clawhub.ai/gechengling/skills/finance-office-automation)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Plain text or Markdown drafts, templates, checklists, and workflow outlines]
+**Output Format:** [Markdown tables, checklists, and text drafts]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reference material for human review; does not execute approvals, send messages, or access institutional systems.]
+**Other Properties Related to Output:** [Reference drafts and templates; require human review and validation against current institutional policy before operational use.]
 
 ## Skill Version(s):
 
-3.0.5 (source: frontmatter; confirmed by release evidence)
+3.0.6 (source: artifact frontmatter, server-resolved release)
 
 ## Ethical Considerations:
 

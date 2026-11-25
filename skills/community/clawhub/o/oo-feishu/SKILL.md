@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Feishu"
   author: "OOMOL"
-  version: "1.0.8"
+  version: "1.0.9"
   services: ["feishu"]
   icon: "https://static.oomol.com/logo/third-party/feishu.svg"
 ---
@@ -227,7 +227,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_task` — Get one Feishu task by GUID.
 - `get_typed_table` — Read a sub-sheet range into a DataFrame-friendly typed table with inferred dtypes.
 - `get_user` — Get a Feishu user profile. User identity may omit userId to return the authenticated user.
-- `get_vc_meeting` — Get Feishu video meeting metadata and participant data.
+- `get_vc_meeting` — Get Feishu video meeting metadata and participant data. With includeArtifacts, use the meeting's note_id to fetch note details and return note and verbatim document tokens. Requires vc:note:read for note details; meetings without a note return empty relatedArtifacts.
 - `get_vc_meeting_note` — Resolve a video meeting to its note ID and return normalized meeting-note details.
 - `get_vc_note` — Get meeting-note metadata and its related document tokens.
 - `get_vc_recording_metadata` — Get recording URL and duration metadata for a Feishu video meeting.

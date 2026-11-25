@@ -96,6 +96,13 @@ def build_parser():
     s.add_argument("--limit", type=int, default=5, help="返回条数（默认 5）")
     s.add_argument("--lang", default="all", choices=["all", "zh", "en"], help="限定语种")
     s.add_argument("--expand", action="store_true", help="结果不足时自动扩展一次检索词")
+    s.add_argument("--year-from", type=int, default=None, help="发表年份起（如 2022）")
+    s.add_argument("--year-to", type=int, default=None, help="发表年份止（如 2025）")
+    s.add_argument("--doc-types", default=None, help="文献类型，逗号分隔：journal/thesis/standard/patent")
+    s.add_argument("--classification", default=None, help="分类号，L=中图号 或 C=学科（仅中文库）")
+    s.add_argument("--core-only", action="store_true", help="只要核心期刊（硬过滤）")
+    s.add_argument("--sort", default="relevance", choices=["relevance", "newest", "cited"], help="排序方式")
+    s.add_argument("--offset", type=int, default=0, help="跳过前 N 条（翻页，0-1000）")
 
     sub.add_parser("products", help="全平台价目表")
     sub.add_parser("meta", help="版本 / 公告 / 通道就绪状态")
@@ -311,7 +318,11 @@ def dispatch(args):
     if c == "doctor":
         return cmd_doctor(args)
     if c == "search":
-        return emit(owl_api.search(args.query, args.limit, args.lang, args.expand, key=k, base=b), args)
+        doc_types = [t.strip() for t in args.doc_types.split(",") if t.strip()] if args.doc_types else None
+        return emit(owl_api.search(args.query, args.limit, args.lang, args.expand, key=k, base=b,
+                                   year_from=args.year_from, year_to=args.year_to, doc_types=doc_types,
+                                   classification=args.classification, core_only=args.core_only,
+                                   sort=args.sort, offset=args.offset), args)
     if c == "products":
         return emit(owl_api.products(key=k, base=b), args)
     if c == "meta":

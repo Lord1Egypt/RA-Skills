@@ -7,7 +7,7 @@ The self-contained Node 20+ helper has two commands. The npm corpus CLI exposes 
 `node scripts/market-data.mjs snapshot --ids bitcoin,ethereum --provider both --max-age 300 --max-skew 120`
 
 - `--ids`: 1–10 distinct lowercase CoinGecko IDs, each up to 100 characters. Default `bitcoin,ethereum`; ticker-only identification is not performed.
-- `--provider`: `both` (default), `coingecko` or `defillama`.
+- `--provider`: `both` (default), `coingecko` or `defillama` for the aggregate sources. `coinbase-compare` compares CoinGecko with one Coinbase Exchange USD last trade. Supply one of `bitcoin`, `ethereum` or `solana`. This mode defaults to Bitcoin. Unsupported or multiple IDs fail before network access with `unsupported_venue_product`.
 - `--max-age`: 1–86,400 seconds. Default 300; a provider observation more than 60 seconds in the future fails.
 - `--max-skew`: 0–3,600 seconds. Default 120. Only aligned fresh rows get a numerical price spread.
 
@@ -15,7 +15,9 @@ CoinGecko uses the public `https://api.coingecko.com/api/v3/simple/price` endpoi
 
 The result includes `status` (`complete`, `partial`, `unavailable`), normalized parameters, `reads`, comparisons and limitations. `reads` retain provider/source, SHA-256 of successful raw bytes and row-level observations. A valid row includes a finite `priceUsd` from `1e-12` to `1e12`, exact identity, observed/retrieved ISO times and age. Missing, stale or malformed rows include `ok:false` and a stable error. Source URLs contain no credentials.
 
-For both providers, spread = absolute mark difference / arithmetic mean × 100, provided each row passed freshness and the timestamp difference is within `maxSkewSeconds`. The documented price bounds also prevent intermediate arithmetic overflow. It is a discrepancy measure, not a consensus price or oracle test. `incomplete` and `unaligned` comparisons have `spreadPct:null`.
+The venue read records the exact product endpoint, the provider trade ID, last-trade time in UTC (millisecond precision) and `priceType: last-trade`. A last trade can differ from the current bid or ask.
+
+For paired providers, spread = absolute mark difference / arithmetic mean × 100, provided each row passed freshness and the timestamp difference is within `maxSkewSeconds`. The documented price bounds also prevent intermediate arithmetic overflow. It is a discrepancy measure, not a consensus price or oracle test. `incomplete` and `unaligned` comparisons have `spreadPct:null`.
 
 ## History
 
@@ -31,6 +33,6 @@ The standalone strategy CLI accepts this successful envelope as its data input a
 
 ## Failures and local handling
 
-Malformed options fail before network access. HTTP 401/403 map to `authentication_required`, 402 to `payment_required`, and 429 to `rate_limited`; numeric Retry-After up to one hour is retained. The helper performs no retries. Other transport/schema failures use `network_error`, `timeout`, `http_error`, `invalid_content_type`, `invalid_json`, `response_too_large`, `missing_observation`, `stale_observation`, `future_timestamp`, `invalid_confidence`, `invalid_history_observation`, `unexpected_history_granularity`, `gapped_history`, `insufficient_history`, `unexpected_history_range` or `stale_history`.
+Malformed options fail before network access. HTTP 401/403 map to `authentication_required`, 402 to `payment_required`, and 429 to `rate_limited`; numeric Retry-After up to one hour is retained. The helper performs no retries. Other transport/schema failures include `network_error`, `timeout`, `http_error`, `invalid_content_type`, `invalid_json`, `response_too_large`, `missing_observation`, `stale_observation`, `future_timestamp`, `invalid_confidence`, `invalid_history_observation`, `unexpected_history_granularity`, `gapped_history`, `insufficient_history`, `unexpected_history_range` or `stale_history`.
 
 Raw network errors, response bodies and headers are never echoed. Preserve useful partial evidence and original timestamps. Use the existing authorized provider path to resolve access or coverage; do not silently widen a query, enroll a plan, lower the freshness rule or turn errors into zeros.

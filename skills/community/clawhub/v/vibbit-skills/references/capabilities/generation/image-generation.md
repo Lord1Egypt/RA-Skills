@@ -7,3 +7,7 @@ Use [gen_image](../../api/gen_image.md) and preserve an explicit supported model
 The current reference field is `reference_image_urls`. Do not invent singular-reference or mask fields. Limits of this entry are not claims about every model in the family. A supplied image can go directly to supported video editing without regeneration.
 
 Submit only the authorized number of outputs. Do not automatically switch models or repeat uncertain requests. Inspect the actual returned image and URL for composition, text, and size; mark quality as unverified if viewing was unavailable. See [GPT Image](../../models/gpt-image.md).
+
+After any reusable image completes, apply shared [image archiving](../../runtime/image-archiving.md), including standalone images, references, keyframes and comics. Report generation and library registration independently. Retain a pending record when public registration is unavailable; verify and reuse explicitly associated IDs without another upload or generation.
+
+For multiple ready comic pages, follow [comic scheduling](../../runtime/comic-batching.md) without waiting for each image to finish. Distinguish shared references from real dependencies on generated pages. Do not expand other image tasks or impose comic batches on them.

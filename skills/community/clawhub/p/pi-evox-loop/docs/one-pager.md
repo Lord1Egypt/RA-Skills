@@ -16,8 +16,8 @@
 
 ## 信任要素（为什么敢用）
 - **本地优先**：默认后端零依赖纯 Node；唯一外发选项 `--llm-refine` 默认禁用；
-- **四道安全门**：修法守卫/叙述守卫/注入守卫（回归用例 **16/16 恶意样本拦截、7/7 正常零误杀**）/脱敏闸门；
-  > **EN**: Four gates - repair-signal, narration, injection (regression suite: **16/16 malicious samples caught, 7/7 legitimate zero false-kill**), and redaction.
+- **四道安全门**：修法守卫/叙述守卫/注入守卫（回归用例 **31/31 恶意样本拦截、11/11 正常零误杀**（发布门禁每版实测、数字见发布页更新说明；完整套件按设计不随包分发，包内 selftest.mjs 为快速哨兵））/脱敏闸门；
+  > **EN**: Four gates - repair-signal, narration, injection (regression suite: **31/31 malicious samples caught, 11/11 legitimate zero false-kill** (measured in the release gate, figures in the release notes; full suite not shipped in-package, bundled selftest.mjs is a quick sentinel)), and redaction.
 - **可验证的效果**：配对对照实验（扣除重复执行基线 ≈-22%）；
   > **EN**: Measurable effect via paired control runs (repeat-execution baseline of about -22% already deducted).
 - **provenance 签名链**（0.21）：Ed25519 每机身份，池基因验签，篡改拒收。

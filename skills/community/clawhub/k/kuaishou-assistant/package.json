@@ -1,6 +1,6 @@
 {
   "name": "kuaishou-assistant",
-  "version": "1.1.1",
+  "version": "1.1.3",
   "description": "快手数据助手、快手热榜、快手内容研究、作品研究、作品详情、评论分析、评论回复分析、达人数据和达人作品。覆盖 Kuaishou / Kwai short-video research，来自 GuaiKei 社媒数据助手。",
   "keywords": [
     "快手",

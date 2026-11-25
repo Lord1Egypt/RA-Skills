@@ -1,6 +1,6 @@
 ## Description:
 
-Operate the installed JavDB CLI for discovery, authenticated lists, and explicitly authorized account, configuration, state, or preview asset actions.
+Operate the installed JavDB CLI to discover titles and entities, read lists, and perform explicitly authorized account, configuration, marking, or preview-asset actions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-External users and developers use this skill to operate the installed JavDB CLI for scoped discovery, authenticated list reading, account and configuration tasks, and explicitly authorized state changes or preview asset actions.
+External users and developers use this skill to operate the installed JavDB CLI for scoped discovery, personal lists, and explicitly requested account, configuration, watch/want, or preview-asset actions.
 
 ### Deployment Geography for Use:
 
@@ -22,41 +22,42 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The local authentication file contains usernames, passwords, and tokens.
+Risk: The scanner assessment is benign with medium confidence, and Skillspector’s review was partial because three local references could not be resolved.
 
-Mitigation: Do not read, print, upload, or include the authentication file in diagnostics; handle login through a private interactive prompt.
+Mitigation: Review the documented update and installation guidance, and use only features that fit the requested task.
 
-Risk: Image search uploads the selected image to AVScan or a configured provider.
+Risk: Image search uploads the selected image to AVScan or another configured provider.
 
-Mitigation: Use only an image the user has authorized for upload and explain that privacy effect before searching.
+Mitigation: Use image search only with an image the user has authorized for upload, and explain the upload when it matters to the task.
 
-Risk: The security assessment is benign with medium confidence, and Skillspector coverage is partial because three references could not be resolved.
+Risk: The local JavDB authentication file contains passwords and JWTs.
 
-Mitigation: Review the unresolved references and whether self-updates fit the use case; authorize updates explicitly and retain the documented signature and checksum checks.
+Mitigation: Never read, display, upload, or include the authentication file or its contents in diagnostics.
 
 ## Reference(s):
 
-- [Project homepage](https://github.com/FlanChanXwO/javdb-cli)
-- [Authentication and Accounts](references/auth.md)
-- [Discovery and Navigation](references/discover.md)
-- [Installation and Updates](references/install.md)
-- [Preview Media Assets](references/media.md)
-- [Explicit State Changes](references/state.md)
-- [Troubleshooting](references/troubleshooting.md)
+- [JavDB CLI project homepage](https://github.com/FlanChanXwO/javdb-cli)
+- [JavDB CLI skill release](https://clawhub.ai/flanchanxwo/skills/javdb-cli)
+- [Authentication and accounts](artifact/references/auth.md)
+- [Discovery and navigation](artifact/references/discover.md)
+- [Installation and updates](artifact/references/install.md)
+- [Preview media assets](artifact/references/media.md)
+- [Explicit state changes](artifact/references/state.md)
+- [Errors, network, and routing](artifact/references/troubleshooting.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, JSON, NDJSON, Files]
+**Output Type(s):** [text, JSON, NDJSON, shell commands, guidance]
 
-**Output Format:** [Markdown guidance with shell command examples; command results may be text, JSON, or NDJSON, with preview asset files when requested.]
+**Output Format:** [Human-readable text, JSON, or NDJSON, with shell commands for invoking javdb]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Output shape depends on the selected command; preview asset files are saved only for explicitly requested downloads.]
+**Other Properties Related to Output:** [Results follow the requested command scope; structured output distinguishes movie, list, entity, and magnet records, and partial failures remain visible.]
 
 ## Skill Version(s):
 
-0.8.4 (source: frontmatter)
+0.8.5 (source: release evidence and artifact frontmatter)
 
 ## Ethical Considerations:
 

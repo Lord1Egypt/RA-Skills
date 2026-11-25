@@ -1,0 +1,92 @@
+{
+ "_command": "python3 scripts/gen_figure.py -t flow -d templates/flow_pipeline-crispr.json --gate strict -o flow_crispr.png",
+ "layout": "chain",
+ "title": "CRISPR screen data processing chain",
+ "nodes": [
+  {
+   "id": "design",
+   "label": "sgRNA library design",
+   "sublabel": "6 guides/gene, Brunello"
+  },
+  {
+   "id": "transduce",
+   "label": "Transduction",
+   "sublabel": "MOI 0.3, Cas9 cells",
+   "shape": "io"
+  },
+  {
+   "id": "sel",
+   "label": "Selection",
+   "sublabel": "puromycin, 14 d"
+  },
+  {
+   "id": "seq",
+   "label": "Amplicon sequencing",
+   "sublabel": "Illumina, 500x/guide"
+  },
+  {
+   "id": "fastq",
+   "label": "FASTQ store",
+   "sublabel": "BCL convert + demux",
+   "shape": "cylinder"
+  },
+  {
+   "id": "count",
+   "label": "Guide counting",
+   "sublabel": "MAGeCK count"
+  },
+  {
+   "id": "norm",
+   "label": "Normalization",
+   "sublabel": "median-ratio"
+  },
+  {
+   "id": "rank",
+   "label": "Gene ranking",
+   "sublabel": "RRA, FDR < 0.05",
+   "shape": "document"
+  }
+ ],
+ "edges": [
+  {
+   "from": "design",
+   "to": "transduce"
+  },
+  {
+   "from": "transduce",
+   "to": "sel"
+  },
+  {
+   "from": "sel",
+   "to": "seq"
+  },
+  {
+   "from": "seq",
+   "to": "fastq"
+  },
+  {
+   "from": "fastq",
+   "to": "count",
+   "thick": true
+  },
+  {
+   "from": "count",
+   "to": "norm"
+  },
+  {
+   "from": "norm",
+   "to": "rank"
+  },
+  {
+   "from": "rank",
+   "to": "transduce",
+   "label": "secondary screen",
+   "dashed": true
+  }
+ ],
+ "_chart_type": "flow",
+ "_scene": "",
+ "_description": "",
+ "_caption_template": "",
+ "_note": "CRISPR 筛选数据处理链：FASTQ 圆柱存储 + 横链 + 二轮筛选回边——数据管线范式"
+}

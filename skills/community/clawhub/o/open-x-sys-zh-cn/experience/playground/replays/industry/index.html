@@ -1,0 +1,2272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 产业岩芯 · 智能在表层，利润在岩层</title>
+<meta name="description" content="把 AI 产业作为一台系统机器钻开：八层结构、利润分布、资本循环、电力瓶颈与四种未来。数据截至 2026 年 11 月 16 日。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2308161c'/%3E%3Cpath d='M6 8h20M6 14h20M6 20h20M6 26h20' stroke='%23d9a441' stroke-width='2'/%3E%3C/svg%3E">
+<style>
+/* ===== 1. tokens ===== */
+:root{
+  --paper:#e9e5da;
+  --paper2:#dbd7ca;
+  --ash:#b9c0bd;
+  --mid:#8ea1a3;
+  --petrol:#244653;
+  --deep:#16313b;
+  --deeper:#0f232b;
+  --bedrock:#08161c;
+  --ink:#121716;
+  --ink2:#38423f;
+  --copper:#bd7134;
+  --copper2:#e0a052;
+  --oxide:#a3452d;
+  --cobalt:#2f5f7d;
+  --teal:#2f5b5e;
+  --sans:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC","Source Han Sans SC",system-ui,sans-serif;
+  --maxw:1240px;
+  --gutter:clamp(18px,4.2vw,52px);
+}
+body[data-depth="0"]{--bg:var(--bedrock);--fg:var(--paper);--muted:#9db0b2;--line:rgba(233,229,218,.16);--accent:var(--copper2)}
+body[data-depth="1"]{--bg:var(--paper);--fg:var(--ink);--muted:#596360;--line:rgba(18,23,22,.16);--accent:var(--copper)}
+body[data-depth="2"]{--bg:var(--paper2);--fg:var(--ink);--muted:#4e5956;--line:rgba(18,23,22,.18);--accent:var(--copper)}
+body[data-depth="3"]{--bg:var(--mid);--fg:var(--ink);--muted:#2b3a3b;--line:rgba(18,23,22,.22);--accent:var(--ink)}
+body[data-depth="4"]{--bg:var(--petrol);--fg:var(--paper);--muted:#b7c8c8;--line:rgba(233,229,218,.18);--accent:var(--copper2)}
+body[data-depth="5"]{--bg:var(--deep);--fg:var(--paper);--muted:#a6bcbc;--line:rgba(233,229,218,.16);--accent:var(--copper2)}
+body[data-depth="6"]{--bg:var(--deeper);--fg:var(--paper);--muted:#9ab1b2;--line:rgba(233,229,218,.15);--accent:var(--copper2)}
+body[data-depth="7"]{--bg:var(--bedrock);--fg:var(--paper);--muted:#91a7a9;--line:rgba(233,229,218,.15);--accent:var(--copper2)}
+body[data-depth="8"]{--bg:var(--paper);--fg:var(--ink);--muted:#596360;--line:rgba(18,23,22,.16);--accent:var(--copper)}
+
+/* ===== 2. base ===== */
+svg text{font-family:var(--sans);font-variant-numeric:tabular-nums}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bedrock);-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--sans);font-size:16px;line-height:1.75;color:var(--fg);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+h1,h2,h3,h4,p,figure,blockquote,dl,dd{margin:0}
+ul,ol{margin:0;padding:0}
+img,svg{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--copper2);outline-offset:3px}
+::selection{background:var(--copper);color:var(--bedrock)}
+.page{position:relative;background:var(--bg);color:var(--fg);transition:background-color .85s ease,color .85s ease;overflow:clip}
+.page::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.038;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");background-size:180px 180px}
+.wrap{position:relative;z-index:2;width:min(100% - 2*var(--gutter),var(--maxw));margin-inline:auto}
+.wrap--narrow{width:min(100% - 2*var(--gutter),920px)}
+.section{position:relative;z-index:2;padding:clamp(58px,8.4vw,112px) 0}
+.section--tight{padding:clamp(38px,5vw,64px) 0}
+.block-paper{--bg:var(--paper);--fg:var(--ink);--muted:#596360;--line:rgba(18,23,22,.16);--accent:var(--copper);background:var(--bg);color:var(--fg)}
+.block-dark{--bg:var(--bedrock);--fg:var(--paper);--muted:#9db0b2;--line:rgba(233,229,218,.16);--accent:var(--copper2);background:var(--bg);color:var(--fg)}
+.block-china{--bg:#102a33;--fg:#e9e5da;--muted:#a8bcbe;--line:rgba(233,229,218,.16);--accent:#d9a441;background:var(--bg);color:var(--fg)}
+
+/* ===== 3. type ===== */
+.display{font-weight:900;letter-spacing:-.025em;line-height:1.02}
+h1{font-weight:900;font-size:clamp(42px,6.4vw,88px);line-height:.98;letter-spacing:-.03em}
+h2{font-weight:900;font-size:clamp(30px,4.1vw,54px);line-height:1.08;letter-spacing:-.02em;max-width:18em}
+h3{font-weight:700;font-size:clamp(20px,2.2vw,27px);line-height:1.3;letter-spacing:-.01em}
+h4{font-weight:700;font-size:16px;line-height:1.4}
+.lede{font-size:clamp(18px,1.8vw,21px);line-height:1.7;color:var(--fg);max-width:34em}
+p{max-width:44em}
+.body-copy{color:var(--muted);font-size:16px;line-height:1.8}
+.body-copy p+p{margin-top:1em}
+.small{font-size:13px;line-height:1.65;color:var(--muted)}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.kicker{font-size:12px;letter-spacing:.04em;color:var(--muted)}
+
+/* ===== 4. hero ===== */
+.hero{position:relative;z-index:2;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;background:
+  radial-gradient(900px 620px at 78% 42%,rgba(61,104,113,.22),transparent 68%),
+  radial-gradient(600px 400px at 18% 8%,rgba(189,113,52,.08),transparent 70%),
+  var(--bedrock);color:var(--paper);overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(233,229,218,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(233,229,218,.035) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(80% 70% at 60% 40%,#000 30%,transparent 100%)}
+.masthead{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding-top:18px;font-size:12px;letter-spacing:.02em;color:rgba(233,229,218,.55)}
+.masthead .ding{color:var(--copper2)}
+.hero-main{position:relative;z-index:3;flex:1;display:grid;grid-template-columns:1fr;gap:clamp(22px,3.4vw,44px);align-items:center;padding:clamp(28px,5vh,64px) 0 clamp(22px,4vh,42px)}
+.hero-copy{max-width:760px}
+.hero h1{color:var(--paper);margin-bottom:20px}
+.dek{font-size:clamp(17px,1.7vw,20px);line-height:1.7;color:rgba(233,229,218,.74);max-width:30em}
+.hero-note{margin-top:14px;font-size:12px;color:rgba(233,229,218,.46);letter-spacing:.02em}
+.hook{margin-top:clamp(22px,3.2vh,34px);border-top:1px solid rgba(233,229,218,.18);padding-top:16px;max-width:620px}
+.hook-row{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:5px 0}
+.hook-row span{font-size:12px;color:rgba(233,229,218,.6)}
+.hook-row b{font-size:clamp(18px,2vw,24px);font-weight:700;color:var(--copper2);letter-spacing:-.01em;white-space:nowrap}
+.hook p{margin-top:9px;font-size:13px;line-height:1.7;color:rgba(233,229,218,.55);max-width:54em}
+.route{margin-top:clamp(18px,2.6vh,28px);display:flex;align-items:center;gap:0;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;border-top:1px solid rgba(233,229,218,.14);border-bottom:1px solid rgba(233,229,218,.14)}
+.route::-webkit-scrollbar{display:none}
+.route-label{flex:0 0 auto;padding:12px 14px 12px 0;font-size:11px;color:rgba(233,229,218,.42);white-space:nowrap}
+.route-step{flex:0 0 auto;min-height:44px;padding:0 11px;display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(233,229,218,.72);border-left:1px solid rgba(233,229,218,.1);white-space:nowrap}
+.route-step:hover,.route-step[aria-expanded="true"]{color:var(--copper2);background:rgba(224,160,82,.08)}
+.route-step i{font-style:normal;font-size:10px;color:rgba(233,229,218,.32)}
+.route-pop{max-width:680px;min-height:38px;padding-top:10px;font-size:12px;line-height:1.65;color:rgba(233,229,218,.55)}
+.route-pop b{color:var(--copper2);font-weight:600}
+.scroll-cue{position:relative;z-index:3;display:flex;align-items:center;gap:10px;padding-bottom:22px;font-size:11px;color:rgba(233,229,218,.42)}
+.scroll-cue .line{width:1px;height:38px;background:linear-gradient(var(--copper2),transparent);position:relative}
+.scroll-cue .line::after{content:"";position:absolute;left:-2px;top:0;width:5px;height:5px;background:var(--copper2);animation:cue 2.4s ease-in-out infinite}
+@keyframes cue{0%{transform:translateY(0);opacity:1}75%{transform:translateY(32px);opacity:0}100%{opacity:0}}
+
+/* ===== 5. core sample ===== */
+.core-wrap{position:relative;align-self:center;width:100%;max-width:600px;justify-self:end}
+.core-v{width:100%;height:auto;max-height:74vh}
+.core-h{display:none;width:100%}
+.core-svg text{font-family:var(--sans)}
+.core-depth{font-size:11px;fill:rgba(233,229,218,.4);letter-spacing:.03em}
+.core-name{font-size:13px;font-weight:700;fill:var(--paper)}
+.core-val{font-size:10.5px;fill:rgba(233,229,218,.55);letter-spacing:.01em}
+.core-note{font-size:10px;fill:rgba(233,229,218,.38)}
+.core-label{opacity:.3;animation:labelIn .7s ease forwards;animation-delay:calc(.9s + var(--i)*.85s)}
+@keyframes labelIn{to{opacity:1}}
+.core-label.is-on{opacity:1}
+.core-label.is-on .core-name{fill:var(--copper2)}
+.core-arrow{opacity:0;animation:arrowIn .6s ease forwards;animation-delay:calc(1.2s + var(--i)*.85s)}
+@keyframes arrowIn{to{opacity:1}}
+.core-arrow.is-on{opacity:1}
+.drill-line{stroke:var(--copper2);stroke-width:3;stroke-dasharray:660;stroke-dashoffset:660;animation:drill 7.2s cubic-bezier(.5,0,.2,1) forwards}
+.drill-bit{transform:translateY(-632px);animation:bit 7.2s cubic-bezier(.5,0,.2,1) forwards}
+.vein{stroke:var(--copper2);stroke-width:4;stroke-dasharray:9 13;opacity:0;animation:veinIn .6s ease 7.4s forwards,vein 2.8s linear 8s infinite}
+@keyframes drill{0%{stroke-dashoffset:660}100%{stroke-dashoffset:0}}
+@keyframes bit{0%{transform:translateY(-632px)}100%{transform:translateY(0)}}
+@keyframes veinIn{to{opacity:.9}}
+@keyframes vein{from{stroke-dashoffset:0}to{stroke-dashoffset:-44}}
+.core-mini{position:absolute;top:0;right:0;bottom:0;width:14px;display:flex;flex-direction:column;border-left:1px solid rgba(233,229,218,.14)}
+.core-mini span{flex:1}
+.core-mobile{display:none;margin-top:18px}
+.core-mobile svg{width:100%;height:auto}
+.core-mobile .mline{stroke:var(--copper2);stroke-width:2;stroke-dasharray:6 8;animation:mline 3.2s linear infinite}
+@keyframes mline{from{stroke-dashoffset:0}to{stroke-dashoffset:-28}}
+
+/* ===== 6. depth + section headings ===== */
+.depth-tag{display:flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.03em;color:var(--muted);margin-bottom:18px}
+.depth-tag::before{content:"";width:22px;height:1px;background:var(--accent);flex:0 0 auto}
+.depth-num{color:var(--accent);font-weight:600}
+.depth-name{color:var(--muted)}
+.section-head{display:grid;gap:16px;margin-bottom:clamp(28px,4vw,48px)}
+.section-head p{max-width:40em}
+.split{display:grid;grid-template-columns:1fr;gap:clamp(28px,4vw,52px);align-items:start}
+.split-text{min-width:0}
+.split-visual{min-width:0}
+.split--rev .split-visual{order:-1}
+.sticky-visual{position:sticky;top:40px}
+
+/* ===== 7. key numbers, rules, notes ===== */
+.rule{border-top:1px solid var(--line)}
+.key{display:grid;gap:3px;padding:16px 0 0;border-top:1px solid var(--line);margin-top:22px}
+.key-label{font-size:11px;letter-spacing:.03em;color:var(--muted)}
+.key-val{font-size:clamp(32px,4.4vw,52px);font-weight:900;line-height:1.05;letter-spacing:-.03em;color:var(--accent)}
+.key-note{font-size:11px;line-height:1.55;color:var(--muted)}
+.key-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);margin-top:20px}
+.key-cell{background:var(--bg);padding:16px 14px 14px;display:grid;gap:2px}
+.key-cell b{font-size:clamp(22px,2.8vw,30px);font-weight:800;line-height:1.1;letter-spacing:-.02em}
+.key-cell span{font-size:11px;line-height:1.5;color:var(--muted)}
+.quote{border-left:2px solid var(--accent);padding:2px 0 2px 18px;font-size:clamp(17px,1.6vw,20px);line-height:1.65;font-weight:500;color:var(--fg);max-width:34em}
+.quote cite{display:block;margin-top:8px;font-style:normal;font-size:11px;color:var(--muted)}
+.note{font-size:11.5px;line-height:1.65;color:var(--muted);border-top:1px solid var(--line);padding-top:9px;margin-top:18px;max-width:52em}
+.note b{color:var(--fg);font-weight:600}
+.flag{display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:.03em;color:var(--accent);border:1px solid var(--line);padding:3px 7px;white-space:nowrap}
+.flag--risk{color:var(--oxide);border-color:rgba(163,69,45,.35)}
+.cite{font-size:9px;vertical-align:super;line-height:0;color:var(--accent);border-bottom:1px dotted currentColor;margin-left:1px}
+.cite:hover{color:var(--fg);border-bottom-style:solid}
+
+/* ===== 8. charts ===== */
+.chart{margin:0}
+.chart figcaption{font-size:11px;line-height:1.65;color:var(--muted);border-top:1px solid var(--line);padding-top:9px;margin-top:14px;max-width:52em}
+.chart-title{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:11px;color:var(--muted);margin-bottom:12px}
+.chart-title b{font-weight:600;color:var(--fg);font-size:12px}
+.hbars{display:grid;gap:9px}
+.hbar{display:grid;grid-template-columns:minmax(64px,110px) 1fr minmax(48px,76px);align-items:center;gap:10px}
+.hbar-label{font-size:11.5px;line-height:1.35;color:var(--muted)}
+.hbar-track{position:relative;height:16px;border-bottom:1px solid var(--line)}
+.hbar-fill{position:absolute;left:0;top:0;bottom:0;width:var(--w);background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 1.1s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i,0)*70ms)}
+.hbar-fill--outline{background:transparent;border:1px solid var(--accent);border-bottom:0}
+.hbar-fill--oxide{background:var(--oxide)}
+.hbar-fill--muted{background:var(--muted);opacity:.55}
+.hbar-val{font-size:11.5px;text-align:right;font-variant-numeric:tabular-nums;color:var(--fg);white-space:nowrap}
+.chart.is-in .hbar-fill,.chart.is-in .vbar{transform:scaleX(1);transform:scaleY(1)}
+.vchart{display:flex;align-items:flex-end;gap:clamp(8px,1.4vw,16px);height:var(--h,220px);border-bottom:1px solid var(--line);padding-top:12px}
+.vcol{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:flex-end;height:100%;gap:6px}
+.vbar{width:100%;height:var(--h);background:var(--accent);transform:scaleY(0);transform-origin:bottom;transition:transform 1.1s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i,0)*80ms)}
+.vbar--outline{background:transparent;border:1px solid var(--accent);border-bottom:0}
+.vbar--forecast{background:repeating-linear-gradient(135deg,var(--accent) 0 4px,transparent 4px 8px);border:1px solid var(--accent)}
+.vcol-label{font-size:10.5px;line-height:1.35;color:var(--muted);text-align:center}
+.vcol-val{font-size:10.5px;text-align:center;color:var(--fg);font-variant-numeric:tabular-nums}
+.zero-line{position:relative}
+.zero-line::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--line)}
+.stackbar{display:flex;height:24px;border:1px solid var(--line);overflow:hidden}
+.stackbar span{display:block;height:100%;font-size:9px;color:var(--paper);display:flex;align-items:center;justify-content:center;white-space:nowrap}
+.stack-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:8px;font-size:10px;color:var(--muted)}
+.stack-legend i{display:inline-block;width:8px;height:8px;margin-right:5px;vertical-align:-1px}
+.chart-note{font-size:10px;color:var(--muted);margin-top:6px;line-height:1.5}
+.chart-note--risk{color:var(--oxide)}
+.unit-grid{display:grid;grid-template-columns:repeat(13,1fr);gap:4px;max-width:360px;margin-top:4px}
+.unit-grid i{display:block;aspect-ratio:1;background:var(--line);opacity:.55}
+.unit-grid i.on{background:var(--accent);opacity:1}
+.divbars{display:grid;gap:9px}
+.divbar{display:grid;grid-template-columns:minmax(64px,100px) 1fr minmax(48px,72px);align-items:center;gap:9px}
+.divbar-label{font-size:11px;line-height:1.35;color:var(--muted)}
+.divbar-track{position:relative;height:16px;border-bottom:1px solid var(--line)}
+.divbar-track::before{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--line);z-index:1}
+.divbar-fill{position:absolute;top:0;bottom:0;width:calc(var(--w) * .5);transform:scaleX(0);transition:transform 1.1s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i,0)*70ms)}
+.divbar-fill.is-neg{right:50%;transform-origin:right;background:var(--oxide)}
+.divbar-fill.is-pos{left:50%;transform-origin:left;background:var(--accent)}
+.divbar-val{font-size:11px;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.chart.is-in .divbar-fill{transform:scaleX(1)}
+.stackcols{display:flex;align-items:flex-end;gap:clamp(8px,1.4vw,15px);height:240px;border-bottom:1px solid var(--line);padding-top:8px}
+.stackcol{flex:1;min-width:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;gap:6px}
+.stackcol-val{font-size:10.5px;text-align:center;color:var(--fg);font-variant-numeric:tabular-nums}
+.stackcol-bar{position:relative;width:100%;height:var(--h);transform:scaleY(0);transform-origin:bottom;transition:transform 1.1s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i,0)*80ms)}
+.stackcol-bar span{position:absolute;left:0;right:0;display:block}
+.stackcol-bar .seg-h{bottom:0;height:var(--ph);background:var(--cobalt)}
+.stackcol-bar .seg-a{bottom:var(--ph);height:var(--pa);background:var(--copper)}
+.stackcol-label{font-size:10px;line-height:1.35;color:var(--muted);text-align:center;white-space:nowrap}
+.chart.is-in .stackcol-bar{transform:scaleY(1)}
+/* ===== 9. tables ===== */
+.table-wrap{width:100%}
+.table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13.5px;line-height:1.55}
+.table th,.table td{text-align:left;vertical-align:top;padding:11px 10px;border-bottom:1px solid var(--line)}
+.table th{font-size:10.5px;font-weight:600;letter-spacing:.03em;color:var(--muted);border-bottom:1px solid var(--fg)}
+.table td:first-child,.table th:first-child{padding-left:0}
+.table td:last-child,.table th:last-child{padding-right:0}
+.table td b{font-weight:700;color:var(--fg)}
+.table .num{text-align:right;white-space:nowrap}
+.table .muted{color:var(--muted)}
+.table .accent{color:var(--accent);font-weight:700}
+.table tr.is-em td{border-bottom:1px solid var(--accent)}
+.table--compare th:nth-child(2),.table--compare td:nth-child(2){color:var(--fg)}
+.table--compare th:nth-child(3),.table--compare td:nth-child(3){color:var(--fg)}
+.table--tight td,.table--tight th{padding:9px 8px}
+
+/* ===== 10. timeline ===== */
+.timeline{display:grid;gap:0;margin-top:8px}
+.tl-item{display:grid;grid-template-columns:66px 22px 1fr;gap:0;min-height:76px}
+.tl-date{font-size:11px;color:var(--accent);font-weight:600;padding-top:14px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tl-axis{position:relative;display:flex;justify-content:center}
+.tl-axis::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--line);transform:translateX(-50%)}
+.tl-item:first-child .tl-axis::before{top:16px}
+.tl-item:last-child .tl-axis::before{bottom:calc(100% - 16px)}
+.tl-dot{position:relative;z-index:1;width:9px;height:9px;margin-top:15px;background:var(--accent);border-radius:50%;flex:0 0 auto}
+.tl-body{padding:10px 0 18px 14px;min-width:0}
+.tl-body h4{font-size:14px;margin-bottom:2px}
+.tl-body p{font-size:12px;line-height:1.65;color:var(--muted)}
+.tl-body b{color:var(--fg);font-weight:600}
+.tl-item--ghost .tl-dot{background:transparent;border:1px solid var(--muted)}
+
+/* ===== 11. gantt / bars ===== */
+.gantt{display:grid;gap:10px;margin-top:10px}
+.gantt-row{display:grid;grid-template-columns:minmax(90px,130px) 1fr minmax(40px,54px);align-items:center;gap:10px}
+.gantt-label{font-size:11px;line-height:1.35;color:var(--muted)}
+.gantt-track{position:relative;height:18px;border-left:1px solid var(--line);background:linear-gradient(90deg,transparent 0 calc(100% - 1px),var(--line) calc(100% - 1px) 100%)}
+.gantt-track::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--line);opacity:.4}
+.gantt-fill{position:absolute;left:0;top:1px;bottom:1px;width:var(--w);background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 1.1s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i,0)*80ms)}
+.gantt-fill--oxide{background:var(--oxide)}
+.gantt-fill--muted{background:var(--muted);opacity:.6}
+.chart.is-in .gantt-fill{transform:scaleX(1)}
+.gantt-val{font-size:11px;text-align:right;color:var(--fg);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* ===== 12. compare blocks ===== */
+.cycle{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:16px}
+.cycle--3{grid-template-columns:repeat(3,1fr)}
+.cycle-step{background:var(--bg);padding:13px 12px;display:grid;gap:3px;min-width:0}
+.cycle-step b{font-size:13px;line-height:1.3;font-weight:700}
+.cycle-step span{font-size:10px;line-height:1.5;color:var(--muted)}
+.cycle-step.is-now{box-shadow:inset 2px 0 0 var(--accent)}
+@media (min-width:760px){.cycle{grid-template-columns:repeat(4,1fr)}}
+.pos-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:22px}
+.pos{background:var(--bg);padding:18px 16px;display:grid;gap:7px;min-width:0;border-top:1px solid var(--line)}
+.pos-k{font-size:10px;letter-spacing:.03em;color:var(--accent)}
+.pos h3{font-size:18px;line-height:1.3}
+.pos p{font-size:12px;line-height:1.65;color:var(--muted);max-width:none}
+.pos .first-step{font-size:11.5px;line-height:1.6;color:var(--fg);border-left:2px solid var(--accent);padding-left:10px}
+.pos .cost{font-size:11px;color:var(--oxide)}
+@media (min-width:760px){.pos-grid{grid-template-columns:repeat(3,1fr)}}
+.chain{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:16px}
+.chain-step{background:var(--bg);padding:12px 14px;display:grid;gap:2px}
+.chain-step b{font-size:13px}
+.chain-step span{font-size:10px;line-height:1.5;color:var(--muted)}
+.chain-step .bottleneck{color:var(--oxide);font-weight:600}
+@media (min-width:760px){.chain{grid-template-columns:repeat(5,1fr)}}
+.path{font-variant-numeric:tabular-nums;border-bottom:1px dotted var(--line);padding-bottom:1px}
+.fault-edge{margin-top:-34px}
+.compare{display:grid;gap:16px;margin-top:6px}
+.compare-row{display:grid;gap:5px}
+.compare-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.compare-label{font-size:11.5px;color:var(--muted)}
+.compare-val{font-size:clamp(18px,2.2vw,24px);font-weight:800;letter-spacing:-.01em;color:var(--fg);white-space:nowrap}
+.compare-track{height:20px;border-bottom:1px solid var(--line);position:relative}
+.compare-fill{position:absolute;left:0;top:0;bottom:0;width:var(--w);background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 1.1s cubic-bezier(.2,.8,.2,1)}
+.compare-row--outline .compare-fill{background:transparent;border:1px solid var(--accent);border-bottom:0}
+.chart.is-in .compare-fill{transform:scaleX(1)}
+.compare-foot{font-size:11px;color:var(--muted);line-height:1.6}
+.compare-big{font-size:clamp(36px,6vw,76px);font-weight:900;letter-spacing:-.04em;line-height:.98;color:var(--accent)}
+.compare-big small{display:block;font-size:11px;font-weight:400;letter-spacing:.02em;color:var(--muted);margin-top:6px}
+
+/* ===== 13. matrix / scenarios ===== */
+.matrix-wrap{display:grid;grid-template-columns:22px 1fr;grid-template-rows:24px 1fr 24px;gap:6px;margin-top:18px}
+.axis-y{grid-column:1;grid-row:2;writing-mode:vertical-rl;transform:rotate(180deg);font-size:10px;letter-spacing:.04em;color:var(--muted);text-align:center;align-self:center}
+.axis-x{grid-column:2;grid-row:3;font-size:10px;letter-spacing:.04em;color:var(--muted);text-align:center}
+.matrix{grid-column:2;grid-row:2;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.quad{position:relative;background:var(--bg);color:var(--fg);padding:16px 14px;min-height:168px;text-align:left;display:flex;flex-direction:column;gap:7px;transition:background .2s ease}
+.quad:hover{background:rgba(224,160,82,.07)}
+.quad.is-active{outline:2px solid var(--accent);outline-offset:-2px;background:rgba(224,160,82,.08)}
+.quad-k{font-size:9.5px;letter-spacing:.04em;color:var(--muted)}
+.quad h4{font-size:clamp(16px,1.8vw,20px);font-weight:800;letter-spacing:-.01em}
+.quad p{font-size:10.5px;line-height:1.55;color:var(--muted);max-width:none}
+.quad .prob{font-size:10px;color:var(--accent);font-weight:600}
+.scenario-detail{margin-top:22px;border-top:1px solid var(--line);padding-top:18px;display:grid;gap:14px}
+.scenario-detail h3{font-size:clamp(22px,2.6vw,30px)}
+.scenario-detail .sd-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.sd-block{display:grid;gap:4px}
+.sd-block span{font-size:10.5px;letter-spacing:.03em;color:var(--accent)}
+.sd-block p{font-size:12.5px;line-height:1.65;color:var(--muted);max-width:46em}
+.sd-block b{color:var(--fg);font-weight:600}
+
+/* ===== 14. loop ===== */
+.loop-controls{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.loop-btn{min-height:44px;padding:0 13px;border:1px solid var(--line);font-size:11px;color:var(--muted)}
+.loop-btn.is-on{border-color:var(--accent);color:var(--accent);background:rgba(224,160,82,.06)}
+.loop-svg{width:100%;height:auto}
+.loop-svg text{font-family:var(--sans)}
+.loop-node{fill:rgba(8,22,28,.55);stroke:var(--line)}
+.loop-node--key{stroke:var(--accent)}
+.loop-name{font-size:20px;font-weight:700;fill:var(--fg)}
+.loop-sub{font-size:11px;fill:var(--muted)}
+.loop-edge{stroke:var(--muted);stroke-width:1.6;fill:none;opacity:.65}
+.loop-edge--money{stroke:var(--accent);stroke-width:2;opacity:.85}
+.loop-edge--loop{stroke:var(--accent);stroke-width:1.5;stroke-dasharray:7 6;opacity:0;transition:opacity .4s ease}
+.loop-svg.is-loop .loop-edge--loop{opacity:.85}
+.loop-svg.is-loop .loop-edge--loop-anim{animation:loopdash 1.4s linear infinite}
+@keyframes loopdash{to{stroke-dashoffset:-26}}
+.loop-legend{display:flex;flex-wrap:wrap;gap:10px 16px;font-size:10px;color:var(--muted);margin-top:8px}
+.loop-legend i{display:inline-block;width:14px;height:2px;vertical-align:2px;margin-right:5px}
+.loop-svg .edge-label{font-size:10px;fill:var(--muted)}
+.loop-svg .edge-label--hot{fill:var(--accent)}
+
+/* ===== 15. share / system ===== */
+.sys-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:20px}
+.sys-item{background:var(--bg);padding:16px 14px;display:grid;gap:3px}
+.sys-k{font-size:10px;letter-spacing:.03em;color:var(--accent)}
+.sys-item p{font-size:12px;line-height:1.6;color:var(--muted);max-width:none}
+.sys-item b{color:var(--fg);font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 15px;border:1px solid var(--fg);font-size:12px;line-height:1.3;text-align:center;transition:background .18s ease,color .18s ease,border-color .18s ease}
+.btn:hover{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn--accent{border-color:var(--accent);color:var(--accent)}
+.btn--accent:hover{background:var(--accent);color:var(--bedrock);border-color:var(--accent)}
+.btn--small{min-height:40px;padding:0 11px;font-size:11px}
+.share-layout{display:grid;grid-template-columns:1fr;gap:clamp(24px,3vw,40px);align-items:start}
+.share-card-wrap{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.share-card{position:relative;width:min(100%,520px);aspect-ratio:1;background:var(--bedrock);color:var(--paper);padding:clamp(22px,3vw,34px);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;border:1px solid rgba(233,229,218,.14)}
+.share-card.is-tall{width:min(100%,340px);aspect-ratio:9/16;padding:22px}
+.share-card::before{content:"";position:absolute;left:0;top:0;right:0;height:3px;background:var(--copper2)}
+.share-card .sc-label{font-size:10px;letter-spacing:.05em;color:rgba(233,229,218,.5)}
+.share-card .sc-big{font-size:clamp(24px,3vw,32px);font-weight:900;line-height:1.22;letter-spacing:-.02em;max-width:10em;margin-top:14px}
+.share-card .sc-big em{font-style:normal;color:var(--copper2)}
+.share-card .sc-sub{font-size:13px;line-height:1.6;color:rgba(233,229,218,.68);margin-top:12px;max-width:15em}
+.share-card .sc-foot{font-size:9.5px;line-height:1.6;color:rgba(233,229,218,.42);margin-top:16px;padding-top:9px;border-top:1px solid rgba(233,229,218,.16);max-width:16em}
+.share-card.is-tall .sc-big{font-size:28px;max-width:8em}
+.share-card.is-tall .sc-sub{font-size:14px}
+.sc-core{position:absolute;top:0;right:0;bottom:0;width:20px;display:flex;flex-direction:column;opacity:.8}
+.sc-core span{flex:1}
+.share-tools{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.copy-list{display:grid;gap:10px;margin-top:14px}
+.copy-item{border-top:1px solid var(--line);padding-top:10px;display:grid;gap:6px}
+.copy-item p{font-size:12.5px;line-height:1.65;color:var(--fg);max-width:44em}
+.copy-item .btn{align-self:start}
+.alt-text{font-size:11px;line-height:1.65;color:var(--muted);border-top:1px solid var(--line);padding-top:9px;margin-top:14px}
+.location-box{border:1px solid var(--line);padding:18px 16px;margin-top:22px;display:grid;gap:10px}
+.location-box h3{font-size:18px}
+.location-box p{font-size:12px;line-height:1.65;color:var(--muted);max-width:46em}
+.location-box b{color:var(--fg);font-weight:600}
+.location-actions{display:flex;flex-wrap:wrap;gap:6px}
+.next-questions{display:grid;gap:7px;margin-top:14px}
+.next-q{font-size:12.5px;line-height:1.6;color:var(--fg);padding:8px 0;border-bottom:1px solid var(--line);display:flex;gap:9px}
+.next-q span{color:var(--accent);font-weight:700;flex:0 0 auto}
+
+/* ===== 16. sources / footer ===== */
+.sources{font-size:11.5px;line-height:1.65}
+.sources ol{list-style:none;display:grid;gap:9px;margin-top:16px}
+.sources li{display:grid;grid-template-columns:26px 1fr;gap:8px;padding-bottom:8px;border-bottom:1px solid var(--line);scroll-margin-top:30px}
+.sources .s-num{color:var(--accent);font-weight:600;font-variant-numeric:tabular-nums}
+.sources .s-body{color:var(--muted);min-width:0}
+.sources .s-body b{color:var(--fg);font-weight:600}
+.sources .s-body a{color:var(--fg);border-bottom:1px solid var(--line);word-break:break-all}
+.sources .s-body a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.src-tag{display:inline-block;font-size:9px;letter-spacing:.03em;color:var(--accent);border:1px solid var(--line);padding:1px 4px;margin-left:4px;white-space:nowrap;vertical-align:1px}
+.caveat{border:1px solid var(--line);padding:14px 16px;margin-top:18px;display:grid;gap:6px;font-size:11.5px;line-height:1.65;color:var(--muted)}
+.caveat b{color:var(--fg)}
+.footer{position:relative;z-index:2;background:var(--bedrock);color:var(--paper);padding:clamp(40px,6vw,72px) 0;border-top:1px solid rgba(233,229,218,.12)}
+.footer-line{font-size:clamp(22px,3vw,34px);font-weight:900;letter-spacing:-.02em;line-height:1.2;color:var(--paper);max-width:20em}
+.footer-line em{font-style:normal;color:var(--copper2)}
+.footer-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:24px;font-size:11px;color:rgba(233,229,218,.45)}
+.footer-meta a{border-bottom:1px solid rgba(233,229,218,.2)}
+.footer-meta a:hover{color:var(--copper2)}
+
+/* ===== 17. interlude / equation ===== */
+.interlude{padding:clamp(64px,9vw,120px) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.interlude h2{font-size:clamp(34px,6vw,76px);line-height:1.02;letter-spacing:-.035em;max-width:14em}
+.interlude .lede{margin-top:22px;max-width:32em}
+.equation{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:clamp(28px,4vw,44px);max-width:820px}
+.eq-cell{background:var(--bg);padding:18px 16px;display:grid;gap:3px}
+.eq-cell span{font-size:11px;color:var(--muted)}
+.eq-cell b{font-size:clamp(26px,3.4vw,40px);font-weight:900;letter-spacing:-.02em;color:var(--fg);line-height:1.1}
+.eq-cell small{font-size:10px;color:var(--accent)}
+.eq-note{font-size:11px;color:var(--muted);margin-top:8px;grid-column:1/-1}
+
+/* ===== 18. fault edge ===== */
+.fault-edge{position:relative;z-index:2;width:100%;height:34px;margin-bottom:-1px;background:transparent}
+.fault-edge path{stroke:var(--oxide);stroke-width:1.5;fill:none;opacity:.8}
+.fault-label{position:absolute;left:var(--gutter);top:2px;font-size:10px;letter-spacing:.04em;color:var(--oxide)}
+
+/* ===== 19. rail / progress ===== */
+.rail{position:fixed;z-index:20;left:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:0;transition:opacity .3s ease}
+.rail.is-off{opacity:0;pointer-events:none}
+.rail-line{position:absolute;top:8px;bottom:8px;left:50%;width:1px;background:var(--line);transform:translateX(-50%)}
+.rail-dot{position:relative;z-index:1;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:transparent}
+.rail-dot::before{content:"";width:6px;height:6px;background:var(--muted);opacity:.5;border-radius:50%;transition:all .2s ease}
+.rail-dot span{position:absolute;left:48px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--muted);white-space:nowrap;opacity:0;transition:opacity .2s ease;pointer-events:none}
+.rail-dot:hover span,.rail-dot:focus-visible span{opacity:1;color:var(--fg)}
+.rail-dot.is-active::before{width:10px;height:10px;background:var(--accent);opacity:1;box-shadow:0 0 0 3px rgba(224,160,82,.12)}
+.rail-dot.is-active span{opacity:1;color:var(--accent)}
+.progress{position:fixed;z-index:30;left:0;top:0;height:3px;width:100%;background:rgba(8,22,28,.25);transform-origin:left;transform:scaleX(0);transition:transform .12s linear;pointer-events:none}
+.to-top{position:fixed;z-index:25;right:18px;bottom:18px;width:44px;height:44px;border:1px solid var(--line);background:var(--bg);color:var(--fg);display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .2s ease}
+.to-top.is-on{opacity:1;pointer-events:auto}
+.to-top:hover{border-color:var(--accent);color:var(--accent)}
+.toast{position:fixed;z-index:40;left:50%;bottom:22px;transform:translate(-50%,14px);background:var(--fg);color:var(--bg);padding:9px 14px;font-size:12px;line-height:1.4;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;max-width:calc(100% - 36px)}
+.toast.is-on{opacity:1;transform:translate(-50%,0)}
+
+/* ===== 20. motion / reveal ===== */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.reveal.is-in{opacity:1;transform:none}
+.reveal-d1{transition-delay:.1s}
+.reveal-d2{transition-delay:.18s}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .reveal{opacity:1;transform:none}
+  .hbar-fill,.vbar,.compare-fill,.gantt-fill{transform:none!important}
+  .core-label{opacity:1}
+  .core-arrow{opacity:1}
+  .drill-line{stroke-dashoffset:0}
+  .drill-bit{transform:none}
+  .vein{opacity:.9}
+}
+
+/* ===== 21. responsive ===== */
+@media (min-width:760px){
+  .hero-main{grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);padding:clamp(34px,6vh,72px) 0 clamp(28px,5vh,50px)}
+  .split{grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:clamp(34px,5vw,72px)}
+  .split--rev{grid-template-columns:minmax(0,.98fr) minmax(0,1.02fr)}
+  .split--rev .split-visual{order:-1}
+  .key-row{grid-template-columns:1fr 1fr}
+  .sys-grid{grid-template-columns:1fr 1fr}
+  .share-layout{grid-template-columns:minmax(0,1fr) minmax(0,.9fr)}
+  .equation{grid-template-columns:repeat(3,1fr)}
+  .scenario-detail .sd-grid{grid-template-columns:repeat(3,1fr);gap:18px}
+  .sources ol{grid-template-columns:1fr 1fr;gap:9px 26px}
+  .sources li{grid-template-columns:26px 1fr}
+  .sticky-visual{position:sticky;top:34px}
+}
+@media (min-width:1180px){
+  .hero-copy{padding-left:18px}
+  .hero h1{font-size:88px}
+}
+@media (max-width:759px){
+  body{font-size:15.5px}
+  .section{padding:52px 0}
+  .hero{min-height:auto}
+  .hero-main{padding:26px 0 10px;gap:22px}
+  .hero h1{font-size:clamp(38px,11.2vw,54px);letter-spacing:-.04em;margin-bottom:16px}
+  .dek{font-size:16px;max-width:24em}
+  .hook{max-width:none;margin-top:20px}
+  .hook-row{padding:4px 0}
+  .hook-row b{font-size:19px}
+  .hook p{font-size:12px}
+  .route{margin-top:18px}
+  .route-label{padding-right:8px}
+  .route-step{padding:0 9px;font-size:11px}
+  .route-pop{font-size:11.5px}
+  .scroll-cue{padding-bottom:14px}
+  .core-wrap{max-width:none;justify-self:stretch;margin-top:4px}
+  .core-v{display:none}
+  .core-h{display:block}
+  .core-mobile{display:block}
+  .rail{display:none}
+  .progress{height:3px}
+  .to-top{right:12px;bottom:12px}
+  .split{gap:24px}
+  .split--rev .split-visual{order:0}
+  .sticky-visual{position:static}
+  .key-row{grid-template-columns:1fr 1fr}
+  .key-cell{padding:12px 10px}
+  .key-cell b{font-size:20px}
+  .key-cell span{font-size:10px}
+  .table{font-size:12px}
+  .table th,.table td{padding:9px 6px}
+  .table th{font-size:9.5px}
+  .hbar{grid-template-columns:minmax(54px,88px) 1fr minmax(44px,62px);gap:7px}
+  .hbar-label{font-size:10.5px}
+  .hbar-val{font-size:10.5px}
+  .vchart{height:var(--hm,180px)}
+  .tl-item{grid-template-columns:56px 18px 1fr}
+  .tl-date{font-size:10px}
+  .tl-body{padding-left:10px}
+  .gantt-row{grid-template-columns:minmax(80px,106px) 1fr minmax(34px,46px);gap:7px}
+  .gantt-label{font-size:10px}
+  .gantt-val{font-size:10px}
+  .matrix-wrap{grid-template-columns:18px 1fr;grid-template-rows:22px 1fr 22px}
+  .quad{padding:11px 10px;min-height:142px}
+  .quad h4{font-size:15px}
+  .quad p{font-size:9.5px}
+  .quad-k{font-size:8.5px}
+  .sys-grid{grid-template-columns:1fr}
+  .share-layout{grid-template-columns:1fr}
+  .share-card{width:100%}
+  .share-card.is-tall{width:min(100%,320px)}
+  .footer-meta{display:grid;gap:6px}
+  .sources ol{grid-template-columns:1fr}
+}
+/* ===== 22. 1080p type scale calibration ===== */
+@media (min-width:760px){
+body{font-size:18px}
+.body-copy{font-size:18px}
+.lede{font-size:clamp(19px,1.9vw,22px)}
+.dek{font-size:clamp(18px,1.9vw,21px)}
+.small{font-size:14px}
+.kicker{font-size:13px}
+.masthead{font-size:12.5px}
+.hero-note{font-size:12.5px}
+.hook-row span{font-size:13px}
+.hook p{font-size:14px}
+.route-label{font-size:12px}
+.route-step{font-size:13px}
+.route-step i{font-size:11px}
+.route-pop{font-size:13px}
+.scroll-cue{font-size:12px}
+.core-depth{font-size:11.5px}
+.core-name{font-size:14.5px}
+.core-val{font-size:12px}
+.core-note{font-size:11px}
+.depth-tag{font-size:13px}
+.key-label,.key-note,.key-cell span{font-size:12.5px}
+.quote{font-size:19px}
+.quote cite{font-size:12px}
+.note{font-size:13px}
+.flag{font-size:11px}
+.cite{font-size:10px}
+.chart figcaption,.chart-title{font-size:12.5px}
+.chart-title b{font-size:13px}
+.hbar-label,.hbar-val{font-size:13px}
+.vcol-label,.vcol-val,.stackcol-val{font-size:12px}
+.stackbar span{font-size:10.5px}
+.stack-legend,.chart-note,.stackcol-label,.loop-legend,.loop-svg .edge-label{font-size:11.5px}
+.divbar-label,.divbar-val{font-size:12.5px}
+.table{font-size:14.5px}
+.table th{font-size:12px}
+.tl-date{font-size:12px}
+.tl-body h4{font-size:15px}
+.tl-body p{font-size:13.5px}
+.gantt-label,.gantt-val{font-size:12.5px}
+.cycle-step b{font-size:14px}
+.cycle-step span{font-size:11.5px}
+.pos-k{font-size:11.5px}
+.pos p{font-size:13.5px}
+.pos .first-step{font-size:13px}
+.pos .cost{font-size:12.5px}
+.chain-step b{font-size:14px}
+.chain-step span{font-size:11.5px}
+.compare-label{font-size:13px}
+.compare-foot{font-size:12.5px}
+.compare-big small{font-size:12px}
+.axis-y,.axis-x{font-size:11.5px}
+.quad-k{font-size:11px}
+.quad p{font-size:12px}
+.quad .prob{font-size:11.5px}
+.sd-block span{font-size:12px}
+.sd-block p{font-size:13.5px}
+.loop-btn{font-size:12.5px}
+.loop-sub{font-size:12px}
+.sys-k{font-size:11.5px}
+.sys-item p{font-size:13.5px}
+.btn{font-size:13px}
+.btn--small{font-size:12px}
+.share-card .sc-label{font-size:11px}
+.share-card .sc-sub{font-size:14px}
+.share-card .sc-foot{font-size:10.5px}
+.share-card.is-tall .sc-sub{font-size:15px}
+.copy-item p{font-size:13.5px}
+.alt-text{font-size:12.5px}
+.location-box p{font-size:13.5px}
+.next-q{font-size:13.5px}
+.sources{font-size:12.5px}
+.src-tag{font-size:10px}
+.caveat{font-size:12.5px}
+.footer-meta{font-size:12px}
+.eq-cell span{font-size:12px}
+.eq-cell small{font-size:11px}
+.fault-label{font-size:11.5px}
+.rail-dot span{font-size:11px}
+.toast{font-size:13px}
+h4{font-size:17px}
+}
+@media (max-width:759px){
+body{font-size:16.5px}
+.body-copy{font-size:16.5px}
+.lede{font-size:18px}
+.dek{font-size:17px}
+.small{font-size:13.5px}
+.kicker{font-size:12.5px}
+.masthead{font-size:12.5px}
+.hero-note{font-size:12px}
+.hook-row span{font-size:12.5px}
+.hook p{font-size:13px}
+.route-label{font-size:11.5px}
+.route-step{font-size:12px}
+.route-step i{font-size:10.5px}
+.route-pop{font-size:12.5px}
+.scroll-cue{font-size:11.5px}
+.core-depth{font-size:11px}
+.core-name{font-size:14px}
+.core-val{font-size:11.5px}
+.core-note{font-size:10.5px}
+.depth-tag{font-size:12.5px}
+.key-label,.key-note{font-size:12px}
+.key-cell span{font-size:11.5px}
+.quote{font-size:18px}
+.quote cite{font-size:11.5px}
+.note{font-size:12.5px}
+.flag{font-size:10.5px}
+.cite{font-size:9.5px}
+.chart figcaption,.chart-title{font-size:12px}
+.chart-title b{font-size:12.5px}
+.hbar-label,.hbar-val{font-size:12px}
+.vcol-label,.vcol-val,.stackcol-val{font-size:11.5px}
+.stackbar span{font-size:10px}
+.stack-legend,.chart-note,.stackcol-label,.loop-legend,.loop-svg .edge-label{font-size:11px}
+.divbar-label,.divbar-val{font-size:12px}
+.table{font-size:13.5px}
+.table th{font-size:11px}
+.tl-date{font-size:11.5px}
+.tl-body h4{font-size:14px}
+.tl-body p{font-size:13px}
+.gantt-label,.gantt-val{font-size:12px}
+.cycle-step b{font-size:13.5px}
+.cycle-step span{font-size:11px}
+.pos-k{font-size:11px}
+.pos p{font-size:13px}
+.pos .first-step{font-size:12.5px}
+.pos .cost{font-size:12px}
+.chain-step b{font-size:13.5px}
+.chain-step span{font-size:11px}
+.compare-label{font-size:12.5px}
+.compare-foot{font-size:12px}
+.compare-big small{font-size:11.5px}
+.axis-y,.axis-x{font-size:11px}
+.quad-k{font-size:10px}
+.quad p{font-size:11px}
+.quad .prob{font-size:10.5px}
+.sd-block span{font-size:11.5px}
+.sd-block p{font-size:13px}
+.loop-btn{font-size:12px}
+.loop-sub{font-size:11.5px}
+.sys-k{font-size:11px}
+.sys-item p{font-size:13px}
+.btn{font-size:12.5px}
+.btn--small{font-size:11.5px}
+.share-card .sc-label{font-size:10.5px}
+.share-card .sc-sub{font-size:14px}
+.share-card .sc-foot{font-size:10.5px}
+.share-card.is-tall .sc-sub{font-size:15px}
+.copy-item p{font-size:13px}
+.alt-text{font-size:12px}
+.location-box p{font-size:13px}
+.next-q{font-size:13px}
+.sources{font-size:12px}
+.src-tag{font-size:9.5px}
+.caveat{font-size:12px}
+.footer-meta{font-size:11.5px}
+.eq-cell span{font-size:11.5px}
+.eq-cell small{font-size:10.5px}
+.fault-label{font-size:11px}
+.rail-dot span{font-size:10.5px}
+.toast{font-size:12.5px}
+}
+/* Repository showcase: original report with a language switch and run context. */
+.showcase-nav{display:flex;align-items:center;flex-wrap:wrap;gap:14px}
+.showcase-nav a{display:inline-flex;align-items:center;min-height:44px;color:rgba(233,229,218,.68)}
+.showcase-nav a[aria-current="page"]{color:var(--copper2)}
+.showcase-nav a:hover{color:var(--paper)}
+.masthead{align-items:center;flex-wrap:wrap}
+.hero-main{min-width:0}
+.hero-copy,.core-wrap{min-width:0;width:100%}
+.table th,.table td{overflow-wrap:anywhere}
+@media(max-width:759px){.hero-main{grid-template-columns:minmax(0,1fr)}}
+.run-origin{margin-top:16px;color:rgba(233,229,218,.65);font-size:12px;line-height:1.7}
+.run-origin summary{cursor:pointer;color:var(--copper2);padding:5px 0}
+.run-origin code{display:block;white-space:normal;margin:6px 0;font:inherit;color:var(--paper)}
+.run-origin a{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:600px){.masthead{gap:0}.showcase-nav{gap:18px}.showcase-nav a{font-size:12px}}
+</style>
+</head>
+<body data-depth="0">
+<div class="page" id="page">
+  <!-- ===== HERO ===== -->
+  <header class="hero" id="top">
+    <div class="wrap">
+      <div class="masthead">
+        <span><span class="ding">[OpenXSys] 叮，系统已激活。</span></span>
+        <nav class="showcase-nav" aria-label="作品导航"><a href="README.md">运行说明</a><a href="index.html" aria-current="page">作品首页</a></nav>
+      </div>
+      <div class="hero-main">
+        <div class="hero-copy">
+          <p class="kicker">一份结构报告 · 读完约 18 分钟</p>
+          <h1>智能在表层，<br>利润在岩层。</h1>
+          <p class="dek">AI 产业卖的不是智能，是稀缺。把八层结构钻开：钱从哪里来，在哪里堆积，哪一个循环正在漏气。</p>
+          <p class="hero-note">数据截至 2026-11-16 · 市场数据截至 11-13 收盘 · 来源与口径见页末</p>
+          <details class="run-origin">
+            <summary>豆包工作 × DeepSeek v4.1 Flash · 一句话生成</summary>
+            <p>原始提示词：</p>
+            <code>/open-x-sys 我想研究一下人工智能这整个产业！</code>
+            <p><a href="README.md">查看这次运行与作品说明 →</a></p>
+          </details>
+          <div class="hook">
+            <div class="hook-row"><span>2026 Q3 · 存储三巨头营业利润</span><b>$179B</b></div>
+            <div class="hook-row"><span>同一季度 · 四家云厂商资本开支</span><b>$209B</b></div>
+            <div class="hook-row"><span>OpenAI + Anthropic · 年化收入</span><b>$131B</b></div>
+            <p>前者是利润，后者是支出。两家最强模型公司一年的收入，还不如卖内存的三个月。</p>
+          </div>
+          <nav class="route" aria-label="本次路线">
+            <span class="route-label">本次路线</span>
+            <button class="route-step" data-route="open" aria-expanded="false">开启 <i>01</i></button>
+            <button class="route-step" data-route="xray" aria-expanded="false">透视 <i>02</i></button>
+            <button class="route-step" data-route="flow" aria-expanded="false">流动 <i>03</i></button>
+            <button class="route-step" data-route="loop" aria-expanded="false">回路 <i>04</i></button>
+            <button class="route-step" data-route="bottleneck" aria-expanded="false">瓶颈 <i>05</i></button>
+            <button class="route-step" data-route="leverage" aria-expanded="false">杠杆 <i>06</i></button>
+            <button class="route-step" data-route="make" aria-expanded="false">做成作品 <i>07</i></button>
+          </nav>
+          <div class="route-pop" id="routePop" aria-live="polite">点一个方法，看它这次用来看什么。整份报告就是这条路线走完的痕迹。</div>
+        </div>
+        <div class="core-wrap" aria-hidden="true">
+          <svg class="core-v core-svg" viewBox="0 0 620 760" role="img" aria-label="AI 产业岩芯：从应用层到电力层的八层结构，资本向下、利润向上">
+            <defs>
+              <linearGradient id="coreShade" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#ffffff" stop-opacity=".12"/>
+                <stop offset=".18" stop-color="#ffffff" stop-opacity="0"/>
+                <stop offset=".72" stop-color="#000000" stop-opacity="0"/>
+                <stop offset="1" stop-color="#000000" stop-opacity=".42"/>
+              </linearGradient>
+              <linearGradient id="veinGrad" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0" stop-color="#e0a052" stop-opacity=".2"/>
+                <stop offset=".45" stop-color="#e0a052" stop-opacity="1"/>
+                <stop offset="1" stop-color="#e0a052" stop-opacity=".35"/>
+              </linearGradient>
+              <pattern id="pSand" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="4" cy="5" r="1" fill="#ffffff" opacity=".18"/><circle cx="13" cy="12" r=".8" fill="#000000" opacity=".18"/></pattern>
+              <pattern id="pLines" width="16" height="9" patternUnits="userSpaceOnUse"><path d="M0 8h16" stroke="#ffffff" stroke-width=".8" opacity=".2"/></pattern>
+              <pattern id="pGrid" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M0 0h22v22" stroke="#ffffff" stroke-width=".7" opacity=".14"/></pattern>
+              <pattern id="pDie" width="26" height="26" patternUnits="userSpaceOnUse"><rect x="2" y="2" width="10" height="10" fill="none" stroke="#ffffff" stroke-width=".8" opacity=".18"/><rect x="15" y="15" width="7" height="7" fill="none" stroke="#ffffff" stroke-width=".8" opacity=".12"/></pattern>
+              <pattern id="pHbm" width="16" height="10" patternUnits="userSpaceOnUse"><path d="M0 3h16M0 7h16" stroke="#ffffff" stroke-width="1" opacity=".2"/></pattern>
+              <pattern id="pInter" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0 20L20 0" stroke="#ffffff" stroke-width=".8" opacity=".16"/></pattern>
+              <pattern id="pHatch" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M0 12L12 0" stroke="#ffffff" stroke-width="1" opacity=".22"/></pattern>
+              <clipPath id="coreClip">
+                <path d="M168,44 C158,190 180,360 166,690 L462,690 C472,540 450,200 462,44 Z"/>
+              </clipPath>
+            </defs>
+
+            <!-- depth scale -->
+            <line x1="142" y1="44" x2="142" y2="690" stroke="#e9e5da" stroke-opacity=".18" stroke-width="1"/>
+            <g class="core-depth">
+              <text x="132" y="70" text-anchor="end">0m</text>
+              <text x="132" y="150" text-anchor="end">10m</text>
+              <text x="132" y="236" text-anchor="end">20m</text>
+              <text x="132" y="328" text-anchor="end">30m</text>
+              <text x="132" y="426" text-anchor="end">40m</text>
+              <text x="132" y="520" text-anchor="end">50m</text>
+              <text x="132" y="620" text-anchor="end">60m</text>
+              <text x="132" y="694" text-anchor="end">70m</text>
+            </g>
+
+            <!-- core body -->
+            <g clip-path="url(#coreClip)">
+              <rect x="160" y="44" width="306" height="80" fill="#b8b1a0"/><rect x="160" y="44" width="306" height="80" fill="url(#pSand)"/>
+              <rect x="160" y="124" width="306" height="86" fill="#a77b4d"/><rect x="160" y="124" width="306" height="86" fill="url(#pLines)"/>
+              <rect x="160" y="210" width="306" height="96" fill="#5f7f8a"/><rect x="160" y="210" width="306" height="96" fill="url(#pGrid)"/>
+              <rect x="160" y="306" width="306" height="100" fill="#35627d"/><rect x="160" y="306" width="306" height="100" fill="url(#pDie)"/>
+              <rect x="160" y="406" width="306" height="96" fill="#2d565a"/><rect x="160" y="406" width="306" height="96" fill="url(#pHbm)"/>
+              <rect x="160" y="502" width="306" height="96" fill="#77513a"/><rect x="160" y="502" width="306" height="96" fill="url(#pInter)"/>
+              <rect x="160" y="598" width="306" height="96" fill="#70382d"/><rect x="160" y="598" width="306" height="96" fill="url(#pHatch)"/>
+              <rect x="160" y="44" width="306" height="650" fill="url(#coreShade)"/>
+              <line x1="160" y1="124" x2="466" y2="124" stroke="#e9e5da" stroke-opacity=".42" stroke-width="1"/>
+              <line x1="160" y1="210" x2="466" y2="210" stroke="#e9e5da" stroke-opacity=".42" stroke-width="1"/>
+              <line x1="160" y1="306" x2="466" y2="306" stroke="#e9e5da" stroke-opacity=".42" stroke-width="1"/>
+              <line x1="160" y1="406" x2="466" y2="406" stroke="#e9e5da" stroke-opacity=".42" stroke-width="1"/>
+              <line x1="160" y1="502" x2="466" y2="502" stroke="#e9e5da" stroke-opacity=".42" stroke-width="1"/>
+              <line x1="160" y1="598" x2="466" y2="598" stroke="#e9e5da" stroke-opacity=".42" stroke-width="1"/>
+            </g>
+            <ellipse cx="315" cy="44" rx="147" ry="11" fill="#c9c2b2" stroke="#e9e5da" stroke-opacity=".35"/>
+            <ellipse cx="315" cy="690" rx="147" ry="11" fill="#5c322a" stroke="#e9e5da" stroke-opacity=".2"/>
+            <line x1="168" y1="44" x2="168" y2="690" stroke="#ffffff" stroke-opacity=".16"/>
+            <line x1="462" y1="44" x2="462" y2="690" stroke="#000000" stroke-opacity=".3"/>
+
+            <!-- drill + vein -->
+            <line class="drill-line" x1="315" y1="22" x2="315" y2="690"/>
+            <g class="vein"><line x1="315" y1="688" x2="315" y2="46" stroke="url(#veinGrad)" stroke-width="4"/></g>
+            <g class="drill-bit"><polygon points="315,688 302,670 315,676 328,670" fill="#e0a052"/><circle cx="315" cy="690" r="3" fill="#fff3df"/></g>
+
+            <!-- labels -->
+            <g class="core-label" style="--i:0">
+              <line x1="470" y1="84" x2="500" y2="84" stroke="#e0a052" stroke-opacity=".45"/>
+              <text class="core-name" x="506" y="79">应用层</text>
+              <text class="core-val" x="506" y="95">$77B · 企业应用</text>
+            </g>
+            <g class="core-label" style="--i:1">
+              <line x1="470" y1="167" x2="500" y2="167" stroke="#e0a052" stroke-opacity=".45"/>
+              <text class="core-name" x="506" y="162">模型层</text>
+              <text class="core-val" x="506" y="178">$131B · 年化收入</text>
+            </g>
+            <g class="core-label" style="--i:2">
+              <line x1="470" y1="258" x2="500" y2="258" stroke="#e0a052" stroke-opacity=".45"/>
+              <text class="core-name" x="506" y="253">云与资本</text>
+              <text class="core-val" x="506" y="269">$730B · 2026 capex</text>
+            </g>
+            <g class="core-label" style="--i:3">
+              <line x1="470" y1="356" x2="500" y2="356" stroke="#e0a052" stroke-opacity=".45"/>
+              <text class="core-name" x="506" y="351">芯片</text>
+              <text class="core-val" x="506" y="367">$96B · 单季营收</text>
+            </g>
+            <g class="core-label" style="--i:4">
+              <line x1="470" y1="454" x2="500" y2="454" stroke="#e0a052" stroke-opacity=".45"/>
+              <text class="core-name" x="506" y="449">存储</text>
+              <text class="core-val" x="506" y="465">$179B · 单季利润</text>
+            </g>
+            <g class="core-label" style="--i:5">
+              <line x1="470" y1="550" x2="500" y2="550" stroke="#e0a052" stroke-opacity=".45"/>
+              <text class="core-name" x="506" y="545">封装</text>
+              <text class="core-val" x="506" y="561">12–14 万片 / 月</text>
+            </g>
+            <g class="core-label" style="--i:6">
+              <line x1="470" y1="646" x2="500" y2="646" stroke="#e0a052" stroke-opacity=".45"/>
+              <text class="core-name" x="506" y="641">电力</text>
+              <text class="core-val" x="506" y="657">41GW · 2026 负荷</text>
+            </g>
+
+            <!-- direction legend -->
+            <g class="core-note">
+              <text x="506" y="28">资本向下 ↓</text>
+              <text x="506" y="44" fill="#e0a052" opacity=".8">利润向上 ↑</text>
+              <text x="506" y="710" opacity=".6">越往下，越难复制</text>
+            </g>
+            <g class="core-arrow" style="--i:0"><path d="M490,92 l5,-7 l5,7" stroke="#e0a052" stroke-width="1.2" fill="none"/></g>
+            <g class="core-arrow" style="--i:1"><path d="M490,175 l5,-7 l5,7" stroke="#e0a052" stroke-width="1.2" fill="none"/></g>
+            <g class="core-arrow" style="--i:2"><path d="M490,266 l5,-7 l5,7" stroke="#e0a052" stroke-width="1.2" fill="none"/></g>
+            <g class="core-arrow" style="--i:3"><path d="M490,364 l5,-7 l5,7" stroke="#e0a052" stroke-width="1.2" fill="none"/></g>
+            <g class="core-arrow" style="--i:4"><path d="M490,462 l5,-7 l5,7" stroke="#e0a052" stroke-width="1.4" fill="none"/></g>
+            <g class="core-arrow" style="--i:5"><path d="M490,558 l5,-7 l5,7" stroke="#e0a052" stroke-width="1.6" fill="none"/></g>
+            <g class="core-arrow" style="--i:6"><path d="M490,654 l5,-7 l5,7" stroke="#e0a052" stroke-width="1.8" fill="none"/></g>
+          </svg>
+
+          <svg class="core-h core-svg" viewBox="0 0 360 132" role="img" aria-label="AI 产业八层结构索引">
+            <g>
+              <rect x="0" y="22" width="45" height="60" fill="#b8b1a0"/><rect x="45" y="22" width="45" height="60" fill="#a77b4d"/><rect x="90" y="22" width="45" height="60" fill="#5f7f8a"/><rect x="135" y="22" width="45" height="60" fill="#35627d"/><rect x="180" y="22" width="45" height="60" fill="#2d565a"/><rect x="225" y="22" width="45" height="60" fill="#77513a"/><rect x="270" y="22" width="45" height="60" fill="#70382d"/><rect x="315" y="22" width="45" height="60" fill="#08161c"/>
+              <line x1="0" y1="82" x2="360" y2="82" stroke="#e9e5da" stroke-opacity=".24"/>
+              <line class="mline" x1="0" y1="52" x2="360" y2="52"/>
+              <g fill="#e9e5da" font-size="11.5" text-anchor="middle">
+                <text x="22" y="102">应用</text><text x="67" y="102">模型</text><text x="112" y="102">云</text><text x="157" y="102">芯片</text><text x="202" y="102">存储</text><text x="247" y="102">封装</text><text x="292" y="102">电力</text><text x="337" y="102">循环</text>
+              </g>
+              <text x="0" y="122" fill="#e9e5da" opacity=".45" font-size="11">越往右，越靠近物理；利润越厚。</text>
+            </g>
+          </svg>
+          <div class="core-mobile small">资本沿铜线向下，利润沿铜线向上。页面越深，颜色越暗。</div>
+        </div>
+      </div>
+      <div class="scroll-cue"><span class="line"></span><span>向下 70 米</span></div>
+    </div>
+  </header>
+
+<!-- ===== 01 DISCOVERY ===== -->
+<section class="section block-paper" id="s1" data-depth="1">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">发现</span><span class="depth-name">先看利润在哪一层</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>两家最强模型公司一年的收入，不如三家存储厂一个季度的利润。</h2>
+        <p class="lede" style="margin-top:22px">这不是偶然。它暴露的是整条产业链的利润分布：越靠近“智能”，越像在补贴；越靠近“不可复制”，越像在收租。</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>2026 年第三季度，三星 DS、SK 海力士、美光三家合计营业利润约 <b>1,790 亿美元</b><a class="cite" href="#source17">17</a><a class="cite" href="#source18">18</a><a class="cite" href="#source19">19</a>；同一季度，四家云厂商资本开支约 <b>2,087 亿美元</b><a class="cite" href="#source12">12</a>。存储的利润，相当于云厂商资本开支的 86%。</p>
+          <p>另一边，OpenAI 与 Anthropic 的年化收入合计约 <b>1,310 亿美元</b><a class="cite" href="#source9">9</a><a class="cite" href="#source34">34</a>。这是“年化收入”，对面是“单季利润”；口径不同，但量级已经说明问题：做智能的，不如卖内存的。</p>
+        </div>
+        <div class="note"><b>口径提醒：</b>单季营业利润 vs 年化收入，不是同一把尺子；这里只用来看量级。三星 DS 含少量代工，SK 海力士按 1,400 韩元/美元换算，美光为 FY26 Q4（截至 9 月 3 日）。</div>
+      </div>
+      <div class="split-visual">
+        <figure class="chart" data-chart>
+          <div class="chart-title"><b>一个季度 vs 一年</b><span>2026 Q3 / 2026 年化</span></div>
+          <div class="compare">
+            <div class="compare-row">
+              <div class="compare-top"><span class="compare-label">存储三巨头 · 单季营业利润</span><span class="compare-val">$179B</span></div>
+              <div class="compare-track"><span class="compare-fill" style="--w:99.4%"></span></div>
+              <div class="compare-foot">三星 DS $76B + SK 海力士 $60B + 美光 $44B</div>
+            </div>
+            <div class="compare-row compare-row--outline">
+              <div class="compare-top"><span class="compare-label">OpenAI + Anthropic · 年化收入</span><span class="compare-val">$131B</span></div>
+              <div class="compare-track"><span class="compare-fill" style="--w:72.8%"></span></div>
+              <div class="compare-foot">OpenAI $50B + Anthropic $81B</div>
+            </div>
+          </div>
+          <figcaption>条形按同一比例尺；存储为单季营业利润，模型公司为年化收入。数据来自公司财报、S-1 与媒体披露。</figcaption>
+        </figure>
+
+        <figure class="chart" data-chart style="margin-top:30px">
+          <div class="chart-title"><b>每 52 美元建基础设施，只有 1 美元付给模型软件</b><span>Gartner 2026<a class="cite" href="#source10">10</a></span></div>
+          <div class="unit-grid" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i>
+          </div>
+          <div class="stack-legend"><span><i style="background:var(--accent)"></i>生成式模型软件：$28.3B</span><span><i style="background:var(--muted);opacity:.45"></i>AI 基础设施：$1,480B</span></div>
+          <figcaption>1 格约 28 亿美元。Gartner 口径的“AI 基础设施”包含服务器、数据中心、网络与设备，不等于云厂商 capex；“模型软件”也不等于模型公司收入。比例只说明支出的重心。</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 02 APPLICATION ===== -->
+<section class="section" id="s2" data-depth="2">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">0 m</span><span class="depth-name">地表 · 应用层</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>应用层离钱包最近，却只分到 773 亿美元。</h2>
+        <p class="lede" style="margin-top:20px">企业 AI 部署支出一年从 330 亿涨到 1,768 亿美元，但钱几乎都流向了模型和基础设施；独立应用只占 44%。</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>Menlo Ventures 的 2026 年口径：企业 AI 部署总支出 <b>1,768 亿美元</b>，是 2025 年的 5.4 倍；其中基础设施 <b>995 亿</b>、应用 <b>773 亿</b>、训练数据与服务 <b>153 亿</b><a class="cite" href="#source11">11</a>。应用层里，coding 340 亿、企业 chatbot 250 亿，两者拿走 76%。</p>
+          <p>前沿实验室拿走了企业部署支出的 <b>1,227 亿美元</b>，占 69%。它们既是模型供应商，也是应用开发者；独立应用公司面对的不是“有没有 AI”，而是“模型公司自己做了怎么办”。</p>
+          <p>另一面：72% 的企业在生产中使用 AI，但近 80% 的部署没有带来净利润提升，95% 的生成式 AI 试点没有直接财务回报<a class="cite" href="#source32">32</a>。试点失败和部署成功同时存在，差别在于有没有把 AI 嵌进流程、有没有可验证的结果。</p>
+        </div>
+        <div class="key">
+          <span class="key-label">应用层内部的钱花在哪</span>
+          <b class="key-val">76%</b>
+          <span class="key-note">coding + 企业 chatbot，占应用支出的四分之三。剩下的医疗、客服、法律、金融后台，都还在早期。</span>
+        </div>
+      </div>
+      <div class="split-visual">
+        <figure class="chart" data-chart>
+          <div class="chart-title"><b>企业 AI 部署支出：$176.8B</b><span>Menlo Ventures 2026</span></div>
+          <div class="stackbar" role="img" aria-label="企业 AI 部署支出构成：基础设施 995 亿美元，应用 773 亿美元，训练数据与服务 153 亿美元">
+            <span style="width:56.3%;background:var(--cobalt)">基础设施 56%</span><span style="width:43.7%;background:var(--copper)">应用 44%</span>
+          </div>
+          <div class="stack-legend"><span><i style="background:var(--cobalt)"></i>基础设施 $99.5B</span><span><i style="background:var(--copper)"></i>应用 $77.3B</span><span><i style="background:var(--muted);opacity:.5"></i>训练数据与服务 $15.3B（口径另计）</span></div>
+          <figcaption>应用层 773 亿美元中，coding 340 亿、chatbot 250 亿、医疗 37 亿、客服 27 亿，其余约 119 亿。Menlo 的分类存在重叠，合计不等于总额；这里只看类别规模，不做加总。</figcaption>
+        </figure>
+
+        <figure class="chart" data-chart style="margin-top:26px">
+          <div class="chart-title"><b>应用支出的集中度</b><span>2026</span></div>
+          <div class="hbars">
+            <div class="hbar"><span class="hbar-label">Coding</span><div class="hbar-track"><span class="hbar-fill" style="--w:100%;--i:0"></span></div><span class="hbar-val">$34B</span></div>
+            <div class="hbar"><span class="hbar-label">企业 chatbot</span><div class="hbar-track"><span class="hbar-fill" style="--w:73.5%;--i:1"></span></div><span class="hbar-val">$25B</span></div>
+            <div class="hbar"><span class="hbar-label">医疗</span><div class="hbar-track"><span class="hbar-fill" style="--w:10.9%;--i:2"></span></div><span class="hbar-val">$3.7B</span></div>
+            <div class="hbar"><span class="hbar-label">客服</span><div class="hbar-track"><span class="hbar-fill" style="--w:7.9%;--i:3"></span></div><span class="hbar-val">$2.7B</span></div>
+            <div class="hbar"><span class="hbar-label">其他</span><div class="hbar-track"><span class="hbar-fill hbar-fill--muted" style="--w:35%;--i:4"></span></div><span class="hbar-val">$11.9B</span></div>
+          </div>
+          <figcaption>“其他”为应用支出减去已列类别后的余量，不是单一品类。coding 和 chatbot 的共同点是结果容易验证、使用频率高、替换成本低。</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 03 MODEL LAYER ===== -->
+<section class="section" id="s3" data-depth="2">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">10 m</span><span class="depth-name">模型层</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>最聪明的一层，利润率只有 10%。</h2>
+        <p class="lede" style="margin-top:20px">模型层的毛利率像软件，费用率像重工业。它卖 token，付算力，签长期承诺，然后在公开市场第一次被定价。</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>OpenAI 2025 年收入 130.7 亿美元，总成本约 340 亿，经营亏损 209.2 亿；其中付给 Microsoft Azure 的钱是 <b>172 亿美元</b>，比自己全年收入还多<a class="cite" href="#source8">8</a>。2026 年上半年收入 124 亿，经营亏损 216 亿；Q2 单季收入 67 亿，经营亏损 123 亿<a class="cite" href="#source9">9</a>。</p>
+          <p>Anthropic 走的是另一条路：2026 年上半年收入 162.86 亿美元，经营亏损只有 6.93 亿；Q2 单季营业利润 9.74 亿，利润率约 8%；但 Q3 收入 170 亿、费用升到 175 亿，又回到 <b>-5.67 亿</b> 营业亏损<a class="cite" href="#source5">5</a><a class="cite" href="#source34">34</a>。盈利是选择，不是状态。</p>
+          <p>两家都在用未来换现在：OpenAI 的芯片与云合同名义上限约 <b>7,100 亿美元</b>，2026–2030 年计划负自由现金流 <b>2,780 亿</b>、算力与基础设施支出 <b>8,560 亿</b><a class="cite" href="#source9">9</a>；Anthropic 的长期算力承诺 <b>900.9 亿美元</b>，其中 4,516 亿在 2030 年前到期<a class="cite" href="#source5">5</a>。</p>
+        </div>
+        <div class="note"><b>关键差异：</b>OpenAI 是消费者订阅 + Azure 账单 + 自建算力；Anthropic 是企业 API + 更高单价 + 更克制的费用。前者规模更大，后者单位经济更好。两种模型都在赌同一个未来：token 用量继续指数增长。</div>
+      </div>
+      <div class="split-visual">
+        <figure class="chart" data-chart>
+          <div class="chart-title"><b>每 1 美元收入，要花多少钱</b><span>2026</span></div>
+          <div class="key-row">
+            <div class="key-cell"><b>$2.22</b><span>OpenAI · 总成本 / 收入<br>2026 Q1 调整后</span></div>
+            <div class="key-cell"><b>$1.04</b><span>Anthropic · 总费用 / 收入<br>2026 上半年</span></div>
+          </div>
+          <div style="margin-top:18px" class="hbars">
+            <div class="hbar"><span class="hbar-label">OpenAI</span><div class="hbar-track"><span class="hbar-fill hbar-fill--oxide" style="--w:92.5%;--i:0"></span></div><span class="hbar-val">2.22×</span></div>
+            <div class="hbar"><span class="hbar-label">Anthropic</span><div class="hbar-track"><span class="hbar-fill" style="--w:43.3%;--i:1"></span></div><span class="hbar-val">1.04×</span></div>
+            <div class="hbar"><span class="hbar-label">盈亏线</span><div class="hbar-track"><span class="hbar-fill hbar-fill--muted" style="--w:41.7%;--i:2"></span></div><span class="hbar-val">1.00×</span></div>
+          </div>
+          <figcaption>条形按 2.4× 为满格；1.00× 为盈亏线。OpenAI 为 Q1 调整后经营亏损/收入，Anthropic 为 H1 总费用/收入；口径不同，方向一致：模型层仍在用规模换利润。</figcaption>
+        </figure>
+
+        <figure class="chart" data-chart style="margin-top:26px">
+          <div class="chart-title"><b>企业模型 API 份额</b><span>Menlo，2026 年 9 月</span></div>
+          <div class="stackbar" role="img" aria-label="企业模型 API 份额：Anthropic 55%，OpenAI 31%，Google 9%，其他 5%">
+            <span style="width:55%;background:var(--copper)">Anthropic 55%</span><span style="width:31%;background:var(--cobalt)">OpenAI 31%</span><span style="width:9%;background:var(--muted)">9%</span><span style="width:5%;background:var(--line)"></span>
+          </div>
+          <div class="stack-legend"><span><i style="background:var(--copper)"></i>Anthropic</span><span><i style="background:var(--cobalt)"></i>OpenAI</span><span><i style="background:var(--muted)"></i>Google</span><span><i style="background:var(--line)"></i>其他 5%</span></div>
+          <figcaption>企业 API 是模型层最赚钱的入口；消费者订阅是另一条战线。份额数据来自 Menlo Ventures 对企业的调研，不是全市场收入份额。</figcaption>
+        </figure>
+
+        <div class="key" style="margin-top:26px">
+          <span class="key-label">公开市场的第一次定价</span>
+          <b class="key-val">11-18</b>
+          <span class="key-note">Anthropic 计划在纳斯达克以 ANT 上市：定价区间 70–78 美元，发行 8.25 亿股；基本市值约 9,160 亿–1.02 万亿美元，完全稀释约 1.3 万–1.4 万亿。7 家科技巨头私募配售 260 亿美元：Google 100、Nvidia 100、AMD 25、Broadcom 10、Micron 10、Microsoft 10、TSMC 5。<a class="cite" href="#source6">6</a><a class="cite" href="#source7">7</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:clamp(30px,4vw,48px)">
+      <table class="table table--compare">
+        <colgroup><col style="width:30%"><col style="width:35%"><col style="width:35%"></colgroup>
+        <thead><tr><th>指标</th><th>OpenAI</th><th>Anthropic</th></tr></thead>
+        <tbody>
+          <tr><td>年化收入</td><td><b>$50B</b>（2026-09）</td><td><b>$81B</b>（2026-10）</td></tr>
+          <tr><td>2026 上半年经营结果</td><td>收入 $12.4B，经营亏损 <b>$21.6B</b></td><td>收入 $16.29B，经营亏损 <b>$0.69B</b></td></tr>
+          <tr><td>毛利率</td><td>39%（2026 Q1）；2025 年 33%</td><td><b>85%</b>（2026 上半年）</td></tr>
+          <tr><td>最近单季营业利润</td><td>Q2 约 <b>-$12.3B</b></td><td>Q2 <b>+$0.97B</b>；Q3 <b>-$0.57B</b></td></tr>
+          <tr><td>账上现金</td><td>约 $73B（2026 Q1）</td><td><b>$131.8B</b>（2026 Q3）</td></tr>
+          <tr><td>长期算力承诺</td><td>$710B 芯片/云合同上限；$1.2T 基础设施计划</td><td><b>$900.9B</b>；其中 $451.6B 在 2030 年前到期</td></tr>
+          <tr class="is-em"><td>估值 / IPO</td><td>$852B（2026-03）；目标 $1.4T</td><td>$965B（2026-05）；IPO 基本市值 $0.92–1.02T</td></tr>
+        </tbody>
+      </table>
+<div class="note"><b>口径：</b>OpenAI 为媒体披露口径；Anthropic 为 S-1/修订文件口径。两家公司的收入确认、算力承诺和股权激励处理各自保留原定义；本节比较整体结构与资金关系。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 04 INTERLUDE ===== -->
+<section class="section interlude block-dark" id="s4" data-depth="4">
+  <div class="wrap wrap--narrow">
+    <div class="depth-tag"><span class="depth-num">发现 02</span><span class="depth-name">为什么越往下越赚钱</span></div>
+    <h2>智能越便宜，<br>岩层越贵。</h2>
+    <p class="lede" style="margin-top:24px">模型层的每一次降本，都在给物理层发订单。单位智能的价格在跌，但调用量、任务数量和基础设施需求在更快地涨。</p>
+    <div class="equation">
+      <div class="eq-cell"><span>单位智能价格</span><b>约 -50×</b><small>每年，固定智能水平</small></div>
+      <div class="eq-cell"><span>全球推理 token</span><b>14×</b><small>同比；2026 年中约 30 万亿/月</small></div>
+      <div class="eq-cell"><span>企业 AI 支出</span><b>+35%</b><small>2026 年约 4,070 亿美元</small></div>
+      <div class="eq-note">方向，不是等式：价格下降越快，用量和新任务增长越快；总支出由后者决定。这就是 Jevons 悖论在 AI 产业的版本。</div>
+    </div>
+    <div class="body-copy" style="margin-top:28px">
+      <p>杰文斯在 1865 年发现：蒸汽机效率提高，英国的煤炭消耗反而上升。因为更便宜的动力打开了新的用途。AI 正在重复这条曲线：更便宜的 token 打开了 agent、长上下文、多模态、实时交互，最终把账单推回给内存、封装、电力和资本<a class="cite" href="#source33">33</a>。</p>
+      <p>所以，模型层的效率提升不会平均地造福整条链。它会把价值重新分配到最难扩产的地方。模型层越努力，存储、封装、电力越赚钱。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 05 CLOUD ===== -->
+<section class="section" id="s5" data-depth="3">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">20 m</span><span class="depth-name">云与资本</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>云厂商不是 AI 的买家，是 AI 的银行。</h2>
+        <p class="lede" style="margin-top:20px">2026 年，四家云厂商的资本开支约 7,300 亿美元；它们自己的自由现金流，已经盖不住这个数字。</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>北美四家云厂商 2026 年三季度合计 capex 约 <b>2,087 亿美元</b>，同比 +84.2%；全年指引合计约 <b>7,200–7,450 亿美元</b>，2025 年是 4,130 亿<a class="cite" href="#source12">12</a>。加上 Oracle 的 FY2027 指引，约 8,350 亿。2027 年，卖方共识已经指向 <b>1.0–1.2 万亿美元</b><a class="cite" href="#source13">13</a>。</p>
+          <p>钱从哪来？2025 年 hyperscaler 发债约 <b>1,820 亿美元</b>，2024 年是 920 亿；Alphabet 的债务从约 160 亿升到约 1,000 亿，2026 年 6 月又宣布 <b>800 亿美元股权融资</b><a class="cite" href="#source14">14</a>。摩根大通估计，大型 AI 公司只有约 15% 的债务与租赁承诺在表内<a class="cite" href="#source13">13</a>。</p>
+          <p>回报呢？2026 年 capex/EBITDA 约 <b>90%</b>，2027 年约 <b>94%</b>；增量 EBITDA 对上年 capex 的收益率只有 <b>20–40%</b><a class="cite" href="#source13">13</a>。按 5–6 年的 GPU 寿命，低回报情形下，一块资产刚好在回本时接近报废。</p>
+        </div>
+        <div class="note"><b>这不是“AI 有没有用”的问题。</b>这是一场关于“谁为它垫钱、垫多久”的争论。当 capex 超过经营现金流，节奏就不再由需求决定，而由利率、信用价差和股价决定。</div>
+      </div>
+      <div class="split-visual">
+        <figure class="chart" data-chart>
+          <div class="chart-title"><b>四家云厂商资本开支</b><span>2023–2027E，十亿美元</span></div>
+          <div class="vchart" style="--h:250px;--hm:250px" role="img" aria-label="四家云厂商资本开支：2023 约 1400 亿，2024 约 2300 亿，2025 4130 亿，2026 约 7300 亿，2027 预测约 10500 亿美元">
+            <div class="vcol"><span class="vcol-val">$140B</span><span class="vbar" style="--h:29px;--i:0"></span><span class="vcol-label">2023</span></div>
+            <div class="vcol"><span class="vcol-val">$230B</span><span class="vbar" style="--h:48px;--i:1"></span><span class="vcol-label">2024</span></div>
+            <div class="vcol"><span class="vcol-val">$413B</span><span class="vbar" style="--h:87px;--i:2"></span><span class="vcol-label">2025</span></div>
+            <div class="vcol"><span class="vcol-val">$730B</span><span class="vbar" style="--h:153px;--i:3"></span><span class="vcol-label">2026</span></div>
+            <div class="vcol"><span class="vcol-val">~$1.05T</span><span class="vbar vbar--forecast" style="--h:220px;--i:4"></span><span class="vcol-label">2027E</span></div>
+          </div>
+          <figcaption>2023/2024 为四家合计的行业估算，2025/2026 为公司指引，2027 为卖方预测（Capital Economics 区间 1.0–1.2 万亿）。柱状图从零开始；预测柱用斜线标出。</figcaption>
+        </figure>
+
+        <figure class="chart" data-chart style="margin-top:26px">
+          <div class="chart-title"><b>2026 Q3 自由现金流</b><span>十亿美元</span></div>
+          <div class="divbars">
+            <div class="divbar"><span class="divbar-label">Alphabet</span><div class="divbar-track"><span class="divbar-fill is-neg" style="--w:20.2%;--i:0"></span></div><span class="divbar-val">-$9.1B</span></div>
+            <div class="divbar"><span class="divbar-label">Meta</span><div class="divbar-track"><span class="divbar-fill is-neg" style="--w:4.7%;--i:1"></span></div><span class="divbar-val">-$2.1B</span></div>
+            <div class="divbar"><span class="divbar-label">Microsoft</span><div class="divbar-track"><span class="divbar-fill is-pos" style="--w:41.3%;--i:2"></span></div><span class="divbar-val">+$18.6B</span></div>
+            <div class="divbar"><span class="divbar-label">Amazon</span><div class="divbar-track"><span class="divbar-fill is-neg" style="--w:94.2%;--i:3"></span></div><span class="divbar-val">-$42.4B</span></div>
+          </div>
+          <div class="chart-note">Amazon 为过去 12 个月自由现金流；其余为单季。Microsoft 为正，但同比下降 27%。</div>
+          <figcaption>自由现金流 = 经营现金流 − 资本开支。四家里三家为负；这不是会计噪音，是资本开支已经超过了当期造血能力。</figcaption>
+        </figure>
+
+        <figure class="chart" data-chart style="margin-top:26px">
+          <div class="chart-title"><b>每 100 美元 capex，五年能收回多少</b><span>增量 EBITDA 收益率 20–40%</span></div>
+          <svg viewBox="0 0 520 220" width="100%" role="img" aria-label="资本回报曲线：每年 20、30、40 美元增量 EBITDA，五年累计 100、150、200 美元；成本线 100 美元">
+            <g stroke="var(--line)" stroke-width="1" fill="none">
+              <line x1="46" y1="180" x2="500" y2="180"/><line x1="46" y1="20" x2="46" y2="180"/>
+              <line x1="46" y1="100" x2="500" y2="100" stroke-dasharray="4 5"/>
+            </g>
+            <g font-family="var(--sans)" font-size="11.5" fill="var(--muted)">
+              <text x="46" y="198">0</text><text x="150" y="198">1</text><text x="250" y="198">2</text><text x="350" y="198">3</text><text x="450" y="198">4</text><text x="500" y="198">5 年</text>
+              <text x="8" y="104">$100</text><text x="8" y="28">$200</text><text x="8" y="184">$0</text>
+            </g>
+            <path d="M46,180 L500,100" stroke="var(--muted)" stroke-width="1.2" fill="none" opacity=".5"/>
+            <path d="M46,180 L500,60" stroke="var(--accent)" stroke-width="1.6" fill="none"/>
+            <path d="M46,180 L500,20" stroke="var(--copper2)" stroke-width="2" fill="none"/>
+            <g font-family="var(--sans)" font-size="11.5">
+              <text x="440" y="92" fill="var(--muted)">20%/年</text><text x="440" y="52" fill="var(--accent)">30%/年</text><text x="440" y="14" fill="var(--copper2)">40%/年</text>
+            </g>
+            <line x1="430" y1="20" x2="430" y2="180" stroke="var(--oxide)" stroke-width="1" stroke-dasharray="3 4"/>
+            <text x="424" y="172" font-family="var(--sans)" font-size="11" fill="var(--oxide)" text-anchor="end">GPU 寿命 5–6 年</text>
+          </svg>
+          <figcaption>这是示意曲线，不是某家公司的实际回报。低回报情形下，累计回收刚好在资产寿命末端触到成本线；高回报情形下，2.5 年回本。差别不在技术，在利用率和定价。</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="key-row" style="margin-top:30px">
+      <div class="key-cell"><b>90% → 94%</b><span>capex / EBITDA，2026 → 2027E。资本开支几乎吃掉全部 EBITDA。</span></div>
+      <div class="key-cell"><b>15%</b><span>大型 AI 公司表内的债务与租赁承诺占比。其余在表外、合资或供应商融资里。</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 06 CHIP ===== -->
+<section class="section" id="s6" data-depth="4">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">30 m</span><span class="depth-name">芯片</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>英伟达不是卖芯片的，是收算力税的。</h2>
+        <p class="lede" style="margin-top:20px">FY2027 Q2 营收 962 亿美元，数据中心占 92.5%，毛利率 75%；Q3 指引 1,080 亿。它的问题不是需求，是供给、治理和周期。</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>FY2026 全年营收 2,159 亿美元（+65%），毛利率 71.1%。FY2027 Q2（截至 2026-07-26）营收 <b>962.21 亿美元</b>（同比 +106%，环比 +18%），数据中心 <b>890.23 亿</b>（同比 +117%，占 92.5%）；GAAP 毛利率 75.0%，GAAP 营业利润约 638 亿，GAAP 净利 596.88 亿（含 77.8 亿股权收益）<a class="cite" href="#source1">1</a>。</p>
+          <p>Q3 指引 <b>1,080 亿美元</b>（±2%），毛利率 74%，且不含中国数据中心收入。公司说客户需求预测下一财年潜在业务可翻倍，但受芯片、内存、电力、建设约束，有把握的增长约 <b>70%</b>。这不是需求故事，是供给故事。</p>
+          <p>市场却按周期给它定价：市值 3.92 万亿美元，PE（TTM）20.35 倍，股价 162.85 美元，较 10 月高点约 243 美元回撤 <b>33%</b>；11 月 5 日单日 -9.3%<a class="cite" href="#source3">3</a><a class="cite" href="#source31">31</a>。20 倍 PE 的 3.9 万亿美元公司，市场已经在为“增长会减速”定价，而不是为“永久增长”定价。</p>
+        </div>
+        <div class="note"><span class="flag flag--risk">治理风险</span> 11 月，创始人辞任 CEO；董事会就相关指控启动独立调查；CFO Colette Kress 任临时 CEO；至少 10 位分析师下调至“持有”，高盛、摩根大通、RBC 下调目标价。11 月 17 日盘后发布 Q3 FY2027 财报，是事件后第一份财报<a class="cite" href="#source3">3</a>。这是 3.9 万亿美元公司的一次治理压力测试，也是“关键人风险”的教科书案例。</div>
+      </div>
+      <div class="split-visual">
+        <figure class="chart" data-chart>
+          <div class="chart-title"><b>数据中心营收：超大规模云 vs ACIE</b><span>十亿美元，FY26 Q2–FY27 Q2</span></div>
+          <div class="stackcols" role="img" aria-label="Nvidia 数据中心营收：FY26 Q2 总计 410 亿，FY26 Q3 512 亿，FY26 Q4 623 亿，FY27 Q1 752 亿，FY27 Q2 890 亿；ACIE 增速更快">
+            <div class="stackcol"><span class="stackcol-val">$41B</span><div class="stackcol-bar" style="--h:92px;--i:0"><span class="seg-h" style="--ph:58.1%"></span><span class="seg-a" style="--pa:41.9%"></span></div><span class="stackcol-label">FY26 Q2</span></div>
+            <div class="stackcol"><span class="stackcol-val">$51B</span><div class="stackcol-bar" style="--h:115px;--i:1"><span class="seg-h" style="--ph:59.2%"></span><span class="seg-a" style="--pa:40.8%"></span></div><span class="stackcol-label">FY26 Q3</span></div>
+            <div class="stackcol"><span class="stackcol-val">$62B</span><div class="stackcol-bar" style="--h:140px;--i:2"><span class="seg-h" style="--ph:54.3%"></span><span class="seg-a" style="--pa:45.7%"></span></div><span class="stackcol-label">FY26 Q4</span></div>
+            <div class="stackcol"><span class="stackcol-val">$75B</span><div class="stackcol-bar" style="--h:169px;--i:3"><span class="seg-h" style="--ph:50.3%"></span><span class="seg-a" style="--pa:49.7%"></span></div><span class="stackcol-label">FY27 Q1</span></div>
+            <div class="stackcol"><span class="stackcol-val">$89B</span><div class="stackcol-bar" style="--h:200px;--i:4"><span class="seg-h" style="--ph:54.7%"></span><span class="seg-a" style="--pa:45.3%"></span></div><span class="stackcol-label">FY27 Q2</span></div>
+          </div>
+          <div class="stack-legend"><span><i style="background:var(--cobalt)"></i>超大规模云 Hyperscale</span><span><i style="background:var(--copper)"></i>ACIE：AI 云 / 工业 / 企业 / 主权</span></div>
+          <figcaption>ACIE 同比 +138%，快于 Hyperscale 的 +102%；Q1 曾接近一半，Q2 超大规模云又加速。需求在变宽，但没有脱离云厂商。<a class="cite" href="#source2">2</a></figcaption>
+        </figure>
+
+        <div class="key-row" style="margin-top:26px">
+          <div class="key-cell"><b>$108B</b><span>Q3 FY2027 营收指引（±2%），不含中国数据中心</span></div>
+          <div class="key-cell"><b>75.0%</b><span>Q2 GAAP 毛利率；Q3 指引 74%</span></div>
+        </div>
+        <div class="key-row" style="margin-top:1px">
+          <div class="key-cell"><b>20.3×</b><span>PE（TTM）；市值 3.92 万亿美元</span></div>
+          <div class="key-cell"><b>-33%</b><span>较 10 月高点回撤；11-05 单日 -9.3%</span></div>
+        </div>
+
+        <figure class="chart" data-chart style="margin-top:26px">
+          <div class="chart-title"><b>供应商承诺、担保与应收天数</b><span>2026</span></div>
+          <div class="hbars">
+            <div class="hbar"><span class="hbar-label">供应链承诺</span><div class="hbar-track"><span class="hbar-fill" style="--w:100%;--i:0"></span></div><span class="hbar-val">$279B</span></div>
+            <div class="hbar"><span class="hbar-label">对 AI 云担保上限</span><div class="hbar-track"><span class="hbar-fill" style="--w:38.9%;--i:1"></span></div><span class="hbar-val">$108.5B</span></div>
+            <div class="hbar"><span class="hbar-label">应收账款天数</span><div class="hbar-track"><span class="hbar-fill hbar-fill--oxide" style="--w:21.5%;--i:2"></span></div><span class="hbar-val">60 天</span></div>
+          </div>
+          <figcaption>供应承诺从 1,190 亿跳到 2,790 亿美元；DSO 从 45 天拉长到 60 天。供应商开始给客户融资，需求信号就不再独立。这是下一节“回路”的入口。</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 07 MEMORY ===== -->
+<section class="section" id="s7" data-depth="5">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">40 m</span><span class="depth-name">存储</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>HBM 是 AI 产业的石油：三家控制，80% 毛利，按年签。</h2>
+        <p class="lede" style="margin-top:20px">这一层没有品牌，没有开发者生态，只有产能、良率和认证周期。它拿走了整条链最厚的一段利润。</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>SK 海力士 2026 Q3 营收 104.62 万亿韩元，营业利润 <b>83.33 万亿</b>，营业利润率 <b>80%</b>；净利 39.78 万亿。2027–2028 年产能已锁定超过 50%，14 家客户签了五年长约；公司预计短缺持续到 2030 年<a class="cite" href="#source17">17</a>。</p>
+          <p>三星 2026 Q3 营收 195.3 万亿韩元，营业利润 <b>107.4 万亿</b>，成为首家单季营业利润超过 100 万亿韩元的科技公司；DS 部门营收 147.1 万亿、营业利润 <b>106.5 万亿</b>，利润率 72%；存储收入 140.7 万亿。HBM4 已占其 HBM 销售额约 60%，2027 年 HBM 产能已按目标价售罄<a class="cite" href="#source18">18</a>。</p>
+          <p>美光 FY2026（截至 9 月 3 日）营收 1,331.9 亿美元，GAAP 营业利润 <b>993.4 亿</b>，营业利润率 <b>80.7%</b>；Q4 营业利润 437.5 亿。HBM4 36GB 12 层已在 2026 Q1 量产，2026 年 HBM 产能售罄<a class="cite" href="#source19">19</a>。</p>
+        </div>
+        <div class="note"><b>口径：</b>三星 DS 含少量代工；SK 与三星为 2026 Q3，美光为 FY26 Q4；韩元按 1,400/美元换算。三家合计单季营业利润约 1,790 亿美元。</div>
+      </div>
+      <div class="split-visual">
+        <figure class="chart" data-chart>
+          <div class="chart-title"><b>HBM 堆栈：一代比一代贵</b><span>每堆栈价格</span></div>
+          <svg viewBox="0 0 420 330" width="100%" role="img" aria-label="HBM 堆栈示意：12 层 HBM4，36GB，单价约 550 美元；HBM3E 约 300 美元；HBM3 约 200 美元">
+            <g>
+              <rect x="62" y="42" width="128" height="228" fill="#204247" stroke="#e9e5da" stroke-opacity=".25"/>
+              <g fill="#3b6b6d" stroke="#e9e5da" stroke-opacity=".2">
+                <rect x="66" y="46" width="120" height="15"/><rect x="66" y="63" width="120" height="15"/><rect x="66" y="80" width="120" height="15"/><rect x="66" y="97" width="120" height="15"/><rect x="66" y="114" width="120" height="15"/><rect x="66" y="131" width="120" height="15"/><rect x="66" y="148" width="120" height="15"/><rect x="66" y="165" width="120" height="15"/><rect x="66" y="182" width="120" height="15"/><rect x="66" y="199" width="120" height="15"/><rect x="66" y="216" width="120" height="15"/><rect x="66" y="233" width="120" height="15"/>
+              </g>
+              <rect x="46" y="270" width="160" height="18" fill="#5c3b2a" stroke="#e9e5da" stroke-opacity=".25"/>
+              <text x="126" y="284" font-family="var(--sans)" font-size="11" fill="#e9e5da" text-anchor="middle">基板 / 中介层</text>
+              <line x1="196" y1="42" x2="216" y2="42" stroke="#e0a052" stroke-opacity=".6"/><line x1="196" y1="270" x2="216" y2="270" stroke="#e0a052" stroke-opacity=".6"/><line x1="216" y1="42" x2="216" y2="270" stroke="#e0a052" stroke-opacity=".6"/>
+              <text x="228" y="70" font-family="var(--sans)" font-size="13" fill="#e0a052">12-Hi HBM4</text>
+              <text x="228" y="88" font-family="var(--sans)" font-size="11.5" fill="#e9e5da" opacity=".65">36GB / 堆栈</text>
+              <text x="228" y="112" font-family="var(--sans)" font-size="20" font-weight="700" fill="#e9e5da">$550</text>
+              <text x="228" y="130" font-family="var(--sans)" font-size="11" fill="#e9e5da" opacity=".5">HBM3E 约 $300</text>
+              <text x="228" y="144" font-family="var(--sans)" font-size="11" fill="#e9e5da" opacity=".5">HBM3 约 $200</text>
+              <text x="228" y="180" font-family="var(--sans)" font-size="11" fill="#e9e5da" opacity=".5">一个 GPU 周围</text>
+              <text x="228" y="194" font-family="var(--sans)" font-size="11" fill="#e9e5da" opacity=".5">通常放 8 个堆栈</text>
+              <text x="228" y="220" font-family="var(--sans)" font-size="11" fill="#e9e5da" opacity=".5">每 GB 单价</text>
+              <text x="228" y="234" font-family="var(--sans)" font-size="11" fill="#e9e5da" opacity=".5">随代际上升</text>
+            </g>
+          </svg>
+          <figcaption>示意，不是工程图。HBM4 36GB 12 层单价约 550 美元；HBM3E 约 300；HBM3 约 200。价格来自供应链与媒体口径，随合同和良率波动。</figcaption>
+        </figure>
+
+        <figure class="chart" data-chart style="margin-top:26px">
+          <div class="chart-title"><b>HBM 收入份额</b><span>2026 Q2，Counterpoint</span></div>
+          <div class="hbars" role="img" aria-label="HBM 收入份额：SK 海力士 50%，三星 33%，美光 18%">
+            <div class="hbar"><span class="hbar-label">SK 海力士</span><div class="hbar-track"><span class="hbar-fill" style="--w:100%;--i:0"></span></div><span class="hbar-val">50%</span></div>
+            <div class="hbar"><span class="hbar-label">三星</span><div class="hbar-track"><span class="hbar-fill" style="--w:66%;--i:1"></span></div><span class="hbar-val">33%</span></div>
+            <div class="hbar"><span class="hbar-label">美光</span><div class="hbar-track"><span class="hbar-fill" style="--w:36%;--i:2"></span></div><span class="hbar-val">18%</span></div>
+          </div>
+          <figcaption>2025 年同期 SK 约 64%。三星靠 HBM4 率先量产追回份额，美光靠 HBM4 36GB 12 层进入第一梯队。份额是收入口径，不是产能口径；三项因四舍五入合计略高于 100%。<a class="cite" href="#source20">20</a></figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:clamp(30px,4vw,48px)">
+      <table class="table table--tight">
+        <colgroup><col style="width:34%"><col style="width:33%"><col style="width:33%"></colgroup>
+        <thead><tr><th>公司 / 口径</th><th class="num">营业利润</th><th class="num">营业利润率</th></tr></thead>
+        <tbody>
+          <tr><td><b>SK 海力士</b><br><span class="muted">2026 Q3</span></td><td class="num">83.33 万亿韩元<br><span class="muted">约 $59.5B</span></td><td class="num"><b>80%</b></td></tr>
+          <tr><td><b>三星 DS</b><br><span class="muted">2026 Q3，含少量代工</span></td><td class="num">106.5 万亿韩元<br><span class="muted">约 $76.1B</span></td><td class="num"><b>72%</b></td></tr>
+          <tr><td><b>美光</b><br><span class="muted">FY26 Q4，截至 9 月 3 日</span></td><td class="num">$43.75B</td><td class="num"><b>80.7%</b></td></tr>
+        </tbody>
+      </table>
+      <div class="note">三家合计约 <b>$179B</b> 单季营业利润。这个数字是“短缺租金”：HBM 认证周期长、扩产慢、客户愿意签长约；但它也是周期顶部，不是永久护城河。</div>
+    </div>
+
+    <div class="split" style="margin-top:clamp(30px,4vw,48px)">
+      <div class="split-text">
+        <figure class="chart" data-chart>
+          <div class="chart-title"><b>AI 数据中心吃掉全球 70% 的存储产能</b><span>2026，IDC / 供应链</span></div>
+          <div class="stackbar" role="img" aria-label="2026 年 AI 数据中心预计消耗全球 70% 的存储芯片产能，手机与 PC 等其余需求占 30%">
+            <span style="width:70%;background:var(--copper)">AI 数据中心 70%</span><span style="width:30%;background:var(--muted)">手机 / PC / 其他 30%</span>
+          </div>
+          <div class="stack-legend"><span><i style="background:var(--copper)"></i>AI 数据中心</span><span><i style="background:var(--muted)"></i>消费电子与其他</span></div>
+          <figcaption>HBM 每 GB 消耗的晶圆是普通 DRAM 的 3–4 倍。AI 不只抢走了内存，还抢走了晶圆。IDC 预计 2026 年手机出货 -5%、PC -9%。<a class="cite" href="#source21">21</a></figcaption>
+        </figure>
+        <p class="body-copy" style="margin-top:20px">这就是“存储税”的传导路径：AI 愿意为 HBM 付 80% 的毛利，存储厂把晶圆从 DDR5 挪到 HBM，消费电子的供给变少、价格变贵。你买的下一部手机，可能在替数据中心付账。</p>
+      </div>
+      <div class="split-visual">
+        <figure class="chart" data-chart>
+          <div class="chart-title"><b>HBM 收入：2027 年是预测，不是事实</b><span>十亿美元</span></div>
+          <div class="vchart" style="--h:220px;--hm:220px" role="img" aria-label="HBM 收入：2025 约 345 亿美元，2026 约 546 亿美元，2027 预测超过 2000 亿美元">
+            <div class="vcol"><span class="vcol-val">$34.5B</span><span class="vbar" style="--h:31px;--i:0"></span><span class="vcol-label">2025</span></div>
+            <div class="vcol"><span class="vcol-val">$54.6B</span><span class="vbar" style="--h:49px;--i:1"></span><span class="vcol-label">2026</span></div>
+            <div class="vcol"><span class="vcol-val">&gt;$200B</span><span class="vbar vbar--forecast" style="--h:180px;--i:2"></span><span class="vcol-label">2027E</span></div>
+          </div>
+<figcaption>2025 为按 2026 增速推算；2026 约 546 亿（BofA，+58%）；2027 为 TrendForce 预测：ASP 同比 +122% 至 3.7 美元/Gb，收入同比 +230% 突破 2,000 亿。卖方预测分歧极大，图中将其作为条件情景使用。</figcaption>
+        </figure>
+        <div class="cycle" style="margin-top:24px">
+          <div class="cycle-step is-now"><b>2026 · 短缺</b><span>产能售罄，价格上行，长约锁定。</span></div>
+          <div class="cycle-step"><b>2027 · 顶点</b><span>ASP 预测再涨，收入冲高，资本开支加速。</span></div>
+          <div class="cycle-step"><b>2028 · 释放</b><span>新产能到位，供给追上，价格松动。</span></div>
+          <div class="cycle-step"><b>2029 · 回落</b><span>周期下行，毛利正常化，弱者出清。</span></div>
+        </div>
+        <div class="note"><b>关键判断：</b>80% 毛利是短缺租金，不是永久护城河。认证周期和寡头结构是真的；价格的周期性也是真的。把周期顶部当成永续，是这一层最大的误读。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 08 PACKAGING ===== -->
+<section class="section" id="s8" data-depth="6">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">50 m</span><span class="depth-name">封装</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>CoWoS 是 AI 的匝道：没有它，GPU 下不了产线。</h2>
+        <p class="lede" style="margin-top:20px">台积电把封装从后台成本变成了前台利润。真正限制客户的，不是晶圆，是能把多少 GPU 和 HBM 塞进一个封装。</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>台积电 2026 Q3 营收 <b>467.2 亿美元</b>（环比 +16.2%，同比 +41.2%），毛利率 <b>66.4%</b>、营业利润率 <b>58.7%</b>、净利率 <b>51.1%</b>，净利 7,630.6 亿新台币；HPC 占 68%。2026 年资本开支 600–640 亿美元，Q3 实际 138.4 亿；Q4 指引 523–543 亿美元；全年营收增速约 44%（美元）<a class="cite" href="#source15">15</a>。</p>
+          <p>CoWoS 月产能从 2025 年约 7 万片，升到 2026 年底 <b>12–14 万片</b>；加上 OSAT 伙伴 5–6 万片，行业总产能约 17–20 万片/月。客户仍短缺 <b>10–20%</b>；台积电 2026 年 10 月将 CoWoS 报价上调 10–20%；魏哲家说封装产能太紧，已经限制客户增长<a class="cite" href="#source16">16</a>。</p>
+          <p>光罩尺寸在变大：3.5 倍已量产，5 倍/5.5 倍在 2026 年进入量产，9 倍与 14 倍在研；14 倍可集成约 10 颗大计算 die 加 20 堆 HBM，目标 2028 年。CoWoS 晶圆 ASP 接近 1 万美元，毛利率高于公司平均，封装收入占比预计超过 10%。</p>
+        </div>
+        <div class="note"><b>这意味着：</b>封装不再是一个可外包的后道工序，它是先进制程的一部分。谁拿到 CoWoS 产能，谁才能定义下一代系统。晶圆厂、HBM 厂、封装厂，正在变成同一个瓶颈的三个面。</div>
+      </div>
+      <div class="split-visual">
+        <figure class="chart" data-chart>
+          <div class="chart-title"><b>一个 CoWoS 封装里有什么</b><span>示意，不是工程图</span></div>
+          <svg viewBox="0 0 520 380" width="100%" role="img" aria-label="CoWoS 封装示意：一个 GPU 计算 die 与 8 个 HBM 堆栈放在硅中介层上，下面是基板">
+            <g>
+              <rect x="58" y="292" width="404" height="34" fill="#5c3b2a" stroke="#e9e5da" stroke-opacity=".25"/>
+              <text x="260" y="313" font-family="var(--sans)" font-size="11.5" fill="#e9e5da" text-anchor="middle">基板 / 封装</text>
+              <rect x="78" y="246" width="364" height="46" fill="#2d565a" stroke="#e9e5da" stroke-opacity=".3"/>
+              <text x="260" y="273" font-family="var(--sans)" font-size="11.5" fill="#e9e5da" text-anchor="middle">硅中介层 · CoWoS</text>
+              <g fill="#3b6b6d" stroke="#e9e5da" stroke-opacity=".25">
+                <rect x="96" y="166" width="18" height="76"/><rect x="118" y="166" width="18" height="76"/><rect x="140" y="166" width="18" height="76"/><rect x="162" y="166" width="18" height="76"/>
+                <rect x="340" y="166" width="18" height="76"/><rect x="362" y="166" width="18" height="76"/><rect x="384" y="166" width="18" height="76"/><rect x="406" y="166" width="18" height="76"/>
+              </g>
+              <rect x="214" y="148" width="92" height="94" fill="#35627d" stroke="#e9e5da" stroke-opacity=".4"/>
+              <text x="260" y="202" font-family="var(--sans)" font-size="13" font-weight="700" fill="#e9e5da" text-anchor="middle">GPU</text>
+              <text x="260" y="218" font-family="var(--sans)" font-size="11" fill="#e9e5da" opacity=".6" text-anchor="middle">计算 die</text>
+              <g fill="#e0a052" opacity=".7">
+                <circle cx="220" cy="238" r="2"/><circle cx="236" cy="238" r="2"/><circle cx="252" cy="238" r="2"/><circle cx="268" cy="238" r="2"/><circle cx="284" cy="238" r="2"/><circle cx="300" cy="238" r="2"/>
+              </g>
+              <g stroke="#e9e5da" stroke-opacity=".18" stroke-width="1">
+                <line x1="110" y1="246" x2="110" y2="292"/><line x1="130" y1="246" x2="130" y2="292"/><line x1="150" y1="246" x2="150" y2="292"/><line x1="170" y1="246" x2="170" y2="292"/><line x1="350" y1="246" x2="350" y2="292"/><line x1="370" y1="246" x2="370" y2="292"/><line x1="390" y1="246" x2="390" y2="292"/><line x1="410" y1="246" x2="410" y2="292"/>
+              </g>
+              <text x="106" y="152" font-family="var(--sans)" font-size="11" fill="#e0a052" text-anchor="middle">HBM</text>
+              <text x="386" y="152" font-family="var(--sans)" font-size="11" fill="#e0a052" text-anchor="middle">HBM</text>
+              <text x="260" y="118" font-family="var(--sans)" font-size="12" fill="#e0a052" text-anchor="middle">5.5× 光罩 · 2026 量产</text>
+              <line x1="164" y1="124" x2="356" y2="124" stroke="#e0a052" stroke-opacity=".45"/>
+              <text x="260" y="348" font-family="var(--sans)" font-size="11" fill="#e9e5da" opacity=".55" text-anchor="middle">一个 GPU + 8 个 HBM 堆栈；14× 光罩目标 2028 年，约 10 个计算 die + 20 堆 HBM</text>
+            </g>
+          </svg>
+          <figcaption>CoWoS 把 GPU 与 HBM 放在同一块硅中介层上，用 TSV 和微凸块连接。封装越大，能放的 HBM 越多，带宽越高，良率越难。瓶颈不在“能不能设计”，在“能不能造出来”。</figcaption>
+        </figure>
+
+        <figure class="chart" data-chart style="margin-top:26px">
+          <div class="chart-title"><b>CoWoS 月产能</b><span>千片 / 月，等效</span></div>
+          <div class="hbars">
+            <div class="hbar"><span class="hbar-label">2025 · 台积电</span><div class="hbar-track"><span class="hbar-fill hbar-fill--muted" style="--w:35%;--i:0"></span></div><span class="hbar-val">70k</span></div>
+            <div class="hbar"><span class="hbar-label">2026 · 台积电</span><div class="hbar-track"><span class="hbar-fill" style="--w:65%;--i:1"></span></div><span class="hbar-val">120–140k</span></div>
+            <div class="hbar"><span class="hbar-label">2026 · + OSAT</span><div class="hbar-track"><span class="hbar-fill" style="--w:92.5%;--i:2"></span></div><span class="hbar-val">170–200k</span></div>
+          </div>
+          <div class="chart-note chart-note--risk">客户仍短缺 10–20%；10 月报价上调 10–20%。</div>
+          <figcaption>产能数字来自供应链与媒体口径，单位为等效月产能；不同产品、不同光罩尺寸的消耗不同。这里只说明扩张速度，不据此计算精确供需缺口。</figcaption>
+        </figure>
+
+        <div class="cycle" style="margin-top:24px">
+          <div class="cycle-step"><b>3.5× · 2023–24</b><span>量产；H100 时代的封装基线。</span></div>
+          <div class="cycle-step is-now"><b>5× / 5.5× · 2026</b><span>量产；Blackwell / Rubin 时代的更大封装。</span></div>
+          <div class="cycle-step"><b>9× · 2027–28</b><span>在研；更多计算 die 与 HBM。</span></div>
+          <div class="cycle-step"><b>14× · 2028</b><span>目标；约 10 颗大计算 die + 20 堆 HBM。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="key-row" style="margin-top:30px">
+      <div class="key-cell"><b>66.4%</b><span>台积电 2026 Q3 毛利率；营业利润率 58.7%。</span></div>
+      <div class="key-cell"><b>10–20%</b><span>CoWoS 客户缺口；封装已成为增长的限制条件，不是配套。</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 09 POWER ===== -->
+<section class="section" id="s9" data-depth="7">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">60 m</span><span class="depth-name">电力与电网</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>AI 的下一道墙，不是芯片，是电。</h2>
+        <p class="lede" style="margin-top:20px">你可以用 18 个月建好机房，但要用 5 年等到电。电力是唯一不能用钱立刻买到的输入。</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>IEA 口径：全球数据中心用电 2024 年 <b>415 TWh</b>（约全球 1.5%），2025 年约 485 TWh，2030 年约 <b>945 TWh</b>，接近日本全国用电；AI 优化服务器占数据中心用电约 15%，增速约 30%/年<a class="cite" href="#source22">22</a>。</p>
+          <p>美国数据中心负荷：2023 年约 23 GW，2025 年 31 GW，2026 年 41–42 GW，2027 年 <b>66 GW</b>，2030 年 <b>134 GW</b><a class="cite" href="#source23">23</a>。电网并网队列超过 <b>2,060 GW</b>、约 8,200 个项目；2025 年投运项目中位等待超过 5 年；2000–2020 年申请容量只有 13% 建成。</p>
+          <p>价格在说话：PJM 容量价格从 28.92 美元/MW-day 涨到 <b>269.92</b>（+833%），2026/27 触顶 329.17，2028/29 为 325 且短缺 6,831 MW<a class="cite" href="#source24">24</a>。大型变压器交期约 128 周、升压变压器约 144 周；GE Vernova 重型燃气轮机售罄至 2028 年、承诺排到 2031 年，价格三年涨约 300% 至约 600 美元/kW；约 50% 的 2026 年计划容量可能延期<a class="cite" href="#source25">25</a>。</p>
+        </div>
+        <div class="note"><b>钱不是问题，时间是问题。</b>全球数据中心投资 2025 年超过 5,500 亿美元（+17%），已经高于油气上游投资；2026 年上半年购电协议 45 TWh（+20%）。但核能签约 9.8 GW、13 个项目、7 家买家，多数在 2030 年前不供电。远水不解近渴。</div>
+      </div>
+      <div class="split-visual">
+        <figure class="chart" data-chart>
+          <div class="chart-title"><b>美国数据中心负荷</b><span>GW，2023–2030E</span></div>
+          <div class="vchart" style="--h:240px;--hm:240px" role="img" aria-label="美国数据中心负荷：2023 年 23GW，2025 年 31GW，2026 年约 41.5GW，2027 年 66GW，2030 年 134GW">
+            <div class="vcol"><span class="vcol-val">23</span><span class="vbar" style="--h:34px;--i:0"></span><span class="vcol-label">2023</span></div>
+            <div class="vcol"><span class="vcol-val">31</span><span class="vbar" style="--h:46px;--i:1"></span><span class="vcol-label">2025</span></div>
+            <div class="vcol"><span class="vcol-val">41.5</span><span class="vbar" style="--h:62px;--i:2"></span><span class="vcol-label">2026</span></div>
+            <div class="vcol"><span class="vcol-val">66</span><span class="vbar" style="--h:98px;--i:3"></span><span class="vcol-label">2027</span></div>
+            <div class="vcol"><span class="vcol-val">134</span><span class="vbar vbar--forecast" style="--h:200px;--i:4"></span><span class="vcol-label">2030E</span></div>
+          </div>
+          <figcaption>2023–2027 为 Goldman 与多项预测的中位口径，2030 为预测。五年近 6 倍；这不是线性增长，是阶跃。</figcaption>
+        </figure>
+
+        <figure class="chart" data-chart style="margin-top:26px">
+          <div class="chart-title"><b>从决定到通电，要多久</b><span>年</span></div>
+          <div class="gantt">
+            <div class="gantt-row"><span class="gantt-label">数据中心建设</span><div class="gantt-track"><span class="gantt-fill" style="--w:15%;--i:0"></span></div><span class="gantt-val">1.5 年</span></div>
+            <div class="gantt-row"><span class="gantt-label">变压器交付</span><div class="gantt-track"><span class="gantt-fill" style="--w:26%;--i:1"></span></div><span class="gantt-val">2.6 年</span></div>
+            <div class="gantt-row"><span class="gantt-label">并网队列</span><div class="gantt-track"><span class="gantt-fill gantt-fill--oxide" style="--w:50%;--i:2"></span></div><span class="gantt-val">5 年+</span></div>
+            <div class="gantt-row"><span class="gantt-label">重型燃机</span><div class="gantt-track"><span class="gantt-fill gantt-fill--oxide" style="--w:50%;--i:3"></span></div><span class="gantt-val">5 年</span></div>
+            <div class="gantt-row"><span class="gantt-label">核能</span><div class="gantt-track"><span class="gantt-fill gantt-fill--muted" style="--w:100%;--i:4"></span></div><span class="gantt-val">7–10 年</span></div>
+          </div>
+          <figcaption>示意：从投资决定到首次供电的典型时间。最慢的一根决定整体；机房可以 18 个月建好，电要等 5 年。</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="split" style="margin-top:clamp(30px,4vw,48px)">
+      <div class="split-text">
+        <figure class="chart" data-chart>
+          <div class="chart-title"><b>PJM 容量拍卖结算价</b><span>美元 / MW-day</span></div>
+          <svg viewBox="0 0 520 220" width="100%" role="img" aria-label="PJM 容量价格：28.92 涨到 269.92，再涨到 329.17，2028/29 为 325">
+            <g stroke="var(--line)" stroke-width="1" fill="none">
+              <line x1="52" y1="180" x2="500" y2="180"/><line x1="52" y1="20" x2="52" y2="180"/>
+              <line x1="52" y1="132" x2="500" y2="132" stroke-dasharray="3 4"/><line x1="52" y1="84" x2="500" y2="84" stroke-dasharray="3 4"/>
+            </g>
+            <g font-family="var(--sans)" font-size="11" fill="var(--muted)">
+              <text x="14" y="184">0</text><text x="14" y="136">100</text><text x="14" y="88">200</text><text x="14" y="24">350</text>
+              <text x="60" y="200">2024/25</text><text x="180" y="200">2025/26</text><text x="300" y="200">2026/27</text><text x="420" y="200">2028/29</text>
+            </g>
+            <path d="M60,167.6 L180,64.3 L300,39.0 L420,40.7" stroke="var(--accent)" stroke-width="2" fill="none"/>
+            <g fill="var(--accent)">
+              <circle cx="60" cy="167.6" r="3"/><circle cx="180" cy="64.3" r="3"/><circle cx="300" cy="39" r="3"/><circle cx="420" cy="40.7" r="3"/>
+            </g>
+            <g font-family="var(--sans)" font-size="11.5" fill="var(--fg)">
+              <text x="60" y="158" text-anchor="middle">$28.92</text><text x="180" y="54" text-anchor="middle">$269.92</text><text x="300" y="30" text-anchor="middle">$329.17</text><text x="420" y="32" text-anchor="middle">$325</text>
+            </g>
+            <g font-family="var(--sans)" font-size="11.5" fill="var(--oxide)">
+              <text x="120" y="112" text-anchor="middle">+833%</text><text x="360" y="58" text-anchor="middle">短缺 6,831 MW</text>
+            </g>
+          </svg>
+          <figcaption>PJM 是美国最大电网市场之一。容量价格是“确保有电可用”的价格，不是电价本身；它上涨，说明系统在为可靠性付溢价。</figcaption>
+        </figure>
+        <div class="key" style="margin-top:22px">
+          <span class="key-label">全球数据中心投资</span>
+          <b class="key-val">$550B+</b>
+          <span class="key-note">2025 年（+17%），高于油气上游投资；2026 年主要运营商资本开支超过 7,000 亿美元。</span>
+        </div>
+      </div>
+      <div class="split-visual">
+        <div class="key">
+          <span class="key-label">2026 年 11 月，美国中期选举后</span>
+          <b class="key-val">40 / 41</b>
+          <span class="key-note">地方数据中心公投被否决。数据中心反对派在 41 项公投中赢了 40 项；部分当选人主张暂停或限制数据中心。11 月 5 日的市场大跌，把这条政治约束第一次定价<a class="cite" href="#source26">26</a>。</span>
+        </div>
+        <p class="body-copy" style="margin-top:22px">电力不是唯一约束，许可也是。一个数据中心需要土地、电网接入、空气许可、水、地方政治同意；每一道都可以让项目延期。把“电”只看成工程问题，是低估了它。</p>
+        <figure class="chart" data-chart style="margin-top:26px">
+          <div class="chart-title"><b>瓶颈在移动</b><span>2023–2027+</span></div>
+          <div class="cycle">
+            <div class="cycle-step"><b>2023–24</b><span>CoWoS 封装：GPU 产能的第一道闸。</span></div>
+            <div class="cycle-step"><b>2024–25</b><span>HBM：内存带宽与容量成为新瓶颈。</span></div>
+            <div class="cycle-step is-now"><b>2025–27</b><span>电力与并网：唯一不能用钱加速的约束。</span></div>
+            <div class="cycle-step"><b>2027+</b><span>需求：如果终端收入不跟上，瓶颈回到钱包。</span></div>
+          </div>
+          <figcaption>高德拉特意义上的“约束”：系统产出由最慢的那一环决定。瓶颈不会消失，只会移动；投资应该盯着下一环，而不是上一环。</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 10 PROFIT TABLE ===== -->
+<section class="section" id="s10" data-depth="7">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">65 m</span><span class="depth-name">把岩层放在一张表上</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>利润不是按“技术含量”分配，是按“不可替代性”分配。</h2>
+        <p class="lede" style="margin-top:20px">把 2026 Q3 的营业利润放在同一张表上：存储一层拿走几乎全部；芯片和代工紧随其后；模型层最好的学生只有 10 亿美元级，最差的一个季度亏 123 亿。</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>这不是说模型层没有价值。它创造了整个产业的需求，也承担了整个产业的研发和获客成本。但在利润表上，它更像一个“过路费征收点”，而不是“终点”。</p>
+          <p>物理层的利润来自三件事：产能无法快速复制、客户认证周期长、供给集中在少数公司。模型层的利润来自两件事：规模、数据和分发。前者是结构性的，后者是可竞争的。</p>
+        </div>
+        <div class="note"><b>口径：</b>存储三巨头为 Q3/FY26 Q4 营业利润；Nvidia 为 FY27 Q2 GAAP 营业利润；TSMC 为 Q3 净利润（不是营业利润）；Anthropic 为 Q2 营业利润；OpenAI 为 Q2 营业亏损。不同口径，只看量级。</div>
+      </div>
+      <div class="split-visual">
+        <figure class="chart" data-chart>
+          <div class="chart-title"><b>2026 Q3 利润池</b><span>十亿美元</span></div>
+          <div class="hbars">
+            <div class="hbar"><span class="hbar-label">存储三巨头</span><div class="hbar-track"><span class="hbar-fill" style="--w:99.4%;--i:0"></span></div><span class="hbar-val">$179B</span></div>
+            <div class="hbar"><span class="hbar-label">Nvidia</span><div class="hbar-track"><span class="hbar-fill" style="--w:35.4%;--i:1"></span></div><span class="hbar-val">$64B</span></div>
+            <div class="hbar"><span class="hbar-label">台积电</span><div class="hbar-track"><span class="hbar-fill" style="--w:13.3%;--i:2"></span></div><span class="hbar-val">$24B</span></div>
+            <div class="hbar"><span class="hbar-label">Anthropic</span><div class="hbar-track"><span class="hbar-fill" style="--w:1%;--i:3"></span></div><span class="hbar-val">≈$1B</span></div>
+          </div>
+          <div class="key" style="margin-top:22px">
+            <span class="key-label">同一季度，模型层最大的亏损</span>
+            <b class="key-val" style="color:var(--oxide)">-$12.3B</b>
+            <span class="key-note">OpenAI 2026 Q2 营业亏损。它在买未来：算力、用户、模型能力。但利润表上，它是负的。</span>
+          </div>
+          <figcaption>条形按 180 为满格；Anthropic 的 9.7 亿在这个比例尺上几乎看不见——这正是重点。TSMC 为净利润，Nvidia 为营业利润，口径不同。</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:clamp(30px,4vw,48px)">
+      <table class="table">
+        <colgroup><col style="width:22%"><col style="width:20%"><col style="width:16%"><col style="width:42%"></colgroup>
+        <thead><tr><th>层</th><th>2026 Q3 利润</th><th>利润率</th><th>谁在收租 / 为什么</th></tr></thead>
+        <tbody>
+          <tr><td><b>存储</b></td><td>$179B（三家合计）</td><td><b>72–81%</b></td><td>三家寡头 + HBM 认证周期 + 产能售罄；短缺租金，不是永久技术垄断。</td></tr>
+          <tr><td><b>芯片</b></td><td>$64B（Nvidia）</td><td><b>66%</b></td><td>系统、生态、供给三合一；客户同时是股东和融资对象。</td></tr>
+          <tr><td><b>代工 / 封装</b></td><td>$24B（TSMC 净利）</td><td><b>51%</b></td><td>先进制程 + CoWoS 产能；封装从后道变成前道。</td></tr>
+          <tr><td><b>模型</b></td><td>+$0.97B / -$12.3B</td><td><b>8% / -170%</b></td><td>规模、数据、分发；但算力成本和获客成本更高。</td></tr>
+          <tr><td><b>应用</b></td><td>收入 $77B，利润分散</td><td><b>—</b></td><td>工作流、分发、可验证结果；被模型层纵向挤压。</td></tr>
+        </tbody>
+      </table>
+      <div class="note"><b>一句话：</b>最聪明的一层，赚得最少；最笨重的一层，赚得最多。因为利润率不奖励“聪明”，它奖励“别人绕不过去”。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 11 LOOP ===== -->
+<section class="section" id="s11" data-depth="7">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">70 m</span><span class="depth-name">基岩 · 循环</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>这台机器的燃料，不只是需求，还有循环。</h2>
+        <p class="lede" style="margin-top:20px">当供应商同时是股东、客户和担保人，需求信号就不再独立。循环融资不是骗局，它把“需求验证”推迟到了未来。</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>OpenAI 名义上约有 <b>7,100 亿美元</b>的芯片与云合同；Nvidia、Microsoft、Amazon 同时是它的供应商与股东。Nvidia 原计划向 OpenAI 投资 1,000 亿美元，最终没有签；实际投入约 300 亿美元，估值 8,520 亿。Nvidia 还持有 CoreWeave 约 9%，承诺购买其未售出云容量（初始 63 亿美元），同时是它的供应商、股东、客户<a class="cite" href="#source4">4</a>。</p>
+          <p>Nvidia 为 OpenAI 俄亥俄数据中心的部分租约提供担保；AMD 据称向 OpenAI / Meta 提供“股权换订单”。Anthropic 的 IPO 更直接：Google、Nvidia 各认购 100 亿美元，AMD 25 亿，Broadcom、Micron、Microsoft 各 10 亿，TSMC 5 亿，合计 <b>260 亿美元</b>——供应商同时是股东<a class="cite" href="#source7">7</a>。</p>
+          <p>这些安排本身不违法，也不等于假需求。它们解决的是“谁来为超前产能融资”。问题是：当供应商的钱和客户的钱来自同一个循环，需求的“独立验证”就变弱了。供应承诺 2,790 亿、担保 1,085 亿、DSO 60 天，都是这个循环的仪表盘<a class="cite" href="#source4">4</a>。</p>
+        </div>
+        <div class="note"><b>明斯基的梯子：</b>用现金流建设 → 用资产负债表建设 → 用估值建设。整个行业在第二级；边际项目在第三级。第三级的特征不是“亏损”，是“靠新的融资才能付旧的钱”。</div>
+      </div>
+      <div class="split-visual">
+        <div class="loop-controls">
+          <button class="loop-btn is-on" data-loop="demand" aria-pressed="true">只看终端需求</button>
+          <button class="loop-btn" data-loop="full" aria-pressed="false">看完整循环</button>
+        </div>
+        <figure class="chart" data-chart>
+          <svg class="loop-svg" id="loopSvg" viewBox="0 0 900 420" role="img" aria-label="AI 产业资本循环示意图：物理层到 Nvidia 到云模型到终端，钱沿原路返回；供应商的投资与担保构成额外循环">
+            <defs>
+              <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
+              <marker id="arrowMuted" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker>
+            </defs>
+            <g>
+              <rect class="loop-node" x="30" y="160" width="180" height="90"/>
+              <text class="loop-name" x="50" y="194">物理层</text>
+              <text class="loop-sub" x="50" y="214">TSMC · HBM · 电力</text>
+              <text class="loop-sub" x="50" y="230">最慢、最贵、最难复制</text>
+
+              <rect class="loop-node loop-node--key" x="260" y="160" width="160" height="90"/>
+              <text class="loop-name" x="280" y="194">Nvidia</text>
+              <text class="loop-sub" x="280" y="214">芯片 + 系统</text>
+              <text class="loop-sub" x="280" y="230">供应商 / 股东 / 担保人</text>
+
+              <rect class="loop-node loop-node--key" x="470" y="160" width="200" height="90"/>
+              <text class="loop-name" x="490" y="194">云 / 模型</text>
+              <text class="loop-sub" x="490" y="214">OpenAI · Anthropic · Oracle</text>
+              <text class="loop-sub" x="490" y="230">CoreWeave · neoclouds</text>
+
+              <rect class="loop-node" x="720" y="160" width="150" height="90"/>
+              <text class="loop-name" x="738" y="194">终端</text>
+              <text class="loop-sub" x="738" y="214">企业 · 消费者</text>
+              <text class="loop-sub" x="738" y="230">主权客户</text>
+
+              <path class="loop-edge" d="M210,205 L260,205" marker-end="url(#arrow)"/>
+              <path class="loop-edge" d="M420,205 L470,205" marker-end="url(#arrow)"/>
+              <path class="loop-edge" d="M670,205 L720,205" marker-end="url(#arrow)"/>
+              <text class="edge-label" x="235" y="196">晶圆</text>
+              <text class="edge-label" x="445" y="196">GPU</text>
+              <text class="edge-label" x="695" y="196">token</text>
+
+              <path class="loop-edge loop-edge--money" d="M795,250 L795,320 L570,320 L570,250" marker-end="url(#arrow)"/>
+              <path class="loop-edge loop-edge--money" d="M570,250 L570,300 L340,300 L340,250" marker-end="url(#arrow)"/>
+              <path class="loop-edge loop-edge--money" d="M340,250 L340,340 L120,340 L120,250" marker-end="url(#arrow)"/>
+              <text class="edge-label edge-label--hot" x="620" y="334">钱</text>
+              <text class="edge-label" x="455" y="294">钱</text>
+              <text class="edge-label" x="225" y="354">钱</text>
+
+              <path class="loop-edge loop-edge--loop loop-edge--loop-anim" d="M340,160 C340,90 560,90 560,160" marker-end="url(#arrow)"/>
+              <path class="loop-edge loop-edge--loop loop-edge--loop-anim" d="M120,160 C120,55 590,55 590,160" marker-end="url(#arrow)"/>
+              <text class="edge-label edge-label--hot" x="430" y="82">投资 / 担保</text>
+              <text class="edge-label" x="300" y="47">入股 / IPO 认购</text>
+            </g>
+          </svg>
+          <div class="loop-legend"><span><i style="background:var(--muted)"></i>商品 / 服务</span><span><i style="background:var(--accent)"></i>钱</span><span><i style="background:var(--accent);opacity:.55"></i>资本 / 承诺</span></div>
+          <figcaption id="loopCaption">去掉资本循环，只剩一条价值链：物理层 → 芯片 → 云/模型 → 终端。钱沿着原路返回。打开“完整循环”，会看到供应商的投资、担保与入股，把这条路变成了一个环。</figcaption>
+        </figure>
+
+        <figure class="chart" data-chart style="margin-top:26px">
+          <div class="chart-title"><b>长期承诺 / 年化收入</b><span>倍</span></div>
+          <div class="hbars">
+            <div class="hbar"><span class="hbar-label">OpenAI</span><div class="hbar-track"><span class="hbar-fill hbar-fill--oxide" style="--w:94.7%;--i:0"></span></div><span class="hbar-val">14.2×</span></div>
+            <div class="hbar"><span class="hbar-label">Anthropic</span><div class="hbar-track"><span class="hbar-fill" style="--w:74%;--i:1"></span></div><span class="hbar-val">11.1×</span></div>
+          </div>
+          <figcaption>名义合同上限 / 当前年化收入。承诺不是债务，但同样是刚性支出；收入必须增长，才能把承诺变成规模效应，而不是固定成本。</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:clamp(30px,4vw,48px)">
+      <table class="table table--tight">
+        <colgroup><col style="width:28%"><col style="width:20%"><col style="width:52%"></colgroup>
+        <thead><tr><th>循环仪表盘</th><th>读数</th><th>为什么值得盯</th></tr></thead>
+        <tbody>
+          <tr><td>供应链承诺</td><td><b>$279B</b></td><td>从 1,190 亿跳升；供应商在为客户锁定未来产能。</td></tr>
+          <tr><td>对 AI 云担保上限</td><td><b>$108.5B</b></td><td>供应商为客户的租约/容量兜底；需求失败会回到供应商表内。</td></tr>
+          <tr><td>应收账款天数</td><td><b>60 天</b></td><td>从 45 天拉长；收入确认和现金回收之间的时间差在扩大。</td></tr>
+          <tr><td>客户自由现金流</td><td><b>三家为负</b></td><td>资本开支超过经营现金流；AI 的节奏开始由资本市场决定。</td></tr>
+          <tr><td>供应商认购 IPO</td><td><b>$26B</b></td><td>7 家科技巨头同时是 Anthropic 的股东、供应商、客户。</td></tr>
+          <tr><td>承诺 / 收入</td><td><b>11–14×</b></td><td>收入必须持续高增长，才能消化这些固定承诺。</td></tr>
+        </tbody>
+      </table>
+      <div class="note"><b>不是骗局，是反射性。</b>资本开支创造收入预期，收入预期推高估值，估值又支持更大的资本开支。循环在向上时看起来像“需求验证”；在向下时，同一套机制会变成“资产负债表收缩”。</div>
+    </div>
+
+    <div class="cycle cycle--3" style="margin-top:clamp(28px,4vw,42px)">
+      <div class="cycle-step"><b>用现金流建设</b><span>capex &lt; 经营现金流。最稳，但慢；需要终端需求先到位。</span></div>
+      <div class="cycle-step is-now"><b>用资产负债表建设</b><span>capex &gt; 经营现金流。靠债务、股权、租赁；现在整个行业在这里。</span></div>
+      <div class="cycle-step"><b>用估值建设</b><span>capex 靠未来估值和供应商融资；边际项目在这里。循环反向时，最先断。</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 12 FAULT ===== -->
+<section class="section block-paper" id="s12" data-depth="8">
+  <svg class="fault-edge" viewBox="0 0 1440 34" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,24 L80,20 L160,26 L240,18 L320,24 L400,16 L480,22 L560,14 L640,20 L720,12 L800,22 L880,16 L960,24 L1040,18 L1120,26 L1200,14 L1280,22 L1360,18 L1440,24"/>
+    <text x="24" y="28" font-family="var(--sans)" font-size="11.5" fill="#a3452d">2026-11-05 · 断层</text>
+  </svg>
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">断层</span><span class="depth-name">2026 年 11 月</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>11 月 5 日，市场换了问题：从“还能长多大”到“什么时候回本”。</h2>
+        <p class="lede" style="margin-top:20px">这不是一次普通的回调。它是定价框架的切换：资本开支从“需求证明”变成“现金流风险”，估值从“收入倍数”变成“单位经济”。</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>当天，纳斯达克 100 跌 <b>6.4%</b>、标普 500 跌 <b>4.4%</b>、费城半导体指数跌 5.23%（盘中一度 -11%）；单日市值蒸发约 <b>2.3 万亿美元</b>。Nvidia -9.3%、AMD -17.3%、美光 -17%、特斯拉 -10.8%；七巨头单日缩水约 1.04 万亿<a class="cite" href="#source26">26</a>。</p>
+          <p>触发点看起来是政治：中期选举后，40/41 项地方数据中心公投被否决，部分当选人主张暂停或限制数据中心。但真正的引信是财务：capex 超过经营现金流、自由现金流转负、表外债务与供应商融资、AI 投资回报被质疑、拥挤交易。政治只是划着了火柴。</p>
+          <p>“这不是崩盘，是重新定价。”现金充裕的巨头还在；被重估的是边际项目、表外杠杆、高估值和“靠融资才能活”的公司。Nvidia 从 10 月高点回撤约 33%，但 PE 仍有 20 倍；Anthropic 的 IPO 估值预期从 2 万亿下调到 1.4 万亿；OpenAI 新一轮估值约 1.25 万亿，低于 1.4 万亿目标<a class="cite" href="#source3">3</a><a class="cite" href="#source6">6</a>。</p>
+        </div>
+        <div class="key-row" style="margin-top:24px">
+          <div class="key-cell"><b>-6.4% / -4.4%</b><span>纳斯达克 100 / 标普 500，11-05 单日</span></div>
+          <div class="key-cell"><b>$2.3T</b><span>单日市值蒸发；七巨头约 -$1.04T</span></div>
+        </div>
+        <div class="key-row" style="margin-top:1px">
+          <div class="key-cell"><b>-5.23%</b><span>费城半导体指数；盘中一度 -11%</span></div>
+          <div class="key-cell"><b>-9.3%</b><span>Nvidia 单日；AMD -17.3%，美光 -17%</span></div>
+        </div>
+      </div>
+      <div class="split-visual">
+        <figure class="chart" data-chart>
+          <div class="chart-title"><b>90 天信号日历</b><span>2026-11 至 2027-04</span></div>
+          <div class="timeline">
+            <div class="tl-item"><span class="tl-date">11-17</span><div class="tl-axis"><span class="tl-dot"></span></div><div class="tl-body"><h4>Nvidia Q3 FY2027 财报</h4><p>CEO 变动后的第一份财报。看数据中心是否 &gt;$100B、Q4 指引是否 &gt;$120B、毛利率是否 &lt;73%。</p></div></div>
+            <div class="tl-item"><span class="tl-date">11-18</span><div class="tl-axis"><span class="tl-dot"></span></div><div class="tl-body"><h4>Anthropic IPO 定价</h4><p>区间 70–78 美元。高于 78 说明需求强；低于 70 说明公开市场在重新定价模型层。</p></div></div>
+            <div class="tl-item"><span class="tl-date">11-19</span><div class="tl-axis"><span class="tl-dot"></span></div><div class="tl-body"><h4>ANT 首个交易日</h4><p>看首日成交与承接；这是模型层第一次被公开市场连续定价。</p></div></div>
+            <div class="tl-item"><span class="tl-date">2027-01/02</span><div class="tl-axis"><span class="tl-dot"></span></div><div class="tl-body"><h4>云厂商 Q4 财报与 2027 指引</h4><p>2027 capex 合计 &gt;$900B = 继续加速；&lt;$750B = 开始消化。这是最重要的单一信号。</p></div></div>
+            <div class="tl-item"><span class="tl-date">2027-Q1</span><div class="tl-axis"><span class="tl-dot"></span></div><div class="tl-body"><h4>HBM 季度合同价</h4><p>环比持平或上涨 = 短缺仍在；环比 -20% = 周期拐点。存储的利润表会先于股价反应。</p></div></div>
+            <div class="tl-item"><span class="tl-date">2027-Q1</span><div class="tl-axis"><span class="tl-dot"></span></div><div class="tl-body"><h4>PJM 容量拍卖</h4><p>看结算价与短缺 MW。电力价格是数据中心成本的第二张脸。</p></div></div>
+            <div class="tl-item"><span class="tl-date">2027-04</span><div class="tl-axis"><span class="tl-dot"></span></div><div class="tl-body"><h4>Nvidia FY2027 Q4 / FY2028 指引</h4><p>公司说“有把握的增长约 70%”。如果指引低于 50%，说明供给约束或需求预期在变。</p></div></div>
+          </div>
+<figcaption>日期为公开信息；财报日期以公司公告为准。阈值用于持续观察情景切换。</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:clamp(30px,4vw,48px)">
+      <table class="table">
+        <colgroup><col style="width:22%"><col style="width:39%"><col style="width:39%"></colgroup>
+        <thead><tr><th>市场问的问题</th><th>2025 – 2026 上半年</th><th>2026 年 11 月之后</th></tr></thead>
+        <tbody>
+          <tr><td><b>增长</b></td><td>只要增长，亏损不重要。</td><td>增长必须能算出回本周期。</td></tr>
+          <tr><td><b>资本开支</b></td><td>capex 是需求证明，越大越看多。</td><td>capex 是现金流风险，越大约束越紧。</td></tr>
+          <tr><td><b>亏损</b></td><td>亏损是投资，是未来的份额。</td><td>亏损是融资依赖，要看谁在垫钱。</td></tr>
+          <tr><td><b>估值</b></td><td>按收入倍数、愿景、TAM。</td><td>按单位经济、契约化产能、自由现金流。</td></tr>
+          <tr><td><b>融资</b></td><td>股权和债务都容易，IPO 窗口打开。</td><td>信用价差、IPO 定价、供应商融资决定节奏。</td></tr>
+        </tbody>
+      </table>
+      <div class="note"><b>一句话：</b>当资本开支从“经营现金流”转向“资产负债表”，再从“资产负债表”转向“估值”，市场的定价语言就会从“增长”切换成“偿付能力”。这就是 11 月 5 日真正发生的事。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 13 SCENARIOS ===== -->
+<section class="section block-paper" id="s13" data-depth="8">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">预见</span><span class="depth-name">四种未来</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>四种未来：由条件推动的情景。</h2>
+        <p class="lede" style="margin-top:20px">未来不取决于“AI 有没有用”，取决于两个变量：终端需求增速，和资本可得性。两个变量，四种组合。</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>“加速”需要需求继续超预期，且资本市场愿意继续给钱；“消化”需要需求追上供给，但资本开始挑剔；“泡沫”是钱继续给，收入不跟上；“空气袋”是钱先撤，需求还没来得及证明自己。</p>
+          <p>四个情景不是互斥的终点，而是一条可能的路径：加速 → 消化 → 空气袋 → 泡沫 → 重新加速。顺序取决于政策和信用周期，不取决于技术路线。</p>
+        </div>
+        <div class="note"><b>主观权重：</b>消化 40%、加速 25%、空气袋 20%、泡沫 15%。这些权重用于给观察信号排优先级；任何两个信号同时转向，情景就会切换。</div>
+      </div>
+      <div class="split-visual">
+        <div class="matrix-wrap">
+          <div class="axis-y">资本可得性：紧 ↓ / 松 ↑</div>
+          <div class="matrix">
+            <button class="quad" data-scenario="bubble" aria-pressed="false"><span class="quad-k">资本松 · 需求低</span><h4>泡沫</h4><p>钱继续堆，收入不跟上；循环变大，直到信用先断。</p><span class="prob">15%</span></button>
+            <button class="quad" data-scenario="accelerate" aria-pressed="false"><span class="quad-k">资本松 · 需求高</span><h4>加速</h4><p>AI 变成通用基础设施；capex 继续超预期，瓶颈更紧。</p><span class="prob">25%</span></button>
+            <button class="quad" data-scenario="airpocket" aria-pressed="false"><span class="quad-k">资本紧 · 需求低</span><h4>空气袋</h4><p>capex 砍单，存储价格崩；高估值名称腰斩。</p><span class="prob">20%</span></button>
+            <button class="quad is-active" data-scenario="digest" aria-pressed="true"><span class="quad-k">资本紧 · 需求高</span><h4>消化</h4><p>需求追上供给；capex 放缓，利润率正常化。最健康。</p><span class="prob">40%</span></button>
+          </div>
+          <div class="axis-x">终端需求增速：低 ← / 高 →</div>
+        </div>
+
+        <div class="scenario-detail" id="scenarioDetail">
+          <h3 id="sdTitle">消化 · 需求追上供给</h3>
+          <div class="sd-grid">
+            <div class="sd-block"><span>要成立，必须看到</span><p id="sdMust">capex 增速从 +80% 降到 +20–30%；HBM 合同价走平；云厂商自由现金流改善；应用层从试点转向生产。</p></div>
+            <div class="sd-block"><span>早期信号</span><p id="sdSignals">云厂商不再上调 2027 指引；HBM 环比价格持平；token 用量继续 2×；企业部署从“买模型”转向“买结果”。</p></div>
+            <div class="sd-block"><span>谁赢谁输</span><p id="sdWin">赢家：应用层、现金流好的云厂商、被低估的存储二线。输家：高杠杆 neocloud、靠融资的边缘模型公司。</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 14 CHINA ===== -->
+<section class="section block-china" id="s14" data-depth="4">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">另一条栈</span><span class="depth-name">中国 AI</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>中国 AI 的瓶颈不在电，在先进制程。</h2>
+        <p class="lede" style="margin-top:20px">美国缺电、缺许可；中国缺先进逻辑和 HBM。两条栈的约束不同，机会也不同。</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>华为 2026 上半年营收 4,678.2 亿元（+9.6%），研发投入占比 25.9%（约 1,214 亿元），归母净利润 234.3 亿元（同比 -30%+）。2026 上半年在中国出货 AI 芯片 <b>57.2 万颗</b>，份额 <b>28%</b>，仅次于 Nvidia 的 34%（IDC）<a class="cite" href="#source28">28</a>。昇腾 Atlas 900 超节点（1,024 卡）售价亿元级，已商用，DeepSeek、字节、美团采购；华为计算业务研发投入首次超过无线。</p>
+          <p>DeepSeek 向华为下单 <b>16 万颗 Ascend 950DT</b> 用于推理，训练仍主要用 Nvidia<a class="cite" href="#source29">29</a>；Kimi K3 2.8 万亿参数开源模型接近闭源前沿。中国信通院：2026 年 6 月国内日均 token 消耗约 <b>500 万亿</b>，是 2025 年 12 月的近 4 倍；2026 年国内 token 归一化均价 <b>13.46 元/百万</b>，较 2025 下半年 6.8 元上涨约 98%，国外约 117.8 元<a class="cite" href="#source27">27</a>。</p>
+          <p>电力不是短期硬约束：中国数据中心用电 2025 年 196 TWh，2030 年 300–700 TWh，占全国用电 <b>&lt;2%</b>；2026 年国家电网投资 825 亿元级；“东数西算”继续<a class="cite" href="#source30">30</a>。真正的约束是先进逻辑、HBM、高端设备，以及生态迁移。</p>
+        </div>
+        <div class="note"><b>一个反直觉的信号：</b>全球 token 价格在通缩，中国 token 价格在通胀。不是因为中国模型更贵，是因为需求增速超过了供给增速，而且市场结构不同——价格战没有把单价打到边际成本。</div>
+      </div>
+      <div class="split-visual">
+        <figure class="chart" data-chart>
+          <div class="chart-title"><b>Token 归一化均价</b><span>元 / 百万 token</span></div>
+          <div class="hbars">
+            <div class="hbar"><span class="hbar-label">中国 2025H2</span><div class="hbar-track"><span class="hbar-fill hbar-fill--muted" style="--w:5.8%;--i:0"></span></div><span class="hbar-val">6.80</span></div>
+            <div class="hbar"><span class="hbar-label">中国 2026</span><div class="hbar-track"><span class="hbar-fill" style="--w:11.4%;--i:1"></span></div><span class="hbar-val">13.46</span></div>
+            <div class="hbar"><span class="hbar-label">国外 2026</span><div class="hbar-track"><span class="hbar-fill hbar-fill--outline" style="--w:100%;--i:2"></span></div><span class="hbar-val">117.8</span></div>
+          </div>
+          <div class="chart-note">中国 2026 较 2025H2 上涨约 98%；仍是国外的约 11%。</div>
+          <figcaption>归一化均价把不同模型、不同上下文、不同缓存命中折算到同一口径；它是方向性指标，不是某一家公司的报价。</figcaption>
+        </figure>
+
+        <div class="key-row" style="margin-top:24px">
+          <div class="key-cell"><b>28%</b><span>华为在中国 AI 芯片市场的份额；Nvidia 34%</span></div>
+          <div class="key-cell"><b>500T</b><span>2026 年 6 月国内日均 token 消耗；4 个月 4 倍</span></div>
+        </div>
+        <div class="key-row" style="margin-top:1px">
+          <div class="key-cell"><b>16 万颗</b><span>DeepSeek 向华为下单 Ascend 950DT，用于推理</span></div>
+          <div class="key-cell"><b>&lt;2%</b><span>中国数据中心用电占全国用电；电力不是短期瓶颈</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:clamp(30px,4vw,48px)">
+      <table class="table">
+        <colgroup><col style="width:18%"><col style="width:41%"><col style="width:41%"></colgroup>
+        <thead><tr><th>维度</th><th>美国栈</th><th>中国栈</th></tr></thead>
+        <tbody>
+          <tr><td><b>约束</b></td><td>电力、并网、许可、地方政治。</td><td>先进逻辑、HBM、高端设备、生态迁移。</td></tr>
+          <tr><td><b>资本</b></td><td>经营现金流 + 债务 + 公开市场；资本可得性开始收紧。</td><td>产业政策 + 国资 + 部分公开市场；资本更耐心，回报要求更低。</td></tr>
+          <tr><td><b>模型</b></td><td>闭源前沿 + 企业 API；按 token 收费。</td><td>开源模型 + 垂直场景；按结果/项目收费更多。</td></tr>
+          <tr><td><b>算力</b></td><td>Nvidia + TSMC + HBM；供给受封装和电力约束。</td><td>华为昇腾 + 国产替代；受制程和 HBM 约束，推理先行。</td></tr>
+          <tr><td><b>价格</b></td><td>通缩：固定智能价格每年约 -50×。</td><td>通胀：2026 年 token 均价 +98%；仍只有国外约 11%。</td></tr>
+          <tr><td><b>出海</b></td><td>全球市场 + 盟友体系；受出口管制影响。</td><td>全球南方 + 一带一路；价格与主权 AI 是切入点。</td></tr>
+        </tbody>
+      </table>
+      <div class="note"><b>判断：</b>中国不是“缩小版的美国栈”。它用更便宜的推理、更开放的模式、更密的电网，换一条不同的增长曲线。它的上限由先进制程决定，下限由应用场景托住。</div>
+    </div>
+
+    <div class="chain" style="margin-top:clamp(28px,4vw,42px)">
+      <div class="chain-step"><b>能源</b><span>优势：电网强、电价低、数据中心用电占比 &lt;2%。</span></div>
+      <div class="chain-step"><b>国产算力</b><span class="bottleneck">瓶颈：先进制程、HBM、高端设备；推理先行，训练追赶。</span></div>
+      <div class="chain-step"><b>开源模型</b><span>优势：DeepSeek、Qwen、GLM；22 个 MaaS 平台上线率 100%。</span></div>
+      <div class="chain-step"><b>垂直应用</b><span>机会：制造、政务、医疗、教育；按结果收费。</span></div>
+      <div class="chain-step"><b>出海</b><span>机会：全球南方、主权 AI；用价格和开放换市场。</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 15 POSITIONS ===== -->
+<section class="section block-paper" id="s15" data-depth="8">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">杠杆</span><span class="depth-name">站在哪里</span></div>
+    <div class="section-head">
+      <h2>三个位置，三种用力方式。</h2>
+      <p class="lede">这是一张产业观察与行动清单。每个位置都给出一条推荐、一个代价、一个低成本的第一步。</p>
+    </div>
+    <div class="pos-grid">
+      <article class="pos">
+        <span class="pos-k">配置资本的人</span>
+        <h3>把“capex 增速”从买入理由里删掉。</h3>
+        <p>只看两个数：单位资本回报、契约化产能。capex 增速是叙事，FCF 和回本周期是账本。存储的 80% 毛利是周期租金，不是永续。</p>
+        <p class="first-step"><b>第一步：</b>建一个 6 行仪表盘——capex/EBITDA、FCF、HBM 合同价、供应商融资占比、信用价差、PJM 价格。每周更新一次，不预测，只记录。</p>
+        <p class="cost">代价：可能错过一轮 melt-up；但不会在拐点被动。</p>
+        <p><b>什么时候换：</b>capex 指引下修 + HBM 价格转跌 + 信用价差扩大，三个同时出现，切防御。</p>
+      </article>
+      <article class="pos">
+        <span class="pos-k">做产品的人</span>
+        <h3>去应用层，卖结果，不卖 token。</h3>
+        <p>应用层 773 亿美元，基础设施 1.5 万亿；coding 和 chatbot 拿走 76%。下一个机会在医疗、法律、金融后台——不是“更聪明的聊天”，是“可验证的结果”。</p>
+        <p class="first-step"><b>第一步：</b>选一个能算出结果的工作流，按结果收费；先做 10 个真实客户，不做 100 个 demo。把模型当供应商，不当护城河。</p>
+        <p class="cost">代价：毛利低于基础设施；分发和信任比模型能力更稀缺。</p>
+        <p><b>什么时候换：</b>模型公司开始打包你的功能，就往专有数据、合规、工作流深挖；不要和模型层拼价格。</p>
+      </article>
+      <article class="pos">
+        <span class="pos-k">在中国做 AI 的人</span>
+        <h3>约束是先进制程，不是电。</h3>
+        <p>机会是开源模型 + 国产推理 + 垂直应用 + 全球南方。中国 token 价格在涨，说明需求大于供给；但单卡性能、功耗和生态迁移仍是硬约束。</p>
+        <p class="first-step"><b>第一步：</b>用国产推理栈跑一遍你自己的 workload，测吞吐、延迟、单位成本；不要从训练集群开始，从推理和微调开始。</p>
+        <p class="cost">代价：出口管制、单卡性能/功耗、软件生态迁移；短期体验会有落差。</p>
+        <p><b>什么时候换：</b>HBM/先进封装可得性改善，或开源模型追平前沿，重新评估自建训练集群的时点。</p>
+      </article>
+    </div>
+    <div class="note" style="margin-top:22px"><b>使用方式：</b>所有情景都由条件驱动；条件变化，结论随之更新。把这些观察信号放进自己的目标、期限、风险承受能力和独立判断中持续核对。</div>
+    <div class="next-questions">
+      <div class="next-q"><span>01</span>把存储这一层单独钻透：HBM 的 2027 年拐点在哪？</div>
+      <div class="next-q"><span>02</span>把电力约束做成一张中国 vs 美国的对比图。</div>
+      <div class="next-q"><span>03</span>如果 2027 年 capex 砍 20%，哪些层最先疼？</div>
+      <div class="next-q"><span>04</span>给我自己开启一个系统：我该在 AI 产业的哪一层用力？</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 16 SYSTEM ===== -->
+<section class="section block-paper" id="s16" data-depth="8">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">系统</span><span class="depth-name">这次运行留下了什么</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>这次运行留下了什么。</h2>
+        <p class="lede" style="margin-top:20px">成果是这份网页；系统是右边这张卡。网页会留在对话里，系统会跟着你走——如果你给它一个位置。</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>这张卡是下一轮运行的起点。它留下 AI 产业怎样运转、哪里最紧、下一步盯什么。下一次你说“继续”，系统就从这份认识继续生长。</p>
+          <p>一个入口、两份认识记录、一份实践记录和一张盯住清单，共同构成轻盈、透明、可携带的系统文件；你随时可以阅读、修改和移动。</p>
+        </div>
+        <div class="note"><b>让系统跟着你走。</b>在页面底部选择保存位置，回复 1 或 2，下一轮就会把这份认识写入你的系统。</div>
+      </div>
+      <div class="split-visual">
+        <div class="sys-grid" id="systemCard">
+          <div class="sys-item"><span class="sys-k">一句话本质</span><p>智能在表层，利润在岩层。AI 产业卖的不是智能，是稀缺。</p></div>
+          <div class="sys-item"><span class="sys-k">八层结构</span><p>应用 → 模型 → 云/资本 → 芯片 → 存储 → 封装 → 电力 → 循环。</p></div>
+          <div class="sys-item"><span class="sys-k">四个收费站</span><p>存储、封装、电力、资本。共同点：不可快速复制。</p></div>
+          <div class="sys-item"><span class="sys-k">三个回路</span><p>Jevons（效率→用量）、存储周期（短缺→扩产→回落）、融资循环（capex→估值→capex）。</p></div>
+          <div class="sys-item"><span class="sys-k">一个移动瓶颈</span><p>CoWoS → HBM → 电力 → 需求。投资要盯下一环，不是上一环。</p></div>
+          <div class="sys-item"><span class="sys-k">六个信号</span><p>Anthropic 定价、Nvidia 财报、云厂商 capex 指引、HBM 合同价、PJM 价格、地方公投。</p></div>
+          <div class="sys-item"><span class="sys-k">数据截至</span><p>2026-11-16；市场数据截至 2026-11-13 收盘。</p></div>
+          <div class="sys-item"><span class="sys-k">这次运行的路线</span><p>开启 → 透视 → 流动 → 回路 → 瓶颈 → 杠杆 → 做成作品。</p></div>
+        </div>
+        <div class="share-tools" style="margin-top:12px"><button class="btn btn--accent btn--small" data-copy-target="#systemCard">复制系统摘要</button></div>
+      </div>
+    </div>
+
+    <div class="location-box" id="location">
+      <h3>为系统选择它要生长的位置。</h3>
+      <p>这份网页已经承载本轮成果与系统摘要。选择一个位置，下一轮就会建立可继续运行的系统文件。</p>
+      <p><b>① 跟着我：</b><span class="path">~/.openxsys/</span>，跨项目、跨 AI，推荐。<br><b>② 只在这个文件夹：</b><span class="path">AI产业研究/.openxsys/</span>，只服务这个项目。</p>
+      <div class="location-actions">
+        <button class="btn btn--accent btn--small" data-copy-text="我选 1：跟着我（~/.openxsys）">复制：我选 1</button>
+        <button class="btn btn--small" data-copy-text="我选 2：只放在 AI产业研究 文件夹（.openxsys）">复制：我选 2</button>
+      </div>
+      <p class="small">回 1 或 2，我下一轮写入 SYSTEM.md、认识记录、实践记录、盯住清单。系统里不会放密码、密钥或敏感个人信息；所有文件你随时可以查看、修改或删除。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 17 SHARE ===== -->
+<section class="section block-paper" id="s17" data-depth="8">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">分享</span><span class="depth-name">拿走它</span></div>
+    <div class="section-head">
+      <h2>一张卡，三段文案。</h2>
+      <p class="lede">你可以直接发，也可以改成自己的话。默认带一个小小的“OpenXSys · 2026-11-16”标注；不想要，删掉那行字就行。</p>
+    </div>
+    <div class="share-layout">
+      <div class="share-card-wrap">
+        <div class="share-tools">
+          <button class="btn btn--small btn--accent" data-card="square" aria-pressed="true">1:1</button>
+          <button class="btn btn--small" data-card="tall" aria-pressed="false">9:16</button>
+          <button class="btn btn--small" id="downloadCard">保存 PNG</button>
+        </div>
+        <div class="share-card" id="shareCard">
+          <div class="sc-core" aria-hidden="true"><span style="background:#b8b1a0"></span><span style="background:#a77b4d"></span><span style="background:#5f7f8a"></span><span style="background:#35627d"></span><span style="background:#2d565a"></span><span style="background:#77513a"></span><span style="background:#70382d"></span><span style="background:#0d232b"></span></div>
+          <div>
+            <p class="sc-label">发现 01 · 利润在岩层</p>
+            <p class="sc-big">三家存储厂一个季度，赚得比两家最强模型公司一年还多。</p>
+            <p class="sc-sub">AI 产业卖的不是智能，是稀缺。</p>
+          </div>
+          <div class="sc-foot">存储三巨头 Q3 营业利润 $179B · OpenAI + Anthropic 年化收入 $131B<br>OpenXSys · 2026-11-16 · 数据见页内来源</div>
+        </div>
+        <p class="small" style="max-width:36em">1:1 适合信息流；9:16 适合故事与短视频封面。点“保存 PNG”会生成 1080×1080 或 1080×1920 的图片。</p>
+      </div>
+
+      <div>
+        <p class="small" style="font-size:12px;letter-spacing:.04em;color:var(--accent);margin-bottom:8px">文案草稿</p>
+        <div class="copy-list">
+          <div class="copy-item"><p id="copy1">三家存储厂一个季度的营业利润，超过两家最强模型公司一年的收入。AI 产业卖的不是智能，是稀缺。</p><button class="btn btn--small" data-copy-target="#copy1">复制</button></div>
+          <div class="copy-item"><p id="copy2">2026 年，AI 基础设施支出 1.48 万亿美元，生成式模型软件支出 283 亿美元。每 52 美元建路，只有 1 美元付给司机。</p><button class="btn btn--small" data-copy-target="#copy2">复制</button></div>
+          <div class="copy-item"><p id="copy3">当供应商同时是股东、客户和担保人，需求就不再是独立信号。AI 的下一道墙不是芯片，是电；下一道裂缝不是需求，是现金流。</p><button class="btn btn--small" data-copy-target="#copy3">复制</button></div>
+        </div>
+
+        <p class="small" style="font-size:12px;letter-spacing:.04em;color:var(--accent);margin:22px 0 8px">替代文字</p>
+        <div class="alt-text" id="altText">一张深色底的发现卡：左侧写着“三家存储厂一个季度，赚得比两家最强模型公司一年还多”，右侧是一条由八层颜色组成的岩芯，从纸白到基岩黑；底部标注存储三巨头 Q3 营业利润 $179B、OpenAI + Anthropic 年化收入 $131B，以及 OpenXSys 和日期。</div>
+        <div class="share-tools" style="margin-top:8px"><button class="btn btn--small" data-copy-target="#altText">复制替代文字</button></div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 18 SOURCES ===== -->
+<section class="section block-paper" id="s18" data-depth="8">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">证据</span><span class="depth-name">来源与口径</span></div>
+    <div class="section-head">
+      <h2>来源与口径。</h2>
+      <p class="lede">每个关键数字都能回到原始来源；推断、预测与媒体转述分开标注。私募公司的数据以公开披露为准，未经审计的地方会写明。</p>
+    </div>
+    <div class="caveat">
+      <b>四个局限</b>
+      <span>1. OpenAI 是私募公司，财务来自媒体披露与泄露文件，未经审计；Anthropic 以 S-1 为准，但 S-1 的前瞻陈述本身有条件。</span>
+      <span>2. 存储的单季利润是周期峰值；80% 毛利不会永远持续。用峰值利润给周期股估值，是最常见的错误。</span>
+      <span>3. 2027 年 capex、HBM 价格、电力负荷都是预测，卖方分歧极大；文中已标注“预测”，请按条件读。</span>
+            <span>4. 市值、股价、PE 截至 2026-11-13 收盘；所有判断都带条件与时点，并服务于产业观察和独立决策。</span>
+    </div>
+    <div class="sources">
+      <ol>
+        <li id="source1"><span class="s-num">1</span><div class="s-body"><b>Nvidia</b>，“NVIDIA Announces Financial Results for Second Quarter Fiscal 2027”，2026-08-26。<a href="https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Second-Quarter-Fiscal-2027/default.aspx?ref=unhyd.com" target="_blank" rel="noopener">链接</a><span class="src-tag">官方财报</span></div></li>
+        <li id="source2"><span class="s-num">2</span><div class="s-body"><b>Nvidia</b>，“Revenue by Market Qtrly Trend Q127”，2026。<a href="https://s201.q4cdn.com/141608511/files/doc_financials/2027/Q127/Rev_by_Mkt_Qtrly_Trend_Q127-NEW-v3.pdf" target="_blank" rel="noopener">链接</a><span class="src-tag">官方数据</span></div></li>
+        <li id="source3"><span class="s-num">3</span><div class="s-body"><b>腾讯新闻</b>，“英伟达 Q3 财报时间与 CEO 变动”，2026-11-16。<a href="https://news.qq.com/rain/a/20261116A04RFR00" target="_blank" rel="noopener">链接</a><span class="src-tag">媒体</span></div></li>
+        <li id="source4"><span class="s-num">4</span><div class="s-body"><b>AInvest</b>，“The Crises That Price the Nvidia Selloff”，2026-11。<a href="https://www.ainvest.com/news/crises-price-nvidia-selloff-isn-ai-bubble-2611/" target="_blank" rel="noopener">链接</a><span class="src-tag">媒体分析</span></div></li>
+        <li id="source5"><span class="s-num">5</span><div class="s-body"><b>Anthropic / SEC EDGAR</b>，“Form S-1”，2026-10-26（后续修订）。<a href="https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm" target="_blank" rel="noopener">链接</a><span class="src-tag">一手文件</span></div></li>
+        <li id="source6"><span class="s-num">6</span><div class="s-body"><b>Invezz</b>，“Anthropic IPO terms”，2026-11。<a href="https://invezz.com/invest/anthropic-ipo/" target="_blank" rel="noopener">链接</a><span class="src-tag">媒体</span></div></li>
+        <li id="source7"><span class="s-num">7</span><div class="s-body"><b>Nasdaq</b>，“Nvidia and Alphabet buy $10B each of Anthropic stock”，2026-11。<a href="https://www.nasdaq.com/articles/nvidia-and-alphabet-just-agreed-buy-10-billion-each-anthropic-stock-its-ipo-price" target="_blank" rel="noopener">链接</a><span class="src-tag">媒体</span></div></li>
+        <li id="source8"><span class="s-num">8</span><div class="s-body"><b>Safeguard</b>，“OpenAI revenue, losses and cash burn”，2026。<a href="https://safeguard.sh/resources/blog/openai-revenue-losses-and-cash-burn-what-has-been-reported" target="_blank" rel="noopener">链接</a><span class="src-tag">媒体汇总</span></div></li>
+        <li id="source9"><span class="s-num">9</span><div class="s-body"><b>ValueAdd VC</b>，“OpenAI revenue 2026”，2026。<a href="https://valueaddvc.com/blog/openai-revenue-2026-20b-arr-4b-month-path-to-profitability" target="_blank" rel="noopener">链接</a><span class="src-tag">媒体</span></div></li>
+        <li id="source10"><span class="s-num">10</span><div class="s-body"><b>Gartner</b>，“Worldwide AI spending 2026”，2026-09-16。<a href="https://www.gartner.com/en/newsroom/press-releases/2026-09-16-gartner-forecasts-worldwide-ai-spending-to-grow-49-point-5-percent-in-2026" target="_blank" rel="noopener">链接</a><span class="src-tag">研究预测</span></div></li>
+        <li id="source11"><span class="s-num">11</span><div class="s-body"><b>Menlo Ventures</b>，“2026: The State of Enterprise AI”，2026。<a href="https://menlovc.com/perspective/2026-the-state-of-enterprise-ai/" target="_blank" rel="noopener">链接</a><span class="src-tag">研究</span></div></li>
+        <li id="source12"><span class="s-num">12</span><div class="s-body"><b>公司财报汇总</b>，Microsoft / Alphabet / Amazon / Meta 2026 Q3，2026-10。<span class="src-tag">官方财报</span></div></li>
+        <li id="source13"><span class="s-num">13</span><div class="s-body"><b>TradingKey</b>，“US stock selloff / AI bubble / S&amp;P 500 2027”，2026-11。<a href="https://www.tradingkey.com/analysis/stocks/us-stocks/262305431-us-stock-selloff-wall-street-debates-ai-bubble-sp-500-chip-stocks-2027-tradingkey" target="_blank" rel="noopener">链接</a><span class="src-tag">媒体分析</span></div></li>
+        <li id="source14"><span class="s-num">14</span><div class="s-body"><b>Alphabet</b>，2026-06 股权融资 / 债务，2026-06。<a href="https://abc.xyz/investor/" target="_blank" rel="noopener">链接</a><span class="src-tag">公司公告</span></div></li>
+        <li id="source15"><span class="s-num">15</span><div class="s-body"><b>TSMC</b>，“3Q 2026 Earnings Release”，2026-10。<a href="https://pr.tsmc.com/chinese/news/3346" target="_blank" rel="noopener">链接</a><span class="src-tag">官方财报</span></div></li>
+        <li id="source16"><span class="s-num">16</span><div class="s-body"><b>TSMC</b>，“3Q26 Transcript / CoWoS reticle”，2026-10。<a href="https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-10/eba4fac72873bf546b669bd2b5d973df5c93215d/TSMC%203Q26%20Transcript.pdf" target="_blank" rel="noopener">链接</a><span class="src-tag">官方电话会</span></div></li>
+        <li id="source17"><span class="s-num">17</span><div class="s-body"><b>SK 海力士</b>，2026 Q3 财报，2026-10。<a href="https://news.skhynix.com/" target="_blank" rel="noopener">链接</a><span class="src-tag">官方财报</span></div></li>
+        <li id="source18"><span class="s-num">18</span><div class="s-body"><b>三星电子</b>，2026 Q3 财报，2026-10。<a href="https://www.samsung.com/global/ir/" target="_blank" rel="noopener">链接</a><span class="src-tag">官方财报</span></div></li>
+        <li id="source19"><span class="s-num">19</span><div class="s-body"><b>美光</b>，FY2026 Q4 财报，2026-09。<a href="https://investors.micron.com/" target="_blank" rel="noopener">链接</a><span class="src-tag">官方财报</span></div></li>
+        <li id="source20"><span class="s-num">20</span><div class="s-body"><b>Counterpoint / TrendForce / BofA</b>，HBM 份额与 2027 预测，2026。<a href="https://www.trendforce.com/" target="_blank" rel="noopener">链接</a><span class="src-tag">研究预测</span></div></li>
+        <li id="source21"><span class="s-num">21</span><div class="s-body"><b>IDC</b>，AI 数据中心存储占用与手机/PC 减产，2026。<a href="https://www.idc.com/" target="_blank" rel="noopener">链接</a><span class="src-tag">研究预测</span></div></li>
+        <li id="source22"><span class="s-num">22</span><div class="s-body"><b>IEA</b>，“Energy and AI”，2026。<a href="https://www.iea.org/reports/energy-and-ai" target="_blank" rel="noopener">链接</a><span class="src-tag">官方研究</span></div></li>
+        <li id="source23"><span class="s-num">23</span><div class="s-body"><b>LBNL / Goldman Sachs</b>，并网队列与美国数据中心负荷，2026。<a href="https://emp.lbl.gov/queues" target="_blank" rel="noopener">链接</a><span class="src-tag">研究</span></div></li>
+        <li id="source24"><span class="s-num">24</span><div class="s-body"><b>PJM</b>，容量拍卖结果，2026。<a href="https://www.pjm.com/" target="_blank" rel="noopener">链接</a><span class="src-tag">官方</span></div></li>
+        <li id="source25"><span class="s-num">25</span><div class="s-body"><b>GE Vernova / Wood Mackenzie</b>，燃机与变压器交期，2026。<a href="https://www.gevernova.com/" target="_blank" rel="noopener">链接</a><span class="src-tag">公司/研究</span></div></li>
+        <li id="source26"><span class="s-num">26</span><div class="s-body"><b>36 氪</b>，“11 月 5 日美股大跌”，2026-11-06。<a href="https://36kr.com/p/4057568656446592" target="_blank" rel="noopener">链接</a><span class="src-tag">媒体</span></div></li>
+        <li id="source27"><span class="s-num">27</span><div class="s-body"><b>中国信通院</b>，Token 数据，2026-10。<a href="https://www.caict.ac.cn/" target="_blank" rel="noopener">链接</a><span class="src-tag">官方研究</span></div></li>
+        <li id="source28"><span class="s-num">28</span><div class="s-body"><b>华为 2026 半年报；IDC</b>，中国 AI 芯片份额，2026。<a href="https://www.huawei.com/cn/" target="_blank" rel="noopener">链接</a><span class="src-tag">官方/研究</span></div></li>
+        <li id="source29"><span class="s-num">29</span><div class="s-body"><b>财新</b>，“DeepSeek 16 万颗 Ascend 950DT”，2026-10-31。<span class="src-tag">媒体</span></div></li>
+        <li id="source30"><span class="s-num">30</span><div class="s-body"><b>中国能源报</b>，中国数据中心用电，2026-11-02。<span class="src-tag">媒体</span></div></li>
+        <li id="source31"><span class="s-num">31</span><div class="s-body"><b>Wind / Motley Fool</b>，市值与行情，2026-11-13。<span class="src-tag">市场数据</span></div></li>
+        <li id="source32"><span class="s-num">32</span><div class="s-body"><b>McKinsey</b>，“95% 试点无直接财务回报”，2025。<a href="https://www.mckinsey.com/" target="_blank" rel="noopener">链接</a><span class="src-tag">研究</span></div></li>
+        <li id="source33"><span class="s-num">33</span><div class="s-body"><b>Jevons</b>，“The Coal Question”，1865。<a href="https://www.econlib.org/library/YPDBooks/Jevons/jvnCQ.html" target="_blank" rel="noopener">链接</a><span class="src-tag">原始文献</span></div></li>
+        <li id="source34"><span class="s-num">34</span><div class="s-body"><b>Anthropic S-1 / 新浪财经</b>，Q3 财务拆解，2026-10-27。<a href="https://finance.sina.com.cn/roll/2026-10-27/doc-iniwsfqt1272792.shtml" target="_blank" rel="noopener">链接</a><span class="src-tag">官方/媒体</span></div></li>
+        <li id="source35"><span class="s-num">35</span><div class="s-body"><b>PitchBook</b>，“Q2 2026: An Eye on OpenAI”，2026。<a href="https://pitchbook.brightspotcdn.com/98/ff/fb95b2ad477680577917ecb74668/q2-2026-an-eye-on-openai.pdf" target="_blank" rel="noopener">链接</a><span class="src-tag">研究</span></div></li>
+        <li id="source36"><span class="s-num">36</span><div class="s-body"><b>经济日报</b>，“AI 泡沫与 92% GDP”，2025-11-19。<a href="http://paper.ce.cn/pc/attachment/202511/19/5aa122e4-2b89-408e-862b-f600f08b572a.pdf" target="_blank" rel="noopener">链接</a><span class="src-tag">媒体</span></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <p class="footer-line">智能会变得更便宜；<em>稀缺不会。</em></p>
+    <div class="footer-meta">
+      <span>[OpenXSys] 叮，系统已激活。</span>
+      <span>一次完整运行：研究、建模、写作、设计、检验。</span>
+          <span>条件情景 · 观察信号 · 独立判断</span>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<div class="progress" aria-hidden="true"></div>
+<nav class="rail" aria-label="深度导航">
+  <span class="rail-line" aria-hidden="true"></span>
+  <a class="rail-dot" href="#s2" aria-label="0 米，应用层"><span>0m 应用</span></a>
+  <a class="rail-dot" href="#s3" aria-label="10 米，模型层"><span>10m 模型</span></a>
+  <a class="rail-dot" href="#s5" aria-label="20 米，云与资本"><span>20m 云</span></a>
+  <a class="rail-dot" href="#s6" aria-label="30 米，芯片"><span>30m 芯片</span></a>
+  <a class="rail-dot" href="#s7" aria-label="40 米，存储"><span>40m 存储</span></a>
+  <a class="rail-dot" href="#s8" aria-label="50 米，封装"><span>50m 封装</span></a>
+  <a class="rail-dot" href="#s9" aria-label="60 米，电力"><span>60m 电力</span></a>
+  <a class="rail-dot" href="#s10" aria-label="65 米，利润表"><span>65m 利润</span></a>
+  <a class="rail-dot" href="#s11" aria-label="70 米，循环"><span>70m 循环</span></a>
+</nav>
+<button class="to-top" aria-label="回到顶部">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+<div class="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  'use strict';
+  const $ = (s, el=document) => el.querySelector(s);
+  const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
+  const body = document.body;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- depth / rail / progress ---------- */
+  const sections = $$('section[data-depth]');
+  const rail = $('.rail');
+  const railDots = $$('.rail-dot');
+  const progress = $('.progress');
+  const toTop = $('.to-top');
+  let ticking = false;
+
+  function updateScroll(){
+    const y = window.scrollY || window.pageYOffset || 0;
+    const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    if (progress) progress.style.transform = 'scaleX(' + Math.min(1, y/max).toFixed(4) + ')';
+    const line = window.innerHeight * 0.36;
+    let active = null;
+    for (let i=0; i<sections.length; i++){
+      const r = sections[i].getBoundingClientRect();
+      if (r.top <= line && r.bottom > line){ active = sections[i]; break; }
+    }
+    if (active){
+      body.dataset.depth = active.dataset.depth || '0';
+      const id = '#' + active.id;
+      railDots.forEach(d => d.classList.toggle('is-active', d.getAttribute('href') === id));
+    }
+    const loop = document.getElementById('s11');
+    if (loop && rail){
+      const r = loop.getBoundingClientRect();
+      rail.classList.toggle('is-off', r.bottom < window.innerHeight * 0.45);
+    }
+    if (toTop) toTop.classList.toggle('is-on', y > window.innerHeight * 0.9);
+    ticking = false;
+  }
+  function onScroll(){ if (!ticking){ ticking = true; requestAnimationFrame(updateScroll); } }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+  updateScroll();
+  if (toTop) toTop.addEventListener('click', () => window.scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'}));
+
+  /* ---------- chart entrance ---------- */
+  if ('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if (e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, {threshold:0.16, rootMargin:'0px 0px -6% 0px'});
+    $$('.chart').forEach(el => io.observe(el));
+  } else {
+    $$('.chart').forEach(el => el.classList.add('is-in'));
+  }
+
+  /* ---------- hero labels ---------- */
+  setTimeout(()=>{
+    $$('.core-label').forEach((el,i)=>setTimeout(()=>el.classList.add('is-on'), i*850));
+    $$('.core-arrow').forEach((el,i)=>setTimeout(()=>el.classList.add('is-on'), i*850));
+  }, 900);
+
+  /* ---------- route ---------- */
+  const ROUTE = {
+    open: '<b>开启</b>：把 AI 产业作为一个整体：八层、四个收费站、一个循环。先看结构，再看数字。',
+    xray: '<b>透视</b>：不看新闻，看反复发生的结构。利润为什么总在物理层？因为那里最难复制。',
+    flow: '<b>流动</b>：跟着钱走：终端需求 → 资本开支 → 上游收入。2026 年，终端 1,768 亿，capex 7,300 亿。',
+    loop: '<b>回路</b>：三个回路：Jevons（效率→用量）、存储周期（短缺→扩产→回落）、融资循环（capex→估值→capex）。',
+    bottleneck: '<b>瓶颈</b>：瓶颈在移动：CoWoS → HBM → 电力 → 需求。每一层都以为自己永久，下一层已经在排队。',
+    leverage: '<b>杠杆</b>：对资本、产品、中国，各有一个用力点。不是“买什么”，是“盯什么”。',
+    make: '<b>做成作品</b>：这份网页 + 发现卡 + 文案 + 系统摘要。你可以直接拿走，也可以继续钻。'
+  };
+  const routePop = $('#routePop');
+  $$('.route-step').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      $$('.route-step').forEach(b=>b.setAttribute('aria-expanded','false'));
+      btn.setAttribute('aria-expanded','true');
+      if (routePop) routePop.innerHTML = ROUTE[btn.dataset.route] || '';
+    });
+  });
+
+  /* ---------- scenarios ---------- */
+  const SCENARIOS = {
+    digest: {
+      title: '消化 · 需求追上供给',
+      must: 'capex 增速从 +80% 降到 +20–30%；HBM 合同价走平；云厂商自由现金流改善；应用层从试点转向生产。',
+      signals: '云厂商不再上调 2027 指引；HBM 环比价格持平；token 用量继续 2×；企业部署从“买模型”转向“买结果”。',
+      win: '赢家：应用层、现金流好的云厂商、被低估的存储二线。输家：高杠杆 neocloud、靠融资的边缘模型公司。'
+    },
+    accelerate: {
+      title: '加速 · AI 成为通用基础设施',
+      must: 'token 用量 >2×；云 AI 收入加速；HBM/电力持续紧；2027 capex 合计 >$1.2T。',
+      signals: 'Nvidia 数据中心 >$110B；HBM 价格继续涨；PJM 容量价再创新高；云厂商上调指引。',
+      win: '赢家：Nvidia、存储、电力、TSMC、应用龙头。输家：看空者、非 AI 的传统硬件。'
+    },
+    bubble: {
+      title: '泡沫 · 钱继续堆，收入不跟上',
+      must: 'capex 继续涨，但云 AI 收入不及预期；供应商融资占比上升；DSO 拉长；信用价差扩大。',
+      signals: 'Anthropic IPO 定价低于 70；Nvidia DSO >70 天；循环融资占比 >20%；高收益债利差走阔。',
+      win: '赢家：现金充裕的巨头、做空者。输家：neocloud、边缘模型公司、存储周期顶部。'
+    },
+    airpocket: {
+      title: '空气袋 · 钱先撤，需求没证明',
+      must: 'capex 砍单；HBM 价格 -20% QoQ；Nvidia book-to-bill <1；高估值名称 -30–50%。',
+      signals: '云厂商下修 2027 capex；HBM 合同价转跌；Nvidia 指引低于 50%；IPO 窗口关闭。',
+      win: '赢家：现金、价值股、防守型资产。输家：整条 AI 链，尤其是高杠杆环节。'
+    }
+  };
+  $$('.quad').forEach(q=>{
+    q.addEventListener('click', ()=>{
+      $$('.quad').forEach(x=>{ x.classList.remove('is-active'); x.setAttribute('aria-pressed','false'); });
+      q.classList.add('is-active'); q.setAttribute('aria-pressed','true');
+      const d = SCENARIOS[q.dataset.scenario];
+      if (!d) return;
+      const t=$('#sdTitle'), m=$('#sdMust'), s=$('#sdSignals'), w=$('#sdWin');
+      if (t) t.textContent = d.title;
+      if (m) m.textContent = d.must;
+      if (s) s.textContent = d.signals;
+      if (w) w.textContent = d.win;
+    });
+  });
+
+  /* ---------- loop ---------- */
+  const loopSvg = $('#loopSvg');
+  const loopCaption = $('#loopCaption');
+  $$('.loop-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const full = btn.dataset.loop === 'full';
+      $$('.loop-btn').forEach(b=>{ b.classList.remove('is-on'); b.setAttribute('aria-pressed','false'); });
+      btn.classList.add('is-on'); btn.setAttribute('aria-pressed','true');
+      if (loopSvg) loopSvg.classList.toggle('is-loop', full);
+      if (loopCaption) loopCaption.textContent = full
+        ? '加上资本循环：供应商同时是股东、客户、担保人。Nvidia 投资 OpenAI、担保 CoreWeave、认购 Anthropic；需求不再是独立信号，而是被资本放大的信号。'
+        : '去掉资本循环，只剩一条价值链：物理层 → 芯片 → 云/模型 → 终端。钱沿着原路返回。打开“完整循环”，会看到供应商的投资、担保与入股，把这条路变成了一个环。';
+    });
+  });
+
+  /* ---------- share card ---------- */
+  const shareCard = $('#shareCard');
+  $$('[data-card]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const tall = btn.dataset.card === 'tall';
+      $$('[data-card]').forEach(b=>{ b.classList.remove('btn--accent'); b.setAttribute('aria-pressed','false'); });
+      btn.classList.add('btn--accent'); btn.setAttribute('aria-pressed','true');
+      if (shareCard) shareCard.classList.toggle('is-tall', tall);
+    });
+  });
+
+  function wrapText(ctx, text, maxWidth){
+    const chars = Array.from(text);
+    const lines = [];
+    let line = '';
+    for (const ch of chars){
+      const test = line + ch;
+      if (ctx.measureText(test).width > maxWidth && line){
+        lines.push(line);
+        line = ch;
+      } else {
+        line = test;
+      }
+    }
+    if (line) lines.push(line);
+    return lines;
+  }
+
+  async function downloadCard(){
+    if (!shareCard) return;
+    const tall = shareCard.classList.contains('is-tall');
+    const W = 1080, H = tall ? 1920 : 1080;
+    const c = document.createElement('canvas');
+    c.width = W; c.height = H;
+    const ctx = c.getContext('2d');
+    if (!ctx){ showToast('生成失败，请截图保存'); return; }
+    try {
+      if (document.fonts && document.fonts.ready) await document.fonts.ready;
+
+      ctx.fillStyle = '#08161c';
+      ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#e0a052';
+      ctx.fillRect(0, 0, W, 8);
+
+      const colors = ['#b8b1a0','#a77b4d','#5f7f8a','#35627d','#2d565a','#77513a','#70382d','#0d232b'];
+      const sw = 56, sh = H / colors.length;
+      colors.forEach((col, i)=>{ ctx.fillStyle = col; ctx.fillRect(W - sw, i * sh, sw, sh); });
+
+      const pad = 80;
+      const maxW = W - pad - 120;
+      const topY = tall ? 220 : 140;
+      const bigY = tall ? 340 : 250;
+      const lineH = tall ? 92 : 86;
+      const subSize = 38;
+
+      ctx.fillStyle = '#e9e5da';
+      ctx.font = '500 30px "Noto Sans SC","Microsoft YaHei",sans-serif';
+      ctx.fillText('发现 01 · 利润在岩层', pad, topY);
+
+      ctx.fillStyle = '#e9e5da';
+      ctx.font = '900 76px "Noto Sans SC","Microsoft YaHei",sans-serif';
+      const big = '三家存储厂一个季度，赚得比两家最强模型公司一年还多。';
+      const lines = wrapText(ctx, big, maxW);
+      let y = bigY;
+      lines.forEach(line=>{ ctx.fillText(line, pad, y); y += lineH; });
+
+      const subY = bigY + lines.length * lineH + 18;
+      ctx.fillStyle = '#e0a052';
+      ctx.font = '600 ' + subSize + 'px "Noto Sans SC","Microsoft YaHei",sans-serif';
+      ctx.fillText('AI 产业卖的不是智能，是稀缺。', pad, subY);
+
+      const foot = '存储三巨头 Q3 营业利润 $179B · OpenAI + Anthropic 年化收入 $131B';
+      const footY = H - (tall ? 200 : 130);
+      ctx.fillStyle = 'rgba(233,229,218,.55)';
+      ctx.font = '400 24px "Noto Sans SC","Microsoft YaHei",sans-serif';
+      const footLines = wrapText(ctx, foot, maxW);
+      footLines.forEach((line, i)=>{ ctx.fillText(line, pad, footY + i * 32); });
+
+      ctx.fillStyle = 'rgba(233,229,218,.4)';
+      ctx.font = '400 22px "Archivo","Noto Sans SC",sans-serif';
+      ctx.fillText('OpenXSys · 2026-11-16 · 数据见页内来源', pad, H - (tall ? 90 : 56));
+
+      c.toBlob((blob)=>{
+        if (!blob){ showToast('生成失败，请截图保存'); return; }
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = tall ? 'AI产业岩芯-发现卡-9x16.png' : 'AI产业岩芯-发现卡-1x1.png';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(()=>URL.revokeObjectURL(url), 1200);
+        showToast('发现卡已生成');
+      }, 'image/png');
+    } catch (e){
+      showToast('生成失败，请截图保存');
+    }
+  }
+  const dlBtn = $('#downloadCard');
+  if (dlBtn) dlBtn.addEventListener('click', downloadCard);
+
+  /* ---------- copy / toast ---------- */
+  let toastTimer;
+  function showToast(msg){
+    const t = $('.toast');
+    if (!t) return;
+    t.textContent = msg;
+    t.classList.add('is-on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(()=>t.classList.remove('is-on'), 2200);
+  }
+  function fallbackCopy(text){
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    ta.style.top = '0';
+    document.body.appendChild(ta);
+    ta.focus(); ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (e){ ok = false; }
+    document.body.removeChild(ta);
+    showToast(ok ? '已复制' : '复制失败，请手动选择文字');
+  }
+  function copyText(text){
+    if (navigator.clipboard && window.isSecureContext){
+      navigator.clipboard.writeText(text).then(()=>showToast('已复制')).catch(()=>fallbackCopy(text));
+    } else {
+      fallbackCopy(text);
+    }
+  }
+  $$('[data-copy-target]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const el = $(btn.dataset.copyTarget);
+      if (el) copyText(el.innerText.trim());
+    });
+  });
+  $$('[data-copy-text]').forEach(btn=>{
+    btn.addEventListener('click', ()=>copyText(btn.dataset.copyText || ''));
+  });
+})();
+</script>
+</body>
+</html>

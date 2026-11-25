@@ -1,0 +1,24 @@
+{
+  "songs": [
+    {"title": "Pride of Elm St",   "key": "E",   "bpm": 132, "energy": 8,  "minutes": 4.1, "must_play": true},
+    {"title": "Gasoline Heart",    "key": "B",   "bpm": 138, "energy": 9,  "minutes": 3.6},
+    {"title": "Two Left Feet",     "key": "A",   "bpm": 128, "energy": 7,  "minutes": 3.9},
+    {"title": "Slow Burn",         "key": "Am",  "bpm": 76,  "energy": 3,  "minutes": 5.0},
+    {"title": "Kerosene Lullaby",  "key": "C",   "bpm": 82,  "energy": 4,  "minutes": 4.4},
+    {"title": "Neon Rust",         "key": "D",   "bpm": 124, "energy": 7,  "minutes": 4.0},
+    {"title": "Backseat Saint",    "key": "G",   "bpm": 120, "energy": 6,  "minutes": 4.3},
+    {"title": "Static Halo",       "key": "Em",  "bpm": 116, "energy": 6,  "minutes": 4.2},
+    {"title": "Wolves of Main St", "key": "F#m", "bpm": 140, "energy": 9,  "minutes": 3.8},
+    {"title": "Cinder Waltz",      "key": "F",   "bpm": 96,  "energy": 4,  "minutes": 4.6},
+    {"title": "Dial Tone Diary",   "key": "Bm",  "bpm": 112, "energy": 5,  "minutes": 4.0},
+    {"title": "Last Bus Gospel",   "key": "Dm",  "bpm": 108, "energy": 6,  "minutes": 4.5},
+    {"title": "Hollow Crown",      "key": "C#m", "bpm": 126, "energy": 8,  "minutes": 4.2},
+    {"title": "Ampersand Ave",     "key": "A",   "bpm": 134, "energy": 8,  "minutes": 3.7},
+    {"title": "Glass Anthem",      "key": "G",   "bpm": 104, "energy": 5,  "minutes": 4.8, "must_play": true},
+    {"title": "Vermilion Exit",   "key": "E",   "bpm": 146, "energy": 10, "minutes": 4.4},
+    {"title": "Bolt from Blue",    "key": "B",   "bpm": 130, "energy": 7,  "minutes": 3.9},
+    {"title": "Paper Thunder",     "key": "D",   "bpm": 118, "energy": 6,  "minutes": 4.1},
+    {"title": "Sunday Anthropology","key": "C",  "bpm": 92,  "energy": 4,  "minutes": 4.7},
+    {"title": "Revved & Reckless", "key": "F#",  "bpm": 144, "energy": 10, "minutes": 3.5}
+  ]
+}

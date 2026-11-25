@@ -1,6 +1,6 @@
 ## Description:
 
-Helps insurance professionals draft marketing materials, review copy against common compliance checks, and create image-generation prompts.
+A conversational assistant that helps insurance professionals draft marketing content, explore timely campaign angles, review copy for compliance considerations, and write image-generation prompts.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Insurance agents, brokers, and marketing staff can use it to prepare draft campaign copy, review wording, and create visual prompts for insurance products. Outputs are drafts and should be checked against current product terms and reviewed by the institution's compliance team before external use.
+Insurance agents, brokers, and insurance organization operations staff can use it to prepare draft promotional copy, campaign ideas, compliance review notes, and image prompts for insurance products. Outputs are reference drafts that require human and institutional review before publication.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,31 @@ China
 
 ## Known Risks and Mitigations:
 
-Risk: Generic writing or video requests may activate the skill outside an insurance-marketing context.
+Risk: Broad copywriting or social-post requests may activate the skill outside its intended insurance context.
 
-Mitigation: State the insurance product and intended marketing context, then review the output for relevance before use.
+Mitigation: Invoke it specifically for insurance marketing tasks and review whether the response fits that context.
 
-Risk: Prompts containing customer personal or sensitive information could expose that information.
+Risk: Marketing drafts may include sensitive personal information or claims that need current policy and compliance review.
 
-Mitigation: Use only the minimum necessary product and audience details; use fictional or anonymized examples and omit identifying or sensitive customer data.
-
-Risk: Draft marketing claims may be inaccurate or out of date, or may not meet an institution's requirements.
-
-Mitigation: Check claims against current official information and product terms, and obtain institutional compliance or legal review before external use.
+Mitigation: Use anonymized, non-sensitive examples; verify product terms and current requirements with authoritative sources and institutional compliance staff before publication.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/gechengling/skills/insurance-marketing-assistant)
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/insurance-marketing-assistant)
 
 ## Skill Output:
 
-**Output Type(s):** [Marketing copy, Compliance review guidance, Image-generation prompts]
+**Output Type(s):** [Text, Markdown, Guidance, Image-generation prompts]
 
-**Output Format:** [Chinese text and Markdown]
+**Output Format:** [Conversational text and Markdown drafts, including marketing copy, review notes, and image prompts]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Draft material for human review; no publishing or saving actions.]
+**Other Properties Related to Output:** [Draft content; minimize personal data and have qualified staff verify current facts, policy terms, and compliance before use or publication. Preview and obtain user confirmation before saving or sharing.]
 
 ## Skill Version(s):
 
-2.1.4 (source: server-resolved release)
+2.1.5 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

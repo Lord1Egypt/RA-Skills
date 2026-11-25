@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers using Claude Code can use the hub to route multi-step MCP workflows, select tool-chain patterns, coordinate subagents, and monitor context use during large data tasks.
+Developers use this orchestration guidance to route multi-step MCP workflows, large data processing, and context-heavy tasks through patterns, subagents, and validation steps.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Context snapshots and intermediate results may be logged or stored without clearly stated privacy safeguards.
+Risk: ClawScan marks this release suspicious, citing context and intermediate-data storage concerns and a possible mismatch between the stated purpose and described actions.
 
-Mitigation: Before use, review where snapshots and results are stored and who can access them; avoid sensitive data unless protections are confirmed, and limit use to MCP-related workflows.
+Mitigation: Before use, review whether its data handling fits your needs and confirm the described operations match the workflow you intend to run.
 
 ## Reference(s):
 
 - [ClawHub release page](https://clawhub.ai/athola/skills/nm-conserve-mcp-code-execution)
-- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
-- [MCP coordination patterns](artifact/modules/mcp-coordination.md)
-- [MCP execution patterns](artifact/modules/mcp-patterns.md)
-- [MCP subagent guidance](artifact/modules/mcp-subagents.md)
-- [MCP validation guidance](artifact/modules/mcp-validation.md)
+- [Project homepage (release metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Code, Shell commands, Markdown]
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown guidance with Python and shell examples, workflow steps, and validation recommendations]
+**Output Format:** [Markdown guidance with Python and shell examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Offers example workflows and recommendations; execution depends on the available MCP tools and host environment.]
+**Other Properties Related to Output:** [Workflow routing guidance with example patterns for MCP tool chains, data processing, subagents, and validation.]
 
 ## Skill Version(s):
 
-1.10.3 (source: artifact frontmatter, server-resolved release metadata)
+1.10.4 (source: server-resolved release)
 
 ## Ethical Considerations:
 

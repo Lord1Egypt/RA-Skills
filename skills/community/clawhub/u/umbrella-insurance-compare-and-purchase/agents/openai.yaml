@@ -1,0 +1,55 @@
+interface:
+  display_name: "Umbrella Insurance Compare And Purchase"
+  short_description: "Run Coverage Cat's consumer-prefill or delegated umbrella compare-and-purchase flow"
+  default_prompt: >-
+    Use $umbrella-insurance-compare-and-purchase to operate Coverage Cat's
+    umbrella purchase workflow. Start with
+    https://www.coveragecat.com/AGENTS.md,
+    https://www.coveragecat.com/agents.txt, or
+    https://www.coveragecat.com/.well-known/agents.txt, and do not drive the
+    browser UI unless Coverage Cat should take over the shopper-facing flow.
+    Keep the shopper on the machine-readable MCP or REST loop until Coverage
+    Cat returns `resume_url` or you intentionally hand the browser over to
+    Coverage Cat. `/umbrella` or `/intake` are fallback browser starts, not
+    the preferred purchase entrypoints. Default to the consumer-prefill
+    handoff when no operator bearer key is available in runtime. If the
+    runtime supports MCP, register
+    `https://www.coveragecat.com/.well-known/mcp.json` in ChatGPT or use
+    `https://www.coveragecat.com/api/consumer/mcp` for local Codex direct
+    transport, do not use the manifest as the direct transport URL, and stay on
+    the default consumer MCP subset: `umbrella_consumer_prefill`,
+    `consumer_intake_issues`, `consumer_intake_patch`,
+    `umbrella_consumer_select`, `umbrella_consumer_bind`,
+    `umbrella_consumer_attach`, and `umbrella_consumer_payment`. That subset
+    stays valid through `payment_needed`, secure payment UI when available,
+    and `payment_url`, so do not switch to delegated tools just to reach
+    checkout. On consumer umbrella prefills and pre-submit
+    patches, prefer canonical keys such as `address.street`, `address.city`,
+    `address.state`, `address.zip`, `license_state`, `license_number`,
+    `net_worth_numeric`, `required_coverage_e_limit`, and `vehicle_count` or
+    `umbrella_details.motorized_vehicle_count`, and do not send `vehicles`
+    rows before submission; if Markel later needs actual vehicle details,
+    collect them only in the post-select bind continuation. On every pre-submit
+    turn, tell the user the application is not submitted yet and Coverage Cat
+    has not received a submitted application yet, render gathered details and
+    remaining shopper-owned items as short labeled bullets or sections rather
+    than a prose paragraph, mark any estimated bullet or value with `*`,
+    include `* = estimated` once above and once below the list instead of
+    prefixing lines with `[Estimated]`, ask only for any explicitly missing
+    shopper-owned details in plain English, and keep already reviewed estimated
+    facts in the review section for corrections instead of asking the user to
+    re-key them. If an offer includes `um_uim_selection`, let the shopper
+    include or decline that $1M excess UM/UIM option in the same selection
+    reply and send it as `um_uim_election` on the first select call. For
+    Monoline and Markel, keep declarations uploads in the post-choose flow,
+    prefer one attach call when both the home and auto declarations are
+    already available, use `/api/intake/:uid/attach-upload?type=...` with
+    `application/octet-stream` when your runtime already has a PDF, PNG, or
+    JPEG on disk and you want to avoid hand-building base64, tell the shopper
+    secure checkout is usually ready within about 5-10 minutes once those
+    uploads are on file, then poll until `payment_needed`. When payment is
+    ready, call `/payment` with `payment_collection_requested: true`; if the
+    secure UI renders, use it and do not ask for card details in chat,
+    otherwise, or if secure setup fails in chat, share the returned
+    `payment_url` with the fallback reason. Only use the delegated flow when
+    a real operator key is already present.

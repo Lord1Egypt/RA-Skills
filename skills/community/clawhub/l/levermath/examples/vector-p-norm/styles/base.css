@@ -1,0 +1,394 @@
+/* 向量范数 HTML 课件：浅色底、深蓝标题条、宋体 + Latin Modern。 */
+
+:root {
+  --bg: #f7f7fb;
+  --ink: #1b1b24;
+  --muted: #6b6b78;
+  --grid: #d7d7e2;
+  --accent: #20206e;
+  --accent-2: #2b5fa8;
+  --pale: #ededf4;
+  --side: #20206e;
+  --white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #e9e9ef;
+  color: var(--ink);
+  font-family: "Latin Modern Roman", "Noto Serif SC", serif;
+}
+
+/* 外壳 */
+.deck {
+  display: flex;
+  height: 100%;
+}
+
+.deck-side {
+  width: 168px;
+  flex: 0 0 168px;
+  padding: 10px;
+  overflow-y: auto;
+  background: var(--side);
+  border-right: 1px solid #10103a;
+}
+
+.deck-thumbs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.thumb {
+  position: relative;
+  width: 148px;
+  height: 83.25px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #4a4a86;
+  background: var(--bg);
+  cursor: pointer;
+}
+
+.thumb.active {
+  border-color: #f2e85c;
+  box-shadow: 0 0 0 1px #f2e85c;
+}
+
+.thumb-inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1280px;
+  height: 720px;
+  transform: scale(0.115625);
+  transform-origin: 0 0;
+  pointer-events: none;
+}
+
+.deck-main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  background: #e9e9ef;
+}
+
+.deck-stage-wrap {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.stage {
+  position: relative;
+  flex: 0 0 auto;
+  overflow: hidden;
+  background: var(--bg);
+  transform-origin: center center;
+}
+
+.deck-bar {
+  display: flex;
+  height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  border-top: 1px solid var(--grid);
+  font-size: 17px;
+  color: var(--muted);
+  background: #ffffff;
+}
+
+.deck-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.deck-bar button {
+  padding: 5px 12px;
+  border: 1px solid var(--grid);
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.deck-bar button:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--white);
+}
+
+.deck.presenting .deck-side,
+.deck.presenting .deck-bar {
+  display: none;
+}
+
+.deck.presenting .deck-main {
+  background: #000;
+}
+
+/* 帧 */
+.frame {
+  position: absolute;
+  inset: 0;
+  display: none;
+}
+
+.frame > * {
+  position: absolute;
+}
+
+.frame h1 {
+  margin: 0;
+  font-family: "Latin Modern Roman", "Noto Serif SC", serif;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+}
+
+/* 顶部标题条 */
+.bar {
+  background: var(--accent);
+}
+
+.onbar {
+  color: var(--white);
+  font-family: "Latin Modern Roman", "Noto Serif SC", serif;
+  font-weight: 700;
+  font-size: 43px;
+  top: 10px;
+}
+
+/* 封面 */
+.cover-block {
+  background: var(--accent);
+}
+
+.cover-title {
+  color: var(--white);
+  font-family: "Latin Modern Roman", "Noto Serif SC", serif;
+  font-weight: 700;
+  font-size: 64px;
+  text-align: center;
+}
+
+.cover-sub {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 32px;
+  text-align: center;
+}
+
+/* 正文 */
+.lead {
+  font-size: 32px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.lead .katex {
+  font-size: 1.05em;
+}
+
+.chain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 32px;
+  color: var(--ink);
+}
+
+.chain i {
+  font-style: normal;
+  color: var(--accent-2);
+}
+
+.block {
+  background: var(--pale);
+  border: 1px solid var(--grid);
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.block-title {
+  background: var(--accent);
+  color: var(--white);
+  font-family: "Latin Modern Roman", "Noto Serif SC", serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 34px;
+  padding: 0 14px;
+}
+
+.block-body {
+  padding: 10px 16px 12px;
+  font-size: 32px;
+  line-height: 1.5;
+}
+
+.block-body p {
+  margin: 0 0 4px;
+}
+
+.formula {
+  font-size: 1em;
+  text-align: center;
+  color: var(--ink);
+}
+
+.formula.big {
+  font-size: 1.15em;
+}
+
+.formula.huge {
+  font-size: 1.35em;
+}
+
+.gray {
+  color: #8a8a95;
+  font-size: 32px;
+}
+
+.note {
+  color: var(--accent-2);
+  font-size: 32px;
+  text-align: center;
+}
+
+.small {
+  font-size: 24px;
+  color: var(--muted);
+}
+
+/* 视频 */
+.video-box {
+  background: #000;
+  border: 1px solid var(--grid);
+  overflow: hidden;
+}
+
+.video-box video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+
+.video-note {
+  font-size: 24px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* 公式容器 */
+.tex {
+  white-space: nowrap;
+}
+
+.katex {
+  font-size: 1em;
+}
+
+.play-btn {
+  padding: 7px 18px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--white);
+  font: inherit;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.play-btn:hover {
+  background: var(--accent-2);
+  border-color: var(--accent-2);
+}
+
+.chain.vertical {
+  flex-direction: column;
+  gap: 2px;
+}
+
+.chain.vertical i {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.space-table {
+  border-collapse: collapse;
+  font-size: 32px;
+  text-align: center;
+}
+
+.space-table th {
+  background: var(--accent);
+  color: var(--white);
+  font-family: "Latin Modern Roman", "Noto Serif SC", serif;
+  font-weight: 700;
+  font-size: 43px;
+  padding: 30px;
+  border: 1px solid var(--grid);
+}
+
+.space-table td {
+  padding: 40px;
+  border: 1px solid var(--grid);
+  background: var(--pale);
+}
+
+.calc-block {
+  border-top: 1px solid var(--grid);
+  padding-top: 4px;
+}
+
+.calc-title {
+  font-family: "Latin Modern Roman", "Noto Serif SC", serif;
+  font-weight: 700;
+  font-size: 32px;
+  color: var(--accent);
+}
+
+.p-jumps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.p-jump {
+  min-width: 52px;
+  padding: 7px 12px;
+  border: 1px solid var(--accent);
+  background: var(--white);
+  color: var(--accent);
+  font: inherit;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.p-jump:hover {
+  background: var(--pale);
+}
+
+.space-table th.blank {
+  background: var(--bg);
+}
+
+.space-table td.eg {
+  color: var(--muted);
+  font-style: italic;
+}

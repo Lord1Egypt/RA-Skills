@@ -1,6 +1,6 @@
 ## Description:
 
-Guides developers in choosing agent or workflow architectures and patterns, structuring SKILL.md files, and reviewing skill quality.
+Helps developers choose an agent architecture and workflow pattern, write clear SKILL.md files, and review skill quality with a governance-aware checklist.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Developers building or reviewing AI agent skills use it to choose between workflows and agents, select an architecture pattern, structure skill files, and apply a governance-aware quality checklist.
+Developers creating or reviewing AI agent skills use this guide to choose between a workflow and an agent, select a workflow pattern, and check skill structure and quality.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security guidance flags a concern that some recommendations could encourage retaining policy-borderline capabilities while avoiding renewed security review; the scan evidence is partial.
+Risk: The scanner reports package installation behavior and a broad activation scope; its confidence is medium and installed package contents were not verified.
 
-Mitigation: Address the underlying finding, make the relevant behavior clear, and obtain a renewed security review when changes affect the risk assessment.
+Mitigation: Check that the reported install behavior and trigger scope fit your environment, and review the installed package contents before enabling it if you proceed.
 
 ## Reference(s):
 
 - [ClawHub release page](https://clawhub.ai/haiyangchenbj/skills/skill-design-guide-skill)
-- [Anthropic — Building Effective Agents](https://www.anthropic.com/research/building-effective-agents)
-- [Anthropic — Writing Effective Tools for Agents](https://www.anthropic.com/engineering/writing-tools-for-agents)
-- [OpenAI — A Practical Guide to Building Agents](https://everawelabs.com/learn-it/a-practical-guide-to-building-agents)
-- [LangChain — State of Agent Engineering](https://blog.langchain.dev/)
+- [Pattern details](references/pattern-details.md)
+- [Quality checklist](references/quality-checklist.md)
+- [Platform compatibility](references/platform-compatibility.md)
+- [Agent design research](references/agent-design-research.md)
+- [Anthropic tool design](references/anthropic-tool-design.md)
 
 ## Skill Output:
 
 **Output Type(s):** [Guidance, Analysis, Markdown]
 
-**Output Format:** [Markdown architecture recommendations, design blueprints, and checklist-based review reports]
+**Output Format:** [Markdown prose, architecture blueprints, pattern recommendations, and checklist reports]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Recommendations depend on the user's skill design or review request.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.7.4 (source: frontmatter; agrees with server-resolved release)
+1.7.5 (source: frontmatter)
 
 ## Ethical Considerations:
 

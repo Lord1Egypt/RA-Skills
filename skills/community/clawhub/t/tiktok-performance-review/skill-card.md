@@ -1,6 +1,6 @@
 ## Description:
 
-Fetch public TikTok search results, creator posts, and video comments as structured data for content reviews and strategy analysis.
+汇总 TikTok 公开搜索、博主作品和视频评论数据，并生成内容表现复盘与可验证的下一步策略。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Creators, marketers, and developers can research public TikTok content and engagement, compare creators or competitors, and develop testable content strategies from the returned data.
+TikTok 创作者、营销团队和研究人员可用它查询公开视频、创作者作品及评论数据，再据此分析内容表现、竞品和受众反馈。
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan found no confirmed harmful behavior, but its review was partial: 12 of 32 components were only partially inspected.
+Risk: Security inspection was incomplete, and the supplied guidance notes undeclared tool scope.
 
-Mitigation: Review the skill and its scripts before installation, with particular attention to the outbound request and token handling described in its documentation.
+Mitigation: Consider the inspection limitation and review the skill's permissions before installing, especially when host permissions matter.
 
-Risk: The skill sends the requested TikTok keyword or URL to the GUAIKEI service, and sends the API token in the request.
+Risk: Search terms and TikTok links are sent to GUAIKEI's service to retrieve data.
 
-Mitigation: Use it only when sharing those queries and URLs with the service is acceptable, and keep the token private in the required environment variable.
-
-Risk: Public comment results can include user names and other identifying details.
-
-Mitigation: Review and anonymize identifying details before sharing results outside the team.
+Mitigation: Use only public TikTok queries whose disclosure to that service is acceptable.
 
 ## Reference(s):
 
-- [GUAIKEI service and token information](https://www.guaikei.com)
-- [Command options](references/options.md)
-- [Changelog](references/changelog.md)
+- [GUAIKEI service and token access](https://www.guaikei.com)
+- [CLI options](references/options.md)
+- [Release changelog](references/changelog.md)
+- [ClawHub release page](https://clawhub.ai/why20261/skills/tiktok-performance-review)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, JSON]
+**Output Type(s):** [JSON, Analysis, Guidance]
 
-**Output Format:** [JSON response envelope]
+**Output Format:** [Structured JSON data for TikTok search results, creator posts, and video comments, suitable for analysis and content reviews.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Contains search, creator-post, or video-comment results; available result counts depend on the request and service plan.]
+**Other Properties Related to Output:** [Includes public content and engagement fields; responses distinguish successful, empty, and error results.]
 
 ## Skill Version(s):
 
-1.1.1 (source: SKILL.md frontmatter, package.json, changelog; released 2026-11-04)
+1.1.2 (source: frontmatter, package.json)
 
 ## Ethical Considerations:
 

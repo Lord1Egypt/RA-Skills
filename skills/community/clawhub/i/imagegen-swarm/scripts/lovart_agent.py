@@ -410,7 +410,7 @@ def main():
             print(json.dumps({"project_id": pid}))
 
         elif args.command == "upload":
-            url = skill.upload_file(args.file)
+            url = skill.upload_reference_image(args.file)
             print(json.dumps({"url": url}))
 
         elif args.command == "upload-artifact":

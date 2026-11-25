@@ -277,6 +277,22 @@ console.log(JSON.stringify(sites.map(site => ({site,
                    "never an extension-backed connection")
 
 
+def can_write(directory: pathlib.Path) -> tuple[bool, str]:
+    """Write and remove a probe file in `directory`, or in its nearest existing
+    parent when it does not exist yet. Not os.access: a sandbox (codex's default
+    allows writes only inside its working directory) or macOS TCC refuses the
+    write itself while the permission bits say yes."""
+    probe = pathlib.Path(directory).expanduser()
+    while not probe.exists() and probe != probe.parent:
+        probe = probe.parent
+    try:
+        with tempfile.NamedTemporaryFile(dir=probe, prefix=".job-hunt-probe-"):
+            pass
+    except OSError as exc:
+        return False, f"{probe}: {exc.strerror or exc}"
+    return True, str(directory)
+
+
 def checks() -> list[dict]:
     """Every capability, what it costs when absent, and how to get it."""
     out = []
@@ -332,6 +348,24 @@ def checks() -> list[dict]:
         "cost": "OpenCLI adapters are unavailable; verify daily-browser CDP separately "
                 "or use a pasted posting",
         "fix": install_hint("opencli"), "auto": False,
+    })
+    import paths as _paths
+    ok, detail = can_write(_paths.PROFILES_ROOT)
+    out.append({
+        "what": "write the profile store", "ok": ok,
+        "cost": "no profile or workspace can be saved, so no mode can run",
+        "fix": "allow this agent to write that folder (the host's sandbox setting), or set "
+               "JOBHUNT_PROFILES_ROOT to a folder it can write",
+        "auto": False, "detail": detail,
+    })
+    downloads = pathlib.Path.home() / "Downloads"
+    ok, detail = can_write(downloads)
+    out.append({
+        "what": "write the delivery folder (~/Downloads)", "ok": ok,
+        "cost": "deliver.py cannot copy the finished files; pass deliver.py --to <writable folder>",
+        "fix": "allow this agent to write ~/Downloads (macOS: Privacy & Security > Files and "
+               "Folders; or the host's sandbox setting), or deliver with --to",
+        "auto": False, "detail": detail,
     })
     if opencli_tools()[0]:
         connected, detail = can_use_opencli_cdp()

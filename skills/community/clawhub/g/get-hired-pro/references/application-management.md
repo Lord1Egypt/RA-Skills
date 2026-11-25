@@ -23,7 +23,9 @@ Work through the chosen application or batch. Ask for missing answers needed to 
 
 Use available supported browser/application tools. Check required fields, file selections and the current form before final submission.
 
-Upload PDF or Word (.docx) according to the applicant's choice and the employer's accepted file types. Use PDF when both are accepted and no preference is saved. If the employer needs a different format, export that copy from the final approved wording. Record which files were actually submitted.
+Upload PDF or Word (.docx) according to the applicant's choice and the employer's accepted file types. Use PDF when both are accepted and no preference is saved. If the employer needs a different format, export that copy from the final approved wording. If there is one résumé/file upload and no separate cover-letter submission, upload a combined application there: the complete résumé followed by the cover letter on a new page. Use the accepted PDF or Word format and file-size limit. The missing field changes the packaging; keep both documents. Use separate uploads or the dedicated cover-letter text field when those are provided. Follow an explicit employer instruction excluding cover letters or an applicant's résumé-only request.
+
+Keep the original documents. Record the combined filename, revision and its résumé/cover-letter contents when that is the file submitted.
 
 Some employers block automation or require a human step. Preserve prepared files and completed fields where practical; state the exact remaining action and give the correct page/files.
 

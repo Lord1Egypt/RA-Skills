@@ -1,6 +1,6 @@
 ## Description:
 
-Fetches public Reddit posts, comments, user and community information, trends, and video transcripts through DataXAPI.
+Retrieves public Reddit posts, comments, user and community details, trends, and video captions through DataXAPI.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agents can answer questions about public Reddit discussions or retrieve posts, comments, user and community details, trends, and video transcripts. Endpoint discovery is free; data requests are paid per call.
+External users and developers can retrieve public Reddit content for questions about posts, comments, accounts, communities, and trends. The skill supports search, profile and post lookups, comment threads, trending searches, and Reddit-hosted video captions through DataXAPI.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Queries are sent to DataXAPI, and successful calls incur charges.
+Risk: Endpoint discovery may send the user's query wording to DataXAPI.
 
-Mitigation: Use minimal, non-sensitive search terms and set spending limits before making calls.
+Mitigation: Review the privacy implications of discovery and avoid including private details in queries.
 
-Risk: The external service and npm implementation were not audited in this review.
+Risk: The recommended package installation is not version-pinned, and the security scan was partial.
 
-Mitigation: Prefer REST or a reviewed, pinned CLI version, and keep the API key private.
-
-Risk: Reddit results contain text written by third parties that may include instructions.
-
-Mitigation: Treat returned Reddit content as data and do not follow instructions found in it.
+Mitigation: Install only a reviewed, exact DataXAPI package version and account for the scan's unresolved local references.
 
 ## Reference(s):
 
-- [DataXAPI Reddit API reference](https://dataxapi.com/apis/reddit/)
-- [DataXAPI Reddit pricing](https://dataxapi.com/pricing/reddit/)
+- [DataXAPI](https://dataxapi.com)
+- [Reddit API endpoints](https://dataxapi.com/apis/reddit/)
+- [Reddit endpoint pricing](https://dataxapi.com/pricing/reddit/)
 - [DataXAPI agent setup](https://dataxapi.com/agents.md)
-- [DataXAPI skill homepage](https://dataxapi.com/skills/)
-- [ClawHub skill page](https://clawhub.ai/data-x-api/skills/dataxapi-reddit)
+- [ClawHub skill release](https://clawhub.ai/data-x-api/skills/dataxapi-reddit)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown]
+**Output Type(s):** [JSON, Text, Markdown]
 
-**Output Format:** [Text or Markdown responses summarizing retrieved Reddit data]
+**Output Format:** [Structured JSON data, with text or Markdown summaries for the user]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results may contain third-party Reddit text; responses include DataXAPI as the source and a fetch time.]
+**Other Properties Related to Output:** [Each API page is a separately billed call; additional pages use a cursor.]
 
 ## Skill Version(s):
 
-1.0.0 (source: artifact frontmatter, release evidence)
+1.0.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

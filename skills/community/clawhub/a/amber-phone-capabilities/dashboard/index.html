@@ -527,12 +527,12 @@
             <label>Realtime model</label>
             <div class="model-switch">
               <label>
-                <input type="radio" name="setting-realtime-model" value="gpt-realtime" />
-                <span>Regular</span>
+                <input type="radio" name="setting-realtime-model" value="gpt-realtime-2.1" />
+                <span>Realtime 2.1</span>
               </label>
               <label>
-                <input type="radio" name="setting-realtime-model" value="gpt-realtime-mini" />
-                <span>Mini</span>
+                <input type="radio" name="setting-realtime-model" value="gpt-realtime-2.1-mini" />
+                <span>Realtime 2.1 Mini</span>
               </label>
             </div>
           </div>
@@ -618,7 +618,7 @@
       bridgeToken: '',
       testTo: '',
       testObjective: 'Place a short Amber test call. Say hello, confirm two-way audio is working, and end politely.',
-      realtimeModel: 'gpt-realtime',
+      realtimeModel: 'gpt-realtime-2.1',
       currency: 'USD',
       telecomPerMinute: 0.013,
       realtimeInputPer1M: 4,
@@ -662,8 +662,11 @@
       document.getElementById('setting-bridge-token').value = settings.bridgeToken;
       document.getElementById('setting-test-to').value = settings.testTo;
       document.getElementById('setting-objective').value = settings.testObjective;
-      const modelInput = document.querySelector(`input[name="setting-realtime-model"][value="${settings.realtimeModel}"]`);
-      if (modelInput) modelInput.checked = true;
+      if (settings.realtimeModel === 'gpt-realtime-mini') settings.realtimeModel = 'gpt-realtime-2.1-mini';
+      const modelInputs = Array.from(document.querySelectorAll('input[name="setting-realtime-model"]'));
+      const modelInput = modelInputs.find(input => input.value === settings.realtimeModel) || modelInputs[0];
+      modelInput.checked = true;
+      settings.realtimeModel = modelInput.value;
       document.getElementById('setting-currency').value = settings.currency;
       document.getElementById('setting-telecom-rate').value = settings.telecomPerMinute;
       document.getElementById('setting-input-rate').value = settings.realtimeInputPer1M;
@@ -676,7 +679,7 @@
         bridgeToken: document.getElementById('setting-bridge-token').value,
         testTo: document.getElementById('setting-test-to').value.trim(),
         testObjective: document.getElementById('setting-objective').value.trim(),
-        realtimeModel: document.querySelector('input[name="setting-realtime-model"]:checked')?.value || 'gpt-realtime',
+        realtimeModel: document.querySelector('input[name="setting-realtime-model"]:checked')?.value || 'gpt-realtime-2.1',
         currency: document.getElementById('setting-currency').value.trim() || 'USD',
         telecomPerMinute: Number(document.getElementById('setting-telecom-rate').value || 0),
         realtimeInputPer1M: Number(document.getElementById('setting-input-rate').value || 0),

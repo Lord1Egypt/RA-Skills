@@ -1,6 +1,6 @@
 ---
 name: duoplus-ai
-version: 1.0.7
+version: 1.0.8
 description: Manage and automate DuoPlus Android cloud phones through the official OpenAPI and the synchronous HTTP Gateway. Use when an AI needs to discover cloud phones, inspect status/details, initialize a proxy, start/stop/restart a phone, wait until it is controllable, read UI state or screenshots, complete Android UI actions, or run an explicitly authorized shell command on a cloud phone.
 ---
 
@@ -10,25 +10,13 @@ Use one API key to manage the cloud-phone lifecycle and then operate the running
 
 For shell execution, the HTTP Gateway is the primary route. Use the official control API command endpoint only as a fallback after the Gateway attempt has failed or the Gateway is confirmed unavailable.
 
-## Obtain the API key
+## Configure credentials privately
 
-The API key is user-provided input. If the user has not supplied one in the current conversation, ask exactly one short question:
+Use an existing securely injected `DUOPLUS_API_KEY`, or a user-selected private file through `DUOPLUS_API_KEY_FILE` / `--api-key-file PATH`. Read [Credential setup](references/credentials.md) for requirements and safe setup. Do not ask users to paste keys into chat, put keys in command arguments, read unrelated credential stores, or create permanent shell-profile settings. If credentials are missing, state that no request was sent and ask the user to configure one of these private channels. Do not repeat a key the user has already pasted; recommend replacing an exposed key.
 
-```text
-Please provide the API key for DuoPlus AI control.
-```
+Commands below assume secure environment injection. With a private file, place `--api-key-file /absolute/private/key-file` before the subcommand; the argument is a path, never the key. Only Python 3.8+ and its standard library are required; no OpenClaw/ClawHub CLI is needed to run the already installed client. Resolve scripts and references relative to this installed skill, not the user's working directory.
 
-Accept the key directly in the conversation. Do not tell the user to configure PowerShell, shell profiles, permanent environment variables, secret managers, or restart the AI application. If the user already supplied the key, do not ask again.
-
-Pass the supplied key to each client invocation:
-
-```bash
-python3 scripts/duoplus_ai.py --api-key 'USER_SUPPLIED_API_KEY' list --all
-```
-
-Use the key only for the requested task. Do not commit it or echo the full value back in normal output. Failure diagnostics automatically redact it. `DUOPLUS_API_KEY` remains supported for automated deployments, but it is optional and must never be imposed on an interactive user.
-
-The client sends this key as `DuoPlus-API-Key` to the control API and as the Gateway Bearer token. The deployment must provision the same value as the device Gateway auth.
+The client sends the key only to the chosen DuoPlus production API and Gateway. Never extract connector OAuth tokens or bypass a denied account's permissions. Task authorization and uncertain-mutation protections still apply.
 
 Use optional deployment overrides only if automatic routing cannot resolve legacy data:
 
@@ -60,15 +48,15 @@ The official control API is limited to 1 QPS per endpoint. The client enforces p
 ## Manage cloud phones
 
 ```bash
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' list
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' list --all
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' list --name 'phone-name'
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' status IMAGE_ID
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' info IMAGE_ID
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' power-on IMAGE_ID --wait
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' power-off IMAGE_ID --wait
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' restart IMAGE_ID --wait
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' ensure-ready IMAGE_ID
+python3 scripts/duoplus_ai.py list
+python3 scripts/duoplus_ai.py list --all
+python3 scripts/duoplus_ai.py list --name 'phone-name'
+python3 scripts/duoplus_ai.py status IMAGE_ID
+python3 scripts/duoplus_ai.py info IMAGE_ID
+python3 scripts/duoplus_ai.py power-on IMAGE_ID --wait
+python3 scripts/duoplus_ai.py power-off IMAGE_ID --wait
+python3 scripts/duoplus_ai.py restart IMAGE_ID --wait
+python3 scripts/duoplus_ai.py ensure-ready IMAGE_ID
 ```
 
 Treat `power-off`, `restart`, and proxy changes as state-changing operations. Perform them only when explicitly requested or when restoring the initial stopped state after this skill powered the phone on. Power-on can start billable temporary compute; always track whether the skill started it.
@@ -82,15 +70,15 @@ Read [references/control-api.md](references/control-api.md) when handling lifecy
 Prefer an existing proxy ID:
 
 ```bash
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' proxy-list --status 1
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' init-proxy IMAGE_ID --proxy-id PROXY_ID
+python3 scripts/duoplus_ai.py proxy-list --status 1
+python3 scripts/duoplus_ai.py init-proxy IMAGE_ID --proxy-id PROXY_ID
 ```
 
 Or initialize from explicit connection data:
 
 ```bash
 export DUOPLUS_PROXY_PASSWORD='...'
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' init-proxy IMAGE_ID \
+python3 scripts/duoplus_ai.py init-proxy IMAGE_ID \
   --host proxy.example.com --port 1080 --protocol socks5 --user account
 ```
 
@@ -101,25 +89,25 @@ Never infer proxy credentials, locale, SIM identity, GPS, device model, or regio
 Check the route and executor before debugging UI actions:
 
 ```bash
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' route IMAGE_ID
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' health IMAGE_ID
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' ready IMAGE_ID
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' ui-state IMAGE_ID --screenshot-out screen.png
+python3 scripts/duoplus_ai.py route IMAGE_ID
+python3 scripts/duoplus_ai.py health IMAGE_ID
+python3 scripts/duoplus_ai.py ready IMAGE_ID
+python3 scripts/duoplus_ai.py ui-state IMAGE_ID --screenshot-out screen.png
 ```
 
 Execute actions with JSON parameters:
 
 ```bash
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' action IMAGE_ID OPEN_APP \
+python3 scripts/duoplus_ai.py action IMAGE_ID OPEN_APP \
   --params '{"package_name":"com.android.settings","wait_after":800}'
 
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' action IMAGE_ID CLICK_ELEMENT \
+python3 scripts/duoplus_ai.py action IMAGE_ID CLICK_ELEMENT \
   --params '{"text":"Search","wait_after":500}'
 
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' action IMAGE_ID INPUT_CONTENT \
+python3 scripts/duoplus_ai.py action IMAGE_ID INPUT_CONTENT \
   --params '{"content":"ads","clear_first":true}'
 
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' action IMAGE_ID SHELL_COMMAND \
+python3 scripts/duoplus_ai.py action IMAGE_ID SHELL_COMMAND \
   --params '{"command":"getprop ro.build.version.release","need_screenshot":false}'
 ```
 
@@ -132,7 +120,7 @@ Always make the first shell attempt through the Gateway `SHELL_COMMAND` action s
 Use this explicit fallback only after a Gateway failure has been established:
 
 ```bash
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' platform-shell IMAGE_ID \
+python3 scripts/duoplus_ai.py platform-shell IMAGE_ID \
   --command 'getprop ro.build.version.release'
 ```
 

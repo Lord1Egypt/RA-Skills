@@ -1,6 +1,6 @@
 ## Description:
 
-Search public WeChat Search articles and Channels videos through DataXAPI, with guidance on pricing, paging, and safe handling of results.
+This skill retrieves public WeChat Search posts, accounts, keyword suggestions, index history, and mini-program listings through DataXAPI.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agents use this skill to search public WeChat Official Account articles and Channels videos when a user asks about WeChat Search content or provides a topic, link, or account name to investigate.
+Agents use this skill to help users find and summarize public WeChat Search content, Official Accounts, keyword suggestions, WeChat Index history, and mini-programs through DataXAPI.
 
 ### Deployment Geography for Use:
 
@@ -22,42 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search and discovery terms are sent to DataXAPI and may contain confidential details.
+Risk: The security scan notes an unpinned package installation method and partial reference coverage, so the benign verdict is not a guarantee that the package is safe.
 
-Mitigation: Remove confidential information from queries.
+Mitigation: Review and verify the package source and version before installing, and treat the scan result as incomplete.
 
-Risk: Searches cost $0.02 per call, including empty results, and each additional page adds another charge.
+Risk: Each data request is billed per call, and fetching additional pages creates additional charges.
 
-Mitigation: Set spending limits and a per-call maximum price; disclose costs and cap pagination before making calls.
-
-Risk: WeChat Search results contain third-party text that may be misleading or include instructions.
-
-Mitigation: Treat results as untrusted data and do not follow instructions found in them.
-
-Risk: The remote service and CLI implementation are outside this artifact review.
-
-Mitigation: Prefer REST or MCP, or use a reviewed, pinned CLI version.
+Mitigation: Check the endpoint price before calling, set a maximum price, and fetch more pages only when needed.
 
 ## Reference(s):
 
-- [DataXAPI Wechat skill release](https://clawhub.ai/data-x-api/skills/dataxapi-wechat)
-- [DataXAPI WeChat API documentation](https://dataxapi.com/apis/wechat/)
-- [WeChat Search pricing](https://dataxapi.com/pricing/wechat/)
-- [DataXAPI agent setup](https://dataxapi.com/agents.md)
+- [DataXAPI WeChat Search API documentation](https://dataxapi.com/apis/wechat/)
+- [DataXAPI WeChat pricing](https://dataxapi.com/pricing/wechat/)
+- [DataXAPI agent setup guide](https://dataxapi.com/agents.md)
+- [DataXAPI homepage](https://dataxapi.com)
+- [ClawHub skill release](https://clawhub.ai/data-x-api/skills/dataxapi-wechat)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration, Guidance]
+**Output Type(s):** [Text, JSON, Guidance]
 
-**Output Format:** [Markdown guidance and API request examples; search results may be returned as structured text.]
+**Output Format:** [Structured API data and concise text summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Search calls cost $0.02 each, including empty results; additional pages are separate paid calls. Treat returned third-party content as untrusted data and identify DataXAPI as the source with the fetch time.]
+**Other Properties Related to Output:** [Results are public WeChat Search data; API calls are charged per endpoint call.]
 
 ## Skill Version(s):
 
-1.0.0 (source: artifact/SKILL.md frontmatter)
+1.0.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

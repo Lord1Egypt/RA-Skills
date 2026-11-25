@@ -1,0 +1,65 @@
+\documentclass[tikz,border=3pt]{standalone}
+\usepackage{xeCJK}
+\setCJKmainfont{SimSun}
+\usetikzlibrary{arrows.meta}
+\definecolor{ink}{HTML}{2A2724}
+\definecolor{zhu}{HTML}{B5342A}
+\definecolor{jin}{HTML}{A98342}
+\begin{document}
+\begin{tikzpicture}[
+  cir/.style={draw=ink, line width=0.9pt},
+  fold/.style={draw=ink!40, line width=0.7pt},
+  crease/.style={draw=jin, line width=0.85pt, dash pattern=on 3pt off 2.2pt},
+  arw/.style={draw=ink!45, line width=0.9pt, -{Stealth[length=5.5pt,width=4.5pt]}},
+]
+  \begin{scope}[shift={(0,2.8)}]
+    \draw[cir] (0,0) circle (1);
+    \fill[ink] (0,0) circle (0.042);
+    \fill[zhu] (-0.36,0) circle (0.048);
+  \end{scope}
+  \begin{scope}[shift={(2.8,2.8)}]
+    \draw[cir] (0,0) circle (1);
+    \fill[zhu!10] (-0.835,0.55) arc[start angle=199.5, end angle=326.623, radius=1] -- cycle;
+    \draw[fold] (-0.835,0.55) arc[start angle=199.5, end angle=326.623, radius=1];
+    \draw[crease] (0.943,0.334) -- (-0.835,0.55);
+    \fill[ink] (0,0) circle (0.042);
+    \fill[zhu] (-0.36,0) circle (0.048);
+  \end{scope}
+  \begin{scope}[shift={(5.6,2.8)}]
+    \draw[cir] (0,0) circle (1);
+    \draw[crease] (0.943,0.334) -- (-0.835,0.55);
+    \fill[ink] (0,0) circle (0.042);
+    \fill[zhu] (-0.36,0) circle (0.048);
+  \end{scope}
+  \begin{scope}[shift={(0,0)}]
+    \draw[cir] (0,0) circle (1);
+    \draw[crease] (0.974,-0.227) -- (-0.543,0.84);
+    \draw[crease] (0.876,0.483) -- (-0.89,0.455);
+    \draw[crease] (0.064,0.998) -- (-0.985,-0.171);
+    \fill[ink] (0,0) circle (0.042);
+    \fill[zhu] (-0.36,0) circle (0.048);
+  \end{scope}
+  \begin{scope}[shift={(2.8,0)}]
+    \draw[cir] (0,0) circle (1);
+    \draw[crease] (0.554,-0.833) -- (0.072,0.997);
+    \draw[crease] (0.914,-0.405) -- (-0.412,0.911);
+    \draw[crease] (0.966,0.259) -- (-0.804,0.594);
+    \draw[crease] (0.388,0.922) -- (-0.999,0.046);
+    \draw[crease] (-0.68,0.733) -- (-0.68,-0.733);
+    \draw[crease] (-0.999,-0.046) -- (0.388,-0.922);
+    \draw[crease] (-0.804,-0.594) -- (0.966,-0.259);
+    \draw[crease] (-0.412,-0.911) -- (0.914,0.405);
+    \draw[crease] (0.072,-0.997) -- (0.554,0.833);
+    \fill[ink] (0,0) circle (0.042);
+    \fill[zhu] (-0.36,0) circle (0.048);
+  \end{scope}
+    \fill[ink!70] (5.15,0) circle (0.032);
+    \fill[ink!70] (5.34,0) circle (0.032);
+    \fill[ink!70] (5.53,0) circle (0.032);
+    \draw[arw] (0.76,2.8) -- (1.64,2.8);
+    \draw[arw] (3.56,2.8) -- (4.44,2.8);
+    \draw[arw] (5.6,1.72) -- (5.6,1.46) -- (0,1.46) -- (0,1.14);
+    \draw[arw] (0.76,0) -- (1.64,0);
+    \draw[arw] (3.56,0) -- (4.2,0);
+\end{tikzpicture}
+\end{document}

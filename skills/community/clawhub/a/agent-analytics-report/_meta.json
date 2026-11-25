@@ -1,169 +1,169 @@
-{
-  "name": "Agent 用量分析报告",
-  "name_en": "Agent Usage Analytics Report",
-  "version": "1.9.13",
-  "schema_version": "1.0",
-  "description": "当用户说「生成（Agent）周报 / 月报 / 年报 / 日报」「本周使用报告」「这个月 token 花了多少」等、**且语境指向 Agent 用量 / 成本 / Token 时**触发，生成 Agent 用量与成本分析报告（日/周/月/年），覆盖 Token 消耗、任务类型、技能使用与自动化运行；报告默认只读 + 离线渲染（不写文件），`--output` 显式写盘与 `--task-classifier llm` 显式出站均为独立 opt-in；首发支持 WorkBuddy，规划兼容更多 Agent。",
-  "core_capabilities": [
-    "Token 消耗与成本分析报告",
-    "任务类型统计",
-    "技能使用统计",
-    "自动化任务运行情况",
-    "异常检测（成本 + Token 双口径）",
-    "可扩展定价库（pricing.json + 缺失模型清单 + 联网兜底；默认全离线；仅显式指定自有端点时才访问对应端点，其余情况零网络、不上传）"
-  ],
-  "input_schema": {
-    "type": "object",
-    "properties": {
-      "period": {
-        "type": "string",
-        "enum": [
-          "day",
-          "week",
-          "month",
-          "year"
-        ],
-        "description": "预设报告周期"
-      },
-      "days": {
-        "type": "integer",
-        "minimum": 1,
-        "description": "自定义滚动天数（覆盖 period）"
-      },
-      "start": {
-        "type": "string",
-        "format": "date",
-        "description": "绝对日期范围起始（最高优先级）"
-      },
-      "end": {
-        "type": "string",
-        "format": "date",
-        "description": "绝对日期范围结束"
-      },
-      "output": {
-        "type": "string",
-        "description": "输出文件路径"
-      },
-      "format": {
-        "type": "string",
-        "enum": [
-          "markdown",
-          "html",
-          "json"
-        ],
-        "description": "输出格式"
-      },
-      "lookup_pricing": {
-        "type": "string",
-        "enum": [
-          "offline",
-          "online"
-        ],
-        "default": "offline",
-        "description": "是否联网检索缺失单价模型；online 时仅生成搜索链接，可选 --pricing-api 指向自有定价镜像"
-      },
-      "pricing_api": {
-        "type": "string",
-        "format": "uri",
-        "description": "自有定价 JSON 端点（仅 --lookup-pricing online 时生效），返回 {models: {<model>: {input, output}}}；拉到的价仅作参考，不计入成本总额"
-      }
-    },
-    "priority": "start/end > days > period"
-  },
-  "output_schema": {
-    "formats": [
-      "markdown",
-      "html",
-      "json"
-    ],
-    "report_title": "Workbuddy使用情况报告",
-    "sections": [
-      "概览统计",
-      "Token 消耗可视化",
-      "模型使用与成本对比",
-      "成本深度分析（含异常检测）",
-      "任务类型统计",
-      "技能使用统计",
-      "自动化任务运行情况",
-      "核心洞察与建议"
-    ],
-    "key_fields": {
-      "traces": [
-        "session_id",
-        "raw_model",
-        "exec_model",
-        "total_tokens",
-        "effective_tokens",
-        "cached_tokens",
-        "effective_cost",
-        "status"
-      ],
-      "sessions": [
-        "id",
-        "title",
-        "task_type",
-        "model",
-        "deleted_at"
-      ],
-      "automation_runs": [
-        "automation_id",
-        "status",
-        "result_success",
-        "source_cwd"
-      ]
-    }
-  },
-  "error_handling": {
-    "policy": "采集与生成脚本对各数据源分别 try/except 兜底，单源失败不阻塞整体报告生成；无法解析的数据以警告卡/提示呈现，不静默丢弃",
-    "warnings": [
-      "幽灵/未解析调用警告卡",
-      "免费期免责声明",
-      "数据缺失提示",
-      "§3.3 缺失单价模型清单（含可复制补写片段，可选联网估算/搜索链接）"
-    ]
-  },
-  "retry_policy": "无自动重试；数据源读取失败即跳过并在报告中告警，避免无限重试拖慢报告生成",
-  "data_sources": [
-    "traces",
-    "workbuddy.db",
-    "usage-log.json",
-    "sessions",
-    "pricing.json"
-  ],
-  "privacy": "全部本地处理，只做本机只读采集；默认全离线；仅显式指定自有端点时才访问对应端点，其余情况零网络、不上传",
-  "license": "MIT",
-  "permissions": {
-    "_note": "最小权限 manifest（对应 SKILL.md「一·附 权限与作用域声明」）。ClawHub 审核要求显式声明能力边界，下列为 skill 运行时的真实最小作用域。",
-    "file_read": {
-      "scope": "本机用户数据目录（只读）",
-      "paths": [
-        "~/.workbuddy/（traces + workbuddy.db + usage-log.json + 会话目录）",
-        "~/.claude/projects/<cwd哈希>/*.jsonl（仅一级工程目录，不递归更深）",
-        "~/.codex/sessions/（rollout-*.jsonl，按日期子目录）",
-        "~/.qwenworkcn/（转录 + runs 日志 + agents.db + outputs）",
-        "DUMATE 覆盖目录（DUMATE_HOME / DUMATE_OUTPUTS_DIR）"
-      ],
-      "guarantee": "不递归扫 ~/.workbuddy；claude-code/codex 仅枚举一级工程/日期目录；越窗会话元数据整体跳过（见 adapters 日期窗口过滤）"
-    },
-    "file_write": {
-      "scope": "仅用户指定输出 + 显式确认后的本地配置",
-      "paths": [
-        "--output 指定路径（报告产物，用户控制）",
-        "~/.workbuddy/pricing.local.json（确认单价后写入，不进发布包、升级不覆盖）",
-        "~/.workbuddy/task_rules.json（确认权重后写入，发布资产、升级覆盖，改前备份）"
-      ],
-      "guarantee": "写前必须回显待写清单并等用户确认；报告生成主流程零写盘"
-    },
-    "network": {
-      "scope": "可选、仅显式启用、零默认",
-      "default": "零网络；报告生成主流程默认离线（显式开启 --task-classifier llm 才出站）",
-      "endpoints": "仅用户自己的端点：--pricing-api / --task-llm-endpoint（无内置默认端点；URL 绝不从 trace/会话内容派生，防 SSRF）",
-      "exfil_path": "唯一出站数据路径 = 启用 --task-classifier llm 时，会话派生文本发往你自己的 OpenAI 兼容端点；须显式开启且默认关闭"
-    },
-    "env": {
-      "scope": "可选数据源根覆盖",
-      "vars": ["CLAUDE_PROJECTS_DIR", "CLAUDE_CONFIG_DIR", "CODEX_HOME", "DUMATE_HOME", "DUMATE_OUTPUTS_DIR"],
-      "guarantee": "仅用于指向数据源根目录，不读取任何密钥/凭证"
-    }
-  }
-}
+{
+  "name": "Agent 用量分析报告",
+  "name_en": "Agent Usage Analytics Report",
+  "version": "1.9.14",
+  "schema_version": "1.0",
+  "description": "当用户说「生成（Agent）周报 / 月报 / 年报 / 日报」「本周使用报告」「这个月 token 花了多少」等、**且语境指向 Agent 用量 / 成本 / Token 时**触发，生成 Agent 用量与成本分析报告（日/周/月/年），覆盖 Token 消耗、任务类型、技能使用与自动化运行；报告默认只读 + 离线渲染（不写文件），`--output` 显式写盘与 `--task-classifier llm` 显式出站均为独立 opt-in；首发支持 WorkBuddy，规划兼容更多 Agent。",
+  "core_capabilities": [
+    "Token 消耗与成本分析报告",
+    "任务类型统计",
+    "技能使用统计",
+    "自动化任务运行情况",
+    "异常检测（成本 + Token 双口径）",
+    "可扩展定价库（pricing.json + 缺失模型清单 + 联网兜底；默认全离线；仅显式指定自有端点时才访问对应端点，其余情况零网络、不上传）"
+  ],
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "period": {
+        "type": "string",
+        "enum": [
+          "day",
+          "week",
+          "month",
+          "year"
+        ],
+        "description": "预设报告周期"
+      },
+      "days": {
+        "type": "integer",
+        "minimum": 1,
+        "description": "自定义滚动天数（覆盖 period）"
+      },
+      "start": {
+        "type": "string",
+        "format": "date",
+        "description": "绝对日期范围起始（最高优先级）"
+      },
+      "end": {
+        "type": "string",
+        "format": "date",
+        "description": "绝对日期范围结束"
+      },
+      "output": {
+        "type": "string",
+        "description": "输出文件路径"
+      },
+      "format": {
+        "type": "string",
+        "enum": [
+          "markdown",
+          "html",
+          "json"
+        ],
+        "description": "输出格式"
+      },
+      "lookup_pricing": {
+        "type": "string",
+        "enum": [
+          "offline",
+          "online"
+        ],
+        "default": "offline",
+        "description": "是否联网检索缺失单价模型；online 时仅生成搜索链接，可选 --pricing-api 指向自有定价镜像"
+      },
+      "pricing_api": {
+        "type": "string",
+        "format": "uri",
+        "description": "自有定价 JSON 端点（仅 --lookup-pricing online 时生效），返回 {models: {<model>: {input, output}}}；拉到的价仅作参考，不计入成本总额"
+      }
+    },
+    "priority": "start/end > days > period"
+  },
+  "output_schema": {
+    "formats": [
+      "markdown",
+      "html",
+      "json"
+    ],
+    "report_title": "Workbuddy使用情况报告",
+    "sections": [
+      "概览统计",
+      "Token 消耗可视化",
+      "模型使用与成本对比",
+      "成本深度分析（含异常检测）",
+      "任务类型统计",
+      "技能使用统计",
+      "自动化任务运行情况",
+      "核心洞察与建议"
+    ],
+    "key_fields": {
+      "traces": [
+        "session_id",
+        "raw_model",
+        "exec_model",
+        "total_tokens",
+        "effective_tokens",
+        "cached_tokens",
+        "effective_cost",
+        "status"
+      ],
+      "sessions": [
+        "id",
+        "title",
+        "task_type",
+        "model",
+        "deleted_at"
+      ],
+      "automation_runs": [
+        "automation_id",
+        "status",
+        "result_success",
+        "source_cwd"
+      ]
+    }
+  },
+  "error_handling": {
+    "policy": "采集与生成脚本对各数据源分别 try/except 兜底，单源失败不阻塞整体报告生成；无法解析的数据以警告卡/提示呈现，不静默丢弃",
+    "warnings": [
+      "幽灵/未解析调用警告卡",
+      "免费期免责声明",
+      "数据缺失提示",
+      "§3.3 缺失单价模型清单（含可复制补写片段，可选联网估算/搜索链接）"
+    ]
+  },
+  "retry_policy": "无自动重试；数据源读取失败即跳过并在报告中告警，避免无限重试拖慢报告生成",
+  "data_sources": [
+    "traces",
+    "workbuddy.db",
+    "usage-log.json",
+    "sessions",
+    "pricing.json"
+  ],
+  "privacy": "全部本地处理，只做本机只读采集；默认全离线；仅显式指定自有端点时才访问对应端点，其余情况零网络、不上传",
+  "license": "MIT",
+  "permissions": {
+    "_note": "最小权限 manifest（对应 SKILL.md「一·附 权限与作用域声明」）。ClawHub 审核要求显式声明能力边界，下列为 skill 运行时的真实最小作用域。",
+    "file_read": {
+      "scope": "本机用户数据目录（只读）",
+      "paths": [
+        "~/.workbuddy/（traces + workbuddy.db + usage-log.json + 会话目录）",
+        "~/.claude/projects/<cwd哈希>/*.jsonl（仅一级工程目录，不递归更深）",
+        "~/.codex/sessions/（rollout-*.jsonl，按日期子目录）",
+        "~/.qwenworkcn/（转录 + runs 日志 + agents.db + outputs）",
+        "DUMATE 覆盖目录（DUMATE_HOME / DUMATE_OUTPUTS_DIR）"
+      ],
+      "guarantee": "不递归扫 ~/.workbuddy；claude-code/codex 仅枚举一级工程/日期目录；越窗会话元数据整体跳过（见 adapters 日期窗口过滤）"
+    },
+    "file_write": {
+      "scope": "仅用户指定输出 + 显式确认后的本地配置",
+      "paths": [
+        "--output 指定路径（报告产物，用户控制）",
+        "~/.workbuddy/pricing.local.json（确认单价后写入，不进发布包、升级不覆盖）",
+        "~/.workbuddy/task_rules.json（确认权重后写入，发布资产、升级覆盖，改前备份）"
+      ],
+      "guarantee": "写前必须回显待写清单并等用户确认；报告生成主流程零写盘"
+    },
+    "network": {
+      "scope": "可选、仅显式启用、零默认",
+      "default": "零网络；报告生成主流程默认离线（显式开启 --task-classifier llm 才出站）",
+      "endpoints": "仅用户自己的端点：--pricing-api / --task-llm-endpoint（无内置默认端点；URL 绝不从 trace/会话内容派生，防 SSRF）",
+      "exfil_path": "唯一出站数据路径 = 启用 --task-classifier llm 时，会话派生文本发往你自己的 OpenAI 兼容端点；须显式开启且默认关闭"
+    },
+    "env": {
+      "scope": "可选数据源根覆盖",
+      "vars": ["CLAUDE_PROJECTS_DIR", "CLAUDE_CONFIG_DIR", "CODEX_HOME", "DUMATE_HOME", "DUMATE_OUTPUTS_DIR"],
+      "guarantee": "仅用于指向数据源根目录，不读取任何密钥/凭证"
+    }
+  }
+}

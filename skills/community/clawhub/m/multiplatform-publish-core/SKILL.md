@@ -14,7 +14,7 @@ subCategories: [content-ops]
 platforms: [WorkBuddy, Claude Code, Codex]
 license: MIT
 agent_created: true
-version: 0.3.0
+version: 0.3.2
 ---
 
 # 多平台发布编排（跨平台状态机与质量门禁）

@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes pet images or videos for body condition concerns, injuries, skin abnormalities, and changes in apparent mental state.
+Identifies obesity, emaciation, external injuries, skin abnormalities, and abnormal mental states, helping pet owners detect health issues promptly.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Pet owners can submit an image or video for a structured review of body condition and visible health concerns, or request a history of earlier reports. Results are informational and do not replace veterinary diagnosis.
+Pet owners use the skill to review photos or videos for body condition, visible skin changes, and activity concerns, and receive a structured health-reference report or a history list. The results do not replace veterinary diagnosis.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan rates this release suspicious for unclear account and credential handling, broad network behavior, and privacy-sensitive side effects; scan coverage was partial.
+Risk: The security review is suspicious and partial, citing account and credential handling, broad network capabilities, and behavior that may not consistently match the pet-health purpose.
 
-Mitigation: Before use, review data destinations, account registration and identity behavior, credential storage, and export-only behavior; defer installation until these points are understood.
+Mitigation: Review account, credential, network, and opt-out behavior before installation; avoid providing credentials or sensitive media until these behaviors are clearly explained and addressed.
+
+Risk: Automated pet-health assessments can be incomplete and may be mistaken for a veterinary diagnosis.
+
+Mitigation: Treat results as health-reference information and consult a veterinarian about concerning findings.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/18072937735/skills/smyx-pet-body-health-analysis)
-- [API interface documentation](references/api_doc.md)
+- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-pet-body-health-analysis)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [API interface notes](references/api_doc.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Markdown]
+**Output Type(s):** [JSON, Text, Markdown, Guidance]
 
-**Output Format:** [Structured health analysis in JSON or text, with Markdown history listings]
+**Output Format:** [JSON or plain-text analysis reports; Markdown tables for history lists]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Informational health guidance; does not replace veterinary diagnosis.]
+**Other Properties Related to Output:** [Reports may include body-condition scores, skin and activity findings, suggestions, and report links when supplied by the service.]
 
 ## Skill Version(s):
 
-1.0.20 (source: server-resolved ClawHub release)
+1.0.21 (source: server-resolved release metadata; artifact frontmatter declares 1.0.25)
 
 ## Ethical Considerations:
 

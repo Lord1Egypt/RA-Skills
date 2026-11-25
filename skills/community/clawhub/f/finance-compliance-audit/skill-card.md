@@ -1,6 +1,6 @@
 ## Description:
 
-AI assistant for financial compliance audits offering checklists, risk identification, audit report generation, and regulatory update tracking.
+Provides financial compliance and internal audit teams with modular checklists, risk assessment frameworks, audit preparation materials, report drafts, remediation tracking, and regulatory gap reviews.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,44 +14,43 @@ MIT-0
 
 ## Use Case:
 
-Compliance officers and internal audit teams at financial institutions use it to prepare checklists, risk ratings, evidence requests, draft audit reports, rectification trackers, and regulatory gap assessments for China-focused reviews. Outputs are working drafts that require qualified review and sign-off.
+Compliance officers and internal audit teams at financial institutions can use it to prepare checklists, organize audit evidence, structure risk ratings, draft reports, track remediation, and review regulatory gaps. Its outputs are working drafts that require qualified human review before they are used as formal conclusions.
 
 ### Deployment Geography for Use:
 
-China
+China (mainland); the skill states that it does not cover overseas regulatory requirements.
 
 ## Known Risks and Mitigations:
 
-Risk: The security inspection was partial; scanners reported no findings, but the evidence is incomplete and one local reference is missing.
+Risk: The security review was incomplete, so its benign verdict does not establish that all skill content was inspected.
 
-Mitigation: Review the missing reference and account for the incomplete inspection when deciding whether to install.
+Mitigation: Have a qualified reviewer inspect the full skill and resolve the noted local reference before installation.
 
-Risk: Sensitive customer or transaction details could be exposed if included in audit prompts or samples.
+Risk: Outdated or incorrect regulatory references and draft risk ratings could lead to misleading audit materials.
 
-Mitigation: Provide only necessary, masked data; do not include identifiers, account details, raw transactions, or confidential inspection materials.
+Mitigation: Verify current rules and supporting evidence, and have qualified compliance or internal audit staff review conclusions before formal use.
 
-Risk: Regulatory references or draft findings may be outdated or mistaken for formal advice.
+Risk: Audit inputs may contain sensitive customer or transaction information.
 
-Mitigation: Check current official sources and have qualified compliance or audit staff review and sign off on conclusions.
+Mitigation: Provide only necessary, redacted summaries; do not include identifiable customer details, account records, unredacted transaction data, or confidential inspection materials.
 
 ## Reference(s):
 
-- [Finance Compliance Audit on ClawHub](https://clawhub.ai/gechengling/skills/finance-compliance-audit)
-- [Publisher profile: gechengling](https://clawhub.ai/user/gechengling)
+- [ClawHub release page](https://clawhub.ai/gechengling/skills/finance-compliance-audit)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [Markdown checklists, risk matrices, evidence requests, report drafts, rectification trackers, and regulatory gap assessments.]
+**Output Format:** [Markdown checklists, tables, evidence lists, report drafts, and remediation ledgers]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Drafts require qualified review; use minimized and masked data. China financial regulation focus.]
+**Other Properties Related to Output:** [Drafts require qualified review; use minimal, redacted inputs and verify current regulatory sources.]
 
 ## Skill Version(s):
 
-3.0.4 (source: frontmatter; server release evidence)
+3.0.5 (source: frontmatter, server release metadata)
 
 ## Ethical Considerations:
 

@@ -1,0 +1,57 @@
+{
+  "changelog": "The poster, spoken product clip, and jingle now leave as one finished clip.",
+  "display_name": "Full-campaign Marketing",
+  "entry": "SKILL.md",
+  "homepage": "https://beatra.ai/skills/full-campaign-marketing",
+  "icon": "https://beatra.ai/textures/icons/full-campaign-marketing-0.1.2.png",
+  "localized": {
+    "en": {
+      "description": "Turn a product and an audience into one full-campaign marketing pack: topics taken from public posts, one poster, one product clip, and one jingle. Full-campaign marketing writes the plan, then makes the pictures, clip, and music. Use it when one offer should leave as a set of publishable pieces the same day.",
+      "display_name": "Full-campaign Marketing",
+      "summary": "Topics from public posts, one poster, one product clip, and one jingle.",
+      "tags": [
+        "full-campaign marketing",
+        "campaign poster",
+        "product clip",
+        "jingle",
+        "public posts"
+      ],
+      "title": "Full-campaign Marketing"
+    },
+    "ja": {
+      "description": "商品と相手を、公開投稿から取った題材、ポスター、商品の短い動画、ジングルにします。案を書いてから、絵と動画と音楽を作ります。同じ売りを一日で出せる形にしたいときに使います。",
+      "display_name": "キャンペーン一式",
+      "summary": "公開投稿からの題材、ポスター、商品の短い動画、ジングル。",
+      "tags": [
+        "キャンペーン",
+        "ポスター",
+        "短い動画",
+        "ジングル"
+      ],
+      "title": "キャンペーン一式"
+    },
+    "zh": {
+      "description": "把一个产品和受众做成全案营销的一组成品：公开热帖里的选题、一张海报、一条商品短片和一条广告歌。全案营销先写出方案，再出画面、短片和音乐。适合一次把同一卖点做成能发的物料。",
+      "display_name": "全案营销",
+      "summary": "公开热帖里的选题、一张海报、一条商品短片和一条广告歌。",
+      "tags": [
+        "全案营销",
+        "海报",
+        "商品短片",
+        "广告歌",
+        "公开热帖"
+      ],
+      "title": "全案营销"
+    }
+  },
+  "mcp": {
+    "authentication": "device-bearer",
+    "credential_file": "~/.beatra/credentials.json",
+    "name": "beatra",
+    "transport": "streamable-http",
+    "url": "https://mcp.beatra.ai/mcp"
+  },
+  "name": "full-campaign-marketing",
+  "schema_version": 1,
+  "version": "0.1.3"
+}

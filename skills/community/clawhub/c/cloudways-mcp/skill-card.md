@@ -1,6 +1,6 @@
 ## Description:
 
-Operational guide for managing Cloudways servers and applications across one or more Cloudways accounts through the official Cloudways MCP server, with confirmation rules for write and destructive operations.
+Provides operational guidance for managing Cloudways servers and applications through Cloudways' hosted MCP server.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Developers, site operators, and agency teams use this skill to connect to Cloudways MCP, inspect Cloudways servers and applications, run monitoring and audit workflows, and perform guarded maintenance tasks. It emphasizes account selection, least-privilege tokens, and explicit confirmation before write or destructive actions.
+Cloudways administrators and client operators use this skill to connect an agent to Cloudways and monitor, audit, and maintain servers and applications across accounts. It covers read-only checks and guided write workflows that require confirmation.
 
 ### Deployment Geography for Use:
 
@@ -22,26 +22,25 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Cloudways tokens can grant broad or full administrative access to production infrastructure.
+Risk: ClawScan reports an undisclosed Slack reporting destination and calls out webhook-triggered backups for review.
 
-Mitigation: Use the minimum token role needed, prefer READ for audits and monitoring, and treat FULL ACCESS tokens as production admin credentials.
+Mitigation: Review report destinations and webhook-triggered backup behavior before enabling automation.
 
-Risk: Write or destructive Cloudways operations can interrupt services, overwrite data, remove resources, or change billing and access.
+Risk: ClawScan reports unsafe automation examples and advises reviewing how credentials are entered in commands.
 
-Mitigation: Review every write confirmation carefully, confirm the target account and resource, and use double confirmation for destructive actions.
+Mitigation: Inspect credential handling in commands and automation before running them; follow the skill's token-handling guidance.
 
-Risk: Raw Cloudways API or MCP responses may expose credentials or sensitive operational data.
+Risk: Two referenced files were only partially inspected, so the scan does not establish that the remaining content is safe.
 
-Mitigation: Avoid pasting raw responses into chats, logs, tickets, or automation stores; summarize only the fields needed for the task.
+Mitigation: Review the reporting and automation instructions, including the uninspected portions, before installation or use.
 
 ## Reference(s):
 
 - [ClawHub release page](https://clawhub.ai/benkalsky/skills/cloudways-mcp)
-- [Cloudways MCP installation guide](https://support.cloudways.com/en/articles/14654372-how-to-use-cloudways-mcp-server-for-ai-based-server-management)
-- [Cloudways MCP server tools](https://support.cloudways.com/en/articles/15798823-cloudways-mcp-server-tools)
-- [Cloudways MCP v1.2 announcement](https://www.cloudways.com/blog/cloudways-mcp-v1-2-112-new-tools-role-based-access-tokens-and-full-cloudways-api-coverage/)
-- [Cloudways API v2 announcement](https://www.cloudways.com/blog/introducing-cloudways-api-v2/)
-- [Installation reference](references/installation.md)
+- [Cloudways MCP setup guide](https://support.cloudways.com/en/articles/14654372-how-to-use-cloudways-mcp-server-for-ai-based-server-management)
+- [Cloudways MCP tools reference](https://support.cloudways.com/en/articles/15798823-cloudways-mcp-server-tools)
+- [Cloudways API documentation](https://developers.cloudways.com/docs/)
+- [Installation](references/installation.md)
 - [Tools catalog](references/tools-catalog.md)
 - [Monitoring workflows](references/workflows-monitoring.md)
 - [Maintenance workflows](references/workflows-maintenance.md)
@@ -50,17 +49,17 @@ Mitigation: Avoid pasting raw responses into chats, logs, tickets, or automation
 
 ## Skill Output:
 
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls]
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls]
 
-**Output Format:** [Markdown guidance with inline shell commands, MCP tool names, workflow steps, and configuration snippets]
+**Output Format:** [Markdown guidance with tool calls, shell snippets, and configuration examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Outputs may include operational recommendations and proposed Cloudways MCP calls; write and destructive actions require explicit user confirmation.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.5.3 (source: server release metadata and SKILL.md frontmatter)
+1.5.4 (source: SKILL.md frontmatter)
 
 ## Ethical Considerations:
 

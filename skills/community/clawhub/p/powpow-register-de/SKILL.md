@@ -1,11 +1,19 @@
 ---
 name: powpow-register
-description: Hilft Nutzer:innen, die PowPow- (Bubble-)Registrierung und den Ein-Klick-Login komplett im Chat abzuschließen. Der agent füllt Formulare (inkl. Avatar-Upload) und sendet den E-Mail-Verifizierungscode; die Nutzer:innen geben nur Basisinformationen an und rufen den Code einmal ab — ohne den Chat zu verlassen. In der aktuellen kostenlosen Testphase der Plattform kann ein registriertes Konto sofort alle Funktionen nutzen; die Abonnement-Zahlung (Alipay/PayPal) ist ein optionales Mitgliedschafts-Upgrade, das der agent bei Bedarf ebenfalls mit Bestellerstellung und Zahlungseingangs-Verfolgung übernimmt. Auslöser: „Bubble registrieren“, „ein powpow-Konto registrieren“, „wie registriere ich mich bei Bubble“, „hilf mir, ein powpow-Konto anzulegen“, „sign up powpow“; behandelt auch Feststeckendes bei der Registrierung (kein Verifizierungscode, Benutzername/E-Mail vergeben) und Aktivierungsprobleme (Login meldet „Konto nicht aktiviert“ / pending_payment, wie abonnieren/bezahlen, ist Bubble kostenlos?). Benötigt Node ≥ 18; falls nicht verfügbar, automatischer Rückfall in den reinen Anleitungsmodus. Keine Beiträge/kein Erstellen digitaler Menschen (das macht powpow-simple), keine Code-Entwicklung.
-version: 2.2.0
+description: >-
+  Hilft Nutzer:innen, die PowPow- (Bubble-)Registrierung und den Ein-Klick-Login komplett im Chat abzuschließen. Der agent füllt Formulare (inkl. Avatar-Upload) und sendet den E-Mail-Verifizierungscode; die Nutzer:innen geben nur Basisinformationen an und rufen den Code einmal ab — ohne den Chat zu verlassen. In der aktuellen kostenlosen Testphase der Plattform kann ein registriertes Konto sofort alle Funktionen nutzen; die Abonnement-Zahlung (Alipay/PayPal) ist ein optionales Mitgliedschafts-Upgrade, das der agent bei Bedarf ebenfalls mit Bestellerstellung und Zahlungseingangs-Verfolgung übernimmt. Auslöser: „Bubble registrieren“, „ein powpow-Konto registrieren“, „wie registriere ich mich bei Bubble“, „hilf mir, ein powpow-Konto anzulegen“, „sign up powpow“; behandelt auch Feststeckendes bei der Registrierung (kein Verifizierungscode, Benutzername/E-Mail vergeben) und Aktivierungsprobleme (Login meldet „Konto nicht aktiviert“ / pending_payment, wie abonnieren/bezahlen, ist Bubble kostenlos?). Benötigt Node ≥ 18; falls nicht verfügbar, automatischer Rückfall in den reinen Anleitungsmodus. Keine Beiträge/kein Erstellen digitaler Menschen (das macht powpow-simple), keine Code-Entwicklung.
+version: 2.2.5
 metadata:
   openclaw:
+    requires:
+      bins:
+        - node
     emoji: "\U0001F4DD"
     homepage: https://global.powpow.online
+    envVars:
+      - name: POWPOW_REGISTER_PASSWORD
+        required: false
+        description: Passwort des PowPow-Kontos, nur fuer register / refresh-login per Umgebungsvariable uebergeben (nicht in Argumenten, nie auf Platte). Ohne diese Variable laeuft der Skill im reinen Anleitungsmodus.
 ---
 
 # PowPow Register (Bubble-Registrierungsassistent)

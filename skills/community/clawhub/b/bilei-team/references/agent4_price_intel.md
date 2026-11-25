@@ -349,6 +349,10 @@ search_url: "https://search.jd.com/Search?keyword=%E7%BB%BF%E8%81%94%20%E6%94%AF
   "best_buy": {"platform": "", "seller": "", "price": 0, "product_url": "", "url_quality": ""},
 
   "historical_low": {"price": 0, "date": "YYYY-MM", "platform": "", "source": "URL", "confidence": "高|中|低"},
+  "resale": {"sample_count": 0,
+             "secondhand_price": 0, "daily_price": 0, "depreciation": 0,
+             "retention_pct": 0.0, "source": "URL", "date": "YYYY-MM",
+             "note": "二手价/折价金额(日常价-二手价)/保值率(二手÷日常)；闲鱼等近期成交，样本<3条或过新无流通→写'二手数据不足'，禁估算；仅辅助，不得单独作推荐理由"},
   "current_vs_low_pct": 0.0,
   "next_window": {"date": "2026-11-11", "reason": "双11高潮", "expected_drop_pct": 0.0},
   "subsidy": {"available": true, "amount_pct": 15, "region_limit": "", "stackable": false, "deadline": "",

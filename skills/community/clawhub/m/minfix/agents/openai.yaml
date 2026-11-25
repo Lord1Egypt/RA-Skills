@@ -1,0 +1,6 @@
+interface:
+  display_name: "Minfix"
+  short_description: "Critique the plan, then make the smallest change"
+  default_prompt: "Use $minfix. Critique the plan above as severely as possible, list every hole and counterexample, keep the original purpose, and achieve it with the smallest change."
+policy:
+  allow_implicit_invocation: false

@@ -1,6 +1,6 @@
 ## Description:
 
-Classifies and enforces constraints via soft vows, hard vows, and Nen Court layers.
+Classifies and enforces constraints via soft vows, hard vows, and Nen Court layers
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineering teams use this skill to classify project constraints as soft vows, hard hooks or permissions, or external validation checks. It helps them audit enforcement gaps and decide when a rule should be strengthened or reviewed.
+Developers use this skill to classify project constraints and choose whether to rely on written guidance, enforce rules with hooks and permissions, or audit work with validator agents. They can also use it to review existing enforcement and decide when a constraint should move to a stronger layer.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Several referenced plugin files and dependencies were not included in the reviewed release artifact, so their behavior was not assessed.
+Risk: The security review has medium confidence because some referenced files were unavailable for scanning.
 
-Mitigation: Review the referenced files and dependencies in the linked project before installing or relying on the enforcement checks.
+Mitigation: Review the referenced plugin files before adopting or enabling its hooks, permissions, or validators.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-imbue-vow-enforcement)
-- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
+- [ClawHub skill listing](https://clawhub.ai/athola/skills/nm-imbue-vow-enforcement)
+- [Imbue plugin reference (metadata homepage)](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Shell commands, Configuration instructions]
+**Output Type(s):** [Guidance, Configuration, Shell commands, Code]
 
-**Output Format:** [Markdown with tables and inline YAML, JSON, and shell examples]
+**Output Format:** [Markdown with YAML, JSON, and shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Includes constraint classification criteria, enforcement recommendations, and validator invocation examples.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server release metadata)
 
 ## Ethical Considerations:
 

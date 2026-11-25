@@ -1,0 +1,23 @@
+#!/bin/bash
+# 词条表 · 英文 · setup-gui.sh
+
+M_GUI_INSIDE="⚠ This script is running inside iTerm2 — skipping the GUI settings step."
+M_GUI_INSIDE_1="  Why: these settings have to be written while iTerm2 is not running, otherwise it"
+M_GUI_INSIDE_2="  overwrites them with its in-memory copy on quit. And quitting it here would close"
+M_GUI_INSIDE_3="  the very terminal you are using, cutting this script off halfway."
+M_GUI_INSIDE_4="  How to finish (either way takes about fifteen seconds):"
+M_GUI_INSIDE_A="    A. Open the built-in Terminal app and run: %s"
+M_GUI_INSIDE_B="    B. Cmd+Q iTerm2 completely, then run that same command from the Terminal app"
+M_GUI_INSIDE_5="  What was skipped: Minimal theme / default profile / Shift+Enter newline / hidden scrollbar."
+M_GUI_INSIDE_6="  Colors, fonts, CLI tools and ecosystem colors are unaffected — those are already live."
+M_GUI_INSIDE_7="  Section 4 of ./scripts/doctor.sh re-checks these items any time."
+M_GUI_QUIT="iTerm2 is running — quitting it before writing the settings (your windows will close)..."
+M_GUI_MINIMAL="Setting the Minimal theme..."
+M_GUI_TEXTURE="Setting the global texture bits (hidden scrollbar / dim inactive split panes)..."
+M_GUI_FUNC="Setting the global function bits (status bar at the bottom / toolbelt)..."
+M_GUI_PROFILE="Setting the default profile (this skill's theme)..."
+M_GUI_KEYMAP="Writing the global key map (Shift+Enter for a newline — multi-line input in AI CLIs)..."
+M_GUI_KEYMAP_SKIP="· skipping the global key map (Shift+Enter and friends are in the paid pack)"
+M_GUI_DONE="✅ The three GUI steps are written"
+M_GUI_DONE_1="  Verify: section 4 of ./scripts/doctor.sh re-checks all three."
+M_GUI_DONE_2="  Live the next time iTerm2 starts (this script has quit it)."

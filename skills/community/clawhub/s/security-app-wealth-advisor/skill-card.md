@@ -1,8 +1,8 @@
 ## Description:
 
-Provides design and review guidance for bank mobile app suitability rules, wealth advisory script drafts, and compliance checks.
+Supports bank digital banking teams in drafting and reviewing product-suitability rules, wealth-advisory scripts, and compliance checks for mobile apps.
 
-This skill is ready for commercial/non-commercial use.
+This skill is for demonstration purposes and not for production usage.
 
 ## Publisher:
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-China-based digital banking teams and wealth management advisors can use this skill to design and review suitability workflows, draft advisory scripts, and screen language for compliance concerns. Outputs are reference drafts for qualified human review, not personalized customer recommendations.
+China-based commercial bank digital banking teams and wealth-management advisors can use this skill to prepare draft product-suitability rules, consultation scripts, prohibited-language checks, and review workflows. Outputs are reference drafts for human review, not personalized customer recommendations or production matching decisions.
 
 ### Deployment Geography for Use:
 
@@ -22,26 +22,31 @@ China
 
 ## Known Risks and Mitigations:
 
-Risk: The partial security scan noted a possible mismatch between a product return rule and its documentation, which could lead to inconsistent application of the rule.
+Risk: The security scan had partial coverage and reported a low-severity concern about product eligibility rules.
 
-Mitigation: Before using related examples, check the return rule against the current product documentation and have a qualified reviewer confirm the interpretation.
+Mitigation: Review whether the reported return-target exclusion fits the intended use before relying on product-matching outputs; the scan guidance notes that coverage was partial.
+
+Risk: Customer profiles can contain sensitive financial information.
+
+Mitigation: Use anonymized or synthetic profiles for design and testing, and require qualified human review before applying drafts in real customer interactions.
 
 ## Reference(s):
 
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/security-app-wealth-advisor)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Markdown, Code]
+**Output Type(s):** [Text, Markdown, Code, Guidance]
 
-**Output Format:** [Markdown with illustrative Python snippets, tables, and checklists]
+**Output Format:** [Markdown with tables, checklists, draft scripts, workflow descriptions, and illustrative Python snippets.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Design and review drafts requiring qualified human review; use synthetic or anonymized customer examples.]
+**Other Properties Related to Output:** [Reference drafts requiring qualified human review; examples use placeholders or synthetic data and are not production-ready recommendations or executable systems.]
 
 ## Skill Version(s):
 
-3.0.5 (source: SKILL.md frontmatter, server-resolved release)
+3.0.6 (source: frontmatter)
 
 ## Ethical Considerations:
 

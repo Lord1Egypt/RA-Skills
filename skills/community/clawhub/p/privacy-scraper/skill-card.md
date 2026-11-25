@@ -1,6 +1,6 @@
 ## Description:
 
-Scrape web pages privately with encrypted local storage, optional PII removal, and secure memory-only retrieval - featuring explicit zero-local-data-retention mode and verifiable memory wiping.
+Scrapes web pages, stores full results in an encrypted local vault, optionally creates a PII-filtered excerpt, and retrieves saved content.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Developers and privacy-conscious users use this skill to request web-page scraping, configure retention and PII-removal options, and retrieve saved results. Review its implementation and retention behavior before using it with sensitive information.
+Developers and privacy-conscious users can scrape public web pages, keep full results in an encrypted local vault, optionally produce a PII-filtered excerpt, and retrieve saved results for later use.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The documented privacy guarantees may conflict with the described behavior, and excerpts are saved by default.
+Risk: The security review is partial because four local path references were unresolved, so the benign verdict has medium confidence.
 
-Mitigation: Review the implementation and actual retention behavior before sensitive use; inspect excerpts for personal or confidential information before sharing.
+Mitigation: Review the unresolved references before installation and consider the incomplete scan evidence when deciding whether to install.
+
+Risk: PII removal is best-effort, so an excerpt may retain identifiers or confidential content.
+
+Mitigation: Inspect excerpts for residual identifiers and confidential information before sharing.
+
+Risk: Retrieved plaintext may persist in host swap, crash dumps, or stdout capture buffers.
+
+Mitigation: Avoid capturing retrieval output and use host settings that limit swap and crash-dump exposure when handling sensitive content.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/z-hussein/skills/privacy-scraper)
 - [OpenClaw documentation](https://docs.openclaw.ai/)
+- [Privacy Scraper release page](https://clawhub.ai/z-hussein/skills/privacy-scraper)
 
 ## Skill Output:
 
-**Output Type(s):** [Shell commands, Markdown, Text, Files, Configuration instructions]
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
 
-**Output Format:** [Shell command invocations, Markdown excerpts, and scrape or retrieval results]
+**Output Format:** [Scrape result data, optional Markdown excerpts, and command-line usage guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Scraping may create an encrypted vault file and, when enabled, an excerpt; retrieval returns decrypted text.]
+**Other Properties Related to Output:** [Each scrape creates an encrypted vault file; an excerpt is optional, and retrieval returns decrypted text to the caller.]
 
 ## Skill Version(s):
 
-1.0.2 (source: server-resolved release metadata)
+1.0.3 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

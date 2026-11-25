@@ -1,0 +1,44 @@
+{
+  "name": "rednote-hot-trend",
+  "version": "1.2.0",
+  "description": "xhs全网实时热点适合内容创作者、运营、电商、营销在用户想知道现在最热门的抖音热点时使用，帮助基于输入材料生成实时热点、当前热榜内容、值得即时跟进的话题。",
+  "keywords": [
+    "小红书",
+    "xhs",
+    "rednote",
+    "小红书搜索",
+    "小红书评论",
+    "爆款笔记",
+    "竞品分析",
+    "KOL",
+    "舆情分析"
+  ],
+  "homepage": "https://github.com/um-why/xiaohongshu-openclaw-skill#readme",
+  "bugs": {
+    "url": "https://github.com/um-why/xiaohongshu-openclaw-skill/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/xiaohongshu-openclaw-skill.git"
+  },
+  "license": "MIT",
+  "author": "um-why",
+  "engines": {
+    "node": ">=16.14.0"
+  },
+  "main": "src/xiaohongshu/search-cli.js",
+  "files": [
+    "src",
+    "assets",
+    "references",
+    "SKILL.md",
+    "readme.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "search": "node src/xiaohongshu/search-cli.js",
+    "detail": "node src/xiaohongshu/detail-cli.js",
+    "post": "node src/xiaohongshu/post-cli.js",
+    "comment": "node src/xiaohongshu/comment-cli.js"
+  }
+}

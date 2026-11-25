@@ -1,6 +1,6 @@
 ## Description:
 
-Guides agents through sunk-cost decisions by testing whether prior irrecoverable investment is distorting a continue, pivot, or quit choice.
+Helps users evaluate continue, pivot, or quit decisions by separating irrecoverable past investments from future costs and benefits.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users, developers, and decision-makers use this skill to structure concrete continue, pivot, or quit decisions by ignoring irrecoverable prior investments and comparing marginal future value.
+Individuals, teams, and decision makers use it to assess whether to continue a project, investment, position, or relationship through a fresh-start test and forward-looking costs and benefits.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill can frame consequential business, investment, or personal choices using incomplete or illustrative facts.
+Risk: A fresh-start or sunk-cost framing may oversimplify a decision when prior investment changes future marginal costs, switching costs, or short-term uncertainty.
 
-Mitigation: Verify factual inputs and cited sources before relying on the analysis for a material decision.
-
-Risk: A prior investment may legitimately lower future marginal cost, making the sunk-cost frame inappropriate.
-
-Mitigation: Check for real forward-looking synergies or switching costs before applying the sunk-cost analysis.
+Mitigation: Check for genuine synergies, switching costs, and short-term variance, then compare current estimates of future costs and benefits before recommending a course of action.
 
 ## Reference(s):
 
-- [Sources - sunk-cost-fallacy](references/sources.md)
-- [Arkes & Blumer's 1985 Studies](examples/arkes-blumers-1985-studies.md)
-- [The Concorde Program](examples/concorde-program.md)
-- [AI Build-Out Sunk Costs (2023-2026)](examples/ai-buildout-sunk-costs-2023-2026.md)
-- [Dawkins & Carlisle (1976), Nature](https://doi.org/10.1038/262131a0)
-- [Stanford HAI Artificial Intelligence Index Report](https://aiindex.stanford.edu)
-- [Menlo Ventures State of Generative AI in the Enterprise](https://menlovc.com)
+- [ClawHub release page](https://clawhub.ai/deciqai/skills/sunk-cost-fallacy)
+- [deciqAI skill guide](https://www.deciqai.com/c/sunk-cost-fallacy)
+- [Source bibliography](references/sources.md)
+- [Dawkins and Carlisle (1976), the Concorde fallacy](https://doi.org/10.1038/262131a0)
+- [deciqAI Knowledge Skills repository](https://github.com/deciqAI/knowledge-skills)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, guidance]
+**Output Type(s):** [Guidance, Analysis, Markdown]
 
-**Output Format:** [Markdown decision worksheet with structured prompts and checklist]
+**Output Format:** [Markdown with a structured decision worksheet]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Interactive coaching may stop at WAIT markers until the user provides decision details.]
+**Other Properties Related to Output:** [May guide the user one question at a time when they need coaching.]
 
 ## Skill Version(s):
 
-1.0.5 (source: server release metadata)
+1.0.6 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

@@ -1,0 +1,8 @@
+interface:
+  display_name: 多平台发布文案包
+  short_description: 将定稿内容按平台生成可复制的中文标题、简介与标签草稿
+  default_prompt: 请粘贴已定稿内容、真实来源和目标平台名单；我会输出逐平台标题、简介与相关标签草稿。
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+policy:
+  allow_implicit_invocation: true

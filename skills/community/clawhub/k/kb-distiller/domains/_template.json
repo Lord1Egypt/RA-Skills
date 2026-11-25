@@ -1,0 +1,41 @@
+{
+  "_help": {
+    "purpose": "领域参数配置模板。复制本文件为 <domain>.json 并填写。elicitation_topics 是最重要的字段——它决定能从模型中蒸馏出多少隐性知识。",
+    "fields": {
+      "domain": "领域标识符，小写，用于命令参数与 corpus 目录名",
+      "skill_name": "产物 skill 名称，小写字母数字+连字符，≤64 字符，将成为产物目录名与 SKILL.md 的 name",
+      "language": "知识库内容语言（代码/术语/报错始终保留英文），如 zh-CN / en",
+      "description_keywords": "触发关键词列表，将写入产物 description（要求覆盖 ≥80%），前置排列优先级从高到低",
+      "trigger_scenarios": "何时使用产物 skill 的一句话描述，写入产物 description 的 Use when 部分",
+      "cross_cutting_files": "横切知识文件清单，默认 laws / ai-mistakes / gotchas / patterns 四件",
+      "subdomains": [
+        {
+          "name": "子领域标识符，产出为 kb/<name>.md",
+          "doc_seeds": "官方文档根地址列表（只放广为人知的官方根地址，深层页面由流水线从抓回内容中发现，禁止猜测 URL）",
+          "page_budget": "文档抓取页数上限（上限而非目标），6~15 之间",
+          "elicitation_topics": "模型知识萃取主题清单（核心字段）。写法要点：① 用具体问题式主题（'hooks 依赖数组陷阱' 优于 'hooks'）② 必含一条 'AI 生成 <子领域> 代码的典型错误' 供自我质询轮使用 ③ 每子领域 4~8 条为宜"
+        }
+      ]
+    }
+  },
+  "domain": "example-domain",
+  "skill_name": "example-domain-expert",
+  "language": "zh-CN",
+  "description_keywords": ["Keyword1", "Keyword2", "Keyword3"],
+  "trigger_scenarios": "编写、调试或选型 <领域> 相关技术栈的代码",
+  "cross_cutting_files": ["laws", "ai-mistakes", "gotchas", "patterns"],
+  "subdomains": [
+    {
+      "name": "core-lib",
+      "doc_seeds": ["https://official-docs.example.com"],
+      "page_budget": 10,
+      "elicitation_topics": [
+        "核心概念与心智模型",
+        "高频坑点与典型报错",
+        "性能优化",
+        "与其他库/框架的集成",
+        "AI 生成 core-lib 代码的典型错误"
+      ]
+    }
+  ]
+}

@@ -5,105 +5,29 @@ const {
     CREDENTIAL_MODE_SUDOWORK_PROXY,
     detectCredentialMode,
     getBaseUrl,
+    parseShareReference,
     printShareOneScriptError,
     requestShareOneBuffer,
     resolveDirectApiKey,
 } = require('./shareone_client');
 
-const args = process.argv.slice(2);
-let ref = null;
-let apiKey = null;
-let dryRun = false;
-let explicitBaseUrl = null;
+const {commandLine} = require('./cli_args');
+const {values, positional: ref} = commandLine({
+    summary: 'change an existing owner-managed share password, watermark, slug or feature settings, without replacing content. Share URLs identify the resource; --base-url or SHAREONE_BASE_URL selects another API deployment.',
+    result: 'the committed server JSON/settings, or a request preview with --dry-run. Omitted settings remain unchanged; no source download is needed.',
+    positional: 'share_link_or_id', options: {'--api-key': true, '--base-url': true, '--watermark': true,
+        '--password': true, '--slug': true, '--allow-comments': true, '--allow-data': true,
+        '--dry-run': {description: 'Print the intended request without credentials or network access.'}},
+});
+const apiKey = values['api-key'], dryRun = values['dry-run'];
 const payload = {};
-
-function usage() {
-    console.error('Usage: node update_share_settings.js <share_link_or_id> [--api-key <key>] [--base-url <url>] [--watermark <text>] [--password <pwd>] [--slug <slug>] [--allow-comments <true|false>] [--allow-data <true|false>] [--dry-run]');
-}
-
-function nextValue(index, flag) {
-    const value = args[index + 1];
-    if (value === undefined) {
-        emitError(`ERROR:MISSING_VALUE:${flag}`);
-    }
-    return value;
-}
-
-function parseBoolean(value, flag) {
-    if (value === 'true') return true;
-    if (value === 'false') return false;
-    emitError(`ERROR:INVALID_BOOLEAN:${flag}`, [`${flag} must be true or false.`].join('\n'));
-}
-
-for (let i = 0; i < args.length; i++) {
-    const arg = args[i];
-    if (arg === '--api-key') {
-        apiKey = nextValue(i, arg);
-        i += 1;
-    } else if (arg === '--base-url') {
-        explicitBaseUrl = nextValue(i, arg);
-        process.env.SHAREONE_BASE_URL = explicitBaseUrl;
-        i += 1;
-    } else if (arg === '--watermark') {
-        payload.watermark = nextValue(i, arg);
-        i += 1;
-    } else if (arg === '--password') {
-        payload.password = nextValue(i, arg);
-        i += 1;
-    } else if (arg === '--slug' || arg === '--custom-slug') {
-        payload.custom_slug = nextValue(i, arg);
-        i += 1;
-    } else if (arg === '--allow-comments') {
-        payload.allow_comments = parseBoolean(nextValue(i, arg), arg);
-        i += 1;
-    } else if (arg === '--allow-data') {
-        payload.allow_data = parseBoolean(nextValue(i, arg), arg);
-        i += 1;
-    } else if (arg === '--dry-run') {
-        dryRun = true;
-    } else if (!arg.startsWith('--') && !ref) {
-        ref = arg;
-    } else {
-        emitError(`ERROR:UNKNOWN_ARGUMENT:${arg}`);
-    }
-}
-
-if (!ref) {
-    usage();
-    emitError('BAD_ARGS', 'Required arguments are missing.');
+for (const [flag, field] of Object.entries({watermark: 'watermark', password: 'password', slug: 'custom_slug',
+    'allow-comments': 'allow_comments', 'allow-data': 'allow_data'})) {
+    if (values[flag] !== undefined) payload[field] = values[flag];
 }
 
 if (Object.keys(payload).length === 0) {
     emitError('ERROR:NO_SETTINGS_PROVIDED', ['Provide at least one of --watermark, --password, --slug, --allow-comments, or --allow-data.'].join('\n'));
-}
-
-function parseRef(input) {
-    const raw = String(input || '').trim();
-    let path = raw.split('?')[0].split('#')[0];
-
-    try {
-        if (raw.includes('://')) {
-            const parsed = new URL(raw);
-            if (!explicitBaseUrl) {
-                const host = parsed.hostname.toLowerCase();
-                process.env.SHAREONE_BASE_URL = host === 'shareone.vip' || host.endsWith('.shareone.vip')
-                    ? 'https://shareone.app'
-                    : `${parsed.protocol}//${parsed.host}`;
-            }
-            path = parsed.pathname;
-        }
-    } catch (_) {
-        path = raw.split('?')[0].split('#')[0];
-    }
-
-    const parts = path.split('/').filter(Boolean);
-    const knownPrefixes = new Set(['s', 'md', 'pdf', 'ppt', 'word']);
-
-    if (parts.length >= 2 && knownPrefixes.has(parts[0])) {
-        return { prefix: parts[0], shareRef: parts[1] };
-    }
-
-    return { prefix: null, shareRef: parts[parts.length - 1] || raw };
 }
 
 function endpointForPrefix(prefix, shareRef) {
@@ -143,7 +67,9 @@ async function putSettings(apiPath) {
 }
 
 (async () => {
-    const credentialMode = await detectCredentialMode();
+    const parsed = parseShareReference(ref);
+    if (!parsed.shareRef) emitError('MISSING_SHARE_REF');
+    const credentialMode = dryRun ? {mode: 'direct'} : await detectCredentialMode();
     if (credentialMode.mode === CREDENTIAL_MODE_SUDOWORK_PROXY && apiKey && !dryRun) {
         emitError('ERROR:SUDOWORK_MANAGED_KEY', ['Sudowork 模式下不要传 --api-key；请通过本 skill 的 save_api_key.js 或 create_guest_key.js 设置 ShareOne API Key。'].join('\n'));
     }
@@ -152,7 +78,6 @@ async function putSettings(apiPath) {
         emitError('ERROR:KEY_NOT_FOUND');
     }
 
-    const parsed = parseRef(ref);
     const explicitApiPath = endpointForPrefix(parsed.prefix, parsed.shareRef);
     const pageApiPath = `/api/v1/pages/${encodeURIComponent(parsed.shareRef)}`;
     const fileApiPath = `/api/v1/files/${encodeURIComponent(parsed.shareRef)}`;

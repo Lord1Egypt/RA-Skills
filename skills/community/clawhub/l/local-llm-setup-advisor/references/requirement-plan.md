@@ -2,7 +2,7 @@
 
 ## Live Requirement
 
-Validated demand: Builders need guidance for running useful AI and LLM workflows locally on consumer CPU or family GPU hardware without depending on cloud-only systems. This requirement is supported by 9 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
+Validated demand: Builders need guidance for running useful AI and LLM workflows locally on consumer CPU or family GPU hardware without depending on cloud-only systems. This requirement is supported by 12 separate online signals across 2 source families, so it represents broader demand rather than a single isolated request.
 
 ## Audience
 
@@ -14,33 +14,37 @@ software-and-data
 
 ## Requirement Score
 
-Total: 98/100
+Total: 90/100
 
 Demand: 70/70
 
 Local feasibility: 28/30
 
-Evidence coverage: 9 signals across 3 source families.
+Evidence coverage: 12 signals across 2 source families.
 
 Scoring rationale:
 
-- Evidence count: 9; required minimum: 3.
-- Distinct source families: 3; sources: github, hacker-news, segmentfault.
+- Evidence count: 12; required minimum: 3.
+- Distinct source families: 2; sources: hacker-news, segmentfault.
 - Demand score: 70/70 based on corroboration, source diversity, and professional/community signal.
 - Local feasibility score: 28/30.
 - Implementation can be designed for local CPU or family GPU workflows with small models and no cloud-only dependency.
+- Score capped because corroborating evidence does not come from at least three different source families.
 
 ## Evidence
 
-- segmentfault-search (2026-10-20T13:30:41.855408+00:00): [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
-- segmentfault-search (2026-10-20T13:30:41.855408+00:00): [javascript](https://segmentfault.com/t/javascript)
-- segmentfault-search (2026-10-20T13:30:41.855408+00:00): [typescript](https://segmentfault.com/t/typescript)
-- segmentfault-search (2026-10-20T13:30:41.855941+00:00): [ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
-- segmentfault-search (2026-10-20T13:30:41.856480+00:00): [【vLLM 学习】Disaggregated Prefill Lmcache](https://segmentfault.com/a/1190000046720505)
-- segmentfault-search (2026-10-20T13:30:41.856480+00:00): [不可不知小技巧｜Triton-TLE实践，告别手动Barrier，用生产消费模型释放Hopper架构算力极限](https://segmentfault.com/a/1190000047790144)
-- segmentfault-search (2026-10-20T13:30:41.856480+00:00): [【vLLM 学习】Disaggregated Prefill](https://segmentfault.com/a/1190000046807401)
-- hacker-news-search (2026-10-16T17:53:16+00:00): [Apple ML Research: Muse Spark Open with MLX on Mac Studio](https://news.ycombinator.com/item?id=50121837)
-- github-issues (2026-10-18T04:11:48+00:00): [📰 Hacker News AI Digest 2026-10-18](https://github.com/datnguyenquy94/news-radar/issues/803)
+- segmentfault-search (2026-11-19T06:14:33.016855+00:00): [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
+- segmentfault-search (2026-11-19T06:14:33.016855+00:00): [javascript](https://segmentfault.com/t/javascript)
+- segmentfault-search (2026-11-19T06:14:33.017358+00:00): [typescript](https://segmentfault.com/t/typescript)
+- segmentfault-search (2026-11-19T06:14:33.017358+00:00): [ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
+- segmentfault-search (2026-11-19T06:14:33.017358+00:00): [【vLLM 学习】Disaggregated Prefill Lmcache](https://segmentfault.com/a/1190000046720505)
+- segmentfault-search (2026-11-19T06:14:33.017358+00:00): [不可不知小技巧｜Triton-TLE实践，告别手动Barrier，用生产消费模型释放Hopper架构算力极限](https://segmentfault.com/a/1190000047790144)
+- segmentfault-search (2026-11-19T06:14:33.017358+00:00): [【vLLM 学习】Disaggregated Prefill](https://segmentfault.com/a/1190000046807401)
+- hacker-news-search (2026-11-11T04:43:27+00:00): [I'm not convinced the AI bubble exists](https://news.ycombinator.com/item?id=50449829)
+- hacker-news-search (2026-11-06T00:04:12+00:00): [Claude Code sends your email address to websites](https://news.ycombinator.com/item?id=50386369)
+- hacker-news-search (2026-11-06T20:34:39+00:00): [Astra can read and write weights to improve Qwen](https://news.ycombinator.com/item?id=50398105)
+- hacker-news-search (2026-11-09T17:59:08+00:00): [I'm not convinced the AI bubble exists](https://news.ycombinator.com/item?id=50429033)
+- hacker-news-search (2026-11-09T09:06:37+00:00): [I'm not convinced the AI bubble exists](https://news.ycombinator.com/item?id=50423020)
 
 ## How The Skill Meets The Requirement
 

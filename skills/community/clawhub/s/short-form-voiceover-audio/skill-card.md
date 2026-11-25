@@ -1,6 +1,6 @@
 ## Description:
 
-Turns final short-video scripts into editable voiceover audio with voice selection, pronunciation and pacing controls, price estimates, duration review, and optional captions.
+Turn final short-video scripts into ready-to-edit voiceover audio for TikTok, Reels, YouTube Shorts, product reviews, hook lines, explainers, and ads. This AI voice over generator, AI voice reader, and text-to-speech voiceover workflow makes scripts speakable, helps choose a suitable voice and supported language, and tunes pacing, pauses, names, numbers, brands, and pronunciation. Review the current price estimate, create MP3 voiceover audio, compare the returned duration with the target edit, and place the narration into short-form video, captions, avatar, lip-sync, and publishing workflows.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Short-form video creators, marketers, and developers use this skill to prepare a final script for spoken delivery, choose a suitable voice, check the current price and estimated duration, and create narration audio for editing. Optional aligned captions and loudness normalization support the audio handoff.
+Content creators and video editors use this skill to turn an approved short-form video script into narration, review its voice and duration, and optionally receive aligned captions. It supports a deliberate production workflow with a current price estimate before paid generation.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rated this release suspicious with medium confidence, citing broad shared permissions, recurring telemetry, and potentially disruptive cleanup. Scanning was partial and did not establish malicious intent.
+Risk: The security assessment rates the skill suspicious and reports broad account access, persistent telemetry, and account-management capabilities beyond its stated voiceover purpose; its assessment is incomplete.
 
-Mitigation: Review the reported permissions, telemetry, and cleanup behavior before installation, and inspect any cleanup actions before allowing them to run.
+Mitigation: Before connecting an account, review the requested access and account-management behavior against the installation and security guidance, and use an account scoped to this workflow where possible.
+
+Risk: The security guidance identifies shared-state cleanup risks.
+
+Mitigation: Review the documented disconnect and cleanup steps before use, and follow them when removing the skill or disconnecting the device.
 
 ## Reference(s):
 
 - [Beatra skill page](https://beatra.ai/skills/short-form-voiceover-audio)
-- [ClawHub release page](https://clawhub.ai/beatra-ai/skills/short-form-voiceover-audio)
+- [Speech and audio guide](references/speech-and-audio.md)
+- [Voiceover workflow](references/workflow.md)
+- [Tasks and results](references/tasks-and-results.md)
+- [Installation and authentication](references/installation-and-auth.md)
+- [Updates and security](references/updates-and-security.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Audio files, Captions, Guidance]
+**Output Type(s):** [Audio files, Caption files, Text]
 
-**Output Format:** [MP3 audio by default, with WAV, FLAC, Opus, or PCM on request; optional aligned SRT or VTT captions.]
+**Output Format:** [Voiceover audio (MP3 by default; WAV, FLAC, Opus, or PCM when requested), optional aligned SRT/VTT captions, and task status and delivery details as text]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Voice, language, pronunciation, pacing, and audio format can be selected. Returned duration is compared with the target as a review, not a guarantee. Audio generation and optional loudness normalization use credits.]
+**Other Properties Related to Output:** [Audio duration and available usage and billing details are reported from the returned task; captions and loudness normalization are optional.]
 
 ## Skill Version(s):
 
-0.3.1 (source: server release evidence and manifest)
+0.3.2 (source: server-resolved release metadata; manifest.json)
 
 ## Ethical Considerations:
 

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>简历 · 简约排版模板</title>
+<style>
+  /* ===== 页面设置：规格来自 references/typography-spec.md ===== */
+  @page { size: 217mm 307mm; margin: 0; }
+  html, body { margin: 0; padding: 0; background: #fff; }
+  body {
+    font-family: "Microsoft YaHei", "微软雅黑", sans-serif;
+    width: 217mm; box-sizing: border-box;
+    padding: 24mm 15mm 20mm 15mm;   /* 顶部 24mm，左右 15mm */
+    color: #666666;
+  }
+  * { margin: 0; padding: 0; }
+  p { line-height: 1.9; text-align: justify; }
+
+  /* ===== 头部：左头像 + 右姓名联系方式 ===== */
+  .head { display: flex; gap: 24pt; align-items: flex-start; }
+  .head .photo {
+    width: 60pt; height: 80pt;            /* 3:4 */
+    border-radius: 4px;
+    background: #e8e8e8;                  /* 占位灰块，替换为 <img src="photo.jpg"> */
+    flex-shrink: 0;
+  }
+  .head .name {
+    font-size: 25.5pt; font-weight: bold; color: #545454;
+    margin-bottom: 10pt;
+  }
+  .head .contact { font-size: 10.5pt; color: #666666; line-height: 1.9; }
+
+  /* ===== 章节标题：emoji 图标 + 加粗 ===== */
+  .sec {
+    font-size: 13.5pt; font-weight: bold; color: #2B2B2B;
+    margin-top: 48pt;                      /* 大留白分隔，无分隔线 */
+    margin-bottom: 16pt;
+  }
+  .sec .ico { color: #999999; margin-right: 6pt; }
+
+  /* ===== 日期+机构行：日期居左加粗、机构居右加粗 ===== */
+  .row { display: flex; justify-content: space-between; margin-bottom: 6pt; }
+  .row .date, .row .org { font-size: 11.2pt; font-weight: bold; color: #2B2B2B; }
+  .row2 { font-size: 11.2pt; color: #333333; margin-bottom: 4pt; }  /* 专业｜学历 / 职位名 */
+  .sub { font-size: 10.5pt; font-weight: bold; color: #666666; margin: 14pt 0 4pt 0; } /* 小节标签 */
+  .item p { font-size: 10.5pt; color: #666666; margin-bottom: 10pt; }
+  .item b { color: #666666; }            /* 编号引语加粗，后半句常规 */
+  .url { color: #666666; text-decoration: none; }  /* 纯文本 URL，不加链接 */
+  .seg { margin-bottom: 24pt; }          /* 工作经历段间距 */
+</style>
+</head>
+<body>
+
+  <!-- 头部 -->
+  <div class="head">
+    <div class="photo"></div>
+    <div>
+      <div class="name">张三</div>
+      <div class="contact">
+        📞 138-0000-0000<br>
+        ✉️ zhangsan@example.com<br>
+        🕐 随时到岗<br>
+        🎓 本科 · 某某大学<br>
+        🏠 20XX 年 6 月毕业
+      </div>
+    </div>
+  </div>
+
+  <!-- 教育经历 -->
+  <div class="sec"><span class="ico">🎓</span>教育经历</div>
+  <div class="row"><span class="date">20XX.09 – 20XX.06</span><span class="org">某某大学</span></div>
+  <div class="row2">市场营销｜本科</div>
+
+  <!-- 工作经历 -->
+  <div class="sec"><span class="ico">💼</span>工作经历</div>
+  <div class="seg">
+    <div class="row"><span class="date">20XX.07 – 至今</span><span class="org">某某科技有限公司</span></div>
+    <div class="row2">广告投放经理</div>
+    <div class="sub">核心岗位职责与成果</div>
+    <div class="item">
+      <p><b>1. 全渠道广告投放操盘：</b>负责××平台月均××万预算的投放策略制定与执行，ROI 从 1.5 提升至 2.3，获客成本下降 28%。</p>
+      <p><b>2. 数据分析与复盘体系：</b>搭建投放数据日报与周复盘机制，沉淀素材分析模板，团队人效提升 40%。</p>
+      <p><b>3. 团队管理：</b>带领 3 人优化师团队，负责渠道预算分配与人才梯队建设。</p>
+    </div>
+  </div>
+  <div class="seg">
+    <div class="row"><span class="date">20XX.07 – 20XX.06</span><span class="org">某某网络公司</span></div>
+    <div class="row2">优化师</div>
+    <div class="sub">核心岗位职责与成果</div>
+    <div class="item">
+      <p><b>1. 信息流投放：</b>独立负责××产品信息流投放，日均消耗××万，CTR 高于行业均值 15%。</p>
+    </div>
+  </div>
+
+  <!-- 相关技能 -->
+  <div class="sec"><span class="ico">🛠</span>相关技能</div>
+  <div class="item">
+    <p><b>投放平台：</b>巨量引擎、腾讯广告、百度营销、Google Ads、Meta，熟练掌握账户搭建、定向策略与出价优化。</p>
+    <p><b>数据工具：</b>Excel（透视表/函数）、SQL 基础、Tableau；能独立完成归因分析与增长模型搭建。</p>
+    <p><b>AI 工具：</b>熟练使用 AI 辅助素材生产与数据分析，具备 Agent 搭建经验。</p>
+  </div>
+
+  <!-- AI 作品 / 案例 -->
+  <div class="sec"><span class="ico">🤖</span>AI 作品 / Vibe Coding 案例</div>
+  <div class="item">
+    <p><b>1. 求职数据看板：</b>基于 AI 辅助开发的可视化看板，自动汇总投放数据并生成日报。
+    https://example.com/project-a（纯文本 URL，不做超链接）</p>
+  </div>
+
+</body>
+</html>

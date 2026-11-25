@@ -13,7 +13,7 @@ metadata:
       args:
         - install
         - -g
-        - "pipiads-mcp-server@1.0.3"
+        - "pipiads-mcp-server@1.0.4"
     primaryEnv: PIPIADS_API_KEY
     emoji: "📊"
     homepage: https://www.pipiads.com

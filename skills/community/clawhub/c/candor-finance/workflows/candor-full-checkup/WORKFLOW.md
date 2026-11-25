@@ -97,15 +97,22 @@ proven one. Every other row ends in "what else we checked" with a real
 reason: "fees are $4 a year", "already refunded on the 12th", "no limit on
 file, so utilization is unknown".
 
-**7. Record.** For each review area you looked into, record what came of it
-in plain words; the person reads `found` on their dashboard:
+**7. Record.** For each review area you looked into, record what came of it.
+The person reads `found` on their dashboard, so write one or two short
+sentences to them: where it stands, then what you found; for
+`waiting_on_person`, what you need from them first:
 
 ```sh
 candor reviews update --file OUTCOME.json --reason "Record what the checkup found for this area"
 ```
 
-Use `looked_into` with what the records showed, or `set_aside` with why it
-does not apply. Then make each move part of the plan:
+Use `looked_into` when what you found settles it, `set_aside` when it does
+not apply, and `waiting_on_person` only when it cannot move until the person
+decides, answers, or acts. A wait on money arriving, a third party, or a date
+is `looked_into`, with a note and a watch. An area waiting on the person
+stays in the opening. Once their answer settles it, record `looked_into` or
+`set_aside`; if something still needs them, record `waiting_on_person` again
+with what is left. Then make each move part of the plan:
 
 - A move that is a plan over time (a reserve, a payoff, a savings rate) is a
   goal with a measure and a next step, saved with `proposed: true` until they

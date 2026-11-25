@@ -1,4 +1,6 @@
 interface:
+  icon_small: "./assets/vibbit-logo.png"
+  icon_large: "./assets/vibbit-logo.png"
   display_name: "Vibbit Skills"
   short_description: "Product ads, videos, comics, transcription, and subtitles"
   default_prompt: "Use $vibbit-skills to turn my product links or library items into ecommerce images and ad videos using real product facts and reference images, or research products, plan content, adapt novels into comics, generate media, recreate references, transcribe audio/video, export captions, check speech, and translate videos."

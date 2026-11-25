@@ -2,11 +2,25 @@
 
 A complete bioinformatics toolkit for **miRNA target analysis** — from raw miRNA sequences to a Cytoscape-ready network: TargetScan/miRanda workflows, whole-transcriptome seed-based prediction (built-in species or your own genome/transcriptome), gene annotation, GO/KEGG enrichment with Benjamini–Hochberg FDR, seed-region conservation analysis, and publication-quality figures drawn with **R + ggplot2**.
 
+## Requirements
+
+- **Real miRanda 3.3a is required by default** (`--method auto` → hybrid;
+  `refine_sites.py` → miRanda + RNAhybrid when available). No stub, no silent
+  seed-only fallback.
+- Install/verify it with conda (no sudo):
+  ```bash
+  bash scripts/install_miranda_conda.sh
+  bash scripts/install_miranda_conda.sh --check
+  ```
+- `--method seed` is the explicit seed-only opt-out; `refine_sites.py
+  --method rnahybrid` is the explicit RNAhybrid-only opt-out.
+
 ## What it does
 
 - **Sequence fetching** — pull mature miRNA sequences from public databases itself (miRBase / RNAcentral), by name or for a whole species
 - **Target prediction** — run TargetScan and miRanda to predict miRNA target genes
 - **Whole-transcriptome prediction (v2.0.0)** — predict every target site of your miRNA sequences across a species' full mRNA set; built-in Ensembl presets (human, mouse, rat, sheep, goat, cow, pig, chicken) or bring your own transcriptome / genome+GTF; no TargetScan database needed
+- **Two-stage 3'UTR refinement (v3.1.0; real-miRanda default in v3.2.0+)** — use the fast seed scan as a preliminary score, extract the 3'UTR window around the best sites, and re-predict those windows with real miRanda 3.3a and/or RNAhybrid (exact MFE) for per-site confirmation
 - **Result merging** — intersect multiple predictors to obtain high-confidence targets
 - **Target annotation & enrichment** — annotate genes (symbol → Entrez/Ensembl ID + description) and run GO (BP/CC/MF) + KEGG enrichment via g:Profiler
 - **Conservation analysis** — extract multi-species homologous miRNA sequences from miRBase (or supply your own FASTA), align them with free-end-gap global alignment, and quantify per-position conservation (Shannon bits + identity) with seed-region highlighting and publication-ready sequence logo + alignment plots
@@ -22,7 +36,8 @@ A complete bioinformatics toolkit for **miRNA target analysis** — from raw miR
 ## Quick start
 
 ```bash
-# 1. Check environment
+# 1. Install real miRanda 3.3a (required) and check the environment
+bash scripts/install_miranda_conda.sh
 python3 scripts/check_env.py
 
 # 2. Predict targets
@@ -50,7 +65,26 @@ python3 scripts/conservation_analysis.py --mirna miR-21-5p \
 # 8. Whole-transcriptome targets straight from miRNA sequences (no TargetScan DB)
 python3 scripts/predict_targets_genome.py --mirna-fa mirna.fa --species sheep \
     --outdir results/genome --prefix sheep_targets
+
+# 9. Refine the best seed sites on extracted 3'UTR windows
+python3 scripts/refine_sites.py --sites results/genome/sheep_targets_sites.tsv \
+    --species sheep --mirna-fa mirna.fa --method both \
+    --outdir results/refine --prefix sheep_refine
 ```
+
+## Security notes
+
+The toolkit is designed to run on untrusted reference files and user tables:
+
+- external tools are invoked with argv lists (never a shell)
+- downloads are HTTPS-only, streamed, size-capped and written atomically
+- `--prefix` is validated so outputs cannot escape `--outdir`
+- the installer never runs `sudo` and has no source-build fallback; miRanda 3.3a is installed from conda
+- malformed rows are skipped instead of crashing
+- annotation exports neutralise spreadsheet formulas by default
+
+See the *Security model* section of `SKILL.md` for the full list and the
+environment variables that raise the safety limits.
 
 ## Whole-transcriptome prediction (detail)
 
@@ -83,8 +117,8 @@ Two documented strategies: **(A)** three-stage cascade `--method hybrid --refine
 intersection; slow but the most complete evidence). See SKILL.md for the full write-up.
 
 Engines (`--method`): `seed` (canonical TargetScan site types), `miranda` (full duplex
-alignment with score + dG) or `hybrid` (seed sites confirmed by a miRanda alignment -
-recommended, and the default when miRanda is installed). Region (`--target-region`):
+alignment with score + dG) or `hybrid` (seed sites confirmed by a real miRanda
+alignment - default; requires miRanda 3.3a). Region (`--target-region`):
 `cdna` or `utr` (3'UTR-only, sliced from the Ensembl GTF).
 
 Method: canonical TargetScan seed site types (8mer / 7mer-m8 / 7mer-A1 / 6mer) with
@@ -164,6 +198,15 @@ See `references/workflow.md` for the full walkthrough.
 ## Author
 
 **DestinQu**
+
+## Contact
+
+For questions or support, please contact **destinqu@163.com**.
+
+## Security
+
+See [SECURITY_AUDIT.md](SECURITY_AUDIT.md) for the security review, fixed
+findings and residual risks.
 
 ## License
 

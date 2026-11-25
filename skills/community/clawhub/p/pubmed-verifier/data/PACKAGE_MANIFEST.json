@@ -1,0 +1,130 @@
+{
+ "files": {
+  "README.md": {
+   "bytes": 6823,
+   "sha256": "27fc17253e2e2e0bceb255237c6b1229a8fea78e11e241c81ca1b16bd0279fbe"
+  },
+  "SKILL.md": {
+   "bytes": 29710,
+   "sha256": "f3887fc870fef04acf0d6a8c0dd659d18993dffc59c44a0914a0787e1ac239d9"
+  },
+  "examples/README.txt": {
+   "bytes": 2614,
+   "sha256": "0e6daa5f9db87897868d57744abc22ff2f4954e35df6ba293fe8e66984331370"
+  },
+  "examples/claims.sample.csv": {
+   "bytes": 469,
+   "sha256": "d2b51e4116a4e3fa38fddd37a69c770b97a5600cf68a2422b97492d62d238065"
+  },
+  "examples/claims.sample.json": {
+   "bytes": 554,
+   "sha256": "f42cd5edeaeafde7267117de0aa4a87d9e8b7726f47f73be82b3a62813fb7e16"
+  },
+  "examples/refs.sample.bib": {
+   "bytes": 953,
+   "sha256": "99cf1613338bb5e609843730105e764f79124dc486fa5d481e861d096f65f9b8"
+  },
+  "examples/refs.sample.bib.txt": {
+   "bytes": 1076,
+   "sha256": "746565adddfc659dbefbfd04b10016c6761b4cf68ef316be981d788c645fbd8f"
+  },
+  "examples/refs.sample.ris": {
+   "bytes": 785,
+   "sha256": "c130b49ccf241e5d70418fffd23b6c129f757d1f0ce0d009729c16129de8d408"
+  },
+  "examples/refs.sample.ris.txt": {
+   "bytes": 908,
+   "sha256": "86a01be854f0c0eaca1457370e43033206281a38e1136abba5cdbf6086da5a54"
+  },
+  "examples/refs.sample.txt": {
+   "bytes": 488,
+   "sha256": "c7abd9d25a64dca8fddd5c200a795592e0f2af471f808b3aff49a3307494ec88"
+  },
+  "examples/refs_list.sample.txt": {
+   "bytes": 562,
+   "sha256": "5bf08e2ae7734ecd87a38e673f4ea2a908a161a6f6f106243217668ee0e6a582"
+  },
+  "references/CHANGELOG.md": {
+   "bytes": 55635,
+   "sha256": "8eca357045ab72f502d1b267e7b1ea49eb413e3a63cefca2c38fde9f90260312"
+  },
+  "references/INDEX.md": {
+   "bytes": 1531,
+   "sha256": "310666c6fc04d70309649e10d6acdd96e9d8cc683366fcf1f555538d1ce96d97"
+  },
+  "references/api_examples.md": {
+   "bytes": 5078,
+   "sha256": "39b902f1624347952f75c8034e8d21ad13695795ae88b13981caaf220f6b2d74"
+  },
+  "references/flags.md": {
+   "bytes": 4957,
+   "sha256": "489d368a8ca21767486f399ae97d8d938afaca411a82957b4eb14f1abc971890"
+  },
+  "references/operations.md": {
+   "bytes": 7590,
+   "sha256": "03cf6af6b6081b0492139b89e53a730ceb16da5a63bf5b1205e39211bf4d5906"
+  },
+  "references/python_api.md": {
+   "bytes": 6101,
+   "sha256": "6e51b1ab815a9ccd5e70785f5a3445b1809ab3c948c451ccb62004101df105ec"
+  },
+  "references/troubleshooting.md": {
+   "bytes": 4755,
+   "sha256": "d403b687f7f63619f07e5462669a778059eb23b93411e5465f3e64320c4ecfa3"
+  },
+  "references/troubleshooting_ZH.md": {
+   "bytes": 4578,
+   "sha256": "160950eacb8c226fabb0d60c7ac8bfcfc5d3121057d259a36a605311c2f04cce"
+  },
+  "references/usage_guide.md": {
+   "bytes": 12699,
+   "sha256": "0491f736821f1863c42aaf49062eda530a75c204db849363a0fac04cca2cba19"
+  },
+  "scripts/pv_claims.py": {
+   "bytes": 18629,
+   "sha256": "561591f7e58cf8098d9d69af58a2501c60abfa6763e845b60f4cc96aaec0a88e"
+  },
+  "scripts/pv_cli.py": {
+   "bytes": 72598,
+   "sha256": "68e3c712a7a9ad316c6d8bf0816f98296153ccf7846ed7420195f9b3b2089bb4"
+  },
+  "scripts/pv_exports.py": {
+   "bytes": 58214,
+   "sha256": "cf85086e35cf790171191ce99fcc1c160fc87467828b456023654dd8d73c10a4"
+  },
+  "scripts/pv_meta.py": {
+   "bytes": 4804,
+   "sha256": "cfbcdfd3f61bcd51218eff6c0de910d57700010cdc499bb9cb53e914ca776dbd"
+  },
+  "scripts/pv_netio.py": {
+   "bytes": 28664,
+   "sha256": "1630aa8d6f7427b14f6dcc003c2f4041f5c9e885c89f22052d0ed80f1e07c700"
+  },
+  "scripts/pv_textio.py": {
+   "bytes": 43261,
+   "sha256": "bee439c185c2b9d0ee037c5519604bc986482039f5455c588d8efa03140265ed"
+  },
+  "scripts/verify_pmids.py": {
+   "bytes": 88178,
+   "sha256": "2821576cebc070de6e41d3258f264ea826dce018be16bb3f2540a52096e886ef"
+  },
+  "skillhub-meta.json": {
+   "bytes": 1419,
+   "sha256": "00101c874e409b09235ba244af8457058a3bba139d86f588f65ddb104ec136d5"
+  },
+  "tests/run_tests.py": {
+   "bytes": 3179,
+   "sha256": "2fbcbd0d6009beba25255453daaa88571b82e347dd8a3a661988a98261f9fbba"
+  },
+  "tests/sealed_matrix.py": {
+   "bytes": 6476,
+   "sha256": "dc0eef98034cf936ba32c6dda2f18b904ab1c2840aa3f404347dfe36082f8aa1"
+  },
+  "tests/shipped_manifest.json": {
+   "bytes": 213,
+   "sha256": "862e59d5207ad56244eb0a0b7f72bffa9664e24e334c25dcdb3c8a0b8225114b"
+  }
+ },
+ "generated_by": "pkg_dual_lang.sh",
+ "scope": "all files outside data/"
+}

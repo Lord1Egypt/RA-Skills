@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes Xiaohongshu video links and creates transcripts, summaries, video breakdowns, scripts, and generation prompts.
+分析小红书视频链接并生成转录、内容总结、结构拆解、分镜脚本、原创口播脚本或生成提示词。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External creators can use the skill to turn Xiaohongshu video links into transcripts, summaries, structural analyses, shot scripts, rewritten or original scripts, and generation prompts.
+External creators and marketers use the skill to turn Xiaohongshu video links into transcripts, analysis, reusable scripts, and generation prompts.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Setup instructions ask users to paste a Cue API key into chat, which could expose credentials.
+Risk: The skill's setup guidance asks users to paste a full Cue API key into chat.
 
-Mitigation: Configure the key locally in an environment variable or restricted config file; do not send it in chat, and rotate it if already shared.
+Mitigation: Keep the key out of chat and configure it locally using a protected config file or environment variable; rotate it if it has been exposed.
 
-Risk: Video links are sent to Cue for processing; server retention behavior is unverified, and processing can spend credits.
+Risk: The skill includes referral and purchase prompts as part of its credit guidance.
 
-Mitigation: Submit only links you are permitted to share, check expected credit use, and confirm retention terms with Cue before sending sensitive material.
+Mitigation: Use the skill only if you trust the Cue service and are comfortable with its reported promotional flow.
 
-Risk: Low balances trigger promotional referral or purchase prompts in the workflow.
+Risk: The security assessment is partial because some local references could not be resolved.
 
-Mitigation: Treat referral and top-up suggestions as optional and verify current pricing before acting.
+Mitigation: Treat the assessment as incomplete and review unresolved references before relying on the skill.
 
 ## Reference(s):
 
-- [Cue Omni Reader remote endpoint](https://mcp.cuecue.cn/api/omni-reader/mcp/)
 - [Cue Omni Reader online experience](https://cuecue.cn/hub/omni-reader)
+- [ClawHub skill release](https://clawhub.ai/panting09266-ai/skills/xiaohongshu-video-studio)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, JSON, Guidance, Shell commands, Configuration instructions]
+**Output Type(s):** [Text, Markdown, Structured JSON, Guidance]
 
-**Output Format:** [Markdown reports and scripts, with optional structured JSON prompts and setup guidance]
+**Output Format:** [Markdown transcripts, analysis reports, scripts, prompts, and optional structured JSON.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include time-based tables, transcript excerpts, scores, and clearly labeled inferred production details.]
+**Other Properties Related to Output:** [Outputs may include segmented transcripts, analysis tables, storyboard scripts, and reusable prompt sequences based on the supplied video link.]
 
 ## Skill Version(s):
 
-1.1.2 (source: server-resolved release metadata)
+1.1.3 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

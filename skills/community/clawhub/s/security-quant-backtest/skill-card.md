@@ -1,6 +1,6 @@
 ## Description:
 
-Supports research backtesting of China A-share strategies, including strategy design, historical tests with cost and slippage modeling, walk-forward validation, performance attribution, and Monte Carlo simulation.
+Provides guidance, example code, and templates for researching China A-share strategies with historical backtests, cost and slippage modeling, walk-forward validation, performance attribution, and Monte Carlo simulation.
 
 This skill is for research and development only.
 
@@ -14,43 +14,39 @@ MIT-0
 
 ## Use Case:
 
-Quant analysts and algorithmic trading developers use the skill to draft and review historical China A-share strategy backtests, test assumptions such as costs and look-ahead bias, and organize performance analysis. Its outputs are research drafts for qualified review, not trading instructions or live execution.
+Quant analysts, algorithmic trading researchers, and Python backtesting developers use this skill to structure paper-based research and draft validation materials for a defined trading rule on historical China A-share data. It does not run backtests or execute trades.
 
 ### Deployment Geography for Use:
 
-Global
+China
 
 ## Known Risks and Mitigations:
 
-Risk: The benign security verdict has medium confidence because scanner analysis was incomplete.
+Risk: The security scan reported no findings but had partial coverage; the manifest was not parsed, obfuscated text limited some checks, and two local references were unresolved.
 
-Mitigation: Review the skill before installation and inspect generated material before using it; the scanner verdict is not a guarantee that the skill is risk-free.
+Mitigation: Review the skill content and resolve the local references before installation; interpret the clean verdict with the stated medium confidence.
 
-Risk: Backtest drafts can be mistaken for reliable forecasts or live trading guidance.
+Risk: The illustrative backtest engine omits market constraints such as suspensions, price limits, and partial fills, so its results can differ from operational trading conditions.
 
-Mitigation: Treat results as historical research only, check data and cost assumptions for look-ahead bias, and have a qualified reviewer assess conclusions before use.
-
-Risk: Sensitive account, holdings, customer, or broker credential information is unnecessary for the skill's research task.
-
-Mitigation: Provide only hypothetical capital and the minimum strategy and market inputs needed; do not include real account details, customer data, or credentials.
+Mitigation: Treat examples as research guidance, validate assumptions and data in an institutionally approved backtesting system, and have qualified reviewers assess results before operational use.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/gechengling/skills/security-quant-backtest)
+- [Security Quant Backtest on ClawHub](https://clawhub.ai/gechengling/skills/security-quant-backtest)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Code, Markdown]
+**Output Type(s):** [Guidance, Markdown, Code]
 
-**Output Format:** [Markdown with Python code examples and tables]
+**Output Format:** [Markdown with tables, checklists, and illustrative Python code]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Research drafts and illustrative calculations; the skill does not fetch data or run backtests.]
+**Other Properties Related to Output:** [Research guidance and paper-draft templates; code examples are illustrative and are not executed by the skill.]
 
 ## Skill Version(s):
 
-3.0.4 (source: frontmatter)
+3.0.5 (source: frontmatter)
 
 ## Ethical Considerations:
 

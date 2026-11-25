@@ -1,6 +1,6 @@
 ## Description:
 
-Generate one cinematic vertical micro-drama shot from a frozen dramatic beat, optional actor and scene references, and camera direction, with shot-by-shot identity continuity and review guidance.
+Creates one cinematic vertical micro-drama shot from a frozen dramatic beat, text or image references, and camera direction.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Creators use this skill to turn a frozen dramatic beat and optional actor or scene references into one cinematic vertical drama shot, then review the result before building dependent shots.
+Creators and video producers use the skill to plan and generate individual live-action or cinematic vertical drama shots, then review the result for performance and continuity.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,44 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The shared Beatra access includes spending, music generation, and voice modification, which is broader than this shot-making workflow needs.
+Risk: Installation registration may send package and installation details to Beatra.
 
-Mitigation: Review the requested account access before installing, verify related Beatra skills, and keep approval for paid generation explicit.
+Mitigation: Review the registration and privacy information, and install only if the reported details are acceptable.
 
-Risk: Selected media leaves the device and installation analytics are sent automatically.
+Risk: Reference media is uploaded to Beatra for video generation.
 
-Mitigation: Use only media you are authorized to share, avoid uploading sensitive material, and review the service's data and analytics terms.
+Mitigation: Upload only images you have permission to send for external processing.
 
-Risk: An uninstall operation may disconnect other Beatra skills that share the device connection.
+Risk: The device credential is shared across Beatra skills and can authorize multiple media and task tools.
 
-Mitigation: Use the bundled uninstall procedure and check its remaining-skill decision before removing shared connection access.
+Mitigation: Use the shared connection only with Beatra skills you trust, and revoke it when you no longer want that access.
+
+Risk: Uninstalling one skill can affect the shared Beatra connection when it is the last installed Beatra skill.
+
+Mitigation: Review which Beatra skills use the connection before removing the last one.
 
 ## Reference(s):
 
-- [Beatra skill page](https://beatra.ai/skills/ai-short-drama-shot-maker)
-- [Workflow](artifact/references/workflow.md)
-- [Tasks and results](artifact/references/tasks-and-results.md)
-- [Billing errors and recovery](artifact/references/billing-errors-and-recovery.md)
-- [Updates and security](artifact/references/updates-and-security.md)
-- [Uninstall and disconnect](artifact/references/uninstall-and-disconnect.md)
+- [Short-drama shot workflow](references/workflow.md)
+- [Tasks and results](references/tasks-and-results.md)
+- [Billing, errors, and recovery](references/billing-errors-and-recovery.md)
+- [Updates and security](references/updates-and-security.md)
+- [Beatra skill homepage](https://beatra.ai/skills/ai-short-drama-shot-maker)
+- [ClawHub release page](https://clawhub.ai/beatra-ai/skills/ai-short-drama-shot-maker)
 
 ## Skill Output:
 
-**Output Type(s):** [Video, Guidance]
+**Output Type(s):** [Video artifacts, Guidance]
 
-**Output Format:** [One cinematic vertical video shot with shot-planning and review guidance]
+**Output Format:** [A generated video artifact or link with concise task and review details]
 
-**Output Parameters:** [One shot per request]
+**Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Supports text-only generation, opening-image animation, endpoint interpolation, or generation from actor, location, and prop references.]
+**Other Properties Related to Output:** [One shot per request; returned task details and review notes depend on the available result.]
 
 ## Skill Version(s):
 
-0.2.5 (source: server-resolved release metadata)
+0.2.9 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -1,0 +1,17 @@
+# Machine state, credentials, downloads and private jobs
+.venv/
+.runtime/
+.skill-backups/
+.swarm/
+.claude-flow/
+local-runtime.json
+models/
+outputs/
+dist/
+build/
+.env
+.env.*
+.DS_Store
+__pycache__/
+*.py[cod]
+*.log

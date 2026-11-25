@@ -5,16 +5,12 @@ license: MIT
 compatibility: Portable agent instructions; optional price diagnostic requires Node.js 20+ and public network access. MCP setup requires a compatible client; paid providers require the user's own access.
 metadata:
   author: Galleon Labs
-  version: "0.6.1"
+  version: "0.8.0"
 ---
 
 # DeFi data
 
 Make market and protocol evidence usable without confusing an aggregator observation with an executable quote, a wallet balance, or an authorization to trade.
-
-## Start with the requested task
-
-Read [task examples and user configuration](references/task-examples.md) for a completed example and recovery path. Apply only the workflow stages needed by the current request. Reuse supplied preferences and compatible tools; ask only for missing terms that affect this task. Public explanation or comparison does not require transaction fields. Keep any existing authorization within its exact scope.
 
 ## Connect the right source
 
@@ -57,3 +53,5 @@ For CoinGecko token research, use `galleon-coingecko-token-research` when instal
 For DefiLlama yield screen, use `galleon-defillama-yield-screen` when installed. This generic skill remains independently usable for setup and cross-provider work.
 
 For explorer proofs, Dune query lineage, GoldRush streaming gaps or Octav sync/portfolio coverage, load [onchain agent evidence](references/onchain-agents.md). Read-only tool access does not establish complete holdings, query pagination or a fresh reconciled position.
+
+For a base-yield comparison and a changed-metric failure, see [worked task](references/task-examples.md).

@@ -4,6 +4,7 @@ import { edgecloudControllerClient, type ChatbotDocumentFile } from '../clients/
 import { edgecloudInferenceClient } from '../clients/edgecloudInference.js';
 import { BasicAuth } from '../types.js';
 import { redactObject } from '../redaction.js';
+import { validateProbe } from '../security.js';
 import { randomBytes } from 'node:crypto';
 
 type DisposableValidationOptions = {
@@ -116,6 +117,7 @@ async function waitForDedicatedProbe(
   timeoutMs: number,
   intervalMs: number
 ) {
+  validateProbe(probe);
   const startedAt = Date.now();
   const attempts: Array<Record<string, unknown>> = [];
   while (Date.now() - startedAt < timeoutMs) {
@@ -156,6 +158,8 @@ export const deployments = {
   stop: (cfg: ThetaConfig, projectId: string, shard: string, suffix: string, confirm?: boolean) => cfg.dryRun ? { dryRun: true, action: 'stop', projectId, shard, suffix } : edgecloudControllerClient.stopDeployment(cfg, projectId, shard, suffix, confirm),
   delete: (cfg: ThetaConfig, projectId: string, shard: string, suffix: string, confirm?: boolean) => cfg.dryRun ? { dryRun: true, action: 'delete', projectId, shard, suffix } : edgecloudControllerClient.deleteDeployment(cfg, projectId, shard, suffix, confirm),
   validateDisposable: async (cfg: ThetaConfig, opts: DisposableValidationOptions) => {
+    // Validate the mode before anything else: a malformed probe must never reach create/readiness.
+    const probe = validateProbe(opts.probe);
     const payload = { ...opts.payload };
     const projectId = String(opts.projectId ?? payload.project_id ?? cfg.edgecloudProjectId ?? '').trim();
     if (!projectId) throw new Error('projectId or payload.project_id is required');
@@ -166,7 +170,6 @@ export const deployments = {
     payload.auth_username = authUser;
     payload.auth_password = authPass;
     const auth = { user: authUser, pass: authPass };
-    const probe = opts.probe ?? 'openai';
     const readyTimeoutMs = clampInt(opts.readyTimeoutMs, 120000, 1000, 1800000);
     const intervalMs = clampInt(opts.intervalMs, 10000, 500, 60000);
 
@@ -190,7 +193,7 @@ export const deployments = {
       });
     }
 
-    // PAID create + delete: refuse before any request (including the balance read) without approval.
+    // PAID create + delete: require confirm:true before any request, including the balance read.
     assertApproved(cfg, opts.confirm, 'theta.deployments.validateDisposable');
     let created: unknown;
     let readiness: unknown;
@@ -268,7 +271,7 @@ export const deployments = {
       // probe) a successful inference smoke call, which needs smokeMessage. smokeTested says
       // whether inference was exercised.
       ok: !operationFailure && (readiness as {ready?: boolean})?.ready === true && (deleteResult as {ok?: boolean})?.ok === true && (cleanupVerification as {deletedHandlesAbsent?: boolean})?.deletedHandlesAbsent === true
-        && ((opts.probe ?? 'openai') !== 'openai' || smoke !== undefined),
+        && (probe !== 'openai' || smoke !== undefined),
       smokeTested: smoke !== undefined,
       operationFailure,
       createResponse: created,

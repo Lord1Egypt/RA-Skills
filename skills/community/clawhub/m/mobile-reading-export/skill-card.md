@@ -1,6 +1,6 @@
 ## Description:
 
-Converts Markdown and structured documents into mobile-first HTML, phone-ratio PDFs, and one-page share card images.
+Turn Markdown or structured documents into mobile-friendly HTML, phone-sized PDFs, and one-page share card images.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-People preparing long documents for reading or sharing on phones can use this skill to create responsive HTML, phone-sized PDFs, and concise share-card images. It also provides guidance for choosing a mobile format and diagnosing narrow-screen overflow.
+Document authors and other users prepare long Markdown or structured documents for comfortable phone reading and sharing. The skill helps choose an output format, reflows tables for narrow screens, and checks layout and PDF pagination.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security evidence reports a suspicious verdict, including safeguard-bypass instructions and Chrome sandbox disabling during rendering; its analysis was partial because three local references could not be resolved.
+Risk: Chrome rendering runs with the browser sandbox disabled, reducing isolation when opening hostile content.
 
-Mitigation: Review the skill and complete security inspection before installing or running it; keep browser isolation enabled during document rendering.
+Mitigation: Render trusted documents in a restricted environment, and avoid processing untrusted HTML or source files with this workflow.
 
-Risk: The security guidance reports deletion of an existing PDF before replacement is confirmed.
+Risk: PDF export may replace an existing file with output that is non-empty but invalid.
 
-Mitigation: Preserve existing PDFs and verify the newly generated file before replacing or deleting prior output.
+Mitigation: Keep a backup and independently open and inspect the replacement PDF before relying on it or discarding the original.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/haiyangchenbj/skills/mobile-reading-export)
-- [Publisher profile](https://clawhub.ai/user/haiyangchenbj)
+- [ClawHub release page](https://clawhub.ai/haiyangchenbj/skills/mobile-reading-export)
 
 ## Skill Output:
 
-**Output Type(s):** [Files, Guidance]
+**Output Type(s):** [HTML, PDF, PNG, Guidance]
 
-**Output Format:** [Responsive HTML, phone-ratio PDF, and share-card PNG files; mobile-format recommendations and overflow diagnostics]
+**Output Format:** [Responsive HTML, phone-sized PDF, and one-page share card PNG]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [HTML is a single file with no external dependencies; PDFs use a phone-like page ratio; share cards summarize key points on one screen.]
+**Other Properties Related to Output:** [HTML is a single offline file; PDFs use phone-ratio pages; share cards summarize key points.]
 
 ## Skill Version(s):
 
-1.0.0 (source: release evidence, frontmatter)
+1.0.1 (source: frontmatter)
 
 ## Ethical Considerations:
 

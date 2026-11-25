@@ -1,6 +1,6 @@
 # AIXBT crypto research
 
-Reviewed 2026-09-05 against the [official MCP guide](https://docs.aixbt.tech/developers/mcp), [API v3 overview](https://docs.aixbt.tech/developers/v3) and [current OpenAPI contract](https://api.aixbt.tech/v3/openapi.yaml). Use this reference for narrative discovery and project events; use other providers for missing price, liquidity or protocol state with explicit attribution.
+Reviewed 2026-11-11 against the [API v3 overview](https://docs.aixbt.tech/developers/v3) and [OpenAPI contract](https://api.aixbt.tech/v3/openapi.yaml). The former MCP guide and research-workflow docs URLs are no longer in the AIXBT docs index. Use this reference for narrative discovery and project events; use other providers for missing price, liquidity or protocol state with explicit attribution.
 
 ## Access
 
@@ -21,7 +21,7 @@ REST uses `{data, meta}` envelopes and cursor pagination through `meta.nextCurso
 4. Inspect supporting links and corrections. Verify material unsupported claims with the relevant protocol, issuer or chain source. Several posts repeating one announcement are one underlying source. Report contradictions and omissions; an official-source flag is a lead, not proof of the economic claim.
 5. For missing market metrics, resolve the returned identifiers into the appropriate data provider. Preserve the separate source, units and timestamp. Never invent a price, yield or contract address from narrative sentiment.
 
-These procedures are informed by the [official research workflow](https://docs.aixbt.tech/developers/skill); this pack does not redistribute that skill or require it as a dependency.
+These procedures were informed by AIXBT's former research-workflow page, which is no longer in the docs index. This pack does not redistribute that skill or require it as a dependency.
 
 ## Interpretation and output
 

@@ -1,6 +1,6 @@
 ## Description:
 
-TikTok News Briefing searches public TikTok videos by keyword, retrieves creators’ public posts and video comments, and returns structured results for trend and sentiment analysis.
+Searches public TikTok videos, creator posts, and video comments, returning structured data for news summaries, trend discovery, and sentiment analysis.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-TikTok creators, marketing teams, researchers, and AI agents can use the skill to search public videos, review a creator’s public posts, or collect comments for trend, competitor, and audience analysis.
+TikTok creators, marketing teams, researchers, and agent developers can use this skill to search public videos, review creator posts, and collect comments for trend research, competitor monitoring, and audience analysis.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search terms and TikTok links are sent to the GUAIKEI service, and the service itself was not audited.
+Risk: The security scan was benign with medium confidence, but some components were only partially inspected, leaving behavior uncertain.
 
-Mitigation: Use a dedicated token, avoid confidential query terms, and confirm the provider's charges and data handling before use.
-
-Risk: Optional file logging retains queries and results locally.
-
-Mitigation: Enable logging only when retention is needed and protect the resulting files.
-
-Risk: Public comments and creator details may contain personal information.
-
-Mitigation: Review applicable permissions and redact usernames or other personal details before external publication or commercial use.
+Mitigation: Review the skill’s declared TikTok data scope and timezone behavior before installation when those details matter to your use.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/why20261/skills/tiktok-news-brief)
-- [GUAIKEI service and token access](https://www.guaikei.com)
-- [Command options](artifact/references/options.md)
-- [Release changelog](artifact/references/changelog.md)
+- [ClawHub skill page](https://clawhub.ai/why20261/skills/tiktok-news-brief)
+- [GUAIKEI service](https://www.guaikei.com)
+- [CLI options](artifact/references/options.md)
+- [Output schemas](artifact/assets/output_envelope.schema.json)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON]
+**Output Type(s):** [JSON, Analysis, Guidance]
 
-**Output Format:** [JSON response envelope containing search results, creator posts, or video comments]
+**Output Format:** [Structured JSON data, with natural language summaries and reports]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires Node.js and a GUAIKEI_API_TOKEN; result fields depend on the selected operation.]
+**Other Properties Related to Output:** [Results include public video, creator, comment, and engagement details when available.]
 
 ## Skill Version(s):
 
-1.1.1 (source: frontmatter)
+1.1.2 (source: frontmatter, package.json, server-resolved release metadata)
 
 ## Ethical Considerations:
 

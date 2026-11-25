@@ -1,6 +1,6 @@
 ## Description:
 
-Guides developers in building Go services with the servicepack clone-and-own framework, including service lifecycle, retries, dependencies, readiness, and graceful shutdown.
+Guides developers in building Go services with servicepack, a clone-and-own framework for concurrent services, dependency-aware startup, retries, readiness checks, and graceful shutdown.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to start or extend Go services that run concurrent long-lived workers, with coordinated startup, retry and readiness behavior, service commands, and graceful shutdown. It is intended for projects built from the servicepack template rather than as a library added to an existing application.
+Developers use this skill to scaffold and extend Go applications with multiple long-running services, including retry, dependency, readiness, CLI, and shutdown behavior. It is suited to new service projects or repositories already structured around servicepack.
 
 ### Deployment Geography for Use:
 
@@ -22,21 +22,21 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan marked the release suspicious because setup instructions were reported to exceed declared shell and filesystem permissions; scan coverage was partial because referenced paths were missing from the bundled artifact.
+Risk: ClawScan marks the skill suspicious because setup steps reportedly clone a repository and alter files and Git metadata beyond the declared permissions; some referenced paths could not be resolved, so the scan evidence is incomplete.
 
-Mitigation: Review setup instructions and referenced material before use. Inspect the effects of `make own` and run it only in a fresh clone whose repository metadata and files can be replaced.
+Mitigation: Review setup steps and permissions before installing. Check the effects of `make own` and run it only in a fresh clone whose repository history can be replaced.
 
 ## Reference(s):
 
 - [Setup and module guide](artifact/references/setup.md)
-- [servicepack project homepage](https://github.com/psyb0t/servicepack)
-- [ClawHub skill page](https://clawhub.ai/psyb0t/skills/servicepack)
+- [Project homepage](https://github.com/psyb0t/servicepack)
+- [ClawHub release page](https://clawhub.ai/psyb0t/skills/servicepack)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown with Go code and shell command examples]
+**Output Format:** [Markdown with Go examples, inline shell commands, and configuration guidance]
 
 **Output Parameters:** [1D]
 
@@ -44,7 +44,7 @@ Mitigation: Review setup instructions and referenced material before use. Inspec
 
 ## Skill Version(s):
 
-1.10.2 (source: server-resolved release metadata)
+1.11.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

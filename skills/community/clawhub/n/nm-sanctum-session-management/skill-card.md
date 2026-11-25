@@ -1,6 +1,6 @@
 ## Description:
 
-Manages Claude Code sessions with naming, checkpointing, and resume strategies
+Manages Claude Code sessions with naming, checkpointing, and resume strategies.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers using Claude Code use this skill to name, checkpoint, and resume long-running work across breaks or sessions.
+Claude Code developers use this skill to organize long-running work, preserve useful checkpoints, and resume named sessions across work periods.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment flags context-capture wording as a potential context-leakage concern, while judging it expected for the skill's purpose.
+Risk: Resuming a named session can restore earlier conversation context that may be outdated or contain information the user does not intend to reuse.
 
-Mitigation: Review whether session context could contain sensitive information and limit what is carried into sessions before using the workflow.
+Mitigation: Confirm the session name and review its resumed context before relying on it; refresh repository state when appropriate.
 
 ## Reference(s):
 
-- [Sanctum plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-sanctum-session-management)
+- [Sanctum project page](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands]
+**Output Type(s):** [Guidance, Markdown, Shell commands]
 
-**Output Format:** [Markdown with inline command examples]
+**Output Format:** [Markdown guidance with inline session-naming and resume commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Examples of session naming, checkpoint workflows, resumption, and troubleshooting; no files are generated.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

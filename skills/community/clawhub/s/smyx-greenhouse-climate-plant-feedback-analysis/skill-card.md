@@ -1,6 +1,6 @@
 ## Description:
 
-Using fixed cameras in a smart greenhouse to analyze plant morphology in real time (e.g., leaf wilting angle, stem uprightness, leaf color changes) combined with environmental sensors (light intensity, temperature, humidity, soil moisture), an AI decision model outputs climate control commands including irrigation (pump/solenoid valve), shade-net opening, fan/wet-curtain on-off, heater on-off, etc. | 通过智能温室中的固定摄像头实时分析植物的形态（如叶片萎蔫角度、茎秆挺直度、叶色变化）以及结合环境传感器（光照强度、温度、湿度、土壤水分），利用AI决策模型输出环境调控指令，包括灌溉（水泵/电磁阀）、遮阳网开度、风机/湿帘启停、加热器开关等。
+Analyzes greenhouse plant images or videos alongside environmental sensor readings and returns structured assessments and climate-control recommendations.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Greenhouse operators and growers can use plant images or videos, optionally with environmental readings, to review signs of water, light, or temperature stress and receive prioritized suggestions for irrigation, shading, ventilation, or heating. They can also review historical analysis reports; recommendations should be checked against local controller safety policies before action.
+Greenhouse operators and automation teams use the skill to assess plant stress from images or videos and sensor readings, review prioritized actions such as irrigation or ventilation, and query prior analysis reports.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan marks the skill suspicious because account, credential, and report-management features are not clearly aligned with its greenhouse-analysis description, and scanners flag unintended external and persistent side effects.
+Risk: The security review flags unexplained persistent user and credential handling, as well as possible analysis activity despite a no-analysis option.
 
-Mitigation: Review and clarify account and credential handling, external media transfers, and export-only behavior before installation; consider avoiding installation until these points are addressed.
+Mitigation: Wait for the publisher to explain these behaviors; before use, confirm the no-analysis option does not run analysis and restrict runtime file, network, and shell access.
+
+Risk: Media and identity data may leave the local environment, and security review coverage is partial because a referenced path was missing.
+
+Mitigation: Review outbound data handling and ensure the missing path and all referenced behavior are assessed before installation.
 
 ## Reference(s):
 
-- [API reference](references/api_doc.md)
-- [Skill release page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-greenhouse-climate-plant-feedback-analysis)
+- [API interface documentation](references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-greenhouse-climate-plant-feedback-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
 
-**Output Format:** [Structured JSON or Markdown analysis with prioritized action suggestions and report links]
+**Output Format:** [Structured analysis report with findings, prioritized control recommendations, and report links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include plant observations, environmental context, historical report entries, and action priorities; does not provide numeric actuator settings.]
+**Other Properties Related to Output:** [May include plant and environmental observations, action priorities, and historical report links.]
 
 ## Skill Version(s):
 
-1.0.16 (source: server-resolved release metadata)
+1.0.17 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

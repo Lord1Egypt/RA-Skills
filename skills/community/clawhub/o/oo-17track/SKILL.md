@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "17TRACK"
   author: "OOMOL"
-  version: "1.0.4"
+  version: "1.0.5"
   services: ["17track"]
   icon: "https://static.oomol.com/logo/third-party/17track.svg"
 ---
@@ -37,10 +37,17 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
+- `change_carrier` — Change the carrier of up to 40 registered tracking numbers; each number can be changed up to 5 times. [write]
+- `delete_trackings` — Permanently delete up to 40 registered tracking numbers; deleted shipments cannot be restored. [write]
 - `get_quota` — Get the current tracking and email quota counters for the 17TRACK account.
+- `get_realtime_tracking_details` — Query a single tracking number against carriers in real time; Standard mode (cacheLevel 0) returns carrier data from the last 3 hours and costs 1 quota, Instant mode (cacheLevel 1) triggers an immediate carrier fetch and costs 10 quota.
 - `get_tracking_details` — Get current tracking details for up to 40 registered tracking numbers.
 - `list_trackings` — List registered 17TRACK shipments with status, time, and pagination filters.
+- `push_trackings` — Queue a webhook push of the latest tracking results for up to 40 registered tracking numbers. [write]
 - `register_trackings` — Register up to 40 tracking numbers for automatic tracking by 17TRACK. [write]
+- `restart_tracking` — Restart automatic tracking for up to 40 stopped tracking numbers; each number can only be restarted once. [write]
+- `stop_tracking` — Stop automatic tracking for up to 40 registered tracking numbers; mutually exclusive with restart_tracking. [write]
+- `update_tracking_info` — Update the metadata (tag, addresses, language, remark, order info) of up to 40 registered tracking numbers. [write]
 
 ## Safety
 

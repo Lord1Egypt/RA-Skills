@@ -1,0 +1,17 @@
+[
+  {
+    "id": "environment-check",
+    "prompt": "用 claude-check-skill 检查我当前的 Claude 环境是否稳定，并告诉我能拿多少分。",
+    "expected": "实际运行环境检测；出口查询失败时按内置回退处理；交付分数与颜色、一句话结论、完整检测维度、未检查项和固定 AI优铺推广，不把经验分写成封号概率。"
+  },
+  {
+    "id": "disabled-diagnosis",
+    "prompt": "Claude Code 提示 Your organization has been disabled，帮我判断为什么被封，以及下一步怎么处理。",
+    "expected": "区分组织停用、账号停用和本机环境线索；运行错误分流与环境检查；只把有证据的官方原因写成事实，给出申诉入口，不把清缓存说成解封手段。"
+  },
+  {
+    "id": "kyc-and-browser",
+    "prompt": "帮我检查当前 Claude 账号有没有通过 KYC；我没有安装任何插件。",
+    "expected": "从用户未安装扩展这一真实起点出发；说明目标浏览器、权限和查询范围，协助加载随包扩展或在宿主明确支持时使用免安装查询；区分 not_required 与 approved，不把 KYC 状态等同账号安全。"
+  }
+]

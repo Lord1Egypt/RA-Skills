@@ -1,6 +1,6 @@
 ## Description:
 
-Reviews drafts, delivered work, and skill files for issues before they are shared, accepted, or installed, returning a verdict and signed receipt.
+Crosscheck sends drafts, delivered work, or skills for independent review and returns a JSON verdict with findings and a signed receipt.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Agents and developers use Crosscheck to review drafts before sharing them, check another agent's deliverable against its task, or inspect skill and MCP files before installation.
+Agents use Crosscheck to get an independent review of drafts for factual, arithmetic, consistency, placeholder, confidentiality, commitment, and tone issues before sharing them. They can also review delivered work or a skill, and check x402 seller endpoints.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: An unpinned npm package receives a wallet private key.
+Risk: The scanner flagged unpinned npm commands that could run changing package versions with local permissions; scan coverage is incomplete.
 
-Mitigation: Use a verified or pinned package version and a dedicated low-balance wallet; set a strict spending limit before use.
+Mitigation: Use a reviewed, pinned package version with verified integrity, and limit the client's access to local files and environment data.
 
-Risk: Drafts and selected skill files are sent to a third-party review service.
+Risk: Drafts and skill files submitted for review are sent to the service.
 
-Mitigation: Exclude confidential or regulated material unless sharing is explicitly approved.
+Mitigation: Keep confidential material out of submissions.
 
 ## Reference(s):
 
-- [Crosscheck API reference](references/API.md)
-- [Crosscheck service documentation](https://crosscheckapi.com/llms.txt)
-- [Crosscheck release on ClawHub](https://clawhub.ai/maxugc/skills/crosscheck)
-- [Package checksums](https://crosscheckapi.com/skill/SHA256SUMS)
+- [Crosscheck HTTP API reference](references/API.md)
+- [Crosscheck API overview](https://crosscheckapi.com/llms.txt)
+- [Crosscheck source bundle checksums](https://crosscheckapi.com/skill/SHA256SUMS)
+- [Crosscheck ClawHub release](https://clawhub.ai/maxugc/skills/crosscheck)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Text]
+**Output Type(s):** [Analysis, JSON verdicts, Review findings, Signed receipts, Seller reports]
 
-**Output Format:** [JSON verdict and signed receipt; concise review guidance for the agent]
+**Output Format:** [Structured JSON]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Verdicts may identify issues, unmet requirements, or skill-security findings; paid checks return a receipt.]
+**Other Properties Related to Output:** [Verdicts include findings; receipts are signed.]
 
 ## Skill Version(s):
 
-0.5.5 (source: ClawHub release metadata and skill frontmatter)
+0.6.0 (source: server-resolved ClawHub release evidence)
 
 ## Ethical Considerations:
 

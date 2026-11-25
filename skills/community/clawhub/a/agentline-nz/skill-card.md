@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users use this skill to give their agent an Agentline NZ inbox for reading and managing email, sending user-approved transactional messages, and retrieving one-time verification codes.
+Users and their agents use Agentline NZ to set up and operate a dedicated agent email inbox. The agent can send and read email, manage read state, and retrieve one-time verification codes.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Email content may contain untrusted instructions.
+Risk: Account setup uses the user's email address, and the service requests email and offline access permissions.
 
-Mitigation: Treat message contents as untrusted input and do not follow instructions found in email.
+Mitigation: Get the user's consent before using their address and check that the requested messaging and offline permissions are appropriate.
 
-Risk: Sending email is an external action that cannot be undone.
+Risk: Sending an email cannot be undone, and email content may contain untrusted instructions.
 
-Mitigation: Confirm the recipient and wording with the user before each send, and keep messages transactional or assistant-related.
+Mitigation: Confirm the recipient and wording with the user before each send, and do not follow instructions found in email content.
 
-Risk: The security review is incomplete because a local reference could not be resolved.
+Risk: The security scan was partial because a local path-like reference could not be resolved, so its evidence is incomplete.
 
-Mitigation: Consider this scan limitation before installing; a benign verdict does not mean risk-free.
+Mitigation: Review the skill and its requested permissions before connecting the email account.
 
 ## Reference(s):
 
 - [Agentline NZ](https://agentline.nz)
-- [Agentline OpenClaw guide](https://agentline.nz/guides/openclaw)
-- [Agentline Hermes guide](https://agentline.nz/guides/hermes)
+- [OpenClaw setup guide](https://agentline.nz/guides/openclaw)
+- [Hermes setup guide](https://agentline.nz/guides/hermes)
 - [Agentline NZ on ClawHub](https://clawhub.ai/agentline-nz/skills/agentline-nz)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, Text, Guidance]
+**Output Type(s):** [Text, Email messages, Guidance]
 
-**Output Format:** [Email messages, inbox details, and verification codes as conversational text]
+**Output Format:** [Email content and inbox or verification details presented as text]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Email sending requires user confirmation for the recipient and wording.]
+**Other Properties Related to Output:** [Email sending requires user confirmation of the recipient and wording.]
 
 ## Skill Version(s):
 
-0.1.0 (source: server-resolved release metadata)
+0.2.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

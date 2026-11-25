@@ -697,6 +697,29 @@ def main(argv: list[str]) -> int:
         )
     except (OSError, subprocess.SubprocessError):
         fail("unable to add reviewer")
+    receipt = api_object(read_endpoint, "reviewer assignment receipt")
+    persisted = receipt.get("reviewers")
+    if (
+        not isinstance(persisted, list)
+        or any(user_id(item) is None or username(item) is None for item in persisted)
+        or not set(reviewer_ids).issubset({user_id(item) for item in persisted})
+        or not any(user_id(item) == reviewer_id and username(item) == username(reviewer)
+                   for item in persisted)
+    ):
+        fail("GitLab did not confirm the selected reviewer and preserved reviewers; "
+             "inspect reviewer limits or permissions; no approval or merge attempted")
+    expected_signature = mr_signature(fresh_mr)
+    actual_signature = mr_signature(receipt)
+    # Extra reviewers may have been added concurrently; never remove them.
+    expected_signature.pop("reviewers")
+    actual_signature.pop("reviewers")
+    for key in ("iid", "project_id", "source_project_id", "target_project_id",
+                "source_branch", "target_branch"):
+        expected_signature[key] = fresh_mr.get(key)
+        actual_signature[key] = receipt.get(key)
+    if actual_signature != expected_signature:
+        fail("merge request changed after reviewer assignment; "
+             "no approval or merge attempted")
     result["applied"] = True
     if self_review:
         try:

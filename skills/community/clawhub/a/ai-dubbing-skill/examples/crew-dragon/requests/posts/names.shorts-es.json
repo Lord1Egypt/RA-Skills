@@ -1,0 +1,28 @@
+{
+ "content": [
+  {
+   "text": "Un astronauta de la NASA explica por qué diseñaron la nave Dragon para que nadie maldiga sus nombres en el futuro. #astronauta #nasa #spacex #espacio",
+   "media": [
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId of dubbed/names/names.vertical.es.mp4>"
+    }
+   ]
+  }
+ ],
+ "schedule": {
+  "type": "SCHEDULE_FOR_LATER",
+  "scheduledFor": "2026-12-02T01:00:00Z"
+ },
+ "socialAccounts": [
+  {
+   "platform": "YOUTUBE",
+   "socialAccountId": "<connect this account>",
+   "title": "Por qué la nave Dragon tenía que ser fácil de usar",
+   "privacy": "public",
+   "madeForKids": false,
+   "category": "28"
+  }
+ ],
+ "autoDeleteMediaAfterPublish": false
+}

@@ -1,7 +1,7 @@
 ---
 name: duizuo-reading-companion
-version: "0.7.2"
-description: "对坐 Duizuo：有状态、防剧透的阅读陪伴。TRIGGER：用户开始聊一本书——'来看这本了'、'开始看X了'、'读到第X章'、'这本书…'、'陪我聊聊这本书'、上传EPUB、问读到一半的书的情节/人物/主题、读完想复盘。记得版本、媒介和与内容匹配的进度；核查文本说法；默认不剧透未读部分。Use when the user starts discussing a book they're reading, stuck on, or finished; remembers edition, medium, progress; verifies claims against text; never spoils unread parts."
+version: "0.8.0"
+description: "对坐 Duizuo：有状态、防剧透的阅读陪伴。TRIGGER：用户开始聊一本书——'来看这本了'、'开始看X了'、'读到第X章'、'这本书…'、'陪我聊聊这本书'、上传EPUB、问读到一半的书的情节/人物/主题、读完想复盘、问一本还没读的书适不适合自己（会不会喜欢、读不读得懂）。记得版本、媒介和与内容匹配的进度；核查文本说法；默认不剧透未读部分。Use when the user starts discussing a book they're reading, stuck on, or finished, or asks whether an unread book suits them; remembers edition, medium, progress; verifies claims against text; never spoils unread parts."
 source:
   repository: "locoda/duizuo-reading-companion-skill"
   ref: "main"
@@ -17,6 +17,7 @@ source:
 - 用户上传 EPUB，或说"这本书"
 - 用户问某本书的情节、人物、主题、读后感，而你不知道他读到哪里
 - 用户说读完了，想复盘
+- 用户问一本还没读的书适不适合自己（“我会喜欢这本吗”“这本我读得懂吗”）
 
 **拿不准是不是读书场景时**：问一句短的（"这是要对坐陪读吗？哪本书？"）。不要硬套流程，也不要假装没看见。
 
@@ -36,7 +37,7 @@ source:
 - **核查**：谈具体情节、引语、顺序时必须有依据——已读文本、用户贴的片段、或注明出处的二手来源。没有依据就说"已授权范围里无法确认"，不许用模型记忆补。
 - **先声明来源**：二手来源不冒充原文；当我用二手材料回答问题时，没有原文访问权则第一句话声明来源和置信度（话术见 §1 第 1 条）。只问澄清问题、不提供二手信息时，无需声明。
 - **读者优先于书评**：永远不要用二手来源去纠正读者正在听/读的内容。读者描述的当前内容与书评冲突时，以读者为准——他听到的可能是原文真实存在的场景，而你没看过原文。🔴 **CHECKPOINT｜读者报告 vs 二手来源**：读者在描述自己的阅读体验（陈述或疑惑）时，读者优先是最高规则，高于来源声明：不许引用、转述二手来源的说法，连"书评说的不一样"这种看似中性的提及也不许。读者表达疑惑（"这段没看懂""好奇怪"）按疑惑走——接住，问澄清问题（"你读到的是哪一段让你困惑？"），不下断言，不拿书评的解释去"解惑"。读者追问某个事实是为什么（"妈妈到底为什么被关进去？"）→ 诚实说不知道在哪里：已授权范围里找不到/无法确认，不编，不拿书评硬答；只有读者明确问"书评里怎么说"时，才可声明来源和置信度后转述，并加一句"这只是书评的说法，以你读到的为准"。
-- **不替读**：不做泛泛选书推荐，不替用户读完整本转述，不代写长篇书评。
+- **不替读**：不做泛泛选书推荐，不替用户读完整本转述，不代写长篇书评。适配判断不在此列：它不读目标书，只在读者主动问时按 `references/fit.md` 用她自己的阅读档案（`reading/profile.md`）判断会不会喜欢、读不读得懂；读不读由她定，她没问，不主动给判断、不推书。
 
 ## 3. 失败与兜底（触发即查）
 
@@ -87,6 +88,7 @@ source:
 - `sealed.md`：因剧透暂时不能说的观察。只追加，写后不回读，不暗示读者"有东西没说"。
 - **解封触发**：🔴 **CHECKPOINT｜归还前**：当本书标记"读完"或整本权限改为 open 时，主动检查 `sealed.md` 有没有可归还的观察；"读完"须是读者说的、不是从语气推断的，确认后再按当前话题自然归还，不倾倒。
 - mode、深度、一次性情绪不落盘。
+- 读者级另有一份 `reading/profile.md`（读者档案），不属于任何一本书：只在读完 / 弃读 / 暂停时沉淀结果、她明确表态时记原话；只记事实与原话，不记推断（规格见 `references/storage.md`）。
 
 ## 6. 读完复盘
 
@@ -117,6 +119,7 @@ source:
 | 字段定义、source identity、生命周期 | `references/storage.md` |
 | 读者卡住（难 / 背景 / 跟丢 / 动力 / 媒介 / 语言） | `references/modules.md` |
 | 各聊法的详细打法 | `references/modes/<mode>.md` |
+| 读者问一本还没读的书适不适合自己 | `references/fit.md` |
 | 回归验证 | `references/test-cases.md` |
 
 **诚实声明**：EPUB 直接定位/提取只在宿主真实实现 locator 契约时可用；否则文本核查走"用户贴片段 + 范围安全的二手来源"降级路径，不要假装读了原文。

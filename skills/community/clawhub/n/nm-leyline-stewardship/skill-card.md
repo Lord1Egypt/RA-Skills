@@ -1,6 +1,6 @@
 ## Description:
 
-Applies stewardship virtues (Care, Curiosity, Humility, Diligence) to plugin work
+Applies stewardship virtues (Care, Curiosity, Humility, Diligence) to plugin work.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Plugin developers use this skill when making design decisions or reviewing code quality and contributor experience. It helps them apply stewardship principles and virtues to maintenance work and reflect at workflow boundaries.
+Plugin developers and maintainers use this skill when making design decisions, reviewing code quality and contributor experience, and reflecting at workflow boundaries.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Reflection prompts may be applied at broad task or session boundaries, including routine or unrelated work.
+Risk: Broad reflection triggers may cause reflection to run beyond the intended workflow scope.
 
-Mitigation: Use the reflection module at natural plugin workflow boundaries and consider whether reflection is useful for the task at hand.
+Mitigation: Limit reflection to explicit requests or defined workflows.
 
 ## Reference(s):
 
-- [Leyline plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
+- [Clawdis homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown]
+**Output Type(s):** [Guidance, Markdown, Shell commands]
 
-**Output Format:** [Markdown guidance, checklists, and reflection prompts]
+**Output Format:** [Markdown guidance with reflection prompts and optional shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Principles and workflow prompts for plugin design and maintenance]
+**Other Properties Related to Output:** [Context-dependent guidance for plugin design, code review, maintenance, and workflow reflection.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

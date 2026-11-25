@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill within commands such as issue implementation, pull request review, and architecture review to assess a decision’s reversibility and decide whether to proceed with a quick recommendation or escalate to full War Room deliberation.
+Developers and workflow commands use this skill at consequential decision points to assess reversibility and decide whether to continue with a quick recommendation or escalate to War Room deliberation.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment reports a mismatch between the skill’s stated purpose and its described audit-session lookup behavior; the scan was partial and confidence was medium.
+Risk: The skill can list audited sessions and interact with audit-history data; the security assessment is incomplete because a referenced local path and imported manager implementation were unavailable.
 
-Mitigation: Review whether the stated purpose and reported audit-session lookup behavior meet your needs before installing.
+Mitigation: Review the audit-history access and behavior, and resolve the missing source context before relying on it in a sensitive workflow.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-attune-war-room-checkpoint)
-- [Attune project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/attune)
+- [Attune plugin reference](https://github.com/athola/claude-night-market/tree/master/plugins/attune)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Text]
+**Output Type(s):** [Text, Guidance]
 
-**Output Format:** [Markdown with structured checkpoint fields]
+**Output Format:** [Structured checkpoint response in Markdown or YAML-like fields, with a recommendation or escalation orders]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Context-dependent reversibility score, escalation decision, recommendation or orders, rationale, and confidence.]
+**Other Properties Related to Output:** [May include a reversibility score, selected mode, escalation decision, rationale, confidence, and user-confirmation requirement.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release)
 
 ## Ethical Considerations:
 

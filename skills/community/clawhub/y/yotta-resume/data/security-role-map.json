@@ -1,0 +1,401 @@
+{
+  "schema_version": "1.0",
+  "contract_version": "1.0",
+  "generated_at": "2026-11-21",
+  "levels": [
+    "junior",
+    "mid",
+    "senior",
+    "lead"
+  ],
+  "role_families": [
+    {
+      "id": "soc",
+      "display_name": "SOC / 安全运营 / 威胁分析",
+      "aliases": [
+        "SOC Analyst",
+        "威胁分析师",
+        "监控工程师"
+      ],
+      "nice_work_roles": [
+        "Defensive Cybersecurity",
+        "Threat Analysis"
+      ],
+      "evidence_dimensions": [
+        "告警规模与来源",
+        "研判与定级依据",
+        "误报率与处置效率",
+        "SIEM / EDR 使用方法",
+        "升级与协同边界"
+      ],
+      "interview_dimensions": [
+        "告警 triage",
+        "事件时间线",
+        "ATT&CK 映射",
+        "误报判断"
+      ],
+      "risk_rules": [
+        "没有告警范围、时间窗或处置结果的指标不得作为结论"
+      ],
+      "resume_evidence_requirements": [
+        "场景",
+        "个人责任",
+        "告警或日志规模",
+        "研判方法",
+        "处置结果"
+      ]
+    },
+    {
+      "id": "incident_response",
+      "display_name": "应急响应 / DFIR",
+      "aliases": [
+        "IR Analyst",
+        "应急响应工程师",
+        "取证分析师"
+      ],
+      "nice_work_roles": [
+        "Incident Response",
+        "Digital Forensics",
+        "Cybercrime Investigation"
+      ],
+      "evidence_dimensions": [
+        "事件类型与影响范围",
+        "发现与响应时间",
+        "隔离、遏制与恢复动作",
+        "证据保全与取证方法",
+        "复盘和改进结果"
+      ],
+      "interview_dimensions": [
+        "事件时间线",
+        "证据链",
+        "遏制决策",
+        "复盘"
+      ],
+      "risk_rules": [
+        "客户名称、内网地址、漏洞细节和未公开事件必须脱敏"
+      ],
+      "resume_evidence_requirements": [
+        "事件规模",
+        "个人职责",
+        "遏制动作",
+        "恢复结果",
+        "证据边界"
+      ]
+    },
+    {
+      "id": "offensive_security",
+      "display_name": "渗透测试 / 红队 / 攻防",
+      "aliases": [
+        "渗透测试",
+        "红队",
+        "攻防工程师"
+      ],
+      "nice_work_roles": [
+        "Vulnerability Analysis",
+        "Infrastructure Support"
+      ],
+      "evidence_dimensions": [
+        "授权范围和测试目标",
+        "测试方法与工具边界",
+        "漏洞等级和验证方式",
+        "修复建议与复测结果",
+        "报告和协同过程"
+      ],
+      "interview_dimensions": [
+        "授权边界",
+        "漏洞验证",
+        "利用链理解",
+        "报告与修复"
+      ],
+      "risk_rules": [
+        "只写工具名、漏洞数量或攻防名次而没有任务、授权和验证证据时不得拔高"
+      ],
+      "resume_evidence_requirements": [
+        "授权范围",
+        "测试方法",
+        "漏洞范围",
+        "验证证据",
+        "修复复测"
+      ]
+    },
+    {
+      "id": "appsec",
+      "display_name": "应用安全 / 安全研发",
+      "aliases": [
+        "AppSec",
+        "代码审计",
+        "安全研发"
+      ],
+      "nice_work_roles": [
+        "Secure Software Development",
+        "Software Security Assessment",
+        "Secure Systems Development"
+      ],
+      "evidence_dimensions": [
+        "安全 SDLC 落地",
+        "代码审计范围",
+        "SAST / DAST / SCA 使用",
+        "供应链与依赖治理",
+        "修复率和复测证据"
+      ],
+      "interview_dimensions": [
+        "OWASP",
+        "CWE",
+        "威胁建模",
+        "修复取舍"
+      ],
+      "risk_rules": [
+        "只列安全工具不说明接入阶段、规则和修复闭环时不得视为安全研发成果"
+      ],
+      "resume_evidence_requirements": [
+        "应用范围",
+        "审计或开发动作",
+        "发现类型",
+        "修复结果",
+        "复测证据"
+      ]
+    },
+    {
+      "id": "security_engineering",
+      "display_name": "安全工程 / 云与基础设施",
+      "aliases": [
+        "安全工程师",
+        "云安全",
+        "网络 / 主机安全"
+      ],
+      "nice_work_roles": [
+        "Systems Security Analysis",
+        "Systems Administration",
+        "Network Operations"
+      ],
+      "evidence_dimensions": [
+        "加固覆盖范围",
+        "IAM 与网络分段",
+        "日志、监控和备份",
+        "自动化和变更管理",
+        "云环境与故障处理"
+      ],
+      "interview_dimensions": [
+        "架构",
+        "控制落地",
+        "故障与变更",
+        "自动化"
+      ],
+      "risk_rules": [
+        "没有环境规模、变更方式或可验证控制结果的加固描述不得写成全局效果"
+      ],
+      "resume_evidence_requirements": [
+        "环境规模",
+        "控制目标",
+        "实施动作",
+        "变更与回滚",
+        "验证结果"
+      ]
+    },
+    {
+      "id": "grc_data_security",
+      "display_name": "GRC / 风险 / 合规 / 数据安全",
+      "aliases": [
+        "安全合规",
+        "风险管理",
+        "隐私",
+        "数据安全"
+      ],
+      "nice_work_roles": [
+        "Systems Security Management",
+        "Security Control Assessment",
+        "Systems Authorization",
+        "Privacy Compliance"
+      ],
+      "evidence_dimensions": [
+        "风险台账和控制映射",
+        "审计发现与整改闭环",
+        "等保或监管要求范围",
+        "数据分类分级与生命周期",
+        "跨团队推动和留痕"
+      ],
+      "interview_dimensions": [
+        "风险判断",
+        "控制证据",
+        "整改闭环",
+        "合规边界"
+      ],
+      "risk_rules": [
+        "不得把合规备案、审计通过或整改完成写成不存在边界的事实承诺"
+      ],
+      "resume_evidence_requirements": [
+        "适用框架",
+        "控制范围",
+        "个人动作",
+        "整改或审计结果",
+        "证据边界"
+      ]
+    },
+    {
+      "id": "software_engineering",
+      "display_name": "软件研发 / 后端与全栈",
+      "aliases": [
+        "软件工程师",
+        "后端工程师",
+        "前端工程师",
+        "全栈工程师",
+        "研发工程师"
+      ],
+      "nice_work_roles": [
+        "Software Development",
+        "Software Engineering",
+        "Application Development"
+      ],
+      "evidence_dimensions": [
+        "业务场景与用户规模",
+        "系统边界与技术栈",
+        "个人设计与实现",
+        "测试和质量证据",
+        "发布、监控与回滚",
+        "故障复盘和结果"
+      ],
+      "interview_dimensions": [
+        "需求与边界",
+        "架构取舍",
+        "代码实现",
+        "质量验证",
+        "线上稳定性"
+      ],
+      "risk_rules": [
+        "只列技术栈而不说明个人实现、系统规模和质量结果时不得拔高。",
+        "不得把团队交付、演示项目或教程复现写成生产成果。"
+      ],
+      "resume_evidence_requirements": [
+        "业务场景",
+        "系统边界",
+        "个人动作",
+        "质量验证",
+        "上线结果"
+      ]
+    },
+    {
+      "id": "data_ai",
+      "display_name": "数据与人工智能 / 算法与数据工程",
+      "aliases": [
+        "数据工程师",
+        "数据分析师",
+        "算法工程师",
+        "机器学习工程师",
+        "AI 工程师"
+      ],
+      "nice_work_roles": [
+        "Data Science",
+        "Machine Learning",
+        "Data Engineering",
+        "AI Engineering"
+      ],
+      "evidence_dimensions": [
+        "业务问题和数据授权",
+        "数据范围与质量",
+        "个人负责的模型或管道",
+        "基线和评估口径",
+        "上线、监控和人工复核",
+        "风险和业务收益"
+      ],
+      "interview_dimensions": [
+        "问题定义",
+        "数据质量",
+        "评估方法",
+        "上线一致性",
+        "风险与复核"
+      ],
+      "risk_rules": [
+        "离线指标、演示效果或未经业务验证的提升不得写成真实收益。",
+        "不得推断受保护个人属性，不得使用未授权的数据来源。"
+      ],
+      "resume_evidence_requirements": [
+        "业务问题",
+        "数据范围",
+        "方法和个人责任",
+        "评估基线",
+        "上线与风险"
+      ]
+    },
+    {
+      "id": "business_operations",
+      "display_name": "业务运营 / 用户增长与客户成功",
+      "aliases": [
+        "运营经理",
+        "用户运营",
+        "活动运营",
+        "增长运营",
+        "客户成功"
+      ],
+      "nice_work_roles": [
+        "Marketing Operations",
+        "Customer Success",
+        "Business Operations",
+        "Growth Operations"
+      ],
+      "evidence_dimensions": [
+        "业务目标和约束",
+        "用户或客户规模",
+        "个人负责的动作",
+        "渠道、预算和协作边界",
+        "基线与结果口径",
+        "复盘和长期质量"
+      ],
+      "interview_dimensions": [
+        "目标拆解",
+        "用户分层",
+        "执行动作",
+        "指标归因",
+        "风险与复盘"
+      ],
+      "risk_rules": [
+        "不得把团队业绩、渠道自然增长或短期透支写成个人成果。",
+        "收入、转化和留存结论必须说明口径、时间窗和归因限制。"
+      ],
+      "resume_evidence_requirements": [
+        "业务目标",
+        "用户规模",
+        "个人动作",
+        "指标口径",
+        "结果与复盘"
+      ]
+    },
+    {
+      "id": "generic",
+      "display_name": "通用岗位 / 非安全行业",
+      "aliases": [
+        "通用岗位",
+        "其他岗位",
+        "非安全岗位"
+      ],
+      "nice_work_roles": [
+        "General Professional Roles"
+      ],
+      "evidence_dimensions": [
+        "场景与目标",
+        "个人责任",
+        "动作与方法",
+        "规模与约束",
+        "结果口径",
+        "协作和复盘"
+      ],
+      "interview_dimensions": [
+        "事实证据",
+        "个人贡献",
+        "结果归因",
+        "协作边界"
+      ],
+      "risk_rules": [
+        "不得推断受保护个人属性，不得编造经历、数字或结果。",
+        "行业信号冲突时必须先确认，不自动套用安全岗位规则。"
+      ],
+      "resume_evidence_requirements": [
+        "背景",
+        "个人职责",
+        "动作",
+        "规模",
+        "结果",
+        "证据边界"
+      ]
+    }
+  ]
+}

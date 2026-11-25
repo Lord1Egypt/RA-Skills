@@ -1,6 +1,6 @@
 # Stockpile Market MCP Server (`mcp-stockpile`)
 
-[![PyPI version](https://img.shields.io/badge/pypi-v2.0.0-blue.svg)](https://pypi.org/project/mcp-stockpile/)
+[![PyPI version](https://img.shields.io/badge/pypi-v2.4.0-blue.svg)](https://pypi.org/project/mcp-stockpile/)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Protocol Version](https://img.shields.io/badge/MCP-2024--11--05-green.svg)](https://modelcontextprotocol.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)

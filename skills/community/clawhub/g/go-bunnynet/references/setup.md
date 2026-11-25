@@ -4,7 +4,7 @@ This module is unofficial and not affiliated with Bunny.net.
 
 ## Requirements and install
 
-Use Go 1.26.10 or newer and an account API key exported as `BUNNYNET_API_KEY`.
+Use Go 1.26.11 or newer and an account API key exported as `BUNNYNET_API_KEY`.
 
 ```bash
 go get github.com/psyb0t/go-bunnynet

@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-External Bring! users can use the skill to identify products from photos, classify them against the configured catalog, and add or manage items on allowed shopping lists with verified results.
+People using Bring! can give an agent a product photo to identify an item, find a matching catalog entry, and add it to a shopping list with verified details. The skill also guides safe list, copy, move, and photo operations through Bring! MCP tools.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Shopping-list writes can change shared Bring! lists.
+Risk: The photo workflow may send an original product image to Bring! without clearly warning the user or obtaining upload consent.
 
-Mitigation: Restrict BRING_ALLOWED_LISTS to lists the user intends to manage and verify persisted results.
-
-Risk: An attached original photo may contain private details and may be visible to Bring! list members.
-
-Mitigation: Request explicit authorization for original-photo uploads and remove private details first.
-
-Risk: The separately installed npm runtime was not supplied for verification.
-
-Mitigation: Review and pin the bring-photo-mcp package before use.
-
-Risk: Bring! account credentials are required.
-
-Mitigation: Store BRING_PASSWORD in a secret store and do not expose credentials in conversation output.
+Mitigation: Ask clearly before uploading a photo; by default, add recognized product details without attaching the original image.
 
 ## Reference(s):
 
 - [Bring Photo MCP on ClawHub](https://clawhub.ai/schnueck/skills/bring-photo-mcp)
-- [Publisher profile](https://clawhub.ai/user/schnueck)
+- [Publisher profile: schnueck](https://clawhub.ai/user/schnueck)
 
 ## Skill Output:
 
-**Output Type(s):** [API calls, Text]
+**Output Type(s):** [API Calls, Guidance, Text]
 
-**Output Format:** [Bring! MCP tool calls and concise Markdown status reports]
+**Output Format:** [Bring! list operations with concise text status and verification reports]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports per-list outcomes and verification evidence without exposing sensitive identifiers.]
+**Other Properties Related to Output:** [Reports per-list success, partial, or error status and non-sensitive verification details.]
 
 ## Skill Version(s):
 
-1.0.3 (source: frontmatter, CHANGELOG, server release metadata)
+1.0.4 (source: frontmatter, changelog, server-resolved release)
 
 ## Ethical Considerations:
 

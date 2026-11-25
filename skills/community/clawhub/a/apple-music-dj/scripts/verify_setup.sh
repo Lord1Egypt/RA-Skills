@@ -82,10 +82,10 @@ echo ""
 echo "Checking Python version..."
 py_version=$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')" 2>/dev/null || echo "0.0")
 
-if python3 -c "import sys; sys.exit(0 if sys.version_info >= (3, 10) else 1)" 2>/dev/null; then
-    echo "  $PASS Python $py_version (≥ 3.10 required)"
+if python3 -c "import sys; sys.exit(0 if sys.version_info >= (3, 11) else 1)" 2>/dev/null; then
+    echo "  $PASS Python $py_version (≥ 3.11 required)"
 else
-    echo "  $FAIL Python $py_version (≥ 3.10 required)"
+    echo "  $FAIL Python $py_version (≥ 3.11 required)"
     errors=$((errors + 1))
 fi
 

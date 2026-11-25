@@ -1,6 +1,6 @@
 ## Description:
 
-以张忆东宏观策略框架梳理A股与港股的周期、市场结构和风险，形成供人工复核的方法论分析草稿。
+提供以张忆东宏观策略框架为基础的 A 股与港股周期、市场结构和风险分析方法。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-面向关注A股与港股的使用者，按宏观周期、走势结构与风险框架整理分析草稿，供人工复核。内容仅作方法论参考；投资建议与实际配置决策须由具备资质的专业人员独立完成。
+面向希望梳理中国宏观环境及 A 股、港股市场结构的使用者，生成中文为主的分析框架和待复核纸面草稿。内容不构成投资建议，也不提供具体标的交易或仓位指令。
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan was incomplete because the manifest could not be parsed and a local reference was unresolved.
+Risk: The security review was incomplete and a referenced local path was missing.
 
-Mitigation: Review the skill files and resolve the local reference before installation.
+Mitigation: Review the full skill and its referenced material before installing.
 
-Risk: Macro, policy, and market observations can become stale or use changing data definitions.
+Risk: Market and policy observations can become outdated, and framework examples may be mistaken for actionable investment advice.
 
-Mitigation: Check the latest official data and dates before relying on an analysis.
-
-Risk: Readers could mistake framework analysis for personalized investment advice.
-
-Mitigation: Treat outputs as methodology drafts and leave investment decisions to appropriately qualified professionals.
+Mitigation: Check current figures against official sources and keep outputs as informational drafts; qualified professionals should make investment decisions independently.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/gechengling/zhang-yidong-macro-analysis)
+- [ClawHub skill release](https://clawhub.ai/gechengling/skills/zhang-yidong-macro-analysis)
+- [Publisher profile](https://clawhub.ai/user/gechengling)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, Guidance, Markdown]
 
-**Output Format:** [简体中文分析文本或 Markdown，包含周期定位、结构观察与风险扫描]
+**Output Format:** [Chinese prose and Markdown tables or lists]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [方法论参考草稿；不提供行情抓取、个股买卖指令、目标价或仓位安排。]
+**Other Properties Related to Output:** [Framework-based draft for human review; no live data retrieval or automated actions.]
 
 ## Skill Version(s):
 
-2.1.3 (source: frontmatter)
+2.1.4 (source: frontmatter)
 
 ## Ethical Considerations:
 

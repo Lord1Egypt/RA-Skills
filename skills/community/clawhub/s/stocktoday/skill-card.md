@@ -1,6 +1,6 @@
 ## Description:
 
-Helps agents retrieve, compare, analyze, and export financial data for Chinese, Hong Kong, and U.S. markets, funds, futures, options, bonds, and macroeconomic indicators through 275 Tushare-compatible interfaces.
+Helps agents retrieve, clean, compare, and export market and financial data across Chinese, Hong Kong, and U.S. securities and macroeconomic topics.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and financial researchers use this skill to answer market, company, sector, capital-flow, news, and macroeconomic questions, compare securities, and export selected datasets.
+Developers and financial researchers can ask an agent to fetch and compare market, company, sector, fund, futures, options, bond, and macroeconomic data, then summarize findings or prepare reusable data exports.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Enabling the insecure gateway option can bypass the stated server restriction and expose the API token and financial data when using HTTP.
+Risk: ClawScan marks the release suspicious because a proxy configuration can expose credentials over an unencrypted connection in some configurations.
 
-Mitigation: Use the default HTTPS gateway and leave TUSHARE_GATEWAY_ALLOW_INSECURE unset. Before using an alternate gateway, have the publisher enforce destination restrictions independently.
+Mitigation: Keep insecure HTTP disabled and use the documented HTTPS gateway hosts. Only enable an insecure endpoint when the operator understands and accepts the credential exposure risk.
 
 ## Reference(s):
 
+- [API interface index](references/接口索引.md)
+- [API usage notes](references/接口使用提示.md)
+- [StockToday token registration](https://stocktoday.cn)
 - [ClawHub skill page](https://clawhub.ai/usa2046/skills/stocktoday)
-- [StockToday](https://stocktoday.cn)
-- [StockToday data gateway](https://tushare.citydata.club/)
-- [Interface usage notes](artifact/references/接口使用提示.md)
-- [Data interface reference](artifact/references/数据接口.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, API Calls, Markdown, Files, Code]
+**Output Type(s):** [Analysis, API Calls, Code, Files, Guidance]
 
-**Output Format:** [Markdown summaries and tables; optionally CSV or Parquet data files and Python scripts.]
+**Output Format:** [Markdown summaries and tables, pandas DataFrames, CSV or Parquet exports, and Python examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Outputs may include selected financial indicators, comparisons, date ranges, and optional local data exports.]
+**Other Properties Related to Output:** [Varies with the requested instruments, interfaces, date range, and export size; requires a StockToday API token.]
 
 ## Skill Version(s):
 
-2.3.0 (source: frontmatter, server release evidence)
+2.4.3 (source: release evidence)
 
 ## Ethical Considerations:
 

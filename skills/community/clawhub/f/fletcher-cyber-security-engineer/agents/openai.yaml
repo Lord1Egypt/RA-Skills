@@ -1,4 +1,4 @@
 interface:
   display_name: "Cyber Security Engineer"
-  short_description: "Least-privilege and elevated access controls"
-  default_prompt: "Use $cyber-security-engineer to enforce approval-first elevation, command policy, and session scoping for OpenClaw. Requires OPENCLAW_* env vars and policy files under ~/.openclaw/security."
+  short_description: "Least-privilege governance, port/egress monitoring, and ISO 27001/NIST compliance for OpenClaw"
+  default_prompt: "Use $cyber-security-engineer to enforce approval-first elevation, command policy, session scoping, port/egress monitoring, and compliance reporting for OpenClaw. Requires python3, one of lsof/ss/netstat, and optional OPENCLAW_* env vars and policy files under ~/.openclaw/security."

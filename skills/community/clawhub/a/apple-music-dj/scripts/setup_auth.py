@@ -20,9 +20,9 @@ Usage:
 """
 
 import sys
-if sys.version_info < (3, 10):
+if sys.version_info < (3, 11):
     sys.exit(
-        f"ERROR: Python 3.10+ is required (you have "
+        f"ERROR: Python 3.11+ is required (you have "
         f"{sys.version_info.major}.{sys.version_info.minor}). Please upgrade."
     )
 
@@ -35,11 +35,24 @@ import secrets
 import shlex
 import threading
 import webbrowser
+import socketserver
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 from _common import check_token_expiry, check_user_token_age, record_user_token, write_private
 from generate_dev_token import TokenError, make_dev_token
+
+
+class LoopbackHTTPServer(ThreadingHTTPServer):
+    """ThreadingHTTPServer without HTTPServer.server_bind's socket.getfqdn() reverse-DNS lookup.
+
+    The server only binds 127.0.0.1, and on some macOS setups that lookup hangs ~35 s before failing.
+    """
+
+    def server_bind(self):
+        socketserver.TCPServer.server_bind(self)
+        self.server_name, self.server_port = self.server_address[:2]
+
 
 MUSICKIT_JS = "https://js-cdn.music.apple.com/musickit/v3/musickit.js"
 MAX_TOKEN_BYTES = 8192
@@ -143,7 +156,7 @@ class TokenCatcher:
                 status, body = catcher.accept(self)
                 self._reply(status, body)
 
-        self._server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+        self._server = LoopbackHTTPServer(("127.0.0.1", port), Handler)
         bound = self._server.server_address[1]
         self.hosts = {f"127.0.0.1:{bound}", f"localhost:{bound}"}
         self.origins = {f"http://{h}" for h in self.hosts}
@@ -170,7 +183,8 @@ class TokenCatcher:
         return 200, b"ok"
 
     def start(self) -> "TokenCatcher":
-        threading.Thread(target=self._server.serve_forever, daemon=True).start()
+        # A short poll interval keeps stop() fast: shutdown() waits for the next poll (default 0.5 s).
+        threading.Thread(target=self._server.serve_forever, kwargs={"poll_interval": 0.05}, daemon=True).start()
         return self
 
     def wait(self, timeout: float) -> str | None:

@@ -1,6 +1,6 @@
 ## Description:
 
-Unofficial typed Go client for the Mem0 Platform API, with generated methods for memory, entity, organization, profile, and related operations.
+Unofficial Go client for the Mem0 Platform API, with typed methods for memory and related platform operations.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to integrate Go applications with Mem0's hosted memory platform, including memory search and management. It is intended for Go projects that need the Mem0 Platform API rather than Mem0's self-hosted library.
+Go developers use this skill to integrate Go applications with the hosted Mem0 Platform API for memory and related platform operations. It is also useful when a project already depends on github.com/psyb0t/go-mem0.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Memory content, queries, and metadata are sent to the Mem0 Platform API.
+Risk: The client sends memory content, queries, and metadata to the hosted Mem0 API.
 
-Mitigation: Send only data intended for Mem0 and scope filters to the relevant user, agent, app, or run.
+Mitigation: Send only the data needed for the task and scope filters to the intended user, agent, app, or run.
 
-Risk: Memory and organization operations can change hosted resources, and profile jobs can consume credits.
+Risk: Create, update, and delete operations can change hosted memories and related resources.
 
-Mitigation: Limit changes to task-owned resources when requested, confirm the target scope, and account for profile-job charges.
+Mitigation: Use these operations only on task-owned resources when the user requested the change.
 
-Risk: The API key could be exposed through source code or logs.
+Risk: The security review is medium confidence and partial because some referenced paths were unavailable.
 
-Mitigation: Read the key from MEM0_API_KEY; do not hardcode, commit, or log it.
+Mitigation: Review the skill guidance and source material before relying on behavior tied to unavailable references.
 
 ## Reference(s):
 
-- [Setup and API reference](artifact/references/setup.md)
-- [go-mem0 source repository](https://github.com/psyb0t/go-mem0)
-- [go-mem0 package documentation](https://pkg.go.dev/github.com/psyb0t/go-mem0)
-- [ClawHub skill page](https://clawhub.ai/psyb0t/skills/go-mem0)
+- [Setup and API reference](references/setup.md)
+- [Project homepage](https://github.com/psyb0t/go-mem0)
+- [Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-mem0)
 
 ## Skill Output:
 
 **Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Go code and concise Markdown guidance]
+**Output Format:** [Markdown with Go and shell code examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Examples use a Mem0 Platform API key; API requests send memory content, queries, and metadata to Mem0.]
+**Other Properties Related to Output:** [Typed Go API usage instructions, including authentication, request and response handling, and endpoint guidance.]
 
 ## Skill Version(s):
 
-0.1.3 (source: server-resolved release metadata)
+0.1.4 (source: ClawHub release evidence)
 
 ## Ethical Considerations:
 

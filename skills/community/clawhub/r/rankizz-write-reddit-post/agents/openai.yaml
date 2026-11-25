@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reddit Post Writing"
+  short_description: "Write helpful Reddit posts without ad copy"
+  default_prompt: "Use $rankizz-write-reddit-post to research a subreddit and draft a useful, human Reddit post with one transparent product mention."

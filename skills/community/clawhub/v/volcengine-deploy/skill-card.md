@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use this skill to plan, provision, deploy, and verify applications on Volcengine ECS, VKE, or veFaaS. It is intended for deployments that need resource planning, approval gates, runtime configuration, cloud-resource tracking, and post-deploy health checks.
+Developers and engineers use this skill to deploy a local project or Git repository to Volcengine through ECS, VKE, or veFaaS, with deployment choices and resources recorded for review.
 
 ### Deployment Geography for Use:
 
@@ -22,47 +22,49 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill can create or modify real Volcengine resources and may incur cost or expose services.
+Risk: The security review is partial: 9 of 12 components were fully inspected, and ClawScan reports deployment risks.
 
-Mitigation: Review the deployment plan before provisioning, require explicit approval for resource creation, and use project-scoped, short-lived Volcengine credentials.
+Mitigation: Review generated scripts, plans, and deployment configuration before executing them; the available scan does not cover every component.
 
-Risk: Deployment of untrusted repositories can execute builds, shell commands, and remote commands.
+Risk: Generated smoke-test Compose files publish application and dependency ports on host interfaces, which can expose test services and credentials.
 
-Mitigation: Run untrusted builds in an isolated environment and validate repository, service, and resource names before using them in remote commands.
+Mitigation: Run the test stack only in a trusted local environment; bind or restrict published ports and avoid exposing test services publicly.
 
-Risk: Runtime configuration may include kubeconfig files, connection strings, access keys, or plaintext Kubernetes Secret manifests.
+Risk: Deployment packaging can include project files that were not intended for release.
 
-Mitigation: Avoid committing kubeconfig or plaintext Secret manifests, do not print secrets in logs, and store generated local files with restricted permissions.
+Mitigation: Review the build or archive context and exclude credentials, local environment files, and unrelated files before packaging.
 
-Risk: The generated smoke-test compose stack may expose dependency ports and default test credentials.
+Risk: Deployment configuration handles credentials and changes network access, permissions, and database state.
 
-Mitigation: Run smoke tests only on isolated hosts or tighten ports and credentials before using the compose stack on a reachable machine.
+Mitigation: Keep secrets out of plans and logs, use the designated environment or Secret path with restrictive file permissions, prefer private endpoints and narrow allowlists, and review migration and permission changes.
+
+Risk: Provisioning creates billable resources and may open services to public traffic.
+
+Mitigation: Complete the validated deployment plan and obtain explicit resource-creation approval; limit ingress to required ports and trusted source ranges.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/volc-sdk-team/skills/volcengine-deploy)
-- [Deployment Plan Template](references/deployment-plan-template.md)
-- [Dockerfile Templates](references/dockerfile-templates.md)
-- [ECS Deployment Details](references/ecs-deploy-steps.md)
-- [veFaaS Skill Execution](references/faas-deploy-steps.md)
-- [Kubernetes Manifest Templates](references/k8s-manifests.md)
-- [Deployment Service-Linked Roles](references/service-linked-roles.md)
-- [Supported Runtime Dependencies](references/supported-dependencies.md)
-- [VKE Deployment Details](references/vke-deploy-steps.md)
+- [Deployment plan template](artifact/references/deployment-plan-template.md)
+- [ECS deployment steps](artifact/references/ecs-deploy-steps.md)
+- [VKE deployment steps](artifact/references/vke-deploy-steps.md)
+- [veFaaS deployment steps](artifact/references/faas-deploy-steps.md)
+- [Kubernetes manifests](artifact/references/k8s-manifests.md)
+- [Supported dependencies](artifact/references/supported-dependencies.md)
+- [Dockerfile templates](artifact/references/dockerfile-templates.md)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+**Output Type(s):** [Markdown, Shell commands, Configuration, Deployment guidance]
 
-**Output Format:** [Markdown guidance with inline shell commands, JSON resource ledgers, generated configuration files, and deployment manifests.]
+**Output Format:** [Markdown plans and reports, shell commands, and generated JSON or deployment configuration]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May create or update .volcengine state, deployment plans, Docker/Kubernetes/systemd files, and cloud resources after user approval.]
+**Other Properties Related to Output:** [May include executable commands and resource, container, or Kubernetes configuration.]
 
 ## Skill Version(s):
 
-1.0.4 (source: server release metadata)
+1.0.5 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

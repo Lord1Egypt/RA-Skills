@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "OOMOL RAG"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.4"
   services: ["oomol_rag"]
   icon: "https://static.oomol.com/logo/third-party/oomol_rag.svg"
 ---
@@ -94,14 +94,111 @@ oo connector run "oomol_rag" \
   --json
 ```
 
+### Create or edit an editable knowledge article
+
+Use `create_article` -> `save_article_draft` -> `get_article`. Stop at a draft unless the user also requested publishing. When requested, use `publish_article` -> `wait_for_article_ready`.
+
+Generate a UUIDv7 once per creation intent and pass it as `articleId`. Generate distinct stable `saveId` and `publishId` values for each save and publication. After a network failure, retry with the identical ID and payload; do not generate another ID or silently overwrite a concurrent edit.
+
+For `save_article_draft`, use the returned `revision`, a `title`, and native BlockNote content:
+
+```json
+{
+  "articleId": "<stable article ID>",
+  "revision": 1,
+  "saveId": "<stable save ID>",
+  "title": "Example article",
+  "content": {
+    "type": "blocknote",
+    "blocks": [
+      {
+        "id": "intro",
+        "type": "paragraph",
+        "content": [{ "type": "text", "text": "Article text", "styles": {} }],
+        "children": []
+      }
+    ]
+  }
+}
+```
+
+Use `--data @draft.json` for document bodies. For Markdown input, use `create_article_from_markdown` or `save_article_markdown`; `content` remains native BlockNote JSON. On an existing article, read it first, check `formatVersion`, and preserve its block structure and IDs. Do not reinterpret legacy editor JSON as BlockNote.
+
+On 409, fetch the latest article and reconcile changes before saving a new operation. Publication uses the saved `revision` and a stable `publishId`. Poll about every 15 seconds; stop on `failed` or `uncertain`. `ready` means `syncRevision` is indexed: a newer draft may exist, so compare `syncRevision` to the revision you published. An uncertain synchronization outcome requires investigation, not a fresh publication ID.
+
+`list_articles` returns metadata and a `nextCursor`; `get_article` returns the full body. `delete_article` removes the editable article and excludes its index from retrieval while preserving the original converted file. Delete only when requested by the user.
+
+### Write directly from Markdown
+
+Use `create_article_from_markdown` with `articleId`, `saveId`, `title`, and `markdown` to create a draft in one connector action. Creation and saving are separate API requests: conversion is validated before creation, but a later save failure may leave an empty draft. Retry the same article ID, save ID and exact payload to resume; do not generate another article ID. An existing edited article is protected by revision checking.
+
+Use `save_article_markdown` with `articleId`, the latest `revision`, a new stable `saveId`, `title`, and `markdown` to **replace the entire body**. This is not append or patch. Blocks and images absent from the Markdown are removed from the draft. An empty Markdown string clears the body. Preserve leading spaces for indented code, and use JSON `@file` input for multiline source. For precise edits to existing BlockNote blocks or private assets, use the native `save_article_draft` action instead.
+
+```json
+{
+  "articleId": "<stable article ID>",
+  "saveId": "<stable save ID>",
+  "title": "Markdown guide",
+  "markdown": "# Guide\n\n- First step\n- [x] Finished\n\n**Important:** save before publishing."
+}
+```
+
+Supported: headings 1–6, paragraphs, bold/italic/strikethrough, inline and fenced/indented code, links and reference links, ordered/nested/task lists, blockquotes, GFM tables and horizontal rules. Standalone HTTP(S) images become image blocks; inline images become links with a warning. HTML and unsupported/relative URLs remain literal text; conversion does not fetch remote resources. Review the returned `warnings` before publishing. Limits: 200,000 source characters, 1 MiB converted content, bounded nesting and table dimensions.
+
+Both Markdown actions save a BlockNote format-3 draft. They never publish implicitly; use the existing publication workflow with the returned article revision when publication is requested.
+
+### Edit individual blocks without replacing the article
+
+Read `get_article` to obtain the current `revision` and block IDs (including nested `children`). Call `patch_article_blocks` with `articleId`, that revision, a stable `saveId`, and ordered `operations`. The backend applies the whole batch in one transaction, increments the revision once, and retains the article title. Any invalid or missing target rolls back every operation.
+
+```json
+{
+  "articleId": "<article ID>",
+  "revision": 3,
+  "saveId": "<stable patch ID>",
+  "operations": [
+    { "op": "update", "blockId": "paragraph-1", "props": { "textAlignment": "center" } },
+    {
+      "op": "insert",
+      "position": "after",
+      "blockId": "paragraph-1",
+      "blocks": [
+        {
+          "id": "new-paragraph",
+          "type": "paragraph",
+          "content": [{ "type": "text", "text": "Added paragraph", "styles": {} }]
+        }
+      ]
+    },
+    { "op": "delete", "blockId": "obsolete-block" }
+  ]
+}
+```
+
+`update` merges only provided property keys. Omit `content` to preserve text and inline formatting; if supplied, it replaces only the selected block's inline/table content and should include the desired inline styles. The block's ID, type and children cannot be overwritten through an update. Other blocks, images, tables and formatting remain intact.
+
+`insert` accepts `before`/`after` with a sibling `blockId`, or `start`/`end` with an optional `parentId` for children (omit it for root placement). Every inserted block and nested child needs a new, stable ID unique within the article. Later operations can target those new IDs. IDs deleted in the same batch cannot be reused. `delete` removes the target and its entire subtree; it does not remove other blocks or their image assets.
+
+Use 1–100 operations on a format-3 BlockNote article. Retry the exact same original revision, save ID and operations after an uncertain response. Different payloads with the same save ID conflict. On a version conflict, read and reconcile before creating a new patch intent; never silently replace the revision. Saving a patch does not publish; use `publish_article` when knowledge-base synchronization is requested.
+
 ## Available actions
 
+- `create_article` — Create an empty editable knowledge article as a draft. A caller-stable articleId prevents duplicate creation on retries; an existing ID returns its article without overwriting it. [write]
+- `create_article_from_markdown` — Create and save an editable article from Markdown as an unpublished draft. Requires stable articleId and saveId. Creation then saving are two requests: if saving fails, a blank draft may remain; retry the identical IDs and payload to resume. Never overwrites an existing edited article; a revision conflict requires inspection. [write]
+- `delete_article` — Delete an article and exclude its index from retrieval. Underlying index cleanup is asynchronous; any original converted file is preserved. [destructive]
 - `delete_file` — Start asynchronous deletion of a knowledge-base file. [destructive]
 - `download_file` — Download a knowledge-base file through OOMOL file transit and return a temporary public URL.
+- `get_article` — Read the full editable article, its format version, revision and knowledge-base synchronization state.
 - `get_file` — Get metadata and processing status for a knowledge-base file.
+- `list_articles` — List knowledge articles with draft and synchronization metadata, without document bodies.
 - `list_files` — List files in the current OOMOL team's knowledge base.
+- `patch_article_blocks` — Atomically update, insert or delete BlockNote blocks by ID without replacing the article. Updates merge properties and replace only explicitly supplied block content, preserving other blocks, children, images and formatting. Operations run in order; a missing ID or invalid operation rolls back the entire batch. Requires format version 3 and the expected revision. Retry with identical saveId, revision and operations. Saves a draft; does not publish. [write]
+- `publish_article` — Publish an exact saved revision to the knowledge base, replacing its previous index asynchronously. Retry uncertain transport outcomes with the same publishId and revision. Stop and inspect failed or uncertain synchronization states. [write]
 - `retrieve` — Retrieve the most relevant text chunks from the current OOMOL team's knowledge base.
+- `save_article_draft` — Save BlockNote content and title with optimistic revision checking. This only saves a draft; publish_article updates retrieval. Retry an uncertain request with the identical saveId, revision and body. [write]
+- `save_article_markdown` — Replace the entire article body and title from Markdown, saving a BlockNote draft at the expected revision. This is full replacement, not append or patch; blocks and private images absent from Markdown are removed from the draft. Read and reconcile before saving; on 409 never blindly retry with a new revision. Does not publish. [write]
 - `upload_file` — Upload a publicly reachable file URL to the current OOMOL team's knowledge base and start asynchronous indexing. [write]
+- `wait_for_article_ready` — Poll the latest article publication once. Ready means its syncRevision is indexed; a newer draft can still be unpublished. Compare syncRevision with your requested revision when tracking a particular publication.
 - `wait_for_file_deleted` — Get a file's deletion state while waiting for deletion to finish.
 - `wait_for_file_ready` — Get a file's ingestion state while waiting for it to become searchable.
 

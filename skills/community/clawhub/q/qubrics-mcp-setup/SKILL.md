@@ -1,19 +1,34 @@
 ---
 name: "qubrics-mcp-setup"
 description: "Connect OpenClaw and other agent clients to hosted or local Qubrics MCP servers for mailbox, sending, and management tools."
-version: "2.0.4"
+version: "2.0.8"
 metadata:
   openclaw:
     skillKey: "qubrics-mcp-setup"
     homepage: "https://github.com/qubrics/skills"
-    primaryEnv: "SENDMUX_API_KEY"
+    primaryEnv: "QUBRICS_API_KEY"
     envVars:
+      - name: "QUBRICS_API_KEY"
+        required: false
+        description: "Optional Qubrics API key or scoped agent token used by CLI, SDK, HTTP, or MCP examples."
+      - name: "QUBRICS_MAILBOX_API_KEY"
+        required: false
+        description: "Optional mailbox key for the Mailbox surface in the candidate Qubrics MCP server."
+      - name: "QUBRICS_MANAGEMENT_API_KEY"
+        required: false
+        description: "Optional root key for the Management surface in the candidate Qubrics MCP server."
+      - name: "QUBRICS_MBX_KEY"
+        required: false
+        description: "Example secret-store variable for a mailbox key; explicitly pass its value through QUBRICS_API_KEY or the authorised request header."
       - name: "QUBRICS_MCP_ALLOW_UNAUTHENTICATED_HTTP"
         required: false
         description: "Inherited alias supported by the unpublished MCP source; leave unset for the released local MCP workflow."
       - name: "QUBRICS_MCP_APP_OPENAPI"
         required: false
         description: "Inherited alias supported by the unpublished MCP source; leave unset for the released local MCP workflow."
+      - name: "QUBRICS_MCP_HTTP_BEARER_TOKEN"
+        required: false
+        description: "Optional bearer token expected by the candidate Qubrics local HTTP MCP server."
       - name: "QUBRICS_MCP_OPENAPI_INPUT_DIR"
         required: false
         description: "Inherited alias supported by the unpublished MCP source; leave unset for the released local MCP workflow."
@@ -23,18 +38,12 @@ metadata:
       - name: "QUBRICS_MCP_SURFACES"
         required: false
         description: "Inherited alias supported by the unpublished MCP source; leave unset for the released local MCP workflow."
-      - name: "SENDMUX_API_KEY"
+      - name: "QUBRICS_ROOT_KEY"
         required: false
-        description: "Optional Qubrics API key or scoped agent token used by CLI, SDK, HTTP, or MCP examples."
-      - name: "SENDMUX_MAILBOX_API_KEY"
+        description: "Example secret-store variable for a root key; explicitly pass its value through QUBRICS_API_KEY or the authorised request header."
+      - name: "QUBRICS_SENDING_API_KEY"
         required: false
-        description: "Optional mailbox key for the Mailbox surface in the combined MCP server."
-      - name: "SENDMUX_MANAGEMENT_API_KEY"
-        required: false
-        description: "Optional root key for the Management surface in the combined MCP server."
-      - name: "SENDMUX_MBX_KEY"
-        required: false
-        description: "Optional Qubrics mailbox key for Mailbox and send-capable mailbox workflows."
+        description: "Optional send-capable mailbox key or owner-approved agent token for the candidate Qubrics MCP Sending surface."
       - name: "SENDMUX_MCP_ALLOW_UNAUTHENTICATED_HTTP"
         required: false
         description: "Disables HTTP authentication when enabled. Leave unset in this workflow."
@@ -53,12 +62,6 @@ metadata:
       - name: "SENDMUX_MCP_SURFACES"
         required: false
         description: "Optional comma-separated surfaces for the combined Qubrics MCP server."
-      - name: "SENDMUX_ROOT_KEY"
-        required: false
-        description: "Optional Qubrics root key for account-level Management API setup."
-      - name: "SENDMUX_SENDING_API_KEY"
-        required: false
-        description: "Optional send-capable mailbox key or owner-approved agent token for the Sending MCP surface."
     install:
       - kind: "uv"
         package: "qubrics-mcp"
@@ -100,17 +103,17 @@ SDK source declares `https://mcp.qubrics.com/mcp` as its canonical resource and 
 
 ## Install
 
-Local examples below require an installed `qubrics-mcp` build from SDK source `a326bc923fff448470d908bb527afaaa35f6d739`. Publication is pending. Before using the package-index install below, verify the intended release is published. Hosted OAuth remains available at `https://mcp.qubrics.com/mcp`.
+Local examples below require an installed `qubrics-mcp` build from SDK source `ff61155fb25c77fa7794c68a4b9f3a6eaaba5577`. Publication is pending. Before using the package-index install below, verify the intended release is published. Hosted OAuth remains available at `https://mcp.qubrics.com/mcp`.
 
 ```bash
 pip install qubrics-mcp
 ```
 
-The candidate `qubrics-mcp` source declares package version 2.2.0. Its MCP protocol revisions are `2025-11-25` and `2026-07-28`, over stdio or Streamable HTTP. This source is unpublished.
+The candidate `qubrics-mcp` source declares package version 3.0.0. Its MCP protocol revisions are `2025-11-25` and `2026-07-28`, over stdio or Streamable HTTP. This source is unpublished.
 
-Its catalogue contains 150 tool names across Mailbox (92), Management (46) and Sending (12). Each of the 75 unprefixed tools (46 Mailbox, 23 Management, 6 Sending) has a `qubrics_` alias.
+Its catalogue contains 130 tool names across Mailbox (72), Management (46) and Sending (12). Each of the 65 unprefixed tools (36 Mailbox, 23 Management, 6 Sending) has a `qubrics_` alias.
 
-The released `sendmux-mcp` 2.2.0 wheel is separate: 54 tools (26 Mailbox, 22 Management, 6 Sending), with the old `sendmux-mcp*` executable names and no `qubrics_` aliases. OAuth grants and selected surfaces limit tool visibility.
+The released `sendmux-mcp` 2.2.0 wheel is separate: 54 tools (26 Mailbox, 22 Management, 6 Sending), with the old `sendmux-mcp*` executable names and no `qubrics_` aliases. Its local HTTP bearer setting is `SENDMUX_MCP_HTTP_BEARER_TOKEN`. OAuth grants and selected surfaces limit tool visibility.
 
 Console scripts:
 
@@ -140,11 +143,11 @@ Use the connected server's public tool discovery before choosing a tool below. I
 
 | Surface    | Key                                                                     | Tool count | Example tools                                                                                                                                         |
 | ---------- | ----------------------------------------------------------------------- | ---------: | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Mailbox    | `smx_mbx_` or scoped `smx_agent_`                                       |         92 | `mailbox_list_granted_mailboxes`, `mailbox_search_message_snippets`, `mailbox_get_attachment`, `mailbox_upload_attachment`, `mailbox_wait_for_message` |
+| Mailbox    | `smx_mbx_` or scoped `smx_agent_`                                       |         72 | `mailbox_list_granted_mailboxes`, `mailbox_search_message_snippets`, `mailbox_get_attachment`, `mailbox_upload_attachment`, `mailbox_wait_for_message` |
 | Management | `smx_root_`                                                             |         46 | `management_create_domain`, `management_create_mailbox`, `management_create_mailbox_key`, `management_get_spend_summary`, `management_create_webhook` |
 | Sending    | Send-capable `smx_mbx_` or owner-approved Sending-resource `smx_agent_` |         12 | `sending_send_email`, `sending_send_email_batch`, `sending_upload_attachment`, `sending_create_attachment_upload`, `sending_get_attachment`            |
 
-Compatibility notes must distinguish the unpublished `qubrics-mcp` source at SDK `a326bc923fff448470d908bb527afaaa35f6d739` and its 150 tool names (92 Mailbox, 46 Management, 12 Sending), including 75 `qubrics_` aliases, from the released `sendmux-mcp` 2.2.0 wheel's catalogue above. Do not describe a credential-visible subset as the catalogue.
+Compatibility notes must distinguish the unpublished `qubrics-mcp` source at SDK `ff61155fb25c77fa7794c68a4b9f3a6eaaba5577` and its 130 tool names (72 Mailbox, 46 Management, 12 Sending), including 65 `qubrics_` aliases, from the released `sendmux-mcp` 2.2.0 wheel's catalogue above. Do not describe a credential-visible subset as the catalogue.
 
 Hosted tool visibility depends on the approved grant. For multi-mailbox grants, call `mailbox_list_granted_mailboxes` first and pass the returned `mailbox_id` to mailbox tools when targeting a mailbox. Client examples in this guide are documented configurations, not claims that the client is certified compatible; verify the chosen client separately.
 
@@ -161,43 +164,43 @@ Attachment upload mode depends on transport and send surface:
 Mailbox-only stdio:
 
 ```bash
-SENDMUX_API_KEY="$SENDMUX_MBX_KEY" qubrics-mcp-mailbox
+QUBRICS_API_KEY="$QUBRICS_MBX_KEY" qubrics-mcp-mailbox
 ```
 
 Management-only stdio:
 
 ```bash
-SENDMUX_API_KEY="$SENDMUX_ROOT_KEY" qubrics-mcp-management
+QUBRICS_API_KEY="$QUBRICS_ROOT_KEY" qubrics-mcp-management
 ```
 
 Sending-only stdio:
 
 ```bash
-SENDMUX_API_KEY="$SENDMUX_MBX_KEY" qubrics-mcp-sending
+QUBRICS_API_KEY="$QUBRICS_MBX_KEY" qubrics-mcp-sending
 ```
 
 Combined stdio:
 
 ```bash
-SENDMUX_MCP_SURFACES=mailbox,management,sending \
-SENDMUX_MAILBOX_API_KEY="$SENDMUX_MBX_KEY" \
-SENDMUX_MANAGEMENT_API_KEY="$SENDMUX_ROOT_KEY" \
-SENDMUX_SENDING_API_KEY="$SENDMUX_MBX_KEY" \
+QUBRICS_MCP_SURFACES=mailbox,management,sending \
+QUBRICS_MAILBOX_API_KEY="$QUBRICS_MBX_KEY" \
+QUBRICS_MANAGEMENT_API_KEY="$QUBRICS_ROOT_KEY" \
+QUBRICS_SENDING_API_KEY="$QUBRICS_MBX_KEY" \
 qubrics-mcp
 ```
 
 Local HTTP bearer:
 
 ```bash
-SENDMUX_API_KEY="$SENDMUX_MBX_KEY" \
-SENDMUX_MCP_HTTP_BEARER_TOKEN="$SENDMUX_MCP_HTTP_BEARER_TOKEN" \
+QUBRICS_API_KEY="$QUBRICS_MBX_KEY" \
+QUBRICS_MCP_HTTP_BEARER_TOKEN="$QUBRICS_MCP_HTTP_BEARER_TOKEN" \
 qubrics-mcp-mailbox --transport http --host 127.0.0.1 --port 8765 --path /mcp
 ```
 
 Client header for that local HTTP server:
 
 ```text
-Authorization: Bearer $SENDMUX_MCP_HTTP_BEARER_TOKEN
+Authorization: Bearer $QUBRICS_MCP_HTTP_BEARER_TOKEN
 ```
 
 `/health` returns selected surfaces for local HTTP servers.
@@ -215,7 +218,7 @@ Local stdio, one mailbox server:
       "type": "stdio",
       "command": "qubrics-mcp-mailbox",
       "env": {
-        "SENDMUX_API_KEY": "${env:SENDMUX_MBX_KEY}"
+        "QUBRICS_API_KEY": "${env:QUBRICS_MBX_KEY}"
       }
     }
   }
@@ -232,9 +235,9 @@ Local stdio, all three surfaces:
       "command": "qubrics-mcp",
       "args": ["--surfaces", "mailbox,management,sending"],
       "env": {
-        "SENDMUX_MAILBOX_API_KEY": "${env:SENDMUX_MBX_KEY}",
-        "SENDMUX_MANAGEMENT_API_KEY": "${env:SENDMUX_ROOT_KEY}",
-        "SENDMUX_SENDING_API_KEY": "${env:SENDMUX_MBX_KEY}"
+        "QUBRICS_MAILBOX_API_KEY": "${env:QUBRICS_MBX_KEY}",
+        "QUBRICS_MANAGEMENT_API_KEY": "${env:QUBRICS_ROOT_KEY}",
+        "QUBRICS_SENDING_API_KEY": "${env:QUBRICS_MBX_KEY}"
       }
     }
   }
@@ -249,7 +252,7 @@ Local/private HTTP bearer:
     "qubrics-local-http": {
       "url": "http://127.0.0.1:8765/mcp",
       "headers": {
-        "Authorization": "Bearer ${env:SENDMUX_MCP_HTTP_BEARER_TOKEN}"
+        "Authorization": "Bearer ${env:QUBRICS_MCP_HTTP_BEARER_TOKEN}"
       }
     }
   }
@@ -272,7 +275,7 @@ Client notes:
 
 - Cursor: put project config at `.cursor/mcp.json` or global config at `~/.cursor/mcp.json`; Cursor interpolates `${env:NAME}` in `command`, `args`, `env`, `url`, and `headers`.
 - Cline IDE extension: open **Configure MCP Servers** and use literal `${env:NAME}` references in `env` or `headers`. For a remote Qubrics entry, set `type` to `streamableHttp`; omission defaults to legacy SSE.
-- Cline CLI: use the `cline mcp` wizard rather than assuming the IDE's config path or interpolation. The CLI does not expand `${env:NAME}` in MCP JSON, and a literal `env` value overrides the inherited environment. For local stdio, load the exact `SENDMUX_MAILBOX_API_KEY`, `SENDMUX_MANAGEMENT_API_KEY`, or `SENDMUX_SENDING_API_KEY` value from the secret store into Cline's environment and omit `env` from the server entry; keep `command` and `--surfaces` as needed. For hosted OAuth, use explicit `type: "streamableHttp"` and `url` with no bearer header. Do not configure a CLI local-HTTP bearer through an unexpanded secret reference.
+- Cline CLI: use the `cline mcp` wizard rather than assuming the IDE's config path or interpolation. The CLI does not expand `${env:NAME}` in MCP JSON, and a literal `env` value overrides the inherited environment. For local stdio, load the exact `QUBRICS_MAILBOX_API_KEY`, `QUBRICS_MANAGEMENT_API_KEY`, or `QUBRICS_SENDING_API_KEY` value from the secret store into Cline's environment and omit `env` from the server entry; keep `command` and `--surfaces` as needed. For hosted OAuth, use explicit `type: "streamableHttp"` and `url` with no bearer header. Do not configure a CLI local-HTTP bearer through an unexpanded secret reference.
 
 ## Claude Code
 
@@ -296,7 +299,7 @@ Local stdio:
       "command": "qubrics-mcp-mailbox",
       "args": [],
       "env": {
-        "SENDMUX_API_KEY": "${SENDMUX_MBX_KEY}"
+        "QUBRICS_API_KEY": "${QUBRICS_MBX_KEY}"
       }
     }
   }
@@ -312,14 +315,14 @@ Local HTTP bearer:
       "type": "http",
       "url": "http://127.0.0.1:8765/mcp",
       "headers": {
-        "Authorization": "Bearer ${SENDMUX_MCP_HTTP_BEARER_TOKEN}"
+        "Authorization": "Bearer ${QUBRICS_MCP_HTTP_BEARER_TOKEN}"
       }
     }
   }
 }
 ```
 
-Merge those entries into project `.mcp.json`. Load `SENDMUX_MBX_KEY` and `SENDMUX_MCP_HTTP_BEARER_TOKEN` from the user's secret store into Claude Code's launch environment. Claude Code expands `${VAR}` in `env` and `headers`; keep the values in that environment instead of expanding them into `claude mcp add` arguments.
+Merge those entries into project `.mcp.json`. Load `QUBRICS_MBX_KEY` and `QUBRICS_MCP_HTTP_BEARER_TOKEN` from the user's secret store into Claude Code's launch environment. Claude Code expands `${VAR}` in `env` and `headers`; keep the values in that environment instead of expanding them into `claude mcp add` arguments.
 
 ## Codex
 
@@ -330,10 +333,10 @@ Local stdio:
 ```toml
 [mcp_servers.qubrics_mailbox]
 command = "qubrics-mcp-mailbox"
-env_vars = ["SENDMUX_API_KEY"]
+env_vars = ["QUBRICS_API_KEY"]
 ```
 
-Run Codex with `SENDMUX_API_KEY` set to an `smx_mbx_` key.
+Run Codex with `QUBRICS_API_KEY` set to an `smx_mbx_` key.
 
 Combined stdio:
 
@@ -341,7 +344,7 @@ Combined stdio:
 [mcp_servers.qubrics]
 command = "qubrics-mcp"
 args = ["--surfaces", "mailbox,management,sending"]
-env_vars = ["SENDMUX_MAILBOX_API_KEY", "SENDMUX_MANAGEMENT_API_KEY", "SENDMUX_SENDING_API_KEY"]
+env_vars = ["QUBRICS_MAILBOX_API_KEY", "QUBRICS_MANAGEMENT_API_KEY", "QUBRICS_SENDING_API_KEY"]
 ```
 
 Hosted remote OAuth:
@@ -357,7 +360,7 @@ Local HTTP bearer:
 ```toml
 [mcp_servers.qubrics_local_http]
 url = "http://127.0.0.1:8765/mcp"
-bearer_token_env_var = "SENDMUX_MCP_HTTP_BEARER_TOKEN"
+bearer_token_env_var = "QUBRICS_MCP_HTTP_BEARER_TOKEN"
 ```
 
 ## VS Code And GitHub Copilot
@@ -379,11 +382,11 @@ Local stdio:
     }
   ],
   "servers": {
-    "sendmuxMailbox": {
+    "qubricsMailbox": {
       "type": "stdio",
       "command": "qubrics-mcp-mailbox",
       "env": {
-        "SENDMUX_API_KEY": "${input:qubrics-mbx-key}"
+        "QUBRICS_API_KEY": "${input:qubrics-mbx-key}"
       }
     }
   }
@@ -403,7 +406,7 @@ Local HTTP bearer:
     }
   ],
   "servers": {
-    "sendmuxLocalHttp": {
+    "qubricsLocalHttp": {
       "type": "http",
       "url": "http://127.0.0.1:8765/mcp",
       "headers": {
@@ -437,7 +440,7 @@ GitHub Copilot CLI reads persistent servers from `~/.copilot/mcp-config.json`. K
       "command": "qubrics-mcp-mailbox",
       "args": [],
       "env": {
-        "SENDMUX_API_KEY": "${SENDMUX_MBX_KEY}"
+        "QUBRICS_API_KEY": "${QUBRICS_MBX_KEY}"
       },
       "tools": ["*"]
     },
@@ -450,7 +453,7 @@ GitHub Copilot CLI reads persistent servers from `~/.copilot/mcp-config.json`. K
       "type": "http",
       "url": "http://127.0.0.1:8765/mcp",
       "headers": {
-        "Authorization": "Bearer ${SENDMUX_MCP_HTTP_BEARER_TOKEN}"
+        "Authorization": "Bearer ${QUBRICS_MCP_HTTP_BEARER_TOKEN}"
       },
       "tools": ["*"]
     }
@@ -470,7 +473,7 @@ Local stdio:
     "qubrics-mailbox": {
       "command": "qubrics-mcp-mailbox",
       "env": {
-        "SENDMUX_API_KEY": "$SENDMUX_MBX_KEY"
+        "QUBRICS_API_KEY": "$QUBRICS_MBX_KEY"
       },
       "trust": false
     }
@@ -499,7 +502,7 @@ Local HTTP bearer:
     "qubrics-local-http": {
       "httpUrl": "http://127.0.0.1:8765/mcp",
       "headers": {
-        "Authorization": "Bearer $SENDMUX_MCP_HTTP_BEARER_TOKEN"
+        "Authorization": "Bearer $QUBRICS_MCP_HTTP_BEARER_TOKEN"
       },
       "trust": false
     }
@@ -523,7 +526,7 @@ After adding the server:
    - Management: `management_get_connection`.
    - Sending: `sending_get_connection`; no email is sent.
    - These checks need no mailbox selector. Tool discovery alone does not validate the upstream credential.
-4. If local HTTP returns `401`, check the client `Authorization` header against `SENDMUX_MCP_HTTP_BEARER_TOKEN`.
+4. If local HTTP returns `401`, check the client `Authorization` header against `QUBRICS_MCP_HTTP_BEARER_TOKEN`.
 5. If the process exits before connecting, check the key family for the selected surface: Mailbox accepts `smx_mbx_` or appropriately scoped `smx_agent_`; Sending accepts send-capable `smx_mbx_` or owner-approved Sending-resource `smx_agent_`; Management requires `smx_root_`.
 
 ## Routing

@@ -36,6 +36,20 @@
 保留待检路径并标红，有限搜索失败也绘制端点、搜索范围和原因。SVG 是人审预览，JSON 与
 独立几何检查仍是机器证据；两者都不写编辑器。
 
+求解输入口径（#309）：
+
+- 板边距离用原生 Safe Spacing 的 Track/Via↔Board Outline 格（快照 `rules.copperToEdgeMil`），
+  铺铜内缩用 Copper/Plane Zone↔Board Outline 格（`rules.zoneToEdgeMil`）；JLCEDA 默认二者为
+  11.8 mil 与 10 mil，不能互相代替。`rules.spacingMil` 列出全部格值，`rules.spacingSource` 记录路径与单位。
+- 直边 POLYGON 焊盘按绝对坐标精确参与净距；含 ARC 边的不近似，报 unsupported。
+- 带孔焊盘按 `holeGeometry`（mil）与 Hole↔Track 规则参与净距，同网金属化孔除外；孔偏移或
+  旋转未采集、偏移超出 ±0.001 浮点噪声（单位未核实）、孔旋转不是 π/2 整数倍弧度时为 unknown
+  （现场 USB-C 槽孔偏移 ±0.0007、竖向旋转恰为 π/2）。SLOT 按保守跑道形（脊长 = 孔长）建模。
+- `pcb check` 的铜到板边按板框中心线（`centerlineBBox`）量，与原生 DRC 一致；渲染外框含板框线宽。
+- 任何无法精确测量的焊盘或孔逐项写入 `reasons` 并返回 `incomplete`，不再只报第一项拒绝整板。
+- 封装内部的槽孔区、禁布区和填充官方接口不暴露（快照 `unsupported.footprintNonPadPrimitives`），
+  求解结果不覆盖它们，写回后必须以原生 DRC 为准。
+
 请求示例（mil、y-UP，端点使用唯一 `位号.焊盘号`）：
 
 ```json
@@ -62,6 +76,31 @@ RECT/圆角 RECT/OVAL/圆焊盘、直线、实心多边形铜区、禁线区和�
 `pcb layout-plan` 将同一内核用于候选及多模块联动，`pcb module-check --requirements layout.json`
 使用独立需求和新鲜回读检查预留。schemaVersion 3 声明 routing 与 reflow，旧输入兼容但不
 自动获得逃线通过结论。预留路径是规划数据，不写成工程铜；预览、apply 与验收共用几何。
+
+逐脚可布性：`pcb routability --board board.json --out routability.json [--component J1]`
+不需要 routing 声明，对每个有网络的贴片焊盘报告合法过孔位数量、最近过孔位和逃线方向；
+既无过孔位又无出口的焊盘列为 `trapped` 并给出阻挡对象，退出码非零。布局确认前必跑；
+关键网（电源干线、先打的过孔）手工布线后再跑一次，确认没有把相邻信号脚的唯一出口堵死。
+通过只是局部必要条件，相邻焊盘共用的窄通道仍需 `escape-plan` 联合预留。
+
+### 离线方案写回与对账（live-verified）
+
+`pcb plan-apply --plan plan.json --project-uuid <uuid>` 把一份离线布线方案写到当前 PCB：方案里的网络换成
+方案的线和过孔，其余网络必须原样不变。写完回读，按每个网络每层的总线长、按线宽加权的线长、过孔位置集合
+对账；对不上的网络整层清掉重写，最多 `--passes` 轮。标为 `failed` 的方案网络最终没有铜。
+
+- 先 `--dry-run` 看将删除和新增的数量；它只读。
+- `--project-uuid` 必填，每次回读都核对窗口仍是该工程的 PCB，窗口变了就在下一步停下。
+- `--replace-nets` 可以多列要顺带清掉旧铜的网络，但必须包含方案里的全部网络。
+- 方案的层是索引，用 `--layer-map`（默认 `0=1,1=2,2=16`）换成层号；单位 mil，y 向上。
+- 被替换网络上有锁定铜或圆弧走线时拒绝执行；先显式 `pcb track-lock --all --unlock`，圆弧先处理。
+- 命令不保存、不重铺、不跑 DRC。成功后仍须 `pcb pour-rebuild` → `pcb save` → `doc reload` → `pcb drc`。
+- 退出码非零表示没能证明板子与方案一致，此时不要保存，先看输出里的 `mismatches`。
+
+不能只按 ID 删线再看返回值：删掉一条线后，编辑器会把它旁边共线的线段合并成新 ID 的线，旧清单里没有它，
+于是残留；沿原路径按另一线宽重画的网络线长对得上、线宽不对。这两种情况都要靠带线宽的回读对账才能发现，
+`plan-apply` 已内置。验证范围：一块 4 层板上 42 个网络、约 600 个对象的替换，一轮对账一致，保存重载后复核一致，
+原生 DRC 无新增违例；批量写入仍是逐个对象调用。
 
 职责边界固定为：Layout 求解器枚举模块位置、旋转、移动组与外部连接重算；每个布局候选
 投影为临时板状态后，调用 PCB Router 公共内核验证固定几何下的端点路径和共同通道。
@@ -112,6 +151,14 @@ save → doc reload → DRC。现场要点（ESP32-S3R8，2026-10-17）：
   仍不通再手布（换层绕行）。路由器会把孔贴近已锁定的宽 RF 线（实测 2.8 mil），每轮跑
   `pcb check` 找间距。
 - 路由器给 3V3 用 7.06 mil 细线（低于 9.84 mil 电源支线档），`width-under-spec` 会报。
+- 作业模型（EDA ≥ 4.1.79，#308）：`pcb autoroute` 先走 `pcb.route.auto.start`（`startAutoRouting`）
+  拿 `jobId`，每 5 s 用 `pcb.route.auto.status` 打印宿主自报的状态、`progress`、引擎布通率与耗时，
+  不自行推算百分比；路由期间连接器队列不被占用。`--timeout` 到期或 Ctrl-C 时调用
+  `pcb.route.auto.cancel`（`cancelAutoJob`），只有宿主在 10 s 内回报 `canceled`/终态才算已停，
+  否则命令失败并给出 `--job <id>` 复查。终态结果附本作业起止的铜增量与错误日志，按 `jobId` 绑定，
+  迟到结果不会算到别的调用上；`completed` 但无新增铜也判失败。作业结束后仍须 save → reload → DRC。
+- 宿主或连接器没有作业接口时退回阻塞的 `autoRouting`：无进度、不能取消，CLI 超时只结束等待，
+  布线器仍占队列直到自行结束（宿主内部上限 900 s）；此时等待结束，不要重启 daemon。
 外部引擎（`--router` / `FREEROUTING_CMD`）只作离线兜底，`getDsnFile` 丢禁布区。
 
 - `pcb.line.create` — a copper **track** (导线): line segment on a copper layer
@@ -204,7 +251,15 @@ save → doc reload → DRC。现场要点（ESP32-S3R8，2026-10-17）：
   (`notDeletable[]` with the parent component + `ok:false`; use `pcb via-bond` to net
   them, or delete the whole component) and additionally readback-verifies the rest
   (`removed`/`count` only count what actually vanished; unattributable survivors land
-  in `notDeleted`). ⚠️ **After surgical
+  in `notDeleted`). **Exit contract (#312)**: any non-empty `notFound` / `notDeleted` /
+  `notDeletable` / `skippedLocked` makes the command (and an `easyeda apply` step) exit
+  non-zero with a `partial delete` error, while stdout still carries the full result —
+  one valid id no longer turns a batch into a success. **Ids are only valid until the
+  next copper write or delete**: a T-branch splits the trunk into two NEW ids, and
+  deleting the branch merges them back into a third NEW id. So when deleting across
+  several calls, re-export ids before each call (or put related segments in ONE call),
+  and after a by-id batch delete re-export and reconcile copper per net and layer;
+  `pcb plan-apply` does this reconciliation for you. ⚠️ **After surgical
   edits (delete/via-hop/fill changes), a burst of same-net (usually GND) Connection
   Errors in DRC is pour-mediated connectivity gone stale, not real breaks — run
   `pcb pour-rebuild` first, then re-judge** (verified live: 11→1 baseline).

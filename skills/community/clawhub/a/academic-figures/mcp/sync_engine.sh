@@ -9,7 +9,7 @@ SRC="$ROOT/scripts"
 DST="$ROOT/mcp/af_engine"
 mkdir -p "$DST/journal"
 
-FILES="gen_figure.py af_draw.py af_shared.py af_v23_stats.py af_v23_charts.py af_wizard.py af_diagnostics.py af_resilience.py detect_cjk_font.py check_consistency.py banned_af.txt"
+FILES="gen_figure.py af_draw.py af_shared.py af_v23_stats.py af_v23_charts.py af_wizard.py af_diagnostics.py af_resilience.py detect_cjk_font.py check_consistency.py af_flow.py af_mermaid.py banned_af.txt"
 for f in $FILES; do
   cp "$SRC/$f" "$DST/$f"
 done

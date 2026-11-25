@@ -1,7 +1,7 @@
 ---
 name: base-address-balance
-description: Base wallet balance lookup with no API key. Returns the ETH balance and token holdings (USDC, WETH, the top 200 Base tokens, and any token contracts you name) of one Base address at the latest block. Costs $0.01 USDC per lookup, paid from the agent's existing agentcash or awal wallet. Use to check what a Base wallet holds before a payment, transfer or swap. Balances only, with no labels, identities or USD values.
-version: 1.0.0
+description: Retired on 2026-11-23. The endpoint this skill called (api.botx402.io/base-address-balance) is no longer served and answers no request. Do not call it; use another Base wallet balance source. Kept on ClawHub only so existing copies read this notice.
+version: 1.0.2
 homepage: https://botx402.io
 metadata:
   openclaw:
@@ -14,7 +14,13 @@ metadata:
         description: agentcash's own key override. agentcash signs with it; the skill only checks that it's set.
 ---
 
-# Base wallet balance
+# Base wallet balance (retired)
+
+**This skill is retired as of 2026-11-23.** The endpoint it paid, `https://api.botx402.io/base-address-balance`, is archived and no longer served: it returns no balance and no 402. Do not run the commands below. For a Base wallet's balance, use another source (a Base RPC provider's `eth_getBalance` and ERC-20 `balanceOf`, or a listed balances API). Nothing here reads or needs a wallet any more.
+
+The text below is kept as the record of what the skill did.
+
+---
 
 One paid call to `api.botx402.io` returns what a Base wallet holds now, for $0.01 USDC. No account, no API key.
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Manages context overflow by handing off to a fresh subagent at 80% usage
+Manages context overflow by handing off to a fresh subagent at 80% usage.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill when a long-running task approaches context limits to checkpoint progress and hand continuation to a fresh agent.
+Developers use this skill to checkpoint ongoing work and arrange continuation by a fresh agent when context is running low.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Handoff guidance can carry forward settings that suppress permission checks and confirmations.
+Risk: Handoff guidance may carry forward settings that skip permission checks and user confirmations.
 
-Mitigation: Review inherited execution settings and require normal permission and confirmation checks before a continuation agent acts.
-
-Risk: Security analysis is incomplete because some local references could not be resolved.
-
-Mitigation: Resolve and review the referenced modules, then rerun a complete security scan before installation.
+Mitigation: Review the inherited execution mode and flags before continuing; keep permission checks and user confirmation enabled for consequential actions.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-conserve-clear-context)
-- [Plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
+- [ClawHub release](https://clawhub.ai/athola/skills/nm-conserve-clear-context)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Guidance]
+**Output Type(s):** [Files, Markdown, Guidance, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown session-state checkpoint and continuation instructions]
+**Output Format:** [Markdown session checkpoints with continuation guidance and command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May hand off task continuation to a fresh agent.]
+**Other Properties Related to Output:** [Checkpoint path can be configured; the default is .claude/session-state.md.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

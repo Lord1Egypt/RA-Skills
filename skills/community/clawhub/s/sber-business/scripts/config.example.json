@@ -7,6 +7,7 @@
   "accounts": [],
   "orgName": "Моя Компания",
   "timezoneOffsetHours": 3,
+  "maskPrivacy": false,
   "telegram": {
     "enabled": true,
     "token": "123456789:ABCdefGHIjklMNOpqrSTUvwxYZ",

@@ -1,6 +1,6 @@
 ## Description:
 
-Processes external resources into stored knowledge with quality scoring and routing.
+Processes external resources into stored knowledge with quality scoring and routing
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to evaluate articles, papers, and other external resources, then organize useful material into a knowledge base and route it to relevant project or infrastructure work.
+Developers use this skill to assess external articles, papers, and documents, decide whether and where to store useful knowledge, and connect it to existing knowledge structures. It also guides quality review, discussion promotion, application routing, and curator-approved tidying.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review reports GitHub publishing and project or skill changes beyond the stated knowledge-intake purpose.
+Risk: External knowledge may be published to GitHub Discussions by default or influence skill and agent updates without an approval gate.
 
-Mitigation: Review each proposed publication or project change and get explicit user approval before execution; avoid granting GitHub write access unless the workflow requires it.
-
-Risk: Security analysis was partial because several referenced local paths were unavailable for review.
-
-Mitigation: Review the missing components and relevant workflows before installation or before granting access to publishing and change operations.
+Mitigation: Require explicit user approval before publishing ingested content or applying changes to skills and agent instructions.
 
 ## Reference(s):
 
 - [ClawHub release page](https://clawhub.ai/athola/skills/nm-memory-palace-knowledge-intake)
-- [Memory Palace project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace)
-- [KonMari Method](https://konmari.com/about-the-konmari-method/)
+- [Memory Palace project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace)
+- [KonMari method](https://konmari.com/about-the-konmari-method/)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, API calls]
+**Output Type(s):** [Markdown, Guidance, Shell commands]
 
-**Output Format:** [Markdown knowledge entries, evaluation summaries, and workflow guidance with code, shell, or API examples.]
+**Output Format:** [Structured Markdown knowledge entries, evaluation and routing recommendations, and optional GitHub GraphQL commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Knowledge entries may include source links, scoring, storage, and routing details.]
+**Other Properties Related to Output:** [Knowledge storage and application suggestions; tidying changes require explicit curator approval.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

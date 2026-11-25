@@ -1,6 +1,6 @@
 ## Description:
 
-Iterate guides AI coding assistants through repeated code review, targeted fixes, and validation, with an optional defensive workflow for incremental programming tasks.
+Automates multi-round code review and iteration with parallel dimension reviews, a defensive-programming mode, and cross-assistant installation and updates with SHA-256 verification.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-Developers use Iterate with AI coding assistants to review and improve a codebase through repeated multi-dimension review, fixes, and validation, or to carry out incremental programming with defensive checks. Architectural changes can be gated on user approval.
+Developers use this skill to have an AI assistant review and improve a codebase through repeated review, fixes, and validation, or to complete incremental coding tasks with defensive checks.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review flags concerns with signing, publishing, file handling, and update safeguards, and its component coverage is partial.
+Risk: ClawScan rates this release suspicious with high confidence and reports gaps between its stated purpose and capabilities involving signing credentials, publishing, network access, and file changes. Its inspection coverage is partial.
 
-Mitigation: Review those behaviors and their required permissions before installation; treat uninspected areas as unverified.
+Mitigation: Follow the security guidance: independently review credential handling, publishing, update, and sensitive-file behavior before installing. If proceeding, use a disposable project, withhold signing and publishing credentials until reviewed, and inspect proposed file changes and network or publishing destinations.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/jingzhao-l/skills/iterate-skill)
+- [Iterate on ClawHub](https://clawhub.ai/jingzhao-l/skills/iterate-skill)
+- [Agent Skills specification](https://agentskills.io/)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Code, Markdown, Configuration instructions, Shell commands]
+**Output Type(s):** [Code, Markdown, Shell commands, Configuration]
 
-**Output Format:** [Code edits, review findings, Markdown reports, shell commands, and configuration files]
+**Output Format:** [Code edits, Markdown review reports, shell commands, and configuration guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Scope depends on the configured review dimensions and round limit.]
+**Other Properties Related to Output:** [Review dimensions and iteration rounds are configurable; merge and push are opt-in.]
 
 ## Skill Version(s):
 
-3.15.0 (source: server-resolved release metadata, artifact frontmatter, pyproject.toml)
+3.19.0 (source: release evidence, artifact/SKILL.md, artifact/pyproject.toml)
 
 ## Ethical Considerations:
 

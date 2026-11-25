@@ -5,6 +5,7 @@ const tls = require('tls');
 const fs = require('fs');
 const path = require('path');
 const API_CONTRACT = require('./api_contract.json');
+const {parseShareReference} = require('./share_reference');
 
 const DEFAULT_BASE_URL = 'https://shareone.app';
 const CREDENTIALS_FILENAME = '.shareone_credentials';
@@ -237,8 +238,15 @@ function requestBuffer(url, options = {}, body = null, redirectsLeft = MAX_REDIR
                     nextUrl = null;
                 }
                 if (nextUrl) {
-                    const sameHost = nextUrl.host === target.host;
-                    const headers = sameHost ? (options.headers || {}) : stripAuthHeaders(options.headers || {});
+                    const sameOrigin = nextUrl.origin === target.origin;
+                    if (!['https:', 'http:'].includes(nextUrl.protocol) || (isHttps && nextUrl.protocol !== 'https:') || (!sameOrigin && body)) {
+                        const error = new Error('An insecure or unsupported redirect was refused.');
+                        error.code = 'UNSAFE_REDIRECT';
+                        error.hint = 'Check the configured endpoint and keep the current credential; HTTPS must retain HTTPS and request bodies must stay on the original origin.';
+                        reject(error);
+                        return;
+                    }
+                    const headers = sameOrigin ? (options.headers || {}) : stripAuthHeaders(options.headers || {});
                     resolve(requestBuffer(nextUrl.toString(), { ...options, headers }, body, redirectsLeft - 1));
                     return;
                 }
@@ -465,12 +473,30 @@ async function requestShareOneBuffer(apiPath, options = {}, body = null) {
     try {
         return await requestBuffer(built.url, built.options, body);
     } catch (error) {
-        const method = String(options.method || 'GET').toUpperCase();
-        const key = Object.entries(options.headers || {}).find(([name]) => name.toLowerCase() === 'idempotency-key');
-        const pathName = new URL(appendPath(getBaseUrl(), apiPath)).pathname;
-        const supported = API_CONTRACT.idempotency_operations.some(op => op.method === method &&
-            new RegExp('^' + op.path.replace(/\{[^}]+\}/g, '[^/]+') + '$').test(pathName));
-        error.replaySafe = ['GET', 'HEAD', 'OPTIONS', 'PUT', 'DELETE'].includes(method) || Boolean(key && supported);
+        error.replaySafe = requestIsReplaySafe(apiPath, options);
+        throw error;
+    }
+}
+
+function requestIsReplaySafe(apiPath, options) {
+    const method = String(options.method || 'GET').toUpperCase();
+    const key = Object.entries(options.headers || {}).find(([name, value]) => name.toLowerCase() === 'idempotency-key' && value);
+    const pathName = new URL(appendPath(getBaseUrl(), apiPath)).pathname;
+    const supported = API_CONTRACT.idempotency_operations.some(op => op.method === method &&
+        new RegExp('^' + op.path.replace(/\{[^}]+\}/g, '[^/]+') + '$').test(pathName));
+    return ['GET', 'HEAD', 'OPTIONS', 'PUT', 'DELETE'].includes(method) || Boolean(key && supported);
+}
+
+function parseShareOneResponse(res, apiPath, options = {}, validate = () => true) {
+    try {
+        const result = JSON.parse(res.text);
+        if (!validate(result)) throw new Error('Invalid response shape');
+        return result;
+    } catch (_) {
+        const error = new Error('The response did not confirm the operation result. Inspect the existing resource before replaying a write; reuse the same intent key and input when supported.');
+        error.code = 'INVALID_RESPONSE';
+        error.invalidResponse = true;
+        error.replaySafe = requestIsReplaySafe(apiPath, options);
         throw error;
     }
 }
@@ -485,7 +511,7 @@ async function requestShareOneJson(apiPath, options = {}, payload = null) {
             ...(options.headers || {}),
         },
     }, body);
-    return JSON.parse(res.text);
+    return parseShareOneResponse(res, apiPath, options);
 }
 
 function getErrorDetail(error) {
@@ -508,6 +534,9 @@ function getErrorDetail(error) {
 
 function isSudoworkMissingKeyError(error) {
     if (!error) return false;
+    const body = parseErrorBody(error);
+    const code = body.error_code || (body.detail && body.detail.code);
+    if (code && API_CONTRACT.errors[code]) return false;
     const detail = getErrorDetail(error);
 
     if (error.statusCode === 502) {
@@ -529,7 +558,10 @@ function isAuthFailedError(error) {
 }
 
 function parseErrorBody(error) {
-    try { return JSON.parse(error.responseText || '{}'); } catch (_) { return {}; }
+    try {
+        const body = JSON.parse(error.responseText || '{}');
+        return body && typeof body === 'object' && !Array.isArray(body) ? body : {};
+    } catch (_) { return {}; }
 }
 
 // --- Error steering (cli-steering rules 7 + 5b) --------------------------
@@ -549,6 +581,7 @@ const ERROR_CATEGORY_META = {
 };
 
 const ERROR_CODE_CATEGORY = {
+    UNTRUSTED_SHARE_ORIGIN: 'validation', UNSAFE_REDIRECT: 'permission',
     UNKNOWN_ARGUMENT: 'validation', MISSING_VALUE: 'validation', INVALID_BOOLEAN: 'validation',
     BAD_ARGS: 'validation', BAD_STATUS: 'validation', BAD_JSON_MODE: 'validation',
     MISSING_EMAIL: 'validation', MISSING_CODE: 'validation', INVALID_CODE_FORMAT: 'validation', NO_ACTION: 'validation',
@@ -630,13 +663,13 @@ function printShareOneScriptError(error) {
     }
     const transport = ['ECONNRESET', 'ECONNREFUSED', 'ETIMEDOUT', 'ENOTFOUND', 'EAI_AGAIN', 'EPIPE'].includes(code);
     const spec = API_CONTRACT.errors[code];
-    const category = spec?.category || API_CONTRACT.errors[fallback[status]]?.category;
-    const retryable = Boolean(body.retryable ?? (spec ? spec.retryable : transport)) &&
-        (!(transport || status >= 500 || status === 429) || error.replaySafe !== false);
+    const category = error.invalidResponse ? 'transient' : spec?.category || API_CONTRACT.errors[fallback[status]]?.category;
+    const retryable = Boolean(body.retryable ?? (spec ? spec.retryable : transport || error.invalidResponse)) &&
+        (!(transport || error.invalidResponse || status >= 500 || status === 429) || error.replaySafe !== false);
     return _emitErrorEnvelope(code, getErrorDetail(error) || String(error && error.message || ''), {
         ...(category ? {category} : {}),
         ...(transport ? {category: 'transient', hint: 'Check connectivity and back off; retry writes only when replay is safe.'} : {}),
-        hint: body.hint || (transport ? 'Check connectivity and back off; retry writes only when replay is safe.' : undefined),
+        hint: body.hint || error.hint || (error.invalidResponse ? error.message : transport ? 'Check connectivity and back off; retry writes only when replay is safe.' : undefined),
         retryable, status, detail, retryAfter: error && error.responseHeaders && error.responseHeaders['retry-after'],
     });
 }
@@ -668,22 +701,7 @@ function parseScriptArgs(options, positionalCount, usage) {
 // path, or a bare ref. Shared by every script that accepts a
 // `<share_link_or_ref>` positional arg.
 function extractShareRef(value) {
-    const raw = String(value || '').trim();
-    if (!raw) return null;
-    try {
-        const parsed = raw.includes('://') ? new URL(raw) : null;
-        const path = parsed ? parsed.pathname : raw.split('?')[0].split('#')[0];
-        const parts = path.split('/').filter(Boolean);
-        if (parts.length === 0) return raw;
-        if (parts[0] === 'file' && parts.length >= 2) return parts[1];
-        if (parts[0] === 'api' && parts.includes('shares')) {
-            const index = parts.indexOf('shares');
-            return parts[index + 1] || raw;
-        }
-        return parts[parts.length - 1] || raw;
-    } catch (_) {
-        return raw;
-    }
+    return parseShareReference(value, getBaseUrl()).shareRef;
 }
 
 module.exports = {
@@ -710,6 +728,8 @@ module.exports = {
     listSudoworkSecrets,
     emitError,
     parseScriptArgs,
+    parseShareOneResponse,
+    parseShareReference: value => parseShareReference(value, getBaseUrl()),
     printShareOneScriptError,
     readLocalApiKey,
     requestBuffer,

@@ -1,0 +1,533 @@
+{
+  "schema_version": "1.0",
+  "brand": {
+    "name": "青禾工具",
+    "aliases": [
+      "Qinghe Tools"
+    ],
+    "facts": [
+      {
+        "id": "f-export",
+        "statement": "支持 CSV 导出。",
+        "source": "合成演示资料：功能说明，不是真实品牌事实",
+        "as_of": null
+      },
+      {
+        "id": "f-platform",
+        "statement": "当前提供 Windows 和 macOS 桌面版，不提供手机 App。",
+        "source": "合成演示资料：支持平台说明，不是真实品牌事实",
+        "as_of": null
+      },
+      {
+        "id": "f-price",
+        "statement": "有免费基础版，高级协作功能收费。",
+        "source": "合成演示资料：价格说明，不是真实品牌事实",
+        "as_of": null
+      }
+    ]
+  },
+  "scope": {
+    "locale": "zh-CN（合成演示）",
+    "market": "未指定真实市场"
+  },
+  "metric_system": "local-answer-evidence-v1 (not ABI)",
+  "measurement_basis": "Imported observed answers only; source authenticity and semantic labels require Agent review.",
+  "status_counts": {
+    "observed": 0,
+    "query_failed": 0,
+    "missing": 0,
+    "not_run": 0,
+    "simulated": 4
+  },
+  "measured": {
+    "valid_answers": 0,
+    "metrics": {
+      "mention_rate": {
+        "numerator": null,
+        "denominator": 0,
+        "percent": null,
+        "unknown": 0
+      },
+      "recommendation_rate": {
+        "numerator": null,
+        "denominator": 0,
+        "percent": null,
+        "unknown": 0
+      },
+      "native_brand_citation_rate": {
+        "numerator": null,
+        "denominator": 0,
+        "percent": null,
+        "unknown": 0
+      },
+      "fact_match_rate": {
+        "numerator": null,
+        "denominator": 0,
+        "percent": null,
+        "unknown": 0
+      },
+      "intent_coverage": {
+        "numerator": null,
+        "denominator": 0,
+        "percent": null,
+        "unknown": 0
+      }
+    },
+    "tone": {
+      "reviewed_answers": 0,
+      "unknown_answers": 0,
+      "counts": {
+        "positive": null,
+        "neutral": null,
+        "negative": null,
+        "mixed": null
+      }
+    },
+    "fact_review_disagreements": [],
+    "captured_at_range": {
+      "first": null,
+      "last": null
+    },
+    "missing_capture_time_ids": [],
+    "answers_without_fact_checks": 0,
+    "questions": [
+      {
+        "question_id": "Q1",
+        "question": "预算有限的双人团队选什么任务工具？",
+        "intent": "预算选型",
+        "record_ids": [
+          "r1"
+        ],
+        "status_counts": {
+          "simulated": 1
+        },
+        "valid_answers": 0,
+        "mention_reviewed": 0,
+        "mention_hits": null,
+        "unmentioned_in_all_valid_answers": null
+      },
+      {
+        "question_id": "Q2",
+        "question": "青禾工具适合在手机上免费用吗？",
+        "intent": "移动端适用性",
+        "record_ids": [
+          "r2"
+        ],
+        "status_counts": {
+          "simulated": 1
+        },
+        "valid_answers": 0,
+        "mention_reviewed": 0,
+        "mention_hits": null,
+        "unmentioned_in_all_valid_answers": null
+      },
+      {
+        "question_id": "Q3",
+        "question": "跨境小团队如何选协作任务工具？",
+        "intent": "跨境团队协作",
+        "record_ids": [
+          "r3"
+        ],
+        "status_counts": {
+          "simulated": 1
+        },
+        "valid_answers": 0,
+        "mention_reviewed": 0,
+        "mention_hits": null,
+        "unmentioned_in_all_valid_answers": null
+      },
+      {
+        "question_id": "Q4",
+        "question": "青禾工具支持哪些桌面平台？",
+        "intent": "桌面端适用性",
+        "record_ids": [
+          "r4"
+        ],
+        "status_counts": {
+          "simulated": 1
+        },
+        "valid_answers": 0,
+        "mention_reviewed": 0,
+        "mention_hits": null,
+        "unmentioned_in_all_valid_answers": null
+      }
+    ],
+    "by_platform_model_search": []
+  },
+  "simulation_preview": {
+    "label": "SYNTHETIC ONLY — excluded from measured results",
+    "summary": {
+      "valid_answers": 4,
+      "metrics": {
+        "mention_rate": {
+          "numerator": 3,
+          "denominator": 4,
+          "percent": 75.0,
+          "unknown": 0
+        },
+        "recommendation_rate": {
+          "numerator": 1,
+          "denominator": 4,
+          "percent": 25.0,
+          "unknown": 0
+        },
+        "native_brand_citation_rate": {
+          "numerator": 1,
+          "denominator": 4,
+          "percent": 25.0,
+          "unknown": 0
+        },
+        "fact_match_rate": {
+          "numerator": 3,
+          "denominator": 5,
+          "percent": 60.0,
+          "unknown": 0
+        },
+        "intent_coverage": {
+          "numerator": 3,
+          "denominator": 4,
+          "percent": 75.0,
+          "unknown": 0
+        }
+      },
+      "tone": {
+        "reviewed_answers": 3,
+        "unknown_answers": 1,
+        "counts": {
+          "positive": 1,
+          "neutral": 2,
+          "negative": 0,
+          "mixed": 0
+        }
+      },
+      "fact_review_disagreements": [
+        {
+          "fact_id": "f-platform",
+          "match_record_ids": [
+            "r4"
+          ],
+          "contradiction_record_ids": [
+            "r2"
+          ]
+        },
+        {
+          "fact_id": "f-price",
+          "match_record_ids": [
+            "r1"
+          ],
+          "contradiction_record_ids": [
+            "r2"
+          ]
+        }
+      ],
+      "captured_at_range": {
+        "first": null,
+        "last": null
+      },
+      "missing_capture_time_ids": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ],
+      "answers_without_fact_checks": 1
+    },
+    "questions": [
+      {
+        "question_id": "Q1",
+        "question": "预算有限的双人团队选什么任务工具？",
+        "intent": "预算选型",
+        "record_ids": [
+          "r1"
+        ],
+        "status_counts": {
+          "simulated": 1
+        },
+        "valid_answers": 1,
+        "mention_reviewed": 1,
+        "mention_hits": 1,
+        "unmentioned_in_all_valid_answers": false
+      },
+      {
+        "question_id": "Q2",
+        "question": "青禾工具适合在手机上免费用吗？",
+        "intent": "移动端适用性",
+        "record_ids": [
+          "r2"
+        ],
+        "status_counts": {
+          "simulated": 1
+        },
+        "valid_answers": 1,
+        "mention_reviewed": 1,
+        "mention_hits": 1,
+        "unmentioned_in_all_valid_answers": false
+      },
+      {
+        "question_id": "Q3",
+        "question": "跨境小团队如何选协作任务工具？",
+        "intent": "跨境团队协作",
+        "record_ids": [
+          "r3"
+        ],
+        "status_counts": {
+          "simulated": 1
+        },
+        "valid_answers": 1,
+        "mention_reviewed": 1,
+        "mention_hits": 0,
+        "unmentioned_in_all_valid_answers": true
+      },
+      {
+        "question_id": "Q4",
+        "question": "青禾工具支持哪些桌面平台？",
+        "intent": "桌面端适用性",
+        "record_ids": [
+          "r4"
+        ],
+        "status_counts": {
+          "simulated": 1
+        },
+        "valid_answers": 1,
+        "mention_reviewed": 1,
+        "mention_hits": 1,
+        "unmentioned_in_all_valid_answers": false
+      }
+    ]
+  },
+  "records": [
+    {
+      "id": "r1",
+      "question_id": "Q1",
+      "question": "预算有限的双人团队选什么任务工具？",
+      "intent": "预算选型",
+      "platform": "演示平台甲",
+      "run_id": "demo-1",
+      "source": "包内编写的合成演示",
+      "status": "simulated",
+      "model": null,
+      "search_mode": "unknown",
+      "context_note": "合成首轮回答；没有实际执行查询",
+      "captured_at": null,
+      "answer": "预算有限的双人团队可以先试青禾工具。它有免费基础版，高级协作功能收费，并支持 CSV 导出。[1]",
+      "reason": null,
+      "citations_capture": "complete",
+      "citations": [
+        {
+          "url": "https://qinghe.example/pricing",
+          "kind": "native",
+          "relation": "brand",
+          "evidence": "合成来源面板 [1] 青禾工具价格说明",
+          "relation_evidence": "演示标题和品牌名称一致；域名为保留演示域名"
+        }
+      ],
+      "review": {
+        "mention": {
+          "value": true,
+          "quote": "青禾工具",
+          "reason": "正文直接出现演示品牌名"
+        },
+        "recommendation": {
+          "value": true,
+          "quote": "预算有限的双人团队可以先试青禾工具。",
+          "reason": "明确建议在该场景试用"
+        },
+        "tone": {
+          "value": "positive",
+          "quote": "预算有限的双人团队可以先试青禾工具。",
+          "reason": "作肯定的试用建议"
+        },
+        "fact_checks": [
+          {
+            "fact_id": "f-export",
+            "verdict": "match",
+            "quote": "支持 CSV 导出",
+            "reason": "与演示功能资料一致"
+          },
+          {
+            "fact_id": "f-price",
+            "verdict": "match",
+            "quote": "有免费基础版，高级协作功能收费",
+            "reason": "与演示价格资料一致"
+          }
+        ]
+      },
+      "literal_candidates": [
+        "青禾工具"
+      ],
+      "answer_sha256": "3fd4d0df92bfde7be32ac45469d1716544d0197f8c4322dc7c175251866250b9",
+      "native_brand_urls": [
+        "https://qinghe.example/pricing"
+      ],
+      "native_brand_citation_count": 1,
+      "brand_native_cited": true,
+      "included_in_measured_metrics": false
+    },
+    {
+      "id": "r2",
+      "question_id": "Q2",
+      "question": "青禾工具适合在手机上免费用吗？",
+      "intent": "移动端适用性",
+      "platform": "演示平台乙",
+      "run_id": "demo-1",
+      "source": "包内编写的合成演示",
+      "status": "simulated",
+      "model": null,
+      "search_mode": "unknown",
+      "context_note": "合成首轮回答；品牌出现在问题中，样本存在提示偏差",
+      "captured_at": null,
+      "answer": "青禾工具是仅面向手机的付费 App，没有免费方案。",
+      "reason": null,
+      "citations_capture": "complete",
+      "citations": [],
+      "review": {
+        "mention": {
+          "value": true,
+          "quote": "青禾工具",
+          "reason": "回答正文直接指向品牌"
+        },
+        "recommendation": {
+          "value": false,
+          "quote": null,
+          "reason": "只陈述平台和价格，没有建议选择"
+        },
+        "tone": {
+          "value": "neutral",
+          "quote": "青禾工具是仅面向手机的付费 App，没有免费方案。",
+          "reason": "中性陈述；事实出错和负面语气分别判断"
+        },
+        "fact_checks": [
+          {
+            "fact_id": "f-platform",
+            "verdict": "contradiction",
+            "quote": "仅面向手机",
+            "reason": "演示资料为桌面版且无手机 App"
+          },
+          {
+            "fact_id": "f-price",
+            "verdict": "contradiction",
+            "quote": "没有免费方案",
+            "reason": "演示资料有免费基础版"
+          }
+        ]
+      },
+      "literal_candidates": [
+        "青禾工具"
+      ],
+      "answer_sha256": "9de1232bc20977fd5e4b5acab12aac94caf0818a4c8b1b81472b2e45aaff0a00",
+      "native_brand_urls": [],
+      "native_brand_citation_count": 0,
+      "brand_native_cited": false,
+      "included_in_measured_metrics": false
+    },
+    {
+      "id": "r3",
+      "question_id": "Q3",
+      "question": "跨境小团队如何选协作任务工具？",
+      "intent": "跨境团队协作",
+      "platform": "演示平台甲",
+      "run_id": "demo-1",
+      "source": "包内编写的合成演示",
+      "status": "simulated",
+      "model": null,
+      "search_mode": "unknown",
+      "context_note": "合成首轮回答；没有实际执行查询",
+      "captured_at": null,
+      "answer": "先比较时区安排、权限与导出需求。可参考轻舟协作的说明：https://other.example/guide 。",
+      "reason": null,
+      "citations_capture": "complete",
+      "citations": [
+        {
+          "url": "https://other.example/guide",
+          "kind": "inline",
+          "relation": "other",
+          "evidence": "合成回答正文中的普通链接；合成来源面板为空",
+          "relation_evidence": "所指演示产品为轻舟协作，非青禾工具"
+        }
+      ],
+      "review": {
+        "mention": {
+          "value": false,
+          "quote": null,
+          "reason": "全文未提青禾工具或指代该品牌"
+        },
+        "recommendation": {
+          "value": false,
+          "quote": null,
+          "reason": "没有推荐青禾工具"
+        },
+        "tone": {
+          "value": "unknown",
+          "quote": null,
+          "reason": null
+        },
+        "fact_checks": []
+      },
+      "literal_candidates": [],
+      "answer_sha256": "b7ad260be0c0b591e1ef64de7d8757d544abca96287dd3d3e1ac83c7a033d1f8",
+      "native_brand_urls": [],
+      "native_brand_citation_count": 0,
+      "brand_native_cited": false,
+      "included_in_measured_metrics": false
+    },
+    {
+      "id": "r4",
+      "question_id": "Q4",
+      "question": "青禾工具支持哪些桌面平台？",
+      "intent": "桌面端适用性",
+      "platform": "演示平台乙",
+      "run_id": "demo-1",
+      "source": "包内编写的合成演示",
+      "status": "simulated",
+      "model": null,
+      "search_mode": "unknown",
+      "context_note": "合成首轮回答；没有实际执行查询",
+      "captured_at": null,
+      "answer": "青禾工具提供 Windows 和 macOS 桌面版。产品说明：https://qinghe.example/platforms 。",
+      "reason": null,
+      "citations_capture": "complete",
+      "citations": [
+        {
+          "url": "https://qinghe.example/platforms",
+          "kind": "inline",
+          "relation": "brand",
+          "evidence": "合成回答正文中的普通链接；合成原生来源面板为空",
+          "relation_evidence": "演示产品说明页与品牌相关，但不是原生引用"
+        }
+      ],
+      "review": {
+        "mention": {
+          "value": true,
+          "quote": "青禾工具",
+          "reason": "正文直接提到品牌"
+        },
+        "recommendation": {
+          "value": false,
+          "quote": null,
+          "reason": "只说明支持平台，没有建议选用"
+        },
+        "tone": {
+          "value": "neutral",
+          "quote": "青禾工具提供 Windows 和 macOS 桌面版。",
+          "reason": "中性功能说明"
+        },
+        "fact_checks": [
+          {
+            "fact_id": "f-platform",
+            "verdict": "match",
+            "quote": "提供 Windows 和 macOS 桌面版",
+            "reason": "与演示支持平台资料一致"
+          }
+        ]
+      },
+      "literal_candidates": [
+        "青禾工具"
+      ],
+      "answer_sha256": "8585a397dc0a9fb260119ba5531dfda5c9fee63642a4852ffdd6cbebdf6b276f",
+      "native_brand_urls": [],
+      "native_brand_citation_count": 0,
+      "brand_native_cited": false,
+      "included_in_measured_metrics": false
+    }
+  ]
+}

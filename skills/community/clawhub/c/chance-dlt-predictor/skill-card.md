@@ -1,6 +1,6 @@
 ## Description:
 
-Guides users through Da Le Tou (DLT) lottery analysis and candidate-number selection using historical statistics and combination filters.
+Analyzes historical China Sports Lottery Da Le Tou (DLT) draw data with frequency, omission, trend, and simulation methods to offer number-selection guidance.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,39 +14,40 @@ MIT-0
 
 ## Use Case:
 
-Lottery players use the skill to review historical DLT draw data, explore number patterns, and produce candidate combinations for entertainment. It does not guarantee wins or change the lottery's odds.
+DLT players and data analysts can use self-supplied draw history to explore number patterns and request example combinations for entertainment. Results do not predict outcomes or improve the odds.
 
 ### Deployment Geography for Use:
 
-China (content concerns China Sports Lottery Da Le Tou)
+Global
 
 ## Known Risks and Mitigations:
 
-Risk: Lottery analysis or candidate combinations could be mistaken for a win prediction, improved odds, or betting advice.
+Risk: The security review was incomplete because of manifest parsing and unresolved references, so its benign verdict has limited confidence.
 
-Mitigation: Describe combinations as entertainment references, state that lottery outcomes are random and filters do not change odds, and avoid guarantees or investment claims.
+Mitigation: Review the skill and resolve its references before installation or use.
 
-Risk: The security review reported incomplete inspection coverage, with only part of the skill file inspected and no components fully scanned.
+Risk: Number-pattern analysis and simulations may be mistaken for reliable predictions or improved winning odds.
 
-Mitigation: Review the skill contents before installation and consider a complete security scan when coverage is needed.
+Mitigation: State that lottery draws are random, filters do not change theoretical odds, and outputs are for entertainment; encourage spending limits and discourage chasing losses.
 
 ## Reference(s):
 
 - [Chance Dlt Predictor on ClawHub](https://clawhub.ai/gechengling/skills/chance-dlt-predictor)
+- [Publisher profile: gechengling](https://clawhub.ai/user/gechengling)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Code, Guidance]
+**Output Type(s):** [Analysis, Guidance, Code, Text]
 
-**Output Format:** [Chinese-language text and Markdown with candidate number combinations and optional Python reference code]
+**Output Format:** [Markdown, with optional number combinations and Python examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Entertainment-oriented analysis; combinations and filtering do not improve the probability of winning.]
+**Other Properties Related to Output:** [Informational and entertainment-only; requires user-supplied draw history for historical analysis.]
 
 ## Skill Version(s):
 
-4.1.3 (source: frontmatter)
+4.1.4 (source: frontmatter)
 
 ## Ethical Considerations:
 

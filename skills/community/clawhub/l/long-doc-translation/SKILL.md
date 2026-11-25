@@ -2,7 +2,7 @@
 name: long-doc-translation
 slug: cue-long-doc-translation
 displayName: 长文档全文翻译流水线
-version: "1.3.18"
+version: "1.3.19"
 summary: "外文长篇（专著/古籍/档案/译著参考）全文中译流水线：主稿+阅读版+逐段备查+术语总表，拿不准的进存疑清单不硬翻。"
 description: "外文长文（德/英/法/日，授权可访问）产出四类交付：主稿 .md、自包含阅读版 .html、逐段备查、新术语总表；存疑交人工不强译。 Do NOT use for: publishing copyrighted text as-is, practice-grade legal output."
 license: MIT

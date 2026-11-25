@@ -1577,7 +1577,7 @@ def attach_free_link_facts(payload: dict[str, Any], cards: list[dict[str, Any]],
         issues.append("匿名免费响应的链接不是约定的官网入口")
     if issues:
         payload["link_contract_issues"] = issues
-        payload["link_instruction"] = "公告名称附上实际返回的原始URL，官网入口不称公告详情或原文，不提示点击官网扣费；保留原始响应，不自行构造详情凭证。接入引导仍使用文档规定的完整账号链接。"
+    payload["link_instruction"] = "官网首页入口对应的公告标题用纯文本，不附链接或列表下方官网说明；真实公告详情链接原样附在标题上，不提示点击官网扣费；保留原始响应，不自行构造详情凭证。接入引导仍使用文档规定的完整账号链接。"
     if has_key and len(urls) > len(homes):
         payload["link_notice"] = "点击查看公告详情会消耗账号积分。"
 
@@ -1601,7 +1601,7 @@ def user_card_list(cards: list[dict[str, Any]]) -> list[str]:
             fields.append(("中标单位", card.get("winningBidderUnit")))
         title = clean_user_value(card.get("title"))
         url = card.get("url")
-        if isinstance(url, str) and url.startswith(("https://", "http://")):
+        if isinstance(url, str) and url.startswith(("https://", "http://")) and not is_account_home_link(url):
             label = title.replace("\\", "\\\\").replace("[", "\\[").replace("]", "\\]")
             destination = f"<{url}>" if "(" in url or ")" in url else url
             title = f"[{label}]({destination})"

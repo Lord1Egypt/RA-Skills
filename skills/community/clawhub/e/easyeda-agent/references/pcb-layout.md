@@ -182,6 +182,9 @@ fresh render 是 reload 后的新 capture 调用和新 artifact，不要求未�
 - 当前 board/layout 输入哈希、器件总数以及全部成员的 anchor、角度、层和锁定状态；
 - 第 2 轮 fresh 整板预览，以及固定坐标、板内/禁区、重叠、间距和关键模块关系的事实结果；
 - 两轮 review manifest；若曾修正，记录计数清零和重新开始的证据；
+- 第 2 轮 fresh dump 上的 `pcb routability --board board.json --out routability.json` 结果：
+  `trapped` 非空（某焊盘既无合法过孔位又无走线出口）属于布局 finding，按报告的阻挡对象挪开
+  去耦/ESD、背面大焊盘或局部铜后重算，不能请求确认；`incomplete` 说明输入不全，不能当通过；
 - 为后续走线保留的出口/通道和仍需用户取舍的项目，不用综合分数替用户作决定；
 - 当前版本的未完成项。存在机械违规、缺测或保存重载失败时，不请求把它当成完成态确认。
 
@@ -262,6 +265,7 @@ easyeda pcb image delete --id <primitiveId>
 PNG/JPEG 转制造丝印需要人工调节图稿，不提供自动转换命令，也不列为后续开发目标。
 已有 SVG 丝印导入保持原契约；[透明 PNG 离线样例](examples/image-import/README.md)仅验证参考图片。
 
+- `easyeda pcb silk-delete --id <primitiveId>` — 删除**一条**自由丝印字符串（`pcb.silk.list` 里 `kind=string`，层 3/4）并核对消失。位号/值属性 ID、其他层、锁定和不存在的 ID 在调用 delete 前拒绝，额外 payload 键也拒绝。成功须 delete 返回 true 且新 `getAll()` 不含该 ID；库存读不到不算消失。`verified:false` 或 `partial:true` 使 CLI/`easyeda call`/Apply 非零退出，Apply 不允许 retry、通用 verify 或 continue，失败 journal 保存原回包。最终仍须 save → reload → 新 `pcb.silk.list`。
 - `easyeda pcb silk-import-svg` — **import an SVG (logo / brand mark / artwork) as a FILLED silkscreen graphic** (`pcb.silk.import_svg` → `eda.pcb_PrimitiveImage.create`) — the typed path for placing a vector graphic on a PCB **without `debug.exec_js`**. The CLI parses the SVG (path `M/L/H/V/C/S/Q/T/A/Z`, `polygon`/`polyline`/`rect`/`circle`/`ellipse`/`line`, nested `transform`, viewBox), **flattens every curve to line segments**, applies viewBox→mil scaling, and sends the resulting **complex polygon** (contours + **even-odd holes**, so a logo's counters — the hole in an "o" — punch through) to the connector, which creates **one** image primitive on the silk layer. `--file <path>`/`--svg <string>`; `--x/--y` (or `--at "x,y"`) = where the artwork's **top-left** lands (mil); `--width`/`--height` in mil (`--keep-aspect` for uniform scaling; only one given ⇒ aspect always preserved); `--layer` 3=top (default) / 4=bottom (auto-mirrors); `--rotation`/`--mirror`; `--flatten-tol` (curve tolerance mil). **`--dry-run` parses + scales WITHOUT touching the editor** and prints target bbox / contour count / vertex count / **min-feature** (a DFM proxy — warns when < `--min-line-width`, JLCPCB silk min ≈ 6 mil) — always dry-run first. **Fill rule is even-odd; stroke-only art is not stroked (all geometry is filled).** Returns `primitiveId` + rendered `bbox`. **Real-machine verified**: creates on top/bottom silk, holes punch, rotation/mirror honored, and it **persists across `doc reload` + `pcb save`** (same primitiveId/bbox). Note: the image is a distinct primitive type — it does **not** appear in `pcb silk-list` (that lists silk *text*); read it back via `pcb check` (runs clean) or a snapshot. After a real import follow reload → check → `pcb save`.
 - **原生泪滴对象 — `unsupported`.** `eda.*` 没有创建原生泪滴的接口（0.4.25 类型与 Web 4.1.78 运行时均查无；
   TearDrop 只是 Gerber 导出的对象类别）。禁止用交互菜单补做。题目允许「线条形状泪滴」时用下面的

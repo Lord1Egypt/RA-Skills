@@ -1,6 +1,6 @@
 ## Description:
 
-Helps financial institutions plan AI transformation, prioritize use cases and investments, design governance, assess ROI, select sourcing models, and manage organizational change.
+帮助金融机构制定AI转型战略、评估AI投资优先级、设计AI治理框架，从数字金融迈向数智金融的战略规划指导（Scope: AI transformation strategy, investment prioritisation and AI governance design for China-regulated financial institutions）。融合阿里百技图Agent体系与保险AI应用研究报告精华。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,45 +14,39 @@ MIT-0
 
 ## Use Case:
 
-Financial institution leaders and strategy, risk, and technology teams use it to shape AI transformation roadmaps, prioritize projects by value and feasibility, establish governance, compare sourcing models, and plan adoption. It can also structure market and sector research reports; investment decisions and regulatory interpretations require qualified human review.
+Teams at China mainland regulated financial institutions can use this Chinese-language skill to structure AI transformation plans, prioritize use cases and investments, and draft AI governance frameworks. Its outputs are advisory reference material for qualified staff to review.
 
 ### Deployment Geography for Use:
 
-China
+China (mainland)
 
 ## Known Risks and Mitigations:
 
-Risk: The skill includes forward-looking 2026 financial and regulatory claims that may be inaccurate or become outdated.
+Risk: The security verdict is benign, but inspection was partial because the manifest could not be parsed and a local reference was missing.
 
-Mitigation: Check claims against current authoritative sources and confirm their date and jurisdiction before relying on them.
+Mitigation: Review the full skill and resolve the missing reference before relying on its outputs.
 
-Risk: The skill can produce investment research and portfolio suggestions.
+Risk: Strategy guidance could be mistaken for financial, legal, insurance, or formal regulatory advice.
 
-Mitigation: Treat outputs as analysis, verify market data and sources, and leave investment decisions to qualified, appropriately licensed professionals.
-
-Risk: The skill's output is primarily Chinese, which may not suit every user.
-
-Mitigation: Confirm the user's language preference and request an English response when needed.
+Mitigation: Have qualified professionals review recommendations and verify current regulatory requirements against official sources before making decisions.
 
 ## Reference(s):
 
-- [Server-resolved source repository (GitHub)](https://github.com/gechengling/finance-ai-strategy)
-- [ClawHub release page](https://clawhub.ai/gechengling/skills/finance-ai-strategy)
-- [Publisher profile](https://clawhub.ai/user/gechengling)
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/finance-ai-strategy)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Markdown, Code]
+**Output Type(s):** [Analysis, Guidance, Markdown]
 
-**Output Format:** [Chinese-first text and Markdown reports, checklists, strategy recommendations, and Python code templates.]
+**Output Format:** [Chinese-language text and Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include financial or regulatory claims; verify sources, dates, jurisdiction, and assumptions before relying on them.]
+**Other Properties Related to Output:** [Advisory strategy drafts, prioritization frameworks, and governance guidance; human review required. No execution, persistence, or external actions.]
 
 ## Skill Version(s):
 
-5.2.4 (source: server-resolved release metadata; embedded artifact labels differ)
+5.2.5 (source: frontmatter; confirmed by server release metadata)
 
 ## Ethical Considerations:
 

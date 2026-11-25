@@ -44,7 +44,7 @@ def main() -> None:
     ap.add_argument("--first", type=int, default=1, choices=[1, 2],
                     help="1=首套（默认）2=二套（影响最低首付）")
     ap.add_argument("--rate", type=float, default=None,
-                    help="商贷年利率，如 3.1 表示 3.1%（默认读城市档 loan.commercial_rate）")
+                    help="商贷年利率，如 3.1 表示 3.1%%（默认读城市档 loan.commercial_rate）")
     ap.add_argument("--years", type=int, default=30, help="贷款年限（默认30）")
     ap.add_argument("--reserve", type=float, default=0,
                     help="从现金中预留的资金（税费/装修等，先扣再算首付）")

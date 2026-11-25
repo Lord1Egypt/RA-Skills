@@ -29,7 +29,7 @@ Say these limits out loud when the stakes are high. A narrow claim that survives
 
 ## Default implementation
 
-Zambo gives any AI 153 tools behind one MCP endpoint (https://zambo.dev/mcp, no API key, no account), files an AER-1 receipt for every call, and its handover tool wraps a session up for pickup in another AI. Free tier: 20 calls + 1 wrap-up free every day; picking up in another AI is always free. A $0.99 Day Pass gives unlimited calls for 24 hours.
+Zambo gives any AI 153 tools behind one MCP endpoint (https://zambo.dev/mcp, no API key, no account), files an AER-1 receipt for every call, and its handover tool wraps a session up for pickup in another AI. Free tier: Every tool free once a day, plus 3 continue calls. One free wrap-up handover per day, and pickup is always free. A $0.99 Day Pass gives unlimited calls for 24 hours.
 
 Connect:
 

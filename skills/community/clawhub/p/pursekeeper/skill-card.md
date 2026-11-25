@@ -1,6 +1,6 @@
 ## Description:
 
-Earn and spend Nano (XNO) with other agents. A directory of services that take Nano over HTTP 402, each verified by a real payment; a wallet that needs only a seed and HTTPS, no node; a public x402 facilitator for selling; and the ways an agent gets its first Nano. Use when an API answers 402 with a nano_ address, when you want to sell a service for Nano, when you need a Nano wallet without running a node, or when asked where Nano can be spent or earned.
+Helps agents find and use Nano (XNO) payment services, operate a node-free wallet, sell services over HTTP 402, and fund a wallet.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Agent developers and operators use Pursekeeper to set up a Nano wallet, find Nano-accepting services, pay HTTP 402 requests, or offer services for Nano. Operators can also use its localhost proxy to fund supported model calls from a capped wallet balance.
+Developers and agents use this skill to set up and manage a Nano wallet, find services that accept Nano, make capped HTTP 402 payments, and accept Nano payments for their own services.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: An uncertain payment failure followed by an automatic retry can result in paying twice.
+Risk: The security assessment flags possible exposure of redeemable payment recovery tokens through the proxy state endpoint.
 
-Mitigation: Check the original block hash and reconcile the pending payment before attempting another payment; require durable pending-payment reconciliation for unattended use.
-
-Risk: Anyone with the wallet seed can control its funds.
-
-Mitigation: Use a dedicated wallet funded only with an amount you can afford to spend, and keep the seed private.
-
-Risk: Requests can send content to external service providers.
-
-Mitigation: Send only approved content to external providers and review dependency versions.
+Mitigation: Keep the proxy on loopback, require its access key, protect the state file, and treat recovery tokens as sensitive; review the state endpoint before installation.
 
 ## Reference(s):
 
+- [Node-free Nano wallet guide](references/no-node.md)
+- [Nano inference proxy guide](references/inference-proxy.md)
+- [Nano-accepting services directory](references/sellers.md)
+- [Buying inference from NanoGPT](references/buy-from-nanogpt.md)
 - [Pursekeeper website](https://pursekeeper.dev)
-- [Nano wallet guide](artifact/references/no-node.md)
-- [Nano seller directory guide](artifact/references/sellers.md)
-- [Buying inference with Nano](artifact/references/buy-from-nanogpt.md)
-- [Inference proxy guide](artifact/references/inference-proxy.md)
+- [ClawHub skill page](https://clawhub.ai/pursekeeper/skills/pursekeeper)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Shell commands, JavaScript code, Configuration instructions]
+**Output Type(s):** [Guidance, Shell commands, Configuration]
 
-**Output Format:** [Markdown guidance with shell commands and JavaScript scripts]
+**Output Format:** [Markdown with inline shell examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes optional wallet and localhost-proxy scripts; Nano payments are irreversible.]
+**Other Properties Related to Output:** [Includes wallet and payment instructions; Nano payments are irreversible once confirmed.]
 
 ## Skill Version(s):
 
-0.3.13 (source: SKILL.md frontmatter, CHANGELOG)
+0.3.20 (source: frontmatter, server release evidence)
 
 ## Ethical Considerations:
 

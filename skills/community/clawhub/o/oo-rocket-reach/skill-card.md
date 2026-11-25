@@ -1,6 +1,6 @@
 ## Description:
 
-RocketReach (rocketreach.co). Use this skill for ANY RocketReach request — searching and reading data. Whenever a task involves RocketReach, use this skill instead of calling the API directly.
+Search and retrieve person and company information from RocketReach through an OOMOL-connected account.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Agents use this skill to search RocketReach people and companies and retrieve account information through an OOMOL-connected RocketReach account.
+Agents and teams use this skill to search RocketReach and retrieve person or company profile data through an already connected OOMOL account.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Missing-tool setup directs the agent to run downloaded CLI code without a clear approval step.
+Risk: First-time setup runs a downloaded installer without a version or integrity check, and the partial scan did not determine the installer's contents or effects.
 
-Mitigation: Require approval before setup changes and review the CLI release before installation.
-
-Risk: OOMOL mediates RocketReach queries and manages the connected account access.
-
-Mitigation: Consider whether OOMOL is trusted to handle those queries and account access; review or disable automatic agent-skill synchronization.
+Mitigation: Avoid running the installer until its source, contents, and effects are verified; use a pinned release with an integrity check when available.
 
 ## Reference(s):
 
-- [RocketReach API documentation](https://docs.rocketreach.co/reference/rocketreach-api)
 - [RocketReach](https://rocketreach.co)
-- [oo CLI project](https://github.com/oomol-lab/oo-cli)
-- [ClawHub release](https://clawhub.ai/oomol/skills/oo-rocket-reach)
+- [RocketReach API documentation](https://docs.rocketreach.co/reference/rocketreach-api)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
 
-**Output Format:** [Shell commands with JSON inputs and structured JSON responses]
+**Output Format:** [JSON results and Markdown command guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Available data depends on the selected RocketReach action and connected account.]
+**Other Properties Related to Output:** [Results depend on the connected RocketReach account's access and provider limits.]
 
 ## Skill Version(s):
 
-1.0.5 (source: frontmatter)
+1.0.6 (source: frontmatter)
 
 ## Ethical Considerations:
 

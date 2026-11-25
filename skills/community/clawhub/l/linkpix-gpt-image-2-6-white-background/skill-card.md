@@ -1,6 +1,6 @@
 ## Description:
 
-用户指定 GPT Image 2.6 / 智慧模型2.6，要把商品图换成白底、清除背景、逐件处理一批商品或交付透明 PNG 时使用。
+用户指定 GPT Image 2.6 / 智慧模型2.6，要把商品图换成白底、清除背景、逐件处理一批商品或交付透明 PNG 时使用。按平台规范拆分任务并写好提示词，报价经用户确认后出图；没有 CLI 或密钥时交付可直接提交的出图方案。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,39 +14,35 @@ MIT-0
 
 ## Use Case:
 
-电商运营人员和商品内容创作者可用此技能将商品参考图处理为纯白背景素材，逐件处理商品批次，并在验证实际透明像素后交付透明 PNG。
+电商运营者可用此技能为商品参考图规划白底图、批量商品图或透明 PNG 处理。它会整理逐张提示词和参数；环境可用时先报价并等待用户确认，再生成和核对图片。
 
 ### Deployment Geography for Use:
 
-Global
+中国（技能所述 API 流程要求使用 cn 站点）
 
 ## Known Risks and Mitigations:
 
-Risk: Selected product images are uploaded to Qinghu for processing, and generation can incur charges.
+Risk: CLI 包会在没有安装提示的情况下安装并运行，且本次安全分析覆盖不完整。
 
-Mitigation: Use the skill only when the user accepts the image transfer; show the requested inputs and estimated charge, then wait for approval before generation.
-
-Risk: A configured QHKIT_BASE_HOST overrides QHKIT_ENV, and the external qhkit CLI is outside the reviewed artifact.
-
-Mitigation: Check the configured service host before supplying credentials and review the CLI version and configuration before use.
+Mitigation: 安装和运行前检查包及版本并确认接受；将 benign 评估视为有限结论，因为扫描未覆盖所有引用。
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/autoagc/skills/linkpix-gpt-image-2-6-white-background)
+- [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-gpt-image-2-6-white-background)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Shell commands, Configuration, Guidance]
+**Output Type(s):** [Images, Markdown, JSON, Guidance]
 
-**Output Format:** [Image files and Markdown guidance with JSON examples and shell commands]
+**Output Format:** [商品图片；或 Markdown 出图方案与 JSON 参数文件]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Batch items are handled as separate generation tasks; transparent PNG delivery requires checking for actual alpha transparency.]
+**Other Properties Related to Output:** [按商品逐项拆分任务；透明 PNG 需核验实际 Alpha 通道；出图前报价并等待用户确认。]
 
 ## Skill Version(s):
 
-0.1.0 (source: server-resolved release metadata)
+0.1.1 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

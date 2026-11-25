@@ -5,7 +5,8 @@ import { inference } from '../commands/inference.js';
 import { ondemand } from '../commands/ondemand.js';
 import { video } from '../commands/video.js';
 import { billing, gpu } from '../commands/gpu.js';
-import { characterRoutes, characterRequest } from '../commands/characters.js';
+import { characterRoutes, characterRequest, storylineGenerateAll, estimateCharactersCost, STORYLINE_PATH_CAP } from '../commands/characters.js';
+import { validateProbe } from '../security.js';
 import { redactObject } from '../redaction.js';
 import { sanitizeHttpErrorMessage } from '../errors.js';
 import {
@@ -174,6 +175,18 @@ const commandRegistry: Record<string, CommandRegistration> = {
     schema: { command: 'theta.video.ingestorList', description: 'List stream ingestors', required: [] },
     handler: (cfg) => video.ingestorList(cfg)
   },
+  'theta.video.search': {
+    schema: { command: 'theta.video.search', description: 'Search a service account\'s videos by metadata filters (1-10 key/value pairs, operator and|or, page, number<=100)', required: ['serviceAccountId', 'filters'] },
+    handler: (cfg, args) => video.videoSearch(cfg, requireText(args.serviceAccountId, 'serviceAccountId'), args.filters, args.operator, args.page, args.number)
+  },
+  'theta.video.streamList': {
+    schema: { command: 'theta.video.streamList', description: 'List a service account\'s livestreams (optional status on|off); stream keys are redacted', required: ['serviceAccountId'] },
+    handler: (cfg, args) => video.streamList(cfg, requireText(args.serviceAccountId, 'serviceAccountId'), args.status)
+  },
+  'theta.video.ingestorUnselect': {
+    schema: { command: 'theta.video.ingestorUnselect', description: 'Release a selected stream ingestor (invalidates the live stream key)', required: ['ingestorId'] },
+    handler: (cfg, args) => video.ingestorUnselect(cfg, requireText(args.ingestorId, 'ingestorId'), args.confirm === true)
+  },
   'theta.video.ingestorSelect': {
     schema: { command: 'theta.video.ingestorSelect', description: 'Select stream ingestor', required: ['ingestorId', 'body'] },
     handler: (cfg, args) => video.ingestorSelect(cfg, requireText(args.ingestorId, 'ingestorId'), requireObject(args.body, 'body'), args.confirm === true)
@@ -203,7 +216,7 @@ const commandRegistry: Record<string, CommandRegistration> = {
   'theta.inference.ready': {
     schema: { command: 'theta.inference.ready', description: 'Poll dedicated inference endpoint readiness with openai or gradio probe', required: [] },
     handler: (cfg, args) => inference.ready(cfg, {
-      probe: args.probe as 'openai' | 'gradio' | undefined,
+      probe: validateProbe(args.probe),
       timeoutMs: args.timeoutMs as number | undefined,
       intervalMs: args.intervalMs as number | undefined
     })
@@ -320,7 +333,7 @@ const commandRegistry: Record<string, CommandRegistration> = {
       confirm: args.confirm === true,
       projectId: args.projectId as string | undefined,
       orgId: args.orgId as string | undefined,
-      probe: args.probe as 'openai' | 'gradio' | undefined,
+      probe: validateProbe(args.probe),
       readyTimeoutMs: args.readyTimeoutMs as number | undefined,
       intervalMs: args.intervalMs as number | undefined,
       smokeMessage: args.smokeMessage as string | undefined,
@@ -505,9 +518,9 @@ const confirmRequiredCommands = new Set<string>([
   'theta.deployments.startByBaseId', 'theta.deployments.validateDisposable',
   'theta.ai.agent.create', 'theta.ai.agent.update', 'theta.ai.agent.document.create', 'theta.ai.agent.document.update',
   'theta.video.uploadCreate', 'theta.video.create', 'theta.video.streamCreate', 'theta.video.ingestorSelect',
-  'theta.characters.create', 'theta.characters.update', 'theta.characters.delete',
-  'theta.characters.session.create', 'theta.characters.session.delete', 'theta.characters.session.context',
-  'theta.characters.session.message',
+  'theta.video.ingestorUnselect',
+  // Every non-GET AI Characters route (characters, sessions, Story mode) is added below from the route table.
+  'theta.characters.storyline.generateAll',
   'theta.gpu.deployments.create', 'theta.gpu.deployments.start', 'theta.gpu.deployments.stop', 'theta.gpu.deployments.delete'
 ]);
 
@@ -517,11 +530,33 @@ export function thetaCommandRequiresConfirm(command: string): boolean {
 
 for (const [name, route] of Object.entries(characterRoutes)) {
   const command = `theta.characters.${name}`;
+  const needsPayload = ['POST', 'PUT'].includes(route.method) && !route.fixedBody;
   commandRegistry[command] = {
-    schema: {command, description: `AI Characters ${name}; game-scoped key required`, required: [...route.fields, ...(['POST','PUT'].includes(route.method) ? ['payload'] : [])]},
+    schema: {
+      command,
+      description: `AI Characters ${route.method} ${route.path}${route.billable ? ' (BILLABLE: generates tokens)' : ''}${route.paginated ? '; optional page/number' : ''}; game-scoped key required`,
+      required: [...route.fields, ...(needsPayload ? ['payload'] : [])]
+    },
     handler: (cfg, args) => characterRequest(cfg, name, args)
   };
+  if (route.method !== 'GET') confirmRequiredCommands.add(command);
 }
+commandRegistry['theta.characters.storyline.generateAll'] = {
+  schema: {
+    command: 'theta.characters.storyline.generateAll',
+    description: `BILLABLE BULK: generate every dialog path of a story line. Counts paths first (one library message per grouping) and refuses above maxPaths or ${STORYLINE_PATH_CAP}; game-scoped key required`,
+    required: ['storylineId', 'maxPaths']
+  },
+  handler: (cfg, args) => storylineGenerateAll(cfg, args)
+};
+commandRegistry['theta.characters.estimateCost'] = {
+  schema: {
+    command: 'theta.characters.estimateCost',
+    description: 'Offline AI Characters cost estimate from token counts (inputTokens, outputTokens, embeddingTokens) at Theta published prices; makes no network request',
+    required: []
+  },
+  handler: (_cfg, args) => estimateCharactersCost(args)
+};
 
 export const thetaRuntimeCommandSchemas: Record<string, ThetaCommandSchema> = Object.fromEntries(
   Object.entries(commandRegistry).map(([cmd, reg]) => [cmd, confirmRequiredCommands.has(cmd)
@@ -555,6 +590,6 @@ export async function executeThetaRuntimeCommand(
 
   const result = await registration.handler(cfg, args);
   // Live results and previews: fields whose names mark secrets (password, token, secret, api key,
-  // authorization, credential) are replaced with [redacted]. Usage counts (*_tokens) are kept.
+  // authorization, credential) are replaced with [redacted]. Only numeric values under *_tokens names are kept as usage counts.
   return result && typeof result === 'object' ? redactObject(result as Record<string, unknown>) : result;
 }

@@ -1,6 +1,6 @@
 ## Description:
 
-Provides a typed Go client for listing and managing Supabase organizations, projects, branches, and project settings through the Supabase Management API.
+Provides Go developers with a typed client for managing Supabase organizations, projects, branches, and project settings through the Supabase Management API.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use the Go client to list Supabase organizations and projects or manage project settings, branches, and related Management API resources. It does not cover the per-project data API for PostgREST, Auth, or Storage.
+Developers can use this skill when building Go code to list or manage Supabase organizations, projects, branches, and project settings with the typed Management API client.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: A personal access token may allow changes across the token owner's organizations, and write operations can affect live projects.
+Risk: A Supabase personal access token can carry the user's full rights across organizations.
 
-Mitigation: Keep tokens private, use an OAuth token with only the required scopes when practical, and make changes only to the intended project or branch.
+Mitigation: Store the token in SUPABASE_ACCESS_TOKEN, do not commit or log it, and use an OAuth token with only the scopes needed when possible.
 
-Risk: The scan was partial and flagged an unresolved local reference, so its evidence is incomplete.
+Risk: Write operations can change live Supabase projects.
 
-Mitigation: Review the skill and resolve the referenced local material before relying on it.
+Mitigation: Run write methods only after the user requests the specific change and confirms the project ref or branch.
 
 ## Reference(s):
 
-- [Setup and reference](references/setup.md)
-- [Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-supabase-management)
-- [Project homepage](https://github.com/psyb0t/go-supabase-management)
+- [Setup and API usage](references/setup.md)
+- [go-supabase-management on pkg.go.dev](https://pkg.go.dev/github.com/psyb0t/go-supabase-management)
+- [Project repository](https://github.com/psyb0t/go-supabase-management)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Configuration instructions, Guidance]
+**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown with Go code examples]
+**Output Format:** [Go code and concise Markdown setup guidance with shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Examples configure Bearer-token authentication and call the Supabase Management API.]
 
 ## Skill Version(s):
 
-0.5.4 (source: server-resolved release evidence)
+0.6.0 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

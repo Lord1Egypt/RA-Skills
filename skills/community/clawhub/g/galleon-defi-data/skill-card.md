@@ -1,6 +1,6 @@
 ## Description:
 
-Connects CoinGecko, DefiLlama and AIXBT data sources to assess DeFi prices, protocol metrics, narratives and yield with source identity and freshness checks.
+Connect official CoinGecko, DefiLlama and AIXBT data tools and evaluate prices, protocol metrics, crypto narratives and yield evidence. Use when configuring data access, researching DeFi markets, or reconciling source identity, freshness and coverage.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Developers and DeFi researchers use this skill to configure data access and compare market, protocol and yield evidence while checking asset identity, timestamps, source coverage and material limitations.
+Developers and DeFi analysts use this skill to connect official market data tools, research markets and protocols, and assess whether price, metric, and yield claims are supported by source identity, freshness, and methodology.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Paid data access or API calls can consume account credits and expose credentials.
+Risk: The security assessment is benign with medium confidence; one of 15 components was not fully inspected, and static analysis of the included script was degraded.
 
-Mitigation: Keep enrollment and credentials user-controlled; limit reads to the requested task and do not log secrets.
-
-Risk: Wallet and portfolio lookups can reveal sensitive financial context.
-
-Mitigation: Use only needed addresses and avoid including private account identifiers in shared outputs.
-
-Risk: Stale or mismatched market data can be mistaken for an executable quote or verified position.
-
-Mitigation: Check asset and chain identity, timestamps and source coverage; verify consequential facts against current protocol or chain evidence.
+Mitigation: Review the included diagnostic script and consider whether the external data providers are acceptable before use; treat the verdict as incomplete evidence, not a safety guarantee.
 
 ## Reference(s):
 
-- [Galleon DeFi Data release](https://clawhub.ai/galleonlabs/skills/galleon-defi-data)
-- [Provider access and setup](artifact/references/providers.md)
-- [Data interpretation and provenance](artifact/references/methodology.md)
-- [Public price diagnostic](artifact/references/diagnostic.md)
-- [Product diligence](artifact/references/diligence.md)
+- [Galleon DeFi Data on ClawHub](https://clawhub.ai/galleonlabs/skills/galleon-defi-data)
+- [Provider setup and access tiers](references/providers.md)
+- [Data interpretation and provenance](references/methodology.md)
+- [Public price diagnostic](references/diagnostic.md)
+- [Product diligence](references/diligence.md)
+- [Evidence across DeFi primitives](references/primitive-evidence.md)
+- [AIXBT crypto research](references/aixbt.md)
+- [Onchain agent evidence sources](references/onchain-agents.md)
+- [Worked evidence examples](references/worked-examples.md)
+- [CoinGecko AI integrations](https://docs.coingecko.com/docs/ai-agents-llm-apps)
+- [DefiLlama API documentation](https://api-docs.defillama.com/)
+- [AIXBT API v3 overview](https://docs.aixbt.tech/developers/v3)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Configuration instructions, Shell commands, JSON]
+**Output Type(s):** [Analysis, Guidance, Configuration instructions, Shell commands, JSON]
 
-**Output Format:** [Markdown guidance and optional JSON price diagnostics]
+**Output Format:** [Markdown responses; the optional public price diagnostic emits JSON.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes dated source identity, access gaps and material limitations; does not authorize trades.]
+**Other Properties Related to Output:** [Includes source identity, observation and retrieval times, and material limitations; it does not authorize paid access or transactions.]
 
 ## Skill Version(s):
 
-0.6.1 (source: frontmatter and ClawHub release)
+0.8.0 (source: SKILL.md frontmatter)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Helps professionals turn work and software maintenance requests into practical plans, reusable workflows, checklists, templates, analysis, or implementation support.
+Guides developers, analysts, and technical users through a reusable workflow for clarifying requirements, planning work, producing a concrete deliverable, and checking it against success criteria.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and teams use this skill to turn a loosely defined work or software maintenance goal into an actionable plan or reusable artifact, then check it against their stated constraints and success criteria.
+Developers, analysts, and technical users use the skill to turn a request into a practical, repeatable workflow or artifact, with constraints, assumptions, and verification steps made clear.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Broad activation keywords may cause the skill to start on unrelated requests.
+Risk: Broad activation wording may cause the skill to be invoked for unrelated requests.
 
-Mitigation: Review its trigger terms before use and state the intended task clearly if activation seems off-target.
+Mitigation: Review the trigger wording and confirm that a request matches the skill's technical workflow before relying on its guidance.
 
 ## Reference(s):
 
-- [Requirement plan](references/requirement-plan.md)
-- [ClawHub skill page](https://clawhub.ai/kyro-ma/skills/usa-business-migration-planner)
-- [Publisher profile](https://clawhub.ai/user/kyro-ma)
+- [Requirement Plan](references/requirement-plan.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Code]
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance, Checklists]
 
-**Output Format:** [Markdown and text, with code or structured artifacts when requested]
+**Output Format:** [Markdown and requested workflow or implementation artifacts]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Tailored to the user's constraints and success criteria]
+**Other Properties Related to Output:** [Tailored to the user's stated constraints and success criteria]
 
 ## Skill Version(s):
 
-0.20261116.40742 (source: server-resolved release metadata)
+0.20261119.61237 (source: release metadata)
 
 ## Ethical Considerations:
 

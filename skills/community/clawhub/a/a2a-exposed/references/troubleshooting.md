@@ -30,7 +30,7 @@ Cloudflare-side problems (Worker logs, D1, DNS, the wake tunnel, Access): the op
 
 ## CLI and configuration
 
-Installing this skill gives the agent the workflow documentation. Run every command as `npx -y a2a-exposed@latest <cmd>` (Node 22.18+; how to get Node: setup skill §1, or `mise exec node@22 -- ...`). Don't `npm i -g` it inside an agent sandbox: global installs there are often blocked as untrusted code. `@latest` always runs the newest release. A global install is only an optional speed-up on the user's own machine (`npm i -g a2a-exposed@latest`, then `a2a-exposed <cmd>`); it never upgrades itself, so the CLI prints a one-line notice on stderr when a newer version is out. Config lives in `~/.config/a2a-exposed/config.env` (chmod 600). Environment variables always override the file. Development from a checkout: `node <checkout>/cli/bin/a2a-exposed.mjs <command>`, and pass the same path as `--cli-command` on `init` if the wake hint should use it (default wake hint is `npx -y a2a-exposed@latest`, including a non-default `--config-dir DIR` when no explicit/saved command exists).
+Installing this skill gives the agent the workflow documentation. Run every command as `npx -y a2a-exposed@latest <cmd>` (Node 22.18+; how to get Node: setup skill §1, or `mise exec node@22 -- ...`). Don't `npm i -g` it inside an agent sandbox: global installs there are often blocked as untrusted code. `@latest` always runs the newest release. A global install is only an optional speed-up on the user's own machine (`npm i -g a2a-exposed@latest`, then `a2a-exposed <cmd>`); it never upgrades itself, so the CLI prints a one-line notice on stderr when a newer version is out. Behind an HTTPS proxy, Node 22.21+ and 24+ use `HTTPS_PROXY`/`HTTP_PROXY`/`NO_PROXY` automatically; loopback always bypasses it. A TLS-inspecting proxy needs `NODE_EXTRA_CA_CERTS`. Errors name the real network or TLS cause (for example `ENOTFOUND`), never the proxy URL; on older Node they say the proxy is ignored. Config lives in `~/.config/a2a-exposed/config.env` (chmod 600). Environment variables always override the file. Development from a checkout: `node <checkout>/cli/bin/a2a-exposed.mjs <command>`, and pass the same path as `--cli-command` on `init` if the wake hint should use it (default wake hint is `npx -y a2a-exposed@latest`, including a non-default `--config-dir DIR` when no explicit/saved command exists).
 
 ## Other commands
 
@@ -85,7 +85,8 @@ project directory. Set `--cli-command` explicitly for a custom handler runtime.
 
 `wake status --json` reads pending busy/debounce/retry deadlines and last HTTP
 attempt/acceptance from the selected inbox without acknowledging or flushing
-wakes. Read it before inbox, which clears matching pending wakes. Due time is
+wakes. Read it before inbox, which clears matching pending wakes (a busy
+catch-up stays until its task is marked working or answered). Due time is
 eligibility, not a delivery promise. Unknown observations stay unknown. A 2xx
 only establishes receiver acceptance; check receiver logs for signature checks,
 handler execution and owner notification. An old acceptance does not validate
@@ -137,3 +138,8 @@ The default inbound inbox lists `submitted`/`working` tasks. Use `inbox --all`
 `input-required` owner waits and finished tasks.
 
 Use `wake policy --json` before `wake policy --policy smart|legacy --json`. Legacy opts out and smart follows deployment routing. Compare routing counters with actual deliveries; every stored update remains available to inbox/history even when no wake is sent.
+
+The optional committed-message event feed is a separate operator-configured integration.
+It does not replace inbox reads or owner wakes and does not enable MCP Events subscriptions.
+Read the repository docs/message-events.md contract before proposing configuration;
+never infer authorization from an event or rotate a source/peer credential automatically.

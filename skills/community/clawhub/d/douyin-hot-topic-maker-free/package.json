@@ -1,0 +1,13 @@
+{
+  "name": "douyin-hot-topic-maker-free",
+  "version": "1.0.4",
+  "author": "xxjrq",
+  "license": "MIT-0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node scripts/self-test.mjs",
+    "check": "node --check scripts/douyin-hot-topic-maker-free.mjs && node --check scripts/self-test.mjs && npm test"
+  }
+}

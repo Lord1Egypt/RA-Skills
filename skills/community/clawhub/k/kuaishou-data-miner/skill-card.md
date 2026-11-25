@@ -1,6 +1,6 @@
 ## Description:
 
-A read-only skill for searching public Kuaishou videos, creator posts and follower data, and video comments, with results returned as JSON.
+快手公开数据只读技能：关键词搜视频、博主作品与粉丝数据、视频评论，输出 JSON，不登录不发布。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Content creators, marketers, and analysts can use the skill to research Kuaishou topics, review public creator activity, and inspect video comments for competitor or audience insights.
+Content creators, marketing teams, and analysts use this skill to explore public Kuaishou videos, creator posts, and comments for topic research, competitor monitoring, and creator assessment. It returns structured data for the agent to summarize and compare.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search terms and video links are sent to a third-party service.
+Risk: Query keywords or links are sent to guaikei.com, so confidential information could be disclosed.
 
-Mitigation: Avoid confidential queries and sensitive links; use only information appropriate to share with that service.
+Mitigation: Use public, non-sensitive keywords and links; do not submit confidential information.
 
-Risk: The security evidence says some code was only partially analyzed and notes scope and privacy-transparency questions.
+Risk: The security review had medium confidence and partial coverage; 13 components were not fully interpreted.
 
-Mitigation: Review the skill's scope and data-handling information before installation.
+Mitigation: Treat the clean verdict as limited assurance and review the skill before installation if broader coverage is required.
 
 ## Reference(s):
 
-- [Usage options](references/options.md)
-- [Release notes](references/changelog.md)
-- [Service and token setup](https://www.guaikei.com)
-- [ClawHub release page](https://clawhub.ai/um-why/skills/kuaishou-data-miner)
+- [ClawHub skill page](https://clawhub.ai/um-why/skills/kuaishou-data-miner)
+- [Guaikei data service and token access](https://www.guaikei.com)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis]
+**Output Type(s):** [JSON data, Analysis]
 
-**Output Format:** [Structured JSON data for video searches, creator posts and profile metrics, or video comments.]
+**Output Format:** [JSON response envelope containing video search results, creator data and posts, or video comments]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results can be empty or report an error status; a service access token is required.]
+**Other Properties Related to Output:** [Result fields and metric types vary by command; the agent can summarize or compare returned public data.]
 
 ## Skill Version(s):
 
-1.1.2 (source: frontmatter, package.json, changelog)
+1.1.4 (source: frontmatter)
 
 ## Ethical Considerations:
 

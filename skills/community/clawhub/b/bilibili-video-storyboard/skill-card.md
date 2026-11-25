@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Bilibili creators and video production teams can turn a topic, outline, or script into a chapter-led shot list with camera, narration, and B-roll cues, then select key shots for storyboard frames.
+Bilibili creators, directors, camera operators, editors, and AI-video artists use the skill to turn a topic, outline, or script into a chapter-led shot list with timing, composition, camera, narration, and B-roll cues. They can then select one to four important shots for storyboard key frames.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill requires persistent account permissions that extend beyond creating storyboard images.
+Risk: The security evidence reports broad Beatra account access, persistent telemetry, and shared-state operations beyond the storyboard purpose; the scan is partial.
 
-Mitigation: Before installing, review whether shared spending and voice-management access and recurring installation analytics are acceptable; approve each paid generation plan, upload only intended references, and revoke device access when no longer needed.
+Mitigation: Review the skill and its reported access and reporting behavior, and install only if those capabilities are needed and acceptable.
 
 ## Reference(s):
 
 - [ClawHub skill page](https://clawhub.ai/beatra-ai/skills/bilibili-video-storyboard)
-- [Bilibili storyboard planning and key frames](references/workflow.md)
-- [Installation and authentication](references/installation-and-auth.md)
-- [Tasks and results](references/tasks-and-results.md)
-- [Billing, errors, and recovery](references/billing-errors-and-recovery.md)
-- [Updates and security](references/updates-and-security.md)
+- [Beatra skill page](https://beatra.ai/skills/bilibili-video-storyboard)
+- [Storyboard workflow and key frames](artifact/references/workflow.md)
+- [Updates and security](artifact/references/updates-and-security.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Images]
+**Output Type(s):** [Markdown, Images]
 
-**Output Format:** [Markdown shot list and optional storyboard key-frame images]
+**Output Format:** [Chapter-led shot list and video script with camera, narration, and B-roll cues, plus one to four selected storyboard key-frame images.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [A chapter-led plan may include one to four selected key frames.]
+**Other Properties Related to Output:** [The written shot list is prepared first; key frames are created for selected shots.]
 
 ## Skill Version(s):
 
-0.2.4 (source: artifact/manifest.json and server-resolved release evidence)
+0.2.7 (source: server-resolved release evidence and manifest.json)
 
 ## Ethical Considerations:
 

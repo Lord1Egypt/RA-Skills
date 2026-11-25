@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and technical writers use this skill to apply a limited, STE-derived register to operator replies and procedural text. It also provides advisory checks for sentence length, paragraph length, and noun clusters.
+Developers and technical writers use this skill to shape operator replies and procedural text, and to check sentence and paragraph length and noun clusters. Its checks are advisory; it does not check controlled vocabulary or establish STE compliance.
 
 ### Deployment Geography for Use:
 
@@ -22,43 +22,42 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The style directive may interfere with accuracy or reasoning when applied to text that needs fuller explanation.
+Risk: The security assessment has medium confidence and partial coverage because a local path-like reference could not be resolved.
 
-Mitigation: Apply the register only to operator-facing and procedural text within the documented scope, then review technical facts and completeness separately.
+Mitigation: Review the unresolved reference and its related component before relying on the scan assessment.
 
-Risk: Readers may mistake this STE-derived subset for full ASD-STE100 implementation or compliance.
+Risk: The American-spelling rule may not fit every audience or locale.
 
-Mitigation: Describe it as an STE-derived authoring aid; do not claim compliance, certification, or endorsement.
+Mitigation: Review and adapt spelling to the intended audience.
 
-Risk: The advisory checks can under-report some procedural text and noun-cluster findings can be inaccurate.
+Risk: Applying a limited STE-derived register outside procedural text can remove useful reasoning or affect technical accuracy.
 
-Mitigation: Review each finding against the text's scope and treat noun-cluster results as advisory.
+Mitigation: Use the register for operator-facing and procedural text, then review the result for accuracy and completeness.
 
-Risk: The security scan did not assess one referenced local path, so its coverage is incomplete.
+Risk: The advisory checks can under-report procedural text that they cannot classify.
 
-Mitigation: Review the missing local reference before relying on the skill's guidance.
+Mitigation: Review the target text manually; treat a clean check as limited evidence.
 
 ## Reference(s):
 
-- [Prompt complexity and reasoning (arXiv 2603.13351)](https://arxiv.org/abs/2603.13351)
-- [Constraint interference (arXiv 2601.22047)](https://arxiv.org/abs/2601.22047)
-- [SimpleEnglish benchmark and audit](https://github.com/AminBlg/SimpleEnglish)
-- [Informal code-fact test](https://allaboutcoding.ghinda.com/explain-to-me-in-simple-technical-english/)
-- [Nieminen thesis on hallucination judgments](https://gupea.ub.gu.se/items/18568d0f-52af-43ed-8915-abd0d9bf7afe/full)
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-scribe-simplified-technical-english)
+- [Skill homepage (metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/scribe)
+- [Prompt complexity study (arXiv:2603.13351)](https://arxiv.org/abs/2603.13351)
+- [Constraint interference study (arXiv:2601.22047)](https://arxiv.org/abs/2601.22047)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+**Output Type(s):** [Guidance, Text, Markdown, Shell commands]
 
-**Output Format:** [Markdown and procedural text, with optional command examples]
+**Output Format:** [Operator-facing text and procedural guidance, with advisory file:line findings]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Advisory style guidance and checks for in-scope operator-facing text; does not establish technical correctness or STE compliance.]
+**Other Properties Related to Output:** [Advisory checks; no controlled vocabulary validation]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter; release metadata)
+1.10.4 (source: ClawHub release evidence)
 
 ## Ethical Considerations:
 

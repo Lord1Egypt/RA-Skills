@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en" class="sk" data-theme="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- slot:title -->
+<title>Quarterly Post · Q3 for the board</title>
+<meta name="description" content="A hand-drawn sketchbook deck made with sketchy.">
+<link rel="stylesheet" href="../engine/sketchy.css">
+<!-- slot:theme (optional: <link rel="stylesheet" href="../themes/NAME.css">) -->
+<style>
+  /* Deck-specific touches go here. Use tokens (var(--sk-*)), never raw colors. */
+</style>
+</head>
+<body class="sk">
+<!--
+  sketchy deck template
+  Every slide is a <section class="sk-slide" data-layout="..."> on a 1920 x 1080 stage.
+  Layouts: cover, title, section, letter, split, steps, chart, big-number, compare,
+  quote, timeline, ledger, board, end. Keep one idea per slide and at most 40 words
+  of body text. Notes go in data-notes. data-step="1" reveals an element on click.
+  The content below is a worked example with invented figures for a fictional
+  company; replace all of it.
+-->
+<main class="sk-deck" data-seed="quarterly-post-q3" data-transition="page" data-music="sketchbook">
+
+  <!-- slot:slides -->
+  <section class="sk-slide" data-layout="cover" data-duration="5" data-notes="Welcome. Twelve minutes, three decisions.">
+    <div class="sk-cover" data-cover="slate">
+      <div class="sk-cover-inner">
+        <div class="sk-label">
+          <span class="sk-label-title">Quarterly Post</span>
+          <span class="sk-label-sub">Sketchbook No. 3 · Northwind Parcel Co. · Q3 for the board</span>
+        </div>
+        <svg data-sketch="postage-stamp" viewBox="0 0 140 110" style="width:210px" aria-hidden="true"></svg>
+        <span class="sk-door" role="button" tabindex="0">Open the sketchbook</span>
+      </div>
+      <div class="sk-cover-foot" style="color:rgba(238,240,244,.95)">If found, please return to the finance team. Reward: one biscuit.</div>
+    </div>
+  </section>
+
+  <section class="sk-slide" data-layout="title" data-notes="The one-line story of the quarter.">
+    <div class="sk-sheet" data-sk="sheet">
+      <span class="sk-kicker">Q3 · July to September</span>
+      <h1>We delivered more, for less</h1>
+      <p class="sk-line">Three numbers, two problems, one ask. The lines wobble; the totals add up.</p>
+      <p class="sk-fine">Twelve minutes. Questions at the end, or whenever the pencil slips.</p>
+    </div>
+  </section>
+
+  <section class="sk-slide" data-layout="big-number" data-notes="Lead with the number they care about.">
+    <span class="sk-kicker">Parcels delivered in Q3</span>
+    <div class="sk-number"><span data-count>1,240,600</span></div>
+    <p class="sk-number-label">up <span class="sk-figure" data-count>+18.4%</span> on Q2, and <span data-sk="circle" data-sk-width="2.6">on time 97.1%</span> of the time</p>
+    <p class="sk-number-bench">Benchmark: the industry average on time is 93.0%.</p>
+    <svg data-sketch="truck" viewBox="0 0 140 110" style="position:absolute; left:110px; bottom:96px; width:330px; transform:rotate(-3deg)" aria-hidden="true"></svg>
+    <p class="sk-source">Dispatch system export, 3 Oct</p>
+  </section>
+
+  <section class="sk-slide" data-layout="letter" data-notes="Frame the ask as a letter: to, contents, the hint.">
+    <div class="sk-sheet" data-sk="sheet">
+      <div class="sk-letter-kicker">Parcel 1 of 3</div>
+      <h2>for the board</h2>
+      <p class="sk-letter-row"><b>To:</b> five directors and one very patient auditor.</p>
+      <p class="sk-letter-row"><b>Contents:</b> a request to open a second sorting hub in Leipzig, two quarters early.</p>
+      <p class="sk-letter-hint">Read the next two pages first. Then decide.</p>
+      <div class="sk-letter-actions"><span class="sk-btn is-accent" data-sk="button">Off we go</span></div>
+    </div>
+  </section>
+
+  <section class="sk-slide" data-layout="split" data-notes="How the hub works, drawn rather than diagrammed.">
+    <svg data-sketch="truck" viewBox="0 0 140 110" style="width:700px" aria-hidden="true"></svg>
+    <div class="sk-stack" style="--gap:18px">
+      <h2>Why Leipzig</h2>
+      <p data-step="1"><b>1. It sits on the line.</b> 61% of parcels pass within 40 km.</p>
+      <p data-step="2"><b>2. It shortens the night.</b> Trucks leave 2 h 10 min later, arrive first.</p>
+      <p data-step="3"><b>3. It is free now.</b> The lease opens in January.</p>
+    </div>
+  </section>
+
+  <section class="sk-slide" data-layout="steps" data-notes="Three steps, each with a picture of the thing itself.">
+    <header><span class="sk-kicker">How the money moves</span><h2>Three steps to break even</h2></header>
+    <div class="sk-step-list" style="--cols:3">
+      <div class="sk-step" data-step="1"><svg data-sketch="coin-stack" viewBox="0 0 140 110" aria-hidden="true"></svg><h3>Sign the lease</h3><p>€2.1 million over five years, paid quarterly.</p></div>
+      <div class="sk-step" data-step="2"><svg data-sketch="gear-pair" viewBox="0 0 140 110" aria-hidden="true"></svg><h3>Move two lines</h3><p>Sorting moves in March. No new hires until volume proves it.</p></div>
+      <div class="sk-step" data-step="3"><svg data-sketch="growth-plant" viewBox="0 0 140 110" aria-hidden="true"></svg><h3>Save the night</h3><p>€74,000 a month in fuel and overtime, from April.</p></div>
+    </div>
+  </section>
+
+  <section class="sk-slide" data-layout="compare" data-notes="Plan versus record. Dashed is the plan, solid is what happened.">
+    <header><span class="sk-kicker">Plan versus record</span><h2>What we said, what we did</h2></header>
+    <div class="sk-sheet" data-sk="sheet">
+      <h3>The plan <span class="sk-soft">(June)</span></h3>
+      <p>1.10 million parcels</p>
+      <p>Cost per parcel <span class="sk-figure">€2.41</span></p>
+      <p>On time 95%</p>
+      <span class="sk-stamp is-unearned" style="align-self:end">Target</span>
+    </div>
+    <div class="sk-sheet" data-sk="sheet">
+      <h3>The record <span class="sk-soft">(September)</span></h3>
+      <p><span class="sk-figure" data-count>1,240,600</span> parcels</p>
+      <p>Cost per parcel <span class="sk-figure">€2.26</span> <span class="sk-note">−6.2%</span></p>
+      <p>On time <span class="sk-figure">97.1%</span></p>
+      <span class="sk-stamp is-green" data-slam style="align-self:end; justify-self:start; --delay:700ms">Delivered</span>
+    </div>
+  </section>
+
+  <section class="sk-slide" data-layout="ledger" data-notes="The bill, printed line by line like a receipt.">
+    <div class="sk-stack" style="--gap:16px">
+      <span class="sk-kicker">The bill for Leipzig</span>
+      <h2>Postage due: €2.1 million</h2>
+      <p class="sk-line">Paid back in <span class="sk-figure">28 months</span>. The 2023 hub took <span class="sk-figure">36</span>.</p>
+    </div>
+    <div class="sk-doc sk-receipt sk-pinked" style="font-size:28px; padding:34px 38px 30px; transform:rotate(.8deg); position:relative">
+      <div data-reveal="print">
+        <div class="sk-receipt-brand">Postage slip · lease offer 12 Oct</div>
+        <div class="sk-receipt-row"><span>Lease, 5 years</span><span>1,650,000</span></div>
+        <div class="sk-receipt-row"><span>Fit-out</span><span>310,000</span></div>
+        <div class="sk-receipt-row"><span>Moving two lines</span><span>95,000</span></div>
+        <div class="sk-receipt-row"><span>Training</span><span>45,000</span></div>
+        <div class="sk-receipt-row is-total"><span>IN ALL, €</span><span>2,100,000</span></div>
+        <div class="sk-receipt-row is-bench"><span>The 2023 hub, €</span><span>2,640,000</span></div>
+      </div>
+      <span class="sk-stamp" data-slam style="position:absolute; right:34px; top:26px; --delay:1100ms">Approved?</span>
+    </div>
+  </section>
+
+  <section class="sk-slide" data-layout="quote" data-notes="One sentence from a customer, said out loud.">
+    <blockquote>It arrived before I had finished complaining that it was late.</blockquote>
+    <cite>A customer in Dresden, 14 September</cite>
+  </section>
+
+  <section class="sk-slide" data-layout="section" data-notes="Chapter break before the risks.">
+    <span class="sk-chapter">Chapter II</span>
+    <h1>What could go wrong</h1>
+    <p class="sk-line">Two problems, both fixable, neither small.</p>
+  </section>
+
+  <section class="sk-slide" data-layout="board" data-notes="Decisions on plates. Keep or remove, one reason each.">
+    <div class="sk-corner"><span class="sk-corner-title">Decisions for today</span><span class="sk-corner-task">Three switches. Pick a side for each.</span></div>
+    <div class="sk-plates" style="--cols:3">
+      <div class="sk-plate sk-stack"><svg data-sketch="handshake" viewBox="0 0 140 110" aria-hidden="true"></svg><span class="sk-tape">LEASE_LEIPZIG</span><p>Sign the lease in January.</p><span class="sk-stamp is-green">Keep</span></div>
+      <div class="sk-plate sk-stack"><svg data-sketch="truck" viewBox="0 0 140 110" aria-hidden="true"></svg><span class="sk-tape">NIGHT_ROUTE_B</span><p>Close the Hamburg night route.</p><span class="sk-stamp">Remove</span></div>
+      <div class="sk-plate sk-stack"><svg data-sketch="megaphone" viewBox="0 0 140 110" aria-hidden="true"></svg><span class="sk-tape">PRICE_NOTICE</span><p>Announce prices in November.</p><span class="sk-stamp is-blue">Wait</span></div>
+    </div>
+  </section>
+
+  <section class="sk-slide" data-layout="end" data-notes="Close with the postcard: what was decided, signed.">
+    <div class="sk-postcard" data-reveal style="--sk-tilt:-1.2deg">
+      <div class="sk-stack" style="--gap:12px">
+        <span class="sk-kicker">From the board meeting</span>
+        <h2 style="font-size:64px">Thank you. Questions?</h2>
+        <p class="sk-line">Signed for by five directors. One of them smiled.</p>
+      </div>
+      <div class="sk-stack" style="justify-items:end">
+        <svg data-sketch="postage-stamp" viewBox="0 0 140 110" style="width:190px" aria-hidden="true"></svg>
+        <span class="sk-stamp" data-slam style="--delay:800ms">Delivered</span>
+        <p class="sk-fine" style="text-align:right">finance@northwind.example</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+<script src="../engine/sketchy.js"></script>
+<script src="../engine/sketches.js"></script>
+<script src="../engine/sketchy-charts.js"></script>
+<script src="../engine/sketchy-sound.js"></script>
+<script src="../engine/sketchy-deck.js"></script>
+<script>SketchyDeck.mount();</script>
+</body>
+</html>

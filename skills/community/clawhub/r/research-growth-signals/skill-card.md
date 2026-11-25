@@ -1,6 +1,6 @@
 ## Description:
 
-Research traceable public social and SEO signals through SignalDig, including bounded Zhihu, Xiaohongshu, and Instagram resources plus Threads topic signals.
+Research traceable public social, search, and SEO signals through SignalDig.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-Independent builders, small teams, and AI agents use the skill to gather traceable public social and SEO evidence for market research and growth decisions.
+Developers, marketers, and research teams use this skill to gather bounded public social and SEO evidence about discussions, keyword demand, competitors, search visibility, and traffic. It returns sourced findings with actual coverage and limitations.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Research requests and business scope are sent to SignalDig, so unnecessary confidential details could be exposed.
+Risk: Security review confidence is medium because some local reference checks were incomplete.
 
-Mitigation: Limit requests to the necessary research scope and omit confidential details.
-
-Risk: The security review was partial because some local references could not be resolved; a benign verdict does not guarantee safety.
-
-Mitigation: Check relevant references and do not treat a benign verdict as a safety guarantee.
+Mitigation: Review the reference coverage and referenced files before installing.
 
 ## Reference(s):
 
-- [SignalDig Growth Research MCP contract](references/mcp-contract.md)
-- [SignalDig connection setup](references/setup-guide.md)
+- [SignalDig Unified Research MCP Contract](references/mcp-contract.md)
 - [SignalDig](https://signaldig.com/)
-- [Connect SignalDig](https://signaldig.com/agent-setup)
-- [ClawHub skill release](https://clawhub.ai/jerrykik/skills/research-growth-signals)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, Markdown]
+**Output Type(s):** [Analysis, Guidance]
 
-**Output Format:** [Concise text or Markdown research summaries with source links, observed coverage, and limitations.]
+**Output Format:** [Concise text or Markdown with source links, observations, coverage, and limitations]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Grounded in returned public research evidence; scope and result counts follow the reported coverage.]
+**Other Properties Related to Output:** [Evidence is bounded by the requested scope and reported coverage; unavailable metrics remain unknown.]
 
 ## Skill Version(s):
 
-2.2.3 (source: frontmatter)
+2.3.0 (source: frontmatter, server release evidence)
 
 ## Ethical Considerations:
 

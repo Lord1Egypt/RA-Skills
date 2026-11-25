@@ -1,6 +1,6 @@
 ## Description:
 
-快手高赞视频搜索工具。支持关键词获取快手实时高赞视频数据，助力创作者发现热门趋势、获取创作灵感。支持三大能力：(1) 关键词搜索视频，可按点赞数、发布时间、视频时长筛选排序；(2) 达人作品抓取，按主页链接获取公开作品列表；(3) 视频评论分析，按视频链接获取评论内容与互动数据。
+快手高赞视频搜索工具。支持关键词获取快手实时高赞视频数据，助力创作者发现热门趋势、获取创作灵感。支持关键词搜索视频、获取达人公开作品和分析视频评论。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-内容创作者、品牌营销人员和市场分析师可用关键词发现快手热门视频、查看公开博主作品和视频评论，以支持选题、竞品研究与舆情分析。
+Content creators, marketers, and analysts use this skill to find popular Kuaishou videos, review public creator posts, and inspect video comments for topic research, competitor analysis, and trend monitoring.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search keywords and video or profile links are sent to the third-party service at guaikei.com.
+Risk: Search keywords and video or creator links are sent to Guaikei's service for processing.
 
-Mitigation: Tell the user what will be sent before running; use only public links and avoid sensitive search terms.
+Mitigation: Use public Kuaishou content and avoid sending sensitive keywords or links.
 
-Risk: The security evidence reports a benign verdict with medium confidence after partial inspection of the scripts.
+Risk: The security scan is incomplete: 20 of 32 components were fully inspected, and tool-misuse analysis was degraded.
 
-Mitigation: Review the skill source and publisher before installation, and consider the scan's stated confidence when deciding whether to use it.
+Mitigation: If stronger assurance is needed, wait for a more complete scan and review the skill before installing.
 
 ## Reference(s):
 
-- [快手数据服务](https://www.guaikei.com)
-- [ClawHub skill page](https://clawhub.ai/why20261/skills/kuaishou-video-search)
-- [完整选项参数说明](references/options.md)
-- [更新日志](references/changelog.md)
+- [ClawHub skill release](https://clawhub.ai/why20261/skills/kuaishou-video-search)
+- [Guaikei service website](https://www.guaikei.com)
+- [Command options](artifact/references/options.md)
+- [Changelog](artifact/references/changelog.md)
 
 ## Skill Output:
 
 **Output Type(s):** [JSON, Analysis]
 
-**Output Format:** [Structured JSON response envelope containing public video, creator, or comment data]
+**Output Format:** [Structured JSON envelopes containing public video, creator, or comment data]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Result counts depend on token plan; timestamps use Beijing time.]
+**Other Properties Related to Output:** [Results are limited by the selected count and API plan; only public Kuaishou data is supported.]
 
 ## Skill Version(s):
 
-1.1.1 (source: frontmatter, changelog released 2026-11-04, package.json)
+1.1.2 (source: frontmatter, package.json)
 
 ## Ethical Considerations:
 

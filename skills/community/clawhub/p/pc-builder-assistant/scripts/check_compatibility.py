@@ -18,6 +18,9 @@ import unicodedata
 from pathlib import Path
 
 from component_inference import (
+    STORAGE_AIC_FORM_PATTERN,
+    STORAGE_M2_SIZE_PATTERN,
+    STORAGE_U2_FORM_PATTERN,
     THERMAL_HIGH,
     THERMAL_LOW,
     THERMAL_MAINSTREAM,
@@ -30,6 +33,7 @@ from component_inference import (
     infer_cpu_integrated_graphics,
     infer_native_16pin_psu,
     infer_requires_16pin_gpu,
+    infer_storage_form_factor,
     normalize_memory_generation,
     normalize_memory_generations,
     normalize_display_outputs,
@@ -91,6 +95,64 @@ def _storage_uses_m2(storage):
 
 def _storage_uses_m2_sata(storage):
     return _storage_uses_m2(storage) and "SATA" in _storage_text(storage.get("interface"))
+
+
+def _storage_uses_u2(storage):
+    text = " ".join(
+        _storage_text(storage.get(key))
+        for key in ("form_factor", "interface", "model")
+    )
+    return bool(STORAGE_U2_FORM_PATTERN.search(text))
+
+
+def _storage_uses_aic(storage):
+    text = " ".join(
+        _storage_text(storage.get(key))
+        for key in ("form_factor", "interface", "model")
+    )
+    return bool(STORAGE_AIC_FORM_PATTERN.search(text))
+
+
+def _storage_is_nvme_or_pcie(storage):
+    text = _storage_text(storage.get("interface"))
+    return "NVME" in text or bool(re.search(r"PCI\s*[-.]?\s*E", text))
+
+
+def _storage_m2_size_mm(storage):
+    for key in ("form_factor", "interface", "model"):
+        match = STORAGE_M2_SIZE_PATTERN.search(_storage_text(storage.get(key)))
+        if match:
+            return match.group(1)
+    return None
+
+
+def _u2_port_count(mb):
+    """Return a consistent U.2 port count; aliases never add extra ports."""
+    counts = set()
+    for key in ("u2_ports", "u2_slots", "u2_storage_ports"):
+        value = (mb or {}).get(key)
+        if value is None:
+            continue
+        if isinstance(value, bool) or not isinstance(value, int) or value < 0:
+            return 0
+        counts.add(value)
+    return counts.pop() if len(counts) == 1 else 0
+
+
+def _aic_storage_slot_count(mb):
+    """Return validated x4-or-wider PCIe slots suitable for add-in storage."""
+    if pcie_physical_slot_count(mb) is None:
+        return None
+    return sum(
+        1 for slot in (mb or {}).get("pcie_slot_layout", [])
+        if slot.get("electrical") in {"x4", "x8", "x16"}
+    )
+
+
+def _storage_shape_label(storage):
+    return str(
+        storage.get("form_factor") or infer_storage_form_factor(storage) or ""
+    ).strip()
 
 
 def _m2_pcie_generation(storage):
@@ -504,6 +566,80 @@ class CompatibilityChecker:
             return {
                 "type": "msg",
                 "msg": f"第{'、'.join(unknown_sata_forms)}块SATA硬盘缺少形态信息，需复核2.5/3.5英寸或M.2 SATA后再判断接口占用",
+            }
+        u2_storage = [storage for storage in storage_list if _storage_uses_u2(storage)]
+        if u2_storage:
+            u2_ports = _u2_port_count(mb)
+            if not u2_ports:
+                return {
+                    "type": "msg",
+                    "msg": (
+                        f"检测到U.2硬盘【{len(u2_storage)}个】，主板缺少U.2专用接口/通道证据，"
+                        "需按主板精确型号和扩展卡方案复核后才能完整通过"
+                    ),
+                }
+            if len(u2_storage) > u2_ports:
+                return {
+                    "type": "error",
+                    "msg": (
+                        f"U.2硬盘数量【{len(u2_storage)}个】超过主板U.2接口/通道数【{u2_ports}个】"
+                    ),
+                }
+        aic_storage = [storage for storage in storage_list if _storage_uses_aic(storage)]
+        if aic_storage:
+            aic_slots = _aic_storage_slot_count(mb)
+            if not aic_slots:
+                return {
+                    "type": "msg",
+                    "msg": (
+                        f"检测到AIC硬盘【{len(aic_storage)}个】，主板缺少可核实的x4或更宽PCIe插槽/通道证据，"
+                        "需复核插槽占用和带宽后才能完整通过"
+                    ),
+                }
+            if len(aic_storage) > aic_slots:
+                return {
+                    "type": "error",
+                    "msg": (
+                        f"AIC硬盘数量【{len(aic_storage)}个】超过主板x4或更宽PCIe插槽数【{aic_slots}个】"
+                    ),
+                }
+            return {
+                "type": "msg",
+                "msg": (
+                    f"检测到AIC硬盘【{len(aic_storage)}个】，主板虽有x4或更宽PCIe插槽证据，"
+                    "但仍需复核独显/采集卡占槽、槽间距和lane共享后才能完整通过"
+                ),
+            }
+        unknown_nvme_forms = [
+            str(index + 1)
+            for index, storage in enumerate(storage_list)
+            if _storage_is_nvme_or_pcie(storage)
+            and not _storage_shape_label(storage)
+        ]
+        if unknown_nvme_forms:
+            return {
+                "type": "msg",
+                "msg": (
+                    f"第{'、'.join(unknown_nvme_forms)}块NVMe/PCIe硬盘缺少物理形态，"
+                    "需复核M.2（含尺寸）、U.2或AIC后判断主板接口占用"
+                ),
+            }
+        unsized_m2 = [
+            str(index + 1)
+            for index, storage in enumerate(storage_list)
+            if (
+                _storage_uses_m2(storage)
+                or _storage_shape_label(storage).upper().startswith("M.2")
+            )
+            and _storage_m2_size_mm(storage) is None
+        ]
+        if unsized_m2:
+            return {
+                "type": "msg",
+                "msg": (
+                    f"第{'、'.join(unsized_m2)}块M.2硬盘缺少2230/2242/2260/2280/22110尺寸证据，"
+                    "需按精确型号复核安装长度后才能完整通过"
+                ),
             }
         if m2_sata_count:
             if m2_layout is not None:

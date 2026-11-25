@@ -1,64 +1,44 @@
-# The panel and the System Review
+# Panorama and System Review
 
-> **When to read**: the person says "open my system", "show my panel" or "where am I?"; a month has passed and the person has come back; or the person wants a panel card or a review they can share.
+> **Read when**: the user says “open my system” or “where am I now?”; the system has grown several projects, capabilities, or relations; the user wants to see how a period has changed; or a shareable system panorama is needed.
 
-## The panel
+“Open my system” lets a user see the whole they own now. Generated from current system state, the panorama helps them know where they are, what is acting, where they can enter, and what matters most now.
 
-"Open my system" shows the person's system as it stands. It is read from the system files at that moment. It is not a stored dashboard and not a status ritual.
+## The panorama grows from the user's real system
 
-What it shows:
+A panorama may contain:
 
-- **Systems opened**, each with its one-line essence.
-- **Practices in use**, each with results so far and the next review.
-- **What is being watched**: the signals, and any that fired.
-- **Abilities and personal routes.**
-- **Methods the person now uses unaided.**
-- **Level**, if levels are on, with the evidence one step away.
-- **Now**: the one thing most worth doing, offered as a choice.
+- opened systems and the one-sentence essence of each;
+- relations forming between systems and the whole capabilities they create;
+- practices in use and their real outcomes;
+- capabilities that are established, under validation, or due for retesting;
+- signals worth observing and changes that have already occurred;
+- understanding, methods, and personal routes the user has formed;
+- the single thing most worth entering now, and why it matters.
 
-Every item links to its evidence: the entry, the practice record, the occasion on which a method was used unaided. An item with nothing behind it is not shown.
+Show the parts that contain real current substance and help understanding or action. A young system may have one discovery, one work, and one next move. A complex system may have a layered panorama, present location, relation network, and paths back to the whole.
 
-### Judgment
+## The panorama is a work first
 
-- **Lead with "now".** The panel exists to help the person act. The inventory supports the one recommendation; it is not the point.
-- **Short when the system is young.** After one run, the panel is one system, its essence and one next step. Do not pad it with empty categories; a category with nothing in it does not appear.
-- **In the person's words.** System names and essences are the person's own subjects, in their language.
-- **Form follows the host.** In a terminal, a compact text panel. Where pages can be rendered, a page native to this person's system. There is no fixed panel layout; only its contents are defined.
-- **It is an entry point, not a destination.** Each line can be opened, continued or acted on with a sentence.
-- **If the person arrived with a task, do the task.** The panel is for "open my system", not a preface to every session.
+Organize the panorama around one central judgment about the user's present situation. Text, space, timelines, relation maps, or an explorable world can all give it form. Each element connects to its grounds, entry, work, or capability, and the user can continue the system from any part.
 
-### The panel card
+A terminal can produce compact text. A webpage can become a dynamic world. A document can become an annotatable system map. Form follows host capability and user purpose. The same system can have different views for different occasions while sharing one real state.
 
-A **panel card** is the shareable form of the panel, in 1:1 and 9:16, made like a discovery card (see `display/share-pack.md`).
+## System review
 
-It is **share-safe by default**: it shows numbers and names of methods (systems opened, practices in use, abilities, methods used unaided, level), and hides anything private: system names and essences, practice details, what is watched, anything about other people. The person chooses, item by item, what else to show. You never post it.
+When lived experience has accumulated enough to change the whole-system picture, the system can offer or directly answer a review. The span follows the rhythm of the subject: a week, iteration, quarter, release, or life stage.
 
-## The System Review
+The review asks:
 
-Once a month, when the person comes back, offer a **System Review**. Offer it once for that month, as a choice; if declined, do not repeat it until the next month.
+- What was truly opened, completed, and changed during this span?
+- Which understanding was confirmed, revised, or overturned?
+- Which practices produced results and grew into capabilities?
+- What can the user now understand and do independently?
+- Which systems began to connect, and what new possibility appeared?
+- Which higher-level structure deserves force in the next stage?
 
-It covers, for the period:
+The review is itself system evolution. It updates the current entry, retires parts that have lost their role, moves new capabilities into the right place, and turns the user's chosen direction into the next run's starting point.
 
-- **what was opened**: the systems, each with the reveal that mattered most;
-- **what was learned**: the changes in the second record, in the person's own terms;
-- **which practices worked**, with their measured results, and which were adjusted or dropped, and why;
-- **which methods the person now uses unaided**;
-- **what changed**: in the person's situation, in their systems, in what is now possible;
-- **what is next**: one recommendation for the coming month, as a choice.
+## Sharing a panorama
 
-### It contains only what is true
-
-The System Review is designed to be shared, like a year-in-review. That is exactly why it must not flatter:
-
-- every number is counted from the system files, and every claim links to its evidence;
-- a quiet month is reported as a quiet month. A short honest review is better than an inflated one;
-- a practice that did not work is in the review, with what was learned from it;
-- nothing is included that the system cannot back.
-
-### Form
-
-The review is a deliverable and follows `engines/express.md`: one finding about the month leads it (the reveal of the period), and the form is native to this person's month. It carries the signature and gets a share pack. Its shareable version follows the same share-safe rules as the panel card.
-
-### What the review changes
-
-A review is also the Improve stage applied to the person's whole system. Use it to do the housekeeping a system needs: rewrite entries that have grown long, retire practices and code that are no longer used, update review dates, and record the direction the person chose for the next month. Say in one sentence what was tidied.
+The user can share a panorama, one discovery, a subsystem, or a span of growth. Recreate the public version for its audience and purpose while keeping its connection to the real system. The publishing rights holder decides public scope, identity, platform, and final content. See [Rights, Authority, and Sharing](consent.md) and [Sharing](../experience/display/share-pack.md).

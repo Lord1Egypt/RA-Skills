@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rankizz SEO Skills"
+  short_description: "Set up Rankizz and route SEO work"
+  default_prompt: "Use $rankizz-seo-skills to set up this SEO project and install the right Rankizz workflows."

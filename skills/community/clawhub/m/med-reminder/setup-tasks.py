@@ -29,6 +29,7 @@ Usage:
     python setup-tasks.py --tick-minutes 1
     python setup-tasks.py --scheduler systemd  # Linux only
     python setup-tasks.py --clear              # remove this state's tick + legacy jobs
+    python setup-tasks.py --purge-unknown      # Windows: also delete unrecognized tasks
     python setup-tasks.py --dry-run
 """
 
@@ -38,6 +39,7 @@ import hashlib
 import io
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -414,9 +416,35 @@ def register_windows(h: str, state_path, tick_minutes: int, run=_run,
 def verify_windows(h: str, run=_run) -> bool:
     return run(["schtasks", "/query", "/tn", tick_task_full_name(h)]).returncode == 0
 
-def remove_legacy_windows(h: str, run=_run, dry_run: bool = False) -> int:
+# Pre-PR3 per-dose naming scheme (setup-tasks.py build_tasks() up to commit
+# 20e127b, before the PR 3 tick refactor), all inside \\MedReminder\\:
+#   digest, reset-deferred                  — global tasks
+#   fire_<med-id>_<i>, check_<med-id>_<i>,
+#   miss_<med-id>_<i>                       — per dose time i (0-based)
+#   fire_<med-id>_interval                  — interval-frequency meds
+# where <med-id> matches the schema's ^med-[0-9]{3,}$. Only names matching
+# this scheme are provably ours to delete during migration.
+_FOLDER_RE = re.escape(f"\\{TASK_FOLDER}\\")
+_LEGACY_TASK_RE = re.compile(
+    _FOLDER_RE + r"(?:digest|reset-deferred|fire_med-\d{3,}_(?:\d+|interval)"
+                 r"|(?:check|miss)_med-\d{3,}_\d+)$")
+# Any state's tick: \\MedReminder\\tick-<hex state hash>
+_TICK_TASK_RE = re.compile(_FOLDER_RE + r"tick-[0-9a-f]+$", re.IGNORECASE)
+
+def is_legacy_task(name: str) -> bool:
+    return bool(_LEGACY_TASK_RE.match(name))
+
+def is_tick_task(name: str) -> bool:
+    return bool(_TICK_TASK_RE.match(name))
+
+def remove_legacy_windows(h: str, run=_run, dry_run: bool = False,
+                          purge_unknown: bool = False) -> int:
     """
-    Delete every task in \\MedReminder\\ except this state's tick. Returns the
+    Delete pre-PR3 per-dose tasks in \\MedReminder\\. Every state's tick is
+    protected (own tick, other states' registries, and any name that parses
+    as a tick), so multi-state installs never lose each other's tick. Tasks
+    that are neither protected nor provably legacy are reported as
+    UNRECOGNIZED and left alone unless purge_unknown is set. Returns the
     number of legacy tasks that could NOT be removed (0 = clean, -1 = the
     folder could not be enumerated).
     """
@@ -424,11 +452,16 @@ def remove_legacy_windows(h: str, run=_run, dry_run: bool = False) -> int:
     if names is None:
         print("  WARNING: could not enumerate \\" + TASK_FOLDER + "\\ — legacy tasks left as-is.")
         return -1
-    keep = {tick_task_full_name(h)}
+    keep = {tick_task_full_name(h)} | _other_registered_windows_tasks(h)
     remaining = 0
     for name in names:
-        if name in keep:
+        if name in keep or is_tick_task(name):
             continue
+        if not is_legacy_task(name):
+            if not purge_unknown:
+                print(f"  UNRECOGNIZED (untouched): {name}")
+                continue
+            print(f"  UNRECOGNIZED (purging): {name}")
         if dry_run:
             print(f"  [DRY RUN] schtasks /delete /tn {name} /f")
             continue
@@ -549,7 +582,7 @@ def verify_systemd(h: str, run=_run) -> bool:
 # ── Register-verify-remove + clear (issue #1 §5) ──────────────────────────────
 
 def migrate(h: str, state_path, tick_minutes: int, scheduler_hint: str = "cron",
-            run=_run, dry_run: bool = False) -> int:
+            run=_run, dry_run: bool = False, purge_unknown: bool = False) -> int:
     """
     Register the tick, query it back, and only then remove legacy jobs.
     Any registration/verification failure leaves the legacy jobs in place,
@@ -602,7 +635,7 @@ def migrate(h: str, state_path, tick_minutes: int, scheduler_hint: str = "cron",
         return 1
 
     if is_windows:
-        outstanding = remove_legacy_windows(h, run)
+        outstanding = remove_legacy_windows(h, run, purge_unknown=purge_unknown)
     else:
         # legacy jobs were crontab per-dose entries on every Unix flavor
         outstanding = remove_legacy_cron(h, state_path, run)
@@ -647,13 +680,15 @@ def _other_registered_windows_tasks(h: str) -> set:
 
 def clear(h: str, state_path, run=_run, dry_run: bool = False) -> int:
     """Remove this state's tick and every legacy job. Other state files'
-    ticks (found via their registries) are left alone."""
+    ticks (found via their registries or by tick-<hash> name) are left alone."""
     if sys.platform == "win32":
         names = list_medreminder_tasks(run)
         if names is not None:
             protected = _other_registered_windows_tasks(h)
             for name in names:
-                if name in protected:
+                # any other state's tick is protected even without a registry
+                if name in protected or (is_tick_task(name)
+                                         and name != tick_task_full_name(h)):
                     continue
                 if dry_run:
                     print(f"  [DRY RUN] schtasks /delete /tn {name} /f")
@@ -707,6 +742,9 @@ def main() -> int:
                         help="Show what would be registered without making changes")
     parser.add_argument("--clear", action="store_true",
                         help="Remove this state's tick and all legacy jobs, then exit")
+    parser.add_argument("--purge-unknown", action="store_true",
+                        help="Windows: also delete unrecognized tasks in \\MedReminder\\ "
+                             "during migration (default: report and leave them)")
     args = parser.parse_args()
 
     if not 1 <= args.tick_minutes <= 59:
@@ -722,7 +760,7 @@ def main() -> int:
     if args.clear:
         return clear(h, STATE_FILE, dry_run=args.dry_run)
     return migrate(h, STATE_FILE, args.tick_minutes, args.scheduler,
-                   dry_run=args.dry_run)
+                   dry_run=args.dry_run, purge_unknown=args.purge_unknown)
 
 
 if __name__ == "__main__":

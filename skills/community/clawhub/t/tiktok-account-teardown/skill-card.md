@@ -1,6 +1,6 @@
 ## Description:
 
-Retrieves public TikTok search results, creator posts, and video comments as structured data for account and content analysis.
+Searches TikTok public videos, retrieves public creator posts and video comments, and returns structured data for account and content analysis.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Creators, marketers, researchers, and agent developers use this skill to review public TikTok content, compare accounts, and summarize engagement or comment patterns.
+Developers and content analysts use this skill to gather public TikTok search results, creator posts, and video comments for competitor research, content analysis, and account diagnostics.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review was benign with medium confidence, but 12 of 32 components were only partially inspected and tool-misuse analysis was degraded.
+Risk: The benign scan verdict has medium confidence: 12 of 32 components were not fully interpreted.
 
-Mitigation: Review the skill and its behavior before installation or execution; the benign verdict is not a guarantee of safety.
+Mitigation: Review the skill source and install only if you are comfortable with the incomplete scan evidence.
 
-Risk: Queries send keywords or TikTok links to www.guaikei.com, and results can contain public account names and engagement data.
+Risk: Search keywords and TikTok links are sent to the GUAIKEI data service when queries run.
 
-Mitigation: Use only public data you are authorized to analyze, and avoid sending sensitive search terms or links.
+Mitigation: Use public TikTok data and avoid sending sensitive or private information in query terms or links.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/why20261/skills/tiktok-account-teardown)
 - [GUAIKEI service and support](https://www.guaikei.com)
-- [Options and parameters](artifact/references/options.md)
+- [ClawHub skill page](https://clawhub.ai/why20261/skills/tiktok-account-teardown)
+- [Command options](artifact/references/options.md)
 - [Changelog](artifact/references/changelog.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis]
+**Output Type(s):** [JSON, Analysis, Guidance]
 
-**Output Format:** [Structured JSON results for TikTok search, creator posts, or video comments; the agent can summarize them in text or Markdown.]
+**Output Format:** [Structured JSON data, with concise analysis or operating guidance when requested]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Array-based results; available fields and counts depend on the request and API plan.]
+**Other Properties Related to Output:** [Returns search results, creator posts, or comments; it does not retrieve video details or download video files.]
 
 ## Skill Version(s):
 
-1.1.1 (source: frontmatter, changelog released 2026-11-04, package.json)
+1.1.2 (source: frontmatter, package.json, server release)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Provides public WeChat Channels video, account, comment, live replay, collection, and engagement data through okdata.
+Access public WeChat Channels videos, accounts, comment replies, collections, and backup data through okdata.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and analysts can retrieve public WeChat Channels content and engagement data for account audits, competitor research, and creator discovery.
+Developers and analysts use the skill to find public WeChat Channels content and inspect accounts, comments, collections, live replays, and engagement metrics.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan was partial, and the skill relies on the external okdata service to retrieve platform data.
+Risk: The security scan rated the skill benign with medium confidence and partial coverage; it does not establish the safety of the referenced external API or unmatched references.
 
-Mitigation: Review the service and its data handling before installation; keep the API key private and set a per-call spending cap.
+Mitigation: Review the okdata service and references before use, and proceed only if you trust the service.
+
+Risk: API calls can incur charges, and additional pages require additional paid calls.
+
+Mitigation: Check the endpoint price and set an appropriate max_price before each paid call; request more pages only when needed.
 
 ## Reference(s):
 
 - [WeChat Channels API reference](https://okdata.online/apis/wechat_channels/?src=skill-okdata-wechat-channels)
-- [okdata agent setup](https://okdata.online/agents.md)
-- [ClawHub skill page](https://clawhub.ai/conn-ho/skills/okdata-wechat-channels)
+- [okdata agent setup instructions](https://okdata.online/agents.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Shell commands, API calls]
+**Output Type(s):** [text, guidance, API data]
 
-**Output Format:** [Text responses, JSON call examples, and shell command examples]
+**Output Format:** [Markdown instructions and text results returned by the okdata API]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Paged results; calls cost $0.015–$0.15 each, depending on the endpoint.]
+**Other Properties Related to Output:** [One page per API call; requesting more pages requires additional paid calls.]
 
 ## Skill Version(s):
 
-0.2.2 (source: server-resolved release metadata)
+0.2.3 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

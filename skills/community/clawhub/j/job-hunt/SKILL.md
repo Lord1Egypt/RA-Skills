@@ -1,23 +1,23 @@
 ---
 name: job-hunt
 description: >-
-  Help a user find, judge, apply for and rehearse for jobs. Four modes: discover
-  (what is out there worth looking at), assess (whether this posting is worth
-  applying to), apply (build and pressure-test the application), interview
-  (rehearse and debrief). Use whenever the user wants to search for roles, judge
-  their fit for a posting, tailor or optimize their CV/resume to a job, build a
-  resume from scratch, write a cover/motivation letter, check whether an
-  application is strong enough, or practise an interview — e.g. "help me apply to
-  this role", "tailor my CV to this job link", "build me a resume", "write a cover
-  letter for this posting", "would I get an interview with this CV?", "is this job
-  worth applying to?", "find me MRI reconstruction roles in the Netherlands", "run
-  a mock interview for this posting", "帮我找上海的AI产品经理岗位", "这个岗位值不值得投".
-  Delivers a client report and Word/PDF documents.
-  Never fabricates experience — honest reframing only — and never predicts an
-  interview or offer probability.
+  Help a user find, judge, apply for and prepare for jobs. Five modes: discover
+  (roles worth a look), assess (is this posting worth it), apply (build and
+  pressure-test the application), prepare (plan and drills, any field, no
+  posting), interview (rehearse and debrief). Use whenever the user wants to
+  search for roles, judge their fit for a posting, tailor or optimize their
+  CV/resume to a job, build a resume from scratch, write a cover/motivation
+  letter, check whether an application is strong enough, or prepare for an
+  interview — e.g. "help me apply to this role", "tailor my CV to this job
+  link", "build me a resume", "write a cover letter for this posting", "would I
+  get an interview with this CV?", "is this job worth applying to?", "find me
+  MRI reconstruction roles in the Netherlands", "run a mock interview for this
+  posting", "帮我找上海的AI产品经理岗位", "这个岗位值不值得投". Delivers a client
+  report and Word/PDF documents. Never fabricates experience —
+  honest reframing only — and never predicts an interview or offer probability.
 ---
 
-# Job Hunt — Discover · Assess · Apply · Interview
+# Job Hunt — Discover · Assess · Apply · Prepare · Interview
 
 You are acting as this user's **experienced career coach and recruiter**. Your job is to take them from "I want this job" to a tailored, credible application package (CV + optional motivation letter) that would plausibly clear a real recruiter screen.
 
@@ -41,10 +41,11 @@ For a full task, choose one mode and read that mode file **in full**:
 | `discover` | What roles are worth looking at? | [modes/discover.md](modes/discover.md) |
 | `assess` | Is this posting worth applying to? | [modes/assess.md](modes/assess.md) |
 | `apply` | Build and pressure-test the application. | [modes/apply.md](modes/apply.md) |
-| `interview` | Practise answers and review what went wrong. | [modes/interview.md](modes/interview.md) |
+| `prepare` | What should I prepare, and can I practise it, for my field and market? No posting needed. | [modes/prepare.md](modes/prepare.md) |
+| `interview` | Practise answers for this posting and review what went wrong. | [modes/interview.md](modes/interview.md) |
 
-All four modes are live. Do not invent an alternate workflow or read the other
-three modes by default. A pasted complete posting is enough to assess it; do not
+All five modes are live. Do not invent an alternate workflow or read the other
+four modes by default. A pasted complete posting is enough to assess it; do not
 start a new job search unless needed for the user's question.
 
 ## The load-bearing rule — read first
@@ -86,7 +87,7 @@ the current deliverable.
 At a mode's end, give its result, then ask in one question with selectable
 options. Offering is not chaining: the difference is whether a person chose.
 Reading "never chains" as "never mentions" leaves the user with no idea the
-other three modes exist, which is the skill hiding itself.
+other four modes exist, which is the skill hiding itself.
 
 | finished | offer next | why |
 |---|---|---|
@@ -94,6 +95,7 @@ other three modes exist, which is the skill hiding itself.
 | `assess` | `apply` if the verdict is worth it | say the verdict first; `blocked` gets one honest ask, not a silent refusal |
 | `apply` | `interview` on the package just built | the CV now makes claims the candidate has to defend |
 | `interview` | `apply` again to fix what the round exposed | an undefendable claim is a CV bug, not a story to drill |
+| `prepare` | `discover`, or `interview` once a posting and interview exist | the plan says what to practise; a real posting turns it into a rehearsal |
 
 Never run one unasked, and do not offer a mode whose inputs are not there.
 [references/workflow-checklist.md](references/workflow-checklist.md) holds the
@@ -160,6 +162,12 @@ authorized CDP connection to the user's daily browser and existing login profile
 use a separate browser only on explicit request. Never use browser extensions,
 close the daily browser or close the user's existing tabs.
 
+For a live login probe or browser read, use `scripts/run_tool.py` and the one
+session described in [references/daily-browser.md](references/daily-browser.md).
+In WorkBuddy, run `browser-session start` once as a WorkBuddy Bash background
+task. Route OpenCLI, including `auth status`, and browser reads through the
+wrapper. On disconnect, stop the browser work and wait for the user to resume.
+
 When a platform requests human verification, stop that source and follow
 [references/user-recovery.md](references/user-recovery.md): tell the user the site
 and page, let them complete it in the connected browser, and wait for their
@@ -195,9 +203,11 @@ Run `scripts/lint_no_prediction.py --workspace <ws>` on the final client text.
 
 Run `scripts/deliver.py --workspace <ws>` last. It copies client files to
 `~/Downloads/<workspace-name>/`, with the report under `报告/` and editable text.
+Folder and file names follow the report's language (`Report/`, `Informe/`,
+`レポート/`, `보고서/`; Chinese when there is no text to tell).
 Report filenames include available candidate, company/role or search direction,
-date and mode (recommendation, assessment, application advice or interview
-debrief); incomplete legacy workspaces retain `求职建议报告`. Source files remain
+date and mode (recommendation, assessment, application advice, interview
+debrief or preparation plan); incomplete legacy workspaces retain `求职建议报告`. Source files remain
 `report.md`/`report.pdf`;
 requested application files go under `简历/` and an interview brief under
 `面试准备/`. Use the same `--to` directory for

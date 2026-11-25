@@ -148,8 +148,8 @@ npx -y @yottameta/yotta-skills hub hosts set box --clear     # 恢复内置映�
 面板「宿主矩阵」提供等价动作：行内「不接管 / 编辑目录 / 标记可用 / 隐藏标记 / 重命名（自定义注册）」，
 底部「不接管名单」区可「恢复接管」；写操作均写 Hub 审计。
 
-**YottaCode 不纳入接管**：YottaCode 自带三层技能管理（skill-inventory / skill /
-user-skills），元阁对其 `.yottacode` 路径与 `YOTTACODE_HOME` 子树在映射、扫描、
+**YottaWeave 不纳入接管**：YottaWeave 自带三层技能管理（skill-inventory / skill /
+user-skills），元阁对其 `.yottaweave` 路径与 `YOTTAWEAVE_HOME` 子树在映射、扫描、
 注册、标记、链接全部 fail-closed 排除，避免重复管理。
 
 **未核实映射 ≠ 自动发现**：内置映射里尚未逐机核实的条目显示「映射·未核实」；

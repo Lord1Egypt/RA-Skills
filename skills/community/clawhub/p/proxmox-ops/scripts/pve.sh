@@ -121,7 +121,36 @@ case "$cmd" in
         node="${1:?Specify node}"
         api GET "/nodes/$node/storage" | jq -r '.data[] | "\(.storage)\t\(.type)\t\(if .total then ((.used/.total*100)|round|tostring + "%") else "N/A" end)"'
         ;;
-    
+
+    ips)
+        # List all configured IPs across the cluster, optionally filtered by subnet prefix.
+        # Reads each VM/LXC config and parses ip= from netN (LXC) and ipconfigN (QEMU cloud-init).
+        # NOTE: Only IPs *Proxmox manages* are visible — guest-side static IPs (set inside the OS,
+        # not via cloud-init) are invisible to this. Always cross-check with DHCP/UniFi + ping
+        # before assigning a "free" IP.
+        prefix="${1:-}"
+        # Tab-separated to be robust against names with spaces; null-tolerant read loop.
+        rows=$(api GET "/cluster/resources?type=vm" | jq -r '.data[] | [.type, .vmid, .node, .status, .name] | @tsv')
+        while IFS=$'\t' read -r typ vmid node status name; do
+            [[ -z "${vmid:-}" ]] && continue
+            cfg=$(api GET "/nodes/$node/$typ/$vmid/config" </dev/null)
+            if [[ "$typ" == "lxc" ]]; then
+                lines=$(jq -r '.data | (.net0 // ""), (.net1 // ""), (.net2 // ""), (.net3 // "")' <<<"$cfg")
+            else
+                lines=$(jq -r '.data | (.ipconfig0 // ""), (.ipconfig1 // ""), (.ipconfig2 // ""), (.ipconfig3 // "")' <<<"$cfg")
+            fi
+            while IFS= read -r line; do
+                if [[ "$line" =~ ip=([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+) ]]; then
+                    ip="${BASH_REMATCH[1]}"
+                else
+                    continue
+                fi
+                if [[ -n "$prefix" && "$ip" != ${prefix}* ]]; then continue; fi
+                printf '%s\t%s\t%s\t%s\t%s\n' "$ip" "$vmid" "$typ" "$status" "$name"
+            done <<<"$lines"
+        done <<<"$rows" | sort -t. -k1,1n -k2,2n -k3,3n -k4,4n
+        ;;
+
     help|*)
         cat << 'EOF'
 Proxmox VE CLI Helper
@@ -140,6 +169,7 @@ Commands:
   snapshots <vmid>    List snapshots
   tasks <node>        Show recent tasks
   storage <node>      Show storage status
+  ips [prefix]        List all configured IPs (filter by prefix, e.g. "10.10.20")
 
 Environment:
   PROXMOX_HOST         https://your-proxmox:8006

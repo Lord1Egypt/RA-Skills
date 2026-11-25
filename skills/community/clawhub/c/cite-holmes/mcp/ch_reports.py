@@ -626,18 +626,30 @@ def annotate_completeness(results: list) -> int:
 # 派生——评测「顶层错误码体系不完全统一」（派生表/翻译表两处手工维护漂移）
 # 的机制根除；E_DOU→E_DOI 更名经 _ERR_CODE_ALIAS 向后兼容。
 ERROR_CODE_META = {
-    "E_DOI_NOT_FOUND": {"zh": "DOI 在 DOI.org 不存在（404）——疑似编造引用"},
-    "E_TITLE_MISMATCH": {"zh": "DOI 存在但登记标题与声称不符——错引或张冠李戴"},
-    "E_CROSS_LANG": {"zh": "跨语言标题无法机器比对——已保守处理，建议人工核对"},
-    "E_ARXIV_NOT_FOUND": {"zh": "arXiv ID 官方 API 查无"},
-    "E_PMID_NOT_FOUND": {"zh": "PMID 在 PubMed E-utilities 查无"},
-    "E_STITCHED": {"zh": "标识符拼接嫌疑（两键各真但疑似指向不同论文）"},
-    "E_RETRACTED": {"zh": "命中撤稿记录（Crossref/Retraction Watch）"},
-    "E_EXPRESSION_OF_CONCERN": {"zh": "编辑关注通告（Expression of Concern）——证据效力存疑，转人工"},
-    "E_AUTHOR_MISMATCH": {"zh": "作者姓氏与登记列表不符"},
-    "E_JOURNAL_MISMATCH": {"zh": "期刊名与登记不符"},
-    "E_UNREACHABLE": {"zh": "来源抓取失败（超时/反爬/网络）——不等于不存在"},
-    "E_OFFLINE": {"zh": "离线模式未执行核验"},
+    "E_DOI_NOT_FOUND": {"zh": "DOI 在 DOI.org 不存在（404）——疑似编造引用",
+                        "grill": "该 DOI 从何而来（AI 生成/笔记转抄/数据库导出）？拼写逐字符核对过吗？"},
+    "E_TITLE_MISMATCH": {"zh": "DOI 存在但登记标题与声称不符——错引或张冠李戴",
+                         "grill": "登记论文与你要引的论文是同一篇吗？给出登记原文题名并说明差异成因。"},
+    "E_CROSS_LANG": {"zh": "跨语言标题无法机器比对——已保守处理，建议人工核对",
+                     "grill": "请附登记语言原题或罗马化题名，说明人工核对路径。"},
+    "E_ARXIV_NOT_FOUND": {"zh": "arXiv ID 官方 API 查无",
+                          "grill": "该 arXiv ID 的出处？是否与正式发表版 DOI 重复登记？"},
+    "E_PMID_NOT_FOUND": {"zh": "PMID 在 PubMed E-utilities 查无",
+                         "grill": "该 PMID 来源与位数核对过吗（8 位段常见拼误）？"},
+    "E_STITCHED": {"zh": "标识符拼接嫌疑（两键各真但疑似指向不同论文）",
+                   "grill": "DOI 与 PMID 分别指向哪两篇？说明拼接成因与正确标识符。"},
+    "E_RETRACTED": {"zh": "命中撤稿记录（Crossref/Retraction Watch）",
+                    "grill": "撤稿通告原文怎么说的？你的论断是否只依赖被撤部分？"},
+    "E_EXPRESSION_OF_CONCERN": {"zh": "编辑关注通告（Expression of Concern）——证据效力存疑，转人工",
+                                "grill": "EoC 范围覆盖你的论断吗？后续更正版是否已引用？"},
+    "E_AUTHOR_MISMATCH": {"zh": "作者姓氏与登记列表不符",
+                          "grill": "作者列表差异是姓氏拼写、名字顺序还是他人论文？逐一说明。"},
+    "E_JOURNAL_MISMATCH": {"zh": "期刊名与登记不符",
+                           "grill": "期刊名差异是更名/缩写/冒名？给出登记期刊全名与 ISSN。"},
+    "E_UNREACHABLE": {"zh": "来源抓取失败（超时/反爬/网络）——不等于不存在",
+                      "grill": "换网络/代理重跑结果？URL 是否仍可在浏览器打开？"},
+    "E_OFFLINE": {"zh": "离线模式未执行核验",
+                  "grill": "本条未经注册库核验——联网重跑前不得作为已核实引用。"},
 }
 # v6.5.0 及更早版本的拼写码兼容读取（只进解释器，不再产出）
 _ERR_CODE_ALIAS = {"E_DOU_NOT_FOUND": "E_DOI_NOT_FOUND"}
@@ -1712,6 +1724,15 @@ def grill_report(results: list) -> list:
                 ],
             )
         )
+        # v6.9.0 F70 reviewer 机制化：错误码驱动针对性问题（与 F63 注册表
+        # 同源——每码的 grill 问题注册在 ERROR_CODE_META；旧码先过别名）。
+        # 只追加问题不改判定（ADR-0005 同向）。
+        codes = [_ERR_CODE_ALIAS.get(c, c)
+                 for c in (r.get("error_codes") or derive_error_codes(r))]
+        for c in codes:
+            q = (ERROR_CODE_META.get(c) or {}).get("grill")
+            if q and q not in qs:
+                qs.append(q)
         note = str(r.get("note") or "")
         if "克隆引用对" in note:
             qs.append("该条处于克隆引用对中——与配对条目孰真孰假，元数据核验结论是什么？")

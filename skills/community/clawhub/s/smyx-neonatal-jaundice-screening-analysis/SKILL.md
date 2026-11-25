@@ -1,7 +1,7 @@
 ---
 name: "smyx-neonatal-jaundice-screening-analysis"
 description: "Using a neonatal monitor or baby camera, the system captures high-resolution facial images of the newborn and uses AI visual analysis to detect sclera color (white in normal babies, yellow when jaundiced) and facial skin yellowness index (based on skin-color chromatic spaces, e.g., mapping the skin region to estimated clinical bilirubin levels). It outputs a jaundice-risk hint (low / medium / high risk). | 通过新生儿监护器或婴儿摄像头拍摄新生儿面部高清图像，利用AI视觉分析技术检测巩膜（眼白）的颜色（正常白色，黄疸时呈黄色）以及面部皮肤的黄染指数（基于肤色色度空间，如将皮肤区域映射到临床胆红素水平估算），输出黄疸风险提示（低风险/中风险/高风险）。该技能可辅助家长及医护人员早期发现新生儿高胆红素血症，及时就医干预。"
-version: "1.0.22"
+version: "1.0.23"
 license: "MIT-0"
 ---
 

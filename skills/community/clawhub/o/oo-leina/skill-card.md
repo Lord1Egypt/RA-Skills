@@ -1,6 +1,6 @@
 ## Description:
 
-Inspect Leina robot status and send text notifications through configured channels.
+Leina (leina.ai). Use this skill for ANY Leina request — reading, creating, and updating data. Whenever a task involves Leina, use this skill instead of calling the API directly.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Leina users use this skill to inspect robot status and send text notifications through configured channels.
+Leina users use this skill to inspect bot status and send notifications through their OOMOL-connected account.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Setup may run downloaded code that has not been verified, without a clear approval step.
+Risk: The separate OOMOL setup instructions run an unpinned remote installer, and the installer was not supplied for inspection.
 
-Mitigation: Review the CLI installation separately and approve a verified version before setup.
-
-Risk: Setup may automatically install additional agent skills.
-
-Mitigation: Review or disable automatic installation of additional agent skills.
-
-Risk: A notification may be sent through the wrong robot or to unintended recipients.
-
-Mitigation: Confirm the robot, recipients, and message before sending notifications.
+Mitigation: Before installing OOMOL, review and verify the installer through a trusted source; use the skill's Leina actions only after deciding the separate installation is needed.
 
 ## Reference(s):
 
 - [Leina](https://leina.ai)
-- [oo CLI](https://github.com/oomol-lab/oo-cli)
-- [ClawHub release](https://clawhub.ai/oomol/skills/oo-leina)
+- [oo CLI documentation](https://github.com/oomol-lab/oo-cli)
+- [oo CLI install guide](https://cli.oomol.com/install-guide.md)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, JSON, Text]
+**Output Type(s):** [JSON, Text]
 
-**Output Format:** [JSON action requests and responses; plain-text notification messages]
+**Output Format:** [Structured JSON results and notification text]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Action-dependent; inspect the current action schema before submitting a request.]
+**Other Properties Related to Output:** [Action-dependent; notification delivery changes Leina state and requires user confirmation.]
 
 ## Skill Version(s):
 
-1.0.1 (source: server-resolved release metadata)
+1.0.2 (source: frontmatter)
 
 ## Ethical Considerations:
 

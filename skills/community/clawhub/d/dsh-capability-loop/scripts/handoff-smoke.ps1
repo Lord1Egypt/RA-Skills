@@ -1,4 +1,4 @@
-﻿# handoff-smoke.ps1 — DSH↔Trae 交接链路冒烟（只写临时目录，不碰真实工程）
+﻿# handoff-smoke.ps1 — DSH↔Trae 交接链路冒烟（只在自己的唯一临时子目录里写，绝不清理调用方目录）
 # 兼容 Windows PowerShell 5.1；含中文，必须保存为 UTF-8 带 BOM。
 # 用途：在真实工程实测「设计驱动交接」前，先用临时工程验证四件套/门禁/取证/唤起解析是否连通。
 # 用法：powershell -NoProfile -ExecutionPolicy Bypass -File .\handoff-smoke.ps1 [-Workspace <工作区>] [-FeatureHandoff <目录>] [-Scratch <目录>] [-Keep]
@@ -64,8 +64,12 @@ if ($missing.Count -gt 0) {
 Add-R 'feature-handoff 脚本' 'PASS' '四脚本齐全'
 
 # 准备临时工程
-if (Test-Path -LiteralPath $Scratch) { Remove-Item -LiteralPath $Scratch -Recurse -Force -ErrorAction SilentlyContinue }
-$proj = Join-Path $Scratch 'smoke-project'
+# 安全边界：每次在 Scratch 下新建唯一子目录（run-时间戳-随机串），所有读写与清理都只针对该子目录；
+# 绝不删除、清空或复用 Scratch 本身（调用方可能传入真实工程路径）。
+$stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
+$runRoot = Join-Path $Scratch ('run-' + $stamp + '-' + [guid]::NewGuid().ToString('N').Substring(0, 8))
+New-Item -ItemType Directory -Force -Path $runRoot | Out-Null
+$proj = Join-Path $runRoot 'smoke-project'
 New-Item -ItemType Directory -Force -Path (Join-Path $proj 'src') | Out-Null
 Add-R '临时工程' 'PASS' $proj
 <#
@@ -197,8 +201,10 @@ if ($fail -eq 0) {
     Write-Host ('RESULT: FAIL（' + [string]$fail + ' 项失败）') -ForegroundColor Red
 }
 if (-not $Keep) {
-    Remove-Item -LiteralPath $Scratch -Recurse -Force -ErrorAction SilentlyContinue
-    Write-Host '已清理临时工程（-Keep 可保留用于检查）。' -ForegroundColor Gray
+    Remove-Item -LiteralPath $runRoot -Recurse -Force -ErrorAction SilentlyContinue
+    Write-Host ('已清理本次运行的临时子目录（只删这个，不动 Scratch 本身）：' + $runRoot) -ForegroundColor Gray
+} else {
+    Write-Host ('已保留本次运行的临时子目录（-Keep）：' + $runRoot) -ForegroundColor Gray
 } else {
     Write-Host ('保留临时工程：' + $proj) -ForegroundColor Gray
 }

@@ -93,7 +93,7 @@ Available `name` values (any FFmpeg xfade transition name works):
 
 | Prop | Type | Description |
 |------|------|-------------|
-| `model` | `ImageModelV3` | Required. e.g. `varg.imageModel("nano-banana-pro")` |
+| `model` | `ImageModelV3` | Required. e.g. `varg.imageModel("nano_banana_2_1")` |
 | `prompt` | `string \| { text, images }` | Text prompt or edit prompt with references |
 | `aspectRatio` | `string` | `"16:9"`, `"9:16"`, `"1:1"`, `"4:3"`, `"3:4"`, `"4:5"` |
 | `zoom` | `"in" \| "out" \| "left" \| "right"` | Ken Burns zoom/pan animation (for slideshows) |
@@ -105,14 +105,14 @@ Available `name` values (any FFmpeg xfade transition name works):
 ```tsx
 // Text-to-image
 const img = Image({
-  model: varg.imageModel("nano-banana-pro"),
+  model: varg.imageModel("nano_banana_2_1"),
   prompt: "cinematic portrait, golden hour",
   aspectRatio: "9:16"
 })
 
 // Reference editing
 const edited = Image({
-  model: varg.imageModel("nano-banana-pro/edit"),
+  model: varg.imageModel("nano_banana_2_1"),
   prompt: { text: "same person on a beach", images: [referenceImage] },
   aspectRatio: "9:16"
 })
@@ -125,28 +125,28 @@ Add cinematic motion to still images in slideshows. The `zoom` prop creates a sl
 ```tsx
 // Slow zoom in -- dramatic reveal
 const landscape = Image({
-  model: varg.imageModel("nano-banana-pro"),
+  model: varg.imageModel("nano_banana_2_1"),
   prompt: "vast mountain range at sunset, layers of purple and gold",
   zoom: "in"
 })
 
 // Slow zoom out -- establishing shot
 const portrait = Image({
-  model: varg.imageModel("nano-banana-pro"),
+  model: varg.imageModel("nano_banana_2_1"),
   prompt: "warrior princess, piercing emerald eyes, battle-worn silver armor",
   zoom: "out"
 })
 
 // Pan left -- panoramic sweep
 const cityscape = Image({
-  model: varg.imageModel("nano-banana-pro"),
+  model: varg.imageModel("nano_banana_2_1"),
   prompt: "tokyo skyline at night, neon lights reflecting on wet streets",
   zoom: "left"
 })
 
 // Pan right
 const beach = Image({
-  model: varg.imageModel("nano-banana-pro"),
+  model: varg.imageModel("nano_banana_2_1"),
   prompt: "tropical beach at golden hour, palm trees silhouetted",
   zoom: "right"
 })
@@ -177,7 +177,7 @@ Control how images/videos fill the frame when their aspect ratio doesn't match t
 ```tsx
 // Contain with blurred background (popular for portrait-in-landscape)
 const img = Image({
-  model: varg.imageModel("nano-banana-pro"),
+  model: varg.imageModel("nano_banana_2_1"),
   prompt: "portrait photo",
   aspectRatio: "9:16",
   resize: "contain-blur"
@@ -192,30 +192,40 @@ const img = Image({
 
 | Prop | Type | Description |
 |------|------|-------------|
-| `model` | `VideoModelV3` | Required. e.g. `varg.videoModel("kling-v3")` |
+| `model` | `VideoModelV3` | Required. e.g. `varg.videoModel("seedance_2_5")` |
 | `prompt` | `string \| { text?, images?, audio?, video? }` | Prompt with optional media inputs |
 | `duration` | `number` | Duration in seconds. Check model constraints! |
 | `aspectRatio` | `string` | `"16:9"`, `"9:16"`, `"1:1"` |
-| `providerOptions` | `object` | Model-specific options |
+| `audio` | `"native"` | Generate native audio (dialogue, SFX, ambience) and keep it. Supported on `seedance_2_5`, `kling_v4`, `kling_v3`, `flux_3`, `veo_3_1`. |
+| `keepAudio` | `boolean` | Keep the clip's audio in the composition (default `true`) |
+| `providerOptions` | `object` | Model-specific options, **namespaced by provider**: `{ varg: { fal: {...} } }`. Flat bags are dropped. |
 
 ```tsx
+// Text-to-video with native audio
+const scene = Video({
+  model: varg.videoModel("seedance_2_5"),
+  prompt: "barista slides a latte across the counter and says: \"Here you go.\" Cafe ambience.",
+  duration: 5,
+  audio: "native"
+})
+
 // Text-to-video
 const vid = Video({
-  model: varg.videoModel("kling-v3"),
+  model: varg.videoModel("seedance_2_5"),
   prompt: "a bird soaring over mountains, aerial shot",
   duration: 5
 })
 
-// Image-to-video (ONE image only)
+// Image-to-video (ONE image = first frame; several images = references, reference-capable models only)
 const animated = Video({
-  model: varg.videoModel("kling-v3"),
+  model: varg.videoModel("seedance_2_5"),
   prompt: { text: "person starts walking forward", images: [characterImage] },
   duration: 5
 })
 
 // Lipsync — image + audio (VEED, recommended)
 const talking = Video({
-  model: varg.videoModel("veed-fabric-1.0"),
+  model: varg.videoModel("veed_fabric_1_0"),
   keepAudio: true,
   prompt: { images: [portrait], audio: voiceover }
 })
@@ -229,13 +239,13 @@ const talking = Video({
 
 | Prop | Type | Description |
 |------|------|-------------|
-| `model` | `SpeechModelV3` | Required. e.g. `varg.speechModel("eleven_v3")` |
+| `model` | `SpeechModelV3` | Required. e.g. `varg.speechModel("eleven_v4")` |
 | `voice` | `string` | Voice name (see [models.md](models.md) for list) |
 | `children` | `string` | Text to speak |
 
 ```tsx
 const narration = Speech({
-  model: varg.speechModel("eleven_v3"),
+  model: varg.speechModel("eleven_v4"),
   voice: "rachel",
   children: "Welcome to our product showcase."
 })
@@ -247,7 +257,7 @@ const narration = Speech({
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `model` | `MusicModelV3` | - | Required for AI music. `varg.musicModel("music_v1")` |
+| `model` | `MusicModelV3` | - | Required for AI music. `varg.musicModel("mureka_9_5")` |
 | `prompt` | `string` | - | Music description |
 | `src` | `string` | - | URL for pre-made audio (instead of AI generation) |
 | `duration` | `number` | - | **Required**. Must match total video length. |
@@ -259,7 +269,7 @@ const narration = Speech({
 ```tsx
 <Render width={1080} height={1920}>
   <Music
-    model={varg.musicModel("music_v1")}
+    model={varg.musicModel("mureka_9_5")}
     prompt="upbeat electronic, rising energy"
     duration={15}
     volume={0.3}
@@ -440,13 +450,13 @@ Used inside Grid or Split for fine positioning.
 
 Combines an image + speech into a lipsync talking-head video. **Must be called as a function, not JSX.** Requires three props: `image`, `audio`, and `model`.
 
-**Best model: `veed-fabric-1.0`** — takes image + audio directly (one step, fastest). For sync-v2/sync-v3, TalkingHead auto-animates the image first then lipsyncs (two-step, slower).
+**Best model: `veed_fabric_1_0`** — takes image + audio directly (one step, fastest). For sync_v2/sync-v3, TalkingHead auto-animates the image first then lipsyncs (two-step, slower).
 
 | Prop | Type | Required | Description |
 |------|------|----------|-------------|
 | `image` | `VargElement<"image">` | **Yes** | An `Image()` element (the character portrait) |
 | `audio` | `VargElement<"speech">` | **Yes** | A `Speech()` element (the voiceover — await first for duration) |
-| `model` | `VideoModelV3` | **Yes** | Lipsync model. Use `varg.videoModel("veed-fabric-1.0")` (recommended) |
+| `model` | `VideoModelV3` | **Yes** | Lipsync model. Use `varg.videoModel("veed_fabric_1_0")` (recommended) |
 | `lipsyncModel` | `VideoModelV3` | No | Override lipsync model (defaults to `model`) |
 | `resolution` | `"480p" \| "720p" \| "1080p"` | No | Video resolution (default: `"720p"`) |
 | `position` | `Position \| object` | No | Position within the clip |
@@ -456,13 +466,13 @@ Combines an image + speech into a lipsync talking-head video. **Must be called a
 
 ```tsx
 const portrait = Image({
-  model: varg.imageModel("nano-banana-pro"),
+  model: varg.imageModel("nano_banana_2_1"),
   prompt: "friendly female host, studio background, looking at camera",
   aspectRatio: "9:16"
 })
 
 const audio = await Speech({
-  model: varg.speechModel("eleven_v3"),
+  model: varg.speechModel("eleven_v4"),
   voice: "rachel",
   children: "Welcome to our show! Today we're going to talk about something exciting."
 })
@@ -470,7 +480,7 @@ const audio = await Speech({
 export default (
   <Render width={1080} height={1920}>
     <Clip duration={audio.duration}>
-      <TalkingHead image={portrait} audio={audio} model={varg.videoModel("veed-fabric-1.0")} />
+      <TalkingHead image={portrait} audio={audio} model={varg.videoModel("veed_fabric_1_0")} />
       <Captions src={audio} style="tiktok" />
     </Clip>
   </Render>

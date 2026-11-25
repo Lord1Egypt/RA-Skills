@@ -50,11 +50,11 @@ builds remain unknown. See [advisory evidence and refresh provenance](references
 ## Quick Install
 
 ```bash
-uv tool install "vmware-harden[collectors]==1.20.0"
+uv tool install "vmware-harden[collectors]==1.20.1"
 vmware-harden baseline list
 ```
 
-The `[collectors]` extra is what `scan` needs: inventory is read through vmware-aiops / vmware-storage / vmware-nsx-security, and `uv tool install` isolates each tool's environment — installing those packages on their own leaves harden unable to import them. Plain `uv tool install vmware-harden==1.20.0` is enough to report on an existing twin DB.
+The `[collectors]` extra is what `scan` needs: inventory is read through vmware-aiops / vmware-storage / vmware-nsx-security, and `uv tool install` isolates each tool's environment — installing those packages on their own leaves harden unable to import them. Plain `uv tool install vmware-harden==1.20.1` is enough to report on an existing twin DB.
 
 For first-time use, ensure a vmware-aiops target is configured (harden uses aiops collectors) and optionally set `ANTHROPIC_API_KEY` for live remediation advice.
 
@@ -95,7 +95,7 @@ Use vmware-harden when the user needs to:
 
 ### 1. First-time scan with 等保 2.0 三级
 
-1. Install: `uv tool install "vmware-harden[collectors]==1.20.0"` (the extra carries the inventory collectors `scan` reads through)
+1. Install: `uv tool install "vmware-harden[collectors]==1.20.1"` (the extra carries the inventory collectors `scan` reads through)
 2. Verify aiops is configured: `vmware-aiops doctor` — harden reuses aiops connection for the vCenter collector
 3. List baselines: `vmware-harden baseline list` — confirm `dengbao-2.0-level3-vmware` is present
 4. Scan: `vmware-harden scan --baseline dengbao-2.0-level3-vmware --target prod-vcenter`
@@ -233,3 +233,5 @@ MIT — [github.com/vmware-skills/VMware-Harden](https://github.com/vmware-skill
 ## Current evidence boundary
 
 DFW section_name comes from the actual parent policy display_name. Missing parent names remain undetermined. Library posture/pairwise snapshot helpers do not imply a CLI/MCP feature, and inherited baselines do not establish 9.x live validation. See `references/capabilities.md`.
+
+[Contracts](references/mcp-result-contract.md).

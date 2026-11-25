@@ -17,7 +17,7 @@ This module is unofficial and not affiliated with Mem0.
 
 ## Requirements
 
-- Go 1.26.10 or newer, per `go.mod`.
+- Go 1.26.11 or newer, per `go.mod`.
 - A Mem0 Platform API key, exported as `MEM0_API_KEY`.
 
 ## Install

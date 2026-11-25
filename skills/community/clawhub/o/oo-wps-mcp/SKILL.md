@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "WPS MCP"
   author: "OOMOL"
-  version: "1.0.5"
+  version: "1.0.6"
   services: ["wps_mcp"]
   icon: "https://static.oomol.com/logo/third-party/wps_mcp.svg"
 ---
@@ -39,9 +39,12 @@ Each action is listed below with a one-line description; actions that change sta
 
 - `call_tool` — Call a current WPS MCP tool with JSON arguments after checking its live schema and behavior annotations. [destructive]
 - `create_file_with_content` — Create a WPS document, PDF, spreadsheet, or smart sheet and populate it with JSON-friendly content. [write]
-- `create_folder` — Create a folder in a known WPS drive and parent folder. [write]
+- `create_folder` — Create a folder in WPS, defaulting to the personal cloud document root. [write]
+- `download_file` — Get download information for a binary WPS file such as DOCX, XLSX, PDF, PPTX, or an image. Online OTL, DBT, and KSHEET documents are unsupported; use read_file for their content.
 - `get_file_info` — Get metadata, drive details, extended attributes, or permissions for a WPS file.
+- `get_file_link` — Get the online access link for a WPS cloud document.
 - `list_files` — List entries in a known WPS drive folder with filtering, sorting, and pagination.
+- `list_latest_items` — List recently accessed WPS documents with creator and file extension filters.
 - `list_my_files` — List entries in the root of the connected user's WPS cloud documents with filtering, sorting, and pagination.
 - `list_tools` — Discover the current WPS document, spreadsheet, presentation, PDF, and workspace MCP tools with their live input schemas.
 - `read_file` — Read a WPS cloud document as Markdown, plain text, structured KDC data, or spreadsheet cells according to its format.

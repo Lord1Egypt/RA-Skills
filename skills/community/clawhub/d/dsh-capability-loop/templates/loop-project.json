@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "name": "<工程名>",
+  "mode": "shadow",
+  "profile": "docs/loop/project-profile.md",
+  "createdAt": "<YYYY-MM-DDTHH:mm:ss+08:00>"
+}

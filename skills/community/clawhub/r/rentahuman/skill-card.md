@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-AI agents and users use RentAHuman to find people for physical-world tasks, post paid bounties, review applicants, coordinate with hired workers, and review submitted work.
+AI agents use this skill to find people for physical-world tasks, publish paid bounties, review applications, and coordinate with hired workers through RentAHuman.
 
 ### Deployment Geography for Use:
 
@@ -22,9 +22,9 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review rates this skill suspicious because its hiring workflow includes account-wide credential controls and payment tools, with limited safeguards for sharing task details and approving payments.
+Risk: Task details in bounty postings may expose sensitive information on a third-party marketplace. The security assessment is incomplete because key components received only partial inspection.
 
-Mitigation: Review the required permissions and API access, keep sensitive task details out of public listings, and require the account owner's explicit approval before funding payments. The scan was partial, so review the skill files before use.
+Mitigation: Review bounty content before posting, remove sensitive details, and treat the assessment as incomplete.
 
 ## Reference(s):
 
@@ -33,17 +33,17 @@ Mitigation: Review the required permissions and API access, keep sensitive task 
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, API calls, JSON]
+**Output Type(s):** [Text, Markdown, JSON, API calls, Shell commands, Guidance]
 
-**Output Format:** [Task guidance, shell commands, and JSON API responses]
+**Output Format:** [Markdown instructions with shell and JSON examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Authenticated actions require a RentAHuman API key; actions can create job listings, contact applicants, and arrange payment for completed work.]
+**Other Properties Related to Output:** [Browsing is public; posting bounties and messaging require an account API key.]
 
 ## Skill Version(s):
 
-4.10.0 (source: server-resolved ClawHub release metadata)
+5.0.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

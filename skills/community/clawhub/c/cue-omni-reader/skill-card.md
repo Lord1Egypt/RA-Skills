@@ -1,6 +1,6 @@
 ## Description:
 
-Cue Omni Reader parses documents, web pages, images, audio, and video into structured Markdown or text.
+Parses documents, webpages, images, audio, and video into Markdown or clean text, with OCR, transcription, and visual understanding.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and other users use the skill to extract readable text and document structure from files and web pages, including OCR and audio or video transcription, for review and downstream tasks.
+External users and developers use it to convert documents, webpages, images, audio, and video into structured text for review and downstream work.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Sensitive files may be processed by a remote service, and the documented processing and storage behavior has not been independently established.
+Risk: The security assessment reports concerns about credential handling, remote processing, and behavior that may not match the stated document-parsing purpose.
 
-Mitigation: Confirm the endpoint, information sent, and retention terms before submitting sensitive content.
+Mitigation: Before use, verify API key handling and data routing against trusted service documentation, and review that the enabled behavior matches the intended parsing task.
 
-Risk: Reusable API keys and package installation commands can expose credentials or run untrusted or mutable code.
+Risk: The security assessment flags unpinned package installation commands.
 
-Mitigation: Do not paste reusable keys into chat; configure them through a trusted local secret store and verify the package source and version before installation.
+Mitigation: Review the package and requested version before running setup commands; prefer a reviewed, pinned version where practical.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/panting09266-ai/skills/cue-omni-reader)
 - [Cue Omni Reader product page](https://cuecue.cn/hub/omni-reader)
-- [Document parsing evaluation report](https://mp.weixin.qq.com/s/SAPD3ajU2_D_EeRDiTHshQ)
-- [Document parsing evaluation report](https://mp.weixin.qq.com/s/S_-gcxDcaGMHbXjd5IepBg)
+- [Document parsing evaluation case study](https://mp.weixin.qq.com/s/SAPD3ajU2_D_EeRDiTHshQ)
+- [Document parsing evaluation case study](https://mp.weixin.qq.com/s/S_-gcxDcaGMHbXjd5IepBg)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown]
 
-**Output Format:** [Structured Markdown or clean text]
+**Output Format:** [Markdown or clean text, with optional hypertext or chunked output]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include OCR text, transcripts, visual descriptions, document structure, and tables, depending on the input and selected parsing detail.]
+**Other Properties Related to Output:** [May include extracted document structure, tables, OCR text, audio transcription, and video frame descriptions.]
 
 ## Skill Version(s):
 
-1.2.20 (source: server-resolved ClawHub release metadata)
+1.2.21 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

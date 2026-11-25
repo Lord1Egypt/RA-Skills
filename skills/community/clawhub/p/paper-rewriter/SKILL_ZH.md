@@ -66,7 +66,7 @@ metadata:
 | 改写动作明细 | 删八股开场（众所周知→直入论点）/拆「不仅X而且Y」/清残留/标点全角化/２０２５→2025 | ——（全部确定性零信息损失） | `transform --deep` 自动 |
 | 深改动作明细 | 黑话/翻译腔替换、节奏、具体性（**绝不编造数据**） | 重写句必须过 verify 才算完成 | agent 深改 |
 
-**功能状态（v5.12.0）**——⚠️ 行 = 实验性（可能拒收合法文件或需人工复核）；**完整逐代际清单已下沉 [references/feature_status.md](references/feature_status.md)**，明细见 references/errors.md 与各专题文档。稳定速览（全部稳定）按五类：**诊断**（风格自查·章节专项 · 统计一致性 · 术语漂移/统一稿 · 阈值校准证据化 · EN 特征库 v3）｜**深改**（句级计划·指令单行号锚 · pipeline --handoff 交接块 · EN/CN 特征库与密度镜像）｜**守卫**（完整性 verify+守卫处方报告 · 编造防线 · 守卫自学习可导出共享 · 输出分级[violations 硬失败/warnings 警告/--strict 升级]）｜**批量**（断点续传·并发隔离 · 工作单/统计卡 · 修订记录）｜**交付**（投稿自查包 12 件·写入清单自证 · 体检报告/前后对照 · docx 回写 · 打印友好报告 · 包内自检 selfcheck · 外挂词表 --lexicon 多 skill 共享）。唯一 ⚠️ 实验性：
+**功能状态（v5.19.0）**——⚠️ 行 = 实验性（可能拒收合法文件或需人工复核）；**完整逐代际清单已下沉 [references/feature_status.md](references/feature_status.md)**，明细见 references/errors.md 与各专题文档。稳定速览（全部稳定）按五类：**诊断**（风格自查·章节专项 --top N 裁剪 · 统计一致性 · 术语漂移/统一稿 · 阈值校准证据化 · EN 特征库 v3）｜**深改**（句级计划·指令单行号锚 · pipeline --handoff 交接块 · EN/CN 特征库与密度镜像（v3））｜**守卫**（完整性 verify+守卫处方报告 · 编造防线 · 守卫自学习可导出共享 · 输出分级+--strict 门禁+--allow-list 豁免清单（宽词放大豁免面，逐条核对原文是调用方责任） · 统计一致性 --html+评分门禁 --fail-under · 豁免清单 --allow-list）｜**批量**（断点续传·并发隔离 · 工作单/统计卡 · 修订记录 · 自动化门禁 --exit-verdict/--ci · 清理预览 --dry-run）｜**交付**（投稿自查包 12 件·写入清单自证 · 体检报告/前后对照 · docx 回写 · 打印友好报告 · 包内自检 selfcheck 双形态自适应 · 外挂词表 --lexicon 多 skill 共享）。唯一 ⚠️ 实验性：
 
 | 能力 | 状态 | 版本 |
 |---|---|---|
@@ -74,25 +74,13 @@ metadata:
 
 **规模上限**：单块 800,000 字符（块间 2000 重叠）· 文件 50MB · 单步 120 秒。**PDF 置信度分档**：高=放心用 · 中=抽查关键数字 · 低=乱码形态（v3.8 起缺省拒收）。
 
-## 自动化与 CI 集成（v2.3.0）
+## 自动化与 CI 集成
 
-所有判定双口径机器可读：
-
-- **缺省口径（人读流程）**：`verify.py` 独占退出码 0/1/2（1=完整性 FAIL）；
-  detect/transform/compare/pipeline 跑完恒 0，判定写在报告里。不要按它们的
-  缺省退出码写分支。
-- **机器口径**——detect / compare / pipeline 加 `--exit-verdict`（或等价短别名
-  `--ci`，v3.1.0 起，方便 CI 里少打字）：
-  `0` 干净（低档、无残留）· `3` 风格特征中及以上（需深改）· `4` 命中模型残留
-  （先跑 transform）· `1` 完整性 FAIL（仅 pipeline 产出，与 verify 契约同义）·
-  `2` 用法错误（不受影响）。**pipeline 是唯一 1/3/4 全档门禁**，CI 推荐：
-  `pipeline.py 原稿.txt --rewrite 改稿.txt --terms terms.txt --exit-verdict`。
-- **JSON**：`detect -j`（完整扫描结果）、`pipeline --json`（前后分/verify 判定/
-  `exit_verdict` 字段/处置提示/深改简报）、`compare --json`（变化量+verify）、
-  `plan.py --json`（句级队列+预算投影）。一行门禁示例：
-  `python scripts/pipeline.py 原稿.txt --rewrite 改稿.txt --json --exit-verdict || echo "拦截: $?"`
-- 两套口径的退出码全表：`references/errors.md` 第一节。
-
+- **缺省口径（人读流程）**：`verify.py` 独占退出码 0/1/2；其余脚本判定写在报告里，
+  不要按它们的缺省退出码写分支。
+- **机器口径**：detect / compare / pipeline 加 `--exit-verdict`（短别名 `--ci`），
+  `0/3/4/1/2` 五档；`pipeline.py` 是唯一 1/3/4 全档门禁，一行门禁示例与 JSON 字段
+  全表见 [automation](automation.md) 与 [errors](errors.md) 第一节。
 ## 快速上手
 
 **装好先自检**：`python scripts/selfcheck.py`——环境/结构/核心功能冒烟/文档对账四段一条命令，exit 0 才算装好（发布包自带，CI/agent 用 `--json`）。
@@ -124,7 +112,7 @@ metadata:
 python scripts/pipeline.py draft.txt -o out.txt --terms terms.txt
 ```
 
-- **可视化/批量/章节**：`--html` 单文件报告（compare 含逐句对照）；`--batch 目录` 汇总；`detect --structure` 分章评分（方法/结果按领域惯例降权，各章原始分逐项展示）；`-o`/`--unify` 输出路径以 `.docx` 结尾即回写 Word（v4.4.0，纯段落回写——与 docx 直读构成闭环；表格/图片/样式不重建，复杂格式建议人工合并）。
+- **可视化/批量/章节**：`--html` 单文件报告（compare 含逐句对照）；`--batch 目录` 汇总；`detect --structure` 分章评分（方法/结果按领域惯例降权，各章原始分逐项展示）；`-o`/`--unify` 输出路径以 `.docx` 结尾即回写 Word（纯段落回写——与 docx 直读构成闭环；表格/图片/样式不重建，复杂格式建议人工合并）。
 - **输入格式**：`.txt`/`.md` 直读（**UTF-8/UTF-16〔带 BOM〕/GBK 编码自动识别转码**，v4.0） · `.docx`（Word）直读 · PDF 实验性直读
   （**v3.8.0 缺省安全门=中：乱码形态直接拒收**，`低` 恢复仅标注——见 faq Q15）。
 - **术语表**：`python scripts/extract_terms.py draft.txt -o terms.txt` 自动抽候选，
@@ -165,7 +153,7 @@ base.md+base.json 可审计清单。
   unify terminology / check number consistency → 跑上面的管线。
   （参数速查表见「快速上手」节；两套退出码表见 references/errors.md——
   均从本节链接直达，避免跨节翻找。）
-- **场景直达（v3.8.0 收拢，不再散落 references）**：CI/批量门禁 → `--exit-verdict`（短别名 `--ci`）；
+- **场景直达（集中收拢，不再散落 references）**：CI/批量门禁 → `--exit-verdict`（短别名 `--ci`）；
   批量中断 → `--batch 目录 --resume`；误报固化 → `learn_guards.py from-text`；
   深改无从下手 → `pipeline 原稿 -o 改稿 --handoff 交接块.md` 一句出逐句指令单。
 - **语义消歧（本工具 ≠ 润色工具）**：「论文改写/润色」指风格自然化/去模板腔（降AI味）。
@@ -177,10 +165,10 @@ base.md+base.json 可审计清单。
 - **术语称谓混用**（缩写与中文全称、同义术语不一致）→ `check_terms.py 文稿
   --pack <域>`；要直接出统一稿加 `--unify 统一稿路径`（每组归一为出现最多的
   变体、逐处替换计数全透出——建议产物，复核后采用，随后建议 verify；
-  v4.4.0）；`--list-packs` 列出八个域包（v3.0.0）。
+  v4.4.0）；`--list-packs` 列出八个学科域包。
 - **数字前后打架**（百分比清单不凑整、同一分组 n 不同、p/P 风格混用）→
-  `check_stats.py 文稿`（v3.2.0，退出码同 check_terms：0 一致 / 1 有问题）。
-- **用户想量化验收改稿** → `stylecheck.py 原稿 改稿 --compare`（v2.6.0 风格
+  `check_stats.py 文稿`（退出码同 check_terms：0 一致 / 1 有问题）。
+- **用户想量化验收改稿** → `stylecheck.py 原稿 改稿 --compare`（风格
   画像差值；触发词：风格画像 / 量化验收 / 深改验收 / style profile）。
 - **批量跑到一半中断（Ctrl-C/断电/超时）** → `--batch 目录 --resume` 续跑（跳过已完成、
   失败与变更的自动重跑；进度在目录内 .pr_batch_state.json）。
@@ -196,7 +184,7 @@ base.md+base.json 可审计清单。
   把判定写在输出报告里，跑完恒返回 `0`（用法/文件错误为 `2`）；
   `check_terms.py` 独立口径：`0` 术语一致、`1` 发现不一致、`2` 用法错误
   （`--unify` 模式恒 `0`=统一稿已生成或已一致，机器分支读 `--json`）。
-  agent/CI 按退出码分支时加 `--exit-verdict`（v2.3.0）：detect/compare 出
+  agent/CI 按退出码分支时加 `--exit-verdict`：detect/compare 出
   0/3/4，pipeline 出全档 0/1/3/4——见「自动化与 CI 集成」节。
   所有脚本支持 `--version`。
 
@@ -210,20 +198,20 @@ base.md+base.json 可审计清单。
 2. **机械清理**：`transform.py draft.txt -o step1.txt`——清除粘贴带进的各家
    模型残留（`oaicite`/`turn0search`/`[cite: 1]`/`grok_card`/`attached_file`）、
    聊天客套句、Markdown 残留与语法安全的填充短语；中文半角标点自动全角化
-   （小数保护）。`-a` 激进档追加破折号降噪、空泛开场删除。`--deep`（v2.4.0）
+   （小数保护）。`-a` 激进档追加破折号降噪、空泛开场删除。`--deep`
    追加句式级确定性转换——句首八股删除、「不仅X，而且Y」→「X，且Y」合并——
    只做零信息损失操作，每笔进 `--track` 可审计——该记录即审计凭据。无命中的文本保持零改动（全角字母数字归一为唯一例外）；每笔替换计数可用 `--track` 复跑核对，本节宣称均可本地复验。
 3. **质量深改**（真正的活）：可先用 `python scripts/plan.py draft.txt -o plan.md`
    生成句级改写优先级计划（P0 队列：每句带章节归属、命中类别、处理原则与
    预算投影），把深改力气花在贡献最大的句子上；加 `--handoff` 直接产出
    **深改交接块**——逐句「原句+操作指令+守卫铁律+验收命令」的指令单，
-   交给执行改写的 agent 可照做（v3.0.0）。然后按文本语言读对应指南——
+   交给执行改写的 agent 可照做。然后按文本语言读对应指南——
    - 中文：`references/style_guide_zh.md`（去骨架模板→黑话→节奏→具体化→
      立场→完整性红线）
    - 英文：`references/style_guide_en.md`（小词→拆意义框架→散句化→节奏→
      真归因→亮立场）
    - 逐段改写；事实、数字、引用、术语全部保留。
-3b. **量化验收**（`stylecheck.py`，v2.6.0）：段落级风格画像——黑话命中定位
+3b. **量化验收**（`stylecheck.py`）：段落级风格画像——黑话命中定位
     到段、句长节奏 CV、开场词多样性，逐项标「自然/观察/偏机器」并给指南
     锚点；`stylecheck.py 原稿 改稿 --compare` 看差值，深改验收从凭感觉变
     看指标。档位只是校准提示，不改变任何评分。`--json` 下另有 `stats` 统计面板
@@ -232,11 +220,11 @@ base.md+base.json 可审计清单。
    引用/术语被动过，改改稿不改守卫；FAIL 自带处方（怎么修+原句锚点+修复三步）。医学文本建议先做术语表
    （药名/基因名/量表名，每行一个；鼠源基因首字母大写形态如 Myc 也要列入）；
    同义称谓混用（如「肝功能/肾脏功能」「SLE/系统性红斑狼疮」）另跑
-   `check_terms.py 文稿 --pack 心血管`（v3.0.0 八个学科域包，`--list-packs` 看全表）；
+   `check_terms.py 文稿 --pack 心血管`（八个学科域包，`--list-packs` 看全表）；
    数字内部自洽（百分比清单求和/分组 n 前后一致/p 与 P 风格）在**定稿/送审前**
    对原稿跑 `check_stats.py 文稿`（审稿人对数字打架的容忍度远低于文风问题；
    先核对原始数据是笔误还是口径差异，再改表述）；分章分稿写长文用
-   `check_stats.py --batch 目录`（v3.3.0 跨文件分组 n 聚合——摘要 vs 方法/结果
+   `check_stats.py --batch 目录`（跨文件分组 n 聚合——摘要 vs 方法/结果
    的数字打架单文件检查看不见；只核 n= 记法，散文形态的数字打架需人工）。一条命令全带：`pipeline.py 原稿 --check-stats`；要交付级汇总用
    `pipeline.py 原稿 --bundle 目录`（投稿自查包一次生成：体检报告/前后对照/守卫处方全在包内，00-11 共 12 个编号件）。
    守卫还会对「凭空新增的数字」告警（编造防线）与「数字上下文互换」提示

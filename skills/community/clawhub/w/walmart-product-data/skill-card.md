@@ -1,6 +1,6 @@
 ## Description:
 
-Search Walmart products and retrieve product details, reviews, categories, buy-box offers, seller listings, and nearby stores through Scavio's API.
+Search Walmart and read product detail, reviews, category listings, buy-box offers, seller storefronts and a seller's catalog as structured JSON, find stores near a US ZIP or Canadian postal code, and target one store's assortment. 8 endpoints; cost depends on the body - 1 credit, or 2 for walmart.com.mx search/category or a store-targeted search/product.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,46 +14,38 @@ MIT-0
 
 ## Use Case:
 
-Developers and shopping or retail research agents use this skill to look up Walmart products, compare prices and reviews, inspect sellers and buy-box offers, and check store-specific assortment in the US and Canada.
+People and agents use this skill to look up Walmart products, prices, reviews, sellers, categories, and store availability for product research and comparison.
 
 ### Deployment Geography for Use:
 
-United States, Canada, and Mexico (supported Walmart marketplaces; store targeting is limited to the US and Canada)
+North America (United States, Canada, and Mexico)
 
 ## Known Risks and Mitigations:
 
-Risk: Search terms, product and seller IDs, and ZIP or postal codes are sent to a third-party API.
+Risk: Product search details and, for store-targeted lookups, a ZIP or postal code are sent to Scavio.
 
-Mitigation: Use only with approval to share these inputs with Scavio; avoid sensitive or unnecessary location details.
-
-Risk: An exposed API key could permit unauthorized use.
-
-Mitigation: Keep SCAVIO_API_KEY in an environment variable or secret store; do not commit it to source control.
-
-Risk: Results can be incomplete or mistaken for a full offer list, and requests consume credits.
-
-Mitigation: Check warnings and credits used, confirm product links and store location, and describe buy-box results as one seller only.
+Mitigation: Before use, consider whether you are comfortable sharing those details with Scavio; omit store targeting when location-specific results are not needed.
 
 ## Reference(s):
 
-- [Scavio Walmart API documentation](https://scavio.dev/docs/walmart-api?utm_source=agent-skills&utm_medium=skill&utm_campaign=walmart-product-data)
+- [ClawHub skill release](https://clawhub.ai/scavio-ai/skills/walmart-product-data)
+- [Walmart API documentation](https://scavio.dev/docs/walmart-api?utm_source=agent-skills&utm_medium=skill&utm_campaign=walmart-product-data)
+- [Walmart product documentation](https://scavio.dev/docs/walmart-product?utm_source=agent-skills&utm_medium=skill&utm_campaign=walmart-product-data)
 - [Walmart stores documentation](https://scavio.dev/docs/walmart-stores?utm_source=agent-skills&utm_medium=skill&utm_campaign=walmart-product-data)
-- [Walmart reviews documentation](https://scavio.dev/docs/walmart-reviews?utm_source=agent-skills&utm_medium=skill&utm_campaign=walmart-product-data)
-- [Walmart offers documentation](https://scavio.dev/docs/walmart-offers?utm_source=agent-skills&utm_medium=skill&utm_campaign=walmart-product-data)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, JSON]
+**Output Type(s):** [JSON, Guidance]
 
-**Output Format:** [Product summaries and links in text or Markdown, based on structured JSON responses]
+**Output Format:** [Structured JSON data with concise explanatory text]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results may include prices, availability, ratings, reviews, seller data, and store location; API calls consume credits.]
+**Other Properties Related to Output:** [Endpoint-specific results; some endpoints paginate, and credit costs vary by request and marketplace.]
 
 ## Skill Version(s):
 
-1.0.4 (source: server-resolved ClawHub release; skill frontmatter states 3.1.0)
+1.0.6 (source: server-resolved ClawHub release metadata)
 
 ## Ethical Considerations:
 

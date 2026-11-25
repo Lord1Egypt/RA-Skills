@@ -53,4 +53,4 @@ node code/light-cli.mjs timeline  # 四账本时间线：R1 报错→沉淀→R2
 - **错误统计只信权威标志**（`isError=true` 的 toolResult），不用字符串计数；
 - **token 必须配对解读**：重复执行本身有学习效应（实测 ≈ -22%），基因净贡献 = 对比降幅 − 基线；
 - **陷阱可靠性是「陷阱×模型」联合属性**：对照档陷阱（CRLF/NFD/type）有绕过路径，别用来做统计主陷阱（见 `docs/research.md` 陷阱设计纪律）；
-- 完整 22 节实验报告（N=5/N=3 统计证据）：`docs/experiment-report.md`。
+- 完整 22 节实验报告（N=5/N=3 统计证据）：GitHub 仓库 `docs/experiment-report.md`（包内不含）。

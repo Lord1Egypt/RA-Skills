@@ -30,7 +30,7 @@ How to install, configure, and wire `vmware-harden` into your AI agent.
 ### Recommended: PyPI via `uv tool install`
 
 ```bash
-uv tool install "vmware-harden[collectors]==1.20.0"
+uv tool install "vmware-harden[collectors]==1.20.1"
 vmware-harden --help
 vmware-harden mcp --help   # MCP server (CLI subcommand — recommended)
 ```
@@ -47,7 +47,7 @@ supported for backward compatibility.
 ### Source install (development)
 
 ```bash
-git clone --branch v1.20.0 https://github.com/vmware-skills/VMware-Harden.git
+git clone --branch v1.20.1 https://github.com/vmware-skills/VMware-Harden.git
 cd VMware-Harden
 uv venv && source .venv/bin/activate
 uv pip install -e .
@@ -62,17 +62,17 @@ For platforms that prefer containerized MCP servers (e.g., Smithery registry, Ku
 Build and run the MCP server in a container. The image uses `python:3.12-slim` with `uv` for dependency installation and runs `python -m vmware_harden.mcp_server` on stdio (no port exposed — MCP uses stdin/stdout).
 
 ```bash
-git clone --branch v1.20.0 https://github.com/vmware-skills/VMware-Harden.git
+git clone --branch v1.20.1 https://github.com/vmware-skills/VMware-Harden.git
 cd VMware-Harden
 
 # Build
-docker build -t vmware-harden-mcp:1.20.0 .
+docker build -t vmware-harden-mcp:1.20.1 .
 
 # Run — mount your Twin DuckDB directory into the container
 docker run --pull=never -i --rm \
   -v ~/.vmware-harden:/root/.vmware-harden \
   -e VMWARE_HARDEN_DB=/root/.vmware-harden/twin.duckdb \
-  vmware-harden-mcp:1.20.0
+  vmware-harden-mcp:1.20.1
 ```
 
 These commands run the image built locally above; `--pull=never` prevents a missing local image from falling back to a registry. The version tag identifies this build, not an immutable digest.
@@ -101,7 +101,7 @@ Users can install via the Smithery UI or CLI without managing Python environment
 
 | Deployment | Best For |
 |------------|----------|
-| `uv tool install vmware-harden==1.20.0` + `vmware-harden-mcp` | Local developer workstation, single-user CLI + MCP |
+| `uv tool install vmware-harden==1.20.1` + `vmware-harden-mcp` | Local developer workstation, single-user CLI + MCP |
 | Docker image | Self-hosted agents, CI runners, isolated environments, multi-user servers |
 | Smithery | Zero-install agent integration, registry-managed discovery, hosted-MCP workflows |
 
@@ -146,7 +146,7 @@ plugin (`.mcp.json`), the uvx example (`examples/mcp-configs/uvx-fallback.json`)
 and the `Dockerfile` all carry it from 1.10.7 on. An MCP Registry client
 cannot: the registry entry names the bare package, so a client that launches
 the server from it through uvx gets one that cannot scan — install with
-`uv tool install "vmware-harden[collectors]==1.20.0"` and point the client at
+`uv tool install "vmware-harden[collectors]==1.20.1"` and point the client at
 `vmware-harden mcp` instead.
 
 Working configuration templates ship under
@@ -229,12 +229,12 @@ AI agent through MCP.
 
 ## Corporate TLS workaround
 
-If `uvx --from vmware-harden==1.20.0 vmware-harden-mcp` reports
+If `uvx --from vmware-harden==1.20.1 vmware-harden-mcp` reports
 `invalid peer certificate: UnknownIssuer`, your network has a MitM TLS
 proxy whose CA is not in `uv`'s bundled webpki store (踩坑 #25).
 
 **Preferred fix**: don't use `uvx` for the MCP server. Install once with
-`uv tool install vmware-harden==1.20.0` and configure the MCP client to spawn
+`uv tool install vmware-harden==1.20.1` and configure the MCP client to spawn
 `vmware-harden-mcp` directly — that path goes through your shell `PATH`
 and never hits PyPI again.
 
@@ -264,7 +264,7 @@ entire server load. Fixed across v1.5.26–1.5.28 (踩坑 #33).
 real classes:
 
 ```bash
-uv tool install --upgrade vmware-harden==1.20.0
+uv tool install --upgrade vmware-harden==1.20.1
 # or, if you bring your own mcp package:
 pip install -U 'mcp[cli]>=1.14'
 ```

@@ -1,6 +1,6 @@
 ## Description:
 
-Provides a China A-share research framework for quantitative screening, fundamental and technical analysis, sector rotation, financial-statement anomaly review, and portfolio construction.
+Provides a framework for screening China A-share stocks using quantitative factors, fundamental and technical signals, sector analysis, financial-statement risk checks, and portfolio construction.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,40 +14,39 @@ MIT-0
 
 ## Use Case:
 
-Investors, fund managers, and quantitative analysts can use this skill to structure China A-share screening rules, review factor and financial signals, and draft portfolio approaches. Outputs are research drafts that require independent data checks and qualified human review.
+Investors, fund managers, and quantitative analysts can use it to draft and structure reusable stock-screening rules, factor reviews, financial-statement anomaly checklists, and portfolio allocation examples. It provides reference material only and does not retrieve live data or execute trades.
 
 ### Deployment Geography for Use:
 
-China
+China (China A-share market)
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment is benign with no reported findings, but inspection was partial and its evidence is incomplete.
+Risk: The security assessment is benign but medium confidence because inspection was partial and some local references were unresolved.
 
-Mitigation: Review the skill contents and any unresolved local references before installation.
+Mitigation: Review the skill files and resolve local references before installation; treat the verdict as limited evidence.
 
-Risk: Screening signals and financial anomaly flags can be misleading if data, periods, or assumptions are incorrect.
+Risk: Screening examples and market or regulatory context can become stale, and model outputs may be mistaken for investment advice.
 
-Mitigation: Verify source data and calculation assumptions, and have qualified reviewers assess findings before using them in investment decisions.
+Mitigation: Check current data and official sources, independently validate assumptions, and have qualified reviewers assess conclusions before relying on them.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/gechengling/skills/security-stock-picker)
-- [Publisher profile](https://clawhub.ai/user/gechengling)
+- [Security Stock Picker release on ClawHub](https://clawhub.ai/gechengling/skills/security-stock-picker)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Code, Markdown]
+**Output Type(s):** [Analysis, Guidance, Markdown, Code]
 
-**Output Format:** [Markdown with screening and portfolio tables and illustrative Python code]
+**Output Format:** [Text and Markdown with tables and illustrative Python code]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Research drafts requiring independent data checks and human review; the skill does not access market data or issue executable trading instructions.]
+**Other Properties Related to Output:** [Draft screening frameworks and analysis examples; no live market or financial data access, code execution, file writes, or executable trade instructions. Verify data, assumptions, and time-sensitive claims independently.]
 
 ## Skill Version(s):
 
-3.0.4 (source: frontmatter)
+3.0.5 (source: server-resolved release evidence, frontmatter)
 
 ## Ethical Considerations:
 

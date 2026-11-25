@@ -1,6 +1,6 @@
 ## Description:
 
-用于小红书博主数据、小红书博主信息、账号资料、达人画像、主页信息和粉丝规模查询。覆盖 Xiaohongshu / XHS / RedNote creator profiles，来自 SocialDataX 社媒数据助手。
+用于小红书博主数据、小红书博主信息、账号资料、达人画像、主页信息和粉丝规模查询。覆盖 Xiaohongshu / XHS / RedNote creator profiles，来自社媒数据助手 SocialDataX。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers can look up Xiaohongshu, XHS, or RedNote creator profile details using a creator ID or profile link. The skill returns available profile fields such as bio and audience counts for review.
+Users researching Xiaohongshu / XHS / RedNote creators can look up account basics, creator positioning, and audience scale using a profile URL or user ID.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The CLI package is unpinned and may change, creating a supply-chain risk; the scan is incomplete because two referenced local paths were missing.
+Risk: ClawScan rates the release suspicious because it repeatedly uses an unpinned latest CLI release that can access configured credentials; the assessment is partial.
 
-Mitigation: Review and pin the CLI package to a version you trust before installation, and review the missing referenced files when available.
-
-Risk: Profile lookup inputs are sent to SocialDataX.
-
-Mitigation: Use the skill only with lookup inputs you are comfortable sharing with SocialDataX.
+Mitigation: Before installing, check whether the publisher provides a reviewed, fixed CLI version and decide whether that CLI should have access to configured credentials. Treat the assessment as incomplete because two local references could not be resolved.
 
 ## Reference(s):
 
-- [SocialDataX API access](https://socialdatax.com/ai?from=clawhub)
-- [ClawHub skill page](https://clawhub.ai/devinchen2014/skills/socialdatax-xhs-creator-profile)
+- [SocialDataX API access and management](https://socialdatax.com/ai?from=clawhub)
+- [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/socialdatax-xhs-creator-profile)
 
 ## Skill Output:
 
 **Output Type(s):** [JSON, Text]
 
-**Output Format:** [JSON profile data with a concise factual summary]
+**Output Format:** [Structured creator profile data in JSON with a concise text summary]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Available profile fields vary by lookup; distinguish returned profile facts from strategic interpretation.]
+**Other Properties Related to Output:** [Profile fields are included when available.]
 
 ## Skill Version(s):
 
-0.1.20 (source: server-resolved release evidence)
+0.1.21 (source: server release metadata)
 
 ## Ethical Considerations:
 

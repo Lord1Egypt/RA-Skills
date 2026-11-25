@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Job seekers use the skill to discover and review opportunities on supported Chinese recruiting platforms, then approve application delivery and inspect an audit summary.
+Job seekers use this agent skill to find and evaluate roles against their resume, review recommendations, and authorize application delivery on supported job platforms. It guides users through account setup, confirmation, and audit steps while preserving their control over credentials and submissions.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Automatic installer recovery may lack the verification safeguards used for normal updates.
+Risk: The release is marked suspicious because its install instructions pipe a script from a mutable online source directly into a shell; the available scan also had partial coverage.
 
-Mitigation: Verify a fixed installer and client revision before installation; require manual review if an update fails integrity checks.
-
-Risk: Resume information is sent to AgentMesh360 and recruiting sessions remain stored locally; an application could expose sensitive information to an unintended recipient.
-
-Mitigation: Carefully review each application's recipient, resume and message before approving delivery.
+Mitigation: Review the installer source and independently verify its origin and integrity before running it; the skill documents downloading the installer for review before execution.
 
 ## Reference(s):
 
-- [AgentMesh Job Agent](https://jobagent.agentmesh360.com/)
-- [ClawHub skill listing](https://clawhub.ai/jiyangnan/skills/job-agent)
+- [Job Agent service](https://jobagent.agentmesh360.com/)
+- [ClawHub release page](https://clawhub.ai/jiyangnan/skills/job-agent)
 
 ## Skill Output:
 
-**Output Type(s):** [Shell commands, Text, Guidance]
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
 
-**Output Format:** [Command-line workflows and concise review and audit reports]
+**Output Format:** [Markdown guidance with command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires the Job Agent CLI; application delivery requires user confirmation.]
+**Other Properties Related to Output:** [Step-by-step workflow guidance with user confirmation before job delivery.]
 
 ## Skill Version(s):
 
-0.6.22 (source: frontmatter)
+0.6.23 (source: frontmatter)
 
 ## Ethical Considerations:
 

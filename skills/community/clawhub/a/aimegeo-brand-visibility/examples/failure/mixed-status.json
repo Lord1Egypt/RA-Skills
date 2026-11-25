@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "brand": {"name": "青禾工具"},
+  "records": [
+    {"id": "failed", "question_id": "Q1", "question": "预算有限的小团队选什么工具？", "intent": "预算选型", "platform": "合成平台", "run_id": "demo-1", "source": "合成失败边界示例，并非实际查询故障", "status": "query_failed", "captured_at": null, "reason": "演示查询超时；未获得完整回答"},
+    {"id": "missing", "question_id": "Q2", "question": "青禾工具支持手机吗？", "intent": "移动端适用性", "platform": "合成平台", "run_id": "demo-1", "source": "合成缺失边界示例", "status": "missing", "captured_at": null, "reason": "演示用户说查询过，但没有附回答正文"},
+    {"id": "not-run", "question_id": "Q3", "question": "青禾工具免费吗？", "intent": "价格", "platform": "合成平台", "run_id": "demo-1", "source": "合成计划示例", "status": "not_run", "captured_at": null, "reason": "尚未执行；只是待查询问题"},
+    {"id": "simulated", "question_id": "Q4", "question": "团队导出数据可以选什么工具？", "intent": "数据迁移", "platform": "合成平台", "run_id": "demo-1", "source": "合成回答示例", "status": "simulated", "captured_at": null, "answer": "青禾工具可以作为一个候选。", "citations_capture": "not_captured"}
+  ]
+}

@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- Go 1.26.10 or newer, per the module's `go.mod`.
+- Go 1.26.11 or newer, per the module's `go.mod`.
 - Runtime dependencies: `github.com/oapi-codegen/runtime` and `github.com/google/uuid`.
 - A Revolut Business API access token.
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Provides SocialDataX tools for Xiaohongshu (XHS/RedNote) trend searches, note discovery and details, comment analysis, and creator lookups.
+用于小红书数据助手、小红书搜索热榜、小红书数据分析、小红书笔记搜索、笔记详情、评论分析、博主数据和博主笔记。覆盖 Xiaohongshu / XHS / RedNote，来自社媒数据助手 SocialDataX。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users can use the skill to retrieve and summarize Xiaohongshu trends, posts, comments, and creator activity through SocialDataX.
+External users can use this skill to inspect Xiaohongshu trends, search and review notes, analyze comments, and look up creator profiles and posts.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates the skill suspicious with medium confidence, citing a CLI package on a mutable latest version and automatic installation approval.
+Risk: The security review rates the skill suspicious because its instructions repeatedly invoke an unpinned latest CLI package, creating supply-chain risk; the scan was incomplete and did not establish malicious intent.
 
-Mitigation: Consider avoiding installation until the CLI dependency is pinned to a reviewed version and its updates are checked.
-
-Risk: Authentication uses a local credential file, and supplied search terms or URLs may be sent to SocialDataX.
-
-Mitigation: Protect the local credential file and use only search terms and URLs appropriate to send to SocialDataX.
+Mitigation: Consider postponing installation until the CLI version is fixed to a reviewed release and package integrity is checked.
 
 ## Reference(s):
 
-- [SocialDataX AI access and skill information](https://socialdatax.com/ai?from=clawhub)
-- [ClawHub release page](https://clawhub.ai/devinchen2014/skills/socialdatax-xhs)
+- [SocialDataX API access and management](https://socialdatax.com/ai?from=clawhub)
+- [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/socialdatax-xhs)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Analysis, Guidance, Shell commands, Configuration instructions]
+**Output Type(s):** [API Calls, Analysis, JSON, Text]
 
-**Output Format:** [Structured data with concise Markdown summaries and shell command examples]
+**Output Format:** [Structured JSON data and concise text summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Search, note, comment, and creator results depend on the SocialDataX API response.]
+**Other Properties Related to Output:** [Read-only Xiaohongshu data retrieval; results may include full note URLs and creator or comment data.]
 
 ## Skill Version(s):
 
-0.1.28 (source: server-resolved release evidence)
+0.1.29 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

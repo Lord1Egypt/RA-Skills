@@ -1,6 +1,6 @@
 ## Description:
 
-Novel writing full workflow from world-building and character design to chapter planning, manuscript writing, validation, version archiving, and HTML guide generation for medium to super-long serialized novels.
+Guides an agent through planning, drafting, validating, and archiving long-form serialized novels.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+BSD 3-Clause
 
 ## Use Case:
 
-External writers, editors, and AI-assisted writing teams use this skill to structure long-form serialized novel projects, maintain global chapter numbering, draft and validate chapters, and create archive packages with character data and HTML navigation.
+Novelists and writing teams use it to plan and draft serialized novels, track characters and continuity, validate manuscripts, and prepare archives with character data and an HTML guide.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Archive and reverse-merge workflows can create many files or overwrite files under the active manuscript directory.
+Risk: The benign, medium-confidence scan notes ambiguous archive write boundaries and incomplete review of some referenced paths.
 
-Mitigation: Confirm archive and reverse-merge prompts carefully, verify the target scope and destination, and back up the active manuscript before reverse-merge.
-
-Risk: Archive operations may use shell commands with user-provided titles or paths.
-
-Mitigation: Sanitize titles with the documented allowlist, quote path expansions, verify destinations remain inside the archive root, and prefer file tools when practical.
+Mitigation: Review archive destinations and referenced files before running the workflow, and keep archive operations within the intended project tree.
 
 ## Reference(s):
 
 - [ClawHub skill page](https://clawhub.ai/sunshinejnjn/skills/epic-novel-writer)
+- [Skill homepage](https://clawhub.ai/sunshinejnjn/epic-novel-writer)
+- [Novel lifecycle workflow](references/lifecycle.md)
 - [Project structure](references/project-structure.md)
-- [Lifecycle workflow](references/lifecycle.md)
-- [Naming rules](references/name-rules.md)
 - [Archive template](references/archive-template.md)
-- [World setting template](references/world-setting-template.md)
-- [Character card template](references/character-card-template.md)
 - [Chapter blueprint template](references/chapter-blueprint-template.md)
+- [Character card template](references/character-card-template.md)
+- [World setting template](references/world-setting-template.md)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+**Output Type(s):** [Text, Markdown, JSON, HTML, Guidance]
 
-**Output Format:** [Markdown project files, manuscript text, JSON character data, HTML guide files, validation reports, and shell command proposals.]
+**Output Format:** [Novel manuscripts and planning or validation documents in Markdown; character data in JSON; archive guide pages in HTML.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Outputs follow the user's project language; the workflow documentation is primarily Chinese with an English README.]
+**Other Properties Related to Output:** [The project language follows the user's preference; chapter files use global continuous numbering.]
 
 ## Skill Version(s):
 
-1.2.1 (source: server release metadata and SKILL.md frontmatter)
+1.2.3 (source: server-resolved release metadata; artifact VERSION and frontmatter report 1.2.1)
 
 ## Ethical Considerations:
 

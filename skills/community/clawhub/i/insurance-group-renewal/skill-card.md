@@ -1,6 +1,6 @@
 ## Description:
 
-AI-powered group insurance renewal management skill — renewal decision analysis, loss ratio analysis by industry (2025 data), enterprise insurance procurement management, group insurance pricing, and Huimin Bao (惠民保) renewal strategy.
+Provides draft decision support for group insurance renewals, loss ratio analysis, negotiation planning, and enterprise insurance procurement.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,43 +14,43 @@ MIT-0
 
 ## Use Case:
 
-Group insurance account managers, corporate HR benefits teams, and insurance brokers use this skill to assess renewal options, analyze loss ratios, prepare negotiation strategies, and compare enterprise insurance procurement proposals. Its outputs are reference drafts for review by qualified actuarial, underwriting, and compliance staff.
+Group insurance account managers, corporate HR benefits leads, and insurance brokers can use it to draft renewal analyses, loss ratio reviews, negotiation plans, and procurement comparisons. Outputs are reference material and require review by qualified underwriting, actuarial, and compliance staff before use in decisions or external communications.
 
 ### Deployment Geography for Use:
 
-China (mainland)
+Mainland China
 
 ## Known Risks and Mitigations:
 
-Risk: Employee-level health, identity, or claims details could expose sensitive personal information.
+Risk: Security confidence is medium because the release was only partially inspected, and some referenced local files and manifest checks were unavailable.
 
-Mitigation: Use aggregate or de-identified figures and omit employee names, identity numbers, medical records, and identifiable claim details.
+Mitigation: Review the complete release and resolve the missing references and checks before installation.
 
-Risk: Draft renewal, pricing, or coverage analysis could be mistaken for formal actuarial, underwriting, or compliance decisions.
+Risk: Insurance examples and renewal guidance may be mistaken for current, customer-specific advice or a formal pricing or underwriting decision.
 
-Mitigation: Have qualified actuarial, underwriting, and compliance staff review the analysis against actual contract terms, current rules, and company policy before relying on it or sharing it externally.
+Mitigation: Verify current terms and data against authoritative sources, and have qualified actuarial, underwriting, and compliance staff review drafts before decisions or external use.
 
-Risk: The security assessment is incomplete, and some local reference files described by the skill are unavailable in the supplied artifact.
+Risk: Customer or employee personal information could be exposed if entered into a prompt.
 
-Mitigation: Review the supplied skill contents and verify the required reference materials before relying on the assessment or using the skill.
+Mitigation: Use aggregated, de-identified figures; do not enter employee lists, identity numbers, medical records, or identifiable claim details.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/gechengling/skills/insurance-group-renewal)
+- [Insurance Group Renewal on ClawHub](https://clawhub.ai/gechengling/skills/insurance-group-renewal)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Markdown]
+**Output Type(s):** [Analysis, Guidance, Text, Markdown]
 
-**Output Format:** [Chinese by default; prose, tables, checklists, and draft negotiation language]
+**Output Format:** [Chinese or English Markdown text, with simplified Chinese as the default]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Decision-support drafts only; use aggregate or de-identified inputs. No autonomous access to business systems or external data sources.]
+**Other Properties Related to Output:** [Draft reference material; does not run analyses against business systems or produce formal quotes or underwriting decisions.]
 
 ## Skill Version(s):
 
-4.1.5 (source: frontmatter)
+4.1.6 (source: frontmatter)
 
 ## Ethical Considerations:
 

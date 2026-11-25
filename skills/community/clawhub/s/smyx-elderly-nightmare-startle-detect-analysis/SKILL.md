@@ -1,7 +1,7 @@
 ---
 name: "smyx-elderly-nightmare-startle-detect-analysis"
 description: "Using a fixed bedroom camera (infrared night vision + microphone), the system analyzes elderly nighttime sleep video and detects abnormal events such as sudden sitting-up (quick lying-to-sitting transition), screams (high-pitched short cries), and arm-thrashing (purposeless rapid arm movements), and records the occurrence time, frequency and duration of each event. | 通过卧室固定摄像头（红外夜视），分析老年人夜间睡眠视频，检测突然坐起（快速从躺卧变为坐立）、惊叫声音（高频短促叫声）以及挥舞手臂（无目的性的快速手臂动作）等行为，记录发生时间、频次及持续时间。该技能可帮助家属或护理人员了解老人夜间睡眠质量，识别可能的梦魇、快速眼动期睡眠行为障碍等异常现象，为医疗评估提供参考。"
-version: "1.0.23"
+version: "1.0.24"
 license: "MIT-0"
 ---
 

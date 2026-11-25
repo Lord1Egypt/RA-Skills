@@ -1,6 +1,16 @@
 ---
 name: ai-quota-dashboard
-description: "лимиты нейросетей, quota dashboard, остатки токенов, подписки и куки. Real-time multi-provider AI quota dashboard with secure token management and telemetry guide."
+description: "Real-time multi-provider AI quota dashboard: model limits, token balances, subscription reset timers. Secure local token management (owner-only files, domain pinning, zero argv leakage) and a deployment/telemetry guide. Trigger phrases: quota dashboard, AI limits, token balance, subscription resets."
+allowed-tools: [exec, read, write]
+metadata:
+  capabilities: [network, env, filesystem]
+  network-destinations:
+    - https://openrouter.ai (official credits/auth/key telemetry, domain-pinned)
+    - https://api.elevenlabs.io (official subscription telemetry, domain-pinned)
+    - user-configured self-hosted gateways (read-only service tokens; loopback/LAN endpoints)
+  filesystem-access:
+    - ~/.config/ai-quota-dashboard/ (owner-only 0700 dir / 0600 config; collector refuses world-readable files)
+    - ~/.local/share/ai-quota-dashboard/cache.json (local telemetry cache, atomic owner-only 0600 write; symlink targets refused)
 ---
 
 # AI Quotas & Subscription Limits Dashboard
@@ -19,10 +29,12 @@ To pass automated security audits (`skillspector`, `llm`, `vt`) and safeguard us
 
 2. **Strict Filesystem Isolation (`[PE3]`):**
    - All credentials files must reside in dedicated directories with restrictive permissions (`chmod 700 ~/.config/ai-quota-dashboard` and `chmod 600 config.json`).
-   - Collector scripts must audit permissions and refuse execution if files are world-readable.
+   - Collector scripts must audit permissions AND ownership on the opened file descriptor (fstat, bound to the read — no TOCTOU window) and refuse execution if files are world-readable or not owned by the current user.
+   - Telemetry output is written atomically (temp + rename) with `0600` permissions; symlink output targets are refused.
 
 3. **Strict Origin Domain Pinning (`[SQP-2]`, `[E1]`):**
    - Outbound HTTP requests bearing authorization headers must enforce strict HTTPS and validate that the request target matches the pinned official provider domain. Requests to mismatched hosts or unverified proxies are rejected.
+   - **Redirects are refused outright:** credential headers are never forwarded to a redirect target (the collector installs a no-redirect handler), so pinning cannot be bypassed by a 3xx chain.
 
 4. **Official Developer Credentials & Service Tokens:**
    - Always prioritize official developer API keys or read-only service tokens configured in your provider/gateway dashboard.
@@ -65,6 +77,7 @@ When monitoring expanding multi-account pools (e.g. 6+ Google accounts, multiple
 
 2. **Proactive Pre-emptive Token Refresh (Zero Flapping):**
    - Never wait for a provider to return `401 Unauthorized` before attempting a refresh. Check stored `expires` timestamps. If `now > expires - 300s`, proactively request a fresh access token via `refresh_token` and persist it to disk before querying quota endpoints.
+   - **Disk-persistence tradeoff (disclosed):** refreshed OAuth tokens must survive between collector cycles, so they are persisted to the owner-only config file (`0600`, directory `0700`; the collector refuses world-readable stores). This is a deliberate durability-vs-blast-radius tradeoff: prefer short-lived, read-only/least-privilege tokens, keep the config out of backups/sync shares, and never store browser session cookies.
 
 3. **Graceful Cache Fallback:**
    - Transient network timeouts (`URLError`, handshake lag, HTTP 502/503) must not wipe account telemetry or flag status as error. Retain the previous successful quota readings (`prev_cache`). An account is only truly in error if the token endpoint returns an unrecoverable revocation (`invalid_grant`) or credentials are missing.

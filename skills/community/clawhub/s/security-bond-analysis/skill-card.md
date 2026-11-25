@@ -1,6 +1,6 @@
 ## Description:
 
-Provides China onshore bond pricing, yield, duration, convexity, DV01, credit spread, LGFV, convertible bond, and portfolio interest-rate scenario analysis for fixed-income professionals.
+AI-powered bond analysis for China's onshore market, covering bond pricing and yield, duration and convexity, DV01, credit spreads, LGFV regional review, convertible bonds, and portfolio rate scenarios.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Fixed-income analysts, bond traders, and portfolio managers use the skill to structure and interpret China onshore bond valuation, credit, convertible-bond, and portfolio interest-rate analyses from user-provided inputs. It supplies methodological examples and draft analysis for qualified review; it does not fetch market data or execute transactions.
+Fixed-income analysts, bond traders, credit researchers, and portfolio managers use it to structure paper-based analysis of China onshore bond pricing and yield, duration, credit spreads, LGFV exposures, convertible bond terms, and portfolio rate scenarios. It provides reference methods and draft checklists that require qualified human review and do not constitute investment advice.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,32 @@ China
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment is benign with medium confidence, but inspection was partial and a local reference could not be resolved.
+Risk: The security verdict is benign with medium confidence, and inspection of the only listed file was partial, leaving evidence incomplete.
 
-Mitigation: Review the unresolved reference and complete a content review before installation; do not treat the scan result as a complete inspection.
+Mitigation: Review the complete skill contents before installation and treat the verdict as limited assurance, not a guarantee of safety.
 
-Risk: Bond formulas, example thresholds, and market or regulatory summaries may be unsuitable for a specific instrument or may become stale.
+Risk: Illustrative calculations, market examples, and thresholds may not match current data, bond terms, or institutional conventions.
 
-Mitigation: Check valuation conventions, dates, and data against authoritative sources, and have qualified fixed-income personnel review analysis before formal reporting or trading decisions.
-
-Risk: Bond and portfolio analysis can expose sensitive account, client, counterparty, or internal issuance information if unnecessary details are provided.
-
-Mitigation: Provide only the minimum bond and portfolio inputs needed; omit account holdings, identities, counterparty information, and unauthorized internal documents.
+Mitigation: Verify data sources and dates, instrument terms, and calculation assumptions, then have a qualified reviewer check draft analysis before use.
 
 ## Reference(s):
 
-- [ClawHub release](https://clawhub.ai/gechengling/skills/security-bond-analysis)
+- [ClawHub release: Security Bond Analysis](https://clawhub.ai/gechengling/skills/security-bond-analysis)
+- [Publisher profile: gechengling](https://clawhub.ai/user/gechengling)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Markdown]
+**Output Type(s):** [Analysis, Guidance, Markdown, Code]
 
-**Output Format:** [Markdown analysis with tables, formulas, and review checklists]
+**Output Format:** [Markdown analysis with tables, checklists, and illustrative code snippets]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Uses user-provided inputs; illustrative calculations and thresholds require qualified review. No market-data access or transaction execution.]
+**Other Properties Related to Output:** [Reference methods and illustrative examples; market data, assumptions, and conclusions require independent verification.]
 
 ## Skill Version(s):
 
-3.0.4 (source: frontmatter)
+3.0.5 (source: frontmatter)
 
 ## Ethical Considerations:
 

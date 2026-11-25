@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and operators use this skill to triage VolcEngine service errors, local CLI or SDK failures, identity and permission issues, billing and quota problems, networking, storage, media, AI, security, and VKE incidents without modifying cloud resources by default.
+Developers and operators use this skill to diagnose VolcEngine errors across local tools, OpenAPI and cloud product areas. It guides evidence gathering and read-only checks, then explains findings and possible next steps.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill may use VolcEngine read credentials and summarize account, infrastructure, billing, or resource details during troubleshooting.
+Risk: Database fault-injection actions or permission changes may disrupt services if treated as routine read-only checks.
 
-Mitigation: Use temporary least-privilege credentials, avoid sharing raw outputs, and share only the minimum troubleshooting summary needed.
+Mitigation: Keep checks read-only by default; explain the impact and obtain explicit user confirmation before any state-changing database or permission action.
 
-Risk: Security evidence notes that one ALB backend collector can collect infrastructure details outside the selected load balancer.
+Risk: Redis logs or key names may expose sensitive operational information.
 
-Mitigation: Be careful with the ALB backend collector and review collected scope before sharing results until its query scope is narrowed.
+Mitigation: Collect only the minimum information needed for the case and redact sensitive values and identifiers before sharing.
+
+Risk: The security scan had partial coverage, so it does not establish a complete assessment.
+
+Mitigation: Review the relevant skill guidance and security findings before relying on it for a production troubleshooting workflow.
 
 ## Reference(s):
 
-- [Getting Started](references/getting-started.md)
-- [OpenAPI Quick Check](references/openapi-quick-check.md)
-- [Domain Troubleshooting Guides](references/domain-guides/README.md)
-- [Billing Troubleshooting Scripts](references/domain-guides/billing-quota/scripts/README.md)
-- [Compute, Container, and Network Scripts](references/domain-guides/compute-container-network/scripts/README.md)
+- [ClawHub release](https://clawhub.ai/volc-sdk-team/skills/volcengine-troubleshooting)
+- [Getting started and scenario routing](references/getting-started.md)
+- [OpenAPI quick checks](references/openapi-quick-check.md)
+- [Product domain guide index](references/domain-guides/README.md)
+- [Storage and database guide](references/domain-guides/storage-database/README.md)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands, Code]
 
-**Output Format:** [Markdown with inline shell commands, diagnostic checklists, and JSON summaries from helper scripts when applicable]
+**Output Format:** [Markdown troubleshooting guidance with diagnostic CLI commands and occasional Python examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Read-only troubleshooting posture by default; sensitive credentials and full access keys should be masked.]
+**Other Properties Related to Output:** [May include structured diagnostic summaries; cloud changes require user confirmation.]
 
 ## Skill Version(s):
 
-1.0.2 (source: server release evidence, released 2026-09-16)
+1.0.3 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

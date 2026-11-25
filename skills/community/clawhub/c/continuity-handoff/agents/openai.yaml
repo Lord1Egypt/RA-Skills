@@ -1,0 +1,4 @@
+interface:
+  display_name: "Continuity Handoff"
+  short_description: "Durable cross-profile handoff with exact recall"
+  default_prompt: "Use $continuity-handoff to write a durable, versionable continuity packet for a fresh native task. Preserve portable identity, goal and usage lineage, decisions, proof, protected source state, and an exact bounded read-only recall handle without copying the transcript."

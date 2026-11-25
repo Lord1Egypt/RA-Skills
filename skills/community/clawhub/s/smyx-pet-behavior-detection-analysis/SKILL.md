@@ -1,7 +1,7 @@
 ---
 name: "pet-behavior-detection-analysis"
 description: "Identifies common abnormal pet behaviors such as scratching, biting, destructive chewing, jumping, digging, chasing, and separation anxiety, helping owners understand their pet's habits. | 宠物行为识别技能，识别抓挠、啃咬、拆家、跳跃、刨地、追逐、独处焦虑等常见宠物异常行为，帮助主人了解宠物行为习惯"
-version: "1.0.25"
+version: "1.0.26"
 license: "MIT-0"
 ---
 

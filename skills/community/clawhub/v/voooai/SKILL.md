@@ -1,512 +1,502 @@
 ---
 name: voooai
 description: >
-  Short drama & webtoon production, text-to-image, image-to-image, storyboard design,
-  text-to-video, image-to-video, video edit, style transfer, batch generation, music & soundtrack.
-  Describe your creative needs → backend generates workflow → execute → poll status → download results.
-  Upload reference files (images, videos, audio) → workflow uses them as input for generation.
-  If a node fails → retry that node with adjusted parameters. Complex tasks (short dramas, full ads) may take 3-5 min.
-  Your role: relay user requests verbatim to backend. Backend AI (Analyst + Expert + Reviewer) handles all creative decisions.
-  Do NOT rewrite prompts, decompose tasks, or construct workflows yourself — just forward and retrieve.
-  Requires VOOOAI_ACCESS_KEY (creative operations only, no billing/admin).
-  Use when: users request any visual or audio content creation, generation, editing, or modification.
-version: 1.0.2
+  VoooAI creative platform — three modes: Image Generation, Video Generation, and Director Mode
+  (script → characters → storyboard → film; for short dramas, ads, MV, long-form video with
+  character consistency). Relay the user's request verbatim to the backend; the platform's AI
+  handles all creative decisions. Image/Video: submit task → poll → download. Director:
+  conversational SSE session across 4 stages → export workflow → execute → download.
+  Upload reference files (image/video/audio) as generation inputs.
+  Requires VOOOAI_ACCESS_KEY AND a PAID membership (free VIP0 keys are rejected with MEMBERSHIP_REQUIRED).
+  Use when: users request any image, video, or multi-shot narrative content creation or editing.
+version: 2.0.2
 author: VoooAI Team
 license: MIT-0
 user-invocable: true
+permissions:
+  env: [VOOOAI_ACCESS_KEY, VOOOAI_BASE_URL, VOOOAI_LOCALE]
+  network: ["https://voooai.com"]
+  file_read: ["user-selected reference media", ".voooai_director_session.json"]
+  file_write: ["--output-dir downloads", ".voooai_director_session.json"]
 metadata:
   {
     "openclaw": {
-      "emoji": "🎨",
+      "emoji": "🎬",
       "requires": {
         "env": ["VOOOAI_ACCESS_KEY"],
         "bins": ["python3"]
       },
       "primaryEnv": "VOOOAI_ACCESS_KEY",
+      "envVars": [
+        {"name": "VOOOAI_ACCESS_KEY", "required": true, "description": "Paid-member AccessKey (vooai_ prefix)."},
+        {"name": "VOOOAI_BASE_URL", "required": false, "description": "Optional API base URL; HTTPS required for non-loopback hosts."},
+        {"name": "VOOOAI_LOCALE", "required": false, "description": "Optional error-message language: zh (default) or en."}
+      ],
       "homepage": "https://voooai.com",
       "tags": [
+        "ai-director",
+        "video-directing",
+        "long-form-video",
+        "ai-movie",
+        "movie-generation",
+        "ai-series",
+        "episodic",
+        "character-consistency",
+        "script-to-storyboard",
+        "shot-list",
+        "storyboard",
+        "short-drama",
+        "webtoon",
+        "manga",
         "image-generation",
         "video-generation",
         "music-generation",
-        "image-edit",
-        "video-edit",
-        "ai-creative",
-        "workflow-automation",
         "text-to-image",
         "text-to-video",
         "image-to-image",
         "image-to-video",
         "video-to-video",
         "audio-to-video",
+        "image-edit",
+        "video-edit",
         "style-transfer",
-        "nl2workflow",
-        "multimedia",
-        "talking-head",
-        "storyboard",
-        "manga",
-        "short-drama",
         "digital-human",
-        "batch-generation",
-        "webtoon",
-        "short-form-video",
+        "talking-head",
+        "marketing-video",
         "ai-animation",
-        "marketing-video"
+        "batch-generation",
+        "agent-to-agent",
+        "multimedia",
+        "workflow-automation",
+        "ai-creative"
       ]
     }
   }
 ---
 
-# VoooAI - NL2Workflow Creative Platform
+# VoooAI — AI 创作平台（图片 / 视频 / 编导）
 
-## 1. Overview
+VoooAI 是一个多媒体 AI 创作平台。Agent 的角色是**搬运工（relay）**——把用户请求原文转发给后端，
+由平台 AI 完成全部创作决策（引擎选型、提示词工程、多镜头编排、角色一致性等）。
 
-VoooAI is a **multi-media creative platform** with 70+ built-in AI skills. The Agent acts as a **relay** (搬运工) — forwarding user requests to VoooAI's backend, which handles all creative decisions via its multi-role AI system (Analyst + Expert + Reviewer).
+> **不要**自己改写提示词、拆解任务或手工构造工作流 JSON——只负责转发、查询、取回结果。
 
-**Core Capabilities:**
-- **Image Generation**: Text-to-image, image-to-image, style transfer, concept art, storyboards
-- **Video Generation**: Text-to-video, image-to-video, video editing, digital human, AI anchor
-- **Music Generation**: Full songs, instrumentals, background music, soundtracks
-- **Workflow Orchestration**: Multi-step automated pipelines (script → storyboard → video + music)
+---
 
-### 1.1 Who Should Use This Skill?
+## 0. 模式选择引导（最重要·置顶）
 
-| User Type | Use Cases |
-|-----------|-----------|
-| **Content Creators** | Marketing videos, social media content, product showcases, promotional materials |
-| **Designers** | Design assets, style variants, visual concepts, mood boards |
-| **Studios** | Multi-step creative pipelines (script → storyboard → video + music) |
-| **Businesses** | Advertising, e-commerce product videos, corporate training content |
-| **Game Developers** | Game art assets, character concept art, cutscene animations |
-| **Educators** | Tutorial videos, course illustrations, animated demonstrations |
-| **One-Person Companies** | Full-stack content creation (posters, videos, music — all-in-one) |
+平台当前提供**三种缺省创作模式**。接到需求时，先判断属于哪一种；**需求模糊时，先向用户复述这三选一，不要自己猜**：
 
-### 1.2 When NOT to Use This Skill
+| 模式 | 适用场景 | 入口脚本 |
+|------|----------|----------|
+| **① 图片生成** | 单张图 / 一组图、海报、概念图、封面、图生图、风格转换 | `image_generate.py` |
+| **② 视频生成** | 单个视频片段、文生视频、图生视频、参考视频/音频驱动 | `video_generate.py` |
+| **③ 编导模式** | 短剧 / 广告 / MV、多镜头叙事、需角色一致性、长视频、剧本→分镜→成片全流程 | `director_start.py` 等 |
 
-This skill is **exclusively for creative workflow operations**. The following are explicitly **out of scope**:
+**选型规则：**
+- 只要一张/一批静态图 → **图片生成**
+- 只要一个视频片段（无多镜头叙事） → **视频生成**
+- 涉及剧情、多镜头、角色贯穿一致、剧本/分镜/成片流水线、长视频或短剧 → **编导模式**
 
-- ❌ User account management (registration, login, profile changes)
-- ❌ Billing, subscription, or payment operations
-- ❌ Admin panel or system configuration
-- ❌ Analytics, statistics, or usage data queries
-- ❌ Homepage or dashboard features
-- ❌ Direct parameter tuning (let the backend AI system handle optimization)
+> 🚧 **nl2workflow（自然语言一键工作流）正在维护中，暂不可用**——详见 [§12](#12-nl2workflow-维护中暂不可用)。请一律使用上述三模式。
 
-For these operations, direct users to https://voooai.com
+---
 
-## 2. Authentication
+## 1. 鉴权与前置要求
 
 ### VOOOAI_ACCESS_KEY
-- **Source**: User's VoooAI account page at https://voooai.com
-- **Format**: `vooai_` prefix + 40 random alphanumeric characters (46 total)
-- **Example**: `vooai_abc123def456ghi789jkl012mno345pqrs678`
+- **来源**：用户 VoooAI 账户页 https://voooai.com
+- **格式**：`vooai_` 前缀 + 40 位随机字母数字（共 46 字符）
+- **存储**：环境变量 `export VOOOAI_ACCESS_KEY="vooai_..."`（Windows PowerShell：`$env:VOOOAI_ACCESS_KEY="vooai_..."`），**切勿硬编码进源码**
+- **可选** `VOOOAI_BASE_URL`：默认 `https://voooai.com`
 
-### Scope (What the Key Allows)
-- ✅ Capability discovery (`check_capabilities.py`)
-- ✅ File upload (`upload_file.py`)
-- ✅ Workflow generation (`generate_workflow.py`)
-- ✅ Workflow execution (`execute_workflow.py`, `execute_single_node.py`)
-- ✅ Status query (`get_status.py`)
-- ✅ Result download (`download_results.py`)
+### ⚠️ 需付费会员（硬门槛）
+**免费用户（VIP0）无法通过 AccessKey 调用任何 API**，后端会返回 `MEMBERSHIP_REQUIRED`（HTTP 403）。
+遇到该错误时，提示用户到 https://voooai.com/subscription 升级付费会员后重试。
 
-### Scope (What the Key DOES NOT Allow)
-- ❌ Billing / payment / subscription management
-- ❌ Admin / system administration
-- ❌ User account settings / profile changes
-- ❌ Analytics / statistics access
+### 允许的操作（AccessKey 授权范围）
+- ✅ 能力发现（`check_capabilities.py`）
+- ✅ 文件上传（`upload_file.py`）
+- ✅ 图片生成 / 视频生成（`image_generate.py` / `video_generate.py`）
+- ✅ 编导模式全流程（`director_*.py`）
+- ✅ 任务查询/下载（`get_task.py` / `download_results.py`）
+- ✅ 工作流执行（`execute_workflow.py` / `execute_single_node.py` / `get_status.py`）
 
-### Storage
-- Environment variable: `export VOOOAI_ACCESS_KEY="vooai_..."`
-- Never hardcode in source code
+### 禁止的操作（明确拒绝清单）
+若用户请求以下操作，告知其直接访问 https://voooai.com：
+- ❌ 用户注册 / 登录 / 鉴权管理
+- ❌ 订阅 / 支付 / 计费管理
+- ❌ 账户设置 / 资料修改
+- ❌ 数据分析 / 使用统计
+- ❌ 管理后台 / 系统配置
+- ❌ 首页 / 仪表盘功能
+- ❌ 绕过脚本直接调用底层 API（安全风险）
 
-## 3. Scope and Restrictions
+**内容安全（明确拒绝清单）**
+- ❌ 制作深度伪造（deepfake）或未经同意的人脸/声音模仿
+- ❌ 未经明确同意冒充真实人物
+- ❌ 生成政治虚假信息或选举干预内容
 
-### Allowed Operations
-- Capability discovery, file upload, workflow generation/execution, status query, result download
+> 数字人 / 口播等能力仅用于合法创作（营销主播、教育主持、虚构角色）。用户须依适用法规标注 AI 生成内容。
 
-### Forbidden Operations (Explicit Deny List)
-If user requests these, inform them to visit voooai.com directly:
-- ❌ Homepage / dashboard features
-- ❌ User registration / login / authentication
-- ❌ Subscription / payment / billing management
-- ❌ Admin panel / system administration
-- ❌ Analytics / statistics
-- ❌ Account settings / profile management
+---
 
-**Content Moderation (Explicit Deny List)**
-- ❌ Creating deepfakes or non-consensual facial/voice mimicry
-- ❌ Impersonating real individuals without explicit consent
-- ❌ Generating political disinformation or election interference content
+## 2. 通用脚本
 
-> **Content Safety Note**: Digital human and talking-head features are intended for legitimate 
-> creative use cases (marketing presenters, educational hosts, fictional characters). 
-> Users must label AI-generated content per applicable synthetic media regulations.
+所有脚本位于 `{baseDir}/scripts/`，需环境变量 `VOOOAI_ACCESS_KEY`。
+> `{baseDir}` = 本 skill 的安装目录。Claude Code / OpenClaw 会在运行时告知该目录；
+> 在 Cursor / 其他编辑器中，用仓库相对路径 `backend/agent-integration/openclaw/scripts/`。
+> 调用统一用 `python3`（Windows 若无 `python3` 别名则用 `python`）。
 
-## 4. Scope Boundaries
-
-This section provides a clear table-based definition of what this skill can and cannot do.
-
-### Supported Operations
-
-| Operation | Supported | Script | Example |
-|-----------|-----------|--------|---------|
-| Capability discovery | ✅ | check_capabilities.py | Check available skills and points balance |
-| File upload | ✅ | upload_file.py | Upload reference image/video/audio (max 200MB) |
-| Workflow generation | ✅ | generate_workflow.py | Generate workflow from natural language description |
-| Workflow execution | ✅ | execute_workflow.py | Run generated workflow |
-| Single node execution | ✅ | execute_single_node.py | Retry specific failed node |
-| Status query | ✅ | get_status.py | Check execution progress |
-| Result download | ✅ | download_results.py | Download generated files to local |
-
-### Forbidden Operations
-
-| Operation | Reason |
-|-----------|--------|
-| User authentication / registration | Out of scope — handled by web frontend |
-| Payment / billing / subscription | Out of scope — user manages directly at voooai.com |
-| Account settings / profile | Out of scope — user manages directly |
-| Analytics / usage statistics | Out of scope — not creative workflow |
-| Admin panel / system config | Out of scope — admin only |
-| Homepage / dashboard features | Out of scope — not workflow related |
-| Direct API calls bypassing scripts | Security risk — use provided scripts only |
-| Manual workflow JSON construction | Quality risk — use generate_workflow.py only |
-| Deepfakes / non-consensual facial or voice mimicry | Content safety — violates ethical guidelines |
-| Impersonating real individuals without consent | Content safety — privacy and legal concerns |
-| Political disinformation / election interference | Content safety — harmful content prohibition |
-
-## 5. Available Scripts
-
-All scripts located at `{baseDir}/scripts/`. Required env: `VOOOAI_ACCESS_KEY`.
-
-### check_capabilities.py
-Discover platform capabilities and points balance.
+### check_capabilities.py — 能力与积分发现
 ```bash
-python3 {baseDir}/scripts/check_capabilities.py
-python3 {baseDir}/scripts/check_capabilities.py --summary
+python3 {baseDir}/scripts/check_capabilities.py --summary   # 积分/引擎数/技能数摘要
+python3 {baseDir}/scripts/check_capabilities.py             # 完整能力（含 engine_constraints、cost_guide）
 ```
 
-### upload_file.py
-Upload image/video/audio file (max 200MB).
+### upload_file.py — 上传参考文件（COS 三步上传）
 ```bash
 python3 {baseDir}/scripts/upload_file.py /path/to/file.png
-python3 {baseDir}/scripts/upload_file.py /path/to/video.mp4
 ```
-- Supported: jpg, png, webp, gif, mp4, mov, avi, mkv, webm, mp3, wav, flac, m4a
+- 支持：jpg/png/webp/gif/svg/bmp、mp4/mov/avi/mkv/webm、mp3/wav/flac/m4a/ogg
+- 大小上限：图片 10MB / 视频 200MB / 音频 15MB
+- 特性：MD5 去重（已存在则跳过上传）、自动分类
+- 输出：`{file_url, file_id, file_type, ...}`——`file_url`/`file_id` 可作为参考素材传给生成脚本
 
-### generate_workflow.py
-Generate workflow from natural language description.
+> 🔒 **隐私提示**：上传会把本地参考文件发送到 VoooAI 服务器（离开本地环境）。上传前务必向用户说明去向并获得同意；不要上传敏感个人或第三方版权素材。
+
+---
+
+## 3. 模式一：图片生成
+
+**脚本**：`image_generate.py` → `POST /api/create-task`（`task_type=image`）→ 轮询 `/api/tasks/<id>` → 下载。
+
 ```bash
-python3 {baseDir}/scripts/generate_workflow.py "生成一个咖啡产品宣传视频"
-python3 {baseDir}/scripts/generate_workflow.py "基于这张图生成视频" --reference-urls https://example.com/ref.jpg
-python3 {baseDir}/scripts/generate_workflow.py "生成分镜图" --skill-id storyboard-basic
-python3 {baseDir}/scripts/generate_workflow.py "测试描述" --analyze-only  # analysis only
+# 文生图（最简）
+python3 {baseDir}/scripts/image_generate.py "一只戴眼镜的橘猫，写实风格"
+
+# 指定比例/画质并下载到本地
+python3 {baseDir}/scripts/image_generate.py "赛博朋克城市夜景" --aspect-ratio 16:9 --quality high --output-dir ./out
+
+# 图生图（先上传参考图，拿到 file_url 后传入）
+python3 {baseDir}/scripts/upload_file.py ./ref.png
+python3 {baseDir}/scripts/image_generate.py "把这张草图变成写实图" --reference-image-ids <file_url>
+
+# 仅提交不等待
+python3 {baseDir}/scripts/image_generate.py "产品海报" --no-wait
 ```
 
-### execute_workflow.py
-Execute a generated workflow.
+**常用参数**：`--aspect-ratio` `--resolution-tier` `--quality`(low/medium/high) `--engine-type`(留空=Auto) `--reference-image-ids` `--negative-prompt` `--output-dir` `--prefix` `--no-wait` `--dry-run`
+
+> 📐 **尺寸语义（实测 2026-11-16）**：决定实际像素的是 `--aspect-ratio` / `--resolution-tier` / `--quality`。`--image-size`（如 `1024x1024`）仅为**向后兼容字段**，GPT Image 2 等引擎会忽略它——实测传 `--image-size 1024x1024` 仍产出 **2880×2880 PNG**。需要精确像素或指定格式（例如 SEO 配图要求 1024×1024 webp q65）时，请在下载后自行缩放/转码，不要依赖 `--image-size`。
+
+**执行流程**：`（可选）upload_file → image_generate（提交即扣积分，先向用户确认）→ 自动轮询 → 下载`
+
+**输出**：`{success, task_id, status, media:[{type,url}], result_urls[], points_deducted, remaining_points, downloaded_files[]}`
+
+> ⚠️ **提交即扣积分**。调用前务必先向用户说明预估成本并获确认（见 [§8](#8-用户交互准则)）。
+
+---
+
+## 4. 模式二：视频生成
+
+**脚本**：`video_generate.py` → `POST /api/create-task`（`task_type=video`）→ 轮询 `/api/tasks/<id>` → 下载。
+
 ```bash
-python3 {baseDir}/scripts/execute_workflow.py '{"nodes": [...], "connections": [...]}'
-python3 {baseDir}/scripts/execute_workflow.py /path/to/workflow.json
-cat workflow.json | python3 {baseDir}/scripts/execute_workflow.py --from-stdin
-python3 {baseDir}/scripts/execute_workflow.py workflow.json --set-param node_1.prompt="新提示词"
+# 文生视频
+python3 {baseDir}/scripts/video_generate.py "一只机器人在跳舞，霓虹灯背景"
+
+# 图生视频（先上传首帧图）
+python3 {baseDir}/scripts/upload_file.py ./first.png
+python3 {baseDir}/scripts/video_generate.py "让这张图动起来" --reference-image-ids <file_url>
+
+# 指定时长/比例并下载（视频较慢，默认轮询超时 600s）
+python3 {baseDir}/scripts/video_generate.py "咖啡产品广告" --video-duration 8 --video-aspect-ratio 16:9 --output-dir ./out
+
+# 仅提交不等待，稍后轮询
+python3 {baseDir}/scripts/video_generate.py "海浪拍打礁石" --no-wait
+python3 {baseDir}/scripts/get_task.py <task_id> --poll --timeout 600
 ```
 
-### execute_single_node.py
-Execute/retry a single node (for debugging or partial retry).
+**常用参数**：`--video-duration` `--video-size`(480p/720p/1080p) `--video-aspect-ratio` `--video-engine-type`(留空=Auto) `--generation-type`(TEXT/FIRST&LAST/REFERENCE) `--reference-image-ids` `--reference-video-ids` `--reference-audio-ids` `--output-dir` `--no-wait` `--dry-run`
+
+**输出**：同图片生成，`media` 中 `type=video`。
+
+> ⚠️ 视频成本通常高于图片，**提交即扣积分**，调用前务必向用户确认。
+
+---
+
+## 5. 模式三：编导模式（长视频 / 短剧 / 角色一致性）
+
+编导模式是一个**有状态、多轮对话、SSE 流式**的创作环境，分 4 个阶段渐进产出：
+**Stage 1 剧本 → Stage 2 角色与元素 → Stage 3 分镜 → Stage 4 工作流/成片**。
+后端 AI 在对话中自动执行编排动作（加角色、加分镜、生成引用图等）并逐阶段推进。
+
+### 生命周期与脚本
+
 ```bash
-python3 {baseDir}/scripts/execute_single_node.py workflow.json --node-id node_1
-cat workflow.json | python3 {baseDir}/scripts/execute_single_node.py --from-stdin --node-id node_2
-python3 {baseDir}/scripts/execute_single_node.py workflow.json --node-id node_1 --set-param node_1.prompt="修改后的提示词"
+# ① 启动会话（SSE）：传入创意描述，返回 session_id，AI 驱动 Stage 1
+python3 {baseDir}/scripts/director_start.py "一部关于侦探的短剧，黑色电影风格"
+#   默认 --no-auto-generate（逐阶段确认，防自动烧积分）；会话状态存入 .voooai_director_session.json
+
+# ② 对话推进（SSE）：持续指导 AI，自动产出角色/分镜并前进阶段
+python3 {baseDir}/scripts/director_chat.py "把主角设定为一名退休警探，增加一个反派"
+python3 {baseDir}/scripts/director_chat.py "确认当前阶段，进入下一步"
+
+# ③ 查看状态与各阶段产出
+python3 {baseDir}/scripts/director_status.py            # current_stage / stage_statuses / 摘要
+python3 {baseDir}/scripts/director_status.py --full     # 完整阶段数据（剧本/角色/分镜）
+
+# ④（可选）阶段控制
+python3 {baseDir}/scripts/director_navigate.py --stage 3              # 确认 Stage 3 完成并推进（确定性，不耗 LLM 积分）
+python3 {baseDir}/scripts/director_confirm.py --proposal-id <mp_xxx>  # 确认 AI 提出的修改提案（proposal_id 来自 chat 回复）
+
+# ⑤ 出片（两条路，二选一）
+# 路 A（推荐·复用执行链）：导出工作流 → node-builder 执行 → 下载
+python3 {baseDir}/scripts/director_export.py --execute --output-dir ./out
+# 路 B（逐分镜直接出视频）：
+python3 {baseDir}/scripts/director_execute_video.py --storyboard-id <sb_id>
 ```
 
-### get_status.py
-Query execution status.
+- 所有 `director_*.py` 缺省从 `.voooai_director_session.json` 读取 `session_id`；多会话时用 `--session-id` 显式指定。
+- `director_start.py` / `director_chat.py` 消费 SSE 流（`token`/`action`/`summary`/`required_config`/`done`），脚本会聚合为一次性 JSON 输出。
+
+### 首次创作必答题：`required_config`（全局配置确认）
+
+会话**首次进入剧本创作**且全局必填配置尚未确认时，后端守门流程会**拦截本轮 task 执行**，改为下发 `required_config` 事件。此时：
+
+- `reply` 为空、`current_stage` 不推进 —— **属预期，不是失败**，不要重试或改写消息重发；
+- 但本轮守门 LLM **已计费**（实测扣 1 分），所以必须一次把配置问全，避免反复空转；
+- 脚本输出会带 `needs_config: true`、`required_config.questions[]`、`required_config.original_message` 与 `hint`。
+
+`questions[]` 字段语义（**文案与回传值必须分清**）：
+
+| 字段 | 含义 |
+|------|------|
+| `question_id` | 回传 `config` 对象的**键**（如 `aspect_ratio`） |
+| `question` | 后端按会话语种（`director_start.py --locale`）**已本地化的问题文案**，直接展示给用户 |
+| `quick_options[].label` | 已本地化的**选项文案**，直接展示 |
+| `quick_options[].value` | **真正要回传的值**，不要用 label 当值 |
+
+**处理流程（四步，不可跳）：**
+
+1. 把 `questions` 的问题与选项**原样呈现给用户拍板**。画面比例 / 分辨率 / 时长 / 对白语言属创作决策，**Agent 不得代选**（成本差异可达数十倍）。
+2. 用用户选定值组装回传指令，`original_message` **必须取** `required_config.original_message`（后端据此重走守门流程，丢了它就丢了原始创作意图）：
+   ```
+   [REQUIRED_CONFIG]{"config":{"<question_id>":"<value>", ...},"original_message":"<原消息>"}
+   ```
+3. 用 `director_chat.py` 把上面整串**作为 content 原样传入**（前缀 `[REQUIRED_CONFIG]` 不可省、不可改写、不可加引号包裹）：
+   ```bash
+   python3 {baseDir}/scripts/director_chat.py '[REQUIRED_CONFIG]{"config":{"aspect_ratio":"16:9","resolution":"480p","duration_seconds":30,"dialogue_language":"zh","draft_mode":"true"},"original_message":"请给出这个短片的剧本大纲"}' --timeout 600
+   ```
+4. 回传成功后后端会校验并落盘配置、重走守门并**真正生成剧本**：输出含 `actions[].type=stage_update`、`current_stage=1`、`stage_statuses={"1":"pending_confirmation"}`，随后按正常逐阶段确认流程推进。
+
+> ⚠️ **字段以实际下发为准**：上例键名只是常见项，不同版本/阶段必填项可能不同，一律按 `questions[].question_id` 组装，不要硬编码清单。
+> `draft_mode=true` 时后端会**权威锁定** `resolution=480p`（草稿档省积分），此时不要再传高分辨率。
+>
+> 🪟 **Windows/PowerShell 陷阱**：content 内含大量 JSON 双引号，直接内联传参易被 shell 切碎或挂在续行提示符上。建议把指令写入临时文件后读取，或用 `subprocess` **列表传参**（由 Python 负责转义）。
+>
+> 📙 实测记录（2026-11-16 本地环境）：未处理 `required_config` 时表现为「chat 已扣积分却只回空 reply」；按上述流程回传后 Stage 1 剧本生成成功（扣 5 分，产出剧本/角色/关系与 `creative_directives` 落盘）。
+
+### 出片路径说明
+- **路 A（export-workflow → execute）**：`director_export.py` 调 `GET /api/director/v2/<sid>/export-workflow` 得到 `{nodes, edges}`，脚本自动把 ReactFlow `edges` 归一化为 node-builder `connections`，再交给 `execute_workflow.py` 执行、`get_status.py` 轮询、`download_results.py` 下载。加 `--execute` 可一条龙。
+  **前置**：必须已完成 **Stage 3 分镜设计**，否则后端返回 HTTP 400 `Stage 3 storyboard data is empty`（属业务拦截，不是脚本故障）；此时先推进阶段，不要反复重试导出。
+- **路 B（execute_storyboard_video）**：`director_execute_video.py` 调 `POST /api/director/v2/<sid>/execute_storyboard_video` 逐分镜生成视频，结果经任务系统回写，用 `get_task.py` 查询下载。
+
+> ⚠️ 编导模式涉及多轮 LLM 与多次生成，积分消耗较高。`director_start.py` 默认 `auto_generate=false`，
+> 需逐阶段由用户确认后再推进/出片，符合「Agent 绝不代替用户做耗积分决策」原则。
+
+---
+
+## 6. 任务查询与结果下载
+
+### get_task.py — 图片/视频任务查询·下载·取消
 ```bash
-python3 {baseDir}/scripts/get_status.py exec_abc123                            # single query
-python3 {baseDir}/scripts/get_status.py exec_abc123 --poll                     # poll until complete
-python3 {baseDir}/scripts/get_status.py exec_abc123 --poll --timeout 600       # custom timeout
+python3 {baseDir}/scripts/get_task.py <task_id> --poll                    # 轮询直到完成
+python3 {baseDir}/scripts/get_task.py <task_id> --poll --output-dir ./out # 轮询并下载
+python3 {baseDir}/scripts/get_task.py <task_id> --cancel                  # 取消任务
 ```
+任务结果按媒体类型分字段：`task.image_url` / `video_url` / `audio_url`。
 
-### download_results.py
-Download execution results to local.
+### download_results.py — node-builder 执行结果下载（编导出片路 A / 工作流执行）
 ```bash
-python3 {baseDir}/scripts/download_results.py exec_abc123
-python3 {baseDir}/scripts/download_results.py exec_abc123 --output-dir ~/Downloads/project
-python3 {baseDir}/scripts/download_results.py exec_abc123 --prefix "storyboard"
-python3 {baseDir}/scripts/download_results.py exec_abc123 --no-download        # list URLs only
-python3 {baseDir}/scripts/download_results.py --urls https://a.com/1.png       # direct URL download
+python3 {baseDir}/scripts/download_results.py <execution_id> --output-dir ./out
+python3 {baseDir}/scripts/download_results.py --urls https://a.com/1.png  # 直接下载指定 URL
 ```
 
-## 6. Usage Patterns
-
-This section describes common trigger patterns to help the Agent understand when and how to invoke VoooAI.
-
-### Pattern 1: Direct Media Generation
-
-**User expressions:**
-- "Generate an image of a sunset over mountains"
-- "画一只戴眼镜的猫"
-- "做个海报宣传我的产品"
-- "Create a video of a dancing robot"
-- "帮我做首轻松的背景音乐"
-
-**Execution flow:**
-```
-check_capabilities → generate_workflow → execute_workflow → get_status (poll) → download_results
-```
-
-### Pattern 2: Reference-Based Creation
-
-**User expressions:**
-- "Based on this image, generate a video"
-- "把这张图变成动画"
-- "用这首歌做个MV"
-- "Convert this sketch to a realistic image"
-- "参考这个风格做一组产品图"
-
-**Execution flow:**
-```
-upload_file → generate_workflow (with --reference-urls) → execute_workflow → get_status (poll) → download_results
-```
-
-### Pattern 3: Complex Multi-Step Workflows
-
-**User expressions:**
-- "Create a short drama about a detective"
-- "帮我做个产品广告，从脚本到成片"
-- "一句话生成短剧"
-- "Make a complete promotional video with storyboard and music"
-- "从剧本到分镜到视频帮我全流程做出来"
-
-**Execution flow:**
-```
-generate_workflow (backend handles decomposition) → execute_workflow → get_status (poll, may take 3-5+ min) → download_results
-```
-
-### Pattern 4: Failure Recovery & Retry
-
-**User expressions:**
-- "Retry with different parameters"
-- "这个节点重新执行一下"
-- "把提示词改一下再试"
-- "换个风格重新生成"
-
-**Execution flow:**
-```
-get_status (identify failed node) → execute_single_node (with --set-param if needed) → get_status (poll) → download_results
-```
-
-### Pattern 5: Exploration & Discovery
-
-**User expressions:**
-- "What can you generate?"
-- "你能做什么？"
-- "有哪些创作能力？"
-- "Show me available AI skills"
-- "我还有多少积分？"
-
-**Execution flow:**
-```
-check_capabilities → present results to user
-```
-
-## 7. Typical Workflows
-
-### Scenario 1: Basic Image/Video Generation
+### get_status.py / execute_workflow.py / execute_single_node.py — 工作流执行（编导出片路 A 复用）
 ```bash
-# 1. Check capabilities and points
-python3 {baseDir}/scripts/check_capabilities.py --summary
-
-# 2. Generate workflow (user confirms points_cost before proceeding)
-python3 {baseDir}/scripts/generate_workflow.py "一个宇航员在月球上弹吉他"
-# → Review estimated_points, ask user to confirm
-
-# 3. Execute workflow
-python3 {baseDir}/scripts/execute_workflow.py '<template_data_json>'
-
-# 4. Poll status
-python3 {baseDir}/scripts/get_status.py EXEC_ID --poll
-
-# 5. Download results
-python3 {baseDir}/scripts/download_results.py EXEC_ID --output-dir ./output
+python3 {baseDir}/scripts/execute_workflow.py workflow.json               # 执行工作流
+python3 {baseDir}/scripts/get_status.py <execution_id> --poll             # 轮询执行状态
+python3 {baseDir}/scripts/execute_single_node.py workflow.json --node-id <id>  # 重试单节点
 ```
 
-### Scenario 2: With Reference Media (URL)
+---
+
+## 7. 典型端到端流程
+
+### 场景 1：一张海报（图片生成）
 ```bash
-python3 {baseDir}/scripts/generate_workflow.py "根据这张图生成视频" \
-  --reference-urls https://example.com/reference.jpg
-# Then execute, poll, download as above
+python3 {baseDir}/scripts/check_capabilities.py --summary      # 看积分
+python3 {baseDir}/scripts/image_generate.py "极简风格咖啡品牌海报，暖色调" --aspect-ratio 3:4 --output-dir ./out
 ```
 
-### Scenario 3: With Local File Upload
+### 场景 2：图生视频（上传 + 视频生成）
 ```bash
-# 1. Upload local file first
-python3 {baseDir}/scripts/upload_file.py /path/to/reference.png
-# → Returns file_url
-
-# 2. Generate workflow with uploaded URL
-python3 {baseDir}/scripts/generate_workflow.py "基于这张图生成视频" \
-  --reference-urls <file_url_from_upload>
-# Then execute, poll, download as above
+python3 {baseDir}/scripts/upload_file.py ./product.png         # → file_url
+python3 {baseDir}/scripts/video_generate.py "让产品缓慢旋转，柔和打光" --reference-image-ids <file_url> --output-dir ./out
 ```
 
-### Scenario 4: Failed Node Retry
+### 场景 3：一部短剧（编导模式，路 A 出片）
 ```bash
-# 1. Check which node failed
-python3 {baseDir}/scripts/get_status.py EXEC_ID
-# → Identify failed node_id from node_statuses
-
-# 2. Retry single node (optionally adjust params)
-python3 {baseDir}/scripts/execute_single_node.py workflow.json \
-  --node-id failed_node_id \
-  --set-param failed_node_id.some_param="adjusted_value"
-
-# 3. Poll new execution
-python3 {baseDir}/scripts/get_status.py NEW_EXEC_ID --poll
+python3 {baseDir}/scripts/director_start.py "30 秒悬疑短剧：深夜便利店的一场对峙"
+python3 {baseDir}/scripts/director_chat.py "确认剧本，进入角色设计"
+python3 {baseDir}/scripts/director_chat.py "确认角色，生成分镜"
+python3 {baseDir}/scripts/director_status.py                    # 核对分镜
+python3 {baseDir}/scripts/director_export.py --execute --output-dir ./out/drama
 ```
 
-### Scenario 5: Multi-Step Creative Pipeline (Short Drama / Product Ad)
-```bash
-# Complex workflow: script → storyboard → video + music (all handled by backend)
-# Example: "帮我做个咖啡产品广告，从脚本到成片"
+---
 
-# 1. Check capabilities and points (complex workflows cost more)
-python3 {baseDir}/scripts/check_capabilities.py --summary
+## 8. 用户交互准则
 
-# 2. Generate multi-step workflow (backend auto-decomposes)
-python3 {baseDir}/scripts/generate_workflow.py "制作一个30秒的咖啡产品广告，包含脚本、分镜、视频和背景音乐"
-# → Backend returns multi-node workflow (script → storyboard → video → music → composite)
-# → Review estimated_points (typically 80-200+ for complex pipelines), ask user to confirm
+### 积分确认（关键）
+图片/视频**提交即扣积分**，编导模式多轮消耗更高。因此：
+1. 生成前**必须**向用户说明预估成本（可用 `check_capabilities.py` 查余额）
+2. **必须**等待用户确认后再提交
+3. 存在积分不足风险时**绝不**自动提交
 
-# 3. Execute full pipeline
-python3 {baseDir}/scripts/execute_workflow.py '<template_data_json>'
-
-# 4. Poll status (complex workflows take 3-5+ minutes)
-python3 {baseDir}/scripts/get_status.py EXEC_ID --poll --timeout 600
-
-# 5. Download all outputs (storyboard images, video clips, music, final composite)
-python3 {baseDir}/scripts/download_results.py EXEC_ID --output-dir ./output/product_ad
+```
+Agent：「这张图预计消耗约 N 积分，你当前余额 M。是否继续？(yes/no)」
+User ：「yes」
+Agent：[再提交]
 ```
 
-## 8. User Interaction Guidelines
+### 模式选择
+需求模糊时，先向用户复述[三模式](#0-模式选择引导最重要置顶)让其选择，不要自行猜测模式或填充创作细节。
 
-### Points Confirmation (CRITICAL)
-When `generate_workflow.py` returns `points_warning` or `estimated_points`:
-1. **MUST show** estimated cost to user before execution
-2. **MUST wait** for user confirmation
-3. **NEVER auto-execute** when points_warning exists
+### 多方案
+后端返回多个方案/选项时，全部呈现给用户并附清晰说明，由用户选择，不要自动选。
 
-**Example interaction:**
-```
-Agent: "This workflow will cost approximately 45 points. You have 50 points available. Proceed? (yes/no)"
-User: "yes"
-Agent: [Then execute]
-```
+### 失败后决策
+执行失败时清晰呈现原因，提供选项（重试 / 调整参数 / 换引擎 / 放弃），由用户决定。
 
-### Multiple Options
-When backend returns multiple plans or options:
-- Present all options to user with clear descriptions
-- Let user choose, do not auto-select
+### 核心原则
+**Agent 绝不代替用户做任何消耗积分的决策。**
 
-### Ambiguous Parameters
-When user description is vague:
-- Ask clarifying questions about key parameters (duration, style, resolution)
-- Do not guess or fill in creative details yourself
+---
 
-### Post-Failure Decisions
-When execution fails:
-- Present failure reason clearly
-- Offer options: retry, adjust parameters, change engine, or abort
-- Let user decide next action
+## 9. 失败处理与重试
 
-### Core Principle
-**Agent MUST NOT make any points-consuming decision on behalf of the user.**
+### 诊断
+1. 图片/视频：`get_task.py <task_id>` 看 `status` 与 `error_message`
+2. 工作流：`get_status.py <execution_id>` 看 `failed_nodes` 与 `node_statuses`
+3. 编导：`director_status.py` 看各阶段状态
 
-## 9. Failure Handling and Retry
+### 重试策略
+| 策略 | 适用 | 命令 |
+|------|------|------|
+| 任务重提交 | 图片/视频任务失败 | 重新运行 `image_generate.py` / `video_generate.py` |
+| 单节点重试 | 工作流某节点失败 | `execute_single_node.py --node-id <failed>` |
+| 参数调整 | 引擎拒绝参数 | `execute_workflow.py --set-param node_id.key=value` |
+| 编导局部重生成 | 某分镜/角色不满意 | `director_chat.py "重做第 N 个分镜"` |
 
-### Diagnosis Steps
-1. Run `get_status.py EXEC_ID` to get detailed error info
-2. Check `failed_nodes` list and `error_message`
-3. Review `node_statuses` for per-node status
+### 常见错误
+| 错误码 | 原因 | 处理 |
+|--------|------|------|
+| `MEMBERSHIP_REQUIRED` | 免费 VIP0 用 AccessKey | 到 voooai.com/subscription 升级付费会员 |
+| `INSUFFICIENT_POINTS` | 积分不足 | 到 voooai.com/subscription 充值 |
+| `DUPLICATE_REQUEST` / 429 | 请求过频/并发限制 | 稍后重试 |
+| `ENGINE_TIMEOUT` | 引擎超时 | 重试或换引擎 |
+| `CONTENT_BLOCKED` / `CONTENT_MODERATION_FAILED` | 内容安全过滤 | 修改描述以符合规范 |
+| `ENGINE_UNAVAILABLE` | 引擎临时不可用 | 稍后重试或用替代引擎 |
 
-### Retry Strategies
+### 已知限制
+- 状态同步可能滞后——轮询需有耐心（图片默认超时 300s，视频 600s）
+- 编导模式复杂短剧可能耗时数分钟
+- 超时后提示用户到 https://voooai.com 查看结果
 
-| Strategy | When to Use | Command |
-|----------|-------------|---------|
-| Single-node retry | One node failed, others succeeded | `execute_single_node.py --node-id <failed_node>` |
-| Parameter adjustment | Engine rejected params | Add `--set-param` to modify |
-| Full retry | Multiple nodes failed or workflow error | Re-run `execute_workflow.py` |
+---
 
-### Common Failure Scenarios
+## 10. 输出格式
 
-| Error Code | Cause | Resolution |
-|------------|-------|------------|
-| `INSUFFICIENT_POINTS` | Not enough credits | User adds credits at voooai.com/subscription |
-| `ENGINE_TIMEOUT` | Engine took too long | Retry, or try different engine |
-| `INVALID_PARAMS` | Bad parameters | Adjust params with `--set-param` |
-| `CONTENT_BLOCKED` | Content safety filter | Modify description to comply with guidelines |
-| `ENGINE_UNAVAILABLE` | Engine temporarily down | Wait and retry, or use alternative engine |
+**check_capabilities.py**：`{success, trust_level, points_balance, membership_level, points_warning, engines, skills, engine_constraints, constraints}`
 
-### Known Limitations
-- Status synchronization may lag — poll with patience
-- Complex workflows (short dramas) may take 3-5+ minutes
-- After 5-minute timeout, tell user to check results at voooai.com
+**image_generate.py / video_generate.py**：`{success, task_id, status, media:[{type,url}], result_urls[], points_deducted, remaining_points, downloaded_files[]}`
 
-## 10. Output Formats
+**get_task.py**：`{success, task_id, status, media[], result_urls[]}`
 
-**check_capabilities.py**: `{success, points_balance, points_warning, available_engines, available_skills}`
+**director_start.py**：`{success, session_id, tab_id, current_stage, reply}`
 
-**generate_workflow.py**: `{success, template_data, explanation, metadata: {node_count, engine_nodes, estimated_points}, points_warning}`
+**director_chat.py**：`{success, session_id, reply, actions[], current_stage, stage_statuses}`
 
-**execute_workflow.py**: `{success, execution_id, status, message}`
+**director_status.py**：`{success, session_id, current_stage, stage_statuses, stage_data}`
 
-**get_status.py**: `{success, execution_id, status, progress, result_urls[]}`  
-Status values: `pending` | `running` | `completed` | `failed`
+**director_export.py**：`{success, session_id, workflow:{nodes,connections}, execution_id?, ...}`
 
-**download_results.py**: `{success, output_dir, downloaded_files[], total_count}`
+**execute_workflow.py**：`{success, execution_id, status, message}`
 
-## 11. Core Principles
+**get_status.py**：`{success, execution_id, status, progress, result_urls[]}`（status: pending|running|completed|failed）
 
-### Agent is a Relay (搬运工)
-- **Forward** user descriptions verbatim to the API
-- **NEVER** rewrite, expand, embellish, or translate user prompts
-- **NEVER** decompose tasks yourself (send "make 5 episodes" as ONE request)
-- **NEVER** construct workflow JSON manually — always use `generate_workflow.py`
+**download_results.py**：`{success, output_dir, downloaded_files[], total_count}`
 
-### Trust the Backend
-VoooAI's PlannerAgent (Analyst + Expert + Reviewer) handles:
-- Task decomposition and planning
-- Engine/model selection
-- Prompt engineering and optimization
-- Workflow structure design
+**upload_file.py**：`{file_url, file_id, file_type, file_name, file_size_bytes, status}`
 
-### Points Awareness
-- **ALWAYS** check `points_warning` before execution
-- **ALWAYS** inform user of estimated cost
-- **ALWAYS** get user confirmation for costly operations
+---
 
-### Scope Awareness
-- **ONLY** operate workflow-related features
-- **NEVER** attempt homepage, billing, admin, or account operations
-- If user requests out-of-scope operation → direct them to voooai.com
+## 11. 核心原则
 
-## 12. Polling Strategy
+### Agent 是搬运工（relay）
+- **原文转发**用户描述给平台，**绝不**改写、扩写、润色或翻译用户提示词
+- **绝不**自己拆解任务（"做 5 集"作为一个请求整体发出）
+- **绝不**手工构造工作流 JSON——编导模式用 `director_*`，图片/视频用 `image_generate`/`video_generate`
 
-- **Interval**: 10 seconds (do not poll more frequently)
-- **Timeout**: 300 seconds (5 minutes default)
-- **Completion**: `status: "completed"` → results in `outputs`
-- **Failure**: `status: "failed"` → check `error_message`
-- **Post-timeout**: Tell user to check at https://voooai.com
+### 信任后端
+平台 AI（编导 Agent / 引擎评分服务）负责：任务拆解与规划、引擎/模型选择、提示词工程、多镜头与角色一致性编排。
 
-## 13. Error Reference
+### 积分意识
+- 生成前**总是**说明预估成本、**总是**获取用户确认、**绝不**自动提交耗积分操作
 
-**HTTP Codes**: 400 (bad request) | 401 (unauthorized) | 403 (forbidden) | 429 (rate limit) | 500 (server error)
+### 隐私意识
+- 上传参考素材前**总是**告知用户文件将离开本地、上传至 VoooAI 服务器并获确认；**绝不**擅自上传敏感或第三方版权文件
 
-**Error Codes**:
-- `INVALID_ACCESS_KEY` — Key must start with `vooai_`
-- `INSUFFICIENT_POINTS` — Add credits at voooai.com/subscription
-- `MEMBERSHIP_REQUIRED` — Engine requires higher tier
-- `RATE_LIMIT_EXCEEDED` — Wait and retry
-- `ENGINE_UNAVAILABLE` — Try alternative engine
+### 范围意识
+- **仅**操作创作相关功能；**绝不**触碰首页/计费/管理后台/账户设置；越界请求引导至 voooai.com
+
+---
+
+## 12. nl2workflow（🚧 维护中·暂不可用）
+
+自然语言一键工作流（`/api/agent/nl2workflow/*`）链路已较长时间未维护，存在参考媒体被丢弃、
+方案契约漂移等已知问题，**当前不对外开放**。相关脚本已归档至源码仓的 _deprecated 目录，不随本包分发。
+
+**请一律使用三模式**（图片生成 / 视频生成 / 编导模式）。待后端 nl2workflow 重新迭代修复后再恢复启用。
+
+---
+
+## 13. 跨编辑器使用说明（Cursor / Claude Code / 任意 AI editor）
+
+本 skill 采用「一份脚本 + 多份宿主适配」结构，便于不同 AI 编辑器直接读取使用：
+
+| 宿主 | 读取入口 | 说明 |
+|------|----------|------|
+| OpenClaw / ClawHub | 本技能说明文件（frontmatter metadata.openclaw） | 原生 Agent Skills 包；本包仅含本文件与 scripts/ |
+| Claude Code | 本技能说明文件（frontmatter name + description） | 将本目录复制到 .claude/skills/voooai/ 或插件目录 |
+| 其他编辑器 / MCP 宿主 | 源码仓 https://github.com/hkljjkl/voooai_agent_skill | 通用 AGENTS.md、Cursor Rules、MCP 封装见源码仓，不随本包分发 |
+
+**统一约定**：所有宿主都调用本包 scripts/ 下的同一套 Python 脚本，
+仅需设置 VOOOAI_ACCESS_KEY（付费会员）。脚本输出统一为 JSON，便于各编辑器解析。
+
+---
+
+## 14. 轮询策略
+
+- **图片任务**：间隔 5s，默认超时 300s
+- **视频任务**：间隔 5s，默认超时 600s
+- **工作流执行**：间隔 10s，默认超时 300s（`get_status.py --poll`）
+- **完成**：`status: completed` → 取 `media`/`result_urls`/`outputs`
+- **失败**：`status: failed` → 看 `error_message`
+- **超时后**：提示用户到 https://voooai.com 查看
 
 ---
 

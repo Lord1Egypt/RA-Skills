@@ -248,9 +248,12 @@ Run the bundled generator with the prompt from Step 5. Write the final image to 
 python .opencode/skills/custom-infographic/scripts/generate_image.py \
   --prompt infographic/{topic-slug}/prompts/infographic.md \
   --output imgs/{YYMMDD}-{slug}.png \
-  --aspect 16:9
+  --aspect 16:9 \
+  --size 1K
 ```
 
+- `--size` sets the pixels, and it is the main lever on file size. `1K` for an image shown inline in an article (the normal case), `0.5K` for a small one, `2K` only when it will be shown full-bleed or printed. Omitting it hands the choice to the model, which is how full-size files reach a document repository.
+- The generator palette-reduces the downloaded image in place (`-colors 256`), which is free for a flat illustration. The filename does not change.
 - The final image goes to `imgs/<YYMMDD>-<slug>.png` (repo convention, see Output Structure) — never to `infographic/{topic-slug}/`.
 - `--aspect` takes the value resolved in Step 5 — do not re-derive it here.
 - The default model is `google/gemini-3.1-flash-image`. Pass `--model` to use another one. Pitfall 6 gives the key requirement and the fallback.

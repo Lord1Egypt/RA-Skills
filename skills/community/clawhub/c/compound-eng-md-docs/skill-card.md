@@ -1,6 +1,6 @@
 ## Description:
 
-Manages project documentation files including CLAUDE.md, AGENTS.md, README.md, CONTRIBUTING.md, and DOCS.md.
+Updates or creates project context and documentation files after checking their claims against the codebase.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to create or update project context and documentation files based on the repository's actual structure, commands, and conventions. It can also update an existing CONTRIBUTING.md or DOCS.md when asked.
+Developers use this skill to create or update project context and documentation files, including AGENTS.md, CLAUDE.md, README.md, CONTRIBUTING.md, and existing DOCS.md, with content checked against repository files and commands.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The release evidence says evaluation and diagnostic commands are described, but their implementation was not supplied.
+Risk: Some evaluation and diagnostic commands may not fit a target repository, and scanner confidence is medium because some references could not be resolved and command implementations were unavailable for assessment.
 
-Mitigation: Inspect those commands in the target repository and run only workflows that fit your intended use.
-
-Risk: The release evidence reports one referenced path as missing.
-
-Mitigation: Check referenced files in the target repository before following a workflow.
+Mitigation: Review unresolved references and inspect the relevant commands in the target repository before running them.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/iliaal/skills/compound-eng-md-docs)
-- [Context content and writing](references/context-content-and-writing.md)
-- [Documentation workflows](references/documentation-workflows.md)
-- [Initialize context files](references/init-agents.md)
-- [Monorepo guidance](references/monorepo.md)
-- [Update AGENTS.md](references/update-agents.md)
-- [Update CONTRIBUTING.md](references/update-contributing.md)
-- [Update README.md](references/update-readme.md)
+- [ClawHub skill release](https://clawhub.ai/iliaal/skills/compound-eng-md-docs)
+- [SKILL.md](artifact/SKILL.md)
+- [Documentation workflows](artifact/references/documentation-workflows.md)
+- [Context content and writing](artifact/references/context-content-and-writing.md)
+- [Initialize context workflow](artifact/references/init-agents.md)
+- [Monorepo handling](artifact/references/monorepo.md)
+- [Update context files workflow](artifact/references/update-agents.md)
+- [Update CONTRIBUTING workflow](artifact/references/update-contributing.md)
+- [Update README workflow](artifact/references/update-readme.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Files, Markdown, Guidance]
+**Output Type(s):** [markdown, shell commands, guidance]
 
-**Output Format:** [Markdown documentation files and concise change summaries]
+**Output Format:** [Markdown documentation and concise command guidance.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [May create or update project documentation within each workflow's stated limits.]
 
 ## Skill Version(s):
 
-5.1.5 (source: server-resolved release metadata)
+5.1.7 (source: server release evidence)
 
 ## Ethical Considerations:
 

@@ -8,7 +8,7 @@ Pure stdlib, zero dependencies. Two jobs:
    conventions. Discovery writes .changsheng/discovery.json so recovery can
    resolve roles -> real files. It only lists paths — it never reads content.
 
-2. INDEX (default): hash the L2 tracked files listed in config.yaml and write
+2. INDEX (default): hash the L1 tracked files listed in config.yaml and write
    memory_index.md (✅ new change / ⏸ unchanged) — where token savings live.
 
 Mode (--mode):
@@ -21,13 +21,13 @@ Mode (--mode):
 Config shapes:
   New:  mode: auto|manual|internal
         roles: {rules: [...], todos: [...], journal: [...]}   # files or dirs
-        must_read_extra: [...]    # extra L3 always-read files
-        tracked_files_extra: [...] # extra L2 change-tracked files
+        must_read_extra: [...]    # extra L0 always-read files
+        tracked_files_extra: [...] # extra L1 change-tracked files
         lang: en|zh               # display language for the generated index
                                   # (default en; zh = Chinese flags/labels)
   Old (0.2.x): must_read: [...] tracked_files: [...] -> migrated: must_read ->
-        must_read_extra (keeps L3 meaning), tracked_files -> tracked_files_extra
-        (keeps L2 meaning). Roles are NEVER guessed from old flat lists.
+        must_read_extra (keeps L0 meaning), tracked_files -> tracked_files_extra
+        (keeps L1 meaning). Roles are NEVER guessed from old flat lists.
 
 Usage:
   python memory_index.py --discover [root]     # scan + write discovery.json
@@ -70,12 +70,12 @@ TIP_SAAS = ("tip: ChangSheng targets local files. SaaS-only memory? "
 _WORDS = {
     "en": {
         "title": "# memory index (auto-generated · %s)",
-        "purpose1": ("> Purpose: change detection for the conditional layer (L2). "
+        "purpose1": ("> Purpose: change detection for the conditional layer (L1). "
                      "✅ new change -> read the file in full; "
                      "⏸ unchanged -> read only this index summary."),
-        "purpose2": ("> The must-read layer (L3) is read every session; "
-                     "the on-demand layer (L1) is read only when needed."),
-        "heading": "## Conditional layer (L2) - read in full only on change",
+        "purpose2": ("> The must-read layer (L0) is read every session; "
+                     "the on-demand layer (L2) is read only when needed."),
+        "heading": "## Conditional layer (L1) - read in full only on change",
         "flag_new": "✅ new change",
         "flag_unchanged": "⏸ unchanged",
         "summary_line": "{title}({n} lines/{kb}KB)",
@@ -86,10 +86,10 @@ _WORDS = {
     },
     "zh": {
         "title": "# 记忆索引(自动生成 · %s)",
-        "purpose1": ("> 用途:条件读层(L2)变更检测。档案 ✅变更→读摘要行即可;"
+        "purpose1": ("> 用途:条件读层(L1)变更检测。档案 ✅变更→读摘要行即可;"
                      "⏸ 未变更→只读本索引摘要。"),
-        "purpose2": "> 必读层(L3)每会话必读;按需层(L1)用到才读。",
-        "heading": "## 条件读层(L2)— 变更才读全文",
+        "purpose2": "> 必读层(L0)每会话必读;按需层(L2)用到才读。",
+        "heading": "## 条件读层(L1)— 变更才读全文",
         "flag_new": "✅新变更",
         "flag_unchanged": "⏸未变更",
         "summary_line": "{title}({n}行/{kb}KB)",
@@ -419,7 +419,7 @@ def resolve(p, base):
 
 
 def role_file_items(roles, base):
-    """Flatten roles into L2 tracked items (path/name/desc) for indexing.
+    """Flatten roles into L1 tracked items (path/name/desc) for indexing.
     Directories were already resolved to concrete files at discovery time."""
     items = []
     for role, paths in roles.items():

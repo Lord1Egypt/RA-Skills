@@ -1,6 +1,7 @@
 ---
 name: slop-text-humanizer-pro
-version: 0.1.2
+version: 0.1.3
+allowed-tools: Bash, Read, Write
 description: >
   Humanize AI-written text and remove AI flavor while keeping the original
   meaning, facts and voice. Works on essays, blog posts, fiction, marketing
@@ -10,9 +11,10 @@ description: >
   meaning", "去AI味", "降AI味", "润色", "洗稿". Powered by a cloud processing
   engine (not a rulebook) with Golden Pair combo pipelines, a five-dimension
   quality report and Seven-Keep content fidelity. Language-adaptive — input
-  in any language, output in the same language. Free shared key, zero config,
-  stateless, nothing stored. OpenAI-compatible API. Works with Claude Code /
-  Codex / OpenClaw / WorkBuddy.
+  in any language, output in the same language. Free shared key, zero config
+  — submitted text is processed in real time and never stored; an optional
+  personal key is saved locally only if you explicitly ask. OpenAI-compatible
+  API. Works with Claude Code / Codex / OpenClaw / WorkBuddy.
 ---
 
 # Slop Text Humanizer Pro
@@ -128,13 +130,11 @@ output in that language. Chinese and English perform best in testing.
 
 The script resolves keys in this order:
 
-1. `SK_HAI_KEY` env var — personal key (`sk-hai-...`), wins if set
+1. Personal key (`sk-hai-...`) saved on this machine — only when the user
+   explicitly asks to save it (`--save-key`; remove anytime with
+   `--clear-key`)
 2. Shared free key — fetched automatically from the engine at runtime, no
    setup
-
-```bash
-export SK_HAI_KEY=sk-hai-xxxxxxxx   # optional, personal key only
-```
 
 Never hardcode, print, or log key values.
 
@@ -209,8 +209,8 @@ Authorization: Bearer sk-hai-...
 
 3. **First-run disclosure (once per session)**: before the first actual
    script call in a session, tell the user in one sentence: "Processing runs
-   on a stateless cloud engine — nothing is stored, no context kept,
-   discarded after the run." Continuing to send text or replying counts as
+   on a stateless cloud engine — your text is used only for this run, never
+   stored, no context kept." Continuing to send text or replying counts as
    consent. Say it once per session, never repeat.
 
 4. **Mode selection (most important)**:

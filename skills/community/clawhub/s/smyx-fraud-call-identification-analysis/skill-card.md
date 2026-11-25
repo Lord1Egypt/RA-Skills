@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes incoming call content for multi-dimensional risk, identifies scam scripts, assesses fraud risk levels, and generates an Anti-Fraud Guardian analysis report.
+Analyzes call content for fraud indicators, assesses risk, and produces an Anti-Fraud Guardian analysis report.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users can submit call audio, a recording URL, or a transcript to review potential scam patterns and receive a structured risk report. They can also retrieve previously generated reports.
+People reviewing suspected scam calls use the skill to analyze recordings or transcripts, assess fraud risk, and receive recommendations and report links.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates the skill suspicious due to a reported mismatch between its advertised call fraud analysis and other capabilities, plus privacy, identity, and behavior-control concerns. The scan was partial, so evidence is incomplete.
+Risk: ClawScan rates this release suspicious with high confidence, citing undeclared account and credential handling.
 
-Mitigation: Follow the scanner guidance and do not install until remote processing, account setup, credential handling, history retrieval, and export-only behavior are clarified; review the unresolved reference because the scan was partial.
+Mitigation: Verify the publisher and service, and review local identity and credential handling before installation; avoid running it where stored credentials cannot be protected.
+
+Risk: Call media and identity information may be exposed through remote processing, according to the security assessment.
+
+Mitigation: Confirm the remote service's privacy and retention practices, and submit recordings or transcripts only when you have authority to share them.
+
+Risk: The security assessment reports a mismatch between the fraud-call description and some reported capabilities, and notes that scanner coverage was incomplete.
+
+Mitigation: Review the full release contents and have the missing referenced material checked before relying on the skill.
 
 ## Reference(s):
 
-- [API documentation](references/api_doc.md)
-- [Skill demo](https://lifeemergence.com/sample.html)
 - [ClawHub release page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-fraud-call-identification-analysis)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [API documentation](references/api_doc.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, JSON, Report links]
+**Output Type(s):** [Analysis, Text, JSON, Markdown, Guidance]
 
-**Output Format:** [Structured analysis text or JSON, with report links]
+**Output Format:** [Structured fraud-risk report with findings, risk level, recommendations, and report links when available; JSON or Markdown output.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Can save analysis output to a file; historical reports are returned as structured data.]
+**Other Properties Related to Output:** [Supports analysis of call text or media and can list prior reports.]
 
 ## Skill Version(s):
 
-9.9.22 (source: server-resolved ClawHub release metadata; artifact frontmatter lists 1.0.25)
+9.9.24 (source: server-resolved release metadata; artifact frontmatter reports 1.0.26)
 
 ## Ethical Considerations:
 

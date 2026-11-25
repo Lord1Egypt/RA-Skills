@@ -80,11 +80,22 @@ ffmpeg is missing, or the user asked about Homebrew, pipx, or pip.
 | Need | Extra |
 | --- | --- |
 | Image/video/text metadata inspect and strip | no extra |
-| Text token-watermark regeneration | `diffusion` |
+| Text token-watermark regeneration, default Transformers backend | `text` (`diffusion` also remains compatible) |
+| Text regeneration with an explicit MLX checkpoint on Apple silicon | `text-mlx` |
 | Image identify, `visible`, `erase` | `visible` |
 | HEIC / HEIF / AVIF pixels | add `heif` |
+| Public known-message VideoSeal/PixelSeal/ChunkySeal | `video-detect`, plus `diffusion` for VAE, ffmpeg and ffprobe |
+| Audio metadata inspection (`--no-invisible`) | no extra, plus ffmpeg and ffprobe |
+| CPU audio processing without verification | `audio`, plus ffmpeg and ffprobe |
+| Neural audio resynthesis (`--method encodec`, `combined`, `dac`, `snac`, or an automatic neural profile) | add `audio-codec`; auto-accelerated on CUDA/MPS; retain the decoder extra for verification |
+| Compatible open AudioSeal checks and verified audio processing | `audio-detect`, plus ffmpeg and ffprobe |
+| Experimental SilentCipher-44k (`--scheme silentcipher`) | `audio-silentcipher`, plus ffmpeg and ffprobe; minimum three seconds, complete documented phase grid; neural removal also needs `audio-codec` |
+| Public Perth v1 checks (`--scheme perth`) | `audio-perth`, plus ffmpeg and ffprobe |
+| Public WavMark checks (`--scheme wavmark`) | `audio-wavmark`, plus ffmpeg and ffprobe; neural removal also needs `audio-codec` |
+| Audio-only processing inside video (`video audio`) | Same audio extras, no `video` extra |
 | Video identify / visible / all / batch | `video` (includes FFmpeg and ffprobe) |
-| Experimental Seedance video (`--profile seedance-experimental`) | `video,diffusion` (includes FFmpeg and ffprobe) |
+| Seedance video (`--profile seedance`) | `video,diffusion` (includes FFmpeg and ffprobe) |
+| 3D Wan 2.1 video (`--profile wan21-synthid`, `--profile wan21-seedance`) | `video,diffusion`, plus NVIDIA CUDA or explicit Apple Silicon MPS (Apache-2.0 weights) |
 | Video SynthID (`video invisible`) | `video,diffusion` (includes FFmpeg and ffprobe) |
 | Invisible images | `qwen-zimage`, plus NVIDIA CUDA |
 | Learned image/video fill | add `migan` or `lama` |

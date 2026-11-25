@@ -137,12 +137,45 @@ def _wrap_display(text: str, width: int) -> list[str]:
             if current:
                 lines.append(current)
             current = word
+            # A path/URL is one copy-pasteable unit: splitting it mid-token
+            # inserted the continuation indent *inside* the value, so the path
+            # a user copied was broken ("…/complet" + "ions/…"). Let such a
+            # token overflow instead; the terminal can scroll, a corrupted path
+            # cannot be repaired by the reader. CJK text has no spaces to break
+            # at and is still hard-split so it fits a narrow terminal.
+            if "/" in current or "\\" in current:
+                lines.append(current)
+                current = ""
+                continue
             while _display_width(current) > width:
                 head = _fit_prefix(current, width)
                 lines.append(head)
                 current = current[len(head):]
-        lines.append(current)
-    return lines
+        if current:
+            lines.append(current)
+    # An empty value is a valid key/value row (``iterate template`` lists a
+    # template with no description): return one empty line so callers can
+    # index ``lines[0]`` without a special case.
+    return lines or [""]
+
+
+def _has_unbreakable_overflow(text: str, width: int) -> bool:
+    """Return True when a path/URL token is wider than ``width``.
+
+    Paths and URLs have no spaces to break at. Splitting one inserts the
+    continuation indent *inside* the token, so a copied value is corrupted
+    (``…/complet`` + ``ions/…``) and the row still cannot fit. Callers use this
+    to print such a value on one logical line instead of wrapping it. CJK text
+    has no separators either but *can* be hard-split without corrupting a
+    copy-pasteable token, so it is not treated as unbreakable.
+    """
+    if width <= 0:
+        return False
+    for paragraph in text.split("\n"):
+        for word in paragraph.split(" "):
+            if ("/" in word or "\\" in word) and _display_width(word) > width:
+                return True
+    return False
 
 
 # ITERATE 立体 ASCII 横幅 — 仿 skills.sh 顶部 Logo
@@ -267,6 +300,60 @@ class TUI:
     # 信息展示
     # ------------------------------------------------------------------
 
+    def _wrap_message(
+        self, message: str, indent: int, extra: int
+    ) -> tuple[str, str, list[str]]:
+        """Wrap a one-line message to the console width with a hanging indent.
+
+        Rich wraps a paragraph at the console edge but does **not** align the
+        continuation line with the message column: a long hint continued at
+        column 0 and read as a new, unrelated block (the previous workaround in
+        ``scan`` was to keep every hint short). Wrapping here, in display
+        columns (CJK aware), guarantees that every continuation line starts
+        under the first message character and that no row overflows the
+        terminal — including in CI, where the console width is a fixed 80.
+
+        Args:
+            message: The message to wrap.
+            indent: Left margin in spaces.
+            extra: Width consumed by a leading marker (``✓ `` / ``⚠ `` / ``● ``).
+
+        Returns:
+            ``(prefix, continuation, lines)`` for the caller to format.
+        """
+        width = getattr(self.console, "width", None) or 80
+        budget = max(width - indent - extra, 16)
+        lines = _wrap_display(message, budget)
+        return " " * indent, " " * (indent + extra), lines
+
+    def _print_message(
+        self,
+        message: str,
+        indent: int,
+        *,
+        style: str | None = None,
+        marker: str = "",
+        marker_style: str = "",
+        stderr: bool = False,
+    ) -> None:
+        """Print a wrapped message with an optional semantic marker/colour."""
+        extra = _display_width(marker) + (1 if marker else 0)
+        prefix, continuation, lines = self._wrap_message(message, indent, extra)
+        marker_text = (
+            f"[{marker_style}]{marker}[/] " if marker and marker_style
+            else f"{marker} " if marker
+            else ""
+        )
+
+        def _text(text: str) -> str:
+            escaped = escape(text)
+            return f"[{style}]{escaped}[/]" if style else escaped
+
+        rendered = [f"{prefix}{marker_text}{_text(lines[0])}"]
+        rendered.extend(f"{continuation}{_text(line)}" for line in lines[1:])
+        target = self._stderr_console if stderr else self.console
+        target.print("\n".join(rendered))
+
     def info(self, message: str, indent: int = 2) -> None:
         """输出普通信息行.
 
@@ -274,8 +361,7 @@ class TUI:
             message: 消息内容
             indent: 缩进空格数
         """
-        prefix = " " * indent
-        self.console.print(f"{prefix}{escape(message)}")
+        self._print_message(message, indent)
 
     def hint(self, message: str, indent: int = 2) -> None:
         """输出提示信息（dim 灰色）.
@@ -284,8 +370,7 @@ class TUI:
             message: 提示内容
             indent: 缩进空格数
         """
-        prefix = " " * indent
-        self.console.print(f"{prefix}[iterate.dim]{escape(message)}[/]")
+        self._print_message(message, indent, style="iterate.dim")
 
     def warning(self, message: str, indent: int = 2) -> None:
         """输出警告信息到 stderr.
@@ -299,10 +384,12 @@ class TUI:
             message: 警告内容
             indent: 缩进空格数
         """
-        prefix = " " * indent
-        self._stderr_console.print(
-            f"{prefix}[iterate.warning]{SYM_WARNING} {escape(message)}[/]",
-            soft_wrap=True,
+        self._print_message(
+            message,
+            indent,
+            style="iterate.warning",
+            marker=SYM_WARNING,
+            stderr=True,
         )
 
     def error(self, message: str, indent: int = 2) -> None:
@@ -312,10 +399,12 @@ class TUI:
             message: 错误内容
             indent: 缩进空格数（与其他语义色方法保持一致，默认 2）
         """
-        prefix = " " * indent
-        self._stderr_console.print(
-            f"{prefix}[iterate.error]{SYM_ERROR} {escape(message)}[/]",
-            soft_wrap=True,
+        self._print_message(
+            message,
+            indent,
+            style="iterate.error",
+            marker=SYM_ERROR,
+            stderr=True,
         )
 
     def success(self, message: str, indent: int = 2) -> None:
@@ -325,9 +414,8 @@ class TUI:
             message: 成功内容
             indent: 缩进空格数
         """
-        prefix = " " * indent
-        self.console.print(
-            f"{prefix}[iterate.success]{SYM_SUCCESS} {escape(message)}[/]"
+        self._print_message(
+            message, indent, style="iterate.success", marker=SYM_SUCCESS
         )
 
     def bullet(self, message: str, indent: int = 2) -> None:
@@ -337,10 +425,23 @@ class TUI:
             message: 列表项内容
             indent: 缩进空格数
         """
-        prefix = " " * indent
-        self.console.print(
-            f"{prefix}[iterate.dim]{SYM_BULLET}[/] {escape(message)}"
+        self._print_message(
+            message, indent, marker=SYM_BULLET, marker_style="iterate.dim"
         )
+
+    def command(self, message: str, indent: int = 2) -> None:
+        """Print a command verbatim on one line, never word-wrapped.
+
+        Suggestions such as ``iterate config set dimensions a,b,c`` are meant
+        to be copied and pasted; wrapping them at a space breaks the command
+        into unusable pieces. Overflow is left to the terminal (which scrolls
+        or truncates visually) instead of being reflowed into multiple lines.
+
+        Args:
+            message: The command to print.
+            indent: Left margin in spaces.
+        """
+        self.console.print(f"{' ' * indent}{escape(message)}", soft_wrap=True)
 
     def key_value(self, key: str, value: str, indent: int = 2) -> None:
         """输出键值对（key 加粗，value 正常）.
@@ -369,11 +470,30 @@ class TUI:
         # Budget for the value column: terminal width minus both the left
         # indent and the key column. Floored at 16 so a very narrow terminal
         # still gets readable chunks instead of one character per line.
+        # The single space between the padded key and the value is part of the
+        # rendered row too. Leaving it out of the budget made the first line
+        # exactly one column too wide, so rich folded the value onto a line of
+        # its own at column 0 (most visible on the long absolute "Project" path).
         budget = max(
-            (getattr(self.console, "width", None) or 80) - indent - KEY_VALUE_WIDTH, 16
+            (getattr(self.console, "width", None) or 80)
+            - indent
+            - KEY_VALUE_WIDTH
+            - 1,
+            16,
         )
         wrapped = _wrap_display(value, budget)
         continuation = " " * (indent + KEY_VALUE_WIDTH)
+        if _has_unbreakable_overflow(value, budget):
+            # A single path/URL/hash wider than the value column cannot be
+            # wrapped without corrupting it. Print it verbatim on one logical
+            # line: the terminal scrolls, but what the user copies is intact and
+            # the label never ends up alone with the value folded to column 0.
+            self.console.print(
+                f"{prefix}[iterate.label]{padded_key}[/] "
+                f"[iterate.value]{escape(value)}[/]",
+                soft_wrap=True,
+            )
+            return
         rendered = [
             (
                 f"{prefix}[iterate.label]{padded_key}[/] "

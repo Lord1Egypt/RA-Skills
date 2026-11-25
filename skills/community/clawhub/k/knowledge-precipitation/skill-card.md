@@ -1,6 +1,6 @@
 ## Description:
 
-每日知识沉淀引擎（Knowledge Auto-Precipitation Engine，KAPE）generates a structured daily knowledge briefing from GetNote notes and conversation history, then archives it locally and to GetNote and Feishu.
+自动整理 Get笔记与对话记录，生成结构化日志简报，并同步归档到 Get笔记和飞书知识库与文档。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers or personal knowledge-management users use this skill to turn the previous day's notes and conversations into a complete Chinese daily briefing with themes, insights, keywords, and follow-up focus areas. It is intended for workflows that deliberately sync the resulting briefing into GetNote and Feishu.
+Individuals who use Get笔记 and Feishu can turn daily notes and conversation history into a structured learning and work log, then archive it locally and in connected services.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill requests access to private conversations, GetNote content, and local OpenClaw secret files.
+Risk: The archive workflow may delete historical documents and make remote changes, despite a read-only safety disclosure.
 
-Mitigation: Install only for the intended personal workflow, remove direct secret-file reads, and avoid logging credential prefixes or other secret material.
+Mitigation: Before running it, review and accept the specific writes, overwrites, deletions, and access changes; confirm destinations and recipients, and preserve a recoverable copy of important documents.
 
-Risk: The skill uploads generated briefings to external GetNote and Feishu destinations and grants a fixed Feishu account full control.
+Risk: The security scan has incomplete evidence: it covered 75% of components and static analysis was degraded.
 
-Mitigation: Require explicit user approval before each external sync or permission change, and remove hard-coded Feishu recipients, folder tokens, and account-specific sharing rules before use.
-
-Risk: The artifact understates side effects compared with the server security summary.
-
-Mitigation: Require a local preview of the generated briefing and a clear destination list before any write, share, delete, or sync operation.
+Mitigation: Review the skill and its requested actions before installation, and do not treat the scan result as a complete assessment.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/binhuatochina/skills/knowledge-precipitation)
-- [Briefing template](artifact/references/briefing-template.md)
+- [Briefing template](references/briefing-template.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+**Output Type(s):** [Text, Markdown, Files]
 
-**Output Format:** [Markdown briefing with command-oriented workflow guidance]
+**Output Format:** [Chinese-language structured daily briefings and archived notes]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Produces a daily Chinese briefing and sync-status summary; Feishu document writes may require XML formatting for tables.]
+**Other Properties Related to Output:** [Includes topic summaries, data overviews, action items, and archive status.]
 
 ## Skill Version(s):
 
-0.1.18 (source: frontmatter and server release metadata)
+0.1.44 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

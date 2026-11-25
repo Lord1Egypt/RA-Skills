@@ -1,6 +1,6 @@
 ## Description:
 
-通过关键词搜索、达人公开作品和视频评论，帮助智能体研究 TikTok 创作者并整理有数据依据的合作候选名单。
+Helps teams identify and evaluate TikTok creators for collaboration using public keyword search, creator posts, and video comment data.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-面向 TikTok 创作者、MCN、品牌和市场研究团队，帮助智能体检索公开视频、创作者作品和评论，再据可用数据筛选合作对象、分析竞品内容或整理舆情。
+For creators, brands, and marketing teams researching TikTok content, reviewing creator accounts, and preparing data-backed collaboration shortlists from public posts and comments.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: 搜索词和 TikTok 目标会发送给 GUAIKEI，API 使用可能产生费用；服务方的隐私和计费说明未经独立核实。
+Risk: The security assessment is qualified: 20 of 34 components were fully scanned, and the tool-misuse analyzer was degraded.
 
-Mitigation: 仅在接受数据共享和潜在费用时使用，先查看服务方当前条款，并控制结果数量。
+Mitigation: Review the remaining script behavior and reassess before relying on the skill in sensitive workflows.
 
-Risk: API Token 属于凭证，启用本地日志后可能保留返回的数据。
+Risk: Search terms and TikTok URLs are sent to GUAIKEI's data service to retrieve results.
 
-Mitigation: 妥善保管 Token，仅在需要留存本地副本时启用日志。
-
-Risk: 公开的达人和评论数据可能包含用户标识；对外分享或商业使用前可能需要授权。
-
-Mitigation: 未经授权时仅供个人或团队内部分析；对外分享前确认权限并隐藏用户标识。
+Mitigation: Use public data you are authorized to analyze and confirm that external data sharing fits your organization's requirements.
 
 ## Reference(s):
 
+- [ClawHub skill page](https://clawhub.ai/why20261/skills/tiktok-creator-screening)
 - [GUAIKEI service and API access](https://www.guaikei.com)
-- [ClawHub skill listing](https://clawhub.ai/why20261/skills/tiktok-creator-screening)
-- [Usage options](artifact/references/options.md)
-- [Changelog](artifact/references/changelog.md)
+- [Usage options](references/options.md)
+- [Changelog](references/changelog.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON]
+**Output Type(s):** [JSON, Analysis, Text]
 
-**Output Format:** [包含视频搜索、达人公开作品或视频评论结果的结构化 JSON 信封]
+**Output Format:** [Structured JSON response envelopes containing TikTok search results, creator posts, or video comments; concise agent-written analysis when requested]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [智能体根据返回的公开数据进行达人筛选和分析；结果取决于可用字段，不提供单独的粉丝总数对象或视频下载。]
+**Other Properties Related to Output:** [Results are limited to public TikTok data and the requested count; availability depends on the query and API plan.]
 
 ## Skill Version(s):
 
-1.1.1 (source: frontmatter, changelog, package.json)
+1.1.2 (source: frontmatter, package.json, changelog)
 
 ## Ethical Considerations:
 

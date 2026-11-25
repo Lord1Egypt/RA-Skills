@@ -9,28 +9,89 @@ import os
 import sys
 import stat
 import json
+import tempfile
 import urllib.request
 import urllib.parse
 from datetime import datetime, timezone
 from pathlib import Path
 
 DEFAULT_CONFIG_PATH = os.path.expanduser("~/.config/ai-quota-dashboard/config.json")
-DEFAULT_OUTPUT_PATH = "/tmp/ai_quota_cache.json"
+DEFAULT_OUTPUT_PATH = os.path.expanduser("~/.local/share/ai-quota-dashboard/cache.json")
+
+
+class _NoRedirect(urllib.request.HTTPRedirectHandler):
+    """SECURITY: never follow redirects.
+
+    urllib's default redirect handler would forward Authorization / xi-api-key
+    headers to the redirect target, defeating origin-domain pinning. Pinned
+    provider telemetry endpoints must answer directly; any 3xx is an error.
+    """
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        raise ValueError(
+            f"Redirect ({code}) from pinned endpoint refused: credentials are "
+            f"never forwarded to {newurl!r}"
+        )
+
 
 def audit_file_permissions(filepath: str) -> None:
-    """Verifies that credentials files are readable by the owner only."""
+    """Verifies that credentials files are owner-only AND owned by this user.
+
+    The check is performed on the OPENED file descriptor (fstat), binding the
+    audited inode to the subsequent read — a path swap between check and read
+    (TOCTOU) cannot substitute a different file.
+    """
     p = Path(filepath).resolve()
     if not p.exists():
         return
-    mode = stat.S_IMODE(p.stat().st_mode)
-    if mode & (stat.S_IRWXG | stat.S_IRWXO):
-        raise PermissionError(
-            f"Security Violation: {p} has permissive permissions {oct(mode)}. "
-            f"Run `chmod 600 {p}` to restrict access."
-        )
+    fd = os.open(str(p), os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0))
+    try:
+        st = os.fstat(fd)
+        mode = stat.S_IMODE(st.st_mode)
+        if mode & (stat.S_IRWXG | stat.S_IRWXO):
+            raise PermissionError(
+                f"Security Violation: {p} has permissive permissions {oct(mode)}. "
+                f"Run `chmod 600 {p}` to restrict access."
+            )
+        if hasattr(os, "geteuid") and st.st_uid != os.geteuid():
+            raise PermissionError(
+                f"Security Violation: {p} is not owned by the current user "
+                f"(uid {st.st_uid}); refusing to read credentials from it."
+            )
+    finally:
+        os.close(fd)
+
+
+def load_config_secure(config_path: str) -> dict:
+    """Reads the config through the audited descriptor (check bound to read)."""
+    p = Path(config_path).resolve()
+    fd = os.open(str(p), os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0))
+    try:
+        st = os.fstat(fd)
+        mode = stat.S_IMODE(st.st_mode)
+        if mode & (stat.S_IRWXG | stat.S_IRWXO):
+            raise PermissionError(
+                f"Security Violation: {p} has permissive permissions {oct(mode)}. "
+                f"Run `chmod 600 {p}` to restrict access."
+            )
+        if hasattr(os, "geteuid") and st.st_uid != os.geteuid():
+            raise PermissionError(
+                f"Security Violation: {p} is not owned by the current user."
+            )
+        with os.fdopen(fd, "r", encoding="utf-8") as f:
+            fd = -1
+            return json.load(f)
+    finally:
+        if fd >= 0:
+            os.close(fd)
+
 
 def safe_https_get(url: str, headers: dict, pinned_domain: str, proxy: str = None) -> dict:
-    """Performs an HTTPS GET request strictly pinned to the verified provider domain."""
+    """Performs an HTTPS GET strictly pinned to the verified provider domain.
+
+    Redirects are refused (see _NoRedirect): credential headers can never be
+    forwarded to another host or downgraded to HTTP via a redirect chain.
+    """
     parsed = urllib.parse.urlparse(url)
     if parsed.scheme != "https":
         raise ValueError(f"Insecure protocol: {parsed.scheme}. HTTPS is required.")
@@ -38,13 +99,38 @@ def safe_https_get(url: str, headers: dict, pinned_domain: str, proxy: str = Non
         raise ValueError(f"Domain mismatch: got {parsed.netloc}, expected {pinned_domain}.")
 
     req = urllib.request.Request(url, headers=headers)
-    handlers = []
+    handlers = [_NoRedirect()]
     if proxy:
         handlers.append(urllib.request.ProxyHandler({"http": proxy, "https": proxy}))
     opener = urllib.request.build_opener(*handlers)
 
     with opener.open(req, timeout=12) as resp:
         return json.loads(resp.read().decode("utf-8"))
+
+
+def write_output_secure(output_path: str, payload: dict) -> None:
+    """Atomically writes telemetry cache with owner-only permissions.
+
+    SECURITY: the output path is configurable, so harden the write: refuse
+    symlink targets (O_NOFOLLOW), create the temp file with 0600 in the same
+    directory, then os.replace() atomically. No world-readable window exists.
+    """
+    out = Path(output_path).expanduser()
+    if out.is_symlink():
+        raise PermissionError(f"Security Violation: output path {out} is a symlink; refusing to write.")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    fd, tmp = tempfile.mkstemp(prefix=".quota_", suffix=".tmp", dir=str(out.parent))
+    try:
+        os.fchmod(fd, 0o600)
+        with os.fdopen(fd, "w", encoding="utf-8") as f:
+            fd = -1
+            json.dump(payload, f, indent=2, ensure_ascii=False)
+        os.replace(tmp, str(out))
+    finally:
+        if fd >= 0:
+            os.close(fd)
+        if os.path.exists(tmp):
+            os.unlink(tmp)
 
 def collect_openrouter(config: dict, proxy: str = None) -> list:
     key = config.get("api_key")
@@ -107,9 +193,7 @@ def main():
         sys.exit(0)
 
     audit_file_permissions(config_path)
-
-    with open(config_path, "r", encoding="utf-8") as f:
-        config = json.load(f)
+    config = load_config_secure(config_path)
 
     proxy = config.get("proxy")
     providers_cfg = config.get("providers", {})
@@ -125,8 +209,7 @@ def main():
         "providers": results
     }
 
-    with open(output_path, "w", encoding="utf-8") as f:
-        json.dump(payload, f, indent=2, ensure_ascii=False)
+    write_output_secure(output_path, payload)
 
     print(f"Quota telemetry updated successfully -> {output_path}")
 

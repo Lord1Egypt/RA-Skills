@@ -5,8 +5,32 @@ Usage: python merge_targets.py --targetscan targetscan.tsv --miranda miranda.tsv
 """
 
 import argparse
+import math
+import os
+import re
+
 import pandas as pd
-import sys
+
+
+def clean_cell(value):
+    """Return a tab/newline-free string; NaN and empty values become ''."""
+    if value is None:
+        return ''
+    if isinstance(value, float) and math.isnan(value):
+        return ''
+    text = str(value).strip()
+    if text.lower() == 'nan':
+        return ''
+    return re.sub(r'[\t\r\n]+', ' ', text)
+
+
+def first_cell(row, *names):
+    for name in names:
+        if name in row.index:
+            text = clean_cell(row.get(name))
+            if text:
+                return text
+    return ''
 
 def main():
     parser = argparse.ArgumentParser(
@@ -52,16 +76,16 @@ def main():
     # Extract interactions
     ts_interactions = set()
     for _, row in ts_filtered.iterrows():
-    # Different column name variations
-        mirna = row.get('mirna', row.get('miRNA', '')).strip()
-        gene = row.get('target_gene', row.get('gene', row.get('target', ''))).strip()
+        # Different column name variations
+        mirna = first_cell(row, 'mirna', 'miRNA', 'mature_mirna')
+        gene = first_cell(row, 'target_gene', 'gene', 'target', 'gene_symbol')
         if mirna and gene:
             ts_interactions.add((mirna, gene))
-    
+
     mir_interactions = set()
     for _, row in mir_filtered.iterrows():
-        mirna = row.get('mirna', row.get('miRNA', '')).strip()
-        gene = row.get('target_gene', row.get('target', row.get('gene', ''))).strip()
+        mirna = first_cell(row, 'mirna', 'miRNA', 'mature_mirna')
+        gene = first_cell(row, 'target_gene', 'target', 'gene', 'gene_symbol')
         if mirna and gene:
             mir_interactions.add((mirna, gene))
     
@@ -82,6 +106,8 @@ def main():
             common = union
     
     # Write output
+    out_dir = os.path.dirname(os.path.abspath(args.output))
+    os.makedirs(out_dir, exist_ok=True)
     with open(args.output, 'w') as f:
         f.write("miRNA\tTargetGene\tFoundInBoth\n")
         for mirna, gene in sorted(common):

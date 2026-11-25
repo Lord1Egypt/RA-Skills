@@ -1,0 +1,41 @@
+# lgd-skill-review
+
+> A six-dimension, evidence-based reviewer for any AI skill package: score, fix list, rerun.
+
+## When to use
+
+- 帮我评一下这个技能包  →  review.py <dir>
+- 我的技能为什么上架被拒  →  六维报告 + P0 阻断项
+- SKILL.md 里写的命令脚本里都有吗  →  consistency 维度
+- 这个技能有测试吗，能跑通吗  →  reproducible + --run
+- 这个包有没有泄露 key 或手机号  →  hygiene 扫描
+- 按评测结果自动改进再复测  →  P0/P1 清单 + rerun 命令
+- review this skill package and give me a fix list  →  same
+
+## When NOT to use
+
+- 评测一篇文章的写作质量
+- 评测模型回答的准确率
+- 商业方案尽调
+
+## Entrypoints
+
+- cli: `python scripts/review.py <skill_dir>`
+- json: `python scripts/review.py <skill_dir> --json`
+- run: `python scripts/review.py <skill_dir> --run`
+- gate: `python tests/run_golden.py`
+- demo: `python demo/run_demo.py`
+
+## Scoring (100)
+
+- structure 20 / consistency 25 / reproducible 20 / hygiene 15 / discoverable 15 / licensing 5
+- Blocking: declared_command_missing, secret_leak, no_skill_md
+- Verdict: BLOCK / FAIL (<60) / WARN (<80) / PASS
+
+## Ecosystem
+
+- Author: 诺声(Logos)@SynomosAI (LGD / SynomosAI)
+- Theory anchor: 三律 —— 有籍（可追溯）／有证（可核验）／有门禁（可拦截）
+- summarize-pro — 评测摘要/纪要类技能时配合使用
+- debug-pro — 被测技能测试跑不通时定位
+- wechat-viral-topic — 评测选题/内容类技能时配合

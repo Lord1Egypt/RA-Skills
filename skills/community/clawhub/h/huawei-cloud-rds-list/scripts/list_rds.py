@@ -4,7 +4,9 @@
 Primary execution path is KooCLI; when hcloud is not installed, the script falls
 back to the official `huaweicloudsdkrds` v3 SDK (`list_instances`). Reads nothing
 but the active credential profile / environment. Supports three output modes
-(table / --json / --names-only), --status / --name / --datastore-type filters
+(table / --json / --names-only), a Markdown export (--format md) and a CSV
+export (--format csv / --output <path>.csv, UTF-8 BOM + standard escaping),
+--status / --name / --datastore-type filters
 (--name / --datastore-type are server-side API filters; --status is applied
 client-side because the real RDS ListInstances API has no status parameter),
 offset paging, and a strict write-intent guard: any argument that looks like a
@@ -15,7 +17,7 @@ Usage:
                                  [--status ACTIVE] [--name rds-01]
                                  [--datastore-type MySQL] [--page-size 100]
                                  [--operation ListInstances]
-                                 [--format table|md] [--output FILE]
+                                 [--format table|md|csv] [--output FILE]
 
 Environment overrides (mostly for tests):
     RDS_LIST_HCLOUD_BIN   hcloud executable (default "hcloud")
@@ -23,7 +25,9 @@ Environment overrides (mostly for tests):
 """
 
 import argparse
+import csv
 import datetime
+import io
 import json
 import os
 import re
@@ -34,6 +38,7 @@ import tempfile
 DEFAULT_REGION = "cn-north-4"
 DEFAULT_PAGE_SIZE = 100
 DEFAULT_OUTPUT_TEMPLATE = "rds_instances_%s_%s.md"
+DEFAULT_CSV_OUTPUT_TEMPLATE = "rds_instances_%s_%s.csv"
 SERVICE = "RDS"
 ALLOWED_OPERATION = "ListInstances"
 
@@ -107,6 +112,10 @@ MD_COLUMNS = (
     ("区域", ("region",)),
     ("创建时间", ("created", "created_at", "createdAt")),
 )
+
+# CSV columns reuse the Markdown column definition verbatim so both export
+# formats always carry the same Chinese headers and column order.
+CSV_COLUMNS = MD_COLUMNS
 
 # Values of these read-only flags are caller data (local output paths), not RDS
 # operations; they are removed before the write-intent scan to avoid false
@@ -623,22 +632,64 @@ def default_output_path(region, now=None):
     return os.path.join(os.getcwd(), DEFAULT_OUTPUT_TEMPLATE % (region, stamp))
 
 
-def write_markdown(content, output_path):
+def _csv_cell(value):
+    """Render one CSV cell (nested values as compact JSON, ``-`` for empty)."""
+    if isinstance(value, (dict, list)):
+        return json.dumps(value, ensure_ascii=False, separators=(",", ":"))
+    return str(value)
+
+
+def render_csv(instances, region):
+    """Render the instance list as RFC 4180 CSV text (no BOM, no header doc).
+
+    Columns/order/中文表头 come from ``CSV_COLUMNS`` (identical to the Markdown
+    export), every instance is normalized first, and the 区域 column falls back
+    to the queried region when the API response carries no ``region`` field.
+    The ``csv`` module handles standard escaping (comma / double quote /
+    newline), and rows are terminated with CRLF as Excel expects.
+
+    An empty instance list still yields a valid document containing only the
+    header row.
+    """
+    buffer = io.StringIO()
+    writer = csv.writer(buffer, lineterminator="\r\n")
+    writer.writerow([label for label, _ in CSV_COLUMNS])
+    for instance in instances:
+        row = normalize_instance(instance)
+        writer.writerow([
+            _csv_cell(_field(row, *keys, default=region
+                             if keys == ("region",) else "-"))
+            for _label, keys in CSV_COLUMNS
+        ])
+    return buffer.getvalue()
+
+
+def default_csv_output_path(region, now=None):
+    """Default CSV file name: rds_instances_<region>_<timestamp>.csv."""
+    stamp = (now or datetime.datetime.now(datetime.timezone.utc)).strftime(
+        "%Y%m%dT%H%M%SZ")
+    return os.path.join(os.getcwd(), DEFAULT_CSV_OUTPUT_TEMPLATE % (region, stamp))
+
+
+def write_text_atomic(content, output_path, error_label, encoding="utf-8",
+                      tmp_prefix=".rds-md-"):
     """Write ``content`` to ``output_path`` atomically (temp file + rename).
 
     Missing parent directories are created. An interrupted write never leaves a
-    corrupt / partial file behind.
+    corrupt / partial file behind: the temp file is removed on failure. The
+    ``error_label`` is the message prefix used for both failure modes so callers
+    keep their format-specific wording (Markdown / CSV).
     """
     directory = os.path.dirname(os.path.abspath(output_path))
     try:
         os.makedirs(directory, exist_ok=True)
-        tmp_fd, tmp_path = tempfile.mkstemp(prefix=".rds-md-", suffix=".tmp",
+        tmp_fd, tmp_path = tempfile.mkstemp(prefix=tmp_prefix, suffix=".tmp",
                                             dir=directory)
     except (OSError, ValueError) as exc:
-        raise ApiError("Markdown 文件写出失败（目录 %s 不可创建）：%s"
-                       % (directory, exc))
+        raise ApiError("%s（目录 %s 不可创建）：%s"
+                       % (error_label, directory, exc))
     try:
-        with os.fdopen(tmp_fd, "w", encoding="utf-8") as handle:
+        with os.fdopen(tmp_fd, "w", encoding=encoding, newline="") as handle:
             handle.write(content)
         os.replace(tmp_path, output_path)
     except (OSError, ValueError) as exc:
@@ -646,8 +697,26 @@ def write_markdown(content, output_path):
             os.unlink(tmp_path)
         except OSError:
             pass
-        raise ApiError("Markdown 文件写出失败（%s）：%s" % (output_path, exc))
+        raise ApiError("%s（%s）：%s" % (error_label, output_path, exc))
     return output_path
+
+
+def write_markdown(content, output_path):
+    """Write Markdown ``content`` atomically (UTF-8, no BOM)."""
+    return write_text_atomic(content, output_path,
+                             error_label="Markdown 文件写出失败",
+                             encoding="utf-8", tmp_prefix=".rds-md-")
+
+
+def write_csv(content, output_path):
+    """Write CSV ``content`` atomically with a UTF-8 BOM (Excel friendly).
+
+    ``utf-8-sig`` prepends the BOM exactly once, so Excel and
+    ``pandas.read_csv`` both detect UTF-8 without extra flags.
+    """
+    return write_text_atomic(content, output_path,
+                             error_label="CSV 文件写出失败",
+                             encoding="utf-8-sig", tmp_prefix=".rds-csv-")
 
 
 def main(argv=None):
@@ -672,18 +741,22 @@ def main(argv=None):
     parser.add_argument("--operation", default=ALLOWED_OPERATION,
                         help="hcloud RDS 操作名（仅允许只读 %s）" % ALLOWED_OPERATION)
     parser.add_argument("--format", dest="export_format",
-                        choices=("table", "md"), default="table",
-                        help="输出格式：table（默认，终端表格）或 md"
-                             "（Markdown 文件，配合 --output）")
+                        choices=("table", "md", "csv"), default="table",
+                        help="输出格式：table（默认，终端表格）、md（Markdown 文件）"
+                             "或 csv（CSV 文件，UTF-8 BOM + 标准转义）")
     parser.add_argument("-o", "--output", default=None,
-                        help="Markdown 输出文件路径（隐含 --format md；默认当前目录 "
-                             "rds_instances_<region>_<timestamp>.md）")
+                        help="导出文件路径：后缀 .csv 隐含 --format csv，其余后缀"
+                             "（如 .md）隐含 --format md；默认当前目录 "
+                             "rds_instances_<region>_<timestamp>.md / .csv")
     args = parser.parse_args(argv)
 
-    if args.output:
-        args.export_format = "md"
-    if args.export_format == "md" and (args.as_json or args.names_only):
-        parser.error("--format md / --output 与 --json / --names-only 不能同时使用")
+    # --output implies the export format from its suffix; an explicit
+    # --format md/csv always wins over that implication.
+    if args.output and args.export_format == "table":
+        args.export_format = ("csv" if args.output.lower().endswith(".csv")
+                              else "md")
+    if args.export_format in ("md", "csv") and (args.as_json or args.names_only):
+        parser.error("--format md/csv / --output 与 --json / --names-only 不能同时使用")
 
     try:
         # Write-intent guard: scan the scrubbed raw argv + validate the operation.
@@ -732,6 +805,22 @@ def main(argv=None):
         else:
             print("已生成 Markdown 文件：%s（Region %s 无 RDS 实例，已输出表头与空表"
                   "提示）。" % (os.path.abspath(output_path), args.region))
+        return 0
+
+    if args.export_format == "csv":
+        output_path = args.output or default_csv_output_path(args.region)
+        try:
+            content = render_csv(instances, args.region)
+            write_csv(content, output_path)
+        except RdsListError as exc:
+            print("[错误] %s" % exc, file=sys.stderr)
+            return 1
+        if instances:
+            print("已生成 CSV 文件：%s（Region %s，共 %d 个 RDS 实例）。"
+                  % (os.path.abspath(output_path), args.region, len(instances)))
+        else:
+            print("已生成 CSV 文件：%s（Region %s 无 RDS 实例，已输出表头）。"
+                  % (os.path.abspath(output_path), args.region))
         return 0
 
     if not instances:

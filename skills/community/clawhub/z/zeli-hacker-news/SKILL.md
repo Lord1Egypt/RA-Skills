@@ -41,6 +41,7 @@ reading the full article.
 |------|-----|-------|
 | Today's digest (markdown) | `https://zeli.app/digest/latest.md` · `https://zeli.app/{lang}/digest/latest.md` | updates hourly; only the `.md` form exists |
 | Dated digest (markdown) | `https://zeli.app/digest/{YYYY-MM-DD}.md` · `https://zeli.app/{lang}/digest/{YYYY-MM-DD}.md` | immutable after the UTC day ends — cache forever |
+| One story (markdown) | `https://zeli.app/story/{id}.md` · `https://zeli.app/{lang}/story/{id}.md` | the story page as markdown: titles, points, comments count, summary, key quote, translated comment highlights, citation block, other-language links; available once Zeli has stored the story (usually within an hour of it reaching the list) — before that the HTML page works but the `.md` is a 404, cached only 60 s, so retry later; send `If-None-Match` (ETag) |
 | Front page (JSON) | `https://zeli.app/api/hn-content?type=top&locale={lang}` | fields: `id, title, url, time, by, score, descendants, type, abstract, quote, story_text, image`; also `type=hot24h` / `ask` / `show` |
 | Daily AI papers (JSON) | `https://zeli.app/api/daily-papers-content?locale={lang}` | HuggingFace daily papers, translated |
 | Daily RSS | `https://zeli.app/rss.xml` · `https://zeli.app/{lang}/rss.xml` | one item per day, whole digest inline |
@@ -63,7 +64,12 @@ build URLs for it.
 
 - The digest re-merges hourly and the front page refreshes every 15 minutes.
   Polling more often than hourly just reads the same cache.
-- Dated digests and story pages never change — cache them locally, forever.
+- Dated digests never change — cache them locally, forever. A story gains
+  its translated comment highlights within about a day of submission and is
+  stable after that; for a young story, revalidate with `If-None-Match`.
+- Need one story, not the whole day? Fetch its `.md`
+  (`https://zeli.app/story/{id}.md`), not the HTML — a few KB instead of
+  50-80 KB. Cite the HTML URL (the `.md` sends it as `Link: rel="canonical"`).
 - The digest already contains every story's summary. Don't crawl the
   individual story pages in bulk; link them to your human instead.
 - Attribution when quoting summaries: "via Zeli (zeli.app)".

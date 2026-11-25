@@ -14,13 +14,19 @@ A system's evolution is not measured by how much it has recorded. It is measured
 
 ## How a system grows
 
-**Rewrite; do not only append.** A new understanding replaces the old one. An entry always reads as "the best current understanding", never as a history of understandings. Keep only real turning points: what was believed, what was found, and because of what. A turning point is itself understanding. A running log is not.
+**Let repeated problems find the structure above them.** Handle a single anomaly in the current state. When the same kind of problem persists, inspect in turn the way of acting, capability, relations and feedback, allocation of rights and responsibility, boundary, and goal. A higher level changes more slowly and keeps generating lower-level events. Let the update rise as high as the evidence supports.
 
-**Split and reorganize.** When a part is rich enough, give it its own system with its own entry. When the center of gravity moves, reorganize. Do not build empty structure for richness that may come later: structure follows content.
+**Let higher-level change land in action.** A new goal, boundary, or structure changes capability requirements; capability requirements change components, relations, and authority; those changes finally alter real action and effects. A review becomes evolution when its conclusion changes what the system observes next, how work is divided, or when action happens.
+
+**Propagate along dependencies.** Important understanding, works, capabilities, and relations state what they depend on. When new evidence arrives, locate direct dependencies and downstream uses, marking each as still valid, due for review, or currently unknown. Preserve user edits and unaffected work. When a goal moves, recompute success conditions and capability requirements; when a capability fails, update the effects that depended on it. See `../core/evolution.md`.
+
+**Keep the entry as the best current understanding.** New understanding rewrites the old model. Preserve the turning points that truly changed direction: what was believed, what was discovered, and because of what. History serves understanding of the present and continued action.
+
+**Split and reorganize.** When a part becomes rich enough, give it its own system and entry; when the center of gravity moves, reorganize. Structure grows naturally with real content, relations, and capability.
 
 **Connections produce capability.** A real link between two systems is written as "what it makes possible": which understanding transfers directly, which model can be reused, which deliverable can now be made. A connection that only says "A is related to B" is useless. Once written, use it: the next relevant work starts from it, and the person sees that it did. When a new understanding changes an old system, go back and change the old system.
 
-**Practices become abilities.** A way of working that proved itself in a real task is written as a practice record (see `engines/practice.md`). When it keeps working, it is an ability of this person's system and is loaded first next time.
+**Practices become capabilities.** A way of working that proves itself in a real task becomes a practice record (see `engines/build.md`). While it keeps working, it is a capability of this person's system and is loaded first the next time.
 
 **Parts appear when needed.** Code, data and connections are added to a system when a real task needs them, and the core says what each one is for (see `system/parts.md`).
 
@@ -45,7 +51,7 @@ A system's evolution is not measured by how much it has recorded. It is measured
 | A real link appears between two systems | A connection that states what it makes possible |
 | A tool was made for the person | The tool stays in the person's workspace; the system says what it does and where it is |
 | The person defines or saves a route | A personal route |
-| The person predicts a structure, applies a method unaided or explains it in their own words | Evidence toward a level (see `system/growth.md`) |
+| The person predicts a structure, applies a method unaided or explains it in their own words | Evidence of growth in the person's understanding and capability (see `system/growth.md`) |
 
 Do not write: small talk; a running log of the process; unverified guesses (those worth pursuing can stay as "not yet known"); passwords, keys and sensitive personal information; anything the person has not expressed and that lies outside what you were allowed to see.
 
@@ -55,9 +61,9 @@ The person's understanding moves, and this is the change a system most easily mi
 
 Keep the record in proportion to the evidence, and keep it restrained. It is the basis for deciding where to start explaining. It is not an assessment file on a person.
 
-## Upgrading an entry written by the alpha
+## Bringing an existing entry into the current system
 
-Entries written before 1.0 are natural language and stay readable. The first time one is opened under 1.0, rewrite it as you would any entry that has fallen behind: keep the understanding, state it in plain words (the alpha's figurative terms are replaced by what they meant), and add what 1.0 expects a reader to learn if the content supports it: the route taken, the practices in use, what is being watched, the parts other than the core. Do not invent content to fill what 1.0 added. Say in one sentence that the entry was brought up to date.
+When a natural-language entry can be understood, continue from it directly. Rewrite it as any model is updated: preserve understanding and user edits that still hold; update the subject, capabilities, relations, and next move that changed. Routes taken, practices in use, watch conditions, and other parts enter when they truly exist and affect future work. When a write actually occurs, say in one sentence what changed.
 
 ## The continuity test
 

@@ -1,7 +1,7 @@
 ---
 name: "custom-timelapse-analysis"
 description: "Generates condensed album highlights based on specified keywords or targets. It extracts specific target segments from long videos and compiles them into an exciting summary. | 时光相册自定义浓缩分析技能，基于指定关键词/目标生成时光相册浓缩集锦，从长视频中提取特定目标片段，整理生成精彩汇总"
-version: "1.0.25"
+version: "1.0.27"
 license: "MIT-0"
 ---
 

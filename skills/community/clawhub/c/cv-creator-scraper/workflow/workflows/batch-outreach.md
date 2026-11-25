@@ -1,54 +1,10 @@
 # 批量建联工作流
 
-## 概述
+用于向确认的达人名单发送合作邮件。已有达人 ID、平台和邮箱时，可直接准备收件名单与邮件。
 
-从达人搜索到邮件发送到跟进的 6 步闭环流程，适用于"找一批达人并发建联邮件"的复合需求。
+1. **准备名单。** 根据用户的条件查找候选，或按已有主页链接和达人 ID 精确查找 CreatiVault 已收录的账号。准备发信时，可用邮箱条件与 S2 档查询实际邮箱。保存实际返回的达人 ID 和平台，排除缺少发送所需信息的记录。参见 [达人搜索](../../discovery/creator-search/SKILL.md)。
+2. **准备邮件并确认。** 根据合作产品、合作方式和用户提供的要求准备主题与正文。按 [邮件建联](../../outreach/creator-outreach/SKILL.md) 的确认规则展示完整收件人名单与邮件内容，确认后再提交。
+3. **发送并查询结果。** 每批最多 50 位收件人。使用 `outreach_send.mjs` 提交确认后的 `recipients`、`subject` 及 `body_html` 或 `body_text`。返回任务 ID 时用 `outreach_task.mjs` 查询任务，并传 `include_result: true` 获取逐收件人结果，汇报成功、失败与仍在处理的数量。
+4. **查询待办。** 用户需要跟进时，用 `outreach_todo.mjs` 取得未读来信及达人已回复、超过设定时间仍待跟进的会话。按邮箱查询具体往来时使用 `outreach_contact.mjs`。
 
-## 前置条件
-
-- 环境变量已配置（CV_API_KEY、CV_USER_IDENTITY）
-- 用户已明确目标达人画像（平台、关键词、国家等筛选条件）
-
-## 步骤
-
-### Step 1: 搜索候选达人 [discovery/creator-search]
-
-- **动作**：根据用户指定的筛选条件搜索达人，建议添加 `has_email: true` 确保结果有邮箱
-- **输入**：用户提供的筛选条件（platform、keyword、country_code、followers 范围等）
-- **产出**：达人列表（含 username、email、uid、platform、followers_count、engagement_rate）
-
-### Step 2: 筛选确认 [AI 辅助] [需用户确认]
-
-- **动作**：AI 对搜索结果进行初步筛选和排序，展示候选列表供用户确认
-- **输入**：Step 1 产出的达人列表
-- **产出**：用户确认的最终收件人列表（含 email、uid、nickname、platform）
-
-### Step 3: 发送确认 [outreach/creator-outreach] [需用户确认]
-
-- **动作**：展示完整收件人列表、邮件主题、正文预览，等待用户确认发送
-- **输入**：Step 2 确认的收件人列表 + 邮件内容（subject、body_html 或 template_id）
-- **产出**：用户确认发送指令
-
-### Step 4: 批量发送 [outreach/creator-outreach]
-
-- **动作**：调用 outreach_send.mjs 执行批量发送
-- **输入**：确认后的 recipients 数组 + 邮件内容参数
-- **产出**：task_id（发送任务 ID）
-
-### Step 5: 轮询结果 [outreach/creator-outreach]
-
-- **动作**：调用 outreach_task.mjs 轮询发送任务状态直到完成
-- **输入**：Step 4 返回的 task_id
-- **产出**：发送结果摘要（成功数、失败数、失败原因）
-
-### Step 6: 跟进待办 [outreach/creator-outreach]
-
-- **动作**：发送完成后，提示用户可在 24~48 小时后查看待办跟进
-- **输入**：发送完成状态
-- **产出**：待办跟进建议（调用 outreach_todo.mjs 查看未回复/超时会话）
-
-## 异常处理
-
-- Step 1 无结果：建议放宽筛选条件或换关键词
-- Step 4 发送失败：展示失败原因，询问是否重试
-- Step 5 部分失败：展示失败收件人列表，询问是否重发
+发送失败时，展示失败原因和受影响的收件人。已受理或结果不明确时先查询原任务，再按用户确认的范围处理失败项。

@@ -66,7 +66,7 @@
             "offers": {
               "create": [
                 { "name": "Free", "slug": "free", "price_description": "Free plan for individual developers." },
-                { "name": "Pro", "slug": "pro", "pricing_options": [{"key": "monthly", "price_kind": "fixed", "amount": "49.00", "currency": "USD", "period": "month"}] },
+                { "name": "Pro", "slug": "pro", "prices": [{"key": "monthly", "price_kind": "fixed", "amount": "49.00", "currency": "USD", "period": "month"}] },
                 { "name": "Enterprise", "slug": "enterprise", "price_description": "Custom pricing — contact sales." }
               ]
             }

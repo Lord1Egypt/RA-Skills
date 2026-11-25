@@ -1,0 +1,5 @@
+{"postId": "example-post-1", "status": "PUBLISHED", "socialAccountPosts": [
+ {"socialAccountId": "example-tiktok-1", "platform": "TIKTOK", "deliveryStatus": "PUBLISHED", "deliveryCompletedAt": "2026-11-18T14:02:10Z",
+  "externalPostUrl": "https://www.tiktok.com/@example.creator/video/7000000000000000001"},
+ {"socialAccountId": "example-instagram-1", "platform": "INSTAGRAM", "deliveryStatus": "PUBLISHED", "deliveryCompletedAt": "2026-11-18T14:02:40Z",
+  "externalPostUrl": "https://www.instagram.com/reel/EXAMPLEorbit1/"}]}

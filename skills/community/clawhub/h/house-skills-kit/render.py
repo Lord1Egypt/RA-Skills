@@ -15,9 +15,9 @@ import re
 import sys
 
 try:
-    import yaml
-except ImportError:
-    sys.exit("需要 PyYAML: pip install pyyaml")
+    import yaml  # 装了 PyYAML 就用它（行为基准）
+except ImportError:  # 兜底：零依赖子集解析器，保证 clone 下来即可跑
+    import mini_yaml as yaml
 
 KIT_DIR = os.path.dirname(os.path.abspath(__file__))
 TPL_DIR = os.path.join(KIT_DIR, "template")

@@ -1,0 +1,234 @@
+{
+  "schema_version": "1.0",
+  "contract_version": "1.0",
+  "generated_at": "2026-11-21",
+  "default_industry": "generic",
+  "detection": {
+    "strategy": "keyword_score_v1",
+    "min_high_confidence_hits": 4,
+    "ambiguity_margin": 1
+  },
+  "extensions": {
+    "allow_new_profiles": true,
+    "required_fields": [
+      "id",
+      "display_name",
+      "keywords",
+      "evidence_dimensions",
+      "question_dimensions",
+      "role_map_ref",
+      "is_fallback"
+    ]
+  },
+  "industries": [
+    {
+      "id": "cybersecurity",
+      "display_name": "网络安全",
+      "keywords": [
+        "SOC",
+        "SIEM",
+        "SOAR",
+        "EDR",
+        "XDR",
+        "IDS",
+        "IPS",
+        "WAF",
+        "SOC Analyst",
+        "威胁分析",
+        "应急响应",
+        "事件响应",
+        "渗透测试",
+        "红队",
+        "蓝队",
+        "代码审计",
+        "应用安全",
+        "安全研发",
+        "漏洞管理",
+        "威胁情报",
+        "MITRE ATT&CK",
+        "OWASP",
+        "CWE",
+        "Kubernetes",
+        "Terraform",
+        "OpenTelemetry",
+        "数据分类分级",
+        "安全合规",
+        "等保",
+        "云安全"
+      ],
+      "evidence_dimensions": [
+        "授权或职责边界",
+        "场景与规模",
+        "个人动作",
+        "方法和工具",
+        "结果与复测",
+        "敏感信息脱敏"
+      ],
+      "question_dimensions": [
+        "个人责任",
+        "环境规模",
+        "授权边界",
+        "验证证据",
+        "结果口径"
+      ],
+      "role_map_ref": "security-role-map.json",
+      "is_fallback": false
+    },
+    {
+      "id": "software_engineering",
+      "display_name": "软件研发",
+      "keywords": [
+        "TypeScript",
+        "JavaScript",
+        "Java",
+        "Python",
+        "Golang",
+        "Rust",
+        "C++",
+        "C#",
+        ".NET",
+        "React",
+        "Vue",
+        "Node.js",
+        "Spring",
+        "REST API",
+        "GraphQL",
+        "microservices",
+        "微服务",
+        "单元测试",
+        "集成测试",
+        "CI/CD",
+        "Docker",
+        "Kubernetes",
+        "Git",
+        "GitHub Actions"
+      ],
+      "evidence_dimensions": [
+        "业务或用户场景",
+        "技术栈与职责",
+        "系统规模",
+        "个人实现",
+        "质量验证",
+        "上线结果与回滚"
+      ],
+      "question_dimensions": [
+        "个人责任",
+        "技术取舍",
+        "系统规模",
+        "测试证据",
+        "线上结果"
+      ],
+      "role_map_ref": "security-role-map.json",
+      "is_fallback": false
+    },
+    {
+      "id": "data_ai",
+      "display_name": "数据与人工智能",
+      "keywords": [
+        "machine learning",
+        "机器学习",
+        "深度学习",
+        "PyTorch",
+        "TensorFlow",
+        "scikit-learn",
+        "Pandas",
+        "Spark",
+        "SQL",
+        "LLM",
+        "RAG",
+        "embedding",
+        "向量数据库",
+        "模型训练",
+        "模型评估",
+        "数据管道",
+        "数据仓库",
+        "特征工程",
+        "NLP",
+        "计算机视觉"
+      ],
+      "evidence_dimensions": [
+        "业务问题和数据范围",
+        "数据来源与质量",
+        "个人负责的模型或管道",
+        "评估方法",
+        "指标结果",
+        "风险和限制"
+      ],
+      "question_dimensions": [
+        "数据规模",
+        "个人职责",
+        "评估基线",
+        "指标口径",
+        "上线和风险"
+      ],
+      "role_map_ref": "security-role-map.json",
+      "is_fallback": false
+    },
+    {
+      "id": "business_operations",
+      "display_name": "业务运营",
+      "keywords": [
+        "CRM",
+        "KPI",
+        "OKR",
+        "operation",
+        "operations",
+        "growth",
+        "campaign",
+        "conversion",
+        "retention",
+        "用户增长",
+        "用户运营",
+        "活动运营",
+        "内容运营",
+        "营收增长",
+        "销售",
+        "客户成功",
+        "项目管理",
+        "渠道管理",
+        "转化率",
+        "留存率"
+      ],
+      "evidence_dimensions": [
+        "业务目标",
+        "目标用户或客户",
+        "个人负责环节",
+        "策略和执行",
+        "基线与结果",
+        "预算和边界"
+      ],
+      "question_dimensions": [
+        "业务目标",
+        "个人责任",
+        "用户或收入规模",
+        "执行方法",
+        "结果归因"
+      ],
+      "role_map_ref": "security-role-map.json",
+      "is_fallback": false
+    },
+    {
+      "id": "generic",
+      "display_name": "通用",
+      "keywords": [],
+      "evidence_dimensions": [
+        "场景",
+        "个人责任",
+        "动作",
+        "方法",
+        "规模",
+        "结果",
+        "边界"
+      ],
+      "question_dimensions": [
+        "目标",
+        "个人责任",
+        "事实证据",
+        "结果口径",
+        "敏感信息"
+      ],
+      "role_map_ref": null,
+      "is_fallback": true
+    }
+  ]
+}

@@ -4,12 +4,13 @@ const detail = require("../api/detail");
 const log = require("../utils/log");
 const token = require("../utils/token");
 const utils = require("../utils/utils");
-const validator = require("../validate/comment");
-const { parseArgs, buildHelp } = require("../utils/args");
+const validator = require("../validate/aweme");
+const { parseCliArgs, buildHelp } = require("../utils/args");
 const {
   emitError,
   emitEmpty,
-  printSuccessEnvelope,
+  buildSuccessEnvelope,
+  finishSuccess,
   emitUncaught,
 } = require("../utils/output");
 
@@ -22,6 +23,12 @@ const SCHEMA = {
       required: true,
       desc: "抖音视频/图文URL、v.douyin.com 短链或 aweme_id",
     },
+    "--save": {
+      key: "save",
+      type: "boolean",
+      default: false,
+      desc: "将完整结果写入本地日志（也可设 GUAIKEI_ENABLE_LOG=1）",
+    },
   },
   positionalKey: "url",
 };
@@ -33,6 +40,7 @@ function printHelp() {
       "node src/douyin/detail-cli.js --url https://www.douyin.com/note/xxx",
       "node src/douyin/detail-cli.js --url https://v.douyin.com/xxx",
       "node src/douyin/detail-cli.js -u 7123456789012345678",
+      `node src/douyin/detail-cli.js --json-args "{\"url\":\"https://www.douyin.com/video/xxx\"}"`,
     ]) +
       "\n\n注意:\n" +
       "  - 支持视频/图文链接 / iesdouyin 分享链 / v.douyin.com 短链 / aweme_id(纯数字), 自动剥离 query 参数\n" +
@@ -55,7 +63,7 @@ async function main() {
 
   let parsed;
   try {
-    parsed = parseArgs(args, SCHEMA);
+    parsed = parseCliArgs(args, SCHEMA);
   } catch (error) {
     utils.printError(`参数解析错误: ${error.message}`);
     printHelp();
@@ -107,10 +115,14 @@ async function main() {
   }
 
   let detailResult = null;
+  let taskCost;
   try {
     await detail.createDetailTask(tokenValue, url);
     utils.printSuccess("获取作品详情任务创建成功, 正在获取详情中...");
-    detailResult = await detail.getDetailTask(tokenValue, url);
+    ({ results: detailResult, cost: taskCost } = await detail.getDetailTask(
+      tokenValue,
+      url,
+    ));
   } catch (error) {
     utils.printError(`获取作品详情失败: ${error.message}`);
     emitError(
@@ -131,22 +143,23 @@ async function main() {
   };
   if (!detailResult) {
     utils.printInfo("没有找到匹配的作品");
-    emitEmpty("没有找到匹配的作品", startTime, detailRequest);
+    emitEmpty("没有找到匹配的作品", startTime, detailRequest, taskCost);
     return;
   }
 
-  const finalOutput = printSuccessEnvelope(
+  const finalOutput = buildSuccessEnvelope(
     "获取作品详情任务完成",
     startTime,
     detailRequest,
     detailResult,
+    undefined,
+    taskCost,
   );
-  utils.printSuccess("获取作品详情任务完成");
-
-  await log.writeResultLog(
-    `${startTime}_${log.resourceId(url)}_detail.json`,
-    JSON.stringify(finalOutput, null, 2),
-  );
+  await finishSuccess(finalOutput, {
+    logFilename: `${startTime}_${log.resourceId(url)}_detail.json`,
+    stderrMessage: "获取作品详情任务完成",
+    save: parsed.save === true,
+  });
 }
 
 main().catch((error) => {

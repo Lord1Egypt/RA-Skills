@@ -1,115 +1,43 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
-    "title": "TikTok关键词搜索 - API出参",
-    "description": "TikTok实时关键词搜索, API出参Schema详解",
+    "title": "TikTok 关键词搜索 - results 元素",
+    "description": "搜索成功时 results 数组中的一条。空字符串和数字 0 可能不返回。互动数是数字。整份 stdout 见 output_envelope.schema.json。",
     "properties": {
-        "aweme_id": {
-            "type": "string",
-            "description": "TikTok视频ID"
-        },
-        "desc": {
-            "type": "string",
-            "description": "TikTok视频描述"
-        },
-        "create_time": {
-            "type": "number",
-            "description": "TikTok视频创建时间戳"
-        },
-        "author_id": {
-            "type": "string",
-            "description": "TikTok视频作者ID"
-        },
-        "author_uid": {
-            "type": "string",
-            "description": "TikTok视频作者UID"
-        },
-        "author_nickname": {
-            "type": "string",
-            "description": "TikTok视频作者昵称"
-        },
-        "author_avatar": {
-            "type": "string",
-            "description": "TikTok视频作者头像"
-        },
-        "author_sec_uid": {
-            "type": "string",
-            "description": "TikTok视频作者SEC_UID"
-        },
-        "author_follower_count": {
-            "type": "number",
-            "description": "TikTok视频作者粉丝数"
-        },
-        "author_following_count": {
-            "type": "number",
-            "description": "TikTok视频作者关注数"
-        },
-        "collect_count": {
-            "type": "number",
-            "description": "TikTok视频收藏数"
-        },
-        "comment_count": {
-            "type": "number",
-            "description": "TikTok视频评论数"
-        },
-        "digg_count": {
-            "type": "number",
-            "description": "TikTok视频点赞数"
-        },
-        "download_count": {
-            "type": "number",
-            "description": "TikTok视频下载数"
-        },
-        "forward_count": {
-            "type": "number",
-            "description": "TikTok视频转发数"
-        },
-        "play_count": {
-            "type": "number",
-            "description": "TikTok视频播放数"
-        },
-        "repost_count": {
-            "type": "number"
-        },
-        "share_count": {
-            "type": "number",
-            "description": "TikTok视频分享数"
-        },
-        "whatsapp_share_count": {
-            "type": "number",
-            "description": "TikTok视频WhatsApp分享数"
-        },
-        "share_url": {
-            "type": "string",
-            "description": "TikTok视频分享URL"
-        },
-        "dynamic_cover": {
-            "type": "string",
-            "description": "TikTok视频动态封面URL"
-        },
-        "play_addr": {
-            "type": "string",
-            "description": "视频播放地址、视频下载地址"
-        },
-        "duration": {
-            "type": "number",
-            "description": "TikTok视频时长"
-        },
+        "aweme_id": { "type": "string", "description": "作品 ID。交给评论命令" },
+        "desc": { "type": "string", "description": "作品描述" },
+        "create_time": { "type": "number", "description": "发布时间，Unix 秒" },
+        "create_time_str": { "type": "string", "description": "技能补充，接口不返回。create_time 转成的北京时间" },
+        "author_id": { "type": "string", "description": "作者数字 uid。不要把这个字段交给作品命令" },
+        "author_uid": { "type": "string", "description": "作者用户名 unique_id，对应主页 @ 后面的那段" },
+        "author_nickname": { "type": "string", "description": "作者昵称" },
+        "author_avatar": { "type": "string", "description": "作者头像 URL" },
+        "author_sec_uid": { "type": "string", "description": "作者 sec_uid，以 MS4w 开头。可以原样交给作品命令" },
+        "author_url": { "type": "string", "description": "技能补充，接口不返回。由 author_uid 拼成的 https://www.tiktok.com/@用户名 ，可以交给作品命令" },
+        "author_follower_count": { "type": "number", "description": "作者粉丝数。作品列表接口没有单独的博主资料，粉丝看这个字段" },
+        "author_following_count": { "type": "number", "description": "作者关注数" },
+        "collect_count": { "type": "number", "description": "收藏数" },
+        "comment_count": { "type": "number", "description": "评论数" },
+        "digg_count": { "type": "number", "description": "点赞数" },
+        "download_count": { "type": "number", "description": "下载数" },
+        "forward_count": { "type": "number", "description": "转发数" },
+        "play_count": { "type": "number", "description": "播放数" },
+        "repost_count": { "type": "number", "description": "用户文档未给说明，原样返回" },
+        "share_count": { "type": "number", "description": "分享数" },
+        "whatsapp_share_count": { "type": "number", "description": "WhatsApp 分享数" },
+        "share_url": { "type": "string", "description": "分享 URL，采集端已去掉 query。查评论优先用 aweme_id" },
+        "dynamic_cover": { "type": "string", "description": "动态封面 URL。用户文档文字写了列表，实际出参是一条字符串" },
+        "play_addr": { "type": "string", "description": "视频播放 URL。可能过期。本技能不下载文件" },
+        "duration": { "type": "number", "description": "视频时长，原样整数。用户文档未写单位；采集端保存的是 TikTok video.duration，一般为毫秒" },
         "tags": {
             "type": "array",
-            "description": "TikTok视频标签",
-            "items": {
-                "type": "string",
-                "description": "TikTok视频标签"
-            }
+            "description": "标签",
+            "items": { "type": "string", "description": "标签名" }
         },
         "suggest_words": {
             "type": "array",
-            "description": "TikTok小蓝词",
-            "items": {
-                "type": "string",
-                "description": "TikTok小蓝词, 评论框顶端显示的建议词"
-            }
+            "description": "评论框顶部的推荐词",
+            "items": { "type": "string", "description": "推荐词" }
         }
     }
 }

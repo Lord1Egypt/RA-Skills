@@ -1,11 +1,11 @@
 ---
 name: oo-pdfless
-description: "Pdfless (pdfless.com). Use this skill for ANY Pdfless request — searching and reading data. Whenever a task involves Pdfless, use this skill instead of calling the API directly."
+description: "Pdfless (pdfless.com). Use this skill for ANY Pdfless request — reading, creating, and updating data. Whenever a task involves Pdfless, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "Pdfless"
   author: "OOMOL"
-  version: "1.0.5"
+  version: "1.0.6"
   services: ["pdfless"]
   icon: "https://static.oomol.com/logo/third-party/Pdfless.svg"
 ---
@@ -37,6 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
+- `create_pdf` — Generate a PDF from a Pdfless document template with JSON data. Returns a Pdfless download URL that expires 10 minutes after generation, plus a transit URL when file transit is configured. Each call consumes one PDF of the workspace quota. [write]
 - `get_workspace` — Get the current Pdfless workspace details resolved by the provided API key.
 - `list_document_templates` — List document templates in the current Pdfless workspace with optional pagination.
 

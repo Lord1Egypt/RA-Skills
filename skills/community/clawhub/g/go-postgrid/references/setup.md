@@ -4,7 +4,7 @@ This module is unofficial and not affiliated with PostGrid.
 
 ## Requirements
 
-- Go 1.26.10 or newer, per `go.mod`.
+- Go 1.26.11 or newer, per `go.mod`.
 - A PostGrid API key for the API being called, exported as `POSTGRID_API_KEY`.
 
 ## Install

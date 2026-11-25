@@ -1,6 +1,6 @@
 # 各平台特有筛选参数
 
-搜索达人时，除通用参数外，各平台有特有的筛选条件。本文件以 `backend/src/openapi/models/creator_request.py` 中当前 HTTP Open API 请求模型为准。
+本文适用于 TikTok、YouTube 和 Instagram 结构化达人搜索。字段以 CreatiVault 后端 `src/openapi/models/creator_request.py`、`src/openapi/models/creator.py` 和服务等级的字段配置为准。
 
 ## 参数值规则
 
@@ -11,6 +11,7 @@
 - 日期：使用 `YYYY-MM-DD`。
 - `lang` 只翻译响应码值，不用于筛选，默认 `en`。
 - 未声明的旧字段可能被请求模型忽略并且不产生筛选效果，禁止继续使用旧字段名。
+- 同一平台可用 `union_user_ids` 和 `profile_urls` 批量查询已收录的账号，各最多 200 个。两者合用时按并集筛选，可叠加其他条件。单页最多返回 100 条。
 
 ## TikTok 特有参数
 
@@ -48,17 +49,17 @@
 
 ## 服务等级（所有平台通用）
 
-搜索接口支持 `service_level` 参数，控制返回字段范围和积分消耗。同时支持 `lang` 参数控制码值字段的国际化翻译（`cn` 中文 / `en` 英文）。
+结构化搜索用 `service_level` 控制返回字段范围，用 `lang` 控制码值字段的翻译（`cn` 中文 / `en` 英文）。实际消耗以计费配置和接口响应为准。
 
-对话中用户未指定 `service_level` 时，应先向用户展示三档含义并说明默认推荐 `S2`；用户确认默认、推荐或直接搜索时使用 `S2`。用户已明确指定等级，或本轮已展示过等级说明时，不要重复打断。
+按用户指定的等级或所需字段选择。常规调用缺省 `S2`，Navos 默认注入 `S3`。
 
-| 等级 | 名称 | 包含数据字段 | 积分单价（每条） |
-|------|------|------------|------------|
-| S1 | 纯名单筛选 | 基础身份、主页、联系方式存在性、最近发布时间；具体字段因平台而异 | 1 积分 |
-| S2 | 精准触达 | S1 + 国家、性别、粉丝/播放/互动、行业、邮箱等；具体字段因平台而异 | 3 积分 |
-| S3 | 深度画像 | S2 + 受众性别、国家、语言、年龄分布 | 4 积分 |
+| 等级 | 包含数据字段 |
+|------|------------|
+| S1 | 基础身份、主页、粉丝或订阅数、联系方式可用性、最近发布时间等 |
+| S2 | 增加地区、播放与互动表现、行业和已有的邮箱等。TikTok 有数据时可提供带货指标 |
+| S3 | 增加受众性别、国家或地区、语言和年龄等画像 |
 
-默认 `S2`。响应 `meta` 中会返回 `service_level`（实际使用的等级）、`credits_consumed`（本次扣减积分数）和 `lang`（翻译语言）。
+自然语言搜索使用固定的精简结果字段。详细字段见对应平台的结构化搜索结果，按实际返回值展示。
 
 `audience_female_rate` 返回值为百分比数值（如 78.65 表示 78.65%）。
 
@@ -156,6 +157,11 @@
 | `link_line` | string | S2 | Line |
 | `link_zalo` | string | S2 | Zalo |
 | `mcn` | string | S2 | MCN 机构 |
+| `last30day_gmv_dollar_show` | string | S2 | 近 30 天 GMV 展示值（折美元） |
+| `last30day_gpm_dollar_show` | string | S2 | 近 30 天 GPM 展示值（折美元） |
+| `last30day_gmv_per_buyer_dollar_show` | string | S2 | 近 30 天客单价展示值（折美元） |
+| `last30day_commission_rate_show` | string | S2 | 近 30 天佣金率展示值 |
+| `last30day_prod_sales_show` | string | S2 | 近 30 天销售商品数展示值 |
 | `audience_female_rate` | number | S3 | 受众女性比例（百分比，如 78.65 表示 78.65%） |
 | `audience_country_code_list` | string[] | S3 | 受众国家分布 |
 | `audience_language_code_list` | string[] | S3 | 受众语言分布 |
@@ -177,9 +183,9 @@
 | `language` | string | S2 | 语言 |
 | `gender` | string | S2 | 性别（传 `lang` 时翻译） |
 | `bio` | string | S2 | 频道简介 |
-| `followers_count` | integer | S2 | 订阅数 |
-| `video_count` | integer | S2 | 视频数量 |
-| `view_count` | integer | S2 | 总观看次数 |
+| `followers_count` | integer | S1 | 订阅数 |
+| `video_count` | integer | S1 | 视频数量 |
+| `view_count` | integer | S1 | 总观看次数 |
 | `avg_views` | integer | S2 | 近10条视频平均播放量（全部） |
 | `avg_views_short` | integer | S2 | 近10条短视频平均播放量 |
 | `avg_views_long` | integer | S2 | 近10条长视频平均播放量 |
@@ -221,8 +227,8 @@
 | `language` | string | S2 | 语言 |
 | `gender` | string | S2 | 性别（传 `lang` 时翻译） |
 | `bio` | string | S2 | 个人介绍 |
-| `followers_count` | integer | S2 | 粉丝数 |
-| `video_count` | integer | S2 | 视频/帖子数量 |
+| `followers_count` | integer | S1 | 粉丝数 |
+| `video_count` | integer | S1 | 视频/帖子数量 |
 | `avg_views` | integer | S2 | 近10条视频平均播放量 |
 | `engagement_rate` | number | S2 | 近10条视频平均互动率 |
 | `is_verified` | boolean | S2 | 是否已认证 |
@@ -268,7 +274,7 @@
 | `profile_url` | string | 否 | 达人主页地址（自动解析平台和用户名），与 `username` 二选一 |
 | `target_platform` | string | 否 | 目标搜索平台：`tiktok` / `youtube` / `instagram`，不传则与种子达人同平台 |
 | `target_region` | string | 否 | 目标地区代码，`all` 表示不限 |
-| `target_language` | string | 否 | 目标语言代码，`all` 表示不限 |
+| `target_language` | string | 否 | 目标受众语言代码，`all` 表示不限 |
 | `limit` | integer | 否 | 返回数量，默认 20，范围 1~50 |
 | `follower_min` | integer | 否 | 粉丝数下限 |
 | `follower_max` | integer | 否 | 粉丝数上限 |

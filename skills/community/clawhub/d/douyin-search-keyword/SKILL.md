@@ -2,100 +2,49 @@
 name: douyin-search-keyword
 description: 抖音公开数据只读：关键词搜视频/图文、用户/达人搜索、博主作品、作品详情、评论、热榜；可做公域获客/竞品截流（search→comment）与需求挖掘。触发：抖音搜索、搜用户、找达人、找对标账号、获客、线索、截流、高意向、热搜、评论、需求挖掘、痛点、作品详情、博主作品、播放量、选题、舆情、竞品。小红书、快手、B站、微博、公众号不要用本技能。sec_uid、aweme_id、douyin search、douyin user search、douyin hot、douyin detail、douyin comments。
 license: MIT
-version: "1.5.0"
+version: 1.5.2
 metadata:
   openclaw:
-    emoji: "🎬"
     primaryEnv: GUAIKEI_API_TOKEN
     requires:
       bins:
         - node
       env:
         - GUAIKEI_API_TOKEN
-  enabled: true
-  runtime: "nodejs@16.14.0+"
-  env_desc:
-    GUAIKEI_API_TOKEN: "抖音数据 API 访问令牌。未配置时无法调用接口；可通过 https://www.guaikei.com 开通并获取支持。"
-  keywords:
-    - "抖音"
+  tags:
     - "抖音搜索"
     - "抖音用户搜索"
-    - "抖音热搜"
     - "抖音热榜"
     - "抖音评论"
-    - "需求挖掘"
-    - "痛点分析"
-    - "评论挖掘"
     - "作品详情"
     - "博主作品"
     - "对标账号"
-    - "获客"
-    - "线索"
-    - "竞品截流"
-    - "短视频数据分析"
-    - "douyin"
-    - "douyin search"
-    - "douyin user search"
-    - "douyin hot"
-    - "douyin comments"
-    - "douyin detail"
-  category:
-    - "数据分析"
-    - "内容创作"
-    - "Data&APIs"
-  tags:
-    - "抖音"
-    - "抖音搜索"
-    - "抖音用户搜索"
-    - "抖音热搜"
-    - "抖音热榜"
-    - "抖音评论"
     - "需求挖掘"
-    - "痛点分析"
-    - "视频数据"
-    - "抖音作品"
-    - "作品详情"
-    - "博主主页"
-    - "对标账号"
     - "获客"
-    - "线索"
     - "竞品截流"
-    - "选题"
-    - "竞品分析"
     - "舆情监控"
+    - "选题"
     - "douyin"
-    - "douyin-search"
-    - "douyin-user-search"
-    - "douyin-hot"
-    - "douyin-comments"
-    - "douyin-detail"
   examples:
-    - '抖音上"AI 教程"最火的视频 → node src/douyin/search-cli.js --keyword "AI 教程" --sort 1'
-    - '最近一周关于"AI 模型"的最新内容，要 20 条 → node src/douyin/search-cli.js --keyword "AI 模型" --sort 2 --time 7 --limit 20'
-    - '找做 AI 的对标账号 / 搜达人 → node src/douyin/user-search-cli.js --keyword "AI" --limit 20'
-    - "今天抖音有什么热点 / 热搜榜 → node src/douyin/hot-cli.js"
-    - '这个博主最近 30 条作品 → node src/douyin/post-cli.js --url "https://www.douyin.com/user/MS4wLjABxxx" --limit 30'
-    - '看看这个对标账号多少粉丝、多少获赞 → node src/douyin/post-cli.js --url "https://www.douyin.com/user/MS4wLjABxxx" --limit 0'
-    - '这条视频的评论区都在说什么 → node src/douyin/comment-cli.js --url "https://www.douyin.com/video/xxx" --limit 40'
-    - '这条视频的评论里有什么痛点 → 先确认至少取 50 条，同意后 node src/douyin/comment-cli.js --url "https://www.douyin.com/video/xxx" --limit 50，再读 references/demand-mining.md'
-    - '按关键词在评论区找高意向客户 → node src/douyin/search-cli.js --keyword "装修" --sort 1 --limit 20，再用 aweme_id 跑 comment-cli，结束后读 references/customer-acquisition.md'
-    - '这条视频多少播放、点赞和文案 → node src/douyin/detail-cli.js --url "https://www.douyin.com/video/xxx"'
-    - '搜索结果里第 3 条不错，展开看看 → node src/douyin/detail-cli.js --url <上一条搜索结果里的 url>'
-    - '用户搜索结果里这个账号不错，看主页作品 → node src/douyin/post-cli.js --url <上一条用户结果里的 author_url 或 sec_uid>'
-    - '帮我找 1 分钟以内的减肥短视频，先来 30 条 → node src/douyin/search-cli.js --keyword "减肥" --duration 1 --limit 30'
-    - '半年内最火的 AI 教程图文 → node src/douyin/search-cli.js --keyword "AI 教程" --sort 1 --time 180 --content 2'
+    - '抖音上"AI 教程"最火的视频 → node "<SKILL_ROOT>/src/douyin/search-cli.js" --keyword "AI 教程" --sort 1'
+    - '找做 AI 的对标账号 / 搜达人 → node "<SKILL_ROOT>/src/douyin/user-search-cli.js" --keyword "AI" --limit 20'
+    - '这个博主最近 30 条作品 → node "<SKILL_ROOT>/src/douyin/post-cli.js" --url "https://www.douyin.com/user/MS4wLjABxxx" --limit 30'
+    - '这条视频的评论区都在说什么 → node "<SKILL_ROOT>/src/douyin/comment-cli.js" --url "https://www.douyin.com/video/xxx" --limit 40'
+    - '这条视频的评论里有什么痛点 → 先确认至少取 50 条，同意后 node "<SKILL_ROOT>/src/douyin/comment-cli.js" --url "https://www.douyin.com/video/xxx" --limit 50，再读 references/demand-mining.md'
+    - '这条视频多少播放、点赞和文案 → node "<SKILL_ROOT>/src/douyin/detail-cli.js" --url "https://www.douyin.com/video/xxx"'
 ---
 
-# 🚀 抖音关键词搜索、竞品分析、舆情监控与热榜跟踪工具 (Douyin Search & Analytics)
+# 抖音关键词搜索、竞品分析、舆情监控与热榜跟踪工具 (Douyin Search & Analytics)
 
 抖音公开数据只读：关键词搜视频/图文、用户/达人搜索、博主作品、作品详情、评论、热榜；输出结构化 JSON。适用于选题、对标账号、竞品、舆情、热点、需求挖掘、公域获客。
 
 ## 1. ⚠️ 执行前置（每次必过）
 
-1. **先 `cd` 到本 SKILL.md 所在目录**，再执行 `node src/douyin/*.js`。
+1. **用绝对路径执行**：`node "<SKILL_ROOT>/src/douyin/<命令>.js" …`。`<SKILL_ROOT>` = 含本 `SKILL.md` 的那一层真实目录（以当前会话为准；勿套用其它宿主示例路径，勿用 frontmatter `name` 冒充目录名）。已 `cd` 到技能根时可用相对路径 `node src/douyin/…`（见 [faq.md](references/faq.md)）。
 2. **确认 `GUAIKEI_API_TOKEN` 已配置**。未配置 → 不执行，走 `AUTH_REQUIRED`（见 §7 / [errors.md](references/errors.md)），禁止先跑「试试看」。
 3. **一次只跑一条命令，等进程自己结束**。查询最多约 20 次退避；`--limit` 很大时最长约 22 分钟。**未退出前不要判定失败，不要并发/重复同一命令。**
 4. **必填参数不齐先追问**（话术见 [ask.md](references/ask.md)），禁止猜测关键词或链接。
+5. **Windows 拼参：cmd 只用双引号**包含空格/中文/URL 的参数；不要用 bash 单引号。引号仍拆坏 → 改用 `--json-args`（[faq.md](references/faq.md)）。Windows / 弱模型优先 `--json-args`。
 
 > 开通[抖音关键词搜索](https://www.guaikei.com) TOKEN， 配 TOKEN / 落盘 / FAQ → [faq.md](references/faq.md)。
 
@@ -112,7 +61,7 @@ metadata:
 | 销售 / 增长 | 按关键词在评论区挖高意向线索 | `search`→`comment`，再读 [customer-acquisition.md](references/customer-acquisition.md) |
 | 所有人 | 今天抖音在火什么 | `hot-cli.js` |
 
-**典型产出**：结构化 JSON（标题、作者、互动、链接、时间），可导入 Excel/BI 或交给 AI 做选题/竞品/舆情/线索表。结果落盘到技能目录 `logs/`（热榜除外）。
+**典型产出**：结构化 JSON（标题、作者、互动、链接、时间），可导入 Excel/BI 或交给 AI 做选题/竞品/舆情/线索表。默认不落盘；需要留底时加 `--save` 或设 `GUAIKEI_ENABLE_LOG=1`（热榜除外，见 [faq.md](references/faq.md)）。
 
 **为什么用它**：无需登录抖音；零第三方依赖；按量单次最多 1 万条；stdout 纯 JSON、日志走 stderr。
 
@@ -120,14 +69,16 @@ metadata:
 
 ## 3. 🎯 识别卡（选命令，命中即停）
 
+执行：`node "<SKILL_ROOT>/src/douyin/<脚本>" …`（下表只写脚本名）。
+
 | 用户要什么 | 命令 | 最少要有 |
 | --- | --- | --- |
-| 搜视频/图文、爆款、选题 | `node src/douyin/search-cli.js` | `--keyword` |
-| 搜用户/达人/账号、按词找对标 | `node src/douyin/user-search-cli.js` | `--keyword` |
-| 已知博主的作品、粉丝数据 | `node src/douyin/post-cli.js` | 主页链接或 `sec_uid` |
-| 某条视频/图文的评论（含痛点） | `node src/douyin/comment-cli.js` | 视频链接或 `aweme_id` |
-| 某条视频/图文的详情、播放、文案 | `node src/douyin/detail-cli.js` | 视频链接或 `aweme_id` |
-| 热搜、热榜 | `node src/douyin/hot-cli.js` | 无参数 |
+| 搜视频/图文、爆款、选题 | `search-cli.js` | `--keyword` |
+| 搜用户/达人/账号、按词找对标 | `user-search-cli.js` | `--keyword` |
+| 已知博主的作品、粉丝数据 | `post-cli.js` | 主页链接或 `sec_uid` |
+| 某条视频/图文的评论（含痛点） | `comment-cli.js` | 视频链接或 `aweme_id` |
+| 某条视频/图文的详情、播放、文案 | `detail-cli.js` | 视频链接或 `aweme_id` |
+| 热搜、热榜 | `hot-cli.js` | 无参数 |
 
 - 痛点 / 需求挖掘：仍用 `comment-cli`；**成功后必须读** [demand-mining.md](references/demand-mining.md)。
 - 获客 / 线索 / 截流：`search-cli`（常 `--sort 1`）→ `aweme_id` 跑 `comment-cli`；**成功后必须读** [customer-acquisition.md](references/customer-acquisition.md)。
@@ -136,15 +87,30 @@ metadata:
 ## 4. 🛠️ 命令一行例（详参下沉）
 
 > **详参 / 枚举**：可视化浏览查看 [options.md](references/options.md)；也可参见 [readme.md](readme.md)（含命令参数详表）。**仅在需要确认枚举或拼参时再读，不要每次都读。**
+> **Windows**：cmd **只用双引号**；PowerShell 含空格也优先双引号。仍拆坏或弱模型 → `--json-args`。双壳例 → [faq.md](references/faq.md)。
 
 ```bash
-node src/douyin/search-cli.js --keyword "AI 教程" --sort 1 --limit 10
-node src/douyin/user-search-cli.js --keyword "AI" --limit 20
-node src/douyin/post-cli.js --url "https://www.douyin.com/user/MS4wLjABxxx" --limit 30
-node src/douyin/post-cli.js --url "https://www.douyin.com/user/MS4wLjABxxx" --limit 0
-node src/douyin/comment-cli.js --url "https://www.douyin.com/video/xxx" --limit 40
-node src/douyin/detail-cli.js --url "https://www.douyin.com/video/xxx"
-node src/douyin/hot-cli.js
+node "<SKILL_ROOT>/src/douyin/search-cli.js" --keyword "AI 教程" --sort 1 --limit 10
+node "<SKILL_ROOT>/src/douyin/user-search-cli.js" --keyword "AI" --limit 20
+node "<SKILL_ROOT>/src/douyin/post-cli.js" --url "https://www.douyin.com/user/MS4wLjABxxx" --limit 30
+node "<SKILL_ROOT>/src/douyin/post-cli.js" --url "https://www.douyin.com/user/MS4wLjABxxx" --limit 0
+node "<SKILL_ROOT>/src/douyin/comment-cli.js" --url "https://www.douyin.com/video/xxx" --limit 40
+node "<SKILL_ROOT>/src/douyin/detail-cli.js" --url "https://www.douyin.com/video/xxx"
+node "<SKILL_ROOT>/src/douyin/hot-cli.js"
+```
+
+**Windows 双壳（同一条搜索；把 `<SKILL_ROOT>` 换成真实技能根）**：
+
+```bat
+REM cmd —— 参数必须用双引号；也可用 --json-args（内层 \"）
+node "<SKILL_ROOT>\src\douyin\search-cli.js" --keyword "AI 教程" --sort 1 --limit 10
+node "<SKILL_ROOT>\src\douyin\search-cli.js" --json-args "{\"keyword\":\"AI 教程\",\"sort\":1,\"limit\":10}"
+```
+
+```powershell
+# PowerShell —— 含空格/中文同样用双引号；或改用 --json-args（外单内双）
+node "<SKILL_ROOT>/src/douyin/search-cli.js" --keyword "AI 教程" --sort 1 --limit 10
+node "<SKILL_ROOT>/src/douyin/search-cli.js" --json-args '{"keyword":"AI 教程","sort":1,"limit":10}'
 ```
 
 **数量 / 套餐**：未指定 `--limit` 默认 10；不要擅自抓 10000。技能硬上限 10000（按量）。**包月**超限 → `PLAN_LIMIT`：视频搜索/用户搜索/作品 ≤30，评论 ≤50；详情与热榜无此条数限制。
@@ -170,17 +136,17 @@ node src/douyin/hot-cli.js
 
 ## 6. 📜 输出（摘要）
 
-- stdout = 统一 JSON 信封；stderr = 日志。向用户**只摘关键字段**，勿整份粘贴。
+- stdout = 统一 JSON 信封；stderr = 日志。向用户**只摘关键字段**，勿整份粘贴。取数成功/empty 时信封顶层可能有 `cost`（花费估算，见 [contract.md](references/contract.md)）。
 - `status=empty` + `NO_MATCH` 退出码 0，**不是失败**。
 - `results`：搜/用户/评论/热榜 = 数组；作品 = `{post,user}`；详情 = 单对象。
 
-完整信封与形态 → [contract.md](references/contract.md)。JSON Schema 文件在 `assets/`（入参/出参/信封），清单见 [readme.md](readme.md) 参数章。
+完整信封与形态 → [contract.md](references/contract.md)（含上游 Create `id` → `/info` 只传 `id`；CLI schema 不含任务 uuid）。JSON Schema 文件在 `assets/`（入参/出参/信封），清单见 [readme.md](readme.md) 参数章。
 
 ## 7. 🚨 错误应对（摘要）
 
 | error_code | 退出码 | Agent |
 | --- | --- | --- |
-| `AUTH_*` | 3 | **禁止重试**；引导官网配 TOKEN |
+| `AUTH_*` | 3 | **禁止重试**；引导官网检查/开通/续期 TOKEN（含停用 410、未开通 405；勿当成接口下线） |
 | `PLAN_LIMIT` | 1 | **禁止同参重试**；降 limit 须用户同意 |
 | `INSUFFICIENT_BALANCE` / `DAILY_LIMIT` | 1 | **禁止同参重试**；充值或明日/调限额 |
 | `RATE_LIMITED` | 1 | **禁止立即重试** |
@@ -197,7 +163,7 @@ node src/douyin/hot-cli.js
 - `AUTH_*` / `PLAN_LIMIT` / `INSUFFICIENT_BALANCE` / `RATE_LIMITED` / `DAILY_LIMIT` 后不得同参或立即重试。
 - 不得把 stderr 原文转述给用户。
 - 不得做登录态/私密获取或任何写操作；不得编造手机号/微信号或骚扰脚本。
-- 不得在未 cd 到技能目录时执行 `node src/douyin/*.js`。
+- 相对路径 `node src/douyin/*.js` 仅在已处于 `<SKILL_ROOT>` 时可用；否则必须用 `node "<SKILL_ROOT>/src/douyin/….js"`。
 
 ## 9. 📚 何时读 references（入口总表）
 

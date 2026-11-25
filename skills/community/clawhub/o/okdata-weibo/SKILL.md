@@ -80,4 +80,4 @@ Not connected yet? Follow https://okdata.online/agents.md.
 
 Every Weibo endpoint with its full contract: https://okdata.online/apis/weibo/?src=skill-okdata-weibo
 
-Generated from okdata catalog fd2b86c0154b7075, price book 84f29877acc83a88.
+Generated from okdata catalog e9187254a76b5946, price book 84f29877acc83a88.

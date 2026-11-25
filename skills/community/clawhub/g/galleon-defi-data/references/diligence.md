@@ -22,7 +22,7 @@ Compare primary redemption with secondary-market sale. Record eligibility, reque
 
 ## Preserve chain evidence
 
-Record chain ID, block number and block hash alongside contract state and the RPC's finality status. Reconcile related reads at the same block when supported. An included block can be reorganized; confirmation count alone is not universal finality. Apply the chain's documented rules, distinguishing L2 inclusion, L1 settlement and any withdrawal dispute period. [Ethereum's consensus documentation](https://ethereum.org/en/developers/docs/consensus-mechanisms/pos/) provides one chain-specific example.
+Record chain ID, block number and block hash alongside contract state and the RPC's finality status. Reconcile related reads at the same block when supported. An included block can be reorganized; confirmation count alone is not universal finality. Apply the chain's documented rules, distinguishing L2 inclusion, L1 settlement and any withdrawal dispute period. [Ethereum's consensus documentation](https://ethereum.org/developers/docs/consensus-mechanisms/pos/) provides one chain-specific example.
 
 If a canonical block hash changes or an indexer lags, invalidate the affected conclusion and reread its dependencies. Do not silently splice state from different forks or relabel old data as fresh. A transaction hash alone cannot establish a successful final state; verification of an existing receipt remains read-only.
 

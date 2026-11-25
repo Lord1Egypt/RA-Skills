@@ -1,7 +1,7 @@
 ---
 name: "tcm-constitution-recognition-analysis"
 description: "Determines nine TCM constitution types including Yin deficiency, Yang deficiency, Qi deficiency, phlegm-dampness, and blood stasis through facial features and physical signs, and provides personalized health preservation and conditioning suggestions. | 中医体质识别分析技能，通过面部特征与体征判别阴虚、阳虚、气虚、痰湿、血瘀等九种中医体质类型，给出个性化养生调理建议"
-version: "1.0.24"
+version: "1.0.26"
 license: "MIT-0"
 ---
 

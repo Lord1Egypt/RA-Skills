@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers use this skill to research dropshipping-style products, paid ad patterns, competing stores, creative angles, saturation, and repeatable niche signals from PipiAds data.
+Ecommerce marketers and product researchers can use this skill to discover products and ads, compare creatives and offers, and assess store competition and advertising patterns across TikTok and Facebook.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The globally installed pipiads-mcp-server npm package receives PIPIADS_API_KEY.
+Risk: PipiAds searches and detail lookups can consume account credits.
 
-Mitigation: Install only if you trust the package and use a limited, revocable API key.
+Mitigation: Use focused niche queries before broad searches, and check current credit terms before running extensive research.
 
-Risk: API calls can consume PipiAds account credits and may touch account data with meaningful spend or sensitivity.
+Risk: The skill requires a PipiAds API key to access account-linked research services.
 
-Mitigation: Monitor credit usage, scope searches tightly, and run the MCP server in an isolated environment when account exposure matters.
+Mitigation: Store PIPIADS_API_KEY securely and review the linked PipiAds services and skill instructions before connecting the account.
 
 ## Reference(s):
 
-- [PipiAds](https://www.pipiads.com)
-- [PipiSpy](https://www.pipispy.com/)
-- [ClawHub skill listing](https://clawhub.ai/fanyanggod/skills/pipiads-dropshipping-product-research)
+- [PipiAds](https://www.pipiads.com/)
+- [PipiSpy account and API key management](https://www.pipispy.com/)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Analysis, Text, Markdown]
 
-**Output Format:** [Markdown research summaries and recommendations]
+**Output Format:** [Markdown research summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include product, ad, store, competitor, saturation, and credit-use observations based on PipiAds account data.]
+**Other Properties Related to Output:** [Research findings based on user queries and PipiAds data; API searches and detail requests may consume account credits.]
 
 ## Skill Version(s):
 
-1.0.6 (source: server release metadata)
+1.0.7 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

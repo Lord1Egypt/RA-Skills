@@ -22,8 +22,10 @@ COOLER_LIQUID_FAMILY_TERMS = (
 )
 COOLER_RADIATOR_PATTERN = re.compile(r"(?<!\d)(120|240|280|360|420|480)(?!\d)")
 COOLER_EXCLUSIVE_PLATFORM_PATTERN = re.compile(
-    r"(?P<platform>AMD|INTEL|英特尔)\s*(?:平台)?(?:专用|版本|可用|适用)"
-    r"|(?:专用|版本|可用|适用|仅支持)\s*(?P<reverse>AMD|INTEL|英特尔)",
+    r"(?P<platform>AMD|INTEL|英特尔)\s*(?:平台)?\s*"
+    r"(?:专用(?:版|型号)?|仅(?:支持|兼容|适配|用于)|只(?:支持|兼容|适配|用于)|EXCLUSIVE|ONLY)"
+    r"|(?:仅(?:支持|兼容|适配|用于)|只(?:支持|兼容|适配|用于)|专用|EXCLUSIVE|ONLY)\s*"
+    r"(?P<reverse>AMD|INTEL|英特尔)",
     re.IGNORECASE,
 )
 COOLER_LIQUID_SERIES_RADIATOR_PATTERNS = (
@@ -103,6 +105,84 @@ CPU_NO_IGPU_SUFFIX_PATTERN = re.compile(
     r"(?<![A-Z0-9])\d{3,5}\s*(?:[KX]\s*)?F(?=$|[^A-Z0-9])",
     re.IGNORECASE,
 )
+# Only exact desktop SKU combinations represented in the bundled catalog can
+# prove an Intel iGPU from the model name.  A brand prefix, numeric range, or
+# plausible suffix alone is not evidence.
+INTEL_CORE_MODEL_PATTERN = re.compile(
+    r"(?<![A-Z0-9])(?:INTEL\s+)?(?:CORE\s+)?I(?P<tier>[3579])[\s-]*(?P<base>\d{5})"
+    r"(?:[\s-]*(?P<suffix>KF|KS|K|F))?(?=$|[^A-Z0-9])",
+    re.IGNORECASE,
+)
+INTEL_CORE_ULTRA_MODEL_PATTERN = re.compile(
+    r"(?<![A-Z0-9])(?:INTEL\s+)?(?:CORE\s+)?ULTRA\s+(?:U)?(?P<tier>[579])[\s-]*"
+    r"(?P<base>\d{3})(?:[\s-]*(?P<suffix>KF|K|F))?(?P<plus>\s+PLUS)?"
+    r"(?=$|[^A-Z0-9])",
+    re.IGNORECASE,
+)
+# These exact family/tier/number/suffix/Plus combinations are present in the
+# bundled components.yaml.  Refresh this set from traceable catalog models when
+# the supported Intel SKU set changes; do not fill gaps from memory.
+INTEL_KNOWN_DESKTOP_SKUS = frozenset({
+    ("CORE", "3", "12100", "", False),
+    ("CORE", "3", "12100", "F", False),
+    ("CORE", "3", "13100", "", False),
+    ("CORE", "3", "13100", "F", False),
+    ("CORE", "3", "14100", "F", False),
+    ("CORE", "5", "12400", "", False),
+    ("CORE", "5", "12400", "F", False),
+    ("CORE", "5", "12490", "F", False),
+    ("CORE", "5", "12600", "K", False),
+    ("CORE", "5", "12600", "KF", False),
+    ("CORE", "5", "13400", "", False),
+    ("CORE", "5", "13400", "F", False),
+    ("CORE", "5", "13490", "F", False),
+    ("CORE", "5", "13600", "K", False),
+    ("CORE", "5", "13600", "KF", False),
+    ("CORE", "5", "14400", "", False),
+    ("CORE", "5", "14400", "F", False),
+    ("CORE", "5", "14490", "F", False),
+    ("CORE", "5", "14500", "", False),
+    ("CORE", "5", "14600", "K", False),
+    ("CORE", "5", "14600", "KF", False),
+    ("CORE", "7", "12700", "", False),
+    ("CORE", "7", "12700", "F", False),
+    ("CORE", "7", "12700", "K", False),
+    ("CORE", "7", "12700", "KF", False),
+    ("CORE", "7", "13700", "", False),
+    ("CORE", "7", "13700", "F", False),
+    ("CORE", "7", "13700", "K", False),
+    ("CORE", "7", "13700", "KF", False),
+    ("CORE", "7", "14700", "F", False),
+    ("CORE", "7", "14700", "K", False),
+    ("CORE", "7", "14700", "KF", False),
+    ("CORE", "7", "14790", "F", False),
+    ("CORE", "9", "12900", "", False),
+    ("CORE", "9", "12900", "K", False),
+    ("CORE", "9", "12900", "KS", False),
+    ("CORE", "9", "13900", "", False),
+    ("CORE", "9", "13900", "F", False),
+    ("CORE", "9", "13900", "K", False),
+    ("CORE", "9", "13900", "KF", False),
+    ("CORE", "9", "13900", "KS", False),
+    ("CORE", "9", "14900", "K", False),
+    ("CORE", "9", "14900", "KF", False),
+    ("CORE", "9", "14900", "KS", False),
+    ("ULTRA", "5", "225", "", False),
+    ("ULTRA", "5", "225", "F", False),
+    ("ULTRA", "5", "230", "F", False),
+    ("ULTRA", "5", "235", "", False),
+    ("ULTRA", "5", "245", "K", False),
+    ("ULTRA", "5", "245", "KF", False),
+    ("ULTRA", "5", "250", "K", True),
+    ("ULTRA", "5", "250", "KF", True),
+    ("ULTRA", "7", "265", "", False),
+    ("ULTRA", "7", "265", "F", False),
+    ("ULTRA", "7", "265", "K", False),
+    ("ULTRA", "7", "265", "KF", False),
+    ("ULTRA", "7", "270", "K", True),
+    ("ULTRA", "9", "285", "", False),
+    ("ULTRA", "9", "285", "K", False),
+})
 # Intel Maximum Turbo Power values used as conservative runtime floors when a
 # market snapshot has accidentally copied the lower Processor Base Power.
 INTEL_UNLOCKED_CPU_POWER_FLOORS_W = {
@@ -155,6 +235,11 @@ STORAGE_BAY_FORM_PATTERN = re.compile(
 STORAGE_U2_FORM_PATTERN = re.compile(
     r"(?<![A-Z0-9])U\s*[.\-]?\s*2(?![A-Z0-9])", re.IGNORECASE
 )
+STORAGE_AIC_FORM_PATTERN = re.compile(
+    r"(?<![A-Z0-9])(?:(?:PCIE\s*)?AIC|(?:PCIE\s*)?ADD[\s-]*IN[\s-]*(?:CARD|SSD)|PCIE\s*(?:插卡|扩展卡))"
+    r"(?![A-Z0-9])",
+    re.IGNORECASE,
+)
 STORAGE_SOLID_STATE_TYPES = {"SSD", "TLC", "QLC"}
 USER_CONFIRMED_SPEC_FIELDS = "_user_confirmed_spec_fields"
 PSU_NATIVE_16PIN_TERMS = (
@@ -202,6 +287,28 @@ def normalize_display_outputs(values):
     return normalized
 
 
+def _infer_known_intel_desktop_igpu(item):
+    """Return iGPU presence only for recognized bundled Intel desktop families."""
+    model = unicodedata.normalize("NFKC", str(item.get("model") or "")).upper()
+    outcomes = set()
+    for pattern, family in (
+        (INTEL_CORE_MODEL_PATTERN, "CORE"),
+        (INTEL_CORE_ULTRA_MODEL_PATTERN, "ULTRA"),
+    ):
+        for match in pattern.finditer(model):
+            sku = (
+                family,
+                match.group("tier"),
+                match.group("base"),
+                (match.group("suffix") or "").upper(),
+                bool(match.groupdict().get("plus")),
+            )
+            if sku not in INTEL_KNOWN_DESKTOP_SKUS:
+                continue
+            outcomes.add(sku[3] not in {"F", "KF"})
+    return outcomes.pop() if len(outcomes) == 1 else None
+
+
 def infer_cpu_integrated_graphics(item):
     """Return True/False when a desktop CPU's integrated graphics are known.
 
@@ -219,14 +326,25 @@ def infer_cpu_integrated_graphics(item):
             return True
         if text in ("false", "no", "n", "0", "无", "不支持", "none", "no igpu"):
             return False
+        if text:
+            return None
 
     text = unicodedata.normalize("NFKC", _upper(item))
     compact = re.sub(r"[^A-Z0-9\u4e00-\u9fff]+", "", text)
+    if CPU_NO_IGPU_ALTERNATIVE_PATTERN.search(text):
+        return False
+
+    known_intel = _infer_known_intel_desktop_igpu(item)
+    if known_intel is not None:
+        return known_intel
+
     if "INTEL" in text or "CORE" in text or compact.startswith(("I3", "I5", "I7", "I9", "U5", "U7", "U9")):
-        # Intel desktop F/KF suffix SKUs disable integrated graphics.
-        if CPU_NO_IGPU_ALTERNATIVE_PATTERN.search(text) or CPU_NO_IGPU_SUFFIX_PATTERN.search(text):
+        # An explicit F/KF suffix cannot support a positive graphics claim,
+        # including user assertions for an otherwise unrecognized SKU.
+        if CPU_NO_IGPU_SUFFIX_PATTERN.search(text):
             return False
-        return True
+        # Other unrecognized desktop models cannot prove display output.
+        return None
 
     if "AMD" in text or "RYZEN" in text:
         if CPU_NO_IGPU_ALTERNATIVE_PATTERN.search(text) or CPU_NO_IGPU_SUFFIX_PATTERN.search(text):
@@ -638,6 +756,10 @@ def normalize_explicit_storage_form_factor(value):
     text = unicodedata.normalize("NFKC", str(value or "")).strip()
     if not text:
         return None
+    if STORAGE_U2_FORM_PATTERN.fullmatch(text):
+        return "U.2"
+    if STORAGE_AIC_FORM_PATTERN.fullmatch(text):
+        return "AIC"
     if STORAGE_MSATA_FORM_PATTERN.fullmatch(text):
         return "mSATA"
     m2_match = re.fullmatch(
@@ -676,6 +798,8 @@ def _explicit_storage_text_shapes(value, *, include_u2=False):
         shapes.add(f"{bay.group(1)} SATA")
     if include_u2 and STORAGE_U2_FORM_PATTERN.search(text):
         shapes.add("U.2")
+    if include_u2 and STORAGE_AIC_FORM_PATTERN.search(text):
+        shapes.add("AIC")
     return shapes
 
 
@@ -689,7 +813,9 @@ def _storage_shape_evidence_matches(evidence, supplied_shape):
     if evidence == "M.2":
         return supplied_shape.startswith("M.2")
     if evidence == "U.2":
-        return supplied_shape == "2.5 SATA"
+        return supplied_shape == "U.2"
+    if evidence == "AIC":
+        return supplied_shape == "AIC"
     return evidence == supplied_shape
 
 
@@ -730,6 +856,10 @@ def storage_interface_form_factor_consistent(interface, form_factor):
         return False
     if STORAGE_MSATA_FORM_PATTERN.search(text):
         interface_family = "msata"
+    elif STORAGE_U2_FORM_PATTERN.search(text):
+        interface_family = "u2"
+    elif STORAGE_AIC_FORM_PATTERN.search(text):
+        interface_family = "aic"
     elif "USB" in text:
         interface_family = "usb"
     elif STORAGE_M2_FORM_PATTERN.search(text):
@@ -747,16 +877,21 @@ def storage_interface_form_factor_consistent(interface, form_factor):
         return interface_family in {"msata", "sata"}
     if shape in {"2.5 SATA", "3.5 SATA"}:
         return interface_family == "sata"
+    if shape == "U.2":
+        return interface_family in {"u2", "pcie"}
+    if shape == "AIC":
+        return interface_family in {"aic", "pcie"}
     return False
 
 
 def infer_storage_form_factor(item):
-    """Infer only explicit desktop SATA/M.2 shapes from model and catalog facts.
+    """Infer only physical storage shapes stated by model and catalog facts.
 
     A historical importer assigned ``M.2 2280`` to every SATA drive.  SATA
     alone does not prove an M.2 device, so rotational desktop drives and
     ordinary SATA SSD titles are classified separately while ambiguous titles
-    remain unknown instead of consuming a fictitious M.2 slot.
+    remain unknown instead of consuming a fictitious M.2 slot.  NVMe is a
+    protocol and is not evidence of an M.2 connector or card length.
     """
     confirmed_fields = set(item.get(USER_CONFIRMED_SPEC_FIELDS) or ())
     if "form_factor" in confirmed_fields:
@@ -766,10 +901,25 @@ def infer_storage_form_factor(item):
     model = unicodedata.normalize("NFKC", str(item.get("model") or ""))
     form_factor_text = unicodedata.normalize("NFKC", str(item.get("form_factor") or ""))
     storage_type = str(item.get("storage_type") or "").strip()
+    explicit_form = normalize_explicit_storage_form_factor(form_factor_text)
     interface_is_msata = bool(STORAGE_MSATA_FORM_PATTERN.search(interface))
     interface_is_m2 = bool(STORAGE_M2_FORM_PATTERN.search(interface))
     model_is_msata = bool(STORAGE_MSATA_FORM_PATTERN.search(model))
     model_is_m2 = bool(STORAGE_M2_FORM_PATTERN.search(model))
+    model_shapes = _explicit_storage_text_shapes(model, include_u2=True)
+    interface_shapes = _explicit_storage_text_shapes(interface, include_u2=True)
+    if explicit_form in {"U.2", "AIC"}:
+        return explicit_form
+    if (
+        explicit_form
+        and explicit_form.startswith("M.2")
+        and "SATA" not in interface
+    ):
+        return explicit_form
+    for shapes in (interface_shapes, model_shapes):
+        high_speed_shapes = shapes.intersection({"U.2", "AIC"})
+        if len(high_speed_shapes) == 1:
+            return high_speed_shapes.pop()
     size_match = next(
         (
             match
@@ -781,10 +931,10 @@ def infer_storage_form_factor(item):
     if interface_is_msata or model_is_msata:
         return "mSATA"
     if interface_is_m2:
-        return f"M.2 {size_match.group(1)}" if size_match else "M.2 2280"
+        return f"M.2 {size_match.group(1)}" if size_match else "M.2"
     if "SATA" in interface:
         if model_is_m2:
-            return f"M.2 {size_match.group(1)}" if size_match else "M.2 2280"
+            return f"M.2 {size_match.group(1)}" if size_match else "M.2"
         if storage_type == "台式机硬盘" or STORAGE_ROTATIONAL_PATTERN.search(model):
             return "3.5 SATA"
         if (
@@ -794,8 +944,8 @@ def infer_storage_form_factor(item):
         ):
             return "2.5 SATA"
         return None
-    if "NVME" in interface:
-        return f"M.2 {size_match.group(1)}" if size_match else "M.2 2280"
+    if model_is_m2:
+        return f"M.2 {size_match.group(1)}" if size_match else "M.2"
     return None
 
 

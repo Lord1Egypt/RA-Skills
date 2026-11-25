@@ -1,6 +1,6 @@
 ## Description:
 
-Detects liveness from a single selfie image via the Didit standalone API, returning liveness score, face quality, and luminance metrics for passive anti-spoofing checks.
+Connects backend code to Didit's passive liveness API to check a single selfie for liveness and spoofing, and interpret its score, status, and warnings.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,10 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
+MIT-0
 
 ## Use Case:
 
-Developers and identity verification teams use this skill to add passive liveness and anti-spoofing checks to workflows that accept a single selfie image.
+Developers integrating selfie-based liveness checks use this skill to send a single selfie to Didit's API and handle the result, including decline, spoofing, duplicate-face, and blocklist warnings.
 
 ### Deployment Geography for Use:
 
@@ -21,41 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill processes sensitive face images through a third-party liveness API.
+Risk: The skill sends a selfie and API key to Didit's external liveness service; saved requests store the image and enroll a face in the search index.
 
-Mitigation: Use it only with clear consent from the person in the image and confirm that the deployment meets applicable biometric, privacy, and retention requirements.
+Mitigation: Use an API key with only the access needed, review Didit's data handling for your use case, and set save_api_request=false when storage and enrollment are not needed.
 
-Risk: API requests may be saved by the provider by default.
+Risk: The security review is partial because some local references could not be resolved, and the skill does not declare its tool scope.
 
-Mitigation: Set save_api_request=false unless retention is explicitly required and approved.
-
-Risk: vendor_data can carry identifying information if callers pass personal data.
-
-Mitigation: Avoid personal or directly identifying values in vendor_data; use scoped opaque identifiers when session tracking is needed.
-
-Risk: The Didit API key grants access to account capabilities and request history.
-
-Mitigation: Restrict access to DIDIT_API_KEY, store it in a secret manager, rotate it when exposed, and limit account permissions where available.
+Mitigation: Review the complete skill and script behavior, and confirm the API key's permissions before deployment.
 
 ## Reference(s):
 
+- [Didit Passive Liveness API Reference](https://docs.didit.me/standalone-apis/passive-liveness)
+- [Didit Liveness Feature Guide](https://docs.didit.me/core-technology/liveness/overview)
 - [Didit Documentation](https://docs.didit.me)
-- [Didit Passive Liveness API](https://docs.didit.me/standalone-apis/passive-liveness)
-- [Didit Liveness Overview](https://docs.didit.me/core-technology/liveness/overview)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+**Output Type(s):** [API calls, Code, Shell commands, Guidance]
 
-**Output Format:** [Markdown with Python, TypeScript, shell command, and JSON examples]
+**Output Format:** [Markdown documentation with Python and TypeScript examples and JSON response shapes]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires DIDIT_API_KEY and a supported single-face image file.]
+**Other Properties Related to Output:** [Includes request and response examples, setup instructions, and result-handling guidance.]
 
 ## Skill Version(s):
 
-1.2.0 (source: frontmatter and server release)
+1.4.0 (source: release evidence and frontmatter)
 
 ## Ethical Considerations:
 

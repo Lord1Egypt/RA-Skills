@@ -32,7 +32,10 @@ PARTIAL_THRESHOLD = 0.25
 _DEFAULT_CONFIG = {
     "sufficient_threshold": SUFFICIENT_THRESHOLD,
     "partial_threshold": PARTIAL_THRESHOLD,
-    "remove_unsupported": True,       # 默认剔除无源论断
+    # V2.1 起默认改为标注保留：无源不等于假，小众真相常无源。
+    # 从黑盒剔除改为显式标注，让用户自行判断（诚实度即差异化）。
+    "remove_unsupported": False,      # False=标注 [无源] 保留；True=剔除
+    "mark_unsupported": True,         # 无源论断前加 [无源] 标记
     "min_claim_length": 8,            # 短于此字符数的论断不核查（通常是衔接句）
 }
 
@@ -281,9 +284,15 @@ def fact_check(
         label, sim, evidence = _check_single_claim(claim, source_sentences, cfg)
 
         kept = True
-        if label == "unsupported" and cfg.get("remove_unsupported", True):
-            kept = False
-            removed.append(claim)
+        # V2.1：无源论断默认标注保留（mark_unsupported），仅在显式要求时剔除
+        marked_claim = claim
+        if label == "unsupported":
+            if cfg.get("remove_unsupported", False):
+                kept = False
+                removed.append(claim)
+            elif cfg.get("mark_unsupported", True):
+                # 标注保留：在论断前加 [无源] 供用户判断
+                marked_claim = f"[无源] {claim}"
 
         claims_result.append({
             "text": claim,
@@ -291,10 +300,11 @@ def fact_check(
             "similarity": round(sim, 3),
             "evidence": evidence[:200] if evidence else "",
             "kept": kept,
+            "marked_text": marked_claim,
         })
 
         if kept:
-            kept_parts.append(claim)
+            kept_parts.append(marked_claim)
 
     # 重新拼接保留的论断
     cleaned = "\n".join(kept_parts)
@@ -346,6 +356,9 @@ def format_fact_check_report(result: Dict[str, Any]) -> str:
         lines.append(f"\n已移除无源论断 {len(result['removed_claims'])} 条：")
         for rc in result["removed_claims"][:3]:
             lines.append(f"  · {_strip_citation_markers(rc)[:80]}")
+    elif unsupported > 0:
+        # V2.1：标注保留模式——告知用户无源论断已标注进正文
+        lines.append(f"\n{unsupported} 条无源论断已标注 [无源] 保留在正文中（无源不等于假，请自行判断）")
 
     # 引用清单
     lines.append(f"\n引用清单（{result['source_count']} 个来源）：")

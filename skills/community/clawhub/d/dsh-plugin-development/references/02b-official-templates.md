@@ -3,7 +3,7 @@
 > **文件来源**：本文件由 `02-templates.md` 拆分而来，正文为原文的**逐行搬迁**，未做改写。
 > **本册性质**：**全部是上游一手素材原文** —— 性质不一：既有官方文档的**逐字摘录（属权威原文）**，也有调研期写下的**粗笔记（仅备查）**。**读某一段前，务必连带读该段开头的取材说明**，那是判断这段能信多少的依据。
 > **不要整读**：先 `grep -n '^#{1,2} '` 拿小节清单，再只读需要的那一节。本技能面向任务的整理稿见 `02-templates.md`。
-> **快照警告**：本文件是 DSH 插件知识的**冻结快照**（基线 `dsh-v0.2.2-alpha.2` / commit `f3803c9697`，2026-10-28），其中的**接口名级事实可能已过时**。
+> **快照警告**：本文件是 DSH 插件知识的**冻结快照**（基线 `dsh-v0.2.2-rc.5` / commit `9c2670d3bc`，2026-11-18），其中的**接口名级事实可能已过时**。
 > **写代码前先核验**：`bash scripts/dsh-api-probe.sh <DSH 仓库路径>`（退出码 1 = 有 STALE，**不要直接照抄**）。
 > **分级与核验规则**：`references/00-version-gate.md`、逐条登记 `references/api-claims.md`。
 
@@ -920,7 +920,7 @@ export function AppearanceRow({ t, setTheme, useStore }: AppearanceRowComponentP
 | `configForms` | 客户端设置表单的读 / 写面（`get<T>(entryId)` → `getSnapshot` / `subscribe` / `set` / `unset` / `mutate`） | `ui-theme` |
 
 > 🔴 **本表最后一行 2026-09-30 更正**：原先记的是 **`settingsScope`** —— 该客户端服务随 `0.1.7-rc.1` 的「设置机制重做」**已被移除**（新树全树 **0 命中**），继任者是 **`configForms`**。
-> 实测依据：`packages/client/ui-theme/src/client/index.ts:587` 的 `inject = ['slots', 'locale', 'remote', 'configForms']`、`:599` 的 `ctx.configForms.get<ThemeSettings>(ns)`。
+> 实测依据：`packages/client/ui-theme/src/client/index.ts:595` 的 `inject = ['slots', 'locale', 'remote', 'configForms']`、`:607` 的 `ctx.configForms.get<ThemeSettings>(ns)`。
 > 其余各行经同轮复核**仍然有效**。
 
 **宿主事件名（`ctx.on` 实证）**：`webserver/index-inject`（注入页面 HTML）、`theme/change`（自定义事件示例）。
@@ -932,7 +932,7 @@ export function AppearanceRow({ t, setTheme, useStore }: AppearanceRowComponentP
 ## 附：官方 UI 插槽名（**节选 40 余个**，实测提取）
 
 > ⚠️ **这不是全清单。** 本表由 `grep -rhoE "slots\.(inject|register)\(\s*'[^']+'" packages/*/*/src` 提取，因此**天然抓不到内建键**（如 `root` 是用 `renderSlot('root')` 渲染的）。
-> 对基线 `dsh-v0.2.2-alpha.2` 的声明侧复核结果：**148 个键**（并集 **150** 个；剔除 **44** 个测试专用键后**约 106 个公开可用**）—— 2026-09-23 修好抽取器两处漏抽后重抽、2026-09-25 随 rc.2 推进 **+3 / −0**、2026-09-29 随 0.2.0-rc.1 推进 **+0 / −0**、2026-09-30 随 0.2.0-rc.2 推进 **+1 / −0**、2026-10-04 随 0.2.1-alpha.1 推进 **+2 / −0**、2026-10-09 随 0.2.1-alpha.2 推进 **+2 / −0**、**2026-10-15 随 0.2.1-alpha.3 推进 +5 / −1**（新增 `conversation.chat.message.images` / `conversation.chat.user.images` / `conversation.hero.options` / `conversation.user.text.node` / `workspace.toast`，**旧键 `conversation.message.images` 改名走掉**）、**2026-10-16 随 0.2.1-alpha.4 推进 +1 / −0**（新增键 `plugins.tab`）、**2026-10-17 随 0.2.1-rc.2 推进 +1 / −0**（新增键 `conversation.input.model.label`）；**2026-10-24 随 0.2.1-rc.3 推进 +3 / −0**（`slot-catalog.ts` **100 → 103**；新增键 = `conversation.session.header.views.actions` / `sidebar.panellist.actions` / `sidebar.right.tab.guide.actions`）；**2026-10-29 随 0.2.2-alpha.2 推进 +3 / −0**（`slot-catalog.ts` **103 → 106**；新增键 = `conversation.chat.text-interaction` / `conversation.chat.user.before` / `sidebar.session.row.trailing`）（旧值 96/99/约81 系低估）。另有**客户端半侧的权威口径**：上游生成产物 `packages/extensions/cordis-client-runner/src/client/slot-catalog.ts` 现有 **106 个**，抽取器 A2 段与它自动交叉核对，**漏抽量须为 0**。完整清单与可复现的抽取命令见 `14-inbound-http-and-timers.md` 与 `scripts/extract_slots.py`；注册签名（组件是第二个参数）与「未声明 slot 报什么错」也记在那里。
+> 对基线 `dsh-v0.2.2-rc.5` 的声明侧复核结果：**166 个键**（并集 **168** 个；剔除 **52** 个测试专用键后**约 116 个公开可用**）—— 2026-09-23 修好抽取器两处漏抽后重抽、2026-09-25 随 rc.2 推进 **+3 / −0**、2026-09-29 随 0.2.0-rc.1 推进 **+0 / −0**、2026-09-30 随 0.2.0-rc.2 推进 **+1 / −0**、2026-10-04 随 0.2.1-alpha.1 推进 **+2 / −0**、2026-10-09 随 0.2.1-alpha.2 推进 **+2 / −0**、**2026-10-15 随 0.2.1-alpha.3 推进 +5 / −1**（新增 `conversation.chat.message.images` / `conversation.chat.user.images` / `conversation.hero.options` / `conversation.user.text.node` / `workspace.toast`，**旧键 `conversation.message.images` 改名走掉**）、**2026-10-16 随 0.2.1-alpha.4 推进 +1 / −0**（新增键 `plugins.tab`）、**2026-10-17 随 0.2.1-rc.2 推进 +1 / −0**（新增键 `conversation.input.model.label`）；**2026-10-24 随 0.2.1-rc.3 推进 +3 / −0**（`slot-catalog.ts` **100 → 103**；新增键 = `conversation.session.header.views.actions` / `sidebar.panellist.actions` / `sidebar.right.tab.guide.actions`）；**2026-10-29 随 0.2.2-alpha.2 推进 +3 / −0**（`slot-catalog.ts` **103 → 106**；新增键 = `conversation.chat.text-interaction` / `conversation.chat.user.before` / `sidebar.session.row.trailing`）**2026-11-04 随 0.2.2-alpha.3 推进 +3 / −0**（声明侧 **148 → 151**、并集 **150 → 153**、公开约 **106 → 109**；新增键 = `contextMenu.content` / `contextMenu.icon` / `settings.section.icon`）（旧值 96/99/约81 系低估）；**2026-11-12 随 0.2.2-rc.2 推进 +13 / −0**（声明侧 **151 → 164**、并集 **153 → 166**、公开约 **109 → 114**、测试专用 **44 → 52**）。**2026-11-13 随 0.2.2-rc.3 推进 +2 / −0**（声明侧 **164 → 166**、并集 **166 → 168**、公开约 **114 → 116**、测试专用 **52 → 52**；新增键 = `sidebar.session.action` / `workspace.picker.directoryFlow`）。另有**客户端半侧的权威口径**：上游生成产物 `packages/extensions/cordis-client-runner/src/client/slot-catalog.ts` 现有 **116 个**，抽取器 A2 段与它自动交叉核对，**漏抽量须为 0**（2026-11-18 随 `0.2.2-rc.4` → `-rc.5` 连续两轮重抽：声明侧 166 / 并集 168 / catalog 116，三项与上一基线**完全一致**）。完整清单与可复现的抽取命令见 `14-inbound-http-and-timers.md` 与 `scripts/extract_slots.py`；注册签名（组件是第二个参数）与「未声明 slot 报什么错」也记在那里。
 > 用法：`ctx.slots.inject('<插槽名>', () => ctx.slots.register({ name: '<插槽名>' }, 组件))`
 
 ### 会话 / 对话区（conversation.*）
@@ -951,9 +951,9 @@ export function AppearanceRow({ t, setTheme, useStore }: AppearanceRowComponentP
 | `conversation.input.plan` | 输入区计划 |
 | `conversation.hero.workspace` | 空态主视觉 / 工作区 |
 | `conversation.hero.workspace.directoryFlow` | 空态目录选择流 |
-| `conversation.chat.message.images` | `0.2.1-alpha.3` 起：助手消息里**一组连续持久化图片**的渲染器（`single` / `session`；`packages/client/ui-chat/src/client/contract/slots.ts:456`）。⚠️ **旧键 `conversation.message.images` 已在 `0.2.1-alpha.3` 改名走掉** |
+| `conversation.chat.message.images` | `0.2.1-alpha.3` 起：助手消息里**一组连续持久化图片**的渲染器（`single` / `session`；`packages/client/ui-chat/src/client/contract/slots.ts:472`）。⚠️ **旧键 `conversation.message.images` 已在 `0.2.1-alpha.3` 改名走掉** |
 | `conversation.chat.user.images` | `0.2.1-alpha.3` 新增：**用户消息**里的图片（含待发送与本地回显预览），可与输出侧图片**分别替换**（`single` / `session`；`…/ui-chat/src/client/contract/slots.ts:417`） |
-| `conversation.user.text.node` | `0.2.1-alpha.3` 新增：业务方自有的**纯 JSON 文本节点**内联渲染器（`keyed` / `session`；`packages/client/ui-conversation/src/client/contract/slots.ts:214`） |
+| `conversation.user.text.node` | `0.2.1-alpha.3` 新增：业务方自有的**纯 JSON 文本节点**内联渲染器（`keyed` / `session`；`packages/client/ui-conversation/src/client/contract/slots.ts:221`） |
 | `conversation.hero.options` | `0.2.1-alpha.3` 新增：新建会话行里**右对齐的紧凑选项位**（排在工作区与预设控件之后，仅在有会话时渲染；`list` / `session`；`…/ui-conversation/src/client/contract/slots.ts:268`） |
 | `conversation.trajectory.images` | 轨迹里的图片 |
 | `conversation.session.header.corner` | 会话头部角落 |
@@ -1083,20 +1083,19 @@ my-plugin/
 
 ---
 
-## 附：🔴 上游**随产品自带**的开发 skill 与官方模板（`0.1.7-rc.1` 新增，`0.2.0-rc.1` / `0.2.1-alpha.1` 两次扩员 —— 别错过）
+## 附：🔴 上游**随产品自带**的开发 skill 与官方模板（`0.1.7-rc.1` 引入，`0.2.2-rc.2` 重组为**单一** skill —— 别错过）
 
 > 本节由 **2026-09-23 复核补入**：本轮首轮六维度差异**整块漏掉了它**。重要性与本册同级 —— **上游现在自己发布了一套插件开发技能与模板**，随 `dsh-agent-preset` 包装到用户机器上。
 
-**位置**：`packages/preset/agent-preset/skills/`（旧基线**完全没有**该目录；`0.1.7-rc.1` 由 `d1e22a7e24 feat(preset): declare Agent compositions in profile YAML (#4569)` 一次引入 15 个文件，`0.2.0-rc.1` 再增至 17 个文件，`0.2.1-alpha.1` 再增至 **21 个文件 / 4 个 skill**）
+**位置**：`packages/preset/agent-preset/skills/`（`0.1.7-rc.1` 首次引入 **15 文件 / 3 skill**；`0.2.1-alpha.1` 增至 **21 文件 / 4 skill**；**`0.2.2-rc.2` 起四个 skill 合并为 1 个 `dsh-doc`，43 文件**）
 
 | 官方 skill | 覆盖什么 | 规模 |
 |---|---|---|
-| **`cordis-plugin-development`** | **持久化插件 / MCP 连接的编写、安装、配置、调试** —— 本册的官方对应物。流程：先写进工作区 → 用 `plugin_manager` 装 → **拿插件本身当第一版预览**（首装前不得造预览 HTML / mock 外壳 / 截图脚本）→ 验证 → 同插件内修缺陷 | `SKILL.md` + `references/{host-plugin,mcp-bundle,practices,ui-plugin,verification,user-actions}.md` + **`templates/{mcp,decoration}/`**（`user-actions.md` 为 **`0.2.0-rc.1` 新增**；**`0.2.1-alpha.1` 起两个模板各补 `icon.svg` + `locale/en.json`**） |
-| `agent-experience` | **怎么写「模型可见」的工具定义**：参数说明放参数上、每条事实只说一次、删掉模型能从调用结果学到的约束、优先有界输出（给 id / 路径让模型再取）、把可能的邻近上下文随结果一起给并**显式标注截断**；也讲技能与上下文加载、以及「省上下文只有不导致更多搜索/重复读才算赚」。**`0.2.0-rc.1` 新增** | `SKILL.md`(30 行) |
-| `cordis-composition-reference` | **Loader YAML 方言**（`insert` / 按 id `override` / `group` / `disabled` / `isolate` / `!!js`）+ **可安装包清单** | `SKILL.md`(29 行) + `packages/preset/agent-preset/skills/cordis-composition-reference/references/packages.md`(**501 行**) |
-| `editing-cordis-compositions` | agent preset 的改动流程 | `SKILL.md`(84 行) |
+| **`dsh-doc`**（**`0.2.2-rc.2` 起唯一**） | **取代原 `cordis-plugin-development` / `editing-cordis-compositions` / `cordis-composition-reference` / `agent-experience` 四个 skill** —— 旧名已从 skill 目录移除，**按旧名加载会失败**。内容按需拆分到 `references/`：持久化插件与 MCP 连接的编写/安装/配置/调试（`plugin-development.md`、`host-plugin.md`、`mcp-bundle.md`、`practices.md`、`ui-plugin.md`、`verification.md`、`user-actions.md`）、Loader YAML 方言与可安装包清单（`composition-reference.md`、`compositions.md`、`packages.md`）、**怎么写模型可见的工具定义**（`tool-design.md`，原 `agent-experience`）、以及新增的 `configuration.md` / `plugin-details.md` / `locate-docs.md` / `upgrading.md` / `artwork.md` | `SKILL.md`（41 行）+ **16 篇 `references/`** + **`templates/{mcp,decoration}/`**（各含 `cordis.patch.yml` / `package.json` / `index.js` / `client.js` / `icon.svg` / `docs/DETAIL.md` / `docs/preview.svg` / 七种语言的 `locale/*.json`） |
 
-### 🔴 `0.2.0-rc.1` 新增的官方约定：**一个操作，两个调用者**（`packages/preset/agent-preset/skills/cordis-plugin-development/references/user-actions.md`）
+**旧路径 → 新路径**（官方 `docs/upgrade-guide/v0.2.2-rc.1/dsh-doc-skill/` 的对照表，这里只留最常查的几条）：`cordis-plugin-development/SKILL.md` → `dsh-doc/references/plugin-development.md`；`…/references/` → `dsh-doc/references/`；`…/templates/` → `dsh-doc/templates/`；`editing-cordis-compositions/SKILL.md` → `dsh-doc/references/compositions.md`；`cordis-composition-reference/SKILL.md` → `dsh-doc/references/composition-reference.md`；`agent-experience/SKILL.md` → `dsh-doc/references/tool-design.md`。**源码 checkout 里的文档 skill 另有一处改名**：`.agents/skills/dsh-doc` → **`.agents/skills/dsh-doc-writing`**（名字变为 `dsh-doc-writing`）。
+
+### 🔴 `0.2.0-rc.1` 新增的官方约定：**一个操作，两个调用者**（`packages/preset/agent-preset/skills/dsh-doc/references/user-actions.md`）
 
 上游第一次把「**插件 UI 的操作也该暴露给 agent**」写成正式约定。三条要点（原文要点，非逐字翻译）：
 
@@ -1106,7 +1105,7 @@ my-plugin/
 
 **怎么验**（原文的 Verification 段）：对两者都可用的操作，**只经工具**执行一遍，把状态变化、返回值、失败与 UI 动作**逐项对照**；对 user-only 的动作，**反过来验证 agent 确实无法执行或授权**。
 
-### 🔴 `0.2.1-alpha.1` 新增的官方约定：**显示元数据与图标**（上游 `packages/preset/agent-preset/skills/cordis-plugin-development/references/host-plugin.md` 的 §*Display metadata and icon*）
+### 🔴 `0.2.1-alpha.1` 新增的官方约定：**显示元数据与图标**（上游 `packages/preset/agent-preset/skills/dsh-doc/references/host-plugin.md` 的 §*Display metadata and icon*）
 
 上游第一次把「**插件该长什么样**」写成安装前必须完成的检查清单 —— 依据是 **Plugin Manager 与 Settings 会在不激活插件的前提下**直接读 `locale/*.json` 里的 `meta.title` / `meta.description` 与 `./icon`。四条要点（原文要点，非逐字翻译）：
 
@@ -1119,13 +1118,13 @@ my-plugin/
 
 **怎么验**（原文的 Verification 段）：装完后在**包详情与插件行**核对标题/描述与**渲染出的图标**（含用户语言）；查元数据诊断与非预期回落。**没有浏览器控制时，只能检查已安装资源并如实报告「渲染未核验」—— 不得仅凭安装成功就宣称视觉通过。**
 
-**官方模板** = 本册 `assets/minimal-*` 的官方对应物，`0.2.1-alpha.1` 起两个模板都带显示资源：`templates/mcp/`（`cordis.patch.yml` 8 行 + `package.json` **9** 行 + `icon.svg` 5 + `locale/en.json` 6）、`templates/decoration/`（`client.js` 22 + `cordis.patch.yml` 3 + `index.js` 2 + `package.json` **21** + `icon.svg` 3 + `locale/en.json` 6）。
+**官方模板** = 本册 `assets/minimal-*` 的官方对应物。**`0.2.2-rc.2` 起两个模板都扩成完整清单**：`templates/mcp/` 与 `templates/decoration/` 各含 `cordis.patch.yml` / `package.json` / 入口脚本（mcp 无入口；decoration 有 `index.js` + `client.js`）/ `icon.svg` / **`docs/DETAIL.md` + `docs/preview.svg`**（插件详情页的说明与预览图）/ **七种语言的 `locale/{de,en,es,fr,ja,pt,ru}.json`**。本册 `assets/minimal-*` 只带最小骨架（`cordis.patch.yml` + `package.json` + README），**显示资源与多语言故意不内置**：它们有优雅回落，不是装得上与否的必要条件。
 
 > 🔴 **用法的硬约束**（官方 `SKILL.md` 原文）：这些文件在 **Desktop 里位于 `app.asar` 内**，只有 Host 自身的文件读取能打开 —— `ls` / `cat` / `cp` / `cmp`、glob、原生 ripgrep、`node`、pnpm **全部失败**。必须先**用文件读写工具把模板复制进工作区**再装，**绝不就地安装或就地做语法检查**。
 
 ### 两条 agent 侧能力面（本册此前完全没写）
 
-**1. `plugin_manager` 工具 —— agent 自己就能装插件，不必走 CLI**（`packages/boot/plugin-manager/src/tools.ts:20`）
+**1. `plugin_manager` 工具 —— agent 自己就能装插件，不必走 CLI**（`packages/boot/plugin-manager/src/tools.ts:91`）
 
 - `action`（必填）**共 8 个**：`list_plugins` / `list_bundles` / `set_plugin` / `set_bundle` / `install_bundle` / `remove_bundle` / `list_version_exemptions` / `set_version_exemption`；
 - `target` 含义随 action 变（插件条目 id / bundle 包名 / 安装 spec）；`enabled` 用于 set；`approvedBuilds` **只在用户显式同意**跑安装脚本时传；`registry` 指定 npm 源；`offset`/`limit` 分页（1–100，默认 25）；
@@ -1133,9 +1132,9 @@ my-plugin/
 - 🔴 `set_version_exemption` 是**风险操作**：官方文案要求「先警告用户可能的**崩溃与数据丢失**、并取得对该**确切插件与运行时版本**的显式许可」—— 通用安装许可**不算**。
 - → 与 `09-agent-pairing.md` 直接相关：结对时 agent 装插件走这条**或** CLI（`dsh plugin --profile <n> add <包>`），而不是让用户手动拷文件。
 
-**2. `cordis_inspect_*` 三件套**（`packages/extensions/tool-cordis/src/index.ts:23,42`）：`cordis_inspect_list`（列 Provider/method）→ `cordis_inspect_query`（按 method 查）。可查 Service 方法、Event 模式、**已挂载插件的 Config JSON Schema**（`Config.listConfigs`：按 `name` 过滤分页目录，再查该 `entry` id → 返回 `packageDir`）、本 agent 可调用的 Tool、实时 Client Slots 与 Theme token。
+**2. `cordis_inspect_*` 三件套**（`packages/extensions/tool-cordis/src/index.ts:23,44`）：`cordis_inspect_list`（列 Provider/method）→ `cordis_inspect_query`（按 method 查）。可查 Service 方法、Event 模式、**已挂载插件的 Config JSON Schema**（`Config.listConfigs`：按 `name` 过滤分页目录，再查该 `entry` id → 返回 `packageDir`）、本 agent 可调用的 Tool、实时 Client Slots 与 Theme token。
 
-- ⚠️ **没有裸 `cordis_inspect`**：`docs/subsystems/slots.zh.md:202` 与历史 Agent Notes 里的 `cordis_inspect what:"client"` / `what:"api"` 是**旧简写**，照抄会找不到工具（`04` / `05` 已改为 `cordis_inspect_query`）。
+- ⚠️ **没有裸 `cordis_inspect`**：`docs/subsystems/slots.zh.md:223` 与历史 Agent Notes 里的 `cordis_inspect what:"client"` / `what:"api"` 是**旧简写**，照抄会找不到工具（`04` / `05` 已改为 `cordis_inspect_query`）。
 - `Config.listConfigs` 返回的 `packageDir` 是**权威包目录**：官方强调**不要**从 `$DSH_PROFILE_DIR` 猜路径（内置包解析自 dsh 安装目录，profile 装的 bundle 解析自 profile）。
 - 顺带：`DSH_PROFILE`（profile 名）/ `DSH_PROFILE_DIR`（其目录，`node_modules` 只含 profile 装的 bundle）在 **profile 启动的 harness 里每次 shell 调用都有**，不带 profile 启动时**不存在**；Bash 读 `$DSH_PROFILE`、PowerShell 读 `$env:DSH_PROFILE`。
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Manage Volcengine's AI-native BaaS platform, Supabase edition/AIDAP, by helping agents inspect, create, configure, and troubleshoot workspaces, branches, computes, SQL, Auth, Realtime, Edge Functions, Storage, Pages, API keys, and connection details through byted-supabase-cli.
+Manage Volcengine's Supabase-compatible AIDAP platform through its byted-supabase-cli, including workspaces, database operations, authentication, storage, and deployment.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Developers and operators use this skill to manage Volcengine Supabase/AIDAP backend resources and database workflows from an agent session. It supports operational inspection, provisioning, schema changes, security checks, app integration, and deployment support for Volcengine-backed applications.
+Developers and engineers use the skill to create, inspect, and manage Volcengine Supabase or AIDAP resources and to get operational guidance for those services.
 
 ### Deployment Geography for Use:
 
@@ -22,48 +22,43 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: High-privilege dataplane code can send service-role credentials to arbitrary or plaintext endpoints.
+Risk: The security review reports serious credential transport and authorization weaknesses.
 
-Mitigation: Install only in trusted environments, verify endpoints before use, require HTTPS, avoid unverified SUPABASE_URL values, and prefer the official CLI login or profile flow.
+Mitigation: Follow the security guidance and avoid installation until these issues are addressed.
 
-Risk: Workspace stop and delete operations can cause service outage or irreversible resource loss.
+Risk: The security review reports weaknesses in the database-operation guidance.
 
-Mitigation: Require explicit user confirmation, restate the operational impact, and verify the target workspace or branch identifier before executing destructive commands.
+Mitigation: Review and resolve the database-operation guidance before using the skill.
 
-Risk: External packages or demo archives may introduce supply-chain exposure.
+Risk: Two referenced guides were only partially inspected, so the scan does not establish that the remaining material is safe.
 
-Mitigation: Pin or review external packages and inspect demo archives before running or deploying them.
+Mitigation: Complete review of the partially inspected material before installation.
 
 ## Reference(s):
 
-- [Volcengine Homepage](https://www.volcengine.com/)
-- [Volcengine AIDAP Feature Changelog](https://www.volcengine.com/docs/87275/2105759?lang=zh)
-- [Volcengine AIDAP API List](https://www.volcengine.com/docs/87275/2105871?lang=zh)
-- [Volcengine Database Documentation](https://www.volcengine.com/docs/87275/2385100?lang=zh)
-- [Volcengine Authentication Documentation](https://www.volcengine.com/docs/87275/2277072?lang=zh)
-- [Volcengine Realtime Documentation](https://www.volcengine.com/docs/87275/2277058?lang=zh)
-- [Volcengine Edge Function Documentation](https://www.volcengine.com/docs/87275/2288709?lang=zh)
-- [Volcengine Storage Documentation](https://www.volcengine.com/docs/87275/2277057?lang=zh)
-- [Command Reference](references/tool-reference.md)
-- [Security Guide](references/security-guide.md)
-- [RLS Guide](references/rls-guide.md)
-- [Workflows](references/workflows.md)
-- [Application Integration Guide](references/app-integration-guide.md)
-- [IAM Permission Guide](references/iam-permission-guide.md)
+- [Volcengine Database documentation](https://www.volcengine.com/docs/87275/2385100?lang=zh)
+- [Volcengine Authentication documentation](https://www.volcengine.com/docs/87275/2277072?lang=zh)
+- [Volcengine Realtime documentation](https://www.volcengine.com/docs/87275/2277058?lang=zh)
+- [Volcengine Edge Function documentation](https://www.volcengine.com/docs/87275/2288709?lang=zh)
+- [Volcengine release notes](https://www.volcengine.com/docs/87275/2105759?lang=zh)
+- [Security guide](artifact/references/security-guide.md)
+- [Row level security guide](artifact/references/rls-guide.md)
+- [CLI tool reference](artifact/references/tool-reference.md)
+- [Application integration guide](artifact/references/app-integration-guide.md)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+**Output Type(s):** [Text, Shell commands, SQL, Code, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown guidance with inline shell commands, SQL, configuration snippets, and code examples]
+**Output Format:** [Markdown with command, SQL, and code snippets]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May execute or propose byted-supabase-cli commands and may write supporting files when an agent has the required tool permissions.]
+**Other Properties Related to Output:** [May include operational results, configuration guidance, and generated TypeScript types.]
 
 ## Skill Version(s):
 
-2.3.3 (source: frontmatter and server release metadata)
+2.3.4 (source: server-resolved release)
 
 ## Ethical Considerations:
 

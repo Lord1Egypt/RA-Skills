@@ -1,6 +1,6 @@
 ## Description:
 
-当用户需要做社媒创作者研究、小红书博主画像、抖音达人画像、快手达人画像、账号资料、近期内容复盘、合作对象初筛或对标账号观察时使用。来自 SocialDataX 社媒数据助手。
+当用户需要做社媒创作者研究、小红书博主画像、抖音达人画像、快手达人画像、账号资料、近期内容复盘、合作对象初筛或对标账号观察时使用。来自社媒数据助手 SocialDataX。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-外部用户可用此技能在小红书、抖音和快手搜索创作者、查看账号资料与近期内容，并整理合作初筛或对标研究所需的资料和互动信号。
+External users and creator research teams use this skill to find and review creators on Xiaohongshu, Douyin, and Kuaishou, including profile research, recent content review, partnership screening, and account benchmarking.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security evidence rates the skill suspicious with medium confidence because its examples use a changing, unpinned CLI package for commands that handle credentials; the scan was partial.
+Risk: Repeated use of the changeable socialdatax-skills@latest package version creates supply-chain and version-drift risk.
 
-Mitigation: Use a reviewed, pinned CLI release for credential-related commands, and inspect release changes before upgrading.
+Mitigation: Review the package and use a reviewed, fixed version instead of @latest when installing or running the CLI.
+
+Risk: The security scan was partial, so some evidence is incomplete.
+
+Mitigation: Review the skill and its CLI package before use, and reassess the risk when complete scan evidence is available.
 
 ## Reference(s):
 
-- [SocialDataX 创作者研究 on ClawHub](https://clawhub.ai/devinchen2014/skills/socialdatax-creator-research)
-- [SocialDataX AI and API key information](https://socialdatax.com/ai?from=clawhub)
+- [SocialDataX API access and key management](https://socialdatax.com/ai?from=clawhub)
+- [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/socialdatax-creator-research)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, JSON]
+**Output Type(s):** [Analysis, JSON, Text, Guidance]
 
-**Output Format:** [Markdown creator research summaries with structured account and content details; source responses are JSON.]
+**Output Format:** [Structured creator and content data summarized as concise text or Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include candidate accounts, profile details, recent posts, and engagement signals; available fields depend on platform results.]
+**Other Properties Related to Output:** [Creator profiles, recent content evidence, engagement signals, and follow-up research angles.]
 
 ## Skill Version(s):
 
-1.0.6 (source: server-resolved ClawHub release metadata)
+1.0.7 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Helps users rebuild Clay enrichment tables in Cargo by mapping columns to actions, estimating costs before runs, checking parity, and expressing the result as version-controlled code.
+Rebuilds a Clay table in Cargo by mapping enrichment columns to Cargo actions, estimating costs, checking results against Clay, and expressing the workflow as code.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers, GTM engineers, and revenue operations teams use this skill to translate an existing Clay table into Cargo actions, compare sample results and costs, and prepare a reviewable Cargo project.
+GTM engineering and revenue operations teams use this skill to migrate an existing Clay enrichment table to Cargo. It guides column mapping, cost estimation, sample runs, and parity checks before the workflow is kept as code.
 
 ### Deployment Geography for Use:
 
@@ -22,43 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Contact records may be sent to Cargo and the selected enrichment providers during a migration run.
+Risk: The provided security assessment rates the release suspicious, citing an unpinned installation command and reported GitHub account activity; referenced files were missing, so scan coverage is incomplete.
 
-Mitigation: Confirm those services may receive the data before running actions, and begin with a small sample.
+Mitigation: Review the skill and referenced code before installation, and check the package source and version before installing.
 
-Risk: Enrichment costs grow with the selected actions and number of rows.
+Risk: Migration workflows may send contact data to enrichment providers.
 
-Mitigation: Run a 10–20 row sample, report its measured cost and fill rates, then obtain approval for a full run using the row count and estimated credits.
+Mitigation: Review provider data sharing and obtain authorization before sending contact records.
 
-Risk: The installed CLI and any additional downloaded skills are outside this bundled instruction review.
+Risk: The security guidance calls out a reported GitHub starring action.
 
-Mitigation: Review and pin dependencies and additional skills where possible.
-
-Risk: A GitHub star is an endorsement associated with the user's account.
-
-Mitigation: Ask once and act only after explicit user consent.
+Mitigation: Only star a repository after the user explicitly authorizes the action, as the skill instructs.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/cargo-ai/skills/clay-to-cargo)
-- [Cargo GTM Skills homepage](https://github.com/getcargohq/gtm-skills)
-- [ClayMate Lite column schema export](https://github.com/GTM-Base/claymate-lite)
-- [Complete Clay to Cargo migration recipe](https://github.com/getcargohq/cargo-skills/blob/main/cargo-gtm/recipes/clay-to-cargo.md)
-- [Cargo project skill](https://github.com/getcargohq/cargo-skills/blob/main/cargo-project/SKILL.md)
+- [Cargo GTM Skills repository](https://github.com/getcargohq/gtm-skills)
+- [ClayMate Lite column schema exporter](https://github.com/GTM-Base/claymate-lite)
+- [Cargo Clay to Cargo migration recipe](https://github.com/getcargohq/cargo-skills/blob/main/cargo-gtm/recipes/clay-to-cargo.md)
+- [Cargo Project skill](https://github.com/getcargohq/cargo-skills/blob/main/cargo-project/SKILL.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
 
-**Output Format:** [Markdown with tables, inline shell commands, and JSON examples]
+**Output Format:** [Markdown with tables, JSON examples, and inline shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include a sample migration plan and per-column mapping; run costs depend on selected actions and row count.]
+**Other Properties Related to Output:** [Commands and configuration examples for mapping, sampling, and comparing a Clay table migration.]
 
 ## Skill Version(s):
 
-1.0.4 (source: frontmatter)
+1.1.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

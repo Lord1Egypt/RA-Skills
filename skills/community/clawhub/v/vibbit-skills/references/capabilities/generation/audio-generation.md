@@ -2,6 +2,8 @@
 
 Use [generate_audio](../../api/generate_audio.md) for speech, music, effects, or a requested mixture. For speech, establish the exact script, language, voice character, emotion, pace, and meaningful pauses. For music, specify mood, style, instrumentation, tempo, duration, and vocals. For effects, describe the source, action, distance, and spatial change. For mixtures, distinguish foreground sound, timing, and relative levels.
 
+For existing speech, vocal references, music, or effects, use [material reuse](../../resources/materials.md) and listen to selected audio. Adopt complete speech directly when it fits the current lines/voice; a style reference uses its real audio material_id or URL to generate the current script under the reference rules below. Selected library music/effects intended as independent tracks take precedence over the combined-audio default: prepare clean speech and mix the adopted tracks in cloud without duplicating music. An existing mix is not automatically separable into lossless stems. Honor explicit requests for new sound generation.
+
 ## Default for new digital human narration
 
 When creating digital human narration from a script, generate speech, continuous background music, and restrained effects together in one task. Effects should support meaningful moments, not every sentence. Explicit requests for speech only, separate stems, or preserving existing audio take precedence. Other audio tasks use their own requested sound design.

@@ -1,6 +1,6 @@
 ## Description:
 
-Anthropic's latest Sonnet model for reasoning, code generation, and complex tool orchestration, with text, image, and video inputs.
+Use dLazy's Claude Sonnet 5 service for reasoning, coding, and complex tool orchestration, with text, image, and video inputs.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and other agent users can send prompts to dLazy's hosted Claude Sonnet service for reasoning, code generation, and tool-oriented assistance. The CLI can also pass image or video inputs.
+Developers and agents use this skill to send prompts, optionally with images or videos, to dLazy's hosted Claude Sonnet 5 service and receive generated text or media for reasoning and coding tasks.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The scan could not establish the CLI's exact authentication effects or package behavior, and flagged login and authentication setup that are not clearly connected to the skill's stated purpose.
+Risk: Prompts and supplied media are sent to dLazy's hosted service, and the partial security scan did not fully verify package behavior.
 
-Mitigation: Before installing, review the third-party CLI and its login/API-key setup, and confirm you intend to use the dLazy service.
-
-Risk: Prompts and local image or video files may be sent to dLazy's hosted service.
-
-Mitigation: Avoid sending sensitive prompts or media unless you are authorized to share them and have reviewed the service terms.
+Mitigation: Review the CLI package and service terms before sending sensitive data; protect the API key and rotate or revoke it when needed.
 
 ## Reference(s):
 
+- [ClawHub release page](https://clawhub.ai/dlazyai/skills/dlazy-claude-sonnet-5)
 - [dLazy service](https://dlazy.com)
-- [dLazy API key setup](https://dlazy.com/dashboard/organization/api-key)
-- [CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
-- [CLI project link from skill metadata](https://github.com/dlazy-ai/cli)
+- [CLI project page](https://github.com/dlazy-ai/cli)
+- [npm package](https://www.npmjs.com/package/@dlazy/cli)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Code, JSON]
+**Output Type(s):** [Text, JSON, Generated media files]
 
-**Output Format:** [Model-generated text or JSON in a JSON response envelope]
+**Output Format:** [JSON API response with generated text or media output references; optional saved asset files]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Supports prompt, image, and video inputs; can return results asynchronously or save result assets.]
+**Other Properties Related to Output:** [Accepts a prompt with optional image or video inputs; supports asynchronous jobs and optional local saving.]
 
 ## Skill Version(s):
 
-1.2.44 (source: server-resolved release metadata)
+1.2.47 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -1,0 +1,7 @@
+{
+  "slug": "de-armor",
+  "version": "2.1.2",
+  "scope": "distribution",
+  "description": "任务导向的回复校准：保住事实与条件，减少无效防御，补齐真正交付。带离线合同审查器、可复现案例和交互实验台。",
+  "note": "本文件仅供本地分发识别，不是 Agent Skills 标准字段，也不保证平台自动触发。标准入口为 SKILL.md。"
+}

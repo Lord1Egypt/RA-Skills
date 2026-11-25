@@ -1,6 +1,6 @@
 ## Description:
 
-Helps job seekers choose and rank the most suitable openings within one company using their resume and the job requirements.
+Screens one employer's campus recruiting and new-grad openings, recommends the strongest-fit roles, and explains exclusions using résumé-visible evidence.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Job seekers use the skill to compare openings at one company against their confirmed preferences and resume, then select and prioritize suitable roles with clear reasons for rejecting others.
+Students and new graduates use this skill to screen one employer's openings against their profile and résumé, rank eligible roles, and understand why other roles were excluded.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Resume and candidate profile details may be sent to the AI provider configured for the agent.
+Risk: The install instructions include an unpinned CLI command, which can change over time and create supply-chain risk.
 
-Mitigation: Share only information you are comfortable sending to that provider; the skill advises keeping profile files local.
+Mitigation: Review the install source and use a reviewed, pinned version when available, as the security guidance recommends.
 
-Risk: The security evidence is incomplete because one README check was only partly completed.
+Risk: Résumé text shared during screening is sent to the AI model or service configured for the agent session.
 
-Mitigation: Review the README and install only if the skill suits your needs.
+Mitigation: Leave out résumé details you are not willing to share with that provider.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/ekko237/skills/job-screening)
-- [Onboarding guide](references/onboarding.md)
-- [Opportunity scan guide](references/opportunity-scan.md)
-- [Candidate profile template](references/profile-template.md)
+- [README](README.md)
+- [First-use onboarding](references/onboarding.md)
+- [Opportunity scan](references/opportunity-scan.md)
+- [ClawHub listing](https://clawhub.ai/ekko237/skills/job-screening)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Guidance]
+**Output Type(s):** [Analysis, Guidance, Markdown]
 
-**Output Format:** [Markdown with ranked role recommendations, evidence-based rationale, and rejection explanations]
+**Output Format:** [Markdown with a ranked role shortlist, résumé-based rationale, risks, and screening exclusions]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Tailored to the candidate profile and the supplied openings; explains each screened-out role.]
 
 ## Skill Version(s):
 
-1.0.2 (source: SKILL.md frontmatter, server-resolved release metadata)
+1.0.3 (source: frontmatter, CHANGELOG)
 
 ## Ethical Considerations:
 

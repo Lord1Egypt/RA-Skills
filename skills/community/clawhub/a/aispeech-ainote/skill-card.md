@@ -1,6 +1,6 @@
 ## Description:
 
-Helps OpenClaw users access notes, todos, personal search, label knowledge bases, and hotwords for Aispeech office notebooks and recording cards.
+Connects OpenClaw with 思必驰 AI office notebooks and recording cards to manage notes, paper notebooks, todos, personal and label knowledge, and hotwords.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-OpenClaw users can find and summarize personal meeting notes, manage todos and labels, search their knowledge base, and manage hotwords for supported Aispeech office devices.
+Employees using 思必驰 AI office notebooks or recording cards can retrieve and manage notes, paper notebooks, and todos; search personal and label knowledge; and manage hotwords.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: A long-lived access token is stored in the OpenClaw environment and could expose personal notes and tasks if disclosed.
+Risk: The skill accesses personal notebook, note, and todo data using an authorization token.
 
-Mitigation: Limit access to ~/.openclaw/.env and grant only the note, todo, label, knowledge, and hotword scopes needed.
+Mitigation: Protect AIWORK_AUTH_TOKEN in the OpenClaw environment and grant only the scopes needed for the requested tasks.
 
-Risk: Delete and broad write actions can change or remove personal content without clear confirmation safeguards.
+Risk: The skill documents operations that delete notes, note groups, and todos.
 
-Mitigation: Confirm the exact items and intended changes with the user before deletes or broad writes.
+Mitigation: Confirm the target item and intended deletion before invoking a delete operation.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/fairylong/skills/aispeech-ainote)
-- [Aispeech office service](https://aiworks.cn)
-- [API reference](artifact/api_reference.md)
-- [API details](artifact/references/api-details.md)
+- [API Reference](api_reference.md)
+- [API Details](references/api-details.md)
+- [AIWorks](https://aiworks.cn)
+- [ClawHub Release](https://clawhub.ai/fairylong/skills/aispeech-ainote)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Guidance]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Text]
+**Output Format:** [Natural-language responses]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include note summaries, todo details, and personal search results.]
+**Other Properties Related to Output:** [Responses may contain personal notebook, note, and todo information.]
 
 ## Skill Version(s):
 
-1.0.2 (source: ClawHub release metadata)
+1.0.3 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

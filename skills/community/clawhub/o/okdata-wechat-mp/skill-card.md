@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and analysts can use this skill to retrieve public WeChat Official Account profiles, articles, engagement metrics, ownership details, comments, and replies through okdata for research and reporting tasks.
+External users and developers use this skill to retrieve public WeChat Official Account profiles, article histories and details, comments, replies, metrics, and registration information for reporting, account audits, competitor monitoring, and content analysis.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill sends requests to the external okdata API, and calls may incur charges.
+Risk: Requests use the external okdata service, and paid calls can incur per-call charges.
 
-Mitigation: Review the endpoint and maximum cost before each paid call, and keep OKDATA_API_KEY out of prompts, URLs, and logs.
+Mitigation: Verify the service destination and data handling before use, avoid sending sensitive information, and review call costs and spending limits before making paid requests.
 
 ## Reference(s):
 
 - [WeChat Official Accounts API reference](https://okdata.online/apis/wechat_mp/?src=skill-okdata-wechat-mp)
 - [okdata agent setup guide](https://okdata.online/agents.md)
+- [ClawHub release page](https://clawhub.ai/conn-ho/skills/okdata-wechat-mp)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [API Calls, Text]
 
-**Output Format:** [Text or Markdown responses with WeChat Official Account data and source details]
+**Output Format:** [Text responses containing WeChat account, article, comment, reply, and metrics data]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results may be paginated; additional pages require separate API calls.]
+**Other Properties Related to Output:** [One page per call; additional pages require separate calls. Calls cost $0.02–$0.15, with account search charged per result.]
 
 ## Skill Version(s):
 
-0.2.3 (source: server release metadata)
+0.2.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

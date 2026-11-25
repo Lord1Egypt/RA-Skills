@@ -1,45 +1,63 @@
-## Description: <br>
-Pre Publish Security provides frequency-aware security audits for GitHub and ClawHub releases, checking for credential leaks, dependency vulnerabilities, documentation issues, and risky pushes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre Publish Security audits repositories before release to detect leaked credentials, dependency vulnerabilities, documentation placeholders, and release-blocking security issues.
 
-## Publisher: <br>
-[solmas](https://clawhub.ai/user/solmas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solmas](https://clawhub.ai/user/solmas)
 
-## Use Case: <br>
-Developers and release maintainers use this skill to scan repositories before publishing, catch leaked credentials, dependency vulnerabilities, documentation placeholders, and license or README gaps, and optionally install a pre-push hook that blocks risky pushes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently change git push behavior by installing a pre-push hook that blocks pushes when checks fail. <br>
-Mitigation: Install it only on intended repositories, review and back up any existing .git/hooks/pre-push file first, and test the audit command manually before relying on the hook. <br>
-Risk: Local audit reports and terminal output may include sensitive findings or secret snippets from scanned repositories. <br>
-Mitigation: Run it only on repositories whose scan scope is acceptable, keep reports local, and delete /tmp security audit reports after review. <br>
-Risk: Dependency and history scans may inspect broad repository content and optional package ecosystems. <br>
-Mitigation: Confirm optional tools and scan modes match the repository policy before running full, history, or dependency audits. <br>
+## Use Case:
 
+Developers and maintainers use this skill to run quick, scheduled, or full security audits before pushes and releases, including secret, history, dependency, documentation, and license checks.
 
-## Reference(s): <br>
-- [Pre Publish Security on ClawHub](https://clawhub.ai/solmas/pre-publish-security) <br>
-- [README](artifact/README.md) <br>
-- [Security Audit Schedule](artifact/AUDIT-SCHEDULE.md) <br>
-- [Project homepage listed in skill metadata](https://github.com/solmas/openclaw-pre-publish-security) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Terminal output and Markdown reports with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update audit-state.json, write local audit reports under /tmp, and install a git pre-push hook when invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Persistent Git hook installation can change future push behavior in a repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or modify the hook installer before use, preserve any existing hooks, and install it only on intended repositories.
+
+Risk: The scanner can inspect user-level credential locations.
+
+Mitigation: Remove or disable the ~/.git-credentials check and run audits with only the access needed for the target repository.
+
+Risk: Unsafe handling around user-supplied paths can expose command or task handling issues.
+
+Mitigation: Use trusted local repository paths only and avoid attacker-controlled path names.
+
+Risk: Audit reports written under /tmp may contain sensitive findings.
+
+Mitigation: Treat generated reports as sensitive, restrict access where possible, and delete them after review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/solmas/skills/pre-publish-security)
+- [Artifact-declared project homepage](https://github.com/solmas/openclaw-pre-publish-security)
+- [Artifact-declared contribution link](https://github.com/solmas/pre-publish-security)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, terminal output, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create markdown audit reports and install a Git pre-push hook when invoked.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

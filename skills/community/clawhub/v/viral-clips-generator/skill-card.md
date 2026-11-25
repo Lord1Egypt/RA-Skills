@@ -1,6 +1,6 @@
 ## Description:
 
-Identify high-engagement moments in long-form recordings and extract standalone short-form video clips.
+Extract viral clips, podcast highlights, UGC ads, and faceless videos from long recordings (Opus Clip / CapCut alternative): trim video, cut video, merge clips, 9:16 reframe, and 216 kinetic captions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Content creators, editors, and developers use this skill to find engaging moments in long recordings and request standalone short-form clips with optional vertical reframing and captions.
+Creators, podcasters, and video editors use this skill to find engaging moments in long recordings and turn them into short clips for social channels.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Source media is sent to the external Levea editing service, and input media URLs must be publicly accessible.
+Risk: The security scan reported no findings, but its analysis was partial because one local reference could not be resolved.
 
-Mitigation: Use media you are comfortable sharing with Levea and provide only URLs intended to be public.
+Mitigation: Review the unresolved reference and the skill's tool requirements before installation.
 
-Risk: The service requires an API key, and edits may proceed without a user review step.
+Risk: Using the editing service requires a Levea API key.
 
-Mitigation: Protect the API key and enable requirePlanApproval when you want to review proposed edits first.
+Mitigation: Store the key in the configured plugin or MCP server settings and avoid sharing it in prompts or public configuration.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/brajendrak00068/skills/viral-clips-generator)
-- [Levea editing service account setup](https://livecore.ai/?openclaw=1&utm_source=clawhub&utm_medium=skill&utm_campaign=viral-clips-generator)
+- [ClawHub release](https://clawhub.ai/brajendrak00068/skills/viral-clips-generator)
+- [Levea editing service](https://livecore.ai/?openclaw=1&utm_source=clawhub&utm_medium=skill&utm_campaign=viral-clips-generator)
+- [Levea API](https://api.livecore.ai)
 
 ## Skill Output:
 
-**Output Type(s):** [Video clips, Project status and export links, Editing guidance]
+**Output Type(s):** [Video, Text]
 
-**Output Format:** [Structured tool responses with project IDs and exported MP4 URLs]
+**Output Format:** [MP4 video download URL with project details]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include individual clips, a consolidated MP4, and an archive.]
+**Other Properties Related to Output:** [Can include multiple short clips, vertical reframing, captions, and a consolidated archive.]
 
 ## Skill Version(s):
 
-1.0.4 (source: frontmatter)
+1.0.8 (source: frontmatter, release evidence)
 
 ## Ethical Considerations:
 

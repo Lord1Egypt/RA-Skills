@@ -1,0 +1,8 @@
+{
+  "fixture_kind": "offline-page-notes",
+  "fixture_notice": "离线页面资料模拟，用于本地自测；不是在线采集结果。",
+  "owner_confirmed": true,
+  "page_confirmed": false,
+  "fields": {},
+  "sources": [{ "field": "title", "visible_location": "离线模拟：当前页面", "captured_text": "无法确认是否为投稿草稿" }]
+}

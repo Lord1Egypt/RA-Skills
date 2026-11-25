@@ -6,7 +6,7 @@ summary: 把纯静态站点部署到阿里云 OSS：建桶、上传、静态托�
 license: MIT
 description: 把纯静态站点（dist/ 或 web/）部署到阿里云 OSS + 自定义域名 + HTTPS 证书，并打通 GitHub Actions 自动部署与证书自动续期。当用户说「推到阿里云 / 上线 / 部署到 OSS / 绑自定义域名 / 签 SSL 证书 / 配置 Actions 自动部署 / 静态站 HTTPS」时使用。
 agent_created: true
-version: 1.1.4
+version: 1.3.0
 category: it-ops-security
 subCategories: [itops-devops, itops-config]
 platforms: [linux, windows, macos]
@@ -15,6 +15,49 @@ platforms: [linux, windows, macos]
 # 静态站部署阿里云 OSS + 自定义域名 HTTPS
 
 适用：无后端的纯静态站点（dist/、web/、out/、build/）。需要服务端渲染或接口的走函数计算 FC，不在本技能范围。
+
+## ⚠️ 2026-11 修订：优先用零依赖脚本，别用官方 SDK（换模型必读）
+
+**官方 alibabacloud_* SDK 在本机依赖链是坏的**：顶层 `import` 能过（假象），
+一实例化就 `ModuleNotFoundError: Tea.core`（旧版）或缺 `darabonba.model`（新版），
+两者装不全（`tea` 包因 psutil 编译失败装不上）。**不要再花时间调 SDK / 猜 API Action 名**。
+
+已验证可靠的路径（只用健康包 `oss2` + `requests`，2026-11 端到端实测一次成功）：
+- `scripts/aliyun_rpc.py` — 零依赖客户端：RPC 签名（DNS/CAS）+ **V3 ROA 签名（ACS3-HMAC-SHA256，函数计算等标准 OpenAPI 网关产品用）**，凭据只读环境变量。
+- `scripts/bind_domain.py` — 域名绑定到 OSS + 复用证书，幂等（已绑定会识别并复核，不重复写 TXT）。
+- `scripts/deploy_oss.py` — 已修复：加 `--create-bucket` 自动建桶、`--verify-public` 匿名探测走代理不再超时。
+
+**查实的正确 API（别再猜 Action）**：
+| 服务 | endpoint | version | Action |
+|---|---|---|---|
+| DNS 列/增/删记录 | `alidns.aliyuncs.com` | `2015-01-09` | `DescribeDomainRecords` / `AddDomainRecord` / `DeleteDomainRecord` / `UpdateDomainRecord` |
+| CAS 证书列表 | `cas.aliyuncs.com` | `2020-04-07` | **`ListUserCertificateOrder`**（`OrderType=CERT\|UPLOAD`；`ListUserCertificate` 是错的，报 InvalidAction.NotFound） |
+| OSS 桶/CNAME | `<bucket>.oss-<region>.aliyuncs.com` | — | 用 oss2：`create_bucket` / `put_bucket_cname` / `list_bucket_cname`（`force` 必须字符串 `'true'`） |
+| FC 3.0 自定义域名 | `fcv3.<region>.aliyuncs.com` | `2023-03-30` | `ListCustomDomains` / `GetCustomDomain` / `UpdateCustomDomain`（ROA，V3 签名，`aliyun_rpc.roa_call` 已封装） |
+
+**证书分发到 FC 自定义域名（`cert_manager.py --targets fc`，2026-11 已实测可用）**：
+- 签名：FC 3.0 走标准 OpenAPI 网关，用 **ACS3-HMAC-SHA256**（不是老式 ROA 的 Date/Content-MD5）：
+  CanonicalHeaders 只含除 Authorization 外的公共头（host/content-type/x-acs-*），小写字典序，每行 `name:value\n`；
+  Authorization = `ACS3-HMAC-SHA256 Credential=<AK>,SignedHeaders=...,Signature=<hex(hmac_sha256(SK, StringToSign))>`。
+- `UpdateCustomDomain` PUT 语义是**整体替换**：必须先 GET 现配置，只换 `certConfig{certName, certificate, privateKey}`，protocol/routeConfig/tlsConfig 原样带回，否则会把路由清掉。
+- 私钥必须**传统 RSA PEM**（PKCS8 会被拒），脚本已内建转换；GET 不回传私钥，复核只看 certName 与 lastModifiedTime。
+- 不指定 `--fc-domain` 时自动匹配 FC 账号下所有 `*.root` 域名；泛域名证书直接覆盖子域，实测 pan.ydtgo.top 更新后 HTTPS 200/ssl=0。
+
+**两个必踩坑（脚本已内建处理）**：
+1. 新桶默认 `BlockPublicAccess=true` → 匿名 403，必须 `delete_bucket_public_access_block()`。
+2. 上传型 CAS 证书在列表里**没有 Domain 字段**，无法按域名反查 cert_id；从本地 `cas_id.txt` / `state.json` 读，别调不存在的 `DescribeUserCertificate`。
+
+**标准部署流程（一条命令搞定建桶到公开）**：
+```bash
+python scripts/deploy_oss.py --bucket <bucket> --region cn-hongkong \
+  --file index.html --key index.html \
+  --create-bucket --setup-website --verify-public --verify --expect '关键标记'
+# 绑定域名（复用已有证书）：
+python scripts/bind_domain.py --bucket <bucket> --region cn-hongkong \
+  --domain site.example.com --root example.com --cert-dir ~/.acme-oss/<域>-wild
+```
+
+以下原文档保留作背景；实际执行以上述零依赖脚本为准。
 
 ## 0. 开工前先确认（缺哪项问哪项，不要猜）
 
@@ -26,8 +69,9 @@ platforms: [linux, windows, macos]
 | 自定义域名 | 子域即可（如 `case.example.com`），根域也支持但 `dns_rr` 要填 `@` |
 | 静态产物目录 | 构建一次确认存在（如 `dist/index.html`） |
 
-依赖（一次性）：
-`pip install oss2 acme josepy cryptography alibabacloud_alidns20150109 alibabacloud_cas20200407 alibabacloud_ram20150501 pynacl`
+依赖（一次性，仅需健康包）：
+`pip install oss2 requests acme josepy cryptography pynacl`
+（**不要**装 alibabacloud_* 系列 SDK，依赖链损坏；DNS/CAS 调用走 `aliyun_rpc.py` 的 RPC 签名）
 
 ## 1. 建桶 → 上传 → 配静态托管
 
@@ -92,15 +136,10 @@ ACME 证书只有 90 天，脚本剩余 >30 天自动跳过；到期前重签并
 先查现状再动手，别猜（只能读名字，读不到值）：
 
 ```bash
-# ~/.git-credentials 每行形如 https://<user>:<token>@github.com
 # 坑：别假设 token 前缀是 gho_ —— 那是 gh 自己的 OAuth token；PAT 是 40 位裸串，
-# grep -o "gho_..." 会取到空值，后面所有请求 401 却看不出原因。用 python 取：
-TOKEN=$(python -c "
-import os,re
-for l in open(os.path.expanduser('~/.git-credentials'),encoding='utf-8'):
-    m=re.match(r'https://[^:]+:([^@]+)@github\.com', l.strip())
-    if m: print(m.group(1)); break
-")
+# grep -o "gho_..." 会取到空值，后面所有请求 401 却看不出原因。
+# 用 git credential 标准接口取（不直接读凭据存档文件）：
+TOKEN=$(printf "protocol=https\nhost=github.com\n\n" | git credential fill | sed -n 's/^password=//p')
 curl --noproxy '*' -H "Authorization: Bearer $TOKEN" \
   https://api.github.com/repos/<owner>/<repo>/actions/{secrets,variables}
 ```
@@ -121,7 +160,7 @@ Variable 就成了不再被使用的长期凭证。删掉它们（`DELETE /actio
 **顺带一个本地 git 的坑**：`gh auth status` 经常是「未登录」，而全局配置里
 `credential.https://github.com.helper=!gh auth git-credential` 会让 `git push` 直接报
 `could not read Username ... terminal prompts disabled`。修法是给仓库加一条更局部的
-credential helper，让它回落到 `~/.git-credentials`：
+credential helper，让它回落到本机 credential store 凭据存档：
 
 ```bash
 git config credential.https://github.com.helper store   # 写进 .git/config，压过全局的 gh helper

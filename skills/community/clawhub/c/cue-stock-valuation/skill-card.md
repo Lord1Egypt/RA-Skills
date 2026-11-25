@@ -1,6 +1,6 @@
 ## Description:
 
-使用 Cue 将资金流向、短中长期估值模型与业绩预期结合，为个股及同业比较生成分周期分析报告。
+用 Cue 对个股进行全周期估值分析——融合短线资金流向与中长线估值模型，短期看情绪博弈与支撑压力，中长期看业绩兑现与安全边际。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-面向研究个股的投资者和分析人员，结合短期资金与市场情绪、中期业绩驱动和长期估值模型，形成分周期估值、安全边际与风险分析报告。
+External investors and analysts can use this skill to review an individual stock across short-, medium-, and long-term horizons, combining market flows and sentiment with earnings outlook, valuation models, and margin-of-safety analysis.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment marked the skill suspicious and partial, citing API-key instructions, remote content fetching, and promotional or unrelated repository and document steps.
+Risk: The server security review marks this release suspicious with medium confidence, citing reported remote code retrieval, an in-chat API-key request, and behavior that differs from the stated stock-valuation purpose. The scan is partial because a referenced local path was missing.
 
-Mitigation: Before installation, review or remove those steps, resolve the missing referenced path, and obtain complete security scan coverage.
+Mitigation: Follow the server review guidance: wait for the publisher to explain the behavior and missing path, do not paste API keys into chat, and require an explanation or removal of the reported remote code and promotional prompts before installing.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/panting09266-ai/skills/cue-stock-valuation)
 - [Cue platform](https://cuecue.cn)
-- [Eastmoney](https://www.eastmoney.com)
-- [Tonghuashun](https://www.10jqka.com.cn)
-- [Xueqiu](https://xueqiu.com)
-- [TradingView](https://www.tradingview.com)
+- [Example Cue report](https://cuecue.cn/share/NMJ36JGzIwOx8SPJXB_WR)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [Structured Markdown stock valuation and risk report]
+**Output Format:** [Structured Markdown report]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes short-, medium-, and long-term perspectives; analysis quality and timeliness depend on Cue and its external data sources.]
+**Other Properties Related to Output:** [Covers short-, medium-, and long-term analysis; includes a Cue report link when a real report conversation ID is returned.]
 
 ## Skill Version(s):
 
-1.0.10 (source: server-resolved release metadata)
+1.0.14 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

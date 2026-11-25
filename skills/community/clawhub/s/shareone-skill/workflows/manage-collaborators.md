@@ -51,6 +51,7 @@ node scripts/manage_collaborators.js "<SHARE_LINK_OR_ID>" --action remove --user
 - 普通 AI Agent 环境可传 `--api-key`，也可以依赖 `SHAREONE_API_KEY` 或本地凭证。
 - `--usernames` 参数为要添加或移除的协作者的 ShareOne 用户名，多个用逗号分隔。
 - 脚本会自动从完整 URL、`/s/<ref>` 路径、裸 `share_id` 或 slug 中解析目标。
+- 链接不改变 API 部署或凭据去向；自建或本地服务须显式配置 `SHAREONE_BASE_URL` 或 `--base-url`，完整分享 URL 的 origin 需匹配该部署。`--help` 可离线查看参数与结果含义。
 
 ## 4. 结果解读
 

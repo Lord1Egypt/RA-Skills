@@ -1,123 +1,187 @@
 #!/usr/bin/env bash
 
 # SECURITY MANIFEST:
-#   Environment variables accessed: none
-#   External endpoints called: https://github.com (git clone only)
-#   Local files read: SKILL.md, scripts/*
-#   Local files written: ~/.qoder/skills/issue-to-pr/
+#   Environment variables accessed: ISSUE_TO_PR_SKILLS_DIR (optional), CLAUDE_CONFIG_DIR (optional)
+#   External endpoints called: none
+#   Local files read: SKILL.md, references/*, this script
+#   Local files written: <skills dir>/issue-to-pr/{SKILL.md,references/*}
 
 set -o errexit -o nounset -o pipefail
 
-# ============================================================
-# issue-to-pr Skill — Installer / Uninstaller
-# ============================================================
-
 SKILL_NAME="issue-to-pr"
-INSTALL_DIR="${HOME}/.qoder/skills/${SKILL_NAME}"
-SKILL_FILE="SKILL.md"
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-# ------------------------------------------------------------
-# Colors
-# ------------------------------------------------------------
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+info() { printf '[INFO]  %s\n' "$*"; }
+success() { printf '[OK]    %s\n' "$*"; }
+warn() { printf '[WARN]  %s\n' "$*"; }
+error() { printf '[ERROR] %s\n' "$*" >&2; }
 
-info()    { printf "${BLUE}[INFO]${NC}  %s\n" "$*"; }
-success() { printf "${GREEN}[OK]${NC}    %s\n" "$*"; }
-warn()    { printf "${YELLOW}[WARN]${NC}  %s\n" "$*"; }
-error()   { printf "${RED}[ERROR]${NC} %s\n" "$*" >&2; }
+usage() {
+  cat <<'EOF'
+Usage: bash scripts/install.sh [OPTIONS]
 
-# ------------------------------------------------------------
-# Resolve the directory where this script lives
-# ------------------------------------------------------------
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+Installs the issue-to-pr skill into a harness-specific skills directory.
 
-# ------------------------------------------------------------
-# Uninstall
-# ------------------------------------------------------------
-uninstall() {
-    info "Uninstalling ${SKILL_NAME}..."
+Options:
+  --target <dir>   Install into <dir>/issue-to-pr (highest priority)
+  --project        Install into ./.claude/skills/issue-to-pr for this repository
+  --list-targets   Print the directories this installer can detect
+  --force          Overwrite an existing installation
+  --uninstall      Remove <target>/issue-to-pr
+  -h, --help       Show this help
 
-    if [ -d "${INSTALL_DIR}" ]; then
-        rm -rf "${INSTALL_DIR}"
-        success "Removed ${INSTALL_DIR}"
-    else
-        warn "Nothing to uninstall — ${INSTALL_DIR} does not exist."
-    fi
+Environment:
+  ISSUE_TO_PR_SKILLS_DIR   Default parent directory for all targets
+  CLAUDE_CONFIG_DIR        Used instead of ~/.claude when set
 
-    success "Uninstall complete."
+Detection order:
+  1. --target
+  2. ISSUE_TO_PR_SKILLS_DIR
+  3. --project (./.claude/skills)
+  4. ~/.claude/skills        (Claude Code and compatible harnesses)
+  5. ~/.qoder/skills         (Qoder)
+  6. ~/.config/agent/skills  (generic fallback)
+EOF
+}
+
+detect_target() {
+  if [ -n "${TARGET_OVERRIDE}" ]; then
+    printf '%s\n' "${TARGET_OVERRIDE}"
+    return 0
+  fi
+  if [ -n "${ISSUE_TO_PR_SKILLS_DIR:-}" ]; then
+    printf '%s\n' "${ISSUE_TO_PR_SKILLS_DIR}"
+    return 0
+  fi
+  if [ "${PROJECT_INSTALL}" = "true" ]; then
+    printf '%s\n' "$(pwd)/.claude/skills"
+    return 0
+  fi
+  if [ -n "${CLAUDE_CONFIG_DIR:-}" ] && [ -d "${CLAUDE_CONFIG_DIR}" ]; then
+    printf '%s\n' "${CLAUDE_CONFIG_DIR}/skills"
+    return 0
+  fi
+  if [ -d "${HOME}/.claude" ]; then
+    printf '%s\n' "${HOME}/.claude/skills"
+    return 0
+  fi
+  if [ -d "${HOME}/.qoder" ]; then
+    printf '%s\n' "${HOME}/.qoder/skills"
+    return 0
+  fi
+  printf '%s\n' "${HOME}/.config/agent/skills"
+}
+
+list_targets() {
+  if [ -n "${CLAUDE_CONFIG_DIR:-}" ]; then
+    printf 'claude (env): %s/skills\n' "${CLAUDE_CONFIG_DIR}"
+  fi
+  if [ -d "${HOME}/.claude" ]; then
+    printf 'claude:      %s/skills\n' "${HOME}/.claude"
+  fi
+  if [ -d "${HOME}/.qoder" ]; then
+    printf 'qoder:       %s/skills\n' "${HOME}/.qoder"
+  fi
+  printf 'generic:     %s/skills\n' "${HOME}/.config/agent"
+}
+
+install_skill() {
+  local target_dir="$1"
+  local destination="${target_dir}/${SKILL_NAME}"
+
+  if [ ! -f "${REPO_ROOT}/SKILL.md" ]; then
+    error "SKILL.md not found in ${REPO_ROOT}. Run this script from the repository."
+    exit 1
+  fi
+
+  if [ -d "${destination}" ] && [ "${FORCE}" != "true" ]; then
+    warn "${destination} already exists; use --force to overwrite."
     exit 0
+  fi
+
+  install -d "${destination}"
+  cp "${REPO_ROOT}/SKILL.md" "${destination}/SKILL.md"
+
+  if [ -d "${REPO_ROOT}/references" ]; then
+    install -d "${destination}/references"
+    cp -R "${REPO_ROOT}/references/." "${destination}/references/"
+  fi
+
+  success "Installed to ${destination}"
+  info "Use it as: /fix-issue https://github.com/<owner>/<repo>/issues/<number>"
+  info "Optional flags: --dry-run, --draft, --no-push, --non-interactive"
+  if command -v gh >/dev/null 2>&1; then
+    info "gh detected. If git push asks for credentials, run: gh auth setup-git"
+  else
+    warn "gh not found; the skill falls back to git plus the REST API with GH_TOKEN."
+  fi
 }
 
-# ------------------------------------------------------------
-# Install
-# ------------------------------------------------------------
-install() {
-    info "Installing ${SKILL_NAME}..."
+uninstall_skill() {
+  local target_dir="$1"
+  local destination="${target_dir}/${SKILL_NAME}"
 
-    # Check dependencies
-    if ! command -v git &>/dev/null; then
-        error "git is not installed. Please install git first."
-        exit 1
-    fi
-
-    if command -v gh &>/dev/null; then
-        info "GitHub CLI (gh) detected — full functionality available."
-    else
-        warn "GitHub CLI (gh) not found. The skill will use fallback methods."
-        warn "For the best experience, install gh: https://cli.github.com"
-    fi
-
-    # Verify source file exists
-    if [ ! -f "${REPO_ROOT}/${SKILL_FILE}" ]; then
-        error "Cannot find ${SKILL_FILE} in ${REPO_ROOT}."
-        error "Please run this script from the repository root or the scripts/ directory."
-        exit 1
-    fi
-
-    # Create target directory
-    mkdir -p "${INSTALL_DIR}"
-    info "Target directory: ${INSTALL_DIR}"
-
-    # Copy skill file
-    cp "${REPO_ROOT}/${SKILL_FILE}" "${INSTALL_DIR}/${SKILL_FILE}"
-    success "Copied ${SKILL_FILE} to ${INSTALL_DIR}/"
-
-    # Verify installation
-    if [ -f "${INSTALL_DIR}/${SKILL_FILE}" ]; then
-        success "Installation complete!"
-        echo ""
-        info "The skill is now available at: ${INSTALL_DIR}/${SKILL_FILE}"
-        info "You can use it in Qoder, Cursor, or Claude Code by typing:"
-        echo ""
-        echo "    /fix-issue https://github.com/owner/repo/issues/123"
-        echo ""
-    else
-        error "Installation verification failed. Please try manual installation."
-        exit 1
-    fi
-}
-
-# ------------------------------------------------------------
-# Main
-# ------------------------------------------------------------
-case "${1:-}" in
-    --uninstall | -u)
-        uninstall
-        ;;
-    --help | -h)
-        echo "Usage: $(basename "$0") [OPTIONS]"
-        echo ""
-        echo "Options:"
-        echo "  (none)          Install the ${SKILL_NAME} skill"
-        echo "  --uninstall, -u Remove the ${SKILL_NAME} skill"
-        echo "  --help, -h      Show this help message"
-        ;;
+  case "${destination}" in
+    */"${SKILL_NAME}")
+      if [ -d "${destination}" ]; then
+        rm -rf "${destination}"
+        success "Removed ${destination}"
+      else
+        warn "Nothing to remove at ${destination}"
+      fi
+      ;;
     *)
-        install
-        ;;
-esac
+      error "Refusing to remove unexpected path: ${destination}"
+      exit 1
+      ;;
+  esac
+}
+
+TARGET_OVERRIDE=""
+PROJECT_INSTALL="false"
+FORCE="false"
+MODE="install"
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --target)
+      [ $# -ge 2 ] || { error "--target requires a directory"; exit 1; }
+      TARGET_OVERRIDE="$2"
+      shift 2
+      ;;
+    --project)
+      PROJECT_INSTALL="true"
+      shift
+      ;;
+    --list-targets)
+      list_targets
+      exit 0
+      ;;
+    --force)
+      FORCE="true"
+      shift
+      ;;
+    --uninstall)
+      MODE="uninstall"
+      shift
+      ;;
+    -h | --help)
+      usage
+      exit 0
+      ;;
+    *)
+      error "Unknown option: $1"
+      usage
+      exit 1
+      ;;
+  esac
+done
+
+TARGET_DIR="$(detect_target)"
+info "Target: ${TARGET_DIR}"
+
+if [ "${MODE}" = "uninstall" ]; then
+  uninstall_skill "${TARGET_DIR}"
+else
+  install_skill "${TARGET_DIR}"
+fi

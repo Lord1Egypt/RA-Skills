@@ -36,7 +36,7 @@ if (!/^https:\/\/[^/]+$/.test(HOME) && !/^http:\/\/(localhost|127\.0\.0\.1)(:\d+
 }
 const DIR = join(homedir(), '.wayza'), FILE = join(DIR, 'identity.json');
 const PROTOCOL = '2026-07-28';
-const USER_AGENT = 'wayza-skill/0.1.7'; // keep in step with SKILL.md's version
+const USER_AGENT = 'wayza-skill/0.1.8'; // keep in step with SKILL.md's version
 
 const load = () => { try { return JSON.parse(readFileSync(FILE, 'utf8')); } catch { return {}; } };
 const save = (o) => { mkdirSync(DIR, { recursive: true, mode: 0o700 }); writeFileSync(FILE, JSON.stringify(o, null, 2), { mode: 0o600 }); chmodSync(FILE, 0o600); };

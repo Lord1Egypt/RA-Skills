@@ -5,8 +5,8 @@ rules (character limits, required settings, the X rules) come from the
 account's schema and the main `postemi` skill; when this file and the schema
 disagree, the schema wins.
 
-The networks below are the ones Postemi publishes to today. Pinterest, Google
-Business Profile and LinkedIn company pages are coming soon and cannot be
+The networks below are the ones Postemi publishes to today. Google Business
+Profile, LinkedIn company pages and Snapchat are coming soon and cannot be
 scheduled yet. Never plan posts for a network Postemi does not offer.
 
 ## X
@@ -18,7 +18,7 @@ scheduled yet. Never plan posts for a network Postemi does not offer.
 - **Links:** Postemi removes links from X posts and their threads, because X
   charges for every post with a link. Put the user's link in their X bio, or
   tell the user to post a link on X directly. Name sources in words.
-- **Allowance:** the account has a monthly number of X posts in Postemi; every
+- **Allowance:** the workspace has a monthly number of X posts in Postemi; every
   thread entry counts as one. Check what is left before planning a busy X
   calendar; when it runs out, X posts can only be saved as drafts until it
   resets.
@@ -43,7 +43,8 @@ scheduled yet. Never plan posts for a network Postemi does not offer.
   comments in the first hours.
 - **Links:** a link in the post can pull people off the feed. A common pattern
   is the post on its own and the link in the first comment; in Postemi that is
-  the second entry of `postsAndComments`, which LinkedIn shows as a comment.
+  the second entry (the second `-c` with the CLI, the second entry of
+  `postsAndComments` with the MCP tools), which LinkedIn shows as a comment.
 - **Today:** personal profiles only; company pages are coming soon.
 
 ## Instagram
@@ -92,7 +93,22 @@ scheduled yet. Never plan posts for a network Postemi does not offer.
 - **Shape:** a title, a description and the video; Shorts are 9:16.
 - **Title:** clear promise, specific, front-load the topic words people
   search for. The thumbnail is the user's.
+- **Volume:** YouTube accepts about 10 uploads per account in 24 hours; for
+  now Postemi publishes at most 3 a day to one channel (1 on a trial), the
+  day starting at midnight Pacific time.
 - **Settings:** a title and a type are required; ask the user about privacy.
+
+## Pinterest
+
+- **Shape:** a picture people want to save (vertical works best), or a video
+  with a cover picture. Pinterest is a search engine for ideas: people find
+  pins weeks or months later.
+- **Title and description:** the title says what the idea is, in the words
+  people search for; the description adds the details and a reason to click.
+- **Link:** a pin can link to where the idea lives (a recipe, a product, an
+  article). Links are welcome here.
+- **Settings:** every pin needs a board id (from the `boards` tool); a title
+  of up to 100 characters and a link are optional.
 
 ## Telegram, Discord, Slack, Google Chat, Microsoft Teams
 

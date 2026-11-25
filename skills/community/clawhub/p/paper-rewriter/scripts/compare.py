@@ -46,6 +46,7 @@ def main():
     ap.add_argument("--profile", choices=["academic", "general"], default="academic",
                     help="academic=论文口径（默认）；general=非学术文本")
     ap.add_argument("--html", help="生成单文件 HTML 对照报告（含逐句 diff）到此路径")
+    ap.add_argument("--csv", help="逐句对照 CSV 导出（v5.17.0：tag,原文,改稿,行号——机器消费）")
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--exit-verdict", action="store_true",
                     help="自动化集成（CI/agent 管线；大文件分块降级时 exit 2=部分覆盖不判干净，"
@@ -107,6 +108,22 @@ def main():
             print("错误: 无法写入 %s（%s）" % (args.html, e), file=sys.stderr)
             sys.exit(2)
         print("HTML 对照报告已写入 %s" % args.html, file=sys.stderr)
+
+    if getattr(args, "csv", None):
+        # v5.17.0 逐句对照 CSV（tag,原文,改稿,行号——机器消费）
+        import csv as _csvmod
+        import reporter as _rp
+        try:
+            rows = _rp.sentence_diff(orig, new)
+            with open(args.csv, "w", encoding="utf-8-sig", newline="") as cf:
+                w = _csvmod.writer(cf)
+                w.writerow(["tag", "orig", "new", "orig_line", "new_line"])
+                for tag, otx, ntx, oln, nln in rows:
+                    w.writerow([tag, otx, ntx, oln or "", nln or ""])
+            print("对照 CSV 已写入 %s（%d 行）" % (args.csv, len(rows)), file=sys.stderr)
+        except OSError as e:
+            print("错误: 无法写入 %s（%s）" % (args.csv, e), file=sys.stderr)
+            sys.exit(2)
 
     if args.json:
         print(json.dumps({

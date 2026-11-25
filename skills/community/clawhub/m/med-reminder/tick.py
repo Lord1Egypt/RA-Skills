@@ -186,6 +186,21 @@ def _due_on(med: dict, today) -> bool:
     return True
 
 
+def _digest_meds(state: dict, today) -> list:
+    """`today`'s digest listing, by time of day (a med's first dose), then
+    interval and as-needed meds. The digest numbers and --position share it."""
+    def by_time(med):
+        sched = med["schedule"]
+        freq = sched.get("frequency")
+        if freq == "interval":
+            return (1, "")
+        if freq == "as_needed":
+            return (2, "")
+        return (0, min(sched["times"]))    # zero-padded HH:MM sorts as text
+    return sorted((m for m in state.get("meds", [])
+                   if not m.get("paused") and _due_on(m, today)), key=by_time)
+
+
 # ── Message builders ──────────────────────────────────────────────────────────
 
 def double_dose_warning(med: dict, taken_event: dict, tz: ZoneInfo, ref=None) -> str:
@@ -1079,8 +1094,7 @@ def _daily_messages(plan: Plan, state: dict, ev, idx, tz):
     digest_due = occurrence.at_local(today, g["digest_time"], tz).utc
     if digest_due <= now <= digest_due + DAILY_LATE_LIMIT:
         key = f"digest#{today.isoformat()}"
-        listed = [m for m in state.get("meds", [])
-                  if not m.get("paused") and _due_on(m, today)]
+        listed = _digest_meds(state, today)
         # a pending course-complete note sends the digest even with nothing
         # left to list (PR 6) — a lone ended course still gets announced
         if not _sent_for(idx, key, "digest") and (
@@ -1208,8 +1222,7 @@ def _course_done_lines(state: dict, ev, tz, now) -> list:
 def digest_text(state: dict, ev, tz, now) -> str:
     """Daily summary (format kept from the pre-tick digest)."""
     today = now.astimezone(tz).date()
-    active = [m for m in state.get("meds", [])
-              if not m.get("paused") and _due_on(m, today)]
+    active = _digest_meds(state, today)
     date_str = now.astimezone(tz).strftime("%a %b ") + str(now.astimezone(tz).day)
     lines = [f"Meds for {date_str}:"]
     for i, med in enumerate(active, 1):
@@ -1224,7 +1237,9 @@ def digest_text(state: dict, ev, tz, now) -> str:
             prefix = f"{dispatch.fmt_days(day)} " if day else ""
             time_str = prefix + ", ".join(dispatch.fmt_12h(t) for t in sched["times"])
         food = " (with food)" if sched.get("with_food") else ""
-        lines.append(f"{i}. {med['name']} {med['dose']}{med['unit']} | {time_str}{food}")
+        draw = reconstitution.med_draw(med, ev, now)
+        dose = draw_note(med, draw) if draw else med['dose'] + med['unit']
+        lines.append(f"{i}. {med['name']} {dose} | {time_str}{food}")
     done = _course_done_lines(state, ev, tz, now)
     if done:
         lines.append("")

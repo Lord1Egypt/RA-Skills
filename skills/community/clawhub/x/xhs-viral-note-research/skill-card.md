@@ -1,6 +1,6 @@
 ## Description:
 
-当用户给出小红书关键词、赛道、人群或产品方向，想看热门高互动笔记样本，并拆解标题结构、内容角度、互动信号、创作灵感和选题参考时使用。来自 SocialDataX 社媒数据助手。
+当用户给出小红书关键词、赛道、人群或产品方向时，研究热门高互动笔记样本，并拆解标题结构、内容角度、互动信号、创作灵感和选题参考。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Content creators and marketers use this skill to review public Xiaohongshu notes for a keyword or topic and identify title hooks, content angles, engagement signals, and ideas for future topics.
+面向需要研究小红书内容的创作者、营销人员和产品团队。用户提供关键词、赛道、人群或产品方向后，技能整理公开搜索样本，并给出标题钩子、内容角度、互动信号和可复用选题参考。
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Research keywords may be shared with SocialDataX.
+Risk: The partial scan could not resolve three local path-like references, and credential-file access is part of the skill's expected operation.
 
-Mitigation: Avoid including sensitive or identifying information in search keywords.
-
-Risk: The security scan was partial because local references were missing, so its evidence is incomplete.
-
-Mitigation: Review the complete skill and rerun the scan when its local references are available.
+Mitigation: Review the unresolved references and credential handling details before installation if stronger assurance is needed; keep API keys private.
 
 ## Reference(s):
 
-- [SocialDataX API key and skill information](https://socialdatax.com/ai?from=clawhub)
+- [SocialDataX](https://socialdatax.com/ai?from=clawhub)
+- [ClawHub skill page](https://clawhub.ai/devinchen2014/skills/xhs-viral-note-research)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown]
+**Output Type(s):** [Analysis, Guidance, Markdown]
 
-**Output Format:** [Markdown research report with a sample table and analysis of title hooks, content angles, engagement signals, and topic ideas]
+**Output Format:** [Markdown sample research report]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [By default, reviews up to 20 samples across two pages; conclusions apply to the queried keyword and returned pages.]
+**Other Properties Related to Output:** [Based on public results within the requested search and page range; does not promise complete platform coverage or guaranteed performance.]
 
 ## Skill Version(s):
 
-0.1.7 (source: server-resolved ClawHub release metadata)
+0.1.8 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

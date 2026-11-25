@@ -1,6 +1,6 @@
 ## Description:
 
-OsmO lets an AI place and manage real phone calls, handle inbound calls, and return call summaries, transcripts, and recordings.
+Make and manage real phone calls through OsmO, then return call outcomes, summaries, and transcripts.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,39 +14,45 @@ MIT-0
 
 ## Use Case:
 
-People use this skill to ask an AI to call businesses or contacts, manage eligible scheduled calls and call-backs, and review the outcome of calls. It previews the recipient and call request for user confirmation before dialing.
+External users can ask an AI assistant to place or manage calls to businesses or contacts, with the recipient and call script confirmed before dialing. The assistant can report call results and provide available summaries, transcripts, and recording links.
 
 ### Deployment Geography for Use:
 
-Global
+United States, Canada, United Kingdom, and Australia (free-credit availability stated; broader availability is not specified).
 
 ## Known Risks and Mitigations:
 
-Risk: Calls and their related information are handled by OsmO's hosted service; the security scan does not establish what data the service handles.
+Risk: The security review was partial and does not guarantee that every artifact behavior was inspected.
 
-Mitigation: Review OsmO's privacy information and avoid sharing sensitive details unless comfortable with the service's handling of them.
+Mitigation: Review the skill before connecting to OsmO, and treat the benign verdict as limited to the scan described in the release evidence.
 
-Risk: A call reaches a real person and may make a request or change on the user's behalf.
+Risk: A placed call reaches a real person and may convey information on the user's behalf.
 
-Mitigation: Before dialing, show the recipient's name and number and the exact request OsmO will make; place the call only after the user confirms.
+Mitigation: Show the recipient and exact words first, place the call only after the user's explicit confirmation, and do not provide sensitive credentials or identity details.
+
+Risk: Connecting requires phone-based sign-in to OsmO.
+
+Mitigation: Have the user complete sign-in in the browser; never request, store, or repeat their one-time code in chat.
 
 ## Reference(s):
 
+- [ClawHub skill release](https://clawhub.ai/getosmo/skills/osmo-phone-calls)
 - [OsmO](https://getosmo.app)
+- [OsmO MCP server](https://api.getosmo.app/mcp)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, Text, Configuration instructions]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [MCP tool requests and returned call summaries, transcripts, and recording links]
+**Output Format:** [Natural-language call updates and summaries, with available transcripts, recording links, and Markdown setup instructions.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Call request reason is limited to 300 characters, context to 700 characters, and a request can include up to five recipients; features depend on the account plan.]
+**Other Properties Related to Output:** [Calls are placed only after the user confirms the recipient and exact call script; returned call details depend on OsmO's results.]
 
 ## Skill Version(s):
 
-1.1.0 (source: frontmatter, ClawHub release)
+1.2.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

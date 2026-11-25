@@ -1,0 +1,79 @@
+{
+ "video": "names",
+ "language": "es",
+ "voice": "kokoro:em_alex",
+ "signature": "[2, \"kokoro:em_alex\", {\"background\": \"voiceover\", \"max_speed\": 1.15, \"original_volume\": 0.18}, [[\"Creo que una forma de describirlo, para Doug y para m\\u00ed, es que esperamos\", 0.0, 5.18], [\"que las futuras tripulaciones de las naves Dragon rumbo a estaciones de la NASA\", 5.24, 5.96], [\"no maldigan nuestros nombres por aceptar algo complicado, dif\\u00edcil de entrenar, y al final, de operar.\", 11.26, 8.02], [\"Que no digan: no entiendo nada.\", 19.34, 1.98], [\"Ni recuerdo por qu\\u00e9 es tan f\\u00e1cil, pero lo es.\", 21.38, 2.88], [\"Y que se olviden de nosotros, porque no tengan nada por qu\\u00e9 maldecirnos.\", 24.32, 4.72]], 2397287, 1795424097]",
+ "lines": [
+  {
+   "n": 1,
+   "cues": [
+    1
+   ],
+   "start": 0.0,
+   "slot": 5.18,
+   "seconds": 4.05,
+   "speed": 0.9,
+   "text": "Creo que una forma de describirlo, para Doug y para mí, es que esperamos"
+  },
+  {
+   "n": 2,
+   "cues": [
+    2
+   ],
+   "start": 5.24,
+   "slot": 5.96,
+   "seconds": 4.74,
+   "speed": 0.9,
+   "text": "que las futuras tripulaciones de las naves Dragon rumbo a estaciones de la NASA"
+  },
+  {
+   "n": 3,
+   "cues": [
+    3,
+    4,
+    5
+   ],
+   "start": 11.26,
+   "slot": 8.02,
+   "seconds": 6.1,
+   "speed": 0.9,
+   "text": "no maldigan nuestros nombres por aceptar algo complicado, difícil de entrenar, y al final, de operar."
+  },
+  {
+   "n": 4,
+   "cues": [
+    6
+   ],
+   "start": 19.34,
+   "slot": 1.98,
+   "seconds": 1.83,
+   "speed": 1.0,
+   "text": "Que no digan: no entiendo nada."
+  },
+  {
+   "n": 5,
+   "cues": [
+    7,
+    8
+   ],
+   "start": 21.38,
+   "slot": 2.88,
+   "seconds": 2.49,
+   "speed": 1.0,
+   "text": "Ni recuerdo por qué es tan fácil, pero lo es."
+  },
+  {
+   "n": 6,
+   "cues": [
+    9,
+    10
+   ],
+   "start": 24.32,
+   "slot": 4.72,
+   "seconds": 4.1,
+   "speed": 1.0,
+   "text": "Y que se olviden de nosotros, porque no tengan nada por qué maldecirnos."
+  }
+ ],
+ "too_long": []
+}

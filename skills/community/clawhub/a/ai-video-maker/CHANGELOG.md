@@ -1,5 +1,36 @@
 # Changelog
 
+## 2.1.4 — 2026-11-22
+
+- Add `--platform <codex|claude|openclaw>` to `connect.mjs` and `run-workflow.mjs`, so setup commands no longer need the `AIVIDEO_AGENT_PLATFORM=...` prefix, which is POSIX-only and fails in PowerShell and cmd. The environment variable still works when the argument is absent. Not yet verified on a Windows machine.
+- Document installation with `npx skills add https://aivideomaker.ai/skills/ai-video-maker.tgz` and updates with `npx skills update`. The version-free archive link always serves the latest release.
+
+## 2.1.3 — 2026-11-21
+
+- Check that the private credentials folder can hold a key before requesting a browser approval. An agent that cannot write `~/.aivideo-maker` (a sandbox, wrong permissions, or a saved key that cannot be replaced) is told so up front instead of after the user approved, when the issued key was lost.
+- Say whether an approval already under way is kept, and name the actual cause instead of always blaming permissions.
+- Make `connect.mjs --start` fail when it cannot keep the approval for the next run, instead of printing a link nothing could finish.
+- Give unsafe or damaged saved credentials an error that names a way out, instead of asking to run connect again.
+- Report a link or wrong kind of entry in place of the credentials folder or file as such, not as a permissions problem.
+- Stop applying Unix permission checks on Windows, where files have no such modes; privacy there relies on the user profile. Not yet verified on a Windows machine.
+
+## 2.1.2 — 2026-11-19
+
+- Resume a pending browser approval when the connect helper is run again, including one started with `--reconnect`, so an approval given after the helper stopped is no longer lost.
+- Add `connect.mjs --start` to print the approval link without waiting, for agents that cannot keep a background process.
+- Keep the approval resumable after a passing network fault; only a denied, expired or already-used approval ends it.
+- Poll at the normal interval when the server asks to slow down, and stop handing out a link that is about to expire.
+- Return the official link for adding API credits when a new quote is unaffordable or generation fails with `INSUFFICIENT_CREDITS`, while still resuming a request that was already paid for.
+
+## 2.1.1 — 2026-11-14
+
+- Guide real product/social first videos after connection, preserving quote and spending approval.
+- Validate product images using MiniMax imageUrl and reject the incorrect image field.
+- Add intent routing, mode-specific prompting, recipes and delivery checks.
+- Save optional private recovery state before submission and resume waiting without creating a task.
+- Recover accepted first-video requests after their debit lowers the balance; new debits remain server-guarded.
+- Distinguish terminal task failures and cancellation from retryable status-query failures.
+
 ## 2.1.0 — 2026-09-27
 
 - Add browser-approved agent connections with expiring sessions and automatic account and quote verification.

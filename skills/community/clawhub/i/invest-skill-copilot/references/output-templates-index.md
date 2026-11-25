@@ -6,6 +6,7 @@
 |---|---|---|
 | 五维深度分析 `stock_5d_deep_analysis` | `skills/subject_analysis/stock_5d_deep_analysis/references/output-template.md` | 核心摘要→五维逐维→可选同业对标→综合评价→来源→免责 |
 | 对比分析 `stock_comparative_analysis` | `skills/subject_analysis/stock_comparative_analysis/SKILL.md`（含输出规范） | 公司/基本面/技术面/资金面/消息面；MD+HTML（可选 PDF） |
+| 价值投资 `value_investing` | `skills/subject_analysis/value_investing/references/example_report_300308_20261118.md` + `methodology.md` | 自上而下五步；多股对比可调用 `scripts/value_scorecard.py` 四层加权打分；不荐股不给目标价 |
 | 行业速报 `industry_brief` | `skills/macro_event/industry_brief/references/EXAMPLE_OUTPUT.md` | 六段式速报；信号规则带证据链 |
 | 主题产业链 `concept_chain_analysis` | `skills/macro_event/concept_chain_analysis/references/output-template.md` | 上中下游分层作战图 + 核心/弹性/补涨 + 风险 |
 | 市场热点 `market_hotspot` | `skills/macro_event/market_hotspot/references/output-template.md` | 七大模块；MD/HTML 双格式 |

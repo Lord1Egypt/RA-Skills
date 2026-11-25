@@ -1,6 +1,6 @@
 ## Description:
 
-Unified audit logging, policy enforcement, and input sanitization for the entire VMware MCP skill family.
+Provides shared audit logging, policy enforcement, and input sanitization for the VMware MCP skill family, with a CLI and Python library for querying logs and managing rules.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and VMware administrators use this skill to review audit activity, inspect or configure policy rules, export audit records, and integrate policy checks and input sanitization into VMware skill tools.
+Developers and VMware administrators use this library and CLI to review audit activity, inspect policy decisions, configure deny rules and maintenance windows, and integrate audit and sanitization support into VMware skills.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,44 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The packaged policy baseline denies no operations, and a user rules file replaces the baseline.
+Risk: Audit logs and rotated archives may contain tool parameters, results, user information, and timestamps.
 
-Mitigation: Back up existing rules, configure explicit deny rules, and use `vmware-audit policy` to confirm the effective rules before production use.
+Mitigation: Restrict access to the local audit database and its archives, and explicitly mark sensitive parameters and results for redaction.
 
-Risk: The security scan was partial because some referenced local paths were missing.
+Risk: The packaged policy baseline denies no operations, so calls are allowed unless operator rules are configured.
 
-Mitigation: Review the production setup instructions and all referenced local files before installation.
+Mitigation: Configure deny rules or maintenance windows and use `vmware-audit policy` to confirm which rules are active.
 
-Risk: Audit records and exports can include infrastructure identifiers, configuration, and operation results.
+Risk: Setting `VMWARE_POLICY_DISABLED=1` bypasses policy evaluation for the process.
 
-Mitigation: Restrict access to the audit database and review exports before sharing them.
+Mitigation: Restrict who can set this environment variable and unset it after any intentional use.
+
+Risk: The benign security verdict has medium confidence; some local references were unresolved and executable behavior was not checked.
+
+Mitigation: Review unresolved references and assess the installed package before relying on it in a deployment.
 
 ## Reference(s):
 
-- [Setup Guide](references/setup-guide.md)
-- [CLI Reference](references/cli-reference.md)
-- [Capabilities](references/capabilities.md)
-- [Agent Guardrails](references/agent-guardrails.md)
-- [Project Homepage](https://github.com/vmware-skills/VMware-Policy)
+- [ClawHub release page](https://clawhub.ai/zw008/skills/vmware-policy)
+- [Project homepage](https://github.com/vmware-skills/VMware-Policy)
+- [Setup guide](artifact/references/setup-guide.md)
+- [CLI reference](artifact/references/cli-reference.md)
+- [Agent guardrails](artifact/references/agent-guardrails.md)
+- [MCP result contract](artifact/references/mcp-result-contract.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Code, Guidance]
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Code, Guidance]
 
-**Output Format:** [Audit summaries, JSON audit exports, CLI commands, YAML policy examples, and Python integration guidance.]
+**Output Format:** [CLI audit summaries, JSON exports, YAML policy examples, and Markdown guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Audit records may contain infrastructure names, addresses, configuration, and operation results.]
+**Other Properties Related to Output:** [Audit results depend on selected filters and time ranges and may contain sensitive operational details.]
 
 ## Skill Version(s):
 
-1.25.0 (source: server-resolved release)
+1.26.0 (source: server-resolved release)
 
 ## Ethical Considerations:
 

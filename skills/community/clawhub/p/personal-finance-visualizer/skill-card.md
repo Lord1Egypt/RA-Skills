@@ -1,6 +1,6 @@
 ## Description:
 
-Turn user-provided personal finance records into a local interactive report with spending, income, transfers and cash movement in English or Chinese. Use for statement-based finance charts and period comparisons, not bank-account actions or investment advice.
+Turns authorized personal finance records into local interactive reports with spending, income, transfers, cash movement, and optional daily budget views in English or Chinese.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT No Attribution
+MIT-0
 
 ## Use Case:
 
-External users can turn authorized, prepared transaction records into reconciled local reports for comparing spending, income, transfers, and cash movement. It is not for bank-account actions or investment advice.
+People reviewing their authorized financial records can reconcile statement data and explore spending, income, transfers, cash movement, and optional daily budgets in a local report.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Reports and exported HTML can contain sensitive transaction details, and a report link may expose personal financial information.
+Risk: ClawScan flags that a configured network endpoint may sync budget settings beyond the local-report purpose.
 
-Mitigation: Share report links and exported files only with intended recipients, keep exports private, and stop the local server when finished.
+Mitigation: Use local-only mode unless budget syncing is wanted, and configure it only with a trusted same-origin /api/budget endpoint.
 
-Risk: Incomplete records or unresolved transaction classifications, refunds, or transfers can make report totals misleading.
+Risk: The security scan was partial, so some file content was not fully inspected.
 
-Mitigation: Provide only authorized records, confirm uncertain items before final charts, and keep source coverage gaps visible.
+Mitigation: Review the relevant code and endpoint configuration before enabling budget syncing.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/jasonhmy/skills/personal-finance-visualizer)
-- [Report input schema](references/schema.md)
-- [Reconciliation and delivery workflow](references/workflow.md)
-- [Repository declared in skill metadata](https://github.com/JasonHMY/personal-finance-visualizer)
+- [Input data schema](references/schema.md)
+- [Statement processing workflow](references/workflow.md)
+- [Source repository (metadata link)](https://github.com/JasonHMY/personal-finance-visualizer)
 
 ## Skill Output:
 
-**Output Type(s):** [HTML report, Charts, Financial summaries, Guidance]
+**Output Type(s):** [Analysis, Files, Guidance]
 
-**Output Format:** [Interactive local HTML report and concise conversational guidance in English or Chinese]
+**Output Format:** [Local interactive HTML report with concise explanatory text]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports reflect the supplied records and coverage; they are not a complete financial picture unless the user-provided data supports that scope.]
+**Other Properties Related to Output:** [English or Simplified Chinese; report periods and optional budget views depend on supplied records and user requests.]
 
 ## Skill Version(s):
 
-1.4.1 (source: frontmatter, server-resolved release)
+1.6.0 (source: frontmatter and server-resolved release metadata)
 
 ## Ethical Considerations:
 

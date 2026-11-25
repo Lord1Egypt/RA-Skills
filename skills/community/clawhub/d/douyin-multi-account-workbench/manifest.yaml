@@ -1,0 +1,45 @@
+name: douyin-multi-account-workbench
+display_name: 抖音多账号内容协同
+slug: douyin-multi-account-workbench
+version: 1.0.3
+license: MIT-0
+description: 按 EasyBR 浏览器环境隔离多个抖音账号，按需调用可选的热点、账号、评论和竞品 Skill；依赖缺失时明确报告并继续其他任务。
+category: selfmedia
+repository: https://github.com/xxjrq/douyin-multi-account-workbench
+runtime: easy-webbridge
+icon: assets/icon-512.png
+trigger_words:
+  - 抖音多账号管理
+  - 抖音账号矩阵
+  - 多账号内容分析
+  - EasyBR 抖音多开
+  - 抖音多账号协同
+tags:
+  - douyin
+  - multi-account
+  - content-analysis
+  - easy-webbridge
+  - creator-workbench
+self_test: node scripts/self-test.mjs
+dependencies:
+  - name: douyin-live-hot-free
+    source: https://github.com/xxjrq/douyin-live-hot-free
+    required_for: hot-topic
+    optional: true
+    install_command: npx skills add xxjrq/douyin-live-hot-free
+  - name: douyin-account-diagnosis
+    source: https://github.com/xxjrq/douyin-account-diagnosis
+    required_for: diagnosis
+    optional: true
+    install_command: npx skills add xxjrq/douyin-account-diagnosis
+  - name: douyin-comment-insights-free
+    source: https://github.com/xxjrq/douyin-comment-insights-free
+    required_for: comment-insights
+    optional: true
+    install_command: npx skills add xxjrq/douyin-comment-insights-free
+  - name: douyin-competitor-research-free
+    source: https://github.com/xxjrq/douyin-competitor-research-free
+    required_for: competitor-research
+    optional: true
+    install_command: npx skills add xxjrq/douyin-competitor-research-free
+dependency_check: "node scripts/self-test.mjs"

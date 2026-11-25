@@ -1,7 +1,7 @@
 ---
 name: waterfall-enrichment
 description: "Cascade one lookup through several vendors in priority order, so a row the first source misses falls through to the next instead of being lost, powered by Cargo. Triggers: \"waterfall enrichment\", \"cascade through providers\", \"fallback chain\", \"my single vendor has bad coverage\", \"try another source when the first one misses\", \"improve my match rate\", \"multi-vendor fallback\". Providers: waterfall. Skip when: you want one address for one name and domain — use find-work-email, the cheaper single job; or you hold addresses and only want them checked — use verify-email-list."
-version: "1.0.4"
+version: "1.0.5"
 compatibility: Requires @cargo-ai/cli (npm). Sign in or create an account with `cargo-ai login --email` (emailed code, no browser), `--oauth`, or an API token
 homepage: https://github.com/getcargohq/gtm-skills
 metadata:
@@ -53,6 +53,14 @@ paid call on a new account.
 Already signed in? `cargo-ai whoami` confirms it.
 
 ## Do the job
+
+**Only after the email, or a phone number?** Every Cargo workspace already has those waterfalls
+built as read-only tools: **Find email** (apolloio, FullEnrich, findyMail, peopleDataLabs,
+waterfall, each hit verified) and **Find phone** (`linkedinUrl` in). Run them by template slug,
+with no UUID to look up:
+`--action '{"kind":"tool","templateSlug":"email_waterfall"}'` or
+`--action '{"kind":"tool","templateSlug":"phone_waterfall"}'`; `find-work-email` walks through it.
+The calls below are for the whole contact or company record.
 
 Contact enrichment across the stack. One call, several sources behind it:
 

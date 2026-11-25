@@ -1,7 +1,7 @@
 ---
 name: saver-verifier
-description: Independently check external factual claims in agent research, reports or other tool outputs using web evidence and cited sources. Use when a cited second check is needed before relying on a claim; not for wallet security, transaction simulation or arithmetic.
-version: 1.1.1
+description: Fact-checking API for research reports and factual claim verification. Before publishing, verify a factual claim against its cited source. Send the claim and optionally a source URL as context. Get a model-assessed verdict, linked evidence, and sources for 0.20 USDC per completed check.
+version: 1.1.2
 metadata:
   openclaw:
     emoji: "🛡️"

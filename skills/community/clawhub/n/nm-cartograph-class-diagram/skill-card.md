@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to understand class hierarchies, composition, and public APIs in a codebase. It produces a Mermaid class diagram with a brief structural analysis.
+Developers and engineers use the skill to understand class hierarchies, composition, and public APIs by generating Mermaid class diagrams from a codebase.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Codebase-derived details may be sent to Mermaid Chart during rendering without users being warned or checking whether sharing is allowed.
+Risk: Class and interface details from analyzed code may be sent to Mermaid Chart.
 
-Mitigation: Before rendering, check repository sharing rules and Mermaid Chart's data-handling practices.
+Mitigation: Review the code scope and Mermaid Chart privacy implications before using the skill on private code; exclude sensitive code when needed.
 
 ## Reference(s):
 
-- [Class Diagram skill on ClawHub](https://clawhub.ai/athola/skills/nm-cartograph-class-diagram)
-- [Cartograph plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph)
+- [Cartograph project](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Analysis]
+**Output Type(s):** [Code, Markdown]
 
-**Output Format:** [Mermaid class diagram source with concise Markdown analysis]
+**Output Format:** [Mermaid class diagram syntax, typically presented in Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Shows public methods and key attributes; the skill specifies a limit of 12–15 classes.]
+**Other Properties Related to Output:** [Shows classes, public interfaces, inheritance, composition, aggregation, and dependencies; intended to cover at most 12–15 classes.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, server-resolved release)
+1.10.4 (source: ClawHub release evidence)
 
 ## Ethical Considerations:
 

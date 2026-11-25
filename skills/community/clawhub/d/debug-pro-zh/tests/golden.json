@@ -1,0 +1,43 @@
+{
+ "note": "debug-pro 黄金集：逐条断言 triage/envsnap/reprocheck 的机器可判结果。",
+ "cases": [
+  {"id": "D01-log-exc-type", "kind": "triage",
+   "input": "2026-11-18 09:13:02.884 ERROR request failed path=/api/v1/orders status=500\nTraceback (most recent call last):\n  File \"/srv/app/api/orders.py\", line 88, in get_order\n    payload = json.loads(row)\njson.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+   "expect": {"exception_types_contain": ["json.decoder.JSONDecodeError"]}},
+
+  {"id": "D02-log-last-frame", "kind": "triage",
+   "input": "Traceback (most recent call last):\n  File \"/srv/app/main.py\", line 41, in boot\n    run()\n  File \"/usr/lib/python3.11/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\nValueError: bad input",
+   "expect": {"last_frame_file_contain": "json/__init__.py", "last_frame_line": 346, "frames_min": 2}},
+
+  {"id": "D03-log-exit-code", "kind": "triage",
+   "input": "2026-11-18 09:13:03.002 INFO worker exit code=1",
+   "expect": {"exit_codes_contain": ["1"]}},
+
+  {"id": "D04-log-http-500", "kind": "triage",
+   "input": "2026-11-18 10:02:11 ERROR upstream returned status=502 for path=/api/v2/items",
+   "expect": {"http_status_contain": ["502"]}},
+
+  {"id": "D05-log-timestamps", "kind": "triage",
+   "input": "2026-11-18 09:12:44.301 INFO start\n2026-11-18 09:13:02.884 ERROR boom ValueError: x",
+   "expect": {"timestamps_min": 2}},
+
+  {"id": "D06-not-a-log", "kind": "triage",
+   "input": "今天天气不错，服务启动得很顺利，没有任何异常。",
+   "expect": {"expect_error": "D004"}},
+
+  {"id": "D07-repro-complete", "kind": "reprocheck",
+   "input": "复现步骤：\n1. 环境：Windows 11 / Python 3.11.4 / 依赖 requirements.txt\n2. 命令：python app.py --port 8080\n3. 输入：上传 fixtures/order_empty.json\n4. 期望返回 200，实际返回 500\n5. 证据：日志见 sample_error.log，堆栈首帧 orders.py:88",
+   "expect": {"verdict": "PASS", "steps_min": 5}},
+
+  {"id": "D08-repro-no-env", "kind": "reprocheck",
+   "input": "复现步骤：\n1. 运行 python app.py\n2. 输入空文件\n3. 期望 200，实际 500\n4. 证据：截图一张",
+   "expect": {"verdict": "FAIL", "missing_contain": ["版本环境"]}},
+
+  {"id": "D09-repro-no-expect", "kind": "reprocheck",
+   "input": "复现步骤：\n1. 环境：Python 3.11\n2. 命令：python app.py\n3. 输入：空 json\n4. 证据：日志",
+   "expect": {"verdict": "FAIL", "missing_contain": ["期望与实际"]}},
+
+  {"id": "D10-envsnap-redact", "kind": "envsnap",
+   "expect": {"no_secret_leak": true, "redacted_min": 1}}
+ ]
+}

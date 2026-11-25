@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill after initializing an egregore project or while setting up a new machine to install and verify a user-level watchdog that relaunches sessions every five minutes.
+Developers use this skill after initializing an egregore project to configure periodic watchdog relaunching on macOS or Linux.
 
 ### Deployment Geography for Use:
 
@@ -22,20 +22,20 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment rates the skill suspicious with medium confidence: its stated watchdog purpose does not match reported status checks, and its setup persists across sessions. The referenced install scripts were missing from the scan, so their behavior remains unassessed.
+Risk: The referenced installation scripts were unavailable for review, so their behavior and the full installation process remain unverified.
 
-Mitigation: Before installing, review or obtain the install scripts and confirm that you want a watchdog configured to relaunch every five minutes and persist across sessions.
+Mitigation: Review the skill and the installation scripts before installing, and verify the daemon setup they perform.
 
 ## Reference(s):
 
-- [Egregore project page](https://github.com/athola/claude-night-market/tree/master/plugins/egregore)
 - [ClawHub skill release](https://clawhub.ai/athola/skills/nm-egregore-install-watchdog)
+- [Egregore project](https://github.com/athola/claude-night-market/tree/master/plugins/egregore)
 
 ## Skill Output:
 
 **Output Type(s):** [Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown with inline shell command blocks]
+**Output Format:** [Markdown with inline shell commands]
 
 **Output Parameters:** [1D]
 
@@ -43,7 +43,7 @@ Mitigation: Before installing, review or obtain the install scripts and confirm 
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: ClawHub release evidence)
 
 ## Ethical Considerations:
 

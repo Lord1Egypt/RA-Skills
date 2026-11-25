@@ -1,6 +1,6 @@
 name: geo-scan
 label: GEO Scan
-version: 1.2.7
+version: 1.2.8
 author: Aurelius
 homepage: https://github.com/AureliusClaw/geo-scan
 description: >
@@ -10,9 +10,12 @@ description: >
   structure (25), quotability (20) and freshness (10). Every score carries the
   evidence line that produced it. Returns a compact JSON report with a
   prioritised action list. Scanning is read-only HTTP(S) GETs obeying robots.txt
-  (RFC 9309 matching, incl. wildcards, end anchors and Crawl-delay) at one
-  request per second, 90 s cap, public hosts only; ftp:, file: and all other
-  schemes are refused. With save=true it writes the full Markdown and JSON
+  (RFC 9309 matching, incl. wildcards, end anchors and Crawl-delay, rule
+  precedence by pattern length as in Google's own matcher) at one
+  request per second, 90 s hard cap bounding DNS, connect, TLS, headers and body
+  (a watchdog closes the in-flight socket at the deadline), public hosts only;
+  ftp:, file: and all other schemes are refused. With save=true it writes the
+  full Markdown and JSON
   report into out_dir, confined to ~/.hermes/cache or the working directory.
   stdlib only.
 requires_hermes: ">=0.21.5"

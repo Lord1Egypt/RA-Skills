@@ -90,7 +90,7 @@ def workflow(text: str, lang: str = "auto") -> dict:
                      "paragraph_level_auroc": 0.6883,
                      "calibrated_high_threshold": _cal.get("para_high"),
                      "calibrated_precision": _cal.get("precision"),
-                     "source": "references/para_thresholds.json + eval/results/mixed_para_20261005.json"},
+                     "source": "references/para_thresholds.json + eval/results/archive/mixed_para_20261005.json"},
         "guidance": ("文档级分数不可单独采信（混写会稀释/顶起文档级均分，实测文档级 AUROC 0.52-0.54）。"
                      + _honest) if mixed_detected else "",
     }

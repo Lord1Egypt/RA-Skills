@@ -6,24 +6,26 @@ Reference for the `takeaway` flag on `create_deliberation` / `append_round` and 
 
 | Flag | Accepted on | Effect |
 |---|---|---|
-| `takeaway` | `create_deliberation` AND `append_round` | Generates a per-round **Takeaway** (`round_takeaway`) when the round completes. Surfaces on `get_session` once written. |
+| `takeaway` | `create_deliberation` AND `append_round` | Generates a per-round **Takeaway** when the round completes. It appears as a Takeaway section in the round text once written. |
 
 Defaults `false` — no behavior change unless you opt in.
 
 ## The artifact
 
-`get_session` returns `rounds[].round_takeaway` for any opted-in round whose generation has completed (null otherwise):
+`wait_for_round` and `get_session` print a Takeaway section for a round that requested one, once it is generated:
 
-- `bottom_line` — one-paragraph answer to "what did this round establish?"
-- `items[]` — the round's key questions, each `{ question, answer, consensus, claim_ids }`. `consensus` states where the panel agreed or split; `claim_ids` reference the round's claim map, so you can jump from a Takeaway item to the underlying reactions.
+- a bottom line — one paragraph answering "what did this round establish?"
+- the round's key questions and answers, with references to the claims in the groups above, so you can go from a Takeaway item to the underlying reactions.
+
+On the REST API this is `rounds[].round_takeaway`.
 
 ## Cost
 
-Takeaways bill via the standard credit wallet at **0 bps markup** (at-cost passthrough) — typically around a cent per round.
+Takeaways bill through the credit wallet at cost — typically around a cent per round.
 
 ## When to set it
 
-Set `takeaway` any time a round-level summary may matter later, or when the round's claim map has enough structure that a curated read path will save you work. It's cheap; when in doubt, opt in.
+Only when the user asks for one. You already receive the models' reactions and their full prose and synthesize from those yourself, so a Takeaway adds a model call and its cost without telling you anything new. When in doubt, leave it off.
 
 ## Public contract
 

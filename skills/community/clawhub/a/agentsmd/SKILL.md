@@ -1,12 +1,13 @@
 ---
 name: agentsmd
-version: 1.5.2
+version: 1.6.0
 description: >-
   Distill session lessons into a lean AGENTS.md (create or update), following the open agents.md
   spec: collect lessons, distill them into one-line rules, organically merge, verify every
   command, and write only after user approval. Adapts to coding and work (non-code
   collaboration directory) scenarios; syncs project memory and progress/status records;
-  collects scattered docs and data into docs/, data/, references/. Trigger on requests like
+  collects scattered docs and data (fixed buckets for coding, work-type-fitted taxonomy for
+  work). Trigger on requests like
   "write the lessons into AGENTS.md", "solidify this session's pitfalls into project rules",
   "update project guidelines", "organize project docs and data" — 中文触发词：「总结经验/教训写进
   AGENTS.md」「把这次踩的坑固化成项目规则」「更新项目规范」「整理项目文档与数据」「沉淀项目协作规范」「文档归档到
@@ -103,7 +104,7 @@ After `AGENTS.md` is written, check for scattered output files (not yet grouped 
 - **Documents** (for humans: MD/HTML/PPT/PDF) → `docs/<topic>/`
 - **Data files** (machine-readable: CSV/XLSX/JSON/SQL dumps, exported results, datasets) → `data/<topic>/`
 
-Work-scenario differences are in Scenario Adaptation.
+These two buckets are the defaults for coding scenarios; work scenarios may propose a taxonomy that fits the work type instead (see Scenario Adaptation).
 
 1. **Check references before proposing**: for each candidate file, grep the whole project first (code, scripts, build/CI configs). Referenced files never move — moving breaks things. Files whose nature is unclear (document or data?) get flagged for the user; don't decide for them.
 2. **Scan only, touch nothing**: present the list (path, nature, suggested destination) for approval — approve all or pick individually; "keep in place" is always allowed. Exceptions that stay in the root: project config files (`AGENTS.md` / `CLAUDE.md` / `skills-lock.json` …), `README`, `LICENSE`. **Never move, rename, or modify any file before the user approves.**
@@ -136,7 +137,9 @@ In Step 3, detect the scenario first. Both share one workflow; only three spots 
 |------|--------|------|
 | Initial scan & verification | Scan build/dependency/CI configs; run each command or cross-check it | Scan README, directory structure, naming conventions; no commands to verify — instead verify referenced paths exist |
 | Section semantics | Build & Test / Code Style / PR rules | Data definitions & source freshness, file naming & archiving, delivery & review process; mostly custom sections, still ≤ 9 total |
-| Step 7 collection & references | docs→`docs/`, data→`data/`; grep code references | Deliverables→`docs/`, data drafts→`data/`, reference material→`references/`; check MD/HTML relative links and paths inside AGENTS.md |
+| Step 7 collection & references | docs→`docs/`, data→`data/`; grep code references | `docs/ data/ references/` are defaults only — may propose a type-fitted taxonomy (see below); check MD/HTML relative links and paths inside AGENTS.md |
+
+**Work-scenario collection relaxation**: the three buckets are defaults, not mandates. Propose top-level folders that fit the work type (e.g. a report library might use `reports/`, `minutes/`, `drafts/`), reusing the directory's existing structure and naming conventions first; deliverables / data drafts / reference material is one suggested dimension, not the only one. The full proposed tree goes into the approval list (flow unchanged), and once approved the taxonomy is recorded in AGENTS.md so later sessions reuse it instead of reinventing it.
 
 ## Reference resources
 

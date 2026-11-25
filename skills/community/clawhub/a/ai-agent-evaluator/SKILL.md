@@ -12,7 +12,7 @@ description: >
   or autonomous red-team execution against live systems.
   Keywords: AI agent evaluation, agent benchmarking, LLM testing, CrewAI, AutoGen,
   LangChain, SWE-bench, AgentBench, AI quality assurance, agent reliability.
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 # AI Agent Evaluator
@@ -121,7 +121,7 @@ by guiding you through rigorous, structured agent evaluation workflows.
 
 ---
 
-## AI Governance & Market Watch (as of 2026-11-15)
+## AI Governance & Market Watch (as of 2026-11-23)
 
 | Area | What is moving | What it means for evaluation work | Concrete action |
 |------|----------------|-----------------------------------|---|
@@ -138,7 +138,7 @@ by guiding you through rigorous, structured agent evaluation workflows.
 | Market | 评测从「上线前一次性」转向「上线后持续回归」 | 冻结的历史失败用例成为回归基线 | 建立失败用例库并纳入每次发版必跑集 |
 | Technical | 小模型与路由策略普及，同一任务可能由不同模型完成 | 评测需按实际路由分别统计，避免均值掩盖差异 | 记录每次调用的模型版本与路由决策 |
 
-> **Data as of**: 2026-11-15 · Sources: public governance guidance, vendor and community
+> **Data as of**: 2026-11-23 · Sources: public governance guidance, vendor and community
 > benchmarks, practitioner reports. Verify against the latest official publications before
 > relying on any specific figure.
 
@@ -578,7 +578,7 @@ by guiding you through rigorous, structured agent evaluation workflows.
 ---
 
 *Built for AI teams who ship agents to production — not just demos.*
-*Author: @gechengling | version: "3.0.5"*
+*Author: @gechengling | version: "3.0.6"*
 *Repository: https://github.com/gechengling/ai-agent-evaluator*
 
 ## 本轮增量（2026-11-15）：复核维度与举例补充
@@ -621,4 +621,46 @@ by guiding you through rigorous, structured agent evaluation workflows.
 ### 时效性说明
 
 - 本期时效性核查：**截至 2026-11-15**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
+- 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。
+
+## 本轮增量（2026-11-23）：复核维度与举例补充
+
+> 本节为 2026-11-23 例行轮转的净增量记录：新增举例与复核维度均为本期首次出现，与既有条目不重复；仅作方法论参考，需具备相应资质的人员复核后使用。
+
+### 补充举例（按模块，本期新增）
+
+**### Workflow 1: Quick Agent Health Check**：
+
+- 健康检查清单补「基线对照」一列：每个检查项注明所对照的既有行为基线与样本范围，基线不明的按待补处理，草稿不给出通过或失败判定。
+- 检查表新增「确定性项与语义项分栏」：结构校验类条目与需语义判断的条目分列，语义栏标注由具备资质人员复核后使用。
+
+**### Workflow 2: Benchmark Selection & Interpretation**：
+
+- 基准对照表补「适配口径」一列：每个基准注明其适用的任务类别与已知边界，口径不匹配的标注不宜横向比较，需人工确认。
+- 解读清单新增「均分与切片分栏」：整体均分与按用例类别切片的结果分列，草稿只记录切片口径说明，不替使用者下「整体达标」结论。
+
+### 新增复核维度表（2026-11-23）
+
+> 本表新增「由谁执行 / 数据来源 / 复核要点 / 风险等级 / 适用边界」等维度列，把口径责任、数据来源与人工复核要求落到具体条目。
+
+| 复核维度 | 由谁执行 | 数据来源 | 复核要点 | 风险等级 | 适用边界 |
+| --- | --- | --- | --- | --- | --- |
+| 健康检查基线 | 评测人员 + 复核人 | 检查清单 / 行为基线 | 每项是否标注基线与样本范围、分层是否列明 | 中 | 纸面对照，结论须人工确认 |
+| 基准适配口径 | 评测人员 | 基准对照表 / 任务说明 | 任务类别与边界是否标注、切片口径是否说明 | 中 | 文档记录，不构成放行结论 |
+
+### 适用边界 / 数据最小化 / 执行边界（本期复核与补齐）
+
+**适用边界**：本技能仅用于Agent 评测流程与基准选择的方法论纸面参考的方法论参考与纸面草稿，输出为供使用者自行判断的参考文本；不构成正式结论、专业意见或对外发布内容。涉及评测结论签发、模型上线放行与对外评级发布的场景不适用，应由具备相应资质的人员按既有制度独立完成。
+
+**数据最小化**：本期补齐：示例、清单与提问只保留占位标签与抽象情境描述，不写入可识别个人、客户或机构的信息；草稿阶段即标注需人工复核后再补充任何具体背景。
+
+**执行边界**：本期复核：文中「生成 / 输出 / 形成」均指生成待确认的纸面草稿，由使用者自行决定是否采用；不代为发布、提交、保存或进行任何系统操作。
+
+### 参考同类公开框架的补强（2026-11-23）
+
+> 参考 2026 年公开评测工程资料中「黄金评测集先于评测框架、以真实失败用例为源」「评判模型须先对照人工标签校准一致性再采信其分数」「按用例类别切片报告而非单一均分」「把评测接入回归门禁、把提示词与模型版本作为一个可回滚单元」的思路，在基准选择与自定义评测集设计章节补一个纸面小节：分列评测样本来源、人工校准占位、切片口径与基线修订，并提示阈值与放行由具备权限的人员结合业务设定，草稿不代为运行任何评测或填入未经核实的 agreement 数值。
+
+### 时效性说明
+
+- 本期时效性核查：**截至 2026-11-23**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
 - 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。

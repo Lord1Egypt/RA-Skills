@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Export search results or collection data to CSV file (incremental append mode)
+// Export creator search results to a local CSV file (incremental append mode)
 //
 // Usage:
 //   echo '<json>' | node {baseDir}/scripts/export_to_csv.mjs '{"output":"creators.csv"}'

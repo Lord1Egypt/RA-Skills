@@ -1,6 +1,6 @@
 ## Description:
 
-Produces editable corporate journal and newsletter drafts from supplied materials or public research, with source tracing and editorial quality checks.
+根据栏目、样例与本期素材，生成带来源核验和人工校订清单的可编辑企业期刊底稿，并提供版面与编辑质量检查。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Editors and communications teams use the skill to turn issue materials or researched sources into editable corporate journal, customer newsletter, investor letter, and ESG drafts with traceable citations and review checks.
+企业编辑与传播团队可用它为内刊、客户通讯、投资者信或 ESG 特刊整理素材、核对引证并生成可编辑底稿。发布前仍需人工完成编辑、事实和合规审阅。
 
 ### Deployment Geography for Use:
 
@@ -22,42 +22,40 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The connection check sends CUE_API_KEY to a server-provided address without verifying that destination.
+Risk: The security review reports remote-service discovery and credential transmission beyond the stated drafting purpose.
 
-Mitigation: Before running the credential-bearing command, independently confirm the destination is an approved HTTPS endpoint; do not send the key otherwise.
+Mitigation: Review the service and API-key instructions before use; provide CUE_API_KEY only when choosing the related service, and keep it out of drafts and shared materials.
 
-Risk: Optional research or reading-channel use may involve uploads or usage costs.
+Risk: External document processing may expose sensitive publication materials.
 
-Mitigation: Review the material to be shared and approve each upload and any associated cost separately.
+Mitigation: Obtain explicit approval before uploading internal documents, and confirm that the selected processing service is acceptable for those materials.
 
-Risk: Release-cleanup commands may affect files in the current or target directories.
+Risk: Optional skill-generation and image capabilities may exceed the task's needs.
 
-Mitigation: Check the working directory and target folders before running cleanup.
-
-Risk: Imported Word edits and generated imagery may lose draft context or required AI-image labels.
-
-Mitigation: Retain original drafts when importing Word edits and preserve AI-image labels.
+Mitigation: Decide whether these capabilities are needed before enabling them, and review generated content before use.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/huhoo/skills/cue-journal-draft)
-- [Publisher profile](https://clawhub.ai/user/huhoo)
-- [Cue API key setup](https://cuecue.cn/hub/api-key)
-- [Cue service](https://cuecue.cn)
+- [ClawHub release page](https://clawhub.ai/huhoo/skills/cue-journal-draft)
+- [Cue API key](https://cuecue.cn/hub/api-key)
+- [Cue](https://cuecue.cn)
+- [Content sourcing guidance](artifact/references/content-sourcing.md)
+- [Editorial QA checklist](artifact/references/qa-checklist.md)
+- [Editable output guidance](artifact/references/editable-output.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, JSON, HTML, PDF, DOCX]
+**Output Type(s):** [Text, Markdown, Code, Configuration instructions, Shell commands, Files]
 
-**Output Format:** [Editable editorial drafts, outlines, evidence records, review reports, and publication files]
+**Output Format:** [Markdown, HTML, PDF, DOCX, JSON, and shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Supports source-linked claims and human-reviewed editorial and layout checks; the skill does not replace editorial sign-off.]
+**Other Properties Related to Output:** [Draft materials include source links and review checklists; human review is required before publication.]
 
 ## Skill Version(s):
 
-0.15.27 (source: server-resolved release evidence)
+0.15.28 (source: server-resolved ClawHub release metadata; artifact frontmatter agrees)
 
 ## Ethical Considerations:
 

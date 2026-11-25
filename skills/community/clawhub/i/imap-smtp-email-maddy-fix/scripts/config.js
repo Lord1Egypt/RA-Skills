@@ -3,6 +3,7 @@
 const path = require('path');
 const os = require('os');
 const fs = require('fs');
+const { execFileSync } = require('child_process');
 const dotenv = require('dotenv');
 
 // Config file locations
@@ -10,6 +11,10 @@ const PRIMARY_ENV_PATH = path.join(os.homedir(), '.config', 'imap-smtp-email', '
 const FALLBACK_ENV_PATH = path.resolve(__dirname, '../.env');
 
 // Find the .env file: primary location first, then fallback
+function isLoopback(host) {
+  return ['localhost', '127.0.0.1', '::1'].includes(String(host || '').toLowerCase());
+}
+
 function findEnvPath() {
   if (fs.existsSync(PRIMARY_ENV_PATH)) return PRIMARY_ENV_PATH;
   if (fs.existsSync(FALLBACK_ENV_PATH)) return FALLBACK_ENV_PATH;
@@ -45,8 +50,9 @@ function buildConfig(env, prefix) {
       host: env[`${p}IMAP_HOST`] || '127.0.0.1',
       port: parseInt(env[`${p}IMAP_PORT`]) || 1143,
       user: env[`${p}IMAP_USER`],
-      pass: env[`${p}IMAP_PASS`],
-      tls: env[`${p}IMAP_TLS`] === 'true',
+      pass: resolveSecretRef(env[`${p}IMAP_PASS`]),
+      // TLS unless explicitly disabled; plaintext only makes sense for a local bridge.
+      tls: env[`${p}IMAP_TLS`] === undefined ? !isLoopback(env[`${p}IMAP_HOST`] || '127.0.0.1') : env[`${p}IMAP_TLS`] === 'true',
       rejectUnauthorized: env[`${p}IMAP_REJECT_UNAUTHORIZED`] !== 'false',
       mailbox: env[`${p}IMAP_MAILBOX`] || 'INBOX',
     },
@@ -54,14 +60,59 @@ function buildConfig(env, prefix) {
       host: env[`${p}SMTP_HOST`],
       port: parseInt(env[`${p}SMTP_PORT`]) || 587,
       user: env[`${p}SMTP_USER`],
-      pass: env[`${p}SMTP_PASS`],
+      pass: resolveSecretRef(env[`${p}SMTP_PASS`]),
       secure: env[`${p}SMTP_SECURE`] === 'true',
+      // Without implicit TLS, refuse to authenticate unless STARTTLS succeeds (local bridges excepted).
+      requireTLS: env[`${p}SMTP_REQUIRE_TLS`] === undefined ? !isLoopback(env[`${p}SMTP_HOST`]) : env[`${p}SMTP_REQUIRE_TLS`] === 'true',
       from: env[`${p}SMTP_FROM`] || env[`${p}SMTP_USER`],
       rejectUnauthorized: env[`${p}SMTP_REJECT_UNAUTHORIZED`] !== 'false',
     },
     allowedReadDirs: (env.ALLOWED_READ_DIRS || '').split(',').map(d => d.trim()).filter(Boolean),
     allowedWriteDirs: (env.ALLOWED_WRITE_DIRS || '').split(',').map(d => d.trim()).filter(Boolean),
   };
+}
+
+const secretCache = new Map();
+
+function resolveSecretRef(value) {
+  if (!value || typeof value !== 'string') {
+    return value;
+  }
+
+  const match = value.match(/^passbolt:\/\/([0-9a-f-]+)$/i);
+  if (!match) {
+    return value;
+  }
+
+  const resourceId = match[1];
+  if (secretCache.has(resourceId)) {
+    return secretCache.get(resourceId);
+  }
+
+  let stdout;
+  try {
+    stdout = execFileSync('passbolt', ['get', 'resource', '--id', resourceId, '--json'], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+  } catch (err) {
+    const stderr = err.stderr ? String(err.stderr).trim() : err.message;
+    throw new Error(`Failed to resolve Passbolt secret ${resourceId}: ${stderr}`);
+  }
+
+  let parsed;
+  try {
+    parsed = JSON.parse(stdout);
+  } catch (err) {
+    throw new Error(`Passbolt returned invalid JSON for ${resourceId}: ${err.message}`);
+  }
+
+  if (!parsed.password) {
+    throw new Error(`Passbolt resource ${resourceId} has no password value`);
+  }
+
+  secretCache.set(resourceId, parsed.password);
+  return parsed.password;
 }
 
 // List all configured accounts from .env file

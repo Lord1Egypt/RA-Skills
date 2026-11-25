@@ -57,7 +57,7 @@ class TestV120(unittest.TestCase):
         return rc, calls, doc
 
     def test_version_bumped_120(self):
-        self.assertEqual(vr.VERSION, "6.6.0")
+        self.assertEqual(vr.VERSION, "6.9.0")
 
     def test_disk_cache_hit_second_run_zero_calls(self):
         refs = [{"title": "A Paper About X", "doi": "10.1000/cache-hit"}]

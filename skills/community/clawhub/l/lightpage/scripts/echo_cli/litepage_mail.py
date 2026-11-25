@@ -19,7 +19,9 @@ def commands(root):
     mail = root.add_parser("mail", help="Read, send and reply to LightPage private mail")
     choices = subparsers(mail, dest="mail_command")
     choices.add_parser("status")
-    contacts = choices.add_parser("contacts", help="Find people you have sent LightPage mail to")
+    contacts = choices.add_parser(
+        "contacts", help="Find friends and people you have sent LightPage mail to"
+    )
     contacts.add_argument("--filter", help="Case-insensitive nickname substring")
     contacts.add_argument("--limit", type=int, choices=range(1, 21), default=20, metavar="1-20")
     contacts.add_argument("--cursor")

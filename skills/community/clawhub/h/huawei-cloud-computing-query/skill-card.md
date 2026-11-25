@@ -1,6 +1,6 @@
 ## Description:
 
-Queries Huawei Cloud ECS, BMS, IMS, Auto Scaling, and CCE resources, returning read-only inventory and details.
+Queries Huawei Cloud ECS, BMS, IMS, Auto Scaling, and CCE resources using read-only operations.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Cloud administrators and engineers use it to inspect Huawei Cloud compute resources, specifications, quotas, images, scaling configuration, and cluster inventories. It is limited to read-only queries.
+Cloud operators and developers use this skill to inspect Huawei Cloud compute inventories, resource details, available specifications, and quotas. It supports read-only queries across ECS, BMS, IMS, Auto Scaling, and CCE.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,41 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan reports cloud password-retrieval features and IAM user-listing access.
+Risk: Reported TLS and package-source weaknesses could expose cloud credentials or returned data.
 
-Mitigation: Review those operations before use and limit credentials to the permissions required for the intended queries.
+Mitigation: Pause before installation; review the connection and package-source security, and use least-privilege credentials if proceeding.
 
-Risk: The security scan reports TLS and package-installation concerns, and notes that setup-script analysis is incomplete.
+Risk: Password retrieval and IAM user listing extend beyond the advertised read-only computing query scope.
 
-Mitigation: Verify TLS checks and package-mirror authentication, pin dependencies, and review setup scripts before installing or using the skill with cloud credentials.
+Mitigation: Review the relevant commands and permissions before use, and avoid password retrieval or IAM user listing unless explicitly required and authorized.
+
+Risk: Scanner coverage was partial for two environment-check scripts, leaving evidence incomplete.
+
+Mitigation: Review those scripts before installation; the scan does not establish malicious intent or a confirmed package compromise.
 
 ## Reference(s):
 
-- [Huawei Cloud skill release page](https://clawhub.ai/huaweicloudskill/skills/huawei-cloud-computing-query)
-- [ECS Query Guide](references/ecs/guide.md)
-- [BMS Query Guide](references/bms/guide.md)
-- [IMS Query Guide](references/ims/guide.md)
-- [AS Query Guide](references/as/guide.md)
-- [CCE Query Guide](references/cce/guide.md)
-- [IAM Policies](references/iam-policies.md)
-- [Verification Method](references/verification-method.md)
-- [CLI Installation Guide and operation boundary](references/cli-installation-guide.md)
-- [Acceptance Criteria](references/acceptance-criteria.md)
+- [ClawHub skill page](https://clawhub.ai/huaweicloudskill/skills/huawei-cloud-computing-query)
+- [ECS Query Guide](artifact/references/ecs/guide.md)
+- [BMS Query Guide](artifact/references/bms/guide.md)
+- [IMS Query Guide](artifact/references/ims/guide.md)
+- [Auto Scaling Query Guide](artifact/references/as/guide.md)
+- [CCE Query Guide](artifact/references/cce/guide.md)
+- [IAM Policies](artifact/references/iam-policies.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, JSON, Guidance]
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
 
-**Output Format:** [Markdown tables, text summaries, or JSON query results]
+**Output Format:** [Markdown tables, concise field summaries, or JSON query results]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Resource details depend on the selected service, query, and fields.]
+**Other Properties Related to Output:** [Read-only cloud resource inventory and query guidance]
 
 ## Skill Version(s):
 
-1.0.8 (source: server-resolved release evidence)
+1.0.9 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

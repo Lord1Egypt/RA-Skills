@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers, researchers, and marketing teams can use the skill to retrieve Reddit posts, comments, user activity, and subreddit information for monitoring, research, and analytics workflows.
+Developers, research teams, and marketing teams can use the skill to search Reddit posts, comments, users, and subreddits for community monitoring, content research, and creator intelligence.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security summary notes a credits lookup alongside the skill’s stated Reddit purpose.
+Risk: The security review reports external API calls, including a Superagnt credit check, and notes a purpose-description mismatch.
 
-Mitigation: Review the documented credits check, external service, and API key requirements before use; confirm the credits lookup is expected for your workflow.
+Mitigation: Review the documented endpoints, credit check, and Superagnt documentation before use; keep API-key use limited to authorized Reddit data requests.
 
 ## Reference(s):
 
 - [Reddit Data documentation](https://superagnt.com/r/ch-reddit-data-docs)
 - [Reddit Data MCP server](https://mcp.superagnt.com/mcp/reddit)
-- [API key setup](https://superagnt.com/r/ch-reddit-data-key)
-- [Reddit Data listing](https://clawhub.ai/superagnt/skills/reddit-data)
+- [MCP installation instructions](https://www.superagnt.com/install?facet=reddit)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis, Guidance]
+**Output Type(s):** [Structured data, Guidance]
 
-**Output Format:** [Structured Reddit data in JSON, with summaries or analysis as requested]
+**Output Format:** [JSON API responses, with Markdown setup and usage instructions]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requests require a SUPERAGNT_API_KEY and endpoint-specific query parameters.]
+**Other Properties Related to Output:** [Live Reddit data is retrieved through Superagnt; an API key and account credits may be required.]
 
 ## Skill Version(s):
 
-2.0.14 (source: frontmatter)
+2.0.19 (source: frontmatter)
 
 ## Ethical Considerations:
 

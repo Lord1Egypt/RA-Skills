@@ -1,6 +1,6 @@
 ## Description:
 
-帮助用户研判行业景气周期、竞争格局与产业链地位，识别供需和政策拐点，并形成结构化的投资研究底稿。
+用 Cue 穿透目标行业的景气周期、竞争格局与产业链地位——识别集中度、龙头壁垒与供需/政策拐点，研判当前所处周期位置与投资机会窗口，产出可支撑配置决策的行业研判底稿。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-面向需要行业配置和竞争格局分析的投资研究人员及决策者，用于评估景气周期、供需与政策拐点、产业链地位及潜在投资窗口。
+Investors and analysts use this skill to assess an industry's cycle position, competitive structure, supply and demand, policy catalysts, value-chain position, and potential investment window. It returns a structured research brief with source links.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The documented setup asks users to share an API key in chat, creating a risk of credential exposure.
+Risk: The security summary flags exposed API-key handling as a concern.
 
-Mitigation: Do not paste a live API key into chat; configure it locally through CUE_API_KEY or the local Cue configuration file.
+Mitigation: Keep the key in a protected local credential method or environment variable; do not paste a reusable API key into chat.
 
-Risk: The runner is fetched from a remote repository and may change independently of this skill release.
+Risk: The security summary flags an unpinned external runner as a supply-chain concern.
 
-Mitigation: Review and verify the runner source before installing or updating it, and avoid running code whose source you do not trust.
+Mitigation: Review the runner source and pin a trusted version or commit before installing or running it.
 
-Risk: Research queries are sent to the external Cue service and may include sensitive business context.
+Risk: Security analysis was partial because a local path reference was missing, and the summary notes behavior may not fully match the stated research purpose.
 
-Mitigation: Remove confidential details from queries unless they are approved for sharing with the external service.
+Mitigation: Resolve and review the missing path, complete the security review, and check setup, billing, and reporting steps against the intended use before enabling the skill.
 
 ## Reference(s):
 
-- [Cue 平台](https://cuecue.cn)
+- [Cue platform](https://cuecue.cn)
 - [Cue Playbook](https://cuecue.cn/playbook)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [Structured Markdown industry research report]
+**Output Format:** [Structured Markdown industry research brief with source links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Covers industry cycle, competitive landscape, supply and demand, policy catalysts, value-chain position, and investment-window assessment; includes source links.]
+**Other Properties Related to Output:** [Covers cycle position, competition, supply and demand, policy, value-chain position, and investment window; freshness and quality depend on Cue and its external data sources.]
 
 ## Skill Version(s):
 
-1.0.13 (source: server-resolved release metadata)
+1.0.17 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

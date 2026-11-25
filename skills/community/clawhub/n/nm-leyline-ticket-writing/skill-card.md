@@ -1,6 +1,6 @@
 ## Description:
 
-Writes tickets a reader can assess at a glance, with the why inline or a link away.
+Writes tickets a reader can assess at a glance, with the why inline or a link away
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and teams use this skill to write or revise Jira, GitHub, GitLab, and other tracker tickets. It helps keep the outcome and reason clear, preserve project conventions, and link tickets with their merge requests.
+Developers and teams use this skill to create and edit tickets in Jira, GitLab, GitHub, and other trackers. It helps make the outcome, reason, acceptance criteria, and links clear while preserving each project's established ticket format.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Ticket text can expose secrets or credentials.
+Risk: Ticket content could expose secrets or credentials if they are included in a description.
 
-Mitigation: Review the draft before saving and remove any secrets or credentials.
-
-Risk: Generic tracker guidance may not match a project's conventions or current workflow behavior.
-
-Mitigation: Check recent tickets or the project template and confirm tracker-specific rules before posting.
+Mitigation: Do not include secrets or credentials in tickets.
 
 ## Reference(s):
 
-- [Claude Night Market Leyline plugin](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
-- [Rath 2018: issue links in commits across six projects](https://arxiv.org/abs/1804.02433)
+- [Tracker Mechanics](modules/tracker-mechanics.md)
+- [Declared project homepage (Clawdis metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
+- [Rath 2018: issue links in commits](https://arxiv.org/abs/1804.02433)
 - [Nath 2025: trace links in release artifacts](https://arxiv.org/abs/2511.18187)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Guidance, Text, Markdown]
 
-**Output Format:** [Ticket titles and descriptions in the project's tracker format, often Markdown or tracker-specific markup]
+**Output Format:** [Markdown ticket descriptions and editing guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Adapts headings and markup to project conventions; may include acceptance criteria, reproduction steps, and links.]
+**Other Properties Related to Output:** [Tracker-specific formats vary; Jira REST v3 descriptions use Atlassian Document Format.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved ClawHub release evidence)
 
 ## Ethical Considerations:
 

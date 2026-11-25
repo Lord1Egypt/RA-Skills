@@ -63,10 +63,16 @@ categories to `candor-sort-transactions`. If the area does not hold up in the
 records, say so; that is an outcome too.
 
 **4. Record each outcome.** For every area you looked into, send the area id
-from the opening, `outcome` (`looked_into` or `set_aside`), and `found`: what
-the records or the person showed, or why it does not apply. The person reads
-`found` on their dashboard, so write it in their words, with no ids or
-jargon.
+from the opening, `outcome`, and `found`. Use `looked_into` when what you
+found settles it, `set_aside` when it does not apply, and `waiting_on_person`
+only when it cannot move until the person decides, answers, or acts. A wait
+on money arriving, a third party, or a date is `looked_into`, with a note and
+a watch. `found` is one or two short sentences to the person, who reads them
+on their dashboard, with no ids or jargon: where it stands, then what you
+found; for `waiting_on_person`, what you need from them first. An area
+waiting on the person stays in the opening. Once their answer settles it,
+record `looked_into` or `set_aside`; if something still needs them, record
+`waiting_on_person` again with what is left.
 
 ```sh
 candor reviews update --file OUTCOME.json --reason "Record what came of the review area"
@@ -76,7 +82,7 @@ candor reviews update --file OUTCOME.json --reason "Record what came of the revi
 {
   "area": "AREA_ID",
   "outcome": "looked_into",
-  "found": "Your phone bill went from $65 to $85 in October. It is a price increase, not a one-off."
+  "found": "It is a price increase, not a one-off. Your phone bill went from $65 to $85 in October."
 }
 ```
 
@@ -96,7 +102,11 @@ says. When nothing else needs their answer this time, one question from
 you have processed everything above.
 
 **7. Send the check-in.** See below. A scheduled check-in with nothing worth
-saying stays silent unless the person asked for a report every time.
+saying stays silent unless the person asked for a report every time. A
+scheduled run sends the Candor team a report only when `product_reports` is
+`send`, the default, and then tells the person in its message, even one it
+would otherwise not send. With `ask` or `off` it sends none: nobody is there
+to ask.
 
 Earlier reviews and what came of them: `candor reviews list --reason "Read earlier reviews"`.
 

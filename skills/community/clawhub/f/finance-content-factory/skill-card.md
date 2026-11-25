@@ -1,6 +1,6 @@
 ## Description:
 
-Provides templates, planning guidance, quality scoring, and review checklists for drafting and reviewing regulated financial marketing content.
+Provides templates, planning guidance, review checklists, and scoring standards for drafting and reviewing regulated financial marketing content.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,39 +14,39 @@ MIT-0
 
 ## Use Case:
 
-Financial marketing teams, content operators, and qualified compliance reviewers can use the templates and planning guidance to prepare, assess, and adapt content drafts. Outputs are reference materials and drafts that require business and compliance review before public use.
+Financial marketing teams use the skill to plan content, draft and adapt text across formats, and check drafts against compliance and quality criteria. All public facing content requires review by qualified compliance and business staff before use.
 
 ### Deployment Geography for Use:
 
-China-focused regulatory examples; verify applicable rules for the intended market.
+China (examples focus on Chinese financial regulators and marketing practices)
 
 ## Known Risks and Mitigations:
 
-Risk: The security review was benign with medium confidence, but scanner coverage was partial because of malformed manifest data and an unresolved reference.
+Risk: Drafts may contain inaccurate or non-compliant financial marketing claims or omit required disclosures.
 
-Mitigation: Consider the limited coverage when deciding whether to install, and review the complete skill before use.
+Mitigation: Check claims against current approved product materials and have qualified compliance and business staff review every draft before external use.
 
-Risk: Financial marketing drafts or regulatory examples may be inaccurate, outdated, or unsuitable for a specific product or market.
+Risk: The security review is incomplete: Skillspector reported 0% component coverage, a malformed manifest, and a missing local reference; AIG reported no findings.
 
-Mitigation: Check claims and current rules against authoritative sources, and obtain qualified compliance and business approval before public use.
+Mitigation: Review the complete skill contents and account for the stated scan limits when assessing confidence in its behavior.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/gechengling/skills/finance-content-factory)
+- [Finance Content Factory on ClawHub](https://clawhub.ai/gechengling/skills/finance-content-factory)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Markdown with templates, planning tables, review checklists, scoring rubrics, and multi-format draft examples]
+**Output Format:** [Markdown prose, tables, checklists, planning templates, and draft content]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Drafts and reference materials require qualified compliance and business review before public use.]
+**Other Properties Related to Output:** [Drafts require qualified compliance and business review before external use; the skill does not save, access data, or publish content.]
 
 ## Skill Version(s):
 
-3.0.4 (source: server-resolved release; artifact frontmatter)
+3.0.5 (source: artifact/SKILL.md frontmatter, evidence.release.version)
 
 ## Ethical Considerations:
 

@@ -6,20 +6,20 @@
 
 **Agent:** Absolutely! I will walk you through setting up a HoverBot customer support chatbot. It takes about 2 minutes.
 
-**Step 1:** Go to https://sandbox.hoverbot.ai/get-started
+**Step 1:** Go to https://app.hoverbot.ai/get-started
 
-**Step 2:** Select the **Customer Support** template — it is pre-configured to answer questions, resolve issues, and provide guidance.
+**Step 2:** Enter your website address and one or two sentences on what your company does. HoverBot drafts a bot in your site's colours. (No website yet? Choose **Start from a template** and pick **Customer Support**.)
 
-**Step 3:** Customize your bot:
+**Step 3:** Check and customize the draft:
 - **Bot Name:** "Acme Support" (or whatever matches your brand)
-- **Brand Color:** Pick one that matches your website (8 options available)
+- **Colours:** Keep the ones taken from your site or pick your own
 - **Greeting:** "Hi there! I'm your Acme support assistant. How can I help you today?"
 
 You will see a live preview at the bottom showing exactly how it looks.
 
 **Step 4:** Create your account with your name, email, and a password.
 
-**Step 5:** After clicking "Create My Bot", you will get an embed code like this:
+**Step 5:** Once the bot is created, you will get an embed code like this:
 
 ```html
 <script>

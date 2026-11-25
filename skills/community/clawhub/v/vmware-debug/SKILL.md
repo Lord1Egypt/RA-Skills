@@ -4,8 +4,8 @@ description: >
   Use to diagnose VMware/vSphere/ESXi/NSX incidents: errors, log dumps, slow VMs, disconnected hosts,
   or an unexplained failure. Correlates companion-skill evidence into a timeline, ranks root-cause
   hypotheses, and recommends the next check. Trigger on "diagnose this VMware issue", "why is my VM
-  slow", "troubleshoot this vSphere error" or "what does this log mean". Makes no VMware API calls or
-  repairs; writes local case records and a separate audit trail. Default stdio is local; optional
+  slow", "troubleshoot this vSphere error" or "what does this log mean". Its CLI/MCP tools make no VMware API calls or
+  repairs; optional Python host bindings call explicitly supplied companion MCP sessions; writes local case records and a separate audit trail. Default stdio is local; optional
   authenticated HTTPS uses caller tokens and TLS files. Route fixes to vmware-aiops (single action) or
   vmware-pilot (gated workflow), and routine inventory/health without an incident to vmware-monitor.
 installer:
@@ -47,7 +47,7 @@ optional HTTPS requires caller tokens and TLS files (see `references/setup-guide
 ## Quick Install
 
 ```bash
-uv tool install vmware-debug==2.3.3
+uv tool install vmware-debug==2.4.0
 vmware-debug categories          # see what it can diagnose
 ```
 
@@ -74,6 +74,12 @@ a recommended plan.
 | HA / DRS / cluster | vmware-monitor, vmware-aiops | cluster remediation via pilot |
 | Power / clone / snapshot | vmware-aiops, vmware-monitor | task status, then fix via aiops |
 | Auth / cert / login | owning skill's `doctor`, cert, time sync | user fixes config |
+
+## Scenario investigations
+
+Start with the [VM performance](references/vm-performance.md) or [host alarm](references/host-alarms.md) procedure. Both define read-only collection branches, gaps and stops. Use the existing case ledger and [report views](references/scenario-reports.md); references are host-operated procedures, not automatic collectors. For opt-in Python host integration, see [context, bindings and task accounting](references/scenario-host.md).
+
+For a gateway, progressively load the [two small read-only toolsets](references/gateway-toolsets.md) and their [example allowlists/calls](references/gateway-toolsets.json). Debug local ledger writes require separate permission.
 
 ## Common Workflows
 

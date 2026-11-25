@@ -1,143 +1,151 @@
-# Mini-Program Platform-Specific Testing
+# Mini Program Test Points
 
-> This document defines specialized testing dimensions and strategy highlights specific to mini-programs, distinct from other platforms.
-> See `references/examples/format-spec.md` for output format and `references/checklists/mini-program-checklist.md` for the checklist.
-
----
-
-## I. Lifecycle
-
-### Focus Areas
-- Data loading differences between cold start and warm start
-- Page state restoration when switching to background → foreground
-- Mini-program destroyed by WeChat after extended background → must reload on reopen
-- Page stack management: maximum 10 page layers; new pages cannot be opened beyond this limit
-
-### Common Defects
-- Data not refreshed but still showing old data after returning to foreground
-- Page stack overflow preventing navigation
-- Global data lost when recovering after background destruction
+> This file defines the test dimensions and strategy points that distinguish mini programs from other platforms.
+> For the output format, see `references/examples/format-spec.md`; for the checklist, see `references/checklists/mini-program-checklist.md`.
 
 ---
 
-## II. Authorization Management
+## 1. Lifecycle
 
-### Focus Areas
-- WeChat user info/phone number authorization flow (triggered by button component)
-- System permission authorization for location/camera/photo library
-- Function degradation and guidance after authorization denial
-- Authorization state persistence and expiry handling
+### Key focus points
+- Differences in data loading between cold start and hot start
+- Page state restoration when switching to the background and back to the foreground
+- After a long time in the background, the mini program is destroyed by WeChat → must reload when reopened
+- Page stack management: at most 10 levels of pages; new pages cannot be opened beyond that
 
-### Common Defects
-- Subsequent logic executed before authorization dialog is triggered
-- No guidance prompt after authorization denial
-- Authorization not re-acquired after expiry
-
----
-
-## III. Sharing Functionality
-
-### Focus Areas
-- Top-right menu share vs in-page button share (onShareAppMessage vs onShareTimeline)
-- Share card title/description/cover image/path configuration
-- Differences between sharing to friend and sharing to Moments
-- Parameter passing and page routing when opened from share card
-
-### Common Defects
-- Share card cover image not configured, showing default screenshot
-- Share path parameters lost, causing blank page on open
-- Moments sharing not supported for some scenarios
+### Common defects
+- Data not refreshed after returning to the foreground, still showing old data
+- Page stack overflow prevents navigation
+- Global data lost when restoring after being destroyed in the background
 
 ---
 
-## IV. Payment Functionality
+## 2. Authorization Management
 
-### Focus Areas
+### Key focus points
+- Privacy authorization: when processing users' personal information, the privacy protection guidelines must be shown first, and privacy-related APIs or components can be called only after the user agrees
+- Privacy APIs not declared in the "Mini Program User Privacy Protection Guidelines" cannot be called
+- Avatar and nickname: obtained via the avatar and nickname filling capability (button open-type="chooseAvatar", input type="nickname"); getUserProfile no longer returns the real avatar and nickname
+- Phone number authorization flow (triggered by button open-type="getPhoneNumber")
+- Authorization for system permissions such as location / camera / photo album
+- Feature degradation and guidance after authorization is denied
+- Persistence and expiration handling of authorization state
+
+### Common defects
+- Calling privacy APIs without agreement to the privacy guidelines, causing the calls to fail
+- No prompt or a frozen feature after privacy authorization is denied
+- Still using getUserProfile for avatar and nickname, getting only the default grey avatar and the nickname "WeChat User"
+- Subsequent logic executed before the authorization pop-up is triggered
+- No guidance after authorization is denied
+- Authorization not re-obtained after expiration
+
+---
+
+## 3. Sharing
+
+### Key focus points
+- Sharing from the top-right menu vs an in-page button (onShareAppMessage vs onShareTimeline)
+- Configuration of share card title / description / cover image / path
+- Differences between sharing to friends and sharing to Moments
+- Parameter passing and page routing when opened from a share card
+
+### Common defects
+- Share card cover image not configured, showing a default screenshot
+- Share path parameters lost, opening a blank page
+- Moments sharing not supported in some scenarios
+
+---
+
+## 4. Payment
+
+### Key focus points
 - WeChat Pay invocation flow and callback handling
-- Order status after payment interruption (user cancellation/network exception)
-- Payment security: amount verification, duplicate payment prevention
-- iOS virtual goods payment restriction (virtual goods cannot be purchased within mini-programs)
+- Order status after payment interruption (user cancels / network exception)
+- Payment security: amount verification, prevention of duplicate payment
+- iOS virtual payment restrictions (virtual goods may not be purchased within mini programs)
 
-### Common Defects
-- Payment successful but frontend doesn't receive callback, causing status inconsistency
-- Order still shows "Pending Payment" after user cancels
-- iOS virtual goods payment rejected in review
-
----
-
-## V. Mini-Program Navigation
-
-### Focus Areas
-- Navigating to other mini-programs (requires appid list configuration)
-- Data passing when returning from another mini-program
-- web-view component opening H5 and bidirectional communication between H5 and mini-program
-- Usage restrictions of half-screen mini-programs
-
-### Common Defects
-- Target mini-program appid not configured, causing navigation failure
-- Communication lost between web-view and mini-program
-- Navigation parameter format errors
+### Common defects
+- Payment succeeded but the front end did not receive the callback, causing inconsistent status
+- After the user cancels payment, the order still shows "Pending Payment"
+- iOS virtual goods payments rejected in review
 
 ---
 
-## VI. Subscription Messages
+## 5. Mini Program Navigation
 
-### Focus Areas
-- Differences between one-time subscription and long-term subscription
-- Trigger timing and frequency limits for subscription authorization dialog
+### Key focus points
+- Navigating to other mini programs (the appid list must be configured)
+- Data passing when returning from another mini program
+- Opening H5 pages via the web-view component, and two-way communication between H5 and the mini program
+- Usage restrictions of half-screen mini programs
+
+### Common defects
+- Navigation fails because the target mini program appid is not configured
+- Communication between web-view and the mini program is lost
+- Wrong navigation parameter format
+
+---
+
+## 6. Subscription Messages
+
+> Mini program template messages have been retired; subscription messages are used instead.
+
+### Key focus points
+- Differences between one-time and long-term subscriptions (long-term subscriptions are only open to specific industry categories)
+- Trigger timing and frequency limits of the subscription authorization pop-up
 - Message template content configuration and parameter filling
-- Degradation handling when user turns off notifications
+- Fallback when the user turns off notifications
 
-### Common Defects
-- Cannot push again after one-time subscription is exhausted
-- Message template parameters not filled, causing send failure
-- Induced subscription rejected in review
-
----
-
-## VII. Storage & Cache
-
-### Focus Areas
-- 10MB capacity limit for wx.setStorage / wx.setStorageSync
-- Storage data persistence: whether data is retained after mini-program update
-- Recovery behavior after cache clearing (manual/system)
-- Performance issues with synchronous Storage writes (large data should be batched)
-- Secure storage of sensitive data (Token encryption, prohibition of plaintext password storage)
-
-### Common Defects
-- Silent write failure after exceeding 10MB limit
-- White screen or data loss after cache clearing
-- Stutter caused by synchronous writes of large data
-- Token stored without encryption
+### Common defects
+- Cannot push again after a one-time subscription is used up
+- Message sending fails because template parameters are not filled
+- Induced subscriptions rejected in review
 
 ---
 
-## VIII. Map & Location
+## 7. Storage and Cache
 
-### Focus Areas
-- Map component performance: multi-marker rendering, region zoom smoothness
-- Location accuracy: GPS vs WiFi vs cell tower, permission impact on accuracy
-- Privacy compliance: location must only be obtained with user authorization
-- Background location: mini-programs do not support continuous background location
+### Key focus points
+- The 10 MB limit of wx.setStorage / wx.setStorageSync
+- Storage data persistence: whether it is retained after the mini program is updated
+- Recovery behavior after cache clearing (manual by the user / automatic by the system)
+- Performance issues with synchronous Storage writes (large data should be written in batches)
+- Security of sensitive data storage (encrypt tokens; never store passwords in plain text)
+
+### Common defects
+- Writes silently fail after exceeding the 10 MB limit
+- Blank page or data loss after cache clearing
+- Stutter caused by synchronously writing large amounts of data
+- Tokens stored unencrypted
+
+---
+
+## 8. Maps and Location
+
+### Key focus points
+- Map component performance: rendering many markers, smoothness of zooming
+- Location accuracy: GPS vs WiFi vs cell towers; permissions affect accuracy
+- Privacy compliance: location can only be obtained with user authorization
+- Background location: mini programs do not support continuous background location
 - Recall accuracy and performance of nearby POI search
-- Loading of map layer overlays (traffic/satellite)
+- Loading of map layer overlays (traffic / satellite)
 
-### Common Defects
-- Map white screen or crash after location permission denial
-- Map stutter with large number of markers
-- Excessive location deviation (inaccurate indoor WiFi positioning)
-- POI search results not matching expectations
+### Common defects
+- Blank map or crash after location permission is denied
+- Map stutters with many markers
+- Large location deviation (inaccurate indoor WiFi positioning)
+- POI search results not as expected
 
 ---
 
-## IX. Platform Difference Adaptation
+## 9. Platform Difference Adaptation
 
-### Focus Areas
-- API differences between WeChat/Alipay/Baidu/Douyin mini-programs
-- Component compatibility (e.g., input component's confirm-type)
+### Key focus points
+- API differences between WeChat / Alipay / Baidu / Douyin mini programs
+- Component compatibility (e.g., confirm-type of the input component)
 - Login flow differences (wx.login vs my.getAuthCode)
-- Review guideline differences (different platforms have different content/functionality requirements)
+- Review guideline differences (each platform has different content / feature requirements)
 
-### Common Defects
-- Only tested on WeChat; compatibility issues on other platforms
-- Non-standard API usage causing errors on other platforms
+### Common defects
+- Passes only on WeChat, with compatibility issues on other platforms
+- Errors on other platforms caused by non-standard APIs

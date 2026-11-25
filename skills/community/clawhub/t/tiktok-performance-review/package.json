@@ -1,6 +1,6 @@
 {
   "name": "tiktok-performance-review",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "获取实时TikTok社媒数据表现，包括笔记、评论、互动数据等，根据数据进行分析和评估，输出复盘内容表现，统一指标口径，提出可检验的下一步内容策略。",
   "keywords": [
     "tiktok",

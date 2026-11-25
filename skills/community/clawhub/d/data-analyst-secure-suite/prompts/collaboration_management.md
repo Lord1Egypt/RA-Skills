@@ -1,6 +1,6 @@
 # Workflow & Skill Package Sealed Collaboration (Collaboration Management)
 
-This document guides data analysts on how to securely seal and deliver workflows or skill packages to other nodes in **MGC Blackbox ≥ 1.5.4**, enabling "usable but unreadable, runnable but unresellable" cross-team / cross-organization collaboration.
+This document guides data analysts on how to securely seal and deliver workflows or skill packages to other nodes in **MGC Blackbox ≥ 1.6.0**, enabling "usable but unreadable, runnable but unresellable" cross-team / cross-organization collaboration.
 
 All sensitive operations must be explicitly authorized by the user before proceeding.
 
@@ -41,23 +41,68 @@ MGC supports two sealed collaboration modes:
 
 ---
 
-# 3. Two Sealing Modes (new in 1.5.4)
+# 3. Three Sealing Modes (chain mode new in 1.6.0)
 
-As of 1.5.4, the sealing mode is determined by **whether `ext04` is passed**:
+The sealing mode is determined by **whether `ext04` is passed, and in which shape**:
 
-| | p2p mode (node-bound) | free mode |
-|---|---|---|
-| How to seal | Pass `ext04=<target node multi-line PEM>` | **Omit** `ext04` |
-| Resulting `ext09` value | `p2p mode` | `free mode` |
-| Who can unseal and run it | Only the node holding the matching private key | **Any MGC 1.5.4+ node** |
-| Must public keys be exchanged first? | Yes | No |
-| Source visibility | Not readable | Not readable (decrypted in memory at execution time only) |
-| Anti-resale strength | Strong (key bound to the node) | Weak (anyone can import and run it) |
-| Best for | Commercial delivery, customer isolation | General distribution, open-source solutions, internal sharing |
+| | p2p mode (node-bound) | free mode | chain mode (1.6.0+) |
+|---|---|---|---|
+| How to seal | Pass `ext04=<target node multi-line PEM>` | **Omit** `ext04` | Pass `ext04=<JSON array of targets>` |
+| Resulting `ext09` value | `p2p mode` | `free mode` | `chain mode` |
+| Sub-packages produced | 1 | 1 | **N (one per target)** |
+| Who can unseal and run it | Only the node holding the matching private key | **Any MGC 1.5.4+ node** | **Each target's own node only** |
+| Must public keys be exchanged first? | Yes | No | Yes — collect every target's `node_pub` first |
+| Source visibility | Not readable | Not readable (decrypted in memory at execution time only) | Not readable |
+| Anti-resale strength | Strong (key bound to the node) | Weak (anyone can import and run it) | Strong (each package bound to one node) |
+| Extra artifact | — | — | `distribution_index.json` |
+| Best for | Commercial delivery, customer isolation | General distribution, open-source solutions, internal sharing | **Multi-node collaboration, task splitting across nodes** |
 
 **How to choose**:
 - The deliverable contains commercial algorithms and must not be resold → **p2p mode**
 - The deliverable is a general methodology and the recipient does not need to be restricted → **free mode**, which removes the key-exchange step entirely
+- The deliverable must be split across multiple nodes, each receiving only its own part → **chain mode**
+
+---
+
+## 3.1 chain mode in practice (1.6.0+)
+
+Targets array — scripts only; data and credentials must not be included:
+
+```json
+[
+  {"node_pub": "<node A PEM>", "files": ["run_query.py", "shared_helper.py"]},
+  {"node_pub": "<node B PEM>", "files": ["run_analyze.py", "shared_helper.py"]}
+]
+```
+
+```python
+mgc_seal_package(
+    info_owner="monthly_sales_analysis",
+    diff_2="monthly_sales_analysis",
+    ext04="@/abs/path/chain_targets.json",   # or json.dumps(targets)
+    output_dir="./delivery",
+)
+```
+
+Output layout:
+
+```text
+./delivery/monthly_sales_analysis__monthly_sales_analysis/
+├── distribution_index.json      # package_index / dir_name / package_file_name / granted_files / sha256
+├── task_package_01/             # node A only
+│   └── ...__01.mgc_file
+└── task_package_02/             # node B only
+    └── ...__02.mgc_file
+```
+
+Each receiver imports only its own `.mgc_file`, verifies `granted_files` against the task card, then runs it. `distribution_index.json` records every sub-package's `sha256`, so integrity can be checked before dispatch and after download.
+
+Hard constraints:
+
+- **Flat directory only**: the sealed import hook resolves cross-script imports at the same level. Convert `helpers/query.py` into `query.py` (and `from query import ...`) before sealing.
+- **`files` must exactly match `diff_3`**: run `mgc_find` after `mgc_save_file` to confirm.
+- **Scripts only in `files`**: CSV / JSON / config files are plaintext inside the package. Keep data and credentials in each node's local MGC and read them from within the script.
+- **`UNSEAL_FAILED` at run time** means the sub-package was sent to the wrong node or the `.mgc_file` was renamed.
 
 ---
 

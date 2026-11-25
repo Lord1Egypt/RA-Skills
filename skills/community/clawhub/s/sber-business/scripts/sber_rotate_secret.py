@@ -32,6 +32,7 @@ from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from sber_vault import SberVault
+from sber_api import build_curl_config
 
 HOST = "https://fintech.sberbank.ru:9443"
 ROTATE_URL = f"{HOST}/ic/sso/api/v1/change-client-secret"
@@ -79,14 +80,18 @@ def rotate(profile: str = "default", dry_run: bool = False) -> dict:
             "--cert", cert, "--key", key, "--cacert", ca,
             "-w", "\n%{http_code}",
             "-X", "POST",
-            "-H", "Accept: application/json",
             "--get",
-            "--data-urlencode", Q_ACC + "=" + acc,
-            "--data-urlencode", Q_SECRET + "=" + cur_secret,
-            "--data-urlencode", "new_" + Q_SECRET + "=" + new_secret,
+            "--config", "-",
             ROTATE_URL,
         ]
-        out = subprocess.run(cmd, capture_output=True, timeout=80)
+        # SECURITY: access token, current and new client secrets are streamed
+        # via the stdin curl config (data-urlencode), never placed in argv.
+        cfg = build_curl_config(
+            headers={"Accept": "application/json"},
+            form_fields={Q_ACC: acc, Q_SECRET: cur_secret,
+                         "new_" + Q_SECRET: new_secret})
+        out = subprocess.run(cmd, input=cfg.encode("utf-8"),
+                             capture_output=True, timeout=80)
 
     raw = out.stdout
     body, _, code = raw.rpartition(b"\n")

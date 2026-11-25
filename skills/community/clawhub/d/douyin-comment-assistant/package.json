@@ -1,7 +1,7 @@
 {
   "name": "douyin-comment-assistant",
-  "version": "1.2.2",
-  "description": "抖音公开数据智能分析工具。支持关键词搜索排序、博主作品抓取、实时热榜获取，适用于短视频营销、竞品分析和热点监控，助力爆款内容策划与流量追踪。",
+  "version": "1.4.0",
+  "description": "抖音公开数据只读技能。关键词搜索、博主作品、视频评论、实时热榜，输出结构化 JSON。用于选题、对标账号、评论舆情和热搜追踪。",
   "keywords": [
     "douyin",
     "search",

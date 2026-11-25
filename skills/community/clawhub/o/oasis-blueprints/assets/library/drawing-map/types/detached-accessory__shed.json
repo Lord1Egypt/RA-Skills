@@ -1,0 +1,260 @@
+{
+ "schema": "oasis-blueprints/drawing-map/0.1",
+ "type": {
+  "key": "detached-accessory",
+  "name": "Detached accessory structure"
+ },
+ "variant": {
+  "key": "shed",
+  "name": "Shed"
+ },
+ "sets": 1,
+ "pages": {
+  "min": 19,
+  "median": 19,
+  "max": 19
+ },
+ "attributes": {},
+ "unlisted": {
+  "views": 0,
+  "sheet_names": 15,
+  "details": 0,
+  "note_blocks": 8
+ },
+ "sheets": [
+  {
+   "kind": "details",
+   "name": "Details",
+   "sets": 1,
+   "pct": 100.0,
+   "tier": "core",
+   "position": 0.0,
+   "sheets_per_set": 6,
+   "numbering": [
+    [
+     "S",
+     1
+    ]
+   ],
+   "names": [],
+   "views": []
+  },
+  {
+   "kind": "general_notes",
+   "name": "General notes",
+   "sets": 1,
+   "pct": 100.0,
+   "tier": "core",
+   "position": 0.056,
+   "sheets_per_set": 1,
+   "numbering": [
+    [
+     "S",
+     1
+    ]
+   ],
+   "names": [
+    [
+     "GENERAL NOTES",
+     1
+    ]
+   ],
+   "views": []
+  },
+  {
+   "kind": "other",
+   "name": "Other",
+   "sets": 1,
+   "pct": 100.0,
+   "tier": "core",
+   "position": 0.111,
+   "sheets_per_set": 2,
+   "numbering": [],
+   "names": [],
+   "views": []
+  },
+  {
+   "kind": "schedules",
+   "name": "Schedules",
+   "sets": 1,
+   "pct": 100.0,
+   "tier": "core",
+   "position": 0.167,
+   "sheets_per_set": 1,
+   "numbering": [
+    [
+     "S",
+     1
+    ]
+   ],
+   "names": [],
+   "views": []
+  },
+  {
+   "kind": "floor_framing_plan",
+   "name": "Floor or deck framing plan",
+   "sets": 1,
+   "pct": 100.0,
+   "tier": "core",
+   "position": 0.222,
+   "sheets_per_set": 3,
+   "numbering": [],
+   "names": [],
+   "views": []
+  },
+  {
+   "kind": "elevations",
+   "name": "Elevations",
+   "sets": 1,
+   "pct": 100.0,
+   "tier": "core",
+   "position": 0.278,
+   "sheets_per_set": 3,
+   "numbering": [],
+   "names": [],
+   "views": []
+  },
+  {
+   "kind": "wall_framing",
+   "name": "Wall framing",
+   "sets": 1,
+   "pct": 100.0,
+   "tier": "core",
+   "position": 0.333,
+   "sheets_per_set": 2,
+   "numbering": [],
+   "names": [],
+   "views": []
+  },
+  {
+   "kind": "view_3d",
+   "name": "3D view",
+   "sets": 1,
+   "pct": 100.0,
+   "tier": "core",
+   "position": 0.667,
+   "sheets_per_set": 1,
+   "numbering": [],
+   "names": [],
+   "views": []
+  },
+  {
+   "kind": "roof_framing_plan",
+   "name": "Roof framing plan",
+   "sets": 1,
+   "pct": 100.0,
+   "tier": "core",
+   "position": 0.778,
+   "sheets_per_set": 1,
+   "numbering": [],
+   "names": [],
+   "views": []
+  },
+  {
+   "kind": "sections",
+   "name": "Sections",
+   "sets": 1,
+   "pct": 100.0,
+   "tier": "core",
+   "position": 1.0,
+   "sheets_per_set": 1,
+   "numbering": [],
+   "names": [],
+   "views": []
+  }
+ ],
+ "details": [],
+ "notes": [
+  {
+   "heading": "GENERAL NOTES",
+   "kind": "notes",
+   "sets": 1,
+   "pct": 100.0,
+   "tier": "core",
+   "items_median": 1,
+   "on_sheets": [
+    "general_notes"
+   ],
+   "wordings": 1,
+   "variants": [
+    {
+     "sets": 1,
+     "items": null
+    }
+   ]
+  },
+  {
+   "heading": "NOTES",
+   "kind": "notes",
+   "sets": 1,
+   "pct": 100.0,
+   "tier": "core",
+   "items_median": 3,
+   "on_sheets": [
+    "schedules"
+   ],
+   "wordings": 1,
+   "variants": [
+    {
+     "sets": 1,
+     "items": null
+    }
+   ]
+  }
+ ],
+ "template_seed": {
+  "sheets": [
+   {
+    "kind": "details",
+    "name": "Details",
+    "views": []
+   },
+   {
+    "kind": "general_notes",
+    "name": "GENERAL NOTES",
+    "views": []
+   },
+   {
+    "kind": "schedules",
+    "name": "Schedules",
+    "views": []
+   },
+   {
+    "kind": "floor_framing_plan",
+    "name": "Floor or deck framing plan",
+    "views": []
+   },
+   {
+    "kind": "elevations",
+    "name": "Elevations",
+    "views": []
+   },
+   {
+    "kind": "wall_framing",
+    "name": "Wall framing",
+    "views": []
+   },
+   {
+    "kind": "view_3d",
+    "name": "3D view",
+    "views": []
+   },
+   {
+    "kind": "roof_framing_plan",
+    "name": "Roof framing plan",
+    "views": []
+   },
+   {
+    "kind": "sections",
+    "name": "Sections",
+    "views": []
+   }
+  ],
+  "details": [],
+  "note_blocks": [
+   "GENERAL NOTES",
+   "NOTES"
+  ],
+  "legends_and_schedules": []
+ }
+}

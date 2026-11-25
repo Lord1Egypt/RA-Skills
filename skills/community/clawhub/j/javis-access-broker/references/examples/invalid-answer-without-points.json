@@ -1,0 +1,7 @@
+{
+  "decision": "answer",
+  "kind": "exact",
+  "exact_segments": [ { "source": "s2", "segs": ["g4", "g5"] } ],
+  "task_kind": "other",
+  "topic": "the election article to-do"
+}

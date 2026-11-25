@@ -10,7 +10,7 @@ Paste your SnapWidget code into a **Code** block where you want the widget to sh
 
 > [!NOTE]
 >
-> The SnapWidget code is an iframe. To add an iframe to a Code block, your site needs the Core, Plus or Advanced plan.
+> The SnapWidget code has a script, and some widget codes also have an iframe. Squarespace allows scripts and iframes in a Code block only on the Core, Plus and Advanced plans.
 
 ### In SnapWidget
 

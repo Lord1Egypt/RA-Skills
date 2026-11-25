@@ -89,7 +89,7 @@ class CodexRPC:
             stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, env=env, bufsize=0)
         self.seq, self.buffer = 0, b''
         try:
-            self.call('initialize', {'clientInfo': {'name': 'qianlima-account', 'version': '1.0.1'},
+            self.call('initialize', {'clientInfo': {'name': 'qianlima-account', 'version': '1.0.2'},
                                     'capabilities': {'experimentalApi': True}})
             self.proc.stdin.write(b'{"method":"initialized","params":{}}\n')
         except Exception:

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Amber dist-watcher LaunchAgent
+  Automatically restarts com.jarvis.twilio-bridge whenever runtime/dist/ is recompiled.
+
+  Setup:
+    1. Replace /Users/YOUR_USERNAME with your actual home directory path
+    2. install -d -m 700 ~/Library/Logs/Amber
+    3. cp com.jarvis.amber-dist-watcher.plist.xml ~/Library/LaunchAgents/com.jarvis.amber-dist-watcher.plist
+    4. launchctl load ~/Library/LaunchAgents/com.jarvis.amber-dist-watcher.plist
+
+  Logs: /Users/YOUR_USERNAME/Library/Logs/Amber/dist-watcher.log
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.jarvis.amber-dist-watcher</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/local/bin/node</string>
+    <string>/Users/YOUR_USERNAME/path/to/amber-voice-assistant/runtime/scripts/dist-watcher.cjs</string>
+  </array>
+  <key>WorkingDirectory</key>
+  <string>/Users/YOUR_USERNAME/path/to/amber-voice-assistant/runtime</string>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <true/>
+  <key>StandardOutPath</key>
+  <string>/Users/YOUR_USERNAME/Library/Logs/Amber/dist-watcher.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/YOUR_USERNAME/Library/Logs/Amber/dist-watcher.log</string>
+</dict>
+</plist>

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use Summon to process manifest work items through intake, implementation, quality review, and pull request preparation, including resuming interrupted runs.
+Developers use Summon to run manifest-backed work items through intake, build, quality, and ship stages. It can resume interrupted sessions and stop when work is complete or configured budgets are reached.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: External-model delegation may share project data with providers; the partial scan did not verify referenced runtime files.
+Risk: Issue-derived text may be inserted into shell commands, creating a command-execution risk.
 
-Mitigation: Review how external-model delegation is enabled and whether project-data sharing with those providers is acceptable before installing.
+Mitigation: Review how issue text enters commands and validate or quote that input before execution; treat the scan as incomplete because referenced paths were missing.
 
 ## Reference(s):
 
-- [Egregore plugin page listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/egregore)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/egregore)
+- [Summon on ClawHub](https://clawhub.ai/athola/skills/nm-egregore-summon)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Files, Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON state files]
 
-**Output Format:** [Repository changes and workflow artifacts, including Markdown summaries and pull request text]
+**Output Format:** [Pipeline actions and JSON state updates]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Outputs depend on the manifest work items and the specialist skills used by each pipeline step.]
+**Other Properties Related to Output:** [May run continuously until dismissed unless configured as bounded; stops when configured budgets are reached.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

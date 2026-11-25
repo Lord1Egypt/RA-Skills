@@ -1,6 +1,6 @@
 ## Description:
 
-Lists Huawei Cloud RDS instances in a selected region, supports filters and table, JSON, names-only, or Markdown output, and blocks write operations.
+Lists Huawei Cloud RDS instances in a selected region and presents filtered inventory as a table, JSON, Markdown, or CSV.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and cloud operators use this skill to review a Huawei Cloud region's RDS inventory, filter instances, and export reports.
+Developers and cloud operators use it to inspect regional RDS inventories, support operations patrols and handovers, and retrieve instance IDs for follow-on tasks.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security evidence flags a remote installer and an environment-controlled command override that could run another program with cloud credentials; scanner analysis is partial.
+Risk: Environment-controlled settings may bypass the claimed read-only command limits and run an arbitrary executable with the agent's privileges, potentially exposing cloud credentials.
 
-Mitigation: Verify the installer through a trusted source before running it, and protect the environment variables that select the CLI executable and its arguments.
+Mitigation: Follow the scanner guidance not to install until reviewing how inherited environment variables and tool permissions are controlled.
 
 ## Reference(s):
 
-- [Huawei Cloud KooCLI quick start](https://support.huaweicloud.com/qs-hcli/hcli_02_003.html)
-- [KooCLI installation and credential guide](artifact/references/cli-installation-guide.md)
-- [Least-privilege IAM policy](artifact/references/iam-policies.md)
-- [Verification method](artifact/references/verification-method.md)
-- [ClawHub release](https://clawhub.ai/wlc-dev/skills/huawei-cloud-rds-list)
+- [ClawHub skill page](https://clawhub.ai/wlc-dev/skills/huawei-cloud-rds-list)
+- [Huawei Cloud KooCLI documentation](https://support.huaweicloud.com/qs-hcli/hcli_02_003.html)
+- [IAM policies](references/iam-policies.md)
+- [KooCLI installation guide](references/cli-installation-guide.md)
+- [Verification method](references/verification-method.md)
+- [Data flow diagram](references/dataflow-diagram.md)
+- [Acceptance criteria](references/acceptance-criteria.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Markdown]
+**Output Type(s):** [Text, JSON, Markdown, CSV]
 
-**Output Format:** [Terminal table, JSON array, names-only text, or Markdown report file]
+**Output Format:** [Terminal table, JSON array, Markdown table, or CSV file]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Read-only, region-scoped instance inventory with optional filters and pagination.]
+**Other Properties Related to Output:** [Regional inventory with optional instance filters; Markdown and CSV exports use Chinese headers.]
 
 ## Skill Version(s):
 
-1.0.7 (source: server-resolved release metadata)
+1.0.8 (source: release metadata)
 
 ## Ethical Considerations:
 

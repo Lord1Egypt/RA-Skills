@@ -1,21 +1,12 @@
-/* Desktop Pilot - in-page "agent is working" overlay for browser automation (Playwright, CDP, Puppeteer...).
- *
- * Inject once per page (re-inject after navigations, or register it as an init script):
- *   page.addInitScript({ path: 'overlay.js' })      // Playwright: survives navigations
- *   page.evaluate(src)                              // or one-off
- * Then drive it from the automation side:
- *   window.__dpOverlay.show('Searching flights...')   // glow around the viewport + status pill with Stop button
- *   window.__dpOverlay.text('Filling the form...')
- *   window.__dpOverlay.stopped()                      // true after the user pressed Stop -> abort the task
- *   window.__dpOverlay.hide()
- *
- * The glow ignores pointer events and the pill only captures clicks on itself, so automated clicks keep working
- * (an input-blocking layer would make Playwright's own clicks fail). The overlay lives in a closed-style shadow
- * root, so page CSS cannot restyle it. It hides itself after `idleMs` (default 120 s) without a show()/text() call.
+/* Informational in-page status UI only. A webpage can alter/remove this UI.
+ * NEVER use page state as cancellation/authorization. Use the trusted host's
+ * cancellation control (or Desktop Pilot's native Windows Stop) instead.
+ * API: window.__dpOverlay.show(text), .text(text), .hide(), .visible().
+ * This intentionally has no Stop/clear/stopped API or input blocking.
  */
 (() => {
   if (window.__dpOverlay) return;
-  let host = null, label = null, timer = null, stopFlag = false, idleMs = 120000;
+  let host = null, label = null, timer = null, idleMs = 120000;
 
   const css = `
     :host { all: initial; }
@@ -37,38 +28,28 @@
     .dot { width: 10px; height: 10px; border-radius: 50%; background: #00e5ff; animation: blink .9s ease-in-out infinite alternate; flex: none; }
     @keyframes blink { from { opacity: .25; } to { opacity: 1; } }
     .txt { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .stop { all: unset; cursor: pointer; width: 30px; height: 30px; border-radius: 50%; background: #22d3ee; display: grid; place-items: center; flex: none; }
-    .stop::after { content: ''; width: 10px; height: 10px; border-radius: 2px; background: #0c262a; }
-    .stop:hover { background: #67e8f9; }
   `;
 
   function arm() { clearTimeout(timer); timer = setTimeout(api.hide, idleMs); }
   const api = {
     show(text, opts) {
       if (opts && opts.idleMs) idleMs = opts.idleMs;
-      stopFlag = false;
       if (!host) {
         host = document.createElement('div');
         host.setAttribute('data-desktop-pilot-overlay', '');
         const root = host.attachShadow({ mode: 'open' });
         root.innerHTML = `<style>${css}</style>
           <div class="glow"><div class="edge top"></div><div class="edge bottom"></div><div class="edge left"></div><div class="edge right"></div><div class="line"></div></div>
-          <div class="pill"><span class="dot"></span><span class="txt"></span><button class="stop" title="Stop" aria-label="Stop"></button></div>`;
+          <div class="pill"><span class="dot"></span><span class="txt"></span></div>`;
         label = root.querySelector('.txt');
-        root.querySelector('.stop').addEventListener('click', (e) => {
-          e.stopPropagation(); stopFlag = true; label.textContent = 'Stopping...';
-          setTimeout(api.hide, 900);
-        });
         (document.documentElement || document.body).appendChild(host);
       }
       label.textContent = text || 'Agent is working...';
       arm();
     },
     text(t) { if (!host) return api.show(t); label.textContent = t; arm(); },
-    stopped() { return stopFlag; },
-    clear() { stopFlag = false; },
     hide() { clearTimeout(timer); if (host) { host.remove(); host = null; label = null; } },
     visible() { return !!host; },
   };
-  Object.defineProperty(window, '__dpOverlay', { value: api, configurable: true });
+  Object.defineProperty(window, '__dpOverlay', { value: Object.freeze(api), configurable: false, writable: false });
 })();

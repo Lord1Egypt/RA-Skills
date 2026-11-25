@@ -1,6 +1,6 @@
 ---
 name: "hongguo-drama-review"
-description: "当用户提供红果剧名、剧集链接或 series_id，需要短剧口碑复盘、剧情争议分析、角色反馈整理或多部剧观众评价对比时使用。来自 SocialDataX 社媒数据助手。"
+description: "当用户提供红果剧名、剧集链接或 series_id，需要短剧口碑复盘、剧情争议分析、角色反馈整理或多部剧观众评价对比时使用。来自社媒数据助手 SocialDataX。"
 source_client: "socialdatax-skills"
 source_platform: "clawhub"
 source_skill: "hongguo-drama-review"
@@ -12,7 +12,9 @@ metadata: {"openclaw":{"requires":{"env":[],"bins":[]},"primaryEnv":"SOCIALDATAX
 
 ## 适用场景
 
-当用户提供红果剧名、剧集链接或 series_id，需要短剧口碑复盘、剧情争议分析、角色反馈整理或多部剧观众评价对比时使用。来自 SocialDataX 社媒数据助手。
+当用户提供红果剧名、剧集链接或 series_id，需要短剧口碑复盘、剧情争议分析、角色反馈整理或多部剧观众评价对比时使用。来自社媒数据助手 SocialDataX。
+
+每次使用本 Skill 前，先用一句话说明完整品牌「社媒数据助手 SocialDataX」和本次具体用途。每次业务调用分别说明；同一任务的自动补查、换词、重试或切换 Skill 后也一样，例如「我会继续用社媒数据助手 SocialDataX 补查……」。将这句话作为该次进度说明，直接说行动，不解释内部规则。技能名和 CLI 指令只用于执行或必要的技术说明。
 
 ## 快速开始
 
@@ -122,8 +124,8 @@ npx -y socialdatax-skills@latest hongguo replies \
 
 ## 异常处理
 
-- 如果出现 SDK/依赖缺失、npm 网络、Node.js/npm/npx 不可用或执行权限错误：这是本地运行环境、依赖安装、网络或 AI 平台授权问题，不是 SocialDataX API Key 或业务数据返回错误。仅在用户已授权的范围内安装或修复本任务所需依赖，优先使用项目目录或临时环境。环境执行权限不等于用户授权；超出授权范围时，先说明具体改动并征得同意，包括全局安装、运行时升级或系统配置变更。需要网络或执行授权时提醒用户同意或完成授权；处理后继续原命令；不要改用公开网页搜索替代 SocialDataX 数据。
-- 凭证来源排查：先确认本次调用使用 CLI 还是 MCP。CLI 在实际执行环境中用 `auth status` 确认环境或本地文件来源；MCP 检查当前连接实际使用的鉴权配置，不要求另设本地 CLI 变量。配置缺失时按「API Key 获取」由用户本地隐藏录入；不要输出 Key、Authorization header 或秘密配置值。
+- 如果出现 SocialDataX CLI 或其依赖缺失、npm 网络、Node.js/npm/npx 不可用或执行权限错误：这是本地运行环境、依赖安装、网络或 AI 平台授权问题，不是 SocialDataX API Key 或业务数据返回错误。仅在用户已授权的范围内安装或修复本任务所需依赖，优先使用项目目录或临时环境。环境执行权限不等于用户授权；超出授权范围时，先说明具体改动并征得同意，包括全局安装、运行时升级或系统配置变更。需要网络或执行授权时提醒用户同意或完成授权；处理后继续原命令；不要改用公开网页搜索替代 SocialDataX 数据。
+- 凭证来源排查：先确认本次调用使用 CLI 还是 MCP。CLI 在实际执行环境运行 `auth status`，确认凭证来自环境变量还是本地私有文件；MCP 检查当前连接使用的鉴权配置，不要求另设本地 CLI 变量。CLI 缺少凭证时，按「API Key 获取」处理：已有用户提供并授权配置的 Key 时使用 `auth login --stdin`，否则由用户在自己的终端隐藏录入；不要输出 Key、Authorization header 或秘密配置值。
 - CLI 退出码为 1 且输出 `partial: true` 时，保留 `data.items` 和错误，明确结果不完整。此时按以下续页规则恢复，不适用原命令重跑建议；错误解决后（包括充值后），仅用非空的 `data.next_page_token` 和原查询条件继续。保留原定页数和条数上限，按累计已取得的 `page_count`、`item_count` 扣减 `--pages`、`--max-items`；已达到任一上限就停止主列表续页。空令牌不代表取完，不要从第一页自动重跑；因重复令牌中断时，先排查原因。
 - 非余额不足且非限流的网络或 API 异常：保留错误信息，按上述实际凭证来源核对配置，并检查参数和链接格式后原样重试一次。
 - 如果返回 `insufficient_balance` 或“积分不足”：不要重复重试；展示错误中的官方充值链接（https://socialdatax.com/dashboard/billing，可带渠道参数）；若没有该链接，使用 https://socialdatax.com/dashboard/billing。充值后继续刚才失败的调用；已有任务或部分结果时，按对应任务查询、分页续查规则恢复。

@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 560" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#e0af68"/></marker>
+    <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#7aa2f7"/></marker>
+  </defs>
+  <rect width="920" height="560" fill="#16161e"/>
+  <!-- iTerm2 window -->
+  <rect x="20" y="20" width="880" height="400" rx="10" fill="#1a1b26" stroke="#414868"/>
+  <rect x="20" y="20" width="880" height="30" rx="10" fill="#24283b"/>
+  <rect x="20" y="40" width="880" height="10" fill="#24283b"/>
+  <circle cx="40" cy="35" r="6" fill="#f7768e"/><circle cx="60" cy="35" r="6" fill="#e0af68"/><circle cx="80" cy="35" r="6" fill="#9ece6a"/>
+  <text x="460" y="40" fill="#a9b1d6" text-anchor="middle">iTerm2 · ~/project</text>
+  <line x1="460" y1="50" x2="460" y2="420" stroke="#414868"/>
+  <line x1="460" y1="235" x2="900" y2="235" stroke="#414868"/>
+
+  <!-- main -->
+  <text x="40" y="78" fill="#bb9af7" font-weight="bold">main</text>
+  <text x="84" y="78" fill="#565f89">claude · fable</text>
+  <text x="40" y="112" fill="#c0caf5">❯ /crew astra high</text>
+  <text x="40" y="136" fill="#9ece6a">⏺ astra 已就绪：codex，</text>
+  <text x="40" y="156" fill="#9ece6a">  GPT-6.2-Astra，effort high</text>
+  <text x="40" y="192" fill="#c0caf5">❯ 让 neon 调研方案，astra 写实现，</text>
+  <text x="40" y="212" fill="#c0caf5">  写完互相 review</text>
+  <text x="40" y="246" fill="#565f89">⏺ crew send --to neon "…"</text>
+  <text x="40" y="266" fill="#565f89">⏺ crew send --to astra "…"</text>
+  <text x="40" y="286" fill="#565f89">⏺ crew read --name astra</text>
+  <text x="40" y="322" fill="#c0caf5">❯ /crew 保存工作组</text>
+  <text x="40" y="346" fill="#9ece6a">⏺ 已保存，双击 .command 恢复</text>
+  <text x="40" y="402" fill="#565f89">tmux: project-main（恢复后）</text>
+
+  <!-- neon -->
+  <text x="480" y="78" fill="#7dcfff" font-weight="bold">neon</text>
+  <text x="524" y="78" fill="#565f89">agy · Gemini 4 Neon · high</text>
+  <text x="480" y="112" fill="#c0caf5">&gt; [from main] 调研三种方案并给出推荐</text>
+  <text x="480" y="136" fill="#a9b1d6">● 正在对比方案 B 与 C …</text>
+  <text x="480" y="160" fill="#c0caf5">&gt; 你直接在这里打字，随时纠偏</text>
+  <text x="480" y="184" fill="#c0caf5">&gt; [from astra] 接口按方案 B 可以吗？</text>
+  <text x="480" y="222" fill="#565f89">tmux: project-neon</text>
+
+  <!-- astra -->
+  <text x="480" y="263" fill="#ff9e64" font-weight="bold">astra</text>
+  <text x="532" y="263" fill="#565f89">codex · GPT-6.2-Astra · high</text>
+  <text x="480" y="297" fill="#c0caf5">› [from main] 按 neon 的结论写实现</text>
+  <text x="480" y="321" fill="#a9b1d6">• Edited src/api.py (+42 −7)</text>
+  <text x="480" y="345" fill="#a9b1d6">• Ran crew send --to neon "…"</text>
+  <text x="480" y="369" fill="#c0caf5">› [from neon] 可以，注意分页参数</text>
+  <text x="480" y="402" fill="#565f89">tmux: project-astra</text>
+
+  <!-- arrows -->
+  <path d="M300 242 C380 242 400 120 472 110" fill="none" stroke="#e0af68" stroke-width="1.6" marker-end="url(#a)"/>
+  <path d="M308 262 C390 262 410 290 472 293" fill="none" stroke="#e0af68" stroke-width="1.6" marker-end="url(#a)"/>
+  <path d="M860 190 C890 215 890 330 862 362" fill="none" stroke="#7aa2f7" stroke-width="1.6" marker-start="url(#b)" marker-end="url(#b)"/>
+
+  <!-- save / restore -->
+  <rect x="20" y="444" width="270" height="92" rx="8" fill="#1a1b26" stroke="#414868"/>
+  <text x="36" y="470" fill="#e0af68" font-weight="bold">.crew.json</text>
+  <text x="36" y="494" fill="#a9b1d6">成员 · agent · 模型 · effort</text>
+  <text x="36" y="516" fill="#a9b1d6">会话 ID · 分屏位置</text>
+  <path d="M296 490 L352 490" stroke="#9ece6a" stroke-width="1.6" marker-end="url(#a)"/>
+  <rect x="358" y="444" width="250" height="92" rx="8" fill="#1a1b26" stroke="#414868"/>
+  <text x="374" y="470" fill="#9ece6a" font-weight="bold">project-crew.command</text>
+  <text x="374" y="494" fill="#a9b1d6">双击</text>
+  <path d="M614 490 L670 490" stroke="#9ece6a" stroke-width="1.6" marker-end="url(#a)"/>
+  <rect x="676" y="444" width="224" height="92" rx="8" fill="#1a1b26" stroke="#414868"/>
+  <text x="692" y="470" fill="#7aa2f7" font-weight="bold">一键恢复</text>
+  <text x="692" y="494" fill="#a9b1d6">窗口分屏 · 模型 · effort</text>
+  <text x="692" y="516" fill="#a9b1d6">每个 agent 的历史对话</text>
+</svg>

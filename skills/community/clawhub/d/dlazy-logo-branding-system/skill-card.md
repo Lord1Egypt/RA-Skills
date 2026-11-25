@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Brand designers, creative teams, and marketers use this skill to plan a logo and develop consistent visual identity assets. It guides concept review and iterative creation of logo variants and brand applications.
+External users and design teams use this skill to plan and iteratively create a logo and supporting brand identity assets, with review checkpoints between design phases.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The workflow uses a third-party CLI and authentication, and its security review had partial coverage.
+Risk: The security review notes that dLazy CLI authentication and execution are not clearly connected to the branding task, and its scan was partial.
 
-Mitigation: Review the CLI package and authentication flow before installing, and send brand materials to dLazy-hosted services only when approved for external processing.
+Mitigation: Before logging in or submitting prompts and assets, review and authorize the CLI's behavior and data handling; use a dedicated API key and revoke it when no longer needed.
 
 ## Reference(s):
 
-- [dLazy CLI repository (metadata link; release provenance unavailable)](https://github.com/dlazy-ai/cli)
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli)
-- [dLazy](https://dlazy.com)
+- [dLazy CLI repository](https://github.com/dlazy-ai/cli)
+- [dLazy CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Images, Shell commands, Configuration instructions]
+**Output Type(s):** [Guidance, Image files, Result URLs]
 
-**Output Format:** [Markdown guidance and generated image assets, with shell commands or configuration instructions when needed]
+**Output Format:** [Markdown guidance with generated image assets or result URLs]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Progressive, phase-confirmed workflow; generated assets can include logo variants and brand identity applications.]
+**Other Properties Related to Output:** [Progressive workflow with user confirmation between phases and individual image generations.]
 
 ## Skill Version(s):
 
-1.2.37 (source: server-resolved release metadata)
+1.2.40 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

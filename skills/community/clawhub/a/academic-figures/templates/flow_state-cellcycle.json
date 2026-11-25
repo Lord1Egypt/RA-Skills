@@ -1,0 +1,94 @@
+{
+ "_command": "python3 scripts/gen_figure.py -t flow -d templates/flow_state-cellcycle.json --gate strict -o flow_cellcycle.png",
+ "layout": "layered",
+ "title": "Cell-cycle checkpoints as a state machine",
+ "nodes": [
+  {
+   "id": "g1",
+   "label": "G1",
+   "sublabel": "growth, CDK4/6 active"
+  },
+  {
+   "id": "g1s",
+   "label": "G1/S checkpoint",
+   "sublabel": "p53 gate, DNA intact?",
+   "shape": "diamond"
+  },
+  {
+   "id": "s",
+   "label": "S phase",
+   "sublabel": "DNA replication"
+  },
+  {
+   "id": "g2",
+   "label": "G2",
+   "sublabel": "pre-mitotic growth"
+  },
+  {
+   "id": "g2m",
+   "label": "G2/M checkpoint",
+   "sublabel": "undamaged, fully replicated?",
+   "shape": "diamond"
+  },
+  {
+   "id": "m",
+   "label": "M phase",
+   "sublabel": "mitosis"
+  },
+  {
+   "id": "apop",
+   "label": "Apoptosis",
+   "sublabel": "p53-mediated arrest",
+   "shape": "terminal"
+  }
+ ],
+ "edges": [
+  {
+   "from": "g1",
+   "to": "g1s"
+  },
+  {
+   "from": "g1s",
+   "to": "s",
+   "label": "pass",
+   "thick": true
+  },
+  {
+   "from": "g1s",
+   "to": "apop",
+   "label": "damage",
+   "dashed": true
+  },
+  {
+   "from": "s",
+   "to": "g2"
+  },
+  {
+   "from": "g2",
+   "to": "g2m"
+  },
+  {
+   "from": "g2m",
+   "to": "m",
+   "label": "pass",
+   "thick": true
+  },
+  {
+   "from": "g2m",
+   "to": "apop",
+   "label": "damage",
+   "dashed": true
+  },
+  {
+   "from": "m",
+   "to": "g1",
+   "label": "cycle repeats",
+   "dashed": true
+  }
+ ],
+ "_chart_type": "flow",
+ "_scene": "",
+ "_description": "",
+ "_caption_template": "",
+ "_note": "细胞周期检查点状态机：菱形检查点 + damage 虚线汇入凋亡 + 循环回边——状态循环范式"
+}

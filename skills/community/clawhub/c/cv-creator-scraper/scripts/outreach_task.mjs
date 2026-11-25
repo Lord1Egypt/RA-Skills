@@ -14,7 +14,12 @@
  *   poll_max_attempts  — 最大轮询次数（默认 60）
  */
 
-import { callAPI, parseArgs, validateRequired } from './_api_client.mjs';
+import {
+  attachOutreachWorkspaceUrl,
+  callAPI,
+  parseArgs,
+  validateRequired,
+} from './_api_client.mjs';
 
 const params = parseArgs();
 validateRequired(params, ['task_id']);
@@ -34,6 +39,7 @@ if (params.result_size) requestBody.result_size = params.result_size;
 if (!poll) {
   // 单次查询
   const result = await callAPI('/openapi/v1/outreach/task', requestBody, null, { skipUserIdentity: false });
+  await attachOutreachWorkspaceUrl(result, { task_id: params.task_id });
   console.log(JSON.stringify(result, null, 2));
 } else {
   // 轮询模式
@@ -42,6 +48,7 @@ if (!poll) {
     const status = result?.data?.status;
 
     if (terminalStatuses.includes(status)) {
+      await attachOutreachWorkspaceUrl(result, { task_id: params.task_id });
       console.log(JSON.stringify(result, null, 2));
       process.exit(0);
     }

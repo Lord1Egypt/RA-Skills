@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this workflow to back up a specifically scoped local project to a separate private GitHub repository while excluding credentials, environments, caches, and public Skill source. It requires explicit scope and approval before uploading sensitive runtime data.
+Developers and project owners use this workflow to back up a clearly scoped, data-bearing local project to a private GitHub repository while keeping public Skill source separate. It guides scope selection, sensitive-file exclusions, staging review, and remote verification.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: A recovery instruction permits a forced remote rollback despite the stated prohibition, which could remove others’ commits.
+Risk: The security review is limited by four unresolved local references and partial scan coverage.
 
-Mitigation: Review the recovery instructions before use. Do not force-reset over history that may belong to others; stop if ownership or the last known good commit is uncertain.
+Mitigation: Before installing or following the workflow, inspect the unresolved references and review the skill's behavior; the benign scanner verdict is not a guarantee of safety.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/haiyangchenbj/skills/private-github-repo-upload)
+- [ClawHub release page](https://clawhub.ai/haiyangchenbj/skills/private-github-repo-upload)
 - [Publisher profile](https://clawhub.ai/user/haiyangchenbj)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration]
+**Output Type(s):** [Guidance, Shell commands, API calls]
 
-**Output Format:** [Markdown workflow with shell commands and API request guidance]
+**Output Format:** [Markdown workflow guidance with shell commands and GitHub API procedures]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Scope, exclusions, and repository details must be explicit or use a documented default confirmed by the user.]
+**Other Properties Related to Output:** [Scope, exclusions, and repository name must be explicit or confirmed; uploads and remote changes require user authorization.]
 
 ## Skill Version(s):
 
-1.1.0 (source: frontmatter)
+1.1.1 (source: frontmatter)
 
 ## Ethical Considerations:
 

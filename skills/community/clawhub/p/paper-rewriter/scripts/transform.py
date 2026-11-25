@@ -19,6 +19,7 @@
 
 import argparse
 import json
+import shutil
 import re
 import sys
 import os
@@ -216,8 +217,79 @@ def main():
     ap.add_argument("--lang", choices=["zh", "en", "auto"], default="auto")
     ap.add_argument("--lexicon", metavar="文件",
                     help="外挂词表 JSON（v5.11.0）：同名键逐项追加，多 skill 共享同一外部词表")
+    ap.add_argument("--dry-run", action="store_true",
+                    help="预览模式：只报告将执行的替换与删除，不写输出文件、不改文本")
+    ap.add_argument("--batch", metavar="目录",
+                    help="批量清洗（v5.19.0）：目录内全部 .txt/.md 逐文件清洗，写 <名>_clean.txt"
+                         "（输出已存在=跳过，断点续跑）；--in-place 则原地覆盖。互斥 file/-o/--dry-run")
+    ap.add_argument("--in-place", action="store_true",
+                    help="配合 --batch：原地覆盖原文件（不生成 _clean 副本，先备份 .bak）")
+    ap.add_argument("--csv", metavar="文件",
+                    help="批量汇总 CSV（v5.19.0：文件/替换类数/替换次数/删除句数）——配 --batch")
     ap.add_argument("--version", action="version", version="%(prog)s " + hxt_core.__version__)
     args = ap.parse_args()
+
+    # ── 批量清洗（v5.19.0）：目录逐文件，输出已存在=跳过（断点续跑）──
+    if getattr(args, "batch", None):
+        import glob as _glob
+        import csv as _csvmod
+        _files = sorted(x for x in _glob.glob(os.path.join(args.batch, "*.txt"))
+                        + _glob.glob(os.path.join(args.batch, "*.md"))
+                        if "_clean" not in os.path.basename(x))
+        if not _files:
+            print("错误: 目录无 .txt/.md（%s）" % args.batch, file=sys.stderr)
+            sys.exit(2)
+        fixes = load_fixes(None, args.aggressive, lexicon=getattr(args, "lexicon", None))
+        _rows = []
+        _done = _skip = 0
+        for fp in _files:
+            base = os.path.splitext(fp)[0]
+            outp = fp if args.in_place else base + "_clean.txt"
+            # 断点判定：副本形态看输出存在；in-place 形态看 .bak 备份存在（原文件恒存在不可作判据）
+            _is_done = (os.path.exists(fp + ".bak") if args.in_place
+                        else os.path.exists(outp))
+            if _is_done:
+                _skip += 1
+                _rows.append([os.path.basename(fp), "skip", 0, 0, 0])
+                continue
+            try:
+                t = hxt_core.read_text(fp)
+            except (OSError, ValueError) as e:
+                print("跳过 %s：%s" % (fp, e), file=sys.stderr)
+                _rows.append([os.path.basename(fp), "error", 0, 0, 0])
+                continue
+            o, applied = apply_auto_fixes(t, fixes)
+            o, removed = drop_flagged_sentences(o)
+            o, _nq = normalize_quotes(o)
+            o, _fw = normalize_fullwidth_alnum(o)
+            if _fw:
+                applied["全角字母数字归一"] = _fw
+            if args.deep:
+                o, deep_ops = deep_polish(o)
+                for op in deep_ops:
+                    applied["深改档:%s" % op["op"]] = op["count"]
+            if args.in_place:
+                shutil.copy2(fp, fp + ".bak")
+            with open(outp, "w", encoding="utf-8") as of:
+                of.write(o)
+            _done += 1
+            _rows.append([os.path.basename(fp), "ok",
+                          len(applied), sum(applied.values()), len(removed)])
+            print("%s：替换 %d 次（%d 类）、删句 %d" % (
+                os.path.basename(fp), sum(applied.values()), len(applied), len(removed)),
+                file=sys.stderr)
+        if args.csv:
+            try:
+                with open(args.csv, "w", encoding="utf-8-sig", newline="") as cf:
+                    w = _csvmod.writer(cf)
+                    w.writerow(["file", "status", "categories", "replacements", "sentences_removed"])
+                    w.writerows(_rows)
+                print("批量汇总 CSV 已写入 %s" % args.csv, file=sys.stderr)
+            except OSError as e:
+                print("错误: 无法写入 CSV（%s）" % e, file=sys.stderr)
+        print("批量清洗完成：%d 清洗 / %d 跳过（共 %d 文件）" % (_done, _skip, len(_files)),
+              file=sys.stderr)
+        sys.exit(0)
 
     if args.file:
         try:
@@ -260,6 +332,23 @@ def main():
             for op in deep_ops:
                 print("深改档: %s ×%d" % (op["op"], op["count"]), file=sys.stderr)
 
+    if getattr(args, "dry_run", False):
+        # v5.16.0 预览模式：文本已算好但不落盘不输出——只报将执行的动作
+        print("── dry-run 预览（不写盘、不输出文本）──", file=sys.stderr)
+        if applied:
+            for note, cnt in sorted(applied.items(), key=lambda kv: -kv[1]):
+                print("  将替换: %s ×%d" % (note, cnt), file=sys.stderr)
+        else:
+            print("  无机械替换", file=sys.stderr)
+        if removed:
+            print("  将删除句: %d 句" % len(removed), file=sys.stderr)
+            for _r in removed[:5]:
+                print("    - %s" % str(_r)[:60], file=sys.stderr)
+        if deep_ops:
+            for op in deep_ops:
+                print("  深改档将做: %s ×%d" % (op["op"], op["count"]), file=sys.stderr)
+        print("── 预览结束（去掉 --dry-run 实际执行）──", file=sys.stderr)
+        sys.exit(0)
     if args.output:
         try:
             hxt_core.write_output(out, args.output, src_path=args.file)

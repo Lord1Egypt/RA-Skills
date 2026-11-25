@@ -1,0 +1,32 @@
+swagger: "2.0"
+info:
+  title: Pet store
+  version: "1.0.0"
+host: api.example.test
+basePath: /v1
+schemes:
+  - https
+paths:
+  /pets/{petId}:
+    get:
+      operationId: getPet
+      parameters:
+        - name: petId
+          in: path
+          required: true
+          type: string
+      responses:
+        "200":
+          description: A pet
+  /pets:
+    post:
+      operationId: createPet
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+      responses:
+        "201":
+          description: Created

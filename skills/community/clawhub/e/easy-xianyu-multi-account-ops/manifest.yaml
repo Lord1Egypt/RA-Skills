@@ -1,0 +1,26 @@
+name: easy-xianyu-multi-account-ops
+display_name: 闲鱼多账号工作台
+slug: easy-xianyu-multi-account-ops
+version: 1.1.1
+description: 免费、免第三方 API Key，按 EasyBR 浏览器环境隔离闲鱼多账号任务，串行执行并汇总带账号归属的结果。
+category: ecommerce
+author: xxjrq
+repository: https://github.com/xxjrq/easy-xianyu-multi-account-ops
+tags:
+  - xianyu
+  - multi-account
+  - workbench
+  - easy-webbridge
+  - free
+  - no-api-key
+trigger_words:
+  - 闲鱼多账号管理
+  - 闲鱼账号矩阵
+  - EasyBR 闲鱼多开
+  - 闲鱼多账号协同
+  - 闲鱼批量任务
+runtime:
+  name: easy-webbridge
+  endpoint: http://127.0.0.1:17777
+  prerequisite: Install Easy WebBridge from https://github.com/xxjrq/easy-webbridge; fallback https://gitee.com/xxjrq/easy-webbridge
+self_test: node scripts/run.mjs --self-test

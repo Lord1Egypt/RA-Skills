@@ -1,0 +1,50 @@
+{
+  "name": "hekouwang-terminal-lite-skill",
+  "displayName": "会勇禾口王 · 终端工作台（免费版）",
+  "version": "3.0.6",
+  "tagline": "一份色板穿透 iTerm2 与整条命令行工具链",
+  "description": "免费版 macOS 终端工作台：配好的 iTerm2（3 套社区主题、毛玻璃、4 条 Triggers、语义 Cmd-click、Shift+Enter），加安装 / 迁移 / 换肤 / 体检 / 卸载脚本。安装会联网：Homebrew / oh-my-zsh / iTerm2 Shell Integration 的官方安装脚本先下载到临时文件并打印 SHA-256，只有 HKW_ASSUME_YES=1 时才自动执行；Homebrew / oh-my-zsh 未装成会中止，Shell Integration 未执行时保留文件并继续后续步骤；用 brew 装包并记录到 installed-brew.txt；写系统 defaults、iTerm2 偏好、~/.config/ghostty/config（非本工具生成的文件先备份；ssh-terminfo 会在首次 SSH 登录时往远端 ~/.terminfo 写 xterm-ghostty），向 ~/.gitconfig 追加 include.path，覆盖 ~/.config/starship.toml 前先备份；可选导入 shell 历史到 atuin（HKW_ATUIN_IMPORT=1，默认不导入）；检测到 VS Code / Cursor 时安装主题扩展；update.sh 在 git 安装下 fetch/pull（本地改动先 stash），非 git 安装跳过；可选安装专业版付费包（scripts/unlock.sh）；换肤事务与回滚（scripts/theme.sh --plan/--rollback）、换机迁移（scripts/sync.sh --export/--state-export/--state-import/--pull）；P3 广色域（--p3，读 HKW_P3_FACTOR）；AI CLI 主题检测只处理 --config 显式传入的设置文件；卸载交互模式先询问再删除/还原（--yes 跳过确认），可还原 ~/.zshrc 与 starship / Ghostty 备份，删主题、扩展、Profile、~/.oh-my-zsh 与运行时，brew 包只按安装清单卸。多终端批量编排、光学校准、场景、工作区、跟随系统属付费版 hekouwang-terminal-skill。不用于与终端配色无关的普通编码。",
+  "author": "会勇禾口王",
+  "license": "MIT",
+  "category": "developer-tools",
+  "tags": [
+    "终端配色",
+    "iTerm2",
+    "主题",
+    "zsh",
+    "开发环境",
+    "macOS",
+    "Nerd Font",
+    "终端体检"
+  ],
+  "requires_api_key": false,
+  "scripts": [
+    "scripts/doctor.sh",
+    "scripts/install.sh",
+    "scripts/migrate.sh",
+    "scripts/node-mgr.sh",
+    "scripts/setup-cli.sh",
+    "scripts/setup-gui.sh",
+    "scripts/sync.sh",
+    "scripts/theme.sh",
+    "scripts/uninstall.sh",
+    "scripts/unlock.sh",
+    "scripts/update.sh"
+  ],
+  "references": [
+    "references/cli-themes.md",
+    "references/cli-themes.zh-CN.md",
+    "references/first-run.md",
+    "references/first-run.zh-CN.md",
+    "references/i18n.md",
+    "references/i18n.zh-CN.md",
+    "references/iterm2-gui-settings.md",
+    "references/iterm2-gui-settings.zh-CN.md",
+    "references/shortcuts.md",
+    "references/shortcuts.zh-CN.md",
+    "references/tips.md",
+    "references/tips.zh-CN.md",
+    "references/zshrc-explained.md",
+    "references/zshrc-explained.zh-CN.md"
+  ]
+}

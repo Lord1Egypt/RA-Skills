@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>.c{fill:#7c6}</style>
+  <rect class="c" width="64" height="64" rx="12"/>
+  <a href="#canary53050"><text x="8" y="38" font-size="18">53050</text></a>
+  <set attributeName="opacity" to="1"/>
+</svg>

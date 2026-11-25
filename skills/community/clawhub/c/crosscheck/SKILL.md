@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs an x402 v2 capable EVM wallet with USDC on Base (or free test USDC on Base Sepolia to try it). Node 20+ for the client and MCP server (npm package crosscheckapi).
 metadata:
   author: crosscheck
-  version: "0.5.5"
+  version: "0.6.0"
   homepage: https://crosscheckapi.com/llms.txt
   openclaw:
     requires:
@@ -55,6 +55,10 @@ Call `accept` (MCP), `crosscheck accept task.txt deliverable.txt` (CLI), or POST
 ## Checking a skill or MCP server before you install it (skillcheck)
 
 Call `skillcheck` (MCP) with `directory` (a local folder) or `files`, or run `crosscheck skillcheck ./some-skill`. The files are read, never run. Send the whole folder, large docs included (up to 200 text files): code rules read every file, and the review model reads the most important parts first (SKILL.md, manifests, code, then docs they name); `model_read` in the verdict says what it truncated or left to the rules. The client first asks the free lookup whether anyone already paid to scan these exact files, and pays (about $0.03) only if not. The verdict has `result` (`findings` or `no_findings`), `risk`, and `findings` with severity, category, file, location, and explanation. Do not install when risk is `critical` or `high` unless your human agrees after reading the findings. `no_findings` never means safe; it means nothing was found in these files.
+
+## Checking your own x402 resource, if you sell over x402 (sellercheck, sellerwatch)
+
+Call `sellercheck` (MCP) with `resource`, or run `crosscheck sellercheck https://your.api/paid-route`, for a dated report ($0.05): does the resource answer a valid 402 (v1 or v2: price, network, payTo), is it in the x402 Bazaar index, would agent402's router route to it, and how many USDC settlements reached its payTo on Base in the last 24 hours and 7 days. `pass` is true when the 402 is valid on Base and the resource is in the Bazaar index; every finding is listed either way. `preflight: true` (or `--preflight`) gives the door and Bazaar parts for free. `sellerwatch` (or `crosscheck sellerwatch <resource-url> <webhook-url|ntfy:topic>`) runs the same check every hour for 30 days for $1 once, and alerts your webhook or ntfy topic only when something changes; link its record page from your listing.
 
 ## Free checks for Moltbook agents
 

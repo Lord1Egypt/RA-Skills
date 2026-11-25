@@ -1,6 +1,6 @@
 ## Description:
 
-Searches academic literature via arXiv, Semantic Scholar, and open-access PDFs.
+Searches academic literature via arXiv, Semantic Scholar, and open-access PDFs
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Researchers, students, and others looking for formal research can use this skill to find academic papers, follow citation chains, and build literature reviews.
+Researchers, students, and other readers use this skill to find academic papers, build literature reviews and citation chains, and review paper abstracts or key findings.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: A benign scan does not establish that the skill suits every use case.
+Risk: Paper metadata, abstracts, or extracted findings may be incomplete or inaccurate.
 
-Mitigation: Review the skill instructions and decide whether it suits your needs before installing.
+Mitigation: Check citations and important claims against the linked paper or publisher source before relying on them.
 
 ## Reference(s):
 
-- [Tome plugin source and homepage](https://github.com/athola/claude-night-market/tree/master/plugins/tome)
+- [Tome plugin source](https://github.com/athola/claude-night-market/tree/master/plugins/tome)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Citation information]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Markdown summaries with citation details and abstracts or key findings]
+**Output Format:** [Markdown with paper citations, abstracts, or key findings summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Can provide paywall fallback guidance when no open version is available.]
+**Other Properties Related to Output:** [Paper results include citation information and an abstract or key findings summary; paywalled papers without open versions receive access alternatives.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release evidence; artifact frontmatter lists 1.10.3)
 
 ## Ethical Considerations:
 

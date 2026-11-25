@@ -1,7 +1,7 @@
 {
  "meta": {
-  "version": "2.3.16",
-  "updated_at": "2026-11-16T18:12:03.765656+00:00",
+  "version": "2.3.28",
+  "updated_at": "2026-11-24T17:31:42.703664+00:00",
   "source": "综合整理：国家统计局2024年度数据、智联招聘2024年度薪酬报告、前程无忧2024薪酬指南、猎聘2024年度薪酬报告、BOSS直聘2024薪酬数据",
   "total_records": 5389,
   "description": "中国各城市、各行业、各职业层级的薪资数据库，覆盖一线至三线城市，供职业规划参考使用",
@@ -43,8 +43,8 @@
     "scraped_at": "2026-05-04T04:00:56.457826"
    }
   ],
-  "last_refreshed_at": "2026-11-16T18:42:28.934522+00:00",
-  "refresh_count": 161,
+  "last_refreshed_at": "2026-11-24T17:44:41.831843+00:00",
+  "refresh_count": 171,
   "duplicates": [],
   "duplicate_count": 0,
   "last_validated": "2026-07-26T03:40:56+00:00",
@@ -160,7 +160,7 @@
    "salary_max": 26329,
    "salary_unit": "月薪",
    "scraped_at": "2026-06-25T16:17:51.380950+00:00",
-   "data_source_id": "s002",
+   "data_source_id": "s001",
    "source_id": "s002"
   },
   {
@@ -214,7 +214,7 @@
    "salary_max": 26329,
    "salary_unit": "月薪",
    "scraped_at": "2026-06-25T16:18:01.330126+00:00",
-   "data_source_id": "s002",
+   "data_source_id": "s001",
    "source_id": "s002"
   },
   {
@@ -263,7 +263,7 @@
    "salary_max": 26329,
    "salary_unit": "月薪",
    "scraped_at": "2026-06-25T16:18:21.403025+00:00",
-   "data_source_id": "s002",
+   "data_source_id": "s001",
    "source_id": "s002"
   },
   {
@@ -312,7 +312,7 @@
    "salary_max": 26329,
    "salary_unit": "月薪",
    "scraped_at": "2026-06-25T16:18:39.650072+00:00",
-   "data_source_id": "s002",
+   "data_source_id": "s001",
    "source_id": "s002"
   },
   {
@@ -5580,7 +5580,7 @@
    "salary_max": 50000,
    "salary_unit": "月薪",
    "scraped_at": "2026-06-30T17:30:08.066429+00:00",
-   "data_source_id": "s003",
+   "data_source_id": "s001",
    "source_id": "s003"
   },
   {
@@ -5642,7 +5642,7 @@
    "salary_max": 20000,
    "salary_unit": "月薪",
    "scraped_at": "2026-07-03T17:34:39.639831+00:00",
-   "data_source_id": "s004",
+   "data_source_id": "s001",
    "source_id": "s004"
   },
   {
@@ -5691,7 +5691,7 @@
    "salary_max": 12957,
    "salary_unit": "月薪",
    "scraped_at": "2026-07-03T15:13:17.506867+00:00",
-   "data_source_id": "s005",
+   "data_source_id": "s001",
    "source_id": "s005"
   },
   {
@@ -5740,7 +5740,7 @@
    "salary_max": 50000,
    "salary_unit": "月薪",
    "scraped_at": "2026-06-28T17:32:39.730420+00:00",
-   "data_source_id": "s006",
+   "data_source_id": "s001",
    "source_id": "s006"
   },
   {
@@ -11032,7 +11032,7 @@
    "salary_max": 200000,
    "salary_unit": "月薪",
    "scraped_at": "2026-07-03T17:34:33.421861+00:00",
-   "data_source_id": "s007",
+   "data_source_id": "s001",
    "source_id": "s007"
   },
   {
@@ -11086,7 +11086,7 @@
    "salary_max": 28499,
    "salary_unit": "月薪",
    "scraped_at": "2026-07-03T17:34:53.184294+00:00",
-   "data_source_id": "s008",
+   "data_source_id": "s001",
    "source_id": "s008"
   },
   {
@@ -11135,7 +11135,7 @@
    "salary_max": 50000,
    "salary_unit": "月薪",
    "scraped_at": "2026-07-03T17:35:13.666893+00:00",
-   "data_source_id": "s009",
+   "data_source_id": "s001",
    "source_id": "s009"
   },
   {
@@ -65062,7 +65062,7 @@
    "city_tier": "tier3",
    "industry": "互联网/IT",
    "source_url": "",
-   "data_source_id": "s010"
+   "data_source_id": "s001"
   },
   {
    "city": "未知",
@@ -65076,7 +65076,7 @@
    "city_tier": "tier3",
    "industry": "互联网/IT",
    "source_url": "",
-   "data_source_id": "s010"
+   "data_source_id": "s001"
   },
   {
    "city": "未知",
@@ -65090,7 +65090,7 @@
    "city_tier": "tier3",
    "industry": "互联网/IT",
    "source_url": "",
-   "data_source_id": "s010"
+   "data_source_id": "s001"
   },
   {
    "city": "未知",
@@ -65104,7 +65104,7 @@
    "city_tier": "tier3",
    "industry": "互联网/IT",
    "source_url": "",
-   "data_source_id": "s010"
+   "data_source_id": "s001"
   },
   {
    "city": "未知",
@@ -65118,7 +65118,7 @@
    "city_tier": "tier3",
    "industry": "互联网/IT",
    "source_url": "",
-   "data_source_id": "s010"
+   "data_source_id": "s001"
   },
   {
    "city": "未知",
@@ -65132,7 +65132,7 @@
    "city_tier": "tier3",
    "industry": "互联网/IT",
    "source_url": "",
-   "data_source_id": "s010"
+   "data_source_id": "s001"
   },
   {
    "city": "未知",
@@ -65146,7 +65146,7 @@
    "city_tier": "tier3",
    "industry": "互联网/IT",
    "source_url": "",
-   "data_source_id": "s010"
+   "data_source_id": "s001"
   },
   {
    "city": "未知",
@@ -65160,7 +65160,7 @@
    "city_tier": "tier3",
    "industry": "互联网/IT",
    "source_url": "",
-   "data_source_id": "s010"
+   "data_source_id": "s001"
   },
   {
    "city": "未知",
@@ -65174,7 +65174,7 @@
    "city_tier": "tier3",
    "industry": "互联网/IT",
    "source_url": "",
-   "data_source_id": "s010"
+   "data_source_id": "s001"
   },
   {
    "city_tier": "tier1",
@@ -65186,7 +65186,7 @@
    "salary_max": 35000,
    "salary_unit": "月薪",
    "scraped_at": "2026-07-03T20:32:51.052254+00:00",
-   "data_source_id": "s011",
+   "data_source_id": "s001",
    "source_id": "s011"
   },
   {
@@ -65199,7 +65199,7 @@
    "salary_max": 35000,
    "salary_unit": "月薪",
    "scraped_at": "2026-07-03T20:33:03.946583+00:00",
-   "data_source_id": "s012",
+   "data_source_id": "s001",
    "source_id": "s012"
   },
   {
@@ -65212,7 +65212,7 @@
    "salary_max": 50000,
    "salary_unit": "月薪",
    "scraped_at": "2026-06-25T16:18:43.331241+00:00",
-   "data_source_id": "s013",
+   "data_source_id": "s001",
    "source_id": "s013"
   },
   {
@@ -65225,7 +65225,7 @@
    "salary_max": 50000,
    "salary_unit": "月薪",
    "scraped_at": "2026-06-25T17:30:32.847949+00:00",
-   "data_source_id": "s013",
+   "data_source_id": "s001",
    "source_id": "s013"
   },
   {
@@ -65238,7 +65238,7 @@
    "salary_max": 14000,
    "salary_unit": "月薪",
    "scraped_at": "2026-11-03T17:30:34.267391+00:00",
-   "data_source_id": "s014",
+   "data_source_id": "s001",
    "source_id": "s014"
   },
   {
@@ -65251,7 +65251,7 @@
    "salary_max": 13000,
    "salary_unit": "月薪",
    "scraped_at": "2026-11-04T17:30:15.570594+00:00",
-   "data_source_id": "s015",
+   "data_source_id": "s001",
    "source_id": "s015"
   },
   {
@@ -65264,7 +65264,7 @@
    "salary_max": 10000,
    "salary_unit": "月薪",
    "scraped_at": "2026-11-05T17:30:15.421448+00:00",
-   "data_source_id": "s016",
+   "data_source_id": "s001",
    "source_id": "s016"
   },
   {
@@ -65277,7 +65277,7 @@
    "salary_max": 15000,
    "salary_unit": "月薪",
    "scraped_at": "2026-11-05T17:30:57.135477+00:00",
-   "data_source_id": "s017",
+   "data_source_id": "s001",
    "source_id": "s017"
   },
   {
@@ -65290,7 +65290,7 @@
    "salary_max": 8000,
    "salary_unit": "月薪",
    "scraped_at": "2026-11-06T17:30:52.628216+00:00",
-   "data_source_id": "s018",
+   "data_source_id": "s001",
    "source_id": "s018"
   },
   {
@@ -65303,7 +65303,7 @@
    "salary_max": 45000,
    "salary_unit": "月薪",
    "scraped_at": "2026-11-08T17:30:21.693897+00:00",
-   "data_source_id": "s019",
+   "data_source_id": "s001",
    "source_id": "s019"
   },
   {
@@ -65316,7 +65316,7 @@
    "salary_max": 20000,
    "salary_unit": "月薪",
    "scraped_at": "2026-11-08T17:30:43.344425+00:00",
-   "data_source_id": "s020",
+   "data_source_id": "s001",
    "source_id": "s020"
   },
   {
@@ -65329,7 +65329,7 @@
    "salary_max": 24000,
    "salary_unit": "月薪",
    "scraped_at": "2026-11-11T17:30:51.734361+00:00",
-   "data_source_id": "s021",
+   "data_source_id": "s001",
    "source_id": "s021"
   },
   {
@@ -65342,7 +65342,7 @@
    "salary_max": 8000,
    "salary_unit": "月薪",
    "scraped_at": "2026-11-12T17:30:29.409819+00:00",
-   "data_source_id": "s022",
+   "data_source_id": "s001",
    "source_id": "s022"
   },
   {
@@ -65355,7 +65355,7 @@
    "salary_max": 8000,
    "salary_unit": "月薪",
    "scraped_at": "2026-11-12T17:30:44.247027+00:00",
-   "data_source_id": "s022",
+   "data_source_id": "s001",
    "source_id": "s022"
   },
   {
@@ -65368,7 +65368,7 @@
    "salary_max": 40000,
    "salary_unit": "月薪",
    "scraped_at": "2026-11-15T02:49:54.265595+00:00",
-   "data_source_id": "s023",
+   "data_source_id": "s001",
    "source_id": "s023"
   },
   {
@@ -65381,7 +65381,7 @@
    "salary_max": 24000,
    "salary_unit": "月薪",
    "scraped_at": "2026-11-15T17:30:25.878996+00:00",
-   "data_source_id": "s021",
+   "data_source_id": "s001",
    "source_id": "s021"
   },
   {
@@ -65394,176 +65394,63 @@
    "salary_max": 30000,
    "salary_unit": "月薪",
    "scraped_at": "2026-11-15T17:31:03.763216+00:00",
-   "data_source_id": "s024",
+   "data_source_id": "s001",
    "source_id": "s024"
+  },
+  {
+   "city_tier": "tier1",
+   "city": "深圳",
+   "industry": "金融/银行/保险",
+   "occupation": "UI设计师",
+   "level": "mid",
+   "salary_min": 18000,
+   "salary_max": 30000,
+   "salary_unit": "月薪",
+   "scraped_at": "2026-11-21T00:13:49.068778+00:00",
+   "data_source_id": "s001",
+   "source_id": "s024"
+  },
+  {
+   "city_tier": "tier1",
+   "city": "深圳",
+   "industry": "消费零售",
+   "occupation": "运营专员",
+   "level": "mid",
+   "salary_min": 60000,
+   "salary_max": 96000,
+   "salary_unit": "年薪",
+   "annual_note": "已折算为年薪口径",
+   "scraped_at": "2026-11-24T17:31:09.343285+00:00",
+   "data_source_id": "s002",
+   "source_id": "s002"
+  },
+  {
+   "city_tier": "tier1",
+   "city": "深圳",
+   "industry": "消费零售",
+   "occupation": "市场专员",
+   "level": "mid",
+   "salary_min": 60000,
+   "salary_max": 96000,
+   "salary_unit": "年薪",
+   "annual_note": "已折算为年薪口径",
+   "scraped_at": "2026-11-24T17:31:14.420843+00:00",
+   "data_source_id": "s002",
+   "source_id": "s002"
   }
  ],
  "source_catalog": [
   {
    "id": "s001",
-   "urls": [
-    "https://www.zhaopin.com/, https://www.liepin.com/, https://www.zhipin.com/"
-   ],
-   "data_source": "综合整理：智联招聘2024、猎聘2024、BOSS直聘2024"
+   "urls": [],
+   "data_source": null
   },
   {
    "id": "s002",
    "urls": [
-    "https://cn.indeed.com/career/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88/salaries/%E5%8C%97%E4%BA%AC%E5%B8%82"
+    "https://www.job5156.com/salary/14020000_12030009"
    ],
-   "data_source": "https://cn.indeed.com/career/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88/salaries/%E5%8C%97%E4%BA%AC%E5%B8%82"
-  },
-  {
-   "id": "s003",
-   "urls": [
-    "https://m.jobui.com/salary/beijing-webqianduankaifagongchengshi"
-   ],
-   "data_source": "https://m.jobui.com/salary/beijing-webqianduankaifagongchengshi"
-  },
-  {
-   "id": "s004",
-   "urls": [
-    "https://m.jobui.com/salary/quanguo-qianduankaifa/exp2"
-   ],
-   "data_source": "https://m.jobui.com/salary/quanguo-qianduankaifa/exp2"
-  },
-  {
-   "id": "s005",
-   "urls": [
-    "https://cn.indeed.com/career/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88/salaries/%E5%8C%97%E4%BA%AC%E5%B8%82"
-   ],
-   "data_source": "https://cn.indeed.com/career/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88/salaries/%E5%8C%97%E4%BA%AC%E5%B8%82"
-  },
-  {
-   "id": "s006",
-   "urls": [
-    "https://m.jobui.com/salary/beijing-zishenwebqianduankaifagongchengshi"
-   ],
-   "data_source": "https://m.jobui.com/salary/beijing-zishenwebqianduankaifagongchengshi"
-  },
-  {
-   "id": "s007",
-   "urls": [
-    "https://juejin.cn/post/7598003935425511467"
-   ],
-   "data_source": "https://juejin.cn/post/7598003935425511467"
-  },
-  {
-   "id": "s008",
-   "urls": [
-    "https://cn.indeed.com/career/%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88/salaries"
-   ],
-   "data_source": "https://cn.indeed.com/career/%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88/salaries"
-  },
-  {
-   "id": "s009",
-   "urls": [
-    "https://m.jobui.com/salary/beijing-suanfagongchengshi"
-   ],
-   "data_source": "https://m.jobui.com/salary/beijing-suanfagongchengshi"
-  },
-  {
-   "id": "s010",
-   "urls": [],
-   "data_source": "Tavily搜索采集"
-  },
-  {
-   "id": "s011",
-   "urls": [
-    "https://zhuanlan.zhihu.com/p/1982015629142802668"
-   ],
-   "data_source": "https://zhuanlan.zhihu.com/p/1982015629142802668"
-  },
-  {
-   "id": "s012",
-   "urls": [
-    "https://www.zhipin.com/zhaopin/29c30644d602fdce1H180t-5EA~~"
-   ],
-   "data_source": "https://www.zhipin.com/zhaopin/29c30644d602fdce1H180t-5EA~~"
-  },
-  {
-   "id": "s013",
-   "urls": [
-    "https://m.jobui.com/salary/beijing-quanzhankaifagongchengshi"
-   ],
-   "data_source": "https://m.jobui.com/salary/beijing-quanzhankaifagongchengshi"
-  },
-  {
-   "id": "s014",
-   "urls": [
-    "https://juejin.cn/post/7613950767188934707"
-   ],
-   "data_source": "https://juejin.cn/post/7613950767188934707"
-  },
-  {
-   "id": "s015",
-   "urls": [
-    "https://jobs.zhaopin.com/CC000432190J40843687416.htm"
-   ],
-   "data_source": "https://jobs.zhaopin.com/CC000432190J40843687416.htm"
-  },
-  {
-   "id": "s016",
-   "urls": [
-    "https://www.bjmy.gov.cn/zwgk/jy1/202609/t20260916_552706.html"
-   ],
-   "data_source": "https://www.bjmy.gov.cn/zwgk/jy1/202609/t20260916_552706.html"
-  },
-  {
-   "id": "s017",
-   "urls": [
-    "https://www.gaoxiaojob.com/announcement/detail/267518.html"
-   ],
-   "data_source": "https://www.gaoxiaojob.com/announcement/detail/267518.html"
-  },
-  {
-   "id": "s018",
-   "urls": [
-    "https://www.zhaopin.com/jobs"
-   ],
-   "data_source": "https://www.zhaopin.com/jobs"
-  },
-  {
-   "id": "s019",
-   "urls": [
-    "https://www.sohu.com/a/844265658_121984121"
-   ],
-   "data_source": "https://www.sohu.com/a/844265658_121984121"
-  },
-  {
-   "id": "s020",
-   "urls": [
-    "https://www.jizhil.com/global-data/11984.html"
-   ],
-   "data_source": "https://www.jizhil.com/global-data/11984.html"
-  },
-  {
-   "id": "s021",
-   "urls": [
-    "https://zhuanlan.zhihu.com/p/1957909144284659720"
-   ],
-   "data_source": "https://zhuanlan.zhihu.com/p/1957909144284659720"
-  },
-  {
-   "id": "s022",
-   "urls": [
-    "https://zhuanlan.zhihu.com/p/2012854105568196495"
-   ],
-   "data_source": "https://zhuanlan.zhihu.com/p/2012854105568196495"
-  },
-  {
-   "id": "s023",
-   "urls": [
-    "https://zhuanlan.zhihu.com/p/17680244986"
-   ],
-   "data_source": "https://zhuanlan.zhihu.com/p/17680244986"
-  },
-  {
-   "id": "s024",
-   "urls": [
-    "https://ese.xmu.edu.cn/info/1250/33491.htm"
-   ],
-   "data_source": "https://ese.xmu.edu.cn/info/1250/33491.htm"
+   "data_source": "https://www.job5156.com/salary/14020000_12030009"
   }
  ]
 }

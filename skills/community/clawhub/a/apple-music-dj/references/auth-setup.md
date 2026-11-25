@@ -27,6 +27,27 @@ Apple Music** and sign in (Step 5), and prints both `export` lines. Options:
 | `--new-dev-token` | Sign a fresh developer token even if `APPLE_MUSIC_DEV_TOKEN` is still valid |
 | `status` | Show how long each token has left |
 
+```mermaid
+sequenceDiagram
+    actor You
+    participant S as setup_auth.py
+    participant P as Sign-in page on 127.0.0.1
+    participant A as Apple sign-in (MusicKit JS)
+    You->>S: run with Key ID, Team ID and .p8 path
+    alt APPLE_MUSIC_DEV_TOKEN has 14+ days left
+        S->>S: reuse it
+    else missing, expiring, or --new-dev-token
+        S->>S: sign a new developer token
+    end
+    S->>P: serve the page at a one-time URL, open the browser
+    You->>P: click Connect Apple Music
+    P->>A: authorize with the developer token
+    A-->>P: Music User Token
+    P->>S: hand the token back (same origin only)
+    S->>S: stop the local server
+    S-->>You: export lines, or an owner-only --env-file
+```
+
 The key details can also come from `APPLE_KEY_ID`, `APPLE_TEAM_ID` and `APPLE_PRIVATE_KEY_PATH`,
 or the script asks for them. Run it in your own terminal, not through an agent, so your tokens
 don't end up in a chat transcript.

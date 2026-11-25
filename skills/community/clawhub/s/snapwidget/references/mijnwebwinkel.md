@@ -18,6 +18,10 @@ Mijnwebwinkel does not let you paste HTML code into a page. You add the widget w
 2. Click **Install Widget**.
 3. In the **Install Widget** window, click **Copy Code**.
 
+> [!NOTE]
+>
+> For Mijnwebwinkel, use the iframe code. If the **Install Widget** window has an **Iframe code** tab, click it before you click **Copy Code**.
+
 ### Connect Google Tag Manager to your webshop
 
 1. Go to Google Tag Manager and sign in with your Google account. Create an account and a container. For the target platform, choose **Web**. You do not have to add the code that Google shows. Mijnwebwinkel adds it for you.

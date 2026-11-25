@@ -1,6 +1,6 @@
 ## Description:
 
-Generates and edits images with GPT Image 2.5 Flare through the dLazy hosted API, with optional reference images, multiple aspect ratios, and quality levels up to max.
+GPT Image 2.5 Flare is the speed tier in the GPT Image 2.5 series for text-to-image generation and image editing, with reference-image support, aspect ratios up to 21:9, and quality up to max.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and creators use this skill to generate images from prompts or edit images with optional reference images, aspect-ratio, and quality controls.
+Developers and other agent users can generate images from prompts or edit images using reference images through the dLazy service. It supports quick everyday and higher-volume image generation with selectable aspect ratios and quality.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review did not assess the CLI package, and the evidence is incomplete despite a benign verdict with medium confidence.
+Risk: Security evidence notes a possible mismatch between the image-generation description and reviewed material, and is incomplete.
 
-Mitigation: Review the pinned CLI package and its login flow before installing or using it; use the pinned npx command if you prefer not to install it globally.
+Mitigation: Review the pinned CLI package and sign-in flow, and confirm the dLazy service is intended before using it.
 
-Risk: Prompts and local reference files are sent to dLazy services, and the CLI stores an API key in the user's configuration directory.
+Risk: Prompts and local reference images are sent to dLazy's hosted API and media storage for processing.
 
-Mitigation: Send only content you are comfortable processing through dLazy, protect the local key, and rotate or revoke it from the organization dashboard when needed.
+Mitigation: Avoid sending prompts or images that contain information you are not comfortable sharing with the dLazy service.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-gpt-image-2-5-flare)
+- [ClawHub skill listing](https://clawhub.ai/dlazyai/skills/dlazy-gpt-image-2-5-flare)
+- [dLazy CLI project (listed in skill metadata)](https://github.com/dlazy-ai/cli)
+- [dLazy CLI on npm](https://www.npmjs.com/package/@dlazy/cli)
 - [dLazy](https://dlazy.com)
-- [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
 
 ## Skill Output:
 
 **Output Type(s):** [Images, JSON]
 
-**Output Format:** [Generated image assets with JSON result metadata]
+**Output Format:** [JSON result with generated image URLs and metadata; optionally saves image files]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Supports up to five reference images, aspect-ratio and quality settings, and asynchronous task IDs.]
+**Other Properties Related to Output:** [Supports up to 5 reference images, selectable aspect ratio and quality, and asynchronous task results.]
 
 ## Skill Version(s):
 
-1.2.31 (source: server-resolved release)
+1.2.34 (source: evidence.json release metadata)
 
 ## Ethical Considerations:
 

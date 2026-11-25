@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Creators, musicians, and media teams use the skill to turn a theme, lyric fragment, scene, intended use, or suitable reference into a planned song, instrumental, background track, soundtrack, or jingle. It helps shape the musical direction, prepare lyrics and a production plan, generate audio after approval, and refine a selected result.
+Creators and music makers use the skill to shape themes, lyrics, scenes, or authorized reference audio into songs, instrumentals, BGM, jingles, and soundtracks. It helps prepare a focused generation request and review results for targeted revisions.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan flags broad permissions, a shared device credential, and recurring installation analytics as concerns; analysis of one security-relevant reference expression is incomplete.
+Risk: ClawScan rates the release suspicious, citing broad permissions, recurring installation telemetry, and shared-credential cleanup risks beyond the music purpose.
 
-Mitigation: Review the permissions and installation registration behavior, and resolve the unparsed reference expression before installing.
+Mitigation: Review the permission requests and telemetry disclosure, and check the shared-credential uninstall behavior before installation.
+
+Risk: Uploading reference audio may transmit it to Beatra.
+
+Mitigation: Confirm the audio's source and how it will be transmitted before uploading it.
+
+Risk: The security scan covered 22 of 23 components fully; one reference was only partially inspected.
+
+Mitigation: Treat the security assessment as incomplete until the partially inspected component has been reviewed.
 
 ## Reference(s):
 
 - [ClawHub release page](https://clawhub.ai/beatra-ai/skills/music-generation-studio)
 - [Beatra Music Generation Studio](https://beatra.ai/skills/music-generation-studio)
-- [Creative brief and style](artifact/references/creative-brief-and-style.md)
-- [Model routing](artifact/references/model-routing.md)
-- [Music editing and audio](artifact/references/music-editing-and-audio.md)
-- [Updates and security](artifact/references/updates-and-security.md)
-- [Installation registration](artifact/references/installation-registration.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Audio files and links, Shell commands]
+**Output Type(s):** [Audio, Lyrics, Creative guidance]
 
-**Output Format:** [Markdown production plans and lyrics, with generated audio links and track details.]
+**Output Format:** [Generated audio with text prompts, lyrics, and review guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Generated tracks include returned duration and file details; vocal, pronunciation, arrangement, and loop qualities should be reviewed after generation.]
+**Other Properties Related to Output:** [Generated tracks may need review for pronunciation, vocal identity, duration, loop points, and arrangement fit.]
 
 ## Skill Version(s):
 
-0.3.2 (source: server-resolved release metadata)
+0.3.3 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

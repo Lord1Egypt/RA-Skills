@@ -1,51 +1,69 @@
-## Description: <br>
-Global ski resort assistant for trip planning, price comparison, technique coaching, presale monitoring, mountain weather checks, and packing guidance across 854 resorts in 40+ countries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Global ski resort assistant covering 854 resorts across 40+ countries for trip planning, price comparison, form analysis, weather checks, and early-bird deal tracking.
 
-## Publisher: <br>
-[wjyhahaha](https://clawhub.ai/user/wjyhahaha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wjyhahaha](https://clawhub.ai/user/wjyhahaha)
 
-## Use Case: <br>
-External ski and snowboard users use this skill to choose resorts, estimate trip costs, compare lift-ticket and travel prices, prepare for departures, and get structured technique feedback. It supports English and Chinese ski-planning workflows with live web/API lookups when requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retain local ski profile, trip, watchlist, price-history, custom-resort, coaching-history, usage-stat, and export files. <br>
-Mitigation: Tell users when persistent files are used, keep the data under the documented ~/.ski-assistant directory or SKI_ASSISTANT_DATA_DIR override, and let users review or remove saved records. <br>
-Risk: Live web, weather, currency, and resort lookups can fail, be stale, or return inconsistent prices. <br>
-Mitigation: Label every price and forecast source, disclose fallback behavior, and avoid treating estimated or database-reference values as current confirmed prices. <br>
-Risk: Reminder and notification workflows could contact users at the wrong time or through the wrong channel. <br>
-Mitigation: Create reminders only after explicit user confirmation of destination, dates, notification channel, and cancellation expectations. <br>
-Risk: Skiing guidance and coaching feedback can affect physical safety. <br>
-Mitigation: Include helmet, ski-specific insurance, rescue coverage for international trips, and practical safety reminders in trip, price, and departure outputs. <br>
+## Use Case:
 
+External ski and snowboard users use this skill to choose resorts, estimate trip costs, compare live and reference prices, review ski form, track presale opportunities, and prepare for trips in Chinese or English.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/wjyhahaha/ski-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/wjyhahaha) <br>
-- [Travel Guide](artifact/references/travel-guide.md) <br>
-- [Budget Templates](artifact/references/budget-templates.md) <br>
-- [Coaching Rubric](artifact/references/coaching-rubric.md) <br>
-- [Pre-Departure Checklist](artifact/references/pre-departure-checklist.md) <br>
-- [Gear Guide](artifact/references/gear-guide.md) <br>
-- [Resorts Reference](artifact/references/resorts-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tables, checklists, source labels, and occasional shell commands for local tools] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local profile, trip, watchlist, coaching-history, price-history, custom-resort, usage-stat, and export files under ~/.ski-assistant when the user requests persistent planning or coaching workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-7.0.0 (source: server release metadata and artifact/SKILL.md frontmatter) <br>
+Risk: The skill stores local profile, trip, watchlist, price-history, and coaching-history files that may contain personal travel and activity data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the local data directory, limit saved details to what is needed, and delete stored records when they are no longer useful.
+
+Risk: Live search, weather, exchange-rate, resort discovery, and flyai workflows can send queries to external services.
+
+Mitigation: Use live-data features only when needed, avoid placing sensitive personal details in search queries, and disclose when a source is unavailable or degraded.
+
+Risk: Reminder workflows can create scheduled reminders after user consent, which may surprise users if settings are not reviewed.
+
+Mitigation: Confirm reminder timing and channels before creating reminders, and review platform reminder settings after setup.
+
+Risk: Database update workflows can replace the local resort database from an upstream source.
+
+Mitigation: Run database updates only when the upstream source is trusted, keep the backup file, and review changed or newly marked records before relying on them.
+
+## Reference(s):
+
+- [Ski Assistant README](README.md)
+- [Search Strategies Maintenance Report](docs/strategies_maintenance_report.md)
+- [Budget Templates](references/budget-templates.md)
+- [Coaching Rubric](references/coaching-rubric.md)
+- [Gear Guide](references/gear-guide.md)
+- [Pre-Departure Checklist](references/pre-departure-checklist.md)
+- [Resorts Reference](references/resorts-reference.md)
+- [Travel Guide](references/travel-guide.md)
+- [Noto CJK Fonts](https://github.com/googlefonts/noto-cjk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown reports and tables, JSON state files, shell commands for helper tools, and optional generated share-card image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should label price sources, disclose degraded live-data paths, and include safety reminders for trip planning and pricing responses.]
+
+## Skill Version(s):
+
+7.0.0 (source: server release metadata, SKILL.md frontmatter, README changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Just One API"
   author: "OOMOL"
-  version: "1.0.2"
+  version: "1.0.3"
   services: ["justoneapi"]
   icon: "https://static.oomol.com/logo/third-party/justoneapi.png"
 ---
@@ -37,8 +37,23 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `1688_product_details` — Retrieves the public product detail for a 1688 wholesale listing by item ID. Use it to review a known offer during product sourcing or catalog research.
-- `1688_product_search` — Searches 1688 wholesale product listings by keyword. Use it to discover candidate products or suppliers during sourcing and market research.
+- `1688_category_information` — Retrieves 1688 category information by category ID, or root categories when no ID is supplied. Use it to navigate categories during product sourcing.
+- `1688_category_products` — Retrieves 1688 products by category ID with output language, pagination, sorting and price filters. Use it to discover category products for multilingual sourcing.
+- `1688_cross_border_product_search` — Searches 1688 cross-border products by keyword or category with language selection, pagination and sourcing filters. Use it to discover products for multilingual procurement.
+- `1688_cross_border_product_search_by_image` — Searches 1688 cross-border products by image with language selection, pagination, sorting and sourcing filters. Use it to find products for multilingual visual sourcing.
+- `1688_factory_search` — Searches 1688 factories by keyword with pagination and default or repurchase-rate sorting. Use it to discover manufacturers during procurement research.
+- `1688_image_conversion` — Converts an image URL or JPEG Base64 input into an image reference for a selected 1688 image search endpoint. Use it to prepare external images for visual product sourcing.
+- `1688_product_description_images` — Retrieves 1688 product description images by item ID. Use it to review listing descriptions during catalog preparation and product research.
+- `1688_product_details` — Retrieves 1688 product details by item ID with an optional output language and dropshipping scene. Use it to inspect a known product during sourcing and catalog research.
+- `1688_product_details_by_url` — Retrieves 1688 product details by product URL with an optional output language. Use it to inspect a known listing during sourcing and catalog research.
+- `1688_product_reviews` — Retrieves 1688 product reviews by item ID with pagination and default or latest sorting. Use it to review buyer feedback during product sourcing.
+- `1688_product_search` — Searches 1688 products by keyword with pagination, sorting, price ranges and optional sourcing filters. Use it to discover products during procurement and market research.
+- `1688_product_search_by_image` — Searches 1688 products by image with pagination, sorting and optional sourcing filters. Use it to find matching products during visual sourcing.
+- `1688_product_shipping_fee` — Retrieves a 1688 product shipping estimate for a Chinese province using quantity and optional total weight. Use it to estimate domestic procurement shipping costs.
+- `1688_shop_categories` — Retrieves all categories for a 1688 shop by shop URL or seller member ID. Use it to navigate a shop catalog during product sourcing.
+- `1688_shop_information` — Retrieves 1688 shop information by shop URL or seller member ID. Use it to research a known shop during procurement.
+- `1688_shop_products_by_member_id` — Retrieves 1688 shop products by seller member ID with pagination, sorting and optional category and price filters. Use it to research a shop product catalog.
+- `1688_shop_products_by_url` — Retrieves 1688 shop products by shop homepage URL with pagination, sorting and optional category filters. Use it to research a shop product catalog.
 - `aliexpress_product_overview` — Retrieves an AliExpress product overview by item ID for the United States or global site. Use it to inspect a known listing for catalog review or search snippets.
 - `aliexpress_product_search` — Searches AliExpress products with optional query, page, sort, category, brand, location, attribute, price, locale, region, and currency controls. Use it for product discovery, catalog research, and marketplace assortment analysis.
 - `amazon_best_sellers` — Retrieves paginated Amazon Best Sellers for a category path in a selected country marketplace. Use it to study category leaders, discover popular products, or compare bestseller pages across marketplaces.
@@ -104,7 +119,6 @@ Each action is listed below with a one-line description; actions that change sta
 - `douyin_tiktok_china_image_post_search` — Searches Douyin (TikTok China) image posts by keyword with search-session pagination. Omit searchId for the first page, then use the search ID from the previous response to continue. Use it for visual-content discovery and topic research.
 - `douyin_tiktok_china_share_link_resolution` — Resolve a supported Douyin (TikTok China) short share link that targets a video and return its public redirect URL. Use it to expand video links before subsequent Douyin content lookup or processing.
 - `douyin_tiktok_china_user_profile` — Retrieves a Douyin (TikTok China) user profile by secUid. Use it to review a known creator or account before monitoring related content or conducting account research.
-- `douyin_tiktok_china_user_published_videos` — Retrieves videos published by a Douyin (TikTok China) user with cursor pagination. Use it to browse a known creator's public video history or continue through video pages.
 - `douyin_tiktok_china_user_search` — Searches Douyin (TikTok China) users by keyword with page-based pagination and optional account-type filtering. Use it to discover creators, brands, or verified accounts for research.
 - `douyin_tiktok_china_video_comments` — Retrieves top-level comments for a Douyin (TikTok China) video by aweme ID with page-based pagination. Use it to review audience feedback or analyze discussion around a known video.
 - `douyin_tiktok_china_video_details` — Retrieves details for a Douyin (TikTok China) video by video ID. Use it to look up a known video before content review, archiving, or related analysis.
@@ -140,9 +154,9 @@ Each action is listed below with a one-line description; actions that change sta
 - `instagram_reels_search` — Searches Instagram Reels by keyword or hashtag with token-based pagination. Use it to discover short-form videos, monitor topics, and continue through matching results.
 - `instagram_user_profile` — Retrieves an Instagram user profile by username. Use it to review a known account before creator research, brand monitoring, or related post analysis.
 - `instagram_user_published_posts` — Retrieves posts published by an Instagram user with token-based pagination. Use it to browse a known account's post history or continue through subsequent result pages.
-- `jdcom_product_comments` — Retrieve paginated JD.com product comments for a specific SKU. Use it to review buyer feedback for that product.
+- `jdcom_product_description_images` — Retrieve JD.com product description images and product attributes by item ID. Use it to review product introductions for catalog research and product presentation.
 - `jdcom_product_details` — Retrieve JD.com product details by item ID, including a complete set of product images. Use it to review product information and images for catalog research or ecommerce analysis.
-- `jdcom_product_price` — Retrieve the current JD.com product price for a known item ID. Use it to check a product's price before catalog comparison or purchase analysis.
+- `jdcom_product_price` — Retrieve JD.com product prices for up to 10 comma-separated item IDs in one request. Use it for batch price checks and catalog comparisons.
 - `jdcom_product_search` — Search JD.com products by keyword with page-based pagination. Use it to discover products and collect item IDs for follow-up lookups.
 - `jdcom_shop_product_list` — Retrieve a page of products from a JD.com shop identified by shop ID. Use it to browse a seller's catalog and collect item IDs for follow-up lookups.
 - `kuaishou_share_link_resolution` — Resolve a supported Kuaishou short share link and return its public redirect URL. Use it to expand shared links before subsequent Kuaishou content lookup or processing.
@@ -152,10 +166,13 @@ Each action is listed below with a one-line description; actions that change sta
 - `kuaishou_video_comments` — Retrieve public comments for a Kuaishou video, with optional cursor-based pagination. Use it to review audience discussion and continue through additional comment pages.
 - `kuaishou_video_details` — Retrieve public details for a Kuaishou video identified by its video ID. Use it to inspect a selected video after search or user-published-video discovery.
 - `kuaishou_video_search` — Search public Kuaishou videos by keyword with page-number pagination. Use it to discover relevant videos and browse results by page.
-- `linkedin_post_comments` — Retrieves LinkedIn comments for an activity post with relevance or recent sorting, page-based navigation, a pagination token, and optional share URN. Use it to review public discussion around known professional content.
+- `linkedin_company_details` — Retrieves a public LinkedIn company profile by its vanity name or company page URL. Use it to research a company and obtain its company identifier before querying company job postings.
+- `linkedin_company_jobs` — Retrieves LinkedIn job postings for companies identified by company IDs, vanity names, or company page URLs, with optional keyword, location, posting age, and pagination filters. Use it to track company hiring activity across one or more employers.
+- `linkedin_job_details` — Retrieves LinkedIn job details for up to 20 distinct job identifiers, with optional field projection. Use it to inspect selected postings after a job search; unavailable postings are omitted from the result.
+- `linkedin_job_search` — Searches LinkedIn job postings by keyword with location, posting age, company, employment type, seniority, and pagination filters. Use it to discover recruitment opportunities and research hiring activity.
 - `linkedin_user_profile` — Retrieves a LinkedIn profile by username, including documented core profile fields such as name and headline. Use it to inspect a person's professional background or before requesting published posts.
-- `linkedin_user_published_posts` — Retrieves posts published, commented on, or reacted to by a LinkedIn member using a profile URL, activity type, offset, and pagination token. Use it to review public professional activity and continue through additional result pages.
 - `pixabay_photo_search` — Searches public Pixabay photo result pages by keyword with a requested image count and page controls. Each result includes its Pixabay photo page, public contributor information when shown, and a source-provided image URL.
+- `qq_huxuan_creator_marketplace_hot_content_trends` — Lists QQ Huxuan hot Video Account content by month and creator category, with six descending sort metrics and page-number pagination. Use it to research monthly content trends for Tencent Huxuan campaign planning.
 - `qq_huxuan_creator_marketplace_official_account_article_list` — Lists articles from a QQ Huxuan Official Account creator within a required date range, with an optional title keyword and a choice between all articles and Huxuan order articles. Use it to review a publisher's content for campaign planning.
 - `qq_huxuan_creator_marketplace_official_account_creator_details` — Retrieves QQ Huxuan Official Account creator details for a known creator app ID. Use it to review a shortlisted publisher before Tencent Huxuan campaign selection.
 - `qq_huxuan_creator_marketplace_official_account_creator_search` — Searches or browses QQ Huxuan Official Account creators by optional nickname or account keyword with page-number pagination. Use it to discover and shortlist publishers for Tencent Huxuan campaign planning.
@@ -183,11 +200,13 @@ Each action is listed below with a one-line description; actions that change sta
 - `shopee_shop_profile_and_rating_summary` — Retrieves a Shopee shop profile and rating summary by marketplace site and shop ID.
 - `shopee_shop_reviews` — Retrieves Shopee shop reviews with offset pagination and a rating filter.
 - `social_media_cross_platform_search` — Searches recent content across news, Weibo, WeChat, Zhihu, Douyin, Xiaohongshu, Bilibili, and Kuaishou with source and time filters. Use it to monitor a topic across multiple platforms.
+- `taobao_and_tmall_product_description_images` — Retrieves Taobao or Tmall product description HTML and a separate list of description images by item ID. Use it to collect listing description assets for catalog preparation and product content review.
 - `taobao_and_tmall_product_details` — Retrieves Taobao or Tmall product details by item ID through the V9 endpoint. Use it to perform direct product lookup for catalog research, product monitoring, or ecommerce analysis.
 - `taobao_and_tmall_product_questions` — Retrieves the Taobao or Tmall product social feed by item ID with page-based pagination. Use it to review product questions and related discussion during customer-concern or product research.
 - `taobao_and_tmall_product_reviews` — Retrieves Taobao and Tmall product reviews by item ID with page-based pagination and configurable sorting. Use it to analyze customer feedback.
 - `taobao_and_tmall_product_search` — Searches Taobao and Tmall products by keyword with page-based pagination and returns results sorted by sales. Use it to discover popular products for ecommerce research, catalog analysis, or product selection.
-- `taobao_and_tmall_shop_product_list` — Retrieves products from a Taobao or Tmall shop by seller ID with page-based pagination. Use it to browse or monitor a known seller's catalog across result pages.
+- `taobao_and_tmall_shop_detail` — Retrieves a Taobao shop's homepage information, shop categories, and default product listing by seller ID and shop ID. Use it to inspect a shop and discover its categories before querying products.
+- `taobao_and_tmall_shop_product_list` — Retrieves products from a Taobao shop by seller ID and shop ID, with optional shop-category filtering, keyword search, sorting, and page-based pagination. Use it to browse a shop catalog or find matching products within a shop.
 - `tiktok_comment_replies` — Retrieves replies to a specific comment on a TikTok post with cursor pagination. Use it to inspect threaded discussions and continue through reply pages for a known post comment.
 - `tiktok_post_comments` — Retrieves comments for a TikTok post with cursor pagination. Use it to review audience discussion, continue through comment pages, or support comment analysis for a known post.
 - `tiktok_post_details` — Retrieves details for a TikTok post identified by its post ID. Use it to look up a known TikTok video before content review, reporting, or related engagement analysis.
@@ -216,6 +235,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `wechat_channels_video_download_url` — Retrieves a downloadable media URL for a WeChat Channels video by object ID and optional nonce ID. Use it to download or play media from a known Channels video.
 - `wechat_channels_video_metrics` — Retrieves interaction metrics for a WeChat Channels video by object ID with optional continuation-buffer input. Use it to review engagement for known video content.
 - `wechat_channels_video_search` — Searches the WeChat Channels video category by keyword with page, offset, and continuation-state controls. Use it to retrieve categorized video results and continue additional pages.
+- `wechat_channels_video_share_url` — Generates a share link for a WeChat Channels video identified by objectId. Use it to share a known Channels video or obtain its link for a subsequent lookup.
 - `wechat_channels_video_sub_comments` — Retrieves replies under a first-level WeChat Channels video comment using the video and root-comment IDs. Use it to continue a threaded comment discussion with buffer pagination.
 - `wechat_channels_video_title` — Retrieves lightweight title information for a WeChat Channels video by object ID and optional nonce ID. Use it to identify known video content without requesting downloadable media.
 - `wechat_official_accounts_account_basic_info` — Retrieves basic profile information for a WeChat Official Account by account name. Use it to identify or enrich a known account before article, ownership, or publishing research.
@@ -261,6 +281,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `xiaohongshu_creator_marketplace_pugongying_note_details` — Retrieves Xiaohongshu Pugongying details for a known note ID. Use it to review an individual note during creator or campaign research.
 - `xiaohongshu_creator_marketplace_pugongying_note_performance_metrics` — Retrieve Xiaohongshu Pugongying aggregate note performance metrics for a creator with business, note-type, date-range, and advertisement filters. Use it to compare content performance across selected scopes.
 - `xiaohongshu_creator_marketplace_pugongying_similar_creators` — Retrieve paginated Xiaohongshu Pugongying creators similar to a known creator. Use it to expand a campaign shortlist from an existing reference account.
+- `xiaohongshu_e_commerce_rednote_product_detail` — Retrieves Xiaohongshu E-commerce (RedNote) product details by SKU ID. Use it to look up a specific marketplace product for product research and catalog workflows.
 - `xiaohongshu_e_commerce_rednote_product_search` — Searches Xiaohongshu E-commerce (RedNote) products by keyword with page and search-ID pagination; pages after the first require the search ID returned by the initial search. Use it to discover marketplace products and continue through multi-page results.
 - `xiaohongshu_rednote_ask_dots_ai` — Queries Xiaohongshu (RedNote) Ask Dots AI with a keyword question. Use it to retrieve an AI answer for topic research and question exploration.
 - `xiaohongshu_rednote_comment_replies` — Retrieves replies to a specific Xiaohongshu (RedNote) note comment with cursor pagination. Use it to inspect threaded discussions and continue through reply pages for feedback review or moderation.
@@ -272,6 +293,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `xiaohongshu_rednote_note_search` — Searches Xiaohongshu (RedNote) notes through the mobile-app search flow with pagination, sorting, note-type, and time filters. Use it to support iterative topic research and filtered content discovery.
 - `xiaohongshu_rednote_share_link_resolution` — Resolve a supported Xiaohongshu (RedNote) short share link and return its public redirect URL. Use it to expand shared links before subsequent Xiaohongshu content lookup or processing.
 - `xiaohongshu_rednote_topic_note_list` — Retrieves Xiaohongshu (RedNote) notes associated with a topic ID, with hot or latest sorting and cursor pagination. Use it to support topic content discovery, trend review, and continuing through topic result pages.
+- `xiaohongshu_rednote_user_favorited_notes` — Retrieves a Xiaohongshu (RedNote) user's favorited notes by user ID with cursor pagination. Use it to review a user's saved content and research content interests.
 - `xiaohongshu_rednote_user_profile` — Retrieves a Xiaohongshu (RedNote) user profile from a user ID or supported profile URL. Use it to support creator discovery, account research, and reviewing a known profile before related content analysis.
 - `xiaohongshu_rednote_user_published_notes` — Reads a user's published public Xiaohongshu (RedNote) notes by user ID or supported profile URL, with lastCursor pagination. This endpoint does not create, upload or publish notes.
 - `xiaohongshu_rednote_user_search` — Searches Xiaohongshu (RedNote) users by keyword with page-based pagination. Use it to support creator discovery, account research, and finding profiles related to a topic, name, or brand term.

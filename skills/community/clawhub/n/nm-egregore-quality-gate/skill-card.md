@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers using the egregore workflow use this skill to run convention checks, code review, refinement, test updates, and documentation updates for work items or pull requests.
+Developers use this skill to run the egregore quality pipeline on their own work or to review a pull request. It coordinates convention checks, mapped review and maintenance skills, collects findings, and records a verdict.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The workflow can commit fixes or submit a GitHub review, and the security guidance notes a possible command-name conflict.
+Risk: In PR-review mode, the workflow may publish findings and submit a GitHub review under the authenticated account.
 
-Mitigation: Review the commands, changes, review target, and publication effects before allowing the workflow to proceed.
+Mitigation: Review the findings and confirm the target pull request and authenticated account before enabling review submission.
 
-Risk: Security analysis was partial because two local references could not be resolved.
+Risk: The security scan was partial because two referenced local paths were absent from the scanned artifact, leaving evidence about them incomplete.
 
-Mitigation: Resolve and review the referenced material before relying on the analysis.
+Mitigation: Ensure the referenced files are available and review them before relying on the scan.
 
 ## Reference(s):
 
-- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/egregore)
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-egregore-quality-gate)
+- [The Coming Loop](https://lucumr.pocoo.org/2026/6/23/the-coming-loop/)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Shell commands]
+**Output Type(s):** [Analysis, Text, JSON]
 
-**Output Format:** [Review findings and a pipeline verdict, with shell commands as needed]
+**Output Format:** [Quality findings and verdict in text; a manifest decision in JSON; optionally a GitHub review comment.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include proposed fixes and a recorded review verdict.]
+**Other Properties Related to Output:** [PR-review mode may submit a review using the authenticated GitHub account.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

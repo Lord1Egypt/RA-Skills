@@ -339,7 +339,7 @@ export const ondemand = {
 
     if (opts.tools?.length && opts.allowUnverifiedTools !== true && !TOOL_CALLING_CHAT_SERVICES.includes(service)) {
       // Theta silently drops tools for these models and answers in plain text; fail loudly instead.
-      throw new Error(`Service ${service} does not return structured tool calls (live-verified 2026-10-03). Use ${TOOL_CALLING_CHAT_SERVICES.filter((x) => x !== 'gpt_oss_120b').join(' or ')} for tool use, or set allowUnverifiedTools:true (exactly) to send anyway.`);
+      throw new Error(`Service ${service} does not return structured tool calls (live-verified 2026-10-03). Use ${TOOL_CALLING_CHAT_SERVICES.join(' or ')} for tool use, or set allowUnverifiedTools:true (exactly) to send anyway.`);
     }
 
     const effectiveOpts = service === 'qwen3'

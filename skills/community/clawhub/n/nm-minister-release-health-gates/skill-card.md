@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and release managers use this skill to prepare production deployments by checking scope, quality signals, documentation, communications, and operational readiness, then recording approvals or waivers.
+Developers and release managers use the skill before production deployments to evaluate scope, quality, communications, and operational readiness, then document gates and approvals in a deployment PR.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: A low-probability trigger conflict may cause this skill to activate alongside another skill with overlapping release-related triggers.
+Risk: The “release” trigger may overlap with a built-in command in some setups.
 
-Mitigation: Review installed skills with overlapping release, GitHub, readiness, quality, or governance triggers and adjust activation settings if unexpected overlaps occur.
+Mitigation: Before installing, check whether the trigger overlaps with a built-in command in your setup.
 
 ## Reference(s):
 
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-minister-release-health-gates)
 - [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/minister)
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-minister-release-health-gates)
 
 ## Skill Output:
 
 **Output Type(s):** [Markdown, Guidance, Analysis]
 
-**Output Format:** [Markdown release checklists, gate snippets, QA summaries, and rollout scorecards]
+**Output Format:** [Markdown release checklists, GitHub comment snippets, QA summaries, and rollout scorecards]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Uses project-specific release, GitHub Checks, and tracker information supplied by the user.]
+**Other Properties Related to Output:** [Prepared for deployment PRs or issues and post-release retrospectives.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, server release metadata)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

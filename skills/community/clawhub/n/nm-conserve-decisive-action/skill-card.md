@@ -1,6 +1,6 @@
 ## Description:
 
-Guides when to ask clarifying questions versus proceed autonomously. Use to reduce unnecessary clarifying questions when intent is clear
+Guides when to ask clarifying questions versus proceed autonomously, helping reduce unnecessary questions when intent is clear.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Agents and developers use this guidance to decide when ambiguity warrants a clarifying question and when they can proceed autonomously, reducing unnecessary interruptions while accounting for high impact and irreversible actions.
+Developers and agent users use this skill to decide when to ask clarifying questions and when to proceed autonomously. It helps reduce interruptions when intent is clear while calling for clarification when ambiguity could materially affect correctness or safety.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Autonomous-action guidance may lead an agent to proceed when ambiguity or impact makes confirmation important.
+Risk: The guidance can favor proceeding autonomously, which may lead to incorrect action when ambiguity has meaningful consequences.
 
-Mitigation: Apply the skill's high impact ambiguity and irreversible-operation checks; ask before destructive actions and review proposed actions before execution.
+Mitigation: Check ambiguity, reversibility, and potential impact before acting; ask for clarification or confirmation for destructive, security-critical, high-stakes, or otherwise consequential decisions.
 
 ## Reference(s):
 
 - [ClawHub release page](https://clawhub.ai/athola/skills/nm-conserve-decisive-action)
-- [Plugin homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
+- [Project homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Text, Markdown]
+**Output Type(s):** [Text, Guidance]
 
-**Output Format:** [Natural-language decision guidance and clarifying questions]
+**Output Format:** [Markdown guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [No fixed output structure.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

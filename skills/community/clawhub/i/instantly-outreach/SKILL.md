@@ -1,7 +1,7 @@
 ---
 name: instantly-outreach
 description: "Manage cold email campaigns, leads, and outreach analytics via Instantly AI through the superagnt unified API."
-version: 2.0.14
+version: 2.0.19
 author: superagnt
 license: MIT-0
 platforms: [macos, linux, windows]

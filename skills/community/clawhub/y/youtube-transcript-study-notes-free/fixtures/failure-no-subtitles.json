@@ -1,0 +1,14 @@
+{
+  "fixture_type": "offline visible-page material simulation",
+  "purpose": "Self-test failure example only; not an online collection result.",
+  "source_url": "https://www.youtube.com/watch?v=offline-no-subtitles",
+  "requested_language": "zh-CN",
+  "learning_goal": "识别产品演示中的关键动词",
+  "visible_subtitle_state": "absent",
+  "expected_notes": {
+    "summary": [],
+    "terms": [],
+    "anchors": [],
+    "limitations": ["页面资料模拟中没有可见字幕；不能根据音频补写内容。"]
+  }
+}

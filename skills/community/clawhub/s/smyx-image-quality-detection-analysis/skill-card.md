@@ -1,6 +1,6 @@
 ## Description:
 
-Detects camera image-quality issues such as black or white screens, color casts, stripes, noise, and blur for surveillance and camera self-check scenarios.
+Analyzes camera images and video frames to identify quality issues such as black or white screens, color casts, stripes, noise, and blur.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Security camera operators and developers can analyze camera images or video frames for common quality problems and review historical analysis reports.
+Operations teams use the skill to check camera images or video frames for visual quality problems during surveillance system maintenance and camera self-checks. They can also request a list of historical analysis reports.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan rates the skill suspicious because scanners report account and credential handling, broad network requests, and behavior that may not clearly fit its image-quality purpose; the scan is partial and evidence is incomplete.
+Risk: The security review reports undeclared account and token handling and remote transmission of data, including behavior that may analyze or upload media in export-only mode.
 
-Mitigation: Before installing, verify that its account and credential handling, network destinations, and media-upload behavior fit your environment. Avoid submitting sensitive footage until those details are clear.
+Mitigation: Review the destination and identity-handling behavior before use. Do not treat export-only mode as a privacy boundary, and avoid sensitive camera footage until you have confirmed it may be shared with the service.
 
 ## Reference(s):
 
-- [API Reference](references/api_doc.md)
-- [Skill Demo](https://lifeemergence.com/sample.html)
-- [ClawHub Skill Page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-image-quality-detection-analysis)
+- [API reference](references/api_doc.md)
+- [Skill demo](https://lifeemergence.com/sample.html)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
+**Output Type(s):** [Analysis, JSON, Markdown]
 
-**Output Format:** [JSON analysis results and Markdown report lists with links]
+**Output Format:** [Structured analysis report with findings, recommendations, and report links; Markdown table for historical report lists]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Accepts image or video files and network URLs; documented formats are JPG, JPEG, PNG, MP4, AVI, and MOV, up to 10 MB. Results support equipment maintenance and do not replace professional hardware inspection.]
+**Other Properties Related to Output:** [Supports camera image and video inputs; analysis results are for maintenance reference and do not replace hardware inspection.]
 
 ## Skill Version(s):
 
-1.0.17 (source: server-resolved release metadata)
+1.0.18 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

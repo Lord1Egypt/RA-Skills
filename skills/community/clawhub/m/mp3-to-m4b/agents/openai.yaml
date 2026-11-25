@@ -1,0 +1,5 @@
+# Read by Codex and ChatGPT (skill interface) and by ClawHub (display name, summary, icon).
+interface:
+  display_name: "MP3 to M4B"
+  short_description: "Joins mp3 parts into one .m4b audiobook with chapters and cover."
+  icon_small: "./assets/icon-small.svg"

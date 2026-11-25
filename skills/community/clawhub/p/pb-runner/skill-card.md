@@ -1,6 +1,6 @@
 ## Description:
 
-Connects a runner's PB-Runner data to an AI coach for recovery-aware training advice and draft sessions that are saved only with the runner's approval.
+Connect OpenClaw to PB-Runner to review running, recovery, and goal data from Garmin or Apple Watch and draft training sessions for approval.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Runners use this skill with OpenClaw to review their runs, recovery, goals, and schedule, receive coaching and draft training sessions, and approve any proposed changes before they are saved.
+Runners using OpenClaw with PB-Runner use this skill to review training and recovery data, track goals, and draft sessions for their schedule. Proposed changes are saved only after the runner explicitly approves them.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Connecting the coach exposes personal running, recovery, profile, goal, and schedule data to the agent.
+Risk: OAuth connects the agent to run and recovery information in the signed-in PB-Runner account.
 
-Mitigation: Connect only with the runner's consent, use the data only for their coaching, and disconnect with `openclaw mcp logout pbrunner` when access is no longer wanted.
+Mitigation: Review the requested account access and sign in with the runner’s own PB-Runner account; use the data only to answer and coach that runner.
 
-Risk: An unreviewed training-plan change could be saved to the runner's schedule.
+Risk: Coaching or recovery readings could be mistaken for medical advice.
 
-Mitigation: Show each proposed change and save it only after the runner explicitly approves it in the conversation.
-
-Risk: Coaching advice could be mistaken for medical guidance when a runner reports concerning symptoms.
-
-Mitigation: Refer pain, injury, dizziness, chest pain, or unusual heart symptoms to a clinician instead of coaching through them.
+Mitigation: For pain, injury, dizziness, chest pain, or unusual heart symptoms, direct the runner to a clinician instead of coaching through them.
 
 ## Reference(s):
 
 - [PB-Runner OpenClaw setup guide](https://pb-runner.com/guide/openclaw)
 - [PB-Runner getting started guide](https://pb-runner.com/guide)
+- [PB-Runner FAQ](https://pb-runner.com/support)
 - [PB-Runner privacy policy](https://pb-runner.com/privacy)
-- [PB-Runner skill on ClawHub](https://clawhub.ai/pb-runner/skills/pb-runner)
+- [PB-Runner Garmin Connect IQ app](https://apps.garmin.com/apps/36345af4-1210-4b9f-9ffd-2c82ba0ed875)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+**Output Type(s):** [Coaching guidance, Training plan drafts, Text, Shell commands, Configuration instructions]
 
-**Output Format:** [Plain text or Markdown with setup commands and training-plan drafts]
+**Output Format:** [Plain language and Markdown, with shell commands for setup]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Training-plan changes require explicit user approval before saving.]
+**Other Properties Related to Output:** [Guidance uses the runner's connected training data and units; proposed changes require explicit approval before saving.]
 
 ## Skill Version(s):
 
-1.0.2 (source: frontmatter and server release metadata)
+1.0.4 (source: artifact/SKILL.md frontmatter, server release evidence)
 
 ## Ethical Considerations:
 

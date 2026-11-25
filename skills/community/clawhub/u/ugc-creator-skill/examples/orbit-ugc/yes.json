@@ -1,0 +1,13 @@
+{
+ "written_by": "plan.py",
+ "plan_id": "2df01d14d86f",
+ "at": "2026-11-18T14:00:00Z",
+ "campaign": "example-orbit-app",
+ "files": {
+  "videos/tiktok.mp4": "8175e9d2b69bcf3448e9613941a10e70b40f59b7401ab7dc44b6a3d21c0ad1c9",
+  "videos/reels.mp4": "d3ff1d44edaf61a26c928822ddfe4b723adc037584d194d20036f45c04ab8bbf"
+ },
+ "by_hand": [
+  "orbit-shorts"
+ ]
+}

@@ -1,7 +1,7 @@
 ---
 name: yotta-memory
 slug: yotta-memory
-version: 0.24.3
+version: 0.24.5
 displayName: 元忆 yotta-memory
 summary: Boundary-aware, file-based memory for AI agents: recall context at the start of work, remember important facts as you go, archive at wrap-up. Public FACT is shared; PREF / BOUND / COMMIT stay privately isolated. Zero dependencies, plain Markdown files you can read, diff and roll back.
 description: 'Yuanyi (yotta-memory) gives an AI agent memory that outlives a single conversation. File-based and zero-dependency: start work with `recall` to restore context, `remember` important facts as you go, and archive at wrap-up. Memories are Markdown files in your own directory - readable, editable, auditable and rollback-able. FACT is shared while PREF / BOUND / COMMIT are privately isolated per agent, so who may read what is decided by mechanism rather than self-discipline. One memory store can be shared across agents, travels with the disk, and can be shared over LAN. 中文：元忆 / 智能体记忆库 / AI记忆系统 / 记忆引擎 / 长期记忆 / 永久记忆 / 跨会话上下文管理 / 语义检索 / 权限边界。'
@@ -23,6 +23,10 @@ homepage: https://github.com/YottaMeta/yotta-memory
   `serve-profile.json`，Windows 计划任务、Startup 兜底、systemd 与 crontab
   均显式引用该 profile；`serve --profile <文件>` 固化 memory_home / runtime_home /
   config_dir，避免 S4U 或无用户环境启动时 `os.homedir()` 漂移为空库并导致远端 401。
+- **Windows 多用户自启隔离（v0.24.4）**：计划任务名按当前用户 SID 的 SHA-256
+  前 16 位派生；`lan enable / status / disable` 与 runtime 受管重启在操作前验证任务
+  主体归属。旧固定任务只在新任务创建成功且归属可证明时迁移；其他用户或未知主体
+  一律保留。`serve-profile.json` 保持 schema 1，并新增可选 `userSid`。
 
 ## 这是什么
 
@@ -79,7 +83,7 @@ AI 更新流程：先运行 `yotta-memory --version` 记录当前引擎版本；
 2. **进行中落盘**：出现事实 / 偏好 / 边界 / 纠正 / 承诺信号时立即 `yotta-memory remember <type> <subject> <statement> --verify`，不攒到收工。
 3. **收工归档**：收工前复盘本轮，检查是否留下 COMMIT / 会话小结；有关键结论但未落盘时补写并 `recall` 回读，无长期价值不硬凑。旧记录定期 `yotta-memory maintain --apply`（单条低效用归档）+ 记忆多了先 `yotta-memory consolidate`（propose 报告）→ 确认后 `yotta-memory consolidate --apply --yes`（非交互；同主题压缩成带溯源摘要，`--undo` 可回滚）。上下文被宿主压缩过、担心有决策只留在对话里时，把压缩内容喂给 `yotta-memory context --audit --from <文件>` 核对。
 4. **多智能体纪律**：FACT 写入公共区，PREF / BOUND / COMMIT 只写本智能体私密区；不读取其他智能体私密区。**一切读写一律走 `yotta-memory` CLI / MCP 工具**——禁止用 shell（`Get-ChildItem` / `Get-Content` / `cat` / `ls` / `type` 等）直接读或改记忆库目录下的 `.md` / `index.json` / `tokens.json` / `agents.json` / `grants.json` 等文件，否则会绕过权限边界、读到别的智能体私密内容。
-5. **身份自检（v0.22.1，防串号）**：跨宿主环境（Codex / YottaCode / DSH / OpenCode / 多 MCP）里，任何写入都必须显式声明身份：CLI 传 `--agent <id> --agent-key-file <文件>`，stdio MCP 传 `--agent-id <id> --agent-key-file <文件>`；不要依赖宿主发现。每次 `remember` / `forget` 的结果都会回显 `[身份] agent_id: …；来源: …`——**回显的 ID 不是本会话身份就立即停写并报告用户**；出现 `[注意] 检测到宿主身份环境 YOTTA_MEMORY_AGENT_HOME=…` 时按同样规则核对，必要时显式覆盖后重试。
+5. **身份自检（v0.22.1，防串号）**：跨宿主环境（Codex / YottaWeave / DSH / OpenCode / 多 MCP）里，任何写入都必须显式声明身份：CLI 传 `--agent <id> --agent-key-file <文件>`，stdio MCP 传 `--agent-id <id> --agent-key-file <文件>`；不要依赖宿主发现。每次 `remember` / `forget` 的结果都会回显 `[身份] agent_id: …；来源: …`——**回显的 ID 不是本会话身份就立即停写并报告用户**；出现 `[注意] 检测到宿主身份环境 YOTTA_MEMORY_AGENT_HOME=…` 时按同样规则核对，必要时显式覆盖后重试。
 
 ## 会话闭环契约（v0.14.0，AI 必做）
 
@@ -351,7 +355,7 @@ yotta-memory doctor --json
 | `yotta-memory token new --agent <id> [--force]` / `token list` / `token revoke --agent <id>` | 每智能体访问 token：生成 / 列出 / 吊销（登记 `<记忆库>/.server/tokens.json`；同 ID 已被其它来源占用需 `--force` 覆盖，防不同智能体合流）|
 | `yotta-memory serve [--host 0.0.0.0] [--port 8787] [--no-auth] [--stdio] [--tools core|full]` | 启动 MCP 记忆引擎（streamable HTTP 局域网 / --stdio 本地零进程模式；Bearer token + X-Agent-Id + X-Agent-Key 鉴权；工具分组默认 full）|
 | `yotta-memory runtime list / install <tarball|版本> [--from-current] [--force] / use <版本> [--restart] / rollback [--restart] / status` | 运行时稳定入口（runtime.json + versions + current；安装 / 切换 / 回滚 / 查看漂移；`--restart` 尝试重启受管 server，失败自动切回旧版本）；漂移诊断用 `doctor --runtime` |
-| `yotta-memory lan enable [--onstart] / disable / status` | 开机自启管理（Windows：任务计划程序，S4U 主体后台静默——v0.22.4 起不弹窗口，`--onstart` 无登录会话也可启动；任务 XML 注册，去电池限制与 72h 时限；非管理员自动降级用户级 Startup 静默自启，v0.6.3 起 VBS 自愈不弹 80070002；v0.22.5 起 Electron 宿主（如 YottaCode）自动注入 ELECTRON_RUN_AS_NODE，不再拉起 GUI；Linux：systemd 用户单元，不可用时自动降级用户 crontab @reboot）|
+| `yotta-memory lan enable [--onstart] / disable / status` | 开机自启管理（Windows：任务计划程序，S4U 主体后台静默——v0.22.4 起不弹窗口，`--onstart` 无登录会话也可启动；任务 XML 注册，去电池限制与 72h 时限；非管理员自动降级用户级 Startup 静默自启，v0.6.3 起 VBS 自愈不弹 80070002；v0.22.5 起 Electron 宿主（如 YottaWeave）自动注入 ELECTRON_RUN_AS_NODE，不再拉起 GUI；Linux：systemd 用户单元，不可用时自动降级用户 crontab @reboot）|
 | `yotta-memory feedback <文件|主题> --useful|--useless [--reason <原因>] [--undo]` | 显式使用反馈（v0.8.0 自我学习闭环：useful → weight×1.2 / useless → weight×0.8，confidence / feedback_net 同步演化；`--undo` 回滚最近一次；审计写 `.archive/feedback-<日期>.jsonl`）|
 | `yotta-memory maintain [--dry-run] [--apply] [--purge] [--threshold N] [--age N] [--dedup] [--dedup --apply] [--merge A,B] [--rules]` | 记忆自组织（v0.8.0 自我进化 + v0.10.0 自动合并）：默认 dry-run 预览；`--apply` 执行归档（immutable / BOUND 豁免；私密归档入 `.archive/private/<owner>/<type>/`），`--purge` 才真删遗忘候选；`--dedup` 查重并给**置信度分档**（≥0.85 高置信 / 0.65–0.85 建议手动 / 其余忽略），`--dedup --apply` 自动合并同归属高置信组（写批次审计可回滚；与归档互斥，不误归档）；`--merge A,B` 手动合并两条；`--rules` 只读输出重复踩坑 → 建议升级为规则的清单（阈值 `maintain_rule_min_hits`，默认 3；只给建议不写 BOUND）；审计写 `.archive/audit-<日期>.jsonl`）|
 | `yotta-memory consolidate [--min-age N] [--min-idle N] [--max-utility N] [--min-group N] [--period N] [--type T] [--model <cmd>] [--apply] [--undo <batch>] [--batches]` | 周期摘要压缩（v0.10.0 压缩遗忘 + v0.18.0 提案闸门 + v0.18.1 日期 / 标记：把超龄 + 长期闲置 + 低效用的同主题旧记忆归纳成**带溯源**的周期摘要并留在活跃区，原文整体进 `.archive/`；摘要正文按条目 `created` 把「昨天 / 上周 / 本月 / 今年」等绝对化，归档副本追加一行巩固标记；默认 dry-run；immutable / BOUND 豁免，活跃 / 高效用记忆不动；`--apply` 执行并写批次审计，`--undo <batch>` 剥离标记并回滚（幂等），`--batches` 查近期批次；`--model` 仅本地 CLI）|

@@ -381,6 +381,36 @@ def workspace(name: str, company: str, role: str, date: str) -> pathlib.Path:
     return profile_dir(name) / "applications" / stem
 
 
+PREP_PLAN_NAME = "prep-plan.md"
+
+
+def prep_workspace(name: str, direction: str, date: str) -> pathlib.Path:
+    """<profile_dir>/prep/<YYYY-MM-DD>-<direction>: one prepare-mode session.
+
+    Prepare works without a posting, so it cannot live under applications/. Each
+    session is its own directory, so a revised plan never overwrites the last one;
+    latest_prep_plan() decides which one is current.
+    """
+    if not _ISO_DATE.match(str(date)):
+        raise ValueError(f"date must be YYYY-MM-DD, got {date!r}")
+    if not slugify(direction):
+        raise ValueError(
+            f"direction {direction!r} contains no letters or digits, so two "
+            f"sessions would share one directory")
+    return profile_dir(name) / "prep" / f"{date}-{slugify(direction)}"
+
+
+def latest_prep_plan(name: str):
+    """The newest general preparation plan for this profile, or None.
+
+    Newest by directory name, which starts with the ISO date; the slug breaks a
+    same-day tie, which is only an ordering and never a claim about content.
+    """
+    root = profile_dir(name) / "prep"
+    plans = sorted(root.glob("*/" + PREP_PLAN_NAME)) if root.is_dir() else []
+    return plans[-1] if plans else None
+
+
 def profile_dir_of(workspace) -> pathlib.Path:
     """The profile directory that owns `workspace` — the inverse of workspace().
 
@@ -460,6 +490,19 @@ def lossless_allowlist(root=None) -> pathlib.Path:
         "lossless-allowlist.json"
 
 
+def unwritable_store(path, exc: OSError) -> str:
+    """One actionable line for a store the host will not let this process write.
+
+    Codex's default sandbox, for one, allows writes only inside its working
+    directory, and a bare PermissionError traceback left the agent to improvise a
+    location — a profile saved somewhere no later run looks."""
+    return (f"STORE_UNWRITABLE: cannot write {path}: {exc.strerror or exc}. The host's "
+            f"sandbox or file permissions block it. Ask the user to allow writing to "
+            f"{PROFILES_ROOT}, or set JOBHUNT_PROFILES_ROOT to a folder this agent can "
+            "write, then run this again. Never save the profile or workspace somewhere "
+            "else by hand.")
+
+
 def main(argv=None) -> int:
     """`paths.py --name … --company … --role …` creates one application workspace
     and prints its absolute path.
@@ -473,19 +516,33 @@ def main(argv=None) -> int:
     import sys
 
     parser = argparse.ArgumentParser(
-        description="Create the application workspace for one posting and print its path.")
+        description="Create the application workspace for one posting (or, with "
+                    "--prep, a prepare-mode workspace) and print its path.")
     parser.add_argument("--name", required=True, help="the candidate's name as in profile meta.name")
-    parser.add_argument("--company", required=True, help="the exact public employer name")
-    parser.add_argument("--role", required=True, help="the posting's role title")
+    parser.add_argument("--company", help="the exact public employer name")
+    parser.add_argument("--role", help="the posting's role title")
+    parser.add_argument("--prep", metavar="DIRECTION",
+                        help="prepare mode: the target direction in a few words "
+                             "(e.g. 'backend engineer cn campus'), instead of --company/--role")
     parser.add_argument("--date", help="YYYY-MM-DD; default: today's local date")
     args = parser.parse_args(argv)
+    date = args.date or datetime.date.today().isoformat()
+    if bool(args.prep) == bool(args.company or args.role) or (
+            not args.prep and not (args.company and args.role)):
+        print("cannot run: give either --prep DIRECTION, or both --company and --role",
+              file=sys.stderr)
+        return 2
     try:
-        path = workspace(args.name, args.company, args.role,
-                         args.date or datetime.date.today().isoformat())
+        path = (prep_workspace(args.name, args.prep, date) if args.prep
+                else workspace(args.name, args.company, args.role, date))
     except ValueError as exc:
         print(f"cannot run: {exc}", file=sys.stderr)
         return 2
-    path.mkdir(parents=True, exist_ok=True)
+    try:
+        path.mkdir(parents=True, exist_ok=True)
+    except PermissionError as exc:
+        print(unwritable_store(path, exc), file=sys.stderr)
+        return 2
     print(path.resolve())
     return 0
 

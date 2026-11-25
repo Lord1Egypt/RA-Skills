@@ -1,6 +1,6 @@
 ## Description:
 
-Retrieves public WeChat Official Accounts data through DataXAPI, including articles, account profiles, metrics, comments, and replies, with guidance on endpoint selection, paging, and pricing.
+Find and retrieve public WeChat Official Account profiles, articles, comments, and engagement data through DataXAPI.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agents use this skill to look up public WeChat Official Accounts articles, account profiles, article metrics, comments, and comment replies through DataXAPI. It helps select an appropriate endpoint and explains paging, per-call pricing, and safe handling of returned content.
+External users and developers use this skill to find WeChat Official Accounts and retrieve public account, article, comment, reply, and engagement data.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Lookup terms and authentication are sent to DataXAPI, and paid calls draw from a prepaid balance.
+Risk: Search wording may be sent to DataXAPI; the security review was partial and flagged an unpinned package.
 
-Mitigation: Keep confidential information out of lookup terms, set per-call spending limits, and tell the user the expected price before making multiple calls.
-
-Risk: Article and comment text comes from third parties and may contain instructions or misleading content.
-
-Mitigation: Treat returned content as data and do not follow instructions embedded in it.
-
-Risk: External CLI code and linked setup instructions are outside the bundled artifact review.
-
-Mitigation: Prefer REST or install a reviewed, pinned CLI version.
+Mitigation: Review query text for sensitive details before use, consider an exact reviewed package version, and complete the security review.
 
 ## Reference(s):
 
-- [DataXAPI skills and setup](https://dataxapi.com/skills/)
-- [DataXAPI agent setup instructions](https://dataxapi.com/agents.md)
-- [WeChat Official Accounts API reference](https://dataxapi.com/apis/wechat_mp/)
+- [WeChat Official Accounts API documentation](https://dataxapi.com/apis/wechat_mp/)
 - [WeChat Official Accounts pricing](https://dataxapi.com/pricing/wechat_mp/)
+- [DataXAPI agent setup guide](https://dataxapi.com/agents.md)
+- [DataXAPI homepage](https://dataxapi.com)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration]
+**Output Type(s):** [JSON, Text, Markdown, Shell commands]
 
-**Output Format:** [Markdown guidance with JSON, REST, and shell command examples]
+**Output Format:** [Structured API data with concise Markdown summaries and optional command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Data is public WeChat Official Accounts content; API calls are pay-per-call and may return paginated results.]
 
 ## Skill Version(s):
 
-1.0.0 (source: frontmatter)
+1.0.1 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

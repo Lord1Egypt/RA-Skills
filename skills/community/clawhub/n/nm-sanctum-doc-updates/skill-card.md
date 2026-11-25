@@ -1,6 +1,6 @@
 ## Description:
 
-Updates documentation after code changes with quality gates, slop detection, and accuracy checks
+Updates documentation after code changes with quality gates, slop detection, and accuracy checks.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and maintainers use this skill to update project documentation after code changes, check documentation quality and accuracy, and review proposed edits before previewing them.
+Developers use this skill to update project documentation after code changes, check it against repository state and style rules, and review the resulting changes.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review marks the skill suspicious with medium confidence, citing plugin-registration checks and instructions that may expand documentation work into functional changes.
+Risk: The workflow includes plugin configuration and repository staging instructions that may extend beyond documentation edits.
 
-Mitigation: Review whether plugin registration changes are appropriate before installation; the scanner analysis is partial, so assess the skill directly.
+Mitigation: Review the planned configuration and staging steps for fit with the task before applying them.
+
+Risk: The security scan was partial, leaving some referenced or runtime behavior unassessed.
+
+Mitigation: Review the skill references and runtime behavior before installation or use, as the scan guidance recommends.
 
 ## Reference(s):
 
-- [Sanctum project homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
 - [ClawHub skill release](https://clawhub.ai/athola/skills/nm-sanctum-doc-updates)
+- [Sanctum plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+**Output Type(s):** [Markdown, Code, Shell commands, Guidance]
 
-**Output Format:** [Markdown documentation edits, shell commands, and review summaries]
+**Output Format:** [Documentation edits and review guidance in Markdown, with code and shell examples.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Outputs depend on the documentation targets and checks selected for each change.]
+**Other Properties Related to Output:** [May update multiple documentation files and report a change preview.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved ClawHub release metadata)
 
 ## Ethical Considerations:
 

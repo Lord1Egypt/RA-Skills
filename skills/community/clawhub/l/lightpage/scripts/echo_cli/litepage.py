@@ -13,7 +13,7 @@ import uuid
 from pathlib import Path
 from urllib.parse import urlparse
 
-from echo_cli import litepage_access, litepage_mail, transport
+from echo_cli import litepage_access, litepage_mail, litepage_referrals, transport
 from echo_cli.client import API, APIError, checked
 from echo_cli.compat import subparsers, unlink
 from echo_cli.credentials import CredentialStore, atomic_json
@@ -43,6 +43,10 @@ class LitePageAPI(API):
     skill_name = "lightpage"
     skill_version = LITEPAGE_SKILL_VERSION
 
+    def prepare_login_body(self, body):
+        receipt = litepage_referrals.pending(self)
+        return {**body, **litepage_referrals.fields(receipt)}
+
     def request(self, method, path, **kwargs):
         if path in {"/v1/hosting/feedback"}:
             # Anonymous feedback never reads credentials, refreshes or registers.
@@ -57,7 +61,15 @@ class LitePageAPI(API):
             }
         if path in {"/v1/auth/anonymous", "/v1/auth/connect", "/v1/auth/bind", "/v1/me"}:
             path = path.replace("/v1/", "/v1/hosting/", 1)
-        return super().send(method, path, **kwargs)
+        response = super().send(method, path, **kwargs)
+        receipt = kwargs.get("json", {}).get("lp_ref") or kwargs.get("json", {}).get(
+            "referral_receipt"
+        )
+        if receipt and path == "/v1/hosting/auth/anonymous" and response.status_code < 300:
+            litepage_referrals.acknowledge(
+                self, receipt, response.json().get("referral_status", "submitted")
+            )
+        return response
 
 
 def read_size(value):
@@ -70,12 +82,35 @@ def read_size(value):
     return size
 
 
+def profile_uid(value):
+    if not re.fullmatch(r"[a-z0-9]{10}", value):
+        raise argparse.ArgumentTypeError("UID must be 10 lowercase letters or digits")
+    return value
+
+
+def profile_limit(value):
+    try:
+        limit = int(value)
+    except ValueError:
+        raise argparse.ArgumentTypeError("Use an integer from 1 to 20") from None
+    if not 1 <= limit <= 20:
+        raise argparse.ArgumentTypeError("Use an integer from 1 to 20")
+    return limit
+
+
+def profile_cursor(value):
+    if not value or len(value) > 400:
+        raise argparse.ArgumentTypeError("Cursor must contain 1–400 characters")
+    return value
+
+
 def parser():
     root = argparse.ArgumentParser(
         prog="litepage", description="轻页 LitePage · 发布静态网页、管理作品与收发站内信"
     )
     root.add_argument("--server", default=os.getenv("LITEPAGE_SERVER", DEFAULT_SERVER))
     commands = subparsers(root, dest="command")
+    litepage_referrals.commands(commands)
     read = commands.add_parser("read", help="Read a bounded HTML document and record Agent visits")
     read.add_argument("url")
     read.add_argument("--read-id", type=uuid.UUID, default=None)
@@ -87,9 +122,18 @@ def parser():
     capabilities.add_argument("name", nargs="?")
     litepage_mail.commands(commands)
     litepage_access.commands(commands)
-    profile = commands.add_parser("profile", help="Read or update your LightPage profile")
+    profile = commands.add_parser("profile", help="Read public profiles or update your own profile")
     profile_commands = subparsers(profile, dest="profile_command")
-    profile_commands.add_parser("show")
+    show_profile = profile_commands.add_parser(
+        "show", help="Read profile and public work statistics"
+    )
+    show_profile.add_argument("--uid", type=profile_uid, help="Omit for your own profile")
+    works_profile = profile_commands.add_parser(
+        "works", help="Read one page of public work summaries"
+    )
+    works_profile.add_argument("--uid", type=profile_uid, help="Omit for your own public works")
+    works_profile.add_argument("--limit", type=profile_limit, default=10, metavar="1-20")
+    works_profile.add_argument("--cursor", type=profile_cursor)
     edit_profile = profile_commands.add_parser("update")
     name = edit_profile.add_mutually_exclusive_group()
     name.add_argument(
@@ -169,7 +213,7 @@ def parser():
     filters.add_argument("--tag", help="Filter by a single exact tag")
     filters.add_argument("--untagged", action="store_true")
     commands.add_parser("usage")
-    analytics = commands.add_parser("analytics", help="Read owned works' PV/UV statistics")
+    analytics = commands.add_parser("analytics", help="Read owned works' visit statistics")
     analytics.add_argument("site_id", type=uuid.UUID, nargs="?", help="Omit for all owned works")
     analytics.add_argument("--days", type=int, choices=range(1, 31), default=7, metavar="1-30")
     feedback = commands.add_parser("feedback", help="Contact the LitePage maintainer without login")
@@ -256,6 +300,16 @@ def ensure_identity(api):
     if saved is None:
         api.native_login(socket.gethostname(), mode="anonymous", agent="轻页创作者")
         print("已创建匿名轻页身份：请保留本机凭证；绑定微信后可跨设备恢复。", file=sys.stderr)
+    else:
+        receipt = litepage_referrals.pending(api)
+        if receipt:
+            result = api.request(
+                "POST",
+                "/v1/hosting/referrals/source",
+                authenticated=True,
+                json=litepage_referrals.fields(receipt),
+            )
+            litepage_referrals.acknowledge(api, receipt, result["status"])
 
 
 def claim_handoff(api, creator):
@@ -509,9 +563,42 @@ def publish(api, args):
 
 
 def execute(api, args):
+    if args.command == "referral":
+        return litepage_referrals.execute(api, args, ensure_identity)
     if args.command == "profile":
-        if args.profile_command == "show":
-            return api.request("GET", "/v1/hosting/profile", authenticated=True)
+        if args.profile_command in {"show", "works"}:
+            own = None
+            uid = args.uid
+            if uid is None:
+                try:
+                    own = api.request(
+                        "GET", "/v1/hosting/profile", authenticated=True, response_limit=65536
+                    )
+                except APIError as error:
+                    if error.error.get("code") == "login_required":
+                        raise APIError(
+                            401,
+                            {
+                                "code": "login_required",
+                                "message": "Run lightpage login --wechat, or supply --uid",
+                            },
+                        ) from None
+                    raise
+                uid = own.get("uid")
+                if not isinstance(uid, str) or not re.fullmatch(r"[a-z0-9]{10}", uid):
+                    raise RuntimeError("Server returned no valid profile UID; upgrade the server")
+            path = "/v1/hosting/profiles/" + uid
+            if args.profile_command == "show":
+                result = api.request("GET", path, response_limit=65536)
+                if own is not None:
+                    result.update(own)
+                return result
+            params = {"limit": args.limit}
+            if args.cursor is not None:
+                params["cursor"] = args.cursor
+            result = api.request("GET", path + "/works", params=params, response_limit=524288)
+            result["uid"] = uid
+            return result
         changes = {}
         if args.name is not None:
             if not args.name.strip() or len(args.name) > 80:

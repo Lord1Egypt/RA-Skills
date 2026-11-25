@@ -1,0 +1,4 @@
+interface:
+  display_name: "闲鱼竞品分析"
+  short_description: "连接已登录浏览器采集闲鱼公开商品并输出可核对的价格与卖点报告"
+  default_prompt: "使用 $easy-xianyu-competitor-free 在指定 browserId 中采集闲鱼同类商品并输出竞品报告。"

@@ -1,0 +1,8 @@
+interface:
+  display_name: "单镜头拍摄执行卡"
+  short_description: "将已批准实拍镜头转为摄影与演员可完整照做的现场执行卡"
+  default_prompt: "请使用 $video-single-shot-execution-card-cn，根据用户提供的一条已批准实拍镜头制作执行卡；缺信息先列缺项，未知技术参数标待试拍。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

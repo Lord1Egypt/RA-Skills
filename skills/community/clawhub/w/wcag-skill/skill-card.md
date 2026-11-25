@@ -1,6 +1,6 @@
 ## Description:
 
-Build, audit, and repair web content against WCAG 2.2. Use when: (1) creating accessible HTML/CSS/JS, (2) remediating accessibility defects, (3) running reproducible automated audits, (4) preparing WCAG 2.2 AAA evidence and human-test records, or (5) running the optional AI-WCAG-Gauntlet benchmark.
+Guides developers in building, auditing, and repairing web content against WCAG 2.2, including accessibility checks and evidence workflows.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Developers and accessibility practitioners use the skill to build accessible web pages, audit and repair WCAG 2.2 issues, and document manual test evidence for AAA work.
+Developers and accessibility practitioners use this skill to create accessible HTML, CSS, and JavaScript, fix accessibility defects, run automated and manual checks, and record evidence against WCAG 2.2.
 
 ### Deployment Geography for Use:
 
@@ -22,42 +22,40 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security verdict is benign, but confidence is medium because Skillspector marked coverage partial after some skill references could not be resolved.
+Risk: Browser audits follow redirects and load the target page's subresources, which can contact third-party services.
 
-Mitigation: Review unresolved references and inspect the included scripts before execution; treat the scan result as guidance rather than a safety guarantee.
+Mitigation: Audit only URLs you are authorized to test and prefer loopback or staging hosts.
 
-Risk: The browser audit follows redirects and loads the target page and its subresources, so an audit can reach third-party services.
+Risk: In CI, the audit wrapper disables Chrome's sandbox when CI=true and AXE_CHROME_EXTRA_ARGS is unset.
 
-Mitigation: Audit only URLs you are authorized to test, and prefer loopback or staging hosts as the skill recommends.
+Mitigation: Keep the sandbox enabled outside isolated CI; set AXE_CHROME_EXTRA_ARGS to an empty value when CI should retain it.
 
-Risk: Automated accessibility reports alone cannot establish WCAG conformance, particularly for AAA or interactive states.
+Risk: Automated accessibility results alone do not establish WCAG conformance, and the security review was partial with medium confidence.
 
-Mitigation: Complete the documented manual tests and evidence records for the routes, states, and criteria in scope before making a conformance claim.
+Mitigation: Review unresolved findings, use manual checks and criterion-level evidence for AAA work, and assess dependencies and Chrome settings in the intended environment.
 
 ## Reference(s):
 
-- [Project home](https://github.com/turbolego/wcag-skill)
-- [Validator workflow](artifact/references/validator-workflow.md)
-- [WCAG 2.2 AAA evidence matrix](artifact/references/aaa-evidence-matrix.md)
-- [Manual test protocol](artifact/references/manual-test-protocol.md)
-- [Dynamic state test protocol](artifact/references/dynamic-state-test-protocol.md)
-- [Legacy markup repair guide](artifact/references/legacy-markup-repair.md)
-- [W3C WCAG 2.2 Quick Reference](https://www.w3.org/WAI/WCAG22/quickref/)
-- [AI-WCAG-Gauntlet legacy-repair task](https://github.com/turbolego/AI-WCAG-Gauntlet/blob/main/BENCHMARK.md#legacy-repair-task)
+- [Validator workflow](references/validator-workflow.md)
+- [AAA evidence matrix](references/aaa-evidence-matrix.md)
+- [Manual test protocol](references/manual-test-protocol.md)
+- [Dynamic state test protocol](references/dynamic-state-test-protocol.md)
+- [Legacy markup repair](references/legacy-markup-repair.md)
+- [Skill homepage](https://github.com/turbolego/wcag-skill)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Shell commands, JSON reports, Accessibility findings, WCAG evidence records, Remediation guidance]
+**Output Type(s):** [Guidance, Analysis, Code, Shell commands, Configuration, Files]
 
-**Output Format:** [HTML/CSS/JavaScript examples, Markdown guidance and evidence records, shell commands, and JSON audit reports]
+**Output Format:** [Markdown guidance, HTML/CSS/JavaScript examples, shell commands, and JSON audit reports]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Audit scripts write reports to a chosen output directory; automated findings support review but do not establish WCAG conformance.]
+**Other Properties Related to Output:** [Outputs depend on the requested page and checks; may include audit reports and manual evidence records.]
 
 ## Skill Version(s):
 
-2.0.32 (source: frontmatter)
+2.0.36 (source: frontmatter and server release evidence)
 
 ## Ethical Considerations:
 

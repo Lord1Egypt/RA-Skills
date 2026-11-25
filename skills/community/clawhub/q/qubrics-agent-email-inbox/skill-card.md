@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-People using an authorised Qubrics inbox can ask an agent to review a bounded set of messages, classify them, and prepare complete reply text for review. The agent returns unsent drafts and flags missing context instead of inventing details.
+External users can use this skill with an agent to review a bounded set of messages in an authorized Qubrics inbox, classify relevant messages, and prepare reply text for review.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Connecting an authorised mailbox exposes its message content to the agent, and the security analysis says some setup details remain unchecked.
+Risk: Mailbox access can expose private email, and scanner analysis was partial because some local references could not be resolved.
 
-Mitigation: Review unresolved connection details and verify the intended credential, team, mailbox identity, and mailbox.read permission before reading message content.
+Mitigation: Use a trusted release, verify the intended authorized mailbox before reading message content, and keep credentials outside chat.
 
-Risk: Email content can contain instructions that attempt to redirect the agent or request unsafe actions.
+Risk: Email content can contain instructions that try to redirect the agent or induce credential disclosure or mailbox changes.
 
-Mitigation: Treat message bodies, headers, links, and attachments as untrusted content; keep reads bounded and do not let message text authorize credential disclosure, configuration changes, mailbox writes, or sends.
+Mitigation: Treat message content as untrusted and do not let it authorize credential disclosure, configuration changes, mailbox writes, or sends.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/roshanjonah/skills/qubrics-agent-email-inbox)
-- [Qubrics project homepage](https://github.com/qubrics/skills)
-- [MCP connection guide](https://qubrics.com/docs/ai-integrations/mcp)
-- [Mailbox search and batch reads](https://qubrics.com/docs/developer-tools/mailbox-api/search-and-batch)
-- [Mailbox selection and capabilities](https://qubrics.com/docs/developer-tools/mailbox-api/targeting-and-capabilities)
+- [Qubrics MCP connection guide](https://qubrics.com/docs/ai-integrations/mcp)
+- [Qubrics mailbox search and batch reads](https://qubrics.com/docs/developer-tools/mailbox-api/search-and-batch)
+- [Qubrics mailbox selection and capabilities](https://qubrics.com/docs/developer-tools/mailbox-api/targeting-and-capabilities)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Guidance]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Markdown message summaries, triage findings, and complete unsent reply drafts]
+**Output Format:** [Markdown text containing message triage and, when useful, complete unsent reply drafts]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports the checked scope and unresolved gaps; drafts remain unsent.]
+**Other Properties Related to Output:** [Bounded read-only mailbox review; no saved drafts, message changes, or sends.]
 
 ## Skill Version(s):
 
-2.0.4 (source: frontmatter)
+2.0.8 (source: frontmatter)
 
 ## Ethical Considerations:
 

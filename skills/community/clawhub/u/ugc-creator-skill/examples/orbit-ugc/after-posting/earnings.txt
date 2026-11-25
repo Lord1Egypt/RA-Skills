@@ -1,0 +1,16 @@
+
+Example Orbit: split-screen UGC (example-orbit-app)
+  EXAMPLE ONLY: made-up numbers for the skill's demo campaign
+  TikTok @example.creator [hook h1]: 18,400 views (EXAMPLE ONLY: made-up number), paid $33.12
+  Reels @example.creator (Instagram Reels) [hook h2]: 6,100 views (EXAMPLE ONLY: made-up number), est. $10.98 after 10% fee, pending; 23 day(s) left
+  Shorts @examplecreator (YouTube Shorts) [hook h3]: 2,300 views (EXAMPLE ONLY: made-up number), REJECTED: EXAMPLE ONLY: under 40% of viewers in the brief's countries (appealed 1x)
+    31% of viewers in the US, the UK, Canada, Australia; the brief needs 40%, so expect a rejection
+  received $33.12; open estimate $10.98 (nothing settled yet; $10.98 still counting); 1 of 2 decided rejected
+  hooks: h1 on TikTok 18,400 views; h2 on Instagram Reels 6,100 views; h3 on YouTube Shorts 2,300 views. Different platforms, so read it with care
+  4 h logged, 1.3 h per video: $8.28 per hour received, $11.02 per hour if every open estimate pays
+  under $15.00 per hour so far, but views are still counting (the newest video is 33% into its window). Judge it once 60% of the window has passed
+
+The EXAMPLE ONLY numbers above are made up for the demo; they say nothing about real earnings.
+
+Estimates only. The campaign's own view count decides what is paid, and many videos earn little.
+warning: UGC_NOW is set, so the clock reads 2026-11-28T10:00:00Z, not the real time: deadlines, posting windows and 'yes' expiry all follow it. Unset it (unset UGC_NOW) for real campaigns

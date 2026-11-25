@@ -67,6 +67,7 @@ Agent 自进化（self-evolving agents）领域概念多、实证少。本项目
 ├── examples/                    # 任务文本样例
 ├── exp/                         # 陷阱模板与回归用 fixture
 └── docs/
+    ├── README.md                # 文档单一入口（研究流程/运维细节聚合，0.44 O17）
     ├── (experiment-report.md 已移出默认包，见在线仓库 docs/)
     ├── (adapter-design.md 已于 0.36 移出包 → 归档；历史草案已被现实实现取代)
     ├── other-agents.md          # 其他 Agent 宿主接入指南
@@ -81,7 +82,7 @@ Agent 自进化（self-evolving agents）领域概念多、实证少。本项目
 依赖：**Node ≥ 22**（召回/沉淀零 npm 依赖）；流程 C 实验另需一个 OpenAI 兼容 LLM key、Pi CLI（随 `npm install` 可选安装）与 Python 3（陷阱生成器）。
 
 > **版本语义（0.40 单一数据源生成）**：`package.json` 的 `optionalDependencies` 是**锁定依赖版本**（pi 0.74.2 / evolver 2.0.30，可选集成的兼容基线；A/B 流程零 npm 依赖）；C42 开发前复检得到的是**上游实测版本**（pi 1.5.2 / evolver 2.0.51），只用于兼容性评估与最低运行版本说明，**不是本项目安装的版本**。两者语义不同、互不覆盖，由 `_gen_docs_0400.py` 统一写入。
-> **EN**: Locked dependency versions (pi 0.74.2 / evolver 2.0.30) are pinned optional integrations in package.json; upstream-checked versions (pi 1.5.1 / evolver 2.0.50) come from the C42 pre-development check only, are used for compatibility assessment, and are never installed. Both are emitted from one generator.
+> **EN**: Locked dependency versions (pi 0.74.2 / evolver 2.0.30) are pinned optional integrations in package.json; upstream-checked versions (pi 1.5.2 / evolver 2.0.51) come from the C42 pre-development check only, are used for compatibility assessment, and are never installed. Both are emitted from one generator. Full three-axis standards: `docs/version-standards.md`.
 
 ```bash
 # 0.（可选）安装上游依赖——仅流程 C 实验（Pi CLI）或启用 evolver 集成时需要；A/B 流程可跳过
@@ -171,6 +172,8 @@ node code/pi_evolve.mjs <含陷阱data的模板目录> <任务文本文件> \
 | **[numbat](https://github.com/perplexityai/numbat)**（Perplexity AI，Apache-2.0） | agent 行为审计器（Go 单二进制）——本版 0.18 的 **timeline（四账本取证重建）与 harvest（错误候选→沉淀建议）** 两个命令的方法论直接受其启发：「把账本变成监控录像」「先证明 agent 到底干了什么」。numbat 原生解析 OpenClaw/Claude/Codex 会话日志，可在自有设备上作为 PiEvoX 效果度量的**独立取证后端**（P2 路线）。 |
 | **[FlyLoRA](https://arxiv.org/abs/2510.08396)**（NeurIPS 2025，清华大学；[代码](https://github.com/gfyddha/FlyLoRA)） | 权重空间的隐式秩专家（implicit rank-wise MoE）PEFT —— 与本项目（**提示空间**的推理期经验继承）**不在同一层**，因此不是可直接插入的组件；但有两条原理被**显式迁移**：① **负载均衡偏置** —— 本版 0.14.4 的召回打分加入 `-u·sign(c_i − c̄)`（`c_i` = 该基因历史命中数），缓解"高信号重叠的热门基因长期霸榜"；② **免训练合并不干扰** —— 落到提示层即本版的**注入冲突守卫**（选中集合内 `anti_patterns` 互斥者剔除低分项）。其"正交组件合并互不干扰"的判断，与本项目把负经验正交化为 `anti_patterns` 的做法同构。另：其 **FlyHash 式免参数路由**是我们路线图上 **P2（鲁棒召回）** 的参考方向，**当前尚未实现**（诚实标注）。 |
 | **[Switch Transformer](https://arxiv.org/abs/2101.03961)**（Fedus et al., 2021） | 上述"**负载均衡偏置**"的思想源头之一 —— MoE 负载均衡以每专家计数 `c_i` 与均值的偏离为据。本项目 P1④ 的加性偏置沿用同一形式（温和封顶，规模未到时恒为 0）。 |
+| **[Context Mode](https://github.com/mksglu/context-mode)**（ELv2 source-available） | 方法论**反例参照**（0.42–0.44 源头核查）：其 bench 一手数据表明省的是**输出 bytes**（99%/84% 为大输出场景），小任务反而**倒贴约 5.7% session tokens**（固定钩子开销），官方自承 v2 尚未降低 session tokens。据此确立实验模板（0.44 O15）的诚实口径——**字节省≠token 省≠成本省**，五指标须分列。**仅方法论借鉴，未安装、未复制其代码**（ELv2 与本项目 MIT 零依赖约束冲突）。 |
+| **[LatentRec](https://arxiv.org/abs/2611.07866)**（Su Hongyang et al., CIKM 2026 Short） | 方法论借鉴（0.42–0.44 源头核查）：其 **K=0 可丢弃部署语义**（收益蒸进本体后组件可移除）被采纳为实验模板（0.44 O15）的"**新组件验收闸**"——拆掉后收益仍在则属复杂度摩擦。论文 HR@10 +4–5% 等主结论已核对摘要；部分生产数字出处属 TGR 而非本文、正文未核，**未引用**（诚实标注 [C]）。|
 
 > 以上均为**研读与对照**：本项目与它们均无隶属关系，也不代表其观点；本仓库实现均为原创，默认后端是 MIT 的内置引擎。
 
@@ -178,7 +181,7 @@ node code/pi_evolve.mjs <含陷阱data的模板目录> <任务文本文件> \
 
 ### 四、0.38 工程方法论致谢（本版新增研读与借鉴）
 
-<!-- evox-ack-sources-042: wechat-ai-product-20261105; lobehub/lobehub; deepseek-harness-superagent-20261031; deepseek-ai/dsh-superagent-prototype; harnessmm-arxiv-2610.32813; wechat-harnessmm-20261111; jlon/pi-harnessmm; YuhuaJiang2002/HarnessMM; deepseek-ai/deepseek-harness -->
+<!-- evox-ack-sources-043: wechat-ai-product-20261105; lobehub/lobehub; deepseek-harness-superagent-20261031; deepseek-ai/dsh-superagent-prototype; harnessmm-arxiv-2610.32813; wechat-harnessmm-20261111; jlon/pi-harnessmm; YuhuaJiang2002/HarnessMM; deepseek-ai/deepseek-harness -->
 
 - **《惭愧，我才真正看懂这个 AI 产品。》**（阿颖 / AI产品阿颖，2026-11-05，微信公众号）：产品视角提出「任务 > 会话」「下任务即给出验收清单」「Router / Worker 分工」「Fast Path / Slow Path 两级唤醒」。它让我们确认本项目 T1–T5 触发点与「检查清单 = 接受标准」的方向，并促成 0.38 把随包自检做成一等制品。
 - **[LobeHub](https://github.com/lobehub/lobehub)**（LobeHub LLC，canary 分支，Community License，附加分发条款）：本版实拉源码研读 `groupOrchestration`（Supervisor/Executor 状态机、广播默认禁工具、maxRounds）、`loop/index.ts`（`AgentLoopStopReason` 七值单点计算）、`.agents/skills/acceptance/SKILL.md`（`requiredEvidence` 缺制品即 hold delivery）、异构驱动目录（含 `pi.ts`）。启发 0.38 的「判定结果显式枚举」「验收须有可验证制品」「循环自检不可变轮次」三项设计稿。**仅借鉴方法论，未复制、未移植其源码**；其许可的附加条款不作为本项目的实现依据。
@@ -197,11 +200,11 @@ node code/pi_evolve.mjs <含陷阱data的模板目录> <任务文本文件> \
 > **EN**: 0.41 acknowledges five additional methodology sources read and verified for this release: the HarnessMM paper (arXiv:2610.32813, v2, Tsinghua / MSRA), a WeChat explainer article, the `pi-harnessmm` port, the official HarnessMM implementation, and the DeepSeek Harness (`dsh`) repository. The paper's main experiments use **Qwen3.5-4B** on short function-level tasks; CCS is a **callback-substitution mechanism**, not an audit ledger. Only the methodology informed our work (separating reuse gains from other savings, A/B-testing guard upgrades, labelling extrapolation limits). **Methodology only — no source was copied or derived**; unverified second-hand figures (25%/22%, the 539-call attribution) were not adopted. Our project is independent and represents no official view of those authors.
 
 
-## 项目状态（2026-11-15）
+## 项目状态（2026-11-19）
 
 | 项 | 状态 |
 |---|---|
-| 当前版本 | 0.42.0（版本轨迹，从最早建仓起升序，与 GitHub releases 实测一致：0.1.0 → 0.5.0 → 0.7.0 → 0.8.0 → 0.9.0 → 0.10.0 → 0.11.0 → 0.12.0 → 0.13.1 → 0.14.0 → 0.14.2 → 0.14.3 → 0.14.4 → 0.14.5 → 0.14.6 → 0.14.7 → 0.14.8 → 0.15.0 → 0.16.0 → 0.17.0 → 0.18.0 → 0.18.1 → 0.19.0 → 0.19.1 → 0.20.2 → 0.20.3 → 0.21.0 → 0.22.0 → 0.23.0 → 0.24.0 → 0.25.0 → 0.26.0 → 0.27.0 → 0.28.0 → 0.29.0 → 0.30.0 → 0.31.0 → 0.32.0 → 0.32.1 → 0.33.0 → 0.34.0 → 0.35.0 → 0.36.0 → 0.37.0 → 0.38.0 → 0.39.0 → 0.40.0 → 0.41.0 → 0.42.0） |
+| 当前版本 | 0.44.0（版本轨迹，从最早建仓起升序，与 GitHub releases 实测一致：0.1.0 → 0.5.0 → 0.7.0 → 0.8.0 → 0.9.0 → 0.10.0 → 0.11.0 → 0.12.0 → 0.13.1 → 0.14.0 → 0.14.2 → 0.14.3 → 0.14.4 → 0.14.5 → 0.14.6 → 0.14.7 → 0.14.8 → 0.15.0 → 0.16.0 → 0.17.0 → 0.18.0 → 0.18.1 → 0.19.0 → 0.19.1 → 0.20.2 → 0.20.3 → 0.21.0 → 0.22.0 → 0.23.0 → 0.24.0 → 0.25.0 → 0.26.0 → 0.27.0 → 0.28.0 → 0.29.0 → 0.30.0 → 0.31.0 → 0.32.0 → 0.32.1 → 0.33.0 → 0.34.0 → 0.35.0 → 0.36.0 → 0.37.0 → 0.38.0 → 0.39.0 → 0.40.0 → 0.41.0 → 0.42.0 → 0.43.0 → 0.44.0） |
 | 引擎 | 默认内置 light 引擎（零 npm 依赖，MIT）；evolver 为可选集成 |
 | 让经验真正生效 | 0.16.0 针对「沉淀了却不生效」的四个静默失效：① `info` 显示**闭环健康度**（召回次数/命中/待审 + 下一步命令）② 自己沉淀的基因自动过审（语义见 SKILL.md「审核状态机」）③ `install-hooks` 自动接线（**默认演练，加 `--yes` 才写入**）④ `starter` 一键装载 20 条通用起步基因 |
 | 召回（最后一公里） | 0.15.0 修掉「基因已入库却召回不到」四个断点：① **任务文本清洗**（剥宿主信封前缀/纯URL/心跳样板）② **CJK bigram 分词**（原整段成单 token ⇒ 中文任务与中文基因永不相交）③ **无任务意图不注入**（不再"取最近N条"凑数）④ **注入即登记 + `--negate` 回填**（闭合"注入→有效"漏斗）。私有节点实测有效召回率 **10%** ⇒ 目标 >60% |

@@ -16,7 +16,7 @@ terms:
   - {id: queuing, en: Queuing, zh: 排队, zh_status: community, category: customer_phase}
   - {id: waiting_for_table, en: Waiting for Table, zh: 等待桌位, zh_status: community, category: customer_phase}
   - {id: thinking, en: Thinking, zh: 思考点单, zh_status: community, category: customer_phase}
-  - {id: service, en: Service, zh: 服务, zh_status: community, category: customer_phase}
+  - {id: service, en: Service, zh: 服务, zh_status: community, category: customer_phase, aliases: [点单, 服务/点单]}
   - {id: waiting_for_food, en: Waiting for Food, zh: 等待上菜, zh_status: community, category: customer_phase}
   - {id: delivery, en: Delivery, zh: 配送, zh_status: community, category: customer_phase}
   - {id: eating, en: Eating, zh: 用餐, zh_status: community, category: customer_phase}
@@ -24,12 +24,12 @@ terms:
   - {id: salad, en: Salad, zh: 沙拉, zh_status: community, category: recipe}
   - {id: pizza, en: Pizza, zh: 披萨, zh_status: community, category: recipe}
   - {id: dumplings, en: Dumplings, zh: 饺子, zh_status: community, category: recipe}
-  - {id: black_coffee, en: Black Coffee, zh: 咖啡, zh_status: community, category: recipe}
+  - {id: black_coffee, en: Black Coffee, zh: 咖啡, zh_status: community, category: recipe, aliases: [黑咖啡]}
   - {id: burgers, en: Burgers, zh: 汉堡, zh_status: community, category: recipe}
-  - {id: sandwiches, en: Sandwiches, zh: 三明治, zh_status: community, category: recipe}
+  - {id: sandwiches, en: Sandwiches, zh: 三明治, zh_status: community, category: recipe, aliases: [Sandwich]}
   - {id: turkey, en: Turkey, zh: 火鸡, zh_status: community, category: recipe}
   - {id: pies, en: Pies, zh: 派, zh_status: community, category: recipe}
-  - {id: cakes, en: Cakes (Pastry), zh: 蛋糕/糕点, zh_status: community, category: recipe}
+  - {id: cakes, en: Cakes (Pastry), zh: 蛋糕/糕点, zh_status: community, category: recipe, aliases: [蛋糕, 糕点, 蛋糕（糕点）]}
   - {id: spaghetti, en: Spaghetti, zh: 意大利面, zh_status: community, category: recipe}
   - {id: sundaes, en: Sundaes, zh: 圣代, zh_status: community, category: recipe}
   - {id: fish, en: Fish, zh: 鱼, zh_status: community, category: recipe}
@@ -70,6 +70,7 @@ terms:
   - {id: apple, en: Apple, zh: 苹果, zh_status: suggested, category: ingredient}
   - {id: bamboo, en: Bamboo, zh: 竹笋, zh_status: suggested, category: ingredient}
   - {id: beans, en: Beans, zh: 豆子, zh_status: suggested, category: ingredient}
+  - {id: bell_peppers, en: Bell Peppers, zh: 甜椒, zh_status: suggested, category: ingredient}
   - {id: blue_fish, en: Blue Fish, zh: 蓝鱼, zh_status: suggested, category: ingredient}
   - {id: pink_fish, en: Pink Fish, zh: 粉鱼, zh_status: suggested, category: ingredient}
   - {id: crab, en: Crab, zh: 螃蟹, zh_status: suggested, category: ingredient}
@@ -246,7 +247,7 @@ terms:
   - {id: upgrade_kit, en: Upgrade Kit, zh: 升级工具包, zh_status: community, category: appliance}
   - {id: starter_plates, en: Starter Plates, zh: 初始盘子, zh_status: suggested, category: appliance}
   - {id: plates, en: Plates, zh: 盘子, zh_status: suggested, category: appliance}
-  - {id: pot_stack, en: Pot Stack, zh: 锅堆, zh_status: community, category: appliance}
+  - {id: pot_stack, en: Pot Stack, zh: 锅堆, zh_status: community, category: appliance, aliases: [锅具组]}
   - {id: serving_boards, en: Serving Boards, zh: 上菜板, zh_status: community, category: appliance}
   - {id: coffee_machine, en: Coffee Machine, zh: 咖啡机, zh_status: suggested, category: appliance}
   - {id: ice_dispenser, en: Ice Dispenser, zh: 制冰机, zh_status: suggested, category: appliance}
@@ -347,6 +348,8 @@ terms:
   - {id: cupcake_recipe, en: Cupcake, zh: 纸杯蛋糕, zh_status: community, category: recipe}
   - {id: doughnut, en: Doughnut, zh: 甜甜圈, zh_status: community, category: recipe}
   - {id: brownies, en: Brownies, zh: 布朗尼, zh_status: community, category: recipe}
+  - {id: cookies, en: Cookies, zh: 曲奇, zh_status: suggested, category: recipe_variant, aliases: [饼干]}
+  - {id: cake_flavour_chocolate, en: "Cake Flavour - Chocolate", zh: 蛋糕口味-巧克力, zh_status: suggested, category: recipe_variant}
   - {id: cake_flavour_coffee, en: Cake Flavour - Coffee, zh: 蛋糕口味-咖啡, zh_status: suggested, category: recipe_variant}
   - {id: cake_flavour_lemon, en: Cake Flavour - Lemon, zh: 蛋糕口味-柠檬, zh_status: suggested, category: recipe_variant}
   - {id: traditional_recipe, en: Traditional Recipe, zh: 传统做法, zh_status: suggested, category: recipe_variant}
@@ -369,9 +372,9 @@ terms:
   - {id: fajitas_onions, en: Fajitas - Onions, zh: 法士达-洋葱, zh_status: suggested, category: recipe_variant}
   - {id: fajitas_cheese, en: Fajitas - Cheese, zh: 法士达-芝士, zh_status: suggested, category: recipe_variant}
   - {id: fajitas_tomato, en: Fajitas - Tomato, zh: 法士达-番茄, zh_status: suggested, category: recipe_variant}
-  - {id: crema, en: Crema, zh: 墨西哥酸奶油, zh_status: suggested, category: recipe_extra}
-  - {id: salsa, en: Salsa, zh: 莎莎酱, zh_status: suggested, category: recipe_extra}
-  - {id: guacamole, en: Guacamole, zh: 鳄梨酱, zh_status: suggested, category: recipe_extra}
+  - {id: crema, en: Fajitas - Crema, zh: 墨西哥酸奶油, zh_status: suggested, category: recipe_extra, aliases: [Crema]}
+  - {id: salsa, en: Fajitas - Salsa, zh: 莎莎酱, zh_status: suggested, category: recipe_extra, aliases: [Salsa]}
+  - {id: guacamole, en: Fajitas - Guacamole, zh: 鳄梨酱, zh_status: suggested, category: recipe_extra, aliases: [Guacamole]}
   - {id: breakfast_beans, en: Breakfast Beans, zh: 早餐豆子, zh_status: suggested, category: recipe_variant}
   - {id: breakfast_eggs, en: Breakfast Eggs, zh: 早餐鸡蛋, zh_status: suggested, category: recipe_variant}
   - {id: breakfast_extras, en: Breakfast Extras, zh: 早餐配料, zh_status: suggested, category: recipe_extra}
@@ -379,3 +382,23 @@ terms:
   - {id: mushroom_stir_fry, en: Mushroom Stir Fry, zh: 蘑菇炒菜, zh_status: suggested, category: recipe_variant}
   - {id: steak_stir_fry, en: Steak Stir Fry, zh: 牛排炒菜, zh_status: suggested, category: recipe_variant}
   - {id: stir_fry_soy_sauce, en: Stir Fry - Soy Sauce, zh: 炒菜-酱油, zh_status: suggested, category: recipe_extra}
+  - {id: broth_base, en: Broth Base, zh: 高汤底, zh_status: suggested, category: recipe}
+  - {id: broccoli_cheese_soup, en: Broccoli Cheese Soup, zh: 西兰花芝士汤, zh_status: suggested, category: recipe}
+  - {id: carrot_soup, en: Carrot Soup, zh: 胡萝卜汤, zh_status: suggested, category: recipe}
+  - {id: meat_soup, en: Meat Soup, zh: 肉汤, zh_status: suggested, category: recipe}
+  - {id: pumpkin_soup, en: Pumpkin Soup, zh: 南瓜汤, zh_status: suggested, category: recipe}
+  - {id: tomato_soup, en: Tomato Soup, zh: 番茄汤, zh_status: suggested, category: recipe}
+  - {id: bread_starter, en: Bread, zh: 面包, zh_status: suggested, category: recipe}
+  - {id: mandarin_starter, en: Mandarin Starter, zh: 柑橘前菜, zh_status: suggested, category: recipe}
+  - {id: pumpkin_seed, en: Pumpkin Seed, zh: 南瓜籽, zh_status: suggested, category: recipe}
+  - {id: broccoli_side, en: Broccoli, zh: 西兰花, zh_status: community, category: recipe}
+  - {id: bamboo_side, en: Bamboo, zh: 竹笋, zh_status: suggested, category: recipe}
+  - {id: chips, en: Chips, zh: 薯条, zh_status: suggested, category: recipe}
+  - {id: corn_on_cob, en: Corn on the Cob, zh: 玉米棒, zh_status: suggested, category: recipe}
+  - {id: mashed_potato, en: Mashed Potato, zh: 土豆泥, zh_status: suggested, category: recipe}
+  - {id: onion_rings, en: Onion Rings, zh: 洋葱圈, zh_status: suggested, category: recipe}
+  - {id: roast_potato, en: Roast Potato, zh: 烤土豆, zh_status: suggested, category: recipe}
+  - {id: apple_pie_dessert, en: Apple Pies, zh: 苹果派, zh_status: suggested, category: recipe}
+  - {id: cherry_pie, en: Cherry Pie, zh: 樱桃派, zh_status: suggested, category: recipe}
+  - {id: pumpkin_pie, en: Pumpkin Pies, zh: 南瓜派, zh_status: suggested, category: recipe}
+  - {id: cheese_board, en: Cheese Board, zh: 芝士拼盘, zh_status: suggested, category: recipe}

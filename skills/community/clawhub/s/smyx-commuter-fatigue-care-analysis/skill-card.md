@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes living-room camera footage from a commuter’s first 30 minutes at home to estimate fatigue and trigger gentle smart-home care prompts.
+Analyzes a home-arrival video for possible signs of after-work fatigue and returns a structured summary with gentle self-care suggestions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Smart-home users can use this skill to analyze living-room video, optionally with audio, from the period after they arrive home and receive a fatigue report and care suggestions. It describes fatigue monitoring rather than medical diagnosis.
+External smart-home users can use the skill to review a short home-arrival video for possible fatigue indicators and receive gentle self-care suggestions; it is not a medical assessment.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment rates this release suspicious with high confidence, citing privacy and consent gaps, behavior beyond the stated fatigue-monitoring purpose, and persistent identity and credential handling.
+Risk: The security review flags possible remote handling of private household footage.
 
-Mitigation: Avoid installation until the developer explains account and token handling, where household video is sent, and how consent and retention are handled.
+Mitigation: Use only footage you have permission to share, and review the service's privacy and data-handling terms before sending household video.
 
-Risk: The security guidance says export-only behavior needs to be fixed, and the scan was partial because a referenced local item was missing.
+Risk: The security review flags possible silent account creation and credential storage.
 
-Mitigation: Confirm the export-only behavior is corrected and review a complete security scan before use.
+Mitigation: Review account setup and credential handling before use, and avoid providing credentials you are not comfortable storing with the service.
+
+Risk: The security review warns that an export-only option may still analyze video.
+
+Mitigation: Do not use export-only mode with private footage unless its behavior has been confirmed for the installed release.
 
 ## Reference(s):
 
-- [API documentation](references/api_doc.md)
+- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-commuter-fatigue-care-analysis)
+- [API reference](artifact/references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
-- [ClawHub release](https://clawhub.ai/smyx-sunjinhui/skills/smyx-commuter-fatigue-care-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
+**Output Type(s):** [Analysis, JSON, Markdown, Recommendations]
 
-**Output Format:** [Structured fatigue analysis report and Markdown history table]
+**Output Format:** [Structured analysis report, with Markdown tables for history listings]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports may include fatigue indicators, a 0–100 fatigue index, care suggestions, and report links.]
+**Other Properties Related to Output:** [May include observed fatigue indicators, a fatigue score, care suggestions, and report links; it does not provide a medical diagnosis.]
 
 ## Skill Version(s):
 
-1.0.15 (source: server-resolved release metadata)
+1.0.17 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

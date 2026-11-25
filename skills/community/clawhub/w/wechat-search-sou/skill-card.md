@@ -1,6 +1,6 @@
 ## Description:
 
-按关键词只读检索微信公开文章和视频，并返回结构化结果。
+微信搜一搜公开数据只读：按关键词搜微信文章、微信视频。触发：微信搜索、搜一搜、公众号文章、视频号、微信热门、微信最新、wechat search、wechat article、wechat video。抖音、小红书、快手、B站、微博不要用本技能。不支持图片搜索、正文抓取、账号登录。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-面向内容研究者和运营人员，用于按关键词查找微信文章或视频，辅助选题、热点监测和竞品分析。
+Developers and content analysts use this skill to search public WeChat articles and videos by keyword for topic discovery, competitor analysis, and trend monitoring.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: 安全扫描为中等置信度 benign；部分组件仅完成部分检查，且扫描报告检测到未声明工具范围的环境访问。
+Risk: Search keywords are sent to the external Guaikei API.
 
-Mitigation: 安装前检查技能文件，并将运行权限限制为完成搜索所需的范围；按技能说明通过环境变量提供令牌，不要将令牌放入命令参数。
+Mitigation: Avoid using sensitive or private terms as search keywords.
 
-Risk: 搜索关键词会发送至第三方 Guaikei API。
+Risk: The security scan had partial coverage, so its benign verdict does not resolve all uncertainty.
 
-Mitigation: 避免提交包含机密或敏感信息的搜索关键词。
+Mitigation: Review the skill code and consider the scan's stated coverage limits before installation.
 
 ## Reference(s):
 
-- [微信搜索参数说明](references/options.md)
-- [Guaikei API 服务](https://www.guaikei.com)
+- [Skill release page](https://clawhub.ai/um-why/skills/wechat-search-sou)
+- [Search options](references/options.md)
+- [Output contract](references/contract.md)
+- [Environment and usage FAQ](references/faq.md)
+- [Guaikei service](https://www.guaikei.com)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Text]
+**Output Type(s):** [JSON]
 
-**Output Format:** [结构化 JSON 搜索结果及简洁的自然语言摘要]
+**Output Format:** [JSON output envelope containing structured article or video search results]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [用户需提供关键词并选择文章或视频搜索；可选排序、时间或时长筛选。只返回公开搜索数据，不提供图片搜索、正文抓取或账号登录。]
+**Other Properties Related to Output:** [Read-only search results; the envelope can also report empty or error states, and may include an estimated cost.]
 
 ## Skill Version(s):
 
-1.1.1 (source: frontmatter, package.json)
+1.1.3 (source: SKILL.md frontmatter, package.json)
 
 ## Ethical Considerations:
 

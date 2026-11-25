@@ -1,6 +1,6 @@
 {
   "name": "xiaohongshu-yunying-zhushou",
-  "version": "1.2.1",
+  "version": "1.2.3",
   "description": "一站式小红书运营工具，融合选题灵感、数据分析模块。支持爆款标题、热点选题、粉丝分析等，覆盖小红书运营数据获取场景。关键词搜笔记、笔记详情、评论舆情、博主作品与粉丝数据，输出 JSON，用于选题、竞品、KOL 筛选。",
   "keywords": [
     "小红书",

@@ -1,6 +1,6 @@
 ## Description:
 
-Generates and transforms images by selecting a suitable dLazy CLI model for the prompt.
+Image generation skill. Automatically selects the best dlazy CLI image model based on the prompt.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agents use this skill to generate or edit images from prompts and reference media, choosing among the listed dLazy image models and related image tools.
+Developers and creators can use the skill to generate images from prompts and select an appropriate dlazy image model. It also describes image editing and processing workflows through the dlazy CLI.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review notes a mismatch between the image-generation description and additional video and speech workflows, and reports incomplete scan coverage.
+Risk: The security summary notes that the instructions describe video and speech features in addition to image generation, so the scope may be broader than the release description suggests.
 
-Mitigation: Review the skill instructions and CLI behavior, including any video or speech commands, before installation or use.
+Mitigation: Review the selected command and media type before use, and provide only inputs intended for that operation.
 
-Risk: Using the hosted service requires a dLazy API key, and the skill describes sending prompts and supplied media to dLazy services.
+Risk: The skill documentation says prompts and supplied media can be sent to dLazy hosted services.
 
-Mitigation: Review the CLI installation and API-key requirements and ensure prompts and media are appropriate to send to the hosted service.
+Mitigation: Avoid submitting sensitive prompts or media unless that transfer is permitted for the intended use.
+
+Risk: The security summary says some reference checks were incomplete, leaving the available evidence incomplete.
+
+Mitigation: Review the linked package and service information before installation or use.
 
 ## Reference(s):
 
+- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-image-generate)
 - [dLazy website](https://dlazy.com)
-- [CLI repository listed in skill metadata](https://github.com/dlazy-ai/cli)
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli)
-- [ClawHub release page](https://clawhub.ai/dlazyai/skills/dlazy-image-generate)
+- [@dlazy/cli npm package](https://www.npmjs.com/package/@dlazy/cli)
+- [CLI project page listed in skill metadata](https://github.com/dlazy-ai/cli)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, SVG graphics, Image URLs, JSON]
+**Output Type(s):** [Image files, SVG files, URLs, Shell commands, Guidance]
 
-**Output Format:** [Generated image or SVG assets returned as hosted URLs in a JSON response envelope]
+**Output Format:** [CLI commands with JSON results and generated-media URLs]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [The selected model determines image format, resolution, and whether reference media is used.]
+**Other Properties Related to Output:** [Generated media may be hosted at dLazy URLs; available operations and output details depend on the selected model.]
 
 ## Skill Version(s):
 
-1.3.42 (source: server-resolved release evidence)
+1.3.45 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

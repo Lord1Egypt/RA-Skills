@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and creative users use this skill to generate images from text prompts or edit images with reference images, choosing an aspect ratio and quality level for the result.
+External users and developers can request detailed image generation or edit images with text prompts and optional reference images. The skill returns generated image assets and result metadata through the dLazy service.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan reports a mismatch between the image-generation description and the skill's login and authentication operations.
+Risk: The security review reports medium confidence and partial analysis, with some referenced paths or package details unavailable and a login step left unexplained.
 
-Mitigation: Review the dLazy CLI authentication flow and confirm those operations are expected before use.
+Mitigation: Review the CLI authentication and service details before installing, and proceed only if comfortable with the login flow.
 
-Risk: Local reference images are uploaded to dLazy media storage for processing.
+Risk: Reference images supplied from local paths are uploaded to dLazy media storage for processing.
 
-Mitigation: Only submit images you are authorized to share, and avoid confidential or sensitive images.
+Mitigation: Avoid submitting sensitive images unless your data-handling requirements permit uploading them to dLazy.
 
 ## Reference(s):
 
 - [ClawHub release page](https://clawhub.ai/dlazyai/skills/dlazy-gpt-image-2-5-sunburst)
-- [dLazy CLI repository linked in skill metadata](https://github.com/dlazy-ai/cli)
-- [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
-- [dLazy](https://dlazy.com)
+- [dLazy CLI repository (referenced in skill metadata)](https://github.com/dlazy-ai/cli)
+- [dLazy CLI on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy service](https://dlazy.com)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, JSON metadata]
+**Output Type(s):** [Images, JSON]
 
-**Output Format:** [Image files returned through a JSON response with image URLs and metadata]
+**Output Format:** [Generated image files and JSON response metadata]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Supports text prompts, up to five reference images, multiple aspect ratios, and selectable quality; asynchronous requests can return a task identifier before the images are ready.]
+**Other Properties Related to Output:** [Accepts up to five reference images; supports aspect ratios from auto through 21:9, quality settings from low through max, and asynchronous jobs.]
 
 ## Skill Version(s):
 
-1.2.31 (source: server-resolved release evidence)
+1.2.34 (source: server release evidence)
 
 ## Ethical Considerations:
 

@@ -22,7 +22,7 @@ description: |
 
   Call `GET /health` first (free) before paying for history endpoints. Use `npx agentcash@latest fetch` for the paid routes.
 metadata:
-  version: 2
+  version: 3
   openclaw:
     emoji: "⛽"
     homepage: https://base-gas-x402.vercel.app
@@ -46,6 +46,7 @@ See [rules/getting-started.md](rules/getting-started.md) for installation and wa
 | Task | Endpoint | Price | Returns |
 |------|----------|-------|---------|
 | Current gas | `GET /gas` | $0.002 | Base fee, low/med/high priority tiers, cost estimate in ETH and USD |
+| Send now or wait | `GET /gas/advice` | $0.003 | `send_now` or `wait`, reason, USD cost now, ready-to-sign fees (medium tier, wei) |
 | Compare chains | `GET /gas/compare` | $0.01 | Base, OP, Arbitrum, Ethereum ranked cheapest first, cost in USD |
 | Historical trend | `GET /gas/history` | $0.01 | Time series, min/max/avg/median, cheap-or-expensive verdict |
 | Cheapest hours | `GET /gas/cheapest-window` | $0.02 | Hours to avoid, cheapest hour, savings vs the average hour and in USD |
@@ -79,6 +80,19 @@ npx agentcash@latest fetch "https://base-gas-x402-production.up.railway.app/gas?
 | Contract deploy | 1500000 |
 
 **Returns:** `baseFeePerGas`, `priorityFeePerGas` (low/medium/high), `gasPrice`, `estimatedTransferCost` (gwei, ETH and USD), `suggestedFees` (low/medium/high `maxFeePerGas` and `maxPriorityFeePerGas` in wei, ready to sign), `blockNumber`, `fetchedAt`.
+
+## Send Now or Wait
+
+```bash
+npx agentcash@latest fetch "https://base-gas-x402-production.up.railway.app/gas/advice?gasLimit=180000"
+```
+
+**Parameters:**
+- `gasLimit` (optional) - Gas units to price the transaction against. Defaults to 21000.
+
+**Returns:** `advice` (`send_now` or `wait`), `reason`, `waitMinutes` when the advice is `wait`, `now.costUsd` (USD cost of sending now, as a string such as `"0.003504"`), and `suggestedFees` (medium tier `maxFeePerGas` and `maxPriorityFeePerGas` in wei, ready to sign).
+
+One call answers "should I send this now?" for a single transaction. Quote `reason` rather than reinterpreting it.
 
 ## Compare Chains
 
@@ -137,10 +151,17 @@ If `hoursCovered` is smaller than the window you need, the answer will be thin. 
 
 ### Decide whether to transact now
 
-- [ ] Check the trend and verdict: `GET /gas/history?hours=24`
+- [ ] Ask first: `GET /gas/advice?gasLimit=<n>`
+- [ ] If `advice` is `send_now`, sign with `suggestedFees` directly (wei strings)
+- [ ] If `advice` is `wait`, wait `waitMinutes` and call `/gas/advice` again
+- [ ] For a deeper look, check the trend and verdict: `GET /gas/history?hours=24`
 - [ ] If `verdict` is `flat`, proceed and tell the user there is nothing to wait for
 - [ ] If `cheap`, proceed
 - [ ] If `expensive`, check whether waiting actually helps: `GET /gas/cheapest-window`
+
+```bash
+npx agentcash@latest fetch "https://base-gas-x402-production.up.railway.app/gas/advice?gasLimit=180000"
+```
 
 ```bash
 npx agentcash@latest fetch "https://base-gas-x402-production.up.railway.app/gas/history?hours=24"
@@ -186,6 +207,10 @@ npx agentcash@latest fetch "https://base-gas-x402-production.up.railway.app/gas/
 ```
 
 ## Cost Optimization
+
+### Use `/gas/advice` when:
+- You need one quick send-now-or-wait decision before a single transaction
+- You want the decision and ready-to-sign fees in one call
 
 ### Use `/gas` when:
 - You only need the current price

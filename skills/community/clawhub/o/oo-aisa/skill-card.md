@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and analysts use this skill to query AIsa data services and perform supported actions through the oo CLI from an OOMOL-connected account.
+People using AIsa through an OOMOL-connected account can inspect available action schemas and perform tasks such as reading, creating, updating, or deleting AIsa data. The skill guides the agent to submit schema-matched requests through the oo CLI.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Automatic setup or synchronization can execute unverified downloaded code.
+Risk: The setup instructions offer a remote installer whose behavior the security evidence says is unknown.
 
-Mitigation: Verify a specific oo CLI release and review its automatic skill synchronization before use.
+Mitigation: Review and verify the installer before running it; use an already installed oo CLI where possible.
 
-Risk: AIsa requests may incur usage charges, and background or destructive actions can have side effects.
+Risk: Security analysis is partial because two local references were missing.
 
-Mitigation: Allow only intended requests, account for usage charges, and retain approval for background jobs and destructive actions.
+Mitigation: Locate and review the missing referenced material and complete the security review before relying on the skill.
+
+Risk: The skill exposes actions that can create, update, or delete AIsa data.
+
+Mitigation: Review the action schema and target data before making changes, and confirm destructive actions with the user.
 
 ## Reference(s):
 
+- [AIsa API documentation](https://aisa.one/docs/zh/api-reference)
 - [AIsa](https://aisa.one)
-- [AIsa API Reference](https://aisa.one/docs/zh/api-reference)
-- [oo CLI](https://github.com/oomol-lab/oo-cli)
-- [AIsa skill release](https://clawhub.ai/oomol/skills/oo-aisa)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-aisa)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, JSON, Text]
+**Output Type(s):** [Shell commands, API calls, JSON]
 
-**Output Format:** [Markdown guidance with shell command examples and JSON connector responses]
+**Output Format:** [oo CLI commands with JSON request payloads and connector responses]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Inspect each action schema before building a request; actions may read or change AIsa data.]
 
 ## Skill Version(s):
 
-1.0.5 (source: frontmatter)
+1.0.6 (source: release evidence and frontmatter)
 
 ## Ethical Considerations:
 

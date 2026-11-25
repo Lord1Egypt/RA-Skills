@@ -1,6 +1,6 @@
 ## Description:
 
-Provides OpenSea guidance and tools for NFT and token data, NFT trading, token swaps, wallet signing, and gated AI tool development.
+Buy and sell NFTs through OpenSea on EVM chains and Solana. Fulfill listings, accept or create offers, cancel orders, make cross-chain purchases, and sweep listings. Requires wallet signing; for read-only queries use opensea-api instead.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Developers use this skill to query OpenSea NFT and token data, prepare marketplace actions and swaps, configure wallet signing, and build or access gated AI tools.
+Developers and agents use this skill to create and manage NFT listings and offers, fulfill or cancel orders, and prepare supported cross-chain purchases and collection sweeps through OpenSea. It provides transaction steps for a configured wallet to sign after the user reviews and approves them.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Security evidence reports transaction flows without clear approval checkpoints and installation examples using unpinned packages; scanner analysis was partial.
+Risk: Wallet transactions and token approvals can authorize or move assets.
 
-Mitigation: Review package versions before installation, and inspect transaction details and approval requests before authorizing wallet actions.
+Mitigation: Review the dry-run summary, recipients, fees, warnings, and approval amount; obtain user approval before signing or submitting. Use a standing unlimited approval only when the user explicitly agrees.
+
+Risk: The security scan was partial, and its review flagged unpinned install commands.
+
+Mitigation: Review the relevant scripts and dependencies, and use reviewed fixed package versions before installation.
 
 ## Reference(s):
 
+- [Marketplace API reference](references/marketplace-api.md)
 - [OpenSea developer documentation](https://docs.opensea.io/)
-- [OpenSea API key documentation](https://docs.opensea.io/reference/api-keys#instant-api-key-for-agents)
-- [OpenSea API specification](https://api.opensea.io/api/v2/openapi.json)
-- [OpenSea Tool SDK](https://github.com/ProjectOpenSea/tool-sdk)
-- [OpenSea Skill project homepage](https://github.com/ProjectOpenSea/opensea-skill)
+- [Wallet setup and signing policies](../opensea-wallet/SKILL.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, JSON, Shell commands, Code, Configuration instructions]
+**Output Type(s):** [Text, Markdown, Shell commands, JSON]
 
-**Output Format:** [Markdown guidance, shell commands, code examples, and JSON API data or transaction plans]
+**Output Format:** [Markdown guidance, shell commands, JSON request bodies, and transaction steps]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Content varies with the requested OpenSea data or wallet operation.]
+**Other Properties Related to Output:** [Transaction details and approval steps for user review before signing or submission]
 
 ## Skill Version(s):
 
-2.32.0 (source: server release evidence and package.json)
+2.35.0 (source: package.json and server-resolved release)
 
 ## Ethical Considerations:
 

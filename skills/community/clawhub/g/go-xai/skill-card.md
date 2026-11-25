@@ -1,6 +1,6 @@
 ## Description:
 
-Guides Go developers in using the unofficial go-xai client to call xAI's REST API.
+Unofficial Go client for the xAI (Grok) REST API at https://api.x.ai.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Go developers use this skill to integrate xAI's API into Go projects with typed client methods. It guides setup, authentication, endpoint selection, request construction, and response handling.
+Developers use this skill to add typed Go calls to xAI APIs, including chat, responses, embeddings, image and video generation, and file operations.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: API keys can be exposed through source code, logs, or request headers.
+Risk: Some xAI API calls incur charges or change account state, including file and skill changes and stored response deletion.
 
-Mitigation: Read the key from an environment variable and do not commit or log it or print request headers.
+Mitigation: Review the requested operation before calling it, and limit changes to resources the user identified or the task created.
 
-Risk: Some API calls incur charges or change account resources, including uploads, deletes, and public links.
+Risk: The bearer API key can be exposed if it is hardcoded, committed, or logged.
 
-Mitigation: Make paid or state-changing calls only when requested, and limit them to resources the user named or the task created.
+Mitigation: Read the key from XAI_API_KEY or another secret store, and do not log request headers.
 
 ## Reference(s):
 
-- [Setup and API reference](references/setup.md)
+- [Setup and reference](references/setup.md)
+- [go-xai repository](https://github.com/psyb0t/go-xai)
 - [go-xai package documentation](https://pkg.go.dev/github.com/psyb0t/go-xai)
-- [go-xai project homepage](https://github.com/psyb0t/go-xai)
+- [xAI API](https://api.x.ai)
+- [ClawHub skill listing](https://clawhub.ai/psyb0t/skills/go-xai)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions]
+**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown with Go code examples and shell commands]
+**Output Format:** [Markdown guidance with Go and shell code examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Examples cover typed API requests, bearer authentication, and response handling.]
+**Other Properties Related to Output:** [Examples use a bearer API key supplied through XAI_API_KEY.]
 
 ## Skill Version(s):
 
-0.2.3 (source: server-resolved release metadata)
+0.2.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

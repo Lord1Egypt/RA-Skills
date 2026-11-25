@@ -1,6 +1,6 @@
 ## Description:
 
-When explicitly invoked, design, specify, implement, review, refactor, or explain software with Daniel Jackson's concepts and synchronizations, check CONCEPT.md/SYNCS.md structure, and generate Mermaid relationship diagrams.
+Use only when explicitly invoked. Design, specify, implement, review, refactor, or explain software with Daniel Jackson's concepts and synchronizations. Check CONCEPT.md/SYNCS.md structure and generate Mermaid relationship diagrams.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and software architects use this skill to design, specify, implement, review, refactor, or explain software using concepts and synchronization rules, and to produce related specifications and diagrams.
+Developers and product teams use this skill, when explicitly invoked, to model software behavior as concepts and synchronization rules, then produce specifications, diagrams, implementation changes, reviews, or explanations grounded in those models.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan is partial because two local references could not be resolved, so those references are outside the scan evidence.
+Risk: The security scan was partial: two local references could not be resolved, and the reported capability evidence is incomplete.
 
-Mitigation: Resolve and review both references before relying on guidance that depends on them. Consider whether the reported file, network, and shell capabilities and the lack of a declared tool scope are appropriate before installing.
+Mitigation: Review the unresolved references and confirm the reported file, network, and shell capabilities fit the intended use before execution.
 
 ## Reference(s):
 
-- [Concept composition and synchronization](https://essenceofsoftware.com/tutorials/concept-basics/sync/#composing-concepts-with-syncs)
-- [Concept qualification criteria](https://essenceofsoftware.com/tutorials/concept-basics/criteria/)
+- [Concept composition and synchronizations](https://essenceofsoftware.com/tutorials/concept-basics/sync/#composing-concepts-with-syncs)
+- [Concept criteria](https://essenceofsoftware.com/tutorials/concept-basics/criteria/)
+- [Engineering architecture](artifact/references/architecture.md)
+- [Specification notation](artifact/references/spec-notation.md)
+- [Concept model criteria](artifact/references/model-criteria.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Mermaid diagrams, Code, Shell commands]
+**Output Type(s):** [Markdown, Guidance, Code]
 
-**Output Format:** [Markdown specifications and explanations, Mermaid diagrams, and project source code when implementation is requested]
+**Output Format:** [Markdown specifications and explanations with Mermaid diagrams; code for implementation tasks]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Outputs depend on the selected workflow mode and the user's request.]
+**Other Properties Related to Output:** [Outputs depend on the selected mode; unsupported specification content is reported as unchecked.]
 
 ## Skill Version(s):
 
-2.5.2 (source: frontmatter)
+2.5.4 (source: frontmatter)
 
 ## Ethical Considerations:
 

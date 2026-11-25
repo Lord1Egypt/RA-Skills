@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en" class="sk" data-theme="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- slot:title -->
+<title>Q3 in one page · Northwind Parcel Co.</title>
+<meta name="description" content="A hand-drawn one-page report made with sketchy.">
+<link rel="stylesheet" href="../engine/sketchy.css">
+<!-- slot:theme (optional) -->
+<style>
+  /* One-pager. Prints on A4; reads on a phone. Tokens only. */
+  .report { position: relative; z-index: 1; max-width: 1060px; margin: 0 auto; padding: clamp(24px, 4vw, 52px) 16px 72px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 30px; }
+  .head { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 22px; align-items: center; }
+  .bill { font-size: 16px; padding: 22px 22px 18px; transform: rotate(.8deg); }
+  .head h1 { font-size: clamp(36px, 5vw, 58px); }
+  .kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .kpi { display: grid; gap: 2px; align-content: start; }
+  .kpi .fig { font: 700 clamp(34px, 4.4vw, 52px)/1 var(--sk-font-mono); color: var(--sk-figure); letter-spacing: -.02em; }
+  .kpi .delta { font: 700 16px/1.2 var(--sk-font-mono); }
+  .kpi .bench { font-size: var(--sk-size-fine); }
+  .kpi .delta.up { color: var(--sk-stamp-green); } .kpi .delta.down { color: var(--sk-red-ink); }
+  .two { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+  .verdicts { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; }
+  .dead { display: grid; gap: 8px; }
+  .dead .entry { display: flex; gap: 12px; align-items: baseline; }
+  .dead .chip { font: 700 16px/1 var(--sk-font-mono); border: 1.5px solid var(--sk-graphite); padding: 3px 6px; transform: rotate(-2deg); white-space: nowrap; }
+  .foot { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  @media (max-width: 760px) { .head { grid-template-columns: minmax(0, 1fr); } .kpis, .two { grid-template-columns: minmax(0, 1fr); } }
+  @page { size: A4; margin: 12mm; }
+  @media print { .report { max-width: none; padding: 0; gap: 18px; } .kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); } .two { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); } .sk-specks { display: none; } }
+</style>
+</head>
+<body class="sk">
+<svg class="sk-specks" data-specks="q3-report" data-specks-count="50" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+<!--
+  sketchy report template: numbers filed on stationery.
+  Order that works: identity (label, title, date), three figures with their
+  benchmark, plan versus record, one chart, the bill, milestones, verdicts,
+  what went wrong, sources. Every figure below is invented for a fictional
+  company: replace all of them with the user's own and cite the source.
+-->
+<main class="report">
+
+  <!-- slot:head -->
+  <header class="head">
+    <span class="sk-rlabel" aria-label="Report number 0007"><b>R</b><span>No. 0007<small data-lint-small-ok>Report</small></span></span>
+    <div>
+      <span class="sk-small">Northwind Parcel Co. · for the board</span>
+      <h1>Q3 in one page: more parcels, lower cost</h1>
+    </div>
+    <svg data-sketch="postage-stamp" viewBox="0 0 140 110" style="width:120px" aria-hidden="true"></svg>
+  </header>
+
+  <!-- slot:kpis -->
+  <section class="kpis">
+    <div class="kpi sk-sheet" data-sk="sheet" data-reveal>
+      <span>Parcels delivered</span>
+      <span class="fig" data-count>1,240,600</span>
+      <span class="delta up">+18.4% on Q2</span>
+      <span class="bench">Plan was 1,100,000</span>
+    </div>
+    <div class="kpi sk-sheet" data-sk="sheet" data-reveal>
+      <span>Cost per parcel</span>
+      <span class="fig" data-count>€2.26</span>
+      <span class="delta up">−6.2% on plan</span>
+      <span class="bench">Plan was €2.41</span>
+    </div>
+    <div class="kpi sk-sheet" data-sk="sheet" data-reveal>
+      <span>On time</span>
+      <span class="fig" data-count>97.1%</span>
+      <span class="delta up">+4.1 pts on industry</span>
+      <span class="bench">Industry average 93.0%</span>
+    </div>
+  </section>
+
+  <!-- slot:plan-vs-record -->
+  <section class="two">
+    <div class="sk-sheet" data-sk="sheet" data-reveal>
+      <h2 style="font-size:32px; margin-bottom:8px">Plan versus record</h2>
+      <table class="sk-table">
+        <thead><tr><th scope="col">Line</th><th scope="col">Plan</th><th scope="col">Record</th><th scope="col">Δ</th></tr></thead>
+        <tbody>
+          <tr><td>Parcels</td><td>1,100,000</td><td>1,240,600</td><td class="is-better">+12.8%</td></tr>
+          <tr><td>Revenue, € k</td><td>3,410</td><td>3,702</td><td class="is-better">+8.6%</td></tr>
+          <tr><td>Cost per parcel, €</td><td>2.41</td><td>2.26</td><td class="is-better">−6.2%</td></tr>
+          <tr><td>Late parcels</td><td>55,000</td><td>35,980</td><td class="is-better">−34.6%</td></tr>
+          <tr><td>Damaged parcels</td><td>1,100</td><td>1,420</td><td class="is-worse">+29.1%</td></tr>
+        </tbody>
+      </table>
+      <p class="sk-fine" style="margin-top:10px">Green is better than plan, red is worse. Damage rose with volume; see the dead letter office below.</p>
+    </div>
+    <figure class="sk-chart" data-reveal data-draw data-chart='{"type":"bar","title":"Parcels per month, thousands","unit":"k","data":[["Jul",388],["Aug",402],["Sep",450.6]],"target":{"value":366.7,"label":"plan per month"},"highlight":"Sep","sort":false,"source":"Dispatch system export, 3 Oct"}'></figure>
+  </section>
+
+  <!-- slot:bill -->
+  <section class="two">
+    <div class="sk-stack" data-reveal>
+      <h2 style="font-size:32px">The ask: a hub in Leipzig</h2>
+      <p>Paid back in <span class="sk-figure">28 months</span>, against <span class="sk-figure">36</span> for the 2023 hub. Every line on the slip is from the lease offer of 12 October.</p>
+      <div class="verdicts">
+        <span class="sk-stamp is-green" data-slam>On budget</span>
+        <span class="sk-stamp" data-slam style="--delay:840ms">Late damage</span>
+        <span class="sk-stamp is-unearned">Carbon target</span>
+      </div>
+    </div>
+    <div class="bill sk-doc sk-receipt sk-pinked" data-reveal="print" aria-label="Cost of the Leipzig hub">
+      <div class="sk-receipt-brand" data-lint-small-ok>Northwind Parcel Co. · postage slip</div>
+      <div class="sk-receipt-row"><span>Lease, 5 years</span><span>1,650,000</span></div>
+      <div class="sk-receipt-row"><span>Fit-out</span><span>310,000</span></div>
+      <div class="sk-receipt-row"><span>Moving two lines</span><span>95,000</span></div>
+      <div class="sk-receipt-row"><span>Training</span><span>45,000</span></div>
+      <div class="sk-receipt-row is-total"><span>IN ALL, €</span><span>2,100,000</span></div>
+      <div class="sk-receipt-row is-bench"><span>The 2023 hub, €</span><span>2,640,000</span></div>
+    </div>
+  </section>
+
+  <!-- slot:milestones -->
+  <figure class="sk-chart" data-reveal data-draw data-chart='{"type":"timeline","title":"What happens next","data":[["2026-11-04","Board decision"],["2027-01-15","Lease signed"],["2027-03-01","Lines move"],["2027-04-01","Savings start"]],"highlight":0}'></figure>
+
+  <!-- slot:dead-letters -->
+  <section class="sk-sheet" data-sk="sheet" data-reveal>
+    <h2 style="font-size:32px; margin-bottom:6px">Dead letter office</h2>
+    <div class="dead">
+      <div class="entry"><span class="chip">D 0031</span><span>1,420 parcels damaged, mostly glass, all at the Hamburg night belt. Fix ordered 2 Oct.</span></div>
+      <div class="entry"><span class="chip">D 0032</span><span>Tracking page down 3 h 40 min on 18 Sep. Cause: certificate renewal missed.</span></div>
+    </div>
+  </section>
+
+  <footer class="foot sk-fine">
+    <span><span class="sk-sect">§</span> Dispatch system export, 3 Oct · lease offer, 12 Oct · industry average: national parcel survey 2026</span>
+    <span class="sk-mono">R 0007 · 25 OCT 2026</span>
+  </footer>
+</main>
+<script src="../engine/sketchy.js"></script>
+<script src="../engine/sketches.js"></script>
+<script src="../engine/sketchy-charts.js"></script>
+<script>
+  document.querySelectorAll('[data-reveal="print"]').forEach(function (box) { Array.prototype.forEach.call(box.children, function (c, k) { c.style.setProperty('--i', k); }); });
+  Sketchy.mount();
+</script>
+</body>
+</html>

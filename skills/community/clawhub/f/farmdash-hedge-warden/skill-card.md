@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Agents and DeFi users use the skill to size a hedge for existing spot exposure, review funding and basis risks, and prepare a plan for a separate execution workflow.
+DeFi traders and agents use the skill to estimate hedge sizes for existing spot positions and prepare a risk-aware handoff for a separate futures research and execution skill. It is advisory and does not sign or submit trades.
 
 ### Deployment Geography for Use:
 
@@ -22,45 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Portfolio exposure may be sent to FarmDash when requesting a hedge recommendation.
+Risk: Portfolio exposure data, including holdings, notionals, and betas, can be sensitive when sent to FarmDash tooling.
 
-Mitigation: Review FarmDash's security information and share only exposure details you are comfortable disclosing.
+Mitigation: Obtain explicit user consent before measurement or submission, and share only the fields needed to size the hedge.
 
-Risk: The security scan was partial, so some references were not covered.
+Risk: Hedge recommendations can be affected by incorrect exposure mappings, correlation or basis changes, funding costs, liquidity, and non-atomic execution; a hedge plan alone does not authorize a trade.
 
-Mitigation: Review the linked security information and unresolved references before installation.
+Mitigation: Independently verify exposure and instrument suitability, assess funding and execution drag, use only eligible legs, and reconcile both legs and residual delta after settlement. Require the separate Futures Strategist’s applicable authorization and venue checks before any action.
 
-Risk: Funding, basis, liquidity, and venue risks can leave a hedge ineffective or costly.
+Risk: The security scan reports a low-probability concern about autonomous decisions and incomplete reference coverage.
 
-Mitigation: Check existing positions, instrument correlation, funding, and liquidity; verify fills and residual exposure and define an unwind for failed legs.
-
-Risk: A hedge recommendation could be mistaken for execution approval or authority.
-
-Mitigation: Treat the output as advisory and require the separate futures workflow's research and applicable human approval or owner grant before execution.
+Mitigation: Review the authorization conditions before enabling autonomous actions, including the owner-signed grant, session and scope checks, live runtime gates, and local venue-signing requirements described by the skill.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/parmasanandgarlic/skills/farmdash-hedge-warden)
 - [FarmDash Agent Hub](https://www.farmdash.one/agents)
-- [Canonical FarmDash Hedge Warden manual](https://www.farmdash.one/openclaw-skills/farmdash-hedge-warden/SKILL.md)
-- [FarmDash integration documentation](https://www.farmdash.one/docs)
+- [FarmDash Hedge Warden manual](https://www.farmdash.one/agents/skills/farmdash-hedge-warden)
+- [FarmDash Security and Authority Boundaries](https://www.farmdash.one/security)
 - [FarmDash OpenAPI contract](https://www.farmdash.one/agents/openapi.yaml)
-- [FarmDash MCP discovery manifest](https://www.farmdash.one/.well-known/mcp.json)
-- [FarmDash security and authority boundaries](https://www.farmdash.one/security)
+- [ClawHub release page](https://clawhub.ai/parmasanandgarlic/skills/farmdash-hedge-warden)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, JSON, Text]
+**Output Type(s):** [Analysis, Guidance, JSON]
 
-**Output Format:** [Structured hedge recommendation with per-asset legs, checks, and handoff guidance]
+**Output Format:** [Structured hedge sizing recommendations with text handoff and risk guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Advisory only; the skill does not sign or submit orders.]
+**Other Properties Related to Output:** [Includes per-asset hedge targets, data-quality and execution-eligibility indicators, residual exposure, and invalidation guidance.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server-resolved release metadata)
+1.0.2 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

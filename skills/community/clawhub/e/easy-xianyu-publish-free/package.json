@@ -1,0 +1,11 @@
+{
+  "name": "easy-xianyu-publish-free",
+  "version": "1.1.1",
+  "private": false,
+  "type": "module",
+  "description": "通过已登录 Easy WebBridge 浏览器整理并填写闲鱼商品发布页。",
+  "scripts": {
+    "test": "node scripts/run.mjs --self-test"
+  },
+  "license": "MIT-0"
+}

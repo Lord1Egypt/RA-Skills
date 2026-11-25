@@ -1,6 +1,6 @@
 ## Description:
 
-Scans local WeChat received-file folders, reports file usage and duplicates, and optionally copies files into type- or month-based folders.
+Scans locally received WeChat files, organizes them by type or month, finds duplicates, and creates JSON or standalone HTML reports with optional custom sorting rules.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-People or agents managing locally received WeChat files can review storage and duplicate reports, then optionally organize files across detected folders and accounts.
+Individual WeChat users can review, sort, and deduplicate locally received files, apply custom matching rules, and create machine-readable or visual reports.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Scanning WeChat folders reads local file metadata and contents for hashes.
+Risk: ClawScan marks the skill suspicious because cleanup may permanently remove originals despite recovery assurances; the scan is partial, so the evidence is incomplete.
 
-Mitigation: Run only on folders you intend to inspect; review the default dry-run report and paths first.
-
-Risk: Applying changes creates copies, and using --trash moves originals to the recycle bin.
-
-Mitigation: Use --apply or --trash only after checking the proposed sources and destination.
+Mitigation: Review the cleanup behavior, keep backups, and verify recovery behavior for the operating system and storage volume before using --apply --trash; start with the default dry run.
 
 ## Reference(s):
 
-- [WeChat File Organizer on ClawHub](https://clawhub.ai/oracis/skills/wechat-file-organizer)
+- [ClawHub skill page](https://clawhub.ai/oracis/skills/wechat-file-organizer)
+- [Project homepage (listed in the artifact manifest)](https://github.com/oracis/wechat-file-organizer)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Files]
+**Output Type(s):** [File organization, JSON, HTML reports, Guidance]
 
-**Output Format:** [Plain-text report or JSON; organized file copies when explicitly applied]
+**Output Format:** [Organized local files, JSON summaries, and standalone HTML reports]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports can identify source accounts; the default dry-run does not change files.]
+**Other Properties Related to Output:** [Local processing; defaults to a read-only dry run, with explicit options for copying, deduplication, and moving originals to the system trash.]
 
 ## Skill Version(s):
 
-2.1.0 (source: ClawHub release, skill frontmatter, manifest)
+2.3.0 (source: SKILL.md frontmatter, server release evidence)
 
 ## Ethical Considerations:
 

@@ -2,6 +2,362 @@
 
 > **v2.4.0–v2.7.0 归属说明**：这几版记录的是**交接自动化**（`feature-handoff` 的 `send-to-trae-prompt.ps1` / `trae-cdp.mjs`）联调过程；**脚本本体在 `feature-handoff/scripts/`，不在本 skill**，本 skill 只同步 `references/60-handoff.md` 接线文档与版本号。合入时保留原版本编号以保持追溯（按本 skill semver，这类文档同步本应记 PATCH）。以下各条的实测证据均来自该联调会话；v2.7.0 对齐只做文档/版本整理，**未复跑窗口/GUI 操作**，未实测标注保持不变。
 
+## v2.15.0 — 2026-11-19（按 ClawHub 安全审计整改：权限声明 + 干净打包 + 删除边界）
+
+**审计来源**：<https://clawhub.ai/linboomboom/skills/dsh-capability-loop/security-audit>（审计对象是 v2.9.5，共 20 条发现；本版逐条处理，清单见 `SECURITY.md` §5）。
+
+**安全修复**
+1. `handoff-smoke.ps1` 不再清空调用方传入的 `-Scratch`：每次创建唯一子目录 `run-<时间戳>-<随机>`，读写与清理只针对该子目录（对应两条 High 的「递归删除调用方目录」）。
+2. `visual-qa-check.ps1` 不再自称只读：注释改成「会写探测 HTML/PNG 与临时 Chrome profile」；新增输出目录边界（只允许工作区或 `%TEMP%` 下，`-AllowOutsideOutDir` 显式放行）；只删除自己创建的临时 profile。
+3. `package-skill.ps1`：打包排除 `memory/`（个人偏好）、图片/压缩包/私钥、插件夹具；疑似凭证命中从 WARN 改为 **FAIL 阻断**；生成的 PUBLISH-NOTES 改为如实列出排除项与「启发式扫描 + 人工复核」，不再声称「已排除全部敏感材料」。
+4. 新增 `SECURITY.md`：读/写/子进程/网络/记忆/删除边界，以及 20 条审计发现的逐条处置与解释。
+5. `SKILL.md` frontmatter 增加 `allowed-tools`；正文新增「权限与数据边界」小节。
+6. 偏好记忆加隐私护栏：`references/85-ux-memory.md` 要求写入前告知、只记明确偏好、禁记敏感信息、给出删除流程；`memory/user-profile.md` 顶部加隐私提示。
+7. 插件卸载步骤提示先备份持久化数据；`references/95-store-publish.md` 声明运行时不联网、发布**打包目录**而不是源码仓库根；playbook 注明浏览器环境变量只对当前进程生效。
+
+**行为变更（非破坏接口）**
+- 冒烟脚本产物改为 `<Scratch>/run-<时间戳>-<随机>`；`-Keep` 保留这个子目录，不再保留/删除整个 `-Scratch`。
+- 打包产物不再包含 `docs` 图片、插件测试夹具与 `memory/`（条目数会明显下降）。
+
+**验证**
+- 夹具 **57/57**；`node --check` 0。
+- 打包：排除项生效、凭证扫描正例/反例；条目数记录在发布日志。
+- 冒烟：传入含哨兵文件的 `-Scratch`，运行后哨兵仍在、只新增/清理 run 子目录。
+- 发布：从干净包目录发布 2.15.0，附带 `--clawscan-note` 说明本地脚本/写入边界/无运行时联网。
+
+**回滚**：`git revert` 本提交；旧版仍可只读使用。
+
+## v2.14.3 — 2026-11-19（真机截图归档：窗口宽 1296 / 768 / 最小 536 像素）
+
+**内容**（无代码变更）
+- 面板 v2.14.2 真机截图三张，归档到 `docs/design/`：
+  - `panel-1296.png`：窗口宽度 1296 像素（常规桌面）；
+  - `panel-768.png`：窗口宽度 768 像素（平板宽度，紧凑排版：指标两列、标签收窄）；
+  - `panel-536.png`：窗口最小宽度 536 像素（桌面窗口下限；页面仍可用，动作区按行换行）。
+- **375 像素（手机宽度）桌面做不到**：桌面程序窗口下限是 536 像素；需要 375 像素只能用浏览器打开 Web UI 做设备模拟。
+- 截图方式：`scripts/ui-shot.ps1` 只 `MoveWindow` + `PrintWindow`，**不注入键盘/鼠标**，截完恢复原尺寸与位置；截图前确认 Harness 在前台（点侧边栏打开面板那一下仍是手动）。
+
+**验证**
+- 面板标题确认加载到 v2.14.2（标题下「面板 v2.14.2」）。
+- 夹具 57/57；本提交不含代码改动。
+
+**回滚**：删除三张截图即可。
+
+## v2.14.2 — 2026-11-19（面板自报版本 + 澄清桌面版的“刷新”）
+
+**起因**：用户反馈在 Harness 桌面版按 Ctrl+R 没反应，且不知道面板加载的是不是最新代码。
+
+**事实（已核桌面壳源码）**
+- 桌面正式版**没有 Ctrl+R 绑定**，也**没有「刷新页面」菜单**：`app.asar/lib/main.js` 里 `reloadPageMenu` 与 `role: "reload"` 只在 `development` 为真时加入菜单。
+- 生产版可用：F12（注册了 `toggleDevTools`）→ Console 执行 `location.reload()`；或退出应用重开；或本地 link 安装下等 HMR 后重新点侧边栏。
+
+**改动**
+- 面板标题下新增「**面板 v2.14.2**」——版本号没变就说明渲染器仍是旧 `client.js`。
+- 插件 README 增加「改了 `client.js` 怎么生效」三条路径与判断方法。
+- 新建 `memory/user-profile.md`：记录「不要用代号，要写清楚是什么」等交付偏好（同时补齐体检里一直缺的偏好记忆）。
+
+**验证**
+- `node --check` 0；client 夹具 21/21（新增版本号不影响断言）。
+- `package-skill` 通过（含 memory/ 新增文件）。
+
+**回滚**：`git revert` 本提交。
+
+## v2.14.1 — 2026-11-19（窄窗口紧凑排版 + 桌面壳最小宽度约束）
+
+**真机截图暴露的问题**
+- 桌面窗口 768 宽：KPI 4 列被压扁、阻断文字挤成一大段。
+- 桌面壳最小宽度是 **536px**（Electron `minWidth`）：请求 375 时 `MoveWindow` 实际只到 536，**桌面版无法截 375**（375 只能走 Web UI/浏览器）。
+
+**修法**
+- `<820px` 进入紧凑排版：KPI 改 2 列、动作区标签 112→72px、页面 padding 22/40→18/16、工程条与卡片头允许换行。
+- 阻断 KPI 只显示首条阻断 + 「等 N 项」，避免整段文字撑高。
+
+**验证**
+- `node --check` 0；client 夹具 21/21。
+- 真机 `ui-shot.ps1`：768×900 成功；请求 375 时实际 536×900（已记录在输出里，脚本会打印实际尺寸）。
+- 截图产物：`docs/design/panel-768.png`、`docs/design/panel-375.png`（实际 536 宽，文件名保留请求宽度以便对照）。
+
+**回滚**：`git revert` 本提交（仅样式，无行为变更）。
+
+## v2.14.0 — 2026-11-19（确认框可达性 + 复制 + 双工程接入）
+
+**新增（面板可达性 / 效率）**
+- 确认框键盘可达：`Esc` 关闭、`Tab` 在弹窗内循环（焦点陷阱）、打开时焦点自动落到「确认运行」、`aria-labelledby` 指向标题。
+- 复制：确认框可复制**完整命令**；结果区可复制**输出**或**命令**；优先 Clipboard API，失败降级 `execCommand`，1.5s 内显示「已复制」/「复制失败」。
+- 夹具新增 3 条（Esc 关闭、复制命令、复制输出/命令），React 桩升级为支持 `useEffect` 依赖变化（因此 Esc 可被夹具驱动）。
+
+**接入**
+- 「气量平衡月表（管存+罐存）」已执行 `loop-state.ps1 -Action init`（shadow / INTAKE），生成 `.dsh/loop/{project,state}.json` + `.gitignore`。面板现在应列出两个工程，切换按路径记忆；多工程数据路径由 client 夹具覆盖（切换后重读、卡头归属、旧阻断消失）。
+
+**验证**
+- 夹具 **57/57**：actions 21 + client 21 + takeover 14 + fallback 1；`node --check` 0。
+- `package-skill` → 78 条目、10 脚本 BOM 全 PASS、WARN=0。
+- **375/768 真机截图未完成**：当前前台是其他应用，自动点击/按键会打进前台窗口；新增 `scripts/ui-shot.ps1` 只做 resize + PrintWindow（不注入输入），待面板打开后执行。
+- 双工程面板真机截图同样待面板打开。
+
+**回滚**：`git revert` 本提交；接入的第二工程可删 `.dsh/loop` 回退。
+
+## v2.13.3 — 2026-11-19（一轮自查：修 6 个真问题 + 4 处体验）
+
+**修的真问题**
+1. `taskDir` 含中文/空格时被 `safeToken` 静默丢弃（「气量平衡月表」这类中文目录跑不了门禁/预检）→ 改 `safePath`（允许中文/空格，仍禁 `..` 与开头 `-`）+ 命令值引号解析。
+2. `resolveSkillDir` 返回配置原值（可能是相对路径）→ 子进程按错误 cwd 解析脚本；改为返回解析后的绝对路径。
+3. 命令 handler 拿不到会话 `cwd` 时回退 `process.cwd()`（应用目录）——会把门禁/打包跑错工程；改为明确报错并提示填 `workspaceRoot`。
+4. 门禁没填 `taskDir` 时仍会发命令 → loop-gate 只回「没有可执行的门禁」，像坏了；改为禁用运行键 + 提示，并新增「环境验收」（`run env`）。
+5. 动作完成后的 `load()` 可能重排工程列表，按索引选中的工程会跳；改按**工程路径**选中并持久化（刷新回到上次看的工程）。
+6. 取消后迟到的命令结果会覆盖「已取消」；`settle` 增加 controller 归属判断后再写结果。
+
+**体验**
+- 最近一次运行 / 正在运行 卡片带工程名 chip；确认框显示「名称（路径）」。
+- `taskDir` **按工程记忆**（localStorage），切换工程不会带错目录；门禁行支持回车直接弹确认。
+- 当前档位按钮禁用（不再弹出“切到当前档位”）；头部「只读」改为「状态只读 · 动作走会话命令」。
+- 长阻断文本自动换行，不再挤掉 owner/due；`taskDir` 为空时按钮旁直接给黄色提示。
+
+**工程护栏**
+- `capability-audit.ps1` / `package-skill.ps1` 新增 **PowerShell BOM 检查**：`scripts/*.ps1` 缺 UTF-8 BOM 直接 FAIL（PS 5.1 读无 BOM 中文会乱码到脚本解析失败——本轮自查时就复现了一次）。首次运行即抓出 `ui-probe-live.ps1` 缺 BOM，已补。
+
+**验证**
+- `node --check`（client / actions / index）→ 0。
+- 夹具 **54/54**：actions 21 + client 18 + takeover 14 + fallback 1。
+- 真机 `loop-gate -TaskDir "能力 闭环-任务目录"`（中文+空格路径）→ PASS，证明 argv/引号链路可用。
+- `package-skill` → 78 条目、10 个脚本 BOM 全 PASS、WARN=0。
+- 真机视觉/点击复验仍未做（前台被其他应用占用，未做 UI 自动化）。
+
+**回滚**：`git revert` 本提交。
+
+## v2.13.2 — 2026-11-19（工程归属：每张卡片都标工程名，切换即重读）
+
+**反馈**（用户）：阻断项有了，但看不出是哪个工程的；多个工程切换时内容会不会跟着换？
+
+**修法**
+- 新增**工程条**（标题下第一行）：`工程 [下拉] <工程根路径> · 已接入工程 N 个 / 只列已接入工程`；单工程时下拉禁用但仍显示名称与路径。
+- 四张卡片（运行中心 / 阶段 / 门禁与证据 / 阻断与下一步）标题后统一加**工程名 chip**，任何一段单独截图都能看出归属。
+- 切换工程时 `setSelected + load()`：重读该工程的 `project.json`/`state.json` 再渲染（原来只切索引、用载入时的快照）。
+- 面板只列**已接入**工程（有 `.dsh/loop/project.json`）；未接入的工程跑 `loop-state.ps1 -Action init` 后出现。
+
+**验证**
+- `node --check client.js` → 0；`client.test.mjs` → **16/16**（新增：卡头带工程名、多工程切换后重读且内容跟着换、切走后旧阻断消失）。
+- 真机视觉复验仍待用户刷新后确认（前台被其他应用占用，未做 UI 自动化）。
+
+**回滚**：`git revert` 本提交。
+
+## v2.13.1 — 2026-11-19（弹窗可读性修复：玻璃皮肤下半透明）
+
+**现象**（用户真机截图）：面板「确认运行」弹窗与背后的运行中心糊在一起——遮罩太淡、面板背景在这套玻璃皮肤下不显实、标题不够抢眼。
+
+**修法**
+- 遮罩：`--dsw-alias-bg-mask-3`（48% 黑）+ `backdrop-filter: blur(4px)`，`z-index` 200 → 9999。
+- 弹窗面：**两层背景**——主题 `bg-base` 叠在静态深色底（`--dsw-static-neutral-bluish-950`）上；即使皮肤把 alias 调成半透明，也不会透视到下面的文字。再加 24px 模糊、双层阴影、`border-l3` 描边。
+- 结构：顶部 3px 品牌色条、标题 16px、命令块加边框与静态底、页脚分隔线、按钮加大到 88/96px。
+- 说明文字（工程/命令/后果）统一 12px 行高 1.6。
+
+**验证**
+- `node --check client.js` → 0；`client.test.mjs` → 15/15（确认框、取消、未受理等断言不变）。
+- **真机截图未复验**：当时前台是其他应用（PUBG），自动点击/发送按键会打到前台窗口，故未做 UI 自动化。补测：Ctrl+R 刷新 → 打开「能力闭环」→ 点任一档位/动作 → 应看到实心弹窗与暗遮罩。
+
+**回滚**：`git revert` 本提交，弹窗回到 v2.13.0 的半透明版本。
+
+## v2.13.0 — 2026-11-19（P2 运行中心：面板可跑门禁/体检/切档位）
+
+**起因**：v2.12.0 的面板只能看不能动，用户要「一步到位跑门禁」；上一轮会话在实现中途被 429 限流打断（actions.js/index.js 已写、client 未接、夹具未跑），本版收尾。
+
+**新增 `plugins/capability-loop/actions.js`（Host 运行中心）**
+- 白名单 `ACTIONS`：`audit` / `gate` / `handoff-audit` / `preflight` / `pack` / `visual` / `skill-status` / `sync-shadow` / `mode`；kind 决定解释器（powershell/python/状态脚本）。
+- 参数逐个校验：`kind` 枚举、`taskDir/slug/handle` 只允许安全 token 且禁 `..`、不拼 shell；`mode` 只接受 on/shadow/off。
+- `runSpawn`：`ctx.subprocess` + 动作级超时 + 5s grace + 输出上限；`AbortSignal` 取消一并中止子进程；结果只回尾部 40 行（≤6000 字）。
+- `executeAction(ctx, cfg, rawInput, signal)` 返回 `{ ok, text }`，永不抛错（缺 subprocess / 解释器 / spawn 失败都给一句可读原因）。
+
+**修改 `plugins/capability-loop/index.js`**
+- `ctx.inject(['commands'])` 注册会话命令 `capability-loop`（描述 + `input.hint`），handler 用 `agent.session.header.cwd`（缺省 `process.cwd()`）作工程根，调用同一 `executeAction`。
+- 命令通道 = 面板与命令行的**同一实现**（`dsh-doc/references/user-actions.md`）。
+
+**修改 `plugins/capability-loop/client.js`（面板动作）**
+- `inject` 加 `remote.commands`；`collect` 保留每个工程最近会话的 `sessionId` 作动作凭据。
+- 头部加三段档位（接管/影子/关闭）；KPI 下加「运行中心」卡片（门禁 kind+taskDir / 交接体检 slug / 模块预检 keyword+alias / 上架打包 handle / 只读动作）。
+- 每个动作先弹**确认框**（工程 + 完整命令 + 说明），确认后 `commands.execute`；运行中显示「正在运行 + 取消」；结果区展示状态/耗时/输出尾部；失败与未受理（命令未注册）分别给可操作提示。
+
+**修改 `scripts/capability-audit.ps1`（体检误报修复）**
+- 活动 profile 不再硬编码 `profiles/web`：按 desktop → web → 第一个非 default 目录探测；无 `cordis.patch.yml` 时给 WARN（patch 可选）而不是 FAIL。本机只有 `desktop` profile，旧逻辑每次体检都产生一条假 FAIL。
+
+**夹具**
+- 新增 `test/actions.test.mjs` 17 条（白名单/argv/拒绝/失败/abort）。
+- `test/client.test.mjs` 9 → 15 条（动作按钮、切档位确认→命令调用、未受理、无 commands、取消 abort）。
+- `test/takeover.test.mjs` 10 → 13 条（命令注册 descriptor、空输入/未知动作/缺 subprocess、aborted 信号）。
+- 修两个夹具的真实回归：临时沙箱只拷 `index.js` 导致 `./actions.js` `ERR_MODULE_NOT_FOUND`；`ctx.inject` 在夹具里缺失。
+
+**验证（本轮实测）**
+- 夹具：逐个文件跑 `node <file>` → **46/46 pass**（沙箱里 `node --test <dir>` 会 spawn EPERM）。
+- `node --check client.js` / `index.js` / `actions.js` → 0 错误。
+- `loop-gate.ps1 -Environment` → PASS（SKIP=1：本仓库无 `upgrade/post-restart-check.ps1`）；`-TaskDir docs/design -Kind design` → PASS（2 PASS / 1 SKIP）。
+- **`on` 档真机实测**：`loop-state.ps1 -Action set-mode -Mode on` → exit 0；本工程真实会话的下一步收到完整契约（阶段/硬约束/门禁/阻断/下一步），D-01 关闭。
+- **未实测**：面板运行中心的真机点击——Host 命令需重启应用注册，且当前环境无可操作的桌面窗口；见 `docs/design/grill-p2-actions-20261119.md`。
+
+**新增 `scripts/ui-probe-live.ps1`（可选，Windows）**
+- 桌面窗口探针：聚焦 → Ctrl+R 刷新渲染器 → 点侧边栏「能力闭环」→ PrintWindow 截图，供面板真机视觉验收；本机 `.tmp` 不可写时默认输出到 `docs/design/`。
+
+**经验写回**：playbook 增 `ERR-20261119-04`（夹具漏拷新模块）、`ERR-20261119-05`（vm 沙箱缺 AbortController / 跨 realm deepEqual）、`ERR-20261119-06`（Host 命令需重启，client 刷新即可）、`ERR-20261119-07`（工作区 `.tmp` ACL 拒绝写入，改放 `%TEMP%` 或 `docs/`）。
+
+**回滚**：`git revert` 本提交；插件旧版仍可只读面板（`client.js` 不含动作即恢复 v2.12.0 行为）。
+
+## v2.12.0 — 2026-11-19（P2 面板 v1：侧边栏「能力闭环」入口）
+
+**起因**：用户装完 P1 后在桌面版找不到入口。P1 只做了 **host 半**（注入），按设计 P2 才有 UI——但那意味着「装了却看不见」。本版补上 client 半，给出可用的面板 v1。
+
+**新增 `plugins/capability-loop/client.js`（client half）**
+- 注册两个 slot：`sidebar.panellist`（id `capability-loop`、`order: 20`、label「能力闭环」、环形箭头图标）与 `main`（同名 key = 面板本体）。
+- 面板内容（**只读**）：档位徽标（接管/影子/关闭 + 影子观察进度）、当前阶段 + 7 段轨道、门禁列表（状态徽标 / exit / 时间）、阻断清单、下一步 + 命令、状态源路径。
+- 三态：加载中 / 未接入（给接入命令）/ 有工程；多工程时给下拉切换。
+- **数据通道**：`GET /api/file?path=<绝对路径>`（已认证 `connection.fetch` + `browserPeer`），先读 `~/.dsh/storages/workspace.json` 找已登记工作区，再逐个试 `<ws>/.dsh/loop/project.json` → `state.json`。**不需要会话**，纯读。
+- ctx 由 `apply(ctx)` 闭包注入（不猜 slot props 形状），`fail-open`：读不到就显示未接入，不崩。
+
+**新增**
+- `plugins/capability-loop/test/client.test.mjs`（7 条）：注册契约（key/id/order/label/icon）、空态、有工程渲染（档位/阶段/门禁计数/阻断/下一步）、shadow 观察进度、home 未知、fetch 抛错不崩。自带极简 React 桩（hooks + 重渲染）。
+- `plugins/capability-loop/locale/{en,zh}.json`（Plugins 页标题/描述/详情）、`docs/DETAIL.md`；`package.json` 加 `./client` 导出、`dsh.client`（`platform: web`、`immediately: true`、四个 inject）。
+
+**修改**
+- `SKILL.md`：§1 的 P1 描述改为「注入 + 侧边栏只读面板」，夹具数 18/18，并注明设计稿里 7 Tab 完整版是后续；`version` 2.12.0。
+- `version.json`：`bundle` 块加 `clientEntry` / `panel`；breaking_changes 补 v2.12.0。
+- 技能包版本 2.11.1 → 2.12.0（MINOR：新增 UI 能力，不装则无变化）。
+
+**验证（本轮实测）**
+- 夹具：`node --test plugins/capability-loop/` → **20/20 pass**（host 11 + client 9）。
+- `node --check client.js` → 0 错误；`package.json` 可解析。
+- profile 解析：`dsh-capability-loop-bundle/client`、`/locale/zh.json`、`/package.json` 均能从 profile 解析到工作区文件。
+- `set_plugin include:capability-loop` → `application: applied`；`install_bundle` 依赖仍是 link（junction）。
+- 技能包：74 条目、WARN=0。
+- **真机（桌面版）**：`Ctrl+R` 重载后左侧出现「能力闭环」，点开读到本仓库真实 `state.json`（影子 2/3、GATE 7/7、设计门 PASS、D-01、下一步、skill v2.12.0），「刷新」可重读。截图见 `.tmp/design-evidence/probe-refresh.png`。
+
+**过程中修掉的两个客户端真缺陷（已记入 70-playbook ERR-20261119-03）**
+1. **`ctx.connection.fetch` 在浏览器半边不存在**（只有 Host 侧 Connection 有 `fetch(request, peer)`），且桌面渲染器跑在 `dsh-app://` 源上，`globalThis.fetch('/api/file?path=')` 命中不了 HTTP API → 面板一开始只能显示空态。改为 `remote.session.list({})` 取会话（含 `cwd`）+ `remote.workspaceFiles.read(sessionId, 相对路径)`。
+2. **`inject` 要用点号键**：只写 `remote` 时访问 `remote.session` 报 `cannot get property "remote.session" without inject`。改为 `['slots','connection','remote','remote.session','remote.workspaceFiles']`。
+3. 顺带：面板空态增加「读取诊断：<具体错误>」——把静默空白换成可定位的一句话。
+
+**未实测 / 已知限制**
+- **面板需要刷新页面（Ctrl+R）或重启应用才出现**：渲染器的 client 模块图是启动时建的；本机未跑 `pnpm run dev:web`，`client.js` 改动不会热加载。
+- `on` 档真实会话的整段契约仍未实测（本仓库是 `shadow`；切 `on` 即验）。
+- Web UI 对 `source.kind='capability-loop'` 的渲染样式当普通用户消息；token 计费差异未测。
+- 面板文字中文硬编码（未接 locale 字典）；只读，没有「运行门禁 / 切档位」按钮；只列有会话的工作区。
+- 面板背景沿用应用壁纸的透底（与对话区一致），未为可读性单独加不透明底。
+
+**回滚**：`git revert`；或卸载插件；面板随插件行关闭一起消失（不影响 skill 侧脚本）。
+
+## v2.11.1 — 2026-11-19（PATCH：修「装了但没生效」的两个真缺陷）
+
+**起因**：按 v2.11.0 的指引实际安装 P1 插件，`install_bundle` 返回 `exitCode=0` 但 `application: failed`，诊断 `ERR_MODULE_NOT_FOUND: Cannot find package '@deepseek-ai/dsh-llm'`——整行没激活。修好后注入正常，但又发现「注入成功、影子日志没记账」。
+
+**修 1：本地目录安装的 bundle 顶层 import dsh 包会整行不激活**
+- 根因：本地目录安装走 pnpm **link（junction）**，插件真实路径在工作区；Node 从真实路径向上找 `node_modules`，到不了 profile 的 `node_modules`（dsh 自带包在那里）。只有从 npm/Git 装进 profile 的包才能顶层直接 import。
+- 修法：`index.js` 去掉顶层 `import '@deepseek-ai/dsh-llm'`，改**运行时动态解析 + 手工构造兜底**——能解析就用官方 `createUserMessage`，解析不到就按 `dsh-session/src/repair.ts` L168 的同款形状手工 `Object.freeze`。
+- 回归：新增 `test/fallback.test.mjs`（沙箱里**不放桩**，强制走兜底），断言仍注入 + 消息形状正确 + 记录降级日志。
+
+**修 2：`ctx.fs.writeText` 未传 per-call 策略时按部署默认 `read-only` 被拒，异常被静默吞掉**
+- 根因：`dsh-fs-sandbox` 的 `checkedTarget` 是 `policy = sandboxPolicy ?? ctx.sandboxPolicy.resolve()`；不传就用**部署默认**（fail-safe `read-only`）→ `FS_SANDBOX_DENIED`；插件原实现在 `catch {}` 里静默吞掉，表现为「注入成功但影子日志不增长」。
+- 修法：写入时传**本会话自己的**策略 `ctx.sandboxPolicy.resolve({ session })` 作为第 5 参；失败改为 `logger.warn`（不再静默）。只读会话里写入被拒是正确行为——尊重用户沙箱，降级不阻断。
+- 证据：修前影子日志只有夹具的 `e2e-1`；修后真机追加 `session-056a88a3-…`，`sync-shadow` 计数 1 → **2/3**。
+
+**文档**
+- `references/70-playbook.md` 新增 `ERR-20261119-01`（link 安装 + 顶层 import dsh 包）与 `ERR-20261119-02`（插件写文件静默失败），含根因、修法、验证方式。
+- `SKILL.md`：P1 状态改为「已在本机 profile 安装并实测注入成功」；版本 2.11.1。
+
+**验证（本轮实测）**
+- `install_bundle` → `application: failed`（复现）；改后 `set_plugin include:capability-loop` → **`application: applied`**。
+- 真机会话里收到影子一行提示（86 字符，`mode: shadow`）；影子日志追加当前 session id；`sync-shadow` 显示「已观察 2 / 3 个会话」。
+- 夹具：`node --test` → **11/11 pass**（含无桩兜底用例）；`node --check` 0 错误。
+
+**未实测**：`on` 档在真实会话里的整段契约（本仓库当前是 `shadow`；把 `.dsh/loop/state.json` 切 `on` 即可验）；Web UI 对 `source.kind='capability-loop'` 的渲染样式；token 计费差异。
+
+**回滚**：`git revert`；或 `plugin_manager action=remove_bundle target=dsh-capability-loop-bundle`；或 `loop-state.ps1 -Action set-mode -Mode off` 单工程关闭。
+
+## v2.11.0 — 2026-11-18（P1 宿主接管插件：契约自动进首步，不再等模型自觉）
+
+**起因**：v2.10.0 的 P0 是软接管——`AGENTS.md` 链一定注入，但「读 `state.json`」仍靠模型自觉，实测里模型会跳过那次 `read`。要确定性，必须由宿主在首步把契约折进消息。
+
+**新增 `plugins/capability-loop/`（host bundle，不装则行为与 v2.10.0 完全一致）**
+- `index.js`：`agent/pre-step` 瀑布钩子，先 `await next()`，再按档位决定是否把契约折进 `decision.messages`（**紧跟本步认领的用户消息之后**，用户原话先出现）。
+  - `on`：完整契约 ≤1600 字符（实测约 810），含阶段/本阶段出口/当前门禁/阻断/下一步/状态源路径；
+  - `shadow`：一行 ≤140 字符提示，只记录不阻断；并追加 `.dsh/loop/shadow-log.jsonl`（每会话一行）；
+  - `off` / 未标记工程：0 注入、0 读写。
+- 档位优先级：`project.json.mode` → 被 `state.json.mode` 覆盖 → 缺省 `defaultMode`（`off`）。**安装插件 ≠ 接管所有项目**。
+- 纪律：**fail-open**（读/解析/构造任一失败只记日志、不注入）；**幂等**（消息带 `source.kind='capability-loop'` + 内容指纹，同批/会话历史/resume/fork 都判重）；**只读 `state.json`**（唯一写入方仍是脚本）；**不新增 Session 事件类型**（只用普通 `user/message`，会话可正常重开）。
+- `cordis.patch.yml`：`insert` 行 + 六个可配键（`defaultMode` / `maxContractChars` / `maxShadowChars` / `shadowLog` / `debug` / `skillDir`）。
+- `README.md`（含契约样张、安装、配置、已验证/未验证）、`icon.svg`、`package.json`（`dsh.bundle.patch` + `test` 脚本）。
+- `test/takeover.test.mjs`：**10 条夹具**，自带沙箱（临时目录 + `@deepseek-ai/dsh-llm` 桩，等价真实解析路径），`node --test` 全绿。覆盖：未标记零注入 / off 不注入 / shadow 一行+日志+同会话只记一次 / on 契约内容与长度 / 注入位置 / resume 去重 / 同批去重 / fs 抛错 fail-open / state 坏 JSON 降级 / `defaultMode=on` 但未标记仍不注入。
+
+**修改**
+- `scripts/loop-state.ps1`：新增 `-Action sync-shadow`（读影子日志 → `shadowSessions` + `shadow{sessions,target,canUpgrade,at}`；不覆盖已有 `next.label`）与 `-ShadowTarget`（默认 3）；`status` 增加「影子：已观察 N/M 个会话 —— 可升级」一行。
+- `scripts/loop-state.ps1`（补）：`init` 生成的 `.dsh/loop/.gitignore` 追加 `shadow-log.jsonl`；默认 `-SkillVersion` 跟到 2.11.0。
+- 插件影子提示超预算时**丢「下一步」尾句并保句号收尾**，不再截成半句（夹具加了两条断言）。
+- `references/02-takeover.md`：P1 从「未实现」改为「已实现 + 夹具验证」，补 §2.1（入口/钩子/档位/注入/去重/影子计数/安装/夹具）、`sync-shadow` 命令与回归行；已知限制改写为真实未实测项。
+- `SKILL.md`：§1 的 P1 描述更新；§8 文件地图补 `plugins/capability-loop/`；`version` 2.11.0。
+- `version.json`：新增 `bundle` 块（dir/name/kind/entry/hook/install/test/verified/unverified），breaking_changes 补 v2.11.0。
+
+**验证（本轮实测）**
+- 夹具：`node --test plugins/capability-loop/test/takeover.test.mjs` → **10/10 pass**。
+- `node --check index.js` → 0 错误；`package.json` / `cordis.patch.yml` 可解析。
+- 契约样张实测：813 字符、注入位置索引 1（用户消息 0）、`digest=cl2ff7ab3d-330`。
+- `sync-shadow`：无日志 → exit 1 + 提示；3 条不同会话（含 1 条重复）→ `shadowSessions=3`、`canUpgrade=true`、`status` 打印升级提示。
+- 9 个 `.ps1` 解析 0 错误 + BOM 完好；`package-skill.ps1` 打包 WARN=0。
+
+**未实测**
+- **真实 Cordis 加载**：`install_bundle` 后该行是否按预期激活（本轮只做夹具，未改用户 profile）。
+- 自定义 `source.kind='capability-loop'` 在 Web UI 的渲染表现（可能显示为普通用户消息；`MessageSourceMap` 文档称消费者对未知 kind 降级）。
+- 真实会话的 token 计费差异；多工作区切换时的读取时序。
+- `shadow-log.jsonl` 每会话读全量再重写的成本（日志是每会话一行，预期很小，未做长跑压测）。
+- **影子日志已写进本仓库 dogfood**（`.dsh/loop/shadow-log.jsonl`，已被 `.gitignore` 忽略），`sync-shadow` 实测计数 1/3。
+
+**回滚**：`git revert` 本提交；或仅卸载插件（`plugin_manager action=remove_bundle target=dsh-capability-loop-bundle`）——skill 侧行为不受影响。`v2.10.0` 的 P0 路径仍完整可用。
+
+## v2.10.0 — 2026-11-18（接管协议：让闭环自动生效，而不是等模型想起）
+
+**起因**：用户实测反馈「装了 skill 但真实项目里不接管」——没有 INTAKE、没有门禁、没有证据收口，必须手动 `/dsh-capability-loop` 才动。根因不是 description 写得不够好，而是缺**确定性的触发、会话内的状态、用户可证的可视性**三层机制：skill 正文只有在模型主动调 `skill` 或用户打 `/name` 时才注入（catalog 只有摘要）；七阶段没有状态载体，跨会话不保留；门禁输出只在终端滚过。
+
+**新增**
+- `references/02-takeover.md`：接管协议——三档（`off` / `shadow` 影子 / `on` 接管）八维对照、状态源 schema、`<system-reminder>` 注入逐字稿（on ≈1,450 字符 ≈350–400 token；shadow ≈90 字符）、注入纪律（首步一次 / digest 增量 / fail-open / 不写 system prompt / 不新增 Session event 类型）、P0（AGENTS 片段软接管，今天可用）→ P1（宿主插件 `agent/pre-step` 折入契约，硬接管）→ P2（Web 面板）路线、正反例回归基线、已知限制。
+- `scripts/loop-state.ps1`：接管状态源唯一写入方。`init`（生成 `.dsh/loop/project.json` + `state.json` + `.gitignore`，默认 `shadow`）/ `status`（只读，未接入 exit 3，支持 `-Json`）/ `set-mode` / `set-stage` / `set-next` / `record-check` / `add-blocker`（自动 D-ID）/ `resolve-blocker` / `sync-audit`。写 `digest`（mode+stage+checks+blockers 指纹）供 P1 判断增量注入。
+- `templates/agents-loop-fragment.md`：AGENTS.md 12 行接管片段（标记行 `<!-- dsh-capability-loop:on -->` + 先读 state + 适用/豁免 + 证据 + 门禁 + 自审不顶门 + 写回），含「为什么是这几行」与「不要把整包贴进去」。
+- `templates/loop-project.json`：接管声明模板。
+
+**修改**
+- `scripts/loop-gate.ps1`：新增可选 `-StateFile`；在「单一类别（design/requirement/test）或 `-Environment`」且「给了 `-StateFile` 或工程有 `.dsh/loop/project.json`」时，调用 `loop-state.ps1 -Action record-check` 写回 `checks.<类别>`。**未标记工程零变化**；退出码语义不变。
+- `scripts/package-skill.ps1`：**修复打包会把 `.tmp` 打进去**的缺陷（此前 1003 条目 → 现 62 条目）。新增排除目录 `.tmp/.git/.dsh/dist/out/__pycache__/node_modules` 与 `.DS_Store/Thumbs.db`（`.dsh/` 是工程级接管状态，含本机路径，属于工程而非技能）；副作用是「本机路径」扫描不再命中 `.tmp` 里的历史评审记录（本次由 WARN 4 处变 PASS）。
+- `scripts/capability-audit.ps1`：写快照后，若工程已标记，自动 `sync-audit`（同步 metrics）并记 `checks.environment-audit`（PASS/WARN/FAIL + exit）。未标记工程零变化。
+- `SKILL.md`：新增 §1「接管」（三档表 + 一行接入命令 + 状态源 + P0/P1/P2），章节整体后移重编号；§5 快速命令加接管命令；§8 文件地图补 `02-takeover.md` / `loop-state.ps1` / 两个新模板。frontmatter `version` 2.9.6 → 2.10.0；`description` 的【配套】加「项目接管（三档+状态源）」，字符数 188 → **199**（仍 ≤200 的「不偏贵」线，catalog 增加约 11 字符）。
+- `version.json`：版本、references/templates/scripts 清单、breaking_changes 同步。
+
+**验证（本轮实测，PowerShell 5.1）**
+- 8 个 `.ps1` 全部 Parser 0 错误 + UTF-8 BOM（编辑后逐个人工补 BOM）。
+- `loop-state.ps1`：`init`（临时目录）→ `state.json`/`project.json`/`.gitignore` 三件生成；`status` 未接入 exit 3；`record-check`/`set-stage`/`add-blocker`×2（自动 D-01/D-02）/`resolve-blocker`/`set-mode on`/`sync-audit` 全部 PASS，`project.json.mode` 与 `state.mode` 同步。
+- `loop-gate.ps1` 状态写回：正例（有 design-context+grill）→ PASS + `checks.design=PASS`；反例（缺 design-context）→ exit 1 + `checks.design=FAIL`；**未标记工程不创建 `.dsh/`**（实测 state exists=False）；标记工程自动写回（不传 `-StateFile`）。
+- `next.label` 不被 FAIL 覆盖：先 `set-next` 再有 FAIL，`status` 仍显示用户设定的下一步。
+- `capability-audit.ps1` 在标记工程上自动 `sync-audit` + 记 `environment-audit`（PASS=19 WARN=10 FAIL=2 SKIP=1 的临时目录样本）。
+
+**未实测**
+- P1 宿主插件注入（`agent/pre-step` 折入契约、resume/fork 去重、`shadowSessions` 计数）——设计稿 `docs/design/2026-11-18-capability-loop-panel.md` 已给逐字稿与验收判据，尚未实现。
+- P2 面板（`sidebar.panellist` + `main`、7 Tab、运行中心）——只有设计稿与 mockup，无真实插件渲染。
+- `loop-gate -Kind all` 不写回（设计如此，未跑 all 场景验证）。
+- 设计自审的 P2 打磨项（当前阶段强调色、记忆返工趋势、活动条数）未做。
+
+**回滚**：`git revert` 本提交即可（新增文件全部为新增，`loop-gate`/`capability-audit` 的新增逻辑均在 try/catch 内且默认不触发——未标记工程行为完全不变）；旧工程若已生成 `.dsh/loop/`，删除该目录即恢复到未接管。
+
+## v2.9.6 — 2026-11-15（SKILL 描述改主次结构：重点功能 / 配套功能）
+
+**起因**：v2.9.5 的 frontmatter `description` 是一条平铺的能力链（审计→修复→串接→门禁→写回）加一串触发词，主次不分——核心（体检/修复 DSH 自身）与配套（项目接入、需求/设计/测试、交接、grill、迁移/上架）混在同一句，技能市场里也不容易看出「这个 skill 到底主打什么」。
+
+**修正**
+- `SKILL.md` frontmatter `description` 重排为显式主次结构：`【重点】` = 体检/修复 DSH 自身（九组审计→检索/桌面壳/Token 死重量修复→门禁验收→经验写回）+ 适用触发；`【配套】` = 项目接入六问、需求/设计/测试串接、Trae 交接体检（含网关前缀）、grill 自对抗、迁移与上架；保留尾部排除句（单点需求/设计/测试走各自规范）。
+- **触发词集合与触发边界不变**（升级/优化/体检 DSH、治理插件与技能、修会话检索或进程退出、降 Token、迭代本 skill、迁移/上架等原词全部保留），只调整呈现顺序与分段；字符数 195 → 188（catalog 成本不增长）。
+- `version.json`：2.9.5 → 2.9.6（PATCH：未改脚本行为、门禁口径、退出码语义与触发边界）；`released` 2026-11-15。
+
+**验证（本轮实测）**
+- `package-skill.ps1`：EXIT=0，description 长度 PASS（188 字符 ≤200），ZIP 40 条目/单顶层/全 `/`，`SHA256SUMS` 40/40。
+- 反例：frontmatter 与 `version.json` 版本不一致 → EXIT=1（校验未回归）。
+- 文档规模：`SKILL.md` 208 行（<300）；8/8 `.ps1` BOM + Parser 不变。
+- 新 ZIP：由 `package-skill.ps1` 生成 40 条目/单顶层/全 `/`（`dsh-capability-loop-v2.9.6.zip`，具体字节数与 SHA256 见发布记录，避免写进包内造成自引用）。
+
+**未实测**：技能市场/ClawHub 对 `【重点】/【配套】` 这类结构化描述的实际选择效果（需真实触发样本观察；市场端按 description 语义匹配，本地无法判定）。
+
+**回滚**：把 `SKILL.md` 的 `description` 还原为 v2.9.5 原文（见下一条目），`version.json` 回 2.9.5；无脚本行为回滚。
+
 ## v2.9.5 — 2026-11-13（F 组反向指令改位置序判定）
 
 **起因**：v2.9.4 去掉顿号切分后出现**双刃**：`不要写 /api、/png 前缀` 能抓了，但「网关前缀 /png 必写、host 不写」

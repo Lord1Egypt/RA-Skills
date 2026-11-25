@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to set up or improve pre-commit quality checks in new projects, existing codebases, and monorepos. It provides patterns for local hooks and CI checks covering formatting, linting, type checking, tests, and project-specific validation.
+Developers use this skill to configure pre-commit quality checks for linting, type checking, tests, and project-specific validation. It also provides examples for coordinating local checks with CI, including monorepo workflows.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The instructions include staging and commit guidance that could affect unintended project changes.
+Risk: The skill demonstrates `git add .`, which can stage files beyond the intended change.
 
-Mitigation: Review suggested commands, stage only intended files, and inspect the staged changes before committing.
+Mitigation: Stage specific paths where practical and review `git status` and the staged diff before committing.
 
-Risk: The CI example uploads coverage data to Codecov.
+Risk: The sample CI workflow uploads coverage data to Codecov; the scan flags this external upload as unqualified.
 
-Mitigation: Check what coverage data and related information your CI sends to Codecov before enabling the upload.
+Mitigation: Check that sending coverage data to Codecov is acceptable for the project before enabling the upload.
 
-Risk: The security scan was partial because some referenced files were unavailable, so the described workflows were not fully verified.
+Risk: ClawScan reports incomplete coverage because several referenced paths could not be resolved.
 
-Mitigation: Review the unavailable referenced materials and confirm relevant workflow behavior before relying on it.
+Mitigation: Treat the scan as incomplete and inspect the referenced configuration and workflow paths before deployment.
 
 ## Reference(s):
 
-- [Attune project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/attune)
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-attune-precommit-setup)
+- [Attune plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/attune)
 
 ## Skill Output:
 
-**Output Type(s):** [Configuration instructions, Code, Shell commands]
+**Output Type(s):** [Configuration, Shell commands, Code, Guidance]
 
-**Output Format:** [Markdown with YAML, TOML, and shell code blocks]
+**Output Format:** [Markdown with YAML, TOML, Python, and shell examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Setup instructions and reusable examples for pre-commit hooks and CI checks.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

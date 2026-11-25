@@ -113,6 +113,7 @@ https://cuecue.cn/share/<conv_id>
 ---
 **Cue 原始报告**：https://cuecue.cn/share/<conv_id>
 **本地报告**：~/cue-reports/<日期>-<HHMM>-hotspot-tracker.md
+如有疑问请关注“感易Cue”官方服务号添加企微客服咨询
 ```
 
 规则：

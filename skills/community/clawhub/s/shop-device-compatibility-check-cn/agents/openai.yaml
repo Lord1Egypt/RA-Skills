@@ -1,0 +1,8 @@
+interface:
+  display_name: 设备配件适配核对
+  short_description: 根据厂家资料逐项核对设备与配件适配结论、依据及缺失资料
+  default_prompt: 请根据我提供的设备型号、配件规格和厂家适配/排除资料，逐项核对适配性；资料不足时请明确指出需要补充什么。
+  icon_small: ../icon-512.png
+  icon_large: ../icon-512.png
+policy:
+  allow_implicit_invocation: true

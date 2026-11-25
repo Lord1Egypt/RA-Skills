@@ -1,5 +1,6 @@
 ---
 name: cue-industry-competition
+displayName: 行业景气与竞争格局研判
 description: 用 Cue 穿透目标行业的景气周期、竞争格局与产业链地位——识别集中度、龙头壁垒与供需/政策拐点，研判当前所处周期位置与投资机会窗口，产出可支撑配置决策的行业研判底稿。
 description_zh: Cue 行业景气与竞争格局研判：穿透景气周期/竞争格局/产业链地位，识别拐点与投资机会窗口。
 version: 1.1.4
@@ -96,6 +97,7 @@ https://cuecue.cn/share/<conv_id>
 ---
 **Cue 原始报告**：https://cuecue.cn/share/<conv_id>
 **本地副本**：~/cue-reports/<文件名>.md
+如有疑问请关注“感易Cue”官方服务号添加企微客服咨询
 ```
 
 规则：

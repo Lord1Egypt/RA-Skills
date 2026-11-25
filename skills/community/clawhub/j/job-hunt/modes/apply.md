@@ -290,7 +290,7 @@ yourself only when the judge cannot write files.
 
 **Fallback — a judge that cannot read files** (no file tool, or a sandbox that cannot see the workspace or the skill directory): paste the full text of every file above instead of its path, with the same facts. A judge that never saw its persona file still answers, as a generic reviewer with a plausible VERDICT block.
 
-**The mechanism is replaceable; the isolation is not.** On a host with no subagent tool, dispatch concurrent fresh invocations of that host's own CLI (for example, `codex exec`) using `agents/*.md`. A judge that watched the tailoring is not a second opinion. If no fresh context is available, preserve the draft and report that independent review is incomplete. Self-review may find obvious defects, but it cannot produce judge verdicts, review receipts or a claimed review PASS. Resume with isolated judges when available. See `references/portability.md`.
+**The mechanism is replaceable; the isolation is not.** On a host with no subagent tool, dispatch concurrent fresh invocations of that host's own CLI (for example, `codex exec --skip-git-repo-check`) using `agents/*.md`. A judge that watched the tailoring is not a second opinion. If no fresh context is available, preserve the draft and report that independent review is incomplete. Self-review may find obvious defects, but it cannot produce judge verdicts, review receipts or a claimed review PASS. Resume with isolated judges when available. See `references/portability.md`.
 
 **Japan rirekisho fork:** the judges are calibrated to the Western CV / ATS pipeline. For a Japan rirekisho package, run all three on the **companion Western CV / 職務経歴書** (the keyword-and-fit document) as usual, and review the **rirekisho form itself** with the completeness/correctness check in `references/rirekisho.md` (required fields present, 学歴・職歴 chronological and gap-explained, no fabricated personal data) — report that to the user instead of an ATS coverage %. Do not feed the rirekisho `.docx`/`.md` to the ATS screener.
 
@@ -453,7 +453,7 @@ Follow SKILL.md "Client deliverables": write `report.md` (read
 `lint_no_prediction.py` (a metric quoted verbatim from the candidate's master, whose
 `master-fingerprint.json` still matches, is allowed; never delete a true number to pass
 it), then `python3 scripts/deliver.py --workspace <ws>` last (client files go to `~/Downloads/<workspace-name>/`). The
-CV goes to `简历/`, the interview brief to `面试准备/`, the report to `报告/`. A cover
+CV goes to `简历/`, the interview brief to `面试准备/`, the report to `报告/` (Chinese names shown; they follow the report's language, e.g. `Application/`, `Interview prep/`, `Report/`). A cover
 letter is provided on demand; it is not the domestic default. Do not start a mock
 interview or another mode automatically.
 

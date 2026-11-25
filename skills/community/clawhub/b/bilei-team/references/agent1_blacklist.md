@@ -241,6 +241,9 @@ v5.6 要求"必须有第三方实测"，Agent 确实找到了，但**把所有�
 2. `[品类] 3C 认证目录 是否强制`
 3. `[品类] 执行标准 号 年份 现行`
 4. `[品类] 新国标 实施日期 [年份]`
+4a. `[品类] 团体标准 T/ 行业标准 严于 国标` —— 找比 GB 更严的标准，判"更严"须抄下具体指标数值（如"纹波≤80mV vs GB≤200mV"），搬商家"严于国标"话术不算
+4b. `[品牌 型号] 执行标准 号 检测报告 认证证书` —— 落款到具体款：它遵循哪个标准、凭什么达标
+4c. `[品牌] 制造商 生产企业 代工厂 贴牌` —— 按厂名（非品牌名）查生产主体与代工厂黑历史，判据见 manufacturer-audit.md
 
 **官方负面**
 5. `[品类] 国家监督抽查 不合格 名单 [年份]`
@@ -335,6 +338,17 @@ v5.6 要求"必须有第三方实测"，Agent 确实找到了，但**把所有�
   "search_date": "YYYY-MM-DD",
   "standards": [
     {"code": "GB xxxx-20xx", "type": "强制|推荐", "title": "", "status": "现行|废止|即将实施", "source": "URL"}
+  ],
+  "stricter_standards": [
+    {"code": "T/xxx xxxx-20xx", "type": "团体|行业|地方|企业|国际|国外", "title": "",
+     "stricter_evidence": "该团标纹波≤80mV，严于GB的≤200mV（须为条款原文数值对比，禁搬商家话术）",
+     "source": "URL", "found": true}
+  ],
+  "product_compliance": [
+    {"brand": "", "model": "", "followed_standard": "GB xxxx-20xx + 更严标准号（无则只写GB）",
+     "proof": "检测报告|认证证书|官方声明", "proof_source": "URL",
+     "manufacturer": "", "production_mode": "自产|自研+代工|纯代工公模|贴牌授权|查不到",
+     "oem_factory": "代工厂厂名（非品牌名），查不到留空", "oem_blacklist": "按厂名查到的处罚/抽检，无则写未查到"}
   ],
   "cert_required": "3C|无|其他",
   "cert_timeline": [

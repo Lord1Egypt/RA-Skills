@@ -44,8 +44,10 @@ def _make_form_copy(form, tmp_root):
 
 
 def _run_smoke(copy):
+    # v7.8.0 预算对齐：smoke 内层随包单测预算=420+75s×36 文件≈3120s，外加探针段；
+    # 外层 2400s < 内层预算=结构性超时（CH 形态实测 TimeoutExpired）。外层取 4500s。
     p = subprocess.run([sys.executable, str(copy / "eval" / "release_smoke.py"), "--fast"],
-                       capture_output=True, text=True, timeout=2400,
+                       capture_output=True, text=True, timeout=4500,
                        encoding="utf-8", cwd=str(copy))
     return p
 
@@ -82,8 +84,11 @@ def main():
         fd = os.open(lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
         os.write(fd, str(os.getpid()).encode())
     except FileExistsError:
-        print("另一实例在跑（锁在位），跳过", file=sys.stderr)
-        return 0
+        # v7.8.0 假绿防线：锁跳过必须响亮且不可当绿（被杀运行曾留陈锁 → 下次静默
+        # 跳过 rc=0，差点被当验收通过）。跳过=UNVERIFIED，退出码 3 显性化。
+        print("SKIPPED：另一实例在跑或陈锁未清（/tmp/ppp_forms_verify.lock）——"
+              "确认无运行进程后删除陈锁再跑，跳过不得当验收通过", file=sys.stderr)
+        return 3
     ok = True
     try:
         for form in forms:

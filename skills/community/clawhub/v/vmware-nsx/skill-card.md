@@ -1,6 +1,6 @@
 ## Description:
 
-Manage VMware NSX networking, including segments, gateways, NAT, routing, IP pools, fabric inventory, health checks, and connectivity troubleshooting.
+Manage VMware NSX/NSX-T networking, including segments, gateways, NAT, routing, IP pools, fabric inventory, health checks, and connectivity diagnostics.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Network engineers and developers use this skill to inspect and manage VMware NSX segments, gateways, NAT, routes, and IP pools, and to diagnose NSX health and connectivity issues.
+Network administrators and infrastructure engineers use this skill to inspect NSX environments, diagnose health and connectivity issues, and manage network configuration when explicitly requested.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Setup uses NSX credentials and stores audit or policy data locally.
+Risk: The security review was benign with medium confidence, but scan coverage was partial and the setup guide was partly inspected.
 
-Mitigation: Protect credential and audit files with restrictive permissions or a secret manager, and retain authentication checks.
+Mitigation: Review the setup guide before installation, especially credential configuration and the authentication-skip option.
 
-Risk: Write actions can change NSX network configuration, and optional HTTPS transport opens a listener.
+Risk: Write operations can change NSX network configuration.
 
-Mitigation: Keep local stdio as the default, require an explicit request for each write, review dry-run previews, and authenticate any HTTPS listener.
-
-Risk: Security guidance reports an unpinned Docker image reference and incomplete scan coverage for one unresolved path-like reference.
-
-Mitigation: Verify the Docker image identity and review the unresolved reference before relying on the scan results.
+Mitigation: Only make explicitly requested changes, and review dry-run output or delete previews before confirming an operation.
 
 ## Reference(s):
 
-- [Project repository](https://github.com/vmware-skills/VMware-NSX)
-- [Capabilities](artifact/references/capabilities.md)
-- [Setup guide](artifact/references/setup-guide.md)
-- [CLI reference](artifact/references/cli-reference.md)
-- [Agent guardrails](artifact/references/agent-guardrails.md)
+- [Setup guide](references/setup-guide.md)
+- [Capabilities](references/capabilities.md)
+- [CLI reference](references/cli-reference.md)
+- [Agent guardrails](references/agent-guardrails.md)
+- [Detailed guide](references/detailed-guide.md)
+- [Project homepage](https://github.com/vmware-skills/VMware-NSX)
+- [ClawHub release](https://clawhub.ai/zw008/skills/vmware-nsx)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, API calls, Shell commands, Configuration]
+**Output Type(s):** [Text, JSON, Shell commands, Configuration instructions]
 
-**Output Format:** [Structured MCP responses, diagnostic text, Markdown guidance, shell commands, and configuration.]
+**Output Format:** [Concise text or Markdown, structured JSON results, and CLI or configuration examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Operations target the configured NSX Manager; write actions require an explicit request.]
+**Other Properties Related to Output:** [May include diagnostic summaries and proposed network changes; write actions require an explicit user request.]
 
 ## Skill Version(s):
 
-1.15.3 (source: release evidence)
+1.15.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Retrieves public Telegram channel profiles, recent messages, and individual message details through DataXAPI.
+Public Telegram data through DataXAPI: channels, messages. 3 endpoints, $0.0020 a call, a failed call is free. Use when the user asks about Telegram content, accounts, comments or trends, or gives a Telegram link, ID or account name. 通过 DataXAPI 取Telegram的公开数据：频道、消息。3 个接口，一次 $0.0020，失败不收费。用户问到Telegram的内容、账号、评论或热点，或给出Telegram的链接、编号、账号名时使用。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users can ask an agent to look up public Telegram channel profiles, recent posts, or the contents of a specific message using a channel handle, message number, or link.
+External users can ask an agent for public Telegram channel details, recent posts, or a specific message. The agent can look up matching endpoints and prices, then summarize returned data with its DataXAPI source and retrieval time.
 
 ### Deployment Geography for Use:
 
@@ -22,42 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Queries may disclose Telegram identifiers or private context to DataXAPI.
+Risk: Fallback searches may send the user's wording to DataXAPI, potentially exposing sensitive text.
 
-Mitigation: Exclude private context and secrets from queries.
+Mitigation: Explain this before searching, minimize or redact sensitive wording, and search only when the user is comfortable with the disclosure.
 
-Risk: Additional endpoint and pagination calls can increase usage charges.
+Risk: The suggested CLI commands do not pin a package version.
 
-Mitigation: Use a spending-limited API key, set a per-call price cap, and limit pagination to what the task needs.
+Mitigation: Pin and review the CLI package version before installing or running it.
 
-Risk: The external CLI and service implementation were not audited as part of the security review.
+Risk: The security scan is partial and unresolved local references leave evidence incomplete.
 
-Mitigation: Prefer REST or MCP, or use an audited CLI version pinned to a known release.
-
-Risk: Telegram results contain text written by third parties that may include instructions.
-
-Mitigation: Treat returned Telegram content as data and do not follow instructions found in it.
+Mitigation: Review the complete installed skill and resolve referenced local files before relying on the scan assessment.
 
 ## Reference(s):
 
-- [DataXAPI skill documentation](https://dataxapi.com/skills/)
-- [DataXAPI agent setup](https://dataxapi.com/agents.md)
-- [Telegram API endpoint reference](https://dataxapi.com/apis/telegram/)
+- [DataXAPI](https://dataxapi.com)
+- [Telegram API documentation](https://dataxapi.com/apis/telegram/)
 - [Telegram API pricing](https://dataxapi.com/pricing/telegram/)
+- [DataXAPI agent setup](https://dataxapi.com/agents.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Structured data, Text]
+**Output Type(s):** [Text, JSON, Guidance]
 
-**Output Format:** [Structured JSON API results with Telegram text and metadata]
+**Output Format:** [Natural-language summaries with structured JSON API data]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Each paid call costs $0.002; paginated calls can add charges.]
+**Other Properties Related to Output:** [Public Telegram data; API calls are billed per call, with additional pages charged separately.]
 
 ## Skill Version(s):
 
-1.0.0 (source: frontmatter and server-resolved release)
+1.0.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

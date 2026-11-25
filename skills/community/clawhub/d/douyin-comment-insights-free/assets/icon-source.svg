@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="40" y1="20" x2="470" y2="492" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#090B3A"/><stop offset="0.55" stop-color="#080A28"/><stop offset="1" stop-color="#030519"/>
+    </linearGradient>
+    <linearGradient id="electric" x1="128" y1="376" x2="398" y2="102" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00C8FF"/><stop offset="0.48" stop-color="#496CFF"/><stop offset="1" stop-color="#B45CFF"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="178" y1="126" x2="348" y2="386" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFF"/><stop offset="1" stop-color="#C9D6FF"/>
+    </linearGradient>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="10" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="512" height="512" fill="#020315"/>
+  <rect width="512" height="512" rx="108" fill="url(#bg)"/>
+  <rect x="7" y="7" width="498" height="498" rx="102" fill="none" stroke="#4050D8" stroke-opacity="0.34" stroke-width="2"/>
+  <path d="M114 333c-32 0-58-26-58-58s26-58 58-58h53" fill="none" stroke="url(#electric)" stroke-width="18" stroke-linecap="round" filter="url(#soft)"/>
+  <path d="M398 180c32 0 58 26 58 58s-26 58-58 58h-53" fill="none" stroke="url(#electric)" stroke-width="18" stroke-linecap="round" filter="url(#soft)"/>
+  <circle cx="114" cy="275" r="13" fill="#16C7FF" filter="url(#soft)"/><circle cx="398" cy="238" r="13" fill="#A75CFF" filter="url(#soft)"/>
+  <path d="M165 102h139l62 62v240c0 13-11 24-24 24H165c-13 0-24-11-24-24V126c0-13 11-24 24-24Z" fill="#0C123F" stroke="url(#electric)" stroke-width="10" filter="url(#glow)"/>
+  <path d="M304 103v57c0 7 6 13 13 13h48" fill="none" stroke="url(#electric)" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M178 158h84" stroke="url(#paper)" stroke-width="16" stroke-linecap="round" opacity="0.92"/>
+  <path d="M178 341h151M178 377h116" stroke="#88A7FF" stroke-width="11" stroke-linecap="round" opacity="0.84"/>
+  <path d="M214 218c-23 5-37 21-37 45 0 25 14 41 38 41 20 0 34-13 34-32 0-17-11-28-27-28-5 0-9 1-13 3 3-10 12-17 27-21l-22-8Zm88 0c-23 5-37 21-37 45 0 25 14 41 38 41 20 0 34-13 34-32 0-17-11-28-27-28-5 0-9 1-13 3 3-10 12-17 27-21l-22-8Z" fill="url(#electric)" filter="url(#soft)"/>
+</svg>

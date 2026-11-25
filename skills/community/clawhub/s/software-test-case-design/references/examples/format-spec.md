@@ -1,6 +1,7 @@
 # Test Case Output Format Specification
 
-> This document defines the standard output format for test cases. All platforms (PC Web, Mobile App, Mini-Program, Mobile Web, Desktop, Agent) share the same table template; differences lie only in test scenario content.
+> This file defines the standard output format for test cases. All platforms (PC Web, mobile app, mini program, mobile web, desktop, Agent) share the same table template; only the test scenario content differs.
+> For writing rules, see "0. General Rules for Writing Test Cases" in `references/templates/common-rules.md`.
 
 ---
 
@@ -10,16 +11,17 @@
 | Field | Content |
 |-----|------|
 | Case ID | {ID} |
-| Test Title | {Title} |
-| Test Type | {Type} |
-| Functional Module | {Module} |
-| Sub-Module | {Sub-module, optional} |
-| Case Level | P0 / P1 / P2 |
-| Test Dimension | {Dimension, optional} |
-| Preconditions | {Conditions} |
-| Test Steps | {Steps} |
-| Expected Results | {Results} |
-| Actual Results | |
+| Title | {title} |
+| Test Type | {type} |
+| Module | {module} |
+| Sub-module | {sub-feature, optional} |
+| Related Requirement | {requirement ID or source, optional} |
+| Priority | P0 / P1 / P2 / P3 |
+| Test Dimension | {dimension, optional} |
+| Preconditions | {conditions} |
+| Test Steps | {steps} |
+| Expected Results | {results} |
+| Actual Result | |
 | Test Status | |
 ```
 
@@ -27,81 +29,108 @@
 
 | Field | Description | Required |
 |------|------|------|
-| Case ID | Format per `references/templates/common-rules.md` numbering rules | Yes |
-| Test Title | Concise description of test purpose, starting with "Verify" | Yes |
-| Test Type | Format: `{Test Category} - {Test Sub-category}`, e.g., "Functional Testing - CRUD" | Yes |
-| Functional Module | Name of the functional module | Yes |
-| Sub-Module | Specific sub-function point | No |
-| Case Level | P0=Core functionality, P1=Important functionality, P2=Minor/Experience | Yes |
-| Test Dimension | Platform-specific dimension, e.g., Gesture/Screen/Network | No |
-| Preconditions | Numbered list, separated by `<br>` | Yes |
-| Test Steps | Numbered list, one operation per step, separated by `<br>`. **Must provide concrete input values/parameters/operation targets** so testers can copy and execute directly. Using descriptive language as a substitute is prohibited (e.g., write `Enter username: admin, password: 123456` instead of "Enter valid login credentials"; write `Enter a 2,000-character random Chinese text` instead of "Enter an excessively long string"). **Exception**: Large data inputs (e.g., 10,000-character text, 500MB file) may use descriptive language with explicit parameter specifications. | Yes |
-| Expected Results | Numbered list, one-to-one correspondence with steps, separated by `<br>` | Yes |
-| Actual Results | Fill in after execution | Fill in during execution |
-| Test Status | Pass/Fail/Blocked/Skipped | Fill in during execution |
+| Case ID | Format in "3. Test Case Numbering Rules" of `references/templates/common-rules.md` | Yes |
+| Title | Briefly describes the purpose of the test, starting with "Verify" | Yes |
+| Test Type | Format: `{Test Category} - {Test Subcategory}`, e.g., "Functional Testing - CRUD"; choose the category from "1. Test Type Classification" in `references/templates/common-rules.md` | Yes |
+| Module | Name of the feature module | Yes |
+| Sub-module | Specific sub-feature | No |
+| Related Requirement | Requirement ID, requirement document section, or source of the requirement description, for traceability | No |
+| Priority | P0 / P1 / P2 / P3; criteria in "2. Priority Rules" of `references/templates/common-rules.md` | Yes |
+| Test Dimension | Platform-specific dimension, e.g., gestures / screen / network | No |
+| Preconditions | Numbered list separated by `<br>`. When requirement information is incomplete, write assumptions here and mark them "(assumption)" | Yes |
+| Test Steps | Numbered list, one action per numbered step, separated by `<br>`; in API testing, setting request headers, setting the request body, and sending the request are separate steps (see Example 4). **Concrete input values / parameters / objects must be given** so testers can execute verbatim; descriptive language is not allowed (e.g., write `Enter username: admin, password: 123456`, not "Enter correct login information"; write `Enter a random text of 2,000 English letters`, not "Enter an overly long string"). **Exception**: large data inputs (e.g., 10,000-character text, 500 MB file) may use descriptive language plus explicit parameters | Yes |
+| Expected Results | Numbered list corresponding one-to-one with the test steps, separated by `<br>`. Pure action steps also need observable concrete results; vague descriptions such as "normal" or "successful" are not allowed | Yes |
+| Actual Result | Filled in after execution | During execution |
+| Test Status | Pass / Fail / Blocked / Skipped | During execution |
+
+## Additional Output
+
+Output the following after all test cases when the conditions are met:
+
+**Supplementary Coverage Notes** (in supplement mode)
+
+| Supplementary test point | Category (negative scenario / boundary value) | Corresponding case ID |
+|-----------|----------------------|-------------|
+| {test point} | {category} | {ID} |
+
+**Assumptions to Confirm** (when preconditions contain "(assumption)")
+
+```
+1. {assumption} (related cases: {IDs})
+```
+
+**Agent + API**: output in two parts, "1. API Test Cases" and "2. Agent Test Cases".
 
 ---
 
 ## Examples
 
-The following examples demonstrate format application across different test scenarios; the format template is completely consistent.
+The following examples show the format applied to different test scenarios; the template is identical.
 
-### Example 1: Functional Testing
+### Example 1: Functional testing
 
 | Field | Content |
 |-----|------|
-| Case ID | TC_FUNC_CRUD_001 |
-| Test Title | Verify add data functionality |
+| Case ID | TC_FUNC_DATA_CRUD_001 |
+| Title | Verify the add-data feature |
 | Test Type | Functional Testing - CRUD |
-| Functional Module | Data Management |
-| Case Level | P0 |
-| Preconditions | 1. User is logged in (account: testuser, password: Test@123456)<br>2. Has permission to add data |
-| Test Steps | 1. Click the "Add" button<br>2. Enter "TestData_20260101" in the "Name" input field<br>3. Enter "Description generated by automated testing" in the "Description" input field<br>4. Select "Type A" from the "Type" dropdown<br>5. Click the "Save" button<br>6. Check the success notification<br>7. Look up the newly added record in the list |
-| Expected Results | 1. Add page opens normally<br>2. Input field accepts input normally<br>3. Input field accepts input normally<br>4. Dropdown selects "Type A"<br>5. Data saved successfully<br>6. "Added successfully" notification displayed<br>7. List displays the record with name "TestData_20260101", all field values match the input |
-| Actual Results | |
+| Module | Data Management |
+| Sub-module | Add Data |
+| Priority | P0 |
+| Preconditions | 1. The user is logged in (account: testuser, password: Test@123456)<br>2. The account has permission to add data<br>3. The user is on the "Data Management" list page |
+| Test Steps | 1. Click the "Add" button<br>2. Enter "TestData_20260101" in the "Name" input box<br>3. Enter "Description generated by automated testing" in the "Description" input box<br>4. Select "Type A" in the "Type" drop-down<br>5. Click the "Save" button<br>6. Enter "TestData_20260101" in the search box on the list page and click the "Search" button |
+| Expected Results | 1. The "Add Data" form pops up, with the Name, Description, and Type fields all empty<br>2. The "Name" input box shows "TestData_20260101"<br>3. The "Description" input box shows "Description generated by automated testing"<br>4. The "Type" drop-down shows "Type A"<br>5. The page shows "Added successfully", the form closes, and the list page is displayed<br>6. The list shows 1 record named "TestData_20260101", with description and type matching the input |
+| Actual Result | |
 | Test Status | |
 
-### Example 2: Platform-Specific Testing (Mobile App)
+### Example 2: Platform-specific testing (mobile app)
 
 | Field | Content |
 |-----|------|
-| Case ID | APP_LIST_GESTURE_001 |
-| Test Title | Verify pull-to-refresh functionality |
-| Test Type | Mobile Testing - Gesture Testing |
-| Functional Module | List Refresh |
-| Case Level | P1 |
-| Preconditions | Navigate to list page, network is normal |
-| Test Steps | 1. Place finger slightly above center of the screen<br>2. Slowly swipe downward<br>3. Observe the refresh animation appearing<br>4. Release finger<br>5. Wait for data to finish loading |
-| Expected Results | 1. Refresh animation appears during pull-down<br>2. Automatically bounces back to top upon release<br>3. Data reloads<br>4. Refresh success notification<br>5. List displays latest data |
-| Actual Results | |
+| Case ID | TC_APP_LIST_GESTURE_001 |
+| Title | Verify pull-to-refresh on the list page |
+| Test Type | Adaptability Testing - Platform interaction methods |
+| Module | List |
+| Sub-module | Pull to refresh |
+| Priority | P1 |
+| Test Dimension | Gestures |
+| Preconditions | 1. The app is logged in and on the list page<br>2. The device is connected to WiFi and the network is normal<br>3. The server has added 1 item that is not yet shown in the list |
+| Test Steps | 1. Press and hold the top area of the list and slowly swipe down about 1/4 of the screen height<br>2. Release the finger<br>3. Wait 5 seconds |
+| Expected Results | 1. A pull-to-refresh animation and a "Release to refresh" prompt appear at the top of the list<br>2. The list bounces back to the top and shows a loading animation<br>3. The loading animation disappears, "Refreshed successfully" is shown, and the newly added server item appears at the top of the list |
+| Actual Result | |
 | Test Status | |
 
-### Example 3: AI Agent Testing
+### Example 3: AI Agent testing
 
 | Field | Content |
 |-----|------|
-| Case ID | TC_AGENT_TASK_001 |
-| Test Title | Verify Agent can accurately understand explicit instructions and execute |
-| Test Type | Agent Testing - Task Completion |
-| Functional Module | Task Understanding |
-| Case Level | P0 |
-| Preconditions | Agent is in idle state, available tools are configured |
-| Test Steps | 1. Send an explicit instruction to the Agent: "Please create a text file named test.txt with content hello"<br>2. Wait for Agent to execute |
-| Expected Results | Agent selects the correct file creation tool and creates the file as requested (name: test.txt, content: hello) |
-| Actual Results | |
+| Case ID | TC_AGENT_FILE_TASK_001 |
+| Title | Verify the Agent accurately understands an explicit instruction and creates a file |
+| Test Type | Agent Testing - Task completion |
+| Module | File Operations |
+| Sub-module | Create File |
+| Priority | P0 |
+| Test Dimension | Task completion |
+| Preconditions | 1. The Agent is in a new session and idle<br>2. A file creation tool is configured, and test.txt does not exist in the working directory<br>3. The model version and system prompt version are fixed and recorded |
+| Test Steps | 1. Send to the Agent: "Please create a text file named test.txt with the content hello"<br>2. Open test.txt in the working directory<br>3. Delete test.txt, start a new session, and repeat steps 1–2, 5 times in total |
+| Expected Results | 1. The Agent calls the file creation tool with file name test.txt and content hello; the reply says the file has been created<br>2. test.txt exists with content hello and no extra characters<br>3. All 5 executions meet expected results 1 and 2 |
+| Actual Result | |
 | Test Status | |
 
-### Example 4: API Testing
+### Example 4: API testing
 
 | Field | Content |
 |-----|------|
-| Case ID | TC_API_GET_001 |
-| Test Title | Verify get user info API |
-| Test Type | API Testing - Functional Testing |
-| Functional Module | User API |
-| Case Level | P1 |
-| Preconditions | API info: Method GET, URL /api/v1/users/{userId}, Authentication Bearer Token. A user with userId=12345 exists in the test environment |
-| Test Steps | 1. Set request header Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9... (use valid token)<br>2. Send GET request to /api/v1/users/12345<br>3. Check response status code<br>4. Check response body JSON structure<br>5. Check each field value<br>6. Send request with non-existent userId=99999999<br>7. Send request with invalid Token |
-| Expected Results | 1. Status code 200<br>2. Response body contains fields: id, name, email<br>3. id is 12345<br>4. name is a non-empty string<br>5. email format matches email regex<br>6. userId=99999999 returns 404 with message "User not found"<br>7. Invalid Token returns 401 with message "Unauthorized" |
-| Actual Results | |
+| Case ID | TC_API_USER_GET_001 |
+| Title | Verify querying an existing user with a valid token |
+| Test Type | API Testing - Functional testing |
+| Module | User API |
+| Sub-module | Query User Info |
+| Priority | P1 |
+| Preconditions | 1. API info: method GET, URL /api/v1/users/{userId}, authentication Bearer Token<br>2. A user with userId=12345 exists in the test environment (name: Test User, email: test@example.com) |
+| Test Steps | 1. Set the request header Authorization: Bearer {{VALID_TOKEN}}<br>2. Send a GET request to /api/v1/users/12345 |
+| Expected Results | 1. The request tool shows the header Authorization: Bearer {{VALID_TOKEN}}<br>2. Status code 200; the response body is JSON containing the id, name, and email fields; id is 12345, name is "Test User", email is "test@example.com"; the response contains no sensitive fields such as password |
+| Actual Result | |
 | Test Status | |
+
+> User not found (userId=99999999, expected 404) and invalid token (expected 401) are different test points and should be separate cases, such as TC_API_USER_GET_002 and TC_API_USER_GET_003.

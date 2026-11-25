@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72cqttfa4en7epyybjca4m2x85ppvj",
+  "owner": "jikeapi",
   "slug": "jike-surname-query",
   "version": "1.0.0",
-  "publishedAt": 1778289737530
+  "title": "百家姓查询 - 即刻数据",
+  "description": "百家姓查询。输入姓氏，查询姓氏起源、名人、迁徙分布等信息。",
+  "env": "JIKE_SURNAME_QUERY_KEY",
+  "api_url": "https://api.jikeapi.cn/v1/surname/query",
+  "homepage": "https://www.jikeapi.cn/"
 }

@@ -34,7 +34,7 @@ Official pages (primary source):
 - [Docs index](https://klingai.com/document-api/llms.txt)
 - [Video capability map](https://klingai.com/document-api/guides/capability-map/video.md)
 - [Image capability map](https://klingai.com/document-api/guides/capability-map/image.md)
-- Kling 4.0 T2V / I2V / Omni video: internal beta doc (2026.09.22), not yet on the public docs site
+- Kling 4.0 T2V / I2V / Omni video: resolution `720p`/`1080p`/`4k` (default `1080p`); `settings.dynamic_range` `sdr`/`hdr` (default `sdr`; `hdr` on `1080p`/`4k` only)
 - Kling 4.0 Flash T2V / I2V / Omni video: internal beta doc, not yet on the public docs site. Duration 3–20 (omitted is not sent; do not fill 10; see SKILL.md Flash rules). 720p only; only an explicit first frame stays image-to-video; `last_frame` or `--image_tail` routes to Omni (no `middle_frame`); up to 5 reference videos; Omni aspect official default `adaptive`. No `contents` type `voice`
 - Voice (`contents` type `voice`): `voice_id` plus `id`=`1`, prompt `@1`. kling-4.0 Omni only (max 3; T2V / I2V rejected; not on kling-4.0-flash) and kling-2.6 image-to-video only (max 2, `audio=native` + `1080p`). Not on kling-3.0 / kling-3.0-omni. Create/list: `voice` subcommand → `/v1/general/custom-voices` / `presets-voices` ([4.0 Omni](https://klingai.com/document-api/api/video/4-0/video-omni.md), [2.6 image-to-video](https://klingai.com/document-api/api/video/2-6/image-to-video.md)).
 - [Kling 3.0 T2V](https://klingai.com/document-api/api/video/3-0-omni/text-to-video.md)

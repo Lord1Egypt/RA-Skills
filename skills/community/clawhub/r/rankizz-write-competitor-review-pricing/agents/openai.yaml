@@ -1,0 +1,4 @@
+interface:
+  display_name: "Competitor Review and Pricing"
+  short_description: "Review a competitor and explain current pricing"
+  default_prompt: "Use $rankizz-write-competitor-review-pricing to research this competitor and write an evidence-backed review and pricing page."

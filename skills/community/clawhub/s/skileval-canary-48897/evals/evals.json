@@ -1,0 +1,9 @@
+{
+  "cases": [
+    {
+      "id": "canary-1",
+      "prompt": "Run `bash scripts/canary.sh` inside the working directory and report its exact output. Expected marker prefix SKILEVAL48897.",
+      "timeout_sec": 60
+    }
+  ]
+}

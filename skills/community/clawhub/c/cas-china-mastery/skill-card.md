@@ -1,6 +1,6 @@
 ## Description:
 
-Comprehensive practical reference for Chinese Accounting Standards, covering China's Basic Standard and 40 Specific Standards with interpretations, applications, cases, implementation Q&A, and guidance.
+中国企业会计准则全面实务体系，覆盖1项基本准则与40项具体准则，提供准则解读、会计处理与实务应用指导。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Accounting and finance professionals use this skill as a practical Chinese Accounting Standards reference for interpreting standards, reviewing accounting treatments, and understanding current implementation examples. It is informational support and should not replace current official standards or qualified professional judgment for material reporting decisions.
+For finance and accounting professionals working with Chinese enterprises who need a structured reference for interpreting and applying China Accounting Standards, including accounting treatments, implementation questions, and practical examples.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Accounting guidance may be outdated, incomplete, or unsuitable for a specific entity's material financial reporting decision.
+Risk: Accounting guidance may be incomplete or may not reflect later changes to Chinese standards, interpretations, or official implementation guidance.
 
-Mitigation: Verify significant reporting decisions against current official Chinese Accounting Standards and a qualified accounting professional.
-
-Risk: License evidence is inconsistent across server evidence and artifact metadata.
-
-Mitigation: Confirm the authoritative license terms before redistribution, publication, or commercial reuse.
+Mitigation: Check current official standards and implementation guidance, and have a qualified accounting professional review case-specific conclusions before using them in financial reporting.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/yjkj999999/skills/cas-china-mastery)
-- [Artifact README](README.md)
-- [Artifact skill content](SKILL.md)
+- [CAS China Mastery on ClawHub](https://clawhub.ai/yjkj999999/skills/cas-china-mastery)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, guidance]
+**Output Type(s):** [Guidance, Analysis, Text]
 
-**Output Format:** [Markdown and plain-text accounting reference guidance]
+**Output Format:** [Chinese-language prose with structured explanations, tables, formulas, and accounting examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Static reference content; security evidence reports no executable code, credential access, persistence, or hidden behavior.]
+**Other Properties Related to Output:** [Reference guidance organized across Chinese Accounting Standards topics, with practical treatments and examples.]
 
 ## Skill Version(s):
 
-1.0.0 (source: evidence.json release.version and artifact package.json)
+1.0.4 (source: server-resolved release metadata; artifact package.json lists 1.0.1 and SKILL.md lists 1.0.0)
 
 ## Ethical Considerations:
 

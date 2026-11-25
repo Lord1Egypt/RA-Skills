@@ -17,6 +17,15 @@ test('sanitizeHttpErrorMessage redacts bearer and key-value secrets', () => {
   assert.match(sanitized, /x-tva-sa-secret:/);
 });
 
+test('sanitizeHttpErrorMessage redacts stream keys and plural token collections in plaintext (Astra A3)', () => {
+  const sanitized = sanitizeHttpErrorMessage('stream_key=SYN_STREAM stream-key: SYN2 access_tokens=SYN3 refresh_tokens: SYN4 tokens=SYN5');
+  for (const secret of ['SYN_STREAM', 'SYN2', 'SYN3', 'SYN4', 'SYN5']) {
+    assert.equal(sanitized.includes(secret), false, secret);
+  }
+  assert.match(sanitized, /stream_key=/);
+  assert.match(sanitized, /stream-key:/);
+});
+
 test('fromHttpError marks retryable statuses and sanitizes body', () => {
   const err = fromHttpError('theta-ondemand', '/infer', 503, 'temporary outage api-key=fixture-key');
   assert.equal(err.code, 'HTTP_503');

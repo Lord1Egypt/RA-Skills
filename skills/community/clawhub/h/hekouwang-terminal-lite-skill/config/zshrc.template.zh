@@ -1,0 +1,209 @@
+# ============================================================
+# hekouwang-terminal-skill — 推荐 .zshrc 模板
+# 顺序很重要：omz → znap/插件 → starship → CLI 套件 →
+#             syntax-highlighting(倒数第二) → iTerm2 integration(最后)
+# 私有内容（SSH 别名 / 代理 / 公司配置）放 ~/.zshrc.local，永不进 git
+#
+# 这是中文版模板。英文版（默认）在 config/zshrc.template —— 两份内容必须同步改，
+# 只改一份下次装成另一种语言就少了那条改动。
+# ============================================================
+
+# ---- 0. 系统调优 -------------------------------------------
+# Homebrew 进 PATH（Apple Silicon=/opt/homebrew，Intel=/usr/local，二者都试）
+for _brew in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+  [ -x "$_brew" ] && eval "$("$_brew" shellenv)" && break
+done
+BREW_PREFIX="${HOMEBREW_PREFIX:-$(brew --prefix 2>/dev/null)}"  # 下面 share/ 路径都用它
+
+# 提高文件句柄上限（zsh-autocomplete/autosuggestions 异步 worker 需要）
+ulimit -n 10240 2>/dev/null
+
+# ---- 1. oh-my-zsh ------------------------------------------
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME=""          # prompt 交给 starship，主题留空
+plugins=(git)         # 保持精简；可选追加: sudo extract
+source $ZSH/oh-my-zsh.sh
+
+# ---- 2. Znap 插件管理器 + zsh-autocomplete（可选重型补全）---
+zstyle ':znap:*' repos-dir ~/.zsh-plugins
+[[ -r ~/.zsh-plugins/znap/znap.zsh ]] ||
+    git clone --depth 1 -- \
+        https://github.com/marlonrichert/zsh-snap.git ~/.zsh-plugins/znap
+source ~/.zsh-plugins/znap/znap.zsh
+znap source marlonrichert/zsh-autocomplete
+
+# ---- 3. zsh-autosuggestions（灰色幽灵提示）------------------
+[ -f "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && \
+  source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+# 幽灵文字默认用 fg=8，而 ANSI 8 在 tokyo-night 上只有 1.9:1（几乎看不见）。
+# 第 9.0 节稍后 sources colors.sh，会把它改成当前主题的暗字槽（审计保证 ≥3:1）；
+# 这一行只兜住 colors.sh 载入之前的那一小段。
+: ${ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE:="fg=8"}
+
+# ---- 4. Node 版本管理器（只留一套，别混用）------------------
+# 装机时选（./scripts/install.sh --node …），之后想换跑 ./scripts/node-mgr.sh。
+# 片段在 ~/.config/hekouwang-terminal/node.sh，换管理器不用改本文件。
+[ -f ~/.config/hekouwang-terminal/node.sh ] && source ~/.config/hekouwang-terminal/node.sh
+
+# ---- 5. 其他运行时 ------------------------------------------
+# Java 17（用 java_home 动态解析，不写死小版本）
+[ -x /usr/libexec/java_home ] && export JAVA_HOME=$(/usr/libexec/java_home -v 17 2>/dev/null)
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
+
+# pipx
+export PATH="$PATH:$HOME/.local/bin"
+
+# locale（防 SSH 远程乱码）
+export LC_ALL=en_US.UTF-8
+
+# ---- 6. Homebrew 调优（国内镜像）----------------------------
+export HOMEBREW_AUTO_UPDATE_SECS=3600
+# ⚠️ 2026-07-23 换掉阿里云：那个 homebrew 镜像已基本停更（API 里 uv 还停在 0.7.6，
+#    实际已 0.11.31，新版 bottle 全缺）。而 Homebrew 6.x 的表现是**下载成功却装不上** ——
+#    镜像 404 → 回退官方 ghcr.io 下载成功 → 但缓存文件名哈希按**镜像 URL** 算 →
+#    pour 时按镜像哈希找文件 → 找不到 → 硬失败，重试多少次都卡同一处。
+#    换中科大（本机实测 API 33.5MB/5.1s，比清华快一倍多）。
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+export HOMEBREW_API_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles/api
+# PyPI 这行阿里云实测仍正常，未动
+export HOMEBREW_PIP_INDEX_URL=https://mirrors.aliyun.com/pypi/simple/
+# 判镜像有没有停更（跟 brew info uv 对不上就是滞后）。官方 API，执行前可先审阅：
+#   curl -s "$HOMEBREW_API_DOMAIN/formula/uv.json" -o /tmp/uv.json
+#   # 已保存到：/tmp/uv.json
+#   python3 -c "import json;print(json.load(open('/tmp/uv.json'))['versions']['stable'])"
+# 应急绕开、不动配置：env -u HOMEBREW_BOTTLE_DOMAIN -u HOMEBREW_API_DOMAIN brew upgrade
+
+# ---- 7. Git 短别名 ------------------------------------------
+alias gc="git commit -am "
+alias gs="git status"
+alias gaa="git add ."
+alias gpld="git pull origin develop"
+alias gpud="git push origin develop"
+alias gplm="git pull origin master"
+alias gpum="git push origin master"
+alias gcom="git checkout master"
+alias gcod="git checkout develop"
+alias gco="git checkout "
+alias gr="git merge "
+
+# ---- 8. Starship Prompt -------------------------------------
+# 场景美学引擎：scene.env 可能设置 STARSHIP_CONFIG（投屏/录屏藏路径）。
+# 必须在 starship init 之前 source，否则隐私路径不会生效。
+[ -f ~/.config/hekouwang-terminal/scene.env ] && . ~/.config/hekouwang-terminal/scene.env
+eval "$(starship init zsh)"
+
+# ============================================================
+# 9. Modern CLI suite
+# ============================================================
+
+# ---- 9.0 生态配色：一份色板管住整条工具链 --------------------
+# bat / fzf / eza / ls / git diff(delta) 的配色全在这一个文件里，
+# 由 config/themes/_generate.py 从主题色板生成，./scripts/theme.sh 换肤时替换它的内容。
+# 所以：换主题不用改 .zshrc，这一行永远指着同一个路径。
+# 没装（或卸载后）就静默跳过，各工具回到自己的默认配色，不报错。
+#
+# ⚠️ 必须排在下面各工具**之前**：它导出的 HEKOUWANG_SOLO_NF 决定 eza 要不要带图标，
+#    放在后面的话读到的是空值，条件永远不成立（踩过一次）。
+[ -f ~/.config/hekouwang-terminal/current/colors.sh ] && \
+  source ~/.config/hekouwang-terminal/current/colors.sh
+
+# ---- 9.0b 长任务完成通知（付费包；文件不在就什么都不发生）----
+# 命令跑够久（默认 30 秒）且终端不在前台时，发一条系统通知告诉你跑完了/失败了。
+# 阈值和忽略名单可在 ~/.zshrc.local 里调，见文件头部注释。
+
+# eza — modern ls with icons & git status
+if command -v eza >/dev/null; then
+  # eza 的图标在 Unicode 私有区，操作系统无法自动回退字体。
+  # macOS 自带终端只有一个字体字段（没有 iTerm2 那层 Symbols Nerd Font 兜底），
+  # 主字体不含图标时会满屏 ? 方块 —— 这种组合下干脆不显示图标。
+  # HEKOUWANG_SOLO_NF 由 theme.sh 按 font.conf 的策略写入，默认 1（有图标）。
+  _hkw_icons="--icons"
+  [ "${TERM_PROGRAM:-}" = "Apple_Terminal" ] && [ "${HEKOUWANG_SOLO_NF:-1}" = "0" ] && _hkw_icons=""
+  # HKW_PLAIN=1 是显式纯文本降级（./scripts/theme.sh <主题> --plain）：
+  # 所有终端都不显示图标，给完全没有 Nerd Font 的机器用。
+  [ "${HKW_PLAIN:-0}" = "1" ] && _hkw_icons=""
+  alias ls="eza $_hkw_icons"
+  alias ll="eza -l $_hkw_icons --git"
+  alias la="eza -la $_hkw_icons --git"
+  alias lt="eza --tree --level=2 $_hkw_icons"
+  unset _hkw_icons
+fi
+
+# bat — cat with syntax highlighting
+# 配色（BAT_THEME）不在这里写死，由上面第 9.0 节的生态配色统一给。
+if command -v bat >/dev/null; then
+  alias cat="bat --paging=never"
+fi
+
+# fzf — fuzzy finder (Ctrl+T files / Alt+C cd；Ctrl+R 由 atuin 接管)
+# 配色（FZF_DEFAULT_OPTS）同样由第 9.0 节给，这里只管行为。
+if command -v fzf >/dev/null; then
+  source <(fzf --zsh)
+  export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+fi
+
+# zoxide — smarter cd（`z 关键词` 跳转高频目录）
+command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
+
+# atuin — 命令历史数据库（接管 Ctrl+R；↑ 键保持原生）
+command -v atuin >/dev/null && eval "$(atuin init zsh --disable-up-arrow)"
+
+# ============================================================
+# 10. 私有配置（SSH 别名 / 代理开关 / 公司环境变量）
+#     模板见 zshrc.local.example，此文件不进 git
+# ============================================================
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+# ============================================================
+# 11. 必须保持在最后的两行
+# ============================================================
+# zsh-syntax-highlighting — 必须在所有改键位的插件之后
+[ -f "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && \
+  source "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# iTerm2 Shell Integration
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# ---- 标签标题：项目名 + 一个彩色圆点 -----------------------
+# iTerm2 / Ghostty 的 shell integration 默认把标题写成 `user@host:完整路径`——
+# 截图、投屏、录课时等于把你的用户名、机器名、整个目录结构一起播出去。
+# ⚠️ 必须**追加在 precmd_functions 末尾**（也就是 source shell integration 之后），
+#    否则每次画提示符它又被写回去 —— 直接 printf 转义序列是没用的，实测过。
+#
+# 项目识别只落在标题前的**一个圆点**上，顶栏底色永远跟窗口走（Minimal 主题
+# 「整窗一块画布」）。
+# ⛔ 别改回 OSC 6 标签染色（`\033]6;1;bg;…`）：那会把一整条顶栏刷成高饱和色块，
+#    跟窗体明显不是一家。同 config/themes/_generate.py 里 TAB_TINT = 0.0 的口径。
+# ⚠️ 复位序列**每次画提示符都发**是有意的 —— iTerm2 的标签色是「会话级状态」，
+#    以前染过色的会话不复位就一直挂着旧颜色，光把染色代码删掉是不够的。
+typeset -A HKW_TAB_DOT
+# 你常驻的那几个项目，在这里钉死圆点（键=项目根绝对路径）：
+# HKW_TAB_DOT[$HOME/work/my-project]=🟠
+
+_hkw_title() {
+  local root name dot
+  printf '\033]6;1;bg;*;default\a'           # 标签色复位＝顶栏跟窗口底色走
+  root=$(git rev-parse --show-toplevel 2>/dev/null)
+  if [[ -z $root ]]; then                    # 不在任何 git 项目里：标题=目录名，不挂圆点
+    name=${PWD:t}; [[ $PWD == $HOME ]] && name='~'   # 家目录的 basename 是用户名，别露
+    printf '\033]0;%s\007' "$name"
+    return
+  fi
+  name=${root:t}                             # 在项目里：标题=项目（仓库）名
+  dot=${HKW_TAB_DOT[$root]}                  # 手动指定的优先
+  if [[ -z $dot ]]; then                     # 没指定 → 按路径哈希挑稳定圆点（同项目永远同点）
+    local pal=(🟢 🟣 🟡 🔴 🟤 ⚪)
+    local h=$(print -n $root | md5 -q 2>/dev/null)
+    dot=${h:+$pal[$(( 0x${h[1,6]} % $#pal + 1 ))]}
+  fi
+  printf '\033]0;%s\007' "$name"             # OSC 0 兜底：不认 OSC 1 的终端也有纯标题
+  printf '\033]1;%s %s\a' "$dot" "$name"     # OSC 1 = 只写标签页标题（带圆点）
+  printf '\033]2;%s\a' "$name"               # OSC 2 = 窗口标题保持纯文字，投屏更干净
+}
+autoload -Uz add-zsh-hook 2>/dev/null && add-zsh-hook precmd _hkw_title
+

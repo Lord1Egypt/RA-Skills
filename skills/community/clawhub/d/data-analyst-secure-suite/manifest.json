@@ -1,9 +1,9 @@
 {
   "id": "data-analyst-secure-suite",
   "spec": "usk/3.0",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "name": "Secure Data Analyst Skill Suite",
-  "description": "A secure data analysis workflow suite based on MGC Blackbox 1.5.4+, providing credential protection, zero-exposure script & workflow application, workflow / skill-package sealed-authorization collaboration, and knowledge management. Supports 1.5.4 double-layer encryption with link authorization, free-mode sealing, and cross-folder workflow auto-recognition. Includes a Data Analyst Agent system prompt template.",
+  "description": "A secure data analysis workflow suite based on MGC Blackbox 1.6.0+, providing credential protection, zero-exposure script & workflow application, workflow / skill-package sealed-authorization collaboration, and knowledge management. Supports 1.5.4 double-layer encryption with link authorization, free-mode sealing, and 1.6.0 chain mode for multi-node sealed distribution (one seal → multiple independent sub-packages + distribution_index.json). Includes a Data Analyst Agent system prompt template.",
   "author": "MirginCipher Team",
   "license": "MIT",
   "tags": [
@@ -40,9 +40,9 @@
     "mgc_skill"
   ],
   "requirements": {
-    "mgc_version": ">=1.5.4"
+    "mgc_version": ">=1.6.0"
   },
-  "install": "pip install mgc-blackbox>=1.5.4",
+  "install": "pip install mgc-blackbox>=1.6.0",
   "runtime": "mgc",
   "port": 57219,
   "files": {
@@ -91,6 +91,15 @@
     "MGC protects content confidentiality; after unsealing, scripts execute with the permissions of the running user and their runtime behavior is outside MGC's control."
   ],
   "changelog": [
+    {
+      "version": "1.5.0",
+      "changes": [
+        "Upgraded for MGC 1.6.0: added chain mode for multi-node sealed distribution — one seal produces N independent sub-packages.",
+        "collaboration_management.md gained section 3 / 3.1 on chain mode: targets array, distribution_index.json, sub-package layout and receiver verification flow.",
+        "Documented chain-mode hard constraints: flat directory only, files must match diff_3, files carry scripts only (data and credentials stay local), and the root causes of UNSEAL_FAILED at run time.",
+        "Unified the version requirement across all documents to MGC Blackbox 1.6.0+."
+      ]
+    },
     {
       "version": "1.4.0",
       "changes": [

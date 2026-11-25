@@ -1,6 +1,6 @@
 ## Description:
 
-用于小红书评论分析、小红书评论回复、用户反馈、口碑分析、痛点总结和内容讨论分析。覆盖 Xiaohongshu / XHS / RedNote comments，来自 SocialDataX 社媒数据助手。
+用于小红书评论分析、小红书评论回复、用户反馈、口碑分析、痛点总结和内容讨论分析。覆盖 Xiaohongshu / XHS / RedNote comments，来自社媒数据助手 SocialDataX。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-小红书运营人员、品牌团队和市场分析师可用此 skill 获取指定笔记的评论与回复，并归纳受众反馈、情绪主题、异议、痛点和常见问题。
+内容创作者和社媒团队可用此技能读取小红书笔记评论及回复，归纳受众反馈、情绪主题、疑问、异议、痛点和讨论内容。
 
 ### Deployment Geography for Use:
 
@@ -22,13 +22,13 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan marks the skill suspicious because it repeatedly invokes an unpinned latest CLI package, which creates supply-chain risk.
+Risk: The documented commands use a changeable package release, creating a supply-chain risk.
 
-Mitigation: Review and pin an approved CLI package version before use.
+Mitigation: Review and pin the package version before using it, especially for commands that access authentication credentials.
 
-Risk: The security scan was partial because some local references could not be resolved, so its evidence is incomplete.
+Risk: The scan was partial and could not resolve several referenced files, so it does not establish the full package behavior.
 
-Mitigation: Review unresolved references and complete a full security scan before relying on the result.
+Mitigation: Review the package and its referenced files before use; do not treat the partial scan as a safety guarantee.
 
 ## Reference(s):
 
@@ -37,17 +37,17 @@ Mitigation: Review unresolved references and complete a full security scan befor
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis, Text]
+**Output Type(s):** [Analysis, Text, JSON]
 
-**Output Format:** [JSON comment data with concise textual summaries]
+**Output Format:** [Structured JSON comment data and concise text summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include pagination counts and continuation tokens when multiple pages are fetched.]
+**Other Properties Related to Output:** [Comment and reply data can span one or multiple pages; summaries should distinguish the observed themes and page coverage.]
 
 ## Skill Version(s):
 
-0.1.23 (source: server-resolved release metadata)
+0.1.24 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

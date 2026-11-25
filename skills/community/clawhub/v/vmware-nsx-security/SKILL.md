@@ -49,7 +49,7 @@ VMware NSX DFW microsegmentation and security — 22 MCP tools for distributed f
 ## Quick Install
 
 ```bash
-uv tool install vmware-nsx-security==1.17.3
+uv tool install vmware-nsx-security==1.17.4
 vmware-nsx-security init      # guided setup: writes config + .env (chmod 600, password grep-safe), then verifies
 vmware-nsx-security doctor
 ```
@@ -308,7 +308,7 @@ single-command form `vmware-nsx-security mcp` (no PyPI re-resolve), or
 ## Setup
 
 ```bash
-uv tool install vmware-nsx-security==1.17.3
+uv tool install vmware-nsx-security==1.17.4
 mkdir -p ~/.vmware-nsx-security
 cp config.example.yaml ~/.vmware-nsx-security/config.yaml
 # Edit config.yaml with your NSX Manager targets
@@ -354,3 +354,5 @@ vmware-policy is automatically installed as a dependency — no manual setup nee
 ## License
 
 MIT — [github.com/vmware-skills/VMware-NSX-Security](https://github.com/vmware-skills/VMware-NSX-Security)
+
+[Contracts](references/mcp-result-contract.md).

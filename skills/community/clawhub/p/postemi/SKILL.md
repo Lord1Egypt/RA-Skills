@@ -14,18 +14,18 @@ npm install -g postemi
 postemi auth:login        # opens the browser to approve the login
 ```
 
-official website: https://postemi.com
-API base: https://api.postemi.com
-MCP server, for chat clients without a terminal: https://mcp.postemi.com/mcp
-(the user signs in to Postemi in the browser; same account, same channels)
+Website: https://postemi.com (the web app is under https://postemi.com/app).
+API: https://api.postemi.com. MCP server, for chat clients without a
+terminal: https://mcp.postemi.com/mcp (the user signs in to Postemi in the
+browser; same account, same channels). Other hostnames you may have read
+about do not exist.
 
----
-
-| Property | Value |
-|----------|-------|
-| **name** | postemi |
-| **description** | CLI for scheduling and publishing posts through the Postemi public API |
-| **allowed-tools** | Bash(postemi:*) |
+Details this file only points at (account creation, key scopes, billing,
+rate limits, analytics repair) are in
+[reference/details.md](./reference/details.md). For writing the post itself
+(ideas, hooks, formats, each network's style) use the `postemi-writing` and
+`postemi-templates` skills when they are installed (see "Optional skills"
+below).
 
 ---
 
@@ -104,168 +104,119 @@ Do not build a `--settings` payload for it.
 
 ---
 
-## ⚠️ Two Hard Rules (Read First)
+## Two hard rules
 
-**Rule 1: Authenticate before anything.** All commands fail without valid credentials.
+**Rule 1: Authenticate before anything.** Every command fails without valid
+credentials. Run `postemi auth:status` first.
 
-**Rule 2: Every file passed to `-m` (or to `image`/media fields in JSON mode) MUST first go through `postemi upload`.** Raw filesystem paths (`image.jpg`, `video.mp4`) and external URLs (`https://example.com/...`) are **NOT** accepted by the publishing pipeline. TikTok, Instagram, YouTube, and most other providers reject anything that isn't a Postemi-verified URL. Always:
+**Rule 2: Every file passed to `-m` (or to a media item in `--json`) MUST first
+go through `postemi upload`** (or `upload:url` for a file already online,
+`upload:link` for a file on the user's phone). Local paths (`image.jpg`) and
+outside URLs (`https://example.com/...`) are refused by the publishing
+pipeline. Always:
 
 ```bash
-RESULT=$(postemi upload <file>)
-URL=$(echo "$RESULT" | jq -r '.path')
-postemi posts:create ... -m "$URL" ...
+MEDIA_PATH=$(postemi upload ./photo.jpg | jq -r '.path')
+postemi posts:create ... -m "$MEDIA_PATH" ...
 ```
 
-If you see `-m "something.jpg"` anywhere below, treat it as shorthand for "the `.path` you got back from `postemi upload something.jpg`", never a raw local file.
-
----
+Never name the variable `PATH`: that overwrites the shell's search path, and
+the next `postemi` call fails with "command not found".
 
 ## Output contract
 
-Every command prints its **JSON result, and nothing else, to stdout**;
-status lines, warnings and errors go to stderr, and every failure exits 1. So
-`postemi upload x.jpg | jq -r '.path'` is always safe, with no stripping needed.
-Unknown flags are an error, not silently ignored. If a flag is rejected, it
-does not exist; do not retry with variations.
+Every command prints its **JSON result, and nothing else, to stdout**; status
+lines, warnings and errors go to stderr, and every failure exits 1. So
+`postemi upload x.jpg | jq -r '.path'` is always safe. Unknown flags are an
+error. If a flag is rejected, it does not exist; do not retry with variations.
 
 ---
 
-## ⚠️ Authentication Required
-
-**You MUST authenticate before running any Postemi CLI command.** All commands will fail without valid credentials.
-
-Before doing anything else, check auth status:
-```bash
-postemi auth:status
-```
-
-If not authenticated:
-1. **Sign in:** `postemi auth:login` opens a browser, and the human approves it.
-   You never see or handle a key.
-2. **No account yet:** `postemi auth:signup` creates one, see below. Only when
-   the user asks you to create a Postemi account for them. They can also sign
-   up at https://postemi.com/app/signup, which starts a 7-day free trial, and
-   then run `postemi auth:login`.
-
-### Creating an account for the user (no free trial)
-
-When the user asks you to make them a Postemi account and they have none:
+## Authentication
 
 ```bash
-postemi auth:signup --email anna@example.com
-# → {codeSent:true, terms, privacy, timezone, language, next}   (no terminal: the code is on its way; `next` is the exact second command, every option kept)
-postemi auth:signup --email anna@example.com --code 123456 --accept-terms [--workspace-name "Anna's Cafe"] [--timezone Europe/London]
-# → {created:true, workspaceId, workspaceName, trial:false, credentials, next}
+postemi auth:status     # is there a valid sign-in?
+postemi auth:login      # device login: opens the browser, the human approves
+postemi auth:logout
 ```
 
-1. Run it with `--email` only. Postemi e-mails the user a six-digit code
-   (valid 10 minutes). Ask the user to read the code to you.
-2. Show the user the terms (https://postemi.com/terms) and the privacy notice
-   (https://postemi.com/privacy) and ask whether they agree. Pass
-   `--accept-terms` ONLY after they said yes; never decide it for them.
-3. Run it again with `--code` and `--accept-terms`. The CLI keeps the
-   sign-in the same way `auth:login` does and never prints it.
-4. **There is no free trial on an account made this way**, and until the
-   user pays, only the `billing:*` commands work. Next: `billing:plans`,
-   confirm a plan with the user, `billing:subscribe`, give them the link.
-   Channels are connected by the user in the web app after paying.
-5. **You keep working for the user only on a plan with API access**
-   (`limits.apiAndMcpAccess: true` in `billing:plans`). Basic has none: if
-   the user picks it, tell them BEFORE they pay that you will not be able to
-   schedule for them afterwards. `billing:subscribe` answers with
-   `apiAndMcpAccess: false` and prints the warning on stderr for such a plan.
+1. `auth:status` first. If it is not authenticated, run `postemi auth:login`.
+   The human approves it in the browser and chooses the workspace and the
+   channels the key may reach. You never see or handle a key; do not read,
+   print or copy the CLI's stored sign-in.
+2. `authenticated: true, apiAccess: false, reason: "no-plan"` is a valid key
+   of a workspace that has not paid yet. Do not run `auth:login` for it; only
+   the `billing:*` commands work until the user subscribes.
+3. The user has no account and asks you to make one: `postemi auth:signup
+   --email <address>`. There is no free trial on such an account. Follow the
+   steps in [reference/details.md](./reference/details.md#creating-an-account)
+   (the e-mailed code, the terms the user must accept themselves, the plan).
+   The user can also sign up at https://postemi.com/app/signup, which starts
+   a 7-day free trial, and then run `postemi auth:login`.
 
-Exit 1 with "already has a Postemi account" (HTTP 409) means the address is
-taken: the user signs in with `postemi auth:login` instead. A wrong or expired
-code: run step 1 again for a new one.
-
-`postemi auth:status` reports a valid key of a workspace that has not paid yet
-as `authenticated: true, apiAccess: false, reason: "no-plan"` (exit 0). It is
-not an invalid key; do not run `auth:login` for it. Only the `billing:*`
-commands work until the workspace is on a plan with API access.
-
-**Do NOT proceed with any other commands until authentication is confirmed.**
-
-### What a key can and cannot do
-
-Keys are **per person, named, and scoped**. They are stored hashed and shown
-exactly once, at creation, in the web app under **Settings → Developers**. A
-lost key cannot be recovered. It can only be rotated.
-
-Two limits apply to every request, and both explain 403s that look like bugs:
-
-1. **Scopes.** A key carries a subset of `posts:read`, `posts:draft`,
-   `posts:publish`, `channels:read`, `channels:write`, `media:write`,
-   `analytics:read`. A route refuses a key that lacks its scope.
-2. **The owner's current role, re-checked on every request.** A key can never
-   do more than the person who created it can do *right now*. If that person is
-   demoted, their live keys narrow on the next request, with nobody revoking
-   anything. So a key that worked yesterday can legitimately start returning
-   403 today with no change to the key.
-
-A key can also be **granted only some workspaces and only some channels**. A
-request naming a channel outside the grant is refused even when the scope is
-right.
-
-**When you hit a 403, read the message.** The CLI names the missing scope; the key is valid, so `auth:login` does not fix it. Do not
-retry, and do not try a different route to get around it. Ask the user to mint
-a key with the scope, or to have someone with the right role do it.
+**401** means the sign-in is invalid: `auth:login`. **403** means the key is
+valid but may not do this (a missing scope, the owner's current role, or a
+channel or workspace outside the key's grant). The message names the reason.
+Do not retry and do not log in again; ask the user for a key with that access.
+Details: [reference/details.md](./reference/details.md#what-a-key-can-do).
 
 ---
 
-## Core Workflow
+## Workflow
 
-The fundamental pattern for using Postemi CLI:
+Do these steps in this order for every post.
 
-1. **Authenticate** - Verify or set up authentication (see above)
-2. **Workspace** - `postemi workspaces:list`; if more than one and none is `current`, ask the user which, then `postemi workspaces:use <id>`. Channel ids belong to a workspace.
-3. **Discover** - List integrations and get their settings
-4. **Fetch** - Use integration tools to retrieve dynamic data (Instagram `audioSearch`; Discord and Slack `channels`)
-5. **Prepare** - Upload media files if needed
-6. **Post** - Create posts with content, media, and platform-specific settings
-7. **Analyze** - Track performance with platform and post-level analytics
-8. **Resolve** - If analytics returns `{"missing": true}`, run `posts:missing` to list provider content, then `posts:connect` to link it
+1. **Authenticate.** `postemi auth:status` (see above).
+2. **Workspace.** `postemi workspaces:list`. If there is more than one and none
+   is `current`, ask the user which one, then `postemi workspaces:use <id>`.
+   Channel ids belong to a workspace.
+3. **Discover.** `postemi integrations:list` for the channel ids, then
+   `postemi integrations:settings <id>` for each channel: its `maxLength`, its
+   required settings and its `tools`.
+4. **Fetch.** If a setting needs an id (a Pinterest board, a Discord or Slack
+   channel, Instagram audio), get it with `postemi integrations:trigger`.
+5. **Prepare media.** `postemi upload <file>` for each file (Rule 2), or an
+   upload link when the file is not on this machine.
+6. **Write.** One text per channel, within its `maxLength` and its rules. If
+   a text is too long, rewrite it shorter and show the user. Never cut it off.
+7. **Confirm.** Show the user, for each channel: the account (name and
+   handle), the full text, the media, and the publish time in the user's
+   LOCAL time. Wait for a clear yes. If anything is unclear, or the user is
+   not there to answer, save it with `-t draft` instead and say so.
+8. **Post.** `postemi posts:create ...` with exactly what the user approved.
+9. **Check the result.** Read the `type` that came back (a key without
+   `posts:publish` makes a draft) and the `notices` (links removed from X,
+   24 hour caps). Tell the user both.
+10. **Follow up.** `postemi posts:get <id>` to see one post; `postemi posts:list`
+    for the calendar; `postemi notifications:list` for failures and channels
+    that need a reconnect; analytics later.
 
 ```bash
 # 1. Authenticate
 postemi auth:status
-# If not authenticated: postemi auth:login   (no client id/secret, it is a device flow)
 
-# 2. Discover
+# 3. Discover
 postemi integrations:list
 postemi integrations:settings <integration-id>
 
-# 3. Fetch (if needed)
-postemi integrations:trigger <integration-id> <method> -d '{"key":"value"}'
+# 5. Prepare media (upload first, always)
+MEDIA_PATH=$(postemi upload ./photo.jpg | jq -r '.path')
 
-# 4. Prepare
-postemi upload image.jpg
-#    or, when the file is on the person's phone / not on this machine:
-postemi upload:link            # show the url to the person, they drop the files
-postemi upload:files <id>      # what arrived; use each .path in -m
+# 7. Confirm with the user: account, text, media, local time. Then:
 
-# 5. Post
-postemi posts:create -c "Content" -m "image.jpg" -i "<integration-id>"
+# 8. Post, at a local wall clock time
+postemi posts:create -c "Content" -m "$MEDIA_PATH" \
+  -s "2026-12-31 09:00" --timezone Europe/London -i "<integration-id>"
 
-# 6. Analyze
-postemi analytics:platform <integration-id> -d 30
-postemi analytics:post <post-id> -d 7
-
-# 7. Resolve (if analytics returns {"missing": true})
-postemi posts:missing <post-id>
-postemi posts:connect <post-id> --release-id "<content-id>"
+# 9. Read "type" and "notices" in the JSON it printed, and tell the user.
 ```
 
 ---
 
-## Essential Commands
+## Workspaces
 
-### Workspaces
-
-A credential may reach several workspaces (the user ticked "All my
-workspaces" at login, or made a multi-workspace key). The API refuses every
-request from such a key that does not name one, with 403 and the message
-"This API key spans several workspaces", so check first:
+A key may reach several workspaces. Then the API refuses every request that
+does not name one ("This API key spans several workspaces").
 
 ```bash
 postemi workspaces:list            # [{id, name, role, current}]
@@ -274,373 +225,154 @@ postemi workspaces:current
 postemi integrations:list --workspace <id>   # one command elsewhere, without switching
 ```
 
-Say the workspace name back to the user when they have more than one, and
-never pick one for them. After a switch, run `integrations:list` again:
-channel ids from the other workspace are invalid here.
+Say the workspace name back when the user has more than one, and never pick
+one for them. After a switch, run `integrations:list` again.
 
-### Authentication
+---
 
-**Sign in: device login**
+## Media
+
+### Upload
+
 ```bash
-# Opens a browser. No client ID or secret, the human approves the code shown.
-postemi auth:login
-
-# Check auth status (verifies credentials are still valid)
-postemi auth:status
-
-# Logout (remove stored credentials)
-postemi auth:logout
+postemi upload ./photo.jpg
+# → {"path":"https://…/uploads/2026/08/abc123.jpg","size":123456,"type":"image/jpeg"}
 ```
 
-How it works, so you can explain it if the user asks: the CLI calls
-`POST /device/code`, prints a short user code and opens the approval page in
-the browser, then polls `POST /device/token` until the human (signed in to
-Postemi) approves it and chooses which workspace and which channels the
-resulting key may reach. This runs inside Postemi's own backend; there is no
-separate auth service.
+Exactly eight types are accepted; anything else is `400 Unsupported file type`.
+The server reads the file's bytes, so renaming does not help.
 
-The CLI keeps its own sign-in after that; do not read, print or copy it.
+- Images (max 10 MB): JPEG, PNG, GIF, WEBP, AVIF, BMP, TIFF.
+- Video (max 1 GB): MP4 only. Convert a MOV first:
+  `ffmpeg -i clip.mov -c:v libx264 -c:a aac clip.mp4`.
+- Not accepted: MOV, MKV, WEBM, AVI, SVG, PDF, documents, audio. See
+  SUPPORTED_FILE_TYPES.md.
 
-Off a terminal (when you, an agent, run it) the CLI does not ask for a
-timezone: pass `--timezone` on date-taking commands, or run
-`postemi config:set timezone Europe/London` once. See "Date Handling".
+### Upload link: the file is not on this machine
 
-The CLI talks to `https://api.postemi.com`. The MCP server, for chat clients,
-is `https://mcp.postemi.com/mcp`. Other hostnames you may have read about do
-not exist.
-
-### Upload link: when the file is not on this machine
-
-`postemi upload` needs the file on disk. When the person has it on their phone,
-or you cannot see their filesystem, do NOT ask them to host it somewhere
-public. Mint a link:
+When the file is on the user's phone, or you cannot see their files, do not
+ask them to host it somewhere public. Make a link:
 
 ```bash
 postemi upload:link
 # → {"id":"kR3mQ7xP2nLa","url":"https://…","expiresAt":"…"}
 ```
 
-Show the `url` to the person verbatim and say: open it, drop the image or
-video, come back and tell me it is done. It works signed out and on a phone.
-When they say done:
+Show the `url` to the user as it is: open it, drop the image or video, then
+tell me it is done. It works signed out and on a phone. Then:
 
 ```bash
 postemi upload:files kR3mQ7xP2nLa
 # → {"status":"ready","count":1,"files":[{"id":"…","name":"clip.mp4","path":"https://…","type":"video"}]}
 ```
 
-Pass each `path` to `posts:create -m`. `status: "empty"` is not an error: they
-have not finished, or spoke before the last file landed. Ask them to check the
-page says "uploaded" and run it again. The link lives two hours; mint a new one
-if it expires.
+Pass each `path` to `-m`. `status: "empty"` means the upload has not finished:
+ask the user to check that the page says "uploaded", then run it again. The
+link lives two hours.
 
-### Subscription (only when the user asks)
+### Alt text
 
-Four commands, the only place a plan is named. Call them only when the user
-asks about plans, asks to subscribe, or asks to manage their subscription;
-never suggest a plan or an upgrade otherwise.
-
-```bash
-postemi billing:plans                                  # → {current:{tier,plan}, plans:[{plan,slug,monthly,yearly,limits}], trial, trialDays}
-postemi billing:subscribe --tier pro --period yearly   # → {status:"requires_payment", checkoutUrl, checkoutId, plan, amount, currency, trial, expiresAt, apiAndMcpAccess}
-postemi billing:status                                 # → {state, plan, period, currentPeriodEnd, payerIsCaller, pendingCheckout, apiAndMcpAccess}
-postemi billing:manage                                 # → {portalUrl}
-```
-
-The flow:
-
-1. Confirm the plan (Basic, Pro, Creator or Team; `--tier basic`, `pro`,
-   `creator` or `team`, or the `slug` that `billing:plans` prints) and the
-   period (monthly or yearly) with the user. Basic has no API access: if the
-   user picks it, tell them BEFORE they pay that you will not be able to
-   schedule for them afterwards.
-2. Run `billing:subscribe` once and give the user `checkoutUrl`. **The user
-   opens it and pays with their OWN Link wallet or card.** Do NOT pay with a
-   one-time or agent-issued card, a virtual card number or any credential of
-   your own: a Postemi subscription renews monthly or yearly, and a one-time
-   credential fails at the first renewal, which ends the plan. `--open` opens
-   the link in the browser of this machine; use it only when this machine is
-   the user's own.
-3. After the user says they have paid, run `billing:status` and check that
-   `state` is `trialing` or `active` before continuing setup. It changes
-   within seconds of the payment. If `billing:status` shows a
-   `pendingCheckout`, hand that link back instead of running
-   `billing:subscribe` again.
-4. A live subscription is changed, cancelled or invoiced in the Stripe
-   portal: `billing:manage` prints the link. Do not describe plans there.
-
-These commands work before the workspace has a plan with API access (they
-are how it gets one). `billing:subscribe` and `billing:manage` need a
-full-workspace key or an OAuth token held by the person who pays (or a
-workspace owner when nobody pays yet); a scoped key is refused with a
-message that says so.
-
-### Rate limits
-
-Tiered, **per key, per route, per hour**. Each route keeps its own bucket, so a
-polling loop on `posts:list` cannot starve `posts:create`.
-
-| Routes | Limit |
-|---|---|
-| Reads: `posts:list`, `integrations:list`, `integrations:groups`, `integrations:settings`, `posts:missing`, `posts:find-slot`, notifications | 600/h (the `API_LIMIT` default; production sets 600) |
-| Publish and delete: `posts:create`, `posts:delete`, `posts:delete-group`, `posts:status`, `integrations:trigger` | 60/h |
-| Analytics and channel refresh: `analytics:platform`, `analytics:post`, `/social/:integration` | 30/h |
-| Uploads: `upload`, `upload-from-url` | 30/h |
-| Upload links: `upload:link` 60/h, `upload:files` 600/h | |
-
-The bucket is keyed on the hash of the presented key, so rotating a key starts
-a fresh allowance and the old secret's allowance dies with it. Exceeding a
-limit returns `429`. **Back off; do not retry in a tight loop**: a retry
-storm just burns the next hour's allowance too.
-
-### Integration Discovery
+`--alt <text>` (repeat it) gives alt text to the media of the post itself (the
+first `-c`), in the same order as `-m`. In `--json`, put `"alt"` on the media
+item. Write alt text that says what the picture shows; ask the user when you
+cannot see the picture.
 
 ```bash
-# List all connected integrations
-postemi integrations:list
-
-# List integrations belonging to a specific group (customer)
-postemi integrations:list --group <group-id>
-
-# List all groups (customers) as {id, name}
-postemi integrations:groups
-
-# Get settings schema for specific integration
-postemi integrations:settings <integration-id>
-
-# Trigger integration tool to fetch dynamic data
-postemi integrations:trigger <integration-id> <method-name>
-postemi integrations:trigger <integration-id> <method-name> -d '{"param":"value"}'
+postemi posts:create -c "Our new shop" -m "$IMG1,$IMG2" \
+  --alt "The shop front at night" --alt "The counter with fresh bread" \
+  -s "2026-12-31 09:00" --timezone Europe/London -i "$IG_ID"
 ```
 
-### Creating Posts
+### Video covers
+
+| Flag | What it does | Where it works |
+|---|---|---|
+| `--cover-frame <seconds>` | the moment of the post's first video to show as the cover (e.g. `2.5`) | Instagram and TikTok. TikTok takes a frame only, and only with `content_posting_method: DIRECT_POST` |
+| `--cover-image <url>` | a separate cover picture; the URL must come from `postemi upload` | Instagram only; it wins over `--cover-frame` there |
+
+Both apply to the first video of the post itself, never to a comment. With
+`--json` these flags are refused; set the fields on the video's media item
+instead: `"thumbnailTimestamp"` (milliseconds) and/or `"thumbnail"` (the
+cover picture URL).
+
+### A file that is already online
+
+When the image or video is already at a public `https://` address (the
+user's own site, a cloud drive's public link), import it instead of
+downloading it first:
 
 ```bash
-# Simple post (date is REQUIRED)
-postemi posts:create -c "Content" -s "2026-12-31T12:00:00Z" -i "integration-id"
-
-# Draft post
-postemi posts:create -c "Content" -s "2026-12-31T12:00:00Z" -t draft -i "integration-id"
-
-# Post with media (upload each file FIRST, see Rule 2)
-IMG1=$(postemi upload img1.jpg | jq -r '.path')
-IMG2=$(postemi upload img2.jpg | jq -r '.path')
-postemi posts:create -c "Content" -m "$IMG1,$IMG2" -s "2026-12-31T12:00:00Z" -i "integration-id"
-
-# Post with comments (each with own media, every file uploaded first)
-MAIN=$(postemi upload main.jpg | jq -r '.path')
-C1=$(postemi upload comment1.jpg | jq -r '.path')
-C2A=$(postemi upload comment2.jpg | jq -r '.path')
-C2B=$(postemi upload comment3.jpg | jq -r '.path')
-postemi posts:create \
-  -c "Main post" -m "$MAIN" \
-  -c "First comment" -m "$C1" \
-  -c "Second comment" -m "$C2A,$C2B" \
-  -s "2026-12-31T12:00:00Z" \
-  -i "integration-id"
-
-# Multi-platform post
-postemi posts:create -c "Content" -s "2026-12-31T12:00:00Z" -i "$X_ID,$FB_ID,$THREADS_ID"
-
-# Platform-specific settings
-postemi posts:create \
-  -c "Content" \
-  -s "2026-12-31T12:00:00Z" \
-  --settings '{"who_can_reply_post":"everyone"}' \
-  -i "$X_ID"
-
-# Complex post from JSON file
-postemi posts:create --json post.json
+postemi upload:url https://example.com/photo.jpg
+# → {"id":"…","name":"photo.jpg","path":"https://…","thumbnail":null,"alt":null}
 ```
 
-### Managing Posts
+Same types and sizes as `upload`; use the `path`. Plain `http://`, private and
+local addresses are refused. Only import files the user gave you or owns.
 
-```bash
-# List posts (defaults to last 30 days to next 30 days)
-postemi posts:list
+### Images and videos made for the user
 
-# List posts in date range
-postemi posts:list --startDate "2026-01-01T00:00:00Z" --endDate "2026-12-31T23:59:59Z"
-
-# Delete one post (one channel, with its thread or comments); other channels of its group stay
-postemi posts:delete <post-id>
-
-# Delete a whole group: the post on every channel it went to (group from posts:list)
-postemi posts:delete-group <group>
-
-# Change post status (draft ↔ schedule)
-postemi posts:status <post-id> --status draft     # Move back to draft, terminates any running publish workflow
-postemi posts:status <post-id> --status schedule  # Promote a draft into the publishing queue (uses the post's stored date)
-```
-
-### Analytics
-
-```bash
-# Get platform analytics (default: last 7 days)
-postemi analytics:platform <integration-id>
-
-# Get platform analytics for last 30 days
-postemi analytics:platform <integration-id> -d 30
-
-# Get post analytics (default: last 7 days)
-postemi analytics:post <post-id>
-
-# Get post analytics for last 30 days
-postemi analytics:post <post-id> -d 30
-```
-
-Returns an array of metrics (e.g. Followers, Impressions, Likes, Comments) with daily data points and percentage change over the period.
-
-**⚠️ IMPORTANT: Missing Release ID Handling**
-
-If `analytics:post` returns `{"missing": true}` instead of an analytics array, the post was published but the platform didn't return a usable post ID. You **must** resolve this before analytics will work:
-
-```bash
-# 1. analytics:post returns {"missing": true}
-postemi analytics:post <post-id>
-
-# 2. Get available content from the provider
-postemi posts:missing <post-id>
-# Returns: [{"id": "7321456789012345678", "url": "https://...cover.jpg"}, ...]
-
-# 3. Connect the correct content to the post
-postemi posts:connect <post-id> --release-id "7321456789012345678"
-
-# 4. Now analytics will work
-postemi analytics:post <post-id>
-```
-
-### Connecting Missing Posts
-
-Some platforms (e.g. TikTok) don't return a post ID immediately after publishing. When this happens, the post's `releaseId` is set to `"missing"` and analytics are unavailable until resolved.
-
-```bash
-# List recent content from the provider for a post with missing release ID
-postemi posts:missing <post-id>
-
-# Connect a post to its published content
-postemi posts:connect <post-id> --release-id "<content-id>"
-```
-
-Returns an empty array if the provider doesn't support this feature or if the post doesn't have a missing release ID.
-
-### Media Upload
-
-**⚠️ IMPORTANT:** Always upload files to Postemi before using them in posts. Many platforms (TikTok, Instagram, YouTube) **require verified URLs** and will reject external links.
-
-```bash
-# Upload file and get URL
-postemi upload image.jpg
-
-# EXACTLY EIGHT TYPES ARE ACCEPTED. Anything else returns 400 "Unsupported
-# file type.". The server sniffs the magic bytes, so renaming the file does
-# not help.
-#
-#   image/jpeg  image/png  image/gif  image/webp
-#   image/avif  image/bmp  image/tiff              (max 10 MB)
-#   video/mp4                                      (max 1 GB)
-#
-# NOT accepted: MOV, MKV, WEBM, AVI, SVG, PDF, DOC/DOCX, and every audio
-# format. Convert first:  ffmpeg -i clip.mov -c:v libx264 -c:a aac clip.mp4
-# See SUPPORTED_FILE_TYPES.md.
-
-# Workflow: Upload → Extract URL → Use in post
-VIDEO=$(postemi upload video.mp4)
-VIDEO_PATH=$(echo "$VIDEO" | jq -r '.path')
-postemi posts:create -c "Content" -s "2026-12-31T12:00:00Z" -m "$VIDEO_PATH" -i "tiktok-id"
-```
+Postemi itself generates no text, images or video. Media is the user's own
+files.
 
 ---
 
-## Common Patterns
-
-### Pattern 1: Discover & Use Integration Tools
-
-**Most supported channels have no tools at all.** Of the channels in the table
-at the top of this file, six expose a tool: Instagram (`audioSearch`),
-Discord (`channels`), Slack (`channels`), Pinterest (`boards`), WordPress
-(`postTypes`, `categoriesList`, `tagsList`) and Dev.to (`tags`,
-`organizations`). The others expose none: `integrations:settings`
-returns an empty `tools` array for them, and `integrations:trigger` on them
-returns `404 Tool not found`.
-
-**Never guess a method name.** Read the `tools` array from
-`integrations:settings` first; the `methodName` there is the only string
-`integrations:trigger` will accept.
+## Creating posts
 
 ```bash
-IG_ID=$(postemi integrations:list | jq -r '.[] | select(.identifier=="instagram") | .id')
+# Scheduled, local time (date required unless -t now)
+postemi posts:create -c "Content" -s "2026-12-31 12:00" --timezone Europe/London -i "<id>"
 
-# What can this channel actually do?
-postemi integrations:settings "$IG_ID" | jq '.output.tools'
-# [ { "methodName": "audioSearch", "description": "Search audio …", "dataSchema": [ … ] } ]
+# Draft (nothing is published; safe when the user has not confirmed)
+postemi posts:create -c "Content" -s "2026-12-31T12:00:00Z" -t draft -i "<id>"
+
+# Publish now
+postemi posts:create -c "Content" -t now -i "<id>"
+
+# Several images (upload each first)
+IMG1=$(postemi upload img1.jpg | jq -r '.path')
+IMG2=$(postemi upload img2.jpg | jq -r '.path')
+postemi posts:create -c "Content" -m "$IMG1,$IMG2" -s "2026-12-31T12:00:00Z" -i "<id>"
+
+# Same text on several channels
+postemi posts:create -c "Content" -s "2026-12-31T12:00:00Z" -i "$FB_ID,$THREADS_ID,$BSKY_ID"
+
+# Channel settings
+postemi posts:create -c "Content" -s "2026-12-31T12:00:00Z" \
+  --settings '{"who_can_reply_post":"everyone"}' -i "$X_ID"
+
+# Different text per channel, or anything complex
+postemi posts:create --json post.json
 ```
 
-**Instagram, find audio for a Reel:**
-```bash
-# Empty query returns trending audio. type is "music" (default) or "original_sound".
-AUDIO=$(postemi integrations:trigger "$IG_ID" audioSearch -d '{"q":"lofi","type":"music"}')
-AUDIO_ID=$(echo "$AUDIO" | jq -r '.output[0].id')
+### Threads and comments
 
-VIDEO=$(postemi upload reel.mp4 | jq -r '.path')
-postemi posts:create \
-  -c "Reel caption" \
-  -s "2026-12-31T12:00:00Z" \
-  --settings "{\"post_type\":\"post\",\"audio\":{\"id\":\"$AUDIO_ID\"}}" \
-  -m "$VIDEO" \
-  -i "$IG_ID"
-```
-
-### Pattern 2: Upload Media Before Posting
+Each extra `-c` is one more entry, with its own `-m`. On X, Threads and
+Bluesky the entries form a THREAD; on LinkedIn and Facebook they are COMMENTS
+under the post. On thread platforms, ask the user whether they want a thread
+or one long post. `-d` is the delay between entries, in minutes.
 
 ```bash
-# Upload multiple files
-VIDEO_RESULT=$(postemi upload video.mp4)
-VIDEO_PATH=$(echo "$VIDEO_RESULT" | jq -r '.path')
-
-THUMB_RESULT=$(postemi upload thumbnail.jpg)
-THUMB_PATH=$(echo "$THUMB_RESULT" | jq -r '.path')
-
-# Use in post
-postemi posts:create \
-  -c "Check out my video!" \
-  -s "2026-12-31T12:00:00Z" \
-  -m "$VIDEO_PATH" \
-  -i "tiktok-id"
-```
-
-### Pattern 3: Twitter Thread
-
-```bash
-# Upload every image first (Rule 2)
 INTRO=$(postemi upload intro.jpg | jq -r '.path')
 P1=$(postemi upload point1.jpg | jq -r '.path')
-P2=$(postemi upload point2.jpg | jq -r '.path')
-OUTRO=$(postemi upload outro.jpg | jq -r '.path')
-
 postemi posts:create \
-  -c "🧵 Thread starter (1/4)" -m "$INTRO" \
-  -c "Point one (2/4)" -m "$P1" \
-  -c "Point two (3/4)" -m "$P2" \
-  -c "Conclusion (4/4)" -m "$OUTRO" \
-  -s "2026-12-31T12:00:00Z" \
-  -d 5 \
-  -i "$X_ID"
-# -d is the delay between comments in MINUTES (here: 5 minutes)
+  -c "Three things we learned this year (1/3)" -m "$INTRO" \
+  -c "One: ... (2/3)" -m "$P1" \
+  -c "The short version: ... (3/3)" \
+  -s "2026-12-31T12:00:00Z" -d 5 -i "$X_ID"
 ```
 
-### Pattern 4: Multi-Platform Campaign (different content per channel)
+Do not put a comment after a line continuation (`\  # note`): the shell then
+ends the command there and the rest is lost. Put notes on their own line.
 
-JSON mode takes the API's real request body: `type`, `date`, `shortLink`,
-`tags`, and a `posts` array where each element names an `integration`, its
-`value` thread and its `settings`. There is no `"integrations"` key and no
-`"provider"` key; a full working file is
-[examples/multi-platform-post.json](./examples/multi-platform-post.json).
+### JSON mode
 
-```bash
-IMG=$(postemi upload sale.jpg | jq -r '.path')
+`--json` takes the API's real request body: `type`, `date`, `shortLink`,
+`tags`, and a `posts` array where each element has an `integration` (`{id}`),
+its `value` (the entries: `content` and `image`, the media items) and its
+`settings`. There is no `provider` key and no `post` key. Working files are in
+[examples/](https://github.com/norbertlevente/postemi-agent/tree/main/examples).
 
-cat > campaign.json << EOF
+```json
 {
   "type": "schedule",
   "date": "2026-12-01T09:00:00Z",
@@ -648,374 +380,308 @@ cat > campaign.json << EOF
   "tags": [],
   "posts": [
     {
-      "integration": { "id": "<x-id>" },
+      "integration": { "id": "<youtube-id>" },
       "value": [
-        { "content": "Holiday sale! 🎄 20% off every plan. #sale", "image": [ { "id": "a", "path": "$IMG" } ] }
+        {
+          "content": "Video description",
+          "image": [
+            { "id": "v1", "path": "<.path from postemi upload>", "alt": "What the video shows", "thumbnailTimestamp": 2500 }
+          ]
+        }
       ],
-      "settings": { "who_can_reply_post": "everyone" }
-    },
-    {
-      "integration": { "id": "<facebook-id>" },
-      "value": [
-        { "content": "Our holiday sale is live, 20% off every plan until the end of December. Details on the website!", "image": [ { "id": "b", "path": "$IMG" } ] }
-      ],
-      "settings": { "post_type": "post" }
-    }
-  ]
-}
-EOF
-
-postemi posts:create --json campaign.json
-```
-
-### Pattern 5: Validate Settings Before Posting
-
-```bash
-#!/bin/bash
-
-INTEGRATION_ID="$X_ID"
-CONTENT="Your post content here"
-
-# Get integration settings and extract max length
-SETTINGS_JSON=$(postemi integrations:settings "$INTEGRATION_ID")
-MAX_LENGTH=$(echo "$SETTINGS_JSON" | jq '.output.maxLength')
-
-# Check character limit and truncate if needed
-if [ ${#CONTENT} -gt "$MAX_LENGTH" ]; then
-  echo "Content exceeds $MAX_LENGTH chars, truncating..."
-  CONTENT="${CONTENT:0:$((MAX_LENGTH - 3))}..."
-fi
-
-# Create post with settings
-postemi posts:create \
-  -c "$CONTENT" \
-  -s "2026-12-31T12:00:00Z" \
-  --settings '{"key": "value"}' \
-  -i "$INTEGRATION_ID"
-```
-
-### Pattern 6: Batch Scheduling
-
-```bash
-#!/bin/bash
-
-# Schedule posts for the week
-DATES=(
-  "2026-02-14T09:00:00Z"
-  "2026-02-15T09:00:00Z"
-  "2026-02-16T09:00:00Z"
-)
-
-CONTENT=(
-  "Monday motivation 💪"
-  "Tuesday tips 💡"
-  "Wednesday wisdom 🧠"
-)
-
-for i in "${!DATES[@]}"; do
-  # Rule 2: upload each file before passing to -m
-  IMG=$(postemi upload "post-${i}.jpg" | jq -r '.path')
-  postemi posts:create \
-    -c "${CONTENT[$i]}" \
-    -s "${DATES[$i]}" \
-    -i "$X_ID" \
-    -m "$IMG"
-  echo "Scheduled: ${CONTENT[$i]} for ${DATES[$i]}"
-done
-```
-
-### Pattern 7: Error Handling & Retry
-
-`posts:create` already retries for you: every run sends an `Idempotency-Key`
-(a new UUID per run) and, after a network failure or a 5xx, retries ONCE with
-the same key, so the server hands back the post it already made instead of
-making a second one. Running the command again is a NEW key and a NEW post.
-So never wrap `posts:create` in a retry loop; after a failure, look first:
-
-```bash
-#!/bin/bash
-
-CONTENT="Your post content"
-INTEGRATION_ID="$X_ID"
-DATE="2026-12-31T12:00:00Z"
-
-if postemi posts:create -c "$CONTENT" -s "$DATE" -i "$INTEGRATION_ID"; then
-  echo "Post created successfully"
-else
-  # Did it get through anyway? Check before running it again.
-  postemi posts:list --startDate "$DATE" --endDate "$DATE"
-fi
-```
-
-A 403 that names a missing permission is not retryable: the key is valid
-and lacks the scope. A 401 saying the workspace has no plan with API access
-is not retryable either: see `billing:plans`.
-
----
-
-## Technical Concepts
-
-### Integration Tools Workflow
-
-Some integrations expose a tool for data that cannot be hard-coded. Among supported channels Instagram, Discord and Slack do. The workflow:
-
-1. **Check available tools** - `integrations:settings` returns a `tools` array
-2. **Review tool schema** - Each tool has `methodName`, `description`, and `dataSchema`
-3. **Trigger tool** - Call `integrations:trigger` with required parameters
-4. **Use output** - Tool returns data to use in post settings
-
-**Tools on supported channels, exhaustively:**
-
-| Channel | Tools |
-|---|---|
-| Instagram (`instagram`) | `audioSearch` |
-| Discord (`discord`) | `channels` (the server's channels; the `id` goes into `settings.channel`) |
-| Slack (`slack`) | `channels` (the workspace's channels; the `id` goes into `settings.channel`) |
-| X, Facebook, Threads, Bluesky, YouTube, LinkedIn, TikTok, Telegram | *(none)* |
-
-That is the whole list. There is no `getPlaylists`, no `getCompanies`, no
-`getBoards`, no `getFlairs`. Earlier versions of this file invented all four,
-and `integrations:trigger` answers `404 Tool not found` for every one of them.
-
-### Provider Settings Structure
-
-Platform-specific settings use a discriminator pattern with `__type` field:
-
-```json
-{
-  "posts": [
-    {
-      "provider": "youtube",
-      "post": [{ "content": "Video description", "image": [...] }],
       "settings": {
-        "__type": "youtube",
         "title": "Video title",
         "type": "public",
         "selfDeclaredMadeForKids": "no",
         "tags": [{ "value": "tech", "label": "Tech" }]
       }
+    },
+    {
+      "integration": { "id": "<facebook-id>" },
+      "value": [{ "content": "A longer text for Facebook", "image": [] }],
+      "settings": { "post_type": "post" }
     }
   ]
 }
 ```
 
-Pass settings directly:
-```bash
-postemi posts:create -c "Content" -s "2026-12-31T12:00:00Z" --settings '{"title":"…","type":"public"}' -i "youtube-id"
-# Backend automatically adds "__type" based on integration ID
-```
-
-Channels with **no settings of their own** (Threads and Bluesky) take an
-empty object. Do not invent fields for them.
-
-**You never have to write `__type` yourself.** The server stamps it from the
-integration's provider before validating, overwriting whatever you sent. An
-example file carrying `"__type": "EmptySettings"` still works for that reason:
-it is being replaced, not accepted.
-
-### Two behaviours that surprise people
-
-**1. A key without `posts:publish` silently produces a draft.** `posts:create`
-requires only `posts:draft`. If the key (or its owner's current role, a
-Contributor/DRAFTER) lacks `posts:publish`, the server coerces `type` to
-`draft` and creates a draft instead of refusing. It is not silent in the
-response: **read back the `type` you got, do not assume the one you sent.**
-If the user wanted it published, tell them the key cannot, rather than
-reporting success.
-
-**2. One X channel per post, always.** A single post may not target two X
-channels, whatever the content. X's Developer Policy forbids substantially
-similar content from multiple accounts through one developer app, and the
-account at risk is Postemi's, shared by every customer. Split it into two posts.
-X alongside Facebook, Instagram, Threads, Bluesky, YouTube and the rest is
-unaffected. That combination is the entire point.
-
-### Comments and Threading
-
-Posts can have comments (threads on Twitter/X, replies elsewhere). Each comment can have its own media:
-
-```bash
-# Upload every file first (Rule 2)
-I1=$(postemi upload image1.jpg | jq -r '.path')
-I2=$(postemi upload image2.jpg | jq -r '.path')
-CI=$(postemi upload comment-img.jpg | jq -r '.path')
-A1=$(postemi upload another.jpg | jq -r '.path')
-A2=$(postemi upload more.jpg | jq -r '.path')
-
-postemi posts:create \
-  -c "Main post" -m "$I1,$I2" \
-  -c "Comment 1" -m "$CI" \
-  -c "Comment 2" -m "$A1,$A2" \
-  -s "2026-12-31T12:00:00Z" \
-  -d 5 \  # Delay between comments in minutes
-  -i "integration-id"
-```
-
-Internally creates (note: every URL is a Postemi-uploaded `.path`, not a raw filename):
-```json
-{
-  "posts": [{
-    "value": [
-      { "content": "Main post", "image": ["<uploaded image1>", "<uploaded image2>"] },
-      { "content": "Comment 1", "image": ["<uploaded comment-img>"], "delay": 5 },
-      { "content": "Comment 2", "image": ["<uploaded another>", "<uploaded more>"], "delay": 5 }
-    ]
-  }]
-}
-```
-
-### Date Handling
-
-**The contract: ALWAYS pass an explicit offset, or pass `--timezone` with an
-IANA name.** The CLI never guesses a timezone. The server reads a naive
-datetime as UTC, which silently shifts a local "12:00" by the user's UTC
-offset. The CLI refuses ambiguity instead.
-
-The two safe forms:
-
-```bash
--s "2026-12-31T12:00:00Z"                                  # explicit UTC
--s "2026-12-31 12:00" --timezone Europe/London           # wall-clock + IANA zone
-```
-
-How a date is resolved, in priority order:
-
-1. **Explicit offset in the string** (`Z`, `+01:00`), used as written.
-2. **`--timezone <IANA name>`** on `posts:create` / `posts:list`.
-3. **The saved config**: `postemi config:set timezone Europe/London`
-   (also offered interactively during `postemi auth:login` on a TTY).
-4. **None of the above and the date is naive → hard error, exit 1.** The
-   error names the fixes. Do not retry the same naive date; add a
-   timezone.
-
-Rules and behaviors:
-
-- Timezone values must be IANA names (`Europe/London`, `UTC`). **Numeric
-  offsets (`+02:00`, `UTC+2`, `Etc/GMT+2`) are rejected as timezone values**.
-  Never hand-compute DST; put an offset inside the date string only when
-  you are certain of it, otherwise use the IANA name and let the CLI convert
-  (DST-aware).
-- Whenever a timezone is applied (steps 2 to 4), the CLI echoes the resolved
-  UTC instant on stderr:
-  `ℹ️  Interpreted "2026-12-24 18:00" as Europe/London (via --timezone) → 2026-12-24T18:00:00.000Z`
-- A bare date (`"2026-12-31"`) means midnight in the resolved timezone.
-- `posts:list --startDate/--endDate` accept the same shapes and the same
-  `--timezone` flag; the defaults (30 days back / 30 days forward) never
-  need a timezone.
-- `postemi config:get` / `postemi config:get timezone` shows what is saved;
-  settings survive `auth:logout`.
-- `postemi posts:find-slot <integration-id>` returns `{"date": "..."}`, the
-  next free slot on that channel's schedule; pass it straight back to
-  `posts:create -s`.
-- `-t now` publishes immediately and needs no `--date`.
-
-### Media Upload Response
-
-Upload returns JSON with path and metadata:
-```json
-{
-  "path": "https://…/uploads/2026/08/abc123.jpg",
-  "size": 123456,
-  "type": "image/jpeg"
-}
-```
-
-Extract path for use in posts:
-```bash
-RESULT=$(postemi upload image.jpg)
-PATH=$(echo "$RESULT" | jq -r '.path')
-postemi posts:create -c "Content" -s "2026-12-31T12:00:00Z" -m "$PATH" -i "integration-id"
-```
-
-### JSON Mode vs CLI Flags
-
-**CLI flags** - Quick posts:
-```bash
-postemi posts:create -c "Content" -m "$(postemi upload img.jpg | jq -r '.path')" -s "2026-12-31T12:00:00Z" -i "$X_ID"
-```
-
-**JSON mode** - Complex posts with multiple platforms and settings:
-```bash
-postemi posts:create --json post.json
-```
-
-JSON mode supports:
-- Multiple platforms with different content per platform
-- Complex provider-specific settings
-- Scheduled posts
-- Posts with many comments
-- Custom delay between comments
+You never write `__type` yourself: the server sets it from the channel and
+overwrites what you sent. Channels with no settings (Threads, Bluesky,
+Telegram, Mastodon, Pixelfed, Google Chat, Teams) take `{}`.
 
 ---
 
-## Platform-Specific Examples
+## Changing posts after they are made
 
-Every field below is taken from the server's validation DTOs. A field that is
-not listed does not exist, and sending it is a `400`.
-
-### X (Twitter): `x`
 ```bash
-postemi posts:create \
-  -c "Tweet content" \
-  -s "2026-12-31T12:00:00Z" \
-  --settings '{"who_can_reply_post":"everyone"}' \
-  -i "$X_ID"
+postemi posts:get <id>                       # one post in full
+postemi posts:update <id> -c "..." [-m ...] [--alt "..."] [-s date --timezone TZ] [-t schedule|draft|now] [--settings JSON]
+postemi posts:update <id> --json change.json # {date, type, settings, parts:[{content, attachments, altText, cover}]}
+postemi posts:reschedule <id...> -s "2026-12-31 10:00" --timezone Europe/London
+postemi posts:retry <id...> [-s date] [--confirmed]
+postemi posts:status <id> --status draft     # back to draft; stops a running publish
+postemi posts:status <id> --status schedule  # queue a draft at its stored date
+postemi posts:delete <id>                    # one channel of a group, before it publishes
+postemi posts:delete-group <group>           # every channel of a group (group from posts:list)
 ```
-`who_can_reply_post` is **required**: `everyone` | `following` |
-`mentionedUsers` | `subscribers` | `verified`. Optional: `community` (must
-match `https://x.com/i/communities/<digits>`), `made_with_ai` (bool),
-`paid_partnership` (bool).
 
-### Facebook: `facebook`
+- **`posts:get`** shows one channel's post in full: every entry with its
+  attachments and their alt text, the video cover, the settings, the tags, the
+  state, the publish time and, for a failed post, the reason.
+- **`posts:update`** changes a scheduled, draft or failed post. Send EVERY
+  entry again as `-c`, like `posts:create`, not only the changed one.
+  Attachments keep their alt text and cover unless you give new ones; tags are
+  kept. `--alt` sets alt text for the first entry's media only; the other
+  entries keep theirs (set them with `--json`, the `altText` of each part).
+  Without `-s` it keeps the post's time, except for a failed post: its time
+  has passed, so give `-s`, or use `posts:retry` to send it unchanged.
+  Without `-t` a draft stays a draft and anything else is scheduled. A published post is refused. Saving a
+  failed post schedules it again. Run `posts:get` first, and confirm the
+  change with the user as in the Workflow.
+- **`posts:reschedule`** changes only the time of one or more posts. A draft
+  stays a draft. A failed post is not rescheduled: use `posts:retry`.
+- **`posts:retry`** asks Postemi to try failed posts again. Postemi decides per
+  post and never risks posting twice. It retries at once only when nothing can
+  have reached the platform: the media never arrived, a disconnected channel
+  once the user reconnected it, a platform limit once it has passed. Content
+  the platform refused is NOT retried: fix it with `posts:update`. When the
+  failure may have come after the platform took the post (a timeout, a server
+  error, an unknown error), or the account has a problem, the answer says so:
+  ask the user to check the platform, then run it again with `--confirmed`.
+  Every answer carries the platform's exact words (`platformMessage`) and its
+  raw response (`platformResponse`); quote them to the user. Several posts are
+  spread two minutes apart. Tell the user the result for each post.
+
+---
+
+## Dates
+
+**Always pass an explicit offset, or `--timezone` with an IANA name.** The
+server reads a date without an offset as UTC, which would move a local
+"12:00" by the zone's offset, so the CLI refuses such a date.
+
 ```bash
-IMG=$(postemi upload photo.jpg | jq -r '.path')
-postemi posts:create \
-  -c "Post text" \
-  -s "2026-12-31T12:00:00Z" \
-  --settings '{"post_type":"post"}' \
-  -m "$IMG" \
-  -i "$FB_ID"
+-s "2026-12-31T12:00:00Z"                          # explicit UTC
+-s "2026-12-31 12:00" --timezone Europe/London   # wall clock plus IANA zone
 ```
-All optional: `post_type` (`post` | `story`), `url`, `text_format_preset_id`
-(a background for a **text-only** post; Pages only, ~130 characters max).
 
-### Instagram: `instagram`
+Order of resolution: an offset in the string; then `--timezone`; then the saved
+setting (`postemi config:set timezone Europe/London`, offered during
+`auth:login` on a terminal); otherwise exit 1. Off a terminal (when you run
+it) the CLI never asks for a timezone.
+
+- Timezone values are IANA names (`Europe/London`, `UTC`). Numeric offsets
+  (`+02:00`, `UTC+2`, `Etc/GMT+2`) are refused. Never compute summer time by
+  hand; give the IANA name and let the CLI convert.
+- When a timezone is applied, stderr shows the UTC result:
+  `Interpreted "2026-12-24 18:00" as Europe/London (via --timezone) → 2026-12-24T18:00:00.000Z`.
+- A bare date (`"2026-12-31"`) is midnight in the resolved timezone.
+- `postemi posts:find-slot <integration-id>` returns `{"date": "..."}`, the next
+  free slot on that channel; pass it to `-s`.
+- `-t now` needs no date. `posts:list --startDate/--endDate` take the same
+  forms; the default is 30 days back to 30 days forward.
+- `postemi config:get` shows what is saved; settings survive `auth:logout`.
+
+---
+
+## Integration tools
+
+Some channels have a tool for data that cannot be written by hand. Read the
+`tools` array from `integrations:settings` first; its `methodName` is the only
+string `integrations:trigger` accepts. Never guess a method name.
+
+| Channel | Tool | The result goes into |
+|---|---|---|
+| Instagram (`instagram`) | `audioSearch` (`{"q":"lofi","type":"music"}`; an empty `q` gives trending audio) | `settings.audio.id` |
+| Pinterest (`pinterest`) | `boards` | `settings.board` |
+| Discord (`discord`) | `channels` | `settings.channel` |
+| Slack (`slack`) | `channels` | `settings.channel` |
+| X, Facebook, Instagram without a Page, Threads, Bluesky, YouTube, LinkedIn, TikTok, Telegram | none | |
+
+For the beta channels (WordPress and Dev.to have some), read `tools` from
+`integrations:settings`. A method that
+does not exist answers `404 Tool not found`. There is no `getPlaylists`,
+`getCompanies`, `getBoards` or `getFlairs`.
+
 ```bash
-IMG=$(postemi upload image.jpg | jq -r '.path')
-
-# Feed post
-postemi posts:create -c "Caption #hashtag" -s "2026-12-31T12:00:00Z" \
-  --settings '{"post_type":"post"}' -m "$IMG" -i "$IG_ID"
-
-# Story
-STORY=$(postemi upload story.jpg | jq -r '.path')
-postemi posts:create -c "" -s "2026-12-31T12:00:00Z" \
-  --settings '{"post_type":"story"}' -m "$STORY" -i "$IG_ID"
+PIN_ID=$(postemi integrations:list | jq -r '.[] | select(.identifier=="pinterest") | .id')
+postemi integrations:trigger "$PIN_ID" boards | jq '.output'
 ```
-`post_type` is **required**: `post` | `story`. Optional: `collaborators` (array
-of `{label}`), `audio` (`{id, title?, artist?, image?, audio_volume?,
-video_volume?}`; get the `id` from the `audioSearch` tool), `is_trial_reel`,
-`graduation_strategy` (`MANUAL` | `SS_PERFORMANCE`).
 
-### Threads (`threads`) and Bluesky (`bluesky`)
+---
+
+## Behaviours that surprise people
+
+1. **A key without `posts:publish` makes a draft.** `posts:create` needs only
+   `posts:draft`. If the key (or its owner's current role) lacks
+   `posts:publish`, the server saves a draft instead of refusing. Read back
+   the `type` you got. If the user wanted it published, tell them the key
+   cannot do it; do not report success.
+2. **One X channel per post.** A post may not go to two X channels. X's rules
+   forbid the same content from several accounts through one app, and the app
+   at risk is Postemi's, shared by every customer. Make two posts. X together
+   with Facebook, Instagram and the rest is fine.
+3. **X posts lose their links.** X charges for every post with a link, so
+   Postemi removes links from X posts and their threads before saving. Do not
+   put links into X posts. If the user wants to share a link on X, tell them
+   to post it on X themselves.
+4. **Read `notices` in every `posts:create` result and tell the user.** It
+   lists the links that were removed, and the 24 hour caps: some platforms
+   accept only so many posts from one account in 24 hours (YouTube about 10,
+   TikTok about 15). Past the cap, offer to spread the posts over more days.
+   For now Postemi also publishes at most 3 YouTube videos a day to one
+   channel (1 on a trial; the day starts at midnight Pacific time): a post
+   past that is refused with the reason, and a draft still works.
+5. **HTTP 402: the monthly X quota is used up.** The workspace has a monthly
+   number of X posts (each thread entry counts as one). When it is used up, X
+   posts can only be saved as drafts until the reset date the message gives.
+   Say so, offer `-t draft`, and do not retry.
+
+---
+
+## Patterns
+
+### Instagram Reel with music and a cover
+
 ```bash
-postemi posts:create -c "Post text" -s "2026-12-31T12:00:00Z" -i "$THREADS_ID"
+IG_ID=$(postemi integrations:list | jq -r '.[] | select(.identifier=="instagram") | .id')
+AUDIO_ID=$(postemi integrations:trigger "$IG_ID" audioSearch -d '{"q":"lofi","type":"music"}' | jq -r '.output[0].id')
+VIDEO=$(postemi upload reel.mp4 | jq -r '.path')
+COVER=$(postemi upload cover.jpg | jq -r '.path')
+
+postemi posts:create -c "Reel caption" -m "$VIDEO" --cover-image "$COVER" \
+  --settings "{\"post_type\":\"post\",\"audio\":{\"id\":\"$AUDIO_ID\"}}" \
+  -s "2026-12-31 18:00" --timezone Europe/London -i "$IG_ID"
 ```
-No provider settings. Omit `--settings` entirely.
+
+### A TikTok video with a cover frame
+
+```bash
+VIDEO=$(postemi upload clip.mp4 | jq -r '.path')
+postemi posts:create -c "Caption" -m "$VIDEO" --cover-frame 2.5 \
+  --settings '{"privacy_level":"PUBLIC_TO_EVERYONE","content_posting_method":"DIRECT_POST"}' \
+  -s "2026-12-31 18:00" --timezone Europe/London -i "$TIKTOK_ID"
+```
+
+### Check the length before posting
+
+```bash
+MAX_LENGTH=$(postemi integrations:settings "$X_ID" | jq '.output.maxLength')
+if [ ${#CONTENT} -gt "$MAX_LENGTH" ]; then
+  echo "Too long: ${#CONTENT} of $MAX_LENGTH characters" >&2
+  # Rewrite the text shorter and show the new version to the user.
+  # Never cut it off: a truncated post goes out broken.
+fi
+```
+
+### A week of posts
+
+Get real future dates from the user or from `posts:find-slot`; never reuse
+dates from an example. Confirm the whole list with the user first.
+
+```bash
+CONTENT=("Monday text" "Tuesday text" "Wednesday text")
+for i in "${!CONTENT[@]}"; do
+  DATE=$(postemi posts:find-slot "$X_ID" | jq -r '.date')
+  IMG=$(postemi upload "post-${i}.jpg" | jq -r '.path')
+  postemi posts:create -c "${CONTENT[$i]}" -m "$IMG" -s "$DATE" -i "$X_ID"
+done
+```
+
+### After an error, look before you run it again
+
+`posts:create` sends an `Idempotency-Key` and, after a network failure or a
+5xx, retries ONCE with the same key, so the server returns the post it already
+made. Running the command again is a NEW post. Never wrap `posts:create` in a
+retry loop:
+
+```bash
+if ! postemi posts:create -c "$CONTENT" -s "$DATE" -i "$ID"; then
+  postemi posts:list --startDate "$DATE" --endDate "$DATE"   # did it get through?
+fi
+```
+
+A 403 for a missing permission, a 401 for a workspace with no plan, and a 402
+for the X quota are not retryable. A 429 means a rate limit: wait, do not loop.
+
+---
+
+## Platform settings
+
+Every field below comes from the server's validation. A field that is not
+listed does not exist, and sending it is a `400`. All channels:
+[PROVIDER_SETTINGS.md](https://github.com/norbertlevente/postemi-agent/blob/main/PROVIDER_SETTINGS.md).
+
+- **X (`x`):** `who_can_reply_post` **required**: `everyone`, `following`,
+  `mentionedUsers`, `subscribers` or `verified`. Optional: `community`
+  (`https://x.com/i/communities/<digits>`), `made_with_ai`, `paid_partnership`.
+- **Facebook (`facebook`):** all optional: `post_type` (`post` or `story`),
+  `url`, `text_format_preset_id` (a background for a text only post; Pages
+  only, about 130 characters).
+- **Instagram (`instagram`, `instagram-standalone`):** `post_type`
+  **required** (`post` or `story`). Optional: `collaborators` (`[{label}]`),
+  `audio` (`{id, ...}` from `audioSearch`), `is_trial_reel`,
+  `graduation_strategy` (`MANUAL` or `SS_PERFORMANCE`).
+- **TikTok (`tiktok`):** `privacy_level` and `content_posting_method`
+  **required**.
+- **YouTube (`youtube`):** `title` and `type` **required**.
+- **Pinterest (`pinterest`):** `board` **required** (from the `boards` tool);
+  optional `title` (up to 100 characters) and `link`.
+- **Discord, Slack:** `channel` **required** (from the `channels` tool).
+- **WordPress:** `title` and `type` **required**. **Dev.to, Ghost,
+  Hashnode:** `title` **required**. Read the rest from `integrations:settings`.
+- **The other BETA channels** (Pixelfed needs a picture, Lemmy a community,
+  the newsletters a list or audience, Webflow a collection): read
+  `integrations:settings` before you build the payload.
+- **Threads, Bluesky, Telegram, LinkedIn:** nothing required.
+
+---
+
+## Analytics
+
+Every analytics route of the API has a command. The numbers are the
+platform's own, as the network reports them; Postemi does not compute or
+estimate them.
+
+```bash
+postemi analytics:platform <integration-id> -d 30   # the channel, last 30 days (default 7)
+postemi analytics:channel <integration-id> -d 30    # the same command, another name
+postemi analytics:post <post-id>                    # one published post
+```
+
+- **A channel** (`analytics:platform`, also `analytics:channel`): a list of
+  metrics, each `{label, data:[{total, date}], percentageChange}`. Every
+  network reports a different set (followers, impressions, likes, comments,
+  views...), so read `label` rather than expecting fixed keys. `-d` is the
+  number of days back. The answer is cached for an hour.
+- **One post** (`analytics:post`): the same shape, for a post that has been
+  published (`posts:list` gives the ids). If it returns `{"missing": true}`,
+  the platform did not give back the post's id (TikTok often does this). The
+  fix (`posts:missing`, then `posts:connect`) is in
+  [reference/details.md](./reference/details.md#when-analytics-says-missing).
+- **An empty list `[]`** is an answer, not an error: the network reports
+  nothing for that channel or post, the post is not published yet, or the
+  channel needs a reconnect (`integrations:list` shows `disabled` or
+  `refreshNeeded`). The CLI says which on stderr. Do not retry it in a loop.
+- Both commands need the `analytics:read` scope and allow 30 calls an hour
+  per key, so ask for the period the user wants once, not day by day.
+- When you report numbers, say which channel or post and which period they
+  cover, and quote them as the platform gave them.
+
+---
 
 ## What Postemi does NOT do
 
-State these plainly rather than attempting a workaround.
+State these plainly rather than trying a workaround.
 
-- **No AI video generation.** The `/generate-video` and `/video/function`
-  routes were removed from the API entirely (2026-08-06). Do not tell a user
-  Postemi can generate video, and do not call those routes: they 404.
-- **No image or video generation of any kind.** Media comes from files the
-  user already has, via `postemi upload`.
-- **No channel deletion.** `DELETE /integrations/:id` was deliberately removed
-  from the public API. Disconnecting a channel is a signed-in, admin action in
-  the web app.
-- **Nothing outside the channel table at the top of this file.**
+- **No AI writing, images or video of its own.** You write the text; media is
+  the user's own files. The old `/generate-video` routes were removed and
+  answer 404.
+- **No channel connecting or deleting.** The user connects and disconnects
+  channels in the web app.
+- **No changes to a published post.** `posts:update` refuses it, and Postemi
+  cannot remove a post from a platform once it is live.
+- **Nothing outside the channel table above.**
 
 ---
 
@@ -1044,94 +710,83 @@ no questions; a new agent session loads the skills.
 
 ---
 
-## Supporting Resources
-
-**This file is the command reference.** Everything the CLI accepts is
-documented above; there is no second syntax guide to consult.
-
-**Deep-dive documentation** (shipped in the npm package):
-- [PROVIDER_SETTINGS.md](./PROVIDER_SETTINGS.md) - Settings schema for every supported channel
-- [SUPPORTED_FILE_TYPES.md](./SUPPORTED_FILE_TYPES.md) - The eight accepted media types
-
-**Ready-to-use `--json` payloads** (all verified against the current CLI):
-- [examples/post-with-comments.json](./examples/post-with-comments.json) - Threading example
-- [examples/thread-post.json](./examples/thread-post.json) - Multi-part thread
-- [examples/multi-platform-post.json](./examples/multi-platform-post.json) - One post, several channels
-- [examples/multi-platform-with-settings.json](./examples/multi-platform-with-settings.json) - Campaign example
-- [examples/youtube-video.json](./examples/youtube-video.json) - YouTube with tags
-- [examples/tiktok-video.json](./examples/tiktok-video.json) - TikTok with privacy
-
----
-
-## Common Gotchas
-
-1. **Not authenticated** - Ask the user to run `postemi auth:login` and approve it in the browser
-2. **Invalid integration ID** - Run `integrations:list` to get current IDs
-3. **Settings schema mismatch** - Check `integrations:settings` for required fields
-4. **Media MUST be uploaded to Postemi first** - ⚠️ **CRITICAL (Rule 2):** Every value passed to `-m` or to an `image`/media field in JSON mode must be a `.path` returned by `postemi upload`. Raw local filenames (`image.jpg`) and external URLs (`https://...`) will be rejected. TikTok, Instagram, YouTube and most other providers only accept Postemi-verified URLs. No exceptions: even a "quick test post" needs the upload step.
-5. **JSON escaping in shell** - Use single quotes for JSON: `--settings '{...}'`
-6. **Date format** - ISO 8601 with an explicit offset (`"2026-12-31T12:00:00Z"`), or a naive datetime plus `--timezone <IANA name>`. A naive datetime with no timezone configured is a hard error. Required except with `-t now` or `--json`.
-7. **Tool not found** - Check available tools in `integrations:settings` output
-8. **Character limits** - Each platform has different limits, check `maxLength` in settings
-9. **Required settings** - YouTube requires `title` and `type`; X requires `who_can_reply_post`; Instagram requires `post_type`; TikTok requires `privacy_level` and `content_posting_method`; Discord and Slack require `channel` (an id from their `channels` tool). Threads, Bluesky, LinkedIn and Telegram require nothing.
-10. **Media MIME types** - CLI auto-detects from file extension, ensure correct extension
-11. **Analytics returns `{"missing": true}`** - The post was published but the platform didn't return a post ID. Run `posts:missing <post-id>` to get available content, then `posts:connect <post-id> --release-id "<id>"` to link it. Analytics will work after connecting.
-
----
-
-## Quick Reference
+## Quick reference
 
 ```bash
-# ⚠️ AUTHENTICATE FIRST - required before any other command
-postemi auth:status                                             # Check if authenticated
-postemi auth:login                                              # OAuth2 device flow login
-postemi auth:signup --email <address>                           # New account by e-mailed code; no free trial
-postemi auth:logout                                             # Remove credentials
+# Authentication (first, always)
+postemi auth:status
+postemi auth:login
+postemi auth:signup --email <address>               # new account; no free trial
+postemi auth:logout
 
 # Settings (survive logout)
-postemi config:set timezone Europe/London         # Timezone for dates without an offset
-postemi config:get                                  # Show saved settings as JSON
+postemi config:set timezone Europe/London
+postemi config:get
 
-# Discovery (only after auth is confirmed)
-postemi integrations:list                           # Get integration IDs
-postemi integrations:list --group <group-id>        # Get integration IDs in a group
-postemi integrations:groups                         # List groups (customers)
-postemi integrations:settings <id>                  # Get settings schema
-postemi integrations:trigger <id> <method> -d '{}'  # Fetch dynamic data
+# Workspaces and discovery
+postemi workspaces:list
+postemi workspaces:use <id>
+postemi integrations:list [--group <group-id>]
+postemi integrations:groups
+postemi integrations:settings <id>
+postemi integrations:trigger <id> <method> -d '{}'
 
-# Posting (date required unless -t now or --json; explicit offset or --timezone, never naive)
-postemi posts:create -c "text" -s "2026-12-31T12:00:00Z" -i "id"                  # Simple (UTC)
-postemi posts:create -c "Good morning!" -s "2026-12-31 08:00" --timezone Europe/London -i "id"  # Local wall-clock
-postemi posts:create -c "text" -t now -i "id"                                     # Publish immediately
-postemi posts:create -c "text" -s "2026-12-31T12:00:00Z" -t draft -i "id"        # Draft
-postemi posts:create -c "text" -m "$(postemi upload img.jpg | jq -r '.path')" -s "2026-12-31T12:00:00Z" -i "id"  # With media (upload first, Rule 2)
-postemi posts:create -c "main" -c "comment" -s "2026-12-31T12:00:00Z" -i "id"    # With comment
-postemi posts:create -c "text" -s "2026-12-31T12:00:00Z" --settings '{}' -i "id" # Platform-specific
-postemi posts:create --json file.json                                             # Complex
+# Media
+postemi upload <file>                               # → {path}; use the path in -m
+postemi upload:url <https-url>                       # a file that is already online
+postemi upload:link                                 # file on the user's phone
+postemi upload:files <link-id>
 
-# Management
-postemi posts:list                                  # List posts
-postemi posts:find-slot <integration-id>            # Next free slot: {"date": "..."}
-postemi posts:delete <id>                          # Delete one post (one channel)
-postemi posts:delete-group <group>                 # Delete every channel of a group
-postemi posts:status <id> --status draft           # Move to draft (stops workflow)
-postemi posts:status <id> --status schedule        # Queue draft for publishing
-postemi upload <file>                              # Upload media
+# Posting (date: explicit offset or --timezone; not needed with -t now or --json)
+postemi posts:create -c "text" -s "2026-12-31 08:00" --timezone Europe/London -i "<id>"
+postemi posts:create -c "text" -s "2026-12-31T12:00:00Z" -t draft -i "<id>"
+postemi posts:create -c "text" -t now -i "<id>"
+postemi posts:create -c "text" -m "$MEDIA_PATH" --alt "What it shows" -s "..." -i "<id>"
+postemi posts:create -c "main" -c "thread entry or comment" -s "..." -i "<id>"
+postemi posts:create -c "text" -m "$VIDEO" --cover-frame 2.5 -s "..." -i "<id>"       # Instagram, TikTok
+postemi posts:create -c "text" -m "$VIDEO" --cover-image "$COVER" -s "..." -i "<id>"  # Instagram
+postemi posts:create -c "text" -s "..." --settings '{"key":"value"}' -i "<id>"
+postemi posts:create --json file.json
 
-# Analytics
-postemi analytics:platform <id>                    # Platform analytics (7 days)
-postemi analytics:platform <id> -d 30             # Platform analytics (30 days)
-postemi analytics:post <id>                        # Post analytics (7 days)
-postemi analytics:post <id> -d 30                 # Post analytics (30 days)
-# If analytics:post returns {"missing": true}, resolve it:
-postemi posts:missing <id>                         # List provider content
-postemi posts:connect <id> --release-id "<rid>"    # Connect content to post
+# Managing posts
+postemi posts:list [--startDate ... --endDate ...]
+postemi posts:get <id>
+postemi posts:update <id> -c "every" -c "entry" [-m ...] [--alt ...] [-s ...] [-t ...]
+postemi posts:reschedule <id...> -s "..." --timezone Europe/London
+postemi posts:retry <id...> [-s ...] [--confirmed]
+postemi posts:find-slot <integration-id>
+postemi posts:status <id> --status draft|schedule
+postemi posts:delete <id>
+postemi posts:delete-group <group>
+
+# Analytics (the platform's own numbers)
+postemi analytics:platform <id> -d 30               # also: analytics:channel
+postemi analytics:post <id>
+postemi posts:missing <id>                          # when analytics says {"missing": true}
+postemi posts:connect <id> --release-id "<rid>"
+
+# More (see reference/details.md)
+postemi notifications:list [--page N]             # failed posts, reconnects, other events
+postemi billing:plans | billing:subscribe | billing:status | billing:manage
 
 # Optional skills (ask the user first)
-postemi skills list                                # Core + optional skills, where installed
-postemi skills add writing|growth --json           # Install an optional skill
+postemi skills list
+postemi skills add writing|growth --json
 
 # Help
-postemi --help                                     # Show help
-postemi posts:create --help                        # Command help
+postemi --help
+postemi posts:create --help
 ```
+
+---
+
+## Supporting files
+
+- [reference/details.md](./reference/details.md): account creation, key
+  scopes, billing, rate limits, the analytics repair.
+- PROVIDER_SETTINGS.md: the settings of every channel.
+- SUPPORTED_FILE_TYPES.md: the eight accepted media types.
+- examples/: ready `--json` files (threads, several channels, YouTube, TikTok).
+- The `postemi-writing` and `postemi-templates` skills: ideas, hooks,
+  formats, ready templates and a check before publishing. The optional
+  `postemi-growth` skill: a plan over weeks and reading the numbers.

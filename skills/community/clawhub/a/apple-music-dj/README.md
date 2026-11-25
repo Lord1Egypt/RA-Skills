@@ -1,13 +1,18 @@
 # 🎧 Apple Music DJ
 
 [![Tests](https://github.com/and3rn3t/apple-music-dj/actions/workflows/test.yml/badge.svg)](https://github.com/and3rn3t/apple-music-dj/actions/workflows/test.yml)
-![Coverage](https://img.shields.io/badge/coverage-91%25-brightgreen)
-![Python](https://img.shields.io/badge/python-3.10%20%7C%203.12%20%7C%203.14-blue)
+![Coverage](https://img.shields.io/badge/coverage-95%25-brightgreen)
+![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13%20%7C%203.14%20%7C%203.15-blue)
 [![License: MIT-0](https://img.shields.io/badge/License-MIT--0-yellow.svg)](LICENSE)
+[![ClawHub](https://img.shields.io/badge/ClawHub-apple--music--dj-orange)](https://clawhub.ai/and3rn3t/skills/apple-music-dj)
+
+![Animated replay of the no-account demo: a taste card, songs like Radiohead, a 90s throwback, a daily pick and a compatibility score](assets/demo-tour.svg)
 
 **Your AI-powered Apple Music curator.** Analyzes your listening history, understands your taste DNA, and creates intelligent playlists directly in your Apple Music library — on all your devices.
 
 An [Agent Skill](https://github.com/anthropics/skills) for [OpenClaw](https://openclaw.ai) (on [ClawHub](https://clawhub.ai)) and [Claude Code](#use-with-claude-code). Talk naturally, get playlists.
+
+**Read-only by default.** Nothing changes in your Apple Music account until you approve it — [see exactly what it can change](#-what-it-can-change).
 
 **No Apple Developer account yet?** Try it in 30 seconds with the built-in demo: [`python3 scripts/demo.py tour`](#-try-it-first-no-account-needed).
 
@@ -19,7 +24,9 @@ An [Agent Skill](https://github.com/anthropics/skills) for [OpenClaw](https://op
 - **🧪 Demo mode** — Try every feature against a fictional listener, no tokens needed
 - **🔑 One-step setup** — `setup_auth.py` signs your developer token and gets your user token from a browser sign-in
 - **🔗 Taste codes** — Send a friend one short line and blend your tastes, no files to swap
-- **🎵 8 Playlist Strategies** — Deep cuts, mood/activity, trend radar, constellation discovery, playlist refresh, **songs-like-X seed**, **decade throwbacks**, and **two-person blends**
+- **🎵 9 Playlist Strategies** — Deep cuts, mood/activity, trend radar, constellation discovery, playlist refresh, **songs-like-X**, **decade throwbacks**, **two-person blends**, and **remix any Apple Music playlist** to your taste
+- **⏱️ Exact length** — `--minutes 45` builds for a running time (a commute, a run) instead of a track count, keeping the energy arc
+- **🧼 Clean mode** — `--clean` (or `clean_only` in `config.json`) keeps explicit songs out, using the clean version when there is one
 - **🌊 Energy-arc sequencing** — Playlists build, peak and wind down (or rise/fall for workouts and sleep) instead of just spacing artists out
 - **📈 Taste Drift** — Dated snapshots show how your genres, artists and listener archetype change over time
 - **📥 Playlist Import** — Rebuild a Spotify (CSV) or plain-text playlist in Apple Music, matched by ISRC when the export has it, otherwise by title + artist
@@ -43,8 +50,9 @@ An [Agent Skill](https://github.com/anthropics/skills) for [OpenClaw](https://op
 |---|---|
 | **Apple Developer Account** | [$99/year](https://developer.apple.com/programs/) — needed for MusicKit API access (not for the demo) |
 | **Apple Music subscription** | Active subscription on your Apple ID (not for the demo) |
-| **Python** | 3.10+ (no pip packages needed for core features; `PyJWT` + `cryptography` only to sign a developer token) |
+| **Python** | 3.11+ (no pip packages needed for core features; `PyJWT` + `cryptography` only to sign a developer token) |
 | **Skill host** | [OpenClaw](https://openclaw.ai) ([docs](https://docs.openclaw.ai)) or [Claude Code](#use-with-claude-code) |
+| **OS** | macOS or Linux, including arm64 such as a Raspberry Pi (CI runs the scripts on macOS, Linux x86-64 and Linux arm64). **Windows:** use [WSL2](https://learn.microsoft.com/windows/wsl/); the scripts need `bash`, `curl` and `jq`, so native Windows is not supported |
 | **CLI tools** | `curl`, `jq` (usually pre-installed on macOS) |
 
 ## 🚀 Quick Install
@@ -75,13 +83,11 @@ profile so the scripts can read them.
 
 ## 🧪 Try it first (no account needed)
 
-![Animated replay of the no-account demo: a taste card, songs like Radiohead, a 90s throwback, a daily pick and a compatibility score](assets/demo-tour.svg)
-
 ```bash
 python3 scripts/demo.py tour
 ```
 
-Runs the real scripts against a fictional listener and a small sample catalog served on `127.0.0.1`:
+Runs the real scripts against a fictional listener and a sample catalog of about 250 songs served on `127.0.0.1`:
 a Taste DNA card, a "songs like Radiohead" playlist, a 90s throwback, a daily pick and a
 compatibility score. Nothing is sent to Apple and nothing touches an account. Any script works the
 same way, with `DEMO_PROFILE` standing in for the profile:
@@ -140,6 +146,16 @@ Open OpenClaw and say:
 
 That's it. Your taste profile is built, a playlist is generated, and it appears in Apple Music.
 
+```mermaid
+flowchart LR
+    you([You ask]) --> profile["Taste profile<br/>from your listening"]
+    profile --> strategy["Strategy picks and<br/>sequences tracks"]
+    strategy --> preview["Preview in chat"]
+    preview -->|you approve| playlist([Playlist in Apple Music])
+```
+
+More detail in [`references/architecture.md`](references/architecture.md).
+
 ## 🔒 What it can change
 
 Read-only by default. Every write to your account is opt-in and previewed first:
@@ -171,6 +187,7 @@ Just talk naturally. Here's what the DJ understands:
 | "Refresh my focus playlist" | Evolves an existing playlist with fresh tracks |
 | "Songs like Phoebe Bridgers" | Seed strategy — similar artists, filtered through your taste |
 | "Make me a 90s throwback" | Decade playlist built from your own artists |
+| "Remix this Apple Music playlist for me" | Keeps what fits your taste, swaps the rest, and says what changed |
 | "Blend my taste with my sister's" | One playlist for two listeners (needs their taste code or profile JSON) |
 | "Give me my taste code" | A short `amdj1:…` line a friend can blend with |
 | "How has my taste changed since spring?" | Taste drift report from your saved snapshots |
@@ -188,6 +205,13 @@ Just talk naturally. Here's what the DJ understands:
 | "Set up weekly playlists" | Cron automation |
 | "Show me what you can do" | Demo tour — no tokens needed |
 
+## 🧰 Tech stack
+
+- **Python 3.11+** standard library for every core feature — no pip packages needed
+- **Apple Music API** (developer token signed with `PyJWT` + `cryptography`, only for setup)
+- **Agent Skill** format (`SKILL.md`) for OpenClaw / ClawHub and Claude Code
+- **pytest** for the test suite
+
 ## 📁 Project Structure
 
 ```
@@ -196,17 +220,28 @@ apple-music-dj/
 ├── README.md                   # This file
 ├── clawhub.json                # Package metadata
 ├── pyproject.toml              # Python project config
+├── Makefile                    # make ci, make audit, make demo-svg, …
+├── AGENTS.md, CONTRIBUTING.md  # Contributor and AI-assistant guides (not shipped)
+├── CHANGELOG.md, ROADMAP.md, SECURITY.md
+├── assets/                     # Icon, demo SVG, sample taste card, sample Spotify export
+├── tests/                      # pytest suite; runs the real scripts against a mock API
 ├── references/
 │   ├── auth-setup.md           # Token setup walkthrough
 │   ├── api-reference.md        # Apple Music API endpoint reference
-│   ├── playlist-strategies.md  # Deep playbook for all 8 strategies
+│   ├── architecture.md         # Request flow and the profiler's data sources
+│   ├── automation.md           # Scheduled jobs: schedules and exact commands
+│   ├── examples.md             # Worked request → feature examples
+│   ├── features.md             # Engagement features in detail
+│   ├── playlist-strategies.md  # Deep playbook for all 9 strategies
+│   ├── spotify-import.md       # Moving from Spotify: export, import, match quality
 │   └── troubleshooting.md      # Step-by-step fixes for common issues
 └── scripts/
     ├── _common.py              # Shared utilities (API, profile, token checks)
     ├── apple_music_api.sh      # Bash API wrapper (25+ commands, retry logic)
     ├── taste_profiler.py       # Taste DNA profiler with caching & Replay
     ├── build_playlist.sh       # Playlist creation & refresh with dedup
-    ├── strategy_engine.py      # 8 playlist strategies + energy-arc sequencing
+    ├── strategy_engine.py      # Strategy CLI: naming, previews, playlist creation
+    ├── strategies/             # One module per playlist strategy + shared scoring and sequencing
     ├── taste_card.py           # Shareable Taste DNA Card (SVG/text)
     ├── compatibility.py        # Taste compatibility scoring
     ├── share_code.py           # Taste codes for blending with a friend
@@ -322,11 +357,11 @@ All data stays on your machine. The skill reads your Apple Music listening data 
 
 ```bash
 make test              # Run all tests
-make coverage          # Tests with coverage summary (fails below 80%)
+make coverage          # Tests with coverage summary (fails below 90%)
 make coverage-html     # Generate HTML coverage report
 ```
 
-1,000+ tests across 22 modules — 91% coverage. Covers taste profiling, archetype detection, compatibility scoring, card generation, all eight strategies and energy-arc sequencing, taste drift, playlist import, feedback, playlist health, history tracking, cron setup, token generation and guided setup, demo mode, end-to-end runs against a local mock API, and shared utilities.
+1,700+ tests across 33 test modules — 95% coverage. Covers taste profiling, archetype detection, compatibility scoring, card generation, all nine strategies and energy-arc sequencing, taste drift, playlist import, feedback, playlist health, history tracking, cron setup, token generation and guided setup, demo mode, end-to-end runs against a local mock API, and shared utilities.
 
 ## 📖 Full Documentation
 
@@ -334,7 +369,12 @@ See [**SKILL.md**](SKILL.md) for the complete skill definition — triggers, wor
 
 ## 🤝 Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup and guidelines.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup and guidelines. Questions, ideas and
+taste cards are welcome in [Discussions](https://github.com/and3rn3t/apple-music-dj/discussions);
+[good first issues](https://github.com/and3rn3t/apple-music-dj/labels/good%20first%20issue) are a
+gentle way in.
+
+If it made you a playlist you liked, a ⭐ helps other Apple Music listeners find it.
 
 ## 📄 License
 

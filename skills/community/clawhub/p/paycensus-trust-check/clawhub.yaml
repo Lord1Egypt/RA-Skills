@@ -1,0 +1,12 @@
+name: paycensus-trust-check
+version: 1.0.0
+description: Look up an x402 merchant's on-chain Trust Rank (real settlement behaviour, never self-reported) before your agent pays
+author: PayCensusLabs
+homepage: https://github.com/PayCensusLabs/openclaw-skill-paycensus-trust-check
+skill_file: SKILL.md
+tags:
+  - payments
+  - x402
+  - trust
+  - risk
+  - agents

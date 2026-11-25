@@ -1,6 +1,6 @@
 ## Description:
 
-Retrieves public TikTok search results, creator posts, and video comments as structured data for audience, trend, and product opportunity analysis.
+Retrieves public TikTok search results, creator posts, and video comments as structured JSON for audience and product opportunity research.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Content creators, marketing and growth teams, market researchers, and product teams can retrieve public TikTok searches, creator posts, and comments, then analyze trends, audience needs, and product opportunities.
+Creators, marketers, product teams, and researchers use the skill to retrieve public TikTok search results, creator posts, and video comments for audience research, competitor review, content planning, and product opportunity analysis.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The service token is required for API access, and requests may incur charges.
+Risk: Search terms and TikTok URLs are sent to the Guaikei service, and the API token is included with requests.
 
-Mitigation: Keep GUAIKEI_API_TOKEN private and check the service's pricing before making requests.
+Mitigation: Submit only inputs approved for that service and keep GUAIKEI_API_TOKEN private.
 
-Risk: Optional local logs can retain search queries and public profile or comment data.
+Risk: Public comment text and usernames may still identify individuals when results are shared.
 
-Mitigation: Keep logging disabled unless needed; restrict access to saved logs and remove them when no longer needed.
+Mitigation: Keep analysis within its intended audience and redact usernames before external sharing.
 
-Risk: The provider's billing, retention, and data-sourcing claims have not been independently verified.
+Risk: The security evidence reports a benign verdict with medium confidence, but inspection was partial and some behavior was not fully assessed.
 
-Mitigation: Review the provider's terms and data handling before sending queries.
+Mitigation: Review the skill and its runtime permissions before enabling it.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/why20261/skills/tiktok-user-insight)
+- [ClawHub skill page](https://clawhub.ai/why20261/skills/tiktok-user-insight)
 - [Guaikei service and token access](https://www.guaikei.com)
 - [Command options](references/options.md)
-- [Release changelog](references/changelog.md)
+- [Changelog](references/changelog.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON data, Analysis]
+**Output Type(s):** [JSON, Guidance]
 
-**Output Format:** [Structured JSON containing search results, creator posts, or video comments; the agent can use these data for concise findings or reports.]
+**Output Format:** [Structured JSON response envelope containing TikTok search results, creator posts, or video comments]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Public TikTok data; result counts depend on available data and the service plan.]
+**Other Properties Related to Output:** [Requires Node.js 16.14 or later and GUAIKEI_API_TOKEN; returned data and request limits depend on the service plan.]
 
 ## Skill Version(s):
 
-1.1.1 (source: frontmatter, package.json, changelog, released 2026-11-04)
+1.1.2 (source: frontmatter)
 
 ## Ethical Considerations:
 

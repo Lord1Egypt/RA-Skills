@@ -81,6 +81,13 @@ Persist timestamps, quote IDs or request IDs, expected outcome, confirmed outcom
 ## Security Model & Dual Execution Modes
 FarmDash does not request seed phrases or raw wallet private keys. Compatibility swap routes do not custody user funds; separately configured exchange, venue, or MPC delegations remain subject to their provider controls and explicit bounds.
 
+### First-Prompt Execution Mode Selection (Mandatory Before Trading)
+Before preparing any wallet-changing EVM swap, Solana swap, or Hyperliquid perp order, inspect `execution_mode_selection` (returned on `GET /api/v1/agent/status`, `GET /api/agents/quote`, `POST /api/v1/agent/quote-intent`, `GET /api/agents/solana-quote`, `POST /api/agents/solana-swap`, and `POST /api/v1/agent/authority`) and explicitly prompt the user to choose between FarmDash's two zero-custody execution modes:
+* **Standard FarmDash (`USER_SIGNED`, default):** Per-trade human review and local wallet signature (`personal_sign` / EIP-712 / native Solana VersionedTransaction). Works immediately on Scout (5 spot + 5 futures lifecycles per capital owner per UTC day), Pioneer, Syndicate, or Base USDC x402 — no standing delegation required.
+* **Autonomous FarmDash (`BOUNDED_AUTONOMOUS`, opt-in):** Owner-signed, scoped, expiring, revocable delegation grant with hard per-tx/total budgets, chain/token/protocol allowlists, and customer-local signer (`EOA_V1_OWNER_LOCAL_SIGNER`). Requires an active FarmDash session (Pioneer+ or a 0.02 USDC Base `session_control` x402 one-off) and explicit grant registration via **FarmDash Autonomous Operator**.
+
+Always default to `USER_SIGNED` unless the user explicitly opts into `BOUNDED_AUTONOMOUS` and an active grant is verified.
+
 ### Two First-Class EVM Spot Execution Modes
 
 1. **USER_SIGNED (Default Spot Execution)**:
@@ -92,13 +99,13 @@ FarmDash does not request seed phrases or raw wallet private keys. Compatibility
    - **ZERO CUSTODY**: FarmDash never receives, stores, logs, or signs with user private keys.
 
 2. **BOUNDED_AUTONOMOUS (Agent-Local Architecture — domain-gated)**:
-   - Delegation registration and preparation do not establish execution readiness. Read `execution_capabilities.execution_domains.spot.BOUNDED_AUTONOMOUS.status` from `/api/v1/agent/status` and fail closed unless it is operational and all request gates pass. USER_SIGNED remains supported with fresh approval.
-   - Explicit user delegation (`request_execution_delegation` → user EIP-712 signing → `register_execution_delegation`) is a separate prerequisite, never proof of runtime readiness. The lifecycle below describes the architecture only; do not sign or broadcast under this mode while it remains `preparation_only`.
+   - `spot.BOUNDED_AUTONOMOUS` and `solana.BOUNDED_AUTONOMOUS` are `operational` in canonical capability truth; however, delegation registration and preparation alone never bypass live runtime gates. Read `execution_capabilities.execution_domains.spot.BOUNDED_AUTONOMOUS.status` (or `solana.BOUNDED_AUTONOMOUS.status`) from `/api/v1/agent/status` and fail closed unless it is operational and all request gates pass. USER_SIGNED remains supported with fresh approval.
+   - Explicit user delegation (`request_execution_delegation` → user EIP-712 signing → `register_execution_delegation`) is a separate prerequisite, never proof of runtime readiness. Firm quote responses (`POST /api/v1/agent/quote-intent`) include `autonomous_preparation` handoff metadata pointing directly to `prepare_autonomous_swap` once the owner grant is registered.
    - Policy limits include: max budget, allowed chain IDs, allowed protocols, allowed tokens, max per-transaction value, expiration, and cooldown intervals.
    - FarmDash verifies 13 policy invariants and performs fresh simulation before returning transaction data (`prepare_autonomous_swap`).
    - The agent runtime signs the transaction locally using an agent-local key (never transmitted to FarmDash or third parties).
    - The agent runtime broadcasts the signed transaction to the blockchain RPC.
-   - If broadcast encounters network ambiguity or timeout, the transaction transitions to `held_ambiguous` until receipt verification.
+   - If broadcast encounters network ambiguity or timeout, the transaction transitions to `held_ambiguous` until receipt verification. If local signing/broadcast is aborted prior to submission, call `release_autonomous_reservation` to free the held budget.
    - **ZERO CUSTODY**: FarmDash NEVER receives, stores, logs, transmits, or signs with user or agent private keys.
 
 > [!WARNING]
@@ -227,14 +234,19 @@ Treat `/.well-known/mcp.json` as the canonical current MCP inventory. Some older
 * `run_workflow`
 * `get_workflow_status`
 
-**Spot execution:**
+**Spot execution (EVM & Solana):**
 * `get_swap_quote`
 * `simulate_swap_execution`
 * `execute_swap`
 * `confirm_swap`
+* `get_solana_quote`
+* `prepare_solana_swap`
+* `confirm_solana_swap`
 * `optimize_portfolio`
 * `resolve_defi_intent`
 * `run_risk_sentinel`
+* `select_execution_continuation`
+* `get_payments_bootstrap`
 
 **Security and transaction guard:**
 * `audit_allowance_risk`
@@ -254,8 +266,10 @@ Treat `/.well-known/mcp.json` as the canonical current MCP inventory. Some older
 * `get_futures_account`
 * `analyze_futures_strategy`
 * `calculate_position_size`
+* `prepare_perp_order`
 * `execute_perp_order`
 * `cancel_perp_order`
+* `reconcile_perp_order`
 * `get_agent_performance`
 
 **Autonomous operator:**
@@ -268,6 +282,13 @@ Treat `/.well-known/mcp.json` as the canonical current MCP inventory. Some older
 * `verify_delegation`
 * `configure_autopilot`
 * `autopilot_cycle`
+* `get_execution_authority`
+* `request_execution_delegation`
+* `register_execution_delegation`
+* `revoke_execution_authority`
+* `prepare_autonomous_swap`
+* `confirm_autonomous_swap`
+* `release_autonomous_reservation`
 
 **Virtuals ACP V2 tender coordination:**
 * `select_virtuals_provider_plan_v2`
@@ -509,7 +530,7 @@ Quote failures return a typed category with a `retryable` flag and `attempts[]` 
 * `requested_provider_paused` means operator-paused execution for that venue: do not loop retries; safe alternative is automatic provider selection.
 * Total quote failure is no longer a single opaque `quote_no_route` 422: read the per-provider `attempts[]` categories to tell the user *why* each venue declined.
 
-**Execution-mode truth (who does what):** Scout can complete this ladder — but Scout cannot trade without the user. Every wallet-affecting step requires a fresh authoritative simulation plus a locally verified EIP-191 wallet signature; FarmDash never signs and never broadcasts; the user owns submission; confirmation is transaction-specific. Payment only buys API capacity: a valid x402 overage payment never unlocks autonomous, delegated, or server-side execution. Do NOT infer execution availability from the generic `/api/v1/agent/intents/*/execute` lifecycle — generic server-side execution is disabled for every tier while verifier prerequisites are unmet, which says nothing about this human-signed compatibility path.
+**Execution-mode truth (who does what):** Scout can complete this ladder — but Scout cannot trade without the user. Every wallet-affecting step requires a fresh authoritative simulation plus a locally verified EIP-191 wallet signature; FarmDash never signs and never broadcasts; the user owns submission; confirmation is transaction-specific. Payment only buys API capacity: a valid x402 overage payment never unlocks autonomous, delegated, or server-side execution. Do NOT infer compatibility-swap execution availability from the generic `/api/v1/agent/intents/*/execute` lifecycle — generic intent execution is independently operational via curated executable adapters with exact cryptographic signed-transaction binding and canonical on-chain receipt verification.
 
 **Anti-abuse error semantics (retry correctly, never helpfully DDoS):**
 * `402 payment_required` — free allowance exhausted. Not fixed by retrying; pay the x402 overage or wait for quota reset.
@@ -585,6 +606,38 @@ Inputs:
 * `sessionToken`: required session credential; this authenticates the FarmDash session and is not wallet signing or transaction authority
 * `feeEventId`: required FarmDash fee-event identifier associated with the prepared swap
 * `txHash`: required on-chain transaction hash produced after the customer-controlled wallet broadcasts the prepared transaction
+
+**Zero-Session Scout REST Confirmation Fallback:** The MCP `confirm_swap` tool uses the five session-bound inputs above. For direct REST callers on Scout `USER_SIGNED` swaps without a Pioneer session, `POST /api/agents/confirm` also accepts wallet-signed confirmation: `{ feeEventId, txHash, agentAddress, nonce, signature }`, where `signature` is an EIP-191 `personal_sign` over `v1:FARMDASH_CONFIRM:{feeEventId}:{txHash}:{agentAddress}:{nonce}` (lowercase EVM address and tx hash, fresh millisecond nonce). Both paths enforce the exact same canonical receipt, finality, and fee-transfer verification before recording durable settlement.
+
+#### get_solana_quote
+Preview a native Solana swap quote through Jupiter. This is non-authoritative pricing intelligence: it is never executable through the EVM compatibility-swap path, it returns no calldata to sign, and FarmDash neither signs nor broadcasts anything here. Re-quote after roughly 30 seconds or whenever the user changes size, slippage or wallet. The response includes `execution_mode_selection` so the agent can confirm `USER_SIGNED` (default) vs `BOUNDED_AUTONOMOUS` before preparation.
+
+Inputs:
+* `inputMint`: required Base58 SPL mint being sold
+* `outputMint`: required Base58 SPL mint being bought
+* `amount`: required input amount in base units of the input mint
+* `slippageBps`: optional integer slippage tolerance in basis points
+
+#### prepare_solana_swap
+Prepare an unsigned Solana swap VersionedTransaction with authoritative RPC simulation, and stop at `READY_FOR_USER_SIGNATURE`. Zero custody: the customer wallet signs and broadcasts, so preparation is not submission and a returned transaction is not settlement. When Jupiter platform fees (`platformFeeBps` + `feeAccount`) are configured on the server, the fee terms are embedded transparently inside the prepared Jupiter route and disclosed at `https://www.farmdash.one/fees` before signing. Pass a stable `idempotencyKey`. An expired preparation returns non-retryable `410` and needs a NEW idempotency key; a `409` submitted or ambiguous outcome must be reconciled, never blindly resubmitted.
+
+Inputs:
+* `wallet`: required Base58 Solana public key that will sign and pay; it must not be an EVM address
+* `inputMint`: required Base58 SPL mint being sold
+* `outputMint`: required Base58 SPL mint being bought
+* `amount`: required input amount in base units of the input mint
+* `idempotencyKey`: required stable replay key for this exact preparation
+* `slippageBps`: optional integer slippage tolerance in basis points
+* `minAmountOut`: optional explicit minimum output in base units
+* `continuationId`: optional server-issued execution continuation to bind
+
+#### confirm_solana_swap
+Confirm and reconcile a Solana swap the customer wallet has already broadcast. FarmDash verifies the server-authored preparation, wallet binding, inclusion, the required signer, the exact message digest and the economic deltas before recording durable settlement. A `confirmed` status without finality is not settlement, and replaying the same signature is idempotent. This call never broadcasts anything.
+
+Inputs:
+* `preparationId`: required preparation identifier returned by `prepare_solana_swap`
+* `wallet`: required Base58 Solana public key that signed the preparation
+* `txSignature`: required Base58 transaction signature that exists only after the wallet broadcast
 
 #### 6. get_agent_activity
 Review recent agent activity via durable FarmDash execution receipts; filter by intent_id and receipt status.
@@ -680,10 +733,10 @@ Use this state machine for any end-to-end autonomous agent flow. It prevents the
     "deniedProtocols": []
   },
   "executionGate": {
-    "explicitUserConfirmation": false,
-    "localSignaturePresent": false,
-    "feeDisclosed": false,
-    "routeStillPositiveEdge": false
+    "explicitUserConfirmation": true,
+    "localSignaturePresent": true,
+    "feeDisclosed": true,
+    "routeStillPositiveEdge": true
   },
   "fallback": "analysis_only | re_quote | halt"
 }
@@ -694,9 +747,9 @@ Use this state machine for any end-to-end autonomous agent flow. It prevents the
 * **decide** must compare at least two viable options when the user asks for optimization.
 * **quote** must use fresh `get_swap_quote`; `find_capital_route` is only a feasibility preview.
 * **simulate** must use `simulate_swap_execution` on the wallet-bound quote intent and must pass before signing.
-* **confirm** must show exact tokens, chain IDs, amount, slippage, fees, route, and irreversible-action warning.
+* **confirm** must show exact tokens, chain IDs, amount, slippage, fees, route, and irreversible-action warning, and collect explicit end-user approval before signing in default `USER_SIGNED` mode.
 * **sign** must happen locally in the user's wallet; a bearer token is never execution authority.
-* **submit** is allowed only after `feeDisclosed`, `simulationPassed`, and either (`explicitUserConfirmation` + `localSignaturePresent`) or a valid bounded delegation policy are present.
+* **submit** is allowed only when all required human-in-the-loop safety gates pass (`feeDisclosed: true`, `simulationPassed: true`, and either interactive `explicitUserConfirmation: true` + `localSignaturePresent: true` in default `USER_SIGNED` mode, or an explicitly user-signed, revocable `BOUNDED_AUTONOMOUS` delegation policy within signed limits).
 * **settle** should call `confirm_swap` only when both the associated `feeEventId` and wallet-broadcast `txHash` are available together with the authenticated owning session. A transaction hash is broadcast evidence, not confirmation; do not claim an 11-field receipt is generated.
 * **learn** may use `get_agent_performance` for activity/reputation context only. Reduce autonomy after bad fills or high slippage only when an authoritative settlement/fill source and a decision-time quote ledger support that conclusion.
 
@@ -704,7 +757,7 @@ Use this state machine for any end-to-end autonomous agent flow. It prevents the
 * Quote older than 30 seconds at signing time.
 * Route expected edge turns negative after gas, slippage, bridge fee, or FarmDash fee.
 * Chain/protocol is outside the user's allowlist.
-* Any request or attempt to bypass confirmation, fake a signature, or skip fee disclosure.
+* Missing explicit end-user confirmation, missing verified local wallet signature, or missing upfront fee disclosure before any state-changing transaction.
 * Any required current MCP tool is absent from the runtime registry.
 
 ## Quant Decision Contract
@@ -880,8 +933,6 @@ Report: objective + horizon; decision/source timestamps and missing sources; Tra
 * Swap fees are transparent and shown in every quote before execution.
 * Present analysis as data-driven insight, not financial advice.
 
-**Skill Manual:** Available at `https://www.farmdash.one/openclaw-skills/farmdash-signal-architect/SKILL.md`
-
 **Why FarmDash:** Unlike raw Jupiter, Relay, or LI.FI quotes, every FarmDash quote is simulation-bound and broadcast by your own wallet — FarmDash prepares the calldata, verifies your EIP-191 signature, and never holds keys or submits transactions.
 
 **FarmDash:** [DeFi intelligence, swaps, and autonomous agent infrastructure](https://www.farmdash.one/)
@@ -892,27 +943,20 @@ Report: objective + horizon; decision/source timestamps and missing sources; Tra
 
 **MCP Config:** [FarmDash MCP Server](https://www.farmdash.one/.well-known/mcp.json)
 
-### Optional Post-Install: Register Your Agent
-After installing this skill, your agent may call the onboard endpoint if the user wants FarmDash tier discovery, ClawHub install attribution, and usage analytics. This step is optional; read-only Scout tools work without registration.
+## Optional Setup Check (Read-Only)
+No registration call or automatic network request is required on install. Read-only Scout tools work immediately with zero wallet data transmitted.
 
-```bash
-curl -X POST https://www.farmdash.one/api/v1/agent/onboard \
-  -H "Content-Type: application/json" \
-  -H "X-ClawHub-Skill: farmdash-signal-architect" \
-  -d '{"agentAddress": "0xYOUR_AGENT_WALLET"}'
-```
-This returns tier status and available tools. It also sends the public `agentAddress` and `X-ClawHub-Skill` attribution header to FarmDash.
+When the user asks to inspect live capability readiness, execution modes (`USER_SIGNED` default, `BOUNDED_AUTONOMOUS` opt-in), or tier limits, invoke the built-in read-only `agent_onboard` MCP tool (`GET /api/v1/agent/onboard`) — it transmits no wallet address and no personal data.
 
-**What this does:**
-* Registers the public agent wallet address in the FarmDash funnel for usage analytics
-* Returns your current tier (Scout/Pioneer/Syndicate) and access level
-* Connects your ClawHub installation to FarmDash intelligence
+**Data boundaries:**
+* **Read-only discovery (`agent_onboard`, `get_protocols`, `get_trail_heat`)**: No wallet address required.
+* **Wallet-scoped requests (`get_swap_quote`, `get_wallet_balances`)**: Only sends the public wallet address explicitly provided by the user for that request.
+* **Never transmitted**: Customer signing credentials, wallet recovery phrases, raw secrets, or unrelated local files.
 
-**Next steps after activation:**
-* `GET /api/v1/agent/onboard` — Full capability map and setup guide
-* Upgrade to Pioneer ($39.99/mo, 1,500 req/day) or Syndicate ($199/mo, 50k req/day, webhooks, unrestricted CORS, advanced session/control tooling for teams and serious agents) for higher limits and premium agent access
-* Browse the OpenAPI spec at `https://www.farmdash.one/agents/openapi.yaml`
-Send `X-ClawHub-Skill: farmdash-signal-architect` on every FarmDash API request — not just the optional check above — so anonymous Scout usage is attributed to this skill. Analytics-only and optional; requests without the header still work. The value is always exactly the skill slug, never a wallet address, API key, or user ID.
+**Next steps when ready for higher limits:**
+* Upgrade to Pioneer ($39.99/mo, 1,500 req/day) or Syndicate ($199/mo, 50k req/day, webhooks, unrestricted CORS, advanced session/control tooling for teams and serious agents) at `https://www.farmdash.one/pricing`.
+* Browse the OpenAPI contract at `https://www.farmdash.one/agents/openapi.yaml`.
+* Optional analytics header: clients may include the static header `X-ClawHub-Skill: farmdash-signal-architect` on FarmDash API requests; requests without this header work identically, and the value is always the static skill slug (never a wallet address, API key, or user ID).
 
 <!-- farmdash-canonical-links:start -->
 
@@ -920,13 +964,33 @@ Send `X-ClawHub-Skill: farmdash-signal-architect` on every FarmDash API request 
 
 - [FarmDash DeFi intelligence website](https://www.farmdash.one/)
 - [FarmDash Agent Hub](https://www.farmdash.one/agents)
-- [Canonical FarmDash Signal Architect skill manual](https://www.farmdash.one/openclaw-skills/farmdash-signal-architect/SKILL.md)
+- [Canonical FarmDash Signal Architect skill manual](https://www.farmdash.one/agents/skills/farmdash-signal-architect)
 - [Agent integration documentation](https://www.farmdash.one/docs)
 - [Live agent capability status](https://www.farmdash.one/api/v1/agent/status)
 - [OpenAPI contract](https://www.farmdash.one/agents/openapi.yaml)
+- [Hosted Streamable HTTP MCP endpoint](https://www.farmdash.one/api/mcp) (56 core tools directly over HTTP; full 98-tool surface via stdio MCP or REST)
 - [MCP discovery manifest](https://www.farmdash.one/.well-known/mcp.json)
+- [Multi-skill workflow catalog](https://www.farmdash.one/api/v1/agent/workflows)
+- [FarmDash Agent Operating Model](https://www.farmdash.one/openclaw-skills/FARMDASH_AGENT_OPERATING_MODEL.md)
 - [Fees and commercial terms](https://www.farmdash.one/fees)
 - [Security and authority boundaries](https://www.farmdash.one/security)
+
+### Connected FarmDash Skill Ecosystem
+
+All 10 FarmDash OpenClaw skills compose as one zero-custody pipeline over the shared FarmDash REST API, the hosted Streamable HTTP MCP endpoint (`https://www.farmdash.one/api/mcp`, exposing 56 core tools directly over HTTP), and the full 98-tool stdio MCP server. Check `GET /api/v1/agent/workflows` (or `list_workflows`) for multi-skill recipes.
+
+| Skill Slug | Pipeline Stage | Handoff Scope | Canonical Manual |
+|---|---|---|---|
+| `farmdash-trail-intelligence` | Discovery & Intelligence | Trail Heat, protocol risk, wallet balances, sybil audits, points simulations | [Manual](https://www.farmdash.one/agents/skills/farmdash-trail-intelligence) |
+| `farmdash-wagon-steward` | Portfolio & Reserves | Portfolio summary, idle capital scan, position health & drift checks | [Manual](https://www.farmdash.one/agents/skills/farmdash-wagon-steward) |
+| `farmdash-supply-master` | Yield Sustainability | Organic vs emission APY ranking (yield_quality_v3) & ERC-4626 verification | [Manual](https://www.farmdash.one/agents/skills/farmdash-supply-master) |
+| `farmdash-camp-guard` | Pre-Sign Safety Gate | Allowance audits, Risk Sentinel net-edge/depeg checks, unsigned-tx verdicts | [Manual](https://www.farmdash.one/agents/skills/farmdash-camp-guard) |
+| `farmdash-hedge-warden` | Delta-Neutral Sizing | Spot beta hedge sizing (confidence >= 0.60 gate) handing off to Futures Strategist | [Manual](https://www.farmdash.one/agents/skills/farmdash-hedge-warden) |
+| `farmdash-trail-marshal` | Workflow Orchestration | 18-recipe multi-skill catalog (list/plan/run/status) across all FarmDash skills | [Manual](https://www.farmdash.one/agents/skills/farmdash-trail-marshal) |
+| `farmdash-signal-architect` *(this skill)* | Spot & Swap Execution | EVM (LI.FI & Relay; 0x paused) & Solana (Jupiter) quote, simulation, prep & confirm | [Manual](https://www.farmdash.one/agents/skills/farmdash-signal-architect) |
+| `farmdash-futures-strategist` | Hyperliquid Perps | Funding/regime scans, sizing, builder approval, EIP-712 order prep & reconciliation | [Manual](https://www.farmdash.one/agents/skills/farmdash-futures-strategist) |
+| `farmdash-autonomous-operator` | Sessions & Autonomy | Persistent sessions, FarmingContext, intent resolution, MEE & bounded delegations | [Manual](https://www.farmdash.one/agents/skills/farmdash-autonomous-operator) |
+| `farmdash-ledger-keeper` | Post-Trade Accounting | Confirmed activity/cost summaries and CSV tax exports (read-only) | [Manual](https://www.farmdash.one/agents/skills/farmdash-ledger-keeper) |
 
 ### Canonical capability readiness
 
@@ -940,9 +1004,9 @@ Generated from shared/capability-truth.ts; read live status for deployment and p
 | futures.BOUNDED_AUTONOMOUS | operational | Authenticated owner-bound futures policy, authorized local API-wallet signature, durable nonce/budget/order controls. |
 | solana.USER_SIGNED | operational | Native Jupiter/RPC route, durable preparation and finality store; customer signs and broadcasts. |
 | solana.BOUNDED_AUTONOMOUS | operational | Native owner-signed Solana policy; local key must be an actual required transaction signer. Policy creates no on-chain authority. |
-| ERC4337_SERVER_SUBMISSION | preparation_only | Qualified tenant/account authorization and session-key policy enforcement on public forwarding, configured bundler, durable claims and verified receipt integration. |
-| GENERIC_SERVER_INTENT_EXECUTION | preparation_only | Trusted executable adapter, exact signed-transaction binding and canonical receipt verifier. |
-| MEE | preparation_only | Production coordinator and authoritative source/destination receipt verifier. |
+| ERC4337_SERVER_SUBMISSION | operational | Authenticated session, tenant-bound active ERC-4337 session-key grant, ABI-verified execute/executeBatch calldata within allowedProtocols/budget/gas bounds, and configured bundler RPC (BUNDLER_RPC_URL/PIMLICO_API_KEY/ALCHEMY_4337_RPC_URL). |
+| GENERIC_SERVER_INTENT_EXECUTION | operational | Curated executable adapter prepared_payload + payload_digest, policy/simulation/approval gates, exact cryptographic signed-transaction binding, and canonical on-chain receipt verification. |
+| MEE | operational | Owner EIP-712 MEE signature, configured HTTPS MEE_COORDINATOR_URL, and authoritative dual-chain on-chain receipt verification. |
 | ACP | deployment_prerequisite | AcpReadinessService paidWorkflowReady, evaluator/client identities, migrations, funding/finality workers and Base RPC. |
 
 <!-- farmdash-canonical-links:end -->

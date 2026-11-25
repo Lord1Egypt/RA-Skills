@@ -1,6 +1,6 @@
 ## Description:
 
-Elfa AI helps agents use the Elfa API for crypto social intelligence, market-context analysis, API integration guidance, and condition-based monitoring or trading workflows.
+Use this skill to query the Elfa API for social and web market data, get sourced explanations and claim checks, and configure monitors and automated alerts.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External developers and agent builders use this skill to query Elfa crypto social intelligence, generate Elfa API examples, and configure automated market monitoring workflows. Users should review and confirm any live trading or trade-capable automation before execution.
+Developers and agents use the Elfa API to retrieve crypto and equity market signals, get sourced explanations and claim checks, and set up monitoring or automated alerts.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill can help create persistent automated trading plans and place real trades.
+Risk: The security review warns that the build script may delete unrelated files in a shared output folder.
 
-Mitigation: Require manual confirmation before live orders or trade-capable Auto queries, use preview and validation first, and apply small sizes with conservative cooldowns and maxTriggers.
+Mitigation: Before using the build script, review its target output folder and run it in an isolated directory containing only its intended outputs.
 
-Risk: Credential handling for API keys, HMAC secrets, and agent secrets can expose sensitive access if secrets are passed through command-line options or logs.
+Risk: The security review warns that the update path can install unpinned, changing content; the scan was partial and some static checks were degraded.
 
-Mitigation: Keep trade credentials restricted, read secrets from environment variables, and avoid passing secrets through command-line options such as --hmac-secret.
+Mitigation: Review the exact release and its changes before installing or updating, and treat scan results as incomplete.
 
 ## Reference(s):
 
-- [Elfa Documentation](https://docs.elfa.ai)
+- [Elfa API documentation](https://docs.elfa.ai)
 - [Elfa API](https://api.elfa.ai)
-- [Elfa OpenAPI Swagger](artifact/references/swagger.json)
-- [ClawHub Skill Page](https://clawhub.ai/nero-sensei/skills/elfa-ai)
-- [ClawHub Publisher Profile](https://clawhub.ai/user/nero-sensei)
+- [Elfa Auto documentation](https://docs.elfa.ai/auto/overview)
+- [Elfa Verify documentation](https://docs.elfa.ai/verify/overview)
+- [Elfa skill package and updates](https://go.elfa.ai/claude-skills)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-**Output Format:** [Markdown guidance with JSON and shell or code snippets]
+**Output Format:** [Markdown guidance with code examples, JSON data, and alert/query configuration]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include API request examples, credential setup guidance, and validation or preview steps for trade-capable workflows.]
+**Other Properties Related to Output:** [May include structured API results and streaming responses.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server release evidence)
+1.1.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

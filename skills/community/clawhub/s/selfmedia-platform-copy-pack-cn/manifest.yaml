@@ -1,0 +1,25 @@
+name: selfmedia-platform-copy-pack-cn
+slug: selfmedia-platform-copy-pack-cn
+display_name: 多平台发布文案包
+version: 1.0.0
+description: 将已定稿内容、真实来源和平台名单转成逐平台的标题、简介与相关标签草稿，面向发布前表达适配。缺少定稿内容、来源或平台时明确列出缺项而不猜测；适合单次章节、场景或短文，表格超过100行或内容过长会要求分批处理，不上传内容且不承诺标签热度或流量。
+repository: https://github.com/xxjrq/selfmedia-platform-copy-pack-cn
+license: MIT-0
+icon: icon-512.png
+tags:
+  - 自媒体
+  - 内容改写
+  - 多平台发布
+  - 文案创作
+  - 中文
+trigger_words:
+  - 多平台文案
+  - 平台发布文案
+  - 标题简介标签
+interface:
+  display_name: 多平台发布文案包
+  short_description: 将定稿内容按平台生成可复制的中文标题、简介与标签草稿
+  default_prompt: 请粘贴已定稿内容、真实来源和目标平台名单；我会输出逐平台标题、简介与相关标签草稿。
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+self_test: node scripts/self-test.mjs

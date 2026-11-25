@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-const log = require("../utils/log");
 const post = require("../api/post");
 const token = require("../utils/token");
 const utils = require("../utils/utils");
@@ -10,7 +9,8 @@ const { parseArgs, buildHelp } = require("../utils/args");
 const {
   emitError,
   emitEmpty,
-  printSuccessEnvelope,
+  buildSuccessEnvelope,
+  finishSuccess,
   emitUncaught,
 } = require("../utils/output");
 
@@ -177,7 +177,7 @@ async function main() {
     return;
   }
 
-  const { text } = printSuccessEnvelope(
+  const finalOutput = buildSuccessEnvelope(
     "获取作品任务完成",
     startTime,
     postRequest,
@@ -185,14 +185,10 @@ async function main() {
   );
   const postCount = Array.isArray(postTask.post) ? postTask.post.length : 0;
   const hasUser = Boolean(postTask.user && Object.keys(postTask.user).length);
-  utils.printSuccess(
-    `获取作品任务完成, 作品 ${postCount} 条${hasUser ? ", 含博主信息" : ""}`,
-  );
-
-  await log.taskWrite(
-    `${startTime}_${validator.url2Name(url)}_post.json`,
-    text,
-  );
+  await finishSuccess(finalOutput, {
+    logFilename: `${startTime}_${validator.url2Name(url)}_post.json`,
+    stderrMessage: `获取作品任务完成, 作品 ${postCount} 条${hasUser ? ", 含博主信息" : ""}`,
+  });
 }
 
 main().catch((error) => {

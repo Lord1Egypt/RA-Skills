@@ -8,10 +8,14 @@ description: |
   2. Default output is the compact instance-name list (名称列表, also available
      via --names-only); --table renders the full-field table
      (名称/ID/引擎/版本/容量/规格/状态/连接地址/端口/可用区), --json outputs the
-     raw response array, and --md / --format md prints a GitHub-flavored
+     raw response array, --md / --format md prints a GitHub-flavored
      Markdown table with the same fixed ten columns as
      export-markdown 口径 (缺失字段渲染 `-`, `|` 转义为 `\|`,
-     换行转空格). --md-output <path> 可把该表格原子落盘（内容与 stdout 一致）.
+     换行转空格), and --csv / --format csv prints an RFC4180 CSV table with
+     the same ten columns (缺失字段为空字符串, 逗号/双引号/换行由标准 csv 模块
+     转义, CRLF 行尾). --md-output <path> / --csv-output [<path>] 可把表格原子
+     落盘（内容与 stdout 一致）；--csv-output 省略路径或传目录时用默认文件名
+     dcs_instances_<region>_<timestamp>.csv；--csv-bom 输出 UTF-8 BOM.
   3. Supports --name (server-side fuzzy query, plus --name-equal exact match),
      --instance-id / --ip / --status / --tags filtering (all real server-side
      ListInstances query parameters), region override, optional --sort-by
@@ -29,11 +33,13 @@ description: |
   6. Triggers include: "list DCS instances", "DCS instance list",
      "查询 DCS 实例列表", "DCS 实例列表", "Redis 实例列表", "缓存实例列表",
      "查询缓存实例", "DCS inventory", "list cache instances", "华为云 DCS 列表",
-     "DCS 实例 Markdown 表格", "导出 DCS 实例 Markdown", "DCS 实例表格输出".
+     "DCS 实例 Markdown 表格", "导出 DCS 实例 Markdown", "DCS 实例表格输出",
+     "DCS 实例 CSV", "导出 DCS CSV", "DCS CSV 输出", "导出 DCS 实例 CSV",
+     "DCS csv export".
   7. Offline unit tests (mocked hcloud subprocess) cover output modes
-     (names / table / json / md), filters, paging, error scenarios, SDK
-     fallback, Markdown escaping + atomic file writing, and the write-intent
-     guard.
+     (names / table / json / md / csv), filters, paging, error scenarios, SDK
+     fallback, Markdown/CSV escaping + atomic file writing (incl. BOM), and
+     the write-intent guard.
 tags: [huawei-cloud, dcs, database, readonly, koo-cli]
 ---
 
@@ -53,7 +59,7 @@ Architecture:
 
 ```text
 agent → python3 scripts/list_dcs.py → hcloud DCS ListInstances --cli-region=<region>
-      → Huawei Cloud DCS OpenAPI (dcs.<region>.myhuaweicloud.com) → parsed JSON → names list / table / --json / markdown (+ optional --md-output file)
+      → Huawei Cloud DCS OpenAPI (dcs.<region>.myhuaweicloud.com) → parsed JSON → names list / table / --json / markdown (+ optional --md-output file) / csv (+ optional --csv-output file, --csv-bom)
 
 (hcloud binary missing) → fallback: huaweicloudsdkdcs v2 DcsClient.list_instances
 ```
@@ -81,6 +87,18 @@ Key properties:
   value can never break the table. `--md-output <path>` additionally writes
   exactly that text through a temp file + atomic rename (失败非零退出、不留
   残缺文件); an empty list prints only the friendly hint — no header, no file.
+- **CSV output is RFC4180** — `--csv` / `--format csv` prints the same ten
+  columns (名称/ID/引擎/版本/容量/规格/状态/连接地址/端口/可用区) with
+  missing fields as an empty string; commas, double quotes and line breaks
+  are quoted by the standard `csv` module (QUOTE_MINIMAL, CRLF line endings),
+  never hand-escaped. `--csv-output [<path>]` writes exactly the stdout bytes
+  atomically (temp file + fsync + rename, parent dirs created); without a path
+  (or when pointing at a directory) the default name
+  `dcs_instances_<region>_<timestamp>.csv` is used. `--csv-bom` prepends the
+  UTF-8 BOM (`EF BB BF`) to both stdout and the file for spreadsheet tools.
+  `--csv` is a standalone mode: combining it with `--md` / `--json` /
+  `--table` / `--names-only` / a different `--format` exits `1`.
+  `--csv-output` / `--csv-bom` outside CSV mode also exit `1`.
 - **Server-side filters & automatic paging** — `--name` / `--instance_id` /
   `--ip` / `--status` / `--tags` are real ListInstances query parameters
   (verified against `hcloud DCS ListInstances --help`); paging uses
@@ -90,7 +108,7 @@ Key properties:
   paged (and locally filtered) result by instance name, case-insensitive
   (missing name falls back to `instance_id`); `--sort-by created` orders by
   `created_at` ascending (ISO8601, missing values last). Both are stable and
-  applied to every output mode (names / table / json / md); without
+  applied to every output mode (names / table / json / md / csv); without
   `--sort-by` the API order is kept unchanged. Ordering is client-side only —
   it is never sent to the service.
 - **Offline-testable** — every code path (filters, paging, error
@@ -129,7 +147,9 @@ Those require a dedicated write-capable skill and explicit user confirmation.
 3. **Run the list script** with the desired output mode and filters.
 4. **Read the result** — name list (default) for a compact inventory, table
    for humans, `--json` for downstream tooling, `--md` for a pasted-into-
-   ticket Markdown table (optionally persisted with `--md-output`).
+   ticket Markdown table (optionally persisted with `--md-output`), `--csv`
+   for spreadsheets/ETL (optionally persisted with `--csv-output`, BOM with
+   `--csv-bom`).
 5. **Handle the empty / error cases** per the Edge Cases table below (the
    script prints an explicit hint for empty region, 403, and missing AK/SK).
 
@@ -158,6 +178,16 @@ python3 scripts/list_dcs.py --md --md-output ./dcs_instances.md
 # Markdown combined with server-side filters / paging
 python3 scripts/list_dcs.py --md --status RUNNING --page-size 500
 python3 scripts/list_dcs.py --format md --name-equal --name cache-demo-01
+
+# CSV table (fixed 10 columns, RFC4180, missing fields as empty strings)
+python3 scripts/list_dcs.py --csv
+python3 scripts/list_dcs.py --format csv
+
+# CSV + atomic file write (content == stdout bytes); default name when no path
+python3 scripts/list_dcs.py --csv --csv-output ./dcs_instances.csv
+python3 scripts/list_dcs.py --csv --csv-output ./exports/     # dcs_instances_<region>_<timestamp>.csv
+python3 scripts/list_dcs.py --csv --csv-output                # same default, current dir
+python3 scripts/list_dcs.py --csv --csv-bom --csv-output ./dcs_instances.csv   # UTF-8 BOM
 
 # Filter by instance name (server-side fuzzy query parameter)
 python3 scripts/list_dcs.py --name cache-demo
@@ -198,8 +228,11 @@ hcloud DCS ListInstances --cli-region=cn-north-4 --name=cache-demo --status=RUNN
 | `--table` | No | Output the full-field table (名称/ID/引擎/版本/容量/规格/状态/连接地址/端口) | — |
 | `--json` | No | Output the raw instance array as JSON | — |
 | `--md` | No | Output a GitHub-flavored Markdown table with the fixed 10 columns of the DCS export-markdown 口径 (missing fields `-`) | — |
-| `--format` | No | Output format selector: `names` (default) / `table` / `json` / `md` | `md` |
+| `--csv` | No | Output an RFC4180 CSV table with the same fixed 10 columns (missing fields empty; commas/quotes/newlines quoted; CRLF); equivalent to `--format csv` | — |
+| `--format` | No | Output format selector: `names` (default) / `table` / `json` / `md` / `csv` | `md` |
 | `--md-output` | No | md mode only: atomically write the table to this `.md` path (content identical to stdout; parent dirs created; failure exits non-zero and leaves no partial file) | `./dcs_instances.md` |
+| `--csv-output` | No | csv mode only: atomically write the CSV to this path (content identical to stdout bytes; parent dirs created; failure exits non-zero and leaves no partial file). Omit the path or pass a directory to use `dcs_instances_<region>_<timestamp>.csv` | `./dcs_instances.csv` |
+| `--csv-bom` | No | csv mode only: prepend the UTF-8 BOM (`EF BB BF`) to stdout and the written file | — |
 | `--name` | No | Filter by instance name — real server-side query parameter (fuzzy) | `cache-demo` |
 | `--name-equal` | No | Exact-match switch: drops the fuzzy server param and filters locally, case-insensitive | used with `--name` |
 | `--instance-id` | No | Filter by exact instance ID — real server-side query parameter | `55f47f3d-...` |
@@ -212,12 +245,17 @@ hcloud DCS ListInstances --cli-region=cn-north-4 --name=cache-demo --status=RUNN
 | `--operation` | No | hcloud DCS operation name; only `ListInstances` is allowed | `ListInstances` |
 
 Output-mode precedence (backwards compatible): `--json` → `--names-only`
-(default) → `--table` → `--md` → `--format` value. Without any mode flag the
-script prints the instance-name list; `--json` wins over everything, `--table`
-requires the full-field table, and `--md` / `--format md` produce the identical
-Markdown table (`--format md` and `--md` are byte-for-byte the same output).
-`--md-output` is only accepted in Markdown mode — with any other mode the
-script exits `1` with an explicit hint.
+(default) → `--table` → `--md` → `--csv` → `--format` value. Without any mode
+flag the script prints the instance-name list; `--json` wins over everything,
+`--table` requires the full-field table, `--md` / `--format md` produce the
+identical Markdown table (`--format md` and `--md` are byte-for-byte the same
+output), and `--csv` / `--format csv` produce the identical CSV table
+(`--format csv` and `--csv` are byte-for-byte the same output).
+`--md-output` is only accepted in Markdown mode and `--csv-output` /
+`--csv-bom` only in CSV mode — with any other mode the script exits `1` with
+an explicit hint. `--csv` is standalone: combining it with `--md`, `--json`,
+`--table`, `--names-only`, or a different `--format` value exits `1` with an
+explicit combination error.
 
 ## Write-Intent Guard
 
@@ -227,9 +265,10 @@ script exits `1` with an explicit hint.
   `unfreeze`, `release`, and DCS operation names such as `CreateInstance`,
   `BatchDeleteInstances`, `DeleteSingleInstance`, `ResizeInstance`,
   `RestartOrFlushInstances`, `UpdateInstance`, `ResetInstancePassword`).
-- The local `--md-output` path is a filesystem target, not a DCS operation, so
-  that single value is excluded from the scan (`--md-output /tmp/dcs-backup.md`
-  is allowed) — every other argument is still checked.
+- The local `--md-output` / `--csv-output` paths are filesystem targets, not
+  DCS operations, so those values are excluded from the scan
+  (`--md-output /tmp/dcs-backup.md`, `--csv-output /tmp/dcs-backup.csv` are
+  allowed) — every other argument is still checked.
 - Any hit raises `GuardError`, prints
   `[错误] 检测到写操作意图 ... 已被守卫拦截`, and exits with code 1 **before**
   a single hcloud command is executed.
@@ -264,7 +303,7 @@ hcloud <Service> <Operation> --cli-region=<region> [--key=value ...]
 
 | Scenario | Behavior |
 | ---------- | --------- |
-| Empty instance list | Exit 0, prints `当前区域（<x>）无 DCS 实例` (+ active filters); in md mode no header row and no file is written |
+| Empty instance list | Exit 0, prints `当前区域（<x>）无 DCS 实例` (+ active filters); in md/csv mode no header row and no file is written |
 | 403 / insufficient IAM permission | Exit 1, `无权限访问分布式缓存服务（DCS），请检查 IAM 权限` hint |
 | Missing / invalid AK-SK | Exit 1, explicit hint to configure hcloud credentials out-of-band (never in chat) |
 | Missing project_id (SDK fallback) | Exit 1, hint to pass `--project-id` or set the project-id env var |
@@ -276,6 +315,9 @@ hcloud <Service> <Operation> --cli-region=<region> [--key=value ...]
 | `--sort-by` value not `name` / `created` | Exit 1, explicit `--sort-by 取值非法` hint listing `name` / `created` (the value is exempt from the write-intent scan, so `created` is not mistaken for `create`) |
 | `--md-output` given outside md mode | Exit 1, explicit hint that `--md-output` requires `--md` / `--format md` |
 | `--md-output` write failure (permissions / disk) | Exit 1, `[错误] Markdown 文件写入失败…，未留下残缺文件`; no partial target file, temp file removed |
+| `--csv-output` / `--csv-bom` given outside csv mode | Exit 1, explicit hint that they require `--csv` / `--format csv` |
+| `--csv` combined with `--md` / `--json` / `--table` / `--names-only` / a different `--format` | Exit 1, explicit `--csv 不能与 … 组合使用` error before any call |
+| `--csv-output` write failure (permissions / disk) | Exit 1, `[错误] CSV 文件写入失败…，未留下残缺文件`; no partial target file, temp file removed |
 | Write intent detected | Exit 1, `GuardError` message, no command executed |
 
 Exit codes: `0` success / empty region; `1` config, auth, guard, or API error.
@@ -287,12 +329,15 @@ Exit codes: `0` success / empty region; `1` config, auth, guard, or API error.
 | Non-`RUNNING` instances (ERROR / FROZEN / ...) | Reported with their state, not treated as failure |
 | `--name` | Forwarded as the real fuzzy server-side query parameter; `--name-equal` switches to exact local matching (case-insensitive) |
 | `--instance-id` / `--ip` / `--status` / `--tags` filters | Forwarded as real server-side query parameters (verified API params) |
-| `--sort-by` ordering | Applied client-side after full paging + `--name-equal` filtering and before every output branch, so names/table/json/md (including `--json`) share the same order; stable for equal keys; missing `name` falls back to id, missing `created_at` goes last |
+| `--sort-by` ordering | Applied client-side after full paging + `--name-equal` filtering and before every output branch, so names/table/json/md/csv (including `--json`) share the same order; stable for equal keys; missing `name` falls back to id, missing `created_at` goes last |
 | Large instance count | Automatic `limit`/`offset` paging driven by `instance_num` (max 100 pages) |
 | Extra response fields | Table columns are built from the union of returned fields — new fields appear automatically |
-| Field missing on an instance | Rendered as `-` in the table (and in md mode) |
+| Field missing on an instance | Rendered as `-` in the table/md mode and as an empty field in csv mode |
 | Value containing a pipe character / line breaks (md mode) | Pipe escaped as `\|`; line breaks collapse to a single space — the table can never be broken by data |
-| Empty list in md mode with `--md-output` | Friendly hint only; no header, no separator, and no file at the target path (an existing file is left untouched) |
+| Value containing comma / double quote / line break / Chinese (csv mode) | Passed through unmodified; `csv.writer(QUOTE_MINIMAL)` quotes per RFC4180 (double quotes doubled), CRLF row endings |
+| Empty list in md/csv mode with `--md-output` / `--csv-output` | Friendly hint only; no header, no separator, and no file at the target path (an existing file is left untouched) |
+| `--csv-output` without a path or pointing at a directory | Default file `dcs_instances_<region>_<timestamp>.csv` (UTC timestamp) |
+| `--csv-bom` | One UTF-8 BOM (`EF BB BF`) at the start of stdout and the file; file bytes equal stdout bytes |
 | `az_codes` / `tags` lists | Flattened into comma-joined cells for the table |
 | Instance without a name | The name list falls back to `instance_id` |
 | Non-JSON hcloud output | `ApiError` with the raw excerpt (first 200 chars) |
@@ -329,8 +374,16 @@ filters/paging combination, empty list → no header and no file, `--sort-by`
 name/created across all output modes + cross-page ordering + stable ties +
 missing-field placement + invalid value + guard exemption, atomic
 `--md-output` write + write-failure cleanup, `--md-output` rejected outside md
-mode, mode precedence), and all `main()` output modes including default names
-list, empty, filter, exact-name and error paths.
+mode, mode precedence), CSV mode (fixed 10-column header + CRLF, empty string
+for missing fields, RFC4180 comma/quote/newline/Chinese escaping, `--csv` vs
+`--format csv` equivalence, filters/sort/paging combination, empty list → no
+header and no file, `--csv-output` identical-to-stdout + parent-dir creation +
+default file name (path omitted / directory) + write-failure cleanup,
+`--csv-bom` first bytes `EF BB BF` in stdout and file, `--csv-output` /
+`--csv-bom` rejected outside csv mode, `--csv` illegal combinations with
+`--md`/`--json`/`--table`/`--names-only`/`--format`, `--csv-output` path
+exemption in the write-intent guard), and all `main()` output modes including
+default names list, empty, filter, exact-name and error paths.
 
 ## Reference Documents
 
@@ -341,3 +394,5 @@ list, empty, filter, exact-name and error paths.
 | [references/verification-method.md](references/verification-method.md) | How the skill and its tests were verified |
 | [references/dataflow-diagram.md](references/dataflow-diagram.md) | Mermaid data flow diagram |
 | [references/acceptance-criteria.md](references/acceptance-criteria.md) | Acceptance criteria checklist |
+| [references/read-only-guard.md](references/read-only-guard.md) | Read-only guard layers, exemptions and error behavior |
+| [references/output-formats.md](references/output-formats.md) | Output modes, precedence, Markdown/CSV contracts and file output |

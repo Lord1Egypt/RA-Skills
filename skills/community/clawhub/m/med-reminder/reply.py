@@ -1378,7 +1378,12 @@ def main() -> None:
 
     sub = parser.add_subparsers(dest="mode", required=True, metavar="MODE")
 
-    p_confirm = sub.add_parser("confirm", help="Mark a med as taken")
+    p_confirm = sub.add_parser(
+        "confirm", help="Mark a med as taken",
+        epilog="--all: use ONLY when the user explicitly said they took all scheduled "
+               "meds (\"all taken\", \"took everything\"); ambiguous or partial replies "
+               "(\"took it\", \"mostly\", generic acks, silence) mean per-med confirm or "
+               "a follow-up question, never --all.")
     p_confirm_grp = p_confirm.add_mutually_exclusive_group(required=True)
     p_confirm_grp.add_argument("med_id", nargs="?", default=None,
                                help="Med ID, e.g. med-001")

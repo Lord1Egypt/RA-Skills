@@ -1,7 +1,7 @@
 ---
 name: "qubrics-token-efficient-usage"
 description: "Choose low-token Qubrics calls across MCP, CLI, SDKs, and HTTP by using snippets, counts, batches, deltas, cursors, ETags, and idempotency."
-version: "2.0.4"
+version: "2.0.8"
 metadata:
   openclaw:
     skillKey: "qubrics-token-efficient-usage"

@@ -1,6 +1,6 @@
 ## Description:
 
-Creativault Creator Scraper helps agents search, collect, export, and contact creator and influencer prospects across TikTok, YouTube, Instagram, and Twitter using Creativault APIs.
+Helps agents find and compare creators, analyze videos and account authenticity, export search results, and manage creator outreach through CreatiVault.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Marketing, partnerships, and growth teams use this skill to discover creators, collect creator profile data, export campaign lists, find similar creators, and manage outreach follow-up. Developers and operators can also use it to run Creativault API-backed workflows through Node.js scripts.
+Marketing teams and creator researchers use the skill to discover creators across TikTok, Instagram, and YouTube, review creator and video signals, export search results, and coordinate outreach. It can also summarize short-video content and estimate account authenticity risks.
 
 ### Deployment Geography for Use:
 
@@ -22,44 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The optional self-update path can change installed skill files when enabled.
+Risk: The security review reports exposed credentials and unsafe data handling; some components were only partially inspected.
 
-Mitigation: Keep CV_SKILL_AUTO_UPDATE unset and review updates manually before running the confirmed update command.
+Mitigation: Follow the review guidance to remove or rotate the shared credential before installation and review any credential handling.
 
-Risk: The skill requires Creativault API credentials and an operator identity for live API calls.
+Risk: The security review reports an update process that can replace skill files without independent release verification.
 
-Mitigation: Use a scoped API key, keep credentials out of shared logs or files, and use only a trusted HTTPS Creativault API endpoint.
+Mitigation: Independently verify and pin the updater and installer before installation.
 
-Risk: Creator exports and outreach records can contain contact information and other sensitive personal data.
+Risk: Collection and outreach actions can affect external services or people.
 
-Mitigation: Treat exported XLSX, CSV, HTML, and contact lists as sensitive data and share them only with authorized users.
-
-Risk: Outreach workflows can send creator emails, including batch sends.
-
-Mitigation: Confirm recipient lists, subject lines, and message bodies before sending, and keep the skill's user-confirmation step enabled.
+Mitigation: Require clear user intent and confirmation before collection or outreach actions.
 
 ## Reference(s):
 
-- [API Reference](references/api-reference.md)
-- [Platform Parameters](references/platform-params.md)
-- [Industry Categories](references/industry-categories.md)
-- [Country Codes](references/country-codes.md)
-- [Language Codes](references/language-codes.md)
-- [Error Codes](references/error-codes.md)
+- [CreatiVault API Reference](artifact/references/api-reference.md)
+- [Platform Parameters](artifact/references/platform-params.md)
+- [Creativault Creator Scraper on ClawHub](https://clawhub.ai/creativault/skills/cv-creator-scraper)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+**Output Type(s):** [Text, Markdown, CSV files, Analysis, Guidance]
 
-**Output Format:** [Markdown summaries with tables, JSON API results, shell command examples, and exported XLSX, CSV, or HTML file links]
+**Output Format:** [Markdown summaries and tables, CSV exports, and structured audit results]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires Node.js 20.6+ and Creativault API credentials for live API calls.]
+**Other Properties Related to Output:** [Results reflect data returned by CreatiVault; creator and video coverage depends on its indexed data.]
 
 ## Skill Version(s):
 
-1.8.0 (source: release evidence, skill metadata, and skill.json)
+1.8.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

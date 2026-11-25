@@ -4,7 +4,7 @@ This module is unofficial and not affiliated with Exa.
 
 ## Requirements
 
-- Go 1.26.10 or newer, per the module's `go.mod`.
+- Go 1.26.11 or newer, per the module's `go.mod`.
 - An Exa API key from the [dashboard](https://dashboard.exa.ai), exported as `EXA_API_KEY`.
 
 ## Install

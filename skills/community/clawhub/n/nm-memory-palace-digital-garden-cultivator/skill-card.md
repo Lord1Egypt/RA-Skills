@@ -1,6 +1,6 @@
 ## Description:
 
-Manages digital garden notes, link structures, and health metrics
+Manages digital garden notes, link structures, and health metrics.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Knowledge workers and developers use this skill to organize a digital garden, connect notes, review content maturity, and track maintenance and link health.
+Developers and knowledge workers use this skill to organize digital garden notes, create useful bidirectional links, track content maturity, and plan maintenance. It can also help summarize garden health metrics.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Maintenance instructions may lead to notes being deleted or reorganized without explicit approval.
+Risk: The security assessment flags note cleanup and restructuring actions that could delete inactive notes or merge content without clear safeguards; the assessment is incomplete.
 
-Mitigation: Review the maintenance instructions before enabling them and keep backups of important notes.
-
-Risk: The security scan was partial because some referenced local paths could not be resolved.
-
-Mitigation: Review related material and referenced paths before installation.
+Mitigation: Review the maintenance guidance before installing, assess its cleanup and restructuring actions, and keep a backup or recoverable copy of important garden content.
 
 ## Reference(s):
 
-- [Memory Palace project page](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace)
-- [Linking Patterns](artifact/modules/linking-patterns.md)
-- [Garden Maintenance](artifact/modules/maintenance.md)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-memory-palace-digital-garden-cultivator)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Analysis, Guidance, JSON, Shell commands]
+**Output Type(s):** [Guidance, Markdown, Configuration, Code, Shell commands]
 
-**Output Format:** [Markdown guidance and notes; garden metrics as JSON, brief text, or Prometheus exposition]
+**Output Format:** [Markdown guidance and note templates, with examples and metrics in JSON, brief text, or Prometheus exposition format.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Metrics may be presented in JSON, brief, or Prometheus format.]
+**Other Properties Related to Output:** [May include garden organization, linking, maintenance, and health metric recommendations.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

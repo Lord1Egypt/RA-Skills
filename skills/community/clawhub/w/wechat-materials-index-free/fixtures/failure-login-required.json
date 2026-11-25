@@ -1,0 +1,5 @@
+{
+  "fixture_notice": "离线页面资料模拟；不是在线采集结果。",
+  "state": "login_required",
+  "expected_action": "停止，不绕过登录或验证码；报告无法读取可见素材。"
+}

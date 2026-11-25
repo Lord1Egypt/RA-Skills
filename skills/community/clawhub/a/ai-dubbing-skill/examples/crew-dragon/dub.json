@@ -1,0 +1,53 @@
+{
+  "videos": [
+    {
+      "file": "clips/names.mp4",
+      "id": "names"
+    },
+    {
+      "file": "clips/crew.mp4",
+      "id": "crew"
+    }
+  ],
+  "language": "en",
+  "vocab": [
+    "Bob Behnken",
+    "Doug",
+    "Dragon",
+    "SpaceX",
+    "NASA",
+    "space station"
+  ],
+  "translations": [
+    "es",
+    "pt-BR"
+  ],
+  "voices": {
+    "es": "kokoro:em_alex",
+    "pt-BR": "kokoro:pm_alex"
+  },
+  "dub": {
+    "background": "voiceover"
+  },
+  "post_to": [
+    "TIKTOK",
+    "INSTAGRAM",
+    "YOUTUBE"
+  ],
+  "outputs": [
+    {
+      "id": "vertical",
+      "style": "pop",
+      "canvas": "9:16",
+      "fit": "crop",
+      "focus_x": 0.52,
+      "languages": [
+        "es",
+        "pt-BR"
+      ],
+      "style_overrides": {
+        "max_width": 0.72
+      }
+    }
+  ]
+}

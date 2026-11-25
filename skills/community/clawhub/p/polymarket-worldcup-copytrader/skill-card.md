@@ -1,6 +1,6 @@
 ## Description:
 
-Copies top World Cup traders on Polymarket using a Simmer-curated leader set and a daily rebalance flow.
+Copy the top World Cup traders on Polymarket — auto-curated daily by Simmer. No wallet list to configure; the skill sources leaders via PolyNode's slippage-adjusted copy-PnL screen. Regular mode (daily rebalance). Free tier.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and trading-agent operators use this skill to generate and optionally execute a daily World Cup market copytrading plan based on Simmer-curated Polymarket leaders.
+External users configure Simmer credentials and use the agent to follow a daily curated set of World Cup traders on Polymarket. They can inspect a dry-run trade plan or enable automated trading on the Simmer simulation venue or Polymarket.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Live mode can execute irreversible Polymarket trades using trading credentials.
+Risk: The live trading path can redeem resolved positions across the account, beyond the skill's stated World Cup copytrading purpose.
 
-Mitigation: Run in dry-run or sim mode first, then enable live Polymarket execution only after reviewing the generated plan and credential scope.
+Mitigation: Review whether account-wide redemption is acceptable before enabling live trading, and consider using the skill without that behavior.
 
-Risk: The SDK dependency is specified as a minimum version, so future unreviewed SDK code could run with trading credentials.
+Risk: The security scan was partial because two local path-like references in SKILL.md could not be resolved.
 
-Mitigation: Pin or lock simmer-sdk to a reviewed version before allowing live Polymarket trades.
+Mitigation: Resolve and review the missing referenced components before installation or live use.
 
-Risk: Copyability screening reduces slippage risk but does not remove market, leader churn, or thin-book risk.
+Risk: The SDK dependency is unpinned beyond a minimum version.
 
-Mitigation: Keep conservative max trade and slippage limits, retain leader-exit detection, and review live exposure after each run.
+Mitigation: Review and control the installed SDK version before running the skill with trading credentials.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/simmer/skills/polymarket-worldcup-copytrader)
-- [Skill documentation](artifact/SKILL.md)
-- [Disclaimer](artifact/DISCLAIMER.md)
+- [World Cup Copytrader release](https://clawhub.ai/simmer/skills/polymarket-worldcup-copytrader)
+- [Publisher profile](https://clawhub.ai/user/simmer)
 
 ## Skill Output:
 
-**Output Type(s):** [text, json, shell commands, configuration, guidance]
+**Output Type(s):** [Text, Trade plans, Configuration guidance]
 
-**Output Format:** [Console text with optional JSON automaton status and inline shell commands]
+**Output Format:** [Plain-text CLI status and trade-plan output]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Dry-run is the default; live Polymarket mode can place FAK, price-bounded trades when explicitly enabled.]
+**Other Properties Related to Output:** [Defaults to dry-run; live mode can place trades on the selected venue.]
 
 ## Skill Version(s):
 
-0.1.2 (source: server release and frontmatter)
+0.1.5 (source: frontmatter)
 
 ## Ethical Considerations:
 

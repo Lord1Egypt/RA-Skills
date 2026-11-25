@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "douyin-topic-plan-draft",
+  "status": "draft",
+  "accountAlias": "fixture-tech-account",
+  "sourceRunId": "REPLACED_BY_SELF_TEST",
+  "snapshotId": "REPLACED_BY_SELF_TEST",
+  "accountFitSummary": "优先选择能用真实工具演示、能让上班族立刻理解的热点角度。",
+  "plans": [
+    {
+      "topic": "会议纪要到行动清单",
+      "title": "会议纪要别只做记录",
+      "angle": "用一个真实工作流解释如何把信息变成下一步。",
+      "accountFit": "适合关注效率工具的上班族。",
+      "sourceIds": ["src-001"],
+      "hook3s": "会后最容易丢的不是记录，是下一步。",
+      "outline": [
+        { "section": "开场", "purpose": "提出痛点", "keyPoints": ["会后遗忘"] },
+        { "section": "核心展开", "purpose": "展示步骤", "keyPoints": ["整理", "分配", "提醒"] },
+        { "section": "结尾行动", "purpose": "引导尝试", "keyPoints": ["从一场会开始"] }
+      ],
+      "risk": { "level": "low", "factStatus": "page_visible_only", "notes": ["发布前核验工具功能"] },
+      "publishability": "ready_for_human_review"
+    },
+    {
+      "topic": "一人公司自动化",
+      "title": "一人公司先自动化哪一步",
+      "angle": "拆解一个可复用的轻量工作流。",
+      "accountFit": "符合工具上手内容支柱。",
+      "sourceIds": ["src-002"],
+      "hook3s": "一个人忙不过来，先别急着加班。",
+      "outline": [
+        { "section": "开场", "purpose": "提出痛点", "keyPoints": ["忙不过来"] },
+        { "section": "核心展开", "purpose": "拆解方法", "keyPoints": ["重复任务", "自动化"] },
+        { "section": "结尾行动", "purpose": "给出动作", "keyPoints": ["列出重复任务"] }
+      ],
+      "risk": { "level": "low", "factStatus": "page_visible_only", "notes": ["发布前核验演示"] },
+      "publishability": "ready_for_human_review"
+    },
+    {
+      "topic": "无代码小工具",
+      "title": "不会代码也能做小工具",
+      "angle": "讲清适用场景，不夸大能力。",
+      "accountFit": "帮助新手快速理解工具选择。",
+      "sourceIds": ["src-003"],
+      "hook3s": "不会代码，不代表不能把小麻烦自动化。",
+      "outline": [
+        { "section": "开场", "purpose": "降低门槛", "keyPoints": ["不会代码"] },
+        { "section": "核心展开", "purpose": "说明方法", "keyPoints": ["选问题", "做原型"] },
+        { "section": "结尾行动", "purpose": "引导实践", "keyPoints": ["试一个任务"] }
+      ],
+      "risk": { "level": "low", "factStatus": "page_visible_only", "notes": ["发布前核验工具限制"] },
+      "publishability": "ready_for_human_review"
+    },
+    {
+      "topic": "AI 工具少走弯路",
+      "title": "选 AI 工具先看这三件事",
+      "angle": "从真实选择成本切入，给出简单判断顺序。",
+      "accountFit": "符合 AI 工具实测账号定位。",
+      "sourceIds": ["src-004"],
+      "hook3s": "AI 工具越多，真正浪费时间的是选错。",
+      "outline": [
+        { "section": "开场", "purpose": "指出选择焦虑", "keyPoints": ["工具太多"] },
+        { "section": "核心展开", "purpose": "给出判断方法", "keyPoints": ["场景", "上手成本", "实际结果"] },
+        { "section": "结尾行动", "purpose": "引导收藏", "keyPoints": ["下次选择时对照"] }
+      ],
+      "risk": { "level": "low", "factStatus": "page_visible_only", "notes": ["只表达选择方法"] },
+      "publishability": "ready_for_human_review"
+    },
+    {
+      "topic": "工作流从一个步骤开始",
+      "title": "别一上来就搭复杂工作流",
+      "angle": "用一个高频重复动作解释工作流的最小起点。",
+      "accountFit": "适合希望提高效率但不懂技术的受众。",
+      "sourceIds": ["src-002", "src-001"],
+      "hook3s": "自动化做不下去，多半是第一步就做大了。",
+      "outline": [
+        { "section": "开场", "purpose": "制造反差", "keyPoints": ["别先做大全套"] },
+        { "section": "核心展开", "purpose": "演示最小闭环", "keyPoints": ["选一个动作", "跑通", "再扩展"] },
+        { "section": "结尾行动", "purpose": "给出动作", "keyPoints": ["先挑每天重复的一件事"] }
+      ],
+      "risk": { "level": "low", "factStatus": "page_visible_only", "notes": ["发布前确认演示可复现"] },
+      "publishability": "ready_for_human_review"
+    }
+  ]
+}

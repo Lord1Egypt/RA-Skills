@@ -1,107 +1,43 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
-    "title": "TikTok博主作品获取 - API出参",
-    "description": "TikTok实时获取博主作品, API出参Schema详解",
+    "title": "TikTok 博主作品 - results 元素",
+    "description": "作品成功时 results 是视频数组，没有单独的博主资料对象。空字符串和数字 0 可能不返回。整份 stdout 见 output_envelope.schema.json。",
     "properties": {
-        "aweme_id": {
-            "type": "string",
-            "description": "TikTok视频ID"
-        },
-        "desc": {
-            "type": "string",
-            "description": "TikTok视频描述"
-        },
-        "create_time": {
-            "type": "number",
-            "description": "TikTok视频创建时间戳"
-        },
-        "music_title": {
-            "type": "string",
-            "description": "TikTok视频音乐标题"
-        },
-        "music_author": {
-            "type": "string",
-            "description": "TikTok视频音乐作者"
-        },
-        "music_duration": {
-            "type": "number",
-            "description": "TikTok视频音乐时长"
-        },
-        "music_play_url": {
-            "type": "string",
-            "description": "TikTok视频音乐播放URL"
-        },
+        "aweme_id": { "type": "string", "description": "作品 ID。交给评论命令" },
+        "desc": { "type": "string", "description": "作品描述" },
+        "create_time": { "type": "number", "description": "发布时间，Unix 秒" },
+        "create_time_str": { "type": "string", "description": "技能补充，接口不返回。create_time 转成的北京时间" },
+        "music_title": { "type": "string", "description": "音乐标题" },
+        "music_author": { "type": "string", "description": "音乐作者" },
+        "music_duration": { "type": "number", "description": "音乐时长，原样整数。用户文档未写单位；采集端保存的是 music.duration，一般为秒" },
+        "music_play_url": { "type": "string", "description": "音乐播放 URL" },
         "video_url": {
             "type": "array",
-            "description": "视频播放地址、视频下载地址",
-            "items": {
-                "type": "string",
-                "description": "视频播放地址、视频下载地址"
-            }
+            "description": "视频播放 URL 列表。可能过期。本技能不下载文件",
+            "items": { "type": "string", "description": "视频 URL" }
         },
-        "video_cover": {
-            "type": "string",
-            "description": "TikTok视频封面URL"
-        },
-        "video_duration": {
-            "type": "number",
-            "description": "TikTok视频时长"
-        },
-        "comment_count": {
-            "type": "number",
-            "description": "TikTok视频评论数"
-        },
-        "digg_count": {
-            "type": "number",
-            "description": "TikTok视频点赞数"
-        },
-        "download_count": {
-            "type": "number",
-            "description": "TikTok视频下载数"
-        },
-        "play_count": {
-            "type": "number",
-            "description": "TikTok视频播放数"
-        },
-        "share_count": {
-            "type": "number",
-            "description": "TikTok视频分享数"
-        },
-        "forward_count": {
-            "type": "number",
-            "description": "TikTok视频转发数"
-        },
-        "whatsapp_share_count": {
-            "type": "number",
-            "description": "TikTok视频WhatsApp分享数"
-        },
-        "collect_count": {
-            "type": "number",
-            "description": "TikTok视频收藏数"
-        },
-        "repost_count": {
-            "type": "number"
-        },
+        "video_cover": { "type": "string", "description": "视频封面 URL" },
+        "video_duration": { "type": "number", "description": "视频时长，原样整数。用户文档未写单位；采集端保存的是 TikTok video.duration，一般为毫秒" },
+        "comment_count": { "type": "number", "description": "评论数" },
+        "digg_count": { "type": "number", "description": "点赞数" },
+        "download_count": { "type": "number", "description": "下载数" },
+        "play_count": { "type": "number", "description": "播放数" },
+        "share_count": { "type": "number", "description": "分享数" },
+        "forward_count": { "type": "number", "description": "转发数" },
+        "whatsapp_share_count": { "type": "number", "description": "WhatsApp 分享数" },
+        "collect_count": { "type": "number", "description": "收藏数" },
+        "repost_count": { "type": "number", "description": "用户文档未给说明，原样返回" },
         "tags": {
             "type": "array",
-            "description": "TikTok视频标签",
-            "items": {
-                "type": "string",
-                "description": "TikTok视频标签"
-            }
+            "description": "标签",
+            "items": { "type": "string", "description": "标签名" }
         },
+        "share_url": { "type": "string", "description": "分享 URL，采集端已去掉 query。查评论优先用 aweme_id" },
         "suggest_words": {
             "type": "array",
-            "description": "TikTok小蓝词",
-            "items": {
-                "type": "string",
-                "description": "TikTok小蓝词, 评论框顶端显示的建议词"
-            }
-        },
-        "share_url": {
-            "type": "string",
-            "description": "TikTok视频分享URL"
+            "description": "评论框顶部的推荐词",
+            "items": { "type": "string", "description": "推荐词" }
         }
     }
 }

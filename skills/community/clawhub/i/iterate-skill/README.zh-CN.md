@@ -326,6 +326,8 @@ iterate report                # 默认 Markdown：技术栈 + 生效配置 + doc
 iterate report --out report.md   # 原子写入文件（stdout 保持为空）
 iterate report --json         # 单个结构化 JSON 文档
 iterate report --strict       # warning 也判失败（退出码 1），适合 CI 门禁
+iterate report --annotate     # 在 GitHub Actions 里把每条 finding 输出为 PR 内联注释
+                              #   （::error / ::warning 写到 stderr）；GITHUB_ACTIONS=true 自动开启
 
 # Shell 补全（命令 / 参数 / 固定取值 / 路径）
 iterate completion bash
@@ -400,6 +402,9 @@ iterate doctor --json-out report.json   # 把 JSON 报告写入文件（自动�
 iterate doctor --fix      # 先应用安全、非破坏性修复（自动写时间戳备份），再重跑诊断
 iterate doctor --list-checks            # 列出全部可用检查名后退出
 iterate doctor --check config.schema    # 只运行指定检查（可重复 / 逗号分隔）
+iterate doctor --annotate # 在 GitHub Actions 里把每条 finding 输出为 PR 内联注释
+                          #   （::error / ::warning 写到 stderr，不污染 stdout）；
+                          #   GITHUB_ACTIONS=true 时自动开启，--no-annotate 关闭
 ```
 
 `--fix` 只做可安全自动修复的项，且每次修复前都会为 `iterate.config.yaml` 生成带时间戳的备份（`.doctorfix-<时间戳>` 后缀）；破坏性/有歧义的修复不会自动执行，会在报告中提示你手工处理。目前可自动修复的项包括：`dimensions` 去重/空时恢复默认、`language` 非法值重置为 `en`、`max_rounds` 非整数移除/越界收敛到 `[1, 50]`、`git.target_branch` 空值重置为 `main`、`onboarding.skill_version` 同步为当前安装版本。
@@ -432,6 +437,15 @@ iterate scan --json  # stdout 输出单个 JSON 文档
 ```
 
 用 `iterate init`（一条命令、无提问）、`iterate onboard`（交互式）或 `iterate config set <key> <value>` 落地这些建议。
+
+**配置还跟得上项目吗？** `iterate scan --compare` 直接回答这个问题，不必并排读两份 JSON。它把当前 `iterate.config.yaml` 与一次新扫描对比，只报告配置**缺少**的建议：建议了但未启用的维度、建议了但未配置的命名维度集、建议了但还没有命令的校验模块，并在每一项后给出可直接执行的补救命令（`iterate config set dimensions …` / `iterate refresh`）。命令只读、建议式（恒退出 `0`）；未初始化或配置不可读时也会给出 `init` / `onboard` / `doctor --fix` 的明确指引：
+
+```bash
+iterate scan --compare         # TUI：差异 + 下一步
+iterate scan --compare --json  # 单个 JSON 文档：config / suggested / gaps / in_sync / next
+```
+
+额外启用的维度、自定义维度集与手调的校验命令都视为用户的主动选择，不会被报成缺口。
 
 ### iterate init（无提问初始化）
 

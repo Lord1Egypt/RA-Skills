@@ -1,6 +1,6 @@
 ## Description:
 
-当用户提供红果剧名、剧集链接或 series_id，需要短剧口碑复盘、剧情争议分析、角色反馈整理或多部剧观众评价对比时使用。来自 SocialDataX 社媒数据助手。
+当用户提供红果剧名、剧集链接或 series_id，需要短剧口碑复盘、剧情争议分析、角色反馈整理或多部剧观众评价对比时使用。来自社媒数据助手 SocialDataX。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-面向需要复盘红果短剧观众反馈的内容创作者、运营人员和研究者，整理剧评样本、主题、剧情争议与角色反馈，并提供有证据范围说明的复核建议。
+外部用户可提交红果短剧名称、分享链接或 series_id，获取基于观众评论样本的口碑主题、剧情争议与角色反馈整理，并在有限样本范围内比较多部剧集。
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,26 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Repeated use of an unpinned CLI latest release creates a supply-chain risk around credentials and the invoking account.
+Risk: The skill repeatedly runs an unpinned latest CLI version, which can change without review and may access credentials; the security scan was partial, so its evidence is incomplete.
 
-Mitigation: Pin the CLI package to a reviewed version and verify the installation before running it with credentials.
+Mitigation: Pin and review the CLI version before use, and review the unresolved local references because the scan is incomplete.
 
 ## Reference(s):
 
-- [SocialDataX API Key and product information](https://socialdatax.com/ai?from=clawhub)
-- [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/hongguo-drama-review)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Analysis, Guidance]
+**Output Type(s):** [Analysis, Markdown]
 
-**Output Format:** [Markdown report with sample notes, review themes, comment evidence, and follow-up suggestions]
+**Output Format:** [Markdown report with sample scope, audience themes, comment evidence, and review suggestions]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Defaults to at most 2 pages and 20 main reviews per series; reply sampling is limited and optional.]
+**Other Properties Related to Output:** [Covers 1–3 dramas by default, up to 2 pages and 20 main reviews per drama, and at most one page of replies for one core dispute; includes up to 3 review suggestions.]
 
 ## Skill Version(s):
 
-1.0.2 (source: server-resolved ClawHub release metadata)
+1.0.3 (source: server-resolved ClawHub release metadata)
 
 ## Ethical Considerations:
 

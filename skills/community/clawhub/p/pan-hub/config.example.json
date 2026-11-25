@@ -1,0 +1,308 @@
+{
+  "version": 5,
+  "download_root": "",
+  "tier": "auto",
+  "smart": {
+    "auto_classify": true,
+    "classify_root": ""
+  },
+  "http": {
+    "retries": 3,
+    "retry_delay": 5,
+    "connect_timeout": 30,
+    "timeout": 0,
+    "max_connections_free": 1,
+    "max_connections_vip": 4,
+    "report_dir": "",
+    "on_complete_hook": "",
+    "range_split": false,
+    "range_split_connections": 0,
+    "live_status": true,
+    "live_interval": 1.0,
+    "live_dir": "",
+    "schedule_at": ""
+  },
+  "remote": {
+    "staging_root": "",
+    "keep_staging": false
+  },
+  "transfer": {
+    "allow_company_dest": false,
+    "default_transfers": 4,
+    "default_checkers": 8
+  },
+  "notify": {
+    "work_weixin_secret": "",
+    "bark_secret": "",
+    "telegram_secret": "",
+    "discord_secret": "",
+    "feishu_secret": ""
+  },
+  "remotes": {},
+  "engines": {
+    "alist": "",
+    "baidupcs": "",
+    "quarkcli": "",
+    "aria2c": "",
+    "rclone": "",
+    "alist_url": "",
+    "alist_user": "",
+    "alist_password_ref": "",
+    "rclone_remote": "",
+    "webdav_url": "",
+    "webdav_user": "",
+    "webdav_password_ref": ""
+  },
+  "drives": {
+    "baidu": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": "",
+      "save_path": "/网盘下载"
+    },
+    "aliyun": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "quark": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "tianyi": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "thunder": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "115": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "123pan": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "139yun": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "wopan": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "uc": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "pikpak": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "jianguoyun": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "onedrive": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "googledrive": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "dropbox": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "weiyun": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "lanzou": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "wukong": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "doubao": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "mega": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "terabox": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "pcloud": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "protondrive": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "yandexdisk": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "mediafire": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "trainbit": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "guangyapan": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "feijipan": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "shandian": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "chengtong": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    },
+    "direct": {
+      "tier": "auto",
+      "account_tier": "",
+      "tier_detector": "",
+      "cookie_file": "",
+      "credential_ref": "",
+      "engine_command": ""
+    }
+  },
+  "extensions": {}
+}

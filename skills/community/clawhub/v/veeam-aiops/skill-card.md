@@ -1,6 +1,6 @@
 ## Description:
 
-Helps operators inspect and manage Veeam Backup & Replication jobs, repositories, sessions, and VM restores through governed CLI and MCP tools.
+Governed Veeam Backup & Replication operations for health checks, diagnostics, backup jobs, restores, repositories, and session tracking.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Backup administrators and operations engineers use this skill to check Veeam backup health, investigate failures and repository capacity, manage backup jobs, and initiate or monitor VM restores.
+External Veeam administrators and developers use this skill to inspect backup health, diagnose failed jobs and low-capacity repositories, manage backup jobs, and track restore progress through CLI or MCP workflows.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Write tools can stop backup activity or initiate irreversible restores without an enforced approval or read-only gate.
+Risk: The security scan marks this skill suspicious because connected-model guidance reportedly permits destructive backup actions without action-specific approval; scan coverage was partial.
 
-Mitigation: Begin with a read-only or tightly restricted Veeam account and require independent human approval before restore or session-stop actions.
-
-Risk: A VM restore can overwrite the wrong machine, and its target checks may not identify the backup server under a different display name.
-
-Mitigation: Review the dry-run target and confirm the VM and restore point in the Veeam console before proceeding.
-
-Risk: Leaked master passwords or legacy plaintext credentials could expose Veeam access.
-
-Mitigation: Protect the local credentials directory, avoid committing MCP configurations containing the master password, and migrate legacy plaintext secrets.
+Mitigation: Use read-only or restricted Veeam credentials where possible. Before enabling writes, verify the approval behavior and review dry-run previews for destructive actions; check audit health.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/zw008/skills/veeam-aiops)
-- [Project homepage (skill metadata)](https://github.com/AIops-tools/Veeam-AIops)
-- [Agent guardrails](references/agent-guardrails.md)
+- [Project homepage (Clawdis metadata)](https://github.com/AIops-tools/Veeam-AIops)
 - [Capabilities](references/capabilities.md)
-- [Setup guide](references/setup-guide.md)
 - [CLI reference](references/cli-reference.md)
+- [Setup guide](references/setup-guide.md)
+- [Agent guardrails](references/agent-guardrails.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+**Output Type(s):** [Analysis, API Calls, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Text or Markdown with command examples and summarized tool results]
+**Output Format:** [Structured JSON results and concise text reports, with CLI commands and configuration guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May report job, session, repository, or restore status from Veeam tool responses.]
+**Other Properties Related to Output:** [Some reads may be paginated or explicitly marked as truncated.]
 
 ## Skill Version(s):
 
-0.19.0 (source: server-resolved ClawHub release)
+0.20.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

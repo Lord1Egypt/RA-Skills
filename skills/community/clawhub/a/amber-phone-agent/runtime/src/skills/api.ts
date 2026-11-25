@@ -55,7 +55,7 @@ export function buildSkillContext(
       const [file, ...args] = cmd;
       const baseBin = file.split('/').pop() || file;
 
-      if (!allowedBins.has(baseBin) && !allowedBins.has(file)) {
+      if (!allowedBins.has(file)) {
         throw new Error(`Permission denied: binary "${baseBin}" not in allowed list [${[...allowedBins].join(', ')}]`);
       }
 

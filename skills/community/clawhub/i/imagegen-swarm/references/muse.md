@@ -1,13 +1,23 @@
 # Muse approval scope
 
-`scripts/muse-image.py` must not infer permissions from approval descriptions.
-Its policy permits only the label `Allow once`, exactly one image-save operation,
-and exactly one literal path equal to this run's `remote` output after the existing
-`canonical_output_path` normalization (`~`/`~hatch`, `.`/`..`, existing symlinks).
-Different filenames or directories, escaping traversal, extra paths or arguments,
-compound operations, command separators or substitutions, reads and network access
-are refused. Directory creation is no longer an exception: the prompt expressly
-forbids it, and no captured run establishes that it is required.
+The cloud save directory defaults to `/home/hatch/workspace/image-gen` with the legacy browser
+profile and `/home/hatch/workspace/imagegen-swarm` otherwise. `IMAGE_GEN_MUSE_REMOTE_DIR` accepts an
+absolute directory below `/home/hatch/` with characters `[A-Za-z0-9_./-]` and no `..`.
+Create the cloud directory first on a new environment or handle the directory creation
+approval manually; the script always refuses directory-creation cards.
+
+Default and `IMAGE_GEN_MUSE_APPROVAL=legacy` evaluate old-style text cards. The button must
+be exactly `Allow once`. The card must contain at least one path, and every parsed path
+must match this run's exact output PNG after cloud-home expansion and canonicalization.
+Parent traversal, other paths, directory creation, command keywords and shell
+metacharacters cause refusal. A rejected decoded request cannot use the text policy.
+The script records the detail text of each clicked card in `approved`.
+
+`IMAGE_GEN_MUSE_APPROVAL=strict` requires a decoded `save_image` with one literal path for the
+exact output. The current extractor leaves `request` null, so strict mode refuses live text cards.
+Refusals report `approval_refused`. A stalled turn with no approvable card or completed reply
+reports `approval_card_timeout` after 75 seconds. A completed reply without the output reports
+`no_image`.
 
 ## Evidence checked on 2026-11-17
 
@@ -27,10 +37,8 @@ forbids it, and no captured run establishes that it is required.
 
 No verified live card decoder is therefore enabled. `APPROVALS` returns the
 observed button label, containing `detail`, and `controls` (actual button labels).
-Its `request` is always null. Every live approval card stops the job through the
-existing RuntimeError path with an explicit "shape was not recognized ... was not
-clicked" error. This includes legitimate save requests. Jobs without approval
-cards continue; prompting, uploads, downloads, renaming and timeouts are unchanged.
+Its `request` is always null. The exact-file fallback is tested with old-style fixtures.
+In a live test on 2026-11-17, three Muse generations completed without showing an approval card.
 
 ## Internal policy representation
 
@@ -50,9 +58,8 @@ not an asserted Muse wire format:
 
 The request must have exactly those two fields. The operation must be
 `save_image`; the path list must contain one nonempty literal path, with no
-whitespace, quotes or shell syntax, matching the trusted `remote`. Detail text
-never supplies permission. Synthetic normalized requests test the policy and
-wait loop; they do not demonstrate live Muse auto-approval support.
+whitespace, quotes or shell syntax, matching the trusted `remote`. The structured policy does not consult detail text. Synthetic normalized requests test the policy and
+wait loop; they do not demonstrate that a live Muse card can be decoded or clicked.
 
 Before enabling a live decoder, capture a real approval card without credentials
 and add a sanitized fixture. Derive selectors or a strict whole-card grammar from

@@ -1,0 +1,11 @@
+{
+  "vault_id": "REPLACE_WITH_CONFIG_VAULT_ID",
+  "proposal_key": "REPLACE_WITH_EXACT_PROPOSAL_KEY",
+  "source": "current_chat",
+  "author_role": "user",
+  "decision": "Approved",
+  "thread_id": "REPLACE_WITH_CHAT_OR_LOCAL_SESSION_REFERENCE",
+  "message_id": "REPLACE_WITH_USER_MESSAGE_OR_RECEIPT_REFERENCE",
+  "text": "REPLACE_WITH_ACTUAL_EXPLICIT_HUMAN_APPROVAL",
+  "confirmed_at": "REPLACE_WITH_ACTUAL_ISO_TIMESTAMP_WITH_TIMEZONE"
+}

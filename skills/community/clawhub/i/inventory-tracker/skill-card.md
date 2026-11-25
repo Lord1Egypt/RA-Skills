@@ -1,6 +1,6 @@
 ## Description:
 
-Tracks US stock with reorder points, dated count adjustments and the tax and shipping rules that apply to each item.
+Tracks US stock with reorder points, dated count adjustments and the tax and shipping rules that apply to each item. Use when the user asks for inventory tracker template, stock count sheet, reorder point calculator. For US warehouse leads, operations coordinators and small business owners counting stock and ordering replacements.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-US warehouse leads, operations coordinators, and small-business owners use the skill to track stock counts, dated adjustments, reorder points, and tax or shipping checks for inventory items.
+US warehouse leads, operations coordinators, and small business owners use this skill to organize stock counts, record dated quantity adjustments, review reorder points, and identify inventory details that need checking.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,32 @@ United States
 
 ## Known Risks and Mitigations:
 
-Risk: The inventory calculator silently loses item identifiers and omits calculations, making results unreliable for business decisions.
+Risk: The security review rates this release suspicious and warns that advertised inventory functions may be missing or produce misleading results; its analysis is incomplete.
 
-Mitigation: Use copies of records, independently check identifiers and reorder quantities, and do not rely on the calculator for operational decisions until it is corrected.
+Mitigation: Review the reported behavior and verify the calculations and input handling before relying on results for purchasing or inventory decisions.
 
-Risk: The skill's tax guidance includes a LIFO-repeal claim that the security assessment says conflicts with IRS Form 970 guidance.
+Risk: The supplied script reads simple key-value input and defaults missing or nonnumeric values to zero, while the documented starting template is CSV; this can produce incomplete or misleading reports.
 
-Mitigation: Verify tax guidance against current IRS sources and consult a qualified tax professional before relying on it.
-
-Risk: An optional unsigned Windows application presents a separate trust risk and is not needed for the Python workflow.
-
-Mitigation: Avoid the optional application unless independently assessed; use the Python workflow instead.
+Mitigation: Check that each input field is read as intended and independently verify calculations before using a report.
 
 ## Reference(s):
 
-- [Inventory US rules](references/inventory-us-rules.md)
-- [IRS Form 970](https://www.irs.gov/forms-pubs/about-form-970)
+- [Inventory US Rules](references/inventory-us-rules.md)
+- [ClawHub inventory-tracker listing](https://clawhub.ai/rapidworker1/skills/inventory-tracker)
 
 ## Skill Output:
 
-**Output Type(s):** [CSV files, Markdown, Inventory guidance]
+**Output Type(s):** [Markdown, Inventory guidance]
 
-**Output Format:** [CSV inventory worksheets and Markdown reports]
+**Output Format:** [Markdown calculation report and inventory guidance]
 
-**Output Parameters:** [SKU-level stock, count, demand, lead-time, and safety-stock data]
+**Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Proposed reorder points are not purchase orders. The calculator needs correction before operational use; independently verify item identifiers, quantities, and tax guidance.]
+**Other Properties Related to Output:** [A CSV template is provided as input; validate results before operational use.]
 
 ## Skill Version(s):
 
-1.0.6 (source: frontmatter, server release)
+1.0.7 (source: frontmatter)
 
 ## Ethical Considerations:
 

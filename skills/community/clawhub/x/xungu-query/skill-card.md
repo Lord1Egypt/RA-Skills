@@ -1,6 +1,6 @@
 ## Description:
 
-循古·算命 helps agents handle explicit user requests for BaZi, daily fortune, Liu Yao, Da Liu Ren, Lu Ming, luck-cycle, and annual-fortune readings through the xungufa.com divination service.
+Provides Chinese astrology and divination queries for BaZi, Zi Wei Dou Shu, Qi Men Dun Jia, Liu Yao, and Da Liu Ren, returning chart and fortune results from Xungu.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users invoke this skill when they explicitly want Chinese astrology or divination readings. The agent collects the requested birth or casting details, calls the relevant xungufa.com service, and returns formatted readings with practical interpretation prompts.
+External users can request a Chinese astrology chart or reading based on birth details or a selected time, and receive results for BaZi, Zi Wei Dou Shu, Qi Men Dun Jia, Liu Yao, or Da Liu Ren.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Birth details and divination query data may be sent to xungufa.com.
+Risk: The scan notes a low-probability least-privilege concern because environment and network capabilities are present while tool scope is not declared.
 
-Mitigation: Use the skill only when the user explicitly requests these readings and is comfortable sharing the relevant details with the third-party service.
+Mitigation: Review the runtime permissions and restrict environment and network access to what the skill needs.
 
-Risk: The skill may look for XUNGU_API_TOKEN in environment variables or local .env files.
+Risk: Queries send user-provided birth details or selected times to Xungu for chart generation.
 
-Mitigation: Configure the token through a scoped secret or environment variable and avoid placing unrelated credentials in files the agent can read.
-
-Risk: Birth profile details may be stored locally in plaintext if the user agrees to save them.
-
-Mitigation: Decline profile saving unless persistence is needed, and use the documented delete flow to remove saved profile data.
+Mitigation: Explain the data flow before the first query and avoid sending details the user does not want to share.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/cnyouker/skills/xungu-query)
-- [cnyouker publisher profile](https://clawhub.ai/user/cnyouker)
-- [循古排盘 service](https://xungufa.com)
-- [BaZi API endpoint](https://xungufa.com/api/agent/bazi)
-- [Liu Yao API endpoint](https://xungufa.com/api/agent/liuyao)
-- [Da Liu Ren API endpoint](https://xungufa.com/api/agent/daliuren)
+- [Xungu Agent API reference](https://www.xungufa.com/static/openapi/agent-api.json)
+- [Xungu API key settings](https://www.xungufa.com/apikey/)
+- [Xungu Query on ClawHub](https://clawhub.ai/cnyouker/skills/xungu-query)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, API calls, guidance]
+**Output Type(s):** [JSON, Text, Guidance]
 
-**Output Format:** [Markdown text with formatted divination charts, API status notices, and narrative guidance]
+**Output Format:** [JSON responses or formatted chart text]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include authentication or quota notices and prompts asking whether to save or delete a local birth profile.]
+**Other Properties Related to Output:** [Chart and fortune details are organized by divination method; interpretations are limited to returned data.]
 
 ## Skill Version(s):
 
-1.0.13 (source: server evidence release.version and target metadata)
+1.1.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

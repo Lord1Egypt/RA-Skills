@@ -43,6 +43,12 @@ A lightweight production bridge that adds **persistent caller memory** and **dyn
 6. ElevenLabs starts the conversation with full caller context injected
 7. The LLM backend is your **OpenClaw** instance (or any OpenAI-compatible endpoint)
 
+### Privacy: what leaves your server
+
+The bridge makes no outbound calls, but the personalized system prompt it returns includes the caller's name, call count, stored memory facts and recent notes. ElevenLabs receives that prompt and sends it, along with the live conversation, to the LLM configured on your agent (OpenClaw or another OpenAI-compatible endpoint). Each provider processes and retains that data under its own terms.
+
+Don't store facts or notes that callers wouldn't expect to be shared with those providers (health, financial, government ID or payment details, or other sensitive personal data). Tell callers that their details are remembered between calls and processed by these providers, and get consent where your jurisdiction requires it.
+
 ## Prerequisites
 
 - **Python 3.10+**
@@ -75,7 +81,7 @@ cp .env.example .env
 # Phone hashing salt
 openssl rand -base64 32
 
-# Data encryption key (optional but recommended)
+# Data encryption key (required unless ALLOW_PLAINTEXT_STORAGE=true)
 python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
 
 # Webhook secret (shared with ElevenLabs)
@@ -226,7 +232,7 @@ elevenlabs-twilio-memory-bridge/
 - **Phone number hashing** — caller IDs are hashed with HMAC-SHA256 using a per-installation secret (`PHONE_HASH_SALT`). The same input always produces the same hash, enabling reliable session lookups while preventing reversal without the secret.
 - **Mandatory webhook verification** — `WEBHOOK_SECRET` is required. Webhooks are rejected with 401 if the secret is not configured (fail-closed).
 - **Rate limiting** — webhook endpoints limited to 60 requests/minute, admin endpoints to 30 requests/minute per IP.
-- **Encryption at rest** — memories and notes are encrypted with Fernet when `DATA_ENCRYPTION_KEY` is set. Data is stored as plain JSON when the key is not configured.
+- **Encryption at rest** — session records, memories and notes are encrypted with Fernet. Startup fails without `DATA_ENCRYPTION_KEY` unless you explicitly set `ALLOW_PLAINTEXT_STORAGE=true`.
 - **File permissions** — data directory created with `0o700`, JSON files written with `0o600`.
 - **File locking** — POSIX advisory locks (`fcntl`) prevent race conditions on concurrent reads/writes.
 - **Startup validation** — the app refuses to start if `PHONE_HASH_SALT` or `WEBHOOK_SECRET` are not set.

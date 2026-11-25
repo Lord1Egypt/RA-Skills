@@ -1,6 +1,6 @@
 ## Description:
 
-Async Python patterns via asyncio and aiohttp for I/O-bound concurrency.
+Async Python patterns via asyncio and aiohttp for I/O-bound concurrency
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Python developers use this skill to build and debug I/O-bound asynchronous applications with asyncio and aiohttp, including concurrent tasks, rate limits, timeouts, error handling, and async tests.
+Python developers use this skill to apply asyncio and aiohttp patterns for concurrent I/O, including task coordination, rate limiting, error handling, timeouts, and tests.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The database example interpolates user_id directly into SQL strings; adapting this pattern with untrusted values could allow SQL injection.
+Risk: The database example interpolates values into SQL strings, which can be unsafe if values are untrusted.
 
-Mitigation: Use parameterized queries with bound values for all user-supplied data.
+Mitigation: Use parameterized queries through the database driver's API, especially for user-controlled values.
+
+Risk: Concurrent web requests can exceed a remote service's limits or access rules.
+
+Mitigation: Respect service terms and access policies, and bound request concurrency with semaphores and timeouts.
 
 ## Reference(s):
 
+- [Claude Night Market Parseltongue plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/parseltongue)
 - [ClawHub skill release](https://clawhub.ai/athola/skills/nm-parseltongue-python-async)
-- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/parseltongue)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Guidance, Markdown]
+**Output Type(s):** [Guidance, Code, Shell commands]
 
-**Output Format:** [Markdown with inline Python code blocks]
+**Output Format:** [Markdown guidance with Python examples and shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Progressively organized reference modules]
+**Other Properties Related to Output:** [Progressive modules cover async patterns, concurrency control, error handling, practical examples, and testing.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

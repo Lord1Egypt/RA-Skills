@@ -38,16 +38,25 @@ function isApprovedState(state: unknown): boolean {
 /** 读取 review.jsonl 台账「每个 assetId 的最后一条状态」，返回 state=approved 的集合（尊重审核门）。
  *  修复（2026-09-17，与 evolver-recall.mjs 同步）：旧实现只要台账历史上出现过 approved 就计入，
  *  导致 quarantine 无法撤销已批准 —— 被隔离的基因仍会被注入。追加式台账必须 last-write-wins。
- *  修复（0.31）：子串匹配改为 isApprovedState 精确比对。 */
+ *  修复（0.31）：子串匹配改为 isApprovedState 精确比对。
+ *  修复（0.43，O07 提级）：LWW 覆盖条件去掉 `typeof r.state === "string"` 前置——旧写法下
+ *  null/缺字段/数字形态的「后态」不会覆盖之前的 approved（latestState 保留旧值），
+ *  撤销/隔离意图以非字符串形态落台账时桥路径仍继续注入，违背 fail-closed 治理不变量；
+ *  与 store.mjs / evolver-recall.mjs 的 LWW 语义对齐（三者一致：只要 assetId 有效即覆盖，
+ *  畸形态由 isApprovedState 统一拒绝）。ClawHub 0.42 扫描实质项 #2 + 探针四形态实测确认。 */
 function approvedAssetIds(): Set<string> {
-	const latestState = new Map<string, string>();
+	const latestState = new Map<string, unknown>();
 	try {
 		for (const [idx, line] of fs.readFileSync(EVO_REVIEW, "utf8").split("\n").entries()) {
 			const s = line.trim();
 			if (!s) continue;
 			try {
 				const r = JSON.parse(s);
-				if (r && typeof r.assetId === "string" && r.assetId && typeof r.state === "string") {
+				// 0.43（O07 提级）：与 store.mjs / evolver-recall.mjs 对齐——只要 assetId 有效即覆盖
+				// latestState；state 的畸形形态（null/missing/number）由 isApprovedState 统一 fail-closed。
+				// 旧写法的 `typeof r.state === "string"` 前置会让非字符串后态被忽略，
+				// 保留之前的 approved（撤销/隔离意图失效，基因继续被注入）。
+				if (r && typeof r.assetId === "string" && r.assetId) {
 					latestState.set(r.assetId, r.state);
 				}
 			} catch (err) {

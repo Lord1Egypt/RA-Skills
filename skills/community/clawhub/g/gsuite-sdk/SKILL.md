@@ -39,6 +39,7 @@ Configuration comes from environment variables (or a `.env` file):
 | `GSUITE_CREDENTIALS_FILE` | `credentials.json` | OAuth client file from Google Cloud ([how to get it](https://pabloalaniz.github.io/google-suite/GETTING_CREDENTIALS/)) |
 | `GSUITE_TOKEN_DB_PATH` | `tokens.db` | Where the login token is stored (SQLite) |
 | `GSUITE_DEFAULT_TIMEZONE` | `UTC` | Time zone for "today" and for naive datetimes |
+| `GSUITE_ACCOUNT` | `default` | Which stored login to use (same as `--account`) |
 
 Both paths are **relative to the current directory**: run every command from
 the same place, or set absolute paths. Set `GSUITE_DEFAULT_TIMEZONE` (e.g.
@@ -51,8 +52,13 @@ gsuite auth login                                  # Gmail, Calendar, Drive, She
 gsuite auth login --force --scopes default,tasks,contacts   # add Tasks and Contacts
 gsuite auth login --force --scopes default,marketing        # add Search Console, Analytics, Tag Manager
 gsuite auth login --no-browser                     # over SSH / on a server: paste back the redirect URL
+gsuite auth login --add --scopes tasks             # keep the scopes it has, add these
 gsuite auth status
 ```
+
+Several Google accounts: `--account NAME` before any command picks a stored
+login (`gsuite --account work auth login`, `gsuite --account work gmail list`),
+`gsuite auth list` shows them. In Python, `GoogleAuth(user_id="work")`.
 
 `--scopes` takes a comma-separated list of `default, gmail, calendar, drive,
 sheets, tasks, contacts, searchconsole, analytics, tagmanager, marketing, all`.

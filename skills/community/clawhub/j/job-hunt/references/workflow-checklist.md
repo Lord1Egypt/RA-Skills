@@ -148,6 +148,11 @@ Read-when:
 - [ ] In apply mode? `modes/apply.md`, loaded on entry, not on demand.
 - [ ] In interview mode? `modes/interview.md`, loaded on entry, not on demand — and
       `references/interview-shapes.md` in full before the first question.
+- [ ] In prepare mode? `modes/prepare.md`, loaded on entry, not on demand — and
+      `references/interview-shapes.md` and `references/preparation.md` in full before the plan.
+- [ ] A `knowledge` or `coding` round, or a posting plan, in interview mode?
+      `references/preparation.md` before the first question; the code runs through
+      `scripts/run_mock_tests.py`, and a plan passes `scripts/check_prep_plan.py`.
 - [ ] In discover mode? `modes/discover.md`, loaded on entry, not on demand.
 - [ ] A discover gate reported a finding? Read `references/discover/finding-codes.md`.
 - [ ] Writing a report that compares several postings? Also read `references/discover/multi-posting-report.md`.
@@ -195,6 +200,8 @@ Ran, with a receipt — but `scripts/check_apply.py` does NOT require these, so 
 one is silent and only this line reports it:
 - [ ] `scripts/check_apply.py` — the composer itself; it cannot require its own receipt.
 - [ ] `scripts/check_mock.py` (once per mock-interview round — interview mode, not apply)
+- [ ] `scripts/check_prep_plan.py` (whenever a `prep-plan.md` is written or revised — prepare or interview mode)
+- [ ] `scripts/check_drill.py` (once per prepare-mode drill round)
 
 `check_apply` also fails on ANY gate in this workspace's journal whose latest receipt
 says `fail`, named on the lists above or not — a receipt from another mode excepted.

@@ -1,6 +1,6 @@
 ## Description:
 
-当用户需要对比已选商品、比较规格和卖点差异，或准备竞品对照表时使用。输入 2–5 个抖音商品链接或商品 ID，输出注明价格口径、信息缺口和来源的商品差异表。来自 SocialDataX 社媒数据助手。
+当用户需要对比已选商品、比较规格和卖点差异，或准备竞品对照表时使用。输入 2–5 个抖音商品链接或商品 ID，输出注明价格口径、信息缺口和来源的商品差异表。来自社媒数据助手 SocialDataX。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-面向需要比较抖音商品的用户：基于用户选定的 2–5 个商品资料核对规格、卖点与价格口径，并整理带来源和信息缺口的竞品对照表。
+外部用户在比较抖音商品时，可输入 2–5 个自行选定的商品，查看规格、价格条件、可见卖点、信息缺口和来源，以准备可追溯的竞品对照表。
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security evidence flags installing an unpinned latest CLI package while an API key is available as a supply-chain risk.
+Risk: The skill is rated suspicious because it runs an unpinned, automatically fetched package in commands that may access credentials; the scan was partial and cannot establish that the skill is safe.
 
-Mitigation: Review the package before use and prefer a trusted pinned version where available; keep credentials in the intended private environment or credential store and never include them in prompts or command arguments.
-
-Risk: The security scan is partial because two local references could not be resolved, so its assessment is incomplete.
-
-Mitigation: Review the unresolved references and reassess the package before relying on the scan as a complete security review.
+Mitigation: Avoid installation until the package version is fixed and reviewed; treat the partial scan as inconclusive.
 
 ## Reference(s):
 
-- [SocialDataX API Key and product information](https://socialdatax.com/ai?from=clawhub)
-- [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/douyin-product-comparison)
+- [SocialDataX API access and account information](https://socialdatax.com/ai?from=clawhub)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Text]
+**Output Type(s):** [Markdown, Analysis]
 
-**Output Format:** [Markdown comparison table with source links, price conditions, and missing information]
+**Output Format:** [Markdown comparison table with product identifiers or links, specifications, price conditions, visible selling points, missing information, and sources.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Compares 2–5 user-selected products; reports only returned or user-provided details.]
+**Other Properties Related to Output:** [Compares only the 2–5 products selected by the user; marks unavailable details and keeps differing price conditions explicit.]
 
 ## Skill Version(s):
 
-0.1.5 (source: server-resolved release evidence)
+0.1.6 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

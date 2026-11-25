@@ -1,7 +1,7 @@
 ---
 name: "AI Meeting Intelligence Expert"
 description: "AI-powered meeting intelligence assistant — automatically transcribe, summarize, extract action items, generate follow-ups, and track decisions across your meeting lifecycle. Supports multi-language transcription, speaker identification, sentiment analysis, and integration with calendar/email tools. Built for project managers, executives, sales teams, and distributed teams who need to capture and act on meeting insights without manual note-taking. Keywords: meeting notes, meeting transcription, action items extraction, meeting summary, decision tracking, calendar integration, agenda preparation, meeting efficiency, AI meeting assistant, 会议纪要, 会议转录, 智能摘要, 行动项提取, 会议效率, 待办跟进, 决策追踪."
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # AI Meeting Intelligence Expert
@@ -538,7 +538,7 @@ Best,
 | Email follow-ups | Gmail, Outlook | 高（对外） | 需要 | 内外部版本分别确认 | 直接发送未经确认的草稿 |
 | 本地归档（推荐） | 本地 Markdown / 内网 Wiki | 可控 | 视内容 | 落盘路径与权限确认 | 默认保存到公共目录 |
 
-## Ecosystem & Compliance Notes (as of 2026-11-13 / 截至 2026-11-13)
+## Ecosystem & Compliance Notes (as of 2026-11-18 / 截至 2026-11-18)
 
 Verify every item against your vendor's documentation and your own compliance
 function before acting on it.
@@ -552,7 +552,7 @@ function before acting on it.
 | 生成式 AI 处理内部信息的内部政策 | 本单位 AI 治理制度 | 决定哪些内容可进入模型上下文 |
 | 会议 AI 生成内容的标识与可追溯要求 | 本单位 AI 治理 / 合规 | 决定纪要是否需标注 AI 参与及保留修改痕迹 |
 
-**最近动态（截至 2026-11-13，以官方最新发布为准）**
+**最近动态（截至 2026-11-18，以官方最新发布为准）**
 1. 会议 AI 功能（实时转录、自动摘要、行动项提取）已成为主流办公与会议
    平台的标配，竞争重点从"能否生成"转向"生成结果能否被审计与追溯"。
 2. 金融机构对会议记录留痕与可追溯性的要求持续强化，决策类会议纪要往往
@@ -629,7 +629,7 @@ function before acting on it.
   - Decision tracking
   - Basic agenda generation
 
-**Last Updated**: 2026-11-13
+**Last Updated**: 2026-11-18
 
 ## 本轮增量（2026-11-13）：复核维度与举例补充
 
@@ -667,4 +667,42 @@ function before acting on it.
 ### 时效性说明
 
 - 本期时效性核查：**截至 2026-11-13**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
+- 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。
+
+## 本轮增量（2026-11-18）：复核维度与举例补充
+
+> 本节为 2026-11-18 例行轮转的净增量记录：新增举例与复核维度均为本期首次出现，与既有条目不重复；仅作方法论参考，需具备相应资质的人员复核后使用。
+
+### 补充举例（按模块，本期新增）
+
+**3. Post-Meeting Intelligence**：
+
+- 纪要模板补「责任与时点」两列：每个待办标注责任角色与拟定时点占位，缺项按待补处理，草稿不代为分派或发送。
+- 决议清单新增「事实与拟议分栏」：会上已确认的事实与拟形成的行动项分列，行动项栏统一标注需人工确认后由人员处理。
+
+**4. Meeting Analytics**：
+
+- 指标清单补「统计口径」一列：每个度量标注统计区间与样本范围，口径不一致的标注不可直接比较。
+- 分析草稿新增「来源留痕」占位：每条观察注明所依据的纪要段落位置，缺出处的按待补处理，需人工复核。
+
+### 新增复核维度表（2026-11-18）
+
+> 本表新增「由谁执行 / 数据来源 / 复核要点 / 风险等级 / 适用边界」等维度列，把口径责任、数据来源与人工复核要求落到具体条目。
+
+| 复核维度 | 由谁执行 | 数据来源 | 复核要点 | 风险等级 | 适用边界 |
+| --- | --- | --- | --- | --- | --- |
+| 待办责任与时点 | 会议记录人 + 复核人 | 纪要模板 / 草稿 | 责任角色与拟定占位时点是否标注、是否未代为发送 | 中 | 纸面对照，外发须人工确认 |
+| 分析口径与来源 | 会议记录人 | 会议分析草稿 | 统计区间、样本范围与依据段落是否标注 | 中 | 文档记录，不构成正式结论 |
+
+### 适用边界 / 数据最小化 / 执行边界（本期复核与补齐）
+
+**适用边界**：本技能仅用于会议纪要与分析清单的纸面草稿的方法论参考与纸面草稿，输出为供使用者自行判断的参考文本；不构成正式结论、专业意见或对外发布内容。涉及纪要对外分发、任务分派与正式结论发布的场景不适用，应由具备相应资质的人员按既有制度独立完成。
+
+**数据最小化**：本期补齐：示例、清单与提问只保留占位标签与抽象情境描述，不写入可识别个人、客户或机构的信息；草稿阶段即标注需人工复核后再补充任何具体背景。
+
+**执行边界**：本期复核：文中「生成 / 输出 / 形成」均指生成待确认的纸面草稿，由使用者自行决定是否采用；不代为发布、提交、保存或进行任何系统操作。
+
+### 时效性说明
+
+- 本期时效性核查：**截至 2026-11-18**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
 - 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。

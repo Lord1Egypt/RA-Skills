@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use this skill to design and query LadybugDB property graphs, import data, troubleshoot Cypher, and adapt Neo4j queries. It provides Python and shell helpers with read-only defaults and steps for authorized, verified writes.
+Developers and engineers use this skill to model and query LadybugDB property graphs, adapt Cypher workflows, troubleshoot results, and perform authorized database changes with local Python helpers.
 
 ### Deployment Geography for Use:
 
@@ -22,41 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The benign security verdict is not a guarantee of zero risk.
+Risk: The skill uses local file and shell capabilities, and the scan did not verify the host runtime's permission enforcement.
 
-Mitigation: Before installing, check whether the skill's declared scope and file and shell capabilities fit your needs.
+Mitigation: Review the host permissions and the skill's file and shell behavior before use; keep database paths and queries within the intended scope.
 
-Risk: Cypher imports, procedures, and extensions can reach host files or network resources; read-only database access does not restrict those capabilities.
+Risk: The skill depends on a separately installed LadybugDB Python package.
 
-Mitigation: Review COPY, LOAD, CALL, extensions, and paths, and use trusted absolute import paths.
-
-Risk: Authorized write operations can change graph data, and statements outside an explicit transaction may commit separately.
-
-Mitigation: Use writes only with authorization, group related changes in a transaction, and read back properties, direction, and identity.
+Mitigation: Review and install the pinned ladybug==0.21.2 dependency only in the intended Python environment.
 
 ## Reference(s):
 
-- [LadybugDB package on ClawHub](https://clawhub.ai/ricardodpalmeida/skills/ladybug-opencypher-updated)
+- [LadybugDB openCypher package](https://clawhub.ai/ricardodpalmeida/skills/ladybug-opencypher-updated)
 - [Upstream Ladybug openCypher skill](https://clawhub.ai/trenza1ore/skills/ladybug-opencypher)
-- [Ladybug Python and Cypher API reference](references/api-reference.md)
-- [Ladybug workflow patterns](references/workflow-patterns.md)
-- [Official Ladybug Python API documentation](https://docs.ladybugdb.com/client-apis/python/)
-- [Ladybug installation guide](https://docs.ladybugdb.com/installation/)
-- [Ladybug Cypher differences from Neo4j](https://docs.ladybugdb.com/cypher/difference/)
+- [API reference](references/api-reference.md)
+- [Workflow patterns](references/workflow-patterns.md)
+- [LadybugDB Python client API](https://docs.ladybugdb.com/client-apis/python/)
+- [LadybugDB migration guide](https://docs.ladybugdb.com/migrate/)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+**Output Type(s):** [Guidance, Code, Shell commands, Analysis]
 
-**Output Format:** [Markdown with Cypher, Python, and shell code blocks; query result summaries and verification checks]
+**Output Format:** [Markdown guidance with Python, Cypher, and shell code blocks]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Local database operations; query helper is read-only by default, and writes require explicit authorization.]
+**Other Properties Related to Output:** [May include a structured report of database path, access mode, query counts, read-back checks, and unresolved limits.]
 
 ## Skill Version(s):
 
-1.1.7 (source: changelog, released 2026-11-16)
+1.1.8 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

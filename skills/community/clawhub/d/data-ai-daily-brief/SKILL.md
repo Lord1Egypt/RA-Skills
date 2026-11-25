@@ -2,7 +2,7 @@
 slug: data-ai-daily-brief
 displayName: Data AI Daily Brief
 name: data-ai-daily-brief
-version: "5.0.7"
+version: "5.0.8"
 description: >
   Turn any industry into a daily intelligence briefing. An AI agent searches,
   filters, writes, and delivers structured daily briefs to 9 channels — with
@@ -32,6 +32,17 @@ allowed-tools:
   - execute_command
   - web_search
   - web_fetch
+  - env
+  - file_read
+  - file_write
+  - network
+metadata:
+  openclaw:
+    permissions:
+      - env
+      - file_read
+      - file_write
+      - network
 disable: false
 ---
 
@@ -260,7 +271,7 @@ Per `config.json`, push to any of **9 channels** (✅ verified / 📦 community-
 
 **Regional:** ✅ **WeChat Work** (`scripts/send_wecom.py` — concise summary first <4096 bytes, then full HTML; 3-layer priority fill; no links in summary; duplicate-push lock), 📦 **DingTalk** (`send_dingtalk.py`), 📦 **Feishu/Lark** (`send_feishu.py`).
 **Global:** 📦 **Slack** (`send_slack.py`), 📦 **Discord** (`send_discord.py`), 📦 **Telegram** (`send_telegram.py`), 📦 **Microsoft Teams** (`send_teams.py`).
-**Universal:** 📦 **Email** (`send_email.py`, SMTP), ✅ **GitHub Pages** (`deploy_github.py`, auto-archives history).
+**Universal:** 📦 **Email** (`send_email.py`, SMTP), ✅ **GitHub Pages** (`deploy_github.py`, auto-archives history). **⚠️ Public-exposure warning: deploying to GitHub Pages publishes the generated report to a publicly accessible URL (and auto-archives it in history). Before deploying, confirm with the user that the report content is safe to make public; do not publish drafts containing confidential/unpublished information.**
 
 > **Encoding note (Windows):** under a GBK locale, running the push script directly can raise `UnicodeEncodeError` on emoji output and crash a channel mid-print. Run with `PYTHONIOENCODING=utf-8 python -X utf8 <script>` or add `sys.stdout.reconfigure(encoding='utf-8')` at the top of the entry script. If some channels fail, re-push only the failed channel with `--force` to avoid duplicate sends.
 

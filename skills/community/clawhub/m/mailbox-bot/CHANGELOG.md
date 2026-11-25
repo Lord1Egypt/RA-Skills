@@ -1,5 +1,15 @@
 # Changelog
 
+## [5.3.4] - 2026-11-20
+
+### Changed
+- Agent mailbox rental is $20/mo for new renters (was $15/mo). Mailboxes are still open to everyone and live now; allowances, usage rates and outbound prices are unchanged
+
+## [5.3.3] - 2026-11-17
+
+### Changed
+- A 1-page USPS First-Class letter is $3.00 (was $2.00). Extra pages still add $0.40 each B&W ($0.70 color total) plus any postage increase from weight; Priority, Certified, Certified + Electronic Return Receipt, FedEx, batch and postcard prices are unchanged
+
 ## [5.3.2] - 2026-11-10
 
 ### Changed

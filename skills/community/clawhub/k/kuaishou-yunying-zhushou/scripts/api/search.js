@@ -1,54 +1,30 @@
 const constants = require("../config/constants");
-const { postJson, getJson } = require("../utils/request");
-const { withRetry } = require("../utils/retry");
-const utils = require("../utils/utils");
+const { requestApi, pollTaskResult } = require("../utils/request");
+const { SkillError } = require("../utils/errors");
 
 async function createSearchTask(token, keyword, sort, time, duration, limit) {
-  return await withRetry(
-    async () => {
-      return await postJson(
-        "/api/kuaishou/search/keyword",
-        { _: Date.now() },
-        { keyword, sort, time, duration, limit },
-        token,
-      );
-    },
+  return await requestApi(
+    "POST",
+    "/api/kuaishou/search/keyword",
+    { _: Date.now() },
+    { keyword, sort, time, duration, limit },
+    token,
     constants.CREATE_MAX_ATTEMPTS,
-    (attempt, err) => {
-      utils.printError(
-        `【创建任务重试】 ${attempt + 1}/${constants.CREATE_MAX_ATTEMPTS} 次 - ${err.message}`,
-      );
-    },
+    "创建任务",
   );
 }
 
 async function getSearchTask(token, keyword, sort, time, duration, limit) {
-  return await withRetry(
-    async () => {
-      const res = await getJson(
-        "/api/kuaishou/search/info",
-        {
-          _: Date.now(),
-          keyword,
-          sort,
-          time,
-          duration,
-          limit,
-        },
-        token,
-      );
-      if (!Array.isArray(res.data)) {
-        throw new Error(`搜索结果格式错误: data 不是数组类型`);
-      }
-      return res.data;
-    },
-    constants.QUERY_MAX_ATTEMPTS,
-    (attempt, err) => {
-      utils.printError(
-        `【查询任务重试】 ${attempt + 1}/${constants.QUERY_MAX_ATTEMPTS} 次 - ${err.message}`,
-      );
-    },
+  const response = await pollTaskResult(
+    "/api/kuaishou/search/info",
+    { keyword, sort, time, duration, limit },
+    token,
+    "查询任务",
   );
+  if (!Array.isArray(response.data)) {
+    throw new SkillError("API_ERROR", "搜索结果格式错误: data 不是数组", true);
+  }
+  return response.data;
 }
 
 module.exports = {

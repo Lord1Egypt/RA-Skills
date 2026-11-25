@@ -1,6 +1,6 @@
 ## Description:
 
-Evaluate Claude skill quality through auditing
+Evaluate Claude skill quality through auditing.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and skill maintainers use the skill to assess skill structure, content quality, activation reliability, token efficiency, and tool integration, then prepare audit findings and prioritized improvements.
+Developers maintaining Claude skills use this framework to audit skill structure and quality, find opportunities to improve performance and token use, and plan or verify changes.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review flags guidance that may involve agent settings or other installed skills, along with potentially ambiguous cleanup advice; some referenced local scripts were not analyzed.
+Risk: Recovery guidance may not clearly limit which processes or temporary files and caches should be stopped or cleared; the security analysis reports partial coverage.
 
-Mitigation: Before installing or following troubleshooting advice, review whether the task needs configuration or cross-skill access, inspect the referenced scripts, and check cleanup steps for effects on unrelated work or data.
+Mitigation: Review each recovery action before running it and limit process stops or cleanup to specifically identified targets.
 
 ## Reference(s):
 
-- [Project homepage listed in Clawdis metadata](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-abstract-skills-eval)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-abstract-skills-eval)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, JSON, Guidance]
+**Output Type(s):** [Analysis, Guidance, Shell commands]
 
-**Output Format:** [Audit findings, scores, and improvement plans in Markdown or JSON]
+**Output Format:** [Markdown evaluation findings and improvement guidance, with inline shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Findings and recommendations are tailored to the supplied skill or skill directory.]
+**Other Properties Related to Output:** [Recommendations depend on the target skill and available project tooling.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, server release evidence)
+1.10.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

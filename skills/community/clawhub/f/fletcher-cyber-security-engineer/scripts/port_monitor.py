@@ -34,6 +34,11 @@ def parse_args() -> argparse.Namespace:
         help="JSON file of approved listening ports/services",
     )
     parser.add_argument(
+        "--include-udp",
+        action="store_true",
+        help="Also list UDP sockets (off by default: desktop systems keep many open for discovery services)",
+    )
+    parser.add_argument(
         "--json",
         action="store_true",
         help="Print JSON output only",
@@ -41,16 +46,28 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def run_lsof() -> str:
-    cmd = ["lsof", "-nP", "-iTCP", "-sTCP:LISTEN"]
-    proc = subprocess.run(cmd, capture_output=True, text=True)
+def _run_lsof(selector: List[str]) -> str:
+    # "+c 0" prints full process names; lsof otherwise cuts them to 9 characters.
+    proc = subprocess.run(["lsof", "+c", "0", "-nP"] + selector, capture_output=True, text=True)
     if proc.returncode != 0:
-        raise RuntimeError(proc.stderr.strip() or "Failed to run lsof")
+        # lsof exits 1 when nothing matches; that is an empty result, not a failure.
+        if not proc.stdout.strip() and not proc.stderr.strip():
+            return ""
+        if not proc.stdout.strip():
+            raise RuntimeError(proc.stderr.strip() or "Failed to run lsof")
     return proc.stdout
 
 
-def run_ss() -> str:
-    cmd = ["ss", "-ltnp"]
+def run_lsof() -> str:
+    return _run_lsof(["-iTCP", "-sTCP:LISTEN"])
+
+
+def run_lsof_udp() -> str:
+    return _run_lsof(["-iUDP"])
+
+
+def run_ss(udp: bool = False) -> str:
+    cmd = ["ss", "-lunp" if udp else "-ltnp"]
     proc = subprocess.run(cmd, capture_output=True, text=True)
     if proc.returncode != 0:
         raise RuntimeError(proc.stderr.strip() or "Failed to run ss")
@@ -79,7 +96,7 @@ def parse_name(name: str) -> Tuple[Optional[str], Optional[int]]:
     return host, port
 
 
-def parse_lsof_output(text: str) -> List[Dict[str, object]]:
+def parse_lsof_output(text: str, protocol: str = "tcp") -> List[Dict[str, object]]:
     lines = [line for line in text.splitlines() if line.strip()]
     if len(lines) <= 1:
         return []
@@ -93,6 +110,8 @@ def parse_lsof_output(text: str) -> List[Dict[str, object]]:
         pid = parts[1]
         user = parts[2]
         name = parts[-2] if parts[-1] == "(LISTEN)" else parts[-1]
+        if "->" in name:
+            continue  # a connected socket, not a listener
         host, port = parse_name(name)
         if port is None:
             continue
@@ -102,7 +121,7 @@ def parse_lsof_output(text: str) -> List[Dict[str, object]]:
             "user": user,
             "host": host,
             "port": port,
-            "protocol": "tcp",
+            "protocol": protocol,
         }
         dedupe_key = (entry["command"], entry["pid"], entry["host"], entry["port"], entry["protocol"])
         if dedupe_key in seen:
@@ -112,12 +131,13 @@ def parse_lsof_output(text: str) -> List[Dict[str, object]]:
     return entries
 
 
-def parse_ss_output(text: str) -> List[Dict[str, object]]:
+def parse_ss_output(text: str, protocol: str = "tcp") -> List[Dict[str, object]]:
     lines = [line for line in text.splitlines() if line.strip()]
     entries: List[Dict[str, object]] = []
     seen = set()
+    state = "LISTEN" if protocol == "tcp" else "UNCONN"
     for line in lines[1:]:
-        if "LISTEN" not in line:
+        if state not in line:
             continue
         parts = line.split()
         if len(parts) < 5:
@@ -135,7 +155,7 @@ def parse_ss_output(text: str) -> List[Dict[str, object]]:
             "user": None,
             "host": host,
             "port": port,
-            "protocol": "tcp",
+            "protocol": protocol,
         }
         dedupe_key = (entry["command"], entry["pid"], entry["host"], entry["port"], entry["protocol"])
         if dedupe_key in seen:
@@ -178,11 +198,17 @@ def parse_netstat_windows_output(text: str) -> List[Dict[str, object]]:
     return entries
 
 
-def collect_entries() -> Tuple[List[Dict[str, object]], str]:
+def collect_entries(include_udp: bool = False) -> Tuple[List[Dict[str, object]], str]:
     if shutil.which("lsof"):
-        return parse_lsof_output(run_lsof()), "lsof"
+        entries = parse_lsof_output(run_lsof())
+        if include_udp:
+            entries += parse_lsof_output(run_lsof_udp(), protocol="udp")
+        return entries, "lsof"
     if sys.platform.startswith("linux") and shutil.which("ss"):
-        return parse_ss_output(run_ss()), "ss"
+        entries = parse_ss_output(run_ss())
+        if include_udp:
+            entries += parse_ss_output(run_ss(udp=True), protocol="udp")
+        return entries, "ss"
     if sys.platform.startswith("win") and shutil.which("netstat"):
         return parse_netstat_windows_output(run_netstat_windows()), "netstat"
     raise RuntimeError("No supported port listing tool found (lsof/ss/netstat)")
@@ -205,60 +231,99 @@ def load_approved_ports(path: Path) -> List[Dict[str, object]]:
     return normalized
 
 
-def is_approved(entry: Dict[str, object], approved: List[Dict[str, object]]) -> bool:
+PUBLIC_HOSTS = ("*", "0.0.0.0", "::")
+ANY_PORT = "*"
+_LSOF_NAME_WIDTH = 9  # lsof's default process-name width, used by older baselines
+
+
+def commands_match(rule_command: object, entry_command: object) -> bool:
+    """Process names match exactly, or one is the 9-character form lsof used to print."""
+    rule, entry = str(rule_command).lower(), str(entry_command).lower()
+    if rule == entry:
+        return True
+    shorter, longer = sorted((rule, entry), key=len)
+    return len(shorter) == _LSOF_NAME_WIDTH and longer.startswith(shorter)
+
+
+def matching_rule(entry: Dict[str, object], approved: List[Dict[str, object]]) -> Optional[Dict[str, object]]:
     for rule in approved:
-        if int(rule.get("port")) != int(entry["port"]):
-            continue
+        if rule.get("port") == ANY_PORT:
+            # For services that pick a new port each time they start. The process name is
+            # then the only thing identifying the service, so it is required.
+            if not rule.get("command"):
+                continue
+        else:
+            try:
+                if int(rule.get("port")) != int(entry["port"]):
+                    continue
+            except (TypeError, ValueError):
+                continue
         rule_proto = str(rule.get("protocol", "tcp")).lower()
         if rule_proto != str(entry["protocol"]).lower():
             continue
         rule_cmd = rule.get("command")
-        if rule_cmd and str(rule_cmd).lower() != str(entry["command"]).lower():
+        if rule_cmd and not commands_match(rule_cmd, entry["command"]):
             continue
-        return True
-    return False
+        return rule
+    return None
+
+
+def is_approved(entry: Dict[str, object], approved: List[Dict[str, object]]) -> bool:
+    return matching_rule(entry, approved) is not None
 
 
 def build_findings(entries: List[Dict[str, object]], approved: List[Dict[str, object]]) -> List[Dict[str, object]]:
     findings: List[Dict[str, object]] = []
+    seen = set()
+
+    def add(finding: Dict[str, object]) -> None:
+        # One finding per service: the same port is often listed once for IPv4 and once for IPv6.
+        key = (finding["type"], finding["port"], finding["protocol"], finding["command"])
+        if key not in seen:
+            seen.add(key)
+            findings.append(finding)
+
     for entry in entries:
         port = int(entry["port"])
         host = str(entry.get("host") or "")
+        base = {"port": port, "protocol": entry.get("protocol", "tcp"), "command": entry["command"]}
+        rule = matching_rule(entry, approved)
 
-        if not is_approved(entry, approved):
-            findings.append(
-                {
-                    "severity": "medium",
-                    "type": "unapproved-port",
-                    "port": port,
-                    "command": entry["command"],
-                    "message": "Listening port is not in approved baseline.",
-                    "recommendation": "Approve it with business justification or close the service.",
-                }
+        if rule is None:
+            add(
+                dict(
+                    base,
+                    severity="medium",
+                    type="unapproved-port",
+                    message="Listening port is not in approved baseline.",
+                    recommendation="Approve it with business justification or close the service.",
+                )
             )
 
-        if port in INSECURE_PORT_RECOMMENDATIONS:
-            findings.append(
-                {
-                    "severity": "high",
-                    "type": "insecure-port",
-                    "port": port,
-                    "command": entry["command"],
-                    "message": "Insecure protocol/port detected.",
-                    "recommendation": INSECURE_PORT_RECOMMENDATIONS[port],
-                }
+        if port in INSECURE_PORT_RECOMMENDATIONS and base["protocol"] == "tcp":
+            add(
+                dict(
+                    base,
+                    severity="high",
+                    type="insecure-port",
+                    message="Insecure protocol/port detected.",
+                    recommendation=INSECURE_PORT_RECOMMENDATIONS[port],
+                )
             )
 
-        if host in ("*", "0.0.0.0", "::"):
-            findings.append(
-                {
-                    "severity": "medium",
-                    "type": "public-bind",
-                    "port": port,
-                    "command": entry["command"],
-                    "message": "Service listens on all interfaces.",
-                    "recommendation": "Bind to localhost or a restricted interface unless external exposure is required.",
-                }
+        # Listening on every interface is accepted only when the baseline rule says so.
+        if host in PUBLIC_HOSTS and not (rule is not None and rule.get("allow_public") is True):
+            add(
+                dict(
+                    base,
+                    severity="medium",
+                    type="public-bind",
+                    message="Service listens on all interfaces.",
+                    recommendation=(
+                        "Bind to localhost or a restricted interface, or set \"allow_public\": true on its "
+                        "approved-ports rule if the exposure is required."
+                    ),
+                )
             )
     return findings
 
@@ -280,7 +345,7 @@ def main() -> int:
     args = parse_args()
     approved_path = Path(args.approved_file).expanduser()
     try:
-        entries, tool_used = collect_entries()
+        entries, tool_used = collect_entries(include_udp=args.include_udp)
         approved = load_approved_ports(approved_path)
         findings = build_findings(entries, approved)
     except Exception as exc:
@@ -292,6 +357,13 @@ def main() -> int:
         "approved_file": str(approved_path),
         "approved_rules_count": len(approved),
         "tool": tool_used,
+        "protocols": ["tcp", "udp"] if args.include_udp else ["tcp"],
+        "summary": {
+            "listening_services": len(entries),
+            "unapproved": sum(1 for f in findings if f["type"] == "unapproved-port"),
+            "insecure": sum(1 for f in findings if f["type"] == "insecure-port"),
+            "public": sum(1 for f in findings if f["type"] == "public-bind"),
+        },
         "listening_services": entries,
         "findings": findings,
     }

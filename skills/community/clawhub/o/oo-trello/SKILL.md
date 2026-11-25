@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Trello"
   author: "OOMOL"
-  version: "1.0.6"
+  version: "1.0.7"
   services: ["trello"]
   icon: "https://static.oomol.com/logo/third-party/trello.svg"
 ---
@@ -92,7 +92,7 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
   oo auth login
   ```
 
-- **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Trello is not connected, or the connection expired or lacks a scope. Connect once (auth type: custom credential) at:
+- **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Trello is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2, custom credential) at:
 
   ```text
   https://console.oomol.com/connections/trello

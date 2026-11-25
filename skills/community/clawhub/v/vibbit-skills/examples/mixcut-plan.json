@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "kind": "semantic_mixcut",
+  "render_target": "vibbit_cloud",
+  "matching_executor": "agent",
+  "account_site": "cn",
+  "duration_seconds": 20,
+  "template_ref": {"id": "template-demo-mixcut", "revision": 1},
+  "material_scope": {"material_ids": ["2100065567327711232", "2100065567327711233"]},
+  "assets": [
+    {"id": "hook", "media_type": "VIDEO", "origin": "material", "material_id": "2100065567327711232", "url": "https://example.com/fictional-hook.mp4", "duration_seconds": 10},
+    {"id": "demo", "media_type": "VIDEO", "origin": "material", "material_id": "2100065567327711233", "url": "https://example.com/fictional-demo.mp4", "duration_seconds": 20},
+    {"id": "voice", "media_type": "AUDIO", "origin": "generated", "url": "https://example.com/fictional-voice.mp3", "duration_seconds": 15},
+    {"id": "avatar", "media_type": "VIDEO", "origin": "generated", "url": "https://example.com/fictional-avatar.mp4", "duration_seconds": 15, "driven_by": {"asset_id": "voice", "offset_seconds": 0}},
+    {"id": "music", "media_type": "AUDIO", "origin": "upload", "url": "https://example.com/fictional-music.mp3", "duration_seconds": 20}
+  ],
+  "audio_clips": [
+    {"id": "original", "asset_id": "hook", "role": "speech", "source_kind": "original", "source_in": 2, "source_out": 5, "start": 0, "end": 3, "gain": 1},
+    {"id": "explain", "asset_id": "voice", "role": "speech", "source_kind": "narration", "source_in": 0, "source_out": 9, "start": 3, "end": 12, "gain": 1},
+    {"id": "action-sound", "asset_id": "demo", "role": "ambience", "source_kind": "original", "source_in": 10, "source_out": 12, "start": 12, "end": 14, "gain": 1},
+    {"id": "closing", "asset_id": "voice", "role": "speech", "source_kind": "narration", "source_in": 9, "source_out": 15, "start": 14, "end": 20, "gain": 1},
+    {"id": "bgm", "asset_id": "music", "role": "music", "source_kind": "provided", "source_in": 0, "source_out": 20, "start": 0, "end": 20, "gain": 0.1}
+  ],
+  "visual_clips": [
+    {"id": "opening", "kind": "material", "asset_id": "hook", "source_in": 2, "source_out": 5, "start": 0, "end": 3, "embedded_audio": "mute", "purpose": "Original opening", "selection_reason": "Keep the complete utterance", "evidence": "Fictional fixture; replace with actual speech and viewing evidence"},
+    {"id": "speaker", "kind": "avatar", "asset_id": "avatar", "source_in": 0, "source_out": 3, "start": 3, "end": 6, "speech_audio_id": "explain", "embedded_audio": "mute", "purpose": "Introduce the feature", "selection_reason": "The adopted audio drives the speaker", "evidence": "Fictional fixture; verify actual output alignment"},
+    {"id": "demonstration", "kind": "material", "asset_id": "demo", "source_in": 2, "source_out": 8, "start": 6, "end": 12, "embedded_audio": "mute", "purpose": "Show evidence during narration", "selection_reason": "The action matches the spoken feature", "evidence": "Fictional fixture; inspect the actual product and action"},
+    {"id": "action", "kind": "material", "asset_id": "demo", "source_in": 10, "source_out": 12, "start": 12, "end": 14, "embedded_audio": "mute", "purpose": "Hear the action", "selection_reason": "Keep source picture and sound synchronized", "evidence": "Fictional fixture; listen to the source sound"},
+    {"id": "result", "kind": "material", "asset_id": "demo", "source_in": 12, "source_out": 15, "start": 14, "end": 17, "embedded_audio": "mute", "purpose": "Show the result", "selection_reason": "Continue narration over the result", "evidence": "Fictional fixture; verify the visible result"},
+    {"id": "speaker-return", "kind": "avatar", "asset_id": "avatar", "source_in": 12, "source_out": 15, "start": 17, "end": 20, "speech_audio_id": "closing", "embedded_audio": "mute", "purpose": "Conclude", "selection_reason": "Return to the same performance without regenerating speech", "evidence": "Fictional fixture; verify actual output alignment"}
+  ],
+  "captions": [
+    {"id": "caption-hook", "audio_clip_id": "original", "start": 0, "end": 3, "text": "Fictional original utterance."},
+    {"id": "caption-explain", "audio_clip_id": "explain", "start": 3, "end": 6, "text": "Fictional feature explanation."},
+    {"id": "caption-demo", "audio_clip_id": "explain", "start": 6, "end": 12, "text": "Fictional demonstration explanation."},
+    {"id": "caption-close", "audio_clip_id": "closing", "start": 14, "end": 20, "text": "Fictional concluding phrase."}
+  ]
+}

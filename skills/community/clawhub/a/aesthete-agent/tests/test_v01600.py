@@ -96,19 +96,32 @@ class TestLoop(unittest.TestCase):
 
 
 class TestPickRecipe(unittest.TestCase):
-    """明暗策略路由:浅优板浅底优先,灰阶/深板走暗幕;AUTO 真正生效。"""
+    """明暗策略路由:浅优板浅底优先,灰阶/深板走暗幕;AUTO 真正生效。
+    0.26 升维:pick_recipe 返回 (recipe, rationale);页型信号可定配方家族,
+    但明暗铁律不动——浅优板不进深色强制配方(降级 EDIT-SPLIT 并写明理由)。"""
 
     def test_routing(self):
         cases = {
-            "DEEP_PINE": (DEEP_PINE, "EDIT-SPLIT"),
-            "墨黑": (["111111", "333333", "666666", "999999", "EEEEEE"], "DARK-FOUR-ACT"),
-            "糖果": (["FF6B9D", "FFD93D", "6BCB77", "4D96FF", "FF6B6B"], "EDIT-SPLIT"),
-            "野莓": (["EA526F", "E76B74", "D7AF70", "937D64", "585B56"], "EDIT-SPLIT"),
+            "DEEP_PINE": (DEEP_PINE, "", "EDIT-SPLIT"),
+            "墨黑": (["111111", "333333", "666666", "999999", "EEEEEE"], "", "DARK-FOUR-ACT"),
+            "糖果": (["FF6B9D", "FFD93D", "6BCB77", "4D96FF", "FF6B6B"], "", "EDIT-SPLIT"),
+            "野莓": (["EA526F", "E76B74", "D7AF70", "937D64", "585B56"], "", "EDIT-SPLIT"),
+            "工具信号+深灰阶": (["111111", "333333", "666666", "999999", "EEEEEE"], "开发者工具 API", "BLUEPRINT"),
+            "海报信号+浅板": (["FAF3DD", "D7AF70", "937D64", "585B56", "F3E7D4"], "周末展览海报", "SWISS-POSTER"),
+            "浅优板+工具信号降级": (DEEP_PINE, "开发者工具 API", "EDIT-SPLIT"),
         }
-        for name, (pal, want) in cases.items():
+        for name, (pal, brief, want) in cases.items():
             tk = scaffold_kit.derive({"hexes": pal}, name, "X", "")
-            got = layout_recipes.pick_recipe(tk)
-            self.assertEqual(got, want, f"{name}: 期望 {want} 实得 {got}")
+            got, why = layout_recipes.pick_recipe(tk, brief)
+            self.assertEqual(got, want, f"{name}: 期望 {want} 实得 {got}({why})")
+            self.assertTrue(why, "rationale 不应为空(AUTO 不做黑盒)")
+
+    def test_ink_grayscale_signal_route(self):
+        """墨黑灰阶(近中性)+工作室信号 → 深色强制配方放行(墨色戏剧本就走暗幕)。"""
+        tk = scaffold_kit.derive({"hexes": ["111111", "333333", "666666", "999999", "EEEEEE"]},
+                                 "墨匠", "INK", "")
+        got, why = layout_recipes.pick_recipe(tk, "木作工作室品牌叙事")
+        self.assertEqual(got, "DARK-FOUR-ACT", why)
 
     def test_auto_build(self):
         tk = scaffold_kit.derive({"hexes": DEEP_PINE}, "夜松", "NP", "")

@@ -1,0 +1,446 @@
+{
+ "posts": {
+  "example-post-1|example-tiktok-1": {
+   "postId": "example-post-1",
+   "job_post": "orbit-tiktok",
+   "campaign": "example-orbit-app",
+   "account": "TikTok",
+   "handle": "@example.creator",
+   "platform": "TIKTOK",
+   "socialAccountId": "example-tiktok-1",
+   "file": "videos/tiktok.mp4",
+   "sha256": "8175e9d2b69bcf3448e9613941a10e70b40f59b7401ab7dc44b6a3d21c0ad1c9",
+   "takes": [],
+   "fps": [
+    {
+     "version": 1,
+     "a": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "v": [
+      "0807599e8029aa80",
+      "0c07599f8029aa80",
+      "0807591f8009aa80",
+      "0d0f1b1faa09aa80",
+      "4e0f1b1f9e29aa80",
+      "4d0f5b0fa629aa80",
+      "4f0fdb0f8029aa80",
+      "4f0fdb0f9629aa80",
+      "801830f69629aa80",
+      "801830f42b29aa80",
+      "801830f48e29aa80",
+      "801830f42329aa80",
+      "401831b49629aa80",
+      "801831f48e29aa80",
+      "080f1b9e8e29aa80",
+      "0c0f1b9f8629aa80",
+      "080f1b9f9629aa80",
+      "0e0f1b1f9229aa80",
+      "4e0f1b0f0b29aa80",
+      "4f0fdb0f8029aa80",
+      "4f0fdb0f0a29aa80",
+      "0f0fdb0f9629aa80"
+     ]
+    }
+   ],
+   "hook": "This launch could be your lock screen",
+   "hook_id": "h1",
+   "caption": "#ad This launch could be your lock screen: a new space photo every day. Example Orbit, made-up app for this demo @example.orbit #exampleorbit #space",
+   "spoken_disclosure_s": 6.32,
+   "plan_id": "2df01d14d86f",
+   "submit_within": 30,
+   "recorded": "2026-11-18T14:01:00Z",
+   "url": "https://www.tiktok.com/@example.creator/video/7000000000000000001",
+   "published_at": "2026-11-18T14:02:10Z",
+   "timezone": "America/New_York",
+   "request": "example-orbit-app.json",
+   "status": "PUBLISHED"
+  },
+  "example-post-1|example-instagram-1": {
+   "postId": "example-post-1",
+   "job_post": "orbit-reels",
+   "campaign": "example-orbit-app",
+   "account": "Reels",
+   "handle": "@example.creator",
+   "platform": "INSTAGRAM",
+   "socialAccountId": "example-instagram-1",
+   "file": "videos/reels.mp4",
+   "sha256": "d3ff1d44edaf61a26c928822ddfe4b723adc037584d194d20036f45c04ab8bbf",
+   "takes": [],
+   "fps": [
+    {
+     "version": 1,
+     "a": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "v": [
+      "4e071b1f8029aa80",
+      "4d0f1b0f8029aa80",
+      "4f0f1b0f8009aa80",
+      "4f0fdb0faa09aa80",
+      "801830f69e29aa80",
+      "801830f4a629aa80",
+      "801830b68029aa80",
+      "801830f49629aa80",
+      "401831f49629aa80",
+      "801831b42b29aa80",
+      "080f1b9e8e29aa80",
+      "0c0f1b9f2329aa80",
+      "080f1b9f9629aa80",
+      "0e0f1b1f8e29aa80",
+      "4e0f1b1f8e29aa80",
+      "4d0f5b0f8629aa80",
+      "4f0fdb0f9629aa80",
+      "4f0fdb0f9229aa80",
+      "801830f60b29aa80",
+      "801830b68029aa80",
+      "801830f40a29aa80",
+      "801830f69629aa80"
+     ]
+    }
+   ],
+   "hook": "A new space photo every single day?",
+   "hook_id": "h2",
+   "caption": "#ad A new space photo every day, two taps to make it your wallpaper. @example.orbit #exampleorbit #space",
+   "spoken_disclosure_s": 6.32,
+   "plan_id": "2df01d14d86f",
+   "submit_within": 30,
+   "recorded": "2026-11-18T14:01:00Z",
+   "url": "https://www.instagram.com/reel/EXAMPLEorbit1/",
+   "published_at": "2026-11-18T14:02:40Z",
+   "timezone": "America/New_York",
+   "request": "example-orbit-app.json",
+   "status": "PUBLISHED"
+  },
+  "hand:orbit-shorts|Shorts": {
+   "postId": "by hand",
+   "job_post": "orbit-shorts",
+   "campaign": "example-orbit-app",
+   "account": "Shorts",
+   "handle": "@examplecreator",
+   "platform": "YOUTUBE",
+   "socialAccountId": null,
+   "file": "videos/shorts.mp4",
+   "sha256": "6d7b8f3e9a8afc63d36badca19bc30cc71d508d72d34ad70bf55c66fd721f90a",
+   "takes": [],
+   "fps": [
+    {
+     "version": 1,
+     "a": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "v": [
+      "9887869e17512b80",
+      "9887869e17512b80",
+      "18871e0e17512b80",
+      "18071e0e1f842b80",
+      "180706120f842b80",
+      "180706120f802b80",
+      "18070e0e07802b80",
+      "18070e0e17842b80",
+      "18070e2a0b842b80",
+      "18070e2a17802b80",
+      "18070e2a0f882b80",
+      "18070e2a17922b80",
+      "1807061e0f802b80",
+      "1807061e17c82b80",
+      "18071e0e07802b80",
+      "18071e0e0f802b80",
+      "1807061217d82b80",
+      "1807061217902b80",
+      "18070e0e1f882b80",
+      "18070e0e17802b80",
+      "18070e2a17802b80",
+      "18070e2a17802b80"
+     ]
+    }
+   ],
+   "hook": "Watch me find today's space photo",
+   "hook_id": "h3",
+   "caption": "#ad Watch me find today's space photo and save it as a wallpaper in Example Orbit (a made-up app). @example.orbit #exampleorbit",
+   "spoken_disclosure_s": 5.94,
+   "plan_id": null,
+   "submit_within": 30,
+   "recorded": "2026-11-18T14:20:00Z",
+   "url": "https://www.youtube.com/shorts/EXAMPLEorb01",
+   "published_at": "2026-11-18T14:12:00Z",
+   "timezone": "America/New_York",
+   "byHand": true
+  }
+ },
+ "submissions": [
+  {
+   "url": "https://www.tiktok.com/@example.creator/video/7000000000000000001",
+   "campaign": "example-orbit-app",
+   "submitted_at": "2026-11-18T14:25:00Z",
+   "post": "orbit-tiktok",
+   "account": "TikTok",
+   "platform": "TIKTOK",
+   "status": "paid",
+   "history": [
+    {
+     "at": "2026-11-18T14:25:00Z",
+     "status": "pending",
+     "note": "submitted"
+    },
+    {
+     "at": "2026-11-21T15:00:00Z",
+     "status": "approved",
+     "note": ""
+    },
+    {
+     "at": "2026-11-28T10:00:00Z",
+     "status": "paid",
+     "note": "33.12 received"
+    }
+   ],
+   "submission_id": "EX-101",
+   "payments": [
+    {
+     "at": "2026-11-28T10:00:00Z",
+     "amount": 33.12,
+     "note": "33.12 received"
+    }
+   ],
+   "paid": 33.12,
+   "paid_at": "2026-11-28T10:00:00Z"
+  },
+  {
+   "url": "https://www.instagram.com/reel/EXAMPLEorbit1/?igsh=abc",
+   "campaign": "example-orbit-app",
+   "submitted_at": "2026-11-18T14:25:00Z",
+   "post": "orbit-reels",
+   "account": "Reels",
+   "platform": "INSTAGRAM",
+   "status": "pending",
+   "history": [
+    {
+     "at": "2026-11-18T14:25:00Z",
+     "status": "pending",
+     "note": "submitted"
+    }
+   ],
+   "submission_id": "EX-102"
+  },
+  {
+   "url": "https://www.youtube.com/shorts/EXAMPLEorb01",
+   "campaign": "example-orbit-app",
+   "submitted_at": "2026-11-18T14:25:00Z",
+   "post": "orbit-shorts",
+   "account": "Shorts",
+   "platform": "YOUTUBE",
+   "status": "rejected",
+   "history": [
+    {
+     "at": "2026-11-18T14:25:00Z",
+     "status": "pending",
+     "note": "submitted"
+    },
+    {
+     "at": "2026-11-21T15:00:00Z",
+     "status": "rejected",
+     "note": "EXAMPLE ONLY: under 40% of viewers in the brief's countries"
+    },
+    {
+     "at": "2026-11-21T15:00:00Z",
+     "status": "rejected",
+     "note": "appealed: EXAMPLE ONLY: sent the 72h audience screenshot in the campaign chat"
+    }
+   ],
+   "submission_id": "EX-103",
+   "reason": "EXAMPLE ONLY: under 40% of viewers in the brief's countries",
+   "appeals": [
+    {
+     "at": "2026-11-21T15:00:00Z",
+     "note": "EXAMPLE ONLY: sent the 72h audience screenshot in the campaign chat"
+    }
+   ]
+  }
+ ],
+ "campaigns": {
+  "example-orbit-app": {
+   "id": "example-orbit-app",
+   "name": "Example Orbit: split-screen UGC",
+   "brand": "Example Orbit",
+   "marketplace": "an example marketplace (made up)",
+   "currency": "USD",
+   "platforms": {
+    "TIKTOK": {
+     "rate_per_1k": 2.0
+    },
+    "INSTAGRAM": {
+     "rate_per_1k": 2.0
+    },
+    "YOUTUBE": {
+     "rate_per_1k": 1.0
+    }
+   },
+   "min_payout": 5,
+   "cap_per_video": 200,
+   "budget_total": 5000,
+   "fee_pct": 10,
+   "window_days": 30,
+   "window_from": "threshold",
+   "days_live": 30,
+   "submit_within_minutes": 30,
+   "geo": {
+    "countries": [
+     "US",
+     "UK",
+     "CA",
+     "AU"
+    ],
+    "min_share": 0.4
+   },
+   "example_demo": true,
+   "budget_remaining": 3820,
+   "budget_checked_at": "2026-11-18T13:30:00Z",
+   "max_submissions": 3,
+   "deadline": "2026-12-15",
+   "deadline_tz": "America/New_York"
+  }
+ },
+ "hours": [
+  {
+   "campaign": "example-orbit-app",
+   "hours": 2.5,
+   "at": "2026-11-18T14:25:00Z",
+   "note": "EXAMPLE ONLY: filming, three takes"
+  },
+  {
+   "campaign": "example-orbit-app",
+   "hours": 1.5,
+   "at": "2026-11-18T14:25:00Z",
+   "note": "EXAMPLE ONLY: editing and posting"
+  }
+ ],
+ "pending": {}
+}

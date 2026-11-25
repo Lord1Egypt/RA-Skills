@@ -2,20 +2,33 @@
 """bench.py — build a comparison table from geo-scan JSON outputs.
 
     python3 bench.py out/*.json > out/benchmark.md
+
+Input paths must resolve inside the working directory (symlinks resolved), the
+same boundary the scanner's writes keep — registry finding SDI-3, 2026-11-23.
 """
 import glob
 import json
 import sys
 import time
+from pathlib import Path
 
 ORDER = ["robots", "machine", "snippet", "structure", "quotable", "fresh"]
+
+
+def contained(p):
+    """Resolve a report path and require it to sit inside the working directory."""
+    root = Path.cwd().resolve()
+    rp = Path(p).resolve()
+    if rp != root and root not in rp.parents:
+        raise ValueError(f"{p}: outside the working directory {root}")
+    return rp
 
 
 def main(paths):
     rows = []
     for p in paths:
         try:
-            d = json.load(open(p, encoding="utf-8"))
+            d = json.load(open(contained(p), encoding="utf-8"))
         except Exception as e:  # noqa: BLE001
             print(f"skip {p}: {e}", file=sys.stderr)
             continue

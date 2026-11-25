@@ -205,6 +205,16 @@ if _cur.is_file():
             _gc.returncode == 0, (_gc.stderr or _gc.stdout)[-160:])
     else:
         chk("可复现性闭环: 生成器在位", False, "eval/gen_integrity_manifest.py 缺失")
+    # v7.8.0 文档事实契约闸：五闸全绿（文件引用/数字对账/入口对账/指标锚/版本一致；
+    # 打包副本形态自适应——无 SKILL_ZH.md 时闸 C 自动空过、闸 F 只查在位文件）
+    _df = ROOT / "eval" / "doc_facts.py"
+    if _df.is_file():
+        _dfr = subprocess.run([sys.executable, str(_df), "--root", str(ROOT)],
+                              capture_output=True, text=True, timeout=120, cwd=str(ROOT))
+        chk("文档事实契约: doc_facts 五闸全绿",
+            _dfr.returncode == 0, (_dfr.stdout or _dfr.stderr)[-220:])
+    else:
+        chk("文档事实契约: doc_facts 在位", False, "eval/doc_facts.py 缺失")
     _ar = ROOT / "eval" / "results" / "archive" / "README.md"
     if _ar.is_file():
         _ar_t = _ar.read_text(encoding="utf-8")
@@ -547,6 +557,8 @@ for f in ROOT.rglob("*"):
     if f.is_file():
         rel = f.relative_to(ROOT).as_posix()
         if "__pycache__" in rel or ".bak" in rel or rel.startswith(".git/") or rel == ".gitignore":
+            continue
+        if rel == ".gh-sync-exclude":  # v7.9.0: gh 同步排除清单（仓库元数据，打包已排除）
             continue
         if not f.suffix:
             bad.append(f"无扩展名: {rel}")

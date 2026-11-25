@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes gecko and lizard tail images for possible shortening, wounds, scabs, and tail-loss events, then returns an analysis report.
+Analyzes gecko and lizard tail images or videos for apparent tail shortening, wounds, and scabs, and returns a structured analysis report.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Reptile keepers can submit enclosure images for possible tail-loss flags and review saved reports, using alerts as prompts for further inspection.
+Reptile keepers and enclosure operators use this skill to review gecko and lizard tail images or videos for apparent tail loss and receive structured event records and alerts. Results are visual estimates; the skill documentation says injury assessment should be confirmed by a reptile veterinarian.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Security scanners flag unclear account and credential handling, remote media uploads without clear disclosure, and behavior that does not match the stated purpose.
+Risk: ClawScan rates this release suspicious, citing reported mismatches between its monitoring purpose and account-management behavior, undisclosed media uploads, and analysis that still runs in export-only mode.
 
-Mitigation: Avoid installation until account and credential handling, upload disclosure, and export-only behavior are clarified.
-
-Risk: The security analysis is incomplete because one local path-like reference was missing.
-
-Mitigation: Obtain a complete security analysis before relying on the release.
+Mitigation: Before considering use, obtain clear explanations of account and credential handling, the external media destination and data practices, and export-only behavior. ClawScan marks coverage partial because a referenced local path was missing.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-reptile-tail-loss-detection-analysis)
-- [API documentation](artifact/references/api_doc.md)
-- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-reptile-tail-loss-detection-analysis)
+- [Tail loss API reference](artifact/references/api_doc.md)
+- [Analysis API reference](artifact/skills/smyx_analysis/references/api_doc.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis results, JSON, Text reports, Report links]
+**Output Type(s):** [Text, Markdown, JSON]
 
-**Output Format:** [Text or JSON analysis results with report export links.]
+**Output Format:** [Structured analysis report in JSON or text, with Markdown history listings]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Can also list saved reports.]
+**Other Properties Related to Output:** [May include tail measurements, visual findings, alert level, suggested actions, and report links.]
 
 ## Skill Version(s):
 
-1.0.17 (source: server-resolved release metadata)
+1.0.18 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

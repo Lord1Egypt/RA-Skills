@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-People monitoring Bitcoin activity on Hyperliquid can use this skill to summarize the positioning and recent trades of the venue's 40 largest accounts, including notable wallet moves. The report is observational market data, not financial advice.
+External users and traders use the skill to summarize current positions and recent BTC activity among Hyperliquid's 40 largest accounts, with optional cross-exchange positioning context.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Live x402 requests can incur charges, and the security scan flags paid requests as a potential concern.
+Risk: A live x402 request may incur a charge of up to $0.25 per task without prior confirmation.
 
-Mitigation: Use the free sample when live data is unnecessary. Before a paid call, check the quote against the specified recipient, Base network, USDC asset, and $0.25 per-task limit; ask before spending more.
+Mitigation: Use the free sample when you do not want a charge; review the payment quote and stay within the stated $0.25 per-task cap, requesting approval above it.
 
-Risk: The security scan was partial because a referenced local path was missing, so its evidence is incomplete.
+Risk: The security review was partial because some local references could not be resolved, so its evidence is incomplete.
 
-Mitigation: Review the complete skill and any referenced files before enabling paid calls; do not treat the partial scan as a complete security assessment.
+Mitigation: Review the unresolved references and assess the full skill before installation or use.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/shakeelamjid/skills/hyperliquid-whale-watch)
-- [Server-resolved GitHub source](https://github.com/shakeelamjid/agentreeve-skills/tree/main/hyperliquid-whale-watch)
-- [Free whale-flow sample](https://agentreeve.com/api/v1/btc/samples/whale-flow)
-- [Live whale-flow data](https://agentreeve.com/api/v1/btc/whale-flow?hours=24)
+- [Source skill on GitHub](https://github.com/shakeelamjid/agentreeve-skills/tree/main/hyperliquid-whale-watch)
+- [ClawHub release](https://clawhub.ai/shakeelamjid/skills/hyperliquid-whale-watch)
+- [AgentReeve free whale data sample](https://agentreeve.com/api/v1/samples/whales)
+- [AgentReeve live whale data endpoint](https://agentreeve.com/api/v1/whales?hours=24)
+- [AgentReeve BTC market positioning endpoint](https://agentreeve.com/api/v1/positioning?asset=BTC)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, Markdown]
+**Output Type(s):** [Analysis, Text, Guidance]
 
-**Output Format:** [Markdown summary of account positioning, one-hour and 24-hour flows, action counts, and largest moves]
+**Output Format:** [Concise natural-language summary of positions, BTC flows, and largest account moves]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Covers the 40 largest Hyperliquid accounts; reports observed data and does not provide financial advice.]
+**Other Properties Related to Output:** [Reports data gaps instead of estimating; market data is observational and not financial advice.]
 
 ## Skill Version(s):
 
-0.1.1 (source: server-resolved ClawHub release metadata)
+0.1.2 (source: ClawHub release metadata; artifact frontmatter reports 1.1.0)
 
 ## Ethical Considerations:
 

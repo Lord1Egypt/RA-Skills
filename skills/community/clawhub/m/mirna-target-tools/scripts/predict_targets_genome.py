@@ -66,12 +66,61 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import urllib.parse
 import urllib.request
 
 CACHE_DIR = os.path.join(os.path.expanduser("~"), ".cache", "mirna-target-tools")
 GENOME_CACHE = os.path.join(CACHE_DIR, "genomes")
 MIRBASE_URL = "https://www.mirbase.org/download/mature.fa"
 ENSEMBL_BASE = "https://ftp.ensembl.org/pub"
+
+# Safety limits: remote files are untrusted input. Override with environment
+# variables when a legitimately larger reference set is needed.
+MAX_DOWNLOAD_BYTES = int(os.environ.get("MIRNA_MAX_DOWNLOAD_MB", "4096")) * 1024 * 1024
+MAX_LISTING_BYTES = 8 << 20
+MAX_FASTA_BASES = int(os.environ.get("MIRNA_MAX_FASTA_BASES", "3000000000"))
+
+
+def find_tool(*names):
+    """Resolve an executable from PATH, then from common conda prefixes.
+
+    Bioinformatics tools are often installed in a conda environment that is not
+    active in the shell running the script. Checking the usual locations keeps
+    the real binaries usable without silently substituting anything.
+    """
+    for name in names:
+        found = shutil.which(name)
+        if found:
+            return found
+    prefixes = []
+    conda_prefix = os.environ.get("CONDA_PREFIX")
+    if conda_prefix:
+        prefixes.append(conda_prefix)
+    home = os.path.expanduser("~")
+    prefixes.extend([
+        os.path.join(home, "anaconda3"),
+        os.path.join(home, "miniconda3"),
+        os.path.join(home, "mambaforge"),
+        os.path.join(home, "micromamba"),
+        "/opt/conda",
+        "/opt/miniconda3",
+    ])
+    for prefix in prefixes:
+        for name in names:
+            candidate = os.path.join(prefix, "bin", name)
+            if os.path.isfile(candidate) and os.access(candidate, os.X_OK):
+                return candidate
+    return None
+
+
+def safe_name(value, what="name"):
+    """Reject values that would escape the output directory or break a TSV."""
+    text = str(value).strip()
+    if (not text or text in (".", "..")
+            or any(ch in text for ch in ("/", "\\", "\x00", "\n", "\r", "\t"))):
+        raise SystemExit("Error: invalid %s %r (path separators and control "
+                         "characters are not allowed)" % (what, value))
+    return text
 
 SPECIES_PRESETS = {
     "human": ("homo_sapiens", "GRCh38", ["hsa", "human", "hs"]),
@@ -113,6 +162,7 @@ def open_maybe_gz(path):
 def parse_fasta(path):
     records = []
     name, parts = None, []
+    total = 0
     with open_maybe_gz(path) as fh:
         for line in fh:
             line = line.rstrip("\n")
@@ -121,6 +171,11 @@ def parse_fasta(path):
                     records.append((name, "".join(parts)))
                 name, parts = line[1:].strip(), []
             elif line.strip():
+                total += len(line.strip())
+                if total > MAX_FASTA_BASES:
+                    raise RuntimeError("FASTA %s exceeds the %d-base safety limit "
+                                       "(set MIRNA_MAX_FASTA_BASES to raise it)"
+                                       % (path, MAX_FASTA_BASES))
                 parts.append(line.strip())
     if name is not None:
         records.append((name, "".join(parts)))
@@ -217,8 +272,10 @@ def _list_dir(subdir, pattern):
     listing = "%s/current/%s/" % (ENSEMBL_BASE, subdir)
     req = urllib.request.Request(listing, headers={"User-Agent": "mirna-target-tools/2.1"})
     with urllib.request.urlopen(req, timeout=120) as resp:
-        html = resp.read().decode("utf-8", "replace")
-    return listing, sorted(set(re.findall(pattern, html)))
+        html = resp.read(MAX_LISTING_BYTES + 1)
+    if len(html) > MAX_LISTING_BYTES:
+        raise RuntimeError("directory listing at %s is unexpectedly large" % listing)
+    return listing, sorted(set(re.findall(pattern, html.decode("utf-8", "replace"))))
 
 
 def _discover(subdir, pattern):
@@ -230,20 +287,42 @@ def _discover(subdir, pattern):
 
 
 def _download(url, dest):
+    scheme = urllib.parse.urlparse(url).scheme.lower()
+    if scheme != "https":
+        raise RuntimeError("refusing non-HTTPS download: %s" % url)
+    os.makedirs(os.path.dirname(os.path.abspath(dest)), exist_ok=True)
     print("Downloading %s" % url)
     tmp = dest + ".part"
     req = urllib.request.Request(url, headers={"User-Agent": "mirna-target-tools/2.1"})
-    with urllib.request.urlopen(req, timeout=900) as resp, open(tmp, "wb") as out:
-        total = 0
-        while True:
-            chunk = resp.read(1 << 20)
-            if not chunk:
-                break
-            out.write(chunk)
-            total += len(chunk)
-            if total % (100 << 20) < (1 << 20):
-                print("  ... %.0f MB" % (total / 1e6))
-    os.replace(tmp, dest)
+    try:
+        with urllib.request.urlopen(req, timeout=900) as resp, open(tmp, "wb") as out:
+            length = resp.headers.get("Content-Length")
+            if length and length.isdigit() and int(length) > MAX_DOWNLOAD_BYTES:
+                raise RuntimeError("remote file is larger than the %d MB safety limit"
+                                   % (MAX_DOWNLOAD_BYTES // (1024 * 1024)))
+            total = 0
+            while True:
+                chunk = resp.read(1 << 20)
+                if not chunk:
+                    break
+                total += len(chunk)
+                if total > MAX_DOWNLOAD_BYTES:
+                    raise RuntimeError("download exceeded the %d MB safety limit "
+                                       "(set MIRNA_MAX_DOWNLOAD_MB to raise it)"
+                                       % (MAX_DOWNLOAD_BYTES // (1024 * 1024)))
+                out.write(chunk)
+                if total % (100 << 20) < (1 << 20):
+                    print("  ... %.0f MB" % (total / 1e6))
+            out.flush()
+            os.fsync(out.fileno())
+        os.chmod(tmp, 0o644)
+        os.replace(tmp, dest)
+    except BaseException:
+        try:
+            os.unlink(tmp)
+        except OSError:
+            pass
+        raise
     print("Saved %s (%.1f MB)" % (dest, os.path.getsize(dest) / 1e6))
     return dest
 
@@ -394,12 +473,15 @@ def slice_utr3(cdna, info):
 # miRanda engine
 # --------------------------------------------------------------------------
 def miranda_path():
-    return shutil.which("miranda")
+    return find_tool("miranda")
 
 
 def run_miranda(mirna_fa, target_fa, out_path, score, energy):
     """Run miRanda for one miRNA FASTA against one target FASTA."""
-    cmd = [miranda_path(), mirna_fa, target_fa,
+    exe = miranda_path()
+    if not exe:
+        raise RuntimeError("miRanda executable not found on PATH")
+    cmd = [exe, mirna_fa, target_fa,
            "-sc", str(score), "-en", str(energy), "-quiet", "-out", out_path]
     with open(out_path, "w") as fh:
         proc = subprocess.run(cmd, stdout=fh, stderr=subprocess.PIPE, text=True)
@@ -430,7 +512,7 @@ def parse_miranda_hits(path):
 # three-way intersect mode)
 # --------------------------------------------------------------------------
 def rnahybrid_path():
-    return shutil.which("RNAhybrid") or shutil.which("rnahybrid")
+    return find_tool("RNAhybrid", "rnahybrid")
 
 
 def run_rnahybrid(target_fa, mirna_files, tmpdir, energy, dataset, jobs,
@@ -585,11 +667,11 @@ def main():
                          "needs the GTF annotation; default: cdna)")
     ap.add_argument("--method", default="auto",
                     choices=["auto", "seed", "miranda", "hybrid", "rnahybrid", "triple"],
-                    help="auto (hybrid when miRanda is installed, else seed), seed "
-                         "(TargetScan-style sites only), miranda (miRanda hits only), "
-                         "hybrid (seed sites confirmed by a miRanda alignment), "
-                         "rnahybrid (exact MFE duplex only), triple (run seed + miRanda "
-                         "+ RNAhybrid and keep the three-way intersection)")
+                    help="auto (default: real miRanda 3.3a required, hybrid mode), "
+                         "seed (explicit seed-only scan; no miRanda needed), "
+                         "miranda (miRanda hits only), hybrid (seed sites confirmed "
+                         "by a miRanda alignment), rnahybrid (exact MFE duplex only), "
+                         "triple (seed + miRanda + RNAhybrid intersection)")
     ap.add_argument("--miranda-score", type=float, default=140.0,
                     help="miRanda score threshold (default 140)")
     ap.add_argument("--miranda-energy", type=float, default=-20.0,
@@ -629,6 +711,18 @@ def main():
                     help="rank by raw score (default) or length-normalised density")
     args = ap.parse_args()
 
+    args.prefix = safe_name(args.prefix, "prefix")
+    if args.jobs < 0:
+        ap.error("--jobs must be >= 0 (0 means auto)")
+    if args.max_transcripts < 0:
+        ap.error("--max-transcripts must be >= 0")
+    if args.top < 0:
+        ap.error("--top must be >= 0")
+    if args.refine_rnahybrid < 0:
+        ap.error("--refine-rnahybrid must be >= 0")
+    if not str(args.outdir).strip():
+        ap.error("--outdir must not be empty")
+
     if args.list_species:
         list_species()
         return
@@ -641,16 +735,21 @@ def main():
         ap.error("--genome-fa also needs --gtf")
 
     method = args.method
+    miranda_hint = (
+        "Error: the default workflow requires a real miRanda 3.3a binary.\n"
+        "Install it with:  bash scripts/install_miranda_conda.sh\n"
+        "Then verify with: python3 scripts/check_env.py\n"
+        "For an explicitly seed-only scan use: --method seed")
     if method == "auto":
-        method = "hybrid" if miranda_path() else "seed"
+        if not miranda_path():
+            raise SystemExit(miranda_hint)
+        method = "hybrid"
     if method in ("miranda", "hybrid", "triple") and not miranda_path():
-        print("Warning: miRanda not found on PATH.")
-        print("         install it (conda install -c bioconda miranda) or pick another --method.")
-        method = "rnahybrid" if (method == "triple" and rnahybrid_path()) else "seed"
+        raise SystemExit(miranda_hint)
     if method in ("rnahybrid", "triple") and not rnahybrid_path():
-        print("Warning: RNAhybrid not found on PATH.")
-        print("         install it (conda install -c bioconda rnahybrid) or pick another --method.")
-        method = "hybrid" if miranda_path() else "seed"
+        raise SystemExit(
+            "Error: --method %s requires RNAhybrid.\n"
+            "Install it with: conda install -c bioconda rnahybrid" % method)
     print("Prediction engine: %s | target region: %s" % (method, args.target_region))
 
     # ---- miRNAs

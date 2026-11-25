@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Apple — Inspired Design</title>
+<meta name="description" content="An Apple-inspired design study: the signature product tile matrix — slim black global nav, frosted sub-nav, a full-bleed hero tile and a 2-up grid of white and light-gray tiles, centered headlines with paired blue text links, generous whitespace. Marketing demo + compact design system reference." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  /* The single accent — action blue */
+  --blue: #0066cc;
+  --blue-hover: #0071e3;
+  --blue-on-dark: #2997ff;
+  /* Canvas — light first */
+  --canvas: #ffffff;
+  --tile-alt: #f5f5f7;
+  --tile-dark: #000000;
+  /* Ink */
+  --ink: #1d1d1f;
+  --ink-muted: #6e6e73;
+  --ink-soft: #86868b;
+  --on-dark: #f5f5f7;
+  --on-dark-muted: #a1a1a6;
+  /* Hairlines */
+  --hairline: #d2d2d7;
+  --hairline-soft: rgba(0, 0, 0, 0.08);
+  /* The one wallpaper gradient family (blue → violet) */
+  --wallpaper: linear-gradient(155deg, #0a84ff 0%, #5e5ce6 48%, #bf5af2 100%);
+  --wallpaper-soft: linear-gradient(155deg, #0a84ff22, #bf5af222);
+  --font-ui: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+  --r-tile: 18px;
+  --r-pill: 999px;
+  --gap-tile: 12px;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 17px;
+  line-height: 1.47;
+  letter-spacing: -0.022em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; }
+::selection { background: rgba(0, 102, 204, 0.22); }
+
+/* ————— Global nav: 44px pure black ————— */
+.gnav { background: #000; height: 44px; position: relative; z-index: 50; }
+.gnav-inner {
+  max-width: 1024px; margin: 0 auto; height: 100%; padding: 0 22px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.gnav a { color: rgba(255,255,255,0.8); font-size: 12px; font-weight: 400; letter-spacing: -0.01em; transition: color .2s; }
+.gnav a:hover { color: #fff; }
+.gnav .apple-mark { display: flex; align-items: center; }
+.gnav .apple-mark svg { width: 15px; height: 17px; fill: rgba(255,255,255,0.85); }
+.gnav-links { display: flex; gap: 34px; }
+.gnav-icons { display: flex; gap: 24px; }
+.gnav-icons svg { width: 15px; height: 15px; stroke: rgba(255,255,255,0.8); fill: none; stroke-width: 1.8; }
+
+/* ————— Sub-nav: frosted product bar ————— */
+.subnav {
+  position: sticky; top: 0; z-index: 40;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--hairline-soft);
+}
+.subnav-inner {
+  max-width: 1024px; margin: 0 auto; height: 52px; padding: 0 22px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.subnav-title { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+.subnav-right { display: flex; align-items: center; gap: 28px; }
+.subnav-right a { font-size: 12px; color: var(--ink); opacity: 0.88; }
+.subnav-right a:hover { opacity: 1; color: var(--blue); }
+.btn-pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--blue-hover); color: #fff; border: 0; cursor: pointer;
+  font-size: 12px; font-weight: 500; padding: 5px 14px; border-radius: var(--r-pill);
+  transition: background .2s;
+}
+.btn-pill:hover { background: var(--blue); color: #fff; }
+.btn-pill.lg { font-size: 17px; padding: 12px 24px; }
+
+/* ————— Tiles: the matrix ————— */
+.tile-matrix { padding: var(--gap-tile); display: flex; flex-direction: column; gap: var(--gap-tile); background: var(--canvas); }
+.tile {
+  border-radius: var(--r-tile);
+  overflow: hidden;
+  text-align: center;
+  padding: 64px 24px 0;
+  display: flex; flex-direction: column; align-items: center;
+}
+.tile-light { background: var(--canvas); border: 1px solid var(--hairline-soft); }
+.tile-gray { background: var(--tile-alt); }
+.tile-dark { background: var(--tile-dark); color: var(--on-dark); }
+.tile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap-tile); }
+.tile-half { min-height: 560px; }
+
+.tile .eyebrow-new { font-size: 14px; font-weight: 600; color: var(--blue); letter-spacing: 0.01em; margin-bottom: 10px; }
+.tile-dark .eyebrow-new { color: var(--blue-on-dark); }
+.tile h2 { font-size: 44px; font-weight: 600; letter-spacing: -0.028em; line-height: 1.07; margin: 0 0 8px; }
+.tile .tagline { font-size: 21px; font-weight: 400; letter-spacing: -0.015em; color: var(--ink-muted); margin: 0 0 6px; max-width: 480px; }
+.tile-dark .tagline { color: var(--on-dark-muted); }
+.tile .price { font-size: 14px; color: var(--ink-soft); margin: 0 0 14px; }
+.tile-dark .price { color: #86868b; }
+
+/* The signature pair of blue links */
+.tile-links { display: flex; gap: 28px; justify-content: center; align-items: center; margin-bottom: 8px; }
+.link-blue { color: var(--blue); font-size: 17px; letter-spacing: -0.022em; }
+.link-blue:hover { text-decoration: underline; }
+.link-blue .chev { font-size: 18px; margin-left: 1px; }
+.tile-dark .link-blue { color: var(--blue-on-dark); }
+
+/* ————— Hero tile ————— */
+.tile-hero { min-height: 690px; padding-top: 76px; }
+.tile-hero h2 { font-size: 56px; }
+.tile-hero .tagline { font-size: 25px; max-width: 560px; }
+
+/* ————— Minimal device silhouettes ————— */
+/* iPhone: rounded rect + dynamic island + wallpaper. Nothing more. */
+.iphone {
+  width: 280px; height: 470px; margin: 52px auto -60px;
+  border-radius: 46px; background: #0c0c0e; padding: 9px;
+  border: 1px solid #3a3a3c;
+  box-shadow: 0 30px 80px rgba(10, 132, 255, 0.18);
+}
+.iphone .screen {
+  width: 100%; height: 100%; border-radius: 38px; position: relative; overflow: hidden;
+  background: var(--wallpaper);
+}
+.iphone .screen::after {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(120% 60% at 20% 0%, rgba(255,255,255,0.28), transparent 55%);
+}
+.iphone .island {
+  position: absolute; top: 13px; left: 50%; transform: translateX(-50%);
+  width: 86px; height: 25px; border-radius: var(--r-pill); background: #000; z-index: 2;
+}
+.iphone .clock {
+  position: absolute; top: 86px; left: 0; width: 100%; text-align: center; z-index: 2;
+  font-size: 64px; font-weight: 300; letter-spacing: -0.03em; color: rgba(255,255,255,0.95);
+}
+
+/* MacBook: a screen and a base. */
+.macbook { width: 560px; max-width: 92%; margin: 48px auto 64px; }
+.macbook .screen {
+  height: 330px; border-radius: 16px 16px 0 0; background: #0c0c0e; padding: 10px 10px 0;
+  border: 1px solid var(--hairline);
+  border-bottom: 0;
+}
+.macbook .wall { height: 100%; border-radius: 10px 10px 0 0; background: var(--wallpaper); position: relative; overflow: hidden; }
+.macbook .wall::after { content: ""; position: absolute; inset: 0; background: radial-gradient(110% 70% at 18% 0%, rgba(255,255,255,0.3), transparent 50%); }
+.macbook .base {
+  height: 15px; background: linear-gradient(#e7e7ea, #c8c8cd);
+  border-radius: 0 0 14px 14px; position: relative;
+}
+.macbook .base::before {
+  content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 96px; height: 6px; border-radius: 0 0 8px 8px; background: #b6b6bc;
+}
+
+/* Apple Watch: rounded square, band hints, crown. */
+.watch { position: relative; width: 184px; margin: 44px auto 56px; }
+.watch .band { width: 116px; height: 74px; margin: 0 auto; background: linear-gradient(#dadade, #c4c4ca); }
+.watch .band.top { border-radius: 26px 26px 0 0; }
+.watch .band.bottom { border-radius: 0 0 26px 26px; }
+.watch .case {
+  width: 184px; height: 214px; border-radius: 52px; background: #0c0c0e; padding: 9px;
+  position: relative; box-shadow: 0 18px 44px rgba(0,0,0,0.18);
+}
+.watch .case::after {
+  content: ""; position: absolute; right: -5px; top: 56px;
+  width: 7px; height: 30px; border-radius: 4px; background: #98989d;
+}
+.watch .screen { width: 100%; height: 100%; border-radius: 44px; background: var(--wallpaper); position: relative; overflow: hidden; }
+.watch .screen::after { content: ""; position: absolute; inset: 0; background: radial-gradient(100% 60% at 25% 0%, rgba(255,255,255,0.3), transparent 55%); }
+.watch .time { position: absolute; top: 30px; left: 0; width: 100%; text-align: center; font-size: 40px; font-weight: 400; letter-spacing: -0.02em; color: #fff; z-index: 2; }
+
+/* AirPods Pro case: one lovely rounded box on black. */
+.pods { position: relative; width: 216px; height: 178px; margin: 52px auto 64px; }
+.pods .case {
+  width: 100%; height: 100%; border-radius: 46px;
+  background: linear-gradient(165deg, #ffffff 0%, #e3e3e8 55%, #c9c9cf 100%);
+  box-shadow: 0 34px 90px rgba(255,255,255,0.14), inset 0 -10px 24px rgba(0,0,0,0.08);
+  position: relative; overflow: hidden;
+}
+.pods .case::before { content: ""; position: absolute; top: 58px; left: 0; right: 0; height: 1.5px; background: rgba(0,0,0,0.16); }
+.pods .case::after {
+  content: ""; position: absolute; top: 96px; left: 50%; transform: translateX(-50%);
+  width: 9px; height: 9px; border-radius: 50%; background: var(--blue-on-dark);
+  box-shadow: 0 0 14px rgba(41, 151, 255, 0.9);
+}
+
+/* iPad: rounded rect + camera dot. */
+.ipad {
+  width: 300px; height: 408px; margin: 44px auto 56px;
+  border-radius: 30px; background: #0c0c0e; padding: 11px;
+  border: 1px solid var(--hairline); box-shadow: 0 24px 60px rgba(94, 92, 230, 0.16);
+  position: relative;
+}
+.ipad::after { content: ""; position: absolute; top: 50%; right: 4px; width: 3px; height: 3px; border-radius: 50%; background: #3a3a3c; }
+.ipad .screen { width: 100%; height: 100%; border-radius: 20px; background: var(--wallpaper); position: relative; overflow: hidden; }
+.ipad .screen::after { content: ""; position: absolute; inset: 0; background: radial-gradient(110% 60% at 20% 0%, rgba(255,255,255,0.28), transparent 52%); }
+
+/* Apple Intelligence: glow ring + gradient wordmark. No hardware at all. */
+.ai-stage { position: relative; margin: 40px auto 64px; width: 300px; height: 220px; display: grid; place-items: center; }
+.ai-ring {
+  width: 190px; height: 190px; border-radius: 50%;
+  background: conic-gradient(from 200deg, #0a84ff, #5e5ce6, #bf5af2, #0a84ff);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 14px), #000 calc(100% - 13px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 14px), #000 calc(100% - 13px));
+  filter: blur(0.4px);
+}
+.ai-glow { position: absolute; inset: 10%; border-radius: 50%; background: var(--wallpaper); filter: blur(54px); opacity: 0.3; }
+.ai-word {
+  position: absolute; font-size: 24px; font-weight: 600; letter-spacing: -0.02em;
+  background: var(--wallpaper); -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+
+/* ————— Services ribbon ————— */
+.services { max-width: 1024px; margin: 0 auto; padding: 88px 22px 96px; text-align: center; }
+.services h2 { font-size: 40px; font-weight: 600; letter-spacing: -0.025em; margin: 0 0 10px; }
+.services .sub { font-size: 19px; color: var(--ink-muted); margin: 0 auto 44px; max-width: 600px; }
+.svc-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--gap-tile); }
+.svc {
+  background: var(--tile-alt); border-radius: var(--r-tile); padding: 30px 18px 26px;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.svc:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(0,0,0,0.08); }
+.svc .mark { font-size: 22px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 8px; }
+.svc .mark .plus { color: var(--blue); }
+.svc p { font-size: 13px; color: var(--ink-muted); margin: 0 0 12px; line-height: 1.45; }
+.svc a { font-size: 14px; }
+
+/* ————— Design System Reference ————— */
+.ds { background: var(--tile-alt); border-top: 1px solid var(--hairline-soft); padding: 88px 0 96px; }
+.ds .container { max-width: 1024px; margin: 0 auto; padding: 0 22px; }
+.ds-intro { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 48px; }
+.ds-intro .eyebrow-new { font-size: 13px; font-weight: 600; color: var(--blue); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
+.ds-intro h2 { font-size: 34px; font-weight: 600; letter-spacing: -0.025em; margin: 0 0 10px; }
+.ds-intro p { margin: 0; font-size: 15px; color: var(--ink-muted); max-width: 600px; line-height: 1.6; }
+.ds-source {
+  display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px;
+  background: #fff; border: 1px solid var(--hairline); border-radius: var(--r-pill);
+  font-size: 12px; font-weight: 600; color: var(--ink-muted); transition: all .15s;
+}
+.ds-source:hover { color: var(--blue); border-color: var(--blue); }
+.ds-block { margin-top: 52px; padding-top: 40px; border-top: 1px solid var(--hairline); }
+.ds-block:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
+.ds-heading { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 8px; }
+.ds-desc { font-size: 14px; color: var(--ink-muted); margin: 0 0 24px; line-height: 1.6; max-width: 620px; }
+.ds-caption { font-size: 11px; font-weight: 600; color: var(--ink-soft); letter-spacing: 0.1em; text-transform: uppercase; margin: 26px 0 12px; }
+
+.ds-swatches { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.ds-sw { background: #fff; border: 1px solid var(--hairline-soft); border-radius: 12px; overflow: hidden; }
+.ds-sw .chip { height: 64px; }
+.ds-sw .meta { padding: 11px 13px; }
+.ds-sw .name { font-size: 12.5px; font-weight: 600; }
+.ds-sw .val { font-size: 11px; color: var(--ink-soft); margin-top: 2px; font-variant-numeric: tabular-nums; }
+
+.ds-type-table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--hairline-soft); border-radius: 12px; overflow: hidden; }
+.ds-type-table th, .ds-type-table td { text-align: left; padding: 13px 14px; border-bottom: 1px solid var(--hairline-soft); font-size: 13px; vertical-align: middle; }
+.ds-type-table tr:last-child td { border-bottom: 0; }
+.ds-type-table th { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); background: #fafafc; }
+.ds-type-table td { color: var(--ink-muted); }
+.ds-type-table td.sample { color: var(--ink); }
+
+.ds-radius { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.ds-radius-cell { background: #fff; border: 1px solid var(--hairline-soft); border-radius: 12px; padding: 18px 8px; text-align: center; }
+.ds-radius-box { width: 54px; height: 54px; background: var(--wallpaper); margin: 0 auto 10px; opacity: 0.9; }
+.ds-radius-label { font-size: 12px; font-weight: 600; }
+.ds-radius-val { font-size: 11px; color: var(--ink-soft); margin-top: 2px; }
+
+.ds-comp { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.ds-card { background: #fff; border: 1px solid var(--hairline-soft); border-radius: 14px; padding: 22px; }
+.ds-card h5 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-soft); margin: 0 0 16px; }
+.ds-card-stack { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+.ds-tone { font-size: 14px; line-height: 1.65; color: var(--ink); }
+.ds-tone .muted { color: var(--ink-muted); }
+
+/* ————— Footer ————— */
+footer { background: var(--tile-alt); border-top: 1px solid var(--hairline); padding: 28px 0 44px; }
+footer .container { max-width: 1024px; margin: 0 auto; padding: 0 22px; }
+.foot-note { font-size: 12px; color: var(--ink-soft); line-height: 1.55; padding-bottom: 16px; border-bottom: 1px solid var(--hairline); margin-bottom: 18px; }
+.foot-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding-bottom: 22px; border-bottom: 1px solid var(--hairline); margin-bottom: 18px; }
+.foot-cols h4 { font-size: 12px; font-weight: 600; color: var(--ink); margin: 0 0 10px; }
+.foot-cols ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.foot-cols a { font-size: 12px; color: var(--ink-muted); }
+.foot-cols a:hover { color: var(--ink); text-decoration: underline; }
+.foot-legal { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 12px; color: var(--ink-soft); }
+.foot-legal .links a { color: var(--ink-muted); margin-left: 18px; }
+.foot-legal .links a:hover { text-decoration: underline; }
+
+/* ————— Floating source ————— */
+.src-link {
+  position: fixed; right: 16px; bottom: 16px; z-index: 60;
+  background: #fff; border: 1px solid var(--hairline); padding: 10px 18px;
+  border-radius: var(--r-pill); font-size: 12px; font-weight: 600; color: var(--ink-muted);
+  box-shadow: 0 8px 26px rgba(0,0,0,0.12); transition: all .15s;
+}
+.src-link:hover { color: var(--blue); border-color: var(--blue); }
+
+/* ————— Responsive ————— */
+@media (max-width: 980px) {
+  .gnav-links { display: none; }
+  .subnav-right a { display: none; }
+  .tile-grid { grid-template-columns: 1fr; }
+  .tile-half { min-height: 480px; }
+  .tile-hero { min-height: 600px; }
+  .tile-hero h2 { font-size: 44px; }
+  .tile-hero .tagline { font-size: 21px; }
+  .tile h2 { font-size: 36px; }
+  .svc-row { grid-template-columns: repeat(2, 1fr); }
+  .svc-row .svc:last-child { grid-column: 1 / -1; }
+  .ds-swatches { grid-template-columns: repeat(3, 1fr); }
+  .ds-radius { grid-template-columns: repeat(3, 1fr); }
+  .ds-comp { grid-template-columns: 1fr; }
+  .foot-cols { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 540px) {
+  .tile-hero h2 { font-size: 36px; }
+  .tile h2 { font-size: 30px; }
+  .tile .tagline { font-size: 18px; }
+  .tile-links { flex-direction: row; gap: 20px; }
+  .iphone { width: 240px; height: 410px; }
+  .macbook .screen { height: 220px; }
+  .services h2 { font-size: 30px; }
+  .svc-row { grid-template-columns: 1fr; }
+  .ds-intro h2 { font-size: 27px; }
+  .ds-swatches { grid-template-columns: repeat(2, 1fr); }
+  .ds-type-table th:nth-child(3), .ds-type-table td:nth-child(3) { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- GLOBAL NAV — 44px pure black -->
+<nav class="gnav" aria-label="Global">
+  <div class="gnav-inner">
+    <a class="apple-mark" href="#" aria-label="Apple">
+      <svg viewBox="0 0 17 20"><path d="M13.7 10.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.9C3.8 5.1 2.2 6 1.3 7.5c-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.5 0 2 .8 3.3.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.7-1-2.7-4.1l-.5-.2zM11.4 3.4c.7-.8 1.1-2 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4z"/></svg>
+    </a>
+    <div class="gnav-links">
+      <a href="#">Store</a><a href="#">Mac</a><a href="#">iPad</a><a href="#">iPhone</a>
+      <a href="#">Watch</a><a href="#">AirPods</a><a href="#">TV &amp; Home</a><a href="#">Support</a>
+    </div>
+    <div class="gnav-icons">
+      <a href="#" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.2" y2="16.2"/></svg></a>
+      <a href="#" aria-label="Bag"><svg viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8a3 3 0 016 0"/></svg></a>
+    </div>
+  </div>
+</nav>
+
+<!-- SUB-NAV — frosted product bar -->
+<div class="subnav">
+  <div class="subnav-inner">
+    <span class="subnav-title">iPhone 17 Pro</span>
+    <div class="subnav-right">
+      <a href="#">Overview</a>
+      <a href="#">Tech Specs</a>
+      <a href="#">Compare</a>
+      <a class="btn-pill" href="#">Buy</a>
+    </div>
+  </div>
+</div>
+
+<!-- TILE MATRIX -->
+<main class="tile-matrix">
+
+  <!-- HERO TILE — full bleed, pure black -->
+  <section class="tile tile-dark tile-hero">
+    <div class="eyebrow-new">New</div>
+    <h2>iPhone 17 Pro</h2>
+    <p class="tagline">All out Pro. Titanium body, A19 Pro chip, and the best camera system on iPhone.</p>
+    <p class="price">From $1099 or $45.79/mo. for 24 mo.</p>
+    <div class="tile-links">
+      <a class="link-blue" href="#">Learn more <span class="chev">›</span></a>
+      <a class="link-blue" href="#">Buy <span class="chev">›</span></a>
+    </div>
+    <div class="iphone" role="img" aria-label="Abstract iPhone silhouette with gradient wallpaper">
+      <div class="screen">
+        <span class="island"></span>
+        <span class="clock">9:41</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL TILE — MacBook Air, white -->
+  <section class="tile tile-light">
+    <h2>MacBook Air</h2>
+    <p class="tagline">Sky blue. Speed of M4. Impossibly thin, all-day battery.</p>
+    <p class="price">From $999</p>
+    <div class="tile-links">
+      <a class="link-blue" href="#">Learn more <span class="chev">›</span></a>
+      <a class="link-blue" href="#">Buy <span class="chev">›</span></a>
+    </div>
+    <div class="macbook" role="img" aria-label="Abstract MacBook silhouette">
+      <div class="screen"><div class="wall"></div></div>
+      <div class="base"></div>
+    </div>
+  </section>
+
+  <!-- 2-UP GRID -->
+  <div class="tile-grid">
+
+    <section class="tile tile-gray tile-half">
+      <h2>Apple Watch</h2>
+      <p class="tagline">Thinstinct. The thinnest, brightest Apple Watch ever.</p>
+      <div class="tile-links">
+        <a class="link-blue" href="#">Learn more <span class="chev">›</span></a>
+        <a class="link-blue" href="#">Buy <span class="chev">›</span></a>
+      </div>
+      <div class="watch" role="img" aria-label="Abstract Apple Watch silhouette">
+        <div class="band top"></div>
+        <div class="case"><div class="screen"><span class="time">9:41</span></div></div>
+        <div class="band bottom"></div>
+      </div>
+    </section>
+
+    <section class="tile tile-dark tile-half">
+      <h2>AirPods Pro 3</h2>
+      <p class="tagline">The world's best in-ear Active Noise Cancellation.</p>
+      <div class="tile-links">
+        <a class="link-blue" href="#">Learn more <span class="chev">›</span></a>
+        <a class="link-blue" href="#">Buy <span class="chev">›</span></a>
+      </div>
+      <div class="pods" role="img" aria-label="Abstract AirPods case silhouette">
+        <div class="case"></div>
+      </div>
+    </section>
+
+    <section class="tile tile-light tile-half">
+      <h2>iPad Pro</h2>
+      <p class="tagline">Unbelievably thin. Incredibly powerful. M5 inside.</p>
+      <div class="tile-links">
+        <a class="link-blue" href="#">Learn more <span class="chev">›</span></a>
+        <a class="link-blue" href="#">Buy <span class="chev">›</span></a>
+      </div>
+      <div class="ipad" role="img" aria-label="Abstract iPad silhouette">
+        <div class="screen"></div>
+      </div>
+    </section>
+
+    <section class="tile tile-gray tile-half">
+      <h2>Apple Intelligence</h2>
+      <p class="tagline">AI for the rest of us. Built in, private by design.</p>
+      <div class="tile-links">
+        <a class="link-blue" href="#">Learn more <span class="chev">›</span></a>
+        <a class="link-blue" href="#">Watch the film <span class="chev">›</span></a>
+      </div>
+      <div class="ai-stage" role="img" aria-label="Glowing gradient ring">
+        <div class="ai-glow"></div>
+        <div class="ai-ring"></div>
+        <span class="ai-word">Hello</span>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- SERVICES RIBBON -->
+<section class="services">
+  <h2>One subscription away.</h2>
+  <p class="sub">Entertainment, fitness, and storage — services that feel like part of the hardware.</p>
+  <div class="svc-row">
+    <div class="svc">
+      <div class="mark">tv<span class="plus">+</span></div>
+      <p>Original films and series. Only on Apple TV+.</p>
+      <a class="link-blue" href="#">Try it free <span class="chev">›</span></a>
+    </div>
+    <div class="svc">
+      <div class="mark">Music</div>
+      <p>Over 100 million songs, lossless and live.</p>
+      <a class="link-blue" href="#">Listen now <span class="chev">›</span></a>
+    </div>
+    <div class="svc">
+      <div class="mark">Arcade</div>
+      <p>200+ games. No ads. No in-app purchases.</p>
+      <a class="link-blue" href="#">Play now <span class="chev">›</span></a>
+    </div>
+    <div class="svc">
+      <div class="mark">iCloud<span class="plus">+</span></div>
+      <p>Private, secure storage for everything you make.</p>
+      <a class="link-blue" href="#">Upgrade <span class="chev">›</span></a>
+    </div>
+    <div class="svc">
+      <div class="mark">Fitness<span class="plus">+</span></div>
+      <p>Workouts for every level, on every screen.</p>
+      <a class="link-blue" href="#">Start today <span class="chev">›</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN SYSTEM REFERENCE -->
+<section class="ds" id="design-system">
+  <div class="container">
+    <div class="ds-intro">
+      <div>
+        <div class="eyebrow-new">Design System Reference</div>
+        <h2>The tile is the brand.</h2>
+        <p>Apple's web identity is not a color scheme — it is an information architecture. Edge-to-edge product tiles, a centered headline stack, one pair of blue links, and silence everywhere else. The structure does the talking; the accent color only ever says "act here."</p>
+      </div>
+      <a class="ds-source" href="https://github.com/yzfly/awesome-design-html/blob/main/assets/web/design.apple.html" target="_blank" rel="noopener">View source ↗</a>
+    </div>
+
+    <!-- Color -->
+    <div class="ds-block">
+      <h3 class="ds-heading">Color</h3>
+      <p class="ds-desc">Three surfaces, one accent. White and light gray alternate to give the tile matrix its rhythm; pure black appears at most twice for contrast, never a middle gray. Action Blue is the only chromatic voice — on dark tiles it brightens to stay legible, but it never gains a sibling.</p>
+
+      <div class="ds-caption">Surfaces</div>
+      <div class="ds-swatches">
+        <div class="ds-sw"><div class="chip" style="background:#ffffff;border-bottom:1px solid #f0f0f2"></div><div class="meta"><div class="name">Canvas White</div><div class="val">#FFFFFF</div></div></div>
+        <div class="ds-sw"><div class="chip" style="background:#f5f5f7"></div><div class="meta"><div class="name">Tile Gray</div><div class="val">#F5F5F7</div></div></div>
+        <div class="ds-sw"><div class="chip" style="background:#000000"></div><div class="meta"><div class="name">Tile Black</div><div class="val">#000000</div></div></div>
+        <div class="ds-sw"><div class="chip" style="background:#d2d2d7"></div><div class="meta"><div class="name">Hairline</div><div class="val">#D2D2D7</div></div></div>
+        <div class="ds-sw"><div class="chip" style="background:var(--wallpaper)"></div><div class="meta"><div class="name">Wallpaper</div><div class="val">blue → violet</div></div></div>
+      </div>
+
+      <div class="ds-caption">Action Blue — the single accent</div>
+      <div class="ds-swatches">
+        <div class="ds-sw"><div class="chip" style="background:#0066cc"></div><div class="meta"><div class="name">Action Blue</div><div class="val">#0066CC</div></div></div>
+        <div class="ds-sw"><div class="chip" style="background:#0071e3"></div><div class="meta"><div class="name">Button Blue</div><div class="val">#0071E3</div></div></div>
+        <div class="ds-sw"><div class="chip" style="background:#000;display:grid;place-items:center"><span style="color:#2997ff;font-size:15px;font-weight:600">Aa</span></div><div class="meta"><div class="name">Blue on Dark</div><div class="val">#2997FF</div></div></div>
+        <div class="ds-sw"><div class="chip" style="background:#1d1d1f"></div><div class="meta"><div class="name">Ink</div><div class="val">#1D1D1F</div></div></div>
+        <div class="ds-sw"><div class="chip" style="background:#6e6e73"></div><div class="meta"><div class="name">Ink Muted</div><div class="val">#6E6E73</div></div></div>
+      </div>
+    </div>
+
+    <!-- Typography -->
+    <div class="ds-block">
+      <h3 class="ds-heading">Typography</h3>
+      <p class="ds-desc">Inter stands in for SF Pro: weight 600 maximum, negative tracking that tightens as size grows. Headlines are large but never bold-shouty — hierarchy comes from size and whitespace, not weight. Everything in a tile is centered; everything in reference sections is left-aligned.</p>
+      <table class="ds-type-table">
+        <thead>
+          <tr><th>Role</th><th>Sample</th><th>Size / Tracking</th><th>Weight</th><th>Usage</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Hero headline</td><td class="sample" style="font-size:28px;font-weight:600;letter-spacing:-0.028em">iPhone 17 Pro</td><td>56px / −0.028em</td><td>600</td><td>Hero tile title</td></tr>
+          <tr><td>Tile headline</td><td class="sample" style="font-size:24px;font-weight:600;letter-spacing:-0.028em">MacBook Air</td><td>44px / −0.028em</td><td>600</td><td>Tile titles</td></tr>
+          <tr><td>Tagline</td><td class="sample" style="font-size:18px;color:#6e6e73">All out Pro.</td><td>21–25px / −0.015em</td><td>400</td><td>One line under title</td></tr>
+          <tr><td>Text link</td><td class="sample" style="font-size:17px;color:#0066cc">Learn more ›</td><td>17px / −0.022em</td><td>400</td><td>The signature pair</td></tr>
+          <tr><td>Body</td><td class="sample" style="font-size:15px">Designed in California.</td><td>17px / −0.022em</td><td>400</td><td>Running copy</td></tr>
+          <tr><td>Fine print</td><td class="sample" style="font-size:12px;color:#86868b">From $1099 or $45.79/mo.</td><td>12–14px / 0</td><td>400</td><td>Pricing, legal</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Radius -->
+    <div class="ds-block">
+      <h3 class="ds-heading">Radius</h3>
+      <p class="ds-desc">Continuous, generous curves — tiles at 18px, device silhouettes much rounder, buttons always pill. Nothing sharp, nothing fussy.</p>
+      <div class="ds-radius">
+        <div class="ds-radius-cell"><div class="ds-radius-box" style="border-radius:12px"></div><div class="ds-radius-label">Card</div><div class="ds-radius-val">12px</div></div>
+        <div class="ds-radius-cell"><div class="ds-radius-box" style="border-radius:18px"></div><div class="ds-radius-label">Tile</div><div class="ds-radius-val">18px</div></div>
+        <div class="ds-radius-cell"><div class="ds-radius-box" style="border-radius:26px"></div><div class="ds-radius-label">Device</div><div class="ds-radius-val">30–46px</div></div>
+        <div class="ds-radius-cell"><div class="ds-radius-box" style="border-radius:999px;width:80px"></div><div class="ds-radius-label">Button</div><div class="ds-radius-val">pill</div></div>
+        <div class="ds-radius-cell"><div class="ds-radius-box" style="border-radius:50%"></div><div class="ds-radius-label">Ring</div><div class="ds-radius-val">50%</div></div>
+      </div>
+    </div>
+
+    <!-- Components -->
+    <div class="ds-block">
+      <h3 class="ds-heading">Components</h3>
+      <p class="ds-desc">A deliberately tiny kit: the paired text links carry almost every action on the page; the blue pill appears only in the sub-nav and checkout moments. There are no outlined buttons, no ghost buttons, no icon zoos.</p>
+      <div class="ds-comp">
+        <div class="ds-card">
+          <h5>The Link Pair</h5>
+          <div class="ds-card-stack">
+            <div style="display:flex;gap:24px">
+              <a class="link-blue" href="#">Learn more <span class="chev">›</span></a>
+              <a class="link-blue" href="#">Buy <span class="chev">›</span></a>
+            </div>
+            <div style="background:#000;border-radius:12px;padding:14px 20px;display:flex;gap:24px">
+              <a class="link-blue" style="color:#2997ff" href="#">Learn more <span class="chev">›</span></a>
+              <a class="link-blue" style="color:#2997ff" href="#">Buy <span class="chev">›</span></a>
+            </div>
+            <div class="ds-tone muted" style="font-size:12px">Always a pair. Always blue. Always a chevron.</div>
+          </div>
+        </div>
+        <div class="ds-card">
+          <h5>Buttons</h5>
+          <div class="ds-card-stack">
+            <a class="btn-pill" href="#">Buy</a>
+            <a class="btn-pill lg" href="#">Shop iPhone</a>
+            <div class="ds-tone muted" style="font-size:12px">One style, two sizes. Filled blue pill — nothing else exists.</div>
+          </div>
+        </div>
+        <div class="ds-card">
+          <h5>Tile Anatomy</h5>
+          <div style="background:#f5f5f7;border-radius:14px;padding:22px 16px;text-align:center">
+            <div style="font-size:19px;font-weight:600;letter-spacing:-0.02em">Product</div>
+            <div style="font-size:13px;color:#6e6e73;margin:3px 0 8px">One sentence. No more.</div>
+            <div style="display:flex;gap:16px;justify-content:center">
+              <a class="link-blue" style="font-size:13px" href="#">Learn more ›</a>
+              <a class="link-blue" style="font-size:13px" href="#">Buy ›</a>
+            </div>
+            <div style="width:64px;height:40px;border-radius:10px;background:var(--wallpaper);margin:16px auto 0"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Voice & Tone -->
+    <div class="ds-block">
+      <h3 class="ds-heading">Voice &amp; Tone</h3>
+      <p class="ds-desc">Apple copy is a headline discipline: fragments over sentences, product names as subjects, wordplay earned by restraint everywhere else.</p>
+      <div class="ds-comp">
+        <div class="ds-card">
+          <h5>Fragments</h5>
+          <div class="ds-tone">"All out Pro." "Thinstinct."<br/><span class="muted">Two or three words that sound inevitable. Verbs optional, periods mandatory.</span></div>
+        </div>
+        <div class="ds-card">
+          <h5>Product as Hero</h5>
+          <div class="ds-tone">"iPhone 17 Pro" — never "our new phone."<br/><span class="muted">The product name leads every tile. The company stays out of the sentence.</span></div>
+        </div>
+        <div class="ds-card">
+          <h5>Numbers, Quietly</h5>
+          <div class="ds-tone">"From $999" in fine print, never in the headline.<br/><span class="muted">Specs whisper. Feelings shout. Price is a footnote to desire.</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p class="foot-note">
+      This page is a design study — a self-contained homage to Apple's web visual language (the product tile matrix, paired blue links, and typographic restraint), built for the awesome-design-html collection. It is not affiliated with, endorsed by, or connected to Apple Inc. Apple, iPhone, iPad, Mac, Apple Watch, and AirPods are trademarks of Apple Inc. Product names, prices, and claims shown are illustrative fiction.
+    </p>
+    <div class="foot-cols">
+      <div>
+        <h4>Shop</h4>
+        <ul><li><a href="#">Store</a></li><li><a href="#">Mac</a></li><li><a href="#">iPad</a></li><li><a href="#">iPhone</a></li></ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul><li><a href="#">Apple TV+</a></li><li><a href="#">Apple Music</a></li><li><a href="#">iCloud+</a></li><li><a href="#">Fitness+</a></li></ul>
+      </div>
+      <div>
+        <h4>About this Study</h4>
+        <ul><li><a href="#design-system">Design System</a></li><li><a href="https://github.com/yzfly/awesome-design-html" target="_blank" rel="noopener">awesome-design-html</a></li></ul>
+      </div>
+      <div>
+        <h4>Author</h4>
+        <ul><li><a href="https://github.com/yzfly" target="_blank" rel="noopener">云中江树</a></li><li><a href="#">微信公众号: 云中江树</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>© 2026 设计研究 · 致敬 Apple 视觉语言 · 作者 云中江树</span>
+      <span class="links"><a href="#">CC BY-NC 4.0</a><a href="#">Privacy</a><a href="#">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<a class="src-link" href="https://github.com/yzfly/awesome-design-html/blob/main/assets/web/design.apple.html" target="_blank" rel="noopener">View source ↗</a>
+
+</body>
+</html>

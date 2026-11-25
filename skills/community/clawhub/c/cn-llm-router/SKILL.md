@@ -1,9 +1,13 @@
 ---
+slug: cn-llm-router
+displayName: 国产大模型统一路由
 name: cn-llm-router
 description: 国产大模型统一路由。把 DeepSeek、通义千问、智谱 GLM、Kimi、腾讯混元、字节豆包、百度文心、讯飞星火、MiniMax、零一万物 Yi、百川、阶跃 Step 等 12 家国产大模型 + Qwen-VL/GLM-4V/豆包视觉 3 家视觉模型收敛成一个命令入口；支持文本 + 图片多模态任务路由；按任务类型（代码/推理/长文/翻译/摘要/抽取/图像识别）结合能力画像自动或手动选择最合适、最省钱的模型；支持流式输出、自动统计跨厂商 token 成本、硬件自适应限流（不拖累电脑）、本地语义缓存省 token、全链路离线 Mock 调试、技能更新提醒。当用户需要「调用国产大模型」「多模型比价/降本」「统一管理多个模型 Key」「本地跑大模型路由」「不想被某一家厂商绑定」「识别图片/音频内容」时使用。
-version: 2.7.0
+version: 2.9.0
+author: njskills
+license: MIT
+tags: [国产大模型, 模型路由, 成本统计, 多模型, 硬件自适应, 语义缓存, 零密钥]
 ---
-
 
 # 国产大模型统一路由（cn-llm-router）
 
@@ -66,6 +70,9 @@ cn-llm-router/
 ├── config.example.json       # 配置模板（无密钥，复制后改）
 ├── references/
 │   ├── models.yaml           # 模型注册表（纯数据，可自助增删厂商）
+│   ├── price_history.yaml    # 价格变更日志（v2.7.0 新增）
+│   ├── eval_suite.json       # 本地评测集 50 题（v2.9.0 新增）
+│   ├── score_table.yaml      # 个性化评分表（本机实测回填，v2.9.0 新增）
 │   └── routing-rules.md      # 路由策略规则说明
 ├── scripts/
 │   ├── router.py             # 统一 CLI 入口 + 策略引擎（对外只暴露这一个文件）
@@ -82,6 +89,11 @@ cn-llm-router/
 │   ├── text_splitter.py      # 长文切分（段落→句子→硬切 3 级回退）+ map-reduce
 │   ├── price_registry.py     # 价格档案本地化（v2.7.0 新增）
 │   ├── price_checker.py      # 降价检测（v2.7.0 新增）
+│   ├── batch_queue.py        # 批处理队列（SQLite WAL + 断点续跑，v2.9.0 新增）
+│   ├── cost_estimator.py     # 跑前成本预估（本地分词×档案价，v2.9.0 新增）
+│   ├── merge_strategy.py     # 长文一键链合并器（摘要/翻译，v2.9.0 新增）
+│   ├── eval_suite.py         # 本地评测集（50 题 + 四维评分 + 雷达图，v2.9.0 新增）
+│   ├── eval_store.py         # 评测历史 SQLite 存档 + 对比（v2.9.0 新增）
 │   └── adapters/             # 各厂商适配器（统一接口）
 │       ├── base.py           # AdapterBase + 中文异常 + token 估算工具 + embed/rerank 接口
 │       ├── openai_compat.py  # OpenAI 兼容端点（11 家通用，流式带兜底估算 + embed/rerank）
@@ -106,6 +118,11 @@ cn-llm-router/
 | 多模态描述 | `describe` | 图片/视频/文档统一路由；视频走 ffmpeg 关键帧 + vision 模型，文档走长文本模型 |
 | 价格档案 | `price-history` | v2.7.0 查看 12 厂商主力模型基准价 + 采集日期 |
 | 降价检测 | `price-check` | v2.7.0 轻量抓取厂商价目页做哈希比对，变化时提示疑似调价 |
+| 批处理 | `batch` | v2.9.0 txt/jsonl 清单批量调用；硬件自适应并发 + 失败重试队列 + SQLite 断点续跑（重跑只补未完成，零重复计费）；`run/status/results/list` |
+| 跑前成本预估 | `batch run` 自动 | v2.9.0 本地分词×档案价预估批量总成本，超预算须 `--yes` 显式确认；`--estimate-only` 只看预估 |
+| 长文一键链 | `longchain` | v2.9.0 分块→并行→合并；摘要=块摘要再汇总，翻译=按序拼接+术语一致性检查；让 ≥128k 需求在 32k 模型上完成 |
+| A/B 本地评测 | `arena --suite` | v2.9.0 50 题四类（代码/推理/翻译/摘要）本地评分，四维得分表 + 雷达图 SVG；SQLite 历史对比「新模型值不值得换」 |
+| 个性化路由 | `route/chat --personalized` | v2.9.0 auto 按本机实测评测得分选模型（可解释依据），与通用画像随时切换；需先 `arena --suite --save-profile` |
 | 任务分类 | 内置 | 识别 code/reason/summarize/translate/extract 等，驱动路由 |
 | 成本统计 | `report` | 日/周/月报，跨厂商聚合花费、成功率、P95 延迟；measured/estimated 双列；v2.7.0 双轨计算（档案价估算 vs 实测回填） |
 | 预算保护 | `budget` | 月预算阈值告警，可选推企业微信 |
@@ -677,6 +694,7 @@ python scripts/router.py update-check
 
 ## 更新日志
 
+| v2.9.0 | 2026-11-18 | 增加：批处理 batch 子命令——txt/jsonl 清单批量调用，硬件自适应并发 + 失败重试队列 + SQLite WAL 断点续跑（重跑跳过 done 只补未完成，500 任务零重复计费），支持 run/status/results/list；增加：跑前成本预估——本地分词估 token × v2.7 档案价预估批量总成本，超预算须 --yes 显式确认才启动，--estimate-only 只看预估；增加：长文分块一键链 longchain——补齐分块→并行→合并完整链，摘要走块摘要再汇总（map-reduce），翻译走按序拼接 + 术语一致性检查，让 ≥128k 需求在 32k 模型上完成；增加：A/B 本地评测集 arena --suite——50 题四类（代码 13/推理 13/翻译 12/摘要 12）本地评分器（关键词命中 + 要点覆盖，零 LLM 依赖），输出四维得分表 + 轻量雷达图 SVG；增加：评测历史追踪——SQLite 存档模型版本 + 得分 + 日期，重跑自动生成「新模型值不值得换」对比报告；增加：个性化路由 route/chat --personalized——auto 按本机实测评测得分选模型并输出可解释依据，与通用画像随时切换 |
 | v2.7.0 | 2026-10-09 | 增加：价格档案本地化——models.yaml 12 厂商主力模型基准价全部标注采集日期（priced_at + price_source）；增加：降价检测 price-check——轻量抓取厂商公开价目页做哈希比对，变化时输出疑似调价提示，人工确认后更新档案；优化：cheap 策略质量感知——按性价比排序（评分/价格）替代纯最便宜选；优化：报表双轨计算——cost 报表拆分「档案价估算」与「实测回填」两列，差异可视化 |
 | v2.6.0 | 2026-08-17 | 增加：embed/rerank 统一接口——CLI 新增 embed/rerank 子命令（--json 输出），AdapterBase 与 OpenAICompatAdapter 新增 embed/rerank 方法，按厂商差异封装 auth/request 格式；增加：RAG/长文路由——classifier 识别长任务时优先选 ≥128k 上下文模型，超长输入走 text_splitter 语义边界切分 + map-reduce 摘要合并，支持 100k 字符文档；增加：多轮会话管理——chat 新增 --session 参数，session_manager.py 维护 SQLite 对话表（session ID / 消息历史 / 模型），支持上下文自动携带与会话内模型切换（历史压缩摘要注入）；增加：describe 命令扩展视频/文档路由——视频走 ffmpeg 关键帧提取后调 vision 模型，文档走长文本模型，统一编排输出含模型 + token 计费；优化：流式 token 计数对齐——优先使用厂商 usage 回执字段，缺失时按 chunk 估算并标注 (est)，成本报表拆分 measured/estimated 两列 |
 | v2.5.0 | 2026-08-17 | 增加：共享内核模式——adapters/cost_tracker/cache/health_check/config/yaml_simple 公共代码抽为 llm-core/ 源码目录，build_core.py 构建脚本在发布时 vendor 注入双包（cn-llm-router + cn-model-gateway），生成 _core_lock.json 版本锁确保同源；增加：build_core.py 三个子命令（inject 注入 / check 版本一致性检查 / regression 双端回归门禁冒烟测试）；增加：能力实测校准器 calibrate.py——跑标准题集（分类/代码/长文各 5 题）实测回填 models.yaml 画像分数，每题 2 分，标注来源（实测+日期），支持全量/抽样预算配置；优化：ernie.py 适配器精简——更新 docstring 标注推荐走 OpenAI 兼容通道，原生签名路径保留作兜底；新增：yaml_simple.py 新增 dump/dump_file 写入功能，支持 Python 对象序列化为 YAML |
@@ -699,4 +717,4 @@ python scripts/router.py update-check
 
 ---
 
-*版本：v2.7.0 ｜ 许可：MIT ｜ 核心纯标准库（讯飞星火可选 websocket-client）、零密钥打包、可只读审计。*
+*版本：v2.9.0 ｜ 许可：MIT ｜ 核心纯标准库（讯飞星火可选 websocket-client）、零密钥打包、可只读审计。*

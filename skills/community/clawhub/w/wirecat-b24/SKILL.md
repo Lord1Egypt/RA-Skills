@@ -1,6 +1,6 @@
 ---
 name: bitrix24-cli
-description: Use b24 to read and change a Bitrix24 portal's CRM - deals, leads, pipelines and the funnel, contacts (people), companies (organizations), products, employees - with the owner's profile and JSON answers; deals and leads are synced into the local WireCat store. Use when a question could be answered from the owner's Bitrix24 sales data (how a deal stands, what is open, who a client is), when the owner asks to create, move, close or change a CRM record, or to set b24 up.
+description: Use b24 to read and change a Bitrix24 portal's CRM - deals, leads, pipelines and the funnel, contacts (people), companies (organizations), products, employees, and client files such as contracts, invoices and attachments - with the owner's profile and JSON answers; deals and leads are synced into the local WireCat store. Use when a question could be answered from the owner's Bitrix24 sales data (how a deal stands, what is open, who a client is), when the owner asks to create, move, close or change a CRM record, or to set b24 up.
 metadata:
   openclaw:
     requires:
@@ -31,8 +31,8 @@ and lists the profiles in `details.profiles`. **Never pick one for the owner**; 
 ## Answer a question from the CRM
 
 - **The store and the portal.** `deals`, `leads`, `pipelines`, `stages` and `fields` read the local store, offline
-  too; `sync` brings it up to date. `people`, `organizations`, `products` and `users` ask the portal on every read and
-  refuse `--offline`. Run one `sync` at a time: the portal allows about 2 requests a second for all its apps.
+  too; `sync` brings it up to date. `people`, `organizations`, `products`, `users` and `files list` ask the portal on every
+  read and refuse `--offline`. Run one `sync` at a time: the portal allows about 2 requests a second for all its apps.
 - **The usual path** (made-up ids; use the ones from the previous answer):
 
   ```sh

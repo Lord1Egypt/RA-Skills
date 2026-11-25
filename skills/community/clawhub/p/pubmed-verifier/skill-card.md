@@ -1,6 +1,6 @@
 ## Description:
 
-Verifies PMID, DOI, arXiv, and reference-list citations against academic registries, comparing claimed metadata with source records and reporting uncertain checks explicitly.
+Verifies PMIDs, DOIs, arXiv IDs, and reference lists against academic registries, checking whether each identifier matches the cited paper and producing citation reports and formatted references.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Researchers, medical writers, and evidence-based teams use the skill to check whether cited PMIDs, DOIs, arXiv identifiers, and reference lists exist and match the claimed publications.
+Researchers, medical writers, and evidence-based medicine teams use it to audit reference lists and check whether cited identifiers point to the papers they claim.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Citation identifiers, titles, search terms, and an optional contact email may be sent to external academic registries during checks.
+Risk: Reported citation-verification flaws could miss mismatches or misclassify lookup failures, and the security review is partial.
 
-Mitigation: Avoid submitting sensitive unpublished queries, and omit the optional contact email unless needed.
+Mitigation: Use the results as an aid rather than the sole accuracy check; confirm important citations against the source paper or registry.
 
-Risk: Unusual reference formatting or incomplete registry responses can leave citation verdicts uncertain or incomplete.
+Risk: The skill sends citation data in requests to external registries, and disclosure may be inadequate.
 
-Mitigation: Treat unknown results as unresolved, review partial or mismatch results against source records, and provide structured claims with expected titles when a more decisive check is needed.
-
-Risk: The skill makes outbound requests to academic registries, so its network access should fit the host's policy.
-
-Mitigation: Confirm that the host permits requests to the registries needed for the verification task.
+Mitigation: Avoid submitting confidential citation information unless you understand and accept the external data flow.
 
 ## Reference(s):
 
-- [PubMed Verifier on ClawHub](https://clawhub.ai/docsor1212/skills/pubmed-verifier)
-- [Project homepage (package metadata)](https://github.com/docsor1212/pubmed-verifier)
+- [ClawHub skill page](https://clawhub.ai/docsor1212/skills/pubmed-verifier)
+- [Project homepage](https://github.com/docsor1212/pubmed-verifier)
 - [Usage guide](references/usage_guide.md)
 - [API examples](references/api_examples.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, HTML, JSON, CSV, BibTeX, RIS, CSL JSON]
+**Output Type(s):** [Text, JSON, HTML]
 
-**Output Format:** [Terminal summaries and citation reports or bibliography files]
+**Output Format:** [Citation verification reports in text, JSON, or HTML, plus formatted reference lists.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports use correct, mismatch, partial, invalid, and unknown verdicts; network failures are reported as unverified.]
+**Other Properties Related to Output:** [Verification results use correct, mismatch, partial, invalid, or unknown states; registry failures are reported as unverified.]
 
 ## Skill Version(s):
 
-7.0.0 (source: SKILL.md frontmatter, server-resolved release)
+7.2.1 (source: SKILL.md frontmatter, server-resolved release)
 
 ## Ethical Considerations:
 

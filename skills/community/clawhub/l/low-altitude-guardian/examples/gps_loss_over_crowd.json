@@ -1,0 +1,26 @@
+{
+  "timestamp": "2026-11-25T10:05:00+00:00",
+  "device_id": "UAV-BJ-00731",
+  "device_type": "多旋翼无人机",
+  "location": "39.9042°N, 116.4074°E",
+  "altitude_agl": 80,
+  "velocity_horizontal": 8,
+  "velocity_vertical": 0,
+  "heading": 210,
+  "wind_speed_ms": 6,
+  "battery_level": 45,
+  "flight_phase": "巡航",
+  "payload": "无",
+  "nearby_threats": "下方为居民区，地面有行人",
+  "weather": "晴，能见度良好",
+  "comms_status": "遥控器信号正常",
+  "crisis_trigger": "GPS 信号突然丢失",
+  "failed_motors": 0,
+  "total_motors": 4,
+  "gps_available": false,
+  "trends": {
+    "battery_temp_trend": "stable",
+    "voltage_trend": "stable",
+    "altitude_trend": "stable"
+  }
+}

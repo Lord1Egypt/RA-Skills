@@ -1,6 +1,6 @@
 ## Description:
 
-Searches Chinese and international sources for publication mentions, then checks candidate matches against titles, dates, and distinctive text to produce confidence-graded findings.
+Searches Chinese and international channels for published material, checks candidate pages against titles, publication dates, and text fingerprints, and returns confidence-graded findings.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Communications, research, and editorial teams use the skill to check whether supplied content appeared online and to map likely reposts or mentions, with evidence for each finding.
+Communications and research teams use this skill to check whether a release or article appeared, trace reposts, and map coverage across available search channels. It checks candidate pages for title, publication-date, and body-fingerprint evidence, then reports confidence levels and unresolved items.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search may send excerpts of unpublished or sensitive user text to third-party services.
+Risk: Search queries may disclose confidential or unpublished material to external search services.
 
-Mitigation: Review privacy implications and avoid using unpublished or sensitive text unless its use with external search services is appropriate.
+Mitigation: Use only material approved for external searching; omit confidential or unpublished details unless disclosure is acceptable.
 
-Risk: Weaknesses in result verification and link handling may produce unreliable publication matches or citations.
+Risk: Search and verification results can be unreliable; dates or fingerprints may come from unrelated or non-visible page content, and a PASS may lack date evidence.
 
-Mitigation: Check the linked source and confirm title, publication date, and distinctive body text before relying on a finding or citation.
+Mitigation: Treat script results as candidate signals. Confirm the publication date from page metadata or an attributed date line and confirm fingerprint matches in visible article text before reporting a high-confidence result.
 
-Risk: Partial scan coverage can leave relevant sources unexamined, so missing results do not establish that content was never published.
+Risk: Some referenced paths were unresolved during scanning, leaving partial coverage.
 
-Mitigation: Treat search coverage as incomplete, follow up through additional sources, and report unresolved items as pending rather than as confirmed absence.
+Mitigation: Review the source set and unresolved references before relying on findings, and describe coverage limits and pending items in the report.
 
 ## Reference(s):
 
-- [Channel Matrix](references/channel-matrix.md)
-- [Media Pool Reference](references/media-pool.md)
-- [ClawHub release](https://clawhub.ai/haiyangchenbj/skills/deep-search-engine)
+- [ClawHub skill release](https://clawhub.ai/haiyangchenbj/skills/deep-search-engine)
+- [Channel Matrix](artifact/references/channel-matrix.md)
+- [Media Pool](artifact/references/media-pool.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis, Guidance]
+**Output Type(s):** [JSON, Text, Markdown]
 
-**Output Format:** [Confidence-graded findings JSON with verification notes, links, and pending items when evidence is incomplete.]
+**Output Format:** [Confidence-graded findings JSON with a concise human-readable summary and source links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Findings distinguish verified matches from lower-confidence or pending results.]
+**Other Properties Related to Output:** [Includes verification evidence, confidence levels, and items requiring follow-up.]
 
 ## Skill Version(s):
 
-0.4.0 (source: frontmatter)
+0.4.1 (source: evidence.json release and SKILL.md frontmatter)
 
 ## Ethical Considerations:
 

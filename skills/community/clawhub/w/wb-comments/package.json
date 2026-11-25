@@ -1,0 +1,10 @@
+{
+  "name": "wb-comments",
+  "version": "1.0.0",
+  "private": true,
+  "description": "微博评论分步采集 Skill CLI (会话制, 每步一页主评论或一次回复展开 = 1 点数)",
+  "main": "cli.js",
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,18 +1,18 @@
 ---
 name: tialink-tia-portal
 slug: tialink-tia-portal
-version: 1.0.8
+version: 1.0.9
 displayName: TIA Portal automation over MCP (TiaLink)
-summary: Drive a real Siemens TIA Portal (V19 / V20 / V21) project through the TiaLink MCP gateway - configure hardware and networks, create FB/FC/DB/UDT with SCL, compile, download to PLCSIM and read back to verify. Ships pre-flight checks and failure triage, so the agent verifies instead of guessing.
-description: Operate a Siemens TIA Portal (V19 / V20 / V21) project from an AI agent - hardware and network configuration, FB/FC/DB/UDT creation with SCL, compile, download to S7-PLCSIM, read-back verification. Use when the user mentions TIA Portal, Siemens PLC automation, SCL programming, rack configuration or Openness, or wants an agent to work inside a PLC project. Requires the TiaLink gateway on the TIA Portal machine (commercial software; read-only without a licence).
+summary: Drive a real Siemens TIA Portal (V17 / V18 / V19 / V20 / V21) project through the TiaLink MCP gateway - configure hardware and networks, create FB/FC/DB/UDT with SCL, compile, download to PLCSIM and read back to verify. Ships pre-flight checks and failure triage, so the agent verifies instead of guessing.
+description: Operate a Siemens TIA Portal (V17 / V18 / V19 / V20 / V21) project from an AI agent - hardware and network configuration, FB/FC/DB/UDT creation with SCL, compile, download to S7-PLCSIM, read-back verification. Use when the user mentions TIA Portal, Siemens PLC automation, SCL programming, rack configuration or Openness, or wants an agent to work inside a PLC project. Requires the TiaLink gateway on the TIA Portal machine (commercial software; read-only without a licence).
 license: CC-BY-4.0
 tags: [tia-portal, siemens, plc, scl, openness, ladder, automation, industrial, mcp]
 homepage: https://tia.hubwiz.com/tia-link?utm_source=clawhub&utm_medium=skill
 metadata:
   publisher: hubwiz.com
   repository: https://github.com/tia-forge/tialink
-  requires: TiaLink gateway on the TIA Portal machine (Windows + TIA Portal V19 / V20 / V21 + Siemens Openness user group; V21 needs TiaLink 1.5.0+)
-  supported-tia-versions: V19, V20, V21
+  requires: TiaLink gateway on the TIA Portal machine (Windows + TIA Portal V17 / V18 / V19 / V20 / V21 + Siemens Openness user group; V17/V18 need TiaLink 1.6.0+, V21 needs 1.5.0+)
+  supported-tia-versions: V17, V18, V19, V20, V21
   transport: MCP Streamable HTTP (/mcp + Bearer token)
   body-language: zh-CN (checklists and triage), en (this summary)
 ---
@@ -41,7 +41,7 @@ or a timeout means network/gateway trouble - fix that before reading further.
 
 ## When to use it
 
-- The user wants an agent to work inside a real TIA Portal project (V19 / V20 / V21), not to produce code in the abstract.
+- The user wants an agent to work inside a real TIA Portal project (V17 / V18 / V19 / V20 / V21), not to produce code in the abstract.
 - Verification matters: compile errors, download failures and read-back values are reported by the real toolchain.
 
 ## When NOT to use it
@@ -125,7 +125,7 @@ AI 客户端 ──MCP(Streamable HTTP, /mcp + Bearer)──► TiaLink 网关 �
 | 是 | 不是 |
 |---|---|
 | 一个 **MCP 网关**，任何支持 Streamable HTTP + Bearer 的客户端都能用 | ❌ 不是某个 AI 厂商的插件，不绑定 Claude / WorkBuddy / DeepSeek |
-| 需要 **本机装了博途 V19 / V20 / V21** | ❌ 不是云端服务，不能"上传 .ap19 帮你改" |
+| 需要 **本机装了博途 V17 / V18 / V19 / V20 / V21** | ❌ 不是云端服务，不能"上传 .ap19 帮你改" |
 | **未授权也能只读**：连上就能读工程、读块、读硬件树 | ❌ 不替你做安全设计，不碰安全回路 |
 
 ---
@@ -140,7 +140,7 @@ AI 客户端 ──MCP(Streamable HTTP, /mcp + Bearer)──► TiaLink 网关 �
 
 | # | 硬条件 | 怎么验（不用装东西） |
 |---|---|---|
-| 1 | Windows 64 位，**已装且已授权** 博途 **V19 / V20 / V21** | 打开博途 → 帮助 → 关于；版本号必须是 V19.x / V20.x / V21.x |
+| 1 | Windows 64 位，**已装且已授权** 博途 **V17 / V18 / V19 / V20 / V21** | 打开博途 → 帮助 → 关于；版本号必须是 V17.x / V18.x / V19.x / V20.x / V21.x |
 | 2 | 运行网关的 **Windows 账号在本地 `Siemens TIA Openness` 用户组** | `whoami` 拿到账号 → 计算机管理 → 本地用户和组 → 组 → `Siemens TIA Openness` → 成员里有它。**没有这一条，Openness 一律报授权错误** |
 | 3 | 客户端与网关之间 **TCP 端口可达**（示例用 `8080`） | 客户端机器上 `curl -sS -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8080/mcp` —— 返回 **4xx 也算通**（说明网络到了，只是缺 token/路径）；`Connection refused` / 超时才是网络问题 |
 | 4 | 客户端支持 **Streamable HTTP 且能发 `Authorization: Bearer`** | 只能跑 stdio 的客户端 → 用第 1 节的 `tialink-mcp` 适配器 |
@@ -300,7 +300,7 @@ curl -sS -X POST "http://127.0.0.1:8080/mcp" \
 | `404` | 路径不是 `/mcp` | 补全路径 |
 | 连上了但工具列表是空的 | 客户端缓存了旧列表 | 重启客户端；确认支持 Streamable HTTP |
 | Openness 报授权 / "not permitted" | 账号不在 `Siemens TIA Openness` 组 | 加入组 → **注销重登**（组权限要重开会话才生效） |
-| 报版本相关错误 | 网关与博途版本不匹配 | 确认是 V19 / V20 / V21（V21 需 TiaLink 1.5.0+） |
+| 报版本相关错误 | 网关与博途版本不匹配 | 确认是 V17 / V18 / V19 / V20 / V21（V17 / V18 需 TiaLink 1.6.0+，V21 需 1.5.0+）；安装包里是三个目录：`v17-v18/`、`v19-v20/`、`v21/`，按本机博途版本跑对应目录里的 `TiaLink.exe` |
 | 仿真/下载类工具失败 | PLCSIM Advanced 未装、未起、无虚拟实例、PC/PG 接口选错 | 起实例 → 选虚拟网卡 → 重试 |
 | 编译/下载调用超时 | 默认超时 600s，编译慢是正常的 | **不要**把超时降到聊天级别；等 |
 | 重启后全挂 | 网关没注册成服务，博途未就绪 | 先起博途，再起网关 |

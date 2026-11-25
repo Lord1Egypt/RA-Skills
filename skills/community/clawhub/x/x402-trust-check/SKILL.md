@@ -1,7 +1,7 @@
 ---
 name: x402-trust-check
-description: Check the trust rating of any x402 service before paying it, and of any skill before installing it. Free JSON, daily, sybil-resistant.
-version: 1.6.0
+description: Check the trust rating of any x402 service before paying it. Free JSON, daily, sybil-resistant.
+version: 1.7.0
 homepage: https://agenteconomy.report/s/
 metadata:
   openclaw:
@@ -86,34 +86,13 @@ Only if the user wants history or an audit trail. Paid via x402 with your wallet
 
 The whole archive (every service, every day) is free as files at `https://agenteconomy.report/s/data/` (CC BY 4.0).
 
-## 6. Check a skill before installing it
+## 6. Skill ratings (retired)
 
-Same index, one level up. Before `openclaw skills install <slug>` (or when a user asks "is this
-skill safe?"), read the free rating of the skill:
-
-```bash
-curl -s https://agenteconomy.report/k/<slug>.json
-```
-
-Fields: `tier` (same scale, trust line BBB), `outlook`, `flags` (`SUSPICIOUS`, `PIPE_SHELL`,
-`OBFUSCATED`, `UNKNOWN_PAYEE`, `KEYS`, `NEW`; `flag_meaning` explains each), `downloads`,
-`age_days`, `pays_to` (the x402 services its instructions pay, each with its own rating) and
-`unknown_payees` (hard-coded wallets in no catalog). Policy: `SUSPICIOUS` or `tier` D: do not
-install; `UNKNOWN_PAYEE`, `PIPE_SHELL` or `OBFUSCATED`: show the flag to the user and ask;
-`KEYS`: say it handles keys and ask; 404: skill not indexed, treat as unknown. Paid record with
-the same fields: `GET https://agenteconomy.report/api/skill/<slug>` (US$ 0.005).
-
-Some skills also have a **code audit** (the package itself was read, file by file):
-
-```bash
-curl -s https://agenteconomy.report/k/<slug>.audit.json
-```
-
-`verdict` is `SAFE`, `CAUTION` or `UNSAFE`; `findings` are each tied to a file and a line;
-`version` says which release was audited. `UNSAFE`: do not install. `CAUTION`: show the findings
-to the user. 404: no audit yet; the rating above still applies. The list of audited skills is at
-`https://agenteconomy.report/k/audited`. The audits are a closed archive of 150 skills read in
-September 2026: not sold since 2026-10-19, no new audit since 2026-11-04; `/api/audit/<slug>` answers 410.
+The Agent Economy Report rated agent skills until 2026-11-19 and retired that section: every URL under
+`https://agenteconomy.report/k/` and `https://agenteconomy.report/api/skill/` answers 410 Gone. A 410 there
+says nothing about a skill: it is not a rating. Before installing a skill, read its instructions yourself
+and ask the user. The last daily snapshot of the skill ratings stays in the open dataset
+(`skills-latest.csv.gz` at `https://agenteconomy.report/s/data/`).
 
 ## 7. Report back
 

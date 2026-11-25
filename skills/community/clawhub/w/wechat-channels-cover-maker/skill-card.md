@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Creators, local businesses, and teams use this skill to plan and produce a WeChat Channels video cover from a topic or supplied image, then review or refine an accepted cover. Image generation and editing may incur charges.
+External creators, businesses, and content teams can use this skill to create or refine a WeChat Channels video cover from a topic, title, script, key frame, portrait, product photo, or visual reference.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,41 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill requests broad media and spending access, shares installation and runtime details, and uses shared authorization behavior that could affect other installed skills.
+Risk: The security assessment flags broad service access and persistent installation and host reporting beyond the cover-making purpose; scan coverage is incomplete.
 
-Mitigation: Install only if those permissions and data sharing are acceptable; review the requested authorization and the details described in the updates and security reference.
+Mitigation: Review the requested permissions and reporting details before authorizing, and install only if they fit your expectations.
 
-Risk: A selected image uploaded for cover creation may be sent to Beatra’s one-time upload address.
+Risk: Malformed local skill inventory data could affect other installed skills during uninstall.
 
-Mitigation: Upload only images you intend to share with the service.
+Mitigation: Review the shared credential and uninstall behavior, and use the bundled uninstall procedure.
+
+Risk: Image generation, transformation, and edits consume credits.
+
+Mitigation: Confirm the request route, billing basis, maximum cost, and single-call count before approving paid work.
 
 ## Reference(s):
 
-- [WeChat Channels cover workflow](artifact/references/workflow.md)
-- [Billing, errors, and recovery](artifact/references/billing-errors-and-recovery.md)
-- [Installation and authentication](artifact/references/installation-and-auth.md)
-- [Updates and security](artifact/references/updates-and-security.md)
+- [WeChat Channels cover workflow](references/workflow.md)
+- [Billing, errors, and recovery](references/billing-errors-and-recovery.md)
+- [Installation and authentication](references/installation-and-auth.md)
+- [Updates and security](references/updates-and-security.md)
+- [Uninstall and disconnect](references/uninstall-and-disconnect.md)
+- [ClawHub release page](https://clawhub.ai/beatra-ai/skills/wechat-channels-cover-maker)
 - [Beatra skill page](https://beatra.ai/skills/wechat-channels-cover-maker)
-- [ClawHub skill listing](https://clawhub.ai/beatra-ai/skills/wechat-channels-cover-maker)
 
 ## Skill Output:
 
-**Output Type(s):** [Image, Text]
+**Output Type(s):** [Images, Text]
 
-**Output Format:** [One generated or refined cover image with concise cover direction or review details]
+**Output Format:** [Generated cover image with a textual brief and result details]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [One image per paid request; generation, transformation, and editing use Beatra credits.]
+**Other Properties Related to Output:** [Image generation, transform, and edit requests consume credits; the usual request produces one cover.]
 
 ## Skill Version(s):
 
-0.2.5 (source: server-resolved release metadata)
+0.2.6 (source: server-resolved release metadata, manifest.json)
 
 ## Ethical Considerations:
 

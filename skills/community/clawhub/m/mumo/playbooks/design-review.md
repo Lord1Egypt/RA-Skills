@@ -13,10 +13,10 @@ State the constraints the design was built under. Models that don't know the con
 ## What to look for in round 1
 
 Design reviews produce two kinds of signal:
-- **Convergent concerns** — multiple models flag the same issue. These are almost always real. Mark them CORE.
+- **Convergent concerns** — multiple models flag the same issue. Check the evidence and any assumption they share; agreement is not verification. Mark it CORE when resolving it could change the decision.
 - **Isolated concerns** — one model raises something the others didn't. These are either the most valuable insight in the session or noise. Use EXPLORE to find out which.
 
-Watch for models critiquing style rather than substance. The claim map can flatten severity — naming conventions and concurrency bugs get equal-weight rows. Read the prose to distinguish what actually matters.
+Watch for models critiquing style rather than substance. The reactions can flatten severity — naming conventions and concurrency bugs get equal weight. Read the prose to distinguish what actually matters.
 
 ## When to append
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Guides agents through large tasks one reviewable phase at a time, with completion markers and optional Copilot CLI loop scripts.
+Guidance for dividing multi-phase work across agent runs, with completion markers and optional bash and CMD loops to continue runs automatically.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to break multi-stage coding work into reviewable phases and resume it manually or through optional Copilot CLI loops.
+Developers use this skill to carry out plans, refactors, migrations, and other multi-phase work across agent runs. They can use the included shell or CMD loop to resume work after each phase.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Automated loops may continue coding across many phases and modify the workspace without approval when granted write or shell permissions.
+Risk: One shell script was only partially inspected by the security scanner.
 
-Mitigation: Review the plan first, keep Copilot permissions narrow, and avoid allow-all-tools except in trusted repositories.
+Mitigation: Review the shell script before installing or running its automated loop.
 
 ## Reference(s):
 
-- [Handle Big Tasks on ClawHub](https://clawhub.ai/jhauga/skills/handle-big-tasks)
+- [ClawHub skill release](https://clawhub.ai/jhauga/skills/handle-big-tasks)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Code, Shell commands]
+**Output Type(s):** [Guidance, Shell commands]
 
-**Output Format:** [Markdown phase reports with plain-text completion markers; optional code and shell commands]
+**Output Format:** [Markdown guidance with bash and CMD scripts]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Uses a final-line CONTINUE? Y or N or TASK COMPLETE! marker; optional loop scripts append session logs.]
+**Other Properties Related to Output:** [Optional plan or task description; phase-completion markers signal whether work remains.]
 
 ## Skill Version(s):
 
-1.0.0 (source: ClawHub release metadata)
+1.0.1 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

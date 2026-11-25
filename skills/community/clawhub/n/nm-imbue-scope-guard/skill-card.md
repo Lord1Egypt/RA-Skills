@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use Scope Guard during brainstorming and planning to score proposed features against value, cost, backlog priority, and branch limits, then decide whether to implement, discuss, defer, or reject them.
+Developers use Scope Guard during brainstorming, planning, and implementation to score proposed features, compare them with backlog priorities, and keep work within branch budgets.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Feature deferrals can involve publishing project reasoning or context to GitHub without clear approval.
+Risk: Deferring work may publish planning context to GitHub issues or discussions.
 
-Mitigation: Review the issue and Discussion content and obtain explicit approval before publishing project-specific context.
-
-Risk: The security scan is partial because several referenced local paths were unresolved.
-
-Mitigation: Resolve and review the referenced paths, especially their GitHub publishing behavior, before relying on the workflow.
+Mitigation: Review the GitHub integration and decide what planning details may be published before using the deferral workflow; skip installation if you do not need it.
 
 ## Reference(s):
 
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-imbue-scope-guard)
+- [Scope Guard on ClawHub](https://clawhub.ai/athola/skills/nm-imbue-scope-guard)
+- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Markdown, Shell commands]
+**Output Type(s):** [Analysis, Guidance, Markdown, Shell commands]
 
-**Output Format:** [Markdown guidance with scoring summaries and shell command examples]
+**Output Format:** [Markdown scoring summaries and workflow guidance, with optional shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Recommendations depend on project goals, backlog, and branch metrics.]
+**Other Properties Related to Output:** [Scores, backlog comparisons, and branch checks depend on current repository context.]
 
 ## Skill Version(s):
 
-1.10.3 (source: release metadata, frontmatter)
+1.10.4 (source: ClawHub release evidence; artifact frontmatter lists 1.10.3)
 
 ## Ethical Considerations:
 

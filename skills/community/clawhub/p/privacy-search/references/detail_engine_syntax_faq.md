@@ -193,3 +193,35 @@ A: 3 个工具：`search`（多引擎隐私搜索）、`synthesize`（Perplexity
 
 **Q: MCP Server 超时怎么办？**
 A: 默认单次调用 30 秒，超时返回 JSON-RPC 错误响应，不中断服务。可在 config.yaml 调整 `mcp_server.timeout`。LLM 不可用时自动降级为抽取式，不影响 search/fetch 工具。
+
+### V2.1 新功能
+
+**Q: RAG-lite 三段答案怎么用？需要 Key 吗？**
+A: `--synthesize-pro` 无 Key 时自动走 RAG-lite：多源正文→本地分块→TF-IDF 选块→「结论/依据/反证」三段答案。全本地、零 Key、不联网（用搜索结果 snippet），依据引用全部可回链原文。有 Key 时用 GLM-4-Flash 增强。
+
+**Q: "反证"是 LLM 生成的吗？可靠吗？**
+A: 不是。反证是本地规则：与结论同主题、但语义重叠低（默认 <0.45）的相关块。属于诚实呈现"另一面"，非严格逻辑反例，供用户自行判断。无对立表述时会明确说明"未找到明显对立段落"，不会编造。
+
+**Q: 无源论断去哪了？**
+A: V2.1 起默认标注 `[无源]` 保留进正文（无源不等于假，小众真相常无源）。如需剔除，设 `fact_check.remove_unsupported: true`。标注阈值可用 `sufficient_threshold`/`partial_threshold` 调整。
+
+**Q: RAG-lite 和 LLM 合成都做事实核查吗？**
+A: 不同。RAG-lite 的依据块直接来自原文，天然可回链，不做二次核查（避免破坏三段结构）。事实核查层用于 LLM 生成路径——LLM 可能产生幻觉，需逐论断回链标注支撑度。
+
+**Q: 隐私分数怎么算？normal/strict 差多少？**
+A: 五指标加权（满分 100）：引擎评级 50 + 代理 20 + 缓存 10 + cookie 10 - 外发请求扣分（每项 3，上限 30）。normal 用低评级引擎+无代理+外发多（约 20-40 分），strict 用高评级引擎+代理+少外发（约 60-90 分），分差 >30。权重在 config.yaml 的 `privacy_score` 段可调。
+
+**Q: 隐私档案周报怎么看？**
+A: `--privacy-profile report` 显示过去 7 天搜索次数、平均分、最高/最低、strict/normal 均分、代理使用率。数据存于 `~/.workbuddy/output/privacy-search-profile.jsonl`，每次搜索自动累计。
+
+**Q: DNS 泄露提示是什么？**
+A: strict 模式搜索时自动检测系统 DNS 是否与隐私 DNS 列表一致，不一致时警告"查询词经域名解析可能被 ISP 记录"。手动查：`--privacy-profile dns`。隐私 DNS 列表可在 config.yaml 的 `privacy.strict.dns_servers` 配置。
+
+**Q: cookie 零残留自证是什么？**
+A: strict 模式强制不发送 Cookie（内存策略）；`--privacy-profile cookie` 补自检报告，检查配置 `no_cookie` 与输出目录内是否有 cookie 文件残留，给出可验证的"零残留"证据。
+
+**Q: SearXNG 一键自检检查什么？**
+A: `--searxng-audit` 检查 5 项：实例健康（JSON 接口可用）、对外绑定（须 127.0.0.1）、日志级别（须 WARNING+）、JSON 格式（formats 含 json）、查询词记录（query_in_title/save 须 false）。逐项列出未达标项与修复建议。
+
+**Q: 答案缓存的「上次搜过」提示怎么用？**
+A: 相同问题命中缓存、或近似问题（Jaccard 相似度 ≥0.8）近期搜过时，提示"上次搜过（时间）"+ 是否强制重搜（`--no-cache`）。省 token 省时间，也是缓存价值可见化。

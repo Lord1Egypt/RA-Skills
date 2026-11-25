@@ -8,7 +8,7 @@ Sender has 900 tokens of observed real-time spendable funding after any locked b
 
 ## Rate scale
 
-For an 18-decimal Super Token, 1 token/day floor rate is `11574074074074` base units/second. That superficially matches Flow's UD21x18 example only because this token has 18 decimals; the models are different. A six-decimal token rate uses its actual interface's scale, not a universal 1e18 rule. Discover decimals and documented representation before constructing a call.
+For an 18-decimal Super Token, 1 token/day floor rate is `11574074074074` base units/second. That superficially matches Flow's UD21x18 example only because this token has 18 decimals; the models are different. Super Tokens are always 18 decimals, so a flow rate is in 18-decimal units per second even when the underlying token, such as USDC, has six. The underlying's decimals apply to its own approval and balance; wrap and unwrap amounts are 18-decimal Super Token units. Confirm the documented representation before constructing a call.
 
 ## Scheduler not executed
 

@@ -1,0 +1,80 @@
+ENVI^ ENVIMODE=1
+ENVI^ ForceLocal=1
+SET &SB_VERT=1
+SET &SB_VERT=1
+SET &SIF_RANGE=0x0001
+SET &SIF_PAGE=0x0002
+SET &SIF_POS=0x0004
+SET &SIF_ALL=0x001F
+
+
+IFEX %CurFile%.LOG, LOGS * %CurFile%.LOG
+CALL @MAIN
+_SUB MAIN,W800H600
+//SWIN   [*] [画框名]:类名:[名称],<形状>,[内部位置][,状态] 
+    SWIN SWIN1:Page11:-SWINMAIN,L42T30W194H500,,0x100
+    ENVI @SWINMAIN:SWIN1.ID=?&Swin1_Wid   //画框ID
+    ENVI @SWINMAIN.ID=?&SWINMAIN_Wid    //与Page11窗口ID相同%&Page1_WID%
+    
+    ITEM Button1,L300T108W100H54,设置大小,OnItem1  2000 100  5000
+    ITEM Button2,L300T168W100H54,设置范围,OnItem2
+    ITEM Button2,L300T228W100H54,设置大小2,OnItem3
+    SET &I=0
+    SET &Iv=0
+    SET &Is=0
+_END
+
+//虚拟大小 进度条.nMax=5000
+_SUB Page11,W600H5000,,,,:0xFFFFFF
+    LABE Label1,L20T20W128H48,请点击"打开"按钮以浏览文件。
+_END
+
+//内部子图大小 2000~5000~100切换
+_SUB OnItem1 * //切换大小1 切换大小2  
+     @CALC #&Is=%Is%+0
+     IFEX #%Is%<=0, TEAM SET Is=1|SET Hv=%~1! IFEX #%Is%<=1,  TEAM SET Is=2|SET Hv=%~2! TEAM SET Is=0|SET Hv=%~3
+--MESS hv[%&hv%]
+     SET$  &inf=28 *28 0
+     //SET-int  inf=%&SIF_PAGE%:4
+     CALC #&&PH=%H% -  4
+     SET-int  inf=%PH%:16
+     @TEAM SET-int  inf=%&SIF_RANGE%:4| SET-int  inf=%Hv%:12  //调整虚拟范围
+     ENVI @@POS=%&SWINMAIN_Wid%::::%Hv%  //子图大小
+     //ENVI @@POS=%&SWIN1_Wid%::::%Hv%   //画框大小
+     CALL $--qd user32.dll,SetScrollInfo,#%SWIN1_Wid%,#%SB_VERT%,*&inf
+_END
+
+
+_SUB OnItem3 * //[500 100切换]
+     @TEAM CALC #&I=%I%+0| CALC #&I=400 - %I%
+     CALC #&&H=500 - %I%
+     SET$  &inf=28 *28 0
+     SET-int  inf=%&SIF_PAGE%:4
+     CALC #&&PH=%H% -  4
+     SET-int  inf=%PH%:16
+     //@TEAM SET-int  inf=%&SIF_RANGE%:4| SET-int  inf=4000:12  //调整虚拟范围
+     ENVI @@POS=%&SWINMAIN_Wid%::::%H%  //子图大小
+     ENVI @@POS=%&SWIN1_Wid%::::%H%     //画框大小
+     CALL $--qd user32.dll,SetScrollInfo,#%SWIN1_Wid%,#%SB_VERT%,*&inf
+_END
+
+
+_SUB OnItem2 *  // [5000 1000切换]
+     @TEAM CALC #&Iv=%Iv%+0| CALC #&Iv=4000 - %Iv%
+     CALC #&&Hv=5000 - %Iv%
+     SET$  &inf=28 *28 0
+     @TEAM SET-int  inf=%&SIF_RANGE%:4| SET-int  inf=%Hv%:12  //调整虚拟范围
+     CALL $--qd user32.dll,SetScrollInfo,#%SWIN1_Wid%,#%SB_VERT%,*&inf
+_END
+
+
+_ENDFILE
+//typedef struct tagSCROLLINFO
+// { UINT cbSize;    //SCROLLINFO结构体本身的字节大小
+//UINT fMask;       //见下面的说明
+// int nMin;           //最小滚动位置
+// int nMax;         //最大滚动位置，虚拟大小，本例为 5000，可以调整
+//UINT nPage;        //页面尺寸
+// int nPos;               //滚动块的位置
+//int nTrackPos;         //滚动块当前被拖动的位置，不能在SetScrollInfo中指定
+//} SCROLLINFO; 

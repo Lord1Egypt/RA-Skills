@@ -1,6 +1,6 @@
 ## Description:
 
-Pi EvoX Loop adds an experience-inheritance runtime for coding agents that recalls validated fixes, records when they help, and saves useful new fixes for future tasks, with optional controlled experiments to measure the effect.
+Adds an experience-inheritance workflow for coding agents: recall validated fixes from a gene store, record when they help, and deposit new fixes after non-obvious failures, with optional controlled experiments.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Developers using coding agents can recall validated fixes at the start of non-trivial tasks, record when a fix helps, and save useful new fixes after resolving a failure. They can also run controlled experiments to measure whether inherited fixes improve repeat tasks.
+Developers use this skill to reuse previously validated coding fixes, record when those fixes help, and add useful repairs for later tasks. It also supports optional controlled experiments that measure whether inherited fixes improve results.
 
 ### Deployment Geography for Use:
 
@@ -22,44 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates the release suspicious with medium confidence and reports security and scope concerns. Inspection was partial; the supplied guidance calls out cleanup, approval, network-permission, and dependency concerns for review.
+Risk: ClawScan marks the release suspicious because of weaknesses in reusable-guidance validation and approval, alongside installation and experiment-safety concerns.
 
-Mitigation: Review those areas and optional dependencies before installation; keep automatic approval off unless deliberately enabled, and review data flows before enabling networked integrations.
+Mitigation: Before use, review the approval and experiment workflows and retain human review when fixes are added to reusable guidance.
 
-Risk: The optional --llm-refine path sends session transcript text to the configured external endpoint.
+Risk: ClawScan reports a partial scan: 52 of 82 components were fully scanned and 30 were only partially inspected.
 
-Mitigation: Keep it disabled unless needed; before enabling it, review the endpoint and the transcript data that will be sent.
+Mitigation: Treat the assessment as incomplete and review components that were only partially inspected before installation.
 
-Risk: The --fresh option clears the global experience library after creating a backup.
+Risk: Setup guidance may replace existing configuration, and an optional coding-agent dependency may not be needed or current.
 
-Mitigation: Use it only when a reset is intended and confirm the backup is available before proceeding.
-
-Risk: The optional EvoMap integration is documented as GPL-3.0-or-later, which may affect commercial or closed-source deployments.
-
-Mitigation: Review the dependency's license terms before enabling that integration in a commercial or closed-source environment.
+Mitigation: Inspect setup changes before applying them, and confirm that the optional dependency is needed and updated.
 
 ## Reference(s):
 
-- [Pi EvoX Loop on ClawHub](https://clawhub.ai/stwhwing/skills/pi-evox-loop)
-- [Pi EvoX Loop project documentation](https://github.com/stwhwing/pi-evox-lab)
-- [Security and license notes](artifact/docs/security-and-license.md)
-- [Boundaries and trigger guide](artifact/docs/boundary-and-triggers.md)
-- [Optional EvoMap evolver integration](https://github.com/EvoMap/evolver)
-- [Pi coding agent integration](https://github.com/earendil-works/pi)
+- [ClawHub release page](https://clawhub.ai/stwhwing/skills/pi-evox-loop)
+- [Project homepage](https://github.com/stwhwing/pi-evox-lab)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Text, Markdown, Shell commands, Configuration, JSON]
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, JSON]
 
-**Output Format:** [Markdown guidance and shell commands, with structured JSON or JSONL records and reports where applicable.]
+**Output Format:** [Numbered fix guidance, command snippets, configuration examples, and optional JSON reports]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Numbered reusable fixes; Node.js 22 or later is required.]
+**Other Properties Related to Output:** [Content depends on the available gene store, host configuration, and whether optional experiments are run.]
 
 ## Skill Version(s):
 
-0.42.0 (source: server-resolved release metadata and package.json)
+0.44.0 (source: artifact frontmatter and server-resolved release evidence)
 
 ## Ethical Considerations:
 

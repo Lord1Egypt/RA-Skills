@@ -1,39 +1,51 @@
-## Description: <br>
-Complete lease intelligence system for tenants, landlords, and property managers to understand, negotiate, draft, or dispute lease agreements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete lease intelligence system for tenants, landlords, and property managers to understand, negotiate, draft, or dispute lease agreements.
 
-## Publisher: <br>
-[Duclawbot](https://clawhub.ai/user/Duclawbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[duclawbot](https://clawhub.ai/user/duclawbot)
 
-## Use Case: <br>
-External tenants, landlords, and property managers use this skill to review lease clauses, negotiate terms, plan move-out and deposit steps, understand early termination options, and draft rental-agreement language. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Lease law varies by location, and generic guidance may be wrong for deposits, eviction, habitability, early termination, or disputes. <br>
-Mitigation: Verify important conclusions against local law or a qualified professional before relying on the output. <br>
-Risk: Lease review or drafting suggestions can affect legal rights and financial obligations. <br>
-Mitigation: Treat outputs as general assistance, review them carefully, and seek professional advice for complex disputes or high-stakes terms. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Duclawbot/lease) <br>
+## Use Case:
+
+Tenants, landlords, and property managers use this skill to analyze lease clauses, prepare negotiation language, draft rental agreements, and reason through lease disputes, early termination, repairs, move-out, and deposit issues.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Lease law varies by jurisdiction, and legal-adjacent guidance can be incomplete or incorrect for a user's location.
+
+Mitigation: Require jurisdiction-specific verification and recommend qualified professional advice for complex disputes or high-stakes decisions.
+
+Risk: Broad trigger wording may activate the skill for general rental or landlord-tenant discussions.
+
+Mitigation: Confirm the user's scenario and location before giving lease-specific guidance.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown responses with structured clause analysis, negotiation language, checklists, and drafting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only skill; no code execution, permissions, persistence, or hidden behavior indicated by security evidence.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Legal-adjacent lease guidance should be checked against the relevant jurisdiction.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

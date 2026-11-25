@@ -17,6 +17,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import os from 'node:os';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { credentialProviderHint, loadProviderCredentials } from './credential_provider.mjs';
 
 export const DEFAULT_SERVICE_HOST = 'service.cos.myqcloud.com';
 export const STRICT_HIDDEN_ACTIONS = Object.freeze([
@@ -149,6 +150,10 @@ function loadExternalCredentialFiles(env) {
 export function getRuntimeCredentials(env = process.env) {
   if (env === process.env) {
     loadExternalCredentialFiles(env);
+    // 仍没有凭证时向外部凭证提供方取临时密钥（见 credential_provider.mjs）
+    if (!isStrictMode(env) && loadProviderCredentials(env)) {
+      credentialSource = 'provider';
+    }
   }
 
   const hasRuntimeCredentials = !!(
@@ -187,7 +192,7 @@ export function assertCredentials(creds) {
     missing.push(`${prefix}_SECRET_KEY`);
   }
   if (missing.length > 0) {
-    const err = new Error(`missing credentials: ${missing.join(', ')}`);
+    const err = new Error(`missing credentials: ${missing.join(', ')}${credentialProviderHint()}`);
     err.code = 'MissingCredentials';
     throw err;
   }

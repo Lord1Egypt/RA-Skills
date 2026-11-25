@@ -1,6 +1,6 @@
 ## Description:
 
-Search and read data from Just One API through an OOMOL-connected account.
+Search and read data through Just One API for tasks involving the service.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and researchers use the skill to search and retrieve data from Just One API sources through their connected OOMOL account.
+Developers use this skill to search and retrieve data from services available through Just One API, including marketplace, social, video, and content platforms.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Setup directs the agent to run an unverified remote installer; the installer and CLI implementation were not included in the review.
+Risk: The skill's setup instructions run a remotely fetched installer, which can install software and execute code locally; the security scan could not determine the installer's further effects.
 
-Mitigation: Install and verify a fixed oo CLI release yourself, and require the agent to stop if it is missing. Review OOMOL connection scopes and billing before use.
+Mitigation: Review the installer and its effects before running setup commands, and install only when the skill is needed and the source is trusted.
 
 ## Reference(s):
 
 - [Just One API documentation](https://docs.justoneapi.com/)
 - [Just One API homepage](https://justoneapi.com/)
-- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-justoneapi)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Guidance]
+**Output Type(s):** [Text, JSON]
 
-**Output Format:** [JSON API responses with brief textual task guidance]
+**Output Format:** [JSON API responses with textual summaries as needed]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Returned data and available fields depend on the selected service and action.]
+**Other Properties Related to Output:** [Results depend on the selected action and the supplied query or identifiers.]
 
 ## Skill Version(s):
 
-1.0.2 (source: frontmatter metadata, release evidence)
+1.0.3 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en" class="sk" data-theme="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sketch gallery</title>
+<link rel="stylesheet" href="../engine/sketchy.css">
+<style>
+  /* Dev page for the sketch catalog. URL parameters: ?theme=night  ?size=140|200|280  ?q=text  ?family=tech */
+  body.sk { padding: 0 clamp(16px, 4vw, 48px) 72px; --pic: 200px; }
+  .bar {
+    position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px;
+    margin: 0 calc(-1 * clamp(16px, 4vw, 48px)) 22px; padding: 14px clamp(16px, 4vw, 48px) 12px;
+    background: color-mix(in srgb, var(--sk-paper) 92%, transparent); backdrop-filter: blur(3px);
+    border-bottom: 1px solid var(--sk-graphite-faint);
+  }
+  .bar h1 { font-size: 34px; margin-right: 6px; }
+  .count { font: 400 14px/1 var(--sk-font-mono); color: var(--sk-graphite-soft); min-width: 9ch; }
+  .search { position: relative; display: inline-flex; align-items: center; padding: 6px 14px 8px; }
+  .search input {
+    width: 190px; border: 0; outline: 0; background: transparent; color: var(--sk-ink);
+    font: 400 15px/1.2 var(--sk-font-mono);
+  }
+  .search input::placeholder { color: var(--sk-graphite-soft); }
+  .group { display: inline-flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .sk-btn { min-height: 36px; padding: 4px 12px 6px; font-size: 20px; }
+  .grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(calc(var(--pic) + 24px), 1fr)); }
+  .cell { position: relative; margin: 0; padding: 12px 12px 12px; text-align: center; background: var(--sk-sheet); }
+  .cell[hidden] { display: none; }
+  .cell svg[data-sketch] { display: block; width: var(--pic); max-width: 100%; height: auto; margin: 0 auto; }
+  .cell figcaption { margin-top: 6px; font: 400 13px/1.25 var(--sk-font-mono); color: var(--sk-graphite); letter-spacing: 0; word-break: break-word; }
+  .cell .fam { display: block; font-size: 11px; color: var(--sk-graphite-soft); }
+  .empty { padding: 40px 0; text-align: center; color: var(--sk-graphite-soft); }
+  .empty[hidden] { display: none; }
+</style>
+</head>
+<body class="sk">
+<header class="bar">
+  <h1>Sketch gallery</h1>
+  <span class="count" id="count"></span>
+  <label class="search" data-sk="box"><input id="q" type="search" placeholder="search by name" autocomplete="off" spellcheck="false" aria-label="Search sketches by name"></label>
+  <span class="group" id="families" role="group" aria-label="Family"></span>
+  <span class="group" id="sizes" role="group" aria-label="Sketch width"></span>
+  <button class="sk-btn" id="theme" data-sk="button" type="button" aria-pressed="false">night</button>
+</header>
+<main>
+  <div class="grid" id="grid"></div>
+  <p class="empty sk-lede" id="empty" hidden>No sketch has that name.</p>
+</main>
+<script src="../engine/sketchy.js"></script>
+<script src="../engine/sketches.js"></script>
+<script>
+(function () {
+  var params = new URLSearchParams(location.search);
+  var root = document.documentElement;
+  var grid = document.getElementById('grid');
+  var famOf = {};
+  var fams = (Sketchy.sketchFamilies) || {};
+  Object.keys(fams).forEach(function (f) { fams[f].forEach(function (n) { famOf[n] = f; }); });
+
+  // every sketch in the catalog, family order first, anything unlisted last
+  var names = [];
+  Object.keys(fams).forEach(function (f) { fams[f].forEach(function (n) { if (Sketchy.catalog[n] && names.indexOf(n) < 0) names.push(n); }); });
+  Object.keys(Sketchy.catalog).forEach(function (n) { if (names.indexOf(n) < 0) names.push(n); });
+
+  names.forEach(function (n) {
+    var fig = document.createElement('figure');
+    fig.className = 'cell';
+    fig.setAttribute('data-sk', 'frame');
+    fig.setAttribute('data-sk-seed', 'cell-' + n);
+    fig.setAttribute('data-name', n);
+    fig.setAttribute('data-family', famOf[n] || 'other');
+    fig.innerHTML = '<svg data-sketch="' + n + '" viewBox="0 0 140 110" role="img" aria-label="' + n.replace(/-/g, ' ') + '"></svg>' +
+      '<figcaption>' + n + '<span class="fam">' + (famOf[n] || 'other') + '</span></figcaption>';
+    grid.appendChild(fig);
+  });
+  var cells = Array.prototype.slice.call(grid.children);
+
+  // family chips
+  var famBox = document.getElementById('families');
+  var famNow = params.get('family') || 'all';
+  ['all'].concat(Object.keys(fams)).forEach(function (f) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'sk-btn' + (f === famNow ? ' is-on' : ''); b.textContent = f; b.setAttribute('data-sk', 'button');
+    b.addEventListener('click', function () { famNow = f; Array.prototype.forEach.call(famBox.children, function (c) { c.classList.toggle('is-on', c === b); }); apply(); });
+    famBox.appendChild(b);
+  });
+
+  // size chips (the 140 px one is the legibility test)
+  var sizeBox = document.getElementById('sizes');
+  var sizeNow = parseInt(params.get('size'), 10) || 200;
+  function setSize(px) { document.body.style.setProperty('--pic', px + 'px'); }
+  [140, 200, 280].forEach(function (px) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'sk-btn' + (px === sizeNow ? ' is-on' : ''); b.textContent = px + ' px'; b.setAttribute('data-sk', 'button');
+    b.addEventListener('click', function () { setSize(px); Array.prototype.forEach.call(sizeBox.children, function (c) { c.classList.toggle('is-on', c === b); }); });
+    sizeBox.appendChild(b);
+  });
+  setSize(sizeNow);
+
+  // search
+  var q = document.getElementById('q'), count = document.getElementById('count'), empty = document.getElementById('empty');
+  q.value = params.get('q') || '';
+  function apply() {
+    var term = q.value.trim().toLowerCase().replace(/\s+/g, '-'), shown = 0;
+    cells.forEach(function (c) {
+      var ok = (famNow === 'all' || c.getAttribute('data-family') === famNow) && (!term || c.getAttribute('data-name').indexOf(term) >= 0);
+      c.hidden = !ok; if (ok) shown++;
+    });
+    count.textContent = shown === cells.length ? cells.length + ' sketches' : shown + ' of ' + cells.length;
+    empty.hidden = shown !== 0;
+  }
+  q.addEventListener('input', apply);
+
+  // day / night
+  var btn = document.getElementById('theme');
+  function setTheme(t) {
+    root.dataset.theme = t;                       // the engine watches this and redraws every sketch
+    btn.textContent = t === 'night' ? 'day' : 'night';
+    btn.setAttribute('aria-pressed', t === 'night' ? 'true' : 'false');
+  }
+  btn.addEventListener('click', function () { setTheme(root.dataset.theme === 'night' ? 'day' : 'night'); });
+  setTheme(params.get('theme') === 'night' ? 'night' : 'day');
+
+  apply();
+  Sketchy.mount();
+})();
+</script>
+</body>
+</html>

@@ -8,9 +8,12 @@ Read when a first search found nothing useful, the owner gave known words, a dat
   advised or sent what; a sentence, unsure wording, a name that may be misspelled, no chat named): it searches by
   meaning and words; `conversations status` shows which chats have vectors. Then `tg personal search messages
   '<question>' --discover`, then key words. Pass the question as the owner wrote it; do not cut it to one word first.
+  Add `--like` with a one-sentence example of the reply that would answer it: one call searches by both. Each hit's
+  `lines` show what it says; the `from_owner` hits at the end are the owner's own conversations.
   Never filter the results yourself (`grep -v`, `jq select`) by chat or sender: a hit in a chat you did not expect is
-  often the answer. When the owner says "I advised / I wrote", add `from:me`. A search that stops at its time limit
-  answers `query.time-limit`: run it again with `--timeout 60s` before trying other words.
+  often the answer. When the owner says "I advised / I wrote", add `--filter 'from:me'` (in `search messages`,
+  `from:me` in the query). A search that stops at its time limit answers `query.time-limit`: run it again with
+  `--timeout 60s` before trying other words.
   **For known words, use `tg personal search messages`**: the messages kept on this machine plus Telegram's own
   search. Add `--backend archive` when the owner wants nothing to leave the machine. **Use `tg personal search all`
   only when the owner asks to include their notes or imported Drive documents**: it adds both to the messages, in one

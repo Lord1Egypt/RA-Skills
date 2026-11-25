@@ -15,6 +15,7 @@
   python3 linkdigest.py "<链接>" --max-credits 5           # 这条最多花 5 积分，超了不读、不扣费
   python3 linkdigest.py "<链接>" --partial-ok              # 免费/加量包账户：超长视频只读开头
   python3 linkdigest.py "<链接>" --depth transcript        # 长视频省钱档：全程逐字稿，每 2 分钟 1 积分
+  python3 linkdigest.py "<链接>" --depth script            # 只要文案：只读口播，每 2 分钟 1 积分，不收基础积分
   python3 linkdigest.py --job-id <jobId>                   # 接着取一个已提交的任务（不重复提交）
   echo "<分享文案>" | python3 linkdigest.py -              # 从标准输入读分享文案
 
@@ -204,7 +205,7 @@ def fail(status: int, payload, headers) -> int:
         return EXIT_PAYMENT
     if status == 422:
         log(f"这条链接读不了 (422)，不扣费: {message}")
-        log("常见原因：已删除、私密、需要登录，或平台不支持（B站不支持）。")
+        log("常见原因：已删除、私密，或需要登录才能看。上面一行是平台或 LinkDigest 给出的具体原因。")
         return EXIT_UNREADABLE
     if status == 429:
         if field(payload, "error_code") == "quota_exceeded":
@@ -268,8 +269,8 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--translate-to", help="译文语言，如 en、ja、zh-CN（+1 积分）")
     p.add_argument("--max-credits", type=int, help="这条链接最多花多少积分")
     p.add_argument("--partial-ok", action="store_true", help="免费/加量包账户：超长视频只读开头")
-    p.add_argument("--depth", choices=["full", "transcript"], default="full",
-                   help="transcript = 长视频省钱档：全程逐字稿 + 少量截帧，每 2 分钟 1 积分（YouTube 仍按完整档）")
+    p.add_argument("--depth", choices=["full", "transcript", "script"], default="full",
+                   help="transcript = 长视频省钱档：全程逐字稿 + 少量截帧，每 2 分钟 1 积分；script = 只要文案：只读口播，每 2 分钟 1 积分、不收基础积分（YouTube 仍按完整档）")
     p.add_argument("--job-id", help="接着取一个已提交的任务，不重复提交")
     p.add_argument("--timeout", type=int, default=900, help="最多等多少秒（默认 900）")
     args = p.parse_args(argv)
@@ -301,8 +302,8 @@ def main(argv: list[str] | None = None) -> int:
             body["max_credits"] = args.max_credits
         if args.partial_ok:
             body["partial_ok"] = True
-        if args.depth == "transcript":
-            body["depth"] = "transcript"
+        if args.depth in ("transcript", "script"):
+            body["depth"] = args.depth
         if not key:
             return free_look(text, body, args.format, args.timeout)
         try:

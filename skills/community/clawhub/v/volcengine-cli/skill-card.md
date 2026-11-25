@@ -1,6 +1,6 @@
 ## Description:
 
-Create and manage Volcengine cloud resources using the Volcengine CLI (`ve`), including OpenAPI calls, TOS object operations, and Ark CLI workflows.
+Create, query, modify, and delete Volcengine cloud resources with the `ve` CLI, including supported TOS, Ark, and TLS workflows.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Developers and cloud operators use this skill to authenticate with Volcengine, discover services and actions, run `ve` commands, troubleshoot errors, and manage cloud resources across compute, networking, load balancing, databases, storage, TOS, and Ark workflows.
+Developers and cloud engineers use this skill to operate Volcengine resources, troubleshoot `ve` commands, and follow the supported workflows for TOS, Ark, and TLS tasks.
 
 ### Deployment Geography for Use:
 
@@ -22,47 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Installer and update flows can change local tools or skills and introduce supply-chain exposure.
+Risk: The security scan was only partially complete and flagged unverified remote installer commands and API endpoint handling concerns.
 
-Mitigation: Prefer the npm/package-manager path or a pinned, verified local installer; avoid pipe-to-shell installation and set VOLCENGINE_CLI_SKIP_SKILLS=1 unless a skill update is intended.
-
-Risk: Custom API hosts or endpoints may receive signed requests or temporary session tokens.
-
-Mitigation: Use only trusted Volcengine endpoints and avoid custom API hosts unless the endpoint is fully trusted.
-
-Risk: The skill can help perform broad credential-bearing cloud operations.
-
-Mitigation: Review generated commands before execution, confirm the intended account and region, and use DryRun or read-only discovery paths when available before making changes.
+Mitigation: Review the installer and API endpoint handling before installation; treat the scan as a review warning, not a finding of malicious intent.
 
 ## Reference(s):
 
-- [Volcengine CLI Skill Guide](artifact/SKILL.md)
-- [Common Error Handling](artifact/references/common-errors.md)
-- [Console Login Procedure](artifact/references/console-login.md)
-- [Extended APIs](artifact/references/extend-apis.md)
-- [Cloud Control API Service Notes](artifact/references/cloudcontrol.md)
-- [ECS Service Notes](artifact/references/ecs.md)
-- [VPC Service Notes](artifact/references/vpc.md)
-- [RDS Service Notes](artifact/references/rds.md)
-- [Redis Service Notes](artifact/references/redis.md)
-- [Storage Service Notes](artifact/references/storage.md)
-- [Volcengine CLI Releases](https://github.com/volcengine/volcengine-cli/releases)
-- [Ark CLI Skills Repository](https://github.com/volcengine/ark-cli/tree/main/skills)
-- [ClawHub Skill Page](https://clawhub.ai/volc-sdk-team/skills/volcengine-cli)
+- [Volcengine CLI releases](https://github.com/volcengine/volcengine-cli/releases)
+- [Volcengine CLI installer](https://cloudcache.volccdn.com/ve/install.sh)
+- [Ark CLI skills](https://github.com/volcengine/ark-cli/tree/main/skills)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance]
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON]
 
-**Output Format:** [Markdown with inline shell commands, configuration notes, and JSON-oriented API response guidance]
+**Output Format:** [Markdown guidance with shell command examples and JSON API data]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Outputs may guide authenticated cloud operations and should preserve required Volcengine caller metadata on every command.]
+**Other Properties Related to Output:** [Commands depend on the installed `ve` version, configured credentials, region, and applicable confirmation rules.]
 
 ## Skill Version(s):
 
-1.1.4 (source: server release metadata)
+1.1.5 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

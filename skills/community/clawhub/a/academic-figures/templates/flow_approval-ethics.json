@@ -1,0 +1,97 @@
+{
+ "_command": "python3 scripts/gen_figure.py -t flow -d templates/flow_approval-ethics.json --gate strict -o flow_ethics.png",
+ "layout": "layered",
+ "title": "Multi-site ethics approval flow",
+ "nodes": [
+  {
+   "id": "proto",
+   "label": "Protocol finalization",
+   "sublabel": "v2.1, eCRF locked",
+   "shape": "predefined"
+  },
+  {
+   "id": "lead",
+   "label": "Lead EC submission",
+   "sublabel": "coordinating centre"
+  },
+  {
+   "id": "leadrev",
+   "label": "Single vote",
+   "sublabel": "lead EC decision",
+   "shape": "diamond"
+  },
+  {
+   "id": "local",
+   "label": "Local submissions",
+   "sublabel": "each site, per national rules",
+   "shape": "stacked"
+  },
+  {
+   "id": "localrev",
+   "label": "Local review",
+   "sublabel": "site-specific conditions",
+   "shape": "hexagon"
+  },
+  {
+   "id": "insure",
+   "label": "Insurance + contracts",
+   "sublabel": "liability coverage per site",
+   "shape": "io"
+  },
+  {
+   "id": "green",
+   "label": "All green light",
+   "sublabel": "site activation",
+   "shape": "terminal"
+  },
+  {
+   "id": "amend",
+   "label": "Amendment",
+   "sublabel": "substantial change re-submission",
+   "shape": "document"
+  }
+ ],
+ "edges": [
+  {
+   "from": "proto",
+   "to": "lead"
+  },
+  {
+   "from": "lead",
+   "to": "leadrev"
+  },
+  {
+   "from": "leadrev",
+   "to": "local",
+   "label": "favorable",
+   "thick": true
+  },
+  {
+   "from": "local",
+   "to": "localrev"
+  },
+  {
+   "from": "localrev",
+   "to": "insure"
+  },
+  {
+   "from": "insure",
+   "to": "green"
+  },
+  {
+   "from": "leadrev",
+   "to": "amend",
+   "label": "conditions"
+  },
+  {
+   "from": "amend",
+   "to": "lead",
+   "dashed": true
+  }
+ ],
+ "_chart_type": "flow",
+ "_scene": "",
+ "_description": "",
+ "_caption_template": "",
+ "_note": "多中心伦理审批流：预定义子流程 + 堆叠多站点 + 双圆激活终点——审批汇签范式"
+}

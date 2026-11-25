@@ -1,6 +1,6 @@
 ## Description:
 
-Searches current public Douyin videos and image posts, trending lists, creator posts, individual post details, and comments, returning structured results for content and audience analysis.
+Searches Douyin for current videos and image posts, trending topics, creator posts, work details, and comments, returning structured data for analysis.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Content planners, social media analysts, and account managers use it to find current Douyin content, monitor public creator activity, inspect post performance, and summarize comment sentiment or audience needs.
+Content teams, marketers, analysts, and customer support teams use this skill to find current public Douyin content, inspect creator and post activity, and summarize trends or comment themes. It can support topic research, competitor monitoring, and sentiment or demand analysis.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,40 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search terms and supplied Douyin links are sent to the third-party Guaikei API.
+Risk: Keyword-based account discovery may extend beyond a request to find Douyin content.
 
-Mitigation: Avoid sensitive inputs and confirm the data transfer and authorization scope before querying.
+Mitigation: Use creator search only when the user explicitly asks to find accounts, and keep the search scope tied to that request.
 
-Risk: The security review is benign but medium confidence and partial; some executable files were only partly interpreted.
+Risk: Search terms and supplied links or IDs are sent to the external Guaikei service; returned data may also be affected by task-reuse windows.
 
-Mitigation: Review the remaining executable code before installation, or run the skill in a restricted environment.
+Mitigation: Tell the user what query or identifier will be sent, submit only the public content they requested, and check result timestamps or rerun when freshness matters.
+
+Risk: The benign scanner verdict has medium confidence and coverage is incomplete.
+
+Mitigation: Treat the verdict as limited assurance, review the release before installation, and keep the API token confined to the intended runtime.
 
 ## Reference(s):
 
-- [Usage options](references/options.md)
-- [Comment demand analysis guide](references/demand-mining.md)
-- [Changelog](references/changelog.md)
-- [Guaikei API service and help](https://www.guaikei.com)
+- [ClawHub skill release](https://clawhub.ai/why20261/skills/douyin-realtime-searchs)
+- [Guaikei service](https://www.guaikei.com)
+- [Output contract](references/contract.md)
+- [Command options](references/options.md)
+- [Errors and limits](references/errors.md)
+- [Comment demand analysis](references/demand-mining.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis, Guidance]
+**Output Type(s):** [JSON, Analysis, Guidance, Shell commands]
 
-**Output Format:** [Structured JSON results with concise Markdown summaries when analysis is requested]
+**Output Format:** [Structured JSON results with concise text or Markdown analysis and command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results cover public content and may include time-limited media or share links.]
+**Other Properties Related to Output:** [Results can contain public post, creator, and comment data for user-requested searches.]
 
 ## Skill Version(s):
 
-1.4.2 (source: server-resolved release, SKILL.md frontmatter, changelog dated 2026-11-04, package.json)
+1.5.0 (source: SKILL.md frontmatter, package.json)
 
 ## Ethical Considerations:
 

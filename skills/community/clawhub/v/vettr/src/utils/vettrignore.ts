@@ -46,7 +46,8 @@ function patternToRegex(pattern: string): RegExp {
   if (pattern.endsWith('/')) {
     const dir = pattern.slice(0, -1);
     const escaped = globToRegexStr(dir);
-    return new RegExp(`(^|/)${escaped}(/|$)`);
+    // A directory with an internal slash is anchored to the scan root, like other slash patterns
+    return new RegExp(dir.includes('/') ? `^${escaped}(/|$)` : `(^|/)${escaped}(/|$)`);
   }
 
   // Pattern contains a slash (not trailing) — anchored to root

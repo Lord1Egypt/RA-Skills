@@ -1,6 +1,6 @@
 ## Description:
 
-Drafts US restaurant replies to Google and Yelp reviews, separating guest recovery from public replies so nothing legal is said in public. Use when the user asks for google review response, yelp review reply, restaurant reputation management. For US independent restaurant owners and local marketing managers.
+Drafts separate public replies and private recovery notes for US restaurant reviews, tracks recurring themes, and flags cases for a manager.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External restaurant owners and local marketing managers use the skill to classify Google and Yelp feedback, draft public replies and private recovery notes, flag reviews for manager attention, and track recurring themes.
+US independent restaurant owners and local marketing managers use the skill to classify Google and Yelp reviews, draft separate public replies and private recovery notes, track recurring themes, and flag cases for a manager.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,36 @@ United States
 
 ## Known Risks and Mitigations:
 
-Risk: Input logs and generated reports may contain review excerpts or personal information.
+Risk: ClawScan marks this release suspicious with medium confidence and incomplete coverage because referenced paths were missing; it reports a permissions-scope concern and a possible tool reference.
 
-Mitigation: Keep logs and reports private, restrict access, and review drafts before sending them.
+Mitigation: Before installation, review the skill's file-writing needs and the runtime permissions it would receive, and account for the incomplete scan.
 
-Risk: The optional Windows desktop app is a separate unsigned download, and the bundled security verdict does not establish its safety.
+Risk: The skill describes an optional, separately downloaded Windows executable that is not code-signed.
 
-Mitigation: The local workflow does not require the app; if choosing to use it, assess the download separately, verify its published SHA-256, and avoid running it as administrator without a reason.
+Mitigation: Keep the download optional, verify its SHA-256 against the value in the skill, and run it only if you accept an unsigned program; avoid running it as administrator without a reason.
+
+Risk: The theme tally copies up to three matching input lines per theme into its Markdown report, which may expose customer details if the report is shared.
+
+Mitigation: Review the generated report for personal or sensitive review details and remove them before sharing.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/rapidworker1/skills/restaurant-review-responder)
-- [Publisher profile](https://clawhub.ai/user/rapidworker1)
-- [Publisher homepage](https://github.com/rapidworker1)
+- [US review reply rules](artifact/references/review-reply-rules.md)
+- [ClawHub release page](https://clawhub.ai/rapidworker1/skills/restaurant-review-responder)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, Markdown, Files]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Public and private reply drafts, escalation guidance, and a Markdown theme-tally report]
+**Output Format:** [Text and Markdown, including public replies, private recovery notes, escalations, and a theme tally]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Review drafts before sending; theme reports can include excerpts from input reviews.]
+**Other Properties Related to Output:** [The tally report includes up to three example input lines for each theme.]
 
 ## Skill Version(s):
 
-1.0.6 (source: frontmatter, server release)
+1.0.7 (source: frontmatter)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Đổi Meta short-lived token (~1-2h) sang long-lived token (~60 ngày) qua Graph API, kiểm tra hạn, lưu vào env gateway và nhắc gia hạn. READ-ONLY với ads.
+Converts Meta short-lived access tokens into long-lived tokens, checks validity and expiry, and guides renewal without accessing ad data; configuration changes require explicit user confirmation.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and operators use this skill to exchange Meta user access tokens for long-lived tokens, check token validity and expiry, update the gateway configuration, and set renewal reminders.
+Developers and operators use this skill to exchange and check Meta user access tokens and track when they need renewal. It also guides safe, explicitly confirmed configuration updates.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Meta access tokens and app secrets are sensitive credentials that could be exposed through chat history, logs, or gateway configuration.
+Risk: Access tokens and app secrets are sensitive credentials used in the renewal workflow and may appear in chat history or configuration.
 
-Mitigation: Use a private credential-entry channel, protect the gateway configuration, never echo or log secrets, and rotate credentials that may have been exposed.
+Mitigation: Follow the skill's guidance not to echo credentials or place them in logs, and review the token-handling steps before use.
 
-Risk: Changing gateway settings and restarting the gateway can affect its operation if the configuration is edited incorrectly.
+Risk: Updating gateway configuration can affect which token the integration uses.
 
-Mitigation: Merge the token into the existing configuration while preserving other settings, then confirm token validity after restart.
-
-Risk: A missed expiry reminder can leave an integration with an expired token.
-
-Mitigation: Check token validity and expiry daily and notify the owner when fewer than 14 days remain.
+Mitigation: Require explicit user confirmation before saving a token, preserve the existing configuration, and do not restart the gateway automatically.
 
 ## Reference(s):
 
-- [ClawHub skill release page](https://clawhub.ai/thinhbuiii/skills/meta-long-lived-token)
-- [Meta Graph API access token exchange endpoint](https://graph.facebook.com/v21.0/oauth/access_token)
-- [Meta Graph API debug token endpoint](https://graph.facebook.com/v21.0/debug_token)
 - [Meta Graph API Explorer](https://developers.facebook.com/tools/explorer)
+- [Meta token exchange endpoint](https://graph.facebook.com/v21.0/oauth/access_token)
+- [ClawHub skill release](https://clawhub.ai/thinhbuiii/skills/meta-long-lived-token)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Text]
+**Output Type(s):** [Guidance, API calls, Shell commands, Configuration instructions]
 
 **Output Format:** [Markdown with inline shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Provides step-by-step token renewal and expiry-check guidance.]
 
 ## Skill Version(s):
 
-1.0.3 (source: server-resolved release evidence)
+1.1.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

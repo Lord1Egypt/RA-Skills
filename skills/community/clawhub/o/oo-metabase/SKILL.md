@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Metabase"
   author: "OOMOL"
-  version: "1.0.6"
+  version: "1.0.7"
   services: ["metabase"]
   icon: "https://static.oomol.com/logo/third-party/metabase.svg"
 ---
@@ -37,15 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `construct_native_query` — Construct SQL for saving as a question. This handle cannot be run by execute_query or query; use execute_sql to execute SQL.
-- `construct_query` — Construct portable MBQL 5 without executing it; returns a stored query handle.
-- `create_collection` — Create a collection, optionally nested under a parent. [write]
-- `create_dashboard` — Create a dashboard with optional saved questions, automatically positioned. [write]
-- `create_metric` — Save constructed MBQL as a metric: one aggregation and at most one date/datetime grouping. [write]
-- `create_question` — Save a constructed MBQL or SQL query as a question. [write]
-- `execute_query` — Execute constructed MBQL and return rows and columns. Native SQL handles are not supported.
-- `execute_question` — Run a saved question. Parameterized questions and input template tags are not supported by native MCP.
-- `execute_sql` — Execute native SQL. Requires native-query permission and the instance's execute-SQL setting to be enabled. [destructive]
+- `call_tool` — Call a native Metabase MCP tool with JSON arguments matching the inputSchema returned by list_tools with toolNames. Depending on the tool, this can run queries or create, update, or archive Metabase content as the API key's user; check the tool's annotations and confirm writes first. [destructive]
 - `get_card` — Retrieve one Metabase card by ID.
 - `get_collection` — Retrieve one Metabase collection by ID.
 - `get_current_user` — Get the Metabase user associated with the API key.
@@ -55,16 +47,10 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_collections` — List Metabase collections visible to the API key.
 - `list_dashboards` — List Metabase dashboards visible to the API key.
 - `list_databases` — List Metabase databases visible to the API key.
-- `list_mcp_resources` — Discover native MCP resources. Only documentation resources can be read by this connector; Apps are not supported.
-- `list_mcp_tools` — Discover native MCP tools and their upstream schemas. Unknown tools are discoverable, not automatically executable.
-- `query` — Execute MBQL or fetch its next page. Native MCP returns pages of 200 rows within a 2,000-row total budget.
-- `read_mcp_resource` — Read native metabase://docs/ documentation, not entities or MCP Apps resources.
-- `read_resource` — Read up to five Metabase entity URIs. Preserves individual resource errors; list endpoints cap at 25 items.
+- `list_mcp_resources` — Discover native MCP resources. Data resources can be read with read_mcp_resource; MCP Apps (ui://) resources are not supported.
+- `list_tools` — Discover the tools exposed by this Metabase instance's native MCP server. Without toolNames, returns a compact index (name, one-line summary, annotations); pass toolNames to get the full descriptions and input schemas of those tools before calling them with call_tool. Tool names and schemas follow the instance's Metabase version.
+- `read_mcp_resource` — Read a text resource listed by list_mcp_resources. MCP Apps (ui://) resources are not supported.
 - `search` — Search Metabase content visible to the API key.
-- `search_content` — Search native Metabase MCP content using keyword or semantic queries (not the REST search action). Requires native MCP on the instance.
-- `update_dashboard` — Patch a dashboard and apply ordered add/remove/move card mutations. [destructive]
-- `update_metric` — Patch a metric; replacement queries must still meet metric requirements. [destructive]
-- `update_question` — Patch a saved question, optionally replacing its query with a stored handle. [destructive]
 
 ## Safety
 

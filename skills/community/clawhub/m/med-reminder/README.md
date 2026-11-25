@@ -275,6 +275,8 @@ MEDS_LOG_REDACT=1                  # see Privacy
 
 ## Privacy
 
+**Reminder messages leave your machine.** They contain medication names and dose times and are delivered through whatever messaging channel and sender you configured in `send-message.sh` (Telegram, WhatsApp, a webhook, …). That provider, and anyone else in the chat, can see them. Messages are not end-to-end encrypted by this skill. Use a private/DM channel to yourself, not a group chat.
+
 - Logs contain no med names when `MEDS_LOG_REDACT=1` (or `global.log_redact: true`): med IDs only, including stderr captured from your sender script.
 - Log timestamps are UTC.
 - Private files are `0600` on POSIX; the process umask is tightened before anything is created.

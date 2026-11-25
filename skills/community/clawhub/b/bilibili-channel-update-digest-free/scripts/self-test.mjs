@@ -1,0 +1,24 @@
+import assert from 'node:assert/strict';
+import { readFile, stat } from 'node:fs/promises';
+import { resolve } from 'node:path';
+import { digestVisibleHtml } from './digest-fixture.mjs';
+
+const root = resolve(import.meta.dirname, '..');
+const read = file => readFile(resolve(root, file), 'utf8');
+const success = digestVisibleHtml(await read('fixtures/visible-videos-success.html'));
+assert.equal(success.status, 'complete');
+assert.equal(success.items.length, 3);
+assert.equal(success.items[0].date, '2026-09-28');
+assert.equal(success.items[2].date, '');
+assert.ok(success.omissions.length === 1);
+assert.equal(success.items[0].link, 'https://www.bilibili.com/video/BV1demo001');
+const blocked = digestVisibleHtml(await read('fixtures/visible-videos-failure.html'));
+assert.equal(blocked.status, 'blocked');
+assert.equal(blocked.items.length, 0);
+for (const [file, expected] of [['SKILL.md', 'name: bilibili-channel-update-digest-free'], ['manifest.yaml', 'slug: bilibili-channel-update-digest-free'], ['agents/openai.yaml', 'allow_implicit_invocation: true']]) assert.ok((await read(file)).includes(expected), `${file} missing ${expected}`);
+const icon = await readFile(resolve(root, 'icon-512.png'));
+assert.ok(icon.subarray(0, 8).equals(Buffer.from([137,80,78,71,13,10,26,10])), 'icon must be PNG');
+assert.equal(icon.readUInt32BE(16), 512, 'icon width must be 512');
+assert.equal(icon.readUInt32BE(20), 512, 'icon height must be 512');
+assert.ok((await stat(resolve(root, 'assets/promo.png'))).size > 1000, 'promo image is missing');
+console.log('self-test passed: offline success/failure fixtures, metadata, 512px icon, and promo asset verified.');

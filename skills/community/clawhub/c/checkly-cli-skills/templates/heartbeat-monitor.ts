@@ -6,6 +6,7 @@ new HeartbeatMonitor('app-heartbeat-monitor', {
   period: 300, // Expect ping every 5 minutes
   periodUnit: 'seconds',
   grace: 60,   // Allow 60 second grace period
+  graceUnit: 'seconds',
   tags: ['heartbeat', 'infrastructure'],
 })
 

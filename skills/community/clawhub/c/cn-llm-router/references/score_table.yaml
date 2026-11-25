@@ -1,0 +1,13 @@
+# v2.9.0 个性化评测评分表（本地实测回填，用户可改）
+# 由 `arena --suite --save` 自动生成，也可手工编辑。
+# 结构：模型名 -> 四维得分（0-10）+ 评测批次日期 + 题数。
+# auto --personalized 模式读取此表按本机实测得分排序，替代通用画像。
+provider_scores: {}
+# 示例（取消注释即可手工指定）：
+#   deepseek-chat:
+#     code: 8.2
+#     reason: 7.9
+#     translate: 8.5
+#     summarize: 8.0
+#     eval_date: 2026-11-18
+#     cases: 50

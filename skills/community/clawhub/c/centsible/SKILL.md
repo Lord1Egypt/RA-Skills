@@ -9,6 +9,8 @@ description: >-
 
 This skill allows the agent and user to manage experience-driven micro-facts and token optimization.
 
+Requires the `centsible` CLI: `pip install centsible` (Python 3.9+, no dependencies). Update every install later with `centsible update`.
+
 ## When to Use
 - User asks about token optimization status or active facts (`centsible status`, `centsible facts list`).
 - You resolved a non-trivial repo quirk (e.g. non-standard test runner, mandatory environment flag, path alias) that future turns will need.
@@ -39,7 +41,7 @@ centsible config list
 centsible config set max_consecutive_errors 4
 centsible config unset max_consecutive_errors
 ```
-Keys: `mode`, `reflect`, `max_consecutive_errors`, `max_identical_calls`. Env vars `CENTSIBLE_LOOP_MODE`, `CENTSIBLE_REFLECT`, `CENTSIBLE_MAX_*` override the file.
+Keys: `mode`, `reflect`, `max_consecutive_errors`, `max_identical_calls`, `session_budget_tokens`, `session_budget_calls`. Env vars `CENTSIBLE_LOOP_MODE`, `CENTSIBLE_REFLECT`, `CENTSIBLE_MAX_*`, `CENTSIBLE_SESSION_BUDGET_*` override the file.
 
 ### 2. List Micro-Facts
 ```bash
@@ -80,10 +82,32 @@ centsible facts remove <id_or_pattern>
 ```
 
 ### 6. Harvest Golden Facts (Agentic Multi-Turn Discovery)
-When working in a new repository or after a fresh install, discover 5–8 golden architectural facts:
+When working in a new repository or after a fresh install, discover up to 5 non-obvious facts (0 if the repo follows standard conventions):
 ```bash
 centsible harvest
 centsible harvest --prompt
 ```
 - In Claude Code: type `/centsible-harvest`
 - In Antigravity: ask your agent `"Run centsible harvest to discover golden facts for this repo"`
+
+### 7. Audit and Tune Facts
+```bash
+centsible facts verify            # files/commands named in facts still exist? exit 1 if a path is stale
+centsible facts replay            # how each pattern would have fired on past sessions
+centsible facts tune              # suggest remove / narrow / merge (report only)
+centsible facts tune --apply      # perform only the evidence-backed [auto] suggestions
+```
+
+### 8. Session Budget (opt-in)
+Warns once at 80%, then blocks further tool calls in the session until raised or unset:
+```bash
+centsible config set session_budget_tokens 2000000
+centsible config set session_budget_calls 300
+centsible config unset session_budget_tokens
+```
+
+### 9. Update
+```bash
+centsible update --check   # installed vs. latest versions
+centsible update           # update every install: Claude Code plugin, git clones, pip
+```

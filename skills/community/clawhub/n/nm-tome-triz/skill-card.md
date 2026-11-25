@@ -1,6 +1,6 @@
 ## Description:
 
-Applies TRIZ cross-domain analogical reasoning to find solutions from adjacent fields
+Applies TRIZ cross-domain analogical reasoning to find solutions from adjacent fields.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and problem solvers use the skill when a problem is stuck or needs inventive perspectives. It frames an ideal result and contradiction, then maps the problem to adjacent fields for confidence-scored analogies.
+Developers, engineers, and other problem-solvers use this skill to frame difficult technical problems with TRIZ and generate solution ideas by mapping them to adjacent fields.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: An analogy that works in an adjacent field may not fit the problem's constraints.
+Risk: Analogy-based proposals may not fit the problem's constraints or technical context.
 
-Mitigation: Check the bridge rationale against evidence from both fields and test candidate changes against the problem's requirements before applying them.
+Mitigation: Check each proposed bridge against evidence from the adjacent field and the problem's constraints before adopting it.
 
 ## Reference(s):
 
-- [Claude Night Market Tome plugin](https://github.com/athola/claude-night-market/tree/master/plugins/tome)
-- [MATRIZ TRIZ Body of Knowledge](https://matriz.org/)
-- [AutoTRIZ (arXiv:2403.13002)](https://arxiv.org/abs/2403.13002)
-- [TRIZ Agents (arXiv:2506.18783)](https://arxiv.org/abs/2506.18783)
+- [Tome plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/tome)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, Markdown]
+**Output Type(s):** [Analysis, Guidance, Markdown]
 
-**Output Format:** [Structured Markdown analysis]
+**Output Format:** [Structured Markdown with problem framing, adjacent-field analogies, rationale, and confidence scores]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Problem-dependent analysis with configurable depth, contradiction probes, adjacent-field mappings, and confidence-scored analogies.]
+**Other Properties Related to Output:** [Analysis depth ranges from 1 to 5 adjacent fields.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

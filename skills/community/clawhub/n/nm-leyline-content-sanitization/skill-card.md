@@ -1,6 +1,6 @@
 ## Description:
 
-Provides sanitization guidelines for external content in skills and hooks.
+Provides sanitization guidelines for external content in skills and hooks
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and skill authors use these guidelines when processing external content in skills and hooks to reduce prompt injection and unsafe execution risks.
+Developers and skill authors use these guidelines when building skills or hooks that process untrusted external content. The checklist helps them reduce instruction injection and unsafe code execution risks while applying handling appropriate to the source's trust level.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review was partial because two local references could not be matched to bundled files.
+Risk: ClawScan coverage is incomplete and two local references could not be resolved, leaving their contents unassessed.
 
-Mitigation: Review the skill and verify referenced material before relying on its guidance.
+Mitigation: Inspect and scan those references before installing or using the skill.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-leyline-content-sanitization)
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
+- [Project homepage (Clawdis metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
 
 ## Skill Output:
 
 **Output Type(s):** [Guidance, Markdown]
 
-**Output Format:** [Markdown checklists and policy guidance]
+**Output Format:** [Markdown checklist and policy guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes sanitization steps, code execution safeguards, and exit criteria.]
+**Other Properties Related to Output:** [Human-readable handling guidance for external content; no executable output.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, release evidence)
+1.10.4 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

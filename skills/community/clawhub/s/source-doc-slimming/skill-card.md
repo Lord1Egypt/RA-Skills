@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers maintaining large always-read source documents use this skill to move narrative and history into a companion file while keeping operative rules easy to find. It guides them through adding a shape guard and checking that moved content is preserved.
+Developers and engineers use this skill to restructure oversized, frequently read source documents while preserving their content, keeping operating guidance easy to find, and adding checks against future drift.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Changed or incomplete content could pass the content verification check; the scan evidence is partial.
+Risk: The security summary reports that the instructions to modify files conflict with the declared read-only permission; the scan was partial and its evidence is incomplete.
 
-Mitigation: Before installing, consider whether you can tolerate this risk. Review the moved content and the verification results, and assess referenced material because the partial scan does not establish that all of it was checked.
+Mitigation: Before installing, review which files the workflow would change and confirm you intend to grant the required write access.
 
 ## Reference(s):
 
-- [source-doc-slimming on ClawHub](https://clawhub.ai/haiyangchenbj/skills/source-doc-slimming)
+- [ClawHub release page](https://clawhub.ai/haiyangchenbj/skills/source-doc-slimming)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Code, Shell commands, Guidance]
+**Output Type(s):** [Files, Code, Shell commands, Guidance]
 
-**Output Format:** [An abridged source document with a companion reference, plus verification and supporting scripts where needed]
+**Output Format:** [Markdown, source files, and shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Moved text is intended to remain verbatim; a line-by-line check is used to verify preservation.]
+**Other Properties Related to Output:** [May include a companion document, validation helpers, and updates to an existing project gate.]
 
 ## Skill Version(s):
 
-1.0.0 (source: SKILL.md frontmatter and server-resolved release metadata)
+1.0.1 (source: frontmatter)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-用户指定 GPT Image 2.6 / 智慧模型2.6 制作商品首图、电商主图套图、轮播图或 SKU 图时使用。Amazon、抖音小店或其他跨境平台的明确需求走相应的 2.6 专项技能。
+用户指定 GPT Image 2.6 / 智慧模型2.6 制作商品首图、电商主图套图、轮播图或 SKU 图时使用。Amazon、抖音小店或其他跨境平台的明确需求走相应的 2.6 专项技能。按平台规范拆分任务并写好提示词，报价经用户确认后出图；没有 CLI 或密钥时交付可直接提交的出图方案。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,42 +14,35 @@ MIT-0
 
 ## Use Case:
 
-External ecommerce sellers and creative teams use this skill to prepare product hero images, carousel sets, and SKU images for requested marketplaces, using reference photos to retain product details.
+面向电商运营者和商品内容创作者，按平台版位和商品参考图规划并制作 GPT Image 2.6 商品首图、轮播套图及 SKU 图；如果暂时无法生成图片，则提供可直接提交的提示词和参数方案。
 
 ### Deployment Geography for Use:
 
-China
+Global
 
 ## Known Risks and Mitigations:
 
-Risk: Reference images are sent to Qinghu for generation.
+Risk: The CLI may be downloaded at a mutable `latest` version, so the package can change over time; the security review also had partial reference resolution.
 
-Mitigation: Use only images authorized for upload and verify the configured service destination before generation.
-
-Risk: Image generation consumes paid credits.
-
-Mitigation: Review the estimate and confirm the quoted credits before submitting generation requests.
-
-Risk: The external CLI is installed globally without a fixed version and was not code-audited in the release evidence.
-
-Mitigation: Check the installed CLI version and service configuration; use a reviewed, pinned CLI version where release assurance requires it.
+Mitigation: Review the package source and use a reviewed, pinned version before installing.
 
 ## Reference(s):
 
+- [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-gpt-image-2-6-ecom-main-image)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Shell commands, Configuration, Guidance]
+**Output Type(s):** [Images, Image prompts, Markdown guidance, JSON configuration]
 
-**Output Format:** [Generated image files with JSON request files and command-line instructions.]
+**Output Format:** [Image files, or Markdown image plans with prompts and params.json configuration]
 
-**Output Parameters:** [Variable by marketplace, SKU, image role, and requested image count.]
+**Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Generation includes an estimate and user confirmation before paid image creation.]
+**Other Properties Related to Output:** [If image generation is unavailable, provides a complete prompt and parameter plan; paid generation requires user confirmation.]
 
 ## Skill Version(s):
 
-0.1.0 (source: server-resolved release metadata)
+0.1.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

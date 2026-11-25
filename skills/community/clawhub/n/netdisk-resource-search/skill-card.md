@@ -1,6 +1,6 @@
 ## Description:
 
-Guides Chinese-language searches across public Baidu, Quark, and Aliyun Drive share-link indexes and helps filter and organize results.
+聚合搜索百度网盘、夸克网盘和阿里云盘的分享链接，并整理相关结果。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and agents use this skill to locate and compare publicly indexed netdisk share links for authorized resources, including books, courses, media, and software.
+People use the skill to search public cloud-drive indexes by keyword and organize matching share links. Do not use it to retrieve unauthorized copies of paid courses or software.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Third-party share links may point to unauthorized copies of paid content.
+Risk: Search terms may be sent to external search services, and requests may bypass configured proxies, exposing queries and bypassing network monitoring.
 
-Mitigation: Limit searches and shared results to resources the user is authorized to access; suggest licensed or free alternatives when appropriate.
-
-Risk: The skill recommends an unpinned Docker image for an optional local search service.
-
-Mitigation: Review the Docker command and image before running it, and pin a vetted image digest.
-
-Risk: The skill proposes bypassing system proxies for upstream requests.
-
-Mitigation: Do not bypass organizational or managed-device proxy policies without permission.
+Mitigation: Avoid sensitive search terms and review proxy and network monitoring requirements before use.
 
 ## Reference(s):
 
-- [ClawHub skill listing](https://clawhub.ai/oracis/skills/netdisk-resource-search)
+- [ClawHub release page](https://clawhub.ai/oracis/skills/netdisk-resource-search)
+- [PanSou search API](https://so.252035.xyz/api/search)
+- [PanSou search API (alternate instance)](https://pansou.app/api/search)
+- [Misoso disk search API](https://www.misoso.cc/v1/search/disk)
+- [Hunhepan disk search API](https://hunhepan.com/open/search/disk)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, API calls]
 
-**Output Format:** [Chinese-language text or Markdown with share links, extraction codes, and optional Python and shell examples]
+**Output Format:** [Markdown with Python examples, shell commands, and HTTP request examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Search results depend on third-party indexes and may include duplicates or irrelevant links.]
+**Other Properties Related to Output:** [Keyword-driven search guidance and result filtering examples.]
 
 ## Skill Version(s):
 
-1.0.0 (source: release metadata and SKILL.md frontmatter)
+1.0.2 (source: frontmatter, server release)
 
 ## Ethical Considerations:
 

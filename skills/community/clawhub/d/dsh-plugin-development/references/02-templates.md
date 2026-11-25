@@ -2,7 +2,7 @@
 
 > **本文件用途**：由易到难的 12 个可直接复制的插件模板（T1~T12），覆盖零代码组合包、补丁语法、工具、命令、配置、服务、UI、设置卡片、流程拦截、外部集成、工程骨架。**官方七类模板的逐字源码**已拆到 `02b-official-templates.md`，**社区零代码组合包全文**已拆到 `02c-community-bundle.md`。T3/T5/T6 与 `02b` 的模板 3/4/5 是同一件事的两种粒度：本文件给讲解与坑，`02b` 给可逐字照抄的完整源码——**冲突时以 `02b` 的官方源码为准**。
 > **合成来源**：DSH插件开发实战补充-模板与踩坑.md（第二篇）
-> **快照警告**：本文件是 DSH 插件知识的**冻结快照**（基线 `dsh-v0.2.2-alpha.2` / commit `f3803c9697`，2026-10-28），其中的**接口名级事实可能已过时**。
+> **快照警告**：本文件是 DSH 插件知识的**冻结快照**（基线 `dsh-v0.2.2-rc.5` / commit `9c2670d3bc`，2026-11-18），其中的**接口名级事实可能已过时**。
 > **写代码前先核验**：`bash scripts/dsh-api-probe.sh <DSH 仓库路径>`（退出码 1 = 有 STALE，**不要直接照抄**）。
 > **分级与核验规则**：`references/00-version-gate.md`、逐条登记 `references/api-claims.md`。
 
@@ -326,7 +326,7 @@ ctx.tools.register(defineTool({ /* … */ }), {
 })
 ```
 
-- 判据来源：`packages/core/tools/src/contracts.ts:105-126`（`ToolActivationContext` = `{ agent, modelSelection, signal }`，`ToolRegistrationOptions.when`）。
+- 判据来源：`packages/core/tools/src/contracts.ts:106-127`（`ToolActivationContext` = `{ agent, modelSelection, signal }`，`ToolRegistrationOptions.when`）。
 - 返回 `false` → 工具从**声明 / 原生分发 / PTC 绑定 / 嵌套调用**四处一并移除；条件抛错 → 轮次以 `TOOL_ACTIVATION_FAILED` 结束；不属于已准入集合的调用返回 `UNKNOWN_TOOL` 且**不执行**。
 - ⚠️ **步骤中途重新注册工具**（热重载 / MCP 重连 / skill 重载）会让该步骤内**尚未开始**的调用失败 —— 不要在一步之内反复注册同一个工具名。
 
@@ -856,7 +856,7 @@ export function apply(ctx: ClientContext): void {
 | `settings.general.item` | 通用设置里加一行/一项 |
 | `conversation.view` | 替换对话主视图（最激进） |
 
-> ⚠️ 基线时本手册说这里有「40 个官方插槽名」——**那是低估**。对基线 `dsh-v0.2.2-alpha.2` 重新抽取：声明侧 **148 个键**、并集 **150** 个，剔除 **44** 个测试专用键后**约 106 个公开可用**（**2026-09-23 修好抽取器两处漏抽后重抽**；**2026-09-25 随 rc.2 推进 +3 / −0**；**2026-09-29 随 0.2.0-rc.1 推进 +0 / −0**；**2026-09-30 随 0.2.0-rc.2 推进 +1 / −0**；**2026-10-04 随 0.2.1-alpha.1 推进 +2 / −0**；**2026-10-09 随 0.2.1-alpha.2 推进 +2 / −0**；**2026-10-15 随 0.2.1-alpha.3 推进 +5 / −1**（新增 `conversation.chat.message.images` / `conversation.chat.user.images` / `conversation.hero.options` / `conversation.user.text.node` / `workspace.toast`，**旧键 `conversation.message.images` 改名走掉**）；**2026-10-16 随 0.2.1-alpha.4 推进 +1 / −0**（`slot-catalog.ts` **98 → 99**；新增键 = `plugins.tab`）；**2026-10-17 随 0.2.1-rc.2 推进 +1 / −0**（`slot-catalog.ts` **99 → 100**；新增键 = `conversation.input.model.label`）；**2026-10-24 随 0.2.1-rc.3 推进 +3 / −0**（`slot-catalog.ts` **100 → 103**；新增键 = `conversation.session.header.views.actions` / `sidebar.panellist.actions` / `sidebar.right.tab.guide.actions`）；**2026-10-29 随 0.2.2-alpha.2 推进 +3 / −0**（`slot-catalog.ts` **103 → 106**；新增键 = `conversation.chat.text-interaction` / `conversation.chat.user.before` / `sidebar.session.row.trailing`）；此前公布的 96/99/约81 系低估）。
+> ⚠️ 基线时本手册说这里有「40 个官方插槽名」——**那是低估**。对基线 `dsh-v0.2.2-rc.5` 抽取：声明侧 **166 个键**、并集 **168** 个，剔除 **52** 个测试专用键后**约 116 个公开可用**（**2026-09-23 修好抽取器两处漏抽后重抽**；**2026-09-25 随 rc.2 推进 +3 / −0**；**2026-09-29 随 0.2.0-rc.1 推进 +0 / −0**；**2026-09-30 随 0.2.0-rc.2 推进 +1 / −0**；**2026-10-04 随 0.2.1-alpha.1 推进 +2 / −0**；**2026-10-09 随 0.2.1-alpha.2 推进 +2 / −0**；**2026-10-15 随 0.2.1-alpha.3 推进 +5 / −1**（新增 `conversation.chat.message.images` / `conversation.chat.user.images` / `conversation.hero.options` / `conversation.user.text.node` / `workspace.toast`，**旧键 `conversation.message.images` 改名走掉**）；**2026-10-16 随 0.2.1-alpha.4 推进 +1 / −0**（`slot-catalog.ts` **98 → 99**；新增键 = `plugins.tab`）；**2026-10-17 随 0.2.1-rc.2 推进 +1 / −0**（`slot-catalog.ts` **99 → 100**；新增键 = `conversation.input.model.label`）；**2026-10-24 随 0.2.1-rc.3 推进 +3 / −0**（`slot-catalog.ts` **100 → 103**；新增键 = `conversation.session.header.views.actions` / `sidebar.panellist.actions` / `sidebar.right.tab.guide.actions`）；**2026-10-29 随 0.2.2-alpha.2 推进 +3 / −0**（`slot-catalog.ts` **103 → 106**；新增键 = `conversation.chat.text-interaction` / `conversation.chat.user.before` / `sidebar.session.row.trailing`）；**2026-11-04 随 0.2.2-alpha.3 推进 +3 / −0**（声明侧 **148 → 151**、并集 **150 → 153**、公开约 **106 → 109**；新增键 = `contextMenu.content` / `contextMenu.icon` / `settings.section.icon`）；**2026-11-12 随 0.2.2-rc.2 推进 +13 / −0**（声明侧 **151 → 164**、并集 **153 → 166**、公开约 **109 → 114**、`slot-catalog.ts` **109 → 114**、测试专用 **44 → 52**；新增公开键 = `conversation.chat.markdown.fence` / `conversation.hero.frame`（两个 `hoc`）/ `conversation.input.model.options` / `conversation.session.header.actions.subagent.footer` / `settings.launcher.notifications`）；**2026-11-13 随 0.2.2-rc.3 推进 +2 / −0**（`slot-catalog.ts` **114 → 116**；新增键 = `sidebar.session.action`（`hoc` / root，新会话行的内层包装）/ `workspace.picker.directoryFlow`（`single` / root，`workspace.picker` Factory 之下的目录选择洞））；**2026-11-18 随 `0.2.2-rc.4` → `-rc.5` 连续两轮推进 +0 / −0**（两棵树重抽：声明侧 166 / 并集 168 / `slot-catalog.ts` 116 三项不变）；此前公布的 96/99/约81 系低估）。
 > 完整清单与可复现命令：`<skill>/scripts/extract_slots.py <DSH仓库路径> <skill目录>`；签名与报错见 `14-inbound-http-and-timers.md` §17.4，那份是权威。
 
 ### 8.6 🔴 UI 插件的三条硬约束
@@ -975,7 +975,7 @@ export function apply(ctx: Context, config: Config): void {
 > **`settingsScope` → `configForms`**；取表单的那一句 **`ctx.settingsScope.bind<T>({ namespace: ns })` → `ctx.configForms.get<T>(ns)`**。
 > 返回的 `ConfigForm<T>` 提供 `getSnapshot()` / `subscribe()` / `set(field, value)` / `unset(field)` / `mutate(ops, expectedRevision?)`
 > （`packages/client/ui-settings/src/client/config-form-types.ts:36-74`）。
-> 下面是当前上游的原文（`packages/client/ui-theme/src/client/index.ts:587,599`，`dsh-v0.2.2-alpha.2` 实测）：
+> 下面是当前上游的原文（`packages/client/ui-theme/src/client/index.ts:595,607`，`dsh-v0.2.2-alpha.2` 实测）：
 
 ```ts
 export const inject = ['slots', 'locale', 'remote', 'configForms']
@@ -1084,7 +1084,7 @@ ctx.on('事件名', async (payload, next) => {
 
 #### `agent/pre-step` —— **改消息 / 拦步骤**
 
-官方逐字文档（`docs/subsystems/core.zh.md:1046-1061`，**整节**；引文在 `:1048-1059`。旧引 `:925-950`；该文档本轮由 1125 行涨到 1200 行）：
+官方逐字文档（`docs/subsystems/core.zh.md:1025-1040`，**整节**；引文在 `:1027-1038`。旧引 `:904-929`；该文档本轮由 1125 行涨到 1200 行）：
 
 > ```
 > Reject a proposed step or replace the messages that enter it. Calling `next()` preserves the current messages.

@@ -17,9 +17,9 @@ Requires: APPLE_MUSIC_DEV_TOKEN and APPLE_MUSIC_USER_TOKEN env vars.
 import sys
 
 # Python version guard
-if sys.version_info < (3, 10):
+if sys.version_info < (3, 11):
     sys.exit(
-        f"ERROR: Python 3.10+ is required (you have "
+        f"ERROR: Python 3.11+ is required (you have "
         f"{sys.version_info.major}.{sys.version_info.minor}). Please upgrade."
     )
 
@@ -27,19 +27,38 @@ import argparse
 import hashlib
 import json
 import random
-from datetime import datetime, timezone
+from datetime import datetime, UTC
 from pathlib import Path
 
-from _common import call_api, filter_generic_genres, load_profile
+from _common import (
+    apply_user_filters,
+    call_api,
+    check_token_expiry,
+    check_user_token_age,
+    filter_generic_genres,
+    load_config,
+    load_profile,
+    taste_affinity,
+    user_filters,
+)
+
+from strategies.scoring import TASTE_WEIGHT
 
 SCRIPT_DIR = Path(__file__).parent
+
+# Scoring weights for one pick: taste and context outweigh chance
+BASE_SCORE = 0.5
+# TASTE_WEIGHT (x taste_affinity) is shared with the strategies: strategies/scoring.py
+DEEP_CUT_BONUS = 0.2      # the interesting picks
+TIME_OF_DAY_BONUS = 0.3   # a genre that suits the hour
+JITTER = 0.15
 
 
 # ── Seeded Random (deterministic per day) ────────────────────────
 
 def daily_seed() -> int:
     """Generate a seed based on today's date so the pick is stable within a day."""
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    today = datetime.now(UTC).strftime("%Y-%m-%d")
     return int(hashlib.md5(today.encode()).hexdigest()[:8], 16)
 
 
@@ -77,7 +96,8 @@ def get_candidates(profile: dict, sf: str, context: dict | None = None) -> list[
     """Gather candidate tracks from multiple sources."""
     candidates = []
     top_artists = profile.get("top_artists", [])[:15]
-    library_song_ids = set(profile.get("library_song_ids", []))
+    # Songs you own or disliked are never picked
+    skip_ids = set(profile.get("library_song_ids", [])) | set(profile.get("disliked_song_ids", []))
     user_genres = [g["genre"] for g in profile.get("genre_distribution", [])[:5]]
 
     # Source 1: Deep cuts from top artists (tracks NOT in library)
@@ -97,7 +117,7 @@ def get_candidates(profile: dict, sf: str, context: dict | None = None) -> list[
             for ad in detail["data"]:
                 for track in ad.get("relationships", {}).get("tracks", {}).get("data", []):
                     tid = track.get("id", "")
-                    if tid and tid not in library_song_ids:
+                    if tid and tid not in skip_ids:
                         attrs = track.get("attributes", {})
                         candidates.append({
                             "id": tid,
@@ -105,6 +125,7 @@ def get_candidates(profile: dict, sf: str, context: dict | None = None) -> list[
                             "artist": attrs.get("artistName", artist["name"]),
                             "album": album.get("attributes", {}).get("name", ""),
                             "genre": filter_generic_genres(attrs.get("genreNames", [])),
+                            "explicit": attrs.get("contentRating") == "explicit",
                             "source": "deep_cut",
                             "reason": f"A deep cut from {artist['name']} you haven't heard yet.",
                         })
@@ -121,12 +142,13 @@ def get_candidates(profile: dict, sf: str, context: dict | None = None) -> list[
                         # Only include if genre overlaps with user taste
                         if any(g in user_genres for g in item_genres):
                             tid = item.get("id", "")
-                            if tid and tid not in library_song_ids:
+                            if tid and tid not in skip_ids:
                                 candidates.append({
                                     "id": tid,
                                     "name": attrs.get("name", ""),
                                     "artist": attrs.get("artistName", ""),
                                     "genre": item_genres,
+                                    "explicit": attrs.get("contentRating") == "explicit",
                                     "source": "trending",
                                     "reason": f"Trending right now and matches your {item_genres[0] if item_genres else 'music'} taste.",
                                 })
@@ -135,40 +157,54 @@ def get_candidates(profile: dict, sf: str, context: dict | None = None) -> list[
 
 
 def score_candidate(candidate: dict, profile: dict, context: dict | None = None, rng: random.Random | None = None) -> float:
-    """Score a candidate track. Higher = better pick."""
-    _rng = rng or random.Random()
-    score = 0.5  # base score
+    """Score a candidate track. Higher = better pick.
 
-    # Boost deep cuts slightly (the interesting picks)
+    BASE_SCORE + TASTE_WEIGHT x taste match + DEEP_CUT_BONUS + TIME_OF_DAY_BONUS + up to JITTER.
+    """
+    _rng = rng or random.Random()
+    score = BASE_SCORE
+
+    # How much you like the track's sound, weighted by how much you play each genre
+    score += TASTE_WEIGHT * taste_affinity(candidate.get("genre", []), profile.get("genre_distribution", []))
+
     if candidate.get("source") == "deep_cut":
-        score += 0.2
+        score += DEEP_CUT_BONUS
 
     # Time-of-day genre boost
     if context:
         boosted = {g.lower() for g in context.get("genres_boost", [])}
         track_genres = {g.lower() for g in candidate.get("genre", [])}
         if boosted & track_genres:
-            score += 0.3
+            score += TIME_OF_DAY_BONUS
 
     # Add some randomness so picks vary
-    score += _rng.random() * 0.3
+    score += _rng.random() * JITTER
 
     return score
 
 
 # ── Daily Song Drop ──────────────────────────────────────────────
 
+def get_token_renewal_reminder() -> str:
+    """Return token renewal warnings for the daily song drop, if any."""
+    warnings = []
+    for status in (check_token_expiry(), check_user_token_age()):
+        if status and status["warning"]:
+            warnings.append(status["message"])
+    return "\n".join(warnings)
+
+
 def cmd_daily(profile: dict, sf: str) -> dict:
     """Pick one track for today's daily song drop."""
     rng = random.Random(daily_seed())
 
+    # Score first so the user filters can boost preferred genres, then drop excluded artists
     candidates = get_candidates(profile, sf)
-    if not candidates:
-        return {"error": "No candidates found. Try refreshing your taste profile."}
-
-    # Score all candidates
     for c in candidates:
         c["_score"] = score_candidate(c, profile, rng=rng)
+    candidates = apply_user_filters(candidates, user_filters(load_config(), profile=profile, storefront=sf))
+    if not candidates:
+        return {"error": "No candidates found. Try refreshing your taste profile."}
 
     # Sort by score and pick from top tier (add deterministic variety)
     candidates.sort(key=lambda c: c["_score"], reverse=True)
@@ -178,11 +214,16 @@ def cmd_daily(profile: dict, sf: str) -> dict:
     # Clean up internal fields
     pick.pop("_score", None)
 
+    message = f"🎧 Today's pick: *{pick['name']}* by {pick['artist']} — {pick.get('reason', '')}"
+    reminder = get_token_renewal_reminder()
+    if reminder:
+        message = f"{message}\n\n{reminder}"
+
     return {
         "type": "daily_song_drop",
-        "date": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+        "date": datetime.now(UTC).strftime("%Y-%m-%d"),
         "track": pick,
-        "message": f"🎧 Today's pick: *{pick['name']}* by {pick['artist']} — {pick.get('reason', '')}",
+        "message": message,
     }
 
 
@@ -192,14 +233,14 @@ def cmd_now(profile: dict, sf: str) -> dict:
     """Context-aware instant recommendation."""
     context = get_time_context()
 
-    candidates = get_candidates(profile, sf, context)
-    if not candidates:
-        return {"error": "No candidates found.", "context": context}
-
-    # Score with time context
+    # Score with time context first so the user filters can boost preferred genres
     rng = random.Random()  # fresh RNG for "now" mode
+    candidates = get_candidates(profile, sf, context)
     for c in candidates:
         c["_score"] = score_candidate(c, profile, context, rng=rng)
+    candidates = apply_user_filters(candidates, user_filters(load_config(), profile=profile, storefront=sf))
+    if not candidates:
+        return {"error": "No candidates found.", "context": context}
 
     candidates.sort(key=lambda c: c["_score"], reverse=True)
     pick = candidates[0]

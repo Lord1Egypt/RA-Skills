@@ -14,14 +14,14 @@ Validated demand: Agent users show strong demand for Tavily Search-style workflo
 
 ## 来源证据
 
-- clawhub-popular-skill：[Popular Clawhub skill demand: Self-Improving + Proactive Agent has 214,713 downloads](https://clawhub.ai/skills/self-improving)
-- clawhub-popular-skill：[Popular Clawhub skill demand: ontology has 201,674 downloads](https://clawhub.ai/skills/ontology)
-- clawhub-popular-skill：[Popular Clawhub skill demand: Multi Search Engine has 165,563 downloads](https://clawhub.ai/skills/multi-search-engine)
-- clawhub-popular-skill：[Popular Clawhub skill demand: AdMapix has 134,361 downloads](https://clawhub.ai/skills/admapix)
-- clawhub-popular-skill：[Popular Clawhub skill demand: Tavily Search has 110,346 downloads](https://clawhub.ai/skills/openclaw-tavily-search)
-- hacker-news-ask-hn：[Tell HN: I'm working on original approaches to tag-based file organization](https://news.ycombinator.com/item?id=50467717)
-- hacker-news-ask-hn：[Claude Code's API billing depends on how often the cache expires](https://news.ycombinator.com/item?id=50467233)
-- github-issues：[[FEATURE] File browser and code editor](https://github.com/MacRimi/ProxMenux/issues/658)
+- hacker-news-ask-hn：[Tell HN: OpenRouter prompts to Minimax may have been read](https://news.ycombinator.com/item?id=50585962)
+- clawhub-popular-skill：[Popular Clawhub skill demand: Self-Improving + Proactive Agent has 215,737 downloads](https://clawhub.ai/skills/self-improving)
+- clawhub-popular-skill：[Popular Clawhub skill demand: ontology has 202,216 downloads](https://clawhub.ai/skills/ontology)
+- clawhub-popular-skill：[Popular Clawhub skill demand: Multi Search Engine has 166,287 downloads](https://clawhub.ai/skills/multi-search-engine)
+- clawhub-popular-skill：[Popular Clawhub skill demand: AdMapix has 134,547 downloads](https://clawhub.ai/skills/admapix)
+- clawhub-popular-skill：[Popular Clawhub skill demand: Tavily Search has 110,929 downloads](https://clawhub.ai/skills/openclaw-tavily-search)
+- hacker-news-ask-hn：[Ask HN: Is blogging (text content creation) dead?](https://news.ycombinator.com/item?id=50589910)
+- github-issues：[Release the non-React routes as the next minor through the release workflow](https://github.com/MapCairn/mapcairn/issues/679)
 
 ## 这个技能如何满足需求
 

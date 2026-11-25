@@ -1,42 +1,62 @@
-## Description: <br>
-Wire one site-scoped read-only MCP sidecar to a local Campus Copilot snapshot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wire one site-scoped read-only MCP sidecar to a local Campus Copilot snapshot.
 
-## Publisher: <br>
-[xiaojiou176](https://clawhub.ai/user/xiaojiou176) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaojiou176](https://clawhub.ai/user/xiaojiou176)
 
-## Use Case: <br>
-Developers and local agent operators use this skill to connect a single site-scoped, read-only MCP sidecar to a Campus Copilot snapshot for inspecting site records without live browser interaction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A local agent runtime may be able to read or retain private campus data from the selected snapshot. <br>
-Mitigation: Use only trusted MCP consumers and point the sidecar at the specific snapshot and site intended for sharing. <br>
-Risk: Responses may be over-scoped if the agent treats snapshot data as live campus state. <br>
-Mitigation: Keep claims snapshot-scoped and read-only, and avoid using this skill for posting, replying, submitting, or live browser control. <br>
+## Use Case:
 
+Developers and engineers use this skill to connect a local MCP-capable runtime to one site's read-only Campus Copilot snapshot. It helps inspect snapshot-scoped assignments, messages, or events without live browser interaction or write-capable actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaojiou176/site-mcp-consumer) <br>
-- [Publisher profile](https://clawhub.ai/user/xiaojiou176) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline command and JSON configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only, snapshot-scoped local MCP setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Using the wrong snapshot path or site can ground the local MCP consumer in unintended records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the snapshot path and selected site before launching the sidecar or adding it to a persistent MCP client configuration.
+
+Risk: A reusable MCP config example may not match every local runtime's expected server configuration shape.
+
+Mitigation: Review the actual MCP config file before reuse, and use the direct sidecar command when the consumer does not support the same mcpServers shape.
+
+Risk: The skill is intended for read-only, snapshot-scoped access and does not support live browser control or posting actions.
+
+Mitigation: Keep agent claims and actions limited to snapshot data, and do not use it for posting, replying, submitting, or live browser takeover.
+
+## Reference(s):
+
+- [Codex MCP integration example](examples/integrations/codex-mcp.example.json)
+- [Claude Code MCP integration example](examples/integrations/claude-code-mcp.example.json)
+- [Claude Desktop MCP example](examples/mcp/claude-desktop.example.json)
+- [Codex repo-root MCP example](examples/mcp/codex-repo-root.example.json)
+- [Claude Desktop repo-root MCP example](examples/mcp/claude-desktop-repo-root.example.json)
+- [OpenClaw read-only guidance](examples/openclaw-readonly.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only, snapshot-scoped setup guidance; no bundled executable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
 name: x402-conduct-test
-description: Retired on 2026-11-04. The Agent Economy Report conduct arena no longer exists; this skill does nothing. Use x402-trust-check to rate services and skills.
-version: 1.1.0
+description: Retired on 2026-11-04. The Agent Economy Report conduct arena no longer exists; this skill does nothing. Use x402-trust-check to check x402 services.
+version: 1.1.1
 homepage: https://agenteconomy.report/s/changelog
 metadata:
   openclaw:
@@ -27,6 +27,5 @@ rating, say that the arena was retired on 2026-11-04 and point to
 
 ## What still works
 
-The trust ratings of x402 services and of agent skills, free and daily, through the skill
-`x402-trust-check` (same publisher): `https://agenteconomy.report/s/<host>.json` and
-`https://agenteconomy.report/k/<slug>.json`.
+The trust ratings of x402 services, free and daily, through the skill `x402-trust-check` (same
+publisher): `https://agenteconomy.report/s/<host>.json`. The skill ratings were retired on 2026-11-19.

@@ -27,6 +27,7 @@ CLI:
 import argparse
 import re
 import shutil
+import subprocess  # 静态导入：仅用于调用 git 只读命令（ls-remote / clone / rev-parse）
 import sys
 import tempfile
 from datetime import datetime, timedelta, timezone
@@ -84,7 +85,6 @@ def now_bjt():
 
 
 def run(cmd, cwd=None, timeout=60):
-    import subprocess
     p = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True, timeout=timeout)
     return p.returncode, p.stdout.strip(), p.stderr.strip()
 

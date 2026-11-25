@@ -11,12 +11,9 @@ npx skills add NenadZivotic/lite-agent-skills --skill npm-package-health-lite
 ## Run
 
 ```bash
-node scripts/health.mjs lodash
+node scripts/health.js lodash
 ```
 
 ## Full version
 
-The paid version adds weekly downloads, maintainer count, and dependency count:
-
-- SkillHQ: https://skillhq.dev/skills/sone94/npm-package-health
-- Agensi: https://agensi.io/skills/npm-package-health
+The full `npm-package-health` skill ($7) adds weekly downloads, maintainer count, and dependency count. Ask for it by slug.

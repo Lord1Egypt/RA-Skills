@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers writing workflows or skills for hosted Git repositories use this command reference to choose equivalent forge-specific commands for GitHub, GitLab, and Bitbucket. It is intended for issue, pull request or merge request, review, discussion, and CI/CD workflows.
+Developers use this skill to identify whether a repository is hosted on GitHub, GitLab, or Bitbucket and to choose equivalent commands and configuration patterns when working across those platforms.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment flags authenticated GitHub discussion searches and changes as broader than the stated command-mapping purpose; scan coverage is also incomplete because two referenced paths were missing.
+Risk: The skill includes GitHub Discussions searches and operations that may use account credentials to create or change content.
 
-Mitigation: Review discussion commands and verify the target repository, intended action, and authentication before running them; inspect the missing paths or obtain a complete scan before relying on scanner coverage.
+Mitigation: Before running a discussion operation, confirm the target repository, the requested change, and the account permissions being used.
+
+Risk: The security scan had partial coverage because two referenced paths were not resolved.
+
+Mitigation: Review the complete installed skill and its referenced files before relying on its guidance.
 
 ## Reference(s):
 
-- [Complete Command Mapping](modules/command-mapping.md)
 - [Project homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-leyline-git-platform)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
 
-**Output Format:** [Markdown command reference with tables and inline shell and API examples]
+**Output Format:** [Markdown with cross-platform command tables and code examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Platform support varies by operation; Bitbucket examples use its REST API or web interface, and discussion operations are GitHub-only. Authenticated operations depend on provider credentials and configuration.]
+**Other Properties Related to Output:** [Provides command and configuration guidance for GitHub, GitLab, and Bitbucket workflows.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release)
 
 ## Ethical Considerations:
 

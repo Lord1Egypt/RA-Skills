@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "OOMOL Fusion API"
   author: "OOMOL"
-  version: "1.0.10"
+  version: "1.0.12"
   services: ["fusion-api"]
   icon: "https://static.oomol.com/logo/logo.png"
 ---
@@ -38,14 +38,11 @@ Each action is listed below with a one-line description; actions that change sta
 ## Available actions
 
 - `cosyvoice_tts_generate` — Generate speech audio with CosyVoice TTS.
-- `cphone_nano_banana_result` — Get cphone-nano-banana task result
-- `cphone_nano_banana_state` — Get cphone-nano-banana task state
-- `cphone_nano_banana_submit` — Edit images with Nano Banana [write]
 - `deepseek_ocr_recognize` — Recognize text from a single image.
 - `doubao_stt_result` — Get doubao-stt task result
 - `doubao_stt_state` — Get doubao-stt task state
 - `doubao_stt_submit` — Convert speech to text with Doubao [write]
-- `doubao_text_to_image_seedream_generate` — Generate images from text with Doubao Seedream
+- `doubao_text_to_image_seedream_generate` — Generate, edit or decompose images with Seedream Pro or Flash [write]
 - `doubao_tts_result` — Get doubao-tts task result
 - `doubao_tts_state` — Get doubao-tts task state
 - `doubao_tts_submit` — Convert text to speech with Doubao [write]
@@ -67,6 +64,9 @@ Each action is listed below with a one-line description; actions that change sta
 - `fal_remove_background_result` — Image with background removed
 - `fal_remove_background_state` — Get fal-remove-background task state
 - `fal_remove_background_submit` — Remove image backgrounds with the Fal.ai BRIA model [write]
+- `ffmpeg_result` — Get the FFmpeg task result and output download URL.
+- `ffmpeg_state` — Get the FFmpeg task state.
+- `ffmpeg_submit` — Run an FFmpeg command with up to four input URLs and one output. Maximum three minutes per job. [write]
 - `file_upload_abort_multipart_upload` — Abort multipart upload [destructive]
 - `file_upload_complete_multipart_upload` — Complete multipart upload [write]
 - `file_upload_create_multipart_upload` — Initialize multipart upload [write]
@@ -96,12 +96,12 @@ Each action is listed below with a one-line description; actions that change sta
 - `qwen_mt_image_state` — Get qwen-mt-image task state
 - `qwen_mt_image_submit` — Image machine translation [write]
 - `qwen_tts_generate` — Generate speech audio
-- `qwen_voice_cloning_create` — Create a Qwen voice cloning voice and return a preview audio URL. [write]
+- `qwen_voice_cloning_create` — Create a custom Qwen-Audio voice. Return its ID even if preview generation fails. [write]
 - `qwen_voice_design_create` — Create a Qwen voice design voice and return preview audio. [write]
-- `qwen_voice_design_delete` — Delete a Qwen voice design voice. [destructive]
+- `qwen_voice_design_delete` — Delete a custom voice. [destructive]
 - `qwen_voice_design_generate` — Generate speech audio using a Qwen voice design voice.
-- `qwen_voice_design_list` — List Qwen voice design voices.
-- `qwen_voice_design_query` — Get details for a Qwen voice design voice.
+- `qwen_voice_design_list` — List cloned and designed custom voices.
+- `qwen_voice_design_query` — Query custom voice details and deployment status.
 - `seedance_video_result` — Query a Seedance video generation task result
 - `seedance_video_state` — Get a Seedance video generation task state
 - `seedance_video_submit` — Generate videos with Doubao Seedance [write]

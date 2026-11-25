@@ -1,6 +1,6 @@
 ## Description:
 
-Provides guidance for using an unofficial, typed Go client for the Zulip REST API.
+An unofficial typed Go client for the Zulip REST API, for reading and sending messages, managing users and channels, polling events, uploading files, and administering an organization.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Go developers use this skill to install and integrate an unofficial Zulip client for messaging, user and channel management, subscriptions, uploads, and event polling.
+Developers use this skill in Go projects that need to read or send Zulip messages, manage users and channels, or administer an organization through its Zulip server.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security inspection was partial because one reference could not be resolved, leaving the evidence incomplete.
+Risk: The benign security scan is not a safety guarantee, and one referenced item could not be resolved.
 
-Mitigation: Review the unresolved reference and use judgment before installing.
+Mitigation: Review the unresolved reference before relying on it.
 
-Risk: API credentials and request content are sent to the configured Zulip server, and write operations can change organization data or settings.
+Risk: Requests send credentials and content to the configured Zulip server, and message or organization changes can have real effects.
 
-Mitigation: Use a trusted HTTPS server, keep credentials out of source code and logs, and make changes only when requested for the specified resources.
+Mitigation: Use a trusted HTTPS server, keep credentials out of code and logs, and make changes only when requested.
 
 ## Reference(s):
 
-- [Setup and API usage guide](artifact/references/setup.md)
-- [Project homepage](https://github.com/psyb0t/go-zulip)
+- [Setup and reference](references/setup.md)
 - [Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-zulip)
-- [ClawHub skill page](https://clawhub.ai/psyb0t/skills/go-zulip)
+- [Project homepage](https://github.com/psyb0t/go-zulip)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [Code, API Calls, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown guidance with Go code examples and shell commands]
+**Output Format:** [Go code and Markdown guidance with inline Go and shell examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Examples use the generated Go client API.]
+**Other Properties Related to Output:** [Usage examples and configuration guidance; runtime API calls use the configured Zulip server.]
 
 ## Skill Version(s):
 
-0.4.0 (source: server-resolved release metadata)
+0.5.0 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

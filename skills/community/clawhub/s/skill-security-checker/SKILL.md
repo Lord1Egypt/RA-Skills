@@ -1,9 +1,20 @@
 ---
+slug: skill-security-checker
+displayName: Skill 安全审计扫描器
 name: skill-security-checker
-description: 'Skill Security — 安全审计扫描器，审一下这个 skill、装之前帮我查查、这个 skill 安全吗？一键快扫 30 秒出三档裁定（✅干净/⚠️可疑/🚫恶意）+ Top3 风险 + 一句话理由；全量模式覆盖轻量 SAST 污点追踪（Python AST + JS 词法近似，source→sink 证据链降误报）、规则引擎（YAML 规则包热插拔扩展）、社区规则（schema 校验 + 来源记录 + 签名验证）、提示注入 ML 语义检测（ONNX + 正则降级）、系统级行为捕获（eBPF Linux / ETW Windows）、动态沙箱执行扫描、供应链风险分析、OSV.dev 离线数据包（全生态 CVE 覆盖，零密钥）+ 锁文件深度解析（requirements.txt / package-lock.json / poetry.lock，版本区间级精确匹配）、恶意 Skill 指纹库、健康度与合规检查（质量+结构+权限合并）、全局排除配置、CI/CD 集成、JSON/HTML/SARIF 报告生成。'
-version: 3.5.5
+description: 'Skill Security — 安全审计扫描器，审一下这个 skill、装之前帮我查查、这个 skill 安全吗？守护模式（--gate 安装前自动拦截，三档 exit code 0/1/2，宿主可调用不驻留）、一键快扫 30 秒出三档裁定（✅干净/⚠️可疑/🚫恶意）+ Top3 风险 + 一句话理由；指纹库每日静默增量更新（失败保留旧库+标注数据时点）、拦截日志（JSONL 装机审计，90 天可回溯）、给老板的一页纸报告（中文零术语 HTML 可导 PDF）、版本安全 diff（新增风险标红）；全量模式覆盖轻量 SAST 污点追踪、规则引擎、社区规则、提示注入 ML 检测、系统级行为捕获、动态沙箱、供应链风险分析、OSV.dev 离线数据包、锁文件深度解析、恶意 Skill 指纹库、健康度与合规检查、全局排除配置、CI/CD 集成、JSON/HTML/SARIF 报告生成。'
+version: 3.7.0
+tags: ['security', 'audit', 'skill', 'scanner', 'code-analysis', 'vulnerability']
+icon: '🔒'
+author: 'njskills'
+license: 'MIT'
+allowed-tools: 'Bash,Read'
+metadata:
+  agent_created: true
+  schema_version: '1.0'
+  release_date: '2026-07-22'
+  stability: 'stable'
 ---
-
 
 # Skill Security
 
@@ -16,7 +27,9 @@ version: 3.5.5
 python D:\skill\skill-security-checker\scripts\audit.py "D:\skill\你的技能名" --quick
 # 2. 全量：CI/CD 用 JSON/SARIF，安全工程师看 HTML
 python D:\skill\skill-security-checker\scripts\audit.py "D:\skill\你的技能名" --mode full --format sarif -o report.sarif.json
-# 3. 口语触发：直接对 WorkBuddy 说「审一下这个 skill」+ 路径，自动快扫
+# 3. 守护模式：安装前拦截，exit code 0/1/2 直接当闸门（宿主安装流程调用）
+python D:\skill\skill-security-checker\scripts\audit.py "D:\skill\你的技能名" --gate
+# 4. 口语触发：直接对 WorkBuddy 说「审一下这个 skill」+ 路径，自动快扫
 ```
 
 ## 概述
@@ -314,6 +327,83 @@ v3.5.0 新增 `--quick` 一键模式，专为「**装之前看一眼**」的大�
 
 **默认档位可配**：环境变量 `SKILLSEC_MODE=quick|full` 可覆盖默认（默认 quick）。快扫报告与全量报告各取所需，不互相干扰。
 
+### 23. 守护模式 / 安装前拦截（新增）
+
+`--gate` 是快扫的「安装闸门」版：宿主 Agent 在安装新 skill 的流程中调用它，按三档 **exit code** 决定是否继续——把「用户记得扫」变成「每次装自动扫」。
+
+```bash
+python scripts/audit.py "D:\skill\某技能" --gate
+# exit 0 = ✅干净 → 允许安装
+# exit 1 = ⚠️可疑 → 警告后由用户确认
+# exit 2 = 🚫恶意 → 阻断安装
+```
+
+- **零依赖**：复用 L1 快扫三件套（恶意指纹 + 6 类规则 + 权限审计），不依赖平台 API、不驻留进程
+- **宿主接入**：宿主拿到 exit code 后用一段规则决定继续/警告/阻断即可（见 FAQ）
+- **自动留痕**：每次守护扫描自动追加一条拦截日志（见章节 25）
+
+**宿主接入规则示例（伪代码）：**
+```
+code = run("audit.py <skill_path> --gate").exit_code
+if code == 2: 阻断安装并提示"检测到高风险，不建议安装"
+elif code == 1: 展示裁定 + Top3，等用户确认后再装
+else: 直接安装
+```
+
+### 24. 指纹库增量更新（新增）
+
+恶意样本库是快扫准确率的生命线。守护模式下每日静默检查更新（24 小时间隔，沿用 OSV 缓存策略）：
+
+- **更新源可配**：环境变量 `SKILLSEC_DB_URL` 或 `~/.workbuddy/gate-audit/db_source.json`
+- **成功**：合并新条目（按 name+type 去重）+ 刷新数据时点
+- **失败/断网**：**保留旧库 + 标注数据时点**（报告 meta 的 `db_sync` 标 `stale`），绝不用空库覆盖——离线优先、零密钥基因不变
+- 未配置更新源时完全离线运行，不发起任何网络请求
+
+```bash
+python scripts/db_updater.py --status-only     # 查看数据时点与是否到期
+python scripts/db_updater.py --force            # 强制检查一次
+python scripts/db_updater.py --dry-run          # 预演不写入
+```
+
+### 25. 拦截日志 / 装机审计（新增）
+
+每次守护扫描记一条 JSONL（时间 / 目标 / 裁定 / 用户决定），存仓库外 `~/.workbuddy/gate-audit/`，**90 天可回溯**，企业装机合规留痕。
+
+```bash
+python scripts/audit.py --gate-log --format json           # JSON 摘要
+python scripts/audit.py --gate-log                          # 文本摘要视图
+python scripts/audit.py --gate-export audit.json            # 导出审计材料
+python scripts/audit.py --gate-decision blocked --gate-decision-target 某技能
+python scripts/audit.py --gate-log --days 90 --gate-log     # 指定回溯天数
+```
+
+- 默认只存目标路径的短哈希（隐私），需要完整路径时用日志 API 的 `full_path=True`
+- 决定字段：`pending`（待确认）/ `allowed`（放行）/ `blocked`（拦截）/ `cancelled`（取消）
+
+### 26. 报告武器化：给老板的一页纸（新增）
+
+把技术报告翻译成决策语言——三段式、中文零术语、**HTML 单文件可直接导 PDF**：
+
+```bash
+python scripts/audit.py "某技能" --mode full --format json -o report.json
+python scripts/audit.py --onepager report.json -o onepager.html
+```
+
+1. **风险结论**：可以装 / 建议改后再装 / 不建议装
+2. **业务影响**：风险类型→业务话术表（「可能执行任意命令」「可能外传密钥」）——映射表可用 `--onepager-impact-map` 外置自定义
+3. **处置建议**：装 / 装前改 / 不装 三选一
+
+### 27. 版本安全 diff + SARIF 工作流（新增）
+
+**版本 diff**：同 skill 两个版本报告对比，新增/消失风险一目了然，**新增风险标红**，让「升级」也有闸门：
+
+```bash
+python scripts/audit.py --diff old.json new.json -o diff.html
+python scripts/audit.py --diff old.json new.json --format json
+```
+
+**SARIF 端到端示例**：`examples/github-actions.yml` 是从克隆到告警 ≤10 分钟的 GitHub Code Scanning 模板——复制到目标仓库 `.github/workflows/skill-security.yml` 即可，产出自动标注到 Security 标签页。
+
 ## 使用方法
 
 ### 基本用法（命令行）
@@ -410,6 +500,14 @@ python D:\skill\skill-security-checker\scripts\audit.py "D:\skill\你的技能�
 | `--refresh-osv` | 强制刷新 OSV 离线数据包索引（v3.4.0，联网重建全生态 CVE 索引） | 关闭 |
 | `--quick` | 一键快扫：仅 L1 静态层（恶意指纹+6类规则+权限审计），30 秒出三档裁定（v3.5.0） | 关闭（但默认档位即为 quick） |
 | `--mode` | 扫描档位：`quick`（快扫三档裁定，≤1屏）/ `full`（全量细节 SARIF/HTML/JSON），可用环境变量 `SKILLSEC_MODE` 覆盖默认 | `quick` |
+| `--gate` | 守护模式：安装前拦截，三档 exit code 0/1/2，宿主可调用不驻留（v3.7.0） | 关闭 |
+| `--gate-log` | 查看拦截日志摘要（装机审计） | 关闭 |
+| `--gate-days` | 拦截日志回溯天数 | 90 |
+| `--gate-export <file>` | 导出拦截日志到 JSON 文件 | 无 |
+| `--gate-decision <allowed\|blocked\|cancelled>` | 记录用户对守护扫描的决定 | 无 |
+| `--onepager <report.json>` | 从 full 报告生成「给老板的一页纸」HTML | 无 |
+| `--onepager-impact-map <file>` | 一页纸的外部风险→业务影响话术映射 JSON | 无 |
+| `--diff <old.json> <new.json>` | 对比两版本安全报告，新增风险标红 | 无 |
 
 ### 在 WorkBuddy 中触发
 
@@ -576,6 +674,18 @@ A: 快扫强制启用恶意指纹匹配（341 条 hash + 模式），命中即�
 **Q: 哪些口语能触发快扫？**
 A: 对齐钟馗的中文触发语：「审一下这个 skill」「装之前帮我查查」「这个 skill 安全吗」+ 路径即可自动快扫。意图路由命中这些口语即走 quick 档。
 
+**Q: 守护模式（--gate）怎么接入宿主安装流程？会不会常驻后台？**
+A: 不会常驻。`--gate` 是一次性可调用 CLI：宿主安装 skill 前调一次，拿 exit code（0 干净 / 1 可疑 / 2 恶意）按规则决定继续、让用户确认或阻断即可，不依赖任何平台 API、不开后台进程。配置一段「code==2 阻断 / code==1 确认 / else 放行」的规则即可接入。
+
+**Q: 指纹库每日更新失败（断网）会怎样？会把库清空吗？**
+A: 不会。沿用 OSV 的离线优先策略：更新失败（断网/源不可达）时**保留旧库**，并在报告 meta 标 `data_point_stale=true` 和最后数据时点——诚实标注「用的是哪天的库」。未配置更新源时完全离线运行，不发任何网络请求。
+
+**Q: 拦截日志存在哪里？会不会把日志打包进 skill 仓库？**
+A: 存在仓库外 `~/.workbuddy/gate-audit/gate-log.jsonl`（JSONL 追加），不进 skill 仓库，避免 `.log` 类文件违反发布规范。默认 90 天可回溯，可用 `--gate-log` 看摘要、`--gate-export` 导出 JSON 作审计材料。默认只存目标路径短哈希保护隐私。
+
+**Q: 「给老板的一页纸」和版本 diff 有什么区别？分别给谁看？**
+A: 一页纸给**决策者**：把某次 full 报告翻译成风险结论+业务影响+装/不装/装前改三选一，零术语 HTML 可导 PDF；版本 diff 给**升级把关**：对比同 skill 两版本报告，新增风险标红，防止恶意代码藏在中途更新里（升级前的闸门）。两者都消费 full 报告 JSON，不额外扫描。
+
 ## 安全声明
 
 - **默认只做静态分析，不会执行被扫描的代码**（静态模式仅读取文件，不写入）
@@ -596,6 +706,7 @@ A: 对齐钟馗的中文触发语：「审一下这个 skill」「装之前帮�
 
 ## 更新日志
 
+| v3.7.0 | 2026-11-18 | 增加：守护模式 --gate（安装前拦截，三档 exit code 0/1/2，宿主可调用、不驻留进程、不依赖平台 API，自动记拦截日志）；增加：指纹库每日静默增量更新（scripts/db_updater.py，更新源可配，成功合并去重+刷新时点，失败保留旧库并标 data_point_stale）；增加：拦截日志（scripts/gate_logger.py，JSONL 追加，时间/目标/裁定/用户决定，仓库外存储，90 天可回溯，摘要视图+导出）；增加：给老板的一页纸报告（scripts/onepager.py，风险结论+业务影响话术表+装/不装/装前改三选一，中文零术语 HTML 可导 PDF，话术映射表可外置）；增加：版本安全 diff（scripts/report_diff.py，两版本报告对比，新增/消失风险，新增标红）；增加：SARIF 端到端示例（examples/github-actions.yml）；优化：description 补充守护模式/一页纸/diff 触发场景，参数表+FAQ+快速开始配套 |
 | v3.5.5 | 2026-10-09 | 修复：移除静态检测模式列表的 base64 编码存储，全部还原为明文常量，消除平台安全扫描「代码混淆」误报；删除：base64 解码函数与相关注释 |
 | v3.5.0 | 2026-10-09 | 增加：一键快扫 --quick / --mode quick 模式，只跑 L1 静态层三件套（恶意指纹 341 条 + 6 类规则 + 权限审计），30 秒内出三档裁定（✅干净/⚠️可疑/🚫恶意）+ Top3 风险 + 一句话理由；增加：scripts/quick_verdict.json 外置裁定映射表（分数→档位可自定义，不硬编码）；增加：报告分级输出（quick 档 ≤1 屏、full 档保留 JSON/HTML/SARIF 全量细节），默认档位可配（环境变量 SKILLSEC_MODE=quick\|full）；优化：description 增补口语触发词（审一下这个 skill / 装之前帮我查查 / 这个 skill 安全吗）对齐钟馗意图路由，快速开始压缩到 3 行；优化：一键快扫强制启用恶意指纹匹配保障 341 条样本 🚫档召回 100% |
 | v3.4.0 | 2026-09-11 | 增加：OSV.dev 离线数据包接入（scripts/osv_offline.py），周期下载 PyPI/npm 导出包并合并进三级缓存，依赖覆盖从 26 包升到全生态，零密钥、离线优先、无网络时标注数据时点；增加：锁文件深度解析（package-lock.json 与 poetry.lock 两类新增解析器 + requirements.txt 升级），传递依赖全树展开，匹配从包名级升级到版本区间级，无 lock 时近似匹配并标注 approx；增加：--refresh-osv 命令行参数（强制刷新 OSV 索引）；优化：supply_chain.py 漏洞查询改为离线优先（OSV 索引 → OSV API → NVD → 本地 26 条三级降级），report meta 区新增 osv_offline 索引时点统计 |

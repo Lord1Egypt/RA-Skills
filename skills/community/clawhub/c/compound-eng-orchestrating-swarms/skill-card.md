@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this workflow to delegate independent implementation, research, and review tasks across multiple agents, then coordinate their work, verify delivery, and report completion accurately.
+Developers and engineering teams use this workflow to coordinate parallel reviews, implementation tasks, and dependent multi-stage work across available agents while keeping assignments, verification, and completion claims clear.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Examples may involve reading local Claude team configuration and coordination data.
+Risk: Some documented skill-evaluation and environment-setup tasks may fall outside a user's expectations for a swarm-coordination skill.
 
-Mitigation: Review the specific data and access scope before using those examples, and confirm the access fits your environment.
+Mitigation: Review those sections before use and confirm they fit the task and the active environment.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/iliaal/skills/compound-eng-orchestrating-swarms)
-- [Dispatch contract](references/dispatch-contract.md)
-- [Orchestration patterns](references/orchestration-patterns.md)
-- [Review and delivery](references/review-and-delivery.md)
-- [Codex quick reference](references/codex-quick-reference.md)
-- [Claude Code subagent documentation](https://code.claude.com/docs/en/sub-agents)
+- [Dispatch Contract](artifact/references/dispatch-contract.md)
+- [Orchestration Patterns](artifact/references/orchestration-patterns.md)
+- [Worker Lifecycle](artifact/references/worker-lifecycle.md)
+- [Codex Collaboration Quick Reference](artifact/references/codex-quick-reference.md)
+- [Claude Code Sub-agents Documentation](https://code.claude.com/docs/en/sub-agents)
+- [Claude Code Agent Teams Documentation](https://code.claude.com/docs/en/agent-teams)
+- [Claude Code Tools Reference](https://code.claude.com/docs/en/tools-reference)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Text]
+**Output Type(s):** [Analysis, Code, Files, Guidance, Markdown, Shell commands]
 
-**Output Format:** [Markdown guidance, task briefs, and coordination messages]
+**Output Format:** [Markdown guidance and structured agent handoffs; task outputs may include code, files, and shell commands.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Task-specific; no fixed output schema]
+**Other Properties Related to Output:** [Task-dependent; outputs follow the assigned work and the active agent tools.]
 
 ## Skill Version(s):
 
-5.1.6 (source: server-resolved release evidence)
+5.1.7 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -1,248 +1,282 @@
-# PC Web Platform-Specific Testing
+# PC Web Test Points
 
-> This document defines specialized testing dimensions and strategy highlights specific to PC Web, distinct from other platforms.
-> See `references/examples/format-spec.md` for output format and `references/checklists/pc-web-checklist.md` for the checklist.
+> This file defines the test dimensions and strategy points that distinguish PC Web from other platforms.
+> For the output format, see `references/examples/format-spec.md`; for the checklist, see `references/checklists/pc-web-checklist.md`.
 
-## Table of Contents
+## Contents
 
 | Line | Section |
-|------|---------|
-| 26 | I. Browser Compatibility |
-| 42 | II. Page Layout & Resolution |
-| 57 | III. Keyboard Navigation |
-| 74 | IV. Form Interaction |
-| 90 | V. Sessions & Authentication |
-| 106 | VI. Multi-Window & Tabs |
-| 121 | VII. Routing & Navigation |
-| 137 | VIII. Data Linkage |
-| 153 | IX. Drag-and-Drop Interaction |
-| 169 | X. Rich Text Editing |
-| 186 | XI. Internationalization |
-| 201 | XII. Dark Mode |
-| 217 | XIII. Print Functionality |
-| 233 | XIV. Network & Cache |
+|------|------|
+| 29 | 1. Browser Compatibility |
+| 45 | 2. Page Layout and Resolution |
+| 60 | 3. Keyboard Navigation |
+| 77 | 4. Form Interaction |
+| 93 | 5. Session and Authentication |
+| 109 | 6. Multiple Windows and Tabs |
+| 124 | 7. Routing and Navigation |
+| 140 | 8. Data Linkage |
+| 156 | 9. Drag and Drop |
+| 172 | 10. Rich Text Editing |
+| 189 | 11. File Operations |
+| 206 | 12. Internationalization |
+| 221 | 13. Dark Mode |
+| 237 | 14. Printing |
+| 253 | 15. Network and Cache |
+| 271 | 16. Performance Experience |
 
 ---
 
-## I. Browser Compatibility
+## 1. Browser Compatibility
 
-### Focus Areas
+### Key focus points
 - Mainstream browsers: Chrome / Firefox / Safari / Edge
 - CSS feature differences: flexbox gap, aspect-ratio, container queries, etc.
 - JavaScript API differences: polyfill coverage for new APIs
-- Safari-specific issues: date format, flex layout, input event differences
-- Impact of private mode on Cookies/Storage
+- Safari-specific issues: date formats, flex layout, input event differences
+- Effect of private mode on cookies / Storage
 
-### Common Defects
-- Safari date parsing failure (requires yyyy-MM-dd compatibility)
-- Firefox scrollbar style inconsistency
-- localStorage write errors in private mode
+### Common defects
+- Safari date parsing fails (yyyy-MM-dd must be handled)
+- Inconsistent scrollbar styles in Firefox
+- localStorage writes throw errors in private mode
 
 ---
 
-## II. Page Layout & Resolution
+## 2. Page Layout and Resolution
 
-### Focus Areas
+### Key focus points
 - Mainstream resolutions: 1366×768 / 1920×1080 / 2K / 4K
-- Layout behavior under DPI scaling: 100% / 125% / 150%
-- Content reflow during window resize (minimum width constraint)
-- Impact of scrollbar width on layout (especially Windows auto-hide scrollbar)
+- DPI scaling: layout at 100% / 125% / 150%
+- Content reflow when resizing the window (minimum width limits)
+- Effect of scrollbar width on layout (especially auto-hiding scrollbars on Windows)
 
-### Common Defects
-- Buttons or text clipped under 125%/150% DPI
+### Common defects
+- Buttons or text clipped at 125% / 150% DPI
 - Content overflow at small resolutions
-- Layout jitter when scrollbar appears/disappears
+- Layout jitter when the scrollbar appears / disappears
 
 ---
 
-## III. Keyboard Navigation
+## 3. Keyboard Navigation
 
-### Focus Areas
+### Key focus points
 - Tab focus order: top to bottom, left to right
-- Enter triggers buttons, Space operates checkboxes
-- Esc closes modals/cancels operations
-- Global shortcuts (Ctrl+S save, Ctrl+F search, etc.)
+- Enter triggers buttons, Space toggles checkboxes
+- Esc closes pop-ups / cancels operations
+- Global shortcuts (Ctrl+S to save, Ctrl+F to search, etc.)
 - Focus indicator clearly visible
-- Skip navigation links (Skip to main content)
+- Accessibility skip link (Skip to main content)
 
-### Common Defects
+### Common defects
 - Tab focus jumps to hidden elements
-- Focus not moved into modal when opened
-- Esc cannot close modal
+- Focus does not move into a pop-up when it opens
+- Esc cannot close pop-ups
 
 ---
 
-## IV. Form Interaction
+## 4. Form Interaction
 
-### Focus Areas
-- Duplicate submission prevention (rapid consecutive clicks)
-- Required field/format validation with real-time error prompts
-- Date picker/dropdown selector/file upload components
-- Autofill (conflict between browser autofill and custom components)
-- Copy-paste (handling of formatted paste)
+### Key focus points
+- Preventing duplicate form submission (rapid consecutive clicks)
+- Required / format validation with real-time error messages
+- Date pickers / drop-down selectors / file upload components
+- Autofill (conflicts between browser autofill and custom components)
+- Copy and paste (handling of formatted paste)
 
-### Common Defects
-- Duplicate data from rapid double-click submission
-- Browser autofill overwriting custom component values
-- Date picker and manual input format inconsistency
-
----
-
-## V. Sessions & Authentication
-
-### Focus Areas
-- Session expiry handling: dialog prompt vs redirect to login page
-- Multi-tab login state synchronization (logout in Tab A; how does Tab B detect it?)
-- Remember-me / auto-login
-- Multi-device login conflict handling
-- Single Sign-On (SSO) flow
-
-### Common Defects
-- No response or data loss after session expiry
-- Login state not synchronized across multiple tabs
-- Browser cache still accessible after logout
+### Common defects
+- Quick double-click on submit creates duplicate data
+- Browser autofill overwrites custom component values
+- Date picker format inconsistent with manual input
 
 ---
 
-## VI. Multi-Window & Tabs
+## 5. Session and Authentication
 
-### Focus Areas
+### Key focus points
+- Session expiration handling: prompt dialog vs redirect to login page
+- Login state synchronization across tabs (how tab B learns that tab A logged out)
+- Remember me / auto login
+- Handling of concurrent logins on multiple devices
+- Single sign-on (SSO) flow
+
+### Common defects
+- No response or data loss when operating after the session expires
+- Login state not synchronized across tabs
+- Pages still accessible from the browser cache after logout
+
+---
+
+## 6. Multiple Windows and Tabs
+
+### Key focus points
 - Cross-tab communication (BroadcastChannel / localStorage events)
-- State preservation during tab switching
-- State restoration on browser forward/back/refresh
-- Inter-window data passing (window.opener / postMessage)
+- State retention when switching tabs
+- State restoration on browser back / forward / refresh
+- Data passing between windows (window.opener / postMessage)
 
-### Common Defects
+### Common defects
 - Page state lost after going back
 - Form data cleared after refresh
-- Data conflicts from multiple tabs operating on the same record
+- Conflicts when multiple tabs operate on the same record
 
 ---
 
-## VII. Routing & Navigation
+## 7. Routing and Navigation
 
-### Focus Areas
-- SPA routing: URL and page state synchronization
-- Dynamic route parameter parsing and type validation
-- Deep link direct access (state not lost on refresh)
-- Route guards: redirect when not logged in / unauthorized
-- Breadcrumb navigation hierarchy correctness
+### Key focus points
+- SPA routing: URL synchronized with page state
+- Parsing and type validation of dynamic route parameters
+- Direct access to deep links (state not lost on refresh)
+- Route guards: redirects when not logged in / without permission
+- Correct breadcrumb hierarchy
 
-### Common Defects
-- 404 after refresh (SPA not configured with server-side route fallback)
-- Dynamic route parameter type errors not handled
-- Incorrect page content displayed after going back
+### Common defects
+- 404 after refresh (SPA without server-side route fallback)
+- Wrong dynamic route parameter types not handled
+- Wrong content shown after going back
 
 ---
 
-## VIII. Data Linkage
+## 8. Data Linkage
 
-### Focus Areas
-- Parent-child component data synchronization and cross-component state sharing
-- List → detail data passing and return refresh
+### Key focus points
+- Parent–child component data sync and cross-component state sharing
+- Data passing from list → detail and refresh on return
 - Multi-condition filter linkage and pagination reset
-- Data loading and caching strategy during Tab switching
-- Page data refresh after modal operation
+- Data loading and caching strategy when switching tabs
+- Page data refresh after operations in a modal
 
-### Common Defects
-- List not refreshed after returning from detail modification
-- Pagination not reset after filter condition change
-- Data corruption from rapid Tab switching
+### Common defects
+- The list is not refreshed after editing in the detail page and returning
+- Pagination not reset after filter conditions change
+- Data mix-up when switching tabs quickly
 
 ---
 
-## IX. Drag-and-Drop Interaction
+## 9. Drag and Drop
 
-### Focus Areas
-- Drag sorting and drag uploading
-- Position preview and alignment guides during drag
-- Feedback when dragging to invalid area
-- Ctrl+Z undo drag operation
-- Performance with large number of elements
+### Key focus points
+- Drag to reorder and drag to upload
+- Position preview and guide lines while dragging
+- Feedback when dropping onto an invalid area
+- Ctrl+Z to undo a drag
+- Performance when dragging many elements
 
-### Common Defects
-- Data order inconsistent with visual after drag
-- Data not rolled back after undo drag
+### Common defects
+- Data order inconsistent with the visual order after dragging
+- Data not rolled back after undoing a drag
 - Stutter when dragging in large lists
 
 ---
 
-## X. Rich Text Editing
+## 10. Rich Text Editing
 
-### Focus Areas
-- Basic formatting: bold/italic/underline/headings/lists
-- Insert link/image/table
-- Undo/redo (Ctrl+Z / Ctrl+Y)
-- Format handling when pasting from Word/Excel
+### Key focus points
+- Basic formatting: bold / italic / underline / headings / lists
+- Inserting links / images / tables
+- Undo / redo (Ctrl+Z / Ctrl+Y)
+- Formatting when pasting from Word / Excel
 - Markdown editing and preview
 - Word count and content limits
 
-### Common Defects
-- Format corruption when pasting Word content
-- Undo/redo stack anomalies
-- XSS risk in rich text content submission
+### Common defects
+- Broken formatting when pasting Word content
+- Undo / redo stack errors
+- XSS risk when submitting rich text content
 
 ---
 
-## XI. Internationalization
+## 11. File Operations
 
-### Focus Areas
-- Language switching: static text/dynamic content/date/number/currency formats
+### Key focus points
+- File download: file name, format, garbled Chinese file names, large file download progress
+- File preview: online preview of images / PDF / Office documents
+- File import and export: template download, validation and error messages for imported data, exported content consistent with filter conditions
+- File upload: type limits, size limits, multi-file upload, upload progress and cancellation
+- File deletion: confirmation before deletion, list refresh after deletion
+
+### Common defects
+- Garbled Chinese file names on download
+- Import failure without the specific error row
+- Exported data inconsistent with the current filter conditions
+- Oversized files not blocked on the front end or no prompt
+
+---
+
+## 12. Internationalization
+
+### Key focus points
+- Language switching: static text / dynamic content / date / number / currency formats
 - RTL layout (Arabic, etc.)
-- Language retention after page refresh
-- Layout overflow for verbose languages (German, etc.)
+- Language retained after refreshing the page
+- Layout overflow in multiple languages (long-text languages such as German)
 
-### Common Defects
-- Partial untranslated text after language switch
-- Layout overflow in verbose languages
-- Date format not following locale conventions
+### Common defects
+- Some text not translated after switching language
+- Layout overflow in long-text languages
+- Date format not matching regional conventions
 
 ---
 
-## XII. Dark Mode
+## 13. Dark Mode
 
-### Focus Areas
-- Manual toggle vs follow system
-- Contrast ratio for all components in dark mode (≥4.5:1)
-- Image/icon/code block adaptation
-- Mode retention after refresh
-- Mode consistency across pages
+### Key focus points
+- Manual switching vs following the system
+- Contrast of all components in dark mode (≥ 4.5:1)
+- Adaptation of images / icons / code blocks
+- Retained after refresh
+- Consistent across pages
 
-### Common Defects
-- Some components not adapted in dark mode (white background)
+### Common defects
+- Some components not adapted to dark mode (white background)
 - Code block highlighting unreadable in dark mode
 - Mode reset after refresh
 
 ---
 
-## XIII. Print Functionality
+## 14. Printing
 
-### Focus Areas
-- Print styles: hide non-content elements (nav, buttons)
-- Table header repetition across pages
+### Key focus points
+- Print styles: hide navigation / buttons and other non-content elements
+- Repeating table headers across pages
 - Headers, footers, and page numbers
-- Layout for different paper sizes (A4/Letter)
-- Print preview consistency with actual output
+- Layout for different paper sizes (A4 / Letter)
+- Print preview consistent with the actual output
 
-### Common Defects
-- Unnecessary navigation and buttons included in print
+### Common defects
+- Unnecessary navigation and buttons included when printing
 - Table headers lost across pages
-- Blurry image printing
+- Blurry printed images
 
 ---
 
-## XIV. Network & Cache
+## 15. Network and Cache
 
-### Focus Areas
-- Service Worker caching strategies (Cache First / Network First / Stale While Revalidate)
-- Offline availability: whether cached pages are accessible after disconnection
-- Loading timeout and retry mechanism under weak network
-- Impact of browser cache (HTTP Cache-Control / ETag) on resource updates
-- IndexedDB / localStorage capacity limits and overflow handling
-- Recovery behavior after cache clearing
+### Key focus points
+- Service Worker cache strategies (Cache First / Network First / Stale While Revalidate)
+- Offline availability: whether cached pages are accessible after going offline
+- Loading timeouts and retry on weak networks
+- Effect of browser cache (HTTP Cache-Control / ETag) on resource updates
+- IndexedDB / localStorage capacity limits and handling when exceeded
+- Recovery behavior after clearing the cache
 
-### Common Defects
-- Service Worker not updated, causing users to see old version
-- White screen with no offline prompt after disconnection
-- Requests hanging indefinitely without timeout feedback under weak network
-- Static resource cache without version hashes; users still load old files after CDN update
+### Common defects
+- Service Worker not updated, so users see the old version
+- Blank page without an offline prompt after going offline
+- Requests hang indefinitely without timeout feedback on weak networks
+- Static resources cached without version numbers, so users still load old files after a CDN update
+
+---
+
+## 16. Performance Experience
+
+### Key focus points
+- First-screen load time, blank-screen time (follow project requirements; when none exist, use the reference values in the checklist)
+- Rendering and scrolling smoothness of long lists / large tables
+- Memory usage after staying on the page for a long time (whether it keeps growing)
+- Resource loading: code splitting, resource compression, image lazy loading
+
+### Common defects
+- Long blank first screen
+- Choppy scrolling in tables with large data volumes
+- The page gets slower and slower after long use (memory leak)

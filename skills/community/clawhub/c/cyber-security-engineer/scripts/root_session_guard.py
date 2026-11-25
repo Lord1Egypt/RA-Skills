@@ -1,18 +1,37 @@
 #!/usr/bin/env python3
 """Root session guard with idle-timeout and allowlisted argv scoping.
+
+The session state file records which exact commands were approved. It is signed
+(HMAC-SHA256) with a per-user key and must be private to the user. A state file
+that is unsigned, altered, unreadable or readable by others is discarded and the
+session starts again in normal mode, so approval is required.
+
+Limits: the key lives in the user's own account, so an agent running as that user
+could read it and forge a state file. The signature stops accidental and casual
+tampering; the control that holds against such an agent is sudo's own password
+prompt, which guarded_privileged_exec.py forces on every run.
+
 Review before use. No network calls are made from this script.
 """
 import argparse
+import hashlib
+import hmac
 import json
 import os
+import sys
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Dict, List, Optional
 
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from security_config import is_private, write_private  # noqa: E402
+
 DEFAULT_TIMEOUT_MINUTES = 30
 STATE_PATH = Path.home() / ".openclaw" / "security" / "root-session-state.json"
+# Fixed location on purpose: a key next to a caller-chosen state file could be supplied by the caller.
+KEY_PATH = Path.home() / ".openclaw" / "security" / "session-state.key"
 
 
 def now_utc() -> datetime:
@@ -48,6 +67,8 @@ class SessionState:
     allowed_commands: List[AllowedCommand] = field(default_factory=list)
     approved_reason: Optional[str] = None
     approved_session_id: Optional[str] = None
+    # "ok", or "reset" when the stored state failed its integrity check and was discarded.
+    integrity: str = "ok"
 
     def as_dict(self) -> Dict[str, Optional[str]]:
         return {
@@ -83,13 +104,50 @@ def default_state() -> SessionState:
     )
 
 
+def _state_key() -> bytes:
+    """The per-user signing key, created on first use."""
+    try:
+        if KEY_PATH.exists() and is_private(KEY_PATH):
+            key = bytes.fromhex(KEY_PATH.read_text(encoding="utf-8").strip())
+            if len(key) >= 32:
+                return key
+    except (OSError, ValueError):
+        pass
+    key = os.urandom(32)
+    write_private(KEY_PATH, key.hex() + "\n")
+    return key
+
+
+def _signature(payload: Dict[str, object]) -> str:
+    canonical = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hmac.new(_state_key(), canonical, hashlib.sha256).hexdigest()
+
+
+def _reset_state(reason: str) -> SessionState:
+    sys.stderr.write(f"root_session_guard: stored session state discarded ({reason}); approval is required.\n")
+    state = default_state()
+    state.last_action = "integrity-reset"
+    state.integrity = "reset"
+    return state
+
+
 def load_state(path: Path) -> SessionState:
     if not path.exists():
         state = default_state()
         save_state(path, state)
         return state
-    with path.open("r", encoding="utf-8") as f:
-        raw = json.load(f)
+    if not is_private(path):
+        return _reset_state("file is not private to the current user")
+    try:
+        with path.open("r", encoding="utf-8") as f:
+            raw = json.load(f)
+    except (OSError, ValueError):
+        return _reset_state("file is unreadable")
+    if not isinstance(raw, dict):
+        return _reset_state("file is not a JSON object")
+    mac = raw.pop("mac", None)
+    if not isinstance(mac, str) or not hmac.compare_digest(mac, _signature(raw)):
+        return _reset_state("signature is missing or does not match")
     allowed_raw = raw.get("allowed_commands") or []
     allowed: List[AllowedCommand] = []
     if isinstance(allowed_raw, list):
@@ -115,10 +173,9 @@ def load_state(path: Path) -> SessionState:
 
 
 def save_state(path: Path, state: SessionState) -> None:
-    ensure_parent(path)
-    with path.open("w", encoding="utf-8") as f:
-        json.dump(state.as_dict(), f, indent=2)
-        f.write("\n")
+    payload = state.as_dict()
+    payload["mac"] = _signature(state.as_dict())
+    write_private(path, json.dumps(payload, indent=2) + "\n")
 
 
 def minutes_since(ts_iso: Optional[str]) -> Optional[float]:
@@ -201,6 +258,7 @@ def authorize(state: SessionState, timeout_minutes: int, argv: List[str], sessio
         "allowed_commands_count": len(state.allowed_commands),
         "session_id": session_id,
         "session_ok": session_ok,
+        "state_integrity": state.integrity,
     }
     print(json.dumps(result, indent=2))
     return 2 if approval_required else 0

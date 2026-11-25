@@ -1,0 +1,29 @@
+name: novel-knowledge-state-ledger-cn
+slug: novel-knowledge-state-ledger-cn
+display_name: 人物知情状态账本
+description: 输入按故事顺序排列的场景、事实编号，以及人物亲历、被告知、推测或使用事实的非空原文证据，输出人物×事实知情矩阵、首次得知场景、确信/猜测/未知状态与提前使用位置。适用于小说跨场景连续性核对；缺少顺序或证据时先索取材料，推测记为猜测、无人物证据记为未知，且不把读者所知计入人物。
+version: 0.1.0
+repository: https://github.com/xxjrq/novel-knowledge-state-ledger-cn
+icon: icon-512.png
+tags:
+  - 小说创作
+  - 小说连续性
+  - 人物设定
+  - 信息传播
+  - 知情状态
+trigger_words:
+  - 人物什么时候知道
+  - 知情矩阵
+  - 信息提前使用
+  - 小说连续性检查
+triggers:
+  - 帮我整理人物知情状态
+  - 检查角色是否提前使用了尚未知晓的信息
+  - 按场景核对每个人物何时得知事实
+interface:
+  display_name: "人物知情状态账本"
+  short_description: "按故事场景核对人物何时获知事实，并定位获知前使用信息的位置"
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+  default_prompt: "使用 $novel-knowledge-state-ledger-cn，依据按故事顺序提供的场景、事实编号及人物亲历、告知或推测原文，整理知情矩阵、首次得知与提前使用；材料缺失时先请求补充。"
+self_test: node scripts/self-test.mjs

@@ -13,7 +13,7 @@ description: >
   子质量管理，覆盖美股/A股/港股的纪律化进出场逻辑。触发词：投资组合管理、持仓复盘、
   风险红线检查、仓位规则.
 description_zh: "多资产投资组合管理框架：A/B/C 类资产差异化规则、7 条红线组合风险控制、四因子质量管理；覆盖美股、A 股、港股，纪律化进出场逻辑。"
-version: "2.3.21"
+version: "2.3.22"
 read_when:
   - "User requests portfolio review, A/B/C asset classification, or 7-red-line risk check for their holdings"
   - "User asks about entry/exit logic for US stocks, A-shares (China), or HK stocks under the framework"
@@ -47,6 +47,9 @@ metadata:
       - "network: query1.finance.yahoo.com — public market-data quote charts fetched by scripts/data_fetcher.py; no credentials involved"
       - "network: user-configured webhook URLs (DingTalk / Feishu / WeCom) — outbound report notifications posted by the optional send_*.py helpers, disabled until the user sets a webhook URL"
       - "credentials: DINGTALK_WEBHOOK_URL / DINGTALK_SECRET, FEISHU_WEBHOOK_URL / FEISHU_SECRET, WECOM_WEBHOOK_URL environment variables — set by the user, read at runtime by the send_*.py helpers, never stored, logged, or shipped"
+      - file_read
+      - file_write
+      - network
     tags:
       - investment
       - trading

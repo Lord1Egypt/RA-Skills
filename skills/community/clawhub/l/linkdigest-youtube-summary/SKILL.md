@@ -1,19 +1,26 @@
 ---
 name: linkdigest-youtube-summary
 description: "YouTube 视频总结和字幕提取，带时间戳，可直接译成中文。用户发来 YouTube 链接（youtube.com、youtu.be、Shorts），要中文总结、要点、逐字稿、字幕、画面上的文字，或者想不看视频先知道讲了什么时使用。没有字幕的视频也能读：由模型直接看视频，口播和画面文字一起出。不需要梯子抓字幕、不需要 yt-dlp、不需要 Cookie。通过 LinkDigest API 读取，需要 LINKDIGEST_API_KEY，按分钟计费，注册送 10 积分。"
-version: 1.0.0
-homepage: https://linkdigest.dev/zh/docs
-metadata: {"openclaw":{"requires":{"env":["LINKDIGEST_API_KEY"],"anyBins":["python3","curl"]},"primaryEnv":"LINKDIGEST_API_KEY","envVars":[{"name":"LINKDIGEST_API_KEY","required":true,"description":"LinkDigest API Key（ld_live_ 开头），在 https://linkdigest.dev/app/keys 创建"}],"homepage":"https://linkdigest.dev/zh/docs"}}
+version: 1.2.2
+homepage: https://linkdigest.dev/zh/docs?ref=skill-linkdigest-youtube-summary
+metadata: {"openclaw":{"requires":{"env":["LINKDIGEST_API_KEY"],"anyBins":["python3","curl"]},"primaryEnv":"LINKDIGEST_API_KEY","envVars":[{"name":"LINKDIGEST_API_KEY","required":true,"description":"LinkDigest API Key（ld_live_ 开头），在 https://linkdigest.dev/signin?ref=skill-linkdigest-youtube-summary&next=/app/keys 创建"}],"homepage":"https://linkdigest.dev/zh/docs?ref=skill-linkdigest-youtube-summary"}}
+required_environment_variables:
+  - name: LINKDIGEST_API_KEY
+    prompt: "LinkDigest API key (starts with ld_live_); optional"
+    help: "https://linkdigest.dev/signin?ref=skill-linkdigest-youtube-summary&next=/app/keys"
+    required_for: "the full output; without it the script gives one free summary a day"
 ---
 
 # YouTube 视频总结｜字幕提取（带时间戳，可译中文）
+
+> 脚本路径 `scripts/linkdigest.py` 相对于本技能目录。
 
 ## 一句话
 
 给一条 YouTube 链接，拿回带时间戳的逐字稿、画面上的文字和要点；加一个参数，同时得到中文译文。
 
 ```bash
-python3 {baseDir}/scripts/linkdigest.py "https://www.youtube.com/watch?v=xxxxxxxxxxx" --translate-to zh-CN
+python3 scripts/linkdigest.py "https://www.youtube.com/watch?v=xxxxxxxxxxx" --translate-to zh-CN
 ```
 
 ## 为什么不直接用 yt-dlp 抓字幕
@@ -38,7 +45,7 @@ python3 {baseDir}/scripts/linkdigest.py "https://www.youtube.com/watch?v=xxxxxxx
 
 ## 准备
 
-1. https://linkdigest.dev/app/keys 登录并创建 API Key，新账户送 10 积分。
+1. https://linkdigest.dev/signin?ref=skill-linkdigest-youtube-summary&next=/app/keys 登录并创建 API Key，新账户送 10 积分。
 2. `export LINKDIGEST_API_KEY=ld_live_...`（或写进 OpenClaw 配置里本技能的 `env`）。
 
 ## 返回内容
@@ -88,4 +95,4 @@ python3 {baseDir}/scripts/linkdigest.py "https://www.youtube.com/watch?v=xxxxxxx
 
 只把链接发到 linkdigest.dev，不使用你的 Google 账号。不保存视频。文字结果按链接缓存。年龄限制、会员专享、私享和已删除的视频读不了。每小时最多 60 次调用。脚本只读 `LINKDIGEST_API_KEY`，只连 `linkdigest.dev`，不写文件。
 
-同一个 Key 还能读小红书、抖音、TikTok、X 和公众号文章。文档：https://linkdigest.dev/zh/docs ，反馈：support@linkdigest.dev
+同一个 Key 还能读小红书、抖音、TikTok、X 和公众号文章。文档：https://linkdigest.dev/zh/docs?ref=skill-linkdigest-youtube-summary ，反馈：support@linkdigest.dev

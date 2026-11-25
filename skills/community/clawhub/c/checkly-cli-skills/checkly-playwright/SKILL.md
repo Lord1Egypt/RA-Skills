@@ -7,6 +7,10 @@ description: Configure Playwright test suites with Checkly including playwright.
 
 Run full Playwright test suites as Checkly checks.
 
+`pw-test` validates the project: remove retired `me-south-1` from locations/defaults, and resolve any `SlackAppAlertChannel` with destinations whose account reports a disconnected Checkly Slack app. Connect the app or remove the channel. An explicit `--location me-south-1` fails with exit 2, including before `--create-check` can write that location. Missing Slack integration state in an API response skips that check.
+
+The `github`/`json` reporters send completed-check counters and retried-attempt progress to stderr, leaving their summary/report formats unchanged. Only one file reporter supplies progress; `list`, `dot` or `ci` takes over when present. An MQTT connection failure now includes the underlying causes in `Details`; diagnose result-stream connectivity before changing test assertions.
+
 ## Playwright Check Suite
 
 Deploy entire Playwright test suite:
@@ -57,7 +61,7 @@ new PlaywrightCheck('critical-browser-journey', {
 })
 ```
 
-The shorthand `checks.playwrightChecks` entries do not expose `intent`; use an explicit `PlaywrightCheck` construct when intent is required. Intent does not replace Playwright assertions. Omit it to preserve existing backend-authored intent, provide an object to set/update it, or use `intent: null` to clear it deliberately. A goal is required and limited to 2,000 trimmed characters. Constraints use exact uppercase types `REQUIRED_OUTCOME` or `MUST_PRESERVE`, with at most 20 of each type and 1,000 trimmed characters per statement.
+The shorthand `checks.playwrightChecks` entries do not expose `intent`; use an explicit `PlaywrightCheck` construct when intent is required. Intent does not replace Playwright assertions. Provide an object to set or update intent; omit it or set `intent: null` to have none. Both omission and `null` clear any web-authored intent on deployment. A goal is required and limited to 2,000 trimmed characters. Constraints use exact uppercase types `REQUIRED_OUTCOME` or `MUST_PRESERVE`, with at most 20 of each type and 1,000 trimmed characters per statement.
 
 ## Playwright configuration
 
@@ -81,6 +85,15 @@ export default defineConfig({
 When an explicit `engine` is omitted from a `PlaywrightCheck`, the CLI resolves Node and Bun candidates separately. It reads `.node-version`, `.nvmrc`, `.tool-versions`, `.bun-version`, and `package.json` `engines` only from the project root (`Session.basePath`); member-level copies beside a nested Checkly config are ignored. Only Volta lookup starts at the package containing the Checkly config. A Node candidate always wins over a Bun candidate, so `.bun-version` or `engines.bun` selects Bun only when no Node source resolves. Among Node sources, `.node-version`, `.nvmrc`, and the `nodejs` entry in `.tool-versions` override Volta, which overrides `engines.node`.
 
 For Volta, the CLI walks from the config package toward the project root and stops at the nearest `package.json` with a `volta` object, even if that object and its `volta.extends` chain provide no `node` pin; a member-level block that only pins a package manager therefore hides a root Volta Node pin. A valid semver range in `volta.node` or `engines.node` resolves to its minimum major (`>=22` selects Node 22). Non-semver values fall through, as do `.nvmrc` aliases `lts/*`, `lts`, `node`, `stable`, and `latest`. Volta does not select Bun. For an explicit override, import `Engine` from `checkly/constructs` and set `engine: Engine.node(...)` or `Engine.bun(...)` when repository metadata is ambiguous or the Checkly runtime must intentionally differ from local tooling.
+
+### Bun engines and grouping
+
+Use `Engine.bun('1.4')` to select Bun 1.4, or `Engine.bun('1')` for the latest available Bun 1.x. An auto-detected Bun 1.4.x pin resolves to 1.4; a pin of 1.5 or later currently resolves to 1.4 with a notice. The host CLI still requires Node.js 22.13.0 or later.
+
+Assign suites with `group: myGroup` on `PlaywrightCheck` or a `playwrightChecks` entry. Use a config-declared `CheckGroupV2` or `CheckGroupV2.fromId()` for an existing group. Removing the group property also removes the deployed association. See `checkly-constructs` for migration warnings.
+
+`npx checkly pw-test` exits 1 when no checks match. Its `--timeout` starts when a check actually runs (with an additional 900-second wait limit for one that never starts); see `checkly-test` for result statuses and reporting.
+
 
 ## Multiple projects
 
@@ -136,9 +149,15 @@ bundle: {
 }
 ```
 
-Entries resolve against the workspace-root lockfile. A name embeds every selected version; `name@version` pins one version. `*` stays within a package-name segment, while `**` crosses `/` and can select scoped and unscoped names. A `!` entry subtracts from selections made before it, so order matters. A positive entry that contributes no embeddable package fails validation unless later exclusions deliberately remove its whole selection; unmatched exclusions are no-ops, and a final empty selection warns.
+Entries resolve against the workspace-root lockfile. A name embeds every selected version; `name@version` pins one version. A pin suits a package the lockfile holds only in that version: use the example's `@vendor/legacy-client@2.1.0` only after checking that condition, not as a default for a multi-version dependency. `*` stays within a package-name segment, while `**` crosses `/` and can select scoped and unscoped names. A `!` entry subtracts from selections made before it, so order matters. A positive entry that contributes no embeddable package fails validation unless later exclusions deliberately remove its whole selection; unmatched exclusions are no-ops, and a final empty selection warns.
+
+When a pin or version-specific `!` exclusion leaves other versions of the same embedded package in the shipped lockfile, `checkly test`, `checkly pw-test`, and `checkly deploy` warn on stderr during bundle finalization, naming the package, embedded versions, and missing versions. `checkly validate` does not run this comparison, and an empty bundle returns before the warning; a clean validation or absent warning alone is not proof of full version coverage. Checkly runners serve that package's registry metadata from the bundle alone, so installs that resolve metadata, such as npm's, can fail with `ETARGET` for an unembedded version. Embed **every version the shipped lockfile uses**: selecting by package name without a version pin or individual-version exclusion is simplest, but explicitly listing each required version also covers the set. A single-version pin remains appropriate when the lockfile uses only that version. This is a warning, not a validation failure or a guarantee that every package manager will fail: direct-tarball lockfile installs can still succeed. When lockfile pruning succeeds, the comparison uses the pruned lockfile, so versions needed only by omitted workspace members do not warn.
 
 The CLI verifies tarballs against lockfile integrity, or registry metadata for Yarn Berry. For embedded packages resolved from a Yarn Berry lockfile, every deploy needs registry access—even with a warm cache—to fetch package metadata before cache lookup. List every unreachable private dependency, including transitive ones; selecting a package does not automatically embed its private dependencies. Workspace, git, file, URL, and unverifiable entries must remain available through normal bundling or runner registry access. Pruned-out lockfile packages are not embedded because the runner will not install them.
+
+For pnpm, `link:` targets resolve relative to the importing workspace member, not the workspace root. For example, `link:../design-system` from `packages/e2e` stays inside the workspace. The parser classifies these non-escaping links as workspace packages lexically; this is not proof that the target is a declared workspace member. Such packages are not registry tarballs to embed and ship only when the required member is actually included in the code bundle. For partial bundles, import the depending member from check code when the checks genuinely need it; do not assume every workspace member ships.
+
+An exact `embed` entry naming only a sibling (for example `@acme/design-system`) fails as not embeddable: remove that entry rather than rewriting a valid sibling link. A wildcard that also selects embeddable registry packages skips the workspace match, reported only in the `checkly:cli:services:embedded-packages` debug log. A wildcard with no embeddable match still follows the selection-error/exclusion rules above. A genuinely escaping link remains unembeddable. Do not treat every `../` target as outside the workspace when diagnosing embed selections.
 
 The cache defaults to `node_modules/.cache/checkly`; use `CHECKLY_CACHE_DIR` only for a deliberate writable/shared cache. Changing the embedded set invalidates the runner dependency cache.
 
@@ -206,7 +225,7 @@ export default defineConfig({
 })
 ```
 
-Do not place cache configuration on an individual suite or check: one uploaded code bundle serves all Playwright Check Suites. Unset and empty-string versions leave the key unchanged. The deprecated `caching.dependencyCache.version` alias still works with a warning; upgrade every CLI environment before migrating, then remove the old property because declaring it together with `runner.cache.install.version` fails config loading. For a one-off reinstall during an ad-hoc run, use `--refresh-cache` on `checkly test`, `checkly pw-test`, `checkly trigger`, or `checkly checks run` instead.
+Do not place cache configuration on an individual suite or check: one uploaded code bundle serves all Playwright Check Suites. Unset and empty-string versions leave the key unchanged. Migration warning: `caching` is removed. Replace `caching.dependencyCache.version` with `runner.cache.install.version` and ensure all CLI environments support that setting. For a one-off reinstall during an ad-hoc run, use `--refresh-cache` on `checkly test`, `checkly pw-test`, `checkly trigger`, or `checkly checks run` instead.
 
 ## Related Skills
 

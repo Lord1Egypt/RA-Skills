@@ -5,11 +5,12 @@ const log = require("../utils/log");
 const token = require("../utils/token");
 const utils = require("../utils/utils");
 const validator = require("../validate/keyword");
-const { parseArgs, buildHelp, parseDecimalInteger } = require("../utils/args");
+const { parseCliArgs, buildHelp, parseDecimalInteger } = require("../utils/args");
 const {
   emitError,
   emitEmpty,
-  printSuccessEnvelope,
+  buildSuccessEnvelope,
+  finishSuccess,
   emitUncaught,
 } = require("../utils/output");
 
@@ -62,6 +63,12 @@ const SCHEMA = {
       transform: parseDecimalInteger,
       desc: "搜索数量, 1-10000",
     },
+    "--save": {
+      key: "save",
+      type: "boolean",
+      default: false,
+      desc: "将完整结果写入本地日志（也可设 GUAIKEI_ENABLE_LOG=1）",
+    },
   },
   positionalKey: "keyword",
 };
@@ -73,6 +80,7 @@ function printHelp() {
       'node src/douyin/search-cli.js --keyword "AI 模型"',
       "node src/douyin/search-cli.js --keyword AI --sort 0 --time 0 --duration 0 --limit 10",
       'node src/douyin/search-cli.js -k "AI 模型" -s 1 -t 180 -d 2 -l 100',
+      `node src/douyin/search-cli.js --json-args "{\"keyword\":\"AI 教程\",\"sort\":1,\"limit\":10}"`,
     ]) +
       "\n\n注意:\n" +
       "  - 关键词建议 2-50 个字符，不能是链接, 不含 < > \" ' &\n" +
@@ -97,7 +105,7 @@ async function main() {
 
   let parsed;
   try {
-    parsed = parseArgs(args, SCHEMA);
+    parsed = parseCliArgs(args, SCHEMA);
   } catch (error) {
     utils.printError(`参数解析错误: ${error.message}`);
     printHelp();
@@ -189,6 +197,7 @@ async function main() {
     return;
   }
   let searchTask = null;
+  let taskCost;
   try {
     await search.createSearchTask(
       tokenValue,
@@ -201,7 +210,7 @@ async function main() {
     );
     utils.printSuccess(`搜索任务创建成功, 正在搜索中...`);
 
-    searchTask = await search.getSearchTask(
+    ({ results: searchTask, cost: taskCost } = await search.getSearchTask(
       tokenValue,
       keyword,
       sort,
@@ -209,7 +218,7 @@ async function main() {
       duration,
       content,
       limit,
-    );
+    ));
   } catch (error) {
     utils.printError(`搜索失败: ${error.message}`);
     emitError(
@@ -244,24 +253,28 @@ async function main() {
   };
   if (!searchTask || !Array.isArray(searchTask) || searchTask.length === 0) {
     utils.printInfo("没有找到匹配的视频或图文内容");
-    emitEmpty("没有找到匹配的视频或图文内容", startTime, searchRequest);
+    emitEmpty(
+      "没有找到匹配的视频或图文内容",
+      startTime,
+      searchRequest,
+      taskCost,
+    );
     return;
   }
 
-  const finalOutput = printSuccessEnvelope(
+  const finalOutput = buildSuccessEnvelope(
     "搜索任务完成",
     startTime,
     searchRequest,
     searchTask,
+    undefined,
+    taskCost,
   );
-  utils.printSuccess(
-    `搜索任务完成, 共返回 ${finalOutput.results.length} 条结果`,
-  );
-
-  await log.writeResultLog(
-    `${startTime}_${keyword}_${sort}_${time}_${duration}_${content}_search.json`,
-    JSON.stringify(finalOutput, null, 2),
-  );
+  await finishSuccess(finalOutput, {
+    logFilename: `${startTime}_${keyword}_${sort}_${time}_${duration}_${content}_search.json`,
+    stderrMessage: `搜索任务完成, 共返回 ${finalOutput.results.length} 条结果`,
+    save: parsed.save === true,
+  });
 }
 
 main().catch((error) => {

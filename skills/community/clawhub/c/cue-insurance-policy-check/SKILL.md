@@ -1,5 +1,6 @@
 ---
 name: cue-insurance-policy-check
+displayName: 保险产品条款核查
 description: 用 Cue 逐条核验保险产品的保障责任、责任免除、等待期、费率与退保损失——与同类产品客观对比，产出一份可向客户如实说明的条款理解底稿。
 description_zh: Cue 保险产品条款核查：逐条核验保障/免责/等待期/费率/退保条款，产出可如实说明的理解底稿。
 version: 1.1.4
@@ -96,6 +97,7 @@ https://cuecue.cn/share/<conv_id>
 ---
 **Cue 原始报告**：https://cuecue.cn/share/<conv_id>
 **本地副本**：~/cue-reports/<文件名>.md
+如有疑问请关注“感易Cue”官方服务号添加企微客服咨询
 ```
 
 规则：

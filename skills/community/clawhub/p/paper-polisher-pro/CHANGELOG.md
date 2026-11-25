@@ -3,6 +3,25 @@
 > **只想快速上手？** 回 `SKILL.md` § TL;DR（30 秒任务路由表）——本文件仅是完整版本历史，新用户无需阅读。
 > Historical release notes. Newest first. SKILL.md § Version history keeps only the last three releases; everything older lives here (single source, no duplication).
 
+## What's new in v7.9.0
+
+- **Manifest single-sourcing**: the packager no longer overwrites `data/INTEGRITY_MANIFEST.json` — that file keeps its data-file semantics (every data/wordlist JSON, sha256+bytes, author-signed); packaging now writes `data/PACKAGE_MANIFEST.json` covering every shipped file outside `data/`. The 7.8.0 package evaluation caught the real drift this fixes: the shipped INTEGRITY manifest carried all-file scope and a `size` field while the generator and docs promised data-file scope and `bytes` — same filename, two semantics.
+- **Package-receipt acceptance**: `python3 scripts/pp_doctor.py --deep` now verifies BOTH manifests when present (data manifest + package manifest) and names the exact file with expected/actual hash on any drift — a truncated or tampered file anywhere in the distribution chain is pinpointed. Trunk (author-side) has no package manifest and behaves exactly as before.
+- **Packaging reconciliation gates extended**: the two package copies assert the data manifest's semantics (no non-data keys), the package manifest's coverage, and their complementarity (no overlap inside data/).
+- **Release ledger idempotency**: `release_gate.py --record` skips when the same slug+version+platform is already registered — the dual-insurance closure (sentinel + watchdog, 27 s apart) had recorded clawhub 7.8.0 twice.
+
+No engine scoring changes. 零新增依赖。
+
+## What's new in v7.8.0
+
+- **Documentation-facts contract (`eval/doc_facts.py`, five gates)**: the docs are now machine-verified artifacts. Gate A: every `eval/results/…` mention in SKILL.md / SKILL_ZH.md / README / references must resolve, and archive-resident historical files must be cited with the `archive/` prefix (caught and fixed a stale `v480_rules_*.json` citation in both SKILL docs). Gate C: SKILL.md vs SKILL_ZH.md numeric multisets must match (caught a frontmatter AUROC asymmetry). Gate D: documented `pp.py <cmd>` ↔ pp.py registry parity in both directions (six registered commands had zero doc mentions — now documented; `explain` also surfaced in grouped help). Gate E: doc metrics (0.9998 / 0.9400 / 0.8985 / 0.7149 / human FPR 2.3% / model fingerprint / corpus sizes) must be traceable to their eval JSONs. Gate F: skill.json == CHANGELOG top == both SKILL histories == schema `$id` major. Wired into the release smoke; form-adaptive on packaged copies (no SKILL_ZH.md → parity gate passes vacuously).
+- **Freshness baseline reconciliation root-fix**: the four published baselines now resolve archive-aware (`archive/v480_rules_*.json`), and missing/unreadable baselines are reported via `baselines_missing` instead of being swallowed by `except Exception: pass` — the rules-mode drift check had been silently dead. `--status` accepts `--results-dir` for isolated verification.
+- **Honest source pointers**: the workflow mixed-document output now cites the archived canonical path (`eval/results/archive/mixed_para_20261005.json`); two engine comments citing archived result files updated likewise.
+- **Robustness battery (`tests/test_v70800.py`)**: empty / whitespace / control-char / emoji-only / CRLF / BOM / 200k-char single-line inputs locked as behavior contracts across SDK and CLI (short-text iron law, explicit encoding warning for undecodable bytes, friendly `ValueError`), plus a doc-facts tamper matrix proving each gate catches its defect class on package copies.
+- **Docs slimmed**: SKILL.md / SKILL_ZH.md version history cut to the stated three-entry policy (−21 lines each); full history remains single-sourced here.
+
+No engine scoring changes. 零新增依赖。
+
 ## What's new in v7.7.0
 
 - **Output contract schemas (`schemas/*.schema.json`, `pp.py schema --selfcheck`)**: the four core outputs (detect / fix_suggest / workflow / term_report) now ship JSON-Schema contracts (draft-2020-12 subset), and a zero-dependency minimal validator (`scripts/pp_schema.py`) runs real engine outputs against all four on every self-check. First run caught a real drift (mixed_document is an object, not the boolean the draft assumed) — the validator's purpose in one line. Top-level required keys and types are the compatibility promise: additive keys never break the contract; removals/type changes get declared in CHANGELOG. Integrators validate their received structures via `pp_api.schema_selfcheck()`.
@@ -314,6 +333,25 @@
 # 更新日志（中文）
 
 > v4.6.0 起历史更新说明移出 SKILL_ZH.md（新用户更快触达工作流）。最新在前。各版本摘要亦见 SKILL_ZH.md § 版本历史。
+
+## v7.9.0 更新内容
+
+- **清单单一来源化**：打包不再覆盖 `data/INTEGRITY_MANIFEST.json`——该文件保持数据文件语义（全部数据/词表 JSON，sha256+bytes，作者签发）；打包改写 `data/PACKAGE_MANIFEST.json` 覆盖 data/ 外全部随包文件。7.8.0 包评测实锤了本修复针对的真实漂移：随包 INTEGRITY 清单是全包范围+size 字段，而生成器与文档承诺数据范围+bytes 字段——同名文件、两套语义。
+- **收包验收**：`python3 scripts/pp_doctor.py --deep` 对两清单（数据清单+包清单）逐文件核对，任何漂移给出精确文件名与期望/实际哈希——分发链路任何一层截断/篡改都被定位。作者侧 trunk 无包清单，行为与此前一致。
+- **打包对账闸扩展**：两份打包副本断言数据清单语义（无非数据键）、包清单覆盖度、两清单互补性（data/ 内零重叠）。
+- **发布台账幂等**：`release_gate.py --record` 对同 slug+version+platform 已登记条目跳过——7.8.0 双保险收尾（哨兵+看门狗间隔 27 秒）曾把 clawhub 记了两笔。
+
+引擎打分零变更。零新增依赖。
+
+## v7.8.0 更新内容
+
+- **文档事实契约（`eval/doc_facts.py`，五闸）**：文档也成为可机器验证的工件。闸A：SKILL.md / SKILL_ZH.md / README / references 中每处 `eval/results/…` 引用必须实存，archive 内历史文件必须带 `archive/` 前缀引用（双语 SKILL 文档中一处陈旧的 `v480_rules_*.json` 引用被当场抓出并修正）。闸C：SKILL.md 与 SKILL_ZH.md 数值集合必须一致（抓出 frontmatter AUROC 不对称一处）。闸D：文档化 `pp.py <命令>` ↔ pp.py 注册表双向对账（六个已注册命令此前零文档提及——已补齐；`explain` 同时进入分组帮助）。闸E：文档指标（0.9998 / 0.9400 / 0.8985 / 0.7149 / 人类误报 2.3% / 模型指纹 / 语料规模）必须可溯源到对应 eval JSON。闸F：skill.json == CHANGELOG 顶 == 双语变更史顶 == schema `$id` 主版本。已挂入发布 smoke；打包副本形态自适应（无 SKILL_ZH.md 时对偶闸空过）。
+- **保鲜基线对账根修**：四路已发布基线改为 archive 感知解析（`archive/v480_rules_*.json`），基线缺失/读取失败经 `baselines_missing` 如实上报，不再被 `except Exception: pass` 吞掉——纯规则档漂移检测此前静默失效。`--status` 新增 `--results-dir` 支持隔离验证。
+- **诚实来源指针**：workflow 混写输出改为引用归档正本路径（`eval/results/archive/mixed_para_20261005.json`）；两处引擎注释同步更新。
+- **鲁棒性电池（`tests/test_v70800.py`）**：空输入 / 空白 / 控制符 / 纯 emoji / CRLF / BOM / 20 万字单行在 SDK 与 CLI 两侧锁定为行为契约（短文铁律、不可解码字节显式编码警示、友好 `ValueError`），另含 doc_facts 篡改矩阵（包副本上逐闸证明能抓住各自缺陷类）。
+- **文档瘦身**：SKILL.md / SKILL_ZH.md 版本历史裁回三条政策（各 −21 行）；完整历史仍单源在本文件。
+
+引擎打分零变更。零新增依赖。
 
 ## v7.7.0 更新内容
 

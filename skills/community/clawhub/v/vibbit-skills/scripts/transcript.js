@@ -7,7 +7,7 @@ const { fileHash } = require('./lib/production')
 const transcript = require('./lib/transcript')
 
 const OPTIONS = {
-  normalize: ['input', 'time-unit', 'source-url', 'channel-id', 'media-file', 'out'],
+  normalize: ['input', 'time-unit', 'source-url', 'channel-id', 'media-file', 'sub-task-id', 'language', 'out'],
   text: ['input', 'out'],
   subtitles: ['input', 'format', 'display', 'out'],
   words: ['input', 'out'],
@@ -33,7 +33,7 @@ function parseArgs(argv) {
 function main(argv) {
   const { command, flags: f } = parseArgs(argv)
   if (command === 'help') return { tool: 'Vibbit local transcript utilities', commands: {
-    normalize: '--input completed-asr.json [--media-file audio] [--source-url URL] [--channel-id ID] [--time-unit seconds|milliseconds (video ASR only)] --out transcript.json',
+    normalize: '--input completed-result.json [--media-file audio] [--source-url URL] [--channel-id ID (audio ASR)] [--sub-task-id ID --language CODE (delivered translation)] [--time-unit seconds|milliseconds (video ASR only)] --out transcript.json',
     text: '--input transcript.json --out recognized.txt',
     subtitles: '--input transcript.json --format srt|vtt [--display display.json] --out captions.srt',
     words: '--input transcript.json --out words.json',
@@ -49,6 +49,7 @@ function main(argv) {
   if (command === 'normalize') result = transcript.normalizeTranscript(input.data, {
     timeUnit: f['time-unit'], sourceUrl: f['source-url'], channelId: f['channel-id'],
     mediaFile: f['media-file'], inputHash: input.sha256,
+    subTaskId: f['sub-task-id'], language: f.language,
   })
   if (command === 'subtitles') result = transcript.exportSubtitles(input.data, {
     format: f.format, display: f.display ? transcript.readInput(f.display).data : undefined, transcriptHash: input.sha256,

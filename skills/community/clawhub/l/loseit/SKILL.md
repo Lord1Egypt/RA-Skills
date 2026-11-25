@@ -29,8 +29,15 @@ metadata:
       files.write:
         - "token file — the session token obtained at login is saved to token_path (default ~/.config/loseit/token, mode 0600). No other writes; nutrition goes to stdout."
     requires:
-      bins: []
-      env: []
+      bins:
+        - loseit-cli
+    install:
+      - id: go
+        kind: go
+        module: github.com/stozo04/loseit-cli/cmd/loseit-cli@latest
+        bins:
+          - loseit-cli
+        label: Install loseit-cli (go)
     envVars:
       - name: LOSEIT_EMAIL
         description: "Lose It account email — for the email/password login path (recommended). Or set it in config.json."

@@ -1,0 +1,17 @@
+/*
+ * sketchy theme: kraft
+ * Graphite and red crayon on brown kraft paper. For makers, workshops,
+ * retail, food and anything that should feel handled rather than printed.
+ */
+:root {
+  --sk-paper: #b49d7c; --sk-paper-deep: #a48c6b; --sk-paper-light: #c4ae8e;
+  --sk-sheet: rgba(180, 157, 124, .93); --sk-veil: rgba(196, 174, 142, .62); --sk-halo: rgba(180, 157, 124, .92);
+  --sk-shadow: 64, 44, 24; --sk-paper-kind: light;
+  --sk-ink: #1f1a15; --sk-graphite: #352c24; --sk-graphite-soft: #4e4337; --sk-graphite-faint: rgba(53, 44, 36, .38);
+  --sk-red: #b0412e; --sk-red-ink: #8a2c1f; --sk-red-frame: #8a2c1f; --sk-red-soft: #c98b78;
+  --sk-blue: #5f7fa8; --sk-green: #5e8a58; --sk-yellow: #e8c35c; --sk-orange: #d07f3f;
+  --sk-violet: #7d6aa3; --sk-rose: #c4746a; --sk-teal: #4f8f88; --sk-peach: #e2a36b;
+  --sk-figure: #1f1a15; --sk-gold: #8a6420; --sk-cream: #efe6d4; --sk-card: #efe6d4;
+  --sk-stamp: #8a2c1f; --sk-stamp-blue: #2f4f78; --sk-stamp-green: #2f5f3a;
+  --sk-cover: #86683a; --sk-door: #2a231c;
+}

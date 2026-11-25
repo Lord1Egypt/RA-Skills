@@ -1,0 +1,8 @@
+interface:
+  display_name: "YouTube 字幕学习笔记"
+  short_description: "从可见 YouTube 字幕生成可复核的学习摘要、术语表与时间锚点"
+  default_prompt: "使用 $youtube-transcript-study-notes-free。请使用我指定的 browserId 读取指定 YouTube 视频页面的可见字幕，按语言与学习目标输出摘要、术语表和时间锚点；字幕不可用时仅报告限制。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

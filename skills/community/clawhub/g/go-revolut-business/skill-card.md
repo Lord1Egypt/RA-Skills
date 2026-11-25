@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Go developers use this skill to integrate Go applications with the Revolut Business API, including reading business data and implementing payment, transfer, exchange, or deletion operations.
+Go developers use this skill to add and call the Revolut Business API client from Go projects, including reading account data and constructing supported operations such as payments and transfers.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Payment, transfer, exchange, and delete operations can move funds or remove data.
+Risk: The security scan was partial because one reference could not be resolved, so its benign verdict does not guarantee zero risk.
 
-Mitigation: Prefer the sandbox while developing and call these operations only when the user requested that action.
+Mitigation: Review the setup and authentication guidance before use and develop against the Revolut sandbox.
 
-Risk: A bearer access token can expose API access if it is hardcoded, committed, logged, or printed.
+Risk: Payment, transfer, exchange, and delete operations can move money or remove data.
 
-Mitigation: Read the token from a protected environment variable; do not commit or log it, and do not print request headers.
+Mitigation: Use the sandbox while developing and call these operations only when the user has requested the action.
 
-Risk: The security scan is benign with medium confidence but partial because one reference could not be resolved.
+Risk: A bearer access token can expose access to Revolut Business data and operations if disclosed.
 
-Mitigation: Review the unresolved reference and treat the scan as one input before installing.
+Mitigation: Read the token from an environment variable; do not hardcode, commit, log, or print request headers.
 
 ## Reference(s):
 
 - [Setup and reference](references/setup.md)
-- [go-revolut-business source repository](https://github.com/psyb0t/go-revolut-business)
 - [Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-revolut-business)
 
 ## Skill Output:
 
 **Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown with Go and shell code blocks]
+**Output Format:** [Markdown with Go code and shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Examples and guidance for using the typed Go client; no files are produced by the library itself.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-0.1.6 (source: server-resolved release metadata)
+0.3.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

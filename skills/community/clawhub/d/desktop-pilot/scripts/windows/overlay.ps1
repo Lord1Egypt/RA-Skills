@@ -21,6 +21,7 @@ param(
   [switch]$SelfTest           # run the lock decision tests and exit (no UI)
 )
 $ErrorActionPreference = 'Stop'
+if (-not $SelfTest -and (Test-Path (Join-Path $Dir 'stop.flag'))) { Write-Output 'STOPPED_BY_USER'; exit 3 }
 function Log($m) { try { Add-Content -Path (Join-Path $Dir 'log.txt') -Value ("{0:HH:mm:ss} {1}" -f (Get-Date), $m) } catch {} }
 try {
   Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase
@@ -218,19 +219,21 @@ public static class OvLock {
   $label.FontFamily = 'Segoe UI'; $label.FontSize = 14; $label.Foreground = [Windows.Media.Brushes]::White
   $label.VerticalAlignment = 'Center'; $label.Margin = New-Object Windows.Thickness 0, 0, 16, 0
   $label.Text = 'Agent is working...'
-  $stopBtn = New-Object Windows.Controls.Border
-  $stopBtn.Width = 30; $stopBtn.Height = 30; $stopBtn.CornerRadius = New-Object Windows.CornerRadius 15
+  $stopBtn = New-Object Windows.Controls.Button
+  $stopBtn.Width = 30; $stopBtn.Height = 30; $stopBtn.BorderThickness = New-Object Windows.Thickness 0
+  [Windows.Automation.AutomationProperties]::SetName($stopBtn, 'Stop Desktop Pilot')
   $stopBtn.Background = Brush (Color 255 34 211 238); $stopBtn.Cursor = [Windows.Input.Cursors]::Hand
   $stopBtn.ToolTip = 'Stop'
   $sq = New-Object Windows.Shapes.Rectangle; $sq.Width = 10; $sq.Height = 10; $sq.RadiusX = 2; $sq.RadiusY = 2
   $sq.Fill = Brush (Color 255 12 38 42); $sq.HorizontalAlignment = 'Center'; $sq.VerticalAlignment = 'Center'
-  $stopBtn.Child = $sq
+  $stopBtn.Content = $sq
   [void]$sp.Children.Add($dot); [void]$sp.Children.Add($label); [void]$sp.Children.Add($stopBtn)
   $root.Child = $sp; $pill.Content = $root
 
   $script:quitAt = $null
-  $stopBtn.Add_MouseLeftButtonUp({
+  $stopBtn.Add_Click({
     try { Set-Content -Path $stopFile -Value 'stop' -Encoding ascii } catch {}
+    [OvLock]::Active = $false; [OvLock]::Uninstall()
     $label.Text = 'Stopping...'
     $script:quitAt = (Get-Date).AddSeconds(1.2)
   })
@@ -254,6 +257,7 @@ public static class OvLock {
   $timer.Add_Tick({
     try {
       $now = Get-Date
+      if (Test-Path $stopFile) { & $closeAll; return }
       if (Test-Path $quitFile) { & $closeAll; return }
       if ($script:quitAt -and $now -ge $script:quitAt) { & $closeAll; return }
       if (($now - $started).TotalMinutes -ge $MaxMinutes) { Log 'max lifetime'; & $closeAll; return }
@@ -289,7 +293,7 @@ public static class OvLock {
         $script:baseText = 'Lock released (Esc)'; $script:engaged = $false; Show-Label
         $script:quitAt = $now.AddSeconds(1.2); [OvLock]::ResetEmergency()
       }
-    } catch { Log "tick error: $_" }
+    } catch { Log "tick error: $_"; [OvLock]::Uninstall(); & $closeAll }
   })
 
   $glow.Show(); $pill.Show()
@@ -303,5 +307,6 @@ public static class OvLock {
 } catch {
   Log "fatal: $_"
 } finally {
+  try { [OvLock]::Uninstall() } catch {}
   try { Remove-Item (Join-Path $Dir 'pid') -Force -ErrorAction SilentlyContinue } catch {}
 }

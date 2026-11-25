@@ -1,6 +1,6 @@
 # Script & Workflow Management
 
-This document guides data analysts on how to securely manage query scripts, cleaning scripts, analysis scripts, and other **user-owned scripts** in **MGC Blackbox ≥ 1.5.4**, and implement **zero-exposure application** locally.
+This document guides data analysts on how to securely manage query scripts, cleaning scripts, analysis scripts, and other **user-owned scripts** in **MGC Blackbox ≥ 1.6.0**, and implement **zero-exposure application** locally.
 
 All sensitive operations must be explicitly authorized by the user before proceeding.
 
@@ -8,7 +8,7 @@ All sensitive operations must be explicitly authorized by the user before procee
 
 # 1. Workflow Management Overview
 
-MGC Blackbox 1.5.4+ provides local encrypted storage, automatic cross-script recognition, and zero-exposure application:
+MGC Blackbox 1.6.0+ provides local encrypted storage, automatic cross-script recognition, and zero-exposure application:
 
 - Script content is never exposed to AI
 - Scripts are decrypted only on the user's local machine
@@ -230,19 +230,21 @@ mgc_save_file(
 > **Notes**:
 > - `output_dir` is **required** as of **1.5.4** (breaking change) — there is no desktop-directory fallback any more
 > - Aliases of `ext04` (`node_pub` / `target_pub` / `public_key` / `pem`, etc.) are compatibility spellings only; **always use `ext04`**
-> - Omitting `ext04` means free mode; see Chapter 5 for the difference between the two modes
+> - Omitting `ext04` means free mode; see Chapter 5 for the difference between the three modes
 
 ---
 
-# 5. Two Sealing Modes (1.5.4)
+# 5. Three Sealing Modes (chain mode new in 1.6.0)
 
-| | p2p mode (node-bound) | free mode |
-|---|---|---|
-| How to seal | Pass `ext04=<target node multi-line PEM>` | **Omit** `ext04` |
-| Resulting `ext09` value | `p2p mode` | `free mode` |
-| Who can unseal and run it | Only the node holding the matching private key | **Any MGC 1.5.4+ node** |
-| Is the source readable | No | No (decrypted in memory at execution time only) |
-| Best for | Targeted delivery, preventing resale | General distribution, open-source delivery |
+| | p2p mode (node-bound) | free mode | chain mode (1.6.0+) |
+|---|---|---|---|
+| How to seal | Pass `ext04=<target node multi-line PEM>` | **Omit** `ext04` | Pass `ext04=<targets array>` |
+| Resulting `ext09` value | `p2p mode` | `free mode` | `chain mode` |
+| Who can unseal and run it | Only the node holding the matching private key | **Any MGC 1.6.0+ node** | **Each target's own node only** |
+| Is the source readable | No | No (decrypted in memory at execution time only) | No |
+| Best for | Targeted delivery, preventing resale | General distribution, open-source delivery | **Multi-node collaboration, task splitting** |
+
+In chain mode each target receives only its own sub-package (`task_package_01/`, `task_package_02/`, …) and `distribution_index.json` maps each package to its `sha256`. Keep `files` to `.py` scripts only — data and credentials stay in each node's local MGC.
 
 **The trade-off of free mode**: it gives up "node binding" in exchange for "anyone can run it". If the deliverable contains commercial algorithms, p2p mode is still the right choice.
 

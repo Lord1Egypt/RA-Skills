@@ -1,5 +1,6 @@
 ---
 name: cue-stock-valuation
+displayName: 个股估值与股价分析
 description: 用 Cue 对个股进行全周期估值分析——融合短线资金流向与中长线估值模型，短期看情绪博弈与支撑压力，中长期看业绩兑现与安全边际。
 description_zh: Cue 个股估值与股价分析：短/中/长三周期融合分析，资金面+估值模型+业绩兑现。
 version: 1.1.4
@@ -95,6 +96,7 @@ https://cuecue.cn/share/<conv_id>
 ---
 **Cue 原始报告**：https://cuecue.cn/share/<conv_id>
 **本地副本**：~/cue-reports/<文件名>.md
+如有疑问请关注“感易Cue”官方服务号添加企微客服咨询
 ```
 
 规则：

@@ -1,6 +1,6 @@
 ## Description:
 
-Static analysis security scanner for third-party OpenClaw skills. Detects eval/spawn risks, malicious dependencies, typosquatting, and prompt injection patterns before installation. Use when vetting skills from ClawHub or untrusted sources.
+Static analysis scanner for third-party OpenClaw skills. Parses JS/TS with tree-sitter to flag eval/exec/spawn and obfuscation, checks package.json dependencies and lifecycle scripts, checks manifest metadata for typosquatted or blocked names, matches prompt-injection and credential-path patterns in every scanned text file (code, Markdown, JSON, YAML, TXT; prompt-injection checks include code comments), and lists literal fetch() URLs. Optional autoVet (off by default) hooks skill:pre-install and can block an install or ask the user to approve it. Local scans need no network; /skill:vet-url downloads over HTTPS (public hosts only) and /skill:vet-clawhub runs the clawhub CLI. Use when vetting a skill before installing it.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Developers and security reviewers use this skill to evaluate third-party OpenClaw skills before installation. It reports static-analysis findings for risky code execution, shell use, dependency issues, typosquatting, prompt-injection patterns, and related metadata concerns.
+Developers use Skill Vettr to review third-party OpenClaw skills for suspicious code, dependencies, metadata, and network calls before installation. They can scan a local skill or fetch one from a public HTTPS URL or ClawHub; optional pre-install vetting can request approval or block installation.
 
 ### Deployment Geography for Use:
 
@@ -22,17 +22,13 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Target skills can include ignore-file rules that hide files from local analysis and make scan results incomplete or misleading.
+Risk: The release is rated suspicious due to reported scan-handling weaknesses and unclear tool scope; the scan has incomplete coverage, and this verdict does not establish malicious intent.
 
-Mitigation: Treat results as one input, inspect ignore rules, and manually review high-risk skills before relying on a pass or fail outcome.
+Mitigation: Review the reported weaknesses and clarify whether environment, network, and shell capabilities are needed and how access is limited. Treat scan results as triage, review source manually, and isolate untrusted skills.
 
-Risk: Remote URL vetting downloads untrusted content and can reach unintended network targets.
+Risk: Installing the skill's npm dependencies may run lifecycle scripts, and static analysis cannot guarantee detection of runtime-only behavior.
 
-Mitigation: Run remote vetting only in a disposable or network-restricted environment, especially for untrusted URLs.
-
-Risk: npm dependencies and external binaries used during remote vetting are part of the trust boundary.
-
-Mitigation: Verify the runtime environment, dependencies, and git, curl, tar, and clawhub binaries before using remote vetting workflows.
+Mitigation: Install in an isolated environment and review dependency behavior; use manual source review and sandboxing for higher-risk skills.
 
 ## Reference(s):
 
@@ -41,17 +37,17 @@ Mitigation: Verify the runtime environment, dependencies, and git, curl, tar, an
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+**Output Type(s):** [Analysis, Text, Guidance]
 
-**Output Format:** [Markdown-style text with risk summaries, findings, recommendations, usage messages, and configuration examples]
+**Output Format:** [Plain text vetting report]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports are heuristic and should be reviewed before acting on installation decisions.]
+**Other Properties Related to Output:** [Reports a risk score, level, recommendation, findings, scan metadata, and detected network calls when present.]
 
 ## Skill Version(s):
 
-2.0.4 (source: server release evidence; artifact frontmatter and package.json show 2.0.3)
+2.0.8 (source: skill frontmatter, package.json, server release evidence)
 
 ## Ethical Considerations:
 

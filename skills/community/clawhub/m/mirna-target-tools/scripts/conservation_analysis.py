@@ -34,6 +34,17 @@ import urllib.request
 
 MIRBASE_URL = "https://www.mirbase.org/download/mature.fa"
 CACHE_DIR = os.path.join(os.path.expanduser("~"), ".cache", "mirna-target-tools")
+MAX_DOWNLOAD_BYTES = int(os.environ.get("MIRNA_MAX_DOWNLOAD_MB", "4096")) * 1024 * 1024
+
+
+def safe_prefix(value):
+    """Reject prefixes that would write outside --outdir."""
+    text = str(value).strip()
+    if (not text or text in (".", "..")
+            or any(ch in text for ch in ("/", "\\", "\x00", "\n", "\r", "\t"))):
+        raise SystemExit("Error: invalid --prefix %r (path separators and control "
+                         "characters are not allowed)" % value)
+    return text
 
 # WebLogo standard base colors (RNA)
 BASE_COLORS = {
@@ -463,28 +474,62 @@ def draw_alignment(msa, names, seed_start, seed_end, out_png, out_svg=None):
 # ---------------------------------------------------------------------------
 
 def fetch_mature_fa(mature_fa=None):
-    """Return the mature.fa path (local file or download cache)."""
-    if mature_fa and os.path.exists(mature_fa):
+    """Return the mature.fa path (local file or a validated download cache)."""
+    if mature_fa:
+        if not os.path.exists(mature_fa):
+            raise SystemExit("Error: --mature-fa %s not found" % mature_fa)
         return mature_fa
 
     cache_path = os.path.join(CACHE_DIR, "mature.fa")
-    if os.path.exists(cache_path):
+    if os.path.exists(cache_path) and _looks_like_fasta(cache_path):
         return cache_path
 
     os.makedirs(CACHE_DIR, exist_ok=True)
     print(f"Downloading miRBase mature.fa ... ({MIRBASE_URL})")
+    tmp = cache_path + ".part"
+    req = urllib.request.Request(MIRBASE_URL, headers={'User-Agent': 'mirna-target-tools/1.0'})
     try:
-        req = urllib.request.Request(MIRBASE_URL, headers={'User-Agent': 'mirna-target-tools/1.0'})
-        with urllib.request.urlopen(req, timeout=120) as resp:
-            data = resp.read()
-        with open(cache_path, 'wb') as fh:
-            fh.write(data)
-        print(f"Cached to {cache_path} ({len(data)} bytes)")
+        with urllib.request.urlopen(req, timeout=120) as resp, open(tmp, 'wb') as fh:
+            length = resp.headers.get('Content-Length')
+            if length and length.isdigit() and int(length) > MAX_DOWNLOAD_BYTES:
+                raise RuntimeError('remote file exceeds the download safety limit')
+            total = 0
+            while True:
+                chunk = resp.read(1 << 20)
+                if not chunk:
+                    break
+                total += len(chunk)
+                if total > MAX_DOWNLOAD_BYTES:
+                    raise RuntimeError('download exceeded the %d MB safety limit'
+                                       % (MAX_DOWNLOAD_BYTES // (1024 * 1024)))
+                fh.write(chunk)
+            fh.flush()
+            os.fsync(fh.fileno())
+        if not _looks_like_fasta(tmp):
+            raise RuntimeError('downloaded file is not a FASTA file')
+        os.chmod(tmp, 0o644)
+        os.replace(tmp, cache_path)
+        print(f"Cached to {cache_path} ({os.path.getsize(cache_path)} bytes)")
         return cache_path
     except Exception as e:
+        try:
+            os.unlink(tmp)
+        except OSError:
+            pass
         print(f"Error: failed to download miRBase mature.fa: {e}")
         print("Please download it manually and pass: --mature-fa /path/to/mature.fa")
         sys.exit(1)
+
+
+def _looks_like_fasta(path):
+    """Cheap sanity check for a cached/downloaded FASTA file."""
+    try:
+        if os.path.getsize(path) < 100000:
+            return False
+        with open(path, 'rb') as fh:
+            return fh.read(1) == b'>'
+    except OSError:
+        return False
 
 
 def extract_homologs(mature_fa, mirna_id, species_filter=None):
@@ -522,15 +567,17 @@ def extract_homologs(mature_fa, mirna_id, species_filter=None):
 SKILL_SCRIPTS = os.path.dirname(os.path.abspath(__file__))
 R_CONSERVATION_SCRIPT = os.path.join(SKILL_SCRIPTS, 'plot_conservation.R')
 R_PLOT_PKGS = ('ggplot2', 'dplyr')
+R_PKG_CHECK = ('args <- commandArgs(TRUE); '
+               'ok <- vapply(args, function(p) requireNamespace(p, quietly=TRUE), '
+               'logical(1)); cat(all(ok))')
 
 
 def r_engine_status():
     """Return (ok, message) for the R plotting engine (Rscript + packages)."""
     if shutil.which('Rscript') is None:
         return False, 'Rscript not found on PATH'
-    check = ' && '.join('requireNamespace("%s", quietly=TRUE)' % p for p in R_PLOT_PKGS)
     try:
-        proc = subprocess.run(['Rscript', '-e', 'cat(%s)' % check],
+        proc = subprocess.run(['Rscript', '--vanilla', '-e', R_PKG_CHECK] + list(R_PLOT_PKGS),
                               capture_output=True, text=True, timeout=180)
     except Exception as exc:                      # pragma: no cover
         return False, 'Rscript failed: %s' % exc
@@ -544,7 +591,7 @@ def draw_with_r(outdir, prefix, seed_start, seed_end):
     if not os.path.exists(R_CONSERVATION_SCRIPT):
         print("  R plotting script not found: %s" % R_CONSERVATION_SCRIPT)
         return False
-    cmd = ['Rscript', R_CONSERVATION_SCRIPT,
+    cmd = ['Rscript', '--vanilla', R_CONSERVATION_SCRIPT,
            '--outdir', outdir, '--prefix', prefix,
            '--seed-start', str(seed_start), '--seed-end', str(seed_end)]
     print("  drawing figures with R (ggplot2) ...")
@@ -683,6 +730,9 @@ def main():
                              'r (ggplot2, default choice), python (matplotlib fallback)')
     args = parser.parse_args()
 
+    args.prefix = safe_prefix(args.prefix)
+    if not str(args.outdir).strip():
+        parser.error('--outdir must not be empty')
     if args.seed_start < 1 or args.seed_end < args.seed_start:
         print("Error: invalid seed region (required: 1 <= seed-start <= seed-end).")
         sys.exit(1)

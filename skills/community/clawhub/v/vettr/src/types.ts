@@ -69,6 +69,8 @@ export interface VettingConfig {
   blockedPackages?: string[];
   typosquatTargets?: string[];
   allowCwd?: boolean;
+  /** Honour a .vettrignore shipped inside the scanned skill. Off by default: the scanned skill controls that file. */
+  trustVettrignore?: boolean;
 }
 
 export interface AllowedRootsConfig {

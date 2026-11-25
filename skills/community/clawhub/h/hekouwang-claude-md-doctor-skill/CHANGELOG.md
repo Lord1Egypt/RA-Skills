@@ -2,6 +2,25 @@
 
 本项目遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.3.7] - 2026-11-18
+
+安全审查修复（ClawHub 上 1.3.4 被判 suspicious）。检查项与评分逻辑不变。
+
+### 修复
+- **描述如实声明能力**：`description` 写明同时覆盖 AGENTS.md / CLAUDE.md 与项目 skills，
+  宿主环境体检为可选能力（`run-all-doctors.sh --with-env-doctor`，env-doctor 缺失则跳过），
+  并声明「仅静态检测密钥模式，不读取密钥文件，不读取环境变量做判断」。
+- **env-doctor 改为显式开关**：`run-all-doctors.sh` 默认不扫本机环境，加 `--with-env-doctor` 才调用。
+- **不再读环境变量**：`check.py` 内 `HEKOUWANG_CONTENT_FACTORY` 开关改为 `--content-factory` 参数。
+- **密钥表述去路径字面**：docstring 与报告提示改说「环境变量 / 密钥管理器」，检测能力不变。
+- **报告语言跟随用户**：`SKILL.md` 由「中文输出」改为「跟随用户输入语言（默认中文）」，测试夹具同步。
+- **镜像锁 tag**：README 中英与 Dockerfile 示例统一改用 `:1.3.7`。
+- **CI 片段加警示**：注明会下载远端脚本，建议先审阅、锁定 commit、落临时目录而非覆盖项目文件。
+
+### 已知残留
+- `CHANGELOG` 历史条目里的 `docker run --rm` 示例保持原样（不改写历史），扫描可能仍报该行。
+- 版本号跳过 1.3.5 / 1.3.6：注册表均报「Version … already exists」（公开列表查不到），故本次发 1.3.7。
+
 ## [1.3.3] - 2026-10-12
 
 ### 修复

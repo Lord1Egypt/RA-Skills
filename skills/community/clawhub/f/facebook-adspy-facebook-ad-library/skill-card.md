@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers use this skill for focused Facebook ad research, including keyword, advertiser, region, product, creative, and Meta Ad Library lookups through PipiAds.
+Marketing analysts and advertisers use this skill to research Facebook ad creatives, products, advertisers, and Meta Ad Library activity by keyword, region, engagement, and store patterns.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill installs a third-party MCP server globally through npm.
+Risk: Search criteria may be sent to PipiAds, creating a low-probability privacy disclosure concern.
 
-Mitigation: Install only after deciding that the pipiads-mcp-server package is trusted, and avoid elevated privileges during installation.
+Mitigation: Avoid including confidential or personal information in search criteria.
 
-Risk: The MCP server receives a PipiAds API key.
+Risk: Each API call consumes PipiAds credits.
 
-Mitigation: Use a narrowly scoped, revocable API key where possible and rotate or revoke it if the environment is no longer trusted.
-
-Risk: PipiAds API calls may consume account credits.
-
-Mitigation: Use specific platform, region, advertiser, and keyword filters before broad searches, and monitor account credit usage.
+Mitigation: Specify the platform and region, then narrow searches with relevant filters before requesting results.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/fanyanggod/skills/facebook-adspy-facebook-ad-library)
-- [PipiAds product website](https://www.pipiads.com)
-- [PipiAds account and API key management](https://www.pipispy.com/)
+- [PipiAds](https://www.pipiads.com/)
+- [PipiSpy API key and billing](https://www.pipispy.com/)
+- [ClawHub skill release](https://clawhub.ai/fanyanggod/skills/facebook-adspy-facebook-ad-library)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, API Calls, Configuration instructions]
+**Output Type(s):** [Text, Analysis, Guidance]
 
-**Output Format:** [Markdown guidance with tool and configuration references]
+**Output Format:** [Text summaries and structured ad, product, advertiser, and Ad Library results]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Uses a PipiAds API key and may consume account credits for search and detail requests.]
+**Other Properties Related to Output:** [Search results and details depend on the selected platform, region, and filters; API calls consume PipiAds credits.]
 
 ## Skill Version(s):
 
-1.0.2 (source: server release metadata)
+1.0.3 (source: server-resolved ClawHub release metadata)
 
 ## Ethical Considerations:
 

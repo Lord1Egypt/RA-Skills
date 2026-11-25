@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users can use an AI agent to add links to their Kosu queue, review and reorder queued items, manage suggestions, and track reading progress through Kosu's API.
+People using AI agents to curate a Kosu reading queue can add links, organize and reorder items, manage suggestions, and track what they have read through the Kosu API.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The installation instructions download and overwrite a local skill file from usekosu.com, and the downloaded contents were not assessed in the release scan.
+Risk: The documented installation command downloads remote skill content and writes it over a local skill definition; the remote content was unavailable for the partial scan.
 
-Mitigation: Review the fetched skill file before replacing an existing local copy, and inspect its contents before following its instructions.
+Mitigation: Review the current remote skill.md and destination before installing, and avoid overwriting a local skill file without checking its contents.
 
-Risk: Authenticated API actions use the user's Kosu API key.
+Risk: API requests use an account credential, and the security guidance notes the scan evidence is incomplete.
 
-Mitigation: Use a dedicated key with minimal scope, send it only to usekosu.com, and rotate or revoke it if anything unexpected happens.
+Mitigation: Use a dedicated API key with minimal scope, send it only to usekosu.com, and revoke it if unexpected activity occurs.
 
 ## Reference(s):
 
-- [Kosu](https://usekosu.com)
+- [Kosu homepage](https://usekosu.com)
 - [Authentication setup guide](https://usekosu.com/docs/getting-started#authentication)
-- [Kosu OpenAPI specification](https://usekosu.com/openapi.json)
+- [Kosu API v1](https://usekosu.com/api/v1)
+- [OpenAPI specification](https://usekosu.com/openapi.json)
+- [Kosu pricing](https://usekosu.com/pricing)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [API calls, Shell commands, Guidance]
 
-**Output Format:** [Markdown with inline shell commands and JSON request examples]
+**Output Format:** [Markdown guidance with inline curl commands and JSON request bodies]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [API responses are JSON; requires a KOSU_API_KEY for authenticated actions.]
+**Other Properties Related to Output:** [Authenticated API requests use the KOSU_API_KEY environment variable.]
 
 ## Skill Version(s):
 
-1.1.1 (source: frontmatter)
+1.1.2 (source: frontmatter)
 
 ## Ethical Considerations:
 

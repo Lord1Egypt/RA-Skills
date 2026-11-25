@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and software architects use this skill to compare architecture trade-offs and select one or more paradigms for a system. It routes users to the corresponding paradigm skill for implementation guidance.
+Developers and engineers use this skill to compare architecture paradigms against a system's needs and choose which paradigm-specific guidance to consult.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The scenario and team-size heuristics may not capture the constraints of a particular system, leading to a poor paradigm fit.
+Risk: Paradigm recommendations use broad heuristics and may not fit a system's specific constraints.
 
-Mitigation: Treat the routing as an initial comparison, check it against the system's actual constraints and trade-offs, and consult the selected paradigm skill before implementation.
+Mitigation: Check suggested paradigms against the system's domain, operational needs, and team context before committing to an architecture.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigms)
-- [Project homepage (metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigms)
+- [Night Market Archetypes plugin](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Architecture recommendations, Markdown]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Markdown text with tables and inline skill references]
+**Output Format:** [Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Recommendations depend on the system context supplied by the user.]
+**Other Properties Related to Output:** [Paradigm recommendations depend on the system context provided.]
 
 ## Skill Version(s):
 
-1.10.3 (source: server-resolved release metadata and frontmatter)
+1.10.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

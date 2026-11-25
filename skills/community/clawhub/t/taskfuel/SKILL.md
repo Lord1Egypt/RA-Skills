@@ -3,16 +3,15 @@ name: taskfuel
 description: "Gives the agent capabilities it lacks, billed per call from the user's taskfuel.ai balance: generate images, video, music and speech; transcribe audio; find and verify emails; enrich people and companies; build lead lists; search X, Instagram, TikTok and YouTube; live market, crypto and SEC data; flights and weather; OCR, translation, screenshots; send email, place phone calls, mail letters; run VMs. Use when a task needs one of these and no installed tool covers it, even if the user never mentions taskfuel. Also use when the user names taskfuel.ai or asks to call a paid API. Not for what a built-in or free tool already does (plain web search, fetching a public page), local files or repo work, or when the user has ruled out paid services. Catalog search is free. Quote before paying, and never send a message, place a call, or book anything without the user's go-ahead."
 license: MIT
 metadata:
-  version: 0.6.1
+  version: 0.6.2
 ---
 
 # taskfuel.ai — paid APIs for your agent
 
-taskfuel.ai gives this machine's user one account for the paid web: they hold a
-prepaid USD balance, and the `taskfuel` CLI lets you (the agent) spend it on
-pay-per-call APIs from a curated list of provider domains. You never touch a
-wallet or a payment protocol — the taskfuel.ai gateway pays the provider and bills
-the user's balance.
+TaskFuel gives the user one prepaid USD balance for pay-per-call APIs from a
+curated list of providers. Use the TaskFuel MCP connection when available, or
+the `taskfuel` CLI in a shell-based setup. The gateway pays the provider and
+bills the user's balance.
 
 ## When to reach for it
 
@@ -28,8 +27,44 @@ user has said not to use paid services. Finding an endpoint is not permission
 to act with it: sending an email, placing a call, mailing a letter or booking
 anything needs the user's go-ahead first, whatever it costs.
 
-Of the commands here only `call` spends anything. `discover`, `quote`,
-`result`, `rate`, `feedback` and `balance` are all free.
+## Use the TaskFuel MCP connection
+
+In Grok Bot, use the TaskFuel MCP tools in this section. If the tools are
+missing or authentication has expired, have the user connect or reconnect
+TaskFuel in Connect apps and finish browser OAuth. Use the existing connection
+when possible. Continue once it works, without installing the CLI or asking
+for an API key.
+
+1. **Discover.** Search with `discover` and its `query` argument, then pass a
+   matching endpoint's `url` and `method` to read its full docs. Check
+   `balance` before spending. If the balance is too low, return its
+   `topup_url` and wait for the user to fund it.
+2. **Quote and cap.** Use `quote` with the exact request arguments. Quoting
+   contacts the provider without charging, so use public or synthetic data for
+   previews unless the user has authorized sending the real data to that
+   provider. Follow the spending rules below. Set `max_amount_usd` on every
+   paid `call` to the quote. Stop before calling if it exceeds the user's
+   approved ceiling or remaining task budget.
+   For `not_quotable`, explain the missing quote and get permission for a
+   bounded call unless the user already gave it. Keep a running total of
+   charges and pending commitments and make one purchase at a time when
+   working within a task budget.
+3. **Recover.** After a timeout use `get_result` with the TaskFuel
+   `request_id`. Omit the ID to find the intended call in recent history.
+   Wait on in-flight requests and report an unknown charge as unknown.
+   Resolve pending charges before spending again. Use the provider's status
+   endpoint for an async job, following the polling rules below.
+4. **Deliver.** Check the actual response against the request, flag gaps, and
+   report the provider and total charge. Save and verify requested files
+   before attaching them. If MCP cannot retrieve a result or a file, report
+   what is missing without repeating the purchase. Use the free `rate` and
+   `feedback` tools for relevant outcomes and issues without sending private
+   data.
+
+## Use the CLI
+
+The CLI steps below apply when working in a shell without a TaskFuel MCP
+connection. Of the commands here only `call` spends anything.
 
 Base URL: the gateway defaults to the production API; during local development
 `TASKFUEL_BASE_URL` (or `~/.config/taskfuel/config.json`) may point at a
@@ -216,12 +251,12 @@ data. Lead with what happened and what you expected; up to 2000 characters.
 
 ## Spending rules (non-negotiable)
 
-- **Preview before paying**: `taskfuel quote` the first call to any endpoint
-  in a session, and pass what it returns to `--max-amount` on the paid call.
-  The quoted amount is the real charge for that payload (a hard per-call cap
-  also protects you from surprises). A quote refused as `not_quotable` means
-  the endpoint declares no price: call it with a `--max-amount` you are willing
-  to pay. A `spec_unavailable` refusal is transient: retry the quote shortly.
+- **Preview before paying**: Quote the first call to any endpoint in a session.
+  Set your per-call cap with `--max-amount` in the CLI or `max_amount_usd`
+  in MCP. A quote refused as `not_quotable` means the endpoint declares no
+  price. In the CLI, use a `--max-amount` within the applicable budget and
+  approval limits. In MCP, follow the bounded-call permission rule above.
+  A `spec_unavailable` refusal is transient: retry the quote shortly.
 - **Ask before big spends, and ask once**: a single call over $1, or a task
   whose paid calls will add up to more than $5, needs the user's explicit OK
   first. Below those lines, call without asking: the quote and the gateway's
@@ -232,9 +267,8 @@ data. Lead with what happened and what you expected; up to 2000 characters.
   comes back higher, an endpoint is new, or the running total crosses the
   budget again (each further $5, or whatever budget the user named up front,
   which replaces the default).
-- **Approved price is the ceiling.** Pass the price the user approved as
-  `--max-amount`, so a call can never exceed what they agreed to. If a call is
-  rejected for exceeding a cap, raising your own `--max-amount` needs the
+- **Approved price is the ceiling.** Keep your per-call cap at or below the
+  approved price. If a call is rejected for exceeding a cap, raising it needs the
   user's OK, and the gateway's hard cap is not yours to raise.
 - **Rate limit**: 60 calls/min per key.
 - **Report spend once per task.** Give the user the total when the result
@@ -247,8 +281,8 @@ data. Lead with what happened and what you expected; up to 2000 characters.
   tell the user the job is still running. Resubmitting buys it twice.
 - **Never retry a paid call blindly.** A "paid" line means the call was
   charged, however bad the response: tell the user and let them decide, and
-  rate the endpoint down. A lost response is recovered with `taskfuel result`
-  (section 4).
+  rate the endpoint down. Recover a lost response with `taskfuel result` in
+  the CLI or `get_result` in MCP.
 - **Stop at low balance**: if balance < the next call's price, stop and tell
   the user to top up at their dashboard. Don't hunt for workarounds. If you
   could pay for credit yourself, tell us with `taskfuel feedback` which

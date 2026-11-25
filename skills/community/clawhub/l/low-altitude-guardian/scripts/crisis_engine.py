@@ -19,6 +19,8 @@ from enum import Enum
 from pathlib import Path
 from typing import Optional
 
+from path_safety import safe_component, safe_join, validate_identifier
+
 # 项目根目录
 PROJECT_ROOT = Path(__file__).parent.parent
 SOLUTION_TEMPLATES_DIR = PROJECT_ROOT / "assets" / "solution_templates"
@@ -703,80 +705,122 @@ def _emergency_reasoning(classification: CrisisClassification,
 
 # ─── 知识库学习 ─────────────────────────────────────────────
 
-def learn_from_feedback(feedback_file: str):
-    """根据事件反馈更新知识库。"""
+# v0.3.1: only these template fields may be changed by feedback, and only with
+# explicit human approval plus --apply. No arbitrary field/path writes.
+_ALLOWED_UPDATE_FIELDS = {
+    "confidence_adjustment": (int, float),
+    "notes": str,
+}
+_ALLOWED_VALUE_RANGE = {"confidence_adjustment": (-0.3, 0.3)}
+
+
+def learn_from_feedback(feedback_file: str, approved_by: str = "", apply: bool = False):
+    """根据人工批准的反馈更新知识库；默认 dry-run，不写任何文件。"""
     with open(feedback_file, encoding="utf-8") as f:
         feedback = json.load(f)
 
-    KNOWLEDGE_BASE_DIR.mkdir(parents=True, exist_ok=True)
+    if not isinstance(feedback, dict):
+        raise ValueError("反馈文件必须是 JSON 对象")
 
-    # 记录学习数据
+    incident_id = validate_identifier(feedback.get("incident_id"), "incident_id")
+    approver = (approved_by or feedback.get("approved_by") or "").strip()
+    if not approver:
+        raise ValueError("缺少人工批准：请提供 --approved-by，或在反馈文件中设置 approved_by")
+
+    outcome = feedback.get("outcome") or {}
+    lessons = feedback.get("lessons") or []
+    if not isinstance(outcome, dict) or not isinstance(lessons, list):
+        raise ValueError("outcome 必须是对象，lessons 必须是数组")
+
+    update = feedback.get("suggested_kb_update")
+    if update is not None and not isinstance(update, dict):
+        raise ValueError("suggested_kb_update 必须是对象")
+
     learn_record = {
         "learned_at": datetime.now(timezone.utc).isoformat(),
-        "incident_id": feedback.get("incident_id"),
+        "incident_id": incident_id,
+        "approved_by": approver,
         "crisis_type": feedback.get("crisis_signature", {}).get("type"),
         "decision_made": feedback.get("decision_made"),
-        "outcome_success": feedback.get("outcome", {}).get("success"),
-        "lessons": feedback.get("lessons", []),
-        "suggested_update": feedback.get("suggested_kb_update"),
+        "outcome_success": outcome.get("success"),
+        "lessons": lessons,
+        "suggested_update": update,
     }
 
-    # 保存学习记录
-    learn_file = KNOWLEDGE_BASE_DIR / f"learn_{feedback.get('incident_id', 'unknown')}.json"
+    learn_file = safe_join(KNOWLEDGE_BASE_DIR, f"learn_{incident_id}.json")
+
+    if not apply:
+        print("[dry-run] 仅预览，未写入任何文件；确认后加 --apply 才会落盘。")
+        print(json.dumps(learn_record, ensure_ascii=False, indent=2))
+        return
+
+    KNOWLEDGE_BASE_DIR.mkdir(parents=True, exist_ok=True)
     with open(learn_file, "w", encoding="utf-8") as f:
         json.dump(learn_record, f, ensure_ascii=False, indent=2)
 
-    # 如果有知识库更新建议，应用到模板
-    update = feedback.get("suggested_kb_update")
     if update:
-        _apply_kb_update(update)
+        _apply_kb_update(update, approver)
 
-    print(f"[学习完成] 事件 {feedback.get('incident_id')} 的经验已记录")
+    print(f"[学习完成] 事件 {incident_id} 的经验已记录（批准人: {approver}）")
     print(f"  - 结果: {'成功' if learn_record['outcome_success'] else '失败'}")
-    print(f"  - 教训: {len(learn_record['lessons'])} 条")
+    print(f"  - 教训: {len(lessons)} 条")
     if update:
         print(f"  - 知识库更新: {update.get('template')} -> {update.get('field')}")
 
 
-def _apply_kb_update(update: dict):
-    """将学习到的参数更新应用到解决方案模板。"""
-    template_name = update.get("template", "")
-    template_path = SOLUTION_TEMPLATES_DIR / template_name
-
+def _apply_kb_update(update: dict, approver: str):
+    """将人工批准的学习结果写入模板；字段白名单 + 备份 + 原子替换。"""
+    template_name = validate_identifier(update.get("template"), "template")
+    if not template_name.endswith(".json"):
+        raise ValueError("template 必须是 .json 文件名")
+    template_path = safe_join(SOLUTION_TEMPLATES_DIR, template_name)
     if not template_path.exists():
-        print(f"  [警告] 模板文件 {template_name} 不存在，跳过更新")
-        return
+        raise ValueError(f"模板文件不存在: {template_name}")
 
-    with open(template_path, encoding="utf-8") as f:
-        tmpl = json.load(f)
+    field = validate_identifier(update.get("field"), "field")
+    parts = field.split(".")
+    if len(parts) > 3 or parts[0] not in _ALLOWED_UPDATE_FIELDS:
+        raise ValueError(f"不允许更新的字段: {field}；允许: {', '.join(_ALLOWED_UPDATE_FIELDS)}")
 
-    # 递归设置嵌套字段
-    field_path = update.get("field", "").split(".")
-    obj = tmpl
-    for key in field_path[:-1]:
-        if key not in obj:
-            obj[key] = {}
-        obj = obj[key]
-
-    old_val = obj.get(field_path[-1])
+    expected_type = _ALLOWED_UPDATE_FIELDS[parts[0]]
     new_val = update.get("suggested_value")
-    obj[field_path[-1]] = new_val
+    if not isinstance(new_val, expected_type) or isinstance(new_val, bool):
+        raise ValueError(f"字段 {field} 的值类型必须是 {expected_type.__name__}")
+    if field in _ALLOWED_VALUE_RANGE:
+        low, high = _ALLOWED_VALUE_RANGE[field]
+        if not low <= float(new_val) <= high:
+            raise ValueError(f"字段 {field} 的值必须在 [{low}, {high}] 范围内")
+    if isinstance(new_val, str) and len(new_val) > 500:
+        raise ValueError("notes 长度不能超过 500 字符")
 
-    # 记录变更历史
-    if "_update_history" not in tmpl:
-        tmpl["_update_history"] = []
-    tmpl["_update_history"].append({
+    original_text = template_path.read_text(encoding="utf-8")
+    tmpl = json.loads(original_text)
+
+    obj = tmpl
+    for key in parts[:-1]:
+        if key not in obj or not isinstance(obj[key], dict):
+            raise ValueError(f"字段路径不存在或非对象: {field}")
+        obj = obj[key]
+    old_val = obj.get(parts[-1])
+    obj[parts[-1]] = new_val
+
+    tmpl.setdefault("_update_history", []).append({
         "timestamp": datetime.now(timezone.utc).isoformat(),
-        "field": update.get("field"),
+        "field": field,
         "old_value": old_val,
         "new_value": new_val,
-        "reason": update.get("reason", ""),
+        "reason": str(update.get("reason", ""))[:500],
+        "approved_by": approver,
     })
 
-    with open(template_path, "w", encoding="utf-8") as f:
+    backup = template_path.with_name(template_name + ".bak")
+    backup.write_text(original_text, encoding="utf-8")
+    tmp = template_path.with_name(template_name + ".tmp")
+    with open(tmp, "w", encoding="utf-8") as f:
         json.dump(tmpl, f, ensure_ascii=False, indent=2)
+    tmp.replace(template_path)
 
-    print(f"  [更新] {template_name}: {update.get('field')} = {old_val} -> {new_val}")
+    print(f"  [更新] {template_name}: {field} = {old_val} -> {new_val}（备份: {backup.name}）")
 
 
 # ─── 执行监控 ─────────────────────────────────────────────
@@ -807,6 +851,8 @@ def main():
     parser.add_argument("--learn", action="store_true", help="从反馈中学习")
     parser.add_argument("--input", type=str, help="输入快照文件路径")
     parser.add_argument("--feedback", type=str, help="反馈数据文件路径")
+    parser.add_argument("--approved-by", type=str, help="人工批准人姓名（--learn 必需）")
+    parser.add_argument("--apply", action="store_true", help="确认写入；默认仅 dry-run 预览")
     parser.add_argument("--decision-id", type=str, help="决策ID（用于监控）")
     parser.add_argument("--demo", action="store_true", help="运行演示场景")
 
@@ -850,7 +896,11 @@ def main():
         if not args.feedback:
             print("错误: --learn 需要 --feedback 指定反馈文件")
             sys.exit(1)
-        learn_from_feedback(args.feedback)
+        try:
+            learn_from_feedback(args.feedback, args.approved_by, args.apply)
+        except (ValueError, json.JSONDecodeError, OSError) as exc:
+            print(f"[错误] 学习失败: {exc}")
+            sys.exit(1)
 
     else:
         parser.print_help()

@@ -7,6 +7,19 @@ most problems automatically.
 
 ## Authentication Issues
 
+Which token is the problem:
+
+```mermaid
+flowchart TD
+    start["Run scripts/apple_music_api.sh verify"] --> code{What fails?}
+    code -->|"401 on every endpoint"| dev["Developer token expired or malformed<br/>→ setup_auth.py --new-dev-token"]
+    code -->|"403 on /v1/me/* only;<br/>catalog still works"| user["Music User Token expired or revoked<br/>→ setup_auth.py (browser sign-in)"]
+    code -->|"429"| rate["Rate limited; the wrapper backs off<br/>→ see HTTP 429 below"]
+    code -->|"Network error"| net["Can't reach api.music.apple.com<br/>→ see Network timeout below"]
+    dev --> other["Both expire around 6 months:<br/>check the other token too"]
+    user --> other
+```
+
 ### HTTP 401 — Developer Token Invalid or Expired
 
 **Symptoms:** Every API call returns `401 Unauthorized`.

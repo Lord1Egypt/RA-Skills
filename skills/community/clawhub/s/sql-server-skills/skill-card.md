@@ -1,6 +1,6 @@
 ## Description:
 
-Comprehensive SQL Server performance diagnostics, index analysis, execution plan interpretation, query optimization, schema management, backup/restore, and monitoring using sqlcmd and T-SQL DMVs. Use when analyzing slow queries, investigating wait stats, finding missing indexes, reading execution plans, optimizing stored procedures or views, managing migrations, monitoring SQL Agent jobs, or diagnosing blocking/deadlocks on Microsoft SQL Server. Triggers on: SQL Server, MSSQL, sqlcmd, T-SQL performance, slow query, execution plan, DMV, missing index, wait stats, blocking, deadlock, stored procedure optimization, view tuning.
+A reference skill for diagnosing, tuning, and managing SQL Server with sqlcmd and T-SQL DMVs, covering performance, indexes, execution plans, schemas, backups, and monitoring.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers, database administrators, and engineers use this skill to investigate SQL Server performance and operational issues, interpret diagnostic results, and prepare SQL or shell workflows for review. Production changes require DBA review.
+Developers, database administrators, and engineers use this skill to investigate SQL Server performance and operational issues, interpret query plans, and prepare SQL or sqlcmd guidance for database changes.
 
 ### Deployment Geography for Use:
 
@@ -22,42 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Powerful database operations can disrupt services or alter production data.
+Risk: Some suggested query rewrites may change query results.
 
-Mitigation: Use a minimally privileged diagnostic identity and have a DBA review production changes before execution.
+Mitigation: Review each rewrite against the intended semantics and validate it with representative data before use.
 
-Risk: Diagnostic reports and backups may contain sensitive information.
+Risk: The security scan had partial coverage because many referenced local files were missing from the scanned artifact.
 
-Mitigation: Protect reports and backups with access controls and the operator's data handling policy.
-
-Risk: Some workflows may refer to scripts that are not present.
-
-Mitigation: Resolve missing script references before following those workflows.
+Mitigation: Review the referenced files before relying on guidance that depends on them.
 
 ## Reference(s):
 
-- [SQL Server Skills on ClawHub](https://clawhub.ai/vince-winkintel/skills/sql-server-skills)
-- [sqlcmd utility](https://learn.microsoft.com/en-us/sql/tools/sqlcmd/sqlcmd-utility)
-- [sqlcmd output options](https://learn.microsoft.com/en-us/sql/tools/sqlcmd/sqlcmd-utility#format-options)
-- [SentryOne Plan Explorer](https://www.sentryone.com/plan-explorer)
-- [UPDATE STATISTICS (Transact-SQL)](https://learn.microsoft.com/en-us/sql/t-sql/statements/update-statistics-transact-sql)
-- [sp_updatestats](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-updatestats-transact-sql)
-- [XML invalid characters and escape rules](https://learn.microsoft.com/en-us/sql/relational-databases/xml/invalid-characters-and-escape-rules)
-- [Disable foreign key constraints](https://learn.microsoft.com/en-us/sql/relational-databases/tables/disable-foreign-key-constraints-with-insert-and-update-statements)
+- [ClawHub release page](https://clawhub.ai/vince-winkintel/skills/sql-server-skills)
+- [Microsoft sqlcmd utility documentation](https://learn.microsoft.com/en-us/sql/tools/sqlcmd/sqlcmd-utility)
+- [Microsoft UPDATE STATISTICS documentation](https://learn.microsoft.com/en-us/sql/t-sql/statements/update-statistics-transact-sql)
+- [Microsoft guidance on disabling foreign key constraints](https://learn.microsoft.com/en-us/sql/relational-databases/tables/disable-foreign-key-constraints-with-insert-and-update-statements)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, SQL code, Shell commands, Guidance]
+**Output Type(s):** [Guidance, Analysis, Code, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown with T-SQL and Bash code blocks]
+**Output Format:** [Markdown with inline T-SQL and Bash examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Provides diagnostic guidance and review-only change proposals; production changes require DBA review.]
+**Other Properties Related to Output:** [Includes diagnostic queries and operational examples; proposed database changes require review appropriate to the target.]
 
 ## Skill Version(s):
 
-1.0.1 (source: server-resolved ClawHub release metadata)
+1.0.2 (source: release metadata)
 
 ## Ethical Considerations:
 

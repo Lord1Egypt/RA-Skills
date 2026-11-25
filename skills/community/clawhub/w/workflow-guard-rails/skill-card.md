@@ -1,6 +1,6 @@
 ## Description:
 
-Adds seven safeguards to multi-step agent workflows, including pre-execution checks, checkpoints, queued side effects, bounded retries, result validation, audit logs, and staged failure rules.
+Wrap multi-step agent workflows with pre-execution checks, checkpoints, queued side effects, bounded retries, result validation, audit logs, and gated failure-rule accumulation.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers building scheduled, event-driven, or repeatable agent workflows use it to check prerequisites, contain side effects, validate results, and recover safely from failures.
+Developers and operators use this skill to add recovery and validation safeguards to multi-step agent workflows, especially unattended workflows that perform external actions or need safe reruns.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The setup instructions download content directly to the authoritative global playbook path, which could replace existing guidance before it is reviewed.
+Risk: The release is rated suspicious because its update guidance could lead to unreviewed changes to a persistent playbook; scanner coverage was partial and did not establish malicious intent.
 
-Mitigation: Review the download and update flow first; preserve existing playbook content and require confirmation before replacing it or promoting rules.
+Mitigation: Review the playbook installation and update instructions, and confirm changes are staged and reviewed before they become authoritative.
 
 ## Reference(s):
 
-- [Workflow Guard Rails on ClawHub](https://clawhub.ai/haiyangchenbj/skills/workflow-guard-rails)
-- [Guardian patterns](references/guardian-patterns.md)
-- [Pinned Error Playbook download referenced by the skill](https://raw.githubusercontent.com/haiyangchenbj/error-playbook/d945aee01384c6163beb287446147ce768d50661/ERROR-PLAYBOOK.md)
+- [Guardian Patterns](references/guardian-patterns.md)
+- [Pinned Error Playbook](https://raw.githubusercontent.com/haiyangchenbj/error-playbook/d945aee01384c6163beb287446147ce768d50661/ERROR-PLAYBOOK.md)
+- [ClawHub release page](https://clawhub.ai/haiyangchenbj/skills/workflow-guard-rails)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown]
+**Output Type(s):** [Guidance, Markdown, Shell commands, Files]
 
-**Output Format:** [Markdown guidance with a structured Guardian Report]
+**Output Format:** [Markdown instructions, checklists, guardian reports, and shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [The report summarizes checks, checkpoints, queued side effects, validation, retries, audit logging, rule capture, and release status.]
+**Other Properties Related to Output:** [May include audit-log entries and staged failure-rule guidance for a guarded workflow.]
 
 ## Skill Version(s):
 
-1.0.9 (source: frontmatter, server release evidence)
+1.0.10 (source: frontmatter)
 
 ## Ethical Considerations:
 

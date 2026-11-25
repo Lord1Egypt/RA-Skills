@@ -16,7 +16,7 @@ metadata: {"openclaw":{"homepage":"https://www.farmdash.one/agents","skillKey":"
 
 ## Scout execution activation allowance
 
-Scout includes independently configured futures and spot execution-lifecycle pools per capital-owning principal per UTC day, in separate pools shared across USER_SIGNED and valid bounded execution. Read `scout_trial.daily_limit` on a current continuation for its domain; the metadata is informational and current admission remains authoritative. Owner identity comes from the capital account, not a rotating API wallet, key, IP, session or grant. Commercial capacity never grants transaction authority, enables preparation_only dispatch, or waives normal builder, venue or gas economics.
+Scout includes independently configured futures and spot execution-lifecycle pools per capital-owning principal per UTC day, in separate pools shared across USER_SIGNED and valid bounded execution. Read `scout_trial.daily_limit` on a current continuation for its domain; the metadata is informational and current admission remains authoritative. Owner identity comes from the capital account, not a rotating API wallet, key, IP, session or grant. Commercial capacity never grants transaction authority, bypasses a closed runtime gate, or waives normal builder, venue or gas economics.
 
 For `analyze_futures_strategy`, supply a stable `idempotencyKey`. USER_SIGNED acquisition may return 401 `execution_trial_identity_required`: have the owner's local wallet EIP-191-sign the returned `execution_trial_challenge.message` unchanged, then retry with `executionTrialProof: {issuedAt, signature}`. Valid bounded analysis uses its existing owner-bound policy and authenticated session instead; do not manufacture new delegation. One lifecycle admits one bounded, durably cached premium research result, not unlimited research.
 
@@ -28,7 +28,7 @@ Forward the returned `executionTrialId` through `prepare_perp_order` and `execut
 
 Use the returned exact endpoint, parameter names, and `required_fields`. Never infer missing size, price/order type, account binding, `executionTrialId`, or a research prerequisite from recommendations. Before preparation, satisfy the existing fresh execution-ready research and admission requirements. Preserve `executionTrialId` unchanged; local EIP-712 signature, account/venue authority, owner policy for bounded mode, risk, builder, nonce, expiry, and replay checks remain mandatory.
 
-Scout's published allowance is five spot and five futures lifecycles per day in separate pools; selected context reports `remaining: null` and `status: unknown` pending authoritative admission. Do not promise capacity based on a displayed continuation. Paid/access quota and venue authority remain separate; preparation remains `preparation_only` where the live gate says so.
+Scout's published allowance is five spot and five futures lifecycles per day in separate pools; selected context reports `remaining: null` and `status: unknown` pending authoritative admission. Do not promise capacity based on a displayed continuation. Paid/access quota and venue authority remain separate; always verify live readiness in `/api/v1/agent/status` and fail closed if any domain gate is non-operational.
 
 ## Futures Execution Mode Contract
 
@@ -47,19 +47,27 @@ Only after the user explicitly authorizes grant setup, call `POST /api/v1/agent/
 
 The signed policy binds `ownerAddress`, session `agentAddress`, `apiWalletAddress`, `accountAddress`/subaccount, `vaultAddress` (null for direct account routing), `sessionId`, `network`, `allowedMarkets`, `allowedActions`, `allowedOrderTypes`, `allowedDirections`, `maxOrderNotionalUsd`, `maxAggregateExposureUsd`, `maxLeverage`, `maxRiskPerTrade` (conservative admitted FULL NOTIONAL USD, not stop-loss-derived realized risk), `maxSessionNewRiskNotionalUsd` (cumulative new-entry budget), `maxSessionLossUsd`, `maxDailyLossUsd`, `validAfter`, `validUntil`, `nonce`, and `policyVersion`. USD limits are positive canonical decimal strings; validity timestamps are integer Unix seconds (venue `expiresAt` remains milliseconds). Review every returned bound before owner signature. Nonces are single-use. Read authority back after registration/revocation; storage unavailable means halt, never cache-based permission. SDK `signFuturesPolicy(policy, ownerSigner)` uses an injected local owner signer and verifies recovery; compare its policy/typed-data contract to the requested owner payload before registration. Never use the API-wallet signer to authorize its own grant.
 
-Add `executionMode: BOUNDED_AUTONOMOUS`, `grantId`, `sessionId`, `sessionToken` to the existing `execute_perp_order` / `cancel_perp_order` payloads, preserving all venue signature, account, nonce, expiry, intent-hash and order controls. Route `agentAddress` is the API-wallet venue signer, distinct from policy `agentAddress` (the session agent); both must match their respective grant bindings. USER_SIGNED remains the default when mode is omitted. Prepare only while the bounded rollout gate is closed. Exact REST endpoints remain `/api/v1/agent/futures/execute-order` and `/api/v1/agent/futures/cancel-order`; use `/api/v1/agent/futures/reconcile-order` for existing venue reconciliation.
+Add `executionMode: BOUNDED_AUTONOMOUS`, `grantId`, `sessionId`, `sessionToken` to the existing `execute_perp_order` / `cancel_perp_order` payloads, preserving all venue signature, account, nonce, expiry, intent-hash and order controls. Route `agentAddress` is the API-wallet venue signer, distinct from policy `agentAddress` (the session agent); both must match their respective grant bindings. USER_SIGNED remains the default when mode is omitted. Always verify live `futures.BOUNDED_AUTONOMOUS` readiness in `/api/v1/agent/status` and fail closed whenever a runtime gate is closed. Exact REST endpoints remain `/api/v1/agent/futures/prepare-order`, `/api/v1/agent/futures/execute-order`, and `/api/v1/agent/futures/cancel-order`; use `/api/v1/agent/futures/reconcile-order` for existing venue reconciliation.
 
 > Use this skill for Hyperliquid perpetuals research, sizing, and local EIP-712 orders/cancellations under the selected execution mode. USER_SIGNED requires per-action human approval; bounded futures require the distinct owner policy and every domain runtime gate.
 
+### First-Prompt Execution Mode Selection & One-Time Builder Approval
+Before preparing any Hyperliquid order, inspect `execution_mode_selection` (returned on `GET /api/v1/agent/status`, `POST /api/v1/agent/authority`, `analyze_futures_strategy`, and `prepare_perp_order`) and explicitly prompt the user to choose:
+* **Standard FarmDash (`USER_SIGNED`, default):** Fresh per-order human approval and local Hyperliquid EIP-712 venue signature.
+* **Autonomous FarmDash (`BOUNDED_AUTONOMOUS`, opt-in):** Owner-signed futures policy grant + Hyperliquid API-wallet delegation + Pioneer+ / x402-admitted session, inside hard notional/leverage/drawdown bounds.
+
+On `analyze_futures_strategy`, inspect `builderFeeStatus` upfront. If the equity owner has not yet approved FarmDash's disclosed `f=1` (0.1 bp = 0.001% of filled notional) builder fee on Hyperliquid, `prepare_perp_order` returns **HTTP 409 `builder_fee_approval_required`** carrying a ready-to-sign `builderApproval` payload (`HyperliquidTransaction:ApproveBuilderFee` EIP-712 `typedData` + `exchangeRequest`). Have the **main account wallet** (never the API wallet) sign that one-time approval locally and post `exchangeRequest` to `https://api.hyperliquid.xyz/exchange`, then retry `prepare_perp_order`.
+
 ### Recommended execution bootstrap
 
-For USER_SIGNED orders, prefer the explicit **analyze → prepare → local sign → execute → reconcile** flow instead of asking integrators to construct FarmDash/Hyperliquid binding fields by hand:
+For USER_SIGNED orders, prefer the explicit **analyze → mode select (+ one-time main-wallet builder approval if needed) → prepare → local sign → execute → reconcile** flow instead of asking integrators to construct FarmDash/Hyperliquid binding fields by hand:
 
-1. Call `analyze_futures_strategy` for new risk. The authorization is parameter-bound and short-lived.
-2. Call MCP `prepare_perp_order` or REST `POST /api/v1/agent/futures/prepare-order` with the intended economics. FarmDash returns the exact `signedAction`, `intentHash`, `nonce`, `expiresAt`, `typedData`, and an `executeRequest` template. **No order is submitted.**
-3. Sign the returned `typedData` locally with the Hyperliquid user/API wallet identified by `agentAddress`. Private keys and seed phrases must remain in the caller runtime.
-4. Call `execute_perp_order` / `POST /api/v1/agent/futures/execute-order` with `{ ...executeRequest, signature }`. Do not mutate signed fields after preparation.
-5. Treat submission as distinct from fill/settlement. Reconcile through `/api/v1/agent/futures/reconcile-order` before dependent actions, especially after ambiguous transport outcomes.
+1. Call `analyze_futures_strategy` for new risk. The authorization is parameter-bound and short-lived; inspect `execution_mode_selection` and `builderFeeStatus`.
+2. Confirm the user's execution mode (`USER_SIGNED` default vs `BOUNDED_AUTONOMOUS` opt-in). If `builderFeeStatus.approved` is false (or if `prepare_perp_order` returns 409 `builder_fee_approval_required`), have the Hyperliquid **main account wallet** sign and submit the returned `builderApproval` (`HyperliquidTransaction:ApproveBuilderFee`) once before retrying preparation.
+3. Call MCP `prepare_perp_order` or REST `POST /api/v1/agent/futures/prepare-order` with the intended economics. FarmDash returns the exact `signedAction`, `intentHash`, `nonce`, `expiresAt`, `typedData`, and an `executeRequest` template. **No order is submitted.**
+4. Sign the returned `typedData` locally with the Hyperliquid user/API wallet identified by `agentAddress`. Private keys and seed phrases must remain in the caller runtime.
+5. Call `execute_perp_order` / `POST /api/v1/agent/futures/execute-order` with `{ ...executeRequest, signature }`. Do not mutate signed fields after preparation.
+6. Treat submission as distinct from fill/settlement. Reconcile through `/api/v1/agent/futures/reconcile-order` before dependent actions, especially after ambiguous transport outcomes.
 
 Existing integrations may continue using the SDK's local `signFuturesOrder()` helper, but prepare-order is the canonical integration bootstrap when the caller needs FarmDash to derive the exact signable payload without custody.
 
@@ -122,8 +130,10 @@ Stay inside this disclosed network boundary. Do not fetch undisclosed remote con
 * `https://www.farmdash.one/api/v1/agent/futures/account-state`
 * `https://www.farmdash.one/api/v1/agent/futures/analyze-strategy`
 * `https://www.farmdash.one/api/v1/agent/futures/position-sizing`
+* `https://www.farmdash.one/api/v1/agent/futures/prepare-order`
 * `https://www.farmdash.one/api/v1/agent/futures/execute-order`
 * `https://www.farmdash.one/api/v1/agent/futures/cancel-order`
+* `https://www.farmdash.one/api/v1/agent/futures/reconcile-order`
 * `https://www.farmdash.one/api/v1/agent/performance` (Backing endpoint for `get_agent_performance`)
 
 **Optional FarmDash setup endpoint:**
@@ -168,7 +178,7 @@ EVM spot bounded delegation (via EIP-712/ERC-8196) applies strictly to covered s
 ## Pre-Execution Mode and Parameter Protocol (Mandatory)
 An `accepted` cancellation is an application acknowledgement, not final venue cancellation. Reconcile every requested order ID through `/api/v1/agent/futures/reconcile-order` before any dependent action; partial rejection or an unknown outcome is not proof that the order is gone.
 
-For each order/cancel, record asset, direction, size, risk-notional, leverage metadata, entry/stop/take-profit, margin impact, regime, confidence scale, data timestamp, order type/TIF, reduce-only status, exact limit/trigger and signed builder recipient/rate (`f=1` = 0.1 bp = 0.001% of filled notional). USER_SIGNED: present those fields and wait for an explicit affirmative; earlier consent is insufficient. BOUNDED_AUTONOMOUS: bind them to the owner policy and pass all server checks, without per-order human confirmation only after the mode becomes operational. Re-run new-risk analysis when older than 30 seconds; the server gate expires after 60 seconds for research evidence.
+For each order/cancel, record asset, direction, size, risk-notional, leverage metadata, entry/stop/take-profit, margin impact, regime, confidence scale, data timestamp, order type/TIF, reduce-only status, exact limit/trigger and signed builder recipient/rate (`f=1` = 0.1 bp = 0.001% of filled notional). USER_SIGNED: present those fields and wait for an explicit affirmative; earlier consent is insufficient. BOUNDED_AUTONOMOUS: bind them to the owner policy and pass all server checks, running without per-order human confirmation only when `futures.BOUNDED_AUTONOMOUS` is operational in live status and every gate passes. Re-run new-risk analysis when older than 30 seconds; the server gate expires after 60 seconds for research evidence.
 
 For protective orders, `price` is the execution-limit price; the independently signed `signedAction.orders[0].t.trigger.triggerPx` is the activation threshold. Present both values and `isMarket` to the user in USER_SIGNED; never replace one with the other. TS/Python local signing helpers accept optional `triggerPrice` and `triggerIsMarket` inputs and bind them inside the signed action, not as additional REST fields. Omitting them preserves the helper defaults (trigger equals `price`, market trigger); set them explicitly when the protective execution terms differ. The signature and intent hash bind the complete signed action.
 
@@ -256,6 +266,9 @@ Use only for FarmDash fee-event activity, fees, protocol diversity, and reputati
 #### 10. select_execution_continuation
 Select server-stored context using only `continuationId`. The canonical next operation preserves known research and venue parameters and lists unknown order economics as required fields. Selection neither authorizes nor prepares an order and never admits, debits, or resets a Scout trial.
 
+#### 11. reconcile_perp_order
+Reconcile one Hyperliquid order from direct venue evidence: the venue order status plus the user fills for that order id. Signs nothing and submits nothing, and it is idempotent at the wire, so replaying re-records the same evidence instead of double counting fills. Execution is never inferred from portfolio or balance deltas. Call it after any order whose final state is unknown and after `cancel_perp_order` reports `accepted`, which is an acknowledgement, not a cancellation.
+
 
 ### Current Request Contracts (v3.2)
 These fields are load-bearing because the API handlers validate them strictly:
@@ -268,7 +281,7 @@ If the user or another agent provides a legacy shape, stop and normalize the req
 
 The `leverage` field is FarmDash intent/risk metadata in this compatibility endpoint; the endpoint does not submit Hyperliquid's separate `updateLeverage` action. Verify actual venue margin mode and leverage independently. Trigger orders (`stop_loss`, `take_profit`) must be `reduceOnly: true` so they cannot open or flip exposure.
 
-Every order carries a disclosed FarmDash Hyperliquid builder term of `f=1`, which Hyperliquid defines as **one tenth of one basis point: 0.1 bp = 0.001% of filled notional**. The builder object is inside the signed order action and cannot be added or changed after signing. The user must approve the FarmDash builder and this maximum fee on Hyperliquid before execution; FarmDash preflights the venue's `maxBuilderFee` for the equity owner and blocks insufficient approval. Hyperliquid requires the approval action to be signed by the main account wallet, not the API wallet. Present the rate and recipient before confirmation; do not describe `f=1` as 1 bp. Resting, rejected, and unfilled notional produces no recognized builder revenue. `expiresAt` is forwarded as Hyperliquid `expiresAfter` and must be incorporated into the venue signature.
+Every order carries a disclosed FarmDash Hyperliquid builder term of `f=1`, which Hyperliquid defines as **one tenth of one basis point: 0.1 bp = 0.001% of filled notional**. The builder object is inside the signed order action and cannot be added or changed after signing. The user must approve the FarmDash builder and this maximum fee on Hyperliquid before execution; `analyze_futures_strategy` reports `builderFeeStatus` upfront, and `prepare_perp_order` preflights the venue's `maxBuilderFee` for the equity owner—returning HTTP 409 `builder_fee_approval_required` with a signable `builderApproval` (`HyperliquidTransaction:ApproveBuilderFee` EIP-712 `typedData` + `exchangeRequest`) when approval is missing or insufficient. Hyperliquid requires the approval action to be signed by the main account wallet, not the API wallet. Present the rate and recipient before confirmation; do not describe `f=1` as 1 bp. Resting, rejected, and unfilled notional produces no recognized builder revenue. `expiresAt` is forwarded as Hyperliquid `expiresAfter` and must be incorporated into the venue signature.
 
 ## Autonomous Perps State Ledger (v3.0)
 Persist this ledger for every futures workflow:
@@ -551,7 +564,7 @@ Report: family quoted verbatim, confidence N/100 (not probability), regime with 
 4. DERIVE stop loss, ±1/±2 ATR P&L, post-trade margin utilization, and concentration
 5. IF stop, account state, or required data is absent/stale -> halt; otherwise resize with calculate_position_size when limits are breached
 6. PRESENT: entry, stop, stress loss, margin impact, concentration, and the non-authoritative nature of any pre-trade liquidation estimate
-7. USER_SIGNED: USER CONFIRMS -> execute_perp_order inside guardrails. Bounded: verify owner grant and every gate; prepare only during rollout.
+7. USER_SIGNED: USER CONFIRMS -> prepare_perp_order -> local sign -> execute_perp_order inside guardrails. Bounded: verify owner grant and every live domain gate before local signing and execution.
 ```
 
 ### W8: "Funding Carry Break-Even Audit"
@@ -715,7 +728,7 @@ Required behavior:
 * Futures trading carries risk of loss.
 * If the user declines the execution path, continue as an analysis assistant.
 
-**Install:** Copy this file into your OpenClaw workspace, or fetch `https://www.farmdash.one/openclaw-skills/farmdash-futures-strategist/SKILL.md`.
+**Install:** Copy this file into your OpenClaw workspace, or fetch `https://www.farmdash.one/agents/skills/farmdash-futures-strategist`.
 
 ### Companion skills:
 * FarmDash Trail Intelligence — DeFi research, Trail Heat scoring, protocol risk factors
@@ -764,13 +777,33 @@ Send `X-ClawHub-Skill: farmdash-futures-strategist` on every FarmDash API reques
 
 - [FarmDash DeFi intelligence website](https://www.farmdash.one/)
 - [FarmDash Agent Hub](https://www.farmdash.one/agents)
-- [Canonical FarmDash Futures Strategist skill manual](https://www.farmdash.one/openclaw-skills/farmdash-futures-strategist/SKILL.md)
+- [Canonical FarmDash Futures Strategist skill manual](https://www.farmdash.one/agents/skills/farmdash-futures-strategist)
 - [Agent integration documentation](https://www.farmdash.one/docs)
 - [Live agent capability status](https://www.farmdash.one/api/v1/agent/status)
 - [OpenAPI contract](https://www.farmdash.one/agents/openapi.yaml)
+- [Hosted Streamable HTTP MCP endpoint](https://www.farmdash.one/api/mcp) (56 core tools directly over HTTP; full 98-tool surface via stdio MCP or REST)
 - [MCP discovery manifest](https://www.farmdash.one/.well-known/mcp.json)
+- [Multi-skill workflow catalog](https://www.farmdash.one/api/v1/agent/workflows)
+- [FarmDash Agent Operating Model](https://www.farmdash.one/openclaw-skills/FARMDASH_AGENT_OPERATING_MODEL.md)
 - [Fees and commercial terms](https://www.farmdash.one/fees)
 - [Security and authority boundaries](https://www.farmdash.one/security)
+
+### Connected FarmDash Skill Ecosystem
+
+All 10 FarmDash OpenClaw skills compose as one zero-custody pipeline over the shared FarmDash REST API, the hosted Streamable HTTP MCP endpoint (`https://www.farmdash.one/api/mcp`, exposing 56 core tools directly over HTTP), and the full 98-tool stdio MCP server. Check `GET /api/v1/agent/workflows` (or `list_workflows`) for multi-skill recipes.
+
+| Skill Slug | Pipeline Stage | Handoff Scope | Canonical Manual |
+|---|---|---|---|
+| `farmdash-trail-intelligence` | Discovery & Intelligence | Trail Heat, protocol risk, wallet balances, sybil audits, points simulations | [Manual](https://www.farmdash.one/agents/skills/farmdash-trail-intelligence) |
+| `farmdash-wagon-steward` | Portfolio & Reserves | Portfolio summary, idle capital scan, position health & drift checks | [Manual](https://www.farmdash.one/agents/skills/farmdash-wagon-steward) |
+| `farmdash-supply-master` | Yield Sustainability | Organic vs emission APY ranking (yield_quality_v3) & ERC-4626 verification | [Manual](https://www.farmdash.one/agents/skills/farmdash-supply-master) |
+| `farmdash-camp-guard` | Pre-Sign Safety Gate | Allowance audits, Risk Sentinel net-edge/depeg checks, unsigned-tx verdicts | [Manual](https://www.farmdash.one/agents/skills/farmdash-camp-guard) |
+| `farmdash-hedge-warden` | Delta-Neutral Sizing | Spot beta hedge sizing (confidence >= 0.60 gate) handing off to Futures Strategist | [Manual](https://www.farmdash.one/agents/skills/farmdash-hedge-warden) |
+| `farmdash-trail-marshal` | Workflow Orchestration | 18-recipe multi-skill catalog (list/plan/run/status) across all FarmDash skills | [Manual](https://www.farmdash.one/agents/skills/farmdash-trail-marshal) |
+| `farmdash-signal-architect` | Spot & Swap Execution | EVM (LI.FI & Relay; 0x paused) & Solana (Jupiter) quote, simulation, prep & confirm | [Manual](https://www.farmdash.one/agents/skills/farmdash-signal-architect) |
+| `farmdash-futures-strategist` *(this skill)* | Hyperliquid Perps | Funding/regime scans, sizing, builder approval, EIP-712 order prep & reconciliation | [Manual](https://www.farmdash.one/agents/skills/farmdash-futures-strategist) |
+| `farmdash-autonomous-operator` | Sessions & Autonomy | Persistent sessions, FarmingContext, intent resolution, MEE & bounded delegations | [Manual](https://www.farmdash.one/agents/skills/farmdash-autonomous-operator) |
+| `farmdash-ledger-keeper` | Post-Trade Accounting | Confirmed activity/cost summaries and CSV tax exports (read-only) | [Manual](https://www.farmdash.one/agents/skills/farmdash-ledger-keeper) |
 
 ### Canonical capability readiness
 
@@ -784,9 +817,9 @@ Generated from shared/capability-truth.ts; read live status for deployment and p
 | futures.BOUNDED_AUTONOMOUS | operational | Authenticated owner-bound futures policy, authorized local API-wallet signature, durable nonce/budget/order controls. |
 | solana.USER_SIGNED | operational | Native Jupiter/RPC route, durable preparation and finality store; customer signs and broadcasts. |
 | solana.BOUNDED_AUTONOMOUS | operational | Native owner-signed Solana policy; local key must be an actual required transaction signer. Policy creates no on-chain authority. |
-| ERC4337_SERVER_SUBMISSION | preparation_only | Qualified tenant/account authorization and session-key policy enforcement on public forwarding, configured bundler, durable claims and verified receipt integration. |
-| GENERIC_SERVER_INTENT_EXECUTION | preparation_only | Trusted executable adapter, exact signed-transaction binding and canonical receipt verifier. |
-| MEE | preparation_only | Production coordinator and authoritative source/destination receipt verifier. |
+| ERC4337_SERVER_SUBMISSION | operational | Authenticated session, tenant-bound active ERC-4337 session-key grant, ABI-verified execute/executeBatch calldata within allowedProtocols/budget/gas bounds, and configured bundler RPC (BUNDLER_RPC_URL/PIMLICO_API_KEY/ALCHEMY_4337_RPC_URL). |
+| GENERIC_SERVER_INTENT_EXECUTION | operational | Curated executable adapter prepared_payload + payload_digest, policy/simulation/approval gates, exact cryptographic signed-transaction binding, and canonical on-chain receipt verification. |
+| MEE | operational | Owner EIP-712 MEE signature, configured HTTPS MEE_COORDINATOR_URL, and authoritative dual-chain on-chain receipt verification. |
 | ACP | deployment_prerequisite | AcpReadinessService paidWorkflowReady, evaluator/client identities, migrations, funding/finality workers and Base RPC. |
 
 <!-- farmdash-canonical-links:end -->

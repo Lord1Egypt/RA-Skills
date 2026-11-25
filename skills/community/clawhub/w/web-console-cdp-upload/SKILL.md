@@ -7,7 +7,7 @@ platforms: [WorkBuddy, Claude Code, Codex]
 license: MIT
 agent_created: true
 slug: web-console-cdp-upload
-version: 1.3.0
+version: 1.3.2
 displayName: 网页后台上传自动化（免安装浏览器）
 ---
 

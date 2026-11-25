@@ -1,0 +1,25 @@
+{
+  "fixture_notice": "合成离线页面资料；不对应真实店铺或真实订单，不是在线采集结果。",
+  "filters": {
+    "date_range": "未确认",
+    "status": "未确认",
+    "confirmed": false
+  },
+  "source": {
+    "page": "订单列表",
+    "visible_location": "筛选栏"
+  },
+  "orders": [
+    {
+      "order_id": "DEMO-ORDER-FAIL-001",
+      "created_at": "未知",
+      "status": "待发货",
+      "buyer": "示例买家",
+      "action_needed": "不得据此推断全店总数",
+      "evidence": "筛选状态未显示"
+    }
+  ],
+  "authorization": {
+    "owner_confirmed": true
+  }
+}

@@ -1,6 +1,6 @@
 ## Description:
 
-Provides guidance for applying the pipes-and-filters architecture.
+Provides guidance on the pipes-and-filters architecture paradigm.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and architects use this skill to decide when a pipeline architecture fits and to plan its stages, data contracts, deployment, and monitoring for ETL, streaming analytics, or CI/CD.
+Developers and architects use this skill to decide when a pipeline architecture fits and to plan its stages, data contracts, observability, and deployment. It also provides adoption guidance and exit criteria for reviewing a proposed pipeline.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: A single pipeline stage may become a throughput bottleneck.
+Risk: A pipeline can become constrained by a single slow stage.
 
-Mitigation: Monitor stage-level throughput and scale the affected filter independently; consider splitting it into smaller stages if needed.
+Mitigation: Monitor per-stage throughput and latency, and scale or split bottleneck stages when needed.
 
-Risk: Schema changes between stages may break downstream filters.
+Risk: Schema changes between stages can cause incompatible data to flow through the pipeline.
 
-Mitigation: Centralize schema definitions and run compatibility checks in CI before deploying changes.
+Mitigation: Maintain shared schema definitions and enforce compatibility checks between adjacent stages.
 
-Risk: Insufficient buffering or back-pressure handling may cause data loss under load.
+Risk: Insufficient buffering or back-pressure handling can cause data loss under load.
 
-Mitigation: Load-test expected peak traffic and verify buffering, retries, and back-pressure behavior before production use.
+Mitigation: Load test buffering, retries, and back-pressure at and above expected peak throughput.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-pipeline)
-- [Related Archetypes plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-pipeline)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown]
+**Output Type(s):** [Guidance, Text, Markdown]
 
-**Output Format:** [Markdown prose, lists, and checklists]
+**Output Format:** [Markdown architecture guidance with adoption steps, risks, and review criteria]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Advisory architecture guidance; adapt recommendations to the system's requirements.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.10.3 (source: artifact/SKILL.md frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

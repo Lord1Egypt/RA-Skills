@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/4yDX3906/issue-to-pr/references/state.schema.json",
+  "title": "issue-to-pr run state",
+  "description": "Progress record written to .issue-to-pr/state.json so a run can resume after an interruption or an environment reset.",
+  "type": "object",
+  "required": [
+    "version",
+    "repo",
+    "issue",
+    "workspace",
+    "base",
+    "branch",
+    "phase",
+    "updatedAt"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "repo": {
+      "type": "object",
+      "required": ["owner", "name"],
+      "properties": {
+        "owner": { "type": "string" },
+        "name": { "type": "string" }
+      }
+    },
+    "issue": {
+      "type": "object",
+      "required": ["number", "title", "state"],
+      "properties": {
+        "number": { "type": "integer", "minimum": 1 },
+        "title": { "type": "string" },
+        "state": { "type": "string" },
+        "labels": { "type": "array", "items": { "type": "string" } },
+        "assignees": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "workspace": {
+      "type": "string",
+      "description": "Absolute path of the repository working copy created or reused by this run."
+    },
+    "base": {
+      "type": "string",
+      "description": "Branch the fix is based on, usually the repository default branch."
+    },
+    "fork": {
+      "type": ["object", "null"],
+      "properties": {
+        "owner": { "type": "string" },
+        "remote": { "type": "string", "default": "fork" }
+      }
+    },
+    "branch": {
+      "type": "string"
+    },
+    "phase": {
+      "enum": [
+        "preflight",
+        "reproduce",
+        "plan",
+        "implement",
+        "verify",
+        "self-review",
+        "commit",
+        "pr",
+        "ci",
+        "report",
+        "blocked"
+      ]
+    },
+    "pr": {
+      "type": ["object", "null"],
+      "properties": {
+        "number": { "type": "integer" },
+        "url": { "type": "string" },
+        "draft": { "type": "boolean" }
+      }
+    },
+    "baseline": {
+      "type": ["object", "null"],
+      "properties": {
+        "command": { "type": "string" },
+        "passed": { "type": "integer" },
+        "failed": { "type": "integer" },
+        "artifact": { "type": "string" },
+        "failingTests": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "properties": {
+        "focused": { "type": "string" },
+        "package": { "type": "string" },
+        "types": { "type": "string" },
+        "lint": { "type": "string" },
+        "full": { "type": "string" },
+        "notes": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "changedFiles": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "blockers": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": true
+}

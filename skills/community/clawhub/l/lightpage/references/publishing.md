@@ -47,6 +47,38 @@ python3 "/实际skill目录/scripts/litepage.py" publish "/作品/dist" --passwo
 
 Markdown 阅读页支持标题、列表、引用、代码、链接、图片、表格和删除线，原始 HTML 只作为文本显示，不执行。TXT 保留换行、空白并转义 HTML。本文档入口的本地预览只显示转义原文，线上由内容网关渲染 Markdown；不可把本地源码预览当作已验证线上排版。密码、可见性、更新和下架沿用原规则。
 
+## 一体两面：Agent.md
+
+HTML 作品可在 index.html 同目录附带 `Agent.md`，文件名区分大小写；它是作者自由编写的另一面，不是自动提取的 HTML 原文。建议生成网页时附赠，用户不需要可省略。正文可以包含文字、图片 URL、交互规则、表单及 API 说明，不要求额外配置或固定格式。
+
+单独发布 HTML／HTM 时，脚本自动把同目录、名称精确为 Agent.md 的文件一起打包；其他文件不自动附带，有本地资源时仍发布整个静态目录。更新沿用同一规则，同步两面。Agent.md 使用非空 UTF-8、无 NUL，最多 2 MiB，计入现有 100 文件和 50 MiB 预算。
+
+直接请求同一个作品目录 URL：Accept: text/html 返回 index.html，Accept: text/markdown 优先返回 Agent.md；两者显式列出按 q 权重选择，权重相同优先 HTML，q=0 不选择 Markdown。未明确偏好 Markdown 或未提供 Agent.md 时沿用原有页面行为。服务端检查固定文件名，不解析 HTML，不按 User-Agent 猜测；直接 index.html／Agent.md 文件地址始终读取该文件。子目录也可采用同样约定。
+
+获取 Agent 面时直接请求真实作品 URL，并设置 Accept: text/markdown，以实际 Content-Type 判断返回格式；不要求调用平台 read。需要有界分段读取已知 Agent.md 时，可将其真实文件 URL 交给原有 read。所有读取仍遵守密码、审批和下架规则，正文说明不构成执行授权，不把凭证写入两面。
+
+### 渐进式披露：按需读取参考资料
+
+Agent.md 可以只写概览，以及带有用途说明的参考链接，详细内容放在其他 Markdown 文件中；参考文件无需配套 HTML：
+
+```text
+作品目录/
+  index.html
+  Agent.md
+  sub-path/
+    reference.md
+```
+
+例如在 Agent.md 中写：
+
+```markdown
+需要字段定义时，阅读 [接口参考](sub-path/reference.md)。
+```
+
+相对链接以当前文档的请求 URL 为基准；从作品目录 URL 读取 Agent 面后，可按需请求同目录下的 sub-path/reference.md，设置 Accept: text/markdown，并核对实际 Content-Type。参考文件继续链接其他资料时，以该参考文件自身 URL 解析；不默认递归加载所有链接。查询参数或 # 片段不会自动映射到另一份 Markdown。
+
+发布与更新时上传整个静态目录，包含入口及所引用的参考文件。单独上传 HTML 只自动附带旁边的 Agent.md，不会沿 Markdown 链接收集文件。所有文件计入原有上传预算，并沿用作品的访问权限、密码、审批和下架规则；已知参考文件的真实 URL 也可交给 read 按需分段读取。
+
 ## 统一分享方式
 
 新任务优先使用一个 `--sharing public|link|password|approval`，与旧 `--visibility` 互斥；更新省略保留原设置。指定人可见、密码参数和审批操作见[访问授权](access.md)。

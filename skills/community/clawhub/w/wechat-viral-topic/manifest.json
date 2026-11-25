@@ -1,9 +1,13 @@
 {
   "name": "wechat-viral-topic",
   "normalizedName": "wechat-viral-topic",
-  "description": "热点选题与爆款策划助手，面向公众号编辑、短视频博主、漫画作者、H5 策划，用于回答「这周写什么」「这个素材能不能爆」「热点怎么改成我的选题」这类问题。提供选题灵感与标题打法，把热点做成文章 / 短视频 / 漫画 / H5 等全形态创作方案，并给出素材传播潜力的评估维度。热点与数据按真实参照法挂回可核验来源，不虚构热点、不编造数据。触发词：选题、热点、爆款标题、这周写什么、素材能不能爆、全形态创作、短视频选题、H5 策划、漫画选题、热点策划、viral topic。本技能为通用方法论工具，非医疗器械 / 非医疗软件，无疗效或临床声明；详见包内免责声明。",
+  "description": "A topic-selection assistant for WeChat public accounts, short-video creators, comic authors and H5 planners that turns a raw trend into a defensible topic card. It extracts verifiable signals from source material (figures with units, time windows, platform fit, hashtags, conflict lines, reader pain points, first-hand quotes), screens drafts against compliance red lines (medical claims, absolute wording, income promises, incentivised sharing, unsourced assertions), and grades headlines for length, formula type and red-line risk. v2.0 ships a zero-dependency, offline, standard-library toolchain (scan / riskcheck / titlecheck) with fixed JSON envelopes and error codes W001-W004, an 11-case golden set with a re-executable runner (11/11 PASS locally), and a demo that proves both the block path and the no-false-positive path. Progressive disclosure: the four-question framework, format library, gene model, scoring card, title formulas and risk checklist live in references/. Theory text is all rights reserved; bundled scripts are MIT-licensed. Generic methodology tool - not a medical device or medical software, with no clinical or efficacy claims. Triggers: topic selection, viral topic, hot take, headline, WeChat article, 100k+ read.",
+  "description_zh": "热点选题与爆款策划助手，面向公众号编辑、短视频博主、漫画作者、H5 策划，用于回答「这周写什么」「这个素材能不能爆」「热点怎么改成我的选题」这类问题。提供选题灵感与标题打法，把热点做成文章 / 短视频 / 漫画 / H5 等全形态创作方案，并给出素材传播潜力的评估维度。热点与数据按真实参照法挂回可核验来源，不虚构热点、不编造数据。v2.0 附零依赖离线工具链（scan 素材信号抽取 / riskcheck 合规红线 / titlecheck 标题体检）、11 条黄金集与一键演示，把「这个选题能不能做」从感觉变成可核对的事实。触发词：选题、热点、爆款标题、这周写什么、素材能不能爆、全形态创作、短视频选题、H5 策划、漫画选题、热点策划、viral topic。本技能为通用方法论工具，非医疗器械 / 非医疗软件，无疗效或临床声明；详见包内免责声明。",
+  "description_en": "A topic-selection assistant that turns a raw trend into a defensible topic card via verifiable signals, compliance red-line screening and headline grading, with a zero-dependency toolchain (scan / riskcheck / titlecheck), an 11-case golden set and a block-and-no-false-positive demo.",
   "author": "诺声(Logos)@SynomosAI",
-  "copyright": "SynomosAI",
-  "version": "1.0.0",
-  "license": "MIT"
+  "copyright": "赵兴华 / Steven Zhao·China",
+  "version": "2.0.0",
+  "license": "LicenseRef-AllRightsReserved",
+  "license_scope": "Theory text all rights reserved; scripts under tools/, tests/, demo/ are MIT-licensed.",
+  "category": "内容创作"
 }

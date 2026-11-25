@@ -1,0 +1,13 @@
+interface:
+  display_name: Autonomous Product Funnel
+  short_description: Build and launch a product funnel end to end with one intake
+    and autonomous JEV decisions.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" role="img" aria-label="Capability loop">
+  <path d="M20 12a8 8 0 0 1-13.66 5.66" stroke="#4176E6" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M4 12a8 8 0 0 1 13.66-5.66" stroke="#4176E6" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M17.66 3.6v2.74h-2.74" stroke="#4176E6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M6.34 20.4v-2.74h2.74" stroke="#4176E6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="12" cy="12" r="2.2" fill="#4176E6"/>
+</svg>

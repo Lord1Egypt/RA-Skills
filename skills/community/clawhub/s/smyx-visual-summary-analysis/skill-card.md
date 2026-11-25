@@ -1,6 +1,6 @@
 ## Description:
 
-Performs AI analysis on input video clips and image content and generates a smooth, natural scene description.
+Performs AI analysis on input video clips/image content and generates a smooth, natural scene description.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Users and developers can analyze supported images or video clips to produce scene descriptions and structured visual reports, or request a list of prior reports.
+People working with images and video can use the skill to produce scene descriptions and structured visual-analysis reports. It can also retrieve previous reports for review.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates this release suspicious with high confidence, reporting account, credential, and report-history features beyond the stated visual-analysis purpose. The scan evidence is partial.
+Risk: The security scan labels the skill suspicious due to reported media uploads, account and credential handling, and report-history access that are not clearly disclosed for its visual-analysis purpose.
 
-Mitigation: Consider avoiding installation unless the capability is needed. Before use, review the account, credential, and report-history behavior and submit only media and account data appropriate for the service.
+Mitigation: Before using it with private media or credentials, clarify where uploads and identity data go, how they are retained, and why account and report-history features are needed.
+
+Risk: The security scan was partial because a local reference was missing, so its evidence does not cover every referenced item.
+
+Mitigation: Review the referenced materials and the scan guidance before use.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/18072937735/skills/smyx-visual-summary-analysis)
-- [Skill demonstration](https://lifeemergence.com/sample.html)
-- [API interface documentation](references/api_doc.md)
-- [Analysis API errors and response formats](skills/smyx_analysis/references/api_doc.md)
+- [API Interface Documentation](references/api_doc.md)
+- [Skill Demo](https://lifeemergence.com/sample.html)
+- [ClawHub Release](https://clawhub.ai/18072937735/skills/smyx-visual-summary-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, JSON]
+**Output Type(s):** [Text, JSON, Markdown]
 
-**Output Format:** [Natural-language scene description and structured analysis report; Markdown table for report history]
+**Output Format:** [Natural-language scene descriptions, structured JSON analysis reports, and Markdown history lists]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include recognized scene elements, visible text, recommendations, and report links.]
+**Other Properties Related to Output:** [Reports may include recognition results, suggestions, and report links; detail levels include basic, standard, and JSON.]
 
 ## Skill Version(s):
 
-1.0.21 (source: server-resolved release metadata; artifact SKILL.md declares 1.0.24)
+1.0.23 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

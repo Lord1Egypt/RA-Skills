@@ -1,7 +1,7 @@
 # Understand: how a subject comes to be understood
 
 > **When to read**: you are about to understand a subject and the direction is still vague; you need facts; you must explain why; a model needs testing; or you must decide where to start explaining for this person.
-> The engines are internal. They are how well the work is done underneath any method. The person never hears the word.
+> Engines run backstage and determine how well the work is done beneath any method; the person directly experiences the subject, discovery, and work.
 
 What this engine produces is not material. It is an **understanding**: it has the same structure as the subject, it is built for this person, it can answer "why?", "then what?" and "what is the evidence?", and another AI can pick it up and continue. An understanding is ready when you can state four things:
 
@@ -66,7 +66,7 @@ The understanding you build is one record. The other is in the person's head, an
 
 - **Read the second record.** It is in what the root system says about the person; in how they ask (the words they use, what they take for granted, what they avoid); in their profession and their work; and in where they correct you.
 - **Start from what the person already understands.** Their existing concepts are the way in. Find something they know well that has the same structure as the subject. Do not re-explain what they know, and do not skip what they do not.
-- **Record the second record after the run.** What they newly understood, with which concepts, where they are still stuck, what they are most curious about. Keep the record in proportion to the evidence: what they said, used, or showed by their questions counts. Having seen a deliverable is not having understood it.
+- **Record the second record after the run.** What they newly understood, with which concepts, where they are still stuck, what they are most curious about. Keep the record proportionate to evidence: what they said, used, or revealed through questions and action enters it; material they have merely seen remains under observation.
 - **The difference between the two records is a resource.** What you understand and the person has not yet seen is where the next deliverable and the next choices come from.
 
 ## Research integrity

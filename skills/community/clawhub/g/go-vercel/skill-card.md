@@ -1,6 +1,6 @@
 ## Description:
 
-Unofficial Go client for the Vercel REST API, generated with oapi-codegen from Vercel's OpenAPI spec. Package `vercel` from `github.com/psyb0t/go-vercel` gives `NewClientWithResponses` a typed `...WithResponse` method for every endpoint in the spec (projects, deployments, domains, DNS, env vars, teams and more), with typed params structs, `JSON200` response bodies and `As...` methods for oneOf unions. Auth is a bearer token added by a `RequestEditorFn`, with an optional `teamId` query parameter. Use when Go code needs to call the Vercel API, or the project already imports go-vercel.
+Provides a typed Go client for calling Vercel's REST API, including projects, deployments, domains, DNS, environment variables, and teams.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to write Go applications that call Vercel's REST API for account, project, deployment, domain, DNS, environment-variable, and team operations.
+Developers use the Go client to call Vercel API endpoints from Go applications, with typed parameters and responses. It supports account and team workflows for projects, deployments, domains, DNS, environment variables, and related resources.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: A Vercel access token can authorize account or team operations, and some endpoints can change or delete live resources.
+Risk: A Vercel bearer token can grant access to account or team resources.
 
-Mitigation: Review the setup guidance before providing a token, keep it in an environment variable, never hard-code or log it, and call mutating operations only for the requested resources.
+Mitigation: Read the token from an environment variable, keep it out of source control and logs, and confirm the intended account or team.
+
+Risk: Some API operations can change or delete live resources.
+
+Mitigation: Run only operations the user requested and review the target resources and parameters before sending a request.
 
 ## Reference(s):
 
 - [Setup and reference](references/setup.md)
-- [Project homepage](https://github.com/psyb0t/go-vercel)
 - [Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-vercel)
+- [Project homepage](https://github.com/psyb0t/go-vercel)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [Code, API Calls, Configuration instructions, Shell commands]
 
-**Output Format:** [Markdown with Go code and shell command examples]
+**Output Format:** [Markdown with Go code blocks and shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Typed request and response examples; requires user-supplied endpoint parameters and Vercel credentials.]
 
 ## Skill Version(s):
 
-0.29.0 (source: server-resolved release metadata)
+0.36.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

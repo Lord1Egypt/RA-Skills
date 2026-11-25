@@ -1,6 +1,6 @@
 ## Description:
 
-Helps commerce teams create product and advertising videos with HappyHorse 1.1 using text prompts and optional image, video, or audio references.
+帮助电商团队和商业内容创作者使用 HappyHorse 1.1 生成商品展示、广告与带货视频，并可用图片、视频或音频控制生成结果。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Commerce and brand teams use this skill to plan and generate short product demonstrations and promotional videos from prompts and optional media references, then receive the resulting video links.
+电商运营、品牌和商业内容团队可用此技能按商品卖点制作带货短视频、广告和产品展示视频，并可提供图片、视频或音频作为控制素材。
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Setup or upgrades may change the user's local Node/npm environment.
+Risk: Setup instructions use unpinned package downloads that can be fetched and run.
 
-Mitigation: Review the requested installation and prefer manually installing pinned tool versions.
+Mitigation: Review the package and pin an exact @iqinghu/qhkit version before installing or invoking it.
 
-Risk: Configuring qhkit may expose an API key if the user pastes it into chat.
+Risk: Setup instructions ask users to share an API key in chat, creating credential exposure risk.
 
-Mitigation: Set the key through a secure local secret mechanism instead of sharing it in chat.
-
-Risk: Video generation consumes credits and submitted tasks cannot be canceled.
-
-Mitigation: Confirm the model, inputs, duration, and estimated credit cost with the user before submitting a task.
+Mitigation: Configure the API key locally through a secure credential method or environment variable, and do not paste it into chat.
 
 ## Reference(s):
 
-- [ClawHub skill listing](https://clawhub.ai/autoagc/skills/linkpix-happyhorse-sales)
 - [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
-- [Qinghu API key guide](https://xcnzsfe4uxrw.feishu.cn/wiki/KJ0Ywsyw8iAXmRkz5l4cddDbn6g)
+- [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-happyhorse-sales)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Video links]
+**Output Type(s):** [Video, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown with video URLs and task details]
+**Output Format:** [Generated video files or URLs, with text or JSON task status and shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports the task ID and credit usage; generated videos are accessed through returned URLs.]
+**Other Properties Related to Output:** [Video duration, orientation, and reference media depend on the selected model and its available options.]
 
 ## Skill Version(s):
 
-0.1.4 (source: ClawHub release metadata)
+0.1.6 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

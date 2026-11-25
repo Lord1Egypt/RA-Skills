@@ -1,7 +1,7 @@
 ---
 name: "smyx-cage-cleanliness-detection-analysis"
 description: "AI-powered cage cleanliness detection via fixed cameras in boarding kennels/pet shops; analyzes floor images to detect feces/urine coverage area ratio, triggers cleaning alerts when exceeding preset threshold (e.g. 5%). Scenarios: pet boarding centers, pet shops, animal hospitals, breeding facilities. | 通过寄养中心或宠物店笼舍内的固定摄像头，定时分析地面图像，识别粪便、尿液等排泄物的覆盖面积占比，当超过预设阈值（如5%）时自动触发清洁提醒。该技能可帮助管理人员及时清理笼舍，维持环境卫生，预防疾病传播，并提升宠物福利。应用场景：宠物寄养中心、宠物店、动物医院住院部、宠物繁育基地。"
-version: "1.0.22"
+version: "1.0.23"
 license: "MIT-0"
 ---
 

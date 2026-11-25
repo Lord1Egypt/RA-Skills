@@ -26,21 +26,21 @@ roles:
   journal: []      # e.g. ["journal"]   (directory → newest dated file)
   profile: []      # optional user-profile file
 
-# Extra L3 files read at the START of EVERY session (beyond roles).
+# Extra L0 files read at the START of EVERY session (beyond roles).
 must_read_extra:
   - path: README.md
     name: Project readme
     desc: project context
 
-# Extra L2 files: re-read ONLY when the index flags a change (token savings live here).
+# Extra L1 files: re-read ONLY when the index flags a change (token savings live here).
 tracked_files_extra:
   - path: docs/decisions/
     name: Decisions
     desc: architecture decisions
 
 # Legacy 0.2.x keys (must_read / tracked_files) are migrated automatically:
-#   must_read      -> must_read_extra   (stays L3 — read every session)
-#   tracked_files  -> tracked_files_extra (stays L2 — change-indexed)
+#   must_read      -> must_read_extra   (stays L0 — read every session)
+#   tracked_files  -> tracked_files_extra (stays L1 — change-indexed)
 
 # Where the generated index + state file are written (default: next to the config).
 output_index: memory_index.md

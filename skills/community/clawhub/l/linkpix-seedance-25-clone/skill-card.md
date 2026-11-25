@@ -1,6 +1,6 @@
 ## Description:
 
-Guides an agent to adapt a reference short-form video's script for a product and generate a new video through qhkit when a suitable model is available.
+通过青虎 AI 将参考短视频拆解为脚本，再改写为商品视频脚本并用 Seedance 2.5 生成成片。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Short-video creators, agencies, and brand marketers use this skill to analyze a reference video, adapt its pacing and script to their own products, and request a generated marketing video.
+面向短视频创作者、MCN 机构和品牌营销团队，参考热门视频的结构与节奏，改写为适配自有商品的脚本并生成宣传视频。
 
 ### Deployment Geography for Use:
 
@@ -22,41 +22,40 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Installing a third-party CLI introduces dependency risk.
+Risk: Setup instructions install an unpinned package that may change over time.
 
-Mitigation: Review the package before installation and prefer pinned or preinstalled dependencies in higher-security environments.
+Mitigation: Review the package and pin a trusted version before installing it.
 
-Risk: API credentials may be stored locally or passed through environment variables.
+Risk: Setup guidance asks users to share an API key in chat.
 
-Mitigation: Protect the API key and avoid exposing it in shared commands or output.
+Mitigation: Configure the key locally with qhkit or a secure environment variable; do not paste it into chat.
 
-Risk: Submitted media and links are sent to iqinghu for processing.
+Risk: The security scan was partial because four local references could not be matched to bundled files.
 
-Mitigation: Confirm that the user is comfortable sharing those inputs before submission.
+Mitigation: Review the referenced files and any tools they invoke before installation.
 
-Risk: Generating a video can consume credits.
+Risk: Reusing source footage or dialogue can copy material the user does not own.
 
-Mitigation: Check the cost estimate and obtain explicit user approval before generation.
+Mitigation: Borrow only the structure and creative approach; use original footage, product assets, and rewritten dialogue.
 
 ## Reference(s):
 
-- [ClawHub skill listing](https://clawhub.ai/autoagc/skills/linkpix-seedance-25-clone)
-- [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
-- [iqinghu API keys](https://www.iqinghu.com/workbench/dashboard/api-keys?urlCode=1788417429126)
+- [ClawHub release page](https://clawhub.ai/autoagc/skills/linkpix-seedance-25-clone)
+- [qhkit package on npm](https://www.npmjs.com/package/@iqinghu/qhkit)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+**Output Type(s):** [Text, Shell commands, Configuration instructions, Video]
 
-**Output Format:** [Markdown with a script comparison, generation instructions, and a video link]
+**Output Format:** [Markdown with script text, shell commands, and generated video links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Video generation requires model availability and user confirmation of cost and inputs.]
+**Other Properties Related to Output:** [Provides original and rewritten script text for review; video generation requires user confirmation before submission.]
 
 ## Skill Version(s):
 
-0.1.4 (source: server-resolved release)
+0.1.6 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

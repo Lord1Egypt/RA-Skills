@@ -1,6 +1,6 @@
 ## Description:
 
-Integrate Didit Proof of Address standalone API to verify address documents, including utility bills, bank statements, and government documents, with OCR extraction, geocoding, name matching, and multi-page document support.
+Helps developers integrate Didit’s Proof of Address API to verify address documents and return extracted details, checks, and warnings.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,10 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
+MIT-0
 
 ## Use Case:
 
-Developers and operations teams use this skill to integrate Didit proof-of-address checks into onboarding, KYC, compliance, or account verification workflows. It helps submit address documents, interpret verification statuses and warnings, and run a command-line verification helper with a DIDIT_API_KEY.
+Developers use this skill to integrate Didit’s standalone Proof of Address API into backend applications, submitting address documents and optionally checking extracted details against expected identity or address data.
 
 ### Deployment Geography for Use:
 
@@ -21,42 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Proof-of-address files and extracted address data are highly sensitive and are sent to Didit's third-party API.
+Risk: Proof-of-address documents and related fields are sent to Didit, and an API key is required.
 
-Mitigation: Use the skill only with explicit user consent, confirm privacy and retention requirements before deployment, and restrict access to documents and API results.
+Mitigation: Submit only documents and fields you are authorized to share, and keep DIDIT_API_KEY in a secure environment variable.
 
-Risk: The default API parameter described by the artifact saves requests in the Business Console unless disabled.
+Risk: The security scan has partial coverage because some referenced materials could not be resolved.
 
-Mitigation: Prefer setting save_api_request to false when retention is not required, and document any retention choice for compliance review.
-
-Risk: The utility script prints full JSON responses that may include names, addresses, document URLs, and warning details.
-
-Mitigation: Avoid running it in logged automation environments and redact or suppress personal data in console output before sharing logs.
-
-Risk: The DIDIT_API_KEY grants access to the Didit API and is required by the helper script.
-
-Mitigation: Store the key in a secret manager or protected environment variable, rotate it if exposed, and avoid hardcoding it in prompts, scripts, or logs.
+Mitigation: Review the complete skill and its referenced materials before deployment.
 
 ## Reference(s):
 
-- [Didit Documentation Homepage](https://docs.didit.me)
-- [Didit Proof of Address API Reference](https://docs.didit.me/standalone-apis/proof-of-address)
-- [Didit Proof of Address Feature Guide](https://docs.didit.me/core-technology/proof-of-address/overview)
-- [Didit Business Console](https://business.didit.me)
+- [Didit Proof of Address API](https://docs.didit.me/standalone-apis/proof-of-address)
+- [Proof of Address feature guide](https://docs.didit.me/core-technology/proof-of-address/overview)
+- [Proof of Address warnings](https://docs.didit.me/core-technology/proof-of-address/warnings-proof-of-address)
+- [Didit pricing](https://didit.me/pricing)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, API Calls, JSON]
+**Output Type(s):** [Code, Shell commands, JSON, Guidance]
 
-**Output Format:** [Markdown guidance with code snippets, shell commands, and JSON API responses]
+**Output Format:** [Python integration code, JSON verification results, and a short text summary]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May upload proof-of-address documents to Didit's API and print structured verification responses containing personal data.]
+**Other Properties Related to Output:** [Requires DIDIT_API_KEY and an address document; API requests may be billed.]
 
 ## Skill Version(s):
 
-1.1.0 (source: server release metadata)
+1.4.0 (source: frontmatter, release metadata)
 
 ## Ethical Considerations:
 

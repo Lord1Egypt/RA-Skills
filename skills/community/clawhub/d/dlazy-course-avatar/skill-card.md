@@ -1,6 +1,6 @@
 ## Description:
 
-Provides portrait recipes and a slide-first workflow for creating digital lecturer videos for courses and training.
+Provides 16 landscape avatar portrait recipes and a slide-first workflow for creating online course and training videos with consistent digital lecturer segments.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Course creators and training teams can use the skill to plan digital-lecturer course videos, including portrait prompts, voiceover, slides, and assembly steps. It is intended for paid courses, public lessons, and internal training.
+Course creators, educators, and training teams use this skill to plan consistent digital lecturer segments and turn course materials into online lesson videos. It provides portrait recipes, production steps, cost guidance, and example commands.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Course materials, portraits, or audio may be sent to external services during the workflow.
+Risk: The security review rates the release suspicious with medium confidence due to account authentication and credential storage beyond the stated video-production purpose.
 
-Mitigation: Review the services and data handling before submitting sensitive course content or personal media.
+Mitigation: Review the account login and key-storage steps before installing, and proceed only if those practices are acceptable.
 
-Risk: The documented installation is global and account authentication may store an API key.
+Risk: Course documents, images, and audio may be sent to external services, creating privacy concerns.
 
-Mitigation: Install only in an environment you trust and protect the API key and its configuration file.
+Mitigation: Check which materials are sent to each external service and confirm that sharing them is acceptable before use.
 
-Risk: The security analysis was partial because some referenced paths were unresolved.
+Risk: The security scan is partial because some referenced paths were missing, so the evidence is incomplete.
 
-Mitigation: Review the skill and relevant referenced files before use; the benign verdict is not a guarantee of safety.
+Mitigation: Treat the scan as incomplete and review the full release contents before installation.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/dlazyai/skills/dlazy-course-avatar)
+- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-course-avatar)
+- [Publisher profile](https://clawhub.ai/user/dlazyai)
 - [dLazy homepage](https://dlazy.com)
 
 ## Skill Output:
 
-**Output Type(s):** [Shell commands, Configuration, Text prompts, Workflow guidance]
+**Output Type(s):** [Guidance, Shell commands, Configuration]
 
-**Output Format:** [Markdown with inline shell commands and JSON examples]
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes portrait and slide recipes, production steps, and cost guidance; the CLI does not assemble the final video.]
+**Other Properties Related to Output:** [Includes avatar-image recipes, course-video workflow guidance, cost estimates, and training-content compliance considerations.]
 
 ## Skill Version(s):
 
-1.0.33 (source: server-resolved release evidence)
+1.0.36 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

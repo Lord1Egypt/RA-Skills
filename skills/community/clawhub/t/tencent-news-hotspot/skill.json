@@ -1,0 +1,26 @@
+{
+  "name": "tencent-news-hotspot",
+  "description": "当用户要求按领域或频道汇总腾讯新闻热点精选内容时使用，例如「聚合近期财经股票热点新闻」「帮我汇总下今天的体育热点新闻」「整理下本周科技领域的重要新闻」。通过腾讯新闻 CLI 的 hotspot 命令按频道 pool_tag_id 拉取精选文章并整理输出；频道不支持、时间范围无法覆盖或无数据时如实说明。不用于实时比分、天气、早晚报、股票行情或事实核查。",
+  "version": "1.0.0",
+  "displayName": {
+    "zh-CN": "实时新闻热点",
+    "en-US": "Tencent News Hotspot"
+  },
+  "examples": [
+    "聚合近期财经股票热点新闻",
+    "帮我汇总下今天的体育热点新闻",
+    "整理下本周科技领域的重要新闻"
+  ],
+  "examplesEn": [
+    "Aggregate recent finance and stock hotspot news",
+    "Summarize today's sports hotspot news for me",
+    "Round up this week's important tech news"
+  ],
+  "owners": ["shasha"],
+  "cli": {
+    "mode": "new",
+    "name": "tencent-news-cli",
+    "integrationDoc": "references/cli-integration.md",
+    "changeRef": "https://mat1.gtimg.com/qqcdn/qqnews/cli/test/checksums.txt"
+  }
+}

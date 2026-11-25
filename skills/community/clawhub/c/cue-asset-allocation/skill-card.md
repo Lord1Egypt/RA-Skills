@@ -1,6 +1,6 @@
 ## Description:
 
-用 Cue 整合全球宏观指标、国内政策与资金流向，生成股债商品月度配置分析和建议。
+用 Cue 一键生成月度大类资产配置报告，整合全球 CPI、利率、国内宏观及资金流向，并从宏观逻辑推导股、债、商品配置比例。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-面向需要定期审视资产配置的投资顾问、分析人员及投委会用户，用于整理宏观环境并生成股、债、商品配置逻辑与比例建议，作为决策参考。
+Financial analysts, wealth advisers, and investment committees can use the skill to prepare monthly macroeconomic asset-allocation reports and client-facing recommendations. It summarizes market context and proposed equity, bond, and commodity allocations with risks and source links.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment flags API key requests in chat and repository updates or remote service calls beyond the stated reporting purpose; its analysis was partial.
+Risk: The security assessment reports a mismatch between the skill's stated asset-allocation purpose and its observed behavior.
 
-Mitigation: Do not share API keys in chat. Configure credentials locally, and review repository updates and authenticated remote requests before use.
+Mitigation: Review the skill's actions and resulting report before connecting an account or relying on its recommendations.
+
+Risk: The security assessment flags unsafe API-key handling, and scan coverage is partial.
+
+Mitigation: Do not paste API secrets into chat; keep keys in user-managed configuration and review the skill before use.
 
 ## Reference(s):
 
+- [ClawHub skill page](https://clawhub.ai/panting09266-ai/skills/cue-asset-allocation)
 - [Cue platform](https://cuecue.cn)
-- [Cue runner source (GitHub)](https://github.com/sensedeal/cue-skills)
-- [Cue runner mirror (Gitee)](https://gitee.com/sensedeal/cue-skills)
+- [Cue API key management](https://cuecue.cn/api-key?src=clawhub-asset-allocation)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Guidance]
+**Output Type(s):** [Markdown, Analysis, Guidance]
 
-**Output Format:** [Structured Markdown report covering macro conditions, allocation rationale and proportions, risk notes, and source links]
+**Output Format:** [Structured monthly Markdown report with macroeconomic analysis, allocation recommendations, risk notes, and source links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Provides directional asset allocation guidance; does not recommend specific funds or product codes.]
+**Other Properties Related to Output:** [Time-sensitive analysis depends on Cue and its external data sources.]
 
 ## Skill Version(s):
 
-1.0.13 (source: server-resolved release metadata)
+1.0.17 (source: server-resolved ClawHub release)
 
 ## Ethical Considerations:
 

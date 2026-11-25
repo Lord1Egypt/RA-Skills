@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" class="sk" data-theme="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- slot:title -->
+<title>Postcard · we shipped it</title>
+<meta name="description" content="A hand-drawn postcard made with sketchy.">
+<link rel="stylesheet" href="../engine/sketchy.css">
+<!-- slot:theme (optional) -->
+<style>
+  /* A card for sharing: 1200 x 800 (landscape) or 1080 x 1350 (portrait,
+     add class="is-tall" to .card-stage). shoot.mjs captures .card-stage. */
+  body.sk { display: grid; place-items: center; min-height: 100vh; padding: 24px 16px; }
+  .card-stage { position: relative; z-index: 1; width: min(1200px, 100%); aspect-ratio: 3 / 2; display: grid; place-items: center; }
+  .card-stage.is-tall { width: min(1080px, 100%); aspect-ratio: 4 / 5; }
+  .card-stage .sk-postcard { width: 92%; font-size: clamp(16px, 2.2vw, 26px); }
+  .card-stage.is-tall .sk-postcard { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto; aspect-ratio: 4 / 5; }
+  .card-stage.is-tall .sk-postcard > :first-child { border-right: 0; border-bottom: 1.5px solid rgba(74, 74, 74, .4); padding: 0 0 4%; }
+  .card-stage.is-tall .sk-postcard > :last-child { padding: 4% 0 0; }
+  .to { display: grid; gap: 14px; margin-top: 10%; }
+  .to .line { border-bottom: 1.5px solid rgba(74, 74, 74, .45); min-height: 1.4em; padding-bottom: 2px; }
+  .postmark { width: 46%; justify-self: end; }
+</style>
+</head>
+<body class="sk">
+<svg class="sk-specks" data-specks="postcard" data-specks-count="70" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+<!--
+  sketchy postcard template. Left: the picture and the message. Right: stamp,
+  postmark, the address lines. Keep the message under 25 words.
+-->
+<div class="card-stage">
+  <article class="sk-postcard is-in" style="--sk-tilt:-1.2deg">
+    <div class="sk-stack" style="--gap:14px; align-content:start">
+      <!-- slot:message -->
+      <span class="sk-small">From the release room</span>
+      <h1 style="font-size:2.6em">Version 2.0 is out.</h1>
+      <p>Signed for by 14 engineers and one very calm product lead. Thank you for the bug reports.</p>
+      <svg data-sketch="rocket" data-draw viewBox="0 0 140 110" style="width:46%" aria-hidden="true"></svg>
+    </div>
+    <div class="sk-stack" style="--gap:10px; justify-items:end; align-content:start">
+      <svg data-sketch="postage-stamp" viewBox="0 0 140 110" style="width:42%" aria-hidden="true"></svg>
+      <svg class="postmark" id="postmark" viewBox="0 0 160 110" aria-hidden="true"></svg>
+      <div class="to" style="width:100%">
+        <!-- slot:address -->
+        <div class="line">To: everyone who tested the beta</div>
+        <div class="line">The internet</div>
+        <div class="line sk-mono" style="font-size:.7em">25 OCT 2026</div>
+      </div>
+      <span class="sk-stamp" data-slam style="--delay:700ms">Delivered</span>
+    </div>
+  </article>
+</div>
+<script src="../engine/sketchy.js"></script>
+<script src="../engine/sketches.js"></script>
+<script>
+  Sketchy.mount();
+  Sketchy.variants(document.getElementById('postmark'), function (p) {
+    Sketchy.cancelWaves(p, 4, 26, 70, { lines: 5 });
+    Sketchy.postmark(p, 112, 56, 42, 'POSTED · RELEASE', '25 OCT 2026', { center: 'v2.0' });
+  }, { seed: 'postcard-postmark' });
+</script>
+</body>
+</html>

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers building or maintaining skills that consume git diffs use these patterns to detect sem, offer installation, and normalize semantic or standard git diff output.
+Developers use this skill when building or modifying skills that consume Git diff output. It provides patterns for semantic change detection with sem, installation prompts, and normalized Git-based fallbacks.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Installing the optional sem CLI runs a third-party tool installation command.
+Risk: The Linux installation option downloads a binary from a GitHub release into the local bin directory.
 
-Mitigation: Review the installation source and use the documented standard git diff fallback if you prefer not to install sem.
+Mitigation: Before installing, decide whether you trust that release source; if not, choose the Cargo installation option or use the standard git diff fallback.
 
 ## Reference(s):
 
-- [sem project](https://github.com/Ataraxy-Labs/sem)
+- [sem project documentation](https://github.com/Ataraxy-Labs/sem)
 - [Leyline plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
-- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-leyline-sem-integration)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-leyline-sem-integration)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, JSON]
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, JSON]
 
-**Output Format:** [Markdown with inline shell commands and JSON examples]
+**Output Format:** [Markdown guidance with inline shell commands and JSON entity schemas]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Provides sem detection, installation options, and git diff fallback patterns.]
+**Other Properties Related to Output:** [Provides sem-based patterns and Git fallback examples for detection, semantic diffs, and impact analysis.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

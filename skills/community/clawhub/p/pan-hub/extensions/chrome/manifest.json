@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "网盘通",
+  "version": "0.1.0",
+  "description": "复制网盘链接后右键发送给本机 pan serve 下载；只连接 127.0.0.1:17890，不上传任何网盘页面数据。",
+  "permissions": ["contextMenus", "storage", "notifications", "clipboardRead", "activeTab"],
+  "host_permissions": ["http://127.0.0.1:17890/*"],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "网盘通"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

@@ -8,6 +8,7 @@ Run from anywhere: python3 /path/to/scripts/vmake_ai.py <command> ...
 from __future__ import annotations
 
 import argparse
+import copy
 import json
 import os
 import re
@@ -23,6 +24,10 @@ SKILL_BASE_DIR = SCRIPTS_DIR.parent
 
 import config as skill_config
 from agent_info import resolve_agent_info
+from delivery import bundled_features, bundled_channels, resolve_channel
+from delivery import delivery_instructions as build_delivery_instructions
+from params_schema import ParameterValidationError, SchemaConfigurationError, OptionsSourceError
+from input_media import InputMediaValidationError
 
 STATE_DIR = Path.home() / ".openclaw" / "workspace" / "openclaw-vmake-ai"
 LAST_TASK_FILE = STATE_DIR / "last_task.json"
@@ -251,11 +256,15 @@ def _public_catalog(catalog: dict, media_type: str = "") -> dict:
                 "description": entry.get("description"),
                 "media_type": entry_media,
             }
+            if "params_schema" in entry:
+                item["params_schema"] = entry["params_schema"]
         else:
             item = {
                 "task_name": entry.get("material_id"),
                 "media_type": entry_media,
             }
+        if "input_media" in entry:
+            item["input_media"] = copy.deepcopy(entry["input_media"])
         tasks.append(item)
     return {
         "skill_status": "ready",
@@ -416,9 +425,10 @@ def _run_task_command_argv(
         "run-task",
         "--task",
         task,
-        "--input",
-        input_src,
     ]
+    sources = [] if not input_src else (input_src if isinstance(input_src, (list, tuple)) else [input_src])
+    for source in sources:
+        argv.extend(["--input", source])
     if params_json:
         argv.extend(["--params", params_json])
     if profile_json:
@@ -458,7 +468,7 @@ def build_spawn_run_task(
     """Build sessions_spawn payload for async Vmake run-task (same as Medeo spawn-task pattern)."""
     script_path = str((SCRIPTS_DIR / "vmake_ai.py").resolve())
     deliver_to_str = deliver_to or "<deliver_to>"
-    deliver_channel_str = (deliver_channel or "feishu").lower()
+    deliver_channel_str = resolve_channel(deliver_channel)
     base_dir = str(SKILL_BASE_DIR)
     # Freeze caller metadata, including unknown fields, across worker environments.
     agent_info = resolve_agent_info(agent_name, agent_version, agent_model)
@@ -467,67 +477,9 @@ def build_spawn_run_task(
     )
     is_video = _is_video_task(task, media_type)
 
-    if deliver_channel_str == "feishu":
-        if is_video:
-            delivery_instructions = (
-                "  2. **Feishu (video):** download then send (credentials: ~/.openclaw/openclaw.json):\n"
-                "     ```\n"
-                "     curl -sL -o /tmp/vmake_result.mp4 \"<primary_result_url_or_output_urls[0]>\"\n"
-                f"     python3 {base_dir}/scripts/feishu_send_video.py \\\n"
-                f"       --video /tmp/vmake_result.mp4 --to \"{deliver_to_str}\" \\\n"
-                "       --video-url \"<primary_result_url_or_output_urls[0]>\" \\\n"
-                "       [--cover-url \"<optional_thumb_url>\"] [--duration <ms_if_known>]\n"
-                "     ```\n"
-                "     `--video-url` → second text with download link; optional cover/duration (ms). "
-                "Edge cases: docs/feishu-send-video.md.\n"
-            )
-        else:
-            delivery_instructions = (
-                "  2. **Feishu (image):**\n"
-                "     ```\n"
-                f"     python3 {base_dir}/scripts/feishu_send_image.py "
-                f'--image "<result_url>" --to "{deliver_to_str}"\n'
-                "     ```\n"
-            )
-    elif deliver_channel_str == "telegram":
-        if is_video:
-            delivery_instructions = (
-                "  2. **Deliver via Telegram (video task):** download then sendVideo:\n"
-                "     ```\n"
-                "     curl -sL -o /tmp/vmake_result.mp4 \"<primary_result_url_or_output_urls[0]>\"\n"
-                f"     TELEGRAM_BOT_TOKEN=$TELEGRAM_BOT_TOKEN python3 {base_dir}/scripts/telegram_send_video.py \\\n"
-                f"       --video /tmp/vmake_result.mp4 --to \"{deliver_to_str}\" \\\n"
-                "       --video-url \"<primary_result_url_or_output_urls[0]>\" \\\n"
-                '       [--cover-url "<optional_thumb_url>"] [--duration <seconds>] --caption "✅ Done"\n'
-                "     ```\n"
-                "     `--video-url` always sends a second text message with the download link "
-                "(even if sendVideo succeeds). Max ~50 MB via Bot API; larger files rely on the link."
-            )
-        else:
-            delivery_instructions = (
-                "  2. **Deliver via Telegram (image task):**\n"
-                "     ```\n"
-                f"     TELEGRAM_BOT_TOKEN=$TELEGRAM_BOT_TOKEN python3 {base_dir}/scripts/telegram_send_image.py \\\n"
-                f'       --image "<result_url>" --to "{deliver_to_str}" --caption "✅ Done"\n'
-                "     ```\n"
-            )
-    elif deliver_channel_str == "discord":
-        ext_hint = "mp4" if is_video else "jpg"
-        delivery_instructions = (
-            "  2. **Deliver via Discord:**\n"
-            "     Download then use the message tool:\n"
-            "     ```\n"
-            f"     curl -sL -o /tmp/vmake_result.{ext_hint} \"<result_url>\"\n"
-            "     ```\n"
-            f"     `message(action=\"send\", channel=\"discord\", target=\"{deliver_to_str}\", "
-            f'filePath="/tmp/vmake_result.{ext_hint}")`\n'
-            "     (~25 MB limit — otherwise send the URL as text.)"
-        )
-    else:
-        delivery_instructions = (
-            f"  2. **Deliver** to \"{deliver_to_str}\" using the host `message` tool "
-            "with media or a link to result_url."
-        )
+    delivery_instructions = build_delivery_instructions(
+        deliver_channel_str, base_dir, deliver_to_str, is_video=is_video,
+    )
 
     timeout_hint = (
         f"Keep `runTimeoutSeconds` at least the payload default ({SPAWN_DEFAULT_TIMEOUT_SECONDS}s); "
@@ -672,6 +624,44 @@ def cmd_catalog(args: argparse.Namespace) -> int:
         return 1
 
 
+def _schema_failure(error, client):
+    """Classify server contract failures separately from user parameter errors."""
+    return _attach_client_notices({
+        "error": "invalid_parameter_schema", "skill_status": "failed",
+        "failure_stage": "validate_task_parameters", "detail": str(error),
+    }, client)
+
+
+def _options_failure(error, client):
+    return _attach_client_notices({
+        "error": "params_options_unavailable", "skill_status": "failed",
+        "failure_stage": "fetch_params_field_options", "detail": str(error),
+    }, client)
+
+
+def cmd_params_field_options(args):
+    """Discover complete field options without uploading media or consuming quota."""
+    from client import SkillClient, ConfigFetchError
+
+    client = None
+    try:
+        client = SkillClient(agent_name=args.agent_name, agent_version=args.agent_version,
+                             agent_model=args.agent_model)
+        result = client.get_params_field_options(args.task, args.field_path)
+        _print_json(_attach_client_notices(result, client))
+        return 0
+    except ConfigFetchError as error:
+        _print_json(_config_failure_envelope(error))
+    except OptionsSourceError as error:
+        _print_json(_options_failure(error, client))
+    except (ValueError, ParameterValidationError) as error:
+        _print_json(_attach_client_notices({
+            "error": "invalid_task_parameters", "skill_status": "failed",
+            "failure_stage": "validate_options_query", "detail": str(error),
+        }, client))
+    return 1
+
+
 def cmd_run_task(args: argparse.Namespace) -> int:
     # Ensure imports resolve (client, ai, sign_sdk live alongside this file)
     if str(SCRIPTS_DIR) not in sys.path:
@@ -740,6 +730,24 @@ def cmd_run_task(args: argparse.Namespace) -> int:
         _print_json(fail)
         _save_task_record(_task_record_from_result(args.task, args.input, fail))
         return 1
+    except SchemaConfigurationError as e:
+        _print_json(_schema_failure(e, client))
+        return 1
+    except OptionsSourceError as e:
+        _print_json(_options_failure(e, client))
+        return 1
+    except InputMediaValidationError as e:
+        _print_json(_attach_client_notices({
+            "error": "invalid_input_media", "skill_status": "failed",
+            "failure_stage": "validate_input_media", "detail": str(e),
+        }, client))
+        return 1
+    except ParameterValidationError as e:
+        _print_json(_attach_client_notices({
+            "error": "invalid_task_parameters", "skill_status": "failed",
+            "failure_stage": "validate_task_parameters", "detail": str(e),
+        }, client))
+        return 1
     except ConsumeDeniedError as e:
         fail = _envelope_consume_denied(e, args.task)
         if client is not None:
@@ -806,6 +814,17 @@ def cmd_query_task(args: argparse.Namespace) -> int:
 
 
 def cmd_spawn_run_task(args: argparse.Namespace) -> int:
+    try:
+        resolve_channel(getattr(args, "deliver_channel", None))
+    except ValueError as error:
+        _print_json({"error": "delivery_unavailable", "skill_status": "failed", "detail": str(error)})
+        return 1
+    params_json = getattr(args, "params_json", "") or ""
+    try:
+        params = json.loads(params_json) if params_json else DEFAULT_PARAMS
+    except json.JSONDecodeError as error:
+        print(json.dumps({"error": "invalid --params JSON", "detail": str(error)}))
+        return 1
     task = (args.task or "").strip()
     if str(SCRIPTS_DIR) not in sys.path:
         sys.path.insert(0, str(SCRIPTS_DIR))
@@ -837,7 +856,30 @@ def cmd_spawn_run_task(args: argparse.Namespace) -> int:
         _print_json(_attach_client_notices(out, client))
         return 1
 
+    try:
+        client.validate_input_media(selection, args.input)
+    except InputMediaValidationError as error:
+        _print_json(_attach_client_notices({
+            "error": "invalid_input_media", "skill_status": "failed",
+            "failure_stage": "validate_input_media", "detail": str(error),
+        }, client))
+        return 1
     media_type = selection.get("media_type") or ""
+    if "params_schema" in selection:
+        try:
+            client.validate_task_parameters(selection, params)
+        except SchemaConfigurationError as error:
+            _print_json(_schema_failure(error, client))
+            return 1
+        except OptionsSourceError as error:
+            _print_json(_options_failure(error, client))
+            return 1
+        except ParameterValidationError as error:
+            _print_json(_attach_client_notices({
+                "error": "invalid_task_parameters", "skill_status": "failed",
+                "failure_stage": "validate_task_parameters", "detail": str(error),
+            }, client))
+            return 1
     confirmed_legacy_video = mode == "legacy" and task in VIDEO_TASKS
     if not _is_video_task(task, media_type) and not confirmed_legacy_video:
         out = {
@@ -1095,9 +1137,60 @@ def cmd_resolve_input(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_upload(args: argparse.Namespace) -> int:
+    """Preserve the domestic upload command without consuming task quota."""
+    from client import SkillClient
+
+    if not os.path.isfile(args.file):
+        _print_json({"error": f"File not found: {args.file}", "status": "failed"})
+        return 1
+    try:
+        client = SkillClient()
+        _print_json({"status": "success", "url_data": client.api.upload_file(args.file)})
+        return 0
+    except Exception as e:
+        _print_json({"error": str(e), "status": "failed"})
+        return 1
+
+
+def cmd_notify(args: argparse.Namespace) -> int:
+    """Preserve domestic notification delivery independently of task submission."""
+    try:
+        cover_url = getattr(args, "cover_url", "") or ""
+        duration_ms = getattr(args, "duration_ms", None)
+        if args.type == "image" and (cover_url or duration_ms is not None):
+            raise ValueError("--cover-url and --duration-ms are video-only options")
+        from notifications import get_notifier
+        notifier = get_notifier(args.channel)
+        if args.type == "image":
+            result = notifier.send_image(args.source, args.to, args.caption or "")
+        else:
+            options = {"video_url": args.video_url or "", "caption": args.caption or ""}
+            if cover_url:
+                options["cover_url"] = cover_url
+            if duration_ms is not None:
+                options["duration_ms"] = duration_ms
+            result = notifier.send_video(args.source, args.to, **options)
+        _print_json(result)
+        return 0 if result.get("status") == "ok" else 1
+    except Exception as e:
+        _print_json({"error": str(e), "status": "failed"})
+        return 1
+
+
+def cmd_capabilities(_args):
+    """Report bundled modules without fetching config or consuming quota."""
+    _print_json(bundled_features())
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Vmake skill CLI")
+    parser.add_argument("--ak", help="Access Key (prefer MT_AK or scripts/.env)")
+    parser.add_argument("--sk", help="Secret Key (prefer MT_SK or scripts/.env)")
     sub = parser.add_subparsers(dest="command", required=True)
+
+    sub.add_parser("capabilities", help="Show bundled modules (no network or quota)").set_defaults(func=cmd_capabilities)
 
     p_pre = sub.add_parser("preflight", help="Print ok or missing (AK/SK)")
     p_pre.set_defaults(func=cmd_preflight)
@@ -1111,11 +1204,16 @@ def main() -> int:
     )
     p_catalog.add_argument(
         "--media-type",
-        choices=("image", "video"),
         default="",
         help="Optional remote catalog filter",
     )
     p_catalog.set_defaults(func=cmd_catalog)
+
+    p_options = sub.add_parser(
+        "params-field-options", help="Fetch a complete option list for a published params field (no quota)")
+    p_options.add_argument("--task", required=True)
+    p_options.add_argument("--field-path", required=True, help="JSON Pointer rooted at params, for example /parameter/material_id")
+    p_options.set_defaults(func=cmd_params_field_options)
 
     p_run = sub.add_parser("run-task", help="Run algorithm task")
     p_run.add_argument(
@@ -1124,7 +1222,7 @@ def main() -> int:
         help="Exact V2 material_id (preferred), unique V2 name, or returned legacy alias",
     )
     p_run.add_argument(
-        "--input", required=True, help="Image or video URL or local path (must match --task modality)"
+        "--input", action="append", help="Image or video URL or local path; repeat --input when catalog limits allow"
     )
     p_run.add_argument(
         "--params",
@@ -1166,7 +1264,8 @@ def main() -> int:
         required=True,
         help="Exact V2 video material_id (preferred), unique name, or returned legacy alias",
     )
-    p_spawn.add_argument("--input", required=True, help="Video URL or local path")
+    p_spawn.add_argument("--input", action="append",
+                         help="Input URL or local path; repeat --input when catalog limits allow")
     p_spawn.add_argument(
         "--params",
         dest="params_json",
@@ -1187,7 +1286,7 @@ def main() -> int:
     p_spawn.add_argument(
         "--deliver-channel",
         default=None,
-        help="feishu, telegram, discord, or other",
+        help="Bundled providers: " + (", ".join(bundled_channels()) or "none") + "; or a host channel / none",
     )
     p_spawn.add_argument(
         "--run-timeout-seconds",
@@ -1200,7 +1299,7 @@ def main() -> int:
     )
     p_spawn.set_defaults(func=cmd_spawn_run_task)
 
-    for command in (p_catalog, p_run, p_spawn):
+    for command in (p_catalog, p_run, p_spawn, p_options):
         for field in ("name", "version", "model"):
             command.add_argument("--agent-" + field, default=None,
                                  help="Optional caller " + field + "; defaults to SKILL_AGENT_" + field.upper())
@@ -1247,8 +1346,44 @@ def main() -> int:
     )
     p_res.set_defaults(func=cmd_resolve_input)
 
+    p_list = sub.add_parser("list-tasks", help="Legacy alias for remote catalog discovery")
+    p_list.add_argument("--media-type", default="")
+    p_list.set_defaults(func=cmd_catalog, agent_name=None, agent_version=None, agent_model=None)
+
+    p_upload = sub.add_parser("upload", help="Upload a local file without task quota consumption")
+    p_upload.add_argument("--file", required=True, help="Local file path")
+    p_upload.set_defaults(func=cmd_upload)
+
+    if bundled_channels():
+        p_notify = sub.add_parser("notify", help="Deliver via a bundled notification provider")
+        p_notify.add_argument("--channel", required=True, choices=bundled_channels())
+        p_notify.add_argument("--type", required=True, choices=["image", "video"])
+        p_notify.add_argument("--source", required=True)
+        p_notify.add_argument("--to", required=True)
+        p_notify.add_argument("--caption")
+        p_notify.add_argument("--video-url")
+        p_notify.add_argument("--cover-url", default="", help="Video cover URL (video only)")
+        p_notify.add_argument("--duration-ms", type=int, default=None,
+                              help="Video duration in milliseconds for any channel (video only)")
+        p_notify.set_defaults(func=cmd_notify)
+
     args = parser.parse_args()
-    return args.func(args)
+    if isinstance(getattr(args, "input", None), list) and len(args.input) == 1:
+        args.input = args.input[0]
+    # Legacy explicit credentials stay within this invocation, never worker payloads.
+    previous = {key: os.environ.get(key) for key in ("MT_AK", "MT_SK")}
+    try:
+        if args.ak is not None:
+            os.environ["MT_AK"] = args.ak
+        if args.sk is not None:
+            os.environ["MT_SK"] = args.sk
+        return args.func(args)
+    finally:
+        for key, value in previous.items():
+            if value is None:
+                os.environ.pop(key, None)
+            else:
+                os.environ[key] = value
 
 
 if __name__ == "__main__":

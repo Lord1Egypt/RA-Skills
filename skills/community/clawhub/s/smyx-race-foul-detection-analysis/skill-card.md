@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes pet racing videos to identify start times, finish order, lane assignments, and possible false starts or lane crossings, and produces referee-support reports.
+Analyzes pet race videos to identify start times, finish order, lane assignments, and possible false starts or lane crossings for referee review.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Race officials and event operators use the skill to review local race videos or video URLs for start timing, finish order, lane assignment, and possible racing fouls. Its reports support officiating; the source says final decisions remain with the on-site chief referee.
+Race stewards and event operators use this skill to review start or finish video for false starts and lane crossings, and to look up historical analysis reports.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security evidence flags credential and account/profile handling that is not clearly aligned with race-video judging.
+Risk: The security review flags account, identity, and credential handling beyond the stated race-video task, as well as unclear privacy and control practices.
 
-Mitigation: Follow the security guidance and avoid installation until the maintainer explains why this handling is needed and how credentials and identity data are protected from external destinations.
-
-Risk: The security evidence flags remote video processing without clear disclosure and says it is unclear when local video is uploaded.
-
-Mitigation: Before use, obtain a clear explanation of when local video is uploaded and which external services receive video or related data.
-
-Risk: The security scan is partial because a referenced local path was missing, so its evidence is incomplete.
-
-Mitigation: Resolve the missing path and complete a security review before relying on the scan.
+Mitigation: Clarify which service receives video and what is stored locally, and resolve the account and credential behavior before installation.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-race-foul-detection-analysis)
-- [Skill demo](https://lifeemergence.com/sample.html)
-- [API reference](references/api_doc.md)
+- [API documentation](references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, JSON, Markdown]
 
-**Output Format:** [Structured JSON analysis reports; historical report lists are formatted as Markdown tables with report links]
+**Output Format:** [Structured JSON analysis results and Markdown report lists]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include start times, finish order, lane assignments, possible foul findings, evidence clip locations, and report links; results are referee support.]
+**Other Properties Related to Output:** [Includes race-foul judgments and report links when available.]
 
 ## Skill Version(s):
 
-1.0.15 (source: server-resolved release metadata)
+1.0.16 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

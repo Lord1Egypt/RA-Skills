@@ -104,6 +104,17 @@ await page.waitForSelector('[data-testid="content"]')
 await page.waitForFunction(() => document.readyState === 'complete')
 ```
 
+## CLI process and upgrade diagnostics
+
+- Exit 3 with `confirmation_required` means pending approval, not an invalid flag (exit 2). Preserve the status and returned command; do not blindly force a retry.
+- Results/JSON are on stdout; progress, errors and prompts are on stderr. Keep them separate when parsing.
+- `test`/`pw-test` with no checks exit 1. Inspect discovery with `test --list`; use `test --no-fail-on-no-matching` only when emptiness is intentional.
+- A CLI timeout is reported as `Timed out` and exits 1; it measures time from check start, and remote work may continue. `--max-failures` can instead leave `Not finished` results.
+- Reinstall dependencies with optional packages on the correct OS if the native TypeScript parser cannot load. Fix syntax that the native parser rejects. Malformed tsconfig files are ignored.
+- Missing check locations warn: set public/private locations explicitly or through group/project defaults. Logical IDs longer than 255 characters fail validation.
+- Account/endpoint variables cannot change after authentication. Set them before CLI launch. `whoami --output json` identifies the effective account and its source.
+- Duplicate-install construct errors identify the packages involved. Use the project-installed CLI and align construct resolution; normal CLI delegation selects that installation.
+
 ## Deployment
 
 ### "Validation errors"
@@ -144,6 +155,10 @@ npx checkly checks get <check-id> --output json
 
 Look for `errorGroups`, `rootCause`, or `RCA` fields. If Rocky AI already produced a root-cause analysis, reuse that before adding more manual debugging advice.
 
+### Rocky AI Disabled
+
+If `rca run` reports `Rocky AI is disabled for this account.`, it exits 1 and includes an account-settings link. JSON output includes `code: "ERR_ROCKY_AI_DISABLED"`. Ask an account owner to enable Rocky AI there; retrying or editing check definitions cannot fix the setting. Do not treat every HTTP 403 as this condition.
+
 ### Alert Did Not Fire
 
 Use read-only structured evidence; table output can omit critical alerting fields.
@@ -154,7 +169,7 @@ npx checkly api /v1/checks/<check-id>
 npx checkly alert-channels list --output json --limit 100
 ```
 
-If the check has a `groupId`, fetch groups once with `npx checkly api /v1/check-groups` and locate the matching group. Compare only confirmed `activated`, `muted`, `alertSettings`, `useGlobalAlertSettings`, `alertChannelSubscriptions`, `retryStrategy`, and `doubleCheck` fields. Do not probe guessed account/global alert endpoints; if only `useGlobalAlertSettings: true` is visible, report that the global policy details were unavailable in the inspected output.
+If the raw REST check payload has a non-null `groupId`, fetch groups once with `npx checkly api /v1/check-groups` and match that ID. Compare only returned `activated`, `muted`, `groupId`, `alertSettings`, `useGlobalAlertSettings`, `alertChannelSubscriptions`, `doubleCheck`, and `retryStrategy` fields. The removal of `groupId` and `doubleCheck` from construct inputs does not remove those API fields; inspect both retry fields on existing checks. Do not probe guessed account/global alert endpoints; if only `useGlobalAlertSettings: true` is visible, report that the global policy details were unavailable in the inspected output.
 
 ### Environment Variable Not Working
 

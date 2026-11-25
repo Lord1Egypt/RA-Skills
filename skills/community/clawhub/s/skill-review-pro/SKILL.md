@@ -1,6 +1,6 @@
 ---
 name: skill-review-pro
-version: "2.3.1"
+version: "2.3.2"
 homepage: https://github.com/z-Zihan/awesome-skills
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash(clawhub:*), Bash(python3:*), Bash(find:*), Bash(ls:*)
 description: >
@@ -154,7 +154,7 @@ skill-review-pro/
    - **文件类型**：以 `.md` 为主，`.json`/`.yaml` 配置文件可选读取
    - **目录深度**：最多 3 层（如 `policies/base/reliability.md`）
 3. **加载评审策略** → 先加载 `policies/base/`（必选），再按路由规则加载 `policies/<domain>/`（可选）
-   - **可选加速**：目标是整库轮检时，可先运行 `python3 scripts/skill_audit.py <仓库根>` 获得机械检查基线（frontmatter 完整性 / 相对路径引用 / 触发词冲突 / README 收录）。脚本报告的问题直接进入第 5 步评审；脚本输出不替代评分，也不构成唯一依据——机械检查通过不代表内容质量合格
+   - **可选加速**：目标是整库轮检时，可先运行 `python3 scripts/skill_audit.py <仓库根>` 获得机械检查基线（frontmatter 完整性 / 相对路径引用 / 触发词冲突 / README 收录 / 网络边界声明）。脚本报告的问题直接进入第 5 步评审；脚本输出不替代评分，也不构成唯一依据——机械检查通过不代表内容质量合格
 4. **加载评分模型** → 读取 `scoring/SKILL.md`，应用策略中的权重调整
 5. 从 4 个一级维度逐一评审（引用二级观察项作为证据），给出得分、问题（引用原文）、改进建议
    - 主文件和子目录文件统一评审，不分开出报告
@@ -395,7 +395,7 @@ R XX→XX | E XX→XX | UX XX→XX | M XX→XX
 - ❌ **风格偏见** — 偏向"像自己一样风格"的 Skill（模块化、双语、长文档），对极简/单语/短文档不公正
 - ❌ **跳过对抗检查** — 不执行 reliability.md 的对抗检查清单
 - ❌ **改变意图** — 修复时改变 Skill 的原有意图或功能，只应修复质量缺陷
-- ❌ **体检脚本误读** — 把 `skill_audit.py` 的输出当作评审结论。脚本只覆盖机械项，误报也可能存在（如边界声明被当作触发词）；脚本报告的每条问题都须经人工确认后再写进评分
+- ❌ **体检脚本误读** — 把 `skill_audit.py` 的输出当作评审结论。脚本只覆盖机械项，误报也可能存在（如边界声明被当作触发词、教学语境中的网络命令示例）；脚本报告的每条问题都须经人工确认后再写进评分
 - ❌ **把 CI 绿灯当发布成功** — publish CI 的发布循环会因单个 skill 失败而吞掉后续发布；合并后用 `scripts/publish_check.py` 逐个核验，最终判据是线上内容与本地逐字节一致
 
 ## 运行环境适配
@@ -535,7 +535,7 @@ Domain mapping:
    - Purpose: Subdirectory files are integral parts of the Skill (scoring models, policy files, specialized modes, etc.) and their quality directly affects overall Skill performance
    - Subdirectory files are reviewed under the same 4 dimensions; issues must note the file path (e.g., `scoring/SKILL.md:Section 3`)
 3. **Load review policies** → Load `policies/base/` first (required), then `policies/<domain>/` by routing rules (optional)
-   - **Optional speed-up**: when the target is a whole-repo sweep, run `python3 scripts/skill_audit.py <repo-root>` first to get a mechanical baseline (frontmatter integrity / relative-path references / trigger conflicts / README coverage). Issues found by the script go directly into step 5 review; script output never replaces scoring and is not the sole evidence — passing mechanical checks does not imply content quality
+   - **Optional speed-up**: when the target is a whole-repo sweep, run `python3 scripts/skill_audit.py <repo-root>` first to get a mechanical baseline (frontmatter integrity / relative-path references / trigger conflicts / README coverage / network-boundary disclosure). Issues found by the script go directly into step 5 review; script output never replaces scoring and is not the sole evidence — passing mechanical checks does not imply content quality
 4. **Load scoring model** → Read `scoring/SKILL.md`, apply weight adjustments from policies
 5. Review across 4 primary dimensions one by one (cite secondary observation items as evidence), give scores, issues (cite original text), improvement suggestions
    - Main file and subdirectory files are reviewed together, not in separate reports
@@ -696,7 +696,7 @@ Judgment conclusion for each suggestion:
 - ❌ **Style bias** — Favoring Skills with "your own style" (modular, bilingual, long docs), being unfair to minimalist/monolingual/short-doc Skills
 - ❌ **Skipping adversarial checks** — Not executing the adversarial checklist in reliability.md
 - ❌ **Intent alteration** — Changing the Skill's original intent or functionality during fixes; only quality defects should be fixed
-- ❌ **Trusting the audit script blindly** — Treating `skill_audit.py` output as the review verdict. The script covers mechanical checks only and can produce false positives (e.g., boundary statements misread as triggers); confirm each reported issue manually before it affects scoring
+- ❌ **Trusting the audit script blindly** — Treating `skill_audit.py` output as the review verdict. The script covers mechanical checks only and can produce false positives (e.g., boundary statements misread as triggers, network commands quoted in negative examples); confirm each reported issue manually before it affects scoring
 - ❌ **Treating a green CI run as a successful publish** — The publish loop aborts on the first failing skill and swallows later ones; after merging, verify each skill with `scripts/publish_check.py`. The final criterion is remote content matching local, byte for byte
 
 ## Environment Adaptation

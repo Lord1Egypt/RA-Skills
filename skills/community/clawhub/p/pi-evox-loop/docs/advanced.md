@@ -38,7 +38,7 @@ node code/light-cli.mjs harvest --dismiss <N>                  # 无价值驳回
 
 ## 安全：四道门（明细，自 SKILL.md 下沉）
 
-> **EN**: Four gates detail (moved from SKILL.md for progressive disclosure). The injection guard distinguishes `AVOID:` (warning - allowed) from `FIX:` (instruction - blocked) contexts; regression suite (0.31): **16/16 malicious samples caught, 7/7 legitimate zero false-kill**, including the two newly fixed漏检 (text before `FIX:` was silently dropped; Chinese override regex too narrow). Fail-closed if the guard module is missing: export/import refuse to run; `evolver-recall.mjs` skips the injection gate but the other three still apply (read-only must not block, writes must be closed); the Pi bridge ships a reduced built-in guard and `pi_evolve.mjs` uses the full scanner without降级.
+> **EN**: Four gates detail (moved from SKILL.md for progressive disclosure). The injection guard distinguishes `AVOID:` (warning - allowed) from `FIX:` (instruction - blocked) contexts; regression suite: **31/31 malicious samples caught, 11/11 legitimate zero false-kill** (measured in the release gate each version, figures in the release notes; the full suite is not shipped in-package, the bundled selftest.mjs is a quick sentinel), including the two fixes for the漏检 found at 0.31 (text before `FIX:` was silently dropped; Chinese override regex too narrow). Fail-closed if the guard module is missing: export/import refuse to run; `evolver-recall.mjs` skips the injection gate but the other three still apply (read-only must not block, writes must be closed); the Pi bridge ships a reduced built-in guard and `pi_evolve.mjs` uses the full scanner without降级.
 
 | # | 门 | 管什么 | 在哪生效 |
 |---|---|---|---|

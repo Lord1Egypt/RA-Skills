@@ -1,8 +1,8 @@
 ## Description:
 
-An example skill for checking skill-mcp integration and learning how to declare a runnable script and reference file.
+The example skill shipped with skill-mcp shows the SKILL.md shape, a bundled reference file, and a declared runnable script.
 
-This skill is ready for commercial/non-commercial use.
+This skill is for demonstration purposes and not for production usage.
 
 ## Publisher:
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this example skill to check skill-mcp integration, inspect a declared script's runtime metadata, and learn how to declare runnable scripts.
+Skill developers use this example to check that skill-mcp is wired up and to learn how to describe bundled references and a runnable script in an SKILL.md file.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The demo script exposes environment variable names and runtime metadata in its tool result.
+Risk: The security scan was benign but only partially analyzed the script and reported a missing reference.
 
-Mitigation: Run it in a constrained test environment without sensitive or revealing environment names.
+Mitigation: Review the declared script and check the scanner-reported missing reference before enabling execution.
 
 ## Reference(s):
 
-- [skill-mcp release on ClawHub](https://clawhub.ai/chrischall/skills/skill-mcp)
+- [ClawHub skill release](https://clawhub.ai/chrischall/skills/skill-mcp)
 - [mcp-host declaration reference](references/declaration.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, JSON]
+**Output Type(s):** [JSON, Guidance]
 
-**Output Format:** [Markdown guidance and JSON runtime report]
+**Output Format:** [JSON output from the declared report script and Markdown usage instructions]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [The runnable demo reports arguments, working directory, Node.js version, and environment variable names, not values.]
+**Other Properties Related to Output:** [The report includes the supplied arguments, working directory, environment variable names, and Node.js version.]
 
 ## Skill Version(s):
 
-1.2.2 (source: ClawHub release metadata)
+1.2.3 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

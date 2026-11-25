@@ -1,0 +1,10 @@
+interface:
+  display_name: "Get Started"
+  short_description: "Select a Flow Relay project and start"
+  brand_color: "#C25A2C"
+  default_prompt: "Connect to my Flow Relay workspace, list my projects and activate the right one."
+policy:
+  products:
+    - CHAT
+    - CODEX
+  allow_implicit_invocation: true

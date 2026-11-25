@@ -76,18 +76,52 @@ async function request(options, data = null) {
             finish(reject, e);
           } else {
             const status = res.statusCode;
-            const code =
-              status >= 500 && status <= 599 ? "HTTP_5xx" : `HTTP_${status}`;
-            const retryable =
-              status === 429 || (status >= 500 && status <= 599);
-            finish(
-              reject,
-              new ApiError(
-                code,
-                `请求失败, 状态码: ${status}`,
-                !retryable,
-              ),
-            );
+            if (status === 429) {
+              finish(
+                reject,
+                new ApiError(
+                  "RATE_LIMITED",
+                  `请求过于频繁 (HTTP 429)，请稍后重试`,
+                  false,
+                ),
+              );
+            } else if (status >= 500 && status <= 599) {
+              finish(
+                reject,
+                new ApiError(
+                  "HTTP_5xx",
+                  `请求失败, 状态码: ${status}`,
+                  false,
+                ),
+              );
+            } else if (status === 404) {
+              finish(
+                reject,
+                new ApiError(
+                  "HTTP_404",
+                  "请求的接口路径不存在 (HTTP 404)，请升级技能或联系 www.guaikei.com 客服",
+                  true,
+                ),
+              );
+            } else if (status === 410) {
+              finish(
+                reject,
+                new ApiError(
+                  "HTTP_410",
+                  "上游返回 HTTP 410 Gone（传输层）。若信封曾是业务码 Gone，多为 TOKEN 停用而非接口下线；请核对 TOKEN 或联系客服",
+                  true,
+                ),
+              );
+            } else {
+              finish(
+                reject,
+                new ApiError(
+                  `HTTP_${status}`,
+                  `请求失败, 状态码: ${status}`,
+                  true,
+                ),
+              );
+            }
           }
         });
       },
@@ -163,8 +197,9 @@ async function getJson(path, params, token) {
 }
 
 /**
- * 创建任务等一次性请求。网络、超时、429 和 5xx 会重试。
- * 业务错误码 >= 10 不重试。2 到 9 会重试，创建接口的 2 是「请稍后重试」。
+ * 创建任务（withRetry）。是否重试看错误的 noRetry，不是「errcode < 10 一律重试」。
+ * 会重试：网络/超时/HTTP 429（映射 RATE_LIMITED 且 noRetry=false）·HTTP 5xx；未标 noRetry 的瞬时失败（如裸 1、裸 3）。
+ * 不重试：业务 RATE_LIMITED（后端裸 2）、PLAN_LIMIT、INSUFFICIENT_BALANCE、DAILY_LIMIT、AUTH_* 等（见 backendCodes）。
  * @param {string} method
  * @param {string} path
  * @param {object} params
@@ -209,15 +244,8 @@ async function requestApi(
 function classifyPollError(error) {
   if (!error) return "retry";
   if (String(error.code) === "1") return "pending";
-  if (
-    error.name === "NetworkError" ||
-    error.name === "TimeoutError" ||
-    error.code === "HTTP_429" ||
-    error.code === "HTTP_5xx"
-  ) {
-    return "retry";
-  }
-  if (error.noRetry || error.name === "ApiError" || error.name === "AuthError") {
+  // 稳定业务码 / AUTH：fail；HTTP 429·5xx（noRetry=false）与网络/超时：继续查
+  if (error.noRetry || error.name === "AuthError") {
     return "fail";
   }
   return "retry";
@@ -232,7 +260,7 @@ function sleep(ms) {
  * 两次查询之间的等待从 RETRY_INTERVAL 起按 2、4、8 秒翻倍，单次最长 60 秒。
  * 次数用尽仍是「处理中」时抛出 TIMEOUT，不把未完成当成空结果。
  * @param {string} path
- * @param {object} params
+ * @param {object} params 查询参数；有任务 id 时应为 `{ id }`（业务字段由调用方决定是否省略）
  * @param {string} token
  * @param {string} actionName
  * @returns {Promise<object>}

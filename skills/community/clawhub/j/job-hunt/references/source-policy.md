@@ -20,8 +20,9 @@ Allowed by default, no disclosure needed:
 - Official or public job APIs with a documented usage path.
 - Public employer career pages reachable without a login and without a bypass.
 - Search-engine results that point at public career pages.
-- `opencli <site> --help -f yaml`, `opencli list`, `opencli doctor`,
-  `opencli auth status` — introspection that touches no site.
+- `opencli <site> --help -f yaml` and `opencli list` — offline metadata.
+- `run_tool.py opencli auth status` — a live login probe using the
+  [shared browser session](daily-browser.md).
 - opencli read commands on adapters that have **no auth or login command**
   (`51job`, `indeed`: absent from `opencli auth status` entirely, and exposing no
   `login` command), within the caps below. This describes the adapter, not the

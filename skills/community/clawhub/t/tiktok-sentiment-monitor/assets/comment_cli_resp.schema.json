@@ -1,44 +1,19 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
-    "title": "TikTok评论获取 - API出参",
-    "description": "TikTok获取作品评论, API出参Schema详解",
+    "title": "TikTok 视频评论 - results 元素",
+    "description": "评论成功时 results 数组中的一条。空字符串和数字 0 可能不返回。没有 IP 归属地。整份 stdout 见 output_envelope.schema.json。",
     "properties": {
-        "cid": {
-            "type": "string",
-            "description": "TikTok评论ID"
-        },
-        "text": {
-            "type": "string",
-            "description": "TikTok评论内容"
-        },
-        "create_time": {
-            "type": "number",
-            "description": "TikTok评论发布时间戳"
-        },
-        "digg_count": {
-            "type": "number",
-            "description": "TikTok评论点赞数"
-        },
-        "user_id": {
-            "type": "string",
-            "description": "TikTok评论者用户ID"
-        },
-        "user_uid": {
-            "type": "string",
-            "description": "TikTok评论者用户UID"
-        },
-        "user_nickname": {
-            "type": "string",
-            "description": "TikTok评论者昵称"
-        },
-        "user_sec_uid": {
-            "type": "string",
-            "description": "TikTok评论者SEC_UID"
-        },
-        "reply_comment_total": {
-            "type": "number",
-            "description": "TikTok评论回复数"
-        }
+        "cid": { "type": "string", "description": "评论 ID" },
+        "text": { "type": "string", "description": "评论内容" },
+        "create_time": { "type": "number", "description": "评论时间，Unix 秒" },
+        "create_time_str": { "type": "string", "description": "技能补充，接口不返回。create_time 转成的北京时间" },
+        "digg_count": { "type": "number", "description": "评论点赞数" },
+        "reply_comment_total": { "type": "number", "description": "回复数" },
+        "user_id": { "type": "string", "description": "评论者数字 uid。不要把这个字段交给作品命令" },
+        "user_uid": { "type": "string", "description": "评论者用户名 unique_id" },
+        "user_nickname": { "type": "string", "description": "评论者昵称" },
+        "user_sec_uid": { "type": "string", "description": "评论者 sec_uid，以 MS4w 开头。可以原样交给作品命令" },
+        "user_url": { "type": "string", "description": "技能补充，接口不返回。由 user_uid 拼成的主页链接，可以交给作品命令" }
     }
 }

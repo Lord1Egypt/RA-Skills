@@ -1,6 +1,6 @@
 ## Description:
 
-Unofficial Go client for the Roark voice AI agent testing and monitoring API. Package roark (github.com/psyb0t/go-roark), generated with oapi-codegen, has typed methods for agents, calls and transcripts, chats, simulations, run plans, personas, metrics, webhooks and projects, authenticated with a bearer key. Use when Go code needs Roark API access or already imports github.com/psyb0t/go-roark.
+Unofficial Go client for the Roark voice AI agent testing and monitoring API, with typed methods for agents, calls and transcripts, chats, simulations, run plans, personas, metrics, webhooks and projects, authenticated with a bearer key.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to write Go integrations with Roark for monitoring calls and chats, reading transcripts and metrics, running simulations, or managing Roark resources. It helps them install the client, authenticate safely, select operations, and handle API responses.
+Developers use this Go client to integrate applications with Roark for voice agent monitoring, simulations, metrics, and project management. They can use its setup guidance to install the package, configure credentials, choose operations, and handle responses safely.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The scan was partial because two local references could not be resolved.
+Risk: The security review found no reported issues in the reviewed material, but two local references could not be matched to bundled artifact files, leaving the review incomplete with medium confidence.
 
-Mitigation: Check that referenced resources are available and review them before installing.
+Mitigation: Check referenced materials before relying on guidance that depends on them.
+
+Risk: Some API operations can create or delete resources, start simulations, collect metrics, change configuration, or promote revisions; calls, transcripts, recordings, and credentials may also contain private data.
+
+Mitigation: Run consequential operations only when requested, keep the bearer credential out of source control and logs, and return only the private data needed for the task.
 
 ## Reference(s):
 
-- [Setup and reference](references/setup.md)
+- [Setup and API usage reference](artifact/references/setup.md)
+- [go-roark source repository](https://github.com/psyb0t/go-roark)
 - [Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-roark)
 - [Roark API](https://api.roark.ai)
-- [Project homepage](https://github.com/psyb0t/go-roark)
-- [ClawHub release](https://clawhub.ai/psyb0t/skills/go-roark)
 
 ## Skill Output:
 
 **Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Go code and Markdown guidance with shell commands]
+**Output Format:** [Markdown with Go and shell code blocks]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Uses ROARK_API_KEY for bearer authentication; live API requests are made only when requested.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-0.18.0 (source: server-resolved release evidence)
+0.22.1 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

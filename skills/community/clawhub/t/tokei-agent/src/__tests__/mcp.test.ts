@@ -85,7 +85,12 @@ describe("createMcpSession — lifecycle / protocol", () => {
     expect(res.result.serverInfo.name).toBe("tokei-agent");
     expect(res.result.serverInfo.version).toBe(VERSION);
     expect(typeof res.result.instructions).toBe("string");
-    expect(res.result.instructions.length).toBeGreaterThan(0);
+    expect(res.result.instructions).toContain("Gleam-style");
+    expect(res.result.instructions).toContain("Ask the user before");
+    expect(res.result.instructions).toContain("standalone_actions");
+    expect(res.result.instructions).toContain('"Visit our X"');
+    // The old blanket claim that surveys and secret toggles are dashboard-only is gone.
+    expect(res.result.instructions).not.toContain("Survey questions, daily-bonus");
   });
 
   it('initialize echoes "2024-11-05" when the client sends that version', async () => {
@@ -297,6 +302,38 @@ describe("createMcpSession — tools/list", () => {
     expect(props.entry_methods.description).toContain("link");
     expect(props.entry_methods.description).toContain("actionsRequired");
     expect(tool.description).toContain("entry_methods");
+  });
+
+  it("pages_update advertises standalone_actions with its three sub-objects", () => {
+    // The allowlist drops undeclared arguments, so this declaration is the only
+    // way an agent can switch on Share Feedback, Quick Question or Secret Code.
+    const tool = TOOLS.find((t) => t.name === "pages_update")!;
+    const props = tool.inputSchema.properties as Record<string, any>;
+
+    expect(props.standalone_actions).toBeDefined();
+    expect(props.standalone_actions.type).toBe("object");
+    expect(Object.keys(props.standalone_actions.properties).sort()).toEqual([
+      "quick_question",
+      "secret_code",
+      "survey",
+    ]);
+    // Codes are uploaded in the dashboard; the field must say so.
+    expect(props.standalone_actions.description).toContain("dashboard");
+    expect(props.standalone_actions.properties.secret_code.properties).not.toHaveProperty("codes");
+    expect(tool.description).toContain("standalone_actions");
+    // contest_id stays the only required field.
+    expect(tool.inputSchema.required).toEqual(["contest_id"]);
+  });
+
+  it("pages_update describes the shared points value, the 99 cap and the Visit Our rule", () => {
+    const tool = TOOLS.find((t) => t.name === "pages_update")!;
+    const description = (tool.inputSchema.properties as Record<string, any>).entry_methods
+      .description as string;
+
+    expect(description).toContain("entryValueSettingKey");
+    expect(description).toContain("99");
+    expect(description).toContain("must send the same non-zero points");
+    expect(description).toContain("Visit our");
   });
 
   // Outstanding item 2 of the API wave. marketing_consent is documented public-API
@@ -624,6 +661,39 @@ describe("createMcpSession — tools/call wiring to the HTTP layer", () => {
       primary_color: "#7d78c6",
       card_width: "wide",
     });
+  });
+
+  // The allowlist (buildToolRequest) drops any argument inputSchema does not
+  // declare. If standalone_actions were undeclared this body would be { title }.
+  it("pages_update forwards standalone_actions to the PATCH body untouched", async () => {
+    const h = harness();
+    const session = createMcpSession(h.io);
+    const standaloneActions = {
+      survey: { enabled: true, question: "What should we build next?", entry_value: 3 },
+      quick_question: {
+        enabled: true,
+        text: "Pick one",
+        options: [{ title: "A" }, { title: "B", description: "Second" }],
+        layout: "grid",
+      },
+      secret_code: { enabled: true, label: "Enter code", actions_required: 2 },
+    };
+    const res = await rpc(session, {
+      jsonrpc: "2.0",
+      id: 1,
+      method: "tools/call",
+      params: {
+        name: "pages_update",
+        arguments: { contest_id: "c1", title: "T", standalone_actions: standaloneActions },
+      },
+    });
+    expect(JSON.parse(h.calls[0].init.body!)).toEqual({
+      title: "T",
+      standalone_actions: standaloneActions,
+    });
+    // Declared, so the dropped-arguments notice must not name it.
+    const notice = res.result.content.map((c: { text: string }) => c.text).join("\n");
+    expect(notice).not.toMatch(/ignored/i);
   });
 
   it('pages_publish PATCHes {"status":"active"}', async () => {

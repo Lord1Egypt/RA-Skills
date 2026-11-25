@@ -1,6 +1,6 @@
 ## Description:
 
-Identifies common pet behaviors such as scratching, biting, destructive chewing, jumping, digging, chasing, and separation anxiety from video and returns a structured analysis report.
+Identifies common abnormal pet behaviors such as scratching, biting, destructive chewing, jumping, digging, chasing, and separation anxiety, helping owners understand their pet's habits.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Pet owners use the skill to review pet video for common behaviors and receive a structured report with observations, suggestions, and report links. It can also retrieve prior reports from the service.
+Pet owners use the skill to analyze submitted pet videos for common behaviors and receive a structured report with observations, suggestions, and report links. The results are advisory; consult a qualified pet trainer for behavior concerns.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review rates this release suspicious because account, credential, and network behaviors are not clearly explained; scan coverage was partial.
+Risk: The security assessment flags possible remote video uploads and notes that the scan is incomplete.
 
-Mitigation: Before installing, ask the publisher to explain account creation, identity and token handling, remote video processing, and required permissions. Avoid submitting sensitive footage until these points are clear.
+Mitigation: Submit only footage you are authorized to share; use a non-sensitive test clip first and confirm the service's handling of uploaded footage before sending private recordings.
+
+Risk: The security assessment flags possible account and credential handling, including identity data.
+
+Mitigation: Do not include personal login credentials in prompts or files; use only an API key from a trusted service operator and rotate it if exposed.
+
+Risk: The security assessment warns that the export-only option may still run analysis.
+
+Mitigation: Do not assume export-only avoids processing or remote transmission; review the command output and use it only when analysis is acceptable.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-pet-behavior-detection-analysis)
+- [API interface notes](references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, JSON, Markdown, Guidance]
+**Output Type(s):** [Analysis, JSON, Markdown]
 
-**Output Format:** [Structured analysis report in JSON or text; Markdown table for report history]
+**Output Format:** [Structured JSON analysis results; Markdown tables for history reports, with report links.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include behavior observations, suggestions, risk notes, and report links; results are informational.]
+**Other Properties Related to Output:** [Reports may include behavior observations, suggestions, and links to view or export results.]
 
 ## Skill Version(s):
 
-1.0.18 (source: server-resolved release metadata)
+1.0.19 (source: server-resolved release metadata; artifact frontmatter reports 1.0.26)
 
 ## Ethical Considerations:
 

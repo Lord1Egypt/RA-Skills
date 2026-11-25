@@ -1,0 +1,7 @@
+interface:
+  display_name: "easyAppStore"
+  short_description: "用已登录浏览器完成 iOS 构建、上传、填资料和 App Store 上架"
+  icon_small: "./assets/icon-128.png"
+  icon_large: "./assets/icon-512.png"
+  brand_color: "#16BDEB"
+  default_prompt: "Use $easy-app-store to prepare and publish this iOS app through the logged-in App Store Connect browser."

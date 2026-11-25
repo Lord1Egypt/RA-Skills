@@ -1,7 +1,7 @@
 ---
 name: linkedin-data
 description: "LinkedIn API integration with a single superagnt API key (Bearer token). Fetch company profiles, jobs, people, posts, and professional network insights. Use this skill when users want LinkedIn data for sales, recruiting, or enrichment. For other social data platforms, use the social-data skill (https://clawhub.ai/superagnt/skills/social-data)."
-version: 2.0.14
+version: 2.0.19
 author: superagnt
 license: MIT-0
 platforms: [macos, linux, windows]

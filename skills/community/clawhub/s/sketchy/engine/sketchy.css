@@ -1,0 +1,509 @@
+/*!
+ * sketchy.css — paper, pencils and postal objects
+ * Tokens first. Every colour and font in sketchy reads from these, so a theme
+ * file (themes/*.css) or a user's brand file only overrides tokens.
+ * MIT License. https://github.com/OthmanAdi/sketchy
+ */
+
+@font-face { font-family: 'Caveat'; font-style: normal; font-weight: 400 700; font-display: swap;
+  src: url('fonts/Caveat-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Caveat'; font-style: normal; font-weight: 400 700; font-display: swap;
+  src: url('fonts/Caveat-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Caveat'; font-style: normal; font-weight: 400 700; font-display: swap;
+  src: url('fonts/Caveat-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+@font-face { font-family: 'Caveat'; font-style: normal; font-weight: 400 700; font-display: swap;
+  src: url('fonts/Caveat-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: 'Courier Prime'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('fonts/CourierPrime-400-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Courier Prime'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('fonts/CourierPrime-400-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Courier Prime'; font-style: normal; font-weight: 700; font-display: swap;
+  src: url('fonts/CourierPrime-700-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Courier Prime'; font-style: normal; font-weight: 700; font-display: swap;
+  src: url('fonts/CourierPrime-700-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* ===================================================================
+ * 1. Tokens: day sketchbook (default)
+ *    Cool blue-grey cartridge paper, one graphite pencil, one red pencil
+ *    for the thing that matters, pastel coloured pencils for everything else.
+ * =================================================================== */
+:root {
+  color-scheme: light;
+  /* paper */
+  --sk-paper: #c3c8d1;
+  --sk-paper-deep: #b4bac5;
+  --sk-paper-light: #d6dae1;
+  --sk-sheet: rgba(195, 200, 209, .92);   /* sheet backing over the drawing */
+  --sk-veil: rgba(214, 218, 225, .62);    /* modal veil */
+  --sk-halo: rgba(195, 200, 209, .9);     /* text halo over lines */
+  --sk-shadow: 40, 46, 72;                /* shadows are blue-black, never neutral */
+  /* graphite */
+  --sk-ink: #262626;
+  --sk-graphite: #4a4a4a;
+  --sk-graphite-soft: #4f525a;
+  --sk-graphite-faint: rgba(74, 74, 74, .38);
+  /* the red pencil: lines, writing, frames (red ink darkened for 4.5:1 on paper) */
+  --sk-red: #d98a8a;
+  --sk-red-ink: #86353c;
+  --sk-red-frame: #a84f55;
+  --sk-red-soft: #e7b9b5;
+  /* coloured pencils (data order: blue, green, yellow, orange, violet, rose, teal) */
+  --sk-blue: #a2b6e2;
+  --sk-green: #a9cfa0;
+  --sk-yellow: #f6d98b;
+  --sk-orange: #f2b880;
+  --sk-violet: #bdb1de;
+  --sk-rose: #e3a99a;
+  --sk-teal: #a9d8d3;
+  --sk-peach: #f2b880;
+  /* records and postal objects */
+  --sk-figure: #2f2f35;                   /* numbers in the record: ink by day, gold by night */
+  --sk-gold: #b8862f;
+  --sk-cream: #e6e3da;                    /* labels */
+  --sk-card: #efece4;                     /* postcards and slips */
+  --sk-stamp: #86353c;                    /* red rubber stamp */
+  --sk-stamp-blue: #34507a;
+  --sk-stamp-green: #2a5c41;
+  --sk-tape: #26272c;
+  --sk-tape-text: #f1efe8;
+  --sk-cover: #5e6a7e;                    /* cloth board */
+  --sk-label-ink: #3d3d42;                /* writing on the cover label */
+  --sk-label-ink-soft: #4a4a52;
+  --sk-slip-red: #b8392b;                 /* the registered slip and report label */
+  --sk-slip-paper: #f4efe3;
+  --sk-slip-text: #fff4e6;
+  --sk-btn-hover: #d6dae1;                /* button backing states */
+  --sk-btn-press: #b4bac5;
+  --sk-btn-accent: #c6c1c9;
+  --sk-btn-accent-hover: #d4cbd1;
+  --sk-maths-ink: #3a3a40;
+  --sk-elastic: #33333c;
+  --sk-door: #2c2e35;                     /* the dark "Open the sketchbook" button */
+  --sk-door-edge: #ece8de;
+  --sk-door-ink: #f1eee6;
+  --sk-focus: #4a4a4a;
+  /* type: handwriting only; Courier Prime is the record (figures, slips) */
+  --sk-font-hand: 'Caveat', 'Segoe Print', 'Bradley Hand', 'Comic Sans MS', cursive;
+  --sk-font-mono: 'Courier Prime', 'Courier New', ui-monospace, monospace;
+  --sk-font-body: var(--sk-font-hand);
+  --sk-size-hero: clamp(46px, 6.4vw, 92px);
+  --sk-size-title: clamp(36px, 4.2vw, 58px);
+  --sk-size-big: clamp(32px, 3.2vw, 44px);
+  --sk-size-sub: clamp(22px, 1.9vw, 26px);
+  --sk-size-body: clamp(19px, 1.5vw, 22px);
+  --sk-size-fine: clamp(16px, 1.25vw, 18px);
+  /* motion: one signature curve, fast out and soft landing */
+  --sk-ease: cubic-bezier(.2, .8, .2, 1);
+  --sk-ease-page: cubic-bezier(.37, 0, .63, 1);
+  --sk-ease-cover: cubic-bezier(.3, .6, .2, 1);
+  --sk-ease-slam: cubic-bezier(.3, .6, .3, 1.25);
+  --sk-ease-card: cubic-bezier(.2, .9, .25, 1.05);
+  --sk-dur-sheet: 260ms;
+  --sk-dur-page: 650ms;
+  --sk-dur-cover: 800ms;
+  --sk-paper-texture: none;
+  --sk-paper-pattern: none;               /* graph or ruled lines, set by a theme */
+  --sk-paper-kind: light;                 /* light or dark grain */
+}
+
+/* ===================================================================
+ * 2. Night ledger: chalk-white pencil and gold figures on night-blue paper.
+ *    <html data-theme="night">
+ * =================================================================== */
+:root[data-theme="night"] {
+  color-scheme: dark;
+  --sk-paper: #161c2b;
+  --sk-paper-deep: #10151f;
+  --sk-paper-light: #1f2738;
+  --sk-sheet: rgba(22, 28, 43, .92);
+  --sk-veil: rgba(16, 21, 31, .62);
+  --sk-halo: rgba(22, 28, 43, .9);
+  --sk-shadow: 0, 0, 0;
+  --sk-ink: #f6f1e4;
+  --sk-graphite: #ece6d6;                 /* chalk */
+  --sk-graphite-soft: #b5b1a6;
+  --sk-graphite-faint: rgba(236, 230, 214, .3);
+  --sk-red: #ef5f4a;                      /* vermilion */
+  --sk-red-ink: #f28a76;
+  --sk-red-frame: #ef5f4a;
+  --sk-red-soft: #6e3a3d;
+  --sk-blue: #93a9cf;                     /* the benchmark line */
+  --sk-green: #8cc7a0;
+  --sk-yellow: #f0cf7a;
+  --sk-orange: #e9a46a;
+  --sk-violet: #b3a6e0;
+  --sk-rose: #e2a194;
+  --sk-teal: #8fd0c8;
+  --sk-peach: #e9a46a;
+  --sk-figure: #f0bf4f;
+  --sk-gold: #f0bf4f;                     /* computed results */
+  --sk-stamp: #ef5f4a;
+  --sk-stamp-blue: #93a9cf;
+  --sk-stamp-green: #8cc7a0;
+  --sk-cover: #633537;
+  --sk-door: #2a1416;
+  --sk-focus: #f0bf4f;
+  --sk-paper-kind: dark;
+  --sk-btn-hover: #263049; --sk-btn-press: #10151f; --sk-btn-accent: #3a2a33; --sk-btn-accent-hover: #46323c;
+  --sk-maths-ink: #ece6d6;
+}
+
+/* ===================================================================
+ * 3. The boil: four variants of every drawing, one shown at a time.
+ *    sketchy.js sets <html data-sk-boil="0..3|off"> ten times a second.
+ * =================================================================== */
+.sk-v { display: none; }
+.sk-v-only,
+html:not([data-sk-boil]) .sk-v0,
+html[data-sk-boil="off"] .sk-v0,
+html[data-sk-boil="0"] .sk-v0,
+html[data-sk-boil="1"] .sk-v1,
+html[data-sk-boil="2"] .sk-v2,
+html[data-sk-boil="3"] .sk-v3 { display: inline; }
+/* while a drawing traces itself in, it holds its first variant */
+.sk-drawing .sk-v:not(.sk-v0) { display: none !important; }
+.sk-drawing .sk-v0 { display: inline !important; }
+
+/* ===================================================================
+ * 4. Base
+ * =================================================================== */
+.sk, .sk *, .sk *::before, .sk *::after { box-sizing: border-box; }
+html.sk { background: var(--sk-paper); }
+body.sk, .sk-page {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--sk-graphite);
+  font-family: var(--sk-font-body);
+  font-size: var(--sk-size-body);
+  line-height: 1.25;
+  background-color: var(--sk-paper);
+  background-image:
+    radial-gradient(130% 100% at 50% 45%, transparent 35%, rgba(var(--sk-shadow), .09) 60%, rgba(var(--sk-shadow), .38) 100%),
+    radial-gradient(40% 30% at 18% 22%, rgba(250, 249, 244, .13), transparent 70%),
+    radial-gradient(35% 28% at 82% 70%, rgba(70, 78, 110, .06), transparent 70%),
+    radial-gradient(30% 24% at 70% 18%, rgba(250, 249, 244, .1), transparent 70%),
+    var(--sk-paper-pattern),
+    var(--sk-paper-texture);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+/* captures and print: the paper scrolls with the page so it covers every inch */
+html.sk-static body.sk, html.sk-print body.sk { background-attachment: scroll; }
+.sk-tape, .sk-stamp, .sk-rlabel { width: fit-content; }
+html[data-theme="night"] body.sk {
+  background-image:
+    radial-gradient(130% 100% at 50% 45%, transparent 40%, rgba(0, 0, 0, .25) 75%, rgba(0, 0, 0, .55) 100%),
+    radial-gradient(38% 30% at 80% 85%, rgba(226, 116, 130, .07), transparent 70%),
+    radial-gradient(40% 32% at 20% 30%, rgba(110, 146, 226, .06), transparent 70%),
+    var(--sk-paper-pattern),
+    var(--sk-paper-texture);
+}
+.sk h1, .sk h2, .sk h3, .sk-h1, .sk-h2, .sk-h3 {
+  font-family: var(--sk-font-hand); color: var(--sk-graphite); font-weight: 600;
+  margin: 0; line-height: 1.05; text-wrap: balance;
+}
+.sk h1, .sk-h1 { font-size: var(--sk-size-title); }
+.sk h2, .sk-h2 { font-size: var(--sk-size-big); }
+.sk h3, .sk-h3 { font-size: var(--sk-size-sub); }
+.sk p { margin: 0 0 .45em; text-wrap: pretty; }
+.sk a { color: inherit; text-decoration: underline dotted; text-underline-offset: 3px; }
+.sk a:hover { color: var(--sk-red-ink); }
+.sk :focus-visible { outline: 2px dashed var(--sk-focus); outline-offset: 4px; }
+.sk-big { font: 600 var(--sk-size-big)/1.05 var(--sk-font-hand); color: var(--sk-graphite); }
+.sk-line { font-size: calc(var(--sk-size-body) * 1.02); line-height: 1.25; }
+.sk-small { font-size: var(--sk-size-fine); }
+.sk-fine { font-size: var(--sk-size-fine); line-height: 1.2; }
+.sk-hand { font-family: var(--sk-font-hand); }
+.sk-mono, .sk-figure { font-family: var(--sk-font-mono); font-variant-numeric: tabular-nums; }
+.sk-figure { color: var(--sk-figure); font-weight: 700; letter-spacing: -.01em; }
+.sk-note { color: var(--sk-red-ink); font-weight: 600; }       /* red pen note: "now!", "pull here" */
+.sk-sect { color: var(--sk-red-ink); font-weight: 600; }       /* § 2 references */
+.sk-red { color: var(--sk-red-ink); } .sk-soft { color: var(--sk-graphite-soft); }
+.sk-glow { text-shadow: 0 0 2px var(--sk-paper), 0 0 4px var(--sk-paper), 0 0 8px var(--sk-paper), 0 0 14px var(--sk-halo); }
+::selection { background: var(--sk-orange); color: var(--sk-ink); }
+
+/* SVG handwriting: a 4 px paper halo keeps notes readable over lines */
+.sk-text { font-family: var(--sk-font-hand); font-weight: 600; fill: var(--sk-graphite); font-size: 15px;
+  paint-order: stroke fill; stroke: var(--sk-halo); stroke-width: 4px; stroke-linejoin: round; }
+.sk-text-note { fill: var(--sk-red-ink); }
+.sk-text-mono { font-family: var(--sk-font-mono); font-weight: 700; }
+.sk-postmark-text { font-family: var(--sk-font-hand); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+svg.sk-sketch, svg[data-sketch] { width: 100%; height: auto; overflow: visible; }
+.sk-deco .sk-backing { fill: var(--sk-paper); fill-opacity: .9; transition: fill 120ms ease-out; }
+.sk-deco-frame .sk-backing { fill-opacity: 0; }
+
+/* ===================================================================
+ * 5. Sheets, veils, callouts
+ *    <div class="sk-sheet" data-sk="sheet"> gets a pencil frame and backing
+ * =================================================================== */
+.sk-sheet {
+  position: relative; isolation: isolate;
+  padding: clamp(18px, 2.2vw, 30px) clamp(20px, 2.6vw, 36px);
+  filter: drop-shadow(0 10px 14px rgba(var(--sk-shadow), .22));
+}
+.sk-veil { position: fixed; inset: 0; background: var(--sk-veil); backdrop-filter: blur(3px) saturate(.85); animation: sk-veil-in 180ms ease-out both; }
+.sk-callout { position: relative; display: inline-block; max-width: 32ch; padding: 10px 14px 12px; font-size: var(--sk-size-fine); line-height: 1.2; }
+.sk-callout b, .sk-callout strong { display: block; font-size: 1.22em; font-weight: 600; color: var(--sk-graphite); line-height: 1.05; margin-bottom: 2px; }
+.sk-toast { display: inline-block; padding: 6px 16px 7px; border-radius: 8px; background: rgba(214, 218, 225, .95); border: 1px dashed rgba(74, 74, 74, .4); box-shadow: 0 8px 18px -10px rgba(var(--sk-shadow), .6); font-size: var(--sk-size-body); }
+
+/* ===================================================================
+ * 6. Buttons
+ *    <button class="sk-btn" data-sk="button">Got it</button>
+ *    .is-accent: red frame for the one main action
+ *    aria-pressed="true" / .is-on: lit (peach hatching, bold label)
+ *    .sk-door: the dark plate on covers, "Open the sketchbook ›"
+ * =================================================================== */
+.sk-btn {
+  position: relative; isolation: isolate; display: inline-flex; align-items: center; justify-content: center; gap: .35em;
+  min-height: 46px; padding: 4px 18px 6px; border: 0; background: transparent; color: var(--sk-graphite);
+  font: 600 25px/1 var(--sk-font-hand); cursor: pointer; white-space: nowrap;
+  -webkit-tap-highlight-color: transparent; touch-action: manipulation; user-select: none;
+}
+.sk-btn > span, .sk-btn > .sk-label-text { transition: transform 60ms; }
+.sk-btn:hover { color: var(--sk-ink); }
+.sk-btn:hover .sk-backing { fill: var(--sk-btn-hover); fill-opacity: .95; }
+.sk-btn:active > :not(svg), .sk-btn:active > svg.sk-deco { transform: translate(1px, 1px); }
+.sk-btn:active .sk-backing { fill: var(--sk-btn-press); }
+.sk-btn.is-accent .sk-backing { fill: var(--sk-btn-accent); fill-opacity: .92; }
+.sk-btn.is-accent:hover .sk-backing { fill: var(--sk-btn-accent-hover); }
+.sk-btn[aria-pressed="true"], .sk-btn.is-on { font-weight: 700; }
+.sk-btn[disabled], .sk-btn.is-locked { opacity: .45; cursor: not-allowed; }
+.sk-btn.is-ready { animation: sk-ready 900ms cubic-bezier(.45, 0, .55, 1) infinite; }
+.sk .sk-door, .sk-door {
+  display: inline-flex; align-items: center; gap: .5em; padding: 12px 24px 13px; border-radius: 8px;
+  background: var(--sk-door); color: var(--sk-door-ink);
+  border: 2px solid var(--sk-door-edge); box-shadow: 0 3px 0 #15161a, 0 14px 24px -12px rgba(0, 0, 0, .6);
+  font: 700 26px/1.1 var(--sk-font-hand); text-decoration: none; cursor: pointer; color: var(--sk-door-ink);
+  transition: transform 90ms, box-shadow 90ms;
+}
+.sk-door::after { content: '›'; font-size: 1.1em; }
+@media (hover: hover) { .sk-door:hover { transform: translateY(-1px); box-shadow: 0 4px 0 #15161a, 0 18px 26px -12px rgba(0, 0, 0, .6); } }
+.sk-door:active { transform: translateY(2px); box-shadow: 0 1px 0 #15161a, 0 8px 16px -10px rgba(0, 0, 0, .6); }
+.sk-close { position: absolute; top: 6px; right: 10px; width: 34px; height: 34px; border: 0; background: none; font: 600 30px/30px var(--sk-font-hand); color: var(--sk-graphite); cursor: pointer; }
+.sk-close:hover { color: var(--sk-red); }
+@media (pointer: coarse) { .sk-close { width: 44px; height: 44px; } }
+
+/* ===================================================================
+ * 7. The cover: the sketchbook seen from outside
+ *    <section class="sk-cover" data-cover="slate|oxblood|moss|ochre|ink">
+ * =================================================================== */
+.sk-cover {
+  position: relative; isolation: isolate; overflow: hidden; border-radius: 14px;
+  display: grid; place-items: center; min-height: 100%;
+  background-color: var(--sk-cover);
+  background-image:
+    linear-gradient(90deg, rgba(0, 0, 0, .45), rgba(255, 255, 255, .05) 22px, transparent 26px),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, .045) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(0deg, rgba(20, 24, 36, .05) 0 1px, transparent 1px 3px),
+    radial-gradient(130% 100% at 50% 45%, transparent 50%, rgba(20, 24, 36, .35) 100%);
+  box-shadow: 0 0 40px rgba(10, 14, 24, .4);
+  color: var(--sk-door-ink);
+}
+.sk-cover[data-cover="slate"] { --sk-cover: #5e6a7e; }
+.sk-cover[data-cover="oxblood"] { --sk-cover: #633537; }
+.sk-cover[data-cover="moss"] { --sk-cover: #4e5c49; }
+.sk-cover[data-cover="ochre"] { --sk-cover: #86683a; }
+.sk-cover[data-cover="ink"] { --sk-cover: #1f2533; }
+.sk-cover::after {   /* the elastic band at 86% */
+  content: ''; position: absolute; top: 0; bottom: 0; left: 86%; width: 10px; z-index: 3;
+  background: linear-gradient(90deg, var(--sk-elastic) 0 2px, rgba(255, 255, 255, .08) 2px 3.5px, var(--sk-elastic) 3.5px);
+  box-shadow: 0 0 6px rgba(10, 14, 24, .45);
+}
+.sk-cover.no-band::after { display: none; }
+.sk-cover-inner { position: relative; z-index: 2; display: grid; justify-items: center; gap: clamp(18px, 3vh, 34px); padding: 6vh 6vw; text-align: center; }
+.sk-cover-foot { position: absolute; left: 0; right: 0; bottom: 24px; z-index: 2; text-align: center; font-size: 16px; color: rgba(238, 240, 244, .96); }
+.sk-cover-foot small { display: block; font-size: .9em; color: rgba(238, 240, 244, .9); }
+
+/* the paper label stuck on the cover */
+.sk-label {
+  position: relative; display: inline-grid; gap: .3em; justify-items: center;
+  min-width: min(560px, 72vw); padding: clamp(20px, 3vw, 40px) clamp(28px, 5vw, 80px) clamp(18px, 2.6vw, 32px);
+  background: var(--sk-cream); color: var(--sk-graphite);
+  transform: rotate(-1.5deg);
+  box-shadow: 0 3px 10px rgba(10, 14, 24, .35);
+}
+.sk-label::before, .sk-label::after { content: ''; position: absolute; inset: 8px; border: 1.2px solid rgba(74, 74, 74, .7); pointer-events: none; }
+.sk-label::after { inset: 9px 7px 7px 9px; border-color: rgba(74, 74, 74, .45); transform: rotate(.25deg); }
+.sk-label-title { font: 600 var(--sk-size-hero)/1 var(--sk-font-hand); color: var(--sk-label-ink); }
+.sk-label-sub { font: 400 var(--sk-size-sub)/1.15 var(--sk-font-hand); color: var(--sk-label-ink-soft); }
+
+/* ===================================================================
+ * 8. Postal objects in HTML
+ * =================================================================== */
+/* rubber stamp: <span class="sk-stamp">Delivered</span>; .is-blue .is-green */
+.sk-stamp {
+  display: inline-block; padding: .14em .5em .06em; color: var(--sk-stamp);
+  font: 700 clamp(18px, 1.6vw, 24px)/1 var(--sk-font-hand); text-transform: uppercase; letter-spacing: .06em;
+  border: 3px solid currentColor; outline: 1.4px solid currentColor; outline-offset: -7px; border-radius: 3px;
+  transform: rotate(-6deg); filter: url(#sk-ink); opacity: .85;
+}
+.sk-stamp.is-blue { color: var(--sk-stamp-blue); } .sk-stamp.is-green { color: var(--sk-stamp-green); }
+.sk-stamp.is-big { font-size: clamp(30px, 3.4vw, 54px); border-width: 4px; }
+.sk-stamp.is-slam { animation: sk-slam 360ms var(--sk-ease-slam) both; }
+
+/* the registered slip (red Aviso card) */
+.sk-slip {
+  position: relative; display: grid; gap: .3em; max-width: 300px; padding: 14px 16px 14px;
+  background: var(--sk-slip-paper); color: #2f2f35; transform: rotate(-3deg);
+  border: 2px solid var(--sk-slip-red); outline: 1px solid var(--sk-slip-red); outline-offset: -6px;
+  box-shadow: 0 12px 24px -12px rgba(var(--sk-shadow), .6);
+  font-size: var(--sk-size-fine); line-height: 1.15;
+}
+.sk-slip-head { display: flex; align-items: center; gap: .5em; font: 700 .72em/1.15 var(--sk-font-mono); color: var(--sk-slip-red); letter-spacing: .06em; text-transform: uppercase; }
+.sk-slip-head .sk-r { display: grid; place-items: center; width: 1.9em; height: 1.9em; background: var(--sk-slip-red); color: var(--sk-slip-text); font: 700 1.5em/1 var(--sk-font-hand); }
+.sk-slip-title { font: 600 1.4em/1.02 var(--sk-font-hand); color: #2f2f35; }
+.sk-slip-action { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; padding: 6px 10px; background: var(--sk-slip-red); color: var(--sk-slip-text); font: 600 1.15em/1 var(--sk-font-hand); }
+.sk-slip-action::after { content: '›'; }
+.sk-slip .sk-stamp { position: absolute; top: 10px; right: 12px; font-size: 15px; color: rgba(200, 64, 47, .85); }
+
+/* kicker: the small capital line above a title */
+.sk-kicker { display: inline-block; font: 600 var(--sk-size-fine)/1.1 var(--sk-font-hand); letter-spacing: .12em; text-transform: uppercase; }
+
+/* a goal not yet earned: the stamp as a dashed outline */
+.sk-stamp.is-unearned { opacity: .5; border-style: dashed; outline-style: dashed; filter: none; }
+
+/* receipt rows: <div class="sk-receipt"><div class="sk-receipt-row"><span>Lease</span><span>1,650,000</span></div> ... */
+.sk-receipt { font-family: var(--sk-font-mono); font-variant-numeric: tabular-nums; line-height: 1.55; }
+.sk-receipt-row { display: flex; align-items: baseline; gap: .5em; }
+.sk-receipt-row > :first-child { white-space: nowrap; }
+.sk-receipt-row::before { content: ''; order: 1; flex: 1; border-bottom: 2px dotted currentColor; opacity: .45; transform: translateY(-.3em); }
+.sk-receipt-row > :last-child { order: 2; white-space: nowrap; }
+.sk-receipt-row.is-total { border-top: 2px solid currentColor; margin-top: .35em; padding-top: .35em; font-weight: 700; }
+.sk-receipt-row.is-total::before { opacity: 0; }
+.sk-receipt-row.is-bench { color: var(--sk-graphite-soft); }
+.sk-receipt-brand { font-size: .76em; letter-spacing: .12em; text-transform: uppercase; }
+.sk-pinked {
+  -webkit-mask: radial-gradient(.32em at 50% 0, #0000 98%, #000) 50% 0 / .75em 51% repeat-x, radial-gradient(.32em at 50% 100%, #0000 98%, #000) 50% 100% / .75em 51% repeat-x;
+          mask: radial-gradient(.32em at 50% 0, #0000 98%, #000) 50% 0 / .75em 51% repeat-x, radial-gradient(.32em at 50% 100%, #0000 98%, #000) 50% 100% / .75em 51% repeat-x;
+}
+
+/* registration label: the document's number. <span class="sk-rlabel"><b>R</b><span>No. 0007<small>Report</small></span></span> */
+.sk-rlabel { display: inline-grid; grid-template-columns: auto auto; background: var(--sk-slip-paper); border: 2px solid var(--sk-slip-red); transform: rotate(-1.5deg); box-shadow: 0 6px 14px -8px rgba(var(--sk-shadow), .6); color: #2f2f35; font-size: 16px; }
+.sk-rlabel > b { display: grid; place-items: center; padding: 0 .6em; background: var(--sk-slip-red); color: var(--sk-slip-text); font: 700 2.1em/1 var(--sk-font-hand); }
+.sk-rlabel > span { padding: .4em .6em; font: 700 1em/1.2 var(--sk-font-mono); }
+.sk-rlabel small { display: block; font-size: .72em; letter-spacing: .12em; text-transform: uppercase; color: var(--sk-slip-red); }
+
+/* a plain ruled table for plan versus record */
+.sk-table { width: 100%; border-collapse: collapse; font-family: var(--sk-font-mono); font-variant-numeric: tabular-nums; }
+@media (max-width: 520px) { .sk-table { font-size: .82em; } .sk-table th, .sk-table td { padding-left: 4px; padding-right: 4px; } }
+.sk-table th { font: 600 1.15em/1.1 var(--sk-font-hand); text-align: right; padding: 4px 8px 8px; border-bottom: 1.5px solid var(--sk-graphite); }
+.sk-table td { text-align: right; padding: 6px 8px; border-bottom: 1px dashed var(--sk-graphite-faint); }
+.sk-table th:first-child, .sk-table td:first-child { text-align: left; font-family: var(--sk-font-hand); font-size: 1.15em; }
+.sk-table .is-better { color: var(--sk-stamp-green); } .sk-table .is-worse { color: var(--sk-red-ink); }
+
+/* black tape label for technical names (sketch-board) */
+.sk-tape {
+  display: inline-block; padding: 3px 9px 4px; background: var(--sk-tape); color: var(--sk-tape-text);
+  font: 700 12px/1.2 var(--sk-font-mono); letter-spacing: .06em; text-transform: uppercase;
+  transform: rotate(-1deg); box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+  clip-path: polygon(0 6%, 3% 0, 97% 4%, 100% 0, 99% 94%, 96% 100%, 2% 96%, 0 100%);
+}
+
+/* Paper documents (postcards, slips, labels, .sk-doc) are light objects on
+   any desk: inside them the pencils switch back to day ink, even at night. */
+.sk-postcard, .sk-slip, .sk-label, .sk-doc {
+  --sk-graphite: #3a3a40; --sk-ink: #26262b; --sk-graphite-soft: #4f525a; --sk-figure: #2f2f35;
+  --sk-red-ink: #86353c; --sk-stamp: #a8321f; --sk-stamp-blue: #34507a; --sk-stamp-green: #2a5c41;
+  --sk-halo: rgba(239, 236, 228, .92); --sk-paper: #efece4;
+  color: var(--sk-graphite);
+}
+.sk-doc { background: var(--sk-card); padding: 22px 24px; box-shadow: 0 12px 26px -14px rgba(var(--sk-shadow), .6); }
+
+/* postcard */
+.sk-postcard {
+  position: relative; display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); aspect-ratio: 3 / 2;
+  background: var(--sk-card); color: #3a3a40; padding: 3.3%;
+  box-shadow: 0 2px 3px rgba(var(--sk-shadow), .18), 0 18px 34px -14px rgba(var(--sk-shadow), .55);
+  transform: rotate(var(--sk-tilt, -1.2deg));
+}
+.sk-postcard::before { content: ''; position: absolute; inset: 12px; border: 2px solid rgba(74, 74, 74, .35); pointer-events: none; }
+.sk-postcard > :first-child { padding-right: 4%; border-right: 1.5px solid rgba(74, 74, 74, .4); }
+.sk-postcard > :last-child { padding-left: 5%; display: grid; align-content: space-between; }
+.sk-postcard.is-in { animation: sk-card-in 420ms var(--sk-ease-card) both; }
+
+/* gauge: <div class="sk-gauge" style="--value:.62; --mark:.18"></div> */
+.sk-gauge { position: relative; height: 20px; min-width: 150px; }
+.sk-gauge::before { content: ''; position: absolute; inset: 3px; border: 1.3px solid var(--sk-graphite);
+  background: repeating-linear-gradient(-41deg, rgba(74, 74, 74, .8) 0 1.3px, transparent 1.3px 3.9px) 0 0 / calc(var(--value, .5) * 100%) 100% no-repeat; }
+html[data-theme="night"] .sk-gauge::before { background-image: repeating-linear-gradient(-41deg, rgba(228, 223, 208, .8) 0 1.3px, transparent 1.3px 3.9px); }
+.sk-gauge::after { content: ''; position: absolute; top: 0; bottom: 0; left: calc(var(--mark, 0) * 100%); width: 2px; background: var(--sk-red); }
+
+/* margin maths: right aligned, values bold, § references red */
+.sk-maths { text-align: right; font-size: 18px; line-height: 1.12; color: var(--sk-maths-ink); }
+.sk-maths b, .sk-maths .val { font-weight: 700; }
+html[data-theme="night"] .sk-maths .val { color: var(--sk-gold); font-family: var(--sk-font-mono); }
+
+/* sketch-board plate with four screws */
+.sk-plate {
+  position: relative; background: var(--sk-paper-light); padding: 22px 24px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .08), 0 10px 22px -16px rgba(var(--sk-shadow), .6);
+  --screw: radial-gradient(circle at 42% 40%, #fff 0 9%, #a7afb8 26%, #6c757f 44%, rgba(0, 0, 0, .25) 49%, transparent 54%);
+  background-image: var(--screw), var(--screw), var(--screw), var(--screw);
+  background-size: 10px 10px; background-repeat: no-repeat;
+  background-position: 8px 8px, calc(100% - 8px) 8px, 8px calc(100% - 8px), calc(100% - 8px) calc(100% - 8px);
+}
+
+/* ===================================================================
+ * 9. Layout helpers
+ * =================================================================== */
+.sk-stack { display: grid; gap: var(--gap, 14px); align-content: start; }
+.sk-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--gap, 12px); }
+.sk-center { display: grid; place-items: center; text-align: center; }
+.sk-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: clamp(20px, 3vw, 48px); align-items: start; }
+.sk-specks { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+.sk-sr { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+table.sk-sr { display: block; }   /* tables ignore width: 1px; wrap them in div.sk-sr when in doubt */
+@media (max-width: 720px) { .sk-split { grid-template-columns: minmax(0, 1fr); } }
+
+/* ===================================================================
+ * 10. Motion: sheets slide 10 px with a -0.6 degree tilt, pages swing
+ *     away on rotateY, the cover opens to -165 degrees, stamps slam.
+ *     No per-element staggers: a sheet arrives whole.
+ * =================================================================== */
+@keyframes sk-sheet-in { from { opacity: 0; transform: translateY(10px) rotate(-.6deg); } to { opacity: 1; transform: none; } }
+@keyframes sk-veil-in { from { opacity: 0; } }
+@keyframes sk-page-over { 0% { transform: rotateY(0); opacity: 1; } 70% { opacity: 1; } 100% { transform: rotateY(-120deg); opacity: 0; } }
+@keyframes sk-page-back { 0% { transform: rotateY(0); opacity: 1; } 70% { opacity: 1; } 100% { transform: rotateY(120deg); opacity: 0; } }
+@keyframes sk-cover-open { to { transform: rotateY(-165deg); box-shadow: none; } }
+@keyframes sk-slam { 0% { opacity: 0; transform: scale(1.8) rotate(-6deg); } 70% { opacity: .9; transform: scale(.94) rotate(-6deg); } 100% { opacity: .85; transform: scale(1) rotate(-6deg); } }
+@keyframes sk-card-in { from { opacity: 0; transform: translateY(40px) rotate(4deg) scale(.94); } to { opacity: 1; transform: rotate(var(--sk-tilt, -1.2deg)); } }
+@keyframes sk-ready { 50% { transform: scale(1.045); } }
+@keyframes sk-nudge { 25% { transform: rotate(-1.6deg) scale(1.04); } 55% { transform: rotate(1.2deg) scale(1.04); } 80% { transform: rotate(-.4deg); } }
+.sk-in { animation: sk-sheet-in var(--sk-dur-sheet) var(--sk-ease) both; }
+[data-reveal].is-waiting { opacity: 0; }
+[data-reveal].is-in { animation: sk-sheet-in 420ms var(--sk-ease) both; }
+[data-reveal="print"].is-in { animation: none; }
+[data-reveal="print"].is-in > * { animation: sk-line-in 380ms var(--sk-ease) both; animation-delay: calc(180ms + var(--i, 0) * 95ms); }
+.sk-stamp[data-slam].is-in, .is-in .sk-stamp[data-slam] { animation: sk-slam 360ms var(--sk-ease-slam) both; animation-delay: var(--delay, 500ms); }
+@keyframes sk-line-in { from { opacity: 0; transform: translateY(5px); } }
+.sk-out-page { transform-origin: left center; animation: sk-page-over var(--sk-dur-page) var(--sk-ease-page) both; }
+.sk-out-back { transform-origin: right center; animation: sk-page-back var(--sk-dur-page) var(--sk-ease-page) both; }
+html.sk-static *, html.sk-static *::before, html.sk-static *::after { animation: none !important; transition: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  .sk-in, .sk-postcard.is-in, [data-reveal].is-in, [data-reveal="print"].is-in > * { animation: none; }
+  [data-reveal].is-waiting { opacity: 1; }
+  .sk-out-page, .sk-out-back { animation: sk-veil-in 200ms reverse both; }
+  .sk-btn.is-ready { animation: none; outline: 2px dashed var(--sk-red); outline-offset: 3px; }
+  .sk-stamp.is-slam { animation: none; }
+  [data-reveal], .sk-postcard[data-reveal], .sk-stamp[data-slam] { animation: none !important; }
+  [data-step] { transition: none !important; }
+}
+
+/* ===================================================================
+ * 11. Print: paper stays paper, the boil stops on variant 0
+ * =================================================================== */
+@media print {
+  body.sk { background-attachment: scroll; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .sk-noprint { display: none !important; }
+  .sk-v { display: none !important; } .sk-v0, .sk-v-only { display: inline !important; }
+}

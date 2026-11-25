@@ -1,0 +1,31 @@
+{
+  "name": "notebooklm-ingest",
+  "version": "0.1.0",
+  "description": "Pull the user's chosen NotebookLM notes into their personal knowledge wiki. Runs the notebooklm-py CLI inside the user's own openclaw container, normalises each note's text and then hashes it, and pushes it to javis-server over one gateway-token-authenticated endpoint; javis-server's existing poller distils it into wiki pages. Eight script commands do all the I/O (notebooks / notes / fetch / push / report / history / schedule / doctor); --dry-run reports the pages it would write and writes nothing. NOTEBOOKLM_TRANSPORT is pinned to the library default and the impersonating transport is refused. The push endpoint is write-only: nothing here can read the wiki, another source, or another user's data. Triggers: 'fetch my notebooklm', 'ingest my notebooklm', 'notebooklm to wiki', '同步我的 notebooklm'.",
+  "keywords": [
+    "fetch my notebooklm",
+    "ingest my notebooklm",
+    "notebooklm to wiki",
+    "sync my notebooks",
+    "notebooklm",
+    "gemini notebook",
+    "同步我的 notebooklm",
+    "notebooklm 入库",
+    "wiki"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "notebooks": "node scripts/notebooklm-ingest.js notebooks",
+    "notes": "node scripts/notebooklm-ingest.js notes",
+    "fetch": "node scripts/notebooklm-ingest.js fetch",
+    "push": "node scripts/notebooklm-ingest.js push",
+    "report": "node scripts/notebooklm-ingest.js report",
+    "history": "node scripts/notebooklm-ingest.js history",
+    "schedule": "node scripts/notebooklm-ingest.js schedule",
+    "doctor": "node scripts/notebooklm-ingest.js doctor",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

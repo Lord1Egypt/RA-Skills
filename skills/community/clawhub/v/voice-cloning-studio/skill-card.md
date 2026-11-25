@@ -1,6 +1,6 @@
 ## Description:
 
-Create and manage consent-authorized personal or brand voices from audio samples, then audition, convert, or use them for speech projects.
+Create and reuse an authorized personal or brand voice from a clean audio sample, then preview it in a short reading.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External creators and developers use this skill to create reusable authorized personal or brand voices for narration and other spoken content. It also supports voice discovery and auditions, speech conversion, transcription, subtitles, and audio finishing.
+Creators and developers use this skill to create an authorized reusable personal or brand voice from a clean recording, review a short test reading, and prepare narration or speech conversion.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment reports broad shared account access, persistent installation and runtime reporting, and behaviors beyond the stated purpose; the scan evidence is incomplete.
+Risk: The security review flags broad permissions, recurring installation and environment reporting, and possible disruption to other skills during removal; review coverage was incomplete.
 
-Mitigation: Before connecting, verify that requested permissions are limited to the voice and speech tasks needed, review what account/device information and user content may be sent to Beatra, and check whether installation reporting can be disabled.
+Mitigation: Review the reported concerns before installing. If removing the skill, follow its bundled uninstall flow and check the decision so other Beatra skills and their shared connection are preserved.
 
 ## Reference(s):
 
 - [ClawHub skill page](https://clawhub.ai/beatra-ai/skills/voice-cloning-studio)
-- [Beatra skill overview](https://beatra.ai/skills/voice-cloning-studio)
+- [Beatra skill information](https://beatra.ai/skills/voice-cloning-studio)
 - [Consent and sample readiness](artifact/references/consent-and-sample-readiness.md)
+- [Speech, voices, cloning, and audio finishing](artifact/references/speech-and-audio.md)
+- [Test-reading review and voice reuse](artifact/references/review-recovery-and-voice-reuse.md)
 - [Updates and security](artifact/references/updates-and-security.md)
+- [Installation registration](artifact/references/installation-registration.md)
+- [Uninstall and disconnect](artifact/references/uninstall-and-disconnect.md)
 
 ## Skill Output:
 
 **Output Type(s):** [Audio, Text, Subtitles, Guidance]
 
-**Output Format:** [Generated audio, transcripts, and aligned subtitles in JSON, SRT, or VTT, with task results and guidance as text.]
+**Output Format:** [Generated audio with text or JSON, SRT, or VTT subtitles when available; task guidance in Markdown.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Outputs depend on the selected voice or speech operation and its supplied language and audio settings.]
+**Other Properties Related to Output:** [Audio, transcripts, and subtitles depend on the selected operation and returned results.]
 
 ## Skill Version(s):
 
-0.3.2 (source: server release evidence)
+0.3.3 (source: server-resolved release)
 
 ## Ethical Considerations:
 

@@ -218,7 +218,7 @@ read on demand. Scenario-level how-to advice lives in [`references/best-practice
 四大核心输出（detect/fix_suggest/workflow/term_report）随包 JSON Schema 契约：`python3 scripts/pp.py schema --selfcheck` 用真引擎输出逐一过契约（v7.7.0）；集成方在自己的环境里调 `pp_api.schema_selfcheck()` 验证拿到的结构。顶层必填键与类型是兼容性承诺——新增键不破坏契约，删除/改型会在 CHANGELOG 声明。
 
 **Q: 怎么确认我下载的包没被截断/篡改？**
-`python3 scripts/pp_doctor.py --deep`：包内 `data/INTEGRITY_MANIFEST.json` 记录全部数据与词表 JSON 的 SHA256 与字节数，--deep 逐文件核对哈希+解析（v7.6.0）。若某文件哈希不符，输出会给出文件名与期望/实际哈希——那是分发链路问题，请带着该输出提 issue。
+`python3 scripts/pp_doctor.py --deep`：包内 `data/INTEGRITY_MANIFEST.json` 记录全部数据与词表 JSON 的 SHA256 与字节数，`data/PACKAGE_MANIFEST.json`（打包时生成）覆盖其余全部随包文件；--deep 对两清单逐文件核对（v7.6.0 数据清单+v7.9.0 包清单）。若某文件哈希不符，输出会给出文件名与期望/实际哈希——那是分发链路问题，请带着该输出提 issue。
 
 **Q: MCP server 有 HTTP 形态吗？**
 有（v7.2.0）：`python3 scripts/pp_mcp_server.py --transport http --port 8815`——仅监听 127.0.0.1 回环（与零网络立场一致，跨机访问不在支持范围也未加鉴权，勿端口转发暴露）；`POST /mcp` 收单条 JSON-RPC，`GET /health` 探活；适合同机多个客户端复用一个 server。

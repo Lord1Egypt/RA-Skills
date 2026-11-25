@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # 开发环境体检 · 只读扫描器
 #
-# ⛔ 铁律：本脚本【只读】。全文不含 rm / rmdir / trash / unlink / mv / truncate 等任何破坏性命令。
+# ⛔ 铁律：本脚本【只读】。不含任何删除、移动、改名、截断类命令，不做任何写操作。
 #    它只负责「量体温」，判定与建议交给模型，删除动作永远交给用户本人执行。
 #
 # 用法：bash scan.sh                      # 全量扫描
@@ -74,7 +74,7 @@ CANDIDATES=(
 )
 AI_CANDIDATES=(
   "$HOME/.claude" "$HOME/.cursor" "$HOME/.codex" "$HOME/.codebuddy"
-  "$HOME/.agents" "$HOME/.npm/_npx"
+  "$HOME/.user-agents" "$HOME/.npm/_npx"
   "$HOME/Library/Application Support/Cursor"
   "$HOME/Library/Application Support/Claude"
   "$HOME/Library/Caches/ms-playwright" "$HOME/.cache/ms-playwright"

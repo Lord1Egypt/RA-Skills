@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Go developers use this skill to integrate the unofficial go-postgrid package into a project, call PostGrid print and mail or address verification operations, and handle authentication and parsed responses.
+Developers use this skill when building Go applications that integrate with PostGrid print and mail resources or address verification APIs. It guides them in installing and using the unofficial typed client, including authentication and response handling.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Using a live PostGrid key to create mail can send physical mail and incur charges; bulk verification and targeted list builds may also be billable.
+Risk: Using a live print-and-mail key can send physical mail and incur charges.
 
-Mitigation: Use test credentials during development, get explicit user authorization before creating or changing resources, and check whether a request succeeded before retrying after an uncertain response.
+Mitigation: Use a test key during development; create or send mail only when explicitly requested, and check whether an uncertain request succeeded before retrying.
+
+Risk: Exposing the PostGrid API key could compromise the account.
+
+Mitigation: Read POSTGRID_API_KEY from the environment and never hardcode, commit, or log the key.
 
 ## Reference(s):
 
-- [Setup and reference](artifact/references/setup.md)
-- [Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-postgrid)
-- [PostGrid OpenAPI specification](https://guides.postgrid.com/api/openapi.yaml)
-- [Declared skill homepage](https://github.com/psyb0t/go-postgrid)
+- [setup.md](references/setup.md)
+- [go-postgrid project homepage](https://github.com/psyb0t/go-postgrid)
+- [go-postgrid package documentation](https://pkg.go.dev/github.com/psyb0t/go-postgrid)
+- [PostGrid OpenAPI document](https://guides.postgrid.com/api/openapi.yaml)
 
 ## Skill Output:
 
 **Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown with Go code blocks and shell commands]
+**Output Format:** [Go code and Markdown guidance with shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Examples are tailored to the Go project and requested PostGrid operation; API keys should be supplied through environment configuration rather than source code.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-0.3.0 (source: server-resolved release metadata)
+0.3.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

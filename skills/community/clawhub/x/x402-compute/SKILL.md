@@ -1,11 +1,11 @@
 ---
 name: x402-compute
-version: 1.36.0
+version: 1.42.0
 description: |
   This skill should be used when the user asks to "provision GPU instance",
   "integrate agent pods over an API", "create pods for my customers",
   "pod webhooks", "pod events",
-  "spin up a cloud server", "list compute plans", "browse GPU pricing",
+  "spin up a cloud server", "list compute plans", "browse GPU pricing", "rent a GPU by the hour",
   "deploy AI machine", "one-click GPU running an LLM", "deploy a private LLM endpoint",
   "OpenRouter-ready endpoint", "agent deploy GPU", "spin up my own OpenAI-compatible endpoint",
   "extend compute instance", "resize compute instance", "destroy server instance", "check instance status",
@@ -27,6 +27,8 @@ description: |
   "deploy an always-on AI agent", "deploy a hosted OpenClaw agent", "spin up a ClawPod",
   "agent pod", "hosted agent with its own wallet", "free agent trial",
   "Pi pod", "HermPod", "run a command in my pod", "pod sandbox", "read or write files in my pod",
+  "coding sandbox", "connect to my coding sandbox", "open my sandbox terminal locally",
+  "singularity sandbox", "OpenAI-compatible key for my coding agent",
   "expose a port from my pod", "clone my pod", "pod with my own AI key and fallbacks",
   "deploy a processor", "sell my code per call", "monetize an endpoint",
   "publish a paid API", "connect a processor as an MCP tool",
@@ -119,7 +121,7 @@ Pay with x402, MPP, or pre-loaded credits — the same `x402c_…` API key and p
 **x402 Currency:** USDC (Base/Solana) • USDm (MegaETH) • USDG (Robinhood Chain)
 **MPP Methods:** Tempo • Stripe/card when enabled by the service
 **Credits:** Pre-load USD via x402 topup, then provision/extend (`use_credits: true`) or call the Grid with `X-API-Key`
-**Protocol:** HTTP 402 Payment Required (`X-Payment` for x402, `Authorization: Payment` for MPP)
+**Protocol:** HTTP 402 Payment Required (x402 v2 `PAYMENT-SIGNATURE` or v1 `X-Payment`, `Authorization: Payment` for MPP)
 **$SGL:** native token, live on Solana — mint `5c4HyD2rSShqnTsf5z3SaoD2H3GE452u2CUuYjviBAGS` (staking secures the grid; see [staking.x402layer.cc](https://staking.x402layer.cc))
 
 This section below (Machines) covers provisioning. Jump to **[SGL Grid — Inference](#sgl-grid--inference)** for the OpenAI-compatible inference API.
@@ -230,6 +232,7 @@ reference you need).
 | "join the grid & earn", "run a node", "provide compute" | `sgl` CLI or Singularity Node app (see below) | `references/node-operator.md` |
 | **"use Claude Code with the grid"**, "Anthropic-compatible API", "Anthropic SDK on open models", "/v1/messages" | curl / Anthropic SDK / Claude Code → `grid.x402compute.cc` (`ANTHROPIC_BASE_URL`) | **`references/grid-anthropic-messages.md`** |
 | "run inference on the grid", "confidential/TEE OpenAI-compatible inference" | curl / any OpenAI SDK → `grid.x402compute.cc` | `references/api-reference.md` |
+| **"plan a flow of paid APIs for a goal"**, "which x402 services can do this job", "flow planner API" | curl or any x402 client → `POST https://compute.x402layer.cc/compute/flows/plan` ($0.02 per plan: x402 Base/Solana, MPP or credits; plans only) | **`references/flow-planner.md`** |
 | **"multimodal embeddings"**, "EmbeddingGemma 2", "embed image/audio/video", "mixed media vectors" | **`grid_embeddings.py`** → `POST /v1/embeddings` | **`references/multimodal-embeddings.md`** |
 | **"local embeddings"**, "embed media on my Mac", "Node app embeddings" | Singularity Node app → Local → Embeddings | **`references/multimodal-embeddings.md`** |
 | **"speech to text"**, "transcribe audio", "Whisper STT", "Grid transcription" | **`grid_transcription.py`** or official SDK → reserve + sealed `POST /v1/audio/transcriptions` | **`references/transcription.md`** |
@@ -242,6 +245,7 @@ reference you need).
 | **"call my pod via the OpenAI API"**, "give my pod an OpenAI-compatible endpoint", "get an API key for my agent pod" | **`agent_pod.py create-key` then `agent_pod.py chat`** | **`references/agent-pods.md`** |
 | **"telegram community manager"**, "TGPod", "moderate my telegram group", "bot that answers members and removes scams", "discord community manager" (soon) | **`agent_pod.py templates`** then **`agent_pod.py deploy --template community-manager`** | **`references/agent-pods.md`** |
 | **"run a command in my pod"**, "read/write files in my pod", "expose a port from my pod", "pod sandbox", "clone my pod" | **`pod_sandbox.py`** (exec/files/ports) or `POST /pods/v1/pods/{id}/clone` | **`references/agent-pods-api.md`** (Sandbox) |
+| **"use my Coding sandbox from my terminal"**, "connect to my coding sandbox", "SSH into my coding sandbox", "open my sandbox in VS Code / Cursor", "run a command in my coding sandbox", "OpenAI-compatible key for my coding agent" | **`singularity sandbox`** CLI (`connect`/`ssh-config`/`ssh`/`exec`/`files`/`key`) or `POST /pods/{id}/coding/terminal` / `coding/ssh` + `/pods/v1` exec/files/keys | **`references/coding-sandbox.md`** |
 | **"deploy a Pi pod"**, "HermPod", "pod with my own AI key and fallbacks", "Venice / 0G / OpenRouter key on a pod" | `agent_pod.py deploy` (`agent_id` `pi` / `hermes`) or `/pods/v1` (`engine` `pipod` / `hermpod`, `ai.fallbacks`) | **`references/agent-pods-api.md`** |
 | **"integrate agent pods into my product"**, "pods over an API key", "create pods for my customers", "pod webhooks / events", "no wallet, just an API key" | `curl` / `PodsClient` (both SDKs) → `/pods/v1` | **`references/agent-pods-api.md`** |
 | **"back up my agent"**, "restore/migrate my agent", "agent vault", "snapshot my agent's memory" | **`npx @singularity-layer/agentvault`** (`login`, `backup --all`, `restore`) | **`references/agent-vault.md`** |
@@ -298,6 +302,15 @@ Browse Plans → Choose Provider/Plan → Provision (x402/MPP/Credits) → Activ
 ```
 
 Instances expire after their prepaid duration. Extend before expiry to keep them running.
+
+**Rental length.** 1 day or more by default. When `GET /compute/plans` returns `"hourly": {"enabled": true}`, machines and GPUs can also be rented **by the hour: machines from 1 hour, GPUs and AI machines from 2 hours** (`hourly.min_hours_by_kind`): under 24 hours costs the hourly price **+15% for machines, +20% for GPUs and AI machines** (each plan's `is_gpu` says which; an AI machine pays +20% even on a CPU plan). 1 day or more is the normal price. Same for extensions under 24 hours (GPUs and AI machines extend by 2 hours or more). Agent Pods and Grid node deploys stay at 24 hours or more. Send `max_total_usd` to cap the price (409, nothing charged, if it is higher).
+
+```bash
+# 3 hours on a GPU (only when hourly is on; the 402 shows the total incl. +20%)
+python {baseDir}/scripts/provision.py <gpu_plan_id> <region> --hours 3
+# Extend by 2 hours
+python {baseDir}/scripts/extend_instance.py <instance_id> --hours 2
+```
 
 ---
 
@@ -475,8 +488,10 @@ Credits are scoped per wallet. If the cloud provider rejects the instance after 
    - MegaETH: USDm ERC-2612 `permit` (EIP-712) — gasless for the user, facilitator settles on-chain
    - Robinhood Chain: USDG `TransferWithAuthorization` (EIP-3009, EIP-712) — gasless for the user, facilitator settles on-chain in a single tx (domain `name="Global Dollar"`, `version="1"`, chainId `4663`)
    - Solana: signed SPL transfer transaction payload
-3. Script resends request with `X-Payment` header containing signed payload
+3. Script resends request with the signed payment: `PAYMENT-SIGNATURE` (x402 v2) when the 402 carried a `PAYMENT-REQUIRED` header, otherwise `X-Payment` (x402 v1)
 4. Server verifies payment, settles on-chain, provisions/extends instance
+
+**x402 v1 and v2.** The scripts read the v2 `PAYMENT-REQUIRED` header first (base64 JSON, amount in `amount`, networks as CAIP-2 such as `eip155:8453` and `solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp`) and fall back to the v1 JSON body (`maxAmountRequired`, `base` / `solana`). The signed payment inside is the same in both versions, so nothing changes for your wallet. Set `X402_WIRE=v1` to force v1. The shared helper is `scripts/x402_wire.py`. Successful paid replies may carry `PAYMENT-RESPONSE` (v2) or `X-PAYMENT-RESPONSE` (v1) with the settlement transaction.
 
 MegaETH uses an embedded facilitator (no external CDP dependency). The user signs an off-chain ERC-2612 permit, and the facilitator calls `permit()` + `transferFrom()` on MegaETH (~10ms blocks, near-zero gas).
 
@@ -487,6 +502,7 @@ For Solana, transient facilitator failures can happen. Retry once or twice if yo
 **After you have paid, never pay again for the same request:**
 - `HTTP 202` with `pending: true`: you paid and the machine exists, but its delivery is still being confirmed. The body is the full order (save any one-time keys in it). Poll `instance_details.py <order_id>` (or `agent_pod.py get <pod_id>`). Do not re-provision.
 - `HTTP 409` with code `settlement_pending`: the payment outcome is not known yet and it may have moved. Do not pay again. The server checks the chain and either delivers or credits the amount to your balance automatically.
+- A timeout or `HTTP 5xx` after the payment was sent: the scripts report `pending: true`. The payment may have moved. Do not sign a new payment; resend the same one or check the order first.
 
 ## MPP Payment Flow
 
@@ -501,7 +517,7 @@ Notes:
 - `POST /compute/provision` can be paid via MPP without wallet auth. In that case the response includes `management_api_key`; store it because it is shown once and is required for later management.
 - `POST /compute/instances/:id/extend` via MPP requires compute auth, usually `X-API-Key: $COMPUTE_API_KEY`.
 - `POST /compute/instances/:id/resize` uses compute auth only. It preserves remaining prepaid value by changing expiry instead of charging again.
-- x402 remains fully supported through the Python scripts and `X-Payment` header flow.
+- x402 remains fully supported through the Python scripts (v2 `PAYMENT-SIGNATURE` or v1 `X-Payment`).
 - MPP methods are service-configured. Tempo is used by default by `mppx`; Stripe/card requires a Stripe-capable MPP client/config.
 
 ---
@@ -918,6 +934,7 @@ For full endpoint details, see:
 - [references/ai-machines.md](references/ai-machines.md) — AI Machines (one-click LLM GPU: modes, endpoint+key, control API, agent x402 deploy)
 - [references/agent-pods.md](references/agent-pods.md) — Agent Pods (deploy `POST /pods`, manage, wallet, and the OpenAI-compatible adapter: `sk-sglpod-int-*` keys + `/v1/chat/completions`)
 - [references/agent-pods-api.md](references/agent-pods-api.md): the **`/pods/v1` API-key surface** for building ON pods rather than clicking them: idempotent create, lifecycle actions, tasks, connectors, wallet, backups, an account **event log** and **signed webhooks**, plus engines (`clawpod`, `hermpod`, `pipod`), BYOK with fallbacks, and the **Sandbox** (exec, files, ports, clone). Use it when the caller holds an `x402c_…` key and no wallet; `agent-pods.md` remains the signature/OWS path.
+- [references/coding-sandbox.md](references/coding-sandbox.md): use a **Coding sandbox** (Claude Code, Codex, OpenCode or Pi on its own computer) from anywhere: `singularity sandbox` CLI, real SSH (ssh, scp, port forwarding, VS Code / Cursor Remote-SSH), the terminal WebSocket, exec/files, and an OpenAI-compatible key for its coding agent
 - [references/grid-anthropic-messages.md](references/grid-anthropic-messages.md): Anthropic-compatible `/v1/messages`, `count_tokens`, Anthropic-shaped `/v1/models`, Claude Code setup
 - [references/node-operator.md](references/node-operator.md) — run a grid node (provide compute, earn)
 - [references/openwallet-ows.md](references/openwallet-ows.md)

@@ -5,7 +5,7 @@ meta:
   retrieved: 2026-11-05
   game_version: 1.5.x
   units: seconds unless stated otherwise
-  translation_policy: "English id is canonical; Chinese names may be suggestions."
+  translation_policy: "English IDs identify records; terms.yaml controls displayed translations and status."
   nested_card_rule: "An item under a base recipe's variants/extras requires that base recipe unless an explicit prerequisite overrides it."
 
 base_recipes:
@@ -133,7 +133,7 @@ base_recipes:
         steps: ["Cook raw seaweed 1s; +3s to burn; combine with plated dumplings."]
 
   - id: black_coffee
-    name: {en: Black Coffee, zh: 黑咖啡}
+    name: {en: Black Coffee, zh: 咖啡}
     course: dessert
     unlock_level: 4
     value: 1
@@ -268,20 +268,24 @@ base_recipes:
       - {id: vegetable_pies, name: {en: Vegetable Pies, zh: 蔬菜派}, ingredients: [Carrot, Broccoli], steps: ["Combine carrot and broccoli with pie crust; bake as pie."]}
 
   - id: cakes
-    name: {en: Cakes (Pastry), zh: 蛋糕（糕点）}
+    name: {en: Cakes (Pastry), zh: 蛋糕/糕点}
     course: dessert
     unlock_level: 7
     value: 3
     expected_groups_modifier: 0%
     eating_time: 1x
     order_model: "Customers order a flavor; any cake of the requested flavor is accepted."
-    ingredients: [Flour, Eggs, Sugar, Chocolate]
-    steps: ["Base batter: chop egg 0.1s; combine with flour and sugar in mixing bowl; knead 2s.", "Chocolate flavor: cook chocolate 2s (+2s to burn), then combine into cake recipe."]
+    ingredients: [Flour, Eggs, Sugar]
+    base: ["Chop egg 0.1s; combine with flour and sugar in a mixing bowl; knead 2s to make batter."]
+    source_page: https://wiki.plateupgame.com/recipes/Cakes
+    batter_and_cookies_checked: 2026-11-19
     variants:
+      - {id: cookies, name: {en: Cookies, zh: 曲奇}, equipment: [Cookie Tray], steps: ["Mix the requested flavor into the batter. Bake in the tray for 18s (+12s to burn); portion 1s; 4 portions."]}
       - {id: sponge_cake, name: {en: Sponge Cake, zh: 海绵蛋糕}, ingredients: [Milk, Cake Tin], steps: ["Combine batter with milk; bake in cake tin 45s (+12s to burn), or microwave 5s; add flavor; portion 1s; 6 portions."]}
       - {id: cupcake, name: {en: Cupcake, zh: 纸杯蛋糕}, ingredients: [Milk, Cupcake Tray], steps: ["Combine batter and milk; bake in cupcake tray 12s (+12s); portion 1s; add flavor; 4 portions."]}
       - {id: doughnut, name: {en: Doughnut, zh: 甜甜圈}, ingredients: [Milk, Doughnut Tray, Pot Stack, Oil], steps: ["Combine batter and milk; rise 10s in tray. Portion doughnut, fry in oil 2s, portion each; add flavor; 12 portions."]}
       - {id: brownies, name: {en: Brownies, zh: 布朗尼}, ingredients: [Brownie Tray, Chocolate], steps: ["Combine chocolate flavor with batter; bake 9s (+20s to burn); portion 1s; 6 portions."]}
+      - {id: cake_flavour_chocolate, name: {en: "Cake Flavour - Chocolate", zh: 蛋糕口味-巧克力}, ingredients: [Chocolate], steps: ["Cook chocolate 2s (+2s to burn) and use it to flavor the selected cake. This is the default flavor."]}
       - {id: cake_flavour_coffee, name: {en: Cake Flavour - Coffee, zh: 蛋糕口味-咖啡}, ingredients: [Coffee Machine], steps: ["Make coffee (3s automatic); use as cake flavor."]}
       - {id: cake_flavour_lemon, name: {en: Cake Flavour - Lemon, zh: 蛋糕口味-柠檬}, ingredients: [Lemon], steps: ["Chop lemon 1s; use as cake flavor."]}
 
@@ -342,7 +346,11 @@ base_recipes:
     ingredients: [Mince, Tortillas]
     equipment: [Taco Trays]
     steps: ["Cook mince 2s; combine tortilla with taco tray; add cooked mince; portion 1s; tray yields 4 portions.", "Alternatively serve the divisible tray for customers to take portions."]
-    extras: [Tacos - Cheese, Tacos - Lettuce, Tacos - Onion, Tacos - Tomato]
+    extras:
+      - {id: tacos_cheese, name: {en: Tacos - Cheese, zh: 塔可-芝士}, ingredients: [Cheese]}
+      - {id: tacos_lettuce, name: {en: Tacos - Lettuce, zh: 塔可-生菜}, ingredients: [Lettuce]}
+      - {id: tacos_onion, name: {en: Tacos - Onion, zh: 塔可-洋葱}, ingredients: [Onion]}
+      - {id: tacos_tomato, name: {en: Tacos - Tomato, zh: 塔可-番茄}, ingredients: [Tomato]}
 
   - id: hot_dogs
     name: {en: Hot Dogs, zh: 热狗}
@@ -354,10 +362,11 @@ base_recipes:
     ingredients: [Hot Dog, Hot Dog Bun]
     equipment: [Starter Hob x2, Extra Ketchup]
     steps: ["Cook raw hot dog 3s (+4s to burn); combine with bun; plate and serve.", "Provide ketchup or mustard if requested."]
-    extras: [Hot Dog - Mustard]
+    extras:
+      - {id: hot_dog_mustard, name: {en: Hot Dog - Mustard, zh: 热狗-芥末}}
 
   - id: fajitas
-    name: {en: Fajitas, zh: 法士达（建议译名）}
+    name: {en: Fajitas, zh: 法士达}
     course: main
     unlock_level: 12
     value: 6
@@ -366,8 +375,15 @@ base_recipes:
     ingredients: [Frying Pan, Meat, Tortillas, Lettuce]
     steps: ["Combine Frying Pan with chopped meat and cook.", "Optionally add chopped bell pepper and/or onion to the pan; cook after each addition.", "Serve the pan item while sizzling; if it cools, reheat before serving.", "Chop lettuce on a Counter; combine a Tortilla with chopped lettuce and serve alongside the fajitas.", "For cheese or tomato extras, chop the requested ingredient and combine it with a Tortilla; serve alongside the main."]
     notes: "Official 1.5 update confirms fajitas must be served sizzling hot with tortillas and lettuce; they cool out of pan and need reheating. Detail page lists ingredient steps but no numeric cook or cooling duration in the captured text; eating_time remains null."
-    variants: [Fajitas - Bell Peppers, Fajitas - Onions, Fajitas - Cheese, Fajitas - Tomato]
-    extras: [Crema, Salsa, Guacamole]
+    variants:
+      - {id: fajitas_bell_peppers, name: {en: Fajitas - Bell Peppers, zh: 法士达-甜椒}, ingredients: [Bell Peppers]}
+      - {id: fajitas_onions, name: {en: Fajitas - Onions, zh: 法士达-洋葱}, ingredients: [Onion]}
+      - {id: fajitas_cheese, name: {en: Fajitas - Cheese, zh: 法士达-芝士}, ingredients: [Cheese]}
+      - {id: fajitas_tomato, name: {en: Fajitas - Tomato, zh: 法士达-番茄}, ingredients: [Tomato]}
+    extras:
+      - {id: crema, name: {en: Fajitas - Crema, zh: 墨西哥酸奶油}}
+      - {id: salsa, name: {en: Fajitas - Salsa, zh: 莎莎酱}}
+      - {id: guacamole, name: {en: Fajitas - Guacamole, zh: 鳄梨酱}}
 
   - id: breakfast
     name: {en: Breakfast, zh: 早餐}
@@ -379,7 +395,10 @@ base_recipes:
     ingredients: [Flour, Water]
     equipment: [Oven]
     steps: ["Knead flour 1s or combine with water for dough; bake dough 20s (+20s to burn) as bread.", "Portion slice 0.5s (10 portions); cook slice 3s (+3s to burn) as toast; serve."]
-    extras: [Breakfast Beans, Breakfast Eggs, Breakfast Extras]
+    extras:
+      - {id: breakfast_beans, name: {en: Breakfast Beans, zh: 早餐豆子}}
+      - {id: breakfast_eggs, name: {en: Breakfast Eggs, zh: 早餐鸡蛋}}
+      - {id: breakfast_extras, name: {en: Breakfast Extras, zh: 早餐配料}}
 
   - id: stir_fry
     name: {en: Stir Fry, zh: 炒菜}
@@ -391,8 +410,12 @@ base_recipes:
     ingredients: [Rice, Carrot, Broccoli]
     equipment: [Woks, Starter Hob x2]
     steps: ["Combine wok with raw rice; cook 2s (+10s to burn).", "Chop carrot and/or broccoli 1s; add one vegetable and cook 2s (+10s).", "Optionally add second vegetable and cook 2s (+10s); add requested bamboo/mushroom/meat; plate and serve."]
-    variants: [Bamboo Stir Fry, Mushroom Stir Fry, Steak Stir Fry]
-    extras: [Stir Fry - Soy Sauce]
+    variants:
+      - {id: bamboo_stir_fry, name: {en: Bamboo Stir Fry, zh: 竹笋炒菜}}
+      - {id: mushroom_stir_fry, name: {en: Mushroom Stir Fry, zh: 蘑菇炒菜}}
+      - {id: steak_stir_fry, name: {en: Steak Stir Fry, zh: 牛排炒菜}}
+    extras:
+      - {id: stir_fry_soy_sauce, name: {en: Stir Fry - Soy Sauce, zh: 炒菜-酱油}}
 
 side_and_course_workflows:
   broth_base: ["Pot + water + onion -> broth.", "Cook 15s initially; refill with water and cook 3s; does not burn."]

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Creators and content teams use this skill to create a Douyin or vertical short-video cover from a topic, script, key frame, product or portrait photo, or visual reference. It can also refine an accepted cover draft into a consistent account style.
+Creators, marketers, and other short-video publishers use the skill to create one vertical Douyin cover from a confirmed topic or supplied image, then refine an accepted draft into a consistent account style.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,42 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill requires broad shared Beatra authorization beyond image creation, and revoking the shared credential disconnects every Beatra skill using it.
+Risk: The security assessment flags broad account permissions and recurring installation telemetry.
 
-Mitigation: Review the authorization scope before connecting and proceed only if it is acceptable; check which Beatra skills share the credential before revoking it.
+Mitigation: Before authorizing the skill, review its requested account access and the documented installation telemetry, and proceed only if both fit your needs.
 
-Risk: Image generation is paid, uploaded images may contain sensitive material, and installation analytics are documented.
+Risk: The security assessment flags a possibility that uninstalling could disrupt other installed skills that share credentials.
 
-Mitigation: Upload only images intended to be shared, review the complete request and approve each paid generation, and consult the installation and privacy disclosures.
+Mitigation: Review the uninstall and disconnect procedure and check whether other Beatra skills use the shared credentials before uninstalling.
 
-Risk: The security evidence reports an uninstall flaw that could disconnect other Beatra skills when the skill inventory is malformed.
+Risk: The security assessment was partial because some references were unresolved, so it does not establish that all behavior was assessed.
 
-Mitigation: Before uninstalling, check for other installed Beatra skills and verify the connection outcome; use console revocation only when disconnecting all skills sharing the credential is intended.
+Mitigation: Treat the assessment as incomplete and review the available security guidance and skill files before installation.
 
 ## Reference(s):
 
-- [Douyin Video Cover Maker on ClawHub](https://clawhub.ai/beatra-ai/skills/douyin-cover-maker)
-- [Workflow](references/workflow.md)
-- [Installation and authentication](references/installation-and-auth.md)
-- [Updates and security](references/updates-and-security.md)
-- [Uninstall and disconnect](references/uninstall-and-disconnect.md)
-- [Billing errors and recovery](references/billing-errors-and-recovery.md)
+- [ClawHub skill page](https://clawhub.ai/beatra-ai/skills/douyin-cover-maker)
+- [Beatra skill page](https://beatra.ai/skills/douyin-cover-maker)
+- [Workflow and image request guidance](artifact/references/workflow.md)
+- [Tasks and results](artifact/references/tasks-and-results.md)
+- [Billing, errors, and recovery](artifact/references/billing-errors-and-recovery.md)
+- [Updates and security](artifact/references/updates-and-security.md)
+- [Installation and authentication](artifact/references/installation-and-auth.md)
+- [Uninstall and disconnect](artifact/references/uninstall-and-disconnect.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Image artifacts, Text result details]
+**Output Type(s):** [Images, Text]
 
-**Output Format:** [Generated cover image artifact link with a Markdown result summary]
+**Output Format:** [Generated cover image artifact with a link and concise task details]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [One cover per request; canvas and style follow the confirmed brief, with vertical 9:16 as the default for Douyin.]
+**Other Properties Related to Output:** [Creates one cover per request; vertical 9:16 is the default for a Douyin feed when no canvas is specified.]
 
 ## Skill Version(s):
 
-0.2.3 (source: server-resolved release evidence)
+0.2.6 (source: server-resolved release version)
 
 ## Ethical Considerations:
 

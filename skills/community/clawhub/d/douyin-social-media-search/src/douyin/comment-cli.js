@@ -1,12 +1,18 @@
 #!/usr/bin/env node
 
-const constants = require("../config/constants");
 const comment = require("../api/comment");
 const log = require("../utils/log");
 const token = require("../utils/token");
 const utils = require("../utils/utils");
 const validator = require("../validate/comment");
-const { parseArgs, buildHelp } = require("../utils/args");
+const { parseArgs, buildHelp, parseDecimalInteger } = require("../utils/args");
+const {
+  emitError,
+  emitEmpty,
+  buildSuccessEnvelope,
+  finishSuccess,
+  emitUncaught,
+} = require("../utils/output");
 
 const SCHEMA = {
   flags: {
@@ -15,14 +21,14 @@ const SCHEMA = {
       key: "url",
       type: "string",
       required: true,
-      desc: "抖音视频(或图文)URL或aweme_id",
+      desc: "抖音视频/图文URL、v.douyin.com 短链或 aweme_id",
     },
     "--limit": {
       alias: "-l",
       key: "limit",
       type: "number",
       default: 10,
-      transform: (v) => Number(v),
+      transform: parseDecimalInteger,
       desc: "评论数量, 1-10000",
     },
   },
@@ -34,30 +40,14 @@ function printHelp() {
     buildHelp(SCHEMA, "node src/douyin/comment-cli.js <url> [选项]", [
       "node src/douyin/comment-cli.js https://www.douyin.com/video/xxx",
       "node src/douyin/comment-cli.js --url https://www.douyin.com/note/xxx --limit 20",
+      "node src/douyin/comment-cli.js --url https://v.douyin.com/xxx --limit 20",
       "node src/douyin/comment-cli.js -u xxx -l 100",
     ]) +
       "\n\n注意:\n" +
-      "  - 支持视频/图文链接 / v.douyin.com 短链 / aweme_id(纯数字), 自动剥离 query 参数\n" +
+      "  - 支持视频/图文链接 / iesdouyin 分享链 / v.douyin.com 短链 / aweme_id(纯数字), 自动剥离 query 参数\n" +
+      "  - 数量 1-10000；包月 Token 实际最多 50，超限返回 PLAN_LIMIT\n" +
       "  - Windows cmd.exe 下请使用双引号\n",
   );
-}
-
-function emitError(command, code, message, exitCode, startTime, request) {
-  const payload = {
-    status: "error",
-    error_code: code,
-    message: message,
-    timestamp: new Date().toLocaleString(),
-    request: request || { command },
-    metadata: {
-      skill_version: constants.VERSION,
-      runtime_version: process.versions.node,
-      execution_time: Date.now() - startTime,
-    },
-    results: null,
-  };
-  process.stdout.write(JSON.stringify(payload, null, 2) + "\n");
-  process.exitCode = exitCode;
 }
 
 /**
@@ -68,7 +58,7 @@ async function main() {
   const args = process.argv.slice(2);
   if (args.length === 0) {
     printHelp();
-    process.exitCode = 2;
+    emitError("comment", "INVALID_ARGS", "缺少命令参数", 2, startTime);
     return;
   }
 
@@ -97,7 +87,7 @@ async function main() {
 
   utils.printBanner();
   utils.printInfo(`原始URL: ${urlRaw}`);
-  url = validator.douyinPostUrl(url);
+  url = validator.parseDouyinAweme(url);
   if (!url) {
     utils.printError("无法识别抖音视频/图文链接或 aweme_id");
     emitError(
@@ -111,16 +101,27 @@ async function main() {
     return;
   }
   utils.printInfo(`规范后的URL: ${url}`);
-  limit = validator.optionFormat(limit);
+  try {
+    limit = validator.assertCommentLimit(limit);
+  } catch (error) {
+    utils.printError(error.message);
+    emitError("comment", "INVALID_ARGS", error.message, 2, startTime, {
+      command: "comment",
+      url_raw: urlRaw,
+      url: url,
+      limit: limit,
+    });
+    return;
+  }
   const tokenValue = token.skillToken(process.env.GUAIKEI_API_TOKEN);
   if (tokenValue === "") {
     emitError(
       "comment",
       "AUTH_REQUIRED",
-      "GUAIKEI_API_TOKEN 未配置或无效, 请配置环境变量后重试",
+      "GUAIKEI_API_TOKEN 未配置或格式无效。须为 16-256 位字母、数字、下划线或连字符",
       3,
       startTime,
-      { command: "comment", url: url },
+      { command: "comment", url_raw: urlRaw, url: url },
     );
     return;
   }
@@ -138,70 +139,36 @@ async function main() {
       error.message,
       error.name === "AuthError" ? 3 : 1,
       startTime,
-      { command: "comment", url: url, limit: limit },
+      { command: "comment", url_raw: urlRaw, url: url, limit: limit },
     );
     return;
   }
 
-  if (!commentTask || !Array.isArray(commentTask) || commentTask.length === 0) {
-    utils.printError(`获取评论任务没有返回结果, 请稍后重试或联系开发者`);
-    const emptyOutput = {
-      status: "empty",
-      error_code: "NO_MATCH",
-      message: "没有找到匹配的评论",
-      timestamp: new Date().toLocaleString(),
-      request: {
-        command: "comment",
-        url: url,
-        limit: limit,
-      },
-      metadata: {
-        skill_version: constants.VERSION,
-        runtime_version: process.versions.node,
-        execution_time: Date.now() - startTime,
-      },
-      results: null,
-    };
-    process.stdout.write(JSON.stringify(emptyOutput, null, 2) + "\n", () =>
-      process.exit(0),
-    );
-    return;
-  }
-
-  // 输出评论结果
-  const finalOutput = {
-    status: "success",
-    error_code: "OK",
-    message: "获取评论任务完成",
-    timestamp: new Date().toLocaleString(),
-    request: {
-      command: "comment",
-      url: url,
-      limit: limit,
-    },
-    metadata: {
-      skill_version: constants.VERSION,
-      runtime_version: process.versions.node,
-      execution_time: Date.now() - startTime,
-    },
-    results: commentTask,
+  const commentRequest = {
+    command: "comment",
+    url_raw: urlRaw,
+    url: url,
+    limit: limit,
   };
-  console.log(JSON.stringify(finalOutput, null, 2));
-  utils.printSuccess(
-    `获取评论任务完成, 共返回 ${finalOutput.results.length} 条结果`,
-  );
+  if (!commentTask || !Array.isArray(commentTask) || commentTask.length === 0) {
+    utils.printInfo("没有找到匹配的评论");
+    emitEmpty("没有找到匹配的评论", startTime, commentRequest);
+    return;
+  }
 
-  url = url.replace(/[^a-zA-Z0-9_-]/g, "");
-  url = url.replace("httpswwwdouyincomvideo", "");
-  url = url.replace("httpswwwdouyincomnote", "");
-  url = url.replace("httpsvdouyincom", "");
-  await log.taskWrite(
-    `${startTime}_${url}_comment.json`,
-    JSON.stringify(finalOutput, null, 2),
+  const finalOutput = buildSuccessEnvelope(
+    "获取评论任务完成",
+    startTime,
+    commentRequest,
+    commentTask,
   );
+  await finishSuccess(finalOutput, {
+    logFilename: `${startTime}_${log.resourceId(url)}_comment.json`,
+    stderrMessage: `获取评论任务完成, 共返回 ${finalOutput.results.length} 条结果`,
+  });
 }
 
 main().catch((error) => {
-  utils.printError(error.message);
-  process.exitCode = 1;
+  utils.printError(error.message || String(error));
+  emitUncaught("comment", error);
 });

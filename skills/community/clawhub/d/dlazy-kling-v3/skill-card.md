@@ -1,6 +1,6 @@
 ## Description:
 
-Generates videos with Kling v3 from text prompts or reference images.
+Generates high-quality videos with Kling v3 from text prompts or reference images.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and creators use this skill to generate Kling v3 videos from text prompts or reference images through dLazy's hosted service.
+External users and developers use this skill to generate short Kling v3 videos from text prompts or reference images through the dLazy CLI and hosted service.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review is incomplete, with referenced CLI installation and service details unavailable; the login behavior also warrants review in the context of a video-generation skill.
+Risk: The supplied security review is benign with medium confidence but flags a purpose mismatch, is partial, and does not demonstrate video-generation behavior.
 
-Mitigation: Before installing or authenticating, review the pinned dLazy CLI package and service details, and confirm the login flow is expected. Avoid sending prompts or media until you are comfortable with the service receiving them.
+Mitigation: Review the skill content and any unresolved references before relying on its video-generation claims.
+
+Risk: Prompts and local media supplied to the skill are sent to dLazy hosted services; local media is uploaded for processing.
+
+Mitigation: Avoid submitting confidential prompts or media unless use of the dLazy service is approved.
+
+Risk: The server-resolved release is version 1.3.44, while the supplied artifact frontmatter says 1.3.5.
+
+Mitigation: Confirm the packaged artifact matches the intended release before installation.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-kling-v3)
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli)
-- [dLazy API key setup](https://dlazy.com/dashboard/organization/api-key)
-- [dLazy service homepage](https://dlazy.com)
+- [ClawHub release page](https://clawhub.ai/dlazyai/skills/dlazy-kling-v3)
+- [dLazy CLI project repository (project link; release provenance unavailable)](https://github.com/dlazy-ai/cli)
+- [dLazy CLI on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy service](https://dlazy.com)
 
 ## Skill Output:
 
-**Output Type(s):** [Video files, JSON]
+**Output Type(s):** [Video assets, JSON, Shell commands, Guidance]
 
-**Output Format:** [Generated video assets with JSON task and result metadata]
+**Output Format:** [JSON result with hosted output URLs; optionally saved media files]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Supports text-to-video and image-to-video; generated assets are returned as hosted URLs.]
+**Other Properties Related to Output:** [Generation may return a completed result or an asynchronous task identifier; supports an optional local save path.]
 
 ## Skill Version(s):
 
-1.3.41 (source: server-resolved release evidence)
+1.3.44 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

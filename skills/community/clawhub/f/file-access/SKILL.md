@@ -24,6 +24,12 @@ Let the agent work with everyday documents — find a file, read it, summarize i
 - One folder tree at a time; no whole-disk scans.
 - Every action is appended to `agent-file-log.md` in the work folder: time, action, path, size, result.
 
+## Run-end log markers
+- Every run closes with one final line in `agent-file-log.md`. A later reader — owner or agent — must be able to tell from that line alone whether the run finished or was cut short.
+- Finished run, no cap hit: `14:03 run-end COMPLETE — 3 files read, 1 copy made, no cap hit`.
+- Run stopped by a cap (20 files per run, 2 MB per file, 10 MB total read, or 5 copies per run): the final log line must say the result is partial, name the cap, and count what was done: `14:03 run-end PARTIAL — INCOMPLETE, stopped by the 20-file cap, 20 of 34 requested files read, follow-up task required for the remaining 14`.
+- A partial run is never reported to the owner as finished. The report names the cap and the follow-up still needed, same as the log line.
+
 ## Never-do list
 - Never delete, move, or overwrite an existing file. Copies and new files only.
 - Never open credential stores, key files, password vaults, browser profile folders, or anything named like `*secret*`, `*token*`, `*key*`, `.env`, or `credentials*`.
@@ -48,5 +54,6 @@ Owner: "Find the draft contract Alex Example sent and copy it to my work folder.
 3. Agent copies it to `/home/user/example/work/contract-draft-copy.txt`.
 4. Agent logs: `14:02 copy inbox-docs/alex-example-contract-draft.txt -> work/contract-draft-copy.txt (48 KB) OK`.
 5. Agent reports: "Copied. Original untouched. Log updated."
+6. Agent closes the run in the log: `14:03 run-end COMPLETE — 1 file read, 1 copy made, no cap hit`.
 
 If the file had been in `/home/user/other-folder/`, which is not on the allowlist, the agent would stop and ask instead of reading it.

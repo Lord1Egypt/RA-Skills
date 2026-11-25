@@ -1,0 +1,22 @@
+{
+  "skill": "ocas-scout",
+  "version": "1.0.0",
+  "description": "Evaluation test cases for ocas-scout",
+  "evals": [
+    {
+      "input": "Research the CEO of Wikimedia Foundation",
+      "expected_output": "Returns a provenance-backed brief with cited sources about Dario Amodei",
+      "description": "Person research"
+    },
+    {
+      "input": "Find companies in the fintech space in San Francisco",
+      "expected_output": "Returns a list of fintech companies with descriptions and sources",
+      "description": "Company discovery"
+    },
+    {
+      "input": "Background research on Stripe",
+      "expected_output": "Returns a detailed brief about Stripe with cited sources",
+      "description": "Company research"
+    }
+  ]
+}

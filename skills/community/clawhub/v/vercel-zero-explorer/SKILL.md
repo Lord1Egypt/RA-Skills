@@ -1,7 +1,7 @@
 ---
 name: "Vercel Zero Explorer"
 description: "AI-powered guide for Vercel Zero - the first programming language designed specifically for AI agents. Covers Zero graph-first workflow, .0 projection files, native tools, explicit effects, structured JSON diagnostics, and AI-native development workflows. Built for AI developers, language designers, and researchers exploring the future of AI-native programming."
-version: "1.0.3"
+version: "1.0.4"
 keywords:
   - AI agent programming
   - Zero language
@@ -19,7 +19,7 @@ keywords:
 
 This Skill provides comprehensive guidance on understanding, using, and building with Zero language.
 
-## Current Status (as of 2026-11-14)
+## Current Status (as of 2026-11-19)
 
 | Item | Status |
 |------|--------|
@@ -39,7 +39,7 @@ This Skill provides comprehensive guidance on understanding, using, and building
 > **Safety note:** Vercel Labs explicitly warns to expect breaking changes, rough edges and security issues, and to avoid production systems and sensitive data. Evaluate Zero in an isolated, disposable workspace.
 
 
-**More recent developments (compiled 2026-11-14, treat official docs as authoritative):**
+**More recent developments (compiled 2026-11-19, treat official docs as authoritative):**
 - **Graph-first is now the practical entry point, not an option.** Guidance and examples that still start from editing `.0` text are stale; the recommended loop is `zero query → zero patch --json (with expect_hash) → zero fix --plan --json → zero export` for review.
 - **Hash-guarded patches are the main safety lever.** Because a patch carries an expected graph hash, an agent editing from a stale view is rejected before the store is written — this is the mechanism worth validating first in any evaluation.
 - **Version churn continues.** Exact subcommand names, flags and diagnostic codes change between minor versions; pin the version you evaluate against and record it alongside your results.
@@ -402,7 +402,7 @@ so there is nothing to clean up. Never retry the same stale hash in a loop.
 
 ---
 
-**Author:** Ge Cheng | **Skill Address:** clawhub.ai/skills/vercel-zero-explorer | **Skill Version:** 1.0.3 | **Last reviewed:** 2026-11-14
+**Author:** Ge Cheng | **Skill Address:** clawhub.ai/skills/vercel-zero-explorer | **Skill Version:** 1.0.4 | **Last reviewed:** 2026-11-19
 
 ## 本轮增量（2026-11-14）：复核维度与举例补充
 
@@ -436,4 +436,42 @@ so there is nothing to clean up. Never retry the same stale hash in a loop.
 ### 时效性说明
 
 - 本期时效性核查：**截至 2026-11-14**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
+- 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。
+
+## 本轮增量（2026-11-19）：复核维度与举例补充
+
+> 本节为 2026-11-19 例行轮转的净增量记录：新增举例与复核维度均为本期首次出现，与既有条目不重复；仅作方法论参考，需具备相应资质的人员复核后使用。
+
+### 补充举例（按模块，本期新增）
+
+**Step 2: Explore Zero Syntax**：
+
+- 语法对照表补「来源与版本」一列：每条语法项注明所依据的公开文档位置与版本说明，缺出处的按待补处理，草稿不填入未经核实的取值。
+- 示例清单新增「事实与推演分栏」：文档已明确写明的语义与对用法的推测分列，推测栏统一标注由具备资质人员核实后使用。
+
+**Example 4: Recovering From a Stale Patch (hash mismatch)**：
+
+- 失效补丁清单补「校验依据」一列：每个 hash 不一致条目注明所依据的发布说明位置，草稿不给出可直接运行的修复语句。
+- 复核清单新增「留痕五要素」占位：来源、版本、发布时间、复核人、复核时点并列记录，缺一项即标注证据不完整、需人工确认。
+
+### 新增复核维度表（2026-11-19）
+
+> 本表新增「由谁执行 / 数据来源 / 复核要点 / 风险等级 / 适用边界」等维度列，把口径责任、数据来源与人工复核要求落到具体条目。
+
+| 复核维度 | 由谁执行 | 数据来源 | 复核要点 | 风险等级 | 适用边界 |
+| --- | --- | --- | --- | --- | --- |
+| 语法来源与版本 | 框架选型人员 + 复核人 | 语法对照表 / 官方发布页 | 每条语法项是否标注文档位置与版本说明 | 中 | 纸面对照，取值须人工核实 |
+| 失效补丁留痕 | 框架选型人员 | 失效补丁清单 / 草稿 | 来源、版本、时点与复核人是否齐全 | 中 | 文档记录，不构成上线结论 |
+
+### 适用边界 / 数据最小化 / 执行边界（本期复核与补齐）
+
+**适用边界**：本技能仅用于Vercel Zero 语言概念与集成模式的方法论纸面对照的方法论参考与纸面草稿，输出为供使用者自行判断的参考文本；不构成正式结论、专业意见或对外发布内容。涉及生产环境安装部署、工具调用与版本上线放行的场景不适用，应由具备相应资质的人员按既有制度独立完成。
+
+**数据最小化**：本期补齐：示例、清单与提问只保留占位标签与抽象情境描述，不写入可识别个人、客户或机构的信息；草稿阶段即标注需人工复核后再补充任何具体背景。
+
+**执行边界**：本期复核：文中「生成 / 输出 / 形成」均指生成待确认的纸面草稿，由使用者自行决定是否采用；不代为发布、提交、保存或进行任何系统操作。
+
+### 时效性说明
+
+- 本期时效性核查：**截至 2026-11-19**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
 - 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。

@@ -1,0 +1,107 @@
+{
+  "project": {
+    "title": "Neon Ledger — Noir Teaser",
+    "video_model": "seedance-2.5-spicy",
+    "image_model": "seedream-5.0-pro-spicy",
+    "video_aspect": "16:9",
+    "asset_aspect": "16:9",
+    "generate_audio": true,
+    "output_format": "mp4"
+  },
+  "characters": [
+    {
+      "id": "CHR_REN",
+      "visual_age": 31,
+      "description": "East Asian detective in a soaked charcoal trench coat, silver-rimmed glasses beaded with rain, sharp tired eyes, short dark hair"
+    },
+    {
+      "id": "CHR_VERA",
+      "visual_age": 27,
+      "description": "Courier in an iridescent plum vinyl jacket, bob-cut dark hair with subtle cyan streak, metallic briefcase cuffed to left wrist"
+    }
+  ],
+  "assets": [
+    {
+      "id": "AST_CHR_REN",
+      "type": "character_sheet",
+      "aspect_ratio": "16:9",
+      "prompt": "Cinematic character reference board, three-view turnaround (front, three-quarter, profile) on neutral slate backdrop: 31-year-old East Asian male detective in a soaked charcoal trench coat, silver-rimmed glasses, short dark hair, realistic film grain, 35mm lens, high detail.",
+      "refs": ["CHR_REN"]
+    },
+    {
+      "id": "AST_CHR_VERA",
+      "type": "character_sheet",
+      "aspect_ratio": "16:9",
+      "prompt": "Cinematic character reference board, three-view turnaround (front, three-quarter, profile) on neutral slate backdrop: 27-year-old female courier in an iridescent plum vinyl jacket, dark bob hair with subtle cyan streak, metallic briefcase on wrist, realistic neo-noir cinematography.",
+      "refs": ["CHR_VERA"]
+    },
+    {
+      "id": "AST_SCN_ALLEY",
+      "type": "scene",
+      "aspect_ratio": "16:9",
+      "prompt": "Wide establishing concept frame of a rain-slick cyberpunk back-alley noodle stall at midnight, steam rising from stainless counter, warm amber lantern glow clashing with cyan neon signage reflected in wet asphalt puddles, empty street, photorealistic anamorphic 35mm."
+    }
+  ],
+  "segments": [
+    {
+      "id": "SEG_01",
+      "duration_seconds": 5,
+      "asset_refs": ["AST_CHR_REN", "AST_SCN_ALLEY"],
+      "shots": [
+        {
+          "id": "S01_01",
+          "start": 0,
+          "end": 2.5,
+          "camera": "Low-angle medium-wide tracking shot, 35mm anamorphic, slow push-in through rain",
+          "action": "CHR_REN steps out of neon-lit mist under the noodle stall awning, shaking rain from his charcoal trench coat as reflections shimmer on wet asphalt.",
+          "asset_refs": ["AST_CHR_REN", "AST_SCN_ALLEY"],
+          "dialogues": []
+        },
+        {
+          "id": "S01_02",
+          "start": 2.5,
+          "end": 5,
+          "camera": "Tight over-shoulder medium close-up, shallow depth of field",
+          "action": "CHR_REN adjusts his rain-beaded glasses and looks toward the alley entrance as distant footsteps splash.",
+          "asset_refs": ["AST_CHR_REN"],
+          "dialogues": [
+            {
+              "character_id": "CHR_REN",
+              "text": "You are twelve minutes late."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SEG_02",
+      "duration_seconds": 5,
+      "asset_refs": ["AST_CHR_VERA", "AST_CHR_REN", "AST_SCN_ALLEY"],
+      "shots": [
+        {
+          "id": "S02_01",
+          "start": 0,
+          "end": 2.5,
+          "camera": "Reverse medium shot, subtle handheld breathe, amber-cyan cross lighting",
+          "action": "CHR_VERA emerges from the neon alley shadow, lifting her cuffed wrist slightly to reveal the metallic briefcase under her plum jacket.",
+          "asset_refs": ["AST_CHR_VERA", "AST_SCN_ALLEY"],
+          "dialogues": [
+            {
+              "character_id": "CHR_VERA",
+              "text": "Traffic was watching the bridge."
+            }
+          ]
+        },
+        {
+          "id": "S02_02",
+          "start": 2.5,
+          "end": 5,
+          "camera": "Two-shot profile across the steaming noodle counter, slow dolly right",
+          "action": "CHR_VERA sets the metallic briefcase firmly onto the wet steel counter between them; steam curls upward across both faces.",
+          "asset_refs": ["AST_CHR_VERA", "AST_CHR_REN", "AST_SCN_ALLEY"],
+          "dialogues": []
+        }
+      ]
+    }
+  ]
+}

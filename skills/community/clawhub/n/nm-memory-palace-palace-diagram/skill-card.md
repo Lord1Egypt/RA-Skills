@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and memory-palace users use the skill to inspect or present knowledge-graph structure, entity relationships, and synapse strength as Mermaid or ASCII diagrams.
+Developers and knowledge graph users use this skill to inspect a memory palace's structure, entity relationships, synapse connectivity, and importance through Mermaid or ASCII diagrams.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Mermaid diagram content may be sent to Mermaid Chart without warning or approval; the security scan was incomplete and did not establish that all behavior was inspected.
+Risk: Knowledge-graph content sent to an external diagram service could disclose sensitive information.
 
-Mitigation: Review the rendering flow before use and avoid sending sensitive knowledge-graph content to Mermaid Chart; use the ASCII output when external rendering is unsuitable.
+Mitigation: Review the graph for sensitive content and confirm the external service is appropriate before sending Mermaid diagrams for rendering.
 
 ## Reference(s):
 
-- [Memory Palace project (metadata homepage)](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace)
-- [Palace Diagram release on ClawHub](https://clawhub.ai/athola/skills/nm-memory-palace-palace-diagram)
+- [Palace Diagram on ClawHub](https://clawhub.ai/athola/skills/nm-memory-palace-palace-diagram)
+- [Memory Palace plugin homepage (metadata link)](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace)
 
 ## Skill Output:
 
-**Output Type(s):** [Text]
+**Output Type(s):** [Code, Text]
 
-**Output Format:** [Mermaid flowchart syntax or ASCII text diagrams]
+**Output Format:** [Mermaid flowchart syntax and ASCII box-drawing diagrams]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Can describe a palace map, entity graph, synapse heatmap, or ASCII overview.]
+**Other Properties Related to Output:** [Diagrams describe palace maps, entity relationships, synapse strength, or ASCII overviews.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, release metadata)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

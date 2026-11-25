@@ -1,0 +1,21 @@
+{
+  "name": "claim-audit",
+  "version": "1.0.0",
+  "summary": "Re-run the numbers a document claims: test counts, file counts, scores, paths.",
+  "intents": [
+    "verify that a README claim of 9/9 PASS is true",
+    "check whether a skill package's stated file count matches reality",
+    "audit a document's numbers before publishing"
+  ],
+  "triggers": [
+    "claim audit",
+    "verify readme numbers",
+    "声明审计",
+    "文档数字对不对"
+  ],
+  "entry": "scripts/audit.py",
+  "entrypoints": {
+    "check": "python scripts/audit.py check <pkg-root> [--json] [--strict]",
+    "list": "python scripts/audit.py list <pkg-root>"
+  }
+}

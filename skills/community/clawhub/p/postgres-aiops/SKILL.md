@@ -32,6 +32,8 @@ compatibility: >
 
 # Postgres AIops
 
+> **Audit availability:** Real writes require a durable audit intent. Reads and previews can continue if audit storage fails; check the warning and audit health before relying on their audit trail.
+
 > **Disclaimer**: Community-maintained open-source project, **not affiliated with, endorsed by, or sponsored by the PostgreSQL Global Development Group or any vendor.** "PostgreSQL" and related trademarks belong to their owners. Source at [github.com/AIops-tools/Postgres-AIops](https://github.com/AIops-tools/Postgres-AIops) under the MIT license.
 
 Governed PostgreSQL DBA operations — **35 MCP tools**, every one wrapped with the bundled `@governed_tool` harness: a local unified audit log under `~/.postgres-aiops/`, token/runaway budget guard, undo-token recording, and descriptive risk-tier labels. The role password is stored **encrypted** (`~/.postgres-aiops/secrets.enc`, Fernet + scrypt) — never plaintext on disk.
@@ -144,7 +146,7 @@ permitted. That is your agent's judgement, or the permission of the account you 
 INSERT/UPDATE/DELETE/DDL) — writes then fail at the server). There is no read-only switch, policy
 file, or approval gate.
 
-- **Audit is the guarantee, and it is not bypassable.** Every operation — MCP and CLI alike — is logged to `~/.postgres-aiops/audit.db` (relocatable via `POSTGRES_AIOPS_HOME`): params, result, status, duration, and the risk tier. The CLI writes the same row the MCP path does.
+- **Audit is the guarantee, and it is not bypassable.** Every operation — MCP and CLI alike — is logged to `~/.postgres-aiops/audit.db` (relocatable via `POSTGRES_AIOPS_HOME`): params, outcome summary, status, duration, and the risk tier. The CLI writes the same row the MCP path does.
 - `POSTGRES_AUDIT_APPROVED_BY` / `POSTGRES_AUDIT_RATIONALE` are optional annotations recorded on the audit row (who/why); they are never required and never block.
 - **Runaway guard** — a safety backstop, not authorization: the same call looped in a tight window trips a circuit breaker. Disable with `POSTGRES_RUNAWAY_MAX=0`.
 - Writes support `--dry-run` / `dry_run=True` and double confirmation at the CLI.

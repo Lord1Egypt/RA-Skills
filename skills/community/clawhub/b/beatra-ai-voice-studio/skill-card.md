@@ -1,6 +1,6 @@
 ## Description:
 
-Use Beatra AI Voice Studio as an AI voice generator, text-to-speech workspace, and AI voiceover generator. Choose from the current voice library, turn scripts into ready-to-edit AI narration and voiceover, or create and reuse a custom brand voice through voice cloning. It supports short-video voiceover, script-to-voiceover, course narration, ordered audiobook narration, supplied multilingual text to speech, Cantonese text to speech, and recurring brand audio, with current price estimates, clear output planning, and delivery organized by chapter, language, and use case.
+Choose or reuse a voice, turn scripts into ready-to-edit narration, plan ordered long-form or multilingual audio, and create a reusable custom voice.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Creators, educators, publishers, and teams use this skill to plan and produce voice narration, dialogue, multilingual and long-form audio, custom voices, transcripts, sound effects, and audio-processing outputs through Beatra AI Voice Studio.
+Content creators, educators, publishers, and audio teams use the skill to prepare and produce narration, dialogue, long-form or multilingual audio, and reusable custom voices, with related transcription and audio processing.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan marks the skill suspicious, reporting broad permissions and recurring installation tracking beyond its voice and audio purpose, alongside a possible uninstall risk.
+Risk: ClawScan rates the skill suspicious with medium confidence, citing capabilities and permissions beyond its stated voice-generation purpose; this is a review signal, not a claim of malicious intent.
 
-Mitigation: Review Beatra permissions, recurring registration and version-check behavior, and uninstall behavior before connecting. Verify where scripts or voice samples are sent, and require the speaker's explicit permission before voice cloning or conversion.
+Mitigation: Review the requested capabilities and permissions, and install only if the broader audio workflows are needed.
+
+Risk: The security guidance reports automatic installation and runtime analytics without a described opt-out.
+
+Mitigation: Review and accept the analytics behavior before installation; avoid installing if automatic analytics are unacceptable.
+
+Risk: An uninstall edge case could affect authorization shared with other Beatra skills.
+
+Mitigation: Use the bundled uninstall decision and confirm whether other Beatra skills still use the shared connection before it is retired.
 
 ## Reference(s):
 
-- [Beatra AI Voice Studio documentation](https://beatra.ai/skills/beatra-ai-voice-studio)
 - [ClawHub release page](https://clawhub.ai/beatra-ai/skills/beatra-ai-voice-studio)
-- [Speech and audio guide](artifact/references/speech-and-audio.md)
-- [Intent and routing](artifact/references/intent-and-routing.md)
-- [Voice cloning and review](artifact/references/voice-cloning-and-review.md)
-- [Long-form and multilingual production](artifact/references/long-form-and-multilingual.md)
+- [Beatra AI Voice Studio](https://beatra.ai/skills/beatra-ai-voice-studio)
 
 ## Skill Output:
 
-**Output Type(s):** [Audio files, Text, Subtitles, Guidance]
+**Output Type(s):** [Audio, Text, Subtitles]
 
-**Output Format:** [Generated audio in the selected supported format, plus transcripts, aligned SRT/VTT subtitles, scripts, and production guidance as requested.]
+**Output Format:** [Generated audio files, prepared scripts, transcripts, subtitles, and production guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Outputs can be organized by chapter, language, and use case; available audio formats and controls depend on the current service capabilities.]
+**Other Properties Related to Output:** [Audio can be organized by speaker, chapter, language, or requested operation.]
 
 ## Skill Version(s):
 
-0.3.9 (source: server-resolved release metadata and artifact/manifest.json)
+0.4.0 (source: server-resolved release)
 
 ## Ethical Considerations:
 

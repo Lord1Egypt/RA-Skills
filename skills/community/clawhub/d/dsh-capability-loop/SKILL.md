@@ -1,7 +1,8 @@
 ---
 name: dsh-capability-loop
-version: 2.9.5
-description: DSH 能力升级与治理闭环：审计 skills/插件/运行时 → 修检索/桌面壳/Token 死重量 → 串接需求、测试、设计、团队与 Trae 分工 → 门禁验收 → 经验写回自身迭代。Use when 用户要升级/优化/体检 DSH、治理插件与技能、修会话检索或进程退出、降 Token、沉淀或迁移这套方法、迭代本 skill；单点需求/设计/测试任务走各自规范，不加载本 skill。
+version: 2.15.0
+description: DSH 能力升级与治理闭环。【重点】体检/修复 DSH 自身：九组审计→检索/桌面壳/Token 死重量修复→门禁验收→经验写回；适用升级/优化/体检 DSH、治理插件与技能、修会话检索或进程退出、降 Token、迭代本 skill。【配套】项目接管（三档+状态源）、接入六问、需求/设计/测试串接、Trae 交接体检（含网关前缀）、grill 自对抗、迁移与上架。单点需求/设计/测试走各自规范。
+allowed-tools: [Read, Write, Edit, Glob, Grep, Bash]
 ---
 
 # DSH 能力升级与治理闭环（Capability Loop）
@@ -24,7 +25,27 @@ description: DSH 能力升级与治理闭环：审计 skills/插件/运行时 �
 
 **不加载（直接走对应规范）：** 单点需求评审（`standards/requirement-spec-standard.md`）、单页面 UI 设计（`ui-design-production`）、单次自动化测试（`upgrade/team/testing-workflow.md`）、单次交给 Trae 实现（`feature-handoff`）。本 skill 只在需要**串联、治理、沉淀、迁移**时加载。
 
-## 1. 七阶段闭环（按需取段，不强行走完）
+## 1. 接管（先决条件：没有状态就没有闭环）
+
+> **为什么单列**：实测反馈「装了 skill 但真实项目里不接管」。根因不是 description 不够好，而是缺**触发、状态、可见性**三件事。本节是这三件事的机制入口，细则见 `references/02-takeover.md`。
+
+| 档位 | 注入 | 约束 | 何时用 |
+|---|---|---|---|
+| `off` | 无 | 不约束 | 未标记工程（默认） |
+| `shadow`（影子） | 一句话提示 | **只记录、不阻断**：门禁 FAIL 不影响对话 | **新标记工程前 3 个会话**（默认策略 A）；试点 |
+| `on`（接管） | 完整契约（≤400 token） | 治理场景必须 INTAKE/证据/门禁/grill | 正式治理 |
+
+**接入一行命令**（生成 `.dsh/loop/project.json` + `state.json` + `.gitignore`，默认 `shadow`）：
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File "<skill>\scripts\loop-state.ps1" -Action init -Root "<工程根>" -ProjectName "<工程名>"
+```
+
+**状态源 `.dsh/loop/state.json`**：唯一写入方是脚本（`loop-state.ps1` / `loop-gate.ps1` / `capability-audit.ps1`），记录 `mode / stage / next / checks / blockers / metrics / digest`；`loop-gate` 与 `capability-audit` 在**已标记工程**上自动写回，未标记工程零变化。面板（P2，设计稿 `docs/design/2026-11-18-capability-loop-panel.md`）只读它。
+
+**P0 / P1 / P2**：P0 = `AGENTS.md` 12 行片段（`templates/agents-loop-fragment.md`，**今天可用**，软接管）；P1 = 宿主插件 `plugins/capability-loop/`：`agent/pre-step` 折入契约（`on` 完整契约 / `shadow` 一行，fail-open + resume 去重 + 影子日志）；P2 = 同一 bundle 的 client 半：侧边栏「能力闭环」v1（档位/阶段/门禁/阻断/下一步，经 `remote.session.list` + `workspaceFiles.read(sessionId, '.dsh/loop/…')` 读，纯只读）**+ 运行中心**（门禁/体检/交接体检/预检/打包/视觉探测/版本检查/影子计数 + 切档位；面板只发 `/capability-loop <动作>`，Host 侧白名单 + 参数校验 + 超时/取消，与命令行同一实现）。**夹具 57/57**；本机 profile 已装并实测：`application: applied`、`shadow` 与 `on` 两种注入都收到（`on` 于 2026-11-19 在本工程真实会话完成）。**面板动作依赖的 Host 命令要重启应用才注册**（client 半刷新页面即可）；真机点击验收待补，7 Tab 完整版仍是后续。
+
+## 2. 七阶段闭环（按需取段，不强行走完）
 
 | 阶段 | 目标 | 动作入口 | 出口证据（无证据不算完成） |
 |---|---|---|---|
@@ -38,7 +59,7 @@ description: DSH 能力升级与治理闭环：审计 skills/插件/运行时 �
 
 > 顺序纪律：**INTAKE 未清不动工；AUDIT 未出证据不做 FIX；FIX 未验证不 WIRE；GRILL 未做不宣称完成（记录缺失默认 WARN，需硬门时给 `loop-gate.ps1 -RequireGrill`）；GATE 未过不宣称完成。**
 
-## 2. 不变式（违反即回滚 / 判失败）
+## 3. 不变式（违反即回滚 / 判失败）
 
 1. **证据先于结论**：任何「已修复/已生效/已通过」必须带命令、退出码、关键输出或截图；不能实测的写「未实测 + 原因 + 补测方式」。
 2. **PASS 必须来自非实现者**：写代码/写设计的人不得给自己的产物 PASS；Lead 终门基于他人的评审记录。
@@ -62,25 +83,35 @@ description: DSH 能力升级与治理闭环：审计 skills/插件/运行时 �
 
 19. **接口契约必须写全网关前缀**：交接包契约里的 URL 要含工程既有前缀（如 `/png/<服务>/<动作>`），host 不写、`/api` 不是网关前缀；出现「不要写 `/png`」这类反向指令一律视为缺陷。`handoff-audit.py` 的 F 组会自动校验：前缀集合只统计 `src/api/**`（不扫 `public/`/`router/`，页面路由自动排除），「不要/不写/不含/不需要写 … `/png` 前缀/硬编码」视为反向指令直接 FAIL；**「不得漏写」是正向要求，豁免**。判定按**位置序**：去 `**`/反引号装饰、剥离不含 `/png` 的括号说明、按 `。；` 切句后，**否定词必须位于「`/png` … 前缀」之前**才算反向指令；「不写 host」「不含 `/api`」「…必写、host 不写」「A 与 B 不是同一前缀」不误报。前缀集合只取 `src/api/**`（排除 test/mock，排除 `api` 段），出现 1 次的段降级为 WARN 需人工确认。工程无 `src/api` 时 F-skip 不适用。
 
-## 3. 开工基线（先核，不背旧结论）
+## 4. 开工基线（先核，不背旧结论）
 
 每次任务开始先核这 8 项（脚本已覆盖）：`DSH_HOME` 路径与读写权限 · 活动/停用 skill 数量 · `profiles/web/cordis.patch.yml` 的检索三件套（`path/openAt/journalMode`）与超时 · `session-index.sqlite*` 是否存在及大小 · 桌面壳 `main.js` 的健康检查锚点（`HEALTH_PROBE_TIMEOUT/HEALTH_FAILURE_LIMIT/HEALTH_DOWN_WINDOW_MS/isTcpAccepting`） · `~/.dsh/agents` 角色数 · 工作区资产（`AGENTS.md`/`memory`/`standards`/`tools`/`upgrade/team` 门禁） · PowerShell/Node/Python 版本。
 > 源环境 2026-11-12 的快照值见 `references/00-baseline.md`；**只作对照，不当事实**。
 > 项目级基线：先有 `project-profile.md`（接入）；设计任务先有 `design-context.md`（现有系统设计体系）。两者缺失时先补，不进入下一阶段。
 
-## 4. 快速命令
+## 5. 快速命令
 
 ```powershell
 $sk = "$env:USERPROFILE\.dsh\skills\dsh-capability-loop"
+$st = "$sk\scripts\loop-state.ps1"
+
+# 接管：接入 / 看状态 / 切档位 / 推进阶段（详见 references/02-takeover.md）
+powershell -NoProfile -ExecutionPolicy Bypass -File $st -Action init   -Root "<工程根>" -ProjectName "<工程名>"   # 默认 shadow
+powershell -NoProfile -ExecutionPolicy Bypass -File $st -Action status -Root "<工程根>" [-Json]                     # 未接入 exit 3
+powershell -NoProfile -ExecutionPolicy Bypass -File $st -Action set-mode  -Root "<工程根>" -Mode shadow|on|off
+powershell -NoProfile -ExecutionPolicy Bypass -File $st -Action set-stage -Root "<工程根>" -Stage WIRE -NextLabel "补 design-context"
+powershell -NoProfile -ExecutionPolicy Bypass -File $st -Action add-blocker -Root "<工程根>" -BlockerText "缺 1440 截图" -Owner lead -Due 2026-11-19
 
 # 体检（只读；九组指标 + 与上次的漂移对比；报告默认写到 <工作区>\.tmp\）
+# 已标记工程（.dsh/loop/project.json）会自动同步 metrics 并记 checks.environment-audit
 powershell -NoProfile -ExecutionPolicy Bypass -File "$sk\scripts\capability-audit.ps1" -Workspace "<工作区>"
 
 # 产品/设计上下文线索（扫描工程：框架/组件库/主题/页面接口规模）
 powershell -NoProfile -ExecutionPolicy Bypass -File "$sk\scripts\product-context.ps1" -Project "<工程根>"
 
 # 任务级门禁（自动识别 design/requirement/test；design 缺 design-context 会 FAIL；交付前硬门 grill 加 -RequireGrill）
-powershell -NoProfile -ExecutionPolicy Bypass -File "$sk\scripts\loop-gate.ps1" -TaskDir "<任务目录>" [-RequireGrill]
+# 已标记工程会自动把结果写回 .dsh/loop/state.json 的 checks.<类别>；未标记工程零变化
+powershell -NoProfile -ExecutionPolicy Bypass -File "$sk\scripts\loop-gate.ps1" -TaskDir "<任务目录>" [-RequireGrill] [-StateFile "<state.json>"]
 
 # 环境级验收（等价于跑 upgrade/post-restart-check.ps1）
 powershell -NoProfile -ExecutionPolicy Bypass -File "$sk\scripts\loop-gate.ps1" -Environment
@@ -116,7 +147,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File "$sk\scripts\skill-status.ps
 powershell -NoProfile -ExecutionPolicy Bypass -File "$sk\scripts\capability-audit.ps1" -Strict
 ```
 
-## 5. 自迭代协议（本 skill 如何持续升级）
+## 6. 自迭代协议（本 skill 如何持续升级）
 
 **三层写入，不要混层：**
 
@@ -149,24 +180,26 @@ powershell -NoProfile -ExecutionPolicy Bypass -File "$sk\scripts\capability-audi
 **健康度指标（每次体检报告尾部输出，用于判断闭环是否真在起作用）：**
 catalog 描述总字符数（源环境：磁盘 description 合计 6,419 → 3,673，−43%；按 catalog 注入估算 14,950 字符/21 条 → 约 6k 字符/12 条）· 死重量 skill 数（目标 0）· `session_search` 可用（索引存在且 >100MB）· 门禁通过率 · 本 skill 的 retro 条目数 / 月 · 误触发次数 · **漂移告警数**（与上次体检对比）· **用户返工/纠正次数**（`85-ux-memory.md`，趋势向下）。
 
-**拆分规则**：`SKILL.md` 正文 **< 300 行**；任一 reference **≤ 200 行**；超了就拆文件并在 §7 地图登记；拆完后 `name` 不变。
+**拆分规则**：`SKILL.md` 正文 **< 300 行**；任一 reference **≤ 200 行**；超了就拆文件并在 §8 地图登记；拆完后 `name` 不变。
 
 **周期维护**：每次任务后 10 分钟 retro（`templates/retro.md`）→ 每月一次全量体检 + 版本盘点 → 淘汰连续 3 次未被引用的规则/章节。
 
-## 6. 交付与迁移
+## 7. 交付与迁移
 
 - 迁移给同事：交付**基线包**（文档 01–07 + `upgrade/` + `standards/` + `tools/` + 示例项目 + `AGENTS.md`/`memory` 模板），按「先读权限声明 → 再读执行手册」；脚本自动备份，出问题 `rollback.ps1`。
 - 本 skill 自身的分发：**上架商店**优先（`clawhub skill publish` → SkillHub 同步 → 用户在技能市场一键安装/更新/回滚，见 `references/95-store-publish.md`）；对方也可把本目录原样拷到 `~/.dsh/skills/dsh-capability-loop/`，之后可自由改，**不回报、不锁定**。
 - 版本对照：对方 `version.json` 与你不同不是问题；用 `CHANGELOG.md` 做差异说明，不做自动合并。
 
-## 7. 参考文件地图
+## 8. 参考文件地图
 
 | 文件 | 解决什么 |
 |---|---|
 | `QUICKSTART.md` | 首次使用手册：3 条命令、怎么开口、出问题看哪里 |
+| `SECURITY.md` | 权限与数据边界：读/写/子进程/网络/隐私/删除策略 + 对历史扫描提示的处置 |
 | `README.md` | 商店/人读概览：能力边界、安装方式、脚本表、版本与更新、安全边界 |
 | `references/05-intake.md` | 项目接入：≤6 问、真相源、目标与验收、专家/角色编排 |
 | `references/00-baseline.md` | 环境事实基线（路径/阈值/资产/版本）+ 复核命令 |
+| `references/02-takeover.md` | **接管协议**：off/影子/接管三档、状态源 schema、注入逐字稿、P0/P1/P2 路线、命令与回归基线 |
 | `references/10-audit.md` | 审计口径：九组指标、阈值、漂移、报告结构、只读纪律 |
 | `references/20-runtime-fix.md` | P0 修复：检索重建、桌面壳稳定性、插件/技能清理、Token 收敛、回滚 |
 | `references/30-requirement.md` | 需求：系统证据驱动、L0 权威入口、SRS 结构、≥80 质量门、三遍评审 |
@@ -180,7 +213,8 @@ catalog 描述总字符数（源环境：磁盘 description 合计 6,419 → 3,6
 | `references/85-ux-memory.md` | 用户偏好记忆与体验进化：记什么/怎么采集/怎么应用/度量 |
 | `references/90-provenance.md` | 来源追溯：两个源会话的产出、验证证据、已知限制、能力对照 |
 | `references/95-store-publish.md` | 上架商店实操：ClawHub 发布 → SkillHub 同步 → DSH 市场安装；命令、证据、未实测项 |
-| `scripts/capability-audit.ps1` | 九组只读体检 + 与上次的漂移对比 + 版本/更新检查（`-Strict` 可作门禁） |
+| `scripts/loop-state.ps1` | **接管状态源**：init/status/set-mode/set-stage/set-next/record-check/add-blocker/resolve-blocker/sync-audit（唯一写入方；`status` 未接入 exit 3） |
+| `scripts/capability-audit.ps1` | 九组只读体检 + 与上次的漂移对比 + 版本/更新检查（`-Strict` 可作门禁）；已标记工程自动同步 metrics |
 | `scripts/loop-gate.ps1` | 聚合门禁：design（含 design-context 硬门）/requirement/test + 环境验收 + `-RequireGrill` |
 | `scripts/product-context.ps1` | 扫描工程产出「产品/设计上下文线索」（框架/组件库/主题/规模），供设计前置 |
 | `scripts/trae-status.ps1` | Trae 安装/进程/**当前打开工程是否=目标**/交接包进度（只读；`-RequireMatch` 硬门） |
@@ -190,6 +224,9 @@ catalog 描述总字符数（源环境：磁盘 description 合计 6,419 → 3,6
 | `scripts/module-preflight.py` | 交接前置：模块/路由预检（已存在则必须先确认，防重复开发/路由冲突） |
 | `scripts/handoff-audit.py` | 交接包体检：包完整性 / 材料可达性 / 证据对账 / 批次划分 / 设计依据 / **API 网关前缀一致性**（0/1/3/2） |
 | `scripts/package-skill.ps1` | 上架包生成（校验 + manifest + SHA256 + ZIP + 上架说明） |
+| `templates/agents-loop-fragment.md` | AGENTS.md 12 行接管片段（P0 软接管，今天可用） |
+| `templates/loop-project.json` | 接管声明模板（`.dsh/loop/project.json`） |
+| `plugins/capability-loop/` | **P1 宿主接管插件**：`agent/pre-step` 注入契约/影子提示；`node --test test/takeover.test.mjs` 有 10 条夹具 |
 | `templates/project-profile.md` | 项目画像模板（接入产出） |
 | `templates/intake-questions.md` | 接入六问可直接粘贴版 + 追问规则 + 默认/降级 |
 | `templates/design-context.md` | 设计上下文模板（出稿前必填） |
@@ -199,7 +236,11 @@ catalog 描述总字符数（源环境：磁盘 description 合计 6,419 → 3,6
 | `templates/grill-checklist.md` | 通用 grill 记录模板（兼容旧用法） |
 | `templates/retro.md` | 任务后复盘模板（结论/证据/写回/用户反馈/待办） |
 
-## 8. 与其它 skill 的关系
+## 9. 权限与数据边界
+
+完整声明见 [`SECURITY.md`](SECURITY.md)。一句话版本：**读工程与用户指定文件；只写工作区、`.dsh/loop/`、`.tmp/`、`%TEMP%` 与 DSH 自己的技能目录；子进程只跑本地 powershell/python 脚本；运行时不需要网络；记忆只记用户明确说过的偏好且可删除；删除只针对自己创建的临时子目录。**
+
+## 10. 与其它 skill 的关系
 
 - `ui-design-production`：设计任务**必须**加载；本 skill 只负责路由、设计前置（`55`）与评审门（`50`）。
 - `feature-handoff`：交接任务**必须**加载；本 skill 只负责串起「需求/测试证据 → 设计驱动交接 → 验收」的闭环（`60`）。

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users, creators, and social media teams use Postemi to prepare, schedule, publish, manage, and analyze posts across their connected social channels from an agent-accessible command line.
+External users can use the skill to prepare, schedule, publish, and manage social posts through Postemi's command-line workflow. Developers can also use its channel and post analytics and account-management commands.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Posts can be published or deleted on connected channels.
+Risk: The skill includes analytics, billing, and agent-skill management capabilities alongside social posting, and the security review did not resolve every referenced item.
 
-Mitigation: Review post content and destinations before publishing or deleting.
+Mitigation: Review those capabilities and unresolved references before use, and limit actions to the functions the user requested.
 
-Risk: Selected media is uploaded to Postemi.
+Risk: Publishing commands can post content to connected social accounts.
 
-Mitigation: Choose only media intended to be sent to the service.
-
-Risk: Optional add-ons can affect multiple local agents.
-
-Mitigation: Select a specific agent when you want to limit where an add-on applies.
+Mitigation: Show the destination, full content, media, and schedule, and obtain user confirmation before publishing.
 
 ## Reference(s):
 
 - [Postemi website](https://postemi.com)
-- [Postemi API](https://api.postemi.com)
-- [Postemi MCP server](https://mcp.postemi.com/mcp)
+- [Postemi CLI details](reference/details.md)
+- [Postemi provider settings](https://github.com/norbertlevente/postemi-agent/blob/main/PROVIDER_SETTINGS.md)
+- [Postemi skill page](https://clawhub.ai/norbertlevente/skills/postemi)
 
 ## Skill Output:
 
-**Output Type(s):** [Shell commands, JSON, Configuration instructions, Guidance]
+**Output Type(s):** [Guidance, Shell commands, JSON]
 
-**Output Format:** [Markdown with inline shell examples and JSON payloads]
+**Output Format:** [Markdown guidance with shell command examples and JSON examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Commands act on connected social channels; platform settings and media may be required.]
+**Other Properties Related to Output:** [Channel-specific steps and settings; obtain user confirmation before publishing.]
 
 ## Skill Version(s):
 
-1.1.1 (source: ClawHub release metadata)
+1.2.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

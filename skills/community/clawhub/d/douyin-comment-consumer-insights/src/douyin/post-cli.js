@@ -9,7 +9,8 @@ const { parseArgs, buildHelp, parseDecimalInteger } = require("../utils/args");
 const {
   emitError,
   emitEmpty,
-  printSuccessEnvelope,
+  buildSuccessEnvelope,
+  finishSuccess,
   emitUncaught,
 } = require("../utils/output");
 
@@ -164,7 +165,7 @@ async function main() {
     return;
   }
 
-  const finalOutput = printSuccessEnvelope(
+  const finalOutput = buildSuccessEnvelope(
     "获取作品任务完成",
     startTime,
     postRequest,
@@ -174,14 +175,10 @@ async function main() {
   const hasUser = Boolean(
     postTask.user && Object.keys(postTask.user).length > 0,
   );
-  utils.printSuccess(
-    `获取作品任务完成, 作品 ${postCount} 条${hasUser ? ", 含博主信息" : ""}`,
-  );
-
-  await log.writeResultLog(
-    `${startTime}_${log.resourceId(url)}_post.json`,
-    JSON.stringify(finalOutput, null, 2),
-  );
+  await finishSuccess(finalOutput, {
+    logFilename: `${startTime}_${log.resourceId(url)}_post.json`,
+    stderrMessage: `获取作品任务完成, 作品 ${postCount} 条${hasUser ? ", 含博主信息" : ""}`,
+  });
 }
 
 main().catch((error) => {

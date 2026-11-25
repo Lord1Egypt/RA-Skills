@@ -1,6 +1,6 @@
 ## Description:
 
-Provides advisory frameworks for analyzing ClawHub reviews and trends and drafting skill metadata and promotion materials for human review.
+Analyzes ClawHub reviews and trends to draft skill optimization reports, metadata suggestions, and promotion content for human review.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-ClawHub skill maintainers can use this skill to review feedback and trends, then draft metadata, optimization recommendations, and promotion copy. Its outputs are advisory and should be checked by a person before use.
+ClawHub skill maintainers use the skill to review feedback and trends and prepare suggested metadata, improvement plans, and promotional drafts. All recommendations require human review and any changes or publication are performed manually by the maintainer.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan was partial and did not fully inspect the artifact.
+Risk: An example install command uses an unpinned ClawHub CLI, and the security scan was partial because of a malformed manifest and unresolved references.
 
-Mitigation: Review the skill before installing; if following an installation example, use a CLI version pinned to a reviewed release.
-
-Risk: Running illustrative trend-query examples manually may send search terms and request metadata to third-party services.
-
-Mitigation: Review the destination and data handling first, and avoid sending sensitive or identifying information in queries.
+Mitigation: Review the example and pin and verify the ClawHub CLI version before running it; treat the benign verdict as medium-confidence.
 
 ## Reference(s):
 
-- [Clawhub Skill Optimizer on ClawHub](https://clawhub.ai/gechengling/skills/clawhub-skill-optimizer)
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/clawhub-skill-optimizer)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Text, Markdown, Code]
+**Output Type(s):** [Analysis, Text, Markdown, Guidance]
 
-**Output Format:** [Markdown reports and recommendations, with illustrative code examples]
+**Output Format:** [Markdown reports, rewrite suggestions, checklists, and promotional copy]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Advisory only; outputs require human review. Code examples are illustrative.]
+**Other Properties Related to Output:** [Advisory drafts for human review; the skill does not edit files, publish content, or make network requests on the user's behalf.]
 
 ## Skill Version(s):
 
-2.1.4 (source: frontmatter, server-resolved release)
+2.1.5 (source: frontmatter, server-resolved release)
 
 ## Ethical Considerations:
 

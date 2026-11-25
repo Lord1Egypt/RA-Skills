@@ -1,0 +1,110 @@
+{
+ "language": "es",
+ "cues": [
+  {
+   "i": 1,
+   "start": 0.0,
+   "end": 4.957,
+   "text": "Otra parte es crear un concepto de cómo,",
+   "tokens": [
+    "Otra",
+    "parte",
+    "es",
+    "crear",
+    "un",
+    "concepto",
+    "de",
+    "cómo,"
+   ]
+  },
+  {
+   "i": 2,
+   "start": 5.04,
+   "end": 10.357,
+   "text": "en una nave muy automatizada, no perder de vista la necesidad",
+   "tokens": [
+    "en",
+    "una",
+    "nave",
+    "muy",
+    "automatizada,",
+    "no",
+    "perder",
+    "de",
+    "vista",
+    "la",
+    "necesidad"
+   ]
+  },
+  {
+   "i": 3,
+   "start": 10.44,
+   "end": 14.017,
+   "text": "de que la tripulación siempre tenga un camino seguro a casa.",
+   "tokens": [
+    "de",
+    "que",
+    "la",
+    "tripulación",
+    "siempre",
+    "tenga",
+    "un",
+    "camino",
+    "seguro",
+    "a",
+    "casa."
+   ]
+  },
+  {
+   "i": 4,
+   "start": 14.1,
+   "end": 16.617,
+   "text": "No hace falta salvar la misión con la tripulación,",
+   "tokens": [
+    "No",
+    "hace",
+    "falta",
+    "salvar",
+    "la",
+    "misión",
+    "con",
+    "la",
+    "tripulación,"
+   ]
+  },
+  {
+   "i": 5,
+   "start": 16.7,
+   "end": 18.457,
+   "text": "sino a la tripulación con ella:",
+   "tokens": [
+    "sino",
+    "a",
+    "la",
+    "tripulación",
+    "con",
+    "ella:"
+   ]
+  },
+  {
+   "i": 6,
+   "start": 18.54,
+   "end": 21.4,
+   "text": "esa es la idea que planteamos.",
+   "tokens": [
+    "esa",
+    "es",
+    "la",
+    "idea",
+    "que",
+    "planteamos."
+   ]
+  }
+ ],
+ "emphasis": [
+  "maldigan nuestros nombres",
+  "tan fácil",
+  "camino seguro a casa",
+  "salvar a la tripulación"
+ ]
+}

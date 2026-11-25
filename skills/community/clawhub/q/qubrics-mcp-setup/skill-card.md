@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agent operators use this skill to connect OpenClaw and other supported clients to Qubrics mailbox, sending, and management tools through hosted OAuth or a local MCP server.
+Developers and agent operators use this skill to connect OpenClaw and other agent clients to Qubrics hosted or local MCP servers for mailbox, sending, and management workflows.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security evidence notes that the package-index installation route is unpinned and could install a release different from the one described.
+Risk: The package install command is unpinned and does not verify the package version.
 
-Mitigation: Verify that the intended qubrics-mcp release is published before installing it; hosted OAuth is documented as an alternative.
+Mitigation: Verify the intended release is published before installing, as the setup guide advises.
 
-Risk: The scanner evidence is incomplete because some local path references could not be resolved.
+Risk: The security scan was partial, so evidence from unavailable referenced paths was not assessed.
 
-Mitigation: Review the relevant source and unresolved references before relying on the skill in a deployment.
+Mitigation: Review the complete referenced source and rescan it before relying on the guide.
 
 ## Reference(s):
 
-- [Qubrics skills repository (release metadata homepage)](https://github.com/qubrics/skills)
-- [Qubrics hosted MCP endpoint](https://mcp.qubrics.com/mcp)
+- [Qubrics Skills Project Homepage](https://github.com/qubrics/skills)
+- [Qubrics Hosted MCP Endpoint](https://mcp.qubrics.com/mcp)
 
 ## Skill Output:
 
 **Output Type(s):** [Guidance, Shell commands, Configuration]
 
-**Output Format:** [Markdown with inline shell commands and client-specific configuration examples]
+**Output Format:** [Markdown with shell commands and JSON/TOML configuration examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Examples use secret-backed environment variables for credentials and vary by MCP client and server surface.]
+**Other Properties Related to Output:** [Client-specific setup examples; credentials are supplied from the user’s secret store.]
 
 ## Skill Version(s):
 
-2.0.4 (source: frontmatter)
+2.0.8 (source: frontmatter)
 
 ## Ethical Considerations:
 

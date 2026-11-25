@@ -35,7 +35,7 @@
 | 溯源覆盖 | deposit/register-hit/negate 自动记录 `source_model` + `source_host`（0.29 起；0.30 起自动读 `~/.evomap/source.json`） | `report` 的 L4 出「跨源率」——单源占比高 = 修法只被一个（模型｜宿主）验证过，换环境可能失效 |
 | 运行时要求 | **Node ≥22**（traps 生成器另需 Python 3） | 版本过低时 pi/evolver 可能启动失败 |
 | 外部依赖 | 默认 light 后端**零外部依赖** | 只有 evolver 集成（`--engine evolver`）才需 `npm install` |
-| 网络可达性 | 默认全部本地；唯一外发 `--llm-refine` **默认禁用** | 国内 npm/GitHub 加速见 §6.4 |
+| 网络可达性 | 两轴（0.43 O08 精确化）：**进程与存储**（引擎/CLI/钩子/基因库）全部本地；**模型请求**仅在两处显式 opt-in 场景外发——流程 C 编排器（任务文本/代码发给用户配置的 provider，必须显式传 provider/model/api-key）与 `--llm-refine`（**默认禁用**） | 国内 npm/GitHub 加速见 §6.4 |
 | 基因有效性衰减 | 有反馈基因按**时间半衰期默认 90 天**（`EVOX_GENE_DECAY_DAYS` 可调，非法值拒绝并告警）+ 否定压力（≥2 次否定且否定率 ≥50% 再减半）打折，**地板 0.25** | 无反馈基因**不衰减**（归审核门控管）；衰减永不单独杀死基因（硬过滤仍归审核门控+守卫）；`EVOX_GENE_DECAY=0` 一键回旧行为 |
 | kv 压缩同族加权 | 已知同族基因召回加分 **+1.5**（`EVOX_SAME_KV_WEIGHT` 可调，设 0 关闭） | 族别取 `generation_meta.source_kv`（`none`/`csa-s4`/`stride2`/`unknown`）：**闭源模型一律 `unknown` 不猜**；本机族未知时不加权（行为与未加权版本一致） |
 
@@ -129,12 +129,12 @@ node code/light-cli.mjs info      # 看「召回次数 / 命中 / 待审」
 |---|---|---|---|
 | 1 | **修法守卫** | 有没有**真修法**（无可可执行成分 → 不注入） | 召回 |
 | 2 | **叙述守卫** | 是不是**旁白流水**（开场白式 → 不注入；实测等效噪声 +36pp） | 召回 |
-| 3 | **注入守卫** | 是不是**恶意指令**（提示词注入 → 不注入；回归 16/16 恶意拦截、7/7 正常零误杀） | 召回三条通道 + 导入 + 导出 |
+| 3 | **注入守卫** | 是不是**恶意指令**（提示词注入 → 不注入；回归 31/31 恶意拦截、11/11 正常零误杀（发布门禁每版实测、数字见发布页更新说明；完整套件按设计不随包分发，包内 selftest.mjs 为快速哨兵）） | 召回三条通道 + 导入 + 导出 |
 | 4 | **脱敏闸门** | 会不会**泄私有内容**（内网 IP/家目录路径/密钥/令牌/内部代号 → 拦截不出网） | 导出 + 导入 |
 
 > 门模块缺失时：**导出/导入 fail-closed（拒绝执行）**；`evolver-recall.mjs` 侧只跳过注入门、其余三门照常（宿主 bootstrap 不能因守卫失败而阻断使用者）。
 > **文档纪律**：此处（及仓库所有注释）只描述**机制类别**、不引用触发串原文——说明文字本身会被扫描器当成注入样本（本仓有为此发版的先例）。
-> **EN**: Genes are soft prompts — one malicious gene is one prompt injection. Four gates: repair-signal, narration, injection (regression 16/16 malicious caught, 7/7 legitimate zero false-kill), redaction (privacy, fail-closed off-machine).
+> **EN**: Genes are soft prompts — one malicious gene is one prompt injection. Four gates: repair-signal, narration, injection (regression 31/31 malicious caught, 11/11 legitimate zero false-kill (measured in the release gate each version, figures in the release notes; full suite not shipped, bundled selftest.mjs is a quick sentinel)), redaction (privacy, fail-closed off-machine).
 
 ## 8. 冷启动与常见误期待
 

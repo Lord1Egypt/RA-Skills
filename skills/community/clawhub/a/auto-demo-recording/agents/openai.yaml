@@ -1,0 +1,7 @@
+interface:
+  display_name: "Auto Demo Recording"
+  short_description: "Record and narrate a polished demo video of a web app"
+  default_prompt: "Use $autoDemoRecordingSkill to record a demo video of this web app — ask me first about narration language and engine."
+
+policy:
+  allow_implicit_invocation: true

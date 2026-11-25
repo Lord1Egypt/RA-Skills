@@ -1,6 +1,6 @@
 ## Description:
 
-Drafts remote work handbook sections for US distributed teams, with FLSA, leave, state and accessibility items flagged for HR.
+Drafts remote work handbook sections for US distributed teams, with FLSA, leave, state and accessibility items flagged for HR. Use when the user asks for remote work policy template, work from home policy us, distributed team handbook section. For US HR managers and operations leads writing policy for distributed and hybrid teams.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-US HR managers and operations leads use the skill to draft remote and hybrid work handbook sections for distributed teams. It flags federal and state-dependent issues for HR or counsel to review.
+US HR managers and operations leads use this skill to draft remote and hybrid work handbook sections. It structures policy text, flags state-specific and federal checks, and lists open decisions for HR and legal review.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,32 @@ United States
 
 ## Known Risks and Mitigations:
 
-Risk: The documented YAML brief and CSV-based renderer may not work together as described, which could result in incomplete drafts.
+Risk: The security review marks the release suspicious because file-writing capability has no declared tool scope; the scan is partial and its evidence is incomplete.
 
-Mitigation: Resolve and test the input-format mismatch with trusted sample data, and write to a fresh output folder.
+Mitigation: Review the intended file-writing needs and unresolved references before deciding whether to install or use the skill.
 
-Risk: State-specific employment rules and handbook drafts may be treated as final or universally applicable policy.
+Risk: A handbook draft could state an incorrect or outdated employment rule as settled policy.
 
-Mitigation: Keep state-dependent items open for review and have HR or counsel confirm the draft for each work state before adoption.
-
-Risk: The optional, separately downloaded Windows app is unsigned and outside the bundled workflow review.
-
-Mitigation: The handbook workflow does not require the app; if used separately, verify its download as documented and avoid elevated privileges without a specific need.
+Mitigation: Keep state-dependent items open for HR or counsel to confirm, and have HR, legal, and the employee's work state reviewed before distribution.
 
 ## Reference(s):
 
-- [US remote work rules and state variation](references/remote-work-us-rules.md)
-- [ClawHub skill page](https://clawhub.ai/rapidworker1/skills/remote-team-handbook)
+- [Remote work US rules and state variation](artifact/references/remote-work-us-rules.md)
+- [ClawHub skill release](https://clawhub.ai/rapidworker1/skills/remote-team-handbook)
 
 ## Skill Output:
 
 **Output Type(s):** [Markdown, Guidance]
 
-**Output Format:** [Remote-work handbook section drafts with state-specific open items and review guidance]
+**Output Format:** [Markdown handbook section with state items, federal checks, open items, and a review block]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Drafts require HR or counsel review before adoption.]
+**Other Properties Related to Output:** [Draft for HR, legal, and work-state review; state-dependent rules and decisions are surfaced as open items.]
 
 ## Skill Version(s):
 
-1.0.6 (source: server-resolved ClawHub release metadata)
+1.0.7 (source: frontmatter)
 
 ## Ethical Considerations:
 

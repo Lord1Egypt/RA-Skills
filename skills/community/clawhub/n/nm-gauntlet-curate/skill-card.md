@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to record module-specific insights, rationale, and historical context that cannot be derived from code as YAML annotations for future gauntlet challenges.
+Developers use this skill to capture module-specific insights and rationale that are not apparent from code, then save them as YAML annotations for future gauntlet challenges.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: An inaccurate annotation may add misleading guidance to the knowledge base and future challenges.
+Risk: An inaccurate or duplicate annotation could mislead future challenges.
 
-Mitigation: Review the concept and rationale for accuracy, and check for an existing entry under the same slug before saving.
+Mitigation: Check the concept and rationale against project context, and check for an existing entry under the same slug before saving.
 
 ## Reference(s):
 
-- [Homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet)
 - [ClawHub skill release](https://clawhub.ai/athola/skills/nm-gauntlet-curate)
+- [Project homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet)
 
 ## Skill Output:
 
-**Output Type(s):** [Files, Configuration instructions, Text]
+**Output Type(s):** [Configuration, Guidance]
 
-**Output Format:** [YAML annotation file with confirmation text]
+**Output Format:** [YAML annotation file]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Annotation includes a concept and its rationale or context.]
+**Other Properties Related to Output:** [Annotation includes a concept and rationale (why); its filename slug is based on the annotated module and concept.]
 
 ## Skill Version(s):
 
-1.10.3 (source: release metadata and frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

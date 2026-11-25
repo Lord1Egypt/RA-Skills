@@ -2,6 +2,10 @@
 
 Local file conventions for the [reuse workflow](../workflows/creative-library.md), maintained through the Agent's filesystem tools. These are not registered CLI inputs, a cloud-library schema, or an executor. Extend business details as needed while retaining identity, revision, provenance, and actual file relationships.
 
+Mixcut templates remain script_template entries with optional payload.editing under the [mixcut contract](semantic-mixcut.md): beat purposes, cut triggers, sound rules, selection requirements, and variables. Existing templates remain valid. This is private creative data, not a cloud packaging template or editable platform project.
+
+For cloud media, follow [material reuse](../resources/materials.md): keep account site, real material_id, role and adopted version, plus existing segment IDs/source times when known. Batch-check on recovery and refresh detail when needed. Mark missing references needs_input instead of substituting same-named results. This library still owns script variables, revisions and identity/story definitions.
+
 ## Directory and index
 
 Use a user-private persistent directory, for example:

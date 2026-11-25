@@ -7,12 +7,13 @@ const entry = (task_type, doc, mode, fields, required, example, extra = {}) => (
 })
 
 const commands = {
-  translate_video: entry('VIDEO_VOICE_OVER_TASK', '515705766e0', 'async', {
+  translate_video: entry('VIDEO_VOICE_OVER_TASK', '515706553e0', 'async', {
     business_id: 'id', task_name: 'string', source_language: 'string', target_language: 'string',
     translation_style: 'string', default_speed: 'number', auto_translate: 'boolean',
     subtitle_enabled: 'boolean', lip_sync_enabled: 'boolean', remove_subtitles_enabled: 'boolean',
+    align_original_subtitle_position: 'boolean', translate_and_align_original_title: 'boolean',
     persona_mode: 'string', template_type: 'integer', template_configs: 'objects',
-    default_digital_human_id: 'id', default_prompt: 'string',
+    default_digital_human_id: 'id', default_prompt: 'string', default_voice: 'nullable_object',
     settings: 'object', items: 'objects',
   }, ['items', 'auto_translate'], {
     auto_translate: true, target_language: 'en', items: [{ source_video: { url: 'https://example.com/source.mp4' } }],
@@ -29,6 +30,29 @@ const commands = {
   }, [], { sub_task_id: '2100065567327711232' }, {
     operation: 'confirm_translation', method: 'POST', suffix: '/storyboard/confirm', result_kind: 'translation',
     note: 'Requires actual reviewed storyboard context. Omitted sub_task_id confirms the whole batch; CLI requires --all-items explicitly.' }),
+  update_speaker_voices: entry('VIDEO_VOICE_OVER_TASK', '515706553e0', 'mutation', {
+    sub_task_id: 'id', speaker_voice_mappings: 'objects',
+  }, ['sub_task_id', 'speaker_voice_mappings'], {
+    sub_task_id: '2100065567327711232', speaker_voice_mappings: [{ speaker_id: 0, reference_audio_url: 'https://example.com/voice.mp3' }],
+  }, { operation: 'update_speaker_voices', wire: 'translation_operation', result_kind: 'translation',
+    note: 'Replaces ALL speaker bindings for this video; preserve every binding still needed. [] clears them. Saves configuration only, invalidates old previews across languages, and preserves delivered videos. Read current ASR speakers and mappings first.' }),
+  retry_segments: entry('VIDEO_VOICE_OVER_TASK', '515706553e0', 'mutation', {
+    sub_task_id: 'id', target_language: 'string', request_id: 'string', segments: 'objects',
+  }, ['sub_task_id', 'target_language', 'request_id', 'segments'], {
+    sub_task_id: '2100065567327711232', target_language: 'en', request_id: 'retry-example-001',
+    segments: [{ id: 1, translated_text: 'Welcome.' }],
+  }, { operation: 'retry_segments', wire: 'translation_operation', result_kind: 'translation',
+    note: 'Generates preview speech for existing segment IDs in one language; short sentences may share an audio group. Does not render a video. Keep the same business request_id for recovery; changing it may charge again. Times, speakers and lip sync inherit the server draft.' }),
+  resynthesize_language: entry('VIDEO_VOICE_OVER_TASK', '515706553e0', 'mutation', {
+    sub_task_id: 'id', target_language: 'string', request_id: 'string', translated_segments_by_language: 'object',
+  }, ['sub_task_id', 'target_language', 'request_id', 'translated_segments_by_language'], {
+    sub_task_id: '2100065567327711232', target_language: 'en', request_id: 'render-example-001',
+    translated_segments_by_language: { en: [{ id: 1, from: 0, to: 2.5, source_text: 'Hello', translated_text: 'Welcome.', speaker_id: 0, lip_sync: false }] },
+  }, { operation: 'resynthesize_language', wire: 'translation_operation', result_kind: 'translation',
+    note: 'Renders ONE language from its complete, already voiced server draft; never generates missing TTS. Preserve all segment IDs, times, speakers and text. Poll the matching request_id receipt, not the parent COMPLETED status. Old videos remain available on failure.' }),
+  upload_reference_audio: entry('VIDEO_VOICE_OVER_TASK', '515706553e0', 'sync', {}, [], {}, {
+    operation: 'upload_reference_audio', method: 'GET', suffix: '/reference-audio/upload-signature', result_kind: 'upload_instructions',
+    note: 'Gets a task-scoped OSS signature; --file uploads a local .mp3 and returns its URL. Uploading does not bind a voice, generate speech or create a reusable voice asset. Never send the OpenAPI token to OSS.' }),
   seedance: entry('SEEDANCE_VIDEO_GENERATION', '514565013e0', 'async', {
     model: 'string', prompt: 'string', duration_seconds: 'integer', resolution: 'string',
     aspect_ratio: 'string', generate_audio: 'boolean', tools: 'objects',
@@ -88,9 +112,46 @@ const commands = {
     { query: 'string', limit: 'integer' }, ['query'], { query: 'portable projector', limit: 5 }),
   list_templates: entry('VIDEO_PACKING_TEMPLATE_LIST', '513300738e0', 'sync', {
     business_type: 'string', template_type: 'string', scope: 'string', keyword: 'text', page: 'integer', size: 'integer',
-  }, [], { business_type: 'scrolling_subtitle', template_type: 'video-editor', scope: 'common', keyword: '', page: 1, size: 20 },
+  }, [], { business_type: 'mixed_cut', template_type: 'video-editor', page: 1, size: 100 },
   {
-    note: 'Query the list directly and use returned detail; template application must match the destination operation.' }),
+    note: 'For ordinary translation packaging use mixed_cut / video-editor, omit scope for all visible scopes, and follow returned pagination. Use the relevant category for other workflows; application must match the destination operation.' }),
+  get_template: entry('VIDEO_PACKING_TEMPLATE_DETAIL', '513300739e0', 'sync', {
+    template_id: 'id',
+  }, ['template_id'], { template_id: '2100065567327711232' }, {
+    wire: 'json_text_exact', result_kind: 'resource',
+    note: 'Queries an existing packaging template by its real ID. Read-only; it does not create, edit or apply a template and does not enable dynamic subtitle workflows.' }),
+  list_materials: entry(undefined, '526954858e0', 'sync', {
+    name: 'text', media_type: 'string', collection_name: 'string', tag_names: 'string_array',
+    tag_match_mode: 'string', category: 'string', classification_source: 'string', page: 'integer', page_size: 'integer',
+  }, [], { media_type: 'VIDEO', page: 1, page_size: 20 }, {
+    wire: 'resource', method: 'GET', endpoint: '/materials', result_kind: 'material', material_operation: 'list', read_only: true,
+    note: 'Lists accessible materials, including unanalyzed items. Pages start at 1; repeated tag_names preserve exact names. Fetch detail before using original media.' }),
+  batch_get_materials: entry(undefined, '526956401e0', 'sync', {
+    material_ids: 'ids',
+  }, ['material_ids'], { material_ids: ['2100065567327711232', '2100065567327711233'] }, {
+    wire: 'resource', method: 'POST', endpoint: '/materials:batchGet', result_kind: 'material', material_operation: 'batch', read_only: true,
+    note: 'Read-only lookup of 1..100 IDs before deduplication. Missing IDs may be inaccessible or absent; they are not proven deleted. No task or submission journal is created.' }),
+  get_material: entry(undefined, '526971802e0', 'sync', {
+    material_id: 'id', segment_page: 'integer', segment_page_size: 'integer',
+  }, ['material_id'], { material_id: '2100065567327711232', segment_page: 1, segment_page_size: 20 }, {
+    wire: 'resource', method: 'GET', endpoint: '/materials/{materialId}', result_kind: 'material', material_operation: 'detail', read_only: true,
+    note: 'Fetches source media, metadata and existing analysis. Segment pagination applies separately to every scene. Refresh detail when its signed media URLs expire; this query does not start analysis.' }),
+  search_materials: entry(undefined, '526973679e0', 'sync', {
+    query: 'string', media_types: 'string_array', collection_name: 'string', tag_names: 'string_array',
+    tag_match_mode: 'string', category: 'string', classification_source: 'string', top_k: 'integer',
+  }, ['query'], { query: 'A person running beside the sea', media_types: ['VIDEO'], top_k: 5 }, {
+    wire: 'resource', method: 'POST', endpoint: '/materials:search', result_kind: 'material', material_operation: 'search', read_only: true,
+    note: 'Searches existing analyzed text, not every library item. Scores rank this response only. No pagination; top_k counts materials, with at most 20 matches each. Read timeout defaults to 120 seconds; --timeout-seconds overrides it.' }),
+  import_material_videos: entry(undefined, '526975082e0', 'async', {
+    items: 'objects', collection_name: 'string', auto_ingest: 'boolean',
+  }, ['items'], { items: [{ url: 'https://example.com/source.mp4', name: 'Product-showcase-v1.mp4' }], auto_ingest: false }, {
+    wire: 'resource', method: 'POST', endpoint: '/materials:importFromUrls', result_kind: 'material_import', defaults: { auto_ingest: false },
+    note: 'Imports video URLs into the material library; one existing collection_name applies to the batch. auto_ingest defaults to false in this client. Save the original import task ID; imported media and analysis have separate outcomes.' }),
+  get_material_import: entry(undefined, '526977708e0', 'sync', {
+    import_task_id: 'string',
+  }, ['import_task_id'], { import_task_id: '2100065567327711232' }, {
+    wire: 'resource', method: 'GET', endpoint: '/material-import-tasks/{taskId}', result_kind: 'material_import',
+    note: 'Queries the original material import task ID, not a generation task. SUCCESS does not prove analysis completed. Read imported material IDs and each item outcome.' }),
   upload_info: entry('MATERIAL_UPLOAD', '513300740e0', 'sync',
     { is_temporary: 'boolean' }, ['is_temporary'], { is_temporary: false },
     { result_kind: 'upload_instructions',
@@ -112,8 +173,8 @@ const commands = {
       defaults: { model: 'gpt-image-2.5-sunburst', size: '1024x1024' },
       models: ['gpt-image-2', 'gpt-image-2.5-flare', 'gpt-image-2.5-sunburst'],
       note: 'Default model: gpt-image-2.5-sunburst; default size: 1024x1024. Explicit model and size are preserved. Inputs: prompt, model, size and optional reference_image_urls. The singular reference_image_url and mask fields are not supported; verify the returned image and dimensions.' }),
-  list_digital_humans: entry('QUERY_DIGITAL_HUMAN_LIST', '', 'sync', {}, [], {},
-    { status: 'legacy', result_kind: 'resource', requires_opt_in: false,
+  list_digital_humans: entry('QUERY_DIGITAL_HUMAN_LIST', '517439849e0', 'sync', {}, [], {},
+    { result_kind: 'resource', requires_opt_in: false,
       note: 'Query directly; resource counts, IDs, and access scope come from the current account response.' }),
 
   list_products: entry('ECOM_PRODUCT_LIST', '519653477e0', 'sync',

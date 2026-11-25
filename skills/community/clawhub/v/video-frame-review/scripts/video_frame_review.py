@@ -8,6 +8,7 @@ import json
 import math
 import os
 from pathlib import Path
+from typing import TextIO
 import shutil
 import subprocess
 import sys
@@ -67,16 +68,24 @@ def cli() -> argparse.Namespace:
     parser.add_argument("--page-size", type=int, default=20, help="frames per contact sheet, 1-40 (default: 20)")
     parser.add_argument("--max-frames", type=int, default=MAX_FRAMES, help="maximum requested sample times, up to 240")
     parser.add_argument("--thumb-width", type=int, default=320, help="thumbnail width in pixels, 240-640")
+    parser.add_argument("--timeout", type=positive_float, default=300, help="seconds allowed per media subprocess (default: 300)")
     return parser.parse_args()
 
 
-def run(command: list[str]) -> str:
-    result = subprocess.run(command, text=True, capture_output=True, check=False)
-    if result.returncode:
-        detail = (result.stderr or result.stdout).strip()[-1200:]
-        raise ReviewError(f"{command[0]} failed (exit {result.returncode}): {detail}")
-    return result.stdout
-
+def run(command: list[str], timeout: float, *, stdout: TextIO | None = None) -> str:
+    with tempfile.TemporaryFile() as errors:
+        try:
+            result = subprocess.run(
+                command, text=True, stdout=subprocess.PIPE if stdout is None else stdout,
+                stderr=errors, check=False, timeout=timeout,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise ReviewError(f"{command[0]} timed out after {timeout:g}s") from exc
+        if result.returncode:
+            errors.seek(max(0, errors.tell() - 1200))
+            detail = errors.read().decode(errors="replace").strip() or (result.stdout or "").strip()[-1200:]
+            raise ReviewError(f"{command[0]} failed (exit {result.returncode}): {detail}")
+    return result.stdout or ""
 
 def dependencies():
     for name in ("ffprobe", "ffmpeg"):
@@ -89,8 +98,8 @@ def dependencies():
     return Image, ImageDraw, ImageOps
 
 
-def probe(path: Path) -> tuple[float, int, int, bool]:
-    raw = run(["ffprobe", "-v", "error", "-show_entries", "format=duration:stream=index,codec_type,width,height", "-of", "json", str(path)])
+def probe(path: Path, timeout: float) -> tuple[float, int, int, bool]:
+    raw = run(["ffprobe", "-v", "error", "-show_entries", "format=duration:stream=index,codec_type,width,height", "-of", "json", str(path)], timeout)
     data = json.loads(raw)
     video = next((stream for stream in data.get("streams", []) if stream.get("codec_type") == "video"), None)
     if not video:
@@ -144,36 +153,32 @@ def targets(args: argparse.Namespace, duration: float) -> tuple[float, list[dict
     return end, [{"requested_seconds": t, "reasons": sorted(reasons)} for t, reasons in sorted(requested.items())]
 
 
-def locate_frames(path: Path, requested: list[dict]) -> list[dict]:
+def locate_frames(path: Path, requested: list[dict], timeout: float) -> list[dict]:
     command = ["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_frames", "-show_entries", "frame=best_effort_timestamp_time", "-of", "csv=p=0", str(path)]
-    process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    assert process.stdout is not None and process.stderr is not None
-    next_target = 0
-    last = None
-    frame_index = 0
-    for line in process.stdout:
-        value = line.strip().split(",", 1)[0]
-        if not value:
-            continue
-        try:
-            pts = float(value)
-        except ValueError:
-            if value != "N/A":
-                process.kill()
-                process.wait()
-                raise ReviewError(f"unexpected ffprobe frame timestamp record: {value[:100]}")
+    with tempfile.TemporaryFile(mode="w+t", encoding="utf-8") as timestamps:
+        run(command, timeout, stdout=timestamps)
+        timestamps.seek(0)
+        next_target = 0
+        last = None
+        frame_index = 0
+        for line in timestamps:
+            value = line.strip().split(",", 1)[0]
+            if not value:
+                continue
+            try:
+                pts = float(value)
+            except ValueError:
+                if value != "N/A":
+                    raise ReviewError(f"unexpected ffprobe frame timestamp record: {value[:100]}")
+                frame_index += 1
+                continue
+            if math.isfinite(pts):
+                last = (frame_index, pts)
+                while next_target < len(requested) and requested[next_target]["requested_seconds"] <= pts + 1e-6:
+                    requested[next_target]["frame_index"] = frame_index
+                    requested[next_target]["pts_seconds"] = pts
+                    next_target += 1
             frame_index += 1
-            continue
-        if math.isfinite(pts):
-            last = (frame_index, pts)
-            while next_target < len(requested) and requested[next_target]["requested_seconds"] <= pts + 1e-6:
-                requested[next_target]["frame_index"] = frame_index
-                requested[next_target]["pts_seconds"] = pts
-                next_target += 1
-        frame_index += 1
-    stderr = process.stderr.read()
-    if process.wait():
-        raise ReviewError(f"ffprobe frame scan failed: {stderr.strip()[-1200:]}")
     if last is None:
         raise ReviewError("no video frames with presentation timestamps found")
     for target in requested[next_target:]:
@@ -182,10 +187,10 @@ def locate_frames(path: Path, requested: list[dict]) -> list[dict]:
     return requested
 
 
-def extract(path: Path, indices: list[int], directory: Path) -> None:
+def extract(path: Path, indices: list[int], directory: Path, timeout: float) -> None:
     # Escaped commas are required inside FFmpeg filter expressions.
     expression = "+".join(f"eq(n\\,{index})" for index in indices)
-    run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-nostdin", "-i", str(path), "-map", "0:v:0", "-vf", f"select={expression}", "-fps_mode", "passthrough", "-frames:v", str(len(indices)), "-start_number", "0", str(directory / "%06d.png")])
+    run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-nostdin", "-i", str(path), "-map", "0:v:0", "-vf", f"select={expression}", "-fps_mode", "passthrough", "-frames:v", str(len(indices)), "-start_number", "0", str(directory / "%06d.png")], timeout)
     actual = sorted(directory.glob("*.png"))
     if len(actual) != len(indices):
         raise ReviewError(f"expected {len(indices)} extracted frames, found {len(actual)}; inspect FFmpeg stream/filter compatibility")
@@ -252,14 +257,14 @@ def main() -> int:
             raise ReviewError(f"output already exists: {output}; choose a new directory")
         if output == input_path or input_path in output.parents:
             raise ReviewError("output cannot contain the input file")
-        duration, width, height, has_audio = probe(input_path)
+        duration, width, height, has_audio = probe(input_path, args.timeout)
         end, requested = targets(args, duration)
-        requested = locate_frames(input_path, requested)
+        requested = locate_frames(input_path, requested, args.timeout)
         unique_indices = sorted({target["frame_index"] for target in requested})
         output.mkdir(parents=True, exist_ok=False)
         with tempfile.TemporaryDirectory(prefix=".extracted-", dir=output) as scratch:
             scratch_path = Path(scratch)
-            extract(input_path, unique_indices, scratch_path)
+            extract(input_path, unique_indices, scratch_path, args.timeout)
             frames = {index: scratch_path / f"{position:06d}.png" for position, index in enumerate(unique_indices)}
             with pil[0].open(frames[unique_indices[0]]) as first_frame:
                 displayed_size = first_frame.size

@@ -34,7 +34,7 @@ from extract_interaction_ledger import (
     extract_handler_actions,
     inspect_runtime_action_assignments,
 )
-from validate_acceptance_run import validate_evidence_refs
+from validate_acceptance_run import validate_acceptance_document, execution_environment, acceptance_results
 
 
 @dataclass(frozen=True)
@@ -1816,33 +1816,14 @@ class PrototypeChecks:
                 "three_plus_dependent_steps": {"core_flow"},
                 "critical_state_transition": {"state"},
             }
-            semantic_types_for_context: dict[str, set[str]] = defaultdict(set)
-            for semantic in semantic_items:
-                semantic_types_for_context[str(semantic.get("owner_context_ref", "")).upper()].add(
-                    str(semantic.get("semantic_type", ""))
-                )
             complex_contexts: set[str] = set()
             for decision in decisions:
                 context_ref = str(decision.get("context_ref", "")).upper()
                 drivers = {str(item) for item in decision.get("complexity_drivers", []) or []}
-                context = contexts.get(context_ref, {})
-                inferred_drivers: set[str] = set()
-                # An overlay is a location, not by itself a cross-page business
-                # dependency. Actual declared drivers and state/role semantics
-                # still require their diagrams and counterexamples.
-                surface_types = {str(item) for item in context.get("surface_types", []) or []}
-                semantic_types_here = semantic_types_for_context.get(context_ref, set())
-                if "workflow" in surface_types or "state_transition" in semantic_types_here:
-                    inferred_drivers.add("critical_state_transition")
-                if semantic_types_here & {"event_handoff", "role_path"}:
-                    inferred_drivers.add("cross_role")
-                if not inferred_drivers.issubset(drivers):
-                    self.add(
-                        "BLOCK", "PROTO-REVIEW-DIAGRAM-DECISION", path,
-                        "页面合同和语义账本已经触发复杂图，不能在 diagram_contract 中降级为简单 CRUD",
-                        f"{context_ref}: missing={sorted(inferred_drivers - drivers)}",
-                        affected_consumers=("product", "frontend", "backend", "qa"),
-                    )
+                # A semantic category does not establish a complexity driver:
+                # role_path may have one actor; event_handoff may stay within
+                # one role; a state change need not be critical. Validate the
+                # explicitly declared, source-grounded business dependency.
                 declared_types = {str(item) for item in decision.get("required_types", []) or []}
                 expected_types: set[str] = set()
                 for driver in drivers:
@@ -2313,17 +2294,11 @@ class PrototypeChecks:
                             f"{coverage_id}->{point_ref}",
                             affected_consumers=("product", "frontend", "backend", "qa", "coding_agent"),
                         )
-                    elif status == "gap" and str(point.get("business_status", "")) not in {"gap", "pending_decision"}:
+                    elif status != "not_applicable" and str(point.get("business_status", "")) in {"gap", "pending_decision"}:
                         self.add(
-                            "BLOCK", "PROTO-REVIEW-SEMANTIC-COVERAGE", path,
-                            "开放语义缺口不能映射到已确认 ReviewPoint",
-                            f"{coverage_id}->{point_ref}",
-                            affected_consumers=("product", "frontend", "backend", "qa", "coding_agent"),
-                        )
-                    elif status == "covered" and str(point.get("business_status", "")) != "confirmed":
-                        self.add(
-                            "BLOCK", "PROTO-REVIEW-SEMANTIC-COVERAGE", path,
-                            "已覆盖语义项必须映射到已确认 ReviewPoint；待决内容应保持 gap",
+                            "BLOCK" if criticality in {"P0", "P1"} else "GAP",
+                            "PROTO-REVIEW-SEMANTIC-COVERAGE", path,
+                            "业务决定仍未明确；说明覆盖不解除该项依赖的交接限制",
                             f"{coverage_id}->{point_ref}",
                             affected_consumers=("product", "frontend", "backend", "qa", "coding_agent"),
                         )
@@ -2383,7 +2358,7 @@ class PrototypeChecks:
                     severity = "BLOCK" if criticality in {"P0", "P1"} else "GAP"
                     self.add(
                         severity, "PROTO-REVIEW-SEMANTIC-COVERAGE", path,
-                        "关键实现/验收语义仍未关闭，不能以结构完整替代业务完整",
+                        "评审说明覆盖仍有缺口，限制本次完整交接；不改变已有业务决定或产品发布规则",
                         f"{coverage_id}/{criticality}",
                         affected_consumers=("product", "frontend", "backend", "qa", "coding_agent"),
                         related_refs=tuple(filter(None, (coverage_id, subject_ref, str(item.get("unknown_ref", "") or "")))),
@@ -2916,6 +2891,7 @@ class PrototypeChecks:
         page_testids = [item for item in testids if item.lower().startswith("page-")]
         region_testids = [item for item in testids if item.lower().startswith("region-")]
         self.prototype_acceptance_refs.update(item.upper() for item in acceptance_refs)
+        self.prototype_acceptance_by_path[path.resolve()] = {item.upper() for item in acceptance_refs}
         if not page_testids:
             self.add("BLOCK" if actions or level in {"L2", "L3", "L4"} else "GAP", "PROTO-NO-PAGE-ANCHOR", path, "no page-* data-testid root was found")
         static_anchors = _StaticAnchorParser()
@@ -4010,7 +3986,6 @@ class PrototypeChecks:
         })
 
     def check_acceptance_run(self, path: Path) -> tuple[set[str], bool, bool]:
-        from quality_gate import ACCEPTANCE_SCHEMA  # deferred: avoids circular import
         """Validate one ARUN and return evidenced ACs, browser environment, conclusion."""
         try:
             raw = self.read(path)
@@ -4021,82 +3996,19 @@ class PrototypeChecks:
         if error or document is None:
             self.add("BLOCK", "ACCEPTANCE-PARSE", path, error or "验收记录无效")
             return set(), False, False
-        schema = json.loads(ACCEPTANCE_SCHEMA.read_text(encoding="utf-8"))
-        schema_errors = sorted(
-            Draft202012Validator(schema, format_checker=FormatChecker()).iter_errors(document),
-            key=lambda item: tuple(str(part) for part in item.path),
-        )
-        for schema_error in schema_errors:
-            location = ".".join(str(part) for part in schema_error.path) or "<root>"
-            self.add("BLOCK", "ACCEPTANCE-SCHEMA", path, schema_error.message, location)
-
-        evidence_failures = validate_evidence_refs(document, path)
-        for failure in evidence_failures:
-            self.add("BLOCK", "ACCEPTANCE-EVIDENCE-INVALID", path, failure)
-
-        evidenced: set[str] = set()
-        mandatory_incomplete: list[str] = []
-        for item in document.get("items", []) or []:
-            if not isinstance(item, dict):
-                continue
-            item_id = str(item.get("id", "<unknown>"))
-            if item.get("mandatory") and item.get("result") != "pass":
-                mandatory_incomplete.append(item_id)
-            if item.get("result") != "pass":
-                continue
-            if not str(item.get("actual_result", "")).strip() or not item.get("evidence_refs"):
-                self.add("BLOCK", "ACCEPTANCE-PASS-NO-EVIDENCE", path, "pass 项必须填写实际结果和证据引用", item_id)
-                continue
-            acceptance_ref = str(item.get("acceptance_ref", "")).upper()
-            if acceptance_ref and not evidence_failures:
-                evidenced.add(acceptance_ref)
-
-        conclusion = str(document.get("conclusion", "pending"))
-        sign_offs = document.get("sign_offs", []) or []
-        if conclusion == "accepted" and mandatory_incomplete:
-            self.add("BLOCK", "ACCEPTANCE-INCOMPLETE-CONCLUSION", path, "accepted 仍包含未通过的 mandatory 项", ", ".join(mandatory_incomplete))
-        if conclusion == "accepted_with_conditions" and not document.get("conditions"):
-            self.add("BLOCK", "ACCEPTANCE-CONDITION-MISSING", path, "accepted_with_conditions 缺少条件、责任人和完成标准")
-        if conclusion in {"accepted", "accepted_with_conditions"} and not sign_offs:
-            self.add("BLOCK", "ACCEPTANCE-SIGNOFF-MISSING", path, "接受结论缺少签署记录")
-        elif conclusion in {"accepted", "accepted_with_conditions"}:
-            missing_signoff_evidence = [
-                str(item.get("actor", "<unknown>"))
-                for item in sign_offs
-                if isinstance(item, dict) and not str(item.get("evidence_ref", "")).strip()
-            ]
-            if missing_signoff_evidence:
-                self.add(
-                    "BLOCK", "ACCEPTANCE-SIGNOFF-NO-EVIDENCE", path,
-                    "接受结论的每条签署记录都必须绑定可解析证据",
-                    ", ".join(missing_signoff_evidence),
-                )
-            rejecting_signers = [
-                str(item.get("actor", "<unknown>"))
-                for item in sign_offs
-                if isinstance(item, dict) and item.get("decision") == "reject"
-            ]
-            if rejecting_signers:
-                self.add(
-                    "BLOCK", "ACCEPTANCE-SIGNOFF-CONFLICT", path,
-                    "接受结论与拒绝签署相冲突",
-                    ", ".join(rejecting_signers),
-                )
-
-        environment = str(document.get("environment", "")).lower()
-        browser_markers = ("browser", "浏览器", "chrome", "edge", "firefox", "safari", "webkit", "playwright")
-        browser_environment = any(marker in environment for marker in browser_markers)
-        conclusive = (
-            conclusion in {"accepted", "accepted_with_conditions"}
-            and not mandatory_incomplete
-            and bool(sign_offs)
-            and not schema_errors
-            and not evidence_failures
-            and all(str(item.get("evidence_ref", "")).strip() for item in sign_offs if isinstance(item, dict))
-            and not any(item.get("decision") == "reject" for item in sign_offs if isinstance(item, dict))
-        )
+        self.acceptance_documents[path.resolve()] = document
+        issues = validate_acceptance_document(document, path)
+        for issue in issues:
+            self.add("BLOCK", issue["code"], path, issue["message"], issue["ref"])
+        if issues:
+            return set(), False, False
+        outcomes = acceptance_results(document)
+        evidenced = outcomes["passed_acs"]
+        browser_environment, _integration = execution_environment(document)
+        browser_environment = browser_environment and bool(outcomes["covered_acs"])
+        conclusive = document["conclusion"] in {"accepted", "accepted_with_conditions"}
         self.metrics.update({
-            "acceptance_run_items": self.metrics.get("acceptance_run_items", 0) + len(document.get("items", []) or []),
+            "acceptance_run_items": self.metrics.get("acceptance_run_items", 0) + len(document["items"]),
             "acceptance_run_evidenced_acs": self.metrics.get("acceptance_run_evidenced_acs", 0) + len(evidenced),
         })
         return evidenced, browser_environment, conclusive

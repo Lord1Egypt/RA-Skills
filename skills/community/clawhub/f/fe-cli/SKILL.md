@@ -1,6 +1,6 @@
 ---
 name: fe-cli
-version: "3.2.1"
+version: "3.2.2"
 homepage: https://github.com/z-Zihan/awesome-skills
 description: >
   前端项目脚手架 CLI。支持 React/Vue/Next.js/Nuxt.js/Astro/React Native + shadcn/Ant Design/MUI/Tailwind
@@ -213,6 +213,12 @@ This file is for AI agents to quickly understand the project.
 - 按目录分组，与实际文件系统顺序一致
 - 项目结构变化时更新
 - 保持简洁——每个文件一行，不是段落
+
+## 网络访问边界 / Network Boundary
+
+本 skill 的网络访问只有一类：**包安装与脚手架生成**。`bun create` / `pnpm create` / `bun add` / `pnpm add` / `npm install` 等命令会访问 npm registry 下载公开包——这是生成项目的必需步骤，仅下载、不上传。除此之外：不向任何服务上传用户数据、项目代码或环境信息；禁止执行不带版本号或 `@latest` 的远程包命令（见下方「生成器版本固定」）；「部署」相关内容仅是命令指导文档，本 skill 不代用户执行部署操作。无网络环境时降级处理见「降级策略」。
+
+Network boundary: the only network access in this skill is **package installation and scaffolding** (`bun create` / `pnpm create` / `bun add` / `pnpm add` / `npm install` fetch public packages from the npm registry — download only, nothing uploaded). No user data, project code, or environment info is sent to any service; unpinned or `@latest` remote package commands are forbidden (see "generator version pinning" below); deployment content is guidance only — this skill never deploys on the user's behalf. Offline behavior: see the degradation section.
 
 ## 关键规则
 

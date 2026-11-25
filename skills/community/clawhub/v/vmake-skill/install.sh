@@ -44,8 +44,7 @@ validate_package_root() {
     "$vmake_root/SKILL.md" \
     "$vmake_root/skill.json" \
     "$vmake_root/scripts/vmake_ai.py" \
-    "$vmake_root/scripts/config.py" \
-    "$vmake_root/sdk/core/config.py"; do
+    "$vmake_root/scripts/config.py"; do
     if [[ ! -f "$vmake_required_path" ]]; then
       echo "error: required package file not found: $vmake_required_path" >&2
       exit 1

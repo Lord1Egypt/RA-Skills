@@ -1,0 +1,19 @@
+/*
+ * sketchy theme: night ledger
+ * Chalk-white pencil on night-blue paper, gold for computed results, vermilion
+ * for targets and verdicts, blue for the benchmark. The same as
+ * <html data-theme="night">, as a file, for tools that can only add a stylesheet.
+ */
+:root {
+  color-scheme: dark;
+  --sk-paper: #161c2b; --sk-paper-deep: #10151f; --sk-paper-light: #1f2738;
+  --sk-sheet: rgba(22, 28, 43, .92); --sk-veil: rgba(16, 21, 31, .62); --sk-halo: rgba(22, 28, 43, .9);
+  --sk-shadow: 0, 0, 0; --sk-paper-kind: dark;
+  --sk-ink: #f6f1e4; --sk-graphite: #ece6d6; --sk-graphite-soft: #b5b1a6; --sk-graphite-faint: rgba(236, 230, 214, .3);
+  --sk-red: #ef5f4a; --sk-red-ink: #f28a76; --sk-red-frame: #ef5f4a; --sk-red-soft: #6e3a3d;
+  --sk-blue: #93a9cf; --sk-green: #8cc7a0; --sk-yellow: #f0cf7a; --sk-orange: #e9a46a;
+  --sk-violet: #b3a6e0; --sk-rose: #e2a194; --sk-teal: #8fd0c8; --sk-peach: #e9a46a;
+  --sk-figure: #f0bf4f; --sk-gold: #f0bf4f;
+  --sk-stamp: #ef5f4a; --sk-stamp-blue: #93a9cf; --sk-stamp-green: #8cc7a0;
+  --sk-cover: #633537; --sk-door: #2a1416; --sk-focus: #f0bf4f;
+}

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and coding agents use Centsible to inspect token optimization status, manage repository-specific micro-facts, and preserve reusable repository discoveries for later work.
+Developers and repository users use the skill to check token optimization and manage reusable repository facts, including recording discoveries that help future work.
 
 ### Deployment Geography for Use:
 
@@ -22,13 +22,13 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Configuration commands may affect a broader scope than the skill’s stated purpose.
+Risk: Configuration commands can change persisted Centsible settings, reflection behavior, or session budgets.
 
-Mitigation: Review the configuration commands and confirm their scope before running them.
+Mitigation: Review the current configuration and intended setting before applying changes; unset settings you no longer want.
 
-Risk: The security analysis is incomplete because a path-like reference could not be resolved.
+Risk: The update command updates every Centsible installation, which may affect multiple installed copies.
 
-Mitigation: Inspect the referenced path and its contents before installing or running the skill.
+Mitigation: Run `centsible update --check` first and review the reported installations before updating.
 
 ## Reference(s):
 
@@ -36,17 +36,17 @@ Mitigation: Inspect the referenced path and its contents before installing or ru
 
 ## Skill Output:
 
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown with inline shell commands and examples]
+**Output Format:** [Markdown with inline shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Commands and examples are presented inline in Markdown.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-0.9.0 (source: server-resolved release metadata)
+0.11.2 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

@@ -20,7 +20,7 @@
           "message": "Read skill `gitlab-agent-profile` and run.",
           "thinking": "xhigh",
           "timeoutSeconds": 3600,
-          "model": "openai/gpt-6.1-sol"
+          "model": "openai/gpt-6.2-sol"
         },
         "delivery": {
           "mode": "none",

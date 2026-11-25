@@ -357,6 +357,108 @@ check("plugin: out_dir under cache accepted",
 check("plugin: budget stays 90 s of the 120 s ceiling",
       plugin._BUDGET_SECONDS <= gs.MAX_BUDGET)
 
+# ------------------------------------------- 1.2.8: the four registry findings, 2026-11-23
+
+# robots precedence follows Google's own matcher: priority = pattern length
+# (google/robotstxt robots.cc, LongestMatchRobotsMatchStrategy), not length consumed
+_rp = gs.load_robots("User-agent: *\nAllow: /*\nDisallow: /private\n")
+check("google parity: broad Allow /* cannot out-rank Disallow /private",
+      _rp.can_fetch("geo-scan", "https://x.test/private/page") is False)
+check("google parity: path outside the disallow stays allowed",
+      _rp.can_fetch("geo-scan", "https://x.test/public/a.pdf") is True)
+check("google parity: RFC 9309 5.2 — the longer rule still wins",
+      gs.load_robots("User-agent: foobot\nAllow: /example/page/\n"
+                     "Disallow: /example/page/disallowed.gif\n")
+      .can_fetch("foobot", "https://x.test/example/page/disallowed.gif") is False)
+check("google parity: equal patterns, Allow wins (RFC 9309 2.2.2)",
+      gs.load_robots("User-agent: *\nAllow: /ab\nDisallow: /ab\n")
+      .can_fetch("x", "https://x.test/ab/c") is True)
+check("google parity: Disallow / loses to a deeper Allow",
+      gs.load_robots("User-agent: *\nDisallow: /\nAllow: /foo/bar.html\n")
+      .can_fetch("x", "https://x.test/foo/bar.html") is True)
+
+# DNS sits inside the declared ceiling: a resolver that never answers cannot
+# park the scan past its own budget
+_gai3 = socket.getaddrinfo
+
+
+def _slow_resolv(host, port, *a, **k):
+    _time.sleep(2.0)
+    raise socket.gaierror("never answers")
+
+
+socket.getaddrinfo = _slow_resolv
+try:
+    t0 = _time.monotonic()
+    try:
+        gs.resolve_public_ips("dial-wait.test", 80, deadline=_time.monotonic() + 0.3)
+        check("stalled resolver refused at the deadline", False)
+    except gs.Skipped as e:
+        el = _time.monotonic() - t0
+        check("stalled resolver refused at the deadline", "deadline" in str(e))
+        check(f"resolver wait bounded ({el:.2f} s)", el < 1.5)
+finally:
+    socket.getaddrinfo = _gai3
+
+# the deadline reaches the resolver through every approve() path
+_seen_kw = []
+
+
+class _WireGuard:
+    public_only = True
+
+    def approve(self, host, port, deadline=None):
+        _seen_kw.append(deadline)
+        return [(4, "93.184.216.34")]
+
+
+sc_wg = gs.Scanner("https://wire.test/", 30)
+sc_wg.guard = _WireGuard()
+sc_wg._guard("https://wire.test/x")
+check("preflight passes the scan deadline to the guard",
+      len(_seen_kw) == 1 and _seen_kw[0] == sc_wg.deadline)
+_hd = next(h for h in sc_wg._opener.handlers if isinstance(h, gs._ValidatedHTTPHandler))
+_hsd = next(h for h in sc_wg._opener.handlers if isinstance(h, gs._ValidatedHTTPSHandler))
+check("http handler carries the watchdog register", _hd._register == sc_wg._register)
+check("https handler carries the watchdog register", _hsd._register == sc_wg._register)
+
+# the watchdog: first register arms it, abort cuts the live socket (shutdown then
+# close — close alone would not wake a blocked recv), a second abort is inert
+class _DummySock:
+    def __init__(self):
+        self.closed = False
+
+    def shutdown(self, how):
+        pass
+
+    def close(self):
+        self.closed = True
+
+
+sc_wd = gs.Scanner("https://wd.test/", 30)
+_d = _DummySock()
+sc_wd._register(_d)
+check("watchdog armed by the first registered socket",
+      sc_wd._watchdog is not None and sc_wd._watchdog.is_alive())
+sc_wd._abort_live()
+check("watchdog shuts and closes the live socket", _d.closed is True)
+check("abort flag set for the honest timeout message", sc_wd._aborted is True)
+sc_wd._abort_live()
+check("a second abort changes nothing", sc_wd._live is None and _d.closed is True)
+sc_wd._watchdog.cancel()
+
+# bench.py reads only reports that resolve inside the working directory (SDI-3)
+import bench as _bench  # noqa: E402
+
+for bad in ("/etc/passwd", "../outside.json"):
+    try:
+        _bench.contained(bad)
+        check(f"bench refuses {bad}", False)
+    except ValueError:
+        check(f"bench refuses {bad}", True)
+check("bench keeps a relative report path",
+      str(_bench.contained("out/r.json")).endswith("out/r.json"))
+
 print(f"geo-scan {gs.__version__} guard tests: {len(checks) - len(fails)} passed, "
       f"{len(fails)} failed")
 for f in fails:

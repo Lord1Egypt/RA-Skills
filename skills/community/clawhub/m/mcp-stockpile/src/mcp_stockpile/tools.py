@@ -198,13 +198,13 @@ TOOLS_METADATA: List[Dict[str, Any]] = [
     },
     {
         "name": "run_inventory_sweep",
-        "description": "Perform an automated inventory maintenance sweep (audits dead supplier links, restocks scouted finds if low, optimizes stale pricing). Consumes 1 Auto-Credit.",
+        "description": "Perform an automated inventory maintenance sweep (evaluates collection rarity, restocks scouted finds if low, optimizes stale pricing). Consumes 1 base Auto-Credit plus 1 credit per restocked item (up to 5).",
         "inputSchema": {
             "type": "object",
             "properties": {
                 "store_id": {"type": "string", "description": "The ID or slug of your store"},
                 "min_inventory_target": {"type": "integer", "description": "Minimum active inventory target", "default": 4},
-                "items_to_scout": {"type": "integer", "description": "Items to scout if restocking", "default": 2}
+                "items_to_scout": {"type": "integer", "description": "Items to scout if restocking (1 to 5, 1 credit per item)", "default": 2}
             },
             "required": ["store_id"]
         }

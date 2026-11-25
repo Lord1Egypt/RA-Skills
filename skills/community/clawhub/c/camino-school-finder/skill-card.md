@@ -1,41 +1,59 @@
-## Description: <br>
-Locate elementary schools, high schools, and universities near any address using Camino AI's location intelligence with AI-powered ranking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Locate elementary schools, high schools, and universities near any address using Camino AI's location intelligence with AI-powered ranking.
 
-## Publisher: <br>
-[james-southendsolutions](https://clawhub.ai/user/james-southendsolutions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[james-southendsolutions](https://clawhub.ai/user/james-southendsolutions)
 
-## Use Case: <br>
-External users and agents use this skill to find nearby elementary schools, high schools, colleges, and universities from an address, coordinates, or school-type query. It is useful for neighborhood research, school proximity checks, and combining school search results with other Camino location workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: School searches may include home addresses, precise coordinates, or child-related location context sent to an external API. <br>
-Mitigation: Review inputs before execution, avoid unnecessary personal or child-identifying details, and confirm Camino's privacy handling before using sensitive locations. <br>
-Risk: The skill requires a CAMINO_API_KEY and performs network requests with curl. <br>
-Mitigation: Store the API key in the agent environment rather than prompts or logs, restrict who can run the skill, and review outbound requests before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to find nearby schools, high schools, colleges, and universities from an address, city, or coordinates through Camino AI location search.
 
-## Reference(s): <br>
-- [School Finder on ClawHub](https://clawhub.ai/james-southendsolutions/camino-school-finder) <br>
-- [Camino API key activation](https://app.getcamino.ai/skills/activate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON responses from the Camino API, with Markdown usage examples and shell commands in the skill documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CAMINO_API_KEY plus curl and jq. Sends school-search queries, coordinates, radius, and limit parameters to the external Camino API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: release evidence) <br>
+Risk: Location searches are sent to Camino's remote API and may include sensitive home or child-related locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending highly sensitive exact locations unless necessary and treat the skill as a remote API client.
+
+Risk: The skill requires a Camino API key for authenticated requests.
+
+Mitigation: Keep the API key scoped, revocable, and out of shared prompts, logs, and committed configuration.
+
+Risk: Installation examples reference an unpinned source.
+
+Mitigation: Install the specific school-finder skill from a version or commit the user trusts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/james-southendsolutions/skills/camino-school-finder)
+- [Camino API Activation](https://app.getcamino.ai/skills/activate)
+- [x402](https://x402.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and a CAMINO_API_KEY environment variable.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

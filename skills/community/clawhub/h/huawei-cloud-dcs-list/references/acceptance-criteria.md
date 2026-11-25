@@ -29,3 +29,10 @@
 | 25 | Empty list in md mode: friendly hint only, no header, no file written | ✅ unit test |
 | 26 | Default / `--table` / `--json` output remains byte-identical to before the change | ✅ `test_legacy_outputs_unchanged` |
 | 27 | Write-intent guard still blocks mutating intents in md mode; the local `--md-output` path never trips it | ✅ `guard_argv` |
+| 28 | `--csv` / `--format csv` prints the same ten columns as md, with CRLF line endings and RFC4180 quoting | ✅ `render_csv` |
+| 29 | CSV escaping handles commas, double quotes, line breaks and Chinese text without breaking rows | ✅ `csv.writer` + `csv_row` |
+| 30 | `--csv-output [<path>]` writes atomically; omitted path or directory uses a timestamped default filename | ✅ `resolve_csv_output_path` |
+| 31 | `--csv-bom` prepends the UTF-8 BOM in both stdout and file output | ✅ unit test |
+| 32 | `--csv` is rejected together with `--json` / `--table` / `--md` / `--names-only` / non-csv `--format` | ✅ `main()` conflict checks |
+| 33 | Output mode precedence is deterministic: json > names > table > md > csv > `--format` > default names | ✅ `resolve_mode` |
+| 34 | Read-only guard documentation covers argv scan, operation whitelist, filter-value scan and local output/sort exemptions | ✅ `references/read-only-guard.md` |

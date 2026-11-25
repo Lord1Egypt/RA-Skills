@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to create or refresh user-facing tutorials from terminal tapes and browser specs, including demo recordings and documentation for project docs and a technical book.
+Developers and project maintainers use this skill to create or refresh user-facing tutorials from terminal tapes and browser specs, including recorded GIFs and brief and detailed Markdown guides.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan marks the release suspicious and reports incomplete analysis, including behaviors beyond the stated tutorial-generation purpose.
+Risk: The security assessment reports that tape-command validation can run commands from tutorial tapes on the local system.
 
-Mitigation: Review the skill and the partially analyzed validation material before installing, and decide whether the reported behavior is acceptable.
+Mitigation: Inspect every VHS Type command before validation, and run reviewed commands in a disposable, isolated project environment.
 
-Risk: Tape commands run with the user's permissions, and a rebuild can affect normally installed Cargo commands.
+Risk: The security assessment calls for review of README update behavior and flags behavior outside the skill's stated tutorial-generation purpose.
 
-Mitigation: Inspect tape commands and rebuild targets before execution; use a disposable workspace and toolchain where practical.
+Mitigation: Review README changes before applying them and confirm that updates affect only the intended demo content.
 
-Risk: Terminal or browser recordings may capture sensitive information.
+Risk: The security scan was partial, so it does not establish that the skill is safe.
 
-Mitigation: Use sanitized demo data and review recordings before sharing or publishing them.
+Mitigation: Treat the security assessment as incomplete and defer installation until the remaining component and flagged behavior have been reviewed.
 
 ## Reference(s):
 
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-sanctum-tutorial-updates)
+- [ClawHub release](https://clawhub.ai/athola/skills/nm-sanctum-tutorial-updates)
+- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Files, GIF images]
+**Output Type(s):** [Markdown, GIF files]
 
-**Output Format:** [Markdown tutorial files and GIF recordings]
+**Output Format:** [Markdown tutorial files and animated GIF recordings]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May update tutorial assets and README demo sections; produces brief project docs and detailed book documentation.]
+**Other Properties Related to Output:** [May create brief project documentation and detailed book documentation, update a README demo section, and integrate generated tutorial assets.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

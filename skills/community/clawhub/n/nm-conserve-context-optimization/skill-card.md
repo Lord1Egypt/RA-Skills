@@ -1,6 +1,6 @@
 ## Description:
 
-Optimizes context window via MECW principles and memory tiering
+Optimizes context window via MECW principles and memory tiering.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to assess context pressure and choose memory, compression, routing, or delegation strategies for long or complex agent tasks.
+Developers and agent operators use this skill to assess context pressure, select memory and compression strategies, and route complex work while preserving key task information.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Checkpoint examples using shared temporary paths may expose or collide with saved state.
+Risk: ClawScan labels the skill suspicious and reports a confirmed weakness in saved task state handling, alongside other concerns; overall confidence is medium.
 
-Mitigation: Review checkpoint paths and use an isolated, access-restricted temporary location.
-
-Risk: Sharing logs may expose sensitive information.
-
-Mitigation: Review and redact sensitive information from logs before sharing them.
+Mitigation: Review the scan concerns before installing, and avoid using the skill with private task information until its saved-state behavior has been assessed.
 
 ## Reference(s):
 
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
-- [Anthropic prompt caching documentation](https://platform.claude.com/docs/en/build-with-claude/prompt-caching)
-- [vLLM automatic prefix caching documentation](https://docs.vllm.ai/en/stable/features/automatic_prefix_caching/)
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-conserve-context-optimization)
+- [Publisher profile](https://clawhub.ai/user/athola)
+- [Homepage listed in Clawdis metadata](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
+- [MECW principles](modules/mecw-principles.md)
+- [MECW assessment](modules/mecw-assessment.md)
+- [Context waiting strategies](modules/context-waiting.md)
+- [Reversible compression](modules/reversible-compression.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Markdown, Code, Shell commands]
+**Output Type(s):** [Analysis, Guidance, Markdown, Code]
 
-**Output Format:** [Markdown guidance with checklists and occasional code or command examples]
+**Output Format:** [Markdown guidance and findings, with optional code examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Recommendations are tailored to the current task and context state.]
+**Other Properties Related to Output:** [No fixed output schema; detail depends on the task.]
 
 ## Skill Version(s):
 
-1.10.3 (source: artifact frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

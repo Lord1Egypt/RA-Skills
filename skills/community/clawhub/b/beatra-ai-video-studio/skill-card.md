@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users use this skill to plan and create short AI video clips from prompts or supplied media, then review the results and choose a focused edit, extension, or new render.
+Creators and marketing teams use this skill to plan, generate, edit, extend, and review short videos for product stories, ads, social posts, b-roll, and cinematic concepts. It helps an agent choose a video route, prepare a shot direction, and assess the returned clip before suggesting another stage.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Shared Beatra authorization includes speech generation and voice management permissions beyond the video workflow.
+Risk: The security review reports recurring, undisclosed installation analytics and access broader than the skill's stated purpose requires.
 
-Mitigation: Install only if you accept that permission scope; revoke the device in Beatra Console to end shared access.
+Mitigation: Avoid installation until the analytics are explained and requested access is limited to what the skill needs.
 
-Risk: Selected media leaves your computer, and installation metadata is reported automatically.
+Risk: The security review reports a shared-credential uninstall weakness and notes that its scan is incomplete.
 
-Mitigation: Proceed only with media and account reporting you accept sharing with Beatra.
-
-Risk: Paid stages can incur charges, and the helper does not enforce cost approval.
-
-Mitigation: Require a cost estimate and approval for each paid stage.
+Mitigation: Address the shared-credential uninstall issue, and review update commands before running them. Treat the scan findings as incomplete because some referenced paths could not be matched to bundled files.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/beatra-ai/skills/beatra-ai-video-studio)
 - [Beatra AI Video Studio](https://beatra.ai/skills/beatra-ai-video-studio)
+- [Intent and routing](references/intent-and-routing.md)
+- [Video recipes](references/video-recipes.md)
+- [Review and iteration](references/review-and-iteration.md)
+- [Updates and security](references/updates-and-security.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Video, Text, Guidance]
+**Output Type(s):** [Video artifacts, Text, Guidance]
 
-**Output Format:** [Generated video artifacts and Markdown prompts, plans, and review guidance]
+**Output Format:** [Short video or image artifacts with Markdown shot plans and review guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Multi-shot requests produce separate clips; timeline assembly is outside this workflow.]
+**Other Properties Related to Output:** [Multi-shot requests are delivered as separate clips; timeline assembly is outside this workflow.]
 
 ## Skill Version(s):
 
-1.3.7 (source: server-resolved release metadata)
+1.3.8 (source: ClawHub release evidence)
 
 ## Ethical Considerations:
 

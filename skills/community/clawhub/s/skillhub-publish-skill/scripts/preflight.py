@@ -10,9 +10,10 @@
     密钥泄漏      API Key / 私钥 / 硬编码口令 / Bearer 令牌
     安全红线      rm -rf 家目录、curl|sh 下载执行、读取 .ssh
     占位符        TODO / FIXME / <your-key> 等残留
-    **WAF 风险**  美元符号+双花括号连写等腾讯云 WAF 命中特征（本脚本独有）
 
-前三项参考公开的发布预检实践，第四项 WAF 风险来自实测（累计评分制）。
+以上均为公开的发布预检实践。本脚本**不提供**任何「探测或绕过平台安全过滤」的
+检测与指引 —— 上传若被平台安全拒绝，正确做法是停止发布并按平台规则整改
+（见 SKILL.md「报错先分类」铁律）。
 
 用法：
     python preflight.py <skill目录> [--platform skillhub|clawhub|github|all]
@@ -71,8 +72,8 @@ DANGEROUS_PATTERNS = [
 ]
 
 # 这些文件本身就是规则库/文档，正文里必然出现「危险模式」作为检测目标或示例，
-# 自指会 100% 误报。对它们只做密钥与占位符检查，跳过安全红线与 WAF 特征。
-SELF_REFERENTIAL = {"preflight.py", "waf_bisect.py"}
+# 自指会 100% 误报。对它们只做密钥与占位符检查，跳过安全红线检查。
+SELF_REFERENTIAL = {"preflight.py"}
 
 PLACEHOLDER_PATTERNS = [
     (r"\bTODO\b", "残留 TODO"),
@@ -81,14 +82,6 @@ PLACEHOLDER_PATTERNS = [
     (r"<your[-_]?(api[-_]?key|token|password)>", "未替换的占位符"),
     (r"(?i)your[-_]?name[-_]?here", "未替换的占位符"),
     (r"sk-\.\.\.|sk-xxx", "占位符形式的 Key"),
-]
-
-# ⚠️ 本脚本独有：腾讯云 WAF 命中特征（写进发布内容会被 566 拦截）
-# 规则是累计评分制，单条出现未必触发，但与代码密度叠加跨过阈值即拦。
-WAF_RISK_PATTERNS = [
-    (r"\$\{\{", "美元符号+双花括号连写（GitHub Actions 表达式语法，被当模板注入/SSTI 特征）"),
-    (r"\{%", "Jinja/Twig 模板标签（模板注入特征）"),
-    (r"<%=|%>", "ERB/ASP 模板标签（模板注入特征）"),
 ]
 
 REQUIRED_FM_FIELDS = {
@@ -265,16 +258,6 @@ def check_content(rep, files):
         for pat, why in PLACEHOLDER_PATTERNS:
             if re.search(pat, text) and not is_self:
                 rep.warn("占位符", f"{rel}: {why}", "发布前清理或替换为真实内容")
-
-        # WAF 特征：自指规则库跳过（规则自身就含这些字面量）
-        if not is_self:
-            for pat, why in WAF_RISK_PATTERNS:
-                n = len(re.findall(pat, text))
-                if n:
-                    rep.warn("WAF风险", f"{rel}: {why}（{n} 处）",
-                             "腾讯云 WAF 累计评分制，与代码密度叠加会返回 566。"
-                             "规避：在字符间插一个空格并在注释说明复制时删掉；"
-                             "改完跑 scripts/waf_bisect.py --step check 确认全量为 401")
 
 
 def main():

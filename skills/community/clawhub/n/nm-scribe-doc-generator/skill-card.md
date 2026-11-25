@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Writers and developers use the skill to create or revise documentation, apply a style profile when available, and check drafts against writing-quality criteria.
+Developers and documentation authors use this skill to draft new documentation or revise existing prose for clarity, economy, and a consistent style. It guides scope definition, drafting, slop scanning, and quality review.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Some referenced context could not be resolved, so parts of the skill were not covered by the security review.
+Risk: The security scan had incomplete coverage because six local references were missing.
 
-Mitigation: Review the unresolved references and their contents before installing the skill.
+Mitigation: Review whether those referenced materials matter to your use before relying on the benign scan verdict.
 
 ## Reference(s):
 
-- [Scribe plugin page](https://github.com/athola/claude-night-market/tree/master/plugins/scribe)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-scribe-doc-generator)
+- [Scribe plugin homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/scribe)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Text, Guidance]
+**Output Type(s):** [Markdown, Text, Editing guidance, Quality checklists]
 
-**Output Format:** [Markdown documentation, rewrites, and quality guidance]
+**Output Format:** [Markdown prose and structured checklists, with suggested replacement text for documentation or docstrings]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Content follows the requested scope and style profile when available.]
+**Other Properties Related to Output:** [May include document drafts, revisions, style guidance, and quality review notes.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, server release)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

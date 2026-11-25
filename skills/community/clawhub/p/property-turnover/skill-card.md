@@ -1,6 +1,6 @@
 ## Description:
 
-Turn rental-unit move-out or turnover inspection findings (reports, photos, notes) into a priced, vendor-ready make-ready scope using the Tektolo property turnover engine.
+Turn rental-unit move-out or turnover inspection findings (reports, photos, notes) into a priced, vendor-ready make-ready scope using the Tektolo property turnover engine. Use when someone needs a turnover task list, a cost estimate, what to send each vendor, or an owner approval estimate for a US rental unit.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Rental property managers and owners use this skill to turn move-out or turnover inspection reports, photos, and notes into priced make-ready task lists, vendor scopes, and owner approval estimates for US rental units.
+Property managers and landlords can turn US rental-unit inspection findings into estimated make-ready tasks, costs, and vendor scopes for turnover planning and owner approval.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,31 @@ United States
 
 ## Known Risks and Mitigations:
 
-Risk: Inspection reports or photos may contain tenant personal information.
+Risk: Inspection documents may be sent to Tektolo when using the report-upload workflow.
 
-Mitigation: Use the rental-property MCP endpoint and remove tenant names, addresses, faces, and other personal details before uploading reports.
-
-Risk: Extracted findings and estimated prices may be incomplete or incorrect.
-
-Mitigation: Review and confirm the extracted findings before relying on a cost estimate.
+Mitigation: Review the upload and privacy steps before use, and obtain approval and redact personal information before sending documents.
 
 ## Reference(s):
 
-- [Tektolo Property Turnover capability](https://tektolo.com/capabilities/property-turnover?ref=clawhub)
-- [Rental Property MCP endpoint](https://tektolo.com/mcp/rental-property)
-- [Tektolo catalog](https://tektolo.com/catalog.json)
-- [ClawHub skill release](https://clawhub.ai/tektolo/skills/property-turnover)
+- [Property turnover capability and API details](https://tektolo.com/capabilities/property-turnover?ref=clawhub)
+- [Property turnover issue catalog](https://tektolo.com/catalog.json)
+- [Property turnover web tool](https://tektolo.com/tools/rental-property/property-turnover)
+- [Typical turnover costs by area](https://tektolo.com/turnover-costs/)
+- [Rental property MCP server](https://tektolo.com/mcp/rental-property)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Markdown task lists, cost ranges, assumptions, and vendor scopes]
+**Output Format:** [Markdown or conversational text with estimate ranges, trade scopes, assumptions, and review notes]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [US rental-unit estimates; includes priorities, trade groupings, assumptions, and refer-outs where applicable.]
+**Other Properties Related to Output:** [May include vendor-ready task lists, cost ranges, assumptions, and professional refer-outs.]
 
 ## Skill Version(s):
 
-1.0.7 (source: server release evidence)
+1.0.8 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

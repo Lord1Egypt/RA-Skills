@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Workspace owners and project teams use this skill to review completed, long-idle project directories, preserve planning and result files, and prepare an auditable archive cleanup. It helps identify process traces and duplicates while documenting backups and items that need sign-off.
+Workspace maintainers use this skill to review completed or long-idle project directories and prepare a careful cleanup that preserves planning and result files while removing verified process residue. It is intended for unrestricted projects; active or restricted material is excluded or held for sign-off.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security evidence flags cleanup guidance that may work around a deletion safety limit, creating a risk of excessive deletion; the scan was partial and some references were unresolved.
+Risk: Partial scanner coverage leaves some local references unresolved, so relevant behavior may not have been fully assessed.
 
-Mitigation: Review every proposed deletion and its references before applying, preserve the applicable deletion limit, and verify backups before removing files.
+Mitigation: Review the unresolved local references and inspect the skill content before installation.
+
+Risk: Cleanup could remove active, unique, or restricted project material if candidates are classified incorrectly.
+
+Mitigation: Check activity, verify duplicates by SHA-256, hold restricted material for sign-off, and review the complete dry-run manifest; back up and verify file counts before deletion.
 
 ## Reference(s):
 
-- [ClawHub release](https://clawhub.ai/haiyangchenbj/skills/project-archive-cleanup)
+- [ClawHub skill release](https://clawhub.ai/haiyangchenbj/skills/project-archive-cleanup)
+- [Publisher profile](https://clawhub.ai/user/haiyangchenbj)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Markdown, Shell commands]
+**Output Type(s):** [Analysis, Guidance, Markdown reports, Shell commands]
 
-**Output Format:** [Markdown cleanup plans and reports with shell command examples]
+**Output Format:** [Markdown with inventory, keep/remove decisions, and verification steps]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include file classifications, backup and verification steps, and items requiring sign-off.]
+**Other Properties Related to Output:** [Read-only inventory first; cleanup uses a dry run, backup, explicit approval where required, and a safe-delete limit.]
 
 ## Skill Version(s):
 
-1.0.0 (source: frontmatter; confirmed by release evidence)
+1.0.1 (source: release evidence and frontmatter)
 
 ## Ethical Considerations:
 

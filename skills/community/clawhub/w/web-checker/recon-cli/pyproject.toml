@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=78.1.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "recon-cli"
+version = "0.1.0"
+description = "Low-volume web configuration auditor with JS-bundle security analysis. Probes headers, DNS, TLS, config exposure, and XSS patterns."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "z-hussein" }]
+keywords = ["web", "audit", "security", "cli", "dns", "tls", "headers"]
+dependencies = []  # stdlib + curl/openssl/dig (best-effort)
+
+[project.scripts]
+recon = "recon_cli.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["recon_cli*"]

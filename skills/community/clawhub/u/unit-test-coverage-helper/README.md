@@ -14,12 +14,12 @@ Evidence coverage: 12 signals across 3 source families.
 
 ## Evidence
 
-- github-issues: [[P1][Organization] 组织成员签发普通成员邀请，并按邀请范围撤销及接受](https://github.com/alexj11324/Mikka/issues/2076)
-- github-issues: [sim/selftest.sh PVT smoke fails on PDK-equipped hosts: grid spread checks read n/a](https://github.com/2AMLogic/gf180-temp-por/issues/555)
-- hacker-news-ask-hn: [Ask HN: Who's really winning with AI-Coding?](https://news.ycombinator.com/item?id=50525329)
+- github-issues: [lampOS: the Queue (continued from #6811)](https://github.com/autonomous-ai/lampOS/issues/7814)
+- github-issues: [feat(targeting): systematic ICP target-list builder — Phases 2-5 (follow-up of #2630)](https://github.com/christopherqueenconsulting/linkedin_engagement_manager/issues/2655)
+- github-issues: [feat(engagement): reach up to 100 reviewed comments a day — Phases 2-6 (follow-up of #2635)](https://github.com/christopherqueenconsulting/linkedin_engagement_manager/issues/2647)
+- hacker-news-search: [Ask HN: Who's really winning with AI-Coding?](https://news.ycombinator.com/item?id=50525329)
 - hacker-news-search: [Question: How to control unit tests in Agentic Pipelines](https://news.ycombinator.com/item?id=50437119)
-- github-issues: [Writing to a well-known folder (Pictures, Screenshots, Downloads) without a picker per file](https://github.com/expo/exact/issues/507)
-- hacker-news-ask-hn: [Ask HN: Tips for maintainability of large software projects using agents?](https://news.ycombinator.com/item?id=50508896)
+- github-issues: [Redraw the Heart icon to be symmetric and proportional](https://github.com/BibleGarden/Lampada-Mobile/issues/96)
 - segmentfault-search: [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
 - segmentfault-search: [javascript](https://segmentfault.com/t/javascript)
 - segmentfault-search: [typescript](https://segmentfault.com/t/typescript)

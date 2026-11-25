@@ -7,6 +7,7 @@ Extract GPS, elevation, pace, heart rate, power, cadence, etc.
 import json
 import sys
 import os
+import tempfile
 from datetime import datetime
 from pathlib import Path
 
@@ -28,10 +29,14 @@ except ImportError:
     HAS_GPXPY = False
 
 
-def download_activity_file(client, activity_id, file_format="fit", output_dir="/tmp"):
+def download_activity_file(client, activity_id, file_format="fit", output_dir=None):
     """Download activity FIT or GPX file."""
     try:
-        output_path = f"{output_dir}/activity_{activity_id}.{file_format.lower()}"
+        if not output_dir:
+            # Default to the platform temp dir (works on Windows/macOS/Linux)
+            output_dir = tempfile.gettempdir()
+        os.makedirs(output_dir, exist_ok=True)
+        output_path = os.path.join(output_dir, f"activity_{activity_id}.{file_format.lower()}")
         
         if file_format.lower() == "fit":
             data = client.download_activity(activity_id, dl_fmt=client.ActivityDownloadFormat.ORIGINAL)
@@ -44,7 +49,21 @@ def download_activity_file(client, activity_id, file_format="fit", output_dir="/
         
         with open(output_path, 'wb') as f:
             f.write(data)
-        
+
+        # 佳明 ORIGINAL 格式实际返回 ZIP 压缩包（内含 .fit 文件），需解压
+        if file_format.lower() == "fit" and data[:2] == b"PK":
+            try:
+                import zipfile
+                with zipfile.ZipFile(output_path) as z:
+                    fit_name = next((n for n in z.namelist() if n.lower().endswith(".fit")), None)
+                    if fit_name:
+                        z.extract(fit_name, output_dir)
+                        output_path = os.path.join(output_dir, fit_name)
+                    else:
+                        return {"error": "ZIP 包中未找到 .fit 文件", "activity_id": activity_id}
+            except zipfile.BadZipFile:
+                pass  # 非有效 ZIP，按原样继续解析
+
         return {"file": output_path, "activity_id": activity_id, "format": file_format}
     
     except Exception as e:
@@ -265,7 +284,7 @@ def main():
     parser.add_argument("--file", help="Path to local FIT/GPX file")
     parser.add_argument("--distance", type=float, help="Query data at distance (meters)")
     parser.add_argument("--time", help="Query data at time (ISO format)")
-    parser.add_argument("--output-dir", default="/tmp", help="Output directory")
+    parser.add_argument("--output-dir", default=None, help="Output directory (default: system temp dir)")
     
     args = parser.parse_args()
     

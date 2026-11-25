@@ -1,0 +1,15 @@
+{
+  "unit": "cm",
+  "measurementMethod": "商家尚未说明测量方法",
+  "applicableArea": "上衣成衣胸围",
+  "sizeChart": [{"size":"M"},{"size":"L"}],
+  "customerMeasurements": [{"name":"顾客A","measurements":{"height":165,"weight":55}}],
+  "selectionRules": [{"field":"bust","operator":"min_ease","customerValue":86,"ease":5}],
+  "expected": {"status":"stopped"},
+  "referenceDelivery": {
+    "status": "stopped",
+    "requestForInformation": ["商家平铺/围量的测量方法", "尺码M缺少关键尺寸：bust", "尺码L缺少关键尺寸：bust", "顾客A：补充顾客测量：bust"],
+    "eligibleSizes": [],
+    "explanation": "已提供单位 cm，适用部位与胸围规则一致；但尺码表缺少 M、L 两档的胸围数值，顾客A也未提供胸围，且商家量法未说明，无法核对胸围 86 cm 加 5 cm 余量后的条件。顾客的身高、体重不作为选码依据。"
+  }
+}

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Writers use the skill to analyze anonymized writing samples and create a reusable voice profile for consistent writing. It guides sample collection, comparative extraction, and profile and register creation.
+Writers use this skill to compare anonymized writing samples with model-generated baselines and create a followable voice profile and default register for consistent drafting.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Writing samples may contain private details that are copied into profile storage, and sample files may be overwritten.
+Risk: Writing samples may contain sensitive information and can be copied into persistent profile storage without a retention warning; existing samples may also be overwritten.
 
-Mitigation: Review sample contents and storage paths before intake, remove sensitive details, and back up existing profile files.
+Mitigation: Treat samples as sensitive, remove identifying details before intake, choose a profile destination deliberately, and back up or review existing sample files before copying new ones.
 
-Risk: The security scan was partial because two referenced paths were missing, leaving some referenced material unreviewed.
+Risk: The security review was partial because two local path references could not be resolved, leaving evidence about those references incomplete.
 
-Mitigation: Check the missing paths or confirm they are no longer needed, then review the complete skill before installation.
+Mitigation: Review the unresolved path references and their targets before relying on the skill in a sensitive workflow.
 
 ## Reference(s):
 
-- [Claude Night Market Scribe plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scribe)
-- [Research basis for voice extraction](modules/research-basis.md)
-- [Sample intake guidance](modules/sample-intake.md)
-- [SICO extraction guidance](modules/sico-extraction.md)
-- [Register creation guidance](modules/register-creation.md)
+- [ClawHub release](https://clawhub.ai/athola/skills/nm-scribe-voice-extract)
+- [Scribe plugin page](https://github.com/athola/claude-night-market/tree/master/plugins/scribe)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Files, Guidance]
+**Output Type(s):** [Markdown, JSON, Guidance]
 
-**Output Format:** [Markdown voice profile and register files, a JSON manifest, and comparative text analysis]
+**Output Format:** [Markdown voice profile and register, with a JSON sample manifest]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Builds a reusable voice profile from user-provided writing samples; the documented validation target is at least three samples and 500 total words.]
+**Other Properties Related to Output:** [Uses comparative writing samples; documented intake thresholds are at least three samples and 500 words total.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, confirmed by server-resolved release)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

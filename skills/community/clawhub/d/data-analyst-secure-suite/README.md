@@ -1,6 +1,6 @@
 # Secure Data Analyst Skill Suite
 
-> **Version**: 1.4.0 · **Requires**: MGC Blackbox ≥ 1.5.4
+> **Version**: 1.5.0 · **Requires**: MGC Blackbox ≥ 1.6.0
 
 A secure data-analysis workflow suite built on **MGC Blackbox**, providing a hybrid mix of **skill prompts + Agent system-prompt template**, helping data analysts securely manage scripts, workflows, credentials, sealed collaboration, and knowledge on the local machine.
 
@@ -27,7 +27,7 @@ All sensitive operations require explicit user authorization. This suite does no
 - Python 3.10+
 - Install MGC Blackbox:
   ```
-  pip install mgc-blackbox>=1.5.4
+  pip install mgc-blackbox>=1.6.0
   ```
 - Start MGC:
   ```
@@ -126,15 +126,15 @@ Single-script mode (`mgc_save` + `mgc_run`) is also supported — see `prompts/s
 
 Seal-authorize workflows or skill packages to other nodes, enabling "usable but not readable, runnable but not resellable" cross-team / cross-organization collaboration.
 
-**Two sealing modes:**
+**Three sealing modes:**
 
-| | p2p mode (default) | free mode |
-|---|---|---|
-| How to seal | Pass `ext04=<recipient public key>` | **Omit** `ext04` |
-| Resulting ext09 value | `p2p mode` | `free mode` |
-| Who can unseal and run it | Only the node holding the matching private key | **Any MGC 1.5.4+ node** |
-| Does it need public-key exchange | Yes | **No** |
-| Best for | Per-customer authorization, confidential delivery | Public distribution, general install packages |
+| | p2p mode (default) | free mode | chain mode (1.6.0+) |
+|---|---|---|---|
+| How to seal | Pass `ext04=<recipient public key>` | **Omit** `ext04` | Pass `ext04=<targets array>` |
+| Sub-packages produced | 1 | 1 | **N (one per target)** |
+| Who can unseal and run it | Only the node holding the matching private key | **Any MGC 1.5.4+ node** | **Each target's own node only** |
+| Does it need public-key exchange | Yes | **No** | Yes — collect all `node_pub` first |
+| Best for | Per-customer authorization, confidential delivery | Public distribution, general install packages | **Multi-node collaboration, task splitting** |
 
 **Sealing a workflow:**
 ```python
@@ -158,6 +158,23 @@ mgc_run(
 ```
 
 Both workflow sealing and skill-package sealing are supported — see `prompts/collaboration_management.md`.
+
+**Chain mode (multi-node):**
+```python
+targets = [
+    {"node_pub": node_a_pem, "files": ["run_query.py", "shared_helper.py"]},
+    {"node_pub": node_b_pem, "files": ["run_analyze.py", "shared_helper.py"]},
+]
+mgc_seal_package(
+    info_owner="monthly_sales_analysis",
+    diff_2="my_analysis",
+    ext04=json.dumps(targets),   # or ext04="@/abs/path/chain_targets.json"
+    output_dir="./delivery",
+)
+# → delivery/monthly_sales_analysis__my_analysis/
+#     distribution_index.json + task_package_01/ + task_package_02/
+```
+Each node imports only its own `.mgc_file`. Keep `files` to scripts only — data and credentials stay in each node's local MGC.
 
 ---
 

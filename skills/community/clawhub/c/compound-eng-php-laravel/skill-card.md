@@ -1,6 +1,6 @@
 ## Description:
 
-Provides modern PHP 8.4 and Laravel guidance for architecture, Eloquent, migrations, queues, and testing in framework-based PHP applications.
+Provides modern PHP 8.4 and Laravel patterns for architecture, Eloquent, migrations, queues, and testing.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to build and test framework-based PHP applications with Laravel, Eloquent, Blade, and Artisan, applying guidance on architecture, persistence, queues, and testing.
+Developers use this skill to build, review, and test Laravel applications with current PHP patterns. It covers framework architecture, Eloquent, migrations, queues, and testing, rather than PHP internals or standalone PHP libraries.
 
 ### Deployment Geography for Use:
 
@@ -22,45 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Queue-worker guidance could process real jobs without environment safeguards.
+Risk: Queue verification could process a live queued job and trigger its side effects; the security assessment also says the scan evidence is incomplete.
 
-Mitigation: Review the guidance to ensure it is limited to an isolated development setup and a controlled test job.
-
-Risk: The session cleanup example may not match the application's retention needs.
-
-Mitigation: Check the cleanup behavior against the application's retention requirements.
-
-Risk: The security scan was partial because a local reference was unresolved.
-
-Mitigation: Review the unresolved reference and the remaining skill content before use.
+Mitigation: Use an isolated, disposable queue with non-production data, and inspect queued jobs before running queue:work --once.
 
 ## Reference(s):
 
-- [Laravel Ecosystem Patterns](artifact/references/laravel-ecosystem.md)
-- [Testing Laravel (PHPUnit)](artifact/references/testing.md)
-- [Feature Testing Patterns](artifact/references/feature-testing.md)
-- [Mocking and Faking](artifact/references/mocking-and-faking.md)
-- [Factory Patterns](artifact/references/factories.md)
-- [Production Performance](artifact/references/production-performance.md)
-- [Laravel Common Pitfalls](artifact/references/common-pitfalls.md)
-- [Laravel Pitfalls: Deep Reference](artifact/references/pitfalls-deep.md)
-- [Framework and Boundary Patterns](artifact/references/framework-patterns.md)
-- [Persistence and Job Patterns](artifact/references/persistence-and-jobs.md)
-- [Testing and Pitfall Checklist](artifact/references/testing-and-pitfalls.md)
+- [ClawHub release page](https://clawhub.ai/iliaal/skills/compound-eng-php-laravel)
+- [Publisher profile](https://clawhub.ai/user/iliaal)
+- [Skill instructions](artifact/SKILL.md)
+- [Framework patterns](artifact/references/framework-patterns.md)
+- [Persistence and jobs](artifact/references/persistence-and-jobs.md)
+- [Testing and pitfalls](artifact/references/testing-and-pitfalls.md)
+- [Common pitfalls](artifact/references/common-pitfalls.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Guidance, Shell commands, Configuration instructions]
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-**Output Format:** [Markdown with PHP code examples, Laravel configuration, and command snippets]
+**Output Format:** [Markdown guidance with PHP examples, shell commands, and configuration snippets]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Output is tailored to the Laravel development or testing task.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-5.1.6 (source: server-resolved release metadata)
+5.1.7 (source: ClawHub release evidence)
 
 ## Ethical Considerations:
 

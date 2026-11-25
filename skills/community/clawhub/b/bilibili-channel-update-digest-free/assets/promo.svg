@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#f7f2e7"/>
+  <rect x="0" y="0" width="900" height="900" fill="#fbf8f1"/>
+  <rect x="96" y="105" width="190" height="4" fill="#123c58"/>
+  <text x="96" y="170" fill="#123c58" font-family="PingFang SC, Noto Sans CJK SC, Arial" font-size="25" font-weight="600" letter-spacing="2">免费开源 · EASY SKILLS</text>
+  <text x="96" y="330" fill="#123c58" font-family="PingFang SC, Noto Sans CJK SC, Arial" font-size="95" font-weight="800">B站UP主</text>
+  <text x="96" y="440" fill="#123c58" font-family="PingFang SC, Noto Sans CJK SC, Arial" font-size="95" font-weight="800">近期更新摘要</text>
+  <text x="100" y="535" fill="#123c58" font-family="PingFang SC, Noto Sans CJK SC, Arial" font-size="35" font-weight="600">当前可见，一次说清</text>
+  <text x="100" y="590" fill="#596367" font-family="PingFang SC, Noto Sans CJK SC, Arial" font-size="27">标题、日期、主题与来源</text>
+  <text x="100" y="635" fill="#596367" font-family="PingFang SC, Noto Sans CJK SC, Arial" font-size="27">缺项如实保留</text>
+  <text x="100" y="810" fill="#586363" font-family="PingFang SC, Noto Sans CJK SC, Arial" font-size="23">一件事，一个好用的 Skill</text>
+  <circle cx="1270" cy="450" r="310" fill="#e8ded0"/>
+  <image x="980" y="160" width="580" height="580" preserveAspectRatio="xMidYMid meet" xlink:href="icon-source.png"/>
+</svg>

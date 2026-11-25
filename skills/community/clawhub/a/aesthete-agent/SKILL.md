@@ -1,5 +1,5 @@
 ---
-version: 0.20.0
+version: 0.29.0
 name: aesthete-agent
 description: Color palette generation, frontend aesthetics, UI color schemes — mechanically validated color output for UI/HTML, SVG slides, video covers, charts and posters. An 119-palette evidence library matched by register, OKLCH harmony generation, luminance ramps and image extraction; 60-30-10 role mapping with semantic colors; a 5-dimension scorecard plus WCAG contrast, color-blind simulation and AI-slop detection as four mechanical gates; card and six-scene visualizer previews; a preference-learning profile that evolves with every verdict. Named theme packs, full contrast matrices, CB-safe data-viz palettes, five-lens critique reports, and APCA (WCAG 3 draft) perceptual contrast included. Pure stdlib, offline. Skip when pure text layout, translation or polishing, copywriting, or any task unrelated to color and frontend aesthetics. Trigger words — color palette, color scheme, palette generation, frontend aesthetics, UI color, design aesthetics, hex, contrast, WCAG, color blind, visual taste, aesthete-agent.
 ---
@@ -31,6 +31,21 @@ Why LLM color output is bad, with evidence: models treat hex codes as text, regr
 | Token sheet | `tokens --palette/--theme` |
 | Render review loop | `loop page.html --palette` |
 
+### Golden defaults (3-second edition — defaults are the product, don't hand-tune)
+
+| Dimension | Engine default | Basis |
+|---|---|---|
+| Fluid type scale | display steps in `clamp()`, rem endpoints, **max≤2.5×min** (always passes WCAG 1.4.4) | web.dev |
+| Line height | display 1.15 / heading 1.3 / **body 1.7** (CJK band 1.5-2.0) / caption 1.5 | clreq + dual sources |
+| CJK–Latin | `text-autospace` + progressive `text-spacing-trim`; spacing handled by the engine, **never hand-typed spaces** | W3C clreq |
+| Font families | two tiers `--sans` (body) / `--sans-display` (display); display tracking `--track-display:-0.011em`, **zero body tracking** | Linear + clreq |
+| 12-step scale | Radix role binding: 1/2 backgrounds · 3/4/5 states · 6/7/8 borders · 9/10 solids · **11/12 text (APCA Lc 60/90 guaranteed)** | Radix docs |
+| Tokens | all CSS variables; alpha variants via `color-mix(in oklab,C 12%,transparent)`; OKLCH comments = perceptual coords | Tailwind v4 |
+| Contrast dial | `tokens --contrast high` = WCAG 7.0 + Lc 75/90+ (AAA direction) | Linear 3-input |
+| Motion | 150/300/600ms; entry stagger 60-120ms, end state = no-motion version | _motionlab |
+
+Principle: **defaults are the product** — these ship as engine output, don't hand-tune; to deviate, change the inputs (`--palette/--contrast/--ratio`), not the artifact.
+
 ## Capability × Boundary Quick Reference
 
 | Capability | Does | Does not | Deep dive |
@@ -54,15 +69,17 @@ Why LLM color output is bad, with evidence: models treat hex codes as text, regr
 | Page audit (existing pages) | `audit page.html --palette` mechanically inspects an existing page: drift with nearest-library replacements, gradient ban, purple-background guard, contrast pairs with tuned fix values, font floor, AI-default signatures | Static scope — external CSS and rendered truth need render probe / evidence | critique.md |
 | Chart palettes | `chartpal --kind categorical/sequential/diverging` derives chart colors with three-CVD-simulation distinguishability bounds, monotonic ramps, neutral midpoints — annotated swatch HTML + JSON | Ordered data gets ramps, not categorical colors; group before exceeding 6 series | data-viz.md |
 | Type scale | `typescale --base 16 --ratio 1.25` emits a CJK-aware modular ramp (12px floor, line-height pairing, tabular-nums token) as CSS + specimen | Clamped steps are reported, never hidden; scale serves hierarchy | cjk-typography.md |
-| Render reconciliation | `qc shot.png --tokens tokens.json` reconciles the rendered pixels against declared tokens: background authenticity, off-palette intrusions with area shares, digest-bound verdict — the mechanical gate of the render feedback loop | Static checks cannot see rendering; declared ≠ rendered until proven | render-loop.md |
+| Render reconciliation | `qc shot.png --tokens tokens.json` reconciles the rendered pixels against declared tokens: background authenticity, off-palette intrusions with area shares, digest-bound verdict — the mechanical gate of the render feedback loop; `direct --render evidence.json` audits the *rendered* zone colors (probe v2) through the color director | Static checks cannot see rendering; declared ≠ rendered until proven | render-loop.md |
 | Typography system | `references/typography-system.md` — display-grade CJK+Latin typesetting law: autospace base, tracking-by-size law, line-height contrast, eyebrow/display/deck recipes, variable-font loading discipline, numeric typography; `typescale --fluid` emits the ramp as fluid clamps plus the typesetting base CSS | Rules are paste-ready code, not prose; progressive-enhancement items degrade safely | cjk-typography.md |
 | Layout composition | `references/layout-composition.md` — 12-col base, span vocabulary (no consecutive repeats, 4+4+4 once max), asymmetry ratios 7:5/8:4/5:8, spacing tiers 96/64/40, dark-light act alternation, decoration dosage caps; `scaffold --recipe` emits five parameterized full-page layouts (EDIT-SPLIT / BLUEPRINT / SWISS-POSTER / EDITORIAL-MAG / DARK-FOUR-ACT; default AUTO routes by palette temperament) | Recipes are starts — replace content, then gate | layout-composition.md |
+| Motion grammar | `references/motion.md` - entry choreography (stagger 60-120ms, end state = no-motion, pixel-verified), hover feedback (translateY <= 4px + shadow, 150-220ms, scale/rotate banned), scroll-driven (inside @supports only, base state = full feature), dosage caps; audit checks motion_scale_hover / motion_lag | Static screenshots verify end states only; timing comes from rendered experiments | motion.md |
 | Typography aesthetics | `references/typography-aesthetics.md` — font temperament spectrum, CJK x Latin pairing table (each pair rendered-verified), fake-bold ban (800/900 without @font-face = FAIL; degradation chain: subset Black > system VF > 700 cap), display-drama rules (ratio 1.414 sweet spot, giant-type trinity), and the --fonts asset pipeline spec | Health rules live in cjk-typography.md; this file decides what looks designed | cjk-typography.md |
 | Quantified rationale | `narrate --palette/--theme` turns the measured report gates into a bilingual numbers-only rationale (contrast pair, blind sims, slop scan, score, fingerprint) ready to forward | Every number traces to the report; templates add no adjectives | critique.md |
 | Exemplar injection | `exemplar --kind landing --register light` retrieves a render-reviewed, gate-passed exemplar page (five recipes x five boards, kind/register metadata in header) — code to imitate-adapt: swap colors to your declared tokens, replace content with real copy | Exemplars teach structure and dosage; zero-hit retrieval is an explicit error, never a guess | layout-composition.md |
 | Targeted patches | `patch page.html --palette ... [--apply]` turns audit findings into literal search/replace pairs (muddy-background tint, font floor, CJK tracking, contrast pairs); `--apply` makes a byte-identical .bak, applies, re-audits | Literal patches apply only where the string truly exists — everything else degrades to manual guidance | render-loop.md |
 | Render loop checklist | `loop page.html --palette ...` emits the executable review loop: pre-render gates, full-viewport per-screen screenshot rules, qc reconciliation line, five lenses, stop conditions (max 5 rounds) | Gate-green is not done; the loop is the unit of work, not a single render | render-loop.md |
 | Visualizer scenes + SVG recolor | 10 realistic scenes (mobile / landing / dashboard / branding / typography / pattern / chart / product card / email / editorial) with derived roles, legibility gates and a text ladder; SVG recolor via slot inventory (design's own colors mapped by rank, pure black/white kept), `--shuffle N` renders N permutations with a comparison grid | Scene mockups are decision aids, not production UI | critique.md |
+| Color-blind safe sets | `matrix` cross-checks every palette pair under three CVD simulations; `semantic --count` emits a CVD-safe categorical set; `themes`/`theme` list and emit the 11 theme packs (palette + voice + signature) | These are palette-level checks — page-level gates are separate | curation.md |
 | Learn house + profile.json | Accepted designs join the corpus; preferences (theme/bans/registers) apply mechanically | The learning file IS the config file — see "Verdict write-back" section | curation.md |
 
 **Non-goals**: layout systems, image asset generation, print CMYK gamut, typeface selection — this skill only decides and validates color.

@@ -1,6 +1,6 @@
 ## Description:
 
-Supports Weibo hot-search and post research for keyword discovery, content research, competitor analysis, and trend monitoring.
+用于微博数据分析、微博热搜、微博内容研究、关键词观察、内容调研、竞品分析和趋势研究。覆盖 Weibo hot-search and post research，来自社媒数据助手 SocialDataX。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Researchers, analysts, and content teams use this skill to review Weibo hot searches and posts, discover keyword signals, and study content, competitors, and trends.
+Researchers, analysts, and content teams use the skill to review Weibo hot searches and posts, explore keywords, and summarize competitor or trend signals.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan reports medium confidence and incomplete coverage, and its guidance flags broad activation wording and an unpinned npx reference for review.
+Risk: The security review says the skill may activate for generic research; searches can involve sensitive terms or charges.
 
-Mitigation: Review the requested task and CLI command before execution, and check package references before running them.
-
-Risk: The skill documents saving an API key for CLI use.
-
-Mitigation: Keep SOCIALDATAX_API_KEY private and use the documented protected local credential storage; never include the key in outputs or logs.
+Mitigation: Before using it for generic research, confirm the search scope and any expected charges, and avoid submitting sensitive terms unless appropriate.
 
 ## Reference(s):
 
+- [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/socialdatax-weibo-search)
+- [SocialDataX API access](https://socialdatax.com/ai?from=clawhub)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, JSON]
+**Output Type(s):** [Analysis, Text, Markdown]
 
-**Output Format:** [Concise text or Markdown summaries, with JSON data available from search calls.]
+**Output Format:** [Markdown summaries of Weibo hot-search rankings and keyword search results]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Keeps observed rankings and search results distinct from interpretation; includes IDs, URLs, authors, counts, and publish times when useful.]
+**Other Properties Related to Output:** [Can include post IDs, URLs, author details, interaction counts, and publish times when useful for traceability.]
 
 ## Skill Version(s):
 
-0.1.25 (source: server-resolved release metadata)
+0.1.26 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

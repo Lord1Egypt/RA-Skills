@@ -1,0 +1,217 @@
+#!/usr/bin/env python3
+"""
+Verify the integrity of a claude-seo checkout against a release manifest.
+
+Usage
+=====
+
+After installing from a tag::
+
+    python scripts/verify_release.py path/to/release-manifest.json
+
+The script returns exit code 0 when every file in the manifest is
+present and matches the recorded SHA-256, and exit code 1 (with a
+human-readable report) on any mismatch, missing file, or extra file.
+
+This pairs with ``scripts/release_sign.py`` (used by the maintainer to
+generate the manifest at release time) and the GitHub release
+attachment workflow that publishes the manifest alongside each tag.
+
+Threat model
+============
+See SECURITY.md "Tampered install" section. Verification catches tag
+force-pushes and partial supply-chain tampering, but does NOT defend
+against an attacker who can replace both the source files and the
+published manifest. For that level of trust, the manifest must be
+signed by the maintainer's GPG key whose fingerprint is published
+out of band.
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import sys
+from pathlib import Path, PureWindowsPath
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+
+# Limits for a manifest entry, checked on the string so that every platform
+# refuses the same entries. 255 bytes is the longest file name common file
+# systems accept; 4096 bytes is the Linux limit for a whole path.
+MAX_COMPONENT_BYTES = 255
+MAX_ENTRY_BYTES = 4096
+
+
+def _sha256(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as fh:
+        for chunk in iter(lambda: fh.read(65536), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def _contained_path(resolved_root: Path, rel: object) -> Path | None:
+    """The path of manifest entry ``rel`` under ``resolved_root``, or None.
+
+    None means the entry must not be read: it is not a string, is empty,
+    over-long or absolute, or resolves (through ``..`` or a symlink) outside
+    the root.
+    A manifest is untrusted input, so this runs before any file is opened.
+    """
+    if not isinstance(rel, str) or not rel or "\0" in rel:
+        return None
+    encoded = rel.encode("utf-8", "surrogatepass")
+    if len(encoded) > MAX_ENTRY_BYTES:
+        return None
+    if any(len(part) > MAX_COMPONENT_BYTES for part in encoded.split(b"/")):
+        return None
+    if Path(rel).is_absolute() or PureWindowsPath(rel).is_absolute():
+        return None
+    if PureWindowsPath(rel).drive or rel.startswith(("/", "\\")):
+        return None
+    try:
+        candidate = (resolved_root / rel).resolve()
+    except (OSError, RuntimeError, ValueError):
+        return None
+    if candidate == resolved_root or not candidate.is_relative_to(resolved_root):
+        return None
+    return candidate
+
+
+def verify(manifest_path: Path, root: Path = REPO_ROOT) -> dict:
+    """Compare a manifest against the working tree at ``root``.
+
+    Returns a dict with:
+        ok          : True iff every file in manifest matches.
+        manifest    : the manifest payload (for the caller to display
+                      version/tag/commit context).
+        mismatched  : paths whose SHA-256 differs.
+        missing     : paths in manifest but absent from disk.
+        outside_root: manifest entries that are absolute or resolve
+                      (through ``..`` or a symlink) to a place outside
+                      ``root``. They are never opened or hashed and
+                      always fail verification.
+        extra       : paths on disk (and git-tracked) but not in
+                      manifest. Empty unless caller passes a tracked
+                      file list; default behaviour leaves this empty.
+    """
+    with manifest_path.open(encoding="utf-8") as fh:
+        manifest = json.load(fh)
+
+    # A manifest is untrusted input: the wrong shape is an error, not a crash.
+    if not isinstance(manifest, dict):
+        raise ValueError("manifest must be a JSON object")
+    expected = manifest.get("files")
+    if not isinstance(expected, dict):
+        raise ValueError('manifest "files" must be an object of path to SHA-256')
+    mismatched: list[dict] = []
+    missing: list[str] = []
+
+    outside_root: list[str] = []
+    resolved_root = root.resolve()
+
+    for rel, expected_sha in sorted(expected.items()):
+        abs_path = _contained_path(resolved_root, rel)
+        if abs_path is None:
+            outside_root.append(rel)
+            continue
+        try:
+            is_file = abs_path.is_file()
+        except (OSError, ValueError):
+            # For example a path component too long for the filesystem.
+            outside_root.append(rel)
+            continue
+        if not is_file:
+            missing.append(rel)
+            continue
+        actual_sha = _sha256(abs_path)
+        if actual_sha != expected_sha:
+            mismatched.append(
+                {"path": rel, "expected": expected_sha, "actual": actual_sha}
+            )
+
+    return {
+        # An empty manifest checks nothing, so it cannot pass.
+        "ok": bool(expected) and not (mismatched or missing or outside_root),
+        "manifest": {
+            "version": manifest.get("version"),
+            "tag": manifest.get("tag"),
+            "commit": manifest.get("commit"),
+            "generated_at": manifest.get("generated_at"),
+            "tree_sha256": manifest.get("tree_sha256"),
+        },
+        "checked": len(expected),
+        "mismatched": mismatched,
+        "missing": missing,
+        "outside_root": outside_root,
+    }
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description="Verify a claude-seo checkout against a release manifest."
+    )
+    parser.add_argument(
+        "manifest", type=Path, help="Path to release-manifest.json."
+    )
+    parser.add_argument(
+        "--root",
+        type=Path,
+        default=REPO_ROOT,
+        help="Repository root to verify (default: this checkout).",
+    )
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Emit a JSON report instead of human-readable text.",
+    )
+    args = parser.parse_args()
+
+    if not args.manifest.is_file():
+        print(f"Error: manifest not found: {args.manifest}", file=sys.stderr)
+        return 2
+
+    try:
+        result = verify(args.manifest, args.root)
+    except (ValueError, OSError) as exc:
+        print(f"Error: cannot read manifest: {str(exc)!r}", file=sys.stderr)
+        return 2
+
+    if args.json:
+        json.dump(result, sys.stdout, indent=2)
+        sys.stdout.write("\n")
+    else:
+        m = result["manifest"]
+        status = "OK" if result["ok"] else "FAIL"
+        print(f"Verification: {status}")
+        # Manifest values are printed with !r so that a newline or a terminal
+        # escape in them is shown, not acted on.
+        print(f"  Manifest version: {m['version']!r}  tag: {m['tag']!r}")
+        print(f"  Manifest commit:  {m['commit']!r}")
+        print(f"  Generated at:     {m['generated_at']!r}")
+        print(f"  Tree SHA-256:     {m['tree_sha256']!r}")
+        print(f"  Files checked:    {result['checked']}")
+        if not result["checked"]:
+            print("\n  The manifest lists no files, so nothing was verified.")
+        if result["mismatched"]:
+            print(f"\n  Mismatched ({len(result['mismatched'])}):")
+            for row in result["mismatched"]:
+                print(f"    - {row['path']!r}")
+                print(f"        expected: {row['expected']!r}")
+                print(f"        actual:   {row['actual']}")
+        if result["missing"]:
+            print(f"\n  Missing ({len(result['missing'])}):")
+            for path in result["missing"]:
+                print(f"    - {path!r}")
+        if result["outside_root"]:
+            print(f"\n  Outside the checkout, refused ({len(result['outside_root'])}):")
+            for path in result["outside_root"]:
+                print(f"    - {path!r}")
+
+    return 0 if result["ok"] else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

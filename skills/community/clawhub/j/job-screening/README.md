@@ -1,148 +1,156 @@
-# job-screening · 校招选岗 Skill
+# job-screening · Campus recruiting job screening for new-grad roles
 
-校招每家公司通常只能投 1–3 个岗，但岗位列表常有几十上百个。
-这是一个给 **Codex / Claude Code** 用的 Skill：
-**把某家公司的岗位列表丢给它，它告诉你投哪几个、哪个成功率最高、其余的为什么不投。**
+校招选岗
 
-不替你选公司，也不替你写简历。就干"在一家公司里选岗"这一件事。
+[![skills.sh](https://skills.sh/b/ekko237/job-screening-skill)](https://skills.sh/ekko237/job-screening-skill)
 
----
+[English](README.md) · [简体中文](README.zh-CN.md)
 
-## 它解决什么
+[ClawHub](https://clawhub.ai/ekko237/skills/job-screening) · [Usage](#quick-use) · [Issues](https://github.com/Ekko237/job-screening-skill/issues) · [MIT license](LICENSE)
 
-投递名额有限时，真正难的不是"这个岗我能不能干"，而是：
+job-screening helps campus recruiting and new-grad candidates run job screening on a single company's openings, recommending 1–3 roles to apply for, highlighting the strongest fit, and explaining why the rest were excluded.
 
-- 几十个岗位一个个看详情页，一家公司要耗一小时
-- 岗位名骗人——叫"产品运营"的可能是产品岗，叫"AI 工程师"的可能是产品岗
-- 卡在硬门槛上才发现（要硕士、只招理工科、城市不对），白读半天
-- 选了个"最匹配"的岗，但它只招 2 个人，而隔壁培训生项目招 42 个
-- **用简历上根本没写的经历去论证自己匹配**——HR 看不到，等于没论证
+When application slots are limited, job titles can hide the actual work, and a promising role can turn out to require a different degree or location. The skill checks those requirements before ranking and backs each recommendation with evidence a recruiter can see on the résumé you plan to submit.
 
-这个 skill 把这些做成固定流程：硬淘汰 → 四层排序 → 证据可见性检查 → 输出带理由的结论。
+## Install
 
----
+### Option 1 — Command
 
-## 安装
-
-支持 **Codex** 和 **Claude Code**，两者的 skill 格式一样。
+Installs the skill into `.agents/skills/job-screening` in the current directory:
 
 ```bash
-git clone <本仓库地址> ~/job-screening-skill
-bash ~/job-screening-skill/install.sh
+npx skills add https://github.com/Ekko237/job-screening-skill --skill job-screening
 ```
 
-脚本会自动检测本机装的是哪个，复制到对应位置（两个都装就都放一份）：
+In a non-interactive terminal, add `-y` if needed.
 
-| 用的是 | 装到 |
-|---|---|
+### Option 2 — Prompt
+
+Paste this into Claude Code, Codex, Cursor, or another supported agent to run the skill on demand without installing it:
+
+```text
+Run `npx skills use "https://github.com/Ekko237/job-screening-skill" --skill "job-screening"` and follow the generated skill instructions now. Read its complete output, redirecting it to a temporary file first if necessary. Resolve relative paths from the supporting-files directory it provides.
+```
+
+## Requirements
+
+- A signed-in AI agent session (Claude Code, Codex, Cursor, or another agent supported by `npx skills`) for the full workflow.
+- `git` and Node.js with `npx` for the `Command` and `Prompt` options above.
+- `git`, `bash`, and `rsync` if using `install.sh`, which looks for `~/.codex` or `~/.claude`.
+- Your résumé and a job list from one company.
+
+## Quick use
+
+### 1. Install the skill
+
+Use `Command` to install the skill at `./.agents/skills/job-screening/`, or use `Prompt` to run it on demand without installing it. See [Other install methods](#other-install-methods) for the pinned `v1.0.2` `install.sh` method, which installs into `~/.codex/skills/job-screening/` or `~/.claude/skills/job-screening/`.
+
+### 2. Open your agent and set up your profile
+
+Say “用 job-screening” or “帮我筛一下秋招岗位” in Claude Code, Codex, Cursor, or another supported agent. Allow about 10 minutes for this one-time setup.
+
+1. Share your résumé files (PDF, Word or images) and identify the version you actually submit.
+2. Answer a short interview about target roles, exclusions, acceptable cities, graduation and start dates, and application preferences.
+3. Review additional role directions and search terms the skill finds in your résumé evidence.
+4. Correct the draft profile before using it to screen jobs. The installed skill keeps it in its local `profile/` folder, which is gitignored.
+
+### 3. Send one company's job list
+
+Paste text or attach screenshots, a PDF or an Excel job list, or share the recruiting link. Include how many applications the company allows if you know. You get a ranked shortlist, résumé evidence and risks for the recommended roles, and a reason for every role screened out so you can catch mistakes.
+
+## When not to use it
+
+- Company selection and résumé writing are outside the skill's scope.
+- The full workflow requires a signed-in AI agent session (Claude Code, Codex, Cursor, or another supported agent).
+- Leave out sensitive information you are unwilling to share with your agent's configured model or provider. See [Privacy](#privacy).
+- Browser `localStorage` is inapplicable. The installed skill keeps your profile in local files.
+
+## Compared with alternatives
+
+| Approach | What you do | What you get |
+| --- | --- | --- |
+| Screen manually | Open postings and track requirements and trade-offs yourself | A shortlist and any reasoning you record |
+| Ask an agent in a fresh chat | Provide the job list and restate your constraints and ranking criteria | An answer shaped by that prompt |
+| Use job-screening | Set up your profile once, then send one company's list at a time | A shortlist checked against the résumé you submit, with reasons for every exclusion |
+
+## Example output
+
+Fictional template. The roles, counts, referral detail and résumé references are placeholders.
+
+```text
+Apply for these 2 roles
+
+1. XX Product Manager | Top choice
+- Fit: High
+- Interview outlook: High — trainee program, 42 openings, referral code available
+- Visible evidence: The three supporting points appear in the second paragraph
+  of the résumé you plan to submit.
+- Why this role: [Cite the relevant résumé evidence.]
+- Risk: [Likely interview follow-up.] The program could place you in operations.
+
+2. XX Product Manager | Backup
+[Fit, evidence, rationale and risks.]
+
+Screened out (17)
+- [XX role]: Requires a master's degree or higher.
+- [XX role]: Operations job family, which you ruled out.
+[Include every remaining role and its reason.]
+
+Things to check
+[Open questions and risks.]
+```
+
+## How screening works
+
+1. **Apply hard filters.** Check degree, location and other constraints. Get the full posting for every recommended role to verify its requirements.
+2. **Rank across four layers.** Determine the job family from the first three duties, then consider business fit, candidate competitiveness and likelihood of acceptance. The fourth layer considers the chances of getting in, including hiring signals such as trainee-program intake.
+3. **Check visible evidence.** The résumé the recruiter will see must contain the evidence used to argue fit. An experience that appears only in a portfolio, website or chat cannot support that recommendation. The skill downgrades or removes recommendations that fail this check.
+4. **Explain the result.** Give reasons for the shortlist and every exclusion. Correcting an eligibility fact, such as whether a bachelor's degree qualifies, clears that filter. Moving a role up requires a reason tied to the ranking criteria.
+
+## Repository layout
+
+```text
+job-screening/
+├── SKILL.md                       Screening workflow and output format
+├── install.sh                     Codex and Claude Code installer
+├── references/
+│   ├── onboarding.md              Résumé intake, interview and profile setup
+│   ├── opportunity-scan.md        Additional roles supported by résumé evidence
+│   └── profile-template.md        Candidate profile template
+└── profile/                       Local candidate profile (gitignored)
+```
+
+## Other install methods
+
+Pinned stable release [v1.0.2](https://github.com/Ekko237/job-screening-skill/releases/tag/v1.0.2):
+
+```bash
+git clone --branch v1.0.2 --depth 1 https://github.com/Ekko237/job-screening-skill.git job-screening-skill
+cd job-screening-skill
+bash install.sh
+```
+
+The installer copies the skill to each available destination:
+
+| Agent | Skill directory |
+| --- | --- |
 | Codex | `~/.codex/skills/job-screening/` |
 | Claude Code | `~/.claude/skills/job-screening/` |
 
-也可以手动放——把仓库内容（除了 `install.sh`）复制进上面的目录，确保里面有 `SKILL.md`。
+The installer preserves `profile/` and files that exist only at the destination. If it finds a same-name installation it doesn't recognize, it backs up that directory as `job-screening.bak-<timestamp>` and stops. To replace that installation after reviewing the backup, run `bash install.sh --force` from the pinned checkout. Your profile is preserved.
 
-装好后直接说「帮我筛一下秋招岗位」就会触发，也可以显式说「用 job-screening」。
+For a manual install, copy `SKILL.md` and `references/` from the pinned checkout into the matching skill directory. Keep any existing `profile/`.
 
-> **install.sh 不会删东西**：`profile/` 不动，目标目录里多出来的文件也一律保留。
-> 如果那个位置本来就有一个同名的、不是本仓库装的 skill（比如你自己写的私人版），
-> 脚本会先把整个目录备份成 `job-screening.bak-<时间戳>`，然后停下来，不覆盖。
-> 确认要用本仓库替换它时，再跑 `bash install.sh --force`（`profile/` 仍然不会被改写）。
-> `--force` 可以写在目标前面或后面，例如 `bash install.sh --force codex`。
+## Privacy
 
-## 怎么用
+Screening runs in your own agent session. The skill has no separate server. The résumé text you share goes to the AI model or service provider configured for that agent.
 
-### 第一次：建档（约 10 分钟，只做一次）
+The profile stays in the installed skill's gitignored `profile/` directory. Original résumé files stay where you keep them, and the profile can record their local paths. This repository contains no personal information. If you fork it, check that any changes you submit exclude résumés and profiles.
 
-直接说「帮我筛一下秋招岗位」或 `/job-screening`，它会：
+## Keywords
 
-1. **要你的简历** —— PDF / Word / 图片都行，有几个版本就都给它
-   （投递版和素材版用途不同，它会问清楚哪份是实际投出去的那份）
-2. **问一轮硬约束** —— 目标岗位及顺位、明确不去的岗、能接受的城市、毕业与到岗时间，
-   然后是改不改简历、天花板还是稳、线下面试接不接受
-3. **基于简历反推你还能投哪些方向** —— 不是把招聘网站的分类抄一遍，
-   而是把简历拆成能力证据，看这些证据组合起来在市场上对应哪些岗位，
-   重点是**你自己没搜过的那些关键词**
-4. **写成一份档案**给你过目纠错
-
-档案文件存在 `~/.claude/skills/job-screening/profile/`，**不会进版本库**。筛岗在你自己的 agent 会话里进行，简历文本会发给该 agent 所用的模型，见下方「隐私」。
-
-### 之后每次：丢岗位列表进来
-
-截图、复制的文字、Excel/PDF 岗位表、招聘链接都行。顺便说一句那家能投几个
-（页面上写了的话它自己会看）。
-
-它会输出：
-
-```
-## 投这 2 个
-
-### 1. XX 产品经理｜主投 ⭐ 最适合
-- 匹配度：高
-- 进面概率：高 —— 培训生项目，42 人 headcount，有内推码
-- 证据可见性：已过闸 —— 用到的三条证据都在投递版第二段里
-- 为什么是它：……（引用简历里的具体一段，不说空话）
-- 风险：面试会追问 ××，你这块答不上；培训生有被分到运营方向的可能
-
-### 2. XX 产品经理｜保底
-……
-
-## 淘汰的（17 个）
-| 岗位 | 淘汰原因 |
-|---|---|
-| …… | 要求硕士及以上学位 |
-| …… | 运营序列，你说过不投 |
-
-## 要注意的
-……
-```
-
-**淘汰理由永远给全**——这是你发现它筛错了的唯一入口。
-
----
-
-## 核心设计
-
-几条不显然但很关键的规则：
-
-- **证据可见性闸**：论证匹配用的证据，必须在招聘方**实际看得到**的那份简历里找得到。
-  只在作品集、个人网站、聊天记录里的经历不算数——简历关就死了。
-  这条是硬闸，过不了的推荐直接降级或剔除。
-- **录取概率是独立的一层**：前三层算"合不合适"，第四层算"进不进得去"。
-  **培训生 / 管培项目 >> 单一具体岗位**——前者看潜力、池子大，后者看经验对口、常常只招个位数。
-  经历密度高但画像不标准的人，在培训生的评价体系里明显更占便宜。
-- **岗位序列看职责实质，不看岗位名**：读职责前三条再定序列，否则会误杀也会误收。
-- **列表页看不到任职要求**：推荐位上的每个岗都要拿到详情页再推，
-  否则会推出你根本没资格投的岗。
-- **事实只用于过滤，不用于改排序**：你纠正一个事实（"这个岗本科可投"）只是排除了一个淘汰理由，
-  不等于它该升到主投。要改排序得给改排序的理由。
-
----
-
-## 目录结构
-
-```
-job-screening/
-├── SKILL.md                      主流程：输入分流、硬淘汰、四层排序、输出格式
-├── install.sh                    一键装到 Codex 或 Claude Code
-├── references/
-│   ├── onboarding.md             首次使用：收简历、访谈、建档
-│   ├── opportunity-scan.md       从简历反推还能投哪些方向
-│   └── profile-template.md       候选人档案模板
-└── profile/                      你的档案（本机，gitignored）
-```
-
----
-
-## 隐私
-
-筛选在**你自己的 agent 会话**里进行。本 skill 没有单独的服务器。
-
-- 简历文件和档案写在你本机的 `profile/` 目录，该目录在 `.gitignore` 里，不会进版本库。仓库本身不含任何人的个人信息。
-- 你交给 agent 的简历文本，会发给**这个 agent 所配置的 AI 模型或服务商**。
-- 不要把你不愿意交给该服务商的敏感信息放进简历或对话。
-- 如果你 fork 之后要提交改动，**提交前确认没有把简历或档案加进去**。
-
----
+Job screening (选岗), campus recruiting (校招), agent skills (agent-skills), Claude Code (claude-code), Codex (codex).
 
 ## License
 
-MIT
+[MIT](LICENSE)

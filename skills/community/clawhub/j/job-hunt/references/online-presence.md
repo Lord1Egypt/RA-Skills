@@ -3,7 +3,7 @@
 Read this when you enter apply, discover or assess. It turns a candidate's public
 profiles (GitHub, Google Scholar, personal website) into confirmed facts in their
 master profile, so a CV that lags behind their public work stops costing them.
-The design document is kept in the source repository, https://github.com/addsumtech/job-hunt.
+Design: `docs/superpowers/specs/2026-11-01-online-presence-design.md` (source repository).
 
 Run it before the profile is frozen: in apply before the master fingerprint
 (`check_claims.py --record`), in discover before `snapshot_profile.py`, in assess

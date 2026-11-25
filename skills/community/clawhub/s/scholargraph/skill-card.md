@@ -1,47 +1,66 @@
-## Description: <br>
-Academic literature intelligence toolkit for multi-source paper search, analysis, and knowledge graph building with AI assistance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic literature intelligence toolkit for multi-source paper search, analysis, and knowledge graph building with AI assistance.
 
-## Publisher: <br>
-[Josephyb97](https://clawhub.ai/user/Josephyb97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[josephyb97](https://clawhub.ai/user/josephyb97)
 
-## Use Case: <br>
-Researchers, students, and developers use ScholarGraph to search academic sources, analyze papers, build knowledge graphs, monitor research topics, and generate structured learning or review outputs with AI assistance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Local execution and credential-handling paths need review before installation. <br>
-Mitigation: Run the skill in a virtual environment or container, review it as a local code-execution tool, and avoid sharing logs that may contain configuration output. <br>
-Risk: Research content may be sent to external AI providers when AI-assisted analysis is enabled. <br>
-Mitigation: Do not process confidential or unpublished research with external AI providers unless that is acceptable under the user's policies. <br>
-Risk: File processing and output-path behavior may be risky for unusual filenames or paths. <br>
-Mitigation: Preinstall optional Python dependencies yourself and avoid processing files or output paths with unusual characters. <br>
+## Use Case:
 
+Researchers, students, and developers use ScholarGraph to search academic sources, analyze papers, build knowledge graphs, track research progress, and generate reports or visualizations with AI assistance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Josephyb97/scholargraph) <br>
-- [Source Repository](https://github.com/Josephyb97/ScholarGraph) <br>
-- [README](README.md) <br>
-- [Query Expansion](QUERY_EXPANSION.md) <br>
-- [Advanced Features](test/ADVANCED_FEATURES.md) <br>
-- [Test Results](test/TEST_RESULTS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, Mermaid, HTML, PPTX, and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write local files, download PDFs, store SQLite knowledge graphs, and call configured academic and AI provider APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.3 (source: server release metadata; artifact metadata also declares 1.0.0) <br>
+Risk: API keys or sensitive configuration may be exposed through configuration commands or local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review configuration output before sharing logs, avoid running config show/init in shared terminals, and use scoped test credentials where possible.
+
+Risk: PDF figure extraction and PPT export may process crafted or untrusted files and paths.
+
+Mitigation: Run these features only in an isolated environment and avoid using untrusted local paths or files.
+
+Risk: Generated HTML may include untrusted paper metadata or content.
+
+Mitigation: Open generated HTML locally only after review, and do not host or share it until the source metadata has been checked.
+
+Risk: Unpinned or broad dependencies can increase supply-chain risk when handling sensitive research or credentials.
+
+Mitigation: Pin dependencies and review the installed package set before production or sensitive use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/josephyb97/skills/scholargraph)
+- [Source Repository](https://github.com/Josephyb97/ScholarGraph)
+- [README](README.md)
+- [Query Expansion Documentation](QUERY_EXPANSION.md)
+- [Advanced Features](test/ADVANCED_FEATURES.md)
+- [Test Results](test/TEST_RESULTS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, Mermaid, HTML, PPTX, SQLite-backed graph data, and CLI/API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create local files including reports, downloaded PDFs, presentations, graph exports, and configuration.]
+
+## Skill Version(s):
+
+1.4.3 (source: server release metadata; artifact package.json and changelog report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

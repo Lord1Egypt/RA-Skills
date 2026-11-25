@@ -1,6 +1,16 @@
 # role: adapter:openclaw（JSONL 后端）— 产品适配器，不含引擎逻辑
 """fork_core.adapter_openclaw — OpenClaw 适配器（pi 血缘 + 产品索引）。
 
+⚠️ **适用范围：仅 ≤2026.6.x**（实测基线 2026.6.35）。
+   2026.9+ 的 OpenClaw 运行时**只读 SQLite**（转录迁进
+   `agents/<id>/agent/openclaw-agent.sqlite` 的 `transcript_events` 表），
+   本文件的 JSONL 后端对它们**已降级为一次性迁移输入**——不是可用的落位目标：
+   往 `sessions/` 写 `<id>.jsonl` 在那两代运行时里不会成为会话。
+   2026.9+ 请用 `adapter_openclaw_sqlite.py`（`--adapter openclaw` 在
+   `FORK_OPENCLAW_BACKEND=auto` 下会自动选后端）。
+   本文件保留的原因是：① 旧库仍在用；② SQLite 后端**继承**本文件的格式层
+   （消息判定 / get_text / rewrite_ids / 标题提取 / 旁路谱系索引）。
+
 一手依据（2026-09-14 真机取证，非推测，可复跑核对）：
 
   1. 真机安装 `openclaw@2026.6.35`（dist-tag `extended-stable`），

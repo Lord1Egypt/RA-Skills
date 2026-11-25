@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850" role="img" aria-labelledby="title desc" lang="zh-CN">
+<title id="title">OpenXSys 运行时全景</title><desc id="desc">人通过 AI 工具进入 OpenXSys。模型、Agent、Skill、工具、作品、行动、反馈和用户长期拥有的系统，围绕当前可运行系统实例共同作用。</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke="#536f69" stroke-width="1.6"/></marker><marker id="b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke="#9b6b2f" stroke-width="1.6"/></marker></defs>
+<style>text{font-family:system-ui,-apple-system,"Segoe UI","Noto Sans SC","Microsoft YaHei",sans-serif}.title{font-size:27px;font-weight:760;fill:#173b3b}.sub{font-size:14px;fill:#536b70}.group{font-size:16px;font-weight:750;fill:#315653}.box{font-size:18px;font-weight:750;fill:#173b3b}.body{font-size:13px;fill:#486066}.tiny{font-size:12px;fill:#536b70}.wire{fill:none;stroke:#536f69;stroke-width:2;marker-end:url(#a)}.build{fill:none;stroke:#9b6b2f;stroke-width:2;marker-end:url(#b)}.dash{stroke-dasharray:6 6}</style>
+<rect x=".5" y=".5" width="1399" height="849" rx="20" fill="#f7f8f3" stroke="#d8e0db"/>
+<text x="38" y="48" class="title">OpenXSys</text><text x="185" y="48" class="title">运行时全景</text><text x="38" y="75" class="sub">用户旅程是你看到的体验。这是它背后的运行系统：所有部分围绕同一个真实对象作用，并把结果送回真正受影响的位置。</text>
+<rect x="35" y="136" width="230" height="170" rx="15" fill="#fbebe4" stroke="#c99d8e"/><text x="55" y="168" class="box">人</text><text x="55" y="197" class="body">普通表达 · 意图</text><text x="55" y="220" class="body">纠正 · 选择 · 所有权</text><text x="55" y="252" class="tiny">通过 AI 工具进入</text>
+<path class="wire" d="M265 216H323"/><text x="294" y="203" text-anchor="middle" class="tiny">意图</text>
+<rect x="325" y="102" width="750" height="560" rx="18" fill="#e8f0e9" stroke="#94aa9c" stroke-width="2"/><text x="350" y="134" class="group">AI 工具 · 宿主</text>
+<text x="350" y="158" class="tiny">会话 · 上下文 · 文件 · 事件 · 权限 · 结果回传</text>
+<rect x="350" y="178" width="700" height="458" rx="15" fill="#f7faf4" stroke="#a4b9a9"/><text x="375" y="210" class="group">OPENXSYS · 系统层</text>
+<text x="375" y="234" class="tiny">自然语言承载目的、意义、条件、模型、权利与质量</text>
+<rect x="377" y="258" width="145" height="74" rx="12" fill="#edf4fb" stroke="#9eb4cb"/><text x="449" y="287" text-anchor="middle" class="box">模型</text><text x="449" y="310" text-anchor="middle" class="tiny">理解 · 推演</text>
+<rect x="534" y="258" width="145" height="74" rx="12" fill="#edf4fb" stroke="#9eb4cb"/><text x="606" y="287" text-anchor="middle" class="box">Agent</text><text x="606" y="310" text-anchor="middle" class="tiny">组织行动</text>
+<rect x="691" y="258" width="145" height="74" rx="12" fill="#fff4e6" stroke="#c7a06c"/><text x="763" y="287" text-anchor="middle" class="box">Skill</text><text x="763" y="310" text-anchor="middle" class="tiny">专业能力</text>
+<rect x="848" y="258" width="175" height="74" rx="12" fill="#edf6f0" stroke="#8eb79e"/><text x="935" y="287" text-anchor="middle" class="box">代码与工具</text><text x="935" y="310" text-anchor="middle" class="tiny">观察 · 转换 · 执行</text>
+<rect x="510" y="378" width="380" height="116" rx="17" fill="#e4efce" stroke="#8da879" stroke-width="2"/><text x="700" y="410" text-anchor="middle" class="group">当前可运行的系统</text><text x="700" y="439" text-anchor="middle" class="box">对象 × 人 × 目的 × 状态</text><text x="700" y="465" text-anchor="middle" class="body">尺度 · 关系 · 权限 · 证据 · 未决问题</text>
+<path class="wire" d="M449 334V365H560"/><path class="wire" d="M606 334V365"/><path class="wire" d="M763 334V365"/><path class="wire" d="M935 334V365H840"/>
+<rect x="378" y="531" width="185" height="70" rx="12" fill="#edf5fa" stroke="#91afc1"/><text x="470" y="559" text-anchor="middle" class="box">理解</text><text x="470" y="581" text-anchor="middle" class="tiny">观察 · 建模 · 检验</text>
+<rect x="576" y="531" width="190" height="70" rx="12" fill="#fff4e6" stroke="#c7a06c"/><text x="671" y="559" text-anchor="middle" class="box">建造</text><text x="671" y="581" text-anchor="middle" class="tiny">组合 · 适配 · 创造</text>
+<rect x="779" y="531" width="244" height="70" rx="12" fill="#f4eff8" stroke="#b09cc1"/><text x="901" y="559" text-anchor="middle" class="box">行动 · 确认 · 更新</text><text x="901" y="581" text-anchor="middle" class="tiny">真实效果作为反馈返回</text>
+<path class="wire" d="M560 494L500 528"/><path class="build" d="M700 494V528"/><path class="wire" d="M840 494L875 528"/><path class="wire dash" d="M901 603V615H470V603"/>
+<rect x="1135" y="136" width="230" height="260" rx="15" fill="#eef1fa" stroke="#9ba8ca"/><text x="1155" y="168" class="box">现实对象</text><text x="1155" y="197" class="body">公司 · 项目 · 产业</text><text x="1155" y="220" class="body">代码库 · 决定 · 生活</text><text x="1155" y="252" class="tiny">保有权威状态</text><text x="1155" y="273" class="tiny">并且独立变化</text>
+<rect x="1155" y="305" width="190" height="66" rx="10" fill="#fff" stroke="#c4cbb0"/><text x="1250" y="333" text-anchor="middle" class="group">外部系统</text><text x="1250" y="354" text-anchor="middle" class="tiny">人 · 软件 · 设备</text>
+<path class="wire" d="M1075 315H1132"/><text x="1104" y="302" text-anchor="middle" class="tiny">观察</text><path class="wire" d="M1135 365H1078"/><text x="1104" y="387" text-anchor="middle" class="tiny">作用 + 反馈</text>
+<rect x="35" y="700" width="1330" height="112" rx="16" fill="#eef1fa" stroke="#9ba8ca"/><text x="60" y="732" class="group">你拥有的系统 · ~/.openxsys/ 或 &lt;项目&gt;/.openxsys/</text>
+<rect x="60" y="750" width="250" height="43" rx="9" fill="#fff" stroke="#b9c2dc"/><text x="185" y="777" text-anchor="middle" class="body">当前认识与接力点</text>
+<rect x="326" y="750" width="220" height="43" rx="9" fill="#fff" stroke="#b9c2dc"/><text x="436" y="777" text-anchor="middle" class="body">作品与能力</text>
+<rect x="562" y="750" width="220" height="43" rx="9" fill="#fff" stroke="#b9c2dc"/><text x="672" y="777" text-anchor="middle" class="body">关系与反馈</text>
+<rect x="798" y="750" width="250" height="43" rx="9" fill="#fff" stroke="#b9c2dc"/><text x="923" y="777" text-anchor="middle" class="body">纠正与下一方向</text>
+<rect x="1064" y="750" width="276" height="43" rx="9" fill="#fff" stroke="#b9c2dc"/><text x="1202" y="777" text-anchor="middle" class="body">跨 AI 工具与时间携带</text>
+<path class="wire" d="M700 663V697"/><text x="712" y="685" class="tiny">真正改变未来行为的内容</text><path class="wire dash" d="M1250 397V680H1010V697"/><text x="1238" y="678" text-anchor="end" class="tiny">跨系统关系</text>
+<text x="1365" y="835" text-anchor="end" class="tiny">OpenXSys · 用系统理解系统 · 用系统建造系统</text>
+</svg>

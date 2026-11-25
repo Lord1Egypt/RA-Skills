@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Leina"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.2"
   services: ["leina"]
   icon: "https://static.oomol.com/logo/third-party/leina.png"
 ---
@@ -38,7 +38,7 @@ Each action is listed below with a one-line description; actions that change sta
 ## Available actions
 
 - `list_bots` — List Leina robots and their runtime status in the current OOMOL team. Bound platforms do not guarantee a configured Home recipient.
-- `send_notification` — Send text through a selected Leina robot's configured Home channels without invoking a model. Delivered means at least one channel succeeded, not that the recipient read it. Retry uncertain delivery within one hour using the same Idempotency-Key and unchanged input; deduplication does not survive a Hermes restart. [write]
+- `send_notification` — Send text without invoking a model. Supply the opaque subscription returned by flow_notification_subscribe to deliver to that conversation; never expose the credential or derive a recipient yourself. Omit subscription to use the robot's configured Home channels. Retry uncertain delivery within one hour using the same Idempotency-Key and unchanged input. Subscription delivery deduplication survives Hermes restarts; Home deduplication does not. Delivered is not a read receipt. [write]
 
 ## Safety
 

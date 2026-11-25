@@ -107,6 +107,12 @@ Also browseable: `motley://neighborhoods`, `motley://neighborhood/{nta_code}`,
   (78/100)"). Give the family that. The raw scores are there if they ask.
 - **Neighborhood, not borough.** "Brooklyn" is 60-some neighborhoods that differ
   enormously. Resolve to a specific one before answering.
+- **A broad school question gets one search and one question.** For "best schools
+  in Brooklyn" or a need with no grade ("a school for a hyper kid"), make one
+  `browse-schools` call for the likeliest reading (the family's words as `query`),
+  name two or three results with a reason each, then ask the one question that
+  would narrow it most: the child's grade, what the need means at school, or near
+  home versus borough-wide. Don't run a call for each reading of the question.
 - **Identifiers:** neighborhoods are `nta_code` (from `search-neighborhoods` or
   `find-neighborhood`); schools are a DBN like `13K430`. Never invent either —
   look it up first.

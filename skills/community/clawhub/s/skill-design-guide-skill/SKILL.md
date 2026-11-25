@@ -9,7 +9,7 @@ description: >
   Parallelization, Orchestrator-Workers, Evaluator-Optimizer), write clean
   SKILL.md files, and catch common mistakes with a governance-aware quality checklist.
   Based on design principles from Anthropic, OpenAI, and LangChain.
-version: "1.7.4"
+version: "1.7.5"
 agent_created: true
 category: "Architecture / Design Patterns"
 license: "MIT"
@@ -261,7 +261,7 @@ Rules for anything a skill ships beyond prose — hooks, scripts, platform adapt
 | Rule | What it means |
 |------|---------------|
 | **Opt-in only** | Anything that runs automatically (hooks, session-start injection) is gated behind a user-created flag file; flag absent → do nothing |
-| **Fail open at the host boundary** | A hook or helper that misbehaves must never block the host session: catch everything, exit 0 |
+| **Fail open at the host boundary only for non-safety paths** | A hook or helper that misbehaves must never crash the host session: catch unexpected errors and exit 0. But a safety-relevant check (credential exposure, destructive action, disallowed network call) must fail **closed** — refuse the action and surface a warning, never silently continue. |
 | **Resolve paths from the script's own location** | Never trust environment variables to locate bundled files — derive them from the script path |
 | **Single source of truth** | One canonical rules file; platform adapters only inject it, never copy it — copies drift and contradict |
 | **Declarations match behavior** | Every network endpoint, credential source, and file read the scripts perform must appear in the frontmatter (`permissions` + capability tokens). Scanners flag undeclared behavior (LP1), and absolute claims like "never reads files" must be scoped when another component does read one |

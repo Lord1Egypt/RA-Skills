@@ -1,6 +1,6 @@
 ## Description:
 
-Researches public Douyin search results, trending topics, creator posts, video details, and comments to identify content and audience opportunities for further validation.
+研究抖音搜索结果、作品结构、达人数据和用户反馈，筛选值得继续验证的机会。当用户询问抖音选题、抖音增长或用户痛点时使用。支持关键词搜索视频与图文、实时热榜查询、作品详情、博主作品抓取和视频评论分析。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Content strategists, social media operators, marketers, and product teams use the skill to explore Douyin trends, compare public creator content, and summarize audience feedback as hypotheses for follow-up research.
+短视频运营、品牌与增长团队可用它检索抖音公开视频、达人作品、评论和热榜数据，并整理选题、竞品、舆情或用户需求线索。
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search terms and supplied Douyin links are sent to the third-party Guaikei API to retrieve results.
+Risk: Search terms and supplied Douyin links or IDs are sent to guaikei.com for processing.
 
-Mitigation: Disclose this data flow and confirm the user is authorized to share the requested terms or links before querying.
+Mitigation: Obtain the user's agreement before querying and avoid confidential or personally sensitive inputs.
 
-Risk: The security scan had medium confidence and only partial static inspection, leaving some executable components unassessed.
+Risk: Keyword-based account discovery is not clearly disclosed in the scan summary, and some package components were only partially analyzed.
 
-Mitigation: Review unassessed executable components before relying on the skill in a production environment.
-
-Risk: The skill requires an API token in GUAIKEI_API_TOKEN.
-
-Mitigation: Keep the token in the environment and avoid placing it in prompts, command examples, or shared output.
+Mitigation: Review the account-search behavior before enabling it and limit use to public-data research.
 
 ## Reference(s):
 
-- [Demand mining guide](artifact/references/demand-mining.md)
-- [Command options](artifact/references/options.md)
-- [Guaikei service](https://www.guaikei.com)
-- [ClawHub skill page](https://clawhub.ai/why20261/skills/douyin-opportunity-research)
+- [参数与筛选选项](references/options.md)
+- [评论需求挖掘指南](references/demand-mining.md)
+- [评论区获客指南](references/customer-acquisition.md)
+- [服务与令牌信息](https://www.guaikei.com)
+- [ClawHub 技能发布页](https://clawhub.ai/why20261/skills/douyin-opportunity-research)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis, Markdown]
+**Output Type(s):** [JSON, Text, Guidance]
 
-**Output Format:** [Structured JSON result envelopes with concise Markdown or analysis summaries when requested]
+**Output Format:** [Structured JSON data with concise research summaries and tables]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Returns public content and engagement data for agent analysis; summaries should select relevant fields rather than reproduce full result payloads.]
+**Other Properties Related to Output:** [Returned fields vary by query; results can be saved for downstream analysis.]
 
 ## Skill Version(s):
 
-1.4.2 (source: SKILL.md frontmatter, ClawHub release)
+1.5.0 (source: release metadata, frontmatter, package.json)
 
 ## Ethical Considerations:
 

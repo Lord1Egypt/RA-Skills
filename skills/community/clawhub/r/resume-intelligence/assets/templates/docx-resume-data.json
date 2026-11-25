@@ -1,0 +1,53 @@
+{
+  "name": "Candidate Name",
+  "target_role": "Staff Platform Engineer",
+  "contact": {
+    "email": "email@example.com",
+    "phone": "+1 555 010 0000",
+    "location": "City, ST",
+    "linkedin": "linkedin.com/in/profile",
+    "github": "github.com/profile"
+  },
+  "summary": "Evidence-backed summary focused on platform engineering, distributed systems, cloud infrastructure, reliability, and cross-functional leadership.",
+  "skills": {
+    "Languages": ["Java", "Python", "Go"],
+    "Cloud and Platform": ["Kubernetes", "Terraform", "AWS", "Azure"],
+    "Architecture": ["Microservices", "Distributed Systems", "API Platforms"],
+    "Operations": ["Observability", "Incident Management", "CI/CD"]
+  },
+  "experience": [
+    {
+      "company": "Company Name",
+      "title": "Staff Platform Engineer",
+      "dates": "2021 - Present",
+      "bullets": [
+        "Led platform modernization for a distributed service ecosystem, improving reliability and developer productivity across multiple engineering teams.",
+        "Designed cloud infrastructure and deployment automation using Kubernetes, Terraform, and CI/CD practices while reducing operational risk.",
+        "Partnered with product, security, and operations stakeholders to deliver customer-facing capabilities with measurable reliability improvements."
+      ]
+    },
+    {
+      "company": "Previous Company",
+      "title": "Senior Software Engineer",
+      "dates": "2018 - 2021",
+      "bullets": [
+        "Built backend services and APIs supporting high-availability product workflows.",
+        "Improved observability and incident response through standardized metrics, logging, and service ownership practices."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Platform Reliability Program",
+      "bullets": [
+        "Established service health standards, runbooks, and dashboards for critical systems.",
+        "Reduced incident triage time by improving telemetry, ownership boundaries, and operational documentation."
+      ]
+    }
+  ],
+  "open_source": [
+    "Contributed bug fixes, reviews, or documentation to public repositories relevant to cloud-native engineering."
+  ],
+  "education": ["Degree, School"],
+  "certifications": ["Certification Name"]
+}

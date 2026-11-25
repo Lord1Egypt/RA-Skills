@@ -1,6 +1,6 @@
 ## Description:
 
-Use to run supervised autopilot cycles under a bounded, revocable session grant: intents, policy checks, approvals, receipts. Execution stays preview-gated.
+Use to run supervised autopilot cycles under a bounded, revocable session grant: intents, policy checks, approvals, receipts, and zero-custody local signing.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agent operators use this skill to coordinate DeFi sessions, intent policy checks, approvals, and receipt review under explicit signing and execution controls.
+Developers and agent operators use this skill to maintain FarmDash sessions, coordinate DeFi intent workflows, and run supervised or bounded autonomous cycles with execution authority checked against policy and user authorization.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Financial automation can lead to wallet-changing actions when valid authority and runtime readiness are present.
+Risk: The scanner judged the package benign with medium confidence, but its inspection was partial because four local references could not be verified.
 
-Mitigation: Check live domain readiness and grant scope before action; use fresh user signatures for USER_SIGNED actions, and do not treat an autopilot cycle result as submission or settlement.
+Mitigation: Review the referenced targets and scan the complete package when those files are available.
 
-Risk: Exposed API keys, session tokens, or local signing authority could enable unauthorized access or actions.
+Risk: Incorrect plans or stale authority checks could lead to unintended DeFi actions.
 
-Mitigation: Protect credentials and local signing authority, use narrow short-lived grants, and verify current grant status and revocation before enabling autopilot.
+Mitigation: Check current domain readiness and scoped execution authority, follow policy and approval gates, and stop when status or settlement is unclear.
 
 ## Reference(s):
 
 - [FarmDash Agent Hub](https://www.farmdash.one/agents)
-- [FarmDash documentation](https://www.farmdash.one/docs)
-- [Agent API status and capability information](https://www.farmdash.one/api/v1/agent/status)
-- [OpenAPI specification](https://www.farmdash.one/agents/openapi.yaml)
-- [MCP discovery document](https://www.farmdash.one/.well-known/mcp.json)
-- [FarmDash security information](https://www.farmdash.one/security)
-- [ClawHub skill page](https://clawhub.ai/parmasanandgarlic/skills/farmdash-autonomous-operator)
+- [Canonical Autonomous Operator skill manual](https://www.farmdash.one/agents/skills/farmdash-autonomous-operator)
+- [FarmDash security and authority boundaries](https://www.farmdash.one/security)
+- [ClawHub release page](https://clawhub.ai/parmasanandgarlic/skills/farmdash-autonomous-operator)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, JSON, Guidance]
+**Output Type(s):** [Guidance, Text, JSON]
 
-**Output Format:** [Structured JSON data with concise operational guidance]
+**Output Format:** [Natural-language guidance and structured JSON responses]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Session, policy, intent, approval, and receipt information; execution status depends on current authority and readiness.]
+**Other Properties Related to Output:** [Session and execution results depend on current service status, policy checks, and valid user authorization.]
 
 ## Skill Version(s):
 
-1.0.15 (source: server-resolved release evidence)
+1.0.17 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

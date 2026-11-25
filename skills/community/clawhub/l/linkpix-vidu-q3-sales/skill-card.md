@@ -1,6 +1,6 @@
 ## Description:
 
-帮助电商商家、设计师和独立站运营使用青虎 AI 将商品图片与卖点制作成带货短视频。
+Creates e-commerce product videos through Qinghu AI, using Vidu Q3 when available to preserve reference-image details and suggesting similar models when it is not.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,45 +14,40 @@ MIT-0
 
 ## Use Case:
 
-电商商家、设计师和独立站运营使用商品图片与卖点生成商品展示、种草和广告短视频，并获取生成结果链接。
+External e-commerce sellers, designers, and storefront operators use the skill to turn product images and selling points into short promotional videos, with a focus on preserving product materials, patterns, and packaging details.
 
 ### Deployment Geography for Use:
 
-Global
+China (the documented Qinghu integration uses its domestic service)
 
 ## Known Risks and Mitigations:
 
-Risk: Installing or updating npm and Node tools can change the local environment.
+Risk: Setup instructions install an unpinned package, which may change without review.
 
-Mitigation: Prefer a preinstalled qhkit and pinned package versions; review installation before proceeding.
+Mitigation: Review the package and pin an approved version before installation.
 
-Risk: Sharing or storing an API token can expose account access.
+Risk: The setup instructions ask users to share an API key in chat.
 
-Mitigation: Use a platform secret store or environment variable instead of pasting the token into chat.
-
-Risk: Generating videos consumes credits and submitted tasks cannot be cancelled.
-
-Mitigation: Check the estimate and obtain explicit approval of the parameters and cost before submission.
+Mitigation: Collect credentials through a secure local prompt or secret manager instead of chat.
 
 ## Reference(s):
 
-- [ClawHub skill listing](https://clawhub.ai/autoagc/skills/linkpix-vidu-q3-sales)
-- [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
-- [青虎 AI API 密钥获取教程](https://xcnzsfe4uxrw.feishu.cn/wiki/KJ0Ywsyw8iAXmRkz5l4cddDbn6g)
+- [qhkit package on npm](https://www.npmjs.com/package/@iqinghu/qhkit)
+- [LinkPix Vidu Q3 skill release](https://clawhub.ai/autoagc/skills/linkpix-vidu-q3-sales)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Video links]
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance, Video]
 
-**Output Format:** [Markdown with command examples and generated video URLs]
+**Output Format:** [Markdown guidance and JSON command parameters; generated video results are returned as task status and video links.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Video creation uses credits and may require polling before a result is available.]
+**Other Properties Related to Output:** [Video generation requires a configured Qinghu API credential and consumes credits; model and option labels are selected from the live catalog.]
 
 ## Skill Version(s):
 
-0.1.4 (source: ClawHub release evidence)
+0.1.6 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -454,9 +454,17 @@ meds:" with a line per med). A reply to it can name one med ("took
 wolverine" → confirm that one) or all of them ("took both", "all taken" →
 `confirm --all`); later nudges list only the meds still untaken.
 
+**`confirm --all` rule:** run `reply.py confirm --all` ONLY when the user
+explicitly says they took all their scheduled meds ("all taken", "took
+everything", "took them all", "took both"). Ambiguous or partial replies
+("took it", "mostly", generic acks like "yes"/"done"/"ok", or silence) never
+map to `--all`. Confirm the specific med (when the message named exactly one,
+that one) or ask which meds were taken.
+
 | User says | Intent | Command |
 |-----------|--------|---------|
-| `yes`, `done`, `all taken`, `took them all` | Confirm all | `reply.py confirm --all` |
+| `all taken`, `took everything`, `took them all`, `took both` | Confirm all | `reply.py confirm --all` |
+| `yes`, `done`, `ok`, `took it`, `mostly` | Ambiguous — never `--all` | `reply.py confirm <id>` for the one med the reminder named; otherwise ask which meds were taken |
 | `took metformin`, `done met`, `met done` | Confirm one | `reply.py confirm <id>` |
 | `took met: 250mg`, `metformin 250`, `took 10 units of T` | Confirm one, different dose | `reply.py confirm <id> --dose-taken 250mg` (always a number + unit: `10units`, `0.5mg`, `1tablet`) |
 | `took it at 8`, `met at 8am`, `took met this morning` | Confirm with a time | `reply.py confirm <id> --taken-at 08:00` |

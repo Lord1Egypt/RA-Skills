@@ -43,78 +43,90 @@ public API. The main SKILL.md gives the happy path; this file covers the edges.
 }
 ```
 
-`bearer_token` is the only place the raw value appears. Capture it before
-discarding the response.
+Both `bearer_token` and `authorization_header` contain the secret. Store the
+bearer before discarding the response.
 
-## Storing the token
+## Create and store a token
 
-### Local shell — env file
+Choose a user-approved secret store before signup. Capture and validate each
+token in memory before writing to that store. A failed request or invalid
+response must leave the stored secret unchanged. Do not print `bearer_token` or
+`authorization_header`. Do not save raw responses to disk. Disable shell
+tracing, session recording, and HTTP debug output first.
 
-```sh
-umask 077
-mkdir -p ~/.config/open-agent-guide
-cat > ~/.config/open-agent-guide/env <<'EOF'
-export OAG_TOKEN='oag_…'
-export OAG_BASE_URL='https://www.openagentguide.com'
-EOF
-chmod 600 ~/.config/open-agent-guide/env
+The following example runs in an interactive Bash terminal with `curl`, `jq`,
+and Linux `secret-tool` installed. It prompts for signup fields and sends the
+password through standard input. It stores the bearer directly in libsecret.
+Check that the secret store is unlocked and writable before creating the
+account. Run this only when the user has authorized signup and credential
+storage.
 
-# Source it from ~/.zshrc or ~/.bashrc:
-#   [ -f ~/.config/open-agent-guide/env ] && . ~/.config/open-agent-guide/env
+```bash
+(
+  set +x
+  set -euo pipefail
+  command -v secret-tool >/dev/null
+  export OAG_SIGNUP_USERNAME OAG_SIGNUP_EMAIL OAG_SIGNUP_NAME OAG_SIGNUP_PASSWORD
+  read -r -p 'Username: ' OAG_SIGNUP_USERNAME
+  read -r -p 'Email: ' OAG_SIGNUP_EMAIL
+  read -r -p 'Display name: ' OAG_SIGNUP_NAME
+  read -r -s -p 'Password: ' OAG_SIGNUP_PASSWORD
+  printf '\n' >&2
+  new_token="$(
+    jq -n '{username: env.OAG_SIGNUP_USERNAME, email: env.OAG_SIGNUP_EMAIL,
+            name: env.OAG_SIGNUP_NAME, password: env.OAG_SIGNUP_PASSWORD,
+            account_type: "individual", token_name: "local-shell"}' |
+      curl -fsS --proto '=https' -X POST \
+        'https://www.openagentguide.com/api/v1/users/signup/' \
+        -H 'Content-Type: application/json' --data-binary @- |
+      jq -er '.api_token.bearer_token | strings | select(startswith("oag_"))'
+  )"
+  printf '%s' "$new_token" |
+    secret-tool store --label 'Open Agent Guide' service oag user "$USER"
+)
 ```
 
-### macOS keychain
+If the request or storage fails, stop. The account may already exist. Use
+account recovery to issue a replacement token; do not repeat signup
+automatically. Signup allows 10 requests per hour per IP. Respect `Retry-After`
+on HTTP 429.
 
-```sh
-security add-generic-password -a "$USER" -s oag-token -w "oag_…"
+Load the stored token without printing it, with tracing disabled:
 
-# In your shell rc:
-#   export OAG_TOKEN="$(security find-generic-password -a "$USER" -s oag-token -w)"
+```bash
+set +x
+OAG_TOKEN="$(secret-tool lookup service oag user "$USER")"
+export OAG_TOKEN
 ```
 
-### Linux secret-tool (libsecret)
-
-```sh
-printf 'oag_…' | secret-tool store --label "Open Agent Guide" service oag user "$USER"
-
-# In your shell rc:
-#   export OAG_TOKEN="$(secret-tool lookup service oag user "$USER")"
-```
-
-### OpenClaw agent
-
-`metadata.openclaw.primaryEnv: OAG_TOKEN` in SKILL.md (already declared) signals
-to OpenClaw that the skill expects `OAG_TOKEN` and where to source it. Store the
-token in OpenClaw's secret store; the agent injects it into the skill
-environment at activation. The skill never asks the user to paste the token at
-the prompt.
-
-### GitHub Actions
-
-```yaml
-jobs:
-  call-api:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Query catalog
-        env:
-          OAG_TOKEN: ${{ secrets.OAG_TOKEN }}
-        run: |
-          curl -fsSL "https://www.openagentguide.com/api/v1/users/me/" \
-            -H "Authorization: Bearer ${OAG_TOKEN}"
-```
-
-Set the secret once with `gh secret set OAG_TOKEN --body "oag_…"`.
+For macOS Keychain, OpenClaw, or a CI secret store, use the host's approved
+secret entry mechanism. Verify how the host injects `OAG_TOKEN` before
+authenticated use. `metadata.openclaw.primaryEnv` declares the variable; it does
+not itself store a credential or enforce runtime permissions. Do not paste
+credentials into chat or command arguments. For a local env file, use a private
+directory and mode 600, and keep it outside the repository. Do not change
+startup files without user authorization.
 
 ## Multiple named tokens
 
-Issue separate tokens per workload so revoking one does not break the others:
+Issue separate tokens per workload so revoking one does not break the others.
+With the libsecret setup above, capture the new token under a separate key. Run
+this example in Bash:
 
-```sh
-curl -fsSL -X POST "$OAG_BASE_URL/api/v1/users/me/tokens/" \
-  -H "Authorization: Bearer ${OAG_TOKEN}" \
-  -H "Content-Type: application/json" \
-  -d '{ "name": "ci-prod" }'
+```bash
+(
+  set +x
+  set -euo pipefail
+  new_token="$(
+    curl -fsS -X POST "$OAG_BASE_URL/api/v1/users/me/tokens/" \
+      -H "Authorization: Bearer ${OAG_TOKEN}" \
+      -H "Content-Type: application/json" \
+      -d '{ "name": "ci-prod" }' |
+      jq -er '.bearer_token | strings | select(startswith("oag_"))'
+  )"
+  printf '%s' "$new_token" |
+    secret-tool store --label 'Open Agent Guide CI' service oag workload ci-prod
+)
 ```
 
 The response shape matches the signup `api_token` block, including
@@ -130,18 +142,33 @@ Conventions that help on rotation:
 
 ## Rotation
 
-```sh
-curl -fsSL -X POST "$OAG_BASE_URL/api/v1/users/me/tokens/<token-id>/rotate/" \
-  -H "Authorization: Bearer ${OAG_TOKEN}" | jq '.bearer_token'
+Rotate only the token selected by the user or the authorized recovery task. The
+example replaces the local-shell secret. Run it in Bash. Confirm that libsecret
+is writable first.
+
+```bash
+(
+  set +x
+  set -euo pipefail
+  new_token="$(
+    curl -fsS -X POST "$OAG_BASE_URL/api/v1/users/me/tokens/<token-id>/rotate/" \
+      -H "Authorization: Bearer ${OAG_TOKEN}" |
+      jq -er '.bearer_token | strings | select(startswith("oag_"))'
+  )"
+  printf '%s' "$new_token" |
+    secret-tool store --label 'Open Agent Guide' service oag user "$USER"
+)
 ```
 
 The previous bearer stops working immediately. Update your secret store before
-moving on; running workloads using the old value will start returning `401`.
+moving on. Reload `OAG_TOKEN` from the store. If storage fails, stop and use
+account recovery; the old token is already invalid. Running workloads using the
+old value will start returning `401`.
 
 ## Revocation
 
 ```sh
-curl -fsSL -X DELETE "$OAG_BASE_URL/api/v1/users/me/tokens/<token-id>/" \
+curl -fsS -X DELETE "$OAG_BASE_URL/api/v1/users/me/tokens/<token-id>/" \
   -H "Authorization: Bearer ${OAG_TOKEN}"
 ```
 

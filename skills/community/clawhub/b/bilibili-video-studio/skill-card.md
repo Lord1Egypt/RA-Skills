@@ -1,6 +1,6 @@
 ## Description:
 
-该技能根据 B 站视频链接生成转录稿、内容分析、拆解报告、脚本、提示词、课件内容或备考笔记。
+Turns Bilibili video URLs into transcripts, summaries, content analyses, scripts, prompts, slide content, and study notes.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-面向处理 B 站视频的内容创作者、学习者和教育工作者，可将视频整理为文字稿、分析报告、脚本、课件内容或备考笔记。
+Chinese-speaking creators, learners, and analysts use the skill to turn Bilibili videos into transcripts, summaries, content breakdowns, scripts, prompts, slide notes, and study notes.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill repeatedly asks users to paste an API key in chat.
+Risk: ClawScan flags setup instructions that may lead users to share a complete API key in chat; video URLs are sent to a remote parser, and scan coverage was incomplete.
 
-Mitigation: Configure the key locally instead of sharing it in chat, and rotate any key already shared.
+Mitigation: Do not share complete API keys in chat. Use a protected local configuration method and verify how the remote service handles video URLs and credentials before use.
 
-Risk: Video processing is paid, and remote retention behavior is unverified.
+Risk: ClawScan notes that promotional instructions may distract from the user's task.
 
-Mitigation: Check the cost before processing and avoid sensitive video URLs until retention terms are clear.
-
-Risk: The skill prompts users to use referral or top-up options.
-
-Mitigation: Treat referral and top-up prompts as optional and skip them unless you choose to proceed.
+Mitigation: Treat promotional guidance as optional and skip it when it is unrelated to the requested task.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/panting09266-ai/skills/bilibili-video-studio)
+- [ClawHub skill page](https://clawhub.ai/panting09266-ai/skills/bilibili-video-studio)
 - [Cue Omni Reader online experience](https://cuecue.cn/hub/omni-reader)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Text, Markdown, Video scripts, Structured JSON, Guidance]
 
-**Output Format:** [Plain text or Markdown]
+**Output Format:** [Markdown reports and tables, plain text transcripts, video scripts, and JSON prompts]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Video transcripts, summaries, analysis reports, scripts, prompts, course materials, or study notes, depending on the request.]
+**Other Properties Related to Output:** [May include timestamps, OCR text, scoring rubrics, and tables.]
 
 ## Skill Version(s):
 
-1.1.2 (source: server-resolved release metadata)
+1.2.6 (source: frontmatter, server-resolved release)
 
 ## Ethical Considerations:
 

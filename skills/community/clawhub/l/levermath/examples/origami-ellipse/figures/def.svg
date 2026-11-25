@@ -1,0 +1,10 @@
+<svg viewBox="0 0 560 400" width="560" height="400" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="280" cy="200" rx="200" ry="120" fill="none" stroke="#2a2724" stroke-width="1.8"/>
+<line x1="162.44" y1="102.92" x2="120" y2="200" stroke="#b5342a" stroke-width="1.5"/>
+<line x1="162.44" y1="102.92" x2="440" y2="200" stroke="#b5342a" stroke-width="1.5"/>
+<circle cx="120" cy="200" r="3.4" fill="#2a2724"/>
+<circle cx="440" cy="200" r="3.4" fill="#2a2724"/>
+<circle cx="162.44" cy="102.92" r="3.4" fill="#2a2724"/>
+<g data-enter="fade" data-enter-delay="60" data-step="2"><rect x="88" y="176" width="384" height="48" rx="24" fill="none" stroke="#b5342a" stroke-width="1.1" stroke-dasharray="5 4" opacity="0.8"/></g>
+<g data-enter="fade" data-enter-delay="240" data-step="2"><line x1="120" y1="364" x2="120" y2="388" stroke="#b5342a" stroke-width="0.9" opacity="0.7"/><line x1="440" y1="364" x2="440" y2="388" stroke="#b5342a" stroke-width="0.9" opacity="0.7"/><line x1="126" y1="376" x2="434" y2="376" stroke="#b5342a" stroke-width="1.2"/><path d="M 135 372 L 125 376 L 135 380" fill="none" stroke="#b5342a" stroke-width="1.2"/><path d="M 425 372 L 435 376 L 425 380" fill="none" stroke="#b5342a" stroke-width="1.2"/><line x1="120" y1="224" x2="120" y2="364" stroke="#b5342a" stroke-width="0.7" stroke-dasharray="2 5" opacity="0.5"/><line x1="440" y1="224" x2="440" y2="364" stroke="#b5342a" stroke-width="0.7" stroke-dasharray="2 5" opacity="0.5"/></g>
+</svg>

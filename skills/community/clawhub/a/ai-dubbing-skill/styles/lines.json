@@ -1,0 +1,21 @@
+{
+ "about": "Two short lines, the spoken word in cyan. More words per screen for fast talkers and longer clips.",
+ "font": "Poppins-ExtraBold.ttf",
+ "size": 70,
+ "color": "#FFFFFF",
+ "active": "#22D3EE",
+ "keyword": "#FFD43B",
+ "stroke": 8,
+ "stroke_color": "#000000",
+ "shadow": {
+  "dx": 0,
+  "dy": 5,
+  "alpha": 0.45,
+  "blur": 3
+ },
+ "words": 7,
+ "chars": 22,
+ "lines": 2,
+ "pause": 0.35,
+ "position": 0.62
+}

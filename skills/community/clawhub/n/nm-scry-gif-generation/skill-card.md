@@ -1,6 +1,6 @@
 ## Description:
 
-Converts webm/mp4 video files to optimized GIFs via ffmpeg with configurable quality settings.
+Converts webm/mp4 to optimized GIFs with ffmpeg.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use this skill to convert screen recordings or other supported video files into shareable GIFs with configurable size and quality settings.
+Developers and engineers use this skill to convert video recordings into shareable animated GIFs and adjust frame rate, dimensions, and palette settings to balance visual quality and file size.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill may propose installing ffmpeg as a system package dependency.
+Risk: An ffmpeg installation example uses sudo, which runs the command with elevated privileges.
 
-Mitigation: Treat any ffmpeg installation command as a separate user-approved system package action.
-
-Risk: GIF conversion writes an output file path selected during the workflow.
-
-Mitigation: Review the output path before running conversions and verify the generated file after completion.
+Mitigation: Review the installation command before running it and use elevated privileges only when needed.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-scry-gif-generation)
-- [OpenClaw homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scry)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-scry-gif-generation)
+- [Project page linked in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/scry)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, shell commands, guidance]
+**Output Type(s):** [Files (GIF images), Shell commands, Guidance]
 
-**Output Format:** [Markdown with inline bash commands and conversion presets]
+**Output Format:** [GIF files and Markdown instructions with inline shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Produces guidance for validating input videos, checking ffmpeg, running GIF conversions, and verifying output files.]
+**Other Properties Related to Output:** [Conversion settings include frame rate, width, palette generation, and dithering.]
 
 ## Skill Version(s):
 
-1.9.19 (source: server release evidence; artifact frontmatter lists 1.9.8)
+1.10.4 (source: server-resolved release)
 
 ## Ethical Considerations:
 

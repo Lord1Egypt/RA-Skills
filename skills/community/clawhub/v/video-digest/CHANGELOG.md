@@ -1,11 +1,4 @@
 # Changelog
-## 2.0.8 — 2026-11-17
-
-发布面修正，无功能变更。
-
-- **首屏重写**：2 个 tag 从 1.1.0 刷新 + 补 youtube 等
-- **显示名**：发布时必须带 `--name "Video Deep Reader · 视频深读"`（此前未能稳定带中文名）
-- **检索面**：tags 刷新到 2.0.8 并补齐语义 tag（`video,transcript,summary,productivity,youtube`）；topics 同步为 `视频笔记,视频转文字,video-summary,youtube-transcript,视频摘要`
 
 ## 2.0.6 — 2026-10-27
 

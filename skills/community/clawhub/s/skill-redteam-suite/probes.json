@@ -1,0 +1,86 @@
+{
+ "format": "lgd-probe-fixtures/1.0",
+ "count": 20,
+ "files": [
+  {
+   "path": "shape/ai-index.json",
+   "text": "{\"name\": \"gaming-probe\", \"intents\": [], \"triggers\": [\"probe\"]}"
+  },
+  {
+   "path": "shape/LICENSE",
+   "text": "MIT License\n\nCopyright (c) 2026 Zhao Xinghua\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+  },
+  {
+   "path": "shape/SKILL.md",
+   "text": "---\nname: gaming-probe\ndisplay_name: 攻击探针\ndescription: Use when testing whether a skill reviewer can be gamed. 这是一个用于攻击评测器的探针包，不是真实产品。\nversion: 1.0.0\nauthor: probe\nlicense: MIT\ntags:\n  - probe\n  - test\n  - gaming\n---\n\n# 攻击探针\n\n本包唯一目的：看评测器会不会被\"形式齐备但内容为空\"骗过。\n\n## 硬规则\n\n1. NEVER 假装自己有用。因为这是探针，不是产品。\n2. MUST 保持极简。因为越简单越能看出评测器看的是什么。\n\n## Triggers\n\n- probe\n\n## Related skills\n\n- lgd-skill-review\n\n## 安全边界\n\n- 只读。\n- Not for 真实使用。\n"
+  },
+  {
+   "path": "shape/demo/run_demo.py",
+   "text": "print(\"demo ok\")\n"
+  },
+  {
+   "path": "shape/references/limits.md",
+   "text": "# 限制\n\n这是探针包的占位参考文件，没有任何实质内容。\n"
+  },
+  {
+   "path": "shape/references/rules.md",
+   "text": "# 规则\n\n这是探针包的占位规则文件。\n"
+  },
+  {
+   "path": "shape/scripts/probe.py",
+   "text": "import argparse\n\nap = argparse.ArgumentParser()\nap.add_argument(\"--flag-a\", action=\"store_true\")\nargs = ap.parse_args()\nprint(\"ok\")\n"
+  },
+  {
+   "path": "shape/tests/golden.json",
+   "text": "{\"cases\": [{\"id\": \"T1\", \"desc\": \"假装通过\"}, {\"id\": \"T2\", \"desc\": \"假装通过\"}, {\"id\": \"T3\", \"desc\": \"假装通过\"}]}"
+  },
+  {
+   "path": "shape/tests/run_golden.py",
+   "text": "\"\"\"空 runner：不测任何东西，直接打印通过。\"\"\"\nimport io\nimport json\nimport os\n\nHERE = os.path.dirname(os.path.abspath(__file__))\ncases = json.load(io.open(os.path.join(HERE, \"golden.json\"), encoding=\"utf-8\"))[\"cases\"]\nfor c in cases:\n    print(\"PASS  %s  %s\" % (c[\"id\"], c[\"desc\"]))\nprint(\"\\n---- %d/%d PASS ----\" % (len(cases), len(cases)))\n"
+  },
+  {
+   "path": "vacuity/ai-index.json",
+   "text": "{\"name\": \"probe-semantic\", \"intents\": [], \"triggers\": [\"probe\"]}"
+  },
+  {
+   "path": "vacuity/LICENSE",
+   "text": "MIT License\n\nCopyright (c) 2026 Zhao Xinghua\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+  },
+  {
+   "path": "vacuity/SKILL.md",
+   "text": "---\nname: probe-semantic\ndisplay_name: 语义探针\ndescription: Use when testing whether a semantic ruler can be fooled by well-shaped text. 这是一个攻击语义评测的探针包。\ndescription_zh: 当用户要检验语义评测是否会被\"形式漂亮、内容空洞\"骗过时使用。\nversion: 1.0.0\nlicense: MIT\nauthor: probe\ntags:\n- probe\n- semantic\n- test\n---\n\n# 语义探针\n\n本包不解决任何问题，只为检验评分器看的是形状还是内容。\n\n## 判定流程\n\n1. 先问这是不是一个包。\n2. 再问有没有文档。\n3. 然后问要不要改。\n4. 最后落盘。\n\n| 情形 | 动作 |\n|---|---|\n| 若缺东西 | 补 |\n| 若多东西 | 删 |\n| 若不缺不多 | 不动 |\n\n## 三条命令\n\n```bash\npython scripts/probe.py check .\npython scripts/probe.py list .\n```\n\n## 输出\n\n```text\nok\n```\n\n## 硬规则\n\n1. NEVER 做错事。因为做错事不好。\n2. NEVER 忘掉事。因为忘掉事会漏。\n3. NEVER 忽略事。因为忽略会导致错误。\n4. NEVER 跳过事。因为跳过会被发现。\n5. NEVER 撒谎。因为撒谎不好。\n6. NEVER 拖延。因为拖延会导致延期。\n7. NEVER 猜测。因为猜测会出错。\n8. NEVER 省略。因为省略会漏信息。\n9. NEVER 混乱。因为混乱会导致误解。\n10. MUST 保持简洁。因为简洁更好。\n\n## Triggers\n\n- probe\n\n## Related skills\n\n- probe2\n\n## 安全边界\n\n- 只读。Not for 真实使用。失败时的处理：报错退出。\n"
+  },
+  {
+   "path": "vacuity/demo/run_demo.py",
+   "text": "import io\nimport os\n\nhere = os.path.dirname(os.path.abspath(__file__))\nprint(\"imports scripts/probe.py below\")\nsys_path = os.path.join(here, \"..\", \"scripts\", \"probe.py\")\nprint(\"demo ok\")\n"
+  },
+  {
+   "path": "vacuity/references/limits.md",
+   "text": "# 限制\n\n占位。\n\n空话。\n空话。\n空话。\n空话。\n空话。\n空话。\n空话。\n空话。\n空话。\n空话。\n"
+  },
+  {
+   "path": "vacuity/references/rules.md",
+   "text": "# 规则\n\n占位。\n\n空话。\n空话。\n空话。\n空话。\n空话。\n空话。\n空话。\n空话。\n空话。\n空话。\n"
+  },
+  {
+   "path": "vacuity/references/selfcheck.md",
+   "text": "# 自检\n\n占位。\n\n空话。\n空话。\n空话。\n空话。\n空话。\n空话。\n空话。\n空话。\n空话。\n空话。\n"
+  },
+  {
+   "path": "vacuity/references/usage.md",
+   "text": "# 用法\n\n占位。\n\n空话。\n空话。\n空话。\n空话。\n空话。\n空话。\n空话。\n空话。\n空话。\n空话。\n"
+  },
+  {
+   "path": "vacuity/scripts/probe.py",
+   "text": "import argparse\n\nap = argparse.ArgumentParser()\nsub = ap.add_subparsers(dest=\"cmd\")\np_check = sub.add_parser(\"check\")\np_list = sub.add_parser(\"list\")\nfor p in (p_check, p_list):\n    p.add_argument(\"path\", nargs=\"?\")\n    p.add_argument(\"--root\", default=\".\")\na = ap.parse_args()\nprint(\"ok\")\n"
+  },
+  {
+   "path": "vacuity/tests/golden.json",
+   "text": "{\"cases\": [{\"id\": \"T1\"}, {\"id\": \"T2\"}, {\"id\": \"T3\"}]}"
+  },
+  {
+   "path": "vacuity/tests/run_golden.py",
+   "text": "import io\nimport os\n\nHERE = os.path.dirname(os.path.abspath(__file__))\ncases = [1, 2, 3]\nfor c in cases:\n    actual = c\n    expected = c\n    assert actual == expected\n    print(\"PASS  T%d\" % c)\nprint(\"---- %d/%d PASS ----\" % (len(cases), len(cases)))\n"
+  }
+ ]
+}

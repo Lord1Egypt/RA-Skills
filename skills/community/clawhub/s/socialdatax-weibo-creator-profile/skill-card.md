@@ -1,6 +1,6 @@
 ## Description:
 
-Looks up Weibo creator profile information, including account details, creator positioning, homepage information, and follower scale.
+用于微博创作者数据、微博用户资料、账号资料、创作者画像、主页信息和粉丝规模查询。覆盖 Weibo creator profiles，来自社媒数据助手 SocialDataX。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers use this skill to retrieve Weibo creator profile information by user ID or profile URL, including account details and audience scale.
+面向需要查询微博创作者资料的用户和代理。通过创作者 ID 或主页链接获取账号基础信息、创作者画像和粉丝规模。
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The unpinned `@latest` package can change between runs and may access credentials.
+Risk: The skill invokes a mutable latest-version CLI, including during API key setup, so the code handling credentials may change over time.
 
-Mitigation: Review and pin the package version before use, and keep the API key in a protected credential source without exposing it in logs or output.
+Mitigation: Use a reviewed, pinned CLI release for credential setup and provide an API key only after trusting that release.
 
-Risk: The security analysis is incomplete because two local references could not be resolved.
+Risk: Two local references were unresolved in the security review, so the available evidence does not establish that all referenced material was reviewed.
 
-Mitigation: Resolve the missing references and review the completed security analysis before relying on the release.
+Mitigation: Resolve and review the missing materials before relying on the skill.
 
 ## Reference(s):
 
-- [SocialDataX API access](https://socialdatax.com/ai?from=clawhub)
 - [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/socialdatax-weibo-creator-profile)
+- [SocialDataX API access](https://socialdatax.com/ai?from=clawhub)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Profile data]
+**Output Type(s):** [JSON, Text, Guidance]
 
-**Output Format:** [JSON profile response containing platform, tool, arguments, and returned data.]
+**Output Format:** [JSON creator profile data with concise text summaries when requested]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Available profile fields may include name, platform IDs, bio, verification, follower and following counts, received likes, IP location, and gender.]
+**Other Properties Related to Output:** [Profile fields depend on availability; keep returned profile facts separate from strategic interpretation.]
 
 ## Skill Version(s):
 
-0.1.23 (source: server-resolved release metadata)
+0.1.24 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

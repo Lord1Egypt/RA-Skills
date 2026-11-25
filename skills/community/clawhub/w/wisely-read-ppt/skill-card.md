@@ -1,6 +1,6 @@
 ## Description:
 
-解析 PowerPoint 演示文稿和 PDF，按页整理可编辑内容与图片说明，并生成含页面截图的 Word 文档。
+Parses PPTX and PDF files into page-by-page drafts, then visually checks the text and illustrations to produce illustrated and image-free DOCX documents.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and other users can convert slide decks or PDFs into editable, page-by-page Word documents with organized text, image descriptions, and page screenshots for review.
+Developers and analysts use this skill to convert presentations or PDFs into editable, page-structured Word documents with reviewed text and image descriptions.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Conversion setup may install software or alter persistent command settings without clear approval.
+Risk: The scan is partial and reports a text-preservation risk in image removal.
 
-Mitigation: Use a prepared environment and run conversion with --no-install. Require approval before renderer installation, sudo commands, executable-link replacement, or shell configuration edits.
+Mitigation: Review text preservation and required tool access before installing; compare the image-free document with the illustrated version before relying on it.
 
-Risk: Conversion output or retained intermediate material may contain errors or sensitive document content.
+Risk: Several local references could not be resolved during scanning.
 
-Mitigation: Keep source documents unchanged, require the text-consistency check to pass, and remove retained screenshots and extracted text when finished.
+Mitigation: Review the skill's required tools and local references before installation, as advised by the scan guidance.
 
 ## Reference(s):
 
-- [Wisely Read PPT on ClawHub](https://clawhub.ai/sedey999/skills/wisely-read-ppt)
-- [macOS LibreOffice installation guide](reference/macos-install.md)
-- [Subagent workflow guide](reference/subagent-workflow.md)
+- [ClawHub release: wisely-read-ppt 1.7.0](https://clawhub.ai/sedey999/skills/wisely-read-ppt)
+- [Subagent workflow reference](reference/subagent-workflow.md)
+- [macOS LibreOffice prerequisite checks](reference/macos-install.md)
 
 ## Skill Output:
 
 **Output Type(s):** [Files, Text]
 
-**Output Format:** [DOCX with per-page editable text, image descriptions, and page screenshots]
+**Output Format:** [DOCX (illustrated and image-free versions)]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Also creates an image-free DOCX that preserves the text and image descriptions.]
+**Other Properties Related to Output:** [Page-structured editable text with image markers and descriptions; the illustrated version also includes page screenshots and images.]
 
 ## Skill Version(s):
 
-1.4.0 (source: server-resolved release metadata)
+1.7.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

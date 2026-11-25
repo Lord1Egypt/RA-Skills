@@ -1,6 +1,6 @@
 ## Description:
 
-Fetches Kuaishou comments for clustering and sentiment analysis, identifying recurring pain points, feature requests, and unmet needs with supporting source text, and also searches videos and retrieves public creator posts.
+Fetches public Kuaishou videos, creator posts, and comments to support audience research, sentiment analysis, and demand discovery.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-Content creators, marketers, and analysts use this skill to explore public Kuaishou videos, creator posts, and comments for content research, competitor monitoring, and audience feedback analysis.
+Content creators, market researchers, and brand operators can search Kuaishou videos, review public creator posts, and analyze video comments to guide topic research, competitor monitoring, and audience sentiment analysis.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search terms and Kuaishou links are sent to GUAIKEI when the skill runs.
+Risk: The security scan was partial, so some script behavior was not fully assessed.
 
-Mitigation: Use only public data and query details that are appropriate to share with the GUAIKEI service.
-
-Risk: The benign security verdict has medium confidence because inspection covered some components only partially.
-
-Mitigation: Review the skill and consider the security guidance before installation; treat the verdict as limited assurance.
-
-Risk: Returned timestamps use a fixed Beijing time format and may be mistaken for local time.
-
-Mitigation: Check the timestamp convention and convert it to the intended time zone before comparing or reporting results.
+Mitigation: Review the scripts and decide whether you trust the skill's environment access before installing.
 
 ## Reference(s):
 
-- [GUAIKEI service and token access](https://www.guaikei.com)
-- [Kuaishou Demand Mining ClawHub release](https://clawhub.ai/why20261/skills/kuaishou-demand-mining)
-- [Command options](artifact/references/options.md)
-- [Changelog](artifact/references/changelog.md)
+- [Usage options](references/options.md)
+- [Changelog](references/changelog.md)
+- [GUAIKEI service](https://www.guaikei.com)
+- [ClawHub skill page](https://clawhub.ai/why20261/skills/kuaishou-demand-mining)
+- [Publisher profile](https://clawhub.ai/user/why20261)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Text, Analysis]
+**Output Type(s):** [JSON, Analysis, Guidance]
 
-**Output Format:** [Structured JSON data with concise natural-language findings and supporting comment excerpts]
+**Output Format:** [Structured JSON data with concise text analysis and supporting comment examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Retrieves public video, creator, and comment data; results may be empty or report service and plan limits.]
+**Other Properties Related to Output:** [Uses public Kuaishou data; a GUAIKEI_API_TOKEN is required, and result limits depend on the account plan.]
 
 ## Skill Version(s):
 
-1.1.1 (source: artifact/SKILL.md frontmatter, artifact/package.json)
+1.1.2 (source: frontmatter, package.json)
 
 ## Ethical Considerations:
 

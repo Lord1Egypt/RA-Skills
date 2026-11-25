@@ -1,8 +1,8 @@
 ---
 name: theta-edgecloud-skill
-description: "Theta EdgeCloud on-demand AI, GPU nodes, RAG agents, video and game-character workflows: discover live services, run inference, manage approved resources with confirmation gates, and verify costs."
+description: "Theta EdgeCloud on-demand AI, GPU nodes, RAG agents, video, and AI Characters with Story mode: discover live services, run inference, manage approved resources with confirmation gates, and verify costs."
 license: MIT-0
-metadata: {"openclaw": {"primaryEnv": "THETA_EC_API_KEY", "homepage": "https://www.thetaedgecloud.com"}}
+metadata: {"openclaw": {"emoji": "⚡", "requires": {"bins": ["node"]}, "primaryEnv": "THETA_EC_API_KEY", "homepage": "https://www.thetaedgecloud.com"}}
 ---
 
 # Theta EdgeCloud
@@ -24,9 +24,10 @@ metadata: {"openclaw": {"primaryEnv": "THETA_EC_API_KEY", "homepage": "https://w
     cannot verify ownership, so pass only your own URL. Dedicated-endpoint chat
     rejects webhook fields.
 - Credentials: read from the host secret store or environment, sent only as auth
-  headers to the matching Theta host, and not logged. Results redact values under
-  secret-looking names (password, token, API key and similar); only numeric usage
-  counts such as `prompt_tokens` are kept. `theta()` reports
+  headers to the matching Theta host, and not logged. Runtime and facade results
+  (and the Theta Video client itself) redact values under secret-looking names
+  (password, token, API key, livestream stream key and similar); only numeric
+  usage counts such as `prompt_tokens` are kept. `theta()` reports
   only which credential families are configured.
 - Data sent: prompts, messages, uploaded files, RAG document contents and
   character messages, GPU container image identifiers and SSH public keys go to Theta for processing. Treat inputs and outputs as
@@ -34,7 +35,8 @@ metadata: {"openclaw": {"primaryEnv": "THETA_EC_API_KEY", "homepage": "https://w
 - Approval (enforced inside the bundled network clients): outside dry-run,
   `confirm:true` is required for:
   - every remote create/update/start/stop/delete: deployments, GPU nodes, RAG
-    agents and documents, video, and all Characters writes including messages;
+    agents and documents, video (including ingestor select/unselect), and all
+    Characters writes including session messages and Story mode generation;
   - inference on any service not on the low-cost allowlist (video such as
     `seedance_2_5`, unknown or future services);
   - any webhook.
@@ -121,7 +123,7 @@ Do not change an OpenClaw primary/fallback model as part of an inference test.
 For media, use `infer` with live prediction-specific `input`, optional
 `prediction`, `variant`, `wait` (0–60), and an optional user-owned `https`
 `webhook` (needs `confirm:true`).
-Live media 2026-10-03: `stable_diffusion_xl_turbo` (text-to-image, 512px),
+Live media (verified 2026-10-03, catalog unchanged 2026-11-24): `stable_diffusion_xl_turbo` (text-to-image, 512px),
 `image_to_image` (`stylize` | `upscale` | `background_removal`, the last two
 with `style_image_filename:""`), `esrgan`, and `seedance_2_5` (video:
 high-cost, so it needs `confirm:true`, and is often unavailable). OpenClaw's native `image_generate`/`video_generate` can reach
@@ -162,9 +164,11 @@ Use base IDs to restart stopped GPU nodes. Preserve remote resource IDs and
 cleanup ownership before creating anything.
 
 Dedicated endpoints must be HTTPS Theta-managed hosts
-(`*.thetaedgecloud.com` or `*.onthetaedgecloud.com`); private/localhost and
-request-level endpoint overrides are rejected. Use bounded authenticated
-`theta.inference.ready` with `probe:"openai"` or `"gradio"` after deployment.
+(`*.thetaedgecloud.com` or `*.onthetaedgecloud.com`); the inference client
+refuses private/localhost endpoints, and the runtime command handlers reject
+request-level endpoint overrides. Use bounded authenticated
+`theta.inference.ready` with `probe:"openai"` or `"gradio"` after deployment;
+any other `probe` value is refused.
 Transient 404/502 during warm-up does not alone prove bad credentials.
 
 `theta.deployments.validateDisposable` is PAID: dry-run first, approve
@@ -179,6 +183,24 @@ document commands; do not claim Custom Tool CRUD without an API contract.
 For Characters, use only game-key runtime commands. Every Characters write,
 including session messages and context, needs `confirm:true`. Dashboard login, game
 creation and key renewal are deliberately not implemented with project tokens.
+Characters bill per token (Theta 2026-11-11: USD 7.50 input, 20.00 output, 0.20
+embeddings per 1M); use `theta.characters.estimateCost` before large runs.
+
+Story mode (dialogue authored ahead of release): create groupings (story
+events), add library messages (possible player outcomes), then a story line
+(one NPC, ordered `grouping_ids`). Paths = product of library messages per
+grouping. Dry-run `theta.characters.storyline.generateAll` to get `pathCount`,
+state it to the user, get approval, then call it with `maxPaths` (the approved
+count) and `confirm:true`; it refuses above `maxPaths` or Theta's 5000 cap.
+`maxPaths` is a preflight snapshot limit: messages added between the count
+reads and the single POST are not covered (Theta's own 5000 cap still applies).
+Poll `storyline.queue` until `queued` and `generating` are 0, then read
+`storyline.dialogs`. For one path, use `dialog.create` and poll `dialog.get`.
+
+For Video, `theta.video.search` (metadata filters), `theta.video.streamList`
+and gated `theta.video.ingestorUnselect` complement the existing commands.
+Stream keys under stream-key names (`stream_key`, `streamKey`) are redacted; users copy them
+from the Theta Video dashboard.
 
 ## 5. Verify and hand off
 

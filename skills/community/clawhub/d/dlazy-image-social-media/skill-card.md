@@ -1,6 +1,6 @@
 ## Description:
 
-A structured skill for multi-platform social-media content creation across Instagram, TikTok, YouTube, LinkedIn, Xiaohongshu, and more.
+Plans platform-specific social media visuals, layouts, and captions for Instagram, TikTok, YouTube, LinkedIn, Xiaohongshu, and other platforms.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External creators and social media teams use this skill to plan platform-specific visuals, layouts, and copy for posts, carousels, and thumbnails. It can guide image generation through the dLazy CLI and return generated image links alongside the content plan.
+External creators and social media teams use the skill to plan platform-specific image or carousel concepts, in-image text, captions, and visual adaptations. It can guide image generation through the dLazy CLI.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review has medium confidence because a referenced artifact was not fully inspected.
+Risk: The security assessment is benign but incomplete: only half of the listed components were fully inspected, and it notes unresolved references and an unsupported manifest.
 
-Mitigation: Review the install details and unresolved references before installing if you need more assurance.
+Mitigation: Before installation, review the install command and package details, and confirm that referenced files and services are appropriate.
 
-Risk: The skill sends prompts and supplied media to dLazy-hosted APIs; local media paths may be uploaded to its media storage.
+Risk: The CLI sends prompts to dLazy services and may upload supplied local media for processing.
 
-Mitigation: Avoid sending sensitive prompts or media unless their use with the dLazy service is appropriate for your context.
+Mitigation: Check that prompts and media are appropriate to send to the hosted services before use.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-image-social-media)
-- [dLazy CLI project reference](https://github.com/dlazy-ai/cli)
 - [dLazy CLI on npm](https://www.npmjs.com/package/@dlazy/cli)
-- [dLazy](https://dlazy.com)
+- [dLazy website](https://dlazy.com)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Image-generation prompts, Generated images and links]
+**Output Type(s):** [Guidance, Markdown, Image-generation prompts, Generated images]
 
-**Output Format:** [Structured Markdown with platform checks, layout plans, short in-image copy, separate captions, and generated image links or assets]
+**Output Format:** [Markdown plans and copy, image-generation prompts, and generated image URLs or assets]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [In-image headlines are kept under 10 words; captions are returned separately. Platform-specific aspect ratios and safe areas guide the design.]
+**Other Properties Related to Output:** [Platform, format, audience, engagement goal, and supplied media shape the output.]
 
 ## Skill Version(s):
 
-1.3.42 (source: server-resolved release evidence)
+1.3.45 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

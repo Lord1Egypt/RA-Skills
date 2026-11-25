@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""pdf-fonts-fixer · verify —— 逐字符字体审计（回退链的验收闭环）
+"""pdf-font-fixer · verify —— 逐字符字体审计（回退链的验收闭环）
 
 detect 只看「PDF 里有哪些字体」；verify 进一步回答：
 **每一个字，到底落在哪个字体上？那个字体能不能在手机上显示？**
@@ -31,6 +31,10 @@ import argparse
 import json
 import os
 import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _deps          # 持久依赖：环境重置后自动从持久目录补齐
+_deps.activate()
 
 try:
     import pymupdf

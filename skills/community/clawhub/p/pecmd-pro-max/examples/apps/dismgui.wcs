@@ -1,0 +1,248 @@
+CALL @Windows1 
+
+ENVI MNTDIR=
+ENVI WIMFILE=
+ENVI INIFILE=
+
+
+_SUB SetEdit1
+BROW MntDir,*%Edit1%, 请选择一个目录
+FIND $%Mntdir%=,!ENVI @Edit1=%Mntdir%
+_END
+
+_SUB SetEdit2
+BROW Wimfile,, 请选择一个打开文件, wim
+FIND $%WIMFILE%=,!ENVI @Edit2=%WIMFILE%
+_END
+
+_SUB SetEdit4
+BROW Wimfile,, 请选择一个打开文件, wim
+FIND $%WIMFILE%=,!ENVI @Edit4=%WIMFILE%
+_END
+
+_SUB SetEdit5
+BROW MntDir,*%Edit5%, 请选择一个目录
+FIND $%Mntdir%=,!ENVI @Edit5=%Mntdir%
+_END
+
+_SUB SetEdit7
+BROW MntDir,*%Edit7%, 请选择一个目录
+FIND $%Mntdir%=,!ENVI @Edit7=%Mntdir%
+_END
+
+_SUB SetEdit8
+BROW Wimfile,&, 请选择一个打开文件, wim
+FIND $%WIMFILE%=,!ENVI @Edit8=%WIMFILE%
+_END
+
+_SUB SetEdit10
+BROW INIfile,, 请选择一个打开文件, INI
+FIND $%INIFILE%=,!ENVI @Edit10=%INIFILE%
+_END
+
+_SUB SetEdit11
+BROW MntDir,*%Edit11%, 请选择一个目录
+FIND $%MntDir%=,!ENVI @Edit11=%MntDir%
+_END
+
+_SUB SetEdit12
+BROW Wimfile,, 请选择一个打开文件, wim
+FIND $%WIMFILE%=,!ENVI @Edit12=%WIMFILE%
+_END
+
+_SUB SetEdit13
+BROW Wimfile,&, 请选择一个打开文件, wim
+FIND $%WIMFILE%=,!ENVI @Edit13=%WIMFILE%
+_END
+
+_SUB SetEdit16
+BROW MntDir,*%Edit16%, 请选择一个目录
+FIND $%Mntdir%=,!ENVI @Edit16=%Mntdir%
+_END
+
+
+_SUB mount
+ENVI Result=1
+FIND $%Edit1%=,TEAM ENVI Result=0|MESS 请选择挂载目录 @错误#OK
+FIND $%Edit2%=,TEAM ENVI Result=0|MESS 请选择挂载映像 @错误#OK
+FIND $%Result%=1,EXEC CMD /K DISM /Mount-Image /ImageFile:%Edit2% /index:%Edit3% /MountDir:%Edit1%
+_END
+
+_SUB Unmount
+ENVI Result=1
+ENVI Unmount=/discard
+FIND $%Edit1%=,TEAM ENVI Result=0|MESS 请选择挂载目录 @错误#OK
+FIND $%Edit2%=,TEAM ENVI Result=0|MESS 请选择挂载映像 @错误#OK
+FIND $%Result%=1,FIND $%Check1.Check%=1,ENVI Unmount=/commit
+FIND $%Result%=1,EXEC CMD /K DISM/Unmount-Image /MountDir:%Edit1% %Unmount%
+_END
+
+_SUB Apply
+ENVI Result=1
+ENVI CheckIntegrity=
+FIND $%Edit4%=,TEAM ENVI Result=0|MESS 请选择映像文件 @错误#OK
+FIND $%Edit5%=,TEAM ENVI Result=0|MESS 请选择应用映像目录 @错误#OK
+FIND $%Result%=1,FIND $%Check2.Check%=1,ENVI CheckIntegrity=/CheckIntegrity
+FIND $%Result%=1,EXEC CMD /K Dism /apply-image /imagefile:%Edit4% /index:%Edit6% /ApplyDir:%Edit5% %CheckIntegrity%
+_END
+
+_SUB Capture
+ENVI Result=1
+ENVI ScratchDir=/ScratchDir:%Edit11%
+ENVI ConfigFile=/ConfigFile:%Edit10%
+ENVI Bootable=
+ENVI Verify=
+ENVI CheckIntegrity=
+ENVI Compress=
+FIND $%Edit10%=,ENVI ConfigFile=
+FIND $%Edit11%=,ENVI ScratchDir=
+FIND $%List1%=快速,ENVI Compress=/Compress:fast
+FIND $%List1%=默认,ENVI Compress=/Compress:none
+FIND $%List1%=最大,ENVI Compress=/Compress:maximum
+FIND $%Edit7%=,TEAM ENVI Result=0|MESS 请选择捕捉源目录 @错误#OK
+FIND $%Edit8%=,TEAM ENVI Result=0|MESS 请保存捕捉映像 @错误#OK
+FIND $%Result%=1,FIND $%Check3.Check%=1,ENVI Bootable=/Bootable
+FIND $%Result%=1,FIND $%Check4.Check%=1,ENVI Verify=/Verify
+FIND $%Result%=1,FIND $%Check5.Check%=1,ENVI CheckIntegrity=/CheckIntegrity
+FIND $%Result%=1,EXEC CMD /K Dism /Capture-Image /ImageFile:%Edit8% %ScratchDir% /CaptureDir:%Edit7% /Name:%Edit9% %ConfigFile% %Compress% %Bootable% %Verify% %CheckIntegrity% 
+_END
+
+_SUB Append
+ENVI Result=1
+ENVI ScratchDir=/ScratchDir:%Edit11%
+ENVI ConfigFile=/ConfigFile:%Edit10%
+ENVI Bootable=
+ENVI Verify=
+ENVI CheckIntegrity=
+FIND $%Edit10%=,ENVI ConfigFile=
+FIND $%Edit11%=,ENVI ScratchDir=
+FIND $%Edit7%=,TEAM ENVI Result=0|MESS 请选择捕捉源目录 @错误#OK
+FIND $%Edit8%=,TEAM ENVI Result=0|MESS 请保存捕捉映像 @错误#OK
+FIND $%Result%=1,FIND $%Check3.Check%=1,ENVI Bootable=/Bootable
+FIND $%Result%=1,FIND $%Check4.Check%=1,ENVI Verify=/Verify
+FIND $%Result%=1,FIND $%Check5.Check%=1,ENVI CheckIntegrity=/CheckIntegrity
+FIND $%Result%=1,EXEC CMD /K Dism /Append-Image /ImageFile:%Edit8% %ScratchDir% /CaptureDir:%Edit7% /Name:%Edit9% %ConfigFile% %Bootable% %Verify% %CheckIntegrity% 
+_END
+
+_SUB Export
+ENVI Result=1
+ENVI Bootable=
+ENVI CheckIntegrity=
+ENVI Compress=
+FIND $%List2%=快速,ENVI Compress=/Compress:fast
+FIND $%List2%=默认,ENVI Compress=/Compress:none
+FIND $%List2%=最大,ENVI Compress=/Compress:maximum
+FIND $%Edit12%=,TEAM ENVI Result=0|MESS 请选择映像文件 @错误#OK
+FIND $%Edit13%=,TEAM ENVI Result=0|MESS 请保存导出映像 @错误#OK
+FIND $%Result%=1,FIND $%Check6.Check%=1,ENVI Bootable=/Bootable
+FIND $%Result%=1,FIND $%Check7.Check%=1,ENVI CheckIntegrity=/CheckIntegrity
+FIND $%Result%=1,EXEC CMD /K Dism /Export-Image /SourceImageFile:%Edit12% /SourceIndex:%Edit14% /DestinationImageFile:%Edit13% /DestinationName:%Edit15% %Compress% %Bootable% %CheckIntegrity% 
+_END
+
+
+_SUB Windows1,W710H500,DISM映像工具
+
+GROU Group1,L9T16W366H145,挂载
+
+
+LABE Label1,L21T43W65H20,挂载目录：
+LABE Label2,L20T80W65H20,挂载映像：
+EDIT Edit1,L91T40W220H24,
+ITEM Button1,L318T40W50H24,浏览,CALL SetEdit1
+EDIT Edit2,L91T77W220H24,
+ITEM Button2,L318T77W50H24,浏览,CALL SetEdit2
+LABE Label3,L20T121W65H20,映像卷号：
+EDIT Edit3,L91T118W30H24,1
+ITEM Button3,L140T118W70H24,挂载,CALL mount
+ITEM Button4,L221T118W70H24,卸载,CALL Unmount
+CHEK Check1,L300T115W72H30,保存更改
+
+
+GROU Group2,L386T16W308H145,应用
+LABE Label4,L399T42W65H20,选择映像：
+EDIT Edit4,L470T38W180H24,
+ITEM Button5,L656T38W30H24,...,CALL SetEdit4
+LABE Label5,L399T80W65H20,应用到：
+EDIT Edit5,L470T76W180H24,
+ITEM Button6,L656T76W30H24,...,CALL SetEdit5
+LABE Label6,L399T121W65H20,映像卷号：
+EDIT Edit6,L471T118W30H24,1
+ITEM Button7,L611T118W75H24,应用,CALL Apply
+CHEK Check2,L520T115W85H30,检查完整性
+
+
+GROU Group3,L11T176W366H282,捕捉
+EDIT Edit7,L90T200W220H24,
+LABE Label7,L21T203W65H20,选择源：
+ITEM Button8,L318T200W50H24,浏览,CALL SetEdit7
+LABE Label8,L21T240W65H21,捕捉到：
+EDIT Edit8,L91T237W220H24,
+ITEM Button9,L318T236W50H24,浏览,CALL SetEdit8
+LABE Label9,L21T278W65H20,映像名称：
+EDIT Edit9,L91T275W136H24,My_Wim
+LABE Label10,L240T280W65H20,压缩选项：
+LIST List1,L305T276W60H24,快速|默认|最大,,默认
+LABE Label11,L21T316W65H20,配置文件：
+EDIT Edit10,L91T313W220H24,
+ITEM Button10,L318T313W50H24,浏览,CALL SetEdit10
+LABE Label12,L21T354W65H20,临时目录：
+EDIT Edit11,L91T351W220H24,
+ITEM Button11,L318T351W50H24,浏览,CALL SetEdit11
+CHEK Check3,L21T388W60H22,可引导
+CHEK Check4,L91T388W50H22,校验
+CHEK Check5,L150T388W80H22,检查完整性
+ITEM Button12,L175T420W90H24,创建映像,CALL Capture
+ITEM Button13,L279T420W90H24,追加映像,CALL Append
+
+GROU Group4,L386T177W308H204,导出
+LABE Label13,L399T203W65H20,选择映像：
+EDIT Edit12,L470T200W180H24,
+ITEM Button14,L656T200W30H24,...,CALL SetEdit12
+LABE Label14,L399T240W65H20,导出到：
+EDIT Edit13,L470T238W180H24,
+ITEM Button15,L656T238W30H24,...,CALL SetEdit13
+LABE Label15,L399T278W65H20,映像卷号：
+EDIT Edit14,L470T275W30H24,1,
+LABE Label16,L559T280W65H20,压缩选项：
+LIST List2,L625T277W60H24,快速|默认|最大,,默认
+LABE Label17,L399T316W65H20,映像名称：
+EDIT Edit15,L470T313W215H24,My_Wim
+CHEK Check6,L399T350W60H22,可引导
+CHEK Check7,L470T350W80H22,检查完整性
+ITEM Button16,L597T348W90H24,导出映像,CALL Export
+
+ITEM Button17,L386T410W85H35,重新挂载,EXEC CMD /K DISM /Remount-Image /MountDir:%Edit1%
+ITEM Button18,L479T410W85H35,清理受损映像,EXEC CMD /K DISM /Cleanup-Wim
+ITEM Button19,L572T410W85H35,清理冗余更新,EXEC CMD /K DISM /online /Cleanup-Image /StartComponentCleanup /ResetBase
+ITEM Button20,L665T410W30H35,>>>,CALL @WIN1
+_END
+
+_SUB reagentc
+ENVI Result=1
+FIND $%EDIT16%=,TEAM ENVI Result=0|MESS 请选择恢复映像所在目录 @错误#OK
+FIND $%Result%=1,EXEC CMD /K reagentc /setosimage /path %EDIT16% /index %EDIT17% /target %LIST5%\Windows
+_END
+
+_SUB WIN1,W477H247,^_^,
+    GROU GROU5,L7T16W224H55,Win8/8.1离线安装.Net 3.5,
+    LABE LABE18,L14T40W110H24,选择挂载镜像分区：,,
+    LIST LIST3,L125T37W45H30,C:|D:|E:|F:|G:|H:|I:|J:|K:|L:|M:|N:|O:|P:|R:|S:|T:|U:|V:|W:|X:|Y:|Z:|,,C:
+    ITEM ITEM1,L175T34W50H25,安装,EXEC CMD /K Dism /online /enable-feature /featurename:NetFx3 /All /Source:%LIST3%\sources\sxs /LimitAccess
+    GROU GROU6,L240T16W224H55,修复系统启动故障,
+    LABE LABE19,L245T40W110H24,选择故障系统分区：,,
+    LIST LIST4,L356T37W45H27,C:|D:|E:|F:|G:|H:|I:|J:|K:|L:|M:|N:|O:|P:|R:|S:|T:|U:|V:|W:|X:|Y:|Z:|,,C:
+    ITEM ITEM2,L407T34W50H25,修复,EXEC CMD /K DISM /image:%LIST4%\ /cleanup-image /revertpendingactions
+    GROU GROU7,L8T87W455H105,无光驱恢复系统,
+    LABE LABE20,L15T113W110H24,恢复映像所在目录：,,
+    EDIT EDIT16,L125T109W275H22,,,
+    ITEM ITEM3,L407T108W50H25,浏览,CALL SetEdit16
+    LABE LABE21,L14T156W110H24,恢复映像索引卷号：,,
+    EDIT EDIT17,L125T152W30H22,1,,
+    LABE LABE22,L162T156W100H24,选择恢复系统盘：,,
+    LIST LIST5,L262T154W44H30,C:|D:|E:|F:|G:|H:|I:|J:|K:|L:|M:|N:|O:|P:|R:|S:|T:|U:|V:|W:|X:|Y:|Z:|,,C:
+    ITEM ITEM4,L311T151W55H25,设置,CALL reagentc
+    ITEM ITEM5,L371T151W85H25,显示配置信息,EXEC CMD /K reagentc /info /target %LIST5%\Windows
+_END
+
+
+

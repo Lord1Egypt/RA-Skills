@@ -1,6 +1,6 @@
 ## Description:
 
-Submits infant crib images or videos for blanket-coverage and kicking or slippage analysis, returning structured results and alert guidance.
+Provides a workflow for submitting night-time crib video for infant blanket coverage and kicking analysis and retrieving reports.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Caregivers and developers can request a structured visual review of crib footage for blanket coverage and kicking or slippage events, then use the returned report in a baby-monitoring workflow.
+Parents and baby-monitoring product developers can submit night-time crib video to request blanket coverage and kicking reports or retrieve earlier reports. Treat the results as auxiliary information; the skill documentation says it does not replace adult supervision.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Infant video and identity data raise privacy and data-transfer concerns.
+Risk: The security review reports a mismatch between the advertised infant blanket monitoring and the skill's reported video analysis, identity, registration, credential handling, and remote account workflows.
 
-Mitigation: Before use, ask the provider which video and identity data are sent, to which service, and how account creation and stored tokens are handled; consider not installing until these points are clear.
+Mitigation: Review and trust the remote service and its data handling before installation; only submit infant video or identity data when consent and appropriate protections are in place.
 
-Risk: The security scan was partial because a referenced path was missing.
+Risk: The security review says the scanners do not establish that real-time monitoring or alerts work, and its coverage is partial.
 
-Mitigation: Treat the scan as incomplete and review the uncovered behavior before installation.
-
-Risk: The skill describes continuous infant monitoring and alerts.
-
-Mitigation: Do not rely on this skill for continuous monitoring or alerts; maintain adult supervision.
+Mitigation: Treat reports as unverified supplementary information and maintain direct adult supervision.
 
 ## Reference(s):
 
-- [API interface documentation](references/api_doc.md)
+- [API reference](references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub release page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-infant-blanket-kick-detection-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Markdown, Guidance]
+**Output Type(s):** [Analysis results, JSON, Text, Report links]
 
-**Output Format:** [Structured JSON analysis results, Markdown report listings, and alert text]
+**Output Format:** [Structured JSON or text reports with coverage and event fields, alerts, and report links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include blanket coverage estimates, detected events, alert fields, and report links when returned by the service.]
+**Other Properties Related to Output:** [Report details depend on the remote analysis response.]
 
 ## Skill Version(s):
 
-1.0.15 (source: server-resolved release evidence)
+1.0.17 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

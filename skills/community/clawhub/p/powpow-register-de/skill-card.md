@@ -1,6 +1,6 @@
 ## Description:
 
-Hilft Nutzer:innen, ein PowPow-Konto im Chat zu registrieren, sich per Ein-Klick-Link anzumelden und bei Bedarf ein optionales Mitgliedschafts-Upgrade abzuschließen.
+Begleitet Nutzer:innen im Chat durch die Registrierung und Anmeldung bei PowPow und erklärt bei Bedarf das optionale Mitgliedschafts-Upgrade.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Nutzer:innen lassen sich bei der PowPow-Registrierung, E-Mail-Verifizierung und Anmeldung begleiten. Auf Wunsch unterstützt der Agent auch bei einem Mitgliedschafts-Upgrade über Alipay oder PayPal; die Zahlung schließen Nutzer:innen selbst ab.
+Nutzer:innen, die ein PowPow- bzw. Bubble-Konto einrichten oder Registrierungs- und Aktivierungsprobleme lösen möchten, nutzen den Skill für E-Mail-Verifizierung, Ein-Klick-Login und bei Bedarf ein optionales Abo-Upgrade.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Registrierung erfordert E-Mail-Adresse, Passwort und Verifizierungscode; vorübergehende Sitzungsdaten bleiben bis zur Bereinigung lokal gespeichert.
+Risk: ClawScan bewertet den Skill als verdächtig mit mittlerer Zuversicht. Der Scan ist unvollständig; außerdem besteht laut Sicherheitszusammenfassung ein mögliches Risiko, dass der PayPal-Plan nicht zum beabsichtigten Preis oder Abrechnungsintervall passt.
 
-Mitigation: Nur für eine gewünschte Kontoerstellung einsetzen, Zugangsdaten und Code vertraulich behandeln und zum Abschluss die temporären Sitzungsdaten bereinigen.
-
-Risk: Ein optionales Mitgliedschafts-Upgrade kann zu einer Zahlung oder einem wiederkehrenden Abonnement führen.
-
-Mitigation: Vor dem Bezahlen das offizielle PowPow-, Alipay- oder PayPal-Ziel prüfen und den Kauf selbst bestätigen.
+Mitigation: Das Skript vor der Nutzung vollständig prüfen und vor einer PayPal-Autorisierung den angezeigten Plan, Preis und Abrechnungszeitraum bestätigen; bei Abweichungen nicht fortfahren.
 
 ## Reference(s):
 
-- [PowPow-Skill auf ClawHub](https://clawhub.ai/durenzidu/skills/powpow-register-de)
+- [Agentenablauf](artifact/references/agent-flow.md)
+- [Registrierungsablauf](artifact/references/registration-flow.md)
+- [Zahlung und Aktivierung](artifact/references/payment-and-activation.md)
 - [PowPow-Website](https://global.powpow.online)
-- [PowPow-Registrierung](https://global.powpow.online/register)
-- [Registrierungsablauf](references/registration-flow.md)
-- [Zahlung und Aktivierung](references/payment-and-activation.md)
+- [Registrierungsseite](https://global.powpow.online/register)
+- [Produktvideo](https://www.bilibili.com/video/BV1Wu826UEVz/)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-**Output Format:** [Chat-Nachrichten mit Anmeldelinks und schrittweisen Anweisungen]
+**Output Format:** [Conversational guidance with inline shell commands and registration or login links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Kann eine Kontozusammenfassung und bei Bedarf einen Link zur optionalen Zahlungsseite liefern.]
+**Other Properties Related to Output:** [German-language, step-by-step assistance; no code development]
 
 ## Skill Version(s):
 
-2.2.0 (source: ClawHub release and skill frontmatter)
+2.2.5 (source: frontmatter, server-resolved release)
 
 ## Ethical Considerations:
 

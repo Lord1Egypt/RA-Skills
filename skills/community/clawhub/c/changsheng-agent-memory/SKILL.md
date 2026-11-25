@@ -1,8 +1,8 @@
 ---
 name: changsheng-agent-memory
-version: 0.99.0
-description: "Cross-session memory recovery for AI agents — your agent never cold-starts again.\nAlways-loaded identity & todos, hash-indexed conditional reads cut recovery cost ~70%\n(~55-75% cumulative when the host already injects identity). Pure local, zero deps.\n\nUse when:\n(1) A new chat asks \"where did we leave off?\" and you have no context\n(2) Context is filling up and you're about to hit the limit mid-task\n(3) User says \"I already told you this\"\n(4) You re-read the same identity/rules/todos files at every session start\n(5) Session start burns tens of thousands of tokens before real work begins\n(6) You need to hand a long task to a fresh session without losing progress\n"
-description_en: "Cross-session memory recovery: a new chat never cold-starts — identity, rules and todos stay loaded, and a change index cuts the redundant re-reads (~70% cheaper recovery). Pure local, zero deps."
+version: 1.0.1
+description: "Cross-session memory recovery for AI agents — your agent never cold-starts again.\nAlways-loaded identity & todos, hash-indexed conditional reads cut recovery to 1.3% of a full restore (98.7% fewer tokens).\nPure local, zero deps.\n\nUse when:\n(1) A new chat asks \"where did we leave off?\" and you have no context\n(2) Context is filling up and you're about to hit the limit mid-task\n(3) User says \"I already told you this\"\n(4) You re-read the same identity/rules/todos files at every session start\n(5) Session start burns tens of thousands of tokens before real work begins\n(6) You need to hand a long task to a fresh session without losing progress\n"
+description_en: "Cross-session memory recovery: a new chat never cold-starts — identity, rules and todos stay loaded, and a change index cuts recovery to 1.3% of a full restore (98.7% fewer tokens). Pure local, zero deps."
 author: TXJ · 天玄镜 (Tianxuanjing)
 license: MIT-0
 metadata:
@@ -17,7 +17,7 @@ metadata:
 
 **Key commands**: `python scripts/memory_index.py` (discover + write the change index) · `python scripts/memory_ledger.py --check` (review the must-read budget) · `python scripts/recall.py "why we chose X"` (find the reason behind a decision) · `python scripts/rule_gate.py --check "<action>"` (optional action-time rule gate) · say **"handover"** to snapshot where work stands.
 
-**Cost**: recovery ~44K → ~12K tokens (~70% less); ~55-75% cumulative when the host already injects identity (measured 2026-09-04). Pure local, zero API cost.
+**Cost**: recovery is 8,669 tokens per session — 1.3% of the 685,560 a full restore would cost (98.7% less; measured on disk 2026-10-24). Pure local, zero API cost.
 
 Progressive memory recovery for AI agents: your assistant stops losing context between sessions, without re-reading everything every time. ChangSheng first **discovers where your memory actually lives** (your files, your layout), then hands the agent a **shift handover** at session start.
 
@@ -27,7 +27,7 @@ Every new session feels like "day one at work"? This skill makes the agent read 
 
 | Platform | How to use |
 |---|---|
-| **Hermes** (Nous Research) | Drop this folder into the agent's `skills/` directory, then paste `assets/agents-snippet.md` into `.hermes.md` or `AGENTS.md` → recovery runs automatically (saying "recover memory" per session still works). Hermes injects SOUL/MEMORY/USER automatically — the skill detects host-injected identity and skips duplicate reads (the 55-75% cumulative savings case). |
+| **Hermes** (Nous Research) | Drop this folder into the agent's `skills/` directory, then paste `assets/agents-snippet.md` into `.hermes.md` or `AGENTS.md` → recovery runs automatically (saying "recover memory" per session still works). Hermes injects SOUL/MEMORY/USER automatically — the skill detects host-injected identity and skips duplicate reads (the host-injected case). |
 | **ClawHub / OpenClaw** | Frontmatter is dual-compatible (standard fields + `metadata.hermes`). Install via `clawhub install changsheng-agent-memory` or copy into the agent's skills dir. |
 | **Claude Code / Cursor / Codex / other SKILL.md agents** | Copy this folder into the project or agent skills directory; at the start of a session, instruct the agent to follow SKILL.md (the procedure is model-agnostic). |
 | **Any LLM, any OS** | Recovery logic is pure convention + one Python stdlib script — model-agnostic, runs on Windows/macOS/Linux, no GPU. |
@@ -39,7 +39,7 @@ Every new session feels like "day one at work"? This skill makes the agent read 
 - 🧾 **Memory that survives review**: a ledger with a byte budget, a review date and an expiry action for every always-read file — so a stale rule gets flagged instead of being quoted as current
 - 🔎 **The reason behind a decision**: one command finds *why* you chose something, across todos, logs, notes and the archive — not just where the word appears
 - 🔁 **One-line handover**: say "handover" at any task break; the next session starts exactly where you stopped
-- ⚡ **Fast + cheap**: recovery cost ~44K → ~12K tokens (~70% less); with host-injected identity skipped, ~55-75% cumulative (measured 2026-09-04)
+- ⚡ **Fast + cheap**: recovery is 8,669 tokens per session — 1.3% of a full restore (98.7% less; measured 2026-10-24)
 - 🔒 **100% local**: pure local scripts, zero API cost, nothing leaves your machine
 - 📊 **Context health**: see your real context usage and get nudged as you approach the 30/50/70% lines by default (tunable via config) — and well before a session bloats
 
@@ -47,12 +47,13 @@ Every new session feels like "day one at work"? This skill makes the agent read 
 
 | Layer | Reads | When | Cost |
 |---|---|---|---|
-| **L3 Must-read** | identity / rules / todos / latest journal | Every new session — the reliability anchor | small, fixed |
-| **L2 Conditional** | other tracked files | **Only if the change index flags a change**; otherwise just the index summary line | ≈0 ← savings live here |
-| **L1 On-demand** | detail docs / history | Only when actually needed | 0 |
+| **L0 Must-read** | identity / rules / todos / latest journal | Every new session — the reliability anchor | small, fixed |
+| **L1 Conditional** | other tracked files | **Only if the change index flags a change**; otherwise just the index summary line | ≈0 ← savings live here |
+| **L2 On-demand** | detail docs / history | Only when actually needed | 0 |
+| **L3 Fallback** | whole corpus — keyword / full-text / semantic search | When the first three tiers miss | budgeted, with a timeout |
 | **Dreaming write-side** | the content side (scattered rules, look-alike entries, stale leftovers) | every 3-day cycle | zero-token prescan + one tidy session |
 
-The engine is `scripts/memory_index.py`: it **discovers** your memory files (role → real file), then hashes every L2-tracked file and flags only what changed (md5 + 24h window). No index → you either re-read everything (expensive) or gamble (risky). With the index you get **neither**.
+The engine is `scripts/memory_index.py`: it **discovers** your memory files (role → real file), then hashes every L1-tracked file and flags only what changed (md5 + 24h window). No index → you either re-read everything (expensive) or gamble (risky). With the index you get **neither**.
 
 ## Setup (≈30 seconds)
 
@@ -80,12 +81,12 @@ Discovered roles are cached in `.changsheng/discovery.json` — the agent reads 
 ## Usage (start of every new session)
 
 1. **Step 0 — Discover (first time or when sources moved)**: run `python scripts/memory_index.py --discover .` — it locates your memory carriers by common conventions (candidate list lives in the script header constants) and writes `.changsheng/discovery.json`. Python unavailable? Fall back to the hand-list below (derived from the script; the script is authoritative). At every recovery, first **stat the stored paths** — any missing/unreadable source triggers re-discovery (never reuse stale paths).
-2. **Read the L3 must-read files**: roles resolved in step 0/1 (rules, identity, todos, journal) + `must_read_extra`. Every one, no shortcuts. Host injected identity (Hermes/OpenClaw)? Mark `identity ✅ (host)` and skip the file probe.
+2. **Read the L0 must-read files**: roles resolved in step 0/1 (rules, identity, todos, journal) + `must_read_extra`. Every one, no shortcuts. Host injected identity (Hermes/OpenClaw)? Mark `identity ✅ (host)` and skip the file probe.
 2b. **Rules alignment**: from the rules file(s) just read, extract every imperative rule the user stated (do X / never do Y). List them explicitly in your recovery report — this is the moment the user experiences as *"it remembered what I told it"*. Then write/refresh `.changsheng/rules.json` (id, text, keywords per rule) so the guardrail can enforce them at action time (see Rules & guardrails). If the rules file is empty or has no imperative rules, say "no hard rules found" honestly.
 3. **Read the change index** `memory_index.md`:
    - ✅ new change → read that file in full
    - ⏸ unchanged → read only its index summary line ← **savings live here**
-4. **L1 on-demand**: consult detail docs only when a task actually needs them.
+4. **L2 on-demand**: consult detail docs only when a task actually needs them.
 5. **Context gauge**: report real context usage — query your platform (Hermes `/status`; Claude Code `/context`; others: see the platform table below). Never invent a percentage; if the platform exposes none, say so. Optionally append `context: N%` to your recovery report. **If `config.yaml` exists with `nudge_thresholds`, read it once and use those lines instead of the 30/50/70 defaults below** (this is how the user tunes when to be nudged).
 6. **Check for a handover note**: if `.changsheng/handover.md` exists, read it first (it is the fast pointer to where the last session stopped), then **delete it** — a handover is a one-shot note; keeping it would make the third session read a stale pointer. Authority stays with todos/journal — the handover only accelerates.
 7. **Report recovery honestly**: `identity ✅ (host) · rules ✅ CLAUDE.md · todos ✅ docs/TODO.md · journal ✅ journal/2026-09-04.md · rules aligned: 3 (r1 never delete without asking · r2 reply in Chinese · r3 …)`. If a role came up empty, list it explicitly — never claim a full recovery that didn't happen.
@@ -104,13 +105,13 @@ Check context usage **every time you see it** (at recovery, and after every user
 | 25–30% | pre-nudge: "context is approaching the 30% line — I've noted where we are, so a switch stays safe and cheap" |
 | 30–45% | fine — keep working; a task boundary is still a fine moment to switch |
 | 45–50% | pre-nudge: "approaching 50% — I've noted where we are; plan to wrap up the current task at its boundary and switch" |
-| 50–65% | suggest: "task boundary reached? Good moment to switch to a fresh session — recovery is ~12K tokens, nothing is lost. Handover is ready." |
+| 50–65% | suggest: "task boundary reached? Good moment to switch to a fresh session — recovery is ~8.7K tokens, nothing is lost. Handover is ready." |
 | 65–70% | pre-nudge: "approaching 70% — I've noted where we are; wind down the current task, the next boundary should be a switch" |
 | ≥ 70% | recommend: "wrap up the current task and switch — this context is near its ceiling. Handover is ready." |
 
 With custom thresholds (e.g. 35/55/75), the bands move to match: pre-nudge at line−5, calm below the first line, urgent at the top line. The principle never changes: **never let a reading pass in silence just because it did not cross a line — and never nudge without a ready handover.**
 
-Switching is safe and cheap: that is the whole point of ChangSheng (recovery ≈ 12K tokens instead of tens of thousands of re-explaining).
+Switching is safe and cheap: that is the whole point of ChangSheng (recovery ≈ 8,700 tokens instead of tens of thousands of re-explaining).
 
 ### Platform context queries
 

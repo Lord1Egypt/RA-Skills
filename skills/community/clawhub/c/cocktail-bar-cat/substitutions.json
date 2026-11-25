@@ -1,0 +1,462 @@
+{
+  "substitutions": [
+    {
+      "original": "金酒",
+      "alternatives": [
+        {
+          "substitute": "伏特加",
+          "notes": "会失去金酒的植物香气，但酒体干净",
+          "affected_drinks": [
+            "金汤力",
+            "尼格罗尼",
+            "马提尼"
+          ],
+          "example": "金汤力 → 伏特加汤力（更清爽无草本味）"
+        },
+        {
+          "substitute": "白酒（如江小白）",
+          "notes": "中式变异版，适合国人口味",
+          "affected_drinks": [
+            "金汤力",
+            "马提尼"
+          ],
+          "example": "白酒马提尼"
+        },
+        {
+          "substitute": "清香型白酒（汾酒/江小白）",
+          "notes": "干净清爽，草本香气接近金酒，最适合做中式鸡尾酒基底",
+          "affected_drinks": [
+            "金汤力",
+            "尼格罗尼",
+            "马提尼"
+          ],
+          "example": "汾酒汤力（中式金汤力）"
+        },
+        {
+          "substitute": "竹叶青酒",
+          "notes": "本身含多种草药，可直接替代草本味金酒",
+          "affected_drinks": [
+            "马提尼",
+            "尼格罗尼"
+          ],
+          "example": "竹叶青马提尼"
+        }
+      ]
+    },
+    {
+      "original": "白朗姆酒",
+      "alternatives": [
+        {
+          "substitute": "金朗姆酒",
+          "notes": "更浓郁的糖蜜味，颜色稍深",
+          "affected_drinks": [
+            "莫吉托",
+            "得其利",
+            "椰林飘香"
+          ],
+          "example": "金朗姆莫吉托（风味更厚）"
+        },
+        {
+          "substitute": "龙舌兰",
+          "notes": "完全不同的风味，可做成变异版",
+          "affected_drinks": [
+            "莫吉托"
+          ],
+          "example": "龙舌兰莫吉托（Mexican Mojito）"
+        }
+      ]
+    },
+    {
+      "original": "威士忌",
+      "alternatives": [
+        {
+          "substitute": "波本威士忌",
+          "notes": "更甜、香草味更重",
+          "affected_drinks": [
+            "古典",
+            "曼哈顿",
+            "威士忌酸"
+          ],
+          "example": "波本古典（更甜美）"
+        },
+        {
+          "substitute": "黑麦威士忌",
+          "notes": "更辛辣、更干",
+          "affected_drinks": [
+            "曼哈顿",
+            "古典"
+          ],
+          "example": "黑麦曼哈顿（更经典）"
+        },
+        {
+          "substitute": "日本威士忌",
+          "notes": "更细腻、烟熏味较轻",
+          "affected_drinks": [
+            "古典",
+            "海波"
+          ],
+          "example": "日威古典（精致版）"
+        },
+        {
+          "substitute": "酱香型白酒（茅台/郎酒）",
+          "notes": "陈年酱香的复杂度可媲美波本威士忌，适合古典类饮品",
+          "affected_drinks": [
+            "古典",
+            "曼哈顿",
+            "旧时尚"
+          ],
+          "example": "茅台古典（奢华版）"
+        }
+      ]
+    },
+    {
+      "original": "青柠汁",
+      "alternatives": [
+        {
+          "substitute": "柠檬汁",
+          "notes": "酸度相似，香气不同",
+          "affected_drinks": [
+            "莫吉托",
+            "得其利",
+            "玛格丽特"
+          ],
+          "example": "柠檬莫吉托（风味更温和）"
+        },
+        {
+          "substitute": "混合柑橘汁",
+          "notes": "青柠+柠檬各半，风味更复杂",
+          "affected_drinks": [
+            "得其利"
+          ],
+          "example": "混合得其利"
+        }
+      ]
+    },
+    {
+      "original": "橙皮利口酒",
+      "alternatives": [
+        {
+          "substitute": "君度",
+          "notes": "品牌差异，君度更经典",
+          "affected_drinks": [
+            "玛格丽特",
+            "大都会",
+            "侧车"
+          ],
+          "example": "君度玛格丽特"
+        },
+        {
+          "substitute": "Triple Sec",
+          "notes": "更便宜的替代，甜度更高",
+          "affected_drinks": [
+            "长岛冰茶",
+            "龙舌兰日出"
+          ],
+          "example": "普通长岛"
+        }
+      ]
+    },
+    {
+      "original": "苦艾酒",
+      "alternatives": [
+        {
+          "substitute": "干苦艾酒",
+          "notes": "马提尼专用，更干更清",
+          "affected_drinks": [
+            "马提尼",
+            "曼哈顿"
+          ],
+          "example": "Dry Martini"
+        },
+        {
+          "substitute": "甜苦艾酒",
+          "notes": "曼哈顿、尼格罗尼用",
+          "affected_drinks": [
+            "曼哈顿",
+            "尼格罗尼",
+            "教父"
+          ],
+          "example": "Sweet Manhattan"
+        }
+      ]
+    },
+    {
+      "original": "安格斯图拉苦精",
+      "alternatives": [
+        {
+          "substitute": "橙味苦精",
+          "notes": "更适合金酒基酒",
+          "affected_drinks": [
+            "古典",
+            "马提尼变异版"
+          ],
+          "example": "橙味古典"
+        },
+        {
+          "substitute": "巧克力苦精",
+          "notes": "适合威士忌、朗姆酒基酒",
+          "affected_drinks": [
+            "古典变异版",
+            "老朗姆酒鸡尾酒"
+          ],
+          "example": "巧克力古典"
+        }
+      ]
+    },
+    {
+      "original": "薄荷叶",
+      "alternatives": [
+        {
+          "substitute": "罗勒叶",
+          "notes": "更草本、更辣",
+          "affected_drinks": [
+            "莫吉托"
+          ],
+          "example": "罗勒莫吉托（Basil Mojito）"
+        },
+        {
+          "substitute": "香菜叶",
+          "notes": "亚洲风味变异，争议较大",
+          "affected_drinks": [
+            "莫吉托"
+          ],
+          "example": "香菜莫吉托（亚洲风）"
+        }
+      ]
+    },
+    {
+      "original": "糖浆",
+      "alternatives": [
+        {
+          "substitute": "蜂蜜",
+          "notes": "更浓郁的花香、更甜",
+          "affected_drinks": [
+            "古典",
+            "威士忌酸",
+            "金菲士"
+          ],
+          "example": "蜂蜜古典"
+        },
+        {
+          "substitute": "枫糖浆",
+          "notes": "适合威士忌基酒",
+          "affected_drinks": [
+            "古典"
+          ],
+          "example": "枫糖古典"
+        },
+        {
+          "substitute": "龙舌兰糖浆",
+          "notes": "适合龙舌兰基酒",
+          "affected_drinks": [
+            "玛格丽塔"
+          ],
+          "example": "龙舌兰糖浆玛格丽塔"
+        },
+        {
+          "substitute": "冰糖糖浆",
+          "notes": "甜感更柔和、回甘，比白砂糖浆更有层次",
+          "affected_drinks": [
+            "莫吉托",
+            "威士忌酸",
+            "古典"
+          ],
+          "example": "冰糖古典"
+        },
+        {
+          "substitute": "桂花糖浆",
+          "notes": "独特花香，适合秋季/中式主题饮品",
+          "affected_drinks": [
+            "威士忌酸",
+            "金菲士"
+          ],
+          "example": "桂花威士忌酸"
+        },
+        {
+          "substitute": "蜂蜜柚子酱",
+          "notes": "日韩流行，酸甜平衡，适合果味鸡尾酒",
+          "affected_drinks": [
+            "蜂蜜柚子金汤力",
+            "水果鸡尾酒"
+          ],
+          "example": "蜂蜜柚子金汤力"
+        }
+      ]
+    },
+    {
+      "original": "苏打水",
+      "alternatives": [
+        {
+          "substitute": "汤力水",
+          "notes": "增加苦味和奎宁风味",
+          "affected_drinks": [
+            "金汤力",
+            "莫吉托变异版"
+          ],
+          "example": "汤力莫吉托（更苦更爽）"
+        },
+        {
+          "substitute": "姜汁汽水",
+          "notes": "增加姜的辛辣",
+          "affected_drinks": [
+            "威士忌海波",
+            "莫吉托变异版"
+          ],
+          "example": "姜汁莫吉托"
+        },
+        {
+          "substitute": "可乐",
+          "notes": "增加甜味和焦糖味",
+          "affected_drinks": [
+            "长岛冰茶",
+            "自由古巴"
+          ],
+          "example": "自由古巴"
+        }
+      ]
+    },
+    {
+      "original": "伏特加",
+      "alternatives": [
+        {
+          "substitute": "二锅头（红星/牛栏山）",
+          "notes": "高度数、纯净口感接近伏特加，需注意度数调整",
+          "affected_drinks": [
+            "螺丝起子",
+            "莫斯科骡子",
+            "长岛冰茶"
+          ],
+          "example": "二锅头骡子（中式莫斯科骡子）"
+        }
+      ]
+    },
+    {
+      "original": "龙舌兰",
+      "alternatives": [
+        {
+          "substitute": "白酒（剑南春/泸州老窖）",
+          "notes": "浓香型白酒的粮香可模拟龙舌兰的植物感",
+          "affected_drinks": [
+            "玛格丽特",
+            "龙舌兰日出"
+          ],
+          "example": "川式玛格丽特"
+        }
+      ]
+    },
+    {
+      "original": "朗姆酒",
+      "alternatives": [
+        {
+          "substitute": "米酒（醪糟/花雕）",
+          "notes": "发酵甜感类似朗姆，适合热带风或中式甜品调酒",
+          "affected_drinks": [
+            "莫吉托",
+            "椰林飘香"
+          ],
+          "example": "花雕莫吉托（中式热带风）"
+        }
+      ]
+    },
+    {
+      "original": "青柠汁/柠檬汁",
+      "alternatives": [
+        {
+          "substitute": "金桔汁",
+          "notes": "更芳香、微苦，中式柑橘风味",
+          "affected_drinks": [
+            "莫吉托",
+            "得其利"
+          ],
+          "example": "金桔莫吉托"
+        },
+        {
+          "substitute": "柠檬汁+陈皮水",
+          "notes": "增加中式陈皮香气层次",
+          "affected_drinks": [
+            "威士忌酸",
+            "玛格丽特"
+          ],
+          "example": "陈皮威士忌酸"
+        }
+      ]
+    },
+    {
+      "original": "装饰物通用",
+      "alternatives": [
+        {
+          "substitute": "干桂花",
+          "notes": "中式优雅装饰，适合秋季/节日款",
+          "affected_drinks": [
+            "各类鸡尾酒"
+          ],
+          "example": "桂花撒饰金汤力"
+        },
+        {
+          "substitute": "枸杞",
+          "notes": "食用枸杞作果味和色彩装饰，适合热饮或中式风味；不作养生功效承诺",
+          "affected_drinks": [
+            "热黄油朗姆",
+            "热饮类"
+          ],
+          "example": "枸杞热饮"
+        },
+        {
+          "substitute": "糖渍樱花/梅花",
+          "notes": "日式中式融合风格装饰",
+          "affected_drinks": [
+            "日式鸡尾酒",
+            "春季限定"
+          ],
+          "example": "樱花莫吉托"
+        }
+      ]
+    },
+    {
+      "original": "红茶/咖啡利口酒",
+      "alternatives": [
+        {
+          "substitute": "普洱茶浓缩液",
+          "notes": "陈年普洱的土香和苦甘非常适合调酒",
+          "affected_drinks": [
+            " Espresso Martini 变异版"
+          ],
+          "example": "普洱马提尼"
+        },
+        {
+          "substitute": "乌龙茶",
+          "notes": "焙火乌龙的烟熏感可模仿威士忌桶味",
+          "affected_drinks": [
+            "古典变异版",
+            "Highball"
+          ],
+          "example": "乌龙Highball"
+        }
+      ]
+    },
+    {
+      "original": "姜汁/香料",
+      "alternatives": [
+        {
+          "substitute": "八角/桂皮",
+          "notes": "中式香料组合，适合冬季热饮",
+          "affected_drinks": [
+            "热饮类",
+            "蛋奶酒"
+          ],
+          "example": "八角桂皮热黄油朗姆"
+        },
+        {
+          "substitute": "花椒糖浆",
+          "notes": "麻感微辛，创新中式鸡尾酒元素",
+          "affected_drinks": [
+            "创新款",
+            "川菜搭配酒"
+          ],
+          "example": "花椒金汤力"
+        }
+      ]
+    }
+  ],
+  "notes": "材料替换原则：1. 保持酒体平衡 2. 不破坏核心风味 3. 可做成特色变异款推荐给客人\n\n【国产替代补充说明】\n- 白酒替代方案按香型分类：清香→替代金酒/伏特加，浓香→替代龙舌兰，酱香→替代威士忌/波本\n- 中式糖浆（冰糖/桂花/蜂蜜柚子）可大幅提升国人口感接受度\n- 茶类（普洱/乌龙/茉莉）是中式调酒的差异化优势\n- 香料类（花椒/八角/桂皮）适合冬季暖身酒单"
+}

@@ -5,7 +5,7 @@ license: MIT
 compatibility: Portable instructions for official Superfluid contracts, @sfpro/sdk, metadata and existing read-only EVM tools. No signer or adapter runtime is included.
 metadata:
   author: Andrew Wilkinson and Galleon Labs
-  version: "0.2.1"
+  version: "0.3.0"
 ---
 
 # Superfluid flows and distribution
@@ -22,7 +22,7 @@ Read the current exact flow/aggregate net rate, real-time available balance, loc
 
 ## Bound the recurring commitment
 
-Resolve user rate, unit/time period, proposed end or monitoring obligation, maximum economic budget, acceptable funding horizon, wrapping amount and current approval limits. Convert human rates using exact token decimals and seconds with explicit rounding. Monthly billing needs a defined calendar/fixed-period interpretation; never assume every month is 30 days.
+Resolve user rate, unit/time period, proposed end or monitoring obligation, maximum economic budget, acceptable funding horizon, wrapping amount and current approval limits. Convert human rates using the Super Token's 18 decimals (not the underlying token's) and seconds with explicit rounding. Monthly billing needs a defined calendar/fixed-period interpretation; never assume every month is 30 days.
 
 Calculate projected exhaustion from spendable real-time funding and aggregate outgoing obligations. Do not spend the liquidation/deposit buffer twice or subtract it twice from a balance already reported as available. Use actual contract read semantics, current required buffer and conservative incoming assumptions. Show missing buffer/rate reads rather than inferring a deadline from an ERC20 `balanceOf` snapshot.
 

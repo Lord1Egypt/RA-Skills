@@ -1,6 +1,6 @@
 # Credential Management Workflow
 
-This document guides data analysts on how to securely manage database keys, API tokens, and other sensitive credentials in **MGC Blackbox ≥ 1.5.4**, and implement **zero-exposure calls** in scripts.
+This document guides data analysts on how to securely manage database keys, API tokens, and other sensitive credentials in **MGC Blackbox ≥ 1.6.0**, and implement **zero-exposure calls** in scripts.
 
 All sensitive operations must be explicitly authorized by the user before proceeding.
 

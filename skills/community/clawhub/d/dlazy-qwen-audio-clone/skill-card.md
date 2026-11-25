@@ -1,6 +1,6 @@
 ## Description:
 
-Alibaba Bailian qwen3-tts voice cloning. Upload a clean voice sample to clone a custom voice usable in subsequent TTS calls. 阿里云百炼 qwen3-tts 声音复刻，上传一段干净人声样本即可复刻自定义音色，可在后续 TTS 中使用。
+Alibaba Bailian qwen3-tts voice cloning lets users upload a clean voice sample and create a custom voice for later text-to-speech calls.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and creators use this skill to create a custom Qwen3-TTS voice from a clean audio sample and use that voice in later text-to-speech calls.
+External users and developers can submit a clean voice sample to create a custom voice for subsequent text-to-speech use through dLazy's hosted service.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The supplied evidence does not explain how the login command supports the advertised voice-cloning task, and automated analysis was partial because some local references were unresolved.
+Risk: The security review reports an unclear CLI login step and incomplete evidence for some referenced items; its benign verdict has medium confidence.
 
-Mitigation: Review the CLI behavior and resolve the missing references before using credentials or uploading voice samples.
+Mitigation: Review the pinned CLI install details and login flow before authenticating, and confirm that the package and service are the ones you intend to use.
+
+Risk: The skill documentation says local audio samples are uploaded to dLazy media storage for processing, which can expose personal or sensitive voice recordings to a hosted service.
+
+Mitigation: Use only recordings you have permission to submit, avoid sensitive material, and check the service terms and data handling details before uploading.
 
 ## Reference(s):
 
-- [CLI source link in skill metadata](https://github.com/dlazy-ai/cli)
-- [@dlazy/cli package](https://www.npmjs.com/package/@dlazy/cli)
-- [dLazy service](https://dlazy.com)
+- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-qwen-audio-clone)
+- [Publisher profile: dlazyai](https://clawhub.ai/user/dlazyai)
+- [CLI source listed in skill metadata (GitHub import provenance unavailable)](https://github.com/dlazy-ai/cli)
+- [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy service homepage](https://dlazy.com)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, JSON, Shell commands]
+**Output Type(s):** [API Calls, JSON]
 
-**Output Format:** [JSON response and shell commands]
+**Output Format:** [Structured JSON API response describing the voice-cloning result or asynchronous task status.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May return a synchronous result or an asynchronous task status.]
+**Other Properties Related to Output:** [A completed response may include a result URL; asynchronous responses may include a task identifier and status.]
 
 ## Skill Version(s):
 
-1.3.40 (source: server release evidence)
+1.3.43 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

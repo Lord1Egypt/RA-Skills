@@ -1,0 +1,27 @@
+meta title: 车辆制动系统无法建立制动力
+meta project: 功能安全分析 (ISO 26262)
+meta standard: ISO 26262 / GB/T 34590
+meta missionTime: 100
+
+# ============================================================
+# 液压制动系统 FTA
+# 顶事件: 无法建立所需制动力 (ASIL-D)
+# ============================================================
+
+TOP 制动系统无法建立制动力
+  AND
+    INTER 主缸压力不足
+      OR
+        INTER 液压制动源失效
+          OR
+            BASIC 制动泵机械卡滞 p=2e-4 ref=FMEA-001 comp=制动泵
+            BASIC 助力器失效 p=5e-4 ref=FMEA-002 comp=助力器
+            BASIC 制动液泄漏 p=1e-4 ref=FMEA-003 comp=管路
+        INTER 制动回路失效
+          OR
+            BASIC 轮缸内漏 p=3e-4 ref=FMEA-004 comp=轮缸
+            BASIC 制动管路破裂 p=5e-5 ref=FMEA-005 comp=管路
+    INTER 踏板行程传递失效
+      OR
+        BASIC 踏板自由行程过大 p=1e-3 ref=FMEA-006 comp=踏板
+        BASIC 踏板连杆断裂 p=1e-4 ref=FMEA-007 comp=连杆

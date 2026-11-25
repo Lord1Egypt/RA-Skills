@@ -1,7 +1,7 @@
 ---
 name: bilibili-video-to-text
 description: "B站视频转文字 / Bilibili video to text. 用户发来 bilibili.com/video/BV… 或 b23.tv 短链，要提取视频文案、做笔记、总结 UP 主讲了什么、整理课程或评测内容时使用。返回口播逐字稿（分段带时间）、画面上的字、标题简介、要点和互动数据。不登录 B 站、不要 Cookie、不下载视频。1 分钟视频 2 积分（约 ¥0.29），读不了不扣费；需要 LinkDigest API Key（注册送 10 积分，不用绑卡）。"
-version: 1.0.0
+version: 1.0.1
 homepage: https://linkdigest.dev/platforms?ref=skill-bilibili-video-to-text
 metadata: {"openclaw":{"requires":{"anyBins":["python3"]},"primaryEnv":"LINKDIGEST_API_KEY","envVars":[{"name":"LINKDIGEST_API_KEY","required":true,"description":"LinkDigest API Key（ld_live_ 开头），在 https://linkdigest.dev/signin?ref=skill-bilibili-video-to-text&next=/app/keys 创建，注册送 10 积分"}],"homepage":"https://linkdigest.dev/platforms?ref=skill-bilibili-video-to-text"}}
 required_environment_variables:

@@ -31,7 +31,7 @@ function Read-Utf8 {
 }
 function Get-FrontmatterField {
     param([string]$Text, [string]$Field)
-    $m = [regex]::Match($Text, '(?ms)^' + [regex]::Escape($Field) + ':\s*(.*?)(?=\r?\n\w+:\s|\r?\n---)')
+    $m = [regex]::Match($Text, '(?ms)^' + [regex]::Escape($Field) + ':\s*(.*?)(?=\r?\n[A-Za-z0-9_-]+:\s|\r?\n---)')
     if ($m.Success) { return ($m.Groups[1].Value -replace "`r?`n", ' ').Trim() }
     return ''
 }
@@ -84,7 +84,19 @@ $cl = Read-Utf8 (Join-Path $SkillRoot 'CHANGELOG.md')
 if ($version -ne '' -and $cl -match ('## v' + [regex]::Escape($version))) { Add-I 'PASS' 'CHANGELOG 条目' ('包含 v' + $version) }
 else { Add-I 'WARN' 'CHANGELOG 条目' ('未找到 v' + $version + ' 的条目（建议补）') }
 
-# 4) 敏感信息/本机路径扫描（只报不阻断，人工确认）
+# 3) scripts/*.ps1 必须 UTF-8 带 BOM（否则 PS 5.1 中文乱码、脚本解析失败）
+$psFiles = @(Get-ChildItem -LiteralPath (Join-Path $SkillRoot 'scripts') -File -Filter '*.ps1' -ErrorAction SilentlyContinue)
+if ($psFiles.Count -gt 0) {
+    $noBom = @()
+    foreach ($psFile in $psFiles) {
+        $bytes = [System.IO.File]::ReadAllBytes($psFile.FullName)
+        if (-not ($bytes.Length -ge 3 -and $bytes[0] -eq 0xEF -and $bytes[1] -eq 0xBB -and $bytes[2] -eq 0xBF)) { $noBom += $psFile.Name }
+    }
+    if ($noBom.Count -eq 0) { Add-I 'PASS' 'PowerShell BOM' ([string]$psFiles.Count + ' 个脚本均带 BOM') }
+    else { Add-I 'FAIL' 'PowerShell BOM' ('缺 BOM（PS 5.1 会乱码）：' + ($noBom -join ', ')) }
+}
+
+# 4) 敏感信息/本机路径扫描：像真实凭证的命中直接 FAIL（阻断打包）；本机路径只 WARN 由人工确认
 # 只匹配「像真实凭证」的赋值；文档里的 $env:FAKE_API_KEY='dummy-local-key' 等示例不报。
 $badPatterns = @(
     'DXXC_TOKEN_HUB_API_KEY\s*=\s*[^\s]',
@@ -104,22 +116,46 @@ $userPathPatterns = @(
     '[A-Za-z]:\\Documents and Settings\\[^\\\s"'']+\\'
 )
 $fileList = @(Get-ChildItem -LiteralPath $SkillRoot -Recurse -File -ErrorAction SilentlyContinue)
-$hits = @()
+# 打包排除：临时/构建/缓存/版本库/工程级状态不属于技能本体（v2.10.0 修复：此前 .tmp 会被打进包，1003 条目）。
+# .dsh/ 是「接入本工程」的接管状态（含本机路径），属于工程而非技能，必须排除。
+$excludeDirs = @('.tmp', '.git', '.dsh', 'dist', 'out', '__pycache__', 'node_modules', 'memory')
+$excludeFiles = @('.DS_Store', 'Thumbs.db')
+# 二进制/图片/压缩包/私钥不进包：既非技能运行所需，也会让安全扫描只能做部分分析。
+$excludeExt = @('.png', '.jpg', '.jpeg', '.gif', '.zip', '.7z', '.pem', '.key')
+$excludeRelPrefixes = @('plugins\capability-loop\test\')
+$fileList = @($fileList | Where-Object {
+    $rel = $_.FullName.Substring($SkillRoot.Length).TrimStart('\')
+    $parts = $rel -split '\\'
+    $skip = $false
+    foreach ($p in $parts) { if ($excludeDirs -contains $p) { $skip = $true; break } }
+    if ($skip) { return $false }
+    if ($excludeFiles -contains $_.Name) { return $false }
+    if ($excludeExt -contains $_.Extension.ToLowerInvariant()) { return $false }
+    foreach ($pre in $excludeRelPrefixes) { if ($rel.StartsWith($pre, [System.StringComparison]::OrdinalIgnoreCase)) { return $false } }
+    return $true
+})
+$credHits = @()
+$pathHits = @()
 foreach ($f in $fileList) {
-    if ($f.Extension -in @('.md', '.json', '.ps1', '.txt')) {
+    if ($f.Extension -in @('.md', '.json', '.ps1', '.txt', '.mjs', '.js', '.yml', '.yaml')) {
         $txt = Read-Utf8 $f.FullName
-        foreach ($bp in $badPatterns) { if ($txt -match $bp) { $hits += ($f.Name + ' 命中敏感模式 ' + $bp) } }
+        foreach ($bp in $badPatterns) { if ($txt -match $bp) { $credHits += ($f.Name + ' 命中凭证模式 ' + $bp) } }
         # 本机路径按文件去重：%LOCALAPPDATA% 通常位于 %USERPROFILE% 下，逐个匹配会把同一处记成多条 WARN。
         $pathHit = ''
         foreach ($up in $userPaths) { if ($txt -match [regex]::Escape([string]$up)) { $pathHit = [string]$up; break } }
         if ($pathHit -eq '') {
             foreach ($up in $userPathPatterns) { if ($txt -match $up) { $pathHit = $matches[0]; break } }
         }
-        if ($pathHit -ne '') { $hits += ($f.Name + ' 含本机路径 ' + $pathHit) }
+        if ($pathHit -ne '') { $pathHits += ($f.Name + ' 含本机路径 ' + $pathHit) }
     }
 }
-if ($hits.Count -eq 0) { Add-I 'PASS' '敏感/本机路径扫描' '未发现' }
-else { Add-I 'WARN' '敏感/本机路径扫描' ([string]$hits.Count + ' 处（上架前请确认是否需脱敏）：' + (($hits | Select-Object -First 5) -join '; ')) }
+if ($credHits.Count -gt 0) {
+    Add-I 'FAIL' '敏感信息扫描' ([string]$credHits.Count + ' 处疑似凭证（必须脱敏后才能打包）：' + (($credHits | Select-Object -First 3) -join '; '))
+} else {
+    Add-I 'PASS' '敏感信息扫描' '未发现疑似凭证'
+}
+if ($pathHits.Count -eq 0) { Add-I 'PASS' '本机路径扫描' '未发现' }
+else { Add-I 'WARN' '本机路径扫描' ([string]$pathHits.Count + ' 处（上架前请人工确认是否需脱敏）：' + (($pathHits | Select-Object -First 5) -join '; ')) }
 
 $failCount = @($issues | Where-Object { $_.Status -eq 'FAIL' }).Count
 $warnCount = @($issues | Where-Object { $_.Status -eq 'WARN' }).Count
@@ -190,17 +226,19 @@ $notes = @"
 
 - 包内目录：``$name/``（SKILL.md 在根，name=$name，version=$version）
 - **DSH 技能市场不是发布端**：它只浏览/安装 SkillHub 上的 skill。上架 = 用 ``clawhub`` CLI 发布到 ClawHub，SkillHub 同步后市场可搜到（见 ``references/95-store-publish.md``）。
-- 上架命令（首次与更新同一条）：
+- 上架命令（首次与更新同一条，**发布本包目录而不是源码仓库根**，避免带入 .git/.tmp/截图）：
   - ``npm.cmd i -g clawhub``
   - ``clawhub login``
-  - ``clawhub skill publish "<技能目录>" --slug "$name" --name "$name" --changelog "v${version}: <摘要>"``
+  - ``clawhub skill publish "<本包目录>\$name" --slug "$name" --name "$name" --version "$version" --changelog "v${version}: <摘要>"``
 - 本 ZIP 用于：**本地导入**（只含技能目录，单一顶层 ``<name>/``，可被市场直接导入）/留档/离线分发；``manifest.json``/``SHA256SUMS.txt``/``PUBLISH-NOTES.md`` 在包目录留档，**不进 ZIP**；**上架 ClawHub 不需要 ZIP**，直接发布目录。
 - 上架后商店安装目录通常是 ``<handle>--<slug>``（如 ``your-handle--$name``）；这是 DSH 技能市场的命名约定，``name`` frontmatter 不变。
 - **若 manifest 的 store.id 仍是 ``<handle>``/``your-handle`` 占位，正式上架前请用真实 handle 重跑本脚本**（``-Handle``），否则商店记录与包内元数据不一致。
 - 更新由**商店负责**：安装/更新/回滚都在商店 UI 完成；技能自身不自动更新，也不覆盖用户修改。
 - 版本一致性：``version.json`` 为权威；``SKILL.md`` frontmatter 的 ``version`` 必须与之相同（技能市场据此显示「已安装版本」，缺失则显示为空）；``CHANGELOG.md`` 需有对应版本条目。
-- 发布前检查：SKILL.md frontmatter name/description 合法（name kebab、description ≤500 字符）；version.json 与 CHANGELOG 版本一致；``README.md``/``QUICKSTART.md`` 与版本一致。
-- 包内不含：用户路径、凭证、会话、storage、备份。若校验提示「本机绝对路径」，上架前按需脱敏。
+- 发布前检查：SKILL.md frontmatter name/description/权限声明合法；version.json 与 CHANGELOG 版本一致；``README.md``/``QUICKSTART.md`` 与版本一致。
+- **打包排除（脚本硬编码）**：``.tmp``/``.git``/``.dsh``/``dist``/``out``/``node_modules``/``__pycache__``/``memory``（用户偏好记忆不进包）、图片/压缩包/私钥（``.png/.jpg/.jpeg/.gif/.zip/.7z/.pem/.key``）、插件夹具 ``plugins/capability-loop/test/``。
+- **敏感扫描是启发式**：疑似凭证命中会 FAIL 并阻断打包；本机绝对路径只 WARN，仍需人工复核。包内不含会话库、DSH storage、备份或用户凭据。
+- 权限与数据边界见包内 ``SECURITY.md``（写哪些目录、起哪些子进程、是否联网、如何删除记忆）。
 - 校验和：见 ``SHA256SUMS.txt``；单文件哈希在 ``manifest.json`` 之外提供，商店可复用。
 - 回滚：商店版本历史可安装旧版本；技能自身 ``CHANGELOG.md`` 记录每个版本的变更与回滚方式。
 "@

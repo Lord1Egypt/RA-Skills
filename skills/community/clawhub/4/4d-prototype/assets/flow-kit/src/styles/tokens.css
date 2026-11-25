@@ -1,0 +1,80 @@
+@import 'tailwindcss';
+
+/*
+ * Starting design tokens (a light, Apple-like neutral palette; the toB example's tokens). Copy into the project's global
+ * CSS and adjust: components use only these token names (bg-surface, text-ink-900, bg-primary-500 …), never raw colors,
+ * so lib/theme.ts can switch palette, light/dark and style by overriding the variables.
+ * Families: ink (neutrals, 950 … 50), paper / surface, primary, semantic (seal = problem, amber = needs attention,
+ * pine = done, rule = deterministic rules, agent = AI), act-* (actors), shadow-pop / shadow-raise.
+ */
+@theme {
+
+  /* 可读性：最小字号 12px（中文 11px 难辨认），小字号行高略放宽 */
+
+  --color-ink-950: #000000;
+  --color-ink-900: #1d1d1f;
+  --color-ink-800: #1d1d1f;
+  --color-ink-700: #3a3a3c;
+  --color-ink-600: #515154;
+  --color-ink-500: #6e6e73;
+  /* secondary text: 4.5:1 on paper, 4.9:1 on white (small-text AA; the appearance tests check it) */
+  --color-ink-400: #707075;
+  --color-ink-300: #aeaeb2;
+  --color-ink-200: #d2d2d7;
+  --color-ink-150: #e8e8ed;
+  --color-ink-100: #f0f0f3;
+  --color-ink-50: #f5f5f7;
+
+  --color-paper: #f5f5f7;
+  --color-surface: #ffffff;
+
+  --color-primary-700: #0058b0;
+  --color-primary-600: #0066cc;
+  --color-primary-500: #0071e3;
+  --color-primary-400: #2997ff;
+  --color-primary-100: #e1eefd;
+  --color-primary-50: #f0f6fe;
+
+  --color-seal-700: #a1000f;
+  --color-seal-600: #bf0012;
+  --color-seal-500: #d70015;
+  --color-seal-200: #f6c9cd;
+  --color-seal-100: #fde7e9;
+  --color-seal-50: #fff4f5;
+
+  --color-amber-700: #8a3f00;
+  --color-amber-600: #a64b00;
+  --color-amber-500: #c25700;
+  --color-amber-100: #fdeedd;
+  --color-amber-50: #fff8f0;
+
+  --color-pine-700: #1a6a2e;
+  --color-pine-600: #1f7a35;
+  --color-pine-500: #248a3d;
+  --color-pine-100: #e2f4e7;
+  --color-pine-50: #f2faf4;
+
+  --color-rule-700: #075e66;
+  --color-rule-600: #086c75;
+  --color-rule-500: #0a7a84;
+  --color-rule-100: #dcf0f2;
+  --color-rule-50: #eff8f9;
+
+  --color-agent-700: #5a2d8f;
+  --color-agent-600: #6a35a6;
+  --color-agent-500: #7a3fbd;
+  --color-agent-100: #eee6f9;
+  --color-agent-50: #f8f4fd;
+
+  /* actors (who is acting): one color each, separate from outcome colors; rename to your actors (flow/actors.ts) */
+  --color-act-applicant: #0a84ff;
+  --color-act-approver: #30a46c;
+  --color-act-finance: #e5484d;
+  --color-act-admin: #8e4ec6;
+  --color-act-system: #6e6e73;
+  --color-act-scheduler: #f76b15;
+  --color-act-external: #8d6e63;
+
+  --shadow-pop: 0 24px 60px -12px rgb(0 0 0 / 0.18), 0 2px 8px rgb(0 0 0 / 0.06);
+  --shadow-raise: 0 1px 2px rgb(0 0 0 / 0.03), 0 6px 24px -10px rgb(0 0 0 / 0.08);
+}

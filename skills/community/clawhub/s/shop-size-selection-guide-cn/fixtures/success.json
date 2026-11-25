@@ -1,0 +1,59 @@
+{
+  "unit": "cm",
+  "measurementMethod": "将成衣平铺，沿腋下最宽处横量胸宽；此处是单面平量宽度，换算成衣胸围需乘2。",
+  "applicableArea": "上衣成衣胸围",
+  "sizeChart": [
+    {
+      "size": "M",
+      "bust": 92,
+      "waist": 70
+    },
+    {
+      "size": "L",
+      "bust": 96,
+      "waist": 74
+    }
+  ],
+  "selectionRules": [
+    {
+      "field": "bust",
+      "operator": "min_ease",
+      "customerValue": 88,
+      "ease": 6
+    }
+  ],
+  "expected": {
+    "status": "recommended",
+    "eligibleSizes": [
+      "L"
+    ]
+  },
+  "referenceDelivery": {
+    "status": "recommended",
+    "normalizedUnit": "cm",
+    "normalizedSizeChart": [
+      {
+        "size": "M",
+        "measurements": {
+          "bust": 92,
+          "waist": 70
+        }
+      },
+      {
+        "size": "L",
+        "measurements": {
+          "bust": 96,
+          "waist": 74
+        }
+      }
+    ],
+    "measurementSteps": [
+      "将成衣平铺，沿腋下最宽处横量胸宽；此处是单面平量宽度，换算成衣胸围需乘2。"
+    ],
+    "eligibleSizes": [
+      "L"
+    ],
+    "explanation": "顾客胸围 88 cm，商家要求成衣胸围至少多 6 cm，即至少 94 cm；M 为 92 cm 不足，L 为 96 cm 符合。复核时平铺横量胸宽，再乘2得到成衣胸围。",
+    "confirmationItems": []
+  }
+}

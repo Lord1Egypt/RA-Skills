@@ -2,7 +2,7 @@
 
 Evidence-led review for GHG inventories, carbon disclosures and product-footprint methods.
 
-**Author:** Simon Huang · **Version date:** 2026-11-12 · **Version:** 1.0.0.
+**Author:** Simon Huang · **Original release:** 2026-11-12 · **Version date:** 2026-11-22 · **Version:** 1.1.0.
 
 **Format:** portable, text-only Agent Skill. **License:** MIT-0. The original release identifies its author; downstream attribution is appreciated but is not required by this license. No claim of endorsement by ISO, GHG Protocol, WRI, WBCSD or a regulator.
 
@@ -61,3 +61,9 @@ It does not supply emission factors, licensed standards, automatic arbitrary-PDF
 ## 中文摘要
 
 這是一份給 AI 助理使用的「碳盤查審閱程序」，不是一鍵盤查系統。適合內部預審、顧問補件清單、公開碳揭露檢核及碳軟體方法審閱。強項是保留證據來源、找出重複計算與不可判定事項；正式查證、法規結論與重大決策仍需合格專業人員負責。
+
+## Optional AI-workflow branch (1.1.0)
+When AI use or AI-generated publication is in the authorized scope, use [AI transparency and explanation](references/ai-governance.md) and the [addendum](templates/ai-governance-addendum.md). Distinguish role/use/date-specific duties from carbon accounting methodology. This is not legal advice or a guarantee of compliance, local processing or tool enforcement. Original author and MIT-0 license remain unchanged.
+
+## Validation boundary for the AI branch
+Synthetic model trials were PARTIAL: some role, applicability-date and branch-continuation judgments were inconsistent even after instruction improvements. This branch is an evidence/triage checklist, NOT a validated autonomous legal-compliance classifier. Verify legal dates and role/use triggers against inspected authentic sources; unresolved legal conclusions need primary-source/professional review. Structural/arithmetic checks and a matching example response are not legal assurance, representative model accuracy or runtime-enforcement proof.

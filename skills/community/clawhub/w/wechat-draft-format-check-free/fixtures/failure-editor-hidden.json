@@ -1,0 +1,8 @@
+{
+  "fixture_type": "offline page material simulation; not online collection",
+  "status": "paused",
+  "source": {"title": "公众号编辑器（离线模拟）", "location": "编辑器区域"},
+  "reason": "编辑器正文不可见，无法依据网页可见内容核对草稿。",
+  "missing": ["可见的草稿正文", "可确认的草稿归属"],
+  "actions_not_taken": ["未改稿", "未发送", "未发布"]
+}

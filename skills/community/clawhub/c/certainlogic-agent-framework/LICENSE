@@ -1,0 +1,83 @@
+BSL 1.1 License
+================
+
+CertainLogic Agent Framework
+Copyright (c) 2026 CertainLogic (CertainLogicAI)
+
+Licensor:                CertainLogic
+Licensed Work:           CertainLogic Agent Framework v1.0.0
+                          The Licensed Work includes the timechain/ subdirectory,
+                          which is separately licensed under MIT (see NOTICE.md).
+
+Change Date:             2032-11-22
+Change License:          Apache 2.0 (or at your option, any later version)
+
+Licensed Work Additional Use Grant:
+  You may use the Licensed Work for internal business purposes, including
+  development, testing, and deployment of AI agents. You may not offer the
+  Licensed Work as a hosted or managed service to third parties without
+  a separate commercial agreement with CertainLogic.
+
+  "Offer the Licensed Work as a hosted or managed service" means:
+  (a) making the Licensed Work available to third parties as a cloud service,
+      API, or similar offering;
+  (b) selling access to the Licensed Work's capabilities as a product or
+      service; or
+  (c) embedding the Licensed Work in a product offered to third parties.
+
+  Internal use by your organization is always permitted.
+
+================================================================================
+
+The BSL 1.1 text follows.
+
+https://spdx.org/licenses/BSL-1.1.html
+
+"Licensor" means the copyright owner or entity authorized by the copyright
+owner that is granting the License.
+
+"Licensed Work" means the work (including any associated source code and
+documentation) to which this License applies and which is marked or otherwise
+identified as licensed under this License.
+
+"Additional Use Grant" means any use of the Licensed Work that extends beyond
+the Use Grant, as specified in the license header or in a separate document.
+
+"Change Date" means the date the Licensed Work becomes available under the
+Change License.
+
+"Change License" means the license designated in the license header.
+
+"Use Grant" means the Licensor's grant to use the Licensed Work for any
+purpose, subject to the Additional Use Grant (if any) and the restrictions in
+this License.
+
+1. Grant. Subject to the terms of this License, Licensor hereby grants you,
+   worldwide, a non-exclusive, non-transferable, non-sublicensable, royalty-free
+   license to reproduce, prepare derivative works of, publicly display, publicly
+   perform, and distribute the Licensed Work.
+
+2. Restrictions.
+
+   (a) You may not make the Licensed Work available to third parties as a
+       hosted or managed service, where the service's primary value is the
+       functionality of the Licensed Work, without the prior written consent
+       of the Licensor.
+
+   (b) You may not remove or alter any license notices or attributions in the
+       Licensed Work.
+
+   (c) If You reproduce, distribute, or otherwise use the Licensed Work, You
+       must provide a copy of this License to all recipients.
+
+3. Change License. On the Change Date, the Licensed Work becomes available
+   under the Change License.
+
+4. Disclaimer of Warranties. THE LICENSED WORK IS PROVIDED "AS IS" WITHOUT
+   WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT
+   LIMITATION WARRANTIES OF TITLE, MERCHANTABILITY, FITNESS FOR A PARTICULAR
+   PURPOSE, AND NON-INFRINGEMENT.
+
+5. Limitation of Liability. IN NO EVENT SHALL THE LICENSOR BE LIABLE FOR ANY
+   CLAIM, DAMAGES, OR OTHER LIABILITY, ARISING FROM OR IN CONNECTION WITH THE
+   LICENSED WORK OR THIS LICENSE.

@@ -1,45 +1,60 @@
-## Description: <br>
-GetResponse API integration with managed OAuth for managing email marketing campaigns, contacts, newsletters, autoresponders, segments, workflows, ecommerce/shops, SMS, landing pages, webinars, transactional emails, forms, and account data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage GetResponse contacts, marketing campaigns, messages, and automations through a connected account, with approval required for changes.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-External users and developers use this skill to operate GetResponse accounts through Maton-managed OAuth, including reading account data and managing marketing, ecommerce, automation, messaging, and contact resources. It is intended for workflows where the user can review and approve actions before any create, update, delete, send, or publish operation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send newsletters, SMS, and transactional emails to real contacts. <br>
-Mitigation: Confirm the audience, message content, and send timing with the user before executing any messaging operation. <br>
-Risk: Write, publish, update, or delete operations can modify GetResponse account resources. <br>
-Mitigation: Keep confirmation prompts enabled and require explicit user approval with the target resource and intended effect before executing changes. <br>
-Risk: The skill requires a sensitive MATON_API_KEY credential and managed OAuth access. <br>
-Mitigation: Install only when Maton-mediated GetResponse access is intended, store credentials securely, and use the correct connection identifier when multiple GetResponse accounts are connected. <br>
+## Use Case:
 
+Marketing teams and agents use this skill to review and manage GetResponse campaigns, contacts, messages, and automations through an authorized account. Changes and outbound messages require explicit user approval.
 
-## Reference(s): <br>
-- [GetResponse Skill on ClawHub](https://clawhub.ai/byungkyu/getresponse) <br>
-- [Maton Homepage](https://maton.ai) <br>
-- [GetResponse API Documentation](https://apidocs.getresponse.com/v3) <br>
-- [GetResponse OpenAPI Spec](https://apireference.getresponse.com/open-api.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash, Python, JavaScript, HTTP, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access, a MATON_API_KEY credential, and explicit user approval for write, send, publish, update, or delete operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Messages may reach real contacts or be sent to the wrong audience.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the audience, content, and timing before sending newsletters, SMS, or transactional emails.
+
+Risk: Deletes, imports, and workflow changes may alter contacts or campaigns.
+
+Mitigation: Review the target and intended effect, and obtain explicit approval before each change.
+
+Risk: Functions, triggers, and destinations can create ongoing automated data flows.
+
+Mitigation: Review and approve the function, trigger, or destination before enabling it.
+
+## Reference(s):
+
+- [GetResponse skill on ClawHub](https://clawhub.ai/byungkyu/skills/getresponse)
+- [GetResponse API documentation](https://apidocs.getresponse.com/v3)
+- [Maton documentation](https://docs.maton.ai)
+- [Maton CLI manual](https://cli.maton.ai/manual)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration guidance]
+
+**Output Format:** [Markdown with command and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access, a Maton account, and user approval before changes.]
+
+## Skill Version(s):
+
+1.2.5 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

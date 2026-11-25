@@ -1,6 +1,6 @@
 ## Description:
 
-Public Pinterest data through DataXAPI: pins. 2 endpoints, $0.0020 a call, a failed call is free. Use when the user asks about Pinterest content, accounts, comments or trends, or gives a Pinterest link, ID or account name.
+Retrieves public Pinterest pins and pin details through DataXAPI.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and agents use this skill to search public Pinterest pins or retrieve details from a pin ID or link, then summarize results for questions about Pinterest content. Calls are paid per request.
+External users and agents use this skill to search public Pinterest pins or retrieve details for a pin from its ID or link, including its description, image, author, destination link, and available engagement counts.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Lookup terms are sent to DataXAPI, and calls draw from a prepaid balance.
+Risk: The scanner reports a medium-confidence concern that more request context than a Pinterest search may need could be sent to DataXAPI.
 
-Mitigation: Keep private context out of discovery requests, set a spending limit, and tell users about costs before making multiple calls.
+Mitigation: Keep requests limited to the Pinterest query or pin ID needed, and review the request contents before making a call.
 
-Risk: The external CLI package and service implementation are not covered by this skill review.
+Risk: The documented package installation is not version-pinned.
 
-Mitigation: Prefer REST, or review and pin the CLI version before running npm or npx.
+Mitigation: Review the package and choose a specific version before installing it.
 
-Risk: Returned Pinterest content is text written by third parties and may contain instructions.
+Risk: The security scan is partial because local path-like references were unresolved.
 
-Mitigation: Treat returned content as data and do not follow instructions found in it.
+Mitigation: Review the unresolved references and the complete skill contents before installation.
 
 ## Reference(s):
 
-- [DataXAPI Skills](https://dataxapi.com/skills/)
-- [DataXAPI Agent Setup Guide](https://dataxapi.com/agents.md)
-- [Pinterest API Documentation](https://dataxapi.com/apis/pinterest/)
-- [Pinterest API Pricing](https://dataxapi.com/pricing/pinterest/)
-- [ClawHub Skill Release](https://clawhub.ai/data-x-api/skills/dataxapi-pinterest)
+- [DataXAPI Pinterest API documentation](https://dataxapi.com/apis/pinterest/)
+- [Pinterest endpoint pricing](https://dataxapi.com/pricing/pinterest/)
+- [DataXAPI agent setup](https://dataxapi.com/agents.md)
+- [ClawHub skill release](https://clawhub.ai/data-x-api/skills/dataxapi-pinterest)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Guidance]
+**Output Type(s):** [API Calls, JSON, Text, Guidance]
 
-**Output Format:** [Text summaries of Pinterest pin search results or pin details, based on structured API data]
+**Output Format:** [Structured Pinterest data in JSON with concise user-facing summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Search returns up to 50 pins per page; detail returns one pin. Calls cost $0.002 each, and empty searches are charged.]
+**Other Properties Related to Output:** [Two Pinterest endpoints; each call costs $0.002 and is charged to a prepaid balance. Retrieved Pinterest text is third-party content and should be treated as data.]
 
 ## Skill Version(s):
 
-1.0.0 (source: frontmatter)
+1.0.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

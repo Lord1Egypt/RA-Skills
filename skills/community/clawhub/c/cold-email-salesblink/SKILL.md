@@ -3,11 +3,11 @@ name: cold-email-salesblink
 description: >
   Run cold email sequences on autopilot and manage full sales outreach campaigns via the SalesBlink API.
   Use this skill to build automated multi-step email campaigns (sequences), manage leads and email lists,
-  create reusable templates with merge variables and spintax, connect sending accounts (Gmail, Outlook, SMTP),
+  create reusable templates with merge variables and spintax, connect Gmail/Outlook sending accounts via OAuth
+  and SMTP/IMAP senders directly or by CSV,
   handle inbox replies, and track campaign analytics (opens, clicks, replies, sent).
   Also supports bulk contact imports, email deliverability testing (inbox placement / spam checks),
   sender warmup links, workspace/team management, and any HTTP request to the SalesBlink platform.
-version: 1.0.0
 compatibility: >
   Requires network access to run.salesblink.io and a SALESBLINK_API_KEY.
   Supports any HTTP client (curl, Node.js fetch, Python requests, PowerShell, etc.).
@@ -33,69 +33,30 @@ Use this skill when the user wants to:
 - Check campaign analytics (opens, clicks, replies, sent)
 - Set up outreach campaigns end-to-end
 - Manage workspaces, users, folders, or deliverability tests
-- Make any HTTP request to `run.salesblink.io/api/public/v1.0.0`
-
-## Safety & Compliance Guardrails
-
-Before performing any high-risk action, pause and obtain explicit user confirmation. Document the confirmation in your reasoning.
-
-### Sequence launches (ASI02)
-- **Always create sequences with `paused: true` first.**
-- Before launching (setting `paused: false` or `launchTimingMode: "now"`), show the user:
-  - Final recipient list(s) and estimated lead count
-  - Sender account(s) that will send the emails
-  - Template subject lines and content for every step
-  - Schedule / timezone / sending hours
-  - Pause state and stop conditions (e.g., `stopWhenReplyRecieved`)
-- Only launch after the user explicitly confirms. Do not auto-launch.
-- Prefer `paused: true` and let the user resume manually when ready.
-
-### DFY orders and billing (ASI02)
-- Treat all DFY domain/mailbox orders and billing actions as **payment-sensitive**.
-- Before placing any order, confirm with the user:
-  - Exact domain name(s) to purchase or connect
-  - Mailbox count, provider (Google / Outlook / Azure), and price
-  - Cancellation limits and recurring cost implications
-- Do not place DFY orders or manage payment methods unless explicitly requested.
-
-### API key management (ASI03)
-- Only use `/keys` endpoints for **explicit credential-administration requests**.
-- Before refreshing or deleting a key, confirm:
-  - The exact key name / ID
-  - Impact on existing integrations
-  - That the user has updated any dependent systems if rotating
-
-### Sender credentials (ASI03)
-- Use **dedicated outreach mailboxes** wherever possible. Avoid connecting primary personal or company mailboxes.
-- Never store or log SMTP/IMAP passwords in chat history.
-- Remind the user to review OAuth/provider permissions before authorizing Gmail or Outlook connections.
-
-### Lead data privacy (ASI07)
-- Upload **only** leads and files the user has explicitly approved for SalesBlink.
-- Do not include unrelated private data in CSVs, templates, or attachments.
-- Review CSV contents before bulk import to ensure no sensitive PII is unintentionally included.
-
-### Persistent campaigns (ASI10)
-- Document the stop condition for every active or evergreen sequence.
-- Periodically remind the user to audit active, evergreen, and recurring items in their SalesBlink account.
-- When creating sequences, default to non-evergreen (`evergreen: false`) unless the user explicitly requests continuous running.
+- Make any HTTP request to `https://run.salesblink.io/api/public/v1.0.0`
 
 ## Gotchas
 
 - **ID types matter**: Templates and contact archive use MongoDB ObjectId (24-char hex). All other entities use UUID v4.
+- **GET `/lists/:id` returns a single object**: The API returns the list object directly under `data`, including a `fields` array of its column names in snake_case.
+- **Sequence status filters differ by endpoint**: `GET /sequences` uses status values `running`, `paused`, `completed`, `needs-attention`. `POST /sequences/:id/status` uses `ACTIVE`, `PAUSED`, `STOPPED`, `ARCHIVED`. Do not mix them up.
+- **GET `/sequences/:id` returns the internal flowchart**: The response includes the full internal `flowchart` object, not a simplified step list. Use `flowchart` to inspect steps.
+- **POST `/sequences/:id/clone` returns `clonedSequenceId`**: The response shape is `{ success, data: { clonedSequenceId }, message }`, not `data.id` or `data.name`.
+- **OAuth `redirectUrl` is ignored**: The API does not use a custom `redirectUrl` for `/oauth/google` or `/oauth/outlook`. The response field is `data.auth_url`, not `data.url`.
 - **messageId** is the RFC822 Message-ID (e.g. `<id@domain.com>`) or Microsoft Graph ID. **Crucial:** Always URL-encode this ID when using it as a path parameter (e.g. in `/inbox/:messageId/thread`). This is distinct from the internal UUID `id`.
 - **`senders` is a comma-separated string**, not an array. It can mix sender IDs and folder IDs — the server auto-detects each.
 - **Sequence `steps` fully replace on PATCH**. Send the complete desired array.
+- **Email steps accept `send_as: "new" | "followup"`**: `"followup"` replies in the lead's existing thread (`Re: <original subject>`); it is ignored on the first email step, which always starts a new thread. The stored value reads back as `flowchart.nodes[].data.send_as`.
 - **Verification flags are IRREVERSIBLE**: `verification`, `archive_invalid`, `archive_risky` on lists can only be turned ON, never OFF.
 - **Sequences default to paused**: If `paused` is omitted on create, it defaults to `true`.
 - **`launchTimingMode: "now"` starts in 5 minutes**, not instantly.
 - **Template attachments use FormData field `attachment`** (not `attachments`). Max 3 per template.
 - **Remove template attachments via `remove_attachments`** array of file **names**.
-- **Adding SMTP sender requires `from_email`**, not `email`.
-- **If an endpoint for a specific task is not mentioned then tell the user that the endpoint is not available**
-- **If user does not have a list, ask them for a CSV file, or list of lead emails with data.**
-- **If email sender is not connected, help them connect one using APIs.**
-- **When asked to create a sequence or campaign for cold email outreach, first ask them about their ICP, Offer, and other details.**
+- **GET `/senders/connect-link` returns a login link; it does not create a sender**. For Gmail and Outlook, use `/oauth/google` or `/oauth/outlook`, which return an `auth_url` the user must open in a browser; the sender is created automatically after OAuth completion. SMTP/IMAP senders can be added with `POST /senders/add-sender` (JSON) or `POST /senders/add-bulk-senders` (CSV, `multipart/form-data`, field `csvFile`); they connect in the background, so wait for `sendingEnabled: true` before using them in a sequence.
+- **Forward content is optional**: `POST /inbox/:messageId/forward` uses the original email body when `content` is omitted.
+- **Archiving is done via dedicated archive routes**: `PATCH /lists/:id`, `PATCH /templates/:id`, and `PATCH /sequences/:id` ignore the `archived` field. Use `PUT /lists/:id/archive`, `PUT /templates/:id/archive`, and `PUT /sequences/:id/archive` instead.
+- **Folder types matter**: General folders (created without a `type`) hold lists, templates, and sequences. `type: "email-sender"` folders hold email senders only. The API rejects a folder assignment to the wrong resource type.
+
 
 ## Base URL
 
@@ -103,56 +64,51 @@ Before performing any high-risk action, pause and obtain explicit user confirmat
 
 ## Authentication
 
-Ask the user for their SALESBLINK_API_KEY: `https://run.salesblink.io/account/integration/api`
+This API uses a SalesBlink API key. Get or create an API key at `https://run.salesblink.io/account/integration/api`.
 
-Pass it in every request as the `Authorization` header (no "Bearer" prefix):
+Pass the key in every request as the `Authorization` header (no "Bearer" prefix):
 
 **Header:** `Authorization: key-****`
 
 ## Rate Limits
 
-| Method        | Limit | Window     |
-| ------------- | ----- | ---------- |
-| GET           | 30    | per minute |
-| POST / PATCH  | 15    | per minute |
-| PUT (archive) | 10    | per minute |
+| Method        | Limit | Window     | Applies To |
+| ------------- | ----- | ---------- | ---------- |
+| GET           | 30    | per minute | Most GET endpoints |
+| POST / PATCH  | 15    | per minute | POST and PATCH endpoints |
+| PUT (archive) | 10    | per minute | PUT and DELETE endpoints |
+| GET /signup-link | 250   | per day    | Public signup link (per IP) |
 
 On `429 Too Many Requests`: wait at least 60 seconds before retrying. For batch operations, insert a 4-second delay between requests.
 
 ## Public Signup
 
-**POST** `/signup`
+**GET** `/signup-link`
 
-Create a new SalesBlink account. This is a public endpoint and does not require an API key. **Successful signup returns an API key**, allowing you to proceed with authenticated requests immediately.
-
-**Request Body:**
-```json
-{
-  "email": "user@example.com",
-  "password": "SecurePassword123",
-  "name": "John Doe"
-}
-```
+Get the public SalesBlink sign-up link. This is a public endpoint and does not require an API key. It returns a sign-up link to the SalesBlink web UI:
 
 **Response Body:**
 ```json
 {
   "success": true,
+  "message": "Please sign up through the SalesBlink web UI.",
   "data": {
-    "account_id": "...",
-    "user_id": "...",
-    "api_key": "key-..."
+    "login_link": "https://run.salesblink.io/signup",
+    "destination": "/signup",
+    "purpose": "signup"
   }
 }
 ```
 
-**Constraints:**
-- `password`: Min 8 characters, max 48 characters, at least one uppercase and one lowercase letter.
-- **Rate Limit**: 2 signups per day.
+**Rate Limit**: 5 requests per day per IP.
 
 ## Pagination
 
 Most list endpoints use `limit` (max 100) and `skip`. Activity endpoints (`/sent`, `/opens`, `/clicks`, `/replies`) use `per_page` (max 100) and `page` (1-indexed).
+
+Some endpoints support higher limits:
+- `/sequences/:id/leads` and `/leads/:id/activity` — max 500
+- `/sequences/:id/export` — max 50,000 (default 10,000)
 
 Always paginate. Never assume a single request returns all data.
 
@@ -161,7 +117,7 @@ Always paginate. Never assume a single request returns all data.
 Read the relevant reference file before performing operations in that domain:
 
 - **Lists & contacts/leads** → [references/lists.md](references/lists.md) and [references/contacts.md](references/contacts.md)
-  - Use these endpoints when the user wants to fetch or manage lists that contain leads/contacts. A list is a container for contacts/leads. Each contact/lead contains fields like Email, First_Name, Last_Name, Phone, Company, Title, and custom fields. Contacts are added to lists in batches (up to 500 per request), can be moved between lists, updated, or removed.
+  - Use these endpoints when the user wants to fetch or manage lists that contain leads/contacts. A list is a container for contacts/leads. Each contact/lead contains fields like email, first_name, last_name, phone, company_name, job_title, and custom fields. All contact field names sent to the API must be snake_case; requests with other casings are rejected. Contacts are added to lists in batches (up to 500 per request), can be moved between lists, updated, or removed.
 
 - **Email templates** → [references/templates.md](references/templates.md)
   - Use these endpoints when the user wants to create or manage reusable email templates. A template has a name, subject_line, and HTML content that supports merge variables like {{first_name}} and {{company}}. Templates can have up to 3 attachments and are referenced by sequences when building outreach steps.
@@ -176,16 +132,22 @@ Read the relevant reference file before performing operations in that domain:
   - Use these endpoints when the user wants to view or interact with email conversations. The inbox contains reply threads, sent emails, scheduled emails, and drafts. Each thread has a messageId. The user can reply to a lead's email, mark messages as read/unread, or classify outcomes.
 
 - **Activity tracking** → [references/activity.md](references/activity.md)
-  - Use these endpoints when the user wants to query engagement events. The system tracks four event types: sent (emails sent), opens (emails opened), clicks (links clicked), and replies (responses received). Events can be filtered by sequence, recipient email, and date range.
+  - Use these endpoints when the user wants to query engagement events. The system tracks four event types: sent (emails sent), opens (emails opened), clicks (links clicked), and replies (responses received). Events can be filtered by sequence, recipient email, and date range. Also includes per-lead activity history.
+
+- **Analytics** → [references/analytics.md](references/analytics.md)
+  - Use these endpoints when the user wants aggregated campaign analytics: overall stats across all sequences, day-wise breakdowns, lead-level stats, and per-mailbox/sender stats.
+
+- **Blocklist / unsubscribes** → [references/blocklist.md](references/blocklist.md)
+  - Use these endpoints when the user wants to manage account-level unsubscribes and blocked emails/domains. The public API uses `/unsubscribe` routes for all blocklist operations.
 
 - **Users & workspaces** → [references/organization.md](references/organization.md)
   - Use these endpoints when the user wants to manage team membership or workspaces. A workspace is an account boundary. Users have roles (client, user, admin, developer). Only owners and admins can invite users or create workspaces.
 
 - **Folders** → [references/folders.md](references/folders.md)
-  - Use these endpoints when the user wants to organize resources into folders. Folders have a type (list, template, sequence, or email-sender) and group related resources together for easier management.
+  - Use these endpoints when the user wants to organize resources into folders. Folders have a type (`general` or `email-sender`) and group related resources together for easier management.
 
 - **Domains & signatures** → [references/account-config.md](references/account-config.md)
-  - Use these endpoints when the user wants to view account-level configuration. Custom tracking domains are used for click tracking in emails. Signatures are appended to outgoing emails.
+  - Use these endpoints when the user wants to view account-level configuration. Custom tracking domains are used for click tracking in emails (returns both verified and unverified domains with DNS setup instructions and "not verified" tags). Signatures are appended to outgoing emails.
 
 - **DFY domains & mailboxes** → [references/dfy.md](references/dfy.md)
   - Use these endpoints when the user wants to purchase domains and provision mailboxes through the Done-For-You service. Start with `/domains/search` to find available domains, then place an order with Google Workspace, Outlook, or Azure mailboxes. Supports buying new domains or connecting existing ones.

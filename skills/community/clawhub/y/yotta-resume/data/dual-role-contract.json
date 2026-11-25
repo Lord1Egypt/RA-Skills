@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "contract_version": "1.0",
+  "generated_at": "2026-11-21",
+  "default_policy": "deny",
+  "roles": [
+    "candidate",
+    "hr"
+  ],
+  "data_classes": [
+    "private_evidence_ledger",
+    "raw_resume",
+    "public_resume",
+    "analysis_report",
+    "interview_plan",
+    "scorecard",
+    "audit_log"
+  ],
+  "permissions": {
+    "candidate": {
+      "private_evidence_ledger": [
+        "read",
+        "write"
+      ],
+      "raw_resume": [
+        "read",
+        "write"
+      ],
+      "public_resume": [
+        "read",
+        "write"
+      ],
+      "analysis_report": [
+        "read",
+        "write"
+      ],
+      "interview_plan": [
+        "read"
+      ],
+      "scorecard": [],
+      "audit_log": [
+        "read"
+      ]
+    },
+    "hr": {
+      "private_evidence_ledger": [],
+      "raw_resume": [],
+      "public_resume": [
+        "read"
+      ],
+      "analysis_report": [],
+      "interview_plan": [
+        "read"
+      ],
+      "scorecard": [
+        "read",
+        "write"
+      ],
+      "audit_log": [
+        "read"
+      ]
+    }
+  },
+  "protected_attributes": [
+    "age",
+    "gender",
+    "marital_status",
+    "reproductive_status",
+    "ethnicity",
+    "religion",
+    "origin",
+    "disability",
+    "photo"
+  ],
+  "scoring_fields": [
+    "skills",
+    "experience",
+    "evidence",
+    "outcomes"
+  ],
+  "cross_role_export": {
+    "requires_field_manifest": true,
+    "requires_confirmation": true,
+    "default_export_class": "public_resume",
+    "independent_workdirs": true,
+    "independent_outputs": true
+  }
+}

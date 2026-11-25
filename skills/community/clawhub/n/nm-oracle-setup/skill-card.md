@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers setting up the Oracle inference environment use this skill to provision the local ONNX Runtime daemon dependencies for skill quality evaluation. It provisions the environment; it does not perform the quality evaluation itself.
+Developers use this skill to provision the local Oracle ML inference environment for skill quality evaluation, including its Python environment and ONNX Runtime dependencies.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security analysis has partial coverage because a local Markdown reference could not be resolved.
+Risk: A local reference could not be matched to a bundled artifact, so the security analysis is incomplete.
 
-Mitigation: Resolve and review the referenced material, then review the skill before installation.
-
-Risk: Provisioning installs onnxruntime and pyyaml and requires an initial internet download.
-
-Mitigation: Run provisioning in the intended project virtual environment and follow the environment's dependency and package source policies.
+Mitigation: Review whether the unresolved reference matters to your installation before installing.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-oracle-setup)
-- [Project homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/oracle)
+- [Project homepage (declared in skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/oracle)
 
 ## Skill Output:
 
-**Output Type(s):** [Shell commands, Guidance, Text]
+**Output Type(s):** [Shell commands, Setup guidance, Text]
 
-**Output Format:** [Markdown instructions with inline shell commands and a provisioning result message]
+**Output Format:** [Markdown with inline shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires uv and an internet connection for the initial dependency download.]
+**Other Properties Related to Output:** [Reports the provisioning result and the model-directory prerequisite for daemon startup.]
 
 ## Skill Version(s):
 
-1.10.3 (source: release evidence and frontmatter)
+1.10.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

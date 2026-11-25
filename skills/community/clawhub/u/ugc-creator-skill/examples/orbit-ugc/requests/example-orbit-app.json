@@ -1,0 +1,60 @@
+{
+ "content": [
+  {
+   "text": "#ad This launch could be your lock screen: a new space photo every day. Example Orbit, made-up app for this demo @example.orbit #exampleorbit #space",
+   "media": [
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "example-media-tiktok"
+    }
+   ]
+  }
+ ],
+ "schedule": {
+  "type": "PUBLISH_NOW"
+ },
+ "socialAccounts": [
+  {
+   "platform": "TIKTOK",
+   "socialAccountId": "example-tiktok-1",
+   "postType": "VIDEO",
+   "postMode": "DIRECT_POST",
+   "privacyLevel": "PUBLIC_TO_EVERYONE",
+   "allowComment": true,
+   "allowDuet": false,
+   "allowStitch": false,
+   "isBrandedContent": true,
+   "isYourBrand": false,
+   "autoAddMusic": false,
+   "isAiGeneratedContent": false,
+   "contentOverride": [
+    {
+     "text": "#ad This launch could be your lock screen: a new space photo every day. Example Orbit, made-up app for this demo @example.orbit #exampleorbit #space",
+     "media": [
+      {
+       "type": "MEDIA_LIBRARY",
+       "mediaId": "example-media-tiktok"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "platform": "INSTAGRAM",
+   "socialAccountId": "example-instagram-1",
+   "postType": "REEL",
+   "isAiGeneratedContent": false,
+   "contentOverride": [
+    {
+     "text": "#ad A new space photo every day, two taps to make it your wallpaper. @example.orbit #exampleorbit #space",
+     "media": [
+      {
+       "type": "MEDIA_LIBRARY",
+       "mediaId": "example-media-reels"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,8 +1,8 @@
 ## Description:
 
-Mirror positions from top Polymarket traders. Polling mode (free) for portfolio-style copying, Reactor mode (Pro) for event-driven real-time mirroring via Simmer's on-chain signal infrastructure.
+Mirror Polymarket whale wallets, inspect wallet positions, follow specific trader addresses, or paper-trade copytrading with $SIM before using real money. Polling mode is free; Reactor mode is Pro for event-driven real-time mirroring via Simmer's on-chain signal infrastructure.
 
-This skill is ready for commercial/non-commercial use.
+This skill is for demonstration purposes and not for production usage.
 
 ## Publisher:
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and agents use this skill to inspect Polymarket trader positions, configure whale wallets to follow, run dry-run or paper copytrading checks, and optionally execute live mirrored trades with configured caps.
+Traders and their agents use this framework to inspect Polymarket wallet positions, follow selected trader addresses, and prepare or execute copytrading through Simmer. It can also report account positions and trade results.
 
 ### Deployment Geography for Use:
 
@@ -22,48 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill can place real-money trades when live mode and credentials are configured.
+Risk: The security summary reports that simulated venue or dry-run settings may not prevent real-money orders.
 
-Mitigation: Use dry-run or $SIM paper mode first, keep per-position and per-run caps small, and review proposed trades before scaling to real USDC.
+Mitigation: Do not rely on those settings to prevent real trades; review the selected venue and trading mode before connecting funds or enabling execution.
 
-Risk: Automatic venue routing can convert above-cap simulated Reactor signals to Polymarket orders.
+Risk: A wallet private key could be exposed if shared in chat.
 
-Mitigation: Set COPYTRADING_FORCE_SIMMER_VENUE=true when simulated-only execution is required.
+Mitigation: Never share a wallet private key in chat; store it securely outside the conversation.
 
-Risk: Unattended live runs can continue acting on new whale signals without active review.
+Risk: The security scan is incomplete: one of six components was not inspected and one analyzer was degraded.
 
-Mitigation: Avoid cron, loop, or nohup live execution until behavior, wallet setup, and caps have been reviewed.
-
-Risk: External-wallet trading depends on WALLET_PRIVATE_KEY, which is highly sensitive.
-
-Mitigation: Store the private key only in a protected environment and avoid exposing it in logs, prompts, shell history, or shared configuration.
-
-Risk: Sell behavior and rebalance options can close positions as well as buy mirrored positions.
-
-Mitigation: Review sell-related flags and defaults before live use, and confirm whether buy-only, whale-exit, or full-rebalance behavior is intended.
+Mitigation: Treat the scan evidence as incomplete and review the skill before installation or use.
 
 ## Reference(s):
 
 - [ClawHub skill page](https://clawhub.ai/simmer/skills/polymarket-copytrading)
 - [Simmer API](https://api.simmer.markets)
+- [Simmer SDK migration documentation](https://docs.simmer.markets/v2-migration)
 - [Simmer dashboard](https://simmer.markets/dashboard)
-- [Simmer V2 migration guide](https://docs.simmer.markets/v2-migration)
-- [predicting.top](https://predicting.top)
-- [alphawhale.trade](https://alphawhale.trade)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+**Output Type(s):** [Text, Guidance, Shell commands, Configuration]
 
-**Output Format:** [Markdown and terminal-oriented status summaries with inline shell commands and configuration values]
+**Output Format:** [Markdown text with shell commands and configuration examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May run dry-run, paper, or live trading commands depending on user configuration; live trading requires Simmer credentials and, for external wallets, a wallet private key.]
+**Other Properties Related to Output:** [May include wallet position summaries, trade previews, and execution reports.]
 
 ## Skill Version(s):
 
-1.12.4 (source: frontmatter and release evidence)
+1.12.9 (source: frontmatter)
 
 ## Ethical Considerations:
 

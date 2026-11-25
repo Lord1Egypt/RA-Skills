@@ -1,6 +1,6 @@
 ## Description:
 
-Turns YouTube videos or supplied transcripts into timestamped Quick, Deep, or Research notes, with optional claim verification.
+Turns YouTube videos or supplied transcripts into timestamped notes in Quick, Deep, Research, Batch Quick, and Decision Card modes.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-People reviewing videos or transcripts use the skill to decide whether to watch, understand arguments through timestamped notes, compare videos, or verify selected claims against public primary sources.
+External users can turn a YouTube video or supplied transcript into timestamped notes for quick screening, detailed understanding, comparison, or verification of material claims.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Cache behavior was not fully assessed because one cache reference could not be resolved.
+Risk: ClawScan reports a suspicious verdict with medium confidence, including a reported unauthenticated token-request path that can run attacker-controlled JavaScript; scan coverage is incomplete.
 
-Mitigation: Review the helper's cache handling and use the skill only with transcript content suitable for its temporary per-user cache.
+Mitigation: Review the reported code path and scan coverage before installation, and proceed only if the behavior is acceptable for your environment.
+
+Risk: Cookie mode can access a user's browser login, and the security guidance highlights this along with additional setup components.
+
+Mitigation: Use cookie mode only after explicit user consent; never log, copy, or transmit cookie contents, and review optional setup components before enabling them.
 
 ## Reference(s):
 
+- [ClawHub skill page](https://clawhub.ai/bonniegeng-max/skills/video-digest)
 - [Output Modes](references/output-modes.md)
-- [ClawHub skill release](https://clawhub.ai/bonniegeng-max/skills/video-digest)
-- [Publisher profile](https://clawhub.ai/user/bonniegeng-max)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown]
+**Output Type(s):** [Markdown, Text, Guidance]
 
-**Output Format:** [Timestamped structured notes, with optional source links and claim-verification tables]
+**Output Format:** [Timestamped notes with summaries, structured outlines, argument maps, quotations, and optional claim-verification tables.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Quick, Deep, Research, or Batch Quick mode; follows the user's language.]
+**Other Properties Related to Output:** [Notes follow the language of the request and retain timestamps for source tracing.]
 
 ## Skill Version(s):
 
-2.0.8 (source: frontmatter, CHANGELOG)
+2.2.0 (source: SKILL.md frontmatter)
 
 ## Ethical Considerations:
 

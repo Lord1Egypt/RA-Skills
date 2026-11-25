@@ -1,8 +1,8 @@
 ## Description:
 
-Provides Chinese-language teaching guidance and paper templates for C-ROSS Phase II solvency reporting, capital measures, stress testing, and SARM/IRR review.
+Provides Chinese-language frameworks and draft guidance for insurance solvency reporting and stress testing under China's C-ROSS Phase II rules.
 
-This skill is for demonstration purposes and not for production usage.
+This skill is ready for commercial/non-commercial use.
 
 ## Publisher:
 
@@ -14,43 +14,43 @@ MIT-0
 
 ## Use Case:
 
-Chinese insurance finance, actuarial, and compliance teams use it as a teaching and reference aid for solvency-report methods and reviewable paper frameworks. It is not for formal regulatory reporting or filing.
+Insurance finance, actuarial, and compliance teams can use it to structure draft solvency reports, organize capital and stress-test analyses, and prepare review checklists. Outputs are reference drafts that require qualified review against current official rules; the skill does not file reports or provide formal actuarial opinions.
 
 ### Deployment Geography for Use:
 
-Mainland China
+China
 
 ## Known Risks and Mitigations:
 
-Risk: Security inspection was incomplete because the manifest could not be parsed and some referenced paths were missing from the bundle.
+Risk: Regulatory details and calculation assumptions in draft materials may be outdated or inapplicable.
 
-Mitigation: Review the complete source bundle before installing if that uncertainty is material.
+Mitigation: Check current official rules and applicable reporting guidance, and have qualified actuarial or finance staff review all assumptions and figures.
 
-Risk: Regulatory rules and updates in the reference material may be outdated or unverified.
+Risk: Sensitive company or policyholder information could be included in prompts or drafts.
 
-Mitigation: Check current official regulatory texts, dates, and requirements before using the material.
+Mitigation: Use aggregated figures and remove identifying details, following the skill's data-minimization guidance.
 
-Risk: Capital measures, stress assumptions, and actuarial judgments may be unsuitable without qualified review.
+Risk: The security review was partial because five referenced files were absent from the supplied artifact.
 
-Mitigation: Have authorized actuarial and finance staff verify assumptions, data, and conclusions.
+Mitigation: Review the complete source set and referenced materials before relying on the skill.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/gechengling/skills/insurance-solvency-reporter)
+- [ClawHub skill listing](https://clawhub.ai/gechengling/skills/insurance-solvency-reporter)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Text, Markdown, Tables]
+**Output Type(s):** [Guidance, Analysis, Markdown, Tables]
 
-**Output Format:** [Chinese-language Markdown guidance, structured tables, and paper report templates]
+**Output Format:** [Chinese-language draft guidance and report outlines in Markdown or DOCX-style structure]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reviewable reference frameworks; not formal filings or calculations from company data.]
+**Other Properties Related to Output:** [Draft material for human review; examples may use placeholders and assumptions.]
 
 ## Skill Version(s):
 
-4.1.4 (source: release metadata, artifact frontmatter)
+4.1.5 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

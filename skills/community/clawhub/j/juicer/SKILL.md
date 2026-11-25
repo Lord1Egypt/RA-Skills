@@ -1,7 +1,7 @@
 ---
 name: juicer
 description: Connect Juicer to OpenClaw. Juicer pulls public posts from Instagram, TikTok, X, Facebook, LinkedIn, YouTube, Reddit, Bluesky and more into one place: embed social feeds and walls on any website, track brand mentions, listen to topics and check competitors. Use when the user mentions Juicer, wants social posts on a website or wants social media data from several networks.
-version: 1.0.0
+version: 1.0.3
 metadata:
   openclaw:
     emoji: "🧃"
@@ -35,15 +35,19 @@ Offer the user these options, best first.
 
 In the Control UI: Settings → MCP → Add server. Name `juicer`, transport Streamable HTTP, URL `https://api.juicer.io/mcp`. Then sign in when OpenClaw asks.
 
-Or from the CLI (stop the Gateway first; the docs require it for add and login):
+Or from the CLI:
 
 ```bash
-openclaw mcp add juicer --url https://api.juicer.io/mcp --transport streamable-http
+openclaw mcp add juicer --url https://api.juicer.io/mcp --transport streamable-http --auth oauth
 openclaw mcp login juicer
 openclaw mcp doctor juicer --probe
 ```
 
-The sign-in opens www.juicer.io in the browser. A new user can create a free account there. The probe should list 33 Juicer tools.
+`--auth oauth` is required: without it the add step fails with `401 authentication refused`.
+
+`openclaw mcp login juicer` prints a www.juicer.io link and waits a few minutes for it. Give the user that link right away and ask them to open it and approve access. A new user can create a free Juicer account on that page. When they approve, the login finishes by itself ("MCP OAuth credentials saved"). If it times out, run the login again for a fresh link.
+
+`openclaw mcp doctor juicer --probe` should then report `juicer: ok`, and `openclaw mcp probe juicer` lists 33 Juicer tools.
 
 **B. Quick start with only an email (no dashboard, good for a first try).**
 
@@ -67,8 +71,10 @@ These keys expire after a few hours. For anything scheduled, use option A or a p
 `get_account` (or `GET https://api.juicer.io/v1/account`) returns the plan, feed limits and the credit balance.
 
 - Data lookups (`get_data_posts`, `get_data_profiles`) spend credits per platform per call: Facebook 6, Instagram, TikTok and LinkedIn 3, every other platform 1.
-- The free Sandbox has 30 credits once. Tell the user before a run that would use more than they have.
-- Feeds, sources, moderation and embed codes do not spend credits; they follow the plan's feed and source limits.
+- Every new Juicer account gets 30 Sandbox credits once. A full brand check can use 40 or more, so tell the user before a run that would use more than they have.
+- Adding a source (`create_source`) costs credits for its first fetch, at the same per-platform rates. On paid API plans each later sync of that source is metered too.
+- Creating feeds, moderating posts and getting embed codes do not spend credits; they follow the plan's feed and source limits.
+- On the free plan, after the trial: X, TikTok hashtag and keyword, Reddit and LinkedIn sources stop syncing, Bluesky needs Pro or Enterprise and feeds refresh once a day. Faster refresh needs a higher plan; it cannot be changed in the dashboard on the free plan.
 - A `402 insufficient_credits` or `422` with an upgrade link is not a failure to hide: show the user the message and the link.
 
 ## Without the MCP server (REST)

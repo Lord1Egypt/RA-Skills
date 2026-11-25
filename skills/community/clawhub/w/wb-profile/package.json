@@ -1,0 +1,10 @@
+{
+  "name": "wb-profile",
+  "version": "1.0.0",
+  "private": true,
+  "description": "微博用户主页采集 Skill CLI (主页链接, 一页约 20 条 = 1 点数, 按实采结算退差)",
+  "main": "cli.js",
+  "engines": {
+    "node": ">=18"
+  }
+}

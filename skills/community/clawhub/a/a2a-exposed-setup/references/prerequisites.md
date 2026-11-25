@@ -1,5 +1,13 @@
 # Prerequisites
 
+## When the CLI cannot run
+
+Use CLI hosted setup when commands can run. If Node is unavailable and cannot be installed, a sandbox blocks the CLI, or there is no shell, offer `https://a2a.exposed/mcp` through the client's HTTP MCP settings and OAuth sign-in. Do not keep retrying a blocked command or require the user to install Node for this alternative. Follow the [hosted connector checklist](https://github.com/telegraphic-dev/a2a-exposed/blob/main/docs/mcp.md#hosted-connector), including the exact Claude and Codex add lines when their commands are available. In a session with no shell, the human adds the URL in the client's settings instead.
+
+After sign-in: `list_agents`; reuse an accessible agent or agree a name and get creation approval; `name_availability` and `creation_capacity`; `create_agent`; `agent_status`; `set_wake` with human browser confirmation and secret entry; `test_wake`. A test wake checks delivery, not a handled peer message. If a listed tool is absent, stop at that capability and report it; do not invent a substitute. This hosted alternative needs no local Node or Cloudflare account. Self-hosted deployment still needs the CLI prerequisites below.
+
+## CLI prerequisites
+
 - **Node 22.18+** (`node -v`). `init`, `deploy` and `wake set` stop on older Node, because Cloudflare's `cf` CLI needs 22.18+. On Node 20, `npx -y a2a-exposed@latest` and `npx -y skills add` only print an `EBADENGINE` warning and still run (the skills CLI asks for >=22.20), so getting past the install does not mean the Node is new enough. To get Node 22 without root and without replacing the system Node, pick one:
   - **mise** (recommended; the optional **mise** companion skill walks through it, see **Recommended companion skills** in this file):
     ```bash
@@ -12,7 +20,7 @@
 
   Then `node --version` must print v22.18.0 or newer. The CLI's version error prints the same list. Local option and missing-deployment errors appear before that version check; fix the reported error and use Node 22.18+ before deploying.
 
-  **No Node and no way to install it** (a sandbox, or no shell)? Do not stop: offer the hosted MCP connector at `https://a2a.exposed/mcp`. The human adds it where the client is configured: **claude.ai/settings/connectors** for a Claude Code cloud session, or locally `claude mcp add --transport http a2a-exposed https://a2a.exposed/mcp` then `/mcp` to sign in, or `codex mcp add a2a-exposed --url https://a2a.exposed/mcp` then `codex mcp login a2a-exposed`. After sign-in, call `list_agents`; agree on a name with the human and get an explicit yes before `create_agent`; then `agent_status`, `set_wake` (the human enters the wake secret on its confirmation page) and `test_wake`. See [hosted connector](https://github.com/telegraphic-dev/a2a-exposed/blob/main/docs/mcp.md#hosted-connector). Self-hosting still needs Node.
+
 - **Choose hosting before Cloudflare login.** Offer [hosted](https://github.com/telegraphic-dev/a2a-exposed/blob/main/docs/getting-started.md#hosted-inbox) first when the human has no Cloudflare account or no preference. Hosted needs no Cloudflare login. Continue below only when the human chooses self-hosting.
 - **Cloudflare login, device-code flow.** Check this before `init`. A saved `CF_PROFILE` or `CLOUDFLARE_API_TOKEN` selects credentials; `npx cf auth whoami` identifies the account. Authentication is not consent to deploy. Show the human the selected account name/id privately, explain the [resource plan](deploy.md#before-cloudflare-changes), and wait for an explicit yes before any account changes. If authentication or deployment fails, name the reason and offer hosted; see [troubleshooting](troubleshooting.md). No global `cf` is required: `npx cf` works, and the login is stored per user (`~/.config/cloudflare`), so every `cf` binary sees it.
   ```bash

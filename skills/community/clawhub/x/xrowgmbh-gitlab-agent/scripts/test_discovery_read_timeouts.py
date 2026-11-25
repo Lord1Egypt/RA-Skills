@@ -46,7 +46,8 @@ class DiscoveryReadTimeoutTests(unittest.TestCase):
         self.assertEqual(run.call_args_list[0], run.call_args_list[1])
         self.assertEqual(run.call_args.kwargs["timeout"], 25)
         self.sleep.assert_called_once_with(1)
-        self.assertIn("retrying once", self.stderr.getvalue())
+        self.assertEqual(self.stderr.getvalue(), "")
+        self.assertEqual(self.active.PROBLEMS[0]["code"], "read-retried")
 
     def test_pagination_retries_same_page_without_skipping_or_duplicating(self):
         self.active.PER_PAGE = 2
@@ -127,7 +128,7 @@ class DiscoveryReadTimeoutTests(unittest.TestCase):
                 patch.object(self.active.subprocess, "run", side_effect=[response({"id": 99, "username": "robot"}), self.timeout(), self.timeout()]) as run, \
                 redirect_stdout(output):
             self.assertEqual(self.active.main(), 69)
-        self.assertEqual(output.getvalue(), "")
+        self.assertEqual(json.loads(output.getvalue()), [])
         self.assertEqual(run.call_count, 3)
 
 

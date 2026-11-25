@@ -1,6 +1,6 @@
 ## Description:
 
-Retrieves public Meta Ad Library ads and advertiser information through DataXAPI, including search results, ad details, advertiser listings, and video transcripts.
+Queries DataXAPI for public Meta Ad Library ads, advertisers, and video transcripts.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Agents use this skill to search public Meta ads, look up ads or advertisers by name, ID, or link, and retrieve video transcripts when those details answer a user's question.
+External users, including advertisers and marketing analysts, use this skill to search public Meta Ad Library ads, look up advertisers, and retrieve ad details or video transcripts.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: API requests and additional result pages can incur charges, and search terms or ad identifiers are sent to DataXAPI.
+Risk: User queries are sent to DataXAPI, and the security scan was partial with package commands flagged as unpinned.
 
-Mitigation: Use a scoped key with a budget limit, leave confidential details out of search terms, check prices before multi-page requests, and cap spending with the documented maximum-price option.
-
-Risk: The optional command-line package and returned third-party ad content may be unsafe to trust blindly.
-
-Mitigation: Review and pin the CLI package before running it, and treat returned ad content as data rather than instructions.
+Mitigation: Avoid sensitive query details, prefer a reviewed version-pinned package, and account for the scan's incomplete coverage.
 
 ## Reference(s):
 
-- [DataXAPI Skills](https://dataxapi.com/skills/)
 - [Meta Ad Library API documentation](https://dataxapi.com/apis/meta/)
 - [Meta API pricing](https://dataxapi.com/pricing/meta/)
-- [DataXAPI agent setup](https://dataxapi.com/agents.md)
+- [DataXAPI agent setup guide](https://dataxapi.com/agents.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Structured data, Guidance]
+**Output Type(s):** [JSON, Text, Guidance]
 
-**Output Format:** [DataXAPI result data and concise Markdown summaries]
+**Output Format:** [Structured API data with concise textual summaries and usage guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results can contain ad text, advertiser details, media information, and video transcripts; retrieving additional pages can incur additional charges.]
+**Other Properties Related to Output:** [Results describe public Meta Ad Library data; include the data source and retrieval time in user-facing answers.]
 
 ## Skill Version(s):
 
-1.0.0 (source: frontmatter and server-resolved release)
+1.0.1 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

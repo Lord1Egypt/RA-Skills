@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """0.14.0 回归:布局配方库(五配方端到端)+布局 lint+法则文档。"""
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -20,6 +21,21 @@ RECIPES = ["DARK-FOUR-ACT", "EDIT-SPLIT", "BLUEPRINT", "SWISS-POSTER", "EDITORIA
 
 class TestRecipes(unittest.TestCase):
     """五配方端到端:产出→自己的闸必须 PASS。"""
+
+    def test_recipe_css_structure(self):
+        """0.25 闸:配方 css 注释必须成对闭合、花括号必须平衡。
+        0.21 动效块注释漏写 `*/` —— CSS 注释吞掉其后全部配方规则,产物全裸
+        (测试方视觉终审抓出;静态闸只看文本不看样式,所以此前测试全绿)。"""
+        tokens = scaffold_kit.derive({"hexes": DP}, "夜松", "Night Pine", "")
+        for recipe in RECIPES:
+            html = layout_recipes.build_recipe(tokens, recipe)
+            css = re.search(r"<style>(.*?)</style>", html, re.S).group(1)
+            self.assertEqual(css.count("/*"), css.count("*/"),
+                             recipe + ": css 注释未闭合(/* %d vs */ %d)"
+                             % (css.count("/*"), css.count("*/")))
+            self.assertEqual(css.count("{"), css.count("}"),
+                             recipe + ": css 花括号不平衡({ %d vs } %d)"
+                             % (css.count("{"), css.count("}")))
 
     def test_all_recipes_pass_own_gates(self):
         tokens = scaffold_kit.derive({"hexes": DP}, "夜松", "Night Pine", "")

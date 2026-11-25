@@ -1,6 +1,6 @@
 ## Description:
 
-Provides authors with local AI-writing self-checks and academic writing guidance, including terminology, consistency, and style checks.
+Paper Polisher Pro helps academic writers review drafts for AI-like patterns, style and terminology consistency, and disclosure requirements, then provides reports and sentence-level revision suggestions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Academic writers use this skill to review their own drafts for AI-like passages, terminology and consistency issues, and writing conventions, then consider sentence-level suggestions. Results are for author self-review and should be interpreted within the documented language and text-length limits.
+Academic writers use this skill to review their own drafts for writing patterns, consistency, and disclosure requirements, and to get evidence reports and revision guidance. Follow institutional AI-use policies; the skill is not intended to evade academic integrity checks.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan marked the release suspicious because reported behavior exceeded the stated writing-advice scope and its evaluation checks had reliability weaknesses.
+Risk: ClawScan marks the release suspicious because scanners report cross-origin access to local MCP tools; the review is incomplete and does not establish that the skill is safe.
 
-Mitigation: Review the reported scope mismatches and evaluation evidence before installing; do not rely on performance claims until they have been checked.
+Mitigation: Review local MCP exposure and settings before enabling MCP access, and account for the partial scan coverage described in the security guidance.
 
-Risk: Inspection was partial: 173 of 176 components were scanned, with some references and analyzer work incomplete, so the scan cannot establish that all behavior is safe or harmful.
+Risk: ClawScan reports mismatches between the advice-only description and reported editing or verdict behavior.
 
-Mitigation: Treat the scan as incomplete and inspect the remaining components and rerun a complete review before relying on the release.
+Mitigation: Inspect outputs before relying on them, keep use focused on reviewing your own writing, and follow institutional AI-use and disclosure policies.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/docsor1212/skills/paper-polisher-pro)
-- [Usage guidance](artifact/references/best-practices.md)
-- [Skill scope and limitations](artifact/SKILL.md)
+- [ClawHub skill listing](https://clawhub.ai/docsor1212/skills/paper-polisher-pro)
+- [Source repository](https://github.com/docsor1212/paper-polisher-pro)
+- [ModelScope mirror](https://modelscope.cn/skills/Docsor/paper-polisher-pro)
+- [Best practices](artifact/references/best-practices.md)
+- [FAQ](artifact/references/faq.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Markdown, HTML reports, Guidance]
+**Output Type(s):** [Analysis, Guidance, JSON, Markdown, HTML reports, CSV, Shell commands]
 
-**Output Format:** [JSON, Markdown, and HTML reports with human-readable findings and suggestions]
+**Output Format:** [Terminal text, JSON, Markdown, HTML, and CSV, depending on the command]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Local draft analysis; texts under 100 characters receive no AI-risk verdict; suggestions require author review.]
+**Other Properties Related to Output:** [Single-document reports or directory-level batch summaries; short texts under 100 characters receive no AI-risk verdict by design.]
 
 ## Skill Version(s):
 
-7.7.0 (source: SKILL.md frontmatter, skill.json, server release)
+7.9.0 (source: release evidence and SKILL.md frontmatter)
 
 ## Ethical Considerations:
 

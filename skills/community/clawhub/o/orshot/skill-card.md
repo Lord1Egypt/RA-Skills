@@ -1,6 +1,6 @@
 ## Description:
 
-Generate images, PDFs, and videos from templates, then prepare, schedule, and publish social media content.
+Image, PDF and video generation from Orshot templates, through the hosted MCP server (OAuth, no API key) or the REST API. Covers connecting, finding a template and its parameter keys, render options (formats, sizes, Smart Resize, batch, async), dynamic image URLs, utility templates (tweet and website screenshots, charts, mockups), posting a render to connected social accounts, wiring it into n8n, Make, Zapier or cron, and the gotchas that break renders (parameterId keys, page1@ prefixes, public image URLs). Use when: "render my Orshot template", "connect Orshot to Claude", "call the Orshot API", "my modification is ignored", "automate this render in n8n", "screenshot this tweet", "move from Bannerbear to Orshot". One job end to end: load its skill (orshot-blog-images, orshot-pdf-generator, orshot-video-generator, orshot-ad-creative, orshot-carousel, orshot-youtube-thumbnail, orshot-social-media-content or orshot-social-media-scheduler). NOT for template design craft (use orshot-design).
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-External developers and content teams use the skill to generate branded media and documents from templates, automate content workflows, and manage social posts across connected accounts.
+Developers and content teams use this skill to connect to Orshot, render images, PDFs, and videos from templates, and integrate those renders into existing automation or social publishing workflows.
 
 ### Deployment Geography for Use:
 
@@ -22,45 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Workspace assets, connected social accounts, and submitted content may be exposed through the service or generated links.
+Risk: Template data sent for rendering may contain sensitive content, and the security review is incomplete.
 
-Mitigation: Connect only intended workspaces and accounts, submit only content approved for sharing, treat hosted render URLs as shareable, and use opaque embed user IDs.
-
-Risk: Publishing posts, running workflows, or deleting assets can cause external or irreversible changes.
-
-Mitigation: Keep posts in draft during review and obtain explicit approval before publishing, running workflows, or deleting assets.
-
-Risk: Bulk renders and recurring workflows can consume credits or publish on a schedule.
-
-Mitigation: Review costs and recurring schedules before starting bulk work or activating automation.
-
-Risk: The optional CLI introduces a package and version dependency.
-
-Mitigation: Verify the package and version before installing or using the CLI.
+Mitigation: Use sample or redacted records for initial tests, and review the data being sent before using real records.
 
 ## Reference(s):
 
-- [Orshot agent integration](https://orshot.com/agents/openclaw)
-- [Orshot documentation](https://orshot.com/docs)
-- [API reference](references/api-reference.md)
-- [Render configuration](references/render-configuration.md)
-- [Template design specification](references/template-design-spec.md)
-- [Recurring automation](references/recurring-automation.md)
-- [Integrations and errors](references/integrations-and-errors.md)
+- [Orshot agent skills](https://orshot.com/agents/skills)
+- [Orshot MCP server setup](https://orshot.com/docs/integrations/mcp-server.md)
+- [Render from a studio template](https://orshot.com/docs/api-reference/render-from-studio-template.md)
+- [Recurring automation guide](references/recurring-automation.md)
+- [Migration guide](references/migration.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, PDFs, Videos, Social media posts]
+**Output Type(s):** [Guidance, API calls, Shell commands, Configuration instructions, Code]
 
-**Output Format:** [Rendered media files and draft, scheduled, or published social content]
+**Output Format:** [Markdown guidance with JSON examples, shell commands, and API request snippets]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Media format, dimensions, and delivery depend on the selected template and destination.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.4.0 (source: server-resolved release metadata)
+1.6.2 (source: frontmatter and server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ---
 name: FarmDash Trail Marshal
-description: "Use when composing multi-step DeFi workflows from FarmDash tools: plan, run, inspect supervised pipelines. Wallet steps stay policy-gated, preview-only."
+description: "Use when composing multi-step DeFi workflows from FarmDash tools: plan, run, inspect supervised pipelines. Wallet steps stay policy-gated and zero-custody."
 tags: ["defi","defi-workflows","agent-orchestration","workflow-automation","multi-agent-system","ai-agent-workflows","policy-gated","supervised-automation","defi-playbooks","quality-gates","workflow-status","session-management","risk-management","yield-farming-workflow","airdrop-workflow","zero-custody","openclaw","mcp","web3","farmdash"]
 author: FarmDash Pioneers (@Parmasanandgarlic)
 homepage: https://www.farmdash.one/agents
@@ -88,10 +88,11 @@ Creates a guarded workflow run record for a live session. Inputs are `workflowId
 Important: `run_workflow` records a plan, not execution. Its compatibility `awaiting_confirmation` status does not select mode or create authority. The owning executor must verify fresh data and the step's domain/mode: USER_SIGNED approval, or a valid bounded grant with all checks. Read futures bounded readiness independently from the generated table and live status.
 
 
-### Execution Mode Tracking per Action
-When planning or tracking a workflow run (`plan_workflow` / `run_workflow`), Trail Marshal records the explicit execution mode for every executable step:
-- `USER_SIGNED`: Default interactive flow requiring per-step user confirmation and local EIP-191/EIP-712 signature.
-- `BOUNDED_AUTONOMOUS`: Agent-local architecture under an active, scoped domain delegation grant. A tracked mode or registered grant is not execution readiness. Read `/api/v1/agent/status` and fail closed while the domain execution-mode gate is non-operational; USER_SIGNED remains supported with fresh approval.
+### Execution Mode Tracking per Action (First-Prompt Zero-Custody Selection)
+Before handing off any state-changing workflow step (`plan_workflow` / `run_workflow`), inspect `execution_mode_selection` on `GET /api/v1/agent/status` and `POST /api/v1/agent/authority`, and explicitly prompt the user to select their execution mode per domain (EVM spot, Solana, Hyperliquid perps):
+- `USER_SIGNED` (**Standard FarmDash — default**): Interactive zero-custody flow requiring per-step user confirmation and local EIP-191/EIP-712 (or native Solana) signature in the owning execution sub-skill.
+- `BOUNDED_AUTONOMOUS` (**Autonomous FarmDash — opt-in**): Agent-local architecture under an active, owner-signed, scoped, expiring, revocable domain delegation grant and Pioneer+/x402 session (`EOA_V1_OWNER_LOCAL_SIGNER`). A tracked mode or registered grant is not execution readiness. Read `/api/v1/agent/status` and fail closed whenever the domain execution-mode gate is non-operational; `USER_SIGNED` remains supported with fresh approval.
+- For Hyperliquid workflows (`farm_hyperliquid`, `hedged_airdrop_rotation`), also surface `builderFeeStatus` from `analyze_futures_strategy` so the user completes the one-time main-wallet `ApproveBuilderFee` step before `prepare_perp_order`. For Solana legs, route through `get_solana_quote` → `prepare_solana_swap` → `confirm_solana_swap`.
 - `preparation_only` is a capability status, not a third executionMode. Informational/unsupported steps must remain non-executable. Query futures independently through its distinct authority contract.
 
 ### `get_workflow_status`
@@ -195,7 +196,7 @@ If a recipe skips SENSE, it is unsafe. If it skips VERIFY, the agent never impro
 ### Multi-Leg Execution Disclosure
 Tell the user multi-leg execution is non-atomic unless the adapter proves otherwise, and state leg order, maximum unhedged time, partial-fill handling, abort conditions, and unwind before the first signature. Trail Marshal cannot pre-confirm anything; each confirmation happens in the owning sub-skill's quote path, and `delta_neutral_setup` stays research-only until a paired adapter exists.
 
-Trail Marshal cannot pre-confirm anything or manufacture a grant. USER_SIGNED confirmation happens in the owning execution sub-skill's fresh quote path. Operational bounded futures may omit intermediate human review only under the separate owner futures grant and all checks; during preparation_only, refuse automated execution. Catalog confirmation counts are supervised defaults, never grants.
+Trail Marshal cannot pre-confirm anything or manufacture a grant. USER_SIGNED confirmation happens in the owning execution sub-skill's fresh quote path. Operational bounded futures may omit intermediate human review only under the separate owner futures grant and all checks; whenever a domain gate reports `preparation_only` or non-operational in live status, refuse automated execution. Catalog confirmation counts are supervised defaults, never grants.
 
 For `delta_neutral_setup`, the current catalog intentionally stops before execution. Neither `execute_swap` nor `execute_perp_order` can atomically bind both legs, and standalone `funding_arb` execution is analysis-only. A future paired adapter must bind both legs, maximum basis/slippage, timeout, partial-fill policy, and unwind before this workflow becomes executable.
 

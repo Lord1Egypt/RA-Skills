@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes fixed-camera footage from workplace areas to estimate zone-level stress signals and produce a workplace heatmap.
+Analyzes fixed-camera workplace videos for group-level stress signals by office zone and returns heatmaps and structured reports.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Workplace health, facilities, and operations teams can use the skill to summarize office camera footage into area-level stress indicators and heatmaps for organizational monitoring.
+Enterprise workplace health, HR, and facilities teams use it to review aggregate patterns across office zones and inform organizational wellness decisions. Results are described as group-level indicators, not individual assessments.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment flags workplace video being sent to a remote service, while the destination and handling are unclear.
+Risk: Workplace video handling and account-related behavior raise privacy and scope concerns; scanner coverage is partial because a referenced path was missing.
 
-Mitigation: Avoid installing or sending footage until the publisher explains the destination, retention, access, and processing of video.
-
-Risk: The assessment flags account and credential processing beyond the stated anonymous analysis; partial coverage does not establish whether identities are linked to analysis.
-
-Mitigation: Require an explanation of account and credential use, and review the complete behavior before providing credentials.
-
-Risk: The export-only behavior and some imported behavior could not be verified because scanner coverage was partial and a referenced local path was missing.
-
-Mitigation: Resolve the missing path and review the export flow before use; treat unverified behavior as unresolved.
+Mitigation: Before use, review the video trigger and destination behavior, confirm authorization and employee notice or consent, and verify that results remain zone-level and that video retention matches policy.
 
 ## Reference(s):
 
-- [API reference](references/api_doc.md)
-- [Skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-workplace-stress-heatmap-analysis)
-- [Skill demo](https://lifeemergence.com/sample.html)
+- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-workplace-stress-heatmap-analysis)
+- [API reference](artifact/references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, JSON]
+**Output Type(s):** [Analysis, JSON, Markdown]
 
-**Output Format:** [Structured JSON analysis results; historical report lists can be presented as Markdown, with report and heatmap links when available.]
+**Output Format:** [Structured JSON analysis reports and Markdown report lists, with heatmap and report links where available]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Zone-level indicators, stress scores, trends, alerts, and management suggestions.]
+**Other Properties Related to Output:** [Zone-level aggregate indicators, trends, alerts, and suggested actions; the skill documentation specifies a minimum sample threshold before returning a zone score.]
 
 ## Skill Version(s):
 
-1.0.14 (source: server-resolved release evidence)
+1.0.15 (source: server-resolved release)
 
 ## Ethical Considerations:
 

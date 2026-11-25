@@ -1,6 +1,6 @@
 ## Description:
 
-Control Tokei waitlist and giveaway campaigns from an agent by creating and managing pages, entries, analytics, and webhooks through the CLI or MCP server.
+A CLI and MCP server for managing Tokei pre-launch, waitlist, giveaway, and referral campaigns through the Tokei v1 REST API.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-Developers and campaign operators use the skill to manage Tokei launch, waitlist, and giveaway pages; review signups and campaign analytics; and configure webhooks. Write actions that affect public pages or participants should follow the documented human-approval guidance.
+Developers and campaign operators use it from a CLI or connected agent to manage campaign pages, entrants, media, webhooks, and campaign analytics in Tokei.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Write-enabled access can publish or change public campaigns, import participants, or create live webhooks.
+Risk: The release is marked suspicious with medium confidence because installation can run an unpinned package that may change after review; the scan covered only part of the artifact.
 
-Mitigation: Use an expiring read-only key unless writes are needed, and require human approval before public changes, participant imports, or live webhooks.
+Mitigation: Avoid installing until the package version is pinned and reviewed, and disclose the participant creation and point assignment capabilities before use.
 
-Risk: Participant data and webhook signing secrets require careful handling.
+Risk: Write operations can publish or change campaign pages, create entries, and subscribe webhooks that act on live events.
 
-Mitigation: Protect participant data and webhook secrets, use only trusted webhook destinations, and record marketing consent only when it is actually collected.
+Mitigation: Use a read-only API key for monitoring and get human approval before publishing pages or making other public or email-triggering changes.
 
 ## Reference(s):
 
-- [Tokei agent documentation](https://tokei.io/agent)
+- [Tokei Agent documentation](https://tokei.io/agent)
 - [Tokei API reference](https://tokei.io/docs/api)
-- [Tokei product website](https://tokei.io)
+- [tokei-agent on npm](https://www.npmjs.com/package/tokei-agent)
 - [ClawHub release page](https://clawhub.ai/gilesdawe/skills/tokei-agent)
-- [npm package](https://www.npmjs.com/package/tokei-agent)
+- [Tokei](https://tokei.io)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Shell commands]
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
 
-**Output Format:** [JSON API responses from CLI commands or MCP tools]
+**Output Format:** [JSON responses, shell commands, and configuration examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires TOKEI_API_KEY; Node.js 22.12 or later. Responses can include campaign and participant information.]
+**Other Properties Related to Output:** [Response contents depend on the selected command and may include participant data.]
 
 ## Skill Version(s):
 
-0.3.8 (source: package.json, release evidence)
+0.3.9 (source: server-resolved release metadata; package.json)
 
 ## Ethical Considerations:
 

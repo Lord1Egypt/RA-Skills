@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill during research or standalone searches to find existing GitHub implementations, libraries, and code patterns relevant to a topic.
+Developers use this skill to find existing GitHub implementations, libraries, and patterns for a topic during research. It returns ranked findings with repository metadata.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Topic-derived search queries may be sent to external search services and could expose private project details.
+Risk: Search topics may reveal confidential information when queries are sent to external services.
 
-Mitigation: Review queries before searching and remove private names, code, or other sensitive details; use generic topic terms where possible.
+Mitigation: Avoid including confidential or sensitive terms in search topics; use public, non-sensitive queries.
 
 ## Reference(s):
 
-- [Tome plugin page linked by the skill](https://github.com/athola/claude-night-market/tree/master/plugins/tome)
-- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-tome-code-search)
+- [Tome Plugin Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/tome)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Structured data]
+**Output Type(s):** [Analysis, Structured data]
 
-**Output Format:** [Ranked findings with repository metadata and relevance scores]
+**Output Format:** [Ranked Finding objects with repository metadata and relevance scores]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Findings are sorted by relevance; if no results are found, the skill reports that explicitly.]
+**Other Properties Related to Output:** [Reports explicitly when a search returns no results]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server release evidence)
 
 ## Ethical Considerations:
 

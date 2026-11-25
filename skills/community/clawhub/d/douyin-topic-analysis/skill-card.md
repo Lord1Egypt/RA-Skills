@@ -1,6 +1,6 @@
 ## Description:
 
-当用户需要做抖音选题、抖音内容选题、短视频选题策划、爆款角度拆解、内容方向规划或选题素材整理时使用。面向内容运营、品牌调研和创作者。
+帮助内容运营、品牌调研者和创作者围绕抖音内容搜索整理选题方向与可复盘的内容角度。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-面向内容运营人员、品牌研究者和创作者，用关键词或选题方向查找抖音内容样本，并整理相关角度、热度信号和后续追问方向。
+Content operators, brand researchers, and creators use this skill to explore Douyin topics, review relevant content samples, identify angles, and plan follow-up research.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The instructions run an unpinned CLI package with automatic acceptance; that package can change between runs and may access the configured API key.
+Risk: The security evidence marks the release suspicious because it uses a mutable @latest CLI that may handle local credentials; the scan was partial.
 
-Mitigation: Review the package and credential instructions before running it, and use a trusted environment for any configured key.
-
-Risk: Search terms and filters may be sent to SocialDataX, and the security scan had incomplete coverage because some local references could not be resolved.
-
-Mitigation: Avoid sensitive search terms and review the skill and its unresolved references before installation.
+Mitigation: Review the CLI package and pin a reviewed version where practical. Keep the API key in the intended execution environment and do not expose it in chat, logs, or project files.
 
 ## Reference(s):
 
+- [ClawHub release page](https://clawhub.ai/devinchen2014/skills/douyin-topic-analysis)
+- [SocialDataX product and API key information](https://socialdatax.com/ai?from=clawhub)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Markdown]
+**Output Type(s):** [Analysis, Text, Markdown, Guidance, Shell commands]
 
-**Output Format:** [Markdown analysis of Douyin search results; CLI results are JSON.]
+**Output Format:** [Markdown summaries with sample links or content IDs, topic angles, follow-up questions, and optional CLI examples; API results are JSON.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include content titles, authors or accounts, links or IDs, and follow-up angles; search supports optional filters and paging.]
+**Other Properties Related to Output:** [Can summarize search or hot-search samples and distinguish observed results from analysis; retains traceable titles, links, IDs, authors, metrics, and publish times when available.]
 
 ## Skill Version(s):
 
-0.1.6 (source: server-resolved release)
+0.1.7 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

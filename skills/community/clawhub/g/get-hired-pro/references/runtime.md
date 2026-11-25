@@ -36,6 +36,24 @@ Letter lines follow name, contact paragraphs, date, recipient, salutation, body,
 
 If the selected PDF tool is unavailable, use another available exporter or identify the setup needed to finish that format. Keep the completed documents for the next attempt.
 
+## Single-upload applications
+
+If the form has only a résumé upload and no separate cover-letter submission, prepare one file containing both complete documents. Put the résumé first and the cover letter on a new page. Use the employer's accepted file type and size. Keep the separate originals and upload the combined file in the résumé field.
+
+Use an existing document tool or add --combine to the bundled renderer:
+
+~~~sh
+python3 {baseDir}/scripts/render_documents.py packet.json output-directory --format pdf --combine
+~~~
+
+This also creates Application.docx and Application.pdf, preserving each document's wording, links and page layout. For Word-only submission, omit --format pdf. To add the combined file to an already prepared application without rewriting it:
+
+~~~sh
+python3 {baseDir}/scripts/render_documents.py packet.json output-directory --resume --format pdf --combine
+~~~
+
+Check that the combined file contains every résumé page followed by every cover-letter page. When the form provides separate fields, use the separate documents. Follow explicit résumé-only instructions.
+
 ## Inspect and deliver
 
 Compare actual file text with the final draft. Inspect rendered pages when a preview is available: paragraph gaps, section grouping, page breaks, clipping and the signature. Correct mechanical defects within delivery.

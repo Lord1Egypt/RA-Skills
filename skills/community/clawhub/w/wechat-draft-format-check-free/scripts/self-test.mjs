@@ -1,0 +1,23 @@
+import assert from 'node:assert/strict';
+import { existsSync, readFileSync, statSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
+
+const root = new URL('..', import.meta.url);
+const path = (name) => new URL(name, root);
+const read = (name) => readFileSync(path(name), 'utf8');
+for (const file of ['SKILL.md', 'manifest.yaml', 'agents/openai.yaml', 'README.md', 'README.en.md', 'LICENSE', 'icon-512.png', 'fixtures/success-draft.json', 'fixtures/failure-editor-hidden.json']) assert.ok(existsSync(path(file)), `missing ${file}`);
+const skill = read('SKILL.md');
+assert.match(skill, /^---\nname: wechat-draft-format-check-free\n/m);
+assert.match(skill, /Easy WebBridge/);
+const manifest = read('manifest.yaml');
+for (const item of ['name: wechat-draft-format-check-free', 'slug: wechat-draft-format-check-free', 'icon: icon-512.png', 'self_test: node scripts/self-test.mjs']) assert.ok(manifest.includes(item), `manifest lacks ${item}`);
+const agent = read('agents/openai.yaml');
+for (const item of ['display_name:', 'short_description:', 'default_prompt:', 'icon_small: "./icon-512.png"', 'icon_large: "./icon-512.png"', 'allow_implicit_invocation: true']) assert.ok(agent.includes(item), `agent lacks ${item}`);
+const short = agent.match(/short_description: (.+)/)[1].trim();
+assert.ok([...short].length >= 25 && [...short].length <= 64, 'short_description length invalid');
+const success = JSON.parse(read('fixtures/success-draft.json')); const failure = JSON.parse(read('fixtures/failure-editor-hidden.json'));
+assert.equal(success.status, 'complete'); assert.equal(failure.status, 'paused'); assert.match(success.fixture_type, /offline/); assert.match(failure.fixture_type, /offline/);
+const dims = execFileSync('sips', ['-g', 'pixelWidth', '-g', 'pixelHeight', path('icon-512.png').pathname], { encoding: 'utf8' });
+assert.match(dims, /pixelWidth: 512/); assert.match(dims, /pixelHeight: 512/);
+assert.ok(statSync(path('icon-512.png')).size > 4096, 'icon is unexpectedly small');
+console.log('self-test passed: metadata, fixtures, and 512px icon verified');

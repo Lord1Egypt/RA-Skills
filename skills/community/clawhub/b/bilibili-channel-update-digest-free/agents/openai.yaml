@@ -1,0 +1,8 @@
+interface:
+  display_name: "B站UP主近期更新摘要"
+  short_description: "读取UP主主页可见视频，生成含来源与缺项的近期更新摘要"
+  default_prompt: "使用 $bilibili-channel-update-digest-free。使用我指定的 browserId 和UP主主页，最多整理10条当前可见视频为标题、日期、主题、链接与来源；未显示日期留空，不要编造数据。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

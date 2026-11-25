@@ -1,6 +1,6 @@
 ## Description:
 
-Rails TDD Standards provides RSpec testing standards and best practices for Rails applications, including FactoryBot setup, test structure, Rails 8 gotchas, service specs, ActionCable specs, external service stubs, serializer specs, and test commands.
+RSpec testing standards and best practices for Rails applications. Use when writing new tests, reviewing test quality, debugging factory errors, setting up FactoryBot, or enforcing single-expectation patterns. Also use when a test fails due to factory misconfiguration, wrong association keys, or missing role traits. Triggers on phrases like "write a test", "add specs", "factory error", "test is failing", "how should I test this", or when reviewing test code in a Rails project.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use this skill to write, review, and debug Rails RSpec tests with consistent conventions for factories, callbacks, authentication, channels, external service stubs, serializers, and CI test database setup.
+Rails developers use this skill to write and review RSpec tests, diagnose factory and system spec failures, and configure reliable test workflows.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,40 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill may activate for general test-writing requests where Rails and RSpec conventions are not applicable.
+Risk: The security scan was partial because some local references could not be resolved, leaving its review incomplete.
 
-Mitigation: Confirm the target project uses Rails and RSpec before applying its testing conventions.
+Mitigation: Review the complete skill and its referenced materials before applying the guidance.
 
-Risk: Generated Rails database commands could affect a non-test environment if run without review.
+Risk: Some Rails controller and callback examples may not fit every application's testing focus or Rails setup.
 
-Mitigation: Review database commands and environment variables before execution, and run CI database setup only against the test environment.
-
-Risk: Example external service stubs and token patterns can be misapplied to real API calls or credentials.
-
-Mitigation: Keep external service examples as test doubles or HTTP stubs, and avoid using production tokens or live network calls in tests.
+Mitigation: Check examples against the application's Rails version and requirements before adopting them.
 
 ## Reference(s):
 
 - [Rails TDD Standards on ClawHub](https://clawhub.ai/djc00p/skills/rails-tdd-standards)
 - [Publisher profile: djc00p](https://clawhub.ai/user/djc00p)
+- [Browser Divergence](artifact/references/browser-divergence.md)
+- [Devise And Mailers](artifact/references/devise-and-mailers.md)
+- [Driver Setup](artifact/references/driver-setup.md)
+- [Advanced FactoryBot Patterns](artifact/references/factory-patterns.md)
+- [System Spec Failures At A Glance](artifact/references/failure-lookup.md)
+- [Rails 8 Spec Compatibility](artifact/references/rails-8-controller-gotchas.md)
+- [Stale Content And Waiting](artifact/references/stale-content-and-waiting.md)
+- [Turbo And Stimulus](artifact/references/turbo-and-stimulus.md)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown guidance with Ruby, YAML, and shell command examples.]
+**Output Format:** [Markdown with Ruby, shell, and configuration examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [No bundled executable code; guidance assumes a Rails project with RSpec and Bundle-managed dependencies.]
+**Other Properties Related to Output:** [Examples and recommendations for Rails and RSpec projects; adapt them to the application's setup.]
 
 ## Skill Version(s):
 
-1.1.0 (source: release metadata)
+1.1.6 (source: frontmatter)
 
 ## Ethical Considerations:
 

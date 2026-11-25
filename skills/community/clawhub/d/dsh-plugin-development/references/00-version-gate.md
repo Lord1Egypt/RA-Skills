@@ -9,11 +9,11 @@
 
 | 事实 | 数据 |
 |---|---|
-| DSH 处于 pre-stable / alpha 阶段 | 版本号 `0.2.2-alpha.2` |
-| 发布节奏 | tag 间隔中位数约 1.1 天 |
+| DSH 处于 pre-stable / alpha 阶段 | 版本号 `0.2.2-rc.5` |
+| 发布节奏 | tag 间隔中位数约 1.4 天（`--cadence` 实测 1.42，42 个 tag / 92.9 天） |
 | 是否发生过破坏性变更 | 是（仓库用标题里的 `!` 标记破坏性提交；但该标记**既非充分也非必要**，见 `13-version-history.md` §2.5） |
-| 本 skill 的事实基线 | 官方 tag `dsh-v0.2.2-alpha.2` / commit `f3803c9697` / 2026-10-28；对应**技能版本 `1.8.1`**（完整对照表：`13-version-history.md` §1.5） |
-| 上游另有维护旁线（**不是基线**） | `dsh-v0.2.1-rc.5`（`b830ec950f` / 2026-10-29）是从 `0.2.1` 维护线的 `-rc.4` 切出的补丁（分叉点与提交数见 `13-version-history.md` §1 注记），与基线**互不为祖先**（双向 `git merge-base --is-ancestor` 均不成立）；它比基线旧，但**带一处基线尚未包含的字段**（`conversation.chat.reasoning.body` 的 `rawText`）→ 在 0.2.1 线上部署的读者见 `04-ui-and-slots.md` 的版本分叉注记，**不要**据此改基线 |
+| 本 skill 的事实基线 | 官方 tag `dsh-v0.2.2-rc.5` / commit `9c2670d3bc` / 2026-11-18；对应**技能版本 `1.11.0`**（完整对照表：`13-version-history.md` §1.5） |
+| 上游另有维护旁线（**不是基线**） | `dsh-v0.2.1-rc.5`（`b830ec950f` / 2026-10-29）是从 `0.2.1` 维护线的 `-rc.4` 切出的补丁（分叉点与提交数见 `13-version-history.md` §1 注记），与基线**互不为祖先**（双向 `git merge-base --is-ancestor` 均不成立）：基线 `dsh-v0.2.2-alpha.2` 时它多带一处 `conversation.chat.reasoning.body` 的 `rawText` 字段；**该字段已随 `dsh-v0.2.2-alpha.3` 进入基线**（`packages/client/ui-chat/src/client/contract/slots.ts:85`），故现在两条线的该插槽 props 一致 —— 分叉注记见 `04-ui-and-slots.md`，**不要**据此把基线切到旁线 |
 | 本 skill 的 references | **冻结在基线那一刻的快照**，随基线一起推进 |
 
 **推导**：只要「把可变事实写进文档」这个动作存在，文档就会腐化。这是结构性的，不是谁疏忽。

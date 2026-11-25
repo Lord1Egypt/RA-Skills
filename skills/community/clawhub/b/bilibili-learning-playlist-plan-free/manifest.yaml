@@ -1,0 +1,30 @@
+name: bilibili-learning-playlist-plan-free
+slug: bilibili-learning-playlist-plan-free
+display_name: B站合集学习顺序单
+description: 使用用户指定的 Easy WebBridge 浏览器环境读取一个可见的 B 站合集或收藏夹，并结合学习目标和每日时间预算，交付带来源、可见时长、缺项标记的观看顺序与日计划。适合把公开课程或已授权收藏整理成可执行学习单；私人内容未获授权、登录验证或时长不可见时会暂停或明确标为未知，不会仅凭标题声称已验证内容。
+version: 1.0.1
+icon: icon-512.png
+repository: https://github.com/xxjrq/bilibili-learning-playlist-plan-free
+license: MIT-0
+tags:
+  - bilibili
+  - learning-plan
+  - playlist
+  - webbridge
+trigger_words:
+  - B站合集学习计划
+  - 收藏夹观看顺序
+  - 视频课程每日安排
+triggers:
+  - 把这个B站合集按学习目标和每日时间排顺序
+  - 根据收藏夹可见时长生成观看计划
+  - 整理B站课程学习清单
+interface:
+  display_name: "B站合集学习顺序单"
+  short_description: "读取可见合集资料，生成带来源与缺项标记的学习顺序和每日预算"
+  default_prompt: "使用 $bilibili-learning-playlist-plan-free，请用我指定的 browserId 读取这个 B 站合集或收藏夹的可见资料，并按我的学习目标和每日时间预算生成学习顺序单；不要发布、发送或推断不可见内容。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: false
+self_test: node scripts/self-test.mjs

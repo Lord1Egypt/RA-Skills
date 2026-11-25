@@ -8,7 +8,8 @@
 >
 > - 通过配置文件中的 `is_cn` 字段（或登录命令的 `--cn` 参数）选择要连接的服务器：`true` 连接**佳明中国**（[connect.garmin.cn](https://connect.garmin.cn)），`false` 连接**国际版**（[connect.garmin.com](https://connect.garmin.com)）；
 > - 配置模板 `config.example.json` 默认 `is_cn: true`（面向中国大陆用户），**国际版用户请将其改为 `false`**；
-> - 请务必使用与账号注册区域一致的服务器，区域不匹配会导致登录失败。
+> - 请务必使用与账号注册区域一致的服务器，区域不匹配会导致登录失败；
+> - 登录时的区域会随令牌持久化到 `~/.garmin-health-analysis-cn/tokens/meta.json`，之后所有脚本复用令牌时自动连接同一服务器，令牌生成与鉴权来源始终保持一致（也可用环境变量 `GARMIN_IS_CN` 覆盖）。
 
 ---
 
@@ -37,7 +38,7 @@ python3 scripts/garmin_auth.py login
 - **运动数据**：按类型统计的活动、卡路里、时长、配速、海拔
 - **健康指标**：静息心率、最大摄氧量、身体成分、血氧
 - **活动文件**：下载 FIT/GPX 文件，进行详细的路线与运动表现分析
-- **交互式图表**：基于 Chart.js 的精美 HTML 仪表盘
+- **交互式图表**：纯内联 SVG 的 HTML 仪表盘（无外部依赖，可离线直接打开）
 - **有科学依据的解读**：使用专业分析框架解读数据趋势
 
 ## 📊 查询示例
@@ -110,10 +111,11 @@ garmin-health-analysis-cn/
 ## 🐛 常见问题排查
 
 **登录认证出现问题？**
-- 重新运行 `python3 scripts/garmin_auth.py login` 刷新令牌
+- 重新运行 `python3 scripts/garmin_auth.py login` 刷新令牌（令牌失效时若 config.json 存有账号密码，脚本通常会自动重登）
 - 检查 config.json 或环境变量中的账号信息是否正确
 - 尝试登录佳明 Connect 网页版，确认账号可用
 - 请确认配置文件中的 `is_cn` 与你的账号注册区域一致（中国大陆 `true`，国际版 `false`），或使用 `--cn` 参数显式指定
+- 反复提示"未认证"：删除 `~/.garmin-health-analysis-cn/tokens/` 目录后重新登录一次（新版会把登录区域写入 `meta.json`，之后自动保持一致）
 
 **缺少数据？**
 - 部分指标需要特定设备支持（身体电量需要支持心率变异性的手表）

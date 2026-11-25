@@ -1,6 +1,6 @@
 ## Description:
 
-Qwen (qwen.ai). Use this skill for ANY Qwen request — reading, creating, updating, and deleting data. Whenever a task involves Qwen, use this skill instead of calling the API directly.
+Use Qwen through an OOMOL-connected account for document analysis, image text extraction and translation, image generation, speech tasks, custom voice management, and text translation.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agents use this skill to interact with Qwen through an OOMOL-connected account for document analysis, translation, image and audio tasks, and voice management.
+People with an OOMOL-connected Qwen account can use the skill to analyze documents, extract text from images, translate text or images, handle speech tasks, generate images, and manage custom voices.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,41 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Setup instructions can run an unverified remote CLI installer.
+Risk: The setup instructions run a remotely downloaded installer, and the security scan could not determine what it does.
 
-Mitigation: Review and approve the installation separately, and prefer a verified fixed release before running setup.
+Mitigation: Review the install script and confirm its source is trusted before running it.
 
-Risk: Submitted documents, images, audio, and text are processed through OOMOL and Qwen.
+Risk: Prompts or other content sent to Qwen may include sensitive information handled by an external service.
 
-Mitigation: Submit only content approved for processing by those services.
+Mitigation: Avoid sending sensitive content unless it is approved for use with the connected Qwen service.
+
+Risk: Some actions create or delete Qwen data, including custom voices and asynchronous tasks.
+
+Mitigation: Confirm the exact action, payload, and target before running write or destructive actions.
+
+Risk: The security scan was partial because two local references could not be resolved, so its evidence is incomplete.
+
+Mitigation: Resolve and review the missing references, then repeat the security review before relying on the assessment.
 
 ## Reference(s):
 
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
 - [Qwen](https://qwen.ai/)
 - [Qwen API documentation](https://help.aliyun.com/zh/model-studio/use-qwen-by-calling-api)
-- [oo CLI](https://github.com/oomol-lab/oo-cli)
-- [Qwen ClawHub release](https://clawhub.ai/oomol/skills/oo-qwen)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Structured data, Images, Audio, API calls]
+**Output Type(s):** [Text, Structured data, Images, Audio]
 
-**Output Format:** [JSON responses, text, structured results, and generated image or audio assets where supported]
+**Output Format:** [Qwen action results in text, JSON, image, or audio form, depending on the action]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Some transcription and image translation actions return asynchronous task results.]
+**Other Properties Related to Output:** [Results vary by action; some operations submit asynchronous tasks or change Qwen data.]
 
 ## Skill Version(s):
 
-1.0.6 (source: frontmatter)
+1.0.7 (source: frontmatter)
 
 ## Ethical Considerations:
 

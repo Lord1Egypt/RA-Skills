@@ -133,3 +133,48 @@ for (const config of [
     ]);
   });
 }
+
+for (const bad of [
+  { label: 'zero amount ("0")', patch: { amount: '0' }, match: /accepted\.amount "0" must be a positive integer string in raw/ },
+  { label: 'empty amount ("")', patch: { amount: '' }, match: /accepted\.amount "" must be a positive integer string in raw/ },
+  { label: 'negative amount ("-1000")', patch: { amount: '-1000' }, match: /accepted\.amount "-1000" must be a positive integer string in raw/ },
+  { label: 'above supply ceiling', patch: { amount: '133248297920938463463374607431768211456' }, match: /exceeds the Nano supply ceiling/ },
+  { label: 'invalid payTo address', patch: { payTo: 'nano_1badaddress' }, match: /accepted\.payTo .* is not a valid Nano address/ },
+  { label: 'wrong asset', patch: { asset: 'USDC' }, match: /accepted\.asset is "USDC", expected "XNO"/ },
+]) {
+  test(`client-x402 refuses malformed 402 quote before account_info or signing: ${bad.label}`, async t => {
+    let accountInfoHits = 0;
+    const { origin } = await listen(t, async (req, res) => {
+      if (req.url.startsWith('/v1/account_info')) {
+        accountInfoHits++;
+        res.writeHead(200, { 'content-type': 'application/json' });
+        res.end(JSON.stringify({ found: true }));
+        return;
+      }
+      const pr = {
+        x402Version: 2,
+        resource: { url: 'https://seller.example/paid' },
+        accepts: [{
+          scheme: 'exact',
+          network: 'nano:mainnet',
+          asset: 'XNO',
+          amount: '1000000000000000000000000000',
+          payTo: 'nano_1xug1q5t7nxoj3ywwzokiea9jz8fq8qfgzp8pbyfr3co3e5xgj755uofu8ue',
+          maxTimeoutSeconds: 60,
+          extra: { workOptional: true },
+          ...bad.patch,
+        }],
+      };
+      res.writeHead(402, {
+        'content-type': 'application/json',
+        'payment-required': Buffer.from(JSON.stringify(pr)).toString('base64'),
+      });
+      res.end(JSON.stringify({ x402: pr }));
+    });
+
+    const result = await runClient(origin + '/paid');
+    assert.equal(result.code, 4, result.stderr);
+    assert.match(result.stderr, bad.match);
+    assert.equal(accountInfoHits, 0, 'must refuse before reading account_info or acquiring wallet lock');
+  });
+}

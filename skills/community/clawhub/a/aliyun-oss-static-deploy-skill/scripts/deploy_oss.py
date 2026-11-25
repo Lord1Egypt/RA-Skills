@@ -78,13 +78,23 @@ def endpoint_of(region):
     return "https://%s.aliyuncs.com" % norm_region(region)
 
 
+_SAVED_PROXY = {}
+
+
 def strip_proxy():
     """本机常驻代理会让 oss2 报 Tunnel connection failed: 502，且时好时坏。
 
     curl 可以 --noproxy 绕开，但 oss2（底层 requests）会老实读这些环境变量。
     本地手动跑脚本前必须清掉；GitHub Actions 在云端本来就没有，不受影响。
+    清之前保存快照，供匿名回源探测时恢复（公网探测走代理）。
     """
-    removed = [k for k in PROXY_KEYS if os.environ.pop(k, None) is not None]
+    global _SAVED_PROXY
+    removed = []
+    for k in PROXY_KEYS:
+        v = os.environ.pop(k, None)
+        if v is not None:
+            _SAVED_PROXY[k] = v
+            removed.append(k)
     if removed:
         log("已清除代理环境变量（本机代理会搞挂 oss2）：%s" % ", ".join(removed))
 
@@ -112,6 +122,28 @@ def get_bucket(bucket, region):
         sys.exit(1)
     auth = oss2.Auth(ak, sk)
     return oss2.Bucket(auth, endpoint_of(region), bucket, connect_timeout=30)
+
+
+def ensure_bucket(b, region):
+    """桶不存在则按 public-read 建桶；已存在则核对 ACL。幂等。
+
+    之前部署需手动建桶，否则上传时抛 NoSuchBucket。这里内建，
+    换机器/换模型跑也不卡。
+    """
+    import oss2
+    try:
+        b.get_bucket_info()
+        try:
+            acl = b.get_bucket_acl().acl
+            log("桶已存在，ACL=%s（%s）" % (acl, region))
+        except Exception:
+            log("桶已存在（%s）" % region)
+        return False
+    except oss2.exceptions.NoSuchBucket:
+        log("桶不存在，创建 %s（public-read, %s）" % (b.bucket_name, region))
+        r = b.create_bucket(oss2.BUCKET_ACL_PUBLIC_READ)  # 不要传 config，region 由 endpoint 决定
+        log("建桶成功 http=%s" % r.status)
+        return True
 
 
 def do_check(args):
@@ -237,19 +269,28 @@ def verify_public(b, region):
         log("  ! 查询/关闭 BlockPublicAccess 失败：%s" % e)
         log("    （oss2 < 2.16 无此 API，可改用 curl/scp 直发 DELETE ?publicAccessBlock）")
         return False
-    # 匿名探测
-    import urllib.request
+    # 匿名探测：用 requests 临时恢复代理（本机出公网要代理；urllib 直连会 SSL 超时）
+    # 从环境变量快照恢复——strip_proxy() 在入口清过，这里单独为 HTTP 探测重建
+    import requests
     url = "https://%s.%s.aliyuncs.com/%s" % (
         b.bucket_name, norm_region(region), "index.html")
-    try:
-        req = urllib.request.Request(url, headers={"User-Agent": "deploy-verify"})
-        with urllib.request.urlopen(req, timeout=20) as resp:
-            log("  ✓ 匿名访问 %s -> HTTP %s" % (url, resp.status))
-            return True
-    except Exception as e:
-        code = getattr(e, "code", "")
-        log("  %s 匿名访问 %s -> %s" % ("✓" if code == 200 else "!", url, e))
-        return code == 200
+    for use_proxy in (True, False):  # 先代理后直连，任一 200 即通过
+        try:
+            s = requests.Session()
+            s.trust_env = use_proxy
+            if use_proxy and _SAVED_PROXY:
+                s.proxies.update(_SAVED_PROXY)  # 显式带回清掉的代理
+            resp = s.get(url, timeout=30, headers={"User-Agent": "deploy-verify"})
+            if resp.status_code == 200:
+                log("  ✓ 匿名访问 %s -> HTTP 200 (%s, %d 字节, %s)" % (
+                    url, "代理" if use_proxy else "直连", len(resp.content),
+                    "由本机代理完成" if use_proxy else "直连"))
+                return True
+            else:
+                log("  ! 匿名访问 %s -> HTTP %s" % (url, resp.status_code))
+        except Exception as e:
+            log("  ! 匿名访问(%s)失败：%s" % ("代理" if use_proxy else "直连", str(e)[:100]))
+    return False
 
 
 def verify_and_report(b, pairs, args):
@@ -278,6 +319,8 @@ def main():
     ap.add_argument("--error", default="404.html", help="静态托管错误页，默认 %(default)s")
     ap.add_argument("--prefix", default="", help="对象名前缀，如 site/")
     ap.add_argument("--setup-website", action="store_true", help="配置静态网站托管")
+    ap.add_argument("--create-bucket", action="store_true",
+                    help="桶不存在时自动建桶（public-read）；幂等，建议默认带上")
     ap.add_argument("--verify-public", action="store_true",
                     help="关闭桶级阻止公共访问并匿名验证")
     ap.add_argument("--verify", action="store_true", help="上传后回读 md5 校验")
@@ -313,6 +356,8 @@ def main():
 
     b = get_bucket(args.bucket, norm_region(region))
     log("桶=%s" % args.bucket)
+    if args.create_bucket and not args.dry_run:
+        ensure_bucket(b, norm_region(region))
 
     if args.dir:
         root = os.path.abspath(args.dir)

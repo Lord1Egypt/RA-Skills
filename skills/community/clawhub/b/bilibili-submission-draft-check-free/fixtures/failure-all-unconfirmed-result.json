@@ -1,0 +1,66 @@
+{
+  "mode": "offline-fixture-validation",
+  "status": "needs-completion",
+  "visible_fields": {},
+  "missing": [
+    "封面",
+    "标题",
+    "简介",
+    "分区",
+    "素材"
+  ],
+  "suggestions": [
+    {
+      "field": "封面",
+      "advice": "补齐封面后再进行发布前核对。"
+    },
+    {
+      "field": "标题",
+      "advice": "补齐标题后再进行发布前核对。"
+    },
+    {
+      "field": "简介",
+      "advice": "补齐简介后再进行发布前核对。"
+    },
+    {
+      "field": "分区",
+      "advice": "补齐分区后再进行发布前核对。"
+    },
+    {
+      "field": "素材",
+      "advice": "补齐素材后再进行发布前核对。"
+    }
+  ],
+  "field_sources": {
+    "cover": [
+      {
+        "visible_location": "离线模拟：cover栏",
+        "captured_text": "未确认"
+      }
+    ],
+    "title": [
+      {
+        "visible_location": "离线模拟：title栏",
+        "captured_text": "未确认"
+      }
+    ],
+    "description": [
+      {
+        "visible_location": "离线模拟：description栏",
+        "captured_text": "未确认"
+      }
+    ],
+    "category": [
+      {
+        "visible_location": "离线模拟：category栏",
+        "captured_text": "未确认"
+      }
+    ],
+    "assets": [
+      {
+        "visible_location": "离线模拟：assets栏",
+        "captured_text": "未确认"
+      }
+    ]
+  }
+}

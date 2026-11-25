@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}}</title>
+<style>
+:root{color-scheme:light;--ink:#172e28;--sub:#536a61;--line:#d4ded6;--paper:#fffefa;--green:#205c49;font:16px/1.55 Inter,"Microsoft YaHei",system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:#f1f4ee;color:var(--ink)}main,header{max-width:1100px;margin:auto;padding:1.2rem clamp(.8rem,3vw,2.6rem)}
+header{padding-top:2rem}h1{font-size:clamp(1.35rem,3vw,2.15rem);margin:0 0 1rem}h2{font-size:1.35rem;margin:0}h3{font-size:1.05rem;margin:0}
+.toolbar,.chapter-header,.player-actions{display:flex;gap:.55rem;flex-wrap:wrap;align-items:center}.chapter-header{justify-content:space-between}
+button,select,.link{font:inherit;font-size:.91rem;color:var(--ink);border:1px solid #acbcb3;background:var(--paper);border-radius:.45rem;padding:.34rem .68rem;cursor:pointer}.primary{background:var(--green);color:white;border-color:var(--green)}
+a{color:var(--green)}button:disabled{opacity:.38;cursor:default}button:focus-visible,select:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid #ba7200;outline-offset:2px}
+section{margin:0 0 2rem;scroll-margin:1rem}article{background:var(--paper);border:1px solid var(--line);border-radius:.7rem;padding:1rem;margin:.7rem 0}
+.sub,.range{font-size:.86rem;color:var(--sub)}.range{margin:.15rem 0 .55rem;font-variant-numeric:tabular-nums}.selected{margin:.2rem 0 .65rem;padding-left:1.35rem}.selected li{padding:.18rem 0}.order{font-size:.8rem;margin-left:.35rem;padding:.06rem .38rem}
+label.voice{display:block;font-weight:600;font-size:.9rem;margin:.55rem 0 .25rem}textarea{width:100%;padding:.4rem .6rem;min-height:2.4rem;border:1px solid var(--line);border-radius:.4rem;font:inherit;resize:vertical;background:white;color:var(--ink)}
+details{margin-top:.65rem;border-top:1px solid var(--line);padding-top:.45rem}summary{cursor:pointer;font-weight:600}
+.clip{display:flex;align-items:center;gap:.65rem;padding:.5rem 0;flex-wrap:wrap}.clip+.clip{border-top:1px dotted var(--line)}.clip-info{flex:1 1 14rem}.clip-info small{display:block}.clip select{max-width:100%}.thumb{width:54px;height:48px;object-fit:cover;border-radius:.25rem}
+#notice{min-height:1.35rem;margin:.55rem 0 0}dialog{width:min(850px,96vw);padding:1rem;border:0;border-radius:.8rem;background:#13241f;color:white}dialog::backdrop{background:#07110bd6}
+#screen{height:min(65vh,620px);display:grid;place-items:center;background:#09120f;margin:.65rem 0}#screen>*{width:100%;height:100%;min-height:0;object-fit:contain}.player-actions{justify-content:space-between}
+@media(max-width:550px){main,header{padding-inline:.7rem}.clip{gap:.38rem}article{padding:.75rem}.toolbar{gap:.35rem}}
+</style>
+<header>
+<h1>{{TITLE}}</h1>
+<div class="toolbar">
+<label>章节 <select id="chapter"></select></label>
+<button id="playAll" class="primary">串看已选</button>
+<button id="script">下载当前脚本</button>
+<button id="export">导出本次选材</button><button id="import">导入选材</button><input type="file" id="upload" accept=".json,application/json" hidden>
+</div>
+<div id="notice" class="sub" role="status"></div>
+</header>
+<main id="board"></main>
+<dialog id="viewer" aria-label="片段预览"><div class="player-actions"><span id="now"></span><button id="close">关闭</button></div><div id="screen"></div><div class="player-actions"><span id="playerState" role="status"></span><button id="next">下一段</button></div></dialog>
+<script id="plan" type="application/json">{{PLAN}}</script>
+<script>
+"use strict";
+const model = JSON.parse(document.querySelector("#plan").textContent);
+const byId = new Map(model.clips.map(clip => [clip.id, clip]));
+const chapters = [...new Set(model.beats.map(beat => beat.chapter))];
+const sections = [];
+for (const beat of model.beats) {
+  if (!sections.length || sections.at(-1)[0].chapter !== beat.chapter) sections.push([]);
+  sections.at(-1).push(beat);
+}
+const key = "vlog-review/1/" + model.base;
+const get = id => document.getElementById(id);
+const el = (tag, text, cls) => {
+  const node = document.createElement(tag);
+  if (text != null) node.textContent = text;
+  if (cls) node.className = cls;
+  return node;
+};
+function button(text, action, cls) {
+  const node = el("button", text, cls);
+  node.addEventListener("click", action);
+  return node;
+}
+function option(text, value) {
+  const node = el("option", text);
+  node.value = value;
+  return node;
+}
+function stamp(seconds) {
+  const ticks = Math.round(seconds * 10);
+  return Math.floor(ticks / 600) + ":" + String(Math.floor(ticks % 600 / 10)).padStart(2, "0") + "." + ticks % 10;
+}
+let draft = model.beats.map(b => ({id:b.id, selected:[...b.selected], narration:b.narration || ""}));
+const editFor = id => draft.find(row => row.id === id);
+const owner = id => draft.find(row => row.selected.includes(id));
+const packed = () => ({schema:"vlog-review/1", project:model.project, edition:model.edition,
+  version:model.version, base:model.base, beats:draft});
+const notice = text => {get("notice").textContent = text;};
+function restore(value) {
+  if (value.schema !== "vlog-review/1" || value.base !== model.base || !Array.isArray(value.beats) || value.beats.length !== model.beats.length)
+    throw Error("请选择从这份分镜底稿导出的文件。");
+  const rows = new Map(value.beats.map(row => [row.id, row]));
+  const seen = new Set();
+  const checked = model.beats.map(b => {
+    const row = rows.get(b.id);
+    if (!row || !Array.isArray(row.selected) || typeof row.narration !== "string") throw Error("选择文件缺少本版段落。");
+    for (const id of row.selected) {
+      if (!byId.has(id) || seen.has(id)) throw Error("选择文件含有无效或重复的镜头。");
+      seen.add(id);
+    }
+    return {id:b.id, selected:[...row.selected], narration:row.narration};
+  });
+  draft = checked;
+}
+function save() {
+  try { localStorage.setItem(key, JSON.stringify(packed())); notice("修改已保存在本机浏览器。导出本次选材可用于下一稿。"); }
+  catch { notice("修改保留在页面中，请导出本次选材。"); }
+}
+try {
+  const stored = localStorage.getItem(key);
+  if (stored) {restore(JSON.parse(stored)); notice("已恢复本机上次选材。");}
+} catch { notice("已载入分镜底稿。"); }
+function assign(id, target) {
+  const current = owner(id);
+  if (current) current.selected.splice(current.selected.indexOf(id), 1);
+  if (target) editFor(target).selected.push(id);
+  save(); draw();
+}
+function reorder(row, index, step) {
+  const order = row.selected;
+  [order[index],order[index + step]] = [order[index + step],order[index]];
+  save(); draw();
+}
+function candidateCard(clip) {
+  const card = el("div", null, "clip");
+  const thumbnail = clip.thumb || (clip.kind === "photo" ? clip.src : "");
+  if (thumbnail) {
+    const img = el("img", null, "thumb");
+    img.src = thumbnail; img.alt = ""; img.loading = "lazy"; card.append(img);
+  }
+  const info = el("div", clip.visual, "clip-info");
+  info.append(el("small", clip.id + " · " + clip.asset_id + " · " + clip.sourceLabel, "sub"));
+  const target = el("select");
+  target.dataset.clip = clip.id;
+  target.setAttribute("aria-label", clip.visual + "的脚本段落");
+  target.append(option("备选", ""));
+  for (const b of model.beats) target.append(option(b.id + " · " + b.title, b.id));
+  target.value = owner(clip.id)?.id || "";
+  target.onchange = () => assign(clip.id, target.value);
+  card.append(info, button("预览", () => startPlayer([clip.id])), target);
+  return card;
+}
+function draw() {
+  const root = get("board");
+  const open = new Set([...root.querySelectorAll("details[open]")].map(x => x.dataset.beat));
+  const ranges = new Map();
+  let cursor = 0;
+  for (const beat of model.beats) {
+    const end = cursor + editFor(beat.id).selected.reduce((sum, id) => sum + byId.get(id).duration, 0);
+    ranges.set(beat.id, stamp(cursor) + "–" + stamp(end)); cursor = end;
+  }
+  root.replaceChildren();
+  for (const beats of sections) {
+    const chapter = beats[0].chapter;
+    if (get("chapter").value && get("chapter").value !== chapter) continue;
+    const group = el("section");
+    const header = el("div", null, "chapter-header");
+    const chapterIds = beats.flatMap(b => editFor(b.id).selected);
+    const play = button("串看本章", () => startPlayer(chapterIds));
+    play.disabled = !chapterIds.length;
+    header.append(el("h2", chapter), play); group.append(header);
+    for (const b of beats) {
+      const row = editFor(b.id), article = el("article");
+      article.dataset.beat = b.id;
+      article.append(el("h3", b.id + " · " + b.title), el("div", "选材串联 " + ranges.get(b.id), "range"));
+      const list = el("ol", null, "selected");
+      row.selected.forEach((id, index) => {
+        const clip = byId.get(id), item = el("li", clip.visual + "　");
+        item.append(el("small", id + " · " + clip.sourceLabel, "sub"));
+        for (const [label, step] of [["上移",-1],["下移",1]]) {
+          const move = button(label, () => reorder(row, index, step), "order");
+          move.disabled = index+step < 0 || index+step >= row.selected.length;
+          item.append(move);
+        }
+        list.append(item);
+      });
+      article.append(row.selected.length ? list : el("p", "本段待选画面。", "sub"));
+      const voice = el("textarea");
+      voice.id = "voice-" + b.id; voice.rows = 1; voice.value = row.narration;
+      const label = el("label", "旁白", "voice"); label.htmlFor = voice.id;
+      voice.oninput = () => {row.narration = voice.value; save();};
+      article.append(label, voice);
+      if (b.sound) article.append(el("div", "声音　" + b.sound, "sub"));
+      if (b.edit) article.append(el("div", "剪辑　" + b.edit, "sub"));
+      const clips = model.clips.filter(c => c.home === b.id);
+      if (clips.length) {
+        const details = el("details"); details.dataset.beat = b.id;
+        details.open = open.has(b.id) || model.beats.length === 1;
+        details.append(el("summary", "选材与预览（" + clips.length + "）"));
+        for (const clip of clips) details.append(candidateCard(clip));
+        article.append(details);
+      }
+      group.append(article);
+    }
+    root.append(group);
+  }
+  get("playAll").disabled = !draft.some(r => r.selected.length);
+}
+get("chapter").append(option("全部章节",""), ...chapters.map(c => option(c,c)));
+get("chapter").onchange = draw;
+function download(name, content, type) {
+  const link = el("a");
+  link.href = URL.createObjectURL(new Blob([content], {type}));
+  link.download = document.title.replace(/[\\/:*?"<>|]/g,"_") + "_" + name;
+  link.click(); setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+}
+function currentScript() {
+  const lines = ["# " + document.title, "", "[打开选材与片段预览](index.html)", ""];
+  let cursor = 0, lastChapter;
+  for (const beat of model.beats) {
+    if (lastChapter !== beat.chapter) lines.push("## " + beat.chapter, "");
+    lastChapter = beat.chapter;
+    const row = editFor(beat.id), clips = row.selected.map(id => byId.get(id));
+    const end = cursor + clips.reduce((sum, clip) => sum + clip.duration, 0);
+    lines.push("### " + beat.id + "　" + beat.title, "", "选材串联 " + stamp(cursor) + "–" + stamp(end), "");
+    for (const clip of clips) lines.push("- " + clip.visual + "（" + clip.id + " / " + clip.asset_id + "，" + clip.sourceLabel + "）");
+    if (!clips.length) lines.push("本段待选画面。");
+    for (const [label, value] of [["旁白",row.narration],["声音",beat.sound],["剪辑",beat.edit]]) {
+      if (value) lines.push("", "**" + label + "**　" + value);
+    }
+    lines.push(""); cursor = end;
+  }
+  return lines.join("\n") + "\n";
+}
+get("script").onclick = () => download("分镜脚本.md", currentScript(), "text/markdown;charset=utf-8");
+get("export").onclick = () => download("选材.json", JSON.stringify(packed(), null, 2), "application/json");
+get("import").onclick = () => get("upload").click();
+get("upload").onchange = async event => {
+  const file = event.target.files[0]; if (!file) return;
+  try { restore(JSON.parse((await file.text()).replace(/^\uFEFF/,""))); save(); draw(); }
+  catch (error) { notice(error.message); }
+  event.target.value = "";
+};
+let queue = [], index = 0, frame = 0, timer = 0, generation = 0;
+function stopClip() {
+  generation++;
+  cancelAnimationFrame(frame); clearTimeout(timer);
+  const video = get("screen").querySelector("video");
+  if (video) {video.onended = null; video.onloadedmetadata = null; video.onerror = null; video.pause();}
+  get("screen").replaceChildren();
+}
+function playItem() {
+  stopClip();
+  if (index >= queue.length) {get("viewer").close(); return;}
+  const clip = byId.get(queue[index]), token = generation;
+  get("now").textContent = clip.visual + "　" + (index+1) + "/" + queue.length;
+  get("playerState").textContent = clip.sourceLabel;
+  const advance = () => {if (generation === token) {index++; playItem();}};
+  const fail = () => {if (generation === token) get("playerState").textContent = "片段未能播放，请检查本地文件或预览片。";};
+  if (clip.kind === "photo") {
+    const img = el("img"); img.alt = clip.visual;
+    img.onload = () => {if (generation === token) timer = setTimeout(advance, clip.duration * 1000);};
+    img.onerror = fail; img.src = clip.src; get("screen").append(img); return;
+  }
+  const video = el("video");
+  video.controls = true; video.playsInline = true; video.preload = "auto";
+  video.onended = advance; video.onerror = fail;
+  const end = clip.start + clip.duration * clip.speed;
+  video.onloadedmetadata = () => {
+    if (generation !== token) return;
+    if (Number.isFinite(video.duration) && video.duration + .08 < end) {
+      get("playerState").textContent = "预览文件短于所选原片区间，请重新核对。"; return;
+    }
+    video.currentTime = clip.start; video.playbackRate = clip.speed;
+    const play = video.play();
+    if (play) play.catch(() => {if (token === generation) get("playerState").textContent = "可用播放器开始播放。";});
+    function tick() {
+      if (token !== generation) return;
+      if (video.currentTime >= end - .005) { advance(); return; }
+      if (!video.seeking && video.currentTime + .06 < clip.start) video.currentTime = clip.start;
+      frame = requestAnimationFrame(tick);
+    }
+    tick();
+  };
+  get("screen").append(video); video.src = clip.src;
+}
+function startPlayer(ids) {
+  if (!ids.length) return;
+  queue = [...ids]; index = 0;
+  if (!get("viewer").open) get("viewer").showModal();
+  playItem();
+}
+get("next").onclick = () => {index++; playItem();};
+get("close").onclick = () => get("viewer").close();
+get("viewer").addEventListener("close", stopClip);
+get("playAll").onclick = () => startPlayer(draft.flatMap(b => b.selected));
+draw();
+</script>
+</html>

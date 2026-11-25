@@ -9,7 +9,7 @@
           "sortOrder": 0
         }
       ],
-      "scheduledAt": "2026-06-08T08:00:00.000Z",
+      "scheduledAt": "2027-01-25T08:00:00.000Z",
       "socialMediaId": "YOUR_GBP_ACCOUNT_ID"
     }
   ],
@@ -17,8 +17,8 @@
     "gbpLocationId": "accounts/109049740544589765860/locations/4875357571247123933",
     "gbpTopicType": "EVENT",
     "gbpEventTitle": "Grand Opening",
-    "gbpEventStartDate": "2026-06-10T10:00:00.000Z",
-    "gbpEventEndDate": "2026-06-10T18:00:00.000Z",
+    "gbpEventStartDate": "2027-01-27T10:00:00.000Z",
+    "gbpEventEndDate": "2027-01-27T18:00:00.000Z",
     "gbpCallToActionType": "BOOK",
     "gbpCallToActionUrl": "https://example.com/rsvp"
   }

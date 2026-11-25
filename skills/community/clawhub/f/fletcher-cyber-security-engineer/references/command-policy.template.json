@@ -1,12 +1,13 @@
 {
-  "allow": [
-    "^openclaw\\b",
-    "^python3\\b"
-  ],
   "deny": [
-    "\\brm\\s+-rf\\b",
+    "\\brm\\s+(-[A-Za-z]*r[A-Za-z]*f|-[A-Za-z]*f[A-Za-z]*r)\\b",
     "\\bshutdown\\b",
-    "\\breboot\\b"
-  ]
+    "\\breboot\\b",
+    "\\bhalt\\b",
+    "\\bmkfs(\\.|\\b)",
+    "\\bdd\\b.*\\bof=/dev/",
+    "\\bchmod\\s+-R\\s+777\\b",
+    "\\bvisudo\\b"
+  ],
+  "allow_exact": []
 }
-

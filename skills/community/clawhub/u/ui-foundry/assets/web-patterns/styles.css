@@ -1,0 +1,279 @@
+@import "tailwindcss";
+@import "@heroui/styles";
+
+:root {
+	color: #172033;
+	background: #f6f7f9;
+	font-family:
+		ui-sans-serif,
+		system-ui,
+		-apple-system,
+		BlinkMacSystemFont,
+		"Segoe UI",
+		sans-serif;
+	font-synthesis: none;
+}
+* {
+	box-sizing: border-box;
+}
+body {
+	margin: 0;
+	min-width: 320px;
+}
+button,
+input {
+	font: inherit;
+}
+.uf-demo-shell {
+	display: grid;
+	min-height: 100svh;
+	padding: clamp(1rem, 5vw, 4rem);
+	place-items: center;
+}
+.uf-meeting-picker {
+	width: min(100%, 38rem);
+	padding: clamp(1.25rem, 4vw, 2.25rem);
+	color: #172033;
+	background: #fff;
+	border: 1px solid #e1e7f0;
+	border-radius: 1.5rem;
+	box-shadow: 0 1rem 3rem rgb(24 38 63 / 6%);
+}
+.uf-meeting-heading {
+	display: flex;
+	align-items: start;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-bottom: 1.75rem;
+}
+.uf-kicker {
+	margin: 0 0 0.35rem;
+	color: #55708f;
+	font-size: 0.72rem;
+	font-weight: 760;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+.uf-meeting-heading h1 {
+	margin: 0;
+	font-size: clamp(1.75rem, 5vw, 2.4rem);
+	letter-spacing: -0.03em;
+	line-height: 1.2;
+	overflow-wrap: anywhere;
+}
+.uf-meeting-flow {
+	display: grid;
+	gap: 1rem;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	min-width: 0;
+}
+.uf-title-row {
+	display: grid;
+	gap: 0.45rem;
+}
+.uf-title-row > [data-slot="input"] {
+	width: 100%;
+}
+.uf-meeting-picker label,
+.uf-field-label {
+	color: #43536b;
+	font-size: 0.82rem;
+	font-weight: 700;
+}
+.uf-field-label {
+	margin: 0;
+}
+.uf-date-shortcuts {
+	display: flex;
+	gap: 0.45rem;
+	margin-top: -0.45rem;
+}
+.uf-date-shortcuts button {
+	min-height: 2.75rem;
+	padding: 0.35rem 0.85rem;
+	color: #3a5f91;
+	background: #f0f6ff;
+	border: 1px solid #dceafa;
+	border-radius: 999px;
+	cursor: pointer;
+	font-size: 0.82rem;
+	font-weight: 650;
+}
+.uf-date-shortcuts button:hover {
+	color: #1e4f8d;
+	background: #e5f0ff;
+}
+.uf-place-picker {
+	position: relative;
+	display: grid;
+	gap: 0.45rem;
+}
+.uf-combobox {
+	position: relative;
+}
+.uf-combobox-input {
+	width: 100%;
+}
+.uf-combobox-popover {
+	width: var(--trigger-width);
+	max-width: calc(100vw - 1.5rem);
+	overflow: auto;
+	color: #172033;
+	background: #fff;
+	border: 1px solid #d7e0ec;
+	border-radius: 0.9rem;
+	box-shadow: 0 1.1rem 2.4rem rgb(20 34 57 / 12%);
+	transform-origin: top;
+	animation: uf-pop 0.16s ease-out;
+}
+.uf-combobox-popover [role="listbox"] {
+	padding: 0.35rem;
+}
+.uf-combobox-popover [role="option"] {
+	display: grid;
+	gap: 0.14rem;
+	padding: 0.65rem 0.75rem;
+	border-radius: 0.62rem;
+	cursor: pointer;
+}
+.uf-combobox-popover [role="option"]:hover,
+.uf-combobox-popover [role="option"][data-focused] {
+	background: #eff6ff;
+}
+.uf-combobox-popover small,
+.uf-result-note {
+	color: #64748b;
+	font-size: 0.78rem;
+}
+.uf-result-note {
+	margin: 0;
+	padding: 0.8rem;
+}
+.uf-result-note button,
+.uf-manual-link,
+.uf-undo {
+	padding: 0;
+	color: #2563b9;
+	background: transparent;
+	border: 0;
+	cursor: pointer;
+	font-weight: 700;
+}
+.uf-manual-link {
+	width: 100%;
+	padding: 0.65rem 0.75rem;
+	border-top: 1px solid #edf1f6;
+	text-align: left;
+}
+.uf-manual-row {
+	display: flex;
+	gap: 0.4rem;
+	padding: 0.55rem 0.65rem 0.7rem;
+	border-top: 1px solid #edf1f6;
+}
+.uf-manual-row input {
+	width: 100%;
+	min-width: 0;
+	padding: 0.48rem 0.58rem;
+	border: 1px solid #cbd8e8;
+	border-radius: 0.5rem;
+}
+.uf-manual-row button {
+	padding: 0.48rem 0.7rem;
+	color: #fff;
+	background: #2563b9;
+	border: 0;
+	border-radius: 0.5rem;
+}
+.uf-selected-place {
+	display: flex;
+	justify-content: space-between;
+	gap: 0.7rem;
+	margin: 0.1rem 0 0;
+	color: #617189;
+	font-size: 0.78rem;
+}
+.uf-selected-place span {
+	overflow: hidden;
+	color: #263c59;
+	font-weight: 700;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.uf-meeting-actions {
+	display: flex;
+	align-items: center;
+	gap: 0.9rem;
+	margin-top: 1.75rem;
+}
+.uf-status {
+	min-height: 1.25rem;
+	margin: 0;
+	color: #55708f;
+	font-size: 0.82rem;
+}
+.uf-saved-card {
+	display: grid;
+	gap: 0.5rem;
+	margin: 1.25rem 0;
+	padding: 1.25rem 0;
+	color: #203755;
+	border-block: 1px solid #e1e7f0;
+}
+.uf-saved-card span {
+	color: #5c7390;
+	font-size: 0.85rem;
+}
+.uf-undo {
+	flex: none;
+	min-height: 2.75rem;
+	min-width: 2.75rem;
+}
+.uf-meeting-picker [data-slot="input"],
+.uf-meeting-picker [data-slot="date-input-group"],
+.uf-meeting-picker [data-slot="combo-box-input-group"] {
+	min-height: 2.75rem;
+}
+.uf-demo-note {
+	margin: 1rem 0 0;
+	color: #617189;
+	font-size: 0.75rem;
+	text-align: center;
+}
+.uf-demo-content {
+	width: min(100%, 38rem);
+}
+@keyframes uf-pop {
+	from {
+		opacity: 0;
+		transform: translateY(-0.2rem) scale(0.985);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+@media (max-width: 30rem) {
+	.uf-meeting-picker {
+		padding: 1.15rem;
+		border-radius: 1.1rem;
+	}
+	.uf-meeting-actions {
+		align-items: start;
+		flex-direction: column;
+	}
+	.uf-status {
+		min-height: 0;
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+		transition-duration: 0.01ms !important;
+	}
+}

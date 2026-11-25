@@ -1,6 +1,6 @@
 {
   "name": "tiktok-data-research",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "TikTok数据智能助手。自媒体从业者的数据获取工具，提供TikTok搜索、作品获取、实时评论数据等实时数据的批量获取，为后续的内容研究、选题分析、用户痛点、数据分析、市场调研、对标账号监控、舆情分析、TikTok增长等场景提供真实可靠的数据支撑。",
   "keywords": [
     "tiktok",

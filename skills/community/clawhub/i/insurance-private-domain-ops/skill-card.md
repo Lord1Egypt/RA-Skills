@@ -1,6 +1,6 @@
 ## Description:
 
-Supports insurance teams with customer segmentation, lapsed-customer reactivation, renewal planning, WeCom content drafts, and privacy-aware CRM guidance for China's WeChat ecosystem.
+AI-powered insurance private domain (wechat ecosystem) customer operations skill — RFM + lifecycle customer segmentation, churned customer reactivation SOP, renewal management, enterprise WeChat (WeCom) operations, AI personalization, and data-driven CRM strategy.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,25 +14,17 @@ MIT-0
 
 ## Use Case:
 
-Insurance operations and compliance teams use the skill to draft customer segmentation rules, renewal and reactivation plans, and marketing content for review. Its guidance is scoped to mainland China insurance operations and the WeChat ecosystem.
+Insurance operations and compliance teams can use this skill to draft customer segmentation guidance, retention and renewal workflows, WeChat outreach copy, content plans, and review checklists for China’s insurance market. Its outputs are paper drafts for human review; it does not send messages, export customer lists, or connect to business systems.
 
 ### Deployment Geography for Use:
 
-Mainland China
+China (mainland)
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan was partial, so its benign result is limited evidence rather than a complete safety assessment.
+Risk: The security review was incomplete and had medium confidence, so it did not inspect all available skill content.
 
-Mitigation: Review the full skill and obtain a complete security scan before deployment.
-
-Risk: Customer segmentation and marketing drafts can involve personal data and regulated insurance claims.
-
-Mitigation: Use aggregated or de-identified inputs and require authorized privacy and compliance review before any customer use.
-
-Risk: Regulatory and platform guidance can become outdated.
-
-Mitigation: Check current requirements against official regulator and platform sources before adopting the guidance.
+Mitigation: Review the full skill content before installing or applying its guidance.
 
 ## Reference(s):
 
@@ -40,17 +32,17 @@ Mitigation: Check current requirements against official regulator and platform s
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Markdown]
+**Output Type(s):** [Guidance, Text, Markdown]
 
-**Output Format:** [Markdown with tables, checklists, schedules, and draft message copy]
+**Output Format:** [Chinese and English prose, tables, checklists, draft outreach copy, and operational schedules]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Operational materials are drafts for authorized human review; the skill does not send messages, export customer lists, or connect to business systems.]
+**Other Properties Related to Output:** [Draft material for human review; no direct messaging, customer-list export, or business-system operations.]
 
 ## Skill Version(s):
 
-4.1.4 (source: release evidence and artifact frontmatter)
+4.1.5 (source: frontmatter)
 
 ## Ethical Considerations:
 

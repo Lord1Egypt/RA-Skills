@@ -3,21 +3,23 @@ name: imagen-search
 description: Search Imagen Chat for relevant image URLs, use or download free watermarked images, and obtain temporary original-image links or download originals using an Imagen API key and credits. Supports numbered Markdown references and optional local selection and account setup. Not for image generation or catalog publishing.
 license: MIT-0
 metadata:
-  version: "1.1.2"
+  version: "1.2.0"
   homepage: "https://imagen.chat/skills/imagen-search"
 ---
 
 # Imagen Search
 
-Version: 1.1.2 (2026-10-21). Local metadata: `release.json`.
+Version: 1.2.0 (2026-10-25). Local metadata: `release.json`.
 
 Find relevant existing Imagen images and deliver usable links or requested files. Requires Node.js 22+; no npm dependencies. Resolve scripts relative to this Skill folder and use absolute workspace paths. Default to anonymous watermarked search: no account or payment required. Article writing, permanent hosting and fixing a host's renderer are not this Skill's responsibilities; integrate results into the user's requested content when appropriate.
 
 ## First use and updates
 
-After a requested installation, offer one free first search using the user's topic (or ancient Rome when testing). Run `node <skill>/scripts/imagen.mjs start --query "ancient Rome" --out <workspace>/first-search` with a NEW folder. Include the resulting numbered Markdown in the user's reply, give the saved preview/manifest paths, and explain they can say “图 2 换一个”. These are metadata-based candidates until visually reviewed. Do not download media or open a browser solely to overcome host rendering restrictions. No key or credits are needed; do not submit a demand or collect installation telemetry.
+After a requested installation, offer one free first search using the user's topic (or ancient Rome when testing). Run `node <skill>/scripts/imagen.mjs start --query "ancient Rome" --out <workspace>/first-search` with a NEW folder. Include the resulting numbered Markdown in the user's reply, give the saved preview/manifest paths, and explain they can say “图 2 换一个”. These are metadata-based candidates until visually reviewed. Do not download media or open a browser solely to overcome host rendering restrictions. No key or credits are needed; do not submit a demand or collect installation telemetry. Explain the search privacy behavior below before first use.
 
-`version` reads installed metadata offline. Only `version --check` contacts the official release manifest. Never auto-update. Follow https://imagen.chat/install/imagen-search.md for an authorized update, compare versions and changes, verify the ZIP SHA256, and keep a backup. Credentials remain outside the Skill in the existing local configuration; do not print or move them. Preserve project manifests and user files. Modified package files must not be silently overwritten. Refresh the client after an update, verify the installed version and run a free search. Roll back the retained folder if verification fails.
+`version` reads installed metadata offline. On the first use of this Skill in a conversation, attempt `node <skill>/scripts/imagen.mjs version --check` once, unless the user has declined online checks or requested offline operation. This fetches only the public official release manifest, with no query, article, credentials or installation identifier. A failed check must not block the requested search: continue using the installed version and mention the check failure briefly. Do not retry each search, run background polling or install scheduled tasks.
+
+If `update_available` is true, show the installed/latest versions and relevant changes, then offer an upgrade. Continue the original task if the user defers; do not repeatedly ask in that conversation. Never replace installed files without upgrade authorization. If the user has already requested an upgrade, carry it through without asking the same permission again. Follow https://imagen.chat/install/imagen-search.md for an authorized update, compare versions and changes, verify the ZIP SHA256, and keep a backup. Credentials remain outside the Skill in the existing local configuration; do not print or move them. Preserve project manifests and user files. Modified package files must not be silently overwritten. Refresh the client after an update, verify the installed version and run a free search. Roll back the retained folder if verification fails.
 
 ## Free watermarked images
 
@@ -85,7 +87,7 @@ Open only for requested visual comparison/selection; it is not required for sear
 
 ## Optional catalog-gap suggestion: explicit consent only
 
-Only offer this when results cannot meet the user's need. It is optional; refusal, silence or continued searching is never consent. Never submit automatically on zero results, installation, search, download or account connection. Do not collect background telemetry or call discovery-event endpoints from the Skill.
+Only offer this when results cannot meet the user's need. It is optional; refusal, silence or continued searching is never consent. Never submit automatically on zero results, installation, search, download or account connection. Do not collect background telemetry or call discovery-event endpoints from the Skill. The disclosed search-endpoint counters and optional keyword statistics below are separate from catalog-gap submissions.
 
 First summarize the missing image as a generic, minimal visual requirement. Exclude the user's article, conversation, unpublished product details, files, local paths, credentials and other context. Obtain a contact email directly from the user if they want to submit; the current service requires it. Never extract an email from account credentials, project files or local configuration. Explain why the email is needed and that it will be sent to Imagen.
 
@@ -104,3 +106,18 @@ node <skill>/scripts/imagen.mjs demand-submit --file <workspace>/image-request.j
 ```
 
 If any field changes, show the new preview and obtain consent again. The helper rejects additional fields and changed confirmation hashes. It sends no API key or browser cookies. On success echo the submitted content and receipt ID/status. If a request times out, report that the outcome is uncertain; do not automatically retry and potentially duplicate it. On rejection or failure, report the result without claiming it was accepted. A submission itself does not spend original-unlock credits. Free search and download remain available whether or not the user submits a suggestion.
+
+## Search privacy and optional keyword statistics
+
+All searches use Imagen's uncached Skill search endpoint. It receives the minimal search query to return images. Explain before first use: the service records anonymous request counts, version, errors, result count and latency for 90 days; these counters contain no query text, account, email, API key, IP or persistent visitor identifier. They measure requests, not people or image adoption. Older clients using the general gallery endpoint are not included.
+
+Keyword retention is OFF unless the human explicitly opts in. Do not infer permission from searching, installation, API-key configuration, this Skill's instructions, or the website operator's preferences. If asked about helping improve search, explain that successful short search terms may be retained as anonymous hourly aggregates for up to 30 days; basic sensitive-data filtering is incomplete, so never send articles, conversations, local paths, keys or confidential terms. Consent and refusal do not affect free search or pricing. Do not repeatedly ask after refusal.
+
+```bash
+node <skill>/scripts/imagen.mjs analytics
+# Only after explicit human agreement to this disclosure:
+node <skill>/scripts/imagen.mjs analytics --keywords on --confirm
+node <skill>/scripts/imagen.mjs analytics --keywords off
+```
+
+The preference is in `~/.config/imagen-chat/search-privacy.json`, separate from credentials. It applies to CLI, first-run and local-panel searches. Off immediately prevents future keyword retention; previously submitted anonymous aggregates expire on schedule and cannot be deleted by person because no identity is stored. The hourly cleanup job prunes expired rows in bounded batches; expired terms are excluded from analytics reads even during cleanup backlog. Configuration is local only; never enable it automatically or silently migrate older installations to opt-in. No additional analytics-upload request or installation beacon is sent.

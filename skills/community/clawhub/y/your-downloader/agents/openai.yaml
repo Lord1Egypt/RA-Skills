@@ -1,0 +1,5 @@
+# Read by Codex and ChatGPT (skill interface) and by ClawHub (display name, summary, icon).
+interface:
+  display_name: "Your Downloader"
+  short_description: "Downloads video, audio, subtitles and comments from YouTube and other sites with yt-dlp."
+  icon_small: "./assets/icon-small.svg"

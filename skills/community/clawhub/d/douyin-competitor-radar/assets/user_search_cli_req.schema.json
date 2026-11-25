@@ -1,0 +1,25 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "抖音用户搜索 - 命令行入参",
+    "description": "按关键词搜索抖音用户/达人/账号。粉丝量与认证类型筛选暂未开放。",
+    "required": [
+        "keyword"
+    ],
+    "properties": {
+        "keyword": {
+            "type": "string",
+            "description": "用户搜索关键词, 2-50 个字符, 不能是链接, 不含 < > \" ' &",
+            "minLength": 2,
+            "maxLength": 50
+        },
+        "limit": {
+            "type": "number",
+            "description": "获取数量。包月 Token 实际最多 30",
+            "minimum": 1,
+            "maximum": 10000,
+            "default": 10
+        }
+    },
+    "additionalProperties": false
+}

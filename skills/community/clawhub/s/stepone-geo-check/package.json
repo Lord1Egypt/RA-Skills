@@ -1,0 +1,35 @@
+{
+  "name": "stepone-geo-check",
+  "version": "1.1.0",
+  "description": "Zero-dependency GEO, Entity Grounding & SEO Website Readiness Checker (6 dimensions × 38 checks) for Doubao, DeepSeek, Qwen, Yuanbao, ChatGPT, Claude, Perplexity, Bing & Google.",
+  "keywords": [
+    "geo",
+    "geo-check",
+    "ai-seo",
+    "llms-txt",
+    "ai-search",
+    "deepseek",
+    "doubao",
+    "chatgpt-seo",
+    "mcp",
+    "openclaw",
+    "workbuddy",
+    "steponeai"
+  ],
+  "license": "MIT",
+  "author": "StepOneAI (北京基智科技有限公司)",
+  "homepage": "https://www.steponeai.com/geo-check",
+  "main": "./lib/engine.js",
+  "bin": {
+    "geo-check": "./bin/cli.js",
+    "stepone-geo-check": "./bin/cli.js",
+    "stepone-geo-check-mcp": "./mcp-server.js"
+  },
+  "scripts": {
+    "check": "node ./bin/cli.js",
+    "mcp": "node ./mcp-server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

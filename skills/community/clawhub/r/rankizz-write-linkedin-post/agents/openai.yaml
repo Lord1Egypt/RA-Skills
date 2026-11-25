@@ -1,0 +1,11 @@
+interface:
+  display_name: "LinkedIn Post Research"
+  short_description: "Research and draft useful LinkedIn posts"
+  default_prompt: "Use $rankizz-write-linkedin-post to research current LinkedIn posts and save a human, knowledge-first draft tailored to my product."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "rankizz"
+      description: "Rankizz LinkedIn search and saved social research"
+      transport: "streamable_http"
+      url: "https://www.rankizz.com/mcp"

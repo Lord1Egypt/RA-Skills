@@ -1,0 +1,185 @@
+<!doctype html>
+<html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Denote Top Ads</title><style>
+*{box-sizing:border-box}
+body{margin:0;background:#f7f7fa;color:#201d30;font:15px/1.6 Inter,-apple-system,"PingFang SC",sans-serif}
+main,header>div{max-width:1220px;margin:auto;padding:0 4vw}
+header{background:white;border-bottom:1px solid #dfdee8}
+header>div{display:flex;align-items:center;justify-content:space-between;height:64px}
+a{color:inherit}
+header a{text-decoration:none;font-weight:650}
+header small{color:#565263}
+.brand{display:flex;align-items:center;gap:8px;font:bold 23px/1 Arial}
+.brand img{width:33px;height:33px}
+h1{font-size:clamp(35px,6vw,65px);letter-spacing:-.055em;line-height:1.12;margin:38px 0 12px}
+time{font-variant-numeric:tabular-nums;color:#555064}
+nav{display:flex;gap:8px;margin:24px 0 30px}
+nav a{padding:7px 15px;border-radius:24px;background:white;border:1px solid #dbd8e7;text-decoration:none;font-weight:650}
+nav a:hover,nav a:focus-visible{background:#ece6ff}
+section{margin-bottom:42px;scroll-margin-top:12px}
+.head{display:flex;align-items:baseline;gap:12px}
+h2{font-size:24px;letter-spacing:-.03em;margin:0 0 12px}
+.head small{color:#6a6678}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(250px,100%),1fr));gap:16px}
+article{border:1px solid #e1dee8;border-radius:14px;background:white;overflow:hidden;box-shadow:0 2px 6px #22134408}
+.media{position:relative;display:block;background:#17161b;color:white}
+.media img{display:block;width:100%;height:182px;object-fit:contain}
+.rank,.action{position:absolute;border-radius:6px;background:#191721e8;color:white;font-size:12px;padding:2px 8px}
+.rank{left:9px;top:9px;font-weight:750}
+.action{right:9px;bottom:9px}
+.copy{padding:12px 15px 16px}
+.copy small{color:#686375}
+h3{margin:3px 0 8px;font-size:16px;line-height:1.4;overflow-wrap:anywhere}
+.platform{font-size:12px;color:#575166}
+a:focus-visible{outline:3px solid #7952ef;outline-offset:-3px}
+dl{display:flex;gap:20px;border-top:1px solid #eeeaf5;margin:12px 0 0;padding-top:8px}
+dt{font-size:12px;color:#655e70}
+dd{margin:0;font-size:16px;font-weight:700;font-variant-numeric:tabular-nums}
+article.card{position:relative;cursor:pointer}
+article.card:hover,article.card:focus-within{outline:2px solid #8265c7}
+.hit{position:absolute;inset:0;border:0;background:transparent;width:100%;cursor:pointer}
+dl{gap:12px;justify-content:space-between}
+dd{font-size:15px}
+dialog{width:min(1030px,94vw);max-height:90vh;overflow:auto;border:0;border-radius:20px;padding:0;color:#252332;background:#fbfafc}
+dialog::backdrop{background:#161221b8}
+.bar{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid #dedbe6}
+.bar button{font-size:24px;background:none;border:0;cursor:pointer}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}
+.stage{background:#201e29;display:grid;place-items:center;min-height:330px;padding:12px}
+.stage img,.stage video{width:100%;max-height:64vh;object-fit:contain}
+.side{padding:20px;min-width:0}
+.tabs{display:flex;gap:3px;border-bottom:1px solid #ddd;flex-wrap:wrap}
+.tabs button{background:none;border:0;border-bottom:3px solid transparent;padding:9px 5px;cursor:pointer;color:#514d60}
+.tabs [aria-selected=true]{color:#54358c;border-color:#7852b2;font-weight:700}
+.panel{padding:18px 0;max-height:44vh;overflow:auto}
+.panel table{border-collapse:collapse;width:100%;font-size:14px}
+.panel td,.panel th{padding:6px 8px;border-bottom:1px solid #e9e6ed;text-align:left}
+.cta{display:inline-block;background:#55338b;color:white;text-decoration:none;border-radius:8px;padding:9px 17px}
+.row{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #e9e6ed;padding:7px 0}
+.row b{text-align:right}
+#rising h2{color:#087450}
+#trending h2{color:#ac520e}
+#new h2{color:#69459e}
+@media(max-width:700px){.split{grid-template-columns:1fr}
+.stage{min-height:100px}
+.stage img,.stage video{max-height:35vh}
+.side{padding:12px}
+.panel{max-height:32vh}
+}
+.notice{background:#f0edf6;border-radius:8px;padding:12px 14px;margin:0 0 12px;color:#574b69}
+</style>
+<header><div><a class="brand" href="https://denote.net/top-ads"><img alt="" src="data:image/png;base64,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">Denote</a><small>Top Ads</small></div></header>
+<main></main><dialog id="detail" aria-labelledby="adTitle"><div class="bar"><strong id="adTitle"></strong><button id="close">×</button></div><div class="split"><div class="stage"></div><div class="side"><div class="tabs" role="tablist"></div><div class="panel" id="info" role="tabpanel"></div><a class="cta" target="_blank" rel="noopener"></a></div></div></dialog>
+<script type="application/json" id="report">__REPORT_JSON__</script>
+<script>
+const data = JSON.parse(document.getElementById('report').textContent);
+const vocabulary = {
+ en:'Weekly game ads|Weekly app ads|Trending Ads|Rising Ads|New Ads|Weekly Creative Score Total|Score Increment|Growth Rate|Duration (days)|Overview|Data Trend|Related Ads|Audience|View details|Advertiser|Platforms|Date|Creative score|Ad|Region|Reach|No records for this view.|Details unavailable in this report.|Your account lacks access to these details.|Video|Image|Cover|Close',
+ zh:'游戏广告周榜|应用广告周榜|热门广告|飙升广告|新晋广告|周创意总分|周增量|增长率|投放时长（天）|Overview|Data Trend|Related Ads|Audience|查看详情|广告主|投放平台|日期|创意得分|广告|地区|触达人数|此项暂无记录。|本次未获取到该项详情。|当前账号没有查看这项详情的权限。|视频|图片|封面|关闭',
+ ja:'ゲーム広告週間ランキング|アプリ広告週間ランキング|人気広告|急上昇広告|新着広告|週間クリエイティブスコア合計|週間増加量|増加率|配信期間（日）|概要|データ推移|関連広告|オーディエンス|詳細を見る|広告主|配信先|日付|クリエイティブスコア|広告|地域|リーチ|該当する記録はありません。|今回は詳細を取得できませんでした。|この詳細の閲覧権限がありません。|動画|画像|カバー|閉じる',
+ ko:'주간 게임 광고 순위|주간 앱 광고 순위|인기 광고|급상승 광고|신규 광고|주간 소재 점수 합계|주간 증가량|증가율|집행 기간(일)|개요|데이터 추이|관련 광고|잠재고객|상세 보기|광고주|플랫폼|날짜|소재 점수|광고|지역|도달 수|표시할 기록이 없습니다.|이번에 상세 정보를 가져오지 못했습니다.|이 정보에 대한 조회 권한이 없습니다.|동영상|이미지|표지|닫기',
+ es:'Anuncios semanales de juegos|Anuncios semanales de aplicaciones|Anuncios populares|Anuncios en ascenso|Anuncios nuevos|Puntuación semanal total|Incremento semanal|Tasa de crecimiento|Duración (días)|Resumen|Tendencia|Anuncios relacionados|Audiencia|Ver detalles|Anunciante|Plataformas|Fecha|Puntuación|Anuncio|Región|Alcance|Sin registros para esta vista.|Detalles no disponibles en este informe.|Tu cuenta no tiene acceso a estos detalles.|Vídeo|Imagen|Portada|Cerrar',
+ nl:'Weekoverzicht gameadvertenties|Weekoverzicht appadvertenties|Populaire advertenties|Snelle stijgers|Nieuwe advertenties|Totale weekscore|Scoretoename|Groeipercentage|Looptijd (dagen)|Overzicht|Datatrend|Gerelateerde advertenties|Doelgroep|Bekijk details|Adverteerder|Platforms|Datum|Creatieve score|Advertentie|Regio|Bereik|Geen records voor deze weergave.|Details ontbreken in dit rapport.|Je account heeft geen toegang tot deze details.|Video|Afbeelding|Voorbeeld|Sluiten',
+ de:'Wöchentliche Spielewerbung|Wöchentliche App-Werbung|Beliebte Anzeigen|Aufsteiger|Neue Anzeigen|Gesamter Wochenwert|Wöchentlicher Zuwachs|Wachstumsrate|Laufzeit (Tage)|Übersicht|Datenverlauf|Ähnliche Anzeigen|Zielgruppe|Details ansehen|Werbetreibender|Plattformen|Datum|Anzeigenwert|Anzeige|Region|Reichweite|Keine Einträge für diese Ansicht.|Details in diesem Bericht nicht verfügbar.|Dein Konto hat keinen Zugriff auf diese Details.|Video|Bild|Vorschaubild|Schließen',
+ fr:'Publicités de jeux de la semaine|Publicités d’applications de la semaine|Publicités populaires|Publicités en progression|Nouvelles publicités|Score créatif hebdomadaire total|Hausse du score|Taux de croissance|Durée (jours)|Aperçu|Évolution|Publicités associées|Audience|Voir les détails|Annonceur|Plateformes|Date|Score créatif|Publicité|Région|Couverture|Aucun résultat pour cette vue.|Détails indisponibles dans ce rapport.|Votre compte ne peut pas consulter ces détails.|Vidéo|Image|Aperçu|Fermer'
+};
+const t = vocabulary[data.language].split('|');
+document.documentElement.lang = data.language;
+const main = document.querySelector('main');
+const dlg = document.querySelector('dialog');
+const stage = dlg.querySelector('.stage');
+const tabs = dlg.querySelector('.tabs');
+const panel = dlg.querySelector('.panel');
+const charts = ['trending','rising','new'];
+const fmt = new Intl.NumberFormat(data.language,{maximumFractionDigits:4});
+function add(parent, tag, text, cls) {
+ const el = document.createElement(tag);
+ if (cls) el.className = cls;
+ if (text != null) el.textContent = text;
+ parent.append(el);
+ return el;
+}
+function number(n, signed=false, unit='') {
+ return typeof n === 'number' ? (signed && n>0 ? '+' : '')+fmt.format(n)+unit : '—';
+}
+function fields(chart, ad) {
+ const scores = chart==='rising' ? [[t[6],number(ad.increment,true)],[t[7],number(ad.rate,true,'%')]] : [[t[5],number(ad.score)]];
+ return [...scores,[t[8],number(ad.days)]];
+}
+function picture(parent, ad) {
+ if (!ad.preview) return;
+ const img = add(parent,'img');
+ img.alt = ad.title || ad.advertiser || '';
+ img.src = ad.preview;
+}
+const heading = t[data.category==='game'?0:1];
+document.title = 'Denote · '+heading;
+add(main,'h1',heading);
+add(main,'time',data.start+' — '+data.end+' · Asia/Shanghai');
+const nav = add(main,'nav');
+let active, activeChart;
+function createCard(grid, chart, ad) {
+ const card = add(grid,'article',null,'card');
+ const media = add(card,'div',null,'media');
+ picture(media, ad);
+ add(media,'span','#'+ad.rank,'rank');
+ add(media,'span',ad.video?'▶ '+t[24]:ad.format==='video'?t[26]:t[25],'action');
+ const copy = add(card,'div',null,'copy');
+ add(copy,'small',ad.advertiser || '—');
+ const title = ad.title || ad.advertiser || ad.key;
+ add(copy,'h3',title);
+ add(copy,'div',ad.platforms.join(' · '),'platform');
+ const dl=add(copy,'dl');
+ for(const [label,value] of fields(chart,ad)) {
+  const pair=add(dl,'div');add(pair,'dt',label);add(pair,'dd',value);
+ }
+ const btn=add(card,'button',null,'hit');
+ btn.setAttribute('aria-label','#'+ad.rank+' '+title);
+ btn.onclick=()=>openCard(chart,ad,title);
+}
+charts.forEach((chart,i)=>{
+ add(nav,'a',t[i+2]).href='#'+chart;
+ const section=add(main,'section');section.id=chart;
+ const rows=data.charts[chart];
+ add(add(section,'div',null,'head'),'h2',t[i+2]+' · '+rows.length);
+ const grid=add(section,'div',null,'grid');
+ rows.forEach(ad=>createCard(grid,chart,ad));
+});
+function select(i) {
+ [...tabs.children].forEach((b,j)=>{b.setAttribute('aria-selected',String(i===j));b.tabIndex=i===j?0:-1});
+ panel.replaceChildren();panel.setAttribute('aria-labelledby','tab'+i);
+ const state=active.states[i];
+ const note=()=>add(panel,'p',t[state==='locked'?23:state==='empty'?21:22],'notice');
+ if(i===0) {
+  if(state!=='ok') note();
+  for(const [label,value] of [[t[14],active.advertiser],[t[15],active.platforms.join(' · ')],...fields(activeChart,active)]) {
+   const row=add(panel,'div',null,'row');add(row,'span',label);add(row,'b',value || '—');
+  }
+  return;
+ }
+ const rows=[active.trend,active.related,active.audience][i-1];
+ if(!rows.length){note();return}
+ const table=add(panel,'table'), header=add(add(table,'thead'),'tr');
+ for(const label of [[t[16],t[17]],[t[18],t[15]],[t[19],t[20]]][i-1]) add(header,'th',label);
+ const body=add(table,'tbody');
+ for(const values of rows){
+  const row=add(body,'tr');
+  values.forEach(v=>add(row,'td',typeof v==='number'?number(v):v??'—'));
+ }
+}
+t.slice(9,13).forEach((label,i)=>{
+ const btn=add(tabs,'button',label);btn.id='tab'+i;btn.setAttribute('role','tab');btn.setAttribute('aria-controls','info');
+ btn.onclick=()=>select(i);
+ btn.onkeydown=e=>{if(!['ArrowRight','ArrowLeft'].includes(e.key))return;e.preventDefault();const j=(i+(e.key==='ArrowLeft'?3:1))%4;select(j);tabs.children[j].focus()};
+});
+const link=dlg.querySelector('.cta');link.textContent=t[13]+' ↗';
+function openCard(chart,ad,title){
+ active=ad;activeChart=chart;dlg.querySelector('strong').textContent=title;
+ stage.replaceChildren();
+ if(ad.video){const v=add(stage,'video');v.controls=true;v.playsInline=true;v.preload='none';if(ad.preview)v.poster=ad.preview;v.src=ad.video}
+ else picture(stage,ad);
+ link.href='https://denote.net/workspace/'+chart+'-ads?category='+(data.category==='game'?'game':'tool');
+ select(0);dlg.showModal();
+}
+const close=dlg.querySelector('#close');close.setAttribute('aria-label',t[27]);close.onclick=()=>dlg.close();
+dlg.onclose=()=>{const v=stage.querySelector('video');if(v){v.pause();v.removeAttribute('src');v.load()}stage.replaceChildren()};
+</script></html>

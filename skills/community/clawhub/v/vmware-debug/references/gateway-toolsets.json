@@ -1,0 +1,179 @@
+{
+  "format": "vmware-debug-gateway-toolsets-example-v1",
+  "status": "offline example; not a gateway configuration or enforcement mechanism",
+  "profiles": [
+    {
+      "id": "vm-performance",
+      "procedure": "vm-performance.md",
+      "tools": {
+        "vmware-monitor": [
+          "list_virtual_machines",
+          "investigate_vm",
+          "get_vm_info"
+        ],
+        "vmware-aria": [
+          "list_resources",
+          "get_resource",
+          "list_metric_keys",
+          "get_resource_metrics"
+        ]
+      },
+      "calls": [
+        {
+          "backend": "vmware-monitor",
+          "tool": "list_virtual_machines",
+          "arguments": {
+            "target": "<vsphere-target>",
+            "name_filter": "<vm-name>",
+            "limit": 50,
+            "fields": [
+              "name",
+              "uuid",
+              "host",
+              "folder_path"
+            ]
+          }
+        },
+        {
+          "backend": "vmware-monitor",
+          "tool": "investigate_vm",
+          "arguments": {
+            "target": "<vsphere-target>",
+            "vm_name": "<resolved-exact-vm-name>",
+            "hours": 1
+          }
+        },
+        {
+          "backend": "vmware-monitor",
+          "tool": "get_vm_info",
+          "arguments": {
+            "target": "<vsphere-target>",
+            "vm_name": "<resolved-exact-vm-name>"
+          }
+        },
+        {
+          "backend": "vmware-aria",
+          "tool": "list_resources",
+          "arguments": {
+            "target": "<aria-target>",
+            "resource_kind": "VirtualMachine",
+            "name_filter": "<vm-name>",
+            "limit": 50
+          }
+        },
+        {
+          "backend": "vmware-aria",
+          "tool": "get_resource",
+          "arguments": {
+            "target": "<aria-target>",
+            "resource_id": "<verified-resource-uuid>"
+          }
+        },
+        {
+          "backend": "vmware-aria",
+          "tool": "list_metric_keys",
+          "arguments": {
+            "target": "<aria-target>",
+            "resource_id": "<verified-resource-uuid>",
+            "key_filter": "cpu|",
+            "limit": 50,
+            "offset": 0
+          }
+        },
+        {
+          "backend": "vmware-aria",
+          "tool": "get_resource_metrics",
+          "arguments": {
+            "target": "<aria-target>",
+            "resource_id": "<verified-resource-uuid>",
+            "metric_keys": [
+              "<key-returned-by-list_metric_keys>"
+            ],
+            "hours": 1,
+            "rollup_type": "AVG",
+            "interval_type": "MINUTES",
+            "interval_quantity": 5,
+            "summary": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "host-alarms",
+      "procedure": "host-alarms.md",
+      "tools": {
+        "vmware-monitor": [
+          "list_esxi_hosts",
+          "investigate_host",
+          "get_events",
+          "get_host_sensors",
+          "get_host_performance"
+        ]
+      },
+      "calls": [
+        {
+          "backend": "vmware-monitor",
+          "tool": "list_esxi_hosts",
+          "arguments": {
+            "target": "<vsphere-target>",
+            "limit": 50
+          }
+        },
+        {
+          "backend": "vmware-monitor",
+          "tool": "investigate_host",
+          "arguments": {
+            "target": "<vsphere-target>",
+            "host_name": "<resolved-exact-host-name>",
+            "hours": 1
+          }
+        },
+        {
+          "backend": "vmware-monitor",
+          "tool": "get_events",
+          "arguments": {
+            "target": "<vsphere-target>",
+            "start": "2026-11-20T00:00:00Z",
+            "end": "2026-11-20T01:00:00Z",
+            "severity": "info"
+          }
+        },
+        {
+          "backend": "vmware-monitor",
+          "tool": "get_host_sensors",
+          "arguments": {
+            "target": "<vsphere-target>",
+            "limit": 50
+          }
+        },
+        {
+          "backend": "vmware-monitor",
+          "tool": "get_host_performance",
+          "arguments": {
+            "target": "<vsphere-target>",
+            "host_name": "<resolved-exact-host-name>",
+            "limit": 1
+          }
+        }
+      ]
+    }
+  ],
+  "optional_local_ledger": {
+    "backend": "vmware-debug",
+    "writes_local": [
+      "open_case",
+      "submit_case_evidence",
+      "record_case_gap",
+      "record_case_hypothesis"
+    ],
+    "reads": [
+      "get_case"
+    ],
+    "requires_separate_permission": true
+  },
+  "schema_validation_baseline": {
+    "vmware-monitor": "2.6.2 local registry",
+    "vmware-aria": "2.4.7 local registry",
+    "vmware-debug": "2.3.3 source candidate checked on 2026-11-20; report available from 2.4.0"
+  }
+}

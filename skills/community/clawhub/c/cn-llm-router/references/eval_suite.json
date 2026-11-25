@@ -1,0 +1,966 @@
+{
+  "suite": "cn-local-eval-v1",
+  "version": "1.0",
+  "description": "cn-llm-router 本地质量评测集：代码/推理/翻译/摘要四类中文任务，共 50 题。含参考答案关键词与评分 rubric 要点，本地评分无需 LLM。",
+  "categories": [
+    "code",
+    "reason",
+    "translate",
+    "summarize"
+  ],
+  "category_names": {
+    "code": "代码",
+    "reason": "推理",
+    "translate": "翻译",
+    "summarize": "摘要"
+  },
+  "total": 50,
+  "cases": [
+    {
+      "id": "code-01",
+      "category": "code",
+      "prompt": "用 Python 写一个快速排序函数 quicksort(arr)，要求原地或返回新数组均可，并说明平均时间复杂度。",
+      "rubric": {
+        "keywords": [
+          "def",
+          "quicksort",
+          "pivot",
+          "递归",
+          "O(nlogn)"
+        ],
+        "points": [
+          "给出可运行的快排实现",
+          "说明平均时间复杂度 O(nlogn)",
+          "体现分治/枢轴思想"
+        ]
+      }
+    },
+    {
+      "id": "code-02",
+      "category": "code",
+      "prompt": "写一个 Python 函数判断字符串是否为回文（忽略大小写与非字母数字字符）。",
+      "rubric": {
+        "keywords": [
+          "def",
+          "lower",
+          "isalnum",
+          "reverse",
+          "return True"
+        ],
+        "points": [
+          "忽略大小写",
+          "忽略非字母数字",
+          "返回布尔值"
+        ]
+      }
+    },
+    {
+      "id": "code-03",
+      "category": "code",
+      "prompt": "实现 Python 函数合并两个升序数组，返回一个升序新数组，不使用内置 sort。",
+      "rubric": {
+        "keywords": [
+          "def",
+          "while",
+          "compare",
+          "append",
+          "O(m+n)"
+        ],
+        "points": [
+          "双指针合并",
+          "返回升序结果",
+          "不依赖内置排序"
+        ]
+      }
+    },
+    {
+      "id": "code-04",
+      "category": "code",
+      "prompt": "用 Python 实现一个简单的 LRU 缓存类，支持 get 和 put，容量满时淘汰最久未用项。",
+      "rubric": {
+        "keywords": [
+          "class",
+          "OrderedDict",
+          "get",
+          "put",
+          "popitem"
+        ],
+        "points": [
+          "get/put 接口",
+          "容量淘汰策略",
+          "访问后更新顺序"
+        ]
+      }
+    },
+    {
+      "id": "code-05",
+      "category": "code",
+      "prompt": "写 Python 代码统计一段文本中每个单词出现次数，按次数降序输出前 10。",
+      "rubric": {
+        "keywords": [
+          "Counter",
+          "split",
+          "most_common",
+          "dict"
+        ],
+        "points": [
+          "正确分词",
+          "统计词频",
+          "降序取前10"
+        ]
+      }
+    },
+    {
+      "id": "code-06",
+      "category": "code",
+      "prompt": "给出二叉树层序遍历（BFS）的 Python 实现，按层返回节点值列表。",
+      "rubric": {
+        "keywords": [
+          "deque",
+          "queue",
+          "while",
+          "append",
+          "level"
+        ],
+        "points": [
+          "使用队列",
+          "按层分组",
+          "返回二维列表"
+        ]
+      }
+    },
+    {
+      "id": "code-07",
+      "category": "code",
+      "prompt": "用 Python 实现一个线程安全的单例模式（说明加锁或使用模块级实例）。",
+      "rubric": {
+        "keywords": [
+          "class",
+          "__new__",
+          "Lock",
+          "instance",
+          "线程安全"
+        ],
+        "points": [
+          "单例实现",
+          "线程安全处理",
+          "全局唯一实例"
+        ]
+      }
+    },
+    {
+      "id": "code-08",
+      "category": "code",
+      "prompt": "写 Python 函数 two_sum(nums, target) 返回两数下标，要求一次遍历。",
+      "rubric": {
+        "keywords": [
+          "def",
+          "dict",
+          "complement",
+          "enumerate",
+          "O(n)"
+        ],
+        "points": [
+          "哈希表一次遍历",
+          "返回下标",
+          "时间复杂度 O(n)"
+        ]
+      }
+    },
+    {
+      "id": "code-09",
+      "category": "code",
+      "prompt": "实现单链表反转的 Python 函数，返回新头节点。",
+      "rubric": {
+        "keywords": [
+          "class ListNode",
+          "prev",
+          "next",
+          "while",
+          "return prev"
+        ],
+        "points": [
+          "维护 prev/cur 指针",
+          "正确改 next 指向",
+          "返回新头"
+        ]
+      }
+    },
+    {
+      "id": "code-10",
+      "category": "code",
+      "prompt": "用 Python 写一个带 lru_cache 的斐波那契函数，并说明优化效果。",
+      "rubric": {
+        "keywords": [
+          "lru_cache",
+          "def",
+          "fib",
+          "缓存",
+          "O(n)"
+        ],
+        "points": [
+          "使用缓存装饰器",
+          "避免重复计算",
+          "说明复杂度优化"
+        ]
+      }
+    },
+    {
+      "id": "code-11",
+      "category": "code",
+      "prompt": "写 Python 函数检查括号 ()[]{} 是否合法匹配。",
+      "rubric": {
+        "keywords": [
+          "stack",
+          "push",
+          "pop",
+          "mapping",
+          "return"
+        ],
+        "points": [
+          "使用栈",
+          "左右括号匹配",
+          "空栈/剩余检查"
+        ]
+      }
+    },
+    {
+      "id": "code-12",
+      "category": "code",
+      "prompt": "实现 Python 函数返回字符串中最长无重复字符子串的长度（滑动窗口）。",
+      "rubric": {
+        "keywords": [
+          "sliding window",
+          "set",
+          "left",
+          "right",
+          "max"
+        ],
+        "points": [
+          "滑动窗口",
+          "维护无重复集合",
+          "返回最大长度"
+        ]
+      }
+    },
+    {
+      "id": "code-13",
+      "category": "code",
+      "prompt": "写 Python 二分查找函数，在有序数组中找目标值下标，找不到返回 -1。",
+      "rubric": {
+        "keywords": [
+          "left",
+          "right",
+          "mid",
+          "while",
+          "-1"
+        ],
+        "points": [
+          "有序前提",
+          "折半查找",
+          "边界与未找到处理"
+        ]
+      }
+    },
+    {
+      "id": "reason-01",
+      "category": "reason",
+      "prompt": "所有猫都怕水；咪咪怕水。能否推出咪咪是猫？请说明理由。",
+      "rubric": {
+        "keywords": [
+          "不能",
+          "肯定后件",
+          "谬误",
+          "逆命题",
+          "不一定"
+        ],
+        "points": [
+          "结论为不能推出",
+          "指出肯定后件谬误",
+          "给出反例说明"
+        ]
+      }
+    },
+    {
+      "id": "reason-02",
+      "category": "reason",
+      "prompt": "袋中有 3 红 2 蓝球，不放回取 2 个，求两球同色的概率。",
+      "rubric": {
+        "keywords": [
+          "组合",
+          "C(3,2)",
+          "C(5,2)",
+          "3/10",
+          "概率"
+        ],
+        "points": [
+          "列出同色情形",
+          "计算组合数",
+          "给出概率 4/10=2/5 或过程正确"
+        ]
+      }
+    },
+    {
+      "id": "reason-03",
+      "category": "reason",
+      "prompt": "数列 2,6,12,20,30,? 下一项是多少，并说明规律。",
+      "rubric": {
+        "keywords": [
+          "42",
+          "n(n+1)",
+          "差为",
+          "递增",
+          "规律"
+        ],
+        "points": [
+          "下一项为42",
+          "相邻差为4,6,8,10,12",
+          "通项 n(n+1)"
+        ]
+      }
+    },
+    {
+      "id": "reason-04",
+      "category": "reason",
+      "prompt": "甲说乙说谎，乙说丙说谎，丙说甲乙都说谎。谁在说谎？请推理。",
+      "rubric": {
+        "keywords": [
+          "矛盾",
+          "假设",
+          "甲",
+          "乙",
+          "真话"
+        ],
+        "points": [
+          "用假设法",
+          "分析矛盾关系",
+          "给出一致结论"
+        ]
+      }
+    },
+    {
+      "id": "reason-05",
+      "category": "reason",
+      "prompt": "如果我买了票，就会去演唱会；我没去演唱会。能推出什么？",
+      "rubric": {
+        "keywords": [
+          "没买票",
+          "逆否命题",
+          "逆否",
+          "可以推出"
+        ],
+        "points": [
+          "结论为没买票",
+          "使用逆否推理",
+          "说明逻辑有效"
+        ]
+      }
+    },
+    {
+      "id": "reason-06",
+      "category": "reason",
+      "prompt": "时钟 3:00 到 3:30，时针与分针夹角是多少度（3:00 整）与 3:30 各是多少？",
+      "rubric": {
+        "keywords": [
+          "90度",
+          "75度",
+          "时针",
+          "分针",
+          "角度"
+        ],
+        "points": [
+          "3:00 夹角90度",
+          "3:30 夹角75度",
+          "考虑时针移动"
+        ]
+      }
+    },
+    {
+      "id": "reason-07",
+      "category": "reason",
+      "prompt": "某商品先涨价 20% 再降价 20%，现价与原价相比如何？",
+      "rubric": {
+        "keywords": [
+          "低于原价",
+          "0.96",
+          "降4%",
+          "乘法",
+          "基数"
+        ],
+        "points": [
+          "现价为原价96%",
+          "低于原价",
+          "说明基数变化"
+        ]
+      }
+    },
+    {
+      "id": "reason-08",
+      "category": "reason",
+      "prompt": "所有勤奋的人都会成功；小张成功了。能推出小张勤奋吗？为什么？",
+      "rubric": {
+        "keywords": [
+          "不能",
+          "肯定后件",
+          "必要",
+          "充分",
+          "谬误"
+        ],
+        "points": [
+          "结论不能",
+          "区分充分必要条件",
+          "说明逻辑谬误"
+        ]
+      }
+    },
+    {
+      "id": "reason-09",
+      "category": "reason",
+      "prompt": "一个正方形边长增加 50%，面积增加百分之多少？",
+      "rubric": {
+        "keywords": [
+          "125%",
+          "2.25",
+          "增加125%",
+          "面积",
+          "平方"
+        ],
+        "points": [
+          "新面积为2.25倍",
+          "增加125%",
+          "说明面积按平方变化"
+        ]
+      }
+    },
+    {
+      "id": "reason-10",
+      "category": "reason",
+      "prompt": "有 5 个人互相握手，每两人握一次，共多少次握手？",
+      "rubric": {
+        "keywords": [
+          "10",
+          "C(5,2)",
+          "组合",
+          "握手",
+          "10次"
+        ],
+        "points": [
+          "用组合 C(5,2)",
+          "结果10次",
+          "说明避免重复计数"
+        ]
+      }
+    },
+    {
+      "id": "reason-11",
+      "category": "reason",
+      "prompt": "如果天下雨地就湿；地湿了。能否推出天下雨了？",
+      "rubric": {
+        "keywords": [
+          "不能",
+          "肯定后件",
+          "其他原因",
+          "洒水",
+          "不一定"
+        ],
+        "points": [
+          "结论不能",
+          "指出其他可能原因",
+          "说明逻辑错误"
+        ]
+      }
+    },
+    {
+      "id": "reason-12",
+      "category": "reason",
+      "prompt": "数列 1,1,2,3,5,8,? 下一项是多少，规律是什么？",
+      "rubric": {
+        "keywords": [
+          "13",
+          "斐波那契",
+          "前两项之和",
+          "递推",
+          "规律"
+        ],
+        "points": [
+          "下一项13",
+          "每项为前两项和",
+          "指出斐波那契"
+        ]
+      }
+    },
+    {
+      "id": "reason-13",
+      "category": "reason",
+      "prompt": "甲乙两人赛跑，甲速度是乙的 1.5 倍，乙跑 100 米用时 15 秒，甲跑 150 米约用时多少？",
+      "rubric": {
+        "keywords": [
+          "15秒",
+          "速度",
+          "时间",
+          "相等",
+          "约15"
+        ],
+        "points": [
+          "算出乙速",
+          "甲速为1.5倍",
+          "甲跑150米约15秒"
+        ]
+      }
+    },
+    {
+      "id": "translate-01",
+      "category": "translate",
+      "prompt": "把「人工智能正在深刻改变我们的工作与生活方式」翻译成英文。",
+      "rubric": {
+        "keywords": [
+          "AI",
+          "artificial intelligence",
+          "profoundly",
+          "transforming",
+          "work and life"
+        ],
+        "points": [
+          "准确翻译人工智能",
+          "体现深刻改变",
+          "语句通顺"
+        ]
+      }
+    },
+    {
+      "id": "translate-02",
+      "category": "translate",
+      "prompt": "把 \"Practice makes perfect\" 翻译成中文，并说明含义。",
+      "rubric": {
+        "keywords": [
+          "熟能生巧",
+          "练习",
+          "完美",
+          "含义"
+        ],
+        "points": [
+          "译为熟能生巧",
+          "解释含义",
+          "表达自然"
+        ]
+      }
+    },
+    {
+      "id": "translate-03",
+      "category": "translate",
+      "prompt": "把「这家公司致力于为客户提供高质量的售后服务」翻译成英文。",
+      "rubric": {
+        "keywords": [
+          "committed",
+          "high-quality",
+          "after-sales",
+          "customers",
+          "service"
+        ],
+        "points": [
+          "翻译致力于",
+          "翻译售后服务",
+          "语句通顺"
+        ]
+      }
+    },
+    {
+      "id": "translate-04",
+      "category": "translate",
+      "prompt": "把 \"The early bird catches the worm\" 翻译成中文并解释。",
+      "rubric": {
+        "keywords": [
+          "早起的鸟儿",
+          "有虫吃",
+          "勤奋",
+          "先到"
+        ],
+        "points": [
+          "译出字面意思",
+          "解释寓意",
+          "表达自然"
+        ]
+      }
+    },
+    {
+      "id": "translate-05",
+      "category": "translate",
+      "prompt": "把「数字化转型是制造企业提升竞争力的关键路径」翻译成英文。",
+      "rubric": {
+        "keywords": [
+          "digital transformation",
+          "manufacturing",
+          "competitiveness",
+          "key path",
+          "enhance"
+        ],
+        "points": [
+          "翻译数字化转型",
+          "翻译竞争力",
+          "语句通顺"
+        ]
+      }
+    },
+    {
+      "id": "translate-06",
+      "category": "translate",
+      "prompt": "把 \"Actions speak louder than words\" 翻译成中文。",
+      "rubric": {
+        "keywords": [
+          "行动",
+          "言语",
+          "胜于",
+          "事实",
+          "行动比语言"
+        ],
+        "points": [
+          "译为行动胜于言辞",
+          "含义准确",
+          "表达自然"
+        ]
+      }
+    },
+    {
+      "id": "translate-07",
+      "category": "translate",
+      "prompt": "把「请在提交报告前仔细核对所有数据」翻译成英文。",
+      "rubric": {
+        "keywords": [
+          "please",
+          "carefully",
+          "verify",
+          "before",
+          "submit"
+        ],
+        "points": [
+          "翻译仔细核对",
+          "翻译提交前",
+          "语气礼貌"
+        ]
+      }
+    },
+    {
+      "id": "translate-08",
+      "category": "translate",
+      "prompt": "把 \"Where there is a will, there is a way\" 翻译成中文并解释。",
+      "rubric": {
+        "keywords": [
+          "有志者",
+          "事竟成",
+          "意志",
+          "方法",
+          "决心"
+        ],
+        "points": [
+          "译为有志者事竟成",
+          "解释含义",
+          "表达自然"
+        ]
+      }
+    },
+    {
+      "id": "translate-09",
+      "category": "translate",
+      "prompt": "把「我们的产品在性能与价格之间取得了良好的平衡」翻译成英文。",
+      "rubric": {
+        "keywords": [
+          "product",
+          "performance",
+          "price",
+          "balance",
+          "good"
+        ],
+        "points": [
+          "翻译性能与价格",
+          "翻译平衡",
+          "语句通顺"
+        ]
+      }
+    },
+    {
+      "id": "translate-10",
+      "category": "translate",
+      "prompt": "把 \"A journey of a thousand miles begins with a single step\" 翻译成中文。",
+      "rubric": {
+        "keywords": [
+          "千里之行",
+          "始于足下",
+          "一步",
+          "旅程",
+          "开始"
+        ],
+        "points": [
+          "译出典故",
+          "含义准确",
+          "表达自然"
+        ]
+      }
+    },
+    {
+      "id": "translate-11",
+      "category": "translate",
+      "prompt": "把「面对挑战，我们需要保持积极的心态和持续的行动」翻译成英文。",
+      "rubric": {
+        "keywords": [
+          "challenges",
+          "positive",
+          "mindset",
+          "continuous",
+          "action"
+        ],
+        "points": [
+          "翻译积极心态",
+          "翻译持续行动",
+          "语句通顺"
+        ]
+      }
+    },
+    {
+      "id": "translate-12",
+      "category": "translate",
+      "prompt": "把 \"Knowledge is power\" 翻译成中文并说明出处。",
+      "rubric": {
+        "keywords": [
+          "知识就是力量",
+          "培根",
+          "knowledge",
+          "power",
+          "出处"
+        ],
+        "points": [
+          "译为知识就是力量",
+          "说明培根",
+          "表达准确"
+        ]
+      }
+    },
+    {
+      "id": "summarize-01",
+      "category": "summarize",
+      "prompt": "请用一句话总结：人工智能在医疗影像诊断中可辅助医生识别早期肿瘤，显著提升筛查效率，但仍需医生最终确认，避免误诊。",
+      "rubric": {
+        "keywords": [
+          "AI",
+          "医疗影像",
+          "辅助诊断",
+          "效率",
+          "医生确认"
+        ],
+        "points": [
+          "概括辅助诊断",
+          "提到提升效率",
+          "保留需医生确认"
+        ]
+      }
+    },
+    {
+      "id": "summarize-02",
+      "category": "summarize",
+      "prompt": "请总结要点：远程办公降低了通勤成本、提升了时间灵活性，但也带来沟通效率下降与团队凝聚力减弱的问题，需要配套协作工具与制度。",
+      "rubric": {
+        "keywords": [
+          "远程办公",
+          "通勤成本",
+          "沟通",
+          "凝聚力",
+          "协作工具"
+        ],
+        "points": [
+          "概括优点",
+          "概括缺点",
+          "提到应对措施"
+        ]
+      }
+    },
+    {
+      "id": "summarize-03",
+      "category": "summarize",
+      "prompt": "一句话概括：该公司 2024 年营收增长 30%，主要来自海外市场扩张；但利润率下降 5 个百分点，因研发投入大幅增加。",
+      "rubric": {
+        "keywords": [
+          "营收增长30%",
+          "海外市场",
+          "利润率下降",
+          "研发投入",
+          "2024"
+        ],
+        "points": [
+          "提到营收增长",
+          "提到利润下降",
+          "说明原因"
+        ]
+      }
+    },
+    {
+      "id": "summarize-04",
+      "category": "summarize",
+      "prompt": "请总结：新能源汽车渗透率持续提升，充电桩等基础设施加快建设，电池成本下降推动价格下探，但续航焦虑与二手车残值仍是用户顾虑。",
+      "rubric": {
+        "keywords": [
+          "新能源",
+          "充电桩",
+          "电池成本",
+          "续航焦虑",
+          "残值"
+        ],
+        "points": [
+          "概括增长趋势",
+          "提到基础设施",
+          "保留用户顾虑"
+        ]
+      }
+    },
+    {
+      "id": "summarize-05",
+      "category": "summarize",
+      "prompt": "一句话总结：本次产品更新新增了夜间模式与语音搜索，修复了若干闪退问题，并优化了启动速度约 20%，建议用户尽快升级。",
+      "rubric": {
+        "keywords": [
+          "夜间模式",
+          "语音搜索",
+          "修复闪退",
+          "启动速度",
+          "升级"
+        ],
+        "points": [
+          "概括新增功能",
+          "提到修复与优化",
+          "提到升级建议"
+        ]
+      }
+    },
+    {
+      "id": "summarize-06",
+      "category": "summarize",
+      "prompt": "请总结：研究表明规律运动可改善心血管健康、缓解压力并提升睡眠质量，建议每周至少 150 分钟中等强度有氧运动，循序渐进。",
+      "rubric": {
+        "keywords": [
+          "规律运动",
+          "心血管",
+          "压力",
+          "睡眠",
+          "150分钟"
+        ],
+        "points": [
+          "概括健康益处",
+          "提到运动时长建议",
+          "提到循序渐进"
+        ]
+      }
+    },
+    {
+      "id": "summarize-07",
+      "category": "summarize",
+      "prompt": "一句话概括：该城市通过优化交通信号与增设公交专用道，使高峰拥堵时长下降 15%，但停车难问题仍未明显缓解。",
+      "rubric": {
+        "keywords": [
+          "交通信号",
+          "公交专用道",
+          "拥堵下降",
+          "停车难",
+          "15%"
+        ],
+        "points": [
+          "概括改善措施",
+          "提到拥堵下降",
+          "保留停车难问题"
+        ]
+      }
+    },
+    {
+      "id": "summarize-08",
+      "category": "summarize",
+      "prompt": "请总结：云计算帮助企业按需获取算力、降低初期投入，但数据安全和合规风险不容忽视，需选择可靠服务商并制定数据治理策略。",
+      "rubric": {
+        "keywords": [
+          "云计算",
+          "按需",
+          "降低投入",
+          "数据安全",
+          "合规"
+        ],
+        "points": [
+          "概括优势",
+          "提到风险",
+          "提到治理策略"
+        ]
+      }
+    },
+    {
+      "id": "summarize-09",
+      "category": "summarize",
+      "prompt": "一句话总结：这款教育 App 通过个性化题目推荐提升学习效率，用户留存率提高 25%，但内容覆盖偏应试，素质教育板块较弱。",
+      "rubric": {
+        "keywords": [
+          "个性化推荐",
+          "学习效率",
+          "留存率25%",
+          "应试",
+          "素质教育"
+        ],
+        "points": [
+          "概括核心功能",
+          "提到留存提升",
+          "保留内容短板"
+        ]
+      }
+    },
+    {
+      "id": "summarize-10",
+      "category": "summarize",
+      "prompt": "请总结：电子商务直播带货增长迅猛，带来销售转化提升，但也存在虚假宣传与售后纠纷增多的问题，监管正在加强。",
+      "rubric": {
+        "keywords": [
+          "直播带货",
+          "销售转化",
+          "虚假宣传",
+          "售后纠纷",
+          "监管"
+        ],
+        "points": [
+          "概括增长",
+          "提到问题",
+          "提到监管加强"
+        ]
+      }
+    },
+    {
+      "id": "summarize-11",
+      "category": "summarize",
+      "prompt": "一句话概括：该研究报告预测未来五年 AI 算力需求年均增长 40%，芯片供应可能趋紧，建议企业提前锁定产能并探索模型轻量化。",
+      "rubric": {
+        "keywords": [
+          "算力需求",
+          "增长40%",
+          "芯片供应",
+          "锁定产能",
+          "轻量化"
+        ],
+        "points": [
+          "提到需求增长",
+          "提到供应风险",
+          "提到应对建议"
+        ]
+      }
+    },
+    {
+      "id": "summarize-12",
+      "category": "summarize",
+      "prompt": "请总结要点：远程医疗让优质医疗资源下沉基层，缓解看病难，但对网络稳定性依赖高，且医保报销政策仍需进一步完善。",
+      "rubric": {
+        "keywords": [
+          "远程医疗",
+          "资源下沉",
+          "看病难",
+          "网络依赖",
+          "医保"
+        ],
+        "points": [
+          "概括价值",
+          "提到网络依赖",
+          "提到医保政策"
+        ]
+      }
+    }
+  ]
+}

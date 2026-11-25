@@ -1,0 +1,4 @@
+interface:
+  display_name: "抖音多账号内容协同"
+  short_description: "隔离多个抖音账号浏览器环境并汇总热点、评论和竞品分析结果"
+  default_prompt: "使用 $douyin-multi-account-workbench 为我指定的多个抖音账号分别运行公开内容分析并汇总结果，不自动发布或互动。"

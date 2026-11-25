@@ -1,0 +1,31 @@
+{
+ "_command": "python3 scripts/gen_figure.py -t flow -d templates/flow_swimlane-lr-journal.json --gate strict -o flow_swimlane_lr_journal.png",
+ "_chart_type": "flow",
+ "_scene": "",
+ "_description": "",
+ "_caption_template": "",
+ "_note": "泳道 LR 范式：论文同行评审三泳道（作者/审稿人/编辑）横行带——decide 决策分流（accept/revise）+resubmit 虚线回边+左侧竖排标题，期刊/审稿流程章范式",
+ "layout": "swimlane",
+ "direction": "LR",
+ "title": "Peer review workflow",
+ "lanes": ["Authors", "Reviewers", "Editors"],
+ "font_size": 11,
+ "nodes": [
+  {"id": "draft", "label": "Prepare manuscript", "sublabel": "per venue template", "lane": "Authors", "shape": "document"},
+  {"id": "submit", "label": "Submit", "sublabel": "portal upload", "lane": "Authors", "shape": "io"},
+  {"id": "revise", "label": "Revise", "sublabel": "rebuttal letter", "lane": "Authors", "shape": "manual-op"},
+  {"id": "review", "label": "Peer review", "sublabel": "2-3 rounds", "lane": "Reviewers", "shape": "document"},
+  {"id": "decide", "label": "Accept?", "sublabel": "editor decision", "lane": "Editors", "shape": "diamond"},
+  {"id": "accept", "label": "Accept", "sublabel": "camera-ready", "lane": "Editors", "shape": "terminal"},
+  {"id": "publish", "label": "Typeset & publish", "sublabel": "issue assignment", "lane": "Editors", "shape": "predefined"}
+ ],
+ "edges": [
+  {"from": "draft", "to": "submit"},
+  {"from": "submit", "to": "review"},
+  {"from": "review", "to": "decide"},
+  {"from": "decide", "to": "revise", "label": "minor/major"},
+  {"from": "revise", "to": "review", "label": "resubmit", "dashed": true},
+  {"from": "decide", "to": "accept", "label": "accept", "thick": true},
+  {"from": "accept", "to": "publish"}
+ ]
+}

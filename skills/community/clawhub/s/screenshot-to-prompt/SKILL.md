@@ -1,6 +1,6 @@
 ---
 name: screenshot-to-prompt
-version: "2.0.0"
+version: "2.1.0"
 homepage: https://github.com/z-Zihan/awesome-skills
 description: >
   截图理解 + 页面结构抽取 + 实现 prompt 生成器。
@@ -107,9 +107,29 @@ description: >
 
 ---
 
+# 截图复杂度判断
+
+在执行工作流之前，**必须先判断截图复杂度**，决定执行深度和输出详细程度：
+
+| 复杂度 | 判定标准 | 工作流调整 |
+|--------|---------|-----------|
+| **简单** | 单组件或极少组件（如：登录框、单个弹窗、简单表单） | 步骤 1-2 合并为"结构与组件识别"，步骤 3-5 可跳过，步骤 6-8 简化输出 |
+| **中等** | 多组件页面（如：带筛选的列表页、设置页、多 tab 页） | 步骤 1-5 正常执行，步骤 6-8 简化 |
+| **复杂** | 完整页面含复杂交互（如：仪表盘、多区块联动、带弹窗+抽屉的页面） | 步骤 1-8 全部执行，输出完整 |
+
+**判断时机：** 在分析截图后、输出结果前，首先声明复杂度等级（一行即可，如"复杂度：简单"）。
+
+**简化输出规则（简单截图）：**
+- 结构识别 + 组件识别合并为一个表格
+- 不输出文案字段表、状态与交互表、多图归并、布局层级（除非截图中有明显内容）
+- 实现意图 1-2 句话即可
+- Prompt 模板简化：省略"组件拆分建议"和"布局要求"section
+
+---
+
 # 工作流程
 
-收到截图后，自动完成以下步骤。
+收到截图后，先判断复杂度，再按对应深度执行以下步骤。
 
 ## 1. 页面结构识别
 
@@ -149,6 +169,8 @@ description: >
 - 主次关系
 - 可复用区块
 
+若已知项目 UI 库（用户说明或同会话上下文可见），把识别到的通用组件映射为该库的组件名（如 select → el-select / AntD Select），并写入输出；无法确定映射时保留通用名，不要编造库组件。映射结果直接供实现 prompt 的「组件构成」使用。
+
 ---
 
 ## 3. 文案与字段识别
@@ -185,6 +207,18 @@ description: >
 - 条件展示内容
 
 允许轻度合理推断，详见下方「合理推断边界」表。**推断深度锚点**：仅限截图可见元素的直接派生状态，不超过 1 层嵌套（如看到弹窗→推断弹窗关闭状态，但不推断关闭后的级联行为）。
+
+---
+
+## 4.5 响应式断点处理
+
+截图通常是单一视口（多为桌面宽度）。识别时评估页面在窄视口下的适配方式，并写进输出，避免 coding agent 产出桌面固定布局：
+
+- 布局形态判断：识别当前结构是栅格卡片、左右分栏还是固定侧栏，推断窄视口下的合理折叠方式（分栏变堆叠、卡片列数递减、侧栏变抽屉/底部导航）
+- 固定像素风险：截图无法给出断点数值，标注"哪些区块需要响应式"而不是编造具体断点；实现 prompt 中明确要求使用项目已有的响应式设施（如 UI 库栅格、容器查询、现有断点变量）
+- 无法判断时：在实现意图中注明"截图为桌面视口，移动端布局需另行确认"，不要静默假设单端
+
+以下情况跳过本步：用户明确说明只做桌面端，或截图本身就是窄视口（此时反向检查桌面适配同理）。
 
 ---
 
@@ -333,6 +367,24 @@ description: >
 | 推断区块主次关系 | 脱离截图扩展页面 |
 | 推断基础联动关系 | 擅自定义系统类型 |
 
+## 正反例说明
+
+**规则：推断不超过 1 层嵌套** —— 仅允许从截图可见元素直接推断其直接派生属性/状态，不允许基于推断结果再做进一步推断。
+
+✅ 允许（1 层推断）：
+- 从按钮样式（醒目、主色调）推断"可能是提交按钮" → 直接属性推断
+- 从弹窗的打开状态推断"弹窗可以关闭" → 直接状态推断
+- 从表单字段旁的红星推断"该字段为必填" → 直接语义推断
+- 从列表项的选中背景色推断"该列表支持选择" → 直接行为推断
+- 从灰色按钮推断"该按钮当前禁用" → 直接状态推断
+
+❌ 不允许（2 层嵌套推断）：
+- 从按钮样式推断"这是登录页面的注册流程入口" → 按钮样式 → 功能推断 → 流程推断（2 层）
+- 从表单校验推断"提交后会触发邮件通知" → 校验规则 → 提交行为 → 副作用推断（2 层）
+- 从列表选择行为推断"选中后可以批量导出数据" → 选择 → 批量操作 → 具体功能（2 层）
+- 从弹窗推断"弹窗关闭后会刷新父页面数据" → 弹窗 → 关闭 → 级联行为（2 层）
+- 从页面布局推断"这是某个 SaaS 产品的后台" → 布局 → 页面类型 → 产品类型（2 层）
+
 ---
 
 # 输出格式
@@ -342,6 +394,8 @@ description: >
 ## 第一部分：截图结构识别结果
 
 使用结构化、工程化方式输出。建议使用表格。
+
+> **简单截图可省略以下子表格中无明显内容的表**，直接用一个合并的简洁表格覆盖。
 
 ### 页面整体结构
 
@@ -372,7 +426,7 @@ description: >
 
 ### 实现意图
 
-用 2~5 句话总结这个页面主要需要实现什么。
+用 2~5 句话总结这个页面主要需要实现什么。（简单截图 1-2 句即可）
 
 ---
 
@@ -386,6 +440,8 @@ prompt 必须：
 - 不扩展无关业务
 
 ### Prompt 模板
+
+> **简单截图使用简化版 Prompt**：省略"组件拆分建议"和"布局要求"section，其他 section 保留但内容精简。
 
 ```md
 你需要根据截图实现一个页面/页面局部区域。
@@ -432,6 +488,8 @@ prompt 必须：
 -
 -
 
+<若结构识别已完成 UI 库映射：优先使用列出的库组件，找不到对应组件时用最接近的原生实现并注明>
+
 ---
 
 ### 状态与交互
@@ -459,6 +517,12 @@ prompt 必须：
 - 自适应关系
 - 区块层级
 - 页面间距与留白
+
+响应式要求：
+
+- 使用项目已有的响应式设施（UI 库栅格、断点变量、容器查询），不要引入新的断点体系
+- <需要响应式的区块按结构识别结果填写；截图为单一视口，具体断点数值由项目现有设施决定>
+- <截图仅单一视口时注明：移动端/窄视口布局需另行确认，不做静默假设>
 
 ---
 
@@ -516,493 +580,61 @@ prompt 必须：
 
 # English Version
 
-Given a user-provided page screenshot, recognize the page structure, component hierarchy, text content, states, and interactions, then generate a ready-to-use implementation prompt that can be sent directly to a coding agent.
+> **This skill is written in Chinese.** For full details, please read the Chinese section above.
+> You can ask AI to translate the Chinese section if needed.
 
-Core pipeline:
+## Summary
 
-Screenshot Understanding → Page Structure Extraction → State Recognition → Implementation Prompt Generation
+**screenshot-to-prompt** — Screenshot understanding + page structure extraction + implementation prompt generator.
 
-This is a:
-- Screenshot understanding assistant
-- Page structure extractor
-- Implementation prompt generator
+### Core Purpose
+Input a page screenshot → Output structured recognition results + a ready-to-use implementation prompt for coding agents.
 
-NOT:
-- Product proposal generator
-- Business analyzer
-- Full code generator
+### Key Pipeline
+Screenshot Understanding → Page Structure Extraction → State Recognition → Prompt Generation
 
----
+### Three UI Strategies
+| Strategy | When to Use | Key Requirement |
+|----------|-------------|-----------------|
+| A: Skeleton Mode | No design, build structure first | Simple styles, basic interactions, refine later |
+| B: Free UI Design | No design, optimization allowed | Modern, unified, production-ready |
+| C: Design Restoration | Figma provided, high fidelity required | Match layout/spacing, reuse design system |
 
-# Core Objective
+### Responsive Breakpoint Handling (NEW)
+Screenshots are usually a single (desktop-width) viewport. Assess narrow-viewport adaptation and state it in the output: which blocks need responsive treatment, reuse the project's existing responsive facilities (UI library grid, breakpoint variables), and never silently assume a single device.
 
-After the user provides a screenshot, stably output:
+### UI Library Mapping (NEW)
+When the project's UI library is known, map recognized generic components to library component names (e.g. select -> el-select / AntD Select) so the generated prompt is directly actionable. Keep generic names when mapping is uncertain.
 
-1. Screenshot structure recognition results
-2. A ready-to-use implementation prompt for coding agents
+### Screenshot Complexity Assessment
+Before workflow execution, assess complexity to adjust output depth:
+- **Simple** (single component like login form): Merge steps 1-2, skip steps 3-5, simplify output
+- **Medium** (multi-component page like list with filters): Steps 1-5 normal, 6-8 simplified
+- **Complex** (full page with modals/drawers/dashboard): All 8 steps, full output
 
-Focus on helping the coding agent understand:
-- How to build the page
-- How to split sections
-- How to handle states
-- What level of UI polish is expected
+### Edge Case Handling
+- No screenshot → Ask user, never fabricate
+- Unclear screenshot → Mark uncertain areas, recognize what's visible
+- Contradictory requirements → Point out conflict, ask for clarification
+- Vision model unavailable → Inform user, offer text-based alternative
+- Analysis failure → Output partial results, mark unrecognized areas
 
-Rather than expanding on business context.
+### Reasonable Inference Boundaries
+**Max 1 level of nesting** — only infer direct properties/states from visible elements, never chain inferences.
 
----
-
-# Input
-
-The user may provide:
-- A single page screenshot
-- Multiple state screenshots
-- A partial area screenshot
-- A few supplementary requirements
-
-Examples:
-- Only focus on this area
-- Only extract the page structure
-- The common layout already exists
-- Don't repeat the layout
-- Just build the skeleton first
-- Feel free to design the UI
-- I have Figma, try to match it
-- Prefer the project's UI library
-
----
-
-# Edge Cases
-
-The following cases require proactive clarification or graceful degradation instead of blind execution.
-
-## No Screenshot Provided
-
-- Proactively ask the user to provide a screenshot
-- Do NOT fabricate page structure from text alone
-- If the user wants to use a URL or description instead, note that screenshots work best
-
-## Unclear Screenshot / Unclear Request
-
-- When image quality is too low to identify key details: recognize what's visible, explicitly mark uncertain areas
-- When the request is vague (e.g., "just do it") and no screenshot is provided: ask for a screenshot and specific requirements
-
-## Contradictory Requirements
-
-- Point out contradictions and ask the user to clarify
-  - E.g., user requests both "high-fidelity restoration" and "free UI design" → note the conflict and ask to confirm priority
-
-## Image Analysis Failure
-
-- If screenshot content cannot be recognized: inform the user and suggest providing a clearer screenshot or supplementary text description
-- When partially recognized: output recognized parts and mark unrecognized areas
-
-## Vision Model Unavailable
-
-- If current environment lacks vision model or image analysis tools: inform user "Current environment does not support image analysis"
-- Alternative: suggest user describe UI elements from screenshot in text, generate prompt based on text description
-
----
-
-# Workflow
-
-After receiving a screenshot, automatically complete the following steps.
-
-## 1. Page Structure Recognition
-
-Recognize the information architecture and block relationships:
-- Overall page layout
-- Left-right / top-bottom structure
-- Card blocks
-- Grid structure
-- Content layering
-- Primary and secondary areas
-- Block nesting relationships
-
-Recognize common modules:
-- Forms
-- Tables
-- Lists
-- Tabs, Modal / Drawer
-- Filter area
-- Upload area
-- Statistics area
-- Footer Action Bar, Empty State, Stepper, Collapse
-
----
-
-## 2. Component Recognition
-
-Recognize UI components in the screenshot:
-- input, select, checkbox, radio, switch
-- date picker, table, pagination, upload
-- button, dropdown, tooltip, tabs
-- card, tag, badge, modal, drawer
-- alert, progress, skeleton
-
-Identify:
-- Component type
-- Component hierarchy
-- Primary/secondary relationships
-- Reusable blocks
-
----
-
-## 3. Text & Field Recognition
-
-Extract from the screenshot:
-- Page title
-- Tab names
-- Form fields
-- Table column headers
-- Button text
-- placeholder, tooltip
-- Hint/description text
-- Label text
-- Summary information
-- Status text
-
-Do NOT fabricate text that isn't visible in the screenshot.
-
----
-
-## 4. State & Interaction Recognition
-
-Recognize:
-- Active item
-- Selected state
-- Disabled state
-- Loading state
-- Empty state
-- Error state
-- Success state
-- Expanded/collapsed
-- Modal open state
-- Row highlight
-- Conditional content
-
-Allowed lightweight reasonable inference, see the "Reasonable Inference Boundaries" table below.
-
----
-
-## 5. Multi-Image State Merging
-
-If the user provides multiple screenshots:
-
-Required:
-- Merge common structures
-- Extract state differences
-- Identify state transition relationships
-- Avoid duplicate descriptions
-
-Consolidate:
-- Default state
-- Hover state
-- Selected state
-- Disabled state
-- Loading state
-- Empty state
-- Error state
-- Success state
-- Expanded state
-- Edit state
-
-Focus on:
-- Which areas changed
-- Which components changed
-- Which states are linked
-
----
-
-## 6. Layout & Visual Hierarchy
-
-Recognize:
-- Primary visual area
-- Primary action area
-- Fixed areas
-- Scrollable areas
-- Adaptive areas
-- Content stretch relationships
-- Information priority
-- Whitespace trends
-
-Help the coding agent organize page structure and visual hierarchy reasonably, even without a design mockup.
-
----
-
-## 7. Reusable Block Recognition
-
-Identify areas suitable for componentization:
-- Filter area
-- Table toolbar
-- List item
-- Statistics card
-- Footer Action Bar
-- Empty state component
-- Upload area
-- Modal content area
-
-Help the coding agent make reasonable component splits.
-
----
-
-## 8. Implementation Intent Extraction
-
-Translate the screenshot into implementation-oriented descriptions:
-
-✅ Good descriptions:
-- Data query list page, top is filter area, middle is table area, bottom includes pagination
-- Multi-step editing page, left is step navigation, right is form content area
-- Dashboard page with statistics cards and list area
-
-❌ Bad descriptions:
-- This is a backend page
-- This is a management system
-- This is a business page
-
-Focus: Help the coding agent understand "how should this page be implemented".
-
----
-
-# UI Strategy
-
-Select strategy based on user requirements. When user doesn't specify, default to Strategy A (Skeleton Mode).
-
-Selection criteria:
-- User mentions "skeleton first" / "no need for fine UI" → Strategy A
-- User mentions "free design" / "optimize visuals" / "production-ready" → Strategy B
-- User mentions "Figma" / "high fidelity" / "match closely" → Strategy C
-
----
-
-## Strategy A: Skeleton Mode
-
-For:
-- No design mockup
-- Build structure first
-- High-fidelity UI not required
-
-Requirements:
-- Implement the page skeleton first
-- Focus on structure and block division
-- Complete basic interactions
-- Keep styles clean and simple
-- High fidelity not required
-- Can be refined later
-
-## Strategy B: Free UI Design
-
-For:
-- No design mockup
-- UI optimization allowed
-- Page needs to be production-ready
-
-Requirements:
-- Optimize UI based on the screenshot structure
-- Don't deviate from the screenshot structure
-- Prefer reusing the project's UI component library
-- Keep it modern, unified, and clean
-- Complete state support
-- Reasonable whitespace and hierarchy
-
-## Strategy C: Design Restoration
-
-For:
-- User provides Figma
-- User requests high fidelity
-
-Requirements:
-- Match the design as closely as possible
-- Keep layout, spacing, and hierarchy consistent
-- Prefer reusing the design system
-- Keep component conventions unified
-- Prioritize visual consistency
-
----
-
-# Reasonable Inference Boundaries
+✅ Allowed (1 level): Button style → "likely a submit button"
+❌ Not allowed (2 levels): Button style → "this is the registration entry in the login flow"
 
 | Allowed | NOT Allowed |
-|---|---|
+|---------|-------------|
 | Infer basic state transitions | Fabricate complex business rules |
-| Infer basic form validation | Add complete new modules without basis |
+| Infer basic form validation | Add complete new modules |
 | Infer list selection behavior | Define non-existent API logic |
-| Infer block priority relationships | Expand page beyond the screenshot |
-| Infer basic linkage relationships | Define system types without basis |
+| Infer block priority | Expand page beyond screenshot |
+| Infer basic linkage | Define system types |
 
----
-
-# Output Format
-
-Output two parts by default.
-
-## Part 1: Screenshot Structure Recognition
-
-Use a structured, engineering-oriented format. Tables are recommended.
-
-### Page Overview
-
-| Item | Content |
-|---|---|
-| Page type | |
-| Layout method | |
-| Page hierarchy | |
-| Fixed areas | |
-| Scrollable areas | |
-
----
-
-### Block Breakdown
-
-| Block | Components | Text/Fields | Current State | Inferred Interactions |
-|---|---|---|---|---|
-| | | | | |
-
----
-
-### States & Interactions
-
--
--
-
----
-
-### Implementation Intent
-
-Summarize in 2-5 sentences what this page needs to implement.
-
----
-
-## Part 2: Prompt for Coding Agent
-
-The prompt must:
-- Be directly copyable
-- Be implementation-oriented
-- Be focused on page construction
-- Not be vague
-- Not expand into unrelated business
-
-### Prompt Template
-
-```md
-You need to implement a page (or page section) based on the provided screenshot.
-
-### Implementation Goal
-
-Build the page structure based on the screenshot. Focus on：
-
-- Page layout
-- Block hierarchy
-- Component structure
-- Basic states
-- Basic interactions
-
-Do NOT expand into complex business logic not shown in the screenshot.
-
----
-
-### Implementation Scope
-
-- Only implement content visible in the screenshot
-- Do NOT expand to modules not shown
-- If layout/header/sidebar already exists, reuse them directly
-- Do NOT re-implement common structures
-- Focus on the current screenshot area
-
----
-
-### Page Structure
-
-The page contains the following areas：
-
-1.
-2.
-3.
-
----
-
-### Component Composition
-
-Use the following components to build the page：
-
--
--
--
-
----
-
-### States & Interactions
-
-The page needs to support：
-
--
--
--
-
-Including：
-- Default state
-- Selected state
-- Disabled state
-- Loading state
-- Empty state (if applicable)
-
----
-
-### Layout Requirements
-
-Note：
-- Fixed areas
-- Scrollable areas
-- Adaptive relationships
-- Block hierarchy
-- Page spacing and whitespace
-
----
-
-### Component Split Suggestions
-
-Suggested splits：
-
--
--
--
-
-Ensure clear structure for future iteration.
-
----
-
-### UI Strategy
-
-<!-- Select one based on the actual situation, delete the other two -->
-
-#### Skeleton Mode
-
-- Build page skeleton first
-- No high-fidelity UI
-- Keep styles simple
-- Refine later
-
-#### Free UI Design
-
-- Optimize visuals based on screenshot structure
-- Prefer project UI component library
-- Modern, unified, clean
-- Production-ready quality
-
-#### Design Restoration
-
-- Match design as closely as possible
-- Keep layout and spacing consistent
-- Prefer design system
-- Visual consistency
-
----
-
-### Output Requirements
-
-- Use the project's existing tech stack
-- Prefer reusing existing UI components
-- Use mock data if no API is available
-- Do NOT implement complex business logic
-- Reasonable component splits
-- Maintainable code
-```
+### Key Constraints
+- Do NOT fabricate text not visible in screenshot
+- Do NOT expand business context beyond what's shown
+- Output = Structure Recognition + Prompt (two parts)
+- Prompt must be directly copyable and implementation-oriented

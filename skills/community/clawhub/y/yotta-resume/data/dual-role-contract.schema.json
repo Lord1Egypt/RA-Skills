@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/YottaMeta/yotta-resume/data/dual-role-contract.schema.json",
+  "title": "yotta-resume dual-role access contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_version",
+    "generated_at",
+    "default_policy",
+    "roles",
+    "data_classes",
+    "permissions",
+    "protected_attributes",
+    "scoring_fields",
+    "cross_role_export"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "contract_version": {
+      "const": "1.0"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "default_policy": {
+      "const": "deny"
+    },
+    "roles": {
+      "const": [
+        "candidate",
+        "hr"
+      ]
+    },
+    "data_classes": {
+      "type": "array",
+      "minItems": 7,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "private_evidence_ledger",
+          "raw_resume",
+          "public_resume",
+          "analysis_report",
+          "interview_plan",
+          "scorecard",
+          "audit_log"
+        ]
+      }
+    },
+    "permissions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate",
+        "hr"
+      ],
+      "properties": {
+        "candidate": {
+          "$ref": "#/$defs/permissionSet"
+        },
+        "hr": {
+          "$ref": "#/$defs/permissionSet"
+        }
+      }
+    },
+    "protected_attributes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "scoring_fields": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "cross_role_export": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requires_field_manifest",
+        "requires_confirmation",
+        "default_export_class",
+        "independent_workdirs",
+        "independent_outputs"
+      ],
+      "properties": {
+        "requires_field_manifest": {
+          "const": true
+        },
+        "requires_confirmation": {
+          "const": true
+        },
+        "default_export_class": {
+          "const": "public_resume"
+        },
+        "independent_workdirs": {
+          "const": true
+        },
+        "independent_outputs": {
+          "const": true
+        }
+      }
+    }
+  },
+  "$defs": {
+    "actions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "read",
+          "write"
+        ]
+      }
+    },
+    "permissionSet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "private_evidence_ledger",
+        "raw_resume",
+        "public_resume",
+        "analysis_report",
+        "interview_plan",
+        "scorecard",
+        "audit_log"
+      ],
+      "properties": {
+        "private_evidence_ledger": {
+          "$ref": "#/$defs/actions"
+        },
+        "raw_resume": {
+          "$ref": "#/$defs/actions"
+        },
+        "public_resume": {
+          "$ref": "#/$defs/actions"
+        },
+        "analysis_report": {
+          "$ref": "#/$defs/actions"
+        },
+        "interview_plan": {
+          "$ref": "#/$defs/actions"
+        },
+        "scorecard": {
+          "$ref": "#/$defs/actions"
+        },
+        "audit_log": {
+          "$ref": "#/$defs/actions"
+        }
+      }
+    }
+  }
+}

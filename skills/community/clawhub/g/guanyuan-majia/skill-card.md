@@ -1,6 +1,6 @@
 ## Description:
 
-Guides agents using Guandata BI through official CLI workflows and specialist playbooks for governed ETL, restricted data extraction, dashboard verification, custom charts, and publishing.
+Helps developers using Guandata BI route standard work to its official CLI tools and handle ETL governance, dashboard validation, and custom chart troubleshooting.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-BI developers, analysts, and operators use this skill to work with Guandata BI through its official command-line tools and to troubleshoot ETL, dashboards, data extraction, and publishing workflows. It also guides agents in producing SQL, code, dashboard assets, and evidence reports while checking data scope and business definitions.
+Developers and BI engineers use this skill to query and analyze Guandata data, maintain ETL and datasets, validate dashboard results, and troubleshoot custom visualizations.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,40 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The release security scan flags an unpinned installer and a confirmed uninstall backup risk; its analysis is partial.
+Risk: The security evidence reports an unpinned installer and risky or undisclosed behavior.
 
-Mitigation: Review the installer and verify the package source and version before installation. Use the installer's dry-run and target-specific options, and preserve any existing configuration and backup files before uninstalling.
+Mitigation: Pin and review the installer source, and inspect the installation and synchronization steps before running them.
+
+Risk: The security evidence reports broken uninstall backup behavior.
+
+Mitigation: Review and address the uninstall backup behavior before relying on uninstall to preserve or restore files.
+
+Risk: The scan is incomplete; Skillspector inspected only 85.5% of components completely.
+
+Mitigation: Review the remaining package content before installation; the scan does not establish that uninspected content is safe.
 
 ## Reference(s):
 
-- [Restricted query playbook](references/restricted-query-playbook.md)
-- [Bounded extraction guide](references/bounded-extraction.md)
+- [Project repository](https://github.com/maojiebc/majia-guanyuan)
+- [Official CLI compatibility guide](references/official-cli-compatibility.md)
 - [Dashboard evidence guide](references/dashboard-evidence.md)
-- [ETL governance and write guide](references/part-b-governance.md)
-- [HTML dashboard playbook](references/part-c-html-dashboard.md)
-- [V7 page and card publishing pipeline](references/v7-page-card-publish-pipeline.md)
-- [Official CLI compatibility notes](references/official-cli-compatibility.md)
+- [Restricted query playbook](references/restricted-query-playbook.md)
+- [Extraction evidence guide](references/extraction-evidence.md)
+- [Guandata](https://www.guandata.com/)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Shell commands, SQL, Code, Configuration, Analysis]
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-**Output Format:** [Markdown guidance with shell commands, SQL, code, configuration examples, and structured JSON evidence when needed]
+**Output Format:** [Markdown guidance with shell commands, SQL, JavaScript, and JSON examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May produce or revise dashboard assets, extraction reports, and validation evidence according to the selected workflow.]
+**Other Properties Related to Output:** [Examples and scripts guide work in the user's Guandata environment; available operations depend on the user's installed tools and permissions.]
 
 ## Skill Version(s):
 
-3.5.2 (source: SKILL.md frontmatter)
+3.5.3 (source: server-resolved release metadata, SKILL.md frontmatter, package.json)
 
 ## Ethical Considerations:
 

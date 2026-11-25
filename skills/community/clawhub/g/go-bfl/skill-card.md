@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to write Go programs that call the unofficial go-bfl client for FLUX image and video generation, task polling, credits, and fine-tune management.
+Developers use this skill to write Go programs that call the FLUX API for image and video generation, check task results and credits, and manage fine-tunes. It guides dependency setup, authentication, request handling, polling, and response validation.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The API key or task data could be exposed if credentials are logged or sent to an untrusted polling URL.
+Risk: The security analysis was partial because two referenced files were not included in the inspected release files.
 
-Mitigation: Read BFL_API_KEY from the environment, keep it private, and validate HTTPS and an approved provider host before following polling URLs.
+Mitigation: Review the missing references or confirm they are not needed before installing.
 
-Risk: Image or video submissions spend credits, and deleting a fine-tune changes account state.
+Risk: API credentials and signed output URLs could be exposed, and generation submissions or fine-tune deletion can affect the user's account.
 
-Mitigation: Submit paid tasks and delete fine-tunes only when requested; avoid blindly retrying a paid submission after an uncertain result.
+Mitigation: Keep BFL_API_KEY in the environment, avoid logging credentials or signed URLs, validate polling hosts, and make paid or account-changing calls only when requested.
 
 ## Reference(s):
 
-- [Setup and reference](artifact/references/setup.md)
+- [Setup and reference](references/setup.md)
+- [go-bfl repository homepage](https://github.com/psyb0t/go-bfl)
 - [go-bfl package documentation](https://pkg.go.dev/github.com/psyb0t/go-bfl)
-- [ClawHub skill release](https://clawhub.ai/psyb0t/skills/go-bfl)
+- [ClawHub skill page](https://clawhub.ai/psyb0t/skills/go-bfl)
 
 ## Skill Output:
 
-**Output Type(s):** [Go code, Shell commands, Configuration guidance, Technical guidance]
+**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
 
 **Output Format:** [Markdown with Go and shell code blocks]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Examples and guidance depend on the requested FLUX operation and user-supplied prompts or configuration.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-0.1.4 (source: server-resolved release metadata)
+0.1.5 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

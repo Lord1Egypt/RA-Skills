@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "RocketReach"
   author: "OOMOL"
-  version: "1.0.5"
+  version: "1.0.6"
   services: ["rocket_reach"]
   icon: "https://static.oomol.com/logo/third-party/RocketReach.svg"
 ---
@@ -34,6 +34,15 @@ oo connector run "rocket_reach" --action "<action_name>" --data '<json>' --json
 - The response is `{ "data": ..., "meta": { "executionId": "..." } }`; the execution id lives under `meta.executionId`.
 
 Each action is listed below with a one-line description; actions that change state carry a `[write]` or `[destructive]` tag. Before constructing `--data`, fetch the action's live schema with `oo connector schema` to get its authoritative input fields.
+
+### Pause batches when a rate limit window is exhausted
+
+RocketReach can apply separate minute, hourly, and daily limits to person searches and lookups. After a `rate_limited` error, pause the affected operation for that connected account before processing more items.
+
+- Read `retryAfterSeconds` from the connector error details when present. HTTP clients also receive `Retry-After`. Wait until that delay has elapsed before resuming the affected operation.
+- When the provider message explicitly reports an hourly or daily limit, save completed results, the failed input or page, and the remaining work. Resume from that point after the limit resets; do not retry the same batch every few seconds or replay completed items.
+- If no recovery time is supplied, report the quota block and preserve the checkpoint. Do not invent a reset time from the words `hourly` or `daily`.
+- Use `get_account` once when account limits need inspection, and use only the information it actually returns. A rate limit does not require reconnecting the account.
 
 ## Available actions
 

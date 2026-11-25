@@ -2,7 +2,7 @@ import { execFile } from 'node:child_process';
 import { createHash, createPrivateKey, createPublicKey, generateKeyPairSync, randomUUID, sign } from 'node:crypto';
 import { link, lstat, mkdir, readFile, unlink, writeFile } from 'node:fs/promises';
 import { homedir } from 'node:os';
-import { join } from 'node:path';
+import { isAbsolute, join } from 'node:path';
 import { promisify } from 'node:util';
 
 const exec = promisify(execFile);
@@ -15,10 +15,34 @@ async function readPrivate(path) {
     if (!stat.isFile() || (stat.mode & 0o077) !== 0) {
       throw new Error('Fevertime identity files must be regular files with owner-only permissions.');
     }
-    return JSON.parse(await readFile(path, 'utf8'));
+    const value = JSON.parse(await readFile(path, 'utf8'));
+    if (!value || typeof value !== 'object' || Array.isArray(value)) {
+      throw new Error('Invalid persisted Fevertime state. Restore it; do not replace the identity.');
+    }
+    return value;
   } catch (error) {
     if (error.code === 'ENOENT') return null;
     throw error;
+  }
+}
+
+function validateIdentity(value) {
+  try {
+    if (!value || typeof value.privateKey !== 'string' || !uuid.test(value.clientInstanceId) ||
+        (value.version !== undefined && value.version !== 1)) throw new Error();
+    const key = createPrivateKey(value.privateKey);
+    if (key.asymmetricKeyType !== 'ed25519') throw new Error();
+    const publicKey = createPublicKey(key).export({ format: 'jwk' }).x;
+    if (value.publicKey !== undefined && value.publicKey !== publicKey) throw new Error();
+    return { key, publicKey, clientInstanceId: value.clientInstanceId };
+  } catch {
+    throw new Error('Invalid persisted Fevertime identity. Restore the original key and client UUID.');
+  }
+}
+
+function requireSameIdentity(left, right) {
+  if (left.publicKey !== right.publicKey || left.clientInstanceId !== right.clientInstanceId) {
+    throw new Error('A different Fevertime identity already exists. Existing keys are never overwritten.');
   }
 }
 
@@ -78,13 +102,19 @@ function checkChallenge(data, clientInstanceId, publicKey) {
 }
 
 async function connect(args) {
+  let importPath;
+  if (args.at(-2) === '--identity') {
+    importPath = args.at(-1);
+    args = args.slice(0, -2);
+    if (!isAbsolute(importPath)) throw new Error('Use an absolute path for --identity.');
+  }
   const [profile, tab, displayName, country, description] = args;
   const hasProfile = args.length === 5;
   if ((args.length !== 2 && !hasProfile) || !/^[a-zA-Z0-9_-]{1,64}$/.test(profile ?? '') ||
       !/^[a-zA-Z0-9_.:-]{1,128}$/.test(tab ?? '') ||
       (hasProfile && (!displayName.trim() || [...displayName].length > 80 || !/^[A-Z]{2}$/.test(country) ||
         [...description.trim()].length < 10 || [...description].length > 280))) {
-    throw new Error('Usage: node connect.mjs <profile> <tab-id> [<display-name> <country> <description>]');
+    throw new Error('Usage: node connect.mjs <profile> <tab-id> [<display-name> <country> <description>] [--identity <absolute-path>]');
   }
 
   const root = join(process.env.OPENCLAW_STATE_DIR || join(homedir(), '.openclaw'), 'fevertime', profile);
@@ -92,6 +122,12 @@ async function connect(args) {
   const accountPath = join(root, 'account.json');
   let identity = await readPrivate(identityPath);
   const account = await readPrivate(accountPath);
+  if (account && !uuid.test(account.agentId)) throw new Error('Invalid persisted Fevertime account. Restore it before signing in.');
+  const retained = identity ? validateIdentity(identity) : null;
+  const importedValue = importPath ? await readPrivate(importPath) : null;
+  const imported = importPath ? validateIdentity(importedValue) : null;
+  if (retained && imported) requireSameIdentity(retained, imported);
+  if (!identity && account) throw new Error('The stored Fevertime identity key is missing. Restore it before signing in.');
   const status = await agentAuth(profile, tab, { operation: 'status' });
   if (status.authSource) {
     if (!identity || !status.authenticated || !account || account.agentId !== status.agentId) {
@@ -99,22 +135,17 @@ async function connect(args) {
     }
     return { authenticated: true, agentId: status.agentId, created: false, nextSteps: status.nextSteps };
   }
-  if (!account && !hasProfile) throw new Error('First sign-in requires a public display name, country, and research description.');
+  if (!account && !hasProfile && !imported) throw new Error('First sign-in requires a public display name, country, and research description.');
 
   if (!identity) {
-    if (account) throw new Error('The stored Fevertime identity key is missing. Restore it before signing in.');
     await mkdir(root, { recursive: true, mode: 0o700 });
-    const { privateKey } = generateKeyPairSync('ed25519');
+    const privateKey = imported?.key ?? generateKeyPairSync('ed25519').privateKey;
     identity = await createPrivate(identityPath, {
-      clientInstanceId: randomUUID(), privateKey: privateKey.export({ format: 'pem', type: 'pkcs8' }),
+      clientInstanceId: imported?.clientInstanceId ?? randomUUID(), privateKey: privateKey.export({ format: 'pem', type: 'pkcs8' }),
     });
   }
-  const { clientInstanceId } = identity;
-  const privateKey = createPrivateKey(identity.privateKey);
-  if (privateKey.asymmetricKeyType !== 'ed25519' || !uuid.test(clientInstanceId)) {
-    throw new Error('Invalid persisted Fevertime identity.');
-  }
-  const publicKey = createPublicKey(privateKey).export({ format: 'jwk' }).x;
+  const { key: privateKey, publicKey, clientInstanceId } = validateIdentity(identity);
+  if (imported) requireSameIdentity({ publicKey, clientInstanceId }, imported);
   const challenge = await agentAuth(profile, tab, {
     operation: 'challenge', publicKey, clientInstanceId, entryClient: 'openclaw',
     ...(!account && hasProfile ? { displayName, country, description, agentKind: 'openclaw' } : {}),

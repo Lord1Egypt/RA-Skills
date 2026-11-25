@@ -1,3 +1,8 @@
+---
+name: fraud-examination-mastery
+description: 全球舞弊审查专业实务体系，覆盖舞弊识别、调查、法律处置与防范的全流程专业知识与技能。
+---
+
 # Fraud Examination Mastery — 全球舞弊审查专业实务体系
 
 > **版本:** 1.0.0  

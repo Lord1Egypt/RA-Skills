@@ -1,6 +1,6 @@
 ## Description:
 
-Generate diverse solution candidates with category-spanning ideation methods and rotation
+Generate diverse solution candidates with category-spanning ideation methods and rotation.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and other problem-solvers use the skill to generate a varied set of solution candidates by applying methods from different ideation categories, rotating methods between passes, and scoring the final candidates.
+Developers and product teams use this skill to generate varied solution candidates by applying methods from distinct categories, rotating methods across passes, and scoring ideas.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,26 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Analysis was partial because a local path-like reference in the skill could not be resolved, leaving some referenced material unavailable for review.
+Risk: The security review was partial because one referenced item could not be resolved.
 
-Mitigation: Review the reference and confirm any needed material is available before installing the skill.
+Mitigation: Review the unresolved reference and consider whether it matters before installing.
 
 ## Reference(s):
 
-- [Tome project](https://github.com/athola/claude-night-market/tree/master/plugins/tome)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Free-form text or Markdown containing candidate ideas, rationales, and scores]
+**Output Format:** [Markdown with candidate ideas, rationales, and weighted scores]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Typically 3 to 5 candidates; the skill recommends methods from distinct categories and weighted scoring.]
+**Other Properties Related to Output:** [Idea generation is unstructured; structure is applied when reporting the final set.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

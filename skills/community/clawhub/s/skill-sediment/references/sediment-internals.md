@@ -77,7 +77,7 @@ Under `openclaw.json` → `plugins.entries["skill-sediment"].config`:
 | Parameter | Default | Description |
 |-----------|---------|-------------|
 | `validAgentId` | (required) | Agents with sediment enabled, comma-separated or `*` |
-| `enableAutoReview` | true | Whether auto-review is on |
+| `enableAutoReview` | true | Whether auto-review is on. When `false`, neither background sedimentation is triggered nor the `skill_manage` tool is registered (the plugin has zero side effects on normal sessions); however, legacy directory migration and TTL/LRU eviction still run to keep the sediment pool healthy |
 | `nudgeInterval` | 15 | Trigger interval (new tool-call count) |
 | `sedimentTtlDays` | 10 | TTL eviction days (0 disables) |
 | `sedimentMaxCount` | 20 | Max retention per agent (0 disables) |

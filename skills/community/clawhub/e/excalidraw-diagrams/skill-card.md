@@ -1,6 +1,6 @@
 ## Description:
 
-Builds deterministic Excalidraw drawings from a boxes-and-arrows spec, with layout and bindings. Produces Obsidian .excalidraw.md notes or .excalidraw files. Use only for explicit Excalidraw requests, including Excalidraw in Obsidian.
+Builds deterministic Excalidraw diagrams from a boxes-and-arrows specification for Obsidian or standalone files.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers can turn a boxes-and-arrows specification into an editable Excalidraw diagram for excalidraw.com or an Obsidian note. The skill lays out and binds diagram elements, then provides structural validation guidance.
+Developers use the skill to turn explicit Excalidraw requests into editable diagrams for Obsidian or excalidraw.com, using a boxes-and-arrows specification.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill reads a diagram specification and writes a drawing to a selected path; using --force can replace an existing file.
+Risk: The security scan is benign but partial and medium-confidence; it could not resolve a local path-like reference in SKILL.md.
 
-Mitigation: Use a trusted specification, check the destination path, and use --force only when you intend to replace that file.
+Mitigation: Before installing, review the reference and consider whether file read/write capabilities with undeclared tool scope are acceptable.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/ricardodpalmeida/skills/excalidraw-diagrams)
 - [Project homepage](https://github.com/Ricardodpalmeida/openclaw-excalidraw-diagrams)
-- [Excalidraw file format reference](artifact/references/excalidraw-format.md)
-- [Excalidraw editor](https://excalidraw.com)
+- [Excalidraw file format reference](references/excalidraw-format.md)
+- [Excalidraw](https://excalidraw.com)
+- [Obsidian Excalidraw plugin](https://github.com/zsviczian/obsidian-excalidraw-plugin)
 
 ## Skill Output:
 
 **Output Type(s):** [Files, JSON, Markdown]
 
-**Output Format:** [Editable Excalidraw scene JSON (.excalidraw) or an Obsidian Markdown note (.excalidraw.md)]
+**Output Format:** [Obsidian .excalidraw.md notes or standalone .excalidraw JSON files]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Deterministic layout, labels, and bindings generated from a boxes-and-arrows specification.]
+**Other Properties Related to Output:** [Editable diagrams generated from a boxes-and-arrows specification]
 
 ## Skill Version(s):
 
-1.1.10 (source: release metadata, CHANGELOG.md, released 2026-11-16)
+1.1.11 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

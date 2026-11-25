@@ -1,0 +1,74 @@
+{
+  "data_classification": "synthetic",
+  "scenarios": [
+    {
+      "name": "dictated notes to email draft",
+      "request": {
+        "task": {
+          "type": "dictated_notes_to_email_draft",
+          "dictated_notes": "Thank the fictional project team and ask for comments by Friday.",
+          "recipient": "fictional@example.invalid",
+          "tone": "concise"
+        },
+        "available_device": "fictional laptop",
+        "privacy_requirement": "local processing only",
+        "user_preferences": {"tone": "concise"},
+        "data_classification": "synthetic"
+      }
+    },
+    {
+      "name": "organize five fictional tasks by deadline",
+      "request": {
+        "task": {
+          "type": "organize_tasks_by_deadline",
+          "tasks": [
+            {"title": "Fictional task A", "deadline": "2027-01-05T09:00:00"},
+            {"title": "Fictional task B", "deadline": "2027-01-02T09:00:00"},
+            {"title": "Fictional task C", "deadline": "2027-01-04T09:00:00"},
+            {"title": "Fictional task D", "deadline": "2027-01-01T09:00:00"},
+            {"title": "Fictional task E", "deadline": "2027-01-03T09:00:00"}
+          ]
+        },
+        "available_device": "fictional laptop",
+        "privacy_requirement": "local processing only",
+        "user_preferences": {"format": "ordered list"},
+        "data_classification": "synthetic"
+      }
+    },
+    {
+      "name": "compare supplied fictional food quotes",
+      "request": {
+        "task": {
+          "type": "compare_food_quotes",
+          "quotes": [
+            {"vendor": "Fictional Cafe A", "subtotal": "20.00", "fees": {"delivery": "4.00", "service": "1.50"}},
+            {"vendor": "Fictional Cafe B", "subtotal": "22.00", "fees": {"delivery": "1.00", "service": "0.25"}}
+          ]
+        },
+        "available_device": "fictional laptop",
+        "privacy_requirement": "local processing only",
+        "user_preferences": {"currency": "USD"},
+        "data_classification": "synthetic"
+      }
+    },
+    {
+      "name": "strict synthetic quote qualification with unresolved peanut information",
+      "request": {
+        "task": {
+          "type": "compare_food_quotes",
+          "budget": {"operator": "under", "amount": "25.00"},
+          "party_size": 2,
+          "allergies": ["peanut"],
+          "quotes": [
+            {"vendor": "Synthetic Cafe A", "subtotal": "24.00", "fees": {"delivery": "3.80"}, "tip": "1.00", "charges_confirmed": true, "serves": 2},
+            {"vendor": "Synthetic Cafe B", "subtotal": "22.00", "fees": {"service": "2.00"}, "tip": "2.00", "charges_confirmed": true, "serves": 2}
+          ]
+        },
+        "available_device": "synthetic Windows laptop",
+        "privacy_requirement": "local processing only",
+        "user_preferences": {"currency": "USD", "format": "qualification decision first"},
+        "data_classification": "synthetic"
+      }
+    }
+  ]
+}

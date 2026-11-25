@@ -1,7 +1,7 @@
 ---
 name: work-productivity-agent-browser-workflow-helper
 description: >-
-  Help users with Validated demand: Agent users show strong demand for Agent Browser-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.. Use when a user asks for work-productivity, agent-browser, browser, headless, automation, or needs a practical workflow, artifact, checklist, analysis, or implementation support for this requirement.
+  Help users with Validated demand: Agent users show strong demand for Agent Browser-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 9 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.. Use when a user asks for work-productivity, agent-browser, browser, headless, automation, or needs a practical workflow, artifact, checklist, analysis, or implementation support for this requirement.
 ---
 
 # Work Productivity Agent Browser Workflow Helper
@@ -10,10 +10,10 @@ description: >-
 
 Use this skill to help AI-agent users, skill authors, maintainers, and teams who want proven popular skill patterns adapted into more reliable or adjacent workflows with:
 
-> Validated demand: Agent users show strong demand for Agent Browser-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
+> Validated demand: Agent users show strong demand for Agent Browser-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 9 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
 
 Demand score: 100/100 (`70/70` demand, `30/30` local feasibility).
-Evidence: 12 signals across 3 source families.
+Evidence: 9 signals across 3 source families.
 
 Read `references/requirement-plan.md` when source evidence, planning details, or review criteria are needed.
 

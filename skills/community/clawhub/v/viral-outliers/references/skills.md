@@ -40,7 +40,7 @@ Included monthly credits: Basic Plan 250, Pro Plan 750, Agency Plan 3.000. Top-u
 - delete_watchlist (DELETE /api/v1/watchlists, free): Delete one of your watchlists and its memberships, freeing the allowance it used. Free.
 - list_projects (GET /api/v1/projects, free): All your projects (posts you saved in the web app) with their ids and post counts. Free.
 - get_project (GET /api/v1/projects/{projectId}, free): One project with the posts saved in it: post ids, links, stats, outlier scores and the user's notes. Free.
-- create_project (POST /api/v1/projects, free): Create a project to save posts into; it also shows up in the web app. Free, unlimited.
+- create_project (POST /api/v1/projects, free): Create a project to save posts into; it also shows up in the web app. Free.
 - add_project_posts (POST /api/v1/projects/posts, free): Save up to 25 posts per call into a project, by post id or public link. Free.
 - remove_project_posts (DELETE /api/v1/projects/posts, free): Remove saved posts from a project by post id. Free.
 - delete_project (DELETE /api/v1/projects, free): Delete one of your projects and its saved posts. Free.

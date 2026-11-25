@@ -15,9 +15,11 @@ import sys
 
 import requests
 
+import x402_wire
+
 from awal_bridge import awal_pay_url
 from network_selection import pick_payment_option
-from solana_signing import create_solana_xpayment_from_accept
+from solana_signing import create_solana_payment_header
 from wallet_signing import is_awal_mode, load_wallet_address
 
 API_BASE = "https://api.x402layer.cc"
@@ -78,7 +80,8 @@ def topup_endpoint(endpoint_slug: str, amount_usd: float) -> dict:
             return {"error": "Invalid API key. Use the endpoint API key returned at creation time."}
         return {"error": f"Unexpected status: {response.status_code}", "response": response.text}
 
-    challenge = response.json()
+    # v2 PAYMENT-REQUIRED header first, v1 JSON body otherwise (x402_wire).
+    challenge = x402_wire.read_challenge(response)
     try:
         selected_network, selected_option, signer = pick_payment_option(challenge, context="endpoint topup")
     except ValueError as exc:
@@ -88,28 +91,32 @@ def topup_endpoint(endpoint_slug: str, amount_usd: float) -> dict:
         if selected_network == "base":
             if signer is None:
                 return {"error": "Internal error: missing Base signer"}
-            x_payment = signer.create_x402_payment_header(
-                pay_to=selected_option["payTo"],
-                amount=int(selected_option["maxAmountRequired"]),
-            )
+            header_name, x_payment = signer.create_payment_header(challenge, selected_option)
         else:
-            x_payment = create_solana_xpayment_from_accept(selected_option)
+            header_name, x_payment = create_solana_payment_header(challenge, selected_option)
     except Exception as exc:
         return {"error": f"Failed to build {selected_network} payment: {exc}"}
 
-    response = requests.put(
-        url,
-        params=params,
-        json=data,
-        headers={
-            "X-API-Key": api_key,
-            "X-Payment": x_payment,
-        },
-        timeout=45,
-    )
+    # From here the payment is SENT. A timeout, 202 or 5xx is pending, never a reason to pay again.
+    try:
+        response = requests.put(
+            url,
+            params=params,
+            json=data,
+            headers={
+                "X-API-Key": api_key,
+                header_name: x_payment,
+            },
+            timeout=45,
+        )
+    except requests.RequestException as exc:
+        return x402_wire.pending_result(None, exc)
 
     print(f"Payment network used: {selected_network}")
     print(f"Response: {response.status_code}")
+
+    if x402_wire.is_ambiguous_status(response.status_code):
+        return x402_wire.pending_result(response.status_code, response.text)
 
     if response.status_code == 200:
         print("\nCredits added to endpoint")

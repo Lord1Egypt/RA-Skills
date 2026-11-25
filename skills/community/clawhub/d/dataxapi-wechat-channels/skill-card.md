@@ -1,6 +1,6 @@
 ## Description:
 
-Provides public WeChat Channels video, account, collection, comment, and search lookups through DataXAPI.
+Retrieves public WeChat Channels video, account, collection, and comment data through DataXAPI.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers can use the skill to look up public WeChat Channels videos, accounts, collections, comments, and search results through DataXAPI. Calls are paid per endpoint, so users should be told the cost before multi-page lookups.
+Developers and analysts use this skill to retrieve and summarize public WeChat Channels videos, account profiles, collections, comments, and engagement data through DataXAPI.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Queries and selected WeChat identifiers are sent to DataXAPI.
+Risk: Discovery queries may send user-provided words to DataXAPI.
 
-Mitigation: Keep private or sensitive context out of discovery queries.
+Mitigation: Avoid including sensitive details in queries and review the information being sent before making a call.
 
-Risk: Paid calls can consume prepaid credit, including calls that return empty lists, and pagination incurs another call.
+Risk: The security scan says the skill may recommend running an unpinned package, and its review was partial.
 
-Mitigation: Tell users the price before multi-page lookups and set a per-call spending cap.
-
-Risk: The external CLI and setup instructions have not been verified.
-
-Mitigation: Prefer REST or MCP, or review and pin the CLI release before use.
+Mitigation: Check the package source and version before running it, and review the referenced materials before installation.
 
 ## Reference(s):
 
-- [DataXAPI WeChat Channels API reference](https://dataxapi.com/apis/wechat_channels/)
-- [DataXAPI WeChat Channels pricing](https://dataxapi.com/pricing/wechat_channels/)
-- [DataXAPI agent setup guide](https://dataxapi.com/agents.md)
+- [DataXAPI](https://dataxapi.com)
+- [DataXAPI agent setup instructions](https://dataxapi.com/agents.md)
+- [WeChat Channels API reference](https://dataxapi.com/apis/wechat_channels/)
+- [WeChat Channels API pricing](https://dataxapi.com/pricing/wechat_channels/)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Guidance]
+**Output Type(s):** [API Calls, JSON, Text, Guidance, Shell commands, Configuration instructions]
 
-**Output Format:** [Text or Markdown summaries based on structured JSON API responses]
+**Output Format:** [JSON API responses and concise text summaries, with optional Markdown, shell, or configuration examples.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [A page is returned per call; calls may cost $0.02, and some empty results are also charged.]
+**Other Properties Related to Output:** [Calls return one page at a time; paid endpoint calls are priced per call and support per-call price caps.]
 
 ## Skill Version(s):
 
-1.0.0 (source: frontmatter)
+1.0.1 (source: server-resolved release)
 
 ## Ethical Considerations:
 

@@ -1,0 +1,14 @@
+{
+ "campaign": "campaign.json",
+ "script": "script.json",
+ "music": {"source": "none"},
+ "style": {"accent": "#FFD43B"},
+ "videos": [
+  {"id": "tiktok", "account": "TikTok", "layout": "split_screen", "creator": "takes/creator.mp4",
+   "transcript": "work/transcript.json", "supplied": "orbit-footage.mp4", "supplied_start": 0},
+  {"id": "reels", "account": "Reels", "layout": "split_screen", "creator": "takes/creator.mp4",
+   "transcript": "work/transcript.json", "supplied": "orbit-footage.mp4", "supplied_start": 4},
+  {"id": "shorts", "account": "Shorts", "layout": "face_screen", "creator": "takes/creator.mp4",
+   "transcript": "work/transcript.json", "screen": "takes/screen.mp4"}
+ ]
+}

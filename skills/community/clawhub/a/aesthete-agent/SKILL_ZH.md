@@ -1,5 +1,5 @@
 ---
-version: 0.20.0
+version: 0.29.0
 name: aesthete-agent
 description: 配色生成、调色板方案、前端美学:为 UI/HTML、SVG 幻灯片、视频封面、图表、海报输出机械验证过的颜色方案。119 板实证库按语域自动匹配,OKLCH 谐和生成、明度阶梯、图像取色;60-30-10 角色化含语义色;五维评分卡、WCAG 对比度、色盲模拟、AI-slop 检测四重机械验证;card 上下文预览+六场景 visualizer+五镜自审;偏好学习档案随你的每次裁决进化。内置命名主题包、全对对比度矩阵、色盲安全数据色、五镜报告生成器与 APCA(WCAG 3 草案)感知对比度。纯标准库离线可用。Skip when:纯文字排版、翻译润色、文案写作、与配色和前端美学无关的任务。Aesthete Agent。触发词:配色、调色板、配色方案、颜色搭配、前端美学、UI配色、设计美学、color palette、color scheme、WCAG、色盲、视觉审美、visualizer、aesthete-agent。
 ---
@@ -31,6 +31,21 @@ description: 配色生成、调色板方案、前端美学:为 UI/HTML、SVG 幻
 | 令牌表 | `tokens --palette/--theme` |
 | 渲染评审闭环 | `loop page.html --palette` |
 
+### 黄金默认值(3 秒版——默认即最佳,不要手调)
+
+| 维度 | 引擎默认 | 依据 |
+|---|---|---|
+| 流式字阶 | display 级 `clamp()`,端点 rem,**max≤2.5×min**(WCAG 1.4.4 恒过) | web.dev |
+| 行高 | 展示 1.15 / 标题 1.3 / **正文 1.7**(CJK 区间 1.5-2.0) / 辅助 1.5 | clreq+双源 |
+| 中西文 | `text-autospace`+`text-spacing-trim` 渐进;间距引擎处理,**禁手写空格** | W3C clreq |
+| 字族 | 双层 `--sans`(正文)/`--sans-display`(展示);展示级 `--track-display:-0.011em`,**正文零字距** | Linear+clreq |
+| 12 步色阶 | Radix 角色绑定:1/2 底·3/4/5 态·6/7/8 线·9/10 实心·**11/12 文字(APCA Lc 60/90 保证)** | Radix 官方 |
+| 令牌 | 全 CSS 变量;透明变体 `color-mix(in oklab,C 12%,transparent)`;OKLCH 注释=感知坐标 | Tailwind v4 |
+| 对比旋钮 | `tokens --contrast high` = WCAG 7.0 + Lc 75/90+(AAA 向) | Linear 三输入 |
+| 动效 | 150/300/600ms;进入编排错峰 60-120ms,终态=无动效版 | _motionlab |
+
+原则:**默认即最佳**——以上是引擎默认产出,不要手调;确需偏离,改输入(`--palette/--contrast/--ratio`),不是改产物。
+
 ## 能力×边界速查
 
 | 能力 | 做到 | 不做到 | 深入 |
@@ -59,9 +74,10 @@ description: 配色生成、调色板方案、前端美学:为 UI/HTML、SVG 幻
 | audit 外部页面审计 | `audit page.html --palette` 给已有页面做机械体检:漂移带最近板色替换/禁渐变/紫域大底/对比对带达标修复值/字号下限/AI 默认签名 | 静态范围——外链 CSS 与浏览器实测用渲染探针/evidence 补 | critique.md |
 | chartpal 图表色板 | `chartpal --kind categorical/sequential/diverging` 派生图表用色:三色盲模拟区分度下界/单调明度坡/近中性中点,产出标注色样 HTML+JSON | 有序数据用坡不用分类色;超 6 系列先分组 | data-viz.md |
 | typescale 字阶 | `typescale --base 16 --ratio 1.25` 产出 CJK 友好模块字阶(12px 硬下限/行高配对/tabular-nums 令牌)=CSS+中英混排样张 | 被钳制的级别如实报告;字阶为层级服务 | cjk-typography.md |
-| qc 渲染对账 | `qc shot.png --tokens tokens.json` 把渲染像素对声明令牌机械对账:大底真伪/板外入侵(带面积份额)/指纹绑定裁决——渲染反馈闭环的机械闸 | 静态检查看不见渲染;声明≠实况直到被证明 | render-loop.md |
+| qc 渲染对账 | `qc shot.png --tokens tokens.json` 把渲染像素对声明令牌机械对账:大底真伪/板外入侵(带面积份额)/指纹绑定裁决;`direct --render evidence.json` 把渲染分区色(probe v2)直接交色彩导演审计 | 静态检查看不见渲染;声明≠实况直到被证明 | render-loop.md |
 | typography 排印体系 | `references/typography-system.md` — 中西文 display 级排印法则:排印底座一行生效/字距字号律/行高对比律/眉题·巨标·导语配方/可变字体加载纪律/数字排印;`typescale --fluid` 出流体字阶+排印底座 CSS | 规则即代码不是散文;渐进项自动降级 | cjk-typography.md |
 | layout 布局组合 | `references/layout-composition.md` — 12 列底座/跨度词汇表(连续禁重复·4+4+4 每页一次)/不对称三比 7:5·8:4·5:8/间距三级 96-64-40/明暗逐幕翻转/装饰剂量上限;`scaffold --recipe` 一键产出五套参数化整页(EDIT-SPLIT/BLUEPRINT/SWISS-POSTER/EDITORIAL-MAG/DARK-FOUR-ACT) | 配方是起点——替换内容后过闸 | layout-composition.md |
+| 动效语法 | `references/motion.md` —— 进入编排(错峰 60-120ms,终态=无动效版像素级实证)/悬停反馈(translateY ≤4px+阴影,150-220ms,禁 scale/rotate)/滚动驱动(仅 @supports 内,基础态=完整功能)/剂量学;audit 有 motion_scale_hover/motion_lag 检查 | 静态截图只验证终态;时序参数来自渲染实验 | motion.md |
 | 字体美学 | `references/typography-aesthetics.md` —— 字体气质光谱、中西文配对表(每对渲染实证)、假粗禁令(无 @font-face 用 800/900 即 FAIL,宁细勿假粗降级链)、排印戏剧(1.414 甜点比率/巨标三位一体)与 --fonts 资产管线规范 | 卫生学在 cjk-typography.md;这里决定页面的讲究程度 | cjk-typography.md |
 | narrate 量化叙事 | `narrate --palette/--theme` 把 report 实测闸门(对比对/色盲模拟/slop 扫描/评分/指纹)转成双语纯数字说明,可直接转发 | 每个数字都可溯源到 report;模板不加形容词 | critique.md |
 | exemplar 范例注入 | `exemplar --kind landing --register light` 检索一份渲染评审+过闸的范例页(五配方×五色板,头部带 kind/register 元数据),按"色值换令牌、内容换真实"规则模仿改造 | 范例教的是结构与剂量;检索零命中显式报错,绝不猜 | layout-composition.md |

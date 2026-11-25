@@ -4,7 +4,7 @@ This module is unofficial and not affiliated with Cal.com.
 
 ## Requirements
 
-- Go 1.26.10 or newer, per `go.mod`.
+- Go 1.26.11 or newer, per `go.mod`.
 - A Cal.com API key or supported access token, exported as `CALCOM_API_KEY`. Endpoint access depends on the account plan and permissions.
 
 ## Install

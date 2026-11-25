@@ -2,7 +2,7 @@
   "name": "cost-file-doctor",
   "display_name": "造价文件诊断器",
   "display_name_en": "Cost File Doctor",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "author": "Lxb",
   "license": "MIT",
   "category": "data-analysis",

@@ -1,4 +1,4 @@
-# skill-vettr v2.0.3
+# skill-vettr v2.0.8
 
 Static analysis security scanner for OpenClaw skills. Analyses code before installation to detect common threats.
 
@@ -40,8 +40,7 @@ The `vet-url` and `vet-clawhub` commands invoke external binaries via `execSafe`
 
 | Binary | Command | Purpose |
 |--------|---------|---------|
-| `git` | `vet-url` | Clone `.git` URLs (hooks disabled via `-c core.hooksPath=/dev/null`) |
-| `curl` | `vet-url` | Download archive URLs (max 50 MB, 120s timeout) |
+| `git` | `vet-url` | Clone `.git` URLs (hooks disabled via `-c core.hooksPath=/dev/null`; connection pinned to the validated public address; user and system git config ignored) |
 | `tar` | `vet-url` | Extract archives (`--no-same-owner --no-same-permissions`) |
 | `clawhub` | `vet-clawhub` | Fetch skills from ClawHub registry |
 
@@ -117,7 +116,7 @@ Tests use Node's built-in test runner (`node:test`). The test suite covers each 
 
 The `vet` and `vet-url` commands allow paths under the current working directory (`process.cwd()`) as a convenience, so you can vet skills directly in your workspace without copying them elsewhere. The trade-off is that any path under `cwd` is accepted for vetting, which may be a broader scope than intended if you run the tool from a high-privilege or sensitive directory. In high-security environments, consider running skill-vettr from a dedicated, isolated directory to limit the allowed root scope.
 
-The `vet-url` command downloads and extracts remote archives into a temporary directory. This is necessary for its purpose but means external binaries (`curl`, `tar`, `git`) touch the filesystem. The `vet-clawhub` command similarly invokes the `clawhub` CLI. Run these commands only against URLs and slugs you have reason to trust, and prefer running inside a disposable container or VM for untrusted sources.
+The `vet-url` command downloads and extracts remote archives into a temporary directory. This is necessary for its purpose but means external binaries (`tar`, `git`) touch the filesystem. Archives are downloaded in-process (max 50 MB, 120s timeout) only from hosts that resolve to public addresses, with each redirect re-validated, and decompressed in-process with a 200 MB cap before `tar` sees them. After extraction or cloning, the skill is refused if its files add up to more than 200 MB, which also catches tar sparse members that declare more than they store. `.git` clones resolve the host first, reject it unless every address is public, and pin git's connection to those addresses (`http.curloptResolve`, IPv4 preferred), so DNS rebinding cannot point the clone at an internal host; redirects are disabled and user/system git config (URL rewrites, proxies, credential helpers) is ignored. Address pinning needs git 2.37 or later (older git silently ignores `http.curloptResolve`), so `vet-url` refuses `.git` URLs when git is older or its version can't be read. The `vet-clawhub` command similarly invokes the `clawhub` CLI. Run these commands only against URLs and slugs you have reason to trust, and prefer running inside a disposable container or VM for untrusted sources.
 
 If you enable the `autoVet` hook, review your configuration carefully — it will automatically invoke the vetting engine on every `skill:pre-install` event.
 

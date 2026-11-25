@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-对公客户经理和供应链金融从业者可从一家具体的核心企业出发，查找其客户、供应商及招投标关系中的潜在拓客对象，并查看每家企业的业务切入点和可能的金融需求。
+Corporate relationship managers use this skill to find potential customers and suppliers connected to a specified core company, then prioritize outreach using suggested entry points and possible financial needs.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review flags requests for API keys in chat and use of a remotely fetched playbook; scan coverage is partial.
+Risk: The release security summary marks the skill suspicious, citing credential exposure, an extra promotional workflow, and a mismatch with its stated prospecting purpose.
 
-Mitigation: Verify the key handling and remote playbook before installation. Do not paste secrets into a conversation, review referral or sharing prompts before acting, and account for the incomplete scan coverage.
+Mitigation: Review the skill and security findings before use; do not paste a reusable API key into chat, and configure secrets locally.
+
+Risk: Security coverage is partial because a referenced local path could not be resolved.
+
+Mitigation: Resolve and inspect the referenced path and complete a security review before use.
 
 ## Reference(s):
 
-- [ClawHub skill listing](https://clawhub.ai/panting09266-ai/skills/cue-supply-chain-prospecting)
+- [ClawHub release](https://clawhub.ai/panting09266-ai/skills/cue-supply-chain-prospecting)
 - [Cue platform](https://cuecue.cn)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Structured Markdown prospecting report with company relationships, outreach angles, inferred financial needs, priorities, and source links]
+**Output Format:** [Structured Markdown prospecting list with source links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [The report is based on Cue and external data sources; findings and source availability may vary.]
+**Other Properties Related to Output:** [Prioritized companies with relationship summaries, outreach angles, and possible financial needs.]
 
 ## Skill Version(s):
 
-1.0.11 (source: server-resolved release metadata)
+1.0.15 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -1,17 +1,17 @@
 {
   "name": "xiaohongshu-keyword-search",
-  "version": "1.1.3",
+  "version": "1.2.0",
   "description": "一款专业的小红书数据分析工具, 通过挖掘爆款笔记、监控竞品动态、筛选高价值KOL, 帮助你实现小红书账号的快速增长与精准营销。",
   "keywords": [
     "小红书",
+    "xhs",
+    "rednote",
+    "小红书搜索",
+    "小红书评论",
     "爆款笔记",
-    "市场调研",
-    "数据挖掘",
-    "趋势监控",
     "竞品分析",
-    "KOL营销",
-    "流量增长",
-    "用户画像"
+    "KOL",
+    "舆情分析"
   ],
   "homepage": "https://github.com/um-why/xiaohongshu-openclaw-skill#readme",
   "bugs": {
@@ -24,9 +24,17 @@
   "license": "MIT",
   "author": "um-why",
   "engines": {
-    "node": ">=16"
+    "node": ">=16.14.0"
   },
   "main": "src/xiaohongshu/search-cli.js",
+  "files": [
+    "src",
+    "assets",
+    "references",
+    "SKILL.md",
+    "readme.md",
+    "LICENSE"
+  ],
   "scripts": {
     "search": "node src/xiaohongshu/search-cli.js",
     "detail": "node src/xiaohongshu/detail-cli.js",

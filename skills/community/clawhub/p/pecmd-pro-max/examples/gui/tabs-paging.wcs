@@ -1,0 +1,80 @@
+#!PECMD
+ENVI^ EnviMode=1  //避免意外错误，空变量，外部变量，
+ENVI^ ForceLocal=1  //可以处理大变量. 不影响外部变量
+
+_SUB  EditDisk, W360H300,分页模拟演示
+      GROU -center PAGES,L10T76W330H130, 分区  
+      GROU  ,L10T106W330H100,    //是否需要隔断
+
+//第1页
+      RADI R1,  L20T85W50H25 ,分区,Call OnR1,1
+
+      LABE R1_L1 , L20T120W30H20, 磁盘
+      EDIT EDISK,  L20T140W30H20,%DISK%,
+
+      LABE R1_L2,  L55T120W30H20, 分区
+      EDIT EPART,  L55T140W30H20,%IPART%,
+
+      LABE R1_L3,    L90T120W30H20, 激活
+      EDIT EACKTIVE, L90T140W30H20,%ACKTIVE%,
+   
+      ITEM R1_BT,  L100T170W100H20,创建分区, CALL OnDoit
+
+//第2页
+      RADI R2,  L80T85W50H25 ,分页2,Call OnR2,0
+      LABE R2_L1 ,    L20T120W30H20, 页2,,,
+      EDIT R2_EDISK,  L20T140W30H20,2,
+      ITEM R2_BT,  L100T170W100H20,HELLO, CALL OnDoit
+      SHOW_R2 0  //隐藏第2页
+      
+_END
+
+//参数:0 隐藏 1或无:显示
+_SUB SHOW_R1 
+    ENVI &&SW=1
+    FIND $0=%1, ENVI &SW=0
+    ENVI @R1_L1.Visable=%&SW%
+    ENVI @R1_L2.Visable=%&SW%
+    ENVI @R1_L3.Visable=%&SW%
+    ENVI @EDISK.Visable=%&SW%
+    ENVI @EPART.Visable=%&SW%
+    ENVI @EACKTIVE.Visable=%&SW%
+_END
+
+//参数:0 隐藏 1或无:显示
+_SUB SHOW_R2 
+    ENVI &&SW=1
+    FIND $0=%1, ENVI &SW=%1
+    ENVI @R2_L1.Visable=%&SW%
+    ENVI @R2_EDISK.Visable=%&SW%
+    ENVI @R2_BT.Visable=%&SW%
+_END
+
+_SUB  OnR1
+    ENVI @PAGES=%R1%
+    SHOW_R2  0
+    SHOW_R1  1
+_END
+
+_SUB  OnR2
+    ENVI @PAGES=%R2%
+    CALL SHOW_R1  0
+    CALL SHOW_R2  1
+_END
+
+
+_SUB OnDoit
+_END
+
+// 初始化 变量 DISK ... 
+ENVI DISK=0
+ENVI IPART=1
+ENVI ACKTIVE=-a
+ENVI TYPE=0x06
+ENVI STAR=131m
+ENVI LEN=35m
+
+//图形界面
+CALL EditDisk
+
+

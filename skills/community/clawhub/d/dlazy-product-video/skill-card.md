@@ -1,6 +1,6 @@
 ## Description:
 
-Turns product photos, links, specifications, or listings into product showcase and advertising videos.
+Turns product photos, listings, or specifications into polished e-commerce demo and advertising videos, with multilingual voiceover and an optional virtual host.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Sellers and ecommerce teams use this skill to turn product photos, product information, or marketplace listings into product showcase and advertising videos, with multilingual voiceover and an optional virtual host.
+Merchants and marketing teams use this skill to create product showcase and cross-border e-commerce advertising videos from product images, listings, specifications, manuals, or catalogs.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan was only partially complete, and some references related to CLI installation were unresolved.
+Risk: The security review notes that listing organization projects may exceed the video-making use case, and some install and runtime details were unavailable to the scan.
 
-Mitigation: Review the pinned CLI installation details before running it; the skill documents on-demand use with npx @dlazy/cli@1.2.3 as an alternative to a global install.
+Mitigation: Review the CLI's install and runtime details, and confirm that organization project listing fits your needs before using it.
 
-Risk: Project listing can expose organization project information beyond the stated video-creation task.
+Risk: Files attached to a request are uploaded to dLazy media storage before the service uses them.
 
-Mitigation: Use project listing only when needed and confirm it is appropriate for the organization before accessing project information.
-
-Risk: Prompts and attached files are sent to dLazy services, and attached files are uploaded to its media storage.
-
-Mitigation: Avoid sending confidential material unless approved for the service, and manage the organization API key through the documented login, rotation, and revocation controls.
+Mitigation: Attach only files that are appropriate to share with the service.
 
 ## Reference(s):
 
-- [Product Video skill release](https://clawhub.ai/dlazyai/skills/dlazy-product-video)
-- [dLazy service](https://dlazy.com)
-- [dLazy CLI project listed in release metadata](https://github.com/dlazy-ai/cli)
-- [dLazy CLI package](https://www.npmjs.com/package/@dlazy/cli)
-- [dLazy API key setup](https://dlazy.com/dashboard/organization/api-key)
+- [dLazy website](https://dlazy.com)
+- [dLazy CLI project page (listed in skill metadata)](https://github.com/dlazy-ai/cli)
+- [dLazy CLI on npm](https://www.npmjs.com/package/@dlazy/cli)
 
 ## Skill Output:
 
-**Output Type(s):** [Video, Text]
+**Output Type(s):** [Video content, Text]
 
-**Output Format:** [Product showcase or advertising video with textual status and guidance]
+**Output Format:** [Product video with a streamed text response; delivery details depend on the service]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Video content varies with the brief; multilingual voiceover and an optional virtual host are supported.]
+**Other Properties Related to Output:** [May include multilingual voiceover and an optional virtual host.]
 
 ## Skill Version(s):
 
-1.0.38 (source: server release evidence)
+1.0.41 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

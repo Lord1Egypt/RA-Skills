@@ -1,0 +1,110 @@
+{
+ "_command": "python3 scripts/gen_figure.py -t flow -d templates/flow_method-scrnaseq.json --gate strict -o flow_scrnaseq.png",
+ "layout": "layered",
+ "title": "Single-cell RNA-seq analysis pipeline",
+ "nodes": [
+  {
+   "id": "tissue",
+   "label": "Tissue harvest",
+   "sublabel": "fresh, on ice",
+   "shape": "round"
+  },
+  {
+   "id": "dissoc",
+   "label": "Dissociation",
+   "sublabel": "enzymatic, 30 min"
+  },
+  {
+   "id": "qc",
+   "label": "Viability QC",
+   "sublabel": "threshold 80%",
+   "shape": "diamond"
+  },
+  {
+   "id": "drop",
+   "label": "Discard",
+   "sublabel": "low-viability batch",
+   "shape": "manual-op"
+  },
+  {
+   "id": "lib",
+   "label": "10x library prep",
+   "sublabel": "GEM generation"
+  },
+  {
+   "id": "seq",
+   "label": "Sequencing",
+   "sublabel": "NovaSeq, 50k reads/cell",
+   "shape": "io"
+  },
+  {
+   "id": "ref",
+   "label": "Reference genome",
+   "sublabel": "GRCh38 annotation",
+   "shape": "cylinder"
+  },
+  {
+   "id": "align",
+   "label": "Alignment",
+   "sublabel": "Cell Ranger count"
+  },
+  {
+   "id": "cluster",
+   "label": "Clustering",
+   "sublabel": "Leiden resolution 1.0"
+  },
+  {
+   "id": "annot",
+   "label": "Annotation",
+   "sublabel": "marker-based, manual review",
+   "shape": "document"
+  }
+ ],
+ "edges": [
+  {
+   "from": "tissue",
+   "to": "dissoc"
+  },
+  {
+   "from": "dissoc",
+   "to": "qc"
+  },
+  {
+   "from": "qc",
+   "to": "lib",
+   "label": "pass",
+   "thick": true
+  },
+  {
+   "from": "qc",
+   "to": "drop",
+   "label": "fail"
+  },
+  {
+   "from": "lib",
+   "to": "seq"
+  },
+  {
+   "from": "seq",
+   "to": "align"
+  },
+  {
+   "from": "ref",
+   "to": "align",
+   "dashed": true
+  },
+  {
+   "from": "align",
+   "to": "cluster"
+  },
+  {
+   "from": "cluster",
+   "to": "annot"
+  }
+ ],
+ "_chart_type": "flow",
+ "_scene": "",
+ "_description": "",
+ "_caption_template": "",
+ "_note": "单细胞 RNA-seq 分析管线：viability QC 菱形分支（pass/fail）+ 参考基因库圆柱 + 测序数据 IO——方法章流程图范式"
+}

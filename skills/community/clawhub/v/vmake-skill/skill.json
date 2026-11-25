@@ -1,6 +1,6 @@
 {
   "name": "openclaw-vmake-ai",
-  "version": "2.0.0",
+  "version": "2.0.3",
   "description": "Vmake image/video watermark removal and quality restoration. Discover the remote catalog before selecting any task: V2 uses returned server task metadata; legacy aliases are accepted only when remote legacy config returns them. Video tasks use spawn-run-task plus sessions_spawn; image tasks use blocking run-task. Paid API.",
   "author": "one2x-ai",
   "license": "MIT",
@@ -17,6 +17,26 @@
   ],
   "sbom": {
     "files": [
+      {
+        "path": "scripts/input_media.py",
+        "required": true,
+        "description": "Ordered input validation before upload and quota consumption"
+      },
+      {
+        "path": "scripts/params_schema.py",
+        "required": true,
+        "description": "V2 user parameter contract validation before upload and quota consumption"
+      },
+      {
+        "path": "scripts/features.json",
+        "required": true,
+        "description": "Build-time optional module selection"
+      },
+      {
+        "path": "scripts/delivery.py",
+        "required": true,
+        "description": "Provider-independent capability and delivery selection"
+      },
       {
         "path": "SKILL.md",
         "required": true,
@@ -129,5 +149,12 @@
       "whatsapp",
       "signal"
     ]
+  },
+  "features": {
+    "delivery_channels": [
+      "feishu",
+      "telegram"
+    ],
+    "sdk": false
   }
 }

@@ -1,6 +1,6 @@
 ## Description:
 
-Guide minimal code via a decision ladder with full safety, edge, and negative-case coverage
+Guide minimal code via a decision ladder with full safety, edge, and negative-case coverage.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill before adding code or dependencies and when reviewing a diff. It helps them choose the simplest adequate approach while preserving correctness, security, performance, and edge-case handling.
+Developers and coding agents use this skill before adding or changing code, choosing dependencies, or reviewing a diff. It guides them to prefer the simplest adequate implementation while retaining correctness, safety, performance, and edge-case handling.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review was partial because four references could not be resolved.
+Risk: The security review is partial because four local references could not be resolved, so the available scan evidence may not cover everything they contain.
 
-Mitigation: Review unresolved references before relying on guidance that depends on them.
+Mitigation: Resolve and review the referenced files, then review and scan the skill before deployment.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/athola/skills/nm-conserve-elegant-code)
-- [Project page listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
+- [Project homepage listed in ClawHub metadata](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Code]
+**Output Type(s):** [Code, Guidance, Analysis]
 
-**Output Format:** [Code with concise Markdown guidance]
+**Output Format:** [Natural-language guidance and code in the agent conversation]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include the selected decision-ladder rung and relevant safety, performance, and edge-case considerations.]
+**Other Properties Related to Output:** [No fixed output schema; applies a decision ladder and preserves safety, correctness, performance, and edge-case requirements.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

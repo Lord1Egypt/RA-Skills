@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and AI agents use this skill to read and manage Attio CRM records, lists, attributes, notes, tasks, meetings, files, and related workspace data through a connected Attio account.
+Developers and CRM administrators use this skill to read and manage Attio workspace records, lists, and related activity through their connected account.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates the skill suspicious with medium confidence, citing workspace user and group administration beyond its stated CRM purpose and an account credits check that is not described.
+Risk: ClawScan rates the skill suspicious with medium confidence, citing identity and group administration beyond its stated CRM purpose and an account-credit request to an external service.
 
-Mitigation: Before installation, ask the publisher to explain these operations and confirm they are necessary and authorized; avoid invoking them until clarified.
-
-Risk: The documented API operations include destructive CRM actions, such as deleting records and changing or overwriting data.
-
-Mitigation: Use only endpoints needed for the user's request and confirm before deleting, overwriting, or sending on the user's behalf, as the skill directs.
+Mitigation: Before installing, confirm why account-credit information is requested and whether user and group administration is necessary. If installed, review credential permissions, especially workspace access changes.
 
 ## Reference(s):
 
-- [Attio Integration documentation](https://superagnt.com/r/ch-attio-crm-docs)
-- [MCP server](https://mcp.superagnt.com/mcp)
-- [MCP installation instructions](https://www.superagnt.com/install)
-- [ClawHub skill listing](https://clawhub.ai/superagnt/skills/attio-crm)
+- [superagnt documentation](https://superagnt.com/r/ch-attio-crm-docs)
+- [MCP server setup](https://www.superagnt.com/install)
 
 ## Skill Output:
 
-**Output Type(s):** [API calls, Shell commands, Guidance]
+**Output Type(s):** [API calls, JSON, shell commands, configuration guidance]
 
-**Output Format:** [Markdown instructions with curl examples and JSON API data]
+**Output Format:** [Markdown instructions with curl examples and JSON API responses]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires a connected Attio account and SUPERAGNT_API_KEY.]
+**Other Properties Related to Output:** [Actions use the connected Attio account and its granted permissions.]
 
 ## Skill Version(s):
 
-2.0.14 (source: artifact frontmatter; server release evidence)
+2.0.19 (source: frontmatter)
 
 ## Ethical Considerations:
 

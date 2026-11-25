@@ -1,6 +1,6 @@
 ## Description:
 
-Implements GitHub or GitLab issues via parallel subagents with review gates between task batches
+Implements GitHub or GitLab issues via parallel subagents with review gates between task batches.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to retrieve GitHub, GitLab, or Bitbucket issues, plan and implement changes with parallel subagents, and review work before preparing one consolidated pull request.
+Developers use this skill to retrieve GitHub, GitLab, or Bitbucket issues, plan and implement changes with review gates, and consolidate the work into one pull request.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Completion guidance describes posting tooling feedback to an unrelated external repository without user approval.
+Risk: The workflow may publish tooling feedback containing details derived from a work session to an unrelated external repository.
 
-Mitigation: Review the feedback step and obtain user approval before posting; skip it when approval is not given.
+Mitigation: Review the external feedback step before execution; skip it or redact details if sharing is not acceptable for the session.
 
 ## Reference(s):
 
-- [Skill homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-sanctum-do-issue)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-sanctum-do-issue)
+- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Markdown, Shell commands, Guidance]
+**Output Type(s):** [Code, Shell commands, Markdown, Guidance]
 
-**Output Format:** [Code changes with Markdown task plans and inline forge CLI commands]
+**Output Format:** [Repository changes, forge CLI commands, and Markdown progress and review notes]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Accepts one or more issue numbers or issue URLs; consolidates completed work into one pull request.]
+**Other Properties Related to Output:** [May comment on or close issues and open one consolidated pull request; requires the configured git-platform detector and supporting planning, testing, review, and branch-finishing skills.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, server-resolved release)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

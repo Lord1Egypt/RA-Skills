@@ -5,7 +5,7 @@
  *
  * 默认范围 = 通用目录（Universal .agents / 通用 AGENTS.md）+ 已核实宿主目录；
  * `includeDiscovered` 显式纳入自动发现目录；桥接目录永不纳入（发现层已过滤
- * 不接管名单与 YottaCode）。
+ * 不接管名单与 YottaWeave）。
  */
 const fs = require('fs');
 const os = require('os');
@@ -65,7 +65,7 @@ function computeHubTargets(options) {
   };
 
   for (const item of universalSkillDirs({ homeDir, env })) {
-    if (agentDirsLib.isYottaCodeDir(item.dir)) continue;
+    if (agentDirsLib.isYottaWeaveDir(item.dir)) continue;
     if (excludedEntry({ dir: item.dir, agentId: item.agentId })) continue;
     add(item.dir, item.agentId, item.label, { verified: true });
   }

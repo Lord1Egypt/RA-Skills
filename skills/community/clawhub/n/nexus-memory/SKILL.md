@@ -1,11 +1,12 @@
 ---
 name: nexus-memory
-version: 0.1.16
+version: 0.1.17
 description: >
   Persistent memory for Claude Code powered by Qdrant. Auto-Recall injects
   relevant memories before each prompt, Auto-Capture stores facts after each
-  turn. Self-hosted and private by default: embeddings run locally with
-  Qwen3-Embedding-0.6B, nothing leaves the machine unless you add a cloud
+  turn. Every stored memory names its author in `agent`, and a write without
+  one is refused. Self-hosted and private by default: embeddings run locally
+  with Qwen3-Embedding-0.6B, nothing leaves the machine unless you add a cloud
   key. Shares one store with Hermes Agent, OpenClaw and the DeepSeek Harness,
   each agent with its own key. Use when the user asks to "remember", "recall",
   "search memory", or when project context from past sessions is needed.
@@ -53,8 +54,14 @@ Environment variables (`.env` or shell):
 | `NEXUS_COLLECTION` | `nexus` | Collection name |
 | `NEXUS_EMBEDDING_PROVIDER` | local | `local`, `ollama`, `openai`, `google`, `jina` |
 | `NEXUS_EMBEDDING_MODEL` | `Qwen/Qwen3-Embedding-0.6B` | Local model, 1024 dimensions |
-| `NEXUS_MAX_RECALL` | `5` | Entries injected per prompt |
-| `NEXUS_RECALL_CHARS` | `1600` | Character budget for the injection |
+| `NEXUS_MAX_RECALL` | `3` | Entries injected per prompt |
+| `NEXUS_RECALL_BUDGET` | `800` | Character budget for the injected block |
+| `NEXUS_RECALL_MIN_SCORE` | `0` | Minimum relevance; `0` means no threshold |
+| `NEXUS_RECALL_EXCLUDE_CATEGORIES` | `session,entity` | Never injected; an empty value turns the filter off |
+
+The recall decision is taken in one place: three entries, an 800-character
+budget, session logs and entity labels out, and no minimum score — a threshold
+filtered nothing up to 0.45 and above that cost matching entries first.
 
 Cloud embedders are opt-in: they run only if `NEXUS_EMBEDDING_PROVIDER` names
 one *and* its key is present. A fresh install sends nothing off the machine.
@@ -67,6 +74,23 @@ allowed to see; `private` entries stay hidden from other agents. Tell the user
 what is being stored the first time, and check the store before storing
 secrets: passwords, tokens and card data do not belong there.
 
+## Who wrote a memory (`agent`)
+
+Every stored memory names its author in the payload field `agent`. The id comes
+from the context of the call — the agent key that signed the request, or the
+plugin's own `NEXUS_AGENT_ID` — never from a field a caller may invent; a header
+claiming another agent is ignored. Since 22.11.2026 the field is mandatory: a
+write that names nobody is refused instead of leaving a point with no owner.
+Nothing is stored, and the refusal names the reason: over MCP `{"status":
+"rejected", "reason": "..."}`, over `POST /write` an HTTP 422. A request without
+a valid agent key gets no further than `401` and never reaches a write.
+
+The maintenance passes that write directly carry `writer: consolidation` or
+`writer: dreaming` instead and leave `agent` empty, because a consolidation
+merges several agents' statements whose originals are gone and any attribution
+would be a guess; a query can filter those points out on `writer`. Older entries
+with neither field stay as they are — no migration, no backfill.
+
 ## Manual tools
 
 Over MCP (`/mcp`, streamable HTTP) an agent key gets eight tools:
@@ -76,6 +100,18 @@ Over MCP (`/mcp`, streamable HTTP) an agent key gets eight tools:
 
 The graph and administrative routes need a higher role (`work` / `admin`). The
 default agent role `know` can read, write and change its own entries.
+
+## Backups
+
+The service writes a full backup every six hours into `<data dir>/backups`
+(`NEXUS_BACKUP_DIR` moves the folder, `NEXUS_AUTO_BACKUP=0` switches the
+automatic pass off). A dump carries payloads only: the collection stores named
+vectors, so one file holds no vectors and a restore re-embeds from the text
+(`reembed=true`). The folder is created `0700` and every file `0600`, so other
+accounts on the machine cannot read private entries even under a lax umask. The
+newest four dumps are kept — one day at the six-hour cadence — and older
+`nexus-backup-*` files are pruned. The `backup` tool (admin role) writes one on
+demand.
 
 ## Harnesses
 

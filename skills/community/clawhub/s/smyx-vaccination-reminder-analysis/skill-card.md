@@ -1,6 +1,6 @@
 ## Description:
 
-Matches a pet's face to its vaccination record and reports whether a configured vaccination reminder is due; it does not provide medical advice.
+Analyzes a pet facial image or video, matches the animal to its vaccination record, and returns a due or overdue reminder based on the configured cycle.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Pet hospital, boarding center, and pet insurance staff can use the skill to match a submitted pet image or video to a vaccination record and identify reminders that are due or overdue. It also supports queries for past reminder reports.
+Pet hospital, boarding, and insurance staff can use it to check whether a matched pet's recorded vaccinations are due. It reports database comparisons and does not provide veterinary advice.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan rates the skill suspicious because its reported account, user-management, and data-handling capabilities extend beyond its described reminders, and scan coverage is incomplete.
+Risk: The security assessment rates this release suspicious with high confidence because credential handling, remote processing, and file or account changes exceed the stated reminder purpose; the scan was partial and the evidence is incomplete.
 
-Mitigation: Before installing, clarify the extra account, identity, database, and data-transfer behavior, and verify that the export-only option avoids analysis.
+Mitigation: Avoid installing until credential routing, account and file changes, media transfer, and report export behavior are clarified.
 
 ## Reference(s):
 
 - [API interface documentation](references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-vaccination-reminder-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis report, JSON, Markdown]
+**Output Type(s):** [Text, Markdown, JSON]
 
-**Output Format:** [Structured vaccination reminder results with report links; Markdown report lists]
+**Output Format:** [Structured reminder results in text or JSON; historical report lists can include Markdown tables and report links.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports compare a linked vaccination record with the configured reminder cycle; the skill states that it does not provide medical advice.]
+**Other Properties Related to Output:** [Single pet media analysis or a historical report list; detail can be basic, standard, or JSON.]
 
 ## Skill Version(s):
 
-1.0.16 (source: server-resolved release metadata)
+1.0.18 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

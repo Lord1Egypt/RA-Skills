@@ -4,7 +4,7 @@ description: 聚合搜索百度网盘/夸克网盘/阿里云盘等网盘分享�
 agent_created: true
 slug: netdisk-resource-search
 displayName: 网盘资源聚合搜索（百度/夸克/阿里云盘）
-version: 1.0.0
+version: 1.0.2
 category: productivity
 visibility: public
 license: MIT

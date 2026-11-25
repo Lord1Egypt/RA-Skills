@@ -1,6 +1,6 @@
 ## Description:
 
-抖音舆情监测助手。针对任意关键词获取抖音作品数据、详情、互动数据、评论数据，基于抖音实时数据，综合分析舆情健康、情感占比、负面信息、事件时间、热度排行、竞品口碑对比与风险建议等，进行分析并输出舆情报告。支持四大能力：(1) 关键词搜索视频/图文，可按点赞数、发布时间、视频时长、内容类型筛选排序；(2) 实时热榜查询，获取抖音热搜词条与热度数据；(3) 博主作品抓取，按主页链接或 sec_uid 获取公开作品列表；(4) 视频评论分析，按视频链接或 aweme_id 获取评论内容与互动数据。
+该技能通过关键词搜索、热榜、创作者作品与评论数据获取抖音公开内容，并支持生成舆情与内容分析报告。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-内容运营、品牌与投放团队、舆情与客服人员，以及数据分析人员可用此技能查询抖音公开作品、作者、互动、评论和热榜数据，再整理为选题研究、竞品观察或舆情报告。
+Marketing, operations, and research teams use the skill to retrieve public Douyin search, creator, post, comment, and trending data for content planning, competitor monitoring, and sentiment analysis.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Queries send user-provided keywords or links to the third-party Guaikei API.
+Risk: The security review is incomplete and flags account discovery and customer lead gathering beyond the stated monitoring purpose.
 
-Mitigation: Use only when sharing those query terms or links with that service is acceptable; avoid including sensitive information.
+Mitigation: Review those workflows before use and limit queries to the public-data tasks you intend to perform.
 
-Risk: ClawScan reports a benign verdict with medium confidence, but inspection was partial and the tool-misuse analyzer was degraded.
+Risk: Search terms and supplied links or IDs are sent to a third-party API.
 
-Mitigation: Review the skill's stated data handling and third-party API use before installing, and weigh whether that use fits your needs.
+Mitigation: Check that the query terms and identifiers are appropriate to share with the service before running a lookup.
 
 ## Reference(s):
 
-- [Demand mining guide](references/demand-mining.md)
-- [Command options](references/options.md)
-- [Changelog](references/changelog.md)
-- [Guaikei API and token service](https://www.guaikei.com)
 - [ClawHub skill page](https://clawhub.ai/why20261/skills/douyin-sentiment-monitor)
+- [Service and token setup](https://www.guaikei.com)
+- [Output contract](references/contract.md)
+- [Error handling](references/errors.md)
+- [Demand mining guidance](references/demand-mining.md)
+- [Customer acquisition guidance](references/customer-acquisition.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis, Markdown]
+**Output Type(s):** [JSON, Analysis, Guidance]
 
-**Output Format:** [Structured JSON query results with concise analysis or reports in Markdown]
+**Output Format:** [Structured JSON data with concise sentiment, trend, or content-analysis reports in text or Markdown.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Available data depends on the selected query and API plan; shared and playback links may expire.]
+**Other Properties Related to Output:** [Requires Node.js 16.14.0+ and GUAIKEI_API_TOKEN; query results may be saved in the skill's logs directory.]
 
 ## Skill Version(s):
 
-1.4.2 (source: SKILL.md frontmatter, package.json)
+1.5.0 (source: SKILL.md frontmatter, package.json, changelog)
 
 ## Ethical Considerations:
 

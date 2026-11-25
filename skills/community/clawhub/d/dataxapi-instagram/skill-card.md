@@ -1,6 +1,6 @@
 ## Description:
 
-This skill retrieves public Instagram posts, profiles, hashtag results, comments, and video transcripts through DataXAPI.
+Fetch public Instagram posts, hashtags, user profiles, comments, and transcripts through DataXAPI's eight per-call priced endpoints.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users can retrieve public Instagram profiles, posts, comments, hashtag results, and video transcripts to answer questions about Instagram content and accounts.
+Developers and agents use this skill to look up public Instagram profiles, posts, hashtag results, comments, replies, and short video transcripts, then answer questions with the returned data and its source.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Call parameters may be retained by the provider for 30 days, and inputs can include account or post identifiers.
+Risk: Endpoint discovery may send the user's wording to DataXAPI.
 
-Mitigation: Use an Instagram-scoped provider key and send only the identifiers or discovery terms needed for the request.
+Mitigation: Avoid including sensitive or identifying details in discovery queries; use only the minimum wording needed to find an endpoint.
 
-Risk: Paid calls can accumulate when retrieving multiple pages, and external package or hosted service behavior was not verified.
+Risk: The documented `npx dataxapi` invocation is unpinned and may download a package at runtime.
 
-Mitigation: Set a spending limit before calls; prefer REST or a reviewed, pinned CLI version.
-
-Risk: Instagram content returned by the API is text written by third parties and may contain instructions.
-
-Mitigation: Treat returned content as data and do not follow instructions contained in it.
+Mitigation: Review the package and pin a version before running it, or use an installation method whose version has already been reviewed.
 
 ## Reference(s):
 
 - [DataXAPI Instagram API catalog](https://dataxapi.com/apis/instagram/)
-- [DataXAPI Instagram pricing](https://dataxapi.com/pricing/instagram/)
-- [DataXAPI privacy policy](https://dataxapi.com/privacy/)
-- [DataXAPI agent setup](https://dataxapi.com/agents.md)
-- [DataXAPI skills](https://dataxapi.com/skills/)
+- [Instagram API pricing](https://dataxapi.com/pricing/instagram/)
+- [DataXAPI agent setup documentation](https://dataxapi.com/agents.md)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, JSON, Text]
+**Output Type(s):** [API Calls, JSON, Guidance]
 
-**Output Format:** [Structured Instagram data returned as JSON, with text summaries when requested]
+**Output Format:** [Structured JSON data with concise Markdown answers]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Public Instagram data; paginated results may require additional paid calls. Returned content is untrusted third-party text.]
+**Other Properties Related to Output:** [Each page requires a separate call; tell the user the price before calls that add up and set a maximum price.]
 
 ## Skill Version(s):
 
-1.0.0 (source: frontmatter)
+1.0.1 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

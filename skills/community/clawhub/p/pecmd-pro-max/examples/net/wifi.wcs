@@ -1,0 +1,246 @@
+//每个窗口都可以定义自己的托盘
+ENVI &::WM_TRAYNOTIFY=1109  //tray 通知消息
+SET  ::WM_LBUTTONDOWN                  =0x0201
+SET  ::WM_LBUTTONUP                    =0x0202
+SET  ::WM_LBUTTONDBLCLK                =0x0203
+SET  ::WM_RBUTTONDOWN                  =0x0204
+SET  ::WM_RBUTTONUP                    =0x0205
+SET  ::WM_RBUTTONDBLCLK                =0x0206
+SET  ::WM_SIZE=0x0005
+SET  &SIZE_MINIMIZED=1  //最小化 
+
+ENVI$ &TAB=09
+ENVI$ &NL=0D 0A
+ENVI$ &NL1=0A
+
+;如果是EXE文件，使用内置工具
+FEXT ext=%~0
+FIND $%ext%=EXE, ENVI run_cab=-exe:*cab:#100:wlan.exe!ENVI run_cab=
+
+ENVI &START_X=20
+ENVI &START_Y=20
+ENVI &HEIGHT=50
+
+ENVI &bgcolor=0xFFF0E0
+ENVI &text_color=0x0#%bgcolor%#0x0#0xFFE0C0
+ENVI &text_color_conn=0xFF0000#%bgcolor%#0xFF0000#0xFFE0C0
+
+//自动获取任务栏高度
+ENVI &B_TRIM=40    //任务栏高度
+FIND --wid*@ &&all_win
+FORX *NL &&all_win,&&tray_win,
+{
+    MSTR &&win_type=<7>%tray_win%
+    FIND $%win_type%=Shell_TrayWnd,TEAM MSTR &taskbar_wid=<2>%tray_win%|ENVI @@POS=?%taskbar_wid%::::&B_TRIM
+}
+
+SCRN ScrW,ScrH0 
+CALC #ScrH=%ScrH0% - %B_TRIM%
+
+
+ENVI &WinW=320
+CALC &WinL=%ScrW%-%WinW%
+ENVI &WinT=5
+CALC &WinH=%ScrH%-5
+CALC &ConnT=%&WinH%-300
+
+CALC #&MaxRowNum=(%WinH%-100)/%HEIGHT%
+
+
+CALL WinWifiList
+EXIT
+
+
+ENVI &WID=
+
+_SUB WinWifiList,L%WinL%T%WinT%W%WinW%H%WinH%,Wi-Fi, CALL OnClose,,,,  -trap -nocap
+    //ENVI @this.Visable=0
+	ENVI &&WID=%&&__WINID%
+    ENVI @this.MSG=_%&::WM_TRAYNOTIFY%::&&wp,&&lp, CALL DoMenu %&wp% %&lp%   
+    ENVI @this.MSG=_%&::WM_SIZE%::&&wp,&&lp, CALL OnSize %&wp% %&lp%  
+    TIPS* ,,,,shell32.dll#41    //显示托盘图标
+    
+    IFEX %windir%\fonts\msyh.*,ENVI @this.Font=12:微软雅黑
+    ENVI @this.bkcolor=%bgcolor%
+    
+	ENVI &&Title=*180:SSID%TAB%*50:信号%TAB%*50:连接
+	TABL WIFILIST, L18T20W1000H560,%&Title%,aaa%TAB%bbb%TAB%ccc,0x10010  //0x10040
+	CALL UpdateWifiListTable
+    CALL SortWifiListTable
+
+    
+    LABE -vcenter -left -trans TitleA,L16T10W300H%HEIGHT%,  Wi-Fi,,,24
+    CALC &&XX=%START_X%+240
+    //LABE -vcenter -left -trans TitleB,L%XX%T10W50H%HEIGHT%,◎,CALL WifiRefresh,,48
+    ITEM -font:48 -round BTNB,L%XX%T10W%HEIGHT%H%HEIGHT%,◎,CALL WifiRefresh
+    
+    CALL UpdateWifiListUI
+
+_END
+
+_SUB WifiRefresh
+	CALL UpdateWifiListTable
+	CALL SortWifiListTable
+	ENVI &&II=0
+    LOOP %&II%<30,
+    {
+    	CALC &II=%&II%+1
+    	//mess %&II%/%RowNum%
+     	//避免界面混乱，删除所有控件，重新绘制  
+     	ENVI @Labe%&II%A.*del=   
+     	ENVI @Labe%&II%B.*del=
+     	ENVI @Labe%&II%C.*del=
+    }   
+	CALL UpdateWifiListUI
+_END
+
+_SUB UpdateWifiListUI
+    ENVI @WIFILIST.Val=?*;&&RowNum
+    ENVI &&II=0
+    LOOP %&II%<%&RowNum%,
+    {
+    	CALC &II=%&II%+1
+    	//mess %&II%/%RowNum%
+    	CALL PlaceLine %&II%    	
+    } 
+_END
+
+//%~1: 序号1,2,3....   
+_SUB PlaceLine
+	ENVI &&II=%~1
+    ENVI @WIFILIST.Val=?%&II%.1;&&SSID_NAME
+    ENVI @WIFILIST.Val=?%&II%.2;&&SIGNALS
+    ENVI @WIFILIST.Val=?%&II%.3;&&FLAG
+    //ENVI @WIFILIST_SORT.Val=?%&II%.1;&&SSID_NAME
+    //ENVI @WIFILIST_SORT.Val=?%&II%.2;&&SIGNALS
+    //ENVI @WIFILIST_SORT.Val=?%&II%.3;&&FLAG
+
+    CALC &&YY=%START_Y%+(%HEIGHT%)*%&II%
+    CALC #&&CONN=%&FLAG%%2
+    FIND |%&CONN%=1, ENVI &&mycolor=%&text_color_conn%!ENVI &&mycolor=%&text_color%
+    
+	ENVI &&cmdstring=LABE -vcenter -left Labe%&II%A,L%START_X%T%YY%W220H%HEIGHT%,  %&SSID_NAME%,CALL GetWiFiPassword %&SSID_NAME%,%&mycolor%,16
+	%&cmdstring%
+
+	CALC &&XX=%START_X%+220
+	ENVI &SIGNALS=%&SIGNALS%%
+	ENVI &&cmdstring=LABE -vcenter -right -tran Labe%&II%B,L%XX%T%YY%W50H%HEIGHT%,%&SIGNALS%,,%&mycolor%,16
+	%&cmdstring%
+_END
+
+
+_SUB GetWiFiPassword
+    ENVI &CONN_SSID=%~1
+	CALL WinWifiConnect
+    WAIT 500
+	CALL WifiRefresh
+    
+_END
+
+_SUB WinWifiConnect,L%WinL%T%ConnT%W%WinW%H300,Wi-Fi Connect
+    IFEX %windir%\fonts\msyh.*,ENVI @this.Font=12:微软雅黑
+    //ENVI @this.bkcolor=%bgcolor%
+
+    LABE -vcenter -trans -left Label_Conn1,L20T20W260H32,Connect to %CONN_SSID%,,,16
+    LABE -vcenter -trans -left Label_Conn2,L20T60W260H32,Type the security key:,,,16
+	EDIT -vcenter Edit_Pwd,L20T94W260H36,,,0x224,,16
+
+	ITEM -font:16 BTN_CONN1,L32T168W100H42,Connect,CALL WifiConnect %CONN_SSID% %Edit_Pwd%,
+	ITEM -font:16 BTN_CONN2,L178T168W100H42,Cancel,KILL \Wi-Fi Connect,
+_END
+
+
+
+//用法：
+//  WiFiConnect &SSID &PSWD
+//  &SSID   -> 要连接的无线网络的SSID，传引用。
+//  &PSWD   -> 连接无线网络使用的密码，传引用。
+_SUB WiFiConnect
+    //TEAM ENVI &SSID=%~1 | ENVI &PSWD=%~2
+    TEAM BASE %~1,&SSID | BASE %~2,&PSWD
+    ADSL-wlan %&SSID%,%&PSWD%
+
+    KILL \Wi-Fi Connect
+_END
+    
+_SUB UpdateWifiListTable
+    ENVI @WIFILIST.Val=1*#;  //清除表格内容
+    ADSL-wlan ,,list,&&WIFIINFO
+    ENVI @WIFILIST.Val=1*#;%&WIFIINFO%   //将变量填入表格
+_END
+
+
+_SUB SortWifiListTable
+	ENVI @WIFILIST.Val=?*;&&RowNum;  //获取行数
+	ENVI &I=1
+	LOOP %I%<=%&RowNum%,
+	{
+	    CALC &J=%I%+1
+        LOOP %J%<=%&RowNum%,
+        {
+        	ENVI @WIFILIST.Val=?%I%.2;&&sig_I
+        	ENVI @WIFILIST.Val=?%J%.2;&&sig_J
+        	
+        	FIND |%sig_J%>%sig_I%,
+        	{
+        	    
+        		ENVI @WIFILIST.Val=?%I%;&val_I
+        		ENVI @WIFILIST.Val=?%J%;&val_J
+        		//交换数据
+        		ENVI @WIFILIST.Val=%I%;%&val_J%
+        		ENVI @WIFILIST.Val=%J%;%&val_I%
+        	}
+        	CALC &J=%J%+1
+        }
+		CALC &I=%I%+1
+	}
+_END
+
+
+//////////////////////////////////////////////////////////////////////
+_SUB OnClose
+    //CALL OnHide   //关闭窗口，进入托盘
+    KILL \   
+_END
+
+_SUB OnSize 
+    IFEX $%&SIZE_MINIMIZED%=%1, OnHide   //最小化窗口，进入托盘
+_END
+
+_SUB OnHide
+    ENVI @@Visable=%&WID%:0    //隐藏窗口
+_END
+
+
+_SUB OnShow
+    //TIPS*  //删除托盘图标
+    ENVI @@Visable=%&WID%:1
+_END
+
+//切换窗口
+_SUB OnSwitch
+    ENVI @@Visable=?%&WID%:&&zzView
+    FIND |%&zzView%=0,ENVI @@Visable=%&WID%:1!ENVI @@Visable=%&WID%:0
+_END
+
+_SUB OnExit
+    KILL  \  
+_END
+
+_SUB DoMenu
+    IFEX $%&::WM_LBUTTONDOWN%=%2,TEAM CALL OnSwitch | EXIT
+    IFEX $%&::WM_RBUTTONDOWN%=%2, CALL @--popmenu RMenu
+_END
+
+
+_SUB RMenu
+    CALC #&I=%&I% + 1
+    CALC #&&N= %&I% % 2
+    MENU Menu1,还原,  CALL  OnShow
+    IFEX $ 1 = %&N%, MENU Menu3,分辨率1024X768 颜色16位 刷新率60, DISP W1024H768B16F60  //动态菜单
+    MENU -
+    MENU Menu2,退出, CALl OnExit
+_END
+
+
+

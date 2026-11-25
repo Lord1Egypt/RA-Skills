@@ -5,7 +5,7 @@ description_zh: "产品定价研究校准"
 description_en: "Product Pricing Research Calibration"
 disable: false
 agent_created: true
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Product Pricing Research Calibration
@@ -102,6 +102,7 @@ Before review, verify:
 - Direct, adjacent, and boundary-only examples are visibly distinguished.
 - Broad AI bundle pricing is never labeled as direct governance pricing.
 - A security product without public price is discussed as product boundary, not price evidence.
+- No unpublished SKU price, analyst estimate, or reseller quote has crossed into the comparable-price column; every such item carries its "unpublished/estimate" label in the fact matrix.
 - The draft analyzes current product facts before any implication for buyers or product teams.
 - No vendor-news parade, media-war framing, or consulting-style “what you should buy” section appears.
 

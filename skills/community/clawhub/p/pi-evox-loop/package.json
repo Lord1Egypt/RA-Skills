@@ -1,6 +1,6 @@
 {
   "name": "pi-evox-lab",
-  "version": "0.42.0",
+  "version": "0.44.0",
   "private": true,
   "description": "Experience-inheritance runtime for coding agents: recall validated fixes, deposit new ones, with a built-in zero-dependency engine (evolver optional) and a controlled experiment harness.",
   "type": "module",

@@ -17,7 +17,8 @@
   meanwhile.
 - **`wa personal watch` starts from now and holds the connection; `wa personal serve` does too and fills the store.**
   Start either only when the owner asked. The same goes for `wa <profile> server start`; `wa <profile> server status`
-  is safe to read.
+  is safe to read. Its `current_at` is when the store was last current: messages newer than that are not in it
+  until `serve` runs again.
 - `serve` never answers by itself: WhatsApp bans accounts that answer like a bot, so nothing sends unless the owner
   asked for that message. `wa` has no `replies`.
 

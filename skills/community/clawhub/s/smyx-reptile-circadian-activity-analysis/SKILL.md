@@ -1,7 +1,7 @@
 ---
 name: "smyx-reptile-circadian-activity-analysis"
 description: "Through a fixed camera in a reptile enclosure, the system continuously captures 24-hour video and uses motion-detection techniques to count hourly activity volume (pixel-change area or motion-pixel ratio), producing a circadian activity distribution chart. | 通过爬宠箱固定摄像头，连续 24 小时采集视频，利用运动检测技术统计每小时的活动量（像素变化面积或运动像素比例），生成昼夜活动分布图。当节律异常持续多日时，输出'昼夜节律紊乱'提示，建议调整光照周期或检查环境干扰（如夜间灯光、噪音）。"
-version: "1.0.17"
+version: "1.0.18"
 license: "MIT-0"
 ---
 

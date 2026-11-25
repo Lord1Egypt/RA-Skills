@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#f7f2e7"/>
+  <image href="icon-source.png" x="780" y="0" width="900" height="900" preserveAspectRatio="xMidYMid slice"/>
+  <path d="M0 0H900V900H0Z" fill="#f9f5ec"/>
+  <path d="M730 0H970V900H730Z" fill="#f9f5ec" opacity=".86"/>
+  <g font-family="PingFang SC, Hiragino Sans GB, sans-serif" fill="#0e454c">
+    <text x="96" y="150" font-size="25" font-weight="600" letter-spacing="2">免费开源 · EASY SKILLS</text>
+    <rect x="96" y="170" width="300" height="3" fill="#0e454c"/>
+    <text x="96" y="320" font-size="94" font-weight="800">公众号文章</text>
+    <text x="96" y="430" font-size="94" font-weight="800">阅读简报</text>
+    <text x="96" y="525" font-size="35" font-weight="600">指定浏览器 · 可溯源阅读</text>
+    <text x="96" y="585" font-size="27" fill="#596367">提炼主结论、关键步骤与未显示项</text>
+    <text x="96" y="800" font-size="23" fill="#586363">一件事，一个好用的 Skill</text>
+  </g>
+</svg>

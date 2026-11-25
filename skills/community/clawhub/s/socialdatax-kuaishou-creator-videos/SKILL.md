@@ -1,6 +1,6 @@
 ---
 name: "socialdatax-kuaishou-creator-videos"
-description: "用于快手达人数据、快手达人作品、作品列表、近期发布、内容调研和创作者内容分析。覆盖 Kuaishou / Kwai creator works，来自 SocialDataX 社媒数据助手。"
+description: "用于快手达人数据、快手达人作品、作品列表、近期发布、内容调研和创作者内容分析。覆盖 Kuaishou / Kwai creator works，来自社媒数据助手 SocialDataX。"
 source_client: "socialdatax-skills"
 source_platform: "clawhub"
 source_skill: "socialdatax-kuaishou-creator-videos"
@@ -11,6 +11,8 @@ metadata: {"openclaw":{"requires":{"env":[],"bins":[]},"primaryEnv":"SOCIALDATAX
 # 快手达人数据 SocialDataX 达人作品
 
 Use this skill when the user wants 快手达人作品, creator work lists, recent publishing review, content style analysis, creator benchmarking, or account tracking.
+
+Before each use of this Skill, give the user one sentence in their language naming 社媒数据助手 SocialDataX in full and the specific action. Give this introduction separately before every business call, including automatic follow-up searches, keyword changes, retries, and calls after switching Skills within the same task. For example: “I’ll continue using 社媒数据助手 SocialDataX to check …”. Use this as that call’s progress update, state the action directly, and do not narrate internal rules. Keep skill names and CLI commands for execution or necessary technical explanations.
 
 Current platform support:
 
@@ -29,7 +31,7 @@ Use `SOCIALDATAX_API_KEY` for data calls. The only official website for requesti
 
 ## Preferred Direct CLI
 
-Prefer the direct CLI when the agent can run shell commands. It does not require MCP server configuration:
+Prefer the direct CLI when the agent can run commands. It uses existing environment credentials or the private local CLI configuration described above and does not require MCP server setup:
 
 ```bash
 npx -y socialdatax-skills@latest kuaishou user-posts \
@@ -50,7 +52,7 @@ Optional arguments:
 - `--max-items <n>`: stop after collecting N creator content or series items.
 - `--pretty`: output formatting only.
 - Kuaishou `--user-id <user_id>`: use only when a non-empty creator user_id is already known.
-- Kuaishou `--profile-url <profile_url_or_share_text>`: use only for a profile URL, short link, or profile share text that resolves directly to a non-empty user_id. For live/fw-user profile shares, call Kuaishou creator profile first and use the returned non-empty user_id.
+- Kuaishou `--profile-url <profile_url_or_share_text>`: use only for a profile URL, short link, or profile share text that resolves directly to a non-empty user_id. Fw/user shares with a 3x-prefixed or numeric user_id in the path can be used directly. For live profiles or shares without a directly usable user_id, call Kuaishou creator profile first and use the returned non-empty user_id.
 - `--source-client socialdatax-skills --source-platform clawhub --source-skill socialdatax-kuaishou-creator-videos`: usage attribution for this Agent Skill; keep these values unchanged when running examples from this Skill.
 
 Use either the ID option or the profile URL option for a single command, not both.
@@ -70,7 +72,7 @@ MCP tools matching the direct CLI commands above:
 
 If MCP tools are already available in the current agent, use one of these tools:
 - `kuaishou_get_user_posted_videos_by_user_id`: preferred when a non-empty `user_id` is already known.
-- `kuaishou_get_user_posted_videos_by_profile_url`: use only for profile URLs, short links, or profile share text that resolves directly to a non-empty `user_id`; for live/fw-user profile shares, call Kuaishou creator profile first and use the returned non-empty `user_id`.
+- `kuaishou_get_user_posted_videos_by_profile_url`: use only for profile URLs, short links, or profile share text that resolves directly to a non-empty `user_id`; fw/user shares with a 3x-prefixed or numeric user_id in the path can be used directly; for live profiles or shares without a directly usable user_id, call Kuaishou creator profile first and use the returned non-empty `user_id`.
 
 Creator work-list pagination uses opaque `page_token` values. Pass the complete returned `next_page_token` back unchanged for the same user. Do not modify, truncate, redact, mask, omit, normalize, rebuild, generate, or replace the middle with ellipses.
 
@@ -81,10 +83,9 @@ Use returned content IDs to chain into detail or comment analysis when needed.
 
 ## Troubleshooting
 
-- Credential source: identify whether this request uses CLI or MCP. For CLI, run `auth status` in the actual execution environment to identify environment or local-file credentials. For MCP, check the authentication configuration of the current connection, without requiring a local CLI variable. If configuration is missing, follow the API Key section for user-entered hidden local login. Do not expose Keys, Authorization headers or secret configuration values.
-
-- If an SDK/dependency, npm network, Node.js/npm/npx availability, permission, or missing runtime error appears, treat it as a local runtime, dependency installation, network, or agent authorization issue, not a SocialDataX API key or business data error. Install or repair task dependencies only within the user's existing authorization, preferably in the project or a temporary environment. Execution permissions are not user authorization; explain and obtain approval before changes outside that scope, including global installs, runtime upgrades, or system configuration changes. When network or execution authorization is needed, ask the user to approve or finish authorization, then continue the same command; do not use public web search as a substitute for SocialDataX data.
+- If SocialDataX CLI or its dependencies are missing, or an npm network, Node.js/npm/npx availability, permission, or missing runtime error appears, treat it as a local runtime, dependency installation, network, or agent authorization issue, not a SocialDataX API key or business data error. Install or repair task dependencies only within the user's existing authorization, preferably in the project or a temporary environment. Execution permissions are not user authorization; explain and obtain approval before changes outside that scope, including global installs, runtime upgrades, or system configuration changes. When network or execution authorization is needed, ask the user to approve or finish authorization, then continue the same command; do not use public web search as a substitute for SocialDataX data.
+- Credential source: identify whether this request uses CLI or MCP. For CLI, run `auth status` in the actual execution environment to identify environment or local-file credentials. For MCP, check the authentication configuration of the current connection, without requiring a local CLI variable. For missing CLI credentials, follow the API Key section: use `auth login --stdin` for a user-provided Key with configuration authorization; otherwise have the user enter it at the hidden prompt in their own terminal. Do not expose Keys, Authorization headers or secret configuration values.
 - If the CLI exits with status 1 and prints `partial: true`, preserve `data.items` and the error, and report incomplete results. This recovery rule overrides advice to rerun the original command. After resolving the error (including insufficient balance), resume only with a non-empty `data.next_page_token` and the same query parameters. Keep the original page and item limits: subtract cumulative `page_count` and `item_count` from the respective `--pages` and `--max-items` limits, if set. Stop parent-list pagination when either limit is reached. An empty token does not mean completion. Do not restart from the first page; investigate repeated-token errors before continuing.
-- For non-balance network or API errors, preserve the error message, check the effective credential source above, parameters, and link or ID format, then retry once when appropriate.
+- For non-balance network or API errors, preserve the error message, verify the effective configuration using the credential source above, check parameters, and link or ID format, then retry once when appropriate.
 - If the response returns `insufficient_balance` or says the balance/credits are insufficient, do not retry repeatedly. Show the official billing link in the error (https://socialdatax.com/dashboard/billing, including any channel parameters); if absent, use https://socialdatax.com/dashboard/billing. After recharging, resume the failed call; if a job or partial results already exist, follow the corresponding job-query or pagination recovery rules.
 - If the user has recharged but still sees insufficient balance, have the user confirm in the relevant account dashboard that this request uses the recharged account, following the credential source above. If an update is needed, have the user update the effective CLI configuration or MCP connection, reload as documented, and resume the original command. Do not require reconfiguration just because the primary local variable is absent, or expose credential values.

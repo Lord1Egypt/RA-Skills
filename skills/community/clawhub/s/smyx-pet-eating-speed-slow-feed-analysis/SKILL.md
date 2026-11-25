@@ -1,7 +1,7 @@
 ---
 name: "smyx-pet-eating-speed-slow-feed-analysis"
 description: "Triggers when a user provides a video of the pet food-bowl area for analysis; supports local uploads or network URLs to call server-side APIs for eating-speed detection, recording start/end timestamps of feeding, estimating eating speed (g/s and seconds-per-bowl), and when the speed falls below the safety threshold (e.g. < 30 sec/bowl) emitting an intervention signal (slow-feed baffle pop-up or voice prompt) to prevent choking and vomiting (without diagnosing diseases). Application scenarios: smart slow-feeder bowls, pet health management, canine care. | 当用户提供食盆区域视频时，触发本技能进行进食速度检测分析；支持通过上传本地视频或网络视频URL，调用服务端API记录进食开始/结束时间，计算进食速度（克/秒），当低于安全阈值（例如 < 30 秒/碗）时触发外部干预信号（智能慢食碗隔板弹出、语音提醒），预防噎食与呕吐（不诊断疾病）。应用场景：智能慢食碗、宠物健康管理、犬类护理。"
-version: "1.0.22"
+version: "1.0.24"
 license: "MIT-0"
 ---
 

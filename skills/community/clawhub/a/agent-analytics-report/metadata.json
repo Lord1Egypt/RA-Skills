@@ -1,7 +1,7 @@
 {
   "name": "Agent 用量分析报告",
   "name_en": "Agent Usage Analytics Report",
-  "version": "1.9.13",
+  "version": "1.9.15",
   "schema_version": "1.0",
   "description": "当用户说「生成（Agent）周报 / 月报 / 年报 / 日报」「本周使用报告」「这个月 token 花了多少」等、**且语境指向 Agent 用量 / 成本 / Token 时**触发，生成 Agent 用量与成本分析报告（日/周/月/年），覆盖 Token 消耗、任务类型、技能使用与自动化运行；报告默认只读 + 离线渲染（不写文件），`--output` 显式写盘与 `--task-classifier llm` 显式出站均为独立 opt-in；首发支持 WorkBuddy，规划兼容更多 Agent。",
   "core_capabilities": [

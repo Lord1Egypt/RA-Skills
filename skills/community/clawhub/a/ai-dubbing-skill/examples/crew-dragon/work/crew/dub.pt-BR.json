@@ -1,0 +1,55 @@
+{
+ "video": "crew",
+ "language": "pt-BR",
+ "voice": "kokoro:pm_alex",
+ "signature": "[2, \"kokoro:pm_alex\", {\"background\": \"voiceover\", \"max_speed\": 1.15, \"original_volume\": 0.18}, [[\"Outra parte \\u00e9 criar um conceito de como,\", 0.0, 4.98], [\"numa nave muito automatizada, n\\u00e3o perder de vista a necessidade\", 5.04, 5.34], [\"de a tripula\\u00e7\\u00e3o sempre ter um caminho seguro para casa.\", 10.44, 3.6], [\"N\\u00e3o \\u00e9 preciso salvar a miss\\u00e3o com a tripula\\u00e7\\u00e3o, mas sim salvar a tripula\\u00e7\\u00e3o com ela: essa \\u00e9 a ideia que propusemos.\", 14.1, 7.24]], 1783584, 1795424101]",
+ "lines": [
+  {
+   "n": 1,
+   "cues": [
+    1
+   ],
+   "start": 0.0,
+   "slot": 4.98,
+   "seconds": 2.58,
+   "speed": 0.9,
+   "text": "Outra parte é criar um conceito de como,"
+  },
+  {
+   "n": 2,
+   "cues": [
+    2
+   ],
+   "start": 5.04,
+   "slot": 5.34,
+   "seconds": 4.2,
+   "speed": 0.9,
+   "text": "numa nave muito automatizada, não perder de vista a necessidade"
+  },
+  {
+   "n": 3,
+   "cues": [
+    3
+   ],
+   "start": 10.44,
+   "slot": 3.6,
+   "seconds": 3.25,
+   "speed": 1.0,
+   "text": "de a tripulação sempre ter um caminho seguro para casa."
+  },
+  {
+   "n": 4,
+   "cues": [
+    4,
+    5,
+    6
+   ],
+   "start": 14.1,
+   "slot": 7.24,
+   "seconds": 6.62,
+   "speed": 1.0,
+   "text": "Não é preciso salvar a missão com a tripulação, mas sim salvar a tripulação com ela: essa é a ideia que propusemos."
+  }
+ ],
+ "too_long": []
+}

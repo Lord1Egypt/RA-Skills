@@ -1,6 +1,6 @@
 ## Description:
 
-Generates cohesive color palettes for UI and brand design, with HEX values, usage guidance, and accessibility contrast checks.
+Generate complete, professional color palettes for UI/UX and brand design. Use when user needs a color scheme, palette, brand colors, or color system for mini-program, App, Web, or large-screen interfaces. Do NOT use for image generation, data visualization color scales, or printing/CMYK color management.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Designers and developers use this skill to draft UI and brand color systems tailored to an industry, platform, style, and optional dark mode.
+UI/UX and brand designers, along with developers, use the skill to create cohesive color systems for apps, websites, mini-programs, and large-screen interfaces, then apply the suggested colors and tokens in their designs.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Suggested color pairings or contrast ratios may not meet accessibility needs in the final design.
+Risk: The security review was partial; two output paths referenced by the skill did not match bundled artifacts, so their contents were not assessed.
 
-Mitigation: Verify actual foreground and background combinations with a contrast checker before publishing.
-
-Risk: Default guidance and the palette template are largely in Chinese, which may be hard for some users to apply.
-
-Mitigation: Ask the agent to provide the palette and usage notes in the user's preferred language.
+Mitigation: Review generated HTML previews and token files before sharing or relying on them.
 
 ## Reference(s):
 
-- [Color Palette Advisor on ClawHub](https://clawhub.ai/elise-ctrl/skills/color-palette-advisor)
-- [Industry palette examples](references/industry-palettes.md)
 - [Color harmony guidance](references/color-harmony.md)
 - [Accessibility quick check](references/accessibility-quick-check.md)
-- [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
+- [Industry palette guidance](references/industry-palettes.md)
+- [ClawHub skill page](https://clawhub.ai/elise-ctrl/skills/color-palette-advisor)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Guidance]
+**Output Type(s):** [Text, Markdown, Code, Configuration]
 
-**Output Format:** [Markdown tables with HEX color tokens and usage notes]
+**Output Format:** [Markdown palette tables and guidance, with optional HTML preview and CSS or Figma token files.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include contrast ratios and dark-mode variants; can be saved as a Markdown palette document on request.]
+**Other Properties Related to Output:** [Includes HEX colors, usage guidance, and calculated contrast ratios.]
 
 ## Skill Version(s):
 
-1.0.0 (source: ClawHub release metadata)
+1.1.2 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

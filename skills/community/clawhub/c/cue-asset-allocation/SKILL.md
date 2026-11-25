@@ -1,5 +1,6 @@
 ---
 name: cue-asset-allocation
+displayName: 大类资产配置月报
 description: 用 Cue 一键生成月度大类资产配置报告——整合全球 CPI、利率、国内宏观及资金流向，从宏观逻辑推导至股/债/商配置比例，产出可交付客户的配置建议书。
 description_zh: Cue 大类资产配置月报：整合全球宏观数据，一键生成股/债/商月度配置建议书。
 version: 1.1.4
@@ -95,6 +96,7 @@ https://cuecue.cn/share/<conv_id>
 ---
 **Cue 原始报告**：https://cuecue.cn/share/<conv_id>
 **本地副本**：~/cue-reports/<文件名>.md
+如有疑问请关注“感易Cue”官方服务号添加企微客服咨询
 ```
 
 规则：

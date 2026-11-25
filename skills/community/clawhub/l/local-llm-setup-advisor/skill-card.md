@@ -1,6 +1,6 @@
 ## Description:
 
-Helps developers and privacy-conscious users plan practical local AI and LLM workflows for consumer CPUs and GPUs.
+Helps users plan practical AI and LLM workflows for ordinary home computers using a CPU or consumer GPU.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers, researchers, privacy-conscious users, hobbyists, and small teams use this skill to plan and produce practical local AI workflows for ordinary home computers. It helps turn a user's constraints into an implementation plan, checklist, analysis, or artifact and suggests validation steps.
+Developers, researchers, privacy-conscious users, hobbyists, and small teams use this skill to plan useful local AI workflows on ordinary home machines. It turns their task and hardware constraints into practical guidance, a workflow, checklist, analysis, or implementation artifact.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Broad trigger keywords may activate the skill for unrelated questions, and suggested commands may not suit every environment.
+Risk: Broad activation keywords may cause the advisor to respond to unrelated requests.
 
-Mitigation: Confirm the request concerns local LLM setup and review generated commands for suitability before running them.
+Mitigation: Review trigger scope and invoke the skill explicitly when the request is outside local LLM setup.
+
+Risk: The security scan was partial because a path-like reference in SKILL.md did not resolve to a bundled artifact, leaving some evidence incomplete.
+
+Mitigation: Review the referenced path and surrounding guidance before relying on the scan as complete.
 
 ## Reference(s):
 
-- [Local LLM Setup Advisor on ClawHub](https://clawhub.ai/kyro-ma/skills/local-llm-setup-advisor)
-- [Requirement Plan](references/requirement-plan.md)
+- [ClawHub release page](https://clawhub.ai/kyro-ma/skills/local-llm-setup-advisor)
+- [Requirement plan](references/requirement-plan.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Markdown, Code, Shell commands, Configuration instructions]
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
 
-**Output Format:** [Markdown, optionally including checklists, implementation plans, code, or verification commands]
+**Output Format:** [Markdown with practical checklists, code snippets, or configuration guidance when useful]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Tailored to the user's stated constraints, with a preference for local CPU- or consumer-GPU-friendly approaches.]
+**Other Properties Related to Output:** [Tailored to the user's task, hardware, constraints, and requested deliverable.]
 
 ## Skill Version(s):
 
-0.20261020.132938 (source: server-resolved release metadata)
+0.20261119.61237 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

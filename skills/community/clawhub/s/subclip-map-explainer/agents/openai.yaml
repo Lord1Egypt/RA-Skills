@@ -1,0 +1,6 @@
+interface:
+  display_name: "Subclip Map Explainer"
+  short_description: "Build editable globe and geographic explainer beats"
+  default_prompt: "Use $subclip-map-explainer to create a verified city-to-city globe route in the current Subclip project."
+policy:
+  allow_implicit_invocation: true

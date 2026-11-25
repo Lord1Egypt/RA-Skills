@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Chinese-speaking creators, marketers, and analysts use this agent to research public Kuaishou videos, creator posts, and comments for topic discovery, trend monitoring, competitor comparisons, and comment analysis.
+快手内容创作者、运营人员和市场分析师可用它搜索公开视频、查看博主公开作品和获取视频评论，为选题、热点观察、竞品对比和舆情研究整理数据。
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search terms, video links, and creator IDs are transmitted to the GUAIKEI service; the security guidance notes that disclosure of this transmission may be unclear.
+Risk: Queries and links are sent to the GUAIKEI service when the skill runs.
 
-Mitigation: Use only public Kuaishou data, and avoid submitting sensitive keywords, links, or IDs unless you accept that the GUAIKEI service will receive them.
+Mitigation: Submit public Kuaishou content only, and avoid sensitive query text or private links.
 
-Risk: The security scan was partial: 20 of 32 components were fully scanned and 12 were partially inspected.
+Risk: ClawScan reports a benign verdict with medium confidence; analysis was partial, with 20 of 32 components fully scanned.
 
-Mitigation: Review the skill and its uninspected components before installation or use in a sensitive environment.
+Mitigation: Review the current release and its network behavior before relying on the scan verdict.
 
 ## Reference(s):
 
-- [GUAIKEI service and token access](https://www.guaikei.com)
-- [ClawHub release page](https://clawhub.ai/why20261/skills/kuaishou-content-research-skill)
-- [Usage options](artifact/references/options.md)
-- [Changelog](artifact/references/changelog.md)
+- [ClawHub skill page](https://clawhub.ai/why20261/skills/kuaishou-content-research-skill)
+- [GUAIKEI service](https://www.guaikei.com)
+- [Command options](references/options.md)
+- [Changelog](references/changelog.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON data, Analysis]
+**Output Type(s):** [JSON data]
 
-**Output Format:** [Structured JSON envelope containing Kuaishou search results, creator posts or profile data, or video comments.]
+**Output Format:** [Structured JSON containing public Kuaishou video, comment, or creator data]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Covers public Kuaishou data. Request limits depend on the token plan: monthly limits are 30 search results, 50 posts, and 60 comments; pay-as-you-go requests allow up to 10,000.]
+**Other Properties Related to Output:** [Results depend on GUAIKEI API access and available public data; token plans may limit result counts.]
 
 ## Skill Version(s):
 
-1.1.1 (source: SKILL.md frontmatter, package.json, changelog released 2026-11-04)
+1.1.2 (source: artifact/SKILL.md frontmatter, artifact/package.json)
 
 ## Ethical Considerations:
 

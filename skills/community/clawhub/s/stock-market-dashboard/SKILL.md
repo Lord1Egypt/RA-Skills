@@ -174,11 +174,13 @@ names come next, and the calendar is context rather than headline.
    and a composite alone hides it. **Skip it entirely when nothing diverges. Do not manufacture
    tension.**
 5. **Score shifts**: the biggest 7-day moves, warming and cooling. This tracker ranks by its
-   `Score change (7d)` metric: the name's 7-day average SentiSense Score minus its 30-day average,
-   so it measures how far the last week has pulled away from the month. It is not a change in
-   tone and not a change since seven days ago. Rows carry `category` (`improving` or
-   `deteriorating`), the 30-day average Score where one exists (`SentiSense Score`) with its band
-   (`Score tone`), and polarity columns (`Sentiment now`, `7d ago`, `Change (7d)`). Label the
+   `7-day Score vs its 30-day average` metric: the name's 7-day average SentiSense Score minus its
+   30-day average, so it measures how far the last week has pulled away from the month. It is not a
+   change in tone and not a change since seven days ago. Rows carry `category` (`improving` or
+   `deteriorating`), the 30-day average Score where one exists (`SentiSense Score (30d avg)`) with its
+   band (`Score tone`), and polarity columns (`Sentiment now`, `7d ago`, `Change (7d)`). Responses
+   from before the labels named their windows say `Score change (7d)` and `SentiSense Score`, so
+   match either. Label the
    section as Score shifts. If you show the polarity change beside it, name it as a separate measure, because the
    two can disagree in sign: a name can lead the warming list while its tone fell. A leaderboard
    is static and a delta is actionable, so prefer movers over top-N.
@@ -186,6 +188,15 @@ names come next, and the calendar is context rather than headline.
    levels. Absolute IV just re-sorts the same volatile names every day.
 7. **Watchlist**: price, score with a diverging bar, today, sentiment, analyst consensus, and a
    "watch for" note carrying each name's top signal. The note is the reason to read the row.
+   An ETF in the watchlist (SPY, QQQ) has no analyst coverage of its own: the consensus call
+   answers `404` with `error: ticker_is_etf`, and the first `seeInstead` entry,
+   `GET /api/v1/etfs/{ticker}/aggregates/analyst`, is the holdings-weighted consensus. It wraps
+   its payload in `data` like the other v1 calls (the 404 body does not): show
+   `data.weightedConsensus.consensusLabel` and `data.weightedConsensus.upsidePercent`, with
+   `data.coverage.weightCovered` (the percent of the fund's weight that has coverage) and
+   `data.asOfDate` beside them. `data.weightedConsensus.totalAnalysts` sums the analysts of every
+   holding, so never print it as the fund's analyst count. Show the result labelled as
+   holdings-weighted, or mark the column "n/a (ETF)"; never render it as missing data.
 8. **Filings and flows**: insider cluster buys, congressional trades, institutional net flows.
    Position *changes*, never a static holder list, which changes nobody's morning.
 9. **Overnight, ranked by impact**: the top story clusters with their impact score and sentiment.
@@ -330,8 +341,9 @@ with unconfirmed dates, an options radar built from one session's chains.
   46-55 Neutral, 56-70 Optimism, 71-85 Greed, 86-100 Extreme Greed.
 - **Risk Appetite is inverse VIX.** A *high* value means a calm, risk-on market. This one reads
   backwards from what people expect, so label it in the tooltip.
-- **Social Momentum and Options Flow describe the previous session** (a Monday row describes
-  Friday); the other four signals describe the row's own date. Say so when they diverge from them.
+- **Social Momentum describes the previous session** (a Monday row describes Friday), and Options
+  Flow blends the previous session's positioning with the day's put and call balance; the other four
+  signals describe the row's own date. Say so when they diverge from them.
 - **Analyst counts do not reconcile, and that is correct.** The price-target population and the
   buy/hold/sell survey are different samples. Report "58 analysts" against the target band and
   "61 rated" against the distribution rather than forcing them to match. On a free-key preview

@@ -15,7 +15,7 @@ new ApiCheck('authenticated-api-check', {
     assertions: [
       AssertionBuilder.statusCode().equals(200),
       AssertionBuilder.jsonBody('$.user.id').isNotNull(),
-      AssertionBuilder.header('Content-Type').contains('application/json'),
+      AssertionBuilder.headers('Content-Type').contains('application/json'),
     ],
   },
   environmentVariables: [

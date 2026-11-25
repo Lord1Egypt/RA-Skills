@@ -210,6 +210,7 @@ harness/
 
 - Esc 暂停菜单：迭代中途暂停，弹"跳过当前 finding / 收窄维度 / 直接停"，选完继续——skill 无进程概念，插件 workflow 发起后不可中途改道。
 - 断点续跑画面：`resume` 恢复时 TUI 先显示上次快照（跑到第几轮、还剩哪些 finding），确认后续跑。
+- 跨终端干预通道（v2.25）：无头 `ih iterate run` / `review` 一旦开跑，过去唯一的干预手段是 `Ctrl-C`（连同当前轮次一起砍掉）；现在运行发布 `.iterate/run-control.json`，另一个终端的 `ih iterate control status|nudge|pause|stop|clear` 在下一个轮次边界生效。`nudge` 复用 WebUI 的注入路径，`pause`/`stop` 优雅收尾并保留可续跑 checkpoint，`status` 只读且区分「可控无头运行」与「TUI/WebUI 持有租约、有自己的控制入口」。
 
 **三、离开 IDE 才能跑的场景**（无人值守，存在性缺口）
 
@@ -498,6 +499,29 @@ iterate-harness/                     # fork 自 HKUDS/OpenHarness @ v0.1.9
 - **裁剪执行**：fork 首次提交即删 `vim/`、`channels/`、`ohmo/`（§11.3.2-四 证据），后续不再引入。
 - **版本线**：与 skill/插件一致采用「主仓库统一 + 发布仓独立发版」；harness 版本独立递增（同插件 2.3.7 先例）。
 
+#### 11.4.3 跨进程控制通道（v2.25：无头运行的第二个终端入口）
+
+**问题**：无头 `ih iterate run/review` 是「进程独占」的——启动后操作者只剩 `Ctrl-C`，那是把进程连同当前轮次一起砍掉，且不落审计。WebUI 的 pause/stop/nudge 只存在于服务器进程内存，够不到另一个终端里的运行。于是「无人值守」与「可干预」在无头场景下互斥。
+
+**设计**：把干预做成 `.iterate/` 上的共享文件协议，运行方唯一消费，命令方只追加。
+
+| 文件 | 写入方 | 内容 |
+|---|---|---|
+| `run-control.json` | 运行进程（`begin_run` / `end_run`） | `run_id` / `pid` / `role` / `status` / 起止时间；`status=running` 且 pid 存活才算可控 |
+| `run-control.jsonl` | 任意终端（`append_command`） | append-only 命令流：`{id, kind: nudge\|pause\|stop, content, created_at}` |
+| `run-control.cursor` | 运行进程（`consume_commands`） | `{line, lastId}`，单调前进；`lastId` 用于识别「同长度但被替换的日志」 |
+
+**契约**：
+
+1. **运行方唯一消费**：游标只由发布 state 的那个 pid 写，天然无竞争；命令方在 `O_APPEND` 下追加，`exclusive_file_lock` 串行化。
+2. **轮次边界生效**：`IterateLoopPolicy.before_request` 与 `on_turn_end` 各轮询一次；`nudge` 进入 `_pending_nudges`（与 WebUI nudge 同一条注入路径），`pause`/`stop` 置 `_control_stop_reason`，在 `_decide` 顶部优先于任何自动策略返回 stop——即便 `stop_on_convergence=False` 也生效，否则命令会被静默忽略。
+3. **pause 的语义**：无头运行没有交互暂停菜单，`pause` 与 `stop` 都是「下一个轮次边界优雅收尾」；区别只在给操作者/报告的理由——`pause` 明说 checkpoint 保留、可用 `ih iterate resume` 续跑。
+4. **审计**：每条被应用的命令追加一条 `decision` 条目（`kind=control-nudge|control-pause|control-stop`），与分诊/干预共用同一本决策日志。
+5. **只读状态**：`status` 绝不修改 state/lease/checkpoint；`active`（本通道可控）与 `leaseActive`（TUI/WebUI 持有运行租约）分开表达，后者明确写「not controllable」并指向它自己的 UI。
+6. **失败开放**：控制文件损坏/缺失/写游标失败都只记 warning，下一轮重读；绝不阻断收敛闭环。没有活跃运行时写命令直接拒绝并给 remedy，不往没人读的日志里写。
+
+**为什么不是 WebUI 路由**：控制通道必须在 WebUI 未启动时也成立（CI、SSH、定时任务），所以它属于引擎/CLI 层；WebUI 后续可把同一模块包成路由，而不需要另造一套状态。
+
 ### 11.5 CLI 命令集（v0）
 
 > ⚠️ v1.11 勘误（源码级）：① 会话恢复参数不存在 `--session`，上游用 `--continue` / `--resume <id>`（`cli.py:2110-2123`），iterate 命令集对齐为 `iterate-harness resume <id>`（缺省 = 最近会话）；② 入口命令沿用上游 console script `oh`，iterate 以子命令组挂载（`oh iterate ...`，参照 `cli.py:765-777` 子命令先例），同时保留独立 `iterate-harness` 别名；③ 「harness --dry-run 静态预览」直接复用上游 `oh --dry-run`（预览 settings/auth/skills/commands/tools）。
@@ -571,6 +595,7 @@ iterate-harness/                     # fork 自 HKUDS/OpenHarness @ v0.1.9
 - v1.39（2026-08-17）：**WebUI 迭代：对话界面人类-in-the-loop 控制（新增 §18）**——在 WebUI 管理台中嵌入可折叠侧边对话面板，支持启动/暂停/用户输入/停滞检测/督促注入，匹配 iterate 垂直领域定位（主体是管理台，对话是辅助干预）。
 - v1.40（2026-08-17）：**WebUI 迭代：工作区 / Findings 分诊 / 健壮性（新增 §19）**——落地 §17.3 P2 的 Findings 分诊（持久化 approve/reject 审批日志）与 P4 的工作区管理（主工作区 + 隔离 worktree 列表/删除）；对话面板新增工具调用可视化卡片；管理台新增 ErrorBoundary / Skeleton / 键盘快捷键 / SSE 断线轮询兜底 / 连接状态 toast / 浏览器通知等健壮性增强。
 - v2.0（2026-09-02）：**大版本方向：双模式（iterate 纯审查 / code 通用编程 agent + 防御式内核 + 多 agent 编排）（新增 §20）**——v1 系列已至 1.11.0 稳定期，功能趋于做尽；本条目确立 harness 2.0 升级方向。核心决策：① `task_mode`（code / iterate）与 `permission_mode`（default/plan/full_auto）**分离**——`task_mode` 决定 agent 干什么（通用编程 vs iterate 审查迭代闭环），`permission_mode` 决定权限多宽松；② **iterate 模式 = 1.x 完整保留**（9 维度审查→分诊→原子/架构修复→验证→收敛，零破坏）；③ **code 模式 = 通用编程 agent + 防御式内核**——深度融入 iterate 理念但**不脱离 iterate 基础**，防御式编程（最小化假设 / 信任边界验证 / fail-fast+原子事务 / 前置后置条件 / 不变量守护 / 假设声明与校验）成为 agent **每个动作的默认行为**而非事后审查，多 agent 编排（agent / send_message / task_stop + coordinator + swarm 全套）直接启用；④ **TUI 模式切换对齐 opencode**——空输入框 Tab 直切 code ↔ iterate，输入框左侧竖向色条随模式变色（code=primary / iterate=amber），输入框底部模式文字随切随色；⑤ 完整能力审计（§20.4）：对比 `.external/OpenHarness` 原始代码，通用编程 + 多 agent 能力 **100% 完整保留**，仅缺 4 个外围扩展（image_generation / autopilot / channels / vim），不影响 code 模式编程核心。**本版为纯设计细化，不修改 harness 源文件**。头部状态行更新至 v2.0。
+- v2.25（2026-11-22）：新增 §11.4.3 跨进程控制通道并补 §17.4 模块表——无头运行的第二个终端入口（`ih iterate control status|nudge|pause|stop|clear`）：`.iterate/run-control.json` 发布运行状态、`run-control.jsonl` append-only 命令流、`run-control.cursor` 单调游标（含 `lastId` 替换检测）；运行方唯一消费，`nudge` 复用 WebUI 注入路径，`pause`/`stop` 在轮次边界优雅收尾并保留 checkpoint，全部命令写决策日志审计；`status` 只读并区分可控运行与仅持租约的 TUI/WebUI 运行。失败开放：控制面损坏绝不阻断收敛闭环。同时把「跨终端干预」补入 §11.2.1 摸类体验。
 ## 13. 发布手册（Release Manual）
 
 > 本节为 `RELEASE.md` 的镜像章节（v1.31 并入），是 iterate 生态三个对外发布项目的统一发布 checklist。发布操作以本节为准，独立 `RELEASE.md` 保留便于快速勾选。
@@ -1028,7 +1053,7 @@ harness/iterate-plugin/
 | # | 页面 | 核心能力 | 数据来源 |
 |---|---|---|---|
 | P1 | Dashboard 仪表盘 | 运行状态卡片、收敛曲线（findings/round）、预算/限流实时仪表、最近报告入口 | decision log / loop_policy / cost meter |
-| P2 | Runs 迭代详情 | trajectory 式逐轮时间线：round_start → review_result → atomic_fix / architectural_fix → revert → validation → decision；findings 表格；diff 展开 | decision log（`read_entries`） |
+| P2 | Runs 迭代详情 | trajectory 式逐轮时间线：round_start → review_result → atomic_fix / architectural_fix → revert → validation → decision；findings 表格；diff 展开；分诊（approve / reject / **ignore**，ignore 写 `known_intentional` 使引擎下一轮起真正过滤） | decision log（`read_entries`） + `iterate/triage.py` |
 | P3 | Checkpoints | 断点列表、状态标签、恢复（受控操作，二次确认） | checkpoint / last_state |
 | P4 | Workspaces | 工作区列表、隔离状态（worktree）、切换/选择 | worktree_runtime / 配置 |
 | P5 | Budget & Rate | 累计 token / 美元预算、限流窗口、熔断状态 | loop_policy / cost meter |
@@ -1042,6 +1067,7 @@ harness/iterate-plugin/
 | P13 | Audit 审计 | 控制台每一次写操作的完整台账（时间/操作/目标/参数摘要）：操作前缀 + 目标子串 + 起始时间筛选，分页，导出 Markdown / CSV / JSON；只读、与 `ih audit` 同源 | `audit` 模块（web-audit.jsonl） |
 | P14 | Memory 记忆 | 项目记忆库：条目/大小/修改时间/描述，引擎相关度搜索排名，注入预览（与提示词同一条代码路径，点名截断），失效索引链接问题；新增/覆盖/删除（二次确认 + 审计）；只读面绝不创建记忆目录 | `memory` 模块（`ih memory` 同源） |
 | P15 | Hooks 生命周期钩子 | 已注册钩子清单（事件/类型/来源/匹配器/命令或提示或 URL/超时/失败拦截/静态检查），未知事件名与跑不起来的命令/URL/空提示带可复制 remedy；执行台账（事件/类型/结果筛选、最新在前分页、Markdown/CSV/JSON 导出）；每事件「复制试运行命令」直达 `ih hooks test`；页面只读、永不启动钩子命令或模型 | `hooks` 模块（`ih hooks` 同源） |
+| P16 | Permissions 权限 | 引擎实际执行的合并策略（模式、允许/拒绝工具列表、路径与命令规则、内置敏感路径、iterate `protected_paths` / `risk_areas` / `forbidden_fix_patterns`）+ 配置问题（空模式、允许/拒绝冲突、非法正则、iterate 停用，带可复制 remedy）；**策略预演**：用引擎自己的检查器回答「会执行 / 停下问 / 被拒绝，为什么」（同一套路径/命令/内容归一化），一键示例 + 复制等价 `ih permissions check` 命令；页面只读、永不写设置/执行工具/联系提供商 | `permissions` 模块（`ih permissions` 同源） |
 
 **操作边界（安全默认）**：P2/P3/P6 涉及写操作（启动/停止/恢复 checkpoint/保存配置）一律「只读默认 + 显式确认 + 写入前备份 + 失败回滚」，与 CLI 既有语义一致。
 
@@ -1062,11 +1088,14 @@ harness/iterate-plugin/
 | `web/routes/audit.py` | 审计台账读取：分页 / 筛选 / 导出（与 `ih audit` 共用 `audit` 模块） |
 | `web/routes/memory.py` | 项目记忆库读取 / 注入预览 / 新增 / 删除（与 `ih memory` 共用 `memory` 模块，写路径审计 + 确认） |
 | `web/routes/hooks.py` | 生命周期钩子清单 + 执行台账读取：分页 / 筛选（与 `ih hooks` 共用 `hooks` 模块） |
+| `web/routes/permissions.py` | 权限策略读取 + 决策预演（与 `ih permissions` 共用 `permissions` 模块；只读、无网络） |
 | `memory/inject.py` | 运行时提示词与注入预览共用的记忆段落构造器（单一实现，二者不可漂移） |
 | `memory/inventory.py` | 记忆库只读清单 + 相关度排名 + 注入预览 + 单文件读取（`ih memory` / `GET /api/v1/memory`） |
 | `hooks/journal.py` | 钩子执行台账：写入侧（`HookExecutor` 每跑一笔）+ 读取侧（`ih hooks log` / `GET /api/v1/hooks/log`），大小上限惰性轮转 |
 | `hooks/inventory.py` | 已注册钩子只读清单 + 未知事件名与静态配置问题报告（命令不存在/URL 畸形/空提示；`ih hooks list` / `GET /api/v1/hooks` / capabilities 的 `hooks` 段） |
 | `hooks/testing.py` | 钩子试运行（`ih hooks test`）：与引擎同一注册表、同一执行器、同一台账；command/http 真跑，prompt/agent 无模型时明确 skipped，`--dry-run` 绝不执行；`--require-match` 供 CI 断言 |
+| `permissions/inventory.py` | 权限策略只读投影 + 决策模拟：`build_permission_policy`（合并边界 + 配置问题）/ `simulate_permission_decision`（复用引擎归一化与检查器，`ih permissions` / `GET /api/v1/permissions`）；`checker.build_permission_checker` 增 `cwd` 参数让策略可针对任意项目根构建 |
+| `iterate/control.py` | 跨进程控制通道（`ih iterate control`）：`run-control.json` 运行状态 + append-only `run-control.jsonl` 命令流 + 单调游标；运行方唯一消费，`nudge` 注入下一轮、`pause`/`stop` 在轮次边界优雅收尾并审计；`run_status` 只读且区分可控运行与仅持租约的 TUI/WebUI 运行（§11.4.3） |
 
 **关键路由契约（示例）**：
 
@@ -1092,6 +1121,8 @@ harness/iterate-plugin/
 | GET | `/api/v1/hooks` | 已注册生命周期钩子清单 + 执行台账摘要（未知事件名带 remedy）；只读、无网络 | `HooksView` |
 | GET | `/api/v1/hooks/log` | 钩子执行台账：`event`/`hook_type`/`success` 筛选，最新在前分页；非法 `success` 返回 422 | `HookLogView` |
 | GET | `/api/v1/hooks/log/export` | 钩子执行台账导出（Markdown / CSV / JSON，沿用筛选、不分页） | 下载（`X-Hooks-Total`） |
+| GET | `/api/v1/permissions` | 引擎实际执行的合并权限策略（含 iterate 边界与配置问题）；只读、无网络 | `PermissionsView` |
+| GET | `/api/v1/permissions/check` | 一次工具调用的决策预演（`tool` 必填，`path`/`command`/`content`/`read_only`/`mode` 可选）；未知 `mode` 返回 422 | `PermissionCheckView` |
 
 **错误码约定**：`400` 参数非法 / `401` 未授权（非本机）/ `404` 资源不存在 / `409` 冲突（如恢复中再操作、把已有计划迁到另一目录未带 `replace`）/ `422` 校验失败 / `500` 内部错误（含日志 trace）。
 
@@ -1395,9 +1426,18 @@ harness/iterate-harness/
 | 端点 | `GET /runs/findings/triage`（全部决策，最近优先）、`POST /runs/findings/triage`（记录，需 `confirm=true` + 审计）、`DELETE /runs/findings/triage`（清除全部，需 `confirm=true` + 审计） |
 | 请求模型 | `FindingsTriageRequest{file, line?, dimension, decision: "approve"|"reject", note?}`（decision 用 `Literal` 限定） |
 | 健壮性 | 读取对损坏行防御（跳过非 JSON / 非 dict / 空 key）；写入 best-effort 永不抛；非法 decision 抛 `ValueError` |
-| 语义 | `approve`=同意该 finding / 接受其修复建议；`reject`=误报 / 跳过修复。与 §18 引擎暂停菜单的审批互补：这是**人类对历史 run 的持久记录**，引擎审批是**进行中 run 的实时决策** |
+| 语义 | `approve`=同意该 finding / 接受其修复建议；`reject`=误报 / 跳过修复（二者是**人类对历史 run 的持久记录**，引擎审批是**进行中 run 的实时决策**）；`ignore`=**永久有意**——除日志记录外，同一事务还写 `personalization.known_intentional` 并桥接进 `iterate.config.yaml`，引擎下一轮评审即过滤。撤销（单条 dismiss / 全量 clear）同时解除机器写入的过滤条目，手写条目保留 |
 
-**前端**（`pages/Runs.tsx`）：findings 表格每行追加「批准 / 拒绝」按钮（busy 态禁用），分诊成功后即时反映到行状态；新增「仅看已分诊」筛选与「清除全部决策」操作（二次确认对话框）；初始化时加载全部已存决策并按去重键映射。
+**前端**（`pages/Runs.tsx`）：findings 表格每行追加「批准 / 拒绝 / 永久忽略」按钮（busy 态禁用），分诊成功后即时反映到行状态；新增「仅看已分诊」筛选与「清除全部决策」操作（二次确认对话框，文案说明会解除自动忽略但保留手写条目）；初始化时加载全部已存决策并按去重键映射。
+
+**控制台/CI 入口**（`ih iterate triage list|ignore|restore` + `iterate/triage.py`）：同一个分诊状态在终端可达，不依赖模型会话或打开 WebUI。
+
+| 项 | 设计 |
+|---|---|
+| `list` | 从 decision log 的 `review_result` / `report` 条目重建去重后的 findings（同键后出现取最新 severity/summary），与 WebUI 分诊日志、引擎 `known_intentional` 合并出状态（open / approve / reject / ignore），带稳定编号；`--severity/--dimension/--file/--status/--limit/--json` |
+| `ignore <1,3-5|all>` | 写 personalization + `iterate.config.yaml`（带 `triaged-intentional:` 机器标记）+ 分诊日志 + decision log 审计；无选择器/过滤器时拒绝执行（“忽略全部”必须显式写 `all`）；`--dry-run` 只报告不落盘；journal 写失败时回滚已写的过滤条目并退出 1，绝不出现“隐藏了 finding 却没有记录” |
+| `restore` | 只移除带机器标记的条目（手写 `known_intentional` 永不被撤销），同时清 config 桥与分诊日志；即便 personalization 已被清空，也会按机器前缀清理 config 里的残留 |
+| 并发 | personalization 的读-改-写由 `personalization.json.lock` 串行化；分诊日志继续用 `findings-triage.jsonl.lock`，两个 console / console+WebUI 同时操作不丢条目 |
 
 ### 19.3 工作区管理（落地 §17.3 P4）
 

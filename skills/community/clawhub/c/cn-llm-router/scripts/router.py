@@ -37,6 +37,11 @@ import health_check
 import session_manager
 import price_registry
 import price_checker
+import batch_queue
+import cost_estimator
+import merge_strategy
+import eval_suite
+import eval_store
 from adapters import build, AdapterError
 from adapters.base import AdapterTimeoutError
 from adapters.base import _estimate_tokens as estimate_tokens
@@ -126,6 +131,44 @@ def _get_win_score(provider, model_name, task_type):
     if max_wins <= 0:
         return None
     return model_wins / max_wins * 10.0
+
+
+# v2.9.0 个性化 auto 模式开关（由 --personalized 设置，进程内有效）
+PERSONALIZED_MODE = False
+
+
+def _personalized_pick(models, task_type):
+    """按本机实测评分表选模型（auto --personalized）。返回 (provider, model, reason) 或 None。
+
+    读 references/score_table.yaml；无数据返回 None（回退通用画像）。
+    选择依据可解释：输出本次评测得分与日期。
+    """
+    table = eval_suite.load_score_table()
+    scores = table.get("provider_scores", {}) or {}
+    if not scores:
+        return None
+    dim = task_type if task_type in eval_suite.DIMENSIONS else None
+    best = None
+    best_score = -1.0
+    for mkey, info in scores.items():
+        if not isinstance(info, dict):
+            continue
+        prov = info.get("provider")
+        mod = info.get("model")
+        # 只在当前候选集内选
+        if not any(p == prov and m.get("name") == mod for p, m in models):
+            continue
+        s = float(info.get(dim, info.get("total", 0)) or 0) if dim else float(info.get("total", 0) or 0)
+        if s > best_score:
+            best_score = s
+            best = (prov, mod, info)
+    if not best:
+        return None
+    prov, mod, info = best
+    basis = dim or "综合"
+    reason = ("个性化 auto：按本机实测「%s」得分 %.2f 选择（评测 %s，%s 题）" %
+              (basis, best_score, info.get("eval_date", "未知"), info.get("cases", "?")))
+    return prov, mod, reason
 
 
 def _best_by_capability(models, cap_key, task_type=None):
@@ -228,8 +271,18 @@ def resolve(strategy, classification, reg, manual_model=None, allow_unconfigured
     # auto：任务感知（v2.1 起结合能力画像 reason_score/code_score/long_score）
     # v2.3 起：静态画像(60%) + 动态胜率(40%) 加权
     # v2.4 起：多模态需求时已过滤候选集
-    reason_bits = []
     task_type = cls["task_type"]
+
+    # v2.9.0 个性化 auto：本机实测评分表优先（可解释），无数据自动回退通用画像
+    if PERSONALIZED_MODE:
+        picked = _personalized_pick(models, task_type)
+        if picked:
+            p, m, reason = picked
+            if multimodal_fallback:
+                reason = "⚠️ 多模态需求无支持模型，回退全量｜" + reason
+            return p, m, reason
+
+    reason_bits = []
     if multimodal_fallback:
         reason_bits.append("⚠️ 多模态(" + multimodal + ")需求但无支持模型，回退全量")
     if cls["needs_reasoning"]:
@@ -676,6 +729,290 @@ def cmd_price_history(args, reg):
                 name, info["in"], info["out"], date_str, source_str))
 
 
+# ───────────────────────── v2.9.0 批处理 / 长文链 / 评测 ─────────────────────────
+def _batch_call(prompt, task_hint, strategy, model_spec, reg, timeout=60):
+    """批处理单条任务的模型调用（复用现有路由 + 适配器，带重试由队列层负责）。
+
+    返回 (content, provider, model, in_tokens, out_tokens, cost)。
+    """
+    cls = classifier.classify(prompt, task_hint)
+    configured = config.configured_providers()
+
+    if model_spec and model_spec != "auto":
+        # 指定模型：provider:model 或 auto 之外的策略名
+        if ":" in model_spec:
+            prov, mod = _resolve_manual(model_spec, reg, allow_unconfigured=not configured)
+        else:
+            prov, mod, _ = resolve(model_spec, cls, reg, allow_unconfigured=not configured)
+    else:
+        prov, mod, _ = resolve(strategy, cls, reg, allow_unconfigured=not configured)
+
+    adapter = build(reg["providers"][prov]["adapter"], _adapter_cfg(prov, reg))
+    res = adapter.chat([{"role": "user", "content": prompt}], mod, stream=False, timeout=timeout)
+    price = _price_of(prov, mod, reg) or {}
+    pin = float(price.get("in", 0) or 0)
+    pout = float(price.get("out", 0) or 0)
+    it, ot = res["in_tokens"], res["out_tokens"]
+    cost = it / 1_000_000 * pin + ot / 1_000_000 * pout
+    return res["content"], prov, mod, it, ot, round(cost, 6)
+
+
+def cmd_batch(args, reg):
+    """v2.9.0 批处理：清单批量调用 + 跑前成本预估 + 断点续跑。"""
+    # 子命令：run / status / results / list
+    bcmd = getattr(args, "batch_cmd", "run")
+
+    q = batch_queue.BatchQueue(db_path=getattr(args, "db", None), max_retries=getattr(args, "retries", 2))
+
+    if bcmd == "list":
+        jobs = q.list_jobs(limit=getattr(args, "limit", 10))
+        if not jobs:
+            print("暂无批处理任务。")
+            return
+        print("📦 批处理任务列表")
+        for j in jobs:
+            print("  %-16s 任务 %d 条  源 %s  创建 %s" % (
+                j["job_id"], j["total"], j["src_file"] or "-",
+                time.strftime("%m-%d %H:%M", time.localtime(j["created_at"]))))
+        return
+
+    if bcmd == "status":
+        job_id = args.job_id
+        p = q.progress(job_id)
+        if not p:
+            raise SystemExit("❌ 未找到任务: %s" % job_id)
+        if args.json:
+            print(json.dumps(p, ensure_ascii=False))
+        else:
+            print("📊 任务进度 %s" % job_id)
+            print("  总数 %d  完成 %d  失败 %d  待处理 %d  进行中 %d" % (
+                p["total"], p["done"], p["failed"], p["pending"], p["running"]))
+            print("  进度 %.1f%%" % p["percent"])
+            print("  已花费 ¥%.4f" % q.total_cost(job_id))
+        return
+
+    if bcmd == "results":
+        job_id = args.job_id
+        items = q.results(job_id, only_failed=getattr(args, "failed_only", False))
+        if args.json:
+            print(json.dumps(items, ensure_ascii=False))
+        else:
+            for it in items:
+                print("[#%d] %s | %s" % (it["idx"], it["status"], it["payload"][:50]))
+                if it.get("error"):
+                    print("     错误: %s" % it["error"][:80])
+        return
+
+    # bcmd == run
+    path = args.manifest
+    items = batch_queue._parse_manifest(path)
+    if not items:
+        raise SystemExit("❌ 任务清单为空或全为注释: %s" % path)
+
+    strategy = getattr(args, "strategy", "auto")
+    model_spec = getattr(args, "model", "auto")
+    task_hint = getattr(args, "task", None)
+
+    # 决定用于预估的模型名
+    est_model = model_spec.split(":", 1)[-1] if model_spec and ":" in model_spec else "deepseek-chat"
+
+    # 断点续跑：--resume 复用已有 job，否则新建
+    job_id = getattr(args, "resume", None)
+    if job_id:
+        if not q.get_job(job_id):
+            raise SystemExit("❌ 待续跑的任务不存在: %s" % job_id)
+        pending = q.claim_pending(job_id)
+        run_items = pending
+        print("▶️  断点续跑 %s：跳过已完成，补 %d 条" % (job_id, len(run_items)))
+    else:
+        # 跑前成本预估
+        est = cost_estimator.estimate_batch(items, est_model)
+        from_cfg = config.load_config(getattr(args, "config", None))
+        budget = float(from_cfg.get("budget_monthly", 0) or 0)
+        if getattr(args, "budget", None):
+            budget = float(args.budget)
+        gate = cost_estimator.budget_gate(est, budget, confirmed=getattr(args, "yes", False))
+        if not args.json:
+            print(cost_estimator.render_estimate(est, gate))
+        if args.json:
+            print(json.dumps({"estimate": est, "gate": gate}, ensure_ascii=False))
+        if not gate["allowed"]:
+            raise SystemExit("❌ %s（加 --yes 显式确认后启动）" % gate["reason"])
+
+        job_id = q.create_job(items, name=os.path.basename(path), strategy=strategy,
+                              model=model_spec, task_hint=task_hint, src_file=path)
+        run_items = q.claim_pending(job_id)
+        print("📦 已创建任务 %s（%d 条）" % (job_id, len(items)))
+
+    if getattr(args, "estimate_only", False):
+        return
+
+    # 硬件自适应并发
+    workers = hardware.enforce_limit(getattr(args, "concurrency", None) or hardware.profile()["max_concurrency"])
+    print("⚙️  并发 %d（硬件档位 %s）" % (workers, hardware.profile()["tier"]))
+
+    import concurrent.futures as cf
+    done_n = 0
+    fail_n = 0
+    lock = __import__("threading").Lock()
+
+    def run_one(item):
+        nonlocal done_n, fail_n
+        q.mark_running(item["id"])
+        try:
+            content, prov, mod, it, ot, cost = _batch_call(
+                item["payload"], task_hint, strategy, model_spec, reg, timeout=getattr(args, "timeout", 60))
+            q.mark_done(item["id"], result=content, cost=cost, in_tokens=it, out_tokens=ot)
+            with lock:
+                done_n += 1
+                if not args.json and done_n % 10 == 0:
+                    print("   进度 %d/%d" % (done_n + fail_n, len(run_items)))
+        except Exception as e:
+            status = q.mark_failed(item["id"], error=str(e))
+            with lock:
+                fail_n += 1
+            return (item["idx"], status, str(e)[:60])
+        return None
+
+    with cf.ThreadPoolExecutor(max_workers=workers) as pool:
+        errs = [r for r in pool.map(run_one, run_items) if r]
+
+    print("✅ 批处理完成：成功 %d / 失败 %d" % (done_n, fail_n))
+    if errs:
+        print("   失败样例：%s" % errs[:3])
+    print("   任务 ID: %s（可用 batch status %s 查看进度）" % (job_id, job_id))
+    print("   总花费 ¥%.4f" % q.total_cost(job_id))
+    if args.json:
+        print(json.dumps({"job_id": job_id, "done": done_n, "failed": fail_n,
+                          "cost": q.total_cost(job_id)}, ensure_ascii=False))
+    q.close_all()
+
+
+def cmd_longchain(args, reg):
+    """v2.9.0 长文一键链：分块 → 并行 → 合并。"""
+    text = args.text
+    if not text and getattr(args, "file", None):
+        with open(args.file, "r", encoding="utf-8") as f:
+            text = f.read()
+    if not text or not text.strip():
+        raise SystemExit("❌ 请提供 --text 或 --file")
+
+    task_type = args.task_type
+    strategy = getattr(args, "strategy", "auto")
+    model_spec = getattr(args, "model", "auto")
+
+    cls = classifier.classify(text[:500], task_type)
+    if model_spec and ":" in model_spec:
+        prov, mod = _resolve_manual(model_spec, reg, allow_unconfigured=not config.configured_providers())
+    else:
+        prov, mod, _ = resolve(strategy, cls, reg, allow_unconfigured=not config.configured_providers())
+
+    ctx = int(getattr(args, "ctx", 32000) or 32000)
+    workers = hardware.enforce_limit(getattr(args, "concurrency", None) or hardware.profile()["max_concurrency"])
+
+    def call_fn(prompt):
+        adapter = build(reg["providers"][prov]["adapter"], _adapter_cfg(prov, reg))
+        res = adapter.chat([{"role": "user", "content": prompt}], mod,
+                           stream=False, timeout=getattr(args, "timeout", 120))
+        return res["content"]
+
+    result = merge_strategy.longchain(
+        text, task_type, call_fn, model_ctx=ctx, max_workers=workers,
+        chunk_chars=getattr(args, "chunk_chars", None))
+
+    if args.json:
+        print(json.dumps(result, ensure_ascii=False))
+    else:
+        print("🧠 模型 %s / %s" % (prov, mod))
+        print(merge_strategy.render_longchain(result))
+        out = getattr(args, "output", None)
+        if out:
+            with open(out, "w", encoding="utf-8") as f:
+                f.write(result["result"])
+            print("\n💾 已保存到: %s" % out)
+
+
+def cmd_arena_suite(args, reg):
+    """v2.9.0 A/B 质量评测集：arena --suite。"""
+    suite = eval_suite.load_suite()
+    models_arg = getattr(args, "models", "auto")
+    selected = []
+
+    if models_arg and models_arg != "auto":
+        for token in models_arg.split(","):
+            token = token.strip()
+            if ":" not in token:
+                continue
+            prov, mod = token.split(":", 1)
+            for p, pinfo in reg.get("providers", {}).items():
+                if p != prov:
+                    continue
+                for m in pinfo.get("models", []):
+                    if m["name"] == mod:
+                        selected.append({"provider": prov, "model": mod})
+                        break
+    if not selected:
+        # auto：已配置厂商的默认模型（最多 3 家）
+        for prov in config.configured_providers()[:3]:
+            pinfo = reg["providers"].get(prov)
+            if pinfo:
+                selected.append({"provider": prov, "model": pinfo.get("default_model", "")})
+
+    if not selected:
+        # 无密钥时提供 mock 评测模式（本地规则响应），保证 CLI 可离线演示
+        if not getattr(args, "mock", False):
+            raise SystemExit("❌ 未检测到已配置密钥。请配置厂商 Key，或加 --mock 用本地模拟响应演示评测流程。")
+        selected = [{"provider": "mock", "model": "mock-model"}]
+
+    mock_mode = getattr(args, "mock", False)
+    cases_filter = getattr(args, "category", None)
+
+    def call_fn(provider, model, prompt, category):
+        if cases_filter and category != cases_filter and mock_mode:
+            return ""
+        if mock_mode:
+            # 本地规则响应：拼接 rubric 关键词，纯演示评分流程（零 LLM）
+            return "本地模拟回答：" + prompt[:40] + " " + category
+        adapter = build(reg["providers"][provider]["adapter"], _adapter_cfg(provider, reg))
+        res = adapter.chat([{"role": "user", "content": prompt}], model,
+                           stream=False, timeout=60)
+        return res["content"]
+
+    use_suite = suite
+    if cases_filter:
+        use_suite = dict(suite)
+        use_suite["cases"] = [c for c in suite["cases"] if c["category"] == cases_filter]
+
+    workers = hardware.enforce_limit(getattr(args, "concurrency", None) or hardware.profile()["max_concurrency"])
+    print("🏃 开始本地评测（%d 题 × %d 模型，并发 %d）..." % (
+        len(use_suite["cases"]), len(selected), workers))
+
+    result = eval_suite.run_suite(call_fn, suite=use_suite, models=selected, max_workers=workers)
+
+    if args.json:
+        print(json.dumps(result, ensure_ascii=False))
+    else:
+        print(eval_suite.render_table(result))
+
+    # 存档 + 对比
+    if not getattr(args, "no_save", False):
+        n = eval_store.save_run(result, db_path=getattr(args, "db", None))
+        history = eval_store.history(db_path=getattr(args, "db", None))
+        if not args.json:
+            print()
+            print(eval_store.compare(result, db_path=getattr(args, "db", None)))
+            print("\n💾 已存档 %d 条评测记录" % n)
+
+    # 保存雷达图 + 个性化评分表
+    radar = getattr(args, "radar", None)
+    if radar:
+        eval_suite.save_radar_svg(result, radar)
+        print("📊 雷达图已保存: %s" % radar)
+    if getattr(args, "save_profile", False):
+        eval_suite.save_score_table(result)
+        print("💾 已回填个性化评分表（auto --personalized 可用）")
+
+
 def cmd_version(args, reg):
     print("cn-llm-router v%s" % meta.VERSION)
 
@@ -801,6 +1138,9 @@ def build_parser():
                         help="v2.3 dry-run 模式：仅展示推荐路由，不调用 API")
     # v2.6 多轮会话
     p_chat.add_argument("--session", help="v2.6 多轮会话：会话 ID（自动维护上下文）")
+    # v2.9.0 个性化 auto
+    p_chat.add_argument("--personalized", action="store_true",
+                        help="v2.9.0 auto 策略按本机实测评测得分选模型（需先跑 arena --suite --save-profile）")
 
     p_route = sub.add_parser("route", help="仅做路由决策（不调用 API）")
     p_route.add_argument("--prompt", help="用户问题")
@@ -811,6 +1151,8 @@ def build_parser():
     p_route.add_argument("--json", action="store_true")
     p_route.add_argument("--dry-run", action="store_true",
                          help="v2.3 dry-run 模式：仅展示推荐路由，不调用 API")
+    p_route.add_argument("--personalized", action="store_true",
+                         help="v2.9.0 auto 按本机实测评测得分选模型（可解释依据）")
 
     p_rep = sub.add_parser("report", help="成本/用量报表")
     p_rep.add_argument("--period", default="month", choices=["day", "week", "month"])
@@ -894,6 +1236,54 @@ def build_parser():
     p_arena.add_argument("--json", action="store_true")
     p_arena.add_argument("--mock", action="store_true",
                          help="Mock 模式：不调真实 API，从本地预设库返回")
+    # v2.9.0 本地评测集
+    p_arena.add_argument("--suite", action="store_true",
+                         help="v2.9.0 本地 50 题评测集（四维得分表 + 雷达图 + 历史存档）")
+    p_arena.add_argument("--category", choices=["code", "reason", "translate", "summarize"],
+                         help="仅评测某一类")
+    p_arena.add_argument("--concurrency", type=int, help="评测并发数（默认按硬件自适应）")
+    p_arena.add_argument("--radar", help="导出雷达图 SVG 路径")
+    p_arena.add_argument("--save-profile", action="store_true",
+                         help="把本次得分回填 score_table.yaml（供 auto --personalized 使用）")
+    p_arena.add_argument("--no-save", action="store_true", help="不写入评测历史存档")
+    p_arena.add_argument("--db", help="评测存档 SQLite 路径")
+
+    # v2.9.0 批处理 batch 子命令
+    p_batch = sub.add_parser("batch", help="v2.9.0 批处理：清单批量调用 + 断点续跑")
+    p_batch.add_argument("batch_cmd", choices=["run", "status", "results", "list"],
+                         help="run=启动 / status=进度 / results=结果 / list=任务列表")
+    p_batch.add_argument("manifest", nargs="?", help="任务清单 txt / jsonl 路径（run 时必填）")
+    p_batch.add_argument("job_id", nargs="?", help="任务 ID（status/results 时必填）")
+    p_batch.add_argument("--strategy", default="auto", help="auto/cheap/quality/manual")
+    p_batch.add_argument("--model", default="auto", help="指定模型 provider:model")
+    p_batch.add_argument("--task", help="显式任务类型提示")
+    p_batch.add_argument("--concurrency", type=int, help="并发数（默认硬件自适应）")
+    p_batch.add_argument("--retries", type=int, default=2, help="失败重试次数（默认 2）")
+    p_batch.add_argument("--budget", type=float, help="本次预算阈值（元）")
+    p_batch.add_argument("--yes", action="store_true", help="显式确认超预算执行")
+    p_batch.add_argument("--resume", help="续跑指定任务 ID（跳过已完成）")
+    p_batch.add_argument("--estimate-only", action="store_true", help="只预估不执行")
+    p_batch.add_argument("--failed-only", action="store_true", help="results 只列失败项")
+    p_batch.add_argument("--limit", type=int, default=10, help="list 显示条数")
+    p_batch.add_argument("--db", help="进度 SQLite 路径")
+    p_batch.add_argument("--config", help="config.json 路径")
+    p_batch.add_argument("--timeout", type=int, default=60)
+    p_batch.add_argument("--json", action="store_true")
+
+    # v2.9.0 长文一键链
+    p_lc = sub.add_parser("longchain", help="v2.9.0 长文一键链：分块→并行→合并")
+    p_lc.add_argument("--text", help="待处理长文本")
+    p_lc.add_argument("--file", help="从文件读取长文本")
+    p_lc.add_argument("task_type", choices=["summarize", "translate"], help="任务类型")
+    p_lc.add_argument("--strategy", default="auto")
+    p_lc.add_argument("--model", default="auto")
+    p_lc.add_argument("--ctx", type=int, default=32000, help="目标模型上下文窗口（默认 32000）")
+    p_lc.add_argument("--chunk-chars", type=int, help="每块字符数（默认按 ctx 自动）")
+    p_lc.add_argument("--concurrency", type=int, help="并发数（默认硬件自适应）")
+    p_lc.add_argument("--timeout", type=int, default=120)
+    p_lc.add_argument("--output", help="结果保存路径")
+    p_lc.add_argument("--json", action="store_true")
+
     return ap
 
 
@@ -1236,14 +1626,21 @@ def main():
         ap.print_help()
         return
     reg = load_registry()
+    # v2.9.0 个性化 auto 开关（进程内），chat/route 均读取
+    global PERSONALIZED_MODE
+    PERSONALIZED_MODE = bool(getattr(args, "personalized", False))
+
+    # arena --suite 走评测集命令，否则走原有竞技场
+    arena_fn = cmd_arena_suite if getattr(args, "suite", False) else cmd_arena
     dispatch = {
         "chat": cmd_chat, "route": cmd_route, "report": cmd_report,
         "hardware": cmd_hardware, "cache": cmd_cache, "config": cmd_config,
         "update-check": cmd_update, "budget": cmd_budget, "version": cmd_version,
         "mock": cmd_mock, "health-check": health_check.cmd_health_check,
-        "arena": cmd_arena, "embed": cmd_embed, "rerank": cmd_rerank,
+        "arena": arena_fn, "embed": cmd_embed, "rerank": cmd_rerank,
         "session": cmd_session, "describe": cmd_describe,
         "price-check": cmd_price_check, "price-history": cmd_price_history,
+        "batch": cmd_batch, "longchain": cmd_longchain,
     }
     dispatch[args.cmd](args, reg)
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "闲鱼多店调度"
+  short_description: "按 browserId 隔离并串行调度多个闲鱼店铺的采集上架与订单任务"
+  default_prompt: "使用 $easy-xianyu-multi-account-ops 按 browserId 调度多个闲鱼店铺任务并输出归属清楚的报告。"

@@ -2,6 +2,8 @@
 
 Use [list_digital_humans](../api/list_digital_humans.md) to query accessible resources. Preserve actual IDs, names, avatar/voice fields, covers, and any status returned; do not invent missing properties or an independent voice ID from a voice label.
 
+The material library can supply driver audio, voice references, existing avatar performances, and B-roll through [talking-head material reuse](../workflows/oral-broadcast.md#material-reuse-for-avatar-only-and-avatar-with-b-roll-videos). Query materials and avatar resources separately: a person photo, rendered video, or audio material_id cannot substitute for digital_human_id or identify an avatar by name alone. Reusing an existing performance needs no new avatar generation; changed speech still requires matching sound and lip sync.
+
 ## Show the complete returned list
 
 For browsing or selection, show all returned entries and the count, including entries without covers. Mark recommendations within the full list instead of reducing it to a few candidates. Use a gallery or complete pagination where the host supports it; if the message cannot fit everything, provide an accessible complete list and state the visible range. Filter only when requested, and do not describe recommendations as the complete catalog.

@@ -1,7 +1,7 @@
 ---
 name: short-form-market-research-brain
 description: Short-form video market research via the Virlo API: viral niche research, trend tracking, creator vetting, hashtag, sound, and hook intelligence across TikTok, YouTube Shorts, and Instagram Reels. Use when the user wants to research what's working in a niche, find rising creators, monitor trends, get viral hooks (opening lines) to model, or analyze social video performance.
-version: 1.35.0
+version: 1.36.0
 homepage: https://dev.virlo.ai/docs
 metadata:
   openclaw:
@@ -46,6 +46,8 @@ If `VIRLO_API_KEY` is not set, do **not** guess or ask for the key inline in cha
 ```
 
 Base URL: `https://api.virlo.ai/v1`
+
+Everything you create with the key (agents, tracked creators, tracked videos) also shows in the user's Virlo web app at https://app.virlo.ai, in that key's workspace (Personal for most users). An agent's page is `https://app.virlo.ai/content-research-agent/<id>`; when the user wants to browse everything an agent found, give them that link.
 
 All parameter names and response fields use snake_case. All responses are wrapped in `{ "data": { ... } }`: **except the webhook-management endpoints** (`/v1/webhooks…`), which return a bare array/object with no `data` envelope.
 

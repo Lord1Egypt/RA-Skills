@@ -65,7 +65,29 @@ NON_BAND_FLAG = vocab.CONTRADICTED
 # so it cannot decide provenance. Pass 2's three tags are the provenance dimension.
 DIMENSIONS = ("instance", "completeness", "ownership", "outcome", "probe")
 
-ROUND_TYPES = ("behavioural", "technical", "design", "hr")
+ROUND_TYPES = ("behavioural", "technical", "design", "hr", "knowledge", "coding")
+
+# Rounds that test what can be LEARNED (fundamentals recall, writing code) rather
+# than what was LIVED (a story, a CV claim). They are assessed per question on
+# correctness, not banded on the five experience dimensions — "instanced" means
+# nothing about an answer to "what does an index cost on write?". Each one names the
+# record its assessment must carry for every question heading in the transcript.
+LEARNED_RECORD = {"knowledge": "RECALL", "coding": "SOLVE"}
+LEARNED_ROUND_TYPES = tuple(LEARNED_RECORD)
+
+# Whether a knowledge answer matched the public, checkable answer. A fact about a
+# text, like the bands — never a verdict on the person.
+RECALL_RESULTS = ("correct", "partial", "incorrect", "no_answer")
+# What the test runner (scripts/run_mock_tests.py) reported, never what the
+# interviewer believes. `not_run` is the honest status for a solution that was
+# never executed; check_mock cross-checks every other value against result.json.
+SOLVE_TESTS = ("all_passed", "some_failed", "none_passed", "not_run")
+COMPLEXITY_STATUS = ("stated_correct", "stated_wrong", "not_stated")
+# The help the candidate asked for, highest level given under that question. The
+# transcript logs each hint as `**Hint (<level>):**`, so the gate can count them:
+# a debrief that under-reports the help given flatters the candidate into a real
+# round they are not ready for.
+HINT_LEVELS = ("none", "nudge", "approach", "solution")
 
 # A documented SUPERSET of vocab.MARKET_KEYS, and the only place in the skill that
 # needs one: a mock round has to be run for a target that has no market convention

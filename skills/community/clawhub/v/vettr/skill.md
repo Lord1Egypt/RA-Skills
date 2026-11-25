@@ -1,7 +1,7 @@
 ---
 name: vettr
-description: "Static analysis security scanner for third-party OpenClaw skills. Detects eval/spawn risks, malicious dependencies, typosquatting, and prompt injection patterns before installation. Use when vetting skills from ClawHub or untrusted sources."
-version: "2.0.3"
+description: "Static analysis scanner for third-party OpenClaw skills. Parses JS/TS with tree-sitter to flag eval/exec/spawn and obfuscation, checks package.json dependencies and lifecycle scripts, checks manifest metadata for typosquatted or blocked names, matches prompt-injection and credential-path patterns in every scanned text file (code, Markdown, JSON, YAML, TXT; prompt-injection checks include code comments), and lists literal fetch() URLs. Optional autoVet (off by default) hooks skill:pre-install and can block an install or ask the user to approve it. Local scans need no network; /skill:vet-url downloads over HTTPS (public hosts only) and /skill:vet-clawhub runs the clawhub CLI. Use when vetting a skill before installing it."
+version: "2.0.8"
 author: britrik
 tags: ["security", "scanner", "vetting", "analysis", "static-analysis"]
 metadata:
@@ -19,12 +19,12 @@ metadata:
     homepage: https://github.com/britrik/skill-vettr
     notes: >
       Core /skill:vet command requires only node. The /skill:vet-url command
-      additionally requires git, curl, and tar on PATH. The /skill:vet-clawhub
+      additionally requires git and tar on PATH (archives are downloaded in-process). The /skill:vet-clawhub
       command requires the clawhub CLI. These are runtime-optional — the skill
       loads and registers commands regardless of their presence.
 ---
 
-# skill-vettr v2.0.3
+# skill-vettr v2.0.8
 
 Security scanner for third-party OpenClaw skills. Analyses source code, dependencies, and metadata before installation using tree-sitter AST parsing and regex pattern matching.
 
@@ -44,12 +44,22 @@ The `vet-url` and `vet-clawhub` commands invoke external binaries via `execSafe`
 
 | Binary | Used By | Purpose |
 |--------|---------|---------|
-| `git` | `vet-url` | Clone `.git` URLs (with hooks disabled) |
-| `curl` | `vet-url` | Download archive URLs |
+| `git` | `vet-url` | Clone `.git` URLs (hooks disabled, redirects off, connection pinned to the validated public address, user and system git config ignored) |
 | `tar` | `vet-url` | Extract downloaded archives |
 | `clawhub` | `vet-clawhub` | Fetch skills from ClawHub registry |
 
 The `/skill:vet` command (local path vetting) requires only `node` and no external binaries.
+
+## Permissions
+
+| Capability | Used by | Scope |
+|------------|---------|-------|
+| Read files | all commands | The skill directory being vetted (allowed roots only) |
+| Write files | `vet-url`, `vet-clawhub` | A fresh temp directory, deleted after the scan |
+| Network | `vet-url`, `vet-clawhub` | HTTPS to public hosts only; none for `/skill:vet` |
+| Subprocesses | `vet-url`, `vet-clawhub` | `git`, `tar`, `clawhub` via `execFile` (no shell) |
+
+The skill never reads credentials; credential paths such as `~/.ssh` appear in its source only as detection patterns.
 
 ## Commands
 
@@ -85,7 +95,8 @@ The `/skill:vet` command (local path vetting) requires only `node` and no extern
 - **No sandboxing** — Does not execute or isolate target code
 - **Comment scanning** — Prompt injection detection scans string literals, not comments
 - **Filesystem scope** — `vet-url` downloads and extracts remote archives into a temp directory; `vet` accepts paths under `os.tmpdir()`, `~/.openclaw`, and `~/Downloads` by default. Set `allowCwd: true` in config to also permit `process.cwd()` (see Configuration below)
-- **External binary trust** — `vet-url` and `vet-clawhub` invoke `git`, `curl`, `tar`, and `clawhub` via `execFile`. These binaries must be trusted and present on `PATH`
+- **Network scope** — `vet-url` only connects to hosts whose DNS answers are all public unicast addresses; loopback, private, link-local and cloud-metadata ranges are refused, every redirect is re-validated, and the connection is pinned to the checked address. Git clones run with redirects disabled and HTTPS as the only allowed protocol
+- **External binary trust** — `vet-url` and `vet-clawhub` invoke `git`, `tar`, and `clawhub` via `execFile`. These binaries must be trusted and present on `PATH`
 
 For high-security environments, combine with sandboxing, network isolation, and manual source review. Run inside a disposable container when vetting untrusted URLs.
 
@@ -111,7 +122,9 @@ To allow vetting paths under the current working directory, set `allowCwd: true`
 
 ## `.vettrignore`
 
-Place a `.vettrignore` file in the root of the skill directory being scanned to exclude files or directories from analysis. This is useful for excluding test fixtures that contain deliberate malicious patterns.
+A `.vettrignore` file in the root of the scanned skill can exclude files or directories from analysis, for example test fixtures that contain deliberate malicious patterns.
+
+Because the scanned skill controls that file, it is **not applied by default**: the scanner reports it as a WARNING and scans everything. Set `"trustVettrignore": true` in the `skill-vettr` config only when scanning your own skill. Even then, patterns that would exclude the whole skill (`*`, `**`) or `SKILL.md` / `package.json` are rejected, and the report lists every excluded path.
 
 ### Format
 

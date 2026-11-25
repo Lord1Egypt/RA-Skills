@@ -1,6 +1,6 @@
 {
   "manifestVersion": 1,
-  "updated": "2026-11-05",
+  "updated": "2026-11-24",
   "note": "清单同步要求：每次技能发布新版本后，按 YottaSkills 技能登记表更新本文件（登记表为内部台账，不随包分发）。",
   "skills": [
     {
@@ -31,7 +31,7 @@
       "slug": "yotta-memory",
       "name": "元忆",
       "pkg": "@yottameta/yotta-memory",
-      "version": "0.24.3",
+      "version": "0.24.5",
       "domain": "memory",
       "runtimePayload": [
         "bin"
@@ -178,7 +178,7 @@
       "slug": "yotta-verify",
       "name": "元信",
       "pkg": "@yottameta/yotta-verify",
-      "version": "0.3.6",
+      "version": "0.3.7",
       "domain": "security",
       "desc": "装前安全扫描器 + audited 徽章（prompt injection + 危险模式）"
     },

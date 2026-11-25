@@ -83,7 +83,7 @@ Write (needs a read+write key):
 | ----------------------------- | ------------------------------------------------------------------------ |
 | `pages:clone`                 | Create a page by cloning one you own, a named template, or the starter. 20/day cap |
 | `media:upload <file>`         | Upload an image or video, get back a `public_url` for `pages:update`. ≤4MB per file (video too) |
-| `pages:update <contestId>`    | Update title, description, dates, prizes, reward tiers, appearance (incl. the Custom template: `--template simple` / `--custom-css`), media, and entry actions (`entry_methods`, incl. custom-link rows) |
+| `pages:update <contestId>`    | Update title, description, dates, prizes, reward tiers, appearance (incl. the Custom template: `--template simple` / `--custom-css`), `--exclude-ai-agents`, media, entry actions (`entry_methods`, incl. custom-link rows), and the Share Feedback / Quick Question / Secret Code switches (`standalone_actions`) |
 | `pages:publish <contestId>`   | Take a page live (needs a future `end_date`)                             |
 | `pages:unpublish <contestId>` | Back to draft — blocks new signups and hides the page from visitors      |
 | `entries:create <contestId>`  | Add a signup                                                             |
@@ -100,7 +100,11 @@ tokei-agent pages:update <contestId> --image-video <public_url from the upload a
 tokei-agent actions:catalog --type twitter_follow                  # see what a type accepts
 tokei-agent pages:update <contestId> \
   --data '{"entry_methods":[{"actionType":"tiktok_follow","label":"Follow us on TikTok","points":3,"config":{"username":"tokei"}}]}'
+tokei-agent pages:update <contestId> \
+  --data '{"standalone_actions":{"survey":{"enabled":true,"question":"What should we build next?"}}}'
 ```
+
+Rows of one action type share a single points value (max 99), so duplicate rows must send the same `points`. A link row labelled `Visit Our …` (capital O) is reserved for the page's campaign-URL button; label a Custom Link `Visit our …` instead. Secret codes themselves are uploaded in the dashboard, not through `standalone_actions`.
 
 ## MCP server
 
@@ -185,7 +189,7 @@ stops all access through it.
 
 ### Contact information
 
-Tokei — https://tokei.io/privacy — support@tokei.io
+Tokei — https://tokei.io/privacy — https://tokei.io/contact
 
 ## Docs
 

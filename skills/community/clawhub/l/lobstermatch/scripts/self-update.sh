@@ -27,7 +27,7 @@ case "$BASE" in
 esac
 
 VERSION="$(sed -n 's/^version:[[:space:]]*v\{0,1\}\([0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\).*/\1/p' "$SKILL_DIR/SKILL.md" | head -n 1)"
-[ -n "$VERSION" ] || VERSION="1.0.39"
+[ -n "$VERSION" ] || VERSION="1.0.43"
 USER_AGENT="LobsterMatch-Skill/${VERSION} (+https://lobstermatch.com/connect.md)"
 
 meta="$(mktemp)"

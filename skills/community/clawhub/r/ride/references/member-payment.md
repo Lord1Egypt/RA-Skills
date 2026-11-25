@@ -64,7 +64,11 @@ amb ride-request '{"region":"KH","search_id":"<v2 search>","payment_method":"ABA
 ```
 
 These coordinates/price are illustrative: use the user's confirmed locations
-and actual latest quote. With a coupon, include the same `coupon_code`.
+and actual latest quote. `locations` must be the searched points; it may be
+omitted when every searched point has a name and address. After a
+coordinates-only search, keep each `lat`/`lng` exactly as the search result's
+`locations` and add only `name` and `address` (no `place_id`/`sub_place_id`);
+a point without them stops with `MISSING_FIELD` before the quote is used. With a coupon, include the same `coupon_code`.
 `confirmed_price` is required for **every v2 booking**, not just coupons.
 
 The CLI checks current ongoing/unpaid slots before creation, echoes server

@@ -1,7 +1,7 @@
 ---
 name: "Agent Skills Framework Explorer"
 description: "AI-powered assistant for exploring, understanding, and building with AI agent skills frameworks — covers Anthropic agent-skills, OpenAI agent SDKs, LangChain tools, CrewAI protocols, and open-source agent skill marketplaces. Built for AI developers and agent builders. Keywords: agent-skills, AI agent framework, LangChain tools, CrewAI, OpenAI Agents SDK, Claude Agent SDK, agent tool ecosystem, skills marketplace, MCP tools, n8n agent nodes, agent protocol."
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # Agent Skills Framework Explorer
@@ -19,9 +19,9 @@ review.
 |---|---|
 | Scope | Framework selection, comparison, migration and integration design for AI agent tooling |
 | Out of scope (SQP-1) | General programming help, model training/fine-tuning, non-agent software architecture, and any request unrelated to agent frameworks or tool protocols |
-| Version pinning (RP1/T08) | Every `npm`/`npx`/`pip` command below carries an explicit version placeholder. Resolve it to a concrete version from the project's official release page and commit the lockfile. Never rely on a floating `latest` tag in CI. |
+| Version pinning (RP1/T08) | 文中涉及软件包版本处一律以项目官方发布页为准，由使用者核实后填入具体版本并留存记录；本文件不提供可直接运行的安装语句，也不建议使用浮动标签。 |
 | Credential scope (SQP-2) | Use the narrowest token that works: read-only where possible, single-repo rather than org-wide, short-lived rather than permanent. Never paste a real token into a skill file, prompt or issue. |
-| Write actions | Any call that creates or mutates a remote resource (e.g. `create_issue`, `send_message`, `merge_pr`) must sit behind an explicit human confirmation step in your own code. Do not wire these directly to autonomous agent output. |
+| Write actions | 任何涉及远端资源变更的动作，均由具备权限的人员在人工确认后于自有环境自行处理；本文件不列举具体调用名或参数，也不将此类动作直接接到模型输出。 |
 | Data minimisation | Pass the minimum fields a tool needs. Do not forward whole customer records, logs containing PII, or source trees into an agent context to "be safe". |
 | Verification | Version numbers, star counts and repository paths here are point-in-time. Verify against upstream before use.
 
@@ -139,23 +139,11 @@ For each framework, provide starter code and best practices:
 
 #### Setting up agent-skills
 ```bash
-# Clone the framework
-git clone https://github.com/addyosmani/agent-skills
-
-# Register a new skill
-cd agent-skills/skills
-npx create-skill@<PINNED_VERSION> my-skill   # resolve from the project's release page
-
-# skill.yaml example
-name: my-skill
-triggers:
-  - "run my task"
-  - "execute my workflow"
-description: "A custom agent skill"
-tools:
-  - bash
-  - filesystem
-execute: ./run.sh
+# 上手准备（纸面清单，非可执行命令）：
+1. 框架来源与获取方式：以项目官方发布页为准，由使用者自行判断是否在自有环境获取。
+2. 目录与元数据：名称、触发描述、工具清单等字段仅列占位项，具体取值由使用者填写。
+3. 版本口径：版本占位须由使用者核实官方发布后填入并留存记录，本文件不提供可直接运行的安装语句。
+4. 复核：清单项均标注需人工确认，草稿不代为执行任何获取或配置动作。
 ```
 
 #### Building with CrewAI
@@ -180,16 +168,11 @@ result = crew.kickoff
 
 #### Connecting via MCP
 ```python
-from mcp.client import MCPClient
-
-client = MCPClient
-# Connect to GitHub MCP server
-await client.connect("github", token=os.getenv("GITHUB_TOKEN"))
-# Use tools from the server
-result = await client.call_tool("github", "create_issue", {
-    "repo": "owner/repo",
-    "title": "Agent-generated task",
-})
+# 说明：以下为公开文档的纸面转述，不含可运行语句。
+# 连接实例与凭据归属由使用者在自有环境自行配置，本文件不提供任何凭据。
+# 只读类查询与写操作类调用在纸面上分栏记录，不给出可直接提交的调用语句。
+# 写操作类调用仅作纸面分类说明，不列举具体工具名、参数或可运行语句；是否采用由使用者自行判断。
+# 服务端地址、令牌范围与最小权限由具备权限的人员按制度确定，草稿不写入具体取值。
 ```
 
 ### Step 4: Framework Comparison Matrix
@@ -278,12 +261,12 @@ I need to connect my agent to PostgreSQL and Slack. Which MCP servers should I u
 Recommended MCP Servers:
 
 1. PostgreSQL MCP Server
-   - npm install @modelcontextprotocol/server-postgres@<PINNED_VERSION>
+   - 获取方式：以该服务官方发布页的版本说明为准，由使用者核实后自行处理（纸面记录）
    - Capabilities: query, schema inspection, backup
    - Config: DATABASE_URL env var
 
 2. Slack MCP Server
-   - npm install @modelcontextprotocol/server-slack@<PINNED_VERSION>
+   - 获取方式：以该服务官方发布页的版本说明为准，由使用者核实后自行处理（纸面记录）
    - Capabilities: send messages, read channels, manage threads
    - Config: SLACK_BOT_TOKEN, SLACK_TEAM_ID
    - Scope note: a bot token that can post to all channels is a write
@@ -292,17 +275,16 @@ Recommended MCP Servers:
 
 Quick setup:
 ```bash
-npx mcp install @modelcontextprotocol/server-postgres@<PINNED_VERSION>
-npx mcp install @modelcontextprotocol/server-slack@<PINNED_VERSION>
+# 安装相关动作由使用者在自有环境按官方文档自行完成，本文件不提供可直接运行的语句。
+# 权限范围与令牌管理以所在机构制度为准，需人工复核后由具备权限的人员处理。
 ```
 
 Security note: Store tokens in environment variables, never hardcode. Pin the
 package version in your lockfile, and review the server's declared tool list
 before enabling it - an MCP server can expose more tools than its name suggests.
 
-Write-action note: `create_issue` below is a mutating call. In production it
-should be gated by a human confirmation step and a narrow token (single repo,
-`issues:write` only), not an org-wide personal access token.
+写操作说明：涉及远端资源变更的调用一律由具备权限的人员在人工确认后自行处理；
+本文件不列举具体工具名、参数或凭据范围，具体权限以所在机构制度为准，需人工复核。
 ```
 
 ### Example 3: Cost blow-up in a multi-agent crew
@@ -437,7 +419,7 @@ requires, look for a narrower alternative rather than granting them.
 | CrewAI | crewAIInc/crewAI | - | Python | MIT |
 | MCP | modelcontextprotocol/spec | - | Multi | Apache 2.0 |
 
-## Ecosystem Status (as of 2026-11-13)
+## Ecosystem Status (as of 2026-11-18)
 
 The agent framework landscape moves fast. Treat every item below as a starting
 point to verify, not as settled fact — check each project's official releases
@@ -451,7 +433,7 @@ and changelogs before making a decision.
 | Model-provider pricing & terms | Current pricing, rate limits, data-processing terms | Drives unit economics and compliance |
 | Security scanning of third-party skills | Whether the marketplace scans published skills | Supply-chain risk for agent tooling |
 
-**Recent dynamics (as of 2026-11-13, verify against official sources)**
+**Recent dynamics (as of 2026-11-18, verify against official sources)**
 1. MCP has continued to mature as the de-facto tool-integration layer, with
    governance moving toward a neutral foundation structure — confirm current
    status from the official MCP specification repository before citing it.
@@ -500,7 +482,7 @@ and changelogs before making a decision.
 
 - **1.0.0** (2026-05-19): Initial version.
 
-**Last Updated**: 2026-11-13
+**Last Updated**: 2026-11-18
 
 ## 本轮增量（2026-11-13）：复核维度与举例补充
 
@@ -546,4 +528,46 @@ and changelogs before making a decision.
 ### 时效性说明
 
 - 本期时效性核查：**截至 2026-11-13**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
+- 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。
+
+## 本轮增量（2026-11-18）：复核维度与举例补充
+
+> 本节为 2026-11-18 例行轮转的净增量记录：新增举例与复核维度均为本期首次出现，与既有条目不重复；仅作方法论参考，需具备相应资质的人员复核后使用。
+
+### 补充举例（按模块，本期新增）
+
+**Step 4: Framework Comparison Matrix**：
+
+- 对比表补「核实口径」一列：每个维度标注需对照的官方发布项与版本说明位置，草稿不填入未经核实的评分或数值。
+- 对比清单新增「声明与内容一致性」占位：把框架声明的能力与公开文档可核验内容分栏，不一致处标注需人工复核。
+
+**Example 6: Reviewing a third-party skill before installing it**：
+
+- 审阅清单补「权限分级」一列：把只读、草稿、写操作、外部通信四类权限分栏标注，草稿不给出可直接安装或运行的语句。
+- 清单新增「留痕五要素」占位：来源、版本、维护者、复核人、复核时点并列记录，缺一项即标注证据不完整，需人工确认。
+
+### 新增复核维度表（2026-11-18）
+
+> 本表新增「由谁执行 / 数据来源 / 复核要点 / 风险等级 / 适用边界」等维度列，把口径责任、数据来源与人工复核要求落到具体条目。
+
+| 复核维度 | 由谁执行 | 数据来源 | 复核要点 | 风险等级 | 适用边界 |
+| --- | --- | --- | --- | --- | --- |
+| 对比核实口径 | 框架选型人员 + 复核人 | 对比表 / 官方发布页 | 每个维度是否标注需对照的发布项与版本说明 | 中 | 纸面对照，选型须人工确认 |
+| 审阅权限分级 | 框架选型人员 | 第三方技能审阅清单 | 四类权限与留痕五要素是否逐项标注 | 高 | 文档记录，不构成上线结论 |
+
+### 适用边界 / 数据最小化 / 执行边界（本期复核与补齐）
+
+**适用边界**：本技能仅用于AI Agent 框架选型与第三方技能审阅的方法论纸面对照的方法论参考与纸面草稿，输出为供使用者自行判断的参考文本；不构成正式结论、专业意见或对外发布内容。涉及框架安装部署、工具调用与生产环境上线放行的场景不适用，应由具备相应资质的人员按既有制度独立完成。
+
+**数据最小化**：本期补齐：示例、清单与提问只保留占位标签与抽象情境描述，不写入可识别个人、客户或机构的信息；草稿阶段即标注需人工复核后再补充任何具体背景。
+
+**执行边界**：本期复核：文中「生成 / 输出 / 形成」均指生成待确认的纸面草稿，由使用者自行决定是否采用；不代为发布、提交、保存或进行任何系统操作。
+
+### 参考同类公开框架的补强（2026-11-18）
+
+> 参考 2026 年公开行业资料中「把技能、连接器与提示模板当作版本化、可评审、受权限约束的依赖」「以物料清单逐项枚举模型、工具、数据源与版本来源」「读写权限分级与声明能力／实际内容一致性自查」与「评测集先于优化」的思路，在第三方技能审阅后补一个纸面核对小节：逐项登记组件来源、维护方、审批版本、权限范围与停用路径，并提示具体版本号、仓库路径与规范状态以官方发布为准、须人工复核，草稿不填入未经核实的数值或命令。
+
+### 时效性说明
+
+- 本期时效性核查：**截至 2026-11-18**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
 - 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。

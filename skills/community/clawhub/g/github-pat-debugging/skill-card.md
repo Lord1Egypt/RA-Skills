@@ -1,6 +1,6 @@
 ## Description:
 
-Diagnoses GitHub personal access token failures by checking command construction, environment-variable handling, request details, and independent client results before concluding that a token is expired or revoked.
+Diagnoses GitHub Personal Access Token authentication failures by checking command usage, environment propagation, request parameters, and permissions before concluding a token is expired or revoked.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to diagnose GitHub PAT authentication failures across API and repository workflows. It helps distinguish local command, environment, and request problems from token or account issues before making changes.
+Developers and engineers use this skill to diagnose GitHub API and repository access failures by checking token handling, runtime behavior, and authorization before changing credentials.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: A repository-write step in the troubleshooting guidance could change repository content or trigger deployment workflows during diagnosis.
+Risk: The workflow reads a personal access token from a local path and sends it to GitHub’s API; the security analysis is partial.
 
-Mitigation: Review the step and avoid it unless the specific repository change is authorized and needed for diagnosis.
+Mitigation: Keep the full token out of command output, logs, and chat; rotate it if exposed, and confirm its value is sent only to the intended GitHub API endpoint.
 
-Risk: The security scan was partial and did not establish that all referenced behavior was inspected.
+Risk: A single failed request or runtime can lead to a mistaken conclusion that a token is revoked or expired.
 
-Mitigation: Review referenced behavior before installing or using the skill.
+Mitigation: Check environment propagation and validate the same token with an independent client before investigating token state.
 
 ## Reference(s):
 
+- [ClawHub release page](https://clawhub.ai/haiyangchenbj/skills/github-pat-debugging)
+- [GitHub authenticated user endpoint](https://api.github.com/user)
 - [Token Failure Mode Decision Tree](references/token-failure-modes.md)
-- [GitHub PAT Debugging on ClawHub](https://clawhub.ai/haiyangchenbj/skills/github-pat-debugging)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Shell commands, Code]
+**Output Type(s):** [Guidance, Shell commands, API calls, Configuration instructions]
 
-**Output Format:** [Markdown with diagnostic steps and inline command or code examples]
+**Output Format:** [Markdown with inline shell, JavaScript, and API examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Troubleshooting steps and verification guidance; never print a full personal access token.]
 
 ## Skill Version(s):
 
-1.0.7 (source: SKILL.md frontmatter and server-resolved release evidence)
+1.0.8 (source: SKILL.md frontmatter)
 
 ## Ethical Considerations:
 

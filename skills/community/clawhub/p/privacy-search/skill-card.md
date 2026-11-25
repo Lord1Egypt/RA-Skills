@@ -1,6 +1,6 @@
 ## Description:
 
-Helps agents search multiple engines with configurable privacy settings, ranked results, optional source-backed answers, and web-page retrieval.
+A privacy-focused multi-engine search skill with parallel retrieval, local RAG-lite answers, source checking, and privacy diagnostics.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agents use this skill to search across web engines, review ranked sources, and optionally synthesize cited answers or retrieve page text while controlling search privacy settings.
+People and developers use the skill to search across multiple engines, inspect linked sources, and create cited summaries or privacy reports.
 
 ### Deployment Geography for Use:
 
@@ -22,43 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Searches and update checks send requests to external services and may expose queries or the user's IP address.
+Risk: Search queries may be disclosed to external search services, and strict privacy controls may not work as documented.
 
-Mitigation: Use an appropriate proxy or local search setup for sensitive searches, and disable startup update checks when needed.
+Mitigation: Avoid submitting sensitive queries until the search route and privacy configuration have been reviewed; verify settings before relying on strict mode.
 
-Risk: Local cache, history, and logs can retain sensitive search activity.
+Risk: Some referenced material was only partly inspected by the security review.
 
-Mitigation: Disable cache, history, and logging for sensitive searches, or clear retained data afterward.
-
-Risk: Optional answer synthesis may share prompts and fetched page text with an LLM provider when an API key is configured.
-
-Mitigation: Do not configure synthesis with sensitive content unless that provider and data transfer are approved.
-
-Risk: MCP page retrieval and synthesis can request arbitrary URLs from the user's machine.
-
-Mitigation: Restrict MCP tools to those needed; disable fetch and synthesize in untrusted contexts.
+Mitigation: Review the referenced material and dependencies before relying on the skill for sensitive work.
 
 ## Reference(s):
 
-- [ClawHub release](https://clawhub.ai/fyniujin/skills/privacy-search)
-- [Quick start](references/QUICK_START.md)
-- [Search engines](references/engines.md)
-- [Search syntax and FAQ](references/detail_engine_syntax_faq.md)
-- [MCP tool schema](references/mcp_schema.md)
+- [Quick Start](artifact/references/QUICK_START.md)
+- [Search Engines](artifact/references/engines.md)
+- [MCP Schema](artifact/references/mcp_schema.md)
+- [Search Syntax FAQ](artifact/references/detail_engine_syntax_faq.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, JSON, Guidance]
+**Output Type(s):** [Text, Markdown, JSON, Analysis]
 
-**Output Format:** [Search results and optional cited answers as text, Markdown, or JSON]
+**Output Format:** [Search results, cited summaries, and privacy reports in human-readable text or JSON, with optional Markdown exports.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results can include source links and engine-count confidence indicators; optional answer synthesis and page retrieval.]
+**Other Properties Related to Output:** [Search results can include source links and confidence indicators; generated claims may be marked as unsupported.]
 
 ## Skill Version(s):
 
-1.9.0 (source: skill frontmatter and ClawHub release)
+2.1.0 (source: SKILL.md frontmatter; server release evidence)
 
 ## Ethical Considerations:
 

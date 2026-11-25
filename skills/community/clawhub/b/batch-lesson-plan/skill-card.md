@@ -1,6 +1,6 @@
 ## Description:
 
-Turns a teaching schedule and textbook material into a batch of Chinese-language secondary vocational lesson plans in DOCX format.
+This skill turns a teaching schedule into a batch of vocational lesson plans in Word (.docx).
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-Apache License 2.0
+Apache 2.0
 
 ## Use Case:
 
-Teachers and educational staff use this skill to turn a course teaching schedule and scanned textbook pages into a set of editable secondary vocational lesson plans, with optional supporting classroom materials.
+Vocational teachers use it to turn a teaching schedule and textbook material into printable lesson plans. They review the extracted lesson list and hour assignments before batch generation.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Generated teaching content may be inaccurate or incomplete when source PDFs or templates are unsuitable.
+Risk: The release security guidance says the scan was partial, some local path references did not resolve, and runtime permissions were not verified.
 
-Mitigation: Use trusted templates and PDFs, confirm the lesson list before batch generation, and review each generated plan for accuracy.
-
-Risk: An existing file at the specified output path may be overwritten.
-
-Mitigation: Choose a new output path or back up any existing file before running the helper.
+Mitigation: Review the unresolved references and grant only the access needed before using the skill.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/yon-gjun/skills/batch-lesson-plan)
 - [Server-resolved source repository](https://github.com/yon-gjun/batch-lesson-plan)
+- [ClawHub skill release](https://clawhub.ai/yon-gjun/skills/batch-lesson-plan)
+- [WorkBuddy conversation archive](https://workbuddy.cn)
 
 ## Skill Output:
 
-**Output Type(s):** [Files, JSON, Guidance]
+**Output Type(s):** [Files, Text]
 
-**Output Format:** [DOCX lesson plans, intermediate JSON content, and text guidance]
+**Output Format:** [Printable Microsoft Word (.docx) lesson plans; lesson content is organized as structured JSON during generation.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Checks generated DOCX table structure; requires a suitable lesson-plan template and user-reviewed source material.]
+**Other Properties Related to Output:** [Can generate one document per confirmed lesson topic and reports whether the resulting document structure passes validation.]
 
 ## Skill Version(s):
 
-0.1.0 (source: ClawHub release metadata)
+0.1.1 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

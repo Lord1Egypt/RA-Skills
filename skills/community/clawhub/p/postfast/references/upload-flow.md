@@ -28,7 +28,7 @@ For multiple files, set `count` to the number of files. All must share the same 
 
 Accepted `contentType` values: `image/jpeg`, `image/png`, `image/gif`, `image/webp`, `video/mp4`, `video/webm`, `video/mov`, `video/quicktime`, `application/pdf`, `application/msword`, `application/vnd.openxmlformats-officedocument.wordprocessingml.document`, `application/vnd.ms-powerpoint`, `application/vnd.openxmlformats-officedocument.presentationml.presentation`, `application/x-subrip` (.srt), `text/vtt` (.vtt). Use `image/jpeg` for `.jpg` files (`image/jpg` returns `400`).
 
-Size caps: 250MB per video (Bluesky 100MB, Telegram 50MB), 10MB per image, 60MB per document, 10MB per caption file. The endpoint allows 180 requests per minute and 420 per day, so request several URLs per call with `count` instead of one call per file.
+Size caps: 250MB per video (Bluesky 100MB, Telegram 50MB), 10MB per image, 60MB per document, 10MB per caption file. The endpoint has its own rate limit (see SKILL.md "Rate Limits"), so request several URLs per call with `count` instead of one call per file.
 
 **Key prefix by type:**
 - Images: `image/uuid.ext`
@@ -65,7 +65,7 @@ curl -X POST https://api.postfa.st/social-posts \
           "sortOrder": 0
         }
       ],
-      "scheduledAt": "2026-06-15T10:00:00.000Z",
+      "scheduledAt": "2027-02-01T10:00:00.000Z",
       "socialMediaId": "ACCOUNT_ID"
     }],
     "controls": {}
@@ -103,7 +103,7 @@ Documents use a different flow, with `linkedinAttachmentKey` instead of `mediaIt
   "posts": [{
     "content": "Our Q1 playbook in 12 slides",
     "mediaItems": [],
-    "scheduledAt": "2026-06-15T10:00:00.000Z",
+    "scheduledAt": "2027-02-01T10:00:00.000Z",
     "socialMediaId": "LINKEDIN_ACCOUNT_ID"
   }],
   "controls": {
@@ -126,7 +126,7 @@ A caption file also goes in `controls`, not in `mediaItems`:
   "posts": [{
     "content": "Full tutorial with English captions",
     "mediaItems": [{ "key": "video/uuid.mp4", "type": "VIDEO", "sortOrder": 0 }],
-    "scheduledAt": "2026-12-15T14:00:00.000Z",
+    "scheduledAt": "2027-08-03T14:00:00.000Z",
     "socialMediaId": "YOUTUBE_ACCOUNT_ID"
   }],
   "controls": {

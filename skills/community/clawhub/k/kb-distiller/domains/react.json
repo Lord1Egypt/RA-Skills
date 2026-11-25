@@ -1,0 +1,143 @@
+{
+  "domain": "react",
+  "skill_name": "full-react-expert",
+  "language": "zh-CN",
+  "description_keywords": [
+    "React",
+    "Next.js",
+    "NestJS",
+    "react-admin",
+    "JSX",
+    "TSX",
+    "hooks",
+    "RSC",
+    "Server Components",
+    "App Router",
+    "zustand",
+    "redux",
+    "TypeORM",
+    "Prisma",
+    "TanStack Query",
+    "Vite",
+    "Vitest",
+    "Playwright",
+    "Turborepo",
+    "pnpm",
+    "react-hook-form",
+    "Server Actions"
+  ],
+  "trigger_scenarios": "编写、调试、选型或迁移 React / Next.js / NestJS / react-admin 全栈代码，做性能优化，配置 Vite/Turborepo 工程化或编写 Vitest/Playwright 测试，或诊断渲染/水合/依赖注入等疑难问题",
+  "cross_cutting_files": ["laws", "ai-mistakes", "gotchas", "patterns"],
+  "subdomains": [
+    {
+      "name": "react-core",
+      "doc_seeds": ["https://react.dev"],
+      "page_budget": 10,
+      "elicitation_topics": [
+        "hooks 规则与依赖数组心智模型",
+        "状态管理选型决策（useState/context/zustand/redux）",
+        "性能优化（重渲染、memo、并发特性）",
+        "Suspense / use / useTransition 等并发 API",
+        "TypeScript + React 类型技巧",
+        "AI 生成 React 代码的典型错误",
+        "错误边界（Error Boundary）实践",
+        "React Compiler 深入与实践",
+        "react-hook-form 表单实践",
+        "useEffectEvent 与 19.2/19.3 新 API"
+      ]
+    },
+    {
+      "name": "nextjs",
+      "doc_seeds": ["https://nextjs.org/docs"],
+      "page_budget": 10,
+      "elicitation_topics": [
+        "App Router 心智模型与 Server/Client 组件边界",
+        "数据获取与缓存策略（fetch 语义、revalidate、Server Actions）",
+        "路由文件约定（layout/loading/error/not-found/template）",
+        "hydration mismatch 与部署配置陷阱",
+        "AI 生成 Next.js 代码的典型错误",
+        "Server Actions 深入（useActionState/useOptimistic）",
+        "streaming 与 Suspense 编排",
+        "国际化（i18n）",
+        "认证与 proxy.ts 中间层"
+      ]
+    },
+    {
+      "name": "nestjs",
+      "doc_seeds": ["https://docs.nestjs.com"],
+      "page_budget": 8,
+      "elicitation_topics": [
+        "模块体系与依赖注入（生命周期、循环依赖）",
+        "守卫/拦截器/管道/过滤器与请求生命周期",
+        "DTO 校验与 ValidationPipe 实践",
+        "数据库集成（TypeORM/Prisma）陷阱",
+        "微服务与消息队列集成",
+        "AI 生成 NestJS 代码的典型错误",
+        "GraphQL 模块（@nestjs/graphql）",
+        "认证体系（Passport/JWT）",
+        "OpenAPI/Swagger 集成",
+        "WebSocket 网关与实时通信"
+      ]
+    },
+    {
+      "name": "react-admin",
+      "doc_seeds": ["https://marmelab.com/react-admin"],
+      "page_budget": 6,
+      "elicitation_topics": [
+        "DataProvider 抽象与自定义实现",
+        "资源/列表/表单组件体系与 source 机制",
+        "authProvider 与权限控制（RBAC）",
+        "与后端 REST/GraphQL API 对接陷阱",
+        "AI 生成 react-admin 代码的典型错误",
+        "国际化与本地化（i18n）",
+        "自定义页面、布局与菜单",
+        "大数据量与性能调优",
+        "realtime 实时更新"
+      ]
+    },
+    {
+      "name": "tanstack-query",
+      "doc_seeds": ["https://tanstack.com/query/latest"],
+      "page_budget": 6,
+      "elicitation_topics": [
+        "核心概念（queryKey/缓存/失效/staleTime）",
+        "mutation 与乐观更新",
+        "SSR/RSC 集成（Next.js hydration）",
+        "AI 生成 TanStack Query 代码的典型错误"
+      ]
+    },
+    {
+      "name": "vite-tooling",
+      "doc_seeds": ["https://vite.dev"],
+      "page_budget": 6,
+      "elicitation_topics": [
+        "配置体系、环境变量与模式",
+        "插件机制与常见插件生态",
+        "构建优化（代码分割/产物分析）",
+        "AI 生成 Vite 配置的典型错误"
+      ]
+    },
+    {
+      "name": "testing",
+      "doc_seeds": ["https://vitest.dev", "https://playwright.dev"],
+      "page_budget": 6,
+      "elicitation_topics": [
+        "React 组件测试（Vitest + Testing Library）",
+        "NestJS 测试（单元/e2e）",
+        "E2E 测试（Playwright）",
+        "AI 生成测试代码的典型错误"
+      ]
+    },
+    {
+      "name": "monorepo",
+      "doc_seeds": ["https://turborepo.dev"],
+      "page_budget": 6,
+      "elicitation_topics": [
+        "pnpm workspace 组织与共享包",
+        "Turborepo 任务编排与缓存",
+        "Monorepo 中的版本与发布策略",
+        "AI 生成 Monorepo 配置的典型错误"
+      ]
+    }
+  ]
+}

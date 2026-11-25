@@ -9,8 +9,13 @@
  *   include_overdue  — 是否包含超时未回复，默认 true
  */
 
-import { callAPI, parseArgs } from './_api_client.mjs';
+import {
+  attachOutreachWorkspaceUrl,
+  callAPI,
+  parseArgs,
+} from './_api_client.mjs';
 
 const params = parseArgs();
 const result = await callAPI('/openapi/v1/outreach/todo', params, null, { skipUserIdentity: false });
+await attachOutreachWorkspaceUrl(result);
 console.log(JSON.stringify(result, null, 2));

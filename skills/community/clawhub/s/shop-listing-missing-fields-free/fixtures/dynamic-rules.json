@@ -1,0 +1,11 @@
+{
+  "requirements": [
+    {
+      "category": "规格",
+      "field": "product.material",
+      "label": "材质",
+      "expected": "纯棉",
+      "source": "离线动态商家规则模拟"
+    }
+  ]
+}

@@ -12,7 +12,7 @@ mumo is a tool the native Hermes agent calls — not another autonomous agent. Y
 hermes skills install clawhub/mumo-hermes
 ```
 
-The slug is `mumo-hermes` — the bare `clawhub/mumo` slug is the OpenClaw variant of this skill (different tool-name prefix and setup steps), so install this one. Hermes prompts for your `MUMO_API_KEY` at install time and saves it to `~/.hermes/.env`; you add the MCP server block yourself (below). Sign up at [mumo.chat](https://mumo.chat) and create a platform key at [Settings → API Keys](https://mumo.chat/settings/api-keys) (keys start with `mmo_live_`) before installing.
+The slug is `mumo-hermes` — the bare `clawhub/mumo` slug is the OpenClaw variant of this skill (different tool-name prefix and setup steps), so install this one. The skill is the manual; you add the MCP server yourself (below).
 
 ### Local install via git clone
 
@@ -23,7 +23,21 @@ git clone https://github.com/mumo-chat/mumo-hermes \
 
 That places `SKILL.md` at `~/.hermes/skills/software-development/mumo/SKILL.md`, which is where Hermes' skill scanner expects it. mumo lives under `software-development/` alongside skills that share its shape — `writing-plans`, `plan`, `requesting-code-review` — all of which are "force yourself to think harder before acting" methodologies.
 
-Then add the MCP server config: open `~/.hermes/config.yaml` and merge the contents of `config/mumo.yaml` under your `mcp_servers:` key. The block references `${MUMO_API_KEY}` rather than embedding the key, so put the key in `~/.hermes/.env` instead.
+### Add the mumo server and sign in
+
+One command adds the server and starts a browser sign-in. No API key is needed. Run it in a terminal on the machine where Hermes runs:
+
+```bash
+hermes mcp add mumo --url https://mumo.chat/api/mcp/oauth --auth oauth
+```
+
+Your browser opens to **Connect your mumo account**. Sign in to mumo if asked (or create an account; every account gets free credit each month), click **Continue**, then **Allow access**. mumo's page lists an address on this computer (`127.0.0.1`) as where you are sent next: that is Hermes waiting for the sign-in to finish. The consent screen shows two cautions, one about where Hermes Agent publishes its identity and one about an app running on your machine; both describe Hermes itself. When the browser reads **Authorization Successful**, return to the terminal: Hermes lists the nine mumo tools and asks whether to enable them. Answer `Y`.
+
+No browser on that machine? Open the link Hermes prints on another device, then paste the address your browser ends on back into the terminal. This needs a current Hermes; run `hermes update` first if the command is refused. To sign in again later, run `hermes mcp login mumo`.
+
+### Using an API key instead
+
+For a Hermes gateway on a server, a messaging bot, or any unattended run, use a key in place of the sign-in. Create a platform key at [Settings → API Keys](https://mumo.chat/settings/api-keys) (keys start with `mmo_live_`), then open `~/.hermes/config.yaml` and merge the contents of `config/mumo.yaml` under your `mcp_servers:` key. The block references `${MUMO_API_KEY}` rather than embedding the key, so put the key in `~/.hermes/.env` instead.
 
 Create the file and restrict it *before* putting anything in it, so the key is never written into a world-readable file:
 
@@ -41,7 +55,9 @@ Edit the file rather than appending from the shell: a command containing the lit
 
 `.env` is where Hermes expects secrets to live, which keeps the mumo block in `config.yaml` free of a live credential. **Fully exit and restart Hermes** afterward (the `/reload-mcp` slash command is unreliable across versions).
 
-After restart, the eight mumo tools register as `mcp_mumo_create_deliberation`, `mcp_mumo_wait_for_round`, `mcp_mumo_append_round`, `mcp_mumo_get_session`, `mcp_mumo_list_sessions`, `mcp_mumo_list_models`, `mcp_mumo_share_session`, `mcp_mumo_get_credit`.
+### Check the connection
+
+The mumo tools register as `mcp_mumo_create_deliberation`, `mcp_mumo_ask_a_model`, `mcp_mumo_wait_for_round`, `mcp_mumo_append_round`, `mcp_mumo_get_session`, `mcp_mumo_list_sessions`, `mcp_mumo_list_models`, `mcp_mumo_share_session`, `mcp_mumo_get_credit`.
 
 Confirm the connection end to end before spending anything on a panel:
 
@@ -49,7 +65,7 @@ Confirm the connection end to end before spending anything on a panel:
 hermes mcp test mumo
 ```
 
-That opens a real connection and lists the tools it finds. `hermes mcp list` only reports what is saved in your config — it does not prove the key resolved. If the test fails, the masked `Authorization:` line it prints tells you whether `${MUMO_API_KEY}` resolved at all.
+That opens a real connection and lists the tools it finds; with the sign-in it reports `Auth: OAuth 2.0`. `hermes mcp list` only reports what is saved in your config. On the key path, if the test fails, the masked `Authorization:` line it prints tells you whether `${MUMO_API_KEY}` resolved at all. If Hermes was already running, fully exit and restart it so it picks up the skill and the server.
 
 ## Invoke
 
@@ -63,7 +79,7 @@ Hermes skills are explicitly called, not auto-triggered. Two ways:
 
 Or naturally: *"Ask mumo to compare Postgres and MongoDB for our event store..."*
 
-Either way, Hermes loads the skill, calls `create_deliberation`, waits for the round, reads the cross-model claim map, and synthesizes for you. You can stop there, or push back via typed snippets (`KEEP` / `EXPLORE` / `CHALLENGE` / `CORE` / `SHIFT`) and append another round.
+Either way, Hermes loads the skill, calls `create_deliberation`, waits for the round, reads the models' reactions to each other's claims, and synthesizes for you. You can stop there, or ask for another round steered with typed reactions (`KEEP` / `EXPLORE` / `CHALLENGE` / `CORE` / `SHIFT`).
 
 ## When mumo is worth the deliberation tax
 
@@ -81,10 +97,10 @@ Skip mumo for routine refactors, formatting, syntax help, or anything where "jus
 
 ## What's in this repo
 
-- **`SKILL.md`** — the canonical skill teaching Hermes when to invoke mumo, the deliberation loop, how to read claim maps, snippet doctrine, and verification discipline.
+- **`SKILL.md`** — the canonical skill teaching Hermes when to invoke mumo, the deliberation loop, how to read the reactions, how to write your own, and verification discipline.
 - **`config/mumo.yaml`** — the MCP server config block to merge into `~/.hermes/config.yaml` (only needed for git-clone installs; a hub install handles this automatically).
 - **`playbooks/`** — four cognitive-shape playbooks loaded on demand: `contested-decision`, `design-review`, `uncertainty-expansion`, `red-team`.
-- **`reference/`** — five reference docs: `claim-maps`, `snippets`, `model-selection`, `synthesis`, `operating-notes`.
+- **`reference/`** — six reference docs: `reading-reactions`, `writing-reactions`, `model-selection`, `synthesis`, `takeaway`, `operating-notes`.
 
 ## Related skills
 

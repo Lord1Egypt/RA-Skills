@@ -26,7 +26,7 @@ const zlib = require('zlib');
 const child_process = require('child_process');
 const { AsyncLocalStorage } = require('async_hooks');
 
-const VERSION = '0.24.3';
+const VERSION = '0.24.5';
 const CLI_VALUE_OPTS = new Set(['--type', '--limit', '--days', '--out', '--owner', '--agent', '--agent-id', '--agent-key', '--agent-key-file', '--plugin-data', '--threshold', '--scope', '--host', '--port', '--dir', '--name', '--user', '--relationship', '--source', '--weight', '--budget', '--password', '--new-password', '--recovery-key', '--recovery-key-out', '--reason', '--merge', '--model', '--subject', '--embedding', '--focus', '--embedding-timeout', '--min-age', '--min-idle', '--max-utility', '--min-group', '--period', '--to', '--id', '--time', '--tools', '--mcp-config', '--skill-dir', '--year', '--evalset', '--k', '--seed', '--bootstrap', '--gate', '--against', '--template', '--path', '--from', '--from-plan', '--batch', '--profile']);
 const CLI_FLAG_OPTS = new Set(['--project', '--all', '--unsafe', '--no-auth', '--stdio', '--onstart', '--from-current', '--restart', '--force', '--attach', '--allow-same-volume', '--verify', '--no-hint', '--encrypt', '--no-encrypt', '--password-stdin', '--json', '--manual', '--skip-schedule', '--useful', '--useless', '--undo', '--dry-run', '--apply', '--purge', '--dedup', '--batches', '--propose', '--audit', '--capacity', '--rules', '--explain', '--semantic', '--runtime', '--ablate', '--timing', '--baseline', '--probe', '--quarantine', '--restore', '--no-usage', '--yes', '--keep-memories', '--keep-identity', '--stats', '--include-flat', '--no-policy', '--policy-candidates']);
 
@@ -953,15 +953,40 @@ function runtimeEnsureForManagedTask() {
   }
   return runtimeInstallFromCurrent({ force: false });
 }
-function runtimeRestartManagedServer() {
-  const platform = lanPlatform();
+function runtimeRestartManagedServer(opts) {
+  opts = opts || {};
+  const platform = opts.platform || lanPlatform();
   if (platform === 'win32') {
-    const query = child_process.spawnSync('schtasks', ['/query', '/tn', LAN_TASK_NAME, '/fo', 'LIST'], { encoding: 'utf8' });
-    if (query.status !== 0) return { error: true, text: '未检测到受管计划任务 ' + LAN_TASK_NAME + '。' };
-    const end = child_process.spawnSync('schtasks', ['/end', '/tn', LAN_TASK_NAME], { encoding: 'utf8' });
-    const run = child_process.spawnSync('schtasks', ['/run', '/tn', LAN_TASK_NAME], { encoding: 'utf8' });
+    const sidResult = lanWindowsTaskSid(opts);
+    if (sidResult.error) return { error: true, text: sidResult.text };
+    const taskName = lanWindowsTaskName({ sid: sidResult.sid });
+    const query = lanWindowsTaskQuery(opts, taskName);
+    if (query.status !== 'found') {
+      const legacy = lanWindowsTaskQuery(opts, LAN_TASK_NAME_LEGACY);
+      if (legacy.status === 'found') {
+        const ownership = lanWindowsTaskOwnership({
+          xml: legacy.xml,
+          taskSid: sidResult.sid,
+          currentUser: lanWindowsTaskUser(opts),
+        });
+        if (ownership.status === 'current') {
+          return { error: true, text: '未检测到当前用户的 SID 任务 ' + taskName + '；旧任务需要迁移，请执行 yotta-memory lan enable。' };
+        }
+      }
+      return { error: true, text: '未检测到受管计划任务 ' + taskName + '。' };
+    }
+    const ownership = lanWindowsTaskOwnership({
+      xml: query.xml,
+      taskSid: sidResult.sid,
+      currentUser: lanWindowsTaskUser(opts),
+    });
+    if (ownership.status !== 'current') {
+      return { error: true, text: '受管计划任务 ' + taskName + ' 的归属无法证明属于当前用户，拒绝重启。' + (ownership.text ? ' ' + ownership.text : '') };
+    }
+    const end = lanWindowsRunSchtasks(opts, ['/end', '/tn', taskName]);
+    const run = lanWindowsRunSchtasks(opts, ['/run', '/tn', taskName]);
     if (run.status !== 0) return { error: true, text: '计划任务重启失败: ' + String(run.stderr || run.stdout || '').trim() };
-    return { error: false, text: '已重启计划任务 ' + LAN_TASK_NAME + (end.status === 0 ? '' : '（原任务未在运行）') };
+    return { error: false, text: '已重启计划任务 ' + taskName + (end.status === 0 ? '' : '（原任务未在运行）') };
   }
   if (platform === 'linux') {
     const unit = lanLinuxUnitPath();
@@ -3628,7 +3653,7 @@ function backupWindowsTaskXml(opts) {
     ? '<Principal id="Author"><UserId>' + xmlEscape(userId) + '</UserId><LogonType>InteractiveToken</LogonType><RunLevel>LeastPrivilege</RunLevel></Principal>'
     : '<Principal id="Author"><LogonType>InteractiveToken</LogonType><RunLevel>LeastPrivilege</RunLevel></Principal>';
   const cmdPath = opts.cmdPath || process.env.ComSpec || 'cmd.exe';
-  // v0.22.5: Electron 宿主（如 YottaCode shim）下 process.execPath 是 Electron 可执行文件，
+  // v0.22.5: Electron 宿主（如 YottaWeave shim）下 process.execPath 是 Electron 可执行文件，
   // 任务需经 cmd /c + ELECTRON_RUN_AS_NODE=1 包装，否则拉起的是桌面程序本体而非 Node。
   const action = lanElectronHost(opts)
     ? '<Actions Context="Author"><Exec><Command>' + xmlEscape(cmdPath) + '</Command><Arguments>/c "set "ELECTRON_RUN_AS_NODE=1" &amp;&amp; "' + xmlEscape(nodePath) + '" "' + xmlEscape(scriptPath) + '" backup ensure-daily"</Arguments></Exec></Actions>'
@@ -11689,12 +11714,164 @@ function cmdServeStdio(opts) {
 // Linux (v0.6.4): (1) systemd user unit (systemctl --user enable/start, login autostart; --onstart
 // additionally runs loginctl enable-linger for boot autostart); (2) auto-fallback to user crontab
 // @reboot when no systemd user session is available.
-const LAN_TASK_NAME = 'YottaMemoryServe';
+const LAN_TASK_NAME_LEGACY = 'YottaMemoryServe';
+const LAN_TASK_NAME_PREFIX = 'YottaMemoryServe-';
 const LAN_GEN_MARKER = 'Generated by yotta-memory lan enable';
 const LAN_UNIT_NAME = 'yotta-memory-serve.service';
 const LAN_CRONTAB_MARKER = '#YTM_LAN:yotta-memory-serve';
 const SERVE_PROFILE_FILE = 'serve-profile.json';
 const SERVE_PROFILE_SCHEMA = 1;
+
+function canonicalWindowsSid(value) {
+  const sid = String(value || '').trim().toUpperCase();
+  return /^S-\d+(?:-\d+){2,}$/.test(sid) ? sid : '';
+}
+
+function lanWindowsTaskName(opts) {
+  opts = opts || {};
+  const sid = canonicalWindowsSid(opts.sid || opts.taskSid);
+  if (!sid) throw new Error('Windows 用户标识 SID 缺失或格式非法，拒绝回退到固定任务名。');
+  const hash = crypto.createHash('sha256').update(sid).digest('hex').slice(0, 16);
+  return LAN_TASK_NAME_PREFIX + hash;
+}
+
+function lanWindowsTaskSid(opts) {
+  opts = opts || {};
+  const explicit = opts.taskSid !== undefined ? opts.taskSid : opts.sid;
+  if (explicit !== undefined && String(explicit).trim() !== '') {
+    const sid = canonicalWindowsSid(explicit);
+    if (!sid) return { error: true, text: 'Windows 用户标识 SID 格式非法: ' + String(explicit) };
+    return { error: false, sid: sid };
+  }
+  const envSid = process.env.YOTTA_LAN_TASK_SID;
+  if (envSid !== undefined && String(envSid).trim() !== '') {
+    const sid = canonicalWindowsSid(envSid);
+    if (!sid) return { error: true, text: 'YOTTA_LAN_TASK_SID 格式非法: ' + String(envSid) };
+    return { error: false, sid: sid };
+  }
+  try {
+    const r = typeof opts.whoamiFn === 'function'
+      ? opts.whoamiFn()
+      : lanSpawn('whoami', ['/user', '/fo', 'csv', '/nh'], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+    const status = r && typeof r.status === 'number' ? r.status : (r && r.error ? 1 : 0);
+    const text = String((r && (r.stdout || r.stderr)) || '');
+    if (status !== 0) return { error: true, text: '无法取得 Windows 用户 SID: ' + text.trim() };
+    const match = text.match(/\b(S-\d+(?:-\d+){2,})\b/i);
+    const sid = canonicalWindowsSid(match && match[1]);
+    if (!sid) return { error: true, text: 'whoami 输出中没有可用的 Windows 用户 SID: ' + text.trim() };
+    return { error: false, sid: sid };
+  } catch (e) {
+    return { error: true, text: '无法取得 Windows 用户 SID: ' + String((e && e.message) || e) };
+  }
+}
+
+function xmlUnescapeText(value) {
+  return String(value || '')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/&amp;/g, '&');
+}
+
+function lanWindowsTaskOwnership(opts) {
+  opts = opts || {};
+  const xml = String(opts.xml || '');
+  const principals = /<Principals(?:\s[^>]*)?>([\s\S]*?)<\/Principals>/i.exec(xml);
+  if (!principals) return { status: 'unknown', userId: '', text: '任务 XML 未提供 Principals。' };
+  const principalBlock = /<Principal(?:\s[^>]*)?>([\s\S]*?)<\/Principal>/i.exec(principals[1]);
+  if (!principalBlock) return { status: 'unknown', userId: '', text: '任务 XML 未提供 Principal。' };
+  const match = /<UserId(?:\s[^>]*)?>([\s\S]*?)<\/UserId>/i.exec(principalBlock[1]);
+  if (!match) return { status: 'unknown', userId: '', text: '任务 Principal 未提供 UserId。' };
+  const principal = xmlUnescapeText(match[1]).trim();
+  if (!principal) return { status: 'unknown', userId: '', text: '任务 XML 的 UserId 为空。' };
+  const currentSid = canonicalWindowsSid(opts.taskSid || opts.sid || '');
+  const principalSid = canonicalWindowsSid(principal);
+  if (principalSid) {
+    if (!currentSid) return { status: 'unknown', userId: principal, text: '当前 SID 未解析，无法证明任务归属。' };
+    return {
+      status: principalSid === currentSid ? 'current' : 'foreign',
+      userId: principal,
+      text: principalSid === currentSid ? '任务归属于当前 SID。' : '任务归属于其他 SID。',
+    };
+  }
+  const currentUser = String(opts.currentUser || opts.userId || lanWindowsTaskUser(opts) || '').trim();
+  if (!currentUser) return { status: 'unknown', userId: principal, text: '当前用户名未解析，无法证明任务归属。' };
+  const same = principal.toLowerCase() === currentUser.toLowerCase();
+  return {
+    status: same ? 'current' : 'foreign',
+    userId: principal,
+    text: same ? '任务归属于当前用户名。' : '任务归属于其他用户名。',
+  };
+}
+
+function isSchtasksTaskMissing(value) {
+  const msg = typeof value === 'string' ? value : String((value && (value.stderr || value.stdout || value.message)) || value || '');
+  return /cannot find the (path|file|task)|系统找不到指定的文件|没有找到|找不到|不存在|does not exist/i.test(msg);
+}
+
+function decodeWindowsConsoleOutput(value) {
+  if (!Buffer.isBuffer(value)) return String(value || '');
+  if (value.length === 0) return '';
+  const utf8 = value.toString('utf8');
+  if (!utf8.includes('\uFFFD')) return utf8;
+  try {
+    // Windows console programs commonly emit the active OEM/ANSI code page.
+    // Keep the raw buffer until after capture so localized errors stay classifiable.
+    const gbk = new TextDecoder('gbk').decode(value);
+    return gbk || utf8;
+  } catch (_) {
+    return utf8;
+  }
+}
+
+function lanWindowsTaskQuery(opts, taskName) {
+  const r = lanWindowsRunSchtasks(opts, ['/query', '/tn', taskName, '/xml']);
+  const text = String(r.stderr || r.stdout || '');
+  if (r.status === 0) return { status: 'found', xml: String(r.stdout || ''), text: text };
+  if (isSchtasksTaskMissing(text)) return { status: 'missing', xml: '', text: text };
+  return { status: 'unknown', xml: '', text: text || ('schtasks 退出码 ' + r.status) };
+}
+
+function lanWindowsTargetTaskCheck(opts, taskName, taskSid) {
+  const query = lanWindowsTaskQuery(opts, taskName);
+  if (query.status === 'missing') return { error: false, mode: 'task', exists: false };
+  if (query.status === 'found') {
+    const ownership = lanWindowsTaskOwnership({
+      xml: query.xml,
+      taskSid: taskSid,
+      currentUser: lanWindowsTaskUser(opts),
+    });
+    if (ownership.status === 'current') return { error: false, mode: 'task', exists: true, ownership: ownership };
+    return {
+      error: true,
+      text: '目标计划任务 ' + taskName + ' 已存在，但归属无法证明属于当前用户；拒绝覆盖。' + (ownership.text ? ' ' + ownership.text : ''),
+    };
+  }
+  if (isSchtasksAccessDenied(query.text)) {
+    return { error: false, mode: 'startup', accessDenied: true, reason: query.text };
+  }
+  return {
+    error: true,
+    text: '无法确认目标计划任务 ' + taskName + ' 的归属；拒绝覆盖。' + (query.text ? ' ' + query.text : ''),
+  };
+}
+
+function lanWindowsMigrateLegacyTask(opts, taskSid) {
+  const query = lanWindowsTaskQuery(opts, LAN_TASK_NAME_LEGACY);
+  if (query.status === 'missing') return { status: 'none', text: '未发现旧固定任务。' };
+  if (query.status === 'unknown') return { status: 'retained-unknown', text: '旧固定任务归属无法确认，已保留。' };
+  const ownership = lanWindowsTaskOwnership({
+    xml: query.xml,
+    taskSid: taskSid,
+    currentUser: lanWindowsTaskUser(opts),
+  });
+  if (ownership.status === 'foreign') return { status: 'retained-foreign', text: '旧固定任务属于其他用户，已保留。' };
+  if (ownership.status !== 'current') return { status: 'retained-unknown', text: '旧固定任务归属无法确认，已保留。' };
+  const del = lanWindowsRunSchtasks(opts, ['/delete', '/tn', LAN_TASK_NAME_LEGACY, '/f']);
+  if (del.status === 0) return { status: 'migrated', text: '已迁移旧固定任务。' };
+  return { status: 'retained-unknown', text: '旧固定任务已确认归属，但删除失败，已保留: ' + String(del.stderr || del.stdout || '').trim() };
+}
 
 function resolveProfilePath(value) {
   const text = String(value || '');
@@ -11740,6 +11917,11 @@ function lanWriteServeProfile(opts) {
     if (!fs.existsSync(memoryHome) || !fs.statSync(memoryHome).isDirectory()) {
       return { error: true, text: '记忆库不存在或不是目录: ' + memoryHome + '。请先初始化或修正 memory_home。' };
     }
+    const rawUserSid = String(opts.userSid || opts.taskSid || '').trim();
+    const userSid = canonicalWindowsSid(rawUserSid);
+    if (rawUserSid && !userSid) {
+      return { error: true, text: 'profile userSid 格式非法: ' + rawUserSid };
+    }
     const profile = {
       schemaVersion: SERVE_PROFILE_SCHEMA,
       generatedAt: new Date().toISOString(),
@@ -11750,6 +11932,7 @@ function lanWriteServeProfile(opts) {
       host: String(opts.host || '0.0.0.0'),
       port: parseInt(opts.port, 10) || 8787,
     };
+    if (userSid) profile.userSid = userSid;
     fs.mkdirSync(path.dirname(profilePath), { recursive: true });
     atomicWriteFileSync(profilePath, JSON.stringify(profile, null, 2) + '\n', 'utf8');
     return { error: false, profilePath: profilePath, profile: profile };
@@ -11842,8 +12025,8 @@ function lanSpawn(bin, args, spawnOpts) {
 }
 // platform override for testing/advanced use (YOTTA_LAN_PLATFORM=linux/win32/...)
 function lanPlatform() { return process.env.YOTTA_LAN_PLATFORM || process.platform; }
-// ---- v0.22.5: Electron 宿主（YottaCode shim）适配 ----
-// 背景：宿主运行时为 Electron 时（如 YottaCode.exe 以 ELECTRON_RUN_AS_NODE=1 当 Node 运行本脚本），
+// ---- v0.22.5: Electron 宿主（YottaWeave shim）适配 ----
+// 背景：宿主运行时为 Electron 时（如 YottaWeave.exe 以 ELECTRON_RUN_AS_NODE=1 当 Node 运行本脚本），
 // process.execPath 指向 Electron 可执行文件；自启 / 定时任务环境不带 ELECTRON_RUN_AS_NODE=1 时，
 // 拉起的是桌面程序本体而非 Node 服务（0.22.4 后新机首例实测）。生成任务 / 兜底 / 定时配置时统一注入。
 function lanElectronHost(opts) {
@@ -11857,7 +12040,7 @@ function lanElectronHost(opts) {
 function lanTaskCommandNeedsElectronEnv(text) {
   const t = String(text || '');
   if (!t || /ELECTRON_RUN_AS_NODE/.test(t)) return false;
-  if (/electron|yottacode/i.test(t)) return true;
+  if (/electron|yottaweave/i.test(t)) return true;
   if (lanElectronHost({})) {
     const exe = String(process.execPath || '');
     if (exe && t.toLowerCase().indexOf(exe.toLowerCase()) !== -1) return true;
@@ -11994,11 +12177,11 @@ function lanWindowsRunSchtasks(opts, args) {
       };
     }
   }
-  const r = lanSpawn(lanSchTasksBin(), args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+  const r = lanSpawn(lanSchTasksBin(), args, { encoding: 'buffer', stdio: ['ignore', 'pipe', 'pipe'] });
   return {
     status: r.error ? 1 : r.status,
-    stdout: String(r.stdout || ''),
-    stderr: String(r.stderr || (r.error && r.error.message) || ''),
+    stdout: decodeWindowsConsoleOutput(r.stdout),
+    stderr: decodeWindowsConsoleOutput(r.stderr || (r.error && r.error.message) || ''),
   };
 }
 function lanWindowsTaskUser(opts) {
@@ -12029,7 +12212,7 @@ function lanWindowsTaskXml(opts) {
   // 让 node/脚本/日志路径里的空格与中文都能安全传递；S4U 非交互会话下不弹窗口。
   // 注意：重定向 `2>&1` 的 & 在 XML 文本里必须写成 &amp;（DOM 解码后仍是 2>&1），
   // 否则 schtasks 报 "The task XML is malformed"。
-  // v0.22.5: Electron 宿主（YottaCode shim）下先 set ELECTRON_RUN_AS_NODE=1，
+  // v0.22.5: Electron 宿主（YottaWeave shim）下先 set ELECTRON_RUN_AS_NODE=1，
   // 否则任务会拉起桌面程序本体（GUI）而不是 Node 服务。
   const envPrefix = lanElectronHost(opts) ? 'set "ELECTRON_RUN_AS_NODE=1" &amp;&amp; ' : '';
   const inner = envPrefix + '"' + xmlEscape(nodePath) + '" "' + xmlEscape(scriptPath) + '" serve --profile "' + xmlEscape(profilePath) + '" --host ' + host + ' --port ' + port
@@ -12067,7 +12250,21 @@ function lanWindowsTaskXml(opts) {
 }
 function lanWindowsEnableCore(opts) {
   opts = opts || {};
-  const profileResult = lanWriteServeProfile(opts);
+  const sidResult = lanWindowsTaskSid(opts);
+  if (sidResult.error) return { error: true, phase: 'sid', text: sidResult.text };
+  const taskSid = sidResult.sid;
+  let taskName = '';
+  try {
+    taskName = lanWindowsTaskName({ sid: taskSid });
+  } catch (e) {
+    return { error: true, phase: 'sid', text: String((e && e.message) || e) };
+  }
+  const targetCheck = lanWindowsTargetTaskCheck(opts, taskName, taskSid);
+  if (targetCheck.error) return { error: true, phase: 'target', taskName: taskName, userSid: taskSid, text: targetCheck.text };
+  const profileResult = lanWriteServeProfile(Object.assign({}, opts, {
+    userId: lanWindowsTaskUser(opts),
+    userSid: taskSid,
+  }));
   if (profileResult.error) return { error: true, phase: 'profile', text: profileResult.text };
   const trigger = opts.onstart ? 'onstart' : 'onlogon';
   const host = opts.host || '0.0.0.0';
@@ -12076,15 +12273,45 @@ function lanWindowsEnableCore(opts) {
   const scriptPath = opts.scriptPath || runtimeManagedScript();
   const logPath = lanLogPath(opts);
   const userId = lanWindowsTaskUser(opts);
+  if (targetCheck.mode === 'startup') {
+    try {
+      lanInstallStartup(Object.assign({}, opts, { profilePath: profileResult.profilePath }));
+    } catch (e) {
+      return {
+        error: true,
+        mode: 'startup',
+        phase: 'startup',
+        taskName: taskName,
+        userSid: taskSid,
+        reason: targetCheck.reason,
+        accessDenied: !!targetCheck.accessDenied,
+        text: String((e && e.message) || e),
+      };
+    }
+    return {
+      error: false,
+      mode: 'startup',
+      taskName: taskName,
+      userSid: taskSid,
+      trigger: trigger,
+      reason: targetCheck.reason,
+      accessDenied: !!targetCheck.accessDenied,
+      legacyMigration: 'none',
+      vbsPath: lanVbsPath(opts),
+      cmdPath: lanAutostartCmdPath(opts),
+      logPath: logPath,
+      profilePath: profileResult.profilePath,
+    };
+  }
   const xml = lanWindowsTaskXml({ trigger: trigger, host: host, port: port, nodePath: nodePath, scriptPath: scriptPath, logPath: logPath, profilePath: profileResult.profilePath, userId: userId, electronHost: opts.electronHost });
   const xmlDir = opts.xmlDir || process.env.YOTTA_LAN_TASK_XML_DIR || os.tmpdir();
-  const xmlPath = opts.xmlPath || path.join(xmlDir, LAN_TASK_NAME + '-task-' + process.pid + '-' + Date.now() + '.xml');
+  const xmlPath = opts.xmlPath || path.join(xmlDir, taskName + '-task-' + process.pid + '-' + Date.now() + '.xml');
   let failure = null;
   try {
     fs.mkdirSync(path.dirname(xmlPath), { recursive: true });
     // UTF-16LE + BOM：与 schtasks /query /xml 导出格式一致，schtasks /create /xml 必然可读
     fs.writeFileSync(xmlPath, '\ufeff' + xml, 'utf16le');
-    const r = lanWindowsRunSchtasks(opts, ['/create', '/tn', LAN_TASK_NAME, '/xml', xmlPath, '/f']);
+    const r = lanWindowsRunSchtasks(opts, ['/create', '/tn', taskName, '/xml', xmlPath, '/f']);
     if (r.status !== 0) failure = String(r.stderr || r.stdout || '').trim() || ('schtasks 退出码 ' + r.status);
   } catch (e) {
     failure = String((e && e.message) || e);
@@ -12092,21 +12319,36 @@ function lanWindowsEnableCore(opts) {
     try { fs.unlinkSync(xmlPath); } catch (e) { /* 临时 XML 清理尽力而为 */ }
   }
   if (!failure) {
+    const migration = lanWindowsMigrateLegacyTask(opts, taskSid);
     let removedStartup = [];
     try { removedStartup = lanRemoveStartupFiles(opts); } catch (e) { removedStartup = []; }
-    return { error: false, mode: 'task', taskName: LAN_TASK_NAME, trigger: trigger, logPath: logPath, profilePath: profileResult.profilePath, removedStartup: removedStartup };
+    return {
+      error: false,
+      mode: 'task',
+      taskName: taskName,
+      userSid: taskSid,
+      trigger: trigger,
+      logPath: logPath,
+      profilePath: profileResult.profilePath,
+      removedStartup: removedStartup,
+      legacyMigration: migration.status,
+      legacyMigrationText: migration.text,
+    };
   }
   try {
-    lanInstallStartup(opts);
+    lanInstallStartup(Object.assign({}, opts, { profilePath: profileResult.profilePath }));
   } catch (e2) {
-    return { error: true, mode: 'startup', reason: failure, text: String((e2 && e2.message) || e2) };
+    return { error: true, mode: 'startup', taskName: taskName, userSid: taskSid, reason: failure, text: String((e2 && e2.message) || e2) };
   }
   return {
     error: false,
     mode: 'startup',
+    taskName: taskName,
+    userSid: taskSid,
     trigger: trigger,
     reason: failure,
     accessDenied: isSchtasksAccessDenied(failure),
+    legacyMigration: 'none',
     vbsPath: lanVbsPath(opts),
     cmdPath: lanAutostartCmdPath(opts),
     logPath: logPath,
@@ -12343,17 +12585,28 @@ function cmdLanWinEnable(opts) {
   if (result.mode === 'task') {
     opts = Object.assign({}, opts, { profilePath: result.profilePath });
     const triggerText = result.trigger === 'onstart' ? '开机触发（无需登录）' : '登录触发';
-    console.log('已注册开机自启: 计划任务 ' + LAN_TASK_NAME + '（' + triggerText + '，后台静默运行，不弹窗口）');
+    console.log('已注册开机自启: 计划任务 ' + result.taskName + '（' + triggerText + '，后台静默运行，不弹窗口）');
     console.log('运行命令: ' + lanTaskRunCmd(opts));
     console.log('服务 profile: ' + result.profilePath);
     console.log('日志: ' + result.logPath);
     if (result.removedStartup && result.removedStartup.length) {
       console.log('已清理旧 Startup 兜底文件 ' + result.removedStartup.length + ' 个（避免双份自启）');
     }
+    if (result.legacyMigration === 'migrated') console.log('已迁移旧固定任务 ' + LAN_TASK_NAME_LEGACY);
+    else if (result.legacyMigration === 'retained-foreign') console.log('保留旧固定任务 ' + LAN_TASK_NAME_LEGACY + '（属于其他用户）');
+    else if (result.legacyMigration === 'retained-unknown') console.log('保留旧固定任务 ' + LAN_TASK_NAME_LEGACY + '（归属无法确认或迁移未完成）');
     console.log('备注: 服务不会立刻启动，需重启/重新登录后自动启动；如需现在运行请执行 yotta-memory serve');
     return;
   }
   if (result.error) {
+    if (result.phase === 'sid') {
+      console.error('无法确定当前 Windows 用户 SID，拒绝注册开机自启: ' + String(result.text || '').split(/\r?\n/)[0]);
+      process.exit(1);
+    }
+    if (result.phase === 'target') {
+      console.error('目标计划任务归属校验失败，拒绝注册开机自启: ' + String(result.text || '').split(/\r?\n/)[0]);
+      process.exit(1);
+    }
     if (result.phase === 'profile') {
       console.error('服务 profile 写入失败，拒绝注册开机自启: ' + String(result.text || '').split(/\r?\n/)[0]);
       process.exit(1);
@@ -12380,25 +12633,79 @@ function cmdLanWinDisable() {
     console.error('lan 命令当前仅支持 Windows（计划任务 / Startup 自启）；本机平台: ' + lanPlatform());
     process.exit(2);
   }
+  const sidResult = lanWindowsTaskSid({});
+  if (sidResult.error) {
+    console.error('无法确定当前 Windows 用户 SID，拒绝删除计划任务: ' + sidResult.text);
+    process.exit(1);
+  }
+  const taskName = lanWindowsTaskName({ sid: sidResult.sid });
   let sawError = false;
   let removedAny = false;
-  const del = lanWindowsRunSchtasks({}, ['/delete', '/tn', LAN_TASK_NAME, '/f']);
-  if (del.status === 0) {
-    console.log('已移除开机自启计划任务 ' + LAN_TASK_NAME);
-    removedAny = true;
-  } else {
-    const msg = String(del.stderr || del.stdout || '');
-    if (!/cannot find the (path|file)|没有找到|找不到|不存在/i.test(msg)) {
-      console.error('移除计划任务失败: ' + msg.split(/\r?\n/)[0]);
-      if (isSchtasksAccessDenied(msg)) console.error('（当前非管理员，无法移除管理员注册的计划任务；请用管理员终端执行 yotta-memory lan disable）');
+  let retainedAny = false;
+  const target = lanWindowsTaskQuery({}, taskName);
+  if (target.status === 'found') {
+    const targetOwnership = lanWindowsTaskOwnership({
+      xml: target.xml,
+      taskSid: sidResult.sid,
+      currentUser: lanWindowsTaskUser({}),
+    });
+    if (targetOwnership.status === 'current') {
+      const del = lanWindowsRunSchtasks({}, ['/delete', '/tn', taskName, '/f']);
+      if (del.status === 0) {
+        console.log('已移除开机自启计划任务 ' + taskName);
+        removedAny = true;
+      } else {
+        const msg = String(del.stderr || del.stdout || '');
+        if (!isSchtasksTaskMissing(msg)) {
+          console.error('移除计划任务失败: ' + msg.split(/\r?\n/)[0]);
+          if (isSchtasksAccessDenied(msg)) console.error('（当前非管理员，无法移除管理员注册的计划任务；请用管理员终端执行 yotta-memory lan disable）');
+          sawError = true;
+        }
+      }
+    } else {
+      console.error('拒绝删除计划任务 ' + taskName + '：归属无法证明属于当前用户' + (targetOwnership.status === 'foreign' ? '（属于其他用户）' : '') + '。');
       sawError = true;
     }
+  } else if (target.status === 'unknown') {
+    console.error('移除计划任务失败: ' + String(target.text || '').split(/\r?\n/)[0]);
+    if (isSchtasksAccessDenied(target.text)) console.error('（当前非管理员，无法移除管理员注册的计划任务；请用管理员终端执行 yotta-memory lan disable）');
+    sawError = true;
+  }
+  const legacy = lanWindowsTaskQuery({}, LAN_TASK_NAME_LEGACY);
+  if (legacy.status === 'found') {
+    const ownership = lanWindowsTaskOwnership({
+      xml: legacy.xml,
+      taskSid: sidResult.sid,
+      currentUser: lanWindowsTaskUser({}),
+    });
+    if (ownership.status === 'current') {
+      const legacyDel = lanWindowsRunSchtasks({}, ['/delete', '/tn', LAN_TASK_NAME_LEGACY, '/f']);
+      if (legacyDel.status === 0) {
+        console.log('已移除旧固定计划任务 ' + LAN_TASK_NAME_LEGACY);
+        removedAny = true;
+      } else {
+        const msg = String(legacyDel.stderr || legacyDel.stdout || '');
+        if (!isSchtasksTaskMissing(msg)) {
+          console.error('移除旧固定计划任务失败: ' + msg.split(/\r?\n/)[0]);
+          sawError = true;
+        }
+      }
+    } else if (ownership.status === 'foreign') {
+      console.log('保留旧固定计划任务 ' + LAN_TASK_NAME_LEGACY + '（属于其他用户）');
+      retainedAny = true;
+    } else {
+      console.log('保留旧固定计划任务 ' + LAN_TASK_NAME_LEGACY + '（归属无法确认）');
+      retainedAny = true;
+    }
+  } else if (legacy.status === 'unknown') {
+    console.log('旧固定计划任务归属无法确认，已保留');
+    retainedAny = true;
   }
   for (const f of lanRemoveStartupFiles()) {
     console.log('已移除 Startup 自启文件: ' + f);
     removedAny = true;
   }
-  if (!removedAny && !sawError) console.log('未启用: 未发现任何自启配置（计划任务与 Startup 文件均不存在）');
+  if (!removedAny && !retainedAny && !sawError) console.log('未启用: 未发现任何自启配置（计划任务与 Startup 文件均不存在）');
   if (sawError) process.exit(1);
 }
 function cmdLanWinStatus() {
@@ -12406,51 +12713,100 @@ function cmdLanWinStatus() {
     console.log('lan 命令当前仅支持 Windows（计划任务 / Startup 自启）；本机平台: ' + lanPlatform());
     return;
   }
+  const sidResult = lanWindowsTaskSid({});
+  const taskSid = sidResult.error ? '' : sidResult.sid;
+  const taskName = taskSid ? lanWindowsTaskName({ sid: taskSid }) : '';
   let taskFound = false;
+  let taskKnown = false;
+  let legacyPresent = false;
   const profilePath = lanServeProfilePath();
-  const q = lanWindowsRunSchtasks({}, ['/query', '/tn', LAN_TASK_NAME, '/fo', 'LIST', '/v']);
-  if (q.status === 0) {
-    taskFound = true;
-    const xmlQ = lanWindowsRunSchtasks({}, ['/query', '/tn', LAN_TASK_NAME, '/xml']);
-    const xmlSaysS4U = xmlQ.status === 0 && /<LogonType>\s*S4U\s*<\/LogonType>/i.test(String(xmlQ.stdout || ''));
-    console.log('计划任务 ' + LAN_TASK_NAME + ': 已启用');
-    const re = /^(状态|Status|登录模式|Logon Mode|上次运行时间|Last Run Time|上次结果|Last Result|要运行的任务|Task To Run)\s*[:=]\s*(.+)$/;
-    let logonMode = '';
-    let taskRun = '';
-    for (const line of String(q.stdout).split(/\r?\n/)) {
-      const m = re.exec(line.trim());
-      if (!m) continue;
-      console.log('  ' + m[1] + ': ' + m[2]);
-      if (/^(登录模式|Logon Mode)$/.test(m[1])) logonMode = m[2];
-      if (/^(要运行的任务|Task To Run)$/.test(m[1])) taskRun = m[2];
-    }
-    if (/interactive|交互式/i.test(logonMode) && !xmlSaysS4U) {
-      console.log('  提示: 登录模式为交互式（仅登录时运行，且在登录会话会弹窗口）——这是旧版任务；请重新执行 yotta-memory lan enable 修复为后台静默');
-    }
-    if (lanTaskCommandNeedsElectronEnv(taskRun)) {
-      console.log('  警告: 任务命令指向 Electron 可执行文件（如 YottaCode.exe）但缺少 ELECTRON_RUN_AS_NODE —— 开机将拉起桌面程序而非服务；请重新执行 yotta-memory lan enable 修复');
-    }
-    if (taskRun && !/--profile(?:\s|$)/.test(taskRun)) {
-      console.log('  警告: 任务命令未固定服务 profile，S4U / 无用户环境启动可能落到错误记忆库；请重新执行 yotta-memory lan enable 修复');
-    }
-    if (fs.existsSync(profilePath)) {
-      console.log('  服务 profile: ' + profilePath);
-      const loaded = loadServeProfile(profilePath);
-      if (loaded.error) {
-        console.log('  警告: ' + loaded.text);
-      } else {
-        console.log('  记忆库: ' + loaded.profile.memoryHome);
-        console.log('  运行时: ' + loaded.profile.runtimeHome);
-        const drift = serveProfileDrift(loaded.profile);
-        if (drift.length) {
-          console.log('  警告: 服务 profile 与当前配置漂移(' + drift.join(', ') + ')，请重新执行 yotta-memory lan enable');
-        }
+  if (sidResult.error) {
+    console.log('计划任务: 无法确定当前 Windows 用户 SID，未执行任务查询。' + sidResult.text);
+  } else {
+    const q = lanWindowsRunSchtasks({}, ['/query', '/tn', taskName, '/fo', 'LIST', '/v']);
+    const qText = String(q.stderr || q.stdout || '');
+    if (q.status === 0) {
+      taskKnown = true;
+      taskFound = true;
+      const xmlQ = lanWindowsTaskQuery({}, taskName);
+      const xmlSaysS4U = xmlQ.status === 'found' && /<LogonType>\s*S4U\s*<\/LogonType>/i.test(String(xmlQ.xml || ''));
+      const targetOwnership = lanWindowsTaskOwnership({
+        xml: xmlQ.status === 'found' ? xmlQ.xml : '',
+        taskSid: taskSid,
+        currentUser: lanWindowsTaskUser({}),
+      });
+      console.log('计划任务 ' + taskName + ': 已启用');
+      if (targetOwnership.status !== 'current') {
+        console.log('  警告: 计划任务归属无法证明属于当前用户' + (targetOwnership.status === 'foreign' ? '（属于其他用户）' : '') + '，请勿覆盖或停止该任务');
       }
+      const re = /^(状态|Status|登录模式|Logon Mode|上次运行时间|Last Run Time|上次结果|Last Result|要运行的任务|Task To Run)\s*[:=]\s*(.+)$/;
+      let logonMode = '';
+      let taskRun = '';
+      for (const line of String(q.stdout).split(/\r?\n/)) {
+        const m = re.exec(line.trim());
+        if (!m) continue;
+        console.log('  ' + m[1] + ': ' + m[2]);
+        if (/^(登录模式|Logon Mode)$/.test(m[1])) logonMode = m[2];
+        if (/^(要运行的任务|Task To Run)$/.test(m[1])) taskRun = m[2];
+      }
+      if (/interactive|交互式/i.test(logonMode) && !xmlSaysS4U) {
+        console.log('  提示: 登录模式为交互式（仅登录时运行，且在登录会话会弹窗口）——这是旧版任务；请重新执行 yotta-memory lan enable 修复为后台静默');
+      }
+      if (lanTaskCommandNeedsElectronEnv(taskRun)) {
+        console.log('  警告: 任务命令指向 Electron 可执行文件（如 YottaWeave.exe）但缺少 ELECTRON_RUN_AS_NODE —— 开机将拉起桌面程序而非服务；请重新执行 yotta-memory lan enable 修复');
+      }
+      if (taskRun && !/--profile(?:\s|$)/.test(taskRun)) {
+        console.log('  警告: 任务命令未固定服务 profile，S4U / 无用户环境启动可能落到错误记忆库；请重新执行 yotta-memory lan enable 修复');
+      }
+    } else if (isSchtasksTaskMissing(qText)) {
+      taskKnown = true;
+      console.log('计划任务 ' + taskName + ': 未启用');
     } else {
-      console.log('  警告: 服务 profile 不存在: ' + profilePath + '；请重新执行 yotta-memory lan enable');
+      console.log('计划任务 ' + taskName + ': 状态未知（' + qText.split(/\r?\n/)[0] + '）');
+    }
+  }
+  if (fs.existsSync(profilePath)) {
+    console.log('服务 profile: ' + profilePath);
+    const loaded = loadServeProfile(profilePath);
+    if (loaded.error) {
+      console.log('  警告: ' + loaded.text);
+    } else {
+      console.log('  记忆库: ' + loaded.profile.memoryHome);
+      console.log('  运行时: ' + loaded.profile.runtimeHome);
+      const profileSid = canonicalWindowsSid(loaded.profile.userSid);
+      if (!profileSid) {
+        console.log('  警告: 服务 profile 缺少 userSid，请重新执行 yotta-memory lan enable');
+      } else if (taskSid && profileSid !== taskSid) {
+        console.log('  警告: 服务 profile userSid 与当前用户不一致，请重新执行 yotta-memory lan enable');
+      } else if (taskName && lanWindowsTaskName({ sid: profileSid }) !== taskName) {
+        console.log('  警告: 服务 profile userSid 派生任务名与当前任务名不一致，请重新执行 yotta-memory lan enable');
+      }
+      const drift = serveProfileDrift(loaded.profile);
+      if (drift.length) {
+        console.log('  警告: 服务 profile 与当前配置漂移(' + drift.join(', ') + ')，请重新执行 yotta-memory lan enable');
+      }
     }
   } else {
-    console.log('计划任务 ' + LAN_TASK_NAME + ': 未启用');
+    console.log('  警告: 服务 profile 不存在: ' + profilePath + '；请重新执行 yotta-memory lan enable');
+  }
+  const legacy = lanWindowsTaskQuery({}, LAN_TASK_NAME_LEGACY);
+  if (legacy.status === 'found') {
+    legacyPresent = true;
+    const ownership = lanWindowsTaskOwnership({
+      xml: legacy.xml,
+      taskSid: taskSid,
+      currentUser: lanWindowsTaskUser({}),
+    });
+    if (ownership.status === 'current') {
+      console.log('旧固定计划任务 ' + LAN_TASK_NAME_LEGACY + ': 属于当前用户，请重新执行 yotta-memory lan enable 迁移');
+    } else if (ownership.status === 'foreign') {
+      console.log('旧固定计划任务 ' + LAN_TASK_NAME_LEGACY + ': 属于其他用户，保留不动');
+    } else {
+      console.log('旧固定计划任务 ' + LAN_TASK_NAME_LEGACY + ': 归属无法确认，保留不动');
+    }
+  } else if (legacy.status === 'unknown') {
+    legacyPresent = true;
+    console.log('旧固定计划任务 ' + LAN_TASK_NAME_LEGACY + ': 状态无法确认，保留不动');
   }
   const vbsOk = lanFileHasMarker(lanVbsPath());
   const cmdOk = lanFileHasMarker(lanAutostartCmdPath());
@@ -12469,7 +12825,7 @@ function cmdLanWinStatus() {
   } else {
     console.log('Startup 静默自启（免管理员）: 未启用');
   }
-  if (!taskFound && !vbsOk && !cmdOk) console.log('未启用任何开机自启（可用 yotta-memory lan enable 注册）');
+  if (taskKnown && !taskFound && !vbsOk && !cmdOk && !legacyPresent) console.log('未启用任何开机自启（可用 yotta-memory lan enable 注册）');
 }
 
 function cmdLanEnable(opts) {
@@ -13716,6 +14072,11 @@ module.exports = {
   runtimeDoctorCore: runtimeDoctorCore,
   runtimeEnsureForManagedTask: runtimeEnsureForManagedTask,
   runtimeRestartManagedServer: runtimeRestartManagedServer,
+  canonicalWindowsSid: canonicalWindowsSid,
+  lanWindowsTaskSid: lanWindowsTaskSid,
+  lanWindowsTaskName: lanWindowsTaskName,
+  lanWindowsTaskOwnership: lanWindowsTaskOwnership,
+  lanWindowsTaskQuery: lanWindowsTaskQuery,
   lanServeProfilePath: lanServeProfilePath,
   resolveProfilePath: resolveProfilePath,
   lanWriteServeProfile: lanWriteServeProfile,
@@ -13733,7 +14094,9 @@ module.exports = {
   lanInstallStartup: lanInstallStartup,
   lanRemoveStartupFiles: lanRemoveStartupFiles,
   lanFileHasMarker: lanFileHasMarker,
+  isSchtasksTaskMissing: isSchtasksTaskMissing,
   isSchtasksAccessDenied: isSchtasksAccessDenied,
+  decodeWindowsConsoleOutput: decodeWindowsConsoleOutput,
   lanServeArgs: lanServeArgs,
   lanSpawn: lanSpawn,
   lanPlatform: lanPlatform,

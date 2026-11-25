@@ -314,19 +314,54 @@ def synthesize_pro(
     strict_cfg = privacy_cfg.get("strict", {}) or {}
     proxy = strict_cfg.get("proxy", None)
 
+    # V2.1：无 Key 抽取式升级为 RAG-lite 三段答案（结论/依据/反证）
+    def _rag_lite_fallback(fetch_fulltext: bool = False) -> str:
+        """
+        RAG-lite 三段答案（本地 TF-IDF）。
+
+        默认只用搜索结果 snippet 构造来源——零联网、零 Key、秒级返回，
+        这是"无 Key 抽取式为主"的主路径。
+        fetch_fulltext=True 时才抓正文（供正文抓取已完成的调用方复用）。
+        """
+        try:
+            from rag_lite import synthesize_rag_lite
+        except ImportError:
+            from .rag_lite import synthesize_rag_lite
+        rag_sources: List[Tuple[int, str, str, str]] = []
+        if fetch_fulltext:
+            rag_sources = _fetch_contents(
+                results, max_sources=max_sources, timeout=fetch_timeout, proxy=proxy
+            )
+        if not rag_sources:
+            # 主路径：用搜索结果已有的 snippet/title 构造来源（纯本地，不联网）
+            rag_sources = [
+                (i, getattr(r, "url", ""), getattr(r, "snippet", "") or getattr(r, "title", ""))
+                for i, r in enumerate(results[:max_sources], 1)
+                if (getattr(r, "snippet", "") or getattr(r, "title", ""))
+            ]
+        if not rag_sources:
+            return "没有找到足够的相关内容来生成答案。"
+        # synthesize_rag_lite 接受 (id, url, content) 三元组
+        rag_sources_3 = [(sid, url, content) for sid, url, content, *_ in rag_sources]
+        rag_result = synthesize_rag_lite(query, rag_sources_3, config)
+        # RAG-lite 的依据块直接来自原文，天然可回链，不存在 LLM 幻觉，
+        # 因此无需再跑 fact_check（否则会把【结论】等结构标记和来源列表
+        # 误判为"无源论断"，破坏三段答案结构）。核查合链只用于 LLM 路径。
+        return rag_result["answer"]
+
     # 强制抽取式
     if provider == "extractive":
-        return _extractive_synthesis(query, results, max_sources)
+        return _rag_lite_fallback()
 
-    # 无 API Key 时直接降级
+    # 无 API Key 时走 RAG-lite 三段答案（V2.1 主路径）
     if not api_key:
-        return _extractive_synthesis(query, results, max_sources)
+        return _rag_lite_fallback()
 
     # 抓取正文
     sources = _fetch_contents(results, max_sources=max_sources, timeout=fetch_timeout, proxy=proxy)
     if not sources:
-        # 所有页面都抓不到正文，降级为抽取式
-        return _extractive_synthesis(query, results, max_sources)
+        # 所有页面都抓不到正文，降级为 RAG-lite（用 snippet，不再联网）
+        return _rag_lite_fallback(fetch_fulltext=False)
 
     # 构建 prompt 并调用 LLM
     prompt = _build_pro_prompt(query, sources, chunk_size=chunk_size)
@@ -343,19 +378,20 @@ def synthesize_pro(
         try:
             from fact_checker import fact_check, format_fact_check_report
             fc_result = fact_check(full_answer, sources, config)
-            
-            if fc_result["removed_claims"]:
-                # 有论断被移除，使用清洗后的答案
+
+            # V2.1 核查合链：始终使用核查后的正文。
+            # 标注保留模式下无源论断带 [无源] 标记进正文；
+            # 剔除模式下 cleaned_answer 为移除后的版本。两种情况都需重建来源列表。
+            if fc_result.get("claims"):
                 full_answer = fc_result["cleaned_answer"]
-                # 追加来源列表
                 full_answer += "\n\n--- 来源 ---\n" + "\n".join(source_list)
-            
+
             # 追加事实核查报告
             full_answer += format_fact_check_report(fc_result)
         except Exception:
             # 事实核查失败不中断主流程
             pass
-        
+
         return full_answer
 
     # LLM 调用失败，降级

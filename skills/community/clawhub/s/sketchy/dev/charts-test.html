@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en" class="sk" data-theme="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Charts test</title>
+<link rel="stylesheet" href="../engine/sketchy.css">
+<script>
+  // ?theme=night opens the night ledger directly (for screenshots)
+  (function () { var m = /[?&]theme=(\w+)/.exec(location.search); if (m) document.documentElement.setAttribute('data-theme', m[1]); })();
+</script>
+<style>
+  body.sk { padding: clamp(16px, 3vw, 44px); }
+  .top { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px 24px; max-width: 1360px; margin: 0 auto 26px; position: relative; z-index: 1; }
+  .top h1 { margin: 0; }
+  .top p { margin: 4px 0 0; }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(18px, 2.4vw, 36px); max-width: 1360px; margin: 0 auto; position: relative; z-index: 1; }
+  .grid > .wide { grid-column: 1 / -1; }
+  .sheet { padding: clamp(16px, 2vw, 28px) clamp(16px, 2.2vw, 32px) clamp(16px, 2vw, 26px); }
+  .tag { font: 700 16px/1 var(--sk-font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--sk-graphite-soft); margin: 0 0 10px; }
+  h2.part { grid-column: 1 / -1; margin: 18px 0 -6px; }
+  @media (max-width: 760px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body class="sk">
+<svg class="sk-specks" data-specks="charts" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+
+<header class="top">
+  <div>
+    <h1>Charts test</h1>
+    <p class="sk-fine">Every chart type with real-looking numbers. Looks sketchy. The numbers are real.</p>
+  </div>
+  <div class="sk-row">
+    <button class="sk-btn" data-sk="button" id="theme">night ledger</button>
+    <button class="sk-btn" data-sk="button" id="redraw">draw again</button>
+  </div>
+</header>
+
+<main class="grid">
+
+  <section class="sk-sheet sheet" data-sk="sheet"><p class="tag">bar</p>
+    <figure class="sk-chart" id="c-bar"><script type="application/json">
+    {"type":"bar","title":"Revenue by quarter, 2026","subtitle":"Q4 beat the target for the first time","unit":"€k",
+     "data":[["Q1",118],["Q2",131],["Q3",127],["Q4",162]],
+     "highlight":"Q4","target":{"value":150,"label":"target"},
+     "annotate":[{"at":"Q3","text":"launch slipped two weeks"}],
+     "source":"Finance ledger, closed books, 2 Oct 2026"}
+    </script></figure>
+  </section>
+
+  <section class="sk-sheet sheet" data-sk="sheet"><p class="tag">hbar</p>
+    <figure class="sk-chart" id="c-hbar"><script type="application/json">
+    {"type":"hbar","title":"What slows the team down?","subtitle":"Share of 84 engineers, several answers allowed","unit":"%",
+     "data":[["Meetings without an agenda",46],["Unclear priorities",38],["Waiting for code review",31],["Flaky tests",22],["Slow laptops",14],["Other",9]],
+     "highlight":"Waiting for code review",
+     "source":"Team survey, September 2026"}
+    </script></figure>
+  </section>
+
+  <section class="sk-sheet sheet" data-sk="sheet"><p class="tag">stacked</p>
+    <figure class="sk-chart" id="c-stacked"><script type="application/json">
+    {"type":"stacked","title":"Where the revenue comes from","subtitle":"By product line","unit":"€k",
+     "series":["Licences","Services","Training"],
+     "data":[["Q1",64,38,16],["Q2",70,41,20],["Q3",66,39,22],["Q4",88,46,28]],
+     "source":"Finance ledger"}
+    </script></figure>
+  </section>
+
+  <section class="sk-sheet sheet" data-sk="sheet"><p class="tag">grouped</p>
+    <figure class="sk-chart" id="c-grouped"><script type="application/json">
+    {"type":"grouped","title":"Learners who finished each module","subtitle":"Spring cohorts, 2025 and 2026","unit":"",
+     "series":["2025","2026"],
+     "data":[["Module 1",42,51],["Module 2",37,48],["Module 3",29,44],["Module 4",24,39]],
+     "highlight":"Module 3",
+     "annotate":[{"at":"Module 3","text":"new project day"}],
+     "source":"Course platform export"}
+    </script></figure>
+  </section>
+
+  <section class="sk-sheet sheet wide" data-sk="sheet"><p class="tag">line</p>
+    <figure class="sk-chart" id="c-line"><script type="application/json">
+    {"type":"line","title":"Weekly active learners","subtitle":"Actual against plan and the cohort average","unit":"",
+     "series":[
+       {"name":"actual","role":"actual","data":[["Jan",820],["Feb",870],["Mar",790],["Apr",940],["May",1010],["Jun",1080],["Jul",1050],["Aug",1190],["Sep",1260],["Oct",1340]]},
+       {"name":"plan","role":"plan","data":[["Jan",800],["Feb",850],["Mar",900],["Apr",950],["May",1000],["Jun",1050],["Jul",1100],["Aug",1150],["Sep",1200],["Oct",1250]]},
+       {"name":"cohort average","role":"benchmark","data":[["Jan",760],["Feb",780],["Mar",800],["Apr",820],["May",850],["Jun",870],["Jul",880],["Aug",900],["Sep",930],["Oct",950]]}
+     ],
+     "annotate":[{"at":{"series":"actual","at":"Mar"},"text":"spring break"},{"at":{"series":"actual","at":"Aug"},"text":"new mobile app"}],
+     "source":"Product analytics, weeks ending on Sunday"}
+    </script></figure>
+  </section>
+
+  <section class="sk-sheet sheet" data-sk="sheet"><p class="tag">area</p>
+    <figure class="sk-chart" id="c-area"><script type="application/json">
+    {"type":"area","title":"Cloud spend by service","subtitle":"Monthly, 2026","unit":"€k",
+     "series":["Compute","Storage","Network"],
+     "data":[["Jan",18,6,3],["Feb",19,6,3],["Mar",22,7,4],["Apr",21,7,4],["May",24,8,5],["Jun",27,8,5]],
+     "source":"Cloud invoices"}
+    </script></figure>
+  </section>
+
+  <section class="sk-sheet sheet" data-sk="sheet"><p class="tag">area, one series, forecast</p>
+    <figure class="sk-chart" id="c-area1"><script type="application/json">
+    {"type":"area","title":"Support tickets closed per week","unit":"",
+     "data":[["W36",112],["W37",120],["W38",131],["W39",126],["W40",144],["W41",152],["W42",158],["W43",165]],
+     "forecastFrom":"W42",
+     "source":"Help desk export; W42 and W43 are estimates"}
+    </script></figure>
+  </section>
+
+  <section class="sk-sheet sheet" data-sk="sheet"><p class="tag">pie</p>
+    <figure class="sk-chart" id="c-pie"><script type="application/json">
+    {"type":"pie","title":"Where the 2026 budget went","unit":"€k",
+     "data":[["Salaries",412],["Cloud",96],["Office",64],["Marketing",58],["Travel",21],["Training",18],["Other costs",9]],
+     "source":"Budget review, October 2026"}
+    </script></figure>
+  </section>
+
+  <section class="sk-sheet sheet" data-sk="sheet"><p class="tag">donut</p>
+    <figure class="sk-chart" id="c-donut"><script type="application/json">
+    {"type":"donut","title":"Would you recommend the course?","subtitle":"412 answers","unit":"%",
+     "data":[["Yes",62],["Not sure",23],["No",15]],
+     "center":"412","centerLabel":"answers",
+     "source":"End-of-course survey"}
+    </script></figure>
+  </section>
+
+  <section class="sk-sheet sheet" data-sk="sheet"><p class="tag">scatter</p>
+    <figure class="sk-chart" id="c-scatter"><script type="application/json">
+    {"type":"scatter","title":"Practice hours and exam score","subtitle":"One dot per learner","trend":true,"math":true,
+     "x":{"label":"practice","unit":"h"},"y":{"label":"exam score","unit":"%"},
+     "data":[[4,52,"Ana"],[6,58],[7,61],[9,60],[10,67],[12,70],[13,66],[15,74],[16,79],[18,77],[20,84],[22,81],[24,88],[11,85,"Malik"]],
+     "highlight":"Malik",
+     "annotate":[{"at":"Malik","text":"studied with a mentor"}],
+     "source":"Spring cohort, 14 learners"}
+    </script></figure>
+  </section>
+
+  <section class="sk-sheet sheet" data-sk="sheet"><p class="tag">slope</p>
+    <figure class="sk-chart" id="c-slope"><script type="application/json">
+    {"type":"slope","title":"Monthly churn before and after the new onboarding","unit":"%",
+     "series":["before","after"],
+     "data":[["Starter",6.8,4.1],["Team",4.2,3.0],["Business",2.9,2.6],["Enterprise",1.4,1.5]],
+     "highlight":"Starter",
+     "source":"Billing data, six months either side of 1 May"}
+    </script></figure>
+  </section>
+
+  <section class="sk-sheet sheet" data-sk="sheet"><p class="tag">waffle</p>
+    <figure class="sk-chart" id="c-waffle"><script type="application/json">
+    {"type":"waffle","title":"How 1,240 learners found us","unit":"%",
+     "data":[["A friend",41],["Search",27],["Social media",18],["Events",9],["Other",5]],
+     "highlight":"A friend",
+     "source":"Sign-up form, 2026"}
+    </script></figure>
+  </section>
+
+  <section class="sk-sheet sheet" data-sk="sheet"><p class="tag">tally</p>
+    <figure class="sk-chart" id="c-tally"><script type="application/json">
+    {"type":"tally","title":"Bugs reported in the beta week","unit":"",
+     "data":[["Mon",7],["Tue",12],["Wed",4],["Thu",9],["Fri",3]],
+     "highlight":"Tue",
+     "annotate":[{"at":"Tue","text":"release day"}]}
+    </script></figure>
+  </section>
+
+  <section class="sk-sheet sheet" data-sk="sheet"><p class="tag">gauge</p>
+    <figure class="sk-chart" id="c-gauge"><script type="application/json">
+    {"type":"gauge","title":"Budget used by the end of Q3","unit":"%","max":100,"target":{"value":75,"label":"plan"},
+     "data":[["Engineering",62],["Marketing",88],["Support",41]],
+     "source":"Controlling, 30 Sep 2026"}
+    </script></figure>
+  </section>
+
+  <section class="sk-sheet sheet" data-sk="sheet"><p class="tag">gauge, one tank</p>
+    <figure class="sk-chart" id="c-gauge1"><script type="application/json">
+    {"type":"gauge","title":"Runway","unit":"months","max":24,"target":{"value":6,"label":"reserve"},
+     "data":[["cash",14.5]]}
+    </script></figure>
+  </section>
+
+  <section class="sk-sheet sheet wide" data-sk="sheet"><p class="tag">timeline</p>
+    <figure class="sk-chart" id="c-timeline"><script type="application/json">
+    {"type":"timeline","title":"Course launch plan","now":"2026-10-25",
+     "data":[
+       {"date":"2026-06-02","label":"Kick-off","place":"Berlin"},
+       {"date":"2026-07-14","label":"Curriculum signed off"},
+       {"date":"2026-09-01","label":"Pilot cohort starts","note":"18 learners"},
+       {"date":"2026-10-12","label":"Pilot review"},
+       {"date":"2026-11-16","label":"Public launch","figure":"v1"},
+       {"date":"2027-01-11","label":"Second cohort"}
+     ],
+     "highlight":"Public launch"}
+    </script></figure>
+  </section>
+
+  <section class="sk-sheet sheet" data-sk="sheet"><p class="tag">funnel</p>
+    <figure class="sk-chart" id="c-funnel"><script type="application/json">
+    {"type":"funnel","title":"From first visit to paying learner","subtitle":"October 2026","unit":"",
+     "data":[["Visits",12400],["Sign-ups",2480],["Trial started",1120],["First lesson",860],["Paid",310]],
+     "source":"Product analytics"}
+    </script></figure>
+  </section>
+
+  <section class="sk-sheet sheet" data-sk="sheet"><p class="tag">bignumber</p>
+    <figure class="sk-chart" id="c-big"><script type="application/json">
+    {"type":"bignumber","title":"Gross margin","value":41.2,"unit":"%","label":"Q3 2026",
+     "compare":{"value":36.5,"label":"Q2"},"good":"up","math":true,
+     "source":"Management accounts"}
+    </script></figure>
+  </section>
+
+  <section class="sk-sheet sheet wide" data-sk="sheet"><p class="tag">ledger</p>
+    <figure class="sk-chart" id="c-ledger"><script type="application/json">
+    {"type":"ledger","title":"Invoice No. 0042","subtitle":"Workshop for Northwind GmbH","meta":"25 Oct 2026 · due 8 Nov 2026",
+     "unit":"€","format":{"locale":"en"},
+     "data":[
+       {"label":"Workshop day, on site","qty":3,"price":560},
+       {"label":"Preparation and material","qty":1,"price":420},
+       {"label":"Travel, Berlin to Hamburg and back","value":138.4},
+       {"label":"Early booking discount","value":-84}
+     ],
+     "tax":{"rate":0.19,"label":"VAT"},
+     "benchmark":{"value":2600,"label":"quoted"},
+     "stamps":[{"text":"Paid"}],
+     "note":"Thank you. Paid by bank transfer on 27 Oct 2026."}
+    </script></figure>
+  </section>
+
+  <h2 class="part">Honesty checks (these warn in the console on purpose)</h2>
+
+  <section class="sk-sheet sheet" data-sk="sheet"><p class="tag">bar asking to start at 100</p>
+    <figure class="sk-chart" id="c-honest-bar"><script type="application/json">
+    {"type":"bar","title":"Sign-ups per region","unit":"","y":{"min":100},
+     "data":[["North",132],["South",118],["East",141],["West",125]]}
+    </script></figure>
+  </section>
+
+  <section class="sk-sheet sheet" data-sk="sheet"><p class="tag">target below every bar</p>
+    <figure class="sk-chart" id="c-honest-target"><script type="application/json">
+    {"type":"bar","title":"Revenue per month, Q3","unit":"k",
+     "data":[["Jul",388],["Aug",402],["Sep",450.6]],
+     "highlight":"Sep","target":{"value":366.7,"label":"plan per month"}}
+    </script></figure>
+  </section>
+
+  <section class="sk-sheet sheet" data-sk="sheet"><p class="tag">pie that adds up to 131 %</p>
+    <figure class="sk-chart" id="c-honest-pie"><script type="application/json">
+    {"type":"pie","title":"Tools learners use","subtitle":"Several answers allowed","unit":"%",
+     "data":[["VS Code",71],["Cursor",33],["Vim",15],["JetBrains",12]]}
+    </script></figure>
+  </section>
+
+</main>
+
+<script src="../engine/sketchy.js"></script>
+<script src="../engine/sketchy-charts.js"></script>
+<script>
+  Sketchy.mount();
+  var html = document.documentElement;
+  var themeBtn = document.getElementById('theme');
+  function label() { themeBtn.textContent = html.getAttribute('data-theme') === 'night' ? 'day sketchbook' : 'night ledger'; }
+  label();
+  themeBtn.addEventListener('click', function () {
+    html.setAttribute('data-theme', html.getAttribute('data-theme') === 'night' ? 'day' : 'night');
+    label();
+  });
+  document.getElementById('redraw').addEventListener('click', function () { SketchyCharts.drawOn(document); });
+  // ?draw traces each chart when it scrolls into view
+  if (/[?&]draw\b/.test(location.search) && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { io.unobserve(e.target); SketchyCharts.drawOn(e.target); } });
+    }, { threshold: 0.35 });
+    document.querySelectorAll('.sk-chart').forEach(function (f) { io.observe(f); });
+  }
+</script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 {
   "name": "cad-file-reader",
-  "version": "0.41.3",
+  "version": "0.42.0",
   "description": "本地读取 DWG/DXF/DWT/PDF 图纸：DWG/DXF 走流式解析，PDF 走本机分流+本地 OCR。提取图层、文字、块、图框、几何、18+1 类专业识图候选（结构/园林支持块几何展开；含塔吊布置：INSERT 仿射回转中心、型号/臂长证据；园林景观：苗木图例、乔灌地被候选、铺装闭合环、设计院校准、DWG块名净化与自动转DXF复扫）、总图场地建筑外轮廓候选、系统拓扑、长度/面积/体积测量候选和规范图集元数据。仅输出识图与测量候选（final_quantity=false）。安装一条命令：scripts/setup.sh（轻量包）或解压后直接用（完整包）。 契约流固化：DWG 只由 cad_scan/cad_contract 解析一次，算量/碰撞只消费契约JSON；sample-site结构2/3固定走 ODA 副本转DXF→--dwg-dxf-fallback 复扫（不回写原图）。",
   "author": "lis",
   "license": "CC-BY-NC-SA-4.0",

@@ -1,0 +1,8 @@
+interface:
+  display_name: 视频素材缺口表
+  short_description: 核验镜头素材覆盖，输出缺失、规格不符与可执行补料条件
+  default_prompt: 请根据已批准镜头表和现有素材清单，核验内容、画幅、时长与授权覆盖，并输出缺口表。
+  icon_small: ../icon-512.png
+  icon_large: ../icon-512.png
+policy:
+  allow_implicit_invocation: true

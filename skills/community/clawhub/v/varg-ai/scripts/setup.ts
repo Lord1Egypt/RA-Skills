@@ -51,14 +51,14 @@ function checkSavedCredentials(): { apiKey: string; email: string } | undefined 
 
 async function checkGateway(apiKey: string): Promise<boolean> {
   try {
-    const res = await fetch(`${GATEWAY_URL}/v1/balance`, {
+    const res = await fetch(`${GATEWAY_URL}/v2/billing/balance`, {
       headers: { Authorization: `Bearer ${apiKey}` },
       signal: AbortSignal.timeout(5000),
     })
     if (res.ok) {
-      const data = await res.json() as { balance_cents?: number }
-      const credits = data.balance_cents ?? 0
-      console.log(green(`  ✓ Gateway connected. Balance: ${credits} credits ($${(credits / 100).toFixed(2)})`))
+      const data = await res.json() as { available?: number; total_balance?: number }
+      const credits = data.available ?? data.total_balance ?? 0
+      console.log(green(`  ✓ API connected. Balance: ${credits} credits ($${(credits / 100).toFixed(2)})`))
       return true
     }
     if (res.status === 401) {
@@ -134,7 +134,7 @@ if (higgsfieldKey) {
 if (!vargKey && !falKey) {
   console.log(red("\n  ✗ No API keys found."))
   console.log()
-  console.log(`  Get your API key at: ${cyan("https://app.varg.ai")}`)
+  console.log(`  Get your API key at: ${cyan("https://varg.ai/dashboard/api")}`)
   console.log()
   console.log(`  Then set it:`)
   console.log(`    ${cyan("export VARG_API_KEY=varg_xxx")}`)
@@ -181,19 +181,22 @@ if (!hasExample) {
     : `import { fal } from "vargai/ai"`
 
   const modelPrefix = vargKey ? "varg" : "fal"
+  // The direct fal provider has its own model ids; keep its known-good ones.
+  const imageModelId = vargKey ? "nano_banana_2_1" : "nano_banana_pro"
+  const videoModelId = vargKey ? "seedance_2_5" : "kling_v3"
 
   const example = `/** @jsxImportSource vargai */
 import { Render, Clip, Image, Video } from "vargai/react"
 ${importLine}
 
 const img = Image({
-  model: ${modelPrefix}.imageModel("nano-banana-pro"),
+  model: ${modelPrefix}.imageModel("${imageModelId}"),
   prompt: "a cozy cabin in the mountains at sunset, warm golden light",
   aspectRatio: "16:9"
 })
 
 const vid = Video({
-  model: ${modelPrefix}.videoModel("kling-v3"),
+  model: ${modelPrefix}.videoModel("${videoModelId}"),
   prompt: { text: "gentle push-in, smoke rising from chimney", images: [img] },
   duration: 5
 })
@@ -223,11 +226,11 @@ console.log(`Available: ${features.join(", ")}`)
 
 if (!hasExample) {
   console.log(`\nRender your first video:`)
-  console.log(dim(`  bunx vargai render ${examplePath} --preview   ${dim("(free preview)")}`))
-  console.log(dim(`  bunx vargai render ${examplePath} --verbose   ${dim("(full render, costs credits)")}`))
+  console.log(dim(`  bunx vargai@alpha render ${examplePath} --preview   ${dim("(free preview)")}`))
+  console.log(dim(`  bunx vargai@alpha render ${examplePath} --verbose   ${dim("(full render, costs credits)")}`))
 } else {
   console.log(`\nRender:`)
-  console.log(dim(`  bunx vargai render <file.tsx> --verbose`))
+  console.log(dim(`  bunx vargai@alpha render <file.tsx> --verbose`))
 }
 
 console.log()

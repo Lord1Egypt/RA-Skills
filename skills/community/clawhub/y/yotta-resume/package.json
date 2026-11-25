@@ -1,0 +1,63 @@
+{
+  "name": "@yottameta/yotta-resume",
+  "version": "0.2.4",
+  "description": "元简 — 本地求职者简历分析、单轮模拟面试与成品导出技能：分析简历结构、证据、岗位匹配和风险，向用户追问缺失事实，给出逐条合理化修改建议，并运行由简历证据、JD 缺口和来源题库共同驱动的模拟面试与复盘，把确认后的内容导出为 DOCX/PDF。随包安装器仅在用户显式执行时把技能复制到指定智能体目录，并只在目标内清理开发残留。触发：简历诊断、改简历、简历追问、JD匹配、模拟面试、导出Word/PDF。边界：不编造经历，不承诺ATS/面试/Offer结果；不自动投递；不自动安装；不处理复杂设计作品集排版；核心简历处理默认在本地完成。",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-resume",
+    "yottaskills",
+    "简历诊断",
+    "简历分析",
+    "简历优化",
+    "改简历",
+    "求职简历",
+    "JD匹配",
+    "简历导出",
+    "模拟面试",
+    "面试复盘",
+    "安全面试",
+    "Word简历",
+    "PDF简历",
+    "resume review",
+    "resume analyzer",
+    "resume export",
+    "mock interview",
+    "interview practice",
+    "security interview",
+    "job description matching"
+  ],
+  "files": [
+    "SKILL.md",
+    "LICENSE.txt",
+    "NOTICE.txt",
+    "README.md",
+    "README.zh-CN.md",
+    "CHANGELOG.md",
+    "assets",
+    "data",
+    "examples",
+    "install.sh",
+    "references",
+    "scripts",
+    "bin",
+    "!scripts/test_*.py",
+    "!data/history",
+    "!data/history/**",
+    "!**/__pycache__",
+    "!**/*.pyc"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-resume.git"
+  },
+  "scripts": {
+    "test": "python -m unittest discover -s scripts -p \"test_*.py\" && python -m unittest discover -s tools/resume_maintenance -p \"test_*.py\""
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-resume": "bin/install.js"
+  }
+}

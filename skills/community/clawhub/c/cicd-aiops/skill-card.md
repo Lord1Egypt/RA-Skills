@@ -1,6 +1,6 @@
 ## Description:
 
-Helps agents inspect and operate self-managed GitLab and Gitea CI/CD environments, including pipelines, runners, artifacts, repository hygiene, and failure analysis.
+Operate self-managed GitLab and self-hosted Gitea CI/CD systems to inspect projects, pipelines, runners, artifacts, and repository health, and perform governed changes.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and CI/CD operators use this skill to investigate pipeline failures, runner capacity, artifact storage, and stale repository work on self-managed GitLab or Gitea, and to carry out authorized maintenance actions.
+CI/CD administrators and developers use this skill to inspect self-managed GitLab or Gitea environments, diagnose pipeline, runner, storage, and stale-work issues, and perform audited changes.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: A connected agent can make destructive CI/CD changes without a built-in read-only mode or approval gate.
+Risk: The release security assessment rated the skill suspicious with medium confidence, citing broad CI/CD write access without an independent approval gate and credential-handling concerns; the scan was partial.
 
-Mitigation: Start with a least-privilege or read-only token and require independent human approval before enabling writes.
-
-Risk: Artifact deletion, pipeline cancellation, runner changes, and branch-protection updates can disrupt workflows; artifact deletion cannot be undone.
-
-Mitigation: Review the intended target and dry-run preview before execution, and obtain human confirmation for destructive changes.
-
-Risk: A master password in plaintext client configuration can expose stored credentials.
-
-Mitigation: Keep the master password out of plaintext client configurations and restrict access to credentials.
+Mitigation: Install only when this CI/CD access is needed, restrict the connected token to minimum permissions, and review master-password handling and write authorization before use.
 
 ## Reference(s):
 
-- [ClawHub skill listing](https://clawhub.ai/zw008/skills/cicd-aiops)
+- [Capabilities](artifact/references/capabilities.md)
+- [CLI reference](artifact/references/cli-reference.md)
+- [Setup guide](artifact/references/setup-guide.md)
+- [Agent guardrails](artifact/references/agent-guardrails.md)
 - [Project homepage](https://github.com/AIops-tools/CICD-AIops)
-- [Capabilities and platform support](references/capabilities.md)
-- [Setup guide](references/setup-guide.md)
-- [Agent guardrails](references/agent-guardrails.md)
-- [CLI reference](references/cli-reference.md)
+- [ClawHub skill release](https://clawhub.ai/zw008/skills/cicd-aiops)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Shell commands, Configuration]
+**Output Type(s):** [Analysis, API Calls, Shell commands, Guidance]
 
-**Output Format:** [Text and Markdown, with commands and structured tool results where applicable]
+**Output Format:** [Structured CI/CD data with concise text or Markdown analysis and recommendations]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports CI/CD status and diagnostic evidence; write actions depend on the connected token's permissions.]
+**Other Properties Related to Output:** [Can include read-only findings, proposed actions, or results of governed changes.]
 
 ## Skill Version(s):
 
-0.13.0 (source: ClawHub release metadata)
+0.14.0 (source: server-resolved release)
 
 ## Ethical Considerations:
 

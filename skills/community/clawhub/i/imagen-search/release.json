@@ -1,13 +1,15 @@
 {
-  "version": "1.1.2",
-  "released_at": "2026-10-21",
+  "version": "1.2.0",
+  "released_at": "2026-10-25",
   "requires_node": ">=22",
   "changes": [
-    "Skill 代码采用 MIT-0，图片与 API 服务条款独立。",
-    "补齐独立公开仓库和平台分发说明；保留现有搜索、下载与升级行为。"
+    "新增服务端匿名搜索指标；关键词统计默认关闭，明确同意后可开启或关闭。",
+    "新增本地 analytics 配置与隐私说明；服务端升级后使用专用搜索接口。",
+    "首次使用时尝试检查官方新版，发现更新后征求升级意见，失败不影响搜图。"
   ],
   "changes_en": [
-    "Skill code is licensed under MIT-0; image and API service terms remain separate.",
-    "Public repository and distribution documentation; existing search, download and upgrade behavior is preserved."
+    "Anonymous server-side search counters; keyword retention defaults off and requires explicit opt-in.",
+    "Local analytics preference and privacy disclosure; uses the new search endpoint after the server upgrade.",
+    "Try a release check on first use per conversation; offer authorized upgrades without blocking search on check failures."
   ]
 }

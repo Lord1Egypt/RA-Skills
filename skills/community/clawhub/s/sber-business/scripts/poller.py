@@ -15,8 +15,6 @@ import argparse
 import html
 import json
 import os
-import ssl
-import subprocess
 import sys
 import time
 from datetime import datetime, timedelta, timezone
@@ -166,6 +164,40 @@ def send_webhook(url: str, data: dict, secret_header: str = "", secret_value: st
         return False
 
 
+def mask_tx_privacy(tx: dict) -> dict:
+    """Маскирует номера счетов и ИНН в сыром webhook-payload (maskPrivacy).
+
+    Текстовые уведомления маскируются в format_notification, но кастомный
+    webhook получает сырой JSON проводки — без этой функции maskPrivacy не
+    защищал бы webhook-канал. Применяется ко всем account/inn полям.
+    """
+    t = json.loads(json.dumps(tx, ensure_ascii=False))
+
+    def mask_acc(a):
+        a = str(a)
+        return a[:5] + "..." + a[-4:] if len(a) > 8 else "***"
+
+    def mask_inn(i):
+        i = str(i)
+        return i[:4] + "****" + i[-2:] if len(i) >= 10 else "***"
+
+    for k in ("accountNumber", "payerAccount", "payeeAccount"):
+        if t.get(k):
+            t[k] = mask_acc(t[k])
+    for k in ("payerInn", "payeeInn"):
+        if t.get(k):
+            t[k] = mask_inn(t[k])
+    rt = t.get("rurTransfer")
+    if isinstance(rt, dict):
+        for k in ("payerAccount", "payeeAccount"):
+            if rt.get(k):
+                rt[k] = mask_acc(rt[k])
+        for k in ("payerInn", "payeeInn"):
+            if rt.get(k):
+                rt[k] = mask_inn(rt[k])
+    return t
+
+
 def notify(text: str, tx_data: dict, cfg: dict) -> bool:
     channel = (cfg.get("channel") or "").lower()
     ok = True
@@ -184,7 +216,10 @@ def notify(text: str, tx_data: dict, cfg: dict) -> bool:
 
     if channel == "webhook" or cfg.get("webhook", {}).get("enabled"):
         w = cfg.get("webhook", {})
-        ok = send_webhook(w.get("url"), tx_data, w.get("secretHeader"), w.get("secretValue")) and ok
+        # maskPrivacy must also protect the raw webhook JSON payload, not only
+        # the human-readable text notifications.
+        payload = mask_tx_privacy(tx_data) if cfg.get("maskPrivacy") else tx_data
+        ok = send_webhook(w.get("url"), payload, w.get("secretHeader"), w.get("secretValue")) and ok
 
     return ok
 
@@ -267,6 +302,13 @@ def fetch_balance(api: SberAPI, account: str) -> str | None:
 
 
 def poll_once(api: SberAPI, cfg: dict, state: dict, dry: bool, bootstrap: bool) -> int:
+    if dry:
+        # SECURITY: --dry is diagnostic only. It must NOT consume transactions,
+        # advance last_modify or persist the shared production state — otherwise
+        # a dry run would silently suppress subsequent real banking alerts.
+        # Work on a private copy that is never saved.
+        state = {"last_modify": state.get("last_modify"),
+                 "seen": list(state.get("seen") or [])}
     now_msk = datetime.now(MSK)
     if bootstrap or not state.get("last_modify"):
         since = now_msk
@@ -314,7 +356,10 @@ def poll_once(api: SberAPI, cfg: dict, state: dict, dry: bool, bootstrap: bool) 
 
     state["seen"] = list(seen)
     state["last_modify"] = now_msk.strftime("%Y-%m-%dT%H:%M:%S")
-    save_state(state)
+    if dry:
+        log(f"[dry] {sent} notification(s) simulated; production state NOT persisted")
+    else:
+        save_state(state)
     return sent
 
 
@@ -323,7 +368,7 @@ def main() -> int:
     ap.add_argument("--config", default=DEFAULT_CONFIG, help="Путь к файлу конфигурации config.json")
     ap.add_argument("--profile", default=None, help="Имя профиля в Vault")
     ap.add_argument("--once", action="store_true", help="Один цикл и выход")
-    ap.add_argument("--dry", action="store_true", help="Не отправлять, только логировать")
+    ap.add_argument("--dry", action="store_true", help="Не отправлять и НЕ сохранять state: только логирование (диагностика без влияния на боевые уведомления)")
     ap.add_argument("--bootstrap", action="store_true", help="Зафиксировать точку отсчёта без пушей")
     args = ap.parse_args()
 

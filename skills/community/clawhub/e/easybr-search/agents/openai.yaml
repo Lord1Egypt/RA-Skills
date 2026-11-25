@@ -1,0 +1,7 @@
+interface:
+  icon_small: "./assets/icon-512.png"
+  icon_large: "./assets/icon-512.png"
+  brand_color: "#FF9A32"
+  display_name: "easybrSearch"
+  short_description: "复用真实浏览器跨平台查找并读取证据，由当前Agent整理带来源的回答"
+  default_prompt: "使用 $easybr-search 先理解我的实际问题并整理关键词，严格按指定平台搜索、读取相关来源，再给出有出处的回答。"

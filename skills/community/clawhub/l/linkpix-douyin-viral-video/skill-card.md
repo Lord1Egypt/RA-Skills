@@ -1,6 +1,6 @@
 ## Description:
 
-Guides agents through creating Douyin-focused product videos with the Qinghu AI service, from selecting a model and uploading media to tracking and delivering the result.
+帮助抖音电商运营、直播团队和短视频创作者通过青虎 AI 规划并生成带货短视频，涵盖口播、商品测评、剧情和热点内容。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,49 +14,37 @@ MIT-0
 
 ## Use Case:
 
-Douyin merchants, livestream teams, and short-video creators use this skill to plan and generate vertical promotional videos from prompts and product images, then retrieve the finished video.
+抖音电商运营、直播团队和短视频创作者可用它规划并生成带货、种草与投放短视频，包括口播、商品测评、剧情反转和热点跟拍。
 
 ### Deployment Geography for Use:
 
-Global
+China
 
 ## Known Risks and Mitigations:
 
-Risk: The service requires an API key.
+Risk: ClawScan reports unpinned package downloads and handling of API keys and reference images; its analysis is partial and does not establish malicious intent.
 
-Mitigation: Configure the key securely and avoid exposing it in shared output or logs.
-
-Risk: Source images and other reference media are uploaded to the external service.
-
-Mitigation: Upload only media you are authorized and comfortable sharing with Qinghu AI.
-
-Risk: Generating a video spends account credits and submitted jobs cannot be canceled.
-
-Mitigation: Show the parameters and estimated charge where available, then obtain explicit approval before submission.
-
-Risk: Installing or upgrading qhkit changes the local tool environment.
-
-Mitigation: Review the package installation, pin its version in controlled environments, and avoid persistent PATH changes unless intended.
+Mitigation: Review the package publisher and version before installation, keep API keys out of chat, and check which reference images will be sent to the external service.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-douyin-viral-video)
 - [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
-- [Qinghu AI API key setup guide](https://xcnzsfe4uxrw.feishu.cn/wiki/KJ0Ywsyw8iAXmRkz5l4cddDbn6g)
+- [青虎 API 密钥教程](https://xcnzsfe4uxrw.feishu.cn/wiki/KJ0Ywsyw8iAXmRkz5l4cddDbn6g)
+- [ClawHub skill page](https://clawhub.ai/autoagc/skills/linkpix-douyin-viral-video)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Video links]
+**Output Type(s):** [Video, Text, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown text with inline commands and a video URL]
+**Output Format:** [Generated video links, text prompts, and JSON-parameterized command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports task status and credits charged; completed video is hosted by the service.]
+**Other Properties Related to Output:** [Video generation runs as a task; completed results are delivered by URL.]
 
 ## Skill Version(s):
 
-0.1.5 (source: ClawHub release metadata)
+0.1.7 (source: server release metadata)
 
 ## Ethical Considerations:
 

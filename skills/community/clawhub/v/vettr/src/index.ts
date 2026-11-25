@@ -1,5 +1,6 @@
 import path from 'node:path';
 import os from 'node:os';
+import fs from 'node:fs/promises';
 
 import { OpenClawSkill, SkillContext } from '@openclaw/sdk';
 import { VettrEngine } from './vettr-engine.js';
@@ -11,6 +12,7 @@ import {
   getAllowedRoots,
 } from './utils/sanitise.js';
 import { execSafe } from './utils/exec-safe.js';
+import { assertGitSupportsResolvePin, assertTreeWithinLimit, downloadPublicHttps, gitResolvePin, gunzipCapped, resolvePublicHost } from './utils/safe-fetch.js';
 
 const DEFAULT_CONFIG: VettingConfig = {
   maxNetworkCalls: 5,
@@ -33,7 +35,7 @@ const DEFAULT_CONFIG: VettingConfig = {
 
 export default class SkillVettr implements OpenClawSkill {
   name = 'skill-vettr';
-  version = '2.0.3';
+  version = '2.0.8';
   description = 'Security vetting for third-party OpenClaw skills';
 
   private config: VettingConfig = DEFAULT_CONFIG;
@@ -83,12 +85,43 @@ export default class SkillVettr implements OpenClawSkill {
 
         // Download using safe exec
         if (sanitisedUrl.endsWith('.git')) {
-          await execSafe('git', ['-c', 'core.hooksPath=/dev/null', 'clone', '--depth', '1', sanitisedUrl, tempDir]);
+          const parsedGitUrl = new URL(sanitisedUrl);
+          if (parsedGitUrl.port && parsedGitUrl.port !== '443') {
+            throw new Error('Git URLs must use the default HTTPS port');
+          }
+          const { stdout: gitVersion } = await execSafe('git', ['--version']);
+          assertGitSupportsResolvePin(gitVersion);
+          const addresses = await resolvePublicHost(parsedGitUrl.hostname);
+          await execSafe('git', [
+            '-c', 'core.hooksPath=/dev/null',
+            '-c', 'http.followRedirects=false',
+            '-c', 'protocol.allow=never',
+            '-c', 'protocol.https.allow=always',
+            'clone', '--depth', '1', sanitisedUrl, tempDir,
+          ], {
+            // Ignore user and system git config so url.insteadOf rewrites, proxies and
+            // credential helpers cannot redirect the clone or attach credentials.
+            // The pin goes through GIT_CONFIG_* because a bracketed IPv6 entry would fail execSafe's
+            // argument check.
+            env: {
+              GIT_CONFIG_NOSYSTEM: '1',
+              GIT_CONFIG_GLOBAL: '/dev/null',
+              GIT_TERMINAL_PROMPT: '0',
+              GIT_CONFIG_COUNT: '1',
+              GIT_CONFIG_KEY_0: 'http.curloptResolve',
+              GIT_CONFIG_VALUE_0: gitResolvePin(parsedGitUrl.hostname, addresses),
+            },
+          });
         } else {
           const tarPath = path.join(tempDir, 'skill.tar.gz');
-          await execSafe('curl', ['-fsSL', '--max-filesize', '52428800', '--max-time', '120', '-o', tarPath, sanitisedUrl]);
-          await execSafe('tar', ['-xzf', tarPath, '-C', tempDir, '--no-same-owner', '--no-same-permissions']);
+          const tarballPath = path.join(tempDir, 'skill.tar');
+          await downloadPublicHttps(sanitisedUrl, tarPath);
+          await gunzipCapped(tarPath, tarballPath);
+          await fs.rm(tarPath, { force: true });
+          await execSafe('tar', ['-xf', tarballPath, '-C', tempDir, '--no-same-owner', '--no-same-permissions']);
+          await fs.rm(tarballPath, { force: true });
         }
+        await assertTreeWithinLimit(tempDir);
 
         // Validate that downloaded content is actually a skill
         const hasManifest = await findSkillManifest(tempDir, ctx.tools);

@@ -1,13 +1,12 @@
 ---
-name: "child-emotion-recognition-analysis"
-description: "Identifies negative emotions such as crying, anger, fear, and distress through surveillance footage. It actively issues soothing reminders and notifies parents, making it suitable for homes, kindergartens, and daycare centers. | 儿童情绪识别分析技能，通过监控画面识别儿童哭闹、愤怒、恐惧、委屈等负面情绪，主动发出安抚提醒并通知家长，适用于家庭、幼儿园、托管场所等场景"
-version: "1.0.24"
+name: "smyx-child-emotion-recognition-analysis"
+description: "Using fixed cameras (and optional microphones) at home or in kindergartens, AI multimodal analysis recognizes a child's facial expressions (eyebrow/eye shape, mouth-corner curvature), cry-sound features (pitch, frequency, duration), and body-motion amplitude (waving, stomping, curling up) in real time, and jointly identifies the child's typical emotional state: happy, sad, angry, fearful, etc. | 通过家庭或幼儿园内的固定摄像头（及可选麦克风），利用AI多模态分析技术实时分析儿童的面部表情（如眉眼形态、嘴角弧度）、哭声音频特征（音调、频率、持续时间）以及肢体动作幅度（挥手、跺脚、蜷缩等），综合识别出儿童当前的典型情绪状态：快乐、悲伤、愤怒、恐惧等。"
+version: "1.0.23"
 license: "MIT-0"
 ---
 
-# 😊 Child Emotion Recognition Analyzer | 儿童情绪识别分析工具
-
-> **智能健康/识别分析中枢** · 图片/视频智能分析 · 结构化报告 · 历史报告云端查询
+# 😊 Child Emotion Recognition (Crying/Tantrum/Low Mood) | 儿童情绪波动识别（哭闹/暴躁/低落）
+> **智能分析中枢** · 图片/视频智能分析 · 结构化报告 · 历史报告云端查询
 
 ---
 
@@ -15,46 +14,55 @@ license: "MIT-0"
 
 | 模块 | 内容 |
 |---|---|
-| 🏷️ 技能名称 | **儿童情绪识别分析工具** |
-| 🎯 核心目标 | 儿童情绪识别分析技能，通过监控画面识别儿童哭闹、愤怒、恐惧、委屈等负面情绪，主动发出安抚提醒并通知家长，适用于家庭、幼儿园、托管场所等场景 |
+| 🏷️ 技能名称 | **儿童情绪波动识别（哭闹/暴躁/低落）** |
+| 🎯 核心目标 | 通过家庭或幼儿园内的固定摄像头（及可选麦克风），利用AI多模态分析技术实时分析儿童的面部表情（如眉眼形态、嘴角弧度）、哭声音频特征（音调、频率、持续时间）以及肢体动作幅度（挥手、跺脚、蜷缩等），综合识别出儿童当前的典型情绪状态：快乐、悲伤、愤怒、恐惧等。 |
 | 🖼️ 输入类型 | 图片、视频、本地文件、网络 URL |
-| 📝 输出能力 | 结构化分析报告、风险/识别结果、建议与报告链接 |
-| 🧩 场景码 | `CHILD_EMOTION_RECOGNITION` |
+| 📝 输出能力 | 结构化分析报告、识别/监测结果、建议与报告链接 |
+| 🧩 场景码 | `SMYX_CHILD_EMOTION_RECOGNITION_ANALYSIS` |
 
-By analyzing facial expressions, vocal characteristics, and body movements in surveillance footage, this capability
-identifies negative emotions in children—such as crying, anger, fear, and distress—in real time. Upon detecting
-emotional anomalies, the system actively issues verbal soothing prompts and synchronizes alert notifications to parents'
-or caregivers' mobile devices. Ideal for homes, kindergartens, and care centers, it helps caregivers stay informed about
-children's psychological states, enhancing both emotional care and safety assurance.
+Using fixed cameras (and optional microphones) at home or in kindergartens, AI multimodal analysis recognizes a child's facial expressions (eyebrow/eye shape, mouth-corner curvature), cry-sound features (pitch, frequency, duration), and body-motion amplitude (waving, stomping, curling up) in real time, and jointly identifies the child's typical emotional state: happy, sad, angry, fearful, etc. The skill helps parents or teachers learn the child's mental state in time and provide effective soothing or intervention. Application scenarios: families, kindergartens, early-education centers. The system monitors in real time; when negative emotions (anger, fear, sadness) are detected, it can push reminders via app and suggest soothing actions (e.g., 'baby looks scared, please give a hug'). Skill features: children express emotions directly but busy parents often miss them. AI multimodal analysis helps parents understand the child's inner state, promote parent-child communication, and prevent emotional pile-up. Can be integrated into smart parenting devices or kindergarten management systems to upgrade smart-care capabilities.
 
-本技能通过分析监控画面中儿童的面部表情、声音特征及肢体动作，实时识别哭闹、愤怒、恐惧、委屈等负面情绪。识别到异常情绪后，系统可主动发出语音安抚提示，并同步推送预警信息至家长或看护人员手机端。适用于家庭、幼儿园、托管场所等场景，帮助照护者及时了解儿童心理状态，提升情感关怀与安全保障能力。
+通过家庭或幼儿园内的固定摄像头（及可选麦克风），利用AI多模态分析技术实时分析儿童的面部表情（如眉眼形态、嘴角弧度）、哭声音频特征（音调、频率、持续时间）以及肢体动作幅度（挥手、跺脚、蜷缩等），综合识别出儿童当前的典型情绪状态：快乐、悲伤、愤怒、恐惧等。该技能有助于家长或教师及时了解儿童心理状态，进行有效安抚或干预。应用场景：家庭、幼儿园、早教中心。系统实时监测，当识别到负面情绪（如愤怒、恐惧、悲伤）时，可通过APP推送提醒，并建议安抚措施（如'宝宝看起来害怕，请抱抱他'）。技能特点：儿童情绪表达直接但不易被忙碌的家长及时捕捉。通过AI多模态分析，可帮助家长理解孩子内心状态，促进亲子沟通，预防情绪积压。该技能可集成到智能育儿设备或幼儿园管理系统中，提升智能化关怀水平。
+
+## 🤖 AI 角色 | AI Role
+| 角色要点 | 说明 |
+|---|---|
+| 说明 1 | **假设你是一个专业的儿童情绪分析 AI。你的任务是分析儿童面部表情、哭声（若有音频）以及肢体动作，综合判断儿童当前的情绪类别。不要提供心理诊断或临床建议，仅输出基于多模态特征的情绪分类结果与方向性安抚提示。** |
 
 ## 🎬 技能演示 | Skill Demo
+
 [▶️ 点击查看技能使用介绍](https://lifeemergence.com/sample.html)
 
-## 🎯 任务目标 | Goals
+---
 
+## 🎯 任务目标 | Goals
 ### 1. 🧩 技能用途
 
-通过监控视频/图片分析，识别儿童的情绪状态，特别关注哭闹、愤怒、恐惧、委屈等负面情绪
+基于儿童监控视频（含或不含音频），多模态识别儿童当前主导情绪与强度，给出方向性安抚提示
 
 ### 2. 🛠️ 能力范围
 
 | 序号 | 具体能力 |
 |---:|---|
-| 1 | 面部表情识别 |
-| 2 | 情绪分类 |
-| 3 | 负面情绪检测 |
-| 4 | 异常情绪预警 |
-| 5 | 自动提醒通知 |
+| 1 | 儿童面部检测与表情识别（眉眼形态 |
+| 2 | 嘴角弧度） |
+| 3 | 肢体动作幅度估算（挥手 |
+| 4 | 跺脚 |
+| 5 | 蜷缩等） |
+| 6 | 哭声音频特征分析（可选：音调 / 频率 / 持续时间） |
+| 7 | 情绪分类（happy / calm / sad / angry / fear / cry / surprise） |
+| 8 | 情绪强度判定（low / medium / high） |
+| 9 | 情绪持续秒数 |
+| 10 | 负面情绪阈值告警 |
+| 11 | 安抚提示文案生成 |
 
 ### 3. ⚡ 触发条件
 
 | 触发类型 | 触发规则 |
 |---|---|
-| ✅ 默认触发 | **默认触发**：当用户提供监控视频/图片需要识别儿童情绪时，默认触发本技能进行情绪分析 |
-| 🔎 明确分析意图 | 当用户明确需要进行儿童情绪识别、情绪监测时，提及儿童情绪、哭闹识别、宝宝哭闹、情绪预警等关键词，并且上传了视频或图片文件 |
-| 📚 历史报告查询 | 当用户提及以下关键词时，**自动触发历史报告查询功能** ：查看历史情绪报告、儿童情绪识别报告清单、情绪报告列表、查询历史情绪报告、显示所有情绪报告、儿童情绪分析报告，查询儿童情绪识别分析报告 |
+| ✅ 默认触发 | **默认触发**：当用户提供儿童监控视频或带音频的音视频 URL/文件需要分析时，默认触发本技能进行儿童情绪识别 |
+| 🔎 明确分析意图 | 当用户明确提及儿童情绪、哭闹、暴躁、低落、悲伤、恐惧、害怕、发脾气、儿童心理状态、亲子沟通、情绪安抚等关键词，并且上传了视频/音视频文件 |
+| 📚 历史报告查询 | 当用户提及以下关键词时，**自动触发历史报告查询功能** ：查看儿童情绪历史报告、儿童情绪报告清单、情绪识别报告清单、查询历史儿童情绪、显示所有儿童情绪报告、显示儿童情绪诊断报告，查询情绪安抚提示清单 |
 
 ### 4. 🤖 自动行为
 
@@ -70,12 +78,12 @@ children's psychological states, enhancing both emotional care and safety assura
 必须执行：
 
 ```bash
-python -m scripts.child_emotion_recognition_analysis --list
+python -m scripts.smyx_child_emotion_recognition_analysis --list
 ```
 
 | 类型 | 要求 |
 |---|---|
-| ✅ 必须 | 使用 `python -m scripts.child_emotion_recognition_analysis --list` 调用 API 查询云端的历史报告数据 |
+| ✅ 必须 | 使用 `python -m scripts.smyx_child_emotion_recognition_analysis --list` 调用 API 查询云端的历史报告数据 |
 | 🚫 严格禁止 | 从本地 `memory` 目录读取历史会话信息 |
 | 🚫 严格禁止 | 手动汇总本地记录中的报告 |
 | 🚫 严格禁止 | 从长期记忆中提取报告 |
@@ -116,18 +124,19 @@ python -m scripts.child_emotion_recognition_analysis --list
 
 | 步骤 | 阶段 | 执行动作 |
 |---:|---|---|
-| 1 | 📥 准备视频/图片输入 | 提供本地文件路径或网络 URL；确保输入内容清晰、符合技能场景要求 |
+| 1 | 📥 准备儿童监控视频输入 | 提供本地文件路径或网络 URL；确保输入内容清晰、符合技能场景要求 |
 | 2 | 🔐 系统自动完成身份关联 | 无需用户输入任何身份参数；不在回复中展示内部身份值 |
-| 3 | ⚙️ 执行儿童情绪识别分析 | 调用 `-m scripts.child_emotion_recognition_analysis` 处理输入（**必须在技能根目录下运行脚本**） |
+| 3 | ⚙️ 执行儿童情绪波动识别 | 调用 `-m scripts.smyx_child_emotion_recognition_analysis` 处理输入（**必须在技能根目录下运行脚本**） |
 | 4 | 📊 查看分析结果 | 接收结构化分析报告，查看识别/监测结果、风险提示、建议与报告链接 |
 
 ### ⚙️ 脚本参数说明
 
 | 参数 | 含义 | 备注 |
 |---|---|---|
-| `--input` | 本地视频/图片文件路径 | 适用于本地文件分析 |
-| `--url` | 网络视频/图片 URL 地址（API 服务自动下载） | API 服务自动下载网络资源 |
-| `--list` | 显示历史儿童情绪识别分析报告列表清单（可以输入起始日期参数过滤数据范围） | 用于云端历史报告查询 |
+| `--input` | 本地儿童监控视频/音视频文件路径 | 适用于本地文件分析 |
+| `--url` | 网络儿童监控视频/音视频 URL 地址（API 服务自动下载） | API 服务自动下载网络资源 |
+| `--pet-type` | 类别标识，儿童情绪识别场景默认 `other` | 按需填写 |
+| `--list` | 显示儿童情绪历史识别报告列表清单（可以输入起始日期参数过滤数据范围） | 用于云端历史报告查询 |
 | `--api-url` | API 服务地址（可选，使用默认值） | 按需填写 |
 | `--detail` | 输出详细程度（basic/standard/json，默认 json） | 输出详细程度 |
 | `--output` | 结果输出文件路径（可选） | 可选 |
@@ -135,7 +144,7 @@ python -m scripts.child_emotion_recognition_analysis --list
 ## 🗂️ 资源索引 | Resource Index
 | 资源类型 | 路径 | 用途 | 何时读取 |
 |---|---|---|---|
-| 🐍 必要脚本 | [`scripts/child_emotion_recognition_analysis.py`](scripts/child_emotion_recognition_analysis.py) | 调用 API、执行分析或查询历史报告 | 执行分析或查询时使用 |
+| 🐍 必要脚本 | [`scripts/smyx_child_emotion_recognition_analysis.py`](scripts/smyx_child_emotion_recognition_analysis.py) | 调用 API、执行分析或查询历史报告 | 执行分析或查询时使用 |
 | 🐍 必要脚本 | [`scripts/config.py`](scripts/config.py) | 调用 API、执行分析或查询历史报告 | 执行分析或查询时使用 |
 | 📘 领域参考 | [`references/api_doc.md`](references/api_doc.md) | 了解 API 接口规范、字段说明和错误码 | 仅在需要了解接口规范或错误码时读取 |
 
@@ -143,30 +152,28 @@ python -m scripts.child_emotion_recognition_analysis --list
 | 分类 | 注意事项 |
 |---|---|
 | 📚 文档读取 | 仅在需要时读取参考文档，保持上下文简洁 |
-| 📁 格式支持 | 支持格式：jpg/jpeg/png/mp4/avi/mov，最大 10MB |
-| 🧑‍⚖️ 结果性质 | 分析结果仅供参考，不能替代成人看护，紧急情况请及时现场处理 |
+| 📁 格式支持 | 输入要求：支持 mp4/avi/mov 视频，最大 10MB；建议清晰面部 + 可选音频通道 |
+| 🧑‍⚖️ 结果性质 | 识别结果仅作为亲子沟通辅助参考，不替代专业儿童心理咨询；持续负面情绪请咨询专业医生 |
+| 🔏 隐私合规 | 隐私合规：儿童视频/音频涉及未成年人隐私，使用前需取得监护人知情同意，并妥善保管/加密相关录像 |
 | 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
-| 🌐 网络地址 | 传入的网路地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载 |
+| 🌐 网络地址 | 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载 |
 | 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段  作为超链接地址，且自动转化为如下 Markdown |
 | 📜 报告输出 | 表格输出示例 |
 
 ## 🧰 使用示例 | Examples
 ```bash
-# 分析本地图片
-python -m scripts.child_emotion_recognition_analysis --input /path/to/child.jpg
+# 分析本地儿童监控音视频
+python -m scripts.smyx_child_emotion_recognition_analysis --input /path/to/child_clip.mp4
 
-# 分析网络视频
-python -m scripts.child_emotion_recognition_analysis --url https://example.com/monitor.mp4
+# 分析网络儿童监控音视频
+python -m scripts.smyx_child_emotion_recognition_analysis --url https://example.com/child_clip.mp4
 
-# 分析监控视频
-python -m scripts.child_emotion_recognition_analysis --input /path/to/camera.mp4
-
-# 显示历史分析报告/显示分析报告清单列表/显示历史情绪报告（自动触发关键词：查看历史情绪报告、历史报告、情绪报告清单等）
-python -m scripts.child_emotion_recognition_analysis --list
+# 显示历史儿童情绪识别报告（自动触发关键词：查看儿童情绪历史报告、情绪识别报告清单等）
+python -m scripts.smyx_child_emotion_recognition_analysis --list
 
 # 输出精简报告
-python -m scripts.child_emotion_recognition_analysis --input capture.jpg --detail basic
+python -m scripts.smyx_child_emotion_recognition_analysis --input clip.mp4 --detail basic
 
 # 保存结果到文件
-python -m scripts.child_emotion_recognition_analysis --input capture.jpg --output result.json
+python -m scripts.smyx_child_emotion_recognition_analysis --input clip.mp4 --output result.json
 ```

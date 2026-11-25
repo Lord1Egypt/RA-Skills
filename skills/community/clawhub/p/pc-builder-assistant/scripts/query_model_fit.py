@@ -71,7 +71,34 @@ def _hardware_from_args(args):
     return hardware, gpu, memory
 
 
-def _candidate_rows(vram_gib, limit):
+def _candidate_price(item, currency=None):
+    """Return a usable quoted price only when its own currency is known."""
+    item_currency = item.get("price_currency")
+    if not item_currency or (currency is not None and item_currency != currency):
+        return None
+    if item.get("price_status") == "needs_market_quote":
+        return None
+    value = item.get("price")
+    if value is None or isinstance(value, bool):
+        return None
+    try:
+        price = float(value)
+    except (TypeError, ValueError):
+        return None
+    return price if price > 0 else None
+
+
+def _format_candidate_price(item):
+    price = _candidate_price(item)
+    currency = item.get("price_currency")
+    if price is None or not currency:
+        return "待补价"
+    if currency == "CNY":
+        return f"¥{item.get('price')}"
+    return f"{currency} {price:g}"
+
+
+def _candidate_rows(vram_gib, limit, currency):
     if not vram_gib:
         return []
     rows = query(
@@ -83,8 +110,17 @@ def _candidate_rows(vram_gib, limit):
         sort="asc",
         limit=max(50, limit * 8),
     )
-    rows.sort(key=lambda item: (float(item.get("vram_gb") or 0) != float(vram_gib), item.get("price_cny") or 10**9, item.get("id", "")))
-    return [summarize(item, "gpu") for item in rows[:limit]]
+    candidates = [summarize(item, "gpu") for item in rows]
+    candidates = [
+        item for item in candidates
+        if _candidate_price(item, currency) is not None
+    ]
+    candidates.sort(key=lambda item: (
+        float(item.get("vram_gb") or 0) != float(vram_gib),
+        _candidate_price(item, currency),
+        item.get("id", ""),
+    ))
+    return candidates[:limit]
 
 
 def build_result(args):
@@ -135,8 +171,12 @@ def build_result(args):
         }
         reverse = reverse_recommendation(requested_model, catalog, quantization, context_tokens, args.batch_size)
         result["hardware_recommendation"] = reverse
-        result["minimum_gpu_candidates"] = _candidate_rows(reverse["minimum_vram_gib"], args.limit)
-        result["recommended_gpu_candidates"] = _candidate_rows(reverse["recommended_vram_gib"], args.limit)
+        result["minimum_gpu_candidates"] = _candidate_rows(
+            reverse["minimum_vram_gib"], args.limit, args.currency
+        )
+        result["recommended_gpu_candidates"] = _candidate_rows(
+            reverse["recommended_vram_gib"], args.limit, args.currency
+        )
         if hardware:
             result["fit_on_given_hardware"] = evaluate_model(
                 requested_model,
@@ -185,7 +225,10 @@ def _human(result):
             lines.append(f"给定硬件评估：{result['fit_on_given_hardware']['status']}。")
         candidates = result.get("recommended_gpu_candidates", [])
         if candidates:
-            names = "；".join(f"{item.get('model')}（{item.get('vram_gb')}GB，¥{item.get('price')}）" for item in candidates)
+            names = "；".join(
+                f"{item.get('model')}（{item.get('vram_gb')}GB，{_format_candidate_price(item)}）"
+                for item in candidates
+            )
             lines.append(f"当前库内推荐档候选：{names}。")
         lines.append("模型卡最大上下文不等于该显卡可无约束使用的上下文；长上下文、多并发和 offload 需重新估算。")
         return "\n".join(lines)

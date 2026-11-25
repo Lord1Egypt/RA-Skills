@@ -1,0 +1,188 @@
+{
+  "domain": "ai-docgen",
+  "skill_name": "ai-docgen-expert",
+  "language": "zh-CN",
+  "description_keywords": [
+    "文档生成",
+    "文档治理",
+    "API 文档",
+    "注释",
+    "docstring",
+    "TSDoc",
+    "JSDoc",
+    "TypeDoc",
+    "OpenAPI",
+    "Swagger",
+    "ADR",
+    "架构决策记录",
+    "changelog",
+    "变更日志",
+    "README",
+    "文档漂移",
+    "文档腐化",
+    "Diátaxis",
+    "文档评审",
+    "文档门禁",
+    "doc-as-code",
+    "文档测试",
+    "AI 文档",
+    "幻觉",
+    "PRD",
+    "需求文档",
+    "技术方案",
+    "设计文档",
+    "测试方案",
+    "发布方案",
+    "runbook",
+    "故障复盘",
+    "SRS",
+    "需求规格说明书",
+    "架构文档",
+    "C4",
+    "业务流程",
+    "数据字典",
+    "接口文档",
+    "威胁建模"
+  ],
+  "trigger_scenarios": "为代码库生成、评审或治理编程文档：让 AI 写 API 文档/注释/README/ADR/changelog，检测与治理文档漂移与腐化，搭建 docgen 与文档门禁 CI，验证 AI 生成文档的可信度，或设计项目文档体系与信息架构",
+  "cross_cutting_files": ["laws", "ai-mistakes", "gotchas", "patterns"],
+  "subdomains": [
+    {
+      "name": "doc-taxonomy",
+      "doc_seeds": ["https://diataxis.fr"],
+      "page_budget": 5,
+      "elicitation_topics": [
+        "文档四象限模型（Diátaxis：tutorial/how-to/reference/explanation）的判型方法与常见误判",
+        "文档类型混写反模式（教程塞参考、README 塞教程、how-to 混解释）的症状与拆分",
+        "README 的定位与最小完备结构（开源项目门面：是什么/装/30 秒示例/去哪深入）",
+        "读者-时刻矩阵：同一主题对不同读者（新手/贡献者/API 消费者）的文档分层",
+        "文档信息架构与导航设计（入口页、目录组织、交叉引用、可发现性）",
+        "AI 生成文档时的典型类型学错误"
+      ]
+    },
+    {
+      "name": "api-doc-gen",
+      "doc_seeds": ["https://tsdoc.org", "https://typedoc.org", "https://jsdoc.app"],
+      "page_budget": 8,
+      "elicitation_topics": [
+        "注释驱动 API 文档生成工具链（TypeDoc/JSDoc/OpenAPI 注释）的机制差异与选型",
+        "TSDoc/JSDoc 标签规范：@param/@returns/@example/@remarks/@deprecated 的正确用法",
+        "OpenAPI/Swagger 注释驱动 spec 生成（装饰器与注释两条路线）",
+        "API 文档的签名完整性纪律：参数/返回/异常/副作用/版本标注缺一不可",
+        "@example 代码块纪律：可运行性、与真实签名一致性、版本适配",
+        "文档生成与类型系统的分工：类型能表达的别写进注释，类型不能表达的必须写",
+        "AI 生成 API 文档时的典型错误"
+      ]
+    },
+    {
+      "name": "code-comment",
+      "doc_seeds": ["https://google.github.io/styleguide/"],
+      "page_budget": 5,
+      "elicitation_topics": [
+        "注释价值判据：什么值得注释（为什么/契约/陷阱），什么不该注释（复述代码）",
+        "docstring 结构规范：函数/类/模块头注释的最小完备集",
+        "噪音注释反模式（复述型/日志型/僵尸注释/版本历史型）与清理策略",
+        "TODO/FIXME/HACK/XXX 标记纪律：格式、署名、追踪与到期清理",
+        "语言与团队注释风格差异（JSDoc/Python docstring/Go doc comment/Rust doc）",
+        "AI 生成注释时的典型错误"
+      ]
+    },
+    {
+      "name": "adr-changelog",
+      "doc_seeds": ["https://adr.github.io", "https://keepachangelog.com"],
+      "page_budget": 6,
+      "elicitation_topics": [
+        "ADR（架构决策记录）的结构与生命周期：Status/Context/Decision/Consequences",
+        "ADR 编写纪律：一决策一文件、历史不可变、编号与索引维护",
+        "changelog 格式规范（Keep a Changelog 与 SemVer/Conventional Commits 关联）",
+        "release notes 与 changelog 的区别与各自生成路径",
+        "设计文档/RFC 流程：提案-评审-决议-归档的最小闭环",
+        "AI 生成 ADR/changelog 时的典型错误"
+      ]
+    },
+    {
+      "name": "ai-docgen-workflow",
+      "doc_seeds": ["https://docs.anthropic.com"],
+      "page_budget": 5,
+      "elicitation_topics": [
+        "AI 文档生成工作流：从代码/变更到文档的上下文供给设计",
+        "文档生成 prompt 结构：类型约束 + 读者约束 + 格式约束 + 事实来源约束",
+        "批量生成策略：monorepo 级 docgen 的分批、去重与跨文件一致性",
+        "增量更新：代码变更后的文档同步（diff 驱动 vs 全量重生成）",
+        "AI 生成文档的置信度分层与标注策略（哪些必须人工复核）",
+        "AI docgen 与 CI 集成：pre-commit/hook/流水线中的生成时机与幂等性",
+        "AI 生成文档工作流中的典型错误"
+      ]
+    },
+    {
+      "name": "ai-doc-verification",
+      "doc_seeds": ["https://docs.anthropic.com"],
+      "page_budget": 4,
+      "elicitation_topics": [
+        "AI 文档幻觉模式：编造 API、虚构参数、过时签名、虚构配置项的识别特征",
+        "事实锚定技术：AI 生成内容与代码事实的比对方法（签名比对/引用核对/编译验证）",
+        "AI 生成文档的人工评审清单（reviewer checklist 设计）",
+        "文档事实的自动化验证：类型检查、示例编译、doctest、文档 lint",
+        "版本时效性治理：训练截止后 API 变更对 AI 文档的影响与再验证策略",
+        "AI 生成文档验证环节的典型错误"
+      ]
+    },
+    {
+      "name": "doc-governance",
+      "doc_seeds": ["https://keepachangelog.com"],
+      "page_budget": 6,
+      "elicitation_topics": [
+        "文档漂移（doc drift）机制与检测：代码-文档不一致的根因分类与监控手段",
+        "单一事实来源（SSOT）设计：同一事实多处文档的收敛与引用策略",
+        "文档门禁与 CI：docs lint、链接检查、文档覆盖率门禁、docgen 流水线",
+        "文档生命周期治理：新建-维护-过时-退役的处置流程与归档策略",
+        "文档评审流程与责任模型（docs CODEOWNERS、文档负责人制度）",
+        "文档度量：覆盖率、时效性、链接健康、使用度指标及其局限",
+        "AI 辅助文档治理时的典型错误"
+      ]
+    },
+    {
+      "name": "doc-quality",
+      "doc_seeds": ["https://developers.google.com/style"],
+      "page_budget": 6,
+      "elicitation_topics": [
+        "文档质量判据：可发现性/可理解性/可操作性/时效性四维评估",
+        "示例代码规范：可运行、可复制、最小化、带预期输出的示例纪律",
+        "文档测试：doctest、示例编译、可复制性检查、文档 lint 工具",
+        "技术文档写作风格：术语一致性、主动语态、句长控制、第二人称",
+        "开发者文档风格指南通用内核（Google/Microsoft 风格指南的公约数）",
+        "AI 生成文档时的质量典型错误"
+      ]
+    },
+    {
+      "name": "doc-templates",
+      "doc_seeds": ["https://sre.google/sre-book/postmortem-culture/", "https://www.industrialempathy.com/posts/design-docs-at-google/"],
+      "page_budget": 6,
+      "elicitation_topics": [
+        "产品需求文档（PRD）的专业结构：背景与问题、目标与成功指标、用户故事与验收标准、功能需求、非功能需求、里程碑、风险与开放问题",
+        "轻量需求变体与裁剪：one-pager、Amazon PR/FAQ（working backwards）、用户故事卡（Given/When/Then）的适用边界",
+        "技术方案设计文档（Design Doc/RFC/KEP）：背景与目标、非目标、方案对比与选型理由、架构与接口设计、风险、灰度与回滚",
+        "测试方案与测试报告模板：测试范围、策略、环境与数据、准入准出、用例设计、缺陷统计与报告",
+        "发布与变更方案模板：灰度分级、feature flag、监控指标与观察窗口、回滚预案、数据迁移方案",
+        "运维手册（Runbook）与值班 SOP：告警响应流程、常见故障处置步骤、升级路径、手册保鲜",
+        "故障复盘报告（Postmortem）：blameless 文化、时间线、影响面、根因分析（5 Whys）、行动项跟踪与验收",
+        "AI 生成模板类文档（PRD/设计文档/测试方案/复盘报告）时的典型错误"
+      ]
+    },
+    {
+      "name": "proj-docs",
+      "doc_seeds": ["https://c4model.com", "https://learn.microsoft.com/en-us/azure/well-architected/security/threat-modeling", "https://www.omg.org/spec/BPMN/"],
+      "page_budget": 6,
+      "elicitation_topics": [
+        "SRS 需求规格说明书（ISO/IEE/IEEE 29148）：系统需求的结构化规格（功能/接口/性能/质量属性/约束），与 PRD 的分界（正式合同态 vs 敏捷产品态），模板与裁剪",
+        "架构总览文档（C4 模型：Context/Container/Component/Code）：架构快照与导览，与 ADR（单点决策）、design doc（how 全案）的分界，图的层次与保鲜",
+        "业务流程文档：业务流程图（泳道/时序）、业务规则文档（规则分类与可判定表达）、端到端流程与系统实现的映射",
+        "交互设计交接文档（design handoff spec）：设计稿标注、状态矩阵、边界情况清单、验收标准，设计与开发的交接界面（与 ui-ux 设计知识域的边界）",
+        "数据设计文档：数据字典、ER 图与概念/逻辑/物理模型分层、数据库设计文档、schema 迁移文档（与 OpenAPI schema 的 SSOT 关系）",
+        "接口与集成契约文档：系统间接口规范、消息契约（事件/队列格式）、向后兼容承诺与版本策略（与 api-doc-gen 单系统 API reference 的分界）",
+        "项目管理与立项文档：项目章程（charter）、里程碑计划、会议纪要、状态报告、风险登记册、RACI 责任矩阵",
+        "安全文档：威胁建模（STRIDE/DFD）、安全需求与合规检查表、渗透测试报告的结构"
+      ]
+    }
+  ]
+}

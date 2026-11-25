@@ -1,0 +1,31 @@
+{
+  "name": "kuaishou-user-insight",
+  "version": "1.1.2",
+  "description": "快手用户需求洞察与产品机会分析技能，适用于基于快手公开数据的新产品开发、营销策划、品类切入前的市场分析；适用于基于数据分析的洞察到创业落地框架：用户画像识别、情绪动机挖掘、洞察转机会、创业落地；帮你快速理解目标用户、挖掘情绪动机、把洞察转成可落地的产品机会。",
+  "keywords": [
+    "快手",
+    "爆款视频",
+    "市场调研",
+    "数据挖掘",
+    "趋势监控",
+    "竞品分析",
+    "KOL营销",
+    "流量增长"
+  ],
+  "homepage": "https://github.com/um-why/kuaishou-skill",
+  "bugs": {
+    "url": "https://github.com/um-why/kuaishou-skill/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/kuaishou-skill.git"
+  },
+  "license": "MIT",
+  "author": "um-why",
+  "main": "scripts/kuaishou/search-cli.js",
+  "scripts": {
+    "search": "node scripts/kuaishou/search-cli.js",
+    "post": "node scripts/kuaishou/post-cli.js",
+    "comment": "node scripts/kuaishou/comment-cli.js"
+  }
+}

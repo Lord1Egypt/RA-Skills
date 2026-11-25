@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented in this file.
 
+## 1.0.4 - 2026-11-23
+
+- Send Bring item detail metadata as UTF-8 to preserve non-ASCII names and categories on read-back.
+- Report the verified `Toast` → `Brot` substitution on new free-text items as success with `ICON_REMAPPED`; keep identity, category, photo and move checks strict.
+
 ## 1.0.3 - 2026-11-02
 
 ### Fixed

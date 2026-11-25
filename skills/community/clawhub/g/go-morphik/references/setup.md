@@ -4,7 +4,7 @@ This module is unofficial and not affiliated with Morphik.
 
 ## Requirements
 
-- Go 1.26.10 or newer, per `go.mod`.
+- Go 1.26.11 or newer, per `go.mod`.
 - A Morphik API key, exported as `MORPHIK_API_KEY`.
 
 ## Install

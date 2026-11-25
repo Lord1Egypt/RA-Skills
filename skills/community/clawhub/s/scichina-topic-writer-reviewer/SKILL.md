@@ -1,12 +1,20 @@
 ---
 name: sci-china-reviewer
-version: 0.1.2
+version: 0.1.3
 description: 科普智创审校助手。当用户提到「科普中国热点创作」「科普工作」「热点采集与科普写作」或类似意图时激活。执行以下流程：(1) 监控 kepuchina.cn 整理热门文章与关键字；(2) 根据关键字为用户拟写科普文章；(3) 执行科学性审查与引用来源核查，防止大模型幻觉。英文名：SciChina Topic Writer & Reviewer。
 ---
 
 # 科普智创审校助手
 
 **英文名：** SciChina Topic Writer & Reviewer
+**版本：** 0.1.3（新增 wiki 节点唯一性巡检：创建后按标题计数 → >1 即删 → 再次枚举复核 = 1）
+
+> **v0.1.3 更新说明（2026-11-11 心跳：同族通则补齐）**
+> - **根因**：本 skill 的 `wiki +node-create` **只调用一次是对的，但没有后续校验**——若命令非 0 又重跑，同一主题会建出第二个节点。日志侧已实测该模式曾积压 33 份多余副本（15 份为只有 `<title>` 的空壳）。
+> - **修复**：写入飞书文档前新增**步骤 1.5 节点唯一性巡检**：创建后立即 `wiki +node-list --page-all --page-limit 30` 按标题计数，>1 即删多余者，删后**再次枚举复核 = 1**。
+> - **为什么判据必须是重新计数**：`wiki +node-delete` 的 stdout 只输出版本升级提示，看不出成功与否；只有重新枚举的计数是可信判据（与 KAPE v0.1.39 第 ④ 步同源）。
+> - **通则**：**防重复检查只看本地状态等于没查远端**；凡是「在远端创建资源」的动作，成功判据必须是**远端重新枚举**。
+
 **版本：** 0.1.2
 **激活关键字：** 科普中国热点创作、科普工作、热点采集与科普写作
 
@@ -135,6 +143,23 @@ lark-cli wiki +node-create \
   --parent-node-token "SERDwHBAniUqqBkx5vNctvgKn6f" \
   --title "[科普智创] 主题：XXX | YYYY-MM-DD"
 # → 获得 obj_token（即 doc_token）
+
+# ⚠️ 步骤 1.5：节点唯一性巡检（2026-11-11 新增，同族通则，不可省略）
+# 理由：`wiki +node-create` **每次调用都会真的建一个节点**；若命令非 0 又重跑，
+#       同一天/同一主题就会建出第二个节点。日志侧已实测：科技新闻日报目录曾积压
+#       33 份多余副本（其中 15 份只有 <title> 的空壳）。
+# 判据：只能看**重新枚举后的计数**，不能看命令退出码
+#   （`wiki +node-delete` 的 stdout 只输出版本升级提示，看不出成功与否）。
+set +e
+TITLE="[科普智创] 主题：XXX | YYYY-MM-DD"
+COUNT=$(lark-cli wiki +node-list --space-id 7621391289904516315 \
+  --parent-node-token SERDwHBAniUqqBkx5vNctvgKn6f --page-all --page-limit 30 2>/dev/null \
+  | grep -c "\"title\": \"${TITLE}\"")
+set -e
+if [ "${COUNT:-0}" -gt 1 ]; then
+  echo "⚠️ 发现 ${COUNT} 个同名节点（复发）。删除多余者后必须再次 node-list 复核计数 = 1："
+  echo "   lark-cli wiki +node-delete --node-token \"<多余 node_token>\" --obj-type wiki --yes"
+fi
 ```
 
 2. 用 `feishu_doc` 写入内容（**content 须为 XML 格式，禁止直接传 Markdown**）：

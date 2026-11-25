@@ -1,6 +1,6 @@
 ## Description:
 
-Resolves CoinGecko token identity by chain and contract, then reports timestamped market evidence and relevant pool liquidity checks.
+Resolve CoinGecko token identity, distinguish native and bridged assets, and produce a timestamped price, market cap and liquidity evidence card.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Developers and token researchers use this skill to verify a token's chain and contract, assess dated CoinGecko price and market observations, and distinguish those observations from executable DEX quotes.
+Developers and token researchers use this skill to resolve a token by chain and contract, then prepare a dated evidence card for price, market data and available liquidity. It also helps compare provider observations with a DEX quote while keeping identity, freshness and execution limits explicit.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Token identifiers may be sent to CoinGecko or an existing approved quote provider.
+Risk: The security review was partial because a local path-like reference in SKILL.md could not be resolved.
 
-Mitigation: Use the skill only when sharing the researched identifiers with those providers is acceptable.
+Mitigation: Review the unresolved local reference and the skill before installation; the benign verdict has medium confidence and is not a guarantee of safety.
 
-Risk: An API key could be exposed through insecure request configuration.
+Risk: Live workflows make requests to CoinGecko, an external service.
 
-Mitigation: Use protected credential configuration; do not put keys in URLs, shell history, or output artifacts.
-
-Risk: Aggregate prices or market metrics could be mistaken for executable quotes or trading advice.
-
-Mitigation: Report source and freshness, check pool depth and trade size when sellability matters, and do not treat the evidence card as trading or wallet/PnL advice.
+Mitigation: Use the skill only if CoinGecko requests are acceptable for the task; the scan does not confirm whether any request was made.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/galleonlabs/skills/galleon-coingecko-token-research)
+- [ClawHub release page](https://clawhub.ai/galleonlabs/skills/galleon-coingecko-token-research)
+- [CoinGecko contract address lookup](https://docs.coingecko.com/demo/reference/coins-contract-address)
+- [CoinGecko token price endpoint](https://docs.coingecko.com/demo/reference/simple-token-price)
+- [CoinGecko onchain top pools](https://docs.coingecko.com/reference/top-pools-contract-address)
+- [CoinGecko API changelog](https://docs.coingecko.com/changelog)
 - [Request and identity guidance](references/requests.md)
-- [Official sources](references/sources.md)
-- [CoinGecko contract identity API](https://docs.coingecko.com/demo/reference/coins-contract-address)
-- [CoinGecko token price API](https://docs.coingecko.com/demo/reference/simple-token-price)
-- [CoinGecko top pools API](https://docs.coingecko.com/reference/top-pools-contract-address)
+- [Dated official sources](references/sources.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Guidance]
+**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
 
-**Output Format:** [JSON evidence card with a brief written conclusion]
+**Output Format:** [A concise conclusion with a structured token evidence card, typically in JSON or Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes chain, contract, currency, source, observation and retrieval times, and identity and freshness status; unavailable metrics remain unknown.]
+**Other Properties Related to Output:** [Includes contract identity, timestamped provider observations, freshness and identity status, and whether an execution quote was obtained. Missing or unsupported values remain explicit.]
 
 ## Skill Version(s):
 
-0.6.1 (source: frontmatter and server release)
+0.8.0 (source: frontmatter, ClawHub release)
 
 ## Ethical Considerations:
 

@@ -16,16 +16,14 @@ from datetime import datetime, timezone
 from pathlib import Path, PurePosixPath
 from xml.etree import ElementTree as ET
 
+from cli_support import dependency_message, shell_command
+
 try:
     import yaml
     from jsonschema import Draft202012Validator, FormatChecker
 except ModuleNotFoundError as exc:  # pragma: no cover - clean-machine path
     missing = getattr(exc, "name", "PyYAML/jsonschema")
-    message = (
-        f"Missing runtime dependency {missing}. Run: python -m pip install -r scripts/requirements.txt"
-        if any(value == "en-US" for value in sys.argv) else
-        f"缺少运行依赖 {missing}。请先执行：python -m pip install -r scripts/requirements.txt"
-    )
+    message = dependency_message(getattr(exc, "name", "PyYAML/jsonschema"), "en-US" in sys.argv)
     print(message, file=sys.stderr)
     raise SystemExit(4) from exc
 
@@ -204,6 +202,12 @@ def merge_markdown_template(base: str, overlay: str) -> str:
 def project_human(args: argparse.Namespace) -> int:
     """Create a human-distribution Markdown projection without machine frontmatter."""
     try:
+        if args.input.resolve() == args.output.resolve() or (
+            args.input.exists() and args.output.exists() and args.input.samefile(args.output)
+        ):
+            print("BLOCKED: 分发副本与权威源是同一文件；请选择另一个输出路径，源文件未修改。" if args.language == "zh-CN" else
+                  "BLOCKED: distribution copy and canonical source are the same file; choose a separate output path. Source unchanged.")
+            return 2
         raw = args.input.read_text(encoding="utf-8")
     except (OSError, UnicodeError) as exc:
         print(f"BLOCKED: 无法读取权威 Markdown：{exc}" if args.language == "zh-CN" else f"BLOCKED: cannot read canonical Markdown: {exc}")
@@ -1235,10 +1239,10 @@ def main() -> int:
     check.add_argument("--keep-going", action="store_true")
     check.set_defaults(func=run_check)
 
-    gate = sub.add_parser("gate", help="Run the token-free final requirement/PRD/prototype goalkeeper")
+    gate = sub.add_parser("gate", help=gate_help("Check supplied artifacts and evidence declarations", "检查指定产物及证据声明的结构"))
     gate.add_argument("--profile", choices=["frame", "explore", "clarify", "requirement", "prd", "prototype", "handoff", "full", "stage0", "agent_handoff"], required=True)
     gate.add_argument("--artifact", type=Path, action="append", default=[], help=gate_help("Main frame/explore/clarify artifact; for profile=requirement repeat it for requirement-register sidecars", "frame/explore/clarify 主产物；profile=requirement 时可重复提供需求登记册侧车"))
-    gate.add_argument("--requirement", type=Path)
+    gate.add_argument("--requirement", type=Path, help=gate_help("Requirement intake or register YAML. For Product Truth use check --product-truth FILE", "需求输入或登记册 YAML。校验 Product Truth 请用 check --product-truth 文件"))
     gate.add_argument("--prd", type=Path)
     gate.add_argument("--prototype", type=Path, action="append", help="Repeat for admin/H5/multi-surface prototypes")
     gate.add_argument("--prototype-baseline", type=Path, help=gate_help("Existing HTML baseline; inherited issues become GAP while new regressions still block", "存量 HTML 基线；相同旧问题降为 GAP，本次新增回归仍阻断"))
@@ -1248,7 +1252,7 @@ def main() -> int:
     gate.add_argument("--manifest", type=Path, help="Agent handoff manifest YAML")
     gate.add_argument("--acceptance-run", type=Path, action="append", help=gate_help("Executed ARUN-*; repeat to close L3/L4 browser evidence", "已执行的 ARUN-*；L3/L4 原型据此闭合浏览器证据"))
     gate.add_argument("--review-record", type=Path, help=gate_help("Optional review record YAML; validates sign-off closure", "可选评审记录 YAML；用于校验签署闭环"))
-    gate.add_argument("--level", choices=["auto", "L0", "L1", "L2", "L3", "L4"], default="auto")
+    gate.add_argument("--level", choices=["auto", "L0", "L1", "L2", "L3", "L4"], default="auto", help=gate_help("Legacy delivery level. PRD text checks may return the same result across levels", "兼容旧交付等级，同一 PRD 的文本检查可能返回相同结果"))
     gate.add_argument("--stage", choices=["frame", "explore", "inventory", "clarify", "specify", "review", "baseline", "prototype", "implementation", "acceptance", "closed"], default="baseline")
     gate.add_argument("--scope-ref", action="append", default=[])
     gate.add_argument("--domain", action="append", default=[], help=gate_help("Active domain ID for scoped custom rules; repeat as needed", "当前工件适用的领域 ID；用于隔离私有规则，可重复"))

@@ -22,6 +22,7 @@ TOKEN_DIR = Path(
     os.environ.get("GARMIN_TOKEN_DIR") or Path.home() / ".garmin-health-analysis-cn" / "tokens"
 )
 CONFIG_FILE = Path(__file__).parent.parent / "config.json"
+META_FILE = TOKEN_DIR / "meta.json"
 
 
 def load_config():
@@ -34,6 +35,58 @@ def load_config():
     except Exception as e:
         print(f"⚠️  Failed to load config: {e}", file=sys.stderr)
         return None
+
+
+def _write_meta(is_cn):
+    """Persist the region used at login time.
+
+    Tokens are issued by the domain matching `is_cn` (connect.garmin.cn vs
+    connect.garmin.com). Recording it here lets token reuse always reconnect
+    to the same domain, independent of later config/env changes.
+    """
+    try:
+        TOKEN_DIR.mkdir(parents=True, exist_ok=True)
+        meta = {
+            "is_cn": bool(is_cn),
+            "login_at": datetime.now().isoformat(timespec="seconds"),
+        }
+        with open(META_FILE, "w") as f:
+            json.dump(meta, f, indent=2)
+    except Exception as e:
+        print(f"⚠️  Failed to save login meta: {e}", file=sys.stderr)
+
+
+def _read_meta():
+    """Read persisted login metadata (region used when tokens were issued)."""
+    if not META_FILE.exists():
+        return None
+    try:
+        with open(META_FILE) as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"⚠️  Failed to load login meta: {e}", file=sys.stderr)
+        return None
+
+
+def resolve_is_cn():
+    """Resolve CN mode for token reuse.
+
+    Priority: login-time meta (tokens were issued for that domain) >
+    GARMIN_IS_CN env > config.json (legacy fallback). This mirrors the region
+    actually used at login so generation and reuse stay consistent.
+    """
+    meta = _read_meta()
+    if meta and "is_cn" in meta:
+        return bool(meta["is_cn"])
+
+    env_cn = os.environ.get("GARMIN_IS_CN")
+    if env_cn is not None:
+        return env_cn.strip().lower() in ("1", "true", "yes", "on", "cn")
+
+    config = load_config()
+    if config and config.get("is_cn"):
+        return True
+    return False
 
 
 def login(email, password, is_cn=False):
@@ -53,6 +106,9 @@ def login(email, password, is_cn=False):
         garth = getattr(client, "garth", None) or client.client
         garth.dump(tokenstore)
         print(f"✅ Tokens saved to {tokenstore}", file=sys.stderr)
+
+        # Persist the region used so token reuse reconnects to the same domain
+        _write_meta(is_cn)
         
         # Test the connection
         try:
@@ -75,31 +131,43 @@ def login(email, password, is_cn=False):
         return False
 
 
-def get_client():
-    """Get authenticated Garmin client, using saved tokens if available."""
-    tokenstore = str(TOKEN_DIR)
+def _client_from_tokens(is_cn):
+    """Build a client from saved tokens and verify it works."""
+    client = Garmin(is_cn=is_cn)
+    client.login(tokenstore=str(TOKEN_DIR))
+    client.get_user_summary(datetime.now().strftime("%Y-%m-%d"))
+    return client
 
+
+def get_client():
+    """Get authenticated Garmin client, using saved tokens if available.
+
+    Region is resolved via resolve_is_cn() (login-time meta > env > config)
+    so tokens are always replayed against the domain that issued them.
+    If tokens are invalid, tries one automatic re-login using config.json
+    credentials before giving up.
+    """
     if not TOKEN_DIR.exists():
         return None
 
-    # Determine CN mode from config file
-    is_cn = False
-    config = load_config()
-    if config and config.get("is_cn"):
-        is_cn = True
+    is_cn = resolve_is_cn()
 
     try:
-        # Try to use saved tokens
-        client = Garmin(is_cn=is_cn)
-        client.login(tokenstore=tokenstore)
-        
-        # Test if tokens still work
-        client.get_user_summary(datetime.now().strftime("%Y-%m-%d"))
-        return client
-        
+        return _client_from_tokens(is_cn)
     except Exception as e:
         print(f"⚠️  Saved tokens expired or invalid: {e}", file=sys.stderr)
-        return None
+
+    # Tokens unusable: attempt one automatic re-login with config credentials
+    config = load_config()
+    if config and config.get("email") and config.get("password"):
+        print("🔄 Trying automatic re-login with config.json credentials...", file=sys.stderr)
+        if login(config["email"], config["password"], is_cn=is_cn):
+            try:
+                return _client_from_tokens(is_cn)
+            except Exception as e:
+                print(f"⚠️  Re-login succeeded but token reuse failed: {e}", file=sys.stderr)
+
+    return None
 
 
 def check_status():
@@ -112,6 +180,10 @@ def check_status():
         return False
     
     print(f"✅ Token store found at {tokenstore}", file=sys.stderr)
+
+    # Show which server region tokens will be replayed against
+    region = "CN (connect.garmin.cn)" if resolve_is_cn() else "Global (connect.garmin.com)"
+    print(f"ℹ️  Server region for token reuse: {region}", file=sys.stderr)
     
     # Test if they work
     client = get_client()

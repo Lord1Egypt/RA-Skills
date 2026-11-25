@@ -1,6 +1,6 @@
 ## Description:
 
-Integrates Didit's AML Screening standalone API so agents can help screen people or companies against global watchlists, sanctions lists, PEP data, adverse media, and other high-risk databases.
+Provides guidance and code for integrating Didit's standalone AML screening API to screen people or companies, review potential matches, and configure ongoing monitoring.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,10 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
+MIT-0
 
 ## Use Case:
 
-Compliance developers and operations teams use this skill to add Didit AML screening flows or run command-line checks for people and companies with a DIDIT_API_KEY.
+Developers use this skill to integrate Didit AML screening into backend services and API-key workflows. It guides request setup, scoring configuration, hit review, safe retries, and optional ongoing monitoring.
 
 ### Deployment Geography for Use:
 
@@ -21,39 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill sends highly sensitive identity and AML subject data to Didit.
+Risk: Screening data and API credentials are sent to an external service.
 
-Mitigation: Use it only with the required consent or legal basis, minimize submitted subject data where possible, and confirm the destination service is approved for the workflow.
+Mitigation: Before use, confirm you trust Didit and are comfortable sending the screening data and credentials to it.
 
-Risk: AML responses and helper output can expose sensitive subject data or watchlist details in shared logs or agent sessions.
+Risk: The security scan was partial, so its evidence is incomplete.
 
-Mitigation: Avoid logged CI or shared sessions unless output is redacted, and restrict access to full responses.
-
-Risk: Retention, saved requests, and continuous monitoring behavior may need explicit compliance controls before routine use.
-
-Mitigation: Add or verify controls for save_api_request, continuous monitoring, and full-response output before operational deployment.
+Mitigation: Treat the benign verdict as limited evidence and review the skill and its use before deployment.
 
 ## Reference(s):
 
-- [ClawHub Skill Page](https://clawhub.ai/rosasalberto/skills/didit-aml-screening)
-- [Didit Documentation](https://docs.didit.me)
-- [Didit AML Screening API Reference](https://docs.didit.me/standalone-apis/aml-screening)
-- [Didit AML Screening Feature Guide](https://docs.didit.me/core-technology/aml-screening/overview)
-- [Didit AML Risk Score](https://docs.didit.me/core-technology/aml-screening/aml-risk-score)
+- [ClawHub skill page](https://clawhub.ai/rosasalberto/skills/didit-aml-screening)
+- [Didit AML Screening API](https://docs.didit.me/standalone-apis/aml-screening)
+- [AML Screening feature guide](https://docs.didit.me/core-technology/aml-screening/overview)
+- [AML Match Score](https://docs.didit.me/core-technology/aml-screening/aml-match-score)
+- [AML Risk Score](https://docs.didit.me/core-technology/aml-screening/aml-risk-score)
+- [Didit pricing](https://docs.didit.me/getting-started/pricing)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, JSON]
+**Output Type(s):** [API Calls, Code, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown guidance with Python, TypeScript, bash examples, and JSON API response shapes]
+**Output Format:** [Markdown with Python and TypeScript examples, JSON request and response examples, and CLI commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires DIDIT_API_KEY; the helper script can make live requests to Didit's AML endpoint.]
+**Other Properties Related to Output:** [Includes a Python command-line helper script.]
 
 ## Skill Version(s):
 
-1.1.0 (source: server release metadata; artifact frontmatter lists 1.0.0)
+1.4.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

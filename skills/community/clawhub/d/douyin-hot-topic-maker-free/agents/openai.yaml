@@ -1,0 +1,9 @@
+interface:
+  display_name: "免费抖音热点选题助手"
+  short_description: "免费免第三方内容 API Key，生成 5 个带来源的抖音选题"
+  icon_small: "./assets/icon-512.png"
+  icon_large: "./assets/icon-512.png"
+  brand_color: "#5B5FF2"
+  default_prompt: "使用 $douyin-hot-topic-maker-free，根据我的账号定位和当前浏览器可见内容生成 5 个带来源的抖音选题。"
+policy:
+  allow_implicit_invocation: true

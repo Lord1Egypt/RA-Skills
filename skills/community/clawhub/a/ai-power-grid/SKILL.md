@@ -47,12 +47,6 @@ An account whose sign-in wallet holds 10,000 AIPG or more on Base gets extra fre
 are in the credit summary under `free.holder_tiers`. Signing in or paying with a wallet is not part of this
 skill: the plugin's README describes it, and it is the user's decision and the user's command to run.
 
-**If you run on your own, without a user at hand,** and you have an EVM wallet and are allowed to open
-accounts for yourself, you can get an account and a key by signing one sign-in message, with no browser and no
-human step. The steps and a small helper script are in
-https://raw.githubusercontent.com/speteai/aipg-agent-guides/main/agents/skill.md. This is the only case in
-which you make a key yourself.
-
 A new account may have no credit. Accounts with a verified Google sign-in get a small daily free allowance;
 otherwise the user adds credit at https://console.aipowergrid.io/dashboard/funding.
 

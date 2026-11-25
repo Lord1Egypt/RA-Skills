@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to create, organize, monitor, and manage AI coding agent sessions in tmux, including sessions based on Git worktrees.
+Developers use this skill to launch, organize, monitor, and communicate with AI coding-agent sessions through Agent of Empires. It provides command-line workflows for session lifecycle, groups, profiles, worktrees, and output capture.
 
 ### Deployment Geography for Use:
 
@@ -22,9 +22,13 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Session commands can start or stop agents, send prompts, and remove sessions; purge options can permanently delete worktrees and branches.
+Risk: YOLO mode skips the agent tool's permission prompts, allowing actions to proceed without those checks.
 
-Mitigation: Check the session and worktree targets before acting, review prompts before sending them, and use purge or delete options only when permanent removal is intended.
+Mitigation: Use YOLO mode only when its permission tradeoff is intended, and review agent actions and changes.
+
+Risk: Purging a session can permanently delete its worktree or branch.
+
+Mitigation: Check the selected session and deletion flags before running a purge command.
 
 ## Reference(s):
 
@@ -34,17 +38,17 @@ Mitigation: Check the session and worktree targets before acting, review prompts
 
 ## Skill Output:
 
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON]
+**Output Type(s):** [Shell commands, Guidance, JSON]
 
-**Output Format:** [Markdown guidance with shell command examples and JSON examples]
+**Output Format:** [Markdown guidance with shell command examples and documented JSON output shapes]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Examples cover session management, status inspection, and configuration.]
+**Other Properties Related to Output:** [Commands and guidance are tailored to the requested agent-session management task.]
 
 ## Skill Version(s):
 
-1.24.0 (source: server-resolved release metadata)
+1.25.0 (source: release metadata)
 
 ## Ethical Considerations:
 

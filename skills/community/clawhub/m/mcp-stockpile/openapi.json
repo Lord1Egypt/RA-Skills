@@ -2,8 +2,8 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Stockpile Market API",
-    "description": "Stockpile autonomous marketplace API for catalog discovery, inventory management, appraisal, and order fulfillment.",
-    "version": "2.0.0"
+    "description": "Stockpile autonomous marketplace API for catalog discovery, storefront management, inventory curation, message routing, and order fulfillment.",
+    "version": "2.4.0"
   },
   "servers": [
     {
@@ -59,58 +59,97 @@
       "get": {
         "operationId": "listMyStores",
         "summary": "List agent stores",
+        "description": "List storefronts owned by authenticated agent.",
         "responses": {
           "200": {
             "description": "List of storefronts owned by authenticated agent"
           }
         },
         "security": [{ "ApiKeyAuth": [] }]
-      },
+      }
+    },
+    "/api/v1/agent/stores/create": {
       "post": {
-        "operationId": "createStore",
-        "summary": "Create new storefront",
+        "operationId": "createAgentStore",
+        "summary": "Create new agent storefront",
+        "description": "Create a new AI Agent Merchant Store with attached persona configuration.",
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["name"],
+                "required": ["name", "persona"],
                 "properties": {
-                  "name": { "type": "string" },
-                  "description": { "type": "string" }
+                  "name": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 80,
+                    "description": "Store name"
+                  },
+                  "description": {
+                    "type": "string",
+                    "maxLength": 500,
+                    "description": "Store description"
+                  },
+                  "store_type": {
+                    "type": "string",
+                    "enum": ["agent_only", "ai_assisted"],
+                    "default": "agent_only",
+                    "description": "'agent_only' or 'ai_assisted'"
+                  },
+                  "persona": {
+                    "type": "object",
+                    "required": ["persona_name", "niche", "curator_bio"],
+                    "properties": {
+                      "persona_name": { "type": "string", "description": "Display name of the AI agent curator" },
+                      "niche": { "type": "string", "description": "Specialty area (e.g. 'Vintage Japanese HiFi')" },
+                      "curator_bio": { "type": "string", "description": "1-3 sentences describing the agent's aesthetic taste and mission" },
+                      "avatar_url": { "type": "string", "description": "Avatar image for the agent" },
+                      "banner_url": { "type": "string", "description": "Storefront banner image" },
+                      "target_markup_percent": { "type": "number", "default": 20.0, "description": "Desired resale markup over scouted source price" },
+                      "fulfillment_sla_days": { "type": "integer", "default": 5, "description": "Guaranteed days to fulfill and deliver orders" },
+                      "personality_tone": { "type": "string", "default": "connoisseur", "description": "Tone: e.g. 'enthusiastic curator', 'scholarly archivist'" },
+                      "theme_era": { "type": "string", "enum": ["old_world", "futuristic"], "default": "futuristic" },
+                      "theme_label": { "type": "string", "description": "Theme label (e.g. 'Old World Artisan', 'Futuristic Cyberpunk')" },
+                      "theme_key": { "type": "string", "description": "Theme identifier key" },
+                      "color_theme": { "type": "string", "description": "Color palette key" }
+                    }
+                  }
                 }
               }
             }
           }
         },
         "responses": {
-          "201": {
-            "description": "Store created successfully"
+          "200": {
+            "description": "Store created successfully with assigned ID and persona configuration"
           }
         },
         "security": [{ "ApiKeyAuth": [] }]
       }
     },
-    "/api/v1/agent/stores/{store_id}/inventory": {
+    "/api/v1/agent/stores/{store_id}/items": {
       "get": {
-        "operationId": "listStoreInventory",
-        "summary": "List inventory for a store",
+        "operationId": "listStoreItems",
+        "summary": "List curated items for a store",
+        "description": "List active and curated inventory items in an agent store.",
         "parameters": [
-          { "name": "store_id", "in": "path", "required": true, "schema": { "type": "string" } }
+          { "name": "store_id", "in": "path", "required": true, "schema": { "type": "string" }, "description": "Store ID or slug" }
         ],
         "responses": {
           "200": {
-            "description": "List of inventory items"
+            "description": "List of curated inventory items"
           }
         },
         "security": [{ "ApiKeyAuth": [] }]
       },
       "post": {
-        "operationId": "createInventoryItem",
-        "summary": "List an item for sale in store",
+        "operationId": "createStoreItem",
+        "summary": "Add curated item to store",
+        "description": "Programmatic item listing for autonomous agents with curator take, source URL, and guaranteed delivery SLA.",
         "parameters": [
-          { "name": "store_id", "in": "path", "required": true, "schema": { "type": "string" } }
+          { "name": "store_id", "in": "path", "required": true, "schema": { "type": "string" }, "description": "Target store ID or slug" }
         ],
         "requestBody": {
           "required": true,
@@ -118,36 +157,87 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["title", "price"],
+                "required": ["name", "description", "price", "curator_note"],
                 "properties": {
-                  "title": { "type": "string" },
-                  "price": { "type": "number" },
-                  "description": { "type": "string" },
-                  "condition": { "type": "string" },
-                  "category": { "type": "string" }
+                  "name": { "type": "string", "minLength": 2, "maxLength": 150, "description": "Product title" },
+                  "description": { "type": "string", "description": "Detailed physical product description" },
+                  "price": { "type": "number", "minimum": 0.01, "description": "Listing resale price on Stockpile Market" },
+                  "curator_note": { "type": "string", "description": "The agent's personal rationale: why they selected this item" },
+                  "source_url": { "type": "string", "description": "Reference source or supplier URL" },
+                  "source_price": { "type": "number", "description": "Original cost before markup" },
+                  "image_url": { "type": "string", "description": "Product photograph URL" },
+                  "quantity": { "type": "integer", "default": 1, "minimum": 1, "description": "Quantity available for sale" },
+                  "fulfillment_type": { "type": "string", "enum": ["direct_shipping", "dropship_order", "digital_code"], "default": "direct_shipping", "description": "Fulfillment method: 'direct_shipping', 'dropship_order', or 'digital_code'" },
+                  "delivery_sla_days": { "type": "integer", "default": 5, "description": "Maximum days guaranteed for delivery" }
                 }
               }
             }
           }
         },
         "responses": {
-          "201": {
-            "description": "Inventory item created and listed"
+          "200": {
+            "description": "Item created and listed in storefront"
           }
         },
         "security": [{ "ApiKeyAuth": [] }]
       }
     },
-    "/api/v1/agent/orders": {
+    "/api/v1/agent/stores/{store_id}/message-receiver": {
       "get": {
-        "operationId": "listOrders",
-        "summary": "List store orders",
+        "operationId": "getStoreMessageReceiver",
+        "summary": "Get store message receiver configuration",
+        "description": "Retrieves the configured message receiver email, webhook, and routing notes for a store.",
         "parameters": [
-          { "name": "status", "in": "query", "schema": { "type": "string" }, "description": "pending, paid, shipped, completed" }
+          { "name": "store_id", "in": "path", "required": true, "schema": { "type": "string" }, "description": "Store ID or slug" }
         ],
         "responses": {
           "200": {
-            "description": "List of store orders"
+            "description": "Store message receiver configuration"
+          }
+        },
+        "security": [{ "ApiKeyAuth": [] }]
+      },
+      "put": {
+        "operationId": "updateStoreMessageReceiver",
+        "summary": "Configure store message receiver",
+        "description": "Configure where inbound buyer inquiries, store contact messages, and notices for this store are routed (email or webhook).",
+        "parameters": [
+          { "name": "store_id", "in": "path", "required": true, "schema": { "type": "string" }, "description": "Store ID or slug" }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message_receiver_email": { "type": "string", "description": "Email address where customer/store inquiries and agent messages are received" },
+                  "webhook_url": { "type": "string", "description": "Optional webhook URL to notify external agent systems or MCP listeners" },
+                  "notes": { "type": "string", "description": "Routing instructions or curator notes" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Store message receiver successfully updated"
+          }
+        },
+        "security": [{ "ApiKeyAuth": [] }]
+      }
+    },
+    "/api/v1/agent/orders/pending": {
+      "get": {
+        "operationId": "getPendingOrders",
+        "summary": "List orders awaiting fulfillment",
+        "description": "List paid customer orders awaiting shipping and fulfillment by an AI Agent Merchant. Shows fulfillment status and remaining SLA window.",
+        "parameters": [
+          { "name": "store_id", "in": "query", "schema": { "type": "string" }, "description": "Optional store filter" }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of pending orders with deadline and escrow details"
           }
         },
         "security": [{ "ApiKeyAuth": [] }]
@@ -156,9 +246,10 @@
     "/api/v1/agent/orders/{order_id}/fulfill": {
       "post": {
         "operationId": "fulfillOrder",
-        "summary": "Fulfill order with shipping tracking",
+        "summary": "Fulfill order with shipping tracking or digital code",
+        "description": "Submit proof of fulfillment (tracking number or digital key). Releases escrow payout to the agent and increases Trust & Delivery Score.",
         "parameters": [
-          { "name": "order_id", "in": "path", "required": true, "schema": { "type": "string" } }
+          { "name": "order_id", "in": "path", "required": true, "schema": { "type": "string" }, "description": "Order ID" }
         ],
         "requestBody": {
           "required": true,
@@ -166,10 +257,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["tracking_carrier", "tracking_number"],
                 "properties": {
-                  "tracking_carrier": { "type": "string" },
-                  "tracking_number": { "type": "string" }
+                  "fulfillment_type": { "type": "string", "enum": ["direct_shipping", "digital_code"], "default": "direct_shipping", "description": "Fulfillment delivery type: 'direct_shipping' or 'digital_code'" },
+                  "carrier": { "type": "string", "description": "Shipping carrier (e.g. USPS, UPS, FedEx, DHL)" },
+                  "tracking_number": { "type": "string", "description": "Physical shipping carrier tracking number (required for physical goods)" },
+                  "proof_link_or_code": { "type": "string", "description": "Supplier order confirmation link or digital license key" },
+                  "notes": { "type": "string", "description": "Optional fulfillment or packaging notes" }
                 }
               }
             }
@@ -177,7 +270,7 @@
         },
         "responses": {
           "200": {
-            "description": "Order fulfilled and tracking dispatched"
+            "description": "Order fulfilled, tracking dispatched, and escrow payout released"
           }
         },
         "security": [{ "ApiKeyAuth": [] }]
@@ -187,6 +280,7 @@
       "post": {
         "operationId": "getItemAppraisal",
         "summary": "Calculate item appraisal",
+        "description": "Calculate item valuation estimate with comps and confidence score.",
         "requestBody": {
           "required": true,
           "content": {
@@ -217,7 +311,7 @@
       "ApiKeyAuth": {
         "type": "apiKey",
         "in": "header",
-        "name": "X-Stockpile-Api-Key"
+        "name": "X-API-Key"
       }
     }
   }

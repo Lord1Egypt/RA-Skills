@@ -32,12 +32,14 @@ CSV_FORMATS = {
         "date_col": "Bokföringsdag",
         "amount_col": "Belopp",
         "desc_col": "Rubrik",
+        "balance_col": "Saldo",
     },
     "ica": {
         "detect_headers": ["Datum", "Text", "Typ"],
         "date_col": "Datum",
         "amount_col": "Belopp",
         "desc_col": "Text",
+        "balance_col": "Saldo",
     },
 }
 
@@ -67,6 +69,57 @@ def parse_amount(amount_string: str) -> float:
     s = s.replace("\xa0", "")  # non-breaking space
     s = s.replace(",", ".")
     return float(s)
+
+
+# A reservation ("Reserverat") carries no date of its own, so the importer
+# stores it as of the import day. That is only meaningful for an export that
+# reflects the account roughly as of today. In an older export the same row is
+# a historical artifact -- its settlement is already recorded by a later
+# export -- and importing it would create a pending transaction dated today for
+# a purchase that was paid months ago.
+PENDING_STALE_DAYS = 14
+
+
+def export_anchor_date(
+    rows: list[list[str]], date_idx: int, file_path: str | None = None
+) -> datetime.date | None:
+    """Best available date for an export.
+
+    Prefers the newest dated (settled) row in the file, then a date encoded in
+    the filename, then the file's modification time. Returns None when the file
+    carries no date information at all.
+    """
+    latest = None
+    for row in rows:
+        if not row or date_idx >= len(row):
+            continue
+        raw = row[date_idx].strip()
+        if not raw or raw.lower() == "reserverat":
+            continue
+        try:
+            row_date = parse_date(raw)
+        except ValueError:
+            continue
+        if latest is None or row_date > latest:
+            latest = row_date
+    if latest is not None:
+        return latest
+
+    if file_path:
+        basename = os.path.basename(file_path)
+        for pattern in (r"(\d{4})[-_](\d{2})[-_](\d{2})", r"(\d{4})(\d{2})(\d{2})"):
+            match = re.search(pattern, basename)
+            if match:
+                try:
+                    return datetime.date(*(int(part) for part in match.groups()))
+                except ValueError:
+                    break
+        try:
+            return datetime.date.fromtimestamp(os.path.getmtime(file_path))
+        except OSError:
+            pass
+
+    return None
 
 
 def detect_format(header_row: list[str]) -> str | None:
@@ -391,6 +444,14 @@ class CSVImporter:
             date_idx = header_row.index(fmt["date_col"])
             amount_idx = header_row.index(fmt["amount_col"])
             desc_idx = header_row.index(fmt["desc_col"])
+            # The Saldo column is optional: exports that omit it simply leave
+            # every stored balance NULL.
+            balance_col = fmt.get("balance_col")
+            balance_idx = (
+                header_row.index(balance_col)
+                if balance_col and balance_col in header_row
+                else None
+            )
 
             cur = self.db.get_cursor()
 
@@ -412,7 +473,18 @@ class CSVImporter:
             seen_reservations = set()       # (cleaned desc, amount) listed in this export
             settled_dates_seen = []         # settled row dates listed in this export
 
-            for row in reader:
+            all_rows = list(reader)
+            anchor_date = export_anchor_date(all_rows, date_idx, file_path)
+            # Reservations carry no date of their own. They are only meaningful
+            # in an export that reflects the account roughly as of today; and
+            # they belong to the export's date, not the import date, otherwise
+            # a settlement already recorded in the database looks "future".
+            current_export = anchor_date is None or (
+                anchor_date
+                >= datetime.date.today() - datetime.timedelta(days=PENDING_STALE_DAYS)
+            )
+
+            for row in all_rows:
                 if not row or all(cell.strip() == "" for cell in row):
                     continue
 
@@ -420,11 +492,16 @@ class CSVImporter:
                     raw_date = row[date_idx].strip()
                     is_pending = raw_date.lower() == "reserverat"
                     if is_pending:
-                        txn_date = datetime.date.today()
+                        txn_date = anchor_date or datetime.date.today()
                     else:
                         txn_date = parse_date(raw_date)
                     amount = parse_amount(row[amount_idx])
                     description = row[desc_idx].strip()
+                    balance = None
+                    if balance_idx is not None and balance_idx < len(row):
+                        raw_balance = row[balance_idx].strip()
+                        if raw_balance:
+                            balance = parse_amount(raw_balance)
                 except (ValueError, IndexError) as e:
                     errors += 1
                     details_failures.append({
@@ -434,6 +511,20 @@ class CSVImporter:
                     continue
 
                 status = "pending" if is_pending else "settled"
+
+                if is_pending and not current_export:
+                    skipped += 1
+                    details_skipped.append({
+                        "date": txn_date,
+                        "description": description,
+                        "amount": amount,
+                        "reason": (
+                            "Stale reservation from a non-current export "
+                            "(reservations are imported only from exports "
+                            f"reaching back to {PENDING_STALE_DAYS} days)"
+                        ),
+                    })
+                    continue
 
                 if status == "pending":
                     seen_reservations.add((clean_description(description), amount))
@@ -516,8 +607,8 @@ class CSVImporter:
                                 "UPDATE transactions SET date = ?, description = ?, amount = ?, "
                                 "adjusted_amount = ? * "
                                 "(SELECT ownership_ratio FROM accounts WHERE accounts.id = account_id), "
-                                "status = 'settled', source_file = ? WHERE id = ?",
-                                (txn_date, description, amount, amount, file_path, primary_id),
+                                "status = 'settled', source_file = ?, balance = ? WHERE id = ?",
+                                (txn_date, description, amount, amount, file_path, balance, primary_id),
                             )
                             for merged_id in matched_ids[1:]:
                                 cur.execute("DELETE FROM transactions WHERE id = ?", (merged_id,))
@@ -573,6 +664,17 @@ class CSVImporter:
                 batch_index[txn_key] = group_idx + 1
                 if group_idx < existing_counts.get(txn_key, 0):
                     skipped += 1
+                    # A re-import of an export that carries a Saldo column can
+                    # backfill balances on rows stored before balance parsing
+                    # existed. Only NULLs are filled, never overwritten.
+                    if balance is not None:
+                        cur.execute(
+                            "UPDATE transactions SET balance = ? "
+                            "WHERE account_id = ? AND date = ? AND description = ? "
+                            "AND amount = ? AND status = ? AND occurrence = ? "
+                            "AND balance IS NULL",
+                            (balance, account_id, txn_date, description, amount, status, group_idx + 1),
+                        )
                     details_skipped.append({
                         "date": txn_date,
                         "description": description,
@@ -584,10 +686,10 @@ class CSVImporter:
 
                 try:
                     cur.execute(
-                        "INSERT INTO transactions (date, description, amount, account_id, source_file, status, adjusted_amount, occurrence) "
+                        "INSERT INTO transactions (date, description, amount, account_id, source_file, status, adjusted_amount, balance, occurrence) "
                         "VALUES (?, ?, ?, ?, ?, ?, ? * "
-                        "(SELECT ownership_ratio FROM accounts WHERE accounts.id = ?), ?)",
-                        (txn_date, description, amount, account_id, file_path, status, amount, account_id, occurrence),
+                        "(SELECT ownership_ratio FROM accounts WHERE accounts.id = ?), ?, ?)",
+                        (txn_date, description, amount, account_id, file_path, status, amount, account_id, balance, occurrence),
                     )
                     imported += 1
                     details_new.append({
@@ -612,10 +714,7 @@ class CSVImporter:
             # silently as a double-count.
             import_warnings = []
             today = datetime.date.today()
-            export_is_current = bool(settled_dates_seen) and (
-                max(settled_dates_seen) >= today - datetime.timedelta(days=14)
-            )
-            if export_is_current:
+            if current_export:
                 cur.execute(
                     "SELECT id, date, description, amount FROM transactions "
                     "WHERE account_id = ? AND status = 'pending'",

@@ -1,0 +1,306 @@
+{
+ "schema": "oasis-blueprints/sheet-kinds/0.1",
+ "_about": [
+  "The standard kinds of sheet. A sheet name can match several (DETAILS & MATERIAL LIST is both); the first match in this list is its main kind.",
+  "`any`: the name must match one of these. `not`: and none of these. Case-insensitive regular expressions.",
+  "Names that match nothing are listed in unmapped_sheet_names.csv after `build`. Add a pattern here for the common ones and build again."
+ ],
+ "kinds": [
+  {
+   "key": "cover",
+   "name": "Cover sheet",
+   "any": [
+    "cover",
+    "title sheet"
+   ]
+  },
+  {
+   "key": "general_notes",
+   "name": "General notes",
+   "any": [
+    "general notes",
+    "notes (and|&) spec",
+    "specifications",
+    "^notes$",
+    "code (data|summary|analysis)"
+   ],
+   "not": [
+    "structural"
+   ]
+  },
+  {
+   "key": "structural_notes",
+   "name": "Structural notes",
+   "any": [
+    "structural notes",
+    "structural general"
+   ]
+  },
+  {
+   "key": "site_plan",
+   "name": "Site plan",
+   "any": [
+    "site plan",
+    "plot plan",
+    "survey"
+   ]
+  },
+  {
+   "key": "demolition_plan",
+   "name": "Demolition plan",
+   "any": [
+    "demo"
+   ]
+  },
+  {
+   "key": "floor_plan",
+   "name": "Floor plan",
+   "any": [
+    "floor plan",
+    "plan view",
+    "layout plan",
+    "loft plan",
+    "deck plan",
+    "^plans?$"
+   ],
+   "not": [
+    "power",
+    "lighting",
+    "mechanical",
+    "plumbing",
+    "sanitary",
+    "electrical",
+    "hvac",
+    "framing",
+    "reflected"
+   ]
+  },
+  {
+   "key": "foundation_plan",
+   "name": "Foundation plan",
+   "any": [
+    "foundation",
+    "footing",
+    "pier plan",
+    "post plan",
+    "post layout",
+    "slab plan"
+   ]
+  },
+  {
+   "key": "floor_framing_plan",
+   "name": "Floor or deck framing plan",
+   "any": [
+    "floor framing",
+    "joist",
+    "beam plan",
+    "deck framing",
+    "framing plan",
+    "loft framing"
+   ],
+   "not": [
+    "roof",
+    "ceiling",
+    "wall"
+   ]
+  },
+  {
+   "key": "wall_framing",
+   "name": "Wall framing",
+   "any": [
+    "wall framing",
+    "wall plan",
+    "(?<![a-z])stud",
+    "framing elevation",
+    "lintel"
+   ]
+  },
+  {
+   "key": "sheathing_plan",
+   "name": "Sheathing plan",
+   "any": [
+    "sheeting",
+    "sheathing"
+   ],
+   "not": [
+    "framing"
+   ]
+  },
+  {
+   "key": "ceiling_framing_plan",
+   "name": "Ceiling framing plan",
+   "any": [
+    "ceiling framing",
+    "ceiling joist"
+   ]
+  },
+  {
+   "key": "roof_framing_plan",
+   "name": "Roof framing plan",
+   "any": [
+    "roof framing",
+    "rafter",
+    "truss",
+    "purlin"
+   ]
+  },
+  {
+   "key": "roof_plan",
+   "name": "Roof plan",
+   "any": [
+    "roof plan",
+    "roof schematic"
+   ],
+   "not": [
+    "framing"
+   ]
+  },
+  {
+   "key": "decking_plan",
+   "name": "Decking plan",
+   "any": [
+    "decking"
+   ]
+  },
+  {
+   "key": "railing_plan",
+   "name": "Railing plan",
+   "any": [
+    "railing",
+    "guard"
+   ]
+  },
+  {
+   "key": "stair",
+   "name": "Stairs",
+   "any": [
+    "stair"
+   ]
+  },
+  {
+   "key": "elevations",
+   "name": "Elevations",
+   "any": [
+    "elevation"
+   ],
+   "not": [
+    "framing elevation"
+   ]
+  },
+  {
+   "key": "sections",
+   "name": "Sections",
+   "any": [
+    "section"
+   ]
+  },
+  {
+   "key": "details",
+   "name": "Details",
+   "any": [
+    "detail"
+   ]
+  },
+  {
+   "key": "schedules",
+   "name": "Schedules",
+   "any": [
+    "schedule"
+   ]
+  },
+  {
+   "key": "legend",
+   "name": "Legend",
+   "any": [
+    "legend"
+   ]
+  },
+  {
+   "key": "view_3d",
+   "name": "3D view",
+   "any": [
+    "(?<![a-z])3d(?![a-z])",
+    "isometric",
+    "perspective",
+    "render",
+    "axon"
+   ]
+  },
+  {
+   "key": "material_list",
+   "name": "Material list",
+   "any": [
+    "material",
+    "cut list",
+    "lumber list",
+    "bill of"
+   ]
+  },
+  {
+   "key": "assembly_steps",
+   "name": "Assembly steps",
+   "any": [
+    "assembly",
+    "(?<![a-z])steps?(?![a-z])",
+    "instruction"
+   ]
+  },
+  {
+   "key": "electrical_power",
+   "name": "Electrical, power",
+   "any": [
+    "power",
+    "electrical"
+   ],
+   "not": [
+    "lighting"
+   ]
+  },
+  {
+   "key": "electrical_lighting",
+   "name": "Electrical, lighting",
+   "any": [
+    "lighting",
+    "reflected ceiling"
+   ]
+  },
+  {
+   "key": "mechanical",
+   "name": "Mechanical",
+   "any": [
+    "mechanical",
+    "hvac"
+   ]
+  },
+  {
+   "key": "plumbing_water",
+   "name": "Plumbing, water",
+   "any": [
+    "plumbing",
+    "water plan",
+    "water supply"
+   ],
+   "not": [
+    "sanitary"
+   ]
+  },
+  {
+   "key": "plumbing_sanitary",
+   "name": "Plumbing, sanitary",
+   "any": [
+    "sanitary",
+    "drain",
+    "waste",
+    "sewer"
+   ]
+  },
+  {
+   "key": "existing_conditions",
+   "name": "Existing conditions",
+   "any": [
+    "existing",
+    "as[- ]built"
+   ]
+  }
+ ]
+}

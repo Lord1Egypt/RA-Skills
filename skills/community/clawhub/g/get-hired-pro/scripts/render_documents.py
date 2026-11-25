@@ -25,7 +25,7 @@ def publish(source, destination):
                 'Saved files and pending receipts are preserved; resume on supported storage or use another document tool.') from exc
 
 
-def render(packet,destination,resume=False,format='docx'):
+def render(packet,destination,resume=False,format='docx',combine=False):
  if format not in ('docx','pdf','both'):
   raise ValueError('format must be docx, pdf or both')
  out=Path(destination)
@@ -79,9 +79,13 @@ def render(packet,destination,resume=False,format='docx'):
  if format in ('pdf','both'):
   from pdf_layout import export_pdfs
   export_pdfs(out,resume=resume,publish=publish,verify=verify_receipt)
+ if combine:
+  from combine_documents import combine as combine_application
+  combine_application(out,resume=resume,format=format,publish=publish,verify=verify_receipt)
  return json.loads((out/'Resume.layout.json').read_text(encoding='utf-8'))
 
 if __name__=='__main__':
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('packet');p.add_argument('destination');p.add_argument('--resume',action='store_true',help='Complete missing files for the identical saved packet; preserve existing documents');p.add_argument('--format',choices=['docx','pdf','both'],default='docx');a=p.parse_args()
- render(json.loads(Path(a.packet).read_text(encoding='utf-8')),a.destination,resume=a.resume,format=a.format)
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('packet');p.add_argument('destination');p.add_argument('--resume',action='store_true',help='Complete missing files for the identical saved packet; preserve existing documents');p.add_argument('--format',choices=['docx','pdf','both'],default='docx');p.add_argument('--combine',action='store_true',help='Also create Application.docx/PDF: resume first, cover letter on a new page');a=p.parse_args()
+ render(json.loads(Path(a.packet).read_text(encoding='utf-8')),a.destination,resume=a.resume,format=a.format,combine=a.combine)
  print('Built '+('Resume.docx and Letter.docx' if a.format=='docx' else 'Resume.pdf and Letter.pdf'+(' plus Word copies' if a.format=='both' else ''))+'.')
+ if a.combine:print('Combined application: Application.docx'+(' and Application.pdf' if a.format in ('pdf','both') else '')+'.')

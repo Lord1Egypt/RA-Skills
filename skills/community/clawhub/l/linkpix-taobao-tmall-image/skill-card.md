@@ -1,6 +1,6 @@
 ## Description:
 
-Creates Taobao and Tmall product imagery, including hero image sets, detail pages, SKU visuals, and promotional graphics, through Qinghu AI.
+Creates Taobao and Tmall product images, listing galleries, detail-page graphics, and campaign visuals through Qinghu AI.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,43 +14,40 @@ MIT-0
 
 ## Use Case:
 
-Taobao and Tmall operators, designers, and brand teams use this skill to create product photos, listing image sets, long-form detail graphics, SKU visuals, and campaign artwork from product assets.
+Taobao and Tmall sellers, ecommerce designers, and brand visual teams use this skill to turn product photos and campaign copy into listing images, SKU visuals, long detail-page graphics, and promotional creatives.
 
 ### Deployment Geography for Use:
 
-Global
+China
 
 ## Known Risks and Mitigations:
 
-Risk: The setup guidance requests an API key through chat.
+Risk: Setup instructions download and run unpinned packages, so package contents may change between installations.
 
-Mitigation: Configure the key locally instead of sharing it in chat, and rotate any key already shared.
+Mitigation: Review the package and its source before installation, and use a pinned version where possible.
 
-Risk: The skill recommends automatic installation and upgrades of external software.
+Risk: Setup guidance asks users to share an API key in chat, which can expose account credentials.
 
-Mitigation: Review package and dependency versions before installing or upgrading.
-
-Risk: Image estimates may upload supplied product images.
-
-Mitigation: Confirm whether estimates upload images before using confidential product assets.
+Mitigation: Do not paste API keys into chat; configure credentials through a local environment variable or secure secret store.
 
 ## Reference(s):
 
+- [LinkPix ClawHub release](https://clawhub.ai/autoagc/skills/linkpix-taobao-tmall-image)
 - [qhkit package on npm](https://www.npmjs.com/package/@iqinghu/qhkit)
 
 ## Skill Output:
 
-**Output Type(s):** [Image files, Shell commands, Configuration instructions]
+**Output Type(s):** [Image files, Text, Shell commands, Configuration instructions]
 
-**Output Format:** [Generated product images, with Markdown links and command-line guidance]
+**Output Format:** [Generated image assets and Markdown or text guidance with inline shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Image output depends on the selected model, platform options, and supplied product assets.]
+**Other Properties Related to Output:** [Image count, dimensions, model, and theme depend on the selected workflow and available options.]
 
 ## Skill Version(s):
 
-0.1.4 (source: server-resolved release metadata)
+0.1.5 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

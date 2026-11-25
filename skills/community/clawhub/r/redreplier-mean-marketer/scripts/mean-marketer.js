@@ -127,6 +127,62 @@ function parseArgs(args) {
   return parsed;
 }
 
+const MAX_MESSAGE_CHARS = 2000;
+const MAX_FIELD_CHARS = 300;
+const TRIAGE_STATUSES = new Set(["APPROVED", "REJECTED", "NEW"]);
+const MENTION_ID = /^[A-Za-z0-9_-]{1,64}$/;
+const ANSI_ESCAPE = /\x1b\[[0-9;?]*[ -\/]*[@-~]|\x1b\][^\x07\x1b]*(?:\x07|\x1b\\)/g;
+const CONTROL_CHARS = /[\x00-\x09\x0b-\x1f\x7f-\x9f\u200b-\u200f\u202a-\u202e\u2066-\u2069]/g;
+
+function plainText(value, maxChars) {
+  const text = String(value).replace(ANSI_ESCAPE, "").replace(CONTROL_CHARS, "").trim();
+  return text.length > maxChars ? `${text.slice(0, maxChars - 1)}…` : text;
+}
+
+function singleLine(value) {
+  return plainText(String(value).replace(/\s+/g, " "), MAX_FIELD_CHARS);
+}
+
+function httpsUrl(value) {
+  try {
+    const url = new URL(String(value));
+    return url.protocol === "https:" && !url.username && !url.password ? url.href : null;
+  } catch {
+    return null;
+  }
+}
+
+function formatNotification(data) {
+  const lines = [plainText(data.message, MAX_MESSAGE_CHARS)];
+  const opp = data.opportunity;
+  if (opp) {
+    lines.push("");
+    lines.push("Opportunity:");
+    if (opp.title) lines.push(`- Title: ${singleLine(opp.title)}`);
+    const link = opp.url && httpsUrl(opp.url);
+    if (link) lines.push(`- Link: ${link}`);
+    if (opp.source) lines.push(`- Source: ${singleLine(sourceLabel(opp))}`);
+    const score = Number(opp.relevanceScore);
+    if (opp.relevanceScore != null && Number.isFinite(score))
+      lines.push(`- Score: ${score}/100`);
+    if (opp.relevanceReason) lines.push(`- Why: ${singleLine(opp.relevanceReason)}`);
+    if (MENTION_ID.test(String(opp.id)))
+      lines.push(`- ID: ${opp.id}  (reply "approve" or "reject" to triage)`);
+  }
+  return lines.join("\n").trim();
+}
+
+function sourceLabel(opp) {
+  if (!opp.subreddit) return opp.source;
+  if (opp.source === "REDDIT_POST" || opp.source === "REDDIT_COMMENT") {
+    return `${opp.source} (r/${opp.subreddit})`;
+  }
+  if (opp.source === "FACEBOOK_GROUP") {
+    return `${opp.source} (Facebook group ${opp.subreddit})`;
+  }
+  return opp.source;
+}
+
 // ── Commands (each maps 1:1 to a backend endpoint) ───────────────────────────
 
 const COMMANDS = {
@@ -187,30 +243,10 @@ const COMMANDS = {
   // so always let this deliver its output — never poll just to peek.
   notify: async () => {
     const data = await request("POST", "/api/v1/mean-marketer/poll");
-
-    // Stay silent when the server says there's nothing worth pinging about.
     if (!data || data.enabled === false) return;
     if (!data.message) return;
     if (data.noNewOpportunity && !data.beMean) return;
-
-    const lines = [String(data.message)];
-    const opp = data.opportunity;
-    if (opp) {
-      lines.push("");
-      lines.push("Opportunity:");
-      if (opp.title) lines.push(`- Title: ${opp.title}`);
-      if (opp.url) lines.push(`- Link: ${opp.url}`);
-      if (opp.source) {
-        lines.push(
-          `- Source: ${opp.source}${opp.subreddit ? ` (r/${opp.subreddit})` : ""}`,
-        );
-      }
-      if (opp.relevanceScore != null)
-        lines.push(`- Score: ${opp.relevanceScore}/100`);
-      if (opp.relevanceReason) lines.push(`- Why: ${opp.relevanceReason}`);
-      lines.push(`- ID: ${opp.id}  (reply "approve" or "reject" to triage)`);
-    }
-    console.log(lines.join("\n").trim());
+    console.log(formatNotification(data));
   },
 
   // Clear the outstanding-lead memory + strike count.
@@ -221,14 +257,14 @@ const COMMANDS = {
   // Close the loop when the user replies approve/reject (reuses the core API).
   triage: async (args) => {
     const parsed = parseArgs(args);
-    if (!parsed.id || !parsed.status) {
+    if (!MENTION_ID.test(String(parsed.id)) || !TRIAGE_STATUSES.has(parsed.status)) {
       error(
         "Usage: ./scripts/mean-marketer.js triage --id <mention_id> --status APPROVED|REJECTED|NEW",
       );
       process.exit(1);
     }
     output(
-      await request("PATCH", `/api/v1/mentions/${parsed.id}/status`, {
+      await request("PATCH", `/api/v1/mentions/${encodeURIComponent(parsed.id)}/status`, {
         status: parsed.status,
       }),
     );

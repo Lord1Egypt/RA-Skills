@@ -9,7 +9,8 @@ const { parseArgs, buildHelp, parseDecimalInteger } = require("../utils/args");
 const {
   emitError,
   emitEmpty,
-  printSuccessEnvelope,
+  buildSuccessEnvelope,
+  finishSuccess,
   emitUncaught,
 } = require("../utils/output");
 
@@ -155,20 +156,16 @@ async function main() {
     return;
   }
 
-  const finalOutput = printSuccessEnvelope(
+  const finalOutput = buildSuccessEnvelope(
     "获取评论任务完成",
     startTime,
     commentRequest,
     commentTask,
   );
-  utils.printSuccess(
-    `获取评论任务完成, 共返回 ${finalOutput.results.length} 条结果`,
-  );
-
-  await log.writeResultLog(
-    `${startTime}_${log.resourceId(url)}_comment.json`,
-    JSON.stringify(finalOutput, null, 2),
-  );
+  await finishSuccess(finalOutput, {
+    logFilename: `${startTime}_${log.resourceId(url)}_comment.json`,
+    stderrMessage: `获取评论任务完成, 共返回 ${finalOutput.results.length} 条结果`,
+  });
 }
 
 main().catch((error) => {

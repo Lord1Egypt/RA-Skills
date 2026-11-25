@@ -1,6 +1,6 @@
 ## Description:
 
-Discover AWS-hosted AI agent and MCP-relevant assets from the operator's environment, emit canonical agent-bom inventory JSON, and optionally scan it when the operator requests a scan.
+Discovers AWS-hosted AI agents and workloads, writes canonical inventory JSON, and can optionally scan that inventory with agent-bom.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ Apache-2.0
 
 ## Use Case:
 
-Developers and cloud operators use this skill to inventory AI agents and workloads in their AWS environment with operator-controlled, read-only credentials. They can stop after generating a canonical inventory or explicitly request a local scan.
+Developers and cloud security teams use this skill to inventory AWS-hosted AI agents and related workloads as canonical JSON. They can optionally scan the inventory with agent-bom when requested.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review is incomplete because a local reference could not be resolved.
+Risk: The security review reports medium confidence and two missing referenced paths, leaving some checks incomplete.
 
-Mitigation: Review the unresolved reference and inspect the skill before installing.
+Mitigation: Complete the missing reference checks before relying on the benign verdict.
+
+Risk: The inventory can include sensitive AWS account and workload metadata.
+
+Mitigation: Use an approved read-only AWS role and store the inventory only at an operator-approved path.
 
 ## Reference(s):
 
-- [Project homepage](https://github.com/koda-ai-studio/agent-bom)
+- [agent-bom repository](https://github.com/koda-ai-studio/agent-bom)
 - [agent-bom on PyPI](https://pypi.org/project/agent-bom/)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Shell commands, Guidance]
+**Output Type(s):** [Files, JSON]
 
-**Output Format:** [Canonical inventory JSON file and Markdown instructions]
+**Output Format:** [Canonical inventory JSON file]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Inventory is written to an operator-selected path; scanning and export are optional operator-directed steps.]
+**Other Properties Related to Output:** [Written to an operator-selected path; scanning and export are optional and operator-directed.]
 
 ## Skill Version(s):
 
-0.115.3 (source: frontmatter)
+0.115.6 (source: frontmatter, ClawHub release metadata)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Fetches public Xiaohongshu/RedNote notes, profile posts, note details, and comments so an agent can support sentiment monitoring, market research, KOL screening, competitor analysis, and risk reporting.
+Searches public Xiaohongshu posts, comments, and creator profiles by keyword or URL and returns structured data for sentiment, market, and content research.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-External users, content operators, marketers, and analysts use this skill to retrieve public Xiaohongshu data by keyword, note URL, or profile URL, then turn the structured results into market research, sentiment summaries, competitor monitoring, content planning, and KOL screening.
+Content, brand, and customer support teams use this skill to research public Xiaohongshu posts, review comments, monitor creators, and inform topic, competitor, and sentiment analysis.
 
 ### Deployment Geography for Use:
 
@@ -22,44 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Queries, Xiaohongshu links, and the provider API token are sent to guaikei.com.
+Risk: Search keywords and Xiaohongshu links are sent to the third-party Guaikei service when the skill is used.
 
-Mitigation: Use the skill only when that third-party API path is acceptable; avoid sensitive queries and rotate or revoke the token if exposure is suspected.
+Mitigation: Use non-sensitive queries and public links, and review the service and the skill’s declared scope before calling it.
 
-Risk: Returned results are saved to local temporary JSON logs that may contain sensitive topics or public-content analysis.
+Risk: The security scan is incomplete: 13 of 42 components were only partially inspected.
 
-Mitigation: Review and delete temp logs after sensitive work, especially on shared machines or managed environments.
-
-Risk: The package metadata mentions batch download behavior that the security guidance flags as stale or overbroad relative to the inspected code.
-
-Mitigation: Base user-facing expectations on the current SKILL.md, references, and inspected CLI behavior for public-data lookup and analysis.
-
-Risk: Public-data lookups can fail, return empty results, or reflect deleted, unavailable, or rate-limited content.
-
-Mitigation: Treat empty or error responses as inconclusive, verify important findings against source links, and avoid unsupported sentiment or market conclusions.
+Mitigation: Review the skill’s scope and permissions and complete a fuller scan before deployment.
 
 ## Reference(s):
 
-- [ClawHub Skill Page](https://clawhub.ai/why20261/skills/xiaohongshu-sentiment-monitor)
-- [Project Homepage](https://github.com/um-why/xiaohongshu-openclaw-skill)
-- [Options and Invocation Guide](references/options.md)
-- [Troubleshooting](references/troubleshooting.md)
-- [Changelog](references/changelog.md)
-- [Guaikei API Token Provider](https://www.guaikei.com)
+- [ClawHub skill page](https://clawhub.ai/why20261/skills/xiaohongshu-sentiment-monitor)
+- [Guaikei service](https://www.guaikei.com)
+- [Output contract](artifact/references/contract.md)
+- [Command options](artifact/references/options.md)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+**Output Type(s):** [JSON, Shell commands]
 
-**Output Format:** [Markdown guidance with shell command examples and structured JSON CLI outputs]
+**Output Format:** [Structured JSON envelope containing Xiaohongshu post, comment, creator, and engagement data; command examples are shell commands.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires Node.js >=16 and GUAIKEI_API_TOKEN; CLI results are also saved as local JSON logs under the OS temp directory.]
+**Other Properties Related to Output:** [Read-only public data; interaction counts may be returned as strings. An agent can use the JSON to prepare summaries and analysis.]
 
 ## Skill Version(s):
 
-1.1.4 (source: SKILL.md frontmatter, package.json, release metadata, changelog)
+1.2.2 (source: frontmatter, package.json, server release)
 
 ## Ethical Considerations:
 

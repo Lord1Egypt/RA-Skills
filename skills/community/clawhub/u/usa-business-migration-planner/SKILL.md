@@ -1,16 +1,16 @@
 ---
 name: usa-business-migration-planner
 description: >-
-  Help users with Validated demand: People repeatedly need a practical, repeatable way to handle Vercel should fork and maintain Deno. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.. Use when a user asks for work-productivity, ask-hn, vercel, fork, maintain, or needs a practical workflow, artifact, checklist, analysis, or implementation support for this requirement.
+  Help users with Validated demand: People repeatedly need a practical, repeatable way to handle vl: 在终端里用 VS Code 风格的界面和 Vim 键位审阅和编辑代码， 10 mb 大小. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.. Use when a user asks for software-and-data, v2ex, create, code, vim, or needs a practical workflow, artifact, checklist, analysis, or implementation support for this requirement.
 ---
 
 # USA Business Migration Planner
 
 ## Requirement
 
-Use this skill to help professionals and teams trying to improve work outcomes, especially users who need a reusable workflow instead of a one-off answer with:
+Use this skill to help developers, analysts, and technical users, especially users who need a reusable workflow instead of a one-off answer with:
 
-> Validated demand: People repeatedly need a practical, repeatable way to handle Vercel should fork and maintain Deno. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
+> Validated demand: People repeatedly need a practical, repeatable way to handle vl: 在终端里用 VS Code 风格的界面和 Vim 键位审阅和编辑代码， 10 mb 大小. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
 
 Demand score: 100/100 (`70/70` demand, `30/30` local feasibility).
 Evidence: 12 signals across 3 source families.
@@ -20,7 +20,7 @@ Read `references/requirement-plan.md` when source evidence, planning details, or
 ## Workflow
 
 1. Restate the user's outcome, constraints, available inputs, and success criteria.
-2. Create a concise work plan, template, automation outline, or decision aid that reduces manual coordination.
+2. Inspect technical constraints, propose implementation steps, and include test or verification commands when code or data is involved.
 3. Ask only for missing information that materially changes the output; otherwise make reasonable assumptions and continue.
 4. Keep the implementation local-hardware friendly: prefer scripts, templates, checklists, and small-model or CPU-safe workflows over cloud-only or large-training approaches.
 5. Produce the requested artifact, workflow, checklist, analysis, code change, or decision support.
@@ -41,10 +41,10 @@ Read `references/requirement-plan.md` when source evidence, planning details, or
 
 ## Triggers
 
-Keywords: `work-productivity`, `ask-hn`, `vercel`, `fork`, `maintain`, `deno`, `given`
+Keywords: `software-and-data`, `v2ex`, `create`, `code`, `vim`, `agent`, `vibe`
 
 Example trigger sentences:
 
-- `Help me People repeatedly need a practical, repeatable way to handle Vercel should fork and maintain Deno.`
-- `I need a practical workflow for People repeatedly need a practical, repeatable way to handle Vercel should fork and maintain Deno.`
-- `Use $usa-business-migration-planner to handle People repeatedly need a practical, repeatable way to handle Vercel should fork and maintain Deno.`
+- `Help me People repeatedly need a practical, repeatable way to handle vl: 在终端里用 VS Code 风格的界面和 Vim 键位审阅和编辑代码， 10 mb 大小.`
+- `I need a practical workflow for People repeatedly need a practical, repeatable way to handle vl: 在终端里用 VS Code 风格的界面和 Vim 键位审阅和编辑代码， 10 mb 大小.`
+- `Use $usa-business-migration-planner to handle People repeatedly need a practical, repeatable way to handle vl: 在终端里用 VS Code 风格的界面和 Vim 键位审阅和编辑代码， 10 mb 大小.`

@@ -1,3 +1,8 @@
+---
+name: super-advisor-investment-banking
+description: 整合全球顶级咨询公司（麦肯锡/BCG/贝恩）方法论与投资银行最佳实践，覆盖8大核心领域50+能力模块的超级投行顾问专家系统，用于战略决策、投行顾问与资本运作支持。
+---
+
 # Super Advisor Investment Banking Skill
 
 > 融合全球顶级咨询公司方法论 · 投资银行最佳实践与前沿金融科技能力 · 企业级全能决策支持体系

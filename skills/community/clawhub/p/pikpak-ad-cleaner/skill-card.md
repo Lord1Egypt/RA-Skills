@@ -1,6 +1,6 @@
 ## Description:
 
-Scans authorized PikPak folders for possible advertising or promotional files, produces a reviewable risk-tier report, and only prints cleanup commands after explicit approval.
+Scan a PikPak folder for likely ad and promotional files, group candidates for review, and print a cleanup command only for explicitly approved items.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users use this skill to review an explicitly authorized PikPak folder for likely advertising or promotional files. It produces a report for manual review and, only after explicit approval, prints cleanup commands for separate execution.
+PikPak users use this skill to review a folder for likely promotional clutter and prepare a manually approved cleanup command. It does not delete files.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Filename-based rules can misclassify files and do not prove that a candidate's contents are advertising.
+Risk: The scanner's coverage is partial, and the host runtime permissions are unknown; folder scanning and report writing may exceed the scope a user intended.
 
-Mitigation: Keep reports private and manually review candidates; scan only a folder the user explicitly authorized.
+Mitigation: Authorize only the intended folder and review the available tool permissions before scanning.
 
-Risk: A printed cleanup command may target the wrong item, and PikPak deletion recoverability is not established.
+Risk: Reports can contain private file paths, and a printed cleanup command can remove cloud files if run.
 
-Mitigation: Before separately executing a command, verify the frozen report, each approved ID, and current recovery behavior; this skill never executes cleanup commands.
+Mitigation: Keep reports in a controlled private location, review the complete frozen report and exact IDs, and run no cleanup command without explicit approval and verified recovery behavior.
 
 ## Reference(s):
 
+- [PikPak Ad Cleaner release](https://clawhub.ai/pipiguai87-alt/skills/pikpak-ad-cleaner)
+- [Connected apps transfer quota](https://mypikpak.com/zh-CN/help-center/transfer_quota/connected_apps_quota)
+- [Connected apps speed limits](https://mypikpak.com/zh-CN/help-center/connected_apps/webdav/speed_limit)
 - [Upstream design notes](references/upstream-design.md)
-- [PikPak connected-app speed limits](https://mypikpak.com/zh-CN/help-center/connected_apps/webdav/speed_limit)
-- [PikPak connected-app transfer quota](https://mypikpak.com/zh-CN/help-center/transfer_quota/connected_apps_quota)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Files, Shell commands, Guidance]
+**Output Type(s):** [Text, Markdown, JSON, Shell commands]
 
-**Output Format:** [JSON scan report and review guidance, with optional shell cleanup commands printed only after approval.]
+**Output Format:** [Markdown scan summary, JSON report, and explicitly approved cleanup commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Read-only scanning; cleanup commands are proposals and are never executed by the skill.]
+**Other Properties Related to Output:** [Files are grouped as high, review, or protected candidates; cleanup commands are printed for approved IDs and are never executed by the skill.]
 
 ## Skill Version(s):
 
-1.0.9 (source: server-resolved release metadata)
+1.1.0 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to add and verify goal tracking in web apps that already include the Deacon widget.
+Developers use this skill to add Deacon goal tracking to a web app that already loads the Deacon widget. It helps them instrument meaningful product events, such as sign ups, paywall views, and upgrades, using the founder's goal names.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Sign-up examples may record events for registrations that failed, making analytics misleading.
+Risk: A sign-up tracking example may count a rejected registration as a successful sign-up.
 
-Mitigation: Send the goal only after confirmed account creation and verify failed registrations send no event.
+Mitigation: Send the sign-up goal only after account creation succeeds, such as from a confirmed success page or handler.
 
-Risk: Goal event properties or live checkout tests could expose personal data or create unintended purchases.
+Risk: The security scan is incomplete because some local references could not be resolved.
 
-Mitigation: Keep personal data out of event properties and verify with development accounts and test checkout.
+Mitigation: Review unresolved local references during implementation before relying on the scan as a complete assessment.
 
 ## Reference(s):
 
+- [ClawHub skill page](https://clawhub.ai/andrewcathcart/skills/deacon-goals)
 - [Deacon recent goals verification endpoint](https://heydeacon.com/api/goals/recent?k=SITE_KEY)
-- [deacon-goals on ClawHub](https://clawhub.ai/andrewcathcart/skills/deacon-goals)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Configuration instructions, Implementation guidance]
+**Output Type(s):** [Code, Configuration instructions, Shell commands, Guidance]
 
-**Output Format:** [Markdown with code examples]
+**Output Format:** [Framework-specific code snippets and implementation guidance in Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Framework-specific examples and verification steps]
+**Other Properties Related to Output:** [Goal names should match the founder's names exactly; event details must not include personal data.]
 
 ## Skill Version(s):
 
-1.1.0 (source: server-resolved release metadata)
+1.2.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

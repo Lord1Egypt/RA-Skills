@@ -206,9 +206,14 @@ class AgentSkill:
 
     # ── File Upload ─────────────────────────────────────────────────
 
-    def upload_file(self, local_path: str) -> str:
-        """Upload a local file via openapi proxy. Returns the CDN URL.
-        The server handles OSS credentials internally — no tokens exposed.
+    def upload_reference_image(self, local_path: str) -> str:
+        """Send one user-named reference image to Lovart and return its CDN URL.
+
+        Only the file at ``local_path`` is read and sent, as a signed multipart
+        POST to ``{base_url}{prefix}/file/upload`` (default host lgw.lovart.ai).
+        lovart.mjs calls this through the ``upload --file`` subcommand once per
+        ``--ref`` the user passed. No other local file is uploaded. The server
+        handles its storage credentials; none are exposed to this client.
         """
         import os
         with open(local_path, "rb") as f:

@@ -1,6 +1,6 @@
 ## Description:
 
-Turn product photos, links, specifications, or catalogs into conversion-focused ecommerce advertising videos.
+Turn a product, product photos, or a store listing into a conversion-focused ecommerce video, with multilingual voiceover and an optional virtual host.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External sellers and ecommerce marketers use this skill to turn product materials or listing links into advertising videos, with multilingual voiceover and an optional virtual presenter.
+External users and ecommerce teams use this skill to create product ads and shopping videos for storefronts, TikTok, and cross-border sales from product details, images, or listing links.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment was partial with medium confidence, some local references were unresolved, and it did not establish that project listing is necessary for video generation.
+Risk: The skill sends prompts to dLazy and uploads any attached local files to its media service.
 
-Mitigation: Review the pinned CLI package and its behavior before installing, and decide whether project listing is needed for your workflow.
+Mitigation: Avoid sending sensitive information or files unless sharing them with the service is authorized.
 
-Risk: Messages are sent to dLazy's API, and local files attached with --files are uploaded to dLazy media storage.
+Risk: ClawScan reports a benign verdict with medium confidence, notes project-listing and whitespace findings, and says some references were unresolved.
 
-Mitigation: Share only product materials approved for that service; avoid attaching confidential or personal data unless its use is authorized.
+Mitigation: Review the project-listing behavior and whitespace-flagged area before use, keeping in mind that scanner evidence is incomplete.
 
 ## Reference(s):
 
-- [dLazy website](https://dlazy.com)
-- [dLazy CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy](https://dlazy.com)
+- [dLazy CLI package](https://www.npmjs.com/package/@dlazy/cli)
+- [CLI source repository (referenced by the skill; provenance is unavailable)](https://github.com/dlazy-ai/cli)
 
 ## Skill Output:
 
 **Output Type(s):** [Video, Text]
 
-**Output Format:** [Ecommerce advertising video with conversational text responses]
+**Output Format:** [Generated ecommerce video with streamed text responses]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Project-based, multi-turn workflow; video file formats and dimensions are not specified in the available evidence.]
+**Other Properties Related to Output:** [May include multilingual voiceover and an optional virtual host; work is organized in project-based sessions.]
 
 ## Skill Version(s):
 
-1.0.40 (source: server-resolved release metadata)
+1.0.43 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

@@ -1,7 +1,7 @@
 ---
 name: "focus-analysis"
 description: "Real-time detection of gaze direction and facial pose to quantify states of focus, distraction, or mind-wandering. Suitable for scenarios such as classroom learning, office meetings, and driving attention monitoring. | 专注度分析技能，实时检测视线方向、面部姿态，量化专注/分心/走神状态，适用于课堂学习、办公会议、驾驶专注度监测等场景"
-version: "1.0.27"
+version: "1.0.28"
 license: "MIT-0"
 ---
 

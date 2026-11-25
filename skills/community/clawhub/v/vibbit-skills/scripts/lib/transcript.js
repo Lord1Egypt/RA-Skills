@@ -26,7 +26,7 @@ function readScript(file) {
   return fs.readFileSync(file, 'utf8')
 }
 
-function normalizeTranscript(input, { timeUnit, sourceUrl, channelId, mediaFile, inputHash } = {}) {
+function normalizeTranscript(input, { timeUnit, sourceUrl, channelId, mediaFile, inputHash, subTaskId, language } = {}) {
   assert(object(input), 'Expected an ASR result object')
   assert(input.ok !== false && (input.code === undefined || input.code === 200), 'A failed API response is not transcription evidence')
   const envelope = object(input.data) ? input.data : input
@@ -34,8 +34,29 @@ function normalizeTranscript(input, { timeUnit, sourceUrl, channelId, mediaFile,
   let result = envelope.task_result ? decode(envelope.task_result.result)
     : Object.hasOwn(envelope, 'result') ? decode(envelope.result) : envelope
   assert(object(result), 'Missing structured transcription result')
-  let rows, text, channel, format
-  if (Array.isArray(result.transcripts)) {
+  let rows, text, channel, format, reportedUrl, translation
+  const translatedVideo = envelope.task_type === 'VIDEO_VOICE_OVER_TASK' || envelope.task_info?.task_type === 'VIDEO_VOICE_OVER_TASK'
+    || (Array.isArray(result.items) && result.items.some(item => object(item?.results_by_language)))
+  if (translatedVideo) {
+    assert(channelId === undefined, '--channel-id applies only to audio ASR tracks')
+    assert(Array.isArray(result.items), 'Missing translation video results')
+    const items = subTaskId === undefined ? result.items : result.items.filter(item => String(item?.sub_task_id) === String(subTaskId))
+    assert(items.length === 1 && items[0]?.status === 'COMPLETED', 'Select one completed translation --sub-task-id')
+    const item = items[0], map = item.results_by_language
+    assert(object(map), 'Missing delivered translation languages')
+    const languages = language === undefined ? Object.keys(map) : Object.hasOwn(map, language) ? [language] : []
+    assert(languages.length === 1, 'Select one delivered translation --language')
+    const delivered = map[languages[0]]
+    assert(object(delivered) && nonempty(delivered.output_video_url), 'Translation has no final output_video_url')
+    assert(Array.isArray(delivered.subtitle_asr_sentences) && delivered.subtitle_asr_sentences.length > 0, 'Missing delivered subtitle_asr_sentences; do not substitute the current draft or source ASR')
+    assert(timeUnit === undefined || timeUnit === 'milliseconds', 'Delivered translation subtitle times are milliseconds')
+    assert(sourceUrl === undefined || [delivered.output_video_url, delivered.no_subtitle_video_url].includes(sourceUrl), 'Requested source URL differs from the delivered translation video')
+    rows = delivered.subtitle_asr_sentences
+    reportedUrl = sourceUrl || delivered.output_video_url
+    timeUnit = 'milliseconds'; format = 'vibbit_translation_subtitles'
+    translation = { sub_task_id: String(item.sub_task_id), target_language: languages[0] }
+  } else if (Array.isArray(result.transcripts)) {
+    assert(subTaskId === undefined && language === undefined, '--sub-task-id/--language apply only to delivered translation subtitles')
     assert(result.transcripts.length > 0, 'No transcription tracks returned; inspect the task before concluding silence')
     const tracks = channelId === undefined ? result.transcripts
       : result.transcripts.filter(track => String(track.channel_id) === String(channelId))
@@ -49,6 +70,7 @@ function normalizeTranscript(input, { timeUnit, sourceUrl, channelId, mediaFile,
     assert(timeUnit === undefined || timeUnit === 'milliseconds', 'Audio ASR begin_time/end_time are milliseconds')
     timeUnit = 'milliseconds'
   } else {
+    assert(subTaskId === undefined && language === undefined, '--sub-task-id/--language apply only to delivered translation subtitles')
     assert(channelId === undefined, '--channel-id applies only to audio ASR tracks')
     if (Array.isArray(result.sub_results)) {
       const matches = result.sub_results.filter(row => row.task_type === 'asr')
@@ -60,7 +82,7 @@ function normalizeTranscript(input, { timeUnit, sourceUrl, channelId, mediaFile,
     rows = result.items
     format = 'vibbit_video_asr'
   }
-  const reportedUrl = format === 'vibbit_audio_asr' ? result.file_url : undefined
+  if (format === 'vibbit_audio_asr') reportedUrl = result.file_url
   if (reportedUrl && sourceUrl) assert(reportedUrl === sourceUrl, 'Requested source URL differs from the ASR source URL')
   sourceUrl = sourceUrl || reportedUrl
   assert(nonempty(sourceUrl), 'A source URL is required to associate the transcript with its media')
@@ -97,6 +119,7 @@ function normalizeTranscript(input, { timeUnit, sourceUrl, channelId, mediaFile,
   return {
     version: 1, kind: 'speech_transcript', time_unit: 'seconds', source_time_unit: timeUnit,
     source: { url: sourceUrl,
+      ...(translation ? { translation } : {}),
       ...(typeof envelope.task_id === 'string' && envelope.task_id.startsWith('task-') ? { task_id: envelope.task_id } : {}),
       ...(mediaFile ? { media: { path: path.resolve(mediaFile), ...fileHash(mediaFile) } } : {}) },
     ...(channel !== undefined ? { channel_id: channel } : {}),

@@ -1,6 +1,15 @@
 ---
 name: creator-collection
 description: |
+  CreatiVault official batch creator collection and export skill. MUST be used when the
+  user provides creator profile links, usernames, keywords, seed lists, or asks to collect,
+  enrich, export, download, poll, or manage creator data collection tasks for TikTok,
+  YouTube, Instagram, or Twitter/X. Use CreatiVault OpenAPI collection scripts as the
+  authoritative source; do not replace collection with web search.
+  Use when: batch collection, collect creators, scrape creators, enrich creator links,
+  username batch, keyword collection, export creators, export xlsx, export csv, task status,
+  poll collection task, download file, 批量采集, 达人采集, 数据采集, 链接采集, 用户名采集,
+  关键词采集, 离线采集, 导出达人, 导出Excel, 导出CSV, 下载采集结果, 查询采集任务.
   批量达人数据采集与导出能力，支持 TikTok、YouTube、Instagram、Twitter 四平台。支持链接批量、用户名批量、关键词采集三种模式。异步任务机制，含提交、轮询、取数、导出完整生命周期。
   Use when: 批量采集, 数据导出, 离线采集, batch collection, data export, keyword collection
 compatibility: Node.js 20.6+

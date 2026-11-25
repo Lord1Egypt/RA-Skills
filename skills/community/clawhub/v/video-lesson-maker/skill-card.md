@@ -1,6 +1,6 @@
 ## Description:
 
-Turns source documents into a series of educational videos with whiteboard animation, narrated audio, and synchronized subtitles.
+从教材、课件或科普文章提炼视频主题，并组织白板动画、配音与同步字幕的制作流程。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Educators and content creators use this skill to break down course materials or articles into short lessons and produce narrated whiteboard videos with synchronized subtitles.
+教师、教育内容创作者和视频制作人员可用此 skill 将教材或科普文章拆解为视频主题，并制作白板动画、口播配音及同步字幕。
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Narration text is sent to a cloud text-to-speech service.
+Risk: The skill includes watermark removal, which may be outside the expected video-making purpose.
 
-Mitigation: Do not submit confidential or sensitive scripts without approval for cloud processing.
+Mitigation: Confirm you have the rights to modify the source media and remove its watermark before using that capability.
 
-Risk: Media processing may overwrite local outputs.
+Risk: Narration text is processed by an external text-to-speech service, which may expose private document content.
 
-Mitigation: Run the workflow in a dedicated project directory and keep copies of original assets.
+Mitigation: Do not send confidential or personal material to external TTS unless its use is approved; use non-sensitive narration text when possible.
 
-Risk: The workflow includes a watermark-removal step.
+Risk: The security scan reports a risky file-writing path and was only partial.
 
-Mitigation: Remove watermarks only from assets you are authorized to modify.
+Mitigation: Review the output paths before execution, use a dedicated working directory, and preserve source files; treat uninspected behavior as not fully assessed.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/8288hit/skills/video-lesson-maker)
-- [Theme refinement](references/theme-refinement.md)
-- [Production pipeline](references/pipeline.md)
-- [Subtitle guidelines](references/srt-guidelines.md)
-- [Annotation schema](references/annotation-schema.md)
+- [ClawHub skill page](https://clawhub.ai/8288hit/skills/video-lesson-maker)
+- [主题凝练指南](artifact/references/theme-refinement.md)
+- [视频制作流水线](artifact/references/pipeline.md)
+- [口播脚本与字幕规范](artifact/references/srt-guidelines.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Files]
+**Output Type(s):** [Text, Markdown, Code, Configuration, Shell commands, Guidance]
 
-**Output Format:** [Lesson plans, scripts, SRT subtitles, JSON timing plans, and rendered MP4 videos]
+**Output Format:** [Markdown, SRT, JSON, Python scripts, shell commands, and narrated video files with synchronized subtitles]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Narration and burnt-in subtitles are timed to the rendered scenes.]
+**Other Properties Related to Output:** [Outputs vary with the source document and video project.]
 
 ## Skill Version(s):
 
-1.0.0 (source: skill frontmatter, manifest, and server release)
+1.4.1 (source: SKILL.md frontmatter, release evidence)
 
 ## Ethical Considerations:
 

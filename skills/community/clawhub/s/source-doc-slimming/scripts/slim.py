@@ -140,17 +140,22 @@ def cmd_verify(pre, ref, start, end):
         j = len(t)
     blk = t[i:j]
     lines = [l for l in blk.split('\n') if l.strip()]
-    miss = [l for l in lines if l not in r]
+    # Strict check: the moved block must appear as one exact contiguous chunk in the
+    # companion. Per-line substring matching is not lossless — it accepts reordered
+    # lines, embedded fragments and missing duplicates, and must never authorize
+    # replacing the original.
+    exact = blk in r
+    miss = [] if exact else [l for l in lines if l not in r]
     print('=' * 78)
     print('零丢失证明 — %s → %s' % (os.path.basename(pre), os.path.basename(ref)))
     print('=' * 78)
-    print('  原段落 %d B ｜ 非空行 %d ｜ 未命中 %d' % (blen(blk), len(lines), len(miss)))
-    for l in miss[:20]:
-        print('    ❌ %s' % l[:120])
-    if miss:
-        print('\n  结论：❌ 有内容未落到外置文件 —— **不得删原文**，先补齐。')
+    print('  原段落 %d B ｜ 非空行 %d ｜ 整块逐字命中 %s' % (blen(blk), len(lines), '是' if exact else '否'))
+    if not exact:
+        for l in miss[:20]:
+            print('    ❌ %s' % l[:120])
+        print('\n  结论：❌ 原段落未作为**连续整块**逐字出现在外置文件（顺序/重复/空白必须一致）—— **不得删原文**，先补齐或改正。')
         return 1
-    print('  结论：✅ 逐行命中，外置完整（原文可安全替换为 digest + 指针）')
+    print('  结论：✅ 原段落作为连续整块逐字命中，顺序/重复/空白一致（原文可安全替换为 digest + 指针）')
     return 0
 
 

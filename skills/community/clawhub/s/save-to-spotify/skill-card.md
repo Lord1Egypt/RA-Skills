@@ -1,56 +1,61 @@
-## Description: <br>
-Create polished audio content and save it to Spotify with TTS narration, rich playback timelines, cover images, and show or episode management support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create polished audio content and save to Spotify. Produces episodes with TTS narration, a rich timeline (chapters plus in-player images, external links, and Spotify entity cards), and a cover image. Also use for raw media saves, show/episode management, and timeline navigation.
 
-## Publisher: <br>
-[spotify](https://clawhub.ai/user/spotify) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spotify](https://clawhub.ai/user/spotify)
 
-## Use Case: <br>
-External users and developers use this skill to turn authorized source material or local audio into Spotify-hosted episodes. It guides agents through interviewing the user, scripting, generating or assembling audio, creating cover artwork, writing HTML descriptions, building timeline companions, and saving the result with the Spotify CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Spotify OAuth credentials and can use those credentials for account-backed Spotify operations. <br>
-Mitigation: Authenticate deliberately, avoid printing or storing tokens in shared logs, and revoke or refresh credentials if exposure is suspected. <br>
-Risk: The workflow can upload or delete Spotify show and episode data. <br>
-Mitigation: Confirm the destination show and any destructive operation before running Spotify CLI commands; review JSON output before follow-up actions. <br>
-Risk: The recommended one-line installer executes a remote shell script. <br>
-Mitigation: Prefer manually downloaded, version-pinned releases and review release artifacts or checksums before installation. <br>
-Risk: Cloud TTS or image providers may receive scripts, source material, or generated episode assets. <br>
-Mitigation: Use local or offline providers for confidential material and avoid sending sensitive content to external generation services. <br>
-Risk: Generated audio and descriptions can misrepresent source material or rights if sourcing is weak. <br>
-Mitigation: Use only authorized source material, preserve source links, avoid fabricated URLs, and review the script and description before upload. <br>
+## Use Case:
 
+External users use this skill to turn authorized or user-provided material into narrated audio episodes, then save them to Spotify with cover artwork, chapters, and playback companions.
 
-## Reference(s): <br>
-- [Save To Spotify on ClawHub](https://clawhub.ai/spotify/save-to-spotify) <br>
-- [Spotify publisher profile](https://clawhub.ai/user/spotify) <br>
-- [CLI usage](references/cli-usage.md) <br>
-- [Spotify Web API](references/spotify-api.md) <br>
-- [Audio providers and assembly](references/audio-providers.md) <br>
-- [Cover image](references/cover-image.md) <br>
-- [Timeline format](references/timeline.md) <br>
-- [Episode description format](references/episode-description.md) <br>
-- [Content quality guidelines](references/content-quality.md) <br>
-- [Spotify Developer LLM entrypoint](https://developer.spotify.com/llms.txt) <br>
-- [Spotify Web API OpenAPI schema](https://developer.spotify.com/reference/web-api/open-api-schema.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON examples, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May result in generated audio files, cover images, timeline.json, HTML descriptions, and Spotify show or episode updates when the agent executes the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence) <br>
+Risk: The skill can inspect connected work accounts and send derived content to cloud services without clearly establishing those boundaries first.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify which calendars, repositories, and task accounts may be read; confirm which speech and image providers may receive content; prohibit confidential uploads; use a verified, versioned CLI and review installer side effects.
+
+## Reference(s):
+
+- [CLI usage](references/cli-usage.md)
+- [Spotify API reference](references/spotify-api.md)
+- [Audio providers and assembly](references/audio-providers.md)
+- [Timeline format](references/timeline.md)
+- [Cover images](references/cover-image.md)
+- [Episode descriptions](references/episode-description.md)
+- [Content quality](references/content-quality.md)
+- [Onboarding](references/onboarding.md)
+- [Local preview](references/local-preview.md)
+- [Recipes](references/recipes.md)
+- [Spotify Web API documentation](https://developer.spotify.com/documentation/web-api/tutorials/building-with-ai)
+- [Spotify Web API OpenAPI schema](https://developer.spotify.com/reference/web-api/open-api-schema.yaml)
+- [Spotify CLI releases](https://github.com/spotify/save-to-spotify/releases)
+
+## Skill Output:
+
+**Output Type(s):** [Audio files, Images, JSON, HTML, Text]
+
+**Output Format:** [Narrated audio (MP3 by default), cover image, JSON timeline, and HTML episode description]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The resulting episode is saved privately to the user's Spotify library by default.]
+
+## Skill Version(s):
+
+0.2.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

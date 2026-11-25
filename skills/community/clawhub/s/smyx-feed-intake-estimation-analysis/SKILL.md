@@ -1,7 +1,7 @@
 ---
 name: "smyx-feed-intake-estimation-analysis"
 description: "Estimates daily feed intake per livestock individual from continuous feeder videos by tracking the change of feed remaining in the trough, and outputs intake trend with anomaly alerts. | 通过食槽视频估算每日采食量变化，异常时预警。"
-version: "1.0.20"
+version: "1.0.21"
 license: "MIT-0"
 ---
 

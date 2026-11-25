@@ -1,6 +1,6 @@
 ## Description:
 
-Publishes text, files, and built static sites to BrewPage and returns a shareable URL.
+Draft, publish, and update BrewPage pages and sites from supplied content, including forms that save visitor responses.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-OpenClaw users use this skill to publish HTML, markdown, files, or built static sites to BrewPage and receive a shareable URL.
+Developers and site owners use this skill to prepare BrewPage drafts, publish pages or static sites, and update a specific publication. It can also create forms that save visitor responses.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,42 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Directory uploads can accidentally publish saved management tokens, allowing readers to alter or delete earlier publications.
+Risk: Published pages may be open to anyone with the link, and public pages may be discoverable.
 
-Mitigation: Publish from a clean build directory and check the archive manifest for brewpage-history.md before confirming an upload. If history was uploaded, treat its tokens as exposed and replace affected publications or revoke their capabilities where supported.
+Mitigation: Review the content and access settings before publishing; remove sensitive information or use password protection when appropriate.
+
+Risk: Workspace history or recovery receipts may contain owner keys that can manage anonymous publications.
+
+Mitigation: Keep those files private and out of shared logs, prompts, and uploaded content.
+
+Risk: The skill uses shell, network, and local file-writing capabilities to prepare and publish content.
+
+Mitigation: Review the requested action and runtime permissions, and use a local draft when no remote publication is intended.
 
 ## Reference(s):
 
 - [BrewPage](https://brewpage.app)
-- [BrewPage hosting API](https://brewpage.app/api#hosting)
-- [OpenClaw AgentSkills documentation](https://docs.openclaw.ai/tools/skills)
+- [BrewPage REST API](https://brewpage.app/api/)
+- [BrewPage Page data guide](https://brewpage.app/llms-page-data.txt)
+- [BrewPage templates](https://brewpage.app/templates)
+- [BrewPage custom domains guide](https://brewpage.app/llms-full.txt#custom-domains)
+- [OpenClaw skill documentation](https://docs.openclaw.ai/tools/skills)
+- [ClawHub release](https://clawhub.ai/kochetkov-ma/skills/brewpage-publish)
+- [Publisher profile](https://clawhub.ai/user/kochetkov-ma)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, URLs, Shell commands]
+**Output Type(s):** [HTML, Markdown, JSON, Files, Guidance, Links]
 
-**Output Format:** [Brief text with the exact publication URL; shell commands for publishing]
+**Output Format:** [Draft page or site content and a concise publication result, including a reader link when a publish succeeds.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Publications expire; the default requested retention is 15 days.]
+**Other Properties Related to Output:** [Can include forms that save visitor responses and published content with selected access settings.]
 
 ## Skill Version(s):
 
-1.0.9 (source: server-resolved release metadata)
+1.1.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

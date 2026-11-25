@@ -1,7 +1,7 @@
 ---
 name: "qubrics-send-email"
 description: "Send one or many emails through Qubrics using approved mailbox or agent credentials, idempotency keys, attachments, MCP, CLI, SDKs, or HTTP."
-version: "2.0.4"
+version: "2.0.8"
 metadata:
   openclaw:
     skillKey: "qubrics-send-email"

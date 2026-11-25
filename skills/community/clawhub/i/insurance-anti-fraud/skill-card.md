@@ -1,6 +1,6 @@
 ## Description:
 
-Provides insurance claims and underwriting teams with fraud indicators, investigation workflows, and prevention guidance for the Chinese insurance market.
+Provides a reference framework for identifying insurance fraud signals, assessing claims and underwriting risks, and organizing investigation and risk-control workflows in the Chinese insurance market.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Chinese insurance claims, underwriting, risk-control, and compliance teams use this skill to review potential fraud indicators, organize investigations, and develop prevention guidance.
+Claims, underwriting, risk-control, compliance, and investigation teams can use it to organize insurance fraud indicators and review workflows. It provides reference material and draft analysis that require qualified human review.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,34 @@ China
 
 ## Known Risks and Mitigations:
 
-Risk: External checks may expose claimant or health information.
+Risk: The scanner reports a benign result with medium confidence after a partial inspection; five referenced guides are absent from the supplied artifact and the manifest could not be parsed.
 
-Mitigation: Confirm authority to share the information, use approved services, and disclose only what is necessary.
+Mitigation: Review the complete skill, its five companion guides, and a valid manifest before relying on the material when stronger assurance is needed.
 
-Risk: Risk indicators could be mistaken for proof of fraud or grounds for denial.
+Risk: Illustrative risk scores or fraud indicators could be mistaken for definitive findings about a person or claim.
 
-Mitigation: Verify indicators against approved source records and have an authorized human reviewer make the final decision.
+Mitigation: Treat indicators as leads for qualified human review; verify supporting evidence and do not use scores alone for rejection or formal fraud determinations.
+
+Risk: Fraud analysis may involve sensitive personal and health information or access to external records.
+
+Mitigation: Minimize and de-identify inputs, and use external records only with documented authorization and business need.
 
 ## Reference(s):
 
-- [Server-resolved source repository](https://github.com/gechengling/insurance-anti-fraud)
-- [ClawHub skill release](https://clawhub.ai/gechengling/skills/insurance-anti-fraud)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Markdown]
+**Output Type(s):** [Analysis, Guidance, Markdown, Code]
 
-**Output Format:** [Text or Markdown]
+**Output Format:** [Markdown text with tables and illustrative code examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Case-specific risk indicators and workflow suggestions; claim and underwriting decisions require human review.]
+**Other Properties Related to Output:** [Reference material and draft analysis; examples are illustrative and require human review.]
 
 ## Skill Version(s):
 
-5.0.8 (source: server-resolved release metadata)
+5.0.9 (source: frontmatter)
 
 ## Ethical Considerations:
 

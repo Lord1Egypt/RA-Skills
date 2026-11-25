@@ -1,6 +1,6 @@
 ## Description:
 
-Delegates tasks to Z.ai GLM-5.x via the stock claude binary and an endpoint swap
+Delegates tasks to Z.ai GLM-5.x via the stock claude binary and an endpoint swap.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to delegate coding, review, and other selected tasks to Z.ai GLM models through the stock Claude Code CLI, including tasks that need a large context window.
+Developers use this skill with the shared delegation workflow to send coding and other tasks to Z.ai GLM through Claude Code, including tasks that benefit from a large context window.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Local documents may be sent to an external model provider, and the selected provider may use a different account or billing plan.
+Risk: The delegation workflow may send local documents to an external model without a privacy warning.
 
-Mitigation: Before installing, confirm that document sharing and the provider's account and billing arrangement are acceptable; review executor behavior because scan coverage is partial.
+Mitigation: Review which files will be transmitted and avoid sending confidential documents or secrets unless sharing is authorized; check the executor's filtering and consent controls before use.
 
 ## Reference(s):
 
-- [Conjure plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conjure)
+- [Project homepage (Clawdis metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/conjure)
 - [Z.ai pricing](https://docs.z.ai/guides/overview/pricing)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown]
+**Output Type(s):** [Text, Markdown, Code]
 
-**Output Format:** [Markdown response saved to a dated .md file]
+**Output Format:** [Task-dependent text or Markdown, including code when requested; results may be saved as a dated Markdown file.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Content depends on the delegated task and selected GLM model.]
+**Other Properties Related to Output:** [The content depends on the delegated task.]
 
 ## Skill Version(s):
 
-1.10.3 (source: release evidence, frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

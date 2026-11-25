@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to review plugin changes at branch, pull request, or release scope, check dependencies and quality gates, and produce a per-plugin assessment.
+Developers and plugin maintainers use this skill to review changed plugins before merge or audit all plugins before a release. It scopes checks by dependencies and reports per-plugin results and an aggregate verdict.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The partial security scan could not resolve three local references, so their contents and effects are unknown.
+Risk: A possible conflict with another command named “review” could make it unclear which action will run.
 
-Mitigation: Check what the unresolved references point to before installing or relying on the skill.
+Mitigation: Check command resolution in the target setup and make the intended review command explicit before use.
 
-Risk: The scan noted a possible command-name conflict involving the skill's review trigger.
+Risk: The security scan was partial because three referenced paths could not be matched to bundled components.
 
-Mitigation: Check whether the review trigger conflicts with commands or workflows in the target agent setup.
+Mitigation: Treat the scan as incomplete evidence and review those references before relying on the skill.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-abstract-plugin-review)
-- [Claude Night Market abstract plugin page](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
+- [Project homepage (Clawdis metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration guidance]
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [Markdown review report with per-plugin tables and tier-specific scorecards]
+**Output Format:** [Markdown review report with per-plugin tables, verdicts, and scorecards]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Report scope and detail vary by branch, pull request, or release tier.]
+**Other Properties Related to Output:** [Report depth and scope vary by branch, PR, or release tier.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, server release)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

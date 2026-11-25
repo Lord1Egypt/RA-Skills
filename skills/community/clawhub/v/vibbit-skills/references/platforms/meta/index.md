@@ -6,11 +6,11 @@ Select only the method needed for the current task.
 | --- | --- | --- |
 | Brand position, voice, visual boundaries | [VB-01](brand-strategy.md) | Brand Master, facts, gaps |
 | New audience/consumer motivations | [VB-02](audience-motives.md) | Audience groups and inner monologues |
-| Emotional or humorous opening | [VB-03](emotional-hooks.md) | Opening copy/visual; optional light script |
-| Script, 5V exploration, shot revision | [VB-04](storyboarder.md) | Storyboard, generation cards, audio/text layers |
-| Creator identity and content role | [VB-05](role-play.md) | Character sheet and content job |
-| Product imagery in one visual world | [VB-06](keyframes.md) | World definition and image prompts |
-| Adapt an ad to a new market | [VB-07](localization.md) | Evidence, transcreation, change table |
+| Emotional or humorous opening | [VB-03](emotional-hooks.md#emotional-hooks) | Opening copy/visual; optional light script |
+| Script, 5V exploration, shot revision | [VB-04](storyboarder.md#storyboarder) | Storyboard, generation cards, audio/text layers |
+| Creator identity and content role | [VB-05](role-play.md#role-play) | Character sheet and content job |
+| Product imagery in one visual world | [VB-06](keyframes.md#keyframes) | World definition and image prompts |
+| Adapt an ad to a new market | [VB-07](localization.md#localization) | Evidence, transcreation, change table |
 
 Read [shared boundaries](guidelines.md) once with the selected module. Load a category library only when choosing a strategy, and [handoff](../../contracts/creative-handoff.md) only when saving, connecting, or revising work. Do not run all seven modules sequentially by default.
 

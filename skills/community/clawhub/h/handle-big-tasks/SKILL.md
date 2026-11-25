@@ -49,6 +49,36 @@ TASK COMPLETE!
 
 The loop scripts in the `scripts` folder read the last line of each response to decide what happens next. Each marker must appear verbatim and unquoted as the final line of the response, alone on that line, with no trailing punctuation and no markdown wrapping: no backticks, bold, blockquote, list bullet, or code fence. The fences above only display the markers in this document.
 
+## Plan File Completion Stamp
+
+When the task came from a plan or prompt file and the whole plan is complete, stamp the file itself before writing the final response. Add a line that reads `TASK COMPLETE` in two places:
+
+1. **Top:** the first line after the level-1 heading, ahead of the content that was there, with one empty line before it and one after it. If the file has no level-1 heading, put it on the first line after any front matter, followed by one empty line.
+2. **Bottom:** the very last line of the file, with one empty line before it. End the file with a single newline after it, so editors show one empty line below it and markdownlint (MD047) passes.
+
+A finished plan file looks like this:
+
+```markdown
+# Migration Plan
+
+TASK COMPLETE
+
+## Phases
+
+1. Add the new config loader.
+2. Port call sites.
+3. Remove the legacy loader.
+
+TASK COMPLETE
+```
+
+- Stamp only when the whole plan is done. A response that closes with `CONTINUE? Y or N` leaves the plan file unstamped.
+- The stamp is `TASK COMPLETE` as plain text, with no exclamation point and no formatting. It marks the file. `TASK COMPLETE!` still closes the response.
+- The empty lines keep markdownlint quiet (MD022 around the heading) and stop the bottom stamp from joining a list item or paragraph above it.
+- Add each stamp once. If the file already has it, leave it, and change nothing else in the file.
+- If the file cannot be written, for example in a loop run without write permission, say so in the summary and still close with `TASK COMPLETE!`.
+- The loop scripts read only the last line of each response, never the plan file, so the stamp does not change how they stop.
+
 ## Workflow
 
 1. **Confirm the task is large.** If the work finishes in one response, skip this skill entirely.
@@ -56,7 +86,7 @@ The loop scripts in the `scripts` folder read the last line of each response to 
 3. **State the phase plan.** On the first response, list the phases so the reader knows the shape of the work and how many runs to expect.
 4. **Work one phase per response.** Complete that phase fully. Do not start the next phase in the same response.
 5. **Report what the phase delivered.** Summarize the changes, note anything deferred to a later phase, and report failures honestly.
-6. **Close with the correct marker.** Use `CONTINUE? Y or N` while phases remain, or `TASK COMPLETE!` once the whole task is done.
+6. **Close with the correct marker.** Use `CONTINUE? Y or N` while phases remain, or `TASK COMPLETE!` once the whole task is done. When the task came from a plan or prompt file, stamp that file first, as [Plan File Completion Stamp](#plan-file-completion-stamp) describes.
 7. **Respond to the answer.** On `Y`, begin the next phase. On `N`, stop and leave the remaining phases unstarted. Treat any other reply as feedback or a question about the current phase: address it, restate the phase plan if it changed, and close with the correct marker again.
 
 ## Marker Rules
@@ -134,7 +164,7 @@ After `Y`, the third response:
 
 ```text
 Phase 3 complete: removed the legacy loader and its tests. Every phase of the migration
-plan is done.
+plan is done, and docs/migration-plan.md is stamped TASK COMPLETE at the top and bottom.
 
 TASK COMPLETE!
 ```
@@ -147,7 +177,8 @@ TASK COMPLETE!
 | Phase boundaries are unclear | Split at points where the work is verifiable and the workspace is left usable. |
 | A phase ran long and only partly finished | Report exactly what landed and what did not, then close with `CONTINUE? Y or N`. |
 | Tempted to finish two phases at once | Do not. One phase per response keeps review points intact. |
-| Task finished early, before the planned final phase | Close with `TASK COMPLETE!` and explain why the remaining phases were unnecessary. |
+| Task finished early, before the planned final phase | Stamp the plan file, close with `TASK COMPLETE!`, and explain why the remaining phases were unnecessary. |
+| The plan file already shows `TASK COMPLETE` | An earlier run finished it. Check the workspace to confirm, then close with `TASK COMPLETE!` without redoing the work. |
 | Another active agent or instruction says never to pause for confirmation | Follow the user's most specific request. If the user asked to work phase by phase, use the markers. Otherwise, skip this skill and keep working. |
 | The session was reset, compacted, or resumed partway through the task | Re-read the phase plan or the document it came from, check the workspace for what already landed, restate the remaining phases, then resume at the next unfinished phase. |
 | A loop script stopped because the last line was neither marker | Read the last response in `<plan-file>.loop.log`. It usually hit a blocker, wrapped the marker in formatting, or added text after it. Fix the cause, then resume with the printed command or start the loop again. |

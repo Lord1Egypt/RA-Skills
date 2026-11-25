@@ -1,3 +1,5 @@
+import { spawnSync } from 'node:child_process';
+
 export interface LocalHelperRunOptions {
   timeoutMs?: number;
   maxBufferBytes?: number;
@@ -21,13 +23,11 @@ export async function runLocalHelper(
   if (allowed.size === 0) {
     throw new Error('local helper execution requires an explicit allowedBinaries list');
   }
-  if (!allowed.has(file) && !allowed.has(baseBin)) {
+  if (!allowed.has(file)) {
     throw new Error(`Permission denied: binary "${baseBin}" not in allowed list [${[...allowed].join(', ')}]`);
   }
 
-  const childProcess = await import('node:child_process');
-  const run = (childProcess as Record<string, any>)['spawn' + 'Sync'];
-  const result = run(file, args, {
+  const result = spawnSync(file, args, {
     encoding: 'utf8',
     timeout: options.timeoutMs ?? 10000,
     shell: false,

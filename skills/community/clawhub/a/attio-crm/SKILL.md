@@ -1,7 +1,7 @@
 ---
 name: attio-crm
 description: "Manage Attio CRM records, lists, notes, tasks, and meetings through the superagnt unified API."
-version: 2.0.14
+version: 2.0.19
 author: superagnt
 license: MIT-0
 platforms: [macos, linux, windows]

@@ -1,6 +1,6 @@
 ## Description:
 
-Runs parallel prose and craft review agents against a voice profile
+Runs parallel prose and craft review agents against a voice profile.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Writers and content teams use this skill to review generated prose against a voice profile for AI-pattern issues and craft concerns before publishing.
+Writers and content teams can use the skill to review generated text against a voice profile before publishing. It returns prose and craft findings, with suggested corrections for hard failures and advisory findings for review.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: A possible conflict with a built-in `review` command could make command selection ambiguous.
+Risk: A possible “review” trigger conflict could affect when the skill activates.
 
-Mitigation: Check whether a `review` command is already registered before installing or enabling this skill, and resolve any naming conflict.
+Mitigation: Check how the review trigger behaves in your agent setup before relying on it.
 
-Risk: Reference checks were partial, so some local references may be unresolved.
+Risk: Security analysis was partial because referenced local files were unavailable for review.
 
-Mitigation: Confirm the referenced commands and dependencies are available and trusted in the target setup before use.
+Mitigation: Review the referenced components and confirm they are available and expected in your installation.
 
 ## Reference(s):
 
-- [Scribe plugin homepage (metadata link)](https://github.com/athola/claude-night-market/tree/master/plugins/scribe)
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-scribe-voice-review)
+- [Scribe plugin reference](https://github.com/athola/claude-night-market/tree/master/plugins/scribe)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Files]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Markdown findings tables and reviewed prose]
+**Output Format:** [Markdown review tables with findings and suggested corrections]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Advisory findings may be presented for user decisions; hard failures may be auto-corrected.]
+**Other Properties Related to Output:** [Findings are advisory except for documented hard failures, which may be auto-corrected.]
 
 ## Skill Version(s):
 
-1.10.3 (source: skill frontmatter, server-resolved release)
+1.10.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

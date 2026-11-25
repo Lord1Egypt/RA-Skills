@@ -22,7 +22,7 @@ def package_version():
         match = re.search(r'(?m)^version:\s*v?(\d+\.\d+\.\d+)\s*$', skill.read_text())
     except OSError:
         match = None
-    return match.group(1) if match else '1.0.39'
+    return match.group(1) if match else '1.0.43'
 
 def skill_user_agent(version=None):
     return USER_AGENT_TEMPLATE.format(version=version or package_version())

@@ -1,6 +1,6 @@
 ## Description:
 
-Security engineering workflow for OpenClaw privilege governance and hardening. Use for least-privilege execution, approval-first privileged actions, idle timeout controls, port and egress monitoring, and ISO 27001/NIST-aligned compliance reporting with mitigations.
+This skill supports OpenClaw security hardening through least-privilege and approval-first execution, idle timeouts, port and egress monitoring, and ISO 27001/NIST-aligned compliance reporting with mitigations.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,10 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
+MIT-0
 
 ## Use Case:
 
-Developers and security engineers use this skill to review OpenClaw privilege controls, enforce approval-first elevation, monitor listening ports and outbound connections, and produce ISO 27001/NIST-aligned findings with mitigations.
+Developers and security engineers use this skill to review and harden OpenClaw deployments, govern privileged actions, monitor network exposure, and produce compliance assessment reports with mitigations.
 
 ### Deployment Geography for Use:
 
@@ -21,45 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill can install a persistent sudo wrapper that changes how OpenClaw privileged commands are routed.
+Risk: ClawScan rates this release suspicious due to reported weaknesses in privileged execution, persistence, and monitoring controls.
 
-Mitigation: Install only when that routing is intentional, require reviewed command policy files first, and remove or replace the sudo PATH shim if it is not acceptable for the deployment.
+Mitigation: Install only if these capabilities are needed, and review the privileged-execution controls and persistent PATH changes before enabling them.
 
-Risk: Approval, session state, and environment handling may be weak if local files are writable, overly broad, or not scoped to the active task.
+Risk: Scan coverage is incomplete: 27 of 29 components were fully inspected and two were only partially inspected.
 
-Mitigation: Make approval state unforgeable, restrict env-file parsing to required flags, enforce task session IDs and approval tokens where appropriate, and harden file permissions.
-
-Risk: Notification execution and audit logging can expose operational risk if commands or logs are not controlled.
-
-Mitigation: Eliminate shell-based notifier execution, protect and redact audit logs, and keep privileged audit records append-only where possible.
-
-Risk: Network and command baselines may be missing or incomplete, causing privileged actions, listening ports, or outbound connections to bypass intended review.
-
-Mitigation: Populate and review command policy, approved ports, prompt policy, and egress allowlist files before relying on enforcement.
+Mitigation: Review the partially inspected components and do not treat the scan as establishing that all behavior is safe.
 
 ## Reference(s):
 
-- [ClawHub Skill Page](https://clawhub.ai/fletcherfrimpong/skills/fletcher-cyber-security-engineer)
-- [Least-Privilege Policy For OpenClaw](references/least-privilege-policy.md)
-- [Port Monitoring Policy For OpenClaw](references/port-monitoring-policy.md)
-- [Compliance Controls Map](references/compliance-controls-map.json)
-- [Command Policy Template](references/command-policy.template.json)
-- [Egress Allowlist Template](references/egress-allowlist.template.json)
-- [Prompt Policy Template](references/prompt-policy.template.json)
+- [ClawHub skill page](https://clawhub.ai/fletcherfrimpong/skills/fletcher-cyber-security-engineer)
+- [Project homepage](https://github.com/FletcherFrimpong/OpenClaw-Cyber-Analyst)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+**Output Type(s):** [Analysis, Guidance, Configuration, JSON, HTML reports]
 
-**Output Format:** [Markdown status reports, JSON and HTML assessments, shell commands, configuration templates, and Python/Bash code]
+**Output Format:** [Markdown guidance, JSON assessment data, and an HTML dashboard]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports should include affected check_id values, status, risk, concise evidence, and concrete mitigations.]
+**Other Properties Related to Output:** [Assessment output reports affected check IDs, status, risk, evidence, and mitigations; findings depend on the host state and configured policies.]
 
 ## Skill Version(s):
 
-0.1.2 (source: server release metadata)
+0.2.1 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

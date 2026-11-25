@@ -4,7 +4,7 @@ This module is unofficial and not affiliated with Interactive Brokers.
 
 ## Requirements
 
-- Go 1.26.10 or newer, per the module's `go.mod`.
+- Go 1.26.11 or newer, per the module's `go.mod`.
 - An Interactive Brokers account, and either a running Client Portal Gateway or OAuth access to `https://api.ibkr.com`.
 
 ## Install

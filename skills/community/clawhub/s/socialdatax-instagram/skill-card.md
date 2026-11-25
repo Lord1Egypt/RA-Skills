@@ -1,6 +1,6 @@
 ## Description:
 
-用于 Instagram 数据助手、内容搜索、帖子详情、评论分析、创作者资料和创作者帖子列表。覆盖 Instagram content and creator research，来自 SocialDataX 社媒数据助手。
+用于 Instagram 内容与创作者研究，包括内容搜索、帖子详情和评论、创作者资料及帖子列表。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users can research Instagram content and creators, including post details, comments, profile information, and creator post lists.
+Social media analysts and research teams use this skill to find Instagram content, review post details and comments, and examine creator profiles and post lists.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The automatically installed CLI is unpinned and could change, potentially exposing credentials or accessing the execution environment.
+Risk: The security review flags repeated use of an unpinned latest-version CLI as a supply-chain risk; the partial scan does not establish malicious intent.
 
-Mitigation: Use a reviewed, pinned CLI version and install it through a controlled, integrity-checked process.
-
-Risk: Search terms or identifiers may be sent to SocialDataX.
-
-Mitigation: Avoid sending sensitive search terms or identifiers through the skill.
-
-Risk: The security scan was partial because some local references could not be resolved.
-
-Mitigation: Resolve and review the unavailable references, then repeat the security review before deployment.
+Mitigation: Review and pin a fixed CLI version before use, limit credentials available to the CLI, and account for the scan's unresolved local references when assessing risk.
 
 ## Reference(s):
 
+- [SocialDataX API access](https://socialdatax.com/ai?from=clawhub)
 - [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/socialdatax-instagram)
-- [SocialDataX](https://socialdatax.com/ai?from=clawhub)
+- [ClawHub publisher profile](https://clawhub.ai/user/devinchen2014)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Text]
+**Output Type(s):** [JSON, Text, Analysis]
 
-**Output Format:** [Structured Instagram data and concise text summaries]
+**Output Format:** [Structured Instagram data (JSON) and concise research summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Read-only search and retrieval results for Instagram content and creator information.]
+**Other Properties Related to Output:** [Read-only Instagram research; data calls require SocialDataX API access.]
 
 ## Skill Version(s):
 
-0.1.6 (source: server-resolved ClawHub release metadata)
+0.1.7 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

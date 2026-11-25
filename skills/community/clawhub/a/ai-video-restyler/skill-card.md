@@ -1,6 +1,6 @@
 ## Description:
 
-Restyle one short video into a new visual treatment while preserving its subject, action, composition, and camera intent.
+Restyle one short source video into a coherent new visual treatment while carrying forward the source subject, action, composition, and camera intent.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External creators and video editors use the skill to transform a short video into a chosen visual style, then review the returned clip for changes to identity, motion, and audio.
+Creators and video producers use the skill to transform a short source clip into a chosen visual style, then review the result for style match, subject identity, motion continuity, and audio.
 
 ### Deployment Geography for Use:
 
@@ -22,44 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Shared authorization includes music, speech, and voice-management permissions beyond video work.
+Risk: ClawScan marks this release suspicious, citing reported broad shared permissions, recurring installation telemetry, and shared credential cleanup; confidence is medium and scan coverage is incomplete.
 
-Mitigation: Review the requested permissions before connecting; revoke access through the Beatra Console if they are not acceptable.
+Mitigation: Review the authorization, registration, and uninstall guidance, and decide whether the reported access and shared-credential behavior are acceptable before installing.
 
-Risk: Uploaded media may not be authorized for processing, and installation reporting occurs.
+Risk: The workflow can upload a chosen source video to an external service for restyling.
 
-Mitigation: Upload only media you are authorized to submit and account for installation reporting.
-
-Risk: Video edits can incur paid charges.
-
-Mitigation: Review and confirm each paid estimate before submitting the edit.
-
-Risk: Uninstall checks can overlook damaged inventory entries when other Beatra skills share access.
-
-Mitigation: Verify the installed-skill inventory before removal and use the Beatra Console to revoke access when needed.
+Mitigation: Submit only source media you are comfortable sending to that service.
 
 ## Reference(s):
 
-- [AI Video Restyler on ClawHub](https://clawhub.ai/beatra-ai/skills/ai-video-restyler)
-- [Workflow](references/workflow.md)
-- [Tasks and Results](references/tasks-and-results.md)
-- [Billing Errors and Recovery](references/billing-errors-and-recovery.md)
-- [Updates and Security](references/updates-and-security.md)
-- [Uninstall and Disconnect](references/uninstall-and-disconnect.md)
+- [ClawHub release page](https://clawhub.ai/beatra-ai/skills/ai-video-restyler)
+- [Beatra AI Video Restyler homepage](https://beatra.ai/skills/ai-video-restyler)
+- [Video restyle workflow](references/workflow.md)
+- [Installation and authentication](references/installation-and-auth.md)
+- [Updates and security](references/updates-and-security.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Video, Text]
+**Output Type(s):** [Video, Text, Guidance]
 
-**Output Format:** [Restyled video artifact with a text summary of task status, usage, and billing.]
+**Output Format:** [One restyled video artifact or link with a concise text summary and review]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [One restyled clip; review the result for drift in subject identity, action, camera movement, composition, and source audio.]
+**Other Properties Related to Output:** [A single short clip; review style match, subject identity, motion continuity, and source-audio result.]
 
 ## Skill Version(s):
 
-0.2.3 (source: server-resolved release evidence)
+0.2.7 (source: server-resolved release)
 
 ## Ethical Considerations:
 

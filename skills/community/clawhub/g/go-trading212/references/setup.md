@@ -4,7 +4,7 @@ This module is unofficial and not affiliated with Trading 212.
 
 ## Requirements
 
-- Go 1.26.10 or newer, per the module's `go.mod`.
+- Go 1.26.11 or newer, per the module's `go.mod`.
 - A Trading 212 API key and secret from the API section of the account settings in the Trading 212 app, exported as `TRADING212_API_KEY` and `TRADING212_API_SECRET`.
 
 ## Install

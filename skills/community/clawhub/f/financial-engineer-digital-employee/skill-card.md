@@ -2,7 +2,7 @@
 
 覆盖数据探查、单变量分析、特征工程、LR评分卡、XGBoost/DNN建模、超参数调优、模型解释、多模型对比、分群建模、DeepModel集成全流程。从数据到模型上线的一站式机器学习建模能力。
 
-This skill is for demonstration purposes and not for production usage.
+This skill is ready for commercial/non-commercial use.
 
 ## Publisher:
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers, data scientists, and financial modeling practitioners can use the skill's reference workflows to explore datasets, assess features, compare and explain models, and prepare reviewable analysis drafts. Outputs require qualified human review and are not financial advice or production decisions.
+金融建模人员和开发者可用它整理数据探查、评分卡与机器学习建模流程，生成模型评估、解释和复核所需的参考草稿。输出仅供人工判断，正式模型、授信或对外报告须由具备资质的人员独立审核。
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan was benign but incomplete: Skillspector inspected the skill only partially, and many referenced files were absent.
+Risk: Broad requests such as “optimize this” may leave the modeling task ambiguous.
 
-Mitigation: Before using any referenced files or commands, confirm that the source is trusted and that each file or command is expected.
+Mitigation: Specify the model and task, then have a qualified reviewer check the resulting guidance before applying it.
 
-Risk: Modeling drafts may be misleading if data is unauthorized, contains sensitive fields, or includes information unavailable at the prediction time.
+Risk: The security analysis was partial, so its benign verdict does not cover all evidence.
 
-Mitigation: Use only authorized, minimized data; check feature timing and leakage; and have a qualified reviewer assess assumptions, results, and limitations before real-world use.
+Mitigation: Review the skill contents and unresolved references before use; do not treat the scan result as a complete safety assessment.
 
 ## Reference(s):
 
+- [ClawHub skill release page](https://clawhub.ai/gechengling/skills/financial-engineer-digital-employee)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Analysis, Code, Shell commands, Configuration instructions]
+**Output Type(s):** [Analysis, Text, Markdown, Code, Configuration instructions]
 
-**Output Format:** [Markdown guidance with illustrative code, shell commands, and JSON configuration examples]
+**Output Format:** [Markdown with illustrative code, configuration examples, tables, and checklists]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reference drafts for human review; the skill itself does not execute commands or perform system operations.]
+**Other Properties Related to Output:** [Reference drafts for human review; examples do not execute automatically.]
 
 ## Skill Version(s):
 
-2.0.6 (source: frontmatter)
+2.0.7 (source: frontmatter, server-resolved release metadata)
 
 ## Ethical Considerations:
 

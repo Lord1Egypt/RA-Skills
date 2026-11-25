@@ -1,6 +1,6 @@
 ## Description:
 
-Turn Xiaohongshu categories, public notes, or notes you provide into a research memo with title patterns, structure, comments, and followable angles.
+Turn a category, a note link, or notes you already copied into a research memo. This note analysis and Xiaohongshu research workflow reads public notes, comments, and a creator's recent notes on Xiaohongshu, or works from the titles, bodies, and comments you paste, then lays out title patterns, structure, verbatim comments, and followable angles. Use it for note analysis, Xiaohongshu research, note research, and competitor notes when you want the patterns a category is already using.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Creators, marketers, and researchers use this skill to study patterns in Xiaohongshu categories and notes, then turn public reads or supplied material into a research memo to guide later content work.
+Researchers and marketers can analyze a Xiaohongshu category or public note, or work from notes they paste, to identify title patterns, structure, verbatim comments, and followable angles in a research memo.
 
 ### Deployment Geography for Use:
 
@@ -22,41 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment notes broad shared authorization and persistent credentials that support account and management capabilities.
+Risk: The security assessment reports broad shared service permissions, credentials, telemetry, and upload capabilities beyond Xiaohongshu research.
 
-Mitigation: Install only if the service is needed, review the authorization and paid lookup prompts, and use the documented disconnect flow to revoke access when finished.
+Mitigation: Review the reported permissions and telemetry before installing; upload only files you intend Beatra to receive.
 
-Risk: Installation-linked reporting includes package and installation details plus coarse runtime facts.
+Risk: The security assessment is incomplete because some skill references did not resolve.
 
-Mitigation: Review the fields described in the installation registration reference and avoid connecting if that reporting is not acceptable.
-
-Risk: A file selected for a lookup is uploaded to a one-time Beatra upload address.
-
-Mitigation: Avoid uploading sensitive files and provide only material needed for the requested research.
+Mitigation: Review the unresolved references and inspect the release before relying on the assessment.
 
 ## Reference(s):
 
-- [Beatra skill page](https://beatra.ai/skills/xiaohongshu-note-research)
-- [ClawHub release page](https://clawhub.ai/beatra-ai/skills/xiaohongshu-note-research)
+- [Note Research Studio on Beatra](https://beatra.ai/skills/xiaohongshu-note-research)
+- [Note Research Studio on ClawHub](https://clawhub.ai/beatra-ai/skills/xiaohongshu-note-research)
 - [Looking up notes](references/note-lookup.md)
 - [Writing the research memo](references/research-memo.md)
 - [Note research workflow](references/workflow.md)
-- [Installation registration](references/installation-registration.md)
 - [Updates and security](references/updates-and-security.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, Markdown, Guidance]
+**Output Type(s):** [Analysis, Text, Markdown]
 
-**Output Format:** [Markdown research memo with title patterns, structure, attributed verbatim comments, and followable angles]
+**Output Format:** [Markdown research memo]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Comments and figures are attributed to supplied or looked-up sources; explanations of performance are labeled as inference. Any optional copy draft remains research-shaped, not publish-ready.]
+**Other Properties Related to Output:** [Optional public lookups require confirmation; pasted notes can be analyzed without a lookup.]
 
 ## Skill Version(s):
 
-0.2.3 (source: server-resolved release metadata)
+0.2.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

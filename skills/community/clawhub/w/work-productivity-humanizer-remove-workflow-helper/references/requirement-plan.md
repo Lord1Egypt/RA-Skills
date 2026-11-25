@@ -2,7 +2,7 @@
 
 ## Live Requirement
 
-Validated demand: Agent users show strong demand for Humanizer-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 11 separate online signals across 4 source families, so it represents broader demand rather than a single isolated request.
+Validated demand: Agent users show strong demand for Humanizer-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 10 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
 
 ## Audience
 
@@ -20,12 +20,12 @@ Demand: 70/70
 
 Local feasibility: 30/30
 
-Evidence coverage: 11 signals across 4 source families.
+Evidence coverage: 10 signals across 3 source families.
 
 Scoring rationale:
 
-- Evidence count: 11; required minimum: 3.
-- Distinct source families: 4; sources: clawhub, github, hacker-news, segmentfault.
+- Evidence count: 10; required minimum: 3.
+- Distinct source families: 3; sources: clawhub, github, segmentfault.
 - Demand score: 70/70 based on corroboration, source diversity, and professional/community signal.
 - Local feasibility score: 30/30.
 - Implementation is a documentation, workflow, code, or analysis skill that can run on ordinary CPU hardware.
@@ -33,17 +33,16 @@ Scoring rationale:
 
 ## Evidence
 
-- clawhub-popular-skill (2026-05-11T07:50:48.771000+00:00): [Popular Clawhub skill demand: Humanizer has 135,049 downloads](https://clawhub.ai/skills/humanizer)
-- clawhub-popular-skill (2026-05-18T20:48:27.565000+00:00): [Popular Clawhub skill demand: Nano Banana Pro has 108,666 downloads](https://clawhub.ai/skills/nano-banana-pro)
-- hacker-news-ask-hn (2026-11-15T16:29:34+00:00): [Should proper mouse support be added in CLI harnesses](https://news.ycombinator.com/item?id=50508183)
-- segmentfault-search (2026-11-16T04:09:41.015935+00:00): [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
-- segmentfault-search (2026-11-16T04:09:41.015935+00:00): [javascript](https://segmentfault.com/t/javascript)
-- segmentfault-search (2026-11-16T04:09:41.015935+00:00): [typescript](https://segmentfault.com/t/typescript)
-- segmentfault-search (2026-11-16T04:09:41.015935+00:00): [ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
-- segmentfault-search (2026-11-16T04:09:41.016438+00:00): [答： 从电话号码中删除破折号](https://segmentfault.com/q/1010000042899333/a-1020000042899335)
-- segmentfault-search (2026-11-16T04:09:41.016438+00:00): [问： 关于Android的浮动框退出程序时移除的问题](https://segmentfault.com/q/1010000004947270)
-- segmentfault-search (2026-11-16T04:09:41.016438+00:00): [问： 在destroy中移出浮动框的时候报错](https://segmentfault.com/q/1010000004951062)
-- github-issues (2026-11-03T07:12:57+00:00): [🛰️ 每周发现报告 · 2026-11-03](https://github.com/TWO-ICE/awesome-manyu/issues/2)
+- clawhub-popular-skill (2026-05-11T07:50:48.771000+00:00): [Popular Clawhub skill demand: Humanizer has 135,881 downloads](https://clawhub.ai/skills/humanizer)
+- clawhub-popular-skill (2026-05-18T20:48:27.565000+00:00): [Popular Clawhub skill demand: Nano Banana Pro has 108,983 downloads](https://clawhub.ai/skills/nano-banana-pro)
+- segmentfault-search (2026-11-25T13:49:41.245102+00:00): [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
+- segmentfault-search (2026-11-25T13:49:41.245102+00:00): [javascript](https://segmentfault.com/t/javascript)
+- segmentfault-search (2026-11-25T13:49:41.245649+00:00): [typescript](https://segmentfault.com/t/typescript)
+- segmentfault-search (2026-11-25T13:49:41.245649+00:00): [ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
+- segmentfault-search (2026-11-25T13:49:41.246175+00:00): [答： 从电话号码中删除破折号](https://segmentfault.com/q/1010000042899333/a-1020000042899335)
+- segmentfault-search (2026-11-25T13:49:41.246175+00:00): [问： 关于Android的浮动框退出程序时移除的问题](https://segmentfault.com/q/1010000004947270)
+- segmentfault-search (2026-11-25T13:49:41.246175+00:00): [问： 在destroy中移出浮动框的时候报错](https://segmentfault.com/q/1010000004951062)
+- github-issues (2026-11-25T13:43:40+00:00): [Simplify/clean polygon paths after editing](https://github.com/LibrePCB/LibrePCB/issues/1944)
 
 ## How The Skill Meets The Requirement
 

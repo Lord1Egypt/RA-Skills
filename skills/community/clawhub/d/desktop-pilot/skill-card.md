@@ -1,6 +1,6 @@
 ## Description:
 
-Computer use for Windows, macOS, Linux and WSL. Screenshot the screen, list windows, click buttons by name, close/focus apps, type text, press keys, click by coordinates, and show an "agent is working" overlay. Nothing to install on Windows/macOS; Linux needs xdotool and wmctrl.
+Control desktop applications across Windows, WSL, macOS, and Linux with screenshots, accessibility-based clicks, window focus, typing, and keyboard input.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT No Attribution (MIT-0)
 
 ## Use Case:
 
-Developers use this skill to let an agent inspect and operate a desktop across Windows, macOS, Linux, and WSL. It supports screenshots, window and control discovery, and targeted mouse or keyboard actions.
+Developers and agent builders use this skill to inspect and operate desktop applications during supervised GUI workflows, including screenshots, selecting controls, typing, and keyboard or mouse actions.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates the skill suspicious based on reported input controls and cancellation weaknesses, and notes that some files were only partly analyzed.
+Risk: ClawScan marks this release suspicious because of environment-related concerns and incomplete inspection of several components; the available evidence does not establish that it is safe.
 
-Mitigation: Before installing, review the input-lock and cancellation behavior, use input lock only for short supervised bursts, and account for the scanner's partial coverage.
+Mitigation: Review the release carefully before installation, especially the components that were not fully inspected.
+
+Risk: Screenshots can capture private windows or notifications, and the optional Windows input lock suppresses physical keyboard and mouse input while active.
+
+Mitigation: Keep screenshots local and remove them when no longer needed; use input lock only for short, supervised bursts.
 
 ## Reference(s):
 
-- [Desktop Pilot on ClawHub](https://clawhub.ai/brayanjeshua/skills/desktop-pilot)
+- [Desktop Pilot release on ClawHub](https://clawhub.ai/brayanjeshua/skills/desktop-pilot)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Text]
+**Output Type(s):** [Text, Images]
 
-**Output Format:** [PNG screenshots and plain-text window/control listings or action status messages]
+**Output Format:** [Command-line status and accessibility text, plus PNG screenshots]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Output depends on the selected desktop action and platform.]
+**Other Properties Related to Output:** [Screenshots may contain private desktop content.]
 
 ## Skill Version(s):
 
-1.0.1 (source: CHANGELOG.md, server-resolved release metadata)
+1.0.3 (source: CHANGELOG and server-resolved release metadata)
 
 ## Ethical Considerations:
 

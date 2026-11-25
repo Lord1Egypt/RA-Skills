@@ -1,46 +1,62 @@
-## Description: <br>
-Guides an agent through installing, configuring, benchmarking, and troubleshooting BitNet local inference for 1.58-bit quantized language models on CPU-oriented environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bitnet guides agents through setting up Microsoft BitNet/bitnet.cpp for local 1-bit LLM inference, including dependency installation, model download, environment setup, inference, and benchmarking.
 
-## Publisher: <br>
-[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up BitNet, download supported models, run local text generation or chat inference, tune CPU/GPU execution parameters, and diagnose build or runtime issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes agent-runnable installer commands that fetch and execute remote scripts for tools such as Homebrew or LLVM. <br>
-Mitigation: Review each command before execution and prefer manual installation from official project instructions when possible. <br>
-Risk: The troubleshooting guidance may involve Hugging Face authentication tokens for model downloads. <br>
-Mitigation: Use scoped tokens, avoid exposing tokens in shared shells or logs, and remove credentials from the environment after use. <br>
-Risk: Model downloads and build steps can consume substantial disk, network, and compute resources. <br>
-Mitigation: Run the workflow in an isolated conda environment, confirm available disk space, and approve large downloads before starting. <br>
+## Use Case:
 
+Developers and engineers use this skill to install dependencies, retrieve BitNet-compatible models, configure quantized inference builds, run local text generation or chat, benchmark performance, and troubleshoot common setup issues.
 
-## Reference(s): <br>
-- [BitNet GitHub repository](https://github.com/microsoft/BitNet) <br>
-- [BitNet-b1.58-2B-4T model](https://huggingface.co/microsoft/BitNet-b1.58-2B-4T) <br>
-- [BitNet GPU inference documentation](https://github.com/microsoft/BitNet/blob/main/gpu/README.md) <br>
-- [BitNet optimization guide](https://github.com/microsoft/BitNet/blob/main/src/README.md) <br>
-- [BitNet technical report](https://arxiv.org/abs/2410.16144) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes platform-specific setup steps, model download commands, benchmark commands, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill includes commands that fetch and execute mutable remote installer scripts or install system packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, prefer package-manager-native or pinned verified installers, and avoid privileged execution unless required.
+
+Risk: The skill directs users to clone and run setup scripts from the BitNet repository and to install Python requirements.
+
+Mitigation: Review the repository, setup scripts, and dependency files before running them in an isolated environment.
+
+Risk: Hugging Face authentication may be used during model download.
+
+Mitigation: Treat Hugging Face tokens as secrets and avoid exposing them in prompts, logs, shell history, or shared outputs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cn-big-cabbage/skills/bitnet)
+- [BitNet GitHub Repository](https://github.com/microsoft/BitNet)
+- [BitNet-b1.58-2B-4T Model](https://huggingface.co/microsoft/BitNet-b1.58-2B-4T)
+- [BitNet GPU Inference Documentation](https://github.com/microsoft/BitNet/blob/main/gpu/README.md)
+- [BitNet Optimization Documentation](https://github.com/microsoft/BitNet/blob/main/src/README.md)
+- [BitNet Technical Report](https://arxiv.org/abs/2410.16144)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup, inference, benchmarking, tuning, and troubleshooting guidance for local BitNet workflows.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

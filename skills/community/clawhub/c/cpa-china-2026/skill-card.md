@@ -1,6 +1,6 @@
 ## Description:
 
-Provides China CPA 2026 exam support across accounting, auditing, financial cost management, corporate strategy and risk management, economic law, and tax law.
+提供中国注册会计师2026年专业阶段六科目权威知识问答、准则解读、审计流程、财务计算、法条检索和税务处理辅助。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,21 +14,17 @@ MIT-0
 
 ## Use Case:
 
-Students, CPA candidates, and accounting or finance professionals use this skill for China CPA 2026 study support, subject review, calculations, standards interpretation, legal reference, and tax treatment guidance. It should be treated as an exam and reference aid, not a substitute for licensed professional advice.
+CPA candidates and accounting professionals can use the skill for study and reference across China's six professional-stage subjects, including accounting, auditing, financial management, strategy, economic law, and tax. Verify guidance against current rules and the facts of each case before relying on it.
 
 ### Deployment Geography for Use:
 
-Global
+China
 
 ## Known Risks and Mitigations:
 
-Risk: Legal, tax, audit, and accounting answers may be mistaken for professional advice or used without validating current rules.
+Risk: Accounting, audit, legal, and tax answers may be incomplete, outdated, or unsuitable for a particular case.
 
-Mitigation: Use responses as study and reference guidance only; verify dates, jurisdiction, assumptions, and primary sources before relying on answers for filings, opinions, transactions, or compliance.
-
-Risk: Tax and legal rules can change after the 2026 materials referenced by the skill.
-
-Mitigation: Check current authoritative sources and effective dates before applying any tax or legal treatment.
+Mitigation: Check cited requirements against current official rules and have a qualified professional review decisions using the relevant facts.
 
 ## Reference(s):
 
@@ -36,17 +32,17 @@ Mitigation: Check current authoritative sources and effective dates before apply
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Text, Analysis, Guidance]
 
-**Output Format:** [Markdown or plain text responses with calculations, explanations, references, and study guidance]
+**Output Format:** [Chinese natural-language responses, with explanations, calculations, and structured lists as appropriate]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [No executable output; answers may require user verification against current primary sources for filings, opinions, transactions, or compliance decisions.]
+**Other Properties Related to Output:** [Responses depend on the question and case details; accounting, legal, and tax guidance may need checking against current official rules.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server release metadata and package.json)
+1.0.1 (source: release evidence, package.json)
 
 ## Ethical Considerations:
 

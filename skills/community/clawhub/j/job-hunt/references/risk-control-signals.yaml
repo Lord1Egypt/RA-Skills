@@ -25,7 +25,7 @@ measured_note: >-
   resolves it in the login-wall branch against `opencli auth status`, not
   here. On 2026-09-08, opencli 1.8.7 Indeed search returned exit 1 with
   "Indeed served a Cloudflare challenge page"; the raw stderr is retained
-  in the source repository's test fixtures. No further Indeed reads
+  in the source repository at scripts/tests/fixtures/indeed-cloudflare.err. No further Indeed reads
   were attempted in that round.
 
 signals:

@@ -3,7 +3,7 @@ name: iterate
 slug: iterate-skill
 displayName: Iterate
 description: Fully automated multi-round code iteration with configurable N-dimension parallel review, onboarding/personalization, and a cross-assistant installer/update system with mandatory SHA256 checksum verification. v3.0 adds a dual-mode (the original iterate mode plus a defensive-programming mode via /iterate defensive) that performs normal incremental coding tasks with defensive discipline end-to-end.
-version: 0.0.7
+version: 0.0.9
 permissions:
   file_read: true
   file_write: true
@@ -258,3 +258,100 @@ Summary
    - 检查项目根目录下是否存在 `ITERATE.md`。
    - **存在** → 进入漂移检测（下一步）。
    - **不存在** → **先向用户明确说明**"这是首次使用，将先进行项目初始化（Onboarding）"，再暂停迭代进入 **AI Onboarding 流程**（见下文）。不要让用户误以为 skill 失效或卡住；完成后继续 Step 1。
+
+3. **漂移检测 / Drift detection**（仅在 `onboarding.drift_check` 为 `true` 时执行）
+   - 读取 `iterate.config.yaml` 中的 `onboarding.fingerprints`（manifest 文件的 SHA-256 哈希）。
+   - 重新计算当前 manifest 文件的哈希并比对；`onboarding.drift_ignore` 中列出的 manifest（如锁文件）会被跳过，不计入漂移。
+   - **无漂移** → 静默通过，进入 Step 1。
+   - **有漂移**（manifest 新增/删除/内容变更）→ **非阻塞**警告，使用 `AskUserQuestion` 询问用户：
+     - **继续（continue）**：本轮照旧使用现有 ITERATE.md。
+     - **增量刷新（refresh）**：AI 重新扫描项目，更新 ITERATE.md 的 AI 维护区（用户手写区保留），更新指纹。
+     - **完整重新 onboarding（reonboard）**：备份旧文件后走完整 onboarding 流程。
+
+> 漂移检测是**非阻塞**的——即使用户选择"继续"，迭代也会正常进行，只是使用可能过时的知识库。
+
+### AI Onboarding 流程 / AI Onboarding Flow
+
+当 `ITERATE.md` 不存在时，AI 执行以下流程（类似 Claude Code 首次生成 `CLAUDE.md`）：
+
+1. **告知并确认 / Inform and confirm**
+   - 告知用户将扫描代码库生成 `ITERATE.md` 和配置，并说明这是首次使用所必需的初始化步骤。
+   - 同时提示 CLI 备选：用户也可以运行 `iterate onboard` 在命令行中完成。
+   - 参考 `templates/onboarding-playbook.md` 中的扫描清单和映射表（**仅供参考，需按项目实况调整**）。
+
+2. **扫描 / Scan**（并行只读）
+   - 读取 manifest 文件（`package.json` / `pyproject.toml` / `Package.swift` / `go.mod` / `Cargo.toml` 等）。
+   - 读取 2-3 层目录树，识别模块结构。
+   - 检查 `specs/`、`tests/`、CI 配置的存在性。
+   - 读取已有 `README.md` / `CLAUDE.md` 提取项目描述。
+   - **绝不读取** `.env`、`.env.*`、`*.{key,pem,p12,crt,cer}`、`credentials.json`、`.aws/`、`.ssh/` 等敏感文件。
+
+3. **草拟 / Draft**
+   - 基于扫描结果 + playbook 映射表草拟：
+     - `ITERATE.md`：项目概述、技术栈、模块地图、推荐维度、iterate 注意点。
+     - `iterate.config.yaml`：启用的 dimensions、`validation.commands`、`validation.command_whitelist`、指纹数据。
+   - ITERATE.md 分为 **AI 维护区**（`<!-- ITERATE:AI-MAINTAINED:START -->` ~ `END`）和 **用户维护区**（`<!-- ITERATE:USER-OWNED:START -->` ~ `END`）。刷新时只更新 AI 维护区。
+
+4. **用户确认 / User confirmation**
+   - 展示摘要：识别的技术栈、拟启用维度及理由、**拟写入的 validation.commands 逐条列出**。
+   - 用户可选：全部接受 / 修改 / 重扫。
+   - **validation.commands 涉及后续自动执行，必须经用户显式确认。**
+
+5. **写入产物 / Write outputs**
+   - 写入 `ITERATE.md` 和 `iterate.config.yaml`，其中 `onboarding` 段必须包含 `channel: "ai"`、`completed_at`（ISO 8601 时间戳）与 `fingerprints`，与 CLI 通道产出保持一致（否则 `iterate status` 会显示 `Channel: unknown`）。
+   - 继续正常迭代流程（Step 1）。
+
+### CLI Onboarding（命令行通道）
+
+用户也可以在终端中运行 `iterate onboard` 完成相同流程：
+
+```bash
+iterate onboard      # 交互式向导（多路引导：首次/非首次自动分支）
+iterate init --yes   # 非交互式初始化：按扫描结果写入 ITERATE.md + config，供 CI/脚本/其它 skill 调用（--dry-run 预览；已初始化则不改动；--json）
+iterate personalize  # 个性化配置（项目中途追加约束，9 步向导）
+iterate personalize --clear [--yes]  # 清空所有个性化配置（结构化规则 + ITERATE.md 相关段落）
+iterate show         # 只读查看合并后的配置与个性化详情（支持 --json）
+iterate refresh      # 增量刷新（保留用户手写区；支持 --json / --dry-run --json 结构化报告）
+iterate reonboard    # 完整重新 onboarding（备份旧文件）
+iterate doctor       # 项目健康诊断（onboarding/config/维度/漂移等全项检查；--strict 将 warning 一并判失败；--fix 安全修复；--json / --json-out 结构化输出）
+iterate status       # 查看 onboarding 状态和漂移检测（--json 含 onboarded、config_exists/config_ok、drift_detected 与明细列表）
+iterate scan         # 只读导出项目扫描结果（识别到的 manifest/语言/包管理器/顶层目录/五个特性开关含 has_api + 建议维度/维度集/校验命令/命令白名单；不写文件，恒退出 0；--json）
+iterate scan --json  # 同上，结构化输出，供脚本/CI 消费
+iterate report       # 聚合 status/scan/doctor 为单份 Markdown 健康报告（可直接贴 PR / 存 CI artifact；--out PATH 落盘（已存在需 --force）；--strict 警告也判失败；--json 输出结构化报告）
+iterate completion bash|zsh|fish  # 输出该 shell 的补全脚本（补全命令、参数、固定取值与路径；从同一 parser 生成，永不与 --help 漂移）
+iterate completion bash|zsh|fish --install [--dir DIR] [--force]  # 直接装到该 shell 的常规用户补全目录（bash/fish 自动加载；zsh 写入 ~/.zfunc 或 ~/.oh-my-zsh/completions 并打印 fpath 提示；--json 输出安装结果）
+iterate export       # 把 iterate.config.yaml + ITERATE.md 导出为单个可移植 JSON bundle（只写 bundle，不改项目；--out / --json / --force）
+iterate import FILE  # 校验 bundle（含 schema）→ 时间戳备份 → 写回配置与 ITERATE.md（--dry-run / --yes / --reset-fingerprints / --json；FILE 为 - 时读 stdin）
+iterate guard pre-check [targets...]   # 编辑前静态校验（目标存在/工作区干净/manifest 就绪；只读，从不执行命令；--json）
+iterate guard post-check [targets...]  # 编辑后执行 validation.commands 并核对结果（--dry-run 只预览命令不执行；--json）
+iterate invariant      # 项目级不变量校验（--dry-run 预览；--json）
+iterate fingerprint verify  # 校验 manifest 指纹漂移（--json，退出码 0=无漂移 / 1=有漂移）
+iterate fingerprint list    # 只读列出上次记录的指纹基线（path + sha256，不重扫；--json）
+iterate config       # 非交互式查看全部可设配置值（支持 --json）
+iterate config get <key>   # 读取单个配置项的解析值（支持 --json，输出 {"key": value}）
+iterate config set <key> <value>  # 校验并写回单个配置项（自动备份；--json 输出确认对象）
+iterate config unset <key> # 删除该配置项并逐级剪掉空祖先节点（自动备份；key 不存在时退出码 1；--json）
+iterate update       # 自更新：SHA-256 校验后刷新助手技能目录 + 重装 CLI（--check 只对比版本；--yes 跳过确认；--assistants 限定刷新范围，未知助手名报错而非静默跳过）
+iterate help         # 打印总览帮助（等价 `iterate --help`）
+iterate help doctor  # 打印单个命令的详细帮助
+```
+
+CLI 通道会自动扫描代码库并让你确认/调整技术栈与配置，适合希望手动控制 onboarding 过程的用户；AI 通道则完全由 AI 自动扫描生成。两者产出相同格式的 `ITERATE.md` 和 `iterate.config.yaml`。
+
+**命令发现与容错 / Discoverability**：`iterate help [command]` 打印总览或单命令帮助（无需记住 `--help` 的位置）；命令拼错时会给出最近的可用命令（如 `iterate statu` → `did you mean 'status'?`），子命令动作同样适用（如 `iterate fingerprint verfy` → `did you mean 'verify'?`）。所有用法错误退出码为 2；带 `--json` 时 stdout 仍是恰好一个 JSON 文档（其中 `did_you_mean` 给出同样的建议）。`iterate completion bash|zsh|fish` 输出可直接安装的补全脚本（命令、参数、固定取值、路径参数），补全内容由 `--help` 同一个 parser 生成，新增/改名命令不会漏补；加 `--install` 可一步写入常规用户补全目录（`--dir` 自定义目录、`--force` 覆盖旧文件、`--json` 输出单个结果文档），不再需要自己记路径和重定向。
+
+**多路引导 / Multi-Path Flow**：
+- **首次 onboarding**（无 ITERATE.md）：确认手动配置 → 基础 onboarding → 询问是否需要个性化配置。
+- **非首次 onboarding**（已有 ITERATE.md）：询问是否更新基础配置（不建议手动改）→ 询问是否进行个性化配置。
+
+`iterate config set <key> <value>` 的 `<key>`（扁平键，与 `iterate show` 输出的键一致）与点号路径别名（如 `git.use_worktree`、`reviewer.coverage_validation`）均可使用。`iterate config unset <key>` 反向操作：删除该键，若其父节点因此变空（如 `personalization` 下所有子项都被删）则连父节点一并剪掉，恢复到 schema 的默认语义；每次写入前自动备份为同目录下的 `iterate.config.yaml.configunset-<UTC 时间戳>-<随机后缀>`。若该键不存在（或父节缺失/不是 mapping），`unset` 以退出码 1 结束并提示 `nothing to unset`，不会静默成功。若该键带注释（`# ...`），删除会一并移除注释并在 stderr 给出 warning，避免留下悬空注释。
+
+### 退出码约定 / Exit-Code Contract
+
+所有子命令遵循同一套退出码，便于脚本与 CI 门禁：
+
+| 退出码 | 含义 | 典型来源 |
+|---|---|---|
+| `0` | 成功 / 无问题 | `status` 已 onboard 且无漂移；`guard pre-check` 可开工；`fingerprint list` 已读出基线（即使为空） |
+| `1` | **业务失败**（命令按预期跑完，结论是"有问题"） | `guard`/`invariant` 返回 `FAIL`；`fingerprint verify` 检出漂移；`doctor --strict` 有 warning；`config set/unset` 的键/值非法；JSON 模式下配置无法解析 |
+| `2` | **用法错误**（argparse） | 未知子命令、未知动作（`fingerprint bogus`）、缺必填参数、`config` 的非法键名 |

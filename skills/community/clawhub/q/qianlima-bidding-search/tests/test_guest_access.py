@@ -71,19 +71,29 @@ class GuestAccessTests(unittest.TestCase):
                 self.assertNotIn('hasAnnex', out['cards'][0])
                 self.assertNotIn('secretField', out['cards'][0])
                 for card in out['cards']:
-                    self.assertIn(f"[{card['title']}]({card['url']})", out['user_message'])
+                    self.assertNotIn(f"[{card['title']}]({card['url']})", out['user_message'])
                 self.assertEqual(out['total_count'], 900)
                 self.assertEqual(out['viewable_page_count'], 10)
 
     def test_announcement_title_link_handles_brackets_without_changing_url(self):
         title = '[采购公告]服务器（一期）'
-        url = 'https://ai.qianlima.com/?source=bb3b4102f584028c3830df37&ref=(notice)'
+        url = 'https://ai.qianlima.com/detail-example.html?ref=(notice)'
         self.transform = lambda data: {**data, 'list': [{**data['list'][0], 'title': title, 'url': url}]}
         out = self.call('search', query=QUERY)
         self.assertEqual(out['cards'][0]['url'], url)
         self.assertEqual(len(self.calls), 1)
         self.assertIn(r'1. [\[采购公告\]服务器（一期）](<' + url + '>)', out['user_message'])
         self.assertNotIn('[查看详情]', out['user_message'])
+
+    def test_mixed_home_and_detail_links_render_by_actual_destination(self):
+        cards = [{'title': '官网结果', 'url': OFFICIAL},
+                 {'title': '详情结果', 'url': 'https://ai.qianlima.com/detail-example.html'}]
+        before = json.dumps(cards)
+        rendered = '\n'.join(r.user_card_list(cards))
+        self.assertIn('1. 官网结果', rendered)
+        self.assertNotIn(OFFICIAL, rendered)
+        self.assertIn('[详情结果](https://ai.qianlima.com/detail-example.html)', rendered)
+        self.assertEqual(json.dumps(cards), before)
 
     def test_key_defaults_paid_and_explicit_free_keeps_key(self):
         os.environ['QIANLIMA_API_KEY'] = 'offline-guest-key'
@@ -320,7 +330,7 @@ class GuestAccessTests(unittest.TestCase):
         out=self.call('search',query=QUERY,mode='guest')
         self.assertTrue(out['ok'])
         self.assertNotIn('[查看详情]',out['user_message'])
-        self.assertIn(f"[{out['cards'][0]['title']}]({out['cards'][0]['url']})",out['user_message'])
+        self.assertNotIn(f"[{out['cards'][0]['title']}]({out['cards'][0]['url']})",out['user_message'])
         self.assertNotIn('link_notice',out)
         self.assertEqual(out['link_contract_issues'],['官网入口缺少或不符合约定的 source 参数'])
         self.assertEqual(out['cards'][0]['url'],'https://ai.atest.qianlima.com/')
@@ -338,7 +348,7 @@ class GuestAccessTests(unittest.TestCase):
             self.assertNotIn('link_notice',out)
             self.assertNotIn('error_code',out)
             for card in out['cards']:
-                self.assertIn(f"[{card['title']}]({card['url']})",out['user_message'])
+                self.assertNotIn(f"[{card['title']}]({card['url']})",out['user_message'])
         for path,body,headers in self.calls:
             self.assertEqual(path,'/api/free/search')
             self.assertEqual(headers['Qianlimaapikey'],'offline-invalid-key')
@@ -353,7 +363,7 @@ class GuestAccessTests(unittest.TestCase):
         self.assertEqual(len(self.calls),n)
         self.assertNotIn('link_notice',out)
         for card in out['cards']:
-            self.assertIn(f"[{card['title']}]({card['url']})",out['user_message'])
+            self.assertNotIn(f"[{card['title']}]({card['url']})",out['user_message'])
         self.assertTrue(all(c['url']==OFFICIAL for c in out['cards']))
         self.assertNotIn('link_contract_issues',out)
 
@@ -405,7 +415,7 @@ class GuestAccessTests(unittest.TestCase):
         self.transform=lambda data:{**data,'list':[{**c,'url':url} for c in data['list']]}
         out=self.call('search',query=QUERY)
         self.assertEqual(out['cards'][0]['url'],url)
-        self.assertIn('('+url+')',out['user_message'])
+        self.assertNotIn(url,out['user_message'])
         self.assertEqual(out['api_responses'][0]['response']['data']['list'][0]['url'],url)
         state=r.load_snapshot(None,out['follow_up']['result_set_id'])
         self.assertEqual(state['cards'][0]['url'],url)
@@ -422,7 +432,7 @@ class GuestAccessTests(unittest.TestCase):
         self.assertTrue(out['ok'],out)
         self.assertEqual(len(self.calls),count)
         self.assertTrue(all(c['url']==url for c in out['cards']))
-        self.assertIn('('+url+')',out['user_message'])
+        self.assertNotIn(url,out['user_message'])
 
     def test_review_f2_missing_pending_does_not_skip_undelivered_rows(self):
         first=self.call('search',query=QUERY)

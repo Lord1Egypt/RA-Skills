@@ -1,6 +1,6 @@
 ## Description:
 
-Use folkctl to inspect and update folk.app CRM data through its REST API, covering people, companies, groups, members, custom fields, deals, custom objects, users, notes, tasks, interactions, legacy reminders, webhooks, and official MCP setup.
+Use folkctl to inspect and update folk.app CRM data through its REST API. Covers people, companies, groups, members, custom fields, deals, custom objects, batch create/update/delete, users, notes, tasks, interactions, person enrichments, credits, legacy reminders, webhooks, and official MCP setup.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and operators use this skill to inspect and modify Folk CRM records through folkctl, with dry-run guidance for creates, updates, deletes, webhook setup, task management, and MCP configuration.
+External users and developers use folkctl to inspect and manage folk.app CRM records, groups, tasks, interactions, and webhooks through Folk's REST API. It also guides safe previews and confirmation for writes, deletes, group replacement, and credit-using enrichments.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: A powerful Folk CRM API key is routed through a globally installed third-party CLI with broad read and mutation abilities.
+Risk: Installation evidence is incomplete because two local references were unresolved.
 
-Mitigation: Install only if the pinned folkctl source is trusted, verify the CLI version before setting FOLK_API_KEY, and prefer a narrowly scoped or dedicated API key when available.
+Mitigation: Review the installation source and resolve the missing references before making the Folk API key available to folkctl.
 
-Risk: Create, update, delete, and field-option operations can change or remove CRM data.
+Risk: Commands can delete records, replace group memberships, or spend workspace credits on enrichments.
 
-Mitigation: Use --dry-run --json before mutations, summarize the exact resource, method, path, and body, and require explicit user confirmation before destructive commands.
-
-Risk: Unexpected authentication failures or account activity may indicate an invalid, overexposed, or compromised Folk API key.
-
-Mitigation: Ask the user to verify or rotate FOLK_API_KEY without pasting secrets into chat, avoid storing the token unless needed, and rotate it if unexpected activity appears.
+Mitigation: Preview writes with --dry-run --json and confirm the exact records, group effects, or enrichment fields and credit use before execution.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/j-edel/skills/folk-cli)
-- [folkctl repository](https://github.com/j-edel/folkctl)
-- [Folk reminders-to-tasks migration guide](https://developer.folk.app/migrations/reminders-to-tasks)
+- [folkctl project homepage (metadata.clawdis)](https://github.com/j-edel/folkctl)
+- [Pinned folkctl install source (metadata.clawdis)](https://github.com/j-edel/folkctl/tree/442c1c5e992a0f51c9689341813fd1c319b3b5e2)
+- [folkctl v0.3.0 release](https://github.com/j-edel/folkctl/releases/tag/v0.3.0)
 - [Folk MCP tools reference](https://developer.folk.app/mcp/tools)
+- [Folk reminders-to-tasks migration guide](https://developer.folk.app/migrations/reminders-to-tasks)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+**Output Type(s):** [Shell commands, API Calls, JSON, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI output expectations]
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Outputs often direct the agent to use folkctl --json, dry-run mutations before execution, and avoid printing FOLK_API_KEY.]
+**Other Properties Related to Output:** [May include mutation previews, paginated records, and per-record batch results.]
 
 ## Skill Version(s):
 
-0.2.2 (source: frontmatter and server release metadata)
+0.3.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

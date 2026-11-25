@@ -20,18 +20,26 @@
  * Body-less (GET/DELETE): pass { body: null, privKey } → header-only signature.
  *
  * CLI:
- *   node sign_request.mjs --gen                                         # generate a new identity key (save as $HYPAWAVE_PRIVKEY)
- *   echo '{"amount":1,...}' | HYPAWAVE_PRIVKEY=<privhex> node sign_request.mjs   # signed POST body
- *   HYPAWAVE_PRIVKEY=<privhex> node sign_request.mjs --bodyless                  # header-only (GET/DELETE)
- *   node sign_request.mjs --selftest                                              # verify against llms.txt vector
- *   (--key <hex> is accepted for one-off tests only — it leaks into shell history and
- *    process listings; the script warns on stderr when it is used)
+ *   node sign_request.mjs --gen                                         # generate a new identity key → ~/.hypawave/identity.json
+ *   echo '{"amount":1,...}' | node sign_request.mjs                     # signed POST body
+ *   node sign_request.mjs --bodyless                                    # header-only (GET/DELETE)
+ *   node sign_request.mjs --selftest                                    # verify against llms.txt vector
+ *
+ * Key resolution: --key <hex>, then $HYPAWAVE_PRIVKEY, then ~/.hypawave/identity.json
+ * (the same file and format @hypawave/mcp uses, so the skill and the MCP server
+ * share one identity). --key is accepted for one-off tests only — it leaks into
+ * shell history and process listings; the script warns on stderr when it is used.
  */
 
 import * as secp from "./vendor/noble-secp256k1.mjs";
 import crypto from "crypto";
 import { fileURLToPath } from "url";
-import { realpathSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, realpathSync, writeFileSync } from "fs";
+import { homedir } from "os";
+import { join } from "path";
+
+const KEY_DIR = join(homedir(), ".hypawave");
+const KEY_FILE = join(KEY_DIR, "identity.json");
 
 const sha256Hex = (input) => crypto.createHash("sha256").update(input).digest("hex");
 
@@ -121,15 +129,42 @@ async function selftest() {
 }
 
 // ── Generate a fresh secp256k1 identity key ─────────────────────────────────
-// One-time seller setup: emits a new private key to save as $HYPAWAVE_PRIVKEY,
-// plus its derived pubkey (your Hypawave identity). The key IS your account —
-// back it up; losing it means losing control of your offers.
+// One-time setup: writes a new private key to ~/.hypawave/identity.json (0600)
+// and prints its derived pubkey (your Hypawave identity). The key IS your
+// account — back it up; losing it means losing your offers and waves. Never
+// overwrites an existing identity file.
 function genKey() {
+  if (existsSync(KEY_FILE)) {
+    console.error(`error: an identity already exists at ${KEY_FILE} — refusing to overwrite it (that would replace this agent's identity). Move it aside first if you really want a new key.`);
+    process.exit(1);
+  }
   const privBytes = secp.utils.randomPrivateKey();
   const privKey = Buffer.from(privBytes).toString("hex");
   const pubKey = Buffer.from(secp.getPublicKey(privBytes, true)).toString("hex");
-  console.error("Generated a new secp256k1 identity key. Save the private key as $HYPAWAVE_PRIVKEY and back it up — it controls your offers (separate from your payout wallet).");
-  console.log(JSON.stringify({ HYPAWAVE_PRIVKEY: privKey, pubkey: pubKey }, null, 2));
+  mkdirSync(KEY_DIR, { recursive: true, mode: 0o700 });
+  writeFileSync(KEY_FILE, JSON.stringify({ privkey: privKey, created_at: new Date().toISOString() }, null, 2), {
+    mode: 0o600,
+    flag: "wx",
+  });
+  console.error(`Generated a new secp256k1 identity key and saved it to ${KEY_FILE} (the signer reads it automatically). Back it up — it controls your offers and waves (separate from your payout wallet). If this environment does not keep files between sessions, have your operator store the key as the HYPAWAVE_PRIVKEY secret.`);
+  if (process.env.HYPAWAVE_PRIVKEY) {
+    console.error("warning: $HYPAWAVE_PRIVKEY is set and takes precedence over the saved file.");
+  }
+  console.log(JSON.stringify({ pubkey: pubKey, identity_file: KEY_FILE }, null, 2));
+}
+
+// Saved identity written by --gen or @hypawave/mcp, or "" when there is none.
+function readKeyFile() {
+  if (!existsSync(KEY_FILE)) return "";
+  let saved;
+  try {
+    saved = JSON.parse(readFileSync(KEY_FILE, "utf8"));
+  } catch {
+    saved = null;
+  }
+  if (typeof saved?.privkey === "string" && /^[0-9a-f]{64}$/.test(saved.privkey)) return saved.privkey;
+  console.error(`error: corrupt identity file at ${KEY_FILE} — restore it or set $HYPAWAVE_PRIVKEY`);
+  process.exit(2);
 }
 
 // ── CLI ─────────────────────────────────────────────────────────────────────
@@ -142,9 +177,9 @@ async function main() {
   if (keyIdx >= 0) {
     console.error("warning: --key puts the private key in shell history and process listings; prefer the HYPAWAVE_PRIVKEY environment variable");
   }
-  const privKey = (keyIdx >= 0 ? argv[keyIdx + 1] : process.env.HYPAWAVE_PRIVKEY) || "";
+  const privKey = (keyIdx >= 0 ? argv[keyIdx + 1] : process.env.HYPAWAVE_PRIVKEY || readKeyFile()) || "";
   if (!/^[0-9a-fA-F]{64}$/.test(privKey)) {
-    console.error("error: provide a 32-byte hex private key via --key <hex> or $HYPAWAVE_PRIVKEY");
+    console.error(`error: no identity key — run \`node sign_request.mjs --gen\` once (saves to ${KEY_FILE}), or set $HYPAWAVE_PRIVKEY to a 32-byte hex key`);
     process.exit(2);
   }
 

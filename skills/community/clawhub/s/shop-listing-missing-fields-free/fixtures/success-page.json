@@ -1,0 +1,9 @@
+{
+  "source": "离线页面资料模拟：成功样例，不是在线采集结果",
+  "fields": {
+    "spec": { "color": "蓝色", "size": "M" },
+    "media": { "mainImage": "主图已见" },
+    "shipping": { "freightTemplate": "包邮模板", "origin": "杭州" },
+    "afterSale": { "returnPolicy": "7天退货" }
+  }
+}

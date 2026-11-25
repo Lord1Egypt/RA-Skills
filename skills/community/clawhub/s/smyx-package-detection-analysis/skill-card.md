@@ -1,6 +1,6 @@
 ## Description:
 
-Detects delivery packages in a target surveillance area for inventory checks and unattended alerts.
+Detects delivery packages in a surveillance area for inventory checks and unattended-item alerts at parcel stations, residential entrances, and office lobbies.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Teams managing community parcel stations, residential entrances, and office lobbies can use this skill to analyze surveillance images or videos, count detected packages, and review unattended-package reports.
+External operators at parcel stations, residential entrances, and office lobbies use the skill to detect and count visible packages, identify unattended items, and retrieve prior reports.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment marks this release suspicious and reports account creation, credential storage, persistent local records, and external processing beyond the stated package-detection purpose. The assessment is partial because a referenced local path was missing.
+Risk: ClawScan marked the skill suspicious for credential and identity handling, remote requests, and behavior beyond package detection.
 
-Mitigation: Review the complete source and how identity, credentials, stored records, and external processing are handled before installation; avoid installing until you are comfortable with those behaviors.
+Mitigation: Before use, verify the service destinations, the identity and video data sent, and how credentials and user records are stored.
+
+Risk: Scanning was partial because one local path-like reference was missing.
+
+Mitigation: Locate and inspect the missing referenced item before relying on the security assessment.
 
 ## Reference(s):
 
-- [Package detection API documentation](artifact/references/api_doc.md)
+- [API documentation](references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
-- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-package-detection-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Guidance]
+**Output Type(s):** [Analysis, JSON, Markdown]
 
-**Output Format:** [Text analysis results and Markdown history-report tables]
+**Output Format:** [Structured package-detection results and Markdown report lists with report links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports may include detected package counts, location markers, unattended-item alerts, recommendations, and report links.]
+**Other Properties Related to Output:** [Analyzes local images or videos and network URLs; historical reports are retrieved from the service.]
 
 ## Skill Version(s):
 
-1.0.19 (source: server-resolved release metadata)
+1.0.20 (source: server-resolved release metadata; artifact frontmatter reports 1.0.25)
 
 ## Ethical Considerations:
 

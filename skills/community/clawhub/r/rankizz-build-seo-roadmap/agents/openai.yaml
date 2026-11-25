@@ -1,0 +1,12 @@
+interface:
+  display_name: "SEO Roadmap"
+  short_description: "Build an evidence-based 1–30 day SEO roadmap"
+  default_prompt: "Use $rankizz-build-seo-roadmap to build a prioritized SEO roadmap for my site."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "rankizz"
+      description: "Rankizz authority, traffic, keyword, SERP, and backlink tools"
+      transport: "streamable_http"
+      url: "https://www.rankizz.com/mcp"

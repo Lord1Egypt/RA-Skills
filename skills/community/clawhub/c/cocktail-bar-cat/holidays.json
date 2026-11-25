@@ -1,0 +1,423 @@
+{
+  "public_data": {
+    "data_classification": "public_knowledge_with_demo_promotions",
+    "promotion_policy": "所有活动文字与1.05调价系数都是合成教学演示，不是门店折扣、赠送、限购或在售政策",
+    "price_formula": "有完整配方时，演示主题金额=ROUND_HALF_UP(合成建议售价*1.05,2)；无完整配方的概念款不自动编造成本或售价"
+  },
+  "holiday_specials": [
+    {
+      "name": "情人节",
+      "date": "2月14日",
+      "theme": "浪漫、甜蜜、粉红色",
+      "featured_drinks": [
+        {
+          "name": "粉红佳人",
+          "description": "金酒+红石榴糖浆+蛋白，粉红色系，甜蜜浪漫",
+          "price_modifier": 1.05,
+          "promotion": "演示活动：主题风味分享；不代表真实促销、赠送或折扣"
+        },
+        {
+          "name": "贝利尼",
+          "description": "普罗塞克+白桃泥，意大利浪漫",
+          "price_modifier": 1.05,
+          "promotion": null
+        },
+        {
+          "name": "大都会",
+          "description": "伏特加+蔓越莓汁，粉红烈酒",
+          "price_modifier": 1.05,
+          "promotion": null
+        },
+        {
+          "name": "草莓香槟",
+          "description": "香槟+草莓利口酒，节日感满满",
+          "price_modifier": 1.05,
+          "promotion": "演示活动：主题风味分享；不代表真实促销、赠送或折扣"
+        }
+      ],
+      "decoration": "玫瑰花瓣、心形装饰、粉色灯光",
+      "music": "爵士情歌、R&B"
+    },
+    {
+      "name": "圣帕特里克节",
+      "date": "3月17日",
+      "theme": "爱尔兰、绿色、啤酒",
+      "featured_drinks": [
+        {
+          "name": "爱尔兰咖啡",
+          "description": "爱尔兰威士忌+咖啡+奶油，经典热饮",
+          "price_modifier": 1.05,
+          "promotion": null
+        },
+        {
+          "name": "绿色莫吉托",
+          "description": "莫吉托+青苹果糖浆，绿色变异版",
+          "price_modifier": 1.05,
+          "promotion": null
+        },
+        {
+          "name": "爱尔兰炸弹",
+          "description": "健力士黑啤+爱尔兰威士忌+百利甜",
+          "price_modifier": 1.05,
+          "promotion": "演示活动：主题风味分享；不代表真实促销、赠送或折扣"
+        }
+      ],
+      "decoration": "绿色三叶草、爱尔兰国旗",
+      "music": "爱尔兰民谣、凯尔特音乐"
+    },
+    {
+      "name": "万圣节",
+      "date": "10月31日",
+      "theme": "惊悚、神秘、暗黑",
+      "featured_drinks": [
+        {
+          "name": "血腥玛丽",
+          "description": "伏特加+番茄汁+香料，血红颜色",
+          "price_modifier": 1.05,
+          "promotion": "演示活动：主题风味分享；不代表真实促销、赠送或折扣"
+        },
+        {
+          "name": "黑色天鹅绒",
+          "description": "香槟+黑啤酒，暗黑色系",
+          "price_modifier": 1.05,
+          "promotion": null
+        },
+        {
+          "name": "僵尸",
+          "description": "多款朗姆酒混合，度数极高",
+          "price_modifier": 1.05,
+          "promotion": "演示活动：主题风味分享；不代表真实促销、赠送或折扣"
+        },
+        {
+          "name": "巫婆之吻",
+          "description": "黑朗姆+蓝柑糖浆+雪碧，魔幻蓝绿色",
+          "price_modifier": 1.05,
+          "promotion": null
+        }
+      ],
+      "decoration": "南瓜灯、蜘蛛网、骷髅；装饰与饮品隔离，不用干冰入杯",
+      "music": "恐怖片配乐、暗黑电子"
+    },
+    {
+      "name": "感恩节",
+      "date": "11月第四个周四",
+      "theme": "丰收、家庭、温暖",
+      "featured_drinks": [
+        {
+          "name": "苹果马提尼",
+          "description": "伏特加+苹果利口酒，秋日味道",
+          "price_modifier": 1.05,
+          "promotion": null
+        },
+        {
+          "name": "枫糖古典",
+          "description": "波本+枫糖浆+苦精，美式经典",
+          "price_modifier": 1.05,
+          "promotion": null
+        },
+        {
+          "name": "南瓜香料鸡尾酒",
+          "description": "朗姆酒+南瓜泥+香料，应季特饮",
+          "price_modifier": 1.05,
+          "promotion": "演示活动：主题风味分享；不代表真实促销、赠送或折扣"
+        }
+      ],
+      "decoration": "南瓜、玉米、落叶、橙色系",
+      "music": "乡村音乐、民谣"
+    },
+    {
+      "name": "圣诞节",
+      "date": "12月25日",
+      "theme": "温馨、节日、红色绿色",
+      "featured_drinks": [
+        {
+          "name": "热红酒",
+          "description": "红酒+肉桂+丁香+橙子，经典节日热饮",
+          "price_modifier": 1.05,
+          "promotion": "演示活动：主题风味分享；不代表真实促销、赠送或折扣"
+        },
+        {
+          "name": "蛋酒",
+          "description": "朗姆酒+蛋奶+肉豆蔻，圣诞传统",
+          "price_modifier": 1.05,
+          "promotion": "演示活动：主题风味分享；不代表真实促销、赠送或折扣"
+        },
+        {
+          "name": "爱尔兰咖啡",
+          "description": "爱尔兰威士忌+咖啡+奶油，温暖人心",
+          "price_modifier": 1.05,
+          "promotion": null
+        },
+        {
+          "name": "圣诞马提尼",
+          "description": "伏特加+薄荷利口酒+奶油，薄荷巧克力味",
+          "price_modifier": 1.05,
+          "promotion": "演示活动：主题风味分享；不代表真实促销、赠送或折扣"
+        }
+      ],
+      "decoration": "圣诞树、彩灯、圣诞袜、雪花装饰",
+      "music": "圣诞歌曲、爵士版圣诞歌"
+    },
+    {
+      "name": "跨年夜",
+      "date": "12月31日",
+      "theme": "狂欢、倒数、庆祝",
+      "featured_drinks": [
+        {
+          "name": "香槟鸡尾酒",
+          "description": "香槟+方糖+苦精，经典庆祝酒",
+          "price_modifier": 1.05,
+          "promotion": "演示活动：主题风味分享；不代表真实促销、赠送或折扣"
+        },
+        {
+          "name": "法国75",
+          "description": "金酒+柠檬汁+香槟，清爽烈酒",
+          "price_modifier": 1.05,
+          "promotion": null
+        },
+        {
+          "name": "黑俄罗斯",
+          "description": "伏特加+咖啡利口酒，浓郁庆祝",
+          "price_modifier": 1.05,
+          "promotion": null
+        }
+      ],
+      "decoration": "气球、彩带、倒计时屏幕",
+      "music": "派对音乐、倒计时配乐",
+      "special_event": "演示活动：跨年主题风味分享；不包含免费出品或实际活动承诺"
+    },
+    {
+      "name": "中国新年/春节",
+      "date": "农历正月初一",
+      "theme": "喜庆、红色、团圆",
+      "featured_drinks": [
+        {
+          "name": "中国马提尼",
+          "description": "茅台+干苦艾酒，中式烈酒经典",
+          "price_modifier": 1.05,
+          "promotion": "演示活动：主题风味分享；不代表真实促销、赠送或折扣"
+        },
+        {
+          "name": "红色幸运",
+          "description": "伏特加+红石榴糖浆+荔枝利口酒，喜庆红",
+          "price_modifier": 1.05,
+          "promotion": "演示活动：主题风味分享；不代表真实促销、赠送或折扣"
+        },
+        {
+          "name": "金桔得其利",
+          "description": "金酒+金桔+蜂蜜，年节喜庆",
+          "price_modifier": 1.05,
+          "promotion": null
+        },
+        {
+          "name": "桂花陈酿",
+          "description": "桂花酒+黄酒+蜂蜜，传统中式",
+          "price_modifier": 1.05,
+          "promotion": null
+        }
+      ],
+      "decoration": "红灯笼、福字、春联、金元宝",
+      "music": "喜庆民乐、新年歌曲"
+    },
+    {
+      "name": "中秋节",
+      "date": "农历八月十五",
+      "theme": "团圆、月亮、赏月",
+      "featured_drinks": [
+        {
+          "name": "桂花陈酿",
+          "description": "桂花酒+黄酒+蜂蜜，传统中秋味",
+          "price_modifier": 1.05,
+          "promotion": "演示活动：主题风味分享；不代表真实促销、赠送或折扣"
+        },
+        {
+          "name": "月光马提尼",
+          "description": "金酒+接骨木花利口酒，银色月光感",
+          "price_modifier": 1.05,
+          "promotion": null
+        },
+        {
+          "name": "柚子莫吉托",
+          "description": "白朗姆+柚子汁+薄荷，秋日清爽",
+          "price_modifier": 1.05,
+          "promotion": null
+        }
+      ],
+      "decoration": "灯笼、月亮装饰、桂花",
+      "music": "古筝、笛子演奏"
+    },
+    {
+      "name": "端午节",
+      "date": "农历五月初五",
+      "theme": "端午、粽子、陈皮、龙舟",
+      "featured_drinks": [
+        {
+          "name": "陈皮黄酒",
+          "description": "黄酒、食用陈皮、食用糖与可饮用水的风味概念：酒香与柑橘皮香相接；不使用雄黄，不编定量、成本或售价。",
+          "safety_note": "雄黄涉及含砷矿物，不可饮用；本款仅是独立陈皮黄酒概念，不是雄黄饮品改良或传统原方。",
+          "price_modifier": 1.05,
+          "promotion": "演示活动：主题风味分享；不代表真实促销、赠送或折扣"
+        },
+        {
+          "name": "粽香莫吉托",
+          "description": "白朗姆+粽叶浸泡糖浆+青柠+薄荷，糯香清爽",
+          "price_modifier": 1.05,
+          "promotion": null
+        },
+        {
+          "name": "龙舟长岛冰茶",
+          "description": "长岛冰茶变异版，五款基酒象征五色丝线",
+          "price_modifier": 1.05,
+          "promotion": "演示活动：主题风味分享；不代表真实促销、赠送或折扣"
+        }
+      ],
+      "decoration": "粽叶、五彩绳、mini粽子装饰、艾草",
+      "music": "中国鼓乐、龙舟号子电子混音"
+    },
+    {
+      "name": "七夕节",
+      "date": "农历七月初七",
+      "theme": "浪漫、鹊桥、星空、中式情人节",
+      "featured_drinks": [
+        {
+          "name": "银河",
+          "description": "蓝柑桂酒+苏打水，蓝色气泡概念；不加入不明用途银粉或装饰亮粉",
+          "price_modifier": 1.05,
+          "promotion": "演示活动：主题风味分享；不代表真实促销、赠送或折扣"
+        },
+        {
+          "name": "鹊桥会",
+          "description": "玫瑰利口酒+金酒+红石榴+蛋白，粉色云雾",
+          "price_modifier": 1.05,
+          "promotion": null
+        },
+        {
+          "name": "织女之泪",
+          "description": "荔枝利口酒+香槟，花果香与轻盈气泡；不加入干冰，避免误食与低温灼伤",
+          "price_modifier": 1.05,
+          "promotion": "演示活动：主题风味分享；不代表真实促销、赠送或折扣"
+        }
+      ],
+      "decoration": "星星灯串、鹊桥造型、荧光元素、花瓣",
+      "music": "古风纯音乐、轻柔爵士"
+    },
+    {
+      "name": "重阳节",
+      "date": "农历九月初九",
+      "theme": "登高、菊花、敬老、秋意",
+      "featured_drinks": [
+        {
+          "name": "菊花酒（鸡尾酒版）",
+          "description": "白菊茶浸泡金酒+蜂蜜+柠檬，清香秋意",
+          "price_modifier": 1.05,
+          "promotion": "演示活动：主题风味分享；不代表真实促销、赠送或折扣"
+        },
+        {
+          "name": "登高古典",
+          "description": "威士忌+枫糖浆+菊花苦精，枫糖甜香与花香概念；不作登山、运动或御寒饮品",
+          "price_modifier": 1.05,
+          "promotion": null
+        },
+        {
+          "name": "茱萸马提尼",
+          "description": "伏特加+接骨木花利口酒+红色浆果汁，茱萸红",
+          "price_modifier": 1.05,
+          "promotion": null
+        }
+      ],
+      "decoration": "菊花、红叶、山水画、毛笔书法菜单",
+      "music": "古琴、笛子演奏"
+    },
+    {
+      "name": "元宵节",
+      "date": "农历正月十五",
+      "theme": "花灯、汤圆、团圆、热闹",
+      "featured_drinks": [
+        {
+          "name": "芝麻汤圆酒",
+          "description": "芝麻威士忌+奶油+蜂蜜+黑芝麻碎，甜品鸡尾酒",
+          "price_modifier": 1.05,
+          "promotion": "演示活动：主题风味分享；不代表真实促销、赠送或折扣"
+        },
+        {
+          "name": "花灯莫吉托",
+          "description": "彩色分层鸡尾酒（红蓝黄），象征花灯色彩",
+          "price_modifier": 1.05,
+          "promotion": null
+        },
+        {
+          "name": "团圆热红酒",
+          "description": "中式热红酒+枸杞+红枣+桂皮，暖心团圆饮",
+          "price_modifier": 1.05,
+          "promotion": "演示活动：主题风味分享；不代表真实促销、赠送或折扣"
+        }
+      ],
+      "decoration": "mini花灯、汤圆造型冰块、红灯笼",
+      "music": "喜庆民乐、轻快电子"
+    },
+    {
+      "name": "二十四节气·立春",
+      "date": "2月3-5日",
+      "theme": "春回大地、万物复苏、清新",
+      "featured_drinks": [
+        {
+          "name": "春芽金汤力",
+          "description": "金酒+豆苗/芦笋浸泡汤力水，鲜嫩春意",
+          "price_modifier": 1.05,
+          "promotion": "演示活动：主题风味分享；不代表真实促销、赠送或折扣"
+        },
+        {
+          "name": "春饼马提尼",
+          "description": "黄瓜味伏特加+青葱糖浆（微量），创意春季款",
+          "price_modifier": 1.05,
+          "promotion": null
+        }
+      ],
+      "decoration": "嫩芽、春花、绿色系",
+      "music": "清新民乐"
+    },
+    {
+      "name": "二十四节气·夏至",
+      "date": "6月21-22日",
+      "theme": "盛夏、最长白昼、清凉解暑",
+      "featured_drinks": [
+        {
+          "name": "夏至面（鸡尾酒版）",
+          "description": "小麦啤酒基底+柠檬姜汁+薄荷，清爽夏日",
+          "price_modifier": 1.05,
+          "promotion": "演示活动：主题风味分享；不代表真实促销、赠送或折扣"
+        },
+        {
+          "name": "极光莫吉托",
+          "description": "多层彩色莫吉托，象征最长日照",
+          "price_modifier": 1.05,
+          "promotion": null
+        }
+      ],
+      "decoration": "阳光元素、热带水果、冰雕",
+      "music": "热带House、拉丁"
+    },
+    {
+      "name": "二十四节气·冬至",
+      "date": "12月21-23日",
+      "theme": "最長夜、饺子、温热口感、慢饮",
+      "featured_drinks": [
+        {
+          "name": "饺子热黄油朗姆",
+          "description": "热黄油朗姆+醋栗（模拟饺子酸口感）+肉桂，温暖冬日",
+          "price_modifier": 1.05,
+          "promotion": "演示活动：主题风味分享；不代表真实促销、赠送或折扣"
+        },
+        {
+          "name": "羊肉炉酒",
+          "description": "威士忌+孜然糖浆+橙皮，香料与柑橘香气；不宣称驱寒或保健作用",
+          "price_modifier": 1.05,
+          "promotion": null
+        }
+      ],
+      "decoration": "雪花、暖色灯光、毛绒装饰",
+      "music": "温馨爵士、民谣"
+    }
+  ],
+  "usage": "当用户询问节日酒单或接近节日时，自动推荐对应节日特饮。包含西方节日（7个）、中国传统节日（6个）、二十四节气精选（3个）。"
+}

@@ -1,6 +1,6 @@
 ## Description:
 
-Runs a three-tier codebase audit (git history, targeted scans, full review) with gating.
+Runs a three-tier codebase audit (git history, targeted scans, full review) with gating
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to review codebase quality, changes, or instability before release or after incidents. It starts with Git history and escalates to targeted review or a full audit when documented criteria warrant it.
+Developers and engineers use the skill to assess codebase quality, review branch changes before merging, and investigate unstable areas before a release or after an incident.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review reports a medium-severity conflict involving the “review” trigger; confidence is medium and some reference checks were incomplete.
+Risk: The skill's “review” trigger may conflict with an existing command or skill, and some references were not resolved.
 
-Mitigation: Check that the trigger matches the intended invocation, and verify referenced local paths before use.
-
-Risk: A full codebase audit can consume substantial time and compute.
-
-Mitigation: Keep Tier 3 gated on documented justification and explicit user approval, as described in the skill.
+Mitigation: Check for naming conflicts before enabling the skill, and verify its referenced dependencies and guidance in the intended environment.
 
 ## Reference(s):
 
-- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-pensive-tiered-audit)
+- [Pensive plugin project](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-pensive-tiered-audit)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Files, Guidance]
+**Output Type(s):** [Analysis, Markdown, JSON, Guidance]
 
-**Output Format:** [Markdown audit findings with evidence and escalation recommendations]
+**Output Format:** [Evidence-backed audit findings in Markdown, with optional JSON output for Tier 1]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Tiered findings; a full codebase audit requires explicit approval.]
+**Other Properties Related to Output:** [Findings use evidence tags and recommendations; deeper audits require explicit escalation criteria, and a full codebase audit requires user approval.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

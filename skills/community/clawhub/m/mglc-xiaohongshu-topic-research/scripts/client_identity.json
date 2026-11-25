@@ -1,0 +1,16 @@
+{
+  "slug": "mglc-xiaohongshu-topic-research",
+  "displayName": "小红书选题研究",
+  "mode": "topics",
+  "samplePlan": {
+    "keyword": "露营装备",
+    "sort": "popularity_descending",
+    "searchPages": 3,
+    "maxNotes": 20,
+    "includeDetails": true,
+    "commentsPerNote": 10,
+    "commentPages": 2
+  },
+  "version": "1.0.0",
+  "channel": "clawhub"
+}

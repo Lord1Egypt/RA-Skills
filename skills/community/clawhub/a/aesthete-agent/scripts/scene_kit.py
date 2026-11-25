@@ -104,6 +104,14 @@ def assert_weak_voice_floor(pf, R, toks):
                                  " (<3:1), 拒绝产出" % (role, toks[tok], face, R[face], r))
 
 
+# AE-FONT-UP: 字号令牌取值,唯一真源 scripts/type_tokens.py;低于 12px 直接 raise
+def tt_fs():
+    import type_tokens
+    type_tokens.assert_floor()
+    return {'__FS_MICRO__': type_tokens.FS['micro'],
+            '__FS_SMALL__': type_tokens.FS['small']}
+
+
 def css_raw_tokens(R, shadow=True):
     """非 hex 令牌(投影)单独一张表 —— 不进声明板、不进 tokens 元信息(它不是颜色)。
     取值从板内派生,不写死 rgba(0,0,0,):palette_forge 自陈 ink2 = secondary details and
@@ -157,7 +165,9 @@ def build_scene(kind, hexes, name, dark=False, force=False, shadow=True):
     inner = getattr(ss, KINDS[kind])(R)
     badges = ss.badge(R)
     toks = css_tokens(hexes, R)
-    css = _fill_css(_load_css(), toks, css_raw_tokens(R, shadow=shadow))
+    raw = dict(css_raw_tokens(R, shadow=shadow))
+    raw.update(tt_fs())  # AE-FONT-UP: 漏填会被 _fill_css 的残留令牌检查直接拒产
+    css = _fill_css(_load_css(), toks, raw)
     board = sorted(set(hexes) | set(toks.values()))
     meta = ('<meta name="aesthete-palette" content="%s">'
             '<meta name="aesthete-tokens" content="%s">' % (

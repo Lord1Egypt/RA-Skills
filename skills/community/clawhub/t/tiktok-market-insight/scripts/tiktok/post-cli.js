@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-const log = require("../utils/log");
 const post = require("../api/post");
 const token = require("../utils/token");
 const utils = require("../utils/utils");
@@ -10,7 +9,8 @@ const { parseArgs, buildHelp } = require("../utils/args");
 const {
   emitError,
   emitEmpty,
-  printSuccessEnvelope,
+  buildSuccessEnvelope,
+  finishSuccess,
   emitUncaught,
 } = require("../utils/output");
 
@@ -165,15 +165,16 @@ async function main() {
     return;
   }
 
-  const { payload: finalOutput, text } = printSuccessEnvelope(
+  const finalOutput = buildSuccessEnvelope(
     "获取作品任务完成",
     startTime,
     postRequest,
     postTask,
   );
-  utils.printSuccess(`获取作品任务完成, 共 ${finalOutput.results.length} 条结果`);
-
-  await log.taskWrite(`${startTime}_${validator.url2Name(url)}_post.json`, text);
+  await finishSuccess(finalOutput, {
+    logFilename: `${startTime}_${validator.url2Name(url)}_post.json`,
+    stderrMessage: `获取作品任务完成, 共 ${finalOutput.results.length} 条结果`,
+  });
 }
 
 main().catch((error) => {

@@ -1,6 +1,6 @@
 ## Description:
 
-blog to video, blog post to video, article to video — convert a blog post into a narrated video with storyboard, voiceover, and build. Use when the user gives a blog post (text or link) and wants a video version for social or YouTube.
+Convert a blog post supplied as text or a link into a narrated video with a storyboard and voiceover for social media or YouTube.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers can turn a blog post provided as text or a link into a narrated video with a storyboard and voiceover for social media or YouTube.
+External users can give the skill a blog post as text or a link and use it to create a narrated video project for social media or YouTube.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review notes that project listing, authentication steps, and a document-oriented template may not clearly match the blog-to-video purpose; its analysis is partial because some referenced local paths were unavailable.
+Risk: The trigger description focuses on blog posts, while the instructions also describe converting broader document types.
 
-Mitigation: Check that the selected workflow fits the requested task, and review generated material before using or sharing it. Avoid attaching sensitive files unless their upload to dLazy media storage is appropriate.
+Mitigation: Check that the skill's current trigger and file-to-video workflow match the content and task you intend to submit.
+
+Risk: Prompts and files attached through the CLI are sent to dLazy services, and attached files are uploaded to its media storage.
+
+Mitigation: Do not submit sensitive material unless that transfer is permitted for your use case.
+
+Risk: The workflow requires running the dLazy CLI and authenticating with a dLazy API key.
+
+Mitigation: Review the CLI package and service terms before use, and keep the API key private.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/dlazyai/skills/dlazy-blog-to-video)
+- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-blog-to-video)
+- [dLazy website](https://dlazy.com)
+- [CLI source link listed in skill metadata](https://github.com/dlazy-ai/cli)
+- [dLazy CLI on npm](https://www.npmjs.com/package/@dlazy/cli)
 
 ## Skill Output:
 
-**Output Type(s):** [Video, Storyboard, Narration, Text]
+**Output Type(s):** [Video, Text, Guidance]
 
-**Output Format:** [Narrated video deliverable with storyboard and voiceover, plus CLI chat text]
+**Output Format:** [Narrated video project with a storyboard and voiceover, accompanied by text responses and CLI guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Project-scoped sessions support follow-up turns.]
+**Other Properties Related to Output:** [Projects can continue across chat sessions; local files attached to a request are uploaded to dLazy media storage.]
 
 ## Skill Version(s):
 
-1.0.41 (source: server-resolved ClawHub release metadata)
+1.0.44 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

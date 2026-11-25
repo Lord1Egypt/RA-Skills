@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers use this skill to inspect blockchain wallet balances, PnL, labels, transactions, and counterparties, or to batch, trace, and compare wallet activity.
+Blockchain analysts and developers use this skill to inspect a wallet's balances, performance, labels, transaction history, and relationships, or to batch and compare wallet profiles across supported chains.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Name-based search extends the skill beyond profiling a supplied wallet address.
+Risk: Supported x402 challenges can incur payment from the configured wallet, and repeated or trace calls can multiply the cost.
 
-Mitigation: Review whether name searches are intended before use; use address-based commands when analyzing a known wallet.
-
-Risk: Research calls, including calls in loops, can trigger x402 payments from the configured wallet under its existing authorization and spending policy.
-
-Mitigation: Review payment policy and spending limits before running calls; keep trace width and loop size conservative.
+Mitigation: Check the wallet's authorization, payment policy, and spending limits before research; keep trace width and loop size conservative and account for the expected number of calls.
 
 ## Reference(s):
 
+- [Nansen Wallet Profiler on ClawHub](https://clawhub.ai/nansen-devops/skills/nansen-wallet-profiler)
 - [Nansen CLI browser login platform scope](https://github.com/nansen-ai/nansen-cli/blob/main/docs/browser-login.md#preview-platform-scope)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, API Calls, Shell commands, JSON, CSV]
+**Output Type(s):** [Analysis, API Calls, Shell commands, Configuration instructions, Text, Markdown]
 
-**Output Format:** [CLI results as JSON, CSV, or human-readable tables, with Markdown guidance]
+**Output Format:** [Wallet research results as text, Markdown tables, JSON, or CSV, with shell command and authentication guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Wallet research results depend on the selected addresses, chain, and query options. Trace and repeated calls can incur payment under the configured wallet policy.]
+**Other Properties Related to Output:** [Results depend on the selected wallet address, chain, lookback period, and requested fields; trace and batch operations can make multiple API calls.]
 
 ## Skill Version(s):
 
-0.1.5 (source: server-resolved release metadata)
+0.1.6 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

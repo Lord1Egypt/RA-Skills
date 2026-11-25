@@ -1,6 +1,6 @@
 ## Description:
 
-Search public Douyin posts and creator accounts, retrieve trending topics and post details, and organize comment evidence into audience needs and pain point insights.
+Search public Douyin videos, creators, comments, and hot lists, then use the results to identify content trends, audience needs, and supporting examples.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Content researchers, creators, and marketers use this skill to find topics, monitor public creator accounts, and understand audience needs from Douyin posts and comments.
+External users, marketers, and developers can search public Douyin content and creator accounts, inspect a post or its comments, and review structured results for content planning, audience research, trend monitoring, or competitor analysis. Comment guidance helps organize audience needs and pain points with supporting excerpts.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search terms and supplied links are sent to a third-party data API.
+Risk: Queries can send supplied keywords, links, or IDs to the third-party GUAIKEI service; account search and lead identification are available.
 
-Mitigation: Avoid sending sensitive queries or links, and get user approval before collecting the requested data.
+Mitigation: Review query inputs before use, avoid sending sensitive links or identifiers, and use account discovery and lead identification only when appropriate for the intended analysis.
 
-Risk: The security scan only partially inspected 18 of 42 components, so its benign verdict does not cover all behavior.
+Risk: Security inspection was partial: 31 of 53 components were fully inspected and 22 were partially inspected.
 
-Mitigation: Review the skill and rescan relevant changes before deployment, especially before using it with sensitive requests.
+Mitigation: Review the requested behavior before installation and enable only the capabilities needed for the task.
 
 ## Reference(s):
 
-- [Comment demand analysis guide](references/demand-mining.md)
-- [Command options](references/options.md)
-- [Release changelog](references/changelog.md)
+- [Demand mining guidance](references/demand-mining.md)
+- [Customer acquisition guidance](references/customer-acquisition.md)
+- [Output contract](references/contract.md)
 - [GUAIKEI service](https://www.guaikei.com)
-- [ClawHub release page](https://clawhub.ai/why20261/skills/douyin-demand-mining)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis, Markdown]
+**Output Type(s):** [JSON, Analysis, Shell commands, Guidance]
 
-**Output Format:** [Structured JSON records; concise Markdown analysis with comment evidence]
+**Output Format:** [Structured JSON results with concise analysis or guidance when requested]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Returns public post, creator, comment, and trending data; comment analysis includes sample counts and verbatim supporting comments.]
+**Other Properties Related to Output:** [Results can include post and creator details, engagement counts, timestamps, links, and comment text where available.]
 
 ## Skill Version(s):
 
-1.4.2 (source: server-resolved release, frontmatter, changelog released 2026-11-04, package.json)
+1.5.0 (source: server-resolved release metadata, SKILL.md frontmatter, package.json)
 
 ## Ethical Considerations:
 

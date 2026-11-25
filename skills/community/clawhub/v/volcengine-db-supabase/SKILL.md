@@ -11,8 +11,6 @@ description: >-
   byted-supabase-cli command-line tool (installed via `npm i -g @byted-supabase/cli`; this is NOT
   the official `supabase` CLI). Do NOT use it for general database discussions, non-Supabase
   services (RDS MySQL, Redis), or pure client-side coding unrelated to Supabase backend management.
-version: 2.3.3
-user-invocable: true
 allowed-tools: Bash, Read, Write
 license: MIT
 metadata:

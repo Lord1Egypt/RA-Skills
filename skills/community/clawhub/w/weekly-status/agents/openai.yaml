@@ -1,0 +1,10 @@
+interface:
+  display_name: "Weekly Status"
+  short_description: "Summarize plan, RAID and activity"
+  brand_color: "#C25A2C"
+  default_prompt: "Write a concise weekly status update for my active Flow Relay project."
+policy:
+  products:
+    - CHAT
+    - CODEX
+  allow_implicit_invocation: true

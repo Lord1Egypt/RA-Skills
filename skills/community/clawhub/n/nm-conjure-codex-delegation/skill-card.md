@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill when delegation-core selects Codex to send a coding or analysis prompt to the Codex CLI, optionally with project files, and save the delegated response as Markdown.
+Developers and engineers use this skill when delegation-core selects Codex, routing a coding or analysis task to the OpenAI Codex CLI for a delegated result or second opinion.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Selected project files may contain credentials or other sensitive data that is sent to OpenAI as part of a delegation prompt.
+Risk: File contents included in a delegation may be sent to OpenAI.
 
-Mitigation: Review the files selected for delegation and exclude credentials and other sensitive content before running the skill.
+Mitigation: Review the prompt and selected files before delegation, and exclude sensitive content you do not want sent to that service.
 
-Risk: The security scan was partial because two local path references could not be resolved.
+Risk: Delegation depends on Codex credentials and an external CLI, which may use account quota or incur costs.
 
-Mitigation: Resolve and review those references before relying on the scan as a complete assessment.
-
-Risk: The skill advises against exposing a job-level API key when a job checks out untrusted repository code.
-
-Mitigation: Do not expose a job-level API key to untrusted repository jobs; delegate from a trusted context with credentials configured appropriately.
+Mitigation: Check credential handling and use a suitably scoped credential; confirm the CLI account, quota, and costs are acceptable before running it, especially with untrusted repository code.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-conjure-codex-delegation)
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conjure)
-- [Codex CLI headless login issue referenced by the skill](https://github.com/openai/codex/issues/9253)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-conjure-codex-delegation)
+- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/conjure)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Markdown]
+**Output Type(s):** [Text, Markdown, Code, Shell commands]
 
-**Output Format:** [Markdown guidance with shell command examples; delegated responses are saved as Markdown.]
+**Output Format:** [Markdown delegation report; Codex CLI text or JSON output]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Selected project files may be included in the prompt; output can be saved under delegations/codex/.]
+**Other Properties Related to Output:** [The result depends on the delegated prompt and supplied files; delegation reports are saved as timestamped Markdown files.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, server-resolved release metadata)
+1.10.4 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

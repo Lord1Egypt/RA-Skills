@@ -1,0 +1,31 @@
+# ~/.zshrc.local — private config template (copy to ~/.zshrc.local, then fill in real values)
+# ⚠️ This file holds sensitive things (server IPs, proxies). Never commit it to git.
+# Chinese version: config/zshrc.local.example.zh
+
+# ---- SSH server aliases (naming: env-purpose, or ecs:project:last-IP-octet) ----
+# alias mycompany-dev="ssh -o ServerAliveInterval=60 root@<DEV_IP>"
+# alias mycompany-prod="ssh -o ServerAliveInterval=60 root@<PROD_IP>"
+# alias ecs:project:NN="ssh -o ServerAliveInterval=60 -p <PORT> root@<IP>"
+#
+# 💡 Better still, put them in ~/.ssh/config — then scp, rsync and VS Code Remote
+#    can use them too:
+#   Host mycompany-dev
+#       HostName <DEV_IP>
+#       User root
+#       ServerAliveInterval 60
+
+# ---- Proxy toggles (do not export these unconditionally: with the proxy down,
+#      every network command hangs) ----
+proxy_on() {
+  export https_proxy=http://127.0.0.1:10080
+  export http_proxy=http://127.0.0.1:10080
+  export all_proxy=socks5://127.0.0.1:10081
+  echo "proxy on"
+}
+proxy_off() {
+  unset https_proxy http_proxy all_proxy
+  echo "proxy off"
+}
+
+# ---- Any other work / personal env vars ----
+# export XXX_TOKEN=...

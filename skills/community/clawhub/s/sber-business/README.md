@@ -1,4 +1,4 @@
-# SberBusiness API (sber-business) v1.1.0
+# SberBusiness API (sber-business) v1.2.2
 
 OpenClaw AgentSkill for official **SberBusiness API** integration: real-time account balances, instant transaction notifications (faster than paid SMS), official MCP payment drafting with signUrl, bank-stamped PDF statement downloads, and local-only Zero-Knowledge Vault onboarding.
 
@@ -6,18 +6,21 @@ OpenClaw AgentSkill for official **SberBusiness API** integration: real-time acc
 
 ## 🔒 Security Architecture (Zero-Knowledge Vault)
 
-1. **Hardware-Bound AES-256-GCM Encryption:**
+1. **Host-Bound AES-256-GCM Encryption:**
    - All banking secrets (`client_id`, `client_secret`, access/refresh tokens, private RSA keys, and mTLS certificates) are encrypted at rest in a binary `.vault` file.
-   - Master key is derived via HKDF (SHA-256) from the host's `/etc/machine-id` and a protected master key file (`0400` permissions).
+   - The encryption key is derived via HKDF (SHA-256) from the host's `/etc/machine-id` and a protected local master key file (`0400` permissions). This is software host-binding, not a hardware secure element: the master key is a local file, so its theft together with the vault and machine-id would compromise the store.
    - Even if disk images or backups are stolen, credentials cannot be decrypted on another machine.
    - Plaintext `.env` files are completely disabled and disallowed.
-2. **Ephemeral RAM-Only TLS & Clean CA Validation:**
+2. **Ephemeral RAM-Only TLS & Clean CA Validation (fail-closed):**
    - Client certificates and private keys are materialized strictly in RAM (`/dev/shm`), set to `0600`, and securely wiped with null bytes (`\x00`) immediately after each HTTPS request.
+   - **The RAM-only guarantee is enforced fail-closed:** if `/dev/shm` is unavailable, the scripts abort instead of silently falling back to a disk-backed temp directory. Decrypted private keys are never written to ordinary disk storage.
    - All download and API requests validate server certificates against the official Ministry of Digital Development / Sber trust bundle (`--cacert trust_bundle.pem`).
+   - Statement download URLs are validated before use: HTTPS only, pinned hosts (`apifiles.sberbank.ru`, `fintech.sberbank.ru`), no foreign ports or embedded credentials.
 3. **Local-Only Credential Ingestion & Process Safety:**
    - Credentials and certificates are never passed through chat transcripts or sent to LLM providers.
-   - Certificates are decrypted using `openssl` with `-passin stdin` (passwords never appear in `/proc` process arguments).
-   - Users run `python3 scripts/sber_vault.py setup` with masked console input (`getpass`).
+   - Certificates are decrypted using `openssl` with `-passin stdin` (passwords never appear in `/proc` process arguments). The `.p12` path is strictly validated first (existing regular file, `.p12`/`.pfx` extension, no symlinks); openssl argv lists are fixed and shell-free, so command injection is not possible.
+   - **Zero-argv-leak for all network calls:** Bearer tokens, `client_secret`, `refresh_token` and request bodies are streamed to curl through a stdin config (`--config -`), never passed as `-H` / `--data-urlencode` / `-d` command-line arguments.
+   - Users run `python3 scripts/sber_vault.py setup` with masked console input (`getpass`). The original `.p12` is wiped after packing; `--keep-p12` preserves a recovery copy on request (the certificate and key are always recoverable from the encrypted Vault itself).
 4. **Anti-Leak Red Line:**
    - AI agents are strictly instructed never to expose raw secrets, tokens, or private keys in chat messages.
 
@@ -26,8 +29,9 @@ OpenClaw AgentSkill for official **SberBusiness API** integration: real-time acc
 ## 🛡️ Privacy & Compliance (Banking Secrecy)
 
 - **Mandatory HTTPS:** All external webhook endpoints must use TLS (`https://`). Plain HTTP transmissions are rejected by the poller daemon.
-- **Privacy Masking Option:** Set `"maskPrivacy": true` in `config.json` to mask sensitive account numbers (`40702...0000`) and tax IDs (`7707****93`) in broadcast messages.
-- **Private Channels:** Users are instructed to deliver balance and transaction alerts exclusively to authenticated, restricted company channels.
+- **Privacy Masking Option:** Set `"maskPrivacy": true` in `config.json` to mask sensitive account numbers (`40702...0000`) and tax IDs (`7707****93`) in broadcast messages **and in the raw JSON payload of custom webhooks**.
+- **Private Channels:** Users are instructed to deliver balance and transaction alerts exclusively to authenticated, restricted company channels. The notification guide carries an explicit banking-secrecy warning.
+- **Safe Diagnostics:** The poller's `--dry` mode never persists state or consumes transactions, so a diagnostic run cannot suppress subsequent real banking alerts.
 
 ---
 

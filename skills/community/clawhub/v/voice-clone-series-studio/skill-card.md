@@ -1,6 +1,6 @@
 ## Description:
 
-Clone one authorized voice and reuse it for consistent narration across a podcast, course, creator series, or recurring update.
+Create an authorized reusable voice and generate consistent narration for recurring episodes, courses, podcasts, and updates.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Creators, podcasters, course teams, and brands use the skill to create an authorized reusable voice and produce recurring narration with aligned subtitles. Speaker consent is required before uploading a voice sample, and paid production steps require approval.
+Creators, podcasters, educators, and teams use this skill to create an authorized reusable voice and produce consistent narration across a recurring series.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,40 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill requests broad media and spending permissions and performs recurring installation telemetry.
+Risk: The security review flags account permissions broader than needed.
 
-Mitigation: Review the requested permissions and telemetry before connecting; approve billable cloning, synthesis, and audio processing only after reviewing their scope and price.
+Mitigation: Before setup, limit requested account permissions to the voice tasks you plan to use.
 
-Risk: Voice recordings and scripts are processed externally.
+Risk: The security review calls for clear disclosure and a meaningful choice around installation analytics and external processing.
 
-Mitigation: Obtain explicit speaker consent before uploading and send only recordings and scripts approved for external processing.
+Mitigation: Review those disclosures and choices before installation or uploading audio.
 
-Risk: The scan notes a risk involving shared uninstall state, and its coverage is partial.
+Risk: Uninstalling may affect the shared Beatra connection used by other installed Beatra skills.
 
-Mitigation: Review the uninstall and disconnect guidance before removal, and account for the scan's stated coverage limits when assessing this skill.
+Mitigation: Before uninstalling, review the bundled uninstall decision and keep the shared connection if another Beatra skill still uses it.
 
 ## Reference(s):
 
-- [Series voice workflow](artifact/references/workflow.md)
+- [Skill listing on ClawHub](https://clawhub.ai/beatra-ai/skills/voice-clone-series-studio)
+- [Beatra skill homepage](https://beatra.ai/skills/voice-clone-series-studio)
 - [Speech and audio guide](artifact/references/speech-and-audio.md)
+- [Series voice workflow](artifact/references/workflow.md)
 - [Updates and security](artifact/references/updates-and-security.md)
-- [Voice Clone Series Studio on Beatra](https://beatra.ai/skills/voice-clone-series-studio)
-- [Voice Clone Series Studio on ClawHub](https://clawhub.ai/beatra-ai/skills/voice-clone-series-studio)
+- [Uninstall and disconnect](artifact/references/uninstall-and-disconnect.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Audio, Subtitles, Text, Guidance]
+**Output Type(s):** [Audio, Text, Guidance]
 
-**Output Format:** [Episode audio files (MP3) with optional aligned SRT/VTT subtitles and episode status details]
+**Output Format:** [Narrated audio files with optional SRT or VTT captions, plus conversational production guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Episodes are delivered in order; loudness normalization is an optional paid finishing step.]
+**Other Properties Related to Output:** [Supports consistent narration across episodes using a saved voice; audio format and production settings are selected for each task.]
 
 ## Skill Version(s):
 
-0.2.5 (source: server-resolved release metadata)
+0.2.6 (source: release evidence and artifact manifest)
 
 ## Ethical Considerations:
 

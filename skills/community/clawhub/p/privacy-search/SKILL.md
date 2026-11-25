@@ -1,13 +1,13 @@
 ---
 name: privacy-search
-description: "隐私优先的多引擎并行搜索 Skill，十大搜索引擎并行检索。V1.9 新增可信度标记和口语化错误建议，SKILL.md 瘦身至 ≤12KB。V1.8 新增可信合成与垂直搜索。V1.7 新增 MCP Server 形态。V1.6 新增 Perplexity 式答案合成。V1.5 新增网页正文抓取、结果导出、LLM 摘要。V1.2 统一 HTTP 出口、SimHash 去重、多因子排序、结果缓存、SearXNG 本地部署、隐私模式切换。"
-version: 1.9.0
+description: "隐私优先的多引擎并行搜索 Skill，十大搜索引擎并行检索。V2.1 新增可信答案 RAG-lite（本地 TF-IDF，结论/依据/反证三段，零 Key）和隐私量化报告（隐私分数+档案周报+DNS 泄露提示+SearXNG 一键自检）；无源论断标注保留；答案缓存「上次搜过」提示。V1.9 可信度标记与口语化错误建议。V1.8 可信合成与垂直搜索。V1.7 MCP Server。"
+version: 2.1.0
 ---
 
 
 # 隐私搜索（Privacy Search）
 
-隐私优先的多引擎并行搜索 Skill。V1.9 新增 **结果可信度标记**（每条结果标注「引擎数/10 引擎返回」）和 **口语化错误建议**。V1.8 新增可信合成与垂直搜索。V1.7 新增 MCP Server 形态。
+隐私优先的多引擎并行搜索 Skill。V2.1 新增 **可信答案 RAG-lite**（结论/依据/反证三段，全本地 TF-IDF，零 Key）和 **隐私量化报告**（隐私分数 + DNS 泄露提示 + SearXNG 一键自检）。V1.9 新增结果可信度标记与口语化错误建议。V1.8 新增可信合成与垂直搜索。
 
 ## 环境要求
 
@@ -32,40 +32,58 @@ python scripts/update_checker check        # 检查更新
 ### F1：多引擎并行搜索
 
 ```bash
-python -m scripts.search "关键词"
-python -m scripts.search "关键词" --engines baidu,bing
-python -m scripts.search "关键词" --privacy strict
-python -m scripts.search "关键词" --privacy strict --allow-fallback
-python -m scripts.search "关键词" --json
-python -m scripts.search "关键词" --verbose
-python -m scripts.search --list-engines
-python -m scripts.search --selftest
-python -m scripts.search "关键词" --privacy-report
+python -m scripts.search "关键词"                          # 基础搜索
+python -m scripts.search "关键词" --engines baidu,bing     # 指定引擎
+python -m scripts.search "关键词" --privacy strict         # 隐私模式
+python -m scripts.search "关键词" --privacy strict --allow-fallback  # 允许降级
+python -m scripts.search "关键词" --json / --verbose       # JSON/详细诊断
+python -m scripts.search --list-engines / --selftest       # 引擎列表/体检
+python -m scripts.search "关键词" --privacy-report         # 隐私摘要
 ```
 
-### F4：Perplexity 式答案合成（V1.6）
+### F4/F8：答案合成 + RAG-lite（V1.6/V2.1）
 
 ```bash
-python -m scripts.search "关键词" --synthesize-pro
+python -m scripts.search "关键词" --synthesize-pro              # 无 Key 自动走 RAG-lite 三段
 python -m scripts.search "关键词" --synthesize-pro --privacy strict
+python -m scripts.search "量子计算" --synthesize-pro --fact-check  # 事实核查
 ```
 
 ### F5：定时引擎告警（V1.6）
 
 ```bash
-python -m scripts.search --selftest-schedule run
-python -m scripts.search --selftest-schedule status
+python -m scripts.search --selftest-schedule run    # status 查上次结果
 ```
 
-### F7：可信合成与垂直搜索（V1.8）
+### F7：垂直搜索与高级语法（V1.8）
 
 ```bash
-python -m scripts.search "量子计算" --synthesize-pro --fact-check
 python -m scripts.search "AI 大模型" --vertical news
 python -m scripts.search "突发新闻" --vertical realtime
 python -m scripts.search "quantum computing" --vertical academic
 python -m scripts.search "猫咪" --vertical image
 python -m scripts.search "python教程 site:github.com filetype:pdf"
+```
+
+### F8：可信答案 RAG-lite（V2.1）
+
+```bash
+# synthesize v2：无 Key 自动走 RAG-lite 三段答案（结论/依据/反证）
+python -m scripts.search "量子计算的优势" --synthesize-pro
+
+# 显示本次搜索隐私分数
+python -m scripts.search "关键词" --privacy-score
+```
+
+无源论断默认标注 `[无源]` 保留进正文（可配置剔除），依据引用全部可回链原文。
+
+### F9：隐私量化报告（V2.1）
+
+```bash
+python -m scripts.search --privacy-profile report   # 隐私档案周报
+python -m scripts.search --privacy-profile dns      # DNS 泄露检测
+python -m scripts.search --privacy-profile cookie   # cookie 零残留自检
+python -m scripts.search --searxng-audit            # SearXNG 一键自检
 ```
 
 ### F6：MCP Server（V1.7）
@@ -76,31 +94,16 @@ python -m scripts.mcp_server --schema
 python -m scripts.mcp_server --test
 ```
 
-### 缓存与历史
+### 缓存/历史/bangs/SearXNG/隐私模式
 
 ```bash
-python -m scripts.search "关键词" --no-cache
-python -m scripts.search --cache-stats
-python -m scripts.search --clear-cache
-python -m scripts.search --history
-python -m scripts.search --clear-history
-```
-
-### bangs 快捷语法
-
-```bash
-python -m scripts.search "!w 量子计算"
-python -m scripts.search "!gh asyncio"
-python -m scripts.search "!yt python 教程"
-```
-
-### F2：SearXNG 管理 / F3：隐私模式
-
-```bash
-python -m scripts.searxng_manager start --method docker
-python -m scripts.searxng_manager status
-python -m scripts.privacy mode --set strict
-python -m scripts.privacy report
+python -m scripts.search "关键词" --no-cache     # 跳过缓存
+python -m scripts.search --history               # 搜索历史
+python -m scripts.search --clear-cache           # 清缓存
+python -m scripts.search "!w 量子计算"           # bangs：维基/GitHub/YouTube
+python -m scripts.searxng_manager start --method docker  # 启动本地 SearXNG
+python -m scripts.privacy mode --set strict      # 切换隐私模式
+python -m scripts.privacy report                 # 隐私报告
 ```
 
 ### 版本更新检查（死规则 11）
@@ -134,6 +137,9 @@ python -m scripts.update_checker status
 | jieba 中文分词 | 默认安装，中文相关度提升 |
 | MCP Server | stdio JSON-RPC 2.0，search/synthesize/fetch |
 | 可信度标记 | 每条结果标注引擎数（3/10 返回） |
+| 可信答案 RAG-lite | 结论/依据/反证三段，全本地 TF-IDF，零 Key；无源标注保留 |
+| 答案缓存提示 | 相同/近似问题提示「上次搜过」 |
+| 隐私量化报告 | 五指标隐私分+档案周报；DNS 泄露提示；SearXNG 一键自检 |
 
 ## 不能做哪些
 
@@ -147,101 +153,33 @@ python -m scripts.update_checker status
 
 ### 隐私边界
 
-| 风险 | 说明 | 缓解 |
-|------|------|------|
-| IP 可见性 | 不配置代理时引擎可见真实 IP | 设置 `privacy.strict.proxy` 或配合 VPN |
-| 搜索词明文传输 | 查询词需发送至引擎 | strict 走隐私引擎或本地 SearXNG |
-| 本地缓存留痕 | 缓存与历史含查询词 | `--clear-cache` / `--clear-history` |
-| 日志留痕 | 默认 INFO 只记录查询词长度 | 需完全静默设 `logging.level: OFF` |
-| SearXNG 端口暴露 | 默认 127.0.0.1 | 禁止改为 0.0.0.0 |
+| 风险 | 缓解 |
+|------|------|
+| IP 可见性（未配代理时引擎可见真实 IP） | 设置 `privacy.strict.proxy` 或配合 VPN |
+| 搜索词明文传输 | strict 走隐私引擎或本地 SearXNG |
+| 本地缓存/日志留痕 | `--clear-cache`/`--clear-history`；日志只记长度，静默设 `logging.level: OFF` |
+| SearXNG 端口暴露 | 默认 127.0.0.1，禁止改为 0.0.0.0 |
 
 ### 合规使用
 
-| 风险 | 说明 | 缓解 |
-|------|------|------|
-| 搜索引擎条款 | 自动化访问可能受限 | 尊重 robots.txt |
-| 数据合规 | 缓存与历史存于本地 | 共享设备建议关闭缓存 |
+自动化访问须尊重 robots.txt；缓存与历史存于本地，共享设备建议关闭缓存。
 
 ## 常见错误
 
-### 网络故障 🌐
-
-```
-💡 网络连接失败，看起来是网络问题。
-   • 检查网络：ping www.baidu.com
-   • 确认代理：config.yaml 中 search.proxy
-   • 加 --verbose 查看具体错误
-```
-
-### 配置错误 ⚙️
-
-```
-💡 配置有问题，config.yaml 没读对。
-   • 确认 YAML 格式（冒号后面要有空格）
-   • 复制 references/config.yaml.example 重新配置
-```
-
-### 引擎错误 🔧
-
-```
-💡 搜索引擎解析失败，引擎可能改版了。
-   • 运行 --selftest 体检各引擎状态
-   • 更新到最新版本
-   • 用 --engines 排除问题引擎
-```
+失败时输出口语化建议（非堆栈）：🌐 网络问题→检查网络/代理/`--verbose`；⚙️ 配置错误→确认 YAML 格式（冒号后有空格）/复制 config.yaml.example；🔧 引擎解析失败→`--selftest` 体检/更新版本/`--engines` 排除问题引擎。
 
 ## 常见问题
 
-**Q: strict 模式在国内能用吗？**
-A: 可以。默认 Yandex + Startpage + Qwant + Brave，DDG 作最后备选。
+> 完整 FAQ（41 条，含全部参数细节）→ `references/detail_engine_syntax_faq.md`
 
-**Q: strict 模式下指定 `--engines baidu` 为什么没生效？**
-A: 有意设计。strict 拒绝隐私保护不足的引擎。需用百度请改用 `--privacy normal`。
+**Q: strict 模式在国内能用吗？怎么隐藏 IP？**
+A: 可以，默认 Yandex + Startpage + Qwant + Brave，DDG 兜底；指定 `--engines baidu` 不生效是有意设计。隐藏 IP 设 `privacy.strict.proxy`（http/socks5），`--privacy-report` 查看实际生效配置。
 
-**Q: 结果是旧的怎么办？**
-A: 默认缓存 1 小时。加 `--no-cache` 强制刷新。
+**Q: RAG-lite 三段答案 / 无源论断 / 隐私分数怎么用？**
+A: `--synthesize-pro` 无 Key 自动走 RAG-lite（结论/依据/反证，全本地零 Key）；无源论断默认标注 `[无源]` 保留；`--privacy-score` 显示隐私分，`--privacy-profile report/dns/cookie` 看周报/查泄露/查零残留，`--searxng-audit` 自检 SearXNG。详情见 references FAQ。
 
-**Q: 缓存文件会无限增长吗？**
-A: 不会。超过 50MB 自动淘汰最久未使用条目。
-
-**Q: 怎么确认隐私设置真的生效了？**
-A: 加 `--privacy-report` 查看实际请求头、代理与被屏蔽引擎。
-
-**Q: 如何隐藏 IP？**
-A: config.yaml 设置 `privacy.strict.proxy`，支持 `http://` 与 `socks5://`。
-
-**Q: 某个引擎突然搜不到结果？**
-A: 先跑 `--selftest`。选择器失效说明改版，更新到最新版本。
-
-**Q: 排序结果不满意能调吗？**
-A: 可以。config.yaml 的 `ranking` 段可调五个权重。
-
-**Q: 会记录我搜了什么吗？**
-A: 日志默认只记录查询词长度；搜索历史存于本地且可随时清空。
-
-**Q: 支持哪些引擎？**
-A: 10 个：百度、必应、搜狗、360、DuckDuckGo、Yandex、Startpage、Qwant、Brave、本地 SearXNG。
-
-**Q: 如何在其他程序里调用？**
-A: ① `--json` 获取结构化输出；② MCP Server（stdio JSON-RPC 2.0）。详见 `references/mcp_schema.md`。
-
-**Q: Pro 模式和普通摘要的区别？**
-A: Pro 模式抓取正文生成带 citation 的答案。普通摘要（`--summarize`）只基于 snippet 生成简短总结。
-
-**Q: 事实核查是什么？怎么用？**
-A: V1.8 新增。用 `--synthesize-pro --fact-check` 启用，逐论断回链原文做相似度比对，标注支撑度三级。
-
-**Q: 垂直搜索怎么用？**
-A: `--vertical news/realtime/academic/image` 四类。每类有独立引擎优先级和排序权重。
-
-**Q: 高级检索语法和 bangs 冲突吗？**
-A: 不冲突。详见 `references/detail_engine_syntax_faq.md`。
-
-**Q: MCP Server 是什么？怎么用？**
-A: stdio JSON-RPC 2.0 服务。运行 `python scripts/mcp_server.py` 启动。详见 `references/mcp_schema.md`。
-
-**Q: 配置项太多，哪些必须改？**
-A: 首次只需改 3 项：`default_engines`、`timeout`、`default_mode`。
+**Q: 支持哪些引擎 / 如何在其他程序调用？**
+A: 10 个：百度、必应、搜狗、360、DuckDuckGo、Yandex、Startpage、Qwant、Brave、本地 SearXNG。调用：`--json` 或 MCP Server（stdio JSON-RPC 2.0）。详见 `references/mcp_schema.md`。
 
 ## 项目结构
 
@@ -265,9 +203,12 @@ privacy-search/
 │   ├── synthesiser.py         # F4: 答案合成
 │   ├── selftest_scheduler.py  # F5: 定时告警
 │   ├── mcp_server.py          # F6: MCP Server
-│   ├── fact_checker.py        # F7: 事实核查
+│   ├── fact_checker.py        # F7: 事实核查（V2.1 无源标注保留）
 │   ├── vertical_search.py     # F7: 垂直搜索
-│   └── query_parser.py        # F7: 高级语法
+│   ├── query_parser.py        # F7: 高级语法
+│   ├── rag_lite.py            # F8: RAG-lite 三段答案（V2.1）
+│   ├── privacy_score.py       # F9: 隐私分数与档案（V2.1）
+│   └── searxng_audit.py       # F9: SearXNG 自检（V2.1）
 ├── references/
 │   ├── config.yaml.example
 │   ├── engines.md
@@ -280,6 +221,7 @@ privacy-search/
 
 ## 更新日志
 
+| v2.1.0 | 2026-11-18 | 增加：可信答案 RAG-lite（多源正文→本地分块→TF-IDF 选块→结论/依据/反证三段答案，无 Key 抽取式为主）；优化：核查与合成合链（无源论断标注 [无源] 保留进正文，非黑盒剔除）；增加：答案缓存「上次搜过」提示；增加：隐私分数体系（五指标加权，累计隐私档案周报）；增加：strict DNS 泄露提示与 cookie 零残留自证；增加：SearXNG 一键自检清单；修复：--synthesize-pro 参数未注册问题 |
 | v1.9.0 | 2026-09-19 | 增加：结果可信度标记（每条结果标注「引擎数/10 引擎返回」）；优化：错误诊断升级为口语化建议；优化：SKILL.md 瘦身至 ≤12KB（引擎细节/语法表/FAQ 迁 references/）；优化：quick_setup 输出简化 |
 | v1.8.0 | 2026-09-19 | 增加：事实核查层（逐论断回链原文，三级标注支撑度）；增加：垂直搜索（news/realtime/academic/image）；增加：高级检索语法（after:/before:/site:/filetype:）；增加：内容处理管线 |
 | v1.7.0 | 2026-08-28 | 增加：MCP Server（stdio JSON-RPC 2.0，search/synthesize/fetch 三工具） |

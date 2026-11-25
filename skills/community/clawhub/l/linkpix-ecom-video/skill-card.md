@@ -1,6 +1,6 @@
 ## Description:
 
-Guides agents in creating e-commerce product videos, multi-image promotional clips, and storyboards using qhkit.
+为 TikTok、抖音、Amazon、Shopee 等渠道生成电商视频，支持 AI 脚本、分镜和多图成片。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,45 +14,36 @@ MIT-0
 
 ## Use Case:
 
-Creators and marketing teams use this skill to guide an agent in preparing product-video prompts and storyboards, estimating generation costs, and delivering completed promotional videos.
+电商卖家、品牌团队和营销人员可用此技能根据商品素材和投放渠道规划商品展示、带货或广告视频，并准备生成命令或脚本分镜。
 
 ### Deployment Geography for Use:
 
-Global (this release targets the China-based iqinghu.com service).
+Global
 
 ## Known Risks and Mitigations:
 
-Risk: Installing and running an external qhkit CLI introduces a software dependency.
+Risk: An unpinned npm command may install a changing package version; the security review was partial because some local path-like references could not be resolved.
 
-Mitigation: Install only if the service is trusted and prefer a reviewed or pinned qhkit version.
-
-Risk: Selected product images or videos are uploaded to the service.
-
-Mitigation: Confirm the user is comfortable sharing each selected media asset before submission.
-
-Risk: API tokens and video generation with paid credits require user authorization.
-
-Mitigation: Keep tokens private, check the estimate when available, and obtain approval before incurring charges.
+Mitigation: Pin and review the package version, and resolve the outstanding references before installation.
 
 ## Reference(s):
 
-- [ClawHub skill listing](https://clawhub.ai/autoagc/skills/linkpix-ecom-video)
+- [LinkPix ClawHub release](https://clawhub.ai/autoagc/skills/linkpix-ecom-video)
 - [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
-- [Qinghu workbench](https://www.iqinghu.com)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Shell commands, Configuration guidance]
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown with qhkit command examples and video-result links]
+**Output Format:** [Markdown with shell command examples and JSON arguments]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Generation is asynchronous; completed videos are provided as links after status checks.]
+**Other Properties Related to Output:** [Command examples specify model, duration, prompt, and optional image inputs; qhkit returns generated media through task status.]
 
 ## Skill Version(s):
 
-0.1.9 (source: server-resolved release metadata)
+0.1.11 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

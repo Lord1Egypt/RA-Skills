@@ -1,7 +1,7 @@
 ---
 name: hoverbot-chatbot
 description: Create, embed, and manage AI chatbots for any website in under 2 minutes using HoverBot.
-version: 1.0.0
+version: 1.0.4
 author: HoverBot
 tags:
   - chatbot
@@ -18,7 +18,9 @@ metadata:
 
 # HoverBot Chatbot Skill
 
-Create, customize, and embed AI chatbots on any website. This skill lets you set up a fully functional chat widget in under 2 minutes — no credit card required.
+Release 1.0.4 points every link at the production app (app.hoverbot.ai) and describes the current setup flow, which starts from your website. Release 1.0.3 corrected the documented widget configuration: `apiKey` is optional and is not read by the widget, and the default accent color is `#0037ff`.
+
+Create, customize, and embed AI chatbots on any website. This skill lets you set up a fully functional chat widget in under 2 minutes, with no credit card required.
 
 ## What This Skill Does
 
@@ -36,14 +38,14 @@ This skill gives you the ability to help your human (or yourself) add an intelli
 Direct your human to visit:
 
 ```
-https://sandbox.hoverbot.ai/get-started
+https://app.hoverbot.ai/get-started
 ```
 
 The setup takes 3 steps:
 
-1. **Choose a template** — Pick from Customer Support, FAQ Bot, Sales Assistant, or Product Guide
-2. **Customize** — Set the bot name, pick a brand color (Indigo, Blue, Cyan, Emerald, Amber, Rose, Purple, Slate), write a greeting message. A live preview shows exactly what visitors will see.
-3. **Create account** — First name, last name, email, password (8+ chars). Click "Create My Bot".
+1. **Your website** — Enter the website address and one or two sentences on what the business does. HoverBot drafts a chatbot in the site's colours. No website yet? Choose **Start from a template** instead: Customer Support, FAQ Bot, Sales Assistant, or Product Guide.
+2. **Customize** — Check the draft: bot name, colours, and greeting. A live preview shows exactly what visitors will see.
+3. **Account** — Create the account to save the bot.
 
 After creation, the "Your Bot is Ready!" page displays the embed code pre-filled with unique credentials.
 
@@ -61,13 +63,13 @@ Paste this code before the closing `</body>` tag on any website:
 <script async src="https://cdn.hoverbot.ai/widget.js"></script>
 ```
 
-The `chatbotId` and `apiKey` values come from the dashboard — they are pre-filled when the bot is created.
+The `chatbotId` and `apiKey` values come from the dashboard and are pre-filled when the bot is created. Only `chatbotId` is required; the widget matches it against the allowed-domain list on your account.
 
 Once deployed, a chat icon appears in the bottom-right corner. Visitors click it to chat with the AI bot.
 
 ### Step 3: Make the Bot Smarter
 
-Log in to the dashboard at `https://sandbox.hoverbot.ai/login` and go to the **Knowledge** section:
+Log in to the dashboard at `https://app.hoverbot.ai/login` and go to the **Knowledge** section:
 
 - Upload documents (PDFs, text files)
 - Add website URLs
@@ -134,10 +136,10 @@ The `HOVERBOT_CONFIG` object supports these properties:
 
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
-| `chatbotId` | string | required | Your unique chatbot identifier |
-| `apiKey` | string | required | Your API key for authentication |
+| `chatbotId` | string | required | Your unique chatbot identifier. The widget authenticates on this plus the allowed-domain list configured in the dashboard. |
+| `apiKey` | string | optional | Emitted by the dashboard snippet for forward compatibility. The current widget build does not read it, and the widget works without it. |
 | `showFloatIcon` | boolean | `true` | Show/hide the default floating chat icon |
-| `primaryColor` | string | `"#4F46E5"` | Hex color for the chat header and accents |
+| `primaryColor` | string | `"#0037ff"` | Hex color for the chat header and accents |
 
 ## Use Cases for Molts
 
@@ -157,7 +159,7 @@ Here are practical ways molts can use this skill:
 
 ## Links
 
-- Get started: https://sandbox.hoverbot.ai/get-started
-- Dashboard login: https://sandbox.hoverbot.ai/login
+- Get started: https://app.hoverbot.ai/get-started
+- Dashboard login: https://app.hoverbot.ai/login
 - Main site: https://hoverbot.ai
 - Blog: https://hoverbot.ai/blog

@@ -1,6 +1,6 @@
 ---
 name: cite-holmes
-version: 6.6.0
+version: 6.9.0
 author: DoctorQ Lab
 license: MIT
 description: >-
@@ -118,7 +118,9 @@ cross-checked against its official registry, so fabricated IDs are judged
 dual-reader header** + **CiteScore** (0-100 + A-D grade) + a one-line
 **pre-submission conclusion**.
 
-#### Mechanical layer (the script)
+#### Mechanical layer (the script) — grouped by task
+
+**① Verdict accuracy**
 
 | Capability | Boundary |
 |---|---|
@@ -127,22 +129,37 @@ dual-reader header** + **CiteScore** (0-100 + A-D grade) + a one-line
 | Cross-lingual title bridging | six writing-system families (Latin/Cyrillic/Greek/Han/Kana/Hangul); hit→`verified`, miss→`partial`; language difference is never fabrication evidence; families outside the six (Arabic/Hebrew/Thai…) do NOT trigger the guard yet — attach an English/romanized title |
 | Bibliography profiling | list-level batch-fabrication fingerprints — review leads, never verdicts |
 | Preprint upgrade hints | arXiv-only refs since published get the formal DOI annotated |
+
+**② Retractions, medicine & identifier-less**
+
+| Capability | Boundary |
+|---|---|
 | Retraction checks | Crossref online, or offline via `--retraction-cache`; notice granularity: retraction / partial retraction / withdrawal → human hand-off, Expression of Concern → caps `verified` at `partial`, correction → note only; a failed check is flagged, never reported as clean |
 | Identifier-less references (Vancouver) | PubMed title reverse-lookup → `verified` with PMID anchor back-filled; works from 2 content words; a transport failure is marked `network_error` and never counted as a miss |
 | GB/T 7714 Chinese medical references | `[1]`-style bracket numbering and title-first entries parse; inline `PMID:`/`DOI:` anchors are extracted and verified; when no ID exists, journal+year+volume(issue):page uniquely located in PubMed upgrades to `verified` (Single-Citation-Matcher semantics, language-independent — a Chinese claimed title against an English registered title never counts as fabrication) |
 | Chinese scholarly registries | wanfangdata / CNKI / yiigle classified at journal tier |
 | Non-MEDLINE journals (identifier-less) | OpenAlex anchor search → DOI resolution: the aggregator is only an index, the verdict evidence comes entirely from the DOI registry (retraction checks still run on the anchored DOI) |
 | Retraction checks at scale | `tools/build_retraction_cache.py` builds a local Retraction Watch index from the official daily-updated dump — `--retraction-cache` then verifies offline with notice granularity |
+| EB/OL references (guidelines, labels) | URLs in [EB/OL]-style entries are extracted (when no stronger identifier exists) and routed through reachability + source-tier checks; when such a reference lands partial, the page <title> is cross-checked against the claim and a match is recorded as existence evidence in the workpaper |
+
+**③ Literature workflow**
+
+| Capability | Boundary |
+|---|---|
 | Literature discovery | `--discover "topic"` searches PubMed + OpenAlex and verifies every hit at birth - a verified reference list out, GB/T 7714 / BibTeX export ready; `--discover-since 2020` filters by year; `--discover-sort cited|newest` orders by citations or date; `--demo` runs the bundled 8-reference sample (3 planted fakes) for a zero-setup tour |
 | Review kit (literature review) | `--review-kit` turns any verified batch into a review-ready file: comparison table (verified first, citations-per-paper shown) + annotated bibliography + paste-ready GB/T 7714 list — with `--discover` it is a one-command literature workflow; verdicts stay verdicts (partial is never "verified") |
 | Scholarly usage & open access | Semantic Scholar citing contexts show usage distribution (methodology/background/result) + one sample quote; a heuristic divergence signal flags batches where sampled contexts contain contrastive/critical phrasing (advisory banner, never a verdict); `--mailto` also queries Unpaywall for open-access status (X/N free-to-read summary, per-entry license) — enhancement signals only, never a verdict; absent data renders nothing |
 | Deep-research controls | `--plan plan.json --plan-out plan.md` validates & renders an editable research-plan artifact (collaborative planning); `--preset deep` raises the discovery ceiling (25) and timeout floor (20s); `--source-policy journal_only,deny-domain=x.com` curates discovery hits and annotates policy hits at verify (annotation only, never a verdict); `--trace trace.md` appends a per-round audit log; `--research-profile p.json` injects persistent preference defaults (explicit flags win); `--require-version` strict tier: multi-revision arXiv citations without a pinned version degrade to partial for human confirmation (default off) |
-| EB/OL references (guidelines, labels) | URLs in [EB/OL]-style entries are extracted (when no stronger identifier exists) and routed through reachability + source-tier checks; when such a reference lands partial, the page <title> is cross-checked against the claim and a match is recorded as existence evidence in the workpaper |
 | Reference-list completeness | `--check-document` audits orphans (listed but never cited — a writing-integrity advisory, never a verdict) and coverage; one-file mode: pass the document alone and the reference section is auto-extracted; `--audit-mode` renders an editor-facing audit report (P0 fabrication suspects / P1 high-risk leads / P2 review items + action checklist); `--refs-dir` batch-loads a local library folder into one batch; `--next-round report.json` regenerates a retry skeleton from unresolved entries (invalid never recycled); `--check-paper doc.md` runs the whole pre-submission audit package in one command (verify + audit tiers + GB/T/BibTeX export + INDEX with a mechanical READY/NOT-READY verdict and explicit human-review boundary) |
+
+**④ Delivery & weak networks**
+
+| Capability | Boundary |
+|---|---|
 | Wayback archive links | attached to dead links automatically |
 | Completeness scoring | how many export fields the registry CSL can back-fill |
 | Speed | 20-ref mixed list ≈18s at `--workers 4` (default), ≈7s cache-warm, ≈47s serial — measured table: `references/verification-details.md` |
-| Weak network | `--proxy` / `--cn` / `--preflight`; auto degraded-network mode after 3+ registry transport failures |
+| Weak network | `--proxy` / `--cn` / `--preflight`; auto degraded-network mode after 3+ registry transport failures; on `--cn` the Semantic Scholar context layer is skipped (frequently unreachable there; pass an explicit `--s2-key` to opt back in) |
 
 #### Semantic layer (the model)
 

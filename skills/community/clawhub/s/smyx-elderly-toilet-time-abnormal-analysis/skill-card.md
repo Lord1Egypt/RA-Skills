@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes bathroom occupancy monitoring media to flag stays exceeding 30 minutes and provide alerts and reports for caregivers.
+Analyzes privacy-conscious bathroom doorway video to track an older adult’s entry and exit, measure occupancy, and flag stays beyond a configurable threshold (30 minutes by default).
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Caregivers and elder-care teams use this skill to review bathroom occupancy alerts and historical reports from video monitoring. Alerts are prompts for a human check, not medical diagnoses.
+Caregivers and operators of senior living settings use the skill to review doorway or silhouette-only video, track toilet occupancy, and receive an alert when a stay exceeds the configured threshold. It supports human follow-up and does not provide medical diagnoses.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Bathroom-monitoring media and report history are highly sensitive and processed by configured cloud services.
+Risk: ClawScan rates the skill suspicious, citing undeclared account and identity handling, possible exposure of sensitive video, and a mismatch between the stated monitoring purpose and observed behavior.
 
-Mitigation: Obtain the monitored person's informed consent, minimize captured details, and review cloud data handling before use.
-
-Risk: A hidden identity override, silent account creation, and locally persisted tokens or profiles may expose or misassociate reports.
-
-Mitigation: Review or remove the identity override and automatic account creation; protect or disable local credential and profile persistence before using real care data.
-
-Risk: Occupancy alerts may be inaccurate and are not medical diagnoses.
-
-Mitigation: Have a caregiver promptly verify urgent alerts by phone or in person rather than relying on the skill alone.
+Mitigation: Consider avoiding installation unless the external video-processing service and its privacy protections can be verified; understand what identity and account data may be sent or stored; and confirm export-only mode prevents analysis. The scan is partial and does not establish all downstream behavior.
 
 ## Reference(s):
 
-- [Skill release on ClawHub](https://clawhub.ai/18072937735/skills/smyx-elderly-toilet-time-abnormal-analysis)
-- [Bathroom monitoring API documentation](references/api_doc.md)
+- [API interface and output fields](artifact/references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-elderly-toilet-time-abnormal-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Alerts, Reports]
+**Output Type(s):** [Analysis, Alerts, Structured reports, JSON, Markdown]
 
-**Output Format:** [Text, JSON, or Markdown tables with report links]
+**Output Format:** [Structured analysis text or JSON, with report links when available]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Can save results to a local file or retrieve historical reports.]
+**Other Properties Related to Output:** [Threshold-based occupancy alerts and history reports; does not provide medical diagnoses.]
 
 ## Skill Version(s):
 
-1.0.14 (source: server-resolved release metadata; bundled frontmatter says 1.0.16)
+1.0.15 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

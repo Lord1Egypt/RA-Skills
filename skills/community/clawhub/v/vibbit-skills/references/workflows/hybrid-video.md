@@ -1,10 +1,10 @@
-# Local video production and Vibbit cloud composition
+# Vibbit cloud editing and local production choices
 
-Choose execution location and installation preferences first, then the appropriate tool. Existing FFmpeg handles simple postproduction; Remotion/Hyperframes handle programmatic projects and complete templates. All can export full videos with a capable local host. Cloud `MEDIA_PRODUCTION` does not run these engines.
+Default ordinary editing, material mixcuts, and caption/packaging assembly to Vibbit cloud `MEDIA_PRODUCTION`, without requiring customer-side FFmpeg or a locally rendered body. Respect an explicit local choice or an existing local project. Remotion/Hyperframes can prepare necessary programmatic animation; cloud composition does not run these engines. [Agent semantic mixcut](semantic-mixcut.md) supplies reference templates, selection, and audio/picture planning.
 
 | Goal | Route |
 | --- | --- |
-| Existing media; simple cuts, joining, overlays, mixing, ordinary captions | Available local FFmpeg |
+| Existing media; simple cuts, joining, overlays, mixing, ordinary captions | Vibbit cloud by default; existing FFmpeg for an explicit local choice |
 | Installation declined | Direct Vibbit cloud composition using existing media |
 | Programmatic full video with ordinary music/captions | Complete local project and export |
 | Specifically requested Vibbit subtitle/packaging style | Available body/clips plus the required cloud step |
@@ -15,7 +15,11 @@ Choose execution location and installation preferences first, then the appropria
 
 An installation refusal applies throughout the task: do not substitute temporary downloads or repeatedly propose another installer. Use installed tools only within the user's permission. Lack of installation alone is not a refusal.
 
+For library media, use [material reuse](../resources/materials.md) to obtain current original/clip URLs and map them to the chosen local or cloud tracks. Trim verified source intervals only when clip files are unavailable. Refresh expired signatures and reuse local copies/probes, without reuploading, reimporting or regenerating usable media.
+
 ## A. Complete locally
+
+Use this for an explicit local choice or an existing local project. Installed tools alone do not override the cloud default.
 
 Use [FFmpeg](../capabilities/processing/local-composition.md) for simple composition or [programmatic rendering](../capabilities/generation/programmatic-video.md) for an animation project. Arrange real video, audio, graphics, and captions on one timeline. Retrieve cloud assets locally only when needed.
 
@@ -35,11 +39,17 @@ Submit actual media URLs, intervals, audio choices, and supported template/track
 
 ## C. Direct cloud composition
 
+This is the default for ordinary editing and semantic mixcuts, including when local installation is declined.
+
 Reuse accessible URLs, or use the supported [upload path](../runtime/media-inputs.md) for local files. Do not require local transcoding first when installation was declined. Use an available client or host API tool.
 
 Cloud selection does not itself solve missing authentication, upload access, or nested track contracts. The CLI checks only part of the payload. Upload credentials alone are not a completed transfer; `upload_info --file` transfers bytes but does not register a library object. A template list provides candidates, not guaranteed application configuration.
 
 Cloud composition cannot substitute for missing complex animation without an appropriate capability. Identify the exact gap and retain existing work. Do not silently replace a requested effect with generative video or a local imitation of a specific Vibbit style.
+
+## Jianying draft delivery
+
+For requested drafts, first check [desktop export eligibility](jianying-draft.md). Current OpenAPI cannot supply the required Job ID. Without a separate valid ID, retain outputs/recovery records and report draft export unavailable; client installation does not fix the ID gap. Proactively guide official installation when absent. Only a real ID enables task-prefilled launch and a user save. Disclose limitations before paid production when only a draft is wanted; an additional draft blocker does not prevent delivery of the completed video. Cloud editing remains the default.
 
 ## Revisions
 

@@ -3,6 +3,7 @@
 These engineering examples use the [tool encoding](tool-encoding.md). Author concepts and synchronizations using the [specification notation](spec-notation.md).
 Interfaces and business rules below are teaching choices; confirm product requirements separately.
 The tables specify acceptance checks and counterexamples, not executed test results.
+Each scenario's specification is a separate file under `assets/examples/`; read only the scenario you need. The files can be passed directly to `concept_lint.py`.
 
 ## Scenario index
 
@@ -18,107 +19,19 @@ The tables specify acceptance checks and counterexamples, not executed test resu
 A trusted caller adds, completes, and reopens local tasks using one CONCEPT and no SYNCS.
 Deletion, ordering, UI, external entries, authorization, and durability are outside this example.
 
-```markdown
-# concept Todo
-coverage: complete
-## purpose
-Remember unfinished work and distinguish it from completed work.
-## state
-tasks: set Task
-text: Task -> Text
-done: set Task
-Task is a local identity, never reused; Text is any string, including empty text.
-Initially tasks and done are empty.
-text has domain exactly tasks, with one Text per task; done is a subset of tasks.
-Missing is the singleton error for an unknown task.
-## actions
-add [text: Text] => [task: Task]
-  requires true
-  ensures creates and returns one fresh t; tasks = old tasks union {t};
-          text = old text plus (t, input text); done is unchanged
-// Retain identity and text so the task can be reopened.
-complete [task: Task] => []
-  requires task belongs to tasks
-  ensures done = old done union {task}; other state is unchanged
-complete [task: Task] => [error: Missing]
-  requires task does not belong to tasks
-  ensures returns Missing; state is unchanged
-reopen [task: Task] => []
-  requires task belongs to tasks
-  ensures done = old done minus {task}; other state is unchanged
-reopen [task: Task] => [error: Missing]
-  requires task does not belong to tasks
-  ensures returns Missing; state is unchanged
-## operational principle
-after add [text: "report"] => [task: t], pending work includes t;
-then complete [task: t] => [] removes it from pending work;
-then reopen [task: t] => [] restores the same t and text.
-## queries
-_pending [] => [task: Task; text: Text]
-  returns exactly tasks minus done, one row per task with its text;
-  zero rows when empty; order unspecified; no completion
-
-## Execution constraints
-- Completion: the declared result and local state effects are observable to subsequent queries before the action completes.
-- Concurrency: each state change atomically preserves the declared invariants.
-- Failure/repetition: use the action cases above; repeated add calls create distinct tasks.
-- Timing/recovery: no timing bound is specified; durability and restart recovery are outside this example.
-```
+Specification: [assets/examples/todo.concept.md](../assets/examples/todo.concept.md)
 
 | Acceptance from fresh state | Expected observation |
 | --- | --- |
-| add("report"), then _pending | Exactly the returned task and input text. |
-| add to obtain t; complete(t), then reopen(t), querying after each | t disappears, then returns with unchanged text. |
-| add to obtain t; complete(t) twice, then reopen(t) twice | Repeats succeed without duplicate tasks or other changes. |
+| _pending before and after add("report") | Zero rows without an error, then exactly the returned task and input text. |
+| add to obtain t; complete(t) twice, then reopen(t) twice, querying after each | t disappears, then returns with unchanged text; repeats succeed without duplicate tasks or other changes. |
 | complete(unknown) or reopen(unknown) | Missing with unchanged state. |
-| _pending before add | Zero rows without an error. |
 
 ## Partial reservation model
 
 This fragment covers a selected slot's success or conflict.
 
-```markdown
-# concept Reserving [U, S]
-coverage: partial
-## purpose
-Commit a resource slot to a user for future use.
-## state
-reservations: set Reservation
-user: Reservation -> U
-slot: Reservation -> S
-status: Reservation -> Status
-Reservation is local; Status = booked | canceled | granted.
-Conflict is the singleton error for a slot with a booked reservation.
-Initially reservations is empty.
-Each reservation has one user, slot, and status.
-Each S has at most one booked reservation; S has no assumed fields.
-After reserve [user: u1; slot: s1] => [reservation: r1] from empty state:
-{ reservation: r1, user: u1, slot: s1, status: booked }
-One row is one current reservation, identified by reservation; fields map to the same-named relations.
-## actions
-reserve [user: U; slot: S] => [reservation: Reservation]
-  requires slot has no booked reservation
-  ensures atomically creates and returns fresh r with input user/slot and booked status;
-          adds r to reservations; existing facts are unchanged
-reserve [user: U; slot: S] => [error: Conflict]
-  requires slot has a booked reservation
-  ensures returns Conflict; state is unchanged
-cancel [reservation: Reservation] => []
-  requires reservation is booked
-  ensures changes only its status to canceled
-grant [reservation: Reservation] => []
-  requires reservation is booked; arrival conditions are open
-  ensures changes only its status to granted
-## operational principle
-after reserve [user: u; slot: s] => [reservation: r],
-then, if not canceled and arrival conditions hold, grant [reservation: r] => [] fulfills the commitment.
-
-## Execution constraints
-- Completion: reserve completes with its declared reservation or Conflict result and state effects.
-- Concurrency: the no-booked-reservation check and reservation creation are atomic for each slot.
-- Failure/repetition: reserve uses its declared cases; retry identity and cancel/grant refusal behavior remain open.
-- Timing/recovery: arrival conditions, timing, and restart recovery remain open.
-```
+Specification: [assets/examples/reservation.concept.md](../assets/examples/reservation.concept.md)
 
 Availability[V] owns local Slot identities and exposes offered slots without reading Reserving:
 
@@ -134,40 +47,7 @@ Requesting/respond: [request: RequestId; reservation: Reserving.Reservation] => 
 Requesting/respond: [request: RequestId; error: Conflict] => []
 ```
 
-```markdown
-# app Reservations
-include Availability [VenueId]
-include Reserving [UserId, Availability.Slot]
-include Requesting
-
-### Request a reservation
-sync reserve
-when { Requesting/reserve: [user: ?user; slot: ?slot] => [request: ?request] }
-then { Reserving/reserve: [user: ?user; slot: ?slot] }
-
-// The entry completion supplies the request ID absent from the reservation result.
-### Return the reservation
-sync accepted
-when {
-  Requesting/reserve: [user: ?user; slot: ?slot] => [request: ?request]
-  Reserving/reserve: [user: ?user; slot: ?slot] => [reservation: ?reservation]
-}
-then { Requesting/respond: [request: ?request; reservation: ?reservation] }
-
-### Return the reservation conflict
-sync rejected
-when {
-  Requesting/reserve: [user: ?user; slot: ?slot] => [request: ?request]
-  Reserving/reserve: [user: ?user; slot: ?slot] => [error: ?error]
-}
-then { Requesting/respond: [request: ?request; error: ?error] }
-
-## Execution constraints
-- Flow/correlation: each Requesting/reserve starts its own flow with one attempt; repeated attempts need occurrence correlation.
-- Reads/order: the selected slot comes from the entry; _find is a read and never satisfies when.
-- Outcomes: accepted/rejected match the entry and reservation completion in that flow and respond using its RequestId. Response-delivery failure handling remains open.
-- Timing/recovery: timing, retry, and restart recovery remain open.
-```
+Specification: [assets/examples/reservation.syncs.md](../assets/examples/reservation.syncs.md)
 
 | Acceptance or counterexample | Expected observation |
 | --- | --- |
@@ -176,12 +56,9 @@ then { Requesting/respond: [request: ?request; error: ?error] }
 | _find returns zero or several candidates | No rule waits for that query or implicitly reserves its results; candidate selection needs a product decision. |
 | Remove Availability but retain Availability.Slot | The subset is unusable; rebind S to an independently supplied SlotId and update entries and rules. |
 
-Discovery requirements, not type binding alone, justify retaining Availability.
-A known-slot product may need only Reserving.
-Arrival inputs/timing, cancel/grant refusal conditions, authentication, venue checks, concurrent withdrawal,
-display, cancellation entries, and fault handling remain open.
+Discovery requirements, not type binding alone, justify retaining Availability; a known-slot product may need only Reserving.
 Offered state can change before reserve and does not enforce a write-time invariant.
-Arrival and grant must be defined and checked before purpose fulfillment is established.
+Open: arrival inputs/timing and the grant definition (both must be defined and checked before purpose fulfillment is established), cancel/grant refusal conditions, authentication, venue checks, concurrent withdrawal, display, cancellation entries, and fault handling.
 
 ## Synchronization scenarios
 
@@ -208,84 +85,7 @@ Required interface fragments:
 Profile exposes `displayName: Identity -> Text`, with one value per identity that has been set.
 Session exposes `identity: SessionId -> Identity` and `token: SessionId -> Text`, each with one value per session.
 
-```markdown
-# app ExternalLogin
-include Web
-include OAuthAuthentication [Credential]
-include ExternalIdentity
-include Profile [ExternalIdentity.Identity]
-include Session [ExternalIdentity.Identity]
-
-### Verify login credentials
-sync VerifyLogin
-when { Web/login: [credential: ?credential] => [request: ?request] }
-then { OAuthAuthentication/verify: [credential: ?credential] }
-
-### Record the verified external identity
-sync RecordVerifiedIdentity
-when {
-  OAuthAuthentication/verify: []
-    => [valid: true; namespace: ?namespace; subject: ?subject]
-}
-then { ExternalIdentity/record: [namespace: ?namespace; subject: ?subject] }
-
-### Set the profile and create a session
-sync PrepareLogin
-when {
-  OAuthAuthentication/verify: [] => [valid: true; displayName: ?displayName]
-  ExternalIdentity/record: [] => [identity: ?identity]
-}
-then {
-  Profile/set: [identity: ?identity; displayName: ?displayName]
-  Session/open: [identity: ?identity]
-}
-
-### Join completions and read response data
-sync CompleteLogin
-when {
-  Web/login: [] => [request: ?request]
-  Profile/set: [identity: ?identity] => [identity: ?identity]
-  Session/open: [identity: ?identity] => [session: ?session]
-}
-where {
-  Profile: { ?identity displayName: ?displayName }
-  Session: { ?session identity: ?identity; token: ?token }
-}
-then {
-  Web/respond: [request: ?request; identity: ?identity; session: ?session;
-                displayName: ?displayName; token: ?token]
-}
-
-### Refuse invalid credentials
-sync RefuseLogin
-when {
-  Web/login: [] => [request: ?request]
-  OAuthAuthentication/verify: [] => [valid: false]
-}
-then { Web/respond: [request: ?request; error: "InvalidCredentials"] }
-
-### Return a verification error
-sync ReportVerificationError
-when {
-  Web/login: [] => [request: ?request]
-  OAuthAuthentication/verify: [] => [error: ?error]
-}
-then { Web/respond: [request: ?request; error: ?error] }
-
-### Return a session error
-sync ReportSessionError
-when {
-  Web/login: [] => [request: ?request]
-  Session/open: [] => [error: ?error]
-}
-then { Web/respond: [request: ?request; error: ?error] }
-
-## Execution constraints
-- Flow/correlation: each Web/login starts its own flow with one verification attempt. Each other action is called at most once within that flow; repeated attempts need occurrence correlation.
-- Reads/order: actions may execute synchronously or asynchronously; CompleteLogin matches completed Profile/set and Session/open actions. Successful completions require their declared state effects to be queryable. No other flow changes the queried profile or session between completion and response in this example.
-- Outcomes: if actions complete with the listed cases and matched rules eventually execute, each request gets exactly one response. A session failure preserves completed identity/profile effects. The error response does not wait for the profile update or imply cancellation of that pending call.
-- Timing/recovery: timing, retry, and restart recovery remain open.
-```
+Specification: [assets/examples/login.syncs.md](../assets/examples/login.syncs.md)
 
 RecordVerifiedIdentity and PrepareLogin read different fields from the same verification completion; neither consumes it.
 Trace PrepareLogin's two calls into CompleteLogin's completion patterns and public-state reads.
@@ -296,8 +96,7 @@ Trace PrepareLogin's two calls into CompleteLogin's completion patterns and publ
 | Verification returns false | Return InvalidCredentials without recording an identity, setting a profile, or creating a session. |
 | Verification returns an error | Return the error to the original request without further business calls. |
 | Session creation fails | Return SessionError; retain completed identity and profile effects. An in-flight profile call may still finish. |
-| Only the profile completes | Do not return success while the session is pending. |
-| Only the session completes | Do not return success while the profile is pending. |
+| Only one of profile and session completes | Do not return success while the other is pending. |
 | The same identity has a session completion in another flow | That completion cannot satisfy CompleteLogin or supply this request's session. |
 
 ### Expand calls over query rows
@@ -308,23 +107,7 @@ Commenting[P] exposes `target: CommentId -> P`, with one target per existing com
 `remove [comment: CommentId] => [removed: boolean]` deletes the specified comment and its target relation and returns true; other state is unchanged.
 If the comment is absent, it returns false with unchanged state.
 
-```markdown
-# app Discussion
-include Posting
-include Commenting [Posting.PostId]
-
-### Remove existing comments on the deleted post
-sync RemovePostComments
-when { Posting/delete: [] => [post: ?post] }
-where { Commenting: { ?comment target: ?post } }
-then { Commenting/remove: [comment: ?comment] }
-
-## Execution constraints
-- Flow/correlation: emitted remove calls retain the successful Posting/delete occurrence's flow.
-- Reads/order: comments are read at rule evaluation after Posting/delete completes.
-- Outcomes: each matched row emits one remove call; zero rows emit none. A comment deleted before remove produces the declared false result.
-- Timing/recovery: concurrent additions, other removal failures, timing, retry, and restart recovery remain open.
-```
+Specification: [assets/examples/comment-cleanup.syncs.md](../assets/examples/comment-cleanup.syncs.md)
 
 | Acceptance scenario | Expected observation |
 | --- | --- |

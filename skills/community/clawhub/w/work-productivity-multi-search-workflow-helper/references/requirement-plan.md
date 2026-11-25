@@ -33,18 +33,18 @@ Scoring rationale:
 
 ## Evidence
 
-- clawhub-popular-skill (2026-05-11T07:50:52.489000+00:00): [Popular Clawhub skill demand: ontology has 201,215 downloads](https://clawhub.ai/skills/ontology)
-- clawhub-popular-skill (2026-05-11T07:53:37.068000+00:00): [Popular Clawhub skill demand: Multi Search Engine has 164,955 downloads](https://clawhub.ai/skills/multi-search-engine)
-- clawhub-popular-skill (2026-05-11T07:50:48.771000+00:00): [Popular Clawhub skill demand: Agent Browser has 159,132 downloads](https://clawhub.ai/skills/agent-browser-clawdbot)
-- clawhub-popular-skill (2026-05-18T20:48:27.565000+00:00): [Popular Clawhub skill demand: Nano Banana Pro has 108,279 downloads](https://clawhub.ai/skills/nano-banana-pro)
-- clawhub-popular-skill (2026-09-16T21:35:54.485000+00:00): [Popular Clawhub skill demand: Tavily Search has 109,833 downloads](https://clawhub.ai/skills/openclaw-tavily-search)
-- hacker-news-ask-hn (2026-11-04T06:09:55+00:00): [Ask HN: Advice on local efficient analogical retrieval?](https://news.ycombinator.com/item?id=50361973)
-- segmentfault-search (2026-11-05T04:08:42.367502+00:00): [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
-- segmentfault-search (2026-11-05T04:08:42.367502+00:00): [javascript](https://segmentfault.com/t/javascript)
-- segmentfault-search (2026-11-05T04:08:42.367502+00:00): [typescript](https://segmentfault.com/t/typescript)
-- segmentfault-search (2026-11-05T04:08:42.368032+00:00): [ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
-- segmentfault-search (2026-11-05T04:08:42.368032+00:00): [Yoast SEO Premium Setup: Build High-Ranking WordPress Sites](https://segmentfault.com/a/1190000048182795)
-- segmentfault-search (2026-11-05T04:08:42.368032+00:00): [问： 父元素用了伪类active的样式后，其子元素的点击事件onclick无法触发？](https://segmentfault.com/q/1010000040598886)
+- clawhub-popular-skill (2026-05-11T07:50:52.489000+00:00): [Popular Clawhub skill demand: ontology has 202,433 downloads](https://clawhub.ai/skills/ontology)
+- clawhub-popular-skill (2026-05-11T07:53:37.068000+00:00): [Popular Clawhub skill demand: Multi Search Engine has 166,519 downloads](https://clawhub.ai/skills/multi-search-engine)
+- clawhub-popular-skill (2026-05-11T07:50:48.771000+00:00): [Popular Clawhub skill demand: Agent Browser has 160,526 downloads](https://clawhub.ai/skills/agent-browser-clawdbot)
+- clawhub-popular-skill (2026-05-18T20:48:27.565000+00:00): [Popular Clawhub skill demand: Nano Banana Pro has 108,983 downloads](https://clawhub.ai/skills/nano-banana-pro)
+- clawhub-popular-skill (2026-09-16T21:35:54.485000+00:00): [Popular Clawhub skill demand: Tavily Search has 111,118 downloads](https://clawhub.ai/skills/openclaw-tavily-search)
+- hacker-news-ask-hn (2026-11-25T07:05:25+00:00): [ROMS: iOS server manager app with multi-snippets/SSH/Shortcuts (TestFlight)](https://news.ycombinator.com/item?id=50639432)
+- segmentfault-search (2026-11-25T13:49:34.681074+00:00): [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
+- segmentfault-search (2026-11-25T13:49:34.681074+00:00): [javascript](https://segmentfault.com/t/javascript)
+- segmentfault-search (2026-11-25T13:49:34.681074+00:00): [typescript](https://segmentfault.com/t/typescript)
+- segmentfault-search (2026-11-25T13:49:34.681074+00:00): [ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
+- segmentfault-search (2026-11-25T13:49:34.681591+00:00): [修改Emacs-W3M的默认Search](https://segmentfault.com/a/1190000000449302)
+- segmentfault-search (2026-11-25T13:49:34.681591+00:00): [问： 父元素用了伪类active的样式后，其子元素的点击事件onclick无法触发？](https://segmentfault.com/q/1010000040598886)
 
 ## How The Skill Meets The Requirement
 

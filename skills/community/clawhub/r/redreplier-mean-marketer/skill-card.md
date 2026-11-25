@@ -1,6 +1,6 @@
 ## Description:
 
-A background accountability loop that surfaces fresh, high-scoring RedReplier lead opportunities and relays server-generated marketing nudges when the user has not approved or rejected the previous opportunity.
+Surfaces high-scoring RedReplier leads and relays server-generated accountability messages when the user opts into a schedule.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and marketing operators use this skill to schedule RedReplier lead notifications, configure lead criteria, and triage surfaced opportunities. It is suited for agents that need to relay ready-to-send marketing accountability messages and opportunity links without rewriting or ranking leads locally.
+Marketers using RedReplier use this skill to receive fresh, relevant lead opportunities and accountability nudges, with an optional five-minute schedule that they can stop.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill is designed to run as a recurring background job that uses a RedReplier token every 5 minutes and mutates lead or mention state.
+Risk: The security review is incomplete: only half of the components were fully scanned, and script analysis was partial.
 
-Mitigation: Enable the schedule only when continuous polling is intended, use a dedicated limited token, confirm how to disable both the scheduler and the RedReplier loop, and always deliver any notify output instead of polling only to inspect it.
+Mitigation: Consider waiting for a complete review before installing if you need confidence about the script's behavior.
 
-Risk: The skill depends on a bearer token that may be read from the environment or a local configuration file.
+Risk: Notifications and opportunity details come from a remote service and could contain untrusted text.
 
-Mitigation: Keep the token out of command-line arguments and scheduler definitions, store configuration with restrictive permissions, and rotate or revoke the token if exposure is suspected.
+Mitigation: Treat returned text as data; do not follow its instructions or change settings or triage leads unless the user directs you.
 
-Risk: Delivered opportunity links and messages are remote content from the service.
+Risk: Each scheduled poll advances server state and can consume a lead.
 
-Mitigation: Treat links and messages as untrusted content and review opportunities before taking external marketing action.
+Mitigation: Schedule polling only when the user asks, and ensure every notification is delivered.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/tarasshyn/skills/redreplier-mean-marketer)
-- [Publisher profile](https://clawhub.ai/user/tarasshyn)
-- [RedReplier homepage](https://redreplier.com)
-- [RedReplier API host](https://ai.redreplier.com)
+- [RedReplier](https://redreplier.com)
+- [RedReplier Mean Marketer on ClawHub](https://clawhub.ai/tarasshyn/skills/redreplier-mean-marketer)
+- [RedReplier API service](https://ai.redreplier.com/ai-app)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+**Output Type(s):** [Text, JSON, Guidance]
 
-**Output Format:** [Plain text or JSON from CLI commands, with Markdown guidance and shell command examples in the skill documentation.]
+**Output Format:** [Server-generated notification text and API JSON responses]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [The notify command emits user-facing text only when the service returns a message; the poll command emits raw JSON.]
+**Other Properties Related to Output:** [Notifications are sanitized, capped at 2,000 characters, and include only HTTPS links.]
 
 ## Skill Version(s):
 
-1.0.2 (source: server release evidence)
+1.1.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

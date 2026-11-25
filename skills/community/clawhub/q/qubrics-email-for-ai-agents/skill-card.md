@@ -1,6 +1,6 @@
 ## Description:
 
-Use when an AI agent needs to send one outbound email through Qubrics with human approval, including a status notification or delegated agent send. Trigger when preparing the exact message for approval, executing an approved send, or reconciling an uncertain retry. Use only for a single-message workflow; bulk and batch sends are outside its scope.
+Use when an AI agent needs to send one outbound email through Qubrics with human approval, including a status notification or delegated agent send.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agent operators use this skill to prepare and send one individually approved outbound email through Qubrics, then report the actual send status.
+AI agents use this skill to prepare and send one user-approved email through an authorized Qubrics Sending connection, then report the actual result. It is intended for developers and agent operators handling one message at a time.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: An email or attachment could be sent with unintended content or to the wrong recipient.
+Risk: An incorrect sender, recipient, subject, body, or attachment could be sent externally.
 
-Mitigation: Obtain approval of the exact sender, recipients, subject, body, and attachments, and verify the authorised Sending connection identity before sending.
+Mitigation: Review the complete message and obtain explicit user approval before sending; verify that the selected connection is authorized for the intended account.
 
-Risk: An uncertain send retry could create a duplicate or conflict with the original request.
+Risk: An uncertain send result could lead to a duplicate or altered retry.
 
-Mitigation: Retry only with the same idempotency key and unchanged approved payload; reconcile the original attempt when its outcome is uncertain.
+Mitigation: Retry only with the same idempotency key and unchanged payload; reconcile the original attempt when its outcome or payload is unclear.
 
 ## Reference(s):
 
-- [Qubrics MCP setup](https://qubrics.com/docs/ai-integrations/mcp)
-- [Qubrics Sending attachments](https://qubrics.com/docs/sending/attachments)
+- [Qubrics MCP connection setup](https://qubrics.com/docs/ai-integrations/mcp)
 - [Qubrics HTTP sending](https://qubrics.com/docs/sending/http)
-- [Qubrics idempotency](https://qubrics.com/docs/sending/idempotency)
+- [Qubrics sending idempotency](https://qubrics.com/docs/sending/idempotency)
 - [Qubrics delegated agent access](https://qubrics.com/docs/ai-integrations/agent-access)
+- [Qubrics sending attachments](https://qubrics.com/docs/sending/attachments)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+**Output Type(s):** [Guidance, Shell commands, API calls, JSON]
 
-**Output Format:** [Markdown instructions with JSON email payload examples and CLI or HTTP commands]
+**Output Format:** [Markdown guidance with CLI examples and JSON request examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Single-message workflow; bulk and batch sends are outside scope.]
+**Other Properties Related to Output:** [Covers one outbound email per workflow; bulk and batch sends are out of scope.]
 
 ## Skill Version(s):
 
-2.0.4 (source: frontmatter)
+2.0.8 (source: frontmatter)
 
 ## Ethical Considerations:
 

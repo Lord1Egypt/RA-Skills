@@ -46,7 +46,7 @@ delivered, bounced, complained, failed; plus `events`).
 | `POST /mailboxes/{address}/send` `{ to, subject, html/text, fromName?, inReplyTo?, sendAt? }` | Send as that mailbox (lands in its Sent folder, threads replies); `fromName` is for this message only |
 | `GET /mailboxes/{address}/messages?folder=&page=&limit=` | List messages |
 | `GET /mailboxes/{address}/messages/{uid}` | Read one (html, text, attachments) |
-| `GET /mailboxes/{address}/messages/{uid}/thread` | Whole conversation |
+| `GET /mailboxes/{address}/messages/{uid}/thread` | Whole conversation (agent inboxes only; a person's mailbox answers 403 `agent_inbox_only`) |
 | `GET /mailboxes/{address}/search?q=&from=&subject=` | Search |
 
 ## Domains and DNS
@@ -68,11 +68,13 @@ sending quota left).
 
 Keys carry scopes: `mail:read`, `mail:send`, `mail:write`, `mailboxes:read`,
 `mailboxes:write`, `dns:read`, `dns:write`, `domains:read`, `domains:write`,
-`aliases:read`, `aliases:write`, `drive:read`. A missing scope answers 403.
+`aliases:read`, `aliases:write`, `drive:read`, `meet:write`,
+`services:read`, `services:write`. A missing scope answers 403.
 
 ## Limits
 
-120 requests a minute per key; 10 mailbox creations per key per 24 hours;
+120 requests a minute per key (300 on the Developer plan, 600 on Scale);
+10 mailbox creations per key per 24 hours (20 on Developer, 100 on Scale);
 sending rate and monthly allowance depend on the plan
 (https://faivelo.com/docs/developers/ai-agents/?via=clawhub#rate-limits). A `429` says how
 long to wait.

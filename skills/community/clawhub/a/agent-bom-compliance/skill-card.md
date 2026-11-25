@@ -1,6 +1,6 @@
 ## Description:
 
-Evaluate AI infrastructure scan results against security and regulatory frameworks, enforce policy-as-code, and generate SBOMs and compliance reports.
+Evaluates AI infrastructure scan results against security and regulatory frameworks, checks policy-as-code rules, and generates SBOMs and compliance reports.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-Apache 2.0
+Apache-2.0
 
 ## Use Case:
 
-Developers and security or compliance engineers use the skill to assess AI infrastructure scan results against frameworks, enforce custom policies, generate SBOMs, and run optional CIS checks. Most evaluations run locally; CIS checks use locally configured cloud credentials for read-only provider API calls.
+Developers, security engineers, and compliance teams use the skill to assess AI infrastructure scan results against frameworks such as OWASP, NIST, SOC 2, ISO 27001, and the EU AI Act; enforce custom policies; and generate compliance reports or SBOMs. Optional CIS checks can query cloud accounts when explicitly requested.
 
 ### Deployment Geography for Use:
 
@@ -22,9 +22,9 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: An SBOM example may write sbom.json even though the metadata declares no file writes.
+Risk: Optional CIS checks access cloud account information through read-only API calls using configured credentials.
 
-Mitigation: Check the output destination before generating an SBOM and confirm it is the intended location.
+Mitigation: Run CIS checks only when requested and use operator-configured credentials with the minimum permissions needed; never paste secrets into prompts or expose them in output.
 
 ## Reference(s):
 
@@ -35,17 +35,17 @@ Mitigation: Check the output destination before generating an SBOM and confirm i
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Files, JSON, Markdown]
+**Output Type(s):** [Analysis, Markdown, JSON]
 
-**Output Format:** [Compliance findings and reports, plus CycloneDX or SPDX SBOM files]
+**Output Format:** [Compliance findings and reports in text or Markdown; SBOMs in CycloneDX or SPDX JSON]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results depend on the supplied scan data, selected frameworks, and optional CIS checks.]
+**Other Properties Related to Output:** [Frameworks, policy rules, SBOM format, and optional cloud provider are selected for each request.]
 
 ## Skill Version(s):
 
-0.115.3 (source: frontmatter)
+0.115.6 (source: frontmatter)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Turn one used-car condition sheet into a listing hero still and a speakable walkaround script, then turn that still into one used car walkaround clip.
+Creates a used-car listing hero still, speakable walkaround script, and short walkaround clip from a dealer-provided condition sheet.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Used-car dealers and listing teams use this skill to turn a vehicle condition sheet into a listing hero still, a speakable walkaround script, and one listing video while preserving the supplied vehicle facts.
+Used-car dealers use this skill to create a listing still, walkaround narration, and one short clip for a named vehicle using its existing condition sheet.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review rates this release suspicious due to concerns about broad shared-account access and recurring installation tracking; scan coverage is partial.
+Risk: The security evidence flags broad shared account access, persistent tracking and account-management capabilities, and automatic telemetry.
 
-Mitigation: Review the concerns and incomplete analysis before installation, limit access to the account privileges needed, and inspect what installation tracking collects.
+Mitigation: Review the installation/authentication and updates/security guidance, and proceed only if these access and telemetry behaviors are acceptable.
 
-Risk: Removal may disrupt other skills through shared-state cleanup.
+Risk: The security scan is incomplete because some references could not be resolved.
 
-Mitigation: Check the removal scope and preserve shared state before uninstalling.
+Mitigation: Treat the security coverage as partial and review unresolved references before relying on the skill.
 
 ## Reference(s):
 
-- [Used-car walkaround workflow](references/workflow.md)
-- [Speech, voices, and audio](references/speech-and-audio.md)
-- [Updates and security](references/updates-and-security.md)
+- [ClawHub skill release](https://clawhub.ai/beatra-ai/skills/used-car-walkaround)
 - [Beatra skill homepage](https://beatra.ai/skills/used-car-walkaround)
-- [ClawHub release page](https://clawhub.ai/beatra-ai/skills/used-car-walkaround)
+- [Used-car walkaround workflow](artifact/references/workflow.md)
+- [Speech, voices, and audio finishing](artifact/references/speech-and-audio.md)
+- [Installation and authentication](artifact/references/installation-and-auth.md)
+- [Updates and security](artifact/references/updates-and-security.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Text, Audio, Video, Subtitle files]
+**Output Type(s):** [Images, Audio, Video, Text]
 
-**Output Format:** [Listing hero still, walkaround script and synthesized speech, one walkaround clip, and aligned JSON, SRT, or VTT subtitles when generated.]
+**Output Format:** [A labeled listing still, walkaround script and speech track, and one short video clip]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [One named car per request; the 2–15 second clip follows acceptance of the still and script.]
+**Other Properties Related to Output:** [One named vehicle per clip; requires a user-provided condition sheet and language. Mileage, accident, and maintenance statements are copied verbatim from that sheet.]
 
 ## Skill Version(s):
 
-0.2.6 (source: manifest.json, server-resolved release metadata)
+0.2.7 (source: server-resolved release)
 
 ## Ethical Considerations:
 

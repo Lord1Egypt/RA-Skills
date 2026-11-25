@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes fry images or video containing a known-size reference object to estimate body length and growth rate and produce growth reports.
+Analyzes fry images or video containing a known-size reference object to estimate body length and growth over time, then produces growth statistics, curves, and alerts.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Aquaculture workers and ornamental fish breeders use this skill to track fry body length and growth over time from periodic tank images or videos, then review population statistics and growth reports.
+Aquaculture workers and ornamental fish breeders use the skill with periodic fry images or video to track body length and growth, review population statistics, and receive growth alerts.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment flags account and credential handling, remote identity transmission, and behavior that may not match the stated fry-growth purpose.
+Risk: ClawScan flags identity and credential handling beyond the stated growth-analysis purpose, and possible remote analysis during export-only use; its scan was partial and does not establish that the skill is safe.
 
-Mitigation: Before installation, review account and credential handling, identity transmission, permissions, and export-only behavior; proceed only if you can verify them.
-
-Risk: The security scan was partial and could not resolve one local reference, leaving some evidence incomplete.
-
-Mitigation: Review the unresolved reference and verify the skill's behavior before relying on its outputs.
+Mitigation: Before installing, verify why identity and credentials are handled, where media and identity data are sent, and whether export-only use triggers remote analysis.
 
 ## Reference(s):
 
-- [API documentation](references/api_doc.md)
+- [ClawHub skill release](https://clawhub.ai/smyx-sunjinhui/skills/smyx-fish-fry-growth-measurement-analysis)
+- [API reference](references/api_doc.md)
 - [Skill demo](https://lifeemergence.com/sample.html)
-- [ClawHub release page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-fish-fry-growth-measurement-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Text]
+**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
 
-**Output Format:** [Structured growth measurements and reports with summaries, statistics, alerts, and report links.]
+**Output Format:** [Structured JSON and Markdown growth reports]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Measurements depend on a visible known-size reference object and suitable camera positioning.]
+**Other Properties Related to Output:** [Body-length measurements, growth rates, population statistics, growth curves, alerts, and suggested actions.]
 
 ## Skill Version(s):
 
-1.0.16 (source: server-resolved release metadata)
+1.0.17 (source: server-resolved release; artifact frontmatter lists 1.0.23)
 
 ## Ethical Considerations:
 

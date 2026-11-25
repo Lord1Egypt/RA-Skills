@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users can turn a static character image into an action video by providing a prompt and image to Jimeng Dream Actor through dLazy. Developers can invoke the skill through the dLazy CLI and receive a generated media result.
+Developers and creators use this skill to turn a static character image into an action video by providing a prompt and image to Jimeng Dream Actor through dLazy.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Prompts and local image or video files are sent to dLazy's hosted API and media storage for generation.
+Risk: The security scan reports a benign verdict with medium confidence, but its analysis was partial, some references were unresolved, and it flagged an undeclared `dlazy login` operation.
 
-Mitigation: Use only prompts and media you are authorized to share, and avoid uploading sensitive content unless the service is approved for it.
+Mitigation: Review the login and authentication behavior and unresolved references before use; follow the documented dLazy authentication flow and keep the API key in the CLI configuration or environment variable.
 
-Risk: The CLI uses a dLazy API key saved in the local CLI configuration.
+Risk: Prompts and local media provided to the skill are sent to dLazy hosted services.
 
-Mitigation: Keep the key private and rotate or revoke it from the dLazy account dashboard if it is exposed.
+Mitigation: Only submit prompts and media you are authorized to share; check each file for sensitive content before invoking the skill.
 
 ## Reference(s):
 
-- [dLazy service homepage](https://dlazy.com)
+- [CLI repository link declared in skill metadata (server provenance unavailable)](https://github.com/dlazy-ai/cli)
 - [dLazy CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
-- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-jimeng-dream-actor)
+- [dLazy service](https://dlazy.com)
+- [dLazy API key dashboard](https://dlazy.com/dashboard/organization/api-key)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, JSON, Video files]
+**Output Type(s):** [Media files, JSON]
 
-**Output Format:** [JSON result envelope with generated media URLs; optionally a saved media file]
+**Output Format:** [JSON response with generated media URLs and task status; optionally a saved media file]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May return an asynchronous task identifier; generated media is hosted remotely or saved to a requested path.]
+**Other Properties Related to Output:** [Generation may complete asynchronously; use the returned task ID to check status.]
 
 ## Skill Version(s):
 
-1.3.41 (source: ClawHub release metadata)
+1.3.44 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

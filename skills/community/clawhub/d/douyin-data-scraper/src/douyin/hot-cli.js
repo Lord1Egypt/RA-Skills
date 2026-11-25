@@ -6,7 +6,8 @@ const utils = require("../utils/utils");
 const {
   emitError,
   emitEmpty,
-  printSuccessEnvelope,
+  buildSuccessEnvelope,
+  finishSuccess,
   emitUncaught,
 } = require("../utils/output");
 
@@ -44,7 +45,7 @@ async function main() {
     emitError(
       "hot",
       "AUTH_REQUIRED",
-      "GUAIKEI_API_TOKEN 未配置或格式无效。须为 16-256 位字母、数字、下划线或连字符; 可通过 https://www.guaikei.com 自助开通",
+      "GUAIKEI_API_TOKEN 未配置或格式无效。须为 16-256 位字母、数字、下划线或连字符",
       3,
       startTime,
     );
@@ -71,14 +72,16 @@ async function main() {
     return;
   }
 
-  printSuccessEnvelope(
+  const finalOutput = buildSuccessEnvelope(
     "获取抖音热榜任务完成",
     startTime,
     { command: "hot" },
     hotTask,
     hotTask.length,
   );
-  utils.printSuccess(`抖音热榜任务完成, 共 ${hotTask.length} 条记录`);
+  await finishSuccess(finalOutput, {
+    stderrMessage: `抖音热榜任务完成, 共 ${hotTask.length} 条记录`,
+  });
 }
 
 main().catch((error) => {

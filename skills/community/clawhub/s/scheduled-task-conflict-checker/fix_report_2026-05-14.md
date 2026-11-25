@@ -2,7 +2,7 @@
 
 ## 来源
 
-- 评测报告：`/Users/wangzhilelelelele/Downloads/评测报告_scheduled-task-conflict-checker_2026-5-14.pdf`
+- 评测报告：`/Users/wangzhilelelelele/Downloads/评测报告_scheduled-taREDACTED-SECRET.pdf`
 - 评测版本：0.3.0
 - 评测时间：2026-05-14 16:13:50
 

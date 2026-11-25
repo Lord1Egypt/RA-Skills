@@ -10,6 +10,7 @@
   5. 未知顶层键仅提示（各平台兼容度不同，不算错误）
 用法：python3 agentskills_check.py <SKILL.md 路径> [--dir <技能目录名>]
 """
+
 import argparse
 import re
 import sys
@@ -38,8 +39,11 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("skill_md")
     ap.add_argument("--dir", help="技能目录名（校验 name 一致性）")
-    ap.add_argument("--distro", action="store_true",
-                    help="输出 skills.sh / agentskills.io 分发准备清单（v1.11）")
+    ap.add_argument(
+        "--distro",
+        action="store_true",
+        help="输出 skills.sh / agentskills.io 分发准备清单（v1.11）",
+    )
     args = ap.parse_args()
     text = open(args.skill_md, encoding="utf-8").read()
     fm = frontmatter(text)
@@ -67,8 +71,7 @@ def main() -> int:
         m = re.search(r"description:\s*>-?\n((?:[ \t]+(?!\w+:).*\n?)+)", fm)
         # v4.5.0：量折叠后的值（平台 YAML 折叠实收）——注意 desc 不能用作长度：
         # scalar_value 对 >- 折叠标量返回 ">-"（审计 P1 实证 dlen 恒 2 守卫已死）
-        dlen = len(" ".join(l.strip() for l in m.group(1).splitlines())) if m \
-            else len(desc)
+        dlen = len(" ".join(l.strip() for l in m.group(1).splitlines())) if m else len(desc)
         if dlen > 1024:
             fails.append(f"description 超长（{dlen} > 1024，会被静默丢弃）")
         else:
@@ -88,8 +91,18 @@ def main() -> int:
         else:
             notes.append(f"when_to_use {wlen} 字符（≤1024 安全）")
 
-    known = {"name", "license", "description", "when_to_use", "metadata",
-             "version", "author", "homepage", "documentation", "icon"}
+    known = {
+        "name",
+        "license",
+        "description",
+        "when_to_use",
+        "metadata",
+        "version",
+        "author",
+        "homepage",
+        "documentation",
+        "icon",
+    }
     unknown = [k for k in keys if k not in known]
     if unknown:
         notes.append("非通用键（各平台兼容度不同，仅提示）: " + ", ".join(unknown))
@@ -98,8 +111,10 @@ def main() -> int:
         # v1.11 分发扩面准备清单（skills.sh = vercel-labs repo 型目录，
         # npx skillsadd <owner/repo> 安装；agentskills.io 为开放标准规范）
         print("--- 分发准备（--distro）---")
-        print("skills.sh: 需公开 GitHub repo；SKILL.md 于 repo 根 / skills/<name>/ /"
-              " .claude/skills/<name>/ 均可被发现；安装 npx skillsadd <owner/repo>")
+        print(
+            "skills.sh: 需公开 GitHub repo；SKILL.md 于 repo 根 / skills/<name>/ /"
+            " .claude/skills/<name>/ 均可被发现；安装 npx skillsadd <owner/repo>"
+        )
         print("agentskills.io: name(kebab-case)+description(≤1024) 必备——上方已校验")
         print("ClawHub/SkillHub: 现有发布链覆盖（ch_release_*_claw.sh），无需额外适配")
 

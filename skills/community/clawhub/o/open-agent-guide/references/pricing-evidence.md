@@ -1,8 +1,8 @@
 # Pricing evidence and offer replacement
 
 Read this when collecting prices or preparing offer replacements. The live field
-schema determines which fields can be submitted. After deployment,
-`pricing_options` holds multiple choices within one plan.
+schema determines which fields can be submitted. After deployment, `prices`
+holds multiple choices within one plan.
 
 ## Research the purchase terms
 
@@ -120,11 +120,11 @@ Preview is advisory and never authorizes a claim.
 ## Submit using the current schema
 
 Keep one Offer per published plan. Put its monthly, annual and usage options in
-`pricing_options`, a complete array replaced on update. Omission preserves the
-current array; `[]` clears it. Each option has a unique stable `key` within the
-plan and an optional `label`. The key is a required internal identifier: choose
-any schema-valid value and retain it when repairing evidence failures. It needs
-no vendor citation and its wording does not establish pricing terms. Supply
+`prices`, a complete array replaced on update. Omission preserves the current
+array; `[]` clears it. Each option has a unique stable `key` within the plan and
+an optional `label`. The key is a required internal identifier: choose any
+schema-valid value and retain it when repairing evidence failures. It needs no
+vendor citation and its wording does not establish pricing terms. Supply
 evidence for these terms:
 
 - `price_kind`: `fixed`, `usage`, `free`, `custom` or `unknown`. Fixed and usage
@@ -156,10 +156,10 @@ minimum. Exact annual charges remain primary; monthly equivalents are derived
 only for display. Retain the same plan identity for both options. Never borrow
 one option's evidence for another.
 
-When converting an existing offer, submit `pricing_options`. The server clears
-stored legacy prices in the same update, including when the collection is empty.
-Omitting `pricing_options` preserves existing pricing. Retired price fields are
-not accepted in submissions, even with null or empty values. Keep
+When converting an existing offer, submit `prices`. The server clears stored
+legacy prices in the same update, including when the collection is empty.
+Omitting `prices` preserves existing pricing. Retired price fields are not
+accepted in submissions, even with null or empty values. Keep
 `price_description` for shared conditions. Existing catalog data, history and
 stored payloads remain readable. Never infer commitment from a legacy period.
 The collection allows at most 50 options; unknown keys fail validation. Use
@@ -179,3 +179,65 @@ history. Read back each merge and reconcile every old offer to a replacement, an
 explicitly reviewed removal, or an unresolved item. A failed fetch does not
 establish that a plan was discontinued. This guidance does not start a
 migration.
+
+## Omit offers unless fetched pricing evidence supports them
+
+Omit `offers` by default and retain the product's `pricing_url`. Add a
+structured price only when the fetched static HTML states the amount and billing
+period. A browser-rendered pricing table is not enough if those values are
+absent from the fetched evidence. Do not add free-text `price_description` tiers
+such as "Free" or "Contact sales" in population runs; leave those offers out
+until usable evidence is available.
+
+Keep offer claims in the cited page's wording, including quantities and their
+qualifiers. If the page says "300 emails included", keep that wording. Adding
+"per month" asserts a reset period that needs its own evidence, even when the
+plan has monthly billing. Apply the same check to limits, eligibility, and
+included features; omit any detail the cited page does not support.
+
+Check every factual line in every offer before submitting a bundle. One
+unsupported claim can fail fact-check for the whole submission, including the
+other offers. A Semgrep bundle failed because "community access to Registry and
+Playground" lacked support on the cited pricing page. Remove the unsupported
+line or obtain a supporting citation before submitting the bundle.
+
+When evidence supports pricing, use one offer per plan in the `offers.create`
+envelope. Set `name` and `slug` as display identifiers and cite the pricing
+page. Whenever you add offers — or fetch a pricing page as evidence for any
+price — set the product's `pricing_url` to that page in the same submission. It
+is evidence you already cited, and it is surfaced directly to agents on the
+product page, the Markdown view, and the read API, so capturing it costs no
+extra research. Use `pricing_url` for the canonical pricing overview (the page
+you read the prices off); reserve each `offer.url` for a deep link to that
+specific plan. `currency` is required for a priced option. An unqualified
+`$20/mo` supports `amount: "20.00"`, `currency: "USD"`, and `period: "month"`
+within `prices`; the page need not spell out USD. Use another currency when the
+evidence identifies it, such as CAD, AUD, C$, or A$. If the currency context
+conflicts, omit the structured price until it can be resolved. Do not omit a
+required currency while retaining the price.
+
+For pricing research or offer replacements, read
+[pricing evidence and migration](pricing-evidence.md). Research both monthly and
+annual options, keeping the price denominator, payment cadence, commitment and
+usage unit attached to each amount. Units are free-form; prefer lowercase words
+separated by spaces, such as `audio minutes`, and avoid snake_case such as
+`audio_minutes`. Preserve the source unit's meaning. When one Offer has several
+options that would otherwise show the same amount and unit (per-speed or
+per-volume tiers, for example), put the distinguishing dimension in each
+option's `label` so the rendered rows stay distinct, and keep supplementary
+conditions in `description`; leave `label` blank only when the amount and unit
+already identify the option. Use `prices` for all supported purchase options
+within one Offer. Keep exact source charges as strings, separate period from
+payment cadence and commitment, and leave unknowns null. Send only `prices` for
+structured prices. The server clears stored legacy prices when you supply this
+collection, including an empty array; omitting it preserves existing pricing.
+Retired price fields are not accepted, even with null or empty values. The
+linked reference describes the fields and replacement semantics. Retain shared
+conditions in `price_description`. Do not invent an annual charge by multiplying
+a rounded monthly headline.
+
+Read prices only off a page stating the product's own rates. A figure shown as
+an illustration — a tutorial or how-to sample, an example table, or a rate
+attributed to a fictional or example company ("for example", "such as",
+"suppose", "in this guide") — is not the product's pricing. Do not cite it as an
+offer or a `price`; keep the `pricing_url` and omit the structured price.

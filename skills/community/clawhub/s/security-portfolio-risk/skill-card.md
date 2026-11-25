@@ -1,6 +1,6 @@
 ## Description:
 
-Provides portfolio-level quantitative risk analysis for China market holdings, covering VaR/CVaR, stress testing, tail risk, factor exposure, and risk contribution.
+Provides China A-share portfolio risk measurement guidance for VaR and CVaR, stress testing, tail risk, factor exposure, and risk attribution.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Fund managers and qualified risk analysts use it to structure portfolio risk measurement and draft VaR/CVaR, stress-test, tail-risk, factor-exposure, and risk-attribution analyses for review. It provides methodology and review drafts, not direct market-data analysis or formal reporting.
+Fund managers and risk analysts can use it to structure portfolio-level risk measurement and stress-test drafts for China A-share holdings. Results are methodological references that require qualified human review before use in decisions or formal reporting.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,27 @@ China
 
 ## Known Risks and Mitigations:
 
-Risk: Risk estimates and stress scenarios depend on the input data, model assumptions, sample window, and scenario parameters, and may not predict future losses.
+Risk: Security review coverage was limited because Skillspector only partially inspected the Markdown file.
 
-Mitigation: Record the VaR horizon, confidence level, history window, and scenario assumptions; have a qualified reviewer independently check inputs, methodology, and results before use.
-
-Risk: Portfolio holdings and customer details may be sensitive.
-
-Mitigation: Provide only the inputs needed for the analysis, use anonymized identifiers and weights, and omit account numbers, identity data, trade details, and non-public customer information.
-
-Risk: Security scanning reported no findings but inspected the skill only partially because its manifest could not be parsed and a local reference was missing.
-
-Mitigation: Treat the clean verdict as incomplete coverage and review the skill contents and referenced materials before installation.
+Mitigation: Review the full skill source and address the reported missing local reference before relying on the clean verdict.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/gechengling/skills/security-portfolio-risk)
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/security-portfolio-risk)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Markdown]
+**Output Type(s):** [Text, Markdown, Code, Guidance]
 
-**Output Format:** [Markdown prose and tables]
+**Output Format:** [Markdown with tables and illustrative code examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Review drafts and methodology guidance; results require qualified human review and are not formal regulatory reports or investment decisions.]
+**Other Properties Related to Output:** [Methodological draft content; risk calculations and conclusions require independent review. The skill does not access data sources or execute the example code.]
 
 ## Skill Version(s):
 
-3.0.5 (source: frontmatter, server-resolved release)
+3.0.6 (source: frontmatter)
 
 ## Ethical Considerations:
 

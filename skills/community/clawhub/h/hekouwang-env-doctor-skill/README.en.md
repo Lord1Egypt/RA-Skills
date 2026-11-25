@@ -44,9 +44,9 @@ Size is something you measure. **Identity is something you have to infer.** To d
 Real output:
 
 ```
-nvm    9.8 GB   not loaded  not on PATH  node comes from fnm    last touched 2025-03  → leftover ✅ safe to remove
+nvm    9.8 GB   not loaded  not on PATH  node comes from fnm    last touched 2025-03  → leftover ⚠️ uninstall manually
 fnm    1.7 GB   loaded      on PATH      node comes from it     last touched 2026-05  → active   ⛔ leave alone
-pyenv  121 MB   not loaded  not on PATH  python comes from brew last touched 2024-07  → leftover ✅ safe to remove
+pyenv  121 MB   not loaded  not on PATH  python comes from brew last touched 2024-07  → leftover ⚠️ uninstall manually
 ```
 
 It also catches something nobody flags: **the same version stored twice by two different managers** — on the author's machine `v16.20.2` existed under both nvm and fnm.
@@ -58,8 +58,8 @@ It also catches something nobody flags: **the same version stored twice by two d
 | Decides by | Directory size | **Tool identity** (still in use or not) |
 | Detects "switched but never uninstalled" | ✗ | ✅ Core feature |
 | The biggest directory | First thing it suggests deleting | **Often the one you must not touch** (model weights) |
-| Deletion | Bulk delete after one confirm | Item-by-item opt-in; data entries can't be selected at all |
-| Aftermath | Not its problem | Reminds you to clean the init lines in your shell config |
+| Deletion | Bulk delete after one confirm | Official cache commands only; item-by-item opt-in |
+| Aftermath | Not its problem | Reminds you to clean the init lines when you uninstall a leftover |
 
 ## Install
 
@@ -68,7 +68,7 @@ git clone https://github.com/huiyonghkw/hekouwang-env-doctor-skill.git \
   ~/.claude/skills/hekouwang-env-doctor-skill
 ```
 
-Start a new Claude Code session and it loads automatically. No configuration. **Zero dependencies** — it only uses `du`, `df`, and `grep`, and it runs on the bash 3.2 that ships with macOS.
+Start a new Claude Code session and it loads automatically. No configuration. **No third-party dependencies** — the core scripts use only `du`, `df`, `awk`, `find`, and `grep`, and run on the bash 3.2 that ships with macOS. `run-all-doctors.sh` additionally needs `python3` and the other two doctor skills.
 
 ## Usage
 
@@ -97,18 +97,20 @@ Results come back in three groups — 🟠 **leftovers** / 🟡 **cache** / 🔴
 
 `Space` toggle · `↑↓` move · `a` select all · `n` select none · `Enter` confirm · `q` quit
 
+The selector's tickable entries are only caches that have an official cleanup subcommand (npm / yarn / pnpm / brew / pip / uv); data entries are listed but 🔒 locked. Version-manager directories such as `~/.nvm` are never offered — deleting them would take installed toolchains and your environments with them. Leftovers get official manual steps instead, for you to run yourself.
+
 ## Safety by design
 
 This tool can delete things, so the boundaries are written down in [`references/safety.md`](references/safety.md) and enforced in code:
 
 1. **Nothing is pre-selected** — there is no path where mashing Enter wipes everything
 2. **Data entries are 🔒 locked** — model weights, container volumes, Ollama models; Space won't tick them
-3. **Only whitelisted, hard-coded commands run** — paths and commands live in a fixed array, never assembled from input
-4. **The confirmation screen lists every command and its cost; you must type `yes`**
+3. **Only whitelisted official cleanup subcommands run** — dispatched by id, never assembled from input, no dynamic evaluation
+4. **The confirmation screen lists every command and its cost; you must type `yes`**, then confirm each item again
 5. **`--dry-run` is always available**
-6. **It never edits your `.zshrc`** — after removing a version manager it only *reminds* you to clean the init lines, because silently rewriting shell config is more dangerous than deleting a directory
+6. **No version-manager directories, no `.zshrc` edits** — leftovers come with manual steps plus a reminder to clean the init lines
 
-Also: `scan.sh` is **read-only end to end** — deletion happens only in `clean.sh`. Nothing is sent anywhere; **no network calls, no telemetry**.
+Also: `scan.sh` is **read-only end to end**, and `clean.sh` **never deletes user directories** (its only `rm -r` removes a temp dir it created itself). Nothing is sent anywhere; **no network calls, no telemetry**.
 
 ## Coverage
 
@@ -135,7 +137,7 @@ Also: `scan.sh` is **read-only end to end** — deletion happens only in `clean.
 SKILL.md                 # Router + iron rules
 scripts/
   scan.sh                # Read-only scanner
-  clean.sh               # Cleanup selector (the only place deletion happens, whitelist-driven)
+  clean.sh               # Cache cleanup selector (official cache commands only, whitelist-driven)
 references/
   rules.md               # Leftover-signature rule library (tool → dir → liveness test → official command → cost)
   report.md              # Report format and conversation flow

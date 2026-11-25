@@ -5,11 +5,12 @@ const log = require("../utils/log");
 const token = require("../utils/token");
 const utils = require("../utils/utils");
 const validator = require("../validate/keyword");
-const { parseArgs, buildHelp } = require("../utils/args");
+const { parseCliArgs, buildHelp, parseDecimalInteger } = require("../utils/args");
 const {
   emitError,
   emitEmpty,
-  printSuccessEnvelope,
+  buildSuccessEnvelope,
+  finishSuccess,
   emitUncaught,
 } = require("../utils/output");
 
@@ -27,7 +28,7 @@ const SCHEMA = {
       key: "sort",
       type: "number",
       default: 0,
-      transform: (v) => Number(v),
+      transform: parseDecimalInteger,
       desc: "排序依据, 0: 综合排序(默认), 1: 最多点赞, 2: 最新发布",
     },
     "--time": {
@@ -35,7 +36,7 @@ const SCHEMA = {
       key: "time",
       type: "number",
       default: 0,
-      transform: (v) => Number(v),
+      transform: parseDecimalInteger,
       desc: "发布时间, 0: 全部(默认), 1: 一天内, 7: 七天内, 180: 半年内",
     },
     "--duration": {
@@ -43,7 +44,7 @@ const SCHEMA = {
       key: "duration",
       type: "number",
       default: 0,
-      transform: (v) => Number(v),
+      transform: parseDecimalInteger,
       desc: "视频时长, 0: 不限(默认), 1: 1分钟以下, 2: 1-5分钟, 3: 5分钟以上",
     },
     "--content": {
@@ -51,7 +52,7 @@ const SCHEMA = {
       key: "content",
       type: "number",
       default: 0,
-      transform: (v) => Number(v),
+      transform: parseDecimalInteger,
       desc: "内容类型, 0: 不限(默认), 1: 视频, 2: 图文",
     },
     "--limit": {
@@ -59,8 +60,14 @@ const SCHEMA = {
       key: "limit",
       type: "number",
       default: 10,
-      transform: (v) => Number(v),
+      transform: parseDecimalInteger,
       desc: "搜索数量, 1-10000",
+    },
+    "--save": {
+      key: "save",
+      type: "boolean",
+      default: false,
+      desc: "将完整结果写入本地日志（也可设 GUAIKEI_ENABLE_LOG=1）",
     },
   },
   positionalKey: "keyword",
@@ -73,10 +80,13 @@ function printHelp() {
       'node src/douyin/search-cli.js --keyword "AI 模型"',
       "node src/douyin/search-cli.js --keyword AI --sort 0 --time 0 --duration 0 --limit 10",
       'node src/douyin/search-cli.js -k "AI 模型" -s 1 -t 180 -d 2 -l 100',
+      `node src/douyin/search-cli.js --json-args "{\"keyword\":\"AI 教程\",\"sort\":1,\"limit\":10}"`,
     ]) +
       "\n\n注意:\n" +
       "  - 关键词建议 2-50 个字符，不能是链接, 不含 < > \" ' &\n" +
-      "  - 排序、时间、时长、类型和数量若不在允许范围内，命令会直接失败，不会改成默认值后继续搜索",
+      "  - 排序、时间、时长、类型和数量若不在允许范围内，命令会直接失败，不会改成默认值后继续搜索\n" +
+      "  - 数量 1-10000；包月 Token 实际最多 30，超限返回 PLAN_LIMIT\n" +
+      "  - 关键词以 - 开头时写成 --keyword=-AI，或在 -- 后面写位置参数",
   );
 }
 
@@ -95,7 +105,7 @@ async function main() {
 
   let parsed;
   try {
-    parsed = parseArgs(args, SCHEMA);
+    parsed = parseCliArgs(args, SCHEMA);
   } catch (error) {
     utils.printError(`参数解析错误: ${error.message}`);
     printHelp();
@@ -170,7 +180,7 @@ async function main() {
     emitError(
       "search",
       "AUTH_REQUIRED",
-      "GUAIKEI_API_TOKEN 未配置或格式无效。须为 16-256 位字母、数字、下划线或连字符; 可通过 https://www.guaikei.com 自助开通",
+      "GUAIKEI_API_TOKEN 未配置或格式无效。须为 16-256 位字母、数字、下划线或连字符",
       3,
       startTime,
       {
@@ -187,6 +197,7 @@ async function main() {
     return;
   }
   let searchTask = null;
+  let taskCost;
   try {
     await search.createSearchTask(
       tokenValue,
@@ -199,7 +210,7 @@ async function main() {
     );
     utils.printSuccess(`搜索任务创建成功, 正在搜索中...`);
 
-    searchTask = await search.getSearchTask(
+    ({ results: searchTask, cost: taskCost } = await search.getSearchTask(
       tokenValue,
       keyword,
       sort,
@@ -207,7 +218,7 @@ async function main() {
       duration,
       content,
       limit,
-    );
+    ));
   } catch (error) {
     utils.printError(`搜索失败: ${error.message}`);
     emitError(
@@ -242,24 +253,28 @@ async function main() {
   };
   if (!searchTask || !Array.isArray(searchTask) || searchTask.length === 0) {
     utils.printInfo("没有找到匹配的视频或图文内容");
-    emitEmpty("没有找到匹配的视频或图文内容", startTime, searchRequest);
+    emitEmpty(
+      "没有找到匹配的视频或图文内容",
+      startTime,
+      searchRequest,
+      taskCost,
+    );
     return;
   }
 
-  const finalOutput = printSuccessEnvelope(
+  const finalOutput = buildSuccessEnvelope(
     "搜索任务完成",
     startTime,
     searchRequest,
     searchTask,
+    undefined,
+    taskCost,
   );
-  utils.printSuccess(
-    `搜索任务完成, 共返回 ${finalOutput.results.length} 条结果`,
-  );
-
-  await log.writeResultLog(
-    `${startTime}_${keyword}_${sort}_${time}_${duration}_${content}_search.json`,
-    JSON.stringify(finalOutput, null, 2),
-  );
+  await finishSuccess(finalOutput, {
+    logFilename: `${startTime}_${keyword}_${sort}_${time}_${duration}_${content}_search.json`,
+    stderrMessage: `搜索任务完成, 共返回 ${finalOutput.results.length} 条结果`,
+    save: parsed.save === true,
+  });
 }
 
 main().catch((error) => {

@@ -1,6 +1,6 @@
 ## Description:
 
-This skill helps agents assess Base smart contracts and prediction markets before acting, share verification results, and use cooperative bounties and dividends.
+Provides Base smart contract and token risk checks, prediction market evidence review, and cooperative verification tools for agents.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and autonomous agents use the skill to check Base tokens, contracts, and prediction market rules before transactions, trades, or escrow decisions, and to share verifiable assessment results.
+Developers and agents use Tereno to review Base token and contract risks before transactions, assess prediction market resolution evidence, and share verification results across agents.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Running an unpinned npm package with automatic confirmation can execute local code; the scan did not establish malicious behavior and was partial.
+Risk: ClawScan rates the skill suspicious because it includes an unpinned command that downloads and runs an MCP package and recommends a smart-account hook without explaining its effects; no malicious intent is established.
 
-Mitigation: Review the package and its source, use a specific audited version, keep wallet secrets and other sensitive credentials out of the process, and confirm payment requirements before signing.
+Mitigation: Before installing, check package version and integrity, review hook permissions and its removal or recovery process, and confirm what market information may be sent to Tereno.
+
+Risk: The security scan was partial: all six listed components were scanned, but several local references could not be resolved, leaving incomplete evidence.
+
+Mitigation: Review unresolved components and treat the scan as incomplete before relying on the skill.
 
 ## Reference(s):
 
-- [Tereno website](https://www.tereno.xyz)
+- [Tereno service](https://www.tereno.xyz)
 - [Tereno MCP endpoint](https://www.tereno.xyz/api/mcp)
-- [Capabilities, endpoints and MCP tools](artifact/references/capabilities-and-pricing.md)
-- [Binance Agentic Wallet x402 workflow](artifact/references/baw-x402-workflow.md)
-- [Cooperative cache, bounties and dividends](artifact/references/cooperation-economy.md)
-- [ERC-8183 escrow and ERC-7579 smart account guards](artifact/references/escrow-and-erc7579.md)
+- [Capabilities and pricing](references/capabilities-and-pricing.md)
+- [Binance Agentic Wallet x402 workflow](references/baw-x402-workflow.md)
+- [Cooperative cache and dividends](references/cooperation-economy.md)
+- [ERC-8183 escrow and ERC-7579 smart account guards](references/escrow-and-erc7579.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, API Calls, JSON, Shell commands, Guidance]
+**Output Type(s):** [Analysis, API Calls, Guidance, JSON]
 
-**Output Format:** [Structured JSON verdicts and evidence, with Markdown guidance and shell command examples]
+**Output Format:** [Structured JSON verdicts with supporting evidence and concise agent guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Verdicts include reason codes, evidence, limitations, and freshness information; assessments are advisory and can require human review.]
+**Other Properties Related to Output:** [Verdicts may include validity limits, reason codes, evidence, limitations, artifact references, and receipts.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server-resolved release metadata)
+1.1.1 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

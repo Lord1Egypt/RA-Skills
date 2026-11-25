@@ -1,0 +1,836 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>能力闭环 · 控制台设计稿 v0.2</title>
+<style>
+  /* ============================================================
+     设计稿 v0.2：能力闭环控制台（Harness Web GUI）
+     token 全部取自 @deepseek-ai/dsh-client-ui-theme:
+       src/styles/design-platform.css + base.css + gradient-shadow-text.css
+     非实现；覆盖 dsh-capability-loop 全量能力，非只看项目进度。
+     ============================================================ */
+  :root {
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+            'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --r-xs: 4px; --r-sm: 8px; --r-md: 12px; --r-lg: 16px;
+    --ease: cubic-bezier(.4, 0, .2, 1);
+  }
+  body.light {
+    --bg-base: #ffffff; --bg-layer1: #ffffff; --bg-layer2: #ffffff; --bg-layer3: #ffffff;
+    --card: rgb(250,250,250); --card-2: rgb(245,246,247);
+    --label-primary: rgb(15,17,21); --label-secondary: rgb(97,102,107);
+    --label-tertiary: rgb(129,133,140); --label-caption: rgb(173,178,184);
+    --border-l1: rgba(0,0,0,.04); --border-l2: rgba(0,0,0,.10); --border-l3: rgba(0,0,0,.12);
+    --business: rgb(65,118,230); --business-fill: rgb(65,118,230);
+    --success: rgb(34,197,94); --warn: rgb(245,158,11); --error: rgb(236,19,19);
+    --done: rgb(124,58,237); --idle: rgb(212,212,212);
+    --hover: rgba(0,0,0,.04); --selected: rgba(0,0,0,.06);
+    --focus: #4176E6; --overlay: rgba(0,0,0,.024);
+  }
+  body.dark {
+    --bg-base: rgb(21,21,23); --bg-layer1: rgb(35,35,36); --bg-layer2: rgb(44,44,46); --bg-layer3: rgb(53,54,56);
+    --card: rgb(33,33,35); --card-2: rgb(44,44,46);
+    --label-primary: rgb(249,250,251); --label-secondary: rgb(207,211,214);
+    --label-tertiary: rgb(173,178,184); --label-caption: rgb(129,133,140);
+    --border-l1: rgba(255,255,255,.06); --border-l2: rgba(255,255,255,.12); --border-l3: rgba(255,255,255,.16);
+    --business: rgb(122,170,255); --business-fill: rgb(65,118,230);
+    --success: rgb(34,197,94); --warn: rgb(245,158,11); --error: rgb(242,90,90);
+    --done: rgb(167,139,250); --idle: rgb(84,85,87);
+    --hover: rgba(255,255,255,.05); --selected: rgba(255,255,255,.08);
+    --focus: #7AAAFF; --overlay: rgba(255,255,255,.03);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body { font-family: var(--font); background: #0b0b0c; color: var(--label-primary); -webkit-font-smoothing: antialiased; }
+
+  /* 设计稿控制条（不属于产品） */
+  .toolbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; gap: 8px;
+    padding: 7px 12px; background: #101014; color: #d7dae2; font: 12px/1.4 var(--font);
+    border-bottom: 1px solid #23232a; flex-wrap: wrap;
+  }
+  .toolbar b { font-weight: 600; color: #fff; }
+  .toolbar .tag { color: #8b909c; }
+  .tb-group { display: flex; gap: 3px; background: #1a1a20; padding: 3px; border-radius: 7px; }
+  .tb-btn { border: 0; background: transparent; color: #b9becb; font: 11px/1 var(--font); padding: 6px 8px; border-radius: 5px; cursor: pointer; }
+  .tb-btn:hover { background: #26262e; color: #fff; }
+  .tb-btn.on { background: #34343f; color: #fff; }
+  .toolbar .spacer { flex: 1; }
+  .toolbar .note { color: #7e838f; }
+
+  .frame { width: 1440px; height: 900px; margin: 52px auto 30px; display: flex;
+           background: var(--bg-base); color: var(--label-primary);
+           border: 1px solid var(--border-l2); border-radius: 14px; overflow: hidden; }
+
+  /* 侧栏 */
+  .sidebar { width: 280px; flex: none; display: flex; flex-direction: column; background: var(--bg-layer1);
+             border-right: 1px solid var(--border-l1); padding: 10px 8px 8px; }
+  .brand { display: flex; align-items: center; gap: 6px; height: 34px; padding: 0 8px; font: 600 13px/1 var(--font); letter-spacing: -.1px; }
+  .brand .mark { width: 16px; height: 16px; color: var(--business); }
+  .brand .badge { font: 500 8px/1 var(--font); letter-spacing: .6px; color: var(--label-tertiary); border: 1px solid var(--border-l2); border-radius: 3px; padding: 2px 3px; }
+  .newchat { margin: 8px 0 10px; height: 32px; display: flex; align-items: center; justify-content: center; gap: 6px;
+             border-radius: var(--r-sm); background: var(--selected); font: 500 13px/1 var(--font); }
+  .newchat .k { color: var(--label-tertiary); font-weight: 400; }
+  .nav { display: flex; flex-direction: column; gap: 2px; }
+  .navrow { height: 32px; display: flex; align-items: center; gap: 8px; padding: 0 10px; border-radius: var(--r-sm);
+            color: var(--label-secondary); font: 13px/1 var(--font); }
+  .navrow .ico { width: 16px; height: 16px; color: var(--label-tertiary); }
+  .navrow.active { background: var(--selected); color: var(--label-primary); }
+  .navrow.active .ico { color: var(--business); }
+  .navrow .new { margin-left: auto; font: 500 9px/1 var(--font); color: var(--business);
+                 border: 1px solid color-mix(in srgb, var(--business) 35%, transparent); border-radius: 4px; padding: 2px 4px; }
+  .sect { margin: 16px 8px 6px; display: flex; align-items: center; justify-content: space-between;
+          font: 500 11px/1 var(--font); color: var(--label-caption); letter-spacing: .3px; }
+  .ws { display: flex; align-items: center; gap: 6px; height: 28px; padding: 0 8px; font: 500 13px/1 var(--font); }
+  .ws .caret { color: var(--label-tertiary); font-size: 10px; }
+  .sess { height: 30px; display: flex; align-items: center; gap: 8px; padding: 0 8px 0 26px; border-radius: var(--r-sm);
+          color: var(--label-secondary); font: 12px/1 var(--font); white-space: nowrap; overflow: hidden; }
+  .sess .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--business); flex: none; }
+  .sess.active { background: var(--selected); color: var(--label-primary); }
+  .sess .time { margin-left: auto; color: var(--label-caption); font-size: 10px; }
+  .side-foot { margin-top: auto; display: flex; align-items: center; gap: 8px; padding: 8px; color: var(--label-secondary); font: 13px/1 var(--font); }
+  .avatar { width: 22px; height: 22px; border-radius: 50%; background: var(--bg-layer3); display: grid; place-items: center; font-size: 10px; color: var(--label-secondary); }
+
+  /* 主区 */
+  .main { flex: 1; min-width: 0; display: flex; flex-direction: column; background: var(--bg-base); }
+  .topbar { height: 44px; flex: none; display: flex; align-items: center; gap: 10px; padding: 0 16px; border-bottom: 1px solid var(--border-l1); }
+  .topbar .crumb { font: 500 13px/1 var(--font); color: var(--label-secondary); }
+  .topbar .sep { color: var(--label-caption); font-size: 11px; }
+  .topbar .title { font: 500 13px/1 var(--font); color: var(--label-primary); }
+  .topbar .status { margin-left: auto; display: flex; align-items: center; gap: 6px; font: 11px/1 var(--font); color: var(--label-tertiary); }
+  .pulse { width: 6px; height: 6px; border-radius: 50%; background: var(--success); }
+
+  .page { flex: 1; min-height: 0; overflow: auto; padding: 22px 40px 26px; }
+  .inner { max-width: 1000px; margin: 0 auto; }
+
+  /* 页头 */
+  .head { display: flex; align-items: flex-start; gap: 16px; }
+  .titles { flex: 1; min-width: 0; }
+  .h1 { margin: 0; font: 600 20px/1.35 var(--font); letter-spacing: -.2px; }
+  .sub { margin: 7px 0 0; font: 13px/1.4 var(--font); color: var(--label-tertiary); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .sub .v { color: var(--label-secondary); }
+  .sub .dotsep { color: var(--label-caption); }
+  .head-actions { display: flex; align-items: center; gap: 8px; flex: none; }
+  .seg { display: flex; gap: 2px; padding: 2px; border: 1px solid var(--border-l2); border-radius: var(--r-sm); background: var(--bg-base); }
+  .seg button { border: 0; background: transparent; color: var(--label-secondary); font: 12px/1 var(--font); padding: 8px 10px; border-radius: 6px; cursor: pointer; }
+  .seg button.on { background: var(--selected); color: var(--label-primary); font-weight: 500; }
+  .icon-btn { width: 30px; height: 30px; display: grid; place-items: center; border: 1px solid var(--border-l2);
+              border-radius: var(--r-sm); background: transparent; color: var(--label-secondary); cursor: pointer; }
+
+  /* Tab */
+  .tabs { display: flex; gap: 2px; margin-top: 16px; border-bottom: 1px solid var(--border-l1); overflow-x: auto; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { border: 0; background: transparent; color: var(--label-secondary); font: 12px/1 var(--font);
+         padding: 10px 12px 12px; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; }
+  .tab:hover { color: var(--label-primary); }
+  .tab.on { color: var(--label-primary); font-weight: 600; border-bottom-color: var(--business); }
+  .tab .cnt { margin-left: 4px; font: 10px/1 var(--font); color: var(--label-caption); }
+
+  /* 通用 */
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .kpi { background: var(--card); border: 1px solid var(--border-l1); border-radius: var(--r-md);
+         padding: 10px 12px; min-height: 66px; display: flex; flex-direction: column; gap: 5px; }
+  .kpi .k { font: 11px/1 var(--font); color: var(--label-caption); }
+  .kpi .v { font: 600 18px/1.1 var(--font); color: var(--label-primary); display: flex; align-items: baseline; gap: 5px; }
+  .kpi .v small { font: 400 11px/1 var(--font); color: var(--label-tertiary); }
+  .kpi .m { margin-top: auto; font: 11px/1.3 var(--font); color: var(--label-tertiary); }
+  .card { border: 1px solid var(--border-l2); border-radius: var(--r-md); background: var(--card); overflow: hidden; }
+  .card .hd { display: flex; align-items: center; gap: 8px; padding: 11px 13px 9px; font: 600 13px/1 var(--font); }
+  .card .hd .hint { margin-left: auto; font: 11px/1 var(--font); color: var(--label-caption); font-weight: 400; }
+  .subhead { margin: 20px 0 10px; display: flex; align-items: baseline; gap: 8px; }
+  .subhead .t { font: 600 14px/1.2 var(--font); }
+  .subhead .n { font: 12px/1 var(--font); color: var(--label-caption); }
+  .muted { color: var(--label-tertiary); }
+  .mono { font-family: 'SF Mono','JetBrains Mono',Consolas,'PingFang SC','Microsoft YaHei'; }
+
+  .badge { display: inline-flex; align-items: center; gap: 5px; height: 20px; padding: 0 7px; border-radius: 5px; font: 600 10px/1 var(--font); color: var(--label-primary); }
+  .badge .bd { width: 5px; height: 5px; border-radius: 50%; }
+  .b-pass { background: color-mix(in srgb, var(--success) 10%, transparent); } .b-pass .bd { background: var(--success); }
+  .b-warn { background: color-mix(in srgb, var(--warn) 10%, transparent); } .b-warn .bd { background: var(--warn); }
+  .b-fail { background: color-mix(in srgb, var(--error) 10%, transparent); } .b-fail .bd { background: var(--error); }
+  .b-done { background: color-mix(in srgb, var(--done) 10%, transparent); } .b-done .bd { background: var(--done); }
+  .b-miss { border: 1px dashed var(--border-l3); color: var(--label-tertiary); }
+  .b-miss .bd { background: var(--label-caption); }
+  .b-skip { color: var(--label-tertiary); background: var(--overlay); }
+
+  .btn { border: 1px solid var(--border-l2); background: var(--bg-base); color: var(--label-primary);
+         font: 12px/1 var(--font); border-radius: 6px; padding: 7px 10px; cursor: pointer; white-space: nowrap; }
+  .btn.primary { background: var(--business-fill); border-color: var(--business-fill); color: #fff; font-weight: 500; }
+  .btn.ghost { background: transparent; }
+  .btn.sm { padding: 5px 8px; font-size: 11px; }
+  .btn[disabled] { opacity: .45; cursor: default; }
+
+  /* 能力地图 */
+  .cap { background: var(--card); border: 1px solid var(--border-l1); border-radius: var(--r-md); padding: 10px 12px;
+         min-height: 82px; display: flex; flex-direction: column; gap: 5px; cursor: pointer; }
+  .cap:hover { background: var(--hover); }
+  .cap .ct { display: flex; align-items: center; gap: 6px; font: 600 12px/1 var(--font); }
+  .cap .cd { font: 12px/1.35 var(--font); color: var(--label-tertiary); }
+  .cap .cm { margin-top: auto; font: 11px/1 var(--font); color: var(--label-caption); display: flex; align-items: center; gap: 5px; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; }
+  .d-pass { background: var(--success); } .d-warn { background: var(--warn); } .d-fail { background: var(--error); }
+  .d-idle { background: var(--idle); } .d-done { background: var(--done); }
+
+  /* 阶段轨道 */
+  .track { margin-top: 12px; position: relative; display: grid; grid-template-columns: repeat(7, 1fr); }
+  .track:before { content: ""; position: absolute; left: 6%; right: 6%; top: 9px; height: 1px; background: var(--border-l2); }
+  .stage { position: relative; display: flex; flex-direction: column; align-items: center; gap: 7px; padding: 0 4px; }
+  .node { width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; background: var(--bg-base);
+          border: 1px solid var(--border-l3); color: var(--label-caption); font: 600 9px/1 var(--font); position: relative; z-index: 1; }
+  .node.done { background: color-mix(in srgb, var(--success) 16%, var(--bg-base)); border-color: color-mix(in srgb, var(--success) 50%, transparent); color: var(--success); }
+  .node.cur { background: var(--business-fill); border-color: var(--business-fill); color: #fff; box-shadow: 0 0 0 3px color-mix(in srgb, var(--business) 18%, transparent); }
+  .stage .st { font: 12px/1 var(--font); color: var(--label-secondary); }
+  .stage .ev { font: 10px/1 var(--font); color: var(--label-caption); }
+  .stage.cur .st { color: var(--label-primary); font-weight: 600; }
+  .stage.cur .ev { color: var(--business); }
+
+  /* 表格行 */
+  .row { display: flex; align-items: center; gap: 10px; min-height: 36px; padding: 6px 13px; border-top: 1px solid var(--border-l1); font: 12px/1.2 var(--font); }
+  .row:first-of-type { border-top: 0; }
+  .row:hover { background: var(--hover); }
+  .row .name { width: 112px; color: var(--label-primary); }
+  .row .meta { color: var(--label-tertiary); font-size: 11px; }
+  .row .right { margin-left: auto; display: flex; align-items: center; gap: 8px; color: var(--label-caption); font-size: 11px; }
+  .row .chev { color: var(--label-caption); }
+
+  /* 交接/记忆列表 */
+  .kv { display: flex; align-items: center; gap: 8px; padding: 7px 0; border-top: 1px solid var(--border-l1); font: 12px/1.3 var(--font); }
+  .kv:first-child { border-top: 0; }
+  .kv .k { width: 132px; color: var(--label-tertiary); flex: none; }
+  .kv .v { color: var(--label-primary); }
+  .kv .right { margin-left: auto; }
+
+  /* 运行中心 */
+  .run { display: flex; align-items: center; gap: 10px; padding: 9px 13px; border-top: 1px solid var(--border-l1); font: 12px/1.2 var(--font); }
+  .run:first-of-type { border-top: 0; }
+  .run .rname { width: 120px; }
+  .run .rcmd { color: var(--label-tertiary); font-size: 11px; }
+  .run .rright { margin-left: auto; display: flex; align-items: center; gap: 8px; color: var(--label-caption); font-size: 11px; }
+  .progress { width: 90px; height: 4px; background: var(--border-l2); border-radius: 2px; overflow: hidden; }
+  .progress i { display: block; height: 100%; width: 62%; background: var(--business); }
+  .term { margin: 0 13px 13px; padding: 10px; background: var(--bg-base); border: 1px solid var(--border-l1); border-radius: var(--r-sm);
+          font: 11px/1.55 var(--font); color: var(--label-secondary); white-space: pre-wrap; }
+  .term .ok { color: var(--success); } .term .bad { color: var(--error); } .term .dim { color: var(--label-caption); }
+
+  .p3 { font: 9px/1 var(--font); color: var(--label-tertiary); border: 1px solid var(--border-l3); border-radius: 3px; padding: 1px 3px; margin-left: 4px; }
+  .btn.primary .p3 { color: rgba(255,255,255,.85); border-color: rgba(255,255,255,.45); }
+  body[data-state="empty"] .seg, body[data-state="error"] .seg { opacity: .5; pointer-events: none; }
+  .modal-mask { position: absolute; inset: 0; background: rgba(0,0,0,.45); display: none; align-items: center; justify-content: center; z-index: 20; }
+  body[data-modal="run"] .modal-mask { display: flex; }
+  .modal { width: 430px; background: var(--bg-layer2); border: 1px solid var(--border-l3); border-radius: var(--r-lg); box-shadow: var(--shadow-lv2); padding: 18px; }
+  .modal h3 { margin: 0; font: 600 15px/1.3 var(--font); }
+  .modal .mrow { display: flex; gap: 10px; padding: 7px 0; border-top: 1px solid var(--border-l1); font: 12px/1.4 var(--font); }
+  .modal .mk { width: 84px; color: var(--label-tertiary); flex: none; }
+  .modal .mv { color: var(--label-primary); }
+  .modal .foot { display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; }
+  .frame { position: relative; }
+  .filter { display: flex; gap: 2px; padding: 2px; border: 1px solid var(--border-l2); border-radius: 6px; }
+  .filter button { border: 0; background: transparent; color: var(--label-tertiary); font: 11px/1 var(--font); padding: 5px 8px; border-radius: 4px; cursor: pointer; }
+  .filter button.on { background: var(--selected); color: var(--label-primary); }
+  .stage-tag { font: 9px/1 var(--font); color: var(--business); border: 1px solid color-mix(in srgb, var(--business) 40%, transparent); border-radius: 3px; padding: 1px 4px; margin-left: 6px; }
+  .subrow { padding: 6px 13px 9px 34px; border-top: 1px solid var(--border-l1); background: var(--overlay); font: 11px/1.6 var(--font); color: var(--label-tertiary); }
+  .subrow b { color: var(--label-secondary); font-weight: 600; }
+  /* 影子 banner */
+  .banner { display: flex; align-items: center; gap: 10px; margin-top: 14px; padding: 9px 12px;
+            border: 1px dashed color-mix(in srgb, var(--warn) 55%, transparent);
+            background: color-mix(in srgb, var(--warn) 6%, transparent); border-radius: var(--r-sm); font: 12px/1.4 var(--font); }
+  .banner .tag { font: 600 10px/1 var(--font); color: var(--warn); }
+  .banner .right { margin-left: auto; display: flex; gap: 6px; }
+  .banner.err { border-color: color-mix(in srgb, var(--error) 55%, transparent); background: color-mix(in srgb, var(--error) 6%, transparent); }
+  .banner.err .tag { color: var(--error); }
+
+  /* 空态/异常 */
+  .empty { margin-top: 56px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .empty .glyph { width: 54px; height: 54px; border-radius: 16px; border: 1px solid var(--border-l2); display: grid; place-items: center; color: var(--label-tertiary); }
+  .empty h2 { margin: 16px 0 0; font: 600 16px/1.3 var(--font); }
+  .empty p { margin: 8px 0 0; max-width: 520px; font: 13px/1.6 var(--font); color: var(--label-tertiary); }
+  .empty .acts { display: flex; gap: 8px; margin-top: 16px; }
+  .empty .learn { margin-top: 20px; font: 12px/1 var(--font); color: var(--label-caption); }
+
+  /* 视图切换 */
+  .view { display: none; }
+  body[data-view="overview"] .v-overview,
+  body[data-view="project"] .v-project,
+  body[data-view="health"] .v-health,
+  body[data-view="skills"] .v-skills,
+  body[data-view="handoff"] .v-handoff,
+  body[data-view="memory"] .v-memory,
+  body[data-view="runs"] .v-runs { display: block; }
+  body[data-state="empty"] .normal, body[data-state="error"] .normal { display: none; }
+  .empty-wrap, .error-wrap { display: none; }
+  body[data-state="empty"] .empty-wrap, body[data-state="error"] .error-wrap { display: block; }
+
+  /* 截图模式 */
+  body.shot .toolbar { display: none; }
+  body.shot .frame { margin: 0; border: 0; border-radius: 0; }
+  body.shot { background: var(--bg-base); overflow: hidden; }
+  .shadow-only { display: none !important; }
+  body[data-state="shadow"] .shadow-only { display: flex !important; }
+</style>
+</head>
+<body class="dark" data-state="ready" data-view="overview">
+
+<div class="toolbar">
+  <b>能力闭环控制台 · 设计稿</b><span class="tag">v0.2 · 非实现</span>
+  <div class="tb-group" id="stateGroup">
+    <button class="tb-btn on" data-state="ready">已接管</button>
+    <button class="tb-btn" data-state="shadow">影子</button>
+    <button class="tb-btn" data-state="empty">未接管</button>
+    <button class="tb-btn" data-state="error">异常</button>
+  </div>
+  <div class="tb-group" id="viewGroup">
+    <button class="tb-btn on" data-view="overview">总览</button>
+    <button class="tb-btn" data-view="project">项目</button>
+    <button class="tb-btn" data-view="health">体检</button>
+    <button class="tb-btn" data-view="skills">技能</button>
+    <button class="tb-btn" data-view="handoff">交接</button>
+    <button class="tb-btn" data-view="memory">记忆</button>
+    <button class="tb-btn" data-view="runs">运行</button>
+  </div>
+  <div class="tb-group" id="themeGroup">
+    <button class="tb-btn on" data-theme="dark">暗色</button>
+    <button class="tb-btn" data-theme="light">亮色</button>
+  </div>
+  <span class="spacer"></span>
+  <span class="note">token 来自 design-platform.css；示例数据为虚构工程</span>
+</div>
+
+<div class="frame">
+  <aside class="sidebar">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 12c0-4.4 3.6-8 8-8 3.2 0 6 1.9 7.3 4.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        <path d="M20 12c0 4.4-3.6 8-8 8-3.2 0-6-1.9-7.3-4.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        <circle cx="12" cy="12" r="2.1" fill="currentColor"/>
+      </svg>
+      <span class="word">deepseek</span><span class="badge">HARNESS</span>
+    </div>
+    <div class="newchat">＋ 新会话 <span class="k">Ctrl N</span></div>
+    <nav class="nav">
+      <div class="navrow"><svg class="ico" viewBox="0 0 16 16" fill="none"><path d="M8 2.2 9.3 6.7 13.8 8 9.3 9.3 8 13.8 6.7 9.3 2.2 8 6.7 6.7Z" stroke="currentColor" stroke-width="1.2"/></svg>插件</div>
+      <div class="navrow"><svg class="ico" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.6" stroke="currentColor" stroke-width="1.2"/><path d="M8 5v3.2l2 1.2" stroke="currentColor" stroke-width="1.2"/></svg>自动化任务</div>
+      <div class="navrow"><svg class="ico" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="10" rx="1.6" stroke="currentColor" stroke-width="1.2"/><path d="M2 6.2h12M5.4 3v10" stroke="currentColor" stroke-width="1.2"/></svg>上下文洞察</div>
+      <div class="navrow active"><svg class="ico" viewBox="0 0 16 16" fill="none"><path d="M12.8 8A4.8 4.8 0 1 1 8 3.2c1.6 0 3 .8 3.9 2" stroke="currentColor" stroke-width="1.3"/><path d="M12.8 3.4v2.4h-2.4" stroke="currentColor" stroke-width="1.3"/></svg>能力闭环</div>
+      <div class="navrow"><svg class="ico" viewBox="0 0 16 16" fill="none"><circle cx="3.6" cy="8" r="1" fill="currentColor"/><circle cx="8" cy="8" r="1" fill="currentColor"/><circle cx="12.4" cy="8" r="1" fill="currentColor"/></svg>更多</div>
+    </nav>
+    <div class="sect"><span>工作区</span><span>⌕ ⚙ ＋</span></div>
+    <div class="ws"><span class="caret">▾</span> 气量平衡月表</div>
+    <div class="sess active"><span class="dot"></span> 补 design-context 截图 <span class="time">4 分钟</span></div>
+    <div class="sess"><span class="dot" style="background:var(--label-caption)"></span> 月表口径对齐 <span class="time">昨天</span></div>
+    <div class="sess"><span class="dot" style="background:var(--label-caption)"></span> 交接包复查 <span class="time">1 天</span></div>
+    <div class="ws" style="margin-top:6px"><span class="caret">▸</span> 默认工作区</div>
+    <div class="side-foot"><span class="avatar">L</span> 林</div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <span class="crumb">工作区</span><span class="sep">/</span><span class="title">气量平衡月表</span>
+      <span class="status" id="guardStatus"><span class="pulse" id="guardPulse"></span> <span id="guardText">guard 运行中</span></span>
+    </div>
+
+    <div class="page">
+      <div class="inner">
+        <div class="head">
+          <div class="titles">
+            <h1 class="h1">能力闭环</h1>
+            <p class="sub">
+              <span class="v">dsh-capability-loop v2.9.6</span><span class="dotsep">·</span>
+              <span>气量平衡月表</span><span class="dotsep">·</span>
+              <span>2 分钟前更新</span><span class="dotsep">·</span>
+              <span>状态只读 · 动作需确认</span>
+            </p>
+          </div>
+          <div class="head-actions">
+            <div class="seg" role="group" aria-label="接管档位">
+              <button class="on" aria-pressed="true">接管</button>
+              <button aria-pressed="false">影子</button>
+              <button aria-pressed="false">关闭</button>
+            </div>
+            <button class="icon-btn" aria-label="更多">⋯</button>
+          </div>
+        </div>
+
+        <div class="normal">
+          <div class="tabs" role="tablist">
+            <button class="tab on" data-view="overview" role="tab">总览</button>
+            <button class="tab" data-view="project" role="tab">项目闭环</button>
+            <button class="tab" data-view="health" role="tab">能力体检</button>
+            <button class="tab" data-view="skills" role="tab">技能治理</button>
+            <button class="tab" data-view="handoff" role="tab">交接交付 <span class="cnt">2</span></button>
+            <button class="tab" data-view="memory" role="tab">记忆迭代</button>
+            <button class="tab" data-view="runs" role="tab">运行记录 <span class="cnt">1</span></button>
+          </div>
+
+          <div class="banner shadow-only">
+            <span class="tag">影子模式</span>
+            <span>只记录、不阻断：门禁 FAIL 不会拦住对话。已观察 <b>2 / 3</b> 个会话，再观察 1 次可升级为接管。</span>
+            <span class="right"><button class="btn sm">升级为接管</button><button class="btn sm ghost">继续观察</button></span>
+          </div>
+
+          <!-- ================= 总览 ================= -->
+          <div class="view v-overview" style="margin-top:14px">
+            <div class="grid4">
+              <div class="kpi"><span class="k">接管</span><span class="v" id="modeValue">开启 <small>on</small></span><span class="m" id="modeMeta">注入 1,412 字符 · 首步一次</span></div>
+              <div class="kpi"><span class="k">当前阶段</span><span class="v">WIRE <small>4 / 7</small></span><span class="m">设计门未过</span></div>
+              <div class="kpi"><span class="k">门禁</span><span class="v">3 <small>/ 6 通过</small></span><span class="m">1 WARN · 1 FAIL · 1 未运行 · 近 7 天 67%</span></div>
+              <div class="kpi"><span class="k" id="blockK">阻断</span><span class="v" id="blockV">2 <small>项</small></span><span class="m" id="blockM">D-01 缺截图 · D-02 材料</span></div>
+            </div>
+
+            <div class="subhead"><span class="t">六项能力</span><span class="n">每项是一个工作台；32 项明细见「查看全部」</span></div>
+            <div class="grid3" style="grid-template-rows: repeat(2, 82px)">
+              <div class="cap"><div class="ct"><span class="dot d-warn"></span>项目闭环</div><div class="cd">接入 / 七阶段 / 门禁 / 评审门</div><div class="cm">WIRE 4/7 · 出口 1/3 · 5/6 门禁</div></div>
+              <div class="cap"><div class="ct"><span class="dot d-warn"></span>能力体检</div><div class="cd">九组 A–I · 漂移 · 可修复项</div><div class="cm">8 分钟前 · 漂移 +2 · 2 可修</div></div>
+              <div class="cap"><div class="ct"><span class="dot d-warn"></span>技能治理</div><div class="cd">catalog / 死重量 / 版本 / 上架</div><div class="cm">21 活 · 2 死重 · 落后 1 PATCH</div></div>
+              <div class="cap"><div class="ct"><span class="dot d-warn"></span>交接交付</div><div class="cd">Trae / 四件套 / 预检 / A–F</div><div class="cm">WARN · MATCH · 1 项材料不可达</div></div>
+              <div class="cap"><div class="ct"><span class="dot d-pass"></span>记忆迭代</div><div class="cd">偏好 / rules / retro / 版本</div><div class="cm">3 偏好 · 2 规则 · 返工 2</div></div>
+              <div class="cap"><div class="ct"><span class="dot d-done"></span>运行记录</div><div class="cd">运行中 / 历史 / 白名单 / 取消</div><div class="cm">1 运行中 · 4 历史 · 7 动作</div></div>
+            </div>
+            <div style="display:flex; justify-content:flex-end; margin-top:8px">
+              <button class="btn sm">查看全部 32 项能力</button>
+            </div>
+
+            <div class="grid3" style="margin-top:20px; grid-template-columns: 1fr 1fr 1.1fr">
+              <div class="card">
+                <div class="hd">下一步 <span class="hint">按 state.next</span></div>
+                <div style="padding: 4px 13px 12px">
+                  <div class="kv"><span class="k" id="nextBlockerK">当前阻断</span><span class="v">D-01 缺 1440 截图</span></div>
+                  <div class="kv"><span class="k">建议动作</span><span class="v">补 design-context 后重跑设计门</span></div>
+                  <div style="display:flex; gap:6px; margin-top:10px"><button class="btn primary sm">运行设计门</button><button class="btn sm">复制命令</button></div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="hd">最近活动 <span class="hint">5 条</span></div>
+                <div class="row"><span class="name">设计门</span><span class="meta">exit 1 · 缺截图</span><span class="right">14:02</span></div>
+                <div class="row"><span class="name">能力体检</span><span class="meta">漂移 +2</span><span class="right">13:54</span></div>
+                <div class="row"><span class="name">交接体检</span><span class="meta">exit 3 · WARN</span><span class="right">13:40</span></div>
+                <div class="row"><span class="name">上架打包</span><span class="meta">v2.9.6 · SHA256 40/40</span><span class="right">昨天</span></div>
+                <div class="row"><span class="name">INTAKE</span><span class="meta">profile 6/6</span><span class="right">11-17</span></div>
+              </div>
+              <div class="card">
+                <div class="hd">状态源 <span class="hint">唯一写入方：脚本</span></div>
+                <div style="padding: 2px 13px 12px">
+                  <div class="kv"><span class="k">state</span><span class="v mono">.dsh/loop/state.json</span></div>
+                  <div class="kv"><span class="k">schema / 版本</span><span class="v">1 · 2.9.6</span></div>
+                  <div class="kv"><span class="k">读通道</span><span class="v">workspaceFiles · 当前会话</span></div>
+                  <div class="kv"><span class="k">最近写入</span><span class="v">14:12 · loop-gate</span></div>
+                  <div class="kv"><span class="k">知识库</span><span class="v">references 15 篇 · ERR 失败手册</span><span class="right"><button class="btn sm">打开</button></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= 项目闭环 ================= -->
+          <div class="view v-project" style="margin-top:14px">
+            <div class="card" style="padding:12px 13px">
+              <div style="display:flex; align-items:center; gap:8px; font:600 13px/1 var(--font)">
+                阶段 <span class="hint" style="color:var(--label-caption);font-weight:400">7 段闭环 · 点段查看出口证据</span>
+                
+              </div>
+              <div class="track" role="list">
+                <div class="stage"><div class="node done">✓</div><div class="st">INTAKE</div><div class="ev">3 项</div></div>
+                <div class="stage"><div class="node done">✓</div><div class="st">AUDIT</div><div class="ev">9 组</div></div>
+                <div class="stage"><div class="node done">✓</div><div class="st">FIX</div><div class="ev">1 项</div></div>
+                <div class="stage cur"><div class="node cur">4</div><div class="st">WIRE</div><div class="ev">1 / 3</div></div>
+                <div class="stage"><div class="node">5</div><div class="st">HANDOFF</div><div class="ev">—</div></div>
+                <div class="stage"><div class="node">6</div><div class="st">GRILL</div><div class="ev">—</div></div>
+                <div class="stage"><div class="node">7</div><div class="st">GATE</div><div class="ev">—</div></div>
+              </div>
+            </div>
+
+            <div class="grid3" style="margin-top:12px; grid-template-columns: 1fr 320px">
+              <div class="card">
+                <div class="hd">门禁与证据
+                  <span class="filter" style="margin-left:8px"><button class="on">本阶段</button><button>全部</button></span>
+                  <span class="hint" style="margin-left:auto"><button class="btn primary sm">运行门禁 ▾</button> <button class="btn sm">复制命令</button></span>
+                </div>
+                <div class="row"><span class="name">设计门 <span class="stage-tag">本阶段</span></span><span class="badge b-fail"><span class="bd"></span>FAIL</span><span class="meta">exit 1 · 缺截图</span><span class="right">14:02 <span class="chev">▾</span></span></div>
+                <div class="subrow"><b>证据</b>：design-context 已取证 · product-context 扫描 12 项；<b>缺</b>：1440 截图（D-01）；<b>命令</b>：<span class="mono">loop-gate -Kind design</span>；<b>将写</b>：.dsh/loop/state.json</div>
+                <div class="row"><span class="name">需求门</span><span class="badge b-pass"><span class="bd"></span>PASS</span><span class="meta">exit 0 · SRS ≥80</span><span class="right">昨天 16:40 <span class="chev">›</span></span></div>
+                <div class="row"><span class="name">测试门</span><span class="badge b-pass"><span class="bd"></span>PASS</span><span class="meta">exit 0 · 12 条 A/B/C</span><span class="right">13:10 <span class="chev">›</span></span></div>
+                <div class="row"><span class="name">交接体检</span><span class="badge b-warn"><span class="bd"></span>WARN</span><span class="meta">exit 3 · B 组材料</span><span class="right">13:40 <span class="chev">›</span></span></div>
+                <div class="row"><span class="name">grill <span class="stage-tag">本阶段</span></span><span class="badge b-miss"><span class="bd"></span>未运行</span><span class="meta">-RequireGrill 会 FAIL</span><span class="right">— <span class="chev">›</span></span></div>
+                <div class="row"><span class="name">环境验收</span><span class="badge b-pass"><span class="bd"></span>PASS</span><span class="meta">exit 0 · -Environment</span><span class="right">前天 09:00 <span class="chev">›</span></span></div>
+                <div class="row"><span class="name">评审门 G1/G2/G3</span><span class="badge b-pass"><span class="bd"></span>G1 PASS</span><span class="meta">4 角色 · G2/G3 未做</span><span class="right">评审记录 <span class="chev">›</span></span></div>
+              </div>
+              <div>
+                <div class="card">
+                  <div class="hd">阻断与待办 <span class="hint">2 项</span></div>
+                  <div class="row"><span class="badge b-fail"><span class="bd"></span>D-01</span><span class="name">缺 1440 截图</span><span class="meta">lead · 11-19</span></div>
+                  <div class="row"><span class="badge b-fail"><span class="bd"></span>D-02</span><span class="name">材料在工程外</span><span class="meta">dev · 11-20</span></div>
+                  <div style="padding:8px 13px 12px"><button class="btn sm">复制修复命令</button></div>
+                </div>
+                <div class="card" style="margin-top:12px">
+                  <div class="hd">本阶段出口 <span class="hint">证据清单，不重复门禁</span></div>
+                  <div class="row"><span class="dot d-pass"></span><span class="name">design-context</span><span class="meta">docs/design/design-context.md</span></div>
+                  <div class="row"><span class="dot d-pass"></span><span class="name">product-context</span><span class="meta">扫描 12 项</span></div>
+                  <div class="row"><span class="dot d-idle"></span><span class="name">grill-design</span><span class="meta">未产出</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= 能力体检 ================= -->
+          <div class="view v-health" style="margin-top:14px">
+            <div class="grid4" style="grid-template-columns: repeat(5, 1fr); gap: 6px">
+              <div class="cap" style="min-height:56px;padding:8px;text-align:center"><div class="ct" style="justify-content:center"><span class="dot d-pass"></span>A 运行时</div><div class="cm" style="justify-content:center">PASS</div></div>
+              <div class="cap" style="min-height:56px;padding:8px;text-align:center"><div class="ct" style="justify-content:center"><span class="dot d-warn"></span>B Skills</div><div class="cm" style="justify-content:center">2 WARN</div></div>
+              <div class="cap" style="min-height:56px;padding:8px;text-align:center"><div class="ct" style="justify-content:center"><span class="dot d-pass"></span>C 角色</div><div class="cm" style="justify-content:center">4 个</div></div>
+              <div class="cap" style="min-height:56px;padding:8px;text-align:center"><div class="ct" style="justify-content:center"><span class="dot d-pass"></span>D profile</div><div class="cm" style="justify-content:center">PASS</div></div>
+              <div class="cap" style="min-height:56px;padding:8px;text-align:center"><div class="ct" style="justify-content:center"><span class="dot d-pass"></span>E 记忆</div><div class="cm" style="justify-content:center">420 MB</div></div>
+              <div class="cap" style="min-height:56px;padding:8px;text-align:center"><div class="ct" style="justify-content:center"><span class="dot d-pass"></span>F 桌面壳</div><div class="cm" style="justify-content:center">补丁在</div></div>
+              <div class="cap" style="min-height:56px;padding:8px;text-align:center"><div class="ct" style="justify-content:center"><span class="dot d-warn"></span>G 资产</div><div class="cm" style="justify-content:center">1 缺</div></div>
+              <div class="cap" style="min-height:56px;padding:8px;text-align:center"><div class="ct" style="justify-content:center"><span class="dot d-warn"></span>H 自身</div><div class="cm" style="justify-content:center">源≠装</div></div>
+              <div class="cap" style="min-height:56px;padding:8px;text-align:center"><div class="ct" style="justify-content:center"><span class="dot d-warn"></span>I 漂移</div><div class="cm" style="justify-content:center">+2</div></div>
+            </div>
+
+            <div class="grid3" style="margin-top:12px; grid-template-columns: 1.35fr 1fr">
+              <div class="card">
+                <div class="hd">九组指标 <span class="hint">含开工基线 8 项 · 最近 8 分钟前 · exit 0</span></div>
+                <div class="row"><span class="name">A 运行时</span><span class="badge b-pass"><span class="bd"></span>PASS</span><span class="meta">pwsh 5.1 · node 22.13 · python 3.11</span></div>
+                <div class="row"><span class="name">B Skills</span><span class="badge b-warn"><span class="bd"></span>WARN</span><span class="meta">21 活 / 3 停 · catalog 3,673 字 · 2 项 &gt;200</span></div>
+                <div class="row"><span class="name">C 角色</span><span class="badge b-pass"><span class="bd"></span>PASS</span><span class="meta">4 个 · lead/designer/qa/reviewer</span></div>
+                <div class="row"><span class="name">D profile</span><span class="badge b-pass"><span class="bd"></span>PASS</span><span class="meta">openAt first-search · WAL · 300s</span></div>
+                <div class="row"><span class="name">E 记忆</span><span class="badge b-pass"><span class="bd"></span>PASS</span><span class="meta">index 420 MB · sessions 96 个</span></div>
+                <div class="row"><span class="name">F 桌面壳</span><span class="badge b-pass"><span class="bd"></span>PASS</span><span class="meta">健康锚点 4/4 · 近 3 次无 3/3 判死</span></div>
+                <div class="row"><span class="name">G 资产</span><span class="badge b-warn"><span class="bd"></span>WARN</span><span class="meta">缺 upgrade/team/gate-check.ps1</span></div>
+                <div class="row"><span class="name">H 自身</span><span class="badge b-warn"><span class="bd"></span>WARN</span><span class="meta">源 2.9.6 / 装 2.9.5（去商店更新）</span></div>
+                <div class="row"><span class="name">I 漂移</span><span class="badge b-warn"><span class="bd"></span>WARN</span><span class="meta">skills +2 · catalog +120 字</span></div>
+              </div>
+              <div class="card">
+                <div class="hd">漂移对比 <span class="hint">上次 20:58</span></div>
+                <div class="row"><span class="name">skills 数</span><span class="meta">24 → 26</span><span class="right" style="color:var(--warn)">+2</span></div>
+                <div class="row"><span class="name">catalog 字符</span><span class="meta">3,553 → 3,673</span><span class="right" style="color:var(--warn)">+120</span></div>
+                <div class="row"><span class="name">索引大小</span><span class="meta">426 MB → 420 MB</span><span class="right">−6</span></div>
+                <div class="row"><span class="name">桌面壳补丁</span><span class="meta">4/4 锚点</span><span class="right" style="color:var(--success)">未变</span></div>
+                <div style="padding:8px 13px 12px;display:flex;gap:6px"><button class="btn primary sm">运行体检</button><button class="btn sm">收紧模式 -Strict</button></div>
+              </div>
+            </div>
+
+            <div class="card" style="margin-top:12px">
+              <div class="hd">可修复项 <span class="hint">来自 20-runtime-fix 的判定；执行前会显示将写哪些文件</span></div>
+              <div class="row"><span class="badge b-warn"><span class="bd"></span>R-01</span><span class="name">死重量 skill</span><span class="meta">2 个无触发/无正文 → 建议停用或移入 skills-disabled</span><span class="right"><button class="btn sm">查看</button></span></div>
+              <div class="row"><span class="badge b-warn"><span class="bd"></span>R-02</span><span class="name">Gateway 前缀</span><span class="meta">交接包 3 处 URL 缺 /png 前缀 → 改交接包，不改工程</span><span class="right"><button class="btn sm">查看</button></span></div>
+            </div>
+          </div>
+
+          <!-- ================= 技能治理 ================= -->
+          <div class="view v-skills" style="margin-top:14px">
+            <div class="grid3" style="grid-template-columns: 1.2fr 1fr 1fr">
+              <div class="card">
+                <div class="hd">本 skill <span class="hint">版本/来源/更新</span></div>
+                <div style="padding:2px 13px 12px">
+                  <div class="kv"><span class="k">版本</span><span class="v">2.9.6（源）· 2.9.5（装）</span></div>
+                  <div class="kv"><span class="k">商店最新</span><span class="v">2.9.6 · origin manual</span></div>
+                  <div class="kv"><span class="k">更新</span><span class="v" style="color:var(--warn)">落后 1 个 PATCH；按商店更新</span></div>
+                  <div class="kv"><span class="k">上架包</span><span class="v">2026-11-15 · SHA256 40/40</span></div>
+                  <div style="display:flex;gap:6px;margin-top:10px"><button class="btn primary sm">运行打包</button><button class="btn sm">查看 CHANGELOG</button><button class="btn sm">去商店</button></div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="hd">catalog 成本 <span class="hint">目标 &lt; 5,000 字</span></div>
+                <div style="padding:10px 13px 12px;display:flex;flex-direction:column;gap:9px">
+                  <div style="display:flex;justify-content:space-between;font:12px/1 var(--font)"><span class="muted">活动 / 停用</span><span>21 / 3</span></div>
+                  <div style="display:flex;justify-content:space-between;font:12px/1 var(--font)"><span class="muted">描述总字符</span><span>3,673</span></div>
+                  <div style="display:flex;justify-content:space-between;font:12px/1 var(--font)"><span class="muted">&gt;200 字符</span><span style="color:var(--warn)">2 项</span></div>
+                  <div style="display:flex;justify-content:space-between;font:12px/1 var(--font)"><span class="muted">无显式触发词</span><span style="color:var(--warn)">2 项</span></div>
+                  <div class="progress" style="width:100%;height:6px;background:var(--border-l3)"><i style="width:73%"></i></div>
+                  <div style="font:11px/1 var(--font);color:var(--label-caption)">73% · 预算 5,000 字</div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="hd">插件与市场 <span class="hint">226 插件行</span></div>
+                <div style="padding:10px 13px 12px;display:flex;flex-direction:column;gap:9px">
+                  <div style="display:flex;justify-content:space-between;font:12px/1 var(--font)"><span class="muted">profile 插件行</span><span>96</span></div>
+                  <div style="display:flex;justify-content:space-between;font:12px/1 var(--font)"><span class="muted">官方可选包</span><span>28</span></div>
+                  <div style="display:flex;justify-content:space-between;font:12px/1 var(--font)"><span class="muted">重复市场</span><span style="color:var(--success)">0</span></div>
+                  <div style="display:flex;justify-content:space-between;font:12px/1 var(--font)"><span class="muted">失效/崩溃行</span><span style="color:var(--success)">0</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid3" style="margin-top:12px; grid-template-columns: 1fr 1fr">
+              <div class="card">
+                <div class="hd">死重量与触发冲突 <span class="hint">2 + 2</span></div>
+                <div class="row"><span class="badge b-warn"><span class="bd"></span>死重量</span><span class="name">design-taste-frontend</span><span class="meta">无触发限定 · 建议停用</span><span class="right"><button class="btn sm">复制命令 <span class="p3">仅复制</span></button></span></div>
+                <div class="row"><span class="badge b-warn"><span class="bd"></span>死重量</span><span class="name">teamharness-* (8)</span><span class="meta">无工具可用 · 建议移出 catalog</span><span class="right"><button class="btn sm">查看</button></span></div>
+                <div class="row"><span class="badge b-warn"><span class="bd"></span>触发冲突</span><span class="name">ui-design-production</span><span class="meta">与 skill 自带设计门重复触发</span><span class="right"><button class="btn sm">看规则</button></span></div>
+                <div class="row"><span class="badge b-warn"><span class="bd"></span>超长描述</span><span class="name">2 项 &gt;200 字</span><span class="meta">逐条列出并给压缩建议</span><span class="right"><button class="btn sm">查看</button></span></div>
+              </div>
+              <div class="card">
+                <div class="hd">Token 与上下文 <span class="hint">近 7 天</span></div>
+                <div class="row"><span class="name">catalog 注入</span><span class="meta">约 3.7k 字 / 每请求</span><span class="right">↓ 18%</span></div>
+                <div class="row"><span class="name">本 skill 注入</span><span class="meta">首步 1,412 字符</span><span class="right">一次</span></div>
+                <div class="row"><span class="name">压缩次数</span><span class="meta">9 次 / 417 请求</span><span class="right">2.1%</span></div>
+                <div class="row"><span class="name">死重量占比</span><span class="meta">2 / 21 条</span><span class="right" style="color:var(--warn)">9.5%</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= 交接交付 ================= -->
+          <div class="view v-handoff" style="margin-top:14px">
+            <div class="grid3" style="grid-template-columns: 1fr 1fr 1.1fr">
+              <div class="card">
+                <div class="hd">Trae <span class="hint">trae-status.ps1</span></div>
+                <div style="padding:2px 13px 12px">
+                  <div class="kv"><span class="k">安装/进程</span><span class="v">已装 · 1 个运行中</span></div>
+                  <div class="kv"><span class="k">当前工程</span><span class="v mono">E:\work\gas-balance</span></div>
+                  <div class="kv"><span class="k">工程匹配</span><span class="v" style="color:var(--success)">MATCH（可交接）</span></div>
+                  <div style="display:flex;gap:6px;margin-top:10px"><button class="btn sm">复制命令 <span class="p3">仅复制</span></button><button class="btn sm">重新检测 <span class="p3">仅复制</span></button></div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="hd">交接包 <span class="hint">docs/handoff/gas-ui</span></div>
+                <div style="padding:2px 13px 12px">
+                  <div class="kv"><span class="k">四件套</span><span class="v">4/4 · 齐</span></div>
+                  <div class="kv"><span class="k">批次</span><span class="v">2 批 · 6 任务 · 本批 ≤3</span></div>
+                  <div class="kv"><span class="k">PROMPT</span><span class="v">指明第 2 批</span></div>
+                  <div class="kv"><span class="k">体检</span><span class="v" style="color:var(--warn)">exit 3 · B 组 1 项 WARN</span></div>
+                  <div style="display:flex;gap:6px;margin-top:10px"><button class="btn primary sm">交接体检</button><button class="btn sm">复制生成命令 <span class="p3">仅复制</span></button></div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="hd">前置校验 <span class="hint">交接前必跑</span></div>
+                <div style="padding:2px 13px 12px">
+                  <div class="kv"><span class="k">模块预检</span><span class="v" style="color:var(--warn)">EXISTS：resource-demand</span></div>
+                  <div class="kv"><span class="k">网关前缀</span><span class="v" style="color:var(--success)">/png 一致 · 12 处</span></div>
+                  <div class="kv"><span class="k">视觉 QA</span><span class="v" style="color:var(--warn)">A 路径可用 · 截图未复跑</span></div>
+                  <div style="display:flex;gap:6px;margin-top:10px"><button class="btn sm">模块预检</button><button class="btn sm">视觉探测</button></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" style="margin-top:12px">
+              <div class="hd">交接包体检 A–F <span class="hint">handoff-audit.py · exit 3</span></div>
+              <div class="row"><span class="name">A 包完整性</span><span class="badge b-pass"><span class="bd"></span>PASS</span><span class="meta">四件套 + materials 均存在</span></div>
+              <div class="row"><span class="name">B 材料可达</span><span class="badge b-warn"><span class="bd"></span>WARN</span><span class="meta">1 份设计稿在工程外 → 需拷到 materials/</span></div>
+              <div class="row"><span class="name">C 证据对账</span><span class="badge b-pass"><span class="bd"></span>PASS</span><span class="meta">acceptance/record 引用均存在</span></div>
+              <div class="row"><span class="name">D 批次</span><span class="badge b-pass"><span class="bd"></span>PASS</span><span class="meta">tasks 有批次段 · PROMPT 指明本批</span></div>
+              <div class="row"><span class="name">E 设计依据</span><span class="badge b-pass"><span class="bd"></span>PASS</span><span class="meta">design-context + 差异清单</span></div>
+              <div class="row"><span class="name">F 网关前缀</span><span class="badge b-pass"><span class="bd"></span>PASS</span><span class="meta">无反向指令 · /png 前缀齐</span></div>
+            </div>
+
+            <div class="card" style="margin-top:12px">
+              <div class="hd">交接冒烟与回滚 <span class="hint">不碰真实工程</span></div>
+              <div class="row"><span class="name">handoff-smoke</span><span class="meta">临时工程：建包/门禁/取证/唤起解析/工程匹配</span><span class="right"><button class="btn sm">复制命令 <span class="p3">仅复制</span></button></span></div>
+              <div class="row"><span class="name">回滚</span><span class="meta">rollback.ps1 备份路径与最近一次执行</span><span class="right"><button class="btn sm">查看备份</button></span></div>
+              <div class="row"><span class="name">迁移基线包</span><span class="meta">同事基线（文档 01–07 + upgrade/ + standards/ + rollback）· 未生成</span><span class="right"><button class="btn sm">查看说明</button></span></div>
+            </div>
+          </div>
+
+          <!-- ================= 记忆迭代 ================= -->
+          <div class="view v-memory" style="margin-top:14px">
+            <div class="grid3" style="grid-template-columns: 1.2fr 1fr">
+              <div class="card">
+                <div class="hd">用户偏好 <span class="hint">memory/user-profile.md · 3 条</span></div>
+                <div class="row"><span class="name">交付形态</span><span class="meta">先结论后证据，再给可执行命令</span><span class="right">11-12</span></div>
+                <div class="row"><span class="name">表格</span><span class="meta">数据密集宽表保留列结构，不随意重排</span><span class="right">11-10</span></div>
+                <div class="row"><span class="name">视觉</span><span class="meta">不用 emoji · 不用紫渐变 · 不纯黑</span><span class="right">11-08</span></div>
+                <div class="row"><span class="name">偏好过期检查</span><span class="meta">最近更新 6 天前 · 90 天告警</span><span class="right">PASS</span></div>
+              </div>
+              <div class="card">
+                <div class="hd">规则与返工 <span class="hint">rules.md · 2 条</span></div>
+                <div class="row"><span class="name">R-01</span><span class="meta">门禁 FAIL 不得宣称完成</span><span class="right">3 次触发</span></div>
+                <div class="row"><span class="name">R-02</span><span class="meta">交接包一批 ≤3 任务并写 PROMPT</span><span class="right">3 次触发</span></div>
+                <div class="row"><span class="name">返工</span><span class="meta">近 7 天 2 次 · 近 30 天 7 次</span><span class="right">↓ 3</span></div>
+              </div>
+            </div>
+
+            <div class="grid3" style="margin-top:12px; grid-template-columns: 1fr 1fr">
+              <div class="card">
+                <div class="hd">Retro <span class="hint">最近 3 条</span></div>
+                <div class="row"><span class="name">11-18</span><span class="meta">设计稿缺 1440 截图 → 加进设计门出口</span></div>
+                <div class="row"><span class="name">11-16</span><span class="meta">交接包材料跨工程 → 拷进 materials/</span></div>
+                <div class="row"><span class="name">11-14</span><span class="meta">gate-check 缺失 → 记为 SKIP 不伪装 PASS</span></div>
+              </div>
+              <div class="card">
+                <div class="hd">版本与 CHANGELOG <span class="hint">version.json</span></div>
+                <div class="row"><span class="name">2.9.6</span><span class="meta">描述改主次结构 · 11-15</span></div>
+                <div class="row"><span class="name">2.9.5</span><span class="meta">F 组反向指令改位置序 · 11-13</span></div>
+                <div class="row"><span class="name">2.9.4</span><span class="meta">去顿号切分 · 11-13</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= 运行记录 ================= -->
+          <div class="view v-runs" style="margin-top:14px">
+            <div class="card">
+              <div class="hd">运行中 <span class="hint">1 个 · 可取消</span></div>
+              <div class="run"><span class="rname">能力体检</span><span class="rcmd mono">capability-audit.ps1 -Workspace …</span>
+                <span style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="progress"><i></i></span><span class="meta">62% · 12s</span><button class="btn sm">取消</button></span></div>
+              <div class="term"><span class="dim">[A 运行时] PowerShell 5.1 PASS</span>
+<span class="dim">[B Skills] 活动 21 / 停用 3</span>
+<span class="ok">[D profile] openAt=first-search PASS</span>
+<span class="dim">[I 漂移] 对比上次快照…</span></div>
+            </div>
+
+            <div class="card" style="margin-top:12px">
+              <div class="hd">历史 <span class="hint">4 条 · 点开看输出尾部</span></div>
+              <div class="run"><span class="badge b-fail"><span class="bd"></span>FAIL</span><span class="rname">设计门</span><span class="rcmd mono">loop-gate -Kind design</span><span class="rright">exit 1 · 14:02 · 3s</span></div>
+              <div class="run"><span class="badge b-pass"><span class="bd"></span>PASS</span><span class="rname">能力体检</span><span class="rcmd mono">capability-audit.ps1</span><span class="rright">exit 0 · 13:54 · 8s</span></div>
+              <div class="run"><span class="badge b-warn"><span class="bd"></span>WARN</span><span class="rname">交接体检</span><span class="rcmd mono">handoff-audit.py --slug gas-ui</span><span class="rright">exit 3 · 13:40 · 2s</span></div>
+              <div class="run"><span class="badge b-pass"><span class="bd"></span>PASS</span><span class="rname">上架打包</span><span class="rcmd mono">package-skill.ps1</span><span class="rright">exit 0 · 昨天 · 6s</span></div>
+            </div>
+
+            <div class="grid3" style="margin-top:12px; grid-template-columns: 1.3fr 1fr">
+              <div class="card">
+                <div class="hd">可执行动作白名单 <span class="hint">7 个脚本 + 档位切换；其余只复制命令</span><button class="btn sm" id="openModal" style="margin-left:8px">确认弹窗</button></div>
+                <div class="row"><span class="name">体检</span><span class="meta">capability-audit · 可加 -Strict</span></div>
+                <div class="row"><span class="name">门禁</span><span class="meta">loop-gate · 需选 TaskDir/Kind</span></div>
+                <div class="row"><span class="name">交接体检</span><span class="meta">handoff-audit.py</span></div>
+                <div class="row"><span class="name">模块预检</span><span class="meta">module-preflight.py</span></div>
+                <div class="row"><span class="name">打包</span><span class="meta">package-skill.ps1</span></div>
+                <div class="row"><span class="name">视觉探测</span><span class="meta">visual-qa-check.ps1</span></div>
+              </div>
+              <div class="card">
+                <div class="hd">动作分级 <span class="hint">为什么有的只能复制</span></div>
+                <div class="row"><span class="badge b-pass"><span class="bd"></span>L1</span><span class="name">可运行</span><span class="meta">体检 / 门禁 / 交接体检 / 预检 / 打包 / 视觉探测 / 版本检查</span></div>
+                <div class="row"><span class="badge b-done"><span class="bd"></span>L2</span><span class="name">档位切换</span><span class="meta">接管 / 影子 / 关闭（写 project.json.mode）</span></div>
+                <div class="row"><span class="badge b-miss"><span class="bd"></span>L3</span><span class="name">仅复制命令</span><span class="meta">停用 skill / 发 Trae / 生成交接包 / 迁移包 / 商店更新</span></div>
+                <div style="padding:8px 13px 12px;font:11px/1.5 var(--font);color:var(--label-caption)">L3 不代执行，避免面板变成任意 shell；开放需过同一确认/超时/取消。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 空态 -->
+        <div class="empty-wrap">
+          <div class="empty">
+            <div class="glyph"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M19.2 12A7.2 7.2 0 1 1 12 4.8c2.4 0 4.5 1.2 5.85 3" stroke="currentColor" stroke-width="1.5"/><path d="M19.2 5.1v3.6h-3.6" stroke="currentColor" stroke-width="1.5"/></svg></div>
+            <h2>这个工程还没有接入能力闭环</h2>
+            <p>接入后，本面板会覆盖 32 项能力：项目阶段与门禁、DSH 九组体检、技能与插件治理、交接与交付、记忆与迭代、运行记录。</p>
+            <div class="acts"><button class="btn primary">复制接入命令</button><button class="btn">查看接入示例</button></div>
+            <div class="learn">接入 = 生成 <span class="mono">.dsh/loop/project.json</span> + 跑一次 INTAKE；也可贴 AGENTS.md 12 行片段。</div>
+          </div>
+        </div>
+
+        <!-- 异常态 -->
+        <div class="error-wrap">
+          <div class="banner err" style="margin-top:14px">
+            <span class="tag">读取失败</span>
+            <span><b>.dsh/loop/state.json</b> 不是合法 JSON（第 14 行）；已隐藏阶段与门禁，避免显示过期结论。</span>
+            <span class="right"><button class="btn sm">定位文件</button><button class="btn sm">重新体检</button></span>
+          </div>
+          <div class="grid4" style="margin-top:12px">
+            <div class="kpi"><span class="k">当前阶段</span><span class="v">—</span><span class="m">状态不可读</span></div>
+            <div class="kpi"><span class="k">门禁</span><span class="v">—</span><span class="m">最近结论已隐藏</span></div>
+            <div class="kpi"><span class="k">阻断</span><span class="v">—</span><span class="m">待状态恢复</span></div>
+            <div class="kpi"><span class="k">最近体检</span><span class="v">8 <small>分钟前</small></span><span class="m">来自 audit-state.json</span></div>
+          </div>
+          <div class="card" style="margin-top:12px; padding:14px">
+            <div style="font:13px/1.6 var(--font);color:var(--label-secondary)">修复：删除损坏文件后重跑一次门禁（会重建），或从 git 恢复上一版。恢复前注入契约继续用上一份已知状态，并在会话里标「未核实」。</div>
+            <div style="display:flex;gap:8px;margin-top:12px"><button class="btn primary sm">复制修复命令</button><button class="btn sm">打开所在目录</button></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <div class="modal-mask">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mtitle">
+      <h3 id="mtitle">运行设计门？</h3>
+      <div class="mrow"><span class="mk">命令</span><span class="mv mono">loop-gate.ps1 -TaskDir docs/design -Kind design</span></div>
+      <div class="mrow"><span class="mk">工作目录</span><span class="mv mono">E:\work\gas-balance</span></div>
+      <div class="mrow"><span class="mk">将写</span><span class="mv">.dsh/loop/state.json（仅 checks.design）</span></div>
+      <div class="mrow"><span class="mk">不会写</span><span class="mv">工程源码、profile、其它文件</span></div>
+      <div class="mrow"><span class="mk">超时/取消</span><span class="mv">120 秒；可取消并 kill 进程树</span></div>
+      <div class="foot"><button class="btn sm" id="modalCancel">取消</button><button class="btn primary sm" id="modalConfirm">确认运行</button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const body = document.body;
+  const hash = new URLSearchParams(location.hash.replace(/^#/, ''));
+  if (hash.get('state')) body.dataset.state = hash.get('state');
+  if (hash.get('view')) body.dataset.view = hash.get('view');
+  if (hash.get('theme') === 'light') body.classList.replace('dark', 'light');
+  if (hash.get('shot') === '1') body.classList.add('shot');
+  if (hash.get('modal') === 'run') body.dataset.modal = 'run';
+
+  const state0 = body.dataset.state;
+  const subEl = document.querySelector('.sub');
+  if (state0 === 'empty') subEl.innerHTML = '<span>未接管</span><span class="dotsep">·</span><span>接入后显示 32 项能力</span>';
+  if (state0 === 'error') subEl.innerHTML = '<span>气量平衡月表</span><span class="dotsep">·</span><span>状态文件异常 · 只读降级</span>';
+
+  function syncMode() {
+    const seg = document.querySelector('.head .seg');
+    if (!seg) return;
+    const state = body.dataset.state;
+    const target = state === 'shadow' ? '影子' : state === 'empty' ? '关闭' : '接管';
+    [...seg.querySelectorAll('button')].forEach(b => b.classList.toggle('on', b.textContent.trim() === target));
+
+    const mv = document.getElementById('modeValue');
+    const mm = document.getElementById('modeMeta');
+    if (mv && mm) {
+      if (state === 'shadow') { mv.innerHTML = '影子 <small>shadow</small>'; mm.textContent = '已观察 2/3 · 未阻断 1 次'; }
+      else { mv.innerHTML = '开启 <small>on</small>'; mm.textContent = '注入 1,412 字符 · 首步一次'; }
+    }
+
+    const bk = document.getElementById('blockK');
+    const bv = document.getElementById('blockV');
+    const bm = document.getElementById('blockM');
+    if (bk && bv && bm) {
+      if (state === 'shadow') { bk.textContent = '待办'; bv.innerHTML = '2 <small>项</small>'; bm.textContent = '参考，不阻断'; }
+      else { bk.textContent = '阻断'; bv.innerHTML = '2 <small>项</small>'; bm.textContent = 'D-01 缺截图 · D-02 材料'; }
+    }
+    const nb = document.getElementById('nextBlockerK');
+    if (nb) nb.textContent = state === 'shadow' ? '当前待办' : '当前阻断';
+
+    const gt = document.getElementById('guardText');
+    const gp = document.getElementById('guardPulse');
+    if (gt && gp) {
+      if (state === 'shadow') { gt.textContent = 'guard 观察中'; gp.style.background = 'var(--warn)'; }
+      else if (state === 'empty') { gt.textContent = 'guard 待接入'; gp.style.background = 'var(--label-caption)'; }
+      else if (state === 'error') { gt.textContent = 'guard 降级'; gp.style.background = 'var(--warn)'; }
+      else { gt.textContent = 'guard 运行中'; gp.style.background = 'var(--success)'; }
+    }
+  }
+  function syncTabs() {
+    [...document.querySelectorAll('.tab')].forEach(b => b.classList.toggle('on', b.dataset.view === body.dataset.view));
+    [...document.querySelectorAll('#viewGroup .tb-btn')].forEach(b => b.classList.toggle('on', b.dataset.view === body.dataset.view));
+  }
+  syncMode(); syncTabs();
+
+  document.querySelectorAll('.tab').forEach(b => b.addEventListener('click', () => {
+    body.dataset.view = b.dataset.view; syncTabs();
+  }));
+
+  document.getElementById('stateGroup').addEventListener('click', (e) => {
+    const b = e.target.closest('.tb-btn'); if (!b) return;
+    body.dataset.state = b.dataset.state;
+    [...document.querySelectorAll('#stateGroup .tb-btn')].forEach(x => x.classList.toggle('on', x === b));
+    syncMode();
+  });
+  document.getElementById('viewGroup').addEventListener('click', (e) => {
+    const b = e.target.closest('.tb-btn'); if (!b) return;
+    body.dataset.view = b.dataset.view; syncTabs();
+  });
+  document.getElementById('openModal').addEventListener('click', () => { body.dataset.modal = 'run'; });
+  document.getElementById('modalCancel').addEventListener('click', () => { delete body.dataset.modal; });
+  document.getElementById('modalConfirm').addEventListener('click', () => { body.dataset.modal = 'running'; });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') delete body.dataset.modal; });
+
+  document.getElementById('themeGroup').addEventListener('click', (e) => {
+    const b = e.target.closest('.tb-btn'); if (!b) return;
+    body.classList.remove('dark', 'light'); body.classList.add(b.dataset.theme);
+    [...document.querySelectorAll('#themeGroup .tb-btn')].forEach(x => x.classList.toggle('on', x === b));
+  });
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -32,34 +32,34 @@ ArtzAIn deployment for a sealed decision before any host tool runs:
 
 ## Set up
 
-This listing version pins plugin **0.2.10**. The plugin has no runtime
+This listing version pins plugin **0.2.11**. The plugin has no runtime
 dependencies, so that one package is everything you install.
 
 1. Verify that exact version before you install it:
 
    ```
    mkdir artzain-verify && cd artzain-verify && npm init -y
-   npm install --ignore-scripts @cognexuslabs/openclaw-artzain@0.2.10
+   npm install --ignore-scripts @cognexuslabs/openclaw-artzain@0.2.11
    npm audit signatures
    ```
 
    Expect `1 package has a verified registry signature` and
    `1 package has a verified attestation`, and stop if either is missing.
-   The attestation ties the tarball to the `openclaw-v0.2.10` release
+   The attestation ties the tarball to the `openclaw-v0.2.11` release
    workflow on CogNEXUSlabs/cognexus-tools. The tarball's integrity is:
 
    ```
-   sha512-sZuL+0UpL2zh2Ousj3jvV/oAsdBuNVKbbgGfUUZ4cIbLUFDtD3LGlJaZbl01vA9meV6dmMLybH5Md+CvFIni7A==
+   sha512-y0jOcYXFhxiUeDgDcDB+WRmLsMfL/gcL/nk2fDfTLIHNLTrpoLo6XjbgYWBz92ZlsDxmOMkDfjAlta8fpHjD2A==
    ```
 
-   `npm view @cognexuslabs/openclaw-artzain@0.2.10 dist.integrity` prints the
+   `npm view @cognexuslabs/openclaw-artzain@0.2.11 dist.integrity` prints the
    registry's copy, and the `package-lock.json` the install above wrote
    records the same value.
 
 2. Install that version, pinned:
 
    ```
-   openclaw plugins install @cognexuslabs/openclaw-artzain@0.2.10
+   openclaw plugins install @cognexuslabs/openclaw-artzain@0.2.11
    ```
 
 3. Give the Gateway a Decision API key — `COGNEXUS_API_KEY`, or plugin

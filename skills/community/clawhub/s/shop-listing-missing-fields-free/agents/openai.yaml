@@ -1,0 +1,8 @@
+interface:
+  display_name: "商品后台上架缺项检查"
+  short_description: "读取商品编辑页可见资料，输出规格图文物流售后的缺项、冲突和人工补充表"
+  default_prompt: "使用 $shop-listing-missing-fields-free 检查我指定的商品编辑页，只读取可见内容并列出缺项、冲突和待确认字段；不要保存、提交或上架。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

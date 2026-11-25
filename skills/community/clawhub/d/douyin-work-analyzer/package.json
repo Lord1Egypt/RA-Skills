@@ -1,0 +1,26 @@
+{
+  "name": "douyin-work-analyzer",
+  "version": "0.2.1",
+  "description": "Free Douyin video and image-post analysis without a third-party account or API key.",
+  "private": true,
+  "type": "module",
+  "license": "MIT-0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node scripts/douyin-work-analyzer.mjs self-test"
+  },
+  "keywords": [
+    "agent-skill",
+    "douyin",
+    "douyin-analysis",
+    "content-analysis",
+    "creator-tools",
+    "easy-webbridge",
+    "claude-code",
+    "codex",
+    "opencode",
+    "workbuddy"
+  ]
+}

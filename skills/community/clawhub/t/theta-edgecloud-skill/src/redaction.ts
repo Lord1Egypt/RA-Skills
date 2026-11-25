@@ -1,4 +1,5 @@
-const SECRET_KEYS = ['apikey', 'authorization', 'secret', 'password', 'token', 'credential', 'privatekey', 'mnemonic'];
+// streamkey: Theta Video livestream keys (stream_key) let anyone broadcast to the stream.
+const SECRET_KEYS = ['apikey', 'authorization', 'secret', 'password', 'token', 'credential', 'privatekey', 'mnemonic', 'streamkey'];
 
 // Numeric usage/limit counts (prompt_tokens, max_tokens, reasoning_tokens...) are not secrets.
 // Any string, array or object under a secret-looking name, including *_tokens, is redacted.
@@ -6,6 +7,16 @@ function isSecretKey(key: string, value?: unknown): boolean {
   const normalized = key.toLowerCase().replace(/[^a-z]/g, '');
   if (typeof value === 'number' && normalized.endsWith('tokens')) return false;
   return SECRET_KEYS.some((needle) => normalized.includes(needle));
+}
+
+// Extra names that only appear as labels in plaintext error text (headers, wallet phrases).
+const PLAINTEXT_SECRET_KEYS = ['cookie', 'phrase', 'seedword', 'accesskey', 'jwt'];
+
+// Name rule for plaintext `label=value` pairs: the same substring rule as structured results,
+// so prefixed/suffixed labels (sa_secret, game_api_key, user_password) match too.
+export function isSecretLabel(label: string): boolean {
+  const normalized = label.toLowerCase().replace(/[^a-z]/g, '');
+  return [...SECRET_KEYS, ...PLAINTEXT_SECRET_KEYS].some((needle) => normalized.includes(needle));
 }
 
 export function redact(value?: string): string {

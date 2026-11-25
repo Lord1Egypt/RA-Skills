@@ -1,7 +1,7 @@
 ---
 name: "qubrics-attachments"
 description: "Move email attachments through Qubrics without putting file bytes in model context, using presigned URLs through MCP or file paths through CLI and SDK helpers."
-version: "2.0.4"
+version: "2.0.8"
 metadata:
   openclaw:
     skillKey: "qubrics-attachments"

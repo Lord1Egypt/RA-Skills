@@ -1,5 +1,6 @@
 ---
 name: cue-unwind-pressure-line
+displayName: 解套压力线
 description: 用 Cue 帮你看清被套的股票上方还有哪几道坎——从筹码分布定位套牢盘、用均线校验阻力强度、推演反弹每一步需要的量能，产出可复核的解套压力线底稿，辅助判断反弹到哪容易卡住、哪里该减仓。
 description_zh: Cue 解套压力线：筹码分布/套牢盘分区/均线共振阻力/反弹量能，产出可复核的解套压力位底稿。
 version: 1.0.3
@@ -91,6 +92,7 @@ https://cuecue.cn/share/<conv_id>
 ---
 **Cue 原始报告**：https://cuecue.cn/share/<conv_id>
 **本地副本**：~/cue-reports/<文件名>.md
+如有疑问请关注“感易Cue”官方服务号添加企微客服咨询
 ```
 
 规则：

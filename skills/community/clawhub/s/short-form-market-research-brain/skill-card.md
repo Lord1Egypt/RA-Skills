@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External creators, marketers, and researchers can use the agent to explore short-form video niches, identify trends and creators, examine hashtags, sounds, and hooks, and set up recurring market monitoring.
+Creators, marketers, and researchers use the agent to study short-form video niches, discover rising creators and trends, evaluate hashtags, sounds, and hooks, and monitor performance across TikTok, YouTube Shorts, and Instagram Reels.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Research goals and keywords are sent to Virlo when using the service.
+Risk: Research topics and keywords are sent to Virlo, and the skill requires a Virlo API key.
 
-Mitigation: Avoid including confidential or identifying details in research inputs.
+Mitigation: Avoid sending confidential research terms, store the API key in the agent's secret environment configuration, and review Virlo's data handling and prepaid pricing before use.
 
-Risk: The security scan was partial and does not establish that every part of the artifact was inspected.
+Risk: The security scan covered 10 of 11 components and could not resolve many local references, so its evidence is incomplete.
 
-Mitigation: Review the skill contents before installing and using it.
-
-Risk: API research and recurring monitoring can consume prepaid credits.
-
-Mitigation: Review endpoint pricing and the account balance before starting paid or recurring work.
+Mitigation: Review the skill and its referenced materials before installation, and confirm the manifest metadata is valid.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/virlo-ai/skills/short-form-market-research-brain)
-- [Virlo API documentation](https://dev.virlo.ai/docs)
-- [Virlo API reference for agents](https://dev.virlo.ai/llms-full.txt)
-- [Virlo pricing](https://dev.virlo.ai/pricing)
+- [Virlo API Documentation](https://dev.virlo.ai/docs)
+- [Virlo API Reference for Agents](https://dev.virlo.ai/llms-full.txt)
+- [Virlo Pricing](https://dev.virlo.ai/pricing)
+- [ClawHub release page](https://clawhub.ai/virlo-ai/skills/short-form-market-research-brain)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [Markdown research summaries and structured market insights]
+**Output Format:** [Markdown research summaries, comparisons, and recommendations]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Findings depend on the selected topic, platforms, region, and available Virlo data.]
+**Other Properties Related to Output:** [May include metrics and links to source videos or Virlo research agents; some API actions use prepaid credits.]
 
 ## Skill Version(s):
 
-1.35.0 (source: frontmatter)
+1.36.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

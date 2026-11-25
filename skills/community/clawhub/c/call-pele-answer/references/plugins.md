@@ -10,18 +10,20 @@ export default {
 };
 ```
 
-在配置里登记（`~/.call-pele-answer/config.json` 或项目根目录的 `.call-pele-answer.json`）：
+在用户配置 `~/.call-pele-answer/config.json` 里登记。项目根目录的 `.call-pele-answer.json` 来自当前仓库，不受信任：只能设 `router`、`theme`、`output`、`policy` 这类展示项，`plugins` 和 `adapters` 会被忽略并提示，除非用户对这个仓库设了 `PE_TRUST_PROJECT=1`。
 
 ```json
 {
   "plugins": ["./plugins/kpi.mjs", "some-npm-package"],
-  "adapters": [{ "name": "my-proxy", "kind": "native", "url": "https://…/v1/systemone", "keyEnv": ["MY_KEY"] }],
+  "adapters": [{ "name": "my-proxy", "kind": "native", "url": "https://…/v1/systemone", "keyEnv": ["PE_KEY_MY_PROXY"] }],
   "routers":  [{ "name": "proxy-full", "strategy": "full", "adapter": "my-proxy", "fallback": "classifier" }],
   "router": "proxy-full",
   "theme": "pele",
   "policy": { "device": "desktop", "budget": { "interactive": 2 } }
 }
 ```
+
+自定义适配器的 key 只能放在 `PE_KEY_*` 环境变量里（内置的 `TYPESAFE_API_KEY`、`CLASSIFIER_API_KEY` 除外）；`url` 必须是 https，或本机的 http。写了别的变量名或远程 http 的适配器会被跳过。
 
 优先级（后者覆盖前者）：内置默认 < 用户配置 < 项目配置 < 环境变量（`PE_ROUTER`、`PE_THEME`）< 命令行参数。`pe info` 列出当前加载的全部积木。
 
@@ -127,3 +129,19 @@ export default { name: 'my-notes', apiVersion: 1, setup(api) {
 ```
 
 内置：疑问（钴蓝）/ 建议（芥末）/ 认可（薄荷）/ 顾虑（番茄）。同名覆盖。复制出的批注写类型的 label，所以 Agent 读到的是「[错字]」。
+
+## 组件（component）
+
+```js
+api.component({
+  name: 'myChart',            // pe assemble --use 用的名字
+  desc: '一句话：它展示什么',
+  fence: 'mermaid',           // 或 table / callout / steps / 你的围栏名
+  skeleton: 'xychart ...',    // 最小骨架，agent 替换
+  ask: 'The text itself contains …',  // JEV 是/否问题（软条件）
+  min: 0.85,                  // JEV 门槛；万金油形状设高
+  requires: ['numbers3', t => /关键词/.test(t) ? '证据' : null],  // 硬条件，全部通过才问 JEV
+});
+```
+
+注册后自动进入 `pe options` 的候选，不需要声明它和谁组合；组合由写回答的 agent 决定。内置硬条件见 `scripts/core/components.mjs` 的 `CHECKS`。

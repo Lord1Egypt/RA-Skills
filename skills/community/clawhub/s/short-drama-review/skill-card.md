@@ -1,6 +1,6 @@
 ## Description:
 
-审查短剧项目中的原著拆解、对标拆解、故事大纲、剧本、视觉设定、图片提示词、分镜、首尾帧提示词、视频提示词、剪辑单以及已生成素材与整集成片。用户提出“审稿/检查剧本”“检查视觉设定或连戏”“检查图片/视频提示词”“检查原著或对标拆解”“审查套路模板感”“检查剪辑单或成片接缝”“根据试拍出片结果调优提示词与设定”时使用；只出具审查问题单、结论和修改要求，不越俎代庖直接改原稿文件。
+独立审查短剧原著拆解、对标拆解、大纲、剧本、视觉设定、提示词、分镜、剪辑单及已生成素材与成片，负责跨场/跨镜连戏核查（轴线、站位、视线、持物、状态与接缝）及出片问题归因。只输出审查问题单、结论与返修要求，不直接改原稿或调用生成。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-短剧创作者、编剧和审稿人可用它审查剧本、视觉设定、提示词、分镜、剪辑单与生成素材，并获得附有位置和依据的问题单、结论及局部修改要求。
+短剧创作者、编剧与制作团队可用此技能，依据原稿、分镜、提示词或成片素材开展独立审查，记录有据可查的问题、结论和返修要求。
 
 ### Deployment Geography for Use:
 
@@ -22,13 +22,12 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: A review finding or editorial recommendation could misread the supplied material or conflict with the creator's confirmed requirements.
+Risk: ClawScan reports a medium-severity instruction that could expand a review into changing a production editing sheet, beyond the skill's review-only scope.
 
-Mitigation: Check each finding against its cited source and the creator's confirmed constraints; use an independent reviewer when available.
+Mitigation: Keep findings and revision requests separate from edits; obtain explicit authorization before changing production materials.
 
 ## Reference(s):
 
-- [短剧审查技能发布页](https://clawhub.ai/worldwonderer/skills/short-drama-review)
 - [原著与对标拆解核查清单](artifact/references/rubric-source-analysis.md)
 - [故事大纲与剧本核查清单](artifact/references/rubric-story-script.md)
 - [视觉设定与生图提示词核查清单](artifact/references/rubric-assets-prompts.md)
@@ -36,21 +35,21 @@ Mitigation: Check each finding against its cited source and the creator's confir
 - [成片看片与返工分流指南](artifact/references/generated-media.md)
 - [去套路与反模板改法](artifact/references/anti-template-repair.md)
 - [审查阶段职责与规则](artifact/references/stage-contract.md)
-- [发布者资料](https://clawhub.ai/user/worldwonderer)
+- [ClawHub skill release](https://clawhub.ai/worldwonderer/skills/short-drama-review)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [Markdown review report or conversational text]
+**Output Format:** [Markdown review issue lists, conclusions, and revision requests, or concise conversational text]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Evidence-based findings with source locations and scoped revision requirements; does not edit reviewed drafts or call generation interfaces.]
+**Other Properties Related to Output:** [Evidence-linked findings with severity levels and review scope]
 
 ## Skill Version(s):
 
-1.0.14 (source: server-resolved release metadata)
+1.0.19 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Searches public Douyin videos, posts, trends, creator activity, and comments to support social-media research and analysis.
+Search public Douyin content in real time to retrieve video and image-text posts, engagement metrics, trends, and comments for brand, topic, event, or content analysis.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Developers, analysts, and marketing teams use this skill to investigate public Douyin content, compare creator performance, follow trending topics, and examine video comments.
+External users, social media operators, and content analysts use this skill to research public Douyin posts, creators, comments, and trending topics for content planning, market research, and sentiment analysis.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search terms, Douyin links, and the API token are sent to the third-party Guaikei service.
+Risk: The skill sends supplied search terms, links, or IDs to the third-party Guaikei API; the security guidance also notes keyword-based account discovery.
 
-Mitigation: Use only when this data transfer is authorized; avoid sensitive search terms and links.
+Mitigation: Use public-content queries only, and avoid sending confidential terms or identifiers unless they are appropriate to share with the service.
 
-Risk: Local logs may retain searched topics, creator URLs, and returned public comments.
+Risk: The security scan reports medium confidence and partial analysis, with some components not fully inspected.
 
-Mitigation: Review or delete local logs when those details are sensitive for your team.
+Mitigation: Review the skill before deployment and revisit the assessment when the skill is updated.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/why20261/skills/douyin-social-media-search)
-- [Publisher profile](https://clawhub.ai/user/why20261)
-- [Command options](references/options.md)
-- [Guaikei API service](https://www.guaikei.com)
+- [Options and parameters](references/options.md)
+- [Intent routing](references/routing.md)
+- [Output contract](references/contract.md)
+- [Errors and handling](references/errors.md)
+- [Clarifying questions](references/ask.md)
+- [FAQ and setup](references/faq.md)
+- [Demand mining](references/demand-mining.md)
+- [Customer acquisition](references/customer-acquisition.md)
+- [Service website](https://www.guaikei.com)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, Shell commands]
+**Output Type(s):** [JSON, Analysis]
 
-**Output Format:** [Markdown guidance and structured JSON results]
+**Output Format:** [Structured JSON results, with concise analysis when requested]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Public Douyin data only; command results include status and engagement metrics.]
+**Other Properties Related to Output:** [Results depend on the query and the public data available from Douyin.]
 
 ## Skill Version(s):
 
-1.3.0 (source: ClawHub release, skill frontmatter, package.json)
+1.5.0 (source: frontmatter, package.json)
 
 ## Ethical Considerations:
 

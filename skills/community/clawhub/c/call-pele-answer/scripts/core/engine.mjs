@@ -17,6 +17,8 @@ import theme from '../themes/pele.mjs';
 import palettes from '../themes/palettes.mjs';
 import outputs from '../outputs/index.mjs';
 import rules, { docLang } from '../lint/index.mjs';
+import components from './components.mjs';
+import { admit, logUsage } from './admit.mjs';
 
 export const USER_CONFIG = join(homedir(), '.call-pele-answer', 'config.json');
 const OLD_USER_CONFIG = join(homedir(), '.pele-explain', 'config.json'); // read once if the new one is missing
@@ -24,10 +26,17 @@ const PROJECT_CONFIG = '.call-pele-answer.json';
 
 // Config precedence (later wins): built-in defaults < ~/.call-pele-answer/config.json < ./.call-pele-answer.json
 // < environment (PE_ROUTER, PE_THEME) < CLI flags.
+// A project config comes from whatever repository the agent happens to be in, so it is untrusted: it may
+// set presentation (router name, theme, output, policy) but not code (plugins) or network endpoints
+// (adapters). PE_TRUST_PROJECT=1, set by the user, lifts that for a repository they trust.
+const CODE_KEYS = ['plugins', 'adapters'];
 export function loadConfig(cwd = process.cwd()) {
   const read = p => { try { return { ...JSON.parse(readFileSync(p, 'utf8')), __dir: dirname(p) }; } catch { return null; } };
-  const layers = [read(USER_CONFIG) || read(OLD_USER_CONFIG), read(join(cwd, PROJECT_CONFIG))].filter(Boolean);
-  const cfg = { router: 'auto', theme: 'pele', output: 'html', palette: true, annotate: true, plugins: [], adapters: [], routers: [], policy: {} };
+  const user = read(USER_CONFIG) || read(OLD_USER_CONFIG), project = read(join(cwd, PROJECT_CONFIG));
+  const ignored = [];
+  if (project && process.env.PE_TRUST_PROJECT !== '1') for (const k of CODE_KEYS) if (project[k]?.length) { ignored.push(k); delete project[k]; }
+  const layers = [user, project].filter(Boolean);
+  const cfg = { router: 'auto', theme: 'pele', output: 'html', palette: true, annotate: true, plugins: [], adapters: [], routers: [], policy: {}, ignored };
   for (const l of layers) {
     for (const k of ['router', 'theme', 'output', 'ste']) if (l[k]) cfg[k] = l[k];
     cfg.plugins.push(...(l.plugins || []).map(p => ({ spec: p, dir: l.__dir })));
@@ -47,10 +56,11 @@ export function loadConfig(cwd = process.cwd()) {
 
 export async function createEngine({ cwd = process.cwd(), config, trace = NOTRACE } = {}) {
   const cfg = config || trace.span('config', () => loadConfig(cwd));
+  if (cfg.ignored?.length) console.error(`! 忽略了 ./${PROJECT_CONFIG} 里的 ${cfg.ignored.join('、')}：项目配置不能加载代码或网络端点（信任这个仓库时设 PE_TRUST_PROJECT=1）`);
   const reg = createRegistry();
-  trace.span('builtins', () => { for (const p of [forms, routers, theme, palettes, outputs, rules]) reg.use(p); });
+  trace.span('builtins', () => { for (const p of [forms, routers, theme, palettes, outputs, rules, components]) reg.use(p); });
   // declarative adapters and routers from config: no code needed to plug in a new System One provider
-  for (const a of cfg.adapters) reg.api.adapter((a.kind === 'shim' ? shimAdapter : nativeAdapter)(a));
+  for (const a of cfg.adapters) { try { reg.api.adapter((a.kind === 'shim' ? shimAdapter : nativeAdapter)(a)); } catch (e) { console.error(`! 跳过适配器：${e.message}`); } }
   for (const r of cfg.routers) reg.api.routerSpec(r);
   // code plugins: a module whose default export is { name, apiVersion, setup(api) } or a setup function
   for (const { spec, dir } of cfg.plugins) {
@@ -65,7 +75,7 @@ class Engine {
   constructor(registry, config, trace = NOTRACE) { this.registry = registry; this.config = config; this.trace = trace; }
 
   resolveRouter(name) {
-    if (name === 'auto') name = process.env.TYPESAFE_API_KEY ? 'typesafe' : 'systemone-free';
+    if (name === 'auto') name = 'jev';
     const r = this.registry.router(name);
     if (r) return r;
     const spec = this.registry.routerSpec(name);
@@ -74,7 +84,7 @@ class Engine {
   }
 
   // Walk the fallback chain until a router answers; local always answers.
-  async route(answer, { router = this.config.router, policy = {}, auto = false } = {}) {
+  async route(answer, { router = this.config.router, policy = {}, auto = false, options = true } = {}) {
     const T = this.trace;
     const t0 = Date.now(); const ans = T.span('split', () => splitAnswer(answer)); const notes = [];
     const texts = ans.blocks.map(b => b.text);
@@ -82,7 +92,7 @@ class Engine {
     while (name && !tried.has(name)) {
       tried.add(name);
       const r = this.resolveRouter(name);
-      const rn = name === 'auto' ? (process.env.TYPESAFE_API_KEY ? 'typesafe' : 'systemone-free') : name;
+      const rn = name === 'auto' ? 'jev' : name;
       try { res = await T.span(`router:${rn}`, () => r.route(texts)); T.set('router', rn); T.count('blocks', texts.length); break; }
       catch (e) { notes.push(`${name} 不可用（${e.message}）`); name = r.fallback || (name !== 'local' ? 'local' : null); }
     }
@@ -90,9 +100,15 @@ class Engine {
     res.blocks.forEach((b, i) => (b.title = ans.blocks[i].title));
     const P = { ...this.config.policy, ...policy };
     T.span('compose', () => compose(res.blocks, P));
+    // component options: every registered component whose conditions pass, for the agent to combine
+    if (options) {
+      const an = res.by === 'local' ? null : this.registry.adapters.get(process.env.TYPESAFE_API_KEY ? 'typesafe' : 'classifier-systemone');
+      const note = await T.span('admit', () => admit(res.blocks, this.registry.components(), an, { log: !process.env.PE_NO_LOG }));
+      if (note) notes.push(note);
+    }
     const derivers = { ...DERIVERS };
     for (const [fam, fns] of Object.entries(this.registry.derivers())) derivers[fam] = [...(derivers[fam] || []), ...fns];
-    const draft = T.span('scaffold', () => scaffold({ title: ans.title, lead: ans.lead, blocks: res.blocks, derivers, policy: P, auto }));
+    const draft = T.span('scaffold', () => scaffold({ title: ans.title, frontMatter: auto ? ans.frontMatter : null, lead: ans.lead, blocks: res.blocks, derivers, policy: P, auto }));
     T.set('by', res.by); T.set('families', res.blocks.map(b => b.family).join(','));
     T.count('todo', (draft.match(/<!-- TODO/g) || []).length);
     return { draft, blocks: res.blocks, by: res.by, ms: Date.now() - t0, notes };
@@ -101,9 +117,10 @@ class Engine {
   build(draft, { output = this.config.output, theme = this.config.theme, ste = this.config.ste, palette = this.config.palette, annotate = this.config.annotate, mode, lean } = {}) {
     const T = this.trace;
     const { doc, errors, warns, embedded } = T.span('parse', () => parseDraft(draft, this.registry, T));
+    if (!process.env.PE_NO_LOG && !errors.length) logUsage(draft, this.registry.components());
     const found = [...warns];
     const report = (l, r, m, f) => found.push([l, r, m, f]);
-    const ctx = { registry: this.registry, ste };
+    const ctx = { registry: this.registry, ste, draft, error: (l, r, m, f) => errors.push([l, r, m, f]) };
     for (const rule of this.registry.rules()) T.span(`lint:${rule.id}`, () => rule.check(doc, report, ctx));
     T.count('warnings', found.length); T.count('errors', errors.length);
     found.sort((a, b) => a[0] - b[0]);

@@ -1,7 +1,7 @@
 ---
 name: rsoft-agentic-bank
 description: AI-native lending on Base MAINNET for autonomous agents. Check credit, request USDC loans (EIP-712 signed via Coinbase CDP), and repay autonomously. Real money.
-version: 2.5.0
+version: 2.5.1
 requires:
   bins:
     - curl
@@ -74,7 +74,16 @@ it. Use this address as `{agent_id}` in all bank commands.
 curl -s https://7mavs5vu7ggbhtxvbavdgs26qa0cbawg.lambda-url.us-east-1.on.aws/api/interest-rates
 ```
 
-### 2. Check Credit Score (free)
+### 2. Pre-qualify (free) — do this first
+
+Would the bank lend to you, how much, and what is missing? No payment, no signature:
+```bash
+curl -s https://7mavs5vu7ggbhtxvbavdgs26qa0cbawg.lambda-url.us-east-1.on.aws/api/prequalify/{wallet}
+```
+Returns `eligible`, `max_amount_usdc`, `tier` and a `missing` list with a `next_action` per item
+(register your ERC-8004 passport, repay an open loan, bind a human sponsor…). Fix those, call again.
+
+### 2b. Check Credit Score (free)
 
 Replace `{agent_id}` with your wallet address:
 ```bash
@@ -206,7 +215,8 @@ treasury payments within ~10 minutes. An agent that paid is never defaulted.
 ```
 1. Know your address          → node bin/address.js
 2. Check interest rates        → curl /api/interest-rates
-3. Check your credit score     → curl /api/creditworthiness/{wallet}
+3. Pre-qualify (free)          → curl /api/prequalify/{wallet}   (eligible? max? what's missing?)
+3b. Check your credit score    → curl /api/creditworthiness/{wallet}
 4. Sign + request the loan     → node bin/sign-loan.js 5 | curl POST /api/v1/loan/request
 5. Verify USDC received        → curl /api/loan/status/{request_id}  (→ disbursed)
 6. Check repayment info        → curl /api/repay-info/{wallet}

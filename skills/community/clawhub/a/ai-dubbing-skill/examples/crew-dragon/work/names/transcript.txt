@@ -1,0 +1,13 @@
+# names.mp4: 88 words via faster-whisper (small), language en
+# Fix mistakes in fixes.json (see references/proofreading.md), never in this file.
+L1 [00:00.0-00:12.3] I think one of the ways to describe it for both Doug and I is that we're hopeful that future crews on Dragon vehicles headed to NASA space stations aren't
+L2 [00:12.3-00:18.7] cursing our names because we accepted some feature that was complicated and hard to train and in the end hard to operate.
+L3 [00:19.3-00:21.3] They're like, yeah, I can't understand.
+L4 [00:21.4-00:29.0] I don't even remember why that's so easy but it is so easy and so that they forget about us because they don't have anything to curse our names over.
+
+# Unsure words (confidence under 0.6): check these first
+#  00:06.6 Dragon (0.22)
+#  00:17.3 and (0.40)
+#  00:17.5 in (0.50)
+#  00:20.1 yeah, (0.44)
+#  00:23.0 but (0.30)

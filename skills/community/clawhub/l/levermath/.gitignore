@@ -1,0 +1,9 @@
+node_modules/
+dist/*
+!dist/examples/
+!dist/examples/**
+build/
+figures/build/
+USAGES.local.md
+*.local
+.DS_Store

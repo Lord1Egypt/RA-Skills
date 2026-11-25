@@ -1,6 +1,6 @@
 ## Description:
 
-Converts PowerPoint, Keynote, and other documents into explainer, pitch, courseware, or training videos through parsing, outlining, storyboarding, voiceover, building, and validation.
+ppt to video, powerpoint to video, slides to video, presentation to video — parse the deck, outline, storyboard, voiceover, build, validate. Use when the user gives a PPT / PowerPoint / Keynote and wants an explainer, pitch, courseware, or training video.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers use this skill to turn presentations and other documents into explainer, pitch, courseware, or training videos through the dLazy hosted agent.
+External users and developers can use this skill to turn presentation files into explainer, pitch, courseware, or training videos through dLazy's hosted agent.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan rates the skill suspicious and reports undeclared project-listing and login actions, plus a broad trigger that could send unrelated report content to an external service.
+Risk: The security review is benign with medium confidence and partial coverage; it notes CLI login and organization project listing actions.
 
-Mitigation: Use it only for an intended presentation-to-video task, review the requested action and prompt before running it, and avoid attaching unrelated or sensitive files.
+Mitigation: Review the CLI commands, sign in to the intended dLazy organization, and check project listings before continuing work.
 
-Risk: Prompts and attached files may be transmitted to dLazy services; the partial scan did not establish how login handles credentials or whether data was sent.
+Risk: Prompts and attached files are sent to dLazy hosted services.
 
-Mitigation: Review prompts and attachments before submission, and use the skill only if you are comfortable sending that material to the hosted service.
+Mitigation: Avoid attaching sensitive content unless permitted by your organization's policies, and review dLazy's service terms.
 
 ## Reference(s):
 
-- [dLazy website](https://dlazy.com)
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy CLI source code (as cited by the skill)](https://github.com/dlazy-ai/cli)
+- [dLazy CLI on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy](https://dlazy.com)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, API calls, Video]
+**Output Type(s):** [Video files, Text, Guidance]
 
-**Output Format:** [Markdown guidance and CLI commands, with video-generation results from the hosted service]
+**Output Format:** [Generated video assets and streamed text responses]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Project-based sessions; attached files may be uploaded to the hosted service.]
+**Other Properties Related to Output:** [Project-scoped sessions; attached files are uploaded to dLazy media storage.]
 
 ## Skill Version(s):
 
-1.0.38 (source: server-resolved release)
+1.0.41 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

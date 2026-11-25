@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineering teams use this skill to select and coordinate code, architecture, test, API, security, shell, and Makefile reviews. It helps produce evidence-based findings, prioritized recommendations, and an integrated action plan before changes are merged.
+Developers use this skill before merging substantial changes or when a review spans several areas. It selects applicable review lenses and combines findings into prioritized recommendations and an action plan.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment reports system-install and file-changing behavior.
+Risk: The security assessment marks the skill suspicious because Makefile examples include package installation and file changes beyond its review purpose; scan coverage is incomplete.
 
-Mitigation: Review commands before running them, isolate repository tests and Make inspection from sensitive files and credentials, and request a preview and approval before applying changes.
-
-Risk: Security analysis coverage is incomplete: 13 of 15 components were scanned, two were partially inspected, and static tool-misuse analysis was degraded.
-
-Mitigation: Treat the scan as partial evidence and manually review the relevant skill files and commands before use.
+Mitigation: Review the Makefile execution and package-installation examples before installing or using the skill, and treat the scan as incomplete rather than as assurance that all risks were found.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/athola/skills/nm-pensive-unified-review)
-- [Project homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
+- [Homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Markdown, Shell commands]
+**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown review reports with findings, evidence, recommendations, and action plans; may include shell or Make command examples]
+**Output Format:** [Structured Markdown review report with findings, recommendations, and an action plan]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Single review stream; content varies with detected codebase domains and selected review mode.]
+**Other Properties Related to Output:** [Review scope and selected domains vary with the repository. May require the configured Night Market proof-of-work, review-core, and structured-output dependencies.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

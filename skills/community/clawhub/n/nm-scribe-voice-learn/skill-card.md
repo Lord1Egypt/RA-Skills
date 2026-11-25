@@ -1,6 +1,6 @@
 ## Description:
 
-Improves a voice profile by learning from manual edits. Use after editing generated text to refine registers and close voice drift over time
+Improves a voice profile by learning from manual edits. Use after editing generated text to refine registers and close voice drift over time.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Writers and developers use this skill after manually editing generated text to identify recurring changes and propose focused updates to a voice profile.
+Writers and developers use this skill after manually editing generated text to identify recurring voice and style patterns and propose profile updates. Proposed changes are reviewed and approved before they are applied.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review was partial because two local references could not be resolved.
+Risk: The scan could not resolve local learning/accumulator.json references, so evidence about those references is incomplete.
 
-Mitigation: Review those references before installation if they are important to the skill's use.
-
-Risk: A one-off edit or contradictory edits could lead to an unsuitable voice-profile rule.
-
-Mitigation: Apply the documented recurrence threshold, check for contradictions, and get user approval before changing the profile.
-
-Risk: Learning snapshots contain generated, reviewed, and manually edited text.
-
-Mitigation: Keep the voice-profile snapshot directory private and archive or remove completed snapshots when they are no longer needed.
+Mitigation: Before use, check that the unresolved references are expected and review their contents.
 
 ## Reference(s):
 
 - [Scribe plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scribe)
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-scribe-voice-learn)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Configuration instructions]
+**Output Type(s):** [Analysis, Guidance, Markdown, JSON]
 
-**Output Format:** [Structured pattern analysis and proposed voice profile edits in Markdown]
+**Output Format:** [Markdown pattern analysis and proposals, with JSON accumulator records]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Uses recurring-edit evidence thresholds; profile changes require user approval.]
+**Other Properties Related to Output:** [Profile updates require user approval; recurring patterns are checked against an evidence threshold.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Reviews submitted code snippets and diffs for defects, security concerns, performance, and style, then drafts prioritized feedback, suggested fixes, and a quality score.
+Reviews submitted code snippets and diffs for defects, security issues, performance, and style, then drafts actionable feedback and suggested fixes.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Software developers and reviewers use this skill to examine submitted code snippets or diffs and prepare advisory review comments, security and quality findings, and possible fixes. A human reviewer should verify findings before acting on them; the skill does not execute code, edit repositories, or connect to code hosting platforms.
+Software engineers, technical leads, and maintainers use the skill to review submitted code snippets or diffs, identify issues, and prepare draft review comments and fix suggestions for human assessment.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review was partial and reported a possible mismatch involving database queries and user records.
+Risk: A partial scan reported a possible mismatch between the code-review purpose and database access, and left some local references unresolved.
 
-Mitigation: Check that database-query guidance fits the submitted code and independently verify recommendations involving user records.
-
-Risk: Review comments and suggested fixes may not account for call paths, configuration, or deployment details outside the submitted code.
-
-Mitigation: Share only the code needed for review, redact sensitive details, and have a qualified reviewer confirm findings against the wider application before acting.
+Mitigation: Before installing, confirm whether the reported database access fits your intended use; treat the benign verdict as medium-confidence and incomplete.
 
 ## Reference(s):
 
+- [ClawHub release page](https://clawhub.ai/gechengling/skills/ai-code-review-expert)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Code, Guidance]
+**Output Type(s):** [Analysis, Guidance, Code]
 
-**Output Format:** [Markdown review comments with inline code examples and a structured quality score]
+**Output Format:** [Markdown review comments with severity, explanations, suggested code snippets, and quality scores]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Advisory findings and suggested fixes for submitted snippets or diffs; no code execution, repository edits, or external posting.]
+**Other Properties Related to Output:** [Advisory drafts for human review; does not execute code, modify repositories, run CI, or connect to code hosting platforms.]
 
 ## Skill Version(s):
 
-3.0.5 (source: SKILL.md frontmatter, server-resolved release evidence)
+3.0.6 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

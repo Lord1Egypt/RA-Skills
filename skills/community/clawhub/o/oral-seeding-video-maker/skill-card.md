@@ -1,6 +1,6 @@
 ## Description:
 
-Creates a narrated vertical recommendation video from a topic, including a script, still beat frames, narration, optional music, and a clip animated from the opening frame.
+Creates a narrated vertical recommendation video from a topic, with a shot list, still frames, voiceover, optional music, and an animated clip.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Creators and marketers use the skill to turn a product, service, or topic into a short recommendation video for social platforms. It drafts the spoken script and shot list, then prepares still frames, narration, optional music, subtitles, and a vertical clip.
+Creators and social media teams use it to turn a one-line product, service, or topic into a short recommendation video for social platforms. It suits workflows that start without footage or a recorded voice.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security summary reports automatic environment reporting, and the available scanner review is incomplete.
+Risk: ClawScan marks the release suspicious, citing installation tracking, broad account permissions, and remote processing of user content. The scan is partial because some local references were unresolved; this verdict is not a claim that the author is malicious.
 
-Mitigation: Review the privacy and registration guidance before installing, and resolve the incomplete scanner coverage before relying on a clean security assessment.
-
-Risk: Shared-account cleanup may affect credentials used by other installations.
-
-Mitigation: Review the shared-account cleanup guidance and check whether other installations depend on those credentials before removing them.
-
-Risk: The security guidance flags excessive authorization scope for voice-write operations.
-
-Mitigation: Review the requested voice permissions and grant them only when the voice-management features are needed.
+Mitigation: Review the requested permissions and Beatra's data handling before installing, and avoid sending sensitive content. Treat the partial scan as incomplete and inspect unresolved references before relying on it.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/beatra-ai/skills/oral-seeding-video-maker)
-- [Publisher homepage](https://beatra.ai/skills/oral-seeding-video-maker)
-- [Choosing a script pattern](artifact/references/script-patterns.md)
-- [Seeding video workflow](artifact/references/workflow.md)
-- [Speech, voices, and audio finishing](artifact/references/speech-and-audio.md)
-- [Updates and security](artifact/references/updates-and-security.md)
+- [ClawHub release page](https://clawhub.ai/beatra-ai/skills/oral-seeding-video-maker)
+- [Beatra skill homepage](https://beatra.ai/skills/oral-seeding-video-maker)
+- [Workflow and approval steps](references/workflow.md)
+- [Security and updates guidance](references/updates-and-security.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Image files, Audio files, Video files, Subtitle files]
+**Output Type(s):** [Text, Markdown, Image files, Audio, Subtitles, Video]
 
-**Output Format:** [Script and shot list in text; still frames, narration, optional music, and a vertical video file; aligned subtitles in JSON, SRT, and VTT.]
+**Output Format:** [Shot lists and narration text, generated still images, narration and optional music tracks, subtitle files, and a vertical video clip.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Defaults to a 9:16 canvas and a 12-second clip; maximum clip length is 15 seconds. Music is optional.]
+**Other Properties Related to Output:** [The music bed is optional. Product facts and claims must come from the user; only the opening frame is animated into the clip.]
 
 ## Skill Version(s):
 
-0.3.2 (source: server release evidence)
+0.3.3 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

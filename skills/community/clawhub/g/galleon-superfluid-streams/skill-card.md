@@ -1,6 +1,6 @@
 ## Description:
 
-Guides planning, adjusting, stopping, and reconciling Superfluid streams, distribution pools, token wrapping, and scheduler operations with funding and permission checks.
+Use when preparing, adjusting, stopping or reconciling Superfluid CFA streams, GDA distribution pools, Super Token wrapping, or stream and vesting scheduler operations. Inspect real-time funding and flow-operator rights before committing a recurring obligation.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Developers and DeFi users use this skill to plan and review recurring Superfluid obligations, operator permissions, funding horizons, and the observed outcome of authorized actions.
+Developers and protocol operators use this skill to prepare and reconcile Superfluid CFA streams, GDA distributions, token wrapping, and scheduler actions. It guides funding and permission checks, action review, and verification of resulting state.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,47 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: An incorrect recipient, rate, or funding estimate can create an unintended recurring financial obligation.
+Risk: Recurring flows can continue transferring value, and an incoming flow may stop and shorten the funding horizon.
 
-Mitigation: Verify recipients, exact rates, spendable balance, locked buffers, and conservative funding horizons before signing.
+Mitigation: Check real-time spendable funding, aggregate outgoing rates, required buffer, and a conservative horizon that does not rely on uncertain incoming flows; set a budget and monitoring obligation.
 
-Risk: Broad approvals, operator permissions, or unexecuted schedules can permit spending beyond the intended limit.
+Risk: A configured scheduler or automation does not establish that a stop or other action executed.
 
-Mitigation: Review allowances, permission scope and expiry, decoded calls, and actual schedule execution and flow state.
+Mitigation: Check current permissions and execution status, then verify the receipt and current flow or pool state after the scheduled boundary.
+
+Risk: The security review was partial because one local reference did not resolve.
+
+Mitigation: Review the relevant local guidance before relying on the skill; the benign verdict is not a guarantee of safety.
 
 ## Reference(s):
 
-- [Superfluid streams release](https://clawhub.ai/galleonlabs/skills/galleon-superfluid-streams)
-- [Superfluid implementation tracks](references/operations.md)
-- [Superfluid worked records](references/examples.md)
+- [Current implementation tracks](references/operations.md)
+- [Worked funding and failure records](references/examples.md)
+- [Official Superfluid skills](https://github.com/superfluid-org/skills)
 - [Superfluid SDK documentation](https://sdk.superfluid.pro/docs)
+- [SDK guidance](https://github.com/superfluid-org/skills/blob/main/skills/superfluid/references/guides/sdks.md)
+- [Superfluid architecture guide](https://github.com/superfluid-org/skills/blob/main/skills/superfluid/references/guides/architecture.md)
+- [Flowing balances guide](https://github.com/superfluid-org/skills/blob/main/skills/superfluid/references/guides/flowing-balances.md)
+- [Superfluid contract references](https://github.com/superfluid-org/skills/tree/main/skills/superfluid/references/contracts)
+- [Macro clear-signing guide](https://github.com/superfluid-org/skills/blob/main/skills/superfluid/references/guides/clear-macro.md)
+- [Macro forwarder guide](https://github.com/superfluid-org/skills/blob/main/skills/superfluid/references/guides/macro-forwarders.md)
+- [Flow scheduler guide](https://github.com/superfluid-org/skills/blob/main/skills/superfluid/references/subgraphs/flow-scheduler-guide.md)
+- [Vesting scheduler guide](https://github.com/superfluid-org/skills/blob/main/skills/superfluid/references/subgraphs/vesting-scheduler-guide.md)
+- [AutoWrap guide](https://github.com/superfluid-org/skills/blob/main/skills/superfluid/references/subgraphs/auto-wrap-guide.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Code]
+**Output Type(s):** [Markdown, Guidance, Analysis, Code, Configuration]
 
-**Output Format:** [Markdown with transaction details and optional unsigned calls or confirmed receipts]
+**Output Format:** [Markdown decision record with rates, funding assumptions, permissions, unsigned calls or confirmed receipts, and observed state]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes observed chain, token, rate, funding horizon, permissions, and remaining gaps.]
+**Other Properties Related to Output:** [Includes observation time and remaining gaps; examples are synthetic and do not imply chain or account access.]
 
 ## Skill Version(s):
 
-0.2.1 (source: frontmatter and ClawHub release)
+0.3.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

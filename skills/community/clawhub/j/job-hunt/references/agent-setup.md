@@ -132,12 +132,13 @@ LibreOffice releases can abort when started directly with `--headless`.
 Before the first Indeed, 51job, LinkedIn or Nowcoder read, follow [opencli-compat.md](opencli-compat.md)
 to check and apply recognized adapter patches through the prepared Python/PATH.
 The CDP patch sources in `assets/opencli-cdp/` are based on @jackwener/opencli 1.8.7
-(https://github.com/jackwener/opencli, Apache-2.0, https://www.apache.org/licenses/LICENSE-2.0), modified by job-hunt
-on 2026-09-11: direct CDP routing, daily-Chrome discovery, task-owned browser sessions
-and cleanup, CDP diagnostics, extension notice removal. Apply them only to the exact
-version and original file hashes in its `manifest.json`. AnySearch's client in
-`third_party/anysearch/` is Copyright 2026 AnySearch, licensed under Apache-2.0;
-its provenance is in `third_party/anysearch/UPSTREAM.md`.
+(https://github.com/jackwener/opencli, Apache-2.0), modified by job-hunt on 2026-09-11
+for direct CDP routing, daily-Chrome discovery, task-owned browser sessions and
+cleanup, CDP diagnostics and extension notice removal; apply them only to the exact
+version and file hashes in `assets/opencli-cdp/manifest.json`. The AnySearch client
+is Copyright 2026 AnySearch, Apache-2.0; its provenance is in
+`third_party/anysearch/UPSTREAM.md`. License text:
+https://www.apache.org/licenses/LICENSE-2.0.
 
 Verify a small public AnySearch query and an actual bounded page read when live
 research is needed. Site login, verification challenges and browser connection

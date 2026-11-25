@@ -1,0 +1,334 @@
+{
+  "schema": "oasis-blueprints/0.2",
+  "status": "draft",
+  "firm": {
+    "name": "Your Company",
+    "wordmark": "Your Company",
+    "lines": [
+      "Street address",
+      "City, State ZIP",
+      "License no.",
+      "Phone",
+      "website"
+    ]
+  },
+  "project": {
+    "number": "EX-001",
+    "title": "Rear Sunroom",
+    "subtitle": "After-the-fact repair",
+    "address": "123 Example St",
+    "locality": "Anytown, ST 00000",
+    "permit": "PERMIT-000000",
+    "relatedPermit": "ROOF-000000",
+    "relatedScope": "roofing",
+    "use": "Non-habitable rear sunroom. Existing footprint, dimensions and use remain."
+  },
+  "people": {
+    "drawnBy": "Drafter",
+    "checkedBy": "Engineer",
+    "engineer": ""
+  },
+  "issue": {
+    "date": "2026-11-12",
+    "rev": "0",
+    "revisions": []
+  },
+  "geometry": {
+    "units": "in",
+    "source": "3D scan. Dimensions marked ± are to be verified in field.",
+    "clearL": 254,
+    "clearD": 140,
+    "post": 3.5,
+    "roofL": 264,
+    "roofD": 144,
+    "longBays": [
+      59,
+      67,
+      68,
+      63.5
+    ],
+    "door": [
+      53,
+      89
+    ],
+    "rightMid": 70,
+    "slopeRise": 1,
+    "slopeRun": 12,
+    "h0": 99,
+    "rafterDepth": 7.25,
+    "beamDepth": 7.25,
+    "rafterSpacing": 16,
+    "wallT": 8,
+    "openings": [
+      {
+        "x0": 18,
+        "x1": 114,
+        "label": "(E) 8'-0\" SLIDING GLASS DOOR",
+        "sill": 0,
+        "head": 80
+      },
+      {
+        "x0": 203,
+        "x1": 239,
+        "label": "(E) 3'-0\" WINDOW",
+        "sill": 34,
+        "head": 80
+      }
+    ]
+  },
+  "summary": {
+    "headline": "New rafters, new columns, same sunroom.",
+    "text": "After-the-fact repair of the existing rear sunroom. New 2×8 roof rafters with hurricane ties, and every 4×4 column replaced with a pressure-treated column on a new post base. The beams, the slab, the footprint and the use stay as they are.",
+    "howToRead": "Start with the picture, then the steps. The plan, section and elevation give sizes and locations, and the details show each connection. Anything in red is waiting on the engineer.",
+    "sequenceNote": "The sequence is for orientation only. Means, methods, shoring design and site safety are the contractor's responsibility. Hold points shown here are in addition to the inspections required by the building department.",
+    "reserved": "The engineer's standard general notes go here: governing code and edition, wind design data and component pressures, lumber grades and preservative treatment, fasteners and connectors, concrete and anchors, and inspections. They are not part of this draft."
+  },
+  "facts": [
+    {
+      "k": "Rafters",
+      "tag": "N",
+      "v": "2×8 @ 16\" o.c.",
+      "s": "Simpson H2.5A at each end"
+    },
+    {
+      "k": "Beams",
+      "tag": "E",
+      "v": "(2) 2×8",
+      "s": "Keep. Check for rot and WDO"
+    },
+    {
+      "k": "Columns",
+      "tag": "N",
+      "v": "PT 4×4",
+      "s": "Replace all. 10 shown, verify"
+    },
+    {
+      "k": "Column bases",
+      "tag": "N",
+      "v": "ABU44Z",
+      "s": "Anchor to concrete: {anchor}"
+    },
+    {
+      "k": "Roof",
+      "tag": "Separate permit",
+      "v": "1:12 slope",
+      "s": "(E) plywood and mod-bit roofing"
+    },
+    {
+      "k": "Size",
+      "tag": "",
+      "v": "22'-0\" × 12'-0\"",
+      "s": "Roof, out to out. Footprint unchanged"
+    }
+  ],
+  "steps": [
+    {
+      "pic": "verify",
+      "title": "Verify what is there",
+      "text": "Field-measure every dimension marked ± and anything not documented. Check the (E) beams and the affected framing for rot, deterioration, damage and WDO.",
+      "hold": "Report deficient conditions to the engineer for repair direction before anything is concealed."
+    },
+    {
+      "pic": "shore",
+      "title": "Shore the roof",
+      "text": "Provide temporary shoring during column replacement."
+    },
+    {
+      "pic": "columns",
+      "title": "Replace the columns",
+      "text": "Replace all (E) 4×4 columns with (N) pressure-treated 4×4 columns at the existing locations. Set each one on a (N) Simpson ABU44Z anchored to the (E) concrete. Anchor: {anchor} Beam to column: {beamToColumn}",
+      "ref": "Details {d1} and {d2}"
+    },
+    {
+      "pic": "rafters",
+      "title": "Rafters and ties",
+      "text": "(N) 2×8 rafters at 16 in. o.c., with a (N) Simpson H2.5A at each end of each rafter.",
+      "ref": "Details {d2} and {d3}"
+    },
+    {
+      "pic": "roof",
+      "title": "Roof deck and roofing",
+      "text": "(E) plywood decking with self-adhered modified-bitumen roofing, under separate permit {relatedPermit}. Verify the decking thickness and the extent of prior replacement."
+    }
+  ],
+  "scope": [
+    {
+      "kind": "n",
+      "item": "Roof rafters",
+      "text": "2×8 at 16 in. o.c. with Simpson H2.5A connectors at the ends."
+    },
+    {
+      "kind": "n",
+      "item": "Columns",
+      "text": "Replace all existing 4×4 columns with pressure-treated 4×4 columns at the existing locations."
+    },
+    {
+      "kind": "n",
+      "item": "Column bases",
+      "text": "Simpson ABU44Z at each replacement column, anchored to the existing concrete. Anchorage: {anchor}"
+    },
+    {
+      "kind": "e",
+      "item": "Beams",
+      "text": "(2) 2×8 built-up beams, to remain. Check for rot, damage and WDO."
+    },
+    {
+      "kind": "e",
+      "item": "Slab, footprint and use",
+      "text": "Existing concrete slab and foundation. Footprint, dimensions and use do not change."
+    },
+    {
+      "kind": "o",
+      "item": "Roofing",
+      "text": "Existing plywood decking with self-adhered modified-bitumen roofing, under permit {relatedPermit}. Verify decking thickness and extent of prior replacement."
+    }
+  ],
+  "notes": [
+    {
+      "title": "Scope",
+      "start": 1,
+      "items": [
+        "These are after-the-fact and repair drawings for the existing non-habitable rear sunroom, under permit {permit}. The existing footprint, dimensions and use remain.",
+        "Work marked **(N)** is new repair work under this permit. Work marked **(E)** is existing and remains."
+      ]
+    },
+    {
+      "title": "Framing",
+      "start": 3,
+      "items": [
+        "**Roof rafters.** Nominal 2×8 at 16 in. o.c. with Simpson H2.5A connectors at the ends. Roof slope 1:12.",
+        "**Supporting beams.** (2) 2×8 built-up beams, existing to remain.",
+        "**Columns.** Replace all existing nominal 4×4 columns with new pressure-treated 4×4 wood columns at the existing locations.",
+        "**Column bases.** New Simpson ABU44Z at each replacement column, anchored to the existing concrete foundation. Anchorage: {anchor}",
+        "**Roof.** Existing plywood decking with self-adhered modified-bitumen roofing, part of permit {relatedPermit}. Verify decking thickness and extent of prior replacement."
+      ]
+    },
+    {
+      "title": "Before and during the work",
+      "start": 8,
+      "items": [
+        "The contractor shall verify existing beams and affected framing for rot, deterioration, damage and wood-destroying organisms (WDO). Report deficient conditions to the engineer for repair direction before concealment. [HOLD]",
+        "Provide temporary shoring during column replacement.",
+        "Dimensions marked ± are from a 3D scan and shall be field verified. Field-measure dimensions not documented.",
+        "Connectors are shown schematically. Install Simpson Strong-Tie connectors per the manufacturer's instructions."
+      ]
+    }
+  ],
+  "criteria": [
+    {
+      "k": "Use",
+      "v": "Non-habitable sunroom"
+    },
+    {
+      "k": "Roof slope",
+      "v": "1:12"
+    },
+    {
+      "k": "Governing code and edition",
+      "v": ""
+    },
+    {
+      "k": "Risk category",
+      "v": ""
+    },
+    {
+      "k": "Wind speed and exposure",
+      "v": ""
+    },
+    {
+      "k": "Roof dead and live load",
+      "v": ""
+    },
+    {
+      "k": "Lumber grade and treatment",
+      "v": ""
+    },
+    {
+      "k": "Connectors and fasteners",
+      "v": ""
+    },
+    {
+      "k": "Anchors to existing concrete",
+      "v": ""
+    }
+  ],
+  "openItems": [
+    {
+      "title": "Long-side column spacing",
+      "text": "The scan shows bays of 4'-11\", 5'-7\", 5'-8\" and 5'-3½\". Two are over the 5'-0\" maximum discussed. Columns are drawn at the existing locations.",
+      "who": "Engineer: accept as measured, or relocate",
+      "key": "spacing",
+      "answer": ""
+    },
+    {
+      "title": "Heights",
+      "text": "8'-3\" to the underside of the rafter at the house is from the scan. With a 1:12 slope the bottom of the beam lands near 6'-8\".",
+      "who": "Field measure, then engineer",
+      "key": "heights",
+      "answer": ""
+    },
+    {
+      "title": "Column base anchorage",
+      "text": "Anchor type, size, embedment and edge distance for the ABU44Z into the existing concrete.",
+      "who": "Engineer",
+      "key": "anchor",
+      "answer": ""
+    },
+    {
+      "title": "Beam-to-column connection",
+      "text": "Connection at the top of each new column to the existing (2) 2×8 beam.",
+      "who": "Engineer",
+      "key": "beamToColumn",
+      "answer": ""
+    },
+    {
+      "title": "Existing framing layout",
+      "text": "Beams on three sides, a ledger at the house, and posts at the door jambs and wall ends are read from the scan, not confirmed.",
+      "who": "Field verify",
+      "key": "framing",
+      "answer": ""
+    },
+    {
+      "title": "Existing slab and foundation",
+      "text": "Thickness and condition under the column bases are not known.",
+      "who": "Field verify, then engineer",
+      "key": "slab",
+      "answer": ""
+    },
+    {
+      "title": "What is already built",
+      "text": "The rafters and H2.5A ties are described as reported. Confirm which items are in place and which are still to do, so the steps and inspections read correctly.",
+      "who": "Engineer",
+      "key": "built",
+      "answer": ""
+    },
+    {
+      "title": "Design criteria and general notes",
+      "text": "Code edition, wind data, material grades and the standard general notes for this sheet.",
+      "who": "Engineer",
+      "key": "criteria",
+      "answer": ""
+    }
+  ],
+  "sheets": [
+    {
+      "no": "S0.0",
+      "type": "cover",
+      "name": "Cover, scope and notes",
+      "what": "For the office and the plan reviewer: scope, notes, criteria and open items."
+    },
+    {
+      "no": "A0.1",
+      "type": "reserved",
+      "name": "Site plan",
+      "what": "Reserved. Site plan to be added."
+    },
+    {
+      "no": "S1.0",
+      "type": "field",
+      "name": "Framing plan, section and details",
+      "what": "For the field: the picture, the steps, the plan, the section and each connection."
+    }
+  ],
+  "jobType": "sunroom"
+}

@@ -1,5 +1,6 @@
 import { ThetaConfig } from '../config.js';
 import { callThetaMcpTool } from '../clients/edgecloudMcp.js';
+import { redactObject } from '../redaction.js';
 
 type GpuResource = {
   resource_id?: string;
@@ -145,6 +146,40 @@ export const billing = {
   topUps: (cfg: ThetaConfig, projectId: string, page?: number, number?: number) =>
     callThetaMcpTool(cfg, 'list_billing_top_ups', withProject(projectId, { page, number })),
 
-  pricing: (cfg: ThetaConfig, projectId: string) =>
-    callThetaMcpTool(cfg, 'get_billing_pricing', withProject(projectId))
+  // Usage labels are normalized first (they need the raw `token` value), then the whole result is
+  // name-redacted here, so any other value under `token` never leaves this module.
+  pricing: async (cfg: ThetaConfig, projectId: string) => {
+    const normalized = normalizePricing(await callThetaMcpTool(cfg, 'get_billing_pricing', withProject(projectId)));
+    return normalized && typeof normalized === 'object' ? redactObject(normalized as Record<string, unknown>) : normalized;
+  }
 };
+
+// Theta labels chatbot price rows with `token: "prompt_tokens"` etc. The secret redactor (correctly)
+// blanks any string under a key containing "token", which hid the labels. Only the exact documented
+// usage labels are moved to `usage_type`; anything else stays under `token` and is redacted by
+// billing.pricing above, in this module.
+// Prices are credits; 1 credit = USD 0.01.
+const USAGE_LABELS = new Set(['prompt_tokens', 'completion_tokens', 'embedding_tokens']);
+function creditsToUsd(value: unknown): number | undefined {
+  const n = typeof value === 'number' ? value : typeof value === 'string' && value.trim() !== '' ? Number(value) : NaN;
+  return Number.isFinite(n) ? Math.round(n * 1e4) / 1e6 : undefined;
+}
+function normalizePricing(result: unknown): unknown {
+  if (!result || typeof result !== 'object' || Array.isArray(result)) return result;
+  const out: Record<string, unknown> = { ...(result as Record<string, unknown>) };
+  if (Array.isArray(out.chatbot)) {
+    out.chatbot = out.chatbot.map((row) => {
+      if (!row || typeof row !== 'object' || Array.isArray(row)) return row;
+      const { token, ...rest } = row as Record<string, unknown>;
+      const usd = creditsToUsd(rest.price);
+      const priced = usd === undefined ? rest : { ...rest, price_usd: usd };
+      return typeof token === 'string' && USAGE_LABELS.has(token) ? { usage_type: token, ...priced } : { token, ...priced };
+    });
+  }
+  if (out.storage && typeof out.storage === 'object' && !Array.isArray(out.storage)) {
+    const usd = creditsToUsd((out.storage as Record<string, unknown>).price);
+    if (usd !== undefined) out.storage = { ...(out.storage as Record<string, unknown>), price_usd: usd };
+  }
+  out.priceUnit = 'price is in Theta credits; price_usd = credits / 100';
+  return out;
+}

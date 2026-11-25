@@ -1,7 +1,7 @@
 ---
 name: "qubrics-email-for-ai-agents"
 description: "Use when an AI agent needs to send one outbound email through Qubrics with human approval, including a status notification or delegated agent send. Trigger when preparing the exact message for approval, executing an approved send, or reconciling an uncertain retry. Use only for a single-message workflow; bulk and batch sends are outside its scope."
-version: "2.0.4"
+version: "2.0.8"
 metadata:
   openclaw:
     skillKey: "qubrics-email-for-ai-agents"

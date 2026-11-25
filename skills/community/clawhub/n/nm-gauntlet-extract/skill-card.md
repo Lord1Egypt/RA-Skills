@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to build or refresh a codebase knowledge base, enriching extracted entries and linking related information across modules. It saves the result as `.gauntlet/knowledge.json` and reports category counts and coverage gaps.
+Developers use this skill to initialize or refresh codebase knowledge for challenges. It guides AST extraction, natural-language enrichment, cross-referencing, and saving the result as a knowledge base.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Some references to a local knowledge file did not match bundled files, so review of its expected behavior is incomplete.
+Risk: The security review is incomplete because three referenced local paths could not be resolved.
 
-Mitigation: Check whether the referenced local files are expected in the target project, then review the generated knowledge base before relying on it.
+Mitigation: Check the unresolved references and review their contents before installing or running the skill.
 
 ## Reference(s):
 
-- [Gauntlet plugin homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet)
+- [Gauntlet project page](https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet)
 
 ## Skill Output:
 
-**Output Type(s):** [Files, JSON, Markdown]
+**Output Type(s):** [Files, JSON, Shell commands, Guidance]
 
-**Output Format:** [JSON knowledge base and a text summary report]
+**Output Format:** [JSON knowledge base with natural-language details and cross-references; Markdown usage instructions]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Writes `.gauntlet/knowledge.json`; the report includes category counts, coverage gaps, and difficulty distribution.]
+**Other Properties Related to Output:** [The knowledge base is saved as .gauntlet/knowledge.json and may include entries merged from annotations.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata; artifact frontmatter lists 1.10.3)
 
 ## Ethical Considerations:
 

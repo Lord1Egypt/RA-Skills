@@ -1,6 +1,6 @@
 ## Description:
 
-Queries Vedetta's Base and Solana x402 endpoints for live or cached market intelligence on crypto, equities, and macro assets.
+Provides pay-per-call market intelligence for crypto, stocks, and macro through Base USDC and Solana x402 endpoints.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers can request descriptive market research, including sentiment, price divergence, news, predictions, and macro signals. Use it for research and monitoring, not trade execution or financial advice.
+Developers and agents use Vedetta to retrieve free, cached, or paid market sentiment, narrative, divergence, odds, news, prediction, and event analysis for crypto, US stocks, and macro. The results are descriptive research and are not financial advice or trade execution.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,22 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment reports that automatic payment signing may authorize more than the documented spending limit.
+Risk: The security summary reports that the automatic payment client may sign an offer above its stated price limit; the scan was partial and some local references were unresolved.
 
-Mitigation: Use a dedicated low-balance wallet, check the live x402 offer, and abort if the requested amount exceeds the documented tier (up to $0.09 per live call).
-
-Risk: The available security scan was partial because some local references were missing, so it does not establish that every referenced item was reviewed.
-
-Mitigation: Review the referenced payment client scripts and configuration before enabling paid requests.
+Mitigation: Use a dedicated low-balance wallet, check each payment offer's network, amount, and payTo at runtime, and abort when the requested amount exceeds the expected tier.
 
 ## Reference(s):
 
-- [Vedetta service and API](https://vedetta.dethboy.com)
-- [Vedetta install guide](https://vedetta.dethboy.com/install)
-- [Base x402 manifest](https://vedetta.dethboy.com/.well-known/x402.json)
-- [Solana x402 manifest](https://vedetta.dethboy.com/.well-known/x402-sol.json)
-- [ClawHub release page](https://clawhub.ai/lacryptorina/skills/vedetta-skill)
+- [Vedetta service](https://vedetta.dethboy.com)
+- [Vedetta install instructions](https://vedetta.dethboy.com/install)
+- [8004 specification](https://8004.qnt.sh)
+- [Vedetta 8004 metadata](https://vedetta.dethboy.com/.well-known/8004-vedetta.json)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Analysis, Guidance]
+**Output Type(s):** [Analysis, JSON, API Calls]
 
-**Output Format:** [Structured market data with concise research summaries]
+**Output Format:** [Structured market data with concise descriptive analysis]
 
 **Output Parameters:** [1D]
 
@@ -50,7 +45,7 @@ Mitigation: Review the referenced payment client scripts and configuration befor
 
 ## Skill Version(s):
 
-2.14.1 (source: frontmatter)
+2.14.4 (source: frontmatter)
 
 ## Ethical Considerations:
 

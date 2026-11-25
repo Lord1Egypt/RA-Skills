@@ -1,5 +1,6 @@
 ---
 name: cue-regional-policy-brief
+displayName: 区域政策商机简报
 description: 用 Cue 聚合指定区域的政策发布、招商动态及市场数据——筛选高价值合规线索与潜客名单，产出结构化周度情报简报，赋能律所 BD 团队精准获客。
 description_zh: Cue 区域政策商机简报：聚合区域政策/招商/市场数据，筛选合规线索与潜客名单，赋能律所BD获客。
 version: 1.3.4
@@ -98,6 +99,7 @@ https://cuecue.cn/share/<conv_id>
 **Cue 原始报告**：https://cuecue.cn/share/<conv_id>
 **本地副本**：~/cue-reports/<文件名>.md
 **可视化看板**：~/cue-reports/<文件名>-dashboard.html
+如有疑问请关注“感易Cue”官方服务号添加企微客服咨询
 ```
 
 规则：

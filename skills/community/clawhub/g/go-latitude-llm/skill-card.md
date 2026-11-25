@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers writing Go applications use this skill to install and call the unofficial Latitude LLM API client to inspect projects, traces, scores and issues, or perform authorized organization operations.
+Developers can use this Go client to call the Latitude LLM API to inspect projects, traces, scores and issues, or to perform authorized organization operations. It also provides typed Go request and response methods for the API.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Credentials can expose private traces and enable organization changes.
+Risk: The security scan is partial because two local references were unresolved.
 
-Mitigation: Use appropriately scoped credentials, keep credentials and trace contents out of logs, and make changes only within the user's request.
+Mitigation: Review the available skill and setup material before installing.
 
-Risk: Deletion and export actions can affect organization data or send export links by email.
+Risk: Organization operations can create or delete resources, change issues, revoke keys, manage members, or send exports by email.
 
-Mitigation: Confirm deletions and export recipients before proceeding.
+Mitigation: Use write and export operations only within the user’s request, and verify the target and export recipients before sending.
 
-Risk: The external Go dependency's implementation was not verified in the release review.
+Risk: Bearer credentials and trace or member data may be exposed if logged or sent to an untrusted API URL.
 
-Mitigation: Review and pin the dependency before use.
+Mitigation: Read credentials from the environment, avoid logging tokens, headers, trace contents, or member information, and send credentials only to the trusted API URL.
 
 ## Reference(s):
 
-- [Setup and reference](references/setup.md)
+- [Setup and API reference](artifact/references/setup.md)
+- [Module source repository](https://github.com/psyb0t/go-latitude-llm)
 - [Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-latitude-llm)
-- [Project homepage](https://github.com/psyb0t/go-latitude-llm)
-- [Latitude API endpoint](https://api.latitude.so)
-- [ClawHub release](https://clawhub.ai/psyb0t/skills/go-latitude-llm)
+- [ClawHub skill release](https://clawhub.ai/psyb0t/skills/go-latitude-llm)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [Code, API Calls, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown with Go code and shell command blocks]
+**Output Format:** [Go code with concise Markdown guidance and shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Usage examples and instructions for authentication, requests, and responses.]
+**Other Properties Related to Output:** [Examples should check HTTP status and success response fields; the client does not provide automatic retries, pagination loops, or a default timeout.]
 
 ## Skill Version(s):
 
-0.1.5 (source: server-resolved ClawHub release metadata)
+0.1.6 (source: server-resolved ClawHub release)
 
 ## Ethical Considerations:
 

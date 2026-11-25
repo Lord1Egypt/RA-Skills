@@ -1,6 +1,6 @@
 ## Description:
 
-Classifies planting legends, parses plant schedules, and estimates paved area from landscape drawing candidates to prepare a budget and materials planning draft; it does not replace settlement.
+Counts landscape plants and estimates paved areas from CAD-reader candidates for preliminary budgeting; it does not replace settlement or formal measurement.
 
 This skill is for research and development only.
 
@@ -14,7 +14,7 @@ CC-BY-NC-SA-4.0
 
 ## Use Case:
 
-Landscape designers, estimators, and project teams can use the skill for non-commercial preliminary plant quantities and paving-area estimates based on landscape drawing candidates, with confidence tiers and evidence coordinates, for budgeting and material planning.
+Landscape designers, estimators, and engineering teams use this skill to turn CAD-reader landscape candidates into plant counts, paving-area estimates, review items, and draft material plans. Outputs are preliminary and require manual review before project decisions.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan reports a mismatch between the stated landscaping quantity purpose and additional code-checking functionality, along with a flaw in a contract integrity check; its verdict has medium confidence.
+Risk: The security scan flags weaknesses in how quantity results may be treated as eligible, a missing integrity check, and concerns about whether capabilities match their description.
 
-Mitigation: Before installing, decide whether the reported purpose mismatch is acceptable and review the skill's code and dependency version.
+Mitigation: Review quantity eligibility and input integrity checks before use, compare the described capabilities with the shipped behavior, and manually validate quantities before relying on them.
 
 ## Reference(s):
 
 - [ClawHub release page](https://clawhub.ai/lisong2003-lgtm/skills/yuanlin-suanliang)
-- [Usage guide](references/usage.md)
-- [Input contract and boundaries](references/base-contract.md)
-- [Plant library guide](references/plant-library.md)
+- [English README](README.en.md)
+- [Base contract reference](references/base-contract.md)
+- [Usage reference](references/usage.md)
+- [Plant library reference](references/plant-library.md)
 
 ## Skill Output:
 
-**Output Type(s):** [CSV files, Excel spreadsheet, Markdown report]
+**Output Type(s):** [CSV files, XLSX workbook, Markdown report, Review guidance]
 
-**Output Format:** [CSV, XLSX, and Markdown files]
+**Output Format:** [CSV, XLSX, and Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Preliminary quantities with confidence tiers and evidence coordinates; uncertain results are flagged for review and are not final measurements.]
+**Other Properties Related to Output:** [Includes confidence tiers (P0–P3), evidence coordinates, and review items; estimates are preliminary drafts only.]
 
 ## Skill Version(s):
 
-0.4.40 (source: server-resolved release metadata and skill frontmatter)
+0.4.41 (source: SKILL.md frontmatter, CHANGELOG.md, server release evidence)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Finds, screens, and reviews Douyin creators for collaboration using public video, creator, engagement, trend, and comment data.
+通过关键词搜索、热榜、公开作品和评论数据，帮助筛选抖音达人并比较其内容表现与受众匹配度。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Brand marketers and content teams use this skill to discover and assess public Douyin creators for potential partnerships. It helps compare content and engagement signals, audience fit, and commercial costs, then prepare a data-backed candidate shortlist.
+Marketing and content teams use this skill to discover and review potential Douyin creators, inspect public posts and engagement, and build evidence-based collaboration shortlists.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment is benign but has medium confidence and only partially inspected 18 of 42 components, leaving uncertainty about behavior in those files.
+Risk: Lead-generation workflows can collect individual commenters beyond creator screening, and submitted keywords or links are sent to the GUAIKEI service.
 
-Mitigation: Review the executable files and security assessment before relying on the skill in a sensitive environment.
-
-Risk: Queries and Douyin links are sent to the GUAIKEI third-party API, and returned data is intended for personal or team analysis rather than unauthorized redistribution.
-
-Mitigation: Avoid sending sensitive information, confirm the query and data use are authorized, and keep results within the permitted internal use scope.
+Mitigation: Use only for authorized public research, minimize collected identifiers and comments, confirm that sharing query links with the service is appropriate, and avoid unsolicited outreach.
 
 ## Reference(s):
 
+- [GUAIKEI service](https://www.guaikei.com)
 - [ClawHub skill page](https://clawhub.ai/why20261/skills/douyin-creator-screening)
-- [Publisher profile](https://clawhub.ai/user/why20261)
-- [GUAIKEI service and token access](https://www.guaikei.com)
-- [Skill usage and safety guidance](SKILL.md)
-- [Command options](references/options.md)
-- [Comment analysis guidance](references/demand-mining.md)
-- [Changelog](references/changelog.md)
+- [Customer acquisition guidance](artifact/references/customer-acquisition.md)
+- [Output contract](artifact/references/contract.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis, Markdown]
+**Output Type(s):** [JSON data, Analysis guidance]
 
-**Output Format:** [Structured JSON data with concise findings, candidate summaries, or Markdown tables and reports when requested.]
+**Output Format:** [Structured JSON, with findings summarized as Markdown when analyzed]
 
-**Output Parameters:** [Variable; searches and retrievals accept filters and result limits.]
+**Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Uses public Douyin data and requires GUAIKEI_API_TOKEN. Available result limits depend on the token plan.]
+**Other Properties Related to Output:** [Search, creator, post, comment, and trending data; result counts depend on the request and access plan.]
 
 ## Skill Version(s):
 
-1.4.2 (source: SKILL.md frontmatter, server release evidence)
+1.5.0 (source: frontmatter, package.json, server release evidence)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 {
   "name": "@openclaw/skill-sediment",
-  "version": "0.1.0",
+  "version": "1.0.2",
   "private": true,
   "description": "OpenClaw skill sedimentation plugin — agent-managed skill creation, editing, and security scanning",
   "type": "module",

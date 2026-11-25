@@ -34,6 +34,36 @@ import urllib.request
 import numpy as np
 import pandas as pd
 
+MAX_RESPONSE_BYTES = 64 << 20  # g:Profiler responses are far smaller than this
+FORMULA_PREFIXES = ('=', '+', '-', '@', '\t', '\r')
+
+
+def safe_prefix(value):
+    """Reject prefixes that would write outside --output-dir."""
+    text = str(value).strip()
+    if (not text or text in (".", "..")
+            or any(ch in text for ch in ("/", "\\", "\x00", "\n", "\r", "\t"))):
+        raise SystemExit("Error: invalid prefix %r (path separators and control "
+                         "characters are not allowed)" % value)
+    return text
+
+
+def formula_safe(df, enabled=True):
+    """Neutralise spreadsheet formula injection in exported text cells.
+
+    A gene description such as '=HYPERLINK(...)' would be executed by Excel when
+    the TSV is opened. Prefixing the cell with an apostrophe keeps the text
+    literal without changing the underlying value for downstream tools.
+    """
+    if not enabled:
+        return df
+    out = df.copy()
+    for col in out.columns:
+        if pd.api.types.is_string_dtype(out[col].dtype) or out[col].dtype == object:
+            out[col] = out[col].map(
+                lambda v: "'" + v if isinstance(v, str) and v.startswith(FORMULA_PREFIXES) else v)
+    return out
+
 
 # Common name / alias -> (taxid for MyGene.info, organism for g:Profiler)
 SPECIES_MAP = {
@@ -165,7 +195,11 @@ def run_enrichment(genes, organism):
             headers={'Content-Type': 'application/json', 'User-Agent': 'mirna-target-tools/1.0'},
         )
         with urllib.request.urlopen(req, timeout=60) as resp:
-            data = json.loads(resp.read().decode('utf-8'))
+            raw = resp.read(MAX_RESPONSE_BYTES + 1)
+        if len(raw) > MAX_RESPONSE_BYTES:
+            print('Warning: g:Profiler response is unexpectedly large; ignoring it.')
+            return None
+        data = json.loads(raw.decode('utf-8'))
     except Exception as e:
         print(f"Warning: g:Profiler query failed: {e}")
         return None
@@ -230,6 +264,8 @@ def main():
                         help='Output directory (default: annotation_results)')
     parser.add_argument('--prefix', default=None,
                         help='Output filename prefix (default: derived from input basename)')
+    parser.add_argument('--no-formula-guard', action='store_true',
+                        help='do not prefix text cells that start with = + - @ (spreadsheet safety)')
     args = parser.parse_args()
 
     if not os.path.exists(args.input):
@@ -238,7 +274,8 @@ def main():
 
     taxid, organism = resolve_species(args.species)
     os.makedirs(args.output_dir, exist_ok=True)
-    prefix = args.prefix or os.path.splitext(os.path.basename(args.input))[0]
+    prefix = safe_prefix(args.prefix or os.path.splitext(os.path.basename(args.input))[0])
+    guard = not args.no_formula_guard
 
     genes = load_gene_list(args.input, args.gene_col, args.plain_list)
     print(f"Loaded {len(genes)} unique target genes.")
@@ -246,6 +283,7 @@ def main():
     # 1) Gene annotation
     ann_df = annotate_genes(genes, taxid)
     if ann_df is not None:
+        ann_df = formula_safe(ann_df, guard)
         ann_path = os.path.join(args.output_dir, f"{prefix}_gene_annotation.tsv")
         ann_df.to_csv(ann_path, sep='\t', index=False)
         print(f"Gene annotation written to {ann_path}")
@@ -256,6 +294,7 @@ def main():
     # 2) Functional enrichment
     enrich_df = run_enrichment(genes, organism)
     if enrich_df is not None:
+        enrich_df = formula_safe(enrich_df, guard)
         full_path = os.path.join(args.output_dir, f"{prefix}_enrichment_all.tsv")
         enrich_df.to_csv(full_path, sep='\t', index=False)
         print(f"Enrichment results written to {full_path}")

@@ -1,6 +1,6 @@
 ## Description:
 
-Automatically detects electric motorcycles and e-bikes in restricted areas based on computer vision. It supports real-time detection for both video streams and images, counts the number of illegal parking or driving instances, and triggers violation alerts to assist with safety management in parks, communities, and organizations.
+Detects electric motorcycles and e-bikes in restricted areas from images and video, counts apparent parking and driving violations, and produces alerts and management suggestions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Safety teams in parks, communities, campuses, and other managed areas use the skill to analyze surveillance images or video for electric two-wheelers in restricted zones and receive counts, violation alerts, and management suggestions.
+Safety and facilities teams in parks, communities, campuses, and organizations use the skill to review images or video for electric vehicle activity in restricted areas and support follow-up. Its reports are for management reference and should be checked by a person before treating a violation as confirmed.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The supplied security assessment rates the skill suspicious due to credential and account handling, behavior beyond its stated vehicle-detection purpose, media uploads, and possible unintended analysis; scanner coverage is incomplete.
+Risk: The security scan reports remote account, credential, and media handling, including authenticated requests to caller-supplied URLs.
 
-Mitigation: Before installing, verify the account and credential handling, where credentials and video are sent, and whether history retrieval and persistent user records are necessary for your use.
+Mitigation: Review the service and request destinations before use; avoid sensitive media and install only if you need the described behavior and accept its data handling.
 
-Risk: Detection results may be inaccurate or misleading for enforcement decisions.
+Risk: The scan rates the skill suspicious because some reported behavior does not consistently match its stated detection purpose; the scan is incomplete because one reference was unresolved.
 
-Mitigation: Treat results as decision support and have a person review the footage before confirming a violation.
-
-Risk: Video and image analysis can involve personal information.
-
-Mitigation: Use media only when authorized and follow applicable privacy requirements.
+Mitigation: Review the skill and unresolved reference before execution. Treat the scan as a reason for caution, not proof of malicious intent or that the behaviors have been invoked.
 
 ## Reference(s):
 
 - [API documentation](references/api_doc.md)
 - [Skill introduction](https://lifeemergence.com/sample.html)
+- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-electric-vehicle-detection-analysis)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, JSON, Markdown, Guidance]
 
-**Output Format:** [Structured detection reports and Markdown report lists]
+**Output Format:** [JSON or Markdown report text]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports can include detected vehicle counts, violation levels, alerts, and management suggestions; report lists are formatted as Markdown tables.]
+**Other Properties Related to Output:** [Reports can include detection counts, violation levels, warnings, and management suggestions; output can optionally be saved to a file.]
 
 ## Skill Version(s):
 
-9.9.22 (source: server-resolved ClawHub release metadata; artifact frontmatter lists 1.0.26)
+9.9.23 (source: server-resolved release)
 
 ## Ethical Considerations:
 

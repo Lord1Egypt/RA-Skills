@@ -1,0 +1,17 @@
+{
+  "slug": "mglc-xiaohongshu-competitor-research",
+  "displayName": "小红书对标研究",
+  "mode": "competitor",
+  "samplePlan": {
+    "author": {
+      "userId": "000000000000000000000001"
+    },
+    "maxNotes": 200,
+    "listPages": 20,
+    "includeDetails": true,
+    "commentsPerNote": 20,
+    "commentPages": 3
+  },
+  "version": "1.0.0",
+  "channel": "clawhub"
+}

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and research or marketing teams use the skill to retrieve TikTok creator profiles, video details, account and video search results, and related content for creator research, monitoring, and analytics workflows.
+Developers, marketers, and research teams can use the skill to retrieve TikTok creator profiles, videos, collections, and search results for creator research, social listening, and content monitoring.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill's documented features include video and search access in addition to creator statistics.
+Risk: The security review noted a mismatch between the stated TikTok statistics purpose and the service-credit request and broader retrieval features.
 
-Mitigation: Review the documented endpoint scope and use the skill only when those data features fit the task.
-
-Risk: The service receives the SUPERAGNT_API_KEY used for API requests.
-
-Mitigation: Use the skill only if you trust the external service to handle the key, and keep the key in the designated environment variable.
+Mitigation: Review whether the video, collection, and search features are needed, and confirm trust in the service and its API-key handling before use.
 
 ## Reference(s):
 
 - [TikTok Data documentation](https://superagnt.com/r/ch-tiktok-data-docs)
-- [TikTok Data MCP server](https://mcp.superagnt.com/mcp/tiktok)
-- [TikTok Data on ClawHub](https://clawhub.ai/superagnt/skills/tiktok-data)
+- [superagnt API keys and credits](https://superagnt.com/r/ch-tiktok-data-key)
+- [TikTok Data scoped MCP server](https://mcp.superagnt.com/mcp/tiktok)
+- [MCP client setup](https://www.superagnt.com/install?facet=tiktok)
+- [ClawHub listing](https://clawhub.ai/superagnt/skills/tiktok-data)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, JSON, Guidance]
+**Output Type(s):** [API Calls, JSON]
 
-**Output Format:** [Structured JSON returned by TikTok data endpoints, with Markdown instructions and shell command examples]
+**Output Format:** [Structured JSON]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Live API access requires SUPERAGNT_API_KEY and available service credits.]
+**Other Properties Related to Output:** [Live TikTok profile, video, collection, and search data; access requires SUPERAGNT_API_KEY or scoped MCP OAuth.]
 
 ## Skill Version(s):
 
-2.0.14 (source: frontmatter)
+2.0.19 (source: frontmatter)
 
 ## Ethical Considerations:
 

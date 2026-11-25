@@ -32,6 +32,8 @@ compatibility: >
 
 # Nutanix AIops
 
+> **Audit availability:** Real writes require a durable audit intent. Reads and previews can continue if audit storage fails; check the warning and audit health before relying on their audit trail.
+
 > **Disclaimer**: Community-maintained open-source project, **not affiliated with, endorsed by, or sponsored by Nutanix.** Product and trademark names belong to their owners. Source at [github.com/AIops-tools/Nutanix-AIops](https://github.com/AIops-tools/Nutanix-AIops) under the MIT license.
 
 Governed Nutanix **Prism Central (v4 REST API)** operations — **51 MCP tools**, every one wrapped with the bundled `@governed_tool` harness: a local unified audit log under `~/.nutanix-aiops/`, token/runaway budget guard, undo-token recording, and descriptive risk-tier labels. The Prism Central password is stored **encrypted** (`~/.nutanix-aiops/secrets.enc`, Fernet + scrypt) — never plaintext on disk.
@@ -142,7 +144,7 @@ permitted. That is your agent's judgement, or the permission of the account you 
 (connect with a Prism Central account holding only a read-only (Viewer) role — writes then fail
 at the server). There is no read-only switch, policy file, or approval gate.
 
-- **Audit is the guarantee, and it is not bypassable.** Every operation — MCP and CLI alike — is logged to `~/.nutanix-aiops/audit.db` (relocatable via `NUTANIX_AIOPS_HOME`): params, result, status, duration, and the risk tier. The CLI writes the same row the MCP path does.
+- **Audit is the guarantee, and it is not bypassable.** Every operation — MCP and CLI alike — is logged to `~/.nutanix-aiops/audit.db` (relocatable via `NUTANIX_AIOPS_HOME`): params, outcome summary, status, duration, and the risk tier. The CLI writes the same row the MCP path does.
 - `NUTANIX_AUDIT_APPROVED_BY` / `NUTANIX_AUDIT_RATIONALE` are optional annotations recorded on the audit row (who/why); they are never required and never block.
 - **Runaway guard** — a safety backstop, not authorization: the same call looped in a tight window trips a circuit breaker. Disable with `NUTANIX_RUNAWAY_MAX=0`.
 - Every mutation auto-handles **ETag / If-Match**; every list auto-paginates.

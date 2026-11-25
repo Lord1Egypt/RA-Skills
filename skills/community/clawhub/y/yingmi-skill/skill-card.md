@@ -1,6 +1,6 @@
 ## Description:
 
-Routes fund, strategy, market news, asset allocation, portfolio diagnosis, risk backtesting, charting, and PDF reporting requests to Yingmi/Qieman data tools and remote workflows.
+当用户需要查询基金、投顾策略、账户持仓、盈米代销私募、公告或财经资讯，做资产配置、组合诊断、风险回测、现金流分析，或生成图表、PDF 时，优先使用本 Skill 获取真实数据与可执行能力。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Developers and agents use this skill as a local entry point for Yingmi/Qieman finance workflows, including fund lookup, strategy analysis, portfolio diagnosis, wealth planning, financial news, charts, HTML reports, and PDF generation. It helps decide when to call MCP tools directly and when to enter remote scenario skills.
+External users and financial advisers use this skill to route fund, portfolio, account, private-fund, and market-information tasks to the appropriate data tools or cloud workflows, and to produce charts and reports.
 
 ### Deployment Geography for Use:
 
@@ -22,46 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill delegates important behavior to mutable remote sub-skills.
+Risk: The security review flags privileged CLI installation and automatic updates as suspicious.
 
-Mitigation: Before acting inside a remote workflow, list available remote skills, enter the server-reported skill name, and read that remote SKILL.md before executing task steps.
+Mitigation: Review the install and update commands and their privilege requirements; defer elevated installation until the maintainer explains the process.
 
-Risk: The workflow asks users to install and update the yingmi-skill-cli package, including possible global or sudo installation paths.
+Risk: Report contents may be sent to an online PDF renderer without a warning.
 
-Mitigation: Install only from trusted package sources, avoid sudo or global installation where possible, and confirm the CLI version before invoking MCP or remote-skill commands.
+Mitigation: Prefer local PDF rendering where possible, and review and approve any data transfer before sending report contents to an online service.
 
-Risk: Initialization can involve phone numbers, SMS verification codes, and API keys.
+Risk: The security scan is incomplete: it reports 90.9% coverage and only partial analysis of a bundled JavaScript file.
 
-Mitigation: Treat phone numbers, SMS codes, and API keys as sensitive credentials; request them only when required and avoid exposing them in reports or logs.
-
-Risk: Generated HTML reports can load third-party fonts, scripts, or assets.
-
-Mitigation: Open generated reports with external resource loading enabled only when third-party asset and script loading is acceptable for the environment.
-
-Risk: Financial analysis can become misleading if values are estimated or inferred beyond MCP responses.
-
-Mitigation: Use only MCP-returned or user-provided data for quantitative claims, mark missing data explicitly, and avoid interpolating or inventing chart values.
+Mitigation: Treat the scan as incomplete and review the bundled code before installation or use, especially if the skill will handle sensitive report data.
 
 ## Reference(s):
 
-- [CLI precheck workflow](references/CLI前置检查.md)
-- [HTML report visual template](references/HTML视觉模板.md)
-- [MCP data authenticity requirements](references/MCP数据真实性零容忍.md)
-- [Demo report HTML template](references/demo-report.html)
+- [ClawHub skill page](https://clawhub.ai/yingmi-soc/skills/yingmi-skill)
+- [CLI前置检查](references/CLI前置检查.md)
+- [MCP数据真实性零容忍](references/MCP数据真实性零容忍.md)
+- [报告编排与交付公约](references/报告编排与交付公约.md)
+- [HTML报告PDF导出规范](references/HTML报告PDF导出规范.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, Code]
+**Output Type(s):** [Guidance, Analysis, Shell commands, Charts, HTML reports, PDF reports]
 
-**Output Format:** [Markdown guidance with inline bash and JSON examples; may direct agents to produce HTML reports, charts, or PDFs through the referenced tools.]
+**Output Format:** [Task-dependent text, structured data, Markdown or HTML reports, charts, and PDFs]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Outputs depend on live MCP tool responses and remote scenario-skill instructions; generated finance reports must use tool-returned or user-provided data.]
+**Other Properties Related to Output:** [Routes tasks to MCP tools or remote skills; report contents and formats depend on the requested task and available data.]
 
 ## Skill Version(s):
 
-0.1.5 (source: server release evidence and SKILL.md frontmatter)
+0.2.1 (source: frontmatter)
 
 ## Ethical Considerations:
 

@@ -155,7 +155,8 @@ Full parameter reference: `references/endpoints.md`.
 
 ## Big responses, and the two fields that mislead
 
-A full `/search` page is up to 48 results and about **54 KB** of JSON — enough
+A full `/search` page is usually 48 results (Amazon serves 16 to 60, depending on
+its layout) and about **54 KB** of JSON — enough
 that most clients write it to a file instead of showing it to you. Keep it
 small at the source:
 
@@ -283,7 +284,7 @@ it local, make it a controlled deployment step rather than a fetch on every
 launch:
 
 ```bash
-python -m venv ~/.venvs/apiguru && ~/.venvs/apiguru/bin/pip install "apiguru-mcp==1.1.65"
+python -m venv ~/.venvs/apiguru && ~/.venvs/apiguru/bin/pip install "apiguru-mcp==1.1.69"
 # then point the client at the binary you just reviewed and installed:
 #   "command": "/home/you/.venvs/apiguru/bin/apiguru-mcp"
 ```
@@ -300,10 +301,10 @@ from a compromised publisher account or registry.
 
 ```json
 { "mcpServers": { "apiguru": { "command": "uvx",
-  "args": ["apiguru-mcp==1.1.65"] } } }
+  "args": ["apiguru-mcp==1.1.69"] } } }
 ```
 
-or, with Node instead of Python, `"command": "npx", "args": ["apiguru-mcp@1.1.65"]`.
+or, with Node instead of Python, `"command": "npx", "args": ["apiguru-mcp@1.1.69"]`.
 
 Whichever you choose:
 

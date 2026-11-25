@@ -1,6 +1,6 @@
 ## Description:
 
-iHatePosting helps schedule and manage social media and chat posts across 15 platforms, upload media, and review analytics from the command line.
+iHatePosting schedules social media and chat posts across 15 channels and lets agents discover channel rules, upload media, create or manage posts, and review analytics from the command line.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and social media teams use the skill to discover connected channels, follow channel rules, prepare and schedule posts, manage post status, and review analytics from a command line.
+Agents and social media operators use the CLI to discover connected channels and their rules, upload media, create or manage scheduled posts, and review analytics across supported platforms.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: A mistaken schedule or deletion can affect social content on connected channels.
+Risk: The security evidence notes that the scanner found a possible post deletion capability; confidence is medium and the scan was partial because some local references could not be resolved.
 
-Mitigation: Review the selected channels, post settings, and status; use drafts while checking content and confirm the target before deleting.
-
-Risk: The skill uses API key or saved sign-in credentials to access connected accounts.
-
-Mitigation: Keep keys and saved credentials private, store them securely, and verify authentication before using other commands.
-
-Risk: The security scan was partial because local references were missing, leaving some evidence incomplete.
-
-Mitigation: Review the current CLI and linked reference documentation before installation and use.
+Mitigation: Review unresolved references and confirm the target and scope before deletion. The skill documentation says post deletion removes the full thread.
 
 ## Reference(s):
 
-- [iHatePosting agent guide](https://ihateposting.com/ai-agents)
-- [iHatePosting Agent CLI package](https://www.npmjs.com/package/ihateposting-agent)
-- [iHatePosting Agent repository](https://github.com/iHatePostingOrg/iHatePosting-Agent)
-- [Provider settings guide](https://github.com/iHatePostingOrg/iHatePosting-Agent/blob/main/PROVIDER_SETTINGS.md)
+- [iHatePosting ClawHub release](https://clawhub.ai/mayankkasavala/skills/ihateposting)
+- [iHatePosting agent documentation](https://ihateposting.com/ai-agents)
+- [iHatePosting npm package](https://www.npmjs.com/package/ihateposting)
+- [iHatePosting Agent repository reference](https://github.com/iHatePostingOrg/iHatePosting-Agent)
 
 ## Skill Output:
 
-**Output Type(s):** [Shell commands, Configuration, Guidance]
+**Output Type(s):** [Shell commands, Configuration instructions, JSON, Guidance]
 
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+**Output Format:** [Markdown with inline shell commands and JSON examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Commands and settings vary by connected platform; review channel rules and required settings before scheduling.]
+**Other Properties Related to Output:** [Commands and settings vary by connected platform; responses may include post status, media references, and analytics.]
 
 ## Skill Version(s):
 
-1.0.1 (source: server-resolved release metadata)
+1.0.3 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

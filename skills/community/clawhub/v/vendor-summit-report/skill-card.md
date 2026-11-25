@@ -1,6 +1,6 @@
 ## Description:
 
-Creates an executive-oriented report on a major data or AI vendor conference in aligned HTML, Markdown, and WeCom formats.
+Builds executive-oriented deep-dive reports for major data and AI vendor conferences.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Industry analysts and executives use the skill to turn a vendor conference into a structured, evidence-based deep-dive report with observations, product coverage, competitive analysis, and buyer guidance.
+Executives, analysts, and strategy teams can use this skill to turn research on a major data or AI vendor conference into an evidence-based industry report with buyer recommendations.
 
 ### Deployment Geography for Use:
 
@@ -22,9 +22,9 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Optional GitHub Pages publishing can expose report content publicly.
+Risk: The security review rated the skill benign with medium confidence, but scanned only 50% of components; obfuscated text and some static checks were not fully evaluated.
 
-Mitigation: Before publishing, check the report for private or unpublished information and confirm that public access is intended.
+Mitigation: Review the complete skill and its templates, and scan all components before relying on it.
 
 ## Reference(s):
 
@@ -32,17 +32,17 @@ Mitigation: Before publishing, check the report for private or unpublished infor
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, HTML, Markdown, Text]
+**Output Type(s):** [HTML, Markdown, Text]
 
-**Output Format:** [Aligned HTML report, full Markdown report, and concise WeCom message]
+**Output Format:** [Light-theme HTML, full Markdown report, and concise WeCom-ready text]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Uses a fixed eight-section structure; analysis is derived from the selected conference.]
+**Other Properties Related to Output:** [Three aligned versions follow a consistent eight-section structure; conference-specific analysis is derived from the current event.]
 
 ## Skill Version(s):
 
-1.0.4 (source: frontmatter, server release metadata)
+1.0.5 (source: frontmatter)
 
 ## Ethical Considerations:
 

@@ -69,7 +69,6 @@
   </style>
 </head>
 <body class="p-4 md:p-8 max-w-6xl mx-auto">
-  <!-- Header -->
   <div class="flex flex-wrap items-center justify-between mb-8 pb-4 border-b border-gray-800 gap-4">
     <div>
       <h1 class="text-2xl md:text-3xl font-extrabold text-white flex items-center gap-3">
@@ -90,7 +89,6 @@
 
   <div class="space-y-6">
 
-    <!-- 1. Google Antigravity -->
     <div class="card p-6 shadow-md">
       <div class="flex items-center justify-between mb-4">
         <div>
@@ -102,11 +100,9 @@
         <span class="text-xs px-2.5 py-1 bg-emerald-950 text-emerald-400 border border-emerald-800 rounded-full font-medium" id="ag-badge">3 аккаунта активны</span>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="antigravity-grid">
-        <!-- Аккаунты -->
       </div>
     </div>
 
-    <!-- 2. xAI Grok (Единый недельный пул) -->
     <div class="card p-6 shadow-md">
       <div class="flex items-center justify-between mb-4">
         <div>
@@ -118,11 +114,9 @@
         <span class="text-xs px-2.5 py-1 bg-amber-950 text-amber-400 border border-amber-800 rounded-full font-medium">Синхронизировано с xAI</span>
       </div>
       <div id="grok-container" class="bg-gray-900/80 p-5 rounded-xl border border-gray-800/80">
-        <!-- Grok прогресс-бар -->
       </div>
     </div>
 
-    <!-- 3. OpenCode-Go (Zen Routing + Топ-3 модели) -->
     <div class="card p-6 shadow-md">
       <div class="flex flex-wrap items-center justify-between mb-4 gap-2">
         <div>
@@ -134,18 +128,14 @@
         <span class="text-xs px-2.5 py-1 bg-indigo-950 text-indigo-400 border border-indigo-800 rounded-full font-medium">Квоты роутера</span>
       </div>
       
-      <!-- Шкалы лимитов плана -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5" id="opencode-grid">
-        <!-- OpenCode лимиты -->
       </div>
 
-      <!-- Статистика Топ-3 моделей OpenCode -->
       <div class="pt-4 border-t border-gray-800/80">
         <div class="flex flex-wrap items-center justify-between mb-3 gap-2">
           <div class="text-xs font-bold text-gray-300 uppercase tracking-wider flex items-center gap-1.5">
             <span>📊 Топ-3 используемых моделей OpenCode-Go</span>
           </div>
-          <!-- Табы: День / Неделя / Месяц -->
           <div class="flex items-center bg-gray-900 p-0.5 rounded-lg border border-gray-800 text-xs">
             <button onclick="setOpenCodeTab('day')" id="og-tab-day" class="tab-btn px-2.5 py-1 rounded-md text-gray-400 hover:text-white">День</button>
             <button onclick="setOpenCodeTab('week')" id="og-tab-week" class="tab-btn active px-2.5 py-1 rounded-md">Неделя</button>
@@ -153,15 +143,12 @@
           </div>
         </div>
         <div id="opencode-top-models" class="space-y-2">
-          <!-- Топ-3 модели OpenCode -->
         </div>
       </div>
     </div>
 
-    <!-- 4. Балансы в $ (OpenRouter + Perplexity) -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       
-      <!-- OpenRouter (+ Топ-3 модели) -->
       <div class="card p-6 shadow-md flex flex-col justify-between">
         <div>
           <div class="flex items-center justify-between mb-3">
@@ -172,16 +159,13 @@
           </div>
           <p class="text-xs text-gray-400 mb-4">Эмбеддинги памяти Qwen3-8B и фоллбэк модели</p>
           <div id="openrouter-box" class="space-y-3 mb-5">
-            <!-- OpenRouter баланс -->
           </div>
 
-          <!-- Статистика Топ-3 моделей OpenRouter -->
           <div class="pt-4 border-t border-gray-800/80">
             <div class="flex flex-wrap items-center justify-between mb-3 gap-2">
               <div class="text-xs font-bold text-gray-300 uppercase tracking-wider">
                 <span>📊 Топ моделей OpenRouter</span>
               </div>
-              <!-- Табы: День / Неделя / Месяц -->
               <div class="flex items-center bg-gray-900 p-0.5 rounded-lg border border-gray-800 text-xs">
                 <button onclick="setOpenRouterTab('day')" id="or-tab-day" class="tab-btn px-2 py-0.5 rounded-md text-gray-400 hover:text-white">День</button>
                 <button onclick="setOpenRouterTab('week')" id="or-tab-week" class="tab-btn active px-2 py-0.5 rounded-md">Неделя</button>
@@ -189,13 +173,11 @@
               </div>
             </div>
             <div id="openrouter-top-models" class="space-y-2">
-              <!-- Топ-3 модели OpenRouter -->
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Perplexity Search -->
       <div class="card p-6 shadow-md flex flex-col justify-between">
         <div>
           <div class="flex items-center justify-between mb-3">
@@ -206,13 +188,11 @@
           </div>
           <p class="text-xs text-gray-400 mb-4">Инструмент веб-поиска (Sonar) в реальном времени</p>
           <div id="perplexity-box" class="space-y-3">
-            <!-- Perplexity -->
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 5. ElevenLabs TTS -->
     <div class="card p-6 shadow-md">
       <div class="flex items-center justify-between mb-4">
         <div>
@@ -224,7 +204,6 @@
         <span class="text-xs px-2.5 py-1 bg-cyan-950 text-cyan-400 border border-cyan-800 rounded-full font-medium" id="eleven-summary">...</span>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="eleven-grid">
-        <!-- Ключи -->
       </div>
     </div>
 
@@ -513,7 +492,6 @@
     setInterval(loadCachedData, 30000);
   </script>
 
-  <!-- PWA Install Modal -->
   <div id="pwa-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-gray-900 border border-gray-700 rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
       <button onclick="closePwaModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">&times;</button>

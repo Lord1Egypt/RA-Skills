@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Agents and developers use this skill to make verbose responses more concise while retaining useful information. It is intended for routine answers where brevity helps; the skill advises keeping detail for educational explanations and step-by-step setup instructions.
+Agent users apply the skill to make routine responses more concise while preserving useful context, technical precision, safety warnings, and uncertainty markers. It is intended for verbose responses where detail is not needed.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Compression can make an uncertain explanation sound definite and overstate confidence.
+Risk: Removing hedging indiscriminately can make an uncertain answer sound more certain than its evidence supports.
 
-Mitigation: Keep uncertainty and confidence markers from the original response when shortening it; review compressed wording for changes in certainty.
+Mitigation: Retain factual uncertainty markers when evidence is incomplete, and apply the compression advice only where it fits the response.
 
 ## Reference(s):
 
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
 - [ClawHub release page](https://clawhub.ai/athola/skills/nm-conserve-response-compression)
+- [Project homepage (Clawdis metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Guidance]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Concise natural-language responses]
+**Output Format:** [Concise natural-language text, optionally structured as Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Removes filler and framing while preserving clarity and necessary context.]
+**Other Properties Related to Output:** [Targets 200-400 fewer tokens per response while maintaining clarity.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

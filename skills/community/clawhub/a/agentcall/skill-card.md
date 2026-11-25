@@ -1,6 +1,6 @@
 ## Description:
 
-AgentCall gives AI agents US and Canadian VoIP phone numbers for SMS, application testing, AI voice calls, scheduling, and caller memory.
+Give your agent real phone numbers for SMS, OTP verification, and voice calls via the AgentCall API.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use AgentCall in AI systems that need programmable US and Canadian phone numbers for SMS, voice calls, receptionist workflows, and caller context. The skill provides API guidance and actions for configuring numbers, messaging, scheduling, webhooks, and call memory.
+AI agents and developers use this skill to manage phone numbers, SMS, OTP retrieval for apps they control, and inbound or outbound voice workflows through AgentCall. It also guides setup and billing choices for AI phone agents.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,28 @@ United States and Canada
 
 ## Known Risks and Mitigations:
 
-Risk: Reporting unexpected charges may lead to incoming AI calls being disabled, disconnecting callers.
+Risk: The security review flagged an instruction that could disable inbound AI during a billing or unexpected-call inquiry; the scan was partial.
 
-Mitigation: Before disabling inbound calls, obtain approval for the specific number and explain that callers will be disconnected.
-
-Risk: Provisioning numbers, messaging, calls, and scheduled outreach can incur charges or contact real people.
-
-Mitigation: Confirm the number, recipient, message or call details, schedule, and expected charges with the user before acting.
-
-Risk: Call memory and optional caller information, recordings, and provider-key sharing can affect privacy and data handling.
-
-Mitigation: Review what caller information is stored and whether a provider key will be shared; enable memory or recording only with the user's approval.
+Mitigation: Review the relevant instruction and require explicit user confirmation before changing inbound AI settings.
 
 ## Reference(s):
 
-- [AgentCall API reference](https://api.agentcall.co/llms.txt)
-- [Voice prompt guide](https://agentcall.co/docs/voice-prompts)
-- [Post-call webhook guide](https://agentcall.co/docs/post-call-webhook)
+- [AgentCall API Reference](https://api.agentcall.co/llms.txt)
+- [AgentCall CLI Guide](https://agentcall.co/docs/cli)
 
 ## Skill Output:
 
-**Output Type(s):** [API calls, Configuration, Code, Guidance]
+**Output Type(s):** [Guidance, API calls, Configuration, Shell commands, Code]
 
-**Output Format:** [Markdown guidance with HTTP and JSON examples]
+**Output Format:** [Text guidance, API request parameters, JSON configuration, and shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Some actions may incur charges, contact real people, or change persistent phone settings; follow the skill's confirmation guidance.]
 
 ## Skill Version(s):
 
-2.15.0 (source: server-resolved release metadata)
+2.15.2 (source: release evidence, claw.json)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 {
   "name": "douyin-search-keyword",
-  "version": "1.5.0",
+  "version": "1.5.2",
   "description": "抖音公开数据只读技能。关键词搜视频/图文、用户搜索、博主作品、作品详情、视频评论、实时热榜；支持需求挖掘与公域获客剧本。输出结构化 JSON。",
   "keywords": [
     "douyin",

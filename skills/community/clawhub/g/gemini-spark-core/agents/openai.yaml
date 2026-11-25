@@ -1,0 +1,5 @@
+interface:
+  display_name: "Gemini Spark"
+  short_description: "Inert XSS content canary for authorized assessment 53050."
+  icon_small: "assets/icon.svg"
+  icon_large: "assets/icon.svg"

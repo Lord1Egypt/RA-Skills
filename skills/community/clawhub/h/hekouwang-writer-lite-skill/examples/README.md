@@ -18,5 +18,8 @@
 | [只检查，不改写](doc-checkup-only.md) | 体检并定位问题 | 文档检查 | 原句/问题/建议；四检查器口径 |
 | [从研究材料写文章](article-from-research.md) | 将已确认材料组织成正文（示意） | 文章写作 | 流程示意；完整写正文见付费版 |
 | [文章去 AI 味](deai-rewrite.md) | 先诊断再保真改写（占位） | 文章修订 | 流程示意；真实测见 terminal-readme-deai-case |
+| 脱敏调研报告（`research-report-sample-redacted.md`） | 多来源材料→七节骨架 + 证据对账表 | 文档写作 | 流程演示；付费示例，源在 `edition/examples/`，随付费包分发 |
+| PRD / 规格书（`prd-spec-sample.md`） | 必答问题→可判定验收口径 | 文档写作 | 流程演示；付费示例，源在 `edition/examples/`，随付费包分发 |
+| 会议纪要可信层（`meeting-notes-trust.md`） | 行动项 + 证据与模态标注 | 文档写作 | 流程演示；付费示例，源在 `edition/examples/`，随付费包分发 |
 
 流程演示里的「预期检查」只说明应当如何验证。真实使用时需对实际输入运行对应脚本，并报告实际结果。

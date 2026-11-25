@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Art teachers and lesson creators use this skill to turn user-supplied drawing steps into a labeled page plan and one classroom demonstration still per step.
+Teachers and art educators use the skill to turn user-approved drawing steps into classroom demonstration stills, one image per named step. It keeps missing step details open for the user to supply and does not grade student work.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill requires a reusable account credential shared with other Beatra tools, with permissions beyond image creation.
+Risk: The authoritative scan rates this release suspicious because of broad permissions, persistent shared credentials, and installation telemetry beyond the stated classroom art image purpose.
 
-Mitigation: Prefer image-only authorization or an independently restricted account; revoke access in Beatra's console when finished, noting that removing one skill may leave the shared connection active.
-
-Risk: User-selected media is uploaded to Beatra, and image generation can incur charges.
-
-Mitigation: Upload only material suitable for Beatra and approve generation costs before creating images.
+Mitigation: Review the permissions and telemetry described in the security reference, and avoid installing unless the skill is needed and those shared permissions and reported telemetry are acceptable.
 
 ## Reference(s):
 
-- [Art Demo Page on ClawHub](https://clawhub.ai/beatra-ai/skills/art-demo-set)
-- [Beatra Art Demo Page](https://beatra.ai/skills/art-demo-set)
-- [Art Demo Workflow](references/workflow.md)
-- [Installation and Authentication](references/installation-and-auth.md)
-- [Updates and Security](references/updates-and-security.md)
+- [Art-demo workflow](artifact/references/workflow.md)
+- [Updates and security](artifact/references/updates-and-security.md)
+- [Installation and authentication](artifact/references/installation-and-auth.md)
+- [ClawHub release page](https://clawhub.ai/beatra-ai/skills/art-demo-set)
+- [Beatra package page](https://beatra.ai/skills/art-demo-set)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Text, Guidance]
+**Output Type(s):** [Images, Text]
 
-**Output Format:** [A labeled page plan and one generated still image per approved art demo step]
+**Output Format:** [One classroom demonstration still per named step, with a labeled text page list]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Image generation is performed only after the user approves the production details and cost.]
+**Other Properties Related to Output:** [Uses only user-supplied and approved demo points; missing facts remain open for the user to provide.]
 
 ## Skill Version(s):
 
-0.2.3 (source: server-resolved release metadata)
+0.2.6 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

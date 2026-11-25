@@ -15,10 +15,12 @@ import secrets
 import shutil
 import subprocess
 import time
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Tuple
 
 from eth_account import Account
 from eth_account.messages import encode_defunct
+
+import x402_wire
 
 USDC_ADDRESS = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
 USDC_NAME = "USD Coin"
@@ -212,6 +214,25 @@ class PaymentSigner:
     def create_x402_payment_header(self, pay_to: str, amount: int) -> str:
         payload = self.create_x402_payment_payload(pay_to=pay_to, amount=amount)
         return base64.b64encode(json.dumps(payload).encode()).decode()
+
+    def create_payment_header(self, challenge: Dict[str, Any], option: Dict[str, Any]) -> Tuple[str, str]:
+        """(header name, value) paying `option` from `challenge` (see x402_wire.read_challenge).
+
+        v2 challenge -> PAYMENT-SIGNATURE (same signed EIP-3009 payload, v2 envelope).
+        v1 challenge -> X-Payment, byte-for-byte what create_x402_payment_header sends.
+        """
+        amount = x402_wire.parse_atomic(str(option.get("maxAmountRequired", "")))
+        if amount is None or amount <= 0:
+            raise ValueError(f"Malformed payment amount: {option.get('maxAmountRequired')!r}. Nothing was signed.")
+        pay_to = option["payTo"]
+        if not x402_wire.uses_v2(challenge, option):
+            return x402_wire.HEADER_X_PAYMENT, self.create_x402_payment_header(pay_to=pay_to, amount=amount)
+        if x402_wire.network_name(option.get("network")) != "base":
+            raise ValueError(f"This signer pays USDC on Base only, not {option.get('network')!r}")
+        if not x402_wire.same_address("evm", option.get("asset"), USDC_ADDRESS):
+            raise ValueError(f"Unexpected Base asset {option.get('asset')!r}; expected USDC. Nothing was signed.")
+        inner = self.create_x402_payment_payload(pay_to=pay_to, amount=amount)["payload"]
+        return x402_wire.v2_payment_header(challenge, option, inner)
 
 
 def load_payment_signer() -> PaymentSigner:

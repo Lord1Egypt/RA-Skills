@@ -1,6 +1,6 @@
 ## Description:
 
-Writes Go code with go-deribit, an unofficial client for Deribit crypto options and futures generated from Deribit's public specs. Root package `deribit` (`github.com/psyb0t/go-deribit`) covers all 186 REST paths for instruments, market data, accounts, positions, orders, transfers and account administration. Package `deribitws` (`/ws`) covers all 43 JSON-RPC subscription channels for order books, tickers, trades and account updates. Use when Go code needs Deribit REST calls or WebSocket subscriptions, or already imports go-deribit.
+Writes Go code with go-deribit, an unofficial client for Deribit crypto options and futures generated from Deribit's public specs, covering REST endpoints and WebSocket subscription channels.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Developers use this skill to write Go integrations with Deribit's REST API and WebSocket subscription channels for market data and account operations. Private calls require an OAuth token, and account-changing actions should be made only when the user requests the specific action.
+Developers use this skill to write Go applications that call Deribit REST APIs or consume Deribit WebSocket subscriptions for market data, trading, account information, and administration.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Private REST calls use an OAuth bearer token, and the security review says its assessment is partial because some local references could not be resolved.
+Risk: Private REST calls require an OAuth token, and order, transfer, withdrawal, and account administration operations can affect a live account.
 
-Mitigation: Review the referenced material before installing; keep tokens in environment configuration such as DERIBIT_ACCESS_TOKEN, and never hardcode, commit, or log credentials.
+Mitigation: Keep credentials in environment or secret storage and never hardcode, commit, or log them. Use testnet during development and perform account-changing actions only when the user requested that exact action.
 
-Risk: The client exposes order, transfer, withdrawal, and account or API key operations that can affect an account.
+Risk: The benign security verdict has medium confidence because scanner coverage was partial.
 
-Mitigation: Use testnet during development, select production only when requested, and make account-changing calls only when the user requested that exact action.
+Mitigation: Review the skill and its dependencies before providing credentials or using it against a production account.
 
 ## Reference(s):
 
-- [Setup and reference](artifact/references/setup.md)
-- [Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-deribit)
-- [Project repository](https://github.com/psyb0t/go-deribit)
+- [Setup and API reference](references/setup.md)
+- [go-deribit project](https://github.com/psyb0t/go-deribit)
+- [go-deribit Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-deribit)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+**Output Type(s):** [Code, API Calls, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown guidance with Go examples and shell commands]
+**Output Format:** [Go code and Markdown guidance with shell commands where needed]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Go integration code and usage guidance; dependency installation commands may be included.]
+**Other Properties Related to Output:** [Tailored to the requested REST or WebSocket task; may include public or authenticated account operations.]
 
 ## Skill Version(s):
 
-0.3.0 (source: ClawHub release evidence)
+0.4.0 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

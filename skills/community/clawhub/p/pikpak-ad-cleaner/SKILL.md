@@ -1,10 +1,7 @@
 ---
 name: pikpak-ad-cleaner
-description: |
-  扫描 PikPak 资源包的广告/推广可疑文件，分 high/review/protected 报告；只读扫描，不自动删除。
-  适用于清理广告、垃圾文件、推广文件、scan folder for junk、remove promo files。
-  只有明确批准冻结清单后才打印清理命令；未核验可恢复语义前不得执行。
-  Use when scanning a PikPak share or folder for bundled ad files, promo junk, fake readme, or spam videos. Read-only grading report; cleanup commands are only printed after an explicit frozen-list approval and are never executed automatically.
+description: >-
+  Scan a PikPak folder for ad and promo junk files, sort them into high/review/protected, and print a cleanup command only after you approve the frozen list. 只读扫描，不自动删除。
 ---
 
 # PikPak 广告分级扫描

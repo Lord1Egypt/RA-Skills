@@ -5,91 +5,33 @@ const {
     CREDENTIAL_MODE_SUDOWORK_PROXY,
     detectCredentialMode,
     printShareOneScriptError,
+    parseShareOneResponse,
     requestShareOneBuffer,
     resolveDirectApiKey,
 } = require('./shareone_client');
 
 const ACTIVE_TASK_FILENAME = '.shareone_active_task';
-
-const args = process.argv.slice(2);
-let filePath = null;
-let apiKey = null;
-let filename = null;
-let password = null;
-let watermark = null;
-let shareId = null;
-let allowComments = null;
-let allowData = null;
-let slug = null;
-let remoteUrl = null;
-let forceNew = false;
-let idempotencyKey = null;
-
-function usage() {
-    console.error("Usage: node upload_page.js <file_path> [--remote-url <url>] [--api-key <key>] [--base-url <url>] [--filename <name>] [--password <pwd>] [--watermark <wm>] [--share-id <id>] [--slug <slug>] [--allow-comments <true|false>] [--allow-data <true|false>] [--force-new] [--idempotency-key <key>]");
-}
-
-function nextValue(index, flag) {
-    const value = args[index + 1];
-    if (value === undefined || value.startsWith('--')) {
-        emitError(`ERROR:MISSING_VALUE:${flag}`);
-    }
-    return value;
-}
-
-function parseBoolean(value, flag) {
-    if (value === 'true') return true;
-    if (value === 'false') return false;
-    emitError(`ERROR:INVALID_BOOLEAN:${flag}`, [`${flag} must be true or false.`].join('\n'));
-}
-
-for (let i = 0; i < args.length; i++) {
-    if (args[i] === '--api-key') {
-        apiKey = nextValue(i, args[i]);
-        i += 1;
-    } else if (args[i] === '--base-url') {
-        process.env.SHAREONE_BASE_URL = nextValue(i, args[i]);
-        i += 1;
-    } else if (args[i] === '--filename') {
-        filename = nextValue(i, args[i]);
-        i += 1;
-    } else if (args[i] === '--password') {
-        password = nextValue(i, args[i]);
-        i += 1;
-    } else if (args[i] === '--watermark') {
-        watermark = nextValue(i, args[i]);
-        i += 1;
-    } else if (args[i] === '--share-id') {
-        shareId = nextValue(i, args[i]);
-        i += 1;
-    } else if (args[i] === '--slug') {
-        slug = nextValue(i, args[i]);
-        i += 1;
-    } else if (args[i] === '--allow-comments') {
-        allowComments = parseBoolean(nextValue(i, args[i]), args[i]);
-        i += 1;
-    } else if (args[i] === '--allow-data') {
-        allowData = parseBoolean(nextValue(i, args[i]), args[i]);
-        i += 1;
-    } else if (args[i] === '--remote-url') {
-        remoteUrl = nextValue(i, args[i]);
-        i += 1;
-    } else if (args[i] === '--idempotency-key') {
-        idempotencyKey = nextValue(i, args[i]);
-        i += 1;
-    } else if (args[i] === '--force-new') {
-        forceNew = true;
-    } else if (!args[i].startsWith('--') && !filePath) {
-        filePath = args[i];
-    } else {
-        emitError(`ERROR:UNKNOWN_ARGUMENT:${args[i]}`);
-    }
-}
-
-if (!filePath && !remoteUrl) {
-    usage();
-    emitError('BAD_ARGS', 'Required arguments are missing.');
-}
+const {commandLine} = require('./cli_args');
+const {values, positional: filePath} = commandLine({
+    summary: 'publish a local text artifact or bind a remote source on a new/original share. GitLab requires a full immutable commit and operator setup for private sources.',
+    result: 'the server publication JSON (share_id/share_url/settings) or an explicit pending review record. An invalid response is an unconfirmed operation; retain the same intent key.',
+    positional: 'file_path', optional: true,
+    options: {'--remote-url': {value: 'url', description: 'Complete HTML/Markdown/text source, at most 16 MiB. Use instead of a local file; refresh_share refetches an existing binding.'},
+        '--viewer-scope': true, '--api-key': true, '--base-url': true, '--filename': true,
+        '--password': true, '--watermark': true, '--share-id': true, '--slug': true,
+        '--allow-comments': true, '--allow-data': true, '--force-new': true, '--idempotency-key': true},
+});
+const apiKey = values['api-key'];
+let filename = values.filename;
+const password = values.password ?? null, watermark = values.watermark ?? null;
+const shareId = values['share-id'];
+const allowComments = values['allow-comments'] ?? null, allowData = values['allow-data'] ?? null;
+const slug = values.slug ?? null, remoteUrl = values['remote-url'];
+const viewerScope = values['viewer-scope'] ?? null, forceNew = values['force-new'];
+const idempotencyKey = values['idempotency-key'];
+const unbind = remoteUrl === '' && Boolean(filePath) && Boolean(shareId);
+if (remoteUrl === '' && !unbind) emitError('BAD_ARGS', 'Detaching a source requires a local file and --share-id. See --help.');
+if (!unbind && Boolean(filePath) === Boolean(remoteUrl)) emitError('BAD_ARGS', 'Provide exactly one local file or --remote-url. See --help.');
 
 if (!shareId && !forceNew && fs.existsSync(ACTIVE_TASK_FILENAME)) {
     const activeShareId = fs.readFileSync(ACTIVE_TASK_FILENAME, 'utf-8').trim();
@@ -115,10 +57,9 @@ if (!shareId && !forceNew && absFilePath) {
     }
 }
 
-function recordHistory(responseText) {
+function recordHistory(parsed) {
     if (!absFilePath) return; // remote URL mode has no local file to track
     try {
-        const parsed = JSON.parse(responseText);
         if (!parsed || !parsed.share_id) return;
         const history = readHistory();
         history[absFilePath] = { share_id: parsed.share_id, share_url: parsed.share_url,
@@ -155,10 +96,12 @@ async function uploadPage() {
         payload = {
             filename: filename,
             html_content: content,
+            ...(unbind ? {remote_url: ''} : {}),
         };
     }
 
     if (password !== null) payload.password = password;
+    if (viewerScope !== null) payload.viewer_scope = viewerScope;
     if (watermark !== null) payload.watermark = watermark;
     if (slug !== null) payload.custom_slug = slug;
 
@@ -173,12 +116,12 @@ async function uploadPage() {
 
     const data = JSON.stringify(payload);
     const urlPath = shareId
-        ? `/api/v1/pages/${shareId}`
+        ? `/api/v1/pages/${encodeURIComponent(shareId)}`
         : '/api/v1/pages';
 
     const method = shareId ? 'PUT' : 'POST';
 
-    const res = await requestShareOneBuffer(urlPath, {
+    const requestOptions = {
         method: method,
         apiKey,
         headers: {
@@ -186,15 +129,20 @@ async function uploadPage() {
             'Content-Type': 'application/json',
             'Content-Length': Buffer.byteLength(data)
         }
-    }, data);
-
-    console.log(res.text);
-    recordHistory(res.text);
+    };
+    const res = await requestShareOneBuffer(urlPath, requestOptions, data);
+    const pendingStatuses = require('./api_contract.json').publication_pending_statuses;
+    const nonempty = value => typeof value === 'string' && value.trim().length > 0;
+    const result = parseShareOneResponse(res, urlPath, requestOptions, value => value && !Array.isArray(value) && (
+        nonempty(value.share_id) && nonempty(value.share_url) ||
+        res.statusCode === 202 && pendingStatuses.includes(value.status) && nonempty(value.review_id)));
+    console.log(JSON.stringify(result));
+    recordHistory(result);
 
     // cli-steering: the instant an AI turns on page storage is the right moment
     // to surface the sensitivity choice + the data-local compute pattern — not a
     // static prompt it may never read. One line on stderr (stdout stays clean JSON).
-    if (allowData === true) {
+    if (allowData === true && result.settings?.allow_data === true) {
         console.error(
             'HINT:PAGE_DATA_ENABLED:This page can store data. '
             + 'Public/shared → window.__SHAREONE__.putShared (server, cross-device); '
@@ -204,9 +152,8 @@ async function uploadPage() {
         );
     }
 
-    if (shareId && !remoteUrl) {
-        const content = fs.readFileSync(filePath, "utf-8");
-        await verifyUpdatedContent(shareId, content);
+    if (shareId && !remoteUrl && result.share_id) {
+        await verifyUpdatedContent(shareId, payload.html_content);
     }
 }
 

@@ -73,7 +73,7 @@ node code/light-cli.mjs install-hooks --auto     # 只探测，不写入；给�
 
 ## 然后？
 - **接入你的 Agent**：`node code/light-cli.mjs install-snippet --file <你的项目>/AGENTS.md --yes`（或 OpenClaw/Hermes 用 `install-hooks`）——之后每个会话都会自动触发；
-- **深入**：`docs/faq.md`（15 问）/ `docs/common-mistakes.md`（14 条反模式）/ `docs/advanced.md`（共享池/宿主接入/运维）；
+- **深入**：`docs/faq.md`（<!--gen:faq-count-->17<!--/gen:faq-count--> 问）/ `docs/common-mistakes.md`（<!--gen:antipattern-count-->14<!--/gen:antipattern-count--> 条反模式）/ `docs/advanced.md`（共享池/宿主接入/运维）；
 - **反馈**：`node code/light-cli.mjs feedback "<想说的话>"`，或到 [GitHub Discussions](https://github.com/stwhwing/pi-evox-lab/discussions)；
 - **分享你的配置**（帮助验证真实环境可用性）：[adoption-report](https://github.com/stwhwing/pi-evox-lab/issues/new?template=adoption-report.yml)。
 

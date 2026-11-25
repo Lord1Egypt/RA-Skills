@@ -14,11 +14,11 @@ import stat
 import sys
 
 
-TEXT_SUFFIXES = {'.md', '.json', '.txt', '.yaml', '.yml', '.toml', '.py'}
+TEXT_SUFFIXES = {'.md', '.json', '.txt', '.yaml', '.yml', '.toml', '.py', '.html'}
 REQUIRED_TEMPLATES = (
     'workspace_config.json', 'workspace_state.json',
     '公共资源/style.default.json', 'examples/演示时间线.json',
-    '模板/交付检查清单.md',
+    '模板/故事大纲.md', '模板/交付检查清单.md', 'examples/分镜选材示例.json',
 )
 
 
@@ -80,6 +80,14 @@ def collect_templates(skill_root: Path) -> dict[str, bytes]:
             if relative in plan:
                 raise ValueError(f'Duplicate template output: {relative}')
             plan[relative] = read_text_file(source)
+    review_files = {
+        'tools/review_board.py': skill_root / 'scripts' / 'review_board.py',
+        'assets/selection-review.html': skill_root / 'assets' / 'selection-review.html',
+    }
+    for relative, source in review_files.items():
+        if relative in plan:
+            raise ValueError(f'Duplicate template output: {relative}')
+        plan[relative] = read_text_file(source)
     return plan
 
 

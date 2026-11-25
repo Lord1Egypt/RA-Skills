@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to review existing code for duplication, inefficiency, clean-code issues, error handling, and architectural fit, then produce a prioritized, evidence-based refinement plan. It can apply selected fixes when the request explicitly asks for execution.
+Developers and engineers use this skill to review existing code for duplication, algorithmic efficiency, clean-code issues, error handling, and architectural fit, then produce a prioritized refactoring plan with supporting evidence. It can apply fixes when execution is explicitly requested.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The scanner reports that the skill may post code review findings to GitHub Discussions without clearly disclosing the side effect or visibility.
+Risk: ClawScan marks this release suspicious, citing a possible command-execution issue.
 
-Mitigation: Before use, verify the destination and its visibility settings, and confirm that publishing is opt-in and approved.
+Mitigation: Review command snippets and confirm their effects before running them.
 
-Risk: The scanner also flags source-derived content being used in executable Python.
+Risk: ClawScan cites a code-findings posting capability to GitHub Discussions that it says is not disclosed in the stated purpose.
 
-Mitigation: Review source-derived code before executing it. Treat the scan as partial because referenced local paths were missing.
+Mitigation: Review findings and the destination before posting; only enable posting when it is intended.
+
+Risk: The scan was partial because four local references could not be resolved, so their contents were not assessed.
+
+Mitigation: Resolve and inspect those references before relying on the skill.
 
 ## Reference(s):
 
 - [ClawHub release page](https://clawhub.ai/athola/skills/nm-pensive-code-refinement)
-- [Declared project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
+- [Project homepage (Clawdis metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands]
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Guidance]
 
-**Output Format:** [Markdown findings and refactoring plans, with code edits when execution is requested]
+**Output Format:** [Markdown findings and refactoring plans; code changes when execution is requested]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Findings include code locations and evidence; execution scope follows the user's request.]
+**Other Properties Related to Output:** [May include evidence references, prioritized recommendations, and applied changes.]
 
 ## Skill Version(s):
 
-1.10.3 (source: server-resolved release metadata)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -1,8 +1,9 @@
 import { spawn } from 'node:child_process';
-import { mkdir, mkdtemp, readFile, copyFile, readdir, rm, stat } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, copyFile, readdir, realpath, rm, stat } from 'node:fs/promises';
 import { existsSync, statSync } from 'node:fs';
 import { homedir } from 'node:os';
 import path from 'node:path';
+import { setTimeout as delay } from 'node:timers/promises';
 import { fileURLToPath } from 'node:url';
 import { markRunDir } from './safety.mjs';
 import { STDIO_DISCARD, STDIO_PIPE } from './stdio-modes.mjs';
@@ -10,6 +11,23 @@ import { isInvokedDirectly } from './direct.mjs';
 
 const RATIOS = ['1:1', '2:3', '3:2', '3:4', '4:3', '9:16', '16:9'];
 const BRAIN = path.join(homedir(), '.gemini', 'antigravity-cli', 'brain');
+const CONVERSATION = /^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i;
+const CHILD_CONVERSATION = /"conversationId"\s*:\s*"([0-9a-f-]{36})"/gi;
+
+export function geminiErrorKind(message) {
+  if (/\b(?:quota|rate[ _-]?limit(?:ed|ing)?|429|resource[ _-]?exhausted|(?:daily|hourly) (?:usage |image )?(?:limit|cap)|too many requests)\b|额度/i.test(message)) {
+    return 'quota_exhausted';
+  }
+  if (/\b(?:no image generated in response|image failed to generate|generate_image failed|image generation (?:failed|cancelled|canceled))\b/i.test(message)) {
+    return 'generation_failed';
+  }
+  return null;
+}
+
+function safeError(text) {
+  return String(text).replaceAll(homedir(), '~').replace(/\b[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\b/gi, '[redacted]');
+}
+
 
 function parse(argv) {
   const o = { aspect: '1:1', model: 'gemini-3.8-flash-low', timeout: 600000, refs: [] };
@@ -53,9 +71,12 @@ function runProcess(bin, args, cwd, limitMs = 60000) {
     child.on('error', e => { clearTimeout(timer); reject(e); });
     child.on('close', code => {
       clearTimeout(timer); clearTimeout(killTimer);
-      if (timedOut) reject(new Error((bin) + " timeout after " + (limitMs) + "ms"));
-      else if (code !== 0) reject(new Error((bin) + " exited " + (code) + ": " + (stderr || stdout)));
-      else resolve(stdout);
+      if (timedOut) reject(Object.assign(new Error("Antigravity command timed out."), { kind: "timeout", stdout, stderr }));
+      else if (code !== 0) {
+        const error = new Error(bin + " exited " + code + ": " + (stderr || stdout));
+        reject(Object.assign(error, { stdout, stderr }));
+      }
+      else resolve({ stdout, stderr });
     });
   });
 }
@@ -208,8 +229,65 @@ export function parseAgyReply(text) {
 async function loadTranscript(conversation) {
   const dir = path.join(BRAIN, conversation, '.system_generated', 'logs');
   const file = transcriptFile(dir);
-  if (!existsSync(file)) return [];
-  return parseTranscript(await readFile(file, 'utf8'));
+  try {
+    return parseTranscript(await readFile(file, 'utf8'));
+  } catch (error) {
+    if (error.code === 'ENOENT') return [];
+    throw error;
+  }
+}
+
+// The print response describes the main turn. Child transcripts can arrive after it.
+export async function waitForImage(result, { deadline, scan, pause = delay }) {
+  const conversations = new Set([result.conversation_id]);
+  while (true) {
+    const generated = [];
+    const messages = [result.response, result.diagnostic];
+    for (const conversation of conversations) {
+      const { steps, images } = await scan(conversation);
+      for (const step of steps) {
+        const content = String(step.content ?? '');
+        for (const [, child] of content.matchAll(CHILD_CONVERSATION)) {
+          if (CONVERSATION.test(child)) conversations.add(child);
+        }
+        if (!(step.tool_calls ?? []).length && step.role !== 'user') messages.push(content);
+      }
+      generated.push(...images);
+    }
+    if (generated.length) return generated;
+    for (const kind of ['quota_exhausted', 'generation_failed']) {
+      const reason = messages.find(message => geminiErrorKind(message) === kind);
+      if (reason) throw Object.assign(new Error(reason), { kind });
+    }
+    const remaining = deadline - Date.now();
+    if (remaining <= 0) {
+      throw Object.assign(new Error('Timed out waiting for the Antigravity image subagent.'), { kind: 'timeout' });
+    }
+    await pause(Math.min(500, remaining));
+  }
+}
+
+async function scanConversation(conversation, start) {
+  const dir = path.join(BRAIN, conversation);
+  const steps = await loadTranscript(conversation);
+  const realDir = await realpath(dir).catch(() => null);
+  const images = [];
+  for (const image of extractGenerated(steps)) {
+    if (path.dirname(image.file) !== dir) continue;
+    const actual = await realpath(image.file).catch(() => null);
+    const info = actual && await stat(actual).catch(() => null);
+    if (realDir && actual && path.dirname(actual) === realDir && info?.isFile() &&
+        info.size > 0 && info.mtimeMs >= start) {
+      images.push(image);
+    }
+  }
+  if (!images.length) {
+    for (const file of await freshImages(dir, start)) {
+      const actual = await realpath(file).catch(() => null);
+      if (actual && path.dirname(actual) === realDir) images.push({ file, call: {} });
+    }
+  }
+  return { steps, images };
 }
 
 async function main() {
@@ -221,7 +299,7 @@ async function main() {
   await markRunDir(work);
   try {
     // 解码后再散列，防止把参考图换个格式冒充新图
-    const img = async (...args) => JSON.parse(await runProcess(PY, [IMGTOOL, ...args], work));
+    const img = async (...args) => JSON.parse((await runProcess(PY, [IMGTOOL, ...args], work)).stdout);
     const fingerprint = async file => (await img('fp', file)).fp[0];
     const refs = [], refHashes = new Set();
     for (const [i, ref] of o.refs.entries()) {
@@ -238,28 +316,26 @@ async function main() {
       'If the tool fails, report the error and stop; never copy, convert or reuse any existing image.\n' +
       "<<<PROMPT\n" + (prompt) + "\nPROMPT>>>\n" +
       'Do not use any other tool yourself. When it finishes, reply with only the absolute path of the image.';
-    const reply = await runProcess(o.agy, ['-p', instruction, '--model', o.model, '--sandbox', '--disable-slash-commands', '--output-format', 'json',
-      '--print-timeout', (Math.ceil(o.timeout / 1000)) + "s", '--log-file', path.join(work, 'agy.log')], work, o.timeout + 30000);
-    const result = parseAgyReply(reply);
-    if (result.status && result.status !== 'SUCCESS') throw new Error("agy status " + (result.status) + ": " + (reply.slice(-3000)));
-    if (!result.conversation_id) throw new Error("agy status " + (result.status ?? 'unknown') + ": " + (reply.slice(-3000)));
-    const parent = result.conversation_id, brain = path.join(BRAIN, parent);
-    // 主会话记录里登记了它开的子代理；在主会话和子代理的记录里找 generate_image 调用和它保存的图
-    const steps = await loadTranscript(parent);
-    const children = [...new Set(steps.flatMap(s => [...String(s.content ?? '').matchAll(/"conversationId":\s*"([0-9a-f-]{36})"/g)].map(m => m[1])))];
-    const generated = extractGenerated(steps);
-    for (const conversation of children) {
-      if (conversation !== parent) generated.push(...extractGenerated(await loadTranscript(conversation)));
+    const deadline = start + o.timeout;
+    const remaining = Math.max(1, deadline - Date.now());
+    let output, cliError;
+    try {
+      output = await runProcess(o.agy, ['-p', instruction, '--model', o.model, '--sandbox', '--disable-slash-commands', '--output-format', 'json',
+        '--print-timeout', Math.ceil(remaining / 1000) + "s", '--log-file', path.join(work, 'agy.log')], work, remaining);
+    } catch (error) {
+      cliError = error;
+      output = error;
     }
-    // 日志被截断、解析不到媒体时，会话目录里这次新写出的图仍然算数
-    if (!generated.length) {
-      for (const file of await freshImages(brain, start)) generated.push({ file, call: {} });
+    const result = parseAgyReply(output.stdout ?? '');
+    if (!CONVERSATION.test(result.conversation_id ?? '')) {
+      const reason = [result.response, output.stderr, cliError?.message].find(text => geminiErrorKind(text) === 'quota_exhausted')
+        || result.response || cliError?.message || ("agy status " + (result.status ?? 'unknown'));
+      throw Object.assign(new Error(reason), { kind: geminiErrorKind(reason) ?? cliError?.kind });
     }
-    // 子代理出图失败（额度用完会报 429 RESOURCE_EXHAUSTED）时原因在主代理最后的回复里，放在报错最前面
-    if (!generated.length) throw new Error("generate_image produced no image: " + ((result.response ?? reply).slice(-1500)) + " (agy conversation " + (parent) + ")");
+    result.diagnostic = output.stderr;
+    const generated = await waitForImage(result, { deadline, scan: conversation => scanConversation(conversation, start) });
     const picked = generated.find(g => result.response?.includes(g.file)) ?? generated.at(-1);
     const source = picked.file;
-    if (path.dirname(source) !== brain) throw new Error("generated image outside this conversation's artifacts: " + (source));
     if ((await stat(source)).mtimeMs < start) throw new Error("stale output: " + (source) + " predates this run");
     if (refHashes.has(await fingerprint(source))) throw new Error('stale output: matches a reference image');
     const { width, height } = await img('png', source, o.out);
@@ -269,7 +345,7 @@ async function main() {
     console.log(JSON.stringify({
       status: 'ok', path: o.out, engine: 'gemini', source_path: source, width, height, aspect: picked.call.AspectRatio ?? o.aspect,
       tool_prompt: toolPrompt, prompt_verbatim: toolPrompt == null ? null : toolPrompt.trim() === prompt, attempts: generated.length,
-      conversation_id: parent, bytes: data.length, elapsed_seconds: Math.round((Date.now() - start) / 1000),
+      bytes: data.length, elapsed_seconds: Math.round((Date.now() - start) / 1000),
     }));
   } finally {
     await rm(work, { recursive: true, force: true });
@@ -293,7 +369,7 @@ async function freshImages(dir, since) {
 
 if (isInvokedDirectly(import.meta.url)) {
   main().catch(e => {
-    console.log(JSON.stringify({ status: 'error', engine: 'gemini', reason: e.message }));
+    console.log(JSON.stringify({ status: 'error', engine: 'gemini', error_kind: e.kind ?? geminiErrorKind(e.message) ?? 'generation_failed', reason: safeError(e.message) }));
     process.exitCode = 1;
   });
 }

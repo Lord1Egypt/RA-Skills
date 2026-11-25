@@ -26,7 +26,7 @@
 
 ## 3. 更新命令
 
-推荐使用专用脚本。脚本会解析完整 URL、`/s/<ref>` 路径、裸 `share_id` 或 slug；如果传入完整 URL，例如 `http://localhost:8000/s/test-page`，会自动使用该 URL 的 origin 作为 API base URL。
+推荐使用专用脚本。脚本会解析完整 URL、`/s/<ref>` 路径、裸 `share_id` 或 slug。链接只选择资源，不会改变 API 部署或凭据去向。默认服务接受三个正式 HTTPS 分享 origin；其他部署须先显式设置 `SHAREONE_BASE_URL`，或传 `--base-url`，且完整链接的 origin 必须匹配该部署。例如本地实例使用 `--base-url http://localhost:8000`。不要从任意链接自动推导凭据发送地址。
 
 ```bash
 node scripts/update_share_settings.js "<SHARE_LINK_OR_ID>" [--watermark "OPTIONAL_WATERMARK"] [--password "OPTIONAL_PASSWORD"] [--slug "OPTIONAL_SLUG"] [--allow-comments true/false] [--allow-data true/false]

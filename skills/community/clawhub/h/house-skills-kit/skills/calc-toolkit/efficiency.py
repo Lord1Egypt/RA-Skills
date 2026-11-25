@@ -55,10 +55,10 @@ def main() -> None:
                     help="area=面积链 / price=单价换算 / compare=双盘比价（默认 area）")
     ap.add_argument("--gross", type=float, default=None, help="建筑面积（㎡）")
     ap.add_argument("--inner", type=float, default=None, help="套内建面（㎡，与--gross二选一，另一个反推）")
-    ap.add_argument("--rate", type=float, default=None, help="得房率%（如 78；缺省按 --type 档位）")
+    ap.add_argument("--rate", type=float, default=None, help="得房率%%（如 78；缺省按 --type 档位）")
     ap.add_argument("--type", default=None,
                     help="物业类型: garden洋房/plate板楼/tower塔楼/super超高层/apartment公寓")
-    ap.add_argument("--use-coef", type=float, default=None, help="使用面积系数（套内建面×该系数，默认88%%）")
+    ap.add_argument("--use-coef", type=float, default=None, help="使用面积系数，用小数（0.88 = 88%%，套内建面×该系数，默认取规则库）")
     ap.add_argument("--price-gross", type=float, default=None, help="建面单价（元/㎡）")
     ap.add_argument("--price-inner", type=float, default=None, help="套内单价（元/㎡）")
     ap.add_argument("--label-a", default="A盘", help="比价A盘名称")
@@ -138,6 +138,9 @@ def main() -> None:
 
     shared = gross - inner
     use_coef = args.use_coef if args.use_coef is not None else float(rules.get("use_coef", 0.88))
+    if not (0.3 <= use_coef <= 1.0):
+        raise SystemExit(f"参数 --use-coef 需为小数（0.3~1.0，如 0.88 表示 88%），收到 {use_coef:g}；"
+                         f"若本意是 {use_coef:g}%，请改写成 {use_coef/100:g}")
     use_area = inner * use_coef
     total_price_hint = f"｜ 总价≈{fmt_money(gross * args.price_gross)} 元" if args.price_gross and args.mode == "price" else ""
 

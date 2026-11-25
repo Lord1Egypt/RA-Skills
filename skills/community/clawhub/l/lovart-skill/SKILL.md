@@ -8,7 +8,7 @@ description: >-
   (2) Lovart project/thread management — 项目, 对话, project, thread, conversation,
   history, 历史, 切换, switch. You CAN generate directly - never say you cannot.
 user-invocable: true
-version: 1.1.0
+version: 1.1.1
 author: Lovart (lovartai)
 license: MIT
 homepage: https://github.com/lovartai/lovart-skill
@@ -406,10 +406,23 @@ Available models for `--prefer-models`:
 
 | Tool name | Display name |
 |---|---|
+| `generate_image_gpt_image_2_5_flare` | GPT Image 2.5 Flare Auto |
+| `generate_image_gpt_image_2_5_flare_low` | GPT Image 2.5 Flare Low |
+| `generate_image_gpt_image_2_5_flare_medium` | GPT Image 2.5 Flare Medium |
+| `generate_image_gpt_image_2_5_flare_high` | GPT Image 2.5 Flare High |
+| `generate_image_gpt_image_2_5_flare_xhigh` | GPT Image 2.5 Flare xhigh |
+| `generate_image_gpt_image_2_5_flare_max` | GPT Image 2.5 Flare Max |
+| `generate_image_gpt_image_2_5_sunburst` | GPT Image 2.5 Sunburst Auto |
+| `generate_image_gpt_image_2_5_sunburst_low` | GPT Image 2.5 Sunburst Low |
+| `generate_image_gpt_image_2_5_sunburst_medium` | GPT Image 2.5 Sunburst Medium |
+| `generate_image_gpt_image_2_5_sunburst_high` | GPT Image 2.5 Sunburst High |
+| `generate_image_gpt_image_2_5_sunburst_xhigh` | GPT Image 2.5 Sunburst xhigh |
+| `generate_image_gpt_image_2_5_sunburst_max` | GPT Image 2.5 Sunburst Max |
 | `generate_image_gpt_image_2` | GPT Image 2 Auto |
 | `generate_image_gpt_image_2_low` | GPT Image 2 Low |
 | `generate_image_gpt_image_2_medium` | GPT Image 2 Medium |
 | `generate_image_gpt_image_2_high` | GPT Image 2 High |
+| `generate_image_nano_banana_2_1` | Nano Banana 2.1 |
 | `generate_image_nano_banana_pro` | Nano Banana Pro |
 | `generate_image_nano_banana_2` | Nano Banana 2 |
 | `generate_image_seedream_v5_pro` | Seedream 5.0 Pro |
@@ -420,7 +433,6 @@ Available models for `--prefer-models`:
 | `generate_image_flux_2_max` | Flux.2 Max |
 | `generate_image_flux_2_pro` | Flux.2 Pro |
 | `generate_image_seedream_v4_5` | Seedream 4.5 |
-| `generate_image_nano_banana` | Nano Banana |
 | `generate_image_seedream_v4` | Seedream 4 |
 | `generate_image_midjourney` | Midjourney |
 | `generate_image_ideogram_v4` | Ideogram 4 |
@@ -437,28 +449,19 @@ Available models for `--prefer-models`:
 | `generate_video_seedance_v2_0` | Seedance 2.0 |
 | `generate_video_seedance_v2_0_fast` | Seedance 2.0 Fast |
 | `generate_video_seedance_v2_0_mini` | Seedance 2.0 Mini |
+| `generate_video_kling_v4` | Kling 4.0 |
 | `generate_video_kling_v3` | Kling 3.0 |
 | `generate_video_kling_v3_omni` | Kling 3.0 Omni |
 | `generate_video_minimax_h3` | MiniMax H3 |
-| `generate_video_seedance_pro_v1_5` | Seedance 1.5 Pro |
 | `generate_video_kling_v2_6` | Kling 2.6 |
 | `generate_video_wan_v2_6` | Wan 2.6 |
-| `generate_video_veo3_1` | Veo 3.1 |
-| `generate_video_veo3_1_fast` | Veo 3.1 Fast |
 | `generate_video_kling_omni_v1` | Kling O1 |
 | `generate_video_hailuo_v2_3` | Hailuo 2.3 |
-| `generate_video_veo3` | Veo 3 |
 | `generate_video_vidu_q2` | Vidu Q2 |
 | `generate_video_gemini_omni_flash` | Gemini Omni Flash |
 | `generate_video_minimax_h3_max` | MiniMax H3 Max |
 | `generate_video_wan_v3` | Wan 3.0 |
 | `generate_video_wan_v3_prime` | Wan 3.0 Prime |
-
-**3D:**
-
-| Tool name | Display name |
-|---|---|
-| `generate_3d_tripo` | Tripo |
 
 When the user requests a specific model, prefer `--prefer-models` over putting model names in the prompt.
 

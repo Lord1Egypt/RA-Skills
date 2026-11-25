@@ -15,7 +15,6 @@ FORX *NL &ipcfg,&&line,
     IFEX $1=%&found%,
     {
         MSTR &&ip=<-1>%&line%                   // last field = IP address
-        MSTR &&ip=<2>%&ip%                       // strip leading space
         MESS IP: %&ip%
     }
 }
@@ -34,7 +33,8 @@ ADSL-wlan -start MyNetwork,mypassword           // connect and start
 
 ```wcs
 EXEC* &result=!ping -n 1 192.168.1.1
-FIND TTL=,%&result%,MESS Host reachable             // substring search (no $ = contains)
+LPOS &&p=TTL,,%&result%                            // FIND 没有子串语法
+IFEX $%&p%>0, MESS Host reachable
 ```
 
 ---
@@ -56,31 +56,42 @@ PCIP DHCP
 
 ## 65. SOCK 网络（TCP/UDP 客户端-服务器）
 
-### TCP 服务器（带 accept 循环）
+### DNS 解析（SOCK --gethostbyname）
 
 ```wcs
+SOCK --gethostbyname &&ip=example.com        // 单个 IPv4
+SOCK --gethostbyname* &&ips=example.com      // 多个地址，空格分隔
+SOCK --gethostbyname# &&ipnum=example.com    // 整数形式
+```
+
+### TCP 服务器（accept 循环）
+
+> 下面是最小骨架，需按实际错误码补全；`%&MYIP%`/`%&MYPORT%` 必须先赋值。
+
+```wcs
+SET &MYIP=0.0.0.0
+SET &MYPORT=8080
 SOCK sk                                    // server listen socket (TCP default)
 ENVI @sk.sock=&&err                        // create socket
 ENVI#$ &&v=1
 ENVI @sk.setsockopt=;;%&SO_REUSEADDR%,&&v  // SO_REUSEADDR
 ENVI @sk.bind=&&err;%&MYIP%;%&MYPORT%      // bind to IP:port
 ENVI @sk.listen=&&err;1                     // listen (backlog=1)
+ENVI @sk.fd=&&fd                            // get listen fd
 
-THREAD* CALL Server
+LOOP #1=1,
+{
+    SOCK sr
+    ENVI @sr.accept=&&err;%&fd%             // accept connection
+    IFEX $%&err%<>0, EXIT LOOP
+    ENVI @sr.getname=;1;&&remoteIP          // get remote IP
 
-_SUB Server
-    SOCK sr                                // accept socket
-    ENVI @sk.fd=&&fd                       // get listen fd
-    ENVI @sr.accept=&&err;%&fd%            // accept connection
-    ENVI @sr.getname=;1;&&remoteIP         // get remote IP
+    ENVI @sr.read=&&err;&Len;&BRMSG         // read data
+    IFEX $%&Len%>0, ENVI @sr.write=&&err;&Len;&Response
+    ENVI @sr.close=
+}
 
-    // Read loop
-    ENVI @sr.read=&&err;&Len;&BRMSG        // read data
-    IFEX $%&Len%>0, ENVI @this.SENDMSG=#1  // notify main thread
-
-    // Send response
-    ENVI @sr.write=&&err;&Len;&Response    // write data
-_END
+ENVI @sk.close=
 ```
 
 ### TCP 客户端与 UDP
@@ -121,12 +132,13 @@ ENVI @pip1.read=;;&buf                     // read
 LOCK .com**                                // initialize COM
 SOCK --unknown &&pObj                      // IUnknown pointer (auto-release)
 
-SET$# &CLSID=*16 0
-SET$# &IID=*16 0
-CODE *,%&CLSID_HEX%,*HEX,&CLSID
-CODE *,%&IID_HEX%,*HEX,&IID
+// CLSID_WbemLocator = {4590F811-1D3A-11D0-891F-00AA004B2E24}
+// IID_IWbemLocator  = {DC12A687-737F-11CF-884D-00AA004B2E24}
+SET#$$ &CLSID=4590f811 1d3a 11d0 891f 00aa004b2e24
+SET#$$ &IID=dc12a687 737f 11cf 884d 00aa004b2e24
 
-CALL $--qd --16 OLE32.DLL,CoCreateInstance,*&CLSID,#0,#1,*&IID,*&pObj
+CALL $--qd --16 --ret:&&hr OLE32.DLL,CoCreateInstance,*&CLSID,#0,#1,*&IID,*&pObj
+IFEX $%&hr%<>0, MESS CoCreateInstance failed: 0x%&hr%
 
 // Call vtable method (index 3)
 CALL $--16 --ret:&&hr #,*&pObj.%&iMethod%,arg1,arg2

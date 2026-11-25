@@ -1,49 +1,61 @@
-## Description: <br>
-Siyuan Skill gives an agent a Node.js CLI for managing SiYuan Notes notebooks, documents, content search, and block-level operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Node.js CLI for agents to manage SiYuan notebooks, documents, content search, tags, and block-level operations through the SiYuan API.
 
-## Publisher: <br>
-[dazexcl](https://clawhub.ai/user/dazexcl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dazexcl](https://clawhub.ai/user/dazexcl)
 
-## Use Case: <br>
-Developers and external users use this skill to let an agent operate a configured SiYuan Notes workspace through CLI commands. It supports notebook and document management, content retrieval and editing, block operations, search, optional vector indexing, and NLP analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access and change a broad range of SiYuan Notes content, including document and block operations. <br>
-Mitigation: Review the requested operation before execution, use a least-privilege SiYuan token, and prefer whitelist permission mode. <br>
-Risk: Vector indexing and search can process notebook content that may include sensitive notes. <br>
-Mitigation: Avoid indexing sensitive notebooks and keep Qdrant and embedding services on trusted local infrastructure. <br>
-Risk: Some documented SQL-injection and permanent-protection guarantees are not considered reliable by the security evidence. <br>
-Mitigation: Do not rely on those guarantees until fixed; treat deletion, SQL-related, and protection-sensitive operations as requiring explicit user review. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent inspect and modify a local SiYuan knowledge base, including notebook listing, document creation and updates, search, tagging, and block operations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dazexcl/siyuan-skill) <br>
-- [Installation and setup](references/config/setup.md) <br>
-- [Environment configuration](references/config/environment.md) <br>
-- [Advanced configuration and security](references/config/advanced.md) <br>
-- [Command reference](references/commands/) <br>
-- [Vector search guide](references/advanced/vector-search.md) <br>
-- [Best practices](references/advanced/best-practices.md) <br>
-- [SiYuan Notes API](https://github.com/siyuan-note/siyuan/blob/master/API_zh_CN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text guidance with inline shell commands and JSON-style CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands operate against a configured SiYuan Notes instance and may read, create, update, move, delete, search, or index notebook content depending on user intent and configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.8 (source: server release metadata) <br>
+Risk: Optional vector indexing can expose note content to configured Qdrant or embedding services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local trusted Qdrant and Ollama services where possible, and only configure remote services when their operators and data handling are trusted.
+
+Risk: Forced or removal indexing operations can erase or bypass scoped indexes without enough safeguards.
+
+Mitigation: Avoid running index --force or index --remove unless the target document or notebook scope is explicit and reviewed.
+
+Risk: A SiYuan token gives the agent access to the configured notes workspace.
+
+Mitigation: Use only a token intended for agent use and prefer whitelist mode for notebook access.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dazexcl/skills/siyuan-skill)
+- [Setup Guide](references/config/setup.md)
+- [Environment Configuration](references/config/environment.md)
+- [Vector Search Configuration](references/advanced/vector-search.md)
+- [SiYuan API](https://github.com/siyuan-note/siyuan/blob/master/API_zh_CN.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, plain text, JSON-like command responses, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include SiYuan document content, search results, block identifiers, notebook metadata, and configuration guidance.]
+
+## Skill Version(s):
+
+1.7.8 (source: server release evidence and artifact index.js)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

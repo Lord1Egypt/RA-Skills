@@ -1,7 +1,7 @@
 ---
 name: viral-outliers
 description: "Find viral outlier posts on TikTok, Instagram and YouTube, pull creator stats, transcribe and analyse videos, build competitor watchlists, and crawl profiles on demand. Prepaid credits, MCP or REST."
-version: 1.10.3
+version: 1.10.5
 author: Viral Outliers
 required_environment_variables:
   - name: VIRAL_OUTLIERS_API_KEY
@@ -120,7 +120,7 @@ npx viral-outliers search-outliers --query "home workout" --platforms tiktok --m
 - `delete_watchlist` (free; DELETE /api/v1/watchlists): Delete one of your watchlists and its memberships, freeing the allowance it used. Free.
 - `list_projects` (free; GET /api/v1/projects): All your projects (posts you saved in the web app) with their ids and post counts. Free.
 - `get_project` (free; GET /api/v1/projects/{projectId}): One project with the posts saved in it: post ids, links, stats, outlier scores and the user's notes. Free.
-- `create_project` (free; POST /api/v1/projects): Create a project to save posts into; it also shows up in the web app. Free, unlimited.
+- `create_project` (free; POST /api/v1/projects): Create a project to save posts into; it also shows up in the web app. Free.
 - `add_project_posts` (free; POST /api/v1/projects/posts): Save up to 25 posts per call into a project, by post id or public link. Free.
 - `remove_project_posts` (free; DELETE /api/v1/projects/posts): Remove saved posts from a project by post id. Free.
 - `delete_project` (free; DELETE /api/v1/projects): Delete one of your projects and its saved posts. Free.

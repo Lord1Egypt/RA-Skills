@@ -1,6 +1,6 @@
 ## Description:
 
-Install, configure, validate, or troubleshoot the TeamClaw OpenClaw plugin for virtual software-team workflows.
+Install, configure, validate, or troubleshoot the TeamClaw OpenClaw plugin for virtual software-team workflows. Use when users want TeamClaw setup help, controller or worker config snippets, on-demand process/docker/kubernetes workers, external worker registration, or safe first-run validation steps.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use this skill to install TeamClaw, choose an appropriate OpenClaw controller or worker topology, generate minimal configuration snippets, and validate a first successful run.
+Developers using OpenClaw use this skill to install and configure TeamClaw, choose a suitable worker setup, and validate a first run.
 
 ### Deployment Geography for Use:
 
@@ -22,41 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Mutable installers and latest-tag worker images can change after review.
+Risk: Installation uses an unpinned npm package and bypasses installation safety checks, creating supply-chain risk.
 
-Mitigation: Pin the TeamClaw package and worker image to reviewed versions or digests before using the skill in sensitive environments.
-
-Risk: Containerized or Kubernetes workers can receive broader workspace or infrastructure access than needed.
-
-Mitigation: Run Docker and Kubernetes workers with least privilege and grant only the workspace access required for the chosen topology.
-
-Risk: Running the installer with elevated privileges can increase the impact of a compromised or unexpected install path.
-
-Mitigation: Avoid administrator privileges for installation unless a reviewed deployment procedure explicitly requires them.
+Mitigation: Review the installer and its source before running it; use a pinned package version when available and understand the safety-check override. Take particular care with shared-main mode.
 
 ## Reference(s):
 
-- [TeamClaw ClawHub Skill Page](https://clawhub.ai/topcheer/skills/teamclaw-setup)
-- [TeamClaw Homepage](https://github.com/topcheer/teamclaw)
-- [TeamClaw Repository](https://github.com/topcheer/teamclaw)
-- [TeamClaw Installation Documentation](https://github.com/topcheer/teamclaw/blob/main/INSTALL.md)
-- [TeamClaw Changelog](https://github.com/topcheer/teamclaw/releases)
-- [TeamClaw Install Modes](references/install-modes.md)
-- [TeamClaw Validation Checklist](references/validation-checklist.md)
+- [Install modes](artifact/references/install-modes.md)
+- [Validation checklist](artifact/references/validation-checklist.md)
+- [TeamClaw repository](https://github.com/topcheer/teamclaw)
+- [TeamClaw installation documentation](https://github.com/topcheer/teamclaw/blob/main/INSTALL.md)
+- [TeamClaw releases](https://github.com/topcheer/teamclaw/releases)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+**Output Format:** [Markdown with shell commands and JSON configuration snippets]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes an install command, minimal topology-specific configuration, startup guidance, validation commands, and a smoke-test task.]
+**Other Properties Related to Output:** [Topology-specific setup and validation guidance]
 
 ## Skill Version(s):
 
-1.0.1 (source: server release evidence)
+1.0.2 (source: target release metadata)
 
 ## Ethical Considerations:
 

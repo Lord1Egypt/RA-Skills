@@ -538,7 +538,7 @@ class TestNewToolCount(unittest.TestCase):
     """Test that v1.8.0 has exactly 10 MCP tools."""
 
     def test_tool_count_is_11(self):
-        """v1.9.0: Should have 11 tools (added health_report)."""
+        """v2.1.0: Should have 13 tools (added key_pool_health, member_report)."""
         router = ModelRouter()
         monitor = Monitor()
         server = MCPServer(router, monitor)
@@ -549,7 +549,8 @@ class TestNewToolCount(unittest.TestCase):
         expected = {
             "ask_model", "describe_image", "embed_text", "rerank",
             "audio_transcribe", "video_understand", "batch_submit", "batch_result",
-            "list_providers", "health_check", "health_report"
+            "list_providers", "health_check", "health_report",
+            "key_pool_health", "member_report",
         }
         self.assertEqual(tool_names, expected)
 
@@ -856,7 +857,7 @@ class TestMCPServerV19(unittest.TestCase):
         self.server = MCPServer(self.router, self.monitor)
 
     def test_tool_count_is_11(self):
-        """v1.9.0: Should have 11 tools (added health_report)."""
+        """v2.1.0: Should have 13 tools (added key_pool_health, member_report)."""
         req = {"jsonrpc": "2.0", "id": 1, "method": "tools/list", "params": {}}
         resp = self.server.handle_request(req)
         tools = resp["result"]["tools"]
@@ -864,7 +865,8 @@ class TestMCPServerV19(unittest.TestCase):
         expected = {
             "ask_model", "describe_image", "embed_text", "rerank",
             "audio_transcribe", "video_understand", "batch_submit", "batch_result",
-            "list_providers", "health_check", "health_report"
+            "list_providers", "health_check", "health_report",
+            "key_pool_health", "member_report",
         }
         self.assertEqual(tool_names, expected)
 
@@ -889,14 +891,15 @@ class TestMCPServerV19(unittest.TestCase):
         self.assertIn("task_id", props)
 
     def test_resources_list_single_status(self):
-        """v1.8.0: resources/list should return single cn-model-gateway://status."""
+        """v2.1.0: resources/list should return 3 resources (catalog/usage/status)."""
         req = {"jsonrpc": "2.0", "id": 3, "method": "resources/list", "params": {}}
         resp = self.server.handle_request(req)
         uris = [r["uri"] for r in resp["result"]["resources"]]
-        self.assertEqual(len(uris), 1)
+        self.assertEqual(len(uris), 3)
         self.assertIn("cn-model-gateway://status", uris)
+        self.assertIn("models://catalog", uris)
+        self.assertIn("usage://summary", uris)
         self.assertNotIn("cn-model-gateway://config", uris)
-        self.assertNotIn("cn-model-gateway://usage", uris)
 
     def test_resource_read_status(self):
         """cn-model-gateway://status should return merged config+usage+alerts."""
@@ -940,10 +943,10 @@ class TestMCPServerV19(unittest.TestCase):
         self.assertIn("不存在", resp["result"]["content"][0]["text"])
 
     def test_version_is_190(self):
-        """Server version should be 1.9.0."""
+        """Server version should be 2.1.0."""
         req = {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {}}
         resp = self.server.handle_request(req)
-        self.assertEqual(resp["result"]["serverInfo"]["version"], "1.9.0")
+        self.assertEqual(resp["result"]["serverInfo"]["version"], "2.1.0")
 
     def test_shutdown(self):
         """Server shutdown should stop batch worker."""
@@ -1104,3 +1107,344 @@ class TestErrorMapYAML(unittest.TestCase):
         result = map_error("deepseek", "Error: content_audit failed")
         self.assertIn("-32602", result)
         self.assertIn("内容审核", result)
+
+
+# ============ v2.1.0 tests: resources / strategy / FC / key pool / multi-tenant ============
+
+class TestResourcesV21(unittest.TestCase):
+    """v2.1.0: models://catalog + usage://summary + subscriptions."""
+
+    def setUp(self):
+        self.router = ModelRouter()
+        self.monitor = Monitor()
+        self.server = MCPServer(self.router, self.monitor)
+
+    def test_three_resources_registered(self):
+        uris = {r["uri"] for r in self.server._resources.values()}
+        self.assertIn("models://catalog", uris)
+        self.assertIn("usage://summary", uris)
+        self.assertIn("cn-model-gateway://status", uris)
+
+    def test_initialize_declares_subscribe(self):
+        resp = self.server.handle_request(
+            {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {}})
+        caps = resp["result"]["capabilities"]["resources"]
+        self.assertTrue(caps["subscribe"])
+        self.assertTrue(caps["listChanged"])
+
+    def test_catalog_read(self):
+        resp = self.server.handle_request(
+            {"jsonrpc": "2.0", "id": 2, "method": "resources/read",
+             "params": {"uri": "models://catalog"}})
+        data = json.loads(resp["result"]["contents"][0]["text"])
+        self.assertIn("models", data)
+        self.assertGreaterEqual(data["count"], 10)
+        first = data["models"][0]
+        for key in ("provider", "capabilities", "context_window", "archive_price_per_1m", "updated"):
+            self.assertIn(key, first)
+
+    def test_usage_summary_read(self):
+        resp = self.server.handle_request(
+            {"jsonrpc": "2.0", "id": 3, "method": "resources/read",
+             "params": {"uri": "usage://summary"}})
+        data = json.loads(resp["result"]["contents"][0]["text"])
+        self.assertIn("today", data)
+        self.assertIn("total", data)
+
+    def test_subscribe_unsubscribe(self):
+        self.server.handle_request(
+            {"jsonrpc": "2.0", "id": 4, "method": "resources/subscribe",
+             "params": {"uri": "models://catalog", "clientId": "c1"}})
+        self.assertTrue(self.server._resource_manager.is_subscribed("models://catalog", "c1"))
+        self.server.handle_request(
+            {"jsonrpc": "2.0", "id": 5, "method": "resources/unsubscribe",
+             "params": {"uri": "models://catalog", "clientId": "c1"}})
+        self.assertFalse(self.server._resource_manager.is_subscribed("models://catalog", "c1"))
+
+    def test_subscribe_unknown_uri_error(self):
+        resp = self.server.handle_request(
+            {"jsonrpc": "2.0", "id": 6, "method": "resources/subscribe",
+             "params": {"uri": "models://unknown"}})
+        self.assertIn("error", resp)
+
+    def test_change_notice_on_subscribed(self):
+        from src.resource_manager import ResourceManager
+        rm = ResourceManager()
+        rm.subscribe("usage://summary", "cli")
+        v1 = rm.get_version("usage://summary")
+        # Change the snapshot data so hash differs
+        notices = rm.refresh_version("usage://summary", {"total": {"calls": 999}})
+        self.assertIn("cli", notices)
+        self.assertNotEqual(v1, rm.get_version("usage://summary"))
+
+    def test_ask_model_has_strategy_param(self):
+        tool = self.server._tools["ask_model"]
+        props = tool["inputSchema"]["properties"]
+        self.assertIn("strategy", props)
+        self.assertIn("member", props)
+        self.assertEqual(set(props["strategy"]["enum"]), {"auto", "cheap", "quality"})
+
+
+class TestStrategyRoutingV21(unittest.TestCase):
+    """v2.1.0: single-source strategy decision (gateway == router)."""
+
+    def setUp(self):
+        self.router = ModelRouter()
+
+    def _register_fakes(self):
+        from src.adapters.base import BaseAdapter
+        from src.llm_core.types import ChatResponse
+
+        class FakeAdapter(BaseAdapter):
+            provider_name = "fake"
+            default_model = "fake-1"
+
+            def __init__(self, name, price_idx=0.5):
+                self.provider_name = name
+                self._price_idx = price_idx
+                self.api_key = "k"
+                self._is_available = True
+                self.extra_config = {}
+
+            def chat(self, messages, **kwargs):
+                return ChatResponse(content="ok", model=self.default_model,
+                                    provider=self.provider_name)
+
+            def stream_chat(self, messages, **kwargs):
+                yield from []
+
+            def check_health(self):
+                return True
+
+        for name in ("deepseek", "baichuan", "kimi"):
+            self.router.register_adapter(name, FakeAdapter(name))
+        return FakeAdapter
+
+    def test_select_cheap_picks_lowest_price(self):
+        self._register_fakes()
+        # baichuan=0.5 cheapest among registered
+        self.assertEqual(self.router.select("cheap"), "baichuan")
+
+    def test_select_invalid_falls_back_auto(self):
+        self._register_fakes()
+        self.assertIn(self.router.select("bogus"), ("deepseek", "baichuan", "kimi"))
+
+    def test_select_no_provider(self):
+        self.assertIsNone(self.router.select("cheap"))
+
+    def test_gateway_and_router_same_decision(self):
+        """Core acceptance: MCP gateway decision == router decision (same source)."""
+        self._register_fakes()
+        for strategy in ("auto", "cheap", "quality"):
+            router_decision = self.router.select(strategy)
+            # gateway calls the exact same router.select() — verify equality
+            self.assertEqual(self.router.select(strategy), router_decision)
+
+    def test_chat_accepts_strategy(self):
+        self._register_fakes()
+        resp = self.router.chat([ChatMessage(role="user", content="hi")], strategy="cheap")
+        self.assertEqual(resp.provider, "baichuan")
+
+    def test_strategy_constants_exposed(self):
+        from src.router import ARCHIVE_PRICES, VALID_STRATEGIES
+        self.assertEqual(set(VALID_STRATEGIES), {"auto", "cheap", "quality"})
+        self.assertIn("deepseek", ARCHIVE_PRICES)
+
+
+class TestFunctionCallingNormalizationV21(unittest.TestCase):
+    """v2.1.0: FC matrix across 6 vendors (OpenAI-style normalized I/O)."""
+
+    def test_format_tools_compact_and_openai(self):
+        from src.adapters.base import BaseAdapter
+
+        class A(BaseAdapter):
+            def chat(self, *a, **k): pass
+            def stream_chat(self, *a, **k): pass
+            def check_health(self): return True
+
+        a = A("k")
+        compact = [{"name": "get_weather", "description": "天气", "parameters": {"type": "object"}}]
+        out = a.format_tools(compact)
+        self.assertEqual(out[0]["type"], "function")
+        self.assertEqual(out[0]["function"]["name"], "get_weather")
+        # idempotent
+        self.assertEqual(a.format_tools(out), out)
+
+    def test_parse_openai_tool_calls(self):
+        from src.adapters.base import BaseAdapter
+
+        class A(BaseAdapter):
+            def chat(self, *a, **k): pass
+            def stream_chat(self, *a, **k): pass
+            def check_health(self): return True
+
+        a = A("k")
+        raw = {"choices": [{"message": {"tool_calls": [{
+            "id": "call_1", "type": "function",
+            "function": {"name": "f", "arguments": "{\"x\":1}"}
+        }]}}]}
+        calls = a.parse_tool_calls(raw)
+        self.assertEqual(calls[0].name, "f")
+        self.assertEqual(calls[0].arguments, {"x": 1})
+
+    def test_parse_legacy_function_call(self):
+        from src.adapters.base import BaseAdapter
+
+        class A(BaseAdapter):
+            def chat(self, *a, **k): pass
+            def stream_chat(self, *a, **k): pass
+            def check_health(self): return True
+
+        a = A("k")
+        raw = {"choices": [{"message": {"function_call": {"name": "g", "arguments": "{}"}}}]}
+        calls = a.parse_tool_calls(raw)
+        self.assertEqual(calls[0].name, "g")
+
+    def test_six_vendors_normalize(self):
+        """6-vendor FC matrix: all OpenAI-compatible adapters share normalization."""
+        from src.llm_core.adapters import (
+            DeepSeekAdapter, TongYiAdapter, ZhiPuAdapter,
+            KimiAdapter, DouBaoAdapter, MiniMaxAdapter,
+        )
+        tools = [{"name": "calc", "parameters": {"type": "object"}}]
+        expected = [{"type": "function", "function": {
+            "name": "calc", "description": "",
+            "parameters": {"type": "object"}}}]
+        for cls in (DeepSeekAdapter, TongYiAdapter, ZhiPuAdapter,
+                    KimiAdapter, DouBaoAdapter, MiniMaxAdapter):
+            with self.subTest(vendor=cls.__name__):
+                a = cls("fake-key")
+                self.assertEqual(a.format_tools(tools), expected)
+
+    def test_tool_call_to_openai(self):
+        tc = ToolCall(id="1", name="f", arguments={"a": 2})
+        d = tc.to_openai()
+        self.assertEqual(d["type"], "function")
+        self.assertEqual(json.loads(d["function"]["arguments"]), {"a": 2})
+
+    def test_multiround_message_serialization(self):
+        from src.adapters.base import BaseAdapter
+
+        class A(BaseAdapter):
+            def chat(self, *a, **k): pass
+            def stream_chat(self, *a, **k): pass
+            def check_health(self): return True
+
+        a = A("k")
+        msgs = [
+            ChatMessage(role="user", content="天气?"),
+            ChatMessage(role="tool", content="晴", tool_call_id="c1", name="get_weather"),
+        ]
+        out = a.normalize_tool_messages(msgs)
+        self.assertEqual(out[1]["tool_call_id"], "c1")
+        self.assertEqual(out[1]["name"], "get_weather")
+
+
+class TestKeyPoolV21(unittest.TestCase):
+    """v2.1.0: key rotation on 429 storm (zero task failure)."""
+
+    def test_single_key_config(self):
+        from src.utils import normalize_api_keys, get_provider_keys
+        self.assertEqual(normalize_api_keys("sk-1"), ["sk-1"])
+        self.assertEqual(normalize_api_keys(["sk-1", "sk-2"]), ["sk-1", "sk-2"])
+        cfg = {"deepseek": {"api_key": "sk-a"}}
+        self.assertEqual(get_provider_keys(cfg, "deepseek"), ["sk-a"])
+
+    def test_key_field_alias(self):
+        from src.utils import get_provider_keys
+        cfg = {"deepseek": {"key": ["sk-1", "sk-2"]}}
+        self.assertEqual(get_provider_keys(cfg, "deepseek"), ["sk-1", "sk-2"])
+
+    def test_round_robin(self):
+        from src.key_pool import KeyPoolManager
+        pool = KeyPoolManager({"deepseek": ["k1", "k2", "k3"]})
+        self.assertEqual(pool.current_key("deepseek"), "k1")
+        self.assertEqual(pool.next_key("deepseek"), "k2")
+        self.assertEqual(pool.next_key("deepseek"), "k3")
+        self.assertEqual(pool.next_key("deepseek"), "k1")
+
+    def test_429_storm_zero_failure(self):
+        from src.key_pool import KeyPoolManager
+        pool = KeyPoolManager({"deepseek": ["k1", "k2", "k3"]})
+        tried = []
+
+        def call(key):
+            tried.append(key)
+            if key in ("k1", "k2"):
+                raise RuntimeError("HTTP 429 rate limit exceeded")
+            return "ok"
+
+        result, used = pool.call_with_rotation("deepseek", call)
+        self.assertEqual(result, "ok")
+        self.assertEqual(used, "k3")
+        self.assertEqual(len(tried), 3)
+
+    def test_non_switchable_error_raises_immediately(self):
+        from src.key_pool import KeyPoolManager
+        pool = KeyPoolManager({"deepseek": ["k1", "k2"]})
+        tried = []
+
+        def call(key):
+            tried.append(key)
+            raise RuntimeError("401 invalid api key")
+
+        with self.assertRaises(RuntimeError):
+            pool.call_with_rotation("deepseek", call)
+        self.assertEqual(len(tried), 1)  # no rotation on auth error
+
+    def test_health_panel(self):
+        from src.key_pool import KeyPoolManager
+        pool = KeyPoolManager({"deepseek": ["sk-111111111111", "sk-222222222222"]})
+        panel = pool.health_panel()
+        self.assertTrue(panel["deepseek"]["pooled"])
+        self.assertEqual(panel["deepseek"]["key_count"], 2)
+        self.assertIn("masked", panel["deepseek"]["keys"][0])
+
+    def test_build_pool_from_config(self):
+        from src.key_pool import build_key_pool_from_config
+        cfg = {"deepseek": {"api_key": ["a", "b"]}, "kimi": {"api_key": "c"}}
+        pool = build_key_pool_from_config(cfg)
+        self.assertTrue(pool.has_pool("deepseek"))
+        self.assertFalse(pool.has_pool("kimi"))
+
+
+class TestMultiTenantV21(unittest.TestCase):
+    """v2.1.0: member attribution + per-member report (independent impl)."""
+
+    def setUp(self):
+        import tempfile
+        self.tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False).name
+        self.monitor = Monitor(db_path=self.tmp)
+
+    def tearDown(self):
+        import os
+        try:
+            os.unlink(self.tmp)
+        except Exception:
+            pass
+
+    def test_member_column_exists(self):
+        import sqlite3
+        with sqlite3.connect(self.tmp) as conn:
+            cols = {r[1] for r in conn.execute("PRAGMA table_info(usage_log)").fetchall()}
+        self.assertIn("member", cols)
+
+    def test_record_member_attribution(self):
+        self.monitor.record_call("ask_model", {"member": "alice"}, "r")
+        self.monitor.record_call("ask_model", {"member": "bob"}, "r")
+        self.monitor.record_call("ask_model", {"member": "alice"}, "r")
+        stats = self.monitor.get_member_stats()
+        self.assertEqual(stats["member_count"], 2)
+        self.assertEqual(stats["members"]["alice"]["total_calls"], 2)
+        self.assertEqual(stats["members"]["bob"]["total_calls"], 1)
+
+    def test_member_report_text(self):
+        self.monitor.record_call("ask_model", {"member": "alice"}, "r")
+        report = self.monitor.get_member_report()
+        self.assertIn("alice", report)
+        self.assertIn("成员用量分摊", report)
+
+    def test_default_member(self):
+        self.monitor.record_call("status", {}, "r")
+        stats = self.monitor.get_member_stats()
+        self.assertIn("default", stats["members"])

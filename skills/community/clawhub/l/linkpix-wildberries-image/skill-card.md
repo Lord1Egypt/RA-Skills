@@ -1,6 +1,6 @@
 ## Description:
 
-Creates Wildberries product image sets, detail graphics, and campaign visuals with Russian-language layouts using Qinghu AI.
+Helps Wildberries sellers create Russian-market product image sets, detail pages, and promotional graphics through LinkPix.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,48 +14,40 @@ MIT-0
 
 ## Use Case:
 
-Wildberries sellers and cross-border ecommerce teams use this skill to create product image sets, detail graphics, and campaign visuals for Russian-speaking shoppers.
+Wildberries sellers and cross-border e-commerce teams use the skill to create product image sets, detail-page visuals, and promotional graphics for Russian-speaking customers.
 
 ### Deployment Geography for Use:
 
-Russia and other CIS markets
+Russia and other Commonwealth of Independent States (CIS) markets
 
 ## Known Risks and Mitigations:
 
-Risk: Setup instructions ask users to send an account API key in chat.
+Risk: The security scan flags unpinned packages that are downloaded and run.
 
-Mitigation: Configure a restricted Qinghu API key locally instead of sharing it in chat, and rotate any key already shared.
+Mitigation: Review the package and its source before installing; use a version and registry you trust.
 
-Risk: Image generation sends submitted images for external processing.
+Risk: The security guidance warns that an API key or reference images may be shared with an external service; the scan could not determine whether the estimate command uploads reference images.
 
-Mitigation: Use only images approved for external processing.
-
-Risk: The CLI version and automatic upgrade behavior can affect operation.
-
-Mitigation: Review the CLI version and automatic upgrade behavior before use.
-
-Risk: Image generation can incur credit charges.
-
-Mitigation: Confirm the estimated credit charge before generation.
+Mitigation: Enter API keys through a secure local secret method, never in chat, and confirm upload behavior and consent before sending reference images.
 
 ## Reference(s):
 
+- [ClawHub skill page](https://clawhub.ai/autoagc/skills/linkpix-wildberries-image)
 - [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
-- [LinkPix ClawHub release](https://clawhub.ai/autoagc/skills/linkpix-wildberries-image)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Guidance]
+**Output Type(s):** [Images, Shell commands, Configuration instructions]
 
-**Output Format:** [Generated image assets with Markdown usage guidance]
+**Output Format:** [Generated image files or downloadable image URLs, with Markdown guidance and inline shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Product image sets, detail graphics, and campaign visuals; image options and quality depend on the selected generation mode.]
+**Other Properties Related to Output:** [Image count, size, model, and layout depend on the selected service options; images may include Russian text and Wildberries-oriented layouts.]
 
 ## Skill Version(s):
 
-0.1.4 (source: server-resolved release metadata)
+0.1.5 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

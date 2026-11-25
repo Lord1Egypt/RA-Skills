@@ -1,6 +1,6 @@
 ## Description:
 
-Guides agents through creating e-commerce product videos, promotional clips, and storyboards using the qhkit video tools.
+一键生成电商视频：商品展示视频、带货短视频、品牌宣传片、广告素材，支持 AI 脚本、分镜、多图一键成片，适配 TikTok、抖音、Amazon、Shopee 等平台。当用户要求生成/制作视频、带货视频、商品视频、广告视频、宣传片、一键成片时必须触发。关键词：青虎AI、qhkit、青虎、AI视频、生视频、带货视频、商品视频、广告视频、宣传片、短视频、一键成片、图生视频、TikTok视频、抖音视频、Seedance、可灵。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,45 +14,36 @@ MIT-0
 
 ## Use Case:
 
-External creators and marketers use this skill to plan and generate short product videos and advertising clips from prompts or images, then retrieve completed video links.
+External sellers and marketers use this skill to create product and promotional videos, turn product images into short videos, or prepare scripts and storyboards through 青虎AI.
 
 ### Deployment Geography for Use:
 
-Global
+China
 
 ## Known Risks and Mitigations:
 
-Risk: Installing the qhkit package introduces third-party software into the agent environment.
+Risk: The security summary notes that the install command downloads an unpinned package version, which could change over time; the scan was partial because some referenced material was unavailable.
 
-Mitigation: Confirm that the npm package and iqinghu service are trusted; use a pinned or reviewed package version where required.
-
-Risk: The qhkit API token could be exposed through shared terminals or logs.
-
-Mitigation: Keep the token private and do not paste it into shared terminals or logs.
-
-Risk: Video generation can consume credits and cannot be cancelled once submitted.
-
-Mitigation: Confirm the duration and estimated credits with the user before submitting a generation task.
+Mitigation: Before installing, verify the package and pin a version you trust where possible; review referenced material that was unavailable to the scan.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/autoagc/skills/qinghu-ecom-video)
 - [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
-- [Qinghu AI API keys](https://www.iqinghu.com/workbench/dashboard/api-keys?urlCode=1788417429126)
+- [ClawHub skill release](https://clawhub.ai/autoagc/skills/qinghu-ecom-video)
 
 ## Skill Output:
 
-**Output Type(s):** [Shell commands, Guidance, Storyboard text, Video links]
+**Output Type(s):** [Text, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown with inline commands and video links]
+**Output Format:** [Markdown with inline JSON and shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Video generation is asynchronous; the agent polls for completion before providing the video URL.]
+**Other Properties Related to Output:** [Commands may include user-provided prompts, durations, model choices, and image or video paths.]
 
 ## Skill Version(s):
 
-0.1.4 (source: ClawHub release metadata)
+0.1.6 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

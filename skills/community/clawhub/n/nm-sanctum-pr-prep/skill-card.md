@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill when preparing their own changes for review. It helps run project quality gates, summarize changes, document testing, and draft a pull request description.
+Developers preparing a change for review use this skill to check repository state, run project quality gates, summarize changes and tests, and draft a grounded pull request description.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review had partial coverage because referenced local paths were missing.
+Risk: Some local references were unresolved during partial security scanning, leaving evidence about them incomplete.
 
-Mitigation: Review the skill instructions and referenced materials before installing when those details affect your setup or use.
+Mitigation: Review unresolved references and confirm their guidance fits the target project before relying on it.
+
+Risk: Suggested checklists, output guidance, and example commands may not fit every repository or environment.
+
+Mitigation: Check the proposed steps and commands against the target project's requirements before running them.
 
 ## Reference(s):
 
-- [Sanctum plugin page](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
+- [Sanctum plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Shell commands, Guidance]
+**Output Type(s):** [Markdown, Guidance, Shell commands]
 
-**Output Format:** [Markdown pull request description with inline shell commands]
+**Output Format:** [Markdown pull request description with command examples and test plan]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include a change summary, testing results, a test plan, and a checklist.]
+**Other Properties Related to Output:** [May include a facts table, change summary, test plan, and checklist.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server release evidence; artifact frontmatter says 1.10.3)
 
 ## Ethical Considerations:
 

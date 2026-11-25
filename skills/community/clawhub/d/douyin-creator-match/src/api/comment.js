@@ -6,28 +6,34 @@ const { SkillError } = require("../utils/errors");
 const { requestApi, pollTaskResult } = require("../utils/request");
 const { formatUnixSeconds } = require("../utils/time");
 
+function enrichCommentItem(item) {
+  if (!item || typeof item !== "object") return item;
+  const processedItem = { ...item };
+
+  if (item.user_sec_uid) {
+    processedItem.user_url = `https://www.douyin.com/user/${item.user_sec_uid}`;
+  }
+
+  if (
+    typeof item.create_time === "number" &&
+    item.create_time &&
+    !item.create_time_str
+  ) {
+    processedItem.create_time_str = formatUnixSeconds(item.create_time);
+  }
+
+  if (Array.isArray(item.reply_comment)) {
+    processedItem.reply_comment = item.reply_comment.map(enrichCommentItem);
+  }
+
+  return processedItem;
+}
+
 function processCommentResults(data) {
   if (!Array.isArray(data)) {
     throw new SkillError("API_SCHEMA_CHANGED", "评论结果格式异常", true);
   }
-
-  return data.map((item) => {
-    const processedItem = { ...item };
-
-    if (item.user_sec_uid) {
-      processedItem.user_url = `https://www.douyin.com/user/${item.user_sec_uid}`;
-    }
-
-    if (
-      typeof item?.create_time === "number" &&
-      item.create_time &&
-      !item.create_time_str
-    ) {
-      processedItem.create_time_str = formatUnixSeconds(item.create_time);
-    }
-
-    return processedItem;
-  });
+  return data.map(enrichCommentItem);
 }
 
 /**

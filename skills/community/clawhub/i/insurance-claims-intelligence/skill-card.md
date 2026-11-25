@@ -1,6 +1,6 @@
 ## Description:
 
-Provides advisory templates, checklists, and decision-support frameworks for medical document review, claim liability assessment, anti-fraud review, and claims reporting.
+Provides templates, checklists, and decision-support frameworks for medical OCR, liability determination, anti-fraud assessment, and claims reporting, with human review required for all claim decisions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,44 +14,43 @@ MIT-0
 
 ## Use Case:
 
-Insurance claims professionals and developers use this skill to structure medical-document review, policy liability analysis, anti-fraud checks, and claims report drafts. Outputs are advisory and require review by a qualified insurance professional.
+Insurance professionals and analysts can use the skill's advisory frameworks to structure receipt review, liability and fraud assessment, and claims report drafts. A licensed insurance professional must review and confirm all claim decisions.
 
 ### Deployment Geography for Use:
 
-China (the guidance focuses on Chinese insurance workflows and data requirements).
+China-focused; validate insurance and data-protection requirements for other jurisdictions.
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan was benign with medium confidence and covered only part of the artifact; manifest and reference issues remain unresolved.
+Risk: Claim approvals, denials, payout estimates, or fraud labels could be mistaken for final decisions.
 
-Mitigation: Review the manifest and referenced materials before installation, and verify important guidance before use.
+Mitigation: Require a licensed insurance professional to review every output and verify it against policy terms and source records before acting.
 
-Risk: Draft claim decisions, payout estimates, or fraud labels could be mistaken for final determinations.
+Risk: Medical and claimant records may contain sensitive personal information.
 
-Mitigation: Have an authorized insurance professional verify source documents, policy terms, and recommendations before acting.
+Mitigation: Obtain consent, minimize and redact data, confirm OCR vendor retention and transfer terms, and prefer private processing for production use.
 
-Risk: Claim materials may contain sensitive medical and identifying information.
+Risk: The benign security verdict has medium confidence and incomplete coverage, with a manifest parse issue and three missing references.
 
-Mitigation: Minimize and redact personal information, obtain consent, and check OCR provider data handling and retention before sharing documents.
+Mitigation: Review the manifest and unresolved references before installation, and treat the scan as partial evidence rather than full verification.
 
 ## Reference(s):
 
 - [ClawHub release page](https://clawhub.ai/gechengling/skills/insurance-claims-intelligence)
-- [Publisher profile](https://clawhub.ai/user/gechengling)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance, Illustrative code]
+**Output Type(s):** [Guidance, Markdown, Text, Code]
 
-**Output Format:** [Markdown checklists, decision-support drafts, report templates, and illustrative code snippets]
+**Output Format:** [Markdown checklists, decision trees, report drafts, and illustrative Python snippets]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Drafts require qualified human review; no executable claims-processing package is included.]
+**Other Properties Related to Output:** [Advisory drafts only; requires licensed human review; includes no executable models or production OCR integration.]
 
 ## Skill Version(s):
 
-5.0.7 (source: frontmatter, server-resolved release metadata)
+5.0.8 (source: server-resolved release metadata, SKILL.md frontmatter)
 
 ## Ethical Considerations:
 

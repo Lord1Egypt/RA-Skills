@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes plant images and videos for early signs of wilting and provides monitoring results and warnings to support irrigation and disease management.
+Analyzes plant images or videos for early signs of wilting and returns structured findings, severity estimates, and early-warning guidance.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Growers, crop-monitoring teams, and agricultural advisers can submit plant images or videos to screen for wilting and review monitoring results to guide irrigation or disease follow-up.
+Growers and crop-monitoring teams can submit plant photos or videos to assess early wilting, consider environmental or disease-related causes, and receive monitoring guidance. Results are early-warning references; the skill advises consulting plant-health experts for final diagnosis.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Security review marks the release suspicious due to reported account, credential, and remote-service behavior that appears broader than its plant-wilting purpose; analysis is incomplete because referenced files were missing.
+Risk: The partial security scan flagged account handling, credential storage, network activity, and media uploads beyond the described plant analysis; some service behavior and network destinations could not be verified.
 
-Mitigation: Review the reported identity, credential, and upload behavior before installing, especially in a shared workspace.
+Mitigation: Review those behaviors and destinations before use, and submit only plant media and account-linked data you are comfortable sending to the service.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/smyx-sunjinhui/skills/smyx-plant-wilting-monitoring-analysis)
+- [API interface documentation](skills/smyx_analysis/references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
-- [API interface reference](artifact/skills/smyx_analysis/references/api_doc.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Markdown]
+**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
 
-**Output Format:** [Structured analysis results, reports, and report links; history listings can be presented as Markdown tables.]
+**Output Format:** [Structured analysis results and recommendations in JSON; history report lists in Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Accepts plant images, videos, or URLs. The skill documentation lists JPG/JPEG/PNG image support up to 20 MB.]
+**Other Properties Related to Output:** [Accepts local image or video files and network URLs; can query linked historical reports. The skill describes its findings as early-warning references, not a final diagnosis.]
 
 ## Skill Version(s):
 
-1.0.19 (source: server-resolved release metadata)
+1.0.21 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

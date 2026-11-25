@@ -2,6 +2,8 @@
 
 Use this when the user wants to retain a source video's camera work, actions, and structure while replacing people, objects, or scenes. “1:1” is a preservation goal, not a square aspect ratio or a promise of pixel/frame identity. For a new script borrowing expressive structure, use [reference adaptation](reference-remake.md).
 
+When the source or replacement images are in the library, use [material reuse](../resources/materials.md) to read explicit IDs or inspect discovered candidates. Fix the source version and each identity/product/scene reference role. Names and categories do not prove identity or product equivalence; analyzed segments only help locate footage, while edit intervals still follow this workflow’s duration, action and sound rules.
+
 ## Source and selected elements
 
 Use the actual attachment, direct URL, share link, or existing material. Resolve share pages and prepare local files through [media inputs](../runtime/media-inputs.md). Preserve source and selected versions, ratio, duration, audio, and relevant intervals.
@@ -23,13 +25,15 @@ Use actual user pictures and resolve ambiguous mappings. A character picture is 
 
 For a face-only change, preserve clothing and action; for a full appearance change, specify its scope. Use clear face/clothing views compatible with the source; add side/full-body references only as needed. Scene pictures should support the camera perspective, scale, activity area, and light. Product pictures preserve real shape, material, and markings.
 
+For an explicit facial-feature or hairstyle replacement, first follow [facial identity replacement](face-identity-replacement.md): reuse or prepare a suitable appearance anchor and obscure the source features/hair being replaced, then use this page's mode and audio route. Clear source/target selection does not skip identity preparation. Clothing-only changes retaining the performer continue normally.
+
 Use actual `reference_image_urls` for image-based generation. Do not invent masks or singular fields, and do not claim an image was bound after merely describing it in words. Inspect and adopt the real output. Respect requests to choose pictures before production and authorized output counts.
 
 Examples: [character image](../../examples/one-to-one-remake/character-image.json), [scene image](../../examples/one-to-one-remake/scene-image.json). Their fictional designs must be replaced with the user's requirements.
 
 ## Edit and inspect
 
-Specify which source entity and intervals change, which reference controls each property, and what must remain. In a supported platform workflow, retain its actual candidate/asset selection. With public APIs, use [video editing](../capabilities/processing/video-segment-edit.md); the public command does not automatically identify all replaceable elements or save a remake project.
+Specify which source entity and intervals change, which reference controls each property, and what must remain. In a supported platform workflow, retain its actual candidate/asset selection. With public APIs, use [video editing](../capabilities/processing/video-editing.md#video-segment-edit); the public command does not automatically identify all replaceable elements or save a remake project.
 
 For Seedance 2.5 edit, apply the audio and duration rules below first, then send the appropriate clip and replacement references with explicit numbering/roles. Use `aspect_ratio=adaptive` and `duration_seconds=-1` under the [API](../api/seedance.md). Automatic duration follows a compliant clip; it does not allow a video longer than 30 seconds. Do not switch to ordinary reference generation while claiming to edit the source.
 

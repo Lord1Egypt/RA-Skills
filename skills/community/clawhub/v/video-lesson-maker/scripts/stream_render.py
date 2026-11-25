@@ -944,19 +944,152 @@ def _chaikin_smooth(
     return pts
 
 
-def _order_skeleton_strokes(strokes: list[list[tuple[float, float]]]) -> list[list[tuple[float, float]]]:
+def _stroke_extent(s: list[tuple[float, float]]) -> tuple[float, float, float, float]:
+    xs = [p[0] for p in s]
+    ys = [p[1] for p in s]
+    return min(xs), min(ys), max(xs), max(ys)
+
+
+def _orient_first_stroke(s: list[tuple[float, float]]) -> list[tuple[float, float]]:
+    """首笔方向：横笔画从左端起，竖/斜笔画从上端起（模拟真人起笔）。"""
+    dx = abs(s[-1][0] - s[0][0])
+    dy = abs(s[-1][1] - s[0][1])
+    if dx > dy * 1.2:
+        return list(s) if s[0][0] <= s[-1][0] else list(reversed(s))
+    return list(s) if s[0][1] <= s[-1][1] else list(reversed(s))
+
+
+def _orient_stroke(s: list[tuple[float, float]],
+                   prev_end: tuple[float, float] | None) -> list[tuple[float, float]]:
+    """把笔画方向调整为「起点离上一笔终点近的一端」，笔尖连续滑行不瞬移。"""
+    if prev_end is None:
+        return _orient_first_stroke(s)
+    d0 = math.hypot(s[0][0] - prev_end[0], s[0][1] - prev_end[1])
+    d1 = math.hypot(s[-1][0] - prev_end[0], s[-1][1] - prev_end[1])
+    return list(s) if d0 <= d1 else list(reversed(s))
+
+
+def _cluster_strokes(strokes: list[list[tuple[float, float]]],
+                     extents: list[tuple[float, float, float, float]],
+                     gap: float = 14.0) -> list[list[int]]:
+    """把笔画按空间邻近聚成「元素块」（并查集，包围盒外扩 gap 相交即同块）。
+
+    一个汉字/一个图标/一条框线通常落进同一块；相隔较远的文字、图形各自成块。
+    这是「整体协调」的载体：先看清画面由哪几块内容组成。
     """
-    笔画排序：从上到下、从左到右，长笔优先。
-    简化版①order_strokes——用包围盒左上角 + 负长度做字典序。
+    n = len(strokes)
+    parent = list(range(n))
+
+    def find(i: int) -> int:
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+
+    for i in range(n):
+        ax0, ay0, ax1, ay1 = extents[i]
+        for j in range(i + 1, n):
+            bx0, by0, bx1, by1 = extents[j]
+            if (ax0 - gap <= bx1 and bx0 - gap <= ax1
+                    and ay0 - gap <= by1 and by0 - gap <= ay1):
+                ri, rj = find(i), find(j)
+                if ri != rj:
+                    parent[rj] = ri
+    groups: dict[int, list[int]] = {}
+    for i in range(n):
+        groups.setdefault(find(i), []).append(i)
+    return list(groups.values())
+
+
+def _chain_group(indices: list[int],
+                 items: list[list[tuple[float, float]]],
+                 extents: list[tuple[float, float, float, float]],
+                 prev_end: tuple[float, float] | None) -> list[list[tuple[float, float]]]:
+    """块内接龙：从块内最上（容差 10px）最左的笔画起笔，之后每笔接最近端。"""
+    top = min(extents[i][1] for i in indices)
+    heads = [i for i in indices if extents[i][1] <= top + 10]
+    start = min(heads, key=lambda i: extents[i][0])
+    first = _orient_first_stroke(items[start]) if prev_end is None else _orient_stroke(items[start], prev_end)
+    out = [first]
+    remaining = [i for i in indices if i != start]
+    cur = first[-1]
+    up_penalty, up_cap = 0.35, 150.0   # 轻微向下偏好（同距决胜）
+    back_penalty, back_cap = 0.55, 90.0  # 轻微左向抑制：优先顺着书写方向往前走
+    while remaining:
+        best_i, best_cost = None, None
+        for i in remaining:
+            s = items[i]
+            d0 = math.hypot(s[0][0] - cur[0], s[0][1] - cur[1])
+            d1 = math.hypot(s[-1][0] - cur[0], s[-1][1] - cur[1])
+            if d0 <= d1:
+                d, near_x, near_y = d0, s[0][0], s[0][1]
+            else:
+                d, near_x, near_y = d1, s[-1][0], s[-1][1]
+            up = max(0.0, cur[1] - near_y)
+            back = max(0.0, cur[0] - near_x)
+            cost = d + min(up * up_penalty, up_cap) + min(back * back_penalty, back_cap)
+            if best_cost is None or cost < best_cost - 1e-9:
+                best_i, best_cost = i, cost
+        nxt = _orient_stroke(items[best_i], cur)
+        out.append(nxt)
+        remaining.remove(best_i)
+        cur = nxt[-1]
+    return out
+
+
+def _chain_strokes_logically(strokes: list[list[tuple[float, float]]]) -> list[list[tuple[float, float]]]:
+    """笔顺逻辑链 v3：**分「行带」→ 带内严格左→右**（"无序乱画"的根治方案）。
+
+    试错记录（别再走回头路）：
+    - v1「包围盒字典序」：同一行的多个部件被按 x 打散，笔在部件间乱跳 → 用户说"无序"。
+    - v2「最近邻接龙」：便签折角画在右上，接龙就从折角滑到文字右端，
+      "零失误·肌肉记忆"被倒着写成"记忆…零失误" → 一眼看出不是人在写。
+    - v3（当前）：按**行带**分组（竖直方向重叠超过较矮者 45% 即同一带），
+      带与带之间从上到下，**带内严格按 x 从小到大**，逐笔抬笔接续。
+      框线类的竖边会把上下内容并进同一带，于是天然变成
+      「先画左边框 → 再从左到右写字 → 最后补右边框」，与真人板书一致。
     """
-    def sort_key(s):
-        if not s:
-            return (0, 0, 0, 0)
-        xs = [p[0] for p in s]
-        ys = [p[1] for p in s]
-        length = _stroke_cumulative_length(s)[-1]
-        return (min(ys) // 12, min(xs), min(ys), -length)
-    return sorted(strokes, key=sort_key)
+    items = [list(s) for s in strokes if len(s) >= 2]
+    if not items:
+        return []
+    if len(items) == 1:
+        return [_orient_first_stroke(items[0])]
+
+    extents = [_stroke_extent(s) for s in items]
+    n = len(items)
+
+    # 1) 分行带（按 y0 扫描；竖直重叠 > 较矮者 45% 视为同一带）
+    bands: list[list] = []  # [y0, y1, [idx...]]
+    for i in sorted(range(n), key=lambda k: (extents[k][1], extents[k][0])):
+        y0, y1 = extents[i][1], extents[i][3]
+        target = None
+        for b in bands:
+            ov = min(y1, b[1]) - max(y0, b[0])
+            if ov > 0.45 * max(1.0, min(y1 - y0, b[1] - b[0])):
+                target = b
+                break
+        if target is None:
+            bands.append([y0, y1, [i]])
+        else:
+            target[2].append(i)
+            target[0] = min(target[0], y0)
+            target[1] = max(target[1], y1)
+
+    # 2) 带内：严格从左到右（x 分桶 6px 容差，桶内再按 y）
+    for b in bands:
+        b[2].sort(key=lambda k: (round(extents[k][0] / 6.0), extents[k][1]))
+
+    # 3) 带与带：从上到下；同高时取更靠左的带优先
+    bands.sort(key=lambda b: (b[0], min(extents[k][0] for k in b[2])))
+
+    ordered: list[list[tuple[float, float]]] = []
+    cur: tuple[float, float] | None = None
+    for b in bands:
+        for k in b[2]:
+            s = _orient_first_stroke(items[k]) if cur is None else _orient_stroke(items[k], cur)
+            ordered.append(s)
+            cur = s[-1]
+    return ordered
 
 
 # ──────────────────────────────────────────────────────────────
@@ -1119,7 +1252,7 @@ class StreamBoardRenderer:
             if len(pts) >= 2 and _stroke_cumulative_length(pts)[-1] > 2.0:
                 processed.append([(int(round(x)), int(round(y))) for x, y in pts])
 
-        processed = _order_skeleton_strokes(processed)
+        processed = _chain_strokes_logically(processed)
         total_pts = sum(len(s) for s in processed)
         print(f"  骨架追踪: {len(processed)} 条笔画, {total_pts} 个采样点")
         return processed

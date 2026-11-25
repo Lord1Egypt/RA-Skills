@@ -1,7 +1,7 @@
 ---
 name: mobile-responsive-layout-fixer
 description: >-
-  帮助用户处理“Validated demand: Product teams need reliable workflows for fixing mobile responsiveness, navigation layout, and cross-device UI issues. This requirement is supported by 12 separate online signals across 2 source families, so it represents broader demand rather than a single isolated request.”。当用户提出 creative-and-content, mobile responsive, responsive design, navbar, layout，或需要围绕该需求获得实用流程、产物、检查清单、分析或实现支持时使用。
+  帮助用户处理“Validated demand: Product teams need reliable workflows for fixing mobile responsiveness, navigation layout, and cross-device UI issues. This requirement is supported by 11 separate online signals across 2 source families, so it represents broader demand rather than a single isolated request.”。当用户提出 creative-and-content, mobile responsive, responsive design, navbar, layout，或需要围绕该需求获得实用流程、产物、检查清单、分析或实现支持时使用。
 ---
 
 # Mobile Responsive Layout Fixer
@@ -10,10 +10,10 @@ description: >-
 
 使用这个技能帮助以下用户群体：frontend developers, designers, startup teams, and maintainers responsible for making web interfaces usable on phones and desktop screens
 
-> Validated demand: Product teams need reliable workflows for fixing mobile responsiveness, navigation layout, and cross-device UI issues. This requirement is supported by 12 separate online signals across 2 source families, so it represents broader demand rather than a single isolated request.
+> Validated demand: Product teams need reliable workflows for fixing mobile responsiveness, navigation layout, and cross-device UI issues. This requirement is supported by 11 separate online signals across 2 source families, so it represents broader demand rather than a single isolated request.
 
 需求评分：90/100（需求强度 `70/70`，本地可执行性 `30/30`）。
-证据：12 条信号，覆盖 2 个来源类型。
+证据：11 条信号，覆盖 2 个来源类型。
 
 如需查看来源证据、执行计划或评审标准，请阅读 `references/requirement-plan.md`。
 

@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "AI Tools 助手",
+  "version": "0.1.0",
+  "description": "主动查询 Claude KYC 状态，检查浏览器网络与 WebRTC 候选。结果仅留在当前弹窗。",
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": ["https://api.ipify.org/*", "https://api6.ipify.org/*"],
+  "content_security_policy": {"extension_pages": "script-src 'self'; object-src 'self'; connect-src https://api.ipify.org https://api6.ipify.org"},
+  "action": {"default_popup": "popup.html", "default_title": "AI Tools 助手"}
+}

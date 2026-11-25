@@ -1,0 +1,21 @@
+{
+ "about": "Creator default: 1 to 3 words, heavy font, thick outline, the spoken word in yellow, keywords in green. TikTok, Reels, Shorts.",
+ "font": "Poppins-ExtraBold.ttf",
+ "size": 84,
+ "color": "#FFFFFF",
+ "active": "#FFD43B",
+ "keyword": "#4ADE80",
+ "stroke": 9,
+ "stroke_color": "#000000",
+ "shadow": {
+  "dx": 0,
+  "dy": 6,
+  "alpha": 0.45,
+  "blur": 3
+ },
+ "words": 3,
+ "chars": 18,
+ "lines": 1,
+ "pause": 0.3,
+ "position": 0.62
+}

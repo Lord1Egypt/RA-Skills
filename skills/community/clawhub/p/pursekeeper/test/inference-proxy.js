@@ -25,7 +25,13 @@ function mockNode(account, publicKey, initial) {
   const srv = createServer(async (req, res) => {
     const b = JSON.parse(await readBody(req) || '{}');
     const out = o => { res.writeHead(200, { 'content-type': 'application/json' }); res.end(JSON.stringify(o)); };
-    if (b.action === 'account_info') return st.accountError ? out({ error: st.accountError }) : out({ frontier: st.frontier, balance: st.balance.toString(), representative: account, block_count: String(st.height), confirmation_height: String(st.height), confirmed_frontier: st.frontier });   // every accepted block counts as confirmed at once
+    // every accepted block counts as confirmed at once. The confirmation fields follow the real node (nano-node
+    // json_handler.cpp, account_info): with include_confirmed, confirmed_height and confirmed_frontier; without it, the
+    // legacy confirmation_height and confirmation_height_frontier. Never both.
+    if (b.action === 'account_info') return st.accountError ? out({ error: st.accountError }) : out({ frontier: st.frontier, balance: st.balance.toString(), representative: account, block_count: String(st.height),
+      ...(b.include_confirmed === 'true' || b.include_confirmed === true
+        ? { confirmed_height: String(st.height), confirmed_frontier: st.frontier, confirmed_balance: st.balance.toString() }
+        : { confirmation_height: String(st.height), confirmation_height_frontier: st.frontier }) });
     if (b.action === 'work_generate') { st.workCalls++; return out({ work: WORK }); }
     if (b.action === 'receivable') return out({ blocks: st.receivable });
     if (b.action === 'block_info') return st.processed.some(p => p.hash === b.hash) ? out({ contents: {} }) : out({ error: 'Block not found' });
@@ -97,16 +103,29 @@ function mockDoor(node, opts) {
     const host = req.headers.host;
     const payTo = opts.payTo || N.deriveAddress(N.derivePublicKey(randomBytes(32).toString('hex')), { useNanoPrefix: true });
     if (st.mode === 'exact') {
+      if (req.headers['x-nano-payment'] !== undefined) {
+        // a handed-back payment is served once on the landed hash with the token the hand-back carried
+        st.recoveryAttempts = (st.recoveryAttempts || 0) + 1; st.lastRecoveryHeaders = req.headers;
+        const hb = st.handedBack;
+        if (hb && !hb.used && !opts.rejectRecovery && req.headers['x-nano-payment'] === hb.hash && req.headers['x-nano-represent'] === hb.token) { hb.used = true; return serve(); }
+        return out(402, {}, '{"error":"no credit on that hash for this token"}');
+      }
       const sig = req.headers['payment-signature'];
-      const accepts = [{ scheme: 'exact', network: opts.network || 'nano:mainnet', amount: String(st.amount), payTo, resource: opts.resource || `http://${host}${req.url}` }];
+      const accepts = [{ scheme: 'exact', network: opts.network || 'nano:mainnet', amount: String(st.amount), payTo, resource: opts.resource || `http://${host}${req.url}`, ...(opts.extra ? { extra: opts.extra } : {}) }];
       if (!sig) return out(402, { 'payment-required': Buffer.from(JSON.stringify({ x402Version: 2, resource: opts.resourceTop || `http://${host}${req.url}`, accepts })).toString('base64') }, '{"error":"payment required"}');
       const p = JSON.parse(Buffer.from(sig, 'base64').toString());
       const blk = p.payload.block;
+      if (opts.dropOnPaid) { st.held = blk; req.socket.destroy(); return; }
       if (opts.keepUnbroadcast) { st.held = blk; return out(500, {}, '{"error":"served nothing, broadcast nothing"}'); }   // a seller that pockets the signed block and refuses
       // the seller broadcasts
       const r = await fetch(node.url, { method: 'POST', body: JSON.stringify({ action: 'process', subtype: 'send', block: blk }) }).then(x => x.json());
       if (!r.hash) return out(402, {}, JSON.stringify({ error: 'rejected: ' + r.error }));
       if (opts.refuseAfterBroadcast) return out(500, {}, '{"error":"served nothing"}');
+      if (opts.handBack && !st.handedBack) {   // charged, then not served: the door hands the price back on the hash with a token
+        const landedHash = node.st.processed[node.st.processed.length - 1].hash;
+        st.handedBack = { hash: landedHash, token: 'tok-' + landedHash.slice(0, 12), used: false };
+        return out(502, { 'x-nano-represent': st.handedBack.token }, '{"error":"charged, then not served; handed back"}');
+      }
       return serve();
     }
     // nano dialect
@@ -384,6 +403,27 @@ test('exact dialect: a seller that keeps the signed block and refuses cannot bro
   assert.equal((await s.stateOf()).spent, '0');
 });
 
+test('NANO_RPC mode reads the include_confirmed fields of the node: a retired send is released from the cap, and the next call is not blocked by it', async t => {
+  // A real node answers account_info with include_confirmed as confirmed_height / confirmed_frontier (no legacy
+  // confirmation_height). The proxy read only confirmation_height, got NaN, and never saw the change block confirmed at the
+  // retired send's height: the amount stayed counted for the life of the state file and every later call re-checked it.
+  const s = await stand(t, { mode: 'exact', amount: MILLI, keepUnbroadcast: true }, { NANO_CAP: '0.0015' });
+  const r = await s.call(MSG);
+  assert.equal(r.status, 502);
+  const j = await r.json();
+  assert.equal(j.payer.code, 'not_served_after_payment');
+  assert.match(j.payer.detail.invalidated_by, /^[0-9A-F]{64}$/, 'a change block took the height');
+  assert.equal(j.payer.detail.counted, false, 'the change block is confirmed on the node, so the send is released: ' + JSON.stringify(j.payer.detail));
+  const st = await s.stateOf();
+  assert.equal(st.spent, '0');
+  assert.equal(st.payments[0].final, true);
+  // cap 0.0015 leaves room for one 0.001 call: a send still counted would refuse this one as cap_exceeded
+  s.door.st.mode = 'nano';
+  const r2 = await s.call(MSG);
+  assert.equal(r2.status, 200, await r2.clone().text());
+  assert.equal((await s.stateOf()).spent, '0.001');
+});
+
 test('a retirement that cannot be published keeps the spend counted against the cap until it can', async t => {
   const s = await stand(t, { mode: 'nano', amount: MILLI }, { NANO_CAP: '0.0015' });
   s.node.st.rejectNext = 3;                                   // the send, the change block, and the change block again at the next call
@@ -580,7 +620,7 @@ test('PROXY_KEY: a /v1 request without the key, or with a wrong one, is refused 
   assert.equal(s.door.st.lastHeaders['x-api-key'], undefined);
   assert.equal(s.door.st.completes.length, 1);
   assert.equal(s.node.st.processed.length, 1);
-  // state is readable without the key (nothing secret in it), /v1 is not
+  // state needs the proxy key as bearer, like /v1 (stateOf sends it; the case below asserts 401 without)
   assert.equal((await s.stateOf()).paid, 1);
 });
 
@@ -677,4 +717,167 @@ test('complete step: a 307 after payment is refused as door_redirect with the ha
   const st = await s.stateOf();
   assert.equal(st.payments[0].status, 'paid_not_served');
   assert.equal(st.payments[0].hash, j.payer.detail.hash);
+});
+
+
+test('exact dialect: a connection drop after presenting PAYMENT-SIGNATURE retires the signed block and uncounts the spend', async t => {
+  const s = await stand(t, { mode: 'exact', amount: MILLI, dropOnPaid: true });
+  const r = await s.call(MSG);
+  assert.equal(r.status, 502);
+  const j = await r.json();
+  assert.equal(j.payer.code, 'not_served_after_payment');
+  assert.equal(j.payer.detail.status, null);
+  assert.equal(j.payer.detail.broadcast, false);
+  assert.equal(j.payer.detail.counted, false);
+  assert.match(j.payer.detail.invalidated_by, /^[0-9A-F]{64}$/);
+  const held = s.door.st.held;
+  assert.ok(held && held.signature, 'the seller received the signed block before dropping');
+  const late = await fetch(s.node.url, { method: 'POST', body: JSON.stringify({ action: 'process', subtype: 'send', block: held }) }).then(x => x.json());
+  assert.equal(late.hash, undefined, 'the held block is dead after change retirement');
+  assert.equal((await s.stateOf()).spent, '0');
+});
+
+test('insufficient_balance refuses before work or signing and does not poison paymentId as paymentid_replayed', async t => {
+  const s = await stand(t, { mode: 'nano', amount: MILLI, fixedId: 'pay_after_topup' });
+  s.node.st.balance = 0n;
+  const r1 = await s.call(MSG);
+  assert.equal(r1.status, 402);
+  assert.equal((await r1.json()).payer.code, 'insufficient_balance');
+  assert.equal(s.node.st.workCalls, 0, 'no work computed when balance is insufficient');
+  assert.equal((await s.stateOf()).payments.length, 0, 'no unsigned deciding entry persisted');
+  s.node.st.balance = 10n * RAW;
+  const r2 = await s.call(MSG);
+  assert.equal(r2.status, 200, 'same paymentId succeeds once funded');
+  assert.equal((await s.stateOf()).spent, '0.001');
+});
+
+test('xrb_/nano_ prefix normalization in NANO_ALLOW_PAYTO and payTo, plus extra.workOptional parity', async t => {
+  const payToNano = N.deriveAddress(N.derivePublicKey(randomBytes(32).toString('hex')), { useNanoPrefix: true });
+  const payToXrb = payToNano.replace(/^nano_/, 'xrb_');
+  const s = await stand(t, { mode: 'exact', amount: MILLI, payTo: payToXrb, extra: { workOptional: true } }, { NANO_ALLOW_PAYTO: payToNano });
+  const r = await s.call(MSG);
+  assert.equal(r.status, 200, await r.text());
+  assert.equal(s.node.st.workCalls, 0, 'extra.workOptional: true skips client work');
+  const st = await s.stateOf();
+  assert.equal(st.payments[0].payTo, payToNano);
+});
+
+test('exact dialect: a handed-back call is served on the next call with the landed hash and the hand-back token, no second block (pyfile-toolkit, skill#10)', async t => {
+  const s = await stand(t, { mode: 'exact', amount: MILLI, handBack: true });
+  const r1 = await s.call(MSG);
+  assert.equal(r1.status, 502);
+  const j = await r1.json();
+  assert.equal(j.payer.code, 'not_served_after_payment');
+  assert.equal(j.payer.detail.represent_token, s.door.st.handedBack.token, 'the 502 carries the token the door handed back');
+  let st = await s.stateOf();
+  assert.equal(st.payments[0].status, 'broadcast_not_served'); assert.equal(st.payments[0].represent_token, s.door.st.handedBack.token);
+  const r2 = await s.call(MSG);
+  assert.equal(r2.status, 200, await r2.text());
+  assert.equal(r2.headers.get('x-payer-recovered'), 'true');
+  assert.equal(r2.headers.get('x-payer-hash'), s.door.st.handedBack.hash);
+  assert.equal(s.node.st.processed.length, 1, 'one block in all');
+  assert.equal(s.door.st.served, 1);
+  st = await s.stateOf();
+  assert.equal(st.spent, '0.001'); assert.equal(st.payments.length, 1); assert.equal(st.payments[0].status, 'served_on_recovery');
+  const r3 = await s.call(MSG);   // nothing left to recover: a normal paid call with a fresh block
+  assert.equal(r3.status, 200); assert.equal(r3.headers.get('x-payer-recovered'), null);
+  assert.equal(s.node.st.processed.length, 2); assert.equal(s.door.st.recoveryAttempts, 1);
+});
+
+test('exact dialect: a recovery the door refuses is written on the entry once; the call pays fresh and the stale hand-back is never retried', async t => {
+  const s = await stand(t, { mode: 'exact', amount: MILLI, handBack: true, rejectRecovery: true });
+  assert.equal((await s.call(MSG)).status, 502);
+  const r2 = await s.call(MSG);
+  assert.equal(r2.status, 200, await r2.text());
+  assert.equal(r2.headers.get('x-payer-recovered'), null);
+  assert.equal(s.node.st.processed.length, 2);
+  const st = await s.stateOf();
+  assert.equal(st.payments[0].status, 'broadcast_not_served'); assert.equal(st.payments[0].recovery.status, 402);
+  assert.equal(st.payments[1].status, 'served'); assert.equal(st.spent, '0.002');
+  assert.equal((await s.call(MSG)).status, 200);
+  assert.equal(s.door.st.recoveryAttempts, 1, 'one recovery attempt per hand-back');
+});
+
+test('a runtime-supplied X-Nano-Payment / X-Nano-Represent pair never reaches the door: the proxy recovers only on its own record', async t => {
+  const s = await stand(t, { mode: 'exact', amount: MILLI, handBack: true });
+  assert.equal((await s.call(MSG)).status, 502);
+  const hb = s.door.st.handedBack;
+  const r = await s.call(MSG, { 'x-nano-payment': 'F'.repeat(64), 'x-nano-represent': 'forged' });
+  assert.equal(r.status, 200, await r.text());
+  assert.equal(r.headers.get('x-payer-recovered'), 'true');
+  assert.equal(s.door.st.lastRecoveryHeaders['x-nano-payment'], hb.hash);
+  assert.equal(s.door.st.lastRecoveryHeaders['x-nano-represent'], hb.token);
+  assert.equal(s.door.st.recoveryAttempts, 1);
+  const plain = await stand(t, { mode: 'exact', amount: MILLI });
+  assert.equal((await plain.call(MSG, { 'x-nano-payment': 'F'.repeat(64), 'x-nano-represent': 'forged' })).status, 200);
+  assert.equal(plain.door.st.recoveryAttempts || 0, 0, 'a forged pair on a plain call is dropped before the door');
+});
+
+test('a handed-back payment on file is never presented to another door: after UPSTREAM changes each door recovers only its own entry (ClawScan T09 on 0.3.18)', async t => {
+  const s = await stand(t, { mode: 'exact', amount: MILLI, handBack: true });
+  assert.equal((await s.call(MSG)).status, 502);
+  const hb = s.door.st.handedBack;
+  let st = await s.stateOf();
+  assert.equal(st.payments[0].represent_token, hb.token); assert.equal(st.payments[0].door, new URL(s.env.UPSTREAM).origin, 'the entry names the door it was paid at');
+  await s.proxy.stop();
+  // the operator points the same proxy (same state file) at another seller, which also charges and hands back
+  const door2 = mockDoor(s.node, { mode: 'exact', amount: MILLI, handBack: true });
+  const door2Url = await listen(door2.srv);
+  t.after(() => { door2.srv.close(); door2.srv.closeAllConnections(); });
+  const post = port => fetch(`http://127.0.0.1:${port}/v1/chat/completions`, { method: 'POST', headers: { 'content-type': 'application/json', authorization: 'Bearer ' + KEY }, body: JSON.stringify(MSG) });
+  const read = port => fetch(`http://127.0.0.1:${port}/_nano/state`, { headers: { authorization: 'Bearer ' + KEY } }).then(r => r.json());
+  const p2 = await startProxy({ ...s.env, UPSTREAM: door2Url }, s.dir);
+  t.after(() => p2.stop());
+  assert.match(p2.log(), /was written for .*UPSTREAM is now .*1 handed-back payment\(s\) on file were paid at another door/);
+  assert.equal((await post(p2.port)).status, 502, 'a fresh payment at the new door, handed back by it');
+  assert.equal(door2.st.recoveryAttempts || 0, 0, 'the other door never sees the first door\'s hash and token');
+  assert.equal(s.node.st.processed.length, 2);
+  const hb2 = door2.st.handedBack;
+  const r2 = await post(p2.port);                       // the first door's entry sits ahead in the list and must not block this one
+  assert.equal(r2.status, 200, await r2.text());
+  assert.equal(r2.headers.get('x-payer-recovered'), 'true'); assert.equal(r2.headers.get('x-payer-hash'), hb2.hash);
+  assert.equal(door2.st.recoveryAttempts, 1);
+  assert.equal(door2.st.lastRecoveryHeaders['x-nano-payment'], hb2.hash); assert.equal(door2.st.lastRecoveryHeaders['x-nano-represent'], hb2.token);
+  st = await read(p2.port);
+  assert.equal(st.payments[0].status, 'broadcast_not_served'); assert.equal(st.payments[0].recovery, undefined, 'the first door\'s entry is untouched');
+  assert.equal(st.payments[1].status, 'served_on_recovery'); assert.equal(st.payments[1].door, new URL(door2Url).origin);
+  await p2.stop();
+  // back at the first door its hand-back is still there to be used, once
+  const p3 = await startProxy(s.env, s.dir);
+  t.after(() => p3.stop());
+  const r3 = await post(p3.port);
+  assert.equal(r3.status, 200, await r3.text());
+  assert.equal(r3.headers.get('x-payer-recovered'), 'true'); assert.equal(r3.headers.get('x-payer-hash'), hb.hash);
+  assert.equal(s.node.st.processed.length, 2, 'no third block'); assert.equal(hb.used, true);
+});
+
+test('a hand-back entry written before 0.3.19 names no door and is never presented from here, not even to a door quoting the same pay-to account; start-up names its hash', async t => {
+  const payTo = N.deriveAddress(N.derivePublicKey(randomBytes(32).toString('hex')), { useNanoPrefix: true });
+  const s = await stand(t, { mode: 'exact', amount: MILLI, handBack: true, payTo });
+  assert.equal((await s.call(MSG)).status, 502);
+  const hb = s.door.st.handedBack;
+  await s.proxy.stop();
+  const file = JSON.parse(await readFile(s.env.STATE_FILE, 'utf8'));
+  delete file.payments[0].door;                         // the shape 0.3.16 to 0.3.18 wrote
+  await writeFile(s.env.STATE_FILE, JSON.stringify(file));
+  const door2 = mockDoor(s.node, { mode: 'exact', amount: MILLI, payTo });   // another seller quoting the first seller's (public) account
+  const door2Url = await listen(door2.srv);
+  t.after(() => { door2.srv.close(); door2.srv.closeAllConnections(); });
+  const post = port => fetch(`http://127.0.0.1:${port}/v1/chat/completions`, { method: 'POST', headers: { 'content-type': 'application/json', authorization: 'Bearer ' + KEY }, body: JSON.stringify(MSG) });
+  const p2 = await startProxy({ ...s.env, UPSTREAM: door2Url }, s.dir);
+  t.after(() => p2.stop());
+  assert.ok(p2.log().includes('written before 0.3.19') && p2.log().includes(hb.hash), 'start-up names the entry for recovery by hand');
+  const r2 = await post(p2.port);
+  assert.equal(r2.status, 200, await r2.text());
+  assert.equal(r2.headers.get('x-payer-recovered'), null); assert.equal(door2.st.recoveryAttempts || 0, 0, 'quoting the same account does not draw the pair out');
+  await p2.stop();
+  const p3 = await startProxy(s.env, s.dir);            // the first door again: still not presented, the call pays
+  t.after(() => p3.stop());
+  assert.ok(p3.log().includes(hb.hash));
+  const r3 = await post(p3.port);
+  assert.equal(r3.status, 200, await r3.text());
+  assert.equal(r3.headers.get('x-payer-recovered'), null); assert.equal(hb.used, false);
+  assert.equal(s.node.st.processed.length, 3);
+  const st = await fetch(`http://127.0.0.1:${p3.port}/_nano/state`, { headers: { authorization: 'Bearer ' + KEY } }).then(r => r.json());
+  assert.equal(st.payments[0].status, 'broadcast_not_served'); assert.equal(st.payments[0].recovery, undefined, 'left as it was, for the operator');
 });

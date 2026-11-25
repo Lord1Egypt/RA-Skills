@@ -1,0 +1,34 @@
+Ты получишь текст извлеченной статьи с сайта. Твоя задача проверить корректно ли извлечен текст, потому что иногда может возникнуть paywall и текст статьи не был извлечен.
+1. Например как здесь: 
+Subscribe to read
+Progressive Democrat wins in Michigan in rebuke to party establishment
+Subscribe to unlock this article
+Try unlimited access
+Only €1 for 4 weeksThen €69 per month. Complete digital access to quality FT journalism on any device. Cancel anytime during your trial.
+Explore more offers.
+Standard Digital
+€45 per month
+Essential digital access to quality FT journalism on any device. Pay a year upfront and save 20%.
+Premium Digital
+Complete coverage
+€69 per month
+
+2. Обращай внимание на текст из Bloomberg, часто там возникает paywall, но при этом первые два абзаца извлекаются. 
+Если у Bloomberg в тексте новсти 1-2 абзаца, значит там был paywall и текст статьи не был полностью извлечен (значит текст извлечен некорректно)
+
+3. Если видишь, что текст новости обрывается на полуслове, значит там тоже был paywall и извлекся только то текст, который был доступен бесплатно.
+Такаие тексты новостей тоже считаются извлеченными некорректно
+
+Твоя задача вернуть json с ответом ок или ошибка
+
+```json
+{
+"check_status": "ок"
+}
+```
+
+```json
+{
+"check_status": "ошибка"
+}
+```

@@ -1,9 +1,34 @@
-﻿# wechat-viral-topic
+# wechat-viral-topic
 
-> 微信爆款选题与内容策划助手。基于「爆款四基因 + 12 条策划心法 + 8 维打分卡 + 6 大内容形态 + 12 条标题公式 + 风险自检」的纯规则策划流水线，面向公众号编辑、短视频/小红书博主、漫画作者、H5 策划，回答「这周写什么」「这个素材能不能爆」「热点怎么改成我的选题」。
+> Turns a raw trend into a defensible topic card via verifiable signals, compliance red-line screening and headline grading.
 
-- 版本：2.0.0
-- 调用入口：`SKILL.md`（AI 代理请先读此文件）
-- 配套文件：LICENSE.md, SKILL.md, _icon.svg, _skillhub_meta.json, manifest.json
-- 系列归属：SynomosAI 治理技能生态（LGD/UIBC/SynomosAI）
+## When to use
 
+- 这周公众号写什么好  →  scan 素材信号抽取
+- 这个素材能不能做成 10万+  →  scan + 选题卡
+- 帮我起 10 个标题  →  titlecheck 标题体检
+- 这篇有没有违规风险  →  riskcheck 红线判定
+- 这个医美选题能不能写  →  riskcheck（医疗声明 RED）
+- give me viral topic ideas and check compliance risk  →  same
+
+## When NOT to use
+
+- 代写整篇长文
+- 刷量/诱导分享方案
+- 医疗诊断或疗效承诺
+
+## Entrypoints
+
+- cli: `python tools/topicguard.py scan --file <material>`
+- verify: `python tools/topicguard.py riskcheck --file <draft>`
+- gate: `python tests/run_golden.py`
+- review: `python scripts/review.py <this_dir> --run`
+
+## Ecosystem
+
+- Author: 诺声(Logos)@SynomosAI (LGD / SynomosAI)
+- Theory anchor: 三律：有籍（可追溯）/ 有证（可核验）/ 有门禁（可拦截）
+
+- summarize-pro — 访谈/会议素材需要先压成要点再选题
+- debug-pro — 选题涉及技术故障需核实细节
+- lgd-skill-review — 要评测技能包并拿整改清单

@@ -11,6 +11,9 @@ import OpenAI from 'openai';
 
 /** In-memory registry of loaded skills, keyed by function name */
 const skillRegistry = new Map<string, LoadedSkill>();
+const callScopedCrmActions = new Set([
+  'lookup_contact', 'upsert_contact', 'log_interaction', 'get_history', 'tag_contact',
+]);
 const directSkillAllowlist = new Map<string, Set<string>>([
   ['crm', new Set(['lookup_contact', 'upsert_contact', 'log_interaction'])],
 ]);
@@ -177,6 +180,24 @@ export async function handleSkillCall(
     }
     params = sanitizeParams(params);
 
+    if (fnName === 'crm') {
+      const contactPhone = deps.callerId;
+      const suppliedPhone = params.phone;
+      if (!callScopedCrmActions.has(params.action)
+        || !/^\+[1-9]\d{6,14}$/.test(contactPhone)
+        || (suppliedPhone !== undefined && suppliedPhone !== '' && suppliedPhone !== contactPhone)) {
+        deps.sendFunctionCallOutput(ws, fnCallId, JSON.stringify({
+          success: false,
+          response: 'Live-call CRM is limited to the contact associated with this call. Use the operator CRM tools for other contacts.',
+        }));
+        return;
+      }
+      params.phone = contactPhone;
+      if (typeof params.context_notes !== 'string' || !params.context_notes.trim()) {
+        delete params.context_notes;
+      }
+    }
+
     deps.writeJsonl({
       type: 'c2.skill_call',
       call_id: deps.callId,
@@ -187,21 +208,18 @@ export async function handleSkillCall(
       confirmed: params.confirmed === true,
     });
 
-    // Router-level confirmation enforcement for 'act' skills.
-    // All 'act' skills require confirmed: true by default.
-    // A skill may opt out by setting its manifest confirmation flag to false,
-    // but only for non-destructive actions (e.g. read-only lookups declared as 'act').
-    // This is a programmatic guarantee enforced at the router level — not left to LLM prompting.
-    const isActSkill = manifest.amber.capabilities.includes('act');
-    if (isActSkill && manifest.amber.confirmation_required !== false) {
-      if (params.confirmed !== true) {
-        deps.sendFunctionCallOutput(ws, fnCallId, JSON.stringify({
-          response: 'This action requires explicit caller confirmation before it can proceed. Please confirm the details with the caller and call this function again with confirmed: true.',
-          success: false,
-          requires_confirmation: true,
-        }));
-        return;
-      }
+    // Keep the confirmation requirement for built-in writes even if a local manifest changes.
+    const requiresConfirmation = fnName === 'calendar_query'
+      ? params.action === 'create'
+      : fnName === 'send_message'
+        || (manifest.amber.capabilities.includes('act') && manifest.amber.confirmation_required !== false);
+    if (requiresConfirmation && params.confirmed !== true) {
+      deps.sendFunctionCallOutput(ws, fnCallId, JSON.stringify({
+        response: 'This action requires explicit caller confirmation before it can proceed. Please confirm the details with the caller and call this function again with confirmed: true.',
+        success: false,
+        requires_confirmation: true,
+      }));
+      return;
     }
 
     // Build constrained API context

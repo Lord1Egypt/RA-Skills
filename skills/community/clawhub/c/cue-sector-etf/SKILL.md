@@ -1,6 +1,7 @@
 ---
 slug: cue-sector-etf
 name: cue-sector-etf
+displayName: 热门赛道与ETF深度投研
 Name: 热门赛道与ETF深度投研
 description: 用 Cue 一键深度拆解热门赛道与ETF——赛道全景分析、同类ETF横向对比、底层持仓穿透、估值水位研判，告诉你"这条赛道值不值得投、哪只ETF更匹配"。
 description_zh: Cue 热门赛道与ETF深度投研：赛道全景+ETF横向对比+持仓穿透+估值研判，选赛道选ETF不再凭感觉。
@@ -163,6 +164,7 @@ https://cuecue.cn/share/<conv_id>
 ---
 **Cue 原始报告**：https://cuecue.cn/share/<conv_id>
 **本地副本**：~/cue-reports/<文件名>.md
+如有疑问请关注“感易Cue”官方服务号添加企微客服咨询
 ```
 
 规则：

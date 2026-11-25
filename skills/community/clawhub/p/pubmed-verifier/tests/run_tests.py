@@ -29,15 +29,39 @@ os.chdir(ROOT)
 
 loader = unittest.TestLoader()
 suite = loader.discover(HERE, pattern="test_offline_matrix.py")
+if suite.countTestCases() == 0:
+    # v7.2.0 (evaluation finding: "the in-package entry can only run limited
+    # smoke checks"): package copies ship the SEALED matrix — a real
+    # offline test subset — so the entry runs actual tests, with the smoke
+    # promises as the last-resort fallback.
+    suite = loader.discover(HERE, pattern="sealed_matrix.py")
 runner = unittest.TextTestRunner(verbosity=2 if VERBOSE else 1)
 result = runner.run(suite)
 
 n, bad = result.testsRun, len(result.failures) + len(result.errors)
 if n == 0:
-    print("milestone: no offline tests found in this copy (the matrix is "
-          "repo-only) — run `python3 scripts/verify_pmids.py --self-check` "
-          "for the in-package promises.")
-    sys.exit(0)
+    # v7.1.0 fallback kept for copies that carry neither matrix: run the
+    # in-package smoke promises for real (offline, zero network).
+    scripts = os.path.join(ROOT, "scripts")
+    if os.path.isfile(os.path.join(scripts, "verify_pmids.py")):
+        sys.path.insert(0, scripts)
+        import contextlib, io
+        buf = io.StringIO()
+        try:
+            import verify_pmids as _vp
+            with contextlib.redirect_stdout(buf):
+                rc = _vp.run_self_check(net_probe=False)   # offline matrix mode
+            for line in buf.getvalue().splitlines():
+                if line.startswith(("OK", "FAIL")) or "self-check" in line:
+                    print(line)
+            print(f"milestone: in-package smoke {'OK' if rc == 0 else 'FAILED'} "
+                  f"({len(buf.getvalue().splitlines()) - 2} promises, offline)")
+            sys.exit(0 if rc == 0 else 1)
+        except Exception as e:
+            print(f"milestone: in-package smoke FAILED ({type(e).__name__}: {e})")
+            sys.exit(1)
+    print("milestone: no tests and no verifier found in this copy")
+    sys.exit(1)
 print(f"milestone: {n - bad}/{n} tests passed"
       + ("" if bad == 0 else f", {bad} FAILED"))
 sys.exit(0 if bad == 0 else 1)

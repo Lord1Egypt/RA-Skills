@@ -1,6 +1,6 @@
 ## Description:
 
-Guides developers in using Neon AI Gateway to call hosted language models, generate embeddings, and build agents with supported SDKs.
+Guides developers in routing LLM and embedding requests through Neon's branch-scoped AI Gateway using familiar SDKs.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,49 +14,43 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to configure Neon AI Gateway and integrate hosted model calls, embeddings, or agents into applications through familiar SDKs. It provides setup guidance and implementation examples for branch-scoped inference.
+Developers use this skill to configure Neon AI Gateway for applications and agents that call language or embedding models. It provides SDK examples, setup guidance, and advice for checking model availability and branch credentials.
 
 ### Deployment Geography for Use:
 
-AWS us-east-1, us-east-2, eu-central-1, and ap-southeast-1
+AWS regions aws-us-east-2, aws-us-east-1, aws-eu-central-1, and aws-ap-southeast-1.
 
 ## Known Risks and Mitigations:
 
-Risk: The example todo tool returns database rows without showing user or tenant scoping, which could expose other users’ records to a model.
+Risk: An example may send database records to hosted inference, exposing more data than intended.
 
-Mitigation: Enforce authenticated user or tenant isolation, filter records appropriately, and return only necessary fields before sending data to hosted inference.
+Mitigation: Review the query and destination, limit fields to what the model needs, and confirm access is scoped to the intended user.
 
-Risk: Local gateway token files could expose credentials if mishandled.
+Risk: The security scan was partial, so its results may miss issues.
 
-Mitigation: Protect local token files and avoid sharing or committing gateway credentials.
-
-Risk: Gateway configuration changes may affect a branch when applied.
-
-Mitigation: Preview the configuration plan before applying changes or deploying.
+Mitigation: Inspect the skill and example flows before installation, and review the Neon CLI workflow you trust.
 
 ## Reference(s):
 
 - [Neon AI Gateway overview](https://neon.com/docs/ai-gateway/overview.md)
-- [Neon AI Gateway authentication](https://neon.com/docs/ai-gateway/authentication.md)
-- [Neon AI Gateway models](https://neon.com/docs/ai-gateway/models.md)
-- [Neon AI Gateway embeddings guide](https://neon.com/docs/ai-gateway/embeddings)
+- [Neon AI Gateway getting started](https://neon.com/docs/ai-gateway/get-started.md)
 - [Neon AI Gateway troubleshooting](https://neon.com/docs/ai-gateway/troubleshooting.md)
-- [Neon model catalog on models.dev](https://models.dev/providers/neon)
-- [Vercel AI SDK](https://ai-sdk.dev)
+- [Neon model catalog](https://models.dev/providers/neon)
+- [Neon AI Gateway prepaid credits](https://neon.com/docs/ai-gateway/prepaid-credits.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Shell commands, Configuration instructions, Technical guidance]
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions, API calls]
 
-**Output Format:** [Markdown with TypeScript and shell code examples]
+**Output Format:** [Markdown guidance with TypeScript, shell, and API examples.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include SDK integration examples, gateway setup steps, and troubleshooting guidance.]
+**Other Properties Related to Output:** [Examples use branch-scoped credentials; model availability depends on the live catalog and account access.]
 
 ## Skill Version(s):
 
-1.0.6 (source: server-resolved ClawHub release metadata)
+1.0.8 (source: release evidence)
 
 ## Ethical Considerations:
 

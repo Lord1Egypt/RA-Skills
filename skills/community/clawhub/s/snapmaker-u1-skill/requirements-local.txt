@@ -1,0 +1,11 @@
+# Optional TripoSR inference environment; not required for core mesh tools.
+-r requirements-core.txt
+torch==2.13.0
+torchvision==0.21.0
+transformers==5.10.1
+huggingface-hub==0.25.2
+omegaconf==2.3.0
+einops==0.7.0
+rembg[cpu]==2.0.82
+imageio==2.38.2
+truststore==0.10.4

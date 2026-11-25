@@ -1,6 +1,6 @@
 ## Description:
 
-Helps creators turn Douyin video links into transcripts, summaries, structural analyses, scripts, and generation prompts.
+Analyzes Douyin video links and turns their speech and visuals into transcripts, summaries, video breakdowns, shot scripts, original scripts, and generation prompts.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External creators and social media teams use this skill to understand Douyin videos and create transcripts, summaries, video breakdowns, scripts, and prompts based on them.
+Content creators and marketers use this skill to turn Douyin videos into structured transcripts and analyses, or to develop shot scripts, adapted scripts, and video-generation prompts.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Setup guidance asks users to share a reusable API key in chat, which could expose the credential.
+Risk: Setup instructions ask users to share a complete API key in chat.
 
-Mitigation: Use the local configuration option, restrict the credential file to the account owner, and rotate any key already shared in a conversation.
+Mitigation: Do not share the key in chat; configure it locally through a secure method and rotate it if it was already shared.
 
-Risk: Video links are sent to Cue for remote parsing, parsing consumes credits, and the server retention promise has not been independently verified.
+Risk: The security scan was partial and some referenced material was not resolved.
 
-Mitigation: Avoid sending sensitive links, review the service's data handling terms, and check available credits before processing videos.
+Mitigation: Review the setup and remote-service use before installing; the available scan evidence is incomplete.
 
 ## Reference(s):
 
 - [Cue Omni Reader online experience](https://cuecue.cn/hub/omni-reader)
-- [ClawHub skill release](https://clawhub.ai/panting09266-ai/skills/douyin-video-studio)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Analysis, Guidance, Structured JSON]
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
 
-**Output Format:** [Markdown text with headings and tables; structured JSON when requested]
+**Output Format:** [Markdown prose and tables; structured JSON when requested]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Content varies by the selected video task and may include transcripts, summaries, breakdowns, scripts, or prompts.]
+**Other Properties Related to Output:** [Content varies by the selected transcription, analysis, scripting, or prompt-generation task.]
 
 ## Skill Version(s):
 
-1.1.2 (source: server-resolved release metadata)
+1.1.3 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

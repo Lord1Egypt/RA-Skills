@@ -1,6 +1,6 @@
 ## Description:
 
-从结构、人物、设定与文字多个角度审查小说，并给出有原文依据的修改建议。
+对小说内容进行多视角审查，检查故事结构、人物、叙事、设定一致性与文字表现，并提出修改建议。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-小说作者与编辑可用它审查章节的情节推进、人物动机、设定一致性和表达问题，并获得带原文依据的修改建议。
+小说作者可用此技能审查章节或故事材料，获得带有原文依据的结构、人物、叙事、连贯性和文字问题，以及可执行的修改建议。
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review found capabilities beyond story review, including extra editing and persistent tracking behavior; four of 23 components were only partly inspected.
+Risk: The reported editing and tracking behavior may change or delete files, and some files were only partially analyzed.
 
-Mitigation: Review the skill’s permissions and tracking behavior, and avoid installing it until those capabilities are understood.
+Mitigation: Before use, review the full scope of the behavior and protect files you rely on, as the security guidance recommends.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/worldwonderer/skills/story-review)
+- [ClawHub release page](https://clawhub.ai/worldwonderer/skills/story-review)
+- [Project link from OpenClaw metadata (provenance unavailable)](https://github.com/zenstory-ai/oh-story-claudecode)
+- [Quality rubric](references/quality-rubric.md)
+- [Review workflow and report format](references/agent-prompts.md)
+- [Solo review guidance](references/solo.md)
+- [Style resolution guidance](references/style-resolution.md)
+- [De-slop guidance](references/deslop-guide.md)
+- [Short-form writing guidance](references/short-deslop.md)
+- [Qidian review rubric](references/rubrics/qidian.md)
+- [Fanqie review rubric](references/rubrics/fanqie.md)
+- [Zhihu review rubric](references/rubrics/zhihu.md)
+- [Commercial short-form review rubric](references/rubrics/short-shuang.md)
+- [Review tracking guidance](references/review-tracking.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Guidance]
+**Output Type(s):** [Analysis, Text, Markdown]
 
 **Output Format:** [Markdown review report with evidence-based findings and revision suggestions]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Full and lean reviews may maintain persistent tracking records; the skill states that it does not edit story prose.]
+**Other Properties Related to Output:** [Findings are reported without rewriting story content; full and lean reviews may update tracking files.]
 
 ## Skill Version(s):
 
-1.1.56 (source: server-resolved ClawHub release metadata)
+1.1.67 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

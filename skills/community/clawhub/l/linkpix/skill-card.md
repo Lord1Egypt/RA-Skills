@@ -1,6 +1,6 @@
 ## Description:
 
-LinkPix helps agents create and edit e-commerce images and videos, translate media, and retrieve cross-platform commerce data through Qinghu's AI media and data tools.
+LinkPix helps ecommerce teams and social media creators produce product images, videos, scripts, and cross-platform commerce insights through Qinghu AI.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,41 +14,41 @@ MIT-0
 
 ## Use Case:
 
-E-commerce creators and teams use LinkPix to produce and refine product imagery and promotional videos, translate or adapt media, and retrieve marketplace, creator, keyword, competitor, and supplier data.
+External ecommerce operators, social media teams, and short-video creators use LinkPix to create and adapt product imagery, advertising videos, storyboards, and promotional copy. They can also query marketplace listings, creators, keywords, competitors, and sourcing data across supported commerce platforms.
 
 ### Deployment Geography for Use:
 
-Global
+China (the documented Qinghu domestic service endpoint)
 
 ## Known Risks and Mitigations:
 
-Risk: Price estimates may upload local media, and searches may forward the full request.
+Risk: Setup instructions can install or upgrade the qhkit command-line package, and the package is not version-pinned.
 
-Mitigation: Get permission before using local media for estimates and send only minimal, non-sensitive search terms.
+Mitigation: Review the package and installation steps before use; prefer a version-pinned release or run it in an isolated environment.
 
-Risk: The downloaded qhkit CLI and remote service have not been audited.
+Risk: The skill may send the user's original wording to an external service without a privacy warning.
 
-Mitigation: Use a dedicated service key through protected environment configuration and prefer reviewed dependency versions.
+Mitigation: Avoid including sensitive or identifying information in prompts, and review what will be sent before submitting a task.
 
 ## Reference(s):
 
+- [LinkPix release on ClawHub](https://clawhub.ai/autoagc/skills/linkpix)
 - [qhkit package on npm](https://www.npmjs.com/package/@iqinghu/qhkit)
 - [Qinghu platform](https://www.iqinghu.com)
-- [LinkPix on ClawHub](https://clawhub.ai/autoagc/skills/linkpix)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Video, Text, Structured data]
+**Output Type(s):** [Images, Videos, Text, Markdown, JSON, Data files]
 
-**Output Format:** [Generated media, text, JSON, or result files]
+**Output Format:** [Image and video assets, text or Markdown, JSON results, and data files]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Output depends on the selected media creation, editing, translation, or research workflow.]
+**Other Properties Related to Output:** [Output depends on the selected media creation, editing, workflow, or commerce research task.]
 
 ## Skill Version(s):
 
-0.1.23 (source: server-resolved release metadata)
+0.1.24 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

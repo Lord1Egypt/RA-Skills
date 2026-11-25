@@ -1,6 +1,6 @@
 ## Description:
 
-Converts a Claude Code session JSONL file into an animated GIF terminal replay.
+Converts a Claude Code session JSONL file into an animated GIF terminal replay
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to turn saved Claude Code conversations into terminal-style animated replays for workflow demos, pull request evidence, and tutorials.
+Developers can turn a Claude Code session JSONL file into an animated terminal replay for demos, pull request evidence, session highlights, and tutorials.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Session replays can expose private messages, credentials, personal information, or proprietary content.
+Risk: A replay may expose credentials, personal information, or private work from the selected session.
 
-Mitigation: Review and redact session content before creating or sharing a replay.
+Mitigation: Before sharing a replay, check whether the selected session contains sensitive or private content.
 
 ## Reference(s):
 
 - [ClawHub release page](https://clawhub.ai/athola/skills/nm-scribe-session-replay)
-- [Scribe plugin page](https://github.com/athola/claude-night-market/tree/master/plugins/scribe)
+- [Scribe plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scribe)
 
 ## Skill Output:
 
-**Output Type(s):** [Animated GIF, VHS tape file]
+**Output Type(s):** [Animated GIF]
 
-**Output Format:** [Animated GIF terminal replay, generated from a VHS tape]
+**Output Format:** [Animated GIF terminal replay]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Can limit the replay by turn range, visible layers, playback speed, and maximum duration.]
+**Other Properties Related to Output:** [Replays selected session turns as typed terminal output; supports filtering turns and visible layers, playback speed, duration, and output path.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved ClawHub release metadata)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-A curated, daily refreshed collection of agent skills across AI tools, productivity, development, marketing, and operations, compatible with multiple agent runtimes.
+Provides a daily refreshed, harness-agnostic catalog of agent skills across AI, productivity, development, marketing, and other areas.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Agent users and developers use this collection to discover and install skills for AI, productivity, development, and other workflows across supported runtimes.
+Agent users and developers use the catalog to discover skills for tasks across supported agent harnesses and to find installation guidance for the collection.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Broad activation language may prompt the agent to load or apply the collection for unrelated tasks.
+Risk: Catalog descriptions may lead an agent to invoke skills during unrelated tasks.
 
-Mitigation: Use it for deliberate skill discovery, and review an individual skill's scope before applying it.
+Mitigation: Review a selected skill's scope and instructions before installing or invoking it, and choose only skills relevant to the current task.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/leoyeai/skills/openclaw-master-skills)
-- [Install guide](references/install-guide.md)
+- [ClawHub release](https://clawhub.ai/leoyeai/skills/openclaw-master-skills)
+- [Project page](https://github.com/LeoYeAI/agent-master-skills)
 - [MyClaw.ai](https://myclaw.ai)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Shell commands]
+**Output Type(s):** [Guidance, Text, Shell commands]
 
-**Output Format:** [Markdown skill descriptions and install commands]
+**Output Format:** [Markdown, including installation commands when relevant]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Collection of skills; outputs vary by the selected skill.]
+**Other Properties Related to Output:** [Catalog descriptions and installation guidance selected for the user's request.]
 
 ## Skill Version(s):
 
-0.22.11 (source: ClawHub release metadata)
+0.22.14 (source: ClawHub release evidence)
 
 ## Ethical Considerations:
 

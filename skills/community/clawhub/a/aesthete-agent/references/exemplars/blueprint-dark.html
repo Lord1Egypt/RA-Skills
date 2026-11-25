@@ -16,10 +16,15 @@ regen: python3 scripts/make_exemplars.py(勿手改本文件)
   --card:#EFF6FF;--line:#83B0E4;
   --serif:'Noto Serif SC','Source Han Serif SC','Songti SC',Georgia,serif;
   --sans:-apple-system,'PingFang SC','Microsoft YaHei','Segoe UI',sans-serif;
+  --sans-display:-apple-system,'SF Pro Display','Segoe UI Display','PingFang SC','Microsoft YaHei',sans-serif;
   --display:var(--sans);
   --mono:ui-monospace,'SF Mono',Consolas,monospace;
+  --track-display:-0.011em; /* 0.28 展示级紧字距纪律(Linear 式克制;CJK 靠 palt 收标点,此值只动 display 级) */
 }
 :lang(zh){text-autospace:normal;line-break:strict}
+@supports (text-spacing-trim: space-all){
+  :lang(zh){text-spacing-trim:space-all} /* 0.28:全角标点挤压渐进增强(Chrome 123+;不支持则原样,clreq 口径) */
+}
 h1,h2{text-wrap:balance}
 p{text-wrap:pretty}
 :lang(zh) :is(h1,h2,h3){font-feature-settings:"palt" 1}
@@ -43,7 +48,7 @@ img{max-width:100%;display:block}
 .cross{position:absolute;width:11px;height:11px;pointer-events:none}
 .cross::before{content:"";position:absolute;left:5px;top:0;width:1px;height:11px;background:var(--ink2);opacity:.5}
 .cross::after{content:"";position:absolute;top:5px;left:0;width:11px;height:1px;background:var(--ink2);opacity:.5}
-.side-label{position:absolute;writing-mode:vertical-rl;font:600 11px/1.8 var(--mono);
+.side-label{position:absolute;writing-mode:vertical-rl;font:600 12.5px/1.8 var(--mono);
              letter-spacing:.3em;color:var(--ink2);opacity:.55;pointer-events:none}
 .bg-motif{position:absolute;pointer-events:none;opacity:.07}
 .dark .bg-motif{opacity:.12}
@@ -54,12 +59,22 @@ th{background:var(--surface);text-align:left;padding:12px 18px;font-weight:700}
 td{padding:12px 18px;border-top:1px solid var(--line)}
 .num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
 .lift{transition:transform .22s ease,box-shadow .22s ease}
-.lift:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(17,22,30,.12)}
+.lift:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(15,23,42,.12)}
 @media (prefers-reduced-motion:reduce){.lift,.lift:hover{transform:none;box-shadow:none;transition:none}}
 figcaption{font:400 12px/1.6 var(--mono);letter-spacing:.05em;color:var(--ink2);margin-top:10px}
 @supports (initial-letter:3){.dropcap>p:first-of-type::first-letter{initial-letter:3 2;
   font:700 1em var(--serif);color:var(--accent-ink,var(--accent));margin-right:10px}}
 @media (max-width:900px){.grid>*{grid-column:1/-1!important}section{padding:64px 0}.wrap{padding:0 24px}}
+/* ── 动效底座(0.21,M1/M2,渲染实证 _motionlab):终态=无动效版 ── */
+/* 0.25 教训:此注释曾漏写关闭符,导致 CSS 注释吞掉其后全部配方规则,产物全裸
+   (测试方视觉终审抓出;静态闸只看文本不看样式所以此前测试全绿);
+   test_v01400 已加 css 注释与花括号平衡闸防复发 */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.09s}.reveal.d2{transition-delay:.18s}
+.btn{transition:transform .18s ease,box-shadow .18s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(15,23,42,.14)}
+@media (prefers-reduced-motion:reduce){.reveal,.btn,.lift{opacity:1;transform:none;transition:none}.reveal:hover{transform:none}}
 
 body{background:var(--night);color:var(--pale)}
 .frame{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M24 0H0V24' fill='none' stroke='%23DBEAFE' stroke-opacity='.10'/%3E%3C/svg%3E");background-size:24px 24px}
@@ -102,29 +117,29 @@ summary{cursor:pointer;font-weight:700;font-size:15px}
 <div class="wrap"><section class="hero center8" style="position:relative">
   <span class="cross" style="left:0;top:20px"></span>
   <span class="cross" style="right:0;bottom:20px"></span>
-  <p class="kicker" style="justify-content:center;color:var(--sage)">OUTBOUND · ENGINEERING(替换)</p>
-  <h1>为严肃场景<br>造的工具。(替换)</h1>
-  <p class="sub">一句可验证的价值陈述:做什么、给谁、凭什么信。(替换)</p>
+  <p class="kicker" style="justify-content:center;color:var(--sage)">OUTBOUND · ENGINEERING TOOLKIT</p>
+  <h1 class="reveal">为严肃场景<br>造的工具。</h1>
+  <p class="sub reveal d1">一条命令完成配色把关:对比、色盲、反俗套、评分——四闸不过不交付。</p>
   <a class="btn" style="background:var(--pale);color:var(--night)" href="#cta">开始使用</a>
   <a class="btn ghost" style="color:var(--pale);border-color:var(--mist);margin-left:12px" href="#s1">读文档</a>
 </section>
-<section class="sub" id="s1"><div class="bento"><div class="cell main" style="position:relative"><h3>主角格:核心能力(替换)</h3><p>两行说明,具体可验证。</p><ul><li><span>能力点一</span><b>已验证</b></li><li><span>能力点二</span><b>4.5:1</b></li><li><span>能力点三</span><b>可复现</b></li></ul><span class="mono" style="position:absolute;right:16px;bottom:12px;opacity:.5">01</span></div><div class="cell " style="position:relative"><h3>格:能力</h3><p>一句话。</p><span class="mono" style="position:absolute;right:16px;bottom:12px;opacity:.5">02</span></div><div class="cell " style="position:relative"><h3>格:能力</h3><p>一句话。</p><span class="mono" style="position:absolute;right:16px;bottom:12px;opacity:.5">03</span></div><div class="cell " style="position:relative"><h3>格:能力</h3><p>一句话。</p><span class="mono" style="position:absolute;right:16px;bottom:12px;opacity:.5">04</span></div><div class="cell " style="position:relative"><h3>格:能力</h3><p>一句话。</p><span class="mono" style="position:absolute;right:16px;bottom:12px;opacity:.5">05</span></div></div></section>
+<section class="sub" id="s1"><div class="bento"><div class="cell main" style="position:relative"><h3>离线优先的配色引擎</h3><p>四道机械闸不过不交付;检查全部本地完成,零联网。</p><ul><li><span>WCAG 对比</span><b>AA 全过</b></li><li><span>色盲模拟</span><b>三型区分</b></li><li><span>金标回归</span><b>逐版可复现</b></li></ul><span class="mono" style="position:absolute;right:16px;bottom:12px;opacity:.5">01</span></div><div class="cell " style="position:relative"><h3>命令行出稿</h3><p>audit 一条命令出体检。</p><span class="mono" style="position:absolute;right:16px;bottom:12px;opacity:.5">02</span></div><div class="cell " style="position:relative"><h3>配方模板库</h3><p>五配方 × 四语域。</p><span class="mono" style="position:absolute;right:16px;bottom:12px;opacity:.5">03</span></div><div class="cell " style="position:relative"><h3>渲染对账</h3><p>截图与声明逐像素核。</p><span class="mono" style="position:absolute;right:16px;bottom:12px;opacity:.5">04</span></div><div class="cell " style="position:relative"><h3>团队令牌表</h3><p>CSS 变量直接接线。</p><span class="mono" style="position:absolute;right:16px;bottom:12px;opacity:.5">05</span></div></div></section>
 <section class="sub"><div class="center8 code">
-&lt;config&gt;<br>&nbsp;&nbsp;<b>engine</b>="aesthete" <span class="cm">// 四道机械检查,不过不交付</span><br>
+&lt;config&gt;<br>&nbsp;&nbsp;<b>engine</b>="outbound" <span class="cm">// 四道机械检查,不过不交付</span><br>
 &nbsp;&nbsp;<b>gates</b>=["contrast","colorblind","slop","score"]<br>&lt;/config&gt;</div></section>
 <section class="sub" id="price"><div class="lightzone">
-  <p class="kicker">定价(替换)</p>
+  <p class="kicker">定价</p>
   <div class="grid" style="grid-template-columns:repeat(3,1fr)"> <div class="tier"><strong style="font-size:16px">入门</strong><div class="price">¥0</div><p style="font-size:13px;color:var(--ink2)">适合个人起步。</p><a class="btn" style="margin-top:16px;background:var(--night);color:var(--pale);text-align:center" href="#">选择</a></div><div class="tier hot"><span class=mono style="color:var(--pale);letter-spacing:.18em">最受欢迎</span><br><strong style="font-size:16px">专业</strong><div class="price">¥49/月</div><p style="font-size:13px;color:var(--ink2)">适合小团队。</p><a class="btn" style="margin-top:16px;background:var(--night);color:var(--pale);text-align:center" href="#">选择</a></div><div class="tier"><strong style="font-size:16px">旗舰</strong><div class="price">联系</div><p style="font-size:13px;color:var(--ink2)">适合组织。</p><a class="btn" style="margin-top:16px;background:var(--night);color:var(--pale);text-align:center" href="#">选择</a></div> </div></div></section>
 <section class="sub"><div class="center8">
   <p class="kicker" style="color:var(--sage)">FAQ</p>
-  <details open><summary>问题一(替换)</summary><p style="color:var(--mist);font-size:14px;padding-top:10px">答案:具体、可验证。(替换)</p></details>
-  <details><summary>问题二(替换)</summary><p style="color:var(--mist);font-size:14px;padding-top:10px">答案。(替换)</p></details>
+  <details open><summary>静态闸会不会漏?</summary><p style="color:var(--mist);font-size:14px;padding-top:10px">双层:源码静态闸之外,渲染对账把实际画出来的颜色逐像素对回声明。</p></details>
+  <details><summary>接什么栈?</summary><p style="color:var(--mist);font-size:14px;padding-top:10px">产物是纯 HTML/CSS,令牌表给出全套 CSS 变量;任何框架直接接。</p></details>
 </div></section>
 <section class="sub" id="cta" style="text-align:center;padding-bottom:96px">
-  <h2 style="font:800 clamp(30px,4vw,48px)/1.2 var(--display)">下一个页面,让它配色。(替换)</h2>
+  <h2 style="font:800 clamp(30px,4vw,48px)/1.2 var(--display)">下一个页面,让它配色。</h2>
   <p style="color:var(--mist);margin:12px 0 24px;font-size:14.5px">在线演示 · 打开就能用</p>
   <a class="btn" style="background:var(--pale);color:var(--night)" href="#">立即开始</a></section>
 </div></div>
 <footer><div class="wrap" style="padding-bottom:36px;font-size:12.5px;color:var(--mist);display:flex;justify-content:space-between">
-  <span>© 2026 界外工具</span><span>aesthete-agent 配方 BLUEPRINT</span></div></footer>
-</body></html>
+  <span>© 2026 界外工具</span><!-- 0.30:引擎署名撤出可见页脚(配方 BLUEPRINT) --><span>outbound · 四闸验证的配色引擎</span></div></footer>
+<script>const __io=new IntersectionObserver((es)=>{es.forEach((e)=>{if(e.isIntersecting){e.target.classList.add("in");__io.unobserve(e.target)}})},{threshold:.12});document.querySelectorAll(".reveal").forEach((el)=>__io.observe(el));</script></body></html>

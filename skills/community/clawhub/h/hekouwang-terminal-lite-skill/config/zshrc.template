@@ -1,0 +1,218 @@
+# ============================================================
+# hekouwang-terminal-skill — recommended .zshrc template
+# Order matters: omz → znap/plugins → starship → CLI suite →
+#                syntax-highlighting (second to last) → iTerm2 integration (last)
+# Private things (SSH aliases / proxies / work config) go in ~/.zshrc.local,
+# which never goes into git.
+#
+# Chinese version of this file: config/zshrc.template.zh
+# (install.sh picks it automatically when the kit is installed in Chinese)
+# ============================================================
+
+# ---- 0. System tuning --------------------------------------
+# Put Homebrew on PATH (Apple Silicon = /opt/homebrew, Intel = /usr/local — try both)
+for _brew in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+  [ -x "$_brew" ] && eval "$("$_brew" shellenv)" && break
+done
+BREW_PREFIX="${HOMEBREW_PREFIX:-$(brew --prefix 2>/dev/null)}"  # every share/ path below uses this
+
+# Raise the file handle limit (the async workers in zsh-autocomplete /
+# zsh-autosuggestions need it)
+ulimit -n 10240 2>/dev/null
+
+# ---- 1. oh-my-zsh ------------------------------------------
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME=""          # the prompt is starship's job, so leave the theme empty
+plugins=(git)         # keep it lean; optional extras: sudo extract
+source $ZSH/oh-my-zsh.sh
+
+# ---- 2. Znap plugin manager + zsh-autocomplete (optional, heavy) ----
+zstyle ':znap:*' repos-dir ~/.zsh-plugins
+[[ -r ~/.zsh-plugins/znap/znap.zsh ]] ||
+    git clone --depth 1 -- \
+        https://github.com/marlonrichert/zsh-snap.git ~/.zsh-plugins/znap
+source ~/.zsh-plugins/znap/znap.zsh
+znap source marlonrichert/zsh-autocomplete
+
+# ---- 3. zsh-autosuggestions (the grey ghost text) -----------
+[ -f "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && \
+  source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+# Ghost text defaults to fg=8. Section 9.0 sources colors.sh later and pins it to
+# the current theme's dim slot (the audit keeps that slot above 3:1), so the
+# suggestion stays readable on every palette instead of going invisible on a
+# dark one. This line only covers the window before colors.sh loads.
+: ${ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE:="fg=8"}
+
+# ---- 4. Node version manager (exactly one — do not mix) ----
+# Choice is made at install (./scripts/install.sh --node …) or later via ./scripts/node-mgr.sh.
+# Snippet lives outside this file so switching managers does not rewrite ~/.zshrc.
+[ -f ~/.config/hekouwang-terminal/node.sh ] && source ~/.config/hekouwang-terminal/node.sh
+
+# ---- 5. Other runtimes --------------------------------------
+# Java 17 (resolved through java_home, so no minor version is hard-coded)
+[ -x /usr/libexec/java_home ] && export JAVA_HOME=$(/usr/libexec/java_home -v 17 2>/dev/null)
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
+
+# pipx
+export PATH="$PATH:$HOME/.local/bin"
+
+# locale (keeps remote SSH sessions from garbling non-ASCII)
+export LC_ALL=en_US.UTF-8
+
+# ---- 6. Homebrew tuning -------------------------------------
+export HOMEBREW_AUTO_UPDATE_SECS=3600
+# Mirrors for networks inside China. They are commented out on purpose: pointing
+# everyone's Homebrew at a Chinese mirror makes downloads slower (or fails) from
+# anywhere else. Uncomment if you are on a Chinese network — and check the mirror
+# is still being updated before you rely on it.
+# export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+# export HOMEBREW_API_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles/api
+# export HOMEBREW_PIP_INDEX_URL=https://mirrors.aliyun.com/pypi/simple/
+# (Do not use the Aliyun homebrew mirror: it stopped being updated and Homebrew 6.x
+#  then downloads from the official source but looks the file up under the mirror's
+#  hash, so installs fail with "No such file or directory ... bottle.tar.gz".)
+
+# ---- 7. Short git aliases -----------------------------------
+alias gc="git commit -am "
+alias gs="git status"
+alias gaa="git add ."
+alias gpld="git pull origin develop"
+alias gpud="git push origin develop"
+alias gplm="git pull origin master"
+alias gpum="git push origin master"
+alias gcom="git checkout master"
+alias gcod="git checkout develop"
+alias gco="git checkout "
+alias gr="git merge "
+
+# ---- 8. Starship prompt -------------------------------------
+# Scene Aesthetics Engine: scene.env may set STARSHIP_CONFIG for privacy paths.
+# Must load BEFORE starship init, otherwise present/record still show the full home path.
+[ -f ~/.config/hekouwang-terminal/scene.env ] && . ~/.config/hekouwang-terminal/scene.env
+eval "$(starship init zsh)"
+
+# ============================================================
+# 9. Modern CLI suite
+# ============================================================
+
+# ---- 9.0 Ecosystem colors: one palette for the whole tool chain ----
+# The colors for bat / fzf / eza / ls / git diff (delta) all live in this single
+# file. config/themes/_generate.py generates it from the theme palette, and
+# ./scripts/theme.sh swaps its contents when you switch themes.
+# So: switching themes never means editing .zshrc — this line always points at
+# the same path. If it is missing (not installed, or uninstalled) it is skipped
+# silently and every tool falls back to its own default colors.
+#
+# It has to come BEFORE the tools below: it exports HEKOUWANG_SOLO_NF, which
+# decides whether eza gets icons. Put it after and that variable reads empty, so
+# the condition never fires (learned the hard way).
+[ -f ~/.config/hekouwang-terminal/current/colors.sh ] && \
+  source ~/.config/hekouwang-terminal/current/colors.sh
+
+# ---- 9.0b Long-task notifications (paid pack; nothing happens without it) ----
+# When a command runs long enough (30s by default) and the terminal is not in the
+# foreground, it sends a system notification telling you it finished or failed.
+# The threshold and the ignore list can be tuned in ~/.zshrc.local — see the
+# comments at the top of that file.
+
+# eza — modern ls with icons & git status
+if command -v eza >/dev/null; then
+  # eza's icons live in a Unicode private-use area, which the OS cannot font-fall
+  # back for. The built-in macOS Terminal has only one font field (no Symbols
+  # Nerd Font fallback layer like iTerm2), so if the main font has no icons you
+  # get a screen full of ? boxes — in that combination, drop the icons entirely.
+  # HEKOUWANG_SOLO_NF is written by theme.sh following the font.conf policy;
+  # it defaults to 1 (icons available).
+  _hkw_icons="--icons"
+  [ "${TERM_PROGRAM:-}" = "Apple_Terminal" ] && [ "${HEKOUWANG_SOLO_NF:-1}" = "0" ] && _hkw_icons=""
+  # HKW_PLAIN=1 is an explicit fallback (./scripts/theme.sh <theme> --plain):
+  # drop icons in every terminal, for machines with no Nerd Font at all.
+  [ "${HKW_PLAIN:-0}" = "1" ] && _hkw_icons=""
+  alias ls="eza $_hkw_icons"
+  alias ll="eza -l $_hkw_icons --git"
+  alias la="eza -la $_hkw_icons --git"
+  alias lt="eza --tree --level=2 $_hkw_icons"
+  unset _hkw_icons
+fi
+
+# bat — cat with syntax highlighting
+# The theme (BAT_THEME) is not hard-coded here; section 9.0 above supplies it.
+if command -v bat >/dev/null; then
+  alias cat="bat --paging=never"
+fi
+
+# fzf — fuzzy finder (Ctrl+T files / Alt+C cd; Ctrl+R is taken over by atuin)
+# Its colors (FZF_DEFAULT_OPTS) also come from section 9.0; this is behaviour only.
+if command -v fzf >/dev/null; then
+  source <(fzf --zsh)
+  export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+fi
+
+# zoxide — smarter cd (`z keyword` jumps to directories you visit often)
+command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
+
+# atuin — shell history database (takes over Ctrl+R; ↑ stays native)
+command -v atuin >/dev/null && eval "$(atuin init zsh --disable-up-arrow)"
+
+# ============================================================
+# 10. Private config (SSH aliases / proxy toggles / work env vars)
+#     See zshrc.local.example for a starting point. That file never goes into git.
+# ============================================================
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+# ============================================================
+# 11. The two lines that must stay last
+# ============================================================
+# zsh-syntax-highlighting — must come after every plugin that binds keys
+[ -f "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && \
+  source "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# iTerm2 Shell Integration
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# ---- Tab title: project name plus one colored dot ----------
+# The iTerm2 / Ghostty shell integration writes `user@host:/full/path` into the
+# title by default — which means screenshots, screen shares and recorded lessons
+# broadcast your username, machine name and whole directory tree.
+# It has to be APPENDED to precmd_functions (i.e. after the shell integration is
+# sourced), otherwise the integration writes the title back on every prompt.
+# Printing the escape sequence directly does not work; this was tested.
+#
+# Project identity lives in ONE dot in front of the title; the tab bar itself
+# keeps the window background (the Minimal theme's "one canvas" look).
+# ⛔ Do not go back to OSC 6 tab tinting (`\033]6;1;bg;…`): it floods the whole
+#    top bar with a saturated block that clearly does not belong to the window.
+#    Same reasoning as TAB_TINT = 0.0 in config/themes/_generate.py.
+# ⚠️ The reset is sent on EVERY prompt on purpose — the tab color is per-session
+#    state in iTerm2, so a session that was tinted before keeps its old color
+#    until something clears it. Deleting the tinting code is not enough.
+typeset -A HKW_TAB_DOT
+# Pin a dot for the projects you live in (key = absolute path of the repo root):
+# HKW_TAB_DOT[$HOME/work/my-project]=🟠
+
+_hkw_title() {
+  local root name dot
+  printf '\033]6;1;bg;*;default\a'           # reset tab color → top bar follows the window
+  root=$(git rev-parse --show-toplevel 2>/dev/null)
+  if [[ -z $root ]]; then                    # outside any git repo: directory name, no dot
+    name=${PWD:t}; [[ $PWD == $HOME ]] && name='~'   # the basename of $HOME is your username — do not leak it
+    printf '\033]0;%s\007' "$name"
+    return
+  fi
+  name=${root:t}                             # inside a repo: title = repo name
+  dot=${HKW_TAB_DOT[$root]}                  # a pinned dot wins
+  if [[ -z $dot ]]; then                     # otherwise hash the path → same repo, same dot forever
+    local pal=(🟢 🟣 🟡 🔴 🟤 ⚪)
+    local h=$(print -n $root | md5 -q 2>/dev/null)
+    dot=${h:+$pal[$(( 0x${h[1,6]} % $#pal + 1 ))]}
+  fi
+  printf '\033]0;%s\007' "$name"             # OSC 0 fallback: terminals without OSC 1 still get a title
+  printf '\033]1;%s %s\a' "$dot" "$name"     # OSC 1 = tab title only (with the dot)
+  printf '\033]2;%s\a' "$name"               # OSC 2 = window title stays plain — cleaner on a projector
+}
+autoload -Uz add-zsh-hook 2>/dev/null && add-zsh-hook precmd _hkw_title

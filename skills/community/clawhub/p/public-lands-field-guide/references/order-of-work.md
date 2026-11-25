@@ -17,7 +17,7 @@ Commands below use `scripts/aa.py`. With the MCP connector, the matching tool is
 - A closure, season or stay limit decides whether the trip happens, so say it first.
 - No `rules` object means unrecorded. It never means "no limit" and never means "open."
 - `stay_limit_status: "None published"` means the source page published no number. Quote that. It is still not permission to stay longer.
-- Permit prices are not in the records, and neither are today's fire orders. Camp records may hold fire rules as a dated snapshot (`trip_check` quotes them as dated records, not today's posting). Name the office.
+- Permit prices are not in the records. Today's fire orders are not in the camp records; `posted_orders` quotes the forest's own alerts page for the forests it reads (see step 7). Name the office.
 
 ## 3. Season: spring, summer and fall only
 
@@ -28,7 +28,8 @@ Commands below use `scripts/aa.py`. With the MCP connector, the matching tool is
 
 ## 4. Road: the record does not hold it
 
-- Road conditions, passability and road class are not in the records. Do not say a rig "can make it."
+- Road conditions and passability are not in the records. Do not say a rig "can make it."
+- For a camp in one of the 20 national forests `road_to_camp` covers (its answer's `coverage` names them), call it with the camp and the rig class. Quote the road number, the vehicle classes and dates the Forest Service record lists, and the distance from the road to the pin. It is the record, not today's condition. The record has no SUV, van or truck class: those are shown against both classes. "Unrecorded" means unrecorded: name the office it gives.
 - Say what is recorded: `camp_type` (for example drive), whether the land record classes it 4x4 (`aa.py find ... ` with `access` filter on the API), `terrain.slope_pct` (the hillside, not the pad: never call a site level).
 - Name the office (the land manager) for current road status. Tell the person to look at signs and gates.
 
@@ -43,13 +44,14 @@ Commands below use `scripts/aa.py`. With the MCP connector, the matching tool is
 
 - `services_mi` lists the nearest fuel, groceries, water, dump, propane, pharmacy, hospital and hardware with names and straight-line miles. Null entries are unrecorded.
 - `town_name` and `town_mi` give the nearest town. Say straight-line, and that the drive is longer.
-- More points: `aa.py poi LAT LON fuel --radius 25`. Those come from OpenStreetMap: floor, never a survey, and they need the OpenStreetMap credit.
+- Toilets: `aa.py toilets LAT LON --radius 25` gives the nearest recorded toilets (vault toilets, restrooms; 21,390 on public land), straight-line miles, with the agency. A recorded toilet can be closed for the season: say the record, not that it is open.
+- More points: `aa.py poi LAT LON fuel --radius 25`. Categories: potable_water, shower, dump_station, fuel, grocery, laundry, propane, air, mechanic, pharmacy, urgent_care, hardware, mail, outfitter. Those come from OpenStreetMap: floor, never a survey, and they need the OpenStreetMap credit.
 
 ## 7. Fire and weather
 
 - Weather: `aa.py weather LAT LON` [`forest_weather`]. This is the National Weather Service forecast, quoted as written, with its read time. If the forecast shows snow, say "this forecast is outside the seasons we plan for."
 - Wildfire reports: `aa.py fire LAT LON`. These are reports of incidents and planned burns within about 100 miles. They are not perimeters, closures or restrictions. A failed read means "could not read," never "none nearby."
-- Current fire restrictions are not in the records. A camp's recorded fire rules are a dated snapshot, not today's posting. Name the forest or field office.
+- For what a national forest has posted about fire, food storage or closures, call `posted_orders` with the forest. Quote its words as written, with the read time. "Nothing posted when we read it" is not "no fire ban"; "Could not read" and "not read" are never none. Never say a thing can be done: the words are the forest's, and signs on the ground and the office win. For anything else, name the forest or field office.
 
 ## 8. Rig math
 
@@ -75,4 +77,4 @@ Before you finish:
 4. Did you avoid "open," "legal," "passable" and "safe"?
 5. Did you name the office to confirm with (the camp's land manager)?
 6. Did you add the credit line?
-7. On the morning of the trip, run `changes_since` for the camps (MCP) to see what is new since the plan, then tell the person to re-check the forecast and call the office. "Nothing new in what we watch" is not the same as nothing changed. `changes_since` does not read fire orders or closure orders.
+7. On the morning of the trip, run `changes_since` for the camps (MCP) to see what is new since the plan, then tell the person to re-check the forecast and call the office. "Nothing new in what we watch" is not the same as nothing changed. `changes_since` does not read fire orders or closure orders: re-run `posted_orders` for the forest to see what it has posted now.

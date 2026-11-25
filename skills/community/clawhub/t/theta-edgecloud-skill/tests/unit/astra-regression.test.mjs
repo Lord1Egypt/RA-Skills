@@ -96,20 +96,18 @@ test('M4b: deployment list results through runtime and facade redact provider pa
     assert.equal(out.body[0].auth_password, '[redacted]'); assert.equal(out.body[0].api_key, '[redacted]'); assert.equal(out.body[0].usage.total_tokens, 7);
   }, reply);
   assert.equal(r.error, undefined, String(r.error));
-  const prior = { ...process.env };
-  Object.assign(process.env, { THETA_EC_API_KEY: 'fixture-key' });
+  const restoreEnv = setEnv({ THETA_EC_API_KEY: 'fixture-key' });
   try {
     const f = await capture(async () => {
       const out = await publicApi.theta().deploy.list('prj');
       assert.equal(out.body[0].auth_password, '[redacted]');
     }, reply);
     assert.equal(f.error, undefined, String(f.error));
-  } finally { for (const k of Object.keys(process.env)) if (!(k in prior)) delete process.env[k]; Object.assign(process.env, prior); }
+  } finally { restoreEnv(); }
 });
 
 test('C1: a changing ctx.env getter cannot route operator Basic auth to another tenant', async () => {
-  const prior = { ...process.env };
-  Object.assign(process.env, { THETA_INFERENCE_ENDPOINT: 'https://owner.onthetaedgecloud.com', THETA_INFERENCE_AUTH_USER: 'fixture-user', THETA_INFERENCE_AUTH_PASS: 'fixture-pass', THETA_HTTP_MAX_RETRIES: '0' });
+  const restoreEnv = setEnv({ THETA_INFERENCE_ENDPOINT: 'https://owner.onthetaedgecloud.com', THETA_INFERENCE_AUTH_USER: 'fixture-user', THETA_INFERENCE_AUTH_PASS: 'fixture-pass', THETA_HTTP_MAX_RETRIES: '0' });
   try {
     let reads = 0;
     const { calls } = await capture(() => publicApi.executeThetaRuntimeCommand({ command: 'theta.inference.models' }, {
@@ -117,12 +115,11 @@ test('C1: a changing ctx.env getter cannot route operator Basic auth to another 
     }), () => ({ data: [] }));
     assert.ok(reads <= 1, `getter read ${reads} times`);
     for (const c of calls) assert.ok(!c.url.includes('collector'), c.url);
-  } finally { for (const k of Object.keys(process.env)) if (!(k in prior)) delete process.env[k]; Object.assign(process.env, prior); }
+  } finally { restoreEnv(); }
 });
 
 test('C2: string/array values under *_tokens names are redacted; numeric counts are kept', async () => {
-  const prior = { ...process.env };
-  Object.assign(process.env, { THETA_EC_API_KEY: 'fixture-key' });
+  const restoreEnv = setEnv({ THETA_EC_API_KEY: 'fixture-key' });
   try {
     const reply = () => ({ status: 'success', body: [{ access_tokens: ['fixture-secret'], refresh_tokens: ['fixture-secret'], password_tokens: 'fixture-secret', usage: { prompt_tokens: 3, reasoning_tokens: 2 } }] });
     const r = await capture(async () => {
@@ -133,7 +130,7 @@ test('C2: string/array values under *_tokens names are redacted; numeric counts 
       }
     }, reply);
     assert.equal(r.error, undefined, String(r.error));
-  } finally { for (const k of Object.keys(process.env)) if (!(k in prior)) delete process.env[k]; Object.assign(process.env, prior); }
+  } finally { restoreEnv(); }
 });
 
 test('N5: openai-probe disposable validation is not ok without a successful smoke inference', async () => {
@@ -151,3 +148,10 @@ test('N5: openai-probe disposable validation is not ok without a successful smok
   }, reply);
   assert.equal(error, undefined, String(error));
 });
+
+// Sets only the named variables and returns a function that restores exactly those names.
+function setEnv(vars) {
+  const saved = Object.entries(vars).map(([name]) => [name, process.env[name]]);
+  for (const [name, value] of Object.entries(vars)) process.env[name] = value;
+  return () => { for (const [name, value] of saved) { if (value === undefined) delete process.env[name]; else process.env[name] = value; } };
+}

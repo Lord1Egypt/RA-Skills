@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers maintaining skills in the history, ai-custom-skills, and ai-thoughts repositories use this skill to publish changes to ClawHub and troubleshoot sync or publish failures.
+Developers maintaining the history, ai-custom-skills, and ai-thoughts repositories use this skill to publish SKILL.md files to ClawHub through the documented GitHub Actions workflows and diagnose skipped or failed syncs.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Changes may trigger publication of skills and pushes to multiple remotes.
+Risk: The security review was partial because some referenced publishing materials were unavailable to the scan.
 
-Mitigation: Use only repositories and accounts you are authorized to manage, review workflow and publisher changes before pushing, and inspect workflows before supplying credentials.
+Mitigation: Review the publishing instructions and consider whether you trust the referenced workflows and any credentials they may use before installing.
 
 ## Reference(s):
 
-- [ClawHub publish-skills release](https://clawhub.ai/j3ffyang/skills/publish-skills)
+- [ClawHub publish-skills page](https://clawhub.ai/j3ffyang/skills/publish-skills)
 
 ## Skill Output:
 
 **Output Type(s):** [Guidance, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown guidance with shell commands and configuration examples]
+**Output Format:** [Markdown prose with inline shell commands and configuration examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Tailored to the publishing or troubleshooting task.]
+**Other Properties Related to Output:** [Step-by-step publishing and troubleshooting guidance.]
 
 ## Skill Version(s):
 
-1.0.5 (source: ClawHub release evidence)
+1.0.6 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

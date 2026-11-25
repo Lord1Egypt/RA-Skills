@@ -1,0 +1,476 @@
+ENVI Ghost路径=
+ENVI imagex路径=
+ENVI wimlib-imagex路径=
+
+//获取 config.ini 中设定的程序路径
+IFEX "%CurDir%\bin\config.ini",
+{
+	READ "%CurDir%\bin\config.ini",*,&config
+	FORX*NL &config,内容,
+	{
+		SED 前=1,=.*,,%内容%
+		SED 后=1,.*=,,%内容%
+		IFEX |%前%=Ghost路径,ENVI Ghost路径=%后%
+		IFEX |%前%=imagex路径,ENVI imagex路径=%后%
+		IFEX |%前%=wimlib-imagex路径,ENVI wimlib-imagex路径=%后%
+	}
+}
+
+IFEX |%Ghost路径%=,ENVI Ghost路径=%CurDir%\bin\Ghost64.exe
+IFEX |%imagex路径%=,ENVI imagex路径=%CurDir%\bin\imagex.exe
+IFEX |%wimlib-imagex路径%=,ENVI wimlib-imagex路径=%CurDir%\bin\wimlib-imagex\wimlib-imagex.exe
+
+HASH %SystemRoot%\system32\bcdboot.exe,找bcdboot,MD5
+IFEX |%找bcdboot%=,TEAM MESS=+icon5 找不到 %SystemRoot%\system32\bcdboot.exe@ 提示|EXIT
+
+IFEX "%Ghost路径%",!TEAM MESS=+icon5 未找到 %Ghost路径%@ 提示|EXIT
+IFEX "%imagex路径%",!TEAM MESS=+icon5 未找到 %imagex路径%@ 提示|EXIT
+IFEX "%wimlib-imagex路径%",!TEAM MESS=+icon5 未找到 %wimlib-imagex路径%@ 提示|EXIT
+
+SHOW =1 & //显示所有分区
+ENVI 程序标题=系统安装-v0.1.0-beta
+ENVI 窗口图标=#1
+ENVI 背景=0xf9f9f9
+SET$ TAB=09 //Tab键
+ENVI EXPE=1 //程序退出的标识 1 退出；0 程序运行中
+ENVI 窗口切换=1
+ENVI ?WinPE=ispe
+ENVI 记录ISO=
+ENVI ISO挂载盘符=Z:
+ENVI ISO没有镜像=ISO中没有找到系统镜像
+ENVI 获取版本失败提示=无法获取当前镜像中的系统版本
+CALL CK
+IFEX |%记录ISO%<>,CALL 卸载ISO "%记录ISO%"
+EXIT
+
+_SUB CK,W550H500,%程序标题%,,%窗口图标%,#,,-ntab -trap
+	ENVI @this.HitTest=31
+	ENVI @this.Font=:微软雅黑
+	ENVI @this.bkcolor=%背景%
+	ENVI @this.MSG=0x0010:CALL 关闭
+	LABE+ -trans ,L0T0W550H500
+	IMAG ,L6T6W20H20,%窗口图标%
+	LABE -trans -vcenter ,L32T6W355H20,%程序标题%
+	LABE -center -vcenter 最小化,L449T1W50H30,-,*,#%背景%##0xe9e9e9,16:宋体
+	ENVI @最小化.MSG=0x0202:ENVI @CK.Visable=*4
+	LABE -center -vcenter 关闭,L499T1W50H30,×,*,#%背景%#0xffffff#0x0000cd,16:宋体
+	ENVI @关闭.MSG=0x0202:CALL 关闭
+
+	SWIN :P1,L1T31W548H378
+
+	GROU ,L11T404W528H38,,,#%背景%
+	LABE -trans 安装备份,L20T418W66H18,安装成功后:
+	CHEK CHEK1,L91T417W80H20,关闭计算机,ENVI @CHEK2.Check=0
+	CHEK CHEK2,L181T417W80H20,重启计算机,ENVI @CHEK1.Check=0
+	CHEK CHEK3,L350T417W90H20,格式化系统盘,,1
+
+	GROU ,L11T440W528H50,,,#%背景%
+	LABE -left 计时,L20T460W66H18,进度：,,#%背景%
+	PBAR 进度条,L92T456W364H25,0
+	ITEM 开始,L462T455W70H27,开始,CALL 开始执行
+	EXEC =!cmd.exe /c ver	//减少内存占用，很神奇
+_END
+
+_SUB 关闭
+	IFEX $%EXPE%=1,KILL \!MESS=+icon1 请等待程序执行完毕！@ 提示
+_END
+
+_SUB 开始执行
+	IFEX $%窗口切换%=1,CALL 开始安装
+_END
+
+_SUB P1
+	ENVI @this.Font=:微软雅黑
+	ENVI @this.bkcolor=%背景%
+	GROU ,L10T5W528H216,安装位置,,#%背景%
+	LABE+ -trans ,L18T26W512H154
+	TABL -font:9:::::::::21 ,L19T27W510H25,+60:序号%TAB%+120:卷标%TAB%+70:盘符%TAB%+80:分区大小%TAB%+80:格式%TAB%+80:分区表,,0x4000
+	TABL -font:9:::::::::21 TABL1,L19T53W510H126,+60:%TAB%120:%TAB%+70:%TAB%=80:%TAB%+80:%TAB%+80:,,0x16000
+	ENVI @TABL1.MSG=_0x0201:CALL 点击安装表格
+	LABE -trans ,L19T191W80H18,选择引导分区:
+	LIST LIST1,L101T187W319H50
+	ITEM ,L426T186W50H27,浏览,CALL 选择引导分区
+	ITEM ,L481T186W50H27,刷新,CALL @~获取安装磁盘
+
+	GROU ,L10T224W528H151,系统镜像,,#%背景%
+	LABE -trans ,L19T249W80H18,选择系统镜像:
+	LIST -h LIST2,L101T245W374H180,,CALL @~获取格式和版本,,0x10100
+	ITEM ,L481T244W50H27,浏览,CALL 选择系统镜像
+	LABE -trans ,L19T281W80H18,ISO中的镜像:
+	LIST -h LIST3,L101T277W374H180,,CALL ISO镜像获取版本,,0x10100
+	LABE -trans ,L19T313W80H18,选择系统版本:
+	LIST -h LIST4,L101T309W374H180,,CALL @~获取内部版本,,0x10100
+	LABE -trans ,L19T345W56H18,内部版本:
+	LABE -trans 内部版本,L77T345W130H18
+	LABE -trans ,L216T345W60H18,无人值守:
+	LIST -h LIST5,L274T341W201H140,,,,0x100
+	ITEM ,L481T340W50H27,浏览,CALL 选择无人值守
+	CALL @~获取安装磁盘
+	CALL @~搜索本机镜像
+	CALL @~搜索无人值守
+_END
+
+_SUB 获取安装磁盘 //获取分区信息并在表格中显示
+	TEAM ENVI @TABL1.Sel=?行号|ENVI @TABL1.Sel=%行号%;0|ENVI @TABL1.Val=-*
+	TEAM ENVI @LIST1.VAL=|ENVI @LIST1.ADD=不引导
+	TEAM ENVI A=0|WAIT 100
+	PART list disk ,P1所有磁盘
+	FORX* %P1所有磁盘%,P1磁盘,
+	{
+		//获取分区表 GPT/MBR
+		PART list disk %P1磁盘%,P1分区表
+		MSTR P1分区表=<10>%P1分区表%
+		//获取分区序号、分区大小、盘符
+		PART list part %P1磁盘%,P1所有分区
+		FORX* %P1所有分区%,P1分区,
+		{
+			SED P1分区减=1,-,,%P1分区%
+			SED P1分区A=1,@,,%P1分区%
+			IFEX [|%P1分区减%<>%P1分区% |%P1分区A%<>%P1分区%],EXIT -
+			PART -phy# list part %P1磁盘%#%P1分区%,P1分区信息
+			MSTR P1原分区大小,P1盘符=<5><9>%P1分区信息%
+			FDRV *vol P1卷标,P1格式=%P1盘符% //获取分区名称和格式
+			CALC P1分区大小=%P1原分区大小%/1G#1
+			IFEX $%P1分区大小%G<1G,TEAM CALC P1分区大小=%P1原分区大小%/1M#1|ENVI P1分区大小=%P1分区大小%M!ENVI P1分区大小=%P1分区大小%G
+			CALC A=%A%+1
+			ENVI @TABL1.Val=%A%;%P1磁盘%:%P1分区%%TAB%%P1卷标%%TAB%%P1盘符%%TAB%%P1分区大小%%TAB%%P1格式%%TAB%%P1分区表%
+			IFEX [|%P1盘符%= & |%P1格式%=],!ENVI @LIST1.ADD=%P1磁盘%:%P1分区%      %P1盘符%      %P1格式%      %P1分区表%
+		}
+	}
+_END
+
+_SUB 点击安装表格 //点击表格上的分区后自动选择下拉框 LIST1 中相同磁盘第一个分区
+	ENVI B=0
+	ENVI @TABL1.Sel=?行号
+	ENVI @TABL1.Val=?%行号%.1;表磁序
+	SED 表磁序=1,\:.*,,%表磁序%
+	ENVI @LIST1.QUERY=;&LIST1NR
+	FORX*NL &LIST1NR,单行,
+	{
+		CALC B=%B%+1
+		SED 下磁序=1,\:.*,,%单行%
+		IFEX |%下磁序%=%表磁序%,TEAM ENVI @LIST1.isel=%B%|EXIT _SUB
+	}
+_END
+
+_SUB 选择引导分区 //手动选择分区后自动选择下拉框 LIST1 中对应的盘符
+	ENVI C=0
+	ENVI @LIST1.QUERY=2;一盘符 //获取下拉框 LIST1 的第一个盘符
+	MSTR 一盘符=<2>%一盘符%
+	BROW 选引区,*%一盘符%\,选择引导分区,,0x200
+	IFEX |%选引区%=,EXIT
+	SED 选引区=1,\\.*,,%选引区%
+	ENVI @LIST1.QUERY=;&LIST1NR
+	FORX*NL &LIST1NR,单行,
+	{
+		CALC C=%C%+1
+		MSTR 下磁序=<2>%单行%
+		IFEX |%下磁序%=%选引区%,TEAM ENVI @LIST1.isel=%C%|EXIT _SUB
+	}
+_END
+
+_SUB 搜索本机镜像 //搜索本机中的镜像文件，只搜索到第二层目录。可继续增加
+	ENVI @LIST2.VAL=
+	FDRV 所有盘符=*:
+	FORX* %所有盘符%,一层目录,
+	{
+		CALL 搜索目录镜像 %一层目录%
+		FORX @%一层目录%\*,二层目录,0,CALL 搜索目录镜像 %二层目录%
+	}
+	ENVI @LIST2.isel=1
+	CALL @~获取格式和版本
+_END
+
+_SUB 搜索目录镜像 //开始搜索 esd、gho、iso、wim
+	FORX* esd gho iso wim,镜,
+	{
+		FORX %1\*.%镜%,镜像搜,0,ENVI @LIST2.ADD=%镜像搜%
+	}
+_END
+
+_SUB 选择系统镜像 //手动选择镜像
+	BROW 选镜像,,选择系统镜像,*.esd、*.gho、*.iso、*.wim|*.esd;*.gho;*.iso;*.wim
+	IFEX [%选镜像% & |%选镜像%<>],ENVI @LIST2.ADDSEL=%选镜像%!EXIT
+	CALL @~获取格式和版本
+_END
+
+_SUB 获取格式和版本 //判断镜像格式（esd、iso、wim），然后获取系统版本
+	IFEX |%上一个LIST2%=%LIST2%,EXIT //如果是同一个就不执行
+	IFEX |%记录ISO%<>,CALL 卸载ISO "%记录ISO%" //如果记录中的 ISO 没卸载就执行
+	ENVI @LIST3.VAL=
+	ENVI @LIST4.VAL=
+	ENVI @内部版本=...
+	SED 后缀名=-1,.*\.,,%LIST2%
+	IFEX |%后缀名%=iso,
+	{
+		CALL 挂载ISO "%LIST2%"
+		CALL 搜索ISO镜像 %ISO挂载盘符%
+		CALL @~获取版本 "%LIST3%"
+	}
+	IFEX [|%后缀名%=esd |%后缀名%=wim],CALL @~获取版本 "%LIST2%"
+	ENVI 上一个LIST2=%LIST2%
+_END
+
+_SUB 卸载ISO
+	IFEX |%记录ISO%=,EXIT
+	SED 镜像文件=1,",,%1
+	SED 镜像文件=-1,",,%镜像文件%
+	EXEC -incmd !=PECMD.EXE MOUN-VHD -u -iso "%镜像文件%"
+	ENVI 记录ISO=
+_END
+
+_SUB 挂载ISO
+	IFEX |%记录ISO%<>,CALL 卸载ISO "%记录ISO%"
+	SED 镜像文件=1,",,%1
+	SED 镜像文件=-1,",,%镜像文件%
+	EXEC -incmd !=PECMD.EXE MOUN-VHD -iso "%镜像文件%",%ISO挂载盘符%
+	ENVI 记录ISO=%镜像文件%
+_END
+
+_SUB 搜索ISO镜像 //搜索 ISO 中的镜像
+	ENVI 等待文案=正在搜索 ISO 中的系统镜像……
+	ENVI @LIST3.ADDSEL=%等待文案%
+	FORX* esd wim,镜, //应该没人会往ISO里塞gho和iso吧？万一有就让他自己挂载iso再选择
+	{
+		FORX /S %1\*.%镜%,镜像搜,0,
+		{
+			IFEX |%镜像搜%=%1\sources\boot.wim,EXIT -
+			ENVI @LIST3.ADD=%镜像搜%
+		}
+	}
+	ENVI @LIST3.DEL=%等待文案%
+	IFEX %1\sources\install.wim,ENVI @LIST3.ADDSEL=%1\sources\install.wim!ENVI @LIST3.isel=1 //如果 sources 目录下有 install.wim 就选中,没有就选第一个
+	IFEX |%LIST3%=,TEAM ENVI @LIST3.ADDSEL=%ISO没有镜像%|CALL 卸载ISO "%LIST2%"
+	ENVI 记录ISO版本=%LIST3%
+_END
+
+_SUB ISO镜像获取版本 //获取下拉框 LIST3 选中的系统版本
+	IFEX |%记录ISO版本%=%LIST3%,EXIT
+	CALL @~获取版本 "%LIST3%"
+	ENVI 记录ISO版本=%LIST3%
+_END
+
+_SUB 获取版本 //获取下拉框 LIST2 和 LIST3 所选镜像中的系统版本
+	ENVI D=0
+	ENVI @LIST4.VAL=
+	IFEX %LIST2%,!TEAM ENVI @LIST4.ADDSEL=%失败提示%|EXIT
+	EXEC* &imagex输出=!"%imagex路径%" /info %1
+	FORX*NL &imagex输出,内容,
+	{
+		IFEX |%内容%=试图加载格式不正确的程序。 ,TEAM ENVI @LIST4.ADDSEL=%获取版本失败提示%|EXIT _SUB
+		IFEX |%内容%=系统找不到指定的文件。 ,TEAM ENVI @LIST4.ADDSEL=找不到指定的文件|EXIT _SUB
+		SED 名=1,.*<NAME>,,%内容%
+		SED 名=1,</NAME>.*,,%名%
+		IFEX |%内容%<>%名%,TEAM CALC D=%D%+1|ENVI @LIST4.ADD=%D% - %名%
+	}
+	ENVI @LIST4.isel=1
+	CALL @~获取内部版本
+_END
+
+_SUB 获取内部版本
+	ENVI @内部版本=...
+	TEAM ENVI 语言=|ENVI N1=|ENVI N2=|ENVI N3=|ENVI N4=
+	SED 后缀名=-1,.*\.,,%LIST2%
+	IFEX |%后缀名%=gho,EXIT
+	IFEX |%后缀名%=iso,ENVI 下拉框镜像=%LIST3%!ENVI 下拉框镜像=%LIST2%
+	MSTR 版本序号=<1>%LIST4%
+	EXEC* &imagex输出=!"%imagex路径%" /info "%下拉框镜像%" %版本序号%
+	FORX*NL &imagex输出,内容,
+	{
+		TEAM SED 语言=1,.*<LANGUAGE>,,%内容%|SED 语言=1,</LANGUAGE>.*,,%语言% //获取选择系统的语言,用于安装引导
+		IFEX |%语言%<>%内容%,ENVI 镜像语言=%语言%
+		TEAM SED M1=1,.*<MAJOR>,,%内容%|SED M1=1,</MAJOR>.*,,%M1%
+		IFEX |%M1%<>%内容%,ENVI N1=%M1%
+		TEAM SED M2=1,.*<MINOR>,,%内容%|SED M2=1,</MINOR>.*,,%M2%
+		IFEX |%M2%<>%内容%,ENVI N2=%M2%
+		TEAM SED M3=1,.*<BUILD>,,%内容%|SED M3=1,</BUILD>.*,,%M3%
+		IFEX |%M3%<>%内容%,ENVI N3=%M3%
+		TEAM SED M4=1,.*<SPBUILD>,,%内容%|SED M4=1,</SPBUILD>.*,,%M4%
+		IFEX |%M4%<>%内容%,ENVI N4=%M4%
+	}
+	ENVI @内部版本=%N1%.%N2%.%N3%.%N4%
+_END
+
+_SUB 搜索无人值守 //搜索内置的无人值守文件
+	IFEX "%CurDir%\bin\无人值守",!EXIT
+	FORX "%CurDir%\bin\无人值守\*.xml",值守文件,0,
+	{
+		SED 值守文件=-1,.*\\,,%值守文件%
+		ENVI @LIST5.ADD=%值守文件%
+	}
+_END
+
+_SUB 选择无人值守
+	BROW 选值守,%CurDir%\bin\无人值守\*.xml,选择无人值守文件,*.xml
+	IFEX [%选值守% & |%选值守%<>],!EXIT
+	SED 选值守文件=-1,.*\\,,%选值守% //获取选择无人值守文件的全称
+	SED 选值守路径=1,%选值守文件%,,%选值守% //获取选择无人值守的路径
+	IFEX |"%CurDir%\bin\无人值守\"="%选值守路径%",ENVI @LIST5.ADDSEL=%选值守文件%!ENVI @LIST5.ADDSEL=%选值守% //判断无人值守是否有重复选择
+_END
+
+_SUB 开始安装
+	//防老六的屎山代码 :)
+	ENVI @P1:TABL1.Sel=?行号
+	ENVI @P1:TABL1.Val=?%行号%.1;表磁序
+	ENVI @P1:TABL1.Val=?%行号%.2;表磁名
+	ENVI @P1:TABL1.Val=?%行号%.3;表盘符
+	SED 后缀名=-1,.*\.,,%LIST2%
+	MSTR 引磁盘分区,引导分区盘符=<1><2>%LIST1% //安装esd、wim用到的内容
+	MSTR 选择版本号=<1>%LIST4%
+	IFEX $%行号%=0,TEAM MESS=+icon5 请选择系统安装位置@ 提示|EXIT
+	IFEX |%表盘符%=%SystemDrive%,TEAM MESS=+icon5 系统在当前分区上运行，终止操作@ 提示|EXIT
+	IFEX |%表盘符%=%CurDrv%,TEAM MESS=+icon5 系统安装位置和程序运行位置在同一个分区上，终止操作@ 提示|EXIT
+	IFEX |%表盘符%=,TEAM MESS=+icon5 无法安装到当前分区@ 提示|EXIT
+	IFEX |%LIST1%=,TEAM MESS=+icon5 未选择引导分区@ 提示|EXIT
+	IFEX |%LIST2%=,TEAM MESS=+icon5 未选择系统镜像@ 提示|EXIT
+	IFEX %LIST2%,!TEAM MESS=+icon5 所选系统镜像不存在@ 提示|EXIT
+	IFEX [|%后缀名%=esd |%后缀名%=gho |%后缀名%=iso |%后缀名%=wim],!TEAM MESS=+icon5 程序不支持 .%后缀名% 的镜像@ 提示|EXIT
+	IFEX $%WinPE%=0,TEAM MESS=+icon4 程序不在WinPE上运行，是否继续？@ 询问 #YN|FIND $%YESNO%=NO,EXIT
+	IFEX |%后缀名%=gho,
+	{
+		MESS=+icon4 安装位置：%表磁序%     %表盘符%@ 即将安装系统 #OKC
+		FIND $%YESNO%=CANCEL,EXIT
+		CALL 禁止
+		IFEX $%CHEK3.Check%=1,TEAM ENVI @进度条=0%正在格式化 %表盘符%|DFMT %表盘符%,NTFS,%表磁名%,1
+		//获取ghost的磁盘和分区序号
+		SED 磁序=1,\:.*,,%表磁序%
+		CALC G磁盘序号=%磁序%+1
+		SED 分区序号=1,.*\:,,%表磁序%
+		ENVI G磁盘分区=%G磁盘序号%:%分区序号%
+		ENVI @CK.Visible=0
+		CALL 安装GHO "%LIST2%" %G磁盘分区% %磁序% %分区序号%
+		IFEX |%gho输出%=,
+		{
+			IFEX |%LIST5%<>,CALL 部署无人值守 %表盘符%
+			IFEX |%LIST1%<>不引导,CALL 安装引导 %表盘符%
+			ENVI @HMST=-del
+			ENVI @进度条=0%完成
+			ENVI @CK.Visible=1
+			IFEX $%CHEK1.Check%=1,TEAM CALL 关闭计算机|EXIT
+    			IFEX $%CHEK2.Check%=1,TEAM CALL 重启计算机|EXIT
+        		MESS=+icon2 系统安装完成@ 提示
+		}!{
+			ENVI @HMST=-del
+			ENVI @进度条=0%错误
+			ENVI @CK.Visible=1
+			MESS=+icon5 镜像安装失败，以下是返回内容\n%gho输出%@ 遇到了问题
+		}
+		CALL 解除
+	}
+	IFEX [|%后缀名%=esd |%后缀名%=iso |%后缀名%=wim],
+	{
+		IFEX [|%LIST4%=%获取版本失败提示% |%LIST4%=],TEAM MESS=+icon5 %获取版本失败提示%@ 提示|EXIT
+		IFEX |%后缀名%=iso,
+		{
+			IFEX [|%LIST3%=%ISO没有镜像% |%LIST3%=],TEAM MESS=+icon5 %ISO没有镜像%@ 提示|EXIT
+			IFEX %LIST3%,!TEAM MESS=+icon5 所选ISO中的镜像不存在@ 提示|EXIT
+			ENVI 镜像路径=%LIST3%
+		}
+		IFEX [|%后缀名%=esd |%后缀名%=wim],ENVI 镜像路径=%LIST2%
+		MESS=+icon4 引导分区：%引磁盘分区%     %引导分区盘符%\n安装位置：%表磁序%     %表盘符%@ 即将安装系统 #OKC
+		FIND $%YESNO%=CANCEL,EXIT
+		CALL 禁止
+		IFEX $%CHEK3.Check%=1,TEAM ENVI @进度条=0%正在格式化 %表盘符%|DFMT %表盘符%,NTFS,%表磁名%,1
+		CALL 安装EW "%镜像路径%" %选择版本号% %表盘符%
+		IFEX [$%WI错误%=0 & |%WI1%%WI2%=Doneapplying],
+		{
+			IFEX |%LIST5%<>,CALL 部署无人值守 %表盘符%
+			IFEX |%LIST1%<>不引导,CALL 安装引导 %表盘符%
+			ENVI @HMST=-del
+			ENVI @进度条=0%完成
+			IFEX $%CHEK1.Check%=1,TEAM CALL 关闭计算机|EXIT
+			IFEX $%CHEK2.Check%=1,TEAM CALL 重启计算机|EXIT
+			MESS=+icon2 系统安装完成@ 提示
+		}!{
+			ENVI @HMST=-del
+			ENVI @进度条=0%错误
+			MESS=+icon5 镜像安装失败，以下是返回内容：\n%WI输出%@ 遇到了问题
+		}
+		CALL 解除
+	}
+_END
+
+_SUB 安装GHO //安装gho	%1 是镜像路径，%2 是ghost识别的磁盘分区序号，%3 和 %4 是PECMD识别的磁盘分区序号
+	SHOW - %3:%4
+	EXEC* GHO输出=!"%Ghost路径%" -clone,mode=pload,src=%1:1,dst=%2 -sure
+	FILE "%CurDir%\ghost*.dmp" //这几个是ghost安装失败后留下的文件
+	FILE "%CurDir%\GHOSTERR.TXT"
+	FILE "%CurDir%\ghstwarn.txt"
+	SHOW - %3:%4 //删除这个分区的盘符，因为ghost安装后在资源管理器上会有两个盘符用同一个分区
+	IFEX |%GHO输出%=,SHOW %3:%4 //如果安装成功后就分配盘符
+_END
+
+_SUB 安装EW //安装esd和wim	%1 是镜像路径，%2是镜像中的版本，%3是安装位置
+	ENVI WI错误=0
+	EXEC* -cmd:::WI安装进度 -err+ WI输出=!"%wimlib-imagex路径%" apply %1 %2 %3
+	READ -,0,WI输出,%WI输出%
+_END
+
+_SUB WI安装进度 //从wimlib-imagex的输出内容获取进度
+	READ -,0,WI输出,%WI输出%
+	SED 进度=1,.*\(,,%WI输出%
+	SED 进度=1,\).*,,%进度%
+	MSTR WI1,WI2=<1><2>%WI输出%
+	IFEX #%进度%,!EXIT
+	IFEX |%WI1%=[ERROR],ENVI WI错误=1
+	IFEX |%WI1%%WI2%=Applyingimage,TEAM ENVI @进度条=0%准备文件|EXIT
+	IFEX |%WI1%%WI2%=Creatingfiles:,ENVI 内容=创建文件
+	IFEX |%WI1%%WI2%=Extractingfile,ENVI 内容=正在提取文件数据
+	IFEX |%WI1%%WI2%=Applyingmetadata,ENVI 内容=将元数据应用于文件
+	IFEX |%WI1%%WI2%=Doneapplying,!ENVI @进度条=%进度% %内容% %进度%
+_END
+
+_SUB 部署无人值守
+	IFEX |%LIST5%=,EXIT
+	IFEX "%1\Windows\Panther\unattend.xml",EXIT //如果安装的系统有无人值守文件就结束，不替换
+	IFEX ["%CurDir%\bin\无人值守\%LIST5%" "%LIST5%"],!EXIT
+	ENVI @进度条=0%部署无人值守
+	SED 查询值守文件=-1,.*\\,,%LIST5%
+	IFEX "%1\Windows\Panther",!EXEC !=cmd.exe /c md "%1\Windows\Panther" //没有Panther文件夹就创建。不用MDIR命令创建是因为有些系统创建不了文件夹
+	IFEX |%查询值守文件%=%LIST5%,EXEC !=cmd.exe /c copy /Y "%CurDir%\bin\无人值守\%LIST5%" "%1\Windows\Panther\unattend.xml"
+	IFEX |%查询值守文件%<>%LIST5%,EXEC !=cmd.exe /c copy /Y "%LIST5%" "%1\Windows\Panther\unattend.xml"
+_END
+
+_SUB 安装引导
+	IFEX |%LIST1%=不引导,EXIT
+	ENVI @进度条=0%正在安装引导
+	MSTR 引导盘符,分区表=<2><4>%LIST1%
+	IFEX |%镜像语言%=,ENVI 镜像语言=zh-cn
+	IFEX |%分区表%=GPT,ENVI 引导方式=UEFI
+	IFEX |%分区表%=MBR,ENVI 引导方式=BIOS
+	ENVI ?判断版本=FVER,%1\Windows\System32\shell32.dll
+	SED 判断版本=0,[^0-9], ,%判断版本%
+	MSTR V1,V3=<1><3>%判断版本%
+	IFEX [$%V1%<=6 & $%V3%<6000],EXIT //如果是NT5就退出。万一gho是NT5呢
+	IFEX [|%1=%引导盘符% & |%分区表%=GPT & %1\EFI],FILE "%1\EFI"
+	IFEX [|%1=%引导盘符% & |%分区表%=MBR & %1\Boot],FILE "%1\Boot"
+	IFEX [|%1=%引导盘符% & |%分区表%=MBR & %1\bootmgr],FILE "%1\bootmgr"
+	EXEC !=cmd.exe /c bcdboot.exe %1\Windows /s %引导盘符% /f %引导方式% /l %镜像语言%
+_END
+
+_SUB 关闭计算机
+	MESS=+icon2 系统安装完成，5秒后将关闭计算机@ 提示 #OKC *5000
+	FIND $%YESNO%=CANCEL,TEAM CALL 解除|EXIT
+	SHUT
+_END
+
+_SUB 重启计算机
+	MESS=+icon2 系统安装完成，5秒后将重启计算机@ 提示 #OKC *5000
+	FIND $%YESNO%=CANCEL,TEAM CALL 解除|EXIT
+	SHUT R
+_END
+
+_SUB 禁止
+	TEAM ENVI 秒=-1|ENVI 分钟=|ENVI 分=|TIME HMST,1000,CALL 计时器|CALL 计时器
+	TEAM ENVI EXPE=0|ENVI @开始.Enable=0|ENVI @CHEK3.Enable=0|ENVI @P1.Enable=0
+_END
+
+_SUB 解除
+	TEAM ENVI @计时=进度：|ENVI @进度条=0%
+	TEAM ENVI EXPE=1|ENVI @开始.Enable=1|ENVI @CHEK3.Enable=1|ENVI @P1.Enable=1
+_END
+
+_SUB 计时器
+	IFEX $%秒%=59,TEAM CALC 分钟=%分钟%+1|ENVI 分=分|ENVI 秒=0!CALC 秒=%秒%+1
+	ENVI @计时=%分钟%%分%%秒%秒
+_END

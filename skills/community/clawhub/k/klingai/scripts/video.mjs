@@ -31,6 +31,7 @@ const DURATION_5_10 = [5, 10];
 const RES_720 = ['720p'];
 const RES_720_1080 = ['720p', '1080p'];
 const RES_720_1080_4K = ['720p', '1080p', '4k'];
+const DYNAMIC_RANGES = ['sdr', 'hdr'];
 
 /** Official video models (path-encoded). Source: klingai.com/document-api */
 const BASIC_MODELS = {
@@ -83,7 +84,8 @@ const BASIC_MODELS = {
     t2v: '/text-to-video/kling-4.0',
     i2v: '/image-to-video/kling-4.0',
     durations: RANGE_3_30,
-    resolutions: RES_720_1080,
+    resolutions: RES_720_1080_4K,
+    dynamicRanges: DYNAMIC_RANGES,
     audio: null,
     multiShot: false,
     lastFrame: true,
@@ -136,7 +138,8 @@ const OMNI_MODELS = {
     path: '/omni-video/kling-4.0',
     durations: RANGE_3_30,
     defaultAspectRatio: '',
-    resolutions: RES_720_1080,
+    resolutions: RES_720_1080_4K,
+    dynamicRanges: DYNAMIC_RANGES,
     audio: ['original', 'native'],
     multiShot: false,
     lastFrame: true,
@@ -252,6 +255,18 @@ function parseDuration(raw, fallback = 5) {
 function parseResolution(raw) {
   if (!raw) return '';
   return String(raw).trim().toLowerCase();
+}
+
+function parseDynamicRange(raw) {
+  if (raw === undefined || raw === null) return '';
+  if (typeof raw !== 'string') {
+    throw new Error('Invalid --dynamic_range / --dynamic_range 须为字符串枚举: sdr, hdr');
+  }
+  const s = raw.trim().toLowerCase();
+  if (!s) {
+    throw new Error('Invalid --dynamic_range / --dynamic_range 不能为空，允许值: sdr, hdr');
+  }
+  return s;
 }
 
 function parseAudio(raw) {
@@ -391,6 +406,11 @@ function rejectRemovedVideoFlags(args) {
       'Unsupported --negative_prompt / 当前视频接口不支持 --negative_prompt',
     );
   }
+  if (args.hdr !== undefined) {
+    throw new Error(
+      'Unsupported --hdr / 请改用 --dynamic_range sdr|hdr（kling-4.0，hdr 仅支持 1080p 或 4k）',
+    );
+  }
 }
 
 function printHelp() {
@@ -413,8 +433,10 @@ Submit (common):
                     Other models: omitted duration is sent as 5.
   --model           kling-4.0 / kling-4.0-flash / kling-3.0 / kling-3.0-turbo / kling-2.6 / kling-2.5-turbo / kling-3.0-omni / kling-o1
                     kling-4.0 and kling-4.0-flash are each one name for T2V / I2V / Omni; the route follows the flags below
-  --resolution      720p / 1080p / 4k (4k: kling-3.0 and kling-3.0-omni only; kling-4.0-flash: 720p only).
+  --resolution      720p / 1080p / 4k (4k: kling-4.0, kling-3.0, kling-3.0-omni; kling-4.0-flash: 720p only).
                     Official default: 1080p for kling-4.0, else 720p
+  --dynamic_range   sdr / hdr (kling-4.0 only; official default: sdr, omitted is not sent).
+                    hdr requires 1080p (or omitted resolution on kling-4.0) or 4k; rejected with 720p
   --aspect_ratio    16:9 / 9:16 / 1:1. kling-4.0 adds 4:3 / 3:4 / 21:9 (T2V / Omni) and adaptive (Omni).
                     kling-4.0-flash adds 4:3 / 3:4 / 21:9 (T2V / Omni) and adaptive (Omni).
                     Image-to-video has no aspect_ratio, so --image plus this flag routes to Omni
@@ -550,10 +572,11 @@ function apiPathOf(route, model) {
   return route === 't2v' ? spec.t2v : spec.i2v;
 }
 
-function buildSettings({ spec, duration, resolution, aspectRatio, audio, multiShot, includeAspect }) {
+function buildSettings({ spec, duration, resolution, dynamicRange, aspectRatio, audio, multiShot, includeAspect }) {
   const settings = {};
   if (duration != null) settings.duration = duration;
   if (resolution) settings.resolution = resolution;
+  if (dynamicRange && spec.dynamicRanges) settings.dynamic_range = dynamicRange;
   if (includeAspect && aspectRatio) settings.aspect_ratio = aspectRatio;
   if (audio && spec.audio) settings.audio = audio;
   if (spec.multiShot && multiShot !== undefined) settings.multi_shot = multiShot;
@@ -581,6 +604,25 @@ function validateSettings(route, model, spec, args, ctx, voiceIds = [], videoSta
     throw new Error(
       `Invalid --resolution for ${model} / 该模型清晰度须为: ${spec.resolutions.join(', ')}`,
     );
+  }
+
+  const dynamicRange = parseDynamicRange(args.dynamic_range);
+  if (dynamicRange) {
+    if (!spec.dynamicRanges) {
+      throw new Error(
+        `Unsupported --dynamic_range for ${model} / 动态范围仅视频 kling-4.0 支持（sdr / hdr）`,
+      );
+    }
+    if (!spec.dynamicRanges.includes(dynamicRange)) {
+      throw new Error(
+        `Invalid --dynamic_range for ${model} / 该模型 dynamic_range 须为: ${spec.dynamicRanges.join(', ')}`,
+      );
+    }
+    if (dynamicRange === 'hdr' && (resolution || '1080p') === '720p') {
+      throw new Error(
+        'Invalid --dynamic_range hdr with 720p / HDR 仅支持 1080p 和 4k，不支持 720p',
+      );
+    }
   }
 
   let audio = parseAudio(args.audio);
@@ -648,7 +690,7 @@ function validateSettings(route, model, spec, args, ctx, voiceIds = [], videoSta
     }
   }
 
-  return { duration, resolution, audio, multiShot };
+  return { duration, resolution, dynamicRange, audio, multiShot };
 }
 
 function parseVideoList(rawVideo, rawTypes) {
@@ -959,7 +1001,7 @@ export async function main() {
     if (route === 'omni') validateOmniElementListRules(args, elementIds, imageState, model, spec, voiceIds, videoState);
     validateVoices(route, model, spec, voiceIds);
 
-    const { duration, resolution, audio, multiShot } = validateSettings(route, model, spec, args, imageState, voiceIds, videoState);
+    const { duration, resolution, dynamicRange, audio, multiShot } = validateSettings(route, model, spec, args, imageState, voiceIds, videoState);
     if (route === 'omni') validateOmniAudioVideoRules(model, spec, audio, args, multiShot, imageState, videoState);
 
     const prompt = String(args.prompt || '').trim();
@@ -977,6 +1019,7 @@ export async function main() {
       spec,
       duration,
       resolution,
+      dynamicRange,
       aspectRatio,
       audio,
       multiShot,

@@ -1,6 +1,6 @@
 ## Description:
 
-Audits a Huawei Cloud VPC's network topology against configurable security rules and produces a report comparing the described access path with the discovered topology.
+Orchestrator skill that audits Huawei Cloud network topology for security and configuration risks.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Cloud engineers and security teams use this read-only skill to compare a described access path with discovered Huawei Cloud resources, assess VPC network risks, and prepare a topology audit report.
+Cloud operators and network or security engineers use this skill to compare a described access path with live Huawei Cloud resources, assess topology and configuration risks, and receive a Markdown audit report.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Auditing a VPC exposes sensitive network configuration details to the skill.
+Risk: Optional quality reporting may send cloud credentials and audit context to a configurable remote endpoint when enabled.
 
-Mitigation: Grant only the read-only IAM permissions needed for the relevant VPC, and keep secrets out of prompts and reports.
-
-Risk: External quality reporting is enabled by default and may send masked audit inputs, outputs, errors, and stack traces.
-
-Mitigation: Set SKILL_QUALITY_DISABLE=1 unless quality reporting is required.
-
-Risk: The installation guide downloads an hcloud installer for optional CLI use.
-
-Mitigation: Verify the installer before running it.
+Mitigation: Keep reporting disabled unless needed; before enabling it, review the telemetry settings, destination, and data that may be sent.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/huaweicloudskill/skills/huawei-cloud-network-topology-audit)
-- [Resource-skill mapping](references/resource-skill-mapping.md)
-- [Audit rule authoring guide](references/rule-authoring-guide.md)
-- [Read-only IAM permissions](references/iam-policies.md)
-- [Huawei Cloud API documentation index](references/official-doc-index.md)
+- [ClawHub skill page](https://clawhub.ai/huaweicloudskill/skills/huawei-cloud-network-topology-audit)
+- [Huawei Cloud DCS List Instances API](https://support.huaweicloud.com/api-dcs/ListInstances.html)
+- [Huawei Cloud DCS Show Instance API](https://support.huaweicloud.com/api-dcs/ShowInstance.html)
+- [Huawei Cloud CCE List Clusters API](https://support.huaweicloud.com/api-cce/ListClusters.html)
+- [Huawei Cloud CCE List Nodes API](https://support.huaweicloud.com/api-cce/ListNodes.html)
+- [Huawei Cloud API Explorer](https://console.huaweicloud.com/apiexplorer/#/openapi)
+- [Resource-Skill Mapping](references/resource-skill-mapping.md)
+- [Least-Privilege IAM Policies](references/iam-policies.md)
+- [Rule Authoring Guide](references/rule-authoring-guide.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Guidance]
+**Output Type(s):** [Analysis, Markdown]
 
-**Output Format:** [Markdown audit report with a Mermaid topology diagram]
+**Output Format:** [Markdown audit report with a Mermaid topology diagram and ASCII fallback]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes a described-versus-discovered topology comparison, rule-linked findings, and remediation guidance; an ASCII diagram is available as a fallback.]
+**Other Properties Related to Output:** [Summarizes one described access path within a single Huawei Cloud account and region.]
 
 ## Skill Version(s):
 
-1.0.0 (source: ClawHub release metadata)
+1.0.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

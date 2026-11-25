@@ -1,6 +1,6 @@
 ## Description:
 
-心鉴学占星运势专业版：以本命盘为底，叠加当下行运星，解释这一段时间的议题、压力点与机会窗口。用户问「我最近运势」「今年事业/感情走向」「当下该注意什么」时使用。
+Interprets current astrological transits against a user's natal chart to describe themes, pressures, and opportunities over a period.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,43 +14,38 @@ MIT-0
 
 ## Use Case:
 
-External users provide birth details and their current city to receive a paid astrology transit reading focused on current themes, pressures, and opportunities. The reading describes tendencies over time rather than certain events on specific dates.
+People with natal chart details use the skill to understand current or near-term themes in areas such as work and relationships. It gathers birth and current-location details, requests a transit chart from the service, and presents a time-bounded interpretation rather than a prediction of specific events.
 
 ### Deployment Geography for Use:
 
-China
+Global
 
 ## Known Risks and Mitigations:
 
-Risk: Birth date, birth time, birthplace, and current city are sent to the service before the payment decision; retention and deletion terms are not provided.
+Risk: The security review marks the skill suspicious with medium confidence because it reports wallet setup and unpinned software installation beyond the stated astrology purpose; scanner coverage is partial.
 
-Mitigation: Explain what information will be sent and obtain the user's consent before submitting it; do not promise retention or deletion practices that are not documented.
-
-Risk: Each successful reading costs 6 CNY and requires separate Alipay authorization.
-
-Mitigation: Disclose the price and authorization requirement before proceeding, and continue only with the user's consent.
+Mitigation: Before use, explain the wallet setup and software installation and obtain separate authorization, verify the package source and version, and clarify how the external service handles birth and location data.
 
 ## Reference(s):
 
-- [API contract](references/api.md)
-- [Reading framework](references/reading.md)
-- [Payment flow](references/payment.md)
-- [Astro Transit service API](https://api.xinjianxue.com/api/xinjianxue/aipay/astro-transit)
+- [Transit service API contract](https://api.xinjianxue.com/api/xinjianxue/aipay/astro-transit)
+- [Interpretation framework](artifact/references/reading.md)
+- [Payment flow](artifact/references/payment.md)
 - [ClawHub skill page](https://clawhub.ai/weixin97676414/skills/xinjianxue-astro-transit)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Markdown astrology reading]
+**Output Format:** [Markdown prose with headings and emphasis]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Time-period-based interpretation framed as tendencies, not certain events on specific dates.]
+**Other Properties Related to Output:** [Time-bounded interpretation; avoids claims that specific events will occur.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server-resolved release metadata)
+2.0.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

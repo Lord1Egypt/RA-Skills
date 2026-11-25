@@ -1,6 +1,6 @@
 ## Description:
 
-Scores vendors against weighted criteria and builds a total-cost comparison sheet for US purchasing and operations teams. Use when the user asks for vendor comparison sheet, supplier evaluation scorecard, procurement comparison table. For US purchasing agents, operations managers and small business owners choosing a service or supply vendor.
+Scores vendors against weighted criteria and builds a total-cost comparison sheet for US purchasing and operations teams.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External US purchasing agents, operations managers, and small business owners use the skill to compare vendor quotes and costs against buyer-selected criteria, identify missing information, and prepare a purchasing decision for buyer review.
+US purchasing agents, operations managers, and small business owners use this skill to compare supplier or service vendor quotes, evaluate weighted criteria, and identify missing information before making a purchasing decision.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,33 @@ United States
 
 ## Known Risks and Mitigations:
 
-Risk: Weighted scores may not reflect the buyer's priorities or may be misread as a definitive recommendation.
+Risk: Missing or malformed vendor terms can be converted to numeric scores and skew the ranking.
 
-Mitigation: Set weights and scoring direction to match the buyer's priorities, then check the calculations before deciding.
+Mitigation: Check source quotes and confirm every scored field is complete and correctly formatted before relying on the ranking; keep unknown terms in the open items.
 
-Risk: The optional Windows app is a separate download and is not needed for the bundled comparison workflow.
+Risk: The optional Windows toolkit download is an unsigned executable.
 
-Mitigation: Use the bundled local workflow; review the separate app independently before choosing to download or run it.
+Mitigation: If using it, verify the archive against the SHA-256 shown in the skill, request its password from the publisher, and run it only if you accept the unsigned software.
 
 ## Reference(s):
 
-- [Vendor Comparison US Reference](artifact/references/vendor-comparison-us.md)
-- [ClawHub skill release](https://clawhub.ai/rapidworker1/skills/vendor-comparison-sheet)
-- [Publisher homepage](https://github.com/rapidworker1)
+- [US vendor comparison rules and data formats](references/vendor-comparison-us.md)
+- [Publisher homepage (metadata.clawdis)](https://github.com/rapidworker1)
+- [ClawHub skill page](https://clawhub.ai/rapidworker1/skills/vendor-comparison-sheet)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, CSV files]
+**Output Type(s):** [Analysis, CSV, Markdown]
 
-**Output Format:** [CSV comparison input and a Markdown vendor ranking report]
+**Output Format:** [CSV comparison data and a Markdown vendor ranking report]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports weighted scores and criteria; verify calculations and missing quote details before making a purchasing decision.]
+**Other Properties Related to Output:** [Ranks vendor rows using weighted criteria and shows criterion values alongside scores.]
 
 ## Skill Version(s):
 
-1.0.6 (source: SKILL.md frontmatter; server release evidence)
+1.0.7 (source: frontmatter)
 
 ## Ethical Considerations:
 

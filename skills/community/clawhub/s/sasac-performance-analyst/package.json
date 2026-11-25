@@ -1,7 +1,7 @@
 {
   "name": "sasac-performance-analyst",
-  "version": "2.0.0",
-  "description": "国资委企业绩效评价智能分析SKILL | SASAC Enterprise Performance Evaluation Skill - 基于2025年版标准值，覆盖332个标准值表（314国内+18国际），提供精准对标、绩效诊断、改进建议与报告生成",
+  "version": "2.1.3",
+  "description": "国资委企业绩效评价智能分析SKILL | SASAC Enterprise Performance Evaluation Skill - 基于2026年版标准值，覆盖335个标准值表（335国内+18国际），PyMuPDF高精度重扫，修正eva/opm/roe等关键指标值，提供精准对标、绩效诊断、改进建议与报告生成",
   "author": "王东杰 (Wang Dongjie)",
   "creator": {
     "name_en": "Wang Dongjie",
@@ -48,6 +48,7 @@
     "system_prompt.md",
     "package.json",
     "data/sasac_2025_standards.json",
+    "data/sasac_2026_standards.json",
     "data/international_standards.json",
     "data/industry_mapping.json",
     "data/case_studies.json",
@@ -59,7 +60,8 @@
     "tools/hk_ipo_integration.py",
     "tools/report_generator.py",
     "templates/report_template.html",
-    "html/sasac_performance_query_2025.html"
+    "html/sasac_performance_query_2025.html",
+    "html/sasac_performance_query_2026.html"
   ],
   "dependencies": {
     "PyMuPDF": ">=1.23.0",
@@ -81,13 +83,13 @@
     "featured": true
   },
   "sasac": {
-    "data_year": 2025,
+    "data_year": 2026,
     "intl_data_year": 2024,
-    "total_tables": 332,
-    "domestic_tables": 314,
+    "total_tables": 335,
+    "domestic_tables": 335,
     "international_tables": 18,
-    "total_industries": 167,
-    "domestic_industries": 160,
+    "total_industries": 170,
+    "domestic_industries": 170,
     "international_industries": 18,
     "total_metrics": 24,
     "core_metrics": 16,

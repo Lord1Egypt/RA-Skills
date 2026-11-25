@@ -1,0 +1,10 @@
+{
+  "status": "needs_user_action",
+  "browserId": "easybr-xianyu-a",
+  "accountAlias": "闲鱼主店",
+  "filledFields": [],
+  "missingFields": [],
+  "imageCount": 0,
+  "nextAction": "请在 EasyBR 中登录闲鱼并处理验证码后重试",
+  "errors": ["登录状态不可用"]
+}

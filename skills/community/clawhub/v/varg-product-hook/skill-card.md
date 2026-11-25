@@ -1,6 +1,6 @@
 ## Description:
 
-Creates short product video hooks by adapting proven ad concepts or generating UGC-style clips from product photos with Varg.
+Creates short product-video hooks and ads by adapting proven concepts or generating UGC-style clips from product photos.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Product sellers and marketers use this skill to create short-form promotional hooks and product-in-use clips from product photos, or to remake the concept of a successful hook. It supports social commerce and product advertising workflows.
+Product sellers and marketers use the skill to develop short, attention-grabbing product videos from product photos or by remaking a successful video concept. It provides prompts and guidance for hooks, demonstrations, and short ads.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Product photos may include material the user does not want to share with Varg.
+Risk: Product photos, reference videos, or prompts may be sent to Varg for processing.
 
-Mitigation: Use only photos you are comfortable sharing with Varg.
+Mitigation: Share only material you are authorized to send to Varg, and avoid sensitive material unless its use is authorized.
 
-Risk: Video generation can incur costs.
+Risk: The security review was partial and reported two unresolved local references.
 
-Mitigation: Check the estimated generation cost before rendering.
+Mitigation: Review the unresolved references before relying on the skill.
 
-Risk: Synthetic footage or product claims may mislead viewers or need platform disclosure.
+Risk: AI-generated footage could be mistaken for a real customer or event.
 
-Mitigation: Review generated product claims and apply required AI labels before publishing.
+Mitigation: Do not present generated clips as real customer footage or events, and apply platform AI labels where required.
 
 ## Reference(s):
 
+- [Reference reel breakdown guide](references/breakdown.md)
 - [Varg](https://varg.ai)
-- [Varg MCP connection](https://mcp.varg.ai/mcp)
-- [ClawHub skill page](https://clawhub.ai/vargai/skills/varg-product-hook)
+- [Varg MCP server](https://mcp.varg.ai/mcp)
 
 ## Skill Output:
 
-**Output Type(s):** [Video, Guidance, API calls]
+**Output Type(s):** [Video files, Prompt text, Guidance]
 
-**Output Format:** [Short product video clips (MP4) with Markdown production guidance and prompts]
+**Output Format:** [Short-form product video clips and written prompts or guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Hooks are typically 5–15 seconds; clips may be combined into a longer product ad.]
+**Other Properties Related to Output:** [Typically vertical 9:16 clips; multiple clips can form a short product ad.]
 
 ## Skill Version(s):
 
-1.0.2 (source: server-resolved release metadata)
+1.0.3 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes supplied pet videos for behavior or distress indicators through a remote service and returns structured reports or report history.
+Analyzes pet videos for anxiety-related behavior and provides structured results and report links for pet care workflows.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Pet owners use the skill to submit supported videos for behavior analysis, review structured reports, and retrieve earlier reports.
+Pet owners and care teams can submit local pet videos or video URLs for behavior analysis, review structured results, and query prior reports.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The release is rated suspicious and is reported to perform remote video analysis, with possible account creation and persistent identity or token storage.
+Risk: The security review reports a mismatch between the advertised soothing purpose and the skill's video-analysis, account, and report-management capabilities.
 
-Mitigation: Review and accept those data-handling behaviors before installing; avoid use if they are not acceptable.
+Mitigation: Review the analysis and report workflow before use, and confirm the behavior of any connected services or devices before relying on it to soothe a pet.
 
-Risk: Scanner coverage was partial and imported implementations could not be verified, so the evidence does not establish the full behavior.
+Risk: Pet footage and account-linked reports raise privacy concerns, and the security review says account handling and execution boundaries need attention.
 
-Mitigation: Review the complete skill and imported implementations before relying on its behavior.
+Mitigation: Use only footage appropriate to share with the configured service, and review its account, access, and data-handling practices before submitting videos or querying reports.
+
+Risk: The security scan is incomplete: a local reference could not be resolved, and the behavior of an imported implementation could not be verified.
+
+Mitigation: Inspect the unresolved dependency and verify the relevant implementation before installation or use with sensitive footage.
 
 ## Reference(s):
 
-- [API interface documentation](artifact/references/api_doc.md)
-- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-pet-calming-trigger-analysis)
+- [API reference](references/api_doc.md)
+- [Analysis API details and error codes](skills/smyx_analysis/references/api_doc.md)
 - [Skill demonstration page](https://lifeemergence.com/sample.html)
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-pet-calming-trigger-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Markdown]
+**Output Type(s):** [Analysis, Text, JSON, Markdown]
 
-**Output Format:** [Structured analysis report text with JSON content; report history is returned as JSON content.]
+**Output Format:** [Structured analysis results and report links, with historical reports presented as a list]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Accepts MP4, AVI, or MOV videos up to 10 MB; analysis reports may include a report link.]
+**Other Properties Related to Output:** [Accepts a local video file or video URL; supports querying prior reports.]
 
 ## Skill Version(s):
 
-1.0.21 (source: server-resolved release evidence)
+1.0.22 (source: ClawHub release evidence)
 
 ## Ethical Considerations:
 

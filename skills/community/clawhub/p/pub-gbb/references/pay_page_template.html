@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!--
+  SmartLib 支付宝付款页 · 标准样例模板（技能内规范，v3.10.1）
+  ============================================================
+  【用途】对话中生成付款 HTML 时，必须严格按本模板输出：
+    1. 不得改变页面风格（支付宝蓝渐变头部 + 订单卡片 + 倒计时 + 状态徽章）；
+    2. 不得改变有效期文案：付款码 30 分钟有效（网关已设 timeout_express="30m"，
+       支付宝当面付默认 2h 已被网关强制覆盖为 30 分钟）；
+    3. 只替换下方 {{占位符}}，其余任何内容一字不改；
+    4. 邮箱只允许脱敏显示（{{EMAIL_MASKED}}，如 p***@domain.com），禁止完整邮箱；
+    5. 禁止把 Gateway 密钥 / consume_token / 任何内部配置写进页面。
+  【占位符清单】
+    {{OUT_TRADE_NO}}  网关返回的订单号（/api/pay/alipay/create → out_trade_no）
+    {{QR_TEXT}}       网关返回的 qr_code（形如 qr.alipay.com/...，用于「打不开」链接）
+    {{QR_B64}}        二维码 base64 PNG（唯一渲染方式，见下方【二维码渲染】）
+    {{AMOUNT}}        金额，两位小数，如 2.50（必须与套餐表一致）
+    {{PLAN_NAME}}     套餐中文名（单篇下载 / 下载包 / 个人版月 / 专业版月 / 试用卡）
+    {{EMAIL_MASKED}}  已注册邮箱的脱敏形式（保留首字符 + *** + @域名）
+    {{GEN_TIME}}      二维码生成时间，如 2026-08-30 10:00:00 (GMT+8)
+    {{EXPIRE_TIME}}   预计过期时间 = 生成时间 + 30 分钟 (GMT+8)
+    {{EXPIRE_MS}}     预计过期的毫秒时间戳（new Date(Date.now()+30*60*1000)）
+  【二维码渲染（唯一方式）】
+    必须使用 {{QR_B64}} 内嵌 base64 PNG（<img src="data:image/png;base64,...">）。
+    若无法获得 base64：用本地 Python 生成（qrcode 库）后内嵌，不要用其他方式。
+    ⚠️ 禁止加载任何远程 JS / 外部 CDN 脚本——供应链安全红线，二维码必须本地生成后内嵌。
+  【支付状态说明】
+    页面为纯静态展示（二维码 / 倒计时 / 订单信息），**不做自动状态轮询**；
+    支付状态由 AI 对话侧轮询 /api/pay/alipay/status 确认，页面提示用户付款后回对话告知 AI。
+  【状态值】pending/paid/closed/fail（AI 对话侧中文映射，页面不展示实时状态）
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>支付宝付款 · 订单详情</title>
+<style>
+  :root {
+    --alipay:#1677ff;
+    --alipay-d:#0a5bd9;
+    --alipay-grad:linear-gradient(135deg,#1677ff 0%,#0a5bd9 100%);
+    --alipay-soft:#e8f1ff;
+    --ok:#16a34a;
+    --warn:#fa8c16;
+    --danger:#ff4d4f;
+    --ink:#1f2329;
+    --sub:#7c8696;
+    --line:#eef1f6;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif; background:#e9f1fd; color:var(--ink); -webkit-text-size-adjust:100%; }
+  .wrap { max-width:440px; margin:0 auto; padding:18px 14px 40px; }
+  /* 支付宝蓝渐变头部 */
+  .topbar { background:var(--alipay-grad); border-radius:18px 18px 0 0; padding:20px 20px 16px; color:#fff; position:relative; overflow:hidden; }
+  .topbar::after { content:""; position:absolute; right:-30px; top:-30px; width:140px; height:140px; background:rgba(255,255,255,.12); border-radius:50%; }
+  .brand { display:flex; align-items:center; gap:11px; position:relative; z-index:1; }
+  .logo { width:36px; height:36px; border-radius:10px; background:rgba(255,255,255,.20); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:18px; letter-spacing:-1px; }
+  .brand .t { line-height:1.15; }
+  .brand h1 { font-size:20px; margin:0; letter-spacing:1px; font-weight:700; }
+  .brand .en { font-size:11px; opacity:.82; font-weight:500; letter-spacing:.5px; }
+  /* 唯一付款通道强调条 */
+  .chpill { position:relative; z-index:1; display:inline-flex; align-items:center; gap:8px; margin-top:14px; padding:7px 14px; border-radius:999px; background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.35); font-size:12.5px; font-weight:600; }
+  .chpill .dot { width:9px; height:9px; border-radius:50%; background:#fff; box-shadow:0 0 0 3px rgba(255,255,255,.35); }
+  .card { background:#fff; border-radius:0 0 18px 18px; padding:22px 20px 6px; box-shadow:0 8px 26px rgba(22,119,255,.14); }
+  h2.t { font-size:15px; margin:0 0 14px; color:var(--alipay-d); font-weight:700; }
+  .qrbox { text-align:center; }
+  .qrbox img { width:248px; height:248px; border:2px solid var(--alipay-soft); border-radius:14px; padding:6px; background:#fff; }
+  .hint { font-size:12.5px; color:var(--alipay-d); margin-top:10px; font-weight:600; }
+  .openlink { display:inline-block; margin-top:8px; font-size:12px; color:var(--alipay); text-decoration:none; font-weight:600; }
+  .openlink:hover { color:var(--alipay-d); }
+  .timer { margin:20px 0 6px; text-align:center; }
+  .timer .label { font-size:13px; color:var(--sub); }
+  .timer .clock { font-size:36px; font-weight:700; font-variant-numeric:tabular-nums; letter-spacing:1px; margin-top:2px; color:var(--alipay); }
+  .timer.warn .clock { color:var(--warn); }
+  .timer.danger .clock { color:var(--danger); }
+  table { width:100%; border-collapse:collapse; font-size:14px; margin-top:14px; }
+  td { padding:10px 4px; border-bottom:1px solid var(--line); vertical-align:top; }
+  td.k { color:var(--sub); width:42%; }
+  td.v { text-align:right; font-weight:600; word-break:break-all; }
+  .amount { color:var(--alipay-d); font-size:19px; font-weight:800; }
+  .channel-tag { display:inline-block; padding:2px 9px; border-radius:6px; background:var(--alipay-soft); color:var(--alipay-d); font-size:12px; font-weight:700; }
+  .badge { display:inline-block; padding:2px 9px; border-radius:6px; background:var(--alipay-soft); color:var(--alipay-d); font-size:12px; font-weight:700; }
+  .badge.paid { background:#e9f9ee; color:var(--ok); }
+  .badge.pending { background:#fff5e9; color:var(--warn); }
+  .footer { text-align:center; font-size:12px; color:#aab2bd; margin-top:16px; line-height:1.7; padding-bottom:6px; }
+  .footer .single { color:var(--alipay-d); font-weight:700; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo">支</div>
+      <div class="t">
+        <h1>支付宝</h1>
+        <div class="en">ALIPAY · 付款</div>
+      </div>
+    </div>
+    <div class="chpill"><span class="dot"></span>本订单唯一付款通道：支付宝</div>
+  </div>
+  <div class="card">
+    <h2 class="t">扫码完成付款</h2>
+    <div class="qrbox">
+      <img id="qr" src="data:image/png;base64,{{QR_B64}}" alt="支付宝付款二维码">
+      <div class="hint">请使用「支付宝 App」扫码付款</div>
+      <a class="openlink" id="openlink" href="{{QR_TEXT}}" target="_blank">二维码打不开？点此用浏览器打开唤起支付宝</a>
+    </div>
+    <div class="timer ok" id="timer">
+      <div class="label">二维码有效期剩余</div>
+      <div class="clock" id="clock">--:--:--</div>
+    </div>
+    <table>
+      <tr><td class="k">付款通道</td><td class="v"><span class="channel-tag">支付宝（唯一）</span></td></tr>
+      <tr><td class="k">订单号</td><td class="v">{{OUT_TRADE_NO}}</td></tr>
+      <tr><td class="k">套餐</td><td class="v">{{PLAN_NAME}}</td></tr>
+      <tr><td class="k">金额</td><td class="v amount">¥{{AMOUNT}}</td></tr>
+      <tr><td class="k">邮箱</td><td class="v">{{EMAIL_MASKED}} <span style="font-size:11px;color:var(--sub);">（已脱敏）</span></td></tr>
+      <tr><td class="k">二维码生成时间</td><td class="v">{{GEN_TIME}}</td></tr>
+      <tr><td class="k">预计过期时间</td><td class="v">{{EXPIRE_TIME}}</td></tr>
+      <tr><td class="k">支付状态</td><td class="v"><span class="badge pending" id="status">待支付（以 AI 后台为准）</span></td></tr>
+    </table>
+    <div class="footer">
+      本平台仅支持<b class="single">支付宝</b>一种付款方式，暂不支持微信等其他通道<br>
+      二维码 <b class="single">30 分钟</b>内有效，倒计时归零即失效，请让 AI 重新出码<br>
+      扫码付款后，请回到对话告知 AI，由 AI 确认到账
+    </div>
+  </div>
+</div>
+<script>
+  var EXPIRE = {{EXPIRE_MS}};
+  function pad(n){ return n<10 ? '0'+n : ''+n; }
+  function tick(){
+    var now = Date.now();
+    var left = EXPIRE - now;
+    var el = document.getElementById('timer');
+    var clk = document.getElementById('clock');
+    if (left <= 0) {
+      clk.textContent = '已过期';
+      el.className = 'timer danger';
+      return;
+    }
+    var h = Math.floor(left/3600000);
+    var m = Math.floor((left%3600000)/60000);
+    var s = Math.floor((left%60000)/1000);
+    clk.textContent = pad(h)+':'+pad(m)+':'+pad(s);
+    if (left < 300000) el.className = 'timer danger';
+    else if (left < 600000) el.className = 'timer warn';
+    else el.className = 'timer ok';
+    requestAnimationFrame(tick);
+  }
+  tick();
+</script>
+</body>
+</html>

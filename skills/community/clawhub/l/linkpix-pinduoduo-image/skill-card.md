@@ -1,6 +1,6 @@
 ## Description:
 
-通过青虎 AI 为拼多多等电商平台生成商品主图套图、详情图和促销活动图片。
+Generates Pinduoduo product images, listing image sets, detail page graphics, and promotional posters through LinkPix.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,44 +14,40 @@ MIT-0
 
 ## Use Case:
 
-拼多多商家、运营人员和设计师可用它生成商品主图套图、详情长图和促销活动海报，并为商品图片制作白底或场景化视觉方案。
+Pinduoduo sellers, marketplace operators, and designers use this skill to create product listing image sets, detail graphics, and promotional posters from product images and campaign copy. It also describes image workflows for Duoduo Maicai and Kua tuan tuan.
 
 ### Deployment Geography for Use:
 
-Global
+China
 
 ## Known Risks and Mitigations:
 
-Risk: Sharing an API key in chat could expose account access.
+Risk: The documented installation can download and run changing package versions.
 
-Mitigation: Enter keys through a secure local configuration flow; rotate any key already shared.
+Mitigation: Review the package and installation source, and use a trusted pinned version where practical.
 
-Risk: Installing or automatically updating the CLI and its dependencies can introduce unreviewed software.
+Risk: Reference images may be uploaded without a required privacy notice.
 
-Mitigation: Use reviewed, pinned dependencies and retain control over updates.
-
-Risk: Product images and prompts are sent to Qinghu AI, and confirmed generation jobs spend credits and cannot be canceled.
-
-Mitigation: Upload only approved images and prompts, and review generation settings and the estimate before confirming a job.
+Mitigation: Get the image owner's consent and remove sensitive or confidential content before uploading reference images.
 
 ## Reference(s):
 
-- [LinkPix skill release](https://clawhub.ai/autoagc/skills/linkpix-pinduoduo-image)
+- [LinkPix release on ClawHub](https://clawhub.ai/autoagc/skills/linkpix-pinduoduo-image)
 - [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Text, Shell commands, Configuration instructions]
+**Output Type(s):** [Image assets, Shell commands, Configuration instructions, Usage guidance]
 
-**Output Format:** [Generated image files or image URLs, with text and shell commands for setup and generation.]
+**Output Format:** [Generated product images or image URLs, with JSON command parameters and Markdown guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Images are generated from selected options and any supplied product images or copy; image count, size, and quality depend on the request.]
+**Other Properties Related to Output:** [Image count, model, size, quality, platform, and campaign copy depend on available options and user inputs.]
 
 ## Skill Version(s):
 
-0.1.4 (source: server release metadata)
+0.1.5 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

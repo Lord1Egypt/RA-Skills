@@ -1,7 +1,7 @@
 ---
 name: reddit-data
 description: "Reddit posts, comments, users, and subreddits for agents — no Reddit app or API approval needed."
-version: 2.0.14
+version: 2.0.19
 author: superagnt
 license: MIT-0
 platforms: [macos, linux, windows]

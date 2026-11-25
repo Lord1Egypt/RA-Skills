@@ -10,7 +10,7 @@ metadata: {"openclaw":{"emoji":"▶️","requires":{"bins":["qhkit"]},"install":
 
 TikTok 爆款带货视频生成。帮助跨境卖家、MCN机构、海外广告投放师通过青虎AI完成“TikTok 爆款带货视频生成”：可调用可灵Kling 3.0、阿里Wanx 3.0、MiniMax H3、Seedance 2.0、Seedance 2.5、HappyHorse 1.1等大模型，轻松生成多语言口播、卡点变装、搞笑短剧、跨境种草、信息流投放等视频类型，完美贴合TikTok病毒式传播和多国受众偏好。适用于TikTok Shop、TikTok Ads、东南亚及欧美站点等跨境短视频营销场景。Use this skill for TikTok爆款视频, 多语言口播, 卡点变装, 搞笑短剧, 跨境种草, 信息流投放, TikTok Shop, 病毒式传播, 全球化分发, MiniMax H3, Grok, Seedance, AIGC视频生成。通过青虎AI统一接入，支持素材上传、任务轮询和结果下载。
 
-平台向的电商视频总入口（第 1 批 `linkpix-ecom-video` 的拆分）：`qhkit video` 多模型成片 + `video-quick` 多图成片 + 需要分镜时 `storyboard`。默认画幅 **竖屏 9:16**，默认语言 **英语**。用户没点名模型时按 `Seedance2.5` → `阿里wanx3.0` → `Seedance2.0` → `全能电商2.0` 的顺序推荐。
+平台向的电商视频总入口（第 1 批 `linkpix-ecom-video` 的拆分）：`qhkit video` 多模型成片 + `video-quick` 多图成片 + 需要分镜时 `storyboard`。默认画幅 **竖屏 9:16**，默认语言 **英语**。用户没点名模型时按 `Seedance2.5` → `Seedance2.5 Flash` → `阿里wanx3.0` → `Seedance2.0` → `全能电商2.0` 的顺序推荐。
 
 ## 何时触发
 
@@ -35,7 +35,7 @@ qhkit storyboard script '{"uploadedImages":["./商品图.jpg"],"productName":"�
 
 平台提示词：病毒式前 3 秒钩子、卡点/变装/短剧都可以；默认英语，用户指定站点再换 `languageLabel`（西语/印尼语等）。信息流投放把卖点写进画面动作，不要只靠中文字幕。
 
-- **默认推荐顺序**（用户没点名模型时）：`Seedance2.5` → `阿里wanx3.0` → `Seedance2.0` → `全能电商2.0`。按这个顺序列候选（含时长范围与按秒单价），排第一的标为推荐，用户没有异议就用它；某个模型不满足本次条件（没有必填的参考图、时长超出范围、不支持要用的参考视频/音频、维护中）就顺延到下一个，并告诉用户原因或请用户补齐素材。其他模型只在用户点名时使用。
+- **默认推荐顺序**（用户没点名模型时）：`Seedance2.5` → `Seedance2.5 Flash` → `阿里wanx3.0` → `Seedance2.0` → `全能电商2.0`。按这个顺序列候选（含时长范围与按秒单价），排第一的标为推荐，用户没有异议就用它；某个模型不满足本次条件（没有必填的参考图、时长超出范围、不支持要用的参考视频/音频、维护中）就顺延到下一个，并告诉用户原因或请用户补齐素材。其他模型只在用户点名时使用。
 - 参考视频 / 参考音频是否可传以当次 `models` 为准。
 - `orientationLabel` 必须来自该模型的候选；目录没有 竖屏 9:16 时改用最接近的竖/横屏并告诉用户。
 
@@ -84,7 +84,7 @@ npm i -g @iqinghu/qhkit@latest
 ## 调用契约
 
 - 形式：`qhkit <命令> <action> '<json>'`，或 `qhkit <命令> <action> @params.json`（参数写进文件，避免 shell 转义问题，推荐）。
-- **Windows 防乱码**：Windows 上经 PowerShell 调 qhkit 时，stdout 里的中文会按系统代码页 GBK 解码成乱码（如「专图模型」变成「涓撳浘妯″瀷」），模型名、选项、报错都对不上——**看到乱码不要据此判断模型或选项不存在**。每条 qhkit 命令在同一行先切 UTF-8 再调用：`[Console]::OutputEncoding=[Text.Encoding]::UTF8; qhkit <命令> <action> @params.json`；仍有乱码就加全局参数 `--out result.json`（qhkit 0.15.0+），stdout 只回一行纯 ASCII 的文件路径，再按 UTF-8 读该文件拿完整结果。PowerShell 5.1 还会吞掉命令行 JSON 里的双引号（报「json_args 解析失败」），Windows 上参数一律写进文件走 `@params.json`。macOS / Linux / Git Bash 不受影响。
+- **Windows 防乱码**：Windows 上经 PowerShell 调 qhkit 时，stdout 里的中文会按系统代码页 GBK 解码成乱码（如「专图模型」变成「涓撳浘妯″瀷」），模型名、选项、报错都对不上——**看到乱码不要据此判断模型或选项不存在**。每条 qhkit 命令在同一行先切 UTF-8 再调用：`[Console]::OutputEncoding=[Text.Encoding]::UTF8; qhkit <命令> <action> @params.json`；仍有乱码时先运行 `qhkit --version`，低于 0.15.0 先执行 `npm i -g @iqinghu/qhkit@latest` 升级（官方源慢时加 `--registry=https://registry.npmmirror.com`），再加全局参数 `--out result.json`；stdout 只回一行纯 ASCII 的文件路径，再按 UTF-8 读该文件拿完整结果。PowerShell 5.1 还会吞掉命令行 JSON 里的双引号（报「json_args 解析失败」），Windows 上参数一律写进文件走 `@params.json`。macOS / Linux / Git Bash 不受影响。
 - stdout 恒为一行 JSON；失败为 `{"ok":false,"stage":"...","message":"..."}` 且退出码 1，把 message 原样转告用户。stderr 可能出现提示行，不是错误。
 - 图片/视频参数直接填本地文件路径（CLI 自动上传换取 URL），素材已在公网时填 http(s) URL 也可。
 - **图片体积上限 10MB**：3–10MB 的本地图 CLI 上传后自动追加 COS 缩略参数（2048px 内等比缩小、只缩不放），stderr 那行提示**不是错误**；外站大图 URL 建议先下载到本地再以路径传入，好让 CLI 走这条防线。

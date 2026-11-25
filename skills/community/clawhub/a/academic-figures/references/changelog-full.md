@@ -1,34 +1,143 @@
 <!-- v5.6.0 起本文件为完整历史存档；changelog.md 只保留版本索引+最近三版详情。历史条目措辞保持原样，不做回改。 -->
+<!-- v8.1.2 整理（2026-11-25）：按版本降序、每个版本一节。此前多次下沉造成的重复与乱序已合并——同一版本若有几份
+     不同写法的稿子，几稿并存于该版本的一节之内（先 changelog.md 稿、后存档稿），原文一字未改。更早的旧格式双语
+     历史原样保留在文末。结构锁：随包测试 TestV80102ChangelogLock。 -->
 
-# Changelog / 版本历史
+# Changelog / 版本历史（完整存档）
 
-> **何时读我**：查某版本改了什么/历史特性。
-> **最短路径**：Ctrl-F 版本号。
+> **何时读我**：查某个版本改了什么。Ctrl-F 版本号。
+> **最近三版**（在 changelog.md 的「最近版本详情」里）：v8.1.2、v8.1.1、v8.1.0。
 > **回 INDEX**：SKILL.md「版本历史」。
 
-<!-- 6.5.0 详情自 changelog.md 下沉（v6.8.0 发版，最近三版窗口滚动） -->
+## 8.0.9 — 2026-11-21
 
-<!-- 8.0.1/7.9.3/7.9.0 详情自 changelog.md 下沉（v8.0.4 发版，最近三版窗口滚动） -->
+**泳道路由批次 2+泳道转正**（judge 十轮像素证据驱动收官；机械几何闸八检
+全零+CLI 真几何一致）：
 
-## 7.9.3 — 2026-11-15
+- **轮廓公式根修**：diamond 四面入出点公式重推导（顶 `1-|fx-0.5|`、底
+  `|fx-0.5|`，左右同构）——旧公式偏心错层处落多边形内部（轴线穿本体被
+  填充遮蔽）或把「左侧进入」算到右顶点（横穿整个菱形）；document 波浪底
+  贝塞尔数值反解（出点贴真实波线，浮空 0.10in 根除）。
+- **软穿透检查**：路由候选补 src/dst 真实轮廓（多边形/椭圆）内部穿透
+  测量——端点不贴轮廓时段穿本体的豁免盲区根除。
+- **路由拥塞治理（R10 批）**：全局垂直总线区间避让（|Δx|<0.16 且 y 重叠
+  即拒，共线树干根除）+ 头域矩形禁区（tip 后延 0.16/±0.08，压印根除）+
+  attach 槽位改**物理侧**计数（跨键同侧出入错层，头/出点重合根除）+ 强制
+  键错槽重试 + 肘部走廊有界外扩+分隔带侧翼采样（窄窗跨过根除）+ 往返对
+  总线分离 ≥0.16in。
+- **泳道分隔带 keep-out**：沿带平行长跑候选拒绝；直连骑线平移后按真实
+  轮廓重贴出入点；边标签禁跨带。
+- **端点行钳制**：attach 错层过大时出入点行/列钳回 bbox 可达域。
+- **泳道纵向均衡**：短列富余高度均摊到列内间隙+列底（free 精确扣除既有
+  行距，内容不溢出带域）；band 底下延 0.15in（圆柱不贴画布底框）。
+- **CJK 字体链确定性**：数据下划线 meta 键（_note 等模板元数据）不参与
+  CJK 判定——meta 中文翻全局字体链改变拉丁测量→布局漂移根除。
+- **CLI 几何边车**：`--dump-flow-routes PATH` 落盘路由/块几何快照（几何闸
+  唯一真值源，进程内探针测量漂移假绿根除）。
+- **折行断点**：边标签折行取最靠近中点的空格（"48 h SLA"→"48 h"/"SLA"）。
+- **泳道转正**：实验性摘除（limits.md 转正说明+残项诚实边界）；泳道模板
+  2 套（49→51）；data-formats subgraph 映射如实修正（分组框）。
+- 测试：TestV80009 六闸（CLI 真几何审计八检 showcase+incident 双模板/
+  diamond 公式锁/折行断点/转正标记/模板随包渲染）；**627 测试**。
 
-**发布文案净化重发（代码零差异）**：历史存档两处内部环境称谓改中性表述；7.9.2 功能原样包含。
+<!-- 8.0.9 详情自 changelog.md 下沉（v8.1.0 发版，最近三版窗口滚动） -->
 
-## 7.9.0 — 2026-11-15
+## 8.0.8 — 2026-11-19
 
-**第六轮测试线批次1（正确性与假警告根治）**：
+**泳道已知限制文档化+回归基线**：limits.md 新增泳道专节（往返对分离/斜边端点
+悬空 ≤40px/分组框空白带——均不影响 strict 判定，路由批次 2 排期后续版本）；
+TestV80007 泳道回归快照（9 节点 3 泳道 showcase strict+apex 10/10+结构锁固化
+基线）；621 测试。
 
-- **CJK 探测回退链**：进程内加载探测脚本优先→子进程回退——agent 嵌套/嵌入式解释器
-  （sys.executable 空串）旧路径静默吞错→rc=0 中文全豆腐块，根除。
-- **通用字段假警告根治**：_KNOWN_DATA_FIELDS 补注册 prisma 全 schema 键+lang、km
-  log_rank/risk_table、labbe events_t（顺带修 title/events_t 缺逗号连字隐性 bug）。
-- **prisma 守恒校验独立化**：studies_included > reports_assessed 不可能流程无条件拦截
-  （原守卫嵌套在 exclusion_reasons 分支内曾放行 200>169）。
-- **校验类报错首行精确化**：以「图型: 」为前缀的 ValueError 首行直用精确原因并点名违例字段
-  与实值（fc_cut=0 → "volcano: fc_cut=0 不满足 fc_cut>0"），去瞬态重试/AF_DEBUG 无关建议。
-- **防错尺与精度**：nomogram 结局尺缺 points_at 显式警告（静默线性默认曾画错概率刻度）+
-  DCA 峰值精度自适应（0.185/0.180 不再同显 +0.18）+色盲提示（非安全主题×≥3 系列）+
-  哑铃连接线加深+ridgeline/km/volcano explain 形态补全+limits 登记 --vmax 压标度语义。
+<!-- 8.0.8 详情自 changelog.md 下沉（v8.1.0 发版，最近三版窗口滚动） -->
+
+## 8.0.7 — 2026-11-19
+
+**泳道修复批次 1**（visual-judge 三轮迭代，逐项像素证据）：
+
+- **节点-标题带结构重设计**：旧公式偏移整体平移（band 底恒侵入节点 0.20in）——
+  改为节点区顶=H、band 独立区间 [H+0.30, H+0.80]，间隙恒 0.30in；标题 WCAG
+  反色（暗带白字实测 18.66:1）。
+- **边标签**：swimlane 禁用「框行上/下+画布外远置」逃逸分支（芯片飞画布顶/底
+  根除）——16-40 向螺旋扫描兜底+往返边沿走廊纵向错开（force_side）+strict
+  闸内去重（同 bb 双记假撞根除）。
+- **H 键轮廓贴合**：新增左右轮廓函数表（菱形顶点/IO 斜边/六边形收腰/梯形/
+  斜顶）——H 键出入点 x 按实际轮廓（悬空 88-280px 同根因）。
+- **其他**：骑分隔线平移（V 直连 x 落分隔线 ±0.15 → 偏 0.22）；分组框标题移
+  框顶外上方（layered groups label 压节点根除）；lane 出入点吃 attach 错层；
+  place 内 t=None 潜伏炸弹清除。
+- 已知限制：泳道跨列回边路由（往返对分离/浮空端 ≤30px）仍在迭代——
+  swimlane 维持 experimental 标注。
+- **620 测试**。
+
+<!-- 8.0.7 详情自 changelog.md 下沉（v8.1.0 发版，最近三版窗口滚动） -->
+
+## 8.0.6 — 2026-11-19
+
+**mermaid 导入+泳道引擎（experimental）**：
+
+- **`--from-mermaid FILE.mmd -t flow`**（F5）：mermaid flowchart 源直接出图——形状语法 8 形态全映射（`{x}`→决策菱形、`[(x)]`→数据库圆柱、`[[x]]`→预定义子流程、`[/x/]`→IO、斜顶/倒梯形细分等）、边型五类（`-.->` dashed、`==>` thick、`<-->` 双头、`---` 无头）、管道+文本双标签形态、链式与 & 并联；subgraph 对→分组框（layered 既有已验证能力）；不支持构造（图标/图片/样式行）显式报错绝不静默丢边；-d 可省。
+- **泳道布局引擎**（F3，实验性）：`layout=swimlane`+`"lanes"` 名称列表+节点 `"lane"` 归属（索引/名称），泳道背景条+标题带渲染，跨泳道边照常路由；机械闸全过（strict+apex 10/10）。视觉路由质量迭代中（judge 两轮 6 类缺陷在修）——标记 experimental，生产图建议先用 chain/layered/snake。
+- 测试：TestV80006 五闸（泳道几何/归属校验/mermaid 映射/subgraph/端到端 strict×2）；**620 测试**。
+
+<!-- 8.0.6 详情自 changelog.md 下沉（v8.0.9 发版，最近三版窗口滚动） -->
+
+## 8.0.5 — 2026-11-18
+
+**flow 形状语义系统**（cite-holmes 多轮研究定标：mermaid v11.3 官方形状面+Kimber 2018 学术方法图六原则；visual-judge 四轮迭代收敛）：
+
+- **14 种语义形状**：决策菱形/数据库圆柱/IO/六边形/起止双圆/堆叠/斜切输入/人工操作/延迟/文档/预定义子流程/存储数据（+round/rect）；别名兼容；非矩形文本区内接系数+布局期自动放大；绘制内接 bbox（磁吸/闸零特判）。**边贴合锚点**：斜顶/顶点形状入出点按实际轮廓高度（悬空 80px/双向头埋框/顶边入框三类符号缺陷根除）；V lane 5 段避障走廊（穿层根除）。
+- **边型扩展**：thick 粗线（2.5×可见）/bidirectional 双头/open 无头线（无留头回退）。
+- **7 套学术模板**（模板库 42→49）：scRNA-seq 管线/临床决策树/细胞周期状态机/CRISPR 数据链/多中心伦理审批/双臂方法对照/PDCA 蛇形循环——全部真实学术场景语义+全元数据键。
+- 测试：TestV80005 六闸（注册表别名/内接契约/边型头数/模板随包+strict 抽渲染/validate 白名单/stacked 契约）；**615 测试**。
+
+<!-- 8.0.5 详情自 changelog.md 下沉（v8.0.9 发版，最近三版窗口滚动） -->
+
+<!-- 8.0.4 详情自 changelog.md 下沉（v8.0.7 发版，最近三版窗口滚动） -->
+
+## 8.0.4 — 2026-11-16
+
+**flow 引擎顶刊精修包**（真实论文用例+独立视觉裁决四轮迭代驱动，全部机制级根修）：
+
+- **角色化配色引擎**：主链按流程深度自动衍生同族明度阶梯（并行支路同深度
+  同色），终点唯一强调色；回边断环判定（循环不再污染角色计算）；`--palette`
+  注入任意色板自动获得同款分配；全显式 color 覆盖 `--palette` 时输出
+  `[ignored]` 显式告知（静默无效根除）。
+- **snake 环绕布局**（第三布局态）：`layout=snake`+`columns`(2-8)——列网格
+  跨行对齐（换行边零偏移垂直直连）+奇数行反序；长链宽高比 ~2:1，版心缩放
+  后字号保持可读。
+- **路由三根修**：走廊限定两锚点间（末段从附着边外侧进线，穿框构造上不可能）；
+  轴向回退（主轴向堵→换垂直轴向）；尾槽并入同侧头槽统一错层（回边尾端与
+  前边头位零重合）。
+- **框几何契约**：圆角框 pad 0（可视框=几何 bbox，磁吸所见即所得）；箭头
+  终点负咬合（尖端止于描边外沿绝不入填充）；错层步距 0.18（同缘多箭头
+  体间白隙）。
+- **对齐与终裁**：行内垂直居中（异高框共轴）；layered barycenter 排序+行
+  对中（主链边退化干净直降）；画布终裁按墨水包围盒+自适应边距（面积口径
+  诚实占比）；数据级 `font_size`([6,40])+columns 校验前置 validate-first。
+- 测试：TestV80004 八闸（角色阶梯/蛇形对齐/apex 机械断言/错层白隙/尾头
+  零重合/[ignored]/font_size 边界/validate snake）；**609 测试**。
+
+## 8.0.3 — 2026-11-16
+
+**flow 引擎边标签系统定稿**（13 组真实场景+压力用例 strict 全过+visual-judge 多图 PASS）：
+
+- **候选覆盖路线每段两侧**（长段优先）——不再只看最长段；自身线段白垫豁免
+  （白底标签可贴自身线，graphviz 同款）；滑动搜索兜底；框行上/下+垂直引线
+  标准化（fig2 PASS 形态）。
+- **分层布局带标签行距预留 1.3in** + **chain 富余宽度均匀分配进列间距**
+  （--width 横幅契约：内容铺满画布宽，右半不再空白）。
+- **trim 尊重用户宽度**：画布=最大(用户宽, 内容宽)，内容居中不漂移。
+- **箭头终点微咬合 0.02in**（尖端视觉停框缘线）+**拐点不入框验证**
+  （弯在框里=judge 必抓）。
+- **期刊 7pt 字号下限相对化**：min(8pt, 请求字号)——预设不再被误杀。
+- 数字-单位粘行保护（48周/12.5mg 不拆行）。
+
+## 8.0.2 — 2026-11-16
+
+**发布文案净化重发（代码零差异）**：历史档两处内部调研来源表述与一处引擎注释
+改中性价值语言（红线：公开文档只写价值不提来源过程）；来源类表述入打包禁词闸；
+8.0.1 功能原样包含（flow 英寸坐标系重构+route 验证优先+边标签白底板+8 组压力用例）。
 
 ## 8.0.1 — 2026-11-16
 
@@ -38,7 +147,23 @@
 route 统一验证优先（直连→正交肘→lane 双侧×错层）；边标签白底板+框行候选标准化；
 宽度实测驱动；字号下限相对化（期刊 7pt 解锁）；中断词保护。
 
+## 8.0.0 — 2026-11-16
 
+（v8.1.2 补写：该版本的详情节此前在多次下沉中缺失，本节据当版索引行与发布提交 03b80f3 补写，未添加其他内容。）
+
+major·第 41 图型 `flow` 语义流程图+diagram 引擎重写（af_flow）：磁吸逐段箭头零穿框/回边 lane 绕行+虚线生效/边标签墨迹级避让（画后实测）/文本测量驱动自适应（数字-单位粘行）/画布自裁剪+`--gate strict` 三层 bbox 断言（重叠 exit 2 拒绝交付）——fig2 真实用例+中文 CONSORT 用例 visual-judge 双 PASS；42 模板；601 测试
+
+（更正说明：索引行此前写「596 测试」，与发布提交和 v8.0.0 包内 README 徽章（tests-601）不符，按核实值记 601；索引行同一步更正。）
+
+## 7.9.3 — 2026-11-15
+
+**发布文案净化重发（代码零差异）**：历史存档两处内部环境称谓改中性表述；7.9.2 功能原样包含。
+
+## 7.9.2 — 2026-11-15
+
+（v8.1.2 补写：该版本的详情节此前在多次下沉中缺失，本节据当版索引行与发布提交 0e2bce1 补写，未添加其他内容。）
+
+第六轮测试线批次3（门禁+覆盖欠账）：tester 建议五组验收门禁入套件（元素内文字 WCAG 对比度门/有序离散 ΔL*≥20 分离门/--explain 全量 schema 对拍/PDF 数字层抽样/dual_axis·composite·funnel 像素抽检）——schema 对拍首轮抓出 14 处 explain 缺口全补齐；596 测试
 
 ## 7.9.1 — 2026-11-15
 
@@ -68,29 +193,7 @@ route 统一验证优先（直连→正交肘→lane 双侧×错层）；边标�
 - **raincloud KDE 边界裁剪**（AF27）：全正值数据密度云裁剪到数据范围
   （原尾部越过 0 伸入无意义负值区）。
 - **PCA 载荷箭头色入主题**（AF33）：theme["colors"][-1]（原硬编码 #E8A33D
-  琥珀+标签 #8a6414 不随 --theme）。591 测试（TestV79100 十项新锁）。
-
-## 7.8.1 — 2026-11-14
-
-**测试线四图型深测修复（AF9-AF16，外部独立实现逐位核对后目检发现）**：
-
-- **AF11（P1）比值类 CI 格式化门**：L'Abbé 图例把 RR 上界 0.997 舍成 1.00——而
-  RR 无效值恰为 1，读者会判「CI 含 1、无显著」与引擎结论相反。新增
-  `fmt_ratio_ci` 自适应格式化（任一边界舍入后==无效值即升三位+「不含 1」显著
-  标注），应用 L'Abbé 图例/forest Overall/forest 逐行三处；funnel/galbraith
-  用有效数字格式不受影响。
-- **AF9 隐式旗标不冒充**：品牌主题自动开斜纹后非 bar 图误报 `[ignored]
-  --hatch`（用户从未传过）——隐式置位打标记、域检查跳过；`--hatch` 支持
-  `on|off` 取值，`--hatch off` 显式关闭品牌默认斜纹（此前 argparse exit 2）。
-- **AF12 rob 摘要条图内数值**：每域最大段标注 百分比+计数（≥15%；多段全标
-  会在薄条带互挤——每域单标方案），计数明细保留 stderr。
-- **AF13/AF15**：L'Abbé 气泡面积图内注（∝研究权重）；rmst 双臂面积 alpha
-  0.15→0.22+第二臂斜纹（两臂面积一眼可归）。
-- **AF16**：`--explain` 补齐 slope/volcano/rmst/labbe（此前输出泛指文档）。
-- AF10（错误首行泛化）/AF14（L'Abbé 引线避让）P3 记录在案缓办；rob 摘要等权
-  为设计决策非权重缺口。
-
-## 7.9.1 — 2026-11-15
+  琥珀+标签 #8a6414 不随 --theme）。591 测试（TestV70901 十项新锁）。
 
 **第六轮测试线批次2（可读性/配色家族）**：
 
@@ -105,6 +208,20 @@ route 统一验证优先（直连→正交肘→lane 双侧×错层）；边标�
   alpha 0.45+raincloud KDE 边界裁剪+PCA 载荷箭头色入主题。
 
 ## 7.9.0 — 2026-11-15
+
+**第六轮测试线批次1（正确性与假警告根治）**：
+
+- **CJK 探测回退链**：进程内加载探测脚本优先→子进程回退——agent 嵌套/嵌入式解释器
+  （sys.executable 空串）旧路径静默吞错→rc=0 中文全豆腐块，根除。
+- **通用字段假警告根治**：_KNOWN_DATA_FIELDS 补注册 prisma 全 schema 键+lang、km
+  log_rank/risk_table、labbe events_t（顺带修 title/events_t 缺逗号连字隐性 bug）。
+- **prisma 守恒校验独立化**：studies_included > reports_assessed 不可能流程无条件拦截
+  （原守卫嵌套在 exclusion_reasons 分支内曾放行 200>169）。
+- **校验类报错首行精确化**：以「图型: 」为前缀的 ValueError 首行直用精确原因并点名违例字段
+  与实值（fc_cut=0 → "volcano: fc_cut=0 不满足 fc_cut>0"），去瞬态重试/AF_DEBUG 无关建议。
+- **防错尺与精度**：nomogram 结局尺缺 points_at 显式警告（静默线性默认曾画错概率刻度）+
+  DCA 峰值精度自适应（0.185/0.180 不再同显 +0.18）+色盲提示（非安全主题×≥3 系列）+
+  哑铃连接线加深+ridgeline/km/volcano explain 形态补全+limits 登记 --vmax 压标度语义。
 
 **第六轮测试线批次1（正确性与假警告根治）**：
 
@@ -129,9 +246,23 @@ route 统一验证优先（直连→正交肘→lane 双侧×错层）；边标�
   默认主题 glm-brand 不变（品牌视觉），主题字典如实标注 colorblind_safe=False。
 - **可读性小修**：哑铃图连接线 #BBBBBB→#999999（细元素亮度）；--explain ridgeline/km/
   volcano 形态补全（datasets 字典结构/患者级原始数据形态/轴标覆盖）；limits 登记 --vmax
-  压标度语义。581 测试（TestV79000 九项新锁）。
+  压标度语义。581 测试（TestV70900 九项新锁）。
 
 ## 7.8.2 — 2026-11-14
+
+**第五轮复测修复（AF17-AF20）**：
+
+- **AF18**：rob 摘要条数值标签从段内两行改为**条带上方单行**（每域最大段 ≥15%）——
+  段内两行在薄条带里被相邻段裁切/重叠（复测实锤；ylim 反向轴上下语义同步校准）。
+- **AF19**：`--explain rmst` τ 口径校准——缺省=**最小**最大随访之半（此前误写
+  「最大随访之半」，一字之差 ΔRMST 26 天/结论可翻转）。
+- **AF20**：自动 τ 渲染追加 stderr 提示「ΔRMST 结论对 τ 敏感时请以 --rmst-tau
+  在多个随访阈值复核」（同一数据 τ=1000 与 τ=1607 的 P 值可跨越显著线）。
+- **AF17 产品面**：limits 登记 PDF 文本层 CJK 提取环境相关（matplotlib 字体子集
+  ToUnicode 差异）；回归测试改双层断言（PDF 只断数字形态+图例 CJK 内容改图对象
+  内省——Text artist 恒持真 unicode，环境无关）。
+
+<!-- 7.8.2 详情自 changelog.md 下沉（v8.0.9 发版，最近三版窗口滚动） -->
 
 **第五轮复测修复（AF17-AF20）**：AF18 rob 摘要条数值标签移条带上方单行（段内两行
 在薄条带被裁切/重叠实锤；ylim 反向轴语义校准）；AF19 --explain rmst τ 口径校准
@@ -140,6 +271,24 @@ route 统一验证优先（直连→正交肘→lane 双侧×错层）；边标�
 图例 CJK 内容走图对象内省——环境无关）。571 测试。
 
 ## 7.8.1 — 2026-11-14
+
+**测试线四图型深测修复（AF9-AF16，外部独立实现逐位核对后目检发现）**：
+
+- **AF11（P1）比值类 CI 格式化门**：L'Abbé 图例把 RR 上界 0.997 舍成 1.00——而
+  RR 无效值恰为 1，读者会判「CI 含 1、无显著」与引擎结论相反。新增
+  `fmt_ratio_ci` 自适应格式化（任一边界舍入后==无效值即升三位+「不含 1」显著
+  标注），应用 L'Abbé 图例/forest Overall/forest 逐行三处；funnel/galbraith
+  用有效数字格式不受影响。
+- **AF9 隐式旗标不冒充**：品牌主题自动开斜纹后非 bar 图误报 `[ignored]
+  --hatch`（用户从未传过）——隐式置位打标记、域检查跳过；`--hatch` 支持
+  `on|off` 取值，`--hatch off` 显式关闭品牌默认斜纹（此前 argparse exit 2）。
+- **AF12 rob 摘要条图内数值**：每域最大段标注 百分比+计数（≥15%；多段全标
+  会在薄条带互挤——每域单标方案），计数明细保留 stderr。
+- **AF13/AF15**：L'Abbé 气泡面积图内注（∝研究权重）；rmst 双臂面积 alpha
+  0.15→0.22+第二臂斜纹（两臂面积一眼可归）。
+- **AF16**：`--explain` 补齐 slope/volcano/rmst/labbe（此前输出泛指文档）。
+- AF10（错误首行泛化）/AF14（L'Abbé 引线避让）P3 记录在案缓办；rob 摘要等权
+  为设计决策非权重缺口。
 
 **测试线四图型深测修复（AF9-AF16）**：AF11（P1）比值类 CI 格式化门——L'Abbé
 图例 RR 上界 0.997 舍成 1.00 致临床判读反转（RR 无效值=1），`fmt_ratio_ci`
@@ -151,6 +300,15 @@ slope/volcano/rmst/labbe。AF10/AF14 P3 记录缓办。rob 摘要等权为设计
 （docstring 明示）。571 测试。
 
 ## 7.8.0 — 2026-11-13
+
+**方法论批（文档批+引擎批同版）**：五点图约（出图前 5 问，写不出核心结论不出图）、
+反冗余三层递进审计（Overview/Deviation/Relationship+5 陷阱+4 问）、主面板规格
+（1.35:1+accent 唯一+3 秒结论）、叙事排序 5 规则、语义配色角色表（6 色+6 规则，
+advisory 层）、审稿返修案例库 10 案（标注社区汇编未溯源）、审稿人模拟 5 镜头、
+问题优先门（有数据没问题先反问）、交付命名约定。引擎批：composite `hero_panel`
+字段（1.35:1 双列+跨全行，3-6 面板，>6 回退）+scatter >50K 分层栅格化
+（数据层栅格、轴文字保矢量；与 cluster_heatmap 降采样互补——一个改数据一个改渲染层）。
+全部文档经统一口径审校（字号/默认值以引擎实测行为为准，自相矛盾处以实测覆盖）。
 
 **方法论批（文档批+引擎批同版）**：五点图约（五问预检仪式）+反冗余三层递进
 （Overview/Deviation/Relationship 正交编码+5 冗余陷阱+排版前 4 问）+主面板规格
@@ -168,12 +326,37 @@ slope/volcano/rmst/labbe。AF10/AF14 P3 记录缓办。rob 摘要等权为设计
 
 ## 7.7.2 — 2026-11-13
 
+**测试线差量方案落地（AF1+AF2，2026-11-13 差量补测改进表）**：
+
+- **AF1 `--data` inline 简写**：`-d "A=10,B=8,C=5"` 免临时文件出图（单系列，等价
+  labels+series value；int/float/负数/中文名均可）。规则收紧=整体匹配「名称=数值
+  (,名称=数值)*」才当 inline 解析——坏文件名的原报错路径保持不变，错误即教材不劣化。
+  `--data` help 与 `--explain bar` 同步。
+- **AF2 套件里程碑输出**：`tests/run_tests.py --verbose` 逐测试打 `[i/总数]+时间戳`，
+  结束打 DONE 摘要（passed/failed/errors/skipped+总耗时）；支持类名/方法名定位子集。
+  默认行为不变（CI 与既有脚本零风险）——横向共性①（PP1 同源）的 AF 侧落地。
+- SKILL.md 瘦身按主看板 6 措施为准（待用户批准后实施，v7.8.0 候选主轴）。
+
 **测试线差量方案落地（AF1+AF2）**：`--data` inline 简写 "A=10,B=8,C=5"（免临时文件；
 规则收紧=整体匹配名称=数值才解析，坏文件名原报错不变；int/float/负数/中文名均可；
 单系列系列名 value）；run_tests.py --verbose 里程碑输出（[i/总数]+时间戳+DONE 摘要，
 支持测试名子集定位；默认行为不变 CI 零风险，横向共性①AF 侧落地）。554 测试。
 
 ## 7.7.1 — 2026-11-12
+
+**收尾修复+契约升级（外部实测反馈驱动）**：v7.7.0 发布后外部实测抓到四处收尾遗漏，全部修复并升格为机械契约——
+
+- **`--list-themes` 陈旧默认标记清正**：v7.6 默认切 glm-brand 时 glm 行仍写「素雅莫兰迪风
+  （默认）」，误导选型回旧默认；现 glm-brand 携带唯一「（默认）」标记。
+- **扫描器 3d 规则**：THEME_SWATCH_DESCRIPTIONS「（默认）」标记全库恰 1 处且必须等于
+  resolve_theme(None) 真值（AST 对拍）——此类收尾遗漏从「靠人记」变「闸拦截」。
+- **frontmatter date 入升版链**：af_release bump 同步刷 date；新增 date↔changelog 版本
+  节日期一致性锁（v7.7.0 date 停 11-07 实锤防回潮）。
+- **默认竞技场像素契约锁**：冠军色/三彩循环/灰基线逐色像素断言（视觉默认不再只有
+  行为级 stderr 锁）。
+- **基线加冕提示**：基线关键词柱（人类/baseline）为最高柱被自动加冕时 stderr 明示
+  （出口：--arena "名称" / --arena off）；limits 同步说明。
+- **trunk git 卫生**：恢复快照提交（v5.7.1→v7.7.0 单锚）+每版一 commit 入发车清单。
 
 **收尾修复+契约升级（外部实测反馈驱动）**：--list-themes glm 行「（默认）」陈旧标记
 清正（v7.6 默认切 glm-brand 漏改）+扫描器新增 3d 规则=THEME_SWATCH_DESCRIPTIONS
@@ -184,6 +367,23 @@ slope/volcano/rmst/labbe。AF10/AF14 P3 记录缓办。rob 摘要等权为设计
 
 ## 7.7.0 — 2026-11-12
 
+**bar 单系列默认竞技场风格（默认输出=最佳输出第二期）**：v7.6.0 把品牌主题下沉为
+引擎默认后，本版把基准对比场景的核心视觉同样机制化——
+
+- **单系列竖向 bar 零参数即得竞技场风格**：per-bar 异质填充循环（橙白斜纹/蓝白
+  点纹/紫白斜纹）+冠军柱实心深青绿+金色皇冠+数值加粗，冠军=最高柱自动加冕；
+  stderr 提示冠军与来源（默认竞技场风格/--arena）。
+- **`--arena off` 显式逃生门**：负面指标（最高=最差，如错误率/不良事件率/死亡率）
+  不宜自动加冕，一参数回到普通柱状图；`--pub-ready` 投稿流自动规避竞技场默认
+  （投稿图表走色盲安全主题）；`--alternate` 显式指定风格时优先生效；多系列/
+  横向 bar/单值 bar 不受影响且无提示噪声。
+- **`--suggest` 榜单配方路由**：bar 类推荐附带「基准榜单场景推荐 `--style sketch`
+  手绘风」提示——大模型榜单速览图的标准配方固化为一句话（数据当期快照+来源
+  上图 source_note 属数据纪律，见场景卡卡14）。
+- SKILL 双语/cheatsheet/limits/antipatterns/CHART_NOTES/域表六处同步；SKILL 双语
+  「近期版本行」陈旧修正（原停留 v6.7.0）；TestV70700 十项锁（默认启用/off 逃生门/
+  多系列静默/单值跳过/alternate 优先/pub-ready 规避/suggest 提示/文档同步）。
+
 **bar 单系列默认竞技场风格（默认输出=最佳输出第二期）**：单系列竖向 bar 零参数即得
 per-bar 异质填充循环（橙白斜纹/蓝白点纹/紫白斜纹）+冠军柱实心深青绿+金色皇冠+数值
 加粗，冠军=最高柱自动加冕，stderr 提示冠军与来源。`--arena off` 显式逃生门（负面
@@ -191,9 +391,125 @@ per-bar 异质填充循环（橙白斜纹/蓝白点纹/紫白斜纹）+冠军柱
 风格优先；多系列/横向/单值 bar 不受影响且无提示噪声。`--suggest` bar 类推荐附带
 「基准榜单场景推荐 --style sketch 手绘风」配方提示。SKILL 双语/cheatsheet/limits/
 antipatterns/CHART_NOTES/域表六处同步；SKILL 双语近期版本行陈旧修正（原停留 v6.7.0）；
-TestV77000 十项锁。
+TestV70700 十项锁。
+
+## 7.6.0 — 2026-11-08
+
+**默认出图=品牌视觉（机制变更）**：此前零参数默认主题为 `glm`（素雅莫兰迪），
+其他 agent/用户按最短路径调用（只传必需参数）得到的是朴素图——美观效果依赖
+文档引导显式传参，靠不住。本版把品牌效果下沉为引擎默认：
+
+- **零参数默认主题 `glm` → `glm-brand`**（信号黄×深钢蓝），**品牌斜纹随品牌
+  主题自动开启**（斜纹=品牌组成部分非可选项）——最短路径调用即得黄蓝双斜线
+  品牌图。
+- 投稿色盲安全场景保留 `--theme okabe-ito` 逃生门；全部显式主题行为不变
+  （别名解析/金标结构基线 40/40 实测零漂移）。
+- 文档（SKILL 双语默认声明/cheatsheet/--list-themes 注记）与 `--suggest`
+  输出同步；新增 TestV70600 两项锁（默认主题解析+零参数真渲染 smoke）。
+- 测试 531→533。
+
+## 7.5.0 — 2026-11-07
+
+新功能 `--arena` 基准对比竞技场风格 + 一致性扫描器跨行命令修复：
+
+- **`--arena [冠军]`（bar 单系列竖向）**：基准/模型/方法对比一键出「竞技场」视觉——
+  每根柱异质填充循环（灰实心/橙白斜线/蓝白点纹），冠军柱实心深青绿+柱顶金色皇冠
+  +数值加粗高亮。`--arena` 自动选最高柱，`--arena "名称"` 按类别标签指定冠军
+  （如论文方法名）；域外图型/横向/多系列均 `[ignored]` 显式告知。
+- **跨行命令一致性扫描**：check_consistency 此前按单行提取文档命令，反斜杠续行
+  命令的旗标落在第二行时逃逸旗标域检查——本次修复后当场抓到场景卡
+  「bar×--stats auto」矛盾（bar 是聚合数据不做自动检验，已改为 --sig-bracket
+  comparisons 通道）与 SKILL subgroup 示例的 --cox-* 域表缺口（引擎实为一键
+  拟合复用同参，域表扩 forest+subgroup 对齐）。
+- **真实数据样例**：`examples/example_arena.json`（OSWorld 基准论文公开数字，
+  arXiv:2404.07972 Table 5 可达性树口径+人类基线）+场景卡新增「基准对比竞技场」卡。
+- 测试 526→531（+TestV70500 五项：arena 渲染与冠军通知/域外告知/场景卡锁/
+  扫描器跨行机制锁/样例数据真值锁）。
+
+## 7.4.1 — 2026-11-07
+
+hotfix（引擎代码与 7.4.0 零差异）：
+
+- **包内测试套件镜像适配**：新增的 `--stats` 域一致性锁中，读取 SKILL_ZH.md 的
+  断言在无独立中文文件的分发形态（SkillHub 包/GitHub 公开镜像）下会直接报错——
+  拆分为独立用例并挂镜像自动跳过（正本完整环境仍全量执行）。
+  修复 7.4.0 包内运行测试套件会报 1 个 error 的问题。
+- 测试 525→526（中文档锁拆分为独立用例）。
+
+## 7.4.0 — 2026-11-07
+
+文档口径统一大扫除（准确性审查发现的四处不一致全收）+ 引擎小修：
+
+- **期刊宽度交互**：antipatterns.md 曾写「先 journal 后 width 可覆盖（顺序敏感）」，
+  与引擎行为（`--journal` 锁宽、`--width` 被忽略并 `[auto]` 告知、`--height` 仍生效）
+  表述相反——纠正为与 SKILL/limits/引擎三方一致（与给参顺序无关）。
+- **`--stats` 适用域五处对齐权威域**：SKILL 双语与 limits 统一为
+  `auto|multi|bootstrap` → box/violin/raincloud、`cox` → forest/subgroup；
+  域外一律 `[ignored]` 显式告知后继续渲染（limits 曾误写「fatal 校验 exit 1」，
+  实际行为是 `[ignored]`+exit 0）。
+- **tests 自述计数**：套件头部说明与计数锁 docstring 更新为当前真值
+  （15 smoke 图型、40 模板、realworld 18）。
+- **examples/README 目录对拍**：逐图示例表补齐至 13 个 example_*.json、
+  realworld 表补齐至 18 个（此前只列 5+4 个，与包内实际不符）；
+  gallery README 首句语病修复。
+- **引擎修复**：`--journal` × `--width` 同给时 `[auto]` 锁宽提示曾打印两次
+  （重复代码块）——去重为一次。
+- **机制防回潮**：新增 TestV70400 五项锁（期刊宽度真口径 / --stats 五处域同步 /
+  examples README 逐文件覆盖 / `[auto]` 提示唯一性 / tests 自述计数真值）；
+  测试徽章 520→525（README 徽章动态互锁自动对账）。
+
+## 7.3.0 — 2026-11-06
+
+包内输出样例 + 口径统一：
+
+- **SVG 矢量预览随包**：`examples/gallery/` 新增三张 `*_preview.svg`
+  （Mayo PBC KM/卵巢癌 RCT KM/Fleiss 1993 L'Abbé，150dpi 矢量，可直接查看）——
+  包内自此既有可复现输入（JSON+命令）也有生成成品样例。
+- **口径统一**：SKILL 双语「三条最常用边界」行补全 `--height` 有效
+  （与 limits/quickstart/能力表三处口径一致）。
+- **提示词卡自洽**：基线对比 bar 卡的用户话术改为「p 值已算好放进 comparisons」
+  （bar 是聚合数据不能自动检验——话术与应产出不再矛盾）。
+- **统计责任提示**：`--sig-auto` stderr 新增「检验假设（样本独立性/随机抽样）
+  请自行确认；论文引用时请报告所用检验方法与各组 n」——自动检验不替用户承担
+  统计设计责任。
+
+## 7.2.1 — 2026-11-05
+
+发布文案清净化重发（代码与 7.2.0 零差异）：
+
+- 7.2.0 版本详情文案含不宜表述，未过平台安全审核——中性化改写重发；
+  并新增机械锁：changelog 主文件禁同类表述（历史存档豁免不回改），
+  纳入 check_consistency 扫描面。
+
+## 7.2.0 — 2026-11-05
+
+一致性扫描器 v2 + 安装/预览体验收口：
+
+- **扫描面扩到引擎源码**：`check_consistency.py` 自此扫描 `scripts/*.py` 的运行时
+  文案（CHART_NOTES 等 `--explain` 输出字典；注释/docstring 属历史描述豁免）——
+  准确性审查发现的 `af_shared.py` bar 文案旧口径即此类（文档已更新而引擎
+  --explain 输出仍沿用旧表述，一句话与实现脱节）。文案已更新为双通道真相
+  （JSON errors 或 CSV 后缀列 v6.0+）。
+- **MCP 安装本地优先**：mcp/README 安装顺序反转——`pip install -e <包目录>/mcp`
+  （清华/阿里镜像）升为默认推荐，uvx git 直跑降为国际网络备选。
+- **视觉样例库直链**：SKILL 双语能力表与 README 的 gallery 行直挂 GitHub 仓库
+  预览链接（包内为可复现 JSON+命令，成品图在仓库一键可看）。
 
 ## 7.1.0 — 2026-11-04
+
+命令一致性与文档可信度继续收口（自动一致性检查机制化）：
+
+- **新工具 `scripts/check_consistency.py`**：全部命令载体（模板/真实场景 `_command` +
+  文档代码块共 118 条）× 能力注册表（旗标域表 + `--verify` 仅 PDF 规则）逐条校验，
+  另扫 CSV 误差旧口径残留——有发现 exit 1，发车闸直接可挂。本版首跑清出 15 处
+  历史混用：9 处模板/真实场景命令带 `--verify` 却输出 PNG（该门禁仅对 PDF 生效）、
+  提示词卡柱状图示例误用 `--stats auto`（聚合数据不可自动检验——正确通道=
+  `comparisons` + `--sig-bracket`，或原始数据 `-t box --sig-auto`）、反模式页与
+  SKILL 双语能力表的 CSV 表述过时。
+- **域表真值化**：`--stats` 的旗标域补齐 raincloud（auto|multi 合法域，此前域表漏列）
+  与 subgroup（cox 合法域）——`--list-flags` 输出自此与参数门禁完全一致。
+- **ADR-0001 状态如实化**：Proposed→Partially adopted（af_resilience/af_shared/
+  wrapper 通路已落地；af_draw 拆分继续推进）。
 
 新工具 `scripts/check_consistency.py`：文档与能力注册表自动一致性检查
 （118 条命令载体×旗标域表+--verify/PDF 规则+CSV 口径扫描；exit 1 发车闸）。
@@ -204,6 +520,19 @@ Proposed→Partially adopted）。511 项测试。金标=DRS retinopathy KM
 
 ## 7.0.0 — 2026-11-03
 
+major：全自动组间显著性 + 文档可信度大扫除：
+
+- **新功能 `--sig-auto`**（box/violin/raincloud）：不传 comparisons 也行——引擎自动
+  两两检验（Shapiro 判常态：双常态组 Welch t，否则 Mann-Whitney U）并画分层
+  bracket+星号。检验家族与 `--stats auto` 一致；聚合图（bar 系）不适用并显式告知
+  （用 comparisons + --sig-bracket 传自己的 p 值）。
+- **文档可信度大扫除**（准确性审查逐条收口）：`quickstart` CSV 误差旧限制残留与
+  SKILL 决策树 JSON-only 提示纠正为 v6.0 后缀列真相；README 分发形态表述如实化
+  （中文版=SkillHub 包 SKILL.md，无独立 SKILL_ZH.md 文件随包）；`openpyxl` 入
+  正式依赖（--sheet Excel 直读自此声明完备）；MCP 子目录 wheel 包声明如实化
+  （引擎随包根 scripts/ 提供，不再虚列 af_engine）。
+- **版本历史补全**：6.9.0 节补写（该版 --sig-bracket 与文档收口，此前发版漏记）。
+
 major：新功能 `--sig-auto` 全自动组间显著性（box/violin/raincloud 自动两两
 检验 Shapiro→Welch t / Mann-Whitney U+分层 bracket；聚合图 ignored 指路）
 +文档可信度大扫除五件（README 分发形态如实化/quickstart+SKILL 决策树 CSV
@@ -211,12 +540,71 @@ major：新功能 `--sig-auto` 全自动组间显著性（box/violin/raincloud �
 
 ## 6.9.0 — 2026-11-02
 
+新功能 `--sig-bracket` 组间显著性括号 + 文档准确性收口：
+
+- **`--sig-bracket`**：数据携带 `comparisons=[{a,b,p}]` 任意比较对（p 值来自用户
+  自己的检验，引擎只可视化）即自动画分层 bracket+星号（<0.05/<0.01/<0.001，
+  NS 显式标注）；分层布局按区间重叠最低层分配（span 长的在底层，共享端点判撞）；
+  bar/grouped_bar/box/violin 四图型可用。
+- 文档准确性收口：MCP 工具清单补 `query_capability`、README 中文文档描述纠正、
+  MCP 安装新增不依赖 GitHub 的本地路线、版本历史标注当前版本。
+
 新功能 `--sig-bracket` 组间显著性括号（comparisons 任意比较对+分层防重叠
 +bar/grouped_bar/box/violin；分层布局=区间重叠最低层分配，共享端点判撞）
 +文档准确性四处收口（MCP 工具清单补 query_capability/README 中文文档描述
 纠正/MCP 安装新增不依赖 GitHub 的本地路线/版本历史标注当前版本）。
 494 项测试。金标=PlantGrowth scipy ttest_ind 真值（NS/*/ ** 三 bracket
 全链机械对拍）。
+
+## 6.8.0 — 2026-10-31
+
+MCP 能力透明化 + CSV 误差能力文档真相化（准确性审查逐条收口）：
+
+- **MCP 新工具 `query_capability`**：一命令查图型能力面——chart 留空=全图型
+  清单+每旗标域适用图型速览；指定图型名=该图型专属/域外旗标（[ignored] 预告）。
+  动态真值=引擎 --list-types / --list-flags，MCP 能力面自此与引擎注册表零漂移。
+- **CHARTS 内置回退清单补齐 + 快照锁**：v5.7 时代快照缺 labbe/rmst/rob 三图型
+  （引擎可达时被运行时刷新掩盖，静态读源码即见缺口）——补齐至 43 键，并新增
+  AST 快照锁（内置清单必须与引擎注册表逐键一致，回退清单从此不可能漂移）。
+- **CSV 误差能力文档真相化**：v6.0 已实现 CSV 误差列（`X_se`/`X_sd`/`X_sem`/
+  `X_err` 后缀列自动配对），但 FAQ 两处、data-formats 三处仍写「CSV 不支持
+  误差棒」，引擎 stderr 两处 hint 同样与自身行为矛盾（同屏打出旧文案+成功
+  识别误差列）——全部改写为准确表述，测试锁防回潮。
+- **守卫扩容**：计数守卫清单纳入 mcp/pyproject.toml（英文描述曾漏网），正则
+  容忍英文修饰语结构（「N publication-grade academic chart types」类）；文档
+  内「第 N 种图型」历史序号改为「第 N 号图型」（编号保留，不再与总量口径混淆）。
+- **品牌斜纹补齐**：glm-brand 单系列柱状图不再豁免斜纹（斜纹是品牌组成部分
+  非可选项）；其他主题显式 --hatch 单系列豁免时改为 [ignored] 显式告知
+  （不再静默失效）。
+- **show-values 精度自适应**：数值标签随系列数据小数位显示（cap 3 位）——
+  固定 1 位小数曾把 5.032 显示成 5.0（视觉门机械断言抓获，交付链回归锁）。
+
+## 6.7.0 — 2026-10-31
+
+`--list-flags` 旗标域查询（实质新功能）+ 官方点名四项收口。
+
+- **`--list-flags [TYPE]`**：一命令查某图型的专属旗标与域外旗标（[ignored] 预告），
+  无参数=全图型速览；别名可达（survival→km）。旗标域注册表与 argparse 及图型
+  注册表**测试互锁**（域内图型必须是真实注册图型、旗标必须存在于 argparse）——
+  自此注册表不可能与引擎漂移。
+- **收口**：SKILL 双语「37」残留×5（含 Section Nav 锚链接 `37-chart-types`——
+  守卫正则自此覆盖连字符变体）；gallery 改为 JSON+README 随包（PNG 仅 GitHub/
+  CH），File Index 指针不再死链，打包器新增死链断言；Python 下限统一 3.8
+  （FAQ 3.9→3.8，与 frontmatter/README 对齐）；changelog 版本索引表格解挤压
+  （一版本一行）；README 测试徽章与套件数**动态互锁**（徽章数==def test_ 计数）。
+
+## 6.6.0 — 2026-10-30
+
+一致性清剿第二轮（accuracy/usability 4.6 官方点名逐条收口）：
+
+- **MCP**：server.py 头注释旧计数与 render_chart 文档、提交文档
+  MCP_SUBMISSION.md 旧计数 → 全部 40（随引擎注册表）。
+- **SKILL**：文件索引与代码布局两处旧计数 → 40；quickstart 旧计数 → 40。
+- **limits.md**：四组旗标的「静默忽略」描述纠为实际的 `[ignored]` 显式告知行为
+  （v3.6 起的真实行为，文档描述自此与代码一致）；并新增活文档禁「静默忽略」
+  机械锁（历史存档豁免）。
+- **守卫扩展**：计数扫描扩至 14 份活文档，正则覆盖裸 `types` 与「种学术图型/
+  种投稿级学术图表」口径——上一轮漏网的全部口径自此入闸。
 
 ## 6.5.0 — 2026-10-30
 
@@ -241,6 +629,7 @@ KM 统计框标签动态降级 + 交付验收逮漏修复：
 - log-rank p 与显著性标记之间加分隔空格（「0.303NS」→「0.303 NS」）。
 - **CI 镜像测试自适应补漏**：v6.4.0 新增测试类漏挂 MIRROR skip（读 SKILL_ZH.md）
   致 GitHub CI 首次红灯——守卫类装饰器补齐。
+
 ## 6.4.0 — 2026-10-29
 
 `--debug` 结构化失败诊断侧车（交互式排障落地）+ 文档密度守卫。
@@ -253,6 +642,7 @@ KM 统计框标签动态降级 + 交付验收逮漏修复：
   版本历史堆砌曾把近期行推到 6.7KB（渐进披露退化），此后任何膨胀由测试拦截，
   历史一律下沉 changelog。
 - 本版瘦身：SKILL 双语近期行 6742/3354 → 546/302 字符（各 -6KB）。
+
 ## 6.3.0 — 2026-10-27
 
 新图型 #40：`labbe` L'Abbé 图（Meta 四件套收官：forest / funnel / galbraith / labbe）。
@@ -268,6 +658,7 @@ KM 统计框标签动态降级 + 交付验收逮漏修复：
   合并 RR=0.873（95%CI 0.764~0.997）与独立手写实现逐位互拍；
   MH 固定效应 OR=0.89 复现文献发表值 ≈0.90；I²=40%。
 - 校验：四格表非法（事件>总数/n≤0）exit 3；<3 研究拒绝；零事件格剔除合并并告警。
+
 ## 6.2.0 — 2026-10-27
 
 渲染稳定性双修（此前只有「建议重跑」的文字，无机制）：
@@ -281,6 +672,7 @@ KM 统计框标签动态降级 + 交付验收逮漏修复：
   仍可完全关闭（维护者逃生门，语义不变）。
 - **看门狗小预算精度修复**：监控步长跟随预算（此前固定 1s 采样，<1s 预算永不触发）。
 - 错误诊断建议与机制对齐：不再提示手动「重跑一次」，改为说明自动重试已内置。
+
 ## 6.1.1 — 2026-10-26
 
 rob 判定扩展+出厂前逮漏：「Very high/critical」新增极高独立档（深红 V，
@@ -319,7 +711,7 @@ CSV 误差列约定（官方评测点名缺口收口）：列名 `X_se/X_sem/X_s
 cif `cause_labels` 键一致性守卫：错码（数据中不存在的事件码）→ exit 3
 可搜索中文报错；在场的竞争码缺标签 → 默认名+stderr 软提示。全谱审计
 （10-24）确认引擎三类标签配对方式中唯一键间接映射点（cause_labels）
-无守卫，同日补防。电池 TestV59100 三态锁（错码/缺标/正常）。
+无守卫，同日补防。电池 TestV50901 三态锁（错码/缺标/正常）。
 
 ## 5.9.0 — 2026-10-23
 
@@ -624,7 +1016,7 @@ galbraith 弧线-读数原子性 hotfix：弧线因碰撞被跳过读数时整�
     quickstart step 1 now also points non-Python users to the cloud edition.
   - `templates/raincloud.json` (27 templates); docs updated to 27 chart types
     across SKILL bilingual/README/quickstart/cheatsheet/data-formats.
-  - Tests: +TestV49000 (E2E render, validate fatals, registry count 27, demo
+  - Tests: +TestV40900 (E2E render, validate fatals, registry count 27, demo
     render, suggest routing, zero-variance degradation); template lock 26→27;
     suite at 335 green.
 
@@ -662,7 +1054,7 @@ galbraith 弧线-读数原子性 hotfix：弧线因碰撞被跳过读数时整�
     realworld_oncology_waterfall.json` (NSCLC II期 n=26 RECIST-consistent),
     docs updated to 26 chart types across SKILL bilingual/README/quickstart/
     cheatsheet/data-formats.
-  - Tests: +TestV48000 (E2E group mode, bucket mode + show-values, validate
+  - Tests: +TestV40800 (E2E group mode, bucket mode + show-values, validate
     fatals, registry count 26, demo render, sort=input path, stderr fact
     line, no-false-warning lock, --alt content lock, threshold-equality +
     NaN lock, 26-patient label-survival lock); realworld lock 3→4; suite at
@@ -710,7 +1102,7 @@ galbraith 弧线-读数原子性 hotfix：弧线因碰撞被跳过读数时整�
     templates/upset.json; venn ≥5-set error points to `-t upset`; venn/comboguide
     recipes and realworld `_command`s verified runnable;
     `gen_slope`/`gen_volcano`/`gen_upset` re-exported from gen_figure.
-  - Tests: +TestV47000 (upset E2E render, validate fatals, registry count 25,
+  - Tests: +TestV40700 (upset E2E render, validate fatals, registry count 25,
     demo-data render, suggest routing, composite-panel rejection, new reference
     docs present); template count lock 24→25; suite at 318 green.
 
@@ -1210,6 +1602,8 @@ galbraith 弧线-读数原子性 hotfix：弧线因碰撞被跳过读数时整�
 - **v1.1.0** — Added auto CJK detection, CSV long-format auto-conversion, empty data validation
 - **v1.0.0** — Initial release: 7 chart types, 4 themes, CJK support, statistical annotations
 
+> ↓ 以下为 v5.6.0 拆分前的旧格式双语历史（英文/中文，v5.6.1 及更早），原样存档，未与上方各节合并。
+
 ## English
 
 ## Version History
@@ -1470,7 +1864,7 @@ galbraith 弧线-读数原子性 hotfix：弧线因碰撞被跳过读数时整�
     环境门槛一键路径；默认行为不变（仅检测不装，供应链安全）。quickstart 第一步
     补零 Python 用户云端版引导。
   - 模板 raincloud.json（27 模板）；全文档 27 种图型同步。
-  - 测试：+TestV49000（E2E/fatal/注册表 27/demo/suggest/零方差退化）；模板锁 26→27；
+  - 测试：+TestV40900（E2E/fatal/注册表 27/demo/suggest/零方差退化）；模板锁 26→27；
     全量 335 绿。
 - **v4.8.0**（2026-10-10）—— 新图型 #26 `waterfall` 肿瘤缓解瀑布图：
   - **`waterfall`**：每例（患者）自基线最佳变化%一柱，经典降序形态（并列按输入序，
@@ -1492,7 +1886,7 @@ galbraith 弧线-读数原子性 hotfix：弧线因碰撞被跳过读数时整�
     mcp af_engine 同步（waterfall）+MCP 文档去掉硬编码「23」。
   - 向导新增「每例最佳缓解百分比」形状。模板 waterfall.json（26 模板）+
     realworld NSCLC II 期 n=26（RECIST 自洽）示例；全文档 26 种图型计数同步。
-  - 测试：+TestV48000 11 项（分组 E2E/分桶+show-values/fatal/注册表 26/demo
+  - 测试：+TestV40800 11 项（分组 E2E/分桶+show-values/fatal/注册表 26/demo
     直渲/sort=input/stderr 事实行/假警告锁/--alt 内容锁/阈值等值+NaN 锁/
     26 例标签存活锁）；realworld 锁 3→4；全量 329 绿。
 
@@ -1515,7 +1909,7 @@ galbraith 弧线-读数原子性 hotfix：弧线因碰撞被跳过读数时整�
     [ignored] 提示；--alt 新增 volcano/slope/upset 有信息量描述；向导 upset 指向
     templates/upset.json；venn ≥5 集合报错指路 -t upset；组合配方与 realworld
     _command 逐字验证可执行；gen_slope/gen_volcano/gen_upset 经 gen_figure 再导出。
-  - **limits.md 速查表**前置。测试 +TestV47000 共 318 绿。
+  - **limits.md 速查表**前置。测试 +TestV40700 共 318 绿。
 
 - **v2.8.0**（2026-09-17）— 看门狗与上手零门槛（对标 v2.7.0 评测最低项：稳定性 4.3、文档偏长、异常覆盖）：
   - **渲染看门狗**：按图型与数据量自适应预算（30~1800s，`--timeout N` 覆盖、`0` 禁用）；超时输出中文三段式诊断并强制中断（退出码 5）——不再无限挂起。

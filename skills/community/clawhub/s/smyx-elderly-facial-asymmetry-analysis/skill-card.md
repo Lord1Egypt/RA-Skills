@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes frontal images or short videos of older adults for facial asymmetry and mouth-corner deviation, returning non-diagnostic screening results and risk guidance.
+Analyzes frontal images or short videos of older adults for facial asymmetry and mouth-corner deviation, producing a facial asymmetry index and screening alerts.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Caregivers and elder-care teams use the skill to review facial asymmetry in images or videos and retrieve prior screening reports, prompting timely medical attention when concerning changes appear.
+Caregivers and elder-care providers use the skill to review facial asymmetry in frontal images or short videos as an early screening aid. Its score and alerts are not a medical diagnosis; possible stroke symptoms require prompt medical attention.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Elderly face images, videos, and report history are sent to configured cloud services.
+Risk: ClawScan marked the release suspicious for account provisioning, credential storage, and network behavior it could not reconcile; the review is partial.
 
-Mitigation: Obtain consent from the person or caregiver and review the destination service before sharing sensitive media or reports.
+Mitigation: Review account and credential handling and network destinations before use. Use only a trusted service and avoid sending sensitive media until these behaviors are understood.
 
-Risk: Screening results could be mistaken for a medical diagnosis or delay urgent care.
+Risk: The scan flagged possible analysis when users expect it not to, including unexpected media processing.
 
-Mitigation: Treat the results as non-diagnostic; seek immediate medical attention if stroke symptoms are suspected.
+Mitigation: Confirm when analysis can run and obtain the subject’s informed consent before processing facial images or video. Disable automatic triggers unless they are explicitly intended.
 
-Risk: The skill can create or reuse a backend identity and retain its tokens in a local workspace database.
+Risk: A screening score or alert could be mistaken for a clinical diagnosis or delay urgent care.
 
-Mitigation: Review or clear the workspace data database if persistent identity tokens are not desired.
+Mitigation: Treat results as screening information only. Seek urgent medical evaluation for possible stroke symptoms rather than relying on the score.
 
 ## Reference(s):
 
-- [ClawHub skill listing](https://clawhub.ai/smyx-sunjinhui/skills/smyx-elderly-facial-asymmetry-analysis)
 - [API documentation](references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-elderly-facial-asymmetry-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Guidance]
+**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
 
-**Output Format:** [JSON or Markdown]
+**Output Format:** [Structured JSON analysis results and Markdown summaries with screening indicators and report links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes asymmetry measures, risk-level prompts, and links to reports; historical report listings are available.]
+**Other Properties Related to Output:** [Includes a facial asymmetry index (0–100%), side and risk indicators, and follow-up prompts; screening support only, not diagnosis]
 
 ## Skill Version(s):
 
-1.0.12 (source: server-resolved ClawHub release; bundled SKILL.md states 1.0.18)
+1.0.13 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

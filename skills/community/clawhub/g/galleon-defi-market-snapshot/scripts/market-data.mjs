@@ -6,6 +6,7 @@ export class MarketDataError extends Error {
   constructor(code, status, retryAfterSeconds) { super(code); this.code = code; this.status = status; this.retryAfterSeconds = retryAfterSeconds; }
 }
 const object = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+const venueProducts = new Map([['bitcoin', 'BTC-USD'], ['ethereum', 'ETH-USD'], ['solana', 'SOL-USD']]);
 const idPattern = /^[a-z0-9][a-z0-9-]{0,99}$/;
 const errorResult = error => ({ error: error instanceof MarketDataError ? error.code : 'network_error', ...(error instanceof MarketDataError && error.status !== undefined ? { status: error.status } : {}), ...(error instanceof MarketDataError && error.retryAfterSeconds !== undefined ? { retryAfterSeconds: error.retryAfterSeconds } : {}) });
 const iso = milliseconds => new Date(milliseconds).toISOString();
@@ -52,28 +53,55 @@ async function publicJson(url, maxBytes, dependencies) {
 }
 export function normalizeObservation(provider, id, payload, retrievedMs, maxAgeSeconds) {
   if (!object(payload)) throw new MarketDataError('invalid_data');
-  const row = provider === 'coingecko' ? payload[id] : payload.coins?.['coingecko:' + id];
-  if (!object(row)) throw new MarketDataError('missing_observation');
-  const priceUsd = provider === 'coingecko' ? row.usd : row.price;
-  const timestampSeconds = provider === 'coingecko' ? row.last_updated_at : row.timestamp;
+  let row, priceUsd, observedMs;
+  let venue = {};
+  if (provider === 'coinbase') {
+    const product = venueProducts.get(id);
+    if (!product || !Number.isSafeInteger(payload.trade_id) || payload.trade_id < 1) throw new MarketDataError('invalid_venue_trade');
+    if (typeof payload.price !== 'string' || !/^\d+(?:\.\d+)?$/.test(payload.price)) throw new MarketDataError('invalid_price');
+    if (typeof payload.time !== 'string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,9})?Z$/.test(payload.time)) throw new MarketDataError('invalid_timestamp');
+    observedMs = Date.parse(payload.time);
+    priceUsd = Number(payload.price);
+    venue = { priceType: 'last-trade', venueProduct: product, tradeId: payload.trade_id };
+  } else {
+    row = provider === 'coingecko' ? payload[id] : payload.coins?.['coingecko:' + id];
+    if (!object(row)) throw new MarketDataError('missing_observation');
+    priceUsd = provider === 'coingecko' ? row.usd : row.price;
+    const seconds = provider === 'coingecko' ? row.last_updated_at : row.timestamp;
+    if (!Number.isSafeInteger(seconds)) throw new MarketDataError('invalid_timestamp');
+    observedMs = seconds * 1000;
+  }
   if (typeof priceUsd !== 'number' || !Number.isFinite(priceUsd) || priceUsd < 1e-12 || priceUsd > 1e12) throw new MarketDataError('invalid_price');
-  if (!Number.isSafeInteger(timestampSeconds) || timestampSeconds <= 0) throw new MarketDataError('invalid_timestamp');
-  const ageSeconds = Math.floor(retrievedMs / 1000) - timestampSeconds;
+  if (!Number.isSafeInteger(observedMs) || observedMs <= 0) throw new MarketDataError('invalid_timestamp');
+  const ageSeconds = Math.floor((retrievedMs - observedMs) / 1000);
   if (ageSeconds < -60) throw new MarketDataError('future_timestamp');
   if (ageSeconds > maxAgeSeconds) throw new MarketDataError('stale_observation');
   if (provider === 'defillama' && row.confidence !== undefined && (typeof row.confidence !== 'number' || !Number.isFinite(row.confidence) || row.confidence < 0 || row.confidence > 1)) throw new MarketDataError('invalid_confidence');
-  return { provider, identity: { namespace: 'coingecko', id }, unit: 'USD', priceUsd, observedAt: iso(timestampSeconds * 1000), retrievedAt: iso(retrievedMs), ageSeconds: Math.max(0, ageSeconds), ...(provider === 'defillama' && row.confidence !== undefined ? { providerConfidence: row.confidence } : {}) };
+  return { provider, identity: { namespace: 'coingecko', id }, unit: 'USD', priceUsd, observedAt: iso(observedMs), retrievedAt: iso(retrievedMs), ageSeconds: Math.max(0, ageSeconds), ...venue, ...(provider === 'defillama' && row.confidence !== undefined ? { providerConfidence: row.confidence } : {}) };
 }
 export async function marketSnapshot(options = {}, dependencies = {}) {
-  const ids = options.ids ?? ['bitcoin', 'ethereum'], provider = options.provider ?? 'both';
+  const provider = options.provider ?? 'both';
+  const venueCompare = provider === 'coinbase-compare';
+  const ids = options.ids ?? (venueCompare ? ['bitcoin'] : ['bitcoin', 'ethereum']);
   const maxAgeSeconds = options.maxAgeSeconds ?? 300, maxSkewSeconds = options.maxSkewSeconds ?? 120;
   if (!Array.isArray(ids) || ids.length < 1 || ids.length > 10 || new Set(ids).size !== ids.length || !ids.every(id => typeof id === 'string' && idPattern.test(id))) return { ok: false, error: 'invalid_ids' };
-  if (!['coingecko', 'defillama', 'both'].includes(provider)) return { ok: false, error: 'invalid_provider' };
+  if (venueCompare && (ids.length !== 1 || !venueProducts.has(ids[0]))) return { ok: false, error: 'unsupported_venue_product' };
+  if (!['coingecko', 'defillama', 'both', 'coinbase-compare'].includes(provider)) return { ok: false, error: 'invalid_provider' };
   if (!Number.isSafeInteger(maxAgeSeconds) || maxAgeSeconds < 1 || maxAgeSeconds > 86400 || !Number.isSafeInteger(maxSkewSeconds) || maxSkewSeconds < 0 || maxSkewSeconds > 3600) return { ok: false, error: 'invalid_age_or_skew' };
-  const providers = provider === 'both' ? ['coingecko', 'defillama'] : [provider];
-  const reads = await Promise.all(providers.map(async name => {
-    const source = name === 'coingecko' ? 'https://api.coingecko.com/api/v3/simple/price' : 'https://coins.llama.fi/prices/current/';
-    const url = name === 'coingecko' ? source + '?ids=' + ids.join(',') + '&vs_currencies=usd&include_last_updated_at=true' : source + ids.map(id => 'coingecko:' + id).join(',');
+  const requests = [];
+  if (provider === 'both' || provider === 'coingecko' || venueCompare) {
+    const source = 'https://api.coingecko.com/api/v3/simple/price';
+    requests.push({ name: 'coingecko', source, url: source + '?ids=' + ids.join(',') + '&vs_currencies=usd&include_last_updated_at=true' });
+  }
+  if (provider === 'both' || provider === 'defillama') {
+    const source = 'https://coins.llama.fi/prices/current/';
+    requests.push({ name: 'defillama', source, url: source + ids.map(id => 'coingecko:' + id).join(',') });
+  }
+  if (venueCompare) {
+    const source = 'https://api.exchange.coinbase.com/products/' + venueProducts.get(ids[0]) + '/ticker';
+    requests.push({ name: 'coinbase', source, url: source });
+  }
+  const reads = await Promise.all(requests.map(async ({ name, source, url }) => {
     try {
       const response = await publicJson(url, 131072, dependencies);
       return { provider: name, source, rawSha256: response.rawSha256, retrievedAt: iso(response.retrievedMs), observations: ids.map(id => {
@@ -85,7 +113,7 @@ export async function marketSnapshot(options = {}, dependencies = {}) {
     }
   }));
   const observations = reads.flatMap(read => read.observations), valid = observations.filter(row => row.ok);
-  const comparisons = provider === 'both' ? ids.map(id => {
+  const comparisons = reads.length === 2 ? ids.map(id => {
     const rows = valid.filter(row => row.identity.id === id);
     if (rows.length !== 2) return { identity: { namespace: 'coingecko', id }, status: 'incomplete', spreadPct: null };
     const skewSeconds = Math.abs(Date.parse(rows[0].observedAt) - Date.parse(rows[1].observedAt)) / 1000;
@@ -94,7 +122,7 @@ export async function marketSnapshot(options = {}, dependencies = {}) {
     return { identity: { namespace: 'coingecko', id }, status: 'aligned', skewSeconds, spreadPct };
   }) : [];
   return { ok: valid.length === observations.length, schemaVersion: 1, status: valid.length === observations.length ? 'complete' : valid.length ? 'partial' : 'unavailable', access: 'public-keyless', parameters: { ids, provider, maxAgeSeconds, maxSkewSeconds }, reads, comparisons,
-    limitations: ['Aggregate USD marks are not executable quotes or balance evidence.', 'DefiLlama CoinGecko-ID observations may share upstream data; agreement is not independent oracle corroboration.', 'Spread is shown only for fresh observations within the declared timestamp skew; no consensus price is invented.'] };
+    limitations: ['Aggregate USD marks are not executable quotes or balance evidence.', venueCompare ? 'The venue row is the last Coinbase Exchange trade. CoinGecko may include Coinbase in its aggregate; agreement does not establish independent oracle consensus.' : 'DefiLlama CoinGecko-ID observations may share upstream data; agreement is not independent oracle corroboration.', 'Spread is shown only for fresh observations within the declared timestamp skew; no consensus price is invented.'] };
 }
 export function normalizeHistory(payload, id, retrievedMs, days, rawSha256) {
   if (!object(payload) || !Array.isArray(payload.prices) || payload.prices.length < 2 || payload.prices.length > 1000) throw new MarketDataError('invalid_history');
@@ -151,7 +179,7 @@ function isMain() {
 if (isMain()) {
   let result;
   if (process.argv.length === 3 && ['--help', '-h'].includes(process.argv[2])) {
-    process.stdout.write('Public market evidence (Node.js 20+)\nUsage:\n  node scripts/market-data.mjs snapshot [--provider both|coingecko|defillama] [--ids bitcoin,ethereum] [--max-age 300] [--max-skew 120]\n  node scripts/market-data.mjs history [--id bitcoin] [--days 180]\nOne fixed public GET per provider; no keys, redirects or retries. History emits dataset compatible with the daily strategy model. Failures and partial snapshots exit 1.\n');
+    process.stdout.write('Public market evidence (Node.js 20+)\nUsage:\n  node scripts/market-data.mjs snapshot [--provider both|coingecko|defillama|coinbase-compare] [--ids bitcoin,ethereum] [--max-age 300] [--max-skew 120]\n  node scripts/market-data.mjs history [--id bitcoin] [--days 180]\nOne fixed public GET per provider; no keys, redirects or retries. History emits dataset compatible with the daily strategy model. Failures and partial snapshots exit 1.\n');
   } else {
     try { const { command, options } = parseArgs(process.argv.slice(2)); result = command === 'history' ? await collectHistory(options) : await marketSnapshot(options); }
     catch (error) { result = { ok: false, ...errorResult(error) }; }

@@ -4,9 +4,9 @@
 
 # ashareapi — Official Agent Skill for the A-Share Data API
 
-An A-share endpoint manual **written for AI agents** — drop it into your skills directory and the agent knows **which endpoint to call, how to fill the parameters, what unit each field is in, and what to do on errors** (40 endpoints / 31 MCP tools).
+Drop it into a skills directory an AI Agent client reads (**the common one**: `~/.claude/skills/ashareapi/` — read by Claude Code / opencode / Cursor / Antigravity / DeepSeek Harness; other clients are listed under "Client directories" below), and the AI Agent immediately knows how to fetch A-share data: which endpoint to call, how to fill the parameters, what unit each field is in, and what to do on errors — **no prompting, no doc reading, no made-up numbers**. Covers **102 endpoints / 94 MCP tools**; the free endpoints need no key at all.
 
-![version](https://img.shields.io/badge/skill-0.2.8-blue)
+![version](https://img.shields.io/badge/skill-0.3.1-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 **Works with 45+ agent clients** (open-standard Agent Skills) — mainstream clients work out of the box:
@@ -32,24 +32,36 @@ An A-share endpoint manual **written for AI agents** — drop it into your skill
 
 ## What this is
 
-An **A-share data Agent Skill**: a set of operating instructions written for an AI agent, plus reference documents loaded on demand. Once installed, when the agent answers questions like "how much is this stock right now" or "screen for stocks with PE<20 and ROE>15", it **knows which endpoint to call and how to read the response** — instead of making things up.
+An **A-share data Agent Skill**: a set of operating instructions written for an AI Agent, plus reference documents loaded on demand. Once installed, when the agent answers questions like "how much is this stock right now" or "screen for stocks with PE<20 and ROE>15", it **knows which endpoint to call and how to read the response** — instead of making things up.
 
-**5 endpoints need no key** (usable right after installation): `/v1/quote` · `/v1/kline` · `/v1/hot` · `/v1/market-overview` · `/v1/changedist`. The rest need a key ([get one](https://ashareapi.com/en/pricing/) from ¥9.9).
+**10 endpoints need no key** (usable right after installation — 7 data endpoints + 1 doc search + 2 utility endpoints): `/v1/quote` · `/v1/kline` · `/v1/hot` · `/v1/market-overview` · `/v1/changedist` · `/v1/models` · `/v1/trade-calendar` · `/v1/wiki` · `/v1/health` · `/v1/challenge`. The rest need a key ([get one](https://ashareapi.com/en/pricing/) from ¥9.9).
 
 ## Why use it
 
-- **It gives AI "knowledge", not a "tool"**: MCP lets the agent call tools itself; a Skill lets the agent **know** which endpoint to call, what unit a field is in, and what to do on errors. They are complementary — install both if you like
 - **It ships a decision tree**: the agent finds the endpoint by task ("how much now" → `quote`; "recent trend" → `kline`; "which sectors are rising" → `sector`)
-- **All four must-know semantics are spelled out**: units (lots / yuan / percent) · numbers are strings · date formats · response structures — without these, whatever the AI computes is wrong
+- **All four must-know semantics are spelled out**: units (lots / yuan / percent) · numbers are strings · date formats · response structures — without these, whatever the AI Agent computes is wrong
 - **Errors and rate limits are covered too**: the difference between 401 / 429 / `ok:false` / empty results, and how to raise your quota when the anonymous limit is hit
-- **Loaded on demand, so it does not eat context**: the 4 reference files are read only when needed, not dumped into the AI all at once
+- **Intraday data is never cached**: every call fetches fresh · `minute` gives 242 points for the day · `auction` covers 9:15–9:25 (about 150 points)
+- **10 years of K-line history**: from 2016-08-08; `kline-full` returns all of it at once (about 2,500 bars); daily / weekly / monthly / quarterly / yearly plus `m1`–`m120`
+- **Whole market in one call**: `market-kline` returns every A-share (5,000+) for one trading day — no 5,000-request loop
+- **L2 microstructure, 7 endpoints**: market-wide net-flow ranking with **5,568 stocks in one call** · Dragon-Tiger seats down to **broker-branch level** · large-order four directions / order-queue add-cancel / 100-day history
+- **Batch endpoints, 9 of them**: quote / K-line / snapshot / financials / technical / chip / shareholders / money flow / company profile — **150 stocks in about 2 seconds**
+- **One key, five markets**: A-shares + on-exchange ETFs (1,716) + Hong Kong + US + futures & forex (65 instruments)
+- **Quant in one place**: 87 factors + 29 strategies + 25 playbooks + backtests (single / portfolio / batch) + portfolio weight optimisation
+- **No charge on failures**: empty results, fetch failures, wrong codes — none of these are billed (billing counts actual returned rows only)
+- **10 endpoints need no key**: `quote` / `kline` / `hot` / `market-overview` / `changedist` / `models` / `trade-calendar` / `wiki` + `health` / `challenge`
+- **Automatic source failover**: 70 data sources back each other up; if one has a problem it switches to the next, and **your quota is not charged**
+- **No data ≠ failure**: "the market genuinely has no data" (e.g. a suspended stock) is returned separately from "the fetch failed" — the agent will not mistake a suspension for an outage
+- **Fixed conventions, no post-processing**: K-lines are always **forward-adjusted (qfq)** (there is no `adjust` parameter), so there is no double-adjustment
+- **Code format is forgiving**: `sh600667` / `600667.SH` / `600667` all work (normalised automatically)
 - **Pure files, no server**: copy one folder into your skills directory — no URL to configure, no service to start
+- **Loaded on demand, so it does not eat context**: the 4 reference files are read only when needed, not dumped into the AI Agent all at once
 
 ## Installation
 
-**① Hand it to your AI agent** (the easiest — copy this line and send it):
+**① Hand it to the AI Agent** (the easiest — copy this line and send it):
 
-> Please install this ashareapi Agent Skill for me: download `https://ashareapi.com/ashareapi-skill.zip` and extract it into your skills directory (e.g. `~/.claude/skills/`). When done, confirm the directory contains `ashareapi/SKILL.md` and `ashareapi/references/`.
+> Please install this ashareapi Agent Skill for me: download `https://ashareapi.com/ashareapi-skill.zip` and extract it into the client's skills directory (e.g. `~/.claude/skills/`). When done, confirm the directory contains `ashareapi/SKILL.md` and `ashareapi/references/`.
 
 **② One command** (macOS / Linux / WSL — replace `~/.claude/skills` with your client's directory):
 
@@ -99,16 +111,16 @@ Junie (JetBrains) · OpenHands · Goose (Block) · Amp · Kiro (AWS) · TRAE · 
 | File | Description |
 |---|---|
 | [`SKILL.md`](SKILL.md) | Main entry: how to decide whether a key is needed · finding the endpoint by task (decision tree) · the four must-know semantics · errors and rate limits |
-| [`references/endpoints.md`](references/endpoints.md) | **Complete parameters and response fields** for all 40 endpoints |
+| [`references/endpoints.md`](references/endpoints.md) | **Complete parameters and response fields** for all 102 endpoints |
 | [`references/fields.md`](references/fields.md) | Field units and meanings (**read before doing any arithmetic**) |
 | [`references/errors.md`](references/errors.md) | Handling 401 / 429 / `ok:false` / empty results |
 | [`references/sdk.md`](references/sdk.md) | Read this when you need to write Python / Node.js code |
 
 ## Version
 
-**Current version: `0.2.8`** — version history and how to update: see [`SKILL.md`](SKILL.md) §9.
+**Current version: `0.3.1`** — version history and how to update: see [`SKILL.md`](SKILL.md) §9.
 
-> ⚠️ **The API itself never needs updating** — endpoints are always current (the service evolves server-side); what needs updating is **this manual**.
+> ⚠️ **The API itself never needs updating** — endpoints are always current (the service evolves server-side); what needs updating is **this skill's reference files**.
 
 ## Related
 

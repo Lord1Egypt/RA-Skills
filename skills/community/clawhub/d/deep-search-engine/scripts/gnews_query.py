@@ -3,8 +3,8 @@
 """Google News RSS 查询（含 site: 域名定向）。
 
 用法：
-  python gnews_query.py --query "企业搜索 上下文基础设施"
-  python gnews_query.py --query "企业搜索" --site chinadaily.com.cn --when 7d
+  python gnews_query.py --query "腾讯云 Elastic 上下文基础设施"
+  python gnews_query.py --query "腾讯云 Elastic" --site chinadaily.com.cn --when 7d
   python gnews_query.py --query "..." --site csdn.net --when 30d --out result.json
 
 输出：JSON {url, count, items: [{title, link, pubDate, source}]}

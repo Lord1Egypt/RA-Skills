@@ -503,7 +503,7 @@ paths:
               description: Base64-encoded x402 v2 PaymentRequired. Illustrative only; parse the live header.
               schema:
                 type: string
-              example: eyJ4NDAyVmVyc2lvbiI6MiwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfV0sInBheW1lbnRSZXF1aXJlbWVudHMiOnsic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfSwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly93d3cuZmFybWRhc2gub25lL2FwaS92MS9hZ2VudC9wcm90b2NvbHMiLCJkZXNjcmlwdGlvbiI6IklsbHVzdHJhdGl2ZSBGYXJtRGFzaCBBUEkgYWNjZXNzIn0sImZhcm1kYXNoIjp7ImV4YW1wbGVfb25seSI6dHJ1ZSwiZ3JhbnRzX3RyYW5zYWN0aW9uX2F1dGhvcml0eSI6ZmFsc2V9fQ==
+              example: <base64-encoded-x402-v2-payment-required-header>
             X-Payment-Required:
               description: Compatibility signal for x402.
               schema:
@@ -543,7 +543,7 @@ paths:
                     ok: false
                     error: payment_required
                     code: free_quota_exhausted
-                    message: Illustrative x402 challenge; live 402 is authoritative for route-specific price and policy.
+                    message: Illustrative x402 challenge for a Scout quota-exhausted route; paid operations serve code payment_required with retryable true. Live 402 is authoritative for route-specific price and policy.
                     instruction: STOP_RETRYING
                     retry_same_request: false
                     next_action: Wait for quota reset, upgrade, or attach valid x402 payment evidence and retry once.
@@ -672,7 +672,7 @@ paths:
               description: Base64-encoded x402 v2 PaymentRequired. Illustrative only; parse the live header.
               schema:
                 type: string
-              example: eyJ4NDAyVmVyc2lvbiI6MiwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfV0sInBheW1lbnRSZXF1aXJlbWVudHMiOnsic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfSwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly93d3cuZmFybWRhc2gub25lL2FwaS92MS9hZ2VudC9wcm90b2NvbHMiLCJkZXNjcmlwdGlvbiI6IklsbHVzdHJhdGl2ZSBGYXJtRGFzaCBBUEkgYWNjZXNzIn0sImZhcm1kYXNoIjp7ImV4YW1wbGVfb25seSI6dHJ1ZSwiZ3JhbnRzX3RyYW5zYWN0aW9uX2F1dGhvcml0eSI6ZmFsc2V9fQ==
+              example: <base64-encoded-x402-v2-payment-required-header>
             X-Payment-Required:
               description: Compatibility signal for x402.
               schema:
@@ -712,7 +712,7 @@ paths:
                     ok: false
                     error: payment_required
                     code: free_quota_exhausted
-                    message: Illustrative x402 challenge; live 402 is authoritative for route-specific price and policy.
+                    message: Illustrative x402 challenge for a Scout quota-exhausted route; paid operations serve code payment_required with retryable true. Live 402 is authoritative for route-specific price and policy.
                     instruction: STOP_RETRYING
                     retry_same_request: false
                     next_action: Wait for quota reset, upgrade, or attach valid x402 payment evidence and retry once.
@@ -855,7 +855,7 @@ paths:
               description: Base64-encoded x402 v2 PaymentRequired. Illustrative only; parse the live header.
               schema:
                 type: string
-              example: eyJ4NDAyVmVyc2lvbiI6MiwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfV0sInBheW1lbnRSZXF1aXJlbWVudHMiOnsic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfSwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly93d3cuZmFybWRhc2gub25lL2FwaS92MS9hZ2VudC9wcm90b2NvbHMiLCJkZXNjcmlwdGlvbiI6IklsbHVzdHJhdGl2ZSBGYXJtRGFzaCBBUEkgYWNjZXNzIn0sImZhcm1kYXNoIjp7ImV4YW1wbGVfb25seSI6dHJ1ZSwiZ3JhbnRzX3RyYW5zYWN0aW9uX2F1dGhvcml0eSI6ZmFsc2V9fQ==
+              example: <base64-encoded-x402-v2-payment-required-header>
             X-Payment-Required:
               description: Compatibility signal for x402.
               schema:
@@ -895,7 +895,7 @@ paths:
                     ok: false
                     error: payment_required
                     code: free_quota_exhausted
-                    message: Illustrative x402 challenge; live 402 is authoritative for route-specific price and policy.
+                    message: Illustrative x402 challenge for a Scout quota-exhausted route; paid operations serve code payment_required with retryable true. Live 402 is authoritative for route-specific price and policy.
                     instruction: STOP_RETRYING
                     retry_same_request: false
                     next_action: Wait for quota reset, upgrade, or attach valid x402 payment evidence and retry once.
@@ -1004,7 +1004,7 @@ paths:
                     - USER_SIGNED
                     - BOUNDED_AUTONOMOUS
                   default: USER_SIGNED
-                  description: USER_SIGNED is preserved for unenrolled signers. Owner registration permanently enrolls the API wallet on its network across accounts, including after expiry/revocation; stripping mode/session fields cannot bypass bounded policy. Bounded dispatch returns nonretryable bounded_futures_preparation_only while rollout is not operational.
+                  description: USER_SIGNED is preserved for unenrolled signers. Owner registration permanently enrolls the API wallet on its network across accounts, including after expiry/revocation; stripping mode/session fields cannot bypass bounded policy. Bounded futures dispatch is operational under an active owner-signed futures policy and fails closed if policy bounds or order controls are unmet.
                 grantId:
                   type: string
                   description: Required for BOUNDED_AUTONOMOUS
@@ -1141,7 +1141,7 @@ paths:
               description: Base64-encoded x402 v2 PaymentRequired. Illustrative only; parse the live header.
               schema:
                 type: string
-              example: eyJ4NDAyVmVyc2lvbiI6MiwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfV0sInBheW1lbnRSZXF1aXJlbWVudHMiOnsic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfSwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly93d3cuZmFybWRhc2gub25lL2FwaS92MS9hZ2VudC9wcm90b2NvbHMiLCJkZXNjcmlwdGlvbiI6IklsbHVzdHJhdGl2ZSBGYXJtRGFzaCBBUEkgYWNjZXNzIn0sImZhcm1kYXNoIjp7ImV4YW1wbGVfb25seSI6dHJ1ZSwiZ3JhbnRzX3RyYW5zYWN0aW9uX2F1dGhvcml0eSI6ZmFsc2V9fQ==
+              example: <base64-encoded-x402-v2-payment-required-header>
             X-Payment-Required:
               description: Compatibility signal for x402.
               schema:
@@ -1181,7 +1181,7 @@ paths:
                     ok: false
                     error: payment_required
                     code: free_quota_exhausted
-                    message: Illustrative x402 challenge; live 402 is authoritative for route-specific price and policy.
+                    message: Illustrative x402 challenge for a Scout quota-exhausted route; paid operations serve code payment_required with retryable true. Live 402 is authoritative for route-specific price and policy.
                     instruction: STOP_RETRYING
                     retry_same_request: false
                     next_action: Wait for quota reset, upgrade, or attach valid x402 payment evidence and retry once.
@@ -1270,7 +1270,7 @@ paths:
                     - USER_SIGNED
                     - BOUNDED_AUTONOMOUS
                   default: USER_SIGNED
-                  description: USER_SIGNED is preserved for unenrolled signers. Owner registration permanently enrolls the API wallet on its network across accounts, including after expiry/revocation; stripping mode/session fields cannot bypass bounded policy. Bounded dispatch returns nonretryable bounded_futures_preparation_only while rollout is not operational.
+                  description: USER_SIGNED is preserved for unenrolled signers. Owner registration permanently enrolls the API wallet on its network across accounts, including after expiry/revocation; stripping mode/session fields cannot bypass bounded policy. Bounded futures dispatch is operational under an active owner-signed futures policy and fails closed if policy bounds or order controls are unmet.
                 grantId:
                   type: string
                   description: Required for BOUNDED_AUTONOMOUS
@@ -1399,7 +1399,7 @@ paths:
               description: Base64-encoded x402 v2 PaymentRequired. Illustrative only; parse the live header.
               schema:
                 type: string
-              example: eyJ4NDAyVmVyc2lvbiI6MiwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfV0sInBheW1lbnRSZXF1aXJlbWVudHMiOnsic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfSwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly93d3cuZmFybWRhc2gub25lL2FwaS92MS9hZ2VudC9wcm90b2NvbHMiLCJkZXNjcmlwdGlvbiI6IklsbHVzdHJhdGl2ZSBGYXJtRGFzaCBBUEkgYWNjZXNzIn0sImZhcm1kYXNoIjp7ImV4YW1wbGVfb25seSI6dHJ1ZSwiZ3JhbnRzX3RyYW5zYWN0aW9uX2F1dGhvcml0eSI6ZmFsc2V9fQ==
+              example: <base64-encoded-x402-v2-payment-required-header>
             X-Payment-Required:
               description: Compatibility signal for x402.
               schema:
@@ -1439,7 +1439,7 @@ paths:
                     ok: false
                     error: payment_required
                     code: free_quota_exhausted
-                    message: Illustrative x402 challenge; live 402 is authoritative for route-specific price and policy.
+                    message: Illustrative x402 challenge for a Scout quota-exhausted route; paid operations serve code payment_required with retryable true. Live 402 is authoritative for route-specific price and policy.
                     instruction: STOP_RETRYING
                     retry_same_request: false
                     next_action: Wait for quota reset, upgrade, or attach valid x402 payment evidence and retry once.
@@ -1641,7 +1641,7 @@ paths:
               description: Base64-encoded x402 v2 PaymentRequired. Illustrative only; parse the live header.
               schema:
                 type: string
-              example: eyJ4NDAyVmVyc2lvbiI6MiwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfV0sInBheW1lbnRSZXF1aXJlbWVudHMiOnsic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfSwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly93d3cuZmFybWRhc2gub25lL2FwaS92MS9hZ2VudC9wcm90b2NvbHMiLCJkZXNjcmlwdGlvbiI6IklsbHVzdHJhdGl2ZSBGYXJtRGFzaCBBUEkgYWNjZXNzIn0sImZhcm1kYXNoIjp7ImV4YW1wbGVfb25seSI6dHJ1ZSwiZ3JhbnRzX3RyYW5zYWN0aW9uX2F1dGhvcml0eSI6ZmFsc2V9fQ==
+              example: <base64-encoded-x402-v2-payment-required-header>
             X-Payment-Required:
               description: Compatibility signal for x402.
               schema:
@@ -1681,7 +1681,7 @@ paths:
                     ok: false
                     error: payment_required
                     code: free_quota_exhausted
-                    message: Illustrative x402 challenge; live 402 is authoritative for route-specific price and policy.
+                    message: Illustrative x402 challenge for a Scout quota-exhausted route; paid operations serve code payment_required with retryable true. Live 402 is authoritative for route-specific price and policy.
                     instruction: STOP_RETRYING
                     retry_same_request: false
                     next_action: Wait for quota reset, upgrade, or attach valid x402 payment evidence and retry once.
@@ -3272,7 +3272,7 @@ components:
               pattern: ^[0-9]+$
               description: Numeric string from X402PaymentPolicy; transaction chain IDs retain their own integer contracts.
               example: '8453'
-x-farmdash-capability-truth: {"spot.USER_SIGNED":{"status":"operational","prerequisite":"Healthy execution governor, quote provider, RPC and durable receipt store; customer signs and submits."},"spot.BOUNDED_AUTONOMOUS":{"status":"operational","prerequisite":"Owner-signed EVM grant, exact simulation/calldata binding, durable budget and customer-local signer authority."},"futures.USER_SIGNED":{"status":"operational","prerequisite":"Venue account ownership, local action signature, builder approval, risk/research gates and durable order control."},"futures.BOUNDED_AUTONOMOUS":{"status":"operational","prerequisite":"Authenticated owner-bound futures policy, authorized local API-wallet signature, durable nonce/budget/order controls."},"solana.USER_SIGNED":{"status":"operational","prerequisite":"Native Jupiter/RPC route, durable preparation and finality store; customer signs and broadcasts."},"solana.BOUNDED_AUTONOMOUS":{"status":"operational","prerequisite":"Native owner-signed Solana policy; local key must be an actual required transaction signer. Policy creates no on-chain authority."},"ERC4337_SERVER_SUBMISSION":{"status":"preparation_only","prerequisite":"Qualified tenant/account authorization and session-key policy enforcement on public forwarding, configured bundler, durable claims and verified receipt integration."},"GENERIC_SERVER_INTENT_EXECUTION":{"status":"preparation_only","prerequisite":"Trusted executable adapter, exact signed-transaction binding and canonical receipt verifier."},"MEE":{"status":"preparation_only","prerequisite":"Production coordinator and authoritative source/destination receipt verifier."},"ACP":{"status":"deployment_prerequisite","prerequisite":"AcpReadinessService paidWorkflowReady, evaluator/client identities, migrations, funding/finality workers and Base RPC."}}
+x-farmdash-capability-truth: {"spot.USER_SIGNED":{"status":"operational","prerequisite":"Healthy execution governor, quote provider, RPC and durable receipt store; customer signs and submits."},"spot.BOUNDED_AUTONOMOUS":{"status":"operational","prerequisite":"Owner-signed EVM grant, exact simulation/calldata binding, durable budget and customer-local signer authority."},"futures.USER_SIGNED":{"status":"operational","prerequisite":"Venue account ownership, local action signature, builder approval, risk/research gates and durable order control."},"futures.BOUNDED_AUTONOMOUS":{"status":"operational","prerequisite":"Authenticated owner-bound futures policy, authorized local API-wallet signature, durable nonce/budget/order controls."},"solana.USER_SIGNED":{"status":"operational","prerequisite":"Native Jupiter/RPC route, durable preparation and finality store; customer signs and broadcasts."},"solana.BOUNDED_AUTONOMOUS":{"status":"operational","prerequisite":"Native owner-signed Solana policy; local key must be an actual required transaction signer. Policy creates no on-chain authority."},"ERC4337_SERVER_SUBMISSION":{"status":"operational","prerequisite":"Authenticated session, tenant-bound active ERC-4337 session-key grant, ABI-verified execute/executeBatch calldata within allowedProtocols/budget/gas bounds, and configured bundler RPC (BUNDLER_RPC_URL/PIMLICO_API_KEY/ALCHEMY_4337_RPC_URL)."},"GENERIC_SERVER_INTENT_EXECUTION":{"status":"operational","prerequisite":"Curated executable adapter prepared_payload + payload_digest, policy/simulation/approval gates, exact cryptographic signed-transaction binding, and canonical on-chain receipt verification."},"MEE":{"status":"operational","prerequisite":"Owner EIP-712 MEE signature, configured HTTPS MEE_COORDINATOR_URL, and authoritative dual-chain on-chain receipt verification."},"ACP":{"status":"deployment_prerequisite","prerequisite":"AcpReadinessService paidWorkflowReady, evaluator/client identities, migrations, funding/finality workers and Base RPC."}}
 x-farmdash-example-contract:
   version: 1
   examples_are_illustrative: true

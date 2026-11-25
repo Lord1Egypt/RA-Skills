@@ -1,0 +1,81 @@
+{
+ "about": "Paths are relative to this file.",
+ "files": [
+  {
+   "video": "crew",
+   "output": "vertical",
+   "language": "es",
+   "style": "pop",
+   "file": "crew/crew.vertical.es.mp4",
+   "width": 1080,
+   "height": 1920,
+   "seconds": 21.4,
+   "captions": 13,
+   "srt": "crew/crew.es.srt",
+   "timing": "estimated",
+   "signature": "3c655bfe30c9f72a",
+   "audio": "dub",
+   "bytes": 8590380,
+   "fps": "30",
+   "cover": "crew/crew.vertical.es.cover.jpg"
+  },
+  {
+   "video": "crew",
+   "output": "vertical",
+   "language": "pt-BR",
+   "style": "pop",
+   "file": "crew/crew.vertical.pt-BR.mp4",
+   "width": 1080,
+   "height": 1920,
+   "seconds": 21.4,
+   "captions": 13,
+   "srt": "crew/crew.pt-BR.srt",
+   "timing": "estimated",
+   "signature": "6510262a3dbc87c8",
+   "audio": "dub",
+   "bytes": 8569390,
+   "fps": "30",
+   "cover": "crew/crew.vertical.pt-BR.cover.jpg"
+  },
+  {
+   "video": "names",
+   "output": "vertical",
+   "language": "es",
+   "style": "pop",
+   "file": "names/names.vertical.es.mp4",
+   "width": 1080,
+   "height": 1920,
+   "seconds": 29.1,
+   "captions": 21,
+   "srt": "names/names.es.srt",
+   "timing": "estimated",
+   "signature": "378c57abec5cbef6",
+   "audio": "dub",
+   "bytes": 11750857,
+   "fps": "30",
+   "cover": "names/names.vertical.es.cover.jpg"
+  },
+  {
+   "video": "names",
+   "output": "vertical",
+   "language": "pt-BR",
+   "style": "pop",
+   "file": "names/names.vertical.pt-BR.mp4",
+   "width": 1080,
+   "height": 1920,
+   "seconds": 29.1,
+   "captions": 21,
+   "srt": "names/names.pt-BR.srt",
+   "timing": "estimated",
+   "signature": "8ec4d3fe0d485875",
+   "audio": "dub",
+   "bytes": 11771428,
+   "fps": "30",
+   "cover": "names/names.vertical.pt-BR.cover.jpg"
+  }
+ ],
+ "warnings": [
+  "names/vertical: the crop is enlarged 2.7x and will look soft; use \"fit\": \"blur\"",
+  "crew/vertical: the crop is enlarged 2.7x and will look soft; use \"fit\": \"blur\""
+ ]
+}

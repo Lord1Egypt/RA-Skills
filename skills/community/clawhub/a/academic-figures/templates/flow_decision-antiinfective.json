@@ -1,0 +1,114 @@
+{
+ "_command": "python3 scripts/gen_figure.py -t flow -d templates/flow_decision-antiinfective.json --gate strict -o flow_decision.png",
+ "layout": "layered",
+ "title": "Febrile neutropenia empiric therapy decision path",
+ "nodes": [
+  {
+   "id": "fever",
+   "label": "Fever",
+   "sublabel": "single temp ≥38.3°C",
+   "shape": "terminal"
+  },
+  {
+   "id": "eval",
+   "label": "Neutropenia?",
+   "sublabel": "ANC <500/mm³",
+   "shape": "diamond"
+  },
+  {
+   "id": "risk",
+   "label": "High-risk features",
+   "sublabel": "MASCC ≥21",
+   "shape": "diamond"
+  },
+  {
+   "id": "oral",
+   "label": "Oral regimen",
+   "sublabel": "ciprofloxacin + amoxicillin-clavulanate"
+  },
+  {
+   "id": "iv",
+   "label": "IV empiric therapy",
+   "sublabel": "anti-pseudomonal beta-lactam"
+  },
+  {
+   "id": "resc",
+   "label": "Add gram-positive coverage",
+   "sublabel": "if catheter infection suspected",
+   "shape": "hexagon"
+  },
+  {
+   "id": "reassess",
+   "label": "Reassess at 72 h",
+   "sublabel": "defervescence + culture",
+   "shape": "diamond"
+  },
+  {
+   "id": "deesc",
+   "label": "De-escalate",
+   "sublabel": "culture-directed therapy"
+  },
+  {
+   "id": "cont",
+   "label": "Continue broad spectrum",
+   "sublabel": "persistent neutropenia",
+   "shape": "document"
+  }
+ ],
+ "edges": [
+  {
+   "from": "fever",
+   "to": "eval"
+  },
+  {
+   "from": "eval",
+   "to": "risk",
+   "label": "Yes",
+   "thick": true
+  },
+  {
+   "from": "eval",
+   "to": "oral",
+   "label": "No"
+  },
+  {
+   "from": "risk",
+   "to": "iv",
+   "label": "High"
+  },
+  {
+   "from": "risk",
+   "to": "oral",
+   "label": "Low"
+  },
+  {
+   "from": "iv",
+   "to": "resc"
+  },
+  {
+   "from": "oral",
+   "to": "reassess",
+   "dashed": true
+  },
+  {
+   "from": "iv",
+   "to": "reassess"
+  },
+  {
+   "from": "reassess",
+   "to": "deesc",
+   "label": "Afebrile",
+   "thick": true
+  },
+  {
+   "from": "reassess",
+   "to": "cont",
+   "label": "Persistent fever"
+  }
+ ],
+ "_chart_type": "flow",
+ "_scene": "",
+ "_description": "",
+ "_caption_template": "",
+ "_note": "发热性中性粒细胞减少症经验性治疗决策路径：3 个菱形决策点 + 是/否分支标签——临床决策树范式"
+}

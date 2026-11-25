@@ -1,6 +1,6 @@
 ## Description:
 
-Work with Metabase by searching and querying data, and creating or updating questions, dashboards, collections, and metrics through an OOMOL-connected account.
+Operate Metabase through an OOMOL-connected account to find, read, and manage analytics content.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Metabase users and analysts use this skill to discover data, run queries, and work with saved questions, dashboards, collections, and metrics through an OOMOL-connected account.
+Analysts and data teams use this skill to search and retrieve Metabase cards, collections, dashboards, and databases, and to invoke other tools exposed by their connected Metabase instance.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The setup guidance includes a remote CLI installer that has not been verified.
+Risk: The scan marked the skill suspicious and partial; the remote installer's contents and effects are unknown, and two local references could not be resolved.
 
-Mitigation: Review and install a pinned, verified CLI release before enabling the skill.
-
-Risk: The connected account can perform writes and SQL execution, while the hosted connector has not been verified.
-
-Mitigation: Use a narrowly scoped Metabase API key, assess trust in OOMOL, and retain explicit approval for writes and SQL execution. Decide whether to disable automatic skill synchronization with OO_SKILLS_SYNC_DISABLED=1.
+Mitigation: Review and verify the installer and unresolved references before installing; avoid running the installer if its source and effects cannot be confirmed.
 
 ## Reference(s):
 
-- [oo CLI](https://github.com/oomol-lab/oo-cli)
-- [Metabase](https://www.metabase.com)
+- [Metabase homepage](https://www.metabase.com)
 - [Metabase API documentation](https://www.metabase.com/docs/latest/api)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [ClawHub release](https://clawhub.ai/oomol/skills/oo-metabase)
 
 ## Skill Output:
 
-**Output Type(s):** [Shell commands, JSON, Analysis]
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
 
-**Output Format:** [Markdown guidance with shell commands, JSON payload examples, and Metabase results]
+**Output Format:** [JSON responses and Markdown guidance with inline shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Action-specific permissions and limits apply.]
+**Other Properties Related to Output:** [Available actions depend on the connected Metabase instance and account permissions; some actions can change or remove content.]
 
 ## Skill Version(s):
 
-1.0.6 (source: frontmatter)
+1.0.7 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

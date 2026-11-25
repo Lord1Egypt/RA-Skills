@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Investment advisors use this skill as a reference framework for drafting A-share market, company, stock-flow, shareholder, screening, and fund analyses. A qualified professional should review conclusions and assess client suitability before real-world or client-facing use.
+Investment advisors use the skill to draft structured reference material for A-share market themes, company comparisons, stock analysis, and fund screening or diagnosis. It provides analysis frameworks and draft reports for qualified human review, not final client advice or trading instructions.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Reference analyses could be mistaken for personalized investment advice or final client recommendations.
+Risk: Market data, classifications, and analysis may be stale, incomplete, or based on differing calculation rules.
 
-Mitigation: Treat outputs as drafts; have qualified, licensed personnel review conclusions and confirm client suitability before use.
+Mitigation: Record each source and data time, keep metric definitions and periods consistent, and cross-check important figures against authoritative disclosures.
 
-Risk: Market data and metric definitions can be time-sensitive or inconsistent across providers.
+Risk: Draft analysis could be mistaken for personalized investment advice or a trading instruction.
 
-Mitigation: Record source, retrieval time, and metric definitions, cross-check material figures, and label unavailable or unverified data.
+Mitigation: Have a qualified, appropriately licensed professional review conclusions for the client's suitability before any real-world use.
+
+Risk: Client identity, holdings, or non-public business information could be exposed in analysis material.
+
+Mitigation: Use only the minimum necessary data and anonymize or aggregate sensitive details before analysis.
+
+Risk: A report could be saved or sent before the user has reviewed it.
+
+Mitigation: Show the complete report and obtain the user's explicit confirmation before saving or sharing it.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/gechengling/skills/investment-advisor-digital-employee)
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/investment-advisor-digital-employee)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Spreadsheets, Guidance]
+**Output Type(s):** [Analysis, Guidance, Markdown]
 
-**Output Format:** [Structured analytical drafts, reports, and comparison tables in Markdown or spreadsheet form]
+**Output Format:** [Structured Markdown reports, tables, checklists, and reference worksheets]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reference material requiring human review; cite data sources, timestamps, and metric definitions where applicable.]
+**Other Properties Related to Output:** [Draft reference material; financial data, source dates, assumptions, and conclusions require verification and qualified human review.]
 
 ## Skill Version(s):
 
-2.0.6 (source: frontmatter)
+2.0.7 (source: frontmatter)
 
 ## Ethical Considerations:
 

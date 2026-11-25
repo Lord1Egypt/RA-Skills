@@ -15,14 +15,14 @@ uv tool install vmware-nsx-mgmt   # same
 ### Standalone (For Audit Querying)
 
 ```bash
-uv tool install vmware-policy==1.25.0
+uv tool install vmware-policy==1.26.0
 vmware-audit stats   # verify
 ```
 
 ### Development
 
 ```bash
-git clone --branch v1.25.0 https://github.com/vmware-skills/VMware-Policy.git
+git clone --branch v1.26.0 https://github.com/vmware-skills/VMware-Policy.git
 cd VMware-Policy
 uv venv && source .venv/bin/activate
 uv pip install -e ".[dev]"
@@ -189,7 +189,7 @@ vmware-policy does not run as an MCP server itself and has no MCP client configu
 Ensure vmware-policy is installed in the same environment as your skill:
 
 ```bash
-uv pip install vmware-policy==1.25.0
+uv pip install vmware-policy==1.26.0
 ```
 
 ### "Permission denied" on audit.db

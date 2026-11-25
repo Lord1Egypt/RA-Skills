@@ -1,40 +1,13 @@
 # Open Agent Guide client
 
-`oag` 0.3.1 and newer request guidance automatically. For direct API reads,
-request `guidance` alongside `status`, `resolution`, and `check_feedback` when
-reading your submissions. An automated pipeline terminalizes each submission
-within minutes, so watch it to terminal in the same session; no required human
-review runs out of band. `guidance.next_action=wait` means keep watching to
-terminal; `prepare_correction` means prepare the repair now but wait for
-terminal closure before submitting it. `revise_and_resubmit` means inspect the
-rejection, correct the proposal, then validate against the current catalog.
-`none` means read the terminal resolution, including any successor links.
-Guidance never reserves an identity or bypasses create conflicts. If it is
-absent, keep using lifecycle status; never infer rejection from a check error.
-Preserve submit/watch journals.
+Use `oag` to find and inspect catalog products from a terminal. Reads work
+without a token. For authorized contributions, the same client validates,
+submits, and watches proposals with durable journals.
 
-For an audit of published values or search results, use the existing read
-commands in
-[Check a published update](contributing.md#check-a-published-update).
-`guidance.next_action=none` means no further submission action is required.
+For installation and configuration, read
+[connections](connections.md#cli-installation).
 
-`oag` validates, submits, and watches immutable catalog proposals. The Python
-library runs the same workflows without a subprocess or Django installation.
-
-## Install and upgrade
-
-Supported platforms are macOS and Linux with Python 3.12, 3.13, 3.14, or 3.15.
-Install the public package from PyPI:
-
-```sh
-uv tool install open-agent-guide
-uv tool upgrade open-agent-guide
-```
-
-For library use, run `uv add open-agent-guide`. Alternatively, install the
-library and CLI with `pip install open-agent-guide` and upgrade with
-`pip install --upgrade open-agent-guide`. The package is MIT-licensed. Windows
-and standalone executables are not supported.
+## Version compatibility
 
 Package versions follow semantic versioning. JSON output remains version 1; new
 and saved journals use version 2. Version-1 journals remain readable, but
@@ -63,6 +36,11 @@ server.
 
 ## Submission commands
 
+Use these commands for authorized contributions. Read
+[submission recovery](submission-recovery.md) for lifecycle guidance, terminal
+feedback, and audits of published changes. The CLI requests next-action guidance
+automatically and preserves evidence in journals.
+
 Export `OAG_TOKEN` with your bearer token. `OAG_BASE_URL` defaults to
 `https://www.openagentguide.com`; set it to your staging origin for testing. The
 base URL cannot contain credentials, a path, query, or fragment. Bearer tokens
@@ -85,8 +63,8 @@ echo "Long detail" | oag feedback --title "Docs are wrong" --body -
 `validate` and `submit` accept one JSON object or an array, from a file or `-`
 for stdin. Nested relation envelopes and explicit nulls pass through unchanged;
 omitted keys stay omitted. Validation calls the server and returns its
-field-path errors. Validation does not probe external citation URLs; the
-existing batch preflight script remains available for that separate check.
+field-path errors. Validation does not probe external citation URLs. Inspect
+source pages and redirects separately before submitting evidence.
 
 The submission commands accept `--output text|json|jsonl|explain`. JSON contains
 `version`, `records`, and `summary`; JSONL emits one `type: record` line per
@@ -132,21 +110,24 @@ successors. A successful retire reports the terminal disposition, `withdrawn` or
 `superseded`, and exits 0; a 403 or validation error exits 3. The command does
 not poll; use `status`/`watch` to observe the retired submission and successors.
 
-`source-preview URL` previews the verifier's selected evidence for one source
+`source-preview URL` previews the full normalized received text for one source
 before you spend a submission. It sends one paced, authenticated POST; the
-server runs the verifier's fetch ladder and returns the selected text, snapshot
+server runs the verifier's fetch ladder and returns the received text, snapshot
 hashes and lengths, completeness, a source-change comparison, and failure
 diagnostics. The client never fetches the URL. Repeat `--claim` for up to 20
-claims and pass the same claims and source mode you will submit so the selection
-matches; `--complete-source` previews an absence source as a whole and
+claims and pass the same claims and source mode you will submit to exercise the
+same retrieval; `--complete-source` previews an absence source as a whole and
 `--api-spec` a declared API specification, and `--expected-source-sha256`
 reports whether the source changed since an earlier preview. JSON/JSONL print
 the server report unchanged; text prints a concise view. A successful preview
 exits 0; an endpoint failure, including a preview quota 429, exits 3 with the
 shared failure envelope; input or configuration errors exit 2. Preview never
 corroborates a claim or authorizes publication, and a successful fetch warms the
-server's one-hour fetch cache so submitting the same URL within the hour reuses
-it. Ordinary accounts are limited to 10 previews per hour.
+server's one-hour fetch cache when the response fits its admission limits.
+Larger responses bypass the cache. A size failure leaves the evidence
+unresolved. Follow the
+[source size failure instructions](research-evidence.md#handle-a-source-size-failure)
+before another attempt. Ordinary accounts are limited to 10 previews per hour.
 
 `feedback` files one piece of feedback about the service, API, or docs — a bug,
 a feature request, or a docs problem — not catalog content. It sends one paced,

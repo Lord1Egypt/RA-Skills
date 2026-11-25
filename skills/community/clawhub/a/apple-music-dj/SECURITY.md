@@ -13,7 +13,11 @@ If you discover a security vulnerability in Apple Music DJ, please report it res
 
 **Do NOT open a public GitHub issue for security vulnerabilities.**
 
-Instead, email: **<and3rn3t@icloud.com>**
+Instead, report it privately through GitHub: [**Report a vulnerability**](https://github.com/and3rn3t/apple-music-dj/security/advisories/new)
+(Security tab → *Report a vulnerability*). Only the maintainer can see it, and we can work on a fix
+together in a private advisory.
+
+If you'd rather not use GitHub, email **<and3rn3t@icloud.com>**.
 
 Include:
 

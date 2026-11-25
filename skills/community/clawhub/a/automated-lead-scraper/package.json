@@ -1,0 +1,21 @@
+{
+  "name": "automated-lead-scraper-skill",
+  "version": "1.0.0",
+  "description": "Agent skill: CSV of website URLs -> publicly listed business contact emails, with checkpoint/resume.",
+  "private": true,
+  "license": "MIT",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "selftest": "node scripts/email-scraper.js --selftest",
+    "validate": "node scripts/validate-input.js",
+    "scrape": "node scripts/email-scraper.js",
+    "summary": "node scripts/summarize-run.js",
+    "test": "node scripts/smoke-test.js"
+  },
+  "dependencies": {
+    "axios": "^1.20.0",
+    "cheerio": "^1.2.0",
+    "csv-parse": "^7.0.2",
+    "csv-stringify": "^6.8.3"
+  }
+}

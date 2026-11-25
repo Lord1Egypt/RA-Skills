@@ -1,7 +1,7 @@
 ---
 name: tiktok-data
 description: "Public TikTok creator profiles for agents — follower, video, and like counts as structured JSON, with no TikTok key."
-version: 2.0.14
+version: 2.0.19
 author: superagnt
 license: MIT-0
 platforms: [macos, linux, windows]

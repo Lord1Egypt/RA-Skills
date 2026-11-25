@@ -1,40 +1,57 @@
-## Description: <br>
-Network Config helps operators record, review, search, and export local network operations notes from a Bash command-line tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Network Config is a local Bash-based network note and history tool for recording, searching, and exporting network-related observations.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers, network operators, and sysops teams use this skill to keep a local command-line logbook for scan results, monitoring observations, alerts, checks, fixes, benchmarks, backups, restores, and reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Network notes are stored locally in plain text and may contain sensitive topology, incident, or operational details. <br>
-Mitigation: Avoid entering passwords, tokens, or sensitive details unless plain-text local storage is acceptable; periodically review or delete ~/.local/share/network-config. <br>
-Risk: Exports can copy all logged data into JSON, CSV, or text files. <br>
-Mitigation: Review exported files before sharing and remove sensitive entries or exports when they are no longer needed. <br>
+## Use Case:
 
+Developers and sysops practitioners can use this skill to record network-related observations, incidents, checks, fixes, benchmark notes, and exports in a local command-line history. It should be treated as a note/history helper rather than a scanner, DNS/ICMP checker, AWS SSM helper, backup tool, restore tool, or remediation tool.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/network-config) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with Bash command examples; command output is plain text with optional JSON, CSV, or text exports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores plain-text logs and exports under ~/.local/share/network-config by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The release is marketed as a broader network management toolkit, while security evidence says it appears to be a local plaintext logging tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it as a note/history helper and verify actual network-management capability before relying on it for scanning, DNS/ICMP checking, AWS SSM operations, backups, restores, or remediation.
+
+Risk: Network notes, inventories, credentials, private keys, tokens, or incident details could be stored in local plaintext logs and exports.
+
+Mitigation: Avoid recording secrets or sensitive internal inventories, restrict access to the data directory, and review generated exports before sharing or importing them.
+
+Risk: Generated JSON, CSV, and TXT exports may contain sensitive or parser-unsafe content when opened in spreadsheets or downstream tools.
+
+Mitigation: Sanitize exported files before use in spreadsheets, automation, or external parsers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/network-config)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or terminal-oriented text with inline shell commands; export commands may produce JSON, CSV, or TXT files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Records and export files are local plaintext data under ~/.local/share/network-config/.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and frontmatter; artifact CLI text reports v2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

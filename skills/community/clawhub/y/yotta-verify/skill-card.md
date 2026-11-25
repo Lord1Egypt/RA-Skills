@@ -1,6 +1,6 @@
 ## Description:
 
-A deterministic pre-install scanner that checks skills and npm packages for prompt injection, dangerous patterns, skill-file integrity, and permissions, then reports a four-level verdict and can generate audited badges.
+A deterministic pre-install scanner for agent skills and packages that checks for prompt injection, dangerous patterns, file integrity, and permission needs, then produces a verdict, report, and audited badge.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and security reviewers use this skill before installing or evaluating an agent skill or npm package, to inspect likely risks, produce a report or audited badge, and optionally add a scan gate to CI. Its verdict is a static-analysis aid and requires human confirmation.
+Developers and skill maintainers use it to review a skill or package before installation, generate an audit report or badge, and add a pre-install check to CI. Its findings require human review and do not replace the installation decision.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review flags that packages can bypass important checks and badges can be generated without scanning, so the verdict, CI gate, or badge may not establish that a package is safe.
+Risk: ClawScan marks this release suspicious, citing a mismatch between its stated static-scanning purpose and installer behavior, plus a scanner rule that can issue a safe-install badge without scanning.
 
-Mitigation: Independently review this version before trusting its verdicts or badges. When installing, pin the reviewed version, preview one explicit destination with --dry-run, avoid global or linked destinations, and back up any existing installation.
+Mitigation: Follow ClawScan guidance: avoid installing until installer behavior and badge handling have been reviewed and corrected or independently verified.
+
+Risk: ClawScan analysis is partial: 12 of 14 components were scanned, and tool-misuse analysis was degraded, so unreported behavior is not established as safe.
+
+Mitigation: Review the remaining components and independently assess behavior before relying on the result.
 
 ## Reference(s):
 
-- [Prompt injection detection patterns](references/injection-patterns.md)
-- [Verification report template](references/verify-report-template.md)
-- [Audited badge guide](references/badges.md)
-- [ClawHub skill page](https://clawhub.ai/yottameta/skills/yotta-verify)
 - [Project homepage](https://github.com/YottaMeta/yotta-verify)
+- [ClawHub release page](https://clawhub.ai/yottameta/skills/yotta-verify)
+- [Prompt injection patterns](artifact/references/injection-patterns.md)
+- [Verification report template](artifact/references/verify-report-template.md)
+- [Badge documentation](artifact/references/badges.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, Markdown, JSON, SVG badge]
+**Output Type(s):** [Analysis, Text, JSON, Markdown, Files]
 
-**Output Format:** [Plain-text verdicts, Markdown or JSON reports, SVG badges and badge URLs, and a CI gate exit status.]
+**Output Format:** [Text verdicts, JSON and Markdown reports, and SVG audit badges]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Deterministic local static analysis; does not execute scanned code. Verdicts require human review.]
+**Other Properties Related to Output:** [Advisory results require human review.]
 
 ## Skill Version(s):
 
-0.3.6 (source: frontmatter, package.json)
+0.3.7 (source: frontmatter, CHANGELOG, package.json)
 
 ## Ethical Considerations:
 

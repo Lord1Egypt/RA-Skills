@@ -24,8 +24,10 @@ few days after it goes out (LinkedIn posts can keep growing for days).
 - Postemi Insights in the web app, per channel and per period.
 - CLI: `postemi analytics:post <post-id> -d 7` per post;
   `postemi analytics:platform <integration-id> -d 30` per channel.
-- MCP clients: ask the user for the numbers from Insights or the network's
-  own analytics (there is no analytics tool on MCP).
+- MCP: `get_post_analytics` (`postId`) per post; `get_analytics`
+  (`integrationId`, `days`) per channel. Where the client does not list
+  them, ask the user for the numbers from Insights or the network's own
+  analytics.
 
 ## The weekly review (15 minutes)
 

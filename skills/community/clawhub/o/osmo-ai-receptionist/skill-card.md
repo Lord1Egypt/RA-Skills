@@ -1,6 +1,6 @@
 ## Description:
 
-An AI receptionist for an existing phone number that screens calls, takes messages and booking requests, and lets users manage call handling through OsmO.
+AI receptionist, AI phone receptionist and AI answering service for your phone number. Use when the user wants an AI phone receptionist or answering service that picks up their calls, screens spam, takes messages and booking requests, and tells them who called and why. Manage it from the AI app: see missed calls, summaries, transcripts and recordings, pause the AI, choose who is put through, edit VIP and block lists, add rules for specific callers (put through, take a message, block), switch the assistant or its language, check bookings and Facts, and call back people who called them in the last 30 days (shown first, placed only after a yes). Works with the user's existing mobile number through call forwarding. Needs an OsmO app plan.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and businesses use the skill to handle inbound calls on an existing phone number, review call summaries and recordings, manage caller rules, and check bookings through their OsmO account.
+Individuals and businesses using OsmO's receptionist service can use the skill through their AI app to review missed calls, caller summaries, transcripts and bookings, and manage receptionist settings and caller rules. It can also initiate eligible callbacks after previewing the call and receiving the user's confirmation.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Using OsmO requires connecting to its hosted service and enabling call forwarding, which routes inbound calls through the receptionist.
+Risk: Connecting the receptionist requires an OsmO hosted service and OAuth sign-in.
 
-Mitigation: Review OsmO's privacy information and enable forwarding only when comfortable with the service handling those calls.
-
-Risk: The security scan was incomplete, and permissions were not fully assessed.
-
-Mitigation: Review the available tools and requested permissions before connecting the service.
+Mitigation: Install only if you trust OsmO and intend to use its service; complete sign-in in the browser and never share the one-time code in chat.
 
 ## Reference(s):
 
 - [OsmO](https://getosmo.app)
-- [OsmO MCP service](https://api.getosmo.app/mcp)
+- [OsmO app](https://getosmo.app/app)
+- [OsmO receptionist MCP service](https://api.getosmo.app/mcp/receptionist)
+- [ClawHub skill page](https://clawhub.ai/getosmo/skills/osmo-ai-receptionist)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, API Calls, Configuration, Guidance]
+**Output Type(s):** [Text, Guidance, Shell commands, Configuration instructions]
 
-**Output Format:** [Text summaries and structured call, booking, and account information; service settings can be updated through OsmO.]
+**Output Format:** [Text responses with shell commands and JSON or YAML configuration examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Accesses the signed-in account's call and receptionist data; service changes are made only after user approval.]
+**Other Properties Related to Output:** [May provide call summaries, transcripts, and recording links; previews proposed changes and requests confirmation before applying them.]
 
 ## Skill Version(s):
 
-1.1.1 (source: server-resolved release metadata)
+1.3.1 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

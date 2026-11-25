@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes pet videos from veterinary waiting areas for visible anxiety-related behaviors and returns a 1–5 anxiety level to support triage; it does not diagnose illness or recommend treatment.
+Triggers when a user provides a pet hospital waiting area video URL or file for analysis; supports local video uploads or network URLs to call server-side APIs for anxiety-related behavior recognition, detecting open-mouth panting intensity, limb/torso trembling amplitude, ear-flattening degree and other stress signals, outputting a standardized anxiety level (1-5) to help medical staff identify high-stress pets and prioritize care or comfort (without diagnosing diseases or prescribing treatment).
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Veterinary clinic staff can use video-based behavior observations and an anxiety level to identify pets that may need earlier attention or comfort while waiting. The result supports workflow decisions and is not a veterinary diagnosis or treatment plan.
+Veterinary clinic staff and pet care teams can use the skill to review waiting-area pet videos, summarize visible stress-related behaviors, and prioritize comfort or attention for animals with higher estimated anxiety. The estimate is for workflow support and does not diagnose disease or prescribe treatment.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates this release suspicious and reports possible account-profile, token-storage, report-history, and broad network access, as well as uncertainty about whether export-only prevents video analysis.
+Risk: The security summary flags credential exposure and privacy concerns for submitted video and service access.
 
-Mitigation: Before installing, verify why these accesses are needed and confirm where video uploads go, how they are retained, and which services receive them; do not rely on export-only to prevent analysis.
+Mitigation: Avoid sending sensitive footage or credentials unless you have independently verified how the service handles them.
 
-Risk: The security guidance leaves video handling and retention to be confirmed, which may matter when videos contain sensitive information.
+Risk: The security summary reports behavior beyond the stated purpose and scope concerns.
 
-Mitigation: Use only videos you are authorized to share, minimize identifying material where practical, and confirm handling and retention before upload.
+Mitigation: Review the service and requested access before use, and provide only footage needed for the requested assessment.
+
+Risk: Individual traits and recording conditions can affect the estimated anxiety level.
+
+Mitigation: Treat the result as a workflow aid and combine it with direct observation; do not use it as a diagnosis or treatment recommendation.
 
 ## Reference(s):
 
-- [API documentation](references/api_doc.md)
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-pet-hospital-waiting-anxiety-analysis)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
+- [API reference](references/api_doc.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
+**Output Type(s):** [Text, JSON, Markdown]
 
-**Output Format:** [Structured analysis report with an anxiety level, behavior observations, and a report link; available in JSON or Markdown detail formats.]
+**Output Format:** [Structured anxiety assessment report; history results can be presented as a Markdown table]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Behavior-based estimates can be affected by individual and breed differences; use alongside direct observation.]
+**Other Properties Related to Output:** [Reports an estimated anxiety level from 1 to 5 and observed behavior signals; not a medical diagnosis or treatment plan.]
 
 ## Skill Version(s):
 
-1.0.19 (source: server-resolved release metadata)
+1.0.21 (source: server-resolved ClawHub release metadata)
 
 ## Ethical Considerations:
 

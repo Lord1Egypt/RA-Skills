@@ -1,0 +1,883 @@
+{
+ "campaign": "example-orbit-app",
+ "script_version": "e81c093343e5",
+ "edit": "../edit.json",
+ "videos": [
+  {
+   "id": "reels",
+   "account": "Reels",
+   "layout": "split_screen",
+   "file": "reels.mp4",
+   "sha256": "d3ff1d44edaf61a26c928822ddfe4b723adc037584d194d20036f45c04ab8bbf",
+   "bytes": 638554,
+   "seconds": 22.27,
+   "hook_id": "h2",
+   "hook": "A new space photo every single day?",
+   "hook_take": false,
+   "on_screen": {
+    "disclosure": "Ad",
+    "disclosure_seconds": 3.0,
+    "from": 0.0
+   },
+   "spoken_disclosure_s": 6.32,
+   "spoken_disclosure_estimated": true,
+   "placeholder": true,
+   "inputs": {
+    "supplied": {
+     "file": "orbit-footage.mp4",
+     "sha256": "fbafe06d71d2d7ea6f4248599c7c7a9c289729691f64b99f5b4106c5162d578f"
+    }
+   },
+   "accounts": [
+    "Reels"
+   ],
+   "spoken": [
+    {
+     "text": "A new space photo every single day?",
+     "start": 0.0,
+     "end": 2.53
+    },
+    {
+     "text": "Example Orbit is paying me to show you this.",
+     "start": 2.94,
+     "end": 6.32
+    },
+    {
+     "text": "It shows a new space photo every day.",
+     "start": 6.65,
+     "end": 9.57
+    },
+    {
+     "text": "I've opened it every morning this week to see the new one.",
+     "start": 9.98,
+     "end": 14.44
+    },
+    {
+     "text": "You can save any photo as your phone wallpaper in two taps.",
+     "start": 14.85,
+     "end": 19.38
+    },
+    {
+     "text": "Download Example Orbit, link in bio.",
+     "start": 19.71,
+     "end": 21.86
+    }
+   ],
+   "transcript_sha256": null,
+   "dropped": [],
+   "cut": [],
+   "burned_text": "any",
+   "captions_on": true,
+   "hook_text_on": true,
+   "supplied_audio": "mute",
+   "hook_in_take": false,
+   "product_on_screen_s": 0.0,
+   "lines_at": {},
+   "music": {
+    "source": "none"
+   },
+   "captions": [
+    {
+     "w": "A",
+     "start": 0.0
+    },
+    {
+     "w": "new",
+     "start": 0.39
+    },
+    {
+     "w": "space",
+     "start": 0.77
+    },
+    {
+     "w": "photo",
+     "start": 1.15
+    },
+    {
+     "w": "every",
+     "start": 1.54
+    },
+    {
+     "w": "single",
+     "start": 1.92
+    },
+    {
+     "w": "day?",
+     "start": 2.31
+    },
+    {
+     "w": "Example",
+     "start": 2.94
+    },
+    {
+     "w": "Orbit",
+     "start": 3.33
+    },
+    {
+     "w": "is",
+     "start": 3.71
+    },
+    {
+     "w": "paying",
+     "start": 4.1
+    },
+    {
+     "w": "me",
+     "start": 4.48
+    },
+    {
+     "w": "to",
+     "start": 4.87
+    },
+    {
+     "w": "show",
+     "start": 5.25
+    },
+    {
+     "w": "you",
+     "start": 5.63
+    },
+    {
+     "w": "this.",
+     "start": 6.02
+    },
+    {
+     "w": "It",
+     "start": 6.65
+    },
+    {
+     "w": "shows",
+     "start": 7.04
+    },
+    {
+     "w": "a",
+     "start": 7.42
+    },
+    {
+     "w": "new",
+     "start": 7.81
+    },
+    {
+     "w": "space",
+     "start": 8.19
+    },
+    {
+     "w": "photo",
+     "start": 8.58
+    },
+    {
+     "w": "every",
+     "start": 8.96
+    },
+    {
+     "w": "day.",
+     "start": 9.35
+    },
+    {
+     "w": "I've",
+     "start": 9.98
+    },
+    {
+     "w": "opened",
+     "start": 10.37
+    },
+    {
+     "w": "it",
+     "start": 10.75
+    },
+    {
+     "w": "every",
+     "start": 11.13
+    },
+    {
+     "w": "morning",
+     "start": 11.52
+    },
+    {
+     "w": "this",
+     "start": 11.9
+    },
+    {
+     "w": "week",
+     "start": 12.29
+    },
+    {
+     "w": "to",
+     "start": 12.67
+    },
+    {
+     "w": "see",
+     "start": 13.06
+    },
+    {
+     "w": "the",
+     "start": 13.44
+    },
+    {
+     "w": "new",
+     "start": 13.83
+    },
+    {
+     "w": "one.",
+     "start": 14.21
+    },
+    {
+     "w": "You",
+     "start": 14.85
+    },
+    {
+     "w": "can",
+     "start": 15.23
+    },
+    {
+     "w": "save",
+     "start": 15.62
+    },
+    {
+     "w": "any",
+     "start": 16.0
+    },
+    {
+     "w": "photo",
+     "start": 16.39
+    },
+    {
+     "w": "as",
+     "start": 16.77
+    },
+    {
+     "w": "your",
+     "start": 17.15
+    },
+    {
+     "w": "phone",
+     "start": 17.54
+    },
+    {
+     "w": "wallpaper",
+     "start": 17.92
+    },
+    {
+     "w": "in",
+     "start": 18.31
+    },
+    {
+     "w": "two",
+     "start": 18.69
+    },
+    {
+     "w": "taps.",
+     "start": 19.08
+    },
+    {
+     "w": "Download",
+     "start": 19.71
+    },
+    {
+     "w": "Example",
+     "start": 20.1
+    },
+    {
+     "w": "Orbit,",
+     "start": 20.48
+    },
+    {
+     "w": "link",
+     "start": 20.86
+    },
+    {
+     "w": "in",
+     "start": 21.25
+    },
+    {
+     "w": "bio.",
+     "start": 21.64
+    }
+   ],
+   "cover": "reels-cover.jpg",
+   "script_version": "e81c093343e5",
+   "campaign_version": "eae2ccd694",
+   "campaign": "example-orbit-app"
+  },
+  {
+   "id": "shorts",
+   "account": "Shorts",
+   "layout": "face_screen",
+   "file": "shorts.mp4",
+   "sha256": "6d7b8f3e9a8afc63d36badca19bc30cc71d508d72d34ad70bf55c66fd721f90a",
+   "bytes": 366807,
+   "seconds": 21.88,
+   "hook_id": "h3",
+   "hook": "Watch me find today's space photo",
+   "hook_take": false,
+   "on_screen": {
+    "disclosure": "Ad",
+    "disclosure_seconds": 3.0,
+    "from": 0.0
+   },
+   "spoken_disclosure_s": 5.94,
+   "spoken_disclosure_estimated": true,
+   "placeholder": true,
+   "inputs": {
+    "screen": {
+     "file": "takes/screen.mp4",
+     "sha256": "dc2b9270e349953ee6e61f9ccdac6af9a788e45d35f5fd4eeb726b37d75b592e"
+    }
+   },
+   "accounts": [
+    "Shorts"
+   ],
+   "spoken": [
+    {
+     "text": "Watch me find today's space photo Example Orbit is paying me to show you this.",
+     "start": 0.0,
+     "end": 5.94
+    },
+    {
+     "text": "It shows a new space photo every day.",
+     "start": 6.27,
+     "end": 9.19
+    },
+    {
+     "text": "I've opened it every morning this week to see the new one.",
+     "start": 9.6,
+     "end": 14.05
+    },
+    {
+     "text": "You can save any photo as your phone wallpaper in two taps.",
+     "start": 14.46,
+     "end": 18.99
+    },
+    {
+     "text": "Download Example Orbit, link in bio.",
+     "start": 19.33,
+     "end": 21.48
+    }
+   ],
+   "transcript_sha256": null,
+   "dropped": [],
+   "cut": [],
+   "burned_text": "any",
+   "captions_on": true,
+   "hook_text_on": true,
+   "supplied_audio": null,
+   "hook_in_take": false,
+   "product_on_screen_s": 0.0,
+   "lines_at": {},
+   "music": {
+    "source": "none"
+   },
+   "captions": [
+    {
+     "w": "Watch",
+     "start": 0.0
+    },
+    {
+     "w": "me",
+     "start": 0.39
+    },
+    {
+     "w": "find",
+     "start": 0.77
+    },
+    {
+     "w": "today's",
+     "start": 1.15
+    },
+    {
+     "w": "space",
+     "start": 1.54
+    },
+    {
+     "w": "photo",
+     "start": 1.92
+    },
+    {
+     "w": "Example",
+     "start": 2.56
+    },
+    {
+     "w": "Orbit",
+     "start": 2.94
+    },
+    {
+     "w": "is",
+     "start": 3.33
+    },
+    {
+     "w": "paying",
+     "start": 3.71
+    },
+    {
+     "w": "me",
+     "start": 4.1
+    },
+    {
+     "w": "to",
+     "start": 4.48
+    },
+    {
+     "w": "show",
+     "start": 4.87
+    },
+    {
+     "w": "you",
+     "start": 5.25
+    },
+    {
+     "w": "this.",
+     "start": 5.63
+    },
+    {
+     "w": "It",
+     "start": 6.27
+    },
+    {
+     "w": "shows",
+     "start": 6.65
+    },
+    {
+     "w": "a",
+     "start": 7.04
+    },
+    {
+     "w": "new",
+     "start": 7.42
+    },
+    {
+     "w": "space",
+     "start": 7.81
+    },
+    {
+     "w": "photo",
+     "start": 8.19
+    },
+    {
+     "w": "every",
+     "start": 8.58
+    },
+    {
+     "w": "day.",
+     "start": 8.96
+    },
+    {
+     "w": "I've",
+     "start": 9.6
+    },
+    {
+     "w": "opened",
+     "start": 9.98
+    },
+    {
+     "w": "it",
+     "start": 10.37
+    },
+    {
+     "w": "every",
+     "start": 10.75
+    },
+    {
+     "w": "morning",
+     "start": 11.13
+    },
+    {
+     "w": "this",
+     "start": 11.52
+    },
+    {
+     "w": "week",
+     "start": 11.9
+    },
+    {
+     "w": "to",
+     "start": 12.29
+    },
+    {
+     "w": "see",
+     "start": 12.67
+    },
+    {
+     "w": "the",
+     "start": 13.06
+    },
+    {
+     "w": "new",
+     "start": 13.44
+    },
+    {
+     "w": "one.",
+     "start": 13.83
+    },
+    {
+     "w": "You",
+     "start": 14.46
+    },
+    {
+     "w": "can",
+     "start": 14.85
+    },
+    {
+     "w": "save",
+     "start": 15.23
+    },
+    {
+     "w": "any",
+     "start": 15.62
+    },
+    {
+     "w": "photo",
+     "start": 16.0
+    },
+    {
+     "w": "as",
+     "start": 16.39
+    },
+    {
+     "w": "your",
+     "start": 16.77
+    },
+    {
+     "w": "phone",
+     "start": 17.15
+    },
+    {
+     "w": "wallpaper",
+     "start": 17.54
+    },
+    {
+     "w": "in",
+     "start": 17.92
+    },
+    {
+     "w": "two",
+     "start": 18.31
+    },
+    {
+     "w": "taps.",
+     "start": 18.69
+    },
+    {
+     "w": "Download",
+     "start": 19.33
+    },
+    {
+     "w": "Example",
+     "start": 19.71
+    },
+    {
+     "w": "Orbit,",
+     "start": 20.1
+    },
+    {
+     "w": "link",
+     "start": 20.48
+    },
+    {
+     "w": "in",
+     "start": 20.86
+    },
+    {
+     "w": "bio.",
+     "start": 21.25
+    }
+   ],
+   "cover": "shorts-cover.jpg",
+   "script_version": "e81c093343e5",
+   "campaign_version": "eae2ccd694",
+   "campaign": "example-orbit-app"
+  },
+  {
+   "id": "tiktok",
+   "account": "TikTok",
+   "layout": "split_screen",
+   "file": "tiktok.mp4",
+   "sha256": "8175e9d2b69bcf3448e9613941a10e70b40f59b7401ab7dc44b6a3d21c0ad1c9",
+   "bytes": 597237,
+   "seconds": 22.27,
+   "hook_id": "h1",
+   "hook": "This launch could be your lock screen",
+   "hook_take": false,
+   "on_screen": {
+    "disclosure": "Ad",
+    "disclosure_seconds": 3.0,
+    "from": 0.0
+   },
+   "spoken_disclosure_s": 6.32,
+   "spoken_disclosure_estimated": true,
+   "placeholder": true,
+   "inputs": {
+    "supplied": {
+     "file": "orbit-footage.mp4",
+     "sha256": "fbafe06d71d2d7ea6f4248599c7c7a9c289729691f64b99f5b4106c5162d578f"
+    }
+   },
+   "accounts": [
+    "TikTok"
+   ],
+   "spoken": [
+    {
+     "text": "This launch could be your lock screen Example Orbit is paying me to show you this.",
+     "start": 0.0,
+     "end": 6.32
+    },
+    {
+     "text": "It shows a new space photo every day.",
+     "start": 6.65,
+     "end": 9.57
+    },
+    {
+     "text": "I've opened it every morning this week to see the new one.",
+     "start": 9.98,
+     "end": 14.44
+    },
+    {
+     "text": "You can save any photo as your phone wallpaper in two taps.",
+     "start": 14.85,
+     "end": 19.38
+    },
+    {
+     "text": "Download Example Orbit, link in bio.",
+     "start": 19.71,
+     "end": 21.86
+    }
+   ],
+   "transcript_sha256": null,
+   "dropped": [],
+   "cut": [],
+   "burned_text": "any",
+   "captions_on": true,
+   "hook_text_on": true,
+   "supplied_audio": "mute",
+   "hook_in_take": false,
+   "product_on_screen_s": 0.0,
+   "lines_at": {},
+   "music": {
+    "source": "none"
+   },
+   "captions": [
+    {
+     "w": "This",
+     "start": 0.0
+    },
+    {
+     "w": "launch",
+     "start": 0.39
+    },
+    {
+     "w": "could",
+     "start": 0.77
+    },
+    {
+     "w": "be",
+     "start": 1.15
+    },
+    {
+     "w": "your",
+     "start": 1.54
+    },
+    {
+     "w": "lock",
+     "start": 1.92
+    },
+    {
+     "w": "screen",
+     "start": 2.31
+    },
+    {
+     "w": "Example",
+     "start": 2.94
+    },
+    {
+     "w": "Orbit",
+     "start": 3.33
+    },
+    {
+     "w": "is",
+     "start": 3.71
+    },
+    {
+     "w": "paying",
+     "start": 4.1
+    },
+    {
+     "w": "me",
+     "start": 4.48
+    },
+    {
+     "w": "to",
+     "start": 4.87
+    },
+    {
+     "w": "show",
+     "start": 5.25
+    },
+    {
+     "w": "you",
+     "start": 5.63
+    },
+    {
+     "w": "this.",
+     "start": 6.02
+    },
+    {
+     "w": "It",
+     "start": 6.65
+    },
+    {
+     "w": "shows",
+     "start": 7.04
+    },
+    {
+     "w": "a",
+     "start": 7.42
+    },
+    {
+     "w": "new",
+     "start": 7.81
+    },
+    {
+     "w": "space",
+     "start": 8.19
+    },
+    {
+     "w": "photo",
+     "start": 8.58
+    },
+    {
+     "w": "every",
+     "start": 8.96
+    },
+    {
+     "w": "day.",
+     "start": 9.35
+    },
+    {
+     "w": "I've",
+     "start": 9.98
+    },
+    {
+     "w": "opened",
+     "start": 10.37
+    },
+    {
+     "w": "it",
+     "start": 10.75
+    },
+    {
+     "w": "every",
+     "start": 11.13
+    },
+    {
+     "w": "morning",
+     "start": 11.52
+    },
+    {
+     "w": "this",
+     "start": 11.9
+    },
+    {
+     "w": "week",
+     "start": 12.29
+    },
+    {
+     "w": "to",
+     "start": 12.67
+    },
+    {
+     "w": "see",
+     "start": 13.06
+    },
+    {
+     "w": "the",
+     "start": 13.44
+    },
+    {
+     "w": "new",
+     "start": 13.83
+    },
+    {
+     "w": "one.",
+     "start": 14.21
+    },
+    {
+     "w": "You",
+     "start": 14.85
+    },
+    {
+     "w": "can",
+     "start": 15.23
+    },
+    {
+     "w": "save",
+     "start": 15.62
+    },
+    {
+     "w": "any",
+     "start": 16.0
+    },
+    {
+     "w": "photo",
+     "start": 16.39
+    },
+    {
+     "w": "as",
+     "start": 16.77
+    },
+    {
+     "w": "your",
+     "start": 17.15
+    },
+    {
+     "w": "phone",
+     "start": 17.54
+    },
+    {
+     "w": "wallpaper",
+     "start": 17.92
+    },
+    {
+     "w": "in",
+     "start": 18.31
+    },
+    {
+     "w": "two",
+     "start": 18.69
+    },
+    {
+     "w": "taps.",
+     "start": 19.08
+    },
+    {
+     "w": "Download",
+     "start": 19.71
+    },
+    {
+     "w": "Example",
+     "start": 20.1
+    },
+    {
+     "w": "Orbit,",
+     "start": 20.48
+    },
+    {
+     "w": "link",
+     "start": 20.86
+    },
+    {
+     "w": "in",
+     "start": 21.25
+    },
+    {
+     "w": "bio.",
+     "start": 21.64
+    }
+   ],
+   "cover": "tiktok-cover.jpg",
+   "script_version": "e81c093343e5",
+   "campaign_version": "eae2ccd694",
+   "campaign": "example-orbit-app"
+  }
+ ],
+ "contactSheet": "contact-sheet.jpg",
+ "warnings": []
+}

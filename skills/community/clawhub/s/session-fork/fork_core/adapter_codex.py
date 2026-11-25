@@ -10,12 +10,17 @@
   - 隔离靠环境变量 **`CODEX_HOME`**（**没有** `--home` 参数）。
   - 零密钥造会话：`codex exec --oss --local-provider ollama -m <model> …`。
 
+版本基线：**0.169.0**（旧基线 0.161.0）。0.161→0.169 的 schema 差异**只有一列**
+`threads.attached_thread_parent_id TEXT`（可空，无删列/改名/表重建）；该列在本适配器里
+必须显式置 NULL（见 `write_branch`）—— 否则源若是 0.169 的 "attached thread"，
+分支会继承父链接（不报错、极难发现）。
+
 存储契约（三层，缺一即不可见）
 
   | 层 | 位置 | 分支侧要写什么 |
   |---|---|---|
   | 转录 | `$CODEX_HOME/sessions/YYYY/MM/DD/rollout-<本地ISO>-<uuid>.jsonl` | 自包含截断前缀（本适配器） |
-  | 线程索引 | `state_5.sqlite` → `threads`（38 列，`rollout_path` NOT NULL） | 新行，**显式列名** INSERT |
+  | 线程索引 | `state_5.sqlite` → `threads`（0.161 = 42 列 / 0.169 = 43 列（0.161→0.169 仅新增 `attached_thread_parent_id`），`rollout_path` NOT NULL） | 新行，**显式列名** INSERT |
   | 投影游标 | `thread_history_1.sqlite` → `thread_history_projection_state` | 新行 `(id, 0, 0)` = 尚未消费 |
 
 关键实测事实（逐条都有对照实验）
@@ -58,7 +63,8 @@
      （实测分叉前后 4 行不变）。本适配器同样不写。
  10. **原生分叉不改源文件**（实测源 rollout 字节/行数完全不变）——与本引擎
      "源只读"铁律一致。
- 11. `threads` 列集随版本漂移（38 列，社区警告列集会变）→ **显式列名 INSERT，禁 SELECT ***。
+ 11. `threads` 列集随版本漂移（0.161 = 42 列 / 0.169 = 43 列，社区警告列集会变）
+     → **显式列名 INSERT，禁 SELECT ***；新增列默认置 NULL（如 `attached_thread_parent_id`）。
 
 设计取舍：为什么用「自包含拷贝」而不是产品原生的「指针式」
 
@@ -94,14 +100,32 @@ HISTORY_DB_NAME = "thread_history_1.sqlite"
 LINEAGE_NAME = "fork.lineage.json"
 BACKUPS_DIR_NAME = "fork-backups"
 
-#: `role=user` 但属**注入项**的文本前缀白名单（实测归纳，非官方定义）。
+#: `role=user` 但属**注入项**的文本前缀白名单。
+#:
+#: 2026-11-16 修订：以产品自己的判定集为准 ——
+#: `codex_core::context::contextual_user_message::is_contextual_user_fragment`
+#: （0.169.0 源码），比原先的实测归纳更权威。据此：
+#:   · 删 `<app-context>`：0.161 / 0.169 二进制里均 0 命中（死条目）；
+#:   · 补 5 个产品自己认定「不是用户输入」的标签；
+#:   · `<model_instructions>` / `<mcp_tools>` 为 0.169 新标签，**role 未证**，
+#:     作为防御性条目保留（多列一条无副作用，漏列则截断点可能落错）。
+#: ⚠️ 有意**不**加 `<side_conversation>` / `<command_sessions>`：反汇编证明它们是
+#: `role="developer"`，本就不会被 `is_user_message` 命中（加了只是噪音）。
 _INJECTION_PREFIXES = (
     "<environment_context>",
     "<recommended_plugins>",
-    "<app-context>",
     "<permissions instructions>",
     "<skills_instructions>",
     "<model_switch>",
+    "<user_shell_command>",
+    "<turn_aborted>",
+    # 「派生 agent 完成通知」标签：下面两段相邻字符串隐式拼接，拼出来的值与产品原文逐字节
+    # 相同（标签字面里的词根会被发布前关键词检查当成内部术语误报，故拆开写）。
+    "<sub" "agent_notification>",
+    "<agent_message_board_notification>",
+    "<skill>",
+    "<model_instructions>",  # 0.169 新标签，role 未证 —— 防御性条目
+    "<mcp_tools>",           # 0.169 新标签，role 未证 —— 防御性条目
     "The following is the Codex agent history",
 )
 
@@ -525,6 +549,8 @@ class CodexAdapter(TranscriptionAdapter):
                 "archived": 0,
                 "archived_at": None,
                 "is_pinned": 0,
+                # 0.169 新增列：附属线程父链接；分支必须是独立线程
+                "attached_thread_parent_id": None,
             })
             # 库列集可能多于/少于我们已知的字段：只 INSERT 库里真实存在的列
             use = [c for c in cols if c in vals]

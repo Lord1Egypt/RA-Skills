@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-academic-figures v8.0.4: Publication-quality academic figure generator.
+academic-figures v8.1.2: Publication-quality academic figure generator.
 
 Generates charts from JSON/CSV data with:
 - Publication-grade aesthetics (Nature/Science/Lancet style)
@@ -1696,9 +1696,18 @@ def validate_data(data, chart_type):
     elif chart_type == "flow":
         nodes = data.get("nodes", [])
         if not isinstance(nodes, list) or len(nodes) < 2: fatal.append("flow 需要 'nodes'（≥2 个节点对象）")
-        if data.get("layout") not in (None, "chain", "layered", "snake"): fatal.append("flow: layout 只支持 chain | layered | snake")
+        if data.get("layout") not in (None, "chain", "layered", "snake", "swimlane"): fatal.append("flow: layout 只支持 chain | layered | snake | swimlane")
+        if data.get("layout") == "swimlane" and not data.get("lanes"): fatal.append("flow: layout=swimlane 需要 'lanes'（名称列表）")
+        _lg_flag = data.get("legend")
+        if _lg_flag is not None and not isinstance(_lg_flag, bool): fatal.append(f"flow: 'legend' 需为布尔（true/false；缺省=混合样式自动），收到 {_lg_flag!r}")  # v8.1.0 边样式图例开关
         _cols = data.get("columns")
         if _cols is not None and (not str(_cols).lstrip("-").isdigit() or not 2 <= int(_cols) <= 8): fatal.append(f"flow: columns 需为 [2, 8] 整数，收到 {_cols!r}")  # v8.0.4 validate-first [2,8]（渲染层同锁）
+        # v8.0.5 F1：形状白名单前置校验（渲染层 resolve_shape 同锁）
+        from af_flow import SHAPES as _SH
+        _canon = set(_SH) | {a for s in _SH.values() for a in s["aliases"]}
+        for _n in nodes:
+            if isinstance(_n, dict) and _n.get("shape") and str(_n["shape"]).strip().lower() not in _canon:
+                fatal.append(f"flow: 未知形状 '{_n['shape']}'——可用: {', '.join(sorted(_SH))} 及别名")
 
     # ── prisma: PRISMA 2020 flow, counts + arithmetic consistency gates ──
     elif chart_type == "prisma":
@@ -2552,9 +2561,11 @@ def main():
                "｜ 组学 -t volcano/-t cluster_heatmap ｜ 多面板 -t composite（share_y 统一尺度）"
                "｜ 偏倚风险 -t rob（robvis 同款交通灯）｜ 投稿包 --pub-ready ｜ 场景卡 references/scenario-cards.md ｜ 对智能体说 references/prompt-cards.md")
     parser.add_argument("--gate", default="basic", choices=["basic", "strict"], help="流程图/示意图渲染闸（v8.0.0）：strict=渲染后跑三层 bbox 断言（节点×边标签×箭头线段），任何非零交集 exit 2 拒绝交付")
+    parser.add_argument("--dump-flow-routes", default=None, metavar="PATH", help="QC 边车：flow 渲染后把路由/块几何快照写 JSON（几何闸测试真值源，v8.0.9）")
     parser.add_argument("--type", "-t", choices=list(GENERATORS.keys()),
                         help="图型（如 bar/box/violin/km/roc/forest/prisma，--demo 可看菜单）")
     parser.add_argument("--data", "-d", help="输入数据文件（.json / .csv / .tsv / .xlsx）；支持 inline 简写 \"A=10,B=8,C=5\"（单系列，等价 labels+series value）")
+    parser.add_argument("--from-mermaid", default=None, metavar="FILE.mmd", help="mermaid flowchart 文件 → -t flow 语义 JSON（F5 v8.0.6：形状/边型/subgraph→泳道映射；与 -t flow 联用，-d 可省）")
     parser.add_argument("--sheet", default=None,
                         help="xlsx 的工作表名（默认取活动工作表）")
     parser.add_argument("--out", "-o", help="输出文件路径（.png / .svg / .pdf / .tiff / .eps）")
@@ -2872,7 +2883,7 @@ def main():
             print("ERROR: --demo 需要 --type/--data/--out", file=sys.stderr)
             sys.exit(1)
     else:
-        if not args.type or not args.data or not args.out:
+        if not args.type or not (args.data or getattr(args, "from_mermaid", None)) or not args.out:
             parser.error("必须提供 -t/--type、-d/--data、-o/--out（或用 --demo 交互模式）")
 
     if isinstance(args.hatch, str):  # v7.8.1 AF9 on|off 归一化（裸旗标=on；off/false/0/no=显式关）
@@ -2991,8 +3002,18 @@ def main():
             data = load_data(args.data, chart_type=args.type, sheet=args.sheet,
                          csv_errors=not getattr(args, 'csv_no_errors', False))
     else:
-        data = load_data(args.data, chart_type=args.type, sheet=args.sheet,
-                         csv_errors=not getattr(args, 'csv_no_errors', False))
+        # v8.0.6 F5：--from-mermaid 直通（flow 语义 JSON 由 mermaid 源生成；
+        # -d 可省——mermaid 源即数据）
+        if getattr(args, "from_mermaid", None):
+            if args.type != "flow":
+                print("ERROR: --from-mermaid 仅与 -t flow 联用", file=sys.stderr)
+                sys.exit(1)
+            from af_mermaid import parse_mermaid
+            with open(args.from_mermaid, encoding="utf-8") as _fm:
+                data = parse_mermaid(_fm.read())
+        else:
+            data = load_data(args.data, chart_type=args.type, sheet=args.sheet,
+                             csv_errors=not getattr(args, 'csv_no_errors', False))
 
     # ── A4(v2.8)+v3.1：cluster_heatmap 降采样（确定性等距采样；校验前执行）──
     # v3.1：行数>3000 且未给 --downsample 时自动采样到 2000 行并显著告知
@@ -3100,7 +3121,13 @@ def main():
         if isinstance(obj, str):
             return has_cjk(obj)
         if isinstance(obj, dict):
-            return any(_scan_cjk(k) for k in obj.keys()) or any(_scan_cjk(v) for v in obj.values())
+            # v8.0.9 根修：下划线前缀 meta 键（_note/_command 等模板元数据，
+            # 永不渲染）不参与 CJK 判定——meta 中文会翻全局字体链前插，改变
+            # 拉丁文本测量→布局漂移→路由决策翻转（clinical 模板实测：同数据
+            # 带 _note 即 strict FAIL）
+            return any(_scan_cjk(k) or _scan_cjk(v)
+                       for k, v in obj.items()
+                       if not (isinstance(k, str) and k.startswith("_")))
         if isinstance(obj, (list, tuple)):
             return any(_scan_cjk(v) for v in obj)
         return False
@@ -3210,6 +3237,10 @@ def main():
     for _a2_try in (1, 2):
         try:
             extra = gen_func(data, ax, theme, cjk_fp, **kwargs)
+            if getattr(args, "dump_flow_routes", None) and args.type == "flow":
+                import af_flow as _af_geo
+                with open(args.dump_flow_routes, "w", encoding="utf-8") as _fg:
+                    json.dump(_af_geo.LAST_GEOM, _fg, ensure_ascii=False)
             break
         except MemoryError:
             plt.close(fig)

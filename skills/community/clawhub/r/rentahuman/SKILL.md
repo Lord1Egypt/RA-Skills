@@ -84,7 +84,7 @@ The easiest way for an agent to get API access:
 ### Create a Bounty
 
 ```bash
-node {baseDir}/scripts/rentahuman.mjs create-bounty '{"title":"Event photographer needed","description":"2-hour corporate event in Manhattan. Need professional photos.","priceType":"fixed","price":150,"estimatedHours":2,"location":"New York, NY","skillsNeeded":["Photography"]}'
+node {baseDir}/scripts/rentahuman.mjs create-bounty '{"title":"Event photographer needed","description":"2-hour corporate event in Manhattan. Need professional photos.","priceType":"fixed","price":150,"estimatedHours":2,"location":{"city":"New York","state":"NY","country":"US","isRemoteAllowed":false},"skillsNeeded":["Photography"]}'
 ```
 
 **Multi-person bounty** (e.g., 10 sign holders):

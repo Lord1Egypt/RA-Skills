@@ -1,6 +1,6 @@
 ## Description:
 
-Rewrites Chinese AI-generated text into a more natural human style using selectable flash, pro, and pro_plus processing modes.
+Rewrites user-provided text in a more natural voice across languages, with selectable polishing and formatting modes.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and agents use this skill to process Chinese drafts of at least 300 characters when they explicitly request AI-trace removal, humanization, rewriting, polishing, or formatting. The agent runs the bundled script, returns the processed text from the service, and avoids rewriting the result itself.
+Agent users use this skill to polish or format text they provide, choosing a processing mode before the service handles the text.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Full user text is sent to a cloud service for processing.
+Risk: The security assessment reports no detected issues, but coverage is incomplete: one of three components was not analyzed and some referenced paths were missing.
 
-Mitigation: Use the skill only for text that may be shared with that service, and avoid private, regulated, or proprietary drafts.
+Mitigation: Review the remaining files and referenced paths, and account for the limited scan coverage when deciding whether to install.
 
-Risk: Personal API keys can be stored in plaintext local configuration.
+Risk: Text submitted for processing is sent to a cloud service.
 
-Mitigation: Prefer one-time keys passed for a single run unless plaintext local storage is acceptable, and clear saved keys when they are no longer needed.
+Mitigation: Do not submit sensitive personal information.
 
-Risk: Broad trigger terms could cause processing when a user did not intend to submit text.
+Risk: A personal API key is stored in plaintext if the user chooses to save it locally.
 
-Mitigation: Confirm before processing pasted text unless the user clearly requests AI-trace removal, rewriting, polishing, formatting, or a specific processing tier.
+Mitigation: Save a personal key only when that local storage is acceptable, and clear it when it is no longer needed.
 
 ## Reference(s):
 
 - [ClawHub skill page](https://clawhub.ai/abcqq1234567/skills/wenzi-runse)
-- [Artifact README](artifact/README.md)
-- [Artifact skill definition](artifact/SKILL.md)
+- [Publisher profile](https://clawhub.ai/user/abcqq1234567)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+**Output Type(s):** [Text, Markdown]
 
-**Output Format:** [JSON from the script with success, result, and message fields; the agent delivers the returned rewritten text as plain text or Markdown.]
+**Output Format:** [Rewritten or formatted text in the input language, with a text menu for mode selection when needed.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires a minimum 300-character input text and offers flash, pro, and pro_plus processing modes.]
+**Other Properties Related to Output:** [Processing mode is selected by the user; output length and formatting follow the submitted text and selected mode.]
 
 ## Skill Version(s):
 
-1.6.0 (source: server release metadata)
+1.6.7 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

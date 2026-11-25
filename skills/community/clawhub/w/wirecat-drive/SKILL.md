@@ -29,8 +29,10 @@ Find your way with the tool itself, not this file:
 - `drive personal documents show DOC_ID` reads the text and tabs; `drive personal documents context DOC_ID`
   adds tags, notes, memories and editors. Each takes a hit's `document:<n>` ref too; a bare number is refused.
 - `drive personal documents list --compact` prints one line per document instead of JSON.
-- `drive personal documents history DOC_ID --activity` says who did what; it needs a sign-in with
-  `--grant activity`.
+- `drive personal documents history DOC_ID` lists the earlier versions sync kept, `--revision N` shows one, and
+  `drive personal changes --since 1d` lists what was added, changed, deleted or is no longer visible. Both read the
+  local copy.
+- `drive personal activities list DOC_ID` says who did what. It needs a sign-in with `--grant activity`.
 - An empty result means nothing matched in the imported folders, not that Drive has no such document.
   `drive personal status` shows what is imported and pending.
 - Not signed in: the owner runs `drive <profile> session start` on the computer running drive, or signs in from
@@ -40,6 +42,10 @@ Find your way with the tool itself, not this file:
 
 - Local changes (`tags add`, `notes add`, `memories extract --yes`) stay in the local store.
 - Commands that change Google files need a sign-in with `--grant write` and the owner's request.
+- A text, `.docx` or `.xlsx` file stored in Drive: read it (`files download FILE_ID --json`, `files sheets show`,
+  `files documents show`), then write with `files update`, `files sheets update` or `files documents update` and
+  `--expected-fingerprint <sha256 you read>`. A `conflict` means it changed: read it again and redo the edit. Never
+  write back a text with `truncated: true` or no `sha256`.
 - `--read-only`, or `DRIVE_READ_ONLY=1` in the environment, refuses every change with exit 5.
 - `memories extract` sends the document's text to the owner's configured model; ask before running it on
   a document the owner has not named.

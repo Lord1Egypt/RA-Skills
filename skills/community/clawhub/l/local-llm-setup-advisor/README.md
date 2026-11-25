@@ -2,15 +2,15 @@
 
 ## Requirement
 
-Validated demand: Builders need guidance for running useful AI and LLM workflows locally on consumer CPU or family GPU hardware without depending on cloud-only systems. This requirement is supported by 9 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
+Validated demand: Builders need guidance for running useful AI and LLM workflows locally on consumer CPU or family GPU hardware without depending on cloud-only systems. This requirement is supported by 12 separate online signals across 2 source families, so it represents broader demand rather than a single isolated request.
 
 Audience: developers, researchers, privacy-conscious users, hobbyists, and small teams who want local AI workflows on ordinary home machines
 
 Category: `software-and-data`
 
-Demand score: 98/100
+Demand score: 90/100
 
-Evidence coverage: 9 signals across 3 source families.
+Evidence coverage: 12 signals across 2 source families.
 
 ## Evidence
 
@@ -21,8 +21,11 @@ Evidence coverage: 9 signals across 3 source families.
 - segmentfault-search: [【vLLM 学习】Disaggregated Prefill Lmcache](https://segmentfault.com/a/1190000046720505)
 - segmentfault-search: [不可不知小技巧｜Triton-TLE实践，告别手动Barrier，用生产消费模型释放Hopper架构算力极限](https://segmentfault.com/a/1190000047790144)
 - segmentfault-search: [【vLLM 学习】Disaggregated Prefill](https://segmentfault.com/a/1190000046807401)
-- hacker-news-search: [Apple ML Research: Muse Spark Open with MLX on Mac Studio](https://news.ycombinator.com/item?id=50121837)
-- github-issues: [📰 Hacker News AI Digest 2026-10-18](https://github.com/datnguyenquy94/news-radar/issues/803)
+- hacker-news-search: [I'm not convinced the AI bubble exists](https://news.ycombinator.com/item?id=50449829)
+- hacker-news-search: [Claude Code sends your email address to websites](https://news.ycombinator.com/item?id=50386369)
+- hacker-news-search: [Astra can read and write weights to improve Qwen](https://news.ycombinator.com/item?id=50398105)
+- hacker-news-search: [I'm not convinced the AI bubble exists](https://news.ycombinator.com/item?id=50429033)
+- hacker-news-search: [I'm not convinced the AI bubble exists](https://news.ycombinator.com/item?id=50423020)
 
 ## How This Skill Meets The Requirement
 

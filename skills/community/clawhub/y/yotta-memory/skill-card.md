@@ -1,6 +1,6 @@
 ## Description:
 
-Provides AI agents with persistent, file-based memory for cross-session recall and storage, with shared FACT entries and owner-isolated private memories.
+Yotta-memory gives AI agents persistent, file-based memory for restoring context across sessions, recording important information, and archiving older memories.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and AI agents use it to persist useful context between sessions, retrieve task-relevant memories, and keep private memory scoped to its owner.
+Developers and AI agents use it to restore task context between sessions and save facts, preferences, boundaries, and commitments in a local or shared memory store.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan marks the skill suspicious and reports serious transport, credential, installer, memory, and filesystem risks; artifact analysis is incomplete.
+Risk: ClawScan reports serious memory-security and data-handling weaknesses, and the scan covered only part of the artifact.
 
-Mitigation: Review the findings and setup before use; verify transport encryption, protect tokens, pin installer versions, and restrict memory and file access.
+Mitigation: Consider avoiding installation until the reported issues are addressed; if evaluating it, use a reviewed, version-pinned package and do not send credentials over ordinary HTTP.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/yottameta/skills/yotta-memory)
-- [Memory store protocol](artifact/references/protocol.md)
-- [Provider protocol](artifact/references/provider-protocol.md)
-- [FAQ](artifact/references/faq.md)
+- [Project documentation](https://github.com/YottaMeta/yotta-memory)
+- [npm package](https://www.npmjs.com/package/@yottameta/yotta-memory)
+- [Memory format and CLI protocol](references/protocol.md)
+- [Extension provider protocol](references/provider-protocol.md)
+- [FAQ and usage guidance](references/faq.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration instructions]
+**Output Type(s):** [Markdown, Text, Files, JSON, Shell commands]
 
-**Output Format:** [Plain text, Markdown, JSON, and CLI or MCP responses]
+**Output Format:** [Markdown memory files, recalled context, and text or JSON operation reports]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Memory results depend on the configured store, identity, and access scope.]
+**Other Properties Related to Output:** [Persistent user- or project-level memory; FACT entries are shared and PREF, BOUND, and COMMIT entries are owner-isolated.]
 
 ## Skill Version(s):
 
-0.24.3 (source: release evidence, package.json, skill-manifest.json)
+0.24.5 (source: frontmatter, package.json)
 
 ## Ethical Considerations:
 

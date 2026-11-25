@@ -4,8 +4,13 @@
 ccswitch - switch Claude Code between model profiles in one command.
 
 Usage:
-    ccswitch.py <profile>     switch to a profile (e.g. deepseek | spacebunny)
+    ccswitch.py <profile>     switch to a profile (e.g. deepseek | zen-ds-flash)
                               add --no-gateway to change settings only
+    ccswitch.py delete <profile> [--yes] [--permanent]
+                              retire a profile: FREE models (x_free) are erased
+                              for real; paid ones are archived to
+                              ~/.claude/backups/deleted/. --permanent forces a
+                              real delete even for paid profiles.
     ccswitch.py status        show current profile + gateway state
     ccswitch.py list          list available profiles
     ccswitch.py gateway       just make sure the gateway is running (no switch)
@@ -44,6 +49,7 @@ CLAUDE_DIR = HOME / ".claude"
 SETTINGS = CLAUDE_DIR / "settings.json"
 PROFILES_DIR = CLAUDE_DIR / "profiles"
 BACKUP_DIR = CLAUDE_DIR / "backups"
+DELETE_DIR = BACKUP_DIR / "deleted"
 
 # Gateway = our own zero-dependency translation proxy (see ccproxy.py).
 # History: claude-code-router 2.1.1 was tried first, but it emits malformed
@@ -65,6 +71,21 @@ def _find_ccproxy():
 
 
 CCPROXY = _find_ccproxy()
+
+
+def _find_zen_bridge():
+    """zen_bridge.py is optional; it ships next to ccproxy.py when installed."""
+    for cand in (_HERE / "zen_bridge.py", _HERE.parent / "zen_bridge.py",
+                 HOME / "zen_bridge.py"):
+        if cand.exists():
+            return cand.resolve()
+    return _HERE / "zen_bridge.py"
+
+
+ZEN_BRIDGE = _find_zen_bridge()
+ZEN_BRIDGE_LOG = HOME / ".claude-zen-bridge.log"
+ZEN_BRIDGE_PORT = 8787
+ZEN_BRIDGE_SDK_PORT = 41234
 # Use the very interpreter running this script: always present, never a
 # hardcoded path, and it keeps working inside virtualenvs.
 PY_EXE = Path(sys.executable) if sys.executable else None
@@ -82,11 +103,15 @@ GW_PORT = 3457
 ALIASES = {
     "ds": "deepseek",
     "deepseek-flash": "deepseek",
-    "bunny": "spacebunny",
-    "sb": "spacebunny",
-    "space-bunny": "spacebunny",
-    "zen": "spacebunny",
-    "opencode-zen": "spacebunny",
+    # space-bunny 已于 2026-10-16 下线（Zen 免费层不再提供），旧别名改为落到
+    # 现役的 Zen 免费模型 deepseek-v4.1-flash-free，避免 `ccswitch zen` 报未知 profile。
+    "zen": "zen-ds-flash",
+    "opencode-zen": "zen-ds-flash",
+    "zen-ds": "zen-ds-flash",
+    "ds-flash": "zen-ds-flash",
+    "bunny": "zen-ds-flash",
+    "sb": "zen-ds-flash",
+    "space-bunny": "zen-ds-flash",
 }
 
 DETACHED_PROCESS = 0x00000008
@@ -135,8 +160,20 @@ def profile_path(name):
     return PROFILES_DIR / (name + ".json")
 
 
+def strip_internal(cfg):
+    """Drop ccswitch-only hints (`x_*`) from a config dict.
+
+    Those keys describe *how to start local helpers* (bridge, gateway port,
+    ccproxy args). They belong in the profile only: settings.json is consumed by
+    Claude Code, and current_profile() compares the two files, so stripping from
+    both sides keeps that comparison honest.
+    """
+    return {k: v for k, v in cfg.items() if not k.startswith("x_")}
+
+
 def same_json(a, b):
-    return json.dumps(a, sort_keys=True) == json.dumps(b, sort_keys=True)
+    return (json.dumps(strip_internal(a), sort_keys=True)
+            == json.dumps(strip_internal(b), sort_keys=True))
 
 
 def current_profile():
@@ -164,8 +201,9 @@ def port_open(host=GW_HOST, port=GW_PORT, timeout=0.6):
         return False
 
 
-def gateway_pid():
+def gateway_pid(port=None):
     """PID of the process listening on the gateway port, or None."""
+    port = GW_PORT if port is None else int(port)
     if os.name == "nt":
         try:
             cp = subprocess.run(["netstat", "-ano", "-p", "TCP"],
@@ -176,7 +214,7 @@ def gateway_pid():
             parts = line.split()
             if len(parts) >= 5 and parts[0].upper() == "TCP" and "LISTENING" in line.upper():
                 local = parts[1]
-                if local.endswith(":" + str(GW_PORT)):
+                if local.endswith(":" + str(port)):
                     return parts[-1]
         return None
     # POSIX: we recorded the pid at spawn time; verify it is still alive.
@@ -195,8 +233,9 @@ def _clear_pidfile():
         pass
 
 
-def stop_gateway():
-    pid = gateway_pid()
+def stop_gateway(port=None):
+    port = GW_PORT if port is None else int(port)
+    pid = gateway_pid(port)
     if not pid:
         return False
     if os.name == "nt":
@@ -208,12 +247,12 @@ def stop_gateway():
         except OSError:
             pass
     for _ in range(20):
-        if not port_open():
+        if not port_open(port=port):
             _clear_pidfile()
             return True
         time.sleep(0.25)
     _clear_pidfile()
-    return not port_open()
+    return not port_open(port=port)
 
 
 def _read_gateway_config():
@@ -262,12 +301,21 @@ def _gateway_settings_paths():
     return [SETTINGS] + [profile_path(n) for n in list_profiles()]
 
 
-def start_gateway():
+def start_gateway(port=None, extra_args=None):
+    """Start ccproxy on `port`.
+
+    By default ccproxy reads its upstream from ~/.claude-code-proxy.json, which
+    is shared. A profile may therefore ship its own `x_ccproxy_args`
+    (e.g. --upstream/--model/--key) so a single profile is self-describing and
+    does not mutate the shared config. Anything with "x_" is a ccswitch-local
+    hint and is never copied into settings.json.
+    """
     if PY_EXE is None or not PY_EXE.exists():
         die("cannot locate a python interpreter (sys.executable is empty)")
     if not CCPROXY.exists():
         die("ccproxy.py not found: " + str(CCPROXY))
     ensure_shared_token()
+    port = GW_PORT if port is None else int(port)
     GATEWAY_LOG.parent.mkdir(parents=True, exist_ok=True)
     env = os.environ.copy()
     for k in ("HTTP_PROXY", "HTTPS_PROXY", "http_proxy", "https_proxy",
@@ -275,7 +323,9 @@ def start_gateway():
         env.pop(k, None)
     env["NO_PROXY"] = "127.0.0.1,localhost"
     env["no_proxy"] = "127.0.0.1,localhost"
-    argv = [str(PY_EXE), str(CCPROXY), "--port", str(GW_PORT)]
+    argv = [str(PY_EXE), str(CCPROXY), "--port", str(port)]
+    if extra_args:
+        argv += [str(a) for a in extra_args]
     log = open(GATEWAY_LOG, "ab", buffering=0)
     kw = dict(cwd=str(CCPROXY.parent), stdin=subprocess.DEVNULL,
               stdout=log, stderr=log, env=env, close_fds=True)
@@ -301,16 +351,17 @@ def direct_opener():
     return urllib.request.build_opener(urllib.request.ProxyHandler({}))
 
 
-def wait_health(timeout=25.0):
+def wait_health(port=None, timeout=25.0):
     """Poll the gateway until it answers, return (ok, detail).
 
     The reply must identify itself as ccproxy (and accept our token), so a
     different program that happens to hold the port is reported rather than
     trusted -- otherwise it could collect prompts meant for the real gateway.
     """
+    port = GW_PORT if port is None else int(port)
     op = direct_opener()
     token = shared_token()
-    req = urllib.request.Request("http://%s:%d/health" % (GW_HOST, GW_PORT))
+    req = urllib.request.Request("http://%s:%d/health" % (GW_HOST, port))
     if token:
         req.add_header("x-api-key", token)
     deadline = time.time() + timeout
@@ -324,7 +375,7 @@ def wait_health(timeout=25.0):
                 except Exception:
                     info = {}
                 if info.get("service") != "ccproxy":
-                    return False, "port %d is held by another process" % GW_PORT
+                    return False, "port %d is held by another process" % port
                 return True, "HTTP %d" % r.status
         except urllib.error.HTTPError as e:
             if e.code == 401:
@@ -337,9 +388,87 @@ def wait_health(timeout=25.0):
     return False, last or "timeout"
 
 
+def profile_gw_port(cfg):
+    """Per-profile gateway port; defaults to the global one (3457).
+
+    Two profiles that need different upstreams cannot share one ccproxy port,
+    so the port belongs to the profile rather than to the machine.
+    """
+    try:
+        return int(cfg.get("x_gateway_port") or GW_PORT)
+    except (TypeError, ValueError):
+        return GW_PORT
+
+
 def needs_gateway(cfg):
+    port = profile_gw_port(cfg)
     url = str((cfg.get("env") or {}).get("ANTHROPIC_BASE_URL", ""))
-    return ("127.0.0.1:%d" % GW_PORT) in url or ("localhost:%d" % GW_PORT) in url
+    return ("127.0.0.1:%d" % port) in url or ("localhost:%d" % port) in url
+
+
+# ------------------------------------------------------------- zen bridge
+# Some free upstreams (OpenCode Zen) can only be used from inside opencode, so
+# requests go: ccproxy -> zen_bridge -> opencode serve -> Zen. A profile opts in
+# with "x_bridge": true. Cold start is slow (~25-40s) because the bridge has to
+# bring up `opencode serve` too, hence the generous timeout.
+def bridge_alive(port=ZEN_BRIDGE_PORT, timeout=2.0):
+    try:
+        req = urllib.request.Request("http://127.0.0.1:%d/healthz" % port)
+        with direct_opener().open(req, timeout=timeout) as r:
+            return r.status == 200
+    except Exception:
+        return False
+
+
+def start_bridge(port=ZEN_BRIDGE_PORT, timeout=90):
+    if PY_EXE is None or not PY_EXE.exists():
+        die("cannot locate a python interpreter (sys.executable is empty)")
+    if not ZEN_BRIDGE.exists():
+        die("zen_bridge.py not found: %s - install it next to ccproxy.py"
+            % ZEN_BRIDGE)
+    env = os.environ.copy()
+    for k in ("HTTP_PROXY", "HTTPS_PROXY", "http_proxy", "https_proxy",
+              "ALL_PROXY", "all_proxy"):
+        env.pop(k, None)
+    env["NO_PROXY"] = "127.0.0.1,localhost"
+    env["no_proxy"] = "127.0.0.1,localhost"
+    ZEN_BRIDGE_LOG.parent.mkdir(parents=True, exist_ok=True)
+    argv = [str(PY_EXE), str(ZEN_BRIDGE), "--port", str(port),
+            "--sdk-port", str(ZEN_BRIDGE_SDK_PORT), "--auto-start"]
+    log = open(ZEN_BRIDGE_LOG, "ab", buffering=0)
+    kw = dict(cwd=str(ZEN_BRIDGE.parent), stdin=subprocess.DEVNULL,
+              stdout=log, stderr=log, env=env, close_fds=True)
+    if os.name == "nt":
+        try:
+            proc = subprocess.Popen(argv, creationflags=DETACHED, **kw)
+        except OSError:
+            proc = subprocess.Popen(
+                argv, creationflags=DETACHED_PROCESS | CREATE_NEW_PROCESS_GROUP, **kw)
+    else:
+        proc = subprocess.Popen(argv, start_new_session=True, **kw)
+    deadline = time.time() + timeout
+    while time.time() < deadline:
+        if bridge_alive(port):
+            return True, proc.pid
+        time.sleep(0.5)
+    return False, proc.pid
+
+
+def ensure_bridge(cfg):
+    """Start zen_bridge for profiles that declare `x_bridge`. Returns note str.
+
+    The bridge is deliberately left running when switching *away* to another
+    profile: WorkBuddy points at the same port, so stopping it would take the
+    free model away from the other client too.
+    """
+    if not cfg.get("x_bridge"):
+        return "bridge not needed"
+    if bridge_alive():
+        return "bridge already running"
+    ok, _pid = start_bridge()
+    if ok:
+        return "bridge started -> :%d/healthz" % ZEN_BRIDGE_PORT
+    return "bridge FAILED to start -> see %s" % ZEN_BRIDGE_LOG
 
 
 def backup_settings():
@@ -355,23 +484,28 @@ def backup_settings():
 def ensure_gateway(cfg):
     """Reconcile gateway state with what the profile needs. Returns note str."""
     want = needs_gateway(cfg)
+    port = profile_gw_port(cfg)
     if want:
+        notes = [ensure_bridge(cfg)]
         ensure_shared_token()
-        if port_open():
-            ok, detail = wait_health(8)
-            if ok:
-                return "gateway already running (%s)" % detail
-            # Do not kill an unknown listener: report it and let the user decide.
-            return ("port %d unusable: %s - stop what holds it, then run "
-                    "`ccswitch gateway`" % (GW_PORT, detail))
-        start_gateway()
-        ok, detail = wait_health(25)
+        extra = cfg.get("x_ccproxy_args") or None
+        if port_open(port=port):
+            ok, detail = wait_health(port, 8)
+            notes.append("gateway already running (%s)" % detail if ok else
+                         "port %d unusable: %s - free the port, then run "
+                         "`ccswitch gateway`" % (port, detail))
+            return "; ".join(notes)
+        start_gateway(port, extra)
+        ok, detail = wait_health(port, 25)
         if not ok:
-            return "gateway FAILED to start -> see %s (%s)" % (GATEWAY_LOG, detail)
-        return "gateway started -> %s" % detail
+            notes.append("gateway FAILED to start -> see %s (%s)"
+                         % (GATEWAY_LOG, detail))
+            return "; ".join(notes)
+        notes.append("gateway started on :%d -> %s" % (port, detail))
+        return "; ".join(notes)
     else:
-        if port_open():
-            stop_gateway()
+        if port_open(port=port):
+            stop_gateway(port)
             return "gateway stopped (not needed)"
         return "gateway not needed (left off)"
 
@@ -386,11 +520,14 @@ def cmd_list():
     for n in names:
         mark = " * active" if n == cur else ""
         url = ""
+        kind = "?"
         try:
-            url = (read_json(profile_path(n)).get("env") or {}).get("ANTHROPIC_BASE_URL", "")
+            cfg = read_json(profile_path(n))
+            url = (cfg.get("env") or {}).get("ANTHROPIC_BASE_URL", "")
+            kind = "free" if cfg.get("x_free") else "paid"
         except Exception:
             pass
-        out("  %-12s -> %s%s" % (n, url, mark))
+        out("  %-12s -> %-50s [%s]%s" % (n, url, kind, mark))
     if cur is None and SETTINGS.exists():
         out("  (settings.json does not match any profile)")
 
@@ -445,7 +582,7 @@ def cmd_switch(arg, no_gateway=False):
         bak = backup_settings()
         if bak:
             out("Backed up current settings -> %s" % bak.name)
-        write_json(SETTINGS, cfg)
+        write_json(SETTINGS, strip_internal(cfg))
         out("Settings switched: %s -> %s" % (prev or "(custom)", name))
 
     if no_gateway:
@@ -459,7 +596,7 @@ def cmd_switch(arg, no_gateway=False):
     out("")
     out("NOTE: already-running Claude Code sessions keep the OLD settings.")
     out("      Restart `claude` to pick this up.")
-    if needs_gateway(cfg) and not port_open():
+    if not no_gateway and needs_gateway(cfg) and not port_open(port=profile_gw_port(cfg)):
         out("      Gateway is NOT running -> run: ccswitch gateway")
 
 
@@ -479,6 +616,64 @@ def cmd_gateway():
         die("gateway failed to start -> see %s" % GATEWAY_LOG)
 
 
+def cmd_delete(arg, assume_yes=False, permanent=False):
+    """Delete a profile.
+
+    Free models (``x_free: true`` in the profile) are ERASED for real --
+    os.remove, no backup. They either suck or have expired; nothing worth
+    keeping. Paid profiles are archived to ~/.claude/backups/deleted/ and can
+    be restored by copying back. ``permanent=True`` forces a real delete even
+    for paid profiles.
+    """
+    name = canonical(arg)
+    if not name:
+        die("missing profile name")
+    path = profile_path(name)
+    if not path.exists():
+        avail = ", ".join(list_profiles()) or "(none)"
+        die("unknown profile '%s'. available: %s" % (arg, avail))
+
+    cfg = read_json(path)
+    model = cfg.get("model") or (cfg.get("env") or {}).get("ANTHROPIC_MODEL", "(unset)")
+    url = (cfg.get("env") or {}).get("ANTHROPIC_BASE_URL", "(unset)")
+    is_free = bool(cfg.get("x_free"))
+    real_delete = permanent or is_free
+    cur = current_profile()
+    warning = ""
+    if cur == name:
+        warning = ("\n!! '%s' is the ACTIVE profile. settings.json is left as-is,\n"
+                   "   but no profile will match it any more - switch to another\n"
+                   "   model afterwards (e.g. `ccswitch zen-ds-flash`)." % name)
+
+    out("Profile   : %s" % name)
+    out("Model     : %s" % model)
+    out("Base URL  : %s" % url)
+    out("Kind      : %s" % ("FREE - will be ERASED for real (no backup)"
+                            if real_delete
+                            else "paid - will be archived to %s" % DELETE_DIR))
+    if warning:
+        out(warning)
+    if not assume_yes:
+        try:
+            reply = input("Delete this profile? [y/N] ").strip().lower()
+        except EOFError:
+            reply = ""
+        if reply not in ("y", "yes"):
+            out("Aborted - nothing was deleted.")
+            return
+
+    if real_delete:
+        path.unlink()
+        out("Deleted   : %s (ERASED, no backup)" % path)
+    else:
+        DELETE_DIR.mkdir(parents=True, exist_ok=True)
+        ts = datetime.now().strftime("%Y%m%d-%H%M%S")
+        dest = DELETE_DIR / ("%s.json.deleted-%s" % (name, ts))
+        shutil.move(str(path), str(dest))
+        out("Deleted   : %s -> %s" % (path, dest))
+        out("(archived, not erased - copy it back to %s to restore)" % PROFILES_DIR)
+
+
 def main(argv):
     if hasattr(sys.stdout, "reconfigure"):
         try:
@@ -487,6 +682,8 @@ def main(argv):
             pass
     raw = argv[1:]
     no_gateway = any(a in ("--no-gateway", "-n") for a in raw)
+    assume_yes = any(a in ("--yes", "-y", "--force") for a in raw)
+    permanent = "--permanent" in raw
     args = [a for a in raw if not a.startswith("-")]
     if not args:
         if any(a in ("-h", "--help", "help") for a in raw):
@@ -501,6 +698,9 @@ def main(argv):
         cmd_list()
     elif cmd in ("gateway", "gw", "up"):
         cmd_gateway()
+    elif cmd in ("delete", "del", "rm", "remove"):
+        cmd_delete(args[1] if len(args) > 1 else "",
+                   assume_yes=assume_yes, permanent=permanent)
     elif cmd == "help":
         out(__doc__.strip())
     else:

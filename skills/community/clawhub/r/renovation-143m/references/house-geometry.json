@@ -1,0 +1,275 @@
+{
+  "_meta": {
+    "unit": "mm",
+    "coordinate_system": "图面坐标（上北下南），以图纸指北针为准；待现场复尺后替换为实测坐标",
+    "data_sources": [
+      {
+        "file": "images/layout-photo-1.jpg",
+        "type": "户型图实拍（彩色）",
+        "reliability": "estimated"
+      },
+      {
+        "file": "images/layout-photo-2.jpg",
+        "type": "户型图实拍（黑白线稿）",
+        "reliability": "estimated"
+      },
+      {
+        "file": "images/layout-cad-plan-a.jpg",
+        "type": "CAD平面布置截图",
+        "reliability": "estimated"
+      }
+    ],
+    "accuracy_note": "所有尺寸为图纸标注/截图识别估算值（estimated），非实测（measured）。最后核验时间：2026-11-18（仅图面核对，未复尺）",
+    "building_area_m2": 143,
+    "indoor_area_m2": null,
+    "ceiling_height_mm": null,
+    "orientation": "主要采光面朝南（上北下南左西右东）"
+  },
+  "spaces": {
+    "bedroom_master": {
+      "name": "主卧",
+      "zone": "东南",
+      "w": 3700,
+      "d": 3900,
+      "area_m2": [
+        14,
+        15
+      ],
+      "confidence": "estimated",
+      "related_reqs": [
+        "REQ-MASTER-001",
+        "REQ-MASTER-002"
+      ],
+      "notes": "原带独立衣帽间→已确认取消归还卧室"
+    },
+    "bedroom_secondary_1": {
+      "name": "次卧一",
+      "zone": "西南",
+      "w": 3300,
+      "d": 3800,
+      "area_m2": [
+        12,
+        13
+      ],
+      "confidence": "estimated",
+      "related_reqs": [
+        "REQ-BEDROOM-001"
+      ]
+    },
+    "bedroom_secondary_2": {
+      "name": "次卧二",
+      "zone": "东北",
+      "w": 3000,
+      "d": 2800,
+      "area_m2": [
+        8,
+        9
+      ],
+      "confidence": "estimated",
+      "related_reqs": [
+        "REQ-BEDROOM-001",
+        "REQ-BEDROOM-002"
+      ],
+      "notes": "保留卧室属性，禁改独立书房"
+    },
+    "living_room": {
+      "name": "客厅",
+      "zone": "中部",
+      "w": 6000,
+      "d": 3800,
+      "area_m2": [
+        22,
+        24
+      ],
+      "confidence": "estimated",
+      "related_reqs": [
+        "REQ-OFFICE-001"
+      ],
+      "notes": "沙发后方/附近为候选电竞区位置"
+    },
+    "dining_room": {
+      "name": "餐厅",
+      "zone": "北",
+      "w": 2500,
+      "d": 3300,
+      "area_m2": [
+        8,
+        8
+      ],
+      "confidence": "estimated",
+      "related_reqs": [
+        "REQ-PLATFORM-001",
+        "REQ-KITCHEN-002"
+      ]
+    },
+    "kitchen": {
+      "name": "厨房",
+      "zone": "北",
+      "w": 1700,
+      "d": 3300,
+      "area_m2": [
+        5.5,
+        6
+      ],
+      "confidence": "estimated",
+      "related_reqs": [
+        "REQ-KITCHEN-001",
+        "REQ-KITCHEN-002"
+      ]
+    },
+    "bathroom_dining": {
+      "name": "卫生间A（餐厅旁公卫）",
+      "zone": "北",
+      "w": 1900,
+      "d": 1400,
+      "area_m2": [
+        2.5,
+        3
+      ],
+      "confidence": "estimated",
+      "related_reqs": [
+        "REQ-BATH-001",
+        "REQ-BATH-002",
+        "REQ-BATH-004"
+      ],
+      "notes": "唯一可装小便池；洁具布局待复尺验证"
+    },
+    "bathroom_former_master": {
+      "name": "卫生间B（原主卫）",
+      "zone": "东（主卧附近）",
+      "w": 1900,
+      "d": 1900,
+      "area_m2": [
+        3.5,
+        4
+      ],
+      "confidence": "estimated",
+      "related_reqs": [
+        "REQ-BATH-003"
+      ],
+      "notes": "需公共过道独立入口；门洞位置/墙体可改性未知(unknown)"
+    },
+    "balcony_south": {
+      "name": "南向阳台",
+      "zone": "南",
+      "w": 6000,
+      "d": 1500,
+      "area_m2": [
+        9,
+        9
+      ],
+      "confidence": "estimated",
+      "related_reqs": [
+        "REQ-BALCONY-001",
+        "REQ-BALCONY-002"
+      ]
+    },
+    "platform_north": {
+      "name": "设备平台（北侧）",
+      "zone": "北（厨餐厅外侧，狭长）",
+      "w": null,
+      "d": null,
+      "area_m2": null,
+      "confidence": "unknown",
+      "related_reqs": [
+        "REQ-PLATFORM-001",
+        "REQ-PLATFORM-002"
+      ],
+      "notes": "已获准打通意向；具体范围/尺寸/墙体可调整性均待核实"
+    },
+    "office_gaming": {
+      "name": "办公电竞区",
+      "zone": "客厅内功能分区",
+      "w": null,
+      "d": null,
+      "area_m2": null,
+      "confidence": "unknown",
+      "related_reqs": [
+        "REQ-OFFICE-001"
+      ],
+      "notes": "不计为独立房间/第四卧室；位置与尺寸待验证"
+    }
+  },
+  "walls": {
+    "_note": "墙体性质除图纸推测外均未确认（unknown）。未经证实不得归类为可拆墙。",
+    "unconfirmed_critical": [
+      "厨房北侧与设备平台之间墙体（打通范围待核实）",
+      "卫生间B（原主卫）与公共过道之间墙体（新门洞候选位置）",
+      "原主卧衣帽间隔墙（取消衣帽间后是否可拆）"
+    ]
+  },
+  "circulation_fixed_paths": [
+    {
+      "path": "入户门→客厅",
+      "min_width": null,
+      "status": "UNKNOWN"
+    },
+    {
+      "path": "入户门→餐厅",
+      "min_width": null,
+      "status": "UNKNOWN"
+    },
+    {
+      "path": "客厅→主卧",
+      "min_width": null,
+      "status": "UNKNOWN"
+    },
+    {
+      "path": "客厅→次卧一",
+      "min_width": null,
+      "status": "UNKNOWN"
+    },
+    {
+      "path": "客厅→次卧二",
+      "min_width": null,
+      "status": "UNKNOWN"
+    },
+    {
+      "path": "客厅→卫生间A",
+      "min_width": null,
+      "status": "UNKNOWN"
+    },
+    {
+      "path": "公共区→卫生间B（不经主卧）",
+      "min_width": null,
+      "status": "UNKNOWN",
+      "hard": "必须存在不经过主卧的有效路径"
+    },
+    {
+      "path": "客厅→阳台",
+      "min_width": null,
+      "status": "UNKNOWN"
+    },
+    {
+      "path": "餐厅→厨房",
+      "min_width": null,
+      "status": "UNKNOWN"
+    },
+    {
+      "path": "电竞区椅后退通道（主卧/卫生间入口）",
+      "min_width": null,
+      "status": "UNKNOWN",
+      "hard": "椅后退后仍畅通"
+    }
+  ],
+  "width_targets": {
+    "_note": "初步设计参数（可配置），非统一法定标准；未验证净宽不得标注达标",
+    "main_corridor": 1000,
+    "secondary_corridor": 900,
+    "gaming_chair_behind": [
+      1000,
+      1100
+    ]
+  },
+  "furniture_occupancy": {
+    "_note": "家具必须记录静态占用+使用占用（椅后退/门开启/拉出距离），字段模板见 geometry-validation.md 第 3 节",
+    "desk_gaming": {
+      "example_width": 1400,
+      "example_depth": 700,
+      "chair_pullback": 800,
+      "note": "示例值，待业主确认实际设备"
+    },
+    "dining_chairs_pullout": 600,
+    "wardrobe_door_swing": 600
+  }
+}

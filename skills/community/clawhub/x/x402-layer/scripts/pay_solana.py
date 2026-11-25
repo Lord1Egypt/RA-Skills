@@ -13,12 +13,13 @@ import sys
 
 import requests
 
-from solana_signing import create_solana_xpayment_from_accept, has_solana_credentials, load_solana_wallet_address
+import x402_wire
+from solana_signing import create_solana_payment_header, has_solana_credentials, load_solana_wallet_address
 
 
 def _find_solana_accept(challenge: dict) -> dict:
     for option in challenge.get("accepts", []):
-        if str(option.get("network", "")).lower() == "solana":
+        if x402_wire.network_name(option.get("network")) == "solana":
             return option
     raise ValueError("No Solana payment option available in challenge")
 
@@ -44,7 +45,8 @@ def pay_for_access(endpoint_url: str) -> dict:
     if response.status_code != 402:
         return {"error": f"Unexpected status: {response.status_code}", "response": response.text}
 
-    challenge = response.json()
+    # v2 PAYMENT-REQUIRED header first, v1 JSON body otherwise (x402_wire).
+    challenge = x402_wire.read_challenge(response)
     try:
         solana_option = _find_solana_accept(challenge)
     except ValueError as exc:
@@ -53,7 +55,7 @@ def pay_for_access(endpoint_url: str) -> dict:
     print(f"Solana payment required: {solana_option.get('maxAmountRequired')} atomic units")
 
     try:
-        x_payment = create_solana_xpayment_from_accept(solana_option)
+        header_name, x_payment = create_solana_payment_header(challenge, solana_option)
     except Exception as exc:
         return {"error": f"Failed to create Solana payment: {exc}"}
 
@@ -61,17 +63,28 @@ def pay_for_access(endpoint_url: str) -> dict:
     if not wallet_address:
         return {"error": "Failed to resolve Solana wallet address"}
 
-    response = requests.get(
-        endpoint_url,
-        headers={
-            "X-Payment": x_payment,
-            "x-wallet-address": wallet_address,
-            "Accept": "application/json",
-        },
-        timeout=45,
-    )
+    # From here the payment is SENT. A timeout, 202 or 5xx is pending, never a reason to pay again.
+    try:
+        response = requests.get(
+            endpoint_url,
+            headers={
+                header_name: x_payment,
+                "x-wallet-address": wallet_address,
+                "Accept": "application/json",
+            },
+            timeout=45,
+        )
+    except requests.RequestException as exc:
+        return x402_wire.pending_result(None, exc)
 
     print(f"Response: {response.status_code}")
+
+    if x402_wire.is_ambiguous_status(response.status_code):
+        return x402_wire.pending_result(response.status_code, response.text)
+
+    settlement = x402_wire.read_payment_response(response)
+    if settlement and settlement.get("transaction"):
+        print(f"Settled: {settlement.get('transaction')} on {settlement.get('network')}")
 
     if response.status_code == 200:
         return response.json() if response.headers.get("content-type", "").startswith("application/json") else {"data": response.text[:500]}

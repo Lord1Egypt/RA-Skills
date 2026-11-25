@@ -1,0 +1,10 @@
+{
+  "name": "wb-search",
+  "version": "1.0.0",
+  "private": true,
+  "description": "微博关键词搜索采集 Skill CLI (类型/排序/起止日期筛选, 一页 20 条 = 1 点数, 按实采结算退差)",
+  "main": "cli.js",
+  "engines": {
+    "node": ">=18"
+  }
+}

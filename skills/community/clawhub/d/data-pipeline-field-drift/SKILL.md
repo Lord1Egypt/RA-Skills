@@ -2,7 +2,7 @@
 name: data-pipeline-field-drift
 slug: data-pipeline-field-drift
 displayName: 数据流水线字段名漂移排查
-version: 1.0.0
+version: 1.0.2
 visibility: public
 category: dev-programming
 subCategories: [dev-debug, dev-data]

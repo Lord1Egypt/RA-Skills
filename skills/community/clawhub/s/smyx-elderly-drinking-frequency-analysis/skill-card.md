@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes video of a water-cup area to count cup pickups as an indirect measure of drinking frequency and flag counts below a preset threshold.
+Using a fixed camera in the living room or kitchen, the system analyzes video of the water-cup placement area (e.g., coffee table, dining table), detects hand-to-cup contact actions (pickup, putdown), and counts daily cup-pickup events (an indirect proxy for water intake).
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Family caregivers and elder-care staff can use this skill to review video from a fixed camera aimed at a cup area, track pickup frequency, and receive low-frequency reminders. Pickup counts are only an indirect proxy for water intake and are not a clinical assessment.
+Families, caregivers, and care facilities use the skill to analyze fixed-camera footage around a water-cup area, count cup pickup events as an indirect indicator of drinking frequency, and receive prompts when counts are low. It provides behavioral summaries and directional reminders rather than medical diagnoses.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates the release suspicious because it reports remote account registration and video submission; the scan was partial.
+Risk: Reported video upload, account registration, identity transmission, and workspace-token storage may expose sensitive recordings or account data during remote processing.
 
-Mitigation: Do not install until the remote service, identity data sent, video-processing behavior, and export-only behavior are explained and reviewed.
+Mitigation: Use only recordings with informed consent; review service destinations and token handling before use, and avoid sensitive footage or account details unless needed.
 
-Risk: Camera footage may include identifiable people in private homes or care settings.
+Risk: The security scan was partial because one local reference could not be resolved, so not every referenced resource was assessed.
 
-Mitigation: Obtain informed consent before use and handle footage securely, as the skill documentation advises.
+Mitigation: Resolve and review the missing reference before deployment, and do not treat the scan as exhaustive.
+
+Risk: A configuration-only flag does not prevent analysis.
+
+Mitigation: Confirm the actual processing controls before relying on configuration settings to suppress analysis.
 
 ## Reference(s):
 
-- [API interface documentation](references/api_doc.md)
-- [Skill demonstration page](https://lifeemergence.com/sample.html)
+- [API reference](references/api_doc.md)
+- [Skill demo](https://lifeemergence.com/sample.html)
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-elderly-drinking-frequency-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, Markdown, JSON]
+**Output Type(s):** [Analysis reports, JSON, Markdown, Guidance]
 
-**Output Format:** [Structured drinking-frequency report in JSON or a Markdown summary]
+**Output Format:** [Structured analysis report (JSON); historical report lists may be presented as Markdown tables]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Pickup counts are an indirect proxy for water intake; camera coverage and shared-cup use can affect counts.]
+**Other Properties Related to Output:** [Cup pickup counts are an indirect proxy for drinking behavior and do not establish actual water intake or diagnose a medical condition.]
 
 ## Skill Version(s):
 
-1.0.16 (source: server-resolved release metadata; embedded SKILL.md frontmatter states 1.0.21)
+1.0.18 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

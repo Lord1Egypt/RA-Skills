@@ -1,6 +1,6 @@
 ## Description:
 
-Guides the creation of multilingual TikTok product and advertising videos using Qinghu AI, from model selection and cost estimates to generation and delivery.
+Generates TikTok product marketing videos for cross-border sellers using LinkPix and a range of AI video models.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,45 +14,36 @@ MIT-0
 
 ## Use Case:
 
-Cross-border sellers, marketing teams, and agencies use this skill to plan and produce short-form TikTok Shop and TikTok Ads videos with localized narration and product imagery.
+External sellers, marketing teams, and agencies can use the skill to plan and generate short TikTok product videos, including localized narration, product demonstrations, and promotional clips.
 
 ### Deployment Geography for Use:
 
-Global
+Global; examples include Southeast Asia, Europe, and the Americas.
 
 ## Known Risks and Mitigations:
 
-Risk: Installing or upgrading the external qhkit package introduces dependency risk.
+Risk: The partial security scan marks the release suspicious because dependencies are unpinned and setup guidance asks users to share an API key in chat.
 
-Mitigation: Review the package and prefer a controlled, pinned dependency environment before installing it.
-
-Risk: Setup requires an API key, and generation uploads product media to the provider.
-
-Mitigation: Protect the key and upload only media authorized for sharing with the provider.
-
-Risk: Submitting a video task spends credits and cannot be cancelled.
-
-Mitigation: Confirm model, duration, language, reference files, and estimated credit cost with the user before submission.
+Mitigation: Avoid sharing API keys in chat; configure credentials locally, and review and pin packages before installation or updates.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-tiktok-viral-video)
-- [qhkit package](https://www.npmjs.com/package/@iqinghu/qhkit)
-- [Qinghu AI API key setup](https://xcnzsfe4uxrw.feishu.cn/wiki/KJ0Ywsyw8iAXmRkz5l4cddDbn6g)
+- [qhkit package on npm](https://www.npmjs.com/package/@iqinghu/qhkit)
+- [LinkPix TikTok video skill on ClawHub](https://clawhub.ai/autoagc/skills/linkpix-tiktok-viral-video)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Text]
+**Output Type(s):** [Video, Text, Guidance, Shell commands, Configuration]
 
-**Output Format:** [Markdown with command examples and generated-video links]
+**Output Format:** [Generated video assets or URLs, with task guidance and structured command parameters.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Recommends a model and estimated credits before submission; reports the task ID, completed video link, and charged credits when available.]
+**Other Properties Related to Output:** [Video generation may use product images and supports multiple languages and portrait formats.]
 
 ## Skill Version(s):
 
-0.1.5 (source: ClawHub release metadata)
+0.1.7 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

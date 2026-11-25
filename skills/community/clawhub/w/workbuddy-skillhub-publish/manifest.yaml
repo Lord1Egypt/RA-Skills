@@ -1,0 +1,28 @@
+name: workbuddy-skillhub-publish
+display_name: "workbuddy SkillHub skill 自动发布"
+slug: workbuddy-skillhub-publish
+version: "1.0.19"
+category: "publishing"
+author: "xxjrq"
+repository: "https://github.com/xxjrq/workbuddy-skillhub-publish"
+description: "免费、免第三方 API Key，通过已登录 Easy WebBridge 浏览器快速校验、打包、上传图标、填写资料并提交 SkillHub Skill。"
+icon: "icon-512.png"
+trigger_words:
+  - "发布 SkillHub"
+  - "上传 SkillHub Skill"
+  - "提交 SkillHub"
+  - "SkillHub 自动发布"
+  - "workbuddy SkillHub skill 自动发布"
+tags:
+  - "skillhub"
+  - "publishing"
+  - "easy-webbridge"
+  - "browser-automation"
+  - "中文工具"
+  - "workbuddy"
+license: "MIT-0"
+runtime:
+  name: "easy-webbridge"
+  endpoint: "http://127.0.0.1:17777"
+  prerequisite: "先启动 Easy WebBridge，并在指定浏览器环境登录 SkillHub、完成实名认证。"
+self_test: "node scripts/skillhub-publish.mjs self-test"

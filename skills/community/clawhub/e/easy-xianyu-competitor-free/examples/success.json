@@ -1,0 +1,7 @@
+{
+  "status": "completed",
+  "browserId": "easybr-xianyu-a",
+  "sampleSize": 3,
+  "priceSummary": {"min": 88, "max": 168, "median": 128},
+  "limitations": ["仅统计搜索页可见的 3 条样本"]
+}

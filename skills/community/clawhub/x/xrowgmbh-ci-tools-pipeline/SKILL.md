@@ -1,6 +1,6 @@
 ---
 name: ci-tools-pipeline
-description: Build and maintain GitLab CI/CD pipelines with the CI Tools Components Catalog at ci-tools.xrow.de. Use when creating or fixing .gitlab-ci.yml files, choosing CI Tools components, validating component inputs, or designing continuous delivery pipelines for applications, Helm charts, containers, packages, documentation, infrastructure, and GitOps.
+description: Build and maintain GitLab CI/CD pipelines with the CI Tools Components Catalog at ci-tools.xrow.de. Use when creating or fixing GitLab pipeline files, choosing CI Tools components, validating component inputs, or designing continuous delivery pipelines for applications, Helm charts, containers, packages, documentation, infrastructure, and GitOps.
 metadata: { "openclaw": { "requires": { "bins": ["glab", "curl", "jq"] }, "primaryEnv": "GITLAB_TOKEN" } }
 ---
 # CI Tools Pipeline Skill
@@ -85,7 +85,7 @@ include:
 ### Review Testing
 
 Keep review environments close to production while making destructive checks explicit and temporary.
-For Helm review tests, validate install, upgrade, readiness, ingress, cleanup, and storage behavior through chart values instead of ad hoc shell overrides.
+For Helm review tests, validate install, upgrade, readiness, ingress, cleanup, and storage behavior through chart values instead of custom shell overrides.
 Document any review-only threshold or fixture in the MR so reviewers can see why it differs from production defaults.
 
 ### Documentation

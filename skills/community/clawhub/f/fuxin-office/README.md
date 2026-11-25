@@ -1,10 +1,10 @@
-# 福昕 Office 全家桶技能套件（fuxin-office-suite）
+# 福昕Office全家桶技能套件（fuxin-office-suite）
 
-本套件是福昕 Office 的对外发布包。**对外仅暴露 1 个技能 `fuxin-office`**（唯一入口 / 汇总层），面向福昕 Office（Word / Excel / PowerPoint）提供从连接预检、文档编排、只读问答到批次撤销、企业自定义流程的一站式能力。
+本套件是福昕Office的对外发布包。**对外仅暴露 1 个技能 `fuxin-office`**（唯一入口 / 汇总层），面向福昕Office（Word / Excel / PowerPoint）提供从连接预检、文档编排、只读问答到批次撤销、企业自定义流程的一站式能力。
 
 产品级编排规约（bridge / word / excel / ppt / doc-qa / batch-undo / custom-tool）**不作为独立技能对外暴露**，全部収敛为 `reference/*.md` **内部参考文档**（与入口 `SKILL.md` 同级、位于套件根目录），由入口技能按需读取。
 
-> 版本：1.00.03.235 ｜ 语言：简体中文 ｜ 运行环境：FuxinAiService（端口由 `MCPServerPort.ini` 动态读取）
+> 版本：1.0.3 (build 1.00.03.242) ｜ 默认语言：简体中文（跟随用户语言） ｜ 运行环境：FuxinAiService（端口由 `MCPServerPort.ini` 动态读取）
 
 ---
 
@@ -56,7 +56,7 @@ fuxin-office（唯一入口：路由 + E2E 分步 + 交互/文案总则）
 - **checklist_review**：批注模式 / 汇总表模式 / 双模式
 
 ### 3. Excel 表格编排（`reference/excel.md`）
-- **extract_data_to_new_sheet**：按列/范围抽取数据建新表
+- **extract_data_to_new_sheet**：按列/范围抽取数据建新表，支持按行条件筛选（`filter`）
 - **highlight_by_condition**：数值/文本/日期/重复值/排名条件高亮
 - **batch_create_charts**：批量建图（柱状/折线/饼图/面积）
 
@@ -86,7 +86,7 @@ fuxin-office（唯一入口：路由 + E2E 分步 + 交互/文案总则）
 | 生成汇报 / 做 PPT / 整理演示 / 选区编辑 | `fuxin-office` → 读取 `reference/ppt.md` |
 | 问文档 / 总结 / 摘要 / 核对 | `fuxin-office` → 读取 `reference/doc-qa.md` |
 | 批次 / 批量撤销 | `fuxin-office` → 读取 `reference/batch-undo.md` |
-| 检查 Office / 预检 / 网关状态 | `fuxin-office` → 读取 `reference/bridge.md` |
+| 检查 Office / 网关预检 / 网关状态 | `fuxin-office` → 读取 `reference/bridge.md` |
 | 一键生成合同评审报告等企业流程 | `fuxin-office` → 读取 `reference/custom-tool.md` |
 | 跨产品 / 多步骤 / 未归类 | `fuxin-office`（E2E 分步） |
 
@@ -96,7 +96,7 @@ fuxin-office（唯一入口：路由 + E2E 分步 + 交互/文案总则）
 
 ### 1. 部署
 - 将本套件解压到技能加载目录，**只需部署入口 `SKILL.md` 及其同级 `reference/` 参考文档**（均位于套件根目录），平台仅发现并暴露 `fuxin-office` 这一个技能。
-- 启动 `FuxinAiService`（端口由 `%ProgramData%\Foxit Software\Fuxin Office\MCP\MCPServerPort.ini` 的 `ListenPort` 读取）。
+- 启动 `FuxinAiService`（端口由 `%AppData%\Foxit Software\Fuxin Office\MCP\MCPServerPort.ini` 的 `ListenPort` 读取）。
 
 ### 2. 前置条件
 - 网关已启动
@@ -119,8 +119,8 @@ fuxin-office（唯一入口：路由 + E2E 分步 + 交互/文案总则）
 
 ## 五、注意事项
 
-1. **网关端口非固定**：FuxinAiService 端口由 `%ProgramData%\Foxit Software\Fuxin Office\MCP\MCPServerPort.ini` 的 `ListenPort` 读取（见 `reference/bridge.md`「运行端口」），非固定 58688；产品分类为 `Word` / `Excel` / `PowerPoint`（不是 FuxinOfficeWord / FuxinOfficeExcel / FuxinOfficePPT）。
-2. **写操作不写前二次确认**：用户已下达写指令即视为可写，Skill 直接执行写操作；写成功后提示固定撤销文案（回复「撤销」或在福昕Office 按 Ctrl+Z）。危险操作（删除页 / 清空 / 批量覆盖）仍弹确认对话框。**保存操作例外**：`save_document` / `save_document_as`（保存不可逆、无撤销）在保存前必须弹窗确认，用户确认后才执行，取消则不保存。
+1. **网关端口非固定**：FuxinAiService 端口由 `%AppData%\Foxit Software\Fuxin Office\MCP\MCPServerPort.ini` 的 `ListenPort` 读取（见 `reference/bridge.md`「运行端口」），非固定 58688；产品分类为 `Word` / `Excel` / `PowerPoint`（不是 FuxinOfficeWord / FuxinOfficeExcel / FuxinOfficePPT）。
+2. **写操作不写前二次确认**：用户已下达写指令即视为可写，Skill 直接执行写操作；写成功后提示固定撤销文案（回复「撤销」或在福昕Office按 Ctrl+Z）。危险操作（删除页 / 清空 / 批量覆盖）仍弹确认对话框。**保存操作例外**：`save_document`（保存不可逆、无撤销）在保存前必须弹窗确认，用户确认后才执行，取消则不保存。**另存为**无独立工具，用 `save_document` 传 `path` + 可选 `format` 实现，同样需确认。
 3. **预检必须**：写操作前必须按 `reference/bridge.md` 预检。
 4. **测试原则**：预检与只读探活使用 REST + 只读工具；**禁止用写操作做探测**。
 5. **工具不可用**：提示重启 `FuxinAiService`（网关）后重试。
@@ -160,4 +160,4 @@ skills/
 - 授权声明见 `LICENSE.md`。
 - 版本变更记录见 `CHANGELOG.md`。
 
-© 2026 Fuxin. All rights reserved.
+© 2026 福州福昕网络技术有限责任公司. All rights reserved.

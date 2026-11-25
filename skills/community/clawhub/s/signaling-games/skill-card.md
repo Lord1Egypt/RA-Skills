@@ -1,6 +1,6 @@
 ## Description:
 
-Guides agents through signaling-game diagnosis for situations where one party cannot verify another party's quality, intentions, type, or resolve.
+Analyzes situations with asymmetric information and helps identify credible signals whose costs differ across sender types.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers, strategy teams, and analysts use this skill to diagnose asymmetric-information situations and design or decode credible costly signals in hiring, fundraising, procurement, branding, diplomacy, and policy contexts.
+Strategists, analysts, and decision-makers use this skill to diagnose asymmetric information in hiring, fundraising, procurement, branding, M&A, and policy settings. It structures hidden types, candidate signals, cost differences, likely equilibria, receiver responses, and credibility risks.
 
 ### Deployment Geography for Use:
 
@@ -22,42 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill includes 2025-2026 geopolitical examples that may become stale or be unsuitable as authoritative current facts for time-sensitive decisions.
+Risk: The security review did not fully inspect one referenced document, so its evidence is incomplete.
 
-Mitigation: Use the examples as an analytical lens and independently fact-check current geopolitical, policy, and market claims before relying on them.
-
-Risk: Signaling-game analysis can overstate confidence about hidden intentions or capabilities when evidence is noisy.
-
-Mitigation: Keep conclusions bounded to what the signal's observed cost differential supports and avoid treating the framework as proof of true intent.
+Mitigation: Review the partially inspected reference before relying on its claims or installing the skill.
 
 ## Reference(s):
 
-- [Sources - signaling-games](references/sources.md)
-- [Michael Spence, Job Market Signaling, 1973](examples/michael-spence-job-market-signaling-1973.md)
-- [US Advanced-Chip Export Controls as a Signaling Game, 2022-2026](examples/us-chip-export-controls-2022-2026.md)
-- [Spence, Job Market Signaling](https://doi.org/10.2307/1882010)
-- [Akerlof, The Market for Lemons](https://doi.org/10.2307/1879431)
-- [Zahavi, Mate Selection - A Selection for a Handicap](https://doi.org/10.1016/0022-5193(75)90111-3)
-- [Milgrom and Roberts, Price and Advertising Signals of Product Quality](https://doi.org/10.1086/261408)
-- [Cho and Kreps, Signaling Games and Stable Equilibria](https://doi.org/10.2307/1885060)
-- [Royal Swedish Academy of Sciences, Markets with Asymmetric Information](https://www.nobelprize.org/prizes/economic-sciences/2001/popular-information/)
-- [Klein and Leffler, The Role of Market Forces in Assuring Contractual Performance](https://doi.org/10.1086/260996)
+- [ClawHub release page](https://clawhub.ai/deciqai/skills/signaling-games)
+- [Primary sources](references/sources.md)
+- [Spence, Job Market Signaling (1973)](https://doi.org/10.2307/1882010)
+- [Akerlof, The Market for Lemons (1970)](https://doi.org/10.2307/1879431)
 - [U.S. Bureau of Industry and Security](https://www.bis.gov)
-- [NVIDIA Investor Relations](https://investor.nvidia.com)
+- [deciqAI signaling-games resource](https://www.deciqai.com/c/signaling-games)
+- [deciqAI machine-readable skill metadata](https://www.deciqai.com/s/signaling-games.json)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Markdown]
+**Output Type(s):** [Analysis, Markdown, Guidance, Text]
 
-**Output Format:** [Markdown with structured diagnostic sections]
+**Output Format:** [Structured Markdown diagnosis or stepwise coaching prompts]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May ask step-by-step coaching questions before producing a full Signaling Diagnosis.]
+**Other Properties Related to Output:** [Applies the framework to a concrete user situation when available.]
 
 ## Skill Version(s):
 
-1.0.4 (source: server release evidence)
+1.0.5 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

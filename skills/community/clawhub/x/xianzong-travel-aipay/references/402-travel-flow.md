@@ -8,6 +8,8 @@
 |---|---|
 | `query` | 非空，含天数/同行人/预算/偏好等要素 |
 | `email` | 非空且格式合法（交付 PDF 依赖它） |
+| `language` | **必须识别并传入**：用户明确要求英文 `en`、日文 `ja`、韩文 `ko`、法文 `fr` 等时按值传入；未说明时传默认值 `zh`。不得省略。该参数同时控制方案正文、PDF 外壳和交付邮件。 |
+| 数据外发披露 | 已告知用户：下一步会把 `query` + `email` 发送到仙踪问道官方服务端点 |
 | 单价认知 | 用户已知 **0.99 元/次**，且**同一次咨询只应付款一次** |
 | 官方 CLI | `alipay-bot` 可执行（`alipay-bot --help` 有 `402-buyer-pay`） |
 
@@ -17,21 +19,32 @@
 node "$SKILL_DIR/scripts/travel_aipay.mjs" body \
   --query '杭州三日亲子游，2 大 1 小，预算 5000 元以内，想少走路' \
   --email 'buyer@example.com' \
-  --country-code CN --topic-type 7 --is-family-suitable 1 --is-leisure 1
+  --country-code CN --topic-type 7 --is-family-suitable 1 --is-leisure 1 \
+  --language zh
 ```
+
+如果用户明确要求其他语言，把上例中的 `--language zh` 改为对应代码（英文 `en`、日文 `ja`、韩文 `ko`、法文 `fr`）；未说明语言时仍显式传 `zh`。
 
 输出即最终 `POST` body。字段范围写错（如 `topic_type=99`）会以退出码 `2` 拒绝，**不会发起请求**。
 
-## 2. 取 402 账单
+## 2. 取 402 账单（含数据外发披露）
+
+> ⚠️ **`probe` 不是本地命令**：它会把 `query`（行程要素）与 `email` POST 到仙踪问道官方服务端点。
+> 执行前必须先向用户披露——“接下来会把你的行程需求与接收 PDF 的邮箱发送到仙踪问道官方服务，
+> 用于出具账单并在付款后生成方案；邮箱仅用于本单交付”——用户知情后才执行。**不得静默发送。**
+> 只想本地校验字段时用 `body` 或 `probe --dry-run`，两者都不发请求。
 
 ```bash
 node "$SKILL_DIR/scripts/travel_aipay.mjs" probe \
   --query '杭州三日亲子游，2 大 1 小，预算 5000 元以内，想少走路' \
   --email 'buyer@example.com' \
-  --country-code CN --topic-type 7 --is-family-suitable 1 --is-leisure 1
+  --country-code CN --topic-type 7 --is-family-suitable 1 --is-leisure 1 \
+  --language zh
 ```
 
-产出（位于 `.xianzong-travel-aipay/`，权限 `0700` / 文件 `0600`，已 gitignore）：
+用户明确要求英文时，把上例中的 `--language zh` 改为 `--language en`，同时把 `query` 写成英文。不要只翻译聊天回复而漏传参数。
+
+产出（位于 `.xianzong-travel-aipay/`，权限 `0700` / 文件 `0600`，只落在本机、不随发布包分发）：
 
 | 文件 | 内容 |
 |---|---|

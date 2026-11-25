@@ -1,6 +1,6 @@
 ## Description:
 
-Provides financial institutions with guidance for digital-avatar design, personas, brand use, and compliance, without generating or cloning media or publishing content.
+Provides financial institutions with written avatar design specifications, persona settings, compliance checklists, and authorization ledgers for digital human use.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Financial technology, digital banking, brand, and compliance teams use this skill to draft avatar appearance and persona specifications, authorization records, scenario guidance, and prepublication review checklists.
+Financial technology, digital banking, brand, and compliance teams can use this skill to draft digital avatar appearance and persona specifications, scenario matching guidance, authorization ledgers, and pre-publication review checklists. Its outputs are reference drafts and require appropriate human review before use.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan was benign but partial; it did not fully inspect the Markdown component and could not resolve a local reference.
+Risk: The security review reported a benign verdict but medium confidence because only part of the evidence was inspected.
 
-Mitigation: Review the skill and resolve the local reference before deciding whether to install.
+Mitigation: Review the skill manually before use, and verify regulatory and compliance statements against current official sources with qualified staff.
 
-Risk: Financial and regulatory guidance may need updates or institution-specific review before use.
+Risk: The frontmatter mentions voice cloning, while the skill's explicit scope says it does not clone voices or generate media.
 
-Mitigation: Have qualified compliance staff verify current official requirements and approve materials before external use.
+Mitigation: Use the skill for written design and checklist drafts only; handle any media creation or voice work through separately authorized processes.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/gechengling/skills/finance-digital-avatar)
+- [Finance Digital Avatar release page](https://clawhub.ai/gechengling/skills/finance-digital-avatar)
+- [Publisher profile: gechengling](https://clawhub.ai/user/gechengling)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
 
-**Output Format:** [Markdown with tables, checklists, templates, and example snippets]
+**Output Format:** [Markdown with tables, checklists, and illustrative structured examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Human-reviewed design and compliance drafts; no media generation, voice cloning, or publishing.]
+**Other Properties Related to Output:** [Reference drafts only; does not generate or clone media or publish content, and requires qualified review before use.]
 
 ## Skill Version(s):
 
-3.0.5 (source: frontmatter, server release)
+3.0.6 (source: frontmatter)
 
 ## Ethical Considerations:
 

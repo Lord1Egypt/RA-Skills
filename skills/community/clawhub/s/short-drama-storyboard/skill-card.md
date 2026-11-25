@@ -1,6 +1,6 @@
 ## Description:
 
-把短剧剧本和视觉设定写成切镜有据、前后接戏清晰并带首帧提示词的分镜 Markdown。
+支持将短剧剧本和视觉设定拆解为分镜与首尾帧提示词，也可快速草拟单场镜头；不生成媒体或进行独立连戏审查。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-编剧、导演和分镜创作者可用此技能把定稿剧本与视觉设定拆成连续、可执行的镜头表，并编写每镜首帧及必要的尾帧提示词。
+短剧编剧、导演与分镜创作者可用它将定稿剧本和视觉设定拆为正式分镜并编写逐镜首帧或尾帧提示词，也可快速起草单场镜头方案。
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review was partial because the referenced short-drama.json file was missing; project-specific prompt-language or production-profile settings may therefore be unavailable.
+Risk: The expected local short-drama.json reference was not included in the bundled artifact, so its contents could not be assessed; project-specific timing or prompt-language settings may be unavailable.
 
-Mitigation: Check whether short-drama.json is expected for the project and supply the relevant language or timing settings when they matter; otherwise use the skill's documented defaults.
+Mitigation: Review and provide that project configuration when its settings are needed; otherwise use the documented fallback behavior for timing and prompt language.
 
 ## Reference(s):
 
-- [短剧分镜 ClawHub 页面](https://clawhub.ai/worldwonderer/skills/short-drama-storyboard)
+- [ClawHub release](https://clawhub.ai/worldwonderer/skills/short-drama-storyboard)
 - [镜头设计方法](artifact/references/shot-craft.md)
+- [分镜文档格式规范](artifact/references/format-spec.md)
 - [场面调度手册](artifact/references/blocking-playbooks.md)
-- [首尾帧构图与写法](artifact/references/keyframe-craft.md)
 - [打戏与动作分镜](artifact/references/fight-craft.md)
+- [首尾帧构图与写法](artifact/references/keyframe-craft.md)
 - [阶段规则](artifact/references/stage-contract.md)
 - [剧本到首帧完整示例](artifact/references/screenplay-to-keyframe-example.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Guidance]
+**Output Type(s):** [Markdown, Text, Guidance]
 
-**Output Format:** [Markdown shot list with first-frame prompts and optional last-frame prompts]
+**Output Format:** [Markdown shot tables and copyable first-frame or last-frame prompts]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes shot timing, camera and blocking notes, continuity details, and sound cues; does not generate media.]
+**Other Properties Related to Output:** [May describe shot timing, camera, staging, action, and sound. Does not generate media.]
 
 ## Skill Version(s):
 
-1.0.21 (source: server-resolved release evidence)
+1.0.25 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

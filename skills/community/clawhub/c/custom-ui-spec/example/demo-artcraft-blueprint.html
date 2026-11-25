@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ArtCraft Studio Blueprint — Design System & Interactive Showcase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,100..125,400..700;1,100..125,400..700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Light Mode (Default — Warm Drafting Paper) */
+      --bg: #f2f1ee;
+      --bg-raised: #faf9f7;
+      --bg-sunken: #e9e8e4;
+      --ink: #101014;
+      --ink-strong: #000000;
+      --muted: rgba(16, 16, 20, 0.62);
+      --faint: rgba(16, 16, 20, 0.42);
+      --line: rgba(16, 16, 20, 0.16);
+      --line-strong: rgba(16, 16, 20, 0.40);
+      --accent: #2d81ff;
+      --accent-ink: #1659c4;
+      --invert-bg: #101014;
+      --invert-fg: #f2f1ee;
+      --danger: #b3261e;
+
+      /* App Spectrum */
+      --app-canvas: #2d81ff;
+      --app-video: #a855f7;
+      --app-workflows: #06b6d4;
+      --app-image: #ec4899;
+      --app-world: #10b981;
+      --app-director: #f59e0b;
+      --app-agents: #6366f1;
+      --app-3d: #14b8a6;
+
+      --font-display: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Instrument Serif', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, monospace;
+
+      --radius: 0px;
+    }
+
+    html.dark {
+      --bg: #121316;
+      --bg-raised: #101014;
+      --bg-sunken: #060607;
+      --ink: #f2f1ee;
+      --ink-strong: #ffffff;
+      --muted: rgba(242, 241, 238, 0.60);
+      --faint: rgba(242, 241, 238, 0.38);
+      --line: rgba(242, 241, 238, 0.15);
+      --line-strong: rgba(242, 241, 238, 0.40);
+      --accent: #2d81ff;
+      --accent-ink: #74aaff;
+      --invert-bg: #ffffff;
+      --invert-fg: #0b0b0c;
+      --danger: #ff6259;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border-radius: 0 !important;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 140ms linear, color 140ms linear;
+      overflow-x: hidden;
+    }
+
+    /* Typography Utilities */
+    .hud-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.25;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .display-title {
+      font-family: var(--font-display);
+      font-weight: 620;
+      font-stretch: 118%;
+      letter-spacing: -0.035em;
+      line-height: 0.94;
+      color: var(--ink-strong);
+    }
+
+    .serif-italic {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      font-stretch: 100%;
+      letter-spacing: -0.01em;
+    }
+
+    /* Binary Invert Block */
+    .invert-block {
+      transition: background-color 120ms linear, color 120ms linear, border-color 120ms linear;
+      cursor: pointer;
+    }
+    .invert-block:hover {
+      background-color: var(--invert-bg) !important;
+      color: var(--invert-fg) !important;
+    }
+    .invert-block:hover .hud-label,
+    .invert-block:hover .muted-text {
+      color: var(--invert-fg) !important;
+      opacity: 0.8;
+    }
+
+    /* Corner Crosshair Registration Marks (.tick) */
+    .tick {
+      position: relative;
+    }
+    .tick::before,
+    .tick::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      background: var(--line-strong);
+      z-index: 2;
+    }
+    .tick::before {
+      width: 11px;
+      height: 1px;
+    }
+    .tick::after {
+      width: 1px;
+      height: 11px;
+    }
+    .tick-tl::before { top: -1px; left: -1px; }
+    .tick-tl::after  { top: -1px; left: -1px; }
+    .tick-tr::before { top: -1px; right: -1px; }
+    .tick-tr::after  { top: -1px; right: -1px; }
+    .tick-bl::before { bottom: -1px; left: -1px; }
+    .tick-bl::after  { bottom: -1px; left: -1px; }
+    .tick-br::before { bottom: -1px; right: -1px; }
+    .tick-br::after  { bottom: -1px; right: -1px; }
+
+    /* Layout Container */
+    .blueprint-frame {
+      max-width: 1440px;
+      margin: 0 auto;
+      border-left: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+    }
+
+    /* Sticky Top HUD Header */
+    .hud-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: stretch;
+      border-bottom: 1px solid var(--line);
+      background-color: color-mix(in oklab, var(--bg) 90%, transparent);
+      backdrop-filter: blur(8px);
+    }
+
+    .brand-cell {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 24px;
+      border-right: 1px solid var(--line);
+      font-family: var(--font-display);
+      font-weight: 650;
+      font-stretch: 115%;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+      color: var(--ink-strong);
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      border-right: 1px solid var(--line);
+      text-decoration: none;
+      color: var(--ink);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .hud-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border: none;
+      border-left: 1px solid var(--line);
+      background: transparent;
+      color: var(--ink);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .hud-btn-primary {
+      background: var(--ink);
+      color: var(--bg);
+      border: 1px solid var(--ink);
+      padding: 16px 28px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      transition: background-color 120ms linear, border-color 120ms linear, color 120ms linear;
+      cursor: pointer;
+    }
+    .hud-btn-primary:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+
+    .hud-btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      padding: 16px 28px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Hero Section */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 7fr 5fr;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-main {
+      padding: 64px 48px;
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.75rem, 6vw, 5.25rem);
+    }
+
+    .hero-sub {
+      max-width: 56ch;
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .hero-telemetry {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--bg-sunken);
+    }
+
+    .telemetry-header {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .telemetry-stage {
+      padding: 32px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .node-card {
+      background: var(--bg-raised);
+      border: 1px solid var(--line);
+      padding: 16px;
+      position: relative;
+    }
+
+    .node-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+      margin-right: 6px;
+    }
+
+    .telemetry-footer {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--line);
+    }
+
+    .telemetry-stat {
+      padding: 16px 20px;
+      border-right: 1px solid var(--line);
+    }
+    .telemetry-stat:last-child {
+      border-right: none;
+    }
+    .stat-val {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 620;
+      font-stretch: 118%;
+      color: var(--ink-strong);
+      margin-top: 4px;
+    }
+
+    /* Infinite Marquee */
+    .marquee-bar {
+      border-bottom: 1px solid var(--line);
+      background: var(--bg-sunken);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 12px 0;
+    }
+
+    .marquee-track {
+      display: inline-flex;
+      gap: 28px;
+      animation: marquee 32s linear infinite;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* Section Header Bar */
+    .section-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 32px;
+      border-bottom: 1px solid var(--line);
+      background: var(--bg-raised);
+    }
+
+    /* 3-Tier Feature Cells Grid */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .feature-cell {
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      background: var(--bg);
+    }
+    .feature-cell:nth-child(2n) {
+      border-right: none;
+    }
+    .feature-cell:nth-last-child(-n+2) {
+      border-bottom: none;
+    }
+
+    .cell-hud-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cell-viewport {
+      aspect-ratio: 16 / 9;
+      background: var(--bg-sunken);
+      border: 1px solid var(--line);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    /* Architectural Blueprint Grid inside Sunken Viewport */
+    .viewport-grid-bg {
+      background-image:
+        linear-gradient(to right, var(--line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    .cell-title {
+      font-family: var(--font-display);
+      font-weight: 620;
+      font-stretch: 118%;
+      font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--ink-strong);
+      margin-bottom: 10px;
+    }
+
+    .cell-desc {
+      color: var(--muted);
+      font-size: 14.5px;
+      max-width: 60ch;
+    }
+
+    /* Color & App Spectrum Matrix */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .swatch-cell {
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 20px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      background: var(--bg);
+    }
+    .swatch-cell:nth-child(6n) {
+      border-right: none;
+    }
+
+    .swatch-preview {
+      height: 64px;
+      border: 1px solid var(--line-strong);
+      position: relative;
+    }
+
+    /* 8-App Suite Directory Grid */
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .app-cell {
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: var(--bg);
+    }
+    .app-cell:nth-child(4n) {
+      border-right: none;
+    }
+
+    .app-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .app-bar {
+      width: 14px;
+      height: 4px;
+    }
+
+    /* Code Export Block */
+    .code-section {
+      padding: 40px 32px;
+      background: var(--bg-sunken);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .code-box {
+      background: var(--bg-raised);
+      border: 1px solid var(--line);
+      padding: 24px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--ink);
+      overflow-x: auto;
+      margin-top: 16px;
+    }
+
+    /* Toast Notification */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--invert-bg);
+      color: var(--invert-fg);
+      border: 1px solid var(--line-strong);
+      padding: 12px 20px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 120ms linear;
+      z-index: 100;
+    }
+    #toast.visible {
+      opacity: 1;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-main {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+        padding: 40px 24px;
+      }
+      .palette-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .app-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="blueprint-frame">
+    <!-- Top Sticky HUD Bar -->
+    <header class="hud-header">
+      <a href="#" class="brand-cell">
+        <span class="brand-mark"></span>
+        <span>ARTCRAFT // STUDIO BLUEPRINT</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#proof-cells" class="nav-item invert-block">01 / CAPABILITIES</a>
+        <a href="#palette" class="nav-item invert-block">02 / TOKENS</a>
+        <a href="#apps" class="nav-item invert-block">03 / APP SPECTRUM</a>
+        <a href="#export" class="nav-item invert-block">04 / CSS EXPORT</a>
+      </nav>
+      <div class="header-actions">
+        <button class="hud-btn invert-block" id="themeToggle" onclick="toggleTheme()">
+          <span id="themeIndicator">[MODE: DRAFTING PAPER]</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero Blueprint Section -->
+    <section class="hero-grid">
+      <div class="hero-main">
+        <div class="hud-label">SYSTEM SPEC // V2.4 — ZERO-RADIUS CAD ARCHITECTURE</div>
+        <h1 class="display-title hero-title">
+          One local-first <span class="serif-italic">creative</span> studio. Thirteen precision tools.
+        </h1>
+        <p class="hero-sub">
+          Engineered on exposed 1px blueprint hairlines, warm drafting-paper surfaces (<code>#f2f1ee</code>), corner crosshair registration marks, and wide mechanical typography (<code>Archivo 118%</code> + <code>Instrument Serif Italic</code>).
+        </p>
+        <div class="hero-cta-row">
+          <button class="hud-btn-primary" onclick="copyCSS()">
+            <span>COPY SHADCN / TAILWIND CSS</span>
+            <span>→</span>
+          </button>
+          <a href="#proof-cells" class="hud-btn-ghost invert-block">
+            <span>INSPECT 3-TIER CELLS</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Live Studio Telemetry HUD -->
+      <div class="hero-telemetry">
+        <div class="telemetry-header">
+          <span class="hud-label"><span class="status-dot"></span>LOCAL ENGINE // ACTIVE</span>
+          <span class="hud-label">FPS: 60.0 // 0PX RADIUS</span>
+        </div>
+
+        <div class="telemetry-stage viewport-grid-bg">
+          <div class="node-card tick tick-tl tick-tr tick-bl tick-br">
+            <div class="node-card-header">
+              <span class="hud-label">NODE_01 // FLUX.1-DEV</span>
+              <span class="hud-label" style="color: var(--accent);">READY [12.4ms]</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 12px;">
+              <span>CFG_SCALE: 3.5</span>
+              <span>STEPS: 28</span>
+              <span>SEED: 8849201</span>
+            </div>
+          </div>
+
+          <div class="node-card tick tick-tl tick-tr tick-bl tick-br">
+            <div class="node-card-header">
+              <span class="hud-label">NODE_02 // PBR MATERIAL SYNTH</span>
+              <span class="hud-label" style="color: var(--app-3d);">LINKED [4K_MAPS]</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 12px;">
+              <span>ALBEDO + NORMAL</span>
+              <span>ROUGHNESS: 0.42</span>
+              <span>METAL: 0.85</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="telemetry-footer">
+          <div class="telemetry-stat">
+            <div class="hud-label">BORDER RADIUS</div>
+            <div class="stat-val">0.00px</div>
+          </div>
+          <div class="telemetry-stat">
+            <div class="hud-label">DISPLAY STRETCH</div>
+            <div class="stat-val">118%</div>
+          </div>
+          <div class="telemetry-stat">
+            <div class="hud-label">APPS INTEGRATED</div>
+            <div class="stat-val">13 / 13</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Infinite Capability Ticker -->
+    <div class="marquee-bar">
+      <div class="marquee-track hud-label">
+        <span>INFINITE CANVAS</span><span>▪</span>
+        <span>NODE WORKFLOWS</span><span>▪</span>
+        <span>MULTI-TRACK VIDEO TIMELINE</span><span>▪</span>
+        <span>3D SCENE STAGING &amp; GAUSSIAN SPLATS</span><span>▪</span>
+        <span>LOCAL-FIRST SQLITE ASSET LIBRARY</span><span>▪</span>
+        <span>PBR TEXTURE LAB</span><span>▪</span>
+        <span>CAMERA PATH DIRECTOR</span><span>▪</span>
+        <span>AUTONOMOUS CREATIVE AGENTS</span><span>▪</span>
+        <span>INFINITE CANVAS</span><span>▪</span>
+        <span>NODE WORKFLOWS</span><span>▪</span>
+        <span>MULTI-TRACK VIDEO TIMELINE</span><span>▪</span>
+        <span>3D SCENE STAGING &amp; GAUSSIAN SPLATS</span><span>▪</span>
+        <span>LOCAL-FIRST SQLITE ASSET LIBRARY</span><span>▪</span>
+        <span>PBR TEXTURE LAB</span><span>▪</span>
+      </div>
+    </div>
+
+    <!-- Section 01: 3-Tier Feature Proof Cells -->
+    <div id="proof-cells" class="section-bar">
+      <span class="hud-label">01 // 3-TIER FEATURE PROOF CELLS (SUNKEN 16:9 VIEWPORTS + CORNER TICKS)</span>
+      <span class="hud-label">GRID: 2-COLUMN EXPOSED HAIRLINE</span>
+    </div>
+
+    <section class="feature-grid">
+      <!-- Cell 01 -->
+      <article class="feature-cell">
+        <div class="cell-hud-top">
+          <span class="hud-label">INFINITE CANVAS</span>
+          <span class="hud-label">01</span>
+        </div>
+        <div class="cell-viewport viewport-grid-bg tick tick-tl tick-tr tick-bl tick-br">
+          <div style="display:flex; justify-content:space-between;">
+            <span class="hud-label" style="background:var(--bg-raised); padding:4px 8px; border:1px solid var(--line);">ZOOM: 100% // X:0 Y:0</span>
+            <span class="hud-label" style="color:var(--accent);">[LAYER_LOCK: OFF]</span>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; my:auto;">
+            <div style="background:var(--bg-raised); border:1px solid var(--line); padding:14px;">
+              <div class="hud-label" style="color:var(--app-canvas); margin-bottom:6px;">PROMPT_IN</div>
+              <div style="font-family:var(--font-mono); font-size:11px;">"Brutalist concrete pavilion at dusk, 35mm ortho"</div>
+            </div>
+            <div style="background:var(--bg-raised); border:1px solid var(--accent); padding:14px;">
+              <div class="hud-label" style="color:var(--accent); margin-bottom:6px;">LATENT_OUT // 2048×2048</div>
+              <div style="font-family:var(--font-mono); font-size:11px;">PASS_02: Upscaled via Tile ControlNet</div>
+            </div>
+          </div>
+          <div class="hud-label">VIEWPORT_SURFACE: VAR(--BG-SUNKEN)</div>
+        </div>
+        <div>
+          <h2 class="cell-title">Spatial generation without <span class="serif-italic">boundaries</span></h2>
+          <p class="cell-desc">Every feature cell pairs a top telemetry bar with a sunken 16:9 CAD stage framed by 11px corner crosshair ticks, grounding abstract capabilities in tangible workbench UI.</p>
+        </div>
+      </article>
+
+      <!-- Cell 02 -->
+      <article class="feature-cell">
+        <div class="cell-hud-top">
+          <span class="hud-label">NODE WORKFLOW ENGINE</span>
+          <span class="hud-label">02</span>
+        </div>
+        <div class="cell-viewport viewport-grid-bg tick tick-tl tick-tr tick-bl tick-br">
+          <div style="display:flex; justify-content:space-between;">
+            <span class="hud-label" style="background:var(--bg-raised); padding:4px 8px; border:1px solid var(--line);">DAG_GRAPH // 6 NODES</span>
+            <span class="hud-label" style="color:var(--app-workflows);">[DETERMINISTIC_CACHE]</span>
+          </div>
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
+            <div style="background:var(--bg-raised); border:1px solid var(--line); padding:10px 14px; flex:1;">
+              <div class="hud-label" style="color:var(--app-image);">01. DEPTH MAP</div>
+            </div>
+            <span class="hud-label">──►</span>
+            <div style="background:var(--bg-raised); border:1px solid var(--line); padding:10px 14px; flex:1;">
+              <div class="hud-label" style="color:var(--app-workflows);">02. K-SAMPLER</div>
+            </div>
+            <span class="hud-label">──►</span>
+            <div style="background:var(--bg-raised); border:1px solid var(--line); padding:10px 14px; flex:1;">
+              <div class="hud-label" style="color:var(--app-video);">03. VIDEO RENDER</div>
+            </div>
+          </div>
+          <div class="hud-label">HOVER INTERACTION: 120MS LINEAR BINARY INVERT</div>
+        </div>
+        <div>
+          <h2 class="cell-title">Deterministic <span class="serif-italic">pipelines</span> at local speed</h2>
+          <p class="cell-desc">Chain image, 3D, camera paths, and video models inside a zero-radius node graph. No cloud queues, no credit meters—just raw GPU throughput.</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- Section 02: Interactive Color Token Matrix -->
+    <div id="palette" class="section-bar">
+      <span class="hud-label">02 // CORE SURFACE &amp; INK TOKENS (CLICK ANY CELL TO COPY HEX)</span>
+      <span class="hud-label">3-TIER ELEVATION: SUNKEN → BASE → RAISED</span>
+    </div>
+
+    <section class="palette-grid">
+      <div class="swatch-cell invert-block" onclick="copyText('#f2f1ee', '--bg (Light)')">
+        <div class="swatch-preview" style="background:#f2f1ee;"></div>
+        <div class="hud-label">--BG (PAPER)</div>
+        <div style="font-family:var(--font-mono); font-size:13px;">#f2f1ee</div>
+      </div>
+      <div class="swatch-cell invert-block" onclick="copyText('#faf9f7', '--bg-raised (Light)')">
+        <div class="swatch-preview" style="background:#faf9f7;"></div>
+        <div class="hud-label">--BG-RAISED</div>
+        <div style="font-family:var(--font-mono); font-size:13px;">#faf9f7</div>
+      </div>
+      <div class="swatch-cell invert-block" onclick="copyText('#e9e8e4', '--bg-sunken (Light)')">
+        <div class="swatch-preview" style="background:#e9e8e4;"></div>
+        <div class="hud-label">--BG-SUNKEN</div>
+        <div style="font-family:var(--font-mono); font-size:13px;">#e9e8e4</div>
+      </div>
+      <div class="swatch-cell invert-block" onclick="copyText('#121316', '--bg (Dark)')">
+        <div class="swatch-preview" style="background:#121316;"></div>
+        <div class="hud-label">--BG (DARKROOM)</div>
+        <div style="font-family:var(--font-mono); font-size:13px;">#121316</div>
+      </div>
+      <div class="swatch-cell invert-block" onclick="copyText('#060607', '--bg-sunken (Dark)')">
+        <div class="swatch-preview" style="background:#060607;"></div>
+        <div class="hud-label">--BG-SUNKEN (DARK)</div>
+        <div style="font-family:var(--font-mono); font-size:13px;">#060607</div>
+      </div>
+      <div class="swatch-cell invert-block" onclick="copyText('#2d81ff', '--accent (Cobalt)')">
+        <div class="swatch-preview" style="background:#2d81ff;"></div>
+        <div class="hud-label">--ACCENT (COBALT)</div>
+        <div style="font-family:var(--font-mono); font-size:13px;">#2d81ff</div>
+      </div>
+    </section>
+
+    <!-- Section 03: Multi-App Color Spectrum -->
+    <div id="apps" class="section-bar">
+      <span class="hud-label">03 // MULTI-DISCIPLINE APP COLOR SPECTRUM (HOVER FOR BINARY INVERT)</span>
+      <span class="hud-label">SEMANTIC WAYFINDING ACROSS 13 TOOLS</span>
+    </div>
+
+    <section class="app-grid">
+      <div class="app-cell invert-block" onclick="copyText('#2d81ff', '--app-canvas')">
+        <div class="app-indicator">
+          <span class="app-bar" style="background:var(--app-canvas);"></span>
+          <span class="hud-label">APP_01 // #2D81FF</span>
+        </div>
+        <div class="display-title" style="font-size:20px;">Canvas Studio</div>
+      </div>
+      <div class="app-cell invert-block" onclick="copyText('#a855f7', '--app-video')">
+        <div class="app-indicator">
+          <span class="app-bar" style="background:var(--app-video);"></span>
+          <span class="hud-label">APP_02 // #A855F7</span>
+        </div>
+        <div class="display-title" style="font-size:20px;">Video Timeline</div>
+      </div>
+      <div class="app-cell invert-block" onclick="copyText('#06b6d4', '--app-workflows')">
+        <div class="app-indicator">
+          <span class="app-bar" style="background:var(--app-workflows);"></span>
+          <span class="hud-label">APP_03 // #06B6D4</span>
+        </div>
+        <div class="display-title" style="font-size:20px;">Node Workflows</div>
+      </div>
+      <div class="app-cell invert-block" onclick="copyText('#ec4899', '--app-image')">
+        <div class="app-indicator">
+          <span class="app-bar" style="background:var(--app-image);"></span>
+          <span class="hud-label">APP_04 // #EC4899</span>
+        </div>
+        <div class="display-title" style="font-size:20px;">Image Synth</div>
+      </div>
+      <div class="app-cell invert-block" onclick="copyText('#10b981', '--app-world')">
+        <div class="app-indicator">
+          <span class="app-bar" style="background:var(--app-world);"></span>
+          <span class="hud-label">APP_05 // #10B981</span>
+        </div>
+        <div class="display-title" style="font-size:20px;">World &amp; Splats</div>
+      </div>
+      <div class="app-cell invert-block" onclick="copyText('#f59e0b', '--app-director')">
+        <div class="app-indicator">
+          <span class="app-bar" style="background:var(--app-director);"></span>
+          <span class="hud-label">APP_06 // #F59E0B</span>
+        </div>
+        <div class="display-title" style="font-size:20px;">Camera Director</div>
+      </div>
+      <div class="app-cell invert-block" onclick="copyText('#6366f1', '--app-agents')">
+        <div class="app-indicator">
+          <span class="app-bar" style="background:var(--app-agents);"></span>
+          <span class="hud-label">APP_07 // #6366F1</span>
+        </div>
+        <div class="display-title" style="font-size:20px;">Studio Agents</div>
+      </div>
+      <div class="app-cell invert-block" onclick="copyText('#14b8a6', '--app-3d')">
+        <div class="app-indicator">
+          <span class="app-bar" style="background:var(--app-3d);"></span>
+          <span class="hud-label">APP_08 // #14B8A6</span>
+        </div>
+        <div class="display-title" style="font-size:20px;">3D Stage &amp; PBR</div>
+      </div>
+    </section>
+
+    <!-- Section 04: globals.css Export -->
+    <div id="export" class="section-bar">
+      <span class="hud-label">04 // DROP-IN TAILWIND / SHADCN GLOBALS.CSS</span>
+      <button class="hud-btn invert-block" onclick="copyCSS()" style="border-left:1px solid var(--line);">COPY FULL SNIPPET</button>
+    </div>
+
+    <section class="code-section">
+      <div class="hud-label">PRODUCTION TOKEN MAPPING // 0PX RADIUS ENFORCED</div>
+      <pre class="code-box" id="cssSnippet">:root {
+  --bg: #f2f1ee;
+  --bg-raised: #faf9f7;
+  --bg-sunken: #e9e8e4;
+  --ink: #101014;
+  --ink-strong: #000000;
+  --muted: #1010149e;
+  --faint: #1010146b;
+  --line: #10101429;
+  --line-strong: #10101466;
+  --accent: #2d81ff;
+  --accent-ink: #1659c4;
+  --invert-bg: #101014;
+  --invert-fg: #f2f1ee;
+  --radius: 0rem;
+}
+
+.dark {
+  --bg: #121316;
+  --bg-raised: #101014;
+  --bg-sunken: #060607;
+  --ink: #f2f1ee;
+  --ink-strong: #ffffff;
+  --muted: #f2f1ee99;
+  --faint: #f2f1ee61;
+  --line: #f2f1ee26;
+  --line-strong: #f2f1ee66;
+  --accent: #2d81ff;
+  --accent-ink: #74aaff;
+  --invert-bg: #ffffff;
+  --invert-fg: #0b0b0c;
+}</pre>
+    </section>
+  </div>
+
+  <div id="toast">COPIED TO CLIPBOARD</div>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const indicator = document.getElementById('themeIndicator');
+      html.classList.toggle('dark');
+      if (html.classList.contains('dark')) {
+        indicator.textContent = '[MODE: STUDIO DARKROOM]';
+      } else {
+        indicator.textContent = '[MODE: DRAFTING PAPER]';
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('visible');
+      setTimeout(() => toast.classList.remove('visible'), 1800);
+    }
+
+    function copyText(hex, label) {
+      navigator.clipboard.writeText(hex);
+      showToast('COPIED ' + label + ': ' + hex);
+    }
+
+    function copyCSS() {
+      const code = document.getElementById('cssSnippet').textContent;
+      navigator.clipboard.writeText(code);
+      showToast('COPIED GLOBALS.CSS TOKENS');
+    }
+  </script>
+</body>
+</html>
+

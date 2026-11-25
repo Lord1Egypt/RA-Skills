@@ -95,11 +95,11 @@ function isInside(root, target) {
   return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
 }
 
-/** YottaCode 目标判定：.yottacode 路径或 YOTTACODE_HOME 子树（0.29.1 U2）。 */
-function isYottaCodeTarget(dir, opts) {
-  if (agentDirsLib.isYottaCodeDir(dir)) return true;
+/** YottaWeave 目标判定：.yottaweave 路径或 YOTTAWEAVE_HOME 子树（0.29.1 U2）。 */
+function isYottaWeaveTarget(dir, opts) {
+  if (agentDirsLib.isYottaWeaveDir(dir)) return true;
   const env = (opts && opts.env) || process.env;
-  const ycHome = env.YOTTACODE_HOME ? path.resolve(env.YOTTACODE_HOME) : null;
+  const ycHome = env.YOTTAWEAVE_HOME ? path.resolve(env.YOTTAWEAVE_HOME) : null;
   return Boolean(ycHome && dir && isInside(ycHome, dir));
 }
 
@@ -120,8 +120,8 @@ function validateHostDir(dir, opts) {
   if (agentDirsLib.isBridgeOnlyDir(target, opts)) {
     return '锁 / 数据桥接目录不允许注册：' + target;
   }
-  if (isYottaCodeTarget(target, opts)) {
-    return 'YottaCode 自带三层技能管理（skill-inventory / skill / user-skills），不纳入元阁接管：' + target;
+  if (isYottaWeaveTarget(target, opts)) {
+    return 'YottaWeave 自带三层技能管理（skill-inventory / skill / user-skills），不纳入元阁接管：' + target;
   }
   return null;
 }
@@ -187,8 +187,8 @@ function markHost(opts, input) {
   }
   const dir = input && input.dir ? path.resolve(input.dir) : null;
   if (!dir) return { ok: false, error: '缺少目录' };
-  if (isYottaCodeTarget(dir, options)) {
-    return { ok: false, error: 'YottaCode 自带三层技能管理，不纳入元阁接管，不能标记：' + dir };
+  if (isYottaWeaveTarget(dir, options)) {
+    return { ok: false, error: 'YottaWeave 自带三层技能管理，不纳入元阁接管，不能标记：' + dir };
   }
   const registry = readHostsRegistry(options);
   let entry = registry.hosts.find((item) => samePath(item.dir, dir));
@@ -263,8 +263,8 @@ function excludeHost(opts, input) {
   if (!target) return { ok: false, error: '缺少目标：hub hosts exclude <agentId|目录>' };
   const { kind, value } = classifyExcludeTarget(target);
   if (kind === 'dir') {
-    if (isYottaCodeTarget(value, options)) {
-      return { ok: false, error: 'YottaCode 自带三层技能管理，不纳入元阁接管，无需加入不接管名单：' + value };
+    if (isYottaWeaveTarget(value, options)) {
+      return { ok: false, error: 'YottaWeave 自带三层技能管理，不纳入元阁接管，无需加入不接管名单：' + value };
     }
     if (agentDirsLib.isBridgeOnlyDir(value, options)) {
       return { ok: false, error: '锁 / 数据桥接目录本就不参与链接，无需加入不接管名单：' + value };
@@ -309,7 +309,7 @@ function setHostOverride(opts, input) {
   if (!agentId) return { ok: false, error: '缺少 agentId：hub hosts set <agentId> --dir <目录>（恢复默认用 --clear）' };
   const info = agentDirsLib.AGENT_DIRS[agentId];
   if (!info) return { ok: false, error: '未收录智能体: ' + agentId };
-  if (info.neverLink) return { ok: false, error: 'YottaCode 不纳入元阁接管，不能设置目录覆盖。' };
+  if (info.neverLink) return { ok: false, error: 'YottaWeave 不纳入元阁接管，不能设置目录覆盖。' };
   const dir = input && input.dir ? path.resolve(input.dir) : null;
   if (!dir) return { ok: false, error: '缺少目录：hub hosts set <agentId> --dir <目录>（恢复默认用 --clear）' };
   const guard = validateHostDir(dir, options);

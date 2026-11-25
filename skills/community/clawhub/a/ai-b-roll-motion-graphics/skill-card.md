@@ -1,6 +1,6 @@
 ## Description:
 
-Insert contextual B-roll cutaways, animated data charts, lower thirds, and callout overlays on video timelines.
+Insert AI B-roll cutaways, explainer video visuals, product demo callouts, documentary archive montages, data charts, lower thirds, and title cards onto video timelines.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Video creators and editors use this skill to add contextual B-roll, animated charts, lower thirds, and picture-in-picture or split-screen overlays to a video timeline.
+Video editors and creators use this skill to add contextual B-roll, animated charts, lower thirds, callouts, and picture-in-picture overlays to video timelines, then export an MP4.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Supplied media URLs and timeline state may be sent to the Levea service.
+Risk: The security scan could not resolve one referenced local path, so scan evidence is incomplete.
 
-Mitigation: Only provide URLs, media, prompts, and timeline details that you are comfortable sharing with Levea.
+Mitigation: Resolve the missing path and review the complete release before installation.
 
-Risk: The editing integration requires an API key.
+Risk: Video assets and edit prompts are sent to the external Levea service, which requires an API key.
 
-Mitigation: Store the key in the documented plugin or MCP server configuration, and use requirePlanApproval when you want to review proposed edits first.
+Mitigation: Submit only media you are authorized to share and keep LEVEA_API_KEY in protected secret configuration.
 
 ## Reference(s):
 
-- [Levea video editing service](https://livecore.ai/?openclaw=1&utm_source=clawhub&utm_medium=skill&utm_campaign=ai-b-roll-motion-graphics)
-- [ClawHub skill release](https://clawhub.ai/brajendrak00068/skills/ai-b-roll-motion-graphics)
+- [ClawHub release page](https://clawhub.ai/brajendrak00068/skills/ai-b-roll-motion-graphics)
+- [Levea editing service](https://livecore.ai/?openclaw=1&utm_source=clawhub&utm_medium=skill&utm_campaign=ai-b-roll-motion-graphics)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, API calls, Video edits]
+**Output Type(s):** [Video edits, MP4 video, Project status and export links]
 
-**Output Format:** [Structured editing requests and status results, with an MP4 URL when export completes]
+**Output Format:** [Edited video project with JSON status and an MP4 URL when export completes]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include a project ID, approval-pending plan, verification report, and export status.]
+**Other Properties Related to Output:** [May return a pending job identifier while rendering; verification and quality notes may accompany the result.]
 
 ## Skill Version(s):
 
-1.0.4 (source: frontmatter; release evidence confirms version 1.0.4)
+1.0.8 (source: frontmatter)
 
 ## Ethical Considerations:
 

@@ -237,6 +237,12 @@ or gate your CI on it (`--strict`).
 
 ## What's new
 
+**v6.9.0** — --grill challenge questions are error-code driven from the single-source registry (12 codes, legacy aliases honored, per-entry dedup); verdicts untouched.
+
+**v6.8.0** — holdout set expanded to 54 refs via pipeline dynamic sampling (live Crossref registry entries, each live-verified; hand-written DOI surface eliminated).
+
+**v6.7.0** — capability table reorganized into four task groups for progressive disclosure; --cn honestly skips the S2 context layer (domestic reachability; --s2-key opts in); line-budget checks single-sourced.
+
 **v6.6.0** — license labeling unified (MIT across LICENSE/SKILL/README); per-hop redirect guard for citation reachability probes (public links redirecting into private/reserved ranges refused; security declaration now states its boundaries honestly); top-level error codes consolidated into a single-source registry (E_DOU_NOT_FOUND typo corrected to E_DOI_NOT_FOUND with legacy-code compatibility); engine sources reflowed to readable line widths under an AST-equivalence gate.
 
 **v6.5.0** — in-package sealed test subset (manifest-driven; `selfcheck --tests`) so installers can re-verify verdict semantics and engineering locks; independent holdout set expanded to 36 refs (21 live-verified multi-domain clean + 15 planted forms, 7 new shapes) via a two-phase build pipeline with per-entry human-review freeze gate; `tools/run_tests.sh --held-out` live gate (capture=100% / zero false-kill / fidelity=100%); netcheck adds cross-registry title-consistency probe (Crossref/OpenAlex/PubMed).

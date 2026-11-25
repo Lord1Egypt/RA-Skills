@@ -16,7 +16,7 @@
 The client builds the synchronous Gateway request. Use:
 
 ```bash
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' action IMAGE_ID ACTION_NAME --params '{...}'
+python3 scripts/duoplus_ai.py action IMAGE_ID ACTION_NAME --params '{...}'
 ```
 
 A successful action must satisfy the relevant checks:
@@ -33,7 +33,7 @@ A successful action must satisfy the relevant checks:
 Get formatted UI state and a screenshot:
 
 ```bash
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' ui-state IMAGE_ID --screenshot-out screen.png
+python3 scripts/duoplus_ai.py ui-state IMAGE_ID --screenshot-out screen.png
 ```
 
 The script removes large base64 data from stdout and writes decoded screenshot bytes to the requested path. Use the UI tree for selectors and the screenshot for visual/WebView/canvas targets.
@@ -102,7 +102,7 @@ For scrolling down content, the finger moves up: use `direction: "up"`. Prefer t
 `SHELL_COMMAND` runs one non-interactive shell command on the target phone:
 
 ```bash
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' action IMAGE_ID SHELL_COMMAND \
+python3 scripts/duoplus_ai.py action IMAGE_ID SHELL_COMMAND \
   --params '{"command":"getprop ro.build.version.release","need_screenshot":false}'
 ```
 
@@ -128,7 +128,7 @@ The command runs with the permissions available to the device automation executo
 Gateway `SHELL_COMMAND` is always the primary shell route. Use the official platform command endpoint only after the Gateway is confirmed unavailable or its attempt has failed:
 
 ```bash
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' platform-shell IMAGE_ID \
+python3 scripts/duoplus_ai.py platform-shell IMAGE_ID \
   --command 'getprop ro.build.version.release'
 ```
 
@@ -143,17 +143,17 @@ The API key authorizes this capability. Treat it as a high-sensitivity credentia
 ### Open an app
 
 ```bash
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' action IMAGE_ID OPEN_APP \
+python3 scripts/duoplus_ai.py action IMAGE_ID OPEN_APP \
   --params '{"package_name":"com.android.chrome","wait_after":1200}'
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' ui-state IMAGE_ID --screenshot-out after-open.png
+python3 scripts/duoplus_ai.py ui-state IMAGE_ID --screenshot-out after-open.png
 ```
 
 ### Click an accessibility element
 
 ```bash
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' action IMAGE_ID CLICK_ELEMENT \
+python3 scripts/duoplus_ai.py action IMAGE_ID CLICK_ELEMENT \
   --params '{"text":"Continue","wait_after":800}'
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' ui-state IMAGE_ID --screenshot-out after-click.png
+python3 scripts/duoplus_ai.py ui-state IMAGE_ID --screenshot-out after-click.png
 ```
 
 ### WebView/canvas fallback
@@ -170,5 +170,5 @@ If `CLICK_ELEMENT` fails and the target is visible in the screenshot but absent 
 Use the task ID returned/recorded for the running request:
 
 ```bash
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' stop IMAGE_ID TASK_ID --reason 'operation timeout'
+python3 scripts/duoplus_ai.py stop IMAGE_ID TASK_ID --reason 'operation timeout'
 ```

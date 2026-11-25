@@ -14,18 +14,18 @@ Validated demand: Agent users show strong demand for Nano Banana Pro-style workf
 
 ## 来源证据
 
+- v2ex-hot：[Gemini AI Pro 黑五优惠怎么获得？](https://www.v2ex.com/t/1259601)
 - github-issues：[49 个内置技能全量对照优化台账（lovart.ai 人气优先）](https://github.com/ganjmeng/ComfyArt/issues/911)
-- github-issues：[Launch Phase 8 — Engine evaluation](https://github.com/TheAnswerManIsHere/Overhypeme/issues/887)
-- clawhub-popular-skill：[Popular Clawhub skill demand: Nano Pdf has 123,752 downloads](https://clawhub.ai/skills/nano-pdf)
-- clawhub-popular-skill：[Popular Clawhub skill demand: Nano Banana Pro has 108,629 downloads](https://clawhub.ai/skills/nano-banana-pro)
-- github-issues：[Media models: may we make these harvest, triage and pricing edits? (+ three media models being added)](https://github.com/parvathibntglobal/Model-Information-Board/issues/602)
-- segmentfault-search：[HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
-- segmentfault-search：[javascript](https://segmentfault.com/t/javascript)
-- segmentfault-search：[typescript](https://segmentfault.com/t/typescript)
-- segmentfault-search：[ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
-- segmentfault-search：[nano-banana-pro](https://segmentfault.com/t/nano-banana-pro)
-- segmentfault-search：[谁还不知道Nano Banana Pro API 国内接入方法？0.09/张，稳得可怕](https://segmentfault.com/a/1190000047424066)
-- segmentfault-search：[Nano Banana Pro 零基础快速上手](https://segmentfault.com/a/1190000047458683)
+- clawhub-popular-skill：[Popular Clawhub skill demand: Nano Pdf has 124,106 downloads](https://clawhub.ai/skills/nano-pdf)
+- clawhub-popular-skill：[Popular Clawhub skill demand: Nano Banana Pro has 108,983 downloads](https://clawhub.ai/skills/nano-banana-pro)
+- v2ex-latest：[冲了 99usd 一年的 Google ai pro ，怎么使用反重力](https://www.v2ex.com/t/1259806)
+- v2ex-latest：[买了 Gemini AI Pro 黑五优惠发现不够用怎么办？](https://www.v2ex.com/t/1259788)
+- github-issues：[[Bug] skills: bundled scripts invoked by a path that is not anchored on ${CLAUDE_SKILL_DIR}](https://github.com/laurigates/claude-plugins/issues/3669)
+- v2ex-latest：[已经是 Gemini pro 年度订阅会员了如何参加今年的黑五优惠呢？](https://www.v2ex.com/t/1259810)
+- github-issues：[Model retirement: map HTrJv's per-family retirement date (Omni 1.1 Flash, Veo 3.1 Fast/Quality leave 5 Dec)](https://github.com/ffroliva/gflow-cli/issues/1375)
+- github-issues：[4K not working any more](https://github.com/rbb-dev/Open-WebUI-OpenRouter-pipe/issues/72)
+- github-issues：[feedback(github-actions-plugin): github-social-preview calls a nano_banana_pro.py script and skill that aren't installed](https://github.com/laurigates/claude-plugins/issues/3800)
+- github-issues：[[Feature] Add AI/ML API as an optional Provider for Nano Banana](https://github.com/hypit-ai/hypit/issues/550)
 
 ## 这个技能如何满足需求
 

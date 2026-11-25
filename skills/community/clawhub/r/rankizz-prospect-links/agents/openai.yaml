@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rankizz Link Prospecting"
+  short_description: "Find and qualify relevant link prospects"
+  default_prompt: "Use $rankizz-prospect-links to find evidence-based backlink prospects and outreach angles."

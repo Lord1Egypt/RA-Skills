@@ -1,15 +1,8 @@
 #!/bin/bash
-# Validate Checkly project configuration
+# Validate Checkly project configuration and preserve the CLI's exit status.
 
 set -e
 
-echo "🔍 Validating Checkly project configuration..."
-
+echo "Validating Checkly project configuration..." >&2
 npx checkly validate --verify-runtime-dependencies
-
-if [ $? -eq 0 ]; then
-  echo "✅ Configuration is valid!"
-else
-  echo "❌ Configuration has errors. Fix them before deploying."
-  exit 1
-fi
+echo "Configuration is valid." >&2

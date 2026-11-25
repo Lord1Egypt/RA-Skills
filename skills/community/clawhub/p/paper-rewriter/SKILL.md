@@ -40,9 +40,9 @@ and natural register — with integrity guardrails on every step.
 > (paper-polisher-pro); de-templating, model-residue cleanup, AI-flavor style
 > self-check and rewriting → this tool. Need both? Polish first, then run this pipeline.
 
-## Feature status (v5.12.0)
+## Feature status (v5.19.0)
 
-⚠️ rows = experimental (may reject valid files; review output). **The full per-generation capability list has moved to [references/feature_status.md](references/feature_status.md)**; per-item details live in references/errors.md and topic docs. Stable highlights (all stable), grouped: **Diagnose** (style self-check + per-section focus · statistical consistency · term drift / unification sheet · calibration evidence · EN signal library v3) · **Deep-rewrite** (sentence-level plan with line anchors · pipeline --handoff sheets · EN/CN signal libraries + density mirrors) · **Guard** (integrity verify + prescription report · fabrication defense · exportable learned guards · output grading [violations fail / warnings advisory / --strict upgrade]) · **Batch** (resume / concurrency isolation · worksheet + stats card · revision records) · **Deliver** (12-item submission bundle with write-manifest self-evidence · dashboard + compare sheets · docx write-back · print-friendly reports · in-package selfcheck · external lexicon (--lexicon, shared across skills).
+⚠️ rows = experimental (may reject valid files; review output). **The full per-generation capability list has moved to [references/feature_status.md](references/feature_status.md)**; per-item details live in references/errors.md and topic docs. Stable highlights (all stable), grouped: **Diagnose** (style self-check + per-section focus + --top N trim · statistical consistency · term drift / unification sheet · calibration evidence · EN signal library v3) · **Deep-rewrite** (sentence-level plan with line anchors · pipeline --handoff sheets · EN/CN signal libraries v3 + density mirrors) · **Guard** (integrity verify + prescription report · fabrication defense · exportable learned guards · graded output + --strict gate · stats --html + --fail-under score gate + --allow-list exemption file; wide terms widen exemptions - reviewing each against the original is the caller's duty) · **Batch** (resume / concurrency isolation · worksheet + stats card · revision records · cleanup preview --dry-run · automation gates --exit-verdict/--ci) · **Deliver** (12-item submission bundle with write-manifest self-evidence · dashboard + compare sheets · docx write-back · print-friendly reports · in-package selfcheck (dual-form adaptive) · external lexicon (--lexicon, shared across skills).
 
 | Capability | Status | Since |
 |---|---|---|
@@ -103,9 +103,9 @@ quick flag semantics:
 | `--structure` | section-aware scoring (IMRaD) |
 | `--step-timeout SEC` | per-step wall-clock budget (default 120) |
 | `--terms FILE` | term list for the integrity guard (build via extract_terms.py) |
-| `--unify SHEET` | check_terms: emit a term-unified draft (v4.4.0; advisory — review the replacement list) |
-| `--section abstract` | detect: diagnose one section in isolation (v4.5.0; the abstract is what reviewers read first) |
-| `-o revised.docx` | `-o` on pipeline/transform/compare writes Word when the path ends in `.docx` (v4.4.0, plain paragraphs; merge manually for complex layouts) |
+| `--unify SHEET` | check_terms: emit a term-unified draft (advisory — review the replacement list) |
+| `--section abstract` | detect: diagnose one section in isolation (the abstract is what reviewers read first) |
+| `-o revised.docx` | `-o` on pipeline/transform/compare writes Word when the path ends in `.docx` (plain paragraphs; merge manually for complex layouts) |
 
 One command (self-check → cleanup → revision brief → integrity guard):
 
@@ -117,7 +117,7 @@ python scripts/pipeline.py draft.txt -o out.txt --terms terms.txt
   self-contained report (compare adds sentence-level diff); `--batch dir` scans a
   whole directory (pipeline writes a CSV; the batch `-o` summary stays CSV — no
   docx write-back for the table); `-o` on pipeline/transform/compare ending in
-  `.docx` is written back as Word (v4.4.0, plain paragraphs — closes the loop
+  `.docx` is written back as Word (plain paragraphs — closes the loop
   with `.docx` direct-read; tables/images/styles are not rebuilt, merge complex
   layouts manually).
 - **Section-aware**: `detect --structure` scores abstract/intro/methods/results
@@ -189,9 +189,9 @@ When invoked, decide the path first, then run it:
   `--unify output.txt` (each group unified to its dominant variant, per-variant
   replacement counts surfaced — advisory output, review before adopting, then
   run verify; v4.4.0); `--list-packs` shows all eight
-  domain packs (v3.0.0).
+  domain packs.
 - **Numbers that don't agree** (percent list not summing to 100, same group
-  with two different n, p/P style mix) → `check_stats.py file` (v3.2.0;
+  with two different n, p/P style mix) → `check_stats.py file` (
   exit codes match check_terms: 0 consistent / 1 issues found). Chaptered
   manuscripts: `check_stats.py --batch 目录` aggregates group-n across files
   (abstract-vs-methods mismatches, v3.3.0). Or run everything at once:
@@ -200,7 +200,7 @@ When invoked, decide the path first, then run it:
   (P0 sentence queue + budget projection); add `--handoff` to emit the
   per-sentence instruction sheet (guards + acceptance commands, v3.0.0).
 - **User wants quantified acceptance of a rewrite** → `stylecheck.py 原稿 改稿
-  --compare` (v2.6.0 style profile delta; triggers: 风格画像 / 量化验收 /
+  --compare` (style profile delta; triggers: 风格画像 / 量化验收 /
   深改验收 / style profile / acceptance check).
 - **A batch run was interrupted** (Ctrl-C / power loss / timeout) → rerun with
   `--batch 目录 --resume` (skips completed files; changed or previously failed
@@ -225,31 +225,17 @@ When invoked, decide the path first, then run it:
   `1` integrity FAIL (fix the rewrite, never the guard), `2` usage/file error.
   `detect/transform/compare/pipeline` report the verdict in their output and
   always exit `0` on completed runs, `2` on usage/file errors. For agent/CI
-  branching, add `--exit-verdict` (v2.3.0): machine exit codes 0/3/4 on
+  branching, add `--exit-verdict`: machine exit codes 0/3/4 on
   detect/compare, full 0/1/3/4 on pipeline — see Automation & CI integration
   below. Every script supports `--version`.
 
-## Automation & CI integration (v2.3.0)
+## Automation & CI integration
 
-Scripts are automation-first: every verdict is machine-readable, two ways.
-
-- **Default contract (human flows)**: `verify.py` alone holds exit 0/1/2
-  (1 = integrity FAIL); detect/transform/compare/pipeline finish with 0 and
-  put the verdict in their report. Never branch on their default exit code.
-- **Machine contract** — add `--exit-verdict` (or the shorter `--ci` alias, v3.1.0)
-  to detect / compare / pipeline:
-  `0` clean (low, no residue) · `3` style patterns at medium or above (needs
-  deep revision) · `4` model-residue hit (run transform first) · `1`
-  integrity FAIL (pipeline only — same meaning as verify's 1) · `2` usage
-  error (unchanged). **pipeline is the only full 1/3/4 gate** — recommended
-  CI check: `pipeline.py draft.txt --rewrite rewritten.txt --terms terms.txt
-  --exit-verdict`.
-- **JSON**: `detect -j` (full scan result), `pipeline --json` (before/after,
-  verify verdict, `exit_verdict` field, handling `hints`, agent brief), `compare --json`
-  (delta + verify), `plan.py --json` (sentence queue + projections).
-  Example gate in one line:
-  `python scripts/pipeline.py orig.txt --rewrite new.txt --json --exit-verdict || echo "blocked: $?"`
-- Exit-code tables for both contracts: `references/errors.md` §1.
+- **Default (human flow)**: `verify.py` owns exit codes 0/1/2; other scripts write
+  verdicts into their reports — do not branch on their default exit codes.
+- **Machine mode**: detect / compare / pipeline take `--exit-verdict` (alias `--ci`),
+  five codes 0/3/4/1/2; `pipeline.py` is the only full gate (1/3/4). The one-liner
+  and the JSON field tables: [automation](automation.md) · [errors](errors.md) section 1.
 
 ## The workflow
 
@@ -262,7 +248,7 @@ Scripts are automation-first: every verdict is machine-readable, two ways.
    `attached_file`), leftover chatbot pleasantries, markdown residue, and a safe
    list of filler phrases; CN halfwidth punctuation is normalized to fullwidth
    (decimals protected). `-a` adds em-dash reduction and empty-opener removal.
-   `--deep` (v2.4.0) adds sentence-level deterministic transforms — canned
+   `--deep` adds sentence-level deterministic transforms — canned
    opener deletion, 「不仅X，而且Y」→「X，且Y」 merging — zero-information-loss
    only, every operation logged to `--track` — the log is the audit trail.
    Text with no hits passes through with zero edits (fullwidth alnum
@@ -273,7 +259,7 @@ Scripts are automation-first: every verdict is machine-readable, two ways.
    queue (worst offenders with section, category and advice) so deep effort
    lands where the score lives; add `--handoff` to emit a per-sentence
    operation sheet (original sentence + directive + guard rules + acceptance
-   commands) that a rewriting agent can follow verbatim (v3.0.0).
+   commands) that a rewriting agent can follow verbatim.
    Then read the guide for the text's language —
    - CN: `references/style_guide_zh.md` — structural de-templating → jargon
      cleanup → rhythm → concreteness → stance → integrity red lines
@@ -294,7 +280,7 @@ Scripts are automation-first: every verdict is machine-readable, two ways.
    number-context swaps (arm/direction ordering).
    For mixed synonym usage (abbreviation vs full form, e.g. HF vs
    心力衰竭), also run `check_terms.py file --pack cardiovascular`
-   (v3.0.0 domain packs; `--list-packs` shows all eight).
+   (domain packs; `--list-packs` shows all eight).
 5. **Re-check**: `compare.py draft.txt step2.txt` — pattern reduction + integrity
    verdict. Keep the before/after pair for your records; if your institution or
    journal requires an AI-use disclosure, state it plainly — this report is a

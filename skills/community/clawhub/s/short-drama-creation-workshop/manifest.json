@@ -1,0 +1,58 @@
+{
+  "changelog": "The joined vertical cut is published as the next patch of the same workshop.",
+  "display_name": "Short Drama Creation Workshop",
+  "entry": "SKILL.md",
+  "homepage": "https://beatra.ai/skills/short-drama-creation-workshop",
+  "icon": "https://beatra.ai/textures/icons/ai-short-drama-shot-maker-0.2.5.png",
+  "localized": {
+    "en": {
+      "description": "Turn a short-drama idea into a workshop pack: a beat sheet, vertical storyboard stills, one spoken line per beat, and an original music bed. This short drama creation workshop writes the episode spine, generates stills, records dialogue, and creates a scene score you can review before a still is animated into a shot. Use it for romance, suspense, comedy, and tearjerker vertical dramas, with character, costume, and location held across the episode.",
+      "display_name": "Short Drama Creation Workshop",
+      "summary": "A beat sheet, storyboard stills, spoken lines, and a music bed for one vertical short drama.",
+      "tags": [
+        "short drama creation workshop",
+        "vertical short drama",
+        "short drama storyboard",
+        "short drama dialogue",
+        "short drama score"
+      ],
+      "title": "Short Drama Creation Workshop"
+    },
+    "ja": {
+      "description": "ショートドラマのアイデアを、ビート表、縦型の絵コンテ静止画、セリフ、オリジナルの場面音楽にします。静止画を確認してから、必要なカットだけ動画にします。恋愛、サスペンス、コメディ、泣ける縦型ドラマ向けです。",
+      "display_name": "ショートドラマ工房",
+      "summary": "縦型ショートドラマのビート、静止画、セリフ、音楽。",
+      "tags": [
+        "ショートドラマ",
+        "縦型ドラマ",
+        "絵コンテ",
+        "セリフ",
+        "場面音楽"
+      ],
+      "title": "ショートドラマ工房"
+    },
+    "zh": {
+      "description": "把一个短剧想法做成短剧创作工坊的一组成品：分集节拍、竖屏分镜静帧、每条节拍一句对白，以及一条原创配乐。短剧创作从节拍表开始，再出画面、短剧配音和可以先听的短剧配乐，确认后再把静帧做成镜头。适合爱情、悬疑、喜剧和催泪的竖屏短剧，人物、服装和场景在整集里保持一致。",
+      "display_name": "短剧创作工坊",
+      "summary": "一部竖屏短剧的节拍、分镜静帧、对白和配乐。",
+      "tags": [
+        "短剧创作工坊",
+        "短剧创作",
+        "短剧配音",
+        "短剧配乐",
+        "竖屏短剧"
+      ],
+      "title": "短剧创作工坊"
+    }
+  },
+  "mcp": {
+    "authentication": "device-bearer",
+    "credential_file": "~/.beatra/credentials.json",
+    "name": "beatra",
+    "transport": "streamable-http",
+    "url": "https://mcp.beatra.ai/mcp"
+  },
+  "name": "short-drama-creation-workshop",
+  "schema_version": 1,
+  "version": "0.1.3"
+}

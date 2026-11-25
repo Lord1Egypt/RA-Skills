@@ -1,7 +1,7 @@
 ---
 name: "smyx-child-dangerous-object-detection-analysis"
 description: "Using fixed cameras in the living room, child's room, kitchen, or other home zones, AI object detection and pose estimation analyze the video in real time to recognize a child's hand actions and the objects in hand, identifying whether the child grabs scissors, knives, medicine bottles, lighters, or other preset dangerous items, or inserts fingers into electrical socket holes. | 通过家庭客厅、儿童房或厨房等区域的固定摄像头，利用AI目标检测和姿态估计技术实时分析儿童手部动作及手中持有的物品，识别儿童是否抓握剪刀、刀具、药品瓶、打火机等预设危险品，或是否将手指插入电源插座孔。一旦检测到危险行为，立即输出预警，联动手机APP或智能音箱发出警报，提醒家长及时干预，预防意外伤害。"
-version: "1.0.20"
+version: "1.0.22"
 license: "MIT-0"
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: agent-ready
-description: Check a website for SEO, GEO (AI answers) and AXO (AI agents) with the free, open-source Agent Ready CLI and MCP server by WorkPods. Use when asked to audit a page or site, check robots.txt, AI crawler access, sitemaps, llms.txt or agent manifests, or find out why search engines or AI assistants miss a site.
-version: 0.1.1
+description: Free, open-source checker for how well AI search and AI agents can read and use a website. Runs the Agent Ready by WorkPods.ai CLI and MCP server for SEO, GEO (AI answers) and AXO (AI agents). Use when asked to audit a page or site, check robots.txt, AI crawler access, sitemaps, llms.txt or agent manifests, or find out why search engines or AI assistants miss a site.
+version: 0.1.2
 metadata:
   openclaw:
     emoji: "🔎"
@@ -12,16 +12,17 @@ metadata:
         - npx
 ---
 
-# Agent Ready
+# Agent Ready by WorkPods.ai
 
 Agent Ready shows a site the way search engines, AI answers and AI agents see it, and says what
-to fix first. It is free and open source (Apache-2.0), made by [WorkPods](https://workpods.ai).
+to fix first. It is free and open source (Apache-2.0). Made by [WorkPods.ai](https://workpods.ai),
+an AI SEO agency.
 
 - Tool page: https://workpods.ai/tools/agent-ready
 - Source: https://github.com/WorkPodsAgents/agent-ready
 - npm: `@workpods/agent-ready` (Node.js 22 or later)
 
-The CLI runs on your machine: nothing goes through a WorkPods server and no account is needed.
+The CLI runs on your machine: nothing goes through a WorkPods.ai server and no account is needed.
 
 ## Setup
 

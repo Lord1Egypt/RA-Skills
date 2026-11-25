@@ -2,7 +2,7 @@
 
 ## Live Requirement
 
-Validated demand: Product teams need reliable workflows for fixing mobile responsiveness, navigation layout, and cross-device UI issues. This requirement is supported by 12 separate online signals across 2 source families, so it represents broader demand rather than a single isolated request.
+Validated demand: Product teams need reliable workflows for fixing mobile responsiveness, navigation layout, and cross-device UI issues. This requirement is supported by 11 separate online signals across 2 source families, so it represents broader demand rather than a single isolated request.
 
 ## Audience
 
@@ -20,12 +20,12 @@ Demand: 70/70
 
 Local feasibility: 30/30
 
-Evidence coverage: 12 signals across 2 source families.
+Evidence coverage: 11 signals across 2 source families.
 
 Scoring rationale:
 
-- Evidence count: 12; required minimum: 3.
-- Distinct source families: 2; sources: github, segmentfault.
+- Evidence count: 11; required minimum: 3.
+- Distinct source families: 2; sources: csdn, github.
 - Demand score: 70/70 based on corroboration, source diversity, and professional/community signal.
 - Local feasibility score: 30/30.
 - Implementation is a documentation, workflow, code, or analysis skill that can run on ordinary CPU hardware.
@@ -33,18 +33,17 @@ Scoring rationale:
 
 ## Evidence
 
-- github-issues (2026-10-14T20:51:38+00:00): [AI dev: finish River Ways operational readiness and enquiry flow](https://github.com/godsbest656-glitch/river-ways/issues/16)
-- github-issues (2026-10-15T11:17:02+00:00): [[frontend] Add a 404 and 500 custom error page](https://github.com/joekeyz8/Lumigift-lumigift/issues/285)
-- segmentfault-search (2026-10-20T13:30:29.956799+00:00): [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
-- segmentfault-search (2026-10-20T13:30:29.956799+00:00): [javascript](https://segmentfault.com/t/javascript)
-- segmentfault-search (2026-10-20T13:30:29.957456+00:00): [typescript](https://segmentfault.com/t/typescript)
-- segmentfault-search (2026-10-20T13:30:29.957456+00:00): [ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
-- segmentfault-search (2026-10-20T13:30:29.959469+00:00): [问： bootstrap的下拉菜单在手机中无法使用，为什么？](https://segmentfault.com/q/1010000000260095)
-- segmentfault-search (2026-10-20T13:30:29.959469+00:00): [Boostrap Tutorial](https://segmentfault.com/a/1190000004960532)
-- segmentfault-search (2026-10-20T13:30:29.959469+00:00): [antd-mobile按需加载样式和自定义样式](https://segmentfault.com/a/1190000012559488)
-- github-issues (2026-10-16T11:52:08+00:00): [🚀 Website Profil Usaha — Project Planning](https://github.com/aldiyart92/website-profile-usaha/issues/1)
-- github-issues (2026-10-10T19:40:40+00:00): [Improve mobile responsiveness of the navbar](https://github.com/Geektoberfest/GEEKTOBERFEST-TrackHack/issues/9)
-- github-issues (2026-10-16T16:47:17+00:00): [[Phase 4 - Frontend] Core UI/UX Experience, Micro-Animations, Mobile Responsiveness & Scanner Workflow Polish](https://github.com/mk9205507-png/DataRaksha-AI/issues/21)
+- github-issues (2026-11-10T05:08:55+00:00): [Improve Website Responsiveness](https://github.com/SumaiyaSathi25/merine-biology-app/issues/2)
+- github-issues (2026-11-17T08:23:43+00:00): [fix(team-page): fix grid alignment and navbar overlap](https://github.com/IEDCMEC/iedc-web/issues/153)
+- github-issues (2026-11-16T13:49:18+00:00): [Responsive Multi-Page Navigation](https://github.com/raf-src/cloud-runner-film-promo/issues/4)
+- github-issues (2026-11-16T09:42:32+00:00): [Navbar Navigation Items Not Responsive on Mobile and Tablet Screens](https://github.com/Kiranhub-max/nextyard/issues/13)
+- github-issues (2026-11-09T21:27:25+00:00): [CSS Grid Navbar and Footer](https://github.com/Josefine216/Semester-Project/issues/18)
+- github-issues (2026-11-12T06:50:17+00:00): [Navbar is not responsive for mobile layout](https://github.com/aaronkr-2026-2/cbnu-soft-eng-software-engineering-project-group-12/issues/2)
+- github-issues (2026-11-06T09:29:15+00:00): [[Block 4] Issue #11 — Build a responsive navbar that stacks on mobile (no JavaScript)](https://github.com/Hey-Techys/CSS-TRACK/issues/26)
+- csdn-search (2026-11-19T06:14:00.200320+00:00): [Responsive _ Navbar :带有引导程序的响应式 Navbar](https://wenku.csdn.net/doc/y7zsh9nry0?ops_request_misc=elastic_search_misc&request_id=bca5b9c921ed4d62bf753249c0af05f9&biz_id=&utm_medium=distribute.pc_search_result.none-task-c_download-2~all~ElasticSearch~search_v2-3-y7zsh9nry0-null-null.142^v102^pc_search_result_base4&utm_term=mobile%20responsive%20navbar)
+- csdn-search (2026-11-19T06:14:00.200320+00:00): [Responsive - Navbar](https://wenku.csdn.net/doc/3d1s2b3vcg?ops_request_misc=elastic_search_misc&request_id=bca5b9c921ed4d62bf753249c0af05f9&biz_id=&utm_medium=distribute.pc_search_result.none-task-c_download-2~all~ElasticSearch~search_v2-4-3d1s2b3vcg-null-null.142^v102^pc_search_result_base4&utm_term=mobile%20responsive%20navbar)
+- csdn-search (2026-11-19T06:14:00.200320+00:00): [react- navbar - responsive](https://wenku.csdn.net/doc/2vhuebaxkv?ops_request_misc=elastic_search_misc&request_id=bca5b9c921ed4d62bf753249c0af05f9&biz_id=&utm_medium=distribute.pc_search_result.none-task-c_download-2~all~ElasticSearch~search_v2-5-2vhuebaxkv-null-null.142^v102^pc_search_result_base4&utm_term=mobile%20responsive%20navbar)
+- csdn-search (2026-11-19T06:14:00.200320+00:00): [next- responsive - navbar](https://wenku.csdn.net/doc/32zeo8mdb5?ops_request_misc=elastic_search_misc&request_id=bca5b9c921ed4d62bf753249c0af05f9&biz_id=&utm_medium=distribute.pc_search_result.none-task-c_download-2~all~ElasticSearch~search_v2-6-32zeo8mdb5-null-null.142^v102^pc_search_result_base4&utm_term=mobile%20responsive%20navbar)
 
 ## How The Skill Meets The Requirement
 

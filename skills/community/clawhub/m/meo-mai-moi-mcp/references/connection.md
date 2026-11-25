@@ -8,41 +8,38 @@ Configure the remote Streamable HTTP endpoint:
 https://mcp.meo-mai-moi.com/mcp
 ```
 
-Use the client's native OAuth action. A normal flow is: choose scopes, configure
-the server, authenticate, sign in to Meo Mai Moi, approve scopes, confirm the
-client can reach the server, ensure tools are projected into the current session,
-then make the smallest useful call. The public health endpoint is
-`https://mcp.meo-mai-moi.com/health`.
+Use the client's native OAuth action. A normal flow is: choose scopes, configure the server, authenticate, sign in to Meo Mai Moi, approve scopes, confirm the client can reach the server, ensure tools are projected into the current session, then make the smallest useful call. The public health endpoint is `https://mcp.meo-mai-moi.com/health`.
 
-Codex, Cursor, OpenClaw, and other OAuth-capable MCP clients share the same
-endpoint. Do not invent a local token or work around native OAuth.
+Codex, Cursor, OpenClaw, and other OAuth-capable MCP clients share the same endpoint. Do not invent a local token or work around native OAuth.
 
-When the user explicitly asks to connect or authorize Meo, prefer the client's
-own MCP configuration surface and initiate OAuth on their behalf. Fall back to
-user-run commands only when the client cannot modify its MCP configuration or
-execution policy blocks the required command.
+When the user explicitly asks to connect or authorize Meo, prefer the client's own MCP configuration surface and initiate OAuth on their behalf. Fall back to user-run commands only when the client cannot modify its MCP configuration or execution policy blocks the required command.
+
+## Headless agents
+
+When no browser will ever be available (a server, a scheduled job), OAuth consent cannot complete. Use an agent client:
+
+1. Ask the user to open the Developer page in Meo Mai Moi, create an **agent client**, pick scopes with the same rules as below, and save the client id and secret into the host's secret store. The page shows the secret once.
+2. Read the secret from that store; never ask for it in chat and never write it to a repository.
+3. Exchange it at `https://mcp.meo-mai-moi.com/token` with `grant_type=client_credentials`, `resource=https://mcp.meo-mai-moi.com/mcp`, and HTTP Basic client authentication. The access token lasts at most an hour and comes without a refresh token: repeat the exchange when it expires or a call returns `401`.
+4. A failed exchange returns `invalid_client`. The client may have been revoked or expired; ask the user to check the Developer page rather than retrying.
+
+Prefer browser OAuth whenever the user can complete it once: it needs no stored secret.
 
 ## Named presets
 
 ### Everyday care (default for broad requests)
 
-Use when the user says “connect Meo Mai Moi,” “authorize Meo,” or “manage my
-pets” without naming a narrower task or selecting Full management:
+Use when the user says “connect Meo Mai Moi,” “authorize Meo,” or “manage my pets” without naming a narrower task or selecting Full management:
 
 ```text
 pets:read pets:write health:read health:write habits:read habits:write microchips:read microchips:write
 ```
 
-Covers ordinary pet profiles, health records, care habits, and microchips. It
-does **not** authorize sharing, placement, helpers, messages, groups, finance,
-notifications, profile, or invitations.
+Covers ordinary pet profiles, health records, care habits, and microchips. It does **not** authorize sharing, placement, helpers, messages, groups, finance, notifications, profile, or invitations.
 
 ### Full management (explicit selection only)
 
-Offer only after the user asks for complete access or clearly chooses this
-preset. Before authorizing, state plainly that it permits sensitive reads and
-writes across finances, messages, sharing, placement, groups, profile, and
-invitations. Never select Full management by inference.
+Offer only after the user asks for complete access or clearly chooses this preset. Before authorizing, state plainly that it permits sensitive reads and writes across finances, messages, sharing, placement, groups, profile, and invitations. Never select Full management by inference.
 
 ```text
 pets:read health:read habits:read microchips:read pets:write health:write habits:write microchips:write sharing:read sharing:write placement:read placement:write helpers:read helpers:write messages:read messages:write groups:read groups:write finance:read finance:write notifications:read notifications:write profile:read profile:write invitations:read invitations:write
@@ -50,8 +47,7 @@ pets:read health:read habits:read microchips:read pets:write health:write habits
 
 ## Request scopes by task
 
-When the user names a narrower task, request only that task's scopes—not a
-preset.
+When the user names a narrower task, request only that task's scopes—not a preset.
 
 | Task family | Start with |
 |---|---|
@@ -60,6 +56,8 @@ preset.
 | Care routines | `habits:read` or `habits:read,habits:write` |
 | Microchip identity | `microchips:read` or `microchips:read,microchips:write` |
 | Sharing a pet | `sharing:read` or `sharing:read,sharing:write` |
+| Litters and littermates | `pets:read` or `pets:read,pets:write` |
+| Public questions on a listing | `placement:read` or `placement:read,placement:write` |
 | Rehoming, fostering, sitting, helpers | the relevant `placement:*` and/or `helpers:*` pair |
 | Chats and messages | `messages:read` or `messages:read,messages:write` |
 | Groups | `groups:read` or `groups:read,groups:write` |
@@ -68,11 +66,9 @@ preset.
 | Own profile, locale, owner-weight history | `profile:read` or `profile:read,profile:write` |
 | Account invitations | `invitations:read` or `invitations:read,invitations:write` |
 
-Write tools require their matching read scope. A tool may require multiple
-domain scopes; discover its schema before requesting extra consent.
+Write tools require their matching read scope. A tool may require multiple domain scopes; discover its schema before requesting extra consent.
 
-When a later tool reports `insufficient_scope`, merge only the missing domain
-pair and reauthorize unless the user explicitly switches preset.
+When a later tool reports `insufficient_scope`, merge only the missing domain pair and reauthorize unless the user explicitly switches preset.
 
 ## Readiness states
 
@@ -83,15 +79,18 @@ Do not treat these as one state:
 3. **MCP probe success** — live reachability/auth check passed.
 4. **Native tool projection** — Meo tools are callable in this session.
 
-A successful probe does not prove the current chat can call Meo tools. An empty
-or unrelated `tool_search` result does not prove the Meo server lacks tools.
+A successful probe does not prove the current chat can call Meo tools. An empty or unrelated `tool_search` result does not prove the Meo server lacks tools.
+
+### Reaching projection in Codex
+
+Adding the server and completing OAuth do not retrofit tools into a Codex conversation that is already running; its tool registry was built before the server existed. Close and reopen Codex CLI, then start a fresh session. Confirm `mcp__meo_mai_moi__list_pets` is available before the first Meo call.
+
+Do not use `codex exec` to work around missing projection. It starts a separate client and session with its own approval policy, so its success or failure proves nothing about the session the user is in.
+
+Note also that `codex mcp add` opens OAuth by itself at the full default scope set. To authorize a preset or a narrower task scope, cancel that flow and run `codex mcp login --scopes ...`; the saved server entry survives the cancellation.
 
 ## First-call pattern
 
-For “show my pets,” connect with `pets:read` (or Everyday care when the request
-was broad), confirm projection, discover tools, then call `list_pets` with `{}`.
-Summarize only what the user needs.
+For “show my pets,” connect with `pets:read` (or Everyday care when the request was broad), confirm projection, discover tools, then call `list_pets` with `{}`. Summarize only what the user needs.
 
-For a requested change, first call the matching list/detail tool. Use the
-returned stable ID and version, choose one new idempotency key, then read again
-to verify.
+For a requested change, first call the matching list/detail tool. Use the returned stable ID and version, choose one new idempotency key, then read again to verify.

@@ -1,6 +1,6 @@
 ## Description:
 
-Guides users through first-principles analysis by breaking problems into fundamentals, questioning conventions, and rebuilding options for innovation, cost reduction, and strategy.
+Provides a Chinese-first, Musk-inspired first-principles framework for decomposing technical and business problems, questioning assumptions, and outlining possible redesigns.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-People working on technical innovation, business cost reduction, or strategic choices can use the skill to draft a first-principles analysis. Treat its output as a thinking aid; verify factual claims and use qualified professionals for investment, medical, legal, or engineering decisions.
+External users apply it to draft structured analyses of technical innovation, cost reduction, business redesign, and scaling questions. Treat outputs as thinking aids; verify facts and route investment, medical, legal, and engineering decisions to qualified reviewers.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill defaults to Chinese, which may not match a user's preferred response language.
+Risk: The framework defaults to Chinese output, which may not suit every audience.
 
-Mitigation: State the preferred language before use and review the response for language and terminology fit.
+Mitigation: Specify the desired response language when using the skill.
 
-Risk: Its examples and frameworks could be mistaken for verified current facts or professional investment, medical, legal, or engineering advice.
+Risk: The skill's analysis is not a factual conclusion or professional advice for investment, medical, legal, or engineering decisions.
 
-Mitigation: Check time-sensitive claims against current official sources and have qualified professionals review decisions in those domains.
+Mitigation: Verify claims against authoritative sources and have qualified professionals make final decisions.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/gechengling/skills/musk-first-principles)
+- [ClawHub skill release](https://clawhub.ai/gechengling/musk-first-principles)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Markdown]
+**Output Type(s):** [Markdown, Analysis, Guidance]
 
-**Output Format:** [Chinese-first structured prose with Markdown sections and tables; English technical terms may be retained]
+**Output Format:** [Chinese-first Markdown with structured analysis, tables, and checklists]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [The skill produces draft analysis for user review, not formal professional advice or external actions.]
+**Other Properties Related to Output:** [Draft thinking aid; claims and current information require independent verification.]
 
 ## Skill Version(s):
 
-2.1.4 (source: server-resolved release evidence)
+2.1.5 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Firecrawl"
   author: "OOMOL"
-  version: "1.0.8"
+  version: "1.0.9"
   services: ["firecrawl"]
   icon: "https://static.oomol.com/logo/third-party/Firecrawl.svg"
 ---
@@ -52,13 +52,13 @@ Each action is listed below with a one-line description; actions that change sta
 - `crawl_v2` — Start a Firecrawl crawl job with the official v2 crawl fields, including prompt-driven options generation. [write]
 - `credit_usage_get` — Get the authenticated Firecrawl team's current credit usage summary.
 - `credit_usage_get_historical` — Get the authenticated Firecrawl team's historical credit usage summary.
-- `deep_research` — Start a Firecrawl deep research job. This endpoint remains alpha and Firecrawl currently documents it outside the main v2 endpoint set. [write]
+- `deep_research` — Start a Firecrawl deep research job. The Firecrawl agent researches the query and returns a markdown report with its sources. [write]
 - `extract` — Start a Firecrawl extract job that returns structured data for one or more URLs. [write]
 - `extract_get` — Get the current status and output of a Firecrawl extract job by job ID.
 - `get_agent_status` — Get the current status and output of a Firecrawl agent job by job ID.
 - `get_deep_research_status` — Get the current status and output of a Firecrawl deep research job by job ID.
 - `get_the_status_of_a_crawl_job` — Compatibility alias of crawl_get for the FIRECRAWL_GET_THE_STATUS_OF_A_CRAWL_JOB action name.
-- `llms_txt_generate` — Start an LLMs.txt generation job for a website. This endpoint remains outside the main v2 endpoint set in Firecrawl's docs. [write]
+- `llms_txt_generate` — Start an LLMs.txt generation job for a website. Firecrawl maps the site and batch scrapes its pages; pass the returned url and urls to llms_txt_get along with the id. [write]
 - `llms_txt_get` — Get the current status and generated content of an LLMs.txt job by job ID.
 - `map_multiple_urls_based_on_options` — Discover URLs from a website with Firecrawl's map endpoint using a legacy action name.
 - `queue_get` — Get the authenticated Firecrawl team's queue status and concurrency information.

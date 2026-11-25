@@ -32,13 +32,34 @@ npx checkly test-sessions get <session-id> --error-group <error-group-id> --full
 
 ## How it works
 
-`npx checkly test` executes your checks in Checkly's runtime environment (same as production) but does NOT deploy or schedule them. Perfect for:
+`npx checkly test` executes your checks in Checkly's runtime environment (same as production) without deploying persistent resources or changing recurring schedules. Perfect for:
 - ✅ Pre-deployment validation
 - ✅ CI/CD integration
 - ✅ Local development iteration
 - ✅ Debugging check failures
 
 The CLI dispatches test sessions through Checkly's asynchronous scheduling API and watches scheduling before collecting results. Scheduling failures now fail fast with the server error instead of waiting for the per-check timeout. With `--detach`, the CLI confirms scheduling reached a terminal state before exiting, so dispatch failures still return non-zero.
+
+## Empty selections, timeouts and early stopping
+
+`test` exits 1 if no checks match a file filter, `--grep` or `--tags`. Use `--list` to inspect the selection (exit 0), or `--no-fail-on-no-matching` only when an empty selection is intentional. `pw-test` also exits 1 for no checks; it has no matching opt-out flag. A passing empty selection must not stand in for a test gate.
+
+```bash
+npx checkly test --list
+npx checkly test --tags smoke --max-failures=2
+npx checkly trigger --max-failures=2
+# Only for workflows where zero matches are intentionally acceptable
+npx checkly test --grep optional --no-fail-on-no-matching
+```
+
+`--max-failures=<n>` on `test` and `trigger`, or `cli.maxFailures`, stops waiting once n checks have final failures, writes reports, requests best-effort session cancellation and exits 1. The limit must be an integer of at least 1; omit the setting for no limit. A successful retry does not count as a failure. Unfinished checks report `Not finished`; JSON includes `stoppedEarly`. Some checks may still execute remotely. The flag cannot combine with `--detach`, or with `test --update-snapshots`. A configured `cli.maxFailures` is ignored for detached runs and ignored with a notice for snapshot updates.
+
+For `test`, `trigger` and `pw-test`, `--timeout` measures run time from each check's start and restarts on retries. Scheduling delay is excluded; a check that never starts times out after the configured timeout plus 900 seconds. CLI-side timeouts mean the CLI stopped waiting, not necessarily that the remote check stopped.
+
+Timed-out results use `result: "Timed out"` in JSON, `T` in dot output, and a timeout marker/count in list/CI/GitHub reporters; exit remains 1. Match both `Fail` and `Timed out` if parsing result strings, or use exit status. Reporters show retry counts and count recovered checks as both passed and flaky. The CLI guards against duplicate results at timeout boundaries and retries failed result-stream connections. Cancellation failure no longer crashes Ctrl+C handling; a second Ctrl+C yields shell status 130.
+
+Stdout contains results and summaries. Progress, warnings and errors go to stderr. Default reporter is `ci` in CI and agent mode, `list` otherwise; an explicit flag/config overrides it. Set `CI=false` (or `0`, `no`, `off`) to disable CI detection even on provider hosts. Avoid pinning `reporters: ['list']` in general-purpose configs if automatic selection is desired.
+
 
 ## Command reference
 
@@ -59,6 +80,11 @@ npx checkly test [file-pattern] [options]
 | `--refresh-cache` | Force a one-off dependency reinstall for this run |
 | `--env-file=<path>` | Load environment variables from file |
 | `--grep=<pattern>` | Filter checks by name pattern |
+| `--tags=<tags>` | Filter by tags |
+| `--list` | List matching checks without running them |
+| `--no-fail-on-no-matching` | Accept an intentionally empty test selection |
+| `--max-failures=<n>` | Stop after n final failures (integer >= 1) |
+| `--timeout=<seconds>` | Per-check running timeout; scheduling delay excluded |
 
 ## Recorded test sessions
 
@@ -200,6 +226,10 @@ jobs:
           CHECKLY_ACCOUNT_ID: ${{ secrets.CHECKLY_ACCOUNT_ID }}
 ```
 
+### GitHub Check re-runs
+
+For optional GitHub Check Re-run integration and the job-ID/re-run-mode metadata forwarded with test sessions, see `checkly-advanced`. The `github` reporter writes a Markdown summary file; it does not emit annotations or enable that integration by itself.
+
 ### Test with retries
 
 ```bash
@@ -225,7 +255,9 @@ API_KEY=test-key-123
 
 ## Reporters
 
-### List reporter (default)
+The `github` and `json` file reporters send completed-check counters and retried-attempt progress to stderr, not into the report files. With `list`, `dot` or `ci`, that console reporter supplies progress; with `github,json`, only the first file reporter supplies it. They do not duplicate the startup `Running N checks` line. Stdout summaries and report formats are unchanged.
+
+### List reporter (default outside CI and agent mode)
 
 ```bash
 npx checkly test --reporter=list
@@ -238,7 +270,7 @@ npx checkly test --reporter=list
 ```bash
 npx checkly test --reporter=dot
 
-# Compact: . = pass, F = fail
+# Compact: . = pass, F = fail, T = timed out
 ```
 
 ### CI reporter
@@ -251,23 +283,31 @@ npx checkly test --reporter=ci
 
 ### GitHub reporter
 
+GitHub table cells escape pipes and replace CR/LF line breaks with spaces in check names, types and filenames, including unfinished rows. Like JSON, its progress goes to stderr; see the shared reporter rules above.
+
 ```bash
 npx checkly test --reporter=github
 
-# Generates GitHub Actions annotations
+# Writes ./checkly-github-report.md (override with CHECKLY_REPORTER_GITHUB_OUTPUT)
 ```
 
 ### JSON reporter
 
-```bash
-npx checkly test --reporter=json > results.json
+JSON is written to `./checkly-json-report.json` (override with `CHECKLY_REPORTER_JSON_OUTPUT`). Parse that file; stdout contains a brief summary, saved-file notice and session URL, not the JSON report. Keep stderr separate for progress and diagnostics.
 
-# Machine-readable output
+```bash
+npx checkly test --reporter=json
+
+# Writes ./checkly-json-report.json (override with CHECKLY_REPORTER_JSON_OUTPUT)
 ```
 
 For failed gRPC, SSL, and traceroute monitors, terminal and JSON reporters include type-specific diagnostics when available. Inspect gRPC status/health/metadata, TLS certificate and handshake details, or traceroute hops/latency/packet loss before falling back to generic network troubleshooting.
 
 ## Testing strategies
+
+Before running, resolve configuration errors: retired `me-south-1` in locations/defaults is rejected, and `--location me-south-1` fails with exit 2. A `SlackAppAlertChannel` with destinations fails when the account reports the Checkly Slack app as disconnected; connect the app or remove the channel. The same validation applies to `validate`, `deploy` and `pw-test`.
+
+If `test`, `pw-test` or `trigger` cannot connect to the result stream, the error identifies the Checkly connection failure and includes its cause in `Details`, including per-address causes from an aggregate connection error. Diagnose connectivity/proxy/broker configuration; an MQTT transport failure is not a failed assertion. Errors while processing results or reporter callbacks fail the run rather than escaping as unhandled queue/timer errors. Once the run stops, pending timers and queued results are cleared.
 
 ### Local-first workflow
 
@@ -366,7 +406,7 @@ npx checkly test --retries=2
 # Or configure in checkly.config.ts:
 checks: {
   retryStrategy: RetryStrategyBuilder.fixedStrategy({
-    maxAttempts: 2,
+    maxRetries: 2,
     baseBackoffSeconds: 60,
   }),
 }

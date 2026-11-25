@@ -1,6 +1,6 @@
 ## Description:
 
-A local stdio MCP server that gives coding agents deterministic tools for mapping, reviewing, and verifying software changes.
+A local stdio MCP server that gives coding agents deterministic tools for mapping repositories, reviewing architecture and changes, tracking verification evidence, and checking code, dependencies, secrets, and release readiness.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use the MCP server from compatible coding agents to explore unfamiliar repositories, assess architecture and change impact, review code, and produce evidence-based verification results.
+Developers and engineering teams use it through an MCP client to understand unfamiliar repositories, assess architecture and change impact, and produce evidence-backed review and verification reports. Execution and write actions are opt-in.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: A workflow-reading flaw can expose private files outside the selected project to the assistant.
+Risk: ClawScan rates the release suspicious, citing purpose and behavior mismatches, unpinned package launch examples, partial component inspection, and a degraded static tool-misuse analyzer.
 
-Mitigation: Use trusted projects or the core tool profile until workflow reads reject links and enforce project containment; keep workflow data within reviewed projects.
+Mitigation: Review the package source and its configuration discovery and installer changes before installing. Treat the scan as incomplete because not all components were fully inspected and the static analyzer was degraded.
 
-Risk: Explicitly enabled checks and adapters can execute project code.
+Risk: Explicit options can run project checks or adapters and can write scaffold or workflow state.
 
-Mitigation: Enable checks or adapters only for trusted code, review their configured scope, and opt in only when needed.
-
-Risk: Configuration diagnostics can reveal which local applications have MCP servers configured.
-
-Mitigation: Run diagnostics only in an environment where that inventory is appropriate to disclose.
+Mitigation: Enable execution or apply options only for a reviewed repository and an intended operation; otherwise leave the default gates closed.
 
 ## Reference(s):
 
+- [ClawHub release](https://clawhub.ai/yottameta/skills/yotta-dev-mcp)
 - [Project homepage](https://github.com/YottaMeta/yotta-dev-mcp)
-- [ClawHub release page](https://clawhub.ai/yottameta/skills/yotta-dev-mcp)
 - [Tool reference](references/tools.md)
 - [Architecture contract reference](references/architecture-contract.md)
-- [Adapter reference](references/adapters.md)
+- [Optional adapters reference](references/adapters.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Text, Guidance]
+**Output Type(s):** [Analysis, JSON, Guidance]
 
-**Output Format:** [Structured JSON and concise text with file and line evidence where applicable]
+**Output Format:** [Structured JSON tool results with evidence-linked summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Deterministic, bounded results; command execution and file writes require explicit opt-in.]
+**Other Properties Related to Output:** [Includes file and line evidence, rule findings, and explicit UNKNOWN states when inputs, configuration, or tools are insufficient.]
 
 ## Skill Version(s):
 
-0.2.8 (source: SKILL.md frontmatter, package.json, server.json)
+0.2.9 (source: frontmatter, CHANGELOG, package.json; released 2026-11-24)
 
 ## Ethical Considerations:
 

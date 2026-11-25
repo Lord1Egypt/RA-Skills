@@ -88,6 +88,16 @@ STRINGS = {
         "zh": "界面语言：zh / en（默认按系统语言自动判定）",
         "en": "Language: zh / en (defaults to the system language)",
     },
+    "arg.rules": {
+        "zh": "自定义归类规则 JSON 文件（按文件名/路径匹配到指定目录，先命中先生效）",
+        "en": "Custom classification rules JSON file (match file name/path to a "
+              "target folder; first match wins)",
+    },
+    "arg.html": {
+        "zh": "生成单文件 HTML 可视化报告（内嵌样式，无外部依赖）",
+        "en": "Write a self-contained HTML report (inline styles, no external "
+              "dependencies)",
+    },
 
     # ---------------- 分类 ----------------
     "cat.documents": {"zh": "文档", "en": "Documents"},
@@ -142,6 +152,18 @@ STRINGS = {
         "en": "[DRY-RUN] Nothing was changed. Add --apply to actually copy "
               "and organize.",
     },
+    "report.rules_loaded": {
+        "zh": "规则文件: %s（%d 条，命中 %d 个文件）",
+        "en": "Rules file: %s (%d rules, %d files matched)",
+    },
+    "report.html_saved": {
+        "zh": "[OK] HTML 报告已写入: %s",
+        "en": "[OK] HTML report written to: %s",
+    },
+    "warn.html_failed": {
+        "zh": "[WARN] HTML 报告写入失败 %s: %s",
+        "en": "[WARN] Could not write HTML report %s: %s",
+    },
     "warn.copy_failed": {
         "zh": "[WARN] 复制失败 %s: %s", "en": "[WARN] Copy failed %s: %s",
     },
@@ -161,6 +183,23 @@ STRINGS = {
         "zh": "[FAIL] 找不到微信文件目录。请用 --source 指定，或设置 WECHAT_FILES_DIR。",
         "en": "[FAIL] WeChat folder not found. Use --source, or set "
               "WECHAT_FILES_DIR.",
+    },
+    "err.rules_read": {
+        "zh": "[FAIL] 读取规则文件失败 %s: %s",
+        "en": "[FAIL] Could not read rules file %s: %s",
+    },
+    "err.rules_json": {
+        "zh": "[FAIL] 规则文件不是合法 JSON %s: %s",
+        "en": "[FAIL] Rules file is not valid JSON %s: %s",
+    },
+    "err.rules_format": {
+        "zh": "[FAIL] 规则文件格式错误: %s（应为 {\"version\":1,\"rules\":[...]}）",
+        "en": "[FAIL] Bad rules format: %s (expected "
+              "{\"version\":1,\"rules\":[...]})",
+    },
+    "err.rules_regex": {
+        "zh": "[FAIL] 规则 #%d 的 regex 无效: %s",
+        "en": "[FAIL] Invalid regex in rule #%d: %s",
     },
     "skip.none": {"zh": "未发现可归类的文件", "en": "No files to organize"},
     "skip.none_text": {
@@ -185,6 +224,95 @@ STRINGS = {
     },
     "trash.still_exists": {
         "zh": "仍存在于磁盘 (rc=%r)", "en": "Still on disk (rc=%r)",
+    },
+
+    # ---------------- HTML 报告 ----------------
+    "html.title": {"zh": "微信文件归类报告", "en": "WeChat Files Report"},
+    "html.mode_dry": {"zh": "只读预览", "en": "Dry-run (read-only)"},
+    "html.mode_apply": {"zh": "已执行", "en": "Applied"},
+    "html.generated": {"zh": "生成时间", "en": "Generated"},
+    "html.overview": {"zh": "概览", "en": "Overview"},
+    "html.total_files": {"zh": "文件总数", "en": "Total files"},
+    "html.total_size": {"zh": "总大小", "en": "Total size"},
+    "html.account_count": {"zh": "微信账号", "en": "Accounts"},
+    "html.dup_groups": {"zh": "重复组", "en": "Duplicate groups"},
+    "html.reclaimable": {"zh": "可回收空间", "en": "Reclaimable"},
+    "html.old_files": {"zh": "老旧文件", "en": "Old files"},
+    "html.by_type": {"zh": "按类型分布", "en": "By type"},
+    "html.by_ext": {"zh": "按扩展名排行", "en": "By extension"},
+    "html.no_ext": {"zh": "无扩展名", "en": "(no extension)"},
+    "html.ext": {"zh": "扩展名", "en": "Extension"},
+    "html.count_pct": {"zh": "数量占比", "en": "Count share"},
+    "html.size_pct": {"zh": "大小占比", "en": "Size share"},
+    "html.size": {"zh": "大小", "en": "Size"},
+    "html.account": {"zh": "账号", "en": "Account"},
+    "html.type_short": {"zh": "类型", "en": "Type"},
+    "html.lang_name": {"zh": "简体中文", "en": "English"},
+    "html.ext_more": {
+        "zh": "展开其余 %d 种扩展名",
+        "en": "Show %d more extensions",
+    },
+    "html.by_month": {"zh": "按月份趋势", "en": "By month"},
+    "html.dup_detail": {"zh": "重复文件明细", "en": "Duplicate details"},
+    "html.top_files": {"zh": "最大的文件", "en": "Largest files"},
+    "html.rule_stats": {"zh": "规则命中", "en": "Rule matches"},
+    "html.rule_name": {"zh": "规则", "en": "Rule"},
+    "html.hits": {"zh": "命中数", "en": "Matches"},
+    "html.path": {"zh": "路径", "en": "Path"},
+    "html.copies": {"zh": "份数", "en": "Copies"},
+    "html.size_each": {"zh": "单份大小", "en": "Size each"},
+    "html.no_dupes": {"zh": "未发现重复文件", "en": "No duplicates found"},
+    "html.no_rules": {"zh": "本次未使用自定义规则", "en": "No custom rules used"},
+    "html.count_unit": {"zh": "个", "en": ""},
+    "html.click_expand": {"zh": "点击展开路径", "en": "Click to expand paths"},
+    "html.click_open": {"zh": "点击打开文件", "en": "Click to open file"},
+    "html.copy": {"zh": "复制", "en": "Copy"},
+    "html.copied": {"zh": "已复制", "en": "Copied"},
+    "html.search": {
+        "zh": "搜索文件名 / 路径 / 扩展名 / 账号…（按 / 快速聚焦）",
+        "en": "Search name / path / extension / account… (press / to focus)",
+    },
+    "html.search_clear": {"zh": "清除", "en": "Clear"},
+    "html.search_hits": {"zh": "命中 %d 行", "en": "%d rows"},
+    "html.search_nomatch": {"zh": "无匹配", "en": "No match"},
+    "html.http_hint": {
+        "zh": "当前在预览面板中（http 页面），浏览器不允许打开本地文件。请点击「复制」按钮，"
+              "把路径粘贴到资源管理器地址栏打开；或用文件管理器双击此 HTML 文件，"
+              "在浏览器里直接打开后即可点击路径。",
+        "en": "This preview is served over http, so browsers block opening local files. "
+              "Use the Copy button and paste the path into your file manager's address "
+              "bar, or open this HTML file directly from your file manager to enable "
+              "click-to-open.",
+    },
+    "html.backup_hint": {
+        "zh": "源文件未被改动（除非使用 --trash；该项走回收站，可恢复）",
+        "en": "Source files were not modified (unless --trash was used, "
+              "which moves them to the recycle bin)",
+    },
+    # ---- Fathom 版式专属文案 ----
+    "html.kicker": {"zh": "微信文件 · 本地盘点", "en": "WECHAT FILES · LOCAL AUDIT"},
+    "html.dek": {
+        "zh": "一份关于「攒了什么、占了多少、哪些能清」的本地盘点。只读扫描，源文件始终原地不动。",
+        "en": "A local audit of what you collected, how much it weighs, and what can be cleared. "
+              "Read-only scan — source files stay where they are.",
+    },
+    "html.meta_generated": {"zh": "生成", "en": "GENERATED"},
+    "html.meta_mode": {"zh": "模式", "en": "MODE"},
+    "html.meta_lang": {"zh": "语言", "en": "LANGUAGE"},
+    "html.sec_note_type": {"zh": "占比按文件数", "en": "SHARE BY FILE COUNT"},
+    "html.sec_note_ext": {"zh": "动态统计 · 大小写归一", "en": "LIVE · CASE-NORMALIZED"},
+    "html.sec_note_month": {"zh": "文件数 / 体积", "en": "COUNT / SIZE"},
+    "html.sec_note_dup": {"zh": "按内容哈希", "en": "BY CONTENT HASH"},
+    "html.sec_note_rule": {"zh": "自定义归类规则", "en": "CUSTOM SORT RULES"},
+    "html.sec_note_top": {"zh": "按体积降序", "en": "BY SIZE, DESCENDING"},
+    "html.colophon_1": {
+        "zh": "源文件未被改动（除非使用 --trash；该项走系统回收站语义，脚本不调用永久删除 API，能否恢复取决于操作系统与目标卷）。",
+        "en": "Source files were not modified (unless --trash was used, which requests the OS recycle-bin "
+              "semantics; the script calls no permanent-delete API, and recoverability depends on the OS and volume).",
+    },
+    "html.colophon_2": {
+        "zh": "完全本地运行，不联网、不读取微信凭据。",
+        "en": "Fully local — no network calls, no WeChat credentials are read.",
     },
 }
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Compile and execute multi-step video editing plans with automated timeline verification.
+Autonomous timeline AI video editor for TikTok, Reels, YouTube Shorts, and podcasts. Use when editing videos from natural language or canonical actions: smart jump cuts, silence removal, 9:16 active-speaker reframing, 216 animated captions and subtitles, B-roll cutaways, After Effects motion graphics, VFX keying, color grading, voiceover, audio cleanup, and cloud MP4 export.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-Video creators and developers use the skill to turn natural-language briefs into multi-step timeline edits, preview plans for approval, verify edits, and export MP4 video.
+Video editors, content creators, and developers can use an agent to plan and execute timeline edits for short-form social videos and podcasts, inspect rendered previews, and export finished video.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The editing service processes submitted media and requires an API key.
+Risk: The security review was partial because four local path-like references could not be resolved, leaving some content outside the scan's coverage.
 
-Mitigation: Protect the API key and submit only media you are comfortable having Levea process.
+Mitigation: Review the unresolved references and the corresponding source before installation; treat the clean verdict as medium-confidence evidence.
 
-Risk: The separately installed plugin or MCP server is outside this skill artifact.
+Risk: The editing workflow sends source media to a cloud video editing service and requires a service account and API key.
 
-Mitigation: Review the installed plugin or MCP server before connecting it to projects.
+Mitigation: Use only media approved for cloud processing, and provide the API key through the editing tool's configuration rather than in prompts or shared content.
 
 ## Reference(s):
 
-- [ClawHub release](https://clawhub.ai/brajendrak00068/skills/ai-agentic-video-editor)
-- [Levea editing service](https://livecore.ai/?openclaw=1&utm_source=clawhub&utm_medium=skill&utm_campaign=ai-agentic-video-editor)
+- [Levea video editing service](https://livecore.ai/?openclaw=1&utm_source=clawhub&utm_medium=skill&utm_campaign=ai-agentic-video-editor)
+- [Levea API](https://api.livecore.ai)
+- [ClawHub skill release](https://clawhub.ai/brajendrak00068/skills/ai-agentic-video-editor)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Video URL]
+**Output Type(s):** [Text, JSON, Video URL]
 
-**Output Format:** [Structured JSON tool response with an optional MP4 export URL]
+**Output Format:** [Structured edit status and verification report with project identifiers and an MP4 download URL when export completes]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include project status, timeline verification results, quality notes, and asynchronous job details.]
+**Other Properties Related to Output:** [The exported video is rendered by the Levea service; completion may be synchronous or queued.]
 
 ## Skill Version(s):
 
-1.0.29 (source: frontmatter, server release)
+1.0.36 (source: release evidence and frontmatter)
 
 ## Ethical Considerations:
 

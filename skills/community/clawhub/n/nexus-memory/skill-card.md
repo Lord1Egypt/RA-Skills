@@ -1,6 +1,6 @@
 ## Description:
 
-Persistent memory for Claude Code and compatible agent harnesses, with automatic recall before prompts and capture after turns.
+Persistent memory for Claude Code and supported agent harnesses, with automatic recall before prompts and capture after turns, backed by Qdrant.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use Nexus Memory to retain project context, facts, and decisions across sessions. It recalls relevant entries for Claude Code, Hermes Agent, OpenClaw, and the DeepSeek Harness, and captures notable facts after turns.
+Developers use Nexus Memory to recall project context and save facts, decisions, and session summaries across Claude Code and supported agent sessions.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The broad “remember” and “recall” activation terms may trigger memory behavior more often than some users expect.
+Risk: Maintenance-generated memories can lack an individual agent attribution.
 
-Mitigation: Review whether those triggers suit your workflow, tell users what is stored, and keep passwords, tokens, and card data out of memory.
+Mitigation: When attribution matters, filter entries written by consolidation or dreaming, as documented by the skill.
+
+Risk: Automatic capture can retain sensitive details in persistent shared memory.
+
+Mitigation: Tell users what will be stored and avoid saving passwords, tokens, or payment-card data.
 
 ## Reference(s):
 
-- [Nexus Memory 0.22.56 release notes](https://github.com/Neboy72/nexus-memory/releases/tag/v0.22.56)
-- [Nexus Memory on ClawHub](https://clawhub.ai/neboy72/skills/nexus-memory)
+- [ClawHub release page](https://clawhub.ai/neboy72/skills/nexus-memory)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Memory entries]
+**Output Type(s):** [Text, Guidance, Structured data]
 
-**Output Format:** [Plain-text recalled memories and captured facts, decisions, and session summaries]
+**Output Format:** [Memory excerpts and structured tool responses]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Recall is limited to five entries and 1,600 characters by default; visibility follows each entry's access level.]
+**Other Properties Related to Output:** [Automatic recall is limited to three entries and an 800-character budget per prompt.]
 
 ## Skill Version(s):
 
-0.1.16 (source: frontmatter)
+0.1.17 (source: frontmatter)
 
 ## Ethical Considerations:
 

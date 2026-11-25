@@ -9,6 +9,8 @@ from ai import api
 from sign_sdk import sign
 import config as app_config
 from agent_info import resolve_agent_info, agent_headers
+from input_media import InputMediaValidationError, normalize_input_media, primary_media_index, uploaded_init_images
+from params_schema import ParameterValidationError, OptionsSourceError, options_field, validate_parameters, validate_dynamic_options, normalize_integer_params
 
 
 _UPGRADE_NOTICE_CODE = "skill_upgrade_available"
@@ -210,6 +212,10 @@ def normalize_task_catalog(response):
         }
         if spec.get("profile") is not None:
             entry["profile"] = deepcopy(spec["profile"])
+        if spec.get("input_media") is not None:
+            entry["input_media"] = deepcopy(spec["input_media"])
+        if mode == "v2" and spec.get("params_schema") is not None:
+            entry["params_schema"] = deepcopy(spec["params_schema"])
         entries.append(entry)
 
     return {"mode": mode, "source": source, "entries": entries}
@@ -249,7 +255,7 @@ class WapiClient:
                 "User-Agent": app_config.USER_AGENT,
             }
 
-            headers.update(agent_headers(self.agent_info))
+            headers.update(agent_headers(self.agent_info, app_config.VERSION))
 
             body_str = ""
             if body:
@@ -259,7 +265,8 @@ class WapiClient:
             signed_request = signer.sign(uri, method, headers, body_str)
 
             session = requests.Session()
-            resp = session.send(signed_request, timeout=10)
+            timeout = 30 if path == "/skill/consume.json" else 10
+            resp = session.send(signed_request, timeout=timeout)
 
             if resp.status_code == 200:
                 data = json.loads(resp.content)
@@ -338,7 +345,7 @@ class SkillClient:
         :param version: Client version string (default from config.VERSION)
         """
         if version is None:
-            version = getattr(app_config, "VERSION", "v2.0.0")
+            version = getattr(app_config, "VERSION", "v2.0.2")
 
         if not gid:
             cached_gid = self._get_cached_gid()
@@ -407,6 +414,10 @@ class SkillClient:
                 }
                 if "profile" in entry:
                     runtime_spec["profile"] = deepcopy(entry["profile"])
+                if "input_media" in entry:
+                    runtime_spec["input_media"] = deepcopy(entry["input_media"])
+                if "params_schema" in entry:
+                    runtime_spec["params_schema"] = deepcopy(entry["params_schema"])
                 app_config.INVOKE[entry["material_id"]] = runtime_spec
 
         return response
@@ -530,15 +541,20 @@ class SkillClient:
             import config as app_config
             app_config.INVOKE.update(algo["invoke"])
 
-    def _consume_permission(self, url, task):
-        """Call quota/consume API before running a task."""
-        gid = self._get_cached_gid()
+    def _consume_permission(self, url, task, urls=None, params=None):
+        """Consume once after catalog input validation, including zero-media tasks."""
+        body = {"task": task, "gid": self._get_cached_gid() or ""}
+        if url is not None:
+            body["url"] = url
+        body["urls"] = list(urls) if urls else ([url] if url is not None else [])
+        if params is not None:
+            body["params"] = params
 
         try:
             response = self.wapi.request(
                 "/skill/consume.json",
                 method="POST",
-                body={"url": url, "task": task, "gid": gid or ""}
+                body=body
             )
             self._collect_notices(response)
             return response
@@ -632,10 +648,64 @@ class SkillClient:
                 f"Input URL download failed (url={preview}): {e}"
             ) from e
 
+    def validate_task_parameters(self, selection, params=None):
+        """Validate a V2 selection before downloads, uploads, quota or worker launch."""
+        schema = selection.get("params_schema")
+        if schema is None:
+            return
+        if params is not None and not isinstance(params, dict):
+            raise ParameterValidationError("params: expected object")
+        parameter = (params or {}).get("parameter")
+        if isinstance(parameter, dict) and "repost_url" in parameter:
+            raise ParameterValidationError("params.parameter.repost_url: system callback is not user-editable")
+        merged = api._deep_merge_params(selection.get("params") or {}, params or {})
+        parameter = merged.get("parameter")
+        # Remove system transport fields from a validation copy only.
+        if isinstance(parameter, dict):
+            merged["parameter"] = {key: value for key, value in parameter.items()
+                                   if key not in ("repost_url", "rsp_media_type")}
+        validate_parameters(schema, merged)
+        validate_dynamic_options(
+            schema, merged,
+            lambda field_path: self.get_params_field_options(selection["material_id"], field_path),
+        )
+
+    def get_params_field_options(self, task_name, field_path):
+        """Fetch a complete option list for an advertised params-root field; never consume."""
+        selection = self.resolve_task(task_name)
+        schema = selection.get("params_schema")
+        if schema is None:
+            raise ValueError("task has no params_schema")
+        options_field(schema, field_path)
+        try:
+            return self.wapi.request(
+                "/skill/params_field_options.json", method="POST",
+                body={"material_id": selection["material_id"], "field_path": field_path},
+            )
+        except Exception as error:
+            raise OptionsSourceError("failed to fetch params field options: " + str(error)) from error
+
+    def _resolve_executable_task(self, task_name, params=None, profile=None):
+        """Validate the remote task and preset before any upload or paid operation."""
+        selection = self.resolve_task(task_name)
+        resolved_task = selection.get("material_id")
+        if not str(selection.get("task") or "").strip():
+            raise ValueError(
+                f"Remote task {resolved_task!r} has no executable task configuration; "
+                "check the server catalog."
+            )
+        self.validate_task_parameters(selection, params)
+        api._prepare_invoke_task(resolved_task, params, profile)
+        return selection
+
+    def validate_input_media(self, selection, value):
+        """Validate all inputs before uploads or quota consumption."""
+        return normalize_input_media(value, selection)
+
     def run_task(
         self,
         task_name,
-        image_path,
+        image_path=None,
         params=None,
         on_async_submitted=None,
         profile=None,
@@ -644,14 +714,16 @@ class SkillClient:
         Upload media (or use remote URL) and run the named algorithm task.
 
         :param task_name: Preset name from config INVOKE
-        :param image_path: Local path or http(s) URL
+        :param image_path: Local path, HTTP(S) URL, or ordered list of sources/input objects
         :param params: Optional invoke params merged over preset defaults
         :param profile: Optional first-input profile merged over preset defaults
         :param on_async_submitted: Optional callback invoked with the accepted task id
             before polling, so callers can persist a recovery checkpoint.
         """
         self._pipeline_trace = []
-        selection = self.resolve_task(task_name)
+        selection = self._resolve_executable_task(task_name, params, profile)
+        params = normalize_integer_params(selection.get("params_schema"), params)
+        inputs = self.validate_input_media(selection, image_path)
         resolved_task = selection.get("material_id")
         display_task = selection.get("name") or str(task_name or "").strip()
         self._pipeline_trace.append(
@@ -663,6 +735,37 @@ class SkillClient:
             }
         )
 
+        urls = [self._upload_input_media(item["source"]) for item in inputs]
+        primary = primary_media_index(inputs)
+        url = urls[primary] if urls else None
+        ref = self._preview_media_ref(url)
+        self._pipeline_trace.append({"step": "media_url_ready", "input_media": ref})
+        self.api._validate_execution_policy(self.api.getAiStrategy())
+        api._progress_log(f"quota: POST /skill/consume.json task={display_task!r}")
+        consume_kwargs = {"params": params} if selection.get("params_schema") is not None and params is not None else {}
+        consume_info = self._consume_permission(url, resolved_task, urls=urls, **consume_kwargs)
+        self._collect_notices(consume_info)
+        context = consume_info.get("context", "") if consume_info else ""
+        api._progress_log("quota: consume OK → submit algorithm job")
+
+        self._pipeline_trace.append({"step": "consume_quota", "task": display_task})
+        self._pipeline_trace.append(
+            {"step": "submit_algorithm", "invoke_preset": display_task}
+        )
+
+        invoke_kwargs = {}
+        if on_async_submitted is not None:
+            invoke_kwargs["on_async_submitted"] = on_async_submitted
+        if profile is not None:
+            invoke_kwargs["profile"] = profile
+        result = self.api.invoke_task(
+            resolved_task, urls[0] if len(inputs) == 1 and not inputs[0]["profile"] else uploaded_init_images(inputs, urls),
+            params, context, **invoke_kwargs
+        )
+        return self._attach_notices(result)
+
+    def _upload_input_media(self, image_path):
+        """Upload one input, cleaning remote-download files even on failure."""
         if isinstance(image_path, str) and image_path.startswith(("http://", "https://")):
             preview = api.safe_url_preview(image_path)
             api._progress_log(f"input: download from URL (GET {preview})")
@@ -702,31 +805,12 @@ class SkillClient:
                     "bytes": sz,
                 }
             )
-        if url is None:
-            raise RuntimeError("Upload failed")
+        if isinstance(url, dict):
+            url = url.get("url")
+        if not isinstance(url, str) or not url.strip():
+            raise RuntimeError("Failed to upload input media")
 
-        ref = self._preview_media_ref(url)
-        self._pipeline_trace.append({"step": "media_url_ready", "input_media": ref})
-        api._progress_log(f"quota: POST /skill/consume.json task={display_task!r}")
-        consume_info = self._consume_permission(url, resolved_task)
-        self._collect_notices(consume_info)
-        context = consume_info.get("context", "") if consume_info else ""
-        api._progress_log("quota: consume OK → submit algorithm job")
-
-        self._pipeline_trace.append({"step": "consume_quota", "task": display_task})
-        self._pipeline_trace.append(
-            {"step": "submit_algorithm", "invoke_preset": display_task}
-        )
-
-        invoke_kwargs = {}
-        if on_async_submitted is not None:
-            invoke_kwargs["on_async_submitted"] = on_async_submitted
-        if profile is not None:
-            invoke_kwargs["profile"] = profile
-        result = self.api.invoke_task(
-            resolved_task, url, params, context, **invoke_kwargs
-        )
-        return self._attach_notices(result)
+        return url
 
     def poll_task_status(self, task_id: str):
         """

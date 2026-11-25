@@ -1,6 +1,6 @@
 ## Description:
 
-Generate synchronized word-by-word animated captions and translated subtitles for video timelines.
+Generate word-by-word animated captions, karaoke and Hormozi-style subtitles, SRT/VTT transcripts, translations, and lip-synced dubbing for video edits.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Video creators and editors use this skill to add synchronized word-level captions, style subtitles, and translate timeline captions through the Levea editing service.
+Video creators and editors use this skill to add timed, styled captions or karaoke subtitles to video timelines and translate captions for multilingual edits.
 
 ### Deployment Geography for Use:
 
@@ -22,17 +22,13 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Source media is sent to Levea through publicly reachable URLs.
+Risk: Video, audio, prompts, and editing context are sent to Levea for processing.
 
-Mitigation: Use media you are comfortable sharing with Levea and review the service's data handling.
+Mitigation: Review the service's terms and privacy practices, and submit only material you are authorized to share; avoid confidential content unless approved.
 
-Risk: The Levea API key could be exposed if it is placed in an unintended location.
+Risk: The security scan was partial because a local path-like reference could not be resolved, so the evidence is incomplete.
 
-Mitigation: Keep the key in the intended plugin or MCP server configuration.
-
-Risk: The separately installed plugin or MCP server implementation and service data handling were not included in this artifact review.
-
-Mitigation: Review the plugin or MCP server and the service's data handling independently. Enable plan approval to review proposed edits before execution.
+Mitigation: Resolve the reference and rerun the scan before relying on the security assessment.
 
 ## Reference(s):
 
@@ -41,17 +37,17 @@ Mitigation: Review the plugin or MCP server and the service's data handling inde
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, Configuration instructions, Video files, Text]
+**Output Type(s):** [Video edits, Subtitle and transcript text, Project and export details]
 
-**Output Format:** [Tool requests and structured status/results; edited video exported as MP4]
+**Output Format:** [Edited video project and export URL, with status and verification details; subtitle formats include SRT and VTT.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires a Levea account and API key; source media is provided through public URLs.]
+**Other Properties Related to Output:** [Caption styling, timing, and translation depend on the requested edit and available service capabilities.]
 
 ## Skill Version(s):
 
-1.0.4 (source: frontmatter, server-resolved release)
+1.0.9 (source: frontmatter; server release 1.0.9)
 
 ## Ethical Considerations:
 

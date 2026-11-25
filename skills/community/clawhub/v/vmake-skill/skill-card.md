@@ -1,6 +1,6 @@
 ## Description:
 
-VMake helps agents process images and videos with Vmake AI for watermark removal and quality restoration through catalog-selected, quota-consuming API tasks.
+Process images and videos with Vmake AI for watermark removal and quality restoration, using the remote task catalog to select supported operations.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Developers and agent operators use this skill to route user-provided image or video media through Vmake AI for watermark removal, restoration, upscaling, and quality enhancement. It is intended for environments where Vmake credentials are configured and account quota use is authorized.
+External users and developers use the skill to remove watermarks or restore image and video quality through Vmake AI. Successful processing consumes quota on the configured Vmake account.
 
 ### Deployment Geography for Use:
 
@@ -22,45 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: User-supplied URLs can influence what the skill fetches and uploads.
+Risk: The scanner flags undisclosed Feishu and Telegram delivery features and concerns about remote notices.
 
-Mitigation: Use the skill only with intended media inputs, prefer direct uploads or resolved local files for uncertain sources, and keep timeout and size limits enabled.
+Mitigation: Review the bundled delivery options and server-provided notices before use, and enable only an intended delivery channel.
 
-Risk: Remote service notices and links may be forwarded to users.
+Risk: The scanner reports incomplete analysis and unpinned dependencies.
 
-Mitigation: Treat service-provided text and links as untrusted; summarize or validate them before presenting them as guidance.
+Mitigation: Review the source and dependency versions before installation, and pin dependencies in the deployment environment.
 
-Risk: Media uploads, task history, and result URLs may expose sensitive content.
+Risk: Submitting media for processing consumes quota on the configured Vmake account.
 
-Mitigation: Run tasks only after explicit upload and quota authorization, and clear local task history when result URLs should not persist.
-
-Risk: Runtime dependency installation can introduce supply-chain exposure.
-
-Mitigation: Pin or preinstall dependencies from a trusted source before deploying the skill.
+Mitigation: Obtain authorization for the media upload and quota use before submitting a task.
 
 ## Reference(s):
 
-- [VMake ClawHub Release](https://clawhub.ai/wemayiiii/skills/vmake-skill)
-- [README](README.md)
-- [Agent Instructions](SKILL.md)
-- [Errors and Polling](docs/errors-and-polling.md)
-- [IM Attachments](docs/im-attachments.md)
-- [Multi-Platform Delivery](docs/multi-platform.md)
-- [Vmake Developers API Key](https://vmake.ai/developers#api-key)
+- [Vmake API Key Documentation](https://vmake.ai/developers#api-key)
+- [Errors and Polling Guide](docs/errors-and-polling.md)
+- [IM Attachments Guide](docs/im-attachments.md)
+- [Multi-platform Delivery Guide](docs/multi-platform.md)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+**Output Type(s):** [Text, JSON, URLs, Image and video files, Guidance]
 
-**Output Format:** [Markdown guidance with inline shell commands and JSON task status from CLI operations]
+**Output Format:** [JSON task status and result URLs, with processed image or video media delivered when configured]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include Vmake result URLs or platform delivery instructions after authorized media processing.]
+**Other Properties Related to Output:** [Task execution consumes Vmake account quota; available tasks and outputs depend on the remote catalog and selected operation.]
 
 ## Skill Version(s):
 
-2.0.0 (source: server release metadata and artifact skill.json)
+2.0.3 (source: server-resolved release metadata, skill.json)
 
 ## Ethical Considerations:
 

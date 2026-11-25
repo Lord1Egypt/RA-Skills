@@ -7,7 +7,7 @@ Hard Rule 2 的执行器：无三要素证据不得写「已发布」。改标�
 
 用法：
   python fingerprint_check.py --url "https://caijing.chinadaily.com.cn/a/202608/24/WSxxxx.html" \
-      --subject "示例主体" --window 2026-08-01:2026-08-25 \
+      --subject "腾讯云" --window 2026-08-01:2026-08-25 \
       --fp "上下文基础设施" --fp "test-time compute" --fp "2万个集群"
 
 输出：JSON verdict 字段：

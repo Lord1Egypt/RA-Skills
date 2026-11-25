@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-pdf-invoice-stat v2.4.6 · 五格式回归测试
+pdf-invoice-stat v2.4.7 · 五格式回归测试
 
 目的：防止后续改动破坏任一格式的解析能力或表头样式
 
@@ -36,8 +36,10 @@ FILES = {
     'ofd_single': '/tmp/clawhub/intl_single.zip',
 }
 
-# PDF 主代码 md5 基线（v2.4.4 起未变）
-PDF_MD5_BASELINE = '788f0384d9e242b496132003ae5a9398'
+# PDF 主代码 md5 基线
+# v2.4.4 ~ v2.4.6: 788f0384d9e242b496132003ae5a9398（PDF 主路径零改动）
+# v2.4.7 起:     d10b149b3b0528473e10795aa132bb20（+6行铁路客票规则钩子，其余逻辑未变）
+PDF_MD5_BASELINE = 'd10b149b3b0528473e10795aa132bb20'
 
 V240_HEADERS = ['序号', '发票号码', '开票日期', '购买方信息-名称',
                 '购买方信息-统一社会信用代码', '销售方信息-名称',
@@ -81,7 +83,7 @@ print('=' * 70)
 
 try:
     from version import __version__, __formats__
-    check('version.py 加载', __version__ == '2.4.6', f'v{__version__}')
+    check('version.py 加载', __version__ == '2.4.7', f'v{__version__}')
     check('格式声明完整', set(__formats__) == {'PDF', 'XML', 'OFD', 'ZIP', 'RAR'}, '/'.join(__formats__))
 except Exception as e:
     fail('version.py 加载', str(e))

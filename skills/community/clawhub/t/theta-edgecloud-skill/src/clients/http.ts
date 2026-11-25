@@ -1,5 +1,6 @@
-// Shared HTTPS transport. Callers pass credentials as headers; redirects are refused so credentials
-// are never forwarded to another host, and only GET requests are retried.
+// Shared HTTPS transport. It refuses any non-https:// URL; which Theta host a request goes to is
+// chosen and validated by each provider client. Callers pass credentials as headers; redirects are
+// refused so credentials are never forwarded to another host, and only GET requests are retried.
 import { fromHttpError, fromTransportError, isRetriableHttpError, isStructuredError } from '../errors.js';
 import { BasicAuth } from '../types.js';
 
@@ -35,6 +36,7 @@ function backoffDelayMs(attempt: number, baseMs: number): number {
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function request(url: string, method: string, body: BodyInit | undefined, opts?: HttpOpts): Promise<Response> {
+  if (!/^https:\/\//i.test(url)) throw new Error('Only https:// URLs are allowed');
   const timeoutMs = toPositiveInt(opts?.timeoutMs, 20000, { min: 1000, max: 300000 });
   // No idempotency contract exists for mutations/inference: never replay them.
   const maxRetries = method === 'GET' ? toPositiveInt(opts?.maxRetries, 2, { min: 0, max: 6 }) : 0;

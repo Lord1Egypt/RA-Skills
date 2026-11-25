@@ -64,11 +64,21 @@ By default Peen runs in a container and each workspace's agent runs in its own c
 
 Peen starts with no sessions. Open a workspace with `POST /api/v1/sessions/open` and a body of `{"workspace":"<workspace_root>/my-app"}`, using the absolute host path. It returns the session, creating it the first time that directory is opened and resuming it afterwards. Never invent a session ID, because Peen refuses an unknown one and starts no turn.
 
-Send the returned ID as `metadata.sessionId` in a `message.send` WebSocket event, and reuse it to continue the conversation. A normal connection gets live events for every session, so the client builds tabs by filtering event metadata. `?sessionId=<uuid>` only filters what one socket receives; it does not keep a session's work running, and closing every connection for a session does not pause it either. Only `POST /api/v1/session/cancel`, cancelling a child, stopping the controller, or an embedded `Close` pauses or stops work, along with a failed turn or a crash. A client that reconnects replays whatever it missed from [`GET /api/v1/session/feed`](https://github.com/psyb0t/peen/blob/main/docs/http-api.md#get-apiv1sessionfeed) instead of losing it. Every sent message still needs `metadata.sessionId`.
+Send the returned ID as `metadata.sessionId` in a `message.send` WebSocket event, and reuse it to continue the conversation. A normal connection gets live events for every session, so the client builds tabs by filtering event metadata. `?sessionId=<uuid>` only filters what one socket receives; it does not keep a session's work running, and closing every connection for a session does not pause it either. Only `POST /api/v1/session/cancel`, cancelling a child, a turn deadline (`timeoutSeconds` or `PEEN_TURN_TIMEOUT`), stopping the controller, or an embedded `Close` pauses or stops work, along with a failed turn or a crash. A client that reconnects replays whatever it missed from [`GET /api/v1/session/feed`](https://psyb0t.github.io/peen/api/list-session-feed/) instead of losing it. Every sent message still needs `metadata.sessionId`.
 
 `GET /api/v1/sessions` lists what exists and needs no session header.
 
-Use REST to read stored state and control work. A message for the agent goes over the WebSocket. Send `X-Session-ID` to the session endpoints. For example, list messages with `GET /api/v1/messages` and ask a turn to stop with `POST /api/v1/session/cancel`. The [API reference](https://github.com/psyb0t/peen/blob/main/docs/http-api.md) has every frame and endpoint.
+Use REST to read stored state and control work. A message for the agent goes over the WebSocket, or through one of the optional entry points below. Send `X-Session-ID` to the session endpoints. For example, list messages with `GET /api/v1/messages` and ask a turn to stop with `POST /api/v1/session/cancel`. The [REST API](https://psyb0t.github.io/peen/http-api/) leads to the reference for every endpoint, and the [WebSocket API](https://psyb0t.github.io/peen/websocket-api/) has every frame.
+
+## Validated answers, deadlines, and other entry points
+
+Add `outputSchema`, a JSON Schema object, to `message.send` data to get a validated answer in `output` on `turn.completed`, or the reason in `outputError` when no attempt passes. Add `timeoutSeconds`, 1 to 86400, to bound the whole turn; without it `PEEN_TURN_TIMEOUT` applies, and expiry cancels the turn and its child work. Neither combines with `to`, and a message carrying either fails with `SESSION_BUSY` while a turn runs instead of queueing. `peen --prompt "<task>" --output-schema FILE --timeout 30m` does the same from the command line. See [structured output and turn deadlines](https://psyb0t.github.io/peen/websocket-api/#structured-output-and-turn-deadlines).
+
+The [workspace file API](https://psyb0t.github.io/peen/http-api/#workspace-files) under `/api/v1/session/files` lists, reads, writes, and deletes files in a session's workspace with `X-Session-ID`, without starting a turn.
+
+Four more entry points are off until the operator turns them on, and each one starts turns with the workspace's full access: the [OpenAI API](https://psyb0t.github.io/peen/openai-api/) at `/openai/v1` (`PEEN_OPENAI_API`), the [MCP control server](https://psyb0t.github.io/peen/mcp-server/) at `/mcp/v1` (`PEEN_MCP_SERVER`), [scheduled turns](https://psyb0t.github.io/peen/cron/) from `cron.yaml` (`PEEN_CRON`), and the [Telegram bot](https://psyb0t.github.io/peen/telegram/) (`PEEN_TELEGRAM`). Keep `PEEN_API_TOKEN` set and the Telegram allowlists tight. Anyone in an allowed chat drives that chat's session, and a reply to a cron notification continues that run's session with the job's agent space.
+
+One workspace can hold several sessions, each with its own history: the one `POST /api/v1/sessions/open` returns, plus fresh ones for the OpenAI API, MCP, cron, and Telegram. They all share the workspace's one agent space. A request that names no agent space gets it, and one that names a different space fails with `AGENT_SPACE_CONFLICT`, naming the current space. Changing a session's agent space changes it for every session of that workspace, and Peen refuses the change while any of them runs a turn. See [choosing an agent space](https://psyb0t.github.io/peen/where-it-runs/#choosing-an-agent-space-for-a-workspace).
 
 ## Inspect and continue retained work
 
@@ -92,4 +102,5 @@ Peen reads the configuration directory first, then every directory from `/` down
 - [Named agents](https://github.com/psyb0t/peen/blob/main/docs/agents.md)
 - [Session events](https://github.com/psyb0t/peen/blob/main/docs/events.md)
 - [Hooks](https://github.com/psyb0t/peen/blob/main/docs/hooks.md)
-- [API reference](https://github.com/psyb0t/peen/blob/main/docs/http-api.md)
+- [REST API and reference](https://psyb0t.github.io/peen/http-api/)
+- [WebSocket API](https://psyb0t.github.io/peen/websocket-api/)

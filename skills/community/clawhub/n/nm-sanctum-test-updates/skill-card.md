@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to find test gaps, create and improve test scaffolding, and validate tests after code changes using TDD and BDD practices.
+Developers use this skill to find test gaps, generate or update test scaffolds, and validate tests after code changes using TDD and BDD practices.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Tests may run in the current process, and source files may remain changed if execution is interrupted.
+Risk: Validation may run repository tests in the current Python process, and mutation testing may modify source files in place.
 
-Mitigation: Review the testing and mutation-testing guidance before use, and inspect the target repository's working tree after any interrupted run.
+Mitigation: Review commands first, use an isolated disposable workspace, and inspect changes before keeping them.
 
 ## Reference(s):
 
-- [Project homepage (declared metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
-- [ClawHub skill release page](https://clawhub.ai/athola/skills/nm-sanctum-test-updates)
-- [Publisher profile](https://clawhub.ai/user/athola)
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-sanctum-test-updates)
+- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Files, Markdown, Shell commands, Guidance]
+**Output Type(s):** [Code, Files, Shell commands, Analysis, Guidance]
 
-**Output Format:** [Markdown guidance and shell command examples; generated test code and scaffolding]
+**Output Format:** [Markdown guidance and summaries, generated test code and files, and shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Generated tests may need developer review and completion before use.]
+**Other Properties Related to Output:** [May create or modify test files and run test-validation workflows.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this guide to choose plugin, project, or global scope for Claude Code hooks based on audience, version control, and persistence needs.
+Developers use this guide to choose plugin, project, or global scope for Claude Code hooks based on audience, version-control needs, and desired persistence. It also identifies the configuration location for the selected scope.
 
 ### Deployment Geography for Use:
 
@@ -22,15 +22,15 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The supplied artifact omits some referenced local scope guidance, and global hooks can apply across all Claude sessions on the machine.
+Risk: Global hooks can apply across all Claude sessions on the machine.
 
-Mitigation: Review the relevant hook and settings guidance and confirm the intended scope before installing; take particular care with global hooks.
+Mitigation: Before choosing global scope, check that this machine-wide reach matches the intended audience and persistence needs.
 
 ## Reference(s):
 
 - [Claude Code Hooks Documentation](https://docs.anthropic.com/en/docs/claude-code/hooks)
 - [Claude Code Settings Configuration](https://docs.anthropic.com/en/docs/claude-code/settings)
-- [Claude Night Market Abstract plugin information](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
+- [Claude Night Market Abstract Plugin](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
 
 ## Skill Output:
 
@@ -40,11 +40,11 @@ Mitigation: Review the relevant hook and settings guidance and confirm the inten
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Scope recommendations, rationale, and configuration file paths.]
+**Other Properties Related to Output:** [A scope recommendation with rationale and the corresponding configuration location.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

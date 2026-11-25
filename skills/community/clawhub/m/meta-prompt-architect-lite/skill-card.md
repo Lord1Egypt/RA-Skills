@@ -1,6 +1,6 @@
 ## Description:
 
-Turns a plain-language task into a prompt scaffold with candidate input placeholders, a detected output format, and gaps for the user to resolve.
+Turn a plain-language task description into a minimal prompt template — extracts {{variable}} placeholders, detects output format, assembles a ROLE/TASK/INPUT/CONSTRAINTS/OUTPUT scaffold. Use when the user asks to write or templatize a prompt for an LLM.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Prompt writers and developers use this skill to turn a task description into a reusable LLM prompt template, then refine its placeholders, constraints, and output requirements.
+Developers and prompt authors use this skill to turn a plain-language task description into a reusable LLM prompt scaffold, then refine its placeholders, output shape, and constraints.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: An unpinned installation may not reproduce the reviewed release.
+Risk: The installation instructions use an unpinned `npx skills` package.
 
-Mitigation: Pin a reviewed release or commit when reproducible installs matter.
+Mitigation: Review the package and use a pinned package version and immutable skill revision where available.
 
-Risk: Short or underspecified tasks can produce generic or incomplete prompt scaffolds.
+Risk: The security review is incomplete; only 2 of 4 components were fully inspected.
 
-Mitigation: Resolve reported gaps with the user and review the template before using it.
+Mitigation: Review the full skill and its installation source before installing or using it.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/nenadzivotic/skills/meta-prompt-architect-lite)
+- [ClawHub release page](https://clawhub.ai/nenadzivotic/skills/meta-prompt-architect-lite)
+- [Publisher profile](https://clawhub.ai/user/nenadzivotic)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Guidance]
+**Output Type(s):** [Text, Markdown, JSON]
 
-**Output Format:** [Markdown prompt scaffold with ROLE, TASK, INPUT, CONSTRAINTS, and OUTPUT sections]
+**Output Format:** [Prompt scaffold with ROLE, TASK, INPUT, CONSTRAINTS, and OUTPUT sections; CLI report in JSON.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Candidate input placeholders and warnings for missing details require user review.]
+**Other Properties Related to Output:** [The scaffold can contain candidate placeholders and warnings and needs task-specific refinement.]
 
 ## Skill Version(s):
 
-1.0.0 (source: ClawHub release metadata)
+1.1.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -20,7 +20,7 @@ HEADER_KEYS = {
     PROVENANCE: ("ROUND",),
 }
 ALLOWED_RECORDS = {
-    ASSESSMENT: ("FINDING", "BAND", "COVERAGE", "SHAPE"),
+    ASSESSMENT: ("FINDING", "BAND", "COVERAGE", "SHAPE", "RECALL", "SOLVE"),
     PROVENANCE: ("FINDING",),
 }
 # Exactly one free-text field per record, and it is always last, so it may contain
@@ -28,6 +28,9 @@ ALLOWED_RECORDS = {
 RECORD_FIELDS = {
     "FINDING": ("tag", "ref", "quote"),
     "BAND": ("dimension", "value", "ref", "quote"),
+    # Knowledge and coding rounds (mock_vocab.LEARNED_RECORD): one per question.
+    "RECALL": ("result", "hint", "ref", "quote"),
+    "SOLVE": ("tests", "complexity", "hint", "ref", "quote"),
     "COVERAGE": ("status", "must_have"),
     "SHAPE": ("status", "round_name"),
 }

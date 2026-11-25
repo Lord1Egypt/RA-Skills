@@ -34,7 +34,7 @@ The founders Deacon is built for run software products. These are the moments th
 
 Read in order, these are the funnels a founder wants: visited, Sign up, Onboarding complete; and Sign up, Paywall hit, Upgraded. The dashboard builds a funnel from any goals placed in order, counted within one visit, so a step left out is a step the founder cannot see.
 
-A funnel joins steps one visitor reached in one visit, and a visit starts with a counted page view. If every goal fires behind a login, on pages that send no page views, each goal is still counted on its own but no funnel can form, so leave the pages in front of the login sending theirs.
+A funnel joins steps one visitor reached in one visit. Goals alone can make one, but a funnel that starts at visited needs a counted page view. If every goal fires behind a login, on pages that send no page views, each goal is still counted but no funnel can start at visited, so leave the pages in front of the login sending theirs.
 
 Beyond the list, add a goal for any other moment that is plainly the point of this product: a booking made, a post published, a payment sent. Name it in the same plain style. Do not add goals for navigation, scrolling, hovering, or anything a visitor does without meaning to. Those are page views, and Deacon already counts them.
 
@@ -187,14 +187,14 @@ The loader sends the goal to Deacon itself. Do not add a second analytics script
 ## Naming and the rules
 
 - The name matches the founder's, letter for letter. Names are trimmed and cut at 64 characters. Write new ones in the same style: plain words, a capital first letter, no punctuation. "Paywall hit", not "paywall_hit_v2".
-- Fire on the real user action, never on render, mount or route change. The one page that may send a goal as it loads is a page that only exists because the moment happened, such as the page after a successful checkout. A goal counts once per visitor however many times it fires, so a refresh of that page does no harm.
+- Fire on the real user action, never on render, mount or route change. The one page that may send a goal as it loads is a page that only exists because the moment happened, such as the page after a successful checkout. A goal counts once per visit however many times it fires, so a refresh of that page does no harm.
 - Any action the server can refuse — a registration, an invite, a payment — belongs on what runs after it succeeded, not on the submit. A form that a taken email address rejects would otherwise count a sign up that never happened.
 - A sign up through Google or another sign-in provider usually lands on the same page as a returning login, so that page cannot tell the two apart. Have the server mark a new account on its way out of registration, with a flashed session value or a query flag on the redirect, and send "Sign up" from the page that reads the mark.
 - A page marked `data-no-page-views` still sends goals: that attribute holds back page views and errors only. The moments inside a signed-in app are worth wiring even where the founder has turned page views off.
 - Never hard-code the site key anywhere new. The loader already carries it.
 - Never put personal data in the details: no email addresses, names or identifiers.
 - Tag an element once. Do not combine the attribute and the class on one element, and do not tag both a container and the button inside it.
-- A goal is dropped unless it comes from one of the site's allowed domains or a development address. Verify explains both.
+- A goal is dropped unless it comes from one of the site's allowed domains or from `localhost`, `127.0.0.1` or `[::1]`. Verify explains both.
 
 ## Verify
 
@@ -231,9 +231,9 @@ While you are building, the beacon itself answers with what happened to it, so a
 { "recorded": true, "counted": false, "reason": "localhost" }
 ```
 
-Wait for `recorded: true`: the goal arrived and the wiring works. `counted` is false from every development address, which is right, because you are not traffic. Any other `reason` is the thing to fix: `origin-not-allowed` wants this host added to the site's allowed domains on Deacon's Install page, `no-page-url` means the page's URL is not on the origin it sent from, `no-name` means the name sent was blank or not text, and `bot` means the user agent reads as a crawler. If no beacon is sent at all, the loader is not on that page: search the HTML for `widget/v1/loader.js`. A live site answers 204 with no body whatever happens.
+Wait for `recorded: true`: the goal arrived and the wiring works. `counted` is false from every development address, which is right, because you are not traffic. A headless browser answers `automated-browser` instead of `localhost`, with `recorded: true`, and that is right too. Any other `reason` is the thing to fix: `origin-not-allowed` wants this host added to the site's allowed domains on Deacon's Install page, `no-page-url` means the page's URL is not on the origin it sent from, `no-name` means the name sent was blank or not text, and `bot` means the user agent reads as a crawler. If no beacon is sent at all, the loader is not on that page: search the HTML for `widget/v1/loader.js`. A live site answers 204 with no body whatever happens.
 
-A development address is the machine you are working on: `localhost`, a private address, or a host ending `.test`, `.local` or `.localhost`. Verify from anywhere else — a forwarded port, a tunnel, a preview deploy on another domain — and that host has to be in the site's allowed domains first (a subdomain of a listed domain already is), or every beacon is dropped and answered with a bare 204.
+A development address is the machine you are working on: `localhost`, a private address, or a host ending `.test`, `.local` or `.localhost`. Only `localhost`, `127.0.0.1` and `[::1]` are taken without being listed. Any other development address has to be in the site's allowed domains too, or it answers `origin-not-allowed`. Verify from anywhere else — a forwarded port, a tunnel, a preview deploy on another domain — and that host has to be in the site's allowed domains first (a subdomain of a listed domain already is), or every beacon is dropped and answered with a bare 204.
 
 ## Leave a note
 

@@ -35,7 +35,7 @@ then <later action or observation fulfilling purpose>
 ```
 
 Name action inputs and outputs; use `[]` for no inputs and `=> []` for no result.
-Add [execution constraints](execution.md#execution-constraints) only when required.
+Add [execution constraints](architecture-execution.md#execution-constraints) only when required.
 
 Optional `## queries` maps public relations to read APIs:
 
@@ -52,7 +52,7 @@ In SYNCS, `Name/_query: [inputs] => [outputs]` appears only in `where`.
 
 Includes MUST resolve to concept or external-entry contracts.
 Declare aliases, concrete types, and root signatures for requests, timers, or messages.
-For diagrams, check supported includes in the [diagram contract](diagram-contract.md#identity-and-resolution).
+For diagrams, check supported includes in the [diagram contract](tool-diagram.md#identity-and-resolution).
 
 A `sync` MAY be immediately preceded by `### <business description>`.
 

@@ -1,0 +1,44 @@
+{
+  "invoice_no": "INV/26-27/0042",
+  "invoice_date": "2026-11-19",
+  "supplier": {
+    "name": "Bhatia Digital Studio",
+    "address": "12 MG Road, Pune 411001",
+    "gstin": "27AAPFU0939F1ZV",
+    "phone": "+91 98xxxxxx10"
+  },
+  "supplier_turnover_prev_fy": 3500000,
+  "buyer": {
+    "name": "Acme Retail Pvt Ltd",
+    "address": "4th Floor, Koramangala, Bengaluru 560034",
+    "gstin": "29AAGCA1234B1Z8"
+  },
+  "place_of_supply": "29",
+  "goods": false,
+  "items": [
+    {
+      "description": "Website design and development",
+      "hsn": "998314",
+      "qty": 1,
+      "unit": "NOS",
+      "rate": 85000,
+      "gst_rate": 18
+    },
+    {
+      "description": "Social media creatives (pack of 20)",
+      "hsn": "998361",
+      "qty": 2,
+      "unit": "NOS",
+      "rate": 7500,
+      "discount": 1000,
+      "gst_rate": 18
+    }
+  ],
+  "bank": {
+    "account_name": "Bhatia Digital Studio",
+    "account_no": "XXXX XXXX 1234",
+    "ifsc": "HDFC0000123"
+  },
+  "upi_id": "bhatiastudio@okhdfc",
+  "notes": "Payment due within 15 days."
+}

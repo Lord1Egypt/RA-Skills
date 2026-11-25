@@ -1,11 +1,11 @@
 ---
 name: galleon-defi-market-snapshot
-description: Collect bounded CoinGecko and DefiLlama market observations with exact IDs, provider timestamps, source hashes and explicit gaps; retrieve compatible daily price history. Use when preparing a sourced crypto market brief, comparing fresh prices or collecting evidence for a daily strategy experiment.
+description: Collect CoinGecko and DefiLlama marks or compare one with a Coinbase Exchange trade with exact IDs, provider timestamps, source hashes and explicit gaps; retrieve compatible daily price history. Use when preparing a sourced crypto market brief, comparing fresh prices or collecting evidence for a daily strategy experiment.
 license: MIT
 compatibility: Portable agent instructions. Bundled read-only helper requires Node.js 20+ and public HTTPS access. It reads no credentials, follows no redirects, does not retry and never signs, pays or creates a scheduler.
 metadata:
   author: Galleon Labs
-  version: "0.6.1"
+  version: "0.8.0"
 ---
 
 # Source-backed market evidence
@@ -24,6 +24,7 @@ From this skill directory:
 
 ```bash
 node scripts/market-data.mjs snapshot --ids bitcoin,ethereum
+node scripts/market-data.mjs snapshot --provider coinbase-compare --ids ethereum
 node scripts/market-data.mjs snapshot --provider defillama --ids bitcoin --max-age 300
 node scripts/market-data.mjs history --id bitcoin --days 180
 ```
@@ -33,6 +34,8 @@ The [request and output contract](references/requests.md) documents the limits a
 Preserve complete and partial results. Each valid observation carries ID, unit, price, provider observation time and retrieval time. Each provider read carries its public source and raw response SHA-256. Missing, stale, malformed and inaccessible rows are failures with stable codes, not zero prices. A partial snapshot exits nonzero while retaining usable rows.
 
 The default two-provider read compares marks only if both are valid and their observation times are within the declared skew. Report discrepancies; do not average a fabricated consensus price. DefiLlama's CoinGecko-ID namespace may share upstream data with CoinGecko, so agreement does not establish independent oracle corroboration. Unknown confidence is not invented.
+
+For a venue check, select `coinbase-compare` with one of `bitcoin`, `ethereum` or `solana`. It compares the aggregate mark with a last trade on the exact Coinbase Exchange USD product. Preserve the product, trade ID and observation time. The aggregate can include Coinbase. Two agreeing rows still cannot establish independent oracle consensus.
 
 ## Write the brief
 

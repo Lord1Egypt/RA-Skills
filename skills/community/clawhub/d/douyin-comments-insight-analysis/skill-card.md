@@ -1,6 +1,6 @@
 ## Description:
 
-抓取抖音关键词搜索结果、作品详情、博主作品、评论和热榜，并输出结构化数据供内容与舆情分析使用。
+Search public Douyin videos and accounts, retrieve post details and comments, and check trending topics to support content research, competitor analysis, and sentiment monitoring.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Content, product, and customer support teams can search public Douyin videos, review creator posts and comments, and track trending topics. Agents can use the returned structured data for content planning, competitor research, and audience feedback analysis.
+Content, product, customer support, and marketing teams can use the skill to research public Douyin posts, comments, creators, and trending topics for content planning, competitor review, and sentiment analysis.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search terms and Douyin links are sent to the third-party API at www.guaikei.com.
+Risk: The security evidence notes that supplied links, IDs, and search terms may be sent to a third-party API at guaikei.com.
 
-Mitigation: Only submit queries and links that are appropriate to share with that provider.
+Mitigation: Use the skill only for public-data queries when that disclosure is acceptable; avoid sending sensitive or private identifiers.
 
-Risk: The API token is required for requests, and provider usage may incur charges.
+Risk: Security evidence flags uncertainty about keyword-based account discovery, and notes that analysis of some files was partial.
 
-Mitigation: Keep GUAIKEI_API_TOKEN private and check provider charges before making requests.
-
-Risk: Locally saved logs can include public usernames, comments, and location labels; the provider's retention practices were not verified.
-
-Mitigation: Limit access to saved logs, delete them when no longer needed, and review provider terms before sending sensitive queries.
+Mitigation: Confirm current account-search support and review the relevant provider documentation before relying on that capability.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/why20261/skills/douyin-comments-insight-analysis)
-- [Guaikei API provider](https://www.guaikei.com)
-- [Command options](references/options.md)
-- [Comment demand-mining guide](references/demand-mining.md)
-- [Changelog](references/changelog.md)
+- [Usage and output contract](artifact/references/contract.md)
+- [Comment demand analysis guide](artifact/references/demand-mining.md)
+- [Comment-based customer acquisition guide](artifact/references/customer-acquisition.md)
+- [Error handling reference](artifact/references/errors.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis]
+**Output Type(s):** [JSON, Guidance]
 
-**Output Format:** [Structured JSON on command-line stdout, with results also saved locally]
+**Output Format:** [Structured JSON results for Douyin searches, account and post data, comments, and trends; concise agent guidance for analysis.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [A response envelope contains status, request details, and structured Douyin results; agents can summarize the data for research and monitoring.]
+**Other Properties Related to Output:** [Results may be saved locally for follow-up analysis.]
 
 ## Skill Version(s):
 
-1.4.2 (source: frontmatter, package.json, changelog released 2026-11-04)
+1.5.0 (source: frontmatter, package.json)
 
 ## Ethical Considerations:
 

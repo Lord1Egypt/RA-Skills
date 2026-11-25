@@ -1,0 +1,133 @@
+# ============================================================
+# hekouwang-terminal-skill — 提示符（Starship）
+#
+# 版式：信笺式 · 右栏
+#
+#   ~/Dashboard/Github/hekouwang-factory  main +1 !2 ?1        1.2s · 22:14
+#   ❯ █
+#
+# 三条设计规矩（改之前先读，别把它改回"默认样子"）：
+#
+# 1. **只用 ANSI 色名，永远不写 hex。**
+#    style 写 blue / purple / bright-black，颜色由当前终端调色板决定，
+#    所以 ./scripts/theme.sh 换肤时提示符自动跟着变，七套主题共用这一份配置。
+#    写死 hex＝把提示符钉在一套配色上，换肤后它会格格不入。
+#
+# 2. **目录蓝、输入符紫**，不是随便选的：
+#    蓝＝"位置"，和 eza/ls 的目录色（LS_COLORS 的 di=）、iTerm2 的 Link Color 同一个槽，
+#    整条工具链里"目录"就是蓝的；紫在提示符里没有第二处用途，所以它一出现就等于"该你敲了"。
+#
+# 3. **右栏永远暗调**（bright-black）。它是余光信息，不是主角；
+#    唯一允许喊的是出错时那个红色 exit —— 平时安静，出事才响。
+# ============================================================
+
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$python\
+$jobs\
+$line_break\
+$character"""
+
+# 右栏：命令耗时 · 时间；上一条命令失败时最左边多一个红色 exit。
+# starship 把右栏渲染在提示符**第一行**的行尾，正好对齐目录那一行。
+right_format = """$status$cmd_duration$time"""
+
+# ---- 位置 ---------------------------------------------------
+[directory]
+# 父路径压暗、当前目录（仓库根）加粗上色 —— 眼睛一扫就知道"我在哪个项目里"，
+# 而不用把整条路径读完。before_repo_root_style 要 truncate_to_repo=false 才有效果。
+# ⚠️ 两个 format 都得写，而且都要去掉默认的**行尾空格**（留着＝目录和分支之间三个空格）：
+#    设了 repo_root_style 之后，人在 git 仓里时 starship 走的是 repo_root_format，
+#    **不是 format** —— 只改 format 会一点效果都没有，我就是这么白改了一轮。
+format = "[$path]($style)[$read_only]($read_only_style)"
+repo_root_format = "[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style)"
+truncate_to_repo = false
+truncation_length = 4
+truncation_symbol = "…/"
+style = "blue"
+repo_root_style = "bold blue"
+before_repo_root_style = "bright-black"
+read_only = "  只读"
+read_only_style = "red"
+
+# ---- git ----------------------------------------------------
+[git_branch]
+format = "[  $branch]($style)"
+style = "bright-black"
+
+[git_state]
+format = '[  $state( $progress_current/$progress_total)]($style)'
+style = "bright-black"
+
+[git_status]
+# 按**语义**分色，不是整串一个颜色：暂存绿 / 改动黄 / 未跟踪暗 / 冲突红。
+# 旧版整串 cyan＝"[?3!1]" 这种符号汤，颜色不承载任何信息，等于白占一段视觉。
+# 干净时 all_status 为空，整段连同前导空格一起消失（format 外层的括号就是干这个的）。
+# 间隔用**前导**空格不用后缀空格：后缀会在行尾留一个多余空格，右栏一贴上来就顶歪一格。
+format = '([$all_status$ahead_behind]($style))'
+style = "bright-black"
+staged        = '[ +$count](green)'
+modified      = '[ !$count](yellow)'
+untracked     = '[ ?$count](bright-black)'
+deleted       = '[ -$count](red)'
+renamed       = '[ »$count](purple)'
+conflicted    = '[ =$count](bright-red)'
+stashed       = '[ ≡$count](cyan)'
+ahead         = '[ ⇡$count](cyan)'
+behind        = '[ ⇣$count](cyan)'
+diverged      = '[ ⇕$ahead_count/$behind_count](bright-red)'
+
+# ---- 环境（只在相关时出现）----------------------------------
+[python]
+# 只报虚拟环境名，不报版本号 —— 版本号是"我装了什么"，虚拟环境是"我现在在哪"，
+# 后者才会影响下一条命令的结果。
+format = '[  $virtualenv]($style)'
+style = "bright-black"
+
+[jobs]
+# 后台挂了几个任务。容易忘，忘了就会关窗口时误杀。
+format = '[  $symbol$number]($style)'
+symbol = "&"
+style = "bright-black"
+number_threshold = 1
+
+[username]
+format = '[$user]($style)[ ]()'
+style_user = "bright-black"
+style_root = "bold red"
+
+[hostname]
+# ssh_only 默认 true：本机不显示，连了远程才出现 —— 正好当"我不在本机"的警戒色。
+format = '[$hostname]($style)[ ]()'
+style = "bold yellow"
+
+# ---- 右栏 ---------------------------------------------------
+[cmd_duration]
+# 1 秒以下不显示：日常敲命令不该有东西在右边闪。
+min_time = 1000
+format = '[$duration]($style)'
+style = "bright-black"
+
+[time]
+disabled = false
+format = '[ · $time]($style)'
+time_format = "%H:%M"
+style = "bright-black"
+
+[status]
+# starship 默认关掉它。开着才有"上一条命令挂没挂"这个信息 ——
+# 右栏平时安静，就靠这一处在出事时变红。
+disabled = false
+format = '[exit $status]($style)  '
+style = "red"
+
+# ---- 输入符 -------------------------------------------------
+[character]
+success_symbol = "[❯](bold purple)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold green)"

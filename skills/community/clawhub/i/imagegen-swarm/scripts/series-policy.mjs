@@ -1,14 +1,59 @@
-// Series mode: one style guide for every engine, then a local palette check.
-// The score is implemented in imgtool.py (Pillow only). It is 0.8 times the cosine
-// of an 8-bin joint RGB histogram plus 0.2 times the cosine of a 4x4 luminance grid,
-// both taken from a 64x64 resize. 1 is the same palette. There is no CLIP model and
-// no network call.
+// Series mode: one style guide for every engine, then a local consistency check.
+// The scores are implemented in imgtool.py and never call the network:
+//   structure          Pillow only. 0.4 x grayscale SSIM + 0.5 x a HOG-like gradient-orientation
+//                      grid + 0.1 x the palette-histogram score. Default when CLIP is not installed.
+//   clip               optional. CLIP ViT-B/32 image embeddings from a local ONNX file the user
+//                      downloaded on purpose (numpy + onnxruntime). Nothing is downloaded at run time.
+//   palette-histogram  the 1.3.x score: 0.8 x cosine of an 8-bin joint RGB histogram plus
+//                      0.2 x cosine of a 4x4 luminance grid, from a 64x64 resize.
+//   auto               clip when it is installed, otherwise structure. Resolved once per batch.
+// structure and clip are calibrated so 0.72 is each method's measured operating point
+// (docs/series-consistency-validation.md), so the default threshold stays 0.72.
 
 import path from 'node:path';
 
-export const STYLE_METHOD = "palette-histogram";
+export const STYLE_METHODS = ["auto", "structure", "clip", "palette-histogram"];
+export const DEFAULT_STYLE_METHOD = "auto";
+export const LEGACY_STYLE_METHOD = "palette-histogram";
+export const STYLE_METHOD = DEFAULT_STYLE_METHOD;
 export const DEFAULT_STYLE_THRESHOLD = 0.72;
 export const DEFAULT_STYLE_RETRIES = 2;
+
+// "palette" is accepted as a short name for the 1.3.x score.
+export function normalizeStyleMethod(value) {
+  if (value == null || value === "") return DEFAULT_STYLE_METHOD;
+  const name = String(value).trim().toLowerCase();
+  if (name === "palette") return LEGACY_STYLE_METHOD;
+  if (!STYLE_METHODS.includes(name)) throw new Error("series method must be one of " + STYLE_METHODS.join(", ") + ": " + value);
+  return name;
+}
+
+// backends is the JSON from `imgtool.py backends`. auto never fails: it falls back to structure.
+// An explicit clip request fails before any engine starts when the optional backend is missing.
+export function resolveStyleMethod(requested, backends) {
+  const method = normalizeStyleMethod(requested);
+  const clip = backends?.methods?.clip;
+  if (method === "auto") {
+    if (clip?.available) return { method: "clip", reason: "auto: CLIP backend installed" };
+    return { method: "structure", reason: "auto: CLIP backend not installed (" + (clip?.reason ?? "not probed") + "), using the Pillow-only structure score" };
+  }
+  if (method === "clip" && !clip?.available) {
+    throw new Error("series method clip is not available: " + (clip?.reason ?? "backend not probed") + ". See SETUP.md (Series consistency), or use structure");
+  }
+  return { method, reason: null };
+}
+
+// imgtool returns a JSON object; older callers and tests pass a bare number.
+export function styleResult(value) {
+  if (typeof value === "number") return { score: value, detail: null };
+  const score = Number(value?.score);
+  if (!Number.isFinite(score)) throw new Error("style score is not a number");
+  const detail = {};
+  if (value.method) detail.method = value.method;
+  if (value.raw_score != null) detail.raw_score = value.raw_score;
+  if (value.components) detail.components = value.components;
+  return { score, detail: Object.keys(detail).length ? detail : null };
+}
 
 export function splitJobsDocument(doc) {
   if (Array.isArray(doc)) return { jobs: doc, series: null, root: null };
@@ -61,7 +106,7 @@ export function resolveSeriesConfig({ flag, fileSeries, root, cli }) {
   const enabled = Boolean(flag || fileSeries === true || spec || styleFromString);
   if (!enabled) {
     return {
-      enabled: false, method: STYLE_METHOD, style: "", styleRefs: [],
+      enabled: false, method: DEFAULT_STYLE_METHOD, style: "", styleRefs: [],
       threshold: DEFAULT_STYLE_THRESHOLD, maxRetries: DEFAULT_STYLE_RETRIES,
       engines: null, prefer: "off",
     };
@@ -79,8 +124,9 @@ export function resolveSeriesConfig({ flag, fileSeries, root, cli }) {
   if (prefer !== "consistent" && prefer !== "off") throw new Error("series prefer must be consistent or off");
   const refs = options.refs && options.refs.length ? asList(options.refs) : asList(source.ref);
   const engines = options.engines != null ? asEngines(options.engines) : asEngines(source.engines);
+  const method = normalizeStyleMethod(options.method != null && options.method !== "" ? options.method : source.method);
   return {
-    enabled: true, method: STYLE_METHOD, style, styleRefs: refs,
+    enabled: true, method, style, styleRefs: refs,
     threshold: chosenThreshold, maxRetries: chosenRetries, engines, prefer,
   };
 }
@@ -181,18 +227,18 @@ export function styleDecision({ score, threshold, redos, maxRetries }) {
 export async function takeStyleScreen(series, job, scoreAgainst, sleep) {
   const redos = job.styleRedos ?? 0;
   if (series.styleRefs.length) {
-    const score = await scoreAgainst(series.styleRefs);
-    return { ...styleDecision({ score, threshold: series.threshold, redos, maxRetries: series.maxRetries }), score, claim: false };
+    const { score, detail } = styleResult(await scoreAgainst(series.styleRefs));
+    return { ...styleDecision({ score, threshold: series.threshold, redos, maxRetries: series.maxRetries }), score, detail, claim: false };
   }
   const wait = sleep ?? (ms => new Promise(resolve => setTimeout(resolve, ms)));
   for (;;) {
     if (series.visualAnchor) {
-      const score = await scoreAgainst([series.visualAnchor]);
-      return { ...styleDecision({ score, threshold: series.threshold, redos, maxRetries: series.maxRetries }), score, claim: false };
+      const { score, detail } = styleResult(await scoreAgainst([series.visualAnchor]));
+      return { ...styleDecision({ score, threshold: series.threshold, redos, maxRetries: series.maxRetries }), score, detail, claim: false };
     }
     if (!series.anchorJob || series.anchorJob === job.id) {
       series.anchorJob = job.id;
-      return { action: "keep", score: null, claim: true, redos };
+      return { action: "keep", score: null, detail: null, claim: true, redos };
     }
     await wait(20);
   }

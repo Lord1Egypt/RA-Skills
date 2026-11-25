@@ -1,0 +1,96 @@
+{
+ "_note": "参数化配置模板 v2：复制为 config_<项目>.json 逐项替换。⛔旁白陈述句禁问号；口播旁白≤5s；人物参考图自备（包内不含）。仅 gen_scene_cards.py 直接读取本文件；其余段落参数以本文件为单一事实来源派生。",
+ "character": {
+  "identity": "年轻女子，鹅蛋脸，杏眼明亮，深棕长发",
+  "identity_note": "身份锚：与参考图一致的稳定特征，零美貌形容词",
+  "costume": "现代医生造型：浅蓝色圆领刷手服内搭，外罩白色医生袍，颈挂听诊器",
+  "costume_note": "换装=改这一行（正向描述：材质/颜色/层次逐项写明；cfg=1 负向无效）",
+  "scene_bg": "背景为干净不繁杂的纯色渐变。"
+ },
+ "skill": {
+  "name": "your-skill",
+  "display_name_cn": "中文名·一句话功能",
+  "tagline_big": "四字主标",
+  "tagline_sub": "副标",
+  "core_selling_points": [
+   "卖点一（开头讲透）",
+   "卖点二"
+  ],
+  "credentials": [
+   {
+    "text": "官方评测 4.9 分",
+    "note": "评分与榜单分行呈现"
+   },
+   {
+    "text": "下载突破 200,000",
+    "note": "API 实测数字"
+   }
+  ],
+  "install_hint": "SkillHub 搜索 your-skill 即可安装",
+  "site": "example.com",
+  "bgm": "曲名（作者，CC BY 4.0，简介必须署名）"
+ },
+ "domain": {
+  "field": "目标用户专业领域",
+  "cohort_desc": "队列描述",
+  "data_policy": "真实公开数据集优先；否则模拟数据（参数分布参照文献）且每张图页来源注脚如实标注",
+  "generation_script": "数据生成脚本路径（seed 固定）"
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "layout": "card",
+   "title": "卷轴横幅标题",
+   "prompt_lines": [
+    "提示词第一行",
+    "第二行",
+    "第三行",
+    "第四行"
+   ],
+   "chart_type": "raincloud",
+   "chart_render": "渲染命令（含引擎参数）",
+   "fig_header": "图页标题（图型+特性）",
+   "fig_source": "来源注脚（数据集名+模拟/真实+方法）",
+   "talker_props": "",
+   "narration_id": "v01",
+   "narration_tts": "旁白文本（陈述句无问号，≤5s≈22字内）",
+   "narration_sub": "字幕文本"
+  }
+ ],
+ "scenes_count": 9,
+ "narration_extra": [
+  {
+   "id": "open",
+   "tts": "开场口播（≤5s）",
+   "sub": "开场字幕"
+  },
+  {
+   "id": "close",
+   "tts": "收尾口播（≤5s）",
+   "sub": "收尾字幕"
+  }
+ ],
+ "blender": {
+  "enabled": true,
+  "fps": 30,
+  "frames": 135,
+  "resolution": [
+   1920,
+   1080
+  ],
+  "samples": 96,
+  "brand_panel_png": "brand_plaque.png",
+  "note": "收尾主面板贴图（PIL 预制，含品牌名）"
+ },
+ "watermark": {
+  "brand": "your-brand",
+  "site": "example.com",
+  "motif": "scroll"
+ },
+ "subtitle": {
+  "font": "Noto Sans CJK SC",
+  "size": 44,
+  "margin_v": 96
+ },
+ "tts_voice": "本地 TTS（如 IndexTTS2+纠音；替换为等价本地 TTS 亦可）"
+}

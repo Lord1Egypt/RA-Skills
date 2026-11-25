@@ -24,7 +24,6 @@ import { readdir, mkdir, stat } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { homedir } from "node:os";
 import path from "node:path";
-import process from "node:process";
 import { setTimeout as delay } from "node:timers/promises";
 import { STDIO_DISCARD, STDIO_PIPE } from "./stdio-modes.mjs";
 

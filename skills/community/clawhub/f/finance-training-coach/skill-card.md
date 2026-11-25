@@ -1,6 +1,6 @@
 ## Description:
 
-An AI-powered training and coaching skill for financial institutions that creates skill assessments, personalized learning paths, role-play exercises, quizzes, and performance tracking.
+Supports financial institutions with employee training design, including skill assessments, learning paths, role-play exercises, quizzes, and training effectiveness tracking.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Financial institution training teams use this skill to create employee learning paths, skill assessments, role-play practice, quizzes, and feedback for financial education.
+Financial institution training teams can use the skill to draft internal staff curricula, learning paths, assessments, role-play scripts, and training tracking materials. Outputs are drafts for qualified training and compliance review, not investment recommendations or personnel decisions.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Broad training and quiz triggers may activate for requests outside the intended financial training use.
+Risk: The security verdict is clean with medium confidence because inspection was partial, so it does not establish that all release content is free of issues.
 
-Mitigation: Check that the skill fits the requested task and keep prompts focused on financial training.
+Mitigation: Review the complete release contents, including the unavailable material, before installation or use.
 
-Risk: Security inspection had medium confidence and incomplete coverage, including a missing local reference.
+Risk: Training prompts and examples can expose employee personal information or customer case details.
 
-Mitigation: Review the supplied skill files before installing or relying on the skill.
+Mitigation: Use pseudonyms and fictional or redacted cases; avoid entering unnecessary personal, sensitive, or confidential data.
 
-Risk: Financial and regulatory learning content may become outdated or contain errors.
+Risk: Financial and regulatory training material may be inaccurate or become outdated.
 
-Mitigation: Check generated material against current authoritative sources before using it in training.
+Mitigation: Have qualified institutional reviewers verify requirements, dates, and figures against current official sources before use.
+
+Risk: Assessment and coaching drafts could be treated as formal investment guidance or personnel decisions.
+
+Mitigation: Keep use within internal training design and require authorized human review; do not use drafts to make investment or employment decisions.
 
 ## Reference(s):
 
-- [Source repository](https://github.com/gechengling/finance-training-coach)
-- [Imported source commit](https://github.com/gechengling/finance-training-coach/commit/581fa3929521886694fbdfa18e390fbe7eeb826a)
-- [ClawHub release](https://clawhub.ai/gechengling/skills/finance-training-coach)
+- [ClawHub skill release](https://clawhub.ai/gechengling/skills/finance-training-coach)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Markdown with course outlines, learning paths, role-play scenarios, quizzes, and feedback]
+**Output Format:** [Markdown training drafts, including curricula, learning paths, quizzes, role-play scripts, scoring rubrics, and tracking templates.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Content can be tailored to learner knowledge, goals, and available study time.]
+**Other Properties Related to Output:** [Drafts require training and compliance review; examples should use fictional or anonymized data, and generated material should be checked against current official requirements.]
 
 ## Skill Version(s):
 
-5.0.4 (source: ClawHub release metadata; supplied SKILL.md frontmatter lists 5.0.0)
+5.0.5 (source: artifact/SKILL.md frontmatter, server release evidence)
 
 ## Ethical Considerations:
 

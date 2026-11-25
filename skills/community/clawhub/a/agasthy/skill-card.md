@@ -1,6 +1,6 @@
 ## Description:
 
-Answer questions about this developer machine with real data from AGASTHY - repositories and their uncommitted work, installed runtimes, packages and tools, which process holds a port, which coding-agent sessions are running and what they left behind, token usage and estimated cost per agent, and what would break if a package were removed. Use when the user asks about their own machine, projects, ports, disk, packages, coding agents or token spend, or before suggesting they uninstall something.
+Answers questions about a developer's machine using AGASTHY data on repositories and uncommitted work, installed software, processes and ports, coding-agent sessions, token usage, and package removal impact.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-Apache-2.0
+Apache 2.0
 
 ## Use Case:
 
-Developers use AGASTHY to answer questions about their local machine, including repositories, installed tools and packages, running processes, coding-agent sessions, token usage, and the impact of removing dependencies.
+Developers use the skill to answer questions about their own machine, projects, installed tools, running processes, coding-agent activity, token costs, and the impact of removing a package. It bases answers on AGASTHY data and can suggest commands when asked.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Some referenced paths or release archives were not included in the security review, which was therefore partial.
+Risk: The suggested one-line installer downloads and immediately runs a script from a changeable GitHub branch.
 
-Mitigation: Review the referenced release and any files you obtain before installing if you want greater assurance.
+Mitigation: Avoid the download-and-run command; inspect the installer and use a pinned release with verifiable provenance.
+
+Risk: The security assessment is incomplete because some referenced paths were not present in the bundled artifact.
+
+Mitigation: Review the complete release contents before deciding to install.
 
 ## Reference(s):
 
-- [AGASTHY project homepage](https://github.com/HMAKT99/Agasthy)
+- [AGASTHY project](https://github.com/HMAKT99/Agasthy)
 - [AGASTHY releases](https://github.com/HMAKT99/Agasthy/releases/latest)
-- [AGASTHY on ClawHub](https://clawhub.ai/hmakt99/skills/agasthy)
+- [Installer script (review before use)](https://raw.githubusercontent.com/HMAKT99/Agasthy/main/install.sh)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Text, JSON, Guidance, Shell commands]
 
-**Output Format:** [Markdown responses grounded in AGASTHY data, with exact values and suggested commands only when requested]
+**Output Format:** [Concise natural-language answers based on AGASTHY JSON data]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include local paths, scan ages, process details, and estimated token costs.]
+**Other Properties Related to Output:** [May include suggested commands when requested; reports unavailable data as unknown.]
 
 ## Skill Version(s):
 
-0.1.5 (source: release evidence and SKILL.md frontmatter)
+0.1.10 (source: artifact/SKILL.md frontmatter; release evidence agrees)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-FastAPI personalization webhook that adds persistent caller memory and dynamic context injection to ElevenLabs Conversational AI agents on Twilio without proxying audio, using file-based persistence and OpenClaw-compatible LLM routing.
+Adds persistent caller memory and per-call context to ElevenLabs Conversational AI agents connected through Twilio.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Developers and voice-agent operators use this skill to deploy a personalization bridge for inbound Twilio calls handled by ElevenLabs agents. It lets an agent retrieve caller history, long-term facts, and daily notes before a conversation starts while using OpenClaw or another OpenAI-compatible LLM backend.
+Developers operating ElevenLabs voice agents through Twilio use this bridge to personalize incoming calls with caller-specific history, stored facts, and notes.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The bridge persists sensitive caller context and long-term memory.
+Risk: Caller names, stored memories, notes, and live call transcripts may be shared with ElevenLabs and the LLM configured on the agent, under each provider's own terms and retention policy.
 
-Mitigation: Review the data handling model before deployment, enable DATA_ENCRYPTION_KEY in production, define retention and deletion procedures, and provide appropriate caller notice or consent.
+Mitigation: Tell callers how their information is processed, obtain consent where required, and avoid storing sensitive personal details.
 
-Risk: Stored memories and notes are injected into agent system prompts.
+Risk: ClawScan reports a benign verdict with medium confidence and partial coverage; a malformed manifest and unresolved local references leave some evidence incomplete.
 
-Mitigation: Restrict who can write memories or global notes, review stored entries for prompt-injection text, and treat memory updates as trusted administrative actions.
-
-Risk: Webhook and admin endpoints depend on deployment secrets.
-
-Mitigation: Keep ADMIN_API_KEY, WEBHOOK_SECRET, and PHONE_HASH_SALT strong and private, use HTTPS, and use scoped API keys for ElevenLabs and OpenClaw.
+Mitigation: Review the package configuration and behavior before deployment, as recommended by the security guidance.
 
 ## Reference(s):
 
 - [ClawHub skill page](https://clawhub.ai/britrik/skills/elevenlabs-twilio-memory-bridge)
-- [Project homepage](https://github.com/britrik/elevenlabs-twilio-memory-bridge)
-- [ElevenLabs Agents dashboard](https://elevenlabs.io/app/agents)
+- [Project page listed in the artifact](https://github.com/britrik/elevenlabs-twilio-memory-bridge)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+**Output Type(s):** [JSON, System prompt context, Dynamic variables]
 
-**Output Format:** [Markdown guidance with Python/FastAPI code, shell commands, and configuration values]
+**Output Format:** [JSON webhook response containing a personalized prompt override and call variables]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires environment variables for ElevenLabs, OpenClaw, public service URL, admin authentication, webhook verification, and phone hashing.]
+**Other Properties Related to Output:** [Generated per inbound call from stored caller context and the configured personality template]
 
 ## Skill Version(s):
 
-1.2.1 (source: server release metadata; artifact frontmatter and manifest report 1.2.0)
+1.2.4 (source: SKILL.md frontmatter)
 
 ## Ethical Considerations:
 

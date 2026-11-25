@@ -4,9 +4,10 @@ Goal: design the first version to award standard, then polish from that level.
 
 ## Step 0: deploy first or not
 
-By default do not deploy first; go to step 1. When the user or the situation needs a link up front (a pitch, a client who wants to look), ship a viewable version as fast as possible:
+By default do not deploy first; keep the work on a local or access-controlled preview and go to step 1. When the user needs a link up front (a pitch, a client who wants to look), confirm before deploying, then ship a viewable version:
 
-- Fix the hosting and the **final domain** (it cannot change later), scaffold, make a viewable home page (product name, one-line positioning, one or two core blocks), deploy right away.
+- **Confirm before deploying**: before any deploy or push to a publishing branch, ask the user to confirm the hosting destination (and final domain, which cannot change later), whether the deployment should be public or access-restricted (keep a local or access-controlled preview until public release is approved), and that the contents to share contain no secrets or unfinished private assets.
+- Once confirmed, set the hosting and **final domain**, scaffold, make a viewable home page (product name, one-line positioning, one or two core blocks), and deploy to the confirmed destination and visibility.
 - Confirm the live URL returns 200 with `curl -sI`, then actually open it in a browser.
 - With a deadline: give the user the link on its own line and continue after they submit. Without one, just keep going.
 - If deployment is stuck for more than 15 minutes, stop and tell the user which step it is stuck on and what you need from them (a login, a permission).

@@ -1,6 +1,6 @@
 ## Description:
 
-Manage Alibaba Cloud databases with ApsaraDB Agent for product selection, inventory, diagnosis, provisioning plans, supported changes, maintenance, and backup or protection workflows under human approval.
+Manage Alibaba Cloud databases with ApsaraDB Agent for consultation, inventory, performance diagnosis, and service-supported changes that require human confirmation.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Cloud database administrators and developers use the skill to inspect Alibaba Cloud database resources, diagnose issues, and prepare supported operational changes. Writes require explicit human approval, while destructive requests are refused.
+Cloud database operators and developers use the skill to inspect and diagnose Alibaba Cloud databases, prepare operation plans, and request supported changes through human confirmation.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan flags risky installer and credential-handling guidance, possible behavior outside database management, and content that was only partially analyzed.
+Risk: The security review reports an unverified downloaded installer and credential disclosure.
 
-Mitigation: Review the scanner's credential-disclosure and out-of-scope reports before use, avoid unverified downloaded-installer instructions, and never place real secrets in command-line arguments.
+Mitigation: Before installation, verify that you trust the CLI distribution source and review whether the reported access-key disclosure is acceptable.
+
+Risk: The security scan is incomplete because two files were only partially inspected.
+
+Mitigation: Treat the scan as a review warning; the available results do not establish that all behavior is safe.
 
 ## Reference(s):
 
-- [API routes and confirmation contract](references/related-apis.md)
-- [Supported commands and operation checks](references/related-commands.md)
-- [CLI installation guide](references/cli-installation-guide.md)
-- [RAM policies](references/ram-policies.md)
-- [Verification method](references/verification-method.md)
+- [ApsaraDB Agent API reference](https://help.aliyun.com/zh/das/developer-reference/api-das-2020-01-16-getyaochiagent)
+- [Official DAS OpenAPI catalog](https://api.aliyun.com/document/DAS)
+- [CLI installation guide](artifact/references/cli-installation-guide.md)
+- [RAM policies](artifact/references/ram-policies.md)
+- [Operation confirmation workflow](artifact/references/operation-confirmation.md)
+- [Redis memory and eviction limits](https://redis.io/faq/doc/1jbxid5qq7/is-maxmemory-the-maximum-value-of-used-memory)
 - [MySQL online DDL failure conditions](https://dev.mysql.com/doc/refman/8.0/en/innodb-online-ddl-failure-conditions.html)
-- [Redis maxmemory FAQ](https://redis.io/faq/doc/1jbxid5qq7/is-maxmemory-the-maximum-value-of-used-memory)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Configuration instructions]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Markdown text with findings, checklists, and operational plans]
+**Output Format:** [Text responses and Markdown reports, including findings, inventory tables, clarification checklists, recommendations, and refusal responses.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Recommendations and supported writes are bounded by available evidence, account permissions, and explicit human approval.]
+**Other Properties Related to Output:** [Operation requests may result in a service confirmation card for human review.]
 
 ## Skill Version(s):
 
-0.2.5 (source: evidence.json release metadata)
+0.2.6 (source: server-resolved release metadata and artifact/references/manifest.json)
 
 ## Ethical Considerations:
 

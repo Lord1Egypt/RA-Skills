@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes China Welfare Lottery 3D draw history with statistical summaries and example candidate numbers across straight, group 3, and group 6 formats.
+Summarizes historical FC3D results with statistical methods and simulation examples to produce reference analyses and number-selection suggestions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-People studying 福彩3D lottery mechanics can use it to summarize historical patterns, compare game formats, and review example probability and cost calculations. Candidate numbers are educational references; the skill states that past draws do not predict future results.
+FC3D users can organize historical draw data into educational statistical summaries and probability references. Outputs are informational and do not predict results or recommend betting.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,31 @@ China
 
 ## Known Risks and Mitigations:
 
-Risk: Broad activation terms may cause the skill to be selected for unrelated analysis requests.
+Risk: Broad statistical trigger terms may route unrelated requests to the skill; the available security scan had incomplete coverage and medium confidence.
 
-Mitigation: Limit use to 福彩3D history and probability analysis, and check that the request matches this scope before invoking the skill.
+Mitigation: Use it for FC3D-specific reference analysis, and treat the scan as limited evidence when deciding whether to install.
 
-Risk: The available security review covered only part of the artifact, so it does not establish that every behavior was reviewed.
+Risk: Historical patterns and simulated candidates could be mistaken for predictions of a random lottery draw.
 
-Mitigation: Review the complete artifact before relying on or deploying the skill.
+Mitigation: Present results as historical summaries only, state that each draw is independent, and require human review without implying improved odds.
 
 ## Reference(s):
 
-- [Chance Fc3d Predictor on ClawHub](https://clawhub.ai/gechengling/skills/chance-fc3d-predictor)
-- [Publisher profile: gechengling](https://clawhub.ai/user/gechengling)
+- [ClawHub release page](https://clawhub.ai/gechengling/skills/chance-fc3d-predictor)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+**Output Type(s):** [Text, Markdown, Code, Guidance]
 
-**Output Format:** [Markdown analysis with tables and illustrative examples]
+**Output Format:** [Chinese or English analysis and Markdown reports, with optional illustrative Python snippets]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Educational reference material; example number selections do not improve draw odds.]
+**Other Properties Related to Output:** [Reference material for human review; no executable files are bundled.]
 
 ## Skill Version(s):
 
-4.0.8 (source: frontmatter)
+4.0.9 (source: frontmatter, server release evidence)
 
 ## Ethical Considerations:
 

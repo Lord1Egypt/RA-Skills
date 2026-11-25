@@ -1,6 +1,6 @@
 ## Description:
 
-This skill compares public Kuaishou videos, creator posts, and comments to help assess brand performance, engagement, discussion trends, and actionable opportunities.
+Compare brands' content performance, engagement metrics, and discussion trends on Kuaishou using public video, creator, and comment data, with evidence and actionable opportunities for benchmarking and review.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Marketing, research, and brand teams use this skill to compare public Kuaishou content and engagement, review changes over time, understand video discussions, and identify content opportunities.
+Brand, marketing, and research teams use the skill to search public Kuaishou videos, review creator posts and comments, and compare content performance or discussion trends. It returns structured evidence that an agent can use to summarize competitor differences and identify content opportunities.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search queries and identifiers leave the local device and are sent to the service.
+Risk: Queries send the supplied keywords or Kuaishou links to the third-party GuaiKei service.
 
-Mitigation: Use a Guaikei-issued token, avoid confidential search terms, and review the provider's charges and data-retention terms.
+Mitigation: Use public, non-sensitive keywords and links, and confirm that sending them to the service is acceptable for the task.
 
-Risk: Optional logging stores queries and returned data locally.
+Risk: The supplied security assessment reports medium confidence, partial inspection of 12 of 32 components, and degraded tool-misuse analysis.
 
-Mitigation: Enable logging only when needed and handle the resulting local files according to their sensitivity.
+Mitigation: Review the scripts that were not fully assessed and obtain a complete security scan before installation where needed.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/why20261/skills/kuaishou-competitor-radar)
-- [Guaikei service and access](https://www.guaikei.com)
+- [ClawHub skill page](https://clawhub.ai/why20261/skills/kuaishou-competitor-radar)
+- [GuaiKei service and API access](https://www.guaikei.com)
 - [Command options](references/options.md)
-- [Release changelog](references/changelog.md)
+- [Changelog](references/changelog.md)
 
 ## Skill Output:
 
 **Output Type(s):** [JSON data, Analysis]
 
-**Output Format:** [JSON response envelopes containing video, creator, or comment records and engagement metrics; agent-facing summaries and comparisons can be written in text or Markdown.]
+**Output Format:** [Structured JSON containing public video, creator, or comment data; an agent may summarize it as text or Markdown.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Queries and identifiers are sent to the disclosed service. Public Kuaishou data only; monthly token limits are 30 search results, 50 creator posts, and 60 comments. Results are not saved locally by default; optional logging is available.]
+**Other Properties Related to Output:** [Public-data queries require a GUAIKEI_API_TOKEN and send the submitted keyword or link to the GuaiKei service. Results and request limits depend on the token plan.]
 
 ## Skill Version(s):
 
-1.1.1 (source: SKILL.md frontmatter, package.json, changelog; released 2026-11-04)
+1.1.2 (source: frontmatter, package.json)
 
 ## Ethical Considerations:
 

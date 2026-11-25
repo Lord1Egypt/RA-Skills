@@ -1,8 +1,8 @@
 ## Description:
 
-AI-powered quantitative trading strategy backtesting assistant. Designs, codes, and evaluates trading strategies across historical market data. Supports A-share (China), Hong Kong, US equity markets. Covers mean reversion, momentum, breakout, pairs trading, and machine learning-based strategies. Built for quantitative analysts and retail traders. Keywords: trading backtest, quantitative strategy, algorithmic trading, Python backtesting, backtrader, vectorbt, trading strategy, momentum, mean reversion, pairs trading, A-share strategy, financial data, technical indicators.
+Helps users design, code, and evaluate quantitative trading strategies with historical data for China A-share, Hong Kong, and US equity markets.
 
-This skill is ready for commercial/non-commercial use.
+This skill is for research and development only.
 
 ## Publisher:
 
@@ -14,40 +14,35 @@ MIT-0
 
 ## Use Case:
 
-Quantitative analysts and retail traders use this skill to turn trading ideas into Python strategy templates, guide historical backtests, and review performance and risk metrics across A-share, Hong Kong, and US equity markets.
+Quantitative analysts and retail traders use the skill to turn defined trading rules into backtesting code and review performance and risk across historical market data. Its output is methodological guidance and draft material, not investment advice or an executed backtest.
 
 ### Deployment Geography for Use:
 
-Global
+China, Hong Kong, and the United States
 
 ## Known Risks and Mitigations:
 
-Risk: The security review is incomplete: two local references in SKILL.md could not be matched to bundled files, and the verdict has medium confidence.
+Risk: The explanations are primarily in Chinese, and some references could not be resolved; referenced versions or historical data may not be available or relevant to the intended use.
 
-Mitigation: Review the unresolved references and scan the skill before installing.
-
-Risk: Illustrative or historical backtest results could be mistaken for forecasts or assurances of future trading performance.
-
-Mitigation: Treat results as illustrative, validate strategies with out-of-sample tests and paper trading, include transaction costs and slippage, and seek qualified financial advice before making investment decisions.
+Mitigation: Confirm the language is suitable and verify that the referenced version and historical data are available and relevant before relying on the material.
 
 ## Reference(s):
 
-- [ClawHub release 5.0.5](https://clawhub.ai/gechengling/skills/ai-trading-backtester)
-- [Source repository (server-resolved provenance)](https://github.com/gechengling/ai-trading-backtester)
+- [ClawHub release page](https://clawhub.ai/gechengling/skills/ai-trading-backtester)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Python code, Guidance, Analysis]
+**Output Type(s):** [Guidance, Code, Analysis, Markdown]
 
-**Output Format:** [Markdown with Python code blocks and performance metric tables]
+**Output Format:** [Markdown with Python code examples and performance or risk tables]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include illustrative backtest examples, risk metrics, optimization suggestions, and stress-testing guidance.]
+**Other Properties Related to Output:** [Draft backtesting material for user review; the skill does not run code or backtests.]
 
 ## Skill Version(s):
 
-5.0.5 (source: server-resolved release metadata)
+5.0.6 (source: frontmatter)
 
 ## Ethical Considerations:
 

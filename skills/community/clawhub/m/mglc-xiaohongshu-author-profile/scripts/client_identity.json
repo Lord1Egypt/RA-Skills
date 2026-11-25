@@ -1,0 +1,12 @@
+{
+  "slug": "mglc-xiaohongshu-author-profile",
+  "displayName": "小红书作者档案",
+  "mode": "author",
+  "samplePlan": {
+    "input": {
+      "userId": "000000000000000000000001"
+    }
+  },
+  "version": "1.0.0",
+  "channel": "clawhub"
+}

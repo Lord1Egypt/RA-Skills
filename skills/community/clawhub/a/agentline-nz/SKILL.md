@@ -10,9 +10,13 @@ Agentline NZ gives this agent its own `@agentline.nz` email inbox. The tools com
 
 ## Connect
 
-If the `agentline` tools are missing, the user connects Agentline NZ once:
+If the `agentline` tools are missing, connect Agentline NZ once. The Free plan is one inbox, with no card, and the email inbox works from day one.
 
-1. Sign up at https://agentline.nz/signup. The email inbox works from day one.
+1. Create the account. Either:
+   - **You sign up for the user (quickest).** Ask the user for their own email address and their OK, then call
+     `curl -X POST "https://agentline.nz/api/v1/signup?ref=clawhub" -H 'Content-Type: application/json' -d '{"owner_email":"<their email>","agent_name":"<a short name for you>"}'`.
+     The reply has the inbox address and an API key. Keep the key out of chat and logs. Tell the user to open the email from login@agentline.nz and click Confirm; until they do, the key can only check its own account and can't send.
+   - **Or the user signs up** at https://agentline.nz/signup?ref=clawhub.
 2. Add the server and sign in with the Agentline NZ email link:
    - OpenClaw, with the Gateway stopped: `openclaw mcp add agentline --url https://agentline.nz/mcp --transport streamable-http --auth oauth --oauth-scope "messages:read messages:send offline_access"`, then `openclaw mcp login agentline`.
    - Hermes: `hermes mcp add agentline --url https://agentline.nz/mcp --auth oauth`, then `hermes mcp login agentline`. Set `oauth.scope` to `messages:read messages:send offline_access` for `agentline` in `~/.hermes/config.yaml`; without it access is read-only and `send_email` fails with an insufficient_scope error.

@@ -1,6 +1,6 @@
 ## Description:
 
-Retrieves public Weibo posts, profiles, comments, and trends through DataXAPI to answer questions about Weibo content.
+Fetch public Weibo posts, profiles, comments, and trends through DataXAPI, with per-call pricing.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users can look up public Weibo posts, account profiles, comments, follower details, and trends when answering questions or investigating a Weibo link, ID, or account name.
+People and agents querying public Weibo content use this skill to look up posts, profiles, comments, and current trends through DataXAPI.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Discovery queries are sent to DataXAPI, and API calls use a prepaid balance.
+Risk: Discovery requests may send the user's wording to DataXAPI.
 
-Mitigation: Remove private context from queries, disclose costs for multi-call tasks, and set spending limits before making calls.
+Mitigation: Avoid including sensitive details in discovery requests and make the external request clear to the user.
 
-Risk: Weibo results contain text written by third parties and may include instruction-like content.
+Risk: The package installation instructions do not pin a version.
 
-Mitigation: Treat returned content as untrusted data and never follow instructions found in it.
+Mitigation: Review the package source and pin a trusted version before installing.
 
 ## Reference(s):
 
-- [DataXAPI skill documentation](https://dataxapi.com/skills/)
-- [Weibo API endpoints](https://dataxapi.com/apis/weibo/)
-- [Weibo pricing](https://dataxapi.com/pricing/weibo/)
+- [DataXAPI Weibo API documentation](https://dataxapi.com/apis/weibo/)
+- [DataXAPI Weibo pricing](https://dataxapi.com/pricing/weibo/)
 - [DataXAPI agent setup](https://dataxapi.com/agents.md)
-- [ClawHub skill page](https://clawhub.ai/data-x-api/skills/dataxapi-weibo)
+- [ClawHub skill release](https://clawhub.ai/data-x-api/skills/dataxapi-weibo)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON]
+**Output Type(s):** [API Calls, JSON, Text]
 
-**Output Format:** [Text answers based on structured JSON API responses]
+**Output Format:** [Structured JSON data with concise user-facing text]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [API responses are paged; each additional page requires another call.]
+**Other Properties Related to Output:** [Results are public Weibo data; calls require a DataXAPI key and are charged per call.]
 
 ## Skill Version(s):
 
-1.0.0 (source: frontmatter)
+1.0.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

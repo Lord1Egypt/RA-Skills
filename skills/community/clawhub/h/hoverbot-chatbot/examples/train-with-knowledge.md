@@ -6,7 +6,7 @@
 
 **Agent:** You need to train it with your own content. Here is how:
 
-1. Log in to your HoverBot dashboard at https://sandbox.hoverbot.ai/login
+1. Log in to your HoverBot dashboard at https://app.hoverbot.ai/login
 
 2. Go to the **Knowledge** section
 

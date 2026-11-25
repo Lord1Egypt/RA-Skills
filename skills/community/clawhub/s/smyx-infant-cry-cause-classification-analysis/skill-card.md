@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes infant-cry audio or audio/video and returns a likely cause, confidence, and directional soothing guidance.
+Analyzes infant cry audio to estimate possible causes such as hunger, sleepiness, discomfort, or need for comfort, and returns a confidence-ranked result with care suggestions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Parents and caregivers can use the skill to review an infant-cry recording and get a possible cause with a confidence score and soothing hint. Treat the result as a parenting aid, not a medical diagnosis.
+Parents and childcare teams can use the skill to review infant cry audio and receive a possible cause, confidence estimate, and directional soothing suggestions. It can also retrieve prior analysis reports.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment is suspicious: it reports undeclared account provisioning, persistent identity and token storage, possible recording uploads, and that infant-specific analysis is not demonstrated; coverage was partial.
+Risk: The security summary flags account and identity handling and remote media processing, which may involve sensitive infant recordings.
 
-Mitigation: Avoid installation until the behavior and data handling are clarified.
+Mitigation: Review account setup and remote-media handling; submit recordings only with guardian consent and suitable privacy safeguards.
 
-Risk: Infant audio is sensitive personal data, and the assessment reports possible recording uploads.
+Risk: The security summary reports behavior that may not clearly match the advertised cry-analysis purpose.
 
-Mitigation: Obtain guardian consent and clarify recording upload, storage, and retention before using infant recordings.
+Mitigation: Check that the installed behavior and returned results match the intended task before relying on them.
 
-Risk: A cry-cause classification can be mistaken for a medical assessment.
+Risk: Cry-cause estimates could be mistaken for medical diagnosis or clinical advice.
 
-Mitigation: Use results only as a parenting reference; seek medical care for persistent or concerning symptoms.
+Mitigation: Treat results as parenting reference only; seek professional care for persistent or unusual crying.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-infant-cry-cause-classification-analysis)
-- [Publisher profile](https://clawhub.ai/user/18072937735)
-- [API reference](artifact/references/api_doc.md)
+- [API interface documentation](references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-infant-cry-cause-classification-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Guidance]
+**Output Type(s):** [Analysis, JSON, Markdown]
 
-**Output Format:** [Structured JSON analysis with a report export link]
+**Output Format:** [Structured JSON analysis results and Markdown report tables for history queries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include a likely cause, confidence, secondary causes, audio-feature summary, and directional soothing hint; not a medical diagnosis.]
+**Other Properties Related to Output:** [May include confidence estimates, secondary cause probabilities, suggestions, and report links.]
 
 ## Skill Version(s):
 
-1.0.17 (source: server-resolved release metadata)
+1.0.18 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

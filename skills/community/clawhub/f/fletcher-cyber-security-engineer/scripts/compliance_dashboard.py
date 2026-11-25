@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 import argparse
+import html
 import json
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 
 VALID_STATUS = {"compliant", "partial", "violation", "not_assessed"}
@@ -108,128 +109,259 @@ def summarize(merged: List[Dict[str, object]]) -> Dict[str, object]:
     }
 
 
-def render_html(system_name: str, merged: List[Dict[str, object]], summary: Dict[str, object]) -> str:
-    def fmt_list(items: List[str]) -> str:
-        return ", ".join(items) if items else "-"
+STATUS_ORDER = ["compliant", "partial", "violation", "not_assessed"]
+STATUS_LABELS = {
+    "compliant": "Compliant",
+    "partial": "Partial",
+    "violation": "Violation",
+    "not_assessed": "Not assessed",
+}
+# Plural forms used where the dashboard counts controls per status.
+STATUS_COUNT_LABELS = {
+    "compliant": "Compliant",
+    "partial": "Partial",
+    "violation": "Violations",
+    "not_assessed": "Not Assessed",
+}
+RISK_ORDER = ["critical", "high", "medium", "low"]
+RISK_LEVELS = {"low": 1, "medium": 2, "high": 3, "critical": 4}
+# Rows shown per page in each table; a table with more rows than this is paginated.
+PAGE_SIZE = 10
 
-    controls_rows = "\n".join(
-        f"<tr><td>{m['check_id']}</td><td>{m['title']}</td><td>{fmt_list(m['iso27001'])}</td><td>{fmt_list(m['nist'])}</td><td>{m['status']}</td><td>{m['risk']}</td></tr>"
-        for m in merged
+# 16px stroke icons (viewBox 0 0 16 16). Inline so the page needs no network access.
+ICONS = {
+    "overview": '<rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/>'
+    '<rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/>',
+    "controls": '<path d="M8 1.8 13 3.6v4c0 3-2 5.4-5 6.6-3-1.2-5-3.600-5-6.600v-4z"/><path d="m5.800 8 1.600 1.600 2.900-3"/>',
+    "findings": '<path d="M8 2.200 14.200 13H1.800z"/><path d="M8 6.500v3"/><path d="M8 11.300v.2"/>',
+    "mitigations": '<path d="M5.500 4h8"/><path d="M5.500 8h8"/><path d="M5.500 12h8"/>'
+    '<path d="m2 4 .8.800L4 3.500"/><path d="m2 8 .8.800L4 7.500"/><path d="m2 12 .8.800L4 11.500"/>',
+    "file": '<path d="M4 1.800h5l3 3v9.400H4z"/><path d="M9 1.800v3h3"/>',
+    "search": '<circle cx="7" cy="7" r="4.200"/><path d="m10.200 10.200 3.300 3.300"/>',
+    "export": '<path d="M8 10.500V2.500"/><path d="m5 5.300 3-3 3 3"/><path d="M2.500 10.500v3h11v-3"/>',
+    "compliant": '<circle cx="8" cy="8" r="6"/><path d="m5.400 8.200 1.800 1.800 3.400-3.700"/>',
+    "partial": '<path d="M8 2.200 14.200 13H1.800z"/><path d="M8 6.500v3"/><path d="M8 11.300v.2"/>',
+    "violation": '<circle cx="8" cy="8" r="6"/><path d="m5.800 5.800 4.400 4.400"/><path d="m10.200 5.800-4.400 4.400"/>',
+    "not_assessed": '<circle cx="8" cy="8" r="6"/><path d="M5.500 8h5"/>',
+}
+
+ASSETS_DIR = Path(__file__).resolve().parent.parent / "assets"
+
+
+def _asset(name: str) -> str:
+    """Text of a dashboard asset. The page inlines it, so the report stays one file."""
+    return (ASSETS_DIR / name).read_text(encoding="utf-8")
+
+
+def render_html(
+    system_name: str,
+    merged: List[Dict[str, object]],
+    summary: Dict[str, object],
+    summary_href: Optional[str] = None,
+) -> str:
+    """Render the dashboard as one self-contained HTML page (no external assets).
+
+    ``summary_href`` is a relative link to the JSON summary, shown in the sidebar
+    when the summary is written next to the page.
+    """
+
+    def esc(val: object) -> str:
+        return html.escape(str(val), quote=True)
+
+    def icon(name: str) -> str:
+        return f'<svg class="ico" viewBox="0 0 16 16" aria-hidden="true">{ICONS[name]}</svg>'
+
+    def chips(items: List[str]) -> str:
+        if not items:
+            return "-"
+        return '<div class="chips">' + "".join(f'<span class="chip">{esc(i)}</span>' for i in items) + "</div>"
+
+    def status_badge(status: str) -> str:
+        label = STATUS_LABELS.get(status, status)
+        return f'<span class="badge st-{esc(status)}">{icon(status)}{esc(label)}</span>'
+
+    def risk_mark(risk: str) -> str:
+        level = RISK_LEVELS.get(risk, 0)
+        bars = "".join(f'<i class="{"on" if n <= level else ""}"></i>' for n in range(1, 5))
+        return f'<span class="risk"><span class="bars" aria-hidden="true">{bars}</span>{esc(risk.capitalize())}</span>'
+
+    def control_cell(m: Dict[str, object]) -> str:
+        return (
+            f'<td><div class="control-title">{esc(m["title"])}</div>'
+            f'<div class="control-id">{esc(m["check_id"])}</div></td>'
+        )
+
+    def row_attrs(m: Dict[str, object]) -> str:
+        return f'data-status="{esc(m["status"])}" data-risk="{esc(m["risk"])}"'
+
+    def table(view: str, label: str, empty_text: str, head: List[str], rows: List[str], hidden: bool) -> str:
+        cells = "".join(f'<th class="num">{h}</th>' if h == "#" else f"<th>{h}</th>" for h in head)
+        return (
+            f'<section data-view="{view}" data-empty="{esc(empty_text)}" role="tabpanel" aria-label="{esc(label)}"'
+            f'{" hidden" if hidden else ""}>\n'
+            f'<div class="table-scroll"><table><thead><tr>{cells}</tr></thead>\n<tbody>\n'
+            + "\n".join(rows)
+            + "\n</tbody></table></div></section>"
+        )
+
+    violations: List[Dict[str, object]] = summary["violations"]  # type: ignore[assignment]
+    mitigations: List[Dict[str, object]] = summary["mitigations"]  # type: ignore[assignment]
+    status_counts: Dict[str, int] = summary["status_counts"]  # type: ignore[assignment]
+    total = len(merged)
+    compliant = status_counts.get("compliant", 0)
+    percent = round(100 * compliant / total) if total else 0
+
+    control_rows = [
+        f'<tr {row_attrs(m)}><td class="num">{i}</td>{control_cell(m)}<td>{chips(m["iso27001"])}</td>'
+        f'<td>{chips(m["nist"])}</td><td>{risk_mark(str(m["risk"]))}</td><td>{status_badge(str(m["status"]))}</td>'
+        f'<td class="nowrap">{esc(m["owner"] or "-")}</td><td class="nowrap">{esc(m["due_date"] or "-")}</td></tr>'
+        for i, m in enumerate(merged, 1)
+    ]
+    finding_rows = [
+        f'<tr {row_attrs(m)}><td class="num">{i}</td>{control_cell(m)}<td>{status_badge(str(m["status"]))}</td>'
+        f'<td>{risk_mark(str(m["risk"]))}</td><td class="wrap">{esc(m["gap"] or "-")}</td>'
+        f'<td class="wrap">{esc(m["evidence"] or "-")}</td></tr>'
+        for i, m in enumerate(violations, 1)
+    ]
+    mitigation_rows = [
+        f'<tr {row_attrs(m)}><td class="num">{i}</td>{control_cell(m)}<td class="wrap">{esc(m["mitigation"])}</td>'
+        f'<td class="nowrap">{esc(m["owner"] or "-")}</td><td class="nowrap">{esc(m["due_date"] or "-")}</td></tr>'
+        for i, m in enumerate(mitigations, 1)
+    ]
+
+    # Compliance by risk level: one meter per level that has controls.
+    meters = []
+    for risk in RISK_ORDER:
+        in_level = [m for m in merged if m["risk"] == risk]
+        if not in_level:
+            continue
+        ok = sum(1 for m in in_level if m["status"] == "compliant")
+        width = 100 * ok / len(in_level)
+        tip = f"{risk.capitalize()} risk: {ok} of {len(in_level)} controls compliant"
+        meters.append(
+            f'<li class="meter" tabindex="0" data-tip="{esc(tip)}" aria-label="{esc(tip)}">{risk_mark(risk)}'
+            f'<div class="meter-track"><div class="meter-fill" style="width:{width:.1f}%"></div></div>'
+            f'<div class="meter-figure"><b>{ok}</b> of {len(in_level)} compliant</div></li>'
+        )
+
+    # Status ring: one arc per status, separated by a small gap in the surface colour.
+    radius, circumference = 50.0, 2 * 3.141592653589793 * 50.0
+    present = [(s, status_counts.get(s, 0)) for s in STATUS_ORDER if status_counts.get(s, 0)]
+    gap = 1.6 if len(present) > 1 else 0.0
+    arcs, offset = [], 0.0
+    for status, count in present:
+        length = circumference * count / total
+        tip = f"{STATUS_COUNT_LABELS[status]}: {count} of {total} controls"
+        arcs.append(
+            f'<circle class="seg seg-{status}" cx="60" cy="60" r="{radius:g}" tabindex="0" data-tip="{esc(tip)}"'
+            f' aria-label="{esc(tip)}" stroke-dasharray="{max(length - gap, 0.5):.2f} {circumference:.2f}"'
+            f' stroke-dashoffset="{-(offset + gap / 2):.2f}"/>'
+        )
+        offset += length
+    if not arcs:
+        arcs.append(f'<circle class="donut-empty" cx="60" cy="60" r="{radius:g}"/>')
+    legend = "".join(
+        f'<li><span class="swatch sw-{s}"></span>{STATUS_COUNT_LABELS[s]}<b>{status_counts.get(s, 0)}</b></li>'
+        for s in STATUS_ORDER
     )
-    violation_rows = "\n".join(
-        f"<tr><td>{m['check_id']}</td><td>{m['status']}</td><td>{m['risk']}</td><td>{m['gap'] or '-'}</td><td>{m['evidence'] or '-'}</td></tr>"
-        for m in summary["violations"]
-    ) or "<tr><td colspan='5'>No violations or partial findings.</td></tr>"
-    mitigation_rows = "\n".join(
-        f"<tr><td>{m['check_id']}</td><td>{m['mitigation']}</td><td>{m['owner'] or '-'}</td><td>{m['due_date'] or '-'}</td></tr>"
-        for m in summary["mitigations"]
-    ) or "<tr><td colspan='4'>No mitigation actions recorded.</td></tr>"
 
-    status_counts = summary["status_counts"]
-    risk_counts = summary["risk_counts"]
+    generated = datetime.now(timezone.utc)
+    stamp = generated.strftime("%d %b %Y, %H:%M UTC").lstrip("0")
+    status_options = "".join(f'<option value="{s}">{STATUS_LABELS[s]}</option>' for s in STATUS_ORDER)
+    risk_options = "".join(f'<option value="{r}">{r.capitalize()}</option>' for r in RISK_ORDER)
+    summary_link = (
+        f'<div class="nav-group">Data</div>\n'
+        f'      <a class="nav" href="{esc(summary_href)}">{icon("file")}Summary JSON</a>'
+        if summary_href
+        else ""
+    )
+    brand_mark = esc((system_name.strip() or "?")[0].upper())
 
     return f"""<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Compliance Dashboard - {system_name}</title>
-  <style>
-    :root {{
-      --bg: #f2f5f9;
-      --panel: #ffffff;
-      --text: #1f2937;
-      --muted: #5f6b7a;
-      --accent: #005f73;
-      --warn: #b45309;
-      --bad: #b91c1c;
-      --border: #d9e2ec;
-    }}
-    body {{
-      margin: 0;
-      font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, #eaf2f8, var(--bg));
-    }}
-    .wrap {{ max-width: 1100px; margin: 0 auto; padding: 24px; }}
-    .panel {{
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 16px;
-      box-shadow: 0 6px 16px rgba(5, 23, 41, 0.06);
-    }}
-    h1, h2 {{ margin: 0 0 10px 0; }}
-    h1 {{ font-size: 28px; color: var(--accent); }}
-    h2 {{ font-size: 18px; }}
-    p {{ margin: 8px 0; color: var(--muted); }}
-    table {{ width: 100%; border-collapse: collapse; font-size: 14px; }}
-    th, td {{ text-align: left; padding: 8px; border-bottom: 1px solid var(--border); vertical-align: top; }}
-    th {{ background: #f8fafc; }}
-    .kpis {{ display: grid; grid-template-columns: repeat(4, minmax(120px, 1fr)); gap: 12px; }}
-    .kpi {{ border: 1px solid var(--border); border-radius: 10px; padding: 10px; background: #fcfdff; }}
-    .kpi strong {{ display: block; font-size: 20px; margin-top: 6px; }}
-    .risk-high {{ color: var(--bad); }}
-    .risk-medium {{ color: var(--warn); }}
-  </style>
+  <title>Compliance Dashboard - {esc(system_name)}</title>
+  <style>{_asset("dashboard.css")}</style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="panel">
+<div class="app">
+  <aside class="side">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">{brand_mark}</span>{esc(system_name)}</div>
+    <nav aria-label="Dashboard">
+      <div class="nav-group">Compliance</div>
+      <button class="nav is-active" type="button" data-target="overview">{icon("overview")}Overview</button>
+      <button class="nav" type="button" data-target="controls">{icon("controls")}Controls<span class="count">{total}</span></button>
+      <button class="nav" type="button" data-target="findings">{icon("findings")}Findings<span class="count">{len(violations)}</span></button>
+      <button class="nav" type="button" data-target="mitigations">{icon("mitigations")}Mitigations<span class="count">{len(mitigations)}</span></button>
+      {summary_link}
+    </nav>
+  </aside>
+
+  <main>
+    <header class="top">
       <h1>ISO 27001 / NIST Compliance Dashboard</h1>
-      <p>System: {system_name}</p>
-      <p>Generated: {utc_now()}</p>
-    </div>
+      <span class="stamp">Generated <time datetime="{generated.isoformat().replace("+00:00", "Z")}">{stamp}</time></span>
+    </header>
 
-    <div class="panel">
-      <h2>Risk and Status Overview</h2>
-      <div class="kpis">
-        <div class="kpi"><span>Violations</span><strong>{status_counts.get("violation", 0)}</strong></div>
-        <div class="kpi"><span>Partial</span><strong>{status_counts.get("partial", 0)}</strong></div>
-        <div class="kpi"><span>Compliant</span><strong>{status_counts.get("compliant", 0)}</strong></div>
-        <div class="kpi"><span>Not Assessed</span><strong>{status_counts.get("not_assessed", 0)}</strong></div>
+    <div class="content">
+      <div class="cards" id="overview">
+        <section class="card card-pad" aria-labelledby="risk-title">
+          <h2 id="risk-title">Compliance by risk level</h2>
+          <div class="hero">
+            <span class="hero-figure">{percent}%</span>
+            <span class="hero-label">{compliant} of {total} controls compliant</span>
+          </div>
+          <ul class="meters">
+            {"".join(meters)}
+          </ul>
+        </section>
+
+        <section class="card card-pad" aria-labelledby="status-title">
+          <h2 id="status-title" class="quiet">Status</h2>
+          <div class="donut-wrap">
+            <div class="donut">
+              <svg viewBox="0 0 120 120" role="img" aria-label="Controls by status">{"".join(arcs)}</svg>
+              <div class="donut-center"><div class="donut-total">{total}</div><div class="donut-caption">Controls</div></div>
+            </div>
+            <ul class="legend">{legend}</ul>
+          </div>
+        </section>
       </div>
-      <p class="risk-high">High/Critical risk findings: {risk_counts.get("high", 0) + risk_counts.get("critical", 0)}</p>
-      <p class="risk-medium">Medium risk findings: {risk_counts.get("medium", 0)}</p>
-    </div>
 
-    <div class="panel">
-      <h2>Controls Map View</h2>
-      <table>
-        <thead>
-          <tr><th>Check ID</th><th>Control</th><th>ISO 27001</th><th>NIST</th><th>Status</th><th>Risk</th></tr>
-        </thead>
-        <tbody>
-          {controls_rows}
-        </tbody>
-      </table>
+      <div class="card" id="records">
+        <div class="tabs" role="tablist" aria-label="Views">
+          <button class="tab" type="button" role="tab" data-tab="controls" aria-selected="true">Controls<span class="count">{total}</span></button>
+          <button class="tab" type="button" role="tab" data-tab="findings" aria-selected="false" tabindex="-1">Findings<span class="count">{len(violations)}</span></button>
+          <button class="tab" type="button" role="tab" data-tab="mitigations" aria-selected="false" tabindex="-1">Mitigations<span class="count">{len(mitigations)}</span></button>
+        </div>
+        <div class="toolbar">
+          <select class="control" id="filter-status" aria-label="Status"><option value="">All statuses</option>{status_options}</select>
+          <select class="control" id="filter-risk" aria-label="Risk"><option value="">All risk levels</option>{risk_options}</select>
+          <span class="spacer"></span>
+          <label class="search">{icon("search")}<input id="filter-query" type="search" placeholder="Search" aria-label="Search" /></label>
+          <button class="control" id="export" type="button">{icon("export")}Export</button>
+        </div>
+        {table("controls", "Controls", "No controls defined.",
+               ["#", "Control", "ISO 27001", "NIST", "Risk", "Status", "Owner", "Due Date"], control_rows, False)}
+        {table("findings", "Findings", "No violations or partial findings.",
+               ["#", "Control", "Status", "Risk", "Gap", "Evidence"], finding_rows, True)}
+        {table("mitigations", "Mitigations", "No mitigation actions recorded.",
+               ["#", "Control", "Mitigation", "Owner", "Due Date"], mitigation_rows, True)}
+        <div class="empty" id="empty" hidden></div>
+        <div class="pager" id="pager" hidden>
+          <span id="pager-range"></span>
+          <span class="spacer"></span>
+          <span id="pager-page"></span>
+          <button class="control" id="pager-prev" type="button">Previous</button>
+          <button class="control" id="pager-next" type="button">Next</button>
+        </div>
+      </div>
     </div>
-
-    <div class="panel">
-      <h2>Violation View</h2>
-      <table>
-        <thead>
-          <tr><th>Check ID</th><th>Status</th><th>Risk</th><th>Gap</th><th>Evidence</th></tr>
-        </thead>
-        <tbody>
-          {violation_rows}
-        </tbody>
-      </table>
-    </div>
-
-    <div class="panel">
-      <h2>Mitigation View</h2>
-      <table>
-        <thead>
-          <tr><th>Check ID</th><th>Mitigation</th><th>Owner</th><th>Due Date</th></tr>
-        </thead>
-        <tbody>
-          {mitigation_rows}
-        </tbody>
-      </table>
-    </div>
-  </div>
+  </main>
+</div>
+<script>{_asset("dashboard.js").replace("__PAGE_SIZE__", str(PAGE_SIZE))}</script>
 </body>
 </html>
 """
@@ -293,12 +425,14 @@ def main() -> int:
         summary = summarize(merged)
         system_name = assessment.get("metadata", {}).get("system", "OpenClaw")
 
-        html = render_html(system_name, merged, summary)
         out_html = Path(args.output_html)
-        out_html.parent.mkdir(parents=True, exist_ok=True)
-        out_html.write_text(html, encoding="utf-8")
-
         out_summary = Path(args.output_summary)
+        # Link the summary from the page only when both files sit in the same folder.
+        same_folder = out_html.resolve().parent == out_summary.resolve().parent
+        page = render_html(system_name, merged, summary, summary_href=out_summary.name if same_folder else None)
+        out_html.parent.mkdir(parents=True, exist_ok=True)
+        out_html.write_text(page, encoding="utf-8")
+
         write_json(
             out_summary,
             {

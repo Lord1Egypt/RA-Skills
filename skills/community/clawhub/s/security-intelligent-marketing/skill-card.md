@@ -1,6 +1,6 @@
 ## Description:
 
-Drafts customer segments, campaign plans, marketing copy, A/B tests, and ROI analyses for regulated bank and securities marketing, with compliance review before publication.
+Supports bank and securities marketing teams with customer segmentation, campaign planning, draft copy, A/B test design, and ROI analysis for regulated financial products.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Bank and securities marketing teams use this skill to prepare customer-segmentation guidance, campaign plans, compliant copy drafts, A/B tests, and ROI analyses for review by qualified internal staff.
+Bank and securities marketing teams use this skill to prepare draft audience segments, financial-product campaign plans and copy, A/B test plans, and ROI reviews. Its outputs are planning drafts that require current-rule checks and qualified internal review before external use.
 
 ### Deployment Geography for Use:
 
@@ -22,26 +22,35 @@ China
 
 ## Known Risks and Mitigations:
 
-Risk: The security evidence reports conflicting customer-segmentation guidance and only partial scan coverage, with a benign verdict at medium confidence.
+Risk: The security scan was partial, so behavior outside its coverage may not have been inspected.
 
-Mitigation: Keep outputs in draft scope, reconcile segmentation rules with institution-approved policy, and require separate suitability checks and human compliance approval before adopting sample logic or publishing material.
+Mitigation: Review the skill instructions and setup details before installing, especially behavior the scan could not inspect.
+
+Risk: Regulatory guidance or marketing examples may be outdated or unsuitable for a specific product or audience.
+
+Mitigation: Check current official sources and require qualified compliance and suitability review before external use.
+
+Risk: Providing identifiable customer or account data could expose sensitive information.
+
+Mitigation: Use aggregate audience definitions only; do not provide customer lists, phone numbers, account balances, addresses, or other identifying details.
 
 ## Reference(s):
 
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/security-intelligent-marketing)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+**Output Type(s):** [Guidance, Text, Markdown]
 
-**Output Format:** [Markdown with tables and pre-publication marketing drafts]
+**Output Format:** [Markdown with structured tables, draft templates, and concise analyses]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Drafts require suitability checks, prohibited-claims review, and human compliance sign-off before external use.]
+**Other Properties Related to Output:** [Produces planning drafts and review aids; outputs require qualified human validation before use or publication.]
 
 ## Skill Version(s):
 
-3.0.5 (source: frontmatter)
+3.0.6 (source: frontmatter, server-resolved release)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-从 TikTok 公开数据中搜索内容与创作者、查看作品及评论，并返回结构化 JSON，支持达人筛选和内容分析。
+Searches public TikTok data for creators and videos, retrieves creator posts and video comments, and returns structured results for agent analysis.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-TikTok creators, agencies, brands, and research teams use the skill to find public creators and content, review post engagement and comments, and support influencer, competitor, and content research.
+Creators, brands, and marketing teams can use the skill to find TikTok creators, review public posts and comments, and assess content and engagement for research or collaboration decisions.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The benign security verdict has medium confidence: only 20 of 32 components were fully inspected and the tool-misuse analyzer was degraded.
+Risk: The security scan was partial: 12 of 32 components were only partially inspected, so its benign verdict has medium confidence.
 
-Mitigation: Treat the verdict as limited; review the declared scope and fixed timestamp setting before installation.
-
-Risk: Queries send keywords or TikTok links to the Guaikei service.
-
-Mitigation: Use only query data you are comfortable sharing with that provider, and review its terms and privacy practices.
+Mitigation: Treat the scan as incomplete assurance and review the partially inspected components if stronger security assurance is needed.
 
 ## Reference(s):
 
-- [ClawHub release](https://clawhub.ai/why20261/skills/tiktok-kol-discovery)
-- [Guaikei service and API access](https://www.guaikei.com)
-- [Usage options](artifact/references/options.md)
-- [Changelog](artifact/references/changelog.md)
+- [Options and output fields](references/options.md)
+- [Changelog](references/changelog.md)
+- [Service website](https://www.guaikei.com)
+- [ClawHub skill page](https://clawhub.ai/why20261/skills/tiktok-kol-discovery)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON data]
+**Output Type(s):** [JSON]
 
-**Output Format:** [Structured JSON envelope containing search, creator-post, or comment records]
+**Output Format:** [Structured JSON containing TikTok search results, creator posts, or video comments.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Result fields vary by command; result counts depend on the query and API plan.]
+**Other Properties Related to Output:** [Public data for agent analysis; results depend on the requested limit and API access.]
 
 ## Skill Version(s):
 
-1.1.1 (source: frontmatter, package.json, changelog, released 2026-11-04)
+1.1.2 (source: SKILL.md frontmatter, package.json)
 
 ## Ethical Considerations:
 

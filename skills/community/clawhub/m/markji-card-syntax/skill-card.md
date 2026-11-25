@@ -1,6 +1,6 @@
 ## Description:
 
-使用中文生成、改写、检查和修正面向普通用户的 Markji 卡片语法（亦称“墨墨记忆卡”语法）内容。
+生成、改写、检查和修正 Markji 墨墨记忆卡内容。适用于把笔记转换成可粘贴的卡片，添加挖空、选择题、文字样式、公式、代码块、媒体或卡片关联，以及排查标签、转义、换行和嵌套错误。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and content authors use this skill to create, rewrite, check, and correct Markji memory-card syntax in Chinese. It helps convert notes into paste-ready cards with cloze deletion, choices, text styling, formulas, media references, and related-card links when supported evidence is provided.
+使用 Markji 的学习者可将学习笔记转换为可直接粘贴的 GV3 记忆卡，也可检查和修正现有卡片的语法。
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Generated media, audio, or related-card IDs may be incorrect if the user has not supplied real IDs.
+Risk: Explanations and generated content default to Chinese, which may not suit every user or audience.
 
-Mitigation: Use only user-provided IDs; otherwise generate media-free card text or explicit placeholders only when the user asks for a template.
+Mitigation: Specify the desired language when it differs from Chinese, and review the output for the intended audience.
 
-Risk: Complex Markji syntax can fail when tags, separators, escaping, block placement, or nesting rules are wrong.
+Risk: Some GV3 features may not work in clients without support for styled cloze, formula cloze, choice formulas, or code blocks.
 
-Mitigation: Apply the bundled syntax guide and self-checklist, and fall back to plain text or a simpler supported form when a requested format cannot be represented reliably.
+Mitigation: Use the documented plain text cloze, ordinary formula, or plain text alternatives when a feature is unsupported.
 
 ## Reference(s):
 
-- [Markji card syntax guide](references/markji-card-syntax.md)
+- [Markji Card Syntax Reference](references/markji-card-syntax.md)
 - [Markji](https://markji.com)
+- [ClawHub Skill Page](https://clawhub.ai/celend/skills/markji-card-syntax)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, guidance]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Markdown containing a single text code block with paste-ready Markji card syntax unless explanation is requested]
+**Output Format:** [Markji GV3 card content in text code blocks, with concise Chinese explanations or corrections]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Chinese prose with required Markji syntax tags preserved exactly]
+**Other Properties Related to Output:** [Uses GV3 syntax. Styled cloze, formula cloze, choice formulas, and code blocks require client support; plain text alternatives are documented.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server release evidence)
+1.0.1 (source: server release metadata)
 
 ## Ethical Considerations:
 

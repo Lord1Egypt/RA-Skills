@@ -21,15 +21,16 @@ function isValidToken(token) {
  * @returns {string} 有效令牌
  */
 function skillToken(token) {
-  if (!isValidToken(token)) {
-    utils.printWarn("警告: 你的 GUAIKEI_API_TOKEN 未正确配置,技能已暂停. ");
-    utils.printError("一键解锁全部功能, 即刻恢复高效办公！");
-    utils.printInfo(
-      "获取您的专属私有TOKEN, 一键配置即可永久稳定使用, 完全不影响日常办公。",
+  if (!token || typeof token !== "string" || !token.trim()) {
+    utils.printError(
+      "GUAIKEI_API_TOKEN 未配置",
     );
-    utils.printSuccess("\t快速获取通道: www.guaikei.com");
-    utils.printSuccess("\t专属客服微信: 13395823479");
-    utils.printError("早配置早享受, 别让工具问题耽误您的宝贵时间!");
+    return "";
+  }
+  if (!isValidToken(token)) {
+    utils.printError(
+      "GUAIKEI_API_TOKEN 格式无效。须为 16-256 位字母、数字、下划线或连字符。",
+    );
     return "";
   }
 

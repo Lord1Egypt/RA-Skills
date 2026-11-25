@@ -1,6 +1,6 @@
 ---
 name: imap-smtp-email
-description: Read and send email via IMAP/SMTP. Check for new/unread messages, fetch content, search mailboxes, mark as read/unread, and send emails with attachments. Supports multiple accounts. Works with any IMAP/SMTP server including Gmail, Outlook, 163.com, vip.163.com, 126.com, vip.126.com, 188.com, and vip.188.com.
+description: Read and send email via IMAP/SMTP. Check for new/unread messages, fetch content, search mailboxes, mark as read/unread, create mailboxes, copy or move messages between mailboxes, and send emails with attachments. Supports multiple accounts and servers without the IMAP ID extension, such as Maddy. Passwords can be Passbolt references, which it fetches by running the local passbolt CLI. Works with any IMAP/SMTP server including Gmail, Outlook, 163.com, vip.163.com, 126.com, vip.126.com, 188.com, and vip.188.com.
 metadata:
   openclaw:
     emoji: "📧"
@@ -37,6 +37,11 @@ npm install --production
 ```
 
 Configuration is stored at `~/.config/imap-smtp-email/.env` (survives skill updates). If no config is found there, the skill falls back to a `.env` file in the skill directory (for backward compatibility).
+
+`IMAP_PASS` and `SMTP_PASS` may be either literal passwords or Passbolt secret
+references in the form `passbolt://RESOURCE_ID`. When a Passbolt reference is
+used, the skill resolves the password at runtime by running the local `passbolt`
+CLI (`passbolt get resource --id ...`), so the secret itself never sits in `.env`.
 
 ### Config file format
 
@@ -145,13 +150,16 @@ Without `--account`, the default (unprefixed) account is used.
 Check for new/unread emails.
 
 ```bash
-node scripts/imap.js [--account <name>] check [--limit 10] [--mailbox INBOX] [--recent 2h]
+node scripts/imap.js [--account <name>] check [--limit 10] [--mailbox INBOX] [--recent 2h] [--unseen]
 ```
 
 Options:
 - `--limit <n>`: Max results (default: 10)
 - `--mailbox <name>`: Mailbox to check (default: INBOX)
 - `--recent <time>`: Only show emails from last X time (e.g., 30m, 2h, 7d)
+- `--unseen`: Only unread messages
+
+Results are newest first. Only the newest `--limit` messages are downloaded, so `check` stays fast on large mailboxes. In each result, `date` is when the server received the message (IMAP INTERNALDATE) and `headerDate` is the sender's `Date:` header, which can be wrong or forged.
 
 ### fetch
 Fetch full email content by UID.
@@ -188,7 +196,10 @@ Options:
   --before <date>    Before date (YYYY-MM-DD)
   --limit <n>        Max results (default: 20)
   --mailbox <name>   Mailbox to search (default: INBOX)
+  --sort date        Order by received date instead of UID (slower, see below)
 ```
+
+`--unseen` and `--seen` cannot be combined. By default `search` returns the newest matches by UID and downloads only `--limit` messages. UID order matches arrival order for normally delivered mail. Use `--sort date` in mailboxes that hold copied or imported mail: it downloads every match and sorts by received date.
 
 ### mark-read / mark-unread
 Mark message(s) as read or unread.
@@ -196,6 +207,21 @@ Mark message(s) as read or unread.
 ```bash
 node scripts/imap.js [--account <name>] mark-read <uid> [uid2 uid3...]
 node scripts/imap.js [--account <name>] mark-unread <uid> [uid2 uid3...]
+```
+
+### create-mailbox
+Create a mailbox/folder when it does not already exist.
+
+```bash
+node scripts/imap.js [--account <name>] create-mailbox <name>
+```
+
+### copy / move
+Copy or move message(s) to another mailbox/folder.
+
+```bash
+node scripts/imap.js [--account <name>] copy <uid> [uid2 uid3...] --to <mailbox> [--mailbox INBOX]
+node scripts/imap.js [--account <name>] move <uid> [uid2 uid3...] --to <mailbox> [--mailbox INBOX]
 ```
 
 ### list-mailboxes
@@ -269,7 +295,7 @@ node scripts/smtp.js [--account <name>] test
 
 ### Maddy / servers without IMAP ID
 
-Some valid IMAP servers, including Maddy, do not support the optional IMAP `ID` command. This fork catches synchronous `node-imap` `ID` errors and continues the connection instead of crashing.
+Some valid IMAP servers, including Maddy, do not support the optional IMAP `ID` command (RFC 2971). Upstream sends `ID` unconditionally, and `node-imap` throws when the server does not advertise it. This fork sends `ID` only when the server's capabilities list it, so 163.com still gets it and Maddy is not sent it.
 
 ## Troubleshooting
 
@@ -285,4 +311,6 @@ Some valid IMAP servers, including Maddy, do not support the optional IMAP `ID` 
 
 **TLS/SSL errors:**
 - Match `IMAP_TLS`/`SMTP_SECURE` setting to server requirements
-- For self-signed certs: set `IMAP_REJECT_UNAUTHORIZED=false` or `SMTP_REJECT_UNAUTHORIZED=false`
+- IMAP uses TLS and SMTP refuses to log in without STARTTLS unless the host is `localhost`/`127.0.0.1`/`::1` (a local bridge). Set `IMAP_TLS=false` or `SMTP_REQUIRE_TLS=false` only for such a bridge
+- For a private or self-signed CA: trust that CA instead of turning verification off, for example `NODE_EXTRA_CA_CERTS=/path/to/ca.pem node scripts/imap.js check`
+- Leave `IMAP_REJECT_UNAUTHORIZED` and `SMTP_REJECT_UNAUTHORIZED` at `true`. Setting them to `false` lets anyone on the network path read the password and the mail, so do not suggest it to fix an error

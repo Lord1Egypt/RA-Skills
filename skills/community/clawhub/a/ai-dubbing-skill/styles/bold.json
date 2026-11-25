@@ -1,0 +1,22 @@
+{
+ "about": "Big condensed uppercase, 1 or 2 words at a time, spoken word in green, keywords in yellow. High-energy talking heads.",
+ "font": "Anton-Regular.ttf",
+ "size": 118,
+ "uppercase": true,
+ "color": "#FFFFFF",
+ "active": "#4ADE80",
+ "keyword": "#FFD43B",
+ "stroke": 10,
+ "stroke_color": "#000000",
+ "shadow": {
+  "dx": 0,
+  "dy": 8,
+  "alpha": 0.5,
+  "blur": 4
+ },
+ "words": 2,
+ "chars": 14,
+ "lines": 1,
+ "pause": 0.25,
+ "position": 0.6
+}

@@ -2,7 +2,7 @@
 stocktoday-data proxy demo
 ==========================
 
-StockToday 数据研究技能 demo 脚本, 调用 235+ 个数据接口, 后端走 StockToday 自定义加速 (https://tushare.citydata.club/).
+StockToday 数据研究技能 demo 脚本, 调用 306 个数据接口, 后端走 StockToday 自定义加速 (https://tushare.citydata.club/).
 
 LLM 调用方式:
     import sys
@@ -20,17 +20,20 @@ import os
 import sys
 import tushare as ts
 import pandas as pd
+import requests
 
-# === 网关地址 ===
+# === 网关地址 (主 + 备用, 都是 https + 有效证书) ===
 DEFAULT_GATEWAY = "https://tushare.citydata.club/"
+DEFAULT_BACKUP_GATEWAY = "https://backup.citydata.club/"
 
 # 允许的自定义网关主机 (防止 token 被导向任意第三方服务器)
-ALLOWED_GATEWAY_HOSTS = ("tushare.citydata.club",)
+ALLOWED_GATEWAY_HOSTS = ("tushare.citydata.club", "backup.citydata.club")
 
-# 备用直连地址**不随本包分发**: 需要时由使用者通过 TUSHARE_GATEWAY_BACKUP2 自备,
+# 第三个地址 (TUSHARE_GATEWAY_BACKUP2) **不随本包分发**: 需要时由使用者自备,
 # 并显式设置 TUSHARE_GATEWAY_ALLOW_INSECURE=1 放行明文 HTTP (token 与数据不加密, 仅应急).
 # 之所以不内置明文地址: 明文 HTTP 会让 API token 与金融数据在链路上裸奔
 # (被动窃听 / 中间人篡改), 属于高危配置, 不应由技能包默认分发.
+# ★ 官方备用站 backup.citydata.club 是 **https**, 可以安全内置并自动故障切换.
 
 
 def _validate_gateway(gateway: str) -> str:
@@ -85,21 +88,67 @@ def enable_utf8_stdout() -> None:
             pass
 
 
-def get_client(token: str = None, gateway: str = None) -> "ts.pro_api":
+def _install_failover(pro, gateways):
+    """给 pro 装上故障切换: 某个地址连不上 (连接错误 / 超时) 就自动换下一个.
+
+    实现方式: 替换实例上的 query —— SDK 的 DataApi.__getattr__ 返回
+    partial(self.query, api_name), 所以 pro.daily(...) 之类会走新的 query.
+    只在**连接层**失败时切换; 业务错误 (code != 0) 属于对端的正常答复, 不切换.
     """
-    获取走 StockToday gateway 的 tushare pro client
+    if len(gateways) < 2:
+        return pro
+    original_query = pro.query
+    state = {"idx": 0}
+
+    def query(api_name, fields="", **kwargs):
+        last_err = None
+        for step in range(len(gateways)):
+            i = (state["idx"] + step) % len(gateways)
+            pro._DataApi__http_url = gateways[i]
+            try:
+                result = original_query(api_name, fields=fields, **kwargs)
+            except (requests.exceptions.ConnectionError,
+                    requests.exceptions.Timeout) as e:
+                last_err = e
+                continue
+            state["idx"] = i          # 记住走通的地址, 下次优先用它
+            return result
+        raise last_err
+
+    pro.query = query
+    return pro
+
+
+def get_client(token: str = None, gateway: str = None,
+               backup_gateway: str = None) -> "ts.pro_api":
+    """
+    获取走 StockToday gateway 的 pro client
 
     优先顺序: 参数 > TUSHARE_TOKEN env > TUSHARE_GATEWAY env > 默认 gateway
     自定义 gateway 会被 _validate_gateway 校验 (仅 https + 主机白名单)
+
+    ★ 主地址 + 备用地址自动故障切换:
+      主站 (tushare.citydata.club) 连不上时自动改走备用站 (backup.citydata.club),
+      两个都失败才抛错. 两个地址都是 https + 有效证书, token 与数据全程加密.
     """
     token = token or os.getenv("TUSHARE_TOKEN") or "your_token_here"
-    gateway = _validate_gateway(
+    primary = _validate_gateway(
         gateway or os.getenv("TUSHARE_GATEWAY") or DEFAULT_GATEWAY)
+    backup = _validate_gateway(
+        backup_gateway or os.getenv("TUSHARE_GATEWAY_BACKUP")
+        or DEFAULT_BACKUP_GATEWAY)
+    extra = os.getenv("TUSHARE_GATEWAY_BACKUP2", "").strip()
+
+    chain = [primary]
+    for g in (backup, extra):
+        if g and g not in chain:
+            chain.append(_validate_gateway(g))
 
     pro = ts.pro_api(token)
     # 指向 stocktoday gateway
     pro._DataApi__token = token
-    pro._DataApi__http_url = gateway
+    pro._DataApi__http_url = chain[0]
+    _install_failover(pro, chain)
     return pro
 
 
@@ -125,8 +174,10 @@ def demo_quote(pro: "ts.pro_api") -> None:
 
 def demo_finance(pro: "ts.pro_api") -> None:
     """Demo 2: 单只股票 2024 年报关键指标"""
+    # 注: fields 里必须用 end_date —— StockToday gateway 的 fina_indicator 没有
+    # `period` 输出列, 请求不存在的列会直接返 0 行 (不是权限问题).
     df = pro.fina_indicator(ts_code="600519.SH", period="20241231",
-                            fields="ts_code,period,roe,grossprofit_margin,eps,debt_to_assets")
+                            fields="ts_code,end_date,roe,grossprofit_margin,eps,debt_to_assets")
     print_section("Demo 2: 茅台 2024 年报 ROE/毛利率/EPS", df)
 
 
@@ -147,7 +198,7 @@ def demo_moneyflow(pro: "ts.pro_api") -> None:
 
 def demo_sector(pro: "ts.pro_api") -> None:
     """Demo 5: 板块行情 (同花顺概念)"""
-    # 参数取值见 references/数据接口.md 的 ths_index:
+    # 参数取值见 references/接口索引.md 的 ths_index:
     #   exchange = "A" (a股) / "HK" (港股) / "US" (美股), type = "N" 概念指数
     df = pro.ths_index(exchange="A", type="N")
     print_section("Demo 5: 同花顺概念指数列表 (exchange=A, type=N)", df.head(10))
@@ -161,8 +212,9 @@ if __name__ == "__main__":
     enable_utf8_stdout()
     pro = get_client()
     print(f"✅ StockToday client 已初始化, gateway: {pro._DataApi__http_url}")
+    print(f"   备用地址: {DEFAULT_BACKUP_GATEWAY} (主站连不上时自动切换)")
     # 不打印 token 的任何片段 (避免 token 前缀进日志/agent 上下文)
-    print("   token: 已从 TUSHARE_TOKEN 环境变量读取 (不打印内容)")
+    print("   凭据: 已从环境变量读取 (不打印内容)")
 
     try:
         demo_quote(pro)

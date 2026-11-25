@@ -1,6 +1,6 @@
 ## Description:
 
-Put a real alarm on your person's phone, and on their friends', family's or community's phones, through LFG Alarm's MCP server (https://mcp.lfg.gm). Set, share and change alarms that ring together. Use it when someone asks to be woken, reminded loudly, or rung for a moment: a time, an event from a Luma or Partiful link, an account posting on X, a stream going live, a token hitting a price, or a webhook being called; or when they want a group, a partner or a family rung together at the same moment.
+Make LFG links for your person through LFG's MCP server (https://mcp.lfg.gm). Each link stands for something they care about (an interest, an intent, or a moment they don't want to miss) and has an agent that keeps researching or monitoring it after the chat ends. It reaches them as a research brief in their Daily Drop, a phone notification, or a real alarm that rings on their phone. Use it when someone wants to keep up with an interest (learning the cello, biotech startups), hear when something happens (an account posts, a price moves, tickets go on sale), be woken or rung for a moment (a time, a sunrise, an event), or share any of that so friends, family or a community ride along.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users connect an AI agent to LFG Alarm to create, share, and manage phone alarms for times, events, online activity, price changes, or webhook calls. The skill also helps users coordinate alarms with friends, family, or communities.
+People using AI assistants can use this skill to create and manage LFG links for ongoing research, monitoring, alarms, and sharing with friends or groups.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Shared alarms can expose the alarm to more people than intended.
+Risk: Using the skill requires connecting to LFG and may involve signing in or using a personal key.
 
-Mitigation: Default to private visibility, confirm intended recipients and reach, and review the names before adding people.
-
-Risk: A webhook alarm link can be used by anyone who obtains the private link to trigger the alarm.
-
-Mitigation: Keep webhook links private and share them only with trusted systems.
-
-Risk: Connecting the service authorizes management of alarms and related social features, and recurring alarms may continue after they are no longer needed.
-
-Mitigation: Review the requested action and alarm settings, and disable or delete recurring alarms when they are no longer needed.
+Mitigation: Review the setup instructions, confirm you trust the service before connecting your account, and keep any personal key private.
 
 ## Reference(s):
 
-- [LFG Alarm agent setup](https://lfg.gm/agents)
-- [LFG Alarm AI agent guide](https://lfg.gm/wiki/ai-agents)
-- [LFG Alarm on ClawHub](https://clawhub.ai/lfg/skills/lfg-alarm)
+- [LFG agent setup](https://lfg.gm/agents)
+- [LFG developer documentation](https://lfg.gm/developers)
+- [LFG AI agent guide](https://lfg.gm/wiki/ai-agents)
+- [ClawHub release page](https://clawhub.ai/lfg/skills/lfg-alarm)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, Configuration, Guidance]
+**Output Type(s):** [API Calls, Guidance, Text]
 
-**Output Format:** [Alarm creation and management actions with text guidance and share links]
+**Output Format:** [MCP tool requests and concise user-facing text]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Actions are performed through the connected LFG Alarm service; generated alarms may include a share link and related share materials.]
+**Other Properties Related to Output:** [May include LFG links, setup guidance, and alarm or research details based on the request.]
 
 ## Skill Version(s):
 
-1.0.1 (source: server-resolved release evidence)
+1.0.2 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

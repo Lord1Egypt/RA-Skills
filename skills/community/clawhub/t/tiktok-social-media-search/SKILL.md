@@ -1,26 +1,56 @@
 ---
 name: tiktok-social-media-search
-description: 实时搜索海外社媒之TikTok的公开内容，快速返回笔记的内容信息、互动数量、趋势和评论等数据。当用户要查品牌、话题、事件或内容在TikTok社媒上的公开表现时使用。提供3个能力①关键词搜索（可按点赞/相关度排序、发布时间筛选）②博主作品获取，按主页链接或用户名批量获取公开作品列表，支持最新/最热排序 ③视频评论抓取，按视频链接或作品 ID 获取评论内容、评论者与互动数据，输出结构化 JSON（含作者、互动数据、标签、链接）。
+description: "实时搜索海外社媒之TikTok的公开内容，快速返回笔记的内容信息、互动数量、趋势和评论等数据。当用户要查品牌、话题、事件或内容在TikTok社媒上的公开表现时使用。提供3个能力①关键词搜索（可按点赞/相关度排序、发布时间筛选）②博主作品获取，按主页链接或用户名批量获取公开作品列表，支持最新/最热排序 ③视频评论抓取，按视频链接或作品 ID 获取评论内容、评论者与互动数据，输出结构化 JSON（含作者、互动数据、标签、链接）。"
 license: MIT
-version: 1.0.0
+version: 1.1.2
+description_zh: 实时搜索海外社媒之TikTok的公开内容，快速返回笔记的内容信息、互动数量、趋势和评论等数据。当用户要查品牌、话题、事件或内容在TikTok社媒上的公开表现时使用。
+description_en: Perform real-time searches on public TikTok content from overseas social media. Rapidly return data including content information, engagement metrics, trends, and comments for posts. Use when users need to check the public performance of brands, topics, events or content on the TikTok social platform.
 metadata:
+  openclaw:
+    emoji: "🎵"
+    primaryEnv: GUAIKEI_API_TOKEN
+    requires:
+      bins:
+        - node
+      env:
+        - GUAIKEI_API_TOKEN
   enabled: true
   type: command
   runtime: "nodejs@16.14.0+"
   requires:
-    bins:
-      - "node"
-    env:
-      - "GUAIKEI_API_TOKEN"
+    bins: ["node"]
+    env: ["GUAIKEI_API_TOKEN"]
   env_desc:
-    GUAIKEI_API_TOKEN: "TikTok 数据访问令牌，可通过 www.guaikei.com 自助开通。"
+    GUAIKEI_API_TOKEN: "TikTok 数据 API 访问令牌。未配置时无法调用接口；可通过 https://www.guaikei.com 开通并获取支持。"
+  keywords:
+    - "TikTok"
+    - "tiktok"
+    - "抖音国际版"
+    - "TikTok搜索"
+    - "TikTok评论"
+    - "TikTok博主"
+    - "爆款选题"
+    - "竞品分析"
+    - "评论舆情"
   category:
-    - "Data&APIs"
-    - "内容创作"
+    - "Integrations"
+    - "Research"
     - "数据分析"
+    - "内容创作"
     - "商业运营"
   tags:
     - "TikTok"
+    - "tiktok"
+    - "抖音国际版"
+    - "关键词搜索"
+    - "视频评论"
+    - "博主作品"
+    - "竞品分析"
+    - "选题调研"
+    - "舆情分析"
+    - "爆款挖掘"
+    - "KOL筛选"
+    - "海外短视频"
     - "TikTok数据"
     - "TikTok搜索"
     - "TikTok评论"
@@ -47,13 +77,10 @@ metadata:
     - "评论区洞察"
     - "短视频运营"
     - "短视频数据"
-    - "海外短视频"
     - "跨境营销"
     - "海外社媒"
     - "红人营销"
-    - "KOL筛选"
     - "网红筛选"
-    - "竞品分析"
     - "营销分析"
     - "舆情数据获取"
     - "content-analysis"
@@ -70,6 +97,8 @@ metadata:
     - "data-scraping"
     - "api-wrapper"
   schemas:
+    - name: "输出信封"
+      file: "assets/output_envelope.schema.json"
     - name: "搜索入参"
       file: "assets/search_cli_req.schema.json"
     - name: "搜索出参"
@@ -83,224 +112,160 @@ metadata:
     - name: "评论出参"
       file: "assets/comment_cli_resp.schema.json"
   examples:
-    - "搜索 TikTok 上 AI 相关最火视频: node scripts/tiktok/search-cli.js --keyword 'AI' --sort 1 --limit 20"
-    - "查最近一周 AI 模型 20 条内容: node scripts/tiktok/search-cli.js --keyword 'AI model' --time 7 --limit 20"
-    - "抓取某博主最热的 30 条作品: node scripts/tiktok/post-cli.js --url 'https://www.tiktok.com/@username' --sort 1 --limit 30"
-    - "抓取某博主最近 30 条作品: node scripts/tiktok/post-cli.js --url 'https://www.tiktok.com/@username' --limit 30"
-    - "分析某条视频 40 条评论: node scripts/tiktok/comment-cli.js --url 'https://www.tiktok.com/@username/video/1234567890123456789' --limit 40"
+    - "帮我搜 TikTok 上 AI 点赞最多的视频 → node scripts/tiktok/search-cli.js --keyword \"AI\" --sort 1 --limit 20"
+    - "最近一周 TikTok 的 AI model，要 20 条 → node scripts/tiktok/search-cli.js --keyword \"AI model\" --time 7 --limit 20"
+    - "这个 TikTok 博主最近 30 条作品 → node scripts/tiktok/post-cli.js --url \"https://www.tiktok.com/@username\" --sort 0 --limit 30"
+    - "这个 TikTok 博主什么最火 → node scripts/tiktok/post-cli.js --url \"https://www.tiktok.com/@username\" --sort 1 --limit 30"
+    - "这条 TikTok 视频评论区在说什么，帮我归纳舆情 → node scripts/tiktok/comment-cli.js --url \"https://www.tiktok.com/@username/video/1234567890123456789\" --limit 40"
+    - "盯一下这个竞品账号最近发了什么 → node scripts/tiktok/post-cli.js --url \"https://www.tiktok.com/@competitor\" --limit 10"
 ---
 
 # 🎯 TikTok社媒搜索与分析
 
-## 1. 能力概览
+「TikTok社媒搜索与分析」面向品牌、话题、事件与内容的 TikTok 公开表现检索：给一个关键词或一条链接即可拿回公开视频和评论；不登录、不发布，结果是可直接做社媒搜索与分析的 JSON。覆盖关键词搜索、博主作品与视频评论。
 
-> 💡**一句话价值**：一个口语化指令拿到TikTok公开的视频/作者/评论数据，直接输出结构化JSON——做达人筛选、数据分析、市场调研、舆情监控、爆款选题、对标账号监控、评论舆情分析、热点追踪，不用再手动刷TikTok。
+| 你要做的事 | 用哪个命令 | 你拿到什么 |
+| --- | --- | --- |
+| 找选题、看高赞 | `search-cli.js` | 视频数组。点赞、播放、评论是数字 |
+| 看评论区 | `comment-cli.js` | 评论数组 |
+| 看博主作品 | `post-cli.js` | 作品数组。没有单独的粉丝总数对象 |
 
-| 能力       | 入口脚本                        | 必填参数                 | 返回                                                |
-| ---------- | ------------------------------- | ------------------------ | --------------------------------------------------- |
-| 关键词搜索 | `scripts/tiktok/search-cli.js`  | `--keyword`              | 作品列表：作者、点赞/评论/分享/收藏、标签、播放地址 |
-| 博主作品   | `scripts/tiktok/post-cli.js`    | `--url`（主页或用户名）  | 该博主公开作品列表（支持最新 / 最热排序）           |
-| 视频评论   | `scripts/tiktok/comment-cli.js` | `--url`（视频链接或 ID） | 评论正文、评论者、点赞数、回复数                    |
+三个命令成功时 `results` 都是数组。空字符串和数字 0 可能不返回，缺失不一定是没有这个字段。
 
-> **前置条件**：必须在**技能根目录**执行，且环境变量 `GUAIKEI_API_TOKEN` 已配置。未配置时所有命令返回退出码 `3`、`error_code=AUTH_REQUIRED`——此时**直接提示用户配置 Token，不要重试、不要换参数**。
+本技能没有视频详情命令，也不下载视频。视频链接只能拉评论。播放地址可能过期。
 
----
+## 0. 🧭 每次按这个顺序执行
 
-## 2. 何时调用 / 何时不调用
+1. 确认环境变量 `GUAIKEI_API_TOKEN` 已配置。没有配置时直接告诉用户去 [TikTok社媒搜索与分析官网](https://www.guaikei.com) 开通，不要先跑一遍试探。
+2. 在本技能根目录执行 `node scripts/tiktok/<命令>.js`。
+3. stderr 出现「处理中」表示任务还在跑。等进程自己退出，再读 stdout 的最后一份 JSON。不要把 stderr 或整份 JSON 念给用户。
+4. 按「4. 📦 读结果」的退出码表决定：改参数再试、告诉用户，或停止。
 
-### 2.1 应该调用
+查询最多 20 次。间隔从 2 秒起按 2、4、8、16、32 秒增加，之后每次 60 秒，只算等待大约 15 分钟。每次请求本身还有最多 20 秒超时。宿主如果更早结束进程，按超时处理，不要立刻用同一组参数连打。
 
-- 用户要查 **TikTok** 的公开内容（视频 / 图文 / 作者 / 评论 / 趋势）。
-- 用户要做**爆款选题调研、竞品账号监控、红人筛选、评论舆情分析、内容风格拆解**。
-- 用户已给出 TikTok 关键词、视频链接、博主主页链接，希望拿到结构化数据。
-- 用户拿到数据后还要继续做总结、对比、排序、聚类、出报告 / 表格。
+同一组参数再次执行时，服务端会复用还没过期的任务：搜索大约 9 分钟内，作品和评论大约 20 分钟内，不会另开一条。搜索如果已经等到 `TIMEOUT`，9 分钟的复用窗口通常已经过去，立刻重跑可能新建一条任务。
 
-### 2.2 不应调用
+- 没有关键词或链接就先问，不要编造
+- 搜索不传 `--limit` 是 10 条。用户说「全部」再加大，不要自行抓 10000 条。**包月 Token** 搜索/作品勿超 30、评论勿超 40，否则 `PLAN_LIMIT`
+- `status=empty` 且退出码 0 是「接口已经完成，没有结果」，不是命令失败
+- 搜索若一直处理中直到 `TIMEOUT`，可能是没有可保存的结果。告诉用户换关键词或稍后再试，不要立刻连打
 
-- 用户只要文案 / 标题 / 脚本，没有要查 TikTok 数据。
-- 平台不是 TikTok，而是其他平台的（抖音、小红书、B 站、微博、公众号）→ 路由到对应技能。**本技能只处理 TikTok。**
-- 要求登录态、私密、隐藏数据 → 不支持。
-- 既有关键词又有可识别链接且目标不明 → **先追问，不要猜**。
+## 1. 🎯 什么时候调用
 
-### 2.3 能力边界（明确不做）
+满足任一条件即调用：用户提到 TikTok、tiktok 或抖音国际版，并要求搜索、看评论、看博主作品或做选题、竞品、舆情。
 
-发布 / 点赞 / 评论 / 关注 / 私信等**写操作**一律不支持；不登录任何账号；不采集手机号、位置、私信等隐私字段；不替用户做营销决策——职责是把数据拿回来，分析交给上层。
+不要调用：只让写文案；平台是抖音、小红书、快手、B 站、微博、公众号；要求登录、发布、点赞、下载文件或私密数据；没有关键词也没有可识别链接。
 
----
+## 2. 🔀 路由
 
-## 3. 调用路由（先判断，再执行）
+按这个顺序判断，命中即停：
 
-| 用户意图                                           | 脚本          | 判定关键词                                    |
-| -------------------------------------------------- | ------------- | --------------------------------------------- |
-| 搜关键词、找某类内容、找爆款                       | `search-cli`  | 搜索 / 找 / 关键词 / 爆款 / 最火              |
-| 看某博主 / 达人 / 网红的作品、主页、账号、近期发布 | `post-cli`    | 作品 / 主页 / 账号 / 博主 / 达人 / 网红 / KOL |
-| 看某条视频的评论、留言                             | `comment-cli` | 评论 / 留言 / 评论区的观点                    |
+1. 要评论、留言、舆情，且对象是一条视频 → `comment-cli.js`
+2. 要作品、主页、账号、博主、达人 → `post-cli.js`
+3. 有关键词，且没有上面两类信号 → `search-cli.js`
+4. 以上都不明确 → 先追问
 
-### 3.1 消歧义规则（必须遵守）
+链接和 id：
 
-1. **单独出现"视频"二字，不要默认归 `post-cli`**。
-   - 有"关键词"且无"评论" → `search-cli`（用户想搜这类视频）。
-   - 明确"这个视频的评论 / 留言" → `comment-cli`。
-   - 只有出现"作品 / 主页 / 账号 / 博主 / 达人" → `post-cli`。
-2. **评论优先级高于作品**：若给的链接是 `/video/<id>` 且问的是评论 → `comment-cli`；若问的是"这个人的作品" → `post-cli`（用 `@username`）。
-3. 用户给了 `/video/<id>` 链接却要"作品列表" → 先确认是要该作者的作品还是该视频的评论。
+- `tiktok.com/@用户名` 只能给 `post-cli.js`。`http`、缺 `www`、`m.tiktok.com` 会在本地改成 `https://www.tiktok.com/@用户名`
+- 整段 `MS4w` 开头的 `sec_uid` 只能给 `post-cli.js`。搜索结果用 `author_sec_uid`，或 `author_url`
+- `tiktok.com/@用户名/video/数字` 和纯数字 `aweme_id` 只能给 `comment-cli.js`。搜索或作品结果用 `aweme_id`
+- `author_id`、`user_id` 是数字 uid，不要交给作品命令
+- `vm.tiktok.com`、`vt.tiktok.com`、`tiktok.com/t/` 短链两个命令都不接受。请用户换成标准链接，不要两个命令都试
+- `/photo/` 图文链接不支持
+- 只拿到一串数字、又没说明是视频 id 还是别的，按评论用；若用户说的是主页，先问
 
-### 3.2 参数推断规则
+| 用户说 | 应该传 |
+| --- | --- |
+| 最火、点赞最多、爆款 | `search-cli.js --sort 1` |
+| 搜索相关度、默认搜索 | `search-cli.js --sort 0`。搜索没有「按最新发布」 |
+| 近一天 | `--time 1` |
+| 近一周、这周 | `--time 7` |
+| 近一月 / 近三月 / 近半年 | `--time 30` / `90` / `180` |
+| 博主最近发了什么 | `post-cli.js --sort 0 --limit N`。不传 sort 就是最新。没说条数用 10 |
+| 这个博主什么最火 | `post-cli.js --sort 1` |
+| 评论区 | `comment-cli.js`。没说条数用默认 10 |
 
-| 用户说法                      | 参数                       |
-| ----------------------------- | -------------------------- |
-| 相关度 / 默认                 | `--sort 0`（搜索）         |
-| 最火 / 点赞最多 / 爆款 / 最热 | `--sort 1`（搜索）         |
-| 最近发的 / 按时间倒序         | `--sort 0`（作品）         |
-| 最热的作品                    | `--sort 1`（作品）         |
-| 一天 / 24 小时                | `--time 1`                 |
-| 一周 / 7 天                   | `--time 7`                 |
-| 一个月 / 三个月 / 半年        | `--time 30` / `90` / `180` |
-| N 条 / 前 N 条 / 要 N 个      | `--limit N`                |
+搜索的 `--sort 1` 是最多点赞。作品的 `--sort 1` 是最热，`--sort 0` 才是最新。
 
-默认值：`sort=0`、`time=0`、`limit=10`。
+`--time 2` 不是两天，也不是一周。非法值会直接失败。
 
-> ⚠️ **搜索的 `--sort` 与作品的 `--sort` 不要混用**：前者是"相关度 / 最多点赞"，后者是"最新 / 最热"。
+## 3. 🎛️ 参数
 
-**任何参数被非法值回退，都会出现在输出 JSON 的 `warnings` 数组里，必须回显给用户，不要当成原样生效。**
+枚举和数量不在允许范围内时，命令直接失败（退出码 2，`INVALID_ARGS`），不会改成默认值再请求。三个命令都支持 `--help` / `-h`：帮助打在 stderr，退出码 0，stdout 为空。短参数大小写都可以。含空格的关键词用双引号包成一个参数。关键词以 `-` 开头时写成 `--keyword=-AI`，或 `node scripts/tiktok/search-cli.js -- -AI`。完整字段见 `assets/*_cli_req.schema.json` 与 [references/options.md](references/options.md)。
 
----
+**套餐双上限（重要）**：技能侧硬上限为 10000（按量 Token）。**包月 Token** 超限会返回 `PLAN_LIMIT`（后端 errcode 14），不要当网络错误重试：搜索/作品最多 **30**，评论最多 **40**。具体以官网与本次 `message` 为准。
 
-## 4. 执行方式
+### 3.1 🔍 关键词搜索
 
-> 完整参数说明见 [references/options.md](references/options.md)；字段级 Schema 见 `assets/` 下的 6 个 JSON Schema（draft-07）。
+| 参数 | 必填 | 取值 | 默认 |
+| --- | --- | --- | --- |
+| `--keyword` `-k` | 是 | 1–100 个字符，不能是链接，不含 `< > " '` | — |
+| `--sort` `-s` | 否 | `0` 相关度 / `1` 最多点赞 | `0` |
+| `--time` `-t` | 否 | `0` 全部 / `1` 近 1 日 / `7` 近 7 日 / `30` 近 1 月 / `90` 近 3 月 / `180` 近 6 月 | `0` |
+| `--limit` `-l` | 否 | 整数 1–10000（**包月 Token 实际最多 30**） | `10` |
 
-```bash
-# 关键词搜索
-node scripts/tiktok/search-cli.js --keyword "AI" --sort 1 --limit 20
-node scripts/tiktok/search-cli.js --keyword "AI model" --time 7 --limit 20
+### 3.2 🦸 博主作品
 
-# 博主作品
-node scripts/tiktok/post-cli.js --url "https://www.tiktok.com/@username" --limit 30
-node scripts/tiktok/post-cli.js --url "https://www.tiktok.com/@username" --sort 1 --limit 30
+| 参数 | 必填 | 取值 | 默认 |
+| --- | --- | --- | --- |
+| `--url` `-u` | 是 | 主页链接、`@用户名` 或整段 `sec_uid`，最长 255 | — |
+| `--sort` `-s` | 否 | `0` 最新 / `1` 最热 | `0` |
+| `--limit` `-l` | 否 | 整数 1–10000（**包月最多 30**） | `10` |
 
-# 视频评论
-node scripts/tiktok/comment-cli.js --url "https://www.tiktok.com/@username/video/1234567890123456789" --limit 40
-```
+### 3.3 💬 视频评论
 
-**可用的输入形态**
+| 参数 | 必填 | 取值 | 默认 |
+| --- | --- | --- | --- |
+| `--url` `-u` | 是 | 视频链接或纯数字 `aweme_id`，最长 255 | — |
+| `--limit` `-l` | 否 | 整数 1–10000（**包月最多 40**） | `10` |
 
-- 博主：`https://www.tiktok.com/@username`、带参数链接 `https://www.tiktok.com/@username?lang=en`、或直接 `author_sec_uid`
-- 视频：`https://www.tiktok.com/@username/video/<id>`、短链、或直接作品 `<id>`
+## 4. 📦 读结果
 
-**执行纪律**
-
-- 只把 **stdout** 当机器可读输出（纯 JSON）；banner / 进度 / 错误日志都在 **stderr**，不要混在一起解析。
-- 单次 `--limit` 建议 **≤ 1000**。
-- 不要因为一次空结果就自动放宽条件重试：**先把空结果告诉用户**，由用户决定是否换关键词 / 放宽 `--time`。
-
----
-
-## 5. 输出契约（AI 解析必读）
-
-所有入口输出**同一个信封**，成功与失败结构一致：
+成功、空结果、失败都是同一份信封。只读 stdout 的最后一份 JSON。`--help` 时 stdout 为空，帮助在 stderr。字段以 `assets/output_envelope.schema.json` 和 `assets/*_cli_resp.schema.json` 为准。
 
 ```json
 {
-  "status": "success | empty | error",
-  "error_code": "OK | NO_MATCH | AUTH_REQUIRED | INVALID_KEYWORD | ...",
-  "message": "人类可读说明",
-  "timestamp": "2026-09-16 21:00:00",
-  "request": {
-    "command": "search",
-    "keyword": "AI",
-    "sort": 1,
-    "time": 0,
-    "limit": 20
-  },
-  "metadata": {
-    "skill_version": "1.0.0",
-    "skill_name": "tiktok-creator-videos",
-    "runtime_version": "22.22.2",
-    "execution_time": 8421
-  },
-  "results": [],
-  "warnings": ["数量 99999 无效，已回退为 10"]
+  "status": "success",
+  "error_code": "OK",
+  "message": "搜索任务完成",
+  "timestamp": "2026/10/26 16:20:00",
+  "request": { "command": "search", "keyword": "AI", "sort": 1, "time": 0, "limit": 20 },
+  "metadata": { "skill_version": "1.1.2", "runtime_version": "22.22.2", "execution_time": 8421 },
+  "results": [{ "aweme_id": "123", "desc": "...", "digg_count": 100 }]
 }
 ```
 
-### 5.1 `status` 语义
+空结果仍是退出码 0：`status` 为 `empty`，`error_code` 为 `NO_MATCH`，`results` 为 `null`。失败时 `status` 为 `error`，`results` 为 `null`，`message` 是给人读的原因。
 
-| status    | 含义                       | `results` | 该怎么做                                   |
-| --------- | -------------------------- | --------- | ------------------------------------------ |
-| `success` | 拿到数据                   | 非空数组  | 直接分析                                   |
-| `empty`   | **请求成功，但确实没数据** | `null`    | 视为有效结果，告知用户没搜到，不要当成失败 |
-| `error`   | 请求失败                   | `null`    | 按 `error_code` 处理，不要编造数据         |
+- 搜索、作品、评论成功时 `results` 都是数组
+- 搜索作者有三套标识：`aweme_id` 给评论，`author_sec_uid` 或 `author_url` 给作品，`author_id` 是数字 uid
+- 评论者同样：`user_sec_uid` 或 `user_url` 给作品，`user_id` 不要交给作品命令
+- 作品列表没有粉丝数字段。粉丝在搜索结果的 `author_follower_count`
+- 搜索播放地址是字符串 `play_addr`。作品播放地址是字符串数组 `video_url`
+- 视频时长用户文档没写单位，按采集端原样的 TikTok 字段理解：视频时长一般为毫秒，音乐时长一般为秒
 
-### 5.2 退出码
+| 退出码 | error_code | 怎么处理 |
+| --- | --- | --- |
+| 0 | `OK` / `NO_MATCH` | 没有结果就告诉用户没有匹配内容，不要当成失败重试 |
+| 2 | `INVALID_ARGS` / `INVALID_KEYWORD` | 按上一节改参数后再试一次。关键词是链接时改走作品或评论 |
+| 1 | `INVALID_URL` | 按路由换命令，或向用户要标准链接。短链不要改命令再试 |
+| 3 | `AUTH_REQUIRED` / `AUTH_ERROR` | 停止重试，让用户配置 `GUAIKEI_API_TOKEN` |
+| 1 | `TIMEOUT` | 任务仍在处理，搜索也可能是没有可保存的结果。不要立刻重跑。搜索的复用窗口大约只有 9 分钟，等满超时后再跑可能新建一条任务 |
+| 1 | `NETWORK_ERROR` / `HTTP_5xx` / `HTTP_429` | 命令内部已经重试过。退出后再失败就告诉用户稍后再试 |
+| 1 | `PLAN_LIMIT` | 套餐单次条数超限（常见于包月）。**禁止同参重试**。转述 `message`；可建议降 `--limit`（搜索/作品≤30，评论≤40）或到官网升级按量；**须用户同意后再跑** |
+| 1 | `INSUFFICIENT_BALANCE` | 余额不足（搜索常为后端 16，作品/评论常为 15）。**禁止同参重试**。引导官网充值 |
+| 1 | `RATE_LIMITED` | 短时间提交过多（作品/评论常为 2；搜索可能为 1 + 文案）。**禁止立即重试** |
+| 1 | `DAILY_LIMIT` | 今日消费已达每日上限（后端 18）。**禁止同参重试**。明日再试或到官网调整限额 |
+| 1 | 其它十进制数字 | 把 `message` 原样转告 |
+| 1 | `API_ERROR` / `UNKNOWN` | 转告 `message`，建议联系官网 |
 
-| 退出码 | 含义                                          | Agent 行为                                           |
-| ------ | --------------------------------------------- | ---------------------------------------------------- |
-| `0`    | 成功（`success` 或 `empty`）                  | 继续分析                                             |
-| `1`    | 运行错误（网络 / 超时 / 接口异常 / 参数非法） | 展示 `message`，询问用户是否换参数重试               |
-| `3`    | `AUTH_REQUIRED`：Token 缺失或格式错误         | **立即停止**，提示配置 `GUAIKEI_API_TOKEN`，禁止重试 |
+`error_code` 是字符串。查询还在处理、次数用尽时是 `TIMEOUT`，不是空结果。
 
-### 5.3 错误码处理
+## 5. 🔒 合规
 
-| error_code        | 处理方式                                                 |
-| ----------------- | -------------------------------------------------------- |
-| `AUTH_REQUIRED`   | 停止并提示配置 Token。禁止重试、禁止改参数绕行           |
-| `INVALID_KEYWORD` | 提示关键词需 2–100 字符、不能含 `< > " ' &` 与 http 链接 |
-| `NO_MATCH`        | 有效空结果，建议换关键词或放宽 `--time`                  |
-| `NETWORK_ERROR`   | 已内置重试；仍失败则提示检查网络，最多手动重试 1 次      |
-| `TIMEOUT_ERROR`   | 已内置重试；仍失败则建议降低 `--limit` 后重试            |
-| 其它（服务端码）  | 原样展示 `error_code` + `message`，不要自行猜测含义      |
+只处理 TikTok 公开数据。调用时会把关键词或链接发到 `www.guaikei.com`。不上传本地文件，不登录，不发布，不下载视频文件。
 
-### 5.4 `warnings` 必须回显
+成功结果默认不写文件。需要留底时设置 `TT_GUAIKEI_ENABLE_LOG=1`，文件写到系统临时目录的 `tiktok-guaikei/logs/`。POSIX 上权限是仅当前用户可读写；Windows 不使用这组权限位，靠临时目录本身的用户隔离。
 
-当传入参数不合法被自动回退时（如 `--sort 9`、`--limit 99999`），`warnings` 数组会说明"哪个参数被改成了什么"。**必须原样转告用户**，不能假装参数按原值生效了。
-
-### 5.5 禁止行为
-
-- ❌ 不编造、不补全、不凭记忆填充任何数据。
-- ❌ 收到 `AUTH_REQUIRED` 后不重试、不换脚本、不改参数。
-- ❌ 不把 `empty` 当成"用户要的内容不存在"以外的结论（不等于接口坏了）。
-- ❌ 不在用户未同意时自动放宽搜索条件。
-
----
-
-## 6. 结果消费建议（提升最终交付质量）
-
-拿到 `results` 后，按用户原始目标组织输出，而不是原样吐 JSON：
-
-- **选题调研** → 按 `digg_count` 降序取 Top N，归纳标题句式 / 标签 / 时长分布规律
-- **竞品监控** → 按 `create_time` 排发布节奏，统计更新频率与爆款占比
-- **评论洞察** → 按 `digg_count` 取高赞评论做观点聚类，输出正负向占比
-- **红人筛选** → 交叉 `author_nickname` / 平均互动 / 发布频次，给出候选清单
-- **需要留档** → 每次运行会自动写入日志文件，路径在 stderr 的"已保存到 …"一行
-
----
-
-## 7. 安全与合规（Trust）
-
-- **只读**：不登录 TikTok 账号，不执行发布 / 点赞 / 评论 / 关注 / 私信等任何写操作，无风控封号风险。
-- **最小权限**：仅请求业务所需的一个环境变量 `GUAIKEI_API_TOKEN`；不读取本地其他文件、不写技能目录以外路径（日志写入系统临时目录）。
-- **凭据保护**：Token 只从环境变量读取，不写入 stdout、不写进日志、不出现在错误信息里。
-- **数据外发范围（务必知悉）**：调用时会向 `www.guaikei.com` 发送：你的 **API Token**、**查询关键词**或**目标 URL/ID**，以及技能名与 Node 版本。除此之外不采集任何本地信息。
-- **数据合规**：仅获取 TikTok 公开可见数据（昵称、公开作品、公开评论）。不含手机号、位置、私信等隐私字段。数据仅限个人 / 团队内部分析；对外发布或商用前请自行确认授权，并对用户昵称等做脱敏处理。
-- **无第三方依赖**：仅使用 Node.js 内置模块（`https` / `fs` / `path` / `os` / `querystring`），无 npm 依赖、无远程脚本加载、无 `eval` / `child_process`。
-
----
-
-## 8. 常见问题
-
-| 现象                            | 原因与处理                                                                   |
-| ------------------------------- | ---------------------------------------------------------------------------- |
-| 退出码 3 / AUTH_REQUIRED        | Token 未配置或格式不对（需 16–256 位字母数字下划线连字符）                   |
-| 搜索结果为空                    | 换更通用的关键词，或 `--time 0` 放开时间窗；`empty` 是正常结果不是错误       |
-| 结果条数少于 `--limit`          | 服务端无可返回更多，或单次上限被截断；降到 ≤ 1000 分批取                     |
-| 一直超时                        | 减小 `--limit` 后重试；脚本已内置指数退避重试                                |
-| 想看"最热作品"却按时间倒序      | `post-cli` 要用 `--sort 1`                                                   |
-| 参数没生效 / 结果与预期排序不同 | 检查输出里的 `warnings`，参数不合法时会被静默回退为默认值                    |
-| 日志文件在哪                    | 见 stderr 中"已保存到 …"那一行（系统临时目录 `tiktok-guaikei/logs/<日期>/`） |
-
-## 9. 环境与支持
-
-- 环境：Node.js ≥ 16.14.0，Windows / macOS / Linux 全平台；必需 `GUAIKEI_API_TOKEN`。
-- 官网：[TikTok社媒搜索与分析官网](https://www.guaikei.com)（自助开通 Token、查阅用量与接口说明）。
-- 变更记录：[references/changelog.md](references/changelog.md)
+开通 token 或更多帮助：[TikTok社媒搜索与分析官网](https://www.guaikei.com)。

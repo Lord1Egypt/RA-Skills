@@ -1,6 +1,6 @@
 ## Description:
 
-Applies NASA Power of 10 rules for safety-critical verifiable code
+Applies NASA Power of 10 rules for safety-critical verifiable code.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use these guidelines to review and improve code where reliability matters, applying rigor in proportion to the consequences of failure.
+Developers and engineers use the skill to review safety-critical code against defensive coding rules and produce grounded findings with concrete remediation guidance.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review did not cover two referenced local paths, so the available scan evidence is incomplete.
+Risk: The security scan was incomplete because two referenced files were absent from the artifact, so its benign verdict does not cover those files.
 
-Mitigation: Review the referenced paths and the complete skill before installation.
+Mitigation: Review the missing referenced files and their behavior before relying on the scan assessment.
 
 ## Reference(s):
 
-- [Claude Night Market Pensive plugin](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
+- [Pensive plugin project page (Clawdis homepage metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Markdown]
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [Markdown with code examples and structured review findings]
+**Output Format:** [Markdown review findings with rule verdicts, source locations, and remediation guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Review findings may include rule verdicts, file and line locations, cited source text, issues, and suggested fixes.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: release evidence; artifact frontmatter lists 1.10.3)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Publishes HTML, Markdown, TXT, and static websites on Lightpage, and helps read and manage hosted works.
+Use Lightpage to publish HTML, Markdown, TXT, or static sites as shareable links, and to read and manage hosted works.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External creators use the skill to publish user-approved static works, share their links, read hosted content, and manage existing works and access settings.
+Users and developers use Lightpage to publish HTML, Markdown, TXT, and static sites, then read or manage hosted works and share their URLs. It also supports account linking, access controls, comments, and private messaging.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan marks the skill suspicious because reported social and messaging capabilities exceed its stated publishing purpose; scan coverage is partial.
+Risk: The security review marks this skill suspicious because it reports messaging, social, and referral capabilities beyond the stated publishing purpose. The scan was partial because several local references could not be resolved.
 
-Mitigation: Review the reported capabilities against your needs before installing. Treat the scan as incomplete; the separate AIG scan without findings does not close the coverage gap.
+Mitigation: Consider avoiding installation until the messaging, social, and referral features are clarified or removed and the tool scope is made clear; review the unresolved references because the evidence is incomplete.
 
 ## Reference(s):
 
-- [Lightpage homepage](https://lightpage.hqdx.store/)
-- [Publishing guide](references/publishing.md)
-- [Preflight review and browser verification](references/preflight.md)
-- [Work management](references/management.md)
-- [Access control](references/access.md)
-- [Platform capabilities](references/capabilities.md)
+- [Lightpage homepage](https://lightpage.hqdx.store)
+- [Lightpage on ClawHub](https://clawhub.ai/zhuchaokn/skills/lightpage)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, HTML, Code, Shell commands, Guidance]
+**Output Type(s):** [Files, Text, Shell commands, Guidance]
 
-**Output Format:** [Markdown with links, shell commands, and publication or management results]
+**Output Format:** [HTML, Markdown, TXT, or static-site content; shareable URLs; and Markdown or shell-command guidance.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Varies by task; publishing returns the actual hosted work link and access details.]
+**Other Properties Related to Output:** [Published works are returned as hosted links; commands and guidance cover reading, publishing, and managing works.]
 
 ## Skill Version(s):
 
-0.14.0 (source: release evidence)
+0.19.0 (source: release metadata)
 
 ## Ethical Considerations:
 

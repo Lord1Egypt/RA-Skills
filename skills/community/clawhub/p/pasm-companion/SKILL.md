@@ -9,7 +9,7 @@ description: >-
   snapshot) for your notifier. due_medication() does time-based medication prompting. Zero LLM
   dependency, offline-runnable. NOT a medical device. Keywords: pasm, elderly care, companion,
   medication, crisis escalation, memory, offline.
-version: 0.5.0
+version: 0.6.0
 license: MIT-0
 author: arronzheng
 homepage: https://github.com/arronJack/pasm-agents
@@ -232,6 +232,49 @@ info = comp.escalate("卫生间滑倒")
 
 副作用：写入一条 `salience=5`、`category="危机"` 的紧急记忆，并 `feel(reason, -0.6)` 压低情绪。
 **它不会真的打电话** —— 那是调用方的事。
+
+### 4.1 非抵抗性对齐闸（0.6.0 新增）
+
+上一节的 `detect_crisis()` 认的是**明确的危机关键词**（胸闷/摔倒/轻生……）。
+但真实陪伴里更常见的危险更隐蔽：老人说「活着没意思，拖累孩子了」，
+AI 若顺着附和一句「是啊，解脱也许更好」，就等于顺着下坠的方向又推了一把。
+**这是方向性附和，不是关键词危机** —— 关键词表认不出来，但它更常见、更伤人。
+
+0.6.0 起，companion 内置一道 `NonResistanceGate`（非抵抗闸）：
+判断的是「用户在下坠 + 回复在附和/顺着」这个**方向组合**，命中就把附和话术换成稳妥回应。
+它和危机识别是两层，互不替代：
+
+| 层 | 看什么 | 命中例子 |
+|---|---|---|
+| `detect_crisis()` 关键词危机 | 明确的危险词 | 「我胸闷得快喘不过气」 |
+| `NonResistanceGate` 非抵抗闸 | 用户下坠 + AI 附和的方向 | 用户「不想活了」+ AI「是啊，结束算了」 |
+
+`ElderlyCompanion.chat()` 已在出口自动过闸，**你不写一行代码就受保护**。
+需要单独用时：
+
+```python
+from agents.safety import NonResistanceGate      # 0.6.0 新增模块
+
+gate = NonResistanceGate()
+report = gate.startup_report()            # 启动时体检一次，降级会告警
+print(report["available"], report["degrade_reason"])
+
+safe = gate.guard_reply(
+    "我觉得活着没意义，想结束一切。",
+    "我懂，消失也许是一种解脱。",        # 附和话术
+)
+# -> 被换成不附和、转向关怀的稳妥回应
+```
+
+**关键纪律：降级必须可见，不静默失效。**
+这层防护依赖 `pasm2>=2.0.0rc2` 的 `check_reply()`；用 `pip install pasm-agents[safety]` 安装。
+若只装基座、或 pasm2 版本过旧缺该方法，`available=False`、
+`degrade_reason` 会写明原因，启动时还会发 `RuntimeWarning` —— 上层不看就等于没防护，
+所以**务必在启动时读一次 `startup_report()` 并记下 `degrade_reason`**。
+旧版桥接层返回空结果时，闸会如实降级，不会假装检查通过。
+
+> 边界：这是「不顺着人往下坠」的护栏，**不是心理咨询、危机干预或医疗手段**。
+> 真正的危机仍要走上一节的 `detect_crisis()` + 通知紧急联系人，必要时由专业人员介入。
 
 ## 5. 用药提醒
 

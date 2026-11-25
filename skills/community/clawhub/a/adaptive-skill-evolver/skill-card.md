@@ -1,47 +1,64 @@
-## Description: <br>
-Skill Evolver analyzes agent execution traces, generates evidence-scored Evolution Units, and can attach durable lessons to skills so agents adapt from prior use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Evolver analyzes agent execution traces to generate evidence-scored Evolution Units that update a skill's guidance over time.
 
-## Publisher: <br>
-[polkalian](https://clawhub.ai/user/polkalian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT No Attribution <br>
+## Publisher:
 
+[polkalian](https://clawhub.ai/user/polkalian)
 
-## Use Case: <br>
-Developers and agent operators use this skill to review how skills perform in real sessions, turn recurring lessons into reusable guidance, and manage which lessons are attached to each skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect agent session logs and persist derived trace or evolution history. <br>
-Mitigation: Install only in environments where session-log review is acceptable, and review retained state/history files according to local data-handling policy. <br>
-Risk: The skill can send trace, unit, or skill text to the configured model provider. <br>
-Mitigation: Set privacy.allowRemoteLLM to false for sensitive environments, or configure an approved model endpoint before enabling generation, validation, or review. <br>
-Risk: The skill can update other skills' SKILL.md files with generated guidance. <br>
-Mitigation: Use manual mode or review generated Evolution Units before inlining; evict or block units and skills that should not be modified. <br>
-Risk: Automatic scheduling may run evolution cycles without direct user initiation. <br>
-Mitigation: Avoid enabling scheduling until setup and scheduling configuration are reviewed, and prefer manual mode when unattended runs are not appropriate. <br>
+## Use Case:
 
+Developers and agent operators use this skill to review execution traces, generate evidence-scored lessons for agent skills, and manage which lessons are attached, pinned, evicted, or blocked.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/polkalian/adaptive-skill-evolver) <br>
-- [README](README.md) <br>
-- [Skill Instructions](SKILL.md) <br>
-- [Brief Report Prompt](brief-prompt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, JSON status/configuration data, shell commands, and concise text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+ and an Agent Skills-compatible platform with JSONL session logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.13 (source: frontmatter and server release metadata) <br>
+Risk: Automatic persistence can write Evolution Units, inline SKILL.md blocks, state/config JSON, and scheduled background updates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start in manual mode and inspect generated Evolution Units before allowing SKILL.md writeback or cron-style background runs.
+
+Risk: Trace and unit or skill text may be sent to a configured remote LLM provider.
+
+Mitigation: Disable remote LLM unless needed, and use only trusted HTTPS LLM endpoints when remote review or generation is enabled.
+
+Risk: Safety review weaknesses, including fail-open reviewer behavior, may allow unsafe units to pass in sensitive environments.
+
+Mitigation: Resolve the reviewer behavior before sensitive use, and manually review and scan generated units before deployment.
+
+Risk: Documented setup and scheduling commands reference setup/schedule files that are not present in the artifact.
+
+Mitigation: Resolve the missing setup and schedule files before relying on automated initialization or schedule status commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/polkalian/skills/adaptive-skill-evolver)
+- [Skill README](README.md)
+- [Skill Definition](SKILL.md)
+- [License](LICENSE)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON status or configuration output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write Evolution Unit Markdown files, SKILL.md inline blocks, state/config JSON, and trace/evidence history when run.]
+
+## Skill Version(s):
+
+2.4.13 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -4,6 +4,7 @@
 const constants = require("../config/constants");
 const { SkillError } = require("../utils/errors");
 const { requestApi, pollTaskResult } = require("../utils/request");
+const { pickCost, pickTaskId } = require("../utils/cost");
 
 /**
  * 处理用户搜索结果。字段原样透出，有 sec_uid 时补 author_url。
@@ -17,6 +18,7 @@ function processUserSearchResults(data) {
   }
 
   return data.map((item) => {
+    if (!item || typeof item !== "object") return item;
     const processedItem = { ...item };
     if (item.sec_uid) {
       processedItem.author_url = `https://www.douyin.com/user/${item.sec_uid}`;
@@ -30,9 +32,10 @@ function processUserSearchResults(data) {
  * @param {string} token
  * @param {string} keyword
  * @param {number} limit
+ * @returns {Promise<string|undefined>} Create 成功时的任务 id（uuid）；缺失则查询仅带业务字段
  */
 async function createUserSearchTask(token, keyword, limit) {
-  return await requestApi(
+  const response = await requestApi(
     "POST",
     "/api/douyin/user-search/keyword",
     { _: Date.now() },
@@ -46,6 +49,7 @@ async function createUserSearchTask(token, keyword, limit) {
     constants.CREATE_MAX_ATTEMPTS,
     "创建任务",
   );
+  return pickTaskId(response);
 }
 
 /**
@@ -53,26 +57,26 @@ async function createUserSearchTask(token, keyword, limit) {
  * @param {string} token
  * @param {string} keyword
  * @param {number} limit
- * @returns {Promise<Array>}
+ * @param {string} [taskId] Create 返回的任务 id；有则查询只传 id（不带业务字段）
+ * @returns {Promise<{ results: Array, cost?: number }>}
  */
-async function getUserSearchTask(token, keyword, limit) {
+async function getUserSearchTask(token, keyword, limit, taskId) {
+  const params = taskId
+    ? { id: taskId }
+    : { keyword, fans: 0, type: 0, limit };
   const response = await pollTaskResult(
     "/api/douyin/user-search/info",
-    {
-      keyword,
-      fans: 0,
-      type: 0,
-      limit,
-    },
+    params,
     token,
     "查询任务",
   );
+  const cost = pickCost(response);
 
   if (response.data) {
-    return processUserSearchResults(response.data);
+    return { results: processUserSearchResults(response.data), cost };
   }
 
-  return [];
+  return { results: [], cost };
 }
 
 module.exports = {

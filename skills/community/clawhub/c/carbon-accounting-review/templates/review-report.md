@@ -32,3 +32,6 @@ Statuses: PASS = this named check supported; ISSUE = observed inconsistency; NOT
 - Injection response vs actual instrumented runtime evidence (do not conflate):
 - Checks completed vs untested branches:
 - This is a bounded review, not legal advice, third-party assurance, certification or proof of emissions reductions.
+
+## 6. Optional AI workflow review
+If applicable, attach the [AI-governance addendum](ai-governance-addendum.md). Keep carbon calculation, model explanation, human review and legal applicability verdicts separate. Otherwise mark this branch NOT REVIEWED/out of scope.

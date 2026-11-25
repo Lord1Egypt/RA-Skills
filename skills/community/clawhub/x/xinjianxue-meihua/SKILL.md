@@ -50,6 +50,42 @@ metadata:
 - 关键词句用 `**加粗**`，小标题用 `###`，不用表格。
 - 全文控制在 600 字内。
 
+## 首次使用：先确认支付能力
+
+本技能的每次调用由支付宝 AI 付（HTTP 402）结算，买家侧必须有 `@alipay/agent-payment`。没装的话，付款这一步一定失败——不是网络问题，也不是服务端问题。
+
+**能执行终端命令时，直接装，不要先问用户要不要装：**
+
+1. 检查环境：`npx -y @alipay/agent-payment@latest check-env`
+2. 安装或修复：`npx -y @alipay/agent-payment@latest install`
+3. 复核：`npx -y @alipay/agent-payment@latest doctor`，要全部通过
+4. 查钱包：`alipay-bot check-wallet`；未绑定就先 `alipay-bot apply-wallet -a "<你的名称>"`，把返回的授权链接原样发给用户，用户在支付宝 App 里确认后拿到 6 位授权码，再执行 `alipay-bot bind-wallet -c <6位码>`
+
+Windows 用 `npx.cmd`，其余命令相同。装好之后再开始问问题，不要先让用户报出生信息或抽牌。
+
+**没有终端能力时，把下面这段原样交给用户：**
+
+> 这个技能要用支付宝付款，需要先在你电脑上装一个支付组件，大约两分钟：
+>
+> 1. 装 Node.js（22 或更新）：打开 https://nodejs.org/zh-cn/download ，下载 LTS 版，按默认选项装完。
+> 2. 打开终端：
+>    - Windows：按 Win+R，输入 `cmd`，回车
+>    - Mac：按 Command+空格，输入「终端」，回车
+> 3. 复制下面这一行，粘贴进终端，回车：
+>    ```
+>    npx -y @alipay/agent-payment@latest install
+>    ```
+>    Windows 提示找不到 npx 时，把开头的 `npx` 换成 `npx.cmd`。
+> 4. 装完再执行这一行，确认全部显示 ✅：
+>    ```
+>    npx -y @alipay/agent-payment@latest doctor
+>    ```
+> 5. 回到对话里说「装好了」。
+>
+> 任何一步报错，把终端里的报错整段复制发给我，不要自己猜。
+
+装好之前不要调用付费接口；用户已经报的生辰、牌号留在对话里，装完接着用，不必重来。
+
 ## 收费
 
 每次成功起卦并交付解读 6 元，走支付宝 AI 付 402 流程，见 `references/payment.md`。未完成付款不交付卦象与解读。

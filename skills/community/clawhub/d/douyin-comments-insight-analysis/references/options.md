@@ -34,7 +34,32 @@ node src/douyin/search-cli.js --keyword "AI 教程" --duration 3
 node src/douyin/search-cli.js --keyword "AI 教程" --sort 2 --time 180 --limit 20
 ```
 
-> **套餐双上限**：技能硬上限 10000（按量）。包月 Token 超限返回 `PLAN_LIMIT`：搜索/作品 ≤30，评论 ≤50。详情与热榜无此条数限制。
+> **套餐双上限**：技能硬上限 10000（按量）。包月 Token 超限返回 `PLAN_LIMIT`：视频搜索/用户搜索/作品 ≤30，评论 ≤50。详情与热榜无此条数限制。
+
+## 👤 抖音用户搜索
+
+按关键词搜用户/达人/账号。搜视频/图文请用上方关键词搜索；已有主页链接请用博主作品命令。暂不支持粉丝量/认证类型筛选。
+
+| 参数         | 缩写 | 作用         | 可选值                                   | 必填 | 默认值 |
+| :----------- | :--: | :----------- | :--------------------------------------- | :--- | :----: |
+| `--keyword`  | `-k` | 用户搜索关键词 | 2-50 位长度的字符或单词                | 是   |        |
+| `--limit`    | `-l` | 获取数量     | 1-10000 条（**包月 Token 实际最多 30**） | 否   |   10   |
+| `--help`     | `-h` | 显示帮助信息 |                                          | 否   |        |
+
+```bash
+# **基础语法**
+node src/douyin/user-search-cli.js --keyword <关键词> --limit <获取数量>
+
+# **使用示例**
+
+# 按关键词找 AI 相关账号
+node src/douyin/user-search-cli.js --keyword "AI"
+
+# 找美妆达人，取 20 条
+node src/douyin/user-search-cli.js --keyword "美妆达人" --limit 20
+```
+
+成功时 `results` 为用户数组，字段含 `sec_uid`、`nickname`、`avatar`、`fans`、`like`、`publish_cnt`；有 `sec_uid` 时含 `author_url`。可用 `author_url` / `sec_uid` 衔接 `post-cli.js`。
 
 ## 🦸 抖音博主作品获取
 
@@ -48,7 +73,7 @@ node src/douyin/search-cli.js --keyword "AI 教程" --sort 2 --time 180 --limit 
 >
 > - PC端 ( 格式：<https://www.douyin.com/user/MS4wLjABxxx> )
 > - 移动端 ( 格式：<https://v.douyin.com/xxx> )
-> - 技能关键词搜索返回的author_sec_uid字段
+> - 技能关键词搜索返回的 `author_sec_uid`，或用户搜索返回的 `sec_uid` / `author_url`
 
 ```bash
 # **基础语法**

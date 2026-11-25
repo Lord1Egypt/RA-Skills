@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes public Kuaishou videos, creator posts, and comments through keyword, profile, and video-link queries, returning structured JSON.
+通过关键词搜索、创作者主页和视频链接获取快手公开作品与评论数据，支持内容选题、竞品研究和舆情分析。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Kuaishou creators, brand teams, and market analysts use the skill to research content topics, review public competitor posts, and examine video comments and engagement data.
+快手品牌方、内容创作者、营销人员和分析师可用此技能搜索公开视频、查看创作者作品与评论互动数据，支持选题研究、竞品分析和舆情分析。
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Keywords or links submitted for queries may be sent to guaikei.com; the security scan also reports that some scripts were only partially interpreted.
+Risk: Search keywords and account or video links are sent to a third-party service and could reveal sensitive interests.
 
-Mitigation: Use only non-confidential keywords and public links, and review the source before installation if the data sharing or incomplete scan coverage is a concern.
+Mitigation: Use non-sensitive keywords and public account or video links; avoid requests that disclose confidential interests.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/why20261/skills/kuaishou-insight)
-- [Guaikei service and token access](https://www.guaikei.com)
-- [CLI options](references/options.md)
-- [Changelog](references/changelog.md)
+- [ClawHub skill page](https://clawhub.ai/why20261/skills/kuaishou-insight)
+- [Publisher profile](https://clawhub.ai/user/why20261)
+- [Guaikei service](https://www.guaikei.com)
+- [Command options](references/options.md)
+- [Release changelog](references/changelog.md)
+- [Output envelope schema](assets/output_envelope.schema.json)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis]
+**Output Type(s):** [JSON, Analysis, Guidance]
 
-**Output Format:** [Structured JSON containing public video, creator, or comment data]
+**Output Format:** [Structured JSON data with usage guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results depend on the GUAIKEI_API_TOKEN plan and applicable query limits.]
+**Other Properties Related to Output:** [Retrieves public Kuaishou search, creator, and comment data; requires Node.js and a GUAIKEI_API_TOKEN.]
 
 ## Skill Version(s):
 
-1.1.1 (source: frontmatter, package.json, changelog)
+1.1.2 (source: frontmatter, package.json, server release)
 
 ## Ethical Considerations:
 

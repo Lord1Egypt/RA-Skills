@@ -1,6 +1,6 @@
 ## Description:
 
-Connects MCP-compatible agents to ten Chinese model providers for text and multimodal requests, with health checks and usage reporting.
+Provides a standard MCP gateway that lets agent frameworks call ten Chinese large language model providers through a unified interface.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Developers connect MCP-compatible agents to Chinese model providers for chat, image and video understanding, transcription, embeddings, reranking, and batch requests. They can also compare providers and generate health and usage reports.
+Developers use the gateway to connect MCP-compatible agents and supported agent frameworks to Chinese model providers through a single interface. They can request model responses, multimodal analysis, embeddings, reranking, transcription, and gateway usage reports.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Prompts and selected media or text inputs are sent to configured model providers.
+Risk: ClawScan reports undeclared capabilities and behavior that conflicts with the gateway's stated purpose, as well as unexpected network access and unsafe troubleshooting advice.
 
-Mitigation: Use only providers approved for the data you submit.
+Mitigation: Review the skill carefully before installation, compare its behavior with its advertised purpose, and inspect troubleshooting guidance before following it.
 
-Risk: API keys and locally stored prompts or results may be exposed if configuration or local data is accessible to others.
+Risk: The security guidance identifies possible model downloads, prompt transmission to providers, and local storage of prompts and votes; scanner coverage is partial because some referenced paths were missing.
 
-Mitigation: Prefer environment variables for API keys and protect local ~/.cn-model-gateway databases.
-
-Risk: Optional report webhooks can send reports to an unintended destination.
-
-Mitigation: Configure only trusted webhook URLs and review reports before enabling delivery.
+Mitigation: Review provider data handling and local storage behavior, and inspect the referenced paths before installation.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/fyniujin/skills/cn-model-gateway)
-- [Provider error mapping](references/error_map.yaml)
-- [DeepSeek platform](https://platform.deepseek.com/)
+- [ClawHub release page](https://clawhub.ai/fyniujin/skills/cn-model-gateway)
+- [Project homepage](https://skillhub.cn/skill/cn-model-gateway)
+- [Provider error map](references/error_map.yaml)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Code, JSON tool responses, HTML reports]
+**Output Type(s):** [Text, JSON, Embeddings, Ranked results, Transcriptions, Usage and health reports]
 
-**Output Format:** [Text or JSON responses, with optional local HTML health reports]
+**Output Format:** [MCP JSON-RPC responses and provider-dependent model outputs]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Provider-dependent answers; batch tasks can retain prompts and results locally.]
+**Other Properties Related to Output:** [Results and supported modalities depend on the selected provider and model.]
 
 ## Skill Version(s):
 
-1.9.0 (source: ClawHub release and skill frontmatter)
+2.1.0 (source: server-resolved release)
 
 ## Ethical Considerations:
 

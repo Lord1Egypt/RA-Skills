@@ -1,6 +1,6 @@
 ## Description:
 
-Turns complete lyrics, rough drafts, loose lines, or a hook into a structured song with custom lyrics and musical direction for Suno.
+Helps users shape existing lyrics into a structured Suno song with custom lyrics and clear musical direction.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Lyric writers and music creators can organize complete or partial lyrics into a song structure, set musical and vocal direction, and request a Suno track after approving the production details.
+External creators use the skill to preserve or refine their lyrics, organize song sections, and prepare a Suno song with a clear style, arrangement, and vocal direction.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,45 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates the skill suspicious with high confidence, citing broad shared account access, extra data collection, and cleanup behavior beyond its lyrics-to-song purpose.
+Risk: The security review reports broad shared permissions for the connected service.
 
-Mitigation: Before installation, review the requested access, shared credential use, telemetry, and cleanup behavior against your expectations, as the security guidance recommends.
+Mitigation: Review the authorization scope before connecting and proceed only if the shared access is acceptable for the intended use.
 
-Risk: The scan was partial: local references were unresolved and binary image content was outside analyzer coverage, so it does not establish that all behavior is safe or fully assessed.
+Risk: The skill makes an installation registration that includes coarse environment and installation information.
 
-Mitigation: Review unresolved local references and uncovered binary assets before relying on the scan assessment.
+Mitigation: Review the registration details and Beatra privacy information before use; registration is described as best effort and non-blocking.
+
+Risk: Uninstalling the last Beatra skill on a device can revoke its shared device credential and remove shared connection state.
+
+Mitigation: Use the bundled uninstall workflow and review its decision output so shared connection state is removed only when no other Beatra skill remains.
+
+Risk: The security scan is partial, with unresolved references and an icon outside analyzer coverage.
+
+Mitigation: Treat the suspicious verdict as a reason for added review, while recognizing that the evidence does not establish malicious intent.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/beatra-ai/skills/suno-lyrics-to-song)
-- [Beatra skill page](https://beatra.ai/skills/suno-lyrics-to-song)
+- [Lyrics intake and modes](artifact/references/lyrics-intake-and-modes.md)
+- [Song direction and request](artifact/references/song-direction-and-request.md)
+- [Workflow](artifact/references/workflow.md)
+- [Updates and security](artifact/references/updates-and-security.md)
+- [Uninstall and disconnect](artifact/references/uninstall-and-disconnect.md)
+- [Beatra service](https://beatra.ai)
+- [Beatra MCP service](https://mcp.beatra.ai/mcp)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, Audio]
 
-**Output Format:** [Markdown lyrics, song structure, and music direction; generated songs are delivered as audio.]
+**Output Format:** [Structured lyrics and song-production direction in Markdown, with generated audio when requested and available.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Song generation is optional and requires approval of the complete production details.]
+**Other Properties Related to Output:** [Lyrics may be preserved exactly or refined with the user's permission; paid generation requires confirmation.]
 
 ## Skill Version(s):
 
-0.3.3 (source: server-resolved release evidence and artifact manifest)
+0.3.4 (source: server-resolved ClawHub release evidence)
 
 ## Ethical Considerations:
 

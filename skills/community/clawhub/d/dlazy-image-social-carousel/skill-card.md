@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Content creators and social media teams use this skill to plan carousel structure, slide headlines and references, then guide cover-first slide generation.
+External users and social content creators use this skill to plan carousel narratives, define each slide's role and copy, and guide cover-first generation of a consistent slide set with confirmation between phases.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The scan flagged dLazy login and authentication setup that does not clearly match the carousel-design purpose; the scan was partial and could not resolve some referenced paths and package details.
+Risk: The workflow requires dLazy authentication, and prompts or supplied media may be sent to dLazy-hosted services; the security assessment also flags that the authentication setup is not clearly declared for the carousel-design purpose.
 
-Mitigation: Before installing, review the dLazy login and setup steps and CLI package information, and confirm they fit your needs.
+Mitigation: Review the dLazy CLI authentication and data-handling details before use, and submit only prompts and assets approved for that service.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-image-social-carousel)
-- [dLazy CLI project (listed in skill metadata)](https://github.com/dlazy-ai/cli)
-- [dLazy CLI on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
 - [dLazy](https://dlazy.com)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Text, Markdown]
+**Output Type(s):** [Guidance, Markdown, Images]
 
-**Output Format:** [Markdown with structured slide-planning content]
+**Output Format:** [Markdown planning tables and structured slide guidance; carousel image assets via the dLazy CLI.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Platform-specific carousel plan with a cover-first workflow]
+**Other Properties Related to Output:** [Cover-first workflow with user confirmation before generation; image generation requires dLazy CLI authentication.]
 
 ## Skill Version(s):
 
-1.3.42 (source: server-resolved release metadata)
+1.3.45 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

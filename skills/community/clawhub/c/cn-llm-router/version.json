@@ -1,1 +1,1 @@
-{"version": "2.7.0", "homepage": "https://skillhub.cn/skill/cn-llm-router", "notes": "v2.7.0：增加价格档案本地化（models.yaml 12 厂商主力模型基准价 + 采集日期）；增加降价检测 price-check（轻量抓取厂商价目页 + 哈希比对 + 人工确认）；优化 cheap 策略质量感知（性价比排序替代纯最便宜）；优化报表双轨计算（档案价估算 vs 实测回填）"}
+{"version": "2.9.0", "homepage": "https://skillhub.cn/skill/cn-llm-router", "notes": "v2.9.0：增加批处理 batch 子命令（txt/jsonl 清单 + 硬件自适应并发 + 失败重试队列 + SQLite 断点续跑零重复计费）；增加跑前成本预估（本地分词×档案价 + 超预算 --yes 显式确认）；增加长文分块一键链 longchain（分块→并行→合并，摘要 map-reduce / 翻译按序拼接+术语一致性检查）；增加 A/B 本地评测集（50 题四类 + 本地评分器四维得分表+雷达图 + SQLite 历史对比 + auto --personalized 个性化可解释选模）"}

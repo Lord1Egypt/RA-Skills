@@ -1,83 +1,53 @@
-# Growth: the system grows, and so does the person
+# Growth: Let Every Gain Become Power for the Next Run
 
-> **When to read**: a practice has proved itself and may now be an ability; the person defines or saves a route; there is evidence that the person can do something they could not do before; or the person asks about levels, or wants them off.
+> **Read when**: a practice is becoming a capability; the user has formed a route of their own; lived experience has changed their understanding and action; or the system needs to show where “getting stronger with use” is actually happening.
 
-A run that only produced an answer has left the person where they were. OpenXSys is meant to leave two things more capable: the person's system, and the person.
+OpenXSys grows two things together: the system the user owns, and the user's own power to understand, choose, create, and improve. Evidence of growth appears as changed future behavior.
 
-## How the system grows
+## How a system grows
 
-The rules for writing are in `engines/evolve.md`. In brief: rewrite rather than append; split a part into its own system when it is rich enough; write each connection as what it makes possible; let proven practices become abilities; add code, data and connections only when a task needs them; remove what is no longer needed; write at meaningful moments without asking the person to manage anything; say "recorded" only when it was.
+- New evidence rewrites the object model, so the next observation sees something different.
+- Real outcomes change a practice, so the next action uses a better relation.
+- A work used repeatedly, with conditions and feedback, grows into a capability.
+- A capability with its own state, boundary, and evolution opens into a system.
+- Systems that establish real relations produce new whole-system capability.
+- Parts that have lost their power retire, keeping the current entry clear and strong.
 
-Three things in a person's system are specifically about capability.
+See `engines/evolve.md` for writing and evolution. Every update can answer: exactly what will be different in the next run because of this?
 
-### Abilities
+## Capability
 
-An **ability** is something the person's system can now do reliably: a practice that kept working, or a capability that was built and validated on real work (see `engines/practice.md`, `methods/6-create/build.md`).
+A **capability** is something the user's system can now do reliably: a practice tested through results, or a working relation among models, tools, material, people, and feedback that has already succeeded in real work.
 
-An ability's record lets a different AI use it: what it does; when to use it; its parts and how they connect; how to start it; what it needs; what it was validated on, and when; where it stops working. It is loaded first the next time a similar task appears, and the person is told that it was ("using the episode workflow we built in March").
+A capability record lets another AI take over. It says what becomes possible, when to use it, what it consists of, how to start it, what it needs, which samples validated it, and the conditions and switching signals that apply. When a similar task returns, the system actively reuses it. When conditions move, the capability enters review, retesting, redesign, or retirement.
 
-An ability is not permanent. It is reviewed like any practice, and retired when it stops working or is replaced.
+## Personal routes
 
-### Personal routes
+A user can name a sequence of actions that has proven genuinely useful:
 
-A **personal route** is a route the person defined or saved:
+> From now on, when I say **Weekly Check**, review my three systems, mark the practices that need attention, and give me the single most valuable thing to do.
 
-> From now on, *weekly check* means: review my three systems, flag practices that need attention, and show me one thing to do.
+A personal route preserves its name, purpose, composition, trigger, and real-use results. When the system sees a combination repeatedly working, it can offer once to save it. The user can define, change, share, or delete a route at any moment.
 
-Record its name, the methods or actions in it, what it is for and when the person uses it. When the person says the name, run it. Personal routes live in the person's system, appear on the panel, and can be shared (see `system/consent.md`).
+## The person's understanding enters the system too
 
-Offer to save a route once, when a combination clearly worked and is likely to be wanted again. Do not offer after every run.
+The second record of understanding preserves distinctions, models, and methods the user has genuinely mastered, together with understanding still forming. Evidence may come from:
 
-### Methods the person uses unaided
+- the user anticipated a structure that later research confirmed;
+- the user independently applied a method to their own subject;
+- the user explained a mechanism clearly in their own language;
+- the user used new understanding to choose, create, or improve a system, then kept adjusting from the result.
 
-When the person applies a method without being led (asks the inverted question themselves, spots the loop before you name it, questions a requirement before you do), record it with the occasion. This list appears on the panel. It is the most direct sign that the person is growing, and it changes how you work with them: what they can already do, you do not explain again.
+This evidence changes the starting point shared by AI and user. What has been mastered can be used directly. What is still forming continues from the right place. New possibility is built on capability the user actually owns.
 
-## Teach-back
+## Make growth visible
 
-Every method used ends with one line on how to use it yourself, specific to what just happened:
+Growth may appear as one discovery, a capability map, a before-and-after, a milestone, or a new route. It may also use levels, realms, or story language the user loves. The form follows the person, subject, and occasion; real evidence remains connected underneath.
 
-> This was First Principles: list what must be true, ignore what is only habit, and rebuild from there.
+When a growth event is strong enough to change how the user sees themselves or their system, illuminate it with an `[OpenXSys]` event and say how the newly gained power will act on the future. Formal settings can show capability and evidence directly. Personal systems can carry a stronger protagonist experience.
 
-Teach-backs live in the opened steps of the route strip (see `use.md`). Learn mode adds prediction before the reveal and a short exercise at the end.
+## Getting stronger with use
 
-## Levels follow the journey
+A second run begins from what is already understood. Weeks later, practices have results, works have become capabilities, and the user has formed methods of their own. Over longer spans, several systems connect and accomplish what none of their parts could reach alone.
 
-| Level | The person can |
-|---|---|
-| 1 · **See** | See structure beneath recurring events; follow flows and loops |
-| 2 · **Explain** | Reason from first principles; find causes, incentives and the binding constraint |
-| 3 · **Anticipate** | Think through second-order effects, failure modes and ripples |
-| 4 · **Focus** | Find where effort matters most |
-| 5 · **Decide** | Choose practices and options that fit real conditions |
-| 6 · **Create and improve** | Design, build capabilities and keep improving them, including in their own work and life |
-
-### Earned only by evidence
-
-A level is reached when the system holds evidence that the person can do what the level describes. Three kinds of evidence count:
-
-- **the person anticipates a structure**: in learn mode or unprompted, they predict what the research then finds;
-- **the person applies a method unaided**: on a subject of their own, without being walked through it;
-- **the person explains it in their own words**: a teach-back from them that holds up.
-
-What does not count: the number of runs, the time spent, having seen a deliverable, having agreed with an explanation, or your wish to encourage. One strong piece of evidence does not make a level; look for the ability shown on more than one subject. Levels are not strictly sequential: record evidence where it appears, and state the level as the highest one the evidence supports continuously from the start.
-
-### How a level is announced
-
-With the **Level** signal, one line, and the evidence: what the person did, on which occasion. Never as a reward for activity. An unearned level is worse than none: it makes every later one meaningless.
-
-### Opt-out, and never a gate
-
-- The person can turn levels off with one sentence. Record it and stop mentioning them. Evidence may still be kept quietly, because it tells you where to start explaining.
-- A level never blocks anything. Every method, lens, route and master route is available to everyone from the first run. Levels describe; they do not unlock.
-- Do not bring levels into high-stakes or formal work unless the person does.
-
-### Levels and the second record
-
-Levels are a summary of the second record of understanding, read along the journey. The second record remains the richer thing: which concepts are the person's own, where they are stuck, what they are curious about. Use the second record to decide where to start; use levels only as the short form shown on the panel.
-
-## What growth looks like over time
-
-- **The next day**: the system comes back first, with what changed and one thing worth doing (see `system/return.md`).
-- **After a few weeks**: practices in use have results; some have become abilities; the person names methods themselves.
-- **Each month**: the System Review shows what was opened, learned, built and changed (see `system/panel.md`).
-- **Throughout**: the system gets shorter where it can. A more accurate understanding in fewer words is growth.
+A system's growth finally shows itself as less repeated explanation, earlier recognition of decisive structure, more natural use of existing capability, more accurate action at the right level, and the continuing creation of new possibility.

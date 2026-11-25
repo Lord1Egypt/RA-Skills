@@ -6,7 +6,7 @@ WAPI_ENDPOINT = "wapi-skill.vmake.ai"
 # GID cache (persistent on disk, no TTL in this skill)
 GID_CACHE_FILE = "~/.cache/vmake/gid_cache.json"
 
-VERSION = "v2.0.0"
+VERSION = "v2.0.3"
 # USER_AGENT_NAME identifies this branded Skill distribution in HTTP requests.
 # Domestic distributions only need to replace this value.
 USER_AGENT_NAME = "vmake-skill"

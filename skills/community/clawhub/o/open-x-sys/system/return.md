@@ -4,9 +4,9 @@
 
 When the person opens a new session, the system should already be there. Whether a host instruction brought it back or a sentence called it back, you do the same thing.
 
-## Read first
+## Find what this run should continue
 
-Go to where the system lives and read the root entry. If the current workspace has its own system, read that too. Follow the entries to whatever they point at that this session will need: practices in use, watch conditions, the system the person was last working in. System files may have been edited by the person: the file as it stands is the truth.
+Use the authorized entries relevant to the present subject. The root entry can supply personal context and cross-project relations; a project entry carries the project's facts, constraints, and results. Follow them into the practices, observations, and existing work truly relevant now. The user's current corrections and actual files take precedence. For more complex location, see [System Entry and Continuity](continuity.md).
 
 If neither place has a system, say plainly that none was found and offer a choice: point you to where it is, or open one now from what is in front of you.
 
@@ -28,10 +28,10 @@ The person should feel that the past has changed the present. Do not repeat the 
 
 - **The person arrives with a specific task**: start from the system and do that task, using what is already understood. Mention a related change in one sentence.
 - **"Continue" points to something clear in the entry**: continue it, and say in one line what you are continuing.
-- **"Continue" is ambiguous**: do not ask "continue what?" Recommend the most valuable next step recorded in the entry and list the other options.
+- **“Continue” has several possible targets**: make a grounded choice from the active subjects, explicit trust, and present workspace. When different targets would materially change the result, bring the two consequential directions to the user and advance their shared reversible work as far as possible.
 - **A long gap**: for subjects that move (companies, markets, technologies), check whether the understanding is stale before building on it, and say as of when it holds.
 - **A monthly return**: offer the System Review once (see `system/panel.md`).
-- **Do not turn return into a report.** Three or four sentences and a choice. The detail is in the files and one question away.
+- **Let return become a new starting point.** Use enough space to reconnect change, opportunity, and recommendation; open detail as the user continues.
 
 ## Letting the system come back by itself
 
@@ -44,11 +44,11 @@ One line in the host's global or project instructions (for example `~/.claude/CL
 - **The real path.** The line contains the full path of the entry where the system actually lives. If the system lives only in one folder, a session opened elsewhere may not find it: that is one reason to propose the line, and when the person chose "only this folder" it should be said clearly.
 - **Propose once.** After the root exists, at a fitting moment. If the first run was about an outside subject and the root is still thin, there is no hurry. Record the answer in the root. A refusal or a non-committal answer both mean "not now": do not raise it again until the person does.
 - **Without the line** the system still returns when the person says "open my system" or "continue".
-- **The person can delete the line at any time.** Never touch host instructions without consent, and never add anything beyond the line that was shown.
+- **The user owns this line.** After confirmation, write its exact content. The user can change or remove it at any time, while the rest of the host instructions retain their existing ownership and structure.
 
 ## Checking watched signals
 
-A watch condition records a signal, a threshold and what it would mean (see `methods/7-improve/watch.md`). OpenXSys has no background process. Watches are checked **when the system comes back**, by looking: reading the file, rerunning the script, looking up the figure. Say which were checked and which could not be. If the person wants a signal checked on a schedule without a session, that is code running repeatedly, which they must approve (see `system/consent.md`).
+A watch condition records a signal, a threshold and what it would mean (see `capabilities/methods/7-improve/watch.md`). OpenXSys has no background process. Watches are checked **when the system comes back**, by looking: reading the file, rerunning the script, looking up the figure. Say which were checked and which could not be. If the person wants a signal checked on a schedule without a session, that is code running repeatedly, which they must approve (see `system/consent.md`).
 
 ## Another AI, another host
 

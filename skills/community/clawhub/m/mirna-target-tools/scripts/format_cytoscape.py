@@ -5,8 +5,20 @@ Usage: python format_cytoscape.py --input merged_results.txt --output network.si
 """
 
 import argparse
-import pandas as pd
+import math
+import os
+import re
 import sys
+
+import pandas as pd
+
+
+def clean_label(value, limit=200):
+    """Make a value safe as a SIF/Cytoscape node label."""
+    if value is None or (isinstance(value, float) and math.isnan(value)):
+        return ''
+    text = re.sub(r'[\s\x00-\x1f]+', '_', str(value)).strip('_')
+    return text[:limit] if text else 'NA'
 
 def main():
     parser = argparse.ArgumentParser(
@@ -33,12 +45,16 @@ def main():
     # Write SIF format: source interaction target
     edges = []
     nodes = {}
-    
+    interaction = clean_label(args.interaction_type, limit=40) or 'regulates'
+    out_dir = os.path.dirname(os.path.abspath(args.output))
+    os.makedirs(out_dir, exist_ok=True)
+
     with open(args.output, 'w') as f:
         for _, row in df.iterrows():
-            mirna = str(row['miRNA']).replace(' ', '_')
-            target = str(row['TargetGene']).replace(' ', '_')
-            interaction = args.interaction_type
+            mirna = clean_label(row.get('miRNA'))
+            target = clean_label(row.get('TargetGene'))
+            if not mirna or not target:
+                continue
             f.write(f"{mirna}\t{interaction}\t{target}\n")
             edges.append((mirna, interaction, target))
             

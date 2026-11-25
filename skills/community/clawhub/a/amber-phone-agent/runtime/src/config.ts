@@ -3,6 +3,12 @@ import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 const credentialHelper = createRequire(import.meta.url)('../bridge-credential.cjs');
 const runtimeDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const modelConfig = createRequire(import.meta.url)('../realtime-models.cjs') as {
+  DEFAULT_REALTIME_MODEL: string;
+  REALTIME_MODELS: readonly string[];
+  normalizeRealtimeModel: (value: string) => string;
+};
+export const { REALTIME_MODELS, normalizeRealtimeModel } = modelConfig;
 
 export const RUNTIME_PORT = Number(process.env.PORT ?? 8000);
 export const GATEWAY_BASE_URL = process.env.OPENCLAW_GATEWAY_URL ?? 'http://127.0.0.1:18789';
@@ -17,7 +23,8 @@ export const IS_TEST_RUNTIME = process.env.NODE_ENV === 'test';
 export const OUTBOUND_CALLS_ENABLED = process.env['AMBER_' + 'ENABLE_' + 'OUTBOUND_CALLS'] !== 'false';
 export const CRM_ENABLED = process.env['AMBER_' + 'CRM_' + 'ENABLED'] === 'true';
 export const CRM_TRANSCRIPT_ENRICHMENT_ENABLED = process.env['AMBER_' + 'CRM_' + 'TRANSCRIPT_' + 'ENRICHMENT'] === 'true';
-export const REALTIME_MODEL = process.env['AMBER_' + 'REALTIME_' + 'MODEL'] || 'gpt-realtime';
+export const REALTIME_MODEL = normalizeRealtimeModel(process.env.AMBER_REALTIME_MODEL ?? '')
+  || modelConfig.DEFAULT_REALTIME_MODEL;
 export const REALTIME_INTERRUPT_RESPONSE = process.env['AMBER_' + 'REALTIME_' + 'INTERRUPT_RESPONSE'] !== 'false';
 export const REALTIME_NOISE_REDUCTION = process.env['AMBER_' + 'REALTIME_' + 'NOISE_REDUCTION'] || 'far_field';
 export const REALTIME_VAD_THRESHOLD = parseNumberEnv('AMBER_REALTIME_VAD_THRESHOLD', 0.5, 0, 1);

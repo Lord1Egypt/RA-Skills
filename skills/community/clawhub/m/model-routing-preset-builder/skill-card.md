@@ -1,6 +1,6 @@
 ## Description:
 
-Use when the operator explicitly wants to customise the native Codex model-capability-router policy.
+Use when the operator asks to create or change a native model-routing policy for Codex or OpenClaw.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and operators use this skill when they request changes to native model-routing profiles. It helps preserve explicit model and effort choices, limit edits to the requested policy, and report validation evidence and remaining gaps.
+Developers and operators use this skill to create or change native model-routing policies for Codex or OpenClaw. It helps preserve existing selections and validate model and effort availability for the target runtime.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Routing changes could be based on an unverified router or source repository, or introduce profile changes beyond the request.
+Risk: Two unresolved references leave some scanner evidence incomplete.
 
-Mitigation: Verify the installed router and source repository, review the requested profile changes, and prefer a reviewed, version-pinned skills CLI for installation.
+Mitigation: Review the referenced router material and verify model and effort availability in the target runtime before applying a policy.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/theangrypit/skills/model-routing-preset-builder)
+- [Bundled pstack role presets](references/pstack-role-presets.json)
+- [Canonical Codex pstack role presets](https://github.com/TheAngryPit/TheAngrySkills/blob/main/skills/core/model-capability-router/references/pstack-role-presets.json)
+- [Canonical OpenClaw subscription guidance](https://github.com/TheAngryPit/TheAngrySkills/blob/main/skills/core/model-capability-router/references/openclaw-subscriptions.md)
+- [Canonical model capability router instructions](https://github.com/TheAngryPit/TheAngrySkills/blob/main/skills/core/model-capability-router/SKILL.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Configuration instructions, Shell commands]
+**Output Type(s):** [Guidance, Configuration, Markdown, Shell commands]
 
-**Output Format:** [Markdown with profile recommendations, validation findings, and installation commands as applicable]
+**Output Format:** [Markdown with model-routing recommendations and inline command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Recommendations reflect the installed router and current channel availability; explicit selections are preserved.]
+**Other Properties Related to Output:** [Runtime-specific recommendations with validation evidence and remaining availability gaps.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server-resolved release evidence)
+1.0.1 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

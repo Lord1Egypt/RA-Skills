@@ -11,6 +11,7 @@ import { VERSION } from "./index.js";
 import type { Io } from "./index.js";
 import { uploadMedia } from "./media.js";
 import {
+  AGENT_GUIDANCE,
   buildToolRequest,
   missingRequired,
   readManifest,
@@ -25,7 +26,7 @@ const SUPPORTED_PROTOCOL_VERSIONS = ["2025-06-18", "2025-03-26", "2024-11-05"];
 
 const DEFAULT_BASE_URL = "https://tokei.io";
 
-const INSTRUCTIONS = `Tokei (tokei.io) pre-launch campaign tools. Terminology: the API objects "contest" and "promotion" are what the UI calls a "page" or "campaign" — same thing; an "entry" is a signup. Requires the TOKEI_API_KEY environment variable (create a key at tokei.io -> Dashboard -> Settings -> API Keys; read-only keys get 403 on write tools). Every result is the API's JSON plus a "rate_limit" object reporting the remaining quota and its reset time; a 429 response means the quota is exhausted until that reset. 404 can mean "exists but not owned by this key's account". Webhook signing secrets (whsec_) are shown exactly once at creation.`;
+const INSTRUCTIONS = `Tokei (tokei.io) pre-launch campaign tools. Terminology: the API objects "contest" and "promotion" are what the UI calls a "page" or "campaign" — same thing; an "entry" is a signup. Requires the TOKEI_API_KEY environment variable (create a key at tokei.io -> Dashboard -> Settings -> API Keys; read-only keys get 403 on write tools). Every result is the API's JSON plus a "rate_limit" object reporting the remaining quota and its reset time; a 429 response means the quota is exhausted until that reset. 404 can mean "exists but not owned by this key's account". Webhook signing secrets (whsec_) are shown exactly once at creation. ${AGENT_GUIDANCE}`;
 
 export type { ToolDef };
 

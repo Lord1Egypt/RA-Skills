@@ -199,6 +199,101 @@ class SearchCache:
 
     # ---------- 读写 ----------
 
+    def get_with_time(self, key: str) -> Optional[Dict[str, Any]]:
+        """
+        读取缓存并附带写入时间（V2.1 答案缓存提示用）
+
+        Returns:
+            {"payload": [...], "created_at": float, "time_str": str}；
+            未命中或已过期返回 None
+        """
+        if not self.available:
+            return None
+        conn = self._connect()
+        if conn is None:
+            return None
+        try:
+            row = conn.execute(
+                "SELECT payload, created_at FROM search_cache WHERE key = ?", (key,)
+            ).fetchone()
+            if not row:
+                return None
+            if self.ttl > 0 and (time.time() - row["created_at"]) > self.ttl:
+                with conn:
+                    conn.execute("DELETE FROM search_cache WHERE key = ?", (key,))
+                return None
+            with conn:
+                conn.execute(
+                    "UPDATE search_cache SET accessed_at = ?, hits = hits + 1 WHERE key = ?",
+                    (time.time(), key),
+                )
+            return {
+                "payload": json.loads(row["payload"]),
+                "created_at": row["created_at"],
+                "time_str": datetime.fromtimestamp(row["created_at"]).strftime("%Y-%m-%d %H:%M"),
+            }
+        except (sqlite3.Error, ValueError, TypeError):
+            return None
+        finally:
+            conn.close()
+
+    def find_similar_recent(
+        self,
+        query: str,
+        threshold: float = 0.8,
+        within_seconds: int = 86400,
+    ) -> Optional[Dict[str, Any]]:
+        """
+        查找近似问题的近期缓存（V2.1「上次搜过」提示用）
+
+        近似判定：查询词字符集合的 Jaccard 相似度 >= threshold。
+        用途：完全相同的 key 已由 get() 命中；这里处理"换个说法再搜"的情况。
+
+        Args:
+            query: 当前查询词
+            threshold: Jaccard 相似度阈值
+            within_seconds: 只查最近这段时间内的记录
+
+        Returns:
+            {"query": str, "time_str": str, "similarity": float}；无近似返回 None
+        """
+        if not self.available or not query:
+            return None
+        conn = self._connect()
+        if conn is None:
+            return None
+        try:
+            cutoff = time.time() - within_seconds
+            rows = conn.execute(
+                "SELECT query, created_at FROM search_cache WHERE created_at >= ?",
+                (cutoff,),
+            ).fetchall()
+            q_chars = set((query or "").strip().lower())
+            if not q_chars:
+                return None
+            best = None
+            best_sim = 0.0
+            for row in rows:
+                cached_query = row["query"] or ""
+                if cached_query.strip().lower() == query.strip().lower():
+                    continue  # 完全相同由 get() 处理，这里只找"近似"
+                c_chars = set(cached_query.strip().lower())
+                if not c_chars:
+                    continue
+                sim = len(q_chars & c_chars) / len(q_chars | c_chars)
+                if sim >= threshold and sim > best_sim:
+                    best_sim = sim
+                    best = {
+                        "query": cached_query,
+                        "time_str": datetime.fromtimestamp(row["created_at"]).strftime("%Y-%m-%d %H:%M"),
+                        "similarity": round(sim, 3),
+                    }
+            return best
+        except (sqlite3.Error, ValueError, OSError, TypeError):
+            return None
+        finally:
+            conn.close()
+
     def get(self, key: str) -> Optional[List[Dict[str, Any]]]:
         """
         读取缓存

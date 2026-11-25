@@ -1,6 +1,6 @@
 ## Description:
 
-Finds verified work email addresses from a person's name and company domain using Prospeo and FullEnrich.
+Find verified work email addresses from a person's name and company domain.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Sales development and RevOps teams use this skill to find verified work email addresses for contacts from their names and company domains.
+Sales development and revenue operations teams use this skill to find and verify business email addresses for prospect records using a person's name and company domain, or a LinkedIn profile URL.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Contact details are sent to Cargo and the Prospeo and FullEnrich services during lookup.
+Risk: The security review flags unrelated repository promotion and external skill-install actions, as well as an unpinned external install command.
 
-Mitigation: Use only contact lists you are authorized to share with these services, including for the initial sample.
+Mitigation: Review and remove or clearly explain those actions, and pin and review the external command and its source before installation.
 
-Risk: Batch enrichment consumes credits, and costs increase with the number of records and fallback lookups.
+Risk: The handling of contact data is not made clear before email lookups, and the scanner review is incomplete because some references could not be resolved.
 
-Mitigation: Run a 10–20 record sample, report its cost and hit rate, then get approval for a full run using the record count and credit estimate.
-
-Risk: The installed CLI version and optional larger Cargo pack are not included in the skill artifact.
-
-Mitigation: Review the installed CLI version and the optional pack separately before using them.
+Mitigation: Clarify contact-data handling before a lookup and resolve the unavailable references as part of a complete security review.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/cargo-ai/skills/find-work-email)
-- [Cargo GTM project homepage](https://github.com/getcargohq/gtm-skills)
-- [Cargo prospecting recipe](https://github.com/getcargohq/cargo-skills/blob/main/cargo-gtm/recipes/prospecting.md)
+- [Cargo GTM Skills homepage](https://github.com/getcargohq/gtm-skills)
+- [Prospecting recipe](https://github.com/getcargohq/cargo-skills/blob/main/cargo-gtm/recipes/prospecting.md)
+- [ClawHub skill page](https://clawhub.ai/cargo-ai/skills/find-work-email)
 
 ## Skill Output:
 
-**Output Type(s):** [Structured data, Text, Shell commands]
+**Output Type(s):** [Text, Shell commands, Guidance]
 
-**Output Format:** [Contact records with resolved email addresses and provider information, plus text status and shell command examples]
+**Output Format:** [Text containing verified work email addresses and unresolved rows, with inline shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Unresolved rows remain empty rather than receiving guessed addresses.]
+**Other Properties Related to Output:** [Unresolved or unusable records remain empty rather than receiving guessed addresses.]
 
 ## Skill Version(s):
 
-1.1.4 (source: frontmatter)
+1.2.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

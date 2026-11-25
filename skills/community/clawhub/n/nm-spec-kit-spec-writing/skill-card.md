@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and product teams use this skill to turn feature descriptions into user-focused specifications with clear scenarios, testable requirements, and measurable success criteria.
+External developers and product teams use this skill to turn feature descriptions into scoped specifications with user scenarios, functional requirements, and measurable success criteria.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: A drafted specification may omit a constraint or record an assumption that stakeholders do not share.
+Risk: A specification draft may omit project context or carry forward assumptions that do not match stakeholder needs.
 
-Mitigation: Have stakeholders review assumptions, scope, and acceptance criteria before treating the specification as an agreed delivery target.
+Mitigation: Review scope, assumptions, user scenarios, and acceptance criteria with stakeholders before using the draft to plan or approve work.
 
 ## Reference(s):
 
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-spec-kit-spec-writing)
 - [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/spec-kit)
-- [RFC 8174](https://www.rfc-editor.org/rfc/rfc8174)
-- [RFC 7322](https://www.rfc-editor.org/rfc/rfc7322)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Markdown specifications, user stories, acceptance criteria, and quality checklists]
+**Output Format:** [Markdown specification with structured sections, user scenarios, functional requirements, and success criteria]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Content is tailored to the feature description and may include assumptions, edge cases, and success criteria.]
+**Other Properties Related to Output:** [Content depends on the supplied feature description and project context.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release)
 
 ## Ethical Considerations:
 

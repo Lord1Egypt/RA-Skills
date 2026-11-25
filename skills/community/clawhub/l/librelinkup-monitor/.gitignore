@@ -1,0 +1,28 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Local credentials and secrets (CRITICAL: Never commit real credentials)
+libre_creds.json
+creds.json
+*creds*.json
+.env
+*.env
+
+# Local state files
+*failcount*
+glucose_watch_failcount
+
+# Environments
+.venv/
+env/
+venv/
+ENV/
+
+# IDE and OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

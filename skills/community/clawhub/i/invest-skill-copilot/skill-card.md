@@ -1,6 +1,6 @@
 ## Description:
 
-Provides a unified entry point for stock and market research, applying investment analysis methods and data discipline to create Markdown and self-contained HTML reports.
+Guides agents through stock-research workflows spanning company analysis, valuation, screening, industry, policy, macro, sentiment, and market reviews, with specified sourced Markdown and standalone HTML reports.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-Apache 2.0
+Apache-2.0
 
 ## Use Case:
 
-Investors and financial researchers can request company, sector, policy, macro, or market analysis and receive sourced reports in Markdown and HTML. The skill excludes trade execution and buy, position, or stop-loss recommendations.
+External users can use it to structure stock-research requests, route them to relevant methodologies, and prepare reports with source and data-gap annotations.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment rates the skill suspicious, noting a possible mismatch between its described investment research function and reported implementation, broad tool capabilities, and a synchronization issue; it does not establish malicious intent.
+Risk: The advertised research and reporting capabilities do not match the reported executable behavior, and the scan does not establish that the skill performs the advertised analysis.
 
-Mitigation: Before installation, review the skill's declared capabilities and synchronization behavior against the intended use, and check report sources and limitations before relying on analysis.
+Mitigation: Review and manually verify the analysis and report workflow before relying on its outputs.
+
+Risk: Catalog synchronization and request routing are identified as concerns in the security guidance.
+
+Mitigation: Check catalog freshness and confirm that the selected methodology matches the user's request before using a report.
+
+Risk: The skill image was not fully inspected.
+
+Mitigation: Review the image before distributing the skill.
 
 ## Reference(s):
 
 - [ClawHub release page](https://clawhub.ai/chenxyzcyxpp/skills/invest-skill-copilot)
-- [Publisher profile](https://clawhub.ai/user/chenxyzcyxpp)
+- [invest-skill methodology repository (listed in the skill)](https://gitee.com/warwickInv/invest-skill)
+- [Data discipline](references/data-discipline.md)
+- [Methodology map](references/methodology-map.md)
+- [Capability catalog](references/capability-catalog.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown report, HTML report]
+**Output Type(s):** [Markdown, HTML, Structured data]
 
-**Output Format:** [Markdown and self-contained HTML]
+**Output Format:** [Markdown and standalone HTML research reports, with structured result data]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports include sourced analysis and data limitations; the skill states that its output is not investment advice.]
+**Other Properties Related to Output:** [Reports are specified to include sources, timestamps, data gaps, and an investment disclaimer; HTML is intended to be self-contained and usable offline.]
 
 ## Skill Version(s):
 
-1.1.0 (source: frontmatter; server release metadata)
+1.1.6 (source: SKILL.md frontmatter, server release evidence)
 
 ## Ethical Considerations:
 

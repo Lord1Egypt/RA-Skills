@@ -1,0 +1,28 @@
+name: wechat-materials-index-free
+slug: wechat-materials-index-free
+display_name: 公众号素材库目录
+description: 在用户指定的 Easy WebBridge 浏览器会话中读取本人公众号素材库当前可见页面，按主题整理最多20条素材名称、类型、可见日期和使用待办，并交付逐条来源、缺项与范围限制明确的 Markdown 草稿。用于一次性盘点已授权的可见素材；遇到登录、验证码、风控、权限不足或所有权不明即停止，未显示的历史内容列为缺项，不伪称完整盘点。
+version: 1.0.1
+license: MIT-0
+repository: https://github.com/xxjrq/wechat-materials-index-free
+icon: icon-512.png
+tags:
+  - "wechat-official-account"
+  - "material-library"
+  - "content-inventory"
+  - "easy-webbridge"
+triggers:
+  - "整理公众号素材库"
+  - "盘点可见素材"
+  - "导出素材目录草稿"
+trigger_words:
+  - "公众号素材"
+  - "素材库目录"
+  - "素材盘点"
+interface:
+  display_name: "公众号素材库目录"
+  short_description: "只读整理公众号素材库当前可见内容，输出带来源和缺项的目录草稿"
+  default_prompt: "使用 $wechat-materials-index-free，只读整理我指定 browserId 中本人公众号素材库当前可见的最多20条素材，保留逐条来源与缺项；登录或权限不足时立即停止。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+self_test: bash scripts/self-test.sh

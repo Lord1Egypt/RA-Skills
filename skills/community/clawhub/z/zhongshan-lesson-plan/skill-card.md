@@ -1,6 +1,6 @@
 ## Description:
 
-Creates Chinese-language vocational lesson plans in a supplied DOCX template while preserving its table layout.
+Analyzes a secondary vocational lesson-plan DOCX template and fills it with generated lesson content.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Teachers and education staff use this skill to draft Chinese-language secondary vocational lesson plans for a chosen topic and class length, then fill a DOCX template without disturbing its table layout.
+Teachers use this skill to create a filled lesson-plan document from a DOCX template, lesson topic, and number of class hours. Teacher, class, and textbook details can also be supplied.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: An existing document at the output path may be replaced.
+Risk: An existing output document may be deleted when the skill writes the generated lesson plan.
 
-Mitigation: Choose a fresh output filename or back up the existing file before running.
+Mitigation: Back up documents you need and choose a new output filename.
 
-Risk: A different lesson-plan template may not match the expected table layout.
+Risk: The security summary flags a concern about whether the execution environment is proportionate to the task.
 
-Mitigation: Check the template layout and review the generated document before sharing.
+Mitigation: Review the access needed to read the template and write the output before running the skill.
+
+Risk: The security scan is incomplete because some local references could not be resolved.
+
+Mitigation: Review the template and any referenced local files before use.
 
 ## Reference(s):
 
-- [Source repository](https://github.com/yon-gjun/zhongshan-lesson-plan)
-- [ClawHub skill listing](https://clawhub.ai/yon-gjun/skills/zhongshan-lesson-plan)
-- [Usage guide](artifact/README.md)
+- [Source repository (server-resolved provenance)](https://github.com/yon-gjun/zhongshan-lesson-plan)
+- [ClawHub skill release](https://clawhub.ai/yon-gjun/skills/zhongshan-lesson-plan)
 
 ## Skill Output:
 
-**Output Type(s):** [Files, Guidance]
+**Output Type(s):** [Files, Documents]
 
-**Output Format:** [DOCX lesson plan and text guidance]
+**Output Format:** [Filled Microsoft Word (.docx) lesson plan based on the supplied template]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Uses the supplied 15-row lesson-plan template; topic and class length determine the lesson content.]
+**Other Properties Related to Output:** [Uses the supplied topic and class-hour count; teacher, class, and textbook details are optional.]
 
 ## Skill Version(s):
 
-0.1.0 (source: ClawHub release metadata)
+0.1.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -25,11 +25,11 @@
     {
       "id": "runtime-neutral-discovery",
       "mode": "full_test",
-      "prompt": "這個環境沒有名為 bifrost 的 MCP server，如何查 Firebase Android 13 POST_NOTIFICATIONS 文件？",
+      "prompt": "不知道這個環境的 MCP server alias，如何查 Firebase Android 13 POST_NOTIFICATIONS 文件？",
       "assertions": [
         "Discovers a healthy server by Google Developer Knowledge tool capability rather than a fixed alias.",
         "Reports whether it used MCP, REST, or an official-document fallback and why.",
-        "Reports whether each configured candidate timed out, was offline, or lacked required tools when discovery fails.",
+        "Separates schema/connection failure from a healthy server missing search/get; does not launch OAuth.",
         "Does not hardcode an environment-specific server name or credentials."
       ]
     },
@@ -38,8 +38,8 @@
       "mode": "full_test",
       "prompt": "answer_query 收到 429 但沒有 Retry-After 時，如何繼續查 Cloud Run quota 文件？",
       "assertions": [
-        "Waits one second and retries answer_query no more than once.",
-        "Falls back to search_documents plus get_documents after the bounded retry fails.",
+        "Does not retry answer_query on an HTTP 429 or RESOURCE_EXHAUSTED quota error.",
+        "Switches directly to search_documents plus get_documents.",
         "Reports the fallback instead of claiming answer_query succeeded."
       ]
     },
@@ -61,6 +61,26 @@
         "Uses the REST OAuth fallback with an Authorization header and x-goog-user-project header.",
         "Retrieves no more than three parent documents unless broad extraction was explicitly requested.",
         "Reports a retrieval record with method, fallback reason, sources, and verification level."
+      ]
+    },
+    {
+      "id": "search-without-answer-tool",
+      "mode": "full_test",
+      "prompt": "MCP 只有 search_documents 和 get_documents，請查 Firestore transaction 的離線行為。",
+      "assertions": [
+        "Still selects the configured server without answer_query.",
+        "Passes exact returned parent names as a JSON names array.",
+        "Cites the retrieved URI and distinguishes an empty corpus result from a transport error."
+      ]
+    },
+    {
+      "id": "rest-v1-schema",
+      "mode": "full_test",
+      "prompt": "Developer Knowledge REST 的 answerQuery 路徑是什麼？search pageSize 跟 batchGet 上限一樣嗎？",
+      "assertions": [
+        "Uses POST /v1:answerQuery, not v1alpha.",
+        "Distinguishes REST search pageSize max 100 from REST batchGet max 20.",
+        "Reads REST search chunks from results[] and cites the official references."
       ]
     }
   ]

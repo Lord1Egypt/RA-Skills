@@ -1,6 +1,6 @@
 ## Description:
 
-Converts an explicitly named Simplified Chinese article into its Traditional Chinese twin and keeps both files synchronized.
+Convert a Simplified-Chinese article in ai-thoughts/docs/ into its Traditional-Chinese twin, and keep the two in sync.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and article authors use this skill to create or update a Traditional Chinese companion for a named Simplified Chinese article, with reciprocal links between the files.
+Developers maintaining ai-thoughts use this skill to create or update a Traditional Chinese twin for a specifically named Simplified Chinese article. It keeps the pair linked and treats the Simplified article as the source of truth.
 
 ### Deployment Geography for Use:
 
@@ -22,13 +22,17 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill can read and write files and invoke a shell command; runtime permission limits were not verified, so an unintended target or existing twin could be affected.
+Risk: Context-sensitive conversion may produce incorrect Traditional Chinese forms, especially in ambiguous terms or verbatim quotations.
 
-Mitigation: Name the source and output explicitly, check whether the Traditional twin already exists, and review all file changes after conversion.
+Mitigation: Review the generated twin against the Simplified source and cited editions, and resolve the script's ambiguous-form warnings before accepting it.
 
-Risk: Traditional conversion can choose the wrong form for ambiguous characters or alter wording inside quoted text.
+Risk: Running the sync script changes the source article's cross-link and writes a Traditional twin, so an incorrect target or unnoticed existing output could alter files unexpectedly.
 
-Mitigation: Review the script's ambiguous-form warnings and compare quoted text with its cited edition before accepting the generated file.
+Mitigation: Name the exact source article, confirm the output path and overwrite status before writing, then review the resulting file changes.
+
+Risk: Security analysis was partial because some referenced paths were missing.
+
+Mitigation: Before installation, check that the skill's trigger and referenced paths fit your setup and that its file and shell capabilities are acceptable.
 
 ## Reference(s):
 
@@ -36,17 +40,17 @@ Mitigation: Review the script's ambiguous-form warnings and compare quoted text 
 
 ## Skill Output:
 
-**Output Type(s):** [Files, Markdown]
+**Output Type(s):** [Markdown, Files]
 
-**Output Format:** [Traditional Chinese Markdown article with reciprocal cross-links]
+**Output Format:** [Markdown article files (`-zh-hans.md` source and `-zh-hant.md` twin)]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Processes one explicitly named article per run; does not run automatically.]
+**Other Properties Related to Output:** [Works on one explicitly named future article per request; requires approval before writing and does not backfill existing articles automatically.]
 
 ## Skill Version(s):
 
-1.0.11 (source: ClawHub release metadata)
+1.0.12 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

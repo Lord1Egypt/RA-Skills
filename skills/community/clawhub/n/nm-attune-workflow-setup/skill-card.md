@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to set up or update GitHub Actions workflows for testing, linting, type checking, builds, and deployment in Python, Rust, and TypeScript projects.
+Developers use this skill to add or update GitHub Actions workflows for testing, linting, type checking, building, and deployment in Python, Rust, and TypeScript projects.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Workflow setup may replace existing CI configuration without warning.
+Risk: Workflow generation may overwrite existing CI workflow files or remove custom checks and safeguards without warning or confirmation.
 
-Mitigation: Review proposed changes to CI files and keep a recoverable copy before using them.
-
-Risk: The security scan was partial because several local references could not be resolved, so not every referenced item was assessed.
-
-Mitigation: Resolve and inspect referenced materials before use; do not treat the scan as a complete assessment.
+Mitigation: Review the generated workflow changes and confirm existing files, custom checks, and safeguards are preserved before use.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/athola/skills/nm-attune-workflow-setup)
-- [Project homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/attune)
+- [Attune plugin homepage (metadata link)](https://github.com/athola/claude-night-market/tree/master/plugins/attune)
 
 ## Skill Output:
 
-**Output Type(s):** [Configuration files, Shell commands, Guidance]
+**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration]
 
-**Output Format:** [GitHub Actions YAML workflow files with Markdown guidance and inline shell commands]
+**Output Format:** [Markdown with shell commands, code examples, and GitHub Actions workflow configuration.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Workflow files and setup guidance vary by detected project language.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

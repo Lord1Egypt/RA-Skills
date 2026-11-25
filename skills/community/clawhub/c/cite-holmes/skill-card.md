@@ -1,6 +1,6 @@
 ## Description:
 
-Research topics, verify references against scholarly registries, and produce evidence-graded reports and bibliography exports.
+Supports deep research and citation checking by finding scholarly sources, checking reference metadata against registries, and producing cited reports and bibliography exports.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Researchers and analysts use Cite Holmes to find and assess literature, check claims and citations, and prepare bibliographies for review or submission.
+Researchers, students, and analysts can use Cite Holmes to plan literature searches, check references, and prepare reports or bibliography exports. Review incomplete or consequential citation checks before relying on them.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan reports weaknesses in citation verification and network handling, and its inspection was partial; this is a review warning rather than evidence of malicious intent.
+Risk: ClawScan reports serious weaknesses that could undermine citation verification; the scan was partial.
 
-Mitigation: Review and pin the installation source and tool versions, and manually check important citation-verification results.
+Mitigation: Review the reported weaknesses before installation and independently verify citations and claims you rely on.
 
-Risk: ClawScan reports that installation guidance is unpinned.
+Risk: ClawScan reports a network request restriction bypass, and partial scan coverage leaves behavior uncertain.
 
-Mitigation: Use a reviewed, pinned release source and pin tool versions before installation.
+Mitigation: Use a pinned, reviewed release and check that its network behavior fits your policy before enabling it.
 
 ## Reference(s):
 
-- [Verification details](references/verification-details.md)
-- [Search strategies](references/search-strategies.md)
-- [Report template and reference schema](references/report-template.md)
-- [Medical mode](references/medical-mode.md)
-- [Security and behavior declaration](references/security.md)
 - [ClawHub release page](https://clawhub.ai/docsor1212/skills/cite-holmes)
+- [Citation verification details](references/verification-details.md)
+- [Security and behavior declaration](references/security.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, JSON, BibTeX, RIS, CSV, GB/T 7714-2025 bibliography]
+**Output Type(s):** [Text, Markdown, JSON, CSV, BibTeX, RIS]
 
-**Output Format:** [Markdown research and verification reports, JSON workpapers, and bibliography exports.]
+**Output Format:** [Markdown research and verification reports, JSON workpapers, and bibliography exports in CSV, BibTeX, RIS, or GB/T 7714 formats.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports distinguish verified, partial, unreachable, invalid, and unverified references, with human-review flags for unresolved cases.]
+**Other Properties Related to Output:** [Reports include citation-verification verdicts and may flag incomplete checks for human review.]
 
 ## Skill Version(s):
 
-6.6.0 (source: SKILL.md frontmatter, server-resolved release)
+6.9.0 (source: skill frontmatter; server release)
 
 ## Ethical Considerations:
 

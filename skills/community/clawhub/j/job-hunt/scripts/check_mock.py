@@ -27,6 +27,7 @@ from __future__ import annotations
 
 import argparse
 import datetime
+import json
 import pathlib
 import re
 import sys
@@ -38,6 +39,7 @@ import journal
 import mock_blocks as MB
 import mock_vocab as V
 import paths
+import run_mock_tests
 
 GATE = "check_mock"
 MODE = "interview"
@@ -71,17 +73,18 @@ def transcript_refs(text: str) -> set:
 
 # ----------------------------------------------------------------- the layer-1.5 backstop
 
-def check_mode_entry(workspace: pathlib.Path, skill_root: pathlib.Path) -> list:
+def check_mode_entry(workspace: pathlib.Path, skill_root: pathlib.Path,
+                     mode: str = MODE) -> list:
     """modes/interview.md is loaded unconditionally on entering the mode, and the
     journal record is the only thing that reports it if it was not. Mirrors
     check_apply.py exactly — one mechanism, four modes."""
-    entry = enter_mode.latest_mode_entry(workspace, MODE)
-    mode_path = paths.mode_file(MODE, skill_root)
+    entry = enter_mode.latest_mode_entry(workspace, mode)
+    mode_path = paths.mode_file(mode, skill_root)
     if entry is None:
         return [
-            f"NO_MODE_ENTRY: journal.jsonl has no mode_entry for {MODE} — "
-            f"modes/{MODE}.md is loaded unconditionally on entering the mode; run "
-            f"scripts/enter_mode.py --mode {MODE} and read it"
+            f"NO_MODE_ENTRY: journal.jsonl has no mode_entry for {mode} — "
+            f"modes/{mode}.md is loaded unconditionally on entering the mode; run "
+            f"scripts/enter_mode.py --mode {mode} and read it"
         ]
     findings = [
         f"RECEIPT_UNVERIFIED: the {gate_name!r} receipt at gate-record {line_no} "
@@ -97,7 +100,7 @@ def check_mode_entry(workspace: pathlib.Path, skill_root: pathlib.Path) -> list:
         ]
     if entry.get("mode_file_sha256") != journal.sha256_file(mode_path):
         return findings + [
-            f"MODE_FILE_CHANGED: modes/{MODE}.md changed after this run entered the "
+            f"MODE_FILE_CHANGED: modes/{mode}.md changed after this run entered the "
             "mode, so what was read is not what is on disk — re-enter the mode and "
             "re-read it"
         ]
@@ -324,6 +327,8 @@ def check_assessment(assessment_text: str, transcript_text: str, round_no: int,
             elif record.kind == "BAND":
                 _check_band(record, kind, findings)
                 _check_quote(record, kind, transcript_text, refs, findings)
+            elif record.kind in ("RECALL", "SOLVE"):
+                _check_quote(record, kind, transcript_text, refs, findings)
             elif record.kind == "COVERAGE":
                 if record.fields["status"] not in V.COVERAGE_STATUS:
                     findings.append(
@@ -357,7 +362,11 @@ def check_assessment(assessment_text: str, transcript_text: str, round_no: int,
     # half-written block that is not there at all.
     block = blocks.get(MB.ASSESSMENT)
     if block is not None:
-        if not any(r.kind == "BAND" for r in block.records):
+        # A knowledge or coding round is assessed per question on correctness
+        # (RECALL / SOLVE, checked in check_learned_records), not banded on the
+        # experience dimensions, so a missing BAND there is not a defect.
+        learned = block.header.get("ROUND-TYPE", "") in V.LEARNED_ROUND_TYPES
+        if not learned and not any(r.kind == "BAND" for r in block.records):
             findings.append(
                 "NO_BANDS: the assessment block carries no BAND line. The five "
                 "dimensions in references/interview-shapes.md are what the candidate "
@@ -375,6 +384,152 @@ def check_assessment(assessment_text: str, transcript_text: str, round_no: int,
         if must_haves:
             findings += _coverage_findings(block, must_haves)
     return blocks, findings
+
+
+# ------------------------------------------------- knowledge and coding rounds
+
+# A hint is logged in the transcript as its own turn, `**Hint (nudge):** ...`, so the
+# help given is countable rather than remembered. `[^)]*` and not the closed set, so
+# a misspelt level is reported instead of silently not counting as a hint at all.
+_HINT_LINE = re.compile(r"^\*\*Hint \(([^)]*)\):\*\*", re.M)
+_TRANSCRIPT_ROUND_TYPE = re.compile(r"^Round type:[ \t]*(\S+)", re.M | re.I)
+
+
+def round_type_of(blocks: dict, transcript_text: str) -> str:
+    """The round type from the assessment header, else the transcript's own header.
+
+    The fallback matters only when the assessment block did not parse: MISSING_BLOCK
+    is already reported then, and requiring the story-round artifacts of a coding
+    round on top of it would be a second, wrong finding.
+    """
+    block = blocks.get(MB.ASSESSMENT)
+    if block is not None:
+        return block.header.get("ROUND-TYPE", "").strip()
+    match = _TRANSCRIPT_ROUND_TYPE.search(transcript_text or "")
+    return match.group(1).strip().lower() if match else ""
+
+
+def code_dir(workspace: pathlib.Path, round_no: int, ref: str) -> pathlib.Path:
+    return pathlib.Path(workspace) / "mock" / "code" / f"round-{round_no}" / ref
+
+
+def _check_solve_result(record, workspace: pathlib.Path, round_no: int) -> list:
+    """The SOLVE record's `tests=` against what run_mock_tests.py actually recorded.
+
+    The status is recomputed from the per-case outcomes rather than read from the
+    file's own `status` field, and every hash is recomputed from disk: a result for
+    code the candidate has since edited, or for cases rewritten after the run, says
+    nothing about the code and cases that are there now.
+    """
+    ref, claimed = record.fields["ref"], record.fields["tests"]
+    qdir = code_dir(workspace, round_no, ref)
+    path = qdir / run_mock_tests.RESULT
+    if not path.is_file():
+        if claimed != "not_run":
+            return [
+                f"NO_TEST_RESULT: SOLVE at {ref} says tests={claimed}, but {path} does "
+                "not exist — say not_run, or run scripts/run_mock_tests.py; a pass "
+                "nobody executed is a guess"
+            ]
+        return []
+    try:
+        result = json.loads(path.read_text(encoding="utf-8"))
+        cases = result["cases"]
+        actual = run_mock_tests.status_of(sum(1 for c in cases if c.get("passed")),
+                                          len(cases))
+    except (json.JSONDecodeError, KeyError, TypeError) as exc:
+        return [f"TEST_RESULT_UNREADABLE: {path}: {type(exc).__name__}: {exc}"]
+    findings = []
+    if claimed != actual:
+        findings.append(
+            f"TESTS_MISREPORTED: SOLVE at {ref} says tests={claimed}, but {path.name} "
+            f"records {actual} ({sum(1 for c in cases if c.get('passed'))} of "
+            f"{len(cases)} cases passed)"
+        )
+    cases_path = qdir / run_mock_tests.CASES
+    if (not cases_path.is_file()
+            or journal.sha256_file(cases_path) != result.get("cases_sha256")):
+        findings.append(
+            f"STALE_TEST_RESULT: {ref}: {cases_path.name} changed after the run "
+            "recorded in result.json — re-run scripts/run_mock_tests.py"
+        )
+    for name, digest in sorted((result.get("solution_sha256") or {}).items()):
+        file = qdir / name
+        if not file.is_file() or journal.sha256_file(file) != digest:
+            findings.append(
+                f"STALE_TEST_RESULT: {ref}: {name} changed after the run recorded in "
+                "result.json — the result describes code that is no longer there"
+            )
+    return findings
+
+
+def check_learned_records(block, transcript_text: str, workspace: pathlib.Path,
+                          round_no: int) -> list:
+    """RECALL / SOLVE rows: in the right round, one per question, honest about help.
+
+    Quotes are checked with every other record in check_assessment.
+    """
+    round_type = block.header.get("ROUND-TYPE", "")
+    wanted = V.LEARNED_RECORD.get(round_type)
+    sections = MB.transcript_sections(transcript_text)
+    rows: dict = {}
+    findings: list = []
+    values = {
+        "RECALL": (("result", V.RECALL_RESULTS), ("hint", V.HINT_LEVELS)),
+        "SOLVE": (("tests", V.SOLVE_TESTS), ("complexity", V.COMPLEXITY_STATUS),
+                  ("hint", V.HINT_LEVELS)),
+    }
+    for record in block.records:
+        if record.kind not in values:
+            continue
+        if record.kind != wanted:
+            owner = next(t for t, k in V.LEARNED_RECORD.items() if k == record.kind)
+            findings.append(
+                f"RECORD_WRONG_ROUND: {block.kind} line {record.line_no}: {record.kind} "
+                f"belongs to a ROUND-TYPE: {owner} round, this one is {round_type!r}"
+            )
+            continue
+        ref = record.fields["ref"]
+        rows.setdefault(ref, []).append(record)
+        for field, allowed in values[record.kind]:
+            if record.fields[field] not in allowed:
+                findings.append(
+                    f"UNKNOWN_VALUE: {block.kind} line {record.line_no}: {record.kind} "
+                    f"{field}={record.fields[field]!r} is not one of " + " | ".join(allowed)
+                )
+        section = sections.get(ref)
+        if section is not None:
+            levels = [m.group(1).strip() for m in _HINT_LINE.finditer(section)]
+            for level in levels:
+                if level not in V.HINT_LEVELS[1:]:
+                    findings.append(
+                        f"UNKNOWN_HINT_LEVEL: {ref}: transcript hint level {level!r} is "
+                        "not one of " + " | ".join(V.HINT_LEVELS[1:])
+                    )
+            known = [V.HINT_LEVELS.index(lv) for lv in levels if lv in V.HINT_LEVELS[1:]]
+            given = V.HINT_LEVELS[max(known)] if known else "none"
+            if record.fields["hint"] in V.HINT_LEVELS and record.fields["hint"] != given:
+                findings.append(
+                    f"HINT_MISMATCH: {record.kind} at {ref} says hint="
+                    f"{record.fields['hint']}, but the transcript logs the highest hint "
+                    f"given there as {given} — the debrief must report the help that "
+                    "was actually given"
+                )
+        if record.kind == "SOLVE" and record.fields["tests"] in V.SOLVE_TESTS:
+            findings += _check_solve_result(record, workspace, round_no)
+    if wanted:
+        for ref in sections:
+            if ref not in rows:
+                findings.append(
+                    f"NO_{wanted}_ROW: question {ref} has no {wanted} row — a "
+                    f"ROUND-TYPE: {round_type} round reports every question it asked"
+                )
+            elif len(rows[ref]) > 1:
+                findings.append(
+                    f"DUPLICATE_{wanted}_ROW: question {ref} has {len(rows[ref])} "
+                    f"{wanted} rows; one question, one row"
+                )
+    return findings
 
 
 # ----------------------------------------------------------------- question-log.yaml
@@ -700,7 +855,22 @@ def _default_scanner(workspace: pathlib.Path):
     return lambda text, source: scanner(text, source, corpus)
 
 
-def check_vocabulary(paths: list, scanner) -> list:
+_FENCE = re.compile(r"^[ \t]*(```|~~~).*?^[ \t]*\1[ \t]*$", re.M | re.S)
+_INLINE_CODE = re.compile(r"`[^`\n]+`")
+
+
+def blank_code(text: str) -> str:
+    """Prose only: fenced blocks and inline code spans blanked, line count kept.
+
+    Study notes carry model solutions, and `x % k` or `1/2` in code is arithmetic,
+    not a percentage or a score — scanning it reported every coding round's notes as
+    predicting an outcome. The prose around the code is still scanned in full.
+    """
+    text = _FENCE.sub(lambda m: "\n" * m.group(0).count("\n"), text)
+    return _INLINE_CODE.sub("``", text)
+
+
+def check_vocabulary(paths: list, scanner, code_ok: tuple = ()) -> list:
     if scanner is None:
         raise MissingDependency(
             "scripts/lint_no_prediction.py (Plan 2) is not importable — refusing to "
@@ -712,7 +882,9 @@ def check_vocabulary(paths: list, scanner) -> list:
         # that is not there is now its own finding from check_session_artifacts, so
         # this skip reports "nothing to scan" rather than standing in for "clean".
         if path.exists():
-            findings.extend(scanner(path.read_text(encoding="utf-8"), str(path)))
+            text = path.read_text(encoding="utf-8")
+            findings.extend(scanner(blank_code(text) if path in code_ok else text,
+                                    str(path)))
     return findings
 
 
@@ -737,23 +909,58 @@ SESSION_ARTIFACTS = (
 )
 
 
-def check_session_artifacts(mock_dir: pathlib.Path) -> list:
-    """The two round outputs whose absence check_vocabulary used to swallow.
+def study_notes_path(mock_dir: pathlib.Path, round_no: int) -> pathlib.Path:
+    return pathlib.Path(mock_dir) / f"study-notes-{round_no}.md"
+
+
+_STUDY_HEADING = re.compile(r"^##[ \t]+(Q\d+[A-Za-z]?)\b", re.M)
+
+
+def check_session_artifacts(mock_dir: pathlib.Path, round_type: str = "",
+                            round_no: int = 0, transcript_text: str = "") -> list:
+    """The round outputs whose absence check_vocabulary used to swallow.
 
     It scanned them `if path.exists()`, which is a SKIP that looks exactly like a
     pass: delete the file and the vocabulary lint reports nothing, the gate reports
     nothing, and the round is recorded as holding up with two of its five required
     artifacts never written. An empty file counts as absent for the same reason —
     exists() is not the property anyone cared about.
+
+    A knowledge or coding round swaps the answer guide for study-notes-<n>.md: there
+    is no story to scaffold, and the useful artifact is the correct answer explained
+    — public knowledge, which teaching is allowed to supply. One `## Q<n>` entry per
+    question asked, so a round cannot ship notes for the easy questions only.
     """
     findings = []
+    learned = round_type in V.LEARNED_ROUND_TYPES
     for code, name, why in SESSION_ARTIFACTS:
+        if learned and code == "NO_ANSWER_GUIDE":
+            continue
         path = mock_dir / name
         if not path.exists():
             findings.append(f"{code}: {path} was never written — {why}")
         elif not path.read_text(encoding="utf-8").strip():
             findings.append(f"{code}: {path} is empty — {why}")
-    return findings
+    if not learned:
+        return findings
+    return findings + check_study_notes(mock_dir, round_no, transcript_text, round_type)
+
+
+def check_study_notes(mock_dir: pathlib.Path, round_no: int, transcript_text: str,
+                      round_type: str) -> list:
+    """study-notes-<n>.md exists and has one `## Q<n>` entry per question asked."""
+    notes = study_notes_path(mock_dir, round_no)
+    if not notes.is_file() or not notes.read_text(encoding="utf-8").strip():
+        return [
+            f"NO_STUDY_NOTES: {notes} was never written or is empty — a "
+            f"{round_type} round's debrief is the correct answer to each question "
+            "explained, with what the candidate's answer missed"
+        ]
+    have = set(_STUDY_HEADING.findall(notes.read_text(encoding="utf-8")))
+    return [
+        f"STUDY_NOTE_MISSING: {notes.name} has no '## {ref}' entry — every question "
+        "asked gets its explanation, not only the ones that went well"
+        for ref in MB.transcript_sections(transcript_text) if ref not in have]
 
 
 # ----------------------------------------------------------------- write-backs
@@ -1071,6 +1278,11 @@ def _inputs(workspace: pathlib.Path, round_no: int, answer_bank: pathlib.Path) -
         "interview-brief.md": workspace / "interview-brief.md",
         "claims.yaml": workspace / "claims.yaml",
         "answer-bank.md": answer_bank,
+        f"mock/study-notes-{round_no}.md": study_notes_path(workspace / "mock", round_no),
+        # The SOLVE records are claims about these files, so the receipt binds them.
+        **{p.relative_to(workspace).as_posix(): p for p in sorted(
+            (workspace / "mock" / "code" / f"round-{round_no}").glob(
+                "*/" + run_mock_tests.RESULT))},
     }
 
 
@@ -1104,10 +1316,19 @@ def run(workspace, round_no: int, answer_bank=None, today=None, vocab_scanner=_A
     blocks, block_findings = check_assessment(
         assessment_text, transcript_text, round_no, must_haves=must_haves)
     findings += block_findings
+    round_type = round_type_of(blocks, transcript_text)
+    learned = round_type in V.LEARNED_ROUND_TYPES
+    if MB.ASSESSMENT in blocks:
+        findings += check_learned_records(blocks[MB.ASSESSMENT], transcript_text,
+                                          workspace, round_no)
     findings += check_question_log(workspace / "mock" / "question-log.yaml", today,
                                   refs=transcript_refs(transcript_text))
-    findings += check_answer_bank(answer_bank)
-    findings += check_session_artifacts(workspace / "mock")
+    # A knowledge or coding round banks no story, so it may be the first round ever
+    # run for this profile; an existing bank is still checked.
+    if not learned or answer_bank.exists():
+        findings += check_answer_bank(answer_bank)
+    findings += check_session_artifacts(workspace / "mock", round_type, round_no,
+                                        transcript_text)
     guide_findings, guide_notices = check_answer_guide(
         workspace / "mock" / "answer-guide.md", workspace)
     findings += guide_findings
@@ -1121,8 +1342,10 @@ def run(workspace, round_no: int, answer_bank=None, today=None, vocab_scanner=_A
             # The guide is what the candidate says out loud. It shipped scanned by
             # nothing, so a "70% chance" line in it passed every gate in the skill.
             workspace / "mock" / "answer-guide.md",
+            study_notes_path(workspace / "mock", round_no),
         ],
         scanner,
+        code_ok=(study_notes_path(workspace / "mock", round_no),),
     )
     findings += check_walkback(
         blocks,

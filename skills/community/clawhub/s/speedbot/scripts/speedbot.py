@@ -20,7 +20,7 @@ import urllib.parse
 import urllib.request
 
 
-CLIENT_VERSION = "6.3.17"
+CLIENT_VERSION = "6.7.10"
 
 MUTATING_COMMANDS = frozenset((
     "register", "team-create", "team-leave", "queue", "team-queue", "invite",

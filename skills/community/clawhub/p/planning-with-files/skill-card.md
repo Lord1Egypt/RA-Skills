@@ -1,6 +1,6 @@
 ## Description:
 
-Persistent file-based planning for multi-step AI-agent work. Keeps task_plan.md, findings.md, and progress.md on disk; lifecycle hooks inject selected project planning context. Automatic recovery reads project planning files only. Explicit session-catchup.py --metadata reads same-project local agent session records and emits aggregate counts only; --replay may emit bounded nonce-framed excerpts. Optional gated mode can request continuation only when the host supports it and never runs commands declared in Markdown. The skill has no network upload path. Use for research or work needing 5+ tool calls.
+Persistent file-based planning for multi-step AI-agent work, with lifecycle hooks that restore selected project planning context.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and AI agents use this skill to organize multi-step research or implementation work in persistent planning files, recover selected project context, and track progress across sessions.
+Developers and other agent users can use the skill to maintain plans, findings, and progress across multi-step research or implementation work, including after context changes or compacting.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan marks the skill suspicious with medium confidence because it reports security weaknesses and unexpected behavior; analysis of some files was incomplete. This is not a finding of malicious intent.
+Risk: Lifecycle hooks can place project planning content into agent context; the security review flags risks from untrusted content and reports only partial inspection of the listed components.
 
-Mitigation: Review the skill's scripts and setup instructions before installing, and install only if you need it and are comfortable with what you reviewed.
+Mitigation: Treat injected planning content as data, keep external research in findings.md, and inspect the selected plan files before enabling hooks.
+
+Risk: The security review flags possible unsafe selection or modification of project plan files.
+
+Mitigation: Pin the intended plan when multiple plans exist, confirm the resolved plan directory, and review file changes before accepting them.
+
+Risk: The security review flags possible silent replacement of existing loop instructions.
+
+Mitigation: Check the destination and review existing loop instructions before installing the provided template.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/othmanadi/skills/planning-with-files)
+- [Planning with Files on ClawHub](https://clawhub.ai/othmanadi/skills/planning-with-files)
+- [Publisher profile: othmanadi](https://clawhub.ai/user/othmanadi)
+- [Manus: Context Engineering for AI Agents](https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus)
 - [Attestation locking and fallback](https://github.com/OthmanAdi/planning-with-files/blob/master/docs/attestation-locking.md)
 - [Performance notes](https://github.com/OthmanAdi/planning-with-files/blob/master/docs/perf-notes.md)
-- [Claude Code hook reference](https://code.claude.com/docs/en/hooks#precompact-output)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Files, Shell commands, Code, Configuration instructions, Guidance]
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown planning files and templates, with shell and Python helper scripts and agent setup guidance]
+**Output Format:** [Markdown planning files with shell command and configuration examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Creates or updates task plans, findings, and progress records; behavior depends on the selected plan and host lifecycle-hook support.]
+**Other Properties Related to Output:** [Creates or updates planning files in the selected project plan directory; host support determines available lifecycle behavior.]
 
 ## Skill Version(s):
 
-3.28.2 (source: evidence metadata and SKILL.md frontmatter)
+3.29.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

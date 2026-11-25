@@ -1,0 +1,26 @@
+{
+  "name": "easy-google-play",
+  "version": "0.2.2",
+  "description": "Cross-agent Google Play Console release skill powered by Easy WebBridge",
+  "type": "module",
+  "private": false,
+  "license": "MIT-0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "preflight": "node scripts/easy-webbridge-client.mjs preflight",
+    "check": "node --check scripts/easy-webbridge-client.mjs"
+  },
+  "keywords": [
+    "agent-skill",
+    "google-play-console",
+    "android-release",
+    "google-play-automation",
+    "easy-webbridge",
+    "claude-code",
+    "codex",
+    "opencode",
+    "workbuddy"
+  ]
+}

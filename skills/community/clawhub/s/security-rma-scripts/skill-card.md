@@ -1,6 +1,6 @@
 ## Description:
 
-Generates draft investment advisory scripts and client communication templates for China wealth management, including stock and fund discussions, market commentary, objection handling, and compliance review.
+Generates draft investment advisory scripts, market commentary, client objection responses, and compliance checklists for China wealth management professionals.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-China-based securities brokers, wealth advisors, and relationship managers use this skill to draft client-facing investment communication and compliance checklists. Treat outputs as drafts for review by appropriately qualified staff before use.
+External securities brokers, wealth advisors, and relationship managers can use the skill to draft client communication scripts, market commentary, objection responses, and compliance review checklists. Outputs are reference drafts that require appropriate suitability checks and qualified human review before client use.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,27 @@ China
 
 ## Known Risks and Mitigations:
 
-Risk: The security review is incomplete, so its benign verdict does not rule out issues in the partially inspected component.
+Risk: The security review was partial: the manifest could not be parsed, one reference was unresolved, and the static tool-misuse check was incomplete.
 
-Mitigation: Have an operator review the skill package and any included components before deployment.
-
-Risk: Draft investment communications may contain inaccurate, outdated, or unsuitable claims if used without review.
-
-Mitigation: Check claims against current official sources and product documents, confirm suitability and risk disclosures, and obtain qualified compliance review before client use.
-
-Risk: Client information shared while drafting could expose sensitive personal or financial data.
-
-Mitigation: Use only the minimum necessary information, replace identities with placeholders, and omit identifiers, account details, and full holdings.
+Mitigation: Resolve the reference and review the manifest and skill behavior before installation; treat the benign verdict as limited assurance.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/gechengling/skills/security-rma-scripts)
-- [Publisher profile](https://clawhub.ai/user/gechengling)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Markdown scripts, templates, tables, and checklists]
+**Output Format:** [Draft client communication scripts, templates, checklists, and explanatory guidance in text or Markdown.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Draft content uses placeholders; verify current rules, product information, suitability, and required risk disclosures before client use.]
+**Other Properties Related to Output:** [Uses placeholders and abstract scenarios; drafts need suitability checks and qualified compliance review before client use.]
 
 ## Skill Version(s):
 
-3.0.4 (source: frontmatter, server release metadata)
+3.0.5 (source: frontmatter, ClawHub release)
 
 ## Ethical Considerations:
 

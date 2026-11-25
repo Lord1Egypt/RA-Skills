@@ -39,6 +39,6 @@
     "LinkedIn personal accounts are excluded",
     "Pinterest requires a business account; saves and save_rate are 90-day rolling, all other Pinterest fields are lifetime (see pinterest-analytics.json)",
     "No pagination - keep date ranges reasonable",
-    "Rate limit: 1,260 requests/hour, 12,600/day"
+    "The endpoint's own rate limit is in SKILL.md, Rate Limits"
   ]
 }

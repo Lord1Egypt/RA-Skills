@@ -2,28 +2,38 @@
  * 抖音评论模块
  */
 const constants = require("../config/constants");
-const { requestApi } = require("../utils/request");
+const { SkillError } = require("../utils/errors");
+const { requestApi, pollTaskResult } = require("../utils/request");
+const { formatUnixSeconds } = require("../utils/time");
+
+function enrichCommentItem(item) {
+  if (!item || typeof item !== "object") return item;
+  const processedItem = { ...item };
+
+  if (item.user_sec_uid) {
+    processedItem.user_url = `https://www.douyin.com/user/${item.user_sec_uid}`;
+  }
+
+  if (
+    typeof item.create_time === "number" &&
+    item.create_time &&
+    !item.create_time_str
+  ) {
+    processedItem.create_time_str = formatUnixSeconds(item.create_time);
+  }
+
+  if (Array.isArray(item.reply_comment)) {
+    processedItem.reply_comment = item.reply_comment.map(enrichCommentItem);
+  }
+
+  return processedItem;
+}
 
 function processCommentResults(data) {
   if (!Array.isArray(data)) {
-    return [];
+    throw new SkillError("API_SCHEMA_CHANGED", "评论结果格式异常", true);
   }
-
-  return data.map((item) => {
-    const processedItem = { ...item };
-
-    if (item.user_sec_uid) {
-      processedItem.user_url = `https://www.douyin.com/user/${item.user_sec_uid}`;
-    }
-
-    if (typeof item?.create_time === "number" && item.create_time) {
-      processedItem.create_time_str = new Date(
-        item.create_time * 1000,
-      ).toLocaleString();
-    }
-
-    return processedItem;
-  });
+  return data.map(enrichCommentItem);
 }
 
 /**
@@ -63,18 +73,14 @@ async function createCommentTask(token, url, limit) {
  */
 async function getCommentTask(token, url, limit) {
   const params = {
-    _: Date.now(),
     url: url,
     limit: limit,
   };
 
-  const response = await requestApi(
-    "GET",
+  const response = await pollTaskResult(
     "/api/douyin/comment/info",
     params,
-    null,
     token,
-    constants.QUERY_MAX_ATTEMPTS,
     "查询任务",
   );
 

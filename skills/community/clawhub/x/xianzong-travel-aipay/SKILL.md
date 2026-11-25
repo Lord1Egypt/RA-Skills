@@ -1,34 +1,8 @@
----
-name: xianzong-travel-aipay
-description: >-
-  Xianzong Wendao Travel Consultation: one line of requirements becomes a ready-to-use
-  custom itinerary with PDF delivery (CNY 0.99 / approx USD 0.15 per call, Alipay AI
-  pay-per-use).
-  Use for travel plans, itineraries or trip guides - family trips with kids, elderly parents,
-  group trips, outbound travel, budget planning, transport or lodging advice; or when the
-  user mentions "Xianzong Wendao", "travel consultation", "PDF itinerary" or "plan a trip
-  for a few days". Body text supports English and other languages via `language`; PDF cover
-  labels and the email are Chinese only.
-  Output: a 7-section itinerary with itemized budgets, ticketing constraints, rest windows,
-  stamina fallbacks and alternatives for rain, sold-out tickets, closures or delays;
-  Markdown plus a typeset PDF (cover, contents, footer, 90-day link) emailed to the user.
-  Payment: an Alipay QR code the user scans to confirm (AI Pay), handled by the official
-  alipay-payment-skill / alipay-bot over HTTP 402; this Skill never implements payment or
-  signing.
-metadata:
-  version: "1.3.0"
-  category: travel
-  vendor: "仙踪问道"
-  requires:
-    bins: ["node", "alipay-bot"]
-    node: ">=18"
-    env: []
-  pricing:
-    amount_cny: "0.99"
-    goods_name: "仙踪问道_旅行咨询"
-    service_id: "API_7D36D49749854F1F"
-  endpoint: "https://api.riyuexinzhu.com/aipay/travel_consultant"
----
+<!--
+English reference edition of this Skill. The canonical entry point is SKILL.md
+(Chinese). This file intentionally carries no frontmatter so that packaging does
+not register a second Skill with the same `name`.
+-->
 
 # Xianzong Wendao · Travel Consultation
 
@@ -38,6 +12,11 @@ metadata:
 > Say "where, how many days, who is coming, what budget", and minutes later you get an
 > executable day-by-day itinerary, an itemized budget with transport and lodging advice, and
 > a typeset PDF with cover and table of contents.
+>
+> **Actually verified, not made up:** ticket prices, opening hours, booking rules and
+> schedules are checked online. Confirmed items are labelled *verified (value + source + date)*;
+> everything else stays *to be verified* with the channel to confirm — nothing uncertain is
+> written as fact, and each verified item is traceable.
 
 ## What you get
 
@@ -92,6 +71,8 @@ A generic AI can also produce an itinerary, but most stop at the "suggestion lay
 ### What this plan saves you — and what it does not
 
 - It is a **decision-support** tool. Its value is "less homework, fewer pitfalls", not "I booked the tickets and verified everything for you": ticket prices, opening hours and reservation policies still follow the official channel's same-day notice. The plan marks those as "to be verified" and lays out a verification timeline.
+- Unverified markers follow the answer language: "需核实" in Chinese, "(to be verified)" in English, with equivalents for Japanese, Korean and French; an English plan never contains the Chinese marker.
+- Every plan ends with a **Verification Checklist**: pending items are scored by **importance** and **verifiability** (0–100) and the top 6 are checked with **one search per item (fast mode)** running in parallel. Confirmed facts are marked **verified inline** (value + source + date); everything else is listed as still to be verified. The checklist also appears in the delivered PDF.
 - No promise of "real-time accuracy", "everything officially verified" or "no research needed at all"; specific prices and times in the samples (ticket prices, height limits, operating hours) must be re-checked against official channels before you act on them.
 - One consultation covers one trip; if dates, head count or budget change materially, consult again with the updated inputs rather than force-fitting the old plan.
 
@@ -107,7 +88,7 @@ This is not "however much we feel like giving" — it is the service's **minimum
 | 4 | **Lodging advice** | Recommended **area + room-type rationale** (which area is convenient for which attractions), not a list of hotel names |
 | 5 | **Food recommendations** | Matched to the destination's character and who is travelling (kids / elderly / dietary restrictions) |
 | 6 | **Budget estimate** | Per-person or tiered pricing, broken down by transport / lodging / food / tickets |
-| 7 | **Important cautions** | Tailored per traveller type: elderly (slower pace / medical access / accessibility), children (safety / interest points / routines), groups (meeting points and roles) |
+| 7 | **Important cautions** | Tailored per traveller type: elderly (slower pace / easy access to a nearby clinic / accessibility), children (safety / interest points / routines), groups (meeting points and roles) |
 
 ## How quality is checked
 
@@ -132,17 +113,17 @@ After generation an **independent review** runs: it scores the same 6 dimensions
 |---|---|---|
 | **Destination** | Domestic city / overseas city | **Put the city name directly in `query`** (e.g. "Beijing", "Rome", "Tokyo"); optionally use `country_code` with ISO 3166-1 alpha-2 (`CN` / `IT` / `JP`) as a hint |
 | **Travel party** | Family / with elderly / group or team / leisure | `is_family_suitable` / `is_group_suitable` / `is_leisure`, which drive pace, walking intensity, midday rest and meeting style |
-| **Theme (11 types)** | Outdoor adventure, culture and history, natural scenery, food and shopping, city sightseeing, study travel, family fun, wellness and medical, religious pilgrimage, red heritage | `topic_type` 0-10, which drives what gets selected and emphasised |
+| **Theme (11 types)** | Outdoor adventure, culture and history, natural scenery, food and shopping, city sightseeing, study travel, family fun, relaxation, heritage landmarks, memorial venues | `topic_type` 0-10, which drives what gets selected and emphasised |
 | **Content focus (9 types)** | City geography, attractions, food, shopping, transport, lodging, travel guides, history and culture | `intro_type` 0-8, which drives which material is retrieved first |
-| **Output language** | Chinese (default) / English / other languages | `language` (ISO codes accepted, e.g. `zh` / `en`; anything not `zh`/`cn` is treated as non-Chinese). **The answer body and reference material follow `language`; the PDF shell (cover labels, table-of-contents title, footer disclaimer) and the delivery email are currently fixed Chinese.** See "Language support" below |
-| **Personalized combinations** | Any combination of the above | e.g. "overseas + family + study travel + attractions", "domestic + elderly + wellness + lodging and transport" |
+| **Output language** | **ISO 639-1 two-letter code**: `zh` (default), `en`, `ja`, `ko`, `fr`, `de`, `es`, `it`, `pt`, `ru`, `ar`, `th`, `vi`, `id`, `ms` | `language` is a strong delivery constraint. The Agent must identify the user's requested language and pass it; if unspecified, pass `zh`. The answer body, PDF shell and delivery email must use the same language. See "Language support" below |
+| **Personalized combinations** | Any combination of the above | e.g. "overseas + family + study travel + attractions", "domestic + elderly + relaxation + lodging and transport" |
 
 Common combinations:
 
 | What you say | Dimensions actually used |
 |---|---|
 | "6-day family trip to Kansai, Japan, with one day feeding deer in Nara" | `country_code=JP` + family + family fun |
-| "8 days in Yunnan with my parents, slow pace, not too much climbing" | `country_code=CN` + wellness / leisure + elderly pace constraints |
+| "8 days in Yunnan with my parents, slow pace, not too much climbing" | `country_code=CN` + relaxation + elderly pace constraints |
 | "Company team building in Chengdu, 20 people, 3 days" | `country_code=CN` + group + city sightseeing / food and shopping |
 | "10 days in Italy for art museums and churches" | `country_code=IT` + culture and history + history focus |
 
@@ -150,25 +131,40 @@ Common combinations:
 >
 > Important: retrieval happens **during the paid generation stage** (before payment you only receive a bill; no pre-check of whether material exists). So for unusual destinations, describe the country and city only, in broader terms; if it still returns "no relevant travel information found", keep the order number and contact support.
 
-## Language support (what is English-capable and what is not)
+## Language support (ISO 639-1 `language`)
 
-`language` controls the generated answer. Verified against the current backend implementation:
+`language` takes a **two-letter lowercase ISO 639-1 code**. Accepted values: `zh` (Chinese, default), `en`, `ja`, `ko`, `fr`, `de`, `es`, `it`, `pt`, `ru`, `ar`, `th`, `vi`, `id`, `ms`.
 
-| Part | Chinese (`zh` / `cn`, default) | English / other languages |
-|---|---|---|
-| **Answer body** (Markdown: 7 sections, day-by-day plan, budget table, cautions) | Chinese | **Supports English and other languages** — the prompt tells the model to answer in `language`; the self-review and revision prompts inherit the same instruction |
-| **Reference material** (`ref_travel_infos`: title / summary / content / guide) | Chinese fields | Switches to the English fields (`title_en` / `summary_en` / `contents_en` / `travel_guide_en`) when `language` is not `zh`/`cn` — depends on the knowledge base having English text for that entry |
-| **PDF body** | Chinese/English as generated | Rendered from the answer, so the body matches `language` |
-| **PDF shell** (cover eyebrow, "咨询问题：" label, "Destination / Travel Dates / Delivered By" card labels, table-of-contents title "方案目录", footer disclaimer) | Chinese | **Still Chinese** — these strings are hard-coded in the PDF layout layer, not driven by `language` |
-| **PDF font** | CJK stack (PingFang SC / Microsoft YaHei / Noto Sans CJK) | Same stack; Latin text renders fine, but non-CJK/special scripts (Arabic, Thai, etc.) are not guaranteed |
-| **Delivery email** | Chinese | **Still Chinese** — template `travel_consult_pdf.html` and the LLM summary prompt are Chinese-only; the summary may still come back in Chinese even when `language=en` |
-| **Destination / travel dates on the cover** | Chinese | Extracted by a separate Chinese-only prompt, so these two cover values stay Chinese |
+Normalization (server-side, `normalize_travel_language`):
+
+| Input | Result |
+|---|---|
+| empty / missing | `zh` |
+| `cn`, `zh_CN`, `zh-CN`, `zh-Hant`, `ZH` | `zh` (legacy pseudo-code `cn` is an accepted alias) |
+| `en-US`, `en,zh`, `en-US;q=0.9` | `en` (only the first tag is used) |
+| anything not in the list above | falls back to `zh` and logs a warning |
+
+The Skill's own CLI rejects unsupported codes up front (exit code 2, no request sent), so you learn about a typo before any bill is issued.
+
+What each part of the deliverable does — verified against the backend implementation:
+
+| Part | Behaviour |
+|---|---|
+| **Answer body** (Markdown: 7 sections, day-by-day plan, budget table, cautions) | **Follows `language` for every supported code.** The prompt asks the model to answer in `Chinese (zh)` / `English (en)` / etc.; the self-review and revision prompts inherit the same instruction |
+| **Reference material** (`ref_travel_infos`: title / summary / content / guide) | The knowledge base only has two field sets: `zh` → Chinese fields; **any non-`zh` code → English fields** (`title_en` / `summary_en` / `contents_en` / `travel_guide_en`). Coverage depends on that entry having an English translation |
+| **PDF body** | Rendered from the answer, so it matches `language` |
+| **PDF shell** | Cover, labels, table-of-contents title and footer disclaimer follow `language` when the language is prepared (`zh` / `en` / `ja` / `ko` / `fr`); other codes fall back to English where the shell is concerned |
+| **PDF font** | CJK-first stack (PingFang SC / Microsoft YaHei / Noto Sans CJK). Latin text renders cleanly; Arabic / Thai / Devanagari and other non-CJK scripts are **not guaranteed** |
+| **Delivery email** | Subject, greeting, field labels, PDF button, expiry notice and footer follow `language`; unprepared codes fall back to English |
+| **Cover `Destination` / `Travel Dates`** | Follow the requested language where prepared, with the body and summary using the same `language` |
 
 Practical guidance:
 
-- For an English itinerary, pass `language=en` and write the `query` in English. You get an English answer body inside a Chinese-labelled PDF shell, delivered by a Chinese email.
-- If a fully English PDF shell and email matter, that is **not supported yet** — say so instead of promising it.
-- Untested languages (anything other than `zh` / `en`): the body prompt will try, but retrieval only has Chinese and English knowledge-base fields, so expected quality is lower.
+- **Detect the language from the user's request before calling `probe`.** For English, pass `language=en` and write the `query` in English. The answer body, PDF shell and delivery email must all use English.
+- For Japanese, Korean or French, pass `language=ja`, `ko` or `fr` respectively.
+- If the user does not specify a language, explicitly pass `language=zh`. Do not omit `language` and then assume another language.
+- For non-English, non-Chinese codes (`de`, `es`, `th`, etc.) the answer body and self-review follow the requested language, while PDF/email labels fall back to English unless a prepared language is available.
+- Whatever the language, the PDF font stack targets CJK + Latin. Scripts outside that range may render with missing glyphs.
 
 ## Why it is worth CNY 0.99 (approx USD 0.15)
 
@@ -185,22 +181,26 @@ A few more points:
 
 | Feature | What it actually does |
 |---|---|
-| **Domestic and overseas, multi-scenario, multi-theme** | Destination code + 3 travel-party options + 11 themes + 9 content focuses can be stacked freely; the same destination can yield a family version, a wellness version or a study-travel version |
-| **Key facts are web-verified** | Up to 4 tool-call rounds during generation (about 2-3 batches of retrieval) to verify opening hours, ticket prices, schedules and seasonal shutdowns; anything unverified is labelled "to be verified" |
+| **Domestic and overseas, multi-scenario, multi-theme** | Destination code + 3 travel-party options + 11 themes + 9 content focuses can be stacked freely; the same destination can yield a family version, a relaxation version or a study-travel version |
+| **Key facts are web-verified** | Up to 4 tool-call rounds during generation (about 2-3 batches of retrieval) check prices, opening hours, booking rules and schedules first; the remaining open items are scored and the top 10 are re-checked with **one search per item** (fast search, 10 results per query) in parallel, and the plan ends with a **Verification Checklist** (verified with source and date / still to be verified) |
+| **Actually verified — no made-up facts** | Every conclusion is either **verified (exact value + source site + info date)** or **still to be verified (with the channel to confirm)**. Nothing uncertain is presented as fact; unverified items keep their marker in both the body and the checklist |
+| **Time-sensitive by design** | The checklist is dated ("as of YYYY-MM-DD") and every verified item carries the source publication date; anything that cannot be found or is out of date falls back to "to be verified" instead of being presented as current |
+| **Traceable references** | Verified items include the source site and link so you can re-check before departure; the checklist separates "checked but not confirmed" from "not checked (over the limit)" |
 | **You get a revised draft, not a first draft** | An independent review runs after generation; medium or high severity issues must be corrected with a full reissued answer (see the previous section) |
 | **A PDF you can actually forward** | Typeset document (cover + table of contents + branded footer with the official site), forwardable as-is to a family or travel group, no extra layout work |
 | **Transparent, per-call pricing** | CNY 0.99 (approx USD 0.15) per call, pay once and receive once; the amount follows the Alipay bill issued to you, no subscription, no auto-renewal |
 
-**Best for**: domestic and overseas destinations; family trips, travelling with elderly parents, group or team building, leisure holidays, honeymoons and anniversaries, study travel, wellness and medical, religious pilgrimage, red heritage themes, independent or self-drive travel, weekend getaways — any trip that needs "execution-level detail".
+**Best for**: domestic and overseas destinations; family trips, travelling with elderly parents, group or team building, leisure holidays, honeymoons and anniversaries, study travel, relaxation, heritage landmarks, memorial venues, independent or self-drive travel, weekend getaways — any trip that needs "execution-level detail".
 
-**English / other languages**: the answer body, day-by-day plan and budget text can be generated in English (or other languages) with `language=en`, but the PDF cover labels and the delivery email are currently Chinese only. Do not promise a fully English PDF or email.
+**English / other languages**: detect the requested language and pass `language` explicitly. With `language=en`, the answer body, PDF shell and delivery email are English. If the user gives no language, use `language=zh`; never deliver Chinese while the conversation expected another language.
 
-**Not for**: real-time booking or payment of flights / hotels / tickets, visa application handling, products requiring a licensed travel-agency qualification, or safety-critical decisions such as live traffic or emergency medical guidance.
+**Not for**: real-time booking or payment of flights / hotels / tickets, visa application handling, products requiring a licensed travel-agency qualification, or safety-critical decisions such as live traffic or emergency rescue guidance.
 
 ## Get started in three steps
 
-1. **Describe your needs** (you will be asked first if the email is missing)
-   > "Plan a 3-day family trip to Hangzhou, 2 adults and 1 child aged 6, budget under CNY 5000, not too tiring"
+1. **Describe your needs** (you will be asked first if the email is missing; the language is also identified here)
+   > "In English, plan a 3-day family trip to Hangzhou, 2 adults and 1 child aged 6, budget under CNY 5000, not too tiring"
+   > Explicitly pass `language=en` for an English request. If no language is stated, explicitly pass `language=zh`; do not omit the parameter.
 2. **Confirm payment**: you receive a CNY 0.99 (approx USD 0.15) Alipay payment entry — scan and pay (the same order **only needs to be paid once**)
 3. **Wait for and receive the plan (about 2-3 minutes)**: the professional plan runs web verification plus one review, which usually takes **2-3 minutes**. While waiting you can say "ready yet / continue" every 30 seconds; the system checks progress using **the same order number**. Once generated, **the plan PDF is automatically emailed to the address you provided**, so closing the chat loses nothing.
 
@@ -208,7 +208,9 @@ A few more points:
 
 ### How to phrase it for the best result
 
-Make these clear and the quality difference is large: **destination / days and dates / travel party (head count and ages) / budget range / pace preference / must-sees and dietary restrictions**.
+Make these clear and the quality difference is large: **destination / days and dates / travel party (head count and ages) / budget range / pace preference / must-sees and dietary restrictions / requested delivery language**.
+
+`language` is a mandatory Agent-side delivery constraint. If the user says English, Japanese, Korean or French, pass `en`, `ja`, `ko` or `fr`; if the language is unspecified, pass `zh`. The answer body, PDF shell and email must match.
 
 | What you say | Result |
 |---|---|
@@ -264,9 +266,18 @@ Please note these 5 points before paying:
 
 ## Privacy and data
 
+Obtaining the bill already sends your **trip requirements** and the **email that receives the PDF** to the official Xianzong Wendao service — this happens **before** payment, not after:
+
+| When | What is sent | Where it goes | Why |
+|---|---|---|---|
+| **Bill retrieval (before payment)** | `query` (trip inputs) + `email` | `https://api.riyuexinzhu.com/aipay/travel_consultant` (official Xianzong Wendao service) | Issue the Alipay bill; after payment the same request generates the plan and emails the PDF there |
+| After payment | The same request + payment proof | Same endpoint | Generate the plan, verify payment |
+
 - The **email you provide is used only** to send the PDF plan and summary for this order.
 - The consultation request is stored server-side with the order for fulfilment and reconciliation; the PDF is generated once and the link is valid for about **90 days**.
+- **No other outbound traffic exists**: the script never reads system credentials or secret environment variables, sends no telemetry and contacts no other domain.
 - The payment proof (`Payment-Proof`) and bill files land only on your machine under `~/.xianzong-travel-aipay/` (permissions 0700/0600); they are never echoed back and never committed to version control.
+- Party ages, budget and accessibility needs in your request are personal data. If you prefer not to share them, start with only the city and number of days; the plan will state its assumptions.
 
 ---
 
@@ -292,7 +303,7 @@ Payment, bill signing, transaction queries and fulfilment receipts all go to the
 | Dependency | Purpose | When missing |
 |---|---|---|
 | `node` (>=18, zero third-party deps) | Runs `scripts/travel_aipay.mjs` | Report clearly and stop |
-| `alipay-bot` (official `@alipay/agent-payment`) | Payment / query / receipt | State that `npx -y @alipay/agent-payment@latest install` is needed, verify integrity per alipay-payment-skill's `references/command-recovery.md` before installing; **never install without user consent** |
+| `alipay-bot` (official `@alipay/agent-payment`, **pinned to 1.0.31**) | Payment / query / receipt | State that `npx -y @alipay/agent-payment@1.0.31 install` is needed (pinned version, **never switch to a floating version tag**), verify `dist.integrity` per alipay-payment-skill's `references/command-recovery.md` before installing; **never install without user consent** |
 
 It shares the same Node runtime as the official buyer capability; **no Python or pip packages are required**.
 
@@ -306,10 +317,10 @@ It shares the same Node runtime as the official buyer capability; **no Python or
 | `email` | **Yes** | Email that receives the typeset PDF plan |
 | `country_code` | No | ISO 3166-1 alpha-2 (`CN` / `IT`) |
 | `intro_type` | No | 0 all / 1 city geography / 2 attractions / 3 food / 4 shopping / 5 transport / 6 lodging / 7 travel guide / 8 history and culture |
-| `topic_type` | No | 0 all / 1 outdoor adventure / 2 culture and history / 3 natural scenery / 4 food and shopping / 5 city sightseeing / 6 study travel / 7 family fun / 8 wellness and medical / 9 religious pilgrimage / 10 red heritage |
+| `topic_type` | No | 0 all / 1 outdoor adventure / 2 culture and history / 3 natural scenery / 4 food and shopping / 5 city sightseeing / 6 study travel / 7 family fun / 8 relaxation / 9 heritage landmarks / 10 memorial venues |
 | `is_group_suitable` / `is_family_suitable` / `is_leisure` | No | 1 yes / 0 no |
 | `is_with_ref` | No | 1 return reference material (default) / 0 do not return |
-| `language` | No | Answer language, default `zh`. `zh` / `cn` = Chinese; any other value (e.g. `en`) switches the answer body and reference material to non-Chinese. The PDF shell labels and the delivery email stay Chinese regardless. |
+| `language` | **Must be identified and passed by the Agent** | Delivery language as an **ISO 639-1 two-letter code**. Pass `en` / `ja` / `ko` / `fr` when explicitly requested; pass `zh` when unspecified or ambiguous. It controls the answer body, PDF shell and delivery email. Omitting it means the backend defaults to Chinese. Legacy `cn` is an accepted alias for `zh`; `en-US`-style tags keep only the primary subtag. |
 | `options` | No | Extension dict that can override same-named fields |
 
 An empty `query` or an invalid `email` returns 400 **before payment** and produces no bill — validate first, then issue the 402.
@@ -320,25 +331,36 @@ An empty `query` or an invalid `email` returns 400 **before payment** and produc
 |---|---|
 | `body` | Builds and prints the request body only (no request sent) |
 | `probe` | Unpaid request that obtains the 402 bill; writes `payment-needed.txt` / `body.json` / `state.json` |
-| `pay` | Calls the official `alipay-bot 402-buyer-pay`; **requires `--confirm`** (after explicit user consent) |
-| `complete` | Retrieves the resource after payment: by default via the official `402-query-payment-status` (optionally `--wait` to poll); `--proof` fetches directly with the proof |
+| `pay` | Calls the official `alipay-bot 402-buyer-pay`; **requires `--confirm`** (after explicit user consent). Saves the Alipay trade number into private `state.json` when available. |
+| `complete` | Retrieves the resource after payment. By default, it prefers the saved Alipay trade number and falls back to explicit `--trade-no` / `--out-shake-no`; `--wait` polls through the official `402-query-payment-status`; `--proof` fetches directly with the proof. |
 | `render` | Renders a saved delivery response into displayable text |
 
 ```bash
-SKILL_DIR=skills/xianzong-travel-aipay
+SKILL_DIR=skills/aipay/xianzong-travel-aipay
 
 node "$SKILL_DIR/scripts/travel_aipay.mjs" body --query '3-day family trip to Hangzhou, 2 adults + 1 child' --email buyer@example.com
 
 node "$SKILL_DIR/scripts/travel_aipay.mjs" probe \
   --query '3-day family trip to Hangzhou, 2 adults + 1 child, budget within CNY 5000, avoid long walks' \
-  --email buyer@example.com --country-code CN --topic-type 7 --is-family-suitable 1
+  --email buyer@example.com --country-code CN --topic-type 7 --is-family-suitable 1 \
+  --language zh
+
+# Explicit English request: body, PDF shell and email must all be English
+node "$SKILL_DIR/scripts/travel_aipay.mjs" probe \
+  --query '4-day 3-night family trip to Beijing for 2 adults and 1 eight-year-old child' \
+  --email buyer@example.com --country-code CN --topic-type 7 --is-family-suitable 1 \
+  --language en
 
 node "$SKILL_DIR/scripts/travel_aipay.mjs" pay --confirm --session-id '<current session id>'
 
-node "$SKILL_DIR/scripts/travel_aipay.mjs" complete --out-shake-no '<official order number>'
+node "$SKILL_DIR/scripts/travel_aipay.mjs" complete --wait --state-dir '~/.xianzong-travel-aipay'
+
+# Explicit query parameters remain supported:
+node "$SKILL_DIR/scripts/travel_aipay.mjs" complete --trade-no '<Alipay trade number>' --wait
+node "$SKILL_DIR/scripts/travel_aipay.mjs" complete --out-shake-no '<merchant order number>' --wait
 ```
 
-State files default to `~/.xianzong-travel-aipay/` (0700/0600), independent of the current working directory and never written into the repo; override with `--state-dir`.
+State files default to `~/.xianzong-travel-aipay/` (0700/0600), independent of the current working directory and never written into the repo; override with `--state-dir`. `state.json` distinguishes `outTradeNo` (merchant order number) from `tradeNo` (Alipay trade number). After `pay`, the trade number is persisted automatically; retrieval must not reuse or substitute them blindly.
 
 ### Exit-code matrix
 
@@ -346,7 +368,7 @@ State files default to `~/.xianzong-travel-aipay/` (0700/0600), independent of t
 |---|---|---|---|
 | `402` + `Payment-Needed` | Payment required | `0` (probe) | After user confirmation, `pay --confirm` |
 | `200` | Delivered (including idempotent replay of the same order) | `0` | Show the body and PDF; **do not send an extra receipt** |
-| `409` + `Retry-After` | Payment confirmed, resource still generating (normally 2-3 minutes) | `3` | Poll `complete --out-shake-no` with **the same order number** per `Retry-After` (default 30s); **never pay again** |
+| `409` + `Retry-After` | Payment confirmed, resource still generating (normally 2-3 minutes) | `3` | Poll with **the same trade/merchant order context** per `Retry-After` (default 30s); prefer the saved trade number for `--trade-no`; **never pay again** |
 | `200` but `resp_code != 200` | Business failure (already verified as paid) | `4` | Report the reason as-is; do not auto-retry, do not pay again |
 | `402` (after resending with a proof) | Proof invalid / expired | `5` | Explain the proof is invalid and ask the user to check the Alipay bill; **do not steer straight into a second payment** |
 | `400` | Request rejected | `2` | Fix the parameters and retry; nothing charged |
@@ -369,32 +391,40 @@ Additional facts:
 - **`resourceDelivered` is not a 402 protocol field, nor an officially documented convention**: it is only an internal field of the `alipay-bot --output json` result envelope (the binary contains both `json:"resourceDelivered"` and `json:"resourceDelivered,omitempty"`; the success path omits it and only failure payloads show `false` explicitly). It is useful for diagnostics, **never as a success/failure criterion**.
 - **The success payload carries no `resourceDelivered` field** (it only appears on failure payloads). Judging success by `resourceDelivered === true` or by the CLI exit code misfires as "not delivered", causing endless re-queries, while the server log already says `state=FULFILLED, is_first_delivery=False` (the order is fulfilled; re-queries are only idempotent replays and never charge twice).
 - A business-level failure (verified as paid but `resp_code != 200`) is still HTTP 200; read `resp_code` inside `body.content` and never present it as success.
-- Just use `complete --out-shake-no '<order no>' --wait`: the script reads the fields above and polls automatically (default every 40s, up to 15 minutes); do not hand-roll a grep polling loop.
+- Prefer `complete --wait` after `pay`: the script reads the saved `tradeNo` and state file, and polls automatically (default every 40s, up to 15 minutes). Explicit `complete --trade-no '<Alipay trade number>' --wait` is also valid. Do not hand-roll a grep polling loop.
+- Do not confuse the merchant order number (`AIPAY_*`, field `outTradeNo`) with the Alipay trade number (32-digit payment transaction number, field `tradeNo`). Send each to the matching official CLI parameter.
 
 ### Execution flow
 
 See [references/402-travel-flow.md](references/402-travel-flow.md) for the detailed commands and payload interpretation (read it once before entering payment).
 
-1. **Collect the inputs**: `query` + `email`. If `email` is missing you must stop and ask; never invent one.
-2. **Validate locally**: run `body` to print the request body and confirm the fields.
-3. **Obtain the bill**: run `probe` → bill / request body / state files.
+1. **Collect the inputs**: `query` + `email`, and identify `language`. If `email` is missing you must stop and ask; never invent one.
+   - English `en`; Japanese `ja`; Korean `ko`; French `fr`; Chinese `zh`.
+   - If the user gives no language, use `zh`.
+   - Never omit `language` on a formal `probe`, even for Chinese: pass `--language zh` explicitly.
+   - The answer body, PDF and delivery email must use the same language.
+2. **Validate locally**: run `body --language ...` to print the request body and confirm the fields and language.
+3. **Disclose first, then obtain the bill**: before running `probe`, explicitly tell the user — “next, your **trip requirements** and the **email that receives the PDF** will be sent to the official Xianzong Wendao service `https://api.riyuexinzhu.com/aipay/travel_consultant` to issue the Alipay bill and, after payment, to generate the plan; the email is used only for this order's delivery”. This is the only outbound data transfer **before payment**; run `probe` → bill / request body / state files only after the user knows. **Never send silently.**
 4. **Stop before payment confirmation and hand the payment entry to the user as-is**: state the unit price (CNY 0.99 ≈ USD 0.15), goods name and order number; show the **Alipay QR image and the "payment method" link** from this `pay` output (send the image through the image channel and delete the `MEDIA:` lines from the text; keep the link character-for-character complete, never truncate or rewrite it). Remind the user: "CNY 0.99 (approx USD 0.15), one-off, you must scan and confirm AI Pay in your own Alipay app, say something when you have paid, do not pay twice". **Never run `pay --confirm` without explicit confirmation in the current conversation.**
-5. **Retrieve after payment (expect 2-3 minutes)**: prefer `complete --out-shake-no '<official order number>' --wait` (the script interprets the official payload fields, auto-detects 409/transient failures and polls, up to 15 minutes, never charging twice), or `complete --proof '<proof>'`. Without `--wait`, every 409 must be re-queried with **the same order number** after `Retry-After` (default 30s), and tell the user: "a professional plan usually takes 2-3 minutes; once generated the PDF is emailed automatically, no need to pay again or watch the chat".
+5. **Retrieve after payment (expect 2-3 minutes)**: prefer `complete --wait` (the script uses the Alipay trade number saved by `pay`, or explicit `--trade-no`; it interprets official payload fields, auto-detects 409/transient failures and polls for up to 15 minutes). Explicit merchant-order queries may still use `complete --out-shake-no '<merchant order number>' --wait`, but it must not be substituted for the trade number. `complete --proof '<proof>'` is also supported when an official proof is available. Without `--wait`, every 409 must be re-queried with the same order context after `Retry-After` (default 30s), and tell the user: "a professional plan usually takes 2-3 minutes; once generated the PDF is emailed automatically, no need to pay again or watch the chat".
 6. **Present**: show the body as-is; output the PDF link (including signature parameters) **in full, never truncated**, and state that it is valid about 90 days and has been emailed; **never show any cost / pricing field**.
 
 ### Hard boundaries
 
 - **Payment only through the official CLI**: `402-buyer-pay` / `402-query-payment-status` / `402-buyer-fulfillment-ack` (the last one only when the official output explicitly reports a receipt failure and the user asks to recover). Never call Alipay directly, never construct signatures, never reshape the `Payment-Needed` header.
-- **Reuse the same order**: the `body.json` created by `probe` is the request for this order; retries and queries reuse it. Do not change the content, do not create a new order.
+- **Reuse the same order**: the `body.json` created by `probe` is the request for this order; retries and queries reuse it. Do not change the content, do not create a new order. Keep `outTradeNo` and `tradeNo` separate, and use the matching official CLI parameter.
 - **Query the order when the state is unclear**: timeouts, incomplete output, the user saying "paid / continue / ready yet", or any 409 → query the original order first; do not pay again.
 - **No extra receipt on success**: the official command already sends the fulfilment receipt; never send a second one.
 - **Show the payment entry as-is**: the QR image and payment link may come only from **this** `pay` output; never reuse historical or someone else's links, never rewrite, never omit. If the link expired, obtain a new bill — never invent a payment address.
+- **Disclosure before transfer**: complete the privacy disclosure (execution flow step 3) before `probe`; never silently send `query` / `email` to an external service.
+- **Never omit `language`**: every formal `probe` must pass `--language` according to the user. If unspecified, pass `zh`. Translating only the chat response or omitting the request parameter is an execution error.
 - **Sensitive data**: `Payment-Proof` and bill files land only in 0600 files and are never echoed into user-facing text.
 - **Production red lines**: only call this one deployed paid endpoint; do not change server code, do not change `src/configs/aipay.yml`, do not touch production data.
 
 ### Known traps
 
 - **Polling criterion (measured 2026-11-14, a real pitfall)**: the official query's success payload has **no** `resourceDelivered` field; success can only be judged by `success: true` + `resourceResponse.status: 200`. `resourceResponse: null` is a transient unavailability (retryable), not a delivery failure. Do not hand-roll a grep polling loop; use `complete --wait`.
+- **Order-number trap (measured 2026-11-19)**: do not pass an `AIPAY_*` merchant order number to `--trade-no`; use `--out-shake-no` for that value, or prefer the Alipay trade number automatically saved by `pay` for `--trade-no`. Passing the wrong identifier can produce `SYSTEM_ERROR` even though the resource server is reachable.
 - `skills/` is **not** in VS Code's default skill scan list; it depends on `chat.agentSkillsLocations` in `.vscode/settings.json`. Without that setting it can only be loaded by explicit filename.
 - `name` must be lowercase letters/digits/hyphens and must equal the directory name (underscore forms like `travel_aipay` are invalid).
 - `Payment-Needed` is **Base64URL**; do not parse it as JSON directly.
@@ -404,13 +434,12 @@ See [references/402-travel-flow.md](references/402-travel-flow.md) for the detai
 
 | Path | Purpose |
 |---|---|
-| `SKILL.md` | Product introduction, onboarding, user-facing troubleshooting, contract and boundaries |
+| `SKILL.md` | Canonical Chinese product introduction, onboarding, user-facing troubleshooting, contract and boundaries |
+| `SKILL_en.md` | English reference edition; no frontmatter and not registered as a second Skill |
 | `scripts/travel_aipay.mjs` | Request body assembly, 402 bill retrieval, official payment orchestration, retrieval (`complete --wait` polling + official payload interpretation), result rendering (zero dependencies) |
 | `references/402-travel-flow.md` | Full 402 flow commands and interpretation (read before payment) |
 | `references/install-and-pack.md` | Running, local loading and packaging notes |
-| `tests/mock_server.mjs` | Local mock resource server (fake bills, never touches the real service) |
-| `tests/run_offline_tests.mjs` | Offline regression: 402 / generating / success / failure / same-order retry / payment interception |
-| `.gitignore` | Excludes working directory, proofs and packaging artifacts |
+| `scripts/pack.sh` | Packaging script: verifies every referenced file exists before zipping (excludes the runtime state directory) |
 
 ---
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Searches public Xiaohongshu posts, retrieves post details, comments, creator posts and engagement metrics, and returns structured JSON for trend, competitor, creator and sentiment research.
+为内容创作者、运营和分析人员检索小红书公开笔记、详情、评论、博主作品及互动数据，并以 JSON 返回；无需登录或发布内容。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Creators, brand teams and analysts use this skill to research public Xiaohongshu content, compare creators or competitors, and understand audience response. It requires a Guaikei API token and returns structured JSON.
+内容创作者、运营人员、品牌团队与分析人员可用它检索公开笔记、查看评论和博主作品，支持选题、竞品观察、KOL筛选和舆情分析。
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan flags possible privacy exposure when search keywords and links are sent to an external service or request details are shared with support; its analysis of 13 files is incomplete.
+Risk: ClawScan found privacy and tool-scope concerns, and parts of the artifact were only partially inspected.
 
-Mitigation: Review the privacy implications before installing, use only non-sensitive public-data queries, and check request details before sharing them with support.
+Mitigation: Review the declared access and privacy practices before installing; decide whether sending keywords or links to the third-party service, and possible sharing with support, is acceptable. The scan does not establish that the skill is safe.
 
 ## Reference(s):
 
-- [Guaikei service](https://www.guaikei.com)
-- [Routing guide](references/routing.md)
-- [Request and output contract](references/contract.md)
+- [Guaikei service and token information](https://www.guaikei.com)
+- [Output contract](references/contract.md)
 - [Command options](references/options.md)
-- [Error guide](references/errors.md)
+- [Error guidance](references/errors.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis]
+**Output Type(s):** [JSON]
 
-**Output Format:** [JSON]
+**Output Format:** [Structured JSON envelope]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Structured public post, comment and creator data; analysis may summarize trends, competitors and audience response.]
+**Other Properties Related to Output:** [Contains public note, comment, creator, and interaction data; results vary by command.]
 
 ## Skill Version(s):
 
-1.2.2 (source: evidence.release.version, SKILL.md, package.json)
+1.2.4 (source: server-resolved release, SKILL.md frontmatter, package.json)
 
 ## Ethical Considerations:
 

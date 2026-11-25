@@ -14,7 +14,7 @@ Publish and maintain the ClawHub skill registry. All skills are published to a s
 
 ## Scope
 
-Skills come from three repos under the `negtivSpace` superproject. Each repo has its own `.github/workflows/clawhub-skill-sync.yml` that publishes its skills to ClawHub:
+Skills come from three sibling repos under `~/pool/git/`. Each repo has its own `.github/workflows/clawhub-skill-sync.yml` that publishes its skills to ClawHub:
 
 - `history/` — publishes only `.opencode/skills/chinese-history-literature-culture` (via a `skill_path` entry). The other skills in `history/.opencode/skills/` (`character-name-literary-origins`, `simplified-to-traditional`) are **local-only**: they stay in the repo for opencode to load but are not published to ClawHub. (`simplified-to-traditional` is published from its canonical `ai-thoughts` copy.)
 - `ai-thoughts/.opencode/skills/` — publishes **every** `.opencode/skills/<slug>/SKILL.md` folder via a glob, so any new skill is published automatically and `publish-skills` self-publishes like any other. Untracked/uncommitted folders are not on ClawHub until they are committed and pushed.
@@ -23,7 +23,7 @@ Skills come from three repos under the `negtivSpace` superproject. Each repo has
 ## Single-source rule — read before anything else
 
 - **Only the `j3ffyang/*` copies of these repos publish.** The `negtivspace/*` copies keep the same workflow file (mirrors stay in sync) but are a no-op: every job is guarded with `github.repository_owner == 'j3ffyang'`.
-- **Every skill update ships.** Whenever a `SKILL.md` is created or changed in any `negtivSpace` repo, commit it and push to **both** remotes (`j3ffyang` + `negtivspace`) in the same change — an unpushed skill is an unpublished one. The `j3ffyang` push runs `clawhub-skill-sync.yml`; afterwards, verify the new version is live via the skills API (`latestVersion`). Don't leave a skill edit uncommitted or only on one remote.
+- **Every skill update ships.** Whenever a `SKILL.md` is created or changed in any of these three repos, commit it and push to **both** remotes (`j3ffyang` + `negtivspace`) in the same change — an unpushed skill is an unpublished one. The `j3ffyang` push runs `clawhub-skill-sync.yml`; afterwards, verify the new version is live via the skills API (`latestVersion`). Don't leave a skill edit uncommitted or only on one remote.
 - Both copies are pushed on every change, so both repos run the workflow on push. Without the owner guard they would both publish to the *same* ClawHub account and race, producing `Version X already exists` collisions.
 - Never create or run a manual publish path that could double-publish to ClawHub. If a skill edit is needed, edit it in the working repo, push to both remotes, and let the workflow publish once.
 - `clawhub_token` (the `j3ffyang` ClawHub token) is set as a repo secret in all six repo copies; only the `j3ffyang` ones ever use it.

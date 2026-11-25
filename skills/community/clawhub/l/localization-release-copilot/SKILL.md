@@ -3,7 +3,7 @@ name: localization-release-copilot
 description: "Shadow-mode copilot for localization / translation release operations. Given a source draft and its target-language version(s), it locks terminology, machine-checks numbers and proper nouns, preserves source attributions, flags structure loss, and produces a reviewable diff preview — without rewriting the translation. Designed for editorial long-form ZH↔EN localization; SaaS locale-file features (.po / placeholders / plurals) are flagged as pending until real samples exist."
 description_zh: "本地化发布运营影子助手"
 description_en: "Localization Release Copilot"
-version: "1.0.1"
+version: "1.0.2"
 agent_created: true
 ---
 
@@ -89,7 +89,7 @@ Consistent items are kept as positive records but not listed line by line.
 Render a **PR-style preview** the human reviewer can approve in one pass:
 
 - A short summary: source → target(s), what passed, what needs attention.
-- A line-level diff for each P0/P1: source sentence → target sentence → suggested fix (do not auto-apply).
+- A line-level diff for each P0/P1: source sentence → target sentence → suggested fix (do not auto-apply). Every suggested fix is a review note for the human editor, NOT publishable target text — the preview itself must never be copied into a release as if it were an approved translation.
 - A glossary-compliance block: which locked terms were honored / violated.
 - A "ready to publish?" gate: **blocked** if any P0 remains, **needs review** if any P1 remains, **clear** otherwise.
 

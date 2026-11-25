@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.42.0 (2026-11-18) — 市政识图增强 + 哈希链闭环
+
+- ARC 弧段提取：decode_arc_entities + 图层归属映射，弧长=半径×圆心角；弧长替代弦长，
+  真图道路中线 14360.9 → 16839.9 m（+17%）。SPLINE 暂不支持（边界已记录）。
+- municipal-geometry rules 增强：road_centerline += 消防车道/消防道路/消防通道/消防环路/
+  消防车道中心线/FIRE LANE/FIRE TRUCK ROUTE；road_edge += 消防车道边线/消防道路边线/FIRE LANE EDGE。
+  合成 17 用例命中与无误伤全过；真图回归无扰动。
+- 哈希链：识图契约 source_sha256 修复为真实原图哈希（从 detail.source_paths 取 DWG 算 sha256，
+  与 shasum 比对一致），formal 链路可校验。
+- workbuddy/codex 两侧副本同步一致。
+
 ## 0.41.3 · 2026-11-11 · 总图契约源图哈希 + 隐私口径补齐
 
 - **`cad_site_geometry --source-drawing`**：详情 JSON（`cad_scan --detail-json`）输入时可用原图路径补算 `contract.source_sha256`；不传时行为不变，`source_sha256=null`、`source_sha256_reason=source_not_found` 仍如实写出。修复下游 `prepare_site.py` 只能拿到 `source_sha256=null` 的问题。

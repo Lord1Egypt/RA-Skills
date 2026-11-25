@@ -1,6 +1,6 @@
 ## Description:
 
-Guides a new developer through five staged challenge sets covering architecture, domain, patterns, and hardening
+Guides a new developer through five staged challenge sets covering architecture, domain, patterns, and hardening.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to onboard to a codebase through staged challenges on its architecture, domain, interfaces, patterns, and hardening, with hints and progress tracking.
+Developers onboarding to a codebase use this skill to learn its architecture, domain, interfaces, patterns, and hardening practices through staged challenges.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Challenge feedback or mastery tracking could misjudge a learner's understanding.
+Risk: Challenge content or progress criteria may not match the current codebase or its onboarding goals.
 
-Mitigation: Review challenge answers and stage advancement against the codebase and stated criteria; let learners revisit or correct progress when needed.
+Mitigation: Review the challenges and advancement criteria against the codebase before relying on onboarding results.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-gauntlet-onboard)
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet)
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-gauntlet-onboard)
+- [Project homepage (from skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Guidance, Text, Markdown]
 
-**Output Format:** [Markdown]
+**Output Format:** [Markdown with staged challenges, hints, and progress summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Challenge prompts, hints, progress summaries, and onboarding guidance.]
+**Other Properties Related to Output:** [Five stages; tracks mastery after two correct answers and advances at 80% across at least 10 challenges in the current stage.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: ClawHub release evidence)
 
 ## Ethical Considerations:
 

@@ -6,6 +6,7 @@ const { translationResult } = require('./translation-results')
 const { previewUrl, avatarPreviews } = require('./preview')
 const { productOutcome } = require('./products')
 const { sourceContent, projectVideoResults, retainSource } = require('./external-content')
+const { imageArchive } = require('./image-archive')
 
 function decode(value) {
   if (typeof value !== 'string') return value
@@ -80,7 +81,7 @@ function normalize(data, spec = {}) {
   const partial = Array.isArray(result?.sub_results) && result.sub_results.some(row => row.status && !['GENERATED', 'COMPLETED', 'SUCCESS'].includes(row.status))
   const product = status === 'COMPLETED' && spec.result_kind === 'product'
     ? productOutcome(result, spec.task_type || data.task_info?.task_type) : {}
-  return {
+  const output = {
     ok: true, ...base, ...(result !== undefined ? { result } : {}),
     ...(result !== undefined && sourceContent(spec.task_type || base.task_type)
       ? { source_content: sourceContent(spec.task_type || base.task_type) } : {}),
@@ -92,6 +93,15 @@ function normalize(data, spec = {}) {
       ...product,
     } : {}),
   }
+  if (spec.result_kind === 'image' || (spec.task_type || base.task_type) === 'AIGC_IMAGE_GENERATION') {
+    const archive = imageArchive(output, spec.image_archive_policy)
+    if (archive) output.image_archive = archive
+  }
+  if (status === 'COMPLETED' && (spec.task_type || base.task_type) === 'SEEDANCE_VIDEO_GENERATION') {
+    output.material_archive = { mode: 'server_automatic', import_required: false,
+      note: 'Seedance outputs are registered by the service. Retain the task and result; recover an existing material ID when needed. A missing material ID is not a reason to import the video again. Local edits or compositions are separate outputs.' }
+  }
+  return output
 }
 
 async function normalizeResponse(data, spec = {}, sourceFile) {

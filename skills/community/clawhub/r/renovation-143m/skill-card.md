@@ -1,6 +1,6 @@
 ## Description:
 
-Provides renovation planning tailored to a fixed 143 m², three-bedroom home, including inspection, space planning, budgeting, product research, and visual concepts.
+A home renovation planning assistant for a fixed 143 m² three-bedroom apartment, covering inspection, layout, storage, utilities, budgeting, materials, and visual concepts.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Homeowners planning renovation for the specified 143 m² layout can use this skill to organize inspections, compare design and material options, plan storage, utilities, lighting, and budgets, and develop visual references.
+Homeowners planning this 143 m² apartment can use it to organize renovation requirements, compare layout and furnishing options, plan budgets and utilities, and identify measurements or building conditions that need verification.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Room details shared with an image provider may expose private or identifying information.
+Risk: Household layout details may be shared with an image-generation provider, whose processing and retention practices are unknown, and layout files may be stored in Git history.
 
-Mitigation: Check the image provider's privacy practices and avoid sharing addresses, identity documents, or identifying photos.
+Mitigation: Avoid including identifying or security-sensitive details, review the provider's privacy terms before sharing layouts, and check repository history before committing them.
 
-Risk: Estimated dimensions and generated images may not match site conditions or be suitable as construction documents.
+Risk: The security evidence says three referenced images were not fully inspected, so image-based layout details may be incomplete or uncertain.
 
-Mitigation: Treat visuals as design references and verify measurements and construction decisions with on-site measurements and qualified professionals.
+Mitigation: Review source images and verify dimensions and building conditions against measured plans or an on-site survey before relying on a layout.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/z-zihan/skills/renovation-143m)
+- [ClawHub skill release](https://clawhub.ai/z-zihan/skills/renovation-143m)
+- [House geometry model](references/house-geometry.json)
+- [Geometry validation rules](references/geometry-validation.md)
+- [Design pipeline](references/design-pipeline.md)
+- [Renovation requirements registry](references/requirements.md)
+- [Open questions](references/open-questions.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance, Images]
+**Output Type(s):** [Guidance, Analysis, Markdown, Image-generation prompts]
 
-**Output Format:** [Markdown planning advice, checklists, comparisons, and image prompts or visual concepts]
+**Output Format:** [Structured natural language, checklists, tables, and image-generation prompts]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Planning estimates and generated images are visual references; dimensions and construction decisions require on-site measurement and professional confirmation.]
+**Other Properties Related to Output:** [Conceptual planning aid; estimated measurements require on-site verification, and generated images are visual references rather than construction documents.]
 
 ## Skill Version(s):
 
-0.2.2 (source: frontmatter; server release 0.2.2)
+1.0.0 (source: ClawHub release evidence)
 
 ## Ethical Considerations:
 

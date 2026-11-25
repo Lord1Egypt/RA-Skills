@@ -1,6 +1,6 @@
 ## Description:
 
-Fetches current product, price, review, offer, stock, seller, and keyword data from 23 Amazon marketplaces through Apiguru, with user approval required before billable calls.
+Fetches live Amazon marketplace data through Apiguru, including product details, prices, reviews, keyword search, best sellers, deals, stock, and seller profiles across 23 marketplaces.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,47 +14,46 @@ MIT-0
 
 ## Use Case:
 
-External users and agents can retrieve current product, pricing, review, offer, inventory, seller, and keyword data from Amazon marketplaces when a request calls for Amazon-specific information. The skill is intended for Amazon lookups and monitoring, not other retailers or general shopping advice.
+External users and agents use this skill for Amazon-only requests that need current product, review, price, offer, stock, seller, or keyword-search data, including monitoring by ASIN or Amazon URL.
 
 ### Deployment Geography for Use:
 
-Global
+Global (23 supported Amazon marketplaces)
 
 ## Known Risks and Mitigations:
 
-Risk: Billable API calls can charge the user's account, and a timed-out keyed or paid call may still have completed.
+Risk: Calls beyond the free quota can incur charges when using an API key, and broad or batch requests may cost more.
 
-Mitigation: Ask before billable calls, agree a spending cap, and do not automatically repeat a keyed or paid call that timed out.
+Mitigation: Check the current quota and call price, then get user consent and agree on a spending cap before billable or batch requests.
 
-Risk: The security assessment is benign but has medium confidence and partial coverage, with some skill references unresolved.
+Risk: The available security review is incomplete because some local references could not be resolved.
 
-Mitigation: Review the unresolved references and skill content; do not treat the scan result as proof that the skill is risk-free.
+Mitigation: Review the unresolved local references before relying on the review, and limit credentials to the API-key file the user explicitly provides.
 
-Risk: The feedback command posts the supplied text to Apiguru's public feedback wall.
+Risk: Feedback submitted through the skill appears on a public feedback wall.
 
-Mitigation: Submit only text the user intends to make public.
+Mitigation: Send only feedback the user has agreed to share, and exclude API keys, personal data, and private prompts or results.
 
 ## Reference(s):
 
-- [Endpoint reference](references/endpoints.md)
-- [Costs, billing, and retries](references/errors-and-costs.md)
 - [Apiguru API documentation](https://agent.apiguru.app/llms-full.txt)
-- [Apiguru API endpoint and pricing schemas](https://agent.apiguru.app/.well-known/x402)
-- [Apiguru agent-kit project homepage](https://github.com/apiguru-app/agent-kit)
+- [Endpoint reference](references/endpoints.md)
+- [Pricing and errors](references/errors-and-costs.md)
+- [Project homepage (skill metadata)](https://github.com/apiguru-app/agent-kit)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Text, API calls]
+**Output Type(s):** [JSON data, Guidance]
 
-**Output Format:** [Structured Amazon marketplace data as JSON or concise text]
+**Output Format:** [Structured JSON results with concise usage guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Live results vary by endpoint and marketplace.]
+**Other Properties Related to Output:** [Result fields and size vary by endpoint and requested limit, compact mode, or field selection.]
 
 ## Skill Version(s):
 
-1.1.65 (source: server-resolved release)
+1.1.69 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

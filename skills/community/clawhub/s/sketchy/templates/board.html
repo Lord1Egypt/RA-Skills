@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" class="sk" data-theme="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- slot:title -->
+<title>Switch inventory · keep or remove</title>
+<meta name="description" content="A hand-drawn decision board made with sketchy.">
+<link rel="stylesheet" href="../engine/sketchy.css">
+<!-- slot:theme (optional) -->
+<style>
+  /* Decision board: one plate per item, a picture, plain words, one click.
+     Decisions stay in this browser (localStorage) and copy out as text. */
+  .board { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; padding: clamp(24px, 4vw, 56px) 16px 96px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .board-head { display: grid; gap: 8px; }
+  .board-head h1 { font-size: clamp(40px, 6vw, 72px); }
+  .tally { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; }
+  .tally .k { color: var(--sk-stamp-green); font-weight: 700; } .tally .r { color: var(--sk-red-ink); font-weight: 700; }
+  .plates { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 24px; }
+  .plate { display: grid; gap: 10px; align-content: start; }
+  .plate svg[data-sketch] { width: 100%; max-width: 220px; justify-self: center; }
+  .plate h2 { font-size: 30px; }
+  .plate dl { display: grid; gap: 6px; margin: 0; }
+  .plate dt { font-weight: 600; }
+  .plate dd { margin: 0; }
+  .plate .rec { font-size: var(--sk-size-fine); }
+  .plate .choose { display: flex; gap: 10px; margin-top: 4px; }
+  .plate .verdict { min-height: 30px; }
+  .confirm { display: none; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .confirm.is-open { display: flex; }
+</style>
+</head>
+<body class="sk">
+<svg class="sk-specks" data-specks="switch-board" data-specks-count="60" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+<!--
+  sketchy board template, the successor of sketch-board.
+  Each item: a plain title, a picture of the thing, the technical name on tape,
+  what it does, what changes if it goes, a recommendation with one reason.
+  Fill the ITEMS list in the script; the plates are built from it.
+-->
+<main class="board">
+  <header class="board-head">
+    <span class="sk-small">Sketchbook No. 5 · for the product lead</span>
+    <!-- slot:heading -->
+    <h1>Which switches stay?</h1>
+    <p class="sk-line" style="max-width:62ch">Six switches. Keep or remove, one click each. Your choice is saved in this browser; copy it out when you are done.</p>
+    <div class="tally sk-sheet" data-sk="sheet">
+      <span id="tally">0 of 0 decided</span>
+      <button class="sk-btn" data-sk="button" id="copy" type="button">Copy decisions</button>
+      <button class="sk-btn" data-sk="button" id="reset" type="button">Start over</button>
+      <div class="confirm" id="confirm"><span>Clear every decision on this page?</span><button class="sk-btn is-accent" data-sk="button" id="yes" type="button">Yes, clear</button><button class="sk-btn" data-sk="button" id="no" type="button">No</button></div>
+    </div>
+  </header>
+  <section class="plates" id="plates" aria-live="polite"></section>
+</main>
+<script src="../engine/sketchy.js"></script>
+<script src="../engine/sketches.js"></script>
+<script>
+  // slot:items
+  var BOARD_ID = 'switch-inventory-2026-10';
+  var ITEMS = [
+    { key: 'BUG_BUTTON', title: 'Report a problem', sketch: 'bug-button', what: 'A button in the app that sends a screenshot and the last 50 log lines to support.', gone: 'Users email support instead; we lose the logs.', rec: 'keep', why: 'It halves the time to first answer.' },
+    { key: 'WEB_SEARCH', title: 'Search the web', sketch: 'globe-search', what: 'The assistant can look things up on the public web.', gone: 'Answers come only from your own documents. Nothing leaves the company.', rec: 'remove', why: 'Your policy says data stays inside.' },
+    { key: 'FOUR_EYES', title: 'Second approval', sketch: 'four-eyes', what: 'Every deletion needs a second person to agree.', gone: 'One click deletes. Faster, and one mistake is final.', rec: 'keep', why: 'Two deletions were caught this quarter.' },
+    { key: 'NIGHT_JOBS', title: 'Night jobs', sketch: 'gear-clock', what: 'Reports build at 02:00 so they are ready in the morning.', gone: 'Reports build when someone asks; first view takes about a minute.', rec: 'keep', why: 'Mornings are when people read them.' },
+    { key: 'UPDATE_FEED', title: 'Update feed', sketch: 'globe-download', what: 'Checks for new versions every hour.', gone: 'Updates arrive when IT installs them by hand.', rec: 'remove', why: 'IT installs monthly anyway.' },
+    { key: 'DEV_MODE', title: 'Developer mode', sketch: 'laptop-wrench', what: 'Shows raw data and error details in the interface.', gone: 'Errors show a short message only.', rec: 'remove', why: 'Customers should never see stack traces.' }
+  ];
+
+  var store = {};
+  try { store = JSON.parse(localStorage.getItem('sketchy:board:' + BOARD_ID) || '{}'); } catch (e) { store = {}; }
+  function save() { try { localStorage.setItem('sketchy:board:' + BOARD_ID, JSON.stringify(store)); } catch (e) { /* private mode */ } }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  var plates = document.getElementById('plates');
+  plates.innerHTML = ITEMS.map(function (it) {
+    return '<article class="plate sk-plate" id="plate-' + esc(it.key) + '">' +
+      '<svg data-sketch="' + esc(it.sketch) + '" viewBox="0 0 140 110" aria-hidden="true"></svg>' +
+      '<span class="sk-tape">' + esc(it.key) + '</span>' +
+      '<h2>' + esc(it.title) + '</h2>' +
+      '<dl><dt>What it does</dt><dd>' + esc(it.what) + '</dd><dt>If it goes</dt><dd>' + esc(it.gone) + '</dd></dl>' +
+      '<p class="rec"><span class="sk-note">We suggest: ' + (it.rec === 'keep' ? 'keep' : 'remove') + '.</span> ' + esc(it.why) + '</p>' +
+      '<div class="choose"><button class="sk-btn" data-sk="button" data-key="' + esc(it.key) + '" data-v="keep" type="button">Keep</button>' +
+      '<button class="sk-btn" data-sk="button" data-key="' + esc(it.key) + '" data-v="remove" type="button">Remove</button></div>' +
+      '<div class="verdict" id="v-' + esc(it.key) + '"></div></article>';
+  }).join('');
+
+  function render() {
+    var k = 0, r = 0;
+    ITEMS.forEach(function (it) {
+      var v = store[it.key];
+      if (v === 'keep') k++; if (v === 'remove') r++;
+      document.querySelectorAll('[data-key="' + it.key + '"]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-v') === v)); });
+      var slot = document.getElementById('v-' + it.key);
+      var want = v ? '<span class="sk-stamp ' + (v === 'keep' ? 'is-green' : '') + '">' + (v === 'keep' ? 'Keep' : 'Remove') + '</span>' : '';
+      if (slot.innerHTML !== want) { slot.innerHTML = want; var st = slot.querySelector('.sk-stamp'); if (st) st.classList.add('is-slam'); }
+    });
+    document.getElementById('tally').innerHTML = (k + r) + ' of ' + ITEMS.length + ' decided · <span class="k">' + k + ' keep</span> · <span class="r">' + r + ' remove</span>';
+  }
+  plates.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-key]');
+    if (!b) return;
+    var key = b.getAttribute('data-key'), v = b.getAttribute('data-v');
+    store[key] = store[key] === v ? undefined : v;
+    save(); render();
+  });
+  document.getElementById('copy').addEventListener('click', function () {
+    var text = ITEMS.map(function (it) { return '- ' + it.title + ' (' + it.key + '): ' + (store[it.key] || 'undecided'); }).join('\n');
+    var btn = this;
+    (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject()).then(function () { btn.lastChild.textContent = 'Copied'; setTimeout(function () { btn.lastChild.textContent = 'Copy decisions'; }, 1600); }, function () { window.prompt('Copy the decisions:', text); });
+  });
+  var confirmBox = document.getElementById('confirm');
+  document.getElementById('reset').addEventListener('click', function () { confirmBox.classList.add('is-open'); });
+  document.getElementById('no').addEventListener('click', function () { confirmBox.classList.remove('is-open'); });
+  document.getElementById('yes').addEventListener('click', function () { store = {}; save(); render(); confirmBox.classList.remove('is-open'); });
+  render();
+  Sketchy.mount();
+</script>
+</body>
+</html>

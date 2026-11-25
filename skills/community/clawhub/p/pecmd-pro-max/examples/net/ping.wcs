@@ -1,0 +1,233 @@
+#code=936
+ENVI^ EnviMode=1
+//常数
+ENVI &&SO_REUSEADDR=4     //允许重新监视地址
+ENVI &&SOCK_RAW=3
+ENVI &&IPPROTO_ICMP=1
+ENVI &&SO_RCVTIMEO=0x1006
+ENVI &&SO_SNDTIMEO=0x1005     //send timeout
+ENVI &&ICMP_ECHO=0x08
+ENVI &&ICMP_ECHOREPLY=0  
+ENVI &&SOCKET_ERROR=-1
+ENVI &&SO_BROADCAST=0x0020  
+
+ENVI$ NL=0d 0a
+
+_SUB INITNET,*
+	SOCK * s   //第一次，自动初始化网络服务
+_END
+
+
+//PING: 测试一个网络主机， 目标主机支持广播地址 如 192.168.1.255
+//PING 目标主机 [次数 超时   收到长度名 收发时间名  收到数据名]
+_SUB PING,*
+//DATE &&s1  uptime
+	ENVI &&__dst=%~1
+	FIND $X=X%&__dst%,  ENVI &&__dst=127.0.0.1
+	ENVI &&N=%~2
+	FIND $X=X%&N%,  ENVI &N=1  //1次
+	ENVI &&__itimeout=%~3
+	FIND $X=X%&__itimeout%,  ENVI &&__itimeout=1000  //100ms
+	ENVI &&_nmrlen=%~4
+	ENVI &&_nmrms=%~5
+	ENVI &&_nmrmsg=%~6
+	
+	CALL * PING1 %&__dst% %&__itimeout%
+
+    LOOP #%&N%>0,  //循环 N 次
+    {
+		CALL PING2  
+		CALC #&N= %&N% - 1
+		IFEX $%&N%<1, EXIT
+		WAIT 1000
+	}
+
+_END
+
+_SUB PING1  //初始化 连接和数据 
+    ENVI &&dst=%~1
+    ENVI &&itimeout=%~2
+	CALC -base=16 &itimeout_L= %&itimeout% % 256
+	CALC -base=16 &itimeout_H= (%&itimeout% / 256) & 0xFF
+
+   	CALL FIXNUM &itimeout_L
+   	CALL FIXNUM &itimeout_H
+    
+	ENVI$#   &&otimeout= %&itimeout_L% %&itimeout_H% 0x00 0x00  //int 
+	
+	ENVI &&DEF_PACKET_SIZE=32
+	ENVI &&MAX_PACKET=1060
+	ENVI &&seq_no=1
+	ENVI &&icmp_dat=
+	ENVI &&real_data=0x31 0x32 0x33 0x34 0x35 0x36 0x37 0x38 0x39 0x4A 0x31 0x32 0x33 0x34 0x35 0x36 0x37 0x38 0x39 0x4B 0x31 0x32 0x33 0x34 0x35 0x36 0x37 0x38 0x39 0x4C 0x31 0x32 
+	ENVI &&icmp_hd1=
+	ENVI &&icmp_i_id=
+	ENVI &&icmp_i_seq=
+	ENVI &&icmp_hd2=
+    ENVI &&err=0
+
+    SOCK sc ,,%&SOCK_RAW%,%&IPPROTO_ICMP%
+//DATE &&s2  uptime
+    ENVI @sc.setsockopt=&err;;%&SO_RCVTIMEO%;&otimeout   //int type 
+    ENVI @sc.setsockopt=&err;;%&SO_SNDTIMEO%;&otimeout   //int type 
+    
+    ENVI$# &&TRUE=0x01 0x00 0x00 0x00
+    ENVI @sc.setsockopt=&err;;%&SO_BROADCAST%;&TRUE   //int type 
+    
+    ENVI @sc.setsockopt=&err;;%&SO_REUSEADDR%;&TRUE   //int type 
+    
+
+	ENVI$# &&__RMSG= *%&MAX_PACKET% 0x00
+    ENVI &&bwrote=-1 
+	ENVI &&_rlen=-1 
+	CALL fill_icmp_data_fix
+    
+_END
+
+
+_SUB PING2  //send recv
+    CALL fill_icmp_data 
+    CALL checksum
+
+	
+DATE &&s3  uptime
+    ENVI @sc.write=&&err;&bwrote;&icmp_dat;;;%&dst%
+
+	IFEX $%&bwrote% <= 0, EXIT _SUB  //MESS SEND FAIL
+	
+    ENVI @sc.read=&err;&_rlen;&__RMSG 
+DATE &&s4  uptime
+	DATE &&end uptime 
+
+    FIND $X%&_nmrlen%=X,!  ENVI %&_nmrlen%=%&_rlen%
+    FIND $X%&_nmrmsg%=X,!  GETF -bin &__RMSG,0#%&_rlen%,%&_nmrmsg%
+    
+    FIND $X%&_nmrms%=X,!  CALC #%&_nmrms%=%&s4% -%&s3%
+    
+    
+//DATE &&s5  uptime
+//CALC #&&m5=%&s5% -%&s1%
+//CALC #&&m4=%&s4% -%&s1%
+//CALC #&&m3=%&s3% -%&s1%
+//CALC #&&m2=%&s4% -%&s1%
+//MESS m2=%&m2% m3=%&m3% m4=%&m4% m5=%&m5%   
+	//decode_resp
+_END
+
+
+
+
+//数字变成等长的0xNN
+_SUB FIXNUM
+    ENVI~ &&_d=%1
+    STRL &&_sz=%&_d%
+    IFEX $%&_sz% > 3,  EXIT _SUB
+    MSTR &&_L=3,1,%&_d%
+    ENVI  %1=0x0%&_L%
+_END
+
+
+_SUB fill_icmp_data_fix
+    ENVI &&icmp_type=%&ICMP_ECHO%   //1
+    ENVI &&icmp_code=0x00           //1
+    ENVI &icmp_hd1=%&icmp_type% %&icmp_code% 
+    //ENVI &&icmp_cksum =0x00 0x00   //2
+    CALC -base=16 #&&pidl=%&__PID% % 256 
+    CALC -base=16 #&&pidh=(%&__PID% / 256) & 0xFF 
+    CALL FIXNUM &pidl
+    CALL FIXNUM &pidh
+    ENVI &icmp_i_id =%&pidl% %&pidh% //2
+_END
+    
+_SUB fill_icmp_data
+    CALC -base=16 #&&L=%&seq_no% % 256 
+    CALC -base=16 #&&H=%&seq_no% / 256 
+    FIXNUM &L
+    FIXNUM &H
+    ENVI &icmp_i_seq=%&L% %&H%      //2
+    CALC #&seq_no= (%&seq_no% + 1) & 0xFFFF
+    
+    DATE &&Ticks   uptime 
+    CALC -base=16 #&&B1=%&Ticks% % 256 
+    CALC -base=16 #&&Ticks=%&Ticks% / 256 
+    CALC -base=16 #&&B2=%&Ticks% % 256 
+    CALC -base=16 #&&Ticks=%&Ticks% / 256 
+    CALC -base=16 #&&B3=%&Ticks% % 256 
+    CALC -base=16 #&&B4=(%&Ticks% / 256) & 0xFF
+    FIXNUM &B1
+    FIXNUM &B2
+    FIXNUM &B3
+    FIXNUM &B4
+    ENVI &icmp_timestamp=%&B1% %&B2% %&B3% %&B4% //4
+    
+    ENVI &icmp_hd2=%&icmp_i_seq% %&icmp_timestamp%
+
+_END
+
+
+_SUB checksum
+{
+    //ENVI &&icmp_cksum=0x00 0x00   //2
+    ENVI &&icmp_dat1=%&icmp_hd1% 0x00 0x00 %&icmp_i_id% %&icmp_hd2% %&real_data% 
+    STRL &&lenb=%&icmp_dat1%
+    CALC #&&lenb1=%&lenb% - 5  
+
+    ENVI &&SUM=0
+    ENVI &&i=1 
+    LOOP # %&i% < %&lenb1%,
+    {
+        MSTR * &&L=%&i%,4,&icmp_dat1
+        CALC #&i=%&i% + 5 
+        MSTR * &&H=%&i%,4,&icmp_dat1
+        CALC -base=16 #&SUM=%&H% * 256 + %&L% + %&SUM%	
+        CALC #&i=%&i% + 5 	
+    }
+    
+    //奇数个，最后字节
+    IFEX $%&i% < %&lenb%,  TEAM  MSTR &&L=%&i%,4,&icmp_dat1%|  CALC #&SUM=%&L% + %&SUM%
+    
+    CALC -base=16 #&SUM= (%&SUM% / 65536) + (%&SUM% & 0xffff)
+    CALC -base=16 #&SUM= %&SUM% + (%&SUM% / 65536 ) 
+    CALC -base=16 #&SUM= (~%&SUM%) & 0xFFFF   //16wei
+
+    CALC -base=16 #&&suml=%&SUM% % 256 
+    CALC -base=16 #&&sumh=%&SUM% / 256 
+    FIXNUM &suml
+    FIXNUM &sumh
+
+    ENVI$#  &icmp_dat=%&icmp_hd1% %&suml% %&sumh% %&icmp_i_id% %&icmp_hd2% %&real_data% 
+_END
+
+
+_SUB decode_resp
+//%&_rlen%,&&SRMSG
+    ENVI  &&I=1
+    MSTR &&h_len=1,4,%&SRMSG%
+    CALC #&&iphdrlen= (%&h_len% % 16) * 4  // number of 32-bit words *4 = bytes
+    //MESS %&_rlen% bytes from   inet_ntoa(from->sin_addr) 
+	//MESS icmp_seq = icmphdr->i_seq
+	//MESS time(ms): GetTickCount()-icmphdr->timestamp 
+_END
+
+FIND $1 = %&&__MAIN__%,  //END_IMPORT 
+FIND $X=X%1, CALL TEST! CALL PING %*
+
+_SUB TEST
+//LOGS X.LOG
+
+//SOCK --gethostbyname &&IP,www.sina.com.cn
+//MESS www.sina.com.cn:%&IP% 
+
+INITNET  //自动初始化网络服务
+
+ENVI &&LEN=-1
+ENVI &&RMS=0
+ENVI &&MSG=
+DATE &&start uptime
+ENVI &&HOST=www.sina.com.cn  // 127.0.0.1
+CALL PING %&HOST%  1 100  &LEN &RMS  //&MSG
+DATE &&end uptime
+CALC #&&ms= %&end% - %&start%
+MESS 网络时间 %&RMS% 毫秒, 从 %&HOST% 收到 %&LEN% 字节，函数用时 %&ms% 毫秒, \n%&MSG% @#OK
+
+_END

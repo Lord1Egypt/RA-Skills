@@ -1,0 +1,9 @@
+{
+  "source": "离线页面资料模拟：失败样例，不是在线采集结果",
+  "fields": {
+    "spec": { "color": "" },
+    "media": { "mainImage": [] },
+    "shipping": { "freightTemplate": null },
+    "afterSale": { "returnPolicy": "" }
+  }
+}

@@ -1,6 +1,6 @@
 ## Description:
 
-SendGrid Skills helps agents send transactional email and receive inbound email programmatically through SendGrid's Mail Send API and Inbound Parse Webhook.
+Routes explicit SendGrid email-sending and inbound-parse workflows to focused guides and tools.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-Developers and teams use this skill to configure SendGrid workflows, draft integration code, run provided shell utilities, send transactional messages, and handle inbound email webhook payloads.
+Developers use this skill to send transactional email through SendGrid and configure or diagnose SendGrid Inbound Parse workflows. It also provides local payload diagnostics and setup guidance.
 
 ### Deployment Geography for Use:
 
@@ -22,44 +22,40 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill can send live email through a configured SendGrid account.
+Risk: Live sends transmit message content and recipient data to SendGrid and recipients, and may incur charges.
 
-Mitigation: Use a Mail Send-scoped API key, keep it out of logs, and confirm recipients and content before sending.
+Mitigation: Obtain approval for the sender, recipients, exact content, template data, and attachments before sending; minimize personal data.
 
-Risk: The webhook verifier can test user-provided network endpoints.
+Risk: Inbound email and webhook content may be private or untrusted, and parser diagnostics can expose message bodies or attachments.
 
-Mitigation: Do not run the verifier against untrusted or internal URLs; review the endpoint before execution.
+Mitigation: Authenticate inbound receivers, limit and sanitize processing, scan attachments, redact logs, and keep approved diagnostic captures and output private.
 
-Risk: Inbound email payloads may contain untrusted HTML, attachments, or prompt-injection content.
+Risk: The security scan was partial and only partially interpreted the webhook parser.
 
-Mitigation: Require webhook authentication, apply allowlists and size limits, sanitize HTML, scan attachments, and filter content before passing it to AI systems.
+Mitigation: Review the skill and its declared tool scope before use, especially for components not covered by the scan.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/vince-winkintel/skills/sendgrid-skills)
-- [SendGrid documentation](https://docs.sendgrid.com)
-- [Mail Send API reference](https://docs.sendgrid.com/api-reference/mail-send/mail-send)
-- [Inbound Parse Webhook](https://docs.sendgrid.com/for-developers/parsing-email/setting-up-the-inbound-parse-webhook)
+- [SendGrid Documentation](https://docs.sendgrid.com)
+- [Mail Send API Reference](https://docs.sendgrid.com/api-reference/mail-send/mail-send)
+- [Inbound Parse Webhook Guide](https://docs.sendgrid.com/for-developers/parsing-email/setting-up-the-inbound-parse-webhook)
 - [SendGrid Node SDK](https://github.com/sendgrid/sendgrid-nodejs)
-- [Send Email Best Practices](send-email/references/best-practices.md)
-- [SendGrid SDK Installation](send-email/references/installation.md)
 - [Single Email Examples](send-email/references/single-email-examples.md)
-- [Inbound Parse Best Practices](sendgrid-inbound/references/best-practices.md)
-- [Inbound Parse Webhook Examples](sendgrid-inbound/references/webhook-examples.md)
+- [Inbound Webhook Examples](sendgrid-inbound/references/webhook-examples.md)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, JSON]
 
-**Output Format:** [Markdown guidance with code snippets, shell commands, JSON examples, and configuration steps]
+**Output Format:** [Markdown guidance with code examples, shell commands, configuration snippets, and JSON diagnostic output]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires SENDGRID_API_KEY and the curl, jq, and node binaries for bundled scripts.]
+**Other Properties Related to Output:** [Depends on whether the workflow covers sending, inbound setup, or local payload diagnostics.]
 
 ## Skill Version(s):
 
-1.2.3 (source: server release metadata)
+1.2.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-Apache 2.0
+Apache-2.0
 
 ## Use Case:
 
-Developers and security engineers use this skill to analyze AI agent runtime context, correlate user-provided audit logs with CVE findings, and query vulnerability trends and runtime events.
+Developers and security engineers use this skill to analyze agent context graphs, correlate runtime audit logs with vulnerability findings, and query security analytics.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security analysis was partial because the referenced `proxy-audit.jsonl` runtime file was not included.
+Risk: The referenced proxy-audit.jsonl file was unavailable for scanner review.
 
-Mitigation: Review the audit log or confirm it is not needed before installing; the benign scanner verdict is not a guarantee of safety.
-
-Risk: Optional ClickHouse analytics can persist runtime audit data, and the audit data may include credential environment variable names.
-
-Mitigation: Configure ClickHouse only when needed, use an operator-controlled endpoint, and do not include raw credential values in audit data.
+Mitigation: Before use, confirm whether you expect the skill to use this file and review the user-provided audit log.
 
 ## Reference(s):
 
-- [ClawHub skill listing](https://clawhub.ai/msaad00/skills/agent-bom-runtime)
+- [ClawHub release page](https://clawhub.ai/msaad00/skills/agent-bom-runtime)
 - [Project homepage](https://github.com/koda-ai-studio/agent-bom)
 - [PyPI package](https://pypi.org/project/agent-bom/)
 - [OpenSSF Scorecard](https://securityscorecards.dev/viewer/?uri=github.com/koda-ai-studio/agent-bom)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Text]
+**Output Type(s):** [Analysis, Text]
 
-**Output Format:** [Text and structured analytics results]
+**Output Format:** [Text and structured analysis results]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results depend on the scan results, user-provided audit log, and analytics query.]
+**Other Properties Related to Output:** [Analysis is based on supplied scan results and user-provided audit logs; optional ClickHouse analytics is operator-configured.]
 
 ## Skill Version(s):
 
-0.115.3 (source: frontmatter)
+0.115.6 (source: frontmatter)
 
 ## Ethical Considerations:
 

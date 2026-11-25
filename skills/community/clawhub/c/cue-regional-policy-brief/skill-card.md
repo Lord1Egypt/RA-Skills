@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Law firm business development teams use this skill to monitor regional policies and investment activity, identify compliance-related leads and prospective clients, and produce structured weekly briefs.
+External users, especially law firm business development teams, use the skill to gather regional policy and investment updates, identify potential compliance needs and prospects, and prepare a weekly intelligence brief.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,38 @@ China
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates the skill suspicious because scanners report an unpinned remote runner that could access a Cue credential and instructions to paste an API key into chat; the scan evidence is partly incomplete.
+Risk: The security scan reports a mismatch between the stated purpose and the supplied implementation behavior.
 
-Mitigation: Before installing, consider whether the reported credential handling and remote-runner setup are acceptable. Do not paste a reusable API key into chat; use a secure local configuration method, and account for the incomplete scan evidence.
+Mitigation: Review the actual behavior and confirm it matches the intended research workflow before use.
+
+Risk: The skill requests that users paste a Cue API key into chat.
+
+Mitigation: Keep the key in a local configuration file or secret environment variable and avoid sharing it in chat.
+
+Risk: The scanner flags a remote command before installation, and the scan is partial because a referenced local path was missing.
+
+Mitigation: Inspect installation commands and the complete artifact from a trusted source before running them.
 
 ## Reference(s):
 
-- [Cue Platform](https://cuecue.cn)
-- [Chinese Government Policy Portal](https://www.gov.cn)
+- [Cue platform](https://cuecue.cn)
+- [The State Council of the People's Republic of China](https://www.gov.cn)
 - [National Development and Reform Commission](https://www.ndrc.gov.cn)
-- [Ministry of Commerce](https://www.mofcom.gov.cn)
+- [Ministry of Commerce of the People's Republic of China](https://www.mofcom.gov.cn)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, HTML, Guidance]
+**Output Type(s):** [Text, Markdown, HTML, Guidance]
 
-**Output Format:** [Structured Chinese weekly Markdown brief with source links and a standalone HTML dashboard]
+**Output Format:** [Structured Markdown intelligence brief with source links and a standalone HTML dashboard]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports cover the requested region; factual details and links are drawn from the Cue result.]
+**Other Properties Related to Output:** [Covers one target region per brief; the dashboard is intended to preserve the brief's findings and figures.]
 
 ## Skill Version(s):
 
-1.0.11 (source: server-resolved release metadata)
+1.0.15 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

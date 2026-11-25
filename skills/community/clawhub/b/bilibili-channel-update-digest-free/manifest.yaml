@@ -1,0 +1,29 @@
+name: bilibili-channel-update-digest-free
+slug: bilibili-channel-update-digest-free
+display_name: B站UP主近期更新摘要
+description: 使用用户指定的 Easy WebBridge 浏览器环境和UP主主页，读取最多10条当前可见视频，交付含标题、日期、主题、链接、来源与缺项的近期更新摘要草稿；适合一次性核对公开更新。未显示发布时间的条目留空并继续整理其余可见视频；登录、验证码或风控则停止，不编造投稿时间、播放数据或采集结果。
+version: 1.0.2
+license: MIT-0
+repository: https://github.com/xxjrq/bilibili-channel-update-digest-free
+icon: icon-512.png
+tags:
+  - bilibili
+  - up主
+  - 内容摘要
+  - 浏览器自动化
+  - easy-webbridge
+triggers:
+  - 汇总B站UP主最近更新
+  - 整理UP主主页视频
+  - B站近期投稿摘要
+trigger_words:
+  - B站更新
+  - UP主视频
+  - 近期投稿
+interface:
+  display_name: B站UP主近期更新摘要
+  short_description: 读取UP主主页可见视频，生成含来源与缺项的近期更新摘要
+  default_prompt: 使用我指定的 browserId 和UP主主页，最多整理10条当前可见视频为标题、日期、主题、链接与来源；未显示日期留空，不要编造数据。
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+self_test: node scripts/self-test.mjs

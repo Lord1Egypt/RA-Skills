@@ -226,7 +226,8 @@ sequenzy segments create --name "3+ Pro Payments" --stripe-product prod_pro --pu
 
 Guidance:
 
-- bare `sequenzy tags` still lists tag definitions; `tags create`, `tags update`, and `tags delete` mutate them
+- bare `sequenzy tags` still lists tag definitions; `tags create`, `tags update`, `tags merge`, and `tags delete` mutate them
+- `tags update <tagId> --name <name>` renames the tag on every subscriber that carries it, and `tags merge <tagId> --into <targetTagId>` moves a tag's subscribers to another tag and deletes it; neither starts sequences, and both are refused with a usage list while the tag is still used elsewhere
 - tag names are normalized to lowercase with dashes, system tags cannot be changed or deleted, and tags used by sequences cannot be deleted
 - deleting a tag removes it from every subscriber, so confirm intent before running `tags delete`
 - `lists update` changes name, description, or visibility; `lists remove-subscribers` only removes memberships, while `lists delete` removes the whole list and all of its memberships (subscribers themselves are kept)
@@ -344,6 +345,7 @@ Guidance:
 - use `--prompt` for AI-generated draft content; do not combine it with HTML or block flags
 - use `--label` on `list` to filter by campaign label, and on `create` or `update` to assign replacement labels
 - use block JSON when the user needs conditional content or an exact editor-compatible structure
+- for product grids, a repeat block's children are one product's layout: choose which products show with its `productSource` (`excludePurchased: true` hides what the recipient bought, hand-picked `specific` lists included; `filters.inStockOnly`), never with one conditional copy of the card per product inside the children, which repeats every copy for every product
 - use `--reply-to` when the user knows the reply profile email and it already exists for the company
 - use `--reply-profile` when the user already has the reply profile ID
 - do not pass `--reply-to` and `--reply-profile` together
@@ -398,6 +400,7 @@ Decide between cancel, pause, and resume:
 - use `cancel` when the send should not continue at all; it is permanent and works from scheduled, sending, paused, waiting-approval, and rejected statuses
 - use `pause` when the user wants to stop a send temporarily and may continue it; it only works while the campaign is in sending status
 - use `resume` to continue a paused campaign, optionally spreading the remaining delivery with `--spread-over-hours` (1-72)
+- when a campaign is already sending with a mistake in it (wrong link, typo), do not cancel and rebuild it: `pause`, fix the content with `campaigns update` (content flags only: subject, preview text, HTML or blocks, email preset), then `resume`. Recipients not yet sent the campaign get the fix; emails already sent stay as they were. Tell the user how many were already sent (`sequenzy stats --campaign <id>`) because those keep the mistake, and update any translations before resuming
 - campaigns paused automatically because company sending was paused or the account was banned cannot be resumed on their own while that company-level pause is active; the API returns a 409 that names the cause, and they restart automatically when company sending is restored (unless an admin chose to leave them paused, in which case `resume` works)
 - `cancel` needs no `--yes` and shows no confirmation prompt, so it is the fastest way to stop a bad send; run it first and ask questions after when the user reports a mistake
 - check `campaigns get` first when you are unsure of the current status; the API rejects transitions from the wrong status
@@ -993,6 +996,8 @@ Use `sequences simulate <id>` / `simulate_sequence` to check readiness. Read its
 `campaigns list --json` and MCP `list_campaigns` include `hasAudience`. Drafts with this flag have an explicit audience configuration, not a confirmed eligible-recipient count. Use `campaigns from-audience` / `create_campaign_for_audience` to save matching contact IDs directly in a blank campaign draft, then update its content. This does not create a list, change list membership or enroll contacts. The dashboard opens the existing campaign template picker for filtered groups; saved lists and segments retain their campaign and sequence actions.
 
 For a paid-member list, use `sequenzy lists update list_123 --allow-member-unsubscribe` to allow existing members to opt out without making the list public. Use `--no-allow-member-unsubscribe` to disable. Create supports the same flags. API and MCP use boolean `allowMemberUnsubscribe`: default false on create, omission preserves on update, false clears, null rejected. Public lists retain their normal behavior. Read the stored setting with `sequenzy lists --json` or MCP `list_lists`; after an uncertain create, inspect before retrying.
+
+For multi-brand or multi-product workspaces that share one contact pool, use `sequenzy lists update list_123 --unsubscribe-list-only` (or `create --unsubscribe-list-only`, disable with `--no-unsubscribe-list-only`, API/MCP `unsubscribeListOnly: true`) on each brand list. Campaigns whose targeted lists all have `unsubscribeListOnly` enabled (even when excluding other lists) and `contact_added` sequences triggered by that list then scope one-click and hosted unsubscribes to those targeted list(s) instead of unsubscribing the contact globally. Subscribers who leave every list they belonged to are excluded from marketing email campaigns until they join a list again.
 
 ### Capture submission history
 

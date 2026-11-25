@@ -1,0 +1,23 @@
+{
+  "package": "3d-force-graph",
+  "version": "1.80.2",
+  "source": "https://github.com/vasturiano/3d-force-graph",
+  "tarball": "https://registry.npmjs.org/3d-force-graph/-/3d-force-graph-1.80.2.tgz",
+  "tarball_integrity": "sha512-hStm8c4s2yLt0kj9JBLWLgLsJlS+G08AXTNeEw6YBD1kzCu4s1szwAZL9Z1tcPhVOlDkWliUzTuraBF86TmNCQ==",
+  "three": "0.187.0",
+  "bundler": "esbuild 0.28.2",
+  "entry": "import ForceGraph3D from '3d-force-graph';\nwindow.ForceGraph3D = ForceGraph3D;",
+  "build": {
+    "bundle": true,
+    "minify": true,
+    "target": "es2021",
+    "format": "iife",
+    "platform": "browser",
+    "legalComments": "eof",
+    "define": {
+      "process.env.NODE_ENV": "\"production\""
+    }
+  },
+  "bundle_sha256": "e70194ee1ed7c5e768b20d651517b598c41f6f767bc56ec7cea72076d051948d",
+  "notices": "force-graph-3d-LICENSE.txt"
+}

@@ -1,46 +1,54 @@
-## Description: <br>
-Helps an agent analyze social proof, consensus claims, testimonials, popularity signals, and manufactured engagement so users can decide whether consensus is useful evidence or a manipulation risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users assess whether a consensus is informative, socially driven, or manufactured, and use that evidence in decisions or social-proof design.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-External users, product teams, marketers, sales teams, and decision makers use this skill to evaluate consensus-driven decisions, detect weak or manufactured social proof, and design testimonial or UX patterns that remain real, named, verifiable, and representative. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketing or testimonial guidance could be misused to fabricate consensus, reviews, or engagement. <br>
-Mitigation: Use only real, named, verifiable, and representative proof; do not fabricate reviews or engagement, and disclose limitations in case studies. <br>
-Risk: Users may over-treat popularity or consensus as proof of correctness. <br>
-Mitigation: Treat popularity as one signal, verify consensus claims independently, seek dissenting evidence, and use the Asch counterfactual before relying on consensus. <br>
+## Use Case:
 
+Employees and decision-makers use the skill to evaluate claims based on popularity, peer adoption, testimonials, or consensus, and to spot manufactured social proof. Product and marketing teams can use it to design transparent, evidence-based social-proof patterns.
 
-## Reference(s): <br>
-- [Skill source on ClawHub](https://clawhub.ai/deciqai/skills/social-proof) <br>
-- [Primary sources](references/sources.md) <br>
-- [Solomon Asch conformity experiments example](examples/solomon-asch-conformity-experiments-swarthmore-1951-1956.md) <br>
-- [Asch 1955, Opinions and Social Pressure](https://doi.org/10.1038/scientificamerican1155-31) <br>
-- [Asch 1956, Studies of Independence and Conformity](https://doi.org/10.1037/h0093718) <br>
-- [Bikhchandani, Hirshleifer, and Welch 1992, Informational Cascades](https://doi.org/10.1086/261849) <br>
-- [Salganik, Dodds, and Watts 2006, Artificial Cultural Market](https://doi.org/10.1126/science.1121066) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with structured checklist-style guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only coaching output; no executable code, tools, API calls, or credential requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Consensus claims, testimonials, and popularity metrics may be misleading or manufactured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the underlying evidence and seek independent dissent before consequential decisions; omit confidential details when recording observed failure patterns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deciqai/skills/social-proof)
+- [deciqAI Social Proof guide](https://www.deciqai.com/c/social-proof)
+- [Primary sources](artifact/references/sources.md)
+- [Asch, Opinions and Social Pressure (1955)](https://doi.org/10.1038/scientificamerican1155-31)
+- [Asch, Studies of Independence and Conformity (1956)](https://doi.org/10.1037/h0093718)
+- [Bikhchandani, Hirshleifer, and Welch, Informational Cascades (1992)](https://doi.org/10.1086/261849)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown with a structured social-proof analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a concrete decision or design case; coaching mode proceeds one step at a time and waits for user input.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

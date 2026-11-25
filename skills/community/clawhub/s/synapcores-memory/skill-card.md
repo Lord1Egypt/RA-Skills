@@ -1,6 +1,6 @@
 ## Description:
 
-Give the agent long-term memory that survives restarts — store facts, recall them semantically, and forget them on request — backed by a self-hosted SynapCores database.
+Give the agent long-term memory that survives restarts — store facts, recall them semantically, and forget them on request — backed by a self-hosted SynapCores database. Use when the user asks you to remember something, asks what you remember, wants to correct or delete a stored fact, or wants persistent memory across sessions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agent operators use this skill to store, semantically recall, correct, and delete facts across sessions using a self-hosted SynapCores database.
+External users and developers use the skill to configure a SynapCores gateway and give an agent persistent memory across sessions, storing, semantically recalling, correcting, and deleting facts when asked.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill sends requests to the configured SynapCores service and relies on its gateway image.
+Risk: The Docker image source or version may be untrusted or change unexpectedly.
 
-Mitigation: Review the API request and image reference, and configure only a SynapCores service and image you trust.
+Mitigation: Verify the image source and pin a trusted version before starting the gateway.
+
+Risk: Queries and the API key are sent to the service configured by SYNAPCORES_URL, and security scan coverage is incomplete.
+
+Mitigation: Use a gateway you trust, use HTTPS for remote connections, and review the installation source before use.
 
 ## Reference(s):
 
+- [SynapCores project homepage](https://github.com/SynapCores/synapcores-openclaw-memory)
 - [ClawHub skill release](https://clawhub.ai/synapcores/skills/synapcores-memory)
-- [Project homepage](https://github.com/SynapCores/synapcores-openclaw-memory)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Guidance, Shell commands]
+**Output Type(s):** [Guidance, Shell commands, SQL statements, Configuration instructions]
 
-**Output Format:** [Natural language with inline shell commands and SQL statements]
+**Output Format:** [Markdown with inline shell commands and SQL examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Uses curl and jq to issue memory operations through the configured SynapCores gateway.]
+**Other Properties Related to Output:** [Examples for storing, recalling, and deleting memories through a configured SynapCores gateway.]
 
 ## Skill Version(s):
 
-0.8.3 (source: server-resolved release)
+0.8.5 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

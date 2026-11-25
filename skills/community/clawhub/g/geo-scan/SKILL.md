@@ -1,11 +1,15 @@
 ---
 name: geo-scan
 description: Audit the answer-engine readiness (ChatGPT, Perplexity, Claude, Gemini, AI Overviews) of one public website URL and produce a prioritised fix list. Use when someone gives a public site or page URL and asks whether AI engines can crawl, cite or quote it, or wants its robots.txt / snippet-permission / schema check or quotability score. Not for - private or intranet hosts, JS-rendered SPAs, SEO keyword research, writing content to beat competitors. English and German quotability scoring. No API key, no account, Python stdlib only.
-version: 1.2.7
+version: 1.2.8
 license: MIT
 permissions:
-  network: "outbound HTTP(S) GET only; public hosts by default; ftp:, file: and every other scheme are refused before a socket opens; robots.txt obeyed with RFC 9309 matching (wildcards, end anchors, Crawl-delay, pacing held across redirects); max 25 pages; hard 120 s ceiling that also bounds connect, TLS and download; the Hermes plugin asks for 90 s"
-  filesystem: "read plugin dir only; write only the named report files under out_dir (--out-dir, which must sit inside the working directory; the plugin confines it to ~/.hermes/cache or cwd), and only when save=true"
+  - network
+  - file_read
+  - file_write
+permission_notes:
+  network: "outbound HTTP(S) GET only; public hosts by default; ftp:, file: and every other scheme are refused before a socket opens; robots.txt obeyed with RFC 9309 matching whose rule precedence follows the pattern length, matching Google's own matcher (wildcards, end anchors, Crawl-delay, pacing held across redirects); max 25 pages; hard 120 s ceiling bounding DNS, connect, TLS, headers and body — at the deadline a watchdog closes the in-flight socket, so a trickling server cannot hold the scan past it; the Hermes plugin asks for 90 s"
+  filesystem: "read plugin dir only, plus bench.py reading report JSONs that resolve inside the working directory (symlinks resolved); write only the named report files under out_dir (--out-dir, which must sit inside the working directory; the plugin confines it to ~/.hermes/cache or cwd), and only when save=true"
   no_credentials: "reads, sends and stores no credentials or secrets"
 metadata:
   author: Aurelius
@@ -73,7 +77,7 @@ geo-scan is a read-only HTTP(S) client pointed at one public host. What enforces
 | refused ranges | loopback, RFC 1918, link-local incl. `169.254.169.254`, unique-local, CGNAT, reserved, multicast, unspecified; IPv6 that embeds any of them (v4-mapped, 6to4, Teredo) too |
 | no proxy | the opener is built with proxies off; `HTTP_PROXY`/`ALL_PROXY` cannot reroute the audit |
 | scheme | `http:` and `https:` only, checked at the top of `fetch()` **and** by the opener's handler list: `build_opener()`'s defaults (FTPHandler, FileHandler, DataHandler) are deliberately not registered, so no `ftp://` or `file://` URL can reach a handler at all |
-| robots.txt | RFC 9309 matching in `Robots`: `*` wildcards, `$` end anchors, longest-match with `Allow` winning ties, most-specific `User-agent` record, `Crawl-delay` honoured. `Sitemap:` lines are read but only fetched if same-host http(s) |
+| robots.txt | RFC 9309 matching in `Robots`: `*` wildcards, `$` end anchors, rule precedence by the rule's pattern length — the behaviour of Google's own matcher, so `Disallow: /private` outranks `Allow: /*` — with `Allow` winning ties, most-specific `User-agent` record, `Crawl-delay` honoured. `Sitemap:` lines are read but only fetched if same-host http(s) |
 | scope | stays on the audited host (`www.`/apex), redirects re-checked |
 | report paths | `--json`/`--md` resolve inside `--out-dir` (inside the working directory); absolute names, `..` escapes and existing symlinks refused; the plugin's `out_dir` must sit under `~/.hermes/cache` or cwd |
 | bypass | `--allow-private` only, typed on the command line, never an environment variable; it widens **http(s) addresses** to private ranges and nothing else — ftp:, file: and every other scheme stay refused. It prints a warning and records `public_only: false` in the report. The Hermes plugin never passes it |
@@ -118,6 +122,6 @@ hand to a client — it is the part that can be re-checked.
 - It is a single automated sample with no human review. Use the same `--pages` value for
   before/after comparisons.
 - Sent with `User-Agent: geo-scan/<version>` — the running version, currently
-  `geo-scan/1.2.7 (+https://github.com/AureliusClaw/geo-scan; answer-engine readiness audit)` —
+  `geo-scan/1.2.8 (+https://github.com/AureliusClaw/geo-scan; answer-engine readiness audit)` —
   so a site owner can find this run in their own logs. They can opt out with
   `User-agent: geo-scan` / `Disallow: /`.

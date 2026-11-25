@@ -1,6 +1,6 @@
 ## Description:
 
-Ramps implementation ambition a notch only after the prior increment is understood
+Ramps implementation ambition a notch only after the prior increment is understood.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to break work they need to understand and maintain into small implementation increments, then increase scope only after demonstrating understanding of the prior increment.
+Developers using coding agents can apply this skill to build multi-step features in reviewable increments and increase scope only after understanding the prior change. It is intended for work that maintainers must own, especially in unfamiliar or high-stakes areas.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Scanner coverage is partial because a referenced hook file could not be resolved.
+Risk: Security scan coverage is partial because a local reference in SKILL.md could not be resolved.
 
-Mitigation: Review the complete plugin and resolve or inspect the referenced hook before installation; the clean scanner result is not a guarantee of safety.
-
-Risk: Applying the ramp process to trivial edits can add unnecessary ceremony.
-
-Mitigation: Skip the process for single bounded edits, trivial reversible changes, and generated or vendored code.
+Mitigation: Review the unresolved reference and its associated behavior before installing.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-imbue-graduated-implementation)
-- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
-- [Advancement Gate](modules/advancement-gate.md)
-- [Ramp Ledger](modules/ramp-ledger.md)
-- [Research Basis: Graduated Implementation](modules/research-basis.md)
+- [Project homepage (Clawdis metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-imbue-graduated-implementation)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Text, Shell commands]
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown instructions with inline shell commands]
+**Output Format:** [Markdown guidance with inline shell commands, checklists, and decision criteria]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Incremental workflow guidance with checks selected according to project stakes.]
+**Other Properties Related to Output:** [Project-specific guidance uses the stakes tier and recorded understanding evidence to determine when scope can increase.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server release metadata)
 
 ## Ethical Considerations:
 

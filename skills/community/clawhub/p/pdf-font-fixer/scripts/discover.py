@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""pdf-fonts-fixer · discover —— 发现本机可用的「完善中文字体」，且必须是 TrueType
+"""pdf-font-fixer · discover —— 发现本机可用的「完善中文字体」，且必须是 TrueType
 
 为什么要"发现"而不是写死 Noto
 ----------------------------
@@ -31,7 +31,7 @@ import time
 # fontTools 扫描时会对个别字体打印无害告警（如 post 表多余字节），统一静音
 logging.getLogger('fontTools').setLevel(logging.ERROR)
 
-CACHE_FILE = os.path.join(os.path.expanduser('~'), '.pdf-fonts-fixer-fonts.json')
+CACHE_FILE = os.path.join(os.path.expanduser('~'), '.pdf-font-fixer-fonts.json')
 CACHE_TTL = 7 * 24 * 3600
 
 PROBE = '的一是不了在人有我他这为之大来以个中上们到说国和地也子时道出而要于就下得可你年生'

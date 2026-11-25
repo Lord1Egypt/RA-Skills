@@ -163,7 +163,7 @@ def surprisal_variation_layer(text: str) -> dict:
     mean = sum(wins) / len(wins)
     var = sum((w - mean) ** 2 for w in wins) / len(wins)
     cv = (var ** 0.5) / abs(mean) if mean else 0.0
-    # CV 低=平滑=AI 特征强。学术人类 CV 实测分布与 AI 差异见 eval/results/v390_*.json
+    # CV 低=平滑=AI 特征强。学术人类 CV 实测分布与 AI 差异见 eval/results/archive/v390_*.json
     # 映射（保守线性，CV<0.05 → 10 分；CV>0.25 → 0 分）
     score = max(0.0, min(10.0, (0.25 - cv) / 0.20 * 10.0))
     # 证据折扣: coverage<0.55 时线性降权(谱覆盖不足=区分力弱, 宁可少说)

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Subclip AI Clipping"
+  short_description: "Find and frame transcript-led social clips"
+  default_prompt: "Use $subclip-ai-clipping to find and assemble the strongest short-form clips from this video."
+policy:
+  allow_implicit_invocation: true

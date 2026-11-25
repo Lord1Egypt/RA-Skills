@@ -1,6 +1,6 @@
 ## Description:
 
-Helps parents review a child’s SchoolPass arrival and dismissal details and request schedule changes with confirmation.
+This skill should be used when the user asks about their child's school arrival/dismissal through a SchoolPass parent account. Triggers on phrases like "check SchoolPass", "when is my kid dismissed", "what's my dismissal default", "list my students in SchoolPass", "who are my pickup drivers", "any pickup changes today", "school dismissal locations", or any request to read a SchoolPass parent account.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Parents use the skill to review linked students’ arrival and dismissal schedules, pickup changes, authorized drivers, locations, and school information. They can also submit or cancel a schedule change after reviewing and confirming the specific change.
+Parents use this skill with their SchoolPass parent account to review student arrival and dismissal plans, pickup changes, authorized drivers, dismissal locations, and school information. It can also prepare or submit an arrival or dismissal change after the parent reviews and approves the confirmation.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill accesses a parent account containing students’ schedules and pickup details, and requires account credentials.
+Risk: ClawScan marked the skill suspicious because reported write tools can change a child’s arrival or dismissal arrangements despite a read-oriented description; the analysis was partial.
 
-Mitigation: Use a reviewed, pinned package version and protect the configuration containing the password. Never echo the password or a session token.
-
-Risk: Submitting or canceling a dismissal change affects a child’s real arrival or pickup plan.
-
-Mitigation: Keep confirmation set to ask-user, or refuse if only reads are needed. Review the child, date, and proposed change before approval; if submission status is uncertain, reread the calendar and do not resubmit.
+Mitigation: Review the write capabilities and decide whether to allow real changes. Show the confirmation preview and obtain explicit approval before submitting a change.
 
 ## Reference(s):
 
-- [Schoolpass on ClawHub](https://clawhub.ai/chrischall/skills/schoolpass)
-- [schoolpass-mcp package](https://www.npmjs.com/package/schoolpass-mcp)
-- [Project repository (linked in the skill)](https://github.com/chrischall/schoolpass-mcp)
+- [ClawHub release](https://clawhub.ai/chrischall/skills/schoolpass)
+- [Source repository](https://github.com/chrischall/schoolpass-mcp)
+- [npm package](https://www.npmjs.com/package/schoolpass-mcp)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Guidance]
+**Output Type(s):** [Structured data, Text, Guidance]
 
-**Output Format:** [Natural-language responses based on SchoolPass account data]
+**Output Format:** [Structured SchoolPass account data and concise natural-language summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Can summarize schedules and pickup details; schedule changes require explicit confirmation.]
+**Other Properties Related to Output:** [May include confirmation previews and receipts for parent-approved arrival or dismissal changes.]
 
 ## Skill Version(s):
 
-1.1.1 (source: server-resolved release evidence)
+1.1.2 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

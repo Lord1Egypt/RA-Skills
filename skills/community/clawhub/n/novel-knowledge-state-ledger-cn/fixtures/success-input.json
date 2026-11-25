@@ -1,0 +1,10 @@
+{
+  "characters": ["甲", "乙"],
+  "reader_context": [{"scene":"S1","quote":"读者在第一场读到密钥藏在钟楼。"}],
+  "facts": [{"id":"F-密钥","text":"密钥藏在钟楼"}],
+  "scenes": [
+    {"id":"S1","evidence":[{"character":"甲","fact":"F-密钥","type":"experienced","quote":"甲亲历了密钥藏在钟楼的事实。"}]},
+    {"id":"S2","evidence":[{"character":"乙","fact":"F-密钥","type":"used","quote":"乙按自己记下的藏匿地点直奔钟楼，取出密钥后用它打开了门。"}]},
+    {"id":"S3","evidence":[{"character":"乙","fact":"F-密钥","type":"told","quote":"甲说：密钥在钟楼。"}]}
+  ]
+}

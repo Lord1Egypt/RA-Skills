@@ -1,0 +1,314 @@
+{
+ "schema": "oasis-blueprints/drawing-map/0.1",
+ "built": "2026-11-13 09:13",
+ "sets": 30,
+ "tiers": {
+  "core": 60,
+  "common": 25
+ },
+ "with_dwg_views": 0,
+ "flags": [
+  [
+   "no_dwg_views",
+   30
+  ],
+  [
+   "list_N_pages_N",
+   8
+  ],
+  [
+   "no_drawing_list",
+   8
+  ]
+ ],
+ "confidence": [
+  [
+   "high",
+   17
+  ],
+  [
+   "medium",
+   8
+  ],
+  [
+   "low",
+   5
+  ]
+ ],
+ "groups": [
+  {
+   "type": "interior-remodel",
+   "type_name": "Interior remodel",
+   "variant": "wood-frame",
+   "variant_name": "Wood frame",
+   "sets": 6,
+   "file": "types/interior-remodel__wood-frame.json",
+   "core_sheets": [
+    "other",
+    "existing_conditions",
+    "electrical_power",
+    "plumbing_water",
+    "details"
+   ]
+  },
+  {
+   "type": "patio-lanai-addition",
+   "type_name": "Patio / lanai addition",
+   "variant": "_all",
+   "variant_name": "All variants",
+   "sets": 2,
+   "file": "types/patio-lanai-addition__all.json",
+   "core_sheets": [
+    "other",
+    "foundation_plan",
+    "elevations"
+   ]
+  },
+  {
+   "type": "patio-lanai-addition",
+   "type_name": "Patio / lanai addition",
+   "variant": "covered-patio",
+   "variant_name": "Covered patio",
+   "sets": 1,
+   "file": "types/patio-lanai-addition__covered-patio.json",
+   "core_sheets": [
+    "other",
+    "site_plan",
+    "foundation_plan",
+    "elevations",
+    "sections"
+   ]
+  },
+  {
+   "type": "patio-lanai-addition",
+   "type_name": "Patio / lanai addition",
+   "variant": "screen-enclosure",
+   "variant_name": "Screen enclosure / lanai",
+   "sets": 1,
+   "file": "types/patio-lanai-addition__screen-enclosure.json",
+   "core_sheets": [
+    "other",
+    "elevations",
+    "foundation_plan"
+   ]
+  },
+  {
+   "type": "adu-tiny-house",
+   "type_name": "ADU / tiny house",
+   "variant": "adu",
+   "variant_name": "ADU",
+   "sets": 1,
+   "file": "types/adu-tiny-house__adu.json",
+   "core_sheets": [
+    "cover",
+    "site_plan",
+    "roof_plan",
+    "elevations",
+    "sections",
+    "details",
+    "electrical_power",
+    "mechanical",
+    "plumbing_water",
+    "structural_notes",
+    "foundation_plan",
+    "floor_framing_plan",
+    "roof_framing_plan"
+   ]
+  },
+  {
+   "type": "addition",
+   "type_name": "Addition",
+   "variant": "_all",
+   "variant_name": "All variants",
+   "sets": 8,
+   "file": "types/addition__all.json",
+   "core_sheets": [
+    "cover",
+    "floor_plan",
+    "elevations",
+    "foundation_plan",
+    "mechanical",
+    "roof_framing_plan",
+    "electrical_power",
+    "details",
+    "plumbing_water"
+   ]
+  },
+  {
+   "type": "addition",
+   "type_name": "Addition",
+   "variant": "cmu",
+   "variant_name": "CMU",
+   "sets": 1,
+   "file": "types/addition__cmu.json",
+   "core_sheets": [
+    "roof_plan",
+    "details",
+    "electrical_power",
+    "foundation_plan",
+    "other",
+    "site_plan",
+    "floor_plan",
+    "existing_conditions"
+   ]
+  },
+  {
+   "type": "addition",
+   "type_name": "Addition",
+   "variant": "wood-frame",
+   "variant_name": "Wood frame",
+   "sets": 7,
+   "file": "types/addition__wood-frame.json",
+   "core_sheets": [
+    "cover",
+    "floor_plan",
+    "elevations",
+    "foundation_plan",
+    "mechanical",
+    "roof_framing_plan",
+    "electrical_power",
+    "plumbing_water",
+    "details"
+   ]
+  },
+  {
+   "type": "new-sfr-2-4-story",
+   "type_name": "New single family, 2 to 4 story",
+   "variant": "_all",
+   "variant_name": "All variants",
+   "sets": 2,
+   "file": "types/new-sfr-2-4-story__all.json",
+   "core_sheets": [
+    "cover",
+    "other",
+    "electrical_power",
+    "mechanical",
+    "details",
+    "plumbing_water",
+    "roof_framing_plan",
+    "plumbing_sanitary",
+    "structural_notes",
+    "foundation_plan",
+    "floor_framing_plan"
+   ]
+  },
+  {
+   "type": "new-sfr-2-4-story",
+   "type_name": "New single family, 2 to 4 story",
+   "variant": "all-cmu",
+   "variant_name": "All CMU",
+   "sets": 1,
+   "file": "types/new-sfr-2-4-story__all-cmu.json",
+   "core_sheets": [
+    "cover",
+    "other",
+    "stair",
+    "details",
+    "roof_framing_plan",
+    "electrical_power",
+    "schedules",
+    "mechanical",
+    "plumbing_water",
+    "plumbing_sanitary",
+    "legend",
+    "structural_notes",
+    "foundation_plan",
+    "floor_framing_plan"
+   ]
+  },
+  {
+   "type": "new-sfr-2-4-story",
+   "type_name": "New single family, 2 to 4 story",
+   "variant": "wood",
+   "variant_name": "Wood framing",
+   "sets": 1,
+   "file": "types/new-sfr-2-4-story__wood.json",
+   "core_sheets": [
+    "cover",
+    "site_plan",
+    "floor_plan",
+    "roof_plan",
+    "elevations",
+    "electrical_power",
+    "electrical_lighting",
+    "mechanical",
+    "plumbing_water",
+    "plumbing_sanitary",
+    "structural_notes",
+    "foundation_plan",
+    "floor_framing_plan",
+    "roof_framing_plan",
+    "other",
+    "details"
+   ]
+  },
+  {
+   "type": "new-sfr-1-story",
+   "type_name": "New single family, 1 story",
+   "variant": "wood",
+   "variant_name": "Wood framing",
+   "sets": 8,
+   "file": "types/new-sfr-1-story__wood.json",
+   "core_sheets": [
+    "site_plan",
+    "floor_plan",
+    "roof_plan",
+    "elevations",
+    "electrical_power",
+    "other",
+    "structural_notes",
+    "details"
+   ]
+  },
+  {
+   "type": "detached-accessory",
+   "type_name": "Detached accessory structure",
+   "variant": "_all",
+   "variant_name": "All variants",
+   "sets": 3,
+   "file": "types/detached-accessory__all.json",
+   "core_sheets": [
+    "other",
+    "site_plan",
+    "floor_plan",
+    "elevations",
+    "details",
+    "floor_framing_plan",
+    "roof_framing_plan"
+   ]
+  },
+  {
+   "type": "detached-accessory",
+   "type_name": "Detached accessory structure",
+   "variant": "general",
+   "variant_name": "Other",
+   "sets": 2,
+   "file": "types/detached-accessory__general.json",
+   "core_sheets": [
+    "site_plan",
+    "floor_plan",
+    "elevations"
+   ]
+  },
+  {
+   "type": "detached-accessory",
+   "type_name": "Detached accessory structure",
+   "variant": "shed",
+   "variant_name": "Shed",
+   "sets": 1,
+   "file": "types/detached-accessory__shed.json",
+   "core_sheets": [
+    "details",
+    "general_notes",
+    "other",
+    "schedules",
+    "floor_framing_plan",
+    "elevations",
+    "wall_framing",
+    "view_3d",
+    "roof_framing_plan",
+    "sections"
+   ]
+  }
+ ]
+}

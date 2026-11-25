@@ -1,0 +1,43 @@
+{
+ "schema": "oasis-blueprints/detail-library/0.1",
+ "origin": "https://github.com/oasiseng/Oasis-Blueprints",
+ "license": "MIT License, Copyright (c) 2026 Oasis Engineering, LLC",
+ "collection": "site",
+ "name": "Site plan details",
+ "made": "2026-11-15",
+ "count": 2,
+ "details": [
+  {
+   "id": "686ea193",
+   "title": "TYPICAL SWALE SECTION",
+   "category": "Site",
+   "kind": "detail",
+   "scale": "1/2\"=1'-0\"",
+   "den": 24,
+   "not_to_scale": false,
+   "paper_in": [
+    6.42,
+    2.21
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "32be249b",
+   "title": "SITE PLAN GENERAL NOTES",
+   "category": "Site",
+   "kind": "notes",
+   "scale": "N.T.S.",
+   "den": 12,
+   "not_to_scale": true,
+   "paper_in": [
+    6.32,
+    6.36
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  }
+ ]
+}

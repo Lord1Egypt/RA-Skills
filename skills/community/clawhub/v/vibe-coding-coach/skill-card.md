@@ -1,6 +1,6 @@
 ## Description:
 
-Coaches people through AI-assisted software workflows, prompt design, tool selection, debugging, and pre-launch review.
+Coaches users through AI-assisted software-building workflows with tool selection, prompt patterns, context management, debugging strategies, and pre-launch checklists.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Non-engineers, founders, product managers, and developers use it to plan AI-assisted app work, choose tools, write focused prompts, troubleshoot changes, and check readiness before release.
+Non-technical founders, product managers, designers, students, and developers use this skill to plan AI-assisted app building, choose tools, write prompts, manage context, troubleshoot workflow problems, and review readiness before launch.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review found no issues but has medium confidence because two local references could not be resolved.
+Risk: The security review is incomplete because two local references could not be matched to bundled artifacts.
 
-Mitigation: Consider this coverage limitation before installing, and review the relevant guidance where possible.
-
-Risk: Prompts or debugging examples could expose secrets or real customer data if copied into an AI coding tool.
-
-Mitigation: Remove credentials and identifying data before sharing; use environment variable names and synthetic examples.
+Mitigation: Review the unresolved references before installation and complete a security review when their contents are available.
 
 ## Reference(s):
 
-- [Vibe Coding Coach on ClawHub](https://clawhub.ai/gechengling/skills/vibe-coding-coach)
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/vibe-coding-coach)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Markdown with plain-language prompts, workflow tables, and checklists]
+**Output Format:** [Markdown with reusable prompt templates, examples, and checklists]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Coaching material for the user to apply in their own tools; it does not write files, run code, or deploy changes.]
+**Other Properties Related to Output:** [Coaching material for the user to review and apply; the skill does not write files, run code, or deploy applications.]
 
 ## Skill Version(s):
 
-3.0.4 (source: frontmatter, server release metadata)
+3.0.5 (source: frontmatter, server-resolved release evidence)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Generate one short directed transition from an approved first frame to an approved last frame, turning two images into one clip that begins and ends on those images.
+Creates one video transition that starts at an approved first image and ends at an approved last image, then reviews the generated clip's motion and endpoint match.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and creative developers use this skill to turn two approved endpoint images into one short transition clip for transformations, product reveals, before-and-after stories, or scene changes.
+Developers and content creators use the skill to make one short video transition between two approved images, such as a product reveal or before-and-after change, and review the result for endpoint and motion fidelity.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill may request voice-management permissions beyond what video creation needs.
+Risk: The security summary flags broad shared-account access and persistent installation and environment reporting beyond the skill's stated video purpose, which may involve more account or device context than expected.
 
-Mitigation: Review the requested account scopes before authorizing, prefer narrower permissions where available, and revoke device access when no longer needed; check for other Beatra skills sharing that connection before revoking it.
+Mitigation: Review the reported permissions and data collection before installing, and proceed only if they are acceptable.
 
-Risk: Uninstalling or disconnecting may disrupt other Beatra skills that share the connection.
+Risk: Security scan coverage is partial because several local references were unresolved, leaving some behavior unassessed.
 
-Mitigation: Follow the uninstall and disconnect guide, check which skills use the shared connection, and avoid removing shared credentials until their remaining consumers are understood.
-
-Risk: Selected endpoint media is uploaded to Beatra for processing.
-
-Mitigation: Confirm the user is comfortable sending both selected images to Beatra and avoid uploading media they are not authorized to share.
+Mitigation: Resolve and review the referenced files and reassess the security evidence before use.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/beatra-ai/skills/first-last-frame-video)
-- [Beatra skill information](https://beatra.ai/skills/first-last-frame-video)
-- [Workflow guide](references/workflow.md)
-- [Installation and authorization](references/installation-and-auth.md)
-- [Updates and security](references/updates-and-security.md)
-- [Uninstall and disconnect](references/uninstall-and-disconnect.md)
+- [First-and-last-frame workflow](artifact/references/workflow.md)
+- [Tasks and results](artifact/references/tasks-and-results.md)
+- [Updates and security](artifact/references/updates-and-security.md)
+- [Installation and authentication](artifact/references/installation-and-auth.md)
 
 ## Skill Output:
 
 **Output Type(s):** [Video, Text]
 
-**Output Format:** [One generated video artifact or link with a concise Markdown result and review summary]
+**Output Format:** [A generated video artifact with a concise text status and review]
 
-**Output Parameters:** [One transition clip from one first frame to one last frame]
+**Output Parameters:** [One transition clip per run]
 
-**Other Properties Related to Output:** [Includes a post-result check of endpoint fidelity, motion, direction, duration, and audio when accessible.]
+**Other Properties Related to Output:** [The clip targets the approved first and last frames; delivery details depend on the service response.]
 
 ## Skill Version(s):
 
-0.2.5 (source: server-resolved release evidence)
+0.2.8 (source: server-resolved ClawHub release)
 
 ## Ethical Considerations:
 

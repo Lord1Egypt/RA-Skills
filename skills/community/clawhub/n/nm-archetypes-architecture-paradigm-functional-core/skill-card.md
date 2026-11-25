@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and software architects use this skill to separate business rules from I/O, making core logic easier to test while the imperative shell handles side effects.
+Developers and engineers use this skill to separate business rules from I/O, making core logic easier to test and the imperative shell easier to change. It offers adoption steps, deliverables, and exit criteria for applying the pattern.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Business logic can drift between the functional core and imperative shell.
+Risk: Business rules may drift into the imperative shell during refactoring.
 
-Mitigation: Use a core-owns-decisions checklist in code reviews.
+Mitigation: Use a core-owns-decisions checklist in code reviews and enforce the boundary with architecture tests.
 
-Risk: Framework lifecycle requirements may not fit the planned shell adapters.
+Risk: Framework lifecycle requirements may not fit the proposed shell adapters.
 
-Mitigation: Build small proof-of-concept adapters before committing to a broad rewrite.
+Mitigation: Build small proof-of-concept adapters to validate the integration approach before a large rewrite.
 
-Risk: Teams unfamiliar with the pattern may apply it inconsistently.
+Risk: The pattern may add friction in performance-critical hot paths or teams without plans to adopt functional patterns.
 
-Mitigation: Use pair programming during adoption and document anti-patterns found in the pilot.
+Mitigation: Assess the fit for the target codebase and pilot the approach in a high-churn or critical module before expanding it.
 
 ## Reference(s):
 
-- [Night Market Archetypes project homepage (listed in skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
-- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-functional-core)
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-functional-core)
+- [Project homepage (Clawdis metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance]
+**Output Type(s):** [Guidance, Markdown]
 
-**Output Format:** [Markdown text]
+**Output Format:** [Markdown prose with adoption steps, deliverables, risks, and checklists]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Architecture recommendations and adoption steps based on the user's stated context.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

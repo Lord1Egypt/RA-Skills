@@ -1,0 +1,61 @@
+{
+ "layout": "layered",
+ "nodes": [
+  {
+   "id": "n1",
+   "label": "Recruit patients",
+   "sublabel": "n=240"
+  },
+  {
+   "id": "n2",
+   "label": "Randomise",
+   "sublabel": "1:1 allocation",
+   "shape": "diamond"
+  },
+  {
+   "id": "n3",
+   "label": "Treatment arm",
+   "sublabel": "n=120"
+  },
+  {
+   "id": "n4",
+   "label": "Control arm",
+   "sublabel": "n=120"
+  },
+  {
+   "id": "n5",
+   "label": "Follow-up 24 wk"
+  },
+  {
+   "id": "n6",
+   "label": "Analysis",
+   "sublabel": "ITT population"
+  }
+ ],
+ "edges": [
+  {
+   "from": "n1",
+   "to": "n2"
+  },
+  {
+   "from": "n2",
+   "to": "n3"
+  },
+  {
+   "from": "n2",
+   "to": "n4"
+  },
+  {
+   "from": "n3",
+   "to": "n5"
+  },
+  {
+   "from": "n4",
+   "to": "n5"
+  },
+  {
+   "from": "n5",
+   "to": "n6"
+  }
+ ]
+}

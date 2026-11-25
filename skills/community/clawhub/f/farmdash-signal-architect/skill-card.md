@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-DeFi users and agent developers use this skill to review market and portfolio signals, simulate trades, and prepare user-approved spot or futures actions through FarmDash.
+Developers and DeFi users use this agent skill to research opportunities, assess multi-chain trade routes, and prepare wallet-affecting actions such as swaps and hedges. It provides analysis and transaction preparation for user-controlled or explicitly bounded execution.
 
 ### Deployment Geography for Use:
 
@@ -22,42 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Trades, token approvals, destinations, and fees can have irreversible financial consequences.
+Risk: The security review is favorable but incomplete: one analyzer was degraded and one component was only partially inspected.
 
-Mitigation: Before signing, review the fresh quote, token contracts, chain, amounts, destination, and fees; require simulation and explicit user confirmation.
+Mitigation: Account for the stated coverage limits and review the skill and deployment before installation or use.
 
-Risk: FarmDash may receive wallet and transaction information needed for service operation.
+Risk: Wallet-affecting actions can expose users to financial loss or irreversible transactions if transaction details are wrong or stale.
 
-Mitigation: Understand what wallet and transaction data will be shared; onboarding analytics are optional. Never share private keys or seed phrases.
-
-Risk: Autopilot can take actions within delegated limits.
-
-Mitigation: Enable it only with limits and a revocation path you understand.
+Mitigation: Verify a fresh quote, token contracts, chains, amounts, destinations, and fees before signing; keep signing local and never provide private keys or seed phrases.
 
 ## Reference(s):
 
-- [FarmDash Signal Architect on ClawHub](https://clawhub.ai/parmasanandgarlic/skills/farmdash-signal-architect)
 - [FarmDash Agent Hub](https://www.farmdash.one/agents)
-- [FarmDash documentation](https://www.farmdash.one/docs)
-- [FarmDash agent status](https://www.farmdash.one/api/v1/agent/status)
-- [FarmDash MCP discovery manifest](https://www.farmdash.one/.well-known/mcp.json)
-- [FarmDash OpenAPI specification](https://www.farmdash.one/agents/openapi.yaml)
-- [FarmDash fees](https://www.farmdash.one/fees)
-- [FarmDash security information](https://www.farmdash.one/security)
+- [Canonical Signal Architect Manual](https://www.farmdash.one/agents/skills/farmdash-signal-architect)
+- [Signal Architect Complete Reference Guide](https://www.farmdash.one/guides/signal-architect-complete-reference)
+- [FarmDash OpenAPI Specification](https://www.farmdash.one/agents/openapi.yaml)
+- [MCP Discovery Manifest](https://www.farmdash.one/.well-known/mcp.json)
+- [FarmDash Zero-Custody Security Model](https://www.farmdash.one/security)
+- [FarmDash Fee Schedule](https://www.farmdash.one/fees)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, API Calls, Guidance, JSON]
+**Output Type(s):** [Text, Guidance, Analysis, JSON, Configuration]
 
-**Output Format:** [Natural-language analysis and guidance with structured API request and response data]
+**Output Format:** [Structured tool data and concise natural-language guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Market and risk context, simulation results, and transaction preparation details; wallet-changing actions require fresh user approval and local signing.]
+**Other Properties Related to Output:** [May include market analysis, route quotes, simulation results, and transaction preparation details; wallet-affecting steps require the configured signing and authorization gates.]
 
 ## Skill Version(s):
 
-1.2.28 (source: server-resolved release evidence)
+1.2.31 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

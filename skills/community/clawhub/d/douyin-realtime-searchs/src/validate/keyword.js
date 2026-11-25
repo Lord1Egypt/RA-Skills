@@ -69,8 +69,18 @@ function assertSearchOptions(sort, time, duration, content, limit) {
   return [sort, time, duration, content, limit];
 }
 
+/**
+ * 校验用户搜索数量。显式非法值直接失败。
+ * @param {number} limit
+ * @returns {number}
+ */
+function assertUserSearchLimit(limit) {
+  return assertIntegerRange(limit, 1, 10000, "用户搜索数量 limit");
+}
+
 module.exports = {
   isKeywordValid,
   normalizeKeyword,
   assertSearchOptions,
+  assertUserSearchLimit,
 };

@@ -1,7 +1,7 @@
 ---
 name: yotta-dev-mcp
 slug: yotta-dev-mcp
-version: 0.2.8
+version: 0.2.9
 displayName: 元开·确定性开发工具
 summary: 元开（yotta-dev-mcp）—— 本地、确定性的开发工具 MCP：18 个工具覆盖代码库地图、架构契约与系统模型、架构评审、变更影响锥、验证账本与反证自测、可选适配器、代码评审、密钥 / 依赖扫描、发布前守门、白名单检查、技能脚手架与 workflow 状态；默认离线、默认只读、带证据锚点。
 description: '元开（yotta-dev-mcp）—— 一个 stdio MCP server 提供 18 个确定性开发工具：repo_map（代码库地图）、system_model（系统模型与 .yotta/architecture.json 契约分层）、architecture_review（契约评审）、impact_analysis（变更影响锥）、verify_change（L0-L5 验证账本）、self_test（完整性检查与 seeded defect / mutation 反证）、run_adapter（显式运行 import-linter / dependency-cruiser / Repomix）、find_code（符号定位）、compress_output（长输出压缩）、review_code / review_diff（规则化评审）、scan_secrets（密钥脱敏扫描）、scan_dependencies（依赖与 typosquat 启发式）、check_publish_readiness（发布前守门）、run_checks（白名单检查，默认关闭执行）、scaffold_skill（技能脚手架，默认 dry-run）、workflow_state（.workflow 状态读取与安全追加）。Python 3.8+ 标准库、默认离线、默认只读、输出带文件行号与规则证据；缺工具或配置一律 UNKNOWN，不自动安装、不联网。'
@@ -33,7 +33,7 @@ homepage: https://github.com/YottaMeta/yotta-dev-mcp
 启动命令：
 
 ```bash
-npx -y @yottameta/yotta-dev-mcp@0.2.8
+npx -y @yottameta/yotta-dev-mcp@0.2.9
 ```
 
 `npx -y` 是 npx 的自动安装开关，不是安装器的 `--yes`；`-g/--global` 不再强制 `--yes`。
@@ -101,11 +101,12 @@ python scripts/yotta_dev_mcp.py --tools full   # 18 工具（默认）
 - `review_diff` 的 `base` 必须是可解析 Git revision；以 `-` 开头、含空白或无法解析的值会被拒绝，
   防止 `--output=` 等选项注入。
 - 不联网，不查询包是否存在于公共仓库。
-- 不读取或修改 YottaCode 仓库。
+- 不读取或修改 YottaWeave 仓库。
 - 结论是确定性静态判断，不替代人工评审与最终决策。
 
 ## 当前版本
 
+- v0.2.9（2026-11-24）：产品边界文案切换为 YottaWeave；MCP 工具、参数、返回结构与只读边界不变。
 - v0.2.8（2026-11-05）：质量门禁批次——发布前测试接入；测试子进程统一 UTF-8；自扫测试样本去字面量；版本五件对齐。
 - v0.2.7（2026-10-31）：BOM 契约修复——`.yotta/architecture.json`、`.yotta/verification.json`、changed `.py` / `.json`、adapter 配置、custom host registry 与 `--diff-file` 的结构化读取统一 `utf-8-sig`；修正 BOM 契约假绿用例，新增 BOM 矩阵、静态编码门禁与 RED→GREEN 证据；测试规范见 `docs/元开-测试规范-2026-10-31.md`。
 - v0.2.5（2026-10-31）：安全热修——`review_diff` 的 `base` 先解析为 commit SHA，拒绝 Git 选项注入；`workflow_state` 改为随机独占临时文件 + 原子替换，备份同样原子化，并拒绝 symlink / junction 等链接路径；新增 option injection、temp / backup / hardlink / junction 回归。

@@ -1,6 +1,6 @@
 ## Description:
 
-Generates multilingual speech audio from text using dLazy’s Gemini 2.5 text-to-speech command.
+Generate multilingual, highly natural audio using Gemini 2.5 text-to-speech.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agents use the skill to turn text into spoken audio in Chinese or English and select a supported voice.
+Developers and content creators use this skill to turn prompts into multilingual spoken audio with Gemini 2.5 text-to-speech, selecting a supported language and voice.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment has medium confidence and was partial; it reports a mismatch between the stated TTS purpose and the command it observed, and did not assess the pinned CLI package.
+Risk: The reported `dlazy login` step is not clearly tied to the text-to-speech purpose, and its credential handling and the CLI package were not fully assessed.
 
-Mitigation: Before installing, review the full skill and pinned CLI package source, and check that the observed `dlazy login` behavior matches your needs for text-to-speech.
+Mitigation: Before installing or authenticating, confirm the login step is expected for this workflow and review the pinned CLI package and how it stores and uses API credentials.
 
 ## Reference(s):
 
+- [ClawHub release page](https://clawhub.ai/dlazyai/skills/dlazy-gemini-2-5-tts)
+- [CLI project homepage (metadata link)](https://github.com/dlazy-ai/cli)
+- [@dlazy/cli package](https://www.npmjs.com/package/@dlazy/cli)
 - [dLazy service](https://dlazy.com)
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli)
 
 ## Skill Output:
 
-**Output Type(s):** [Audio, API result metadata and output URLs]
+**Output Type(s):** [Audio, JSON, Shell commands]
 
-**Output Format:** [Generated audio hosted at a result URL, with JSON status and output metadata]
+**Output Format:** [Hosted audio output referenced by URLs, with JSON result metadata; invoked through CLI commands.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Voice language and voice are selectable; the documented languages are Chinese (cmn) and English (en).]
+**Other Properties Related to Output:** [Supports Mandarin and English voices; output URLs are hosted by dLazy.]
 
 ## Skill Version(s):
 
-1.3.41 (source: server-resolved release metadata)
+1.3.44 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

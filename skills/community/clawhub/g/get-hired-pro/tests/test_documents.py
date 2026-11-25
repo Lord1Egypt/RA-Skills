@@ -156,6 +156,61 @@ class Documents(unittest.TestCase):
                     renderer.render(source, out)
                 self.assertFalse(out.exists())
 
+    def test_role_content_before_header_is_rejected_at_both_entrypoints(self):
+        import resume_layout
+        name = {'kind': 'name', 'text': 'Example Applicant'}
+        first = {'kind': 'role_header', 'role_id': 'a', 'text': 'Employer A | Analyst'}
+        first_work = {'kind': 'achievement', 'role_id': 'a', 'text': 'Work performed at A.'}
+        second = {'kind': 'role_header', 'role_id': 'b', 'text': 'Employer B | Developer'}
+        second_work = {'kind': 'achievement', 'role_id': 'b', 'text': 'Work performed at B.'}
+        for index, blocks in enumerate([
+            [name, second_work, second],
+            [name, first, first_work, second_work, second],
+        ]):
+            with self.subTest(index=index):
+                document = self.directory / f'invalid-{index}.docx'
+                with self.assertRaisesRegex(ValueError, 'header must precede'):
+                    resume_layout.build({'blocks': blocks}, document)
+                self.assertFalse(document.exists())
+                source = packet()
+                source['resume_blocks'] = blocks
+                destination = self.directory / f'invalid-packet-{index}'
+                with self.assertRaisesRegex(ValueError, 'header must precede'):
+                    renderer.render(source, destination)
+                self.assertFalse(destination.exists())
+
+    def test_two_role_layout_keeps_each_achievement_with_its_employer(self):
+        source = packet()
+        source['resume_blocks'] = [
+            {'kind': 'name', 'text': 'Example Applicant'},
+            {'kind': 'headline', 'text': 'Delivery and development'},
+            {'kind': 'section', 'text': 'Experience'},
+            {'kind': 'role_header', 'role_id': 'a', 'text': 'Employer A | Analyst'},
+            {'kind': 'context', 'role_id': 'a', 'text': 'Customer delivery team.'},
+            {'kind': 'achievement', 'role_id': 'a', 'text': 'Work performed at A.'},
+            {'kind': 'role_header', 'role_id': 'b', 'text': 'Employer B | Developer'},
+            {'kind': 'achievement', 'role_id': 'b', 'text': 'Work performed at B.'},
+            {'kind': 'section', 'text': 'Skills'},
+            {'kind': 'skills', 'text': 'Analysis and development'},
+        ]
+        out = self.directory / 'two-roles'
+        renderer.render(source, out)
+        _, paragraphs, _ = inspect(out / 'Resume.docx')
+        actual = [''.join(p.itertext()) for p in paragraphs]
+        self.assertEqual(actual, [
+            ('• ' if b['kind'] == 'achievement' else '') + b['text']
+            for b in source['resume_blocks']
+        ])
+        if importlib.util.find_spec('weasyprint') and shutil.which('pdftotext'):
+            renderer.render(source, out, resume=True, format='pdf')
+            text = subprocess.check_output(
+                ['pdftotext', str(out / 'Resume.pdf'), '-'], text=True)
+            previous = -1
+            for block in source['resume_blocks']:
+                position = text.find(block['text'], previous + 1)
+                self.assertGreater(position, previous, block['text'])
+                previous = position
+
     def test_failed_letter_can_resume_without_rebuilding_good_resume(self):
         out = self.directory / 'interrupted'
         source = packet()

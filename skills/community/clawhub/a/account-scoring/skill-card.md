@@ -1,6 +1,6 @@
 ## Description:
 
-Scores companies against an ICP on a schedule, recording a tier, rationale, and supporting evidence in a Cargo model with optional CRM writeback.
+Scores companies against an ICP on a schedule, records tier rationale and evidence, and can update matching CRM records.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-RevOps, sales leaders, and GTM engineers use this skill to keep company accounts tiered against their ICP and a maintained rubric. It records an auditable rationale and evidence for each tier, with optional CRM updates.
+RevOps and GTM teams use this skill to tier companies against their ICP and rubric, keep tiers current, and optionally sync the rationale to a CRM.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Company data and internal scoring context may be sent to AI and search providers.
+Risk: The security scan marked this release suspicious because setup uses an unpinned installer and mutable source; some analysis was incomplete.
 
-Mitigation: Confirm which fields and context may be shared, and minimize data sent to external providers.
-
-Risk: Bulk backfills and scheduled scoring can incur substantial agent-run and search costs.
-
-Mitigation: Pilot ten rows, estimate costs from actual usage, and approve the deployment plan before bulk scoring or enabling the schedule.
-
-Risk: CRM connector failures may not stop a run, leaving account fields unwritten or incorrect.
-
-Mitigation: Keep CRM writeback off unless needed and verify the configured fields on a piloted CRM record.
-
-Risk: External installers and dependency revisions can change or introduce supply-chain risk.
-
-Mitigation: Review external installers and pin dependency revisions where possible.
+Mitigation: Verify and pin the installer and source to reviewed versions before installing, and complete a full review of the partially inspected component.
 
 ## Reference(s):
 
-- [Skill source](https://github.com/getcargohq/gtm-skills/tree/main/account-scoring)
-- [ClawHub release](https://clawhub.ai/cargo-ai/skills/account-scoring)
+- [ClawHub skill page](https://clawhub.ai/cargo-ai/skills/account-scoring)
+- [Project homepage](https://github.com/getcargohq/gtm-skills)
+- [Run guide](artifact/references/run.md)
 
 ## Skill Output:
 
-**Output Type(s):** [code, configuration, guidance, text]
+**Output Type(s):** [Text, Code, Configuration, Guidance]
 
-**Output Format:** [Cargo TypeScript project resources and structured account records containing a tier, rationale, evidence URL, and timestamp.]
+**Output Format:** [Structured tier records and Markdown setup guidance with TypeScript examples]
 
-**Output Parameters:** [Tiers are A, B, C, or disqualified; CRM writeback is optional and limited to configured fields.]
+**Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Decisions follow the consumer's ICP and rubric. The example must be adapted to the consumer project and does not deploy or score accounts by itself.]
+**Other Properties Related to Output:** [Tier (A, B, C, or disqualified), rationale, evidence URL, and tiered-at date; CRM write-back is optional.]
 
 ## Skill Version(s):
 
-0.5.4
+0.5.5 (source: frontmatter)
 
 ## Ethical Considerations:
 

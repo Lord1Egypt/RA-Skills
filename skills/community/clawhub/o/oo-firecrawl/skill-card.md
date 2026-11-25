@@ -1,6 +1,6 @@
 ## Description:
 
-Connects to Firecrawl through the OOMOL oo CLI to search, scrape, crawl, and extract web data.
+Firecrawl (firecrawl.dev). Use this skill for any Firecrawl request, including reading, creating, updating, and deleting data.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to run Firecrawl web search, scraping, crawling, and extraction tasks through an OOMOL-connected account, and to check the status or results of asynchronous jobs.
+Developers and operators use the skill to search, scrape, crawl, extract, and research web content through a Firecrawl account connected to OOMOL, and to manage related jobs.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The CLI may install or refresh other agent skills without clearly explaining those changes.
+Risk: The security assessment flags an unverified network installer and setup actions that are not explained by the Firecrawl purpose; the scan was partial and could not determine the installer's behavior.
 
-Mitigation: Review automatic skill installation before enabling the integration; install a reviewed release yourself and set OO_SKILLS_SYNC_DISABLED=1 to disable startup skill synchronization if unwanted.
-
-Risk: Some Firecrawl actions start jobs, change state, or cancel jobs.
-
-Mitigation: Confirm the exact action, target, and effect before running write or destructive actions.
+Mitigation: Avoid installing or running it unless its source is trusted and its behavior and purpose are understood. Follow the skill's guidance to use existing authentication and connection setup, and only consider setup after a matching authentication or connection failure.
 
 ## Reference(s):
 
-- [Firecrawl API documentation](https://docs.firecrawl.dev/)
+- [Firecrawl documentation](https://docs.firecrawl.dev/)
 - [Firecrawl](https://www.firecrawl.dev)
 - [oo CLI](https://github.com/oomol-lab/oo-cli)
-- [Firecrawl on ClawHub](https://clawhub.ai/oomol/skills/oo-firecrawl)
-- [oomol publisher profile](https://clawhub.ai/user/oomol)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+**Output Type(s):** [API Calls, JSON, Markdown]
 
-**Output Format:** [Firecrawl results as text, Markdown, or JSON, with shell command examples]
+**Output Format:** [JSON action responses; Markdown research reports and content where supported by the selected action]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results and formats depend on the selected Firecrawl action.]
+**Other Properties Related to Output:** [Some actions return asynchronous job IDs followed by status and results.]
 
 ## Skill Version(s):
 
-1.0.8 (source: server release metadata and skill frontmatter)
+1.0.9 (source: frontmatter)
 
 ## Ethical Considerations:
 

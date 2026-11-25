@@ -10,7 +10,7 @@ env:
   FARMDASH_API_KEY:
     description: "Optional Bearer token for Pioneer or Syndicate tier."
     required: false
-metadata: {"openclaw":{"homepage":"https://www.farmdash.one/agents","skillKey":"farmdash-hedge-warden","primaryEnv":"FARMDASH_API_KEY","execution":"read-only-hedge-plan"}}
+metadata: {"openclaw":{"homepage":"https://www.farmdash.one/agents","skillKey":"farmdash-hedge-warden","primaryEnv":"FARMDASH_API_KEY","apiKeyRequired":false,"freeScoutKeyless":true,"freeScoutKey":"fd_scout_free","execution":"read-only-hedge-plan"}}
 ---
 
 # FarmDash Hedge Warden
@@ -18,7 +18,7 @@ metadata: {"openclaw":{"homepage":"https://www.farmdash.one/agents","skillKey":"
 ## Futures Execution Mode Contract
 
 - **USER_SIGNED** requires fresh human approval for every order/cancel and a local Hyperliquid EIP-712 venue signature through Futures Strategist.
-- **BOUNDED_AUTONOMOUS** may run without per-order human confirmation only under a valid owner-signed futures grant, current API-wallet venue authority, and all session, binding, scope, policy, risk, budget, builder and replay checks. Every venue action still needs a local signature.
+- **BOUNDED_AUTONOMOUS** still requires human authorization at the venue: it may run without per-order human confirmation only under a valid owner-signed futures grant, current API-wallet venue authority, and all session, binding, scope, policy, risk, budget, builder and replay checks. Every venue action still needs a local signature.
 - Read futures bounded readiness in the generated canonical table and live status. Bounded hedges may not be automatically executed while a runtime gate is closed. Spot grants, generic session policy, paid access and a hedge recommendation never create futures authority.
 - Discover through `POST /api/v1/agent/authority`, `action: get_futures_authority`, `sessionId`, `sessionToken`; revoke the actual grant using `action: revoke_futures_policy`, `grantId`, `sessionId`, `sessionToken`. These are authority REST actions, not new Hedge Warden tools. Hand the selected `executionMode`, `grantId`, `sessionId`, `sessionToken` and reviewed hedge plan to Futures Strategist.
 - Scopes are `futures.open`, `futures.reduce`, `futures.close`, `futures.cancel`, `futures.protective_order`. Opening a short hedge increases absolute perp exposure and is new risk, even if portfolio delta falls. Authoritative position state and exact signed semantics must prove reduction. Proven reducing/cancel/protective actions may survive exhausted new-risk capacity: a budget exception, never an authority bypass. Grant, venue delegation, identity/session, allowlists, expiry/revocation, local signature, builder and replay checks still apply.
@@ -78,13 +78,15 @@ Before handoff, record: total spot notional, per-asset beta, targetHedgeRatio, s
 ### Hedge Invalidation and Unwind Rules (Additive)
 Re-run recommend_delta_hedge when spot exposure moves over 10% or volatility regime changes. Net existing spot and perp exposure before sizing; the endpoint does not subtract existing hedges. Verify the perp is a valid hedge instrument (symbols alone do not prove correlation, redemption parity, or basis stability). If Futures Strategist returns no_trade, the hedge is not executable. After both non-atomic legs settle, re-read spot/perp state and report residual delta; delta-neutral is measured, not assumed. If one leg fails, stop dependents and present the predefined unwind.
 
-1. Use Wagon Steward to measure spot exposure.
+> **Portfolio data disclosure:** the steps below send portfolio exposure — asset holdings, notional values and betas — to FarmDash tooling (Wagon Steward measurement and `recommend_delta_hedge`). That financial data can reveal sensitive positions, and API authentication or optional installation attribution can make requests linkable to your environment. Obtain the user's explicit consent before measuring or submitting exposure, and share the minimum fields the hedge needs.
+
+1. Confirm the user consents to send portfolio exposure (see the disclosure above), then use Wagon Steward to measure spot exposure.
 2. Use Trail Intelligence and Supply Master to understand why the spot leg exists.
 3. Call `recommend_delta_hedge`.
 4. Reconcile existing hedge inventory, correlation/basis, funding, liquidity, and the user's hedge horizon.
-5. Hand only `executionEligible` legs to Futures Strategist for research and sizing.
-6. Hand off the selected futures mode after fresh research/sizing. USER_SIGNED requires explicit human confirmation through Futures Strategist; bounded execution requires the owner futures grant, local venue signer and all runtime checks.
-7. After both non-atomic legs settle, re-read spot/perp state and report residual delta; if one leg fails, stop dependent actions and present the predefined unwind.
+5. Hand only `executionEligible` legs to Futures Strategist for research and sizing (`analyze_futures_strategy` also surfaces `execution_mode_selection` and upfront Hyperliquid `builderFeeStatus`).
+6. Prompt the user to choose FarmDash's zero-custody execution mode before preparation: **Standard FarmDash (`USER_SIGNED`, default)** requires explicit per-order human confirmation and local EIP-712 signing through Futures Strategist (plus one-time main-wallet `ApproveBuilderFee` if `builderFeeStatus.approved` is false / `prepare_perp_order` returns 409 `builder_fee_approval_required`); **Autonomous FarmDash (`BOUNDED_AUTONOMOUS`, opt-in)** requires the distinct owner-signed futures grant, Hyperliquid API-wallet delegation, Pioneer+/x402 session, and all live runtime checks.
+7. After both non-atomic legs settle, reconcile fills via `reconcile_perp_order`, re-read spot/perp state via Wagon Steward and Futures Strategist, report residual delta, and hand post-trade records to Ledger Keeper; if one leg fails, stop dependent actions and present the predefined unwind.
 
 ## Disclaimers
 
@@ -93,14 +95,18 @@ Report spot legs, notional, beta, hedge targets, handoff, invalidation, dataQual
 
 Hedges can lose money, over-hedge, under-hedge, or fail during volatile markets. Funding, liquidation risk, basis, and venue risk can erase yield. This skill is not financial advice.
 
-**Install:** Copy this file into your OpenClaw workspace, or fetch `https://www.farmdash.one/openclaw-skills/farmdash-hedge-warden/SKILL.md`.
+**Install:** Copy this file into your OpenClaw workspace, or fetch `https://www.farmdash.one/agents/skills/farmdash-hedge-warden`.
 
-**Companion skills:** FarmDash Futures Strategist, FarmDash Wagon Steward, FarmDash Supply Master, FarmDash Camp Guard.
+**Handoffs:** exposure measurement and hedge research are functional inputs from the wallet and futures skills. This skill reads no peer skill documents and enumerates no other installed skills.
+
+**Companion skills:** FarmDash Wagon Steward (spot exposure measurement), FarmDash Trail Intelligence (protocol context), FarmDash Supply Master (yield context), FarmDash Futures Strategist (Hyperliquid research, builder approval & local EIP-712 execution), FarmDash Autonomous Operator (optional bounded futures policy), FarmDash Ledger Keeper (post-hedge reconciliation).
 
 **Why FarmDash:** Unlike generic hedge advice, Hedge Warden sizes by spot-notional × beta × target-hedge-ratio, never lets confidence shrink the hedge, and blocks the execution handoff below 0.60 confidence until independently verified.
 
 **FarmDash:** [DeFi hedging and risk intelligence](https://www.farmdash.one/)
 **Agent Hub:** [FarmDash DeFi hedging agent tools](https://www.farmdash.one/agents)
+**Fees & Builder Terms:** [FarmDash Fee Structure](https://www.farmdash.one/fees)
+**Security Model:** [FarmDash Security & Authority Boundaries](https://www.farmdash.one/security)
 **OpenAPI Spec:** [FarmDash API Schema](https://www.farmdash.one/agents/openapi.yaml)
 **MCP Config:** [FarmDash MCP Server](https://www.farmdash.one/.well-known/mcp.json)
 
@@ -110,13 +116,33 @@ Hedges can lose money, over-hedge, under-hedge, or fail during volatile markets.
 
 - [FarmDash DeFi intelligence website](https://www.farmdash.one/)
 - [FarmDash Agent Hub](https://www.farmdash.one/agents)
-- [Canonical FarmDash Hedge Warden skill manual](https://www.farmdash.one/openclaw-skills/farmdash-hedge-warden/SKILL.md)
+- [Canonical FarmDash Hedge Warden skill manual](https://www.farmdash.one/agents/skills/farmdash-hedge-warden)
 - [Agent integration documentation](https://www.farmdash.one/docs)
 - [Live agent capability status](https://www.farmdash.one/api/v1/agent/status)
 - [OpenAPI contract](https://www.farmdash.one/agents/openapi.yaml)
+- [Hosted Streamable HTTP MCP endpoint](https://www.farmdash.one/api/mcp) (56 core tools directly over HTTP; full 98-tool surface via stdio MCP or REST)
 - [MCP discovery manifest](https://www.farmdash.one/.well-known/mcp.json)
+- [Multi-skill workflow catalog](https://www.farmdash.one/api/v1/agent/workflows)
+- [FarmDash Agent Operating Model](https://www.farmdash.one/openclaw-skills/FARMDASH_AGENT_OPERATING_MODEL.md)
 - [Fees and commercial terms](https://www.farmdash.one/fees)
 - [Security and authority boundaries](https://www.farmdash.one/security)
+
+### Connected FarmDash Skill Ecosystem
+
+All 10 FarmDash OpenClaw skills compose as one zero-custody pipeline over the shared FarmDash REST API, the hosted Streamable HTTP MCP endpoint (`https://www.farmdash.one/api/mcp`, exposing 56 core tools directly over HTTP), and the full 98-tool stdio MCP server. Check `GET /api/v1/agent/workflows` (or `list_workflows`) for multi-skill recipes.
+
+| Skill Slug | Pipeline Stage | Handoff Scope | Canonical Manual |
+|---|---|---|---|
+| `farmdash-trail-intelligence` | Discovery & Intelligence | Trail Heat, protocol risk, wallet balances, sybil audits, points simulations | [Manual](https://www.farmdash.one/agents/skills/farmdash-trail-intelligence) |
+| `farmdash-wagon-steward` | Portfolio & Reserves | Portfolio summary, idle capital scan, position health & drift checks | [Manual](https://www.farmdash.one/agents/skills/farmdash-wagon-steward) |
+| `farmdash-supply-master` | Yield Sustainability | Organic vs emission APY ranking (yield_quality_v3) & ERC-4626 verification | [Manual](https://www.farmdash.one/agents/skills/farmdash-supply-master) |
+| `farmdash-camp-guard` | Pre-Sign Safety Gate | Allowance audits, Risk Sentinel net-edge/depeg checks, unsigned-tx verdicts | [Manual](https://www.farmdash.one/agents/skills/farmdash-camp-guard) |
+| `farmdash-hedge-warden` *(this skill)* | Delta-Neutral Sizing | Spot beta hedge sizing (confidence >= 0.60 gate) handing off to Futures Strategist | [Manual](https://www.farmdash.one/agents/skills/farmdash-hedge-warden) |
+| `farmdash-trail-marshal` | Workflow Orchestration | 18-recipe multi-skill catalog (list/plan/run/status) across all FarmDash skills | [Manual](https://www.farmdash.one/agents/skills/farmdash-trail-marshal) |
+| `farmdash-signal-architect` | Spot & Swap Execution | EVM (LI.FI & Relay; 0x paused) & Solana (Jupiter) quote, simulation, prep & confirm | [Manual](https://www.farmdash.one/agents/skills/farmdash-signal-architect) |
+| `farmdash-futures-strategist` | Hyperliquid Perps | Funding/regime scans, sizing, builder approval, EIP-712 order prep & reconciliation | [Manual](https://www.farmdash.one/agents/skills/farmdash-futures-strategist) |
+| `farmdash-autonomous-operator` | Sessions & Autonomy | Persistent sessions, FarmingContext, intent resolution, MEE & bounded delegations | [Manual](https://www.farmdash.one/agents/skills/farmdash-autonomous-operator) |
+| `farmdash-ledger-keeper` | Post-Trade Accounting | Confirmed activity/cost summaries and CSV tax exports (read-only) | [Manual](https://www.farmdash.one/agents/skills/farmdash-ledger-keeper) |
 
 ### Canonical capability readiness
 
@@ -130,9 +156,9 @@ Generated from shared/capability-truth.ts; read live status for deployment and p
 | futures.BOUNDED_AUTONOMOUS | operational | Authenticated owner-bound futures policy, authorized local API-wallet signature, durable nonce/budget/order controls. |
 | solana.USER_SIGNED | operational | Native Jupiter/RPC route, durable preparation and finality store; customer signs and broadcasts. |
 | solana.BOUNDED_AUTONOMOUS | operational | Native owner-signed Solana policy; local key must be an actual required transaction signer. Policy creates no on-chain authority. |
-| ERC4337_SERVER_SUBMISSION | preparation_only | Qualified tenant/account authorization and session-key policy enforcement on public forwarding, configured bundler, durable claims and verified receipt integration. |
-| GENERIC_SERVER_INTENT_EXECUTION | preparation_only | Trusted executable adapter, exact signed-transaction binding and canonical receipt verifier. |
-| MEE | preparation_only | Production coordinator and authoritative source/destination receipt verifier. |
+| ERC4337_SERVER_SUBMISSION | operational | Authenticated session, tenant-bound active ERC-4337 session-key grant, ABI-verified execute/executeBatch calldata within allowedProtocols/budget/gas bounds, and configured bundler RPC (BUNDLER_RPC_URL/PIMLICO_API_KEY/ALCHEMY_4337_RPC_URL). |
+| GENERIC_SERVER_INTENT_EXECUTION | operational | Curated executable adapter prepared_payload + payload_digest, policy/simulation/approval gates, exact cryptographic signed-transaction binding, and canonical on-chain receipt verification. |
+| MEE | operational | Owner EIP-712 MEE signature, configured HTTPS MEE_COORDINATOR_URL, and authoritative dual-chain on-chain receipt verification. |
 | ACP | deployment_prerequisite | AcpReadinessService paidWorkflowReady, evaluator/client identities, migrations, funding/finality workers and Base RPC. |
 
 <!-- farmdash-canonical-links:end -->

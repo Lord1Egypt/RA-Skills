@@ -1,6 +1,6 @@
 ## Description:
 
-Guides agents through designing or polishing websites and other browser interfaces with iterative visual refinement, usability checks, and review.
+Polishes websites, web apps, portfolios, and other browser interfaces through iterative design changes and independent review.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers creating or redesigning websites, web apps, prototypes, and other browser interfaces use this skill to improve visual quality, interaction, responsiveness, and usability through an iterative design and review workflow. It can also guide finishing timed portfolio, take-home, and hackathon projects.
+Developers and designers use it to improve new or existing websites, web apps, portfolios, prototypes, and timed project work through reference study, iterative interface refinement, and independent reviews.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The scanner notes a low-probability subprocess warning, judged expected in context.
+Risk: The skill includes executable Python scripts, and one helper runs external commands.
 
-Mitigation: Review proposed project changes before running or committing them, and follow the documented local review steps before deployment.
+Mitigation: Review commands before running helpers and use them in a trusted project workspace.
 
 ## Reference(s):
 
-- [Project homepage](https://github.com/Ekko237/award-polish)
 - [Polish checklist](references/polish-checklist.md)
-- [New site workflow](references/mode-new.md)
-- [Redesign workflow](references/mode-redesign.md)
-- [Helper script guide](references/scripts.md)
+- [Reference study workflow](references/reference-study.md)
+- [Reviewer guidance](references/reviewer.md)
+- [Scoring guide](references/scoring.md)
+- [Release workflow](references/release.md)
+- [Script usage](references/scripts.md)
+- [Project homepage](https://github.com/Ekko237/award-polish)
+- [ClawHub release page](https://clawhub.ai/ekko237/skills/award-polish)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Markdown]
+**Output Type(s):** [Code, Shell commands, Configuration instructions, Markdown, Guidance]
 
-**Output Format:** [Markdown guidance, project code edits, shell commands, and optional review artifacts]
+**Output Format:** [Browser interface code changes, shell commands, and Markdown review notes]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Outputs depend on the user's project and request; optional helper scripts can produce screenshots, review data, and logs.]
+**Other Properties Related to Output:** [Tailored to a specific browser interface; may include optional reviewable commits.]
 
 ## Skill Version(s):
 
-1.0.4 (source: server-resolved release metadata)
+1.0.6 (source: frontmatter, release evidence)
 
 ## Ethical Considerations:
 

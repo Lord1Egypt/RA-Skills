@@ -9,10 +9,16 @@
  *   include_summary    — 是否包含 AI 总结（默认 true）
  */
 
-import { callAPI, parseArgs, validateRequired } from './_api_client.mjs';
+import {
+  attachOutreachWorkspaceUrl,
+  callAPI,
+  parseArgs,
+  validateRequired,
+} from './_api_client.mjs';
 
 const params = parseArgs();
 validateRequired(params, ['email']);
 
 const result = await callAPI('/openapi/v1/outreach/contact', params, null, { skipUserIdentity: false });
+await attachOutreachWorkspaceUrl(result, { email: params.email });
 console.log(JSON.stringify(result, null, 2));

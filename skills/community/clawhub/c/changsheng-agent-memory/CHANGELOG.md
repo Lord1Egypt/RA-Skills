@@ -4,6 +4,26 @@
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-10-24
+
+> 1.0.0 was never publicly available: its first package bundle accidentally
+> included local article drafts, so it was withdrawn before release. 1.0.1 ships
+> the same source with only the skill files in the bundle.
+
+### Changed
+- **Tier names flipped to match reading order.** The always-read layer is now
+  **L0** (was L3), the change-indexed layer **L1** (was L2), the on-demand layer
+  **L2** (was L1), and the whole-corpus fallback **L3** (new row). Same
+  mechanism, same config keys — only the labels changed, so a first-time reader
+  meets L0 first instead of L3. L0 is the tier people forget: skipping it is
+  what breaks sessions, which is why it now sits at the front.
+- **Cost figures re-measured on disk (2026-10-24).** Recovery is **8,669 tokens
+  per session** against **685,560 tokens** for a full restore of all sixteen
+  systems — **1.3% of a full restore, 98.7% fewer tokens**. Replaces the older
+  ~44K → ~12K (~70%) self-test figure and the ~55–75% host-injected range.
+  Denominator note: the ~46 MB of raw material in the store is *not* on the
+  restore path and is counted in neither figure.
+
 ## [0.99.0] - 2026-10-22
 
 ### Added

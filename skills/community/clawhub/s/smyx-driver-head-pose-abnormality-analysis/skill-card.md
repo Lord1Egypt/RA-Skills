@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes driver-facing cabin video for head pitch and yaw, identifies sustained head-down or side-view events, and returns a structured distraction report.
+Analyzes in-cabin driver video for head-down and side-view posture and returns head-pose findings and distraction-event reports.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and fleet safety teams use it to review driver-facing cabin footage for head-down or side-view events and inspect the resulting reports. Use it as an assistive review tool, not as the basis for live driving safety decisions.
+Fleet operators and developers can use the skill to review in-cabin DMS footage for prolonged head-down or side-view behavior and retrieve related analysis reports. Treat its findings as assistive alerts that do not replace driver attention or established safety procedures.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Driver videos may be submitted to a remote service, and identity or account information may be sent and stored.
+Risk: The security assessment flags possible exposure of sensitive in-cabin video and identity data, including through video uploads.
 
-Mitigation: Obtain informed consent and confirm the service's privacy, retention, and access practices before uploading driver video.
+Mitigation: Obtain required driver consent, confirm upload destinations and retention, restrict access to footage, and avoid uploading video unless needed for the analysis.
 
-Risk: The security review advises against relying on this skill for live driving alerts.
+Risk: The security assessment notes a gap between advertised live warnings and the reported asynchronous analysis workflow; its scan was also partial.
 
-Mitigation: Use results for review and keep live driving safety decisions under human and vehicle-system oversight.
+Mitigation: Verify alert timing and behavior in the intended deployment before relying on warnings, and retain existing driver monitoring and response procedures.
 
 ## Reference(s):
 
-- [API reference](references/api_doc.md)
-- [Skill usage introduction](https://lifeemergence.com/sample.html)
-- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-driver-head-pose-abnormality-analysis)
+- [API documentation](references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub skill release](https://clawhub.ai/18072937735/skills/smyx-driver-head-pose-abnormality-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Text]
+**Output Type(s):** [Analysis, JSON, Markdown]
 
-**Output Format:** [Structured JSON report with a brief text heading and report link]
+**Output Format:** [Structured head-pose findings and distraction-event reports; Markdown report lists]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports head pose and distraction events; results depend on usable driver-facing video.]
+**Other Properties Related to Output:** [Reports may include head-pose angles, event summaries, warning types, and report links.]
 
 ## Skill Version(s):
 
-1.0.17 (source: server-resolved release metadata)
+1.0.19 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

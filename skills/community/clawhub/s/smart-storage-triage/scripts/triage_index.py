@@ -20,6 +20,8 @@ IGNORE_DIRS = {
     ".ssh", ".aws", ".gnupg", ".azure", ".kube", ".secrets", "secrets"
 }
 
+# DENYLIST (exclusion list), NOT credential access: these names are skipped so
+# secret files are never read or indexed.
 SENSITIVE_FILE_EXACT = {
     ".env", "credentials.json", "token.json", "auth.json", "secrets.json",
     "id_rsa", "id_ed25519", "id_ecdsa", "id_dsa"
@@ -313,6 +315,17 @@ def main():
                 try:
                     resolved_file = file_path.resolve()
                     if not resolved_file.is_relative_to(target_dir):
+                        continue
+                    # Alias-bypass fix: apply the credential denylist to the
+                    # RESOLVED target as well, so a harmless-looking symlink
+                    # (notes.txt -> .env / .ssh/id_rsa inside the root) cannot
+                    # smuggle secret contents into the searchable index.
+                    try:
+                        resolved_rel = str(resolved_file.relative_to(target_dir))
+                    except ValueError:
+                        continue
+                    if is_sensitive_file(resolved_file.name, resolved_rel):
+                        sensitive_skipped_count += 1
                         continue
                 except Exception:
                     continue

@@ -2,7 +2,7 @@
 name: getting-started
 description: Connect an agent to Speak AI and orient it in the workspace. Covers the remote OAuth connection, the local stdio connection with an API key, the MCP tools and their categories, the resources, the built-in prompts, and the first workflows to run. Use this when you need to set up the Speak AI MCP server, when a Speak AI tool is missing or returning 401, or when you need to know which tool to call to transcribe a recording, read a transcript or captions, search across a media library, ask questions about recordings, create clips, export transcripts, run voice and video surveys with recorders, schedule the meeting assistant for Zoom, Google Meet or Microsoft Teams, or manage folders, custom fields, webhooks, automations, dashboards and team members.
 metadata:
-  server-version: "2.0.0"
+  server-version: "2.4.0"
   openclaw-homepage: "https://docs.speakai.co/mcp"
   openclaw-emoji: "🎙️"
 ---
@@ -34,10 +34,21 @@ once in a browser popup and no API key is handled anywhere.
   mode. Choose Create, paste the URL, pick OAuth, and authorize. Enable it per chat from
   the plus menu.
 - **Cursor and VS Code:** use the one-click install buttons on <https://docs.speakai.co/mcp/setup/>.
-- **Claude Code:**
+  In Cursor you can also add `"speakai": { "url": "https://api.speakai.co/v1/mcp" }` under
+  `mcpServers` in `~/.cursor/mcp.json`, then sign in from Cursor Settings, Tools & MCP.
+- **Claude Code:** add the server, then sign in (or type `/mcp` in a session). The browser
+  opens Speak AI's page, where the user signs in or creates an account.
 
   ```sh
   claude mcp add --transport http speakai https://api.speakai.co/v1/mcp
+  claude mcp login speakai
+  ```
+
+- **Codex:** adding the server starts the browser sign-in. If it did not finish, run
+  `codex mcp login speakai`.
+
+  ```sh
+  codex mcp add speakai --url https://api.speakai.co/v1/mcp
   ```
 
 The portable plugin ships this remote server and nothing else. Its `mcp.json` is:
@@ -92,6 +103,7 @@ Pick the narrowest tool that answers the request. Per-tool documentation lives a
 | `embed-other` | 7 | Embeds, iframe URLs and visit analytics | `create_embed`, `get_embed_iframe_url`, `get_embed_session_summary` |
 | `users-team` | 5 | Workspace members and groups | `list_users`, `list_user_groups` |
 | `dashboards` | 9 | Analytics dashboards and widgets | `list_dashboards`, `get_dashboard` |
+| `feedback` | 1 | Send the person's feedback about Speak AI to the Speak AI team | `submit_feedback` |
 
 Users and groups are supporting tools rather than a workflow of their own. You reach for
 `list_users` to get the ids other calls need, such as `notifyUsers` on a recorder or the
@@ -263,6 +275,23 @@ When you do make a lasting change, close the reply with how to undo it:
 `delete_webhook` for webhooks,
 `delete_recorder` for recorders and their public links, `delete_scheduled_assistant` for
 meeting events, and `update_embed` or `delete_clip` for shared assets.
+
+## Send feedback to the Speak AI team
+
+`submit_feedback` sends the person's feedback about Speak AI to the Speak AI team, who read
+every message. Use it for bugs, confusing results, missing features and praise.
+
+- **When to offer.** The person is frustrated with Speak AI, hits a bug or a limit, asks for
+  something Speak AI cannot do, or says what they like or dislike about it. Offer once in the
+  conversation, in one short sentence, such as "Want me to send this to the Speak AI team?"
+  If they decline, do not ask again.
+- **Ask first.** Send only after a clear yes. Write it in their words, show them the exact
+  text, and pass the feature or tool it is about as `area`.
+- **Keep it about Speak AI.** Leave out recording or transcript content and other people's
+  personal details unless the person asks you to include them.
+- **One a minute.** Each person can send one message a minute. A refusal says when they
+  can send again. They can always email <success@speakai.co> instead.
+- **One chat answer.** To rate a single AI Chat answer, use `submit_chat_feedback`.
 
 ## Troubleshooting
 

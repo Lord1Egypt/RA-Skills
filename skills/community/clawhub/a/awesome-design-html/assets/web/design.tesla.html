@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tesla — Full-Screen Vertical Cinema | Design Study</title>
+<meta name="description" content="A design study of Tesla's visual language: full-screen scroll-snap panels, one vehicle per viewport, silhouettes over photography, numbers instead of adjectives, whisper-quiet uppercase CTAs." />
+<meta property="og:title" content="Tesla — Full-Screen Vertical Cinema | Design Study" />
+<meta property="og:description" content="One vehicle per viewport. Silhouettes, specs and translucent pills — the structure itself is the brand." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  /* Canvas — the two frames of the film */
+  --cinema-black: #000000;
+  --silver-screen: #f4f4f4;
+  --paper: #ffffff;
+  /* Ink */
+  --ink: #171a20;
+  --ink-muted: #5c5e62;
+  --ink-dim: #a2a3a5;
+  --moon: #f4f4f4;
+  --moon-muted: #8e9094;
+  /* Accent — used sparingly, like Tesla itself */
+  --electric-blue: #3e6ae1;
+  --logo-red: #e82127;
+  /* Translucent CTA pair */
+  --cta-light-bg: rgba(244, 244, 244, 0.88);
+  --cta-dark-bg: rgba(23, 26, 32, 0.55);
+  /* Lines */
+  --line-dark: rgba(23, 26, 32, 0.14);
+  --line-light: rgba(244, 244, 244, 0.16);
+  --font-ui: "Inter", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "PingFang SC", "Segoe UI", sans-serif;
+  --r-card: 4px;
+  --r-md: 8px;
+  --r-pill: 999px;
+}
+
+* { box-sizing: border-box; }
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-snap-type: none; scroll-behavior: auto; }
+}
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--cinema-black);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+::selection { background: rgba(62, 106, 225, 0.25); }
+
+/* ============ NAV — fixed, transparent, blends over both frames ============ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 36px;
+  mix-blend-mode: difference;
+  color: #fff;
+}
+.wordmark {
+  font-size: 17px; font-weight: 700; letter-spacing: 0.42em;
+  text-indent: 0.42em; /* visually re-center the tracked caps */
+}
+.nav-menu { display: flex; gap: 6px; position: absolute; left: 50%; transform: translateX(-50%); }
+.nav-menu a { font-size: 13px; font-weight: 500; padding: 6px 14px; opacity: 0.85; transition: opacity .15s; }
+.nav-menu a:hover { opacity: 1; }
+.nav-right { display: flex; align-items: center; gap: 18px; }
+.nav-right a { display: grid; place-items: center; opacity: 0.85; transition: opacity .15s; }
+.nav-right a:hover { opacity: 1; }
+.nav-right svg { width: 19px; height: 19px; }
+
+/* ============ VEHICLE PANELS — one model, one viewport ============ */
+.panel {
+  min-height: 100vh;
+  scroll-snap-align: start;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: space-between;
+  padding: 104px 32px 40px;
+  background: var(--p-bg);
+  color: var(--p-ink);
+  overflow: hidden;
+}
+.panel--dark {
+  --p-bg: #000000;
+  --p-ink: var(--moon);
+  --p-muted: var(--moon-muted);
+  --p-line: var(--line-light);
+  --car-top: #42474e; --car-bot: #15171a;
+  --car-glass: #0e1014;
+  --car-hi: rgba(255, 255, 255, 0.30);
+  --tire: #0e0f11; --tire-edge: rgba(255, 255, 255, 0.18);
+  --rim: #43484f; --hub: #23262a;
+  --car-shadow: rgba(255, 255, 255, 0.05);
+  --cta2-bg: rgba(140, 145, 150, 0.18);
+  --cta2-ink: var(--moon);
+  --cta2-edge: rgba(244, 244, 244, 0.16);
+}
+.panel--light {
+  --p-bg: #f4f4f4;
+  --p-ink: var(--ink);
+  --p-muted: var(--ink-muted);
+  --p-line: var(--line-dark);
+  --car-top: #2c2f33; --car-bot: #101214;
+  --car-glass: #494f56;
+  --car-hi: rgba(255, 255, 255, 0.45);
+  --tire: #17191c; --tire-edge: rgba(23, 26, 32, 0.25);
+  --rim: #5a6066; --hub: #34383d;
+  --car-shadow: rgba(23, 26, 32, 0.10);
+  --cta2-bg: var(--cta-dark-bg);
+  --cta2-ink: var(--moon);
+  --cta2-edge: transparent;
+}
+.panel-head { text-align: center; }
+.panel-head h2 {
+  margin: 0 0 8px;
+  font-size: clamp(34px, 4vw, 44px);
+  font-weight: 600; letter-spacing: 0.04em; line-height: 1.1;
+}
+.panel-head p { margin: 0; font-size: 15px; color: var(--p-muted); letter-spacing: 0.01em; }
+
+.panel-stage { flex: 1; display: grid; place-items: center; width: 100%; min-height: 0; padding: 12px 0; }
+.car { width: min(840px, 90vw); height: auto; display: block; }
+.car .ground { fill: var(--car-shadow); }
+.car .punch { fill: var(--p-bg); }
+.car .glass { fill: var(--car-glass); }
+.car .car-hi { fill: none; stroke: var(--car-hi); stroke-width: 2.5; stroke-linecap: round; }
+.car .tire { fill: var(--tire); stroke: var(--tire-edge); stroke-width: 1.5; }
+.car .rim { fill: none; stroke: var(--rim); stroke-width: 2.5; }
+.car .hub { fill: var(--hub); }
+
+.panel-foot {
+  width: 100%; max-width: 1080px;
+  display: flex; align-items: center; justify-content: space-between; gap: 28px;
+}
+.specs { display: flex; align-items: stretch; }
+.spec { padding: 2px 30px; text-align: left; }
+.spec:first-child { padding-left: 0; }
+.spec + .spec { border-left: 1px solid var(--p-line); }
+.spec .num {
+  font-size: 30px; font-weight: 600; letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums; line-height: 1.15;
+}
+.spec .num span { font-size: 13px; font-weight: 500; color: var(--p-muted); margin-left: 4px; letter-spacing: 0; }
+.spec .lbl {
+  font-size: 11px; font-weight: 500; color: var(--p-muted);
+  text-transform: uppercase; letter-spacing: 0.14em; margin-top: 3px;
+}
+.ctas { display: flex; gap: 14px; }
+.cta {
+  display: inline-block; width: 196px; padding: 12px 0; text-align: center;
+  border-radius: var(--r-pill);
+  font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  transition: transform .15s, box-shadow .15s, background .15s;
+}
+.cta:hover { transform: translateY(-1px); }
+.cta-light { background: var(--cta-light-bg); color: var(--ink); box-shadow: 0 1px 8px rgba(23, 26, 32, 0.10); }
+.cta-light:hover { background: #ffffff; }
+.cta-dark { background: var(--cta2-bg); color: var(--cta2-ink); border: 1px solid var(--cta2-edge); }
+.cta-dark:hover { background: rgba(23, 26, 32, 0.7); }
+.panel--dark .cta-dark:hover { background: rgba(140, 145, 150, 0.28); }
+
+/* ============ ENERGY BAND ============ */
+.energy {
+  background: var(--cinema-black); color: var(--moon);
+  padding: 110px 32px 120px;
+  scroll-snap-align: start;
+  border-top: 1px solid rgba(244, 244, 244, 0.08);
+}
+.wrap { max-width: 1120px; margin: 0 auto; }
+.energy-head { text-align: center; margin-bottom: 64px; }
+.eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--moon-muted); margin-bottom: 14px;
+}
+.energy-head h2 { margin: 0 0 10px; font-size: clamp(28px, 3.2vw, 38px); font-weight: 600; letter-spacing: 0.01em; }
+.energy-head p { margin: 0; font-size: 15px; color: var(--moon-muted); }
+.energy-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.energy-item {
+  border: 1px solid rgba(244, 244, 244, 0.12); border-radius: var(--r-md);
+  padding: 34px 30px; transition: border-color .2s, background .2s;
+}
+.energy-item:hover { border-color: rgba(244, 244, 244, 0.3); background: rgba(244, 244, 244, 0.03); }
+.energy-item svg { width: 30px; height: 30px; color: var(--moon); margin-bottom: 20px; }
+.energy-item h3 { margin: 0 0 6px; font-size: 18px; font-weight: 600; letter-spacing: 0.02em; }
+.energy-item p { margin: 0 0 18px; font-size: 13.5px; color: var(--moon-muted); line-height: 1.65; }
+.energy-item .more { font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--moon); border-bottom: 1px solid rgba(244,244,244,0.3); padding-bottom: 2px; }
+
+/* ============ DESIGN SYSTEM REFERENCE ============ */
+.ds-section { background: var(--paper); color: var(--ink); padding: 96px 32px 90px; scroll-snap-align: start; }
+.ds-intro { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 56px; }
+.ds-intro .eyebrow { color: var(--ink-muted); }
+.ds-intro h2 { font-size: clamp(26px, 3vw, 34px); letter-spacing: -0.01em; line-height: 1.15; margin: 0 0 10px; font-weight: 700; }
+.ds-intro p { margin: 0; color: var(--ink-muted); font-size: 14.5px; max-width: 620px; line-height: 1.7; }
+.ds-source {
+  display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px;
+  border: 1px solid var(--line-dark); border-radius: var(--r-pill);
+  font-size: 12px; font-weight: 600; color: var(--ink-muted); transition: all .15s; white-space: nowrap;
+}
+.ds-source:hover { border-color: var(--ink); color: var(--ink); }
+.ds-block { margin-top: 52px; padding-top: 40px; border-top: 1px solid var(--line-dark); }
+.ds-block:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
+.ds-heading { font-size: 21px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; }
+.ds-desc { font-size: 14px; color: var(--ink-muted); margin: 0 0 24px; line-height: 1.7; max-width: 620px; }
+.ds-caption { font-size: 11px; font-weight: 600; color: var(--ink-dim); margin: 26px 0 12px; letter-spacing: 0.18em; text-transform: uppercase; }
+.ds-swatches { display: grid; gap: 12px; grid-template-columns: repeat(5, 1fr); }
+.ds-sw { border: 1px solid var(--line-dark); border-radius: var(--r-md); overflow: hidden; background: #fff; }
+.ds-sw .chip { height: 64px; }
+.ds-sw .meta { padding: 11px 13px; }
+.ds-sw .name { font-size: 12.5px; font-weight: 600; }
+.ds-sw .val { font-size: 11px; color: var(--ink-dim); margin-top: 2px; font-variant-numeric: tabular-nums; }
+
+.ds-type-table { width: 100%; border-collapse: collapse; border: 1px solid var(--line-dark); border-radius: var(--r-md); overflow: hidden; }
+.ds-type-table th, .ds-type-table td { text-align: left; padding: 13px 14px; border-bottom: 1px solid var(--line-dark); font-size: 13.5px; vertical-align: middle; }
+.ds-type-table tr:last-child td { border-bottom: 0; }
+.ds-type-table th { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-dim); background: var(--silver-screen); }
+.ds-type-table td { color: var(--ink-muted); }
+.ds-type-table td.sample { color: var(--ink); }
+
+.ds-radius { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.ds-radius-cell { border: 1px solid var(--line-dark); padding: 20px 8px; text-align: center; border-radius: var(--r-md); }
+.ds-radius-box { width: 54px; height: 54px; background: var(--ink); margin: 0 auto 10px; }
+.ds-radius-label { font-size: 11.5px; font-weight: 600; }
+.ds-radius-val { font-size: 10.5px; color: var(--ink-dim); margin-top: 2px; }
+
+.ds-comp { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.ds-card { border: 1px solid var(--line-dark); border-radius: var(--r-md); padding: 22px; background: #fff; }
+.ds-card h5 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: var(--ink-dim); margin: 0 0 16px; }
+.ds-stack { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+.ds-mini-dark { background: #000; border-radius: var(--r-md); padding: 18px; width: 100%; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+.ds-card .cta { width: 180px; padding: 11px 0; }
+.ds-vt { font-size: 13.5px; color: var(--ink-muted); line-height: 1.75; margin: 0; }
+.ds-vt strong { color: var(--ink); font-weight: 600; }
+
+/* ============ FOOTER ============ */
+footer {
+  background: var(--silver-screen); color: var(--ink-muted);
+  padding: 52px 32px 40px; text-align: center;
+  scroll-snap-align: end;
+  border-top: 1px solid var(--line-dark);
+}
+.foot-links { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; margin-bottom: 22px; }
+.foot-links a { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); transition: color .12s; }
+.foot-links a:hover { color: var(--ink); }
+.foot-note { font-size: 12.5px; line-height: 1.8; max-width: 640px; margin: 0 auto 14px; }
+.foot-copy { font-size: 12px; color: var(--ink-dim); }
+
+/* Floating source */
+.src-link {
+  position: fixed; right: 16px; bottom: 16px; z-index: 70;
+  background: rgba(255, 255, 255, 0.92); border: 1px solid var(--line-dark);
+  padding: 10px 18px; border-radius: var(--r-pill);
+  font-size: 12px; font-weight: 600; color: var(--ink-muted);
+  box-shadow: 0 4px 18px rgba(23, 26, 32, 0.12);
+  backdrop-filter: blur(8px); transition: all .15s;
+}
+.src-link:hover { color: var(--ink); border-color: var(--ink); }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 980px) {
+  .nav { padding: 16px 22px; }
+  .nav-menu { display: none; }
+  .panel { padding: 92px 22px 32px; }
+  .panel-foot { flex-direction: column; gap: 24px; }
+  .specs { justify-content: center; }
+  .energy-row { grid-template-columns: 1fr; }
+  .ds-swatches { grid-template-columns: repeat(2, 1fr); }
+  .ds-radius { grid-template-columns: repeat(3, 1fr); }
+  .ds-comp { grid-template-columns: 1fr; }
+  .energy { padding: 80px 22px 88px; }
+  .ds-section { padding: 72px 22px; }
+}
+@media (max-width: 540px) {
+  body { overflow-x: clip; }
+  .panel-head h2 { font-size: 30px; }
+  .specs { width: 100%; max-width: 370px; justify-content: center; }
+  .spec { padding: 2px 10px; flex: 1; }
+  .spec:first-child { padding-left: 10px; }
+  .spec .num { font-size: 19px; }
+  .spec .num span { font-size: 11px; margin-left: 2px; }
+  .spec .lbl { font-size: 9px; letter-spacing: 0.09em; }
+  .ctas { flex-direction: column; width: 100%; max-width: 320px; }
+  .cta { width: 100%; }
+  .ds-swatches { grid-template-columns: 1fr; }
+  .foot-links { gap: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV — blends by difference so it survives both black and silver frames -->
+<header class="nav">
+  <a class="wordmark" href="#model-s">TESLA</a>
+  <nav class="nav-menu">
+    <a href="#model-s">Vehicles</a>
+    <a href="#energy">Energy</a>
+    <a href="#">Charging</a>
+    <a href="#design-system">Discover</a>
+  </nav>
+  <div class="nav-right">
+    <a href="#" aria-label="Support">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 015.8 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12" y2="17.01"/></svg>
+    </a>
+    <a href="#" aria-label="Language">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+    </a>
+    <a href="#" aria-label="Account">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- PANEL 1 · MODEL S — low fastback on the black frame -->
+<section class="panel panel--dark" id="model-s">
+  <div class="panel-head">
+    <h2>Model S</h2>
+    <p>The original. Still the benchmark.</p>
+  </div>
+  <div class="panel-stage">
+    <svg class="car" viewBox="0 0 920 260" role="img" aria-label="Model S side silhouette">
+      <defs>
+        <linearGradient id="bodyS" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="var(--car-top)"/>
+          <stop offset="1" stop-color="var(--car-bot)"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#bodyS)" d="M96 198 C76 196 66 184 70 172 C73 160 86 151 110 147 C170 138 220 134 268 130 C300 110 330 97 368 93 C420 87 470 87 516 92 C560 97 610 113 644 129 C690 138 750 145 794 151 C826 156 846 164 854 175 C858 184 850 192 832 195 L820 198 L96 198 Z"/>
+      <path class="glass" d="M290 127 C316 110 342 101 374 98 C420 93 464 93 504 98 C542 102 582 114 612 126 C540 131 400 131 290 127 Z"/>
+      <path class="car-hi" d="M308 105 C390 88 480 87 546 96"/>
+      <circle class="punch" cx="266" cy="196" r="39"/>
+      <circle class="punch" cx="725" cy="196" r="39"/>
+      <ellipse class="ground" cx="460" cy="238" rx="340" ry="7"/>
+      <g>
+        <circle class="tire" cx="266" cy="196" r="34"/>
+        <circle class="rim" cx="266" cy="196" r="19"/>
+        <circle class="hub" cx="266" cy="196" r="6.5"/>
+        <circle class="tire" cx="725" cy="196" r="34"/>
+        <circle class="rim" cx="725" cy="196" r="19"/>
+        <circle class="hub" cx="725" cy="196" r="6.5"/>
+      </g>
+    </svg>
+  </div>
+  <div class="panel-foot">
+    <div class="specs">
+      <div class="spec"><div class="num">634<span>km</span></div><div class="lbl">Range (WLTP)</div></div>
+      <div class="spec"><div class="num">2.1<span>s</span></div><div class="lbl">0–100 km/h</div></div>
+      <div class="spec"><div class="num">322<span>km/h</span></div><div class="lbl">Top Speed</div></div>
+    </div>
+    <div class="ctas">
+      <a class="cta cta-light" href="#">Custom Order</a>
+      <a class="cta cta-dark" href="#">Demo Drive</a>
+    </div>
+  </div>
+</section>
+
+<!-- PANEL 2 · MODEL 3 — compact sedan on the silver frame -->
+<section class="panel panel--light" id="model-3">
+  <div class="panel-head">
+    <h2>Model 3</h2>
+    <p>Engineered for the everyday.</p>
+  </div>
+  <div class="panel-stage">
+    <svg class="car" viewBox="0 0 920 260" style="width:min(760px, 86vw)" role="img" aria-label="Model 3 side silhouette">
+      <defs>
+        <linearGradient id="body3" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="var(--car-top)"/>
+          <stop offset="1" stop-color="var(--car-bot)"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#body3)" d="M166 198 C148 196 140 188 143 177 C146 167 158 158 182 153 C224 145 262 141 304 137 C330 116 358 103 392 99 C436 94 478 94 516 99 C552 103 592 117 622 131 C658 139 706 145 740 150 C766 154 782 161 788 171 C792 180 786 190 770 194 L758 198 L160 198 Z"/>
+      <path class="glass" d="M322 133 C344 117 368 106 398 103 C436 99 472 99 506 104 C538 108 570 119 596 129 C520 134 420 135 322 133 Z"/>
+      <path class="car-hi" d="M336 112 C402 95 482 94 542 102"/>
+      <circle class="punch" cx="300" cy="198" r="38"/>
+      <circle class="punch" cx="677" cy="198" r="38"/>
+      <ellipse class="ground" cx="464" cy="238" rx="300" ry="7"/>
+      <g>
+        <circle class="tire" cx="300" cy="198" r="33"/>
+        <circle class="rim" cx="300" cy="198" r="18.5"/>
+        <circle class="hub" cx="300" cy="198" r="6.5"/>
+        <circle class="tire" cx="677" cy="198" r="33"/>
+        <circle class="rim" cx="677" cy="198" r="18.5"/>
+        <circle class="hub" cx="677" cy="198" r="6.5"/>
+      </g>
+    </svg>
+  </div>
+  <div class="panel-foot">
+    <div class="specs">
+      <div class="spec"><div class="num">629<span>km</span></div><div class="lbl">Range (WLTP)</div></div>
+      <div class="spec"><div class="num">4.4<span>s</span></div><div class="lbl">0–100 km/h</div></div>
+      <div class="spec"><div class="num">201<span>km/h</span></div><div class="lbl">Top Speed</div></div>
+    </div>
+    <div class="ctas">
+      <a class="cta cta-light" href="#">Custom Order</a>
+      <a class="cta cta-dark" href="#">Demo Drive</a>
+    </div>
+  </div>
+</section>
+
+<!-- PANEL 3 · MODEL X — tall-back SUV on the black frame -->
+<section class="panel panel--dark" id="model-x">
+  <div class="panel-head">
+    <h2>Model X</h2>
+    <p>Utility, at full scale.</p>
+  </div>
+  <div class="panel-stage">
+    <svg class="car" viewBox="0 0 920 260" role="img" aria-label="Model X side silhouette">
+      <defs>
+        <linearGradient id="bodyX" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="var(--car-top)"/>
+          <stop offset="1" stop-color="var(--car-bot)"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#bodyX)" d="M96 196 C76 194 66 182 70 170 C72 148 80 118 108 102 C150 82 230 70 330 67 C410 65 475 67 522 75 C572 84 622 104 662 122 C702 133 752 141 792 148 C824 154 844 163 852 174 C856 184 848 192 830 195 L818 196 L96 196 Z"/>
+      <path class="glass" d="M190 100 C250 84 340 78 425 79 C472 80 510 86 542 93 C574 100 608 112 634 122 C530 127 330 122 190 100 Z"/>
+      <path class="car-hi" d="M168 84 C260 68 400 64 488 71 C552 77 614 96 658 116"/>
+      <circle class="punch" cx="262" cy="194" r="41"/>
+      <circle class="punch" cx="712" cy="194" r="41"/>
+      <ellipse class="ground" cx="460" cy="238" rx="340" ry="7"/>
+      <g>
+        <circle class="tire" cx="262" cy="194" r="36"/>
+        <circle class="rim" cx="262" cy="194" r="20"/>
+        <circle class="hub" cx="262" cy="194" r="7"/>
+        <circle class="tire" cx="712" cy="194" r="36"/>
+        <circle class="rim" cx="712" cy="194" r="20"/>
+        <circle class="hub" cx="712" cy="194" r="7"/>
+      </g>
+    </svg>
+  </div>
+  <div class="panel-foot">
+    <div class="specs">
+      <div class="spec"><div class="num">576<span>km</span></div><div class="lbl">Range (WLTP)</div></div>
+      <div class="spec"><div class="num">2.6<span>s</span></div><div class="lbl">0–100 km/h</div></div>
+      <div class="spec"><div class="num">262<span>km/h</span></div><div class="lbl">Top Speed</div></div>
+    </div>
+    <div class="ctas">
+      <a class="cta cta-light" href="#">Custom Order</a>
+      <a class="cta cta-dark" href="#">Demo Drive</a>
+    </div>
+  </div>
+</section>
+
+<!-- PANEL 4 · CYBERTRUCK — straight lines only, stainless on silver -->
+<section class="panel panel--light" id="cybertruck">
+  <div class="panel-head">
+    <h2>Cybertruck</h2>
+    <p>Built different. Literally.</p>
+  </div>
+  <div class="panel-stage">
+    <svg class="car" viewBox="0 0 920 260" role="img" aria-label="Cybertruck side silhouette">
+      <defs>
+        <linearGradient id="bodyC" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#cfd3d7"/>
+          <stop offset="0.55" stop-color="#aab0b6"/>
+          <stop offset="1" stop-color="#878d94"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#bodyC)" stroke="rgba(40,44,48,0.35)" stroke-width="1" d="M106 200 L94 186 L97 146 L124 114 L470 80 L840 156 L854 176 L844 200 Z"/>
+      <polygon fill="#14171b" points="486,92 740,140 692,148 476,109"/>
+      <path fill="none" stroke="rgba(23,26,32,0.30)" stroke-width="1.5" d="M118 152 L846 174"/>
+      <path class="car-hi" style="stroke:rgba(255,255,255,0.7);stroke-width:2" d="M140 112 L466 82 L820 152"/>
+      <polygon class="punch" points="188,202 212,154 268,154 292,202"/>
+      <polygon class="punch" points="658,202 682,154 738,154 762,202"/>
+      <ellipse class="ground" cx="464" cy="238" rx="350" ry="7"/>
+      <g>
+        <circle class="tire" cx="240" cy="196" r="36"/>
+        <circle class="rim" cx="240" cy="196" r="20"/>
+        <circle class="hub" cx="240" cy="196" r="7"/>
+        <circle class="tire" cx="710" cy="196" r="36"/>
+        <circle class="rim" cx="710" cy="196" r="20"/>
+        <circle class="hub" cx="710" cy="196" r="7"/>
+      </g>
+    </svg>
+  </div>
+  <div class="panel-foot">
+    <div class="specs">
+      <div class="spec"><div class="num">515<span>km</span></div><div class="lbl">Range (est.)</div></div>
+      <div class="spec"><div class="num">2.7<span>s</span></div><div class="lbl">0–100 km/h</div></div>
+      <div class="spec"><div class="num">209<span>km/h</span></div><div class="lbl">Top Speed</div></div>
+    </div>
+    <div class="ctas">
+      <a class="cta cta-light" href="#">Custom Order</a>
+      <a class="cta cta-dark" href="#">Demo Drive</a>
+    </div>
+  </div>
+</section>
+
+<!-- ENERGY — the film's epilogue: short, dark, declarative -->
+<section class="energy" id="energy">
+  <div class="wrap">
+    <div class="energy-head">
+      <div class="eyebrow">Tesla Energy</div>
+      <h2>Generate, store, power everything.</h2>
+      <p>The cars are one half of the mission. This is the other.</p>
+    </div>
+    <div class="energy-row">
+      <div class="energy-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="4.9" y1="4.9" x2="7" y2="7"/><line x1="17" y1="17" x2="19.1" y2="19.1"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.9" y1="19.1" x2="7" y2="17"/><line x1="17" y1="7" x2="19.1" y2="4.9"/></svg>
+        <h3>Solar Roof</h3>
+        <p>Turn your roof into a power plant. Tiles, not panels — invisible until the bill arrives.</p>
+        <a class="more" href="#">Learn More</a>
+      </div>
+      <div class="energy-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="16" height="10" rx="2"/><line x1="22" y1="11" x2="22" y2="13"/><rect x="6" y="10" width="7" height="4" rx="1"/></svg>
+        <h3>Powerwall</h3>
+        <p>Store sunlight, spend it at night. Whole-home backup that never asks for attention.</p>
+        <a class="more" href="#">Learn More</a>
+      </div>
+      <div class="energy-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="7" y1="6" x2="7" y2="18"/><line x1="12" y1="6" x2="12" y2="18"/><line x1="17" y1="6" x2="17" y2="18"/></svg>
+        <h3>Megapack</h3>
+        <p>Utility-scale storage, shipping today. A grid that holds steady when demand does not.</p>
+        <a class="more" href="#">Learn More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN SYSTEM REFERENCE -->
+<section class="ds-section" id="design-system">
+  <div class="wrap">
+    <div class="ds-intro">
+      <div>
+        <div class="eyebrow">Design System Reference</div>
+        <h2>结构即品牌: 全屏纵向的电影脚本</h2>
+        <p>Tesla 的辨识度不在配色, 在信息架构本身: 一屏一辆车, 滚动即换幕. 每一幕的剧本完全相同 — 名字, 一句话, 一辆车, 三个数字, 两枚按钮 — 重复本身成为节奏, 黑与银交替成为剪辑. 页面不解释产品, 它放映产品.</p>
+      </div>
+      <a class="ds-source" href="https://github.com/yzfly/awesome-design-html/blob/main/assets/web/design.tesla.html" target="_blank" rel="noopener">View source ↗</a>
+    </div>
+
+    <!-- Color -->
+    <div class="ds-block">
+      <h3 class="ds-heading">Color</h3>
+      <p class="ds-desc">两块幕布轮流登场: 影院黑与银幕灰. 文字只有一种墨色和它的灰阶. 彩色被压缩到极限 — 蓝色只给链接与状态, 红色只属于词标. 当整个页面接近无彩, 车身的一道高光就是最亮的颜色.</p>
+
+      <div class="ds-caption">幕布 Frames</div>
+      <div class="ds-swatches">
+        <div class="ds-sw"><div class="chip" style="background:#000000"></div><div class="meta"><div class="name">影院黑</div><div class="val">#000000</div></div></div>
+        <div class="ds-sw"><div class="chip" style="background:#f4f4f4"></div><div class="meta"><div class="name">银幕灰</div><div class="val">#F4F4F4</div></div></div>
+        <div class="ds-sw"><div class="chip" style="background:#171a20"></div><div class="meta"><div class="name">Tesla 墨</div><div class="val">#171A20</div></div></div>
+        <div class="ds-sw"><div class="chip" style="background:#5c5e62"></div><div class="meta"><div class="name">次级灰</div><div class="val">#5C5E62</div></div></div>
+        <div class="ds-sw"><div class="chip" style="background:#ffffff;border-bottom:1px solid rgba(23,26,32,0.1)"></div><div class="meta"><div class="name">纸白</div><div class="val">#FFFFFF</div></div></div>
+      </div>
+
+      <div class="ds-caption">克制的彩色 & 半透明层</div>
+      <div class="ds-swatches">
+        <div class="ds-sw"><div class="chip" style="background:#3e6ae1"></div><div class="meta"><div class="name">电气蓝</div><div class="val">#3E6AE1 · 链接/状态</div></div></div>
+        <div class="ds-sw"><div class="chip" style="background:#e82127"></div><div class="meta"><div class="name">词标红</div><div class="val">#E82127 · 仅 logo</div></div></div>
+        <div class="ds-sw"><div class="chip" style="background:linear-gradient(180deg,#cfd3d7,#878d94)"></div><div class="meta"><div class="name">不锈钢</div><div class="val">#CFD3D7 → #878D94</div></div></div>
+        <div class="ds-sw"><div class="chip" style="background:rgba(244,244,244,0.88);border-bottom:1px solid rgba(23,26,32,0.1)"></div><div class="meta"><div class="name">主 CTA 浅</div><div class="val">#F4F4F4 · 88%</div></div></div>
+        <div class="ds-sw"><div class="chip" style="background:rgba(23,26,32,0.55)"></div><div class="meta"><div class="name">次 CTA 深</div><div class="val">#171A20 · 55%</div></div></div>
+      </div>
+    </div>
+
+    <!-- Typography -->
+    <div class="ds-block">
+      <h3 class="ds-heading">Typography</h3>
+      <p class="ds-desc">Inter 全场, 一种字体演完整部电影. 层级不靠字体切换, 靠尺寸与字距的两极: 车型名舒展, 规格数字收紧, 按钮全大写却只有 12px — 命令式的内容, 耳语式的音量.</p>
+      <table class="ds-type-table">
+        <thead>
+          <tr><th>Role</th><th>样例</th><th>字号</th><th>字重</th><th>字距</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Model name</td><td class="sample" style="font-size:28px;font-weight:600;letter-spacing:0.04em">Model S</td><td>44px</td><td>600</td><td>+0.04em</td></tr>
+          <tr><td>Tagline</td><td class="sample" style="font-size:15px;color:#5c5e62">The original. Still the benchmark.</td><td>15px</td><td>400</td><td>+0.01em</td></tr>
+          <tr><td>Spec number</td><td class="sample" style="font-size:24px;font-weight:600;letter-spacing:-0.02em;font-variant-numeric:tabular-nums">634 <span style="font-size:12px;color:#5c5e62">km</span></td><td>30px</td><td>600</td><td>-0.02em</td></tr>
+          <tr><td>Spec label</td><td class="sample" style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.14em;color:#5c5e62">Range (WLTP)</td><td>11px</td><td>500</td><td>+0.14em</td></tr>
+          <tr><td>CTA label</td><td class="sample" style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.2em">Custom Order</td><td>12px</td><td>600</td><td>+0.2em</td></tr>
+          <tr><td>Wordmark</td><td class="sample" style="font-size:15px;font-weight:700;letter-spacing:0.42em">TESLA</td><td>17px</td><td>700</td><td>+0.42em</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Radius -->
+    <div class="ds-block">
+      <h3 class="ds-heading">Radius</h3>
+      <p class="ds-desc">面板永远直角满幅, 像银幕本身. 圆角只出现在两个极端: 信息容器的轻微 4-8px, 与按钮的完整 pill. 唯一的正圆留给车轮.</p>
+      <div class="ds-radius">
+        <div class="ds-radius-cell"><div class="ds-radius-box" style="border-radius:0"></div><div class="ds-radius-label">面板</div><div class="ds-radius-val">0 · 满幅直角</div></div>
+        <div class="ds-radius-cell"><div class="ds-radius-box" style="border-radius:4px"></div><div class="ds-radius-label">卡片</div><div class="ds-radius-val">4px</div></div>
+        <div class="ds-radius-cell"><div class="ds-radius-box" style="border-radius:8px"></div><div class="ds-radius-label">容器</div><div class="ds-radius-val">8px</div></div>
+        <div class="ds-radius-cell"><div class="ds-radius-box" style="border-radius:999px;width:80px"></div><div class="ds-radius-label">CTA Pill</div><div class="ds-radius-val">999px</div></div>
+        <div class="ds-radius-cell"><div class="ds-radius-box" style="border-radius:50%"></div><div class="ds-radius-label">车轮</div><div class="ds-radius-val">50%</div></div>
+      </div>
+    </div>
+
+    <!-- Components -->
+    <div class="ds-block">
+      <h3 class="ds-heading">Components</h3>
+      <p class="ds-desc">组件只有一对 CTA, 一组规格, 一条导航 — 因为每一幕都只需要这三样. 半透明加背景模糊让按钮浮在任何画面上而不遮挡它; 规格组用细竖线分隔, 数字大, 标签小而疏.</p>
+      <div class="ds-comp">
+        <div class="ds-card">
+          <h5>CTA Pair · 浅幕 / 深幕</h5>
+          <div class="ds-stack">
+            <a class="cta cta-light" href="#" style="box-shadow:0 1px 8px rgba(23,26,32,0.14)">Custom Order</a>
+            <a class="cta" href="#" style="background:rgba(23,26,32,0.55);color:#f4f4f4">Demo Drive</a>
+            <div class="ds-mini-dark">
+              <a class="cta cta-light" href="#">Custom Order</a>
+              <a class="cta" href="#" style="background:rgba(140,145,150,0.18);color:#f4f4f4;border:1px solid rgba(244,244,244,0.16)">Demo Drive</a>
+            </div>
+          </div>
+        </div>
+        <div class="ds-card">
+          <h5>Spec Group</h5>
+          <div style="display:flex;align-items:stretch;margin-top:6px">
+            <div style="padding-right:22px"><div style="font-size:26px;font-weight:600;letter-spacing:-0.02em">634<span style="font-size:12px;color:#5c5e62;margin-left:3px">km</span></div><div style="font-size:10.5px;font-weight:500;text-transform:uppercase;letter-spacing:0.14em;color:#5c5e62;margin-top:3px">Range</div></div>
+            <div style="padding:0 22px;border-left:1px solid rgba(23,26,32,0.14)"><div style="font-size:26px;font-weight:600;letter-spacing:-0.02em">2.1<span style="font-size:12px;color:#5c5e62;margin-left:3px">s</span></div><div style="font-size:10.5px;font-weight:500;text-transform:uppercase;letter-spacing:0.14em;color:#5c5e62;margin-top:3px">0–100</div></div>
+            <div style="padding-left:22px;border-left:1px solid rgba(23,26,32,0.14)"><div style="font-size:26px;font-weight:600;letter-spacing:-0.02em">322<span style="font-size:12px;color:#5c5e62;margin-left:3px">km/h</span></div><div style="font-size:10.5px;font-weight:500;text-transform:uppercase;letter-spacing:0.14em;color:#5c5e62;margin-top:3px">Top Speed</div></div>
+          </div>
+          <p style="font-size:12px;color:#a2a3a5;margin:18px 0 0;line-height:1.6">大数字 + 细竖线 + 疏排小标签. 数字本身就是文案.</p>
+        </div>
+        <div class="ds-card">
+          <h5>Nav · mix-blend-mode: difference</h5>
+          <div class="ds-mini-dark" style="flex-direction:row;align-items:center;justify-content:space-between;gap:8px">
+            <span style="font-size:13px;font-weight:700;letter-spacing:0.42em;color:#fff">TESLA</span>
+            <span style="font-size:11.5px;font-weight:500;color:rgba(255,255,255,0.85)">Vehicles &nbsp; Energy &nbsp; Charging</span>
+          </div>
+          <p style="font-size:12px;color:#a2a3a5;margin:16px 0 0;line-height:1.7">导航固定悬浮, 白字以 difference 混合 — 黑幕上是白, 银幕上自动反相为墨色, 一套导航穿越所有幕布.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Voice & Tone -->
+    <div class="ds-block">
+      <h3 class="ds-heading">Voice & Tone</h3>
+      <p class="ds-desc">Tesla 的文案像规格表一样寡言. 每一幕只允许一个名词和一句陈述, 其余交给数字 — 不形容, 不感叹, 不挽留.</p>
+      <div class="ds-comp">
+        <div class="ds-card">
+          <h5>名词即句子</h5>
+          <p class="ds-vt"><strong>"Model S."</strong> 车型名加句号就是完整的标题.<br/>tagline 限一句, 不超过八个词.<br/>没有欢迎语, 没有 slogan 轰炸.</p>
+        </div>
+        <div class="ds-card">
+          <h5>数字替代形容词</h5>
+          <p class="ds-vt">不说 "极致性能", 说 <strong>"2.1 s"</strong>.<br/>不说 "超长续航", 说 <strong>"634 km"</strong>.<br/>规格本身是诗, 形容词是杂音.</p>
+        </div>
+        <div class="ds-card">
+          <h5>大写的低语</h5>
+          <p class="ds-vt"><strong>"CUSTOM ORDER"</strong> — 全大写却只有 12px.<br/>字距拉开到 0.2em, 音量降到耳语.<br/>命令式的内容, 克制的声压.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-links">
+    <a href="#model-s">Vehicles</a>
+    <a href="#energy">Energy</a>
+    <a href="#design-system">Design System</a>
+    <a href="https://github.com/yzfly/awesome-design-html" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  <p class="foot-note">这是一份设计研究 — 对 Tesla 视觉语言的自包含致敬, 用于演示 "全屏纵向滚动面板" 的结构化品牌表达. 与 Tesla, Inc. 无官方关联, 页面数据仅为示意.</p>
+  <p class="foot-copy">© 2026 设计研究 · 致敬 Tesla 视觉语言 · 作者 云中江树</p>
+</footer>
+
+<a class="src-link" href="https://github.com/yzfly/awesome-design-html/blob/main/assets/web/design.tesla.html" target="_blank" rel="noopener">View source ↗</a>
+
+</body>
+</html>

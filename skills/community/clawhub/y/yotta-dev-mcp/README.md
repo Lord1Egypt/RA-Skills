@@ -75,15 +75,15 @@ Schema, glob rules, finding codes and cone fields: `references/architecture-cont
 ### Start the MCP server
 
 ```bash
-npx -y @yottameta/yotta-dev-mcp@0.2.8
+npx -y @yottameta/yotta-dev-mcp@0.2.9
 ```
 
 ### Install the skill payload
 
 ```bash
-npx -y @yottameta/yotta-dev-mcp@0.2.8 --agent codex
-npx -y @yottameta/yotta-dev-mcp@0.2.8 --dir <skill-directory>
-npx -y @yottameta/yotta-dev-mcp@0.2.8 --list
+npx -y @yottameta/yotta-dev-mcp@0.2.9 --agent codex
+npx -y @yottameta/yotta-dev-mcp@0.2.9 --dir <skill-directory>
+npx -y @yottameta/yotta-dev-mcp@0.2.9 --list
 ```
 
 The installer uses explicit targets. `-g/--global` installs to all detected user-level

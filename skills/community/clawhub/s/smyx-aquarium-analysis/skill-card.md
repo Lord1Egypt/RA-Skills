@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes videos of aquarium pets to assess visible health indicators and produce a structured health report with potential issues and care suggestions.
+Analyzes a supplied aquatic pet video and returns a structured health report with observations, potential concerns, and care suggestions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Aquarium owners can submit a local video or video URL to receive an assessment of visible fish or aquatic pet health indicators, potential issues, and care suggestions. The report is for reference and does not replace a professional veterinarian's diagnosis.
+Aquarium owners can submit a local video or video URL for a structured assessment of visible features such as scales, fins, coloration, and activity. The report is informational and does not replace veterinary diagnosis.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment is suspicious and partial, citing undeclared account and history behavior, identity and video data handling, and analysis that may continue despite an export-only option.
+Risk: ClawScan marked the release suspicious over unexpected account and profile handling, report history lookups, and remote media processing or uploads, including with an export-only option. The scan was partial and one referenced item was missing.
 
-Mitigation: Follow the security guidance: consider avoiding installation until export-only behavior, account creation and data storage, identity transmission, video upload disclosure, and the history trigger are clarified; the scan notes that a referenced local path was missing.
+Mitigation: Review the behavior before installation. Until the unexpected flows are understood, avoid sending sensitive videos or using account and history features.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/smyx-sunjinhui/skills/smyx-aquarium-analysis)
+- [Aquatic health analysis API reference](references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
-- [API reference](references/api_doc.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Markdown, Guidance]
+**Output Type(s):** [Analysis, Text, Markdown, JSON]
 
-**Output Format:** [Structured health report in text or JSON, with report links; history results can be presented as a Markdown list.]
+**Output Format:** [Structured health report in text, Markdown, or JSON, with report links when available]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include potential health findings and care suggestions. The skill describes its results as reference information, not a substitute for professional veterinary diagnosis.]
+**Other Properties Related to Output:** [Includes observations, potential health concerns, and care suggestions; results are informational and not a veterinary diagnosis.]
 
 ## Skill Version(s):
 
-1.0.19 (source: server-resolved release metadata)
+1.0.21 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

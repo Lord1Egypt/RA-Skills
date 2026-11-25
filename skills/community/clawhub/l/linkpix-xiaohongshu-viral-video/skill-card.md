@@ -1,6 +1,6 @@
 ## Description:
 
-Guides agents in creating Xiaohongshu product-promotion videos through the qhkit video-generation service.
+Helps Xiaohongshu creators plan and generate product videos such as Vlogs, unboxings, product experiences, and image-to-video clips through Qinghu AI.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Xiaohongshu creators, buyers, and marketing teams use this skill to plan and request short product videos, including vlogs, unboxings, and image-to-video promotions.
+External Xiaohongshu creators, buyers, and commerce marketers use this skill to plan and generate product videos for product notes, video posts, and livestream promotion.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Selected reference media is shared with the qhkit service.
+Risk: The setup flow asks users to share an API key in chat, which could expose credentials.
 
-Mitigation: Upload only media the user agrees to share with the service.
+Mitigation: Keep the key out of chat; configure it locally through qhkit or QHKIT_TOKEN and use a secure local secret store.
 
-Risk: Installing qhkit or Node introduces ordinary setup and software supply-chain exposure.
+Risk: The release relies on two unpinned packages that may change between installations.
 
-Mitigation: Prefer a vetted or pinned qhkit installation and review global npm or Node setup before allowing it.
+Mitigation: Review the packages and pin trusted versions before installation.
 
-Risk: A disclosed qhkit API key could allow unauthorized service use.
+Risk: The security scan was partial because some referenced paths were missing, so it does not provide complete assurance.
 
-Mitigation: Keep the key confidential and use a scoped, revocable credential where possible.
+Mitigation: Review the setup instructions and available files before installing.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-xiaohongshu-viral-video)
 - [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
-- [Qinghu API key setup guide](https://xcnzsfe4uxrw.feishu.cn/wiki/KJ0Ywsyw8iAXmRkz5l4cddDbn6g)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Shell commands, Video links]
+**Output Type(s):** [Video, Text, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown with qhkit commands, task updates, and generated video URLs]
+**Output Format:** [Generated video files and text or Markdown guidance with shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Video generation requires user confirmation before submitting a credit-consuming task.]
+**Other Properties Related to Output:** [Video model, duration, aspect ratio, language, and media inputs depend on the request and available model options.]
 
 ## Skill Version(s):
 
-0.1.5 (source: ClawHub release metadata)
+0.1.7 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

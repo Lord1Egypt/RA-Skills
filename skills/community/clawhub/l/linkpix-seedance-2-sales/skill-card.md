@@ -1,6 +1,6 @@
 ## Description:
 
-Guides ecommerce teams in creating short product showcase and advertising videos from product images and selling points using Seedance 2.0 through Qinghu AI.
+Helps e-commerce and creative teams turn product images and selling points into Seedance 2.0 product marketing videos through the Qinghu AI workflow.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Ecommerce marketers, advertising creatives, and livestream teams use this skill to plan and generate short product videos from product images and selling points for online storefronts and ads.
+E-commerce operators, advertising creatives, and livestream teams use the skill to create product showcase, seeding, and advertising videos from product images and selling points, including multi-reference and motion-guided presentations.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Installing or updating npm tooling changes the local environment.
+Risk: The partial ClawScan report flags unpinned third-party installs, and its findings are incomplete.
 
-Mitigation: Review the qhkit package and installation instructions before allowing the agent to install or update it.
+Mitigation: Pin package versions and review the packages before installation; treat the partial scan as incomplete evidence.
 
-Risk: API credentials and selected product media are used by an external video-generation service.
+Risk: The skill setup asks for an API key through chat.
 
-Mitigation: Use a dedicated API token and upload only media approved for sharing with the service.
-
-Risk: Submitting a generation task spends account credits and cannot be cancelled.
-
-Mitigation: Check the model, duration, media, and estimated credits, then require explicit user approval before submission.
+Mitigation: Configure the API key locally through the CLI or a protected environment variable instead of sharing it in chat.
 
 ## Reference(s):
 
+- [qhkit package documentation](https://www.npmjs.com/package/@iqinghu/qhkit)
 - [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-seedance-2-sales)
-- [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
-- [Qinghu AI API key setup guide](https://xcnzsfe4uxrw.feishu.cn/wiki/KJ0Ywsyw8iAXmRkz5l4cddDbn6g)
+- [API key setup guide](https://xcnzsfe4uxrw.feishu.cn/wiki/KJ0Ywsyw8iAXmRkz5l4cddDbn6g)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Text]
+**Output Type(s):** [Video files, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown with command examples and video result links]
+**Output Format:** [Generated video files with task status and download links; Markdown guidance and shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Provides task status, resulting video links, and charged credits when generation completes.]
+**Other Properties Related to Output:** [Model, duration, orientation, prompt, and reference media vary by request; qhkit and a configured API key are required.]
 
 ## Skill Version(s):
 
-0.1.4 (source: ClawHub release metadata)
+0.1.6 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

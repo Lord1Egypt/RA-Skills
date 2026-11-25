@@ -1,3 +1,5 @@
+const { COMMENT_EXPIRED_AT_MAX_DAYS } = require("../config/constants");
+
 const NOTE_ID_RE = /^[0-9a-f]{24}$/i;
 const USER_ID_RE = /^(?:[0-9a-f]{24}|[0-9a-f]{29})$/i;
 
@@ -11,6 +13,44 @@ const SHORT_PREFIXES = [
 const EXPLORE_PREFIX = "https://www.xiaohongshu.com/explore/";
 const DISCOVERY_PREFIX = "https://www.xiaohongshu.com/discovery/item/";
 const PROFILE_PREFIX = "https://www.xiaohongshu.com/user/profile/";
+
+// 链接本体不含中文引号/书名号；粘贴污染时在首个装饰符处截断并剥尾
+const LEADING_PUNCT = /^[<("'`「『“”‘’【《〈［〔\[]+/;
+const INLINE_CUT = /[「」『』“”‘’《》〈〉]/;
+const TRAILING_PUNCT =
+  /[\/#.,;:!?"'，。！？；：、）】》「」『』“”‘’《》〈〉［］〔〕〖〗…—～·]+$/;
+
+/**
+ * 分享文案抽链：匹配在停止符处截断。
+ * 停止符覆盖空白、CJK、中文标点与引号/书名号，避免「复制打开小红书」等尾部脏字符进后端。
+ * 小红书保留 query（如 xsec_token）。
+ */
+const URL_STOP_CLASS =
+  '\\s"\'<>`' +
+  "\\u4e00-\\u9fff" +
+  "，。！？、；：（）【】" +
+  "「」『』“”‘’《》〈〉" +
+  "［］〔〕〖〗…—～·";
+
+const XHS_URL_RE = new RegExp(
+  `(?:https?:\\/\\/)?(?:(?:www\\.)?xiaohongshu\\.com\\/(?:explore|discovery\\/item|user\\/profile)\\/|xhslink\\.(?:com|cn)\\/(?:m|o)\\/)[^${URL_STOP_CLASS}]+`,
+  "i",
+);
+
+/**
+ * 从任意位置抽取小红书笔记/主页/短链 URL。找不到返回 null。
+ * @param {string} raw
+ * @returns {string|null}
+ */
+function extractXiaohongshuUrl(raw) {
+  if (typeof raw !== "string") return null;
+  const m = raw.match(XHS_URL_RE);
+  if (!m) return null;
+  let url = m[0].replace(TRAILING_PUNCT, "");
+  if (!url) return null;
+  if (!/^https?:\/\//i.test(url)) url = "https://" + url;
+  return url;
+}
 
 function isShortLink(url) {
   return SHORT_PREFIXES.some((prefix) => {
@@ -41,15 +81,29 @@ function idAfter(url, prefix) {
 }
 
 /**
+ * 去掉首尾空白与装饰符（无完整 URL 可抽时的兜底）。
+ * @param {string} url
+ * @returns {string}
+ */
+function scrubUrlDecorators(url) {
+  let text = String(url).trim().replace(LEADING_PUNCT, "");
+  const cut = text.search(INLINE_CUT);
+  if (cut >= 0) text = text.slice(0, cut);
+  return text.replace(TRAILING_PUNCT, "").trim();
+}
+
+/**
  * 去掉首尾空白，把 http 升级为 https，并只小写协议和主机名。
  * 已知路径前缀也改为小写。笔记 id、短链 id 和 query 保持原样。
+ * 支持整段 App 分享文案：先正则抽链，再规范化。
  * 裸 id 原样返回。无法识别时返回空字符串。
  * @param {string} url
  * @returns {string}
  */
 function normalizeUrl(url) {
   if (typeof url !== "string") return "";
-  url = url.trim();
+  const extracted = extractXiaohongshuUrl(url);
+  url = extracted || scrubUrlDecorators(url);
   if (url === "") return "";
   if (isNoteId(url) || isUserId(url)) return url;
   url = url.replace(/^https?:\/\//i, "https://");
@@ -120,7 +174,8 @@ function defaultExpiredAt() {
 
 /**
  * 评论时间过滤。不传则返回 undefined，由命令换算近 6 年的时间点。
- * 传入时只接受正整数天数，或 YYYY-MM-DD HH:mm:ss。
+ * 传入时只接受 1–COMMENT_EXPIRED_AT_MAX_DAYS 天，或 YYYY-MM-DD HH:mm:ss
+ * （不早于 2000-01-01、不能是未来；勿传 Unix 时间戳）。
  * @param {string|number|undefined} value
  * @returns {number|string|undefined}
  */
@@ -131,7 +186,12 @@ function assertExpiredAt(value) {
     const days = Number(text);
     if (!Number.isInteger(days) || days < 1) {
       throw new Error(
-        `expired_at ${value} 无效, 天数须为大于 0 的整数, 或 YYYY-MM-DD HH:mm:ss`,
+        `expired_at ${value} 无效, 天数须为 1-${COMMENT_EXPIRED_AT_MAX_DAYS} 的整数, 或 YYYY-MM-DD HH:mm:ss`,
+      );
+    }
+    if (days > COMMENT_EXPIRED_AT_MAX_DAYS) {
+      throw new Error(
+        `expired_at ${value} 天数过大, 最多约6年(${COMMENT_EXPIRED_AT_MAX_DAYS}天), 勿传Unix时间戳`,
       );
     }
     return days;
@@ -139,7 +199,7 @@ function assertExpiredAt(value) {
   const matched = /^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/.exec(text);
   if (!matched) {
     throw new Error(
-      `expired_at ${value} 无效, 天数须为大于 0 的整数, 或 YYYY-MM-DD HH:mm:ss`,
+      `expired_at ${value} 无效, 天数须为 1-${COMMENT_EXPIRED_AT_MAX_DAYS} 的整数, 或 YYYY-MM-DD HH:mm:ss`,
     );
   }
   const year = Number(matched[1]);
@@ -159,6 +219,23 @@ function assertExpiredAt(value) {
     second > 59
   ) {
     throw new Error(`expired_at ${value} 不是有效的日期时间`);
+  }
+  if (year < 2000) {
+    throw new Error(`expired_at ${value} 不能早于2000-01-01`);
+  }
+  // 按北京时间墙钟比较「是否未来」，与 defaultExpiredAt 一致
+  const shiftedNow = new Date(Date.now() + 8 * 60 * 60 * 1000);
+  const expireProbe = Date.UTC(year, month - 1, day, hour, minute, second);
+  const nowProbe = Date.UTC(
+    shiftedNow.getUTCFullYear(),
+    shiftedNow.getUTCMonth(),
+    shiftedNow.getUTCDate(),
+    shiftedNow.getUTCHours(),
+    shiftedNow.getUTCMinutes(),
+    shiftedNow.getUTCSeconds(),
+  );
+  if (expireProbe > nowProbe) {
+    throw new Error(`expired_at ${value} 不能是未来时间`);
   }
   return text;
 }
@@ -183,6 +260,7 @@ function url2Name(url) {
 }
 
 module.exports = {
+  extractXiaohongshuUrl,
   normalizeUrl,
   isDetailUrl,
   isCommentUrl,

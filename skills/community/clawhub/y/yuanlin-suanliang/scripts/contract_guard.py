@@ -282,11 +282,12 @@ def _pick_unit_scale(doc: dict):
 # 主闸门
 # --------------------------------------------------------------------------- #
 def guard_contract(path, *, allow_manual=False, expected_schema=DEFAULT_SCHEMA,
-                   required_keys=(), require_hash=True) -> dict:
+                   required_keys=(), require_hash=True, strict_hash=False) -> dict:
     """校验契约来源与完整性。
 
     返回 ``{mode, provenance, contract_id, source_sha256, contract_sha256,
-    warnings[], contract, formal_ledger_eligible}``；mode 只能是 formal 或 manual。
+    hash_chain_status, warnings[], contract, formal_ledger_eligible}``；
+    mode 只能是 formal 或 manual。strict_hash=True 时，缺内嵌哈希按硬失败处理（exit 2）。
     """
     contract_path = Path(path)
     doc, digest, _size = _read_contract(contract_path)
@@ -356,6 +357,7 @@ def guard_contract(path, *, allow_manual=False, expected_schema=DEFAULT_SCHEMA,
 
     # 4) 契约文件哈希（内嵌值是防替换的绊线；返回的 contract_sha256 永远是实算值）
     embedded = _pick_embedded_hash(doc)
+    hash_chain_status = "verified"
     if embedded:
         if require_hash and str(embedded).strip().lower() != digest:
             raise GuardError(
@@ -364,22 +366,36 @@ def guard_contract(path, *, allow_manual=False, expected_schema=DEFAULT_SCHEMA,
                 hint=_hint_drop_hash(contract_path),
             )
     elif require_hash:
+        hash_chain_status = "unverified_no_embedded_hash"
+        if strict_hash:
+            raise GuardError(
+                2,
+                "--strict-hash：契约未内嵌 contract_sha256，无法用内嵌值防替换，按硬失败拒入。",
+                hint="让 push 方在契约里写入 contract_sha256 后重推，或去掉 --strict-hash 走警告放行。",
+            )
         warnings.append(
-            "契约未内嵌 contract_sha256；已计算文件哈希，但无法用内嵌值防替换。"
+            "hash_chain_status=unverified_no_embedded_hash：契约未内嵌 contract_sha256，"
+            "已计算文件哈希但无法用内嵌值防替换；正式链路建议由 push 方写入内嵌哈希后重跑。"
         )
     if not require_hash:
+        hash_chain_status = "require_hash_off"
         warnings.append("require_hash=False：跳过内嵌 contract_sha256 校验。")
 
     # 5) 坐标单位
     unit = _pick_unit(doc)
     unit_scale = _pick_unit_scale(doc)
-    if not unit:
+    has_audit = isinstance(doc.get("scale_unit_audit"), list) and bool(doc.get("scale_unit_audit"))
+    if not unit and has_audit:
+        warnings.append(
+            "契约未声明 coordinate_unit，但带 scale_unit_audit（市政识图形态）；"
+            "单位判定交由算量层推断，长度口径请核对。")
+    elif not unit:
         raise GuardError(
             4,
             "坐标单位缺失：契约未声明 coordinate_unit，无法确认坐标是 mm。",
             hint=_hint_set_unit(contract_path),
         )
-    if unit.strip().lower() != "mm":
+    if unit and unit.strip().lower() != "mm":
         if unit_scale is None:
             raise GuardError(
                 4,
@@ -405,6 +421,7 @@ def guard_contract(path, *, allow_manual=False, expected_schema=DEFAULT_SCHEMA,
         "contract_id": contract_id,
         "source_sha256": source_sha,
         "contract_sha256": digest,
+        "hash_chain_status": hash_chain_status,
         "warnings": warnings,
         "contract": doc,
         "formal_ledger_eligible": mode == "formal",
@@ -422,6 +439,7 @@ def stamp_result(result: dict, guard: dict) -> dict:
     result["contract_id"] = guard.get("contract_id") or ""
     result["source_sha256"] = guard.get("source_sha256") or ""
     result["contract_sha256"] = guard.get("contract_sha256") or ""
+    result["hash_chain_status"] = guard.get("hash_chain_status") or ""
     result["contract_mode"] = guard.get("mode")
     result["formal_ledger_eligible"] = guard.get("mode") == "formal"
     if guard.get("mode") == "manual":
@@ -545,6 +563,8 @@ def main(argv=None) -> int:
     parser.add_argument("--schema", default=DEFAULT_SCHEMA, help="期望的契约版本，默认 cad-contract/v1")
     parser.add_argument("--require-key", action="append", default=[], help="要求存在的顶层键，可重复")
     parser.add_argument("--no-require-hash", action="store_true", help="跳过内嵌 contract_sha256 校验")
+    parser.add_argument("--strict-hash", action="store_true",
+                        help="严格哈希：require_hash=True 且契约未内嵌 contract_sha256 时直接拒入（退出码 2），而不是警告放行")
     parser.add_argument("--self-test", action="store_true", help="跑内置 6 项自测")
     parser.add_argument("--json", action="store_true", help="输出完整 JSON（含 contract）")
     args = parser.parse_args(argv)
@@ -561,6 +581,7 @@ def main(argv=None) -> int:
             expected_schema=args.schema,
             required_keys=tuple(args.require_key),
             require_hash=not args.no_require_hash,
+            strict_hash=args.strict_hash,
         )
     except GuardError as exc:
         print("GuardError(%d): %s" % (exc.code, exc.message), file=sys.stderr)

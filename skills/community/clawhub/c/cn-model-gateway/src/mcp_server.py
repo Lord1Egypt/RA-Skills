@@ -27,6 +27,9 @@ from .router import (
 )
 from .monitor import Monitor
 from .scheduler import HealthScheduler
+from .resource_manager import (
+    ResourceManager, MODELS_CATALOG_URI, USAGE_SUMMARY_URI, STATUS_URI,
+)
 
 
 # SSE constants
@@ -79,6 +82,10 @@ class MCPServer:
         )
         self._batch_worker.start()
         self._health_scheduler = HealthScheduler()
+        self._resource_manager = ResourceManager()
+        # v2.1.0: lazy-init key pool when config provides key arrays (see main.py wires it).
+        self._key_pool = None
+        self._member = "default"
         self._register_defaults()
 
     def _register_defaults(self) -> None:
@@ -87,7 +94,7 @@ class MCPServer:
         self._tools = {
             "ask_model": {
                 "name": "ask_model",
-                "description": "向国产模型提问。providers 为空时自动选一家（带故障转移）；"
+                "description": "向国产模型提问。providers 为空时按 strategy 策略选一家（auto/cheap/quality，带故障转移）；"
                                 "指定 2 家及以上时返回对比结果。支持 Function Calling（tools 参数）。",
                 "inputSchema": {
                     "type": "object",
@@ -101,6 +108,12 @@ class MCPServer:
                         },
                         "model": {"type": "string", "description": "具体模型 ID（可选）"},
                         "temperature": {"type": "number", "description": "温度参数 0-2（可选）"},
+                        "strategy": {
+                            "type": "string",
+                            "enum": ["auto", "cheap", "quality"],
+                            "description": "采样级策略路由（可选）：auto=能力画像×健康，cheap=最低档案价，quality=最高跑分。留空则由网关自动决策。",
+                        },
+                        "member": {"type": "string", "description": "成员标识（可选，多租户用量分摊用）"},
                         "tools": {
                             "type": "array",
                             "items": {"type": "object"},
@@ -246,12 +259,34 @@ class MCPServer:
                     },
                 },
             },
+            "key_pool_health": {
+                "name": "key_pool_health",
+                "description": "查看 Key 池健康度面板：各厂商 Key 数量、成功率、平均延迟、当前使用中的 Key。仅对配置了多 Key 的厂商有轮询能力。",
+                "inputSchema": {"type": "object", "properties": {}},
+            },
+            "member_report": {
+                "name": "member_report",
+                "description": "查看多租户成员用量分摊报表：各成员的调用次数与占比、工具/厂商分布。",
+                "inputSchema": {"type": "object", "properties": {}},
+            },
         }
 
-        # v1.8.0: merged config + usage into single status resource
+        # v2.1.0: models://catalog + usage://summary (standardized, subscribable)
         self._resources = {
+            "catalog": {
+                "uri": MODELS_CATALOG_URI,
+                "name": "模型目录",
+                "description": "所有厂商的能力画像、上下文窗口、档案价、更新日期。框架侧读目录即可，无需硬编码模型名。",
+                "mimeType": "application/json",
+            },
+            "usage": {
+                "uri": USAGE_SUMMARY_URI,
+                "name": "用量快照",
+                "description": "今日/累计用量与各厂商调用分布快照。",
+                "mimeType": "application/json",
+            },
             "status": {
-                "uri": "cn-model-gateway://status",
+                "uri": STATUS_URI,
                 "name": "网关状态",
                 "description": "查看当前配置、使用统计、配额告警（一屏汇总）",
                 "mimeType": "application/json",
@@ -289,13 +324,14 @@ class MCPServer:
                 "protocolVersion": "2024-11-05",
                 "capabilities": {
                     "tools": {"listChanged": True},
-                    "resources": {"subscribe": False, "listChanged": False},
+                    # v2.1.0: resources now subscribable + change notifications
+                    "resources": {"subscribe": True, "listChanged": True},
                     "prompts": {"listChanged": False},
                 },
                 "serverInfo": {
                     "name": "cn-model-gateway",
-                    "version": "1.9.0",
-                    "description": "国产模型 MCP 服务器 - DeepSeek/通义/智谱/Kimi/混元/豆包/MiniMax/零一万物/百川/阶跃星辰 10 家一站式接入，含每日健康晨报与厂商变更雷达",
+                    "version": "2.1.0",
+                    "description": "国产模型 MCP 服务器 - DeepSeek/通义/智谱/Kimi/混元/豆包/MiniMax/零一万物/百川/阶跃星辰 10 家一站式接入，含策略路由、标准资源目录与订阅、Key 池与多租户、每日健康晨报与厂商变更雷达",
                 },
             })
 
@@ -310,6 +346,19 @@ class MCPServer:
             return self._success(req_id, {"resources": list(self._resources.values())})
         if method == "resources/read":
             return self._handle_resource_read(req_id, params)
+        if method == "resources/subscribe":
+            uri = params.get("uri", "")
+            client_id = params.get("clientId") or str(req_id)
+            known_uris = {r["uri"] for r in self._resources.values()}
+            if uri not in known_uris:
+                return self._error(req_id, ERROR_PARAM_INVALID, f"未知资源: {uri}")
+            self._resource_manager.subscribe(uri, client_id)
+            return self._success(req_id, {})
+        if method == "resources/unsubscribe":
+            uri = params.get("uri", "")
+            client_id = params.get("clientId") or str(req_id)
+            self._resource_manager.unsubscribe(uri, client_id)
+            return self._success(req_id, {})
 
         # Prompts
         if method == "prompts/list":
@@ -331,7 +380,13 @@ class MCPServer:
             return self._error(req_id, ERROR_PARAM_INVALID, f"未知工具: {name}")
         try:
             result = handler(args)
-            self.monitor.record_call(name, args, result)
+            # v2.1.0: member-aware usage attribution
+            self.monitor.record_call(name, args, result, member=args.get("member") or self._member)
+            # v2.1.0: refresh usage resource version → notify subscribers
+            self._notify_resource_changed(
+                USAGE_SUMMARY_URI,
+                self._resource_manager.usage_snapshot(self.monitor.get_stats()),
+            )
             return self._success(req_id, {"content": [{"type": "text", "text": result}]})
         except Exception as e:
             return self._error(req_id, ERROR_INTERNAL, f"工具调用失败: {traceback.format_exc()}")
@@ -350,6 +405,14 @@ class MCPServer:
             kwargs["temperature"] = args["temperature"]
         if tools:
             kwargs["tools"] = tools
+        # v2.1.0: sampling-level strategy routing (single-source decision in router)
+        strategy = args.get("strategy")
+
+        # v2.1.0: multi-tenant member tag → passed to KeyPool + usage records
+        member = args.get("member")
+        if member:
+            self._member = member
+            kwargs["member"] = member
 
         providers = args.get("providers")
         if providers and len(providers) >= 2:
@@ -357,7 +420,9 @@ class MCPServer:
 
         provider = args.get("provider")
         msgs = [ChatMessage(role="user", content=question)]
-        resp = self.router.chat(msgs, provider=provider, **kwargs)
+        resp = self.router.chat(msgs, provider=provider, strategy=strategy, **kwargs)
+        # Refresh usage resource version & emit change notice to subscribers.
+        self._notify_resource_changed(USAGE_SUMMARY_URI, self._resource_manager.usage_snapshot(self.monitor.get_stats()))
         return self._format_response(resp)
 
     def _compare_models_internal(self, question: str, providers: List[str], **kwargs: Any) -> str:
@@ -716,9 +781,33 @@ class MCPServer:
         lines.append(text[:2000])
         return "\n".join(lines)
 
+    def _tool_key_pool_health(self, args: Dict[str, Any]) -> str:
+        """v2.1.0: Key pool health panel."""
+        if not self._key_pool:
+            return "## Key 池健康度\n未配置 Key 池。在 config.json 中将 api_key 填为数组即可启用多 Key 轮询。"
+        panel = self._key_pool.health_panel()
+        lines = ["## Key 池健康度"]
+        if not panel:
+            lines.append("尚未配置任何 Key。")
+            return "\n".join(lines)
+        for provider, info in panel.items():
+            mode = "🔄 轮询池" if info.get("pooled") else "单 Key"
+            lines.append(f"\n### {provider} ({mode}, {info['key_count']} 把)")
+            for k in info.get("keys", []):
+                cur = " ← 当前" if k.get("is_current") else ""
+                lines.append(
+                    f"  - {k['masked']}{cur} | 成功率 {k['success_rate']:.0%} | "
+                    f"延迟 {k['avg_latency_ms']}ms | 调用 {k['total_calls']} 次"
+                )
+        return "\n".join(lines)
+
+    def _tool_member_report(self, args: Dict[str, Any]) -> str:
+        """v2.1.0: per-member usage report."""
+        return self.monitor.get_member_report()
+
     def _handle_resource_read(self, req_id: Any, params: Dict[str, Any]) -> Dict[str, Any]:
         uri = params.get("uri", "")
-        if uri == "cn-model-gateway://status":
+        if uri == STATUS_URI:
             # v1.8.0: merged config + usage + quota alerts
             config_info = {}
             for provider, adapter in self.router._adapters.items():
@@ -736,7 +825,34 @@ class MCPServer:
             return self._success(req_id, {
                 "contents": [{"uri": uri, "mimeType": "application/json", "text": content}]
             })
+        if uri == MODELS_CATALOG_URI:
+            # v2.1.0: standardized model catalog (read instead of hardcoding model names)
+            from .router import ARCHIVE_PRICES
+            snapshot = self._resource_manager.catalog_snapshot(
+                self.router._adapters, ARCHIVE_PRICES
+            )
+            content = json.dumps(snapshot, ensure_ascii=False, indent=2)
+            return self._success(req_id, {
+                "contents": [{"uri": uri, "mimeType": "application/json", "text": content}]
+            })
+        if uri == USAGE_SUMMARY_URI:
+            # v2.1.0: usage snapshot
+            snapshot = self._resource_manager.usage_snapshot(self.monitor.get_stats())
+            content = json.dumps(snapshot, ensure_ascii=False, indent=2)
+            return self._success(req_id, {
+                "contents": [{"uri": uri, "mimeType": "application/json", "text": content}]
+            })
         return self._error(req_id, ERROR_PARAM_INVALID, f"未知资源: {uri}")
+
+    def _notify_resource_changed(self, uri: str, snapshot: Any) -> None:
+        """v2.1.0: emit notifications/resources/updated to subscribed clients."""
+        notify_ids = self._resource_manager.refresh_version(uri, snapshot)
+        for client_id in notify_ids:
+            self._send({
+                "jsonrpc": "2.0",
+                "method": "notifications/resources/updated",
+                "params": {"uri": uri, "clientId": client_id},
+            })
 
     def _compute_quota_alerts(self, usage_stats: Dict[str, Any]) -> List[Dict[str, Any]]:
         """Compute quota alerts based on usage statistics."""

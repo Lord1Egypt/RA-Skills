@@ -1,40 +1,52 @@
-## Description: <br>
-Generate Software Bill of Materials (SBOM) in CycloneDX or SPDX format for dependency, license, vulnerability, and supply chain inventory needed for compliance and security audits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Software Bill of Materials (SBOM) in CycloneDX or SPDX format to inventory dependencies, licenses, vulnerabilities, and supply chain metadata for compliance and security audits.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, security engineers, and compliance reviewers use this skill to generate SBOM inventories, license reports, vulnerability summaries, SBOM diffs, and policy checks for software projects.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill reads dependency and lock files in the target project.
+
+Mitigation: Run it only in repositories where the agent is allowed to inspect dependency metadata.
+
+Risk: Optional audit commands may contact external package or vulnerability services using the environment's registry configuration.
+
+Mitigation: Review registry and authentication settings before running audit steps, especially in private repositories.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, security engineers, and compliance teams use this skill to inspect project lock files, generate CycloneDX or SPDX SBOMs, and produce license, vulnerability, policy, and diff reports for software releases. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency and audit commands inspect local repository dependency and lock files, which may expose private project metadata if reports are shared. <br>
-Mitigation: Run the skill only in repositories where local dependency inspection is acceptable, and review generated SBOM, license, and vulnerability reports before sharing them. <br>
-Risk: Vulnerability audit commands may contact package audit services or use configured private registry authentication. <br>
-Mitigation: Review audit commands before execution and run them only in environments approved for private dependency and registry metadata. <br>
+**Output Format:** [Markdown with bash, JSON, CSV, and report examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/sbom-generator) <br>
+**Other Properties Related to Output:** [Can produce CycloneDX JSON, SPDX JSON, CSV dependency inventories, Markdown license reports, SBOM diffs, and license policy configuration.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, CSV, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and example JSON, CSV, and report outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local package audit tools; vulnerability audit commands may use network access or existing registry credentials.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

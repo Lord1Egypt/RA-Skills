@@ -5,7 +5,7 @@
     "iso27001": ["A.5.15", "A.5.18"],
     "nist": ["PR.AA-01", "PR.AA-05"],
     "default_risk": "high",
-    "expected_state": "Every privileged action requires explicit user approval."
+    "expected_state": "Every privileged action requires approval given by a person at a terminal."
   },
   {
     "check_id": "least_privilege_enforced",
@@ -13,7 +13,7 @@
     "iso27001": ["A.5.15", "A.5.18"],
     "nist": ["PR.AA-01", "PR.PS-01"],
     "default_risk": "high",
-    "expected_state": "Default mode is non-root and elevated rights are scoped and short-lived."
+    "expected_state": "OpenClaw runs as a normal user with correctly owned state."
   },
   {
     "check_id": "elevation_timeout_30m",
@@ -29,7 +29,7 @@
     "iso27001": ["A.8.15", "A.8.16"],
     "nist": ["DE.AE-03", "DE.CM-01"],
     "default_risk": "medium",
-    "expected_state": "All elevated approvals, commands, and privilege drops are logged."
+    "expected_state": "All elevated approvals, commands, and privilege drops are logged in a hash-chained log."
   },
   {
     "check_id": "open_ports_approved",
@@ -46,6 +46,14 @@
     "nist": ["PR.PS-02", "PR.DS-02"],
     "default_risk": "high",
     "expected_state": "Insecure legacy ports are closed or migrated to secure alternatives."
+  },
+  {
+    "check_id": "public_listeners_justified",
+    "title": "Network-facing listeners justified",
+    "iso27001": ["A.8.20", "A.8.22"],
+    "nist": ["PR.PS-02", "PR.IR-01"],
+    "default_risk": "medium",
+    "expected_state": "Every service listening on all interfaces is explicitly approved for that exposure."
   },
   {
     "check_id": "channel_allowlist_configured",
@@ -85,15 +93,15 @@
     "iso27001": ["A.5.15", "A.5.18"],
     "nist": ["PR.AA-01"],
     "default_risk": "high",
-    "expected_state": "Privileged commands are forced through approval guard."
+    "expected_state": "The gateway reaches sudo only through the approval guard."
   },
   {
     "check_id": "alternate_privilege_paths_restricted",
-    "title": "Alternate privilege paths restricted",
+    "title": "Privilege escalation outside the guard restricted",
     "iso27001": ["A.5.15"],
     "nist": ["PR.AA-05"],
     "default_risk": "medium",
-    "expected_state": "su/doas or other escalation paths are restricted or guarded."
+    "expected_state": "sudo and other escalation tools require a password, so they cannot be used unattended."
   },
   {
     "check_id": "backup_configured",
@@ -109,7 +117,7 @@
     "iso27001": ["A.8.8"],
     "nist": ["ID.RA-01"],
     "default_risk": "low",
-    "expected_state": "OpenClaw is updated regularly and version is tracked."
+    "expected_state": "The installed OpenClaw release is no more than 3 months old."
   },
   {
     "check_id": "prompt_injection_controls",

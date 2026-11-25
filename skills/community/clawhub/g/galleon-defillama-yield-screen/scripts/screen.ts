@@ -1,8 +1,21 @@
 import { readFile, stat } from "node:fs/promises";
 
 const finite = (x: unknown): x is number => typeof x === "number" && Number.isFinite(x);
+const base58Alphabet = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+
+function isSolanaMint(value: string): boolean {
+  if (!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(value)) return false;
+  let decoded = 0n;
+  for (const digit of value) decoded = decoded * 58n + BigInt(base58Alphabet.indexOf(digit));
+  const leadingZeroBytes = value.match(/^1*/)?.[0].length ?? 0;
+  const significantBytes = decoded === 0n ? 0 : Math.ceil(decoded.toString(16).length / 2);
+  return leadingZeroBytes + significantBytes === 32;
+}
+
 export function screen(snapshot: unknown, chain: string, token: string, minimumTvl: number, basis: "base" | "total", project?: string) {
-  if (!chain || !/^0x[0-9a-fA-F]{40}$/.test(token) || !finite(minimumTvl) || minimumTvl < 0 || !["base", "total"].includes(basis) || (project !== undefined && !/^[a-z0-9-]{1,80}$/.test(project))) throw new Error("invalid_filter");
+  const solana = chain.toLowerCase() === "solana";
+  const validToken = solana ? isSolanaMint(token) : /^0x[0-9a-fA-F]{40}$/.test(token);
+  if (!chain || !validToken || !finite(minimumTvl) || minimumTvl < 0 || !["base", "total"].includes(basis) || (project !== undefined && !/^[a-z0-9-]{1,80}$/.test(project))) throw new Error("invalid_filter");
   const envelope = snapshot as { status?: unknown; data?: unknown } | null;
   if (!envelope || envelope.status !== "success" || !Array.isArray(envelope.data) || envelope.data.length > 100000) throw new Error("invalid_snapshot");
   const excluded: Record<string, number> = {};
@@ -15,7 +28,7 @@ export function screen(snapshot: unknown, chain: string, token: string, minimumT
     if (typeof p.pool !== "string" || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(p.pool) || typeof p.project !== "string" || typeof p.chain !== "string") { reject("malformed_row"); continue; }
     if (project !== undefined && p.project !== project) { reject("project"); continue; }
     if (p.chain.toLowerCase() !== chain.toLowerCase()) { reject("chain"); continue; }
-    if (!Array.isArray(p.underlyingTokens) || p.underlyingTokens.length !== 1 || typeof p.underlyingTokens[0] !== "string" || p.underlyingTokens[0].toLowerCase() !== token.toLowerCase()) { reject("asset_exposure"); continue; }
+    if (!Array.isArray(p.underlyingTokens) || p.underlyingTokens.length !== 1 || typeof p.underlyingTokens[0] !== "string" || (solana ? p.underlyingTokens[0] !== token : p.underlyingTokens[0].toLowerCase() !== token.toLowerCase())) { reject("asset_exposure"); continue; }
     if (!finite(p.tvlUsd) || p.tvlUsd < minimumTvl) { reject("tvl"); continue; }
     const rankValue = basis === "base" ? p.apyBase : p.apy;
     if (!finite(rankValue)) { reject("missing_rank_metric"); continue; }

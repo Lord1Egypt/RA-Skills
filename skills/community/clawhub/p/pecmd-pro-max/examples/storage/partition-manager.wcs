@@ -1,0 +1,573 @@
+﻿#!pecmd
+#code=936T950
+_SUB Init *
+  IFEX X0.LOG, LOGS **2 * X0.LOG
+  ENVI^ EnviMode=1  //避免意外错误，空变量，外部变量，
+  ENVI^ FORCELOCAL=1  //可以处理大变量. 不影响外部变量
+  SET  ::WM_MOUSEENTER                   =0x1000
+  SET  ::WM_MOUSEHOVER                   =0x02A1
+  SET  ::WM_MOUSELEAVE                   =0x02A3
+  SET  ::WM_LBUTTONDOWN=0x0201
+  SET  ::WM_LBUTTONDBLCLK=0x0203
+  SET  ::WM_DROPFILES=0x0233
+  SET$ &NL=0D  0A
+  SET$ &TAB=09
+  SET-def NUM1=1  //9行
+  SET-def oldCD=%&_CD%
+  
+  SET-def PARTX=
+  SET-def PARTN=0
+  TEAM SET-def SZ=-1| SET-def OFF=-1  //MBROS
+  SET &I=0
+  SET &J=0
+  SET &LOC=zh-CN
+  SET &idx=
+  SET &idxdef=
+  SET &defI=-1
+  
+  //定义局部变量，不影响外部变量
+  SET-def 信息=
+  SET-def 全部磁盘=
+  SET-def 磁盘=
+  SET-def 磁盘信息=
+  SET-def 分区=
+  SET-def 分区信息=
+  SET-def 首字=
+  SET-def T=
+  
+  SET &TDAT1=
+  SET &TDAT2=
+  SET &disks=0
+  SET &parts=0
+  SET-def DiskLen=10000000000000
+  SET-def  EXELEAD=
+  SET-def  CALLLEAD=LOAD %&CurFile%*
+  SET-def  bLog=%&PeExe%   //1=LOGS
+  FIND $%&PeExe%=0, TEAM SET EXELEAD=--pemcmd*| SET CALLLEAD=--pemcmd* CALL * |    //内置脚本
+  TEAM SET-def WEXEPECMD=EXEC =%&MyNAME% %&EXELEAD%|    //等待式执行
+_END 
+
+//FreshDisk
+CALL * Init
+CALL @WIN1 %* 
+_SUB WIN1,W800H474,分区管理,
+    SET &wStatus0=
+    SET &ret=
+    SET &CurI=1
+    SET &CurDisk=0
+    Set &CurJ=1
+    SET &err=
+    SET &idx=
+    SET &busy=0
+    SET &BCDCMD=EXEC* --64 ret=!BCDEDIT 
+    SET &BCDFile=
+    SET &BCDParam=
+    SET &TITLE1=100:磁盘%TAB%=90:大小%TAB%=70:%TAB%=80:柱面数%TAB%=50:磁头数%TAB%=50:扇数%TAB%+50:扇区大小%TAB%+30:媒体%TAB%+100:签名%TAB%+40:总线%TAB%+40:类型
+    SET &TITLE2=100:分区%TAB%+50:文件系统%TAB%+40:类型%TAB%+30:激活%TAB%=100:起始(字节)%TAB%=100:长度(字节)%TAB%=70:隐藏/属性%TAB%=100: 结尾/GUID/名称%TAB%40:物理#%TAB%60:盘符
+    SET &CKAllDev0=1
+//SET &CKAllDev0=0
+    FIND $%1=-usb, SET &CKAllDev0=0
+    SET &CKAllDev.Check=%&CKAllDev0%
+    GetDisk 
+    GetPart %CurI%
+    TABL &TB1,L16T66W739H100,%TITLE1%,%TDAT1%,  0x10840
+    TABL &TB2,L16T167W739H200,%TITLE2%,%TDAT2%, 0x10840
+    PBAR &PbarB,L16T20W739H34,0 //,#0x2020F0:
+    ENVI @&PbarB.bkcolor=0xC0C0C0
+    ENVI @&PbarB.Enable=0
+    SET-def pcolor[0]=0x606060
+    SET-def pcolor[1]=0x0066CC  //绛色 R=204 G=102 B=0
+    SET-def pcolor[2]=0xD220D2  //洋红 R=210 G=32  B=210
+    SET-def pcolor[3]=0x008000   
+    SET-def pcolor[4]=0x808000   
+    SET-def pcolor[5]=0x800080   
+    SET-def COLORS=5
+    SET-def ColorPART=50
+    SET-def DiskLenw=739
+    SET-def PartPos0=16
+    SET-def PartPosY=22
+    SET-def PartPosH=30
+    SET-def mbr=MBR
+  
+    SET-def i=0
+    LOOP #%i%<=%ColorPART%, TEAM  SET-def PbarId[%i%]=-1| LABE -center -vcenter Pbar%i%,L16T22W100H30,|  ENVI @Pbar%i%.visable=0| CALC i=%i% + 1 
+   
+    ENVI @&TB1.MSG=_%&::WM_LBUTTONDBLCLK%: CALL  OnFreshDisk 
+    ENVI @&TB1.MSG=_%&::WM_LBUTTONDOWN%: CALL  OnLButtonTabl1  
+    ENVI @&TB2.MSG=_%&::WM_LBUTTONDOWN%: CALL  OnLButtonTabl2  
+    ENVI @&TB1.Sel=1 
+    TEAM ENVI @&TB2.Sel=1| SET CurJ=1
+    LIST wSwapPt2,L32T384W40H80,2|3|4,
+    ENVI @wSwapPt2.ADDSEL=
+    ITEM wBTSwap,L80T380W80H30,<-交换物理号,OnSwap,
+    ITEM BTType,L185T380W60H30,类型,OnType,
+    ITEM BTHideType,L264T380W60H30,隐藏,OnHideType,
+    ITEM BTActive,L334T380W60H30,激活,OnActive,
+    ITEM BTDrive,L404T380W60H30,盘符,OnDrive,
+
+    ITEM BTDel,L473T380W60H30,删除,OnDel
+    ITEM BTOutput,L543T380W60H30,导出,GetAllInfo
+    //ITEM BTCreate,L291T380W60H30,新建,OnAdd
+    //ITEM BTModify,L531T380W60H30,修改,OnModify
+    CHEK &CKAllDev,L680T380W80H30,所有磁盘, CALL OnFreshDisk,%&CKAllDev0%
+    LABE -vcenter  &wStatus,L30T410W740H40,
+    CALL OnDisk %CurI%
+_END
+
+_SUB ClearColorPart
+    SET-def i=0
+    LOOP #%i%<=%ColorPART%, @TEAM  @SET  PbarId[%i%]=-1| @ENVI @Pbar%i%.visable=0| @CALC i=%i% + 1 
+_END
+
+// SetColorPart 号码  开始  大小   数据长度  颜色变量引用 "文本"
+_SUB SetColorPart
+    SET-def i=%~1
+    SET-def start=%~2  
+    SET-def len=%~3  
+    SET-def dlen=%~4  
+    SET-def j__=%~5  
+    SET-def txt=%~6  
+    FIND $=%dlen%, SET dlen=-1
+    CALC #i=%i%
+    CALC #start=%start%
+    CALC #len=%len%
+    CALC #dlen=%dlen%
+    SET~  j__=%j__%  
+    CALC #j__=%j__%
+    SET-def bcolor=%pcolor[0]%
+    IFEX $%dlen%>=0,
+    {
+        CALC #dlen=%dlen% * 100 / %len%
+        CALC #&&j=%j__%  % %COLORS% + 1 
+        SET~  bcolor=pcolor[%j%]        
+        CALC #j__=%j__% + 1
+        ENVI %~5=%j__%
+    }!
+    {
+        SET dlen=0
+    }
+    ENVI @Pbar%i%=%dlen%
+    CALC #start=%start% * %DiskLenw% / %DiskLen%  //显示位置
+    CALC #len=%len% * %DiskLenw% / %DiskLen%  //显示长度
+    CALC &&p1=%start% + %PartPos0% //显示位置
+    //ENVI @Pbar%i%=%dlen%:%txt%  //数据占比
+    ENVI @Pbar%i%=%txt%  //数据占比
+    ENVI @Pbar%i%.pos=%p1%:%PartPosY%:%len%:%PartPosH%
+    ENVI @Pbar%i%.bkcolor=%bcolor%
+    ENVI @Pbar%i%.visable=1
+    SET  PbarId[%i%]=%p1% %len%
+_END
+
+_SUB FreshDisk  
+    PART list disk,&&全部磁盘
+    forx * %全部磁盘%,&&磁盘,  PART update %磁盘%
+_END
+
+_SUB GetDisk  
+    SET disks=0
+    SET &信息=
+    PART list disk,&全部磁盘
+    FORX * %全部磁盘%,&磁盘,
+   {    PART list disk %磁盘%,&磁盘信息
+        MSTR &&v1,&&v2,&&v3,&&v4,&&v5,&&v6,&&v7,&&v8,&&v9,&&v10=<1*>%磁盘信息%
+        FIND $%CKAllDev.Check%=0,!!  FIND $7<>%&v9%,   EXIT -
+        CALC &&sz=%v2% / 1000000000#1
+        CALC v2=%v2% / 1K
+        SET 信息=%信息%%NL%磁盘:%磁盘%%TAB%%v2%K%TAB%%sz%G%TAB%%v3%%TAB%%v4%%TAB%%v5%%TAB%%v6%%TAB%%v7%%TAB%%v8%%TAB%%v9%%TAB%%v10%  
+        CALC disks=%disks% + 1
+    }
+    SET TDAT1=%信息%
+_END
+
+_SUB GetPart
+    SET parts=0
+    SET &信息=
+    SET TDAT2=
+    //CurDisk
+    ENVI &&I=%1
+    ENVI @&TB1.Val=?%I%.1;&&V
+    FIND $%V%=, TEAM  ENVI @&TB2.Val=-*| EXIT _SUB 
+    MSTR &CurDisk=4,0,%&V%
+    SET-def hd=%CurDisk%
+    SET-def 磁盘=%&CurDisk%
+    PART list disk %磁盘%,&&磁盘信息
+    MSTR DiskLen,&mbr=<2><10>%磁盘信息%
+ //THREAD$  MESS mbr=[%mbr%] DiskLen[%DiskLen%]【%磁盘信息%】 *8000
+    //ENVI @&TB1.Val=?%I%.2;DiskLen
+    PART list part %磁盘%,&全部分区
+    forx * %全部分区%,&分区,
+    {
+      CALC parts=%parts% + 1
+	  FIND $%分区%=0, EXIT -  //continue   SD 卡
+	  PART  -hextp -phy# list part %磁盘%#%分区%,&分区信息
+// 1  0x07   1     4342949376    35664812544     8482323    40007761920    1  C:
+// 2  EBD0A0A2-B9E5-4433-87C0-68B6B72699C7 GPT 8225280000     8225280000    0000000000000000 53137208-12A2-4832-99D2-6A5AD5F71BA6    2  G:
+      TEAM ENVI &&v3=|ENVI &&v6=|
+    //FIND $%mbr%=GPT,!  MSTR &&v1,&&v2,&&v3,&&v4,&&v5,&&v6,&&v7,&&v8,&&v9=<1*>%分区信息%
+    //FIND $%mbr%=GPT,!! MSTR &&v1,&&v2,&&v4,&&v5,&&v7,&&v8,&&v9=<1><7><2><3><4><8><9>%分区信息%
+      MSTR &&v1,&&v2,&&v3,&&v4,&&v5,&&v6,&&v7,&&v8,&&v9=<1*>%分区信息%
+      CALC v4=%v4% / 1K
+      CALC v5=%v5% / 1K
+      TEAM SET &Vol=| SET &FS=
+      LSTR &&drv=2,%v9%
+      LSTR &&id1=1,%v1%
+      FIND $%id1%=@,  SET  Vol=扩展分区
+      FIND $%id1%=@,!  FIND $%id1%=-,! GetVol  &VOL  &FS "%drv%"  %磁盘%  %v8%
+      FIND $%v2%=0xEF, SET v1=%v1%[EFI]
+    	SET 信息=%信息%%NL%%v1% %Vol%%TAB%%FS%%TAB%%v2%%TAB%%v3%%TAB%%v4%K%TAB%%v5%K%TAB%%v6%%TAB%%v7%%TAB%%v8%#%TAB%%v9%
+    }
+     
+//FIND $%&PARTX%=,! MESS. %&PARTX%
+//核心分区 16730 4161190 0x01 0x00 "MBROS" ""
+    FORX *NL &PARTX,&&分区信息,
+    {
+        MSTR &&v1,&&v2,&&v3,&&v4,&&v5,&&v6,&&v7,&&v8,&&v9=<~1*>%分区信息%
+        CALC v2=%v2%/2
+        CALC v3=%v3%/2
+    	SET 信息=%信息%%NL%[MBROS]%v1%%TAB%%TAB%%v4%%TAB%%TAB%%v2%K%TAB%%v3%K%TAB%%v5%%TAB%%v6%%TAB%0%TAB%%v7%%TAB%%v8%%TAB%%v9%
+    }
+
+    SET TDAT2=%信息%
+_END
+
+_SUB OnSwapPt1
+//SET &OldLOGS=%&__LOGS%
+//IFEX XX.LOG, LOGS  * XX.LOG
+    SET-def  pt=%CurJ%
+    SET-def v=|
+    FIND $%mbr%=GPT,  
+    {
+        SET  &i=1
+        LOOP #%i%<=%parts%,
+        {
+            ENVI @&TB2.Val=?%I%.9;&&Vx
+            CALC #&a=%Vx%
+            ENVI &v=%v%|%a%
+            CALC i=%i% + 1
+        }
+    }
+    FIND $%mbr%=GPT,!  FORX * 1 2 3 4,&&a, FIND $%pt%<>%a%,  ENVI &v=%v%|%a%
+    SET-def old=%wSwapPt2%
+    LPOS* &&i=|%wSwapPt2%,,|%v%
+    IFEX $%i%<1, SET old=
+    ENVI @wSwapPt2.VAL=%v%
+    ENVI @wSwapPt2.ADDSEL=
+    ENVI @wSwapPt2.ADDSEL=%old%
+//IFEX XX.LOG, LOGS %&OldLOGS%
+//EXEC $XX.LOG    
+_END
+
+_SUB OnFreshDisk
+    CALC  #&&OlddiskI=%CurI%
+    CALC  #&&OldJ=%CurJ%
+    GetDisk 
+    ENVI @&TB1.Val=-*  //清除 
+    ENVI @&TB1.Val=1*;%TDAT1%
+    IFEX $%Olddisk%>%disks%, Olddisk=1
+    ENVI @&TB1.Sel=%Olddisk%
+    CALC  #&&Olddisk=%Olddisk% - 1
+    IFEX $%disks%<1, TEAM ENVI @&TB2.Val=-*| EXIT 
+    OnDisk   %OlddiskI% 
+    IFEX $%OldJ%<=%parts%, TEAM ENVI @&TB2.Sel=%OldJ%| SET CurJ=%OldJ%
+    ENVI @&tip=已刷新
+_END
+
+//GetVol  &VOL  &FS C:   
+//GetVol  &VOL  &FS ""  DSK  PT
+_SUB GetVol 
+    TEAM ENVI %1=|ENVI %2=|ENVI &&v=| ENVI &&b=0| ENVI &&VL=%~3| ENVI &&dsk=%~4| ENVI &&pt=%~5| SET &r1=|SET &r2=
+    FIND $X=X%&VL%,!  FDRV *vol r1,r2=%&VL%
+    FIND $X=X%&VL%,
+    { LOCK #pecmd
+        ENVI &b=1
+        FDRV *idle *rsort &&VL=*:
+        LSTR VL=2,%VL%
+        SHOW & %&dsk%#%&pt%,%&VL%
+        FDRV *vol r1,r2=%&VL%
+        SHOW & ,%&VL%
+    }
+    ENVI-ret %1=%r1%
+    ENVI-ret %2=%r2%
+_END
+
+_SUB OnDisk   
+    ENVI @&TB2.Val=-*  //清除 
+    ClearColorPart
+    WAIT 1
+    SET CurI=%1
+  
+
+
+    GetPart  %CurI% 
+ //THREAD$  MESS mbr=[%mbr%] I[%CurI%] Disk[%CurDisk% ] DiskLen[%DiskLen%] parts[%parts%] 【%磁盘信息%】 *38000
+    SET &en=1
+    FIND $GPT=%&mbr%, SET &en=0
+    ENVI @wBTSwap.Enable=%&en%
+    ENVI @BTActive.Enable=%&en%
+    ENVI @BTHideType.Enable=%&en%
+    ENVI @wSwapPt2.Enable=%&en%
+    ENVI @BTType.Enable=%&en%
+    ENVI @&TB2.Val=1*;%TDAT2%
+    TEAM ENVI @&TB2.Sel=1| SET CurJ=1
+    SET-def colid=1
+    SET-def k=1
+    SET-def len=0
+    SET-def start=0
+    //ENVI @&TB2.Val=?1.5;&&start
+    SET-def next=%start%
+    SET-def j=0
+    LOOP #%j%<=%parts%, @TEAM  @SET-def flg[%j%]=0| @CALC j=%j% + 1
+    SET j=0
+    SET-def i=0
+-[xxxxxxxxxxx]--BEGIN
+-next=%next%
+    LOOP #%i%<%parts%,
+    {
+        CALC i=%i% + 1
+        SET-def starti=%Disklen%  
+        SET-def IDi=0 
+        SET j=0
+        LOOP #%j%<%parts%,  //寻找最前的分区 
+        {   
+            CALC j=%j% + 1
+            ENVI~  &&flgj=flg[%j%]
+            IFEX $%flgj%=1, EXIT -
+            ENVI @&TB2.Val=?%J%.5;&start
+            IFEX $%start%<%starti%, TEAM  SET IDi=%j%| SET starti=%start%
+        }
+        SET start=%starti%
+        SET j=%IDi%
+        SET flg[%Idi%]=1
+
+        ENVI @&TB2.Val=?%J%.1;&&Label
+        MSTR Label=<2>%Label%
+        ENVI @&TB2.Val=?%J%.6;&len
+        CALC #&&space=%start% - %next% 
+-[start=%start%]
+        IFEX $%start%>1M, TEAM CALL SetColorPart %k%  %next% %space%  -1  &colid  "空闲"| calc k=%k% + 1
+
+        CALC #&&nstart=%start% + %len% 
+        IFEX $%nstart%>%next%, SET next=%nstart%
+        //IFEX $4=%j%,! EXIT -  //DEBUG
+        TEAM CALL SetColorPart %k%  %start% %len%  0  &colid  "(%j%#)%Label%"| calc k=%k% + 1
+    }
+    CALC len=%Disklen% - %next% 
+    IFEX $%len%>1M, CALL SetColorPart %k%  %next% %len%  -1  &colid  "空闲"
+-[xxxxxxxxxxx]--END
+_END
+
+_SUB OnLButtonTabl1   
+    ENVI @&tip=
+    IFEX $%busy%>0, EXIT 
+    ENVI  @&TB1.Sel=?Sel
+    IFEX $%Sel%<1, EXIT     
+    CALC #&&idsk=( %Sel% ) / %NUM1%
+    IFEX $%CurI%=%idsk%,  EXIT 
+    CALL OnDisk   %idsk% 
+    CALL OnPart 1
+_END
+
+_SUB OnPart
+    SET CurJ=%1
+    ENVI @&TB2.Val=?%CurJ%.9;&&j
+    CALC #j=%j%
+    FIND $%j%>=1,!! FIND $%j%<=4,!! TEAM ENVI @wSwapPt1.ADDSEL=%j%| OnSwapPt1
+_END
+
+
+_SUB OnLButtonTabl2
+    IFEX $%busy%>0, EXIT 
+    ENVI  @&TB2.Sel=?&&Sel2
+    CALC #busy=%busy% + 1 
+    OnPart %Sel2%
+    CALC #busy=%busy% - 1
+_END
+
+///////// 交换物理号 /////////
+_SUB OnSwap
+    CALC #&&v1=%CurJ%
+    CALC #&&v2=%wSwapPt2%
+    IFEX $%v1%<1, EXIT
+    IFEX $%v1%>4, EXIT
+    IFEX $%v2%<1, EXIT
+    IFEX $%v2%>4, EXIT
+    IFEX $%v1%=%v2%, EXIT
+    MESS 交换物理分区 %v1%# <---> %v2%# 吗? @交换分区#YN
+    FIND $YES=%&YESNO%,!  EXIT 
+    PART -up -hup -swap:%v1% %CurDisk%#%v2%
+    OnFreshDisk 
+_END
+
+
+
+
+
+///////// 分区类型 /////////
+_SUB OnType
+    SET-def dsk=%CurDisk%
+    ENVI @&TB2.Val=?%CurJ%.9;&&pt
+    CALC #pt=%pt%
+    IFEX $%pt%<1, EXIT 
+    ENVI @BTType.Enable=0
+    ENVI @&TB2.Val=?%CurJ%.3;&&tp  
+    SET-def   WinDiskType.ret=0
+    CALL @^WinDiskType
+    FIND $1=%WinDiskType.ret%,  OnFreshDisk 
+    ENVI @BTType.Enable=1
+_END
+
+_SUB WinDiskType,W289H149,修改分区类型,
+    EDIT -vcenter wDiskType,L38T40W60H30,%tp%
+    ITEM ITEM1,L130T40W60H30,修改,CALL OnModifyType,
+_END
+
+
+_SUB OnModifyType
+    FIND $%wDiskType%=, EXIT 
+    CALC -base=16 #tp=%wDiskType%
+    IFEX $%tp%<0, EXIT 
+    IFEX $%tp%>255, EXIT 
+// MESS PART -super -up %dsk%#%pt%  %tp%@
+    PART -super -up %dsk%#%pt%  %tp%
+    SET  WinDiskType.ret=1
+    KILL  \
+_END
+
+////////////// 隐藏 /////////
+_SUB OnHideType
+    SET-def dsk=%CurDisk%
+    ENVI @&TB2.Val=?%CurJ%.9;&&pt
+    CALC #pt=%pt%
+    IFEX $%pt%<1, EXIT 
+    ENVI @&TB2.Val=?%CurJ%.3;&&tp  
+    CALC -base=16 #tp=%tp%
+    IFEX $%tp%=0x10, EXIT 
+    IFEX $%tp%<=0, EXIT 
+    IFEX $%tp%>255, EXIT 
+    ENVI @BTHideType.Enable=0
+    CALC -base=16 tp= %tp% @ 0x10
+//MESS PART -super -up %dsk%#%pt%  %tp%@
+    PART -super -up %dsk%#%pt%  %tp%
+    OnFreshDisk 
+    ENVI @BTHideType.Enable=1
+_END
+
+
+//////////// 盘符 ////
+_SUB OnDrive
+    SET-def dsk=%CurDisk%
+    ENVI @&TB2.Val=?%CurJ%.9;&&pt
+    ENVI @&TB2.Val=?%CurJ%.10;&&drv
+    CALC #pt=%pt%
+    IFEX $%pt%<1, EXIT 
+    ENVI @BTDrive.Enable=0
+    ENVI @&TB2.Val=?%CurJ%.3;&&tp  
+    SET-def   WinDiskDrive.ret=0
+    CALL @^WinDiskDrive
+    FIND $1=%WinDiskDrive.ret%,  OnFreshDisk 
+    ENVI @BTDrive.Enable=1
+_END
+
+_SUB WinDiskDrive,W289H149,修改盘符,
+    FDRV *idle  &&all=
+    LIST -vcenter wDiskType,L38T40W60H30,%all%,,%drv%
+    ENVI @wDiskType.ADDSEL=
+    ENVI @wDiskType.ADDSEL=%drv%    
+    ITEM ITEM1,L130T40W60H30,修改,CALL OnModifyDrive,
+_END
+
+
+_SUB OnModifyDrive
+    MSTR &&ndrv=<1>%wDiskType%
+    FIND $%ndrv%=%drv%, EXIT 
+// MESS SHOW * %dsk%#%pt%,%ndrv%@
+    SHOW *- %dsk%#%pt%,
+    FIND $%ndrv%=,!  SHOW *  %dsk%#%pt%,%ndrv%
+    SET  WinDiskDrive.ret=1
+    KILL  \
+_END
+
+////////////// 激活 /////////
+_SUB OnActive
+    SET-def dsk=%CurDisk%
+    ENVI @&TB2.Val=?%CurJ%.9;&&pt
+    CALC #pt=%pt%
+    IFEX $%pt%<1, EXIT 
+    ENVI @&TB2.Val=?%CurJ%.4;&&ac  
+    ENVI @&TB2.Val=?%CurJ%.3;&&tp
+    CALC #tp=%tp%
+    IFEX $%tp%<1, EXIT 
+    FIND $%ac%<>1,!! FIND $%ac%<>0, EXIT 
+    ENVI @BTActive.Enable=0
+    FIND $%ac%=1, SET a=-a! SET a=a
+    PART -super -up %dsk%#%pt%  %a%
+    OnFreshDisk 
+    ENVI @BTActive.Enable=1
+_END
+
+
+///// 删除 ///////////
+_SUB OnDel
+    SET-def dsk=%CurDisk%
+    ENVI @&TB2.Val=?%CurJ%.9;&&pt
+    CALC #pt=%pt%
+    IFEX $%pt%<1, EXIT 
+    ENVI @&TB2.Val=?%CurJ%.3;&&tp
+    CALC #tp=%tp%
+    IFEX $%tp%<1, EXIT 
+    MESS 真的需要删除分区吗@删除分区 三思而后行#YN*8000$N
+    FIND $%&YESNO%<>YES, EXIT 
+    ENVI @BTDel.Enable=0
+    //PART -super -up %dsk%#%pt%  0x0
+    SHOW  *-  %dsk%#%pt%,
+    SHOW  *-  %dsk%#%pt%,
+    SHOW  *-  %dsk%#%pt%,
+    PART -super -up del %dsk%#%pt%
+    OnFreshDisk 
+    ENVI @BTDel.Enable=1
+_END
+
+
+_SUB  GetAllInfo
+    //定义局部变量，不影响外部变量
+    SET$ &NL=0d 0a
+    SET-def 信息=
+    SET-def 全部磁盘=
+    SET-def 磁盘=
+    SET-def 磁盘信息=
+    SET-def 分区=
+    SET-def 分区信息=
+    SET-def 首字=
+    SET-def T=
+    PART list disk,&全部磁盘
+    //ENVI 信息=全部磁盘: %全部磁盘%%NL%
+    forx * %全部磁盘%,&磁盘,
+    {
+        SET 信息=%信息%磁盘:%磁盘% %NL%
+        PART list disk %磁盘%,&磁盘信息
+        SET 信息=%信息%  磁盘信息 磁盘号   大小(字节)         柱面数 磁头数 扇数 扇区 媒体     签名 总线%NL%
+        SET 信息=%信息%             %磁盘信息% %NL%
+        
+        SET 信息=%信息%  字符说明 激活 __本分区起始__ 分区 __本分区结束__ _______本分区______ ______本分区_______%NL%
+        SET 信息=%信息%  激活为0x80    磁头_扇区_柱面 类型 磁头_扇区_柱面 _____起始扇区号____ _____扇区总数______%NL%
+
+    //  SET 信息=%信息%  4大金刚  激活 __H_起_S_始_C_ 类型 __H_结_S_束_C_ _____起始扇区______ ______扇区数_______%NL%
+    //  SET 信息=%信息%  4大金刚  激活 __H_起_S_始_C_ 类型 __H_结_S_束_C_ _____起始扇区______ ______扇区数_______%NL%
+        TEAM GETF \\.\PhysicalDrive%磁盘%,446#16,&T|  SET 信息=%信息%  主分区1: %T% %NL%
+        TEAM GETF \\.\PhysicalDrive%磁盘%,462#16,&T|  SET 信息=%信息%  主分区2: %T% %NL%
+        TEAM GETF \\.\PhysicalDrive%磁盘%,478#16,&T|  SET 信息=%信息%  主分区3: %T% %NL%
+        TEAM GETF \\.\PhysicalDrive%磁盘%,494#16,&T|  SET 信息=%信息%  主分区4: %T% %NL%
+        TEAM GETF \\.\PhysicalDrive%磁盘%,510#2,&T |  SET 信息=%信息%  标志   : %T% %NL%    
+        PART list part %磁盘%,&全部分区
+        SET 信息=%信息%  全部分区: %全部分区% %NL%
+        SET 信息=%信息%  分区  类型 激活(1) 起始(字节)     长度(字节)    隐藏扇区     结尾(字节) 物理# 盘符%NL%
+        forx * %全部分区%,&分区,
+        {
+        FIND $%分区%=0, EXIT -  //continue   SD Ka
+        PART  -hextp -phy# list part %磁盘%#%分区%,&分区信息
+            SET 信息=%信息%    %分区信息% %NL%
+        }
+    }
+    ENVI^ Clipboard=%信息%  
+    MESS.+min  %信息% @磁盘分区信息 以拷至剪切板#OK
+_END

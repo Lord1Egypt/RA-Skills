@@ -1,0 +1,4 @@
+# Core: zero dependencies (stdlib only)
+
+# Dashboard (optional)
+flask>=2.0.0

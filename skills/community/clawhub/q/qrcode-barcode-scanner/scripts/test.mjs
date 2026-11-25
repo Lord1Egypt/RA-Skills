@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT-0
+// SPDX-License-Identifier: MIT
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { copyFileSync, cpSync, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, symlinkSync, truncateSync, writeFileSync } from "node:fs";
@@ -51,7 +51,7 @@ function whitePng(width = 64, height = 64) {
 try {
   record("full-exact-report", () => {
     const report = parse(run(fixture), 0);
-    assert.deepEqual(report.versions, { scanner: "0.11.0", pipeline: 5, score_contract: 5 });
+    assert.deepEqual(report.versions, { scanner: "0.12.0", pipeline: 5, score_contract: 5 });
     assert.equal(report.trace.budget_exhausted, false);
     assert.equal(report.detections.length, 1);
     assert.equal(report.detections[0].symbology, "qr_code");
@@ -68,7 +68,7 @@ try {
   });
   for (const profile of ["fast", "frame", "full"]) record(`mixed-qr-code128-${profile}`, () => {
     const report = parse(run(mixedFixture, ["--profile", profile]), 0);
-    assert.deepEqual(report.versions, { scanner: "0.11.0", pipeline: 5, score_contract: 5 });
+    assert.deepEqual(report.versions, { scanner: "0.12.0", pipeline: 5, score_contract: 5 });
     assert.equal(report.trace.budget_exhausted, false);
     assert.deepEqual(report.detections.map(({ symbology, content }) => ({ symbology, text: content.text, raw: content.raw })).sort((a, b) => a.symbology.localeCompare(b.symbology)), [
       { symbology: "code128", text: "STOCK-4827", raw: Buffer.from("STOCK-4827").toString("base64") },
@@ -167,5 +167,5 @@ try {
     assert.equal(existsSync(join(scratch, "injected")), false);
     assert.equal(existsSync(join(scratch, "injected2")), false);
   });
-  console.log(JSON.stringify({ helper: "qrcode-barcode-scanner", version: "0.2.0", engine: "0.11.0", node: process.version, checks }));
+  console.log(JSON.stringify({ helper: "qrcode-barcode-scanner", version: "0.2.1", engine: "0.12.0", node: process.version, checks }));
 } finally { rmSync(scratch, { recursive: true, force: true }); }

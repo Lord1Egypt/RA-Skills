@@ -1,0 +1,330 @@
+# ================================================================
+# EPS 电动助力转向 - 故障树分析 (FTA)
+# 顶层安全目标: 非预期的助力 Unintended Assist Torque
+# 范式: 对标 AB12 FTA (Isograph / FaultTree+)
+# 数据来源: MOS.pdf (功率板) / Control.pdf (控制板)
+#
+# 建模说明:
+#   1) missionTime = 5000 h (车辆寿命量级)
+#   2) 底事件概率按 SN29500 / IEC 62380 器件失效率量级取值, 需按实际 FMEDA 修正
+#   3) COND 事件为诊断覆盖率残余(未检出)概率, 与基础失效构成相乘关系
+#   4) 五分支对应 AB12 范式中的分配门 (Allocation Gate)
+#   5) AB12 中的跨页事件已内联展开为完整子树, 保证定量计算正确
+# ================================================================
+meta title: 非预期的助力Unintended_Assist_Torque
+meta project: EPS 电动助力转向系统功能安全分析
+meta standard: ISO 26262 / GB/T 34590 (ASIL D)
+meta missionTime: 5000
+meta author: FTA Analysis
+meta date: 2026-10-15
+meta description: 顶层事件为 EPS 输出轴产生非请求助力转矩。五个分配门: 电机非预期转矩 / 助力请求被接受 / 失去停转检测与响应 / 相绕组非预期能量 / 共因与潜伏失效。
+
+TOP 非预期的助力（EPS_输出轴出现非请求助力转矩） desc="TOP EVENT。依据 ISO 26262 / GB/T ISO 26262 与整车 Item Definition：非预期助力作用于驾驶员转向盘，可能导致车辆非预期转向，按 NMEDC（Non-Malfunctioning Dangerous Event Class）中最严重的 D 等级评估。本树仅覆盖电气/电子与"
+  OR
+    INTER 电机产生非预期的助力转矩 [Unintended_assist_torque_generated_by_the_EPS_motor] desc="能量分配门：助力转矩最终必须由电机产生，是物理根因汇聚点。"
+      OR
+        INTER 相电流或换相序列错误 [Wrong_phase_current___commutation_sequence_into_motor_windings] desc="AND 门：错误的转矩指令 + 电机实际转动，二者同时满足才表现为非预期助力。"
+          AND
+            INTER 电流控制环输出错误（Id_Iq_给定错误） [Erroneous_current_control_loop_output_(wrong_Id_Iq_reference)] desc="见 02_REQ_ACCEPTED。"
+              OR
+                INTER 整车总线下发错误的助力请求 [Erroneous_assist_request_from_vehicle_bus_(CAN)] desc="Control.pdf p8/p11: CAN1..CAN6, PWM1/2, U1 P20.7 RXD0/TXD0, P20.8 RXD1/TXD1"
+                  OR
+                    BASIC 收到非预期的助力请求报文 [Incorrect_CAN_message_(unintended_assist_request_received)] p=6.000e-05 ref=EPS-B001 comp=CAN_PWM接口 desc="CAN1/CAN2/CAN5 (MCU1), CAN3/CAN4/CAN6 (MCU2)"
+                    BASIC CAN_收发器失效___总线对电源或地对短路 [CAN_transceiver_failure___bus_short_to_VBAT_or_GND] p=6.000e-05 ref=EPS-B002 comp=CAN_PWM接口 desc="Control.pdf p17: D9102/D9103/D9104 (CAN_L/H 双 TVS), J9102"
+                    BASIC PWM_输入引脚功能异常（外部助力请求线） [PWM_input_pin_malfunction_(external_assist_request_line)] p=8.000e-05 ref=EPS-B003 comp=通用电子元件 desc="Control.pdf p8: U4201A pin P33/P34 (PWM1_TS/ PWM_IN) - Page1 框图标注 PWM"
+                INTER 基于错误传感器输入内部计算出错误的助力请求 [Erroneous_assist_request_computed_internally_from_wrong_sensor_input] desc="见 06_SENSORS。传感器错误是请求路径错误的根因之一。"
+                  OR
+                    INTER 扭矩传感器信号失效（T1_T2） [Torque_sensor_signal_failure_(T1_T2)] desc="Control.pdf p17: CHA_T2_SENT_1 (J9102A pin6), CHA_T1_SENT_1 (J9102B pin3), CHA_POS_SENT_1, C9109/C9107 (100nF), LB9102/LB9103 (3.3A, 25VDC) MOS.pdf p1框图: 6*Sin/Cos, 3*SENT"
+                      OR
+                        BASIC 单路扭矩信号超范围 [Single_channel_torque_signal_out_of_range] p=8.000e-05 ref=EPS-B004 comp=通用电子元件 desc="CHA_T1_SENT_1 / CHA_T2_SENT_1"
+                        BASIC 双通道同向误差（合理性校验失效） [Both_channels_correlated_error_(plausibility_check_defeated)] p=7.000e-05 ref=EPS-B005 comp=ADC_采样放大器 desc="CHA_T1_SENT_1 / CHA_T2_SENT_1, VADC_5V (共用基准)"
+                        COND 扭矩合理性校验未覆盖 [Torque_plausibility_not_covered] desc="依软件安全需求（待补编号）"
+                    INTER 转子位置传感器失效（Sin_Cos___Resolver） [Rotor_position_sensor_failure_(Sin_Cos,_resolver)] desc="MOS.pdf p5: U7101 TAB4140-BAAB (Sensor_1); p6: U7201 TAB4140-BAAB (Sensor_2)Control.pdf p11: SINE_P_2, COSINE_P_2, INV_SINE_2, INV_COSINE_2"
+                      OR
+                        BASIC 单传感器失效（卡滞___偏置___增益） [Single_sensor_failure_(stuck___offset___gain)] p=8.000e-05 ref=EPS-B006 comp=基准_偏置源 desc="U7101 / U7201"
+                        BASIC 共用激励或_VADC_供电失效 [Shared_excitation___VADC_supply_failure] p=1.500e-05 ref=EPS-B007 comp=电容 desc="VADC1_5V / VADC2_5V (TB7101/TB7201), C7101/C7201 (100nF 0402)"
+                        BASIC Resolver_芯片自测（DIE_TEST）未执行或未评估 [Resolver_DIE_self-test_not_performed___not_evaluated] p=8.000e-05 ref=EPS-B008 comp=转子位置传感器 desc="DIE1_TEST, DIE2_TEST (U7101/U7201 pin3/14, pin3/14)"
+                        COND 位置合理性校验未覆盖 [Position_plausibility_not_covered] desc="依软件安全需求（待补编号）"
+                    INTER 车速或转角输入失效 [Vehicle_speed___steering_angle_input_failure] desc="Control.pdf p11: CAN1_RXD/TXD, CAN2_RXD/TXD, CAN3_RXD/TXD, PWM1_TS, PWM2; p17: CAN2_H/L, CAN2_IL, CAN1_H/L, CAN1_IL"
+                      OR
+                        BASIC 接受了无效的车速_转角报文 [Invalid_speed_angle_message_accepted] p=8.000e-05 ref=EPS-B009 comp=通用电子元件 desc="CAN1/CAN2/CAN3/CAN4/CAN5/CAN6, PWM1, PWM2"
+                        COND 输入合理性校验未覆盖 [Input_plausibility_not_covered] desc="依软件安全需求（待补编号）"
+                    INTER 温度传感器失效（过温保护被旁路） [Temperature_sensor_failure_(over-temperature_protection_bypassed)] desc="MOS.pdf p7: RT8101/RT8201 (10K ±5%), U8101/U8201 LMT86QDCKRQ1, TEMP_CNTRL_1_ADC / TEMP_CNTRL_2_ADC"
+                      OR
+                        BASIC NTC_开路或短路（单路） [NTC_open___short_(single_channel)] p=3.000e-05 ref=EPS-B010 comp=温度传感器NTC desc="RT8101 / RT8201"
+                        BASIC LMT86_比较器失效 [LMT86_comparator_failure] p=1.000e-04 ref=EPS-B011 comp=LDO_DC-DC稳压器 desc="U8101 / U8201 (LMT86QDCKRQ1), R8102/R8202 (4.7K±1%), LB8101/LB8201 (MMZ1608D121CTDH5)"
+                        COND 过温关断未覆盖 [Over-temperature_shutdown_not_covered] desc="依软件安全需求（待补编号）"
+                INTER PWM_指令生成故障（6*PWM_输出至PreDrv） [Faulty_PWM_command_generation_(6*PWM_output_to_PreDrv)] desc="MOS.pdf p1框图: MCU1/MCU2 -> 6*PWM -> PreDr1/PreDrv2 -> 6*MOS; Control.pdf p8/p11: G0/G1/G2/G3 (高边), GLA/GLB/GLC/GWA/GWB/GWC (低边)"
+                  OR
+                    BASIC MCU_GPIO_输出恒高或_PWM_占空比错误 [MCU_GPIO_output_stuck_high___PWM_duty_error] p=1.200e-04 ref=EPS-B012 comp=MCU desc="MOS.pdf p8/p9/p11: G0/G1/G2/G3, GLA/GLB/GLC, GWA/GWB/GWC, SS1_1, SS1_2"
+                    BASIC 栅极驱动器_A4918_失效 [Pre-driver_(A4918)_gate_drive_failure] p=1.000e-04 ref=EPS-B013 comp=栅极驱动器A4918 desc="MOS.pdf p8: U9101 A4918KEVSR-1A-3-T; p9: U9201 (第二路)"
+                    BASIC 栅极驱动器_SPI_配置损坏 [SPI_configuration_corruption_of_gate_driver] p=1.000e-04 ref=EPS-B014 comp=栅极驱动器A4918 desc="MOS.pdf p8: MISO/MOSI/SCK/CS, TAB, CS1P/CS1M/CS1O, CS2P/CS2M/CS2O, CS3P/CS3M/CS3O"
+                    BASIC 栅极线开路___栅极电阻失效 [Gate_line_open___Rg_gate_resistor_failure] p=2.500e-05 ref=EPS-B015 comp=栅极网络电阻 desc="MOS.pdf p8/p9: R9119-R9122 (15.4R ±1%), R9123-R9126 (27R ±1%), R9127/R9128 (1R), R9130 (1R ±1%), C9120-C9125 (3.3nF/4.7uF)"
+                BASIC MCU_硬件损坏导致输出非预期_PWM（单点） [Hardware_damage_of_MCU_leading_to_unintended_PWM_(single_point)] p=1.200e-04 ref=EPS-B016 comp=MCU desc="Control.pdf p8: U4101A SAK-TC3SBLP-32F300FS (MCU1); p11: U4201E (MCU2)"
+                INTER 安全机制被绕过___安全软件失效 [Safety_mechanism_bypassed___safety_software_failure] desc="见 08_SAFETY_SW。"
+                  OR
+                    INTER 安全机制的硬件测试无效 [Hardware_test_of_safety_mechanism_not_effective] desc="Control.pdf p8: HWCFG1_0/1/2/3, TP4104-TP4107, L41018A (测试点组); 表内说明: HwCFG0 EVR33 OFF / EVRC OFF / Boot from pin; HwCFG1 EVR33 ON / EVRC ON / pull-up"
+                      OR
+                        BASIC 配置引脚错误或悬空 [Configuration_pins_wrong___floating] p=2.500e-05 ref=EPS-B017 comp=电阻 desc="HWCFG1_0..HWCFG1_3, R4107 (4.7K 0402), R4108 (4.7K 0402)"
+                        BASIC 测试执行不完整或结果未评估 [Test_execution_incomplete___result_not_evaluated] p=5.000e-05 ref=EPS-B018 comp=自测执行失效 desc="MCU1/MCU2 安全软件"
+                    INTER 助力请求路径中的软件控制流错误 [Software_control-flow_error_in_torque_request_path] desc="MCU1/MCU2 软件（待补软件安全需求编号）"
+                      OR
+                        BASIC 转矩限制功能错误 [Torque_limiting_function_error] p=5.000e-05 ref=EPS-B019 comp=软件系统性失效 desc="MCU 软件"
+                        BASIC 助力方向判定错误 [Sign_direction_determination_error] p=5.000e-05 ref=EPS-B020 comp=软件系统性失效 desc="MCU 软件"
+                        BASIC 看门狗_超时处理错误 [Watchdog___timeout_handling_error] p=3.000e-05 ref=EPS-B021 comp=看门狗_时钟 desc="MCU 软件 + PMIC Watchdog"
+                    INTER 检出故障后未执行故障响应 [Fault_reaction_not_executed_on_detected_fault] desc="Control.pdf p3: nERROR, nFAULT, RESET, VREG (PMIC 响应链); MOS.pdf p8: RESETn, nFAULT, DIAG, FET_DRV_Stby_1"
+                      OR
+                        BASIC PMIC_在_nERROR_后未进入安全态 [PMIC_does_not_enter_safe_state_on_nERROR] p=1.000e-04 ref=EPS-B022 comp=PMIC电源管理 desc="U1101 TLF35584 (nERROR pin20, VREG pin8, ENA pin3)"
+                        BASIC 软件未请求停转 [Halt_path_not_requested_by_software] p=5.000e-05 ref=EPS-B023 comp=软件系统性失效 desc="MCU 软件"
+            INTER 换相或_PWM_占空比序列错误 [Erroneous_commutation___PWM_duty_sequence] desc="见 02_REQ_ACCEPTED。"
+              OR
+                INTER 整车总线下发错误的助力请求_@1 [Erroneous_assist_request_from_vehicle_bus_(CAN)] desc="Control.pdf p8/p11: CAN1..CAN6, PWM1/2, U1 P20.7 RXD0/TXD0, P20.8 RXD1/TXD1"
+                  OR
+                    BASIC 收到非预期的助力请求报文_@2 [Incorrect_CAN_message_(unintended_assist_request_received)] p=6.000e-05 ref=EPS-B024 comp=CAN_PWM接口 desc="CAN1/CAN2/CAN5 (MCU1), CAN3/CAN4/CAN6 (MCU2)"
+                    BASIC CAN_收发器失效___总线对电源或地对短路_@3 [CAN_transceiver_failure___bus_short_to_VBAT_or_GND] p=6.000e-05 ref=EPS-B025 comp=CAN_PWM接口 desc="Control.pdf p17: D9102/D9103/D9104 (CAN_L/H 双 TVS), J9102"
+                    BASIC PWM_输入引脚功能异常（外部助力请求线）_@4 [PWM_input_pin_malfunction_(external_assist_request_line)] p=8.000e-05 ref=EPS-B026 comp=通用电子元件 desc="Control.pdf p8: U4201A pin P33/P34 (PWM1_TS/ PWM_IN) - Page1 框图标注 PWM"
+                INTER 基于错误传感器输入内部计算出错误的助力请求_@5 [Erroneous_assist_request_computed_internally_from_wrong_sensor_input] desc="见 06_SENSORS。传感器错误是请求路径错误的根因之一。"
+                  OR
+                    INTER 扭矩传感器信号失效（T1_T2）_@6 [Torque_sensor_signal_failure_(T1_T2)] desc="Control.pdf p17: CHA_T2_SENT_1 (J9102A pin6), CHA_T1_SENT_1 (J9102B pin3), CHA_POS_SENT_1, C9109/C9107 (100nF), LB9102/LB9103 (3.3A, 25VDC) MOS.pdf p1框图: 6*Sin/Cos, 3*SENT"
+                      OR
+                        BASIC 单路扭矩信号超范围_@7 [Single_channel_torque_signal_out_of_range] p=8.000e-05 ref=EPS-B027 comp=通用电子元件 desc="CHA_T1_SENT_1 / CHA_T2_SENT_1"
+                        BASIC 双通道同向误差（合理性校验失效）_@8 [Both_channels_correlated_error_(plausibility_check_defeated)] p=7.000e-05 ref=EPS-B028 comp=ADC_采样放大器 desc="CHA_T1_SENT_1 / CHA_T2_SENT_1, VADC_5V (共用基准)"
+                        COND 扭矩合理性校验未覆盖_@9 [Torque_plausibility_not_covered] desc="依软件安全需求（待补编号）"
+                    INTER 转子位置传感器失效（Sin_Cos___Resolver）_@10 [Rotor_position_sensor_failure_(Sin_Cos,_resolver)] desc="MOS.pdf p5: U7101 TAB4140-BAAB (Sensor_1); p6: U7201 TAB4140-BAAB (Sensor_2)Control.pdf p11: SINE_P_2, COSINE_P_2, INV_SINE_2, INV_COSINE_2"
+                      OR
+                        BASIC 单传感器失效（卡滞___偏置___增益）_@11 [Single_sensor_failure_(stuck___offset___gain)] p=8.000e-05 ref=EPS-B029 comp=基准_偏置源 desc="U7101 / U7201"
+                        BASIC 共用激励或_VADC_供电失效_@12 [Shared_excitation___VADC_supply_failure] p=1.500e-05 ref=EPS-B030 comp=电容 desc="VADC1_5V / VADC2_5V (TB7101/TB7201), C7101/C7201 (100nF 0402)"
+                        BASIC Resolver_芯片自测（DIE_TEST）未执行或未评估_@13 [Resolver_DIE_self-test_not_performed___not_evaluated] p=8.000e-05 ref=EPS-B031 comp=转子位置传感器 desc="DIE1_TEST, DIE2_TEST (U7101/U7201 pin3/14, pin3/14)"
+                        COND 位置合理性校验未覆盖_@14 [Position_plausibility_not_covered] desc="依软件安全需求（待补编号）"
+                    INTER 车速或转角输入失效_@15 [Vehicle_speed___steering_angle_input_failure] desc="Control.pdf p11: CAN1_RXD/TXD, CAN2_RXD/TXD, CAN3_RXD/TXD, PWM1_TS, PWM2; p17: CAN2_H/L, CAN2_IL, CAN1_H/L, CAN1_IL"
+                      OR
+                        BASIC 接受了无效的车速_转角报文_@16 [Invalid_speed_angle_message_accepted] p=8.000e-05 ref=EPS-B032 comp=通用电子元件 desc="CAN1/CAN2/CAN3/CAN4/CAN5/CAN6, PWM1, PWM2"
+                        COND 输入合理性校验未覆盖_@17 [Input_plausibility_not_covered] desc="依软件安全需求（待补编号）"
+                    INTER 温度传感器失效（过温保护被旁路）_@18 [Temperature_sensor_failure_(over-temperature_protection_bypassed)] desc="MOS.pdf p7: RT8101/RT8201 (10K ±5%), U8101/U8201 LMT86QDCKRQ1, TEMP_CNTRL_1_ADC / TEMP_CNTRL_2_ADC"
+                      OR
+                        BASIC NTC_开路或短路（单路）_@19 [NTC_open___short_(single_channel)] p=3.000e-05 ref=EPS-B033 comp=温度传感器NTC desc="RT8101 / RT8201"
+                        BASIC LMT86_比较器失效_@20 [LMT86_comparator_failure] p=1.000e-04 ref=EPS-B034 comp=LDO_DC-DC稳压器 desc="U8101 / U8201 (LMT86QDCKRQ1), R8102/R8202 (4.7K±1%), LB8101/LB8201 (MMZ1608D121CTDH5)"
+                        COND 过温关断未覆盖_@21 [Over-temperature_shutdown_not_covered] desc="依软件安全需求（待补编号）"
+                INTER PWM_指令生成故障（6*PWM_输出至PreDrv）_@22 [Faulty_PWM_command_generation_(6*PWM_output_to_PreDrv)] desc="MOS.pdf p1框图: MCU1/MCU2 -> 6*PWM -> PreDr1/PreDrv2 -> 6*MOS; Control.pdf p8/p11: G0/G1/G2/G3 (高边), GLA/GLB/GLC/GWA/GWB/GWC (低边)"
+                  OR
+                    BASIC MCU_GPIO_输出恒高或_PWM_占空比错误_@23 [MCU_GPIO_output_stuck_high___PWM_duty_error] p=1.200e-04 ref=EPS-B035 comp=MCU desc="MOS.pdf p8/p9/p11: G0/G1/G2/G3, GLA/GLB/GLC, GWA/GWB/GWC, SS1_1, SS1_2"
+                    BASIC 栅极驱动器_A4918_失效_@24 [Pre-driver_(A4918)_gate_drive_failure] p=1.000e-04 ref=EPS-B036 comp=栅极驱动器A4918 desc="MOS.pdf p8: U9101 A4918KEVSR-1A-3-T; p9: U9201 (第二路)"
+                    BASIC 栅极驱动器_SPI_配置损坏_@25 [SPI_configuration_corruption_of_gate_driver] p=1.000e-04 ref=EPS-B037 comp=栅极驱动器A4918 desc="MOS.pdf p8: MISO/MOSI/SCK/CS, TAB, CS1P/CS1M/CS1O, CS2P/CS2M/CS2O, CS3P/CS3M/CS3O"
+                    BASIC 栅极线开路___栅极电阻失效_@26 [Gate_line_open___Rg_gate_resistor_failure] p=2.500e-05 ref=EPS-B038 comp=栅极网络电阻 desc="MOS.pdf p8/p9: R9119-R9122 (15.4R ±1%), R9123-R9126 (27R ±1%), R9127/R9128 (1R), R9130 (1R ±1%), C9120-C9125 (3.3nF/4.7uF)"
+                BASIC MCU_硬件损坏导致输出非预期_PWM（单点）_@27 [Hardware_damage_of_MCU_leading_to_unintended_PWM_(single_point)] p=1.200e-04 ref=EPS-B039 comp=MCU desc="Control.pdf p8: U4101A SAK-TC3SBLP-32F300FS (MCU1); p11: U4201E (MCU2)"
+                INTER 安全机制被绕过___安全软件失效_@28 [Safety_mechanism_bypassed___safety_software_failure] desc="见 08_SAFETY_SW。"
+                  OR
+                    INTER 安全机制的硬件测试无效_@29 [Hardware_test_of_safety_mechanism_not_effective] desc="Control.pdf p8: HWCFG1_0/1/2/3, TP4104-TP4107, L41018A (测试点组); 表内说明: HwCFG0 EVR33 OFF / EVRC OFF / Boot from pin; HwCFG1 EVR33 ON / EVRC ON / pull-up"
+                      OR
+                        BASIC 配置引脚错误或悬空_@30 [Configuration_pins_wrong___floating] p=2.500e-05 ref=EPS-B040 comp=电阻 desc="HWCFG1_0..HWCFG1_3, R4107 (4.7K 0402), R4108 (4.7K 0402)"
+                        BASIC 测试执行不完整或结果未评估_@31 [Test_execution_incomplete___result_not_evaluated] p=5.000e-05 ref=EPS-B041 comp=自测执行失效 desc="MCU1/MCU2 安全软件"
+                    INTER 助力请求路径中的软件控制流错误_@32 [Software_control-flow_error_in_torque_request_path] desc="MCU1/MCU2 软件（待补软件安全需求编号）"
+                      OR
+                        BASIC 转矩限制功能错误_@33 [Torque_limiting_function_error] p=5.000e-05 ref=EPS-B042 comp=软件系统性失效 desc="MCU 软件"
+                        BASIC 助力方向判定错误_@34 [Sign_direction_determination_error] p=5.000e-05 ref=EPS-B043 comp=软件系统性失效 desc="MCU 软件"
+                        BASIC 看门狗_超时处理错误_@35 [Watchdog___timeout_handling_error] p=3.000e-05 ref=EPS-B044 comp=看门狗_时钟 desc="MCU 软件 + PMIC Watchdog"
+                    INTER 检出故障后未执行故障响应_@36 [Fault_reaction_not_executed_on_detected_fault] desc="Control.pdf p3: nERROR, nFAULT, RESET, VREG (PMIC 响应链); MOS.pdf p8: RESETn, nFAULT, DIAG, FET_DRV_Stby_1"
+                      OR
+                        BASIC PMIC_在_nERROR_后未进入安全态_@37 [PMIC_does_not_enter_safe_state_on_nERROR] p=1.000e-04 ref=EPS-B045 comp=PMIC电源管理 desc="U1101 TLF35584 (nERROR pin20, VREG pin8, ENA pin3)"
+                        BASIC 软件未请求停转_@38 [Halt_path_not_requested_by_software] p=5.000e-05 ref=EPS-B046 comp=软件系统性失效 desc="MCU 软件"
+            INTER 电机在请求助力时实际处于转动状态 [Motor_actually_rotating_while_assist_requested_(no_halt_state)] desc="见 03_HALT_DET。停转检测失效是 AND 门的另一半。"
+              OR
+                INTER 电流采样信号失效（分流电阻或_ADC_通路） [Current_sensor_signal_failure_(shunt___ADC_path)] desc="MOS.pdf p8: R9117/R9127/R9137 (470K±5%), R9118/R9128/R9138 (1R ±1%), SHUNT_A_TOP/BOTTOM, SHUNT_B_TOP/BOTTOM, SHUNT_C_TOP/BOTTOMControl.pdf p11: CURR_PHA/PHB/PHC, CURR_OFFSET_1"
+                  OR
+                    BASIC 分流电阻开路___阻值漂移超差 [Shunt_resistor_open___drift_out_of_tolerance] p=2.500e-05 ref=EPS-B047 comp=采样电阻 desc="R9131/R9132/R9133 (0.5mR ±1%, 2512)"
+                    BASIC 分流电阻短路至相线或地 [Shunt_resistor_short_circuit_to_phase_or_to_ground] p=2.500e-05 ref=EPS-B048 comp=采样电阻 desc="R9131/R9132/R9133, SHUNT_x_TOP / SHUNT_x_BOTTOM 网络"
+                    BASIC 电流采样放大器或_ADC_通道失效 [Current_sense_amplifier_failure___ADC_channel_failure] p=2.500e-05 ref=EPS-B049 comp=采样电阻 desc="Control.pdf p11: U4201E pin P34/P35/P36 (AN39/AN38/AN40) - CURR_PHA/B/C;MOS.pdf p1框图标注 3*Shunt / 3*Shunt_ADC / CURR_PHA/PHB/PHC"
+                    BASIC 电流零点偏置基准失效（CURR_OFFSET_1） [Current_offset_reference_failure_(CURR_OFFSET_1)] p=1.500e-05 ref=EPS-B050 comp=电容 desc="MOS.pdf p8: CURR_OFFSET_1, R9125/R9126 (470K±5%), C9123/C9126 (3.3nF)"
+                    COND 电流合理性检查未被覆盖___覆盖率不足 [Current_plausibility_check_not_covered___coverage_insufficient] desc="依软件安全需求（待补编号）"
+                INTER 转子位置合理性校验失效 [Rotor_position___phase_current_plausibility_check_failure] desc="MOS.pdf p5: U7101 (TAB4140-BAAB Resolver 接口), SINE_P/N, COSINE_P/N, INV_SINE/INV_COSINE, DIE1_TEST, DIE2_TEST;Control.pdf p11: U4201E AN4..AN7 (SINE_P_2, COSINE_P_2, INV_SINE_2, INV_COSINE_2)"
+                  OR
+                    BASIC 位置传感器信号丢失（全部_Sin_Cos_失效） [Resolver___position_sensor_signal_loss_(all_Sin_Cos_invalid)] p=8.000e-05 ref=EPS-B051 comp=转子位置传感器 desc="U7101 (Sensor_1), U7201 (Sensor_2); MOS.pdf p1框图 6*Sin/Cos"
+                    BASIC 单传感器卡滞_偏置_增益误差（未被检出） [Single_sensor_stuck___offset___gain_error_(not_detected)] p=8.000e-05 ref=EPS-B052 comp=基准_偏置源 desc="U7101, U7201, DIE1_COS_N/P, DIE2_COS_N/P, DIE1_SIN_N/P, DIE2_SIN_N/P"
+                    COND 位置合理性检查未覆盖___覆盖率不足 [Position_plausibility_check_not_covered] desc="依软件安全需求（待补编号）"
+                INTER MCU1_MCU2_之间或_MCU-PMIC_之间通信失效 [Communication_between_MCU1_MCU2_or_MCU-PMIC_failure] desc="Control.pdf p11: SS1_1/SS1_2 (安全状态输入), CAN1/CS1, PMIC_GD_1_SCK/MOSI/MISO, GD1_CS, GD1_MISO;p8: SS1 (MCU1 pin18/19)"
+                  OR
+                    BASIC 交叉监控通信超时未被检出 [Cross-link_communication_timeout_not_detected] p=8.000e-05 ref=EPS-B053 comp=通用电子元件 desc="CAN1_CS, CAN2_CS, CAN1_MISO, CAN2_MISO (Control.pdf p11)"
+                    BASIC SS1_SS2_安全状态输入功能异常 [SS1_SS2_safety_state_input_malfunction] p=8.000e-05 ref=EPS-B054 comp=通用电子元件 desc="Control.pdf p11: SS1_1 (pin54), SS1_2 (pin55), SS2 (pin25); p3/p4: SS1_L, SS1_R"
+                INTER 停转响应动作未执行（转矩未切除） [Reaction_(torque_cut-off)_not_executed] desc="MOS.pdf p8: PMIC_GD_1_SCK/MOSI/MISO, FET_DRV_Stby_1, nFAULT, RESETn, DIAG"
+                  OR
+                    BASIC 栅极驱动器待机信号未置位（FET_DRV_Stby_1） [Gate_driver_standby_(FET_DRV_Stby)_not_asserted] p=1.000e-04 ref=EPS-B055 comp=栅极驱动器A4918 desc="MOS.pdf p8: FET_DRV_Stby_1 (R9106 4.7K±1% 上拉), RESETn, nFAULT"
+                    BASIC nFAULT___DIAG_错误通路失效（错误未被锁存） [nFAULT___DIAG_error_path_failure_(error_not_latched)] p=2.500e-05 ref=EPS-B056 comp=电阻 desc="MOS.pdf p8: nFAULT (U9101 pin17), DIAG (pin16), GTDRV_DIAG_1 (R9102 100R±5%); Control.pdf p3: nERROR, nFAULT, RESET, Watchdog"
+        INTER 功率级非预期电流通路（短路或旁路） [Unintended_current_path_through_power_stage_(short___bypass)] desc="见 04_PHASE_ENERGY。"
+          OR
+            INTER 高边_MOSFET_短路（相线对_VBAT） [High-side_MOSFET_short_circuit_(phase_to_VBAT)] desc="MOS.pdf p8: m9101/m9103/m9106 (A/B/C 上桥臂); p9: m9202/m9203/m9206 (U/V/W 上桥臂)"
+              OR
+                BASIC 单只_MOSFET_漏源短路 [MOSFET_D-S_short_(single_device)] p=2.000e-04 ref=EPS-B057 comp=功率MOSFET desc="m9101/m9102/m9103/m9104/m9105/m9106, m9201..m9206"
+                BASIC 多只上桥臂同时短路（共因，如热应力） [Multiple_high-side_devices_shorted_(common_cause,_e.g._thermal)] p=2.000e-04 ref=EPS-B058 comp=功率MOSFET desc="同相/异相多管"
+            INTER 低边_MOSFET_短路（相线对地） [Low-side_MOSFET_short_circuit_(phase_to_GND)] desc="MOS.pdf p8: m9104/m9105/m9106 (A/B/C 下桥臂); p9: m9204/m9205/m9206"
+              OR
+                BASIC 单只_MOSFET_漏源短路_@39 [MOSFET_D-S_short_(single_device)] p=2.000e-04 ref=EPS-B059 comp=功率MOSFET desc="m9104/m9105/m9106, m9204/m9205/m9206"
+            INTER 相间短路（线束或电机绕组） [Phase-to-phase_short_in_harness___motor_winding] desc="Control.pdf p17: J9103A PHASE_A/B/C, PHASE_U/V/W; J2202/J2203/J2204"
+              OR
+                BASIC EOS_ESD_导致的绝缘击穿 [Insulation_breakdown_due_to_EOS_ESD] p=2.000e-05 ref=EPS-B060 comp=过应力_保护器件 desc="线束 PHASE_A/B/C/U/V/W"
+                BASIC 线束磨损___连接器针脚损伤 [Chafing___abrasion___connector_pin_damage] p=8.000e-05 ref=EPS-B061 comp=线束_绝缘 desc="J9103A, J2202/J2203/J2204"
+                BASIC 电机绕组匝间短路 [Motor_winding_turn-to-turn_short] p=1.000e-04 ref=EPS-B062 comp=电机本体 desc="Motor（电机总成）"
+            INTER 栅极驱动或控制路径获得非预期_VBAT_供电 [Unintended_VBAT_supply_to_gate_driver___control_path] desc="MOS.pdf p3: D1101 (Vz:16V TVS), M1101 (BUK7J1R4-40H, 190A/40V), L1101/C1101-C1113; p8: VBAT_FLTR_SWITCHED_1, C9109-C9119 (390uF/35V), VBAT_FLTR_1, VBRG"
+              OR
+                BASIC VBAT_过压（EOS，ISO_7637-2_脉冲） [VBAT_overvoltage_(EOS,_ISO_7637-2_pulse)] p=2.000e-05 ref=EPS-B063 comp=过应力_保护器件 desc="D1101 (16V TVS), M1101 (BUK 整流), L1101 (0.68uH/46A)"
+                BASIC LDO___DC-DC_稳压器失效 [LDO_uC_3V3___DCDC2_1V25_regulator_failure] p=1.000e-04 ref=EPS-B064 comp=LDO_DC-DC稳压器 desc="Control.pdf p3: U1101 TLF35584 (PMIC1);p8: PMIC1 (PMICPB9530XA); MOS.pdf p7: U8101/U8201 LMT86QDCKRQ1 (LDO1_uC_3V3/LDO2_uC_3V3), LB8101/LB8201"
+            INTER 地参考漂移___地环路导致非预期电流 [Ground_reference_shift___ground_loop_causing_unintended_current] desc="MOS.pdf p3/p4: PGND1, PGND2, DGND1, DGND2, HS11_GND, HS12_GND, HS13_GND, HS14_GND; Control.pdf: DGND1/DGND2 (注意 p17 有 '300fit删除' 标注)"
+              OR
+                BASIC 接地失效___高阻通路 [Ground_bonding_failure___high_impedance_path] p=1.000e-04 ref=EPS-B065 comp=接地_机械连接 desc="PGND1/PGND2 与 DGND1/DGND2 连接网络"
+                BASIC EOS_损坏导致地参考抬升 [Ground_lift_due_to_EOS_damage] p=2.000e-05 ref=EPS-B066 comp=过应力_保护器件 desc="同上"
+        INTER 助力方向反转___拖拽式自驱转矩 [Assist_direction_reversed___self-driving_torque_(steering_pull)] desc="MOS.pdf p8-p9 / p17-p18 连接器 PHASE_U/V/W, PHASE_A/B/C"
+          OR
+            INTER 相序或位置传感器映射反向 [Phase_sequence___hall-sensor_position_mapping_reversed] desc="见 06_SENSORS：转子位置传感器失效导致相序错乱。"
+              OR
+                INTER 扭矩传感器信号失效（T1_T2）_@40 [Torque_sensor_signal_failure_(T1_T2)] desc="Control.pdf p17: CHA_T2_SENT_1 (J9102A pin6), CHA_T1_SENT_1 (J9102B pin3), CHA_POS_SENT_1, C9109/C9107 (100nF), LB9102/LB9103 (3.3A, 25VDC) MOS.pdf p1框图: 6*Sin/Cos, 3*SENT"
+                  OR
+                    BASIC 单路扭矩信号超范围_@41 [Single_channel_torque_signal_out_of_range] p=8.000e-05 ref=EPS-B067 comp=通用电子元件 desc="CHA_T1_SENT_1 / CHA_T2_SENT_1"
+                    BASIC 双通道同向误差（合理性校验失效）_@42 [Both_channels_correlated_error_(plausibility_check_defeated)] p=7.000e-05 ref=EPS-B068 comp=ADC_采样放大器 desc="CHA_T1_SENT_1 / CHA_T2_SENT_1, VADC_5V (共用基准)"
+                    COND 扭矩合理性校验未覆盖_@43 [Torque_plausibility_not_covered] desc="依软件安全需求（待补编号）"
+                INTER 转子位置传感器失效（Sin_Cos___Resolver）_@44 [Rotor_position_sensor_failure_(Sin_Cos,_resolver)] desc="MOS.pdf p5: U7101 TAB4140-BAAB (Sensor_1); p6: U7201 TAB4140-BAAB (Sensor_2)Control.pdf p11: SINE_P_2, COSINE_P_2, INV_SINE_2, INV_COSINE_2"
+                  OR
+                    BASIC 单传感器失效（卡滞___偏置___增益）_@45 [Single_sensor_failure_(stuck___offset___gain)] p=8.000e-05 ref=EPS-B069 comp=基准_偏置源 desc="U7101 / U7201"
+                    BASIC 共用激励或_VADC_供电失效_@46 [Shared_excitation___VADC_supply_failure] p=1.500e-05 ref=EPS-B070 comp=电容 desc="VADC1_5V / VADC2_5V (TB7101/TB7201), C7101/C7201 (100nF 0402)"
+                    BASIC Resolver_芯片自测（DIE_TEST）未执行或未评估_@47 [Resolver_DIE_self-test_not_performed___not_evaluated] p=8.000e-05 ref=EPS-B071 comp=转子位置传感器 desc="DIE1_TEST, DIE2_TEST (U7101/U7201 pin3/14, pin3/14)"
+                    COND 位置合理性校验未覆盖_@48 [Position_plausibility_not_covered] desc="依软件安全需求（待补编号）"
+                INTER 车速或转角输入失效_@49 [Vehicle_speed___steering_angle_input_failure] desc="Control.pdf p11: CAN1_RXD/TXD, CAN2_RXD/TXD, CAN3_RXD/TXD, PWM1_TS, PWM2; p17: CAN2_H/L, CAN2_IL, CAN1_H/L, CAN1_IL"
+                  OR
+                    BASIC 接受了无效的车速_转角报文_@50 [Invalid_speed_angle_message_accepted] p=8.000e-05 ref=EPS-B072 comp=通用电子元件 desc="CAN1/CAN2/CAN3/CAN4/CAN5/CAN6, PWM1, PWM2"
+                    COND 输入合理性校验未覆盖_@51 [Input_plausibility_not_covered] desc="依软件安全需求（待补编号）"
+                INTER 温度传感器失效（过温保护被旁路）_@52 [Temperature_sensor_failure_(over-temperature_protection_bypassed)] desc="MOS.pdf p7: RT8101/RT8201 (10K ±5%), U8101/U8201 LMT86QDCKRQ1, TEMP_CNTRL_1_ADC / TEMP_CNTRL_2_ADC"
+                  OR
+                    BASIC NTC_开路或短路（单路）_@53 [NTC_open___short_(single_channel)] p=3.000e-05 ref=EPS-B073 comp=温度传感器NTC desc="RT8101 / RT8201"
+                    BASIC LMT86_比较器失效_@54 [LMT86_comparator_failure] p=1.000e-04 ref=EPS-B074 comp=LDO_DC-DC稳压器 desc="U8101 / U8201 (LMT86QDCKRQ1), R8102/R8202 (4.7K±1%), LB8101/LB8201 (MMZ1608D121CTDH5)"
+                    COND 过温关断未覆盖_@55 [Over-temperature_shutdown_not_covered] desc="依软件安全需求（待补编号）"
+            INTER 扭矩传感器极性反向（T1_T2_符号错误） [Torque_sensor_sign_error_(T1_T2_polarity_reversed)] desc="见 06_SENSORS。"
+              OR
+                INTER 扭矩传感器信号失效（T1_T2）_@56 [Torque_sensor_signal_failure_(T1_T2)] desc="Control.pdf p17: CHA_T2_SENT_1 (J9102A pin6), CHA_T1_SENT_1 (J9102B pin3), CHA_POS_SENT_1, C9109/C9107 (100nF), LB9102/LB9103 (3.3A, 25VDC) MOS.pdf p1框图: 6*Sin/Cos, 3*SENT"
+                  OR
+                    BASIC 单路扭矩信号超范围_@57 [Single_channel_torque_signal_out_of_range] p=8.000e-05 ref=EPS-B075 comp=通用电子元件 desc="CHA_T1_SENT_1 / CHA_T2_SENT_1"
+                    BASIC 双通道同向误差（合理性校验失效）_@58 [Both_channels_correlated_error_(plausibility_check_defeated)] p=7.000e-05 ref=EPS-B076 comp=ADC_采样放大器 desc="CHA_T1_SENT_1 / CHA_T2_SENT_1, VADC_5V (共用基准)"
+                    COND 扭矩合理性校验未覆盖_@59 [Torque_plausibility_not_covered] desc="依软件安全需求（待补编号）"
+                INTER 转子位置传感器失效（Sin_Cos___Resolver）_@60 [Rotor_position_sensor_failure_(Sin_Cos,_resolver)] desc="MOS.pdf p5: U7101 TAB4140-BAAB (Sensor_1); p6: U7201 TAB4140-BAAB (Sensor_2)Control.pdf p11: SINE_P_2, COSINE_P_2, INV_SINE_2, INV_COSINE_2"
+                  OR
+                    BASIC 单传感器失效（卡滞___偏置___增益）_@61 [Single_sensor_failure_(stuck___offset___gain)] p=8.000e-05 ref=EPS-B077 comp=基准_偏置源 desc="U7101 / U7201"
+                    BASIC 共用激励或_VADC_供电失效_@62 [Shared_excitation___VADC_supply_failure] p=1.500e-05 ref=EPS-B078 comp=电容 desc="VADC1_5V / VADC2_5V (TB7101/TB7201), C7101/C7201 (100nF 0402)"
+                    BASIC Resolver_芯片自测（DIE_TEST）未执行或未评估_@63 [Resolver_DIE_self-test_not_performed___not_evaluated] p=8.000e-05 ref=EPS-B079 comp=转子位置传感器 desc="DIE1_TEST, DIE2_TEST (U7101/U7201 pin3/14, pin3/14)"
+                    COND 位置合理性校验未覆盖_@64 [Position_plausibility_not_covered] desc="依软件安全需求（待补编号）"
+                INTER 车速或转角输入失效_@65 [Vehicle_speed___steering_angle_input_failure] desc="Control.pdf p11: CAN1_RXD/TXD, CAN2_RXD/TXD, CAN3_RXD/TXD, PWM1_TS, PWM2; p17: CAN2_H/L, CAN2_IL, CAN1_H/L, CAN1_IL"
+                  OR
+                    BASIC 接受了无效的车速_转角报文_@66 [Invalid_speed_angle_message_accepted] p=8.000e-05 ref=EPS-B080 comp=通用电子元件 desc="CAN1/CAN2/CAN3/CAN4/CAN5/CAN6, PWM1, PWM2"
+                    COND 输入合理性校验未覆盖_@67 [Input_plausibility_not_covered] desc="依软件安全需求（待补编号）"
+                INTER 温度传感器失效（过温保护被旁路）_@68 [Temperature_sensor_failure_(over-temperature_protection_bypassed)] desc="MOS.pdf p7: RT8101/RT8201 (10K ±5%), U8101/U8201 LMT86QDCKRQ1, TEMP_CNTRL_1_ADC / TEMP_CNTRL_2_ADC"
+                  OR
+                    BASIC NTC_开路或短路（单路）_@69 [NTC_open___short_(single_channel)] p=3.000e-05 ref=EPS-B081 comp=温度传感器NTC desc="RT8101 / RT8201"
+                    BASIC LMT86_比较器失效_@70 [LMT86_comparator_failure] p=1.000e-04 ref=EPS-B082 comp=LDO_DC-DC稳压器 desc="U8101 / U8201 (LMT86QDCKRQ1), R8102/R8202 (4.7K±1%), LB8101/LB8201 (MMZ1608D121CTDH5)"
+                    COND 过温关断未覆盖_@71 [Over-temperature_shutdown_not_covered] desc="依软件安全需求（待补编号）"
+            BASIC 线束或连接器相线接错 [Crossed_phase_connection_in_harness___connector] p=8.000e-05 ref=EPS-B083 comp=线束_绝缘 desc="Control.pdf p17 J9103A (B06R-3J1B1-AA160-1110) PHASE_A/B/C, PHASE_U/V/W"
+    INTER 控制器接受了非预期的助力请求 [Unintended_assist_torque_request_accepted_by_controller] desc="请求分配门：MCU 输出的 6*PWM 指令或相电流给定错误，即使功率级完全正常也会产生非预期助力。"
+      OR
+        INTER 整车总线下发错误的助力请求_@72 [Erroneous_assist_request_from_vehicle_bus_(CAN)] desc="Control.pdf p8/p11: CAN1..CAN6, PWM1/2, U1 P20.7 RXD0/TXD0, P20.8 RXD1/TXD1"
+          OR
+            BASIC 收到非预期的助力请求报文_@73 [Incorrect_CAN_message_(unintended_assist_request_received)] p=6.000e-05 ref=EPS-B084 comp=CAN_PWM接口 desc="CAN1/CAN2/CAN5 (MCU1), CAN3/CAN4/CAN6 (MCU2)"
+            BASIC CAN_收发器失效___总线对电源或地对短路_@74 [CAN_transceiver_failure___bus_short_to_VBAT_or_GND] p=6.000e-05 ref=EPS-B085 comp=CAN_PWM接口 desc="Control.pdf p17: D9102/D9103/D9104 (CAN_L/H 双 TVS), J9102"
+            BASIC PWM_输入引脚功能异常（外部助力请求线）_@75 [PWM_input_pin_malfunction_(external_assist_request_line)] p=8.000e-05 ref=EPS-B086 comp=通用电子元件 desc="Control.pdf p8: U4201A pin P33/P34 (PWM1_TS/ PWM_IN) - Page1 框图标注 PWM"
+        INTER 基于错误传感器输入内部计算出错误的助力请求_@76 [Erroneous_assist_request_computed_internally_from_wrong_sensor_input] desc="见 06_SENSORS。传感器错误是请求路径错误的根因之一。"
+          OR
+            INTER 扭矩传感器信号失效（T1_T2）_@77 [Torque_sensor_signal_failure_(T1_T2)] desc="Control.pdf p17: CHA_T2_SENT_1 (J9102A pin6), CHA_T1_SENT_1 (J9102B pin3), CHA_POS_SENT_1, C9109/C9107 (100nF), LB9102/LB9103 (3.3A, 25VDC) MOS.pdf p1框图: 6*Sin/Cos, 3*SENT"
+              OR
+                BASIC 单路扭矩信号超范围_@78 [Single_channel_torque_signal_out_of_range] p=8.000e-05 ref=EPS-B087 comp=通用电子元件 desc="CHA_T1_SENT_1 / CHA_T2_SENT_1"
+                BASIC 双通道同向误差（合理性校验失效）_@79 [Both_channels_correlated_error_(plausibility_check_defeated)] p=7.000e-05 ref=EPS-B088 comp=ADC_采样放大器 desc="CHA_T1_SENT_1 / CHA_T2_SENT_1, VADC_5V (共用基准)"
+                COND 扭矩合理性校验未覆盖_@80 [Torque_plausibility_not_covered] desc="依软件安全需求（待补编号）"
+            INTER 转子位置传感器失效（Sin_Cos___Resolver）_@81 [Rotor_position_sensor_failure_(Sin_Cos,_resolver)] desc="MOS.pdf p5: U7101 TAB4140-BAAB (Sensor_1); p6: U7201 TAB4140-BAAB (Sensor_2)Control.pdf p11: SINE_P_2, COSINE_P_2, INV_SINE_2, INV_COSINE_2"
+              OR
+                BASIC 单传感器失效（卡滞___偏置___增益）_@82 [Single_sensor_failure_(stuck___offset___gain)] p=8.000e-05 ref=EPS-B089 comp=基准_偏置源 desc="U7101 / U7201"
+                BASIC 共用激励或_VADC_供电失效_@83 [Shared_excitation___VADC_supply_failure] p=1.500e-05 ref=EPS-B090 comp=电容 desc="VADC1_5V / VADC2_5V (TB7101/TB7201), C7101/C7201 (100nF 0402)"
+                BASIC Resolver_芯片自测（DIE_TEST）未执行或未评估_@84 [Resolver_DIE_self-test_not_performed___not_evaluated] p=8.000e-05 ref=EPS-B091 comp=转子位置传感器 desc="DIE1_TEST, DIE2_TEST (U7101/U7201 pin3/14, pin3/14)"
+                COND 位置合理性校验未覆盖_@85 [Position_plausibility_not_covered] desc="依软件安全需求（待补编号）"
+            INTER 车速或转角输入失效_@86 [Vehicle_speed___steering_angle_input_failure] desc="Control.pdf p11: CAN1_RXD/TXD, CAN2_RXD/TXD, CAN3_RXD/TXD, PWM1_TS, PWM2; p17: CAN2_H/L, CAN2_IL, CAN1_H/L, CAN1_IL"
+              OR
+                BASIC 接受了无效的车速_转角报文_@87 [Invalid_speed_angle_message_accepted] p=8.000e-05 ref=EPS-B092 comp=通用电子元件 desc="CAN1/CAN2/CAN3/CAN4/CAN5/CAN6, PWM1, PWM2"
+                COND 输入合理性校验未覆盖_@88 [Input_plausibility_not_covered] desc="依软件安全需求（待补编号）"
+            INTER 温度传感器失效（过温保护被旁路）_@89 [Temperature_sensor_failure_(over-temperature_protection_bypassed)] desc="MOS.pdf p7: RT8101/RT8201 (10K ±5%), U8101/U8201 LMT86QDCKRQ1, TEMP_CNTRL_1_ADC / TEMP_CNTRL_2_ADC"
+              OR
+                BASIC NTC_开路或短路（单路）_@90 [NTC_open___short_(single_channel)] p=3.000e-05 ref=EPS-B093 comp=温度传感器NTC desc="RT8101 / RT8201"
+                BASIC LMT86_比较器失效_@91 [LMT86_comparator_failure] p=1.000e-04 ref=EPS-B094 comp=LDO_DC-DC稳压器 desc="U8101 / U8201 (LMT86QDCKRQ1), R8102/R8202 (4.7K±1%), LB8101/LB8201 (MMZ1608D121CTDH5)"
+                COND 过温关断未覆盖_@92 [Over-temperature_shutdown_not_covered] desc="依软件安全需求（待补编号）"
+        INTER PWM_指令生成故障（6*PWM_输出至PreDrv）_@93 [Faulty_PWM_command_generation_(6*PWM_output_to_PreDrv)] desc="MOS.pdf p1框图: MCU1/MCU2 -> 6*PWM -> PreDr1/PreDrv2 -> 6*MOS; Control.pdf p8/p11: G0/G1/G2/G3 (高边), GLA/GLB/GLC/GWA/GWB/GWC (低边)"
+          OR
+            BASIC MCU_GPIO_输出恒高或_PWM_占空比错误_@94 [MCU_GPIO_output_stuck_high___PWM_duty_error] p=1.200e-04 ref=EPS-B095 comp=MCU desc="MOS.pdf p8/p9/p11: G0/G1/G2/G3, GLA/GLB/GLC, GWA/GWB/GWC, SS1_1, SS1_2"
+            BASIC 栅极驱动器_A4918_失效_@95 [Pre-driver_(A4918)_gate_drive_failure] p=1.000e-04 ref=EPS-B096 comp=栅极驱动器A4918 desc="MOS.pdf p8: U9101 A4918KEVSR-1A-3-T; p9: U9201 (第二路)"
+            BASIC 栅极驱动器_SPI_配置损坏_@96 [SPI_configuration_corruption_of_gate_driver] p=1.000e-04 ref=EPS-B097 comp=栅极驱动器A4918 desc="MOS.pdf p8: MISO/MOSI/SCK/CS, TAB, CS1P/CS1M/CS1O, CS2P/CS2M/CS2O, CS3P/CS3M/CS3O"
+            BASIC 栅极线开路___栅极电阻失效_@97 [Gate_line_open___Rg_gate_resistor_failure] p=2.500e-05 ref=EPS-B098 comp=栅极网络电阻 desc="MOS.pdf p8/p9: R9119-R9122 (15.4R ±1%), R9123-R9126 (27R ±1%), R9127/R9128 (1R), R9130 (1R ±1%), C9120-C9125 (3.3nF/4.7uF)"
+        BASIC MCU_硬件损坏导致输出非预期_PWM（单点）_@98 [Hardware_damage_of_MCU_leading_to_unintended_PWM_(single_point)] p=1.200e-04 ref=EPS-B099 comp=MCU desc="Control.pdf p8: U4101A SAK-TC3SBLP-32F300FS (MCU1); p11: U4201E (MCU2)"
+        INTER 安全机制被绕过___安全软件失效_@99 [Safety_mechanism_bypassed___safety_software_failure] desc="见 08_SAFETY_SW。"
+          OR
+            INTER 安全机制的硬件测试无效_@100 [Hardware_test_of_safety_mechanism_not_effective] desc="Control.pdf p8: HWCFG1_0/1/2/3, TP4104-TP4107, L41018A (测试点组); 表内说明: HwCFG0 EVR33 OFF / EVRC OFF / Boot from pin; HwCFG1 EVR33 ON / EVRC ON / pull-up"
+              OR
+                BASIC 配置引脚错误或悬空_@101 [Configuration_pins_wrong___floating] p=2.500e-05 ref=EPS-B100 comp=电阻 desc="HWCFG1_0..HWCFG1_3, R4107 (4.7K 0402), R4108 (4.7K 0402)"
+                BASIC 测试执行不完整或结果未评估_@102 [Test_execution_incomplete___result_not_evaluated] p=5.000e-05 ref=EPS-B101 comp=自测执行失效 desc="MCU1/MCU2 安全软件"
+            INTER 助力请求路径中的软件控制流错误_@103 [Software_control-flow_error_in_torque_request_path] desc="MCU1/MCU2 软件（待补软件安全需求编号）"
+              OR
+                BASIC 转矩限制功能错误_@104 [Torque_limiting_function_error] p=5.000e-05 ref=EPS-B102 comp=软件系统性失效 desc="MCU 软件"
+                BASIC 助力方向判定错误_@105 [Sign_direction_determination_error] p=5.000e-05 ref=EPS-B103 comp=软件系统性失效 desc="MCU 软件"
+                BASIC 看门狗_超时处理错误_@106 [Watchdog___timeout_handling_error] p=3.000e-05 ref=EPS-B104 comp=看门狗_时钟 desc="MCU 软件 + PMIC Watchdog"
+            INTER 检出故障后未执行故障响应_@107 [Fault_reaction_not_executed_on_detected_fault] desc="Control.pdf p3: nERROR, nFAULT, RESET, VREG (PMIC 响应链); MOS.pdf p8: RESETn, nFAULT, DIAG, FET_DRV_Stby_1"
+              OR
+                BASIC PMIC_在_nERROR_后未进入安全态_@108 [PMIC_does_not_enter_safe_state_on_nERROR] p=1.000e-04 ref=EPS-B105 comp=PMIC电源管理 desc="U1101 TLF35584 (nERROR pin20, VREG pin8, ENA pin3)"
+                BASIC 软件未请求停转_@109 [Halt_path_not_requested_by_software] p=5.000e-05 ref=EPS-B106 comp=软件系统性失效 desc="MCU 软件"
+    INTER 失去对电机停转的检测与响应能力 [Loss_of_intended-halt_detection_&_reaction_capability] desc="诊断降级门：系统不能识别电机已经停转，转矩未被切除而持续输出。该支路在低速/驻车场景下等价于非预期助力。"
+      OR
+        INTER 电流采样信号失效（分流电阻或_ADC_通路）_@110 [Current_sensor_signal_failure_(shunt___ADC_path)] desc="MOS.pdf p8: R9117/R9127/R9137 (470K±5%), R9118/R9128/R9138 (1R ±1%), SHUNT_A_TOP/BOTTOM, SHUNT_B_TOP/BOTTOM, SHUNT_C_TOP/BOTTOMControl.pdf p11: CURR_PHA/PHB/PHC, CURR_OFFSET_1"
+          OR
+            BASIC 分流电阻开路___阻值漂移超差_@111 [Shunt_resistor_open___drift_out_of_tolerance] p=2.500e-05 ref=EPS-B107 comp=采样电阻 desc="R9131/R9132/R9133 (0.5mR ±1%, 2512)"
+            BASIC 分流电阻短路至相线或地_@112 [Shunt_resistor_short_circuit_to_phase_or_to_ground] p=2.500e-05 ref=EPS-B108 comp=采样电阻 desc="R9131/R9132/R9133, SHUNT_x_TOP / SHUNT_x_BOTTOM 网络"
+            BASIC 电流采样放大器或_ADC_通道失效_@113 [Current_sense_amplifier_failure___ADC_channel_failure] p=2.500e-05 ref=EPS-B109 comp=采样电阻 desc="Control.pdf p11: U4201E pin P34/P35/P36 (AN39/AN38/AN40) - CURR_PHA/B/C;MOS.pdf p1框图标注 3*Shunt / 3*Shunt_ADC / CURR_PHA/PHB/PHC"
+            BASIC 电流零点偏置基准失效（CURR_OFFSET_1）_@114 [Current_offset_reference_failure_(CURR_OFFSET_1)] p=1.500e-05 ref=EPS-B110 comp=电容 desc="MOS.pdf p8: CURR_OFFSET_1, R9125/R9126 (470K±5%), C9123/C9126 (3.3nF)"
+            COND 电流合理性检查未被覆盖___覆盖率不足_@115 [Current_plausibility_check_not_covered___coverage_insufficient] desc="依软件安全需求（待补编号）"
+        INTER 转子位置合理性校验失效_@116 [Rotor_position___phase_current_plausibility_check_failure] desc="MOS.pdf p5: U7101 (TAB4140-BAAB Resolver 接口), SINE_P/N, COSINE_P/N, INV_SINE/INV_COSINE, DIE1_TEST, DIE2_TEST;Control.pdf p11: U4201E AN4..AN7 (SINE_P_2, COSINE_P_2, INV_SINE_2, INV_COSINE_2)"
+          OR
+            BASIC 位置传感器信号丢失（全部_Sin_Cos_失效）_@117 [Resolver___position_sensor_signal_loss_(all_Sin_Cos_invalid)] p=8.000e-05 ref=EPS-B111 comp=转子位置传感器 desc="U7101 (Sensor_1), U7201 (Sensor_2); MOS.pdf p1框图 6*Sin/Cos"
+            BASIC 单传感器卡滞_偏置_增益误差（未被检出）_@118 [Single_sensor_stuck___offset___gain_error_(not_detected)] p=8.000e-05 ref=EPS-B112 comp=基准_偏置源 desc="U7101, U7201, DIE1_COS_N/P, DIE2_COS_N/P, DIE1_SIN_N/P, DIE2_SIN_N/P"
+            COND 位置合理性检查未覆盖___覆盖率不足_@119 [Position_plausibility_check_not_covered] desc="依软件安全需求（待补编号）"
+        INTER MCU1_MCU2_之间或_MCU-PMIC_之间通信失效_@120 [Communication_between_MCU1_MCU2_or_MCU-PMIC_failure] desc="Control.pdf p11: SS1_1/SS1_2 (安全状态输入), CAN1/CS1, PMIC_GD_1_SCK/MOSI/MISO, GD1_CS, GD1_MISO;p8: SS1 (MCU1 pin18/19)"
+          OR
+            BASIC 交叉监控通信超时未被检出_@121 [Cross-link_communication_timeout_not_detected] p=8.000e-05 ref=EPS-B113 comp=通用电子元件 desc="CAN1_CS, CAN2_CS, CAN1_MISO, CAN2_MISO (Control.pdf p11)"
+            BASIC SS1_SS2_安全状态输入功能异常_@122 [SS1_SS2_safety_state_input_malfunction] p=8.000e-05 ref=EPS-B114 comp=通用电子元件 desc="Control.pdf p11: SS1_1 (pin54), SS1_2 (pin55), SS2 (pin25); p3/p4: SS1_L, SS1_R"
+        INTER 停转响应动作未执行（转矩未切除）_@123 [Reaction_(torque_cut-off)_not_executed] desc="MOS.pdf p8: PMIC_GD_1_SCK/MOSI/MISO, FET_DRV_Stby_1, nFAULT, RESETn, DIAG"
+          OR
+            BASIC 栅极驱动器待机信号未置位（FET_DRV_Stby_1）_@124 [Gate_driver_standby_(FET_DRV_Stby)_not_asserted] p=1.000e-04 ref=EPS-B115 comp=栅极驱动器A4918 desc="MOS.pdf p8: FET_DRV_Stby_1 (R9106 4.7K±1% 上拉), RESETn, nFAULT"
+            BASIC nFAULT___DIAG_错误通路失效（错误未被锁存）_@125 [nFAULT___DIAG_error_path_failure_(error_not_latched)] p=2.500e-05 ref=EPS-B116 comp=电阻 desc="MOS.pdf p8: nFAULT (U9101 pin17), DIAG (pin16), GTDRV_DIAG_1 (R9102 100R±5%); Control.pdf p3: nERROR, nFAULT, RESET, Watchdog"
+    INTER 电机相绕组获得非预期的电压或电流 [Unintended_supply_energy_to_the_motor_phases] desc="能量分配门（硬件侧）：功率级短路/误导通不经 MCU 指令即可产生转矩，是最高优先级的硬件致因路径。"
+      OR
+        INTER 高边_MOSFET_短路（相线对_VBAT）_@126 [High-side_MOSFET_short_circuit_(phase_to_VBAT)] desc="MOS.pdf p8: m9101/m9103/m9106 (A/B/C 上桥臂); p9: m9202/m9203/m9206 (U/V/W 上桥臂)"
+          OR
+            BASIC 单只_MOSFET_漏源短路_@127 [MOSFET_D-S_short_(single_device)] p=2.000e-04 ref=EPS-B117 comp=功率MOSFET desc="m9101/m9102/m9103/m9104/m9105/m9106, m9201..m9206"
+            BASIC 多只上桥臂同时短路（共因，如热应力）_@128 [Multiple_high-side_devices_shorted_(common_cause,_e.g._thermal)] p=2.000e-04 ref=EPS-B118 comp=功率MOSFET desc="同相/异相多管"
+        INTER 低边_MOSFET_短路（相线对地）_@129 [Low-side_MOSFET_short_circuit_(phase_to_GND)] desc="MOS.pdf p8: m9104/m9105/m9106 (A/B/C 下桥臂); p9: m9204/m9205/m9206"
+          OR
+            BASIC 单只_MOSFET_漏源短路_@130 [MOSFET_D-S_short_(single_device)] p=2.000e-04 ref=EPS-B119 comp=功率MOSFET desc="m9104/m9105/m9106, m9204/m9205/m9206"
+        INTER 相间短路（线束或电机绕组）_@131 [Phase-to-phase_short_in_harness___motor_winding] desc="Control.pdf p17: J9103A PHASE_A/B/C, PHASE_U/V/W; J2202/J2203/J2204"
+          OR
+            BASIC EOS_ESD_导致的绝缘击穿_@132 [Insulation_breakdown_due_to_EOS_ESD] p=2.000e-05 ref=EPS-B120 comp=过应力_保护器件 desc="线束 PHASE_A/B/C/U/V/W"
+            BASIC 线束磨损___连接器针脚损伤_@133 [Chafing___abrasion___connector_pin_damage] p=8.000e-05 ref=EPS-B121 comp=线束_绝缘 desc="J9103A, J2202/J2203/J2204"
+            BASIC 电机绕组匝间短路_@134 [Motor_winding_turn-to-turn_short] p=1.000e-04 ref=EPS-B122 comp=电机本体 desc="Motor（电机总成）"
+        INTER 栅极驱动或控制路径获得非预期_VBAT_供电_@135 [Unintended_VBAT_supply_to_gate_driver___control_path] desc="MOS.pdf p3: D1101 (Vz:16V TVS), M1101 (BUK7J1R4-40H, 190A/40V), L1101/C1101-C1113; p8: VBAT_FLTR_SWITCHED_1, C9109-C9119 (390uF/35V), VBAT_FLTR_1, VBRG"
+          OR
+            BASIC VBAT_过压（EOS，ISO_7637-2_脉冲）_@136 [VBAT_overvoltage_(EOS,_ISO_7637-2_pulse)] p=2.000e-05 ref=EPS-B123 comp=过应力_保护器件 desc="D1101 (16V TVS), M1101 (BUK 整流), L1101 (0.68uH/46A)"
+            BASIC LDO___DC-DC_稳压器失效_@137 [LDO_uC_3V3___DCDC2_1V25_regulator_failure] p=1.000e-04 ref=EPS-B124 comp=LDO_DC-DC稳压器 desc="Control.pdf p3: U1101 TLF35584 (PMIC1);p8: PMIC1 (PMICPB9530XA); MOS.pdf p7: U8101/U8201 LMT86QDCKRQ1 (LDO1_uC_3V3/LDO2_uC_3V3), LB8101/LB8201"
+        INTER 地参考漂移___地环路导致非预期电流_@138 [Ground_reference_shift___ground_loop_causing_unintended_current] desc="MOS.pdf p3/p4: PGND1, PGND2, DGND1, DGND2, HS11_GND, HS12_GND, HS13_GND, HS14_GND; Control.pdf: DGND1/DGND2 (注意 p17 有 '300fit删除' 标注)"
+          OR
+            BASIC 接地失效___高阻通路_@139 [Ground_bonding_failure___high_impedance_path] p=1.000e-04 ref=EPS-B125 comp=接地_机械连接 desc="PGND1/PGND2 与 DGND1/DGND2 连接网络"
+            BASIC EOS_损坏导致地参考抬升_@140 [Ground_lift_due_to_EOS_damage] p=2.000e-05 ref=EPS-B126 comp=过应力_保护器件 desc="同上"
+    INTER 共因失效与潜伏失效使上述任一路径成立 [Common_cause_&_latent_failure_enabling_any_path_above] desc="共因门：单点共因失效（如同一路电源、同一片 ADC、同一地参考）可同时打断控制路径与功率路径的抑制机制，需单独评估。"
+      OR
+        INTER 两通道共用的电源或基准 [Common_supply___reference_shared_by_both_channels] desc="MOS.pdf p3/p4: VBAT_FLTR_1 与 VBAT_FLTR_2 双路滤波 (HS11..HS14_GND); p8/p9: VBAT_FLTR_1, VBAT_FLTR_SWITCHED_1"
+          OR
+            BASIC KL15___EPS_ENABLE_线路恒高（EPS_ENABLE_1） [KL15___ENABLE_line_stuck_high_(EPS_ENABLE_1)] p=2.000e-05 ref=EPS-B127 comp=过应力_保护器件 desc="Control.pdf p3: EPS_ENABLE_1 (R1104 12k+7k 分压), INH11_WAKE / INH12_WAKE, D1101/D1102 (B0540W8HES3)Control.pdf p17: EPS_ENABLE_1 (J9103A pin24), D9101, R9103 (1M±1% 下拉)"
+            BASIC CAN_Wake___Tracker_唤醒线功能异常 [CAN_Wake___Tracker_line_malfunction] p=6.000e-05 ref=EPS-B128 comp=CAN_PWM接口 desc="MOS.pdf p1框图: CAN_Wake, Tracker1_5V, Tracker2_5V, TAS1/TAS2"
+        INTER 两通道共用的传感器或信号通路 [Common_sensor___signal_path_shared_by_both_channels] desc="Control.pdf p11: J9103A (连接器), CHA_T1_SENT_1, CHA_T2_SENT_1, VPH_A_MCU, VPH_V_MCU 等MOS.pdf p5/p6: U7101/U7201 共用 VADC1_5V / VADC2_5V"
+          OR
+            BASIC 共用连接器或线束损坏（J9102___J9103A） [Shared_connector___harness_damage_(J9102,_J9103A)] p=8.000e-05 ref=EPS-B129 comp=线束_绝缘 desc="J9102 (CHA_T1_SENT_1, CHA_T2_SENT_1, CHA_POS_SENT_1); J9103A"
+            BASIC MCU_内共用ADC___多路复用器（单一转换通路） [Shared_ADC___multiplexer_in_MCU_(single_conversion_path)] p=1.200e-04 ref=EPS-B130 comp=MCU desc="Control.pdf p11: U4201E AN4..AN15 (SINE/COSINE/INV_SINE/INV_COSINE, CURR_*)"
+        INTER 诊断通路潜伏失效（需二次失效才致因） [Latent_failure_of_the_diagnostic_path_(double_failure_required)] desc="Control.pdf p3: Watchdog, MCU_TOD, nERROR, nFAULT, RESET, TRST_1; MOS.pdf p8: nFAULT, DIAG, RESETn, GTDRV_DIAG_1, FET_DRV_Stby_1"
+          OR
+            BASIC 看门狗未使能___窗口配置错误 [Watchdog_not_enabled___wrong_window] p=3.000e-05 ref=EPS-B131 comp=看门狗_时钟 desc="Control.pdf p3: U1101 pin19 SYN, Watchdog 引脚; MCU_TOD 信号"
+            BASIC PMIC_安全状态输出未生效 [PMIC_safety_state_output_not_effective] p=1.000e-04 ref=EPS-B132 comp=PMIC电源管理 desc="Control.pdf p3: U1101 TLF35584 (ENA pin3, WAKE pin4, nERROR pin20, SS1 pin10, SS2 pin11, VREG pin8, SYNC pin19, VSM pin31)"
+            COND 测试与诊断覆盖率不足以覆盖潜伏故障 [Test_&_diagnostic_coverage_insufficient_for_latent_fault] desc="依软件安全需求（待补编号）"

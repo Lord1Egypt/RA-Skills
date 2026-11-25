@@ -1,6 +1,6 @@
 ## Description:
 
-An adaptive proactive agent skill that manages user energy levels and task prioritization using semantic pulse checks.
+Energy-aware proactive nudging for OpenClaw. Analyzes a bounded window of your direct messages plus files you explicitly opt into via CONTEXT_SOURCES; all state stays local, nothing is transmitted, and the skill stays inert until you consent. Use /pulse to inspect, correct, or disable it.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External OpenClaw users use this skill to let an agent adapt task nudges, recovery suggestions, and priority prompts based on recent conversation cues and configured context sources.
+OpenClaw users can opt into bounded local analysis of recent direct messages and explicitly selected context files to receive capacity-aware task suggestions, adjust how the agent nudges them, and review or delete local state.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill can infer a user's energy state from recent conversations and configured local context files.
+Risk: The security review was partial and noted a possible mismatch involving an update command, along with lower-level memory and scope alerts.
 
-Mitigation: Limit CONTEXT_SOURCES to a dedicated non-sensitive directory and avoid credentials, full journals, medical records, or broad logs unless that data is intentionally in scope.
-
-Risk: Local pulse history and state files can retain sensitive activity or energy-state information.
-
-Mitigation: Review or clear memory/pulse-state.json and memory/pulse-history.jsonl when local pulse history should not persist.
-
-Risk: The provided security evidence marks the release as requiring review because local file analysis and privacy scoping may be insufficient.
-
-Mitigation: Review the configured file scope and privacy expectations before enabling proactive pulse checks.
+Mitigation: Before enabling the skill, review the reported update command and state-file references; opt in deliberately and limit message scope and CONTEXT_SOURCES to what you intend.
 
 ## Reference(s):
 
-- [NXT Pulse Agent on ClawHub](https://clawhub.ai/adnxone/skills/nxt-pulse-agent)
+- [ClawHub skill page](https://clawhub.ai/adnxone/skills/nxt-pulse-agent)
+- [Project homepage](https://github.com/adnxone/nxt-pulse-agent)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+**Output Type(s):** [Text, Guidance, Configuration instructions]
 
-**Output Format:** [Markdown guidance with command text, configuration examples, and pulse status messages]
+**Output Format:** [In-chat text and guidance, with JSON configuration examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May persist local pulse state and pulse history when enabled.]
+**Other Properties Related to Output:** [Proactive suggestions are gated by consent, confidence, scope, quiet hours, and cooldown; insufficient evidence results in no nudge.]
 
 ## Skill Version(s):
 
-0.5.0 (source: release evidence, SKILL.md frontmatter, package.json)
+0.5.1 (source: server release metadata)
 
 ## Ethical Considerations:
 

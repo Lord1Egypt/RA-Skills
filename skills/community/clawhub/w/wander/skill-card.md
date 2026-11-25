@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineering agents use Wander to choose and run a suitable monitor for long-running CI, builds, deployments, and releases, then inspect the authoritative terminal result before continuing.
+Developers and engineers use Wander to monitor long-running CI, build, deploy, and release jobs until the platform reports an authoritative terminal result, including GitHub Actions workflows.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Following instructions to push to remote repositories or rerun failed workflows can trigger additional remote actions.
+Risk: ClawScan rates this release suspicious with medium confidence because its GitHub Actions guide includes repository updates and rerunning failed jobs beyond the stated monitoring and notification purpose; the watcher implementation was not supplied for verification.
 
-Mitigation: Review the target repository and workflow, and confirm the intended push or rerun before executing those actions.
-
-Risk: The security scan was partial and could not verify referenced local paths or watcher scripts.
-
-Mitigation: Review the referenced files and watcher scripts before installing or running the skill.
+Mitigation: The scanner recommends not installing. If considering it anyway, review the guide's repository push and rerun instructions and confirm affected workflows' side effects and costs are acceptable.
 
 ## Reference(s):
 
-- [Wander README — GitHub Actions scope](https://github.com/ERerGB/wander/blob/main/README.md#v1-scope-github-actions-today)
-- [Wander edge cases](https://github.com/ERerGB/wander/blob/main/EDGE_CASES.md)
-- [Wander coffee break guide](https://github.com/ERerGB/wander/blob/main/COFFEE_BREAK.md)
-- [Wander ClawHub skill page](https://clawhub.ai/erergb/skills/wander)
+- [GitHub Actions adapter guide](references/github-actions.md)
+- [Wander repository](https://github.com/ERerGB/wander)
 
 ## Skill Output:
 
 **Output Type(s):** [Guidance, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown with inline shell code blocks]
+**Output Format:** [Markdown with inline shell commands and configuration examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Platform-specific monitoring guidance and commands; the agent must verify the remote terminal result.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.0.9 (source: server-resolved ClawHub release metadata)
+1.0.11 (source: server-resolved release)
 
 ## Ethical Considerations:
 

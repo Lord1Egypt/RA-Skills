@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agent operators use it during session retrospectives to identify recurring corrections, failures, retries, and other friction signals. It summarizes patterns for review and possible promotion into durable guidance.
+Developers use the skill during session retrospectives to identify recurring friction, record signals, and prepare patterns for review as durable guidance.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: A referenced document was missing from the inspected artifact, so the security review may not cover all linked details.
+Risk: The security review was partial because one local reference could not be resolved.
 
-Mitigation: Consult the complete release documentation and verify any document-dependent assumptions before adopting the guidance.
-
-Risk: Recurring patterns can be written to persistent friction logs and LEARNINGS.md, where inaccurate signals could become durable guidance.
-
-Mitigation: Review generated signals and LEARNINGS.md changes before relying on them; assess Tier 3 proposals before approving any permanent rule.
+Mitigation: Review the unresolved local reference before relying on its contents; the benign scan verdict does not establish what that reference points to.
 
 ## Reference(s):
 
 - [ClawHub skill page](https://clawhub.ai/athola/skills/nm-abstract-friction-detector)
-- [Clawdis homepage link](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
+- [Homepage (metadata.clawdis)](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, Markdown, JSON, Guidance]
 
-**Output Format:** [Markdown friction reports and JSON session records]
+**Output Format:** [Markdown friction reports and JSON session-capture records]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Summarizes weighted signals, recurring patterns, and graduation proposals.]
+**Other Properties Related to Output:** [May update friction logs and LEARNINGS.md; Tier 3 guidance changes require user approval.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

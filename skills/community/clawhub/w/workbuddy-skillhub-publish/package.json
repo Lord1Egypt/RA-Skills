@@ -1,0 +1,22 @@
+{
+  "name": "workbuddy-skillhub-publish",
+  "version": "1.0.19",
+  "description": "Publish local AI Skills to SkillHub through an authenticated browser",
+  "type": "module",
+  "private": false,
+  "license": "MIT-0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "check": "node --check scripts/skillhub-publish.mjs",
+    "self-test": "node scripts/skillhub-publish.mjs self-test",
+    "test": "npm run check && npm run self-test"
+  },
+  "keywords": [
+    "agent-skill",
+    "skillhub",
+    "publishing",
+    "easy-webbridge"
+  ]
+}

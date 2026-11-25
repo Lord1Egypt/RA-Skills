@@ -2,7 +2,7 @@
 name: kuaishou-sentiment-monitor
 description: "快手舆情监测助手。针对任意关键词获取快手作品数据、详情、互动数据、评论数据，基于快手实时数据，综合分析舆情健康、情感占比、负面信息、事件时间、热度排行、竞品口碑对比与风险建议等，进行分析并输出舆情报告。支持三大能力：(1) 关键词搜索视频，可按点赞数、发布时间、视频时长筛选排序；(2) 达人作品抓取，按主页链接获取公开作品列表；(3) 视频评论分析，按视频链接获取评论内容与互动数据。"
 license: MIT
-version: 1.1.1
+version: 1.1.2
 metadata:
   openclaw:
     emoji: "📷"
@@ -196,7 +196,7 @@ metadata:
   "message": "搜索任务完成",
   "timestamp": "2026/10/26 16:20:00",
   "request": { "command": "search", "keyword": "具身智能", "sort": 2, "time": 0, "duration": 0, "limit": 20 },
-  "metadata": { "skill_version": "1.1.1", "runtime_version": "22.22.2", "execution_time": 8421 },
+  "metadata": { "skill_version": "1.1.2", "runtime_version": "22.22.2", "execution_time": 8421 },
   "results": [{ "id": "3xabc", "caption": "..." }]
 }
 ```
@@ -215,6 +215,9 @@ metadata:
 | 1 | `INVALID_URL` | 按路由换命令，或向用户确认这是视频还是主页 |
 | 3 | `AUTH_REQUIRED` / `AUTH_ERROR` | 停止重试，让用户配置 `GUAIKEI_API_TOKEN` |
 | 1 | `PLAN_LIMIT` | 套餐单次条数超限（常见于包月 Token）。**禁止同参重试**。转述 `message`；可建议降低 `--limit`（搜索≤30，作品≤50，评论≤60）或到官网升级按量；**须用户同意后再跑**。禁止擅自加大 limit |
+| 1 | `INSUFFICIENT_BALANCE` | 余额不足（常为后端 15）。**禁止同参重试**。引导官网充值 |
+| 1 | `RATE_LIMITED` | 短时间提交过多（常为后端 2）。**禁止立即重试**。稍后经用户同意再跑 |
+| 1 | `DAILY_LIMIT` | 今日消费已达每日上限（后端 18）。**禁止同参重试**。明日再试或到官网调整限额 |
 | 1 | `TIMEOUT` | 任务仍在处理。大约 20 分钟内用同一组参数重跑会复用已有任务。宿主提前结束进程时不要立刻连打 |
 | 1 | `NETWORK_ERROR` / `HTTP_5xx` / `HTTP_429` | 命令内部已经重试过。退出后再失败就告诉用户稍后再试，不要立刻连打 |
 | 1 | 十进制数字，例如 `"12"` | 把 `message` 原样转告。不要把 `"1"` 当成业务失败，那是处理中，命令会自己等 |

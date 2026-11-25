@@ -1,6 +1,6 @@
 ## Description:
 
-Long-term verification agents for the PASM cognitive engine that run repeatable checks for memory retention, salience-aware eviction, emotion drift, behavioural entropy collapse, persona saturation, forgetting curve behavior, 6000-step soak degradation, and cross-repo parity.
+Runs repeatable checks to assess whether the PASM cognitive engine remains healthy during long runs.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use this skill to run PASM long-run verification agents, archive JSON findings, compare baselines, and identify regressions or durability issues in cognitive engine behavior.
+Developers use these verification agents to exercise PASM structure and long-run behavior, archive findings, and compare results against baselines.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill directs users to install PASM packages or clone related repositories before running verification commands.
+Risk: The partial scan flagged an API-guard entry point that may not match the stated long-term health-check purpose, and some references were unavailable for review.
 
-Mitigation: Install only when PASM verification tooling is intended, and review package and repository sources before executing commands.
-
-Risk: Most operational documentation is written in Chinese, which can lead to misunderstood setup, result interpretation, or baseline update steps.
-
-Mitigation: Translate or review the documentation with a Chinese reader before running commands in an environment where results matter.
-
-Risk: Baseline update commands can make the current system state the comparison baseline.
-
-Mitigation: Run baseline updates only after confirming the current PASM state is correct and suitable as the future comparison point.
+Mitigation: Review the API-guard behavior and available references before installation, and confirm that the capability fits your intended use.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/arronjack/skills/pasm-longterm-verify)
-- [pasm-agents source repository](https://github.com/arronJack/pasm-agents)
-- [pasm-skills base repository](https://github.com/arronJack/pasm-skills)
-- [pasm-skills tutorial](https://github.com/arronJack/pasm-skills/blob/master/docs/TUTORIAL.md)
+- [ClawHub release page](https://clawhub.ai/arronjack/skills/pasm-longterm-verify)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+**Output Type(s):** [Text, JSON]
 
-**Output Format:** [Markdown with inline shell commands, Python snippets, configuration examples, and JSON reporting guidance]
+**Output Format:** [Terminal status summaries and JSON reports]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Verification runs can emit JSON-archivable and baseline-diffable findings.]
+**Other Properties Related to Output:** [Repeatable findings suitable for archiving and baseline comparison]
 
 ## Skill Version(s):
 
-0.5.0 (source: server release and frontmatter)
+0.6.0 (source: frontmatter; server release)
 
 ## Ethical Considerations:
 

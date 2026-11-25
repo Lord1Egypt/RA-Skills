@@ -1,0 +1,4 @@
+interface:
+  display_name: "Subclip Timeline Story"
+  short_description: "Build pacing, cuts, and timeline structure"
+  default_prompt: "Use -timeline-story to restructure this video's pacing and timeline."

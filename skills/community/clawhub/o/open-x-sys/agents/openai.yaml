@@ -1,0 +1,9 @@
+interface:
+  display_name: "OpenXSys"
+  short_description: "Bind a system to your AI tool: see through, think clearly, make, connect, grow"
+  icon_small: "./assets/openxsys.png"
+  icon_large: "./assets/openxsys.png"
+  brand_color: "#F05A3C"
+  default_prompt: "Use $open-x-sys to open a system for what I am working on, find the structure that truly drives it, and make the result real."
+policy:
+  allow_implicit_invocation: true

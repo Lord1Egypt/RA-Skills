@@ -1,6 +1,6 @@
 ## Description:
 
-从 TikTok 公开搜索结果、博主作品和视频评论中提取结构化数据，帮助归纳用户反馈、购买顾虑、内容表现与舆情。
+This skill searches TikTok videos, retrieves public creator posts and video comments, and returns structured data for consumer feedback and audience analysis.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-TikTok 创作者、品牌与市场团队可用它检索公开视频、查看博主作品并汇总视频评论，从而整理选题线索、竞品内容表现和用户反馈。
+Creators, brands, and research or marketing teams use this skill to review public TikTok videos and comments for content ideas, competitor monitoring, consumer feedback, and sentiment analysis.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search keywords and TikTok links are sent to GUAIKEI to retrieve public TikTok data.
+Risk: The security review was partial and noted an undeclared environment capability, so some behavior may not have been fully assessed.
 
-Mitigation: Use only public TikTok content and avoid submitting confidential, personal, or otherwise sensitive information in queries.
+Mitigation: Review the skill's token and service access requirements before installation, and use a dedicated token for the intended service.
 
-Risk: Security analysis was partial, and the scanner notes that the skill’s runtime permissions are not established by the scan.
+Risk: The security summary flags a timestamp formatting concern that could affect interpretation of time-sensitive results.
 
-Mitigation: Review the partially inspected components and confirm the external API access and token use before installation.
+Mitigation: Check timestamp format and timezone before drawing conclusions that depend on timing.
 
 ## Reference(s):
 
-- [GUAIKEI 产品与访问令牌](https://www.guaikei.com)
-- [命令参数参考](artifact/references/options.md)
-- [更新日志](artifact/references/changelog.md)
+- [ClawHub skill release](https://clawhub.ai/why20261/skills/tiktok-comment-consumer-insights)
+- [Service and token setup](https://www.guaikei.com)
+- [Options and parameters](references/options.md)
+- [Changelog](references/changelog.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis, Guidance]
+**Output Type(s):** [JSON, Analysis]
 
-**Output Format:** [Structured JSON data for TikTok search results, creator posts, or video comments; an agent can summarize it as text or Markdown.]
+**Output Format:** [Structured JSON results; the agent can provide concise summaries in prose.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results may be empty or omit unavailable fields. Search and creator-post requests support up to 30 items per monthly token; comment requests support up to 40.]
+**Other Properties Related to Output:** [Results may be empty, and fields that are unavailable may be omitted.]
 
 ## Skill Version(s):
 
-1.1.1 (source: frontmatter, package.json, changelog, released 2026-11-04)
+1.1.2 (source: frontmatter, package.json, server-resolved release)
 
 ## Ethical Considerations:
 

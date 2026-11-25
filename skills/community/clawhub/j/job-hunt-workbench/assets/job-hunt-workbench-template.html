@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>求职助手 · JobHunt Pro</title>
+<style>
+  :root{
+    --primary:#00b578;          /* 主绿 */
+    --primary-dark:#009a66;
+    --primary-soft:#e6f7f0;
+    --teal:#0abf9b;
+    --blue:#3b82f6;
+    --orange:#f59e0b;
+    --red:#ef4444;
+    --bg:#f4f6f8;
+    --card:#ffffff;
+    --border:#eef0f3;
+    --text:#1f2937;
+    --text2:#8a94a3;
+    --shadow:0 1px 3px rgba(16,32,64,.05),0 6px 20px rgba(16,32,64,.05);
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);font-size:14px;}
+  .app{display:flex;min-height:100vh;}
+
+  /* ============ Sidebar ============ */
+  .sidebar{width:200px;background:#fff;border-right:1px solid var(--border);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;flex-shrink:0;}
+  .brand{display:flex;align-items:center;gap:10px;padding:20px 16px 18px;}
+  .brand .logo{width:34px;height:34px;border-radius:10px;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:17px;color:#fff;flex-shrink:0;}
+  .brand .t1{font-weight:700;font-size:15px;}
+  .brand .t2{font-size:11px;color:var(--text2);margin-top:1px;}
+  .menu{flex:1;padding:6px 10px;}
+  .menu-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;color:#5b6675;font-size:14px;margin-bottom:4px;transition:.15s;}
+  .menu-item:hover{background:#f5f7f9;}
+  .menu-item.active{background:var(--primary-soft);color:var(--primary);font-weight:700;}
+  .menu-item .mi{width:18px;text-align:center;}
+  .menu-item .badge{margin-left:auto;background:var(--primary);color:#fff;font-size:10px;min-width:20px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 5px;}
+  .side-foot{border-top:1px solid var(--border);padding:12px 16px;display:flex;align-items:center;gap:10px;}
+  .avatar{width:30px;height:30px;border-radius:50%;background:var(--primary);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+  .side-foot .nm{font-size:13px;font-weight:600;}
+  .side-foot .rl{font-size:11px;color:var(--text2);}
+  .side-foot .out{margin-left:auto;color:var(--text2);cursor:pointer;font-size:15px;}
+  .side-foot .out:hover{color:var(--red);}
+
+  /* ============ Main ============ */
+  .main{flex:1;padding:22px 26px 40px;max-width:1060px;}
+  .page{display:none;}
+  .page.active{display:block;animation:fade .18s;}
+  @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+  .head{display:flex;align-items:flex-start;gap:12px;margin-bottom:18px;}
+  .head h1{font-size:20px;font-weight:800;}
+  .head .date{font-size:12px;color:var(--text2);margin-top:4px;}
+  .head .sp{flex:1;}
+  .btn{border-radius:9px;padding:8px 14px;font-size:13px;cursor:pointer;border:1px solid transparent;font-weight:600;transition:.15s;}
+  .btn.ghost{background:#fff;border-color:#cdeee0;color:var(--primary);}
+  .btn.ghost:hover{background:var(--primary-soft);}
+  .btn.solid{background:var(--primary);color:#fff;}
+  .btn.solid:hover{background:var(--primary-dark);}
+  .btn.sm{padding:5px 11px;font-size:12px;border-radius:8px;}
+
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);}
+  .card-h{padding:14px 16px 4px;font-size:14px;font-weight:700;}
+
+  /* metric cards */
+  .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px;}
+  .metric{border-radius:var(--radius);background:#fff;border:1px solid var(--border);box-shadow:var(--shadow);padding:14px 16px 12px;border-top:3px solid var(--primary);position:relative;overflow:hidden;}
+  .metric::after{content:"";position:absolute;top:-14px;right:-14px;width:52px;height:52px;border-radius:50%;background:var(--primary-soft);opacity:.7;}
+  .metric.teal{border-top-color:var(--teal);} .metric.teal::after{background:#e0f7f2;}
+  .metric.orange{border-top-color:var(--orange);} .metric.orange::after{background:#fdf3e0;}
+  .metric .lb{font-size:12px;color:var(--text2);position:relative;}
+  .metric .num{font-size:30px;font-weight:800;margin-top:6px;position:relative;line-height:1;}
+  .metric .sub{font-size:11px;color:var(--text2);margin-top:8px;position:relative;}
+  .metric .sub b{font-weight:600;}
+
+  .row2{display:grid;grid-template-columns:1.15fr 1fr;gap:14px;margin-bottom:16px;}
+  .row3{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+
+  /* 状态分布 */
+  .dist{padding:8px 16px 16px;}
+  .dist-row{display:flex;align-items:center;gap:10px;margin-bottom:13px;}
+  .dist-row:last-child{margin-bottom:0;}
+  .dist-row .lb{width:58px;font-size:13px;color:#4b5563;flex-shrink:0;}
+  .dist-row .bar{flex:1;height:8px;background:#f1f3f6;border-radius:4px;overflow:hidden;}
+  .dist-row .bar i{display:block;height:100%;border-radius:4px;transition:width .4s;}
+  .dist-row .v{width:26px;text-align:right;font-size:13px;font-weight:700;}
+
+  /* 目标进度 */
+  .goal{padding:6px 16px 16px;}
+  .goal-row{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+  .goal-row .lb{font-size:13px;color:#4b5563;width:70px;flex-shrink:0;}
+  .goal-row .track{flex:1;height:8px;background:#f1f3f6;border-radius:4px;overflow:hidden;}
+  .goal-row .track i{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--primary));border-radius:4px;transition:width .4s;}
+  .goal-row .v{font-size:12px;color:var(--text2);width:44px;text-align:right;}
+  .goal-btns{display:flex;gap:10px;margin-top:4px;}
+
+  /* 列表卡片 */
+  .list-card .card-h{padding-bottom:8px;}
+  .item{display:flex;align-items:center;gap:10px;padding:9px 16px;}
+  .item:hover{background:#fafbfc;}
+  .sq{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0;}
+  .item .info{flex:1;min-width:0;}
+  .item .co{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .item .po{font-size:11px;color:var(--text2);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .tag{font-size:11px;padding:3px 8px;border-radius:6px;font-weight:600;flex-shrink:0;}
+  .tag.green{background:#e6f7f0;color:var(--primary);}
+  .tag.blue{background:#e8f0fe;color:var(--blue);}
+  .tag.orange{background:#fdf3e0;color:#d97706;}
+  .tag.red{background:#fdeaea;color:var(--red);}
+  .tag.teal{background:#e0f7f2;color:#0a9b7e;}
+  .tag.gray{background:#f0f2f5;color:#5b6675;}
+
+  /* ====== 其他页面 ====== */
+  table{width:100%;border-collapse:collapse;}
+  th{font-size:12px;color:var(--text2);font-weight:500;text-align:left;padding:10px 16px;border-bottom:1px solid var(--border);}
+  td{font-size:13px;padding:11px 16px;border-bottom:1px solid #f3f5f7;}
+  tr:last-child td{border-bottom:none;}
+  .pill{padding:8px 14px;border-radius:18px;border:1px solid var(--border);background:#fff;font-size:12px;cursor:pointer;color:#5b6675;}
+  .pill.active{background:var(--primary);border-color:var(--primary);color:#fff;font-weight:600;}
+  .filters{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
+  .empty{padding:40px;text-align:center;color:var(--text2);font-size:13px;}
+  .resume{display:flex;align-items:center;gap:14px;padding:16px;}
+  .doc{width:44px;height:52px;border-radius:8px;background:var(--primary-soft);border:1px solid #bfe8d6;display:flex;align-items:center;justify-content:center;font-size:22px;}
+  .switch{width:40px;height:22px;border-radius:11px;background:#d7dce3;position:relative;cursor:pointer;transition:.2s;flex-shrink:0;}
+  .switch::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2);}
+  .switch.on{background:var(--primary);}
+  .switch.on::after{left:20px;}
+  .set-row{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #f3f5f7;}
+  .set-row:last-child{border-bottom:none;}
+  .set-row .t{font-size:13px;font-weight:600;}
+  .set-row .d{font-size:11px;color:var(--text2);margin-top:2px;}
+  .toast{position:fixed;top:24px;left:50%;transform:translateX(-50%) translateY(-12px);background:#1f2937;color:#fff;padding:9px 18px;border-radius:10px;font-size:13px;opacity:0;pointer-events:none;transition:.25s;z-index:99;}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  /* 转化漏斗 */
+  .funnel{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+  .fstep{flex:1;min-width:96px;background:#f7fbf9;border:1px solid #dcf1e7;border-radius:12px;padding:14px 10px;text-align:center;}
+  .fstep .fv{font-size:26px;font-weight:800;color:var(--primary);line-height:1;}
+  .fstep.dim{background:#fafbfc;border-color:var(--border);}
+  .fstep.dim .fv{color:var(--text2);}
+  .fstep .fl{font-size:12px;color:var(--text2);margin-top:7px;}
+  .farrow{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#b6bdc9;font-size:16px;min-width:62px;}
+  .farrow span{font-size:11px;color:var(--primary);font-weight:700;margin-bottom:2px;}
+
+  /* 打招呼历史（可编辑单元格） */
+  .cell-in,.cell-sel{width:100%;border:1px solid transparent;background:transparent;border-radius:6px;padding:5px 6px;font-size:13px;font-family:inherit;color:inherit;transition:.15s;}
+  .cell-in:hover,.cell-sel:hover{border-color:var(--border);}
+  .cell-in:focus,.cell-sel:focus{outline:none;border-color:var(--primary);background:#fff;}
+  .cell-sel{cursor:pointer;}
+  .cell-in[type=number]{width:64px;}
+  td .num-in{text-align:left;}
+  /* 收藏岗位关键词库 */
+  .kw-group{margin-bottom:10px;}
+  .kw-group:last-child{margin-bottom:0;}
+  .kw-group .gl{font-size:12px;font-weight:700;color:#4b5563;margin-bottom:6px;}
+  .kw-group .gk{display:flex;flex-wrap:wrap;gap:6px;}
+  .kw-chip{font-size:11px;padding:4px 11px;border-radius:14px;background:#f0f7f3;border:1px solid #d9ede3;color:var(--primary-dark);cursor:pointer;transition:.15s;font-weight:600;}
+  .kw-chip:hover{background:var(--primary-soft);border-color:var(--primary);}
+  .kw-chip.on{background:var(--primary);border-color:var(--primary);color:#fff;}
+  .search-in{width:100%;border:1px solid var(--border);background:#fff;border-radius:9px;padding:9px 14px;font-size:13px;font-family:inherit;transition:.15s;}
+  .search-in:focus{outline:none;border-color:var(--primary);}
+
+  @media (max-width:860px){
+    .sidebar{width:64px;}
+    .brand .t1,.brand .t2,.menu-item span.lb,.menu-item .badge,.side-foot .nm,.side-foot .rl{display:none;}
+    .metrics{grid-template-columns:repeat(2,1fr);}
+    .row2,.row3{grid-template-columns:1fr;}
+    .main{padding:16px;}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- ============ 侧边栏 ============ -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">💼</div>
+      <div><div class="t1">求职助手</div><div class="t2">JobHunt Pro</div></div>
+    </div>
+    <nav class="menu" id="menu">
+      <div class="menu-item active" data-p="dash"><span class="mi">📊</span><span class="lb">仪表盘</span></div>
+      <div class="menu-item" data-p="jobs"><span class="mi">📋</span><span class="lb">职位列表</span><span class="badge" id="jobBadge">4</span></div>
+      <div class="menu-item" data-p="history"><span class="mi">🕐</span><span class="lb">投递历史</span></div>
+      <div class="menu-item" data-p="records"><span class="mi">👋</span><span class="lb">打招呼记录</span><span class="badge" id="recBadge">4</span></div>
+      <div class="menu-item" data-p="saved"><span class="mi">⭐</span><span class="lb">收藏岗位</span><span class="badge" id="savedBadge">0</span></div>
+      <div class="menu-item" data-p="resume"><span class="mi">📄</span><span class="lb">简历管理</span></div>
+      <div class="menu-item" data-p="settings"><span class="mi">⚙️</span><span class="lb">系统设置</span></div>
+    </nav>
+    <div class="side-foot">
+      <div class="avatar">A</div>
+      <div><div class="nm">Admin</div><div class="rl">求职者</div></div>
+      <div class="out" title="退出登录" onclick="toast('已退出登录（演示）')">⎋</div>
+    </div>
+  </aside>
+
+  <!-- ============ 主区域 ============ -->
+  <main class="main">
+
+    <!-- ===== 仪表盘 ===== -->
+    <section class="page active" id="page-dash">
+      <div class="head">
+        <div><h1>今日概览</h1><div class="date" id="today">2026年4月29日星期三</div></div>
+        <div class="sp"></div>
+        <button class="btn ghost" onclick="quickAdd('greet')">+ 打招呼</button>
+        <button class="btn solid" onclick="quickAdd('resume')">+ 简历接收</button>
+      </div>
+
+      <!-- 指标卡 -->
+      <div class="metrics">
+        <div class="metric"><div class="lb">累计投递</div><div class="num" id="mTotal">4</div><div class="sub">= 简历接收 <b>4</b> 份 · 打招呼转化 <b>9.5%</b></div></div>
+        <div class="metric teal"><div class="lb">获得面试</div><div class="num" id="mInterview">0</div><div class="sub">转化率 <b id="mRate">0%</b></div></div>
+        <div class="metric orange"><div class="lb">今日打招呼</div><div class="num" id="mGreet">0</div><div class="sub">目标 <b>50</b> 条 · <b id="greetHit">未达标</b></div></div>
+        <div class="metric teal"><div class="lb">简历接收</div><div class="num" id="mResume">4</div><div class="sub">目标 <b>30</b> 份 · <b id="resumeHit">未达标</b></div></div>
+      </div>
+
+      <!-- 状态分布 + 目标进度 -->
+      <div class="row2">
+        <div class="card">
+          <div class="card-h">投递状态分布</div>
+          <div class="dist">
+            <div class="dist-row"><span class="lb">面试中</span><div class="bar"><i style="width:0%;background:var(--primary)" id="b-interview"></i></div><span class="v" id="v-interview">0</span></div>
+            <div class="dist-row"><span class="lb">投递中</span><div class="bar"><i style="width:0%;background:var(--blue)" id="b-applying"></i></div><span class="v" id="v-applying">4</span></div>
+            <div class="dist-row"><span class="lb">待回复</span><div class="bar"><i style="width:0%;background:var(--orange)" id="b-waiting"></i></div><span class="v" id="v-waiting">0</span></div>
+            <div class="dist-row"><span class="lb">已拒绝</span><div class="bar"><i style="width:0%;background:var(--red)" id="b-rejected"></i></div><span class="v" id="v-rejected">0</span></div>
+            <div class="dist-row"><span class="lb">已拿offer</span><div class="bar"><i style="width:0%;background:var(--teal)" id="b-offer"></i></div><span class="v" id="v-offer">0</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-h">今日目标进度</div>
+          <div class="goal">
+            <div class="goal-row"><span class="lb">今日打招呼</span><div class="track"><i id="gt-greet" style="width:0%"></i></div><span class="v" id="gv-greet">0 / 50</span></div>
+            <div class="goal-row"><span class="lb">简历接收</span><div class="track"><i id="gt-resume" style="width:0%"></i></div><span class="v" id="gv-resume">0 / 30</span></div>
+            <div class="goal-btns">
+              <button class="btn ghost sm" onclick="quickAdd('greet')">+1 打招呼</button>
+              <button class="btn solid sm" onclick="quickAdd('resume')">+1 简历接收</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 转化漏斗 -->
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-h">转化漏斗 · 今日</div>
+        <div style="padding:14px 18px 16px;">
+          <div class="funnel">
+            <div class="fstep"><div class="fv" id="fnGreet">38</div><div class="fl">打招呼</div></div>
+            <div class="farrow"><span>50%</span>→</div>
+            <div class="fstep"><div class="fv" id="fnResume">4</div><div class="fl">简历接收</div></div>
+            <div class="farrow"><span>0%</span>→</div>
+            <div class="fstep dim"><div class="fv" id="fnInterview">0</div><div class="fl">获得面试</div></div>
+            <div class="farrow"><span>—</span>→</div>
+            <div class="fstep dim"><div class="fv" id="fnOffer">0</div><div class="fl">Offer</div></div>
+          </div>
+          <div class="muted" style="margin-top:14px;line-height:1.8;">
+            打招呼→简历接收率 = <b style="color:var(--primary)">1 ÷ 2 = 50%</b>（示例数据，HR 招聘场景常见区间 8%–15%）<br>
+            简历接收→面试率 = 0 ÷ 4 = <b style="color:var(--red)">0%</b>；距目标：再需 8 条打招呼才能到 50，简历接收需从 9.5% 提到 <b>60%</b> 才够 30 份 —— 单纯加量已不够，瓶颈在简历通过率。
+          </div>
+        </div>
+      </div>
+
+      <!-- 打招呼历史 -->
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-h" style="display:flex;align-items:center;padding-bottom:10px;">打招呼历史
+          <span style="flex:1;"></span>
+          <button class="btn ghost sm" onclick="addDay()">＋ 新增一天</button>
+        </div>
+        <table id="dayTable">
+          <tr><th>日期</th><th>沟通数量</th><th>简历接收数量</th><th>累计沟通</th><th>沟通投递转化率</th><th>投递渠道</th><th>备注（今日投递心得）</th></tr>
+        </table>
+        <div class="muted" style="padding:10px 16px 14px;font-size:11px;line-height:1.7;">口径：沟通数量 = 当日全部沟通记录（打招呼 + 对方回复/主动联系）；转化率 = 简历接收 ÷ 沟通数量；累计沟通为逐日累加。数字、渠道（Boss直聘 / 内推 / 官网）与备注均可直接点击修改，自动保存。</div>
+      </div>
+
+      <!-- 面试安排 + 近期投递 -->
+      <div class="row3">
+        <div class="card list-card">
+          <div class="card-h">最近面试安排</div>
+          <div id="interviewList"></div>
+        </div>
+        <div class="card list-card">
+          <div class="card-h">近期投递</div>
+          <div id="recentList"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 职位列表 ===== -->
+    <section class="page" id="page-jobs">
+      <div class="head"><div><h1>职位列表</h1><div class="date">共 4 个已接收简历的职位 · 均来自今日打招呼</div></div>
+        <div class="sp"></div><button class="btn solid" onclick="toast('已打开新建职位（演示）')">＋ 新增职位</button></div>
+      <div class="filters" id="jobFilter">
+        <span class="pill active" data-f="all">全部</span>
+        <span class="pill" data-f="面试中">面试中</span>
+        <span class="pill" data-f="投递中">投递中</span>
+        <span class="pill" data-f="待回复">待回复</span>
+        <span class="pill" data-f="已拒绝">已拒绝</span>
+        <span class="pill" data-f="已拿offer">已拿offer</span>
+      </div>
+      <div class="card">
+        <table id="jobTable">
+          <tr><th>公司</th><th>职位</th><th>薪资</th><th>渠道</th><th>投递日期</th><th>状态</th><th>下次动作</th></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== 投递历史 ===== -->
+    <section class="page" id="page-history">
+      <div class="head"><div><h1>投递历史</h1><div class="date">全部投递记录与状态流转</div></div></div>
+      <div class="card">
+        <table>
+          <tr><th>日期</th><th>公司 · 职位</th><th>动作</th><th>结果</th></tr>
+          <tr><td>01-01</td><td>示例公司 · HR</td><td>打招呼 → 对方同意接收简历</td><td><span class="tag teal">简历已接收</span></td></tr>
+          <tr><td colspan="4" style="color:var(--text2);font-size:12px;">示例：今日累计投递 1 次（= 简历接收 1 份）· 获得面试 0 · 打招呼 2 条 · 打招呼→简历接收率 50%</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== 今日打招呼记录 ===== -->
+    <section class="page" id="page-records">
+      <div class="head"><div><h1>打招呼记录</h1><div class="date">记录来源于招聘平台「30 天内联系人」截图整理 · 以下为示例数据</div></div></div>
+      <div class="metrics" style="grid-template-columns:repeat(3,1fr);">
+        <div class="metric orange"><div class="lb">打招呼（今日）</div><div class="num">2<span style="font-size:14px;color:var(--text2);font-weight:600;"> / 50</span></div><div class="sub">完成率待更新 · 首日记录后自动核算</div></div>
+        <div class="metric teal"><div class="lb">简历接收</div><div class="num">4<span style="font-size:14px;color:var(--text2);font-weight:600;"> / 30</span></div><div class="sub">完成率待更新 · 首日记录后自动核算</div></div>
+        <div class="metric"><div class="lb">累计沟通记录</div><div class="num">4</div><div class="sub">对方回复 / 主动联系 1 条 · 打招呼→简历接收 <b style="color:var(--primary)">50%</b>（1 ÷ 2）</div></div>
+      </div>
+      <div class="filters" id="recFilter">
+        <span class="pill active" data-f="all">全部 4</span>
+        <span class="pill" data-f="greet">打招呼 2</span>
+        <span class="pill" data-f="reply">对方回复 1</span>
+        <span class="pill" data-f="resume">简历相关 1</span>
+      </div>
+      <div class="card">
+        <table id="recTable">
+          <tr><th>时间</th><th>姓名</th><th>公司</th><th>职位</th><th>类型</th></tr>
+        </table>
+      </div>
+      <div class="muted" style="margin-top:10px;line-height:1.8;">口径说明：打招呼 = 今天由我方发起（含打招呼模板已送达/已读、定制开场、点击「与 Boss 沟通」）；对方回复与主动联系不计入打招呼数；简历接收 = 「对方已同意，附件简历已发送」及主动发送附件简历。</div>
+    </section>
+
+    <!-- ===== 收藏岗位 ===== -->
+    <section class="page" id="page-saved">
+      <div class="head"><div><h1>收藏岗位</h1><div class="date">职位收藏 · 按分类整理（灰色为已下线岗位，仅留档参考）</div></div></div>
+
+      <div class="card" style="margin-bottom:14px;">
+        <div class="card-h" style="padding-bottom:10px;">搜索关键词库
+          <span style="font-weight:400;font-size:11px;color:var(--text2);margin-left:8px;">点击关键词筛选下方岗位表 · 这些词也可以直接粘到 Boss直聘 搜索框里搜岗位</span>
+        </div>
+        <div style="padding:0 16px 14px;" id="kwLib"></div>
+      </div>
+
+      <div style="margin-bottom:12px;display:flex;gap:10px;align-items:center;">
+        <input class="search-in" id="savedSearch" placeholder="🔍 输入关键词筛选（如：Meta、TikTok、出海、UA、Agent、短剧）" style="flex:1;">
+        <span style="font-size:12px;color:var(--text2);white-space:nowrap;" id="savedCount"></span>
+      </div>
+
+      <div class="filters" id="savedFilter">
+        <span class="pill active" data-f="all">全部</span>
+        <span class="pill" data-f="ua">出海投放·UA</span>
+        <span class="pill" data-f="ai">AI产品·Agent</span>
+        <span class="pill" data-f="growth">增长</span>
+        <span class="pill" data-f="ops">海外运营·发行</span>
+        <span class="pill" data-f="biz">商业化·变现</span>
+        <span class="pill" data-f="game">游戏·短剧</span>
+        <span class="pill" data-f="other">综合</span>
+        <span class="pill" data-f="off">已下线</span>
+      </div>
+
+      <div class="card">
+        <table id="savedTable">
+          <tr><th>职位</th><th>公司</th><th>薪资</th><th>地点</th><th>分类</th><th>状态</th></tr>
+        </table>
+      </div>
+      <div class="muted" style="margin-top:10px;line-height:1.8;">分类口径：出海投放·UA = 海外广告投放/优化师/买量；AI产品·Agent = AI 应用、大模型、Agent 相关产品与运营；增长 = 用户增长/增长产品/增长运营；海外运营·发行 = 海外市场运营、发行、直播、社媒、达人；商业化·变现 = 广告商业化、渠道、大客户；游戏·短剧 = 游戏与短剧垂类岗位。共整理 <b id="savedTotal"></b> 条（收藏总数 203，截图未覆盖全部页面，公司名个别以截图为准）。</div>
+    </section>
+
+    <!-- ===== 简历管理 ===== -->
+    <section class="page" id="page-resume">
+      <div class="head"><div><h1>简历管理</h1><div class="date">多版本简历与投递适配</div></div>
+        <div class="sp"></div><button class="btn solid" onclick="toast('已打开上传简历（演示）')">⬆ 上传简历</button></div>
+      <div class="card" style="margin-bottom:14px;">
+        <div class="resume">
+          <div class="doc">📄</div>
+          <div style="flex:1;">
+            <div style="font-weight:700;font-size:14px;">产品经理_通用版_v5.pdf</div>
+            <div class="date" style="font-size:12px;color:var(--text2);margin-top:3px;">更新于 2026-04-28 · 被投递使用 8 次 · 回复率 42%</div>
+          </div>
+          <span class="tag green">默认简历</span>
+          <button class="btn ghost sm" onclick="toast('简历预览（演示）')">预览</button>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:14px;">
+        <div class="resume">
+          <div class="doc">📄</div>
+          <div style="flex:1;">
+            <div style="font-weight:700;font-size:14px;">产品经理_大厂增长方向_v2.pdf</div>
+            <div class="date" style="font-size:12px;color:var(--text2);margin-top:3px;">更新于 2026-04-25 · 被投递使用 3 次 · 回复率 33%</div>
+          </div>
+          <span class="tag blue">投递中专用</span>
+          <button class="btn ghost sm" onclick="toast('简历预览（演示）')">预览</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-h" style="padding-bottom:0;">简历优化建议</div>
+        <div style="padding:10px 16px 16px;font-size:13px;line-height:1.9;color:#4b5563;">
+          ✅ 量化成果覆盖率高（12 处数据化表达）<br>
+          ⚠️ 「负责」开头句式偏多，建议改为「主导 / 推动 / 交付」<br>
+          ⚠️ 技能关键词与目标 JD 匹配度 78%，建议补充「数据分析 SQL」相关表述
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 系统设置 ===== -->
+    <section class="page" id="page-settings">
+      <div class="head"><div><h1>系统设置</h1><div class="date">目标、提醒与自动化</div></div></div>
+      <div class="card" style="margin-bottom:14px;">
+        <div class="set-row"><div style="flex:1;"><div class="t">每日打招呼目标</div><div class="d">BOSS / 脉脉合并计算</div></div>
+          <select id="setGreetGoal" style="border:1px solid var(--border);border-radius:8px;padding:6px 10px;font-size:13px;">
+            <option>30 条</option><option selected>50 条</option><option>60 条</option>
+          </select></div>
+        <div class="set-row"><div style="flex:1;"><div class="t">每日简历接收目标</div><div class="d">对方同意接收附件简历即计数</div></div>
+          <select id="setResumeGoal" style="border:1px solid var(--border);border-radius:8px;padding:6px 10px;font-size:13px;">
+            <option>10 份</option><option selected>30 份</option><option>50 份</option>
+          </select></div>
+        <div class="set-row"><div style="flex:1;"><div class="t">面试提醒</div><div class="d">面试前 1 小时推送提醒</div></div><div class="switch on" onclick="this.classList.toggle('on')"></div></div>
+        <div class="set-row"><div style="flex:1;"><div class="t">状态流转自动跟踪</div><div class="d">HR 查看后自动标记「待回复」</div></div><div class="switch on" onclick="this.classList.toggle('on')"></div></div>
+        <div class="set-row"><div style="flex:1;"><div class="t">周末自动暂停投递</div><div class="d">周六日不执行自动投递任务</div></div><div class="switch" onclick="this.classList.toggle('on')"></div></div>
+      </div>
+      <div class="card">
+        <div class="card-h" style="padding-bottom:0;">数据概要</div>
+        <div style="padding:10px 16px 16px;font-size:13px;color:#4b5563;line-height:1.9;">
+          累计投递（= 简历接收）<b id="sumTotal">4</b> 次 · 获得面试 <b>0</b> 次 · 转化率 <b id="sumRate">0%</b><br>
+          今日打招呼 2 条 · 打招呼→简历接收率 <b>50%</b>（1 ÷ 2）<br>
+          数据保存在浏览器本地（localStorage），刷新不丢失
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ================= 状态数据 ================= */
+const state = {
+  total:4, interview:0, applying:4, waiting:0, rejected:0, offer:0,
+  greet: 0, greetGoal:50, resume: 0, resumeGoal:30,
+};
+
+/* 示例记录：[时间, 姓名, 公司, 职位, 类型]
+   类型：greet_sent 打招呼·送达 / greet_read 打招呼·已读 / greet_chat 已开聊
+        reply 对方回复 / resume_ok 简历已接收 / resume_sent 简历送达 */
+const records = [
+  ["18:27","示例A","某科技公司","HR","resume_ok"],
+  ["18:25","示例B","某游戏公司","招聘者","reply"],
+  ["18:22","示例C","某互联网公司","招聘经理","greet_read"],
+  ["17:40","示例D","某出海企业","招聘专家","greet_sent"],
+];
+const typeMeta = {
+  greet_sent:["打招呼 · 送达","blue"],
+  greet_read:["打招呼 · 已读","green"],
+  greet_chat:["已开聊","teal"],
+  reply:["对方回复","orange"],
+  resume_ok:["简历已接收","teal"],
+  resume_sent:["简历送达","gray"],
+};
+const statusColor = {"面试中":"green","投递中":"blue","待回复":"orange","已拒绝":"red","已拿offer":"teal","简历已接收":"teal","简历送达":"gray"};
+const avColor = {"字":"#3b82f6","滴":"#00b578","拼":"#ef4444","蚂":"#0abf9b","腾":"#00b578","阿":"#f59e0b","美":"#f59e0b","京":"#ef4444","小":"#ef4444","众":"#0abf9b","陌":"#3b82f6","3":"#00b578","上":"#f59e0b"};
+
+const interviews = [
+  ["示例公司 · 产品经理一面","明天 14:00","视频会议"],
+];
+const recents = [
+  ["示例公司","HR（岗位待确认）","—","BOSS直聘","简历已接收"],
+];
+const jobs = [
+  ["示例公司","产品经理","15-25K","北京","投递中"],
+];
+
+/* 打招呼历史（按日汇总）：[日期, 沟通数量, 简历接收数量, 渠道(boss/ref/web), 备注] */
+/* 打招呼历史（按日汇总）：[日期, 沟通数量, 简历接收数量, 渠道(boss/ref/web), 备注=当日投递心得] */
+let days = [
+  ["2026-01-01", 12, 1, "boss", "示例：当天心得写在这里"],
+];
+
+/* 收藏岗位：[职位, 公司, 薪资, 地点, 分类, 状态]  状态：1 在招 / 0 已下线（灰色） */
+const catMeta = {
+  ua:["出海投放·UA","orange"],
+  ai:["AI产品·Agent","blue"],
+  growth:["增长","green"],
+  ops:["海外运营·发行","teal"],
+  biz:["商业化·变现","red"],
+  game:["游戏·短剧","gray"],
+  other:["综合","gray"],
+};
+/* 收藏岗位：[职位, 公司, 薪资, 地点, 分类, 状态1在招/0已下线]
+   分类：ua 出海投放 / ai AI产品 / growth 增长 / ops 海外运营 / biz 商业化 / game 游戏 / other 综合 */
+const savedJobs = [
+  ["海外广告投放专家","示例科技","60-90K·16薪","北京","ua",1],
+  ["AI产品经理（Agent方向）","示例AI","40-70K","上海","ai",1],
+  ["增长负责人","示例消费","50-70K·15薪","北京","growth",1],
+  ["海外发行运营","示例游戏","30-50K","深圳","ops",1],
+  ["商业化经理","示例工具","35-55K","杭州","biz",1],
+];
+/* 搜索关键词库（可粘到 Boss直聘 搜索框） */
+/* 搜索关键词库：点击 chips 即在收藏岗位表中筛选，也可复制到招聘平台搜索框 */
+const kwLib = [
+  ["出海市场", ["出海","海外","全球化","游戏出海","短剧出海","AI出海","出海增长"]],
+  ["UA/买量", ["UA","买量","投放优化","广告投放","投放经理","投放专家","效果广告","信息流优化"]],
+  ["媒体渠道", ["Google","Google Ads","Meta","Facebook","FB投放","TikTok","Apple Search Ads"]],
+  ["岗位方向", ["海外优化师","优化师","UA投放","增长负责人","增长专家","海外发行","商业化","Agent","出海运营"]],
+  ["行业垂类", ["游戏","IAP","IAA","短剧","网服","工具出海","电商出海","AI应用"]],
+];
+
+/* ================= 工具 ================= */
+function toast(msg){
+  const t=document.getElementById("toast");
+  t.textContent=msg;t.classList.add("show");
+  clearTimeout(window._tt);
+  window._tt=setTimeout(()=>t.classList.remove("show"),2000);
+}
+const $=id=>document.getElementById(id);
+
+/* ================= 渲染 ================= */
+function itemHTML(a,showTime){
+  return `<div class="item">
+    <div class="sq" style="background:${avColor[a[0]]||"#8a94a3"}">${a[0]}</div>
+    <div class="info"><div class="co">${a[1]}</div><div class="po">${a[2]}${showTime?" · "+a[4]:""}</div></div>
+    <span class="tag ${statusColor[a[3]]||"blue"}">${a[3]}</span>
+  </div>`;
+}
+function renderLists(){
+  $("interviewList").innerHTML = interviews.length
+    ? interviews.map(i=>itemHTML(i,true)).join("")
+    : `<div class="empty">暂无面试安排<br><span style="font-size:12px;">今日获得面试 0 · 简历接收 4 份待反馈</span></div>`;
+  $("recentList").innerHTML=recents.map(i=>itemHTML(i,false)).join("");
+}
+function renderJobs(filter){
+  const tb=$("jobTable");
+  tb.querySelectorAll("tr:not(:first-child)").forEach(r=>r.remove());
+  jobs.filter(j=>filter==="all"||j[5]===filter).forEach(j=>{
+    const tr=document.createElement("tr");
+    tr.innerHTML=`<td style="font-weight:600;">${j[0]}</td><td>${j[1]}</td><td>${j[2]}</td><td>${j[3]}</td><td>${j[4]}</td>
+      <td><span class="tag ${statusColor[j[5]]}">${j[5]}</span></td><td>${j[6]}</td>`;
+    tb.appendChild(tr);
+  });
+}
+function renderDash(){
+  $("mTotal").textContent=state.total;
+  $("mInterview").textContent=state.interview;
+  $("mGreet").textContent=state.greet;
+  $("mResume").textContent=state.resume;
+  $("mRate").textContent=(state.total?Math.round(state.interview/state.total*100):0)+"%";
+  const max=Math.max(state.interview,state.applying,state.waiting,state.rejected,state.offer,1);
+  [["interview"],["applying"],["waiting"],["rejected"],["offer"]].forEach(([k])=>{
+    $("v-"+k).textContent=state[k];
+    $("b-"+k).style.width=(state[k]/max*100)+"%";
+  });
+  $("gt-greet").style.width=Math.min(state.greet/state.greetGoal*100,100)+"%";
+  $("gt-resume").style.width=Math.min(state.resume/state.resumeGoal*100,100)+"%";
+  $("gv-greet").textContent=state.greet+" / "+state.greetGoal;
+  $("gv-resume").textContent=state.resume+" / "+state.resumeGoal;
+  const gr=Math.round(state.greet/state.greetGoal*100);
+  $("greetHit").textContent=(gr>=100?"达标 ":"未达标 ")+gr+"%";
+  $("greetHit").style.color=gr>=100?"var(--primary)":"var(--red)";
+  const rr=Math.round(state.resume/state.resumeGoal*100);
+  $("resumeHit").textContent=(rr>=100?"达标 ":"未达标 ")+rr+"%";
+  $("resumeHit").style.color=rr>=100?"var(--primary)":"var(--red)";
+  $("fnGreet").textContent=state.greet;
+  $("fnResume").textContent=state.resume;
+  $("fnInterview").textContent=state.interview;
+  $("fnOffer").textContent=state.offer;
+  $("sumTotal").textContent=state.total;
+  $("sumRate").textContent=(state.total?Math.round(state.interview/state.total*100):0)+"%";
+}
+function renderRecords(filter){
+  const tb=$("recTable");
+  tb.querySelectorAll("tr:not(:first-child)").forEach(r=>r.remove());
+  records.filter(r=>{
+    if(filter==="all")return true;
+    if(filter==="greet")return r[4].startsWith("greet");
+    if(filter==="reply")return r[4]==="reply";
+    return r[4].startsWith("resume");
+  }).forEach(r=>{
+    const tr=document.createElement("tr");
+    const [lb,cls]=typeMeta[r[4]];
+    tr.innerHTML=`<td style="color:var(--text2);">${r[0]}</td><td style="font-weight:600;">${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td><span class="tag ${cls}">${lb}</span></td>`;
+    tb.appendChild(tr);
+  });
+}
+/* 打招呼历史 */
+function renderDays(){
+  const tb=$("dayTable");
+  tb.querySelectorAll("tr:not(:first-child)").forEach(r=>r.remove());
+  let cum=0;
+  days.forEach((d,i)=>{
+    cum+=d[1];
+    const rate=d[1]?((d[2]/d[1]*100).toFixed(1).replace(/\.0$/,"")+"%"):"—";
+    const esc=String(d[4]||"").replace(/"/g,"&quot;");
+    const tr=document.createElement("tr");
+    tr.innerHTML=`<td style="font-weight:600;white-space:nowrap;">${d[0]}</td>
+      <td><input class="cell-in num-in" type="number" min="0" value="${d[1]}" onchange="updDay(${i},1,this.value)"></td>
+      <td><input class="cell-in num-in" type="number" min="0" value="${d[2]}" onchange="updDay(${i},2,this.value)"></td>
+      <td style="font-weight:600;">${cum}</td>
+      <td><b style="color:var(--primary)">${rate}</b></td>
+      <td><select class="cell-sel" onchange="updDay(${i},3,this.value)">
+        <option value="boss"${d[3]==="boss"?" selected":""}>Boss直聘</option>
+        <option value="ref"${d[3]==="ref"?" selected":""}>内推</option>
+        <option value="web"${d[3]==="web"?" selected":""}>官网</option>
+      </select></td>
+      <td><input class="cell-in" type="text" placeholder="记录今日投递心得、有价值的信息…" value="${esc}" onchange="updDay(${i},4,this.value)"></td>`;
+    tb.appendChild(tr);
+  });
+}
+function updDay(i,k,v){
+  if(k===1||k===2)v=Math.max(0,parseInt(v)||0);
+  days[i][k]=v;
+  renderDays();save();
+}
+function addDay(){
+  const d=new Date();
+  const ds=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+  if(days.some(x=>x[0]===ds)){toast("今天已有记录行");return;}
+  days.push([ds,0,0,"boss",""]);
+  renderDays();save();
+  toast("已新增 "+ds+" 记录行");
+}
+/* 收藏岗位 */
+let savedCat="all", savedKw="";
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function renderKwLib(){
+  $("kwLib").innerHTML = kwLib.map(([g,ks])=>`
+    <div class="kw-group"><div class="gl">${g}</div><div class="gk">
+      ${ks.map(k=>`<span class="kw-chip" data-kw="${esc(k)}" onclick="useKw('${esc(k)}')">${esc(k)}</span>`).join("")}
+    </div></div>`).join("");
+}
+function useKw(k){
+  savedKw=k;
+  $("savedSearch").value=k;
+  document.querySelectorAll("#kwLib .kw-chip").forEach(c=>c.classList.toggle("on",c.dataset.kw===k));
+  renderSaved();
+}
+function renderSaved(){
+  const tb=$("savedTable");
+  tb.querySelectorAll("tr:not(:first-child)").forEach(r=>r.remove());
+  const kw=savedKw.trim().toLowerCase();
+  const list=savedJobs.filter(j=>{
+    if(savedCat==="all" && !kw)return true;
+    if(savedCat==="off")return j[5]===0 && (!kw || (j[0]+j[1]).toLowerCase().includes(kw));
+    const catOk = savedCat==="all" ? true : j[4]===savedCat;
+    return catOk && j[5]===1 && (!kw || (j[0]+j[1]).toLowerCase().includes(kw));
+  });
+  list.forEach(j=>{
+    const [lb,cls]=catMeta[j[4]];
+    const tr=document.createElement("tr");
+    tr.innerHTML=`<td style="font-weight:600;">${esc(j[0])}</td><td>${esc(j[1])}</td><td style="color:var(--primary);font-weight:600;white-space:nowrap;">${esc(j[2])}</td><td style="color:var(--text2);white-space:nowrap;">${esc(j[3])}</td><td><span class="tag ${cls}">${lb}</span></td>
+      <td>${j[5]?'<span class="tag green">在招</span>':'<span class="tag gray">已下线</span>'}</td>`;
+    tb.appendChild(tr);
+  });
+  $("savedCount").textContent="筛选出 "+list.length+" / "+savedJobs.length+" 条";
+}
+document.querySelectorAll("#savedFilter .pill").forEach(p=>{
+  p.addEventListener("click",()=>{
+    document.querySelectorAll("#savedFilter .pill").forEach(x=>x.classList.remove("active"));
+    p.classList.add("active");
+    savedCat=p.dataset.f;
+    renderSaved();
+  });
+});
+$("savedSearch").addEventListener("input",e=>{
+  savedKw=e.target.value;
+  document.querySelectorAll("#kwLib .kw-chip").forEach(c=>c.classList.toggle("on",c.dataset.kw===savedKw.trim()));
+  renderSaved();
+});
+
+/* ================= 交互 ================= */
+document.querySelectorAll("#menu .menu-item").forEach(el=>{
+  el.addEventListener("click",()=>{
+    document.querySelectorAll("#menu .menu-item").forEach(x=>x.classList.remove("active"));
+    el.classList.add("active");
+    document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+    $("page-"+el.dataset.p).classList.add("active");
+  });
+});
+document.querySelectorAll("#jobFilter .pill").forEach(p=>{
+  p.addEventListener("click",()=>{
+    document.querySelectorAll("#jobFilter .pill").forEach(x=>x.classList.remove("active"));
+    p.classList.add("active");
+    renderJobs(p.dataset.f);
+  });
+});
+function quickAdd(type){
+  if(type==="resume"){
+    state.resume++;
+    if(state.resume>=state.resumeGoal)toast("🎉 已达成今日简历接收目标 "+state.resumeGoal+" 份！");
+    else toast("已记录 1 份简历接收，今日 "+state.resume+"/"+state.resumeGoal);
+  }else{
+    state.greet++;
+    if(state.greet>=state.greetGoal)toast("🎉 已达成今日打招呼目标 "+state.greetGoal+" 条！");
+    else toast("已记录 1 次打招呼，今日 "+state.greet+"/"+state.greetGoal);
+  }
+  renderDash();
+}
+document.querySelectorAll("#recFilter .pill").forEach(p=>{
+  p.addEventListener("click",()=>{
+    document.querySelectorAll("#recFilter .pill").forEach(x=>x.classList.remove("active"));
+    p.classList.add("active");
+    renderRecords(p.dataset.f);
+  });
+});
+$("setGreetGoal").addEventListener("change",e=>{state.greetGoal=parseInt(e.target.value);renderDash();});
+$("setResumeGoal").addEventListener("change",e=>{state.resumeGoal=parseInt(e.target.value);renderDash();});
+
+/* 日期（今日概览按当天时间自动更新） */
+(function(){
+  const d=new Date();
+  const wd=["日","一","二","三","四","五","六"];
+  $("today").textContent=`${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日星期${wd[d.getDay()]}`;
+})();
+
+/* 本地持久化 */
+function save(){try{localStorage.setItem("jobhunt_pro_v6",JSON.stringify(Object.assign({},state,{days:days})));}catch(e){}}
+function load(){
+  try{
+    const s=JSON.parse(localStorage.getItem("jobhunt_pro_v6"));
+    if(s){const d=s.days;delete s.days;Object.assign(state,s);if(Array.isArray(d)&&d.length)days=d;}
+  }catch(e){}
+}
+load();renderLists();renderJobs("all");renderRecords("all");renderDays();renderDash();
+renderKwLib();renderSaved();
+$("savedBadge").textContent=savedJobs.length;
+$("savedTotal").textContent=savedJobs.length;
+window.addEventListener("beforeunload",save);
+setInterval(save,3000);
+</script>
+</body>
+</html>

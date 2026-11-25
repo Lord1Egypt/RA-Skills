@@ -1,69 +1,47 @@
 const constants = require("../config/constants");
-const { requestApi } = require("../utils/request");
+const { requestApi, pollTaskResult } = require("../utils/request");
+const { SkillError } = require("../utils/errors");
+const { formatCreateTime } = require("../utils/time");
+const { profileUrl } = require("../validate/url");
 
 function processCommentResults(data) {
-  if (!Array.isArray(data)) {
-    return [];
+  if (!Array.isArray(data)) return [];
+  const out = [];
+  for (const item of data) {
+    if (!item || typeof item !== "object" || !item.cid) continue;
+    const processed = { ...item };
+    const userUrl = profileUrl(item.user_uid);
+    if (userUrl) processed.user_url = userUrl;
+    const timeText = formatCreateTime(item.create_time);
+    if (timeText) processed.create_time_str = timeText;
+    out.push(processed);
   }
-
-  return data.map((item) => {
-    const processedItem = { ...item };
-
-    if (item.author_uid) {
-      processedItem.author_url = `https://www.tiktok.com/@${item.author_uid}`;
-    }
-
-    if (typeof item?.create_time === "number" && item.create_time) {
-      processedItem.create_time_str = new Date(
-        item.create_time * 1000,
-      ).toLocaleString();
-    }
-
-    return processedItem;
-  });
+  return out;
 }
 
 async function createCommentTask(token, url, limit) {
-  const params = { _: Date.now() };
-
-  const data = {
-    url,
-    limit,
-  };
-
   return await requestApi(
     "POST",
     "/api/tiktok/comment/url",
+    { _: Date.now() },
+    { url, limit },
     token,
-    params,
-    data,
     constants.CREATE_MAX_ATTEMPTS,
     "创建任务",
   );
 }
 
 async function getCommentTask(token, url, limit) {
-  const params = {
-    _: Date.now(),
-    url: url,
-    limit: limit,
-  };
-
-  const response = await requestApi(
-    "GET",
+  const response = await pollTaskResult(
     "/api/tiktok/comment/info",
+    { url, limit },
     token,
-    params,
-    null,
-    constants.QUERY_MAX_ATTEMPTS,
     "查询任务",
   );
-
-  if (response.data) {
-    return processCommentResults(response.data);
+  if (!Array.isArray(response.data)) {
+    throw new SkillError("API_ERROR", "评论结果格式错误: data 不是数组", true);
   }
-
-  return [];
+  return processCommentResults(response.data);
 }
 
 module.exports = {

@@ -441,12 +441,12 @@ def _viz_render(ord_hexes, theme, label):
         "header h1{font-size:16px;margin:0 0 10px}",
         "header h1 b{color:#F2CC8F}",
         ".chips{display:flex;gap:8px;flex-wrap:wrap}",
-        ".chip{padding:4px 10px;border-radius:99px;font:600 11px monospace}",
+        ".chip{padding:4px 10px;border-radius:99px;font:600 12.5px monospace}",
         ".grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:16px;padding:16px}",
         ".scene{background:#fff;border-radius:10px;overflow:hidden}",
-        ".scene h2{font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.85;",
+        ".scene h2{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.85;",
         "  margin:0;padding:8px 14px;background:#F2F2F0;color:#444}",
-        ".badge{float:right;font:700 10px monospace;color:#7CD992}",
+        ".badge{float:right;font:700 12px monospace;color:#7CD992}",
         ".vsec{padding:6px 0 2px}",
         ".vhead{padding:10px 22px 0;font:700 13px system-ui;color:#F2CC8F;display:flex;gap:12px;align-items:center}",
         ".vhead .badge{float:none}",
@@ -457,18 +457,18 @@ def _viz_render(ord_hexes, theme, label):
     # S1 Mobile App
     tpl = NL.join([
       "<div style='width:230px;margin:14px auto;border:1px solid #ddd;border-radius:18px;overflow:hidden;background:%(bg)s'>",
-      "  <div style='padding:5px 12px;font:600 9px system-ui;color:%(tbg)s;display:flex;justify-content:space-between'><span>9:41</span><span>●●●</span></div>",
+      "  <div style='padding:5px 12px;font:600 12px system-ui;color:%(tbg)s;display:flex;justify-content:space-between'><span>9:41</span><span>●●●</span></div>",
       "  <div style='padding:12px 14px 8px;color:%(ink)s;font:700 15px system-ui'>Wallet</div>",
       "  <div style='margin:0 12px;padding:14px;border-radius:12px;background:%(accent)s;color:%(tac)s'>",
-      "    <div style='font:600 10px system-ui;opacity:.8'>Balance</div>",
+      "    <div style='font:600 12px system-ui;opacity:.8'>Balance</div>",
       "    <div style='font:800 22px system-ui'>12,480</div></div>",
       "  <div style='margin:10px 12px;padding:10px 12px;border-radius:10px;background:%(surface)s;color:%(ink)s;display:flex;gap:10px;align-items:center'>",
       "    <div style='width:30px;height:30px;border-radius:8px;background:%(ink2)s'></div>",
-      "    <div style='font:600 12px system-ui'>Coffee run<div style='font:400 10px;color:%(ink2)s'>Today 08:12</div></div>",
+      "    <div style='font:600 12px system-ui'>Coffee run<div style='font:400 12px;color:%(ink2)s'>Today 08:12</div></div>",
       "    <div style='margin-left:auto;font:700 12px;color:%(danger)s'>-28</div></div>",
       "  <div style='margin:10px 12px 14px;padding:10px 12px;border-radius:10px;background:%(surface)s;color:%(ink)s;display:flex;gap:10px;align-items:center'>",
       "    <div style='width:30px;height:30px;border-radius:8px;background:%(honey)s'></div>",
-      "    <div style='font:600 12px system-ui'>Salary<div style='font:400 10px;color:%(ink2)s'>Mar 01</div></div>",
+      "    <div style='font:600 12px system-ui'>Salary<div style='font:400 12px;color:%(ink2)s'>Mar 01</div></div>",
       "    <div style='margin-left:auto;font:700 12px;color:%(sage)s'>+9,500</div></div>",
       "  <div style='display:flex;justify-content:space-around;padding:8px 0 12px;border-top:1px solid rgba(0,0,0,.06)'>",
       "    <div style='width:18px;height:18px;border-radius:5px;background:%(accent)s'></div>",
@@ -486,8 +486,8 @@ def _viz_render(ord_hexes, theme, label):
       "  <div style='display:flex;align-items:center;gap:10px;padding:12px 16px'>",
       "    <div style='width:22px;height:22px;border-radius:6px;background:%(accent)s'></div>",
       "    <b style='font:700 13px system-ui'>acme</b>",
-      "    <span style='margin-left:auto;font:500 11px system-ui;color:%(ink2)s'>Docs&nbsp;&nbsp;Pricing</span>",
-      "    <span style='padding:6px 12px;border-radius:6px;background:%(accent)s;color:%(tac)s;font:600 11px system-ui'>Sign up</span></div>",
+      "    <span style='margin-left:auto;font:500 12.5px system-ui;color:%(ink2)s'>Docs&nbsp;&nbsp;Pricing</span>",
+      "    <span style='padding:6px 12px;border-radius:6px;background:%(accent)s;color:%(tac)s;font:600 12.5px system-ui'>Sign up</span></div>",
       "  <div style='text-align:center;padding:26px 18px 20px'>",
       "    <div style='font:800 22px/1.25 system-ui'>Ship color systems<br>that pass review</div>",
       "    <div style='font:400 12px system-ui;color:%(ink2)s;margin:8px 0 14px'>Mechanically validated palettes for your product.</div>",
@@ -496,12 +496,12 @@ def _viz_render(ord_hexes, theme, label):
       "  <div style='display:flex;gap:8px;padding:0 16px 18px'>",
       "    <div style='flex:1;border:1px solid %(cardline)s;border-radius:8px;padding:10px;background:%(surface)s'>",
       "      <div style='width:20px;height:20px;border-radius:5px;background:%(honey)s'></div>",
-      "      <div style='font:700 11px system-ui;margin-top:6px'>Fast</div>",
-      "      <div style='font:400 10px system-ui;color:%(csub)s'>Instant checks</div></div>",
+      "      <div style='font:700 12.5px system-ui;margin-top:6px'>Fast</div>",
+      "      <div style='font:400 12px system-ui;color:%(csub)s'>Instant checks</div></div>",
       "    <div style='flex:1;border:1px solid %(cardline)s;border-radius:8px;padding:10px;background:%(surface)s'>",
       "      <div style='width:20px;height:20px;border-radius:5px;background:%(sage)s'></div>",
-      "      <div style='font:700 11px system-ui;margin-top:6px'>Proven</div>",
-      "      <div style='font:400 10px system-ui;color:%(csub)s'>WCAG + APCA</div></div></div></div>",
+      "      <div style='font:700 12.5px system-ui;margin-top:6px'>Proven</div>",
+      "      <div style='font:400 12px system-ui;color:%(csub)s'>WCAG + APCA</div></div></div></div>",
     ])
     # 0.7.0 修复:暗色下卡片边框换浅线,弱文字(ink2 对 surface <3:1)升级为 ink——暗绿卡片文字不可读旧账
     csub = R["ink2"] if contrast_ratio(R["ink2"], R["surface"]) >= 3.0 else R["ink"]
@@ -526,11 +526,11 @@ def _viz_render(ord_hexes, theme, label):
       "    <div style='width:16px;height:16px;border-radius:4px;background:%(ink2)s;opacity:.5'></div></div>",
       "  <div style='flex:1;padding:12px;color:%(ink)s'>",
       "    <div style='display:flex;gap:8px'>",
-      "      <div style='flex:1;background:%(surface)s;border-radius:8px;padding:10px'><div style='font:500 9px system-ui;color:%(ink2)s'>MRR</div><div style='font:800 16px system-ui'>86k</div></div>",
-      "      <div style='flex:1;background:%(surface)s;border-radius:8px;padding:10px'><div style='font:500 9px system-ui;color:%(ink2)s'>Active</div><div style='font:800 16px system-ui'>1,204</div></div>",
-      "      <div style='flex:1;background:%(surface)s;border-radius:8px;padding:10px'><div style='font:500 9px system-ui;color:%(ink2)s'>Churn</div><div style='font:800 16px system-ui;color:%(danger)s'>1.9%</div></div></div>",
+      "      <div style='flex:1;background:%(surface)s;border-radius:8px;padding:10px'><div style='font:500 12px system-ui;color:%(ink2)s'>MRR</div><div style='font:800 16px system-ui'>86k</div></div>",
+      "      <div style='flex:1;background:%(surface)s;border-radius:8px;padding:10px'><div style='font:500 12px system-ui;color:%(ink2)s'>Active</div><div style='font:800 16px system-ui'>1,204</div></div>",
+      "      <div style='flex:1;background:%(surface)s;border-radius:8px;padding:10px'><div style='font:500 12px system-ui;color:%(ink2)s'>Churn</div><div style='font:800 16px system-ui;color:%(danger)s'>1.9%</div></div></div>",
       "    <div style='display:flex;align-items:flex-end;gap:6px;height:70px;margin-top:10px;background:%(surface)s;border-radius:8px;padding:10px'>%(bars)s</div>",
-      "    <div style='margin-top:8px;background:%(surface)s;border-radius:8px;overflow:hidden;font:500 10px system-ui'>",
+      "    <div style='margin-top:8px;background:%(surface)s;border-radius:8px;overflow:hidden;font:500 12px system-ui'>",
       "      <div style='display:flex;justify-content:space-between;padding:6px 10px;border-bottom:1px solid rgba(0,0,0,.05)'><span>Acme Corp</span><b>12,400</b></div>",
       "      <div style='display:flex;justify-content:space-between;padding:6px 10px'><span>Globex</span><b>8,150</b></div></div></div></div>",
     ])
@@ -546,7 +546,7 @@ def _viz_render(ord_hexes, theme, label):
       "      <div style='width:26px;height:26px;border-radius:50%;background:%(accent)s'></div>",
       "      <b style='font:800 13px system-ui;letter-spacing:.06em;color:%(ink)s'>STUDIO NOVA</b></div>",
       "    <div style='height:1px;background:rgba(0,0,0,.08);margin:10px 0'></div>",
-      "    <div style='font:400 10px/1.7 system-ui;color:%(ink2)s'>Lin Zhang · Design Lead<br>studio.nova@example.com<br>+86 138 0000 0000</div>",
+      "    <div style='font:400 12px/1.7 system-ui;color:%(ink2)s'>Lin Zhang · Design Lead<br>studio.nova@example.com<br>+86 138 0000 0000</div>",
       "    <div style='margin-top:10px;display:flex;gap:5px'>",
       "      <div style='width:14px;height:14px;border-radius:3px;background:%(honey)s'></div>",
       "      <div style='width:14px;height:14px;border-radius:3px;background:%(sage)s'></div>",
@@ -568,10 +568,10 @@ def _viz_render(ord_hexes, theme, label):
       "  <div style='font:800 30px/1.1 Georgia,serif'>Aa Palette in Type</div>",
       "  <div style='font:700 15px system-ui;margin-top:8px'>Heading 2 — structure speaks in the darkest ink</div>",
       "  <div style='font:400 12px/1.7 system-ui;color:%(ink2)s;margin-top:6px'>Body 12px — secondary ink at 1.7 line height. The quick brown fox jumps over the lazy dog 0123456789.</div>",
-      "  <div style='font:600 10px system-ui;letter-spacing:.18em;color:%(atext)s;margin-top:8px'>EYEBROW LABEL — ACCENT VOICE</div>",
-      "  <div style='font:400 10px monospace;color:%(ink2)s;margin-top:6px'>mono 10px — data: 1,204 · 86.4% · +3.2</div>",
-      "  <div style='font:400 10px system-ui;color:%(t3)s;margin-top:4px'>Caption — faint voice for footnotes and axis labels</div>",
-      "  <div style='font:400 11px system-ui;color:%(t4)s;margin-top:3px'>Placeholder — weakest voice, decorative only</div></div>",
+      "  <div style='font:600 12px system-ui;letter-spacing:.18em;color:%(atext)s;margin-top:8px'>EYEBROW LABEL — ACCENT VOICE</div>",
+      "  <div style='font:400 12px monospace;color:%(ink2)s;margin-top:6px'>mono 10px — data: 1,204 · 86.4% · +3.2</div>",
+      "  <div style='font:400 12px system-ui;color:%(t3)s;margin-top:4px'>Caption — faint voice for footnotes and axis labels</div>",
+      "  <div style='font:400 12.5px system-ui;color:%(t4)s;margin-top:3px'>Placeholder — weakest voice, decorative only</div></div>",
     ])
     m = {"%(bg)s": R["bg"], "%(ink)s": R["ink"], "%(ink2)s": R["ink2"], "%(atext)s": R["atext"],
          "%(t3)s": tl["t3"], "%(t4)s": tl["t4"]}
@@ -602,9 +602,9 @@ def _viz_render(ord_hexes, theme, label):
       "<div style='padding:14px 16px;background:%(bg)s;color:%(ink)s'>",
       "  <div style='display:flex;justify-content:space-between;align-items:baseline'>",
       "    <b style='font:700 13px system-ui'>Weekly active users</b>",
-      "    <span style='font:500 9px system-ui;color:%(t3)s'>Mar 1–7</span></div>",
+      "    <span style='font:500 12px system-ui;color:%(t3)s'>Mar 1–7</span></div>",
       "  <div style='display:flex;align-items:flex-end;gap:10px;height:110px;margin-top:10px;border-bottom:2px solid %(ink2)s;padding:0 4px'>%(cbars)s</div>",
-      "  <div style='display:flex;gap:14px;margin-top:8px;font:500 9px system-ui;color:%(t3)s'>",
+      "  <div style='display:flex;gap:14px;margin-top:8px;font:500 12px system-ui;color:%(t3)s'>",
       "    <span><span style='display:inline-block;width:8px;height:8px;background:%(accent)s;border-radius:2px'></span> 2026</span>",
       "    <span><span style='display:inline-block;width:8px;height:8px;background:%(ink2)s;border-radius:2px'></span> 2025</span></div></div>",
     ])
@@ -620,10 +620,10 @@ def _viz_render(ord_hexes, theme, label):
       "      <div style='width:52px;height:68px;border-radius:6px;background:%(honey)s'></div></div>",
       "    <div style='padding:10px 12px'>",
       "      <div style='font:700 12px system-ui;color:%(ink)s'>Ceramic Pour-Over Set</div>",
-      "      <div style='font:500 9px system-ui;color:%(t3)s;margin-top:2px'>★★★★★ <span style='color:%(t4)s'>(214)</span></div>",
-      "      <div style='margin-top:6px'><b style='font:800 15px system-ui;color:%(ink)s'>248</b> <span style='font:400 10px system-ui;color:%(t4)s;text-decoration:line-through'>328</span></div>",
-      "      <div style='margin-top:8px;padding:7px 0;text-align:center;border-radius:6px;background:%(accent)s;color:%(tac)s;font:700 11px system-ui'>Add to cart</div>",
-      "      <div style='font:400 9px system-ui;color:%(t3)s;margin-top:6px'>Free shipping over 199 · 7-day returns</div></div></div></div>",
+      "      <div style='font:500 12px system-ui;color:%(t3)s;margin-top:2px'>★★★★★ <span style='color:%(t4)s'>(214)</span></div>",
+      "      <div style='margin-top:6px'><b style='font:800 15px system-ui;color:%(ink)s'>248</b> <span style='font:400 12px system-ui;color:%(t4)s;text-decoration:line-through'>328</span></div>",
+      "      <div style='margin-top:8px;padding:7px 0;text-align:center;border-radius:6px;background:%(accent)s;color:%(tac)s;font:700 12.5px system-ui'>Add to cart</div>",
+      "      <div style='font:400 12px system-ui;color:%(t3)s;margin-top:6px'>Free shipping over 199 · 7-day returns</div></div></div></div>",
     ])
     m = {"%(bg)s": R["bg"], "%(surface)s": R["surface"], "%(ink)s": R["ink"], "%(accent)s": R["accent"],
          "%(honey)s": honey, "%(tac)s": t_on["accent"], "%(t3)s": tl["t3"], "%(t4)s": tl["t4"]}
@@ -637,9 +637,9 @@ def _viz_render(ord_hexes, theme, label):
       "    <div style='padding:14px'>",
       "      <div style='font:800 15px/1.3 system-ui;color:%(ink)s'>The color issue #42</div>",
       "      <div style='height:3px;width:36px;background:%(honey)s;margin:8px 0'></div>",
-      "      <div style='font:400 11px/1.6 system-ui;color:%(ink2)s'>This week: three palettes that pass every mechanical gate, and why muted beats loud.</div>",
-      "      <div style='margin-top:10px;display:inline-block;padding:8px 14px;border-radius:6px;background:%(ink)s;color:%(tink)s;font:700 11px system-ui'>Read the issue</div></div>",
-      "    <div style='padding:8px 14px;border-top:1px solid rgba(0,0,0,.06);font:400 9px system-ui;color:%(t3)s'>You receive this because you subscribed · unsubscribe</div></div></div>",
+      "      <div style='font:400 12.5px/1.6 system-ui;color:%(ink2)s'>This week: three palettes that pass every mechanical gate, and why muted beats loud.</div>",
+      "      <div style='margin-top:10px;display:inline-block;padding:8px 14px;border-radius:6px;background:%(ink)s;color:%(tink)s;font:700 12.5px system-ui'>Read the issue</div></div>",
+      "    <div style='padding:8px 14px;border-top:1px solid rgba(0,0,0,.06);font:400 12px system-ui;color:%(t3)s'>You receive this because you subscribed · unsubscribe</div></div></div>",
     ])
     m = {"%(bg)s": R["bg"], "%(surface)s": R["surface"], "%(ink)s": R["ink"], "%(ink2)s": R["ink2"], "%(accent)s": R["accent"],
          "%(honey)s": honey, "%(tac)s": t_on["accent"], "%(tink)s": t_on["ink"], "%(t3)s": tl["t3"]}
@@ -648,11 +648,11 @@ def _viz_render(ord_hexes, theme, label):
     # S10 Editorial
     tpl = NL.join([
       "<div style='padding:14px 16px;background:%(bg)s;color:%(ink)s'>",
-      "  <div style='font:800 11px system-ui;letter-spacing:.3em;color:%(atext)s'>THE REVIEW</div>",
+      "  <div style='font:800 12.5px system-ui;letter-spacing:.3em;color:%(atext)s'>THE REVIEW</div>",
       "  <div style='font:800 19px/1.2 Georgia,serif;margin-top:6px'>The quiet power of a restrained palette</div>",
       "  <div style='display:flex;gap:10px;margin-top:8px'>",
-      "    <div style='flex:1;font:400 10px/1.65 Georgia,serif;color:%(ink2)s'>Design movements come and go, but restraint compounds. A palette of five disciplined colors outlives any trend cycle and reads as intent.</div>",
-      "    <div style='flex:1;font:400 10px/1.65 Georgia,serif;color:%(ink2)s;border-left:2px solid %(accent)s;padding-left:10px'>Mechanical validation does not kill taste — it protects it from the median.</div></div></div>",
+      "    <div style='flex:1;font:400 12px/1.65 Georgia,serif;color:%(ink2)s'>Design movements come and go, but restraint compounds. A palette of five disciplined colors outlives any trend cycle and reads as intent.</div>",
+      "    <div style='flex:1;font:400 12px/1.65 Georgia,serif;color:%(ink2)s;border-left:2px solid %(accent)s;padding-left:10px'>Mechanical validation does not kill taste — it protects it from the median.</div></div></div>",
     ])
     m = {"%(bg)s": R["bg"], "%(ink)s": R["ink"], "%(ink2)s": R["ink2"], "%(accent)s": R["accent"], "%(atext)s": R["atext"]}
     scenes.append(("Editorial · 杂志编辑页", _fill(tpl, m)))
@@ -848,8 +848,26 @@ def cmd_direct(args):
             n_pass += res["verdict"] == "PASS"
         print(f"合计: {n_pass}/{len(cases)} PASS")
         sys.exit(0)
+    if args.render:
+        # 0.22 渲染事实审计:render_probe v2 的 zones(实际画出来的颜色×占比)直接进度量,
+        # 不依赖声明板——声明≠实况,审计以渲染像素为准
+        with open(args.render, encoding="utf-8") as f:
+            ev = json.load(f)
+        _zs = [(z["hex"].upper().lstrip("#"), float(z["share"])) for z in ev.get("zones", [])]
+        if len(_zs) < 2:
+            print("渲染证据缺 zones(<2 区)——用新版 render_probe.js 重新采集", file=sys.stderr)
+            sys.exit(2)
+        res = color_director.analyze(args.page or args.render, [tuple(z) for z in _zs], bold=args.bold)
+        print(f"渲染事实审计: {args.render}(zones 来自渲染像素,非声明板)")
+        for f_ in res["findings"]:
+            mark = "PASS" if f_["verdict"] == "PASS" else "FAIL"
+            print(f"  [{mark}] {f_['rule']}: {f_['evidence']}")
+            if f_["verdict"] == "FAIL" and f_.get("fix"):
+                print(f"         ↳ {f_['fix']}")
+        print("裁决:", res["verdict"])
+        sys.exit(0 if res["verdict"] == "PASS" else 1)
     if not args.zones:
-        print("--zones 或 --manifest 必给其一", file=sys.stderr)
+        print("--zones / --manifest / --render 必给其一", file=sys.stderr)
         sys.exit(2)
     zones = color_director._parse_zones(args.zones)
     res = color_director.analyze(args.page or "cli", zones, bold=args.bold)
@@ -1196,7 +1214,7 @@ def cmd_showcase(args):
         stars = "*" * p["tier"] or "new"
         flags = " ".join(p["flags"])
         sw = "".join(f'<div style="background:#{h};flex:1;padding:26px 0 6px;text-align:center">'
-                     f'<span style="font:600 11px monospace;color:#{readable_text(h)};opacity:.75">{h}</span></div>'
+                     f'<span style="font:600 12.5px monospace;color:#{readable_text(h)};opacity:.75">{h}</span></div>'
                      for h in p["hexes"])
         cards.append(f"""
       <div style="border:1px solid #e5e5e5;border-radius:10px;overflow:hidden">
@@ -1734,10 +1752,10 @@ def cmd_directions(args):
   .cell{{border:1px solid rgba(255,255,255,.14);border-radius:8px;overflow:hidden}}
   .cap{{display:flex;justify-content:space-between;gap:8px;padding:9px 14px;font-size:13px;
        background:rgba(255,255,255,.06)}}
-  .cap span{{opacity:.55;font-family:monospace;font-size:11px;text-align:right}}
+  .cap span{{opacity:.55;font-family:monospace;font-size:12.5px;text-align:right}}
   .meta{{display:flex;align-items:center;gap:4px;padding:7px 14px;border-bottom:1px solid rgba(255,255,255,.08)}}
   .hx{{width:22px;height:22px;border-radius:5px;display:inline-block;border:1px solid rgba(255,255,255,.25)}}
-  .hexlist{{margin-left:auto;font:11px monospace;opacity:.6}}
+  .hexlist{{margin-left:auto;font:12.5px monospace;opacity:.6}}
   iframe{{width:100%;height:72vh;border:0;display:block;background:#fff}}
   .pick{{padding:8px 14px;background:rgba(255,255,255,.06)}}
   button{{background:#F2CC8F;color:#20242B;border:0;border-radius:6px;padding:6px 14px;
@@ -1891,6 +1909,10 @@ def cmd_scaffold(args):
     try:
         sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
         import layout_recipes
+        if recipe == "AUTO":
+            # 0.27:AUTO 不做黑盒 —— 路由在调用点解析,理由随 stdout 交付
+            recipe, why = layout_recipes.pick_recipe(tokens, getattr(args, "use_when", "") or "")
+            print(f"AUTO 路由: {recipe} —— {why}")
         html = layout_recipes.build_recipe(tokens, recipe)
     except ValueError as e:
         print(str(e), file=sys.stderr)
@@ -1908,7 +1930,7 @@ def cmd_scaffold(args):
         f.write(html)
     print(f"scaffold: {out}")
     print(f"主题色板(声明): {tokens['PALETTE_DECL']}")
-    print("下一步:替换『替换』标记的内容 → report/evidence 验收")
+    print("下一步:按『替换』注释填真实内容(可见文案已是成品语料,勿回填占位指令)→ report/evidence 验收")
 
 
 def cmd_evidence(args):
@@ -1932,11 +1954,16 @@ def cmd_evidence(args):
         ev["report"] = {"error": (_out or rep.stderr)[-400:]}
     lint_cmd = [sys.executable, os.path.join(here, "lint_page.py"), page, "--palette", ",".join(hexes)]
     if args.render:
-        lint_cmd += ["--render", args.render]
+        # 0.26 闸门诚实:--render 证据不可得绝不静默(旧版吞异常 => 卷宗在"无渲染证据"下仍可 PASS)
+        if not os.path.exists(args.render):
+            print(f"[P1] evidence --render 文件不存在: {args.render} —— 渲染证据闸未测,先跑 render_probe.js 采集", file=sys.stderr)
+            sys.exit(2)
         try:
             ev["render"] = json.load(open(args.render, encoding="utf-8"))
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"[P1] evidence --render 文件不可解析: {args.render} ({e})", file=sys.stderr)
+            sys.exit(2)
+        lint_cmd += ["--render", args.render]
     lint = subprocess.run(lint_cmd, capture_output=True, text=True)
     ev["lint"] = {"exit": lint.returncode, "output": (lint.stdout + lint.stderr).strip()[-2000:]}
 
@@ -2000,8 +2027,11 @@ def cmd_tokens(args):
         sys.exit(2)
     payload, rc = token_sheet.emit(
         hexes, args.name or args.theme or "palette", args.brand or "",
-        dark=bool(args.dark), out_base=args.out or os.path.join(_safe_out_dir(), "tokens"))
-    print(f"tokens: {(args.out or 'tokens')}.css + .json — 裁决 {payload['verdict']}")
+        dark=bool(args.dark), out_base=args.out or os.path.join(_safe_out_dir(), "tokens"),
+        contrast=getattr(args, "contrast", "standard"))
+    print(f"tokens: {(args.out or 'tokens')}.css + .json — 裁决 {payload['verdict']}"
+          + (f" · contrast={payload.get('scale12_contrast', 'standard')}"
+             if payload.get("scale12") else ""))
     for k, v in payload["ratios"].items():
         print(f"  {k} = {v:.2f}:1")
     if payload["problems"]:
@@ -2012,7 +2042,7 @@ def cmd_tokens(args):
 
 def cmd_audit(args):
     """外部页面机械审计(0.9):漂移带最近板色/对比对带达标替换值/禁渐变/紫域大底/
-    AI 默认签名;P0 存在或 P1≥2 = FAIL。静态范围如实声明(外链 CSS 用 render probe 补)。"""
+    AI 默认签名;P0 存在或 P1≥1 = FAIL(0.24 AE-N2 同族改严:单条 P1 即红)。静态范围如实声明(外链 CSS 用 render probe 补)。"""
     try:
         sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
         import page_audit
@@ -2497,6 +2527,8 @@ def main():
     s.add_argument("--manifest", default=None, help="lab_zones.json 批量裁决")
     s.add_argument("--page", default=None, help="页面名(写入报告头)")
     s.add_argument("--bold", action="store_true", help="品牌页(大域准入)")
+    s.add_argument("--render", default=None,
+                   help="render_probe.js 采集的 evidence.json(zones 来自渲染像素,渲染事实审计)")
     s.set_defaults(fn=cmd_direct)
 
     s = sub.add_parser("selftest")
@@ -2564,6 +2596,8 @@ def main():
     s.add_argument("--name", default=None, help="令牌表名(写入注释头)")
     s.add_argument("--brand", default=None, help="品牌名(写入注释)")
     s.add_argument("--dark", action="store_true", help="深色为主(令牌明暗互换)")
+    s.add_argument("--contrast", default="standard", choices=["standard", "high"],
+                   help="对比度旋钮(0.29):standard=WCAG 4.5+APCA Lc 60/90;high=7.0+Lc 75/95(AAA 向)")
     s.add_argument("--out", default=None, help="输出前缀(默认 tokens)")
     s.set_defaults(fn=cmd_tokens)
 

@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-Developers, site owners, and support teams use this skill to create a HoverBot chatbot, embed its widget on a website, and configure knowledge sources for customer support, FAQ, sales, or product guidance workflows.
+Website owners and developers use this skill to create and customize HoverBot chatbots, add them to websites, and supply approved documents or URLs as chatbot knowledge.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review flags unpinned third-party JavaScript loaded from HoverBot's CDN.
+Risk: The install command uses an unpinned CLI version.
 
-Mitigation: Embed the widget only on authorized sites and review HoverBot's data handling, retention, and access controls before production use.
+Mitigation: Review the CLI package and version before running the install command.
 
-Risk: The skill asks users to provide a widget apiKey and upload business or customer content.
+Risk: Documents and URLs added to HoverBot may contain sensitive or unauthorized content.
 
-Mitigation: Confirm the apiKey is a publishable widget token, enable domain restrictions, and avoid uploading secrets, credentials, customer personal data, regulated records, or confidential documents unless approved controls are in place.
+Mitigation: Review each document and URL, confirm you are authorized to share it, and omit sensitive content.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/goncharenko/skills/hoverbot-chatbot)
+- [ClawHub Skill Page](https://clawhub.ai/goncharenko/skills/hoverbot-chatbot)
 - [HoverBot](https://hoverbot.ai)
-- [HoverBot get started](https://sandbox.hoverbot.ai/get-started)
-- [HoverBot dashboard login](https://sandbox.hoverbot.ai/login)
-- [HoverBot widget JavaScript](https://cdn.hoverbot.ai/widget.js)
-- [HoverBot blog](https://hoverbot.ai/blog)
+- [HoverBot Setup](https://app.hoverbot.ai/get-started)
+- [HoverBot Dashboard Login](https://app.hoverbot.ai/login)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, code, configuration, guidance]
+**Output Type(s):** [Text, Markdown, Code, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown guidance with HTML and JavaScript code snippets]
+**Output Format:** [Markdown with HTML and JavaScript examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Guidance may include website embed configuration, dashboard steps, and chatbot knowledge setup instructions.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.0.1 (source: server release evidence)
+1.0.4 (source: frontmatter)
 
 ## Ethical Considerations:
 

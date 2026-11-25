@@ -3,9 +3,10 @@ name: speediance
 description: >
   Read completed workouts (summaries and full per-set detail), browse and export the
   exercise catalog, and push custom training programs to your Speediance (Gym Monster)
-  smart cable machine via its cloud API. Authenticates with your account credentials,
-  caches a session token in your OS user-cache directory (override with an exported SPEEDIANCE_TOKEN_CACHE),
-  and makes outbound HTTPS requests to the Speediance cloud API. Reads and emits structured
+  smart cable machine via its cloud API, optionally reserving one on its calendar.
+  Authenticates with your account credentials, caches a session token in your OS user-cache
+  directory (override with an exported SPEEDIANCE_TOKEN_CACHE), and makes outbound HTTPS
+  requests to the Speediance cloud API. Reads and emits structured
   data. It writes local files only in these cases: the session token cache; config.json when you
   run `config set`, which stores the value you give it (including a password) as plain JSON with
   owner-only permissions; and the exercise catalog that the `library` command saves (default
@@ -19,7 +20,7 @@ metadata:
     primaryEnv: SPEEDIANCE_EMAIL
     permissions:
       network:
-        - "Speediance cloud API (HTTPS) — authentication, workout history, exercise catalog, program creation"
+        - "Speediance cloud API (HTTPS) — authentication, workout history, exercise catalog, program creation, training-calendar reservation (`push --date`)"
       files.read:
         - "config.json — optional credential/config file (working directory, or your OS user-config dir)"
         - "`.env` — optional env file in the working directory; only the SPEEDIANCE_EMAIL, SPEEDIANCE_PASSWORD, SPEEDIANCE_REGION and SPEEDIANCE_DEVICE_TYPE keys are read (parsed to a map, never exported into the process environment); the path keys SPEEDIANCE_CONFIG and SPEEDIANCE_TOKEN_CACHE are ignored there"
@@ -141,8 +142,8 @@ after they confirm they want it fetched. A passing mention of exercising is not 
 request to read their account: ask first. You do **not** need to know whether the
 session was a program, free weights, or a rowing/ski session. The tool finds the day's session(s)
 and returns each one fully resolved, as an array of the same `{training_id, kind,
-info, detail}` shape that `session` emits. (`kind` is `"program"`, `"free"`, or
-`""`.)
+info, detail}` shape that `session` emits. (`kind` is `"program"`, `"course"`,
+`"free"`, or `""`.)
 
 Sample `workouts --json` output (a digest for picking; `kind` lets you filter):
 
@@ -174,8 +175,9 @@ the same two fields:
 | `kind` | `info` | `detail` |
 |---|---|---|
 | `"program"` | `cttTrainingInfo` payload (incl. `completionRate`) | `cttTrainingInfoDetail` — per-exercise, per-rep arrays |
+| `"course"` | `courseTrainingInfo` payload (incl. `completionRate`) | `courseTrainingInfoDetail` — per-exercise, per-rep arrays for official courses |
 | `"free"` | `freeTraining` payload (totals: `totalCapacity`, `totalEnergy`, `totalDistance` for rowing/ski; `name` for guided sessions) | `freeTrainingDetail` — `[]` for a freestyle Free Lift, **populated** for a guided session (e.g. *Aerobic Rowing* → per-interval `finishedReps` with `distance`/`pace`/`spm` + per-stroke traces) |
-| `""` | `null` | `null` (no session found in either namespace) |
+| `""` | `null` | `null` (no session found in any namespace) |
 
 > `kind:"free"` is the *free namespace*, not "freestyle". It spans both a
 > freestyle **Free Lift** (no `info.name`, `detail: []`, aggregates only) and a
@@ -248,9 +250,9 @@ Notes for consumers:
 - **No flag unlocks data** — the endpoints return it, so the CLI returns it. There
   is no `--telemetry`.
 
-> A `trainingId` can identify *different* sessions in the program vs. free
-> namespaces. Auto-detection prefers the program match; pass `--program` or
-> `--free` to `session` to force a namespace when an id is ambiguous.
+> A `trainingId` can identify *different* sessions in the program, course and free
+> namespaces. Auto-detection prefers the program match; pass `--program`,
+> `--course` or `--free` to `session` to force a namespace when an id is ambiguous.
 
 ### Browse the exercise catalog
 
@@ -272,7 +274,14 @@ Author a plan JSON, then push it — the program appears on the machine immediat
 ```bash
 speediance-cli push plan.json --dry-run   # preview payload, no network write
 speediance-cli push plan.json             # create it on the account
+speediance-cli push plan.json --date today  # create it and reserve it on the calendar (today | YYYY-MM-DD)
 ```
+
+`push --json` prints the server's create response (the template code as a JSON string).
+With `--date` it prints `{"template_code": "…", "scheduled_date": "YYYY-MM-DD"}` instead,
+and `--dry-run --date` prints `{"payload": …, "scheduled_date": "YYYY-MM-DD"}`. If the
+reservation fails (exit 3), `--date --json` still prints the `template_code` with
+`scheduled_date: null`. `--date` only accepts today or later.
 
 **Plan JSON format:**
 
@@ -306,6 +315,7 @@ speediance-cli push plan.json             # create it on the account
 | `weight` | float | **Kilograms** |
 | `mode` | int | 1=Standard, 2=Eccentric, 3=Isokinetic, 4=Constant, 5=Spotter |
 | `rest` | int | Seconds between sets |
+| `seconds` | int | Optional. Makes the set timed instead of rep-counted, for moves where the cable doesn't move (e.g. a Nordic curl with the machine holding your legs). `reps` is ignored |
 
 ### Storing what you read
 
@@ -321,9 +331,9 @@ layout.
 | `login` | Authenticate and cache a session token | — |
 | `workouts [--days N]` | List recent completed sessions | ✓ |
 | `today [--date D]` | Every session on a day, auto-resolved to type-correct detail (the one-shot entry point) | ✓ |
-| `session <training_id> [--free\|--program]` | Full, verbatim detail for one session; auto-detects program/free/rowing | ✓ |
+| `session <training_id> [--free\|--program\|--course]` | Full, verbatim detail for one session; auto-detects program/course/free/rowing | ✓ |
 | `library [--search X] [--out FILE]` | Dump or search exercise catalog | ✓ |
-| `push <plan.json> [--dry-run]` | Create a training program on the account | ✓ |
+| `push <plan.json> [--dry-run] [--date D]` | Create a training program on the account, optionally reserving it on the calendar | ✓ |
 | `config show\|set\|path` | Manage `config.json` | ✓ (`show`) |
 | `version` | Build metadata (also `--version`) | ✓ |
 | `completion <shell>` | Shell completion (bash/zsh/fish/powershell) | — |
@@ -331,7 +341,9 @@ layout.
 ## Conventions
 
 - **stdout is parseable** with `--json`; all human-readable hints go to **stderr**.
-- **Exit codes**: `0` success, `2` authentication failure, non-zero for other errors.
+- **Exit codes**: `0` success, `2` authentication failure, `3` `push --date` created the
+  program but could not reserve the day. Don't rerun `push`, which would create a
+  duplicate; ask the user to schedule it in the app. Non-zero for other errors.
 - **Secrets**: `config.json`, `.token.json`, `.env` are gitignored — never commit them.
 - **Token caching**: after the first login, the token is cached in your **OS user-cache
   directory** (e.g. `%LocalAppData%\speediance\token.json` on Windows, `~/.cache/speediance/token.json`

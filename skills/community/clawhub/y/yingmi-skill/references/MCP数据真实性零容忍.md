@@ -2,6 +2,16 @@
 
 适用于依赖盈米 MCP 生成 HTML/结构化报告的场景技能。**各技能 `SKILL.md` 中的「样式与数据隔离」在引用本节基础上，可再列本域核验清单（工具语义、表格裁剪等）。**
 
+
+## §0 交付物禁显接口名（全技能 HTML/PDF/Markdown 交付物）
+
+**客户可见的报告正文、页眉页脚、图表脚注、表格单元格中，禁止出现任何 MCP 工具/API 名称**（如 `GetStrategyDetails`、`BatchGetFundsDetail`、`SearchFinancialNews` 等）。数据来源口径**统一**为 **「数据来源：盈米MCP」**（无空格）；页眉/脚注可追加 **「数据截至 YYYY-MM-DD」** 等日期说明。页脚推荐：`Powered by 盈米MCP · YYYY-MM-DD`（与 [`demo-report.html`](demo-report.html) 一致）。
+
+- Agent 编排、playbook、`report-templates` 内的工具矩阵、模板脚注（如 ``> 数据来源：`GetXxx` ``）**可保留**接口名，仅供 Agent 调用与编排；**不得原样出现在最终 HTML/PDF/Markdown 交付物**。
+- `chart-source` 若需标注截面，只写日期，不写接口名。
+- 图表数据仍须 100% 来自本次工具返回（见 §1），只是 **不向客户展示工具名**。
+- **禁止**在交付物混用「数据来源：盈米」「盈米 MCP」「盈米且慢」等旧写法。
+
 ---
 
 ## §1 通用条款（fund-analyst / fund-screener / market-morning-brief 等）

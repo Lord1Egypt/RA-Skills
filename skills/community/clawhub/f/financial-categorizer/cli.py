@@ -624,6 +624,24 @@ def cmd_accounts(args):
         db.disconnect()
 
 
+def cmd_balances(args):
+    db = get_db(args.db)
+    try:
+        balances = db.get_balances(as_of=args.date)
+        if not balances:
+            print("No accounts defined.")
+            return
+        suffix = f" as of {args.date}" if args.date else ""
+        print(f"Latest known account balance{suffix}:")
+        for b in balances:
+            if b["balance"] is None:
+                print(f"  {b['name']:<20} {'n/a':>14}         (no balance data)")
+            else:
+                print(f"  {b['name']:<20} {b['balance']:>14,.2f} {b['currency']}  ({b['date']})")
+    finally:
+        db.disconnect()
+
+
 def cmd_add_account(args):
     db = get_db(args.db)
     try:
@@ -1988,6 +2006,14 @@ def main():
     # accounts
     p_accounts = subparsers.add_parser("accounts", help="List all accounts")
     p_accounts.set_defaults(func=cmd_accounts)
+
+    # balances
+    p_balances = subparsers.add_parser(
+        "balances",
+        help="Latest known account balance, parsed from the CSV Saldo column",
+    )
+    p_balances.add_argument("--date", help="Show the balance as of this date (YYYY-MM-DD)")
+    p_balances.set_defaults(func=cmd_balances)
 
     # add-account
     p_add_acct = subparsers.add_parser("add-account", help="Add a new account")

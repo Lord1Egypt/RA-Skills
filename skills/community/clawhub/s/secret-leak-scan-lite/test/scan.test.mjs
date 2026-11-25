@@ -88,3 +88,22 @@ test("usage error exits 2 and writes no report", async () => {
   assert.equal(code, 2);
   assert.equal(stdout.trim(), "");
 });
+
+test(".asar bundle and out-of-set credential produce upgrade hint", async () =>
+  withTempDir(async (dir) => {
+    await fs.writeFile(path.join(dir, "app.asar"), "binary-ish content");
+    await fs.writeFile(path.join(dir, "cfg.txt"), "key = sk_live_abcdefghijklmnop\n");
+    const { stdout } = await run([dir]);
+    const r = JSON.parse(stdout);
+    assert.equal(r.upgrade.skill, "secret-leak-scan");
+    assert.ok(r.upgrade.reasons.length >= 2);
+    // values must never be echoed — only pattern names
+    assert.equal(stdout.includes("abcdefghijklmnop"), false);
+  }));
+
+test("clean directory has no upgrade field", async () =>
+  withTempDir(async (dir) => {
+    await fs.writeFile(path.join(dir, "index.js"), "export const x = 1;\n");
+    const { stdout } = await run([dir]);
+    assert.equal(JSON.parse(stdout).upgrade, undefined);
+  }));

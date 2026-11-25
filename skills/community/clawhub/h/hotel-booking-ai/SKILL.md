@@ -5,7 +5,7 @@ description: >
 license: MIT
 metadata:
   author: TourMind
-  version: "1.0.8"
+  version: "1.1.0"
 ---
 
 # Hotel Booking AI Skill 
@@ -36,7 +36,7 @@ I am planning a honeymoon in Bali and want to stay in Nusa Dua, preferably by th
 ```
 ````
 
-Show this post-install message only for the first run after installation. Do not repeat it for later normal hotel requests. Do not let sign-in block hotel search, hotel details, room-rate queries, or availability checks. Do not request `user_key` until an order operation actually needs it; when the user sends it, the Agent saves it to `{baseDir}/user_key.txt` and never asks the user to manage that local file.
+Show this post-install message only for the first run after installation. Do not repeat it for later normal hotel requests. Do not let sign-in block hotel search, hotel details, room-rate queries, or availability checks. Do not request `user_key` until a coupon query or order operation actually needs it; when the user sends it, the Agent saves it to `{baseDir}/user_key.txt` and never asks the user to manage that local file.
 
 ## Response language
 
@@ -64,7 +64,7 @@ The current returned URLs carry the locale in the path `/zh-CN/skills/access`. F
 2. Before the first hotel-search API call, require a location, check-in date and check-out date. The scheduled update check does not require these fields. If adult count is omitted, use 1 adult per room and explicitly tell the user that the search assumes one guest; invite them to provide the guest count for multiple occupancy. Apply the safe defaults below instead of asking unnecessary questions.
 3. Treat `search_hotels.min_price` as a cached candidate signal only. Present a hotel as having a live rate product and quote a price only after `query_room_rates` or a successful `batch_query_room_rates` item returns a matching product. Describe inventory as immediately bookable only when that product has `is_on_request=false`.
 4. Respect explicit radius, budget, star, occupancy and facility requirements as hard constraints. Never silently expand a hard radius or budget.
-5. Every `search_hotels.lowest_price` and `search_hotels.highest_price` value **must be sent in CNY** and must represent the entire stay across all requested rooms, never a nightly value. If the user's budget is in another currency, obtain a current live exchange rate and convert each bound to CNY immediately before the search; never use a remembered, assumed, or stale rate. For a per-room nightly range, calculate `user_currency_bound × live_CNY_rate × night_count × room_count`. For one room over three nights at CNY 300–400 per night, send `lowest_price=900` and `highest_price=1200`. If the user explicitly gives a whole-trip total, convert that total to CNY when necessary but do not multiply it by nights or rooms again.
+5. Use upstream price bounds only for pre-coupon budgets (signed out, coupons declined, or explicitly requested). For signed-in coupon pricing, omit both bounds and apply the budget after preview. Every `search_hotels.lowest_price` and `search_hotels.highest_price` value **must be sent in CNY** and must represent the entire stay across all requested rooms, never a nightly value. If the user's budget is in another currency, obtain a current live exchange rate and convert each bound to CNY immediately before the search; never use a remembered, assumed, or stale rate. For a per-room nightly range, calculate `user_currency_bound × live_CNY_rate × night_count × room_count`. For one room over three nights at CNY 300–400 per night, send `lowest_price=900` and `highest_price=1200`. If the user explicitly gives a whole-trip total, convert that total to CNY when necessary but do not multiply it by nights or rooms again.
 6. Before every `create_booking`, require the guest's full legal name and a valid `contact_email`. Email is mandatory in this skill even if the backend accepts an omitted value. Never offer a skip option, invent an email or reuse an unconfirmed email. Do not collect a phone number.
 7. Interpret cancellation policies exactly as returned. `non_refundable` or `effective_non_refundable=true` means non-refundable. `free_cancel_before_deadline` means free cancellation only through its deadline.
 8. State in the final booking-confirmation template that the TourMind room price is tax included. Also state that a small number of destinations require hotels to collect city or tourism taxes at check-in; surface any explicit `hotel.fees.mandatory` disclosure separately, and do not invent an amount or charging basis. Stripe adds a separate 3.5% processing fee only when the user chooses Stripe.
@@ -74,9 +74,9 @@ The current returned URLs carry the locale in the path `/zh-CN/skills/access`. F
 
 **Base URL:** `https://api.tourmind.com`
 
-All endpoints use `POST` with JSON. `check_skill_update`, `search_location`, `search_hotels`, `get_hotel_detail`, `query_room_rates`, `batch_query_room_rates`, and `check_room_availability` are public and must work without `user_key`. `create_booking`, `query_booking`, `cancel_booking`, and `pay_order` require `user_key` from `{baseDir}/user_key.txt`.
+All endpoints use `POST` with JSON. `check_skill_update`, `search_location`, `search_hotels`, `get_hotel_detail`, `query_room_rates`, `batch_query_room_rates`, and `check_room_availability` are public and must work without `user_key`. `query_available_coupons`, `create_booking`, `query_booking`, `cancel_booking`, and `pay_order` require `user_key` from `{baseDir}/user_key.txt`.
 
-Public hotel searches and room-rate queries may return an anonymous read-only `web_url`. Never ask for or send `user_key` merely to search, inspect a hotel, query rates, receive a read-only link, or check availability.
+When signed in, send the current account's stored `user_key` in the JSON body of every `search_hotels` request, including keyword, region and nearby searches and repeat searches. Use that same key for single or batch room rates and every `check_room_availability`, including when the user declines coupons. When signed out, omit the key and continue browsing. A read-only `web_url` can be returned to signed-out users.
 
 | Capability | Path |
 |---|---|
@@ -87,6 +87,7 @@ Public hotel searches and room-rate queries may return an anonymous read-only `w
 | Get live rooms and rates | `/skill/toc/query_room_rates` |
 | Get live rooms and rates for up to 20 hotels | `/skill/toc/batch_query_room_rates` |
 | Recheck rate and availability | `/skill/toc/check_room_availability` |
+| Query available booking coupons | `/skill/toc/query_available_coupons` |
 | Create booking | `/skill/toc/create_booking` |
 | Query booking | `/skill/toc/query_booking` |
 | Cancel booking | `/skill/toc/cancel_booking` |
@@ -97,13 +98,13 @@ Failure: `{"ok": false, "error": "..."}`
 
 The optional read-only result link from `search_hotels`, `query_room_rates`, or a successful `batch_query_room_rates` item is at that response or item's `data.web_url`; its expiry and one-time status are in the same `data` object at `web_url_expires_at` and `web_url_one_time`. If these fields are absent, omit the link. Never construct one or require sign-in only to obtain it.
 
-Before calling an order endpoint:
+Before calling `query_available_coupons` or an order endpoint:
 
 1. Read `{baseDir}/user_key.txt`.
-2. If it is absent or empty, pause the order operation. In the user's language, ask them to open `https://auth.journione.ai`, verify their email address to sign in, copy the `user_key` in the form `uk_xxxxxxxx`, and provide it. If the user has trouble registering or signing in, tell them that the Agent can open the link in its built-in browser and help them complete the process. Save the supplied key to that file, then continue.
-3. If an HTTP 401 or an error containing `unauthorized` is returned, delete `{baseDir}/user_key.txt`, stop the order workflow and ask the user in their language to verify their email and sign in again for a new key. If they have trouble, offer the same built-in-browser assistance.
+2. If it is absent or empty, pause the coupon query or order operation. In the user's language, ask them to open `https://auth.journione.ai`, verify their email address to sign in, copy the `user_key` in the form `uk_xxxxxxxx`, and provide it. If the user has trouble registering or signing in, tell them that the Agent can open the link in its built-in browser and help them complete the process. Save the supplied key to that file, then continue.
+3. If an HTTP 401 or an error containing `unauthorized` is returned, delete `{baseDir}/user_key.txt`, stop the protected call, and request sign-in again for a user-requested coupon or order operation. If only an automatic browsing preview failed, continue showing public rates with the coupon-check-unavailable label. If they have trouble, offer the same built-in-browser assistance.
 
-Do not run these authentication steps before public endpoints.
+Do not ask for sign-in before a public check. Reuse an existing key for account-specific verification as described above.
 
 ## Skill version and update check
 
@@ -149,8 +150,8 @@ Do not ask for information that can be inferred safely. State every applied assu
 | Date has no year | Use the next future occurrence in the user's timezone. Show the resolved `YYYY-MM-DD` dates. |
 | Relative date such as tonight or tomorrow | Resolve it to exact dates in the user's timezone. |
 | "Nearby" or "as close as possible" with no radius | Use 3 km and state that default. |
-| Sort order omitted | Rank by verified preference match, then distance, live total price and cancellation flexibility. |
-| Hotel price range such as "300–400" without explicit trip-total wording | Treat it as a per-room nightly range and state that assumption. Convert the amount to CNY with a current live exchange rate when necessary, then multiply both bounds by the number of nights and `room_count` for `lowest_price` and `highest_price`. Ask only when the surrounding context makes the price basis genuinely unclear. |
+| Sort order omitted | Rank by verified preference match, then distance, the applicable stay total and cancellation flexibility. |
+| Hotel price range such as "300–400" without explicit trip-total wording | Treat it as a per-room nightly range and state that assumption. Convert the amount to CNY with a current live exchange rate when necessary, then multiply both bounds by the number of nights and `room_count` when sending pre-coupon search bounds. Apply after-coupon bounds locally. Ask only when the surrounding context makes the price basis genuinely unclear. |
 | Budget explicitly stated as a trip total | Convert the stated total to CNY with a current live exchange rate when necessary, but do not multiply it by nights or rooms again. |
 | Result display currency omitted | For a request written in Chinese, display hotel-list and room-rate prices in CNY. For English and every other non-Chinese language, display them in USD. An explicitly requested display currency always overrides this default. |
 
@@ -166,7 +167,7 @@ Still ask when the location, check-in date or check-out date cannot be inferred.
 
 ## Location and POI resolution
 
-Choose a location route before searching rates:
+Choose a location route before searching rates. For every route below, include the current `user_key` when calling `search_hotels` while signed in.
 
 ### Region-first destination search
 
@@ -216,7 +217,7 @@ Region and nearby `search_hotels` calls return at most 20 candidates that have a
 1. Parse the user's requirements into:
    - **Hard constraints:** dates, occupancy, room count, explicit radius, strict budget, required star level, required facilities or property type.
    - **Soft preferences:** closer, cheaper, higher star level, breakfast, free cancellation, preferred facilities or room type.
-2. Normalize every price filter before calling `search_hotels`. Both price fields **must be CNY whole-stay totals across all requested rooms**. If the user's amount is not CNY, obtain a current live rate and first calculate `source_bound × live_CNY_rate`; for a per-room nightly amount, then multiply by `night_count × room_count`. For one room over three nights at CNY 300–400 per night, send `lowest_price=900` and `highest_price=1200`; never send `300` and `400` as though the fields were nightly. If the user explicitly supplied a whole-trip total, convert it to CNY when necessary but do not multiply it again. Then call `search_hotels` with the applicable hard search fields. Preserve the complete raw candidate pool and `distance_km` values so a later "show all" request can be fulfilled.
+2. Call `search_hotels` with the applicable location and hard search fields. For a pre-coupon budget, send its CNY whole-stay bounds as described above. For a signed-in user's default after-coupon budget, omit both upstream price bounds and apply the budget to the checked amounts below. Preserve the complete raw candidate pool and `distance_km` values so a later "show all" request can be fulfilled.
    - If the response contains `data.web_url`, include it as a clickable read-only hotel-results link. Place the link guidance after the search-summary fields and before the first recommended hotel, with one blank line on each side. Tell the user to open any hotel detail page, click the copy button on the right side of the desired room-rate product, and send the copied product information back in the conversation so you can continue verification and booking. Apply only the required locale-path substitution under **Result-page URL language** and otherwise preserve the URL exactly. The linked session only permits hotel lists, hotel details and room quotes; it does not permit verification, booking, payment, `/book/*`, order, finance or account-management pages.
    - If `data.web_url` is absent, continue with the hotel results and omit the link. Never construct a link or require sign-in only to populate this optional field.
 3. Exclude obvious hard-constraint failures from the recommendation/ranking pool, but retain them in the raw pool with every failed constraint recorded.
@@ -227,12 +228,12 @@ Region and nearby `search_hotels` calls return at most 20 candidates that have a
    - `is_on_request=false` is immediately bookable inventory.
    - `is_on_request=true` is a request product whose inventory still needs supplier confirmation. It does not satisfy an explicit "immediately bookable" or "real-time availability" hard requirement; otherwise keep it eligible but rank it after immediately bookable options and label it clearly.
 5. If a required or preferred facility cannot be verified from search data, call `get_hotel_detail` for the relevant candidates before ranking it.
-6. Apply an explicit user sort first. Otherwise rank by: verified hard/soft preference match, immediate bookability, distance, live total price, then cancellation flexibility.
+6. Before filtering by an after-coupon budget, sorting by price, or selecting five, resolve prices for every otherwise matching quote as described in **Coupons before booking**. Apply the requested sort first; default to preference match, immediate bookability, distance, the applicable stay total, then cancellation flexibility.
 7. Select the five best verified hotels. If fewer than five qualify, show only the qualifying count; never pad the list with failures.
 8. For each selected hotel, call `get_hotel_detail` to obtain its address, hero image, facilities and any explicitly returned fee disclosures.
 9. If the user asks for all returned results, show the complete original returned candidate pool; previously excluded candidates must remain available. Separate qualifying hotels from candidates that fail hard constraints, state every failed hard constraint for each candidate, and never describe a non-match as recommended. Verify live rates before quoting any additional hotel; for candidates without a matching live product, write the localized equivalent of `No matching live room or quote` instead of using cached `min_price`.
 
-If a strict price filter returns no candidates, one no-budget probe may diagnose whether inventory exists above budget. Clearly label such results as over budget and do not count them as matches. Never expand a strict radius without permission.
+If a pre-coupon search filter returns no candidates, one no-budget probe may diagnose whether inventory exists above budget. Clearly label such results as over budget and do not count them as matches. Never expand a strict radius without permission.
 
 ## Evidence-based match reasons
 
@@ -256,7 +257,7 @@ Found {candidate_count} candidate hotels and verified live room products for {ve
 Search area: {region_or_poi_and_radius_resolution_note}
 Stay: {check_in_date} to {check_out_date}, {night_count} nights
 Guests: {total_adults} adults, {total_children} children, {room_count} rooms ({occupancy_distribution})
-Price basis: TourMind live room rates; the nightly price is per room and the stay total covers all rooms for all nights
+Price basis: {live_or_after_coupon_price_label}; the nightly price is per room and the stay total covers all rooms for all nights
 Display currency: {display_currency}
 
 👉 More hotels: [View detailed hotel results]({web_url}). Open a hotel, click “Copy” beside the desired room, and send it to me to book.
@@ -300,7 +301,7 @@ Hero-image rendering rules for both hotel-list and hotel-detail responses:
 
 For each selected hotel:
 
-- Use the live room product for room name, price, meal, cancellation and on-request status.
+- Use the live product for room name, meal, cancellation and on-request status. Show its price on the basis defined in **Coupons before booking**.
 - Show both per-night and stay-total price in the selected display currency: CNY for Chinese requests, USD for non-Chinese requests, or the user's explicitly requested currency. Convert with a current live exchange rate when necessary and keep the returned transaction currency and amounts unchanged for later verification and booking.
 - Show a fee or tax note only when the API explicitly returns a fee, tax amount, or inclusion status, or when the user asks about taxes and fees. Do not notify the user that fee or tax data is absent, incomplete, or unknown.
 
@@ -317,7 +318,7 @@ When the user chooses or asks about one hotel, call `get_hotel_detail` and `quer
 If `query_room_rates.data.web_url` is returned, show it as a clickable read-only hotel and room-rate page. The linked page only displays hotel details and room quotes. It does not support price verification, booking, payment, `/book/*`, order management, finance or account management. Continue those actions in the current AI conversation through the Skill APIs. If no link is returned, continue with the room-rate response and do not require sign-in.
 
 1. Show the hotel hero image by following the client-safe hero-image rules above, plus the concise address, star, distance, check-in/out and facilities. Include a fee summary only when the API explicitly returns a fee or the user asks about fees.
-2. Rank live room products by the user's request; show up to five distinct products by default and offer all remaining products.
+2. Apply **Coupons before booking** to the matching room products before ranking or displaying them. Show up to five distinct products by default and offer the remainder.
 3. For every room product, use this English source structure and translate its visible labels into the user's language:
 
 ```markdown
@@ -325,9 +326,9 @@ If `query_room_rates.data.web_url` is returned, show it as a clickable read-only
 
 ![{room_name} room image]({basic_room_image})
 
-| Bed type | Maximum occupancy | Meal | Per night | Stay total | Cancellation | Inventory status |
-|---|---:|---|---:|---:|---|---|
-| {bed_type} | {max_occupancy} | {meal_summary} | {per_night_price} | {total_price} | {cancellation_summary} | {bookable_or_on_request} |
+| Bed type | Capacity per room (adults + children) | Meal | Per night | Stay total | Cancellation | Inventory status |
+|---|---|---|---:|---:|---|---|
+| {bed_type} | {adult_child_capacity_summary} | {meal_summary} | {per_night_price} | {total_price} | {cancellation_summary} | {bookable_or_on_request} |
 ```
 
 Room-image rules:
@@ -336,10 +337,39 @@ Room-image rules:
 - Otherwise use the matching `get_hotel_detail.rooms[].basic_room_image` only when the room code/name maps confidently.
 - If only a generic hotel room gallery exists, use the localized label equivalent of `Generic hotel room image; not guaranteed to match the quoted room type`.
 - If no matching image exists, say so and omit the image. Never attach an unrelated image.
-- Do not translate `meal_type` codes into breakfast/dinner without a documented mapping. Use `meal_count` conservatively.
+- Interpret meals using [Meal type mapping](references/parameter_guide.md#meal-type-mapping), including numeric and string codes 1–19. `meal_type=2` means breakfast for the booked guests; `meal_type=4` means two breakfasts. `meal_count` is supplementary and must not override a known type, including when it is zero.
+- Match and display capacity using [Adult and child capacity](references/parameter_guide.md#adult-and-child-capacity). `maxOccupancy` / `max_occupancy` limits adults; a returned `maxChildren` / `max_children` permits additional children. For `2` and `1`, show `Up to 2 adults + 1 child per room`; compare adult and child counts separately for every room and retain the requested child ages through availability checking.
 - Render the API value `Others` using the localized equivalent of `Other / room assigned at check-in`, not as a specific room.
 
 End with a clear next action: the user can choose a room for final availability and price verification. Then include the same localized currency note used by the hotel-list template so the user knows which currency is shown and can request another display currency.
+
+## Coupons before booking
+
+With no stored `user_key`, show live prices before coupons. Alongside the first hotel or room price in this search, say once in the response language, “Register or sign in to check available coupons. You may get a lower price.” Keep browsing and availability public. Request sign-in only when the user asks to check coupons (including an after-coupon budget or comparison) or authorizes an order operation.
+
+If the user explicitly declines coupons and only wants a hotel or room list, compare the matching live products from `query_room_rates` or successful `batch_query_room_rates` items at their original prices. If they require immediate availability, include only products with `rate.is_on_request=false`. Skip per-product availability checks and coupon lookups for the list. When they select a specific rate for final review or explicitly ask to verify it, run `check_room_availability` under the current account if signed in and continue without a coupon lookup.
+
+With a stored key, unless the user declines coupons, automatically check coupons for every otherwise matching quote used to compare or display prices, before applying a price budget, sorting by price, or selecting a shortlist. Call `check_room_availability` and then `query_available_coupons` with the exact checked hotel, rate code, dates, currency, and **pre-coupon stay total for all rooms**. Use the selected eligible coupon's `payable_amount`, or the lowest returned payable amount by default; identify that coupon and label the price `After coupon`. Apply the same basis to hotel and room comparisons and to displayed prices. Honor an explicitly pre-coupon budget or sort on its stated basis. Convert only for comparison/display; label a discounted nightly price as the average per room per night. See [coupon parameters and amounts](references/parameter_guide.md#post-skilltocquery_available_coupons).
+
+A successful `coupons=[]` uses the checked live price with no discount label. If the user asked about discounts for that quote and the current account's latest lookup for it succeeded with an empty list, say in the response language, “No coupons are currently available for this quote.” Include this answer in the hotel or room results or alongside the final booking review, as applicable. A skipped or failed lookup does not establish that result. If lookup fails, keep any valid checked price labeled `Before coupons; coupon check unavailable` and exclude it from verified after-coupon rankings and budget matches. Preview may issue an entitlement but does not reserve quota or bind the order. For Skill campaigns, `remaining_quantity` is shared quota: total less reserved and redeemed uses. An ordinary coupon returned with `remaining_quantity=0` can still be selected.
+
+When the user selects a rate for booking, refresh availability and, if signed in and using coupon pricing, query again for that exact quote. Let the user choose a returned coupon or continue without one. If the user authorizes a booking while signed out, obtain the key then, repeat availability and check coupons unless declined. If the account, quote, coupon choice, or booking terms change, show the new details and obtain confirmation before creation.
+
+For a chosen coupon, add three rows immediately after `Room price total` in the existing final booking-confirmation table: `Coupon`, `Coupon discount`, and `Room charge after coupon (payment fee excluded)`. Keep `Room price total` as the pre-coupon amount. Populate the new rows from `coupon_code`, preview `discount_amount`, and preview `payable_amount`, in the returned settlement currency; obtain explicit confirmation of these amounts. If no coupon is selected, keep the existing confirmation and omit coupon arguments.
+
+For coupon creation, generate a `request_id` of 1–64 bytes before sending the request and retain it with the exact business parameters. Send the chosen `coupon_code` and confirmed `expected_payable_amount`, while `total_price` remains the checked pre-coupon total. A confirmed zero payable amount is a value, not a missing field. If the account/channel, checked rate, dates, occupancy, currency, or total changes before submission, refresh the rate/coupon preview and obtain a new confirmation. An unknown prior creation outcome must be reconciled before starting a changed booking attempt.
+
+On success, show the order reference, returned pre-coupon total, actual `discount_amount`, and `payable_amount`. `replayed=true` means an idempotent retry returned an existing order; normal first success omits `replayed`. Do not describe a replay as a newly created booking. `request_state=SUCCEEDED` and creation `status=confirmed` do not prove payment or hotel confirmation; use `query_booking` for current order state. For order coupon display, use outer major-unit `discount_amount` and `payable_amount`, not `coupon_usage.discount_amount` (minor units). Reservation expiry alone does not prove that quota has been released.
+
+If a coupon becomes unavailable, quota is exhausted, or the confirmed amount changes, refresh coupons and obtain a new confirmation before another attempt; do not silently remove the discount. Classify the previous creation outcome before selecting an ID:
+
+- **Confirmed no order:** only an explicit `FAILED_NO_ORDER` response, or authoritative reconciliation establishing that the attempt cannot still create a booking, permits a new `request_id`. End the old attempt, refresh availability/coupons as needed, and use a fresh ID for the new attempt. Keep the user's booking authorization; obtain new confirmation when the booking terms or amount change. Allow at most one automatic new attempt after a confirmed no-order failure, then report repeated failure and stop.
+- **Processing or unknown:** `PROCESSING`, `UNKNOWN`, a timeout, a lost connection, or an ambiguous failure must keep the original ID and every business parameter. Allow at most two automatic retries of that exact request, with a brief delay between attempts. If still unresolved, stop automatic creation, retain the ID/request, and reconcile a known order through `query_booking` or ask TourMind support to check the original attempt. Never switch IDs, coupons, or parameters to bypass uncertainty.
+- **Existing order:** `SUCCEEDED`, `replayed=true`, or a known successful booking must continue with that order, not create another one. A same-ID parameter conflict must be resolved against the original request; it is not permission to use a fresh ID.
+
+An HTTP error, `ok=false`, MCP `isError=true`, the words `booking failed`, or order status `CONFIRM_FAILED` alone does not establish `FAILED_NO_ORDER`. The existing no-blind-retry rule still applies when no `request_id` was provided.
+
+`pay_order` uses the discount bound to the order. Send the order reference, payment method and current account credential. The coupon preview and the order's `payable_amount` both exclude payment-processing fees.
 
 ## Availability, booking and payment workflow
 
@@ -347,14 +377,15 @@ End with a clear next action: the user can choose a room for final availability 
 0. Complete dates and the repeated per-room adult/child occupancy, then resolve location/POI
 1. search_location / keyword search as needed
 2. search_hotels for up to 20 live-probed candidates in region or nearby mode
-3. batch_query_room_rates in groups of up to 20 hotels, with at most 3 concurrent batch requests (or query_room_rates for one hotel), and rank verified candidates
+3. batch_query_room_rates in groups of up to 20 hotels, with at most 3 concurrent batch requests (or query_room_rates for one hotel), then resolve coupon prices when signed in and using coupons before filtering by price and ranking candidates
 4. Present five hotels with hero images and match reasons
 5. On hotel selection, return hotel detail + room images + live quotes
 6. check_room_availability for the chosen rate
+6a. With a stored key and coupons enabled, query_available_coupons for this checked rate and show the choices; otherwise show the pre-coupon confirmation
 7. Present the required final booking-confirmation template, including the complete per-room adult/child occupancy, children's ages, hotel check-in/out times, tax notice, explicit mandatory fees, customer-service contact and the latest checked price/policy
 8. Obtain the user's explicit confirmation plus full legal guest name and mandatory contact_email
-9. Read or obtain user_key, then create_booking with the checked rate_code and checked total_price
-10. Return agent_ref_id and ask for Stripe, WeChat Pay, or Alipay
+9. If signed out, obtain the key for this authorized booking, repeat availability, check coupons unless declined, and reconfirm any changes. Call create_booking with the checked rate_code and pre-coupon total_price; when using a coupon, include request_id, coupon_code, and confirmed expected_payable_amount
+10. Return agent_ref_id; query_booking and offer only payment methods supported for the order's currency, following the rules below
 11. pay_order after payment-method confirmation
 12. query_booking or cancel_booking on request
 ```
@@ -395,13 +426,22 @@ TourMind Customer Service is available 24/7. Contact us at +86-755 3665 4666.
 Please review the booking details above. To proceed, reply **“Confirm booking”** and provide the guest's **full legal name** and **contact email**. I will then create the booking and continue to payment.
 ```
 
-After booking, return `data.agent_ref_id`. For payment, use only the public names `Stripe`, `WeChat Pay`, and `Alipay`, mapping them to the documented API values. Before Stripe, explain that Stripe - not the hotel or TourMind - adds a 3.5% payment-processing fee; show the returned fee and payable amount. Clearly disclose that once charged, the Stripe processing fee is non-refundable, including when the booking is later cancelled within the hotel's free-cancellation period. Obtain the user's explicit acknowledgement of both the fee and this non-refundable rule before calling `pay_order` with Stripe.
+After booking, return `data.agent_ref_id`.
+
+Before booking, use the latest same-channel `check_room_availability.data.room_types[].rateInfos[].currencyCode` as the coupon-query input currency. When a coupon is available, read the selected `coupons[].currency` and require it to match that checked currency; if `coupons=[]`, keep the checked currency because no coupon currency is returned. A mismatch requires refreshing/reconciling the quote, not guessing. Once an order exists, read `query_booking.data.currency` and use that order currency for payment-method selection; a later coupon query must not override it.
+
+For a `CNY` order, offer Stripe, WeChat Pay and Alipay. Offer Alipay AI Pay only for a CNY order in a client with the native Qwen cashier, which uses the returned `prepay_id`. For every non-CNY order, including `USD`, the current interface supports Stripe only. Send the exact [payment method value](references/parameter_guide.md#post-skilltocpay_order) for the user's choice. Use the order currency regardless of the response language, display currency or search-budget currency.
+
+In `pay_order.data`, `order_amount` is the original room total and `discount_amount` is the applied discount. Their difference must match the post-coupon room charge from `query_booking.data.payable_amount`. The payment response's top-level `data.payable_amount` is the final total for the selected method. For Stripe it includes the separate fee and must match both the post-coupon room charge plus `stripe_payment_fee.fee_amount` and the returned `stripe_payment_fee.payable_amount`. Use the order currency throughout. If a field is missing, check the latest order and available payment breakdown. Withhold the link if the amount or currency cannot be reconciled.
+
+Before calling `pay_order` with Stripe, show a payment review in the conversation: the current order's post-coupon room charge, Stripe's separate 3.5% processing fee, and the total including that fee. Use a returned fee preview only when it applies to this exact post-coupon amount; otherwise clearly label the fee and total as estimates based on the post-coupon room charge. Disclose that once charged, the Stripe processing fee is non-refundable, including cancellation within the hotel's free-cancellation period, and obtain explicit confirmation of Stripe, the fee, and this non-refundable rule before requesting the payment link. After `pay_order` returns, show its authoritative fee and payable total with the payment link; if they differ from the confirmed amounts, obtain a new confirmation before presenting the link for payment.
 
 Before cancellation, confirm the exact `agent_ref_id`. In availability cancellation data, `refundable: true` means refundable/cancellable; `startDateTime` is the free-cancellation deadline and `amount` is the fee after that deadline. If the order was paid through Stripe, warn the user before cancellation that the room-charge refund follows the hotel's cancellation policy, but the charged Stripe processing fee will not be refunded even during the free-cancellation period. Obtain explicit cancellation confirmation after showing this warning.
 
 ## Error and empty-result handling
 
-- Retry a transient network/server failure only when safe; if it still fails, quote the concrete error and stop.
+- Retry a transient network/server failure only when safe; if it still fails, report the concrete error and stop that operation. For a failed coupon preview, stop lookup for that quote and continue with the other results. For a credential error, stop protected calls under that key and follow the authentication rules.
+- Follow **Coupons before booking** for creation recovery: only explicit `FAILED_NO_ORDER` or authoritative confirmation that the attempt cannot still create a booking permits a new attempt/ID; processing or unknown outcomes get at most two identical same-ID retries, then stop automatic creation and reconcile.
 - The `reason` codes below apply to `query_room_rates` responses and to individual `batch_query_room_rates.data.results[]` items. For a batch, handle each item's `reason` independently; do not treat an item-level failure as a failure of the whole batch. `invalid_request` may also appear as a top-level error when the entire single-hotel or batch request is malformed.
 - Treat `reason=no_matching_live_room` as a successful empty result and suggest changing dates or occupancy.
 - Treat `hotel_not_found` as a missing or unavailable hotel, `upstream_timeout` as a temporary real-time pricing timeout, `upstream_error` or `hotel_detail_unavailable` as a service failure, and `invalid_request` as a request that must be corrected. Never describe timeout or service failure as no availability.

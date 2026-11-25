@@ -1,0 +1,15 @@
+{
+  "firm": {
+    "name": "Your Company, LLC",
+    "wordmark": "Your Company",
+    "logo": "logo.png",
+    "accent": "#1f63d6",
+    "lines": [
+      "123 Main St, Suite 100",
+      "City, ST 00000",
+      "Firm license no. 00000",
+      "P: 000-000-0000",
+      "www.example.com"
+    ]
+  }
+}

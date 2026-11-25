@@ -7,6 +7,7 @@ import sys
 from ai_web_client import DEFAULT_REQUEST_TIMEOUT, emit_dry_run, normalize_public_url, parse_headers, post_json, resolve_base_url, resolve_token, validate_country, validate_formats, validate_int_range, validate_string_list
 
 UNIQUE_ID = "extract"
+REQUEST_SOURCE = "skills"
 
 def build_parser():
     parser = argparse.ArgumentParser(description="Invoke the AI Web API extract endpoint.")
@@ -37,7 +38,7 @@ def build_payload(args):
     include_tags = validate_string_list("include_tags", args.include_tag)
     exclude_tags = validate_string_list("exclude_tags", args.exclude_tag)
     headers = parse_headers(args.header)
-    payload = {"unique_id": UNIQUE_ID, "url": normalize_public_url(args.url)}
+    payload = {"unique_id": UNIQUE_ID, "url": normalize_public_url(args.url), "request_source": REQUEST_SOURCE}
     if formats: payload["formats"] = formats
     if args.only_main_content is not None: payload["only_main_content"] = args.only_main_content
     if include_tags: payload["include_tags"] = include_tags

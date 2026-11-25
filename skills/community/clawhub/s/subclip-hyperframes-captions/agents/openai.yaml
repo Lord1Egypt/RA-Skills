@@ -1,0 +1,6 @@
+interface:
+  display_name: "Subclip HyperFrames Captions"
+  short_description: "Turn native captions into a designed HyperFrames caption layer"
+  default_prompt: "Use $subclip-hyperframes-captions to convert this project's captions into a HyperFrames caption style."
+policy:
+  allow_implicit_invocation: true

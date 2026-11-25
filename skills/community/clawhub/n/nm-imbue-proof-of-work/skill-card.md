@@ -1,6 +1,6 @@
 ## Description:
 
-Enforces validation and evidence before claiming work complete; use it before declaring implementation done, creating a PR, or submitting deliverables for review.
+Enforces validation and evidence before claiming work complete. Use before declaring implementation done, creating a PR, or submitting deliverables for review
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and coding agents use this skill to require reproducible validation evidence, edge-case checks, and explicit acceptance criteria before recommending a solution or reporting work complete.
+Developers and software agents use this skill to verify implementation work against acceptance criteria and produce reproducible evidence before reporting completion or submitting deliverables for review.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,41 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan rates the skill suspicious because it reports actions outside its stated validation purpose, including global package installation and commands that can change Git history; the verdict does not establish malicious intent.
+Risk: ClawScan reports a suspicious verdict with medium confidence and incomplete analysis of one referenced file.
 
-Mitigation: Consider avoiding installation unless the publisher clarifies or removes the reported actions, pins dependencies, and adds safeguards for global installs and sensitive evidence.
+Mitigation: Review the skill contents and available scan details before installation, and use an isolated environment when evaluating it.
 
-Risk: The security scan is incomplete: 11 of 12 components were fully inspected, one was partly inspected, and a referenced quality-gates document was missing.
+Risk: The security guidance flags mutable package execution and global installation.
 
-Mitigation: Review the partially inspected component and missing referenced material before relying on the scan as complete.
+Mitigation: Review package commands before running them; prefer pinned versions and local or isolated installs where applicable.
+
+Risk: Evidence logs may contain sensitive information.
+
+Mitigation: Check and redact credentials or other sensitive values before saving or sharing evidence.
+
+Risk: A referenced command can rewrite Git history.
+
+Mitigation: Inspect the command and its target repository state before execution, and preserve a recoverable copy of important work.
 
 ## Reference(s):
 
-- [Related project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
 - [ClawHub release page](https://clawhub.ai/athola/skills/nm-imbue-proof-of-work)
+- [Project homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
+- [Acceptance criteria best practices](https://www.atlassian.com/agile/project-management/definition-of-done)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Shell commands, Analysis]
+**Output Type(s):** [Guidance, Markdown, Shell commands]
 
-**Output Format:** [Markdown with reproducible validation steps, command output snippets, and evidence citations]
+**Output Format:** [Markdown with checklists, evidence references, and inline command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include acceptance criteria, validation checklists, and evidence logs.]
+**Other Properties Related to Output:** [Variable detail based on the task and available verification evidence.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, server-resolved release)
+1.10.4 (source: server-resolved release)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Evaluates one to ten business ideas and produces an eight-dimension scorecard, three-scenario financial model, and Go/Pivot/Kill recommendation.
+Helps founders and side-project builders assess business ideas with an eight-step evaluation, three-scenario financial report, and Go, Pivot, or Kill recommendation.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Entrepreneurs and side-project builders use the skill to assess an idea's feasibility from their supplied assumptions and competitor information.
+External users provide one or more business ideas and their own pricing, conversion, reach, and cost assumptions to receive a structured feasibility report. The report supports an initial Go, Pivot, or Kill decision and is not investment advice.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates the skill suspicious with medium confidence, citing broad activation, paid-service steering, and uncertainty because one script was only partially analyzed.
+Risk: The security review rates the skill suspicious because broad triggers and paid-service instructions may steer unrelated requests toward a paid service; analysis of some content was incomplete.
 
-Mitigation: Consider the suspicious verdict and Skillspector's DO_NOT_INSTALL recommendation before installing; assess the stated concerns and treat the partially analyzed script's behavior as uncertain.
+Mitigation: Review the trigger scope and paid-service behavior before installation, use the skill only for an explicitly requested idea assessment, and treat the disputed network-handling finding as unresolved.
 
-Risk: Response data may be exposed in logs.
+Risk: Completed reports are retained in the server order database, and automatic deletion is not implemented.
 
-Mitigation: Review the service's data-handling practices before submitting ideas or other sensitive information.
+Mitigation: Do not submit sensitive business ideas or financial details unless this retention is acceptable.
 
 ## Reference(s):
 
-- [Idea Doctor on ClawHub](https://clawhub.ai/linkkhub-pixiu/skills/idea-doctor)
-- [Idea report service endpoint](https://linkkhub.top/idea/generate)
+- [ClawHub skill listing](https://clawhub.ai/linkkhub-pixiu/skills/idea-doctor)
+- [Publisher profile](https://clawhub.ai/user/linkkhub-pixiu)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Guidance]
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [Markdown feasibility report with an eight-dimension scorecard, three-scenario financial model, and Go/Pivot/Kill recommendation]
+**Output Format:** [Markdown report with an eight-step evaluation, three-scenario financial analysis, and Go/Pivot/Kill recommendation]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Uses user-supplied idea, financial assumptions, and optional competitor information; supports one to ten ideas per submission.]
+**Other Properties Related to Output:** [Based on user-provided business idea and financial inputs; returned after payment is confirmed by the service.]
 
 ## Skill Version(s):
 
-0.2.5 (source: server-resolved release metadata)
+0.3.2 (source: frontmatter; release evidence version 0.3.2)
 
 ## Ethical Considerations:
 

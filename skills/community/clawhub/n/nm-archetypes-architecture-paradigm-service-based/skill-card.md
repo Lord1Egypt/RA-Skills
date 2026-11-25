@@ -1,6 +1,6 @@
 ## Description:
 
-Applies coarse-grained service architecture for deployment independence.
+Applies coarse-grained service architecture for deployment independence
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and architects use this skill to define coarse-grained service boundaries, contracts, data ownership, and deployment practices for multi-team systems that need deployment independence without full microservice autonomy.
+Developers and architecture teams use this skill to assess when a service-based architecture fits and to plan service boundaries, contracts, data ownership, and deployment practices.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Shared database changes can create cascading effects across services.
+Risk: Changes to a shared database can have cascading effects across services.
 
-Mitigation: Use database views or replication, and maintain a formal schema deprecation schedule.
+Mitigation: Assign explicit ownership to schemas or tables and manage changes with views, replication, or a schema deprecation schedule.
 
-Risk: Weak governance can let services become a distributed monolith with tight coupling and added network complexity.
+Risk: Weak governance can let service boundaries degrade into a distributed monolith with extra network complexity.
 
-Mitigation: Track coupling metrics and enforce clear ownership of services and data.
+Mitigation: Track coupling and enforce clear ownership of services and data, with stable contracts between services.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-service-based)
-- [Claude Night Market archetypes plugin](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-service-based)
+- [Archetypes project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Architecture decision records, Service contracts, Runbooks]
+**Output Type(s):** [Guidance, Markdown]
 
-**Output Format:** [Markdown guidance and architecture artifacts]
+**Output Format:** [Markdown prose with structured recommendations and checklists]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Content is tailored to the system and its service boundaries; no fixed artifact template is specified.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.10.3 (source: release metadata and skill frontmatter)
+1.10.4 (source: release evidence)
 
 ## Ethical Considerations:
 

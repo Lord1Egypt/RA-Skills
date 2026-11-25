@@ -1,5 +1,5 @@
 /**
- * 统一错误处理模块
+ * 统一错误。noRetry 为 true 时不再重试。
  */
 
 class SkillError extends Error {
@@ -28,7 +28,7 @@ class NetworkError extends SkillError {
 
 class TimeoutError extends SkillError {
   constructor(message) {
-    super("TIMEOUT_ERROR", message);
+    super("TIMEOUT", message);
     this.name = "TimeoutError";
   }
 }

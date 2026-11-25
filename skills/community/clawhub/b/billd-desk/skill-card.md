@@ -1,45 +1,62 @@
-## Description: <br>
-BilldDesk Remote Desktop guides agents on using the WebRTC-based BilldDesk remote desktop tool, including high-resolution remote control, custom device codes, privacy and virtual screen features, screen walls, batch control, and safer use with Tailscale. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BilldDesk Remote Desktop guides agents on installing, configuring, and operating the BilldDesk WebRTC remote desktop tool, including Tailscale-assisted connectivity and private relay deployment.
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Developers, IT operators, and authorized device owners use this skill for BilldDesk setup, connection workflows, Tailscale pairing, private relay deployment, and remote-control best practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote desktop guidance can enable sensitive remote-control actions if used on devices the user does not own or administer. <br>
-Mitigation: Use BilldDesk only on authorized devices, set strong unique passwords, keep clients updated, and prefer private-network access such as Tailscale or a trusted self-hosted relay. <br>
-Risk: Clipboard synchronization and file transfer can expose sensitive data during remote sessions. <br>
-Mitigation: Review clipboard and file-transfer activity before enabling it and avoid moving secrets or confidential files unless the remote session is trusted. <br>
+## Use Case:
 
+Developers, IT operators, and device administrators use this skill to get agent guidance for BilldDesk remote access setup, device management, Tailscale-based connectivity, and private relay deployment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smseow001/billd-desk) <br>
-- [BilldDesk website](https://desk.hsslive.cn) <br>
-- [BilldDesk download page](https://desk.hsslive.cn/#/download) <br>
-- [BilldDesk GitHub project](https://github.com/galaxy-s10/billd-desk) <br>
-- [Tailscale install documentation](https://tailscale.com/install.sh) <br>
-- [Tailscale downloads](https://tailscale.com/download) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No generated files; guidance should be reviewed before use on remote-control systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Installation guidance may execute changing remote code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer official platform installers or package-manager instructions, and inspect any install script before execution.
+
+Risk: An unverified container service could expose relay ports or run unexpected code.
+
+Mitigation: Verify the container image registry and digest, and bind deployment ports only to trusted interfaces.
+
+Risk: Unattended access, clipboard sync, file transfer, and bulk control can increase remote-control and data-transfer impact.
+
+Mitigation: Enable these features only for devices you own or administer, and require strong authentication.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/smseow001/skills/billd-desk)
+- [Publisher Profile](https://clawhub.ai/user/smseow001)
+- [BilldDesk Official Site](https://desk.hsslive.cn)
+- [BilldDesk Download Page](https://desk.hsslive.cn/#/download)
+- [BilldDesk GitHub Repository](https://github.com/galaxy-s10/billd-desk)
+- [Tailscale Download Page](https://tailscale.com/download)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes remote-desktop installation, Tailscale setup, and Docker deployment guidance; no API keys or credential environment variables were detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

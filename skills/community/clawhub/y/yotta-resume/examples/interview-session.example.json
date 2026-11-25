@@ -1,0 +1,186 @@
+{
+  "schema_version": "1.0",
+  "session_id": "INT-0123456789abcdef",
+  "created_at": "2026-11-23T12:00:00Z",
+  "updated_at": "2026-11-23T12:00:00Z",
+  "status": "in_progress",
+  "inputs": {
+    "resume_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "jd_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "jd_provided": true,
+    "industry": "cybersecurity",
+    "role_family": "soc",
+    "role_source": "user",
+    "level": "mid",
+    "level_source": "user",
+  "bank_version": "0.2.4",
+    "seed_source": "user"
+  },
+  "selection": {
+    "seed": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "count": 3,
+    "distribution": {
+      "resume_followup": 1,
+      "knowledge": 1,
+      "scenario": 1
+    },
+    "target_distribution": {
+      "resume_followup": 1,
+      "knowledge": 1,
+      "scenario": 1
+    },
+    "quota_adjusted": false,
+    "level_adjusted": false,
+    "selection_hash": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+  },
+  "analysis": {
+    "stats": {
+      "bullet_count": 7,
+      "metric_bullets": 2,
+      "metric_ratio": 28.6,
+      "issue_count": 2
+    },
+    "industry_detection": {
+      "status": "detected",
+      "primary_industry": "cybersecurity",
+      "display_name": "网络安全",
+      "confidence": "high",
+      "needs_confirmation": false
+    },
+    "issues": [
+      {
+        "id": "YS-001",
+        "code": "weak_claim",
+        "section": "工作经历",
+        "heading": "示例科技 | 安全运营工程师",
+        "original": "参与每日告警研判。",
+        "reason": "缺少个人边界和结果。",
+        "severity": "medium",
+        "source_type": "rule",
+        "needs_confirmation": false
+      }
+    ],
+    "suggestions": [
+      {
+        "code": "rewrite_weak_claim",
+        "finding_id": "YS-001",
+        "original": "参与每日告警研判。",
+        "suggestion": "按真实事实补充个人动作、规模、方法和结果。",
+        "priority": "high"
+      }
+    ],
+    "jd_missing": [
+      "OWASP"
+    ],
+    "disclaimer": "分析仅识别结构、证据与岗位匹配度，不承诺 ATS、面试或 Offer 结果。"
+  },
+  "questions": [
+    {
+      "session_question_id": "Q1",
+      "bank_question_id": "sec-soc-resume-002",
+      "role_family": "soc",
+      "level": "mid",
+      "dimension": "误报治理",
+      "kind": "resume_followup",
+      "prompt": "请说明一次误报治理：原规则、样本分层、改后效果和漏报复核证据。",
+      "expected_evidence": [
+        "原规则",
+        "样本分层",
+        "改后效果",
+        "漏报复核"
+      ],
+      "followups": [
+        "哪些数据尚未经你确认，不能写入简历？"
+      ],
+      "answer_boundary": "只讨论授权范围内的防御监测、分诊和验证。",
+      "source_refs": [
+        "nist-nice-2-2-0"
+      ],
+      "content_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "basis": {
+        "relevance_points": 33,
+        "rank_hash": "1111111111111111111111111111111111111111111111111111111111111111",
+        "jd_gaps": [],
+        "role_dimensions": [],
+        "resume_findings": [
+          "YS-001"
+        ],
+        "level_match": true
+      },
+      "followup_used": 0,
+      "followup_prompt": null
+    },
+    {
+      "session_question_id": "Q2",
+      "bank_question_id": "sec-soc-knowledge-006",
+      "role_family": "soc",
+      "level": "mid",
+      "dimension": "ATT&CK 映射",
+      "kind": "knowledge",
+      "prompt": "请说明一次 ATT&CK 映射中的输入、关键判断和复核证据。",
+      "expected_evidence": [
+        "场景范围",
+        "关键判断",
+        "处理流程",
+        "复核证据"
+      ],
+      "followups": [
+        "如果关键输入缺失，你会如何降级而不是猜测？"
+      ],
+      "answer_boundary": "只讨论授权范围内的防御监测、分诊和验证。",
+      "source_refs": [
+        "mitre-attack-v18"
+      ],
+      "content_hash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "basis": {
+        "relevance_points": 28,
+        "rank_hash": "2222222222222222222222222222222222222222222222222222222222222222",
+        "jd_gaps": [],
+        "role_dimensions": [
+          "ATT&CK 映射"
+        ],
+        "resume_findings": [],
+        "level_match": true
+      },
+      "followup_used": 0,
+      "followup_prompt": null
+    },
+    {
+      "session_question_id": "Q3",
+      "bank_question_id": "sec-soc-scenario-001",
+      "role_family": "soc",
+      "level": "mid",
+      "dimension": "误报治理",
+      "kind": "scenario",
+      "prompt": "某条规则每天产生大量重复告警，请设计降噪验证与回滚方案。",
+      "expected_evidence": [
+        "基线",
+        "样本分层",
+        "漏报复核",
+        "回滚条件"
+      ],
+      "followups": [
+        "你如何证明告警数量下降不是靠放宽规则掩盖风险？"
+      ],
+      "answer_boundary": "只讨论授权范围内的防御监测、分诊和验证。",
+      "source_refs": [
+        "mitre-attack-v18"
+      ],
+      "content_hash": "9999999999999999999999999999999999999999999999999999999999999999",
+      "basis": {
+        "relevance_points": 23,
+        "rank_hash": "3333333333333333333333333333333333333333333333333333333333333333",
+        "jd_gaps": [],
+        "role_dimensions": [],
+        "resume_findings": [],
+        "level_match": true
+      },
+      "followup_used": 0,
+      "followup_prompt": null
+    }
+  ],
+  "answers": [],
+  "current_question_id": "Q1",
+  "current_phase": "primary",
+  "review": null
+}

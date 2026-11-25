@@ -6,4 +6,4 @@ An existing project can be used without repackaging it into a catalog. Preserve 
 
 A full-video template can be delivered locally or export a clean body for cloud packaging. A clip may serve as B-roll. An overlay requires verified transparency and a compatible receiving pipeline, or composition inside the same project.
 
-Use the engine's actual parameter interface; Remotion and Hyperframes are not interchangeable. Inspecting a local template needs no Vibbit API key. Record selected version, inputs, and real outputs using the [template contract](../contracts/render-template.md), [engine guide](../engines/index.md), and [artifact contract](../contracts/render-artifact.md).
+Use the engine's actual parameter interface; Remotion and Hyperframes are not interchangeable. Inspecting a local template needs no Vibbit API key. Record selected version, inputs, and real outputs using the [template contract](../contracts/render-template.md), [engine guide](../engines/index.md#engine-selection), and [artifact contract](../contracts/render-artifact.md).

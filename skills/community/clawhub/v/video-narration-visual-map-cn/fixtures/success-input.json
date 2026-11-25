@@ -1,0 +1,16 @@
+{
+  "narration": [
+    {"id": "N1", "text": "点击生成后，系统已经生成一张海报。", "claims": ["已生成海报"], "shot_ids": ["S01"]},
+    {"id": "N2", "text": "海报可以一键下载。", "claims": ["下载按钮可见"], "shot_ids": ["S01"]},
+    {"id": "N3", "text": "最终海报已经显示标题和人物。", "claims": ["标题已显示", "人物已显示"], "shot_ids": ["S02", "S03"], "required_evidence": ["海报标题", "人物肖像"]},
+    {"id": "N4", "text": "最终海报已经显示标题、人物和价格。", "claims": ["标题已显示", "人物已显示", "价格已显示"], "shot_ids": ["S02", "S03"], "required_evidence": ["海报标题", "人物肖像", "价格"]},
+    {"id": "N5", "text": "这项功能省了不少整理时间。", "claims": ["节省整理时间"], "shot_ids": []}
+  ],
+  "shots": [
+    {"id": "S01", "description": "海报编辑页，输入表单和下载按钮可见；没有最终生成海报或下载完成提示。", "visible_claims": ["下载按钮可见"], "visible_evidence": ["输入表单", "下载按钮"]},
+    {"id": "S02", "description": "最终海报中标题清晰可见。", "visible_claims": ["标题已显示"], "visible_evidence": ["海报标题"]},
+    {"id": "S03", "description": "最终海报中人物肖像清晰可见。", "visible_claims": ["人物已显示"], "visible_evidence": ["人物肖像"]}
+  ],
+  "viewer_benefit": "确认生成操作交付了可用海报",
+  "required_evidence": ["海报标题", "人物肖像", "价格"]
+}

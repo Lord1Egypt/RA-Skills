@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill after a command or short work session that felt slow, confusing, repetitive, or fragile. It helps them review workflow assets, plan bounded improvements, validate changes, and record lessons.
+Developers use this skill after a workflow slice to identify friction and plan improvements to the skills, agents, commands, and hooks involved.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment reports that workflow observations may be directed to an external GitHub repository without a clear approval step.
+Risk: Workflow observations or project details may be directed to an external GitHub repository without a clear publication approval step.
 
-Mitigation: Review the issue contents and destination, and require approval before creating external issues.
+Mitigation: Review the observations and project details for sensitive information, and obtain approval before posting externally.
 
-Risk: The security assessment says analysis of the issue creation module was incomplete, so its full behavior has not been established.
+Risk: The security analysis was incomplete for the referenced issue-creation module.
 
-Mitigation: Inspect the complete issue creation behavior and destination settings before using that module.
+Mitigation: Review the issue-creation module and its behavior before using that workflow.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-sanctum-workflow-improvement)
-- [Project homepage listed in ClawHub metadata](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
-- [Auto issue creation module](artifact/modules/auto-issue-creation.md)
+- [ClawHub release](https://clawhub.ai/athola/skills/nm-sanctum-workflow-improvement)
+- [Project homepage (artifact metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Markdown, Shell commands, Configuration]
+**Output Type(s):** [Analysis, Guidance, Markdown, Shell commands, Code]
 
-**Output Format:** [Markdown with workflow steps, recommendations, issue templates, metrics, and shell snippets]
+**Output Format:** [Markdown with workflow analysis, scored improvement options, plans, validation metrics, and command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include proposed changes to workflow assets and GitHub issue content.]
+**Other Properties Related to Output:** [May include proposed workflow asset changes and optional GitHub issue drafts or reports.]
 
 ## Skill Version(s):
 
-1.10.3 (source: skill frontmatter, ClawHub release)
+1.10.4 (source: server-resolved release)
 
 ## Ethical Considerations:
 

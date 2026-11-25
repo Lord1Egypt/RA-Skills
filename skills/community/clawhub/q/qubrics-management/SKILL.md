@@ -1,7 +1,7 @@
 ---
 name: "qubrics-management"
 description: "Manage Qubrics domains, mailboxes, mailbox keys, sending accounts, webhooks, logs, billing, and account-level setup."
-version: "2.0.4"
+version: "2.0.8"
 metadata:
   openclaw:
     skillKey: "qubrics-management"

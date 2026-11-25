@@ -81,4 +81,6 @@ The model guide requires adaptive for true 2.5 first/last-frame mode; the Vibbit
 
 The CLI checks static fields, URL syntax, and counts; it does not remotely probe media. Do not report all limits as verified without metadata. Results use video_url; poll at least 5 seconds apart.
 
-[2.5 guide](../models/seedance-2.5/overview.md) · [2.0 differences](../models/seedance-2.0.md) · Examples: [text](../../examples/seedance-text.json), [references](../../examples/seedance-reference.json), [editing](../../examples/seedance-edit.json), [frames](../../examples/seedance-frames.json).
+[2.5 guide](../models/seedance-2.5.md#overview) · [2.0 differences](../models/seedance-2.0.md) · Examples: [text](../../examples/seedance-text.json), [references](../../examples/seedance-reference.json), [editing](../../examples/seedance-edit.json), [frames](../../examples/seedance-frames.json).
+
+Seedance outputs are registered automatically by the service. Completed responses expose `material_archive.mode=server_automatic` and `import_required=false`. Never reimport because a material ID is absent; retain the task/URL and query existing materials when an association is needed. Verify names, groups and analysis independently. A new locally composed file is a separate output under [material rules](../resources/materials.md).

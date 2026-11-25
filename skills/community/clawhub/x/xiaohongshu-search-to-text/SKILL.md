@@ -1,7 +1,7 @@
 ---
 name: xiaohongshu-search-to-text
 description: "小红书按话题搜笔记再读成文字 / Search Xiaohongshu (RedNote) by topic, then read the notes. 给一个话题（如 成都 咖啡店、通勤穿搭、skincare routine），返回网页已收录的小红书笔记链接和标题；再挑几条读出正文、每张图上的文字（OCR）和描述、分享页热评、要点和点赞收藏数。用于选品调研、看同行、找达人、整理用户怎么评价。搜到笔记每次 4 积分（搜不到不扣）；读一条图文笔记 1 积分起。不登录小红书、不要 Cookie。需要 LinkDigest API Key（注册送 10 积分，不用绑卡）。"
-version: 1.0.1
+version: 1.0.3
 homepage: https://linkdigest.dev/zh/xiaohongshu-shichang-diaoyan?ref=skill-xiaohongshu-search-to-text
 metadata: {"openclaw":{"requires":{"anyBins":["python3"]},"primaryEnv":"LINKDIGEST_API_KEY","envVars":[{"name":"LINKDIGEST_API_KEY","required":true,"description":"LinkDigest API Key（ld_live_ 开头），在 https://linkdigest.dev/signin?ref=skill-xiaohongshu-search-to-text&next=/app/keys 创建，注册送 10 积分"}],"homepage":"https://linkdigest.dev/zh/xiaohongshu-shichang-diaoyan?ref=skill-xiaohongshu-search-to-text"}}
 required_environment_variables:

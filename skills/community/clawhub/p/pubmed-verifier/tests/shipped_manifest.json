@@ -1,0 +1,4 @@
+{
+  "purpose": "sealed offline test subset shipped in the package (family packager protocol ADR-0011); run_tests.py discovers sealed_matrix.py in package copies",
+  "files": ["sealed_matrix.py", "run_tests.py"]
+}

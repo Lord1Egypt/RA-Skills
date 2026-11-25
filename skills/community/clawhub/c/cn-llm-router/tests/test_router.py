@@ -28,6 +28,11 @@ import session_manager
 import text_splitter
 import price_registry
 import price_checker
+import batch_queue
+import cost_estimator
+import merge_strategy
+import eval_suite
+import eval_store
 from adapters.base import _estimate_tokens
 
 
@@ -791,6 +796,267 @@ class TestV27CLIArgs(unittest.TestCase):
         parser = router.build_parser()
         args = parser.parse_args(["report", "--dual"])
         self.assertTrue(args.dual)
+
+
+class TestV29BatchQueue(unittest.TestCase):
+    """v2.9.0 批处理队列：断点续跑 + 失败重试 + 零重复计费。"""
+
+    def setUp(self):
+        fd, self.path = tempfile.mkstemp(suffix=".db")
+        os.close(fd)
+        os.unlink(self.path)
+        self.q = batch_queue.BatchQueue(db_path=self.path, max_retries=1)
+
+    def tearDown(self):
+        self.q.close_all()
+        for suffix in ("", "-wal", "-shm"):
+            try:
+                if os.path.exists(self.path + suffix):
+                    os.unlink(self.path + suffix)
+            except Exception:
+                pass
+
+    def test_create_and_progress(self):
+        jid = self.q.create_job(["t%d" % i for i in range(10)], name="test")
+        p = self.q.progress(jid)
+        self.assertEqual(p["total"], 10)
+        self.assertEqual(p["pending"], 10)
+
+    def test_parse_manifest_txt(self):
+        fd, path = tempfile.mkstemp(suffix=".txt")
+        os.close(fd)
+        with open(path, "w", encoding="utf-8") as f:
+            f.write("# 注释\n任务一\n\n任务二\n")
+        items = batch_queue._parse_manifest(path)
+        self.assertEqual(items, ["任务一", "任务二"])
+        os.unlink(path)
+
+    def test_parse_manifest_jsonl(self):
+        fd, path = tempfile.mkstemp(suffix=".jsonl")
+        os.close(fd)
+        with open(path, "w", encoding="utf-8") as f:
+            f.write('{"prompt":"翻译A"}\n{"text":"翻译B"}\n')
+        items = batch_queue._parse_manifest(path)
+        self.assertEqual(items, ["翻译A", "翻译B"])
+        os.unlink(path)
+
+    def test_resume_skips_done(self):
+        """500 任务中断续跑零重复计费。"""
+        jid = self.q.create_job(["t%d" % i for i in range(500)])
+        pending = self.q.claim_pending(jid)
+        for it in pending[:200]:
+            self.q.mark_done(it["id"], result="ok", cost=0.01)
+        cost_before = self.q.total_cost(jid)
+        resume = self.q.claim_pending(jid)
+        self.assertEqual(len(resume), 300)
+        self.assertEqual(resume[0]["idx"], 200)
+        self.assertTrue(all(it["idx"] >= 200 for it in resume))
+        self.assertAlmostEqual(self.q.total_cost(jid), cost_before)
+
+    def test_retry_then_failed(self):
+        jid = self.q.create_job(["t1", "t2"])
+        it = self.q.claim_pending(jid)[0]
+        self.assertEqual(self.q.mark_failed(it["id"], "timeout"), "retry")
+        self.assertEqual(self.q.mark_failed(it["id"], "timeout again"), "failed")
+        counts = self.q.item_counts(jid)
+        self.assertEqual(counts["failed"], 1)
+        self.assertEqual(counts["pending"], 1)
+
+
+class TestV29CostEstimator(unittest.TestCase):
+    """v2.9.0 跑前成本预估。"""
+
+    def test_estimate_batch(self):
+        est = cost_estimator.estimate_batch(["翻译这段话"] * 10, "deepseek-chat")
+        self.assertEqual(est["count"], 10)
+        self.assertGreater(est["in_tokens"], 0)
+        self.assertTrue(est["priced"])
+
+    def test_unpriced_model(self):
+        est = cost_estimator.estimate_batch(["x"], "no-such-model-xyz")
+        self.assertFalse(est["priced"])
+        self.assertEqual(est["total_cost"], 0.0)
+
+    def test_budget_gate_blocks_without_yes(self):
+        est = {"total_cost": 1.0}
+        gate = cost_estimator.budget_gate(est, 0.5, confirmed=False)
+        self.assertFalse(gate["allowed"])
+        self.assertTrue(gate["over_budget"])
+
+    def test_budget_gate_allows_with_yes(self):
+        est = {"total_cost": 1.0}
+        gate = cost_estimator.budget_gate(est, 0.5, confirmed=True)
+        self.assertTrue(gate["allowed"])
+
+
+class TestV29Longchain(unittest.TestCase):
+    """v2.9.0 长文一键链。"""
+
+    def test_split_and_merge_parallel(self):
+        text = ("第一段内容。\n\n第二段内容。\n\n第三段内容。" * 50)
+        chunks = text_splitter.split_by_paragraphs(text, max_chars=200)
+        self.assertGreater(len(chunks), 1)
+        res = text_splitter.chunked_call_parallel(chunks, lambda c, i: "S%d" % i, max_workers=2)
+        self.assertEqual(res["chunks"], len(chunks))
+        self.assertEqual(len(res["chunk_values"]), len(chunks))
+
+    def test_longchain_summarize(self):
+        text = "这是一段用于测试的长文本。" * 100
+        res = merge_strategy.longchain(text, "summarize", lambda p: "块摘要", max_workers=2, chunk_chars=500)
+        self.assertEqual(res["task_type"], "summarize")
+        self.assertGreater(res["chunks"], 1)
+        self.assertTrue(res["result"])
+
+    def test_longchain_translate_with_terms(self):
+        text = "人工智能改变世界。人工智能提升效率。" * 30
+        res = merge_strategy.longchain(text, "translate", lambda p: "AI改变世界", max_workers=2, chunk_chars=400)
+        self.assertEqual(res["task_type"], "translate")
+        self.assertIn("term_check", res)
+        self.assertTrue(res["result"])
+
+    def test_invalid_task_type(self):
+        with self.assertRaises(ValueError):
+            merge_strategy.longchain("text", "invalid", lambda p: "", chunk_chars=100)
+
+
+class TestV29EvalSuite(unittest.TestCase):
+    """v2.9.0 A/B 本地评测集。"""
+
+    def test_suite_50_cases_four_categories(self):
+        from collections import Counter
+        suite = eval_suite.load_suite()
+        self.assertEqual(suite["total"], 50)
+        cats = Counter(c["category"] for c in suite["cases"])
+        self.assertEqual(set(cats.keys()), {"code", "reason", "translate", "summarize"})
+
+    def test_score_case_range(self):
+        suite = eval_suite.load_suite()
+        case = suite["cases"][0]
+        self.assertGreaterEqual(eval_suite.score_case(case, "def quicksort pivot O(nlogn) 递归"), 0)
+        self.assertLessEqual(eval_suite.score_case(case, "任意回答"), 10)
+
+    def test_run_suite_mock(self):
+        suite = eval_suite.load_suite()
+        suite = dict(suite)
+        suite["cases"] = suite["cases"][:4]
+        models = [{"provider": "m", "model": "m1"}]
+        res = eval_suite.run_suite(lambda p, m, prompt, c: "answer", suite=suite, models=models, max_workers=2)
+        self.assertIn("m/m1", res["by_model"])
+        self.assertEqual(len(res["details"]), 4)
+
+    def test_render_table_and_radar(self):
+        suite = eval_suite.load_suite()
+        suite = dict(suite)
+        suite["cases"] = suite["cases"][:2]
+        res = eval_suite.run_suite(lambda p, m, prompt, c: "answer", suite=suite,
+                                   models=[{"provider": "m", "model": "m1"}], max_workers=1)
+        self.assertIn("模型", eval_suite.render_table(res))
+        self.assertIn("<svg", eval_suite.render_radar_svg(res))
+
+    def test_score_table_roundtrip(self):
+        fd, path = tempfile.mkstemp(suffix=".yaml")
+        os.close(fd)
+        res = {"by_model": {"p/m": {"provider": "p", "model": "m",
+                                     "scores": {"code": 8, "reason": 7, "translate": 9, "summarize": 8},
+                                     "total": 8.0, "cases": 50}}}
+        eval_suite.save_score_table(res, path=path)
+        table = eval_suite.load_score_table(path)
+        self.assertIn("p/m", table["provider_scores"])
+        os.unlink(path)
+
+
+class TestV29EvalStore(unittest.TestCase):
+    """v2.9.0 评测历史存档与对比。"""
+
+    def setUp(self):
+        fd, self.path = tempfile.mkstemp(suffix=".db")
+        os.close(fd)
+        os.unlink(self.path)
+
+    def tearDown(self):
+        for suffix in ("", "-wal", "-shm"):
+            try:
+                if os.path.exists(self.path + suffix):
+                    os.unlink(self.path + suffix)
+            except Exception:
+                pass
+
+    def _result(self, total):
+        return {"suite": "test", "details": [], "by_model": {
+            "p/m": {"provider": "p", "model": "m",
+                    "scores": {"code": total, "reason": total, "translate": total, "summarize": total},
+                    "total": total, "cases": 50}}}
+
+    def test_save_and_history(self):
+        eval_store.save_run(self._result(7.0), db_path=self.path)
+        eval_store.save_run(self._result(8.5), db_path=self.path)
+        hist = eval_store.history("p/m", db_path=self.path)
+        self.assertEqual(len(hist), 2)
+        best = eval_store.best_by_model(self.path)
+        self.assertEqual(best["p/m"]["best"], 8.5)
+
+    def test_compare_report(self):
+        eval_store.save_run(self._result(7.0), db_path=self.path)
+        report = eval_store.compare(self._result(8.0), db_path=self.path)
+        self.assertIn("评测历史对比", report)
+        self.assertIn("p/m", report)
+
+
+class TestV29PersonalizedAndCLI(unittest.TestCase):
+    """v2.9.0 个性化 auto + CLI 参数。"""
+
+    def test_personalized_pick_with_profile(self):
+        fd, path = tempfile.mkstemp(suffix=".yaml")
+        os.close(fd)
+        os.unlink(path)
+        import yaml_simple
+        table = {"provider_scores": {"deepseek/deepseek-chat": {
+            "provider": "deepseek", "model": "deepseek-chat", "code": 9.5,
+            "total": 9.0, "eval_date": "2026-11-18", "cases": 50}}}
+        yaml_simple.dump_file(path, table)
+        orig = eval_suite.SCORE_TABLE
+        eval_suite.SCORE_TABLE = path
+        try:
+            models = [("deepseek", {"name": "deepseek-chat", "price_in": 1, "price_out": 2})]
+            picked = router._personalized_pick(models, "code")
+            self.assertIsNotNone(picked)
+            self.assertEqual(picked[1], "deepseek-chat")
+            self.assertIn("本机实测", picked[2])
+        finally:
+            eval_suite.SCORE_TABLE = orig
+            os.unlink(path)
+
+    def test_batch_cli_args(self):
+        parser = router.build_parser()
+        args = parser.parse_args(["batch", "run", "tasks.txt", "--yes", "--concurrency", "2"])
+        self.assertEqual(args.cmd, "batch")
+        self.assertEqual(args.batch_cmd, "run")
+        self.assertEqual(args.manifest, "tasks.txt")
+        self.assertTrue(args.yes)
+        args = parser.parse_args(["batch", "status", "batch_123"])
+        self.assertEqual(args.batch_cmd, "status")
+        args = parser.parse_args(["batch", "run", "tasks.txt", "--resume", "batch_123"])
+        self.assertEqual(args.resume, "batch_123")
+
+    def test_longchain_cli_args(self):
+        parser = router.build_parser()
+        args = parser.parse_args(["longchain", "--file", "doc.txt", "summarize", "--ctx", "16000"])
+        self.assertEqual(args.cmd, "longchain")
+        self.assertEqual(args.task_type, "summarize")
+        self.assertEqual(args.ctx, 16000)
+
+    def test_arena_suite_cli_args(self):
+        parser = router.build_parser()
+        args = parser.parse_args(["arena", "--suite", "--mock", "--save-profile", "--category", "code"])
+        self.assertTrue(args.suite)
+        self.assertTrue(args.mock)
+        self.assertTrue(args.save_profile)
+        self.assertEqual(args.category, "code")
+
+    def test_personalized_cli_args(self):
+        parser = router.build_parser()
+        args = parser.parse_args(["route", "--prompt", "写个快排", "--personalized"])
+        self.assertTrue(args.personalized)
 
 
 if __name__ == "__main__":

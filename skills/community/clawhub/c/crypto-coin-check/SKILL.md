@@ -1,21 +1,21 @@
 ---
 name: crypto-coin-check
 description: Check any coin or perpetual before a trade - funding and open interest on every exchange that lists it, long/short positioning, live order-book liquidity with slippage for your size and the best exchange to buy or sell. Covers 900+ coins plus stock, forex and commodity perpetuals on Binance, Bybit, OKX and Hyperliquid. Live data from AgentReeve per request over x402.
-version: 1.0.0
+version: 1.1.0
 ---
 # Crypto Coin Check
 
 Use this when the user is about to trade a coin (or a stock, forex or commodity perpetual) and wants to know how crowded it is, how liquid it is and where to execute.
 
 ## Steps
-1. Free: confirm the coin is covered: `GET https://agentreeve.com/api/v1/crypto/markets` (look it up under `coverage`).
-2. One call for everything: `GET https://agentreeve.com/api/v1/crypto/coin?asset=SOL&size_usd=100000` ($0.05). Set `size_usd` to the user's trade size.
+1. Free: confirm the coin is covered: `GET https://agentreeve.com/api/v1/markets` (look it up under `coverage`).
+2. One call for everything: `GET https://agentreeve.com/api/v1/snapshot?asset=SOL&size_usd=100000` ($0.05). Set `size_usd` to the user's trade size.
    - `derivatives`: funding per 8 h and open interest on each exchange, OI-weighted funding, funding spread.
    - `positioning`: share of accounts long vs short per exchange.
    - `liquidity`: `best_venue_to_buy` / `best_venue_to_sell`, slippage in bps for that size on each exchange, depth within 1 %.
 3. Only if the user needs more detail:
-   - Order books in full: `GET https://agentreeve.com/api/v1/crypto/coin-liquidity?asset=SOL&size_usd=100000` ($0.03).
-   - Chart data: `GET https://agentreeve.com/api/v1/crypto/coin-candles?asset=SOL&interval=1h&limit=100` ($0.02).
+   - Order books in full: `GET https://agentreeve.com/api/v1/liquidity?asset=SOL&size_usd=100000` ($0.03).
+   - Chart data: `GET https://agentreeve.com/api/v1/candles?asset=SOL&interval=1h&limit=100` ($0.02).
 4. Report in plain words: crowding (funding and positioning), liquidity for their size, and where execution is cheapest. Note that resting orders can be pulled and that this is not advice.
 
 Coin names: use the coin itself (PEPE, not 1000PEPE). Prices are per coin.

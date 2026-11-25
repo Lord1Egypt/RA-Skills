@@ -1,7 +1,9 @@
 // Data flow: sends the on-demand Bearer token plus user prompts, messages and input filenames to
 // https://ondemand.thetaedgecloud.com only. Inference is billable; video, unknown/high-cost
-// services and webhooks require confirm:true.
+// services and webhooks require confirm:true. Results are returned as received; the runtime and
+// facade boundaries name-redact them.
 import { ThetaConfig } from '../config.js';
+import { StructuredError } from '../types.js';
 import { fromHttpError, fromTransportError, isRetriableHttpError, isStructuredError } from '../errors.js';
 import { getJson, postJson } from './http.js';
 import { thetaUrl, pathSegment } from '../security.js';
@@ -298,11 +300,26 @@ async function postJsonOrSse(cfg: ThetaConfig, url: string, body: Record<string,
         throw fromHttpError('theta-ondemand-api', url, res.status, text);
       }
 
+      // The request was accepted (and may be billed), so a body that cannot be read is reported
+      // as a non-retriable error: it is never resent and never reported as success.
+      const unreadable = (): StructuredError => ({
+        code: 'THETA_ONDEMAND_MALFORMED_STREAM',
+        message: 'Malformed or incomplete Theta event stream (the request may already have been billed; it was not retried)',
+        retriable: false,
+        service: 'theta-ondemand-api',
+        endpoint: url,
+        status: res.status
+      });
       try {
         return JSON.parse(text);
       } catch {
-        const parsedSse = parseSseResponse(text);
+        let parsedSse: Record<string, unknown> | undefined;
+        try { parsedSse = parseSseResponse(text); } catch { throw unreadable(); }
         if (parsedSse) return parsedSse;
+        // Anything that looks like an event stream but did not parse as one fails. Only other
+        // plain-text bodies are returned raw.
+        const contentType = res.headers.get('content-type') ?? '';
+        if (/event-stream/i.test(contentType) || /^\s*data\s*:/m.test(text)) throw unreadable();
         return { status: 'success', raw: text };
       }
     } catch (error) {

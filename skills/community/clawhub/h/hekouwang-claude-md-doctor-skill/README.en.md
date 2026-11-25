@@ -70,23 +70,29 @@ Exit code: `1` if any FAIL, else `0` (usable as a CI gate).
 
 ### Docker (no Python needed)
 ```bash
-# Pull the prebuilt image (auto-published to GHCR on each tag via GitHub Actions)
-docker run --rm -v "$PWD:/work" ghcr.io/huiyonghkw/hekouwang-claude-md-doctor-skill
+# Pull the prebuilt image (auto-published to GHCR on each tag; pin a version to keep behavior stable)
+docker run --rm -v "$PWD:/work" ghcr.io/huiyonghkw/hekouwang-claude-md-doctor-skill:1.3.7
 
 # Or build locally
-docker build -t claude-md-doctor .
-docker run --rm -v "$PWD:/work" claude-md-doctor            # check current project
-docker run --rm -v "$PWD:/work" claude-md-doctor /work --json
+docker build -t hekouwang-claude-md-doctor:1.3.7 .
+docker run --rm -v "$PWD:/work" hekouwang-claude-md-doctor:1.3.7            # check current project
+docker run --rm -v "$PWD:/work" hekouwang-claude-md-doctor:1.3.7 /work --json
 ```
 
 ### Gate your PRs (GitHub Actions)
+
+> Heads-up: the snippet below **downloads and runs a remote script**. Read `check.py`
+> before you run it; for reproducibility pin the URL to a commit SHA and write the
+> script to a temp path instead of overwriting files in your project.
+
 ```yaml
 - uses: actions/setup-python@v5
   with: { python-version: "3.x" }
 - name: CLAUDE.md health check (fail the PR if non-compliant)
   run: |
-    curl -sO https://raw.githubusercontent.com/huiyonghkw/hekouwang-claude-md-doctor-skill/main/check.py
-    python3 check.py .
+    # Review before running: this comes from the repo's main branch, not this workflow
+    curl -fsSL -o /tmp/claude-md-doctor.py https://raw.githubusercontent.com/huiyonghkw/hekouwang-claude-md-doctor-skill/main/check.py
+    python3 /tmp/claude-md-doctor.py .
 ```
 This repo's own CI lives in [`.github/workflows/ci.yml`](.github/workflows/ci.yml) (syntax + good/bad fixtures + JSON validity).
 
@@ -128,8 +134,8 @@ lines to cut and how*.
 - **Qualitative layer (`SKILL.md`)**: the model reads the actual file to cover the
   checker's blind spots (library vs router, whether rules are truly actionable),
   then produces the final report and fix plan.
-- **Safety**: never reads `.env` / `*.key` / `*.pem` secrets; the audit is
-  read-only and any edits require confirmation.
+- **Safety**: never opens secret files (env files, certificates, private keys); the
+  audit is read-only and any edits require confirmation.
 
 ## Grade bands
 

@@ -1,0 +1,18 @@
+{
+  "fixture_type": "offline visible-page material simulation",
+  "purpose": "Self-test example only; not an online collection result.",
+  "source_url": "https://www.youtube.com/watch?v=offline-example",
+  "requested_language": "en",
+  "visible_subtitle_language": "en",
+  "learning_goal": "识别产品演示中的关键动词",
+  "visible_rows": [
+    { "time": "00:03", "text": "We compare the two options." },
+    { "time": "00:09", "text": "The result is easier to review." }
+  ],
+  "expected_notes": {
+    "summary": ["说话者比较两个选项，并强调结果更易复核。"],
+    "terms": [{ "term": "compare", "context": "比较两个选项", "time": "00:03" }],
+    "anchors": [{ "time": "00:09", "summary": "结果更易复核" }],
+    "limitations": []
+  }
+}

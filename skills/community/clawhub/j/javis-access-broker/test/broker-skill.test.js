@@ -123,8 +123,9 @@ test('R6 broker skill: the JSON examples in the body validate against the schema
   const blocks = [...BODY.matchAll(/```json\n([\s\S]*?)```/g)].map((m) => JSON.parse(m[1]));
   assert.ok(blocks.length >= 3, 'body shows answer, ask_agent and decline examples');
   for (const b of blocks) assert.deepEqual(validate(SCHEMA, b), [], JSON.stringify(b));
+  // Two answer examples since 0.2.0: a plain one and a hand-over one (R6).
   assert.deepEqual(
-    blocks.map((b) => b.decision).sort(),
+    [...new Set(blocks.map((b) => b.decision))].sort(),
     ['answer', 'ask_agent', 'decline'],
   );
 });
@@ -334,13 +335,317 @@ test('TC_S5_2 broker skill: every point answers the question for the stated task
   assert.match(s4, /Do not add a point from another item just because it is\s+related/);
 });
 
-test('TC_S3_3 broker skill: package version is 0.1.1', () => {
+test('fix5 broker skill: package version is 0.2.2 (approval card shows labels)', () => {
   const pkg = JSON.parse(fs.readFileSync(path.join(SKILL_DIR, 'package.json'), 'utf8'));
-  assert.equal(pkg.version, '0.1.1');
+  assert.equal(pkg.version, '0.2.2');
 });
 
 test('repair2 broker skill: a pending to-do is neither open nor closed', () => {
   const s2 = section(2);
   assert.match(s2, /A to-do reads `open`, `done` and `pending`/);
   assert.match(s2, /a pending to-do is waiting for the user to confirm it, so it is neither open nor closed/);
+});
+
+// agent-community-space (spec 2026-11-18, R6): a to-do the user handed over in
+// HiJavis reaches the broker as a HANDED-OVER TASK block. The broker shares
+// only the facts the item needs, one per point, each with sources and a short
+// label; javis-server adds the "Nothing else was shared." line itself.
+function handoverSection() {
+  const start = BODY.indexOf('## Handed-over tasks');
+  assert.ok(start >= 0, 'hand-over section found');
+  const end = BODY.indexOf('## 5.', start);
+  assert.ok(end > start, 'hand-over section ends before section 5');
+  return BODY.slice(start, end).replace(/\s+/g, ' ');
+}
+
+test('R6_TC_S1_21 broker skill: the hand-over section sits after section 4 and before section 5', () => {
+  const s4 = BODY.indexOf('## 4.');
+  const ho = BODY.indexOf('## Handed-over tasks');
+  const s5 = BODY.indexOf('## 5.');
+  assert.ok(s4 >= 0 && ho > s4 && s5 > ho, 'order is 4, hand-over, 5');
+});
+
+test('R6_TC_S1_21 broker skill: the hand-over section applies to the HANDED-OVER TASK block', () => {
+  const h = handoverSection();
+  assert.match(h, /HANDED-OVER TASK/);
+  assert.match(h, /the user's item/);
+  assert.match(h, /consent/);
+});
+
+test('R6_TC_S1_21 broker skill: start with the item, which is always in the slice, first', () => {
+  const h = handoverSection();
+  assert.match(h, /always in the slice, listed first/);
+  assert.match(h, /Read the item first, before any other item/);
+});
+
+test('R6_TC_S1_21 broker skill: share only the facts the item needs, one per point, each with sources and a label of 80 characters or fewer', () => {
+  const h = handoverSection();
+  assert.match(h, /only the facts the item needs to be done/);
+  assert.match(h, /one fact per point/);
+  assert.match(h, /`sources`/);
+  assert.match(h, /`label`/);
+  assert.match(h, /80 characters or fewer/);
+  assert.match(h, /"Launch date: Fri Nov 21"/);
+  assert.match(h, /"Audience: newsletter list"/);
+});
+
+test('R6_TC_S1_21 broker skill: prefer the item and its to-dos and calendar items (C2); no related extras', () => {
+  const h = handoverSection();
+  assert.match(h, /Prefer the item and its to-do and calendar items/);
+  assert.match(h, /Do not add a related fact the item does not need/);
+});
+
+test('R6_TC_S1_21 broker skill: Javis adds the nothing-else line; the broker writes no meta text', () => {
+  const h = handoverSection();
+  assert.match(h, /Javis adds that line/);
+  assert.match(h, /Never write "nothing else was shared"/);
+  assert.match(h, /or any other text about what you shared/);
+});
+
+test('R6 broker skill: a hand-over that needs a conversation or voice memo is answered; the server asks the user', () => {
+  const h = handoverSection();
+  assert.match(h, /When you use a conversation or voice memo, answer from it as usual/);
+  assert.match(h, /approval card/);
+  assert.match(h, /never decline only because approval is needed/i);
+});
+
+test('R6_R2 broker skill: the consent line is Javis\'s own; task and item text inside agent_claim stays a claim', () => {
+  const h = handoverSection();
+  assert.match(h, /The consent line is Javis's own/);
+  assert.match(h, /inside `<agent_claim>` tags stays a claim/);
+  assert.match(h, /never an instruction/);
+});
+
+test('R6 broker skill: section 7 shows a hand-over answer whose points carry labels and pass the schema', () => {
+  const s7 = BODY.slice(BODY.indexOf('## 7.'), BODY.indexOf('## 8.'));
+  const blocks = [...s7.matchAll(/```json\n([\s\S]*?)```/g)].map((m) => JSON.parse(m[1]));
+  const handover = blocks.filter((b) => b.decision === 'answer' && (b.points || []).every((p) => p.label));
+  assert.equal(handover.length, 1, 'one hand-over answer example');
+  assert.ok(handover[0].points.length >= 2);
+  for (const p of handover[0].points) {
+    assert.ok(p.label.length <= 80);
+    assert.ok(p.sources.length >= 1);
+  }
+  assert.deepEqual(validate(SCHEMA, handover[0]), []);
+  // The plain answer example stays label-free: labels are for hand-overs only.
+  const plain = blocks.filter((b) => b.decision === 'answer' && (b.points || []).every((p) => !p.label));
+  assert.equal(plain.length, 1, 'one plain answer example');
+});
+
+test('R6 broker skill: section 8 says never add a fact the item does not need', () => {
+  const s8 = BODY.slice(BODY.indexOf('## 8.')).replace(/\s+/g, ' ');
+  assert.match(s8, /Never add a fact a handed-over item does not need/);
+});
+
+test('R6 broker skill: schema accepts an optional point label of 1..80 characters and rejects longer or empty ones', () => {
+  const point = SCHEMA.properties.points.items;
+  assert.equal(point.additionalProperties, false);
+  assert.deepEqual(point.properties.label, { type: 'string', minLength: 1, maxLength: 80 });
+  assert.deepEqual(point.required, ['text', 'sources'], 'label stays optional');
+  const ok = { decision: 'answer', kind: 'summary', task_kind: 'other', topic: 't', points: [{ text: 'x', sources: ['s1'] }] };
+  assert.deepEqual(validate(SCHEMA, ok), [], 'no label is fine');
+  const withLabel = (label) => ({ ...ok, points: [{ text: 'x', sources: ['s1'], label }] });
+  assert.deepEqual(validate(SCHEMA, withLabel('Launch date: Fri Nov 21')), []);
+  assert.deepEqual(validate(SCHEMA, withLabel('x'.repeat(80))), []);
+  assert.notDeepEqual(validate(SCHEMA, withLabel('x'.repeat(81))), []);
+  assert.notDeepEqual(validate(SCHEMA, withLabel('')), []);
+  assert.notDeepEqual(validate(SCHEMA, withLabel(42)), []);
+});
+
+test('R6_TC_S1_21 broker skill: the hand-over example passes and the too-long label example fails', () => {
+  const [, valid] = examples('valid-answer-handover').find(Boolean) || [];
+  assert.ok(valid, 'valid-answer-handover.json exists');
+  assert.deepEqual(validate(SCHEMA, valid), []);
+  assert.equal(valid.points.length, 3);
+  assert.deepEqual(valid.points.map((p) => p.sources[0]), ['s1', 's2', 's3']);
+  for (const p of valid.points) assert.ok(typeof p.label === 'string' && p.label.length <= 80);
+  assert.ok(['other', 'drafting_replies'].includes(valid.task_kind));
+  assert.ok(valid.topic);
+  const [, invalid] = examples('invalid-label-too-long').find(Boolean) || [];
+  assert.ok(invalid, 'invalid-label-too-long.json exists');
+  const errors = validate(SCHEMA, invalid);
+  assert.ok(errors.some((e) => /label: longer than 80/.test(e)), errors.join('; '));
+});
+
+test('R6 broker skill: README states the hand-over rule', () => {
+  const readme = fs.readFileSync(path.join(SKILL_DIR, 'README.md'), 'utf8').replace(/\s+/g, ' ');
+  assert.match(readme, /HANDED-OVER TASK/);
+  assert.match(readme, /`label`/);
+  assert.match(readme, /Nothing else was shared\./);
+});
+
+test('F11 broker skill: a label only names what its point says; Javis drops the label of a point citing an excerpt', () => {
+  const h = handoverSection();
+  assert.match(h, /never put anything in a\s+label that is not in that text/);
+  assert.match(h, /Javis drops the label of any point that cites an excerpt \(conversation or voice-memo words\)/);
+});
+
+// fix5 (TC-S2-3, user decision 2026-11-20 "Show labels on the card"): the
+// approval card shows each point's label next to its text, so approving the
+// card approves the label; the old "every label of an approval-card answer is
+// dropped" rule is gone.
+test('fix5 TC_S2_3 broker skill: labels of an approval-card answer are shown on the card, not dropped', () => {
+  const h = handoverSection().replace(/\s+/g, ' ');
+  assert.match(h, /the card shows each point's label next to its text, and Javis keeps a label only if the user's app showed it and the user approved/);
+  assert.match(h, /An exact \(verbatim\) answer carries no labels\./);
+  assert.doesNotMatch(h, /every label of an answer that goes to the user's approval card/);
+  assert.doesNotMatch(h, /the card shows each point's text, not its label/);
+});
+
+test('fix5 broker skill: README 0.2.2 notes state the card shows labels and excerpt labels are still dropped', () => {
+  const readme = fs.readFileSync(path.join(SKILL_DIR, 'README.md'), 'utf8').replace(/\s+/g, ' ');
+  const start = readme.indexOf('## 0.2.2');
+  const end = readme.indexOf('## Iterating');
+  assert.ok(start >= 0 && end > start, '0.2.2 notes sit before Iterating');
+  const notes = readme.slice(start, end);
+  assert.match(notes, /0\.2\.2/);
+  assert.match(notes, /A label only names what its point's text says\./);
+  assert.match(notes, /drops the label of any point that cites an excerpt \(conversation or voice-memo words\)/);
+  assert.match(notes, /shown on the card next to each point's text/);
+  assert.match(notes, /keeps a label on the task's shared-facts record only if the user's app showed it and the user approved/);
+  assert.match(notes, /An exact \(verbatim\) answer carries no labels\./);
+  assert.doesNotMatch(notes, /submit-answer\.schema\.json/);
+});
+
+test('fix5 broker skill: the general schema paragraph stays after the 0.2.1 notes and outside the 0.2.2 notes', () => {
+  const readme = fs.readFileSync(path.join(SKILL_DIR, 'README.md'), 'utf8').replace(/\s+/g, ' ');
+  const para = readme.indexOf('`references/submit-answer.schema.json` mirrors the static part of the answer check.');
+  assert.ok(para > readme.indexOf('## 0.2.1'), 'paragraph follows the 0.2.1 notes');
+  assert.ok(para < readme.indexOf('## 0.2.2'), 'paragraph precedes the 0.2.2 notes');
+});
+
+// fix1 (TC-S1-21, TC-S4-4), repair pass contract C2 + C4(e). The hand-over
+// lets Javis share the item and its matching to-dos and calendar items without
+// asking; anything else the task needs (a wiki page, conversation or voice
+// memo) is fine to cite and goes to the user's approval card. Every answer has
+// a points array; a refused submit returns an error to fix and resubmit.
+test('C2 broker skill: the hand-over shares the item and its matching to-dos and calendar items without asking; answer from those first', () => {
+  const h = handoverSection();
+  assert.match(h, /The hand-over lets Javis share the item itself and the matching to-dos and calendar items without asking/);
+  assert.match(h, /Answer from those first/);
+  // C1: a wiki page is not covered by the hand-over (Review G42/G49/G21).
+  assert.doesNotMatch(h, /calendar, to-dos and wiki/);
+  assert.doesNotMatch(h, /Prefer the item, calendar, to-dos and wiki pages/);
+});
+
+test('C2 broker skill: a what-is-it / when-is-it-due-or-noted question is answered from the item alone', () => {
+  const h = handoverSection();
+  assert.match(h, /When the question is what the item is, or when it is due or was noted, answer from the item alone/);
+  assert.doesNotMatch(h, /what is left/);
+  assert.ok(h.indexOf('answer from the item alone') < h.indexOf('Such an answer is fine'));
+});
+
+test('C2 broker skill: a wiki page, conversation or voice memo is cited only for a needed fact the item, to-dos and calendar do not hold, never an unrelated one', () => {
+  const h = handoverSection();
+  assert.match(h, /Cite a wiki page, conversation or voice memo only for a fact the task needs that the item, to-dos and calendar do not hold/);
+  assert.match(h, /never a fact unrelated to the task/);
+  assert.match(h, /other discussion in the same recording/);
+  // Review G31/G43: no ban on opening a recording for "what does X need".
+  assert.doesNotMatch(h, /never from a\s+recording/);
+  assert.doesNotMatch(h, /Do not open a wiki page, conversation excerpt or voice memo/);
+});
+
+test('C2 broker skill: such an answer is fine; the server sends what the hand-over does not cover to the approval card (R6)', () => {
+  const h = handoverSection();
+  assert.match(h, /Such an answer is fine/);
+  assert.match(h, /the server sends anything not covered by the hand-over \(wiki pages built from conversations, conversations, voice memos, Gmail\) to the user's approval card per their own rules/);
+  assert.match(h, /When you use a conversation or voice memo, answer from it as usual/);
+  assert.match(h, /never decline only because approval is needed/);
+});
+
+test('G37 broker skill: the description says points are required and exact segment ids are an optional addition', () => {
+  assert.doesNotMatch(FRONT, /as a summary or as exact segment ids/);
+  assert.match(FRONT, /points are required for every answer, including exact ones/);
+  assert.match(FRONT, /exact segment ids are an optional addition/);
+});
+
+test('R6_TC_S1_21 broker skill: hand-over preference no longer invites related extras', () => {
+  const h = handoverSection();
+  assert.match(h, /Do not add a related fact the item does not need/);
+  assert.match(h, /even when it is about the same subject/);
+});
+
+test('C4e broker skill: points (an array of {text, sources}) are required for every answer, including exact; exact_segments are optional', () => {
+  const s7 = section(7);
+  assert.match(s7, /Every `answer` needs `points`: a JSON array of at least one `\{"text", "sources"\}` object/);
+  assert.match(s7, /This holds for `"kind": "exact"` too/);
+  assert.match(s7, /`exact_segments` is an optional addition to the points, never a replacement/);
+  assert.match(s7, /When you cannot write one point, submit `decline`/);
+  assert.match(s7, /`nothing_to_share`/);
+  const s5 = section(5);
+  assert.match(s5, /`exact_segments` never replaces `points`/);
+});
+
+test('C4e broker skill: a refused submit returns an error to fix and resubmit; no claim that every malformed submit errors (G2, G13, G20, G50)', () => {
+  const s7 = section(7);
+  assert.match(s7, /When `access_submit_answer` refuses a submit, it returns an error with a reason and what to fix/);
+  assert.match(s7, /Fix it and submit again/);
+  assert.match(s7, /A refused submit does not count as your one submit/);
+  assert.doesNotMatch(s7, /If a submit is malformed, the server returns an error/);
+});
+
+test('TC_S4_4 broker skill: a full-transcript ask on a handed-over task is declined, never answered empty', () => {
+  const h = handoverSection();
+  assert.match(h, /A handed-over task never widens what you share/);
+  assert.match(h, /an ask for a full transcript, every note or a bulk export is declined \(section 3\), never answered with an empty answer/);
+});
+
+test('TC_S4_4 broker skill: an answer without points and one with points as a string both fail the schema, naming points', () => {
+  const [, exactOnly] = examples('invalid-answer-without-points').find(Boolean) || [];
+  assert.ok(exactOnly, 'invalid-answer-without-points.json exists');
+  assert.equal(exactOnly.decision, 'answer');
+  assert.equal(exactOnly.kind, 'exact');
+  assert.ok(Array.isArray(exactOnly.exact_segments) && exactOnly.exact_segments.length >= 1);
+  assert.ok(!('points' in exactOnly));
+  let errors = validate(SCHEMA, exactOnly);
+  assert.ok(errors.some((e) => /missing required points/.test(e)), errors.join('; '));
+
+  const [, asString] = examples('invalid-points-as-string').find(Boolean) || [];
+  assert.ok(asString, 'invalid-points-as-string.json exists');
+  assert.equal(typeof asString.points, 'string');
+  errors = validate(SCHEMA, asString);
+  assert.ok(errors.some((e) => /points: expected array, got string/.test(e)), errors.join('; '));
+
+  // And an empty array is still refused for an answer.
+  const ok = { decision: 'answer', kind: 'summary', task_kind: 'other', topic: 't', points: [] };
+  errors = validate(SCHEMA, ok);
+  assert.ok(errors.some((e) => /points: fewer than 1 items/.test(e)), errors.join('; '));
+});
+
+test('fix1 broker skill: README 0.2.1 notes match the server and do not overstate', () => {
+  const readme = fs.readFileSync(path.join(SKILL_DIR, 'README.md'), 'utf8').replace(/\s+/g, ' ');
+  const notes = readme.slice(readme.indexOf('## 0.2.1'), readme.indexOf('## 0.2.2'));
+  assert.match(notes, /0\.2\.1/);
+  assert.match(notes, /the item itself and the matching to-dos and calendar items without asking/);
+  assert.match(notes, /from the item alone/);
+  assert.match(notes, /wiki pages built from conversations, conversations, voice memos and Gmail/);
+  assert.match(notes, /approval card/);
+  assert.match(notes, /at least one point/);
+  assert.match(notes, /`exact_segments` is an optional addition/);
+  assert.match(notes, /answer_refused/);
+  // Review G2/G19/G23/G34/G41/G46/G48/G51: the server parses a JSON-string
+  // points value, so the README does not call it a server-refused shape.
+  assert.doesNotMatch(notes, /both refused shapes/);
+  assert.match(notes, /parses a JSON-string `points`/);
+  // Review G42/G49: the hand-over does not cover wiki pages.
+  assert.doesNotMatch(notes, /calendar, to-dos and wiki/);
+  assert.doesNotMatch(notes, /opens no wiki page, conversation excerpt or voice memo/);
+  // Repair round 1: the notes must not promise delivery.
+  assert.doesNotMatch(notes, /so such an answer is still given/);
+  // Repair round 2: the server follows the user's own rules. A category set to
+  // Always ('answer') or a live grant shares the answer with no card, and no
+  // 'Never' setting exists (presets.MODES is ask/answer), so the notes neither
+  // promise approval for every such answer nor name a Never setting.
+  assert.doesNotMatch(notes, /only if the user approves it/);
+  assert.doesNotMatch(notes, /Never/);
+  assert.match(notes, /per the user's own rules/);
+  assert.match(notes, /set to Always/);
+  assert.match(notes, /grant/);
+  assert.match(notes, /without a card/);
+});
+
+test('fix1 broker skill: SKILL.md does not promise phone approval for every sensitive answer', () => {
+  const skill = fs.readFileSync(path.join(SKILL_DIR, 'SKILL.md'), 'utf8').replace(/\s+/g, ' ');
+  assert.doesNotMatch(skill, /for sensitive kinds of data, the user approves it on their phone/);
+  assert.match(skill, /the user's own rules/);
 });

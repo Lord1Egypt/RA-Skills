@@ -18,7 +18,7 @@ An existing HTTPS proxy may use `pixiv mcp --port 1270 --host 0.0.0.0 --base-url
 
 ## Cache and temporary storage
 
-Private animation temporary storage is configured by mcp_gallery_animation_temp_capacity_mib (1024; positive integer, separate from memory, startup/restart only). The Gallery cache budget is `mcp_gallery_cache_capacity_mib` (256; 0 disables caching); the 15-minute cache lifetime and the read limit of 4 are fixed. The removed `mcp_gallery_cache_ttl` and `mcp_gallery_concurrency` settings are ignored if present. The remaining settings map to the corresponding `gallery_*` keys under `[mcp]` and support `config get/set/unset`; changes require an explicitly authorized MCP restart.
+Private animation temporary storage is configured by `mcp.gallery_animation_temp_capacity_mib` (1024; positive integer, separate from memory, startup/restart only). The Gallery cache budget is `mcp.gallery_cache_capacity_mib` (256; 0 disables caching); the 15-minute cache lifetime and the read limit of 4 are fixed. The removed `mcp_gallery_cache_ttl` and `mcp_gallery_concurrency` settings are ignored if present. These TOML paths support `config get/set/unset`; changes require an explicitly authorized MCP restart.
 
 The in-memory budget includes metadata and image filling buffers. Successful artwork metadata may lag updates within the 15-minute TTL; bookmark state and writes stay live. Grant/credential/network changes invalidate access to cached content and reclaim idle cache entries; expiry also releases idle entries without another read. Active cached transfers retain their budget until release. Late fills cannot repopulate invalidated content. Large images stream without caching or truncation.
 
@@ -31,6 +31,10 @@ One MCP server exposes `pixiv_*` and `fanbox_*` tools with independent product c
 Standard read-only, destructive, idempotent and open-world annotations are approval hints, not a replacement for the user's authorization. Reverse search uploads the chosen source to third-party providers. MCP paths refer to the server filesystem, and URLs are fetched from the server network; authorize only trusted connectors. HTTP OAuth uses DCR, owner consent and PKCE, with bearer validation on every HTTP MCP request.
 
 Do not treat a local fixture or successful launch as proof that a cloud connector completed authorization.
+
+## Vector search
+
+Run `pixiv vector setup` and `pixiv vector sync` in the server terminal first. `pixiv_vector_search` is always available in discovery; provide exactly one `query`, `source`, or host `image`, plus optional `page`/`limit`. It reads vector settings on each call without restarting MCP, shares CLI catch-up/ranking, and returns `{records, pagination, index}` with best-page `match`. Results span accounts and can include private/R18 snapshots. Calls save local state and cloud models upload thumbnails/queries with possible charges; authorize that scope. Pending pages prompt a terminal sync. Failures expose fixed structured `error` codes with `isError=true`; keep all source/attachment/private paths and keys out of logs and replies.
 
 ## Reverse-search attachments
 

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and OpenClaw agents use this skill to read and transfer Qubrics mailbox and Sending API attachments through MCP, CLI, or SDK workflows while keeping real file bytes out of model context.
+Developers and agents use this skill to read, upload, and send email attachments through Qubrics MCP, CLI, SDK, or HTTP workflows while keeping file bytes out of model context.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Attachment data and credentials may be sent to Qubrics, and the security scan reports medium confidence with partial coverage.
+Risk: Attachment workflows may transmit files to Qubrics and use optional API credentials.
 
-Mitigation: Use the intended account and authorized mailbox, verify the returned identity before access or transfer, and keep credentials and signed upload capabilities out of chat, command arguments, and logs.
-
-Risk: Inbound attachment content, filenames, links, and metadata can contain untrusted or instruction-like content.
-
-Mitigation: Read only what the authorized task needs and treat attachment content as data rather than instructions.
+Mitigation: Use an authorized Qubrics account and mailbox, verify the returned identity, and load credentials from a secret store rather than chat.
 
 ## Reference(s):
 
-- [Qubrics skills repository](https://github.com/qubrics/skills)
+- [Project homepage](https://github.com/qubrics/skills)
+- [ClawHub release](https://clawhub.ai/roshanjonah/skills/qubrics-attachments)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, API Calls, Shell commands, Code, Configuration instructions]
+**Output Type(s):** [Guidance, Shell commands, Code, API request examples, Configuration instructions]
 
-**Output Format:** [Markdown instructions with inline text, JSON, shell, TypeScript, and Python examples]
+**Output Format:** [Markdown with inline shell, TypeScript, Python, and JSON examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Uses file paths or presigned URLs for attachment transfer; real attachment bytes are kept out of model context except for tiny agent-authored files.]
+**Other Properties Related to Output:** [Provides attachment workflow instructions and examples; does not place real file bytes in model context.]
 
 ## Skill Version(s):
 
-2.0.4 (source: frontmatter)
+2.0.8 (source: frontmatter)
 
 ## Ethical Considerations:
 

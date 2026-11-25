@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // <define:__AMB_INSTALL_BUILD_CONFIG__>
-var define_AMB_INSTALL_BUILD_CONFIG_default = { mode: "npm", repoBranch: "main", expectedCliSha: "ca68ea69", minimumCliVersion: "1.10.0" };
+var define_AMB_INSTALL_BUILD_CONFIG_default = { mode: "npm", repoBranch: "main", expectedCliSha: "7a38aff1", minimumCliVersion: "1.11.3" };
 
 // src/scripts/ride-relay.ts
 import path9 from "path";

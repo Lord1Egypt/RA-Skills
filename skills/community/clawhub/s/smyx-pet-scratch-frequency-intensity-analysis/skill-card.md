@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes cat scratch-post videos to estimate scratching frequency, session duration, and relative intensity, returning structured behavioral observations without diagnosing disease or prescribing behavior changes.
+Analyzes cat scratch-post videos for scratching frequency, session duration, and vibration-based intensity, and reports behavioral observations without diagnosing disease or prescribing behavior changes.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Pet owners and caretakers use this skill to summarize scratching frequency, session duration, and relative intensity from cat scratch-post videos. It provides behavioral observations and history reports for monitoring, not veterinary diagnoses or behavior-correction advice.
+Pet owners and developers use the skill to review cat scratch-post videos and receive structured observations about scratching frequency, duration, estimated intensity, stress indicators, and claw health. The results are for behavioral reference and do not provide a diagnosis or behavior-correction advice.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan marked this release suspicious over unresolved account and identity handling, history retrieval, and video processing behavior; this is not a finding of malicious intent.
+Risk: The skill sends local videos or supplied video URLs to remote analysis services, and its workflow includes local account creation or reuse, cloud history retrieval, and report export links; the security review advises clarifying these behaviors before installation.
 
-Mitigation: Follow the scanner guidance and avoid installation until the author explains account creation, identity and token storage, history-listing behavior, and why export-only mode can still analyze video.
+Mitigation: Use only videos you are authorized to share. Before installation, clarify account creation and storage, video transfer, history access, report export, and the behavior of export-only mode.
 
-Risk: Relative intensity estimates can vary with camera angle and distance, and behavioral observations do not establish a health diagnosis.
+Risk: The security assessment is incomplete because a referenced local path was missing, so it does not establish that every referenced behavior was examined.
 
-Mitigation: Present results as approximate observations only; do not use them as a disease diagnosis or behavior-correction plan.
+Mitigation: Review the missing reference and repeat the security review before relying on the skill.
 
 ## Reference(s):
 
-- [API documentation](references/api_doc.md)
-- [Skill demonstration](https://lifeemergence.com/sample.html)
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-pet-scratch-frequency-intensity-analysis)
+- [API interface notes](references/api_doc.md)
+- [ClawHub release page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-pet-scratch-frequency-intensity-analysis)
+- [Usage demonstration](https://lifeemergence.com/sample.html)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, JSON, Markdown]
 
-**Output Format:** [Structured JSON observations and Markdown summaries or history tables]
+**Output Format:** [Structured JSON analysis results with Markdown summaries and report links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Intensity estimates are relative and can be affected by camera angle and distance; results are not veterinary diagnoses.]
+**Other Properties Related to Output:** [Intensity is estimated from observed vibration; camera angle and distance affect the relative estimate.]
 
 ## Skill Version(s):
 
-1.0.15 (source: server-resolved release metadata)
+1.0.17 (source: server-resolved release metadata; artifact frontmatter lists 1.0.23)
 
 ## Ethical Considerations:
 

@@ -1,8 +1,8 @@
 # Weekly digest: remind, then run a discover round with the user present
 
 Read this when the user asks for a weekly job email, wants to change or stop it, or
-when a digest session starts you with this file. The design (and its 2026-11-02
-revision) is kept in the source repository, https://github.com/addsumtech/job-hunt.
+when a digest session starts you with this file. Design (and its 2026-11-02
+revision): `docs/superpowers/specs/2026-11-02-weekly-digest-design.md` (source repository).
 
 Once a week, at the slot the user chose, an hourly check (`digest.py tick`) asks
 them in a dialog whether to run this week's digest. **Run now** opens a Terminal with

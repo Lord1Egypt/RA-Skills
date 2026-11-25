@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TARGET}} · 行业洞察报告</title>
+<!--
+  ════════════════════════════════════════════════════════════════════
+  行业洞察引擎 · report.html 官方模板（配套 skill v2.1.5）
+  本文件同时是「模板」和「渲染范例」——页面内为示例内容，生成时全部替换。
+
+  执行 agent 必读：
+  1. 设计 tokens（:root 变量）与版式骨架不得改动：改内容，不改皮。
+  2. 按深度裁剪区块（各区块有注释标记）：
+     [所有档位]  hero + KPI + 机会卡片 + 下一步 + 复盘
+     [S+]        Standard 及以上：摘要 / 格局 / 竞品 / 外围 / 矩阵 / 行动 / 预测
+     [Deep]      深拆摘要 / 情报摘要 / 趋势图
+     Quick 模式隐藏 sidebar（直接删掉 <aside>）。
+  3. 必替换项：{{TARGET}} {{DATE}} {{DEPTH}} {{SCOPE}}，以及 hero 的结论徽章
+     （.verdict 使用 verdict--good / verdict--warn / verdict--risk 三档，
+       文案 = 一句话总体判断：值得入场 / 谨慎观察 / 不建议 + 核心理由短句）。
+  4. 图表：机会金矩阵是内置 CSS 网格（不依赖 CDN）；Deep 档趋势图用 Chart.js（走 CDN，离线时
+     .chart-fallback 自动显示，勿删脚本）。⚠️ v2.0 起移除雷达图——主观评估/打分一律以表格
+     呈现并标注「拆解评估」，不得做成看似数据的图表（硬规则 4：禁止伪精确）。
+  5. 导航一律用页内锚点 #s-*，禁止链接本地 .md 文件；deep-dive 引用一律用**内置弹层**：
+     生成时把 deep-dive/*.md 的完整内容内嵌为 <script type="text/markdown" id="md-xxx">，
+     引用处用 openMd('md-xxx','标题') 弹出渲染（模板已内置渲染器，离线可用）。
+  5b. **hero 只对读者说话**：kicker 仅含「行业研究报告 + 生成于 {日期}」；meta 行为「研究范围 + 数据截至」
+     （数据截至与生成同日则省略）。深度代号（Quick/Standard/Deep）、技能版本号、重跑/检索次数等
+     内部元数据一律写入 analysis.md 头部，不进报告。
+  5c. **核心结论带置信徽章**：🟢 一手可核 / 🟡 多源二手一致 / ⚪ 单源线索——徽章跟结论走（hero 徽章、
+     KPI 卡、机会卡、对账表），让读者扫得到可信度分层。
+  5d. **《本报告的边界》固定区块**（机会判断之后）：证据结构 + 必须一手验证清单（找谁/问什么/花多久）
+     + 局限声明。行动指南含「验证清单」；下一步建议至多 1 条技能内动作、至少 1 条现实世界动作。
+  6. 所有数字带（年份+口径+来源）脚注，表格下方用 .source-note 汇总。
+  ════════════════════════════════════════════════════════════════════
+-->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+/* ── 设计 tokens：不得修改 ─────────────────────────────────────── */
+:root{
+  --ink:#182236; --muted:#5c6675; --faint:#9199a8;
+  --bg:#f4f6f9; --surface:#ffffff; --line:#e4e8ee;
+  --navy:#16294d; --navy-2:#1e3a6e;
+  --accent:#2456d8; --accent-soft:#ecf1fe;
+  --good:#0d8a4f; --good-soft:#e7f5ee;
+  --warn:#b07708; --warn-soft:#fcf3df;
+  --risk:#c0392b; --risk-soft:#fdecea;
+  --radius:14px; --radius-s:9px;
+  --shadow:0 1px 2px rgba(24,34,54,.06),0 10px 30px rgba(24,34,54,.07);
+  --sidebar-w:250px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15.5px;line-height:1.8;
+}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ── 版式骨架：不得修改 ───────────────────────────────────────── */
+.layout{display:grid;grid-template-columns:var(--sidebar-w) minmax(0,1fr);max-width:1400px;margin:0 auto;gap:28px;padding:0 24px}
+aside{position:sticky;top:0;align-self:start;height:100vh;padding:28px 0;overflow:auto}
+main{padding:28px 0 80px;min-width:0}
+.brand{font-weight:700;font-size:13px;letter-spacing:.08em;color:var(--faint);text-transform:uppercase;margin:0 0 18px}
+aside nav a{display:block;padding:7px 12px;margin:2px 0;border-radius:var(--radius-s);color:var(--muted);font-size:14px}
+aside nav a:hover{background:var(--accent-soft);color:var(--accent);text-decoration:none}
+section{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:30px 34px;margin:0 0 26px}
+section>h2{margin:0 0 6px;font-size:21px;line-height:1.4}
+section>.sub{margin:0 0 22px;color:var(--muted);font-size:13.5px}
+h3{font-size:16px;margin:26px 0 10px}
+
+/* ── Hero：结论先行 ───────────────────────────────────────────── */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;border:none;padding:44px 40px 38px}
+.hero .kicker{font-size:12.5px;letter-spacing:.14em;color:#9db1d6;margin:0 0 10px;font-weight:600}
+.hero h1{margin:0 0 14px;font-size:34px;line-height:1.3;color:#fff}
+.verdict{display:inline-flex;align-items:center;gap:10px;padding:9px 18px;border-radius:999px;font-weight:700;font-size:15.5px}
+.verdict--good{background:var(--good-soft);color:var(--good)}
+.verdict--warn{background:var(--warn-soft);color:var(--warn)}
+.verdict--risk{background:var(--risk-soft);color:var(--risk)}
+.hero .meta{margin:18px 0 0;color:#a9bad9;font-size:13px}
+.hero .meta span{margin-right:18px}
+
+/* ── KPI ──────────────────────────────────────────────────────── */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin:0 0 26px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px}
+.kpi .num{font-size:26px;font-weight:800;line-height:1.2}
+.kpi .lbl{color:var(--muted);font-size:13px;margin-top:2px}
+.kpi .src{color:var(--faint);font-size:11.5px;margin-top:6px}
+
+/* ── Callout / 卡片 ───────────────────────────────────────────── */
+.callouts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.callout{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:var(--radius-s);padding:14px 18px;background:var(--accent-soft)}
+.callout b{display:block;margin-bottom:2px}
+.opp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:16px}
+.opp{border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;background:var(--surface)}
+.opp h4{margin:0 0 8px;font-size:15.5px}
+.opp p{margin:0 0 10px;color:var(--muted);font-size:14px}
+.opp .tags{display:flex;flex-wrap:wrap;gap:6px;font-size:12px}
+.tag{padding:2px 10px;border-radius:999px;background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+.opp--good{border-left:4px solid var(--good)} .opp--good h4::before{content:"🟢 "}
+.opp--warn{border-left:4px solid var(--warn)} .opp--warn h4::before{content:"🟡 "}
+.opp--risk{border-left:4px solid var(--risk)} .opp--risk h4::before{content:"🔴 "}
+.risk{border-left:4px solid var(--risk)}
+
+/* ── 表格 ─────────────────────────────────────────────────────── */
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{background:var(--bg);text-align:left;font-weight:600;color:var(--muted);white-space:nowrap}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.source-note{color:var(--faint);font-size:12px;margin-top:10px}
+
+/* ── 机会金矩阵（纯 CSS，离线可用） ──────────────────────────── */
+.matrix-wrap{display:grid;grid-template-columns:auto 1fr 1fr;grid-template-rows:auto 1fr 1fr;gap:10px;align-items:stretch;margin:8px 0 4px}
+.mx-corner{}
+.mx-axis{color:var(--muted);font-size:13px;font-weight:600;text-align:center;align-self:center}
+.mx-cell{border:1.5px dashed var(--line);border-radius:var(--radius-s);padding:14px;min-height:110px;background:var(--bg)}
+.mx-cell .cell-tag{font-size:12px;color:var(--faint);display:block;margin-bottom:8px}
+.chip{display:inline-block;margin:3px 4px 3px 0;padding:3px 12px;border-radius:999px;font-size:13px;font-weight:600}
+.chip--good{background:var(--good-soft);color:var(--good)}
+.chip--warn{background:var(--warn-soft);color:var(--warn)}
+.chip--risk{background:var(--risk-soft);color:var(--risk)}
+.chip--empty{background:transparent;color:var(--faint);font-weight:400;border:1px dashed var(--line)}
+/* 置信徽章：跟核心结论走 */
+.conf{display:inline-block;margin-left:8px;padding:1px 9px;border-radius:999px;font-size:11.5px;font-weight:600;vertical-align:middle}
+.conf--1{background:var(--good-soft);color:var(--good)}
+.conf--2{background:var(--warn-soft);color:var(--warn)}
+.conf--3{background:var(--bg);color:var(--faint);border:1px solid var(--line)}
+/* 边界段：桌面研究上限声明 */
+.boundary{background:var(--warn-soft);border:1px solid #eedbb5;border-radius:var(--radius-s);padding:16px 20px;margin:10px 0 4px}
+.boundary h4{margin:0 0 8px;font-size:14.5px;color:var(--warn)}
+.boundary ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:var(--ink)}
+.boundary .disclaimer{margin:10px 0 0;font-size:12.5px;color:var(--muted)}
+/* 阅读导读（太长不看） */
+.tldr{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 0}
+.tldr a{display:inline-block;padding:6px 14px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-size:13.5px}
+
+/* ── 图表 ─────────────────────────────────────────────────────── */
+.charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.chart-box{border:1px solid var(--line);border-radius:var(--radius-s);padding:18px;background:var(--surface)}
+.chart-box h4{margin:0 0 12px;font-size:14.5px;color:var(--muted)}
+.chart-box .box{position:relative;height:300px}
+.chart-fallback{margin-top:8px;padding:12px 14px;border-radius:var(--radius-s);background:var(--warn-soft);color:var(--warn);font-size:13px}
+/* ── deep-dive 内嵌弹层 ── */
+.md-link{color:var(--accent);cursor:pointer;border-bottom:1px dashed var(--accent)}
+.modal-mask{position:fixed;inset:0;background:rgba(22,41,77,.55);display:none;align-items:flex-start;justify-content:center;z-index:99;padding:40px 16px}
+.modal-mask.open{display:flex}
+.modal{background:var(--surface);border-radius:var(--radius);max-width:900px;width:100%;max-height:85vh;overflow:auto;padding:26px 32px;box-shadow:var(--shadow)}
+.m-close{float:right;border:1px solid var(--line);background:var(--bg);border-radius:var(--radius-s);padding:4px 12px;cursor:pointer;font-size:13px;color:var(--muted)}
+.m-body h2{font-size:18px;margin:20px 0 6px;padding-top:12px;border-top:1px solid var(--line)}
+.m-body h3{font-size:15px;margin:14px 0 4px}
+.m-body table{margin:8px 0;font-size:13px}
+.m-body th,.m-body td{padding:7px 10px}
+.m-body pre{background:var(--bg);padding:10px 14px;border-radius:var(--radius-s);font-size:12.5px;overflow-x:auto}
+.m-body blockquote{margin:8px 0;padding:6px 14px;border-left:3px solid var(--accent);background:var(--accent-soft);color:var(--muted);font-size:14px}
+.m-body hr{border:none;border-top:1px solid var(--line);margin:14px 0}
+.m-body p{margin:8px 0}
+
+/* ── 行动 / 情报 / 收尾 ───────────────────────────────────────── */
+.steps{counter-reset:step;margin:0;padding:0;list-style:none}
+.steps li{counter-increment:step;position:relative;padding:0 0 18px 52px}
+.steps li::before{content:counter(step);position:absolute;left:0;top:2px;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center}
+.steps b{display:block;margin-bottom:2px}
+.steps .why{color:var(--muted);font-size:14px}
+.intel-note{background:var(--accent-soft);border:1px solid var(--line);border-radius:var(--radius-s);padding:14px 18px;font-size:14px;color:var(--muted)}
+.next-steps{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:var(--radius);background:var(--surface);padding:20px 26px;margin-bottom:26px}
+.next-steps ol{margin:8px 0 0;padding-left:22px}
+.next-steps li{margin:6px 0}
+.review-box{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:20px 24px}
+.review-box pre{white-space:pre-wrap;word-break:break-word;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;line-height:1.7;margin:0 0 14px;color:var(--ink)}
+.copy-btn{border:1px solid var(--accent);background:var(--accent);color:#fff;padding:8px 18px;border-radius:var(--radius-s);font-size:13.5px;cursor:pointer}
+.print-btn{position:fixed;top:18px;right:18px;z-index:50;border:1px solid var(--line);background:var(--surface);color:var(--muted);padding:7px 14px;border-radius:999px;font-size:12.5px;cursor:pointer;box-shadow:var(--shadow)}
+.print-btn:hover{color:var(--accent);border-color:var(--accent)}
+.copy-btn:hover{opacity:.9}
+footer{color:var(--faint);font-size:12.5px;text-align:center;padding:0 0 40px}
+
+/* ── 响应式 & 打印 ────────────────────────────────────────────── */
+@media (max-width:1000px){
+  .layout{grid-template-columns:1fr;padding:0 14px}
+  aside{display:none}
+  main{padding-top:14px}
+  section{padding:22px 20px}
+  .hero{padding:32px 24px}
+  .hero h1{font-size:26px}
+}
+@media print{
+  body{background:#fff;font-size:12.5px}
+  .layout{display:block;max-width:none;padding:0}
+  aside,.copy-btn,.print-btn,.chart-fallback{display:none!important}
+  section,.kpi,.opp,.next-steps,.review-box{box-shadow:none;break-inside:avoid}
+  .hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- [S+] sidebar：Quick 模式整体删除；Standard 模式删除「情报摘要」链接（该节 Deep 专属） -->
+<aside>
+  <p class="brand">行业洞察引擎</p>
+  <nav>
+    <a href="#s-exec">执行摘要</a>
+    <a href="#s-land">格局拆解</a>
+    <a href="#s-peri">外围扫描</a>
+    <a href="#s-opp">机会判断</a>
+    <a href="#s-boundary">报告边界</a>
+    <a href="#s-act">行动指南</a>
+    <a href="#s-intel">情报摘要</a><!-- [Deep] -->
+    <a href="#s-next">下一步建议</a>
+    <a href="#s-review">复盘追问</a>
+  </nav>
+</aside>
+
+<main>
+
+<!-- [所有档位] hero：必须含一句话总体判断 -->
+<header class="hero" id="s-top">
+  <button class="print-btn" onclick="window.print()" title="打印/另存为 PDF">⬇ 导出 PDF</button>
+  <p class="kicker">行业研究报告 · 生成于 {{DATE}}</p>
+  <h1>{{TARGET}}</h1>
+  <span class="verdict verdict--warn">🟡 谨慎观察：总量在收缩，但存量翻新与整装渠道存在结构性机会</span>
+  <p class="meta"><span>研究范围：{{SCOPE}}</span><span>数据截至：{{DATE}}</span><span>方法：4 步拆解 + 外围扫描（公开信源）</span></p>
+</header>
+
+<!-- [所有档位] KPI：Quick 3 张 / Standard 4 张 / Deep 5 张 -->
+<div class="kpis">
+    <div class="kpi"><div class="num">≈3500 亿<span class="conf conf--2">多源二手</span></div><div class="lbl">市场规模（2024，营收口径）</div><div class="src">估算 · 中国建筑卫生陶瓷协会</div></div>
+  <div class="kpi"><div class="num">5</div><div class="lbl">核心玩家（CR5 ≈ 18%）</div><div class="src">估算 · 上市公司财报</div></div>
+  <div class="kpi"><div class="num">4</div><div class="lbl">识别机会（2 高确定性）</div><div class="src">本次拆解</div></div>
+  <div class="kpi"><div class="num">3</div><div class="lbl">主要风险</div><div class="src">本次拆解</div></div>
+</div>
+
+<!-- [S+] 执行摘要 -->
+<section id="s-exec">
+  <h2>执行摘要</h2>
+  <p class="sub">三个最重要的结论，先看这个</p>
+  <div class="callouts">
+    <div class="callout"><b>行业进入存量期</b>新房交付下行，需求主力从工程渠道转向零售翻新，渠道结构正在重排。</div>
+    <div class="callout"><b>格局分散、价格战延续</b>CR5 仅约 18%，中小厂以低价缠斗，纯经销铺货模式利润持续变薄。</div>
+    <div class="callout"><b>机会在服务化</b>「卖砖」到「交付翻新」的服务化缺口是本次识别出的最高确定性机会。</div>
+  </div>
+  <div class="tldr">
+    <a href="#s-act">⏱ 着急？直接看行动指南</a>
+    <a href="#s-opp">🎯 机会与风险</a>
+    <a href="#s-boundary">⚠️ 本报告的边界（先读）</a>
+  </div>
+  <p class="source-note">怎么读这张报告：结论徽章=总体判断；🟢🟡⚪小徽章=该结论的证据置信度（🟢一手可核/🟡多源二手/⚪单源线索）；机会金矩阵=横轴窗口期、纵轴确定性，绿=立刻做、黄=小成本试、红=别碰。</p>
+</section>
+
+<!-- [S+] 格局拆解 -->
+<section id="s-land">
+  <h2>格局拆解</h2>
+  <p class="sub">谁在赚钱、怎么赚钱</p>
+  <h3>玩家分类</h3>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>类别</th><th>代表品牌</th><th>一句话定位</th><th>赚钱模式</th><th class="num">年营收（估算）</th></tr>
+    <tr><td>巨头/龙头</td><td>马可波罗</td><td>渠道最深的高端瓷砖品牌</td><td>品牌溢价 + 经销网络</td><td class="num">≈90 亿（2023，财报）</td></tr>
+    <tr><td>挑战者</td><td>东鹏控股</td><td>整装渠道布局最激进的上市陶企</td><td>工程 + 零售双轮</td><td class="num">≈78 亿（2023，财报）</td></tr>
+    <tr><td>新锐/黑马</td><td>大角鹿</td><td>超耐磨大理石瓷砖单品冠军</td><td>单品差异化 + 门店加盟</td><td class="num">≈20 亿（估算）</td></tr>
+  </table>
+  </div>
+  <h3>竞品 5 核维对照</h3>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>维度</th><th>马可波罗</th><th>东鹏</th><th>大角鹿</th></tr>
+    <tr><td>定位与赚钱模式</td><td>高端品牌溢价</td><td>规模 + 渠道</td><td>单品爆款</td></tr>
+    <tr><td>内容与获客引擎</td><td>抖音品牌投放为主</td><td>整装渠道带单</td><td>抖音本地推 + 装修内容种草</td></tr>
+    <tr><td>转化链路</td><td>门店体验成交</td><td>整装套餐打包</td><td>短视频→门店量尺</td></tr>
+    <tr><td>差异化武器</td><td>品牌认知 + 渠道壁垒</td><td>供应链规模</td><td>耐磨技术卖点</td></tr>
+    <tr><td>可复制性</td><td>⭐⭐ 需资源</td><td>⭐⭐ 需资源</td><td>⭐⭐⭐ 几乎抄不走</td></tr>
+  </table>
+  </div>
+  <p class="source-note">数据来源：上市公司年报（2023）、巨量引擎行业公开资料、36氪/亿邦报道；营收为估算处已标注。</p>
+</section>
+
+<!-- [S+] 外围扫描 -->
+<section id="s-peri">
+  <h2>外围生态扫描</h2>
+  <p class="sub">行业外围的机会信号——工具、服务商与新兴概念</p>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>类别</th><th>发现</th><th>为什么值得关注</th></tr>
+    <tr><td>新兴服务商</td><td>瓷砖翻新交付服务商（旧房换砖一站式）</td><td>外围掘金者已在验证「服务化」需求真实存在</td></tr>
+    <tr><td>新兴工具</td><td>岩板加工共享工厂平台</td><td>工具即风向标——加工产能正在被平台化</td></tr>
+    <tr><td>新兴营销概念</td><td>本地生活「装修内容」赛道崛起</td><td>概念即机会——谁先占位谁先吃红利</td></tr>
+    <tr><td>关键词趋势</td><td>「瓷砖翻新」「岩板」搜索热近两年持续上行</td><td>内容占位空白信号</td></tr>
+  </table>
+  </div>
+</section>
+
+<!-- [所有档位] 机会判断 -->
+<section id="s-opp">
+  <h2>机会判断</h2>
+  <p class="sub">不是列机会，是判断值不值得做</p>
+  <div class="opp-grid">
+    <div class="opp opp--good"><h4>旧房翻新「瓷砖换新」服务</h4><p>翻新需求上行但交付体验极差，把卖砖升级为「量尺-拆除-铺贴-清渣」一站式，赚服务溢价。</p><div class="tags"><span class="tag">确定性 高</span><span class="tag">窗口 0-12 个月</span><span class="tag">在位者：区域性翻新队（无品牌）</span><span class="tag">反方：交付重、履约难标准化</span></div></div>
+    <div class="opp opp--good"><h4>整装渠道绑定供应</h4><p>整装公司正在集中采购，绑定区域头部整装可锁定量；窗口在收窄，需差异化账期与交付承诺。</p><div class="tags"><span class="tag">确定性 高</span><span class="tag">窗口 12-24 个月（收窄）</span><span class="tag">在位者：东鹏/蒙娜丽莎整装部</span><span class="tag">反方：账期风险集中</span></div></div>
+    <div class="opp opp--warn"><h4>岩板加工共享工厂</h4><p>岩板渗透率提升但加工产能碎片化，平台化调度有戏；需求真实性需小成本验证。</p><div class="tags"><span class="tag">确定性 中</span><span class="tag">窗口 0-12 个月</span><span class="tag">在位者：本地加工厂</span><span class="tag">反方：需求密度可能不足</span></div></div>
+    <div class="opp opp--risk"><h4>传统大板批发经销</h4><p>价格战红海，经销层级被品牌直营压缩，无差异化必死。</p><div class="tags"><span class="tag">确定性 低</span><span class="tag">窗口 已关闭</span><span class="tag">在位者：全部现有经销商</span><span class="tag">反方：无任何结构性优势</span></div></div>
+  </div>
+
+  <!-- [S+] 机会金矩阵 -->
+  <h3>机会金矩阵（确定性 × 窗口期）</h3>
+  <div class="matrix-wrap">
+    <div class="mx-corner"></div>
+    <div class="mx-axis">← 窗口开放</div>
+    <div class="mx-axis">窗口关闭 →</div>
+    <div class="mx-axis">高确定性 ↑</div>
+    <div class="mx-cell"><span class="cell-tag">🟢 立刻做</span><span class="chip chip--good">旧房翻新换新</span><span class="chip chip--good">整装渠道绑定（窗口收窄）</span></div>
+    <div class="mx-cell"><span class="chip chip--empty">空：已关闭窗口暂无高确定性机会</span></div>
+    <div class="mx-axis">低确定性 ↓</div>
+    <div class="mx-cell"><span class="cell-tag">🟡 小成本试</span><span class="chip chip--warn">岩板共享加工</span></div>
+    <div class="mx-cell"><span class="cell-tag">🔴 别碰</span><span class="chip chip--risk">传统大板批发</span></div>
+  </div>
+
+  <h3>风险预警</h3>
+  <div class="callouts">
+    <div class="callout risk"><b>地产竣工持续下行</b>工程盘需求再降两成以上时，零售价盘会被拖垮——最容易死在压货环节。</div>
+    <div class="callout risk"><b>价格战无底线</b>江西/佛山产能出清慢，低价内卷至少再持续 12 个月。</div>
+    <div class="callout risk"><b>整装账期陷阱</b>绑定整装 = 给装企垫资，回款风险是新手最常踩的坑。</div>
+  </div>
+
+  <!-- [S+] 预测 -->
+  <h3>6-12 个月预测</h3>
+  <p>行业向「品牌集中 + 渠道服务化」两个方向同时演化：头部吃整装集采，尾部出清；翻新服务商会成为新增量入口，先跑通交付模型者先定价。变数：存量房装修补贴政策若落地，翻新窗口会提前打开。</p>
+</section>
+
+<section id="s-boundary">
+  <h2>⚠️ 本报告的边界（先读这段再行动）</h2>
+  <div class="boundary">
+    <h4>桌面研究只能到这里</h4>
+    <ul>
+      <li><b>证据结构</b>：本次为公开信息桌面研究，一手来源占比 <b>30%</b>（上市公司公告/政府文件），其余为行业媒体与二手转引。</li>
+      <li><b>必须一手验证的清单</b>（桌面查不到，要出门才算数）：
+        <ul>
+          <li>翻新服务的真实续单率与转介绍率 —— 找 3 个已做翻新的本地服务商聊（建材市场/同行群）</li>
+          <li>整装渠道的真实账期 —— 找 2 个装企采购问付款周期</li>
+          <li>「一口价换新」的获客成本 —— 投 500 元本地推实测 3 天</li>
+        </ul>
+      </li>
+      <li><b>局限声明</b>：本报告基于公开信息桌面研究，未做实地验证与访谈。结论支持「是否值得投入验证」，不直接等于「可以入场」。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- [S+] 行动指南 -->
+<section id="s-act">
+  <h2>行动指南</h2>
+  <p class="sub">如果决定入场，第一步这样走</p>
+  <ol class="steps">
+    <li><b>最佳切口：旧房翻新换新服务（单城试点）</b><span class="why">需求已被外围服务商验证，且尚无品牌化玩家；选 1 个二手房成交活跃的城区起步。<b>Fit 校验：匹配「本地供应链+施工资源」，若缺施工资源先补再进。</b></span></li>
+    <li><b>前三步：跑通 10 单交付模型</b><span class="why">① 抖音本地推 + 装修内容获客；② 与 2 支口碑铺贴队签独家；③ 用「按㎡一口价」标准化报价单降低决策门槛。</span></li>
+    <li><b>单位经济速算：单均毛利 ≈4500 元，首单即回本</b><span class="why">客单 ≈1.5 万 × 毛利 30% = 4500 元/单；获客成本 ≈1500 元/单（抖音本地推，估算）——模型成立的前提是交付不返工。</span></li>
+    <li><b>资源需求：15-30 万 / 2 人 / 3 个月</b><span class="why">主要是获客预算与样板单补贴；铺贴队按单结算，不压人力成本（数字为估算）。</span></li>
+    <li><b>避坑：不碰工程垫资、不做全品类、先服务后开店</b><span class="why">三个最高频死法：给装企垫资、SKU 铺太宽、没验证需求先租门店。</span></li>
+    <li><b>验证清单（本周就走出门）</b><span class="why">① 访 3 个本地翻新施工队：问真实单量与获客方式；② 陪 1 个业主走一次选砖流程：记录到店决策点；③ 投 500 元本地推：实测一条线索成本。</span></li>
+  </ol>
+</section>
+
+<!-- [Deep] 深拆摘要 -->
+<section id="s-deep">
+  <h2>单品牌深拆摘要</h2>
+  <p class="sub"><span class="md-link" onclick="openMd('md-decon','单品牌 5 核维深拆')">📄 点击查看完整深拆（deep-dive/{brand}-decon.md，页内弹出）</span></p>
+  <script type="text/markdown" id="md-decon">
+# {brand} 5 核维深拆
+（生成时：把 deep-dive/{brand}-decon.md 的完整内容原样内嵌到本块，弹层会自动渲染标题/表格/列表）
+## 维度 1：定位与赚钱模式
+- 示例行：**加粗**、| 表格 |、引用 均可渲染
+  </script>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>品牌</th><th>最值得抄的一手</th><th>最抄不走的一手</th></tr>
+    <tr><td>大角鹿</td><td>单品卖点饱和攻击（耐磨检测短视频）</td><td>「超耐磨」技术心智已占位</td></tr>
+    <tr><td>东鹏</td><td>整装渠道的账期与返点结构</td><td>全国仓配+供应链规模</td></tr>
+  </table>
+  </div>
+  <div class="charts" style="margin-top:22px">
+    <div class="chart-box"><h4>需求结构迁移趋势（指数化，2019=100，示例数据）</h4><div class="box"><canvas id="chart-trend"></canvas></div><div class="chart-fallback" hidden>⚠️ 图表组件需联网加载（Chart.js CDN）；离线时请参考正文与表格数据。</div></div>
+  </div>
+</section>
+
+<!-- [Deep] 情报摘要 -->
+<section id="s-intel">
+  <h2>情报监控摘要</h2>
+  <p class="sub"><span class="md-link" onclick="openMd('md-intel','情报监控方案（完整版）')">📄 点击查看完整情报方案（deep-dive/intelligence.md，页内弹出）</span></p>
+  <script type="text/markdown" id="md-intel">
+# 情报监控方案
+（生成时：把 deep-dive/intelligence.md 完整内容内嵌到本块）
+  </script>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>频率</th><th>监控什么</th><th>信源</th></tr>
+    <tr><td>每周</td><td>竞品抖音投放与翻新内容占位</td><td>蝉妈妈（数据平台）</td></tr>
+    <tr><td>每月</td><td>竣工/二手房成交数据、整装集采动态</td><td>国家统计局 + 亿邦/联商（行业媒体）</td></tr>
+    <tr><td>每季</td><td>头部陶企财报与渠道政策</td><td>上市公司公告（官方渠道）</td></tr>
+  </table>
+  </div>
+  <p class="intel-note">⚠️ 预警线：二手房成交环比连降 2 季 → 调低翻新预期；任意头部品牌推出「换新服务」→ 重估窗口期。</p>
+</section>
+
+<!-- [所有档位] 下一步建议 -->
+<div class="next-steps" id="s-next">
+  <h2 style="margin:0;font-size:19px">📋 下一步建议</h2>
+  <ol>
+    <li><b>本周就去验证：访 3 个本地翻新施工队</b> — 用边界段的验证清单，确认续单率假设（现实世界动作，先于一切）。（需要工具就说：「帮我列访谈提纲」）</li>
+    <li><b>对大角鹿做一轮 Deep 单品牌拆解</b> — 本次发现其内容获客打法最适配翻新服务。（想执行就说：「深度拆解 大角鹿 --deep」）</li>
+    <li><b>把「整装账期」做成尽调清单</b> — 若走整装渠道，先查目标装企的应付账款周转，避免垫资陷阱。</li>
+  </ol>
+  <p style="margin:14px 0 0;color:var(--muted);font-size:13.5px">💬 接下来想怎么问：想深挖某个品牌 → 「深度拆解 品牌名 --deep」；想开始持续跟踪 → 「按情报方案出第一份周报」；对结论有异议 → 直接复制下方复盘 Prompt 追问；想换细分重跑 → 「用 {新范围} 重跑 {目标}」。</p>
+</div>
+
+<!-- [所有档位] 复盘 Prompt -->
+<div class="review-box" id="s-review">
+  <h2 style="margin:0 0 6px;font-size:19px">🪞 复盘 Prompt</h2>
+  <p style="color:var(--muted);font-size:13.5px;margin:0 0 14px">复制以下内容发给 AI 追问，审查本次分析的推理质量</p>
+  <pre id="review-text">我正在研究 [瓷砖行业]，已完成 Standard 深度拆解。
+核心发现：行业进入存量期；机会在翻新服务化而非卖砖；整装渠道窗口在收窄。
+识别机会：4 个
+
+请帮我审查：
+1. 机会清单的推理链是否成立？
+2. 有没有遗漏的重要品牌/服务商/新兴概念？
+3. 行动指南的可执行性如何？</pre>
+  <button class="copy-btn" onclick="copyReview(this)">复制复盘 Prompt</button>
+</div>
+
+<footer>本报告由 AI 基于公开信息桌面研究生成，未做实地验证；数字均标注口径与来源与置信度；不构成投资建议。 · 行业洞察引擎（开源）</footer>
+
+</main>
+</div>
+
+<div class="modal-mask" id="md-modal">
+  <div class="modal">
+    <button class="m-close" onclick="closeModal()">关闭 ✕</button>
+    <h2 id="m-title" style="margin:0 0 12px;font-size:20px"></h2>
+    <div class="m-body" id="m-body"></div>
+  </div>
+</div>
+
+<script>
+function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function md2html(md){
+  var lines=escH(md).split(/\r?\n/),out=[],inCode=false,codeBuf=[],listBuf=null,tableBuf=null;
+  function flushList(){if(listBuf){out.push('<ul style="margin:6px 0;padding-left:20px">'+listBuf.join('')+'</ul>');listBuf=null}}
+  function flushTable(){if(tableBuf){out.push('<table>'+tableBuf.join('')+'</table>');tableBuf=null}}
+  function inline(t){return t.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')}
+  for(var i=0;i<lines.length;i++){
+    var L=lines[i];
+    if(inCode){if(/^```/.test(L)){out.push('<pre>'+codeBuf.join('\n')+'</pre>');inCode=false;codeBuf=[]}else{codeBuf.push(L)}continue}
+    if(/^```/.test(L)){flushList();flushTable();inCode=true;continue}
+    if(/^\|/.test(L)){flushList();
+      var cells=L.replace(/^\||\|$/g,'').split('|');
+      if(/^[\s:|-]+$/.test(L)){continue}
+      var row='<tr>'+cells.map(function(c){return '<td>'+inline(c.trim())+'</td>'}).join('')+'</tr>';
+      if(!tableBuf){tableBuf=['<tr>'+cells.map(function(c){return '<th>'+inline(c.trim())+'</th>'}).join('')+'</tr>']}
+      else{tableBuf.push(row)}
+      continue}
+    flushTable();
+    if(/^-\s/.test(L)){if(!listBuf){listBuf=[]}listBuf.push('<li>'+inline(L.replace(/^-\s/,''))+'</li>');continue}
+    flushList();
+    if(/^###\s/.test(L)){out.push('<h3>'+inline(L.slice(4))+'</h3>');continue}
+    if(/^#{1,2}\s/.test(L)){out.push('<h2>'+inline(L.replace(/^#{1,2}\s/,''))+'</h2>');continue}
+    if(/^>\s?/.test(L)){out.push('<blockquote>'+inline(L.replace(/^>\s?/,''))+'</blockquote>');continue}
+    if(/^---+$/.test(L)){out.push('<hr>');continue}
+    if(L.trim()===''){continue}
+    out.push('<p>'+inline(L)+'</p>');
+  }
+  flushList();flushTable();
+  return out.join('');
+}
+function openMd(id,title){
+  var el=document.getElementById(id);
+  document.getElementById('m-title').textContent=title;
+  document.getElementById('m-body').innerHTML=el?md2html(el.textContent):'<p>⚠️ 内容未内嵌：请打开报告同目录的 deep-dive 文件查看。</p>';
+  document.getElementById('md-modal').classList.add('open');
+}
+function closeModal(){document.getElementById('md-modal').classList.remove('open')}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal()}});
+</script>
+
+<script>
+function copyReview(btn){
+  var text=document.getElementById('review-text').innerText;
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){btn.textContent='✓ 已复制';setTimeout(function(){btn.textContent='复制复盘 Prompt';},2000);});
+  }else{
+    var r=document.createRange();r.selectNodeContents(document.getElementById('review-text'));
+    var s=window.getSelection();s.removeAllRanges();s.addRange(r);document.execCommand('copy');s.removeAllRanges();
+    btn.textContent='✓ 已复制';setTimeout(function(){btn.textContent='复制复盘 Prompt';},2000);
+  }
+}
+/* Chart.js 离线回退：加载失败时显示提示（勿删） */
+window.addEventListener('load',function(){
+  var showFallback=function(){document.querySelectorAll('.chart-fallback').forEach(function(el){el.hidden=false;});};
+  if(!window.Chart){showFallback();return;}
+  try{
+    var trend=document.getElementById('chart-trend');
+    if(trend){
+      new Chart(trend,{type:'bar',
+        data:{labels:['2019','2020','2021','2022','2023','2024','2025E'],
+          datasets:[
+            {label:'新房竣工指数',data:[100,96,104,80,68,62,58],backgroundColor:'rgba(36,86,216,.65)'},
+            {label:'存量翻新需求指数',data:[42,48,55,66,78,88,96],backgroundColor:'rgba(13,138,79,.65)'}
+          ]},
+        options:{responsive:true,maintainAspectRatio:false,
+          scales:{x:{ticks:{color:'#5c6675',font:{size:11}},grid:{display:false}},y:{ticks:{color:'#9199a8',font:{size:10}},grid:{color:'#eef1f5'}}},
+          plugins:{legend:{labels:{color:'#5c6675',font:{size:12},boxWidth:12}}}}});
+    }
+  }catch(e){showFallback();}
+});
+</script>
+</body>
+</html>

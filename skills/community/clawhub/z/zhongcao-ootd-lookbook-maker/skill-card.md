@@ -1,6 +1,6 @@
 ## Description:
 
-Create a coordinated REDnote OOTD lookbook from outfit photos or styling ideas, pairing a vertical fashion story with ready-to-publish titles, captions, and tags.
+Create a coordinated REDnote (Xiaohongshu) OOTD lookbook from outfit photos or styling ideas, with a vertical 3:4 image carousel and a ready-to-publish fashion post.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Fashion creators, social media teams, and brands can turn an outfit photo or styling concept into a coordinated REDnote lookbook and a post-ready story. The skill can also perform optional Xiaohongshu research to inform the post.
+Fashion creators, stylists, and brand teams use this skill to turn an outfit photo or styling idea into an ordered OOTD carousel and post copy for REDnote (Xiaohongshu).
 
 ### Deployment Geography for Use:
 
@@ -22,42 +22,42 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates the release suspicious with medium confidence due to broad shared permissions and automatic installation telemetry beyond the lookbook task.
+Risk: The security review flags broad account permissions and automatic reporting for this outfit-lookbook skill.
 
-Mitigation: Review the requested access and installation reporting before installing, and proceed only if you are comfortable with them.
+Mitigation: Review permissions and reporting behavior; consider avoiding installation until these concerns are addressed.
 
-Risk: The security summary flags shared credential and connection-cleanup concerns; using the image workflow may also upload selected photos to an external service.
+Risk: The security review identifies a shared-credential cleanup risk.
 
-Mitigation: Use only photos you intend to upload, protect the shared credential, and review the disconnect and uninstall guidance before setup.
+Mitigation: Resolve the shared-credential cleanup risk before using the skill.
 
-Risk: Security scan coverage is incomplete, and the separate completed scan with no findings does not clear the concerns or establish that the release is safe.
+Risk: The security scan was partial, so it does not establish that all behavior was reviewed.
 
-Mitigation: Treat the scan as a warning and review the skill and its requested access before installing.
+Mitigation: Treat the security evidence as incomplete and review the remaining behavior before installation.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/beatra-ai/skills/zhongcao-ootd-lookbook-maker)
+- [ClawHub skill listing](https://clawhub.ai/beatra-ai/skills/zhongcao-ootd-lookbook-maker)
 - [Beatra skill page](https://beatra.ai/skills/zhongcao-ootd-lookbook-maker)
-- [Lookbook planning](artifact/references/lookbook-planning.md)
-- [REDnote OOTD lookbook workflow](artifact/references/workflow.md)
-- [Reading Xiaohongshu](artifact/references/note-lookup.md)
-- [Updates and security](artifact/references/updates-and-security.md)
-- [Installation and authentication](artifact/references/installation-and-auth.md)
-- [Uninstall and disconnect](artifact/references/uninstall-and-disconnect.md)
+- [Lookbook planning](references/lookbook-planning.md)
+- [Lookbook workflow](references/workflow.md)
+- [Xiaohongshu lookup guidance](references/note-lookup.md)
+- [Updates and security](references/updates-and-security.md)
+- [Installation and authentication](references/installation-and-auth.md)
+- [Billing, errors, and recovery](references/billing-errors-and-recovery.md)
 
 ## Skill Output:
 
 **Output Type(s):** [Images, Markdown, Text]
 
-**Output Format:** [Coordinated vertical 3:4 lookbook images with Markdown-ready titles, caption ideas, and tags]
+**Output Format:** [A coordinated vertical 3:4 image sequence with Markdown post copy, title ideas, caption angles, and tags.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Typically a cover, full-look image, styling detail, and lifestyle scene; optional Xiaohongshu research is a separate paid activity.]
+**Other Properties Related to Output:** [Typically a four-image sequence: cover, full look, styling detail, and lifestyle scene.]
 
 ## Skill Version(s):
 
-0.2.5 (source: server-resolved release evidence and artifact manifest)
+0.2.6 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

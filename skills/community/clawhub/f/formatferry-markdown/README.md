@@ -5,7 +5,7 @@ Convert documents (HTML, DOCX, PDF, XLSX, CSV, JSON, XML, PPTX) and web content 
 ## Install
 
 ```bash
-npm install -g formatferry
+npm install -g formatferry@1.0.51
 ```
 
 Requires Node.js 18+.
@@ -17,7 +17,7 @@ Requires Node.js 18+.
 formatferry -i document.docx -o output.md
 
 # Pipe HTML from stdin
-echo '<h1>Hello</h1>' | formatferry
+echo '<h1>Hello</h1>' | formatferry --offline
 
 # Choose a flavour
 formatferry -i notes.html -f slack -o notes.md
@@ -25,7 +25,7 @@ formatferry -i notes.html -f slack -o notes.md
 # Convert a PDF
 formatferry -i paper.pdf -o paper.md
 
-# URL extraction (requires FORMATFERRY_API_KEY)
+# URL extraction (network: sends the URL to the FormatFerry API; requires FORMATFERRY_API_KEY)
 formatferry --url https://example.com/article -o article.md
 
 # Batch convert (requires FORMATFERRY_LICENSE_KEY)

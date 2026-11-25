@@ -1,0 +1,64 @@
+{
+  "id": "sealed-chain-en",
+  "usk": "3.0",
+  "version": "1.0.0",
+  "skill_type": "functional",
+  "name": "Multi-Agent Cross-Device Encrypted Collaboration (Email + Task Sealing)",
+  "description": "Functional skill for coordinating multi-agent cross-device encrypted collaboration using MGC 1.6.0 chain mode. Split a workflow by data domain into N sealed sub-packages — each execution agent receives only the scripts authorized for its domain. Data and credentials never leave local storage; only task cards, scripts, and result summaries flow across devices. Default transport is email; task payloads travel as sealed sub-packages.",
+  "author": "MirginCipher Team",
+  "license": "MIT",
+  "tags": ["multi-node", "chain-mode", "task-splitting", "sealed-delivery", "privacy", "a2a", "distribution-index", "orchestration", "zero-exposure", "node-authorization", "functional"],
+  "platform_compatibility": ["windows", "macos", "linux"],
+  "mcp_tools": ["mgc_save", "mgc_save_file", "mgc_get", "mgc_run", "mgc_find", "mgc_list", "mgc_seal", "mgc_seal_package", "mgc_package", "mgc_delete", "mgc_open_webui", "mgc_skill"],
+  "install": "pip install mgc-blackbox>=1.6.0",
+  "runtime": "mgc",
+  "port": 57219,
+  "links": {
+    "homepage": "https://github.com/zkeviny/MGC-Blackbox",
+    "issues": "https://github.com/zkeviny/MGC-Blackbox/issues",
+    "contact": "mirgincipher@outlook.com"
+  },
+  "requirements": {
+    "mgc_version": ">=1.6.0"
+  },
+  "keywords": [
+    "chain mode",
+    "multi-node task splitting",
+    "sealed sub-packages",
+    "distribution index",
+    "a2a adaptation",
+    "node authorization",
+    "orchestration",
+    "zero-exposure",
+    "encrypted delivery",
+    "privacy-preserving AI",
+    "local encrypted execution",
+    "workflow delegation",
+    "agent to agent",
+    "role templates",
+    "data residency",
+    "cross-device encrypted collaboration",
+    "email dispatch",
+    "task sealing"
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "changes": [
+        "Initial release based on MGC 1.6.0 chain mode",
+        "Three reference roles: orchestrator agent / internal execution agent / external execution agent, split by data domain",
+        "Eight-stage collaboration protocol: prepare → author → store → seal → dispatch → execute → return → aggregate",
+        "Hard constraints: data and credentials never ship inside sub-packages; workflow directory must be flat; targets files must exactly match diff_3",
+        "Default transport: email with Subject keyword chain:<task_id> and sha256 in body; also supports A2A / HTTPS / shared folder",
+        "distribution_index.json drives automated dispatch; node fingerprint ledger matches each sub-package to recipient",
+        "UNSEAL_FAILED error code: import success does NOT guarantee unsealing — node_pub mismatch surfaces only at run time",
+        "ext01 portability reminder (python vs python3) and --output parent-directory pre-create requirement",
+        "script-wrapped encryption pattern: task prompts and result summaries sealed inside .py files alongside execution scripts",
+        "Five role_prompts templates: orchestrator task card / dispatch instructions / executor task card / result return / orchestrator return receipt",
+        "examples: role_prompts.md, use_credential.py (local MGC credential access), task_flow.md (fill-in template)",
+        "Targets specs contain .py only; data files and credentials stay in each executor's local MGC",
+        "Boundary with single-device soft-isolation skill (task_chain_meta_skill) clearly defined"
+      ]
+    }
+  ]
+}

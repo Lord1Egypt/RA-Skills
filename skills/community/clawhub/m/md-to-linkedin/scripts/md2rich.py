@@ -12,7 +12,7 @@ the two unsupported constructs into things it can hold:
   headings, paragraphs, bold/italic, lists, quotes, links, rules  -> kept
   tables                                                          -> bullet list
   fenced code                                                     -> kept as <pre><code>
-  images                                                          -> [Image: alt] + checklist
+  images                                                          -> inlined as data: URIs
 
 LinkedIn's article editor does not render tables, so flattening is the default:
 each row becomes a bullet with the first cell bold and the rest joined by a
@@ -26,9 +26,11 @@ and a self-contained HTML file is written for the browser-copy fallback.
 from __future__ import annotations
 
 import argparse
+import base64
 import re
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 import markdown
@@ -40,10 +42,20 @@ KEEP = {
     "p", "h1", "h2", "h3", "h4", "strong", "em", "b", "i", "code",
     "ul", "ol", "li", "blockquote", "a", "hr", "br",
     "pre", "table", "thead", "tbody", "tr", "th", "td", "caption",
+    "img",
 }
-# Cells may carry spans; everything else loses its attributes on purpose.
-KEEP_ATTRS = {"th": {"colspan", "rowspan"}, "td": {"colspan", "rowspan"}}
+# Cells may carry spans; images keep only what a paste can use. Everything
+# else loses its attributes on purpose.
+KEEP_ATTRS = {
+    "th": {"colspan", "rowspan"}, "td": {"colspan", "rowspan"},
+    "img": {"src", "alt"},
+}
 DROP = {"script", "style", "head", "title", "meta", "link"}
+
+MIME = {
+    ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg",
+    ".gif": "image/gif", ".webp": "image/webp", ".svg": "image/svg+xml",
+}
 
 FRONTMATTER = re.compile(r"\A---\n.*?\n---\n", re.S)
 
@@ -150,9 +162,14 @@ def render_table_png(table: Tag, out: Path) -> None:
         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
         timeout=120, check=True,
     )
+    # Trim, cap the long edge at twice the widest display width, drop metadata
+    # and palette-reduce: a table is flat colour, so 64 colours is visually free.
+    # The filename never changes — LinkedIn inlines the bytes, so only the size
+    # changes.
     subprocess.run(
         ["magick", str(png_path), "-trim", "+repage",
-         "-bordercolor", "white", "-border", "12", str(out)],
+         "-bordercolor", "white", "-border", "12",
+         "-resize", "1600x>", "-strip", "-colors", "64", str(out)],
         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
         timeout=60, check=True,
     )
@@ -160,9 +177,34 @@ def render_table_png(table: Tag, out: Path) -> None:
         leftover.unlink(missing_ok=True)
 
 
+def data_uri(path: Path) -> str | None:
+    """Inline a local image as a data URI, or None if it cannot be inlined.
+
+    The clipboard carries no file references, so a paste can only show a local
+    image if the bytes travel inside the HTML fragment itself.
+    """
+    mime = MIME.get(path.suffix.lower())
+    try:
+        if not mime or not path.is_file():
+            return None
+        payload = base64.b64encode(path.read_bytes()).decode("ascii")
+    except OSError:
+        return None
+    return f"data:{mime};base64,{payload}"
+
+
+def image_tag(soup: BeautifulSoup, uri: str, alt: str) -> Tag:
+    img = soup.new_tag("img")
+    img["src"] = uri
+    img["alt"] = alt
+    return img
+
+
 def convert(md_text: str, base: str, *, tables: str = "flatten",
             degrade_code: bool = False, image_dir: Path | None = None,
-            stem: str = "table") -> tuple[str, list[str], list[str], list[str]]:
+            stem: str = "table", embed_images: bool = False,
+            source_dir: Path | None = None,
+            ) -> tuple[str, list[str], list[str], list[str], int]:
     html = markdown.markdown(
         strip_frontmatter(md_text),
         extensions=["extra", "sane_lists", "nl2br"],
@@ -170,9 +212,14 @@ def convert(md_text: str, base: str, *, tables: str = "flatten",
     soup = BeautifulSoup(html, "html.parser")
     notes: list[str] = []
     images: list[str] = []
+    embedded = 0
 
     for tag in soup.find_all(list(DROP)):
         tag.decompose()
+
+    # Snapshot before the table pass: a table may become a new <img>, and that
+    # one must not be mistaken for a markdown image and turned back into text.
+    inline_imgs = soup.find_all("img")
 
     table_pngs: list[str] = []
     if tables == "flatten":
@@ -181,12 +228,20 @@ def convert(md_text: str, base: str, *, tables: str = "flatten",
             notes.append(f"table {n} flattened to a bullet list")
     elif tables == "image":
         for n, table in enumerate(soup.find_all("table"), 1):
-            head = [_squash(c.get_text()) for c in table.find_all("th")][:2]
-            caption = " / ".join(h for h in head if h) or f"table {n}"
+            # Skip empty header cells: a comparison table often leaves the
+            # first corner blank, and that blank would otherwise eat a slot.
+            head = [h for h in (_squash(c.get_text()) for c in table.find_all("th")) if h][:2]
+            caption = " / ".join(head) or f"table {n}"
             target = (image_dir or Path(".")) / f"{stem}-table-{n}.png"
             try:
                 render_table_png(table, target)
                 table_pngs.append(f"{target.name}  ({caption})")
+                uri = data_uri(target) if embed_images else None
+                if uri:
+                    table.replace_with(image_tag(soup, uri, caption))
+                    images.append(f"{caption}  ({target})  [embedded]")
+                    embedded += 1
+                    continue
                 placeholder = soup.new_tag("p")
                 em = soup.new_tag("em")
                 em.string = f"[Table {n}: {caption} — upload {target.name}]"
@@ -211,9 +266,24 @@ def convert(md_text: str, base: str, *, tables: str = "flatten",
             pre.replace_with(pre_to_quote(pre, soup))
             notes.append(f"code block {n} flattened to a quote")
 
-    for img in soup.find_all("img"):
+    for img in inline_imgs:
         alt = img.get("alt") or "image"
         src = img.get("src", "")
+        if src.startswith("data:"):
+            # Already inline in the markdown; nothing to read off disk.
+            img["alt"] = alt
+            images.append(f"{alt}  (inline data URI)")
+            embedded += 1
+            continue
+        uri = None
+        if embed_images and src and not src.startswith(("http://", "https://")):
+            uri = data_uri((source_dir or Path(".")) / src)
+        if uri:
+            img["src"] = uri
+            img["alt"] = alt
+            images.append(f"{alt}  ({src})  [embedded]")
+            embedded += 1
+            continue
         images.append(f"{alt}  ({src})")
         placeholder = soup.new_tag("p")
         em = soup.new_tag("em")
@@ -242,7 +312,7 @@ def convert(md_text: str, base: str, *, tables: str = "flatten",
     # a meaningful space between two inline tags stays put.
     fragment = re.sub(r">\n\s*<", "><", fragment)
     fragment = fragment.strip()
-    return fragment, notes, images, table_pngs
+    return fragment, notes, images, table_pngs, embedded
 
 
 def wrap_document(fragment: str, title: str) -> str:
@@ -283,6 +353,12 @@ def main() -> int:
                     help="flatten: bullet list (default, what LinkedIn can hold); "
                          "image: screenshot each table to PNG and leave a placeholder; "
                          "keep: emit <table> for a target that renders it")
+    ap.add_argument("--embed-images", dest="embed_images", action="store_true",
+                    default=True,
+                    help="inline local images and table PNGs as base64 data URIs, so one "
+                         "paste carries them (default)")
+    ap.add_argument("--no-embed-images", dest="embed_images", action="store_false",
+                    help="leave [Image: alt] placeholders and an upload checklist instead")
     ap.add_argument("--degrade-code", action="store_true",
                     help="flatten code blocks into quotes (use only if the editor drops them)")
     ap.add_argument("--docx", action="store_true",
@@ -308,12 +384,14 @@ def main() -> int:
     else:
         image_dir = out_dir / "linkedin-tables"
     image_dir.mkdir(parents=True, exist_ok=True)
-    fragment, notes, images, table_pngs = convert(
+    fragment, notes, images, table_pngs, embedded = convert(
         md_text, args.base,
         tables=args.tables,
         degrade_code=args.degrade_code,
         image_dir=image_dir,
         stem=args.source.stem,
+        embed_images=args.embed_images,
+        source_dir=args.source.parent,
     )
 
     title = args.source.stem
@@ -341,10 +419,24 @@ def main() -> int:
                 stdin=subprocess.PIPE, stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL, text=True, start_new_session=True,
             )
-            proc.stdin.write(fragment)
-            proc.stdin.close()
-            print("clipboard: rich text ready — paste into the article editor")
-            print(f"clipboard owner: wl-copy pid {proc.pid} (keep it alive until you paste)")
+            try:
+                proc.stdin.write(fragment)
+                proc.stdin.close()
+            except OSError as exc:
+                # BrokenPipeError lands here: wl-copy went away before it read
+                # the fragment, and claiming success would send the user to a
+                # paste that finds nothing.
+                print(f"clipboard: wl-copy closed early ({exc.__class__.__name__}) — "
+                      "use the html file and copy it from a browser", file=sys.stderr)
+            else:
+                time.sleep(0.2)
+                if proc.poll() is not None:
+                    print(f"clipboard: wl-copy exited with status {proc.returncode} — "
+                          "use the html file and copy it from a browser",
+                          file=sys.stderr)
+                else:
+                    print("clipboard: rich text ready — paste into the article editor")
+                    print(f"clipboard owner: wl-copy pid {proc.pid} (keep it alive until you paste)")
         except FileNotFoundError:
             print("clipboard: wl-copy not found — use the html file and copy from a browser",
                   file=sys.stderr)
@@ -367,11 +459,19 @@ def main() -> int:
             print(f"docx: conversion failed ({exc.__class__.__name__})", file=sys.stderr)
 
     if table_pngs:
-        print(f"\ntables rendered to PNG in {image_dir} — upload each at its placeholder:")
+        verb = "kept on disk in case the paste drops them" if embedded else "upload each at its placeholder"
+        print(f"\ntables rendered to PNG in {image_dir} — {verb}:")
         for i, png in enumerate(table_pngs, 1):
             print(f"  {i}. {png}")
 
-    if images:
+    if images and embedded:
+        size_mb = len(fragment.encode("utf-8")) / 1048576
+        print(f"\n{embedded} image(s) embedded in the payload ({size_mb:.1f} MB), in order:")
+        for i, img in enumerate(images, 1):
+            print(f"  {i}. {img}")
+        print("  one paste carries them all; count them afterwards, because a dropped")
+        print("  image is silent — rerun with --no-embed-images to get an upload checklist")
+    elif images:
         print("\nimages to upload by hand, in order:")
         for i, img in enumerate(images, 1):
             print(f"  {i}. {img}")

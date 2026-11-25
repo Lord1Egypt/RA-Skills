@@ -1,6 +1,6 @@
 ## Description:
 
-Guides developers in using C-ABI bindings to inspect and control desktop interfaces from host languages without spawning the agent-desktop CLI for each call.
+Provides C-ABI bindings to agent-desktop's PlatformAdapter so language runtimes can call desktop automation operations through a shared library.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use this skill to build language bindings and observe-act desktop automation with the agent-desktop FFI, including snapshots, element targeting, and actions.
+Developers using Python, Swift, Node, Go, C++, or Ruby can link the shared library and call its C ABI to observe desktop applications and dispatch UI actions without starting a CLI process for each call.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,40 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Desktop inspection and actions may expose or change sensitive on-screen content.
+Risk: The security scan was partial, leaving some referenced material unreviewed.
 
-Mitigation: Install only when low-level desktop automation is intended; limit access to trusted applications and review actions before execution.
+Mitigation: Review the referenced material before relying on the skill in a deployment.
 
-Risk: Snapshots, screenshots, clipboard reads, typed text, results, logs, and errors may contain sensitive information.
+Risk: UI actions can affect the focused desktop application, and targets may change after observation.
 
-Mitigation: Treat these outputs as sensitive and avoid sending them to shared logs or untrusted recipients.
+Mitigation: Check the current snapshot and qualified target before dispatching each action.
 
-Risk: Optional tracing writes local diagnostic files that may persist after the session.
+Risk: Diagnostic details can include names, values, or window titles from the user's screen.
 
-Mitigation: Enable tracing only when needed and plan how to protect and remove diagnostic files.
+Mitigation: Keep error details out of shared logs and redact them before sharing.
 
 ## Reference(s):
 
-- [ClawHub release: agent-desktop-ffi](https://clawhub.ai/lahfir/skills/agent-desktop-ffi)
-- [Build and link](artifact/references/build-and-link.md)
-- [Pointer ownership](artifact/references/ownership.md)
-- [Error handling](artifact/references/error-handling.md)
-- [Threading](artifact/references/threading.md)
-- [Apple Accessibility API](https://developer.apple.com/documentation/applicationservices/axuielement)
+- [Build and link guide](artifact/references/build-and-link.md)
+- [Error handling guide](artifact/references/error-handling.md)
+- [Pointer ownership guide](artifact/references/ownership.md)
+- [Threading guide](artifact/references/threading.md)
+- [Apple Thread Safety Summary](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/ThreadSafetySummary/ThreadSafetySummary.html)
+- [ClawHub release page](https://clawhub.ai/lahfir/skills/agent-desktop-ffi)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Shell commands, Configuration guidance]
+**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
 
 **Output Format:** [Markdown with C, Python, and shell examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Guidance covers ABI compatibility, pointer ownership, error handling, and threading.]
+**Other Properties Related to Output:** [API usage guidance and examples; no fixed output size.]
 
 ## Skill Version(s):
 
-1.0.8 (source: server-resolved ClawHub release; skill frontmatter lists 0.4.1)
+1.0.9 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

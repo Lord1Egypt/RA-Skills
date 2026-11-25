@@ -5,6 +5,39 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2026-11-24
+
+Reworks the skill around evidence and safety instead of a single linear pass.
+
+### Added
+
+- Phase 0 preflight: reads `AGENTS.md` / `CONTRIBUTING.md`, detects the package manager and monorepo task graph, and checks issue state, assignees, and existing PRs before writing code.
+- Phase 1 reproduce: records a pre-change baseline and requires a failing test or a minimal reproduction script that fails for the reported reason.
+- State file `.issue-to-pr/state.json` with a JSON schema, so interrupted or reset runs can resume instead of restarting.
+- Red-green proof in Phase 4: temporarily removing the source change must make the new test fail.
+- Self-review phase covering boundary cases, error paths, test validity, secrets, docs, and translations.
+- CI loop after PR creation: watch checks, read failing logs, iterate at most twice, and report "no checks" instead of claiming green.
+- `references/state.schema.json` and `references/pr-evidence.md`.
+- Installer support for multiple harnesses: `--target`, `--project`, `--list-targets`, `--force`, and `--uninstall`.
+
+### Changed
+
+- Repository conventions (commitlint scopes, DCO sign-off, changesets, PR templates) are detected instead of assumed.
+- PR body now carries reproduction evidence, verification results, risk, rollback, and explicit "not covered" items.
+- Test selection prefers the narrowest target (`nx affected`, filtered package tests) and compares failures against the baseline.
+- Tool references are capability-based, so the skill works across harnesses rather than assuming IDE-specific tools.
+
+### Fixed
+
+- Untrusted issue text is treated as data, with explicit rules against executing issue-supplied commands and reading credential paths.
+- Fork, remote, branch, and PR handling are idempotent; a missing fork remote or an existing fork no longer breaks the run.
+- Missing build artifacts are classified as environment problems instead of code regressions.
+- `gh` capabilities are checked before using optional flags.
+
+### Removed
+
+- The 8-phase linear flow with no baseline, no state, and no post-PR follow-up.
+
 ## [1.3.0] - 2025-04-08
 
 ### Improved

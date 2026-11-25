@@ -1,0 +1,13 @@
+{
+  "fixture_kind": "offline-page-notes",
+  "fixture_notice": "离线页面资料模拟，用于本地自测；不是在线采集结果。",
+  "owner_confirmed": true,
+  "page_confirmed": true,
+  "fields": { "cover": "已见", "title": "标题", "description": "简介", "category": "知识", "assets": ["素材"] },
+  "sources": [
+    { "field": "cover", "visible_location": "离线模拟：封面栏", "captured_text": "已见" },
+    { "field": "description", "visible_location": "离线模拟：简介栏", "captured_text": "简介" },
+    { "field": "category", "visible_location": "离线模拟：分区栏", "captured_text": "知识" },
+    { "field": "assets", "visible_location": "离线模拟：素材栏", "captured_text": "素材" }
+  ]
+}

@@ -1,44 +1,55 @@
-## Description: <br>
-Operates GitHub through an OOMOL-connected account for reading, creating, updating, and deleting repository, branch, commit, file, issue, pull request, release, workflow, event, and search data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill for GitHub requests to read, create, update, or delete data through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to operate GitHub repositories, branches, commits, files, issues, pull requests, releases, workflows, events, and searches through an OOMOL-connected GitHub account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Write and destructive actions can modify, overwrite, or remove GitHub data. <br>
-Mitigation: Confirm the exact repository, branch, file, issue, pull request, label, release, workflow, and payload before approving write or destructive actions. <br>
-Risk: A connected GitHub account can expose private repositories or organization resources according to its granted scopes. <br>
-Mitigation: Install only when OOMOL and the connected GitHub account or organizations are trusted, and use appropriately scoped connections. <br>
-Risk: Workflow reruns, pull request merges, releases, and commit statuses can affect CI/CD or release processes. <br>
-Mitigation: Review the target repository, branch, workflow, release, and intended operational effect before approving those actions. <br>
+## Use Case:
 
+Developers and agents use this skill to read and manage GitHub repositories, issues, pull requests, releases, and related data through their connected GitHub account.
 
-## Reference(s): <br>
-- [ClawHub GitHub skill page](https://clawhub.ai/oomol/skills/oo-github) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [GitHub homepage](https://github.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a connected GitHub account and appropriate scopes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and skill metadata) <br>
+Risk: The setup fallback can run downloaded installer code without clearly requiring approval for local changes; the downloaded contents and hosted-service behavior were not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install a verified CLI release yourself, and require approval before any setup changes.
+
+Risk: Automatic skill synchronization and broad GitHub permissions may allow more access or changes than needed.
+
+Mitigation: Check automatic synchronization settings and grant only the GitHub permissions needed.
+
+## Reference(s):
+
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+- [GitHub REST API documentation](https://docs.github.com/en/rest)
+- [ClawHub GitHub skill release](https://clawhub.ai/oomol/skills/oo-github)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON action payloads and oo CLI commands with explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Payloads follow the selected action schema; changes to GitHub require confirmation.]
+
+## Skill Version(s):
+
+1.0.12 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

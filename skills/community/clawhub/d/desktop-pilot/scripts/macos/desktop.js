@@ -38,7 +38,7 @@ function run(argv) {
   switch (action) {
     case 'screenshot': {
       const out = opt.out || '/tmp/desktop-pilot.png';
-      app.doShellScript('screencapture -x ' + JSON.stringify(out).replace(/"/g, "'"));
+      app.doShellScript('screencapture -x ' + ("'" + out.replace(/'/g, "'\\''") + "'"));
       return 'OK screenshot ' + out;
     }
     case 'windows':

@@ -13,7 +13,7 @@ import { createTerm, failureMessage, formatCount, renderBanner } from "./ui.js";
 import type { SummaryRow, Term, TermHost } from "./ui.js";
 
 // Kept in sync with cli/package.json by hand (zero-dep simplicity).
-export const VERSION = "0.3.8";
+export const VERSION = "0.3.9";
 
 const DEFAULT_BASE_URL = "https://tokei.io";
 
@@ -466,7 +466,14 @@ Commands (write — need a read+write API key):
                               in one array are a 422. At most 5 rows may share
                               one actionType for twitter_follow, instagram_follow
                               and facebook_visit_page — every other type is
-                              capped at 1; exceeding it is also a 422. E.g.
+                              capped at 1; exceeding it is also a 422. Rows of
+                              one type share one points value (max 99), so
+                              duplicates must send the same points. A link label
+                              starting "Visit Our " (capital O) is reserved for
+                              the campaign URL button: write "Visit our …" for a
+                              custom link. Share Feedback, Quick Question and the
+                              Secret Code toggle go in standalone_actions via
+                              --data (codes are uploaded in the dashboard). E.g.
                                 --data '{"entry_methods":[{"label":"Read the
                                 Newsletter","points":2,"link":"https://x.com/n"}]}'
                                 --title <t>  --description <d>
@@ -476,6 +483,10 @@ Commands (write — need a read+write API key):
                                 --custom-css <css> (Custom-template creator CSS,
                                 ≤20 KB, sanitised server-side)
                                 --dark-mode true|false  --primary-color <hex>
+                                --card-mode dark|gradient|light
+                                --card-color <#rrggbb>  --card-gradient harmony|vignette
+                                --exclude-ai-agents true|false (bar AI-agent
+                                mailboxes from the draw and leaderboard)
                                 --card-width narrow|medium|wide|xl
                                 (or max-w-2xl|3xl|4xl|7xl)
                                 --image-video <url>  --secondary-image <url>

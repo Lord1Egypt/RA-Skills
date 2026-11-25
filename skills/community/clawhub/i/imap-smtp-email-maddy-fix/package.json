@@ -11,9 +11,8 @@
   "dependencies": {
     "dotenv": "^16.6.1",
     "imap": "^0.8.19",
-    "imap-simple": "^5.1.0",
-    "mailparser": "^3.9.3",
-    "nodemailer": "^7.0.13"
+    "mailparser": "^3.15.0",
+    "nodemailer": "^10.6.1"
   },
   "keywords": [
     "imap",
@@ -27,5 +26,11 @@
     "skill"
   ],
   "author": "NetEase",
-  "license": "MIT"
+  "license": "MIT",
+  "overrides": {
+    "semver": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
 }

@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "brand": {"name": "青禾工具"},
+  "records": [
+    {
+      "id": "bad-quote", "question_id": "Q1", "question": "青禾工具是什么？", "intent": "品牌认知",
+      "platform": "演示平台", "run_id": "demo-1", "source": "专为校验失败编写的合成示例", "status": "simulated", "captured_at": null,
+      "answer": "青禾工具是一款桌面工具。",
+      "review": {
+        "mention": {"value": true, "quote": "青禾工具", "reason": "回答正文提到品牌"},
+        "recommendation": {"value": true, "quote": "强烈推荐青禾工具", "reason": "这句摘录不存在，应当拒绝"}
+      }
+    }
+  ]
+}

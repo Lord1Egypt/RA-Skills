@@ -37,6 +37,8 @@ from typing import Optional
 
 import requests
 
+import x402_wire
+
 from wallet_signing import create_compute_auth_headers, load_payment_signer, load_wallet_address
 
 BASE_URL = os.getenv("COMPUTE_API_BASE", "https://compute.x402layer.cc")
@@ -115,11 +117,11 @@ def _open_private(path: str):
     return os.open(path, os.O_WRONLY | os.O_CREAT | os.O_TRUNC | getattr(os, "O_NOFOLLOW", 0), 0o600)
 
 
-def _save_pending(quote_id: str, body: dict, x_payment: str) -> str:
+def _save_pending(quote_id: str, body: dict, x_payment: str, header_name: str = x402_wire.HEADER_X_PAYMENT) -> str:
     """Store the signed payment (owner-only file) so a lost response can be resent as-is."""
     path = _pending_path(quote_id)
     _makedirs_durable(PENDING_DIR)
-    _write_durable(path, {"body": body, "x_payment": x_payment})
+    _write_durable(path, {"body": body, "x_payment": x_payment, "payment_header": header_name})
     return path
 
 
@@ -165,14 +167,14 @@ def _solana_conclusive_refusal(path: str, out: dict) -> bool:
     return any(k in msg for k in ("quote has expired", "no longer payable", "inconsistent"))
 
 
-def _send_payment(body: dict, x_payment: str, attempts: int = 3):
+def _send_payment(body: dict, x_payment: str, attempts: int = 3, header_name: str = x402_wire.HEADER_X_PAYMENT):
     """POST the paid leg; on a transport error resend the SAME payment. None = no answer."""
     # No auth headers here: the payment authenticates the payer, and the auth nonce
     # was consumed by the quote.
     for n in range(attempts):
         try:
             return requests.post(f"{BASE_URL}/training/x402/runs", json=body,
-                                 headers={"X-Payment": x_payment}, timeout=180, allow_redirects=False)
+                                 headers={header_name: x_payment}, timeout=180, allow_redirects=False)
         except requests.RequestException:
             time.sleep(5 * (n + 1))
     return None
@@ -206,9 +208,10 @@ def run(dataset_id: str, base_model: str, gpu_plan_id: str, hours: int,
                       headers={"Content-Type": "application/json", **auth_headers}, timeout=60, allow_redirects=False)
     if q.status_code != 402:
         return {"error": f"expected a 402 quote, got {q.status_code}", "response": q.text[:800]}
-    challenge = q.json()
+    # v2 PAYMENT-REQUIRED header first, v1 JSON body otherwise (x402_wire).
+    challenge = x402_wire.read_challenge(q)
     info = challenge.get("singularity", {})
-    option = next((a for a in challenge.get("accepts", []) if a.get("network") == network), None)
+    option = next((a for a in challenge.get("accepts", []) if x402_wire.network_name(a.get("network")) == network), None)
     if not option:
         return {"error": f"no payment option for network {network}", "accepts": challenge.get("accepts")}
     # The cap is checked against the amount that will actually be SIGNED (atomic
@@ -243,20 +246,20 @@ def run(dataset_id: str, base_model: str, gpu_plan_id: str, hours: int,
     # Step 2: sign EXACTLY the quoted amount and pay with the same body + quote_id.
     if network == "solana":
         # A signed transaction whose recent blockhash expires in ~1-2 minutes.
-        from solana_signing import create_solana_xpayment_from_accept, ensure_solana_destination_ready
+        from solana_signing import create_solana_payment_header, ensure_solana_destination_ready
         ensure_solana_destination_ready(option)   # same setup the Solana provision/extend flows do
-        x_payment = create_solana_xpayment_from_accept(option)
+        header_name, x_payment = create_solana_payment_header(challenge, option)
     else:
         signer = load_payment_signer()
-        x_payment = signer.create_x402_payment_header(pay_to=option["payTo"], amount=amount, network=network)
+        header_name, x_payment = signer.create_payment_header(challenge, option, network)
 
     # Save the exact signed payment BEFORE sending it. If the response is lost, the
     # only safe retry is this same payment (the server recognises it and never
     # charges twice). A new quote would be a new authorization: a second charge.
     quote_id = info.get("quote_id")
-    pending = _save_pending(quote_id, {**body, "quote_id": quote_id}, x_payment)
+    pending = _save_pending(quote_id, {**body, "quote_id": quote_id}, x_payment, header_name)
     print(f"\n  Quote ID: {quote_id}  (signed payment saved to {pending})")
-    paid = _send_payment({**body, "quote_id": quote_id}, x_payment)
+    paid = _send_payment({**body, "quote_id": quote_id}, x_payment, header_name=header_name)
     return _handle_paid(paid, quote_id, pending)
 
 
@@ -344,7 +347,11 @@ def resume(quote_id: str) -> dict:
         return {"error": f"no saved payment for quote {quote_id} (nothing to resend)"}
     with open(path) as f:
         saved = json.load(f)
-    out = _handle_paid(_send_payment(saved["body"], saved["x_payment"]), quote_id, path)
+    # Resend EXACTLY what was sent, on the same header (older saves are v1 X-Payment).
+    header_name = saved.get("payment_header") or x402_wire.HEADER_X_PAYMENT
+    if header_name not in (x402_wire.HEADER_X_PAYMENT, x402_wire.HEADER_PAYMENT_SIGNATURE):
+        return {"error": f"saved payment has an unknown header {header_name!r}; nothing was sent"}
+    out = _handle_paid(_send_payment(saved["body"], saved["x_payment"], header_name=header_name), quote_id, path)
     receipt = path[:-len(".json")] + ".receipt.json"
     if os.path.exists(receipt):
         with open(receipt) as f:

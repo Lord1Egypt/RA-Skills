@@ -1,0 +1,4 @@
+interface:
+  display_name: 'XCircle'
+  short_description: 'Analyze public X profiles, circles, followers, recaps, posts and threads'
+  default_prompt: 'Use $xcircle to analyze @karpathy on X and summarize their public profile and top interaction circle.'

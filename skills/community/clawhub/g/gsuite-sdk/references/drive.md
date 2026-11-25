@@ -55,6 +55,18 @@ for permission in drive.list_permissions(uploaded.id):
     print(permission.role, permission.email_address or permission.domain or permission.type)
 ```
 
+## What changed
+
+```python
+page_token = drive.get_start_page_token()      # "from now on"; keep it
+delta = drive.changes(page_token)              # later: delta.changed (files), delta.removed (IDs)
+page_token = delta.page_token
+```
+
+Push instead of polling: `channel = drive.watch_changes("https://host/hook", token="secret", page_token=page_token)`
+makes Google POST to that HTTPS URL on every change (the token comes back in
+`X-Goog-Channel-Token`). Channels expire; `drive.stop_channel(channel)` ends one.
+
 ## CLI
 
 ```bash

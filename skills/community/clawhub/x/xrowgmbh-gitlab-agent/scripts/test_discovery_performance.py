@@ -139,7 +139,7 @@ class DiscoveryPerformanceTests(unittest.TestCase):
                 patch.object(self.active.shutil, "which", return_value="glab"), \
                 redirect_stdout(output), redirect_stderr(io.StringIO()):
             self.assertEqual(self.active.main(), 69)
-        self.assertEqual(output.getvalue(), "")
+        self.assertEqual(json.loads(output.getvalue()), [])
 
     def test_full_main_matches_serial_requests_and_output_across_pages(self):
         serial = bench.load_script(DIRECTORY / "list-active-items.py")

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and technical decision makers use this skill to gather practitioner experiences and opinions about a technology or approach from Hacker News, Lobsters, Reddit, and tech blogs. It is intended for community experience reports rather than academic research or code examples.
+Developers and researchers use this skill to gather practitioner opinions and experience reports about a technology or approach from community discussions. It searches at least two supported channels and returns findings with source attribution.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search queries sent to third-party services could reveal private details from the request.
+Risk: Search topics may contain confidential details about the user's research or interests.
 
-Mitigation: Review search terms before sending them and omit private or sensitive details.
+Mitigation: Review search topics before use and omit confidential details.
 
-Risk: A local path-like reference was unresolved, leaving the security review partial.
+Risk: The security review was partial because a local path-like reference could not be resolved.
 
-Mitigation: Resolve and inspect the referenced path, then review the skill before relying on it.
+Mitigation: Treat the benign verdict as incomplete and review the unresolved reference before relying on the assessment.
 
 ## Reference(s):
 
-- [Night Market Tome plugin page](https://github.com/athola/claude-night-market/tree/master/plugins/tome)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-tome-discourse)
+- [Declared metadata homepage (provenance unavailable)](https://github.com/athola/claude-night-market/tree/master/plugins/tome)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text]
+**Output Type(s):** [Text, Analysis]
 
-**Output Format:** [Community discussion findings with source-channel attribution]
+**Output Format:** [Source-attributed community finding summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Queries at least two community channels per invocation; if all searches fail, reports the failure rather than returning fabricated or empty findings.]
+**Other Properties Related to Output:** [Queries at least two community channels; reports explicitly when all available search methods fail.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

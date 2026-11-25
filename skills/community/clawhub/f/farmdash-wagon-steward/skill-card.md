@@ -1,6 +1,6 @@
 ## Description:
 
-Use when watching a DeFi portfolio: balances, position health, idle capital, drift. Read-only; never rebalances or moves funds without your signature.
+Inspect supported DeFi wallet balances, allocation, idle capital, and portfolio signals to produce read-only snapshots and research recommendations.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Wallet holders and portfolio analysts use the skill to review observable balances, allocation drift, and candidate liquid reserves, then discuss possible next steps. It produces read-only analysis and rebalance proposals for the user to review.
+External DeFi wallet owners use this skill to review address-based portfolio snapshots, allocation drift, and candidate reserves, then consider possible rebalance plans.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Queried public wallet addresses are sent to FarmDash; optional onboarding and installation attribution can add analytics linkage.
+Risk: The optional onboarding check sends a public wallet address to FarmDash and registers it for service telemetry.
 
-Mitigation: Use only wallet addresses you are comfortable querying, and skip optional onboarding and installation attribution if you do not want the additional analytics linkage.
-
-Risk: Tier wording conflicts about wallet-read availability, which may affect whether the service can return portfolio data.
-
-Mitigation: Check FarmDash's current status contract and access requirements before relying on wallet reads.
-
-Risk: The supplied security review covers the bundled instructions and manifest, not the remote FarmDash service.
-
-Mitigation: Do not supply private keys or grant transaction authority to this read-only skill.
+Mitigation: Run the check only after explicit informed consent; use keyless Scout access when the onboarding step is unnecessary.
 
 ## Reference(s):
 
-- [FarmDash Wagon Steward on ClawHub](https://clawhub.ai/parmasanandgarlic/skills/farmdash-wagon-steward)
-- [FarmDash Agent Hub](https://www.farmdash.one/agents)
-- [FarmDash documentation](https://www.farmdash.one/docs)
-- [FarmDash API status and access requirements](https://www.farmdash.one/api/v1/agent/status)
-- [FarmDash OpenAPI specification](https://www.farmdash.one/agents/openapi.yaml)
-- [FarmDash MCP discovery configuration](https://www.farmdash.one/.well-known/mcp.json)
+- [FarmDash Agent Integration Documentation](https://www.farmdash.one/docs)
+- [FarmDash OpenAPI Contract](https://www.farmdash.one/agents/openapi.yaml)
+- [FarmDash MCP Discovery Manifest](https://www.farmdash.one/.well-known/mcp.json)
+- [Canonical FarmDash Wagon Steward Manual](https://www.farmdash.one/openclaw-skills/farmdash-wagon-steward/SKILL.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
+**Output Type(s):** [Analysis, JSON, Guidance]
 
-**Output Format:** [Portfolio summaries and discussion-level proposals presented as concise Markdown with structured data.]
+**Output Format:** [Structured portfolio data summarized as concise text or Markdown, with JSON tool results.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Read-only snapshots; state coverage gaps, timestamps, and unpriced assets when available.]
+**Other Properties Related to Output:** [Time-bound, coverage-aware snapshots and research proposals; no transaction execution.]
 
 ## Skill Version(s):
 
-1.7.4 (source: server-resolved ClawHub release)
+1.7.5 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

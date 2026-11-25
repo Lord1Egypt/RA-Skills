@@ -1,7 +1,7 @@
 ---
 name: klingai
-version: "2.0.4"
-description: Official Kling AI Skill. Call Kling AI for video generation, image generation, subject management, voice management, and account quota inquiry. Use subcommand video / image / element / voice / account by user intent. Use when the user mentions "Kling", "可灵", "文生视频", "图生视频", "参考视频", "视频编辑", "文生图", "图生图", "AI 画图", "视频生成", "图片生成", "主体", "角色", "多镜头", "分镜", "多图", "两张图", "首尾帧", "中间帧", "多关键帧", "可灵4.0", "4.0 Flash", "可灵4.0 Flash", "图片4.0", "长图", "电商详情页", "网页设计", "音色", "组图", "余额", "资源包", "余量", "配额", "text-to-video", "image-to-video", "reference video", "video editing", "text-to-image", "multi-shot", "omni", "4K", "8K", "subject", "character", "element", "storyboard", "series", "quota", "balance".
+version: "2.0.5"
+description: Official Kling AI Skill. Call Kling AI for video generation, image generation, subject management, voice management, and account quota inquiry. Use subcommand video / image / element / voice / account by user intent. Use when the user mentions "Kling", "可灵", "文生视频", "图生视频", "参考视频", "视频编辑", "文生图", "图生图", "AI 画图", "视频生成", "图片生成", "主体", "角色", "多镜头", "分镜", "多图", "两张图", "首尾帧", "中间帧", "多关键帧", "可灵4.0", "4.0 Flash", "可灵4.0 Flash", "图片4.0", "长图", "电商详情页", "网页设计", "音色", "组图", "余额", "资源包", "余量", "配额", "text-to-video", "image-to-video", "reference video", "video editing", "text-to-image", "multi-shot", "omni", "4K", "8K", "HDR", "subject", "character", "element", "storyboard", "series", "quota", "balance".
 permissions:
   - env
   - network
@@ -39,7 +39,7 @@ Choose subcommand from user intent first. HTTP API path and default `model_name`
 
 | User intent | Subcommand |
 | --- | --- |
-| Video (t2v, i2v, multi-shot, Omni ref/edit clip via `feature`/`base`, subject-in-video, animation) | `video` |
+| Video (t2v, i2v, multi-shot, Omni ref/edit clip via `feature`/`base`, subject-in-video, 4K/HDR video, animation) | `video` |
 | Image (text-to-image, image-to-image, 4K, 8K, series, AI drawing) | `image` |
 | Subject / element (create, manage, list, presets, delete) | `element` |
 | Voice library (create, list custom/preset, delete) | `voice` |
@@ -59,7 +59,7 @@ Selection rules:
 Force skill conditions (any hit -> use this skill):
 - multi-image input (>=2 images)
 - Omni/frame control (`first_frame`/`middle_frame`/`last_frame`/`image_types`)
-- any `kling-4.0` or `kling-4.0-flash` request, including image `kling-4.0` / `8k`
+- any `kling-4.0` or `kling-4.0-flash` request, including video `4k` / `--dynamic_range` (`hdr`) and image `kling-4.0` / `8k`
 - reference video (`--video` + `feature`/`base`) or video editing
 - subject/element reuse (`--element_ids`)
 - storyboard/multi-shot (`--multi_shot`, 分镜)
@@ -75,7 +75,7 @@ Model name strict rule:
 - Alias disambiguation: `视频O3` -> `kling-3.0-omni`; `图片O3` -> `kling-v3-omni`; only `o1`/`omni1` map to O1 models by intent. `图片4.0` / `image 4.0` / `kling-image-4.0` -> image `kling-4.0`.
 
 When ambiguous (for example video vs image, or 3.0-omni vs o1), ask user first, then submit.
-Use video `kling-4.0` only when the user asks for 4.0 / 可灵 4.0 or needs a 4.0-only video capability (middle frames / 多关键帧, 1080p, duration above 20 s, voice). Use `kling-4.0-flash` only when the user asks for 4.0 Flash. Image requests use `image` and prefer `kling-4.0`. Do not switch an existing request between video and image, or to either video model, silently.
+Video requests use `video` and prefer `kling-4.0`. Image requests use `image` and prefer `kling-4.0`. They are different models. Do not switch an existing request between video and image, or to either video model, silently.
 
 ## Preflight checklist (mandatory before submit)
 
@@ -85,7 +85,7 @@ Before any billable submit, pass all checks below. If any check fails, stop and 
 2. Route is confirmed by flags: basic vs Omni (from **Route & model**).
 3. `--model` is canonical (no alias values like `o3`, `omni3`).
 4. All params come from this SKILL.md or subcommand `--help`; no undocumented flags.
-5. No conflicting combinations (for example `--video_refer_type base` + first/last frame on `kling-3.0-omni` / `kling-o1`, `--video` feature + `--audio native`/`original` on `kling-3.0-omni` / `kling-o1`, `--audio original` without `--video`, `kling-4.0` / `kling-4.0-flash` T2V/I2V + `--audio`, Omni `--audio` other than `original`/`native`, `--multi_shot`, `--voice_ids` on turbo / 2.5 / o1 / `kling-3.0` / `kling-3.0-omni`, `--voice_ids` on `kling-4.0-flash`, or on `kling-4.0` text-to-video or image-to-video, `--voice_ids` on `kling-2.6` text-to-video, `--voice_ids` with `--audio off`/`original`, `middle_frame` without `kling-4.0`, image `kling-4.0` + `--negative_prompt` / `1k`, `--page` with series / subjects / `4k` / `8k` / `--aspect_ratio`, `--page ecommerce` with `style_refer_image` / `subject_refer_image`, `--page webpage` with `refer_image` or untyped `--image`).
+5. No conflicting combinations (for example `--video_refer_type base` + first/last frame on `kling-3.0-omni` / `kling-o1`, `--video` feature + `--audio native`/`original` on `kling-3.0-omni` / `kling-o1`, `--audio original` without `--video`, `kling-4.0` / `kling-4.0-flash` T2V/I2V + `--audio`, Omni `--audio` other than `original`/`native`, `--multi_shot`, `--voice_ids` on turbo / 2.5 / o1 / `kling-3.0` / `kling-3.0-omni`, `--voice_ids` on `kling-4.0-flash`, or on `kling-4.0` text-to-video or image-to-video, `--voice_ids` on `kling-2.6` text-to-video, `--voice_ids` with `--audio off`/`original`, `middle_frame` or `--dynamic_range` without video `kling-4.0`, `--dynamic_range hdr` with `720p`, image `kling-4.0` + `--negative_prompt` / `1k`, `--page` with series / subjects / `4k` / `8k` / `--aspect_ratio`, `--page ecommerce` with `style_refer_image` / `subject_refer_image`, `--page webpage` with `refer_image` or untyped `--image`).
 6. Query mode and submit mode are not mixed.
 7. The user knows this submit sends the prompt and any reference images, videos, or subject files to Kling AI (https://klingai.com,https://kling.ai). If the request did not already ask for Kling/可灵, say that and wait for confirmation.
 
@@ -151,7 +151,7 @@ node {baseDir}/scripts/kling.mjs video --prompt "Match motion of <<<video_1>>>" 
 node {baseDir}/scripts/kling.mjs video --prompt "Change background to ..." --video "https://..." --video_refer_type base
 node {baseDir}/scripts/kling.mjs video --multi_shot true --prompt "镜头 1, 5, Sunrise over the hills; 镜头 2, 5, Conflict in the valley;"
 node {baseDir}/scripts/kling.mjs video --prompt "A story in three beats: arrival, conflict, resolution"
-node {baseDir}/scripts/kling.mjs video --model kling-4.0 --prompt "A train crossing a snowy valley" --duration 20 --aspect_ratio 21:9
+node {baseDir}/scripts/kling.mjs video --model kling-4.0 --prompt "A train crossing a snowy valley" --duration 20 --aspect_ratio 21:9 --resolution 4k --dynamic_range hdr
 node {baseDir}/scripts/kling.mjs video --model kling-4.0 --image a.jpg,b.jpg,c.jpg --image_types first_frame,middle_frame,last_frame --prompt "..."
 node {baseDir}/scripts/kling.mjs video --model kling-4.0-flash --image ./photo.jpg --prompt "Wind blowing hair" --duration 15
 
@@ -202,7 +202,8 @@ Official docs: [能力地图视频](https://klingai.com/document-api/guides/capa
 | `--image_types` | Per-image type aligned with `--image`: `first_frame` / `middle_frame` / `last_frame` / `refer_image` / empty (`refer_image` when multiple images). `middle_frame` is `kling-4.0` only. `kling-4.0` frame-only types stay on I2V unless `--aspect_ratio` is set (then Omni). `kling-4.0-flash`: only `first_frame` stays image-to-video; `last_frame` or `--image_tail` routes to Omni (no `middle_frame`). Any `refer_image` goes Omni. Other models: Omni only. Do not combine `last_frame` with `--image_tail`. | — |
 | `--duration` | Seconds. `kling-4.0`: 3–30. Omitted: not sent. The server reads a duration stated in the prompt; on Omni it then uses `base_video` when present; otherwise the official default is 10. `kling-4.0-flash`: 3–20. Omitted: not sent. Same fallback as `kling-4.0`. `kling-3.0` / `kling-3.0-turbo` / `kling-3.0-omni`: 3–15. `kling-o1`: 3–10. `kling-2.6` / `kling-2.5-turbo`: `5` or `10`. | `kling-4.0` / `kling-4.0-flash`: omitted; others: 5 |
 | `--model` | Path model; see **Route & model**. | route default |
-| `--resolution` | `720p` / `1080p` / `4k`. `4k` only on `kling-3.0` and `kling-3.0-omni`. `kling-4.0`: `720p` / `1080p`. `kling-4.0-flash`: `720p` only. | official `1080p` (`kling-4.0`) / `720p` (others, including `kling-4.0-flash`) if omitted |
+| `--resolution` | `720p` / `1080p` / `4k` (video tiers; do not confuse with `image` `1k`/`2k`/`4k`/`8k`). `4k` only on `kling-4.0`, `kling-3.0`, and `kling-3.0-omni`. `kling-4.0-flash`: `720p` only; others: `720p` / `1080p`. | official `1080p` (`kling-4.0`) / `720p` (others, including `kling-4.0-flash`) if omitted |
+| `--dynamic_range` | `sdr` / `hdr` (`settings.dynamic_range`). Video `kling-4.0` only (T2V / I2V / Omni); rejected on other models. `hdr` requires `1080p` (or omitted resolution on `kling-4.0`) or `4k`; rejected with `720p`. | official `sdr` if omitted (`kling-4.0` only; not sent) |
 | `--aspect_ratio` | `16:9` / `9:16` / `1:1`; `kling-4.0` and `kling-4.0-flash` add `4:3` / `3:4` / `21:9` (T2V / Omni) and `adaptive` (Omni). Image-to-video has no aspect_ratio, so `--image` plus this flag (a first frame or `kling-4.0` keyframes included) routes to Omni and submits the value as given. Omni also submits an explicit value with a first frame or base video. If omitted on Omni with no first frame and not a base edit, CLI sends `16:9` (`kling-4.0` / `kling-4.0-flash`: not sent, official default `adaptive`). | T2V `16:9`; Omni `16:9` (`kling-4.0` / `kling-4.0-flash`: omitted) |
 | `--audio` | `native` / `off` / `original`. 3.0 T2V/I2V and 2.6: `native\|off`. Omni 3.0: `native\|original\|off`. O1: `original\|off`. Turbo/2.5: not sent (rejected). `kling-4.0` / `kling-4.0-flash` Omni: `original` (keep input video sound) or `native` (generate new audio); T2V/I2V: do not pass `--audio`. `original` requires `--video` (reference video, not a video subject) and rejects `--voice_ids`. `kling-3.0-omni` / `kling-o1` feature video: `off` only; their base video is not `native`. 2.6 native requires `1080p`. | official `off` if omitted (not `kling-4.0` / `kling-4.0-flash`) |
 | `--voice_ids` | Voice IDs (comma-separated). `contents` `type=voice` with `voice_id` and `id` (`1`, `2`, …). Prompt uses `@1`. Does **not** change route. `kling-4.0`: Omni only, max 3; `--audio original` is rejected; T2V and I2V reject this flag. `kling-4.0-flash` rejects this flag. `kling-2.6`: image-to-video only, max 2; omitted `--audio` is sent as `native` and resolution `1080p`; `--audio off` is rejected. Not on `kling-3.0` / `kling-3.0-omni` / turbo / 2.5 / o1. Get IDs from `voice --action list-presets` / `list` / `create`. | — |
@@ -214,7 +215,7 @@ Official docs: [能力地图视频](https://klingai.com/document-api/guides/capa
 | `--output_dir` | Output directory. | `./output` |
 | `--task_id` | Query via `GET /tasks?task_ids=`; pair with `--download`. | — |
 
-Do not pass: `--mode`, `--sound`, `--shot_type`, `--multi_prompt`, `--keep_original_sound`, `--negative_prompt`.
+Do not pass: `--mode`, `--sound`, `--hdr` (use `--dynamic_range`), `--shot_type`, `--multi_prompt`, `--keep_original_sound`, `--negative_prompt`.
 
 Model aliases (do not pass aliases to `--model`): see **Model catalog**.
 
@@ -295,6 +296,7 @@ Notes:
 - `n` and `series_amount` apply to different modes. `--series_amount` without `--result_type` selects series. `--result_type single` cannot be combined with `--series_amount`.
 - `kling-4.0` series does not require `--image`. Image Omni series does.
 - `--negative_prompt` is `kling-v3` / `kling-v2-1` text-to-image only.
+- `--dynamic_range` / `--hdr` are not supported on `image` (`--dynamic_range` is video `kling-4.0` only).
 - `kling-4.0` omitted aspect is `auto`, with or without `--image`. Image Omni `auto` needs `--image`; text-to-image Omni uses `16:9`.
 - `--page` is only for 电商详情页 (`ecommerce`) or 网页设计 (`webpage`). `ecommerce` uses `refer_image` only (1–3 images; `--image_types` defaults to `refer_image`). `webpage` reference images use `--image_types` `style_refer_image` (0–1, visual/layout style) and/or `subject_refer_image` (0–1, subject element) only — `refer_image` or untyped `--image` on `webpage`, and `style_refer_image` / `subject_refer_image` on `ecommerce`, are rejected locally. Resolution on that route is `1k` / `2k` (default `1k`). Prompt uses `@image_1` (`@image_2`, …) in `--image` order. No subjects, aspect, count, or series.
 
@@ -362,7 +364,7 @@ All bind/account files persist under storage root (`~/.config/kling` by default,
 Run `node {baseDir}/scripts/kling.mjs account --help` for details.
 Run `node {baseDir}/scripts/kling.mjs video --help`, `image --help`, `element --help`, or `voice --help` for full params.
 
-## Route & model (`scripts/kling.mjs` flags select the default model_name)
+## Route & model (CLI flags select the default model_name)
 
 Agents call `node {baseDir}/scripts/kling.mjs <video|image|element|voice|account>` with flags.
 `--model` selects the official path/model. Video encodes model in the URL (`/text-to-video/kling-4.0`); image still sends `model_name`. Must be exact canonical spelling.
@@ -416,9 +418,9 @@ Otherwise:
 Rules for 4.0 / 4.0 Flash:
 - If it is unclear whether images are **frames** (where the video starts / passes / ends) or **references** (style, scene, character), ask the user before submitting.
 - Text-only always goes T2V (there is no "Omni without references") and rejects `--voice_ids`.
-- Not accepted on either model: `--multi_shot`, `4k`, `--audio off`. T2V / I2V: do not pass `--audio`. Omni `--audio`: `original` (keep input-video sound; requires `--video`, not a video subject; no `--voice_ids`) or `native` (generate new audio). Voice: `--voice_ids` on `kling-4.0` Omni only.
-- `kling-4.0`: duration 3–30 (omitted: see `--duration`). Resolution `720p` / `1080p` (official default `1080p`).
-- `kling-4.0-flash`: duration 3–20 (omitted: see `--duration`). Resolution `720p` only. Only an explicit first frame stays image-to-video. An explicit last frame, or first and last frames, routes to Omni and is not rejected. No `middle_frame`. Up to 5 reference videos, at most one `base_video`. Omni aspect official default `adaptive` (omitted, not sent). No `--voice_ids`.
+- Not accepted on either model: `--multi_shot`, `--audio off`. T2V / I2V: do not pass `--audio`. Omni `--audio`: `original` (keep input-video sound; requires `--video`, not a video subject; no `--voice_ids`) or `native` (generate new audio). Voice: `--voice_ids` on `kling-4.0` Omni only.
+- `kling-4.0`: duration 3–30 (omitted: see `--duration`). Resolution `720p` / `1080p` / `4k` (official default `1080p`). `--dynamic_range` `sdr` / `hdr` (official default `sdr`; `hdr` on `1080p` / `4k` only, rejected with `720p`).
+- `kling-4.0-flash`: duration 3–20 (omitted: see `--duration`). Resolution `720p` only (no `4k`, no `--dynamic_range`). Only an explicit first frame stays image-to-video. An explicit last frame, or first and last frames, routes to Omni and is not rejected. No `middle_frame`. Up to 5 reference videos, at most one `base_video`. Omni aspect official default `adaptive` (omitted, not sent). No `--voice_ids`.
 
 `--multi_shot` does not force Omni; it still follows the routing triggers above.
 
@@ -457,13 +459,13 @@ Common aliases (understanding only; do not pass aliases to `--model`):
 
 | Model | Valid on | Notes |
 | --- | --- | --- |
-| `kling-4.0` | T2V / I2V / Omni video; `image` | Video: one name, three endpoints (see **Kling 4.0 intent → route**). Duration 3–30; 720p/1080p; no `--multi_shot` / 4k. Omni `--audio`: `original` or `native`; T2V / I2V do not pass `--audio`. I2V: up to 10 keyframes, no subjects. Omni: max 10 images, 7 subjects, 5 reference videos (one `base_video`); aspect adds `4:3`/`3:4`/`21:9` (T2V / Omni) and `adaptive` (Omni). Voice: Omni `--voice_ids` only (max 3). Image: preferred image model. Omit `--model` on `image`. Resolution `2k`/`4k`/`8k` (default `2k`). Aspect adds `4:3`/`3:4`/`3:2`/`2:3`/`21:9`/`auto` (default `auto`). `single` n 1–9; `series` 2–10 or `auto` (text or image). Up to 10 images and image subjects. Prompt `@image_1` / `@element_1`. No `1k`, no `--negative_prompt`. Long page, only for 电商详情页 or 网页设计: `--page ecommerce` (1–3 `refer_image`, `--length` `short`/`medium`/`long`) or `--page webpage` (text, or 0–1 `style_refer_image` + 0–1 `subject_refer_image` via `--image_types`). Resolution `1k`/`2k` (default `1k`). |
-| `kling-4.0-flash` | T2V / I2V / Omni video | One name, three endpoints (same flag routing as `kling-4.0`). Duration 3–20 (omitted is not sent; official default 10); 720p only; no `--multi_shot` / 4k / `--voice_ids`. Omni `--audio`: `original` or `native`; T2V / I2V do not pass `--audio`. I2V: one explicit `first_frame`, no subjects, no `middle_frame`. `last_frame` / `--image_tail` routes to Omni. Omni: max 10 images, 7 subjects, 5 reference videos (one `base_video`); aspect adds `4:3`/`3:4`/`21:9` (T2V / Omni) and `adaptive` (Omni). |
+| `kling-4.0` | T2V / I2V / Omni video; `image` | Video: one name, three endpoints (see **Kling 4.0 intent → route**). Duration 3–30; 720p/1080p/4k (default 1080p); `--dynamic_range` `sdr`/`hdr` (`hdr` on 1080p/4k); no `--multi_shot`. Omni `--audio`: `original` or `native`; T2V / I2V do not pass `--audio`. I2V: up to 10 keyframes, no subjects. Omni: max 10 images, 7 subjects, 5 reference videos (one `base_video`); aspect adds `4:3`/`3:4`/`21:9` (T2V / Omni) and `adaptive` (Omni). Voice: Omni `--voice_ids` only (max 3). Image: preferred image model. Omit `--model` on `image`. Resolution `2k`/`4k`/`8k` (default `2k`). Aspect adds `4:3`/`3:4`/`3:2`/`2:3`/`21:9`/`auto` (default `auto`). `single` n 1–9; `series` 2–10 or `auto` (text or image). Up to 10 images and image subjects. Prompt `@image_1` / `@element_1`. No `1k`, no `--negative_prompt`, no `--dynamic_range` / HDR. Long page, only for 电商详情页 or 网页设计: `--page ecommerce` (1–3 `refer_image`, `--length` `short`/`medium`/`long`) or `--page webpage` (text, or 0–1 `style_refer_image` + 0–1 `subject_refer_image` via `--image_types`). Resolution `1k`/`2k` (default `1k`). |
+| `kling-4.0-flash` | T2V / I2V / Omni video | One name, three endpoints (same flag routing as `kling-4.0`). Duration 3–20 (omitted is not sent; official default 10); 720p only; no `--multi_shot` / 4k / `--dynamic_range` / `--voice_ids`. Omni `--audio`: `original` or `native`; T2V / I2V do not pass `--audio`. I2V: one explicit `first_frame`, no subjects, no `middle_frame`. `last_frame` / `--image_tail` routes to Omni. Omni: max 10 images, 7 subjects, 5 reference videos (one `base_video`); aspect adds `4:3`/`3:4`/`21:9` (T2V / Omni) and `adaptive` (Omni). |
 | `kling-3.0` | T2V / I2V | Video basic. Resolution 720p/1080p/4k; audio native/off; multi_shot. I2V contents may include `element` (max 3). No `--voice_ids`. |
 | `kling-3.0-turbo` | T2V / I2V | No audio / `settings.multi_shot`; I2V first_frame only (no last_frame). Multi-shot via prompt `镜头 n, m, words;` only. |
 | `kling-2.6` | T2V / I2V | Duration 5 or 10; audio native/off (native needs 1080p). Last-frame: 1080p silent. Voice: I2V `--voice_ids` max 2 (sends `audio=native` and `1080p`). |
 | `kling-2.5-turbo` | T2V / I2V | Duration 5 or 10; no audio field. Last-frame: 1080p only. |
-| `kling-3.0-omni` | Omni video | Omni video. audio native/original/off (`original` needs `--video`); 4k; first+last frame; feature/base video. No `--voice_ids`. |
+| `kling-3.0-omni` | Omni video | Omni video. Resolution 720p/1080p/4k; audio native/original/off (`original` needs `--video`); first+last frame; feature/base video. No `--voice_ids`. |
 | `kling-o1` | Omni video | Duration 3–10; audio original/off; no 4k; no multi_shot field. First-frame-only: 5 or 10s. Feature video: no last_frame. First+last: no extra refs/subjects. |
 | `kling-v3` | Basic image | `1k` / `2k` and `--negative_prompt`. Supports subjects. |
 | `kling-v2-1` | Basic image | `1k` / `2k`. No subjects. |

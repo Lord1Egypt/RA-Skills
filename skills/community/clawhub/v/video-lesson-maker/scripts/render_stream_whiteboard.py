@@ -181,7 +181,7 @@ class RegionStreamRenderer:
             pts = sr._resample_stroke_points(pts, spacing)
             if len(pts) >= 2 and sr._stroke_cumulative_length(pts)[-1] > 2.0:
                 out.append([(int(round(x)), int(round(y))) for x, y in pts])
-        return sr._order_skeleton_strokes(out)
+        return sr._chain_strokes_logically(out)
 
     # ── 落墨（限制在 allowed 内）──
     def _reveal_ink_segment(self, a: tuple[int, int], b: tuple[int, int], allowed: np.ndarray) -> None:
@@ -218,6 +218,8 @@ class RegionStreamRenderer:
             target[:, :, ch] = target[:, :, ch] * inv + source[:, :, ch] * m
 
     # ── 起笔段（骨架模式）：沿笔迹逐段揭原图墨迹，无块填充 ──
+    # v2 性能/观感改版：把同一帧内的所有小段合并成一条 polyline 掩码，
+    # 一次布尔运算揭墨（旧版每段一次全图掩码，慢且笔速不匀）。
     def _lay_ink(self, writer, frames: int, samples: list[tuple[int, int]],
                  pen_lifts: set[int], allowed: np.ndarray) -> None:
         if frames <= 0:
@@ -228,15 +230,33 @@ class RegionStreamRenderer:
                 writer.write(self._snapshot_with_tip(self.out_w // 2, self.out_h // 2))
             return
         idx_for_frame = _frame_progress_indices(n, frames)
+        thick = max(1, self.cfg.ink_reveal_radius * 2 + 1)
         last: int | None = None
         for si in idx_for_frame:
+            run: list[tuple[int, int]] = []
+            seg = np.zeros((self.out_h, self.out_w), dtype=np.uint8)
+
+            def flush() -> None:
+                if not run:
+                    return
+                if len(run) == 1:
+                    cv2.circle(seg, run[0], thick // 2 + 1, 255, -1, cv2.LINE_AA)
+                else:
+                    cv2.polylines(seg, [np.asarray(run, dtype=np.int32)],
+                                  False, 255, thickness=thick, lineType=cv2.LINE_AA)
+                run.clear()
+
             if last is None:
-                self._reveal_ink_segment(samples[si], samples[si], allowed)
+                run.append(samples[si])
             else:
                 for k in range(last + 1, si + 1):
                     if k in pen_lifts:
-                        continue
-                    self._reveal_ink_segment(samples[k - 1], samples[k], allowed)
+                        flush()  # 抬笔：先落墨已累积的笔画，再从当前点重新起笔
+                    run.append(samples[k])
+            flush()
+            if seg.any():
+                revealed = (seg > 0) & self.ink_pixels & allowed
+                self.drawn[revealed] = self.ink_paint[revealed]
             sx, sy = samples[si]
             writer.write(self._snapshot_with_tip(sx, sy))
             last = si
@@ -345,6 +365,26 @@ class RegionStreamRenderer:
                 sample_cell.append(idx)
         return samples, pen_lifts, sample_cell
 
+    # ── 纯移动笔尖（不落墨）：指点/示意手势 ──
+    def _move_tip(self, writer, frames: int, samples: list[tuple[int, int]]) -> None:
+        if frames <= 0:
+            return
+        if not samples:
+            self._park_tip(writer, frames, self.out_w // 2, self.out_h // 2)
+            return
+        idx_for_frame = _frame_progress_indices(len(samples), frames)
+        for si in idx_for_frame:
+            sx, sy = samples[si]
+            writer.write(self._snapshot_with_tip(sx, sy))
+
+    # ── 停笔休息：笔尖停在指定位置（无内容可画时的自然姿态）──
+    def _park_tip(self, writer, frames: int, px: int, py: int) -> None:
+        px = max(0, min(self.out_w - 1, int(px)))
+        py = max(0, min(self.out_h - 1, int(py)))
+        snap = self._snapshot_with_tip(px, py)
+        for _ in range(max(0, frames)):
+            writer.write(snap)
+
     # ── 主渲染 ──
     def render_to(self, raw_path: Path, total_ms: int) -> Path:
         cfg = self.cfg
@@ -374,8 +414,24 @@ class RegionStreamRenderer:
                 start_ms = reveal["startMs"]
                 dur_ms = reveal["durationMs"]
                 fill_static(start_ms)
+                frames_total = max(1, round(dur_ms * cfg.fps / 1000))
+
+                # ── 指点模式：只移动笔尖不落墨（口播到总结/过渡句时的自然手势）──
+                if reveal.get("mode") == "point":
+                    pts = [(float(p[0]) * self.sx, float(p[1]) * self.sy)
+                           for p in reveal.get("path", [])]
+                    samples: list[tuple[int, int]] = []
+                    for a, b in zip(pts, pts[1:]):
+                        steps = max(1, int(math.hypot(b[0] - a[0], b[1] - a[1]) / cfg.sample_step))
+                        for s in range(steps + 1):
+                            samples.append((int(a[0] + (b[0] - a[0]) * s / steps),
+                                            int(a[1] + (b[1] - a[1]) * s / steps)))
+                    self._move_tip(writer, frames_total, samples)
+                    cur_ms += frames_total * ms_per_frame
+                    continue
 
                 allowed = self._allowed_mask(element, elements[idx + 1:])
+                x0r, y0r, x1r, y1r = _scaled_rect(element["region"], self.sx, self.sy, self.out_w, self.out_h)
                 ink_frames = max(1, round(dur_ms * cfg.ink_weight / weight_sum * cfg.fps / 1000))
                 color_frames = max(1, round(dur_ms * cfg.color_weight / weight_sum * cfg.fps / 1000))
 
@@ -391,9 +447,15 @@ class RegionStreamRenderer:
                         centers = samples
                     else:
                         path = self._region_grid_path(allowed)
-                        samples, pen_lifts, _ = self._grid_plan(path) if path else ([], set(), [])
-                        self._lay_ink(writer, ink_frames, samples, pen_lifts, allowed)
-                        centers = [self._cell_center(c) for c in path]
+                        if path:
+                            samples, pen_lifts, _ = self._grid_plan(path)
+                            self._lay_ink(writer, ink_frames, samples, pen_lifts, allowed)
+                            centers = [self._cell_center(c) for c in path]
+                        else:
+                            # 本拍无新墨可画（内容已在往幕画完）：停笔休息在区域右缘
+                            self._park_tip(writer, frames_total, x1r - 6, (y0r + y1r) // 2)
+                            cur_ms += frames_total * ms_per_frame
+                            continue
                 else:
                     path = self._region_grid_path(allowed)
                     if path:
@@ -413,11 +475,21 @@ class RegionStreamRenderer:
                     self._wash_brush(writer, color_frames, centers, allowed)
                 cur_ms += color_frames * ms_per_frame
 
-            # 凝视：补到 total_ms，并确保结尾至少停留 0.5s 完整原图
+            # 凝视：补到 total_ms，并确保结尾至少停留 0.5s 完整原图。
+            # v2：先用 ~0.4s 交叉淡入切到完整原图（旧版硬切会让未揭墨的
+            # 残余内容瞬间「蹦出」，观感像擦写）。
             gaze_until = max(total_ms, cur_ms + 500)
-            # 最终帧显示完整原图（凝视）
-            self.drawn[...] = self.color_img.astype(np.float32)
-            fill_static(gaze_until)
+            n_gaze = int(round((gaze_until - cur_ms) / ms_per_frame))
+            if n_gaze > 0:
+                fade_n = min(max(1, int(round(0.4 * cfg.fps))), n_gaze)
+                a = self.drawn.astype(np.float32)
+                b = self.color_img.astype(np.float32)
+                for i in range(fade_n):
+                    t = (i + 1) / fade_n
+                    writer.write(((a * (1.0 - t) + b * t).astype(np.uint8)))
+                cur_ms += fade_n * ms_per_frame
+                self.drawn[...] = self.color_img.astype(np.float32)
+                fill_static(gaze_until)
         finally:
             writer.release()
         # Windows 上 cv2.VideoWriter 释放后句柄/落盘可能略有延迟，
@@ -468,10 +540,10 @@ def _parse_args(argv=None):
     p.add_argument("hand", nargs="?", default=str(DEFAULT_HAND), help="手部素材 PNG（默认内置）")
     p.add_argument("--total-ms", type=int, default=None, help="总时长；缺省用标注 sceneDurationMs")
     p.add_argument("--bare-tip", action="store_true", help="不叠加笔尖/手部")
-    p.add_argument("--ink-path", default="grid", choices=["grid", "skeleton"],
-                   help="笔迹路径: grid 网格(默认); skeleton 骨架追踪")
-    p.add_argument("--color-fill", default="contour-wipe", choices=["contour-wipe", "brush"],
-                   help="上色: contour-wipe 轮廓扫描(默认); brush 沿轨迹刷")
+    p.add_argument("--ink-path", default="skeleton", choices=["grid", "skeleton"],
+                   help="笔迹路径: skeleton 骨架追踪(默认,笔尖沿真实笔画滑行落墨); grid 网格")
+    p.add_argument("--color-fill", default="brush", choices=["contour-wipe", "brush"],
+                   help="上色: brush 沿轨迹刷(默认,与起笔同轨迹,画出来的观感); contour-wipe 自上而下扫描(易有擦除感)")
     p.add_argument("--pause", default="heavy", choices=["heavy", "auto", "light", "off"],
                    help="起笔段停顿节奏（预留，逐区域画法下影响较弱）")
     p.add_argument("--fps", type=int, default=None)

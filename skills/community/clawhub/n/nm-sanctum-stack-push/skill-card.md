@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill after creating a committed branch stack or adding commits to publish stack branches, open or maintain a dependent pull request for each slice, and post a stack summary.
+Developers use this skill after creating a stack of branches, or after adding commits to a slice, to push the stack and open or update a dependent pull request for each slice.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: A broad push scope may publish bookmarks outside the requested stack, and the scan reports mismatches between advertised and reported behavior.
+Risk: The security evidence reports that the `jj` shortcut may publish eligible bookmarks beyond the selected stack, and that observed behavior does not fully match the skill's stated purpose.
 
-Mitigation: Review the selected branches and publication targets before running; confirm the resulting pull requests and stack summary.
+Mitigation: Review the suspicious verdict before use; inspect the eligible bookmarks and configured remote, confirm which branches should be published, and review the resulting pull requests and stack summary.
 
-Risk: The security scan was partial because one static analysis was degraded by a parser limit.
+Risk: The security evidence says scanner coverage is incomplete because inspection was partial and the tool-misuse analyzer was degraded.
 
-Mitigation: Review the skill’s behavior and publication scope before installing.
+Mitigation: Review the full skill instructions and commands before installation or execution, and do not treat the partial scan as a clean result.
 
 ## Reference(s):
 
-- [Sanctum plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
-- [ClawHub skill listing](https://clawhub.ai/athola/skills/nm-sanctum-stack-push)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-sanctum-stack-push)
+- [Sanctum plugin homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
 
 ## Skill Output:
 
-**Output Type(s):** [Shell commands, Markdown, Guidance]
+**Output Type(s):** [Shell commands, GitHub pull request updates, Markdown summary]
 
-**Output Format:** [Git and GitHub CLI operations with a Markdown stack summary]
+**Output Format:** [Shell commands and GitHub pull request updates, with a Markdown stack summary]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires an existing committed stack and authenticated GitHub CLI; pushes branches and posts a stack summary.]
+**Other Properties Related to Output:** [Requires an initialized stack with commits on each slice and an authenticated gh CLI; draft pull requests are the default.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release)
 
 ## Ethical Considerations:
 

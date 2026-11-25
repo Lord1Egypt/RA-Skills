@@ -1,6 +1,6 @@
 ---
 name: paper-polisher
-version: 7.7.0
+version: 7.9.0
 author: DoctorQ Lab
 description: >-
   AI-rate self-check and polish guidance for academic writing: sentence-level rewrite
@@ -13,7 +13,8 @@ description: >-
   chars get no verdict by design.
   100% local, zero upload; bundled tests + AST zero-network self-verification.
   Multi-layer rule engine + token spectrum + optional supervised Qwen3-0.6B ONNX
-  layer + LLM fingerprint attribution + freshness pipeline. Base-engine numbers
+  layer (held-out AUROC 0.9998, fingerprint-bound) + LLM fingerprint attribution
+  + freshness pipeline. Base-engine numbers
   reproduce from bundled held-out evals; supervised columns are author-side
   (model not bundled).
 tags: [ai-detection, deai, academic-writing, paraphrase, paper-polish]
@@ -32,7 +33,7 @@ AI writing detection (AI-rate self-check for authors) · academic polishing guid
 
 ## TL;DR
 
-- **What**: 100% local AI-rate self-check + academic polishing toolkit for Chinese academic text (optional supervised model for best accuracy; English gets advisory rules-only scores).
+- **What**: 100% local AI-rate self-check + academic polishing toolkit for Chinese academic text (L1-L12 rule engine; optional supervised model for best accuracy; English gets advisory rules-only scores).
 - **30-second start**: `python3 scripts/pp.py quickstart` (zero-model, zero-file demo) · `python3 scripts/pp.py detect draft.txt --format json` · sentence-level rewrite suggestions: `python3 scripts/pp.py fix draft.txt` · full self-check report: `python3 scripts/pp.py workflow draft.txt` · environment: `python3 scripts/pp.py doctor` (one entry routes all subcommands)
 - **Measured** (held-out, fingerprint-bound md5 2631df3d388b): AUROC 0.9998 pre-2026 / 0.9400 current-generation; human FPR@medium 2.3%.
 - **Know the limits**: texts <100 chars get `risk=unknown` by design · medical text in degraded mode is over-scored · mixed human+AI docs: the document-level score is unreliable (paragraph attribution is the actionable signal) · authors' self-check only — never for evading institutional AI detection.
@@ -67,7 +68,7 @@ This tool is for **authors self-reviewing and improving their own writing qualit
 
 ## Measured performance (C-ReD + DetectRL-ZH, held-out test half, n=5,251)
 
-> Corpus scope note (v4.8.0): the v3.0-era table below was measured on the **full** held-out test half (n=5,251). The **bundled** sample corpus is a subset — its test half is n=1,304; reproducible per-corpus numbers: rules-only (PP_NO_SUP) 0.8985 old-gen / 0.7149 current-gen, fused 0.9998 / 0.9400 (`eval/results/v480_rules_*.json`, `v35ctl_*.json`; cache keys bind model fingerprint AND engine mode).
+> Corpus scope note (v4.8.0): the v3.0-era table below was measured on the **full** held-out test half (n=5,251). The **bundled** sample corpus is a subset — its test half is n=1,304; reproducible per-corpus numbers: rules-only (PP_NO_SUP) 0.8985 old-gen / 0.7149 current-gen, fused 0.9998 / 0.9400 (`eval/results/archive/v480_rules_*.json`, `v35ctl_*.json`; cache keys bind model fingerprint AND engine mode).
 
 | Metric | v2.0 baseline | v3.0 rules+spectrum | v3.1 +supervised | v3.4 supervised（版本时代记录，现行见下方重测行） |
 |---|---|---|---|---|
@@ -115,7 +116,7 @@ This tool is for **authors self-reviewing and improving their own writing qualit
 
 - **100% local**: every feature runs on-device. The codebase makes zero outbound network calls — no network client libraries, no network utilities. The single listener-capable component is the optional MCP HTTP form (`--transport http`), which binds 127.0.0.1 loopback only (binding asserted by the AST verifier's allowlist rule); the AST scan treats any listener without a loopback bind as a violation. Verify structurally: `python3 scripts/pp_verify.py` (AST-level scan; exit 0 = zero network calls, all scripts compile). Legacy text grep `grep -rEin "urllib|requests|socket|import http" scripts/` may show a few URL *strings* in report footers — those are data in string constants, not network code; the AST verifier distinguishes the two.
 - **No upload, no credentials**: reads and transmits no credentials, keys, or personal data; the only two environment variables are `PP_NO_SUP` (skip the supervised layer) and `PP_LANG` (`en` switches the `pp.py` entry surface to English) — both local behavior toggles.
-- **Install integrity self-check**: `data/INTEGRITY_MANIFEST.json` records the SHA256 of every data/wordlist JSON; `python3 scripts/pp_doctor.py --deep` verifies each file's hash and parse — if a distribution path truncates a file, this names the exact file and expected/actual hash.
+- **Install integrity self-check (two manifests)**: `data/INTEGRITY_MANIFEST.json` records the SHA256 of every data/wordlist JSON; `data/PACKAGE_MANIFEST.json` (written at packaging) covers every other shipped file. `python3 scripts/pp_doctor.py --deep` verifies both when present, file by file — if a distribution path truncates or tampers with a file, this names the exact file and expected/actual hash.
 - **No persistence**: creates no scheduled tasks, autostart entries, or system config changes; temp files (inter-layer JSON, probe text) are deleted after use.
 - **No remote code**: loads no remote models or scripts; the optional supervised model is placed by the user at a local path.
 - **Data boundary**: reads/writes only user-specified files, the system temp dir, and its own package data directories (calibration/freshness artifacts); reports go only where the user points them.
@@ -162,8 +163,9 @@ python scripts/pp.py workflow draft.txt
 python scripts/pp.py explain draft.workflow.json
 # Questioned about AI use — faithful evidence archive (HTML+MD, fixed integrity statements)
 python scripts/pp.py evidence draft.txt --outdir evidence/
-# Whole directory to process — per-file CSV + HTML summary (auto-retry + per-file
-# crash isolation via --isolate auto: on when the supervised model is installed)
+# Whole directory to process — per-file CSV + HTML summary (auto-retry --retries
+# 2 by default; per-file crash isolation via --isolate auto: on when the
+# supervised model is installed)
 python scripts/ai_detector.py --batch manuscript_dir --csv scores.csv --report report.html
 # Thesis split across chapter files — cross-file terminology consistency matrix
 python scripts/pp.py term-project 章节目录/ --html matrix.html
@@ -175,9 +177,12 @@ python scripts/pp.py trend 轮次目录/ -o trend.html
 python scripts/pp.py doctor
 ```
 
+Real outputs shipped with the package (engine-identical): `examples/outputs/` —
+skim them to see each report's shape before your first run.
 More situations (style norms, terminology, rewrite comparison, dashboards, bundles,
 compliance labels, MCP integration): `python scripts/pp.py scenarios` — every entry
-states when to use it, the command, and what you get. Scenario-level how-to advice:
+states when to use it, the command, and what you get. Guided live tour (five
+stations, real runs): `python scripts/pp.py tour`. Scenario-level how-to advice:
 [`references/best-practices.md`](references/best-practices.md).
 
 
@@ -211,7 +216,7 @@ The four core outputs (detect / fix_suggest / workflow / term_report) ship JSON-
 
 ### MCP server (direct agent-client integration, v6.5.0)
 
-Zero-dependency MCP stdio server (JSON-RPC in pure stdlib — nothing to pip install), eight tools sharing the CLI engine and semantics:
+Zero-dependency MCP stdio server (JSON-RPC in pure stdlib — nothing to pip install), eight tools sharing the CLI engine and semantics. Unified entry: `python scripts/pp.py mcp` (same server):
 
 ```jsonc
 // mcpServers config for Claude Code / Cursor etc.
@@ -220,7 +225,10 @@ Zero-dependency MCP stdio server (JSON-RPC in pure stdlib — nothing to pip ins
     "args": ["<skill>/scripts/pp_mcp_server.py"] } } }
 ```
 
-Tools: `pp_detect` (AI-rate + layered evidence) | `pp_fix_suggest` (sentence suggestions, never rewrites) | `pp_style_norm` (style norms) | `pp_term_check` (terminology) | `pp_workflow` (full end-to-end report) | `pp_explain` (plain-language reading) | `pp_faq` (search) | `pp_doctor` (environment tier). All local, zero network; output auto-truncated (12k chars).
+Tools: `pp_detect` (AI-rate + layered evidence) | `pp_fix_suggest` (sentence suggestions, never rewrites) | `pp_style_norm` (style norms) | `pp_term_check` (terminology) | `pp_workflow` (full end-to-end report) | `pp_explain` (plain-language reading) | `pp_faq` (search) | `pp_doctor` (environment tier). All local, zero network; output auto-truncated (12k chars). Every script also runs
+through the unified entry (`pp.py gate` / `pp.py quality` / `pp.py smell` /
+`pp.py style` / `pp.py term` / `pp.py setup` / `pp.py explain`); the `pp_*` names
+above are the underlying script paths.
 
 Local HTTP form (v7.2.0, multi-client reuse): `python scripts/pp_mcp_server.py --transport http --port 8815` — listens on 127.0.0.1 loopback only (consistent with the zero-network posture; do not expose via port forwarding); `POST /mcp` for JSON-RPC, `GET /health` probe.
 
@@ -280,28 +288,7 @@ Docs & site: **docsor.cn**
 
 ## Version history (condensed)
 
+- **v7.9.0 (2026-11-19)** — manifest single-sourcing: packaging writes `data/PACKAGE_MANIFEST.json` (every shipped file outside data/, sha256+bytes) instead of overwriting the data-file `INTEGRITY_MANIFEST.json` — two manifests, one semantics each; `pp_doctor --deep` verifies BOTH (package-receipt acceptance names the exact file + expected/actual hash on drift); pkg gates assert manifest semantics and complementarity; release-ledger --record idempotent.
+- **v7.8.0 (2026-11-18)** — documentation-facts contract (`eval/doc_facts.py`, five gates: file references incl. archive/ discipline · bilingual number parity · unified-entry ↔ registry parity · metric anchors traced to eval JSONs · version coherence incl. schema $id), wired into release smoke; freshness baseline reconciliation archive-aware + honest missing reporting; `explain` in grouped help; version history cut to the three-entry policy.
 - **v7.7.0 (2026-11-12)** — output contract schemas (`schemas/*.schema.json` + zero-dep validator `pp.py schema --selfcheck`, real-output-validated); manifest generator single-sourced (generated reads skill.json, --check byte-compare, gated); pp_api parity completed (trend_data / schema_selfcheck).
-- **v7.6.0 (2026-11-07)** — install integrity self-check: `data/INTEGRITY_MANIFEST.json` (SHA256 per data/wordlist JSON) + `pp_doctor --deep` (hash+parse per file) + trunk/package manifest gates; `eval/gen_integrity_manifest.py`.
-- **v7.5.0 (2026-11-06)** — dual-form acceptance parity (`verify_forms.py --form sh|ch|both`, package-copy harness); archive/README caliber discipline rewritten with a gate; skill.json layer count aligned to the L12 map.
-- **v7.4.0 (2026-11-05)** — physical caliber separation (29 historical result files archived; top level = CURRENT.md + 3 baselines + cache, gated); version-era pointer in the measured table; pp_api SDK gains fix_suggest/evidence_sections/term_project/scenarios.
-- **v7.3.0 (2026-11-03)** — MCP three-primitive parity (3 resources + 3 workflow prompts alongside 8 tools); SKILL_ZH title fossil removed + bilingual-title gate; requirements declares regex with a requirements-vs-docs gate; SH package form stated in the doc header.
-- **v7.2.0 (2026-10-31)** — MCP HTTP transport (loopback-only, /mcp + /health); server version single-sourced from skill.json; AUROC caliber cleanup in skill.json/SKILL_ZH with a zero-residue gate; eval/results caliber navigation (CURRENT.md) with reconciliation gates.
-- **v7.1.0 (2026-10-31)** — custom terminology banks (`--bank` for term_check & term-project; project-owned standard spellings merged over the built-in bank with same-cn override, line-numbered validation); title version fossil removed + README AUROC aligned to the fingerprint-bound 0.9998 caliber, both gated.
-- **v7.0.0 (2026-10-30)** — package-form adaptive consistency major: bundled tests & smoke run in both package forms (CH English package: ZH assertions skip honestly); cross-file gates unify Python floor at 3.9 and forbid hardcoded test counts; fix gains `--worksheet` rewrite checklist.
-- **v6.9.0 (2026-10-29)** — project workbench (`pp.py project`): directory-wide full self-check + embedded term-consistency matrix + overview HTML/JSON, same-source engine, per-file failure isolation.
-- **v6.8.0 (2026-10-27)** — per-file process isolation for batch (`--isolate auto`: on with the supervised model; hard crash costs one row, scoring bit-identical); error glossary + worker-crash/timeout/encoding; Traceback-residue hygiene lock.
-- **v6.7.0 (2026-10-27)** — scenario catalog (`pp.py scenarios`, 17 entries with when-to-use/output, single-source JSON); quick start restructured scenario-first (~30 lines slimmer); FAQ technical section split into user-facing vs integrator tiers.
-- **v6.6.0 (2026-10-26)** — evidence report (`pp.py evidence`, HTML+MD with fixed limitation/integrity statements) and cross-file terminology consistency (`pp.py term-project`, thesis-wide writing matrix + unification advice).
-- **v6.5.0 (2026-10-24)** — MCP stdio server (`pp.py mcp`): eight tools over pure-stdlib JSON-RPC for agent clients (Claude Code/Cursor), zero dependencies, zero network; anti-patterns ↔ FAQ de-duplicated with cross-pointers and a reading-tier note.
-- **v6.4.0 (2026-10-23)** — batch auto-retry (`--retries`, default 2) with a `failed_files` aggregate + diagnostic hints (transient failures self-heal, no manual re-run); guided tour (`pp.py tour`, five live stations incl. the report explainer and a visuals/trends map); quick start now references the bundled real outputs and documents the `--batch --csv --report` one-pass combination.
-- **v6.3.0 (2026-10-22)** — standalone searchable FAQ (`references/faq.md` + `pp.py faq <keyword>` with technical-questions section), SKILL.md keeps top-3 + link, friendly errors now carry the FAQ pointer.
-- **v6.2.0 (2026-10-21)** — side-by-side rewrite comparison (`pp_rewrite_check.py --html`): aligned per-paragraph original/revised excerpts with colored score migration, plus a signal-details section in the workflow dashboard.
-- **v6.1.0 (2026-10-20)** — report explainer (`pp.py explain`), error-glossary extension (AST/drift/signature/gate-layer phrases), quickstart timeouts + stability contract in docs, architecture deep-dive moved to `references/architecture.md`, new `references/best-practices.md`, examples annotated by scenario.
-- **v6.0.0 (2026-10-19)** — reporting & experience major: multi-run trend dashboard (`pp.py trend`); unified plain-language error presentation (`pp_errors.py`, wired into four entry points); grouped `pp.py` help with a beginner path and an English entry surface (`PP_LANG=en`); batch chaos test suite.
-- **v5.9.0 (2026-10-18)** — zero-config onboarding & batch robustness: supervised-model acquisition guide (`pp_setup.py --guide`, wired into doctor/check), batch circuit breaker (`--circuit`, default 5) + fix for one corrupt docx killing the whole batch, opt-in out-of-dictionary neologism probe (`term_check.py --neologism`), version-header hygiene with a release gate, FAQ group navigation.
-- **v5.8.1 (2026-10-17)** — terminology bank extended with practice-derived standardization aliases; term matching fixed to single-pass longest-first resolution (a short standard term no longer shadows a longer alias); count claims updated to 2,335.
-- **v5.8.0 (2026-10-16)** — visual dashboard release: `pp_report_html.py` renders workflow/detect/fix/norm JSON into one self-contained HTML (gauge, histogram, paragraph/finding/ledger tables); `pp.py recommend` natural-language command router; exit-code contract documented and locked; top-3 limits surfaced next to the TL;DR; ZH version history slimmed to match EN.
-- **v5.7.1 (2026-10-16)** — sample sanitation: an internal LAN link embedded in the bundled sample document text (`examples/outputs/detect_sample.json`) was redacted after the hygiene gate flagged it; no code or engine changes (bit-identical scoring to 5.7.0).
-- **v5.7.0 (2026-10-16)** — release-integrity overhaul: version-scoped guards, post-packaging version assertion, sample outputs shipped, sentence-locating in the jargon check; CHANGELOG/SKILL.md dedup.
-- **v5.6.0 (2026-10-14)** — llm-jargon release: three-tier AI-flavor self-check with case-library contrasts (cross-line port, credited); engine scoring of the signal tried and honestly reverted (negative result archived with retry conditions).
 - Releases **v5.4.1 and earlier**: see `CHANGELOG.md` (single source of history).

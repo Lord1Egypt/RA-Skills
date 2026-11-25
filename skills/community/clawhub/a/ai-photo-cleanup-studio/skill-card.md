@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users can remove a specific unwanted object or person from an existing photo while keeping the rest of the scene as requested. They can review the retouched image before using or sharing it.
+People editing an existing photo use this skill to remove a selected object or person while preserving the rest of the scene and filling the cleared area to match its surroundings.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: This skill requests shared spending access and unrelated video, music, speech, and voice permissions.
+Risk: The security evidence reports permissions extending beyond photo cleanup, with some local references unresolved.
 
-Mitigation: Install only if you accept these access scopes and shared spending; review permissions before connecting.
+Mitigation: Review the unresolved references and requested permissions before installation, and proceed only if the access fits the intended use.
 
-Risk: Photos selected for editing are uploaded for processing, and the filled area may depict details that were hidden in the original.
+Risk: The security evidence reports recurring installation analytics and risks to shared credentials and state.
 
-Mitigation: Upload only photos you intend Beatra to process, and review the retouched image rather than relying on reconstructed details for accuracy.
-
-Risk: Paid edits and automatic installation telemetry may incur costs or disclose usage information.
-
-Mitigation: Approve each priced edit and account for automatic installation telemetry; revoke the device in Beatra Console when access is no longer needed.
+Mitigation: Review the installation and credential-handling guidance, and keep the documented private credential and state files protected.
 
 ## Reference(s):
 
-- [ClawHub release](https://clawhub.ai/beatra-ai/skills/ai-photo-cleanup-studio)
-- [Beatra skill page](https://beatra.ai/skills/ai-photo-cleanup-studio)
-- [Cleanup workflow](references/workflow.md)
-- [Updates and security](references/updates-and-security.md)
+- [Beatra AI Photo Cleanup Studio](https://beatra.ai/skills/ai-photo-cleanup-studio)
+- [Cleanup workflow](artifact/references/workflow.md)
+- [Tasks and results](artifact/references/tasks-and-results.md)
+- [Billing, errors, and recovery](artifact/references/billing-errors-and-recovery.md)
+- [Installation and authentication](artifact/references/installation-and-auth.md)
+- [Updates and security](artifact/references/updates-and-security.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Image, Text]
+**Output Type(s):** [Images, Guidance]
 
-**Output Format:** [Edited image artifact with accompanying text describing the result and review details]
+**Output Format:** [Retouched image with concise Markdown delivery details]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [One result by default; the filled area is generated content, not recovered detail from behind the removed object.]
+**Other Properties Related to Output:** [One result by default; the default canvas is 2K and keeps the source aspect ratio. The filled area is reconstructed from its surroundings and should be reviewed.]
 
 ## Skill Version(s):
 
-0.2.2
+0.2.5 (source: server-resolved release)
 
 ## Ethical Considerations:
 

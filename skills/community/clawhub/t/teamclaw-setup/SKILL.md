@@ -1,6 +1,6 @@
 ---
 name: teamclaw-setup
-description: Install, configure, validate, or troubleshoot the TeamClaw OpenClaw plugin for virtual software-team workflows. Use when users want TeamClaw setup help, controller or worker config snippets, localRoles first-run guidance, on-demand process/docker/kubernetes workers, or safe first-run validation steps.
+description: Install, configure, validate, or troubleshoot the TeamClaw OpenClaw plugin for virtual software-team workflows. Use when users want TeamClaw setup help, controller or worker config snippets, on-demand process/docker/kubernetes workers, external worker registration, or safe first-run validation steps.
 version: 1.0.0
 metadata:
   openclaw:
@@ -25,19 +25,29 @@ Guide users to the smallest working TeamClaw installation first, then expand.
    npx -y @teamclaws/teamclaw install
    ```
 
+   The guided installer already applies `--dangerously-force-unsafe-install` for TeamClaw and defaults to an independent `teamclaw` agent/workspace.
+
+   Advanced compatibility only:
+
+   ```bash
+   npx -y @teamclaws/teamclaw install --agent-mode main
+   ```
+
+   Use that only when the user explicitly wants the legacy shared-`main` layout.
+
 2. Use manual plugin install only when the user wants direct control:
 
    ```bash
-   openclaw plugins install @teamclaws/teamclaw
+   openclaw plugins install --dangerously-force-unsafe-install @teamclaws/teamclaw
    ```
 
    If the user explicitly wants the ClawHub package path, use:
 
    ```bash
-   openclaw plugins install clawhub:@teamclaws/teamclaw
+   openclaw plugins install --dangerously-force-unsafe-install clawhub:@teamclaws/teamclaw
    ```
 
-3. Recommend `controller + localRoles` for the first successful run unless the user explicitly needs distributed or on-demand workers immediately.
+3. Recommend `controller + process provisioning` for the first successful run unless the user explicitly needs external workers, Docker, or Kubernetes immediately.
 
 4. Read `references/install-modes.md` before generating config. Pick the smallest matching topology and reuse the provided snippets.
 
@@ -49,7 +59,7 @@ Guide users to the smallest working TeamClaw installation first, then expand.
 
 ## Installation guidance
 
-- Start with a single machine and `localRoles`.
+- Start with a single host and `process` provisioning.
 - Keep TeamClaw `taskTimeoutMs` large for real model runs.
 - Keep OpenClaw `agents.defaults.timeoutSeconds` at least as large as the TeamClaw task window in seconds.
 - For `docker` or `kubernetes`, require a reachable `workerProvisioningControllerUrl`.

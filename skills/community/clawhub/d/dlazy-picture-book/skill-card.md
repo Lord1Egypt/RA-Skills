@@ -1,6 +1,6 @@
 ## Description:
 
-Creates a picture book from a theme by drafting a paged story, generating consistent illustrations and background music, and assembling them into an interactive HTML book.
+Creates a complete picture book from a theme, including a paged story, consistent illustrations, background music, and a standalone HTML reader.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users can use the skill to turn a theme into a read-aloud children's story with consistent illustrations, music, and a browsable HTML book.
+Agents use this skill to create illustrated storybooks for readers, including children's and bedtime books. It guides story planning, page-by-page media generation, and assembly of a browsable HTML book.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill's tool scope and runtime permissions are not fully characterized, and scan coverage was partial because some local path references could not be resolved.
+Risk: The security analysis is partial and leaves some file-access and media-download scope questions unresolved.
 
-Mitigation: Review the included files and CLI behavior before installation, and grant only the permissions needed for the requested book-generation steps.
+Mitigation: Review the skill’s access disclosures and tool permissions before installation, and inspect downloaded media before opening the finished book.
 
-Risk: Prompts and local reference images are sent to dLazy hosted services during illustration and music generation.
+Risk: The workflow sends prompts to dLazy services and uploads local reference images for illustration generation.
 
-Mitigation: Avoid submitting sensitive text or images, and confirm the data-sharing implications before using those services.
+Mitigation: Avoid sending sensitive prompts or images, and confirm that users are comfortable with those materials being processed by the service.
 
 ## Reference(s):
 
-- [CLI source link listed in the skill documentation (not server-verified provenance)](https://github.com/dlazy-ai/cli)
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli)
-- [dLazy website](https://dlazy.com)
+- [CLI project link listed in skill metadata (release provenance unavailable)](https://github.com/dlazy-ai/cli)
+- [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy](https://dlazy.com)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, HTML, Images, Audio]
+**Output Type(s):** [Text, JSON, HTML, Image and audio files]
 
-**Output Format:** [Paged story data in book.json, an interactive HTML book, and associated illustration and music files.]
+**Output Format:** [Paged story content in book.json and a standalone HTML book with linked illustration and music assets]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Usually 10 pages; theme, audience, art style, and page count can be tailored to the user's brief.]
+**Other Properties Related to Output:** [Defaults to 10 pages; the book folder includes the HTML reader and generated media assets.]
 
 ## Skill Version(s):
 
-1.3.40 (source: server-resolved release metadata)
+1.3.43 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

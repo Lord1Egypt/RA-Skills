@@ -1,6 +1,6 @@
 ## Description:
 
-用户指定 GPT Image 2.6 / 智慧模型2.6，要做电商模特图、试穿、模特换装或用获授权的人像参考替换模特脸部时使用。
+用户指定 GPT Image 2.6 / 智慧模型2.6，要做电商模特图、试穿、模特换装或用获授权的人像参考替换模特脸部时使用。按平台规范拆分任务并写好提示词，报价经用户确认后出图；没有 CLI 或密钥时交付可直接提交的出图方案。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,48 +14,38 @@ MIT-0
 
 ## Use Case:
 
-电商服饰团队可用此技能依据服装图和获授权的模特参考图制作虚拟试穿、换装或换脸图片，并检查商品细节与输出规格。
+服饰电商从业者和内容创作者可用此技能规划模特试穿、换装及穿搭图，并在具备工具与凭据时生成图片；否则获得可直接提交的提示词和参数方案。
 
 ### Deployment Geography for Use:
 
-Global
+China (the documented qhkit workflow requires the cn site)
 
 ## Known Risks and Mitigations:
 
-Risk: Reference images may depict people whose likeness you are not authorized to use.
+Risk: The documented install uses a mutable package release that may change.
 
-Mitigation: Upload only images you are authorized to use with Qinghu.
+Mitigation: Review the package and version before installation, and pin a reviewed release where practical.
 
-Risk: An incorrectly configured account or service address can expose credentials or route work to the wrong service.
+Risk: Scanner coverage was partial because three referenced local paths could not be resolved.
 
-Mitigation: Verify the configured Qinghu account and service address, and keep API keys out of task files and replies.
-
-Risk: Image generation uses account credits.
-
-Mitigation: Review the estimated credits before confirming generation.
-
-Risk: The external qhkit CLI is outside the bundled-code review, and installing @latest may change its implementation.
-
-Mitigation: Check the installed CLI version and review the package before upgrading it.
+Mitigation: Resolve and review the referenced local files before relying on behavior that the scan could not cover.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-gpt-image-2-6-fashion-model)
-- [青虎 API Keys](https://www.iqinghu.com/workbench/dashboard/api-keys?urlCode=1788417429126)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, JSON, Guidance, Shell commands, Configuration]
+**Output Type(s):** [Guidance, Markdown, Configuration, Images]
 
-**Output Format:** [Generated image files and JSON results; Markdown guidance and editable prompts when generation is unavailable]
+**Output Format:** [Markdown prompts and JSON parameters; generated image files when image generation succeeds]
 
-**Output Parameters:** [Variable by selected image count and size preset]
+**Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Prompt limit: 5,000 characters. Verify actual image dimensions, format, and count against the selected options.]
+**Other Properties Related to Output:** [Image generation depends on an available CLI, credentials, user approval of the estimate, and successful service execution.]
 
 ## Skill Version(s):
 
-0.1.0 (source: server-resolved release metadata)
+0.1.1 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

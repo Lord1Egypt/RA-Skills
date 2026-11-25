@@ -1,0 +1,283 @@
+{
+  "schema_version": "1.0",
+  "skill_version": "2.7.4",
+  "distribution_profile": "clawhub_mit0",
+  "license": "MIT-0",
+  "base_public_version": "2.7.2",
+  "updated": "2026-11-24",
+  "scope": "独立ClawHub专用版：维护者有权授权的代码、独立事实整理与分析；不包含个人记录、经营原值、第三方逐字引文、逐句译文、消费者评论或未核图标。来源链接目标不属于随包作品。",
+  "expression_review": {
+    "historical_claims": "保留来源、版次、定位与已有事实核查等级；表达分发和事实证据是独立维度，不冒称本轮重新核完全部原书",
+    "third_party_excerpts": "全部quote_en/quote_zh及method_original不随包分发；操作按事实独立整理为method_summary_zh，不是原文或逐句译文",
+    "bar_expression": "不随包分发消费者评论；v2.7.4复核并清理 why/public_description/replica.note 中残留的第三方称誉与批评表达，材料描述与抽象组织方法独立整理，不照搬店家完整命名系统或酒单文案",
+    "artwork": "原icon.png来源权利未核，本独立版不分发",
+    "boundary": "记录已执行的保守表达清理范围，不构成全面法律、食品安全或平台安全审核保证"
+  },
+  "empty_templates": {
+    "customers.json": {
+      "customers": []
+    },
+    "sales.json": {
+      "daily": [],
+      "summary": {
+        "total_days": 0,
+        "total_orders": 0,
+        "total_revenue": 0,
+        "daily_avg_orders": 0,
+        "daily_avg_revenue": 0
+      }
+    },
+    "inventory.json": {
+      "inventory": {},
+      "regular_customers": {}
+    },
+    "cost_history.json": {
+      "tracking_items": [],
+      "weekly_data": [],
+      "trend_analysis": {}
+    },
+    "suppliers.json": {
+      "suppliers": [],
+      "price_records": []
+    },
+    "menu.json": {
+      "menu": {
+        "categories": {}
+      }
+    },
+    "menu_real.json": {
+      "menu": {
+        "categories": {}
+      }
+    },
+    "gommone_products.json": [],
+    "push_history.json": {
+      "pushed": {}
+    }
+  },
+  "synthetic_prices": {
+    "classification": "synthetic_demo",
+    "currency": "CNY_demo",
+    "source": "确定性合成演示公式；非真实报价、非采购记录、非第三方市场数据",
+    "brand_policy": "所有材料统一为无品牌合成演示材料；保留既有材料标识键不代表采购了对应品牌",
+    "material_key_count": 165,
+    "material_key_count_note": "副本实际有165个材料键；旧说明声称164，本次不删除材料以迎合旧说明，全部保留并覆盖",
+    "category_key_counts": {
+      "base_spirits": 27,
+      "liqueurs": 42,
+      "chinese_spirits": 2,
+      "fresh_juices": 11,
+      "syrups": 15,
+      "soft_drinks": 8,
+      "wines": 12,
+      "others": 42,
+      "bitters": 6
+    },
+    "category_rates": {
+      "base_spirits": 0.123,
+      "liqueurs": 0.107,
+      "chinese_spirits": 0.111,
+      "fresh_juices": 0.013,
+      "syrups": 0.017,
+      "soft_drinks": 0.009,
+      "wines": 0.083,
+      "others": 0.011,
+      "bitters": 0.151
+    },
+    "rate_unit": "每ml液体或每g固体的演示元；材料基础单位由prices.json各条目unit给出",
+    "package_quantity": 1000,
+    "package_formula": "包装金额=1000*该分类演示单价；包装单位为ml或g",
+    "shopping_formula": "正装、小酒版与分装金额=ROUND_HALF_UP(规格容量ml*材料合成单价,2)",
+    "shopping_bottle_count": 21,
+    "shopping_small_size_count": 13,
+    "shopping_split_buy_count": 4,
+    "split_buy_rate_keys": [
+      "金酒",
+      "梅斯卡尔",
+      "陈年朗姆酒",
+      "黑麦威士忌"
+    ],
+    "split_buy_volumes_ml": [
+      100,
+      50,
+      100,
+      200
+    ],
+    "split_buy_demo_total": 55.35,
+    "recipe_count": 177,
+    "recipe_cost_formula": "cost_estimate=ROUND_HALF_UP(SUM(原材料用量经下列演示假设换算的基础量*对应合成单价),2)",
+    "target_gross_margin": 0.75,
+    "suggested_price_formula": "ROUND_HALF_UP(cost_estimate/(1-0.75),2)",
+    "suggested_price_structure": "保留数组兼容结构；两个元素为同一合成演示金额，不再保留门店售价区间",
+    "rounding": "Decimal ROUND_HALF_UP，金额保留到分；售价使用已取到分的cost_estimate计算",
+    "excluded_costs": [
+      "独立garnish未在ingredients列出的装饰",
+      "人工",
+      "租金",
+      "税费",
+      "耗损",
+      "ingredients未列出的冰与水"
+    ],
+    "recipe_spec_policy": "保留177款name/name_en、ingredients的name/amount/unit、glass、garnish与合成成本售价；唯一method安全修订为蓝色火焰不点火操作。v2.7.2原版删除的经营品牌/来源/上架字段不恢复",
+    "quantity_assumptions": {
+      "classification": "synthetic_cost_only_assumptions",
+      "warning": "以下只是可复算的演示成本假设，不是标准体积、密度、配方修订或实际出品规格；古书原始单位不适用这些规则",
+      "numeric_amount": "JSON数值或纯数值字符串按原数值解析；不把数值字符串当1",
+      "nonnumeric_amount": "仅None或up作为补满/填满的一次；原amount保持不变",
+      "base_units": {
+        "ml": 1,
+        "g": 1
+      },
+      "base_quantity_factors": {
+        "barspoon": 5,
+        "dash": 0.5,
+        "drop": 0.05,
+        "颗": 5,
+        "个": 10,
+        "块": 5,
+        "根": 3,
+        "转": 0.1,
+        "边": 0.5,
+        "杯": 150
+      },
+      "base_quantity_factors_note": "因材料unit不同，基础量为ml或g；例如固体辣椒酱的一dash仅假定0.5g，不声称是实物毫升规格",
+      "piece_factor": {
+        "unit": "片",
+        "default": 2,
+        "ingredient_overrides": {
+          "薄荷叶": 0.2,
+          "罗勒叶": 0.2
+        }
+      },
+      "egg_factor": {
+        "unit": "个",
+        "ingredients": [
+          "蛋白",
+          "蛋清",
+          "蛋黄"
+        ],
+        "base_quantity_ml": 30
+      },
+      "topping_fill_factor": {
+        "units": [
+          "topping",
+          "fill"
+        ],
+        "default": 100,
+        "ingredient_overrides": {
+          "肉桂粉": 0.2,
+          "茴香酒": 3,
+          "香槟": 60
+        }
+      },
+      "cross_unit_density": "原ml用量对应价格g单位或相反时，仅作1g/ml演示密度假设；不改变原amount/unit",
+      "solid_rate_material_keys": [
+        "薄荷叶",
+        "橄榄",
+        "樱桃",
+        "方糖",
+        "草莓",
+        "黄瓜",
+        "罗勒叶",
+        "肉桂粉",
+        "海盐",
+        "黑胡椒",
+        "碎冰",
+        "黄油",
+        "红糖",
+        "肉桂",
+        "姜",
+        "盐",
+        "柠檬片",
+        "黄瓜片",
+        "抹茶粉",
+        "芒果泥",
+        "辣椒酱",
+        "圣女果",
+        "小番茄",
+        "龙井茶"
+      ],
+      "missing_ingredients": "不添加或猜测原配方未列出的材料；仅计算其ingredients实际列出的条目"
+    }
+  },
+  "promotion_policy": {
+    "holidays.json": "活动文本全部改为演示；已有price_modifier统一改成合成1.05，不代表实际折扣或政策",
+    "holiday_price_formula": "完整配方的演示主题金额=ROUND_HALF_UP(合成建议售价*1.05,2)",
+    "concept_only_price_policy": "无完整材料用量的节日概念款不编造成本和价格",
+    "seasonal.json": "四季营销文本为演示创意，无实际买赠、半价或上市承诺"
+  },
+  "changed_existing_json_files": [
+    "customers.json",
+    "sales.json",
+    "inventory.json",
+    "cost_history.json",
+    "suppliers.json",
+    "menu.json",
+    "menu_real.json",
+    "gommone_products.json",
+    "push_history.json",
+    "prices.json",
+    "recipes.json",
+    "shopping.json",
+    "holidays.json",
+    "seasonal.json",
+    "inspiration.json"
+  ],
+  "release_knowledge_hashes": {
+    "bar_signatures.json": {
+      "classification": "independently_reorganized_public_facts",
+      "sha256": "6946ed0490ec9fc6ab7ec059b924cd2a8e38a7ec6f6d05c3b6d3581dc578fd85",
+      "policy": "79店/57样本/46来源等事实与时效字段保留；v2.7.4再清理26处消费者评价、探店称誉、批评、媒体原句与照搬类措辞，全部改为独立整理摘要"
+    },
+    "cocktail_history.json": {
+      "classification": "independently_reorganized_historical_facts",
+      "sha256": "4f9bc79b692cd59c69cd40fe1a737963c30b1ee171b1eae2e23f8be7182b62c6",
+      "policy": "25记录/59主张/35来源/34版本事实与证据等级保留；引文、逐句译文及原方法不随包分发，方法改为独立中文摘要"
+    },
+    "cocktail_stories.json": {
+      "classification": "independently_reorganized_story_knowledge",
+      "sha256": "2649e6af1ed5904e228432b3cd39321b18c0afbdc6273de14473a90da751f629"
+    },
+    "enhanced_recipes.json": {
+      "classification": "independently_reorganized_recipe_knowledge",
+      "sha256": "81d1d6c304002ed6779549abbcc21d5a558bb7238986c4e90b6955067152c49c",
+      "operating_cost_or_price_fields": 0
+    },
+    "mood-mapping.json": {
+      "classification": "independently_reorganized_recommendation_knowledge",
+      "sha256": "9a9a2ff09ce0c1869310082c95f990f4449d0536a589e293384b4def8c4c7ef6"
+    },
+    "substitutions.json": {
+      "classification": "public_substitution_knowledge",
+      "sha256": "efd02e3181c04f88170498b2c66d9ec9664ffb42d39cc0ef8b9dfdc830f915e8"
+    }
+  },
+  "knowledge_hash_policy": "以上为本独立版清理后基线，不是v2.7.2原字节哈希；不把表达重写说成原始资料未改。来源链接目标原作品不纳入MIT-0发行范围。",
+  "recipe_preservation": {
+    "projection_fields": [
+      "name",
+      "name_en",
+      "ingredients.name",
+      "ingredients.amount",
+      "ingredients.unit",
+      "method",
+      "glass",
+      "garnish"
+    ],
+    "canonicalization": "按recipes数组原顺序投影；JSON ensure_ascii=False,sort_keys=True，默认逗号冒号空格，UTF-8后SHA-256",
+    "sha256_before_and_after": "285af2c735adc8cbc2bc8a01d864a3e4caafdb3613a81c50f7a21fa25521e6e6",
+    "release_baseline_note": "本版规格基线；相对v2.7.2唯一method差异是第175条蓝色火焰改为不点火出品，177款材料/用量/杯具/装饰及合成金额均未改",
+    "previous_public_baseline": "32945fe88bd8493821669857d6df7dad157f9214ddfad284b8716950ec0baca3"
+  },
+  "validation": {
+    "business_records": "全部指定业务记录为空；销量summary全零，业务历史时间/周期/趋势无实际数据",
+    "recipe_operating_field_count": 0,
+    "recipe_cost_formula_match_count": 177,
+    "shopping_price_formula_mismatch_count": 0,
+    "release_knowledge_hash_match_count": 6,
+    "private_business_source_markers": "非第三方知识文件中无真实渠道参考价、实购金额、门店配方表、实际买赠/半价政策；说明中的否定声明不当作经营记录",
+    "tests": "空业务模板、合成金额、只读边界、MIT-0许可、事实投影保护、引文/评论/图标缺失、雄黄与点火安全、清理后知识哈希等公开检查",
+    "boundary": "仅证明本版的脱敏、数学、事实投影与表达清理一致性；不替代逐源法律核验、全包食品安全审查、实际饮用安全或平台发布验证"
+  },
+  "v274_expression_cleanup": "本版相对v2.7.3仅新增表达清理、卡片description钩子、CLI版本固定与文档事实更新；未改变来源事实、日期、价格、快照时效、177款配方规格或合成成本口径。"
+}

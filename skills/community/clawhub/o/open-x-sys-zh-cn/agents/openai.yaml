@@ -1,0 +1,9 @@
+interface:
+  display_name: "OpenXSys"
+  short_description: "为 AI 工具绑定系统：看透、想清、做成、连接、生长并越用越强"
+  icon_small: "./assets/openxsys.png"
+  icon_large: "./assets/openxsys.png"
+  brand_color: "#F05A3C"
+  default_prompt: "使用 $open-x-sys，给我正在处理的这件事开启一个系统，找到真正起作用的结构并把结果做出来。"
+policy:
+  allow_implicit_invocation: true

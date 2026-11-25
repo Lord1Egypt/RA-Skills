@@ -29,7 +29,7 @@ claude mcp add --transport http zambo https://zambo.dev/mcp
 
 More clients and one-paste setup: https://zambo.dev/add
 
-List tools first with `tools/list`, then call. Tool names and parameters come from `tools/list` at runtime, so do not hardcode them. There are 153 tools, with 36 on the default surface. The rest are reachable through capability search and the full catalog.
+List tools first with `tools/list`, then call. Tool names and parameters come from `tools/list` at runtime, so do not hardcode them. There are 153 tools, with 37 on the default surface. The rest are reachable through capability search and the full catalog.
 
 ## First tools to try
 
@@ -66,10 +66,11 @@ Work only inside the task the user authorized and the data scope they intend for
 
 ## Pricing
 
-- Free: 20 calls + 1 wrap-up free every day; picking up in another AI is always free.
+- Free: Every tool free once a day, plus 3 continue calls. One free wrap-up handover per day, and pickup is always free.
 - Day Pass: $0.99 for unlimited calls for 24 hours (one payment, no renewal; agents pay USDC on Base via x402, humans pay by card or PayPal).
-- Zambo Pass: $29 for 30 days or $290 for 365 days, one payment.
-- $ZAMBO holders: $19 for 30 days.
+- Zambo Pass: $29 per month.
+- $ZAMBO holders: $19 per month.
+- Lifetime Pass: $250, one payment.
 
 ## Verify a receipt
 

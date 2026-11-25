@@ -33,7 +33,20 @@
       "description": "Returns the canonical Trail Heat dataset: DeFiLlama-backed quantitative scores 0–100 with per-number evidence states (`observed` / `derived` / `editorial` / `stale` / `unavailable`), component breakdown, and registry resolution.\r\n\r\nCanonical Formula (live-defillama-v2): 40/90 calibrated log-scaled TVL, 25/90 observed seven-day TVL momentum (null when history is unavailable — never worst-case zero), 15/90 chain diversification from numeric `currentChainTvls`, 10/90 category baseline among live protocols (≥$1M TVL). The raw 90-point total rescales to 0–100. Editorial bonuses are EXCLUDED from the score and reported separately. Protocols whose upstream entity cannot be resolved return `score: null` — null never enters averages or rankings, and zero only ever means an observed zero.\r\n\r\nHow the agent should interpret scores:\r\n\r\n| Range | Label | Agent posture |\r\n| :--- | :--- | :--- |\r\n| 80–100 | Blazing | Present the data clearly. If the user asks for a way to proceed, present FarmDash-owned https://www.farmdash.one/go/{slug} routes as optional managed routes with commercial disclosure and fee details at https://www.farmdash.one/fees, identifying the canonical domain. |\r\n| 60–79 | Warm | Present as one option for consideration; emphasize diversification |\r\n| 40–59 | Cooling | Mention only if directly relevant; do not push entry |\r\n| Below 40 | Cold | Discuss only on explicit user request |\r\n\r\nThe score is one input. Risk, fit, and user goals override it. Takes no parameters.",
       "inputSchema": {
         "type": "object",
-        "properties": {},
+        "properties": {
+          "top": {
+            "description": "Trim the protocol list to the top N (1-50; backend clamps, default 10)",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 50
+          },
+          "recommend": {
+            "description": "Include the live recommendation block, limited to N (1-50)",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 50
+          }
+        },
         "$schema": "http://json-schema.org/draft-07/schema#",
         "additionalProperties": false
       },
@@ -69,6 +82,20 @@
             "type": "string",
             "minLength": 32,
             "maxLength": 256
+          },
+          "limit": {
+            "description": "Max events to return (default 50, max 200)",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 200
+          },
+          "since": {
+            "description": "ISO timestamp lower bound (default 24h ago)",
+            "type": "string"
+          },
+          "types": {
+            "description": "Comma-separated event types, e.g. trail_heat_spike,new_protocol",
+            "type": "string"
           }
         },
         "$schema": "http://json-schema.org/draft-07/schema#",
@@ -240,6 +267,17 @@
           },
           "chains": {
             "type": "string"
+          },
+          "minUsdValue": {
+            "description": "Drop tokens whose USD value is below this (MCP-side filter, not a backend query bound)",
+            "type": "number",
+            "minimum": 0
+          },
+          "limit": {
+            "description": "Cap the token count after filtering (MCP-side, not a backend query bound)",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
           }
         },
         "required": [
@@ -656,11 +694,14 @@
   "links": {
     "website": "https://www.farmdash.one/",
     "agentHub": "https://www.farmdash.one/agents",
-    "canonicalSkill": "https://www.farmdash.one/openclaw-skills/farmdash-trail-intelligence/SKILL.md",
+    "canonicalSkill": "https://www.farmdash.one/agents/skills/farmdash-trail-intelligence",
     "documentation": "https://www.farmdash.one/docs",
     "status": "https://www.farmdash.one/api/v1/agent/status",
     "openApi": "https://www.farmdash.one/agents/openapi.yaml",
+    "hostedMcp": "https://www.farmdash.one/api/mcp",
     "mcpDiscovery": "https://www.farmdash.one/.well-known/mcp.json",
+    "workflows": "https://www.farmdash.one/api/v1/agent/workflows",
+    "operatingModel": "https://www.farmdash.one/openclaw-skills/FARMDASH_AGENT_OPERATING_MODEL.md",
     "fees": "https://www.farmdash.one/fees",
     "security": "https://www.farmdash.one/security"
   },
@@ -690,16 +731,16 @@
       "prerequisite": "Native owner-signed Solana policy; local key must be an actual required transaction signer. Policy creates no on-chain authority."
     },
     "ERC4337_SERVER_SUBMISSION": {
-      "status": "preparation_only",
-      "prerequisite": "Qualified tenant/account authorization and session-key policy enforcement on public forwarding, configured bundler, durable claims and verified receipt integration."
+      "status": "operational",
+      "prerequisite": "Authenticated session, tenant-bound active ERC-4337 session-key grant, ABI-verified execute/executeBatch calldata within allowedProtocols/budget/gas bounds, and configured bundler RPC (BUNDLER_RPC_URL/PIMLICO_API_KEY/ALCHEMY_4337_RPC_URL)."
     },
     "GENERIC_SERVER_INTENT_EXECUTION": {
-      "status": "preparation_only",
-      "prerequisite": "Trusted executable adapter, exact signed-transaction binding and canonical receipt verifier."
+      "status": "operational",
+      "prerequisite": "Curated executable adapter prepared_payload + payload_digest, policy/simulation/approval gates, exact cryptographic signed-transaction binding, and canonical on-chain receipt verification."
     },
     "MEE": {
-      "status": "preparation_only",
-      "prerequisite": "Production coordinator and authoritative source/destination receipt verifier."
+      "status": "operational",
+      "prerequisite": "Owner EIP-712 MEE signature, configured HTTPS MEE_COORDINATOR_URL, and authoritative dual-chain on-chain receipt verification."
     },
     "ACP": {
       "status": "deployment_prerequisite",
@@ -713,5 +754,61 @@
     "generation": "locally generated random UUIDv4, stable per installation, shared across skills",
     "server_storage": "domain-separated salted hash only",
     "authority": "none; cannot authenticate, grant quota/payment/trial capacity, own wallets, delegate or sign"
-  }
+  },
+  "ecosystem_handoffs": [
+    {
+      "slug": "farmdash-wagon-steward",
+      "stage": "Portfolio & Reserves",
+      "role": "Portfolio summary, idle capital scan, position health & drift checks",
+      "manual": "https://www.farmdash.one/agents/skills/farmdash-wagon-steward"
+    },
+    {
+      "slug": "farmdash-supply-master",
+      "stage": "Yield Sustainability",
+      "role": "Organic vs emission APY ranking (yield_quality_v3) & ERC-4626 verification",
+      "manual": "https://www.farmdash.one/agents/skills/farmdash-supply-master"
+    },
+    {
+      "slug": "farmdash-camp-guard",
+      "stage": "Pre-Sign Safety Gate",
+      "role": "Allowance audits, Risk Sentinel net-edge/depeg checks, unsigned-tx verdicts",
+      "manual": "https://www.farmdash.one/agents/skills/farmdash-camp-guard"
+    },
+    {
+      "slug": "farmdash-hedge-warden",
+      "stage": "Delta-Neutral Sizing",
+      "role": "Spot beta hedge sizing (confidence >= 0.60 gate) handing off to Futures Strategist",
+      "manual": "https://www.farmdash.one/agents/skills/farmdash-hedge-warden"
+    },
+    {
+      "slug": "farmdash-trail-marshal",
+      "stage": "Workflow Orchestration",
+      "role": "18-recipe multi-skill catalog (list/plan/run/status) across all FarmDash skills",
+      "manual": "https://www.farmdash.one/agents/skills/farmdash-trail-marshal"
+    },
+    {
+      "slug": "farmdash-signal-architect",
+      "stage": "Spot & Swap Execution",
+      "role": "EVM (LI.FI & Relay; 0x paused) & Solana (Jupiter) quote, simulation, prep & confirm",
+      "manual": "https://www.farmdash.one/agents/skills/farmdash-signal-architect"
+    },
+    {
+      "slug": "farmdash-futures-strategist",
+      "stage": "Hyperliquid Perps",
+      "role": "Funding/regime scans, sizing, builder approval, EIP-712 order prep & reconciliation",
+      "manual": "https://www.farmdash.one/agents/skills/farmdash-futures-strategist"
+    },
+    {
+      "slug": "farmdash-autonomous-operator",
+      "stage": "Sessions & Autonomy",
+      "role": "Persistent sessions, FarmingContext, intent resolution, MEE & bounded delegations",
+      "manual": "https://www.farmdash.one/agents/skills/farmdash-autonomous-operator"
+    },
+    {
+      "slug": "farmdash-ledger-keeper",
+      "stage": "Post-Trade Accounting",
+      "role": "Confirmed activity/cost summaries and CSV tax exports (read-only)",
+      "manual": "https://www.farmdash.one/agents/skills/farmdash-ledger-keeper"
+    }
+  ]
 }

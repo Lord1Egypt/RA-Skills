@@ -90,12 +90,81 @@ class ClaudeCodeAdapter(TranscriptionAdapter):
     def is_user_message(self, obj: dict) -> bool:
         return obj.get("type") == "user"
 
+    #: `u3()` 判据里的字段：任一**存在**即说明该行是工具/系统产物，不是人话。
+    #: （官方写法是 `!== undefined`，JSON 里没有 undefined ⇒ 键存在即成立。）
+    _TOOL_PRODUCT_KEYS = ("toolUseResult", "sourceToolAssistantUUID", "sourceToolUseID")
+
+    #: `L_()` 里那些"为真就不是新一轮人话"的标记（另有实测可跳过的同族行）。
+    _NON_TURN_FLAGS = ("isMeta", "isVirtual", "isVisibleInTranscriptOnly",
+                       "queueTranscriptOnly", "isCompactSummary")
+
+    def is_human_turn(self, obj: dict) -> bool:
+        """该行是否是**用户发起的本轮指令**（= 找本轮边界的判据，**不用于完整性校验**）。
+
+        依据（Claude Code 2.1.325 的会话重放逻辑，反汇编/源码核对所得）：
+          · `u3(e)`  = `toolUseResult !== undefined || sourceToolAssistantUUID !== undefined
+                       || sourceToolUseID !== undefined || turnCompanion === true`
+                     ⇒ 工具/系统的产物行，不是人话；
+          · `L_(e)`  = `u3(e) || e.isCompactSummary === true`
+                     ⇒ user 行也不是"新一轮的人话"（压缩摘要不是用户说的话）；
+          · `dOs(row)` 的统一形态判定：`type=="user"` 取 `message.content` + `origin`；
+                     `type=="attachment"` 取 `attachment.prompt` + `attachment.origin`
+                     （且**只认** `attachment.type=="queued_command"`）。
+                     另：content 里含 `{type:"tool_result"}` 块 ⇒ 不是人话。
+
+        ⚠️ 官方在这里**自相矛盾**：`origin` 缺省时，`dOs()` 判"是人"，而 `F_()`/`yyn()`
+        判"不是人"。**本实现取宽的**（origin 缺失 ⇒ 视为人），理由是风险不对称：
+        误判"不是人"⇒ 锚点继续往前找 ⇒ **多切一整轮、丢真内容**（用户看不出错在哪）；
+        误判"是人"⇒ 最多切偏一行，且 note 会把锚点行原文打出来，当场可核对。
+
+        为什么需要这个判据（而不是直接用 `is_user_message`）：Claude Code 的官方路径里，
+        **回合还在跑时提交的输入**不写成 `type:"user"`，而是落成
+        `type:"attachment"` + `attachment.type:"queued_command"`。只认 `type:"user"`
+        会让"本轮指令"这一行被跳过，锚点落到再上一轮 ⇒ 切点前移一整轮、静默少一段上下文。
+        """
+        if any(obj.get(k) for k in self._NON_TURN_FLAGS):
+            return False
+        if any(k in obj for k in self._TOOL_PRODUCT_KEYS) or obj.get("turnCompanion") is True:
+            return False  # u3()：工具/系统产物
+        typ = obj.get("type")
+        if typ == "user":
+            content = (obj.get("message") or {}).get("content")
+            origin = obj.get("origin")
+        elif typ == "attachment":
+            att = obj.get("attachment") or {}
+            if att.get("type") != "queued_command":
+                return False  # 其他 attachment（文件挂载等）不是人的指令
+            content = att.get("prompt")
+            origin = att.get("origin") or obj.get("origin")
+        else:
+            return False
+        # origin.kind 不是 "human" ⇒ 不是人话；缺失/无 kind/"human" ⇒ 视为人（取宽，见 docstring）
+        kind = origin.get("kind") if isinstance(origin, dict) else origin
+        if isinstance(kind, str) and kind and kind != "human":
+            return False
+        # tool_result 块 = 工具回填，不是人话
+        if isinstance(content, list):
+            for c in content:
+                if isinstance(c, dict) and c.get("type") == "tool_result":
+                    return False
+        # 必须能取到文本：空行（如只有元数据）不能当锚点，否则切点会落在"看起来是空的一条指令"上
+        return bool((self.get_text(obj) or "").strip())
+
     def is_assistant_message(self, obj: dict) -> bool:
         return obj.get("type") == "assistant"
 
     def get_text(self, obj: dict) -> str:
-        if obj.get("type") not in ("user", "assistant"):
+        typ = obj.get("type")
+        if typ not in ("user", "assistant", "attachment"):
             return ""
+        if typ == "attachment":
+            # 排队指令（回合运行中提交的输入）的正文本体在 `attachment.prompt` 里，
+            # 不在 `message.content` 里。只对 queued_command 取——其余 attachment 是挂载物，不是人话。
+            att = obj.get("attachment") or {}
+            if att.get("type") != "queued_command":
+                return ""
+            prompt = att.get("prompt")
+            return prompt if isinstance(prompt, str) else ""
         msg = obj.get("message") or {}
         parts = []
         for c in msg.get("content", []) or []:

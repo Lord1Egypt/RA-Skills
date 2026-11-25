@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and marketing teams use this skill to manage Dub short links and review link attribution and conversion activity. It can also access partner and financial administration operations when requested.
+Developers use this skill to manage Dub short links and related workspace records, track lead and sale conversions, and retrieve link attribution analytics through a connected Dub account.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Security analysis rates the skill suspicious because it includes financial and partner administration capabilities beyond its stated link and analytics purpose; the analysis is incomplete and this is not proof of malicious intent.
+Risk: The security assessment reports undeclared account-credit and affiliate-finance capabilities, and notes that scan coverage is incomplete.
 
-Mitigation: Before installing, verify that those capabilities are necessary and intended. Limit use to the endpoints required for the task and confirm before destructive or outbound actions.
-
-Risk: The available API includes operations that can update or delete links, customer and partner records, commissions, and other workspace data.
-
-Mitigation: Review the specific operation and target before making changes, and get explicit confirmation before deletes, overwrites, or actions performed on the user's behalf.
+Mitigation: Review whether account-credit and affiliate reward or commission controls are needed, verify the API destination and data sent, and account for the unresolved local references before installing.
 
 ## Reference(s):
 
-- [Dub Integration documentation](https://superagnt.com/r/ch-dub-links-docs)
-- [superagnt MCP installation guide](https://www.superagnt.com/install)
-- [superagnt API key setup](https://superagnt.com/r/ch-dub-links-key)
-- [Dub account connections](https://app.superagnt.com/dashboard/connections)
+- [superagnt Dub integration documentation](https://superagnt.com/r/ch-dub-links-docs)
+- [MCP server](https://mcp.superagnt.com/mcp)
+- [superagnt install instructions](https://www.superagnt.com/install)
 - [ClawHub listing](https://clawhub.ai/superagnt/skills/dub-links)
 
 ## Skill Output:
 
-**Output Type(s):** [API calls, JSON, Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [API Calls, JSON, Text]
 
-**Output Format:** [JSON API responses with shell commands and Markdown guidance]
+**Output Format:** [JSON API responses and text summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires SUPERAGNT_API_KEY and curl when using the documented API calls.]
+**Other Properties Related to Output:** [Results depend on the requested Dub operation and connected account.]
 
 ## Skill Version(s):
 
-2.0.14 (source: frontmatter)
+2.0.19 (source: frontmatter, server-resolved release)
 
 ## Ethical Considerations:
 

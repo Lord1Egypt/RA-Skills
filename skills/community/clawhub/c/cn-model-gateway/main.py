@@ -14,6 +14,7 @@ import sys
 import os
 import time
 from pathlib import Path
+from typing import Any, Dict
 
 # Ensure src is importable
 sys.path.insert(0, str(Path(__file__).parent))
@@ -22,22 +23,37 @@ from src.adapters.base import ChatMessage
 from src.router import ModelRouter
 from src.monitor import Monitor
 from src.mcp_server import MCPServer
-from src.utils import load_config, get_default_config_path, mask_api_key
+from src.utils import load_config, get_default_config_path, mask_api_key, get_member, migrate_config_for_pool
 from src.benchmark import BenchmarkSuite
 from src.price_tracker import PriceTracker
+from src.key_pool import build_key_pool_from_config
+
+
+def _wire_router(config: Dict[str, Any], timeout: int, no_failover: bool):
+    """v2.1.0: build router with Key pool + member injected (single wiring path)."""
+    router = ModelRouter(timeout=timeout, failover=not no_failover)
+    pool = build_key_pool_from_config(config)
+    router.set_key_pool(pool)
+    router.register_all(migrate_config_for_pool(config))
+    return router, pool, get_member(config)
 
 
 def cmd_run(args: argparse.Namespace) -> None:
     """Run the MCP server."""
     config_path = args.config or get_default_config_path()
     config = load_config(config_path)
-    router = ModelRouter(timeout=args.timeout, failover=not args.no_failover)
-    availability = router.register_all(config)
+    router, pool, member = _wire_router(config, args.timeout, args.no_failover)
     monitor = Monitor()
     server = MCPServer(router, monitor)
+    server._key_pool = pool
+    server._member = member
 
     available = router.list_available()
+    pooled = [p for p in router._adapters if pool.has_pool(p)]
     print(f"[cn-model-gateway] 已加载 {len(available)} 个提供商: {available}", file=sys.stderr)
+    if pooled:
+        print(f"[cn-model-gateway] Key 池已启用: {pooled}", file=sys.stderr)
+    print(f"[cn-model-gateway] 成员标识: {member}", file=sys.stderr)
     print(f"[cn-model-gateway] MCP 服务器已启动 (stdio 模式)", file=sys.stderr)
     print(f"[cn-model-gateway] 故障转移: {'开启' if not args.no_failover else '关闭'}, 超时: {args.timeout}s", file=sys.stderr)
     server.run_stdio()
@@ -47,8 +63,7 @@ def cmd_ask(args: argparse.Namespace) -> None:
     """Ask a single question (single provider or multi-provider compare)."""
     config_path = args.config or get_default_config_path()
     config = load_config(config_path)
-    router = ModelRouter(timeout=args.timeout, failover=not args.no_failover)
-    router.register_all(config)
+    router, pool, member = _wire_router(config, args.timeout, args.no_failover)
 
     question = args.question or input("请输入问题: ")
     msgs = [ChatMessage(role="user", content=question)]
@@ -69,7 +84,10 @@ def cmd_ask(args: argparse.Namespace) -> None:
         return
 
     try:
-        resp = router.chat(msgs, provider=args.provider)
+        strategy = getattr(args, "strategy", None)
+        resp = router.chat(msgs, provider=args.provider, strategy=strategy, member=member)
+        if strategy:
+            print(f"[策略路由: {strategy}]", file=sys.stderr)
         print(f"\n[{resp.provider}/{resp.model}] ({resp.duration_ms}ms)")
         print("-" * 40)
         print(resp.content)
@@ -571,6 +589,37 @@ def cmd_report(args: argparse.Namespace) -> None:
             print(f"Webhook 推送失败: {e}")
 
 
+# --- v2.1.0: Key pool & multi-tenant CLI subcommands ---
+
+def cmd_keypool(args: argparse.Namespace) -> None:
+    """Show Key pool health panel."""
+    config_path = args.config or get_default_config_path()
+    config = load_config(config_path)
+    pool = build_key_pool_from_config(config)
+    panel = pool.health_panel()
+    print("\n🔑 Key 池健康度")
+    print("-" * 50)
+    if not panel:
+        print("  未配置 Key。将 config.json 的 api_key 填为数组即可启用。")
+        return
+    for provider, info in panel.items():
+        mode = "轮询池" if info["pooled"] else "单 Key"
+        print(f"  {provider} [{mode}, {info['key_count']} 把]")
+        for k in info["keys"]:
+            cur = " ←当前" if k["is_current"] else ""
+            print(f"    {k['masked']}{cur} | 成功率 {k['success_rate']:.0%} | "
+                  f"延迟 {k['avg_latency_ms']}ms | 调用 {k['total_calls']}")
+    print()
+
+
+def cmd_member_report(args: argparse.Namespace) -> None:
+    """Show per-member usage allocation report."""
+    monitor = Monitor()
+    print()
+    print(monitor.get_member_report())
+    print()
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         prog="cn-model-gateway",
@@ -592,6 +641,8 @@ def main() -> None:
     ask_parser.add_argument("question", nargs="?", help="要提问的内容")
     ask_parser.add_argument("-p", "--provider", help="指定提供商（单家模式）")
     ask_parser.add_argument("--providers", nargs="+", help="对比多家提供商（指定 2 家及以上）")
+    ask_parser.add_argument("--strategy", choices=["auto", "cheap", "quality"],
+                            help="采样级策略路由：auto=能力画像×健康，cheap=最低价，quality=最高跑分")
     ask_parser.set_defaults(func=cmd_ask)
 
     # describe_image - vision model
@@ -676,6 +727,14 @@ def main() -> None:
     report_parser = subparsers.add_parser("report", help="生成每日健康晨报（本地 HTML + 可选 webhook 推送）")
     report_parser.add_argument("--webhook", help="Webhook URL（可选，推送晨报）")
     report_parser.set_defaults(func=cmd_report)
+
+    # v2.1.0: key pool health
+    keypool_parser = subparsers.add_parser("keypool", help="查看 Key 池健康度面板")
+    keypool_parser.set_defaults(func=cmd_keypool)
+
+    # v2.1.0: member usage report
+    member_parser = subparsers.add_parser("member-report", help="查看多租户成员用量分摊报表")
+    member_parser.set_defaults(func=cmd_member_report)
 
     # v1.8.0: batch async subcommand
     batch_parser = subparsers.add_parser("batch", help="批量异步任务")

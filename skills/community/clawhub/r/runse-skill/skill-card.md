@@ -1,6 +1,6 @@
 ## Description:
 
-Rewrites Chinese AI-generated text into a more natural human voice for novels, articles, copywriting, and other drafts, with flash, pro, and pro_plus processing tiers.
+Rewrites AI-generated text in a more natural voice and formats novels, blog posts, and copy after the user selects a processing mode.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and writers use this skill to send Chinese drafts of at least 300 characters to a cloud text-polishing service and receive rewritten text with a less AI-like style. It supports light, medium, and heavy processing modes selected by user intent.
+External users use the skill to humanize and polish text such as novels, blog posts, and copy. They can choose a processing mode and receive the revised text.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Draft text is sent to the documented cloud API for processing.
+Risk: Submitted text is sent to a cloud service for processing.
 
-Mitigation: Do not submit sensitive, personal, confidential, or proprietary drafts unless the user accepts that transfer.
+Mitigation: Show the service's data notice before the first request and avoid submitting sensitive personal information.
 
-Risk: A bound personal API key is stored locally in plaintext.
+Risk: The security review is incomplete: one of three components was only partially inspected, and the skill instructions contain unresolved references.
 
-Mitigation: Use the built-in shared key for casual use, save a personal key only after explicit confirmation, and clear it when no longer needed.
+Mitigation: Review the partially inspected component and resolve the references before installation.
 
-Risk: The rewritten output may alter nuance, tone, punctuation, or meaning.
+Risk: A personal API key is stored in plaintext if the user chooses to save it locally.
 
-Mitigation: Review the returned text before publishing, especially for factual, legal, commercial, or sensitive writing.
+Mitigation: Save a key only on a trusted device, protect the local configuration file, and clear the key when it is no longer needed.
 
 ## Reference(s):
 
 - [ClawHub skill page](https://clawhub.ai/abcqq1234567/skills/runse-skill)
-- [Documented cloud processing API endpoint](https://1257707270-955niawhww.ap-shanghai.tencentscf.com/bailian/chat)
-- [Documented cloud model list endpoint](https://1257707270-955niawhww.ap-shanghai.tencentscf.com/v1/models)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+**Output Type(s):** [Text, Markdown]
 
-**Output Format:** [JSON from the helper script and user-facing rewritten Chinese text or status guidance]
+**Output Format:** [Rewritten or formatted prose]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires input text of at least 300 characters; longer drafts may need segmented processing.]
+**Other Properties Related to Output:** [Requires at least 300 characters; text over 3,000 characters should be processed in segments.]
 
 ## Skill Version(s):
 
-1.0.5 (source: server release metadata; artifact frontmatter says 2.2.0)
+1.2.8 (source: ClawHub release evidence)
 
 ## Ethical Considerations:
 

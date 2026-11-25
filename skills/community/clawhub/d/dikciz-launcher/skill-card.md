@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and device owners use this skill to install and operate Dikciz Launcher on an owner-selected Android phone through its discovered MCP, HTTP, or WebSocket controls. It guides scoped access to launcher features, apps, files, Android data, and device hardware.
+Device owners use this skill to install Dikciz Launcher on a selected Android phone and operate its launcher features and device APIs through discovered controls.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Security evidence rates the release suspicious because setup directs downloads from GitHub beyond its declared network scope; the scan was partial and also noted a credential-access reference it judged unexpected for the skill's purpose.
+Risk: The security review flags an installation-route and network-scope mismatch, credential-related documentation, and incomplete scan coverage.
 
-Mitigation: Review the download source and verification steps before installation, limit network access to what the selected setup requires, and keep bearer credentials in the secret environment.
+Mitigation: Review the installation route and credential guidance, and resolve the noted local path references before use.
 
 ## Reference(s):
 
-- [Setup and connection guide](references/setup.md)
+- [Setup guide](references/setup.md)
+- [Operations guide](references/operations.md)
 - [Capabilities reference](references/capabilities.md)
-- [Hardware and speech operations](references/hardware-and-speech.md)
-- [Managed operations](references/operations.md)
-- [Dikciz user guide](https://github.com/psyb0t/dikciz-launcher/blob/main/docs/user-guide.md)
+- [Hardware and speech reference](references/hardware-and-speech.md)
 - [Automation control guide](https://github.com/psyb0t/dikciz-launcher/blob/main/docs/automation-control.md)
-- [Files, APKs, and shell guide](https://github.com/psyb0t/dikciz-launcher/blob/main/docs/files-and-apks.md)
-- [Remote access token permissions](https://github.com/psyb0t/dikciz-launcher/blob/main/docs/token-permissions.md)
+- [Token permissions guide](https://github.com/psyb0t/dikciz-launcher/blob/main/docs/token-permissions.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Code]
+**Output Type(s):** [Guidance, Shell commands, API calls, Configuration, Code, Files]
 
-**Output Format:** [Markdown with inline command, JSON, Lua, and JavaScript examples]
+**Output Format:** [Markdown guidance with command examples, API requests, and configuration or code snippets]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Task-specific procedures and examples; available actions depend on the connected Android device, installed build, and granted permissions.]
+**Other Properties Related to Output:** [Can include requested device operation results, saved files, or screenshots.]
 
 ## Skill Version(s):
 
-0.32.1 (source: server-resolved release metadata)
+0.37.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

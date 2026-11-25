@@ -1,6 +1,6 @@
 ## Description:
 
-Scan funding rates across USDT and USDC perpetual markets on Binance, Bybit, OKX, and Hyperliquid to identify extreme funding, cross-exchange spreads, and changes in open interest.
+Scan funding rates across every USDT/USDC perpetual on Binance, Bybit, OKX and Hyperliquid - the most extreme funding right now, the widest cross-exchange funding spreads for the same coin, and where open interest is building or unwinding. Real multi-exchange data from AgentReeve, every 5 minutes; free market list, live data per request over x402.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and market analysts use this skill to review current perpetual-market funding, compare funding across exchanges, and track leverage building or unwinding. It provides observational market data and cautions that funding spreads carry trading risks.
+Traders and market analysts use this skill to inspect funding extremes, cross-exchange spreads, open-interest changes, and crowded positions across perpetual markets. It provides observational market data rather than financial advice.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Paid data requests may incur repeated charges when the skill is invoked repeatedly, even with a per-task spending cap.
+Risk: The security review flags paid requests without a prompt as a consent risk; spend can reach $0.25 per task.
 
-Mitigation: Check each payment quote against the specified recipient, Base network, and USDC asset; enforce a user-approved payment policy and spending limit, and ask before spending more than $0.25 per task.
+Mitigation: If that spend is not acceptable, use the skill only where paid calls can be prevented or require approval first.
 
 ## Reference(s):
 
-- [Source repository](https://github.com/shakeelamjid/agentreeve-skills/tree/main/crypto-funding-scanner)
-- [ClawHub release](https://clawhub.ai/shakeelamjid/skills/crypto-funding-scanner)
+- [Server-resolved GitHub source](https://github.com/shakeelamjid/agentreeve-skills/tree/main/crypto-funding-scanner)
+- [ClawHub skill release](https://clawhub.ai/shakeelamjid/skills/crypto-funding-scanner)
+- [AgentReeve markets endpoint](https://agentreeve.com/api/v1/markets)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+**Output Type(s):** [Analysis, Text, Markdown]
 
-**Output Format:** [Markdown summaries of funding rates, cross-exchange spreads, and open-interest changes]
+**Output Format:** [Concise Markdown market summaries with reported funding, spreads, open interest, and crowded-position measures.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports returned market data with relevant risk context; does not invent values or provide financial advice.]
+**Other Properties Related to Output:** [Uses available live market data; reports when fresh data is unavailable, cautions that funding spreads are not risk-free, and identifies the results as observational rather than financial advice.]
 
 ## Skill Version(s):
 
-0.1.0 (source: server-resolved release metadata)
+0.1.1 (source: server-resolved release metadata; artifact frontmatter declares 1.2.0)
 
 ## Ethical Considerations:
 

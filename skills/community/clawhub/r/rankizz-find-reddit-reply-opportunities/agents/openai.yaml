@@ -1,0 +1,12 @@
+interface:
+  display_name: "Reddit Reply Research"
+  short_description: "Find Reddit threads and draft useful replies"
+  default_prompt: "Use $rankizz-find-reddit-reply-opportunities to find relevant Reddit threads and save a local report with transparent reply drafts."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "rankizz"
+      description: "Rankizz Reddit search and saved social research"
+      transport: "streamable_http"
+      url: "https://www.rankizz.com/mcp"

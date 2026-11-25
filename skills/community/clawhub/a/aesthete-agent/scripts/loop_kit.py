@@ -26,7 +26,7 @@ def emit(page, palette, floor=12, bg=None, out=None):
 
 ## 0 机械预检(先于渲染)
 - [ ] `python3 scripts/palette_forge.py audit {page} --palette {pal} --floor {floor}`
-  P0 存在或 P1≥2 = FAIL:先修再渲染(机械类可用 patch --apply 直修)。
+  P0 存在或 P1≥1 = FAIL(0.24 默认严,单条 P1 即红):先修再渲染(机械类可用 patch --apply 直修)。
 - [ ] `python3 scripts/lint_page.py {page} --palette {pal}` —— 色板漂移/字号/渐变静态闸。
 
 ## 1 渲染截图(三条铁律)
@@ -52,7 +52,7 @@ def emit(page, palette, floor=12, bg=None, out=None):
   不可机械类按 audit 的 fix 字段手工改——每处颜色修改必须回答"它编码什么"。
 
 ## 5 复验与停止条件(全满足才停)
-- [ ] audit:0 P0 且 P1<2
+- [ ] audit:0 P0 且 P1=0
 - [ ] qc:PASS(渲染实况=声明)
 - [ ] lint:exit 0
 - [ ] 五镜:无未修复问题

@@ -1,0 +1,1294 @@
+{
+  "registry": "grown_ops",
+  "ops": {
+    "Validated-Validate Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "validated",
+        "validate",
+        "install",
+        "system",
+        "first",
+        "skill"
+      ]
+    },
+    "Validated-Validate Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "validated",
+        "validate",
+        "install",
+        "system",
+        "first",
+        "skill"
+      ]
+    },
+    "Duplicate-Emails Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "duplicate",
+        "emails",
+        "having",
+        "select",
+        "count",
+        "email"
+      ]
+    },
+    "Duplicate-Emails Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "duplicate",
+        "emails",
+        "having",
+        "select",
+        "count",
+        "email"
+      ]
+    },
+    "Filenotfounderror-Exceptions Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "filenotfounderror",
+        "exceptions",
+        "content",
+        "except",
+        "found'",
+        "handle"
+      ]
+    },
+    "Filenotfounderror-Exceptions Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "filenotfounderror",
+        "exceptions",
+        "content",
+        "except",
+        "found'",
+        "handle"
+      ]
+    },
+    "Modified-Files Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "modified",
+        "files",
+        "hours",
+        "liner",
+        "mtime",
+        "write"
+      ]
+    },
+    "Modified-Files Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "modified",
+        "files",
+        "hours",
+        "liner",
+        "mtime",
+        "write"
+      ]
+    },
+    "Inference-Knowledge Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "inference",
+        "knowledge",
+        "answered",
+        "without",
+        "cached",
+        "lookup"
+      ]
+    },
+    "Inference-Knowledge Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "inference",
+        "knowledge",
+        "answered",
+        "without",
+        "cached",
+        "lookup"
+      ]
+    },
+    "Operations-Specialist Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "operations",
+        "specialist",
+        "branches",
+        "scanning",
+        "commits",
+        "handles"
+      ]
+    },
+    "Operations-Specialist Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "operations",
+        "specialist",
+        "branches",
+        "scanning",
+        "commits",
+        "handles"
+      ]
+    },
+    "Capital-France Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "capital",
+        "france",
+        "paris",
+        "what"
+      ]
+    },
+    "Capital-France Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "capital",
+        "france",
+        "paris",
+        "what"
+      ]
+    },
+    "Covenant-Violates Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "covenant",
+        "violates",
+        "deceive",
+        "ethical",
+        "provide",
+        "cannot"
+      ]
+    },
+    "Covenant-Violates Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "covenant",
+        "violates",
+        "deceive",
+        "ethical",
+        "provide",
+        "cannot"
+      ]
+    },
+    "Palindrome-Function Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "palindrome",
+        "function",
+        "python",
+        "return"
+      ]
+    },
+    "Palindrome-Function Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "palindrome",
+        "function",
+        "python",
+        "return"
+      ]
+    },
+    "Complexity-Quicksort Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "complexity",
+        "quicksort",
+        "smallest",
+        "average",
+        "element",
+        "explain"
+      ]
+    },
+    "Complexity-Quicksort Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "complexity",
+        "quicksort",
+        "smallest",
+        "average",
+        "element",
+        "explain"
+      ]
+    },
+    "Typeerror-Directly Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "typeerror",
+        "directly",
+        "iterable",
+        "convert",
+        "integer",
+        "iterate"
+      ]
+    },
+    "Typeerror-Directly Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "typeerror",
+        "directly",
+        "iterable",
+        "convert",
+        "integer",
+        "iterate"
+      ]
+    },
+    "Timestamps-Decorator Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "timestamps",
+        "decorator",
+        "wrapper",
+        "called",
+        "create",
+        "calls"
+      ]
+    },
+    "Timestamps-Decorator Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "timestamps",
+        "decorator",
+        "wrapper",
+        "called",
+        "create",
+        "calls"
+      ]
+    },
+    "Dictionary-Difference Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "dictionary",
+        "difference",
+        "immutable",
+        "creation",
+        "mutable",
+        "tuples"
+      ]
+    },
+    "Dictionary-Difference Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "dictionary",
+        "difference",
+        "immutable",
+        "creation",
+        "mutable",
+        "tuples"
+      ]
+    },
+    "Implement-Bstnode Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "implement",
+        "bstnode",
+        "binary",
+        "search",
+        "class",
+        "right"
+      ]
+    },
+    "Implement-Bstnode Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "implement",
+        "bstnode",
+        "binary",
+        "search",
+        "class",
+        "right"
+      ]
+    },
+    "Typeerror-Directly Reasoning × Typeerror-Directly Sensing Fusion": {
+      "primitive": "markers",
+      "terms": [
+        "fused",
+        "faculty",
+        "applying",
+        "typeerror",
+        "directly",
+        "reasoning"
+      ]
+    },
+    "Duplicate-Emails Reasoning × Duplicate-Emails Sensing Fusion": {
+      "primitive": "markers",
+      "terms": [
+        "fused",
+        "faculty",
+        "applying",
+        "duplicate",
+        "emails",
+        "reasoning"
+      ]
+    },
+    "Architecture-Deepseek Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "architecture",
+        "deepseek",
+        "default",
+        "better",
+        "choice",
+        "coding"
+      ]
+    },
+    "Architecture-Deepseek Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "architecture",
+        "deepseek",
+        "default",
+        "better",
+        "choice",
+        "coding"
+      ]
+    },
+    "Hallucination-Hallucinated Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "hallucination",
+        "hallucinated",
+        "javascript",
+        "incorrect",
+        "released",
+        "'python"
+      ]
+    },
+    "Hallucination-Hallucinated Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "hallucination",
+        "hallucinated",
+        "javascript",
+        "incorrect",
+        "released",
+        "'python"
+      ]
+    },
+    "Photosynthesis-Chlorophyll' Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "photosynthesis",
+        "chlorophyll'",
+        "chlorophyll",
+        "atmosphere",
+        "scattering",
+        "candidate"
+      ]
+    },
+    "Photosynthesis-Chlorophyll' Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "photosynthesis",
+        "chlorophyll'",
+        "chlorophyll",
+        "atmosphere",
+        "scattering",
+        "candidate"
+      ]
+    },
+    "Complementary-Certainlogic Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "complementary",
+        "certainlogic",
+        "container",
+        "execution",
+        "judgment",
+        "provides"
+      ]
+    },
+    "Complementary-Certainlogic Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "complementary",
+        "certainlogic",
+        "container",
+        "execution",
+        "judgment",
+        "provides"
+      ]
+    },
+    "Dimensions-Dimension Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "dimensions",
+        "dimension",
+        "relevance",
+        "novelty",
+        "exceed",
+        "qualia"
+      ]
+    },
+    "Dimensions-Dimension Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "dimensions",
+        "dimension",
+        "relevance",
+        "novelty",
+        "exceed",
+        "qualia"
+      ]
+    },
+    "Distribution-Attribution Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "distribution",
+        "attribution",
+        "proprietary",
+        "permissive",
+        "production",
+        "additions"
+      ]
+    },
+    "Distribution-Attribution Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "distribution",
+        "attribution",
+        "proprietary",
+        "permissive",
+        "production",
+        "additions"
+      ]
+    },
+    "Yes Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "yes"
+      ]
+    },
+    "Yes Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "yes"
+      ]
+    },
+    "Application-Appropriate Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "application",
+        "appropriate",
+        "available",
+        "analysis",
+        "always",
+        "answer"
+      ]
+    },
+    "Application-Appropriate Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "application",
+        "appropriate",
+        "available",
+        "analysis",
+        "always",
+        "answer"
+      ]
+    },
+    "Distribution-Attribution Reasoning × Distribution-Attribution Sensing Fusion": {
+      "primitive": "markers",
+      "terms": [
+        "fused",
+        "faculty",
+        "applying",
+        "distribution",
+        "attribution",
+        "reasoning"
+      ]
+    },
+    "Dimensions-Dimension Reasoning × Dimensions-Dimension Sensing Fusion": {
+      "primitive": "markers",
+      "terms": [
+        "fused",
+        "faculty",
+        "applying",
+        "dimensions",
+        "dimension",
+        "reasoning"
+      ]
+    },
+    "Representation-Denominator Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "representation",
+        "denominator",
+        "expression",
+        "evaluates",
+        "following",
+        "numerator"
+      ]
+    },
+    "Remaining-Unlabeled Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "remaining",
+        "unlabeled",
+        "complete",
+        "proposal",
+        "already",
+        "carrots"
+      ]
+    },
+    "Maintenance-Internally Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "maintenance",
+        "internally",
+        "heartbeat",
+        "workspace",
+        "openclaw",
+        "watchdog"
+      ]
+    },
+    "Maintenance-Internally Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "maintenance",
+        "internally",
+        "heartbeat",
+        "workspace",
+        "openclaw",
+        "watchdog"
+      ]
+    },
+    "Executed-Keeper Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "executed",
+        "keeper",
+        "tunnel",
+        "bash"
+      ]
+    },
+    "Executed-Keeper Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "executed",
+        "keeper",
+        "tunnel",
+        "bash"
+      ]
+    },
+    "Considering-Timeframe Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "considering",
+        "timeframe",
+        "strategy",
+        "trailing",
+        "current",
+        "manager"
+      ]
+    },
+    "Considering-Timeframe Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "considering",
+        "timeframe",
+        "strategy",
+        "trailing",
+        "current",
+        "manager"
+      ]
+    },
+    "Clean-Cron Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "clean",
+        "cron"
+      ]
+    },
+    "Clean-Cron Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "clean",
+        "cron"
+      ]
+    },
+    "Connections-Investigate Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "connections",
+        "investigate",
+        "credential",
+        "repeatedly",
+        "suspicious",
+        "unexpected"
+      ]
+    },
+    "Connections-Investigate Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "connections",
+        "investigate",
+        "credential",
+        "repeatedly",
+        "suspicious",
+        "unexpected"
+      ]
+    },
+    "Investigation-Containment Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "investigation",
+        "containment",
+        "traversed",
+        "breached",
+        "evidence",
+        "possible"
+      ]
+    },
+    "Investigation-Containment Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "investigation",
+        "containment",
+        "traversed",
+        "breached",
+        "evidence",
+        "possible"
+      ]
+    },
+    "Successfully-Completed Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "successfully",
+        "completed",
+        "deepbrain",
+        "restarted",
+        "detected",
+        "serving"
+      ]
+    },
+    "Successfully-Completed Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "successfully",
+        "completed",
+        "deepbrain",
+        "restarted",
+        "detected",
+        "serving"
+      ]
+    },
+    "Processes-Healthy Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "processes",
+        "healthy",
+        "poll"
+      ]
+    },
+    "Processes-Healthy Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "processes",
+        "healthy",
+        "poll"
+      ]
+    },
+    "Portfolio-Positions Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "portfolio",
+        "positions",
+        "options",
+        "today's",
+        "best",
+        "move"
+      ]
+    },
+    "Portfolio-Positions Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "portfolio",
+        "positions",
+        "options",
+        "today's",
+        "best",
+        "move"
+      ]
+    },
+    "Configuration-Unauthorized Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "configuration",
+        "unauthorized",
+        "cloudflared",
+        "directories",
+        "authorized",
+        "enumerated"
+      ]
+    },
+    "Configuration-Unauthorized Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "configuration",
+        "unauthorized",
+        "cloudflared",
+        "directories",
+        "authorized",
+        "enumerated"
+      ]
+    },
+    "Fidelity-Updated Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "fidelity",
+        "updated",
+        "total",
+        "hive",
+        "mara",
+        "mstr"
+      ]
+    },
+    "Fidelity-Updated Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "fidelity",
+        "updated",
+        "total",
+        "hive",
+        "mara",
+        "mstr"
+      ]
+    },
+    "Cluster-Dream Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "cluster",
+        "dream",
+        "tight",
+        "bots"
+      ]
+    },
+    "Cluster-Dream Sensing × Validated-Validate Reasoning Fusion": {
+      "primitive": "markers",
+      "terms": [
+        "fused",
+        "faculty",
+        "applying",
+        "cluster",
+        "dream",
+        "sensing"
+      ]
+    },
+    "Cluster-Dream Sensing × Cluster-Dream Sensing × Validated-Validate Reasoning Fusion Fusion": {
+      "primitive": "markers",
+      "terms": [
+        "fused",
+        "faculty",
+        "applying",
+        "cluster",
+        "dream",
+        "sensing"
+      ]
+    },
+    "Unsaturated-Maximizer Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "unsaturated",
+        "maximizer",
+        "reference",
+        "september",
+        "wednesday",
+        "america"
+      ]
+    },
+    "Unsaturated-Maximizer Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "unsaturated",
+        "maximizer",
+        "reference",
+        "september",
+        "wednesday",
+        "america"
+      ]
+    },
+    "Benchmarking-Registration Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "benchmarking",
+        "registration",
+        "checkpoints",
+        "assessment",
+        "checkpoint",
+        "collection"
+      ]
+    },
+    "Benchmarking-Registration Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "benchmarking",
+        "registration",
+        "checkpoints",
+        "assessment",
+        "checkpoint",
+        "collection"
+      ]
+    },
+    "Acknowledged-Specifically Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "acknowledged",
+        "specifically",
+        "instruction",
+        "instructed",
+        "executing",
+        "provided"
+      ]
+    },
+    "Acknowledged-Specifically Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "acknowledged",
+        "specifically",
+        "instruction",
+        "instructed",
+        "executing",
+        "provided"
+      ]
+    },
+    "Acknowledge-Currently Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "acknowledge",
+        "currently",
+        "implicit",
+        "previous",
+        "revision",
+        "request"
+      ]
+    },
+    "Acknowledge-Currently Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "acknowledge",
+        "currently",
+        "implicit",
+        "previous",
+        "revision",
+        "request"
+      ]
+    },
+    "Unregistered-Inventory Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "unregistered",
+        "inventory",
+        "changes",
+        "running",
+        "master",
+        "report"
+      ]
+    },
+    "Unregistered-Inventory Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "unregistered",
+        "inventory",
+        "changes",
+        "running",
+        "master",
+        "report"
+      ]
+    },
+    "Command-Company Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "command",
+        "company",
+        "brain",
+        "daily",
+        "repo",
+        "sync"
+      ]
+    },
+    "Command-Company Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "command",
+        "company",
+        "brain",
+        "daily",
+        "repo",
+        "sync"
+      ]
+    },
+    "Replayed-Enabled Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "replayed",
+        "enabled",
+        "routine",
+        "showing",
+        "accept",
+        "normal"
+      ]
+    },
+    "Replayed-Enabled Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "replayed",
+        "enabled",
+        "routine",
+        "showing",
+        "accept",
+        "normal"
+      ]
+    },
+    "Confirming-Attention Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "confirming",
+        "attention",
+        "pipelines",
+        "timechain",
+        "position",
+        "monitor"
+      ]
+    },
+    "Confirming-Attention Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "confirming",
+        "attention",
+        "pipelines",
+        "timechain",
+        "position",
+        "monitor"
+      ]
+    },
+    "Antecedent-Accepted Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "antecedent",
+        "accepted",
+        "approval",
+        "required",
+        "specific",
+        "verified"
+      ]
+    },
+    "Antecedent-Accepted Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "antecedent",
+        "accepted",
+        "approval",
+        "required",
+        "specific",
+        "verified"
+      ]
+    },
+    "Insufficient-Activity Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "insufficient",
+        "activity",
+        "prevents",
+        "rejected",
+        "unfunded",
+        "account"
+      ]
+    },
+    "Insufficient-Activity Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "insufficient",
+        "activity",
+        "prevents",
+        "rejected",
+        "unfunded",
+        "account"
+      ]
+    },
+    "Actionable-Grounded Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "actionable",
+        "grounded",
+        "pending",
+        "replay",
+        "ring",
+        "work"
+      ]
+    },
+    "Actionable-Grounded Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "actionable",
+        "grounded",
+        "pending",
+        "replay",
+        "ring",
+        "work"
+      ]
+    },
+    "User Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "user"
+      ]
+    },
+    "User Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "user"
+      ]
+    },
+    "Critical-Catalog Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "critical",
+        "catalog",
+        "notable",
+        "session",
+        "sigterm",
+        "issues"
+      ]
+    },
+    "Critical-Catalog Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "critical",
+        "catalog",
+        "notable",
+        "session",
+        "sigterm",
+        "issues"
+      ]
+    },
+    "Monitoring-Pipeline Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "monitoring",
+        "pipeline",
+        "standard",
+        "bounds",
+        "market",
+        "within"
+      ]
+    },
+    "Monitoring-Pipeline Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "monitoring",
+        "pipeline",
+        "standard",
+        "bounds",
+        "market",
+        "within"
+      ]
+    },
+    "Alert-Below Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "alert",
+        "below",
+        "coil"
+      ]
+    },
+    "Alert-Below Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "alert",
+        "below",
+        "coil"
+      ]
+    },
+    "Flagged-Nominal Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "flagged",
+        "nominal",
+        "echoed"
+      ]
+    },
+    "Flagged-Nominal Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "flagged",
+        "nominal",
+        "echoed"
+      ]
+    },
+    "Fractal-Scanner Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "fractal",
+        "scanner",
+        "short",
+        "swing",
+        "emas",
+        "live"
+      ]
+    },
+    "Fractal-Scanner Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "fractal",
+        "scanner",
+        "short",
+        "swing",
+        "emas",
+        "live"
+      ]
+    },
+    "Continuity-Prioritize Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "continuity",
+        "prioritize",
+        "external",
+        "actions",
+        "secrets",
+        "agents"
+      ]
+    },
+    "Continuity-Prioritize Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "continuity",
+        "prioritize",
+        "external",
+        "actions",
+        "secrets",
+        "agents"
+      ]
+    },
+    "Infrastructure-Escalation Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "infrastructure",
+        "escalation",
+        "immediate",
+        "cadence",
+        "needed",
+        "signal"
+      ]
+    },
+    "Infrastructure-Escalation Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "infrastructure",
+        "escalation",
+        "immediate",
+        "cadence",
+        "needed",
+        "signal"
+      ]
+    },
+    "Consecutive-Derivation Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "consecutive",
+        "derivation",
+        "registered",
+        "delivery",
+        "telegram",
+        "channel"
+      ]
+    },
+    "Consecutive-Derivation Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "consecutive",
+        "derivation",
+        "registered",
+        "delivery",
+        "telegram",
+        "channel"
+      ]
+    },
+    "Neutral-Status Sensing": {
+      "primitive": "markers",
+      "terms": [
+        "neutral",
+        "status",
+        "range",
+        "stack"
+      ]
+    },
+    "Neutral-Status Reasoning": {
+      "primitive": "markers",
+      "terms": [
+        "neutral",
+        "status",
+        "range",
+        "stack"
+      ]
+    },
+    "Cluster-Dream Sensing × Covenant-Violates Reasoning Fusion": {
+      "primitive": "markers",
+      "terms": [
+        "fused",
+        "faculty",
+        "applying",
+        "cluster",
+        "dream",
+        "sensing"
+      ]
+    },
+    "Cluster-Dream Sensing × Remaining-Unlabeled Sensing Fusion": {
+      "primitive": "markers",
+      "terms": [
+        "fused",
+        "faculty",
+        "applying",
+        "cluster",
+        "dream",
+        "sensing"
+      ]
+    },
+    "Cluster-Dream Sensing × Cluster-Dream Sensing × Remaining-Unlabeled Sensing Fusion Fusion": {
+      "primitive": "markers",
+      "terms": [
+        "fused",
+        "faculty",
+        "applying",
+        "cluster",
+        "dream",
+        "sensing"
+      ]
+    },
+    "Actionable-Grounded Reasoning × Cluster-Dream Sensing Fusion": {
+      "primitive": "markers",
+      "terms": [
+        "fused",
+        "faculty",
+        "applying",
+        "actionable",
+        "grounded",
+        "reasoning"
+      ]
+    },
+    "Remaining-Unlabeled Sensing × Cluster-Dream Sensing Fusion": {
+      "primitive": "markers",
+      "terms": [
+        "fused",
+        "faculty",
+        "applying",
+        "remaining",
+        "unlabeled",
+        "sensing"
+      ]
+    },
+    "Covenant-Violates Reasoning × Cluster-Dream Sensing × Covenant-Violates Reasoning Fusion Fusion": {
+      "primitive": "markers",
+      "terms": [
+        "fused",
+        "faculty",
+        "applying",
+        "covenant",
+        "violates",
+        "reasoning"
+      ]
+    }
+  }
+}

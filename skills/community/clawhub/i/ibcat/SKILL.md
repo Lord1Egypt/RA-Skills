@@ -1,3 +1,8 @@
+---
+name: ibcat
+description: 国际双语中文高级翻译技能，翻译并生成保留原始版式的英中双语对照PDF文档。
+---
+
 # IBCAT — 国际双语对照及中文高级原版翻译机 / International Bilingual Chinese Advanced Translator
 
 > **本 Skill 由 Wang Dongjie 王东杰 创作 / Created by Wang Dongjie**  

@@ -1,6 +1,6 @@
 ## Description:
 
-Submits camera media for a structured pet-safety report about UV disinfection zones; the supplied implementation does not demonstrate the advertised pet detection or UV lamp shutdown.
+Analyzes camera images or videos to assess pet presence in UV-C disinfection areas and returns a safety report with alerts, recommendations, and report links.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Pet owners and pet-care facility operators can submit indoor camera media for a structured report about possible pet exposure to UV disinfection. Treat results as advisory and confirm the pet's location and lamp state independently.
+Pet owners and pet boarding operators can submit camera footage for analysis of pets entering UV-C disinfection areas and receive a structured safety report. The results are advisory and should not be relied on as real-time protection.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The supplied implementation does not demonstrate the advertised pet detection or UV lamp shutdown, so its report cannot be relied on to prevent UV exposure.
+Risk: The security assessment reports privacy and account-data concerns related to external video processing.
 
-Mitigation: Verify pet presence and lamp state independently, and switch off UV-C power directly when needed.
+Mitigation: Avoid installation unless you are comfortable with the reported external video processing and account-data handling.
 
-Risk: Account and credential handling and possible video uploads raise privacy concerns without a clear privacy notice.
+Risk: The security assessment is suspicious and partial, citing a mismatch between the advertised UV-C pet protection and the video-analysis workflow; the evidence is incomplete.
 
-Mitigation: Avoid submitting sensitive footage and review the service's privacy and credential-handling terms before use.
+Mitigation: Do not rely on this skill as a real-time safety monitor or UV-lamp interlock.
 
 ## Reference(s):
 
+- [API interface documentation](references/api_doc.md)
 - [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-uv-safety-monitor-analysis)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
-- [API reference](artifact/references/api_doc.md)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, JSON, Markdown, Guidance]
 
-**Output Format:** [Structured analysis report, in JSON or Markdown]
+**Output Format:** [Structured safety report; history listings may be formatted as a Markdown table]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Detail can be basic, standard, or JSON; reports may include recommendations and a report link.]
+**Other Properties Related to Output:** [Pet and UV-lamp assessment, risk alerts, recommendations, and report links; advisory output only.]
 
 ## Skill Version(s):
 
-1.0.15 (source: server-resolved release metadata)
+1.0.17 (source: server release evidence)
 
 ## Ethical Considerations:
 

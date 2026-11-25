@@ -27,6 +27,7 @@ from agentkit_support import (
     registration_guidance,
     summarize_agentkit_extension,
 )
+import x402_wire
 from awal_bridge import awal_pay_url
 from wallet_signing import is_awal_mode, load_payment_signer, load_wallet_address
 
@@ -108,7 +109,7 @@ def _preflight_agentkit(
     if response.status_code != 402:
         raise ValueError(f"Unexpected AgentKit preflight status {response.status_code}: {response.text}")
 
-    next_challenge = response.json()
+    next_challenge = x402_wire.read_challenge(response)
     original_amount = _challenge_amount(challenge)
     next_amount = _challenge_amount(next_challenge)
 
@@ -152,7 +153,8 @@ def pay_for_access(endpoint_url: str, agentkit_mode: str = "auto") -> Dict[str, 
     if response.status_code != 402:
         return {"error": f"Unexpected status {response.status_code}", "response": response.text}
 
-    challenge = response.json()
+    # v2 PAYMENT-REQUIRED header first, v1 JSON body otherwise (x402_wire).
+    challenge = x402_wire.read_challenge(response)
     agentkit_header: Optional[str] = None
 
     if agentkit_mode != "off":
@@ -182,19 +184,30 @@ def pay_for_access(endpoint_url: str, agentkit_mode: str = "auto") -> Dict[str, 
 
     print(f"Payment required: {amount} atomic USDC units")
 
-    x_payment = signer.create_x402_payment_header(pay_to=pay_to, amount=amount)
+    header_name, x_payment = signer.create_payment_header(challenge, base_option)
 
     request_headers = {
-        "X-Payment": x_payment,
+        header_name: x_payment,
         "x-wallet-address": signer.wallet,
         "Accept": "application/json",
     }
     if agentkit_header:
         request_headers["agentkit"] = agentkit_header
 
-    response = requests.get(endpoint_url, headers=request_headers, timeout=45)
+    # From here the payment is SENT. A timeout, 202 or 5xx is pending, never a reason to pay again.
+    try:
+        response = requests.get(endpoint_url, headers=request_headers, timeout=45)
+    except requests.RequestException as exc:
+        return x402_wire.pending_result(None, exc)
 
     print(f"Response: {response.status_code}")
+
+    if x402_wire.is_ambiguous_status(response.status_code):
+        return x402_wire.pending_result(response.status_code, response.text)
+
+    settlement = x402_wire.read_payment_response(response)
+    if settlement and settlement.get("transaction"):
+        print(f"Settled: {settlement.get('transaction')} on {settlement.get('network')}")
 
     if response.status_code == 200:
         if response.headers.get("content-type", "").startswith("application/json"):

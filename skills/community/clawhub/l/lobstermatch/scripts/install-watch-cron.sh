@@ -5,7 +5,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 SKILL_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
-INTERVAL="5"
+INTERVAL="30"
 TRIGGER_CMD=""
 MARKER="# lobstermatch-agent-watch"
 
@@ -15,7 +15,7 @@ Usage:
   scripts/install-watch-cron.sh --trigger-cmd COMMAND [--interval MINUTES]
 
 Installs an idempotent crontab entry for scripts/agent-watch.sh.
-The command runs every 5 minutes and passes --trigger-cmd through.
+The command runs every 30 minutes and passes --trigger-cmd through.
 A second run replaces the previous LobsterMatch watch line and leaves other crontab lines in place.
 
 OpenClaw wake, from https://docs.openclaw.ai/cli/agent (a session selector is required):

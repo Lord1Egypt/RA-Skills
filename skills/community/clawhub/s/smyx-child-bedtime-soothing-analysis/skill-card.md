@@ -1,6 +1,6 @@
 ## Description:
 
-This skill submits children's bedroom audio or video for bedtime-distress analysis and returns a structured report with soothing guidance.
+Analyzes submitted child-bedroom audio and video for signs of bedtime distress and returns a report.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Parents and caregivers use it to review nighttime recordings for signs such as crying, fear of the dark, or nightmare awakenings and receive a structured report with suggested responses.
+Parents and caregivers can use reports to review possible bedtime crying, fear-of-dark behavior, or nightmare waking from submitted audio and video. Independently verify any claimed monitoring or soothing behavior; the available security assessment does not establish those functions.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Children's bedroom recordings and identity data may be sent to a service whose data handling and storage are unclear.
+Risk: Child-bedroom recordings and identity data may be handled by a remote service, and the service's data practices are not established here.
 
-Mitigation: Avoid installation or submission of real recordings and identity details until the developer explains what is transmitted, which services receive it, and how long it is retained.
+Mitigation: Verify the service, what recordings and identity data it receives, and the applicable data handling before submitting media.
 
-Risk: Shared-account and report-export behavior may expose child-related history or report links to other account users.
+Risk: The security assessment reports a mismatch between the claimed bedtime monitoring and soothing functions and the demonstrated capabilities; scanner coverage is partial.
 
-Mitigation: Ask the developer to document account association and export access, and limit account access and report-link sharing until those details are clear.
-
-Risk: Promised continuous monitoring and automatic soothing are not substantiated by the available security evidence.
-
-Mitigation: Confirm which monitoring and soothing actions are actually performed before relying on them, and retain caregiver oversight.
+Mitigation: Do not rely on the claimed monitoring or soothing behavior for child safety without independently confirming it; check whether export-only actions process media.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-child-bedtime-soothing-analysis)
+- [API documentation](references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
-- [API interface reference](artifact/references/api_doc.md)
+- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-child-bedtime-soothing-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Markdown, JSON]
+**Output Type(s):** [Text, Markdown, Files]
 
-**Output Format:** [Structured analysis report in Markdown or JSON, with report links when available]
+**Output Format:** [Markdown analysis report, optionally saved to a file]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include detected distress signals, suggested soothing responses, and historical report results.]
+**Other Properties Related to Output:** [Reports may include an export link.]
 
 ## Skill Version(s):
 
-1.0.17 (source: server-resolved release metadata)
+1.0.18 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

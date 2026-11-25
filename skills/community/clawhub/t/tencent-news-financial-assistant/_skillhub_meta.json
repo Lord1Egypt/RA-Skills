@@ -1,0 +1,20 @@
+{
+  "name": "腾讯新闻-金融数据查询助手",
+  "slug": "tencent-news-financial-assistant",
+  "version": "1.0.0",
+  "installedAt": 1793184745222,
+  "source": "marketplace",
+  "examples_zh": [
+    "腾讯控股现在股价多少？",
+    "查一下贵州茅台今天的涨跌幅",
+    "苹果公司最新财报关键指标"
+  ],
+  "examples_en": [
+    "What is Tencent Holdings' current stock price?",
+    "Check today's price change of Kweichow Moutai",
+    "Key metrics from Apple's latest financial report"
+  ],
+  "description_zh": "通过腾讯新闻 CLI 查询个股实时与历史行情，包括开盘、最高、最低、收盘、涨跌幅与成交量等数据。",
+  "description_en": "Stock quote lookup tool backed by the Tencent News CLI. Use when the user asks about a stock price, daily change, or price performance.",
+  "iconSource": "tencent-news-financial-assistant"
+}

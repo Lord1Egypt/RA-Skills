@@ -1,6 +1,6 @@
 ## Description:
 
-LinkedIn API integration with a single superagnt API key (Bearer token). Fetch company profiles, jobs, people, posts, and professional network insights. Use this skill when users want LinkedIn data for sales, recruiting, or enrichment.
+LinkedIn API integration with a single superagnt API key (Bearer token). Fetch company profiles, jobs, people, posts, and professional network insights. Use this skill when users want LinkedIn data for sales, recruiting, or enrichment. For other social data platforms, use the social-data skill (https://clawhub.ai/superagnt/skills/social-data).
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users, sales and recruiting agents use this skill to retrieve LinkedIn company, job, profile, post, and professional network data for enrichment and research.
+Developers and sales, recruiting, and research agents use this skill to retrieve LinkedIn company, job, profile, post, and professional network data for account research, candidate discovery, and enrichment.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Requests send a superagnt API key to its external API.
+Risk: The skill requires an API key and sends requests to superagnt's external API.
 
-Mitigation: Use the integration only if you trust superagnt with the key, and keep the key in the designated environment variable rather than exposing it in logs or responses.
+Mitigation: Only use the provider if you are comfortable supplying the key, and avoid sending sensitive data unless you are authorized to share it.
 
 ## Reference(s):
 
-- [LinkedIn Data documentation](https://superagnt.com/r/ch-linkedin-data-docs)
-- [LinkedIn Data API](https://api.superagnt.com/v1/data/linkedin)
-- [LinkedIn MCP server](https://mcp.superagnt.com/mcp/linkedin)
-- [ClawHub listing](https://clawhub.ai/superagnt/skills/linkedin-data)
+- [superagnt LinkedIn Data documentation](https://superagnt.com/r/ch-linkedin-data-docs)
+- [LinkedIn Data API key setup](https://superagnt.com/r/ch-linkedin-data-key)
+- [LinkedIn MCP server setup](https://www.superagnt.com/install?facet=linkedin)
+- [LinkedIn Data ClawHub listing](https://clawhub.ai/superagnt/skills/linkedin-data)
 
 ## Skill Output:
 
-**Output Type(s):** [API calls, JSON, Guidance]
+**Output Type(s):** [API data, JSON]
 
-**Output Format:** [Structured JSON data and concise research summaries]
+**Output Format:** [Structured JSON responses from LinkedIn data API requests]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results depend on the requested LinkedIn data and API endpoint.]
+**Other Properties Related to Output:** [Company, job, profile, post, and professional network information returned for downstream agent use.]
 
 ## Skill Version(s):
 
-2.0.14 (source: frontmatter)
+2.0.19 (source: frontmatter, server-resolved release metadata)
 
 ## Ethical Considerations:
 

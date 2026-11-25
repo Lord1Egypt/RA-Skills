@@ -1,0 +1,46 @@
+{
+  "name": "@yottameta/yotta-partner",
+  "version": "0.2.4",
+  "description": "Yuanban (元伴) — a human-AI collaboration protocol skill: a repeatable collaboration unit with a context brief (background / goal / constraints / acceptance), plan-first gate, milestone delivery, verification, handover anchors and experience reuse. Triggers when users start a complex or long-running task, keep losing context between sessions, or want a trustworthy way to work with AI. Boundaries: collaboration productivity only, no business/pricing/operations topics; not a substitute for intent clarification, presentation, memory or learning-loop skills; final conclusions are verified by the user.",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-partner",
+    "yottaskills",
+    "collaboration",
+    "handover",
+    "workflow",
+    "productivity",
+    "人机协作",
+    "AI协作",
+    "协作协议",
+    "AI提效",
+    "跨会话",
+    "任务交接"
+  ],
+  "files": [
+    "SKILL.md",
+    "LICENSE",
+    "README.md",
+    "README.zh-CN.md",
+    "install.sh",
+    "references",
+    "assets",
+    "bin",
+    "NOTICE",
+    "CHANGELOG.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-partner.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-partner": "bin/install.js"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.js\""
+  }
+}

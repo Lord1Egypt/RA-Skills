@@ -138,7 +138,7 @@
       "skill": "fuxin-office-bridge",
       "input": {
         "type": "office.preflight",
-        "task": "检查福昕 Office 是否就绪",
+        "task": "检查福昕Office是否就绪",
         "target": {
           "skill": "fuxin-office-bridge"
         }
@@ -207,6 +207,60 @@
           "checklist_review 清单逐项加批注/汇总表",
           "整组操作归入同一批次，一次撤销"
         ]
+      }
+    },
+    {
+      "id": "case-008",
+      "name": "回归用例 — Office 未运行优先于连接失败（#21233）",
+      "scenario": "前提：福昕Office未运行；第 1 层 GET /api/skill/products 拒连/超时。预检必须输出「未运行」定稿文案，不得把网关拒连/连接失败诊断输出给用户。",
+      "skill": "fuxin-office-bridge",
+      "input": {
+        "type": "office.preflight",
+        "task": "检查福昕Office是否就绪",
+        "target": {
+          "skill": "fuxin-office-bridge"
+        },
+        "preflight": true
+      },
+      "expected": {
+        "valid": true,
+        "route": "fuxin-office-bridge",
+        "outline": [
+          "第 0 层 安装判定通过",
+          "第 1 层 GET /api/skill/products 拒连/超时 → 探测福昕Office应用进程：未运行",
+          "判「未就绪」（进程未运行）→ 输出「未运行」定稿文案",
+          "输出禁止出现「连接失败」「网关拒连」等诊断"
+        ],
+        "premise": "福昕Office应用进程未运行（Get-Process FuxinOffice* 无结果）",
+        "user_message": "福昕Office未运行。请先启动福昕Office，并打开 Word、Excel 或 PPT 中的任意文档，然后告诉我「已启动」，我再继续操作。",
+        "forbidden": ["连接失败", "网关拒连"]
+      }
+    },
+    {
+      "id": "case-009",
+      "name": "回归用例 — 网关拒连但 Office 已启动（#21233）",
+      "scenario": "前提：福昕Office进程在运行；第 1 层 GET /api/skill/products 拒连/无响应。预检输出「连接失败」定稿文案。",
+      "skill": "fuxin-office-bridge",
+      "input": {
+        "type": "office.preflight",
+        "task": "检查福昕Office是否就绪",
+        "target": {
+          "skill": "fuxin-office-bridge"
+        },
+        "preflight": true
+      },
+      "expected": {
+        "valid": true,
+        "route": "fuxin-office-bridge",
+        "outline": [
+          "第 0 层 安装判定通过",
+          "第 1 层 GET /api/skill/products 拒连/无响应 → 探测福昕Office应用进程：在运行",
+          "判「未就绪」（网关拒连但 Office 已启动）→ 输出「连接失败」定稿文案",
+          "引导检查插件加载与安全软件拦截"
+        ],
+        "premise": "福昕Office应用进程在运行（Get-Process FuxinOffice* 有结果）",
+        "user_message": "无法连接到 Agent Bridge（本地服务无响应）。请确认福昕Office正在运行且未被安全软件拦截，然后重试。",
+        "forbidden": ["未运行"]
       }
     }
   ]

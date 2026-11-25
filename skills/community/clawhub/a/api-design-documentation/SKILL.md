@@ -1,7 +1,7 @@
 ---
 name: "API Design & Documentation Generator"
 description: "AI-powered API design and documentation assistant — generate RESTful/OpenAPI specs, write comprehensive API docs (guides, tutorials, reference), create mock servers, validate API designs, and produce SDK code snippets. Supports OpenAPI 3.0/3.1, AsyncAPI, GraphQL SDL, and major languages. Built for backend developers, API product managers, DevOps engineers, and technical writers who need to design, document, and ship APIs faster. Keywords: API documentation, OpenAPI spec, REST API design, API reference, developer portal, API guide, Swagger, AsyncAPI, GraphQL schema, API validation, mock server, SDK generation, API设计, 接口文档, OpenAPI, Swagger文档."
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # API Design & Documentation Generator
@@ -306,7 +306,7 @@ Design a REST API for a task management system.
 openapi: 3.0.3
 info:
   title: Task Management API
-  version: 1.0.0
+  version: 1.0.5
   description: API for managing tasks with full CRUD operations
 
 paths:
@@ -705,7 +705,7 @@ curl -X {METHOD} {URL} \
 ```
 ```
 
-## Ecosystem Status (as of 2026-11-17 / 截至 2026-11-17)
+## Ecosystem Status (as of 2026-11-25 / 截至 2026-11-25)
 
 API specification tooling evolves continuously. Confirm against official
 documentation before locking in a choice.
@@ -718,7 +718,7 @@ documentation before locking in a choice.
 | 数据脱敏要求 | 本单位对 PII 字段的对外暴露规则 | 影响示例与 schema 设计 |
 | 代码生成维护方式 | 生成代码是否入仓、如何评审 | 影响 SDK 交付流程 |
 
-**最近动态（截至 2026-11-17，以官方发布为准）**
+**最近动态（截至 2026-11-25，以官方发布为准）**
 1. OpenAPI 3.1 与 JSON Schema 的对齐推动了工具链更新，但旧工具兼容性参差，
    选型时普遍建议先验证门户与生成器支持情况。
 2. 规范即契约（spec-first）与契约测试的结合更为普遍，API 变更在 CI 阶段
@@ -817,7 +817,7 @@ documentation before locking in a choice.
   - Documentation generation
   - Basic validation
 
-**Last Updated**: 2026-11-17
+**Last Updated**: 2026-11-25
 
 ## 本轮增量（2026-11-13）：复核维度与举例补充
 
@@ -903,4 +903,46 @@ documentation before locking in a choice.
 ### 时效性说明
 
 - 本期时效性核查：**截至 2026-11-17**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
+- 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。
+
+## 本轮增量（2026-11-25）：复核维度与举例补充
+
+> 本节为 2026-11-25 例行轮转的净增量记录：新增举例与复核维度均为本期首次出现，与既有条目不重复；仅作方法论参考，需具备相应资质的人员复核后使用。
+
+### 补充举例（按模块，本期新增）
+
+**1. API Design Intelligence**：
+
+- 设计清单补一条「契约是否作为单一事实源」的占位标注位，由使用者圈选并留白说明，草稿不代填规范文本。
+- 为字段变更新增一张纸面对照：左列列变更类型标签，右列留白记录需人工判定的兼容级别，不预置结论。
+
+**Best Practices**：
+
+- 清单补一条「破坏性变更是否在评审阶段留痕」的占位检查项，结论留白由人员确认。
+- 为文档生成新增一行「由同一契约派生的产物」占位：标注需人工核对的 mock / SDK / 文档标签，具体内容留白。
+
+### 新增复核维度表（2026-11-25）
+
+> 本表新增「由谁执行 / 数据来源 / 复核要点 / 风险等级 / 适用边界」等维度列，把口径责任、数据来源与人工复核要求落到具体条目。
+
+| 复核维度 | 由谁执行 | 数据来源 | 复核要点 | 风险等级 | 适用边界 |
+| --- | --- | --- | --- | --- | --- |
+| 契约一致性标注 | API 设计人 + 复核人 | 设计清单草稿 | 是否圈选与留白、未代填规范文本 | 中 | 纸面对照，结论需人工确认 |
+| 变更分级留白 | API 设计人 | 变更核对表 | 是否逐项标注兼容级别占位、未预置结论 | 中 | 文档记录，不构成发布决定 |
+
+### 适用边界 / 数据最小化 / 执行边界（本期复核与补齐）
+
+**适用边界**：本技能仅用于API 契约设计与文档口径的纸面草稿的方法论参考与纸面草稿，输出为供使用者自行判断的参考文本；不构成正式结论、专业意见或对外发布内容。涉及正式接口发布、版本退役与对外文档的场景不适用，应由具备相应资质的人员按既有制度独立完成。
+
+**数据最小化**：本期补齐：示例、清单与提问只保留占位标签与抽象情境描述，不写入可识别个人、客户或机构的信息；草稿阶段即标注需人工复核后再补充任何具体背景。
+
+**执行边界**：本期复核：文中「生成 / 输出 / 形成」均指生成待确认的纸面草稿，由使用者自行决定是否采用；不代为发布、提交、保存或进行任何系统操作。
+
+### 参考同类公开框架的补强（2026-11-25）
+
+> 参考同类公开框架把「契约作为单一事实源」「在评审阶段以规范差异识别破坏性变更并分级（阻断 / 复核 / 允许）」「消费者驱动契约记录具体调用方的期望」「弃用与退役以可机读的迁移窗口表达」「mock / SDK / 文档由同一契约派生以免口径漂移」整理为方向性设计清单；强调差异与分级结论须由具备资质的人员复核，草稿只保留占位标签与待确认项。
+
+### 时效性说明
+
+- 本期时效性核查：**截至 2026-11-25**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
 - 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。

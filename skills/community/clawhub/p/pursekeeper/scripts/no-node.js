@@ -16,14 +16,14 @@ const N = require('nanocurrency');
 const API = (process.env.API || 'https://pursekeeper.dev').replace(/\/$/, '');
 const REP = process.env.NANO_REP || 'nano_3arg3asgtigae3xckabaaewkx3bzsh7nwz7jkmjos79ihyaxwphhm6qgjps4';
 const RAW = 10n ** 30n;
-// GET through the API. A 429 (60 per minute per IP on every free route; the server's Retry-After says how long) is
-// waited out and retried, so a receive of many pending sends runs to the end instead of dying when a minute's
-// allowance is spent (llmrt, api#103, 2026-10-22: a receive died at the 30th send while the routes shared one bucket).
-// Any other answer that carries JSON is handed back for the caller to read (.error, found:false, found:true); an answer
-// with no JSON body (a proxy's error page, a 5xx with HTML) is a transport failure and is named as one, status included.
-async function get(p) {
+// GET and POST through the API. A 429 (60 per minute per IP on every free route, including POST /v1/process, and 6 per
+// minute free on POST /v1/work; the server's Retry-After says how long) is waited out and retried, so a receive of many
+// pending sends runs to the end instead of dying when a minute's allowance is spent on GET or POST (llmrt, api#103,
+// 2026-10-22). Any other answer that carries JSON is handed back for the caller to read (.error, found:false, found:true);
+// an answer with no JSON body (a proxy's error page, a 5xx with HTML) is a transport failure and is named as one, status included.
+async function reqJson(p, init) {
   for (let i = 0; ; i++) {
-    const r = await fetch(API + p);
+    const r = await fetch(API + p, init);
     if (r.status === 429 && i < 30) {
       const wait = Math.min(60, Math.max(1, Number(r.headers.get('retry-after')) || 20));
       console.error('rate limited on ' + p.split('?')[0] + ' (' + (i + 1) + '); waiting ' + wait + ' s');
@@ -34,7 +34,8 @@ async function get(p) {
     catch { throw new Error('HTTP ' + r.status + ' from ' + p.split('?')[0] + ' with no JSON body'); }
   }
 }
-const post = (p, body) => fetch(API + p, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) }).then(r => r.json());
+const get = p => reqJson(p);
+const post = (p, body) => reqJson(p, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
 const toRaw = s => { const m = /^(\d+)(?:\.(\d{1,30}))?$/.exec(s); if (!m) throw new Error('amount must be a decimal XNO amount'); return BigInt(m[1]) * RAW + BigInt((m[2] || '').padEnd(30, '0')); };
 const fmt = r => { r = BigInt(r); const w = r / RAW, f = (r % RAW).toString().padStart(30, '0').replace(/0+$/, ''); return w + (f ? '.' + f : ''); };
 
@@ -43,6 +44,9 @@ async function work(hash) {
     const r = await post('/v1/work', { hash });
     if (r.work) return r.work;
     if (r.error && /limit/i.test(r.error)) { await new Promise(s => setTimeout(s, 20000)); continue; }
+    // 503 "work server busy; retry in a few seconds; nothing charged": the server's four proof slots are shared by every
+    // caller, so this is transient by its own words. It used to end the command (a `receive` part-way through its sends).
+    if (r.error && /busy/i.test(r.error)) { console.error('work server busy; retrying in 3 s'); await new Promise(s => setTimeout(s, 3000)); continue; }
     throw new Error('work: ' + JSON.stringify(r));
   }
   throw new Error('work: gave up');
@@ -64,6 +68,7 @@ async function broadcast(block, subtype) {
   const info = await get('/v1/account_info?account=' + account);
   if (info.error) throw new Error('account_info: ' + info.error);
   const pend = await get('/v1/receivable?account=' + account);
+  if (pend.error || !Array.isArray(pend.blocks)) throw new Error('receivable: ' + (pend.error || 'no blocks field'));
   if (cmd === 'status') return console.log(JSON.stringify({ account, open: info.found, balance_nano: info.balance_nano, frontier: info.frontier, representative: info.representative, unpocketed: pend.blocks }, null, 1));
 
   let previous = info.found ? info.frontier : '0'.repeat(64);
@@ -153,23 +158,39 @@ async function broadcast(block, subtype) {
 
   if (cmd === 'receive') {
     if (!pend.blocks.length) return console.error('nothing to receive');
-    if (pend.blocks.length > 6) console.error(pend.blocks.length + ' pending sends need ' + pend.blocks.length + ' work calls; about ' + Math.ceil(pend.blocks.length / 6) + ' min at the free rate of 6/min (pay per work to skip the wait)');
-    for (const b of pend.blocks) {
-      // Skip a send that a concurrent receive already pocketed (seen after a retry). Only a positive "no longer listed"
-      // skips it: a re-read that fails (an error body, no blocks array) is said on stderr and the send is still tried,
-      // since the node refuses a receive whose source is already pocketed and publish() handles that answer.
-      const still = await get('/v1/receivable?account=' + account);
-      if (!Array.isArray(still.blocks)) console.error('could not re-read receivable (' + (still.error || 'no blocks field') + '); trying ' + b.hash.slice(0, 8) + ' anyway');
-      else if (!still.blocks.some(x => x.hash === b.hash)) { console.error('already received ' + b.hash.slice(0, 8) + ', skipping'); continue; }
-      let kind;
-      const hash = await publish(
-        () => ({ type: 'state', account, previous, representative: rep, balance: (balance + BigInt(b.amount_raw)).toString(), link: b.hash, work: null }),
-        blk => (kind = blk.previous === '0'.repeat(64) ? 'open' : 'receive'),
-        async () => { const s = await get('/v1/receivable?account=' + account); return !Array.isArray(s.blocks) || s.blocks.some(x => x.hash === b.hash); });
-      if (!hash) { console.error('already received ' + b.hash.slice(0, 8) + ' during the retry, skipping'); continue; }
-      console.log(kind + ' ' + fmt(b.amount_raw) + ' from ' + b.from + ' -> ' + hash);
+    // /v1/receivable lists at most the node's bound per call (100 on pursekeeper.dev) and says so with truncated: true and
+    // "pocket these, then poll again for the rest". Until now one page was pocketed and the command exited 0, so an
+    // account with more unpocketed sends than the bound kept the rest with no word that they exist. Pages are now read
+    // until one is not truncated, or one lists nothing this run has not already handled.
+    const done = new Set();
+    let page = pend;
+    for (;;) {
+      const todo = page.blocks.filter(b => !done.has(b.hash));
+      if (todo.length > 6) console.error(todo.length + ' pending sends need ' + todo.length + ' work calls; about ' + Math.ceil(todo.length / 6) + ' min at the free rate of 6/min (pay per work to skip the wait)');
+      for (const b of todo) {
+        done.add(b.hash);
+        // Skip a send that a concurrent receive already pocketed (seen after a retry). Only a positive "no longer listed"
+        // skips it: a re-read that fails (an error body, no blocks array) is said on stderr and the send is still tried,
+        // since the node refuses a receive whose source is already pocketed and publish() handles that answer.
+        const still = await get('/v1/receivable?account=' + account);
+        if (!Array.isArray(still.blocks)) console.error('could not re-read receivable (' + (still.error || 'no blocks field') + '); trying ' + b.hash.slice(0, 8) + ' anyway');
+        else if (!still.blocks.some(x => x.hash === b.hash)) { console.error('already received ' + b.hash.slice(0, 8) + ', skipping'); continue; }
+        let kind;
+        const hash = await publish(
+          () => ({ type: 'state', account, previous, representative: rep, balance: (balance + BigInt(b.amount_raw)).toString(), link: b.hash, work: null }),
+          blk => (kind = blk.previous === '0'.repeat(64) ? 'open' : 'receive'),
+          async () => { const s = await get('/v1/receivable?account=' + account); return !Array.isArray(s.blocks) || s.blocks.some(x => x.hash === b.hash); });
+        if (!hash) { console.error('already received ' + b.hash.slice(0, 8) + ' during the retry, skipping'); continue; }
+        console.log(kind + ' ' + fmt(b.amount_raw) + ' from ' + b.from + ' -> ' + hash);
+      }
+      if (!page.truncated) return;
+      page = await get('/v1/receivable?account=' + account);
+      if (!Array.isArray(page.blocks)) throw new Error('receivable: the last page was truncated and the next read failed (' + (page.error || 'no blocks field') + '); run receive again for the rest');
+      if (!page.blocks.some(b => !done.has(b.hash))) {
+        if (page.truncated) console.error('receivable still answers truncated but lists nothing this run has not handled; run receive again for the rest');
+        return;
+      }
     }
-    return;
   }
 
   if (cmd === 'send') {

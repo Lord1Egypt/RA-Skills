@@ -1,6 +1,6 @@
 ## Description:
 
-为抖音小店商家生成商品主图套图、详情长图和营销活动图，帮助适配短视频电商视觉素材。
+Generates Douyin Shop product image sets, detail pages, and promotional artwork through LinkPix.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,40 +14,40 @@ MIT-0
 
 ## Use Case:
 
-抖音小店商家、短视频运营者和直播团队可用此技能生成商品主图套图、详情页长图、活动海报及相关短视频电商视觉素材。
+Douyin Shop sellers, short-video teams, and livestream teams use this skill to create product image sets, detail-page images, covers, and promotional graphics from product photos.
 
 ### Deployment Geography for Use:
 
-China
+Global
 
 ## Known Risks and Mitigations:
 
-Risk: An API key could be exposed if shared in chat during setup.
+Risk: Setup and image-processing steps use unpinned packages that may change between reviews.
 
-Mitigation: Configure the key locally through a protected environment or secret manager, and rotate any key already shared.
+Mitigation: Review the setup instructions and prefer reviewed, pinned package versions before installing or running the skill.
 
-Risk: Uploaded product images are shared with Qinghu AI, and the supplied evidence does not verify image-retention practices.
+Risk: The setup workflow asks the user to share an API key through chat.
 
-Mitigation: Upload only images approved for sharing with Qinghu AI, and check the provider's retention practices before use.
+Mitigation: Configure credentials locally through a secure method instead of sharing the key in chat.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-douyin-shop-image)
+- [LinkPix ClawHub release](https://clawhub.ai/autoagc/skills/linkpix-douyin-shop-image)
 - [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Guidance, Shell commands, Configuration instructions]
+**Output Type(s):** [Images, Text]
 
-**Output Format:** [Generated product images with image URLs, plus Markdown guidance and inline shell command examples.]
+**Output Format:** [Generated product image assets with concise status and delivery details in text]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Image count, size, model, and style depend on the user's selected options.]
+**Other Properties Related to Output:** [Image sets, detail-page images, covers, and promotional graphics based on supplied product images and user-selected options.]
 
 ## Skill Version(s):
 
-0.1.4 (source: server-resolved release metadata)
+0.1.5 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

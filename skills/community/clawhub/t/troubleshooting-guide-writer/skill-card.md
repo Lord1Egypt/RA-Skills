@@ -1,6 +1,6 @@
 ## Description:
 
-Helps U.S. field-service teams draft safety-conscious troubleshooting guides with ordered checks, escalation triggers, parts limits, and repair-claim review.
+Writes a field service troubleshooting guide with ordered diagnostic steps, safety limits and escalation triggers for US technicians.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Field-service managers, repair-shop owners, and support leads use this agent to prepare technician-facing troubleshooting guides from a unit model, symptoms, fault codes, and governing manuals. A qualified reviewer should verify each guide against the manufacturer's manual and approved service bulletins before use.
+US field service managers, repair shop owners, and support leads use the skill to structure troubleshooting briefs with ordered checks, safety limits, and escalation points. The bundled script currently produces a brief-validation report rather than the troubleshooting guide described in the skill summary.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,28 @@ United States
 
 ## Known Risks and Mitigations:
 
-Risk: The helper's input-validation report could be mistaken for a completed service guide, or an unverified draft could contain unsafe or inaccurate instructions.
+Risk: The security assessment flags a mismatch between the promised troubleshooting guide and the script's brief-validation report; it also says some references were unresolved, leaving evidence incomplete.
 
-Mitigation: Treat the helper output as a completeness and length report, and have a qualified reviewer verify any service guide against the manufacturer's manual and approved service bulletins before use.
+Mitigation: Confirm the intended output and tool scope with the publisher, then review the generated report before relying on it as a troubleshooting guide.
 
 ## Reference(s):
 
-- [U.S. repair, safety, and warranty rules](references/troubleshooting-us-rules.md)
+- [Troubleshooting US rules](artifact/references/troubleshooting-us-rules.md)
 - [ClawHub skill release](https://clawhub.ai/rapidworker1/skills/troubleshooting-guide-writer)
-- [Publisher homepage](https://github.com/rapidworker1)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Configuration]
+**Output Type(s):** [Guidance, Markdown, Configuration]
 
-**Output Format:** [Technician-facing troubleshooting-guide content, a YAML guide template, and a Markdown input-validation report.]
+**Output Format:** [YAML troubleshooting brief template and Markdown brief-validation report]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Organizes fault paths, ordered checks, safety limits, escalation triggers, parts, and claim flags. The included helper reports field completeness and length; it does not generate the troubleshooting guide.]
+**Other Properties Related to Output:** [The bundled script checks field completeness and character limits; it does not generate the troubleshooting guide described by the skill summary.]
 
 ## Skill Version(s):
 
-1.0.6 (source: frontmatter, server release)
+1.0.7 (source: artifact/SKILL.md frontmatter, release evidence)
 
 ## Ethical Considerations:
 

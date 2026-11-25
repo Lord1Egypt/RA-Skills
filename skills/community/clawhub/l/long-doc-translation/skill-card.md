@@ -1,6 +1,6 @@
 ## Description:
 
-Guides full-text translation of authorized long-form German, English, French, and Japanese works into a Chinese manuscript, a self-contained HTML reader, segment-level review files, and a terminology glossary, flagging uncertain passages for human review.
+Guides long-form translation projects from parsed source text through structured chunking, terminology management, quality checks, and delivery as a Chinese manuscript and self-contained HTML reader.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Translators and researchers use this workflow to manage large-book translation, maintain consistent terminology and formatting across segments, and review uncertain passages and merge quality before delivery.
+External translators, editors, and researchers can use this skill to organize large scholarly translation projects, keep terminology consistent across sections, track uncertain passages, and prepare reviewable manuscript and reading files.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,40 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: An optional OCR service may receive sensitive source documents.
+Risk: The security assessment rates the release suspicious with medium confidence and reports an unpinned install command, a source/package mismatch, and partial inspection.
 
-Mitigation: Review the OCR provider's privacy practices before submitting sensitive material; skip OCR when text is already available.
+Mitigation: Pin the installer and reviewed skill revision, and compare packaged files with the reviewed source before installing.
 
-Risk: Translation and chunk-merging issues can leave errors, duplicate passages, gaps, or uncertain wording in the final manuscript.
+Risk: Source documents may be sent to an external parsing service.
 
-Mitigation: Keep a manuscript backup, inspect QA reports rather than relying on exit codes, manually check suspected duplicates, and send uncertain passages for human review.
+Mitigation: Check the parsing destination and confirm you are authorized to share the documents; use an approved local parser for sensitive material.
 
-Risk: Publishing source text without authorization or using a draft as practice-grade legal output is outside the skill's stated scope.
+Risk: Some translation quality checks can skip comparisons or report a passing result when a check did not run.
 
-Mitigation: Use only source material you are authorized to access, do not publish copyrighted text as-is, and obtain qualified review for legal work.
+Mitigation: Review skipped-check notices and manually check segment coverage, terminology consistency, and the final output.
 
 ## Reference(s):
 
-- [ClawHub Skill Release](https://clawhub.ai/huhoo/skills/long-doc-translation)
-- [Publisher Profile](https://clawhub.ai/user/huhoo)
-- [Parallel Translation Guide](references/parallel-translation.md)
-- [Translation Pitfalls](references/pitfalls.md)
-- [QA Checklist](references/qa-checklist.md)
-- [Reader Build Guide](references/reader-build.md)
+- [ClawHub release](https://clawhub.ai/huhoo/skills/long-doc-translation)
+- [English README](README.en.md)
+- [Translation pitfalls](references/pitfalls.md)
+- [Quality assurance checklist](references/qa-checklist.md)
+- [Parallel translation guidance](references/parallel-translation.md)
+- [Reader build guidance](references/reader-build.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, HTML, Files]
+**Output Type(s):** [Text, Markdown, HTML, Translation guidance]
 
-**Output Format:** [Chinese translation manuscript in Markdown, a self-contained HTML reader, segment-level review files, and a terminology glossary.]
+**Output Format:** [Chinese translation drafts and deliverables in Markdown and self-contained HTML, with glossary and review notes]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Uncertain passages are flagged for human review; source coverage and translation quality require review before delivery.]
+**Other Properties Related to Output:** [Organized by source structure; includes terminology tracking and uncertainty annotations for human review.]
 
 ## Skill Version(s):
 
-1.3.18 (source: SKILL.md frontmatter, CHANGELOG, server release metadata)
+1.3.19 (source: frontmatter)
 
 ## Ethical Considerations:
 

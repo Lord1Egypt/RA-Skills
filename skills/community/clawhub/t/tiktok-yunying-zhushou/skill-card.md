@@ -1,6 +1,6 @@
 ## Description:
 
-This skill retrieves public TikTok search results, creator posts, and video comments, then returns structured JSON for operational analysis.
+通过关键词、创作者主页和视频链接查询 TikTok 公开视频及评论，并以结构化 JSON 提供选题、竞品和舆情分析依据。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-TikTok creators, brand operators, and market analysts can use the skill to research content ideas, monitor public competitor posts, and summarize discussion in video comments.
+创作者、营销团队和研究人员可用它搜索 TikTok 关键词视频、查看创作者公开作品或读取视频评论，再据此整理内容趋势、竞品动态和评论观点。
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search terms and targeted TikTok links are sent to the third-party data provider, and API calls may incur charges.
+Risk: ClawScan reports medium confidence and partial coverage: 20 of 32 components were fully inspected.
 
-Mitigation: Use a dedicated API token, avoid sending sensitive query details, and review provider billing terms before making large requests.
+Mitigation: Review the release files and obtain a complete scan before relying on it in a production workflow.
 
-Risk: Optional result logs may retain retrieved data on the local machine.
+Risk: The security guidance flags possible environment-variable scope and fixed Beijing-time timestamp concerns.
 
-Mitigation: Leave local logging disabled unless needed and protect any saved results.
+Mitigation: Verify the variables the scripts need, provide credentials through a narrowly scoped environment, and confirm Beijing-time timestamps fit the workflow.
+
+Risk: The skill sends its API token to the Guaikei service to retrieve data.
+
+Mitigation: Use the service only when it is an approved data recipient, and avoid sending sensitive query content.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/why20261/skills/tiktok-yunying-zhushou)
-- [Guaikei data service and token support](https://www.guaikei.com)
+- [ClawHub release page](https://clawhub.ai/why20261/skills/tiktok-yunying-zhushou)
+- [Provider and API access](https://www.guaikei.com)
 - [Command options](references/options.md)
 - [Changelog](references/changelog.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Structured data]
+**Output Type(s):** [JSON data, Analysis, Shell commands]
 
-**Output Format:** [JSON envelope containing video search results, creator posts, or comments]
+**Output Format:** [Structured JSON results with optional concise text analysis]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Read-only public data; empty results are valid, some fields may be absent, and playback URLs may expire.]
+**Other Properties Related to Output:** [Results cover publicly available TikTok content and depend on the configured API access and plan limits.]
 
 ## Skill Version(s):
 
-1.1.1 (source: frontmatter, changelog released 2026-11-04, package.json)
+1.1.2 (source: SKILL.md frontmatter, package.json)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Answer questions about code relationships in an indexed repository - callers, callees, impact, entry points, routes, DI wiring, dead code, cycles - using the code-crawler MCP server's SQLite property graph. Use when the question is about how symbols connect (who calls this, what breaks if I change it, where does a request enter, is this reachable) rather than about text you can find by searching. Do not crawl a repository just to answer a question about a single file you already have open.
+Answer questions about code relationships in an indexed repository, including callers, callees, impact, entry points, routes, dependency injection, dead code, and cycles, using the code-crawler MCP server's property graph.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use the skill to answer structural questions about an indexed codebase, such as callers, execution paths, dependency wiring, and change impact. It helps distinguish relationship questions suited to the graph from questions better answered by reading or searching source text.
+Developers and engineers use this skill to answer questions about how symbols connect across an indexed codebase, such as what calls a method, what a change may affect, or where a request enters. It guides them to use text search or direct file reading when a graph query is not appropriate.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The install command uses an unpinned npm package, so the package version may change between installs.
+Risk: The setup uses unversioned npm packages, and the security analysis was partial because some references were unresolved.
 
-Mitigation: Review the package and release before installation, and pin a version when repeatable installs are needed.
-
-Risk: The security analysis is partial because some path-like references could not be resolved.
-
-Mitigation: Review the referenced paths and skill contents manually before installing or registering the MCP server.
+Mitigation: Review the setup, package versions, unresolved references, and resulting client configuration before enabling the server.
 
 ## Reference(s):
 
-- [Code Crawler project homepage](https://nithin554.github.io/code-crawler/)
-- [Code Crawler on ClawHub](https://clawhub.ai/nithin554/skills/code-crawler)
-- [Tool reference](artifact/reference/tools.md)
-- [Edge semantics reference](artifact/reference/edge-semantics.md)
+- [Project homepage](https://nithin554.github.io/code-crawler/)
+- [ClawHub skill listing](https://clawhub.ai/nithin554/skills/code-crawler)
+- [Tool reference](reference/tools.md)
+- [Edge semantics reference](reference/edge-semantics.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, Markdown, Guidance]
+**Output Type(s):** [Guidance, Text, Markdown, Code, Configuration, Shell commands]
 
-**Output Format:** [Natural-language text or Markdown]
+**Output Format:** [Natural-language analysis and guidance, with optional Mermaid or Graphviz graph text, code examples, shell commands, and configuration snippets.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Relationship findings should retain relevant confidence, external-target, and unresolved-edge caveats.]
+**Other Properties Related to Output:** [Answers depend on the indexed repository and may describe static-analysis confidence or unresolved relationships where relevant.]
 
 ## Skill Version(s):
 
-0.1.83 (source: release metadata)
+0.1.87 (source: server-resolved release metadata and target metadata)
 
 ## Ethical Considerations:
 

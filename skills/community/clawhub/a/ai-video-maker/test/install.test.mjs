@@ -58,6 +58,8 @@ for (const platform of ["codex", "claude", "openclaw"]) {
           "--import",
           resolve(root, "ai-video-maker/test/mock-release-fetch.mjs"),
           resolve(destination, "scripts/run-workflow.mjs"),
+          "--platform",
+          platform,
           "--action",
           "quote",
           "--model",
@@ -67,10 +69,11 @@ for (const platform of ["codex", "claude", "openclaw"]) {
         ],
         {
           cwd: directory,
+          // The mock rejects a request that does not name one of the three clients.
           env: {
             ...process.env,
             AIVIDEO_API_KEY: "artifact-test-only",
-            AIVIDEO_AGENT_PLATFORM: platform,
+            AIVIDEO_AGENT_PLATFORM: "",
             AIVIDEO_MAX_RETRIES: "0",
           },
         },
@@ -136,6 +139,9 @@ test("the piped Node installer works without network access", async () => {
     child.stdin.end(installer);
     assert.equal(await exit, 0, stderr);
     assert.ok(stdout.includes(`Installed AI Video Maker v${version}`));
+    // The next step must be runnable in PowerShell and cmd too: no VAR=value prefix.
+    assert.match(stdout, /with node "[^"]+connect\.mjs" --platform codex /);
+    assert.doesNotMatch(stdout, /AIVIDEO_AGENT_PLATFORM=/);
     const installed = JSON.parse(
       await readFile(resolve(directory, ".agents/skills/ai-video-maker/package.json"), "utf8"),
     );

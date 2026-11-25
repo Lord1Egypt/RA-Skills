@@ -1,6 +1,6 @@
 ## Description:
 
-Unofficial Go client for the Polar API, generated with oapi-codegen from Polar's published OpenAPI document. Package polar (github.com/psyb0t/go-polar) provides typed REST methods for products, customers, subscriptions, checkouts, orders, payments, benefits, usage events, meters, refunds and webhook management. Use when Go code needs the Polar API or already imports go-polar.
+An unofficial typed Go client for the Polar API, covering products, customers, subscriptions, checkouts, orders, payments, benefits, usage events, meters, refunds, and webhooks.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Go developers use this skill to add and work with a typed Polar API client in a Go project, including reading data and carrying out requested account operations.
+Developers use this skill to add or work with Go code that calls Polar's API, including reading account data and carrying out requested account changes. It is intended for Go projects using github.com/psyb0t/go-polar; the client is unofficial and not maintained by Polar.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Polar access tokens grant access according to their scopes, and create, update, delete, refund, or revoke operations can change account data.
+Risk: Polar bearer tokens can authorize access to account data and operations.
 
-Mitigation: Use a token type and scopes appropriate to the requested operation, keep the token out of source control and logs, and perform account-changing operations only when requested.
+Mitigation: Use a token with only the required scopes, keep it in POLAR_ACCESS_TOKEN, and never hardcode, commit, or log it.
 
-Risk: The security scan was partial with medium confidence because two local references were unresolved.
+Risk: Create, update, delete, refund, and revoke operations change Polar account data.
 
-Mitigation: Review the available setup reference and verify any details that depend on the unresolved material before use.
+Mitigation: Run these operations only when requested, and use the environment selected by the user.
+
+Risk: The security assessment is benign but partial; credential-related setup and unresolved path-like references leave some uncertainty.
+
+Mitigation: Review the setup guidance and use an appropriately scoped token before installation or use.
 
 ## Reference(s):
 
-- [Setup and reference](artifact/references/setup.md)
-- [go-polar repository](https://github.com/psyb0t/go-polar)
+- [Setup and API usage reference](artifact/references/setup.md)
+- [go-polar source repository](https://github.com/psyb0t/go-polar)
 - [go-polar package documentation](https://pkg.go.dev/github.com/psyb0t/go-polar)
-- [go-polar on ClawHub](https://clawhub.ai/psyb0t/skills/go-polar)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, API Calls, Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown with inline Go and shell code blocks]
+**Output Format:** [Go code and Markdown guidance with shell commands and configuration examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Examples and integration guidance for the Go Polar client.]
+**Other Properties Related to Output:** [Examples and client calls depend on the requested Polar operation and Go project.]
 
 ## Skill Version(s):
 
-0.3.1 (source: server-resolved release metadata)
+0.4.0 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Generates short, pronounceable names for skills, ENS domains, and agent-economy primitives, then filters candidates for clarity, constraints, and availability-check readiness.
+Suggests short, sayable names for products, domains, ENS names, skill slugs, and related naming tasks, with harm-aware candidates and search links but no guarantees.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,10 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
+MIT-0
 
 ## Use Case:
 
-Developers, product teams, and agents use Skill Namer to generate concise candidate names for skills, domains, products, protocols, and agent-economy primitives, then narrow them with constraints, accessibility checks, and manual availability links.
+People naming or renaming a business, product, account, domain, ENS name, skill slug, or reusable coordination primitive use this skill to generate harm-aware candidates and organize language, brand, availability, and trademark checks.
 
 ### Deployment Geography for Use:
 
@@ -21,45 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill may remember naming preferences for later sessions.
+Risk: The skill's broad activation condition may make it relevant to a wider range of naming requests.
 
-Mitigation: Avoid storing sensitive preferences and review any remembered TLD, provider, or checking-mode defaults before reuse.
+Mitigation: Use it when the request involves naming, renaming, or letting a name go, and check that this scope fits the task.
 
-Risk: API-based availability checking may require external service credentials.
+Risk: Security analysis was partial: 7 of 11 components were scanned, and tool-misuse analysis was incomplete for four scripts.
 
-Mitigation: Use the default manual link mode unless API checks are explicitly needed, and provide API keys only to intended official services.
-
-Risk: Availability guidance can be incomplete when checks are manual, blocked, or provider-specific.
-
-Mitigation: Treat unchecked names as unknown and verify domain or ENS status directly with the provider before claiming or purchasing.
-
-Risk: Generated names can still create trademark, brand-confusion, or social-harm concerns.
-
-Mitigation: Perform legal, brand, accessibility, and harm-aware review before adopting a finalist name.
+Mitigation: Review the four scripts and their behavior before relying on them in a new environment.
 
 ## Reference(s):
 
-- [ClawHub Skill Page](https://clawhub.ai/otherpowers/skills/skill-namer)
-- [Portmanteau Forge Building Blocks](artifact/blocks.md)
-- [Root-Words Guidance](artifact/root-words.md)
-- [ENS Manager](https://app.ens.domains/)
-- [Unstoppable Domains Search](https://unstoppabledomains.com/search)
-- [GoDaddy Domain Search](https://www.godaddy.com/domainsearch/find)
-- [Namecheap Domain Search](https://www.namecheap.com/domains/registration/)
+- [ClawHub skill-namer listing](https://clawhub.ai/otherpowers/skills/skill-namer)
+- [Full naming workflow](references/workflow.md)
+- [Availability guidance](references/availability.md)
+- [Name building blocks and checks ledger](references/blocks.md)
+- [Renaming and letting a name go](references/renaming.md)
+- [Missing primitive finder](references/primitives.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+**Output Type(s):** [Text, Markdown, JSON]
 
-**Output Format:** [Markdown with candidate lists, caveats, manual availability links, and optional shell command output.]
+**Output Format:** [Candidate names, concise rationale, search links, and a checks ledger; bundled scripts can emit JSON.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include remembered naming preferences such as favorite TLDs, availability-check mode, and preferred providers when the user sets them.]
+**Other Properties Related to Output:** [Suggestions only; availability and trademark status are not guaranteed or cleared.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server release metadata)
+1.0.2 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

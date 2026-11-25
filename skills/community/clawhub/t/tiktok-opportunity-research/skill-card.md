@@ -1,6 +1,6 @@
 ## Description:
 
-Research public TikTok search results, creator posts, and video comments to identify content and market opportunities for further validation.
+研究 TikTok 公开视频、创作者作品和评论，帮助筛选值得继续验证的内容与市场机会。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-Creators, marketers, and research teams use this skill to explore public TikTok content, compare creator posts, and review video comments for topic research, competitor monitoring, and audience feedback.
+面向 TikTok 创作者、增长与市场研究团队，按关键词、博主主页或视频链接获取公开作品和评论，用于选题研究、竞品观察与舆情归纳。
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan was only partially complete, so some scripts were not fully interpreted.
+Risk: The security review is benign with medium confidence, but inspection was partial: 20 of 32 components were fully inspected.
 
-Mitigation: Review the source and consider the scan uncertainty before installation.
-
-Risk: Search terms or TikTok links are sent to guaikei.com, and returned public data may include usernames.
-
-Mitigation: Send only queries suitable for that service, and redact usernames before sharing results externally.
-
-Risk: The skill formats timestamps using Beijing time.
-
-Mitigation: Treat returned timestamps as Beijing time when comparing activity across time zones.
+Mitigation: Review the partially inspected files and confirm the required environment-variable scope is acceptable before installing.
 
 ## Reference(s):
 
-- [GUAIKEI TikTok data service](https://www.guaikei.com)
-- [ClawHub skill release](https://clawhub.ai/why20261/skills/tiktok-opportunity-research)
-- [CLI options](references/options.md)
+- [ClawHub skill page](https://clawhub.ai/why20261/skills/tiktok-opportunity-research)
+- [GUAIKEI TikTok opportunity research](https://www.guaikei.com)
+- [Command options](references/options.md)
 - [Changelog](references/changelog.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON]
+**Output Type(s):** [JSON data, Research guidance]
 
-**Output Format:** [Structured JSON results envelope]
+**Output Format:** [JSON status envelope containing arrays of TikTok search results, creator posts, or video comments]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Returns public TikTok search results, creator posts, or video comments with available engagement fields, depending on the request.]
+**Other Properties Related to Output:** [Results may be successful, empty, or errors; the skill does not download video files.]
 
 ## Skill Version(s):
 
-1.1.1 (source: server-resolved release, SKILL.md frontmatter, package.json)
+1.1.2 (source: server-resolved release and skill frontmatter)
 
 ## Ethical Considerations:
 

@@ -10,7 +10,7 @@ If the user has a leaning, include it. Models that know the current favorite can
 
 ## What to look for in round 1
 
-The claim map will usually show agreement on easy dimensions and disagreement on the dimensions that actually matter. The useful signal is *where* the panel splits, not whether it agrees overall.
+The models' reactions will usually show agreement on easy dimensions and disagreement on the dimensions that actually matter. The useful signal is *where* the panel splits, not whether it agrees overall.
 
 Watch for:
 - **Criteria smuggling** — models agree on the answer but disagree on *why*, which means they'd diverge on a slightly different version of the question.
@@ -20,7 +20,7 @@ Watch for:
 
 ## When to append
 
-Append when the claim map shows a contested claim that's load-bearing for the decision. Use CHALLENGE on the weakest link in whichever position you find less convincing. Use EXPLORE if a model gestured at a consideration without developing it.
+Append when the reactions show a contested claim that's load-bearing for the decision. Use CHALLENGE on the weakest link in whichever position you find less convincing. Use EXPLORE if a model gestured at a consideration without developing it.
 
 Don't append just because the panel is split. Some decisions are genuinely close calls — the deliberation's job is to surface why, not to force convergence.
 

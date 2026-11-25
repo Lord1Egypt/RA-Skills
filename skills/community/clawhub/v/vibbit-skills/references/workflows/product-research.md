@@ -4,6 +4,8 @@ Turn product leads, content observations, customer feedback, and supplier inform
 
 Use only sources needed for the question. A simple video/review/supplier lookup can go straight to its resource. Strategy-only discussion may use existing material with explicit unknowns; a research plan is not a completed market finding.
 
+When historical research materials exist, use [material reuse](../resources/materials.md) to recover demonstrations, usage scenes and competitor videos as sourced research leads. Library counts, search ranking and analysis summaries do not establish current demand, sales or supply conditions. Obtain only current external evidence that affects the decision; strategy discussion alone does not require a library query.
+
 ## Scope and entry point
 
 Retain target market, sales channel, audience/category, price/cost constraints, exclusions, and requested deliverable. Ask only for gaps that change search or ranking. Without a market, explore directions without presenting local-market conclusions.
@@ -20,11 +22,11 @@ If the user already chose a product, assess its claims, weaknesses, or sourcing 
 
 | Source | Input and purpose | Boundary |
 | --- | --- | --- |
-| [Google/TikTok videos](../resources/external/videos.md) | Queries, region/language where supported; candidates, demonstrations, content approaches | Rank/frequency/engagement do not establish sales or an upward trend |
-| [Visual matches](../resources/external/visual-matches.md) | Real accessible product image; identify related models/pages | Similar appearance does not establish identical product/manufacturer |
-| [1688 suppliers](../resources/external/suppliers.md) | Real accessible product image; sourcing/specification leads | Not keyword search; cite prices/MOQ only when actually returned |
-| [Amazon reviews](../resources/external/reviews.md) | Confirmed real product-page URL; reasons to buy and actual experiences | Not product search; do not invent an ASIN or URL |
-| [Reddit discussions](../resources/external/reviews.md) | Relevant query; contexts, concerns, alternatives | Participants are not necessarily buyers; query wording does not establish their location |
+| [Google/TikTok videos](../resources/external-research.md#videos) | Queries, region/language where supported; candidates, demonstrations, content approaches | Rank/frequency/engagement do not establish sales or an upward trend |
+| [Visual matches](../resources/external-research.md#visual-matches) | Real accessible product image; identify related models/pages | Similar appearance does not establish identical product/manufacturer |
+| [1688 suppliers](../resources/external-research.md#suppliers) | Real accessible product image; sourcing/specification leads | Not keyword search; cite prices/MOQ only when actually returned |
+| [Amazon reviews](../resources/external-research.md#reviews) | Confirmed real product-page URL; reasons to buy and actual experiences | Not product search; do not invent an ASIN or URL |
+| [Reddit discussions](../resources/external-research.md#reviews) | Relevant query; contexts, concerns, alternatives | Participants are not necessarily buyers; query wording does not establish their location |
 
 Preserve TikTok's actual `sortType`/`publishTime` fields and documented meanings. Reddit has no dedicated region/language field. A visual match may not yield an Amazon page; acquire and verify one before requesting its reviews. If a real product screenshot is needed, inspect the actual video and use [media inputs](../runtime/media-inputs.md) to provide an accessible image. A generated concept image is not evidence for sourcing the original product.
 

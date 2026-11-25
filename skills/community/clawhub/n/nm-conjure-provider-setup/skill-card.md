@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and operators use this skill before delegating work to check which provider CLIs are installed and authenticated, diagnose availability issues, and install missing CLIs with confirmation.
+Developers and operators use this skill to check which delegation providers are installed and authenticated, identify providers ready to take work, and install missing provider CLIs before delegating.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The setup instructions reference scripts missing from the inspected artifact, so the release evidence does not establish how setup and installation behave.
+Risk: The security review is incomplete because several referenced local paths were missing from the scan.
 
-Mitigation: Wait to install until the referenced scripts are available for review, as recommended by the release security guidance.
+Mitigation: Review the complete skill package and rescan the missing referenced files before relying on the security verdict.
+
+Risk: Installing a provider CLI changes the local environment.
+
+Mitigation: Review each provider and its proposed installation, then confirm the skill's installation prompt only for providers you want.
 
 ## Reference(s):
 
-- [Provider Setup release on ClawHub](https://clawhub.ai/athola/skills/nm-conjure-provider-setup)
-- [Conjure project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/conjure)
+- [Claude Night Market Conjure project (metadata homepage)](https://github.com/athola/claude-night-market/tree/master/plugins/conjure)
+- [ClawHub provider-setup release page](https://clawhub.ai/athola/skills/nm-conjure-provider-setup)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Guidance]
+**Output Type(s):** [Text, Markdown]
 
-**Output Format:** [Provider status table and concise setup guidance]
+**Output Format:** [Markdown table and status text]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Reports provider binary, version, installation and authentication state, with remediation guidance.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, server release evidence)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

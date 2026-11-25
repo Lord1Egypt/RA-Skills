@@ -1,0 +1,11 @@
+{
+  "decision": "answer",
+  "kind": "summary",
+  "points": [
+    { "text": "The to-do is to send the launch email to the newsletter list.", "sources": ["s1"], "label": "Task: send the launch email" },
+    { "text": "The launch is on Friday, Nov 21.", "sources": ["s2"], "label": "Launch date: Fri Nov 21" },
+    { "text": "The launch page says the email goes to the newsletter list and links the pricing page.", "sources": ["s3"], "label": "Audience: newsletter list" }
+  ],
+  "task_kind": "drafting_replies",
+  "topic": "what the launch email needs"
+}

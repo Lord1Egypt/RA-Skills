@@ -1,6 +1,6 @@
 ## Description:
 
-Uses Liu Bang's historical leadership practices as a lens for thinking through talent, delegation, teamwork, competition, and decisions.
+A Chinese-first strategic thinking partner that applies lessons attributed to Liu Bang to leadership, delegation, team alignment, competition, and decision-making.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-For people working through leadership, team, or strategic decision questions. It offers historical thinking frameworks as prompts for reflection, not as a substitute for qualified HR, legal, safety, or financial advice.
+Employees and managers can use the skill to explore leadership, delegation, team collaboration, strategic choices, and decision-making through historical analogies and structured reflection. Its output is a thinking aid; formal HR, legal, safety, financial, and organizational decisions should follow applicable processes and be made by qualified people.
 
 ### Deployment Geography for Use:
 
@@ -22,13 +22,13 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Historical leadership frameworks may be mistaken for authoritative guidance on formal personnel, legal, safety, or financial decisions.
+Risk: Historical analogies and general leadership guidance may be mistaken for tailored professional advice or a formal organizational decision.
 
-Mitigation: Use the output to organize questions only; follow organizational procedures and consult appropriately qualified people for those decisions.
+Mitigation: Use the output as a reflection aid. Route HR, legal, safety, financial, and other formal decisions through applicable institutional processes and qualified personnel.
 
-Risk: The clean security verdict does not guarantee zero risk and covers only the inspected Markdown file.
+Risk: Including identifiable personal or organizational details in prompts or drafts could expose sensitive information.
 
-Mitigation: Review generated guidance before acting on it, and verify important claims against current, authoritative sources.
+Mitigation: Use abstract role labels and minimal context; add specific background only during an appropriate human review.
 
 ## Reference(s):
 
@@ -36,17 +36,17 @@ Mitigation: Review generated guidance before acting on it, and verify important 
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Text]
+**Output Type(s):** [Text, Guidance]
 
-**Output Format:** [Text or Markdown]
+**Output Format:** [Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reflective suggestions based on historical leadership frameworks; the user makes and verifies final decisions.]
+**Other Properties Related to Output:** [Chinese-first; may respond in English. Provides reflective prompts, historical analogies, and structured decision frameworks.]
 
 ## Skill Version(s):
 
-2.0.4 (source: server-resolved release)
+2.0.5 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

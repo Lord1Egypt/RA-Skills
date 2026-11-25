@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""pdf-fonts-fixer · pptx —— PPT 导出 PDF 的**递进三步法**
+"""pdf-font-fixer · pptx —— PPT 导出 PDF 的**递进三步法**
 
 ⚠️ 三步是**回退关系**，不是并列输出：前一步成功就不再走后面。
 

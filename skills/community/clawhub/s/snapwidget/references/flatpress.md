@@ -14,6 +14,10 @@ Paste your SnapWidget code into a FlatPress entry or static page. FlatPress bloc
 2. Click **Install Widget**.
 3. In the **Install Widget** window, click **Copy Code**.
 
+> [!NOTE]
+>
+> For FlatPress, use the iframe code. If the **Install Widget** window has an **Iframe code** tab, click it before you click **Copy Code**.
+
 ### In FlatPress
 
 1. In the FlatPress admin, click **Configuration**, then **FlatPress Protect**.

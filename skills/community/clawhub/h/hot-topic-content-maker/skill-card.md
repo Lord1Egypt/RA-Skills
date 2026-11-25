@@ -1,6 +1,6 @@
 ## Description:
 
-Turn a trending topic or seasonal moment into a publish-ready social post with tailored angles, visuals, captions, hashtags, and short-form video.
+Turn a trending topic into a post you can publish today. Bring the hot topic, moment, or seasonal peg — or have it read the public trending boards on Douyin, TikTok, and X, or name a topic and have it search what people are actually posting about it on Xiaohongshu and Douyin, and pick the ones worth a look. This trending content workflow finds the angles that genuinely connect the topic to your brand or account, judges which one is worth your name on it, then builds the chosen angle into a finished post: cover wording and a rendered cover image, the caption, the hashtags, a beat-by-beat plan for a short cut, and the narrated vertical clip itself. Use it for trendjacking, newsjacking, trend-riding, trend discovery, seasonal and holiday campaigns, festival and shopping-event content, moment marketing, and getting a same-day social post or short video out of a topic while it is still moving. The finished post fits Douyin, Xiaohongshu, WeChat Channels, TikTok, Reels, and Shorts.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Content creators, social media teams, and brands use this skill to connect a timely topic with their account and create platform-ready image posts or short videos. When requested, it can look up public trend boards or search posts about a supplied topic.
+Social media creators, brands, and campaign teams use this skill to connect a current topic or seasonal moment to their account and produce a ready-to-publish post or short video for supported social platforms.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review reports automatic installation, environment reporting, and broad stored permissions that it says do not clearly fit the stated content-creation purpose.
+Risk: ClawScan rates the release suspicious with medium confidence, citing recurring environment telemetry, broad partly undisclosed access, voice management functions, external content processing disclosures, and gaps in paid-call approval order beyond the advertised trend and content creation purpose. Scanner coverage is partial, and this verdict does not establish malicious intent.
 
-Mitigation: Before installing or connecting accounts, review requested permissions and confirm what environment or account data is collected and shared.
-
-Risk: The review flags data transfers and capabilities whose purpose is unclear; its scan was partial because some local references were unresolved.
-
-Mitigation: Check unresolved references and service data-handling disclosures before sharing credentials, account data, or campaign details.
+Mitigation: Review and clarify telemetry, permission scope, voice management, external content processing disclosures, and paid-call approval order before installation; avoid installation until these concerns are addressed.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/beatra-ai/skills/hot-topic-content-maker)
-- [Beatra skill overview](https://beatra.ai/skills/hot-topic-content-maker)
+- [Beatra skill page](https://beatra.ai/skills/hot-topic-content-maker)
+- [Workflow and approval steps](references/workflow.md)
+- [Trend lookup guidance](references/trend-lookup.md)
+- [Content pack formats](references/content-pack.md)
+- [Updates and security guidance](references/updates-and-security.md)
+- [Installation and authentication](references/installation-and-auth.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Images, Audio, Video, Subtitles]
+**Output Type(s):** [Text and content guidance, Markdown, Images, Audio, Video, Subtitles]
 
-**Output Format:** [Captions and hashtags, image and shot plans, rendered images, audio and video files, and subtitles in JSON, SRT, or VTT]
+**Output Format:** [Captions, hashtags, scripts, and production plans as text or Markdown; generated image, audio, and vertical video files; subtitles in JSON, SRT, and VTT formats.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Platform-tailored content packages; image and video dimensions and media formats depend on the selected platform and generated assets.]
+**Other Properties Related to Output:** [A selected trend angle can produce an image set, a narrated scene or presenter video, or both; video output is up to 30 seconds.]
 
 ## Skill Version(s):
 
-0.3.7 (source: server-resolved release metadata)
+0.3.8 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

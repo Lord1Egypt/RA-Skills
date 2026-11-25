@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers use this skill to research TikTok ad creatives, TikTok Shop products, and TikTok Shop stores together. It helps compare creative patterns with product momentum, GMV, sales, pricing, and store positioning.
+Marketers and ecommerce researchers can compare TikTok ad creatives with TikTok Shop product and store performance, then summarize observed patterns.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill requires a globally installed third-party PipiAds MCP server and access to a PipiAds API key.
+Risk: Search criteria and filters may be sent to PipiAds, potentially exposing confidential or personal information.
 
-Mitigation: Install only if the PipiAds MCP package is trusted, use a dedicated or limited API key where possible, and prefer an isolated environment when handling sensitive local data.
+Mitigation: Avoid including confidential or personal information in research queries.
 
-Risk: Broad search and detail workflows can consume PipiAds account credits.
+Risk: Broad product or ad searches may consume account credits.
 
-Mitigation: Ask for category, region, price band, and time window before broad TikTok Shop research, and monitor credit and billing usage.
+Mitigation: Confirm the category, region, price band, and time window before broad research.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/fanyanggod/skills/tiktok-shop-ad-library-analytics)
-- [PipiAds homepage](https://www.pipiads.com)
+- [PipiAds](https://www.pipiads.com)
 - [PipiSpy API key and billing](https://www.pipispy.com/)
+- [ClawHub skill page](https://clawhub.ai/fanyanggod/skills/tiktok-shop-ad-library-analytics)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, guidance, API calls, configuration]
+**Output Type(s):** [Analysis, Text, Markdown]
 
-**Output Format:** [Markdown or text summaries with tool-call guidance and setup instructions]
+**Output Format:** [Markdown summary]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires npm and a PIPIADS_API_KEY for the PipiAds MCP server; API calls may consume PipiAds account credits.]
+**Other Properties Related to Output:** [Summarizes ad, product, and store findings; API calls may consume account credits.]
 
 ## Skill Version(s):
 
-1.0.2 (source: server release evidence)
+1.0.3 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

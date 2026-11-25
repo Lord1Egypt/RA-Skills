@@ -18,7 +18,7 @@ Enforce default non-root execution and explicit approval-first elevation with im
 1. Verify privileged command is required for task outcome.
 2. Execute privileged work through wrapper:
    - `python3 scripts/guarded_privileged_exec.py --reason "required change" --use-sudo -- <command>`
-3. If wrapper requests approval, require explicit user consent before command runs.
+3. If wrapper requests approval, the user answers at the terminal. Do not pipe or script the answer; with no terminal the wrapper refuses.
 4. Execute only the approved privileged command(s):
    - Approval is tied to the exact argv you approved.
    - Any different privileged argv triggers a new approval and allowlist entry.

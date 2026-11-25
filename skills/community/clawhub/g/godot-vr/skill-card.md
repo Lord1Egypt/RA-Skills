@@ -1,6 +1,6 @@
 ## Description:
 
-Build and headless-verify Godot 4.7 OpenXR/VR apps with room-scale workflow guidance and controller-binding troubleshooting.
+Build & headless-verify Godot 4.7 OpenXR/VR apps — room-scale workflow, Pimax Crystal tested in-visor, controller-binding pitfalls covered.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to build Godot 4 OpenXR applications, check scenes without a headset, and troubleshoot XR controller tracking and interactions.
+Developers building Godot 4.7 VR or OpenXR applications use this skill to scaffold scenes, configure controller bindings, and verify builds and screenshots on Windows. It also helps diagnose Godot 4.7 rendering, physics, and XR API issues.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Project content could be lost when existing files are overwritten.
+Risk: Replacing an existing project file could lose its contents if the write fails or is interrupted.
 
-Mitigation: Review existing files and keep a backup or inspect a diff before applying overwrite steps.
+Mitigation: Back up the target to scratch before replacement, and restore it from that backup if the replacement fails or is interrupted.
 
-Risk: Changing the machine-wide OpenXR default could affect other XR applications.
+Risk: Switching the OpenXR runtime changes the machine-wide default runtime on Windows.
 
-Mitigation: Check the current runtime and dependent applications; change the default only when needed and restore it afterward.
-
-Risk: The security review is incomplete because three local references could not be resolved.
-
-Mitigation: Resolve and review the missing reference paths before relying on the affected guidance.
+Mitigation: Record the current runtime value before switching and restore that value when finished; account for XR_RUNTIME_JSON overrides.
 
 ## Reference(s):
 
-- [Godot 4.7 API notes](artifact/references/godot-47-api.md)
-- [XR controller troubleshooting](artifact/references/xr-controller-troubleshooting.md)
-- [Runtime-swappable graphics styles](artifact/references/style-swap-system.md)
+- [Godot 4.7 API forms](references/godot-47-api.md)
+- [XR controller troubleshooting](references/xr-controller-troubleshooting.md)
+- [Runtime-swappable graphics styles](references/style-swap-system.md)
+- [GLB triangle scanner](scripts/scan_glb.py)
+- [ClawHub skill listing](https://clawhub.ai/blueboyzx/skills/godot-vr)
+- [PimaxXR releases (optional third-party runtime)](https://github.com/mbucchia/Pimax-OpenXR/releases)
+- [Publisher profile](https://clawhub.ai/user/blueboyzx)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Configuration, Shell commands, Guidance]
+**Output Type(s):** [Code, Shell commands, Configuration instructions, Technical guidance]
 
-**Output Format:** [Markdown with GDScript, Godot project configuration, and shell commands]
+**Output Format:** [Markdown guidance with GDScript, project configuration examples, Python utility code, and shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include a runnable Godot project and verification artifacts such as screenshots.]
+**Other Properties Related to Output:** [May include project files and verification steps tailored to the user's Godot VR task.]
 
 ## Skill Version(s):
 
-1.0.3 (source: release evidence and frontmatter)
+1.0.4 (source: SKILL.md frontmatter; ClawHub release)
 
 ## Ethical Considerations:
 

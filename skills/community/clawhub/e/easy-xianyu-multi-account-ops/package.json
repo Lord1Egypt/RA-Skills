@@ -1,0 +1,11 @@
+{
+  "name": "easy-xianyu-multi-account-ops",
+  "version": "1.1.1",
+  "private": false,
+  "type": "module",
+  "description": "隔离多个 EasyBR 浏览器环境并编排闲鱼草稿、研究和消息摘要任务。",
+  "scripts": {
+    "test": "node scripts/run.mjs --self-test"
+  },
+  "license": "MIT-0"
+}

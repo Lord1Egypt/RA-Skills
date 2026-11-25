@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes facial images or videos to produce structured indicators of stress, anxiety tendency, and depression tendency for mental health monitoring.
+Analyzes facial images or videos to provide structured indicators for stress, anxiety tendency, and depression tendency.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Mental health monitoring teams can use facial images or videos to generate structured stress assessments with anxiety and depression tendency indicators, and review past reports. The skill documentation says its results are informational and do not replace professional counseling or clinical diagnosis.
+People and organizations can use the skill for preliminary mental health monitoring from facial images or videos and receive a structured assessment report. The skill documentation says its results are for reference and do not replace professional counseling or clinical diagnosis.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review rates this release suspicious and cites concerns about remote uploads, account creation, identity and token storage, and privacy and execution safeguards; the review is incomplete.
+Risk: ClawScan marks the release suspicious, citing reported account and credential handling, privacy concerns around remote facial-media analysis, and a mismatch between the stated purpose and some reported capabilities. The scan was partial; these findings do not establish malicious intent.
 
-Mitigation: Consider the security verdict before installing. Avoid providing facial media or other sensitive information until the concerns and missing referenced path have been reviewed.
+Mitigation: Treat this as a review warning. Examine how facial media, identity details, and credentials are handled, and weigh the incomplete scan before installing or sending media.
+
+Risk: Assessment indicators about stress, anxiety, or depression could be mistaken for a clinical diagnosis.
+
+Mitigation: Use results as a reference only; seek a qualified professional for clinical assessment or ongoing concerns.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-psychological-stress-assessment-analysis)
+- [ClawHub release page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-psychological-stress-assessment-analysis)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Markdown]
+**Output Type(s):** [Analysis, Text, JSON, Markdown, Guidance]
 
-**Output Format:** [Structured assessment report in JSON or Markdown, with historical report lists in Markdown]
+**Output Format:** [Structured JSON or text assessment report; Markdown table for report lists]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports may include stress, anxiety and depression tendency indicators, suggestions, risk notices, and report links. Accepts facial image or video inputs.]
+**Other Properties Related to Output:** [Accepts local media files or a media URL; reports may include suggestions and a report link.]
 
 ## Skill Version(s):
 
-1.0.18 (source: server-resolved release metadata)
+1.0.20 (source: server-resolved ClawHub release evidence)
 
 ## Ethical Considerations:
 

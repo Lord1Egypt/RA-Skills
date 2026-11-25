@@ -1,40 +1,53 @@
-## Description: <br>
-Django REST Framework scaffolding best practices, and gotchas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Django REST Framework scaffolding best practices, and gotchas.
 
-## Publisher: <br>
-[pradeepcep](https://clawhub.ai/user/pradeepcep) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pradeepcep](https://clawhub.ai/user/pradeepcep)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold, configure, and improve Django REST Framework APIs, including serializers, viewsets, routing, authentication, permissions, pagination, filtering, performance, and testing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Example setup and project-management commands could affect the wrong Django project or environment if run from an unintended directory. <br>
-Mitigation: Run commands only in the intended project directory and use a virtual environment. <br>
-Risk: Generated Django settings, migrations, dependencies, permissions, or authentication choices may be unsuitable for a specific deployment. <br>
-Mitigation: Review Django settings, migrations, dependencies, permissions, and authentication choices before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pradeepcep/drf) <br>
-- [Skill homepage](https://github.com/pradeepcep/openclaw-drf) <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold and maintain Django REST Framework APIs, including serializers, viewsets, routing, authentication, permissions, pagination, filtering, performance optimization, and testing.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with code and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 for the documented Django project setup commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Setup commands install Django and Django REST Framework dependencies into the active Python environment.
+
+Mitigation: Run installation commands inside a virtual environment and pin or hash-lock dependencies before production use.
+
+Risk: Generated API guidance may need project-specific review for authentication, permissions, exposed serializer fields, and query performance.
+
+Mitigation: Review proposed DRF changes before deployment, keep explicit permissions enabled, audit serializer fields, and test success and failure paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pradeepcep/skills/drf)
+- [Skill homepage](https://github.com/pradeepcep/openclaw-drf)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces implementation guidance and command snippets for Django REST Framework projects.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

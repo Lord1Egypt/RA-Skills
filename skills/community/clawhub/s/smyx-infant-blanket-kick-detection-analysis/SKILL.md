@@ -1,7 +1,7 @@
 ---
 name: "smyx-infant-blanket-kick-detection-analysis"
 description: "Using a night-time camera (infrared or low-light) above the crib, the system analyzes in real time the coverage of the blanket on the infant's body. It checks whether the blanket coverage is below a preset threshold (e.g., 50%) or recognizes the kicking motions that cause the blanket to slip off, then outputs an alert. | 通过婴儿床夜间摄像头（红外或微光），实时分析婴儿身体及被子的覆盖情况。可联动智能家居设备（如自动调高室温、推送提醒至父母手机），预防婴儿着凉。"
-version: "1.0.21"
+version: "1.0.23"
 license: "MIT-0"
 ---
 

@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/YottaMeta/yotta-resume/data/source-registry.schema.json",
+  "title": "yotta-resume source registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_version",
+    "generated_at",
+    "sources"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "contract_version": {
+      "const": "1.0"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_id",
+          "layer",
+          "title",
+          "publisher",
+          "url",
+          "published_at",
+          "retrieved_at",
+          "last_verified_at",
+          "refresh_interval_days",
+          "stale_after_days",
+          "usage_policy",
+          "license_review_status",
+          "status"
+        ],
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]{2,63}$"
+          },
+          "layer": {
+            "enum": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "publisher": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^https://"
+          },
+          "published_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date"
+          },
+          "retrieved_at": {
+            "type": "string",
+            "format": "date"
+          },
+          "last_verified_at": {
+            "type": "string",
+            "format": "date"
+          },
+          "refresh_interval_days": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "stale_after_days": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "usage_policy": {
+            "enum": [
+              "facts_only",
+              "link_only",
+              "permission_required"
+            ]
+          },
+          "license_review_status": {
+            "enum": [
+              "unknown",
+              "review_required",
+              "cleared",
+              "restricted"
+            ]
+          },
+          "status": {
+            "enum": [
+              "active",
+              "draft",
+              "retired"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

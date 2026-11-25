@@ -1,7 +1,7 @@
 ---
 name: "fraud-call-identification-analysis"
 description: "Analyzes incoming call content for multi-dimensional risk, intelligently identifies scam scripts, determines if a call is fraudulent, assesses risk levels, and generates an Anti-Fraud Guardian analysis report. | 诈骗电话识别分析工具，针对来电通话内容进行多维度风险分析，智能识别诈骗话术，判断是否为诈骗电话并评估风险等级，输出反诈卫士分析报告"
-version: "1.0.25"
+version: "1.0.26"
 license: "MIT-0"
 ---
 

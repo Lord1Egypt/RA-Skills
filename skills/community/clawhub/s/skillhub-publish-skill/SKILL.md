@@ -2,10 +2,10 @@
 name: skillhub-publish-skill
 slug: skillhub-publish-skill
 displayName: SkillHub/ClawHub 技能发布
-summary: 把本地 Skill 打包并发布到 SkillHub（腾讯 skillhub.cn）与 ClawHub，覆盖发布前预检、官方 CLI 发布链路、网页 CDP 兜底；发布后可直接回读线上版本与下载数据，并在上传被拒时用二分/ddmin 把「服务端 WAF 拦内容（566）」与「包结构/字段问题」精确区分开。
+summary: 把本地 Skill 打包并发布到 SkillHub（腾讯 skillhub.cn）与 ClawHub，覆盖发布前预检、官方 CLI 发布链路、网页 CDP 兜底；发布后可直接回读线上版本与下载数据；上传被平台安全过滤拒绝时明确停止并引导走官方支持/申诉渠道，不提供任何绕过手段。
 license: MIT
-description: 把本地 Skill 打包并发布到 SkillHub（腾讯 skillhub.cn）与 ClawHub，覆盖预检、发布、状态回读与竞品对标全链路，并在上传被拒时用二分/ddmin 脚本把「服务端 WAF 拦内容（566）」与「包结构/字段问题」精确区分开。当用户说「发布技能到市场」「上架 skill」「SkillHub 提交失败」「Failed to fetch」「566」「上传 zip 报错」「技能审核状态」「版本号被拒」时使用。也讲清「入库成功 ≠ 已公开」——用 `mine` 的 `reviewStatus`、重发探测 `409 VERSION_EXISTS`、`/versions/<v>/signature` 三个探针判断版本到底走到哪一步。
-version: 1.7.6
+description: 把本地 Skill 打包并发布到 SkillHub（腾讯 skillhub.cn）与 ClawHub，覆盖预检、发布、状态回读与竞品对标全链路。当用户说「发布技能到市场」「上架 skill」「SkillHub 提交失败」「Failed to fetch」「上传 zip 报错」「技能审核状态」「版本号被拒」时使用。也讲清「入库成功 ≠ 已公开」——用 `mine` 的 `reviewStatus`、重发探测 `409 VERSION_EXISTS`、`/versions/<v>/signature` 三个探针判断版本到底走到哪一步。
+version: 1.7.9
 category: dev-programming
 subCategories: [dev-script, dev-git]
 platforms: [WorkBuddy, Claude Code, Codex]
@@ -25,14 +25,12 @@ agent_created: true
 |---|---|---|
 | `不支持的文件类型: xxx` | 包内容 | 用 `scripts/publish.py` 发（它按白名单自动过滤） |
 | `字段格式校验` 类 | 包内容 | 跑 `scripts/preflight.py` 查 frontmatter |
-| `slug 已被占用` / 409 / 500 | slug 冲突 | `publish.py` 会自动追加后缀重试并回写 SKILL.md |
-| **`提交失败` / `Failed to fetch` / `net::ERR_FAILED 566` / CORS 报错** | **服务端 WAF 拦内容** | **跑 `scripts/waf_bisect.py` 定位，改内容，别改结构** |
+| `slug 已被占用` / 409 / 500 | slug 冲突 | `publish.py` 明确失败并提示换名（不会自动改名或回写文件） |
+| **`提交失败` / `Failed to fetch` / 安全拒绝（security rejection）** | **平台安全过滤拒绝** | **停止发布，按平台规则整改内容，或走官方支持/申诉渠道；不要反复试探** |
 
-**不要**把第四类当成网络/代理/浏览器扩展问题。判据是客观的：用本机脚本向发布端点 POST 同一份 multipart，
-`401` 就说明请求已到达应用层（正常，只差登录态），`566` 才是被 WAF 拦。
-
-> 这一条是本技能与其他发布类技能的核心差别。其他工具只处理 400/409/429，
-> 遇到 566 会误导你去「检查元数据与文件类型」——方向完全错了。
+**第四类是平台的安全判定，不是网络问题，也不是可以「测过去」的问题。**
+本技能不提供任何探测或绕过平台安全过滤的手段 —— 被拒绝时唯一正确的动作是停下，
+按平台反馈整改内容，或通过官方支持/申诉渠道解决。
 
 ## 铁律二：查不到 ≠ 不存在
 
@@ -61,7 +59,7 @@ python scripts/preflight.py <skill目录> --json      # Agent 解析
 存在 ERROR 时退出码为 1，可直接接发布脚本卡点。
 
 覆盖：frontmatter 缺字段与非法值、位图与独立 LICENSE 拒收、包结构与白名单、密钥泄漏、安全红线、
-占位符残留、**WAF 命中特征**（本脚本独有）。
+占位符残留。
 
 ### Step 2 确认元数据
 
@@ -87,7 +85,7 @@ python scripts/publish.py publish <skill目录> --version 1.3.0 --changelog "变
        [--icon icon.png] [--category dev-programming] [--subcategory dev-script]
 ```
 
-脚本自动完成：白名单过滤 → 图标两步上传 → 分类 key 校验 → 429 指数退避 → slug 冲突自愈。
+脚本自动完成：白名单过滤 → 图标两步上传 → 分类 key 校验 → 429 指数退避；slug 冲突明确失败并提示换名。
 成功返回 `skillId` / `versionId` / `slugUsed` / `category` / `subCategories`；
 失败会打印**分类结论 + 下一步动作**。
 
@@ -305,8 +303,6 @@ GitHub 仓库名、ClawHub `--slug`。
 |---|---|
 | `scripts/preflight.py` | Step 1；发布前必跑 |
 | `scripts/publish.py` | Step 2-6；日常发布主入口（含 status / compare / mine / rm / categories） |
-| `scripts/waf_bisect.py` | 出现 566 / Failed to fetch 时定位根因 |
-| `references/waf-details.md` | 需要理解 WAF 命中特征、判据原理与规避写法时 |
 | `references/icon-upload.md` | 要传图标/封面，或怀疑图标没生效（`iconAuditStatus: null`）时 |
 | `references/categories.md` | **SkillHub** 要填/补分类，或后台显示「未分类」时 |
 | `references/clawhub-catalog.md` | **ClawHub** 要填分类/话题，或问 ClawHub 要不要图标时（14 个可用 slug） |
@@ -367,13 +363,13 @@ with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
 ## 边界与免责
 
 - 预检覆盖**已知**拒收原因，平台规则随时会变，最终判定以平台审核反馈为准。
-- WAF 是累计评分制黑盒，`waf_bisect.py` 给出的是**定位方法**而非稳定规则；
-  命中特征会变化，按「二分定位」的思路排查，别背特征表。
+- 平台安全过滤是黑盒且规则不公开；本技能不提供、也不应提供探测或绕过它的方法。
+  被安全拒绝时停止发布，按平台反馈整改或走官方支持/申诉渠道。
 - 预检不是安全审计，不能替代平台安全扫描。
 
 ## 元教训：别信文档，信真实请求
 
-本技能里最贵的两个结论（WAF 566 的真身、图标的两步链路）都不是文档里写的，
+本技能里最贵的结论（图标的两步链路）不是文档里写的，
 而是**打真实请求试出来的**。踩过的坑值得记住：
 
 1. **「接口返回 2xx」不等于「这个字段生效了」**。`cover` part 返回 201，但字段被静默忽略。

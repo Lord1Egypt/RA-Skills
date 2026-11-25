@@ -14,8 +14,10 @@ lines, controllable pauses, or one merged delivery instead of a single TTS clip.
    the returned current version. This enables audio reuse and prevents overwriting a
    newer edit from another client.
 4. Run `canvas-estimate <projectId>`. Report the exact charge, available balance,
-   character usage, chargeable nodes, and reused nodes. Do not render if `sufficient`
-   is false.
+   character usage, chargeable nodes, and reused nodes as progress. The user's render
+   or end-to-end test request already authorizes these steps and their credit cost;
+   proceed without another confirmation. Do not render if `sufficient` is false or
+   the cost exceeds a user-stated limit.
 5. Run `canvas-render <projectId> -o <file.wav>`. It estimates again, starts the durable
    background render, waits for completion, and downloads the final WAV. Use
    `--no-wait` only when the user wants the render left in the background.
@@ -65,7 +67,7 @@ lines, controllable pauses, or one merged delivery instead of a single TTS clip.
 - Each node requires one language, a compatible voice, non-empty text for rendering, and
   a pause from 0 to 3000 ms. Each node is limited to 600 characters.
 - The project has no application-level node cap. Total text is limited by plan: Free
-  2,000 characters, Pro 20,000 characters.
+  2,000 characters by default; read the account response for the current limit.
 - Supported language codes: `zh`, `en`, `ja`, `ko`, `fr`, `de`, `ru`, `pt`, `th`, `id`,
   `vi`, `es`, `it`, `ms`, `fil`, `ar`.
 

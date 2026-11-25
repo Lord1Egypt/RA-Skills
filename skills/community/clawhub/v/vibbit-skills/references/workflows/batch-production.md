@@ -1,8 +1,12 @@
 # Batch production
 
+During batch preparation and recovery, use [material reuse](../resources/materials.md) to collect actual IDs, batch-check access/analysis, and share adopted references and still-valid URLs. Missing or inaccessible materials affect only their dependent items; retain successful items. Link outputs to their own material/adoption records, without treating lookup as server-side batch production.
+
+For mixcut batches, use [Agent semantic mixcut](semantic-mixcut.md), pin the template revision, and keep per-item product facts, allowed material pool, adopted sound, audio/picture plan, and cloud job. Share rules and valid reference analysis, not old output timing. Verify assets for each product, retain successful items, and resume failed stages. A B-roll change does not regenerate every item’s voice.
+
 Establish each input, total count, variation dimensions, and output specifications. Execute the authorized N items; ask when the count is missing. Do not generate indefinitely or keep sampling alternatives. See [credits and limits](../runtime/limits-and-credits.md).
 
-Client batching organizes supported public operations, normally submitting one item at a time. Keep item ID, input/request path, journal path, real task ID, state, and actual results. A local batch manifest is not a server batch ID.
+Client batching organizes supported public operations, normally submitting one item at a time. Independent ready comic pages use [bounded comic concurrency](../runtime/comic-batching.md), defaulting to 3 unfinished image tasks. Individual POST requests do not require waiting for each image to finish; this exception does not change video or translation policies. Keep item ID, input/request path, journal path, real task ID, state, and actual results. A local batch manifest is not a server batch ID.
 
 Validate required fields and downstream dependencies for all items before execution. Preserve failures and uncertain submissions; independent items may continue within existing authorization. On recovery, query existing IDs and retain successes. Resubmit only when nonacceptance is established or regeneration is authorized.
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Creates images, videos, music, and speech, and retrieves public social media data through Beatra.
+Beatra Universal helps an agent create and manage AI images, videos, music, and speech, and retrieve public social data across YouTube, TikTok, Instagram, and X.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users can create or edit supported media, produce narration or music, and retrieve public social content for creative projects.
+Content creators and social media researchers use the skill to produce and manage AI-generated images, video, music, and speech, or to retrieve public social data for research and planning.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,41 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The scan flags concerns about automatic installation and device reporting.
+Risk: ClawScan rates the skill suspicious, citing automatic installation-linked telemetry and privacy gaps for user media and text sent to the service; scanner coverage is partial.
 
-Mitigation: Review the installation and reporting behavior and proceed only if you are comfortable with it.
+Mitigation: Review telemetry and data-transfer practices, and send only content intended for the service.
 
-Risk: User content may be sent to Beatra's external service for processing.
+Risk: ClawScan reports a possible uninstall safety issue.
 
-Mitigation: Avoid sending sensitive content unless you are comfortable with the service processing it.
+Mitigation: Review the uninstall behavior and confirm the files and shared connection affected before running it.
 
-Risk: The scan notes a possible uninstall reliability issue.
+Risk: Security guidance notes that updates run an unpinned CLI.
 
-Mitigation: Follow the documented uninstall and credential revocation steps, and check the Beatra Console if access needs to be revoked.
+Mitigation: Review update changes before applying them.
 
 ## Reference(s):
 
-- [Beatra installation and service information](https://beatra.ai/install)
-- [Beatra Universal on ClawHub](https://clawhub.ai/beatra-ai/skills/beatra)
-- [Models and capabilities](artifact/references/models.md)
-- [Updates and security](artifact/references/updates-and-security.md)
+- [ClawHub release page](https://clawhub.ai/beatra-ai/skills/beatra)
+- [Beatra package information](https://beatra.ai/install)
+- [Image workflows](artifact/references/images.md)
+- [Video workflows](artifact/references/videos.md)
+- [Music and speech workflows](artifact/references/speech-and-audio.md)
 - [Public social data](artifact/references/social.md)
-- [Speech and voices](artifact/references/speech-and-voices.md)
+- [Updates and security](artifact/references/updates-and-security.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Images, Video, Audio, JSON]
+**Output Type(s):** [Images, Video, Audio, Music, Text, JSON, Files]
 
-**Output Format:** [Agent guidance, generated media files, and structured public social data]
+**Output Format:** [Generated media files, transcripts and subtitles, prompts or scripts, and public social data in JSON; media formats vary by model.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Media formats and dimensions depend on the selected service capability; social lookup results may be returned as JSON.]
+**Other Properties Related to Output:** [The skill reports the actual format and dimensions of returned media. Some creative operations may use account credits.]
 
 ## Skill Version(s):
 
-3.0.3 (source: server-resolved release)
+3.0.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

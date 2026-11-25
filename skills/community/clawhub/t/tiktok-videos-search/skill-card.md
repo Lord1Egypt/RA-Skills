@@ -1,6 +1,6 @@
 ## Description:
 
-搜索 TikTok 公开关键词结果、博主作品和视频评论，并以 JSON 返回，供趋势、竞品和舆情分析使用。
+检索 TikTok 关键词热门视频、公开创作者作品和视频评论，并以结构化 JSON 返回结果。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-创作者、品牌和 MCN 团队可用此技能检索 TikTok 公开视频、博主作品和评论，为选题发现、竞品跟踪及舆情分析获取数据。
+External creators, brands, and marketing teams use the skill to explore TikTok trends, review public creator posts, and summarize video comments for content research and competitor monitoring.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search terms and TikTok targets are sent to Guaikei, and API use may incur charges.
+Risk: The security assessment is benign with medium confidence, but only 20 of 32 components were fully scanned and static tool-misuse analysis was degraded, leaving incomplete coverage.
 
-Mitigation: Review Guaikei privacy terms and current pricing before use; keep result limits appropriate.
+Mitigation: Review and scan the skill before installation, with particular attention to scripts that were not fully inspected.
 
-Risk: Results can include public usernames and comment content that may need care when shared.
+Risk: The skill requires a GUAIKEI_API_TOKEN, and API requests may incur usage-based charges.
 
-Mitigation: Confirm authorization before external or commercial publication and redact usernames where appropriate.
-
-Risk: Optional logging can retain result data in local temporary storage.
-
-Mitigation: Leave optional logging disabled unless needed, and handle any saved results according to your data policies.
+Mitigation: Keep the token private and use request limits appropriate to the account plan.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/why20261/skills/tiktok-videos-search)
-- [Guaikei service](https://www.guaikei.com)
-- [Command options](references/options.md)
-- [Changelog](references/changelog.md)
+- [ClawHub release](https://clawhub.ai/why20261/skills/tiktok-videos-search)
+- [GuaiKei service](https://www.guaikei.com)
+- [Command options](artifact/references/options.md)
+- [Changelog](artifact/references/changelog.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Structured data]
+**Output Type(s):** [JSON, Guidance]
 
-**Output Format:** [JSON envelope containing video search results, creator posts, or video comments]
+**Output Format:** [Structured JSON result envelope with video, creator-post, or comment records]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results distinguish empty responses from errors; timestamps use Beijing time.]
+**Other Properties Related to Output:** [Results may be empty; omitted fields do not necessarily mean a value is zero or absent. No video detail lookup or download is provided.]
 
 ## Skill Version(s):
 
-1.1.1 (source: SKILL.md frontmatter, changelog dated 2026-11-04, package.json)
+1.1.2 (source: frontmatter, package.json)
 
 ## Ethical Considerations:
 

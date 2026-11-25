@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes fixed-camera aquarium video to identify abnormal fish swimming postures and report their duration relative to the observation period.
+Analyzes aquarium fish videos to flag abnormal swimming posture and report the share of observation time affected.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Aquarists and aquarium operators use the skill to review fixed-camera fish video, identify unusual swimming posture, and inspect an abnormal-duration summary. Its results are visual observations and do not diagnose fish disease.
+Aquarists and aquarium operators use the skill to review fixed-camera fish videos for abnormal swimming posture and receive a structured monitoring report. It supports early observation and is not a veterinary diagnosis.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan marks the skill suspicious, citing account and credential handling, broad remote actions, and behavior that does not consistently match its fish-video analysis purpose.
+Risk: The security assessment flags account, identity, and external-processing behavior, and says the available analysis is incomplete.
 
-Mitigation: Review the skill and its requested permissions before use; avoid supplying sensitive credentials or production account access until the reported behavior is understood.
+Mitigation: Review the publisher and data handling before installation, and use only authorized fish video and account data.
 
-Risk: The security scan is partial because a local path-like reference was missing, so it does not cover every referenced item.
+Risk: The security assessment notes that an option intended to avoid analysis may still trigger it.
 
-Mitigation: Check that referenced files and dependencies are present and review them before installing or running the skill.
+Mitigation: Confirm the option's behavior before relying on it to prevent video analysis.
 
 ## Reference(s):
 
-- [API documentation](references/api_doc.md)
-- [Skill demo](https://lifeemergence.com/sample.html)
 - [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-fish-abnormal-swimming-detection-analysis)
+- [API reference](references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Markdown, Report links]
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
 
-**Output Format:** [Structured posture analysis and duration metrics, with Markdown summaries and report links]
+**Output Format:** [Structured analysis results with a Markdown summary and report link]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include posture categories, abnormal-duration proportions, alerts, and recommendations.]
+**Other Properties Related to Output:** [Reports observed posture events and abnormal-duration proportion; not a veterinary diagnosis.]
 
 ## Skill Version(s):
 
-1.0.15 (source: server-resolved release metadata; artifact frontmatter says 1.0.21)
+1.0.16 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

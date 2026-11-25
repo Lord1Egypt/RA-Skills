@@ -1,6 +1,6 @@
 # 磁盘/分区/文件/注册表/设备 — 写法示例
 
-> **版本兼容性：** 部分示例使用 DLL 调用（`CALL $--qd`）。DLL 调用需要 PECMD2012 v1.88+ 完整版支持（32-bit 和 64-bit 行为一致）。
+> **版本兼容性：** 部分示例使用 DLL 调用（`CALL $--qd`）。DLL 调用需要 PECMD2012 v1.88+ 完整版支持；32/64 位语法一致，但结构体布局与可加载 DLL 位数不同。
 > 如果 DLL 调用不工作，可使用 `PART`、`FDRV`、`REGI`、`EXEC*` 等内置命令替代。
 
 ## 1. 磁盘枚举与信息
@@ -12,8 +12,8 @@ PART list disk,&&全部磁盘
 FORX * %&全部磁盘%,&&磁盘,
 {
     PART list disk %&磁盘%,&&磁盘信息
-    MSTR &&sz,&&bus,&&mbr,&&sign=<2><7><8><9>%&磁盘信息% // ⚠ 字段索引因 PART 输出格式而异
-    MESS Disk#%&磁盘%: Size=%&sz% bytes, Bus=%&bus%, Type=%&mbr%
+    MSTR &&sz,&&media,&&sign,&&bus,&&pttype=<2><7><8><9><10>%&磁盘信息%
+    MESS Disk#%&磁盘%: Size=%&sz% Media=%&media% Sign=%&sign% Bus=%&bus% Table=%&pttype%
 }
 ```
 
@@ -27,10 +27,13 @@ PART list part %&dsk%,&&全部分区
 FORX * %&全部分区%,&&pt,
 {
     FIND $%&pt%=0, EXIT -                         // skip partition 0 (SD card issue)
+    FIND $%&pt%=@, EXIT -                         // skip extended-partition container
+    FIND $%&pt%=-, EXIT -                         // skip empty slot
     PART -hextp -phy# list part %&dsk%#%&pt%,&&分区信息
-    MSTR &&tp,&&start,&&len,&&attr,&&drv=<2><4><5><7><9>%&分区信息%
-    // For GPT: MSTR has different field layout
-    // MSTR &&guid,&&attr,&&start,&&len,&&nr=<2><3><4><5><8>%&分区信息%
+    // MBR: 分区号 类型 引导 起始 大小 隐藏 结尾 物理# 盘符
+    MSTR &&tp,&&start,&&len,&&end,&&phy,&&drv=<2><4><5><7><8><9>%&分区信息%
+    // GPT: 分区号 类型GUID GPT 起始 大小 属性 分区GUID 物理# 盘符
+    // MSTR &&typeGUID,&&gpt,&&start,&&len,&&attr,&&partGUID,&&phy,&&drv=<2><3><4><5><6><7><8><9>%&分区信息%
     CALC &&lenGB=%&len%/1G#1
     IFEX $%&lenGB%G<1G, TEAM CALC &&lenMB=%&len%/1M#1| SET lenDisplay=%&lenMB%M! SET lenDisplay=%&lenGB%G
     MESS Part#%&pt%: Type=%&tp%, Size=%&lenDisplay%, Drv=%&drv%
@@ -83,9 +86,8 @@ _END
 SET &GUID_STR={53f56307-b6bf-11d0-94f2-00a0c91efb8b}
 SET$# &guid=*16 0
 CALL $--qd --ret:&&r ole32.dll,CLSIDFromString,${%&GUID_STR%},*&guid
-// Alternative: construct GUID from hex bytes
-SET &GUID_HEX=53 f5 63 07 b6 bf 11 d0 94 f2 00 a0 c9 1e fb 8b
-CODE *,%&GUID_HEX%,*HEX,&guid
+// Alternative: construct the binary GUID in one step (4-2-2-2-6 byte components)
+SET#$$ &guid=53f56307 b6bf 11d0 94f2 00a0c91efb8b
 CALL $--qd --ret:&&hSetup Setupapi.dll,SetupDiGetClassDevsW,*&guid,#0,#0,#0x12
 IFEX $%&hSetup%<>-1,
 {
@@ -143,7 +145,7 @@ FORX *NL &cfg,&&line,
     SED &&key=1,=.*,,%&line%
     SED &&val=1,.*=,,%&line%
     FIND $=%&key%,! SET %&key%=%&val%         // skip empty key lines
-    // Alternative idiom (canonical in 代码大全 source):
+    // Alternative idiom (common in production PE tools):
     // FIND *<>var,...  = "var is NOT empty"  (execute if var has content)
     // FIND *=var,...   = "var IS empty"      (execute if var is blank)
 }
@@ -156,7 +158,7 @@ WRIT C:\output.txt,1,First line           // 1 = 替换第1行
 WRIT C:\output.txt,+0,Second line        // +0 = 在末尾追加新行
 WRIT C:\output.txt,$0,a=%var%            // $ = 展开环境变量，0 = 替换最后一行
 PUTF -dd -len=0 C:\file.bin,0,zero        // create/truncate
-PUTF C:\file.bin,%offset%,#%&data%        // write at offset
+PUTF# C:\file.bin,%offset%,&data          // 写 PE 变量（命令后缀 #）
 ```
 
 ### 获取文件时间戳和大小
@@ -179,7 +181,7 @@ REGI #HKLM\SOFTWARE\App\Count,&num           // REG_DWORD
 REGI @HKLM\SOFTWARE\App\Binary,&data         // REG_BINARY
 REGI ~HKLM\SOFTWARE\App\Path,&expand         // REG_EXPAND_SZ
 REGI +HKLM\SOFTWARE\App\Big,&qword           // REG_QWORD
-REGI .HKLM\SOFTWARE\App\OfflineKey,&val      // offline hive (PE mounted Windows)
+REGI .HKLM\SOFTWARE\App\Value,&val,&type     // 任意类型 + 类型变量（不是离线！）
 
 // Write
 REGI $HKLM\SOFTWARE\App\Version=1.2.3
@@ -363,7 +365,7 @@ CALL $--qd --ret:&bret ntdll.dll,RtlAdjustPrivilege,#22,#1,#0,&&pEnabled
 
 ### 41. SSD 检测（寻道惩罚查询）
 
-IOCTL 计算公式：`CALC &ioctl = shl(0x2D,16) | shl(0,14) | shl(0x09,2) | 0` → 0x2D1400
+IOCTL 计算公式：`CALC &ioctl = shl(0x2D,16) | shl(0,14) | shl(0x500,2) | 0` → 0x2D1400
 
 ```wcs
 SET &STORAGE_PROPERTY_QUERY_Unknown=0
@@ -497,7 +499,7 @@ FIND $%&VT%=ERROR, MESS Value does not exist!  MESS Value exists
 
 // Check if DATA exists:
 REGI ?HKCU\Software\Microsoft\,&&VT
-FIND $%&VT%=ERROR,! { MESS KEY does not exist }
+FIND $%&VT%=ERROR, MESS KEY does not exist
 FIND $%&VT%<>ERROR,
 {
     FIND $%&VT%=NI, MESS DATA does not exist!  MESS DATA exists
@@ -512,8 +514,49 @@ FIND $%&VT%<>ERROR,
 FDIR --fullfile &&F=%&NAME1%
 IFEX %&F%,   SET &bfile=1                           // file or directory exists
 IFEX %&F%\,  SET &bfile=0                           // trailing slash = it's a directory
-FIND *=NAME1, SET &bfile=0                           // empty input check
+FIND $%NAME1%=, SET &bfile=0                        // empty input check
 ```
+
+---
+
+## 76. 离线注册表（HIVE）
+
+`REGI .` 的 `.` 是“任意类型”，读的是**当前活注册表**。离线配置单元必须先用 `HIVE` 挂载：
+
+```wcs
+// 语法：HIVE 子项名,[文件名]；子项是 HKLM 下一级名称
+HIVE PE-SYS,%SystemDrive%\Windows\System32\config\SOFTWARE
+REGI $HKLM\PE-SYS\Microsoft\Windows NT\CurrentVersion\ProductName,&name
+MESS ProductName=%&name%
+HIVE PE-SYS                                             // 卸载（只写子项名）
+
+// 加载到 HKEY_USERS
+HIVE -u PE-DEF,%&ntuserDat%
+...
+HIVE -u PE-DEF
+```
+
+---
+
+## 77. 格式化 / 盘符整理 / 挂载
+
+```wcs
+DFMT D:,NTFS,卷标,1              // 第4参非0=快格；省略=快格，0=全格
+DFMT E:,exFAT                    // 省略卷标与第4参
+
+DISK ,,,2,U:                     // 先各硬盘第一主分区，再其它；U 盘从 U: 起
+DISK ,,,3,U:                     // 只调整 U 盘盘符
+DISK ,1,3                        // 释放磁盘1分区3的盘符
+
+MOUN %&wim%,X:\Mount,1           // 只读挂载映像 1
+MOUN %&wim%,X:\Mount,1,*         // 读写（第4参 tempDir=*）
+MOUN -u X:\Mount                 // 卸载
+
+RAMD ImDisk,L64,FAT,R:,RAMDisk   // 创建 64MB 内存盘
+RAMD ImDisk* -D -m R:            // 卸载内存盘
+```
+
+> `DFMT`、`DISK`、`PART -super` 都会真实修改磁盘，先在虚拟机或可丢弃介质上验证目标变量。
 
 ---
 

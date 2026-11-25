@@ -27,7 +27,10 @@ python3 scripts/garmin_query.py steps "17:00"
 
 **支持的时间格式：**
 - `15:00`、`15:30:45`（24 小时制）
-- `2026-01-24 15:30`（完整日期时间）
+- `3:00 PM`、`3 PM`（12 小时制上午/下午）
+- `2026-01-24 15:30`（完整日期时间，无需再传 `--date`）
+
+> 提示：活动文件默认下载到**系统临时目录**（Windows/Linux/macOS 均可用，无需指定 `--output-dir`），下载结果 JSON 中的 `"file"` 字段为实际保存路径。
 
 ## 📊 扩展指标
 
@@ -115,10 +118,10 @@ python3 scripts/garmin_activity_files.py download --activity-id 12345678 --forma
 
 ```bash
 # 解析 FIT 文件（详细指标）
-python3 scripts/garmin_activity_files.py parse --file /tmp/activity_12345678.fit
+python3 scripts/garmin_activity_files.py parse --file <临时目录>/activity_12345678.fit
 
 # 解析 GPX 文件（GPS 轨迹）
-python3 scripts/garmin_activity_files.py parse --file /tmp/activity_12345678.gpx
+python3 scripts/garmin_activity_files.py parse --file <临时目录>/activity_12345678.gpx
 ```
 
 **FIT 文件中包含：**
@@ -135,17 +138,17 @@ python3 scripts/garmin_activity_files.py parse --file /tmp/activity_12345678.gpx
 
 ```bash
 # 跑到 1500 米处时我的心率/海拔是多少？
-python3 scripts/garmin_activity_files.py query --file /tmp/activity_12345678.fit --distance 1500
+python3 scripts/garmin_activity_files.py query --file <临时目录>/activity_12345678.fit --distance 1500
 
 # 活动中某一时刻的数据是多少？
-python3 scripts/garmin_activity_files.py query --file /tmp/activity_12345678.fit --time "2026-01-24T10:15:30"
+python3 scripts/garmin_activity_files.py query --file <临时目录>/activity_12345678.fit --time "2026-01-24T10:15:30"
 ```
 
 ### 综合分析活动
 
 ```bash
 # 获取全面的统计信息
-python3 scripts/garmin_activity_files.py analyze --file /tmp/activity_12345678.fit
+python3 scripts/garmin_activity_files.py analyze --file <临时目录>/activity_12345678.fit
 ```
 
 **返回内容：**
@@ -212,7 +215,7 @@ python3 scripts/garmin_data.py activities --days 7
 
 ```bash
 # 获取近期活动 ID
-activities=$(python3 scripts/garmin_data.py activities --days 7 | jq -r '.activities[].activityId')
+activities=$(python3 scripts/garmin_data.py activities --days 7 | jq -r '.activities[].activity_id')
 
 # 批量下载所有 FIT 文件
 for id in $activities; do
@@ -222,7 +225,9 @@ done
 
 ### 可视化创意
 
-1. **路线地图**：用 GPX 文件配合 Leaflet.js 或高德地图绘制
+> 注意：本技能的所有 HTML 报告必须使用 `scripts/report_style.py` 的统一样式（纯内联 SVG、禁止 Chart.js 等 CDN/外部依赖），以下思路应在该规范内实现。
+
+1. **路线图**：基于 GPX 坐标用内联 SVG 绘制简化路线投影（按经纬度直接映射 x/y）
 2. **海拔剖面图**：绘制海拔与距离的关系曲线
 3. **心率分区**：按心率区间为路线着色
 4. **配速热力图**：展示最快与最慢的路段

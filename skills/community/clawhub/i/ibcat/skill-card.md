@@ -1,6 +1,6 @@
 ## Description:
 
-Translates PDFs into layout-preserving bilingual side-by-side and monolingual Chinese PDFs using BabelDOC and an LLM bridge.
+Translates PDFs into layout-preserving English–Chinese bilingual or Chinese-only PDF documents.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-External users and developers use this skill to translate source PDFs, especially English-to-Chinese documents, into bilingual side-by-side PDFs while preserving layout. It also guides batching extracted text for LLM translation and rendering and verifying the final PDF outputs.
+Developers and document-processing teams use the skill to translate PDFs into English–Chinese bilingual or Chinese-only documents while retaining the source layout. The workflow extracts text with BabelDOC, translates segments with an LLM, and renders the result.
 
 ### Deployment Geography for Use:
 
@@ -22,42 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The setup workflow patches BabelDOC inside the active Python environment and disables BabelDOC font and CMap hash checks.
+Risk: The security evidence reports persistent changes to BabelDOC that bypass font and CMap hash checks.
 
-Mitigation: Run the skill only in an isolated virtual environment or container, avoid shared Python installations, and rebuild the environment after use.
+Mitigation: Review the patch and its effect before applying it; use an isolated Python environment and keep a restorable copy of the installed dependency.
 
-Risk: The workflow can install packages with --break-system-packages and uses unpinned dependencies or system packages.
+Risk: The security evidence reports broad process cleanup; the workflow terminates processes using its configured proxy port.
 
-Mitigation: Pin and review dependency versions in a disposable environment before processing important documents.
+Mitigation: Check which process is listening on the selected port and use a dedicated port before running the workflow.
 
-Risk: The scripts clear BabelDOC caches and terminate processes bound to the configured local proxy port.
+Risk: The security evidence reports potentially destructive workspace cleanup, and the scripts remove cache, working-directory, and translation files.
 
-Mitigation: Use a dedicated work directory and port, review running processes first, and avoid running as root.
-
-Risk: Input PDF text segments and translations are written to local JSON files and may be exposed to LLM or sub-agent workflows.
-
-Mitigation: Do not process confidential PDFs unless that exposure is acceptable, and remove work files after the translation is complete.
+Mitigation: Set dedicated work and cache paths, inspect the paths before each run, and back up translations or other files that must be retained.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/yjkj999999/skills/ibcat)
-- [BabelDOC](https://github.com/funstory-ai/BabelDOC)
-- [pdfplumber](https://github.com/jsvine/pdfplumber)
-- [Noto CJK Fonts](https://github.com/notofonts/noto-cjk)
+- [IBCAT release on ClawHub](https://clawhub.ai/yjkj999999/skills/ibcat)
+- [BabelDOC PDF engine](https://github.com/funstory-ai/BabelDOC)
+- [pdfplumber PDF verification library](https://github.com/jsvine/pdfplumber)
+- [Noto CJK fonts](https://github.com/notofonts/noto-cjk)
 
 ## Skill Output:
 
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files]
+**Output Type(s):** [PDF files, JSON, Shell commands, Guidance]
 
-**Output Format:** [Markdown guidance with shell commands and generated PDF and JSON file paths]
+**Output Format:** [Bilingual or Chinese-only PDF files, JSON translation segment files, and Markdown instructions with shell commands.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [When the workflow is run, it can produce bilingual .dual.pdf files, monolingual .mono.pdf files, segments.json, translations.json, and PDF verification output.]
+**Other Properties Related to Output:** [Bilingual PDFs place source and translated text side by side; CJK fonts are required, and scanned PDFs need OCR preprocessing. Translation quality depends on the selected LLM.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server release metadata and artifact documentation)
+1.0.2 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

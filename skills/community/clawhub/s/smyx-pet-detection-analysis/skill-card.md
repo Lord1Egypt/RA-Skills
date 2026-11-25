@@ -1,6 +1,6 @@
 ## Description:
 
-Detects cats, dogs, and birds in a target area using video or images for home pet monitoring.
+Detects cats, dogs, and birds in images and video for home pet monitoring.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Home pet owners use the skill to detect and count cats, dogs, and birds in submitted images or video, and to view previous analysis reports.
+External users can submit local images, videos, or media URLs to identify and count cats, dogs, and birds, then review analysis reports or query report history.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Media analysis and remote report features may handle sensitive household footage or report data.
+Risk: ClawScan rates this release suspicious based on reported account and credential handling, broad report access, and privacy-sensitive behavior; its scan is partial.
 
-Mitigation: Review the service and report handling before use, and submit only media and report queries the user intends to share.
+Mitigation: Review identity and token handling, restrict report access to authorized users, and review the missing component before relying on the scan.
 
-Risk: The skill initializes an internal account identity and uses account or token handling for remote analysis and history lookups.
+Risk: Images and videos sent for analysis may contain private home footage.
 
-Mitigation: Review identity and credential handling before installation; keep internal identifiers and credentials out of user-facing output.
-
-Risk: History lookup and report export features extend beyond detecting pets in provided media.
-
-Mitigation: Use history lookup or report export only when requested, and confirm the account's report data is appropriate to access.
+Mitigation: Submit only media approved for remote processing and avoid footage containing sensitive personal information.
 
 ## Reference(s):
 
-- [Pet detection API reference](references/api_doc.md)
-- [Analysis API details](skills/smyx_analysis/references/api_doc.md)
-- [Skill usage demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub skill listing](https://clawhub.ai/18072937735/skills/smyx-pet-detection-analysis)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [API interface notes](artifact/references/api_doc.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Text, Markdown]
+**Output Type(s):** [Analysis, JSON, Text]
 
-**Output Format:** [Structured JSON analysis results, text reports, and Markdown report lists]
+**Output Format:** [Structured JSON or plain-text detection report]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports can include detected counts, category statistics, confidence summaries, and report links.]
+**Other Properties Related to Output:** [Reports may include detected pet categories, counts, confidence values, and report links.]
 
 ## Skill Version(s):
 
-1.0.19 (source: server-resolved release metadata)
+1.0.20 (source: server-resolved release metadata; bundled SKILL.md frontmatter says 1.0.25)
 
 ## Ethical Considerations:
 

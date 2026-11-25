@@ -1,6 +1,6 @@
 ## Description:
 
-Monitor, query, and manage New Relic observability data through the newrelic CLI.
+Query New Relic observability data and manage approved deployment, NRQL macro, dataset, diagnostic, and identity and access workflows with the New Relic CLI.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and site reliability engineers use this skill to inspect New Relic telemetry, investigate application and infrastructure health, and perform targeted deployment, NRQL macro, IAM, or diagnostic workflows through the New Relic CLI.
+Developers and site reliability engineers use this skill to inspect New Relic telemetry, troubleshoot application and host performance, review incidents, and carry out approved operational changes.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan reports a suspicious verdict due to possible alert-scope guidance concerns and incomplete analysis; the available scan does not establish malicious intent.
+Risk: ClawScan marks the skill suspicious because of broad activation triggers and guidance for potentially disruptive or persistent changes; the scan was partial and its tool-poisoning analysis was degraded.
 
-Mitigation: Consider delaying installation until the alert-condition guidance is clarified and the partially inspected material has been reviewed.
+Mitigation: Review activation scope and skill content before installation, and use it only for relevant New Relic tasks.
+
+Risk: Some workflows can change profiles, restart services, or make organization-wide changes.
+
+Mitigation: Require explicit approval for the exact target and scope, use the minimum required access, and verify changes by reading the target back.
 
 ## Reference(s):
 
-- [NRQL query patterns](references/nrql-patterns.md)
+- [CLI installation and checksum verification](references/installation.md)
+- [NRQL patterns reference](references/nrql-patterns.md)
 - [Performance triage guide](references/performance-triage.md)
-- [Configuration validation safeguards](diagnostics/references/config-validation.md)
-- [New Relic CLI releases](https://github.com/newrelic/newrelic-cli/releases)
+- [AI Monitoring datasets and versions](aimonitoring/references/datasets.md)
+- [CLI configuration validation and safeguards](diagnostics/references/config-validation.md)
+- [New Relic NRQL macro documentation](https://docs.newrelic.com/docs/nrql/nrql-macros/create-manage-nrql-macros/)
+- [New Relic CLI release list](https://github.com/newrelic/newrelic-cli/releases)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Shell commands, Configuration instructions]
+**Output Type(s):** [Analysis, Guidance, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown with inline shell commands and JSON CLI output examples]
+**Output Format:** [Markdown with inline shell commands, NRQL examples, and result summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Commands and queries use the user's selected New Relic account and requested entities, time ranges, and filters.]
+**Other Properties Related to Output:** [Content depends on the requested New Relic task and the account data available.]
 
 ## Skill Version(s):
 
-1.0.11 (source: frontmatter, VERSION)
+1.0.13 (source: frontmatter, server-resolved release metadata)
 
 ## Ethical Considerations:
 

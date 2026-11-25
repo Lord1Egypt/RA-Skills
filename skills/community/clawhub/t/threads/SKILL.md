@@ -35,7 +35,7 @@ The user needs a 1Social account. New accounts start with a free trial; publishi
 
 ## Workflow
 
-1. **Find the account.** Call `list_accounts`. It returns the connected channels with their ids, each network's live limits, the plan and the remaining monthly quota. If no Threads account is connected, tell the user to connect one at https://1social.dev/app — connecting needs a browser and cannot be done from chat. If `list_accounts` reports a limit that differs from this skill, trust `list_accounts`.
+1. **Find the account.** Call `list_accounts`. It returns the connected channels with their ids, each network's live limits, the plan and the remaining monthly quota. If no Threads account is connected, give the user the Threads link from `connectLinks` in that result: it opens 1Social in their browser with a one-click Connect button. When they say they are done, call `list_accounts` again. If `list_accounts` reports a limit that differs from this skill, trust `list_accounts`.
 2. **Draft for the network.** Write the post to the rules below. A post is a list of `segments`; each segment is `{ text, mediaIds? }`.
 3. **Attach media.**
    - The user attached a file in chat → put it in `media`.
@@ -60,7 +60,7 @@ The user needs a 1Social account. New accounts start with a free trial; publishi
 
 ## Posting to other networks too
 
-The same 1Social account can publish one post to Instagram, TikTok, LinkedIn, X, Threads, Facebook Pages, YouTube Shorts and Bluesky at once: list several channel ids from `list_accounts`. preview_post checks the draft against every selected network.
+The same 1Social account can publish one post to Instagram, TikTok, LinkedIn, X, Threads, Facebook Pages, YouTube Shorts, Bluesky, Pinterest, Telegram and Tumblr at once: list several channel ids from `list_accounts`. preview_post checks the draft against every selected network.
 
 ## After publishing
 
@@ -68,5 +68,5 @@ The same 1Social account can publish one post to Instagram, TikTok, LinkedIn, X,
 - **Change a scheduled post:** `update_post`. Only works before the post has gone out.
 - **Unschedule:** `cancel_post`. Use this, not `delete_post`, for a post that has not been published.
 - **Delete a published post:** `delete_post`, only after the user confirms. Report per network what actually came down: Instagram, TikTok, Threads and YouTube posts stay live and only the user can remove them.
-- **A delivery failed:** `retry_delivery` retries one network and spends quota again. It is refused for permanent failures such as a revoked connection — then the user must reconnect at https://1social.dev/app.
+- **A delivery failed:** `retry_delivery` retries one network and spends quota again. It is refused for permanent failures such as a revoked connection — then give the user that account's `reconnectUrl` from `list_accounts`.
 - **A delivery is `unknown`:** ask the user to look at the network. Only when they tell you whether the post is live, call `confirm_delivery` with their answer. Never guess, and never `retry_delivery` with `force` without asking — it may publish a second copy.

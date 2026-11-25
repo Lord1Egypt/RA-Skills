@@ -1,6 +1,6 @@
 ## Description:
 
-长篇网文规划与写作。支持只讨论结构、只写大纲或指定细纲，明确要求正文后再写章节。触发方式：/story-long-write、/写长篇、「帮我开书」「定设定」「出卷纲」「规划剧情」「写大纲」「补细纲」「日更」「续写」「继续写」「修改第X章」「回炉」「重写第X章」。
+帮助作者完成长篇网文的立项、设定、卷纲、细纲、连载写作与修订，并按请求范围停在指定交付阶段。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-供中文网文作者规划长篇故事、设定人物与关系、编排卷纲和章节细纲，并按明确要求创作或修改正文。作者可限定只讨论结构或只交付某一规划阶段，技能按请求范围推进。
+面向长篇网文作者，用于规划故事设定、卷纲和章节细纲，按作者要求撰写或修订章节，并维护创作连续性。
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review flags the ability to write to explicit output paths as a concern.
+Risk: The security review flags unclear shell-command scope and possible loss of manual edits during conflict recovery; scan coverage was partial.
 
-Mitigation: Check the destination path and intended file changes before accepting generated or revised story files.
-
-Risk: The security review notes a possible loss of outline identifiers during file changes.
-
-Mitigation: Review outline identifiers after edits and preserve a recoverable copy of the outline.
-
-Risk: Security scan coverage was partial: 8 of 87 components were only partially inspected.
-
-Mitigation: Review the partially inspected files before relying on the skill in your environment.
+Mitigation: Review shell actions before use and back up or commit manual edits before following recovery steps.
 
 ## Reference(s):
 
-- [Writing workflow and scope controls](references/workflow-setup.md)
-- [Volume planning workflow](references/workflow-volume.md)
-- [Chapter writing workflow](references/workflow-chapter.md)
-- [Writing craft](references/writing-craft.md)
-- [Outline methods](references/outline-methods.md)
-- [Project files and outputs](references/project-files.md)
+- [Project URL listed in skill metadata (server provenance unavailable)](https://github.com/zenstory-ai/oh-story-claudecode)
+- [ClawHub skill release](https://clawhub.ai/worldwonderer/skills/story-long-write)
+- [Planning and story setup](references/flow-opening-plan.md)
+- [Chapter outlining](references/flow-outline.md)
+- [Drafting and continuation](references/flow-drafting.md)
+- [Revision](references/flow-revision.md)
+- [Tracking protocol](references/tracking-protocol.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Files, Code, Shell commands]
+**Output Type(s):** [Text, Markdown, Files, Guidance]
 
-**Output Format:** [Chinese-language story guidance, outlines, and manuscript or project files, usually in Markdown]
+**Output Format:** [Chinese prose and Markdown planning or manuscript files]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Work is limited to the requested planning or writing scope; file changes may use explicit output paths.]
+**Other Properties Related to Output:** [Scope and length follow the author's request; planning tasks stop before manuscript drafting unless requested.]
 
 ## Skill Version(s):
 
-1.2.13 (source: server-resolved release metadata)
+1.2.25 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

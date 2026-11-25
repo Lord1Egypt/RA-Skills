@@ -13,7 +13,7 @@ metadata:
       args:
         - install
         - -g
-        - "pipiads-mcp-server@1.0.3"
+        - "pipiads-mcp-server@1.0.4"
     primaryEnv: PIPIADS_API_KEY
     emoji: "📊"
     homepage: https://www.pipiads.com
@@ -57,17 +57,17 @@ Do not use this skill when:
 
 ## Installation Note
 
-This skill installs and runs the published npm package `pipiads-mcp-server@1.0.3` as a local MCP server.
+This skill installs and runs the published npm package `pipiads-mcp-server@1.0.4` as a local MCP server.
 
 Default install:
 
-`npm install -g pipiads-mcp-server@1.0.3`
+`npm install -g pipiads-mcp-server@1.0.4`
 
 If you prefer stricter isolation, use this skill in a dedicated development environment, container, or non-critical workstation.
 
 ## Trust & Execution Model
 
-This skill installs `pipiads-mcp-server@1.0.3` from the npm registry and runs it locally as an MCP server.
+This skill installs `pipiads-mcp-server@1.0.4` from the npm registry and runs it locally as an MCP server.
 
 This means:
 
@@ -83,7 +83,7 @@ This skill depends on:
 
 - official website: `https://pipiads.com/`
 - API portal: `https://www.pipispy.com/`
-- npm package: `pipiads-mcp-server@1.0.3`
+- npm package: `pipiads-mcp-server@1.0.4`
 
 Review the package source, publisher, and release history if you need stronger supply-chain assurance before installation.
 

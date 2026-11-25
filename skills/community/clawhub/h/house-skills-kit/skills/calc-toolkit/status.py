@@ -89,10 +89,13 @@ def main():
     t_grade = 1 if homes_after == 0 else (2 if homes_after == 1 else 3)
     area = args.area
     if t_grade <= 2:
+        label = "首" if t_grade == 1 else "二"
+        rate = "1.5%" if t_grade == 1 else "2%"
         if area is not None and area > 140:
-            deed_note = f"{("首套" if t_grade == 1 else "二套")}套/{area:g}㎡>140㎡→契税 {'1.5%' if t_grade == 1 else '2%'}"
+            deed_note = "%s套/%g㎡>140㎡→契税 %s" % (label, area, rate)
         else:
-            deed_note = f"{("首套" if t_grade == 1 else "二套")}套{'/' + format(area, 'g') + '㎡≤140㎡' if area else ''}→契税 1%"
+            area_txt = ("/" + format(area, "g") + "㎡≤140㎡") if area else ""
+            deed_note = "%s套%s→契税 1%%" % (label, area_txt)
     else:
         deed_note = "三套及以上→契税 3%（无优惠档）"
 

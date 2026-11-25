@@ -1,6 +1,6 @@
 ## Description:
 
-Establishes CPU/GPU baselines before resource-intensive operations.
+Establishes CPU/GPU baselines before resource-intensive operations. Use before builds, training runs, or any task that pins cores or GPUs for over a minute.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use the skill before resource-intensive builds, training, or tests to record baseline load, narrow work, profile performance, throttle execution, and log resource costs.
+Developers and engineers use this skill before builds, training runs, tests, or retries that may consume substantial CPU or GPU resources. It guides them to capture a baseline, narrow the work, monitor resource use, throttle heavy tasks, and summarize costs and follow-up actions.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan's review is incomplete because one local path-like reference could not be resolved.
+Risk: The security review is incomplete because one local path-like reference could not be resolved to a bundled artifact.
 
-Mitigation: Check the relevant local path reference before relying on the affected guidance; the benign verdict does not remove this uncertainty.
+Mitigation: Review the unresolved reference against the original source before relying on the skill.
 
 ## Reference(s):
 
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
-- [ClawHub release](https://clawhub.ai/athola/skills/nm-conserve-cpu-gpu-performance)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-conserve-cpu-gpu-performance)
 
 ## Skill Output:
 
 **Output Type(s):** [Guidance, Shell commands, Markdown]
 
-**Output Format:** [Markdown with inline shell commands and a concise run summary]
+**Output Format:** [Markdown with inline shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Summarizes baseline metrics, chosen scope, instrumentation, throttling, resource costs, and follow-up items.]
+**Other Properties Related to Output:** [A concise resource-use summary based on the commands and metrics available in the user's environment.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

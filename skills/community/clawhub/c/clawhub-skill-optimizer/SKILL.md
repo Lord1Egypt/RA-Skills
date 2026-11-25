@@ -1,7 +1,7 @@
 ---
 name: ClawHub Skill Growth Engine
 description: AI-powered ClawHub skill growth optimizer v2.0 — analyzes reviews, tracks 2026 trending topics (AI Agent, MCP, video SEO), rewrites titles/descriptions for maximum downloads and stars. Supports video thumbnail prompts, cross-platform social syndication, and growth metrics tracking. Scope: advisory output only — analysis reports, rewrite suggestions, thumbnail prompts and promotion copy. The skill never edits skill metadata, never publishes anything, and never calls external services on the user’s behalf; every action is performed manually by the user after confirmation. Triggers: clawhub optimization, skill growth, SEO, stars, downloads, review analysis, trending keywords, skill improvement, GitHub stars strategy, video SEO, social media integration, thumbnail generation.
-version: "2.1.4"
+version: "2.1.5"
 allowed-tools: []
 capabilities:
   - educational-reference
@@ -59,7 +59,7 @@ capabilities:
 - 标题优化 / description 优化 / 关键词优化
 - skill 改进 / 技能改进 / 提升关注度
 
-## Section 0: Latest ClawHub Platform Updates (2026-11-15)
+## Section 0: Latest ClawHub Platform Updates (2026-11-19)
 
 | 更新日期 | 平台/趋势 | 对技能优化的影响 | 推荐动作 |
 |---------|-----------|----------------|---------|
@@ -886,4 +886,46 @@ Apply: Update SKILL.md + README.md + tags + thumbnail prompts + changelog
 ### 时效性说明
 
 - 本期时效性核查：**截至 2026-11-15**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
+- 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。
+
+## 本轮增量（2026-11-19）：复核维度与举例补充
+
+> 本节为 2026-11-19 例行轮转的净增量记录：新增举例与复核维度均为本期首次出现，与既有条目不重复；仅作方法论参考，需具备相应资质的人员复核后使用。
+
+### 补充举例（按模块，本期新增）
+
+**Section 0b: 优化前的一致性自检（发布前必做）**：
+
+- 自检清单补「组件来源」一列：每个待优化组件标注来源、维护方与版本占位，来源不明的按待补处理，草稿不写入未经核实的评分或数值。
+- 核对表新增「声明与内容一致性」占位：把组件声明的能力与可核验的公开条目分栏，不一致处标注需人工复核。
+
+**报告落地清单 / From Report to Action**：
+
+- 落地清单补「权限分级」一列：把只读、草稿、写操作、外部通信四类动作分栏标注，草稿不给出可直接执行的动作语句。
+- 清单新增「留痕五要素」占位：来源、版本、审批人、复核时点、停用路径并列记录，缺一项即标注证据不完整，需人工确认。
+
+### 新增复核维度表（2026-11-19）
+
+> 本表新增「由谁执行 / 数据来源 / 复核要点 / 风险等级 / 适用边界」等维度列，把口径责任、数据来源与人工复核要求落到具体条目。
+
+| 复核维度 | 由谁执行 | 数据来源 | 复核要点 | 风险等级 | 适用边界 |
+| --- | --- | --- | --- | --- | --- |
+| 组件来源与版本 | 技能维护者 + 复核人 | 自检清单 / 官方发布页 | 来源、维护方与版本占位是否逐项标注 | 中 | 纸面对照，采用须人工确认 |
+| 落地权限分级 | 技能维护者 | 落地清单 / 草稿 | 四类动作分级与留痕五要素是否齐全 | 高 | 文档记录，不构成上架结论 |
+
+### 适用边界 / 数据最小化 / 执行边界（本期复核与补齐）
+
+**适用边界**：本技能仅用于技能集优化报告与发布自检的方法论纸面参考的方法论参考与纸面草稿，输出为供使用者自行判断的参考文本；不构成正式结论、专业意见或对外发布内容。涉及技能上架发布、评分改写与对外推广执行的场景不适用，应由具备相应资质的人员按既有制度独立完成。
+
+**数据最小化**：本期补齐：示例、清单与提问只保留占位标签与抽象情境描述，不写入可识别个人、客户或机构的信息；草稿阶段即标注需人工复核后再补充任何具体背景。
+
+**执行边界**：本期复核：文中「生成 / 输出 / 形成」均指生成待确认的纸面草稿，由使用者自行决定是否采用；不代为发布、提交、保存或进行任何系统操作。
+
+### 参考同类公开框架的补强（2026-11-19）
+
+> 参考 2026 年公开 AI 供应链治理资料中「为技能、连接器与提示模板建立 AI 物料清单并固定版本来源」「把组件当作受评审、受权限约束的依赖」「读写权限分级、外部写操作需人工审批」「保留可观测留痕与停用路径、更新后重新评审」的思路，在优化前自检与落地清单章节补一个纸面小节：逐项登记组件来源、维护方、审批版本、权限范围与停用占位，并提示具体版本号、仓库路径与规范状态以官方发布为准、须人工复核，草稿不填入未经核实的数值或命令。
+
+### 时效性说明
+
+- 本期时效性核查：**截至 2026-11-19**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
 - 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。

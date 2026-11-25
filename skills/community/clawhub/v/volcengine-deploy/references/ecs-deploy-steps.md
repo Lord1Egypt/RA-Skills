@@ -2,7 +2,7 @@
 
 Detailed reference for the ECS branch of `volcengine-deploy`. The main `SKILL.md` owns the flow; this document holds build commands, command-channel patterns, and the systemd unit template.
 
-> **ECS prerequisite** — before provisioning, activate the `volcengine-cli` skill and follow its ECS guidance for instance type availability, image search, Cloud Assistant agent boot delay, RunInstances password/EIP fields, and RunCommand invocation naming, result polling, and timeouts.
+> **Pitfall sources** — for ECS provisioning quirks (instance type availability, image search, Cloud Assistant agent boot delay, RunInstances password/EIP fields, RunCommand invocation name/result polling/timeout), load `volcengine-cli` from the core plugin and read its `references/ecs.md`.
 
 ---
 
@@ -78,7 +78,7 @@ Before writing the SSH rule, detect the current outbound IP from the same machin
 
 Keep SSH retries short. If `nc -zw5 "$eip" 22` fails or SSH does not connect promptly, switch to Cloud Assistant instead of waiting.
 
-Use local wrappers for every Cloud Assistant command so examples cannot drift from the ECS CLI rules. `InvocationName` is required; keep it short, stable, and compliant with the naming rules in the activated `volcengine-cli` skill's ECS guidance. `CommandContent` must be base64-encoded; `RunCommand` returns only scheduling metadata, so `run_cmd` submits the command and then polls the actual result.
+Use local wrappers for every Cloud Assistant command so examples cannot drift from the ECS CLI rules. `InvocationName` is required; keep it short, stable, and compliant with `volcengine-cli`'s `references/ecs.md`. `CommandContent` must be base64-encoded; `RunCommand` returns only scheduling metadata, so `run_cmd` submits the command and then polls the actual result.
 
 ```bash
 submit_cmd() {
@@ -325,7 +325,7 @@ Split long remote work into separate invocations for clone, install, image pull,
 
 ### RunCommand result polling
 
-`ve ecs RunCommand` returns scheduling metadata. Treat it as "command submitted", not "command succeeded". Extract the invocation ID, then poll `DescribeInvocationResults` and use `.Result.InvocationResults[0].InvocationResultStatus` plus `.ExitCode` as documented in the activated `volcengine-cli` skill's ECS guidance. Decode `Output` from base64 when inspecting command output. Use `submit_cmd` only when you intentionally want the scheduling response; otherwise use `run_cmd`, which returns the polled result JSON.
+`ve ecs RunCommand` returns scheduling metadata. Treat it as "command submitted", not "command succeeded". Extract the invocation ID, then poll `DescribeInvocationResults` and use `.Result.InvocationResults[0].InvocationResultStatus` plus `.ExitCode` as documented in `volcengine-cli`'s `references/ecs.md`. Decode `Output` from base64 when inspecting command output. Use `submit_cmd` only when you intentionally want the scheduling response; otherwise use `run_cmd`, which returns the polled result JSON.
 
 ---
 

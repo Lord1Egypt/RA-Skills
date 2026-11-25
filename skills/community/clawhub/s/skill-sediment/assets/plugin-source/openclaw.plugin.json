@@ -2,7 +2,7 @@
   "id": "skill-sediment",
   "name": "Skill Sedimentation",
   "description": "Agent-managed skill creation, editing, and security scanning. Turns successful approaches into reusable procedural knowledge stored as SKILL.md files.",
-  "version": "0.1.0",
+  "version": "1.0.2",
   "main": "index.ts",
   "configSchema": {
     "type": "object",

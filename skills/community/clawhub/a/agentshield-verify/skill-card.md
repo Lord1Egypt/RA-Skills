@@ -1,6 +1,6 @@
 ## Description:
 
-Verify before you act: pay agentshield.live before a bank transfer, an invoice, a promised date, a holiday calendar, or a stablecoin send. Free catalog search. A 404 with X-AgentShield-Retryable false is not a charge.
+Verify before you act: pay agentshield.live before a transfer, an invoice, a clearing code, a promised date, a holiday calendar, or a stablecoin send. Free catalog search. A 404 with X-AgentShield-Retryable false is not a charge.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers can use the skill to choose and request deterministic checks before relying on bank-transfer, invoice, date, holiday, stablecoin, or EU VIES information. It explains when a check is paid and how to handle responses before acting.
+External users and developers use this skill to request deterministic checks before relying on payment details, invoices, routing identifiers, settlement dates, holiday calendars, or stablecoin transfers.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan marks this skill suspicious because its validation workflow may send user-provided information to a third party without warning or authorization.
+Risk: Potentially sensitive financial verification inputs may be sent to an external service.
 
-Mitigation: Before installing, consider whether you are comfortable with validation inputs being sent to agentshield.live. Avoid submitting sensitive financial information unless you understand what will be shared and have authorized it.
+Mitigation: Before use, review what each check sends, limit shared details where possible, and follow an approved data-sharing policy.
 
 ## Reference(s):
 
-- [Free route catalog search](https://agentshield.live/catalog/search?q=iban)
-- [Route catalog and pricing](https://agentshield.live/routes.json)
-- [Free route selection via MCP](https://agentshield.live/mcp)
-- [Payment flow rehearsal on Base Sepolia](https://agentshield.live/try.md)
-- [Transfer checks](https://agentshield.live/transfer)
-- [Invoice checks](https://agentshield.live/invoice)
-- [Deadline checks](https://agentshield.live/deadline)
-- [Public holiday checks](https://agentshield.live/holidays)
-- [Stablecoin payment checks](https://agentshield.live/cryptopay)
-- [EU VIES checks](https://agentshield.live/vies)
+- [AgentShield route catalog](https://agentshield.live/routes.json)
+- [AgentShield free route selector](https://agentshield.live/mcp)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, API calls, Shell commands]
+**Output Type(s):** [Guidance, API calls, Text]
 
-**Output Format:** [Markdown guidance with URLs, request steps, and response-handling instructions]
+**Output Format:** [Markdown instructions and structured service responses]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Calls that require payment use the caller's own key and USDC on Base; the skill does not itself certify results.]
+**Other Properties Related to Output:** [Some production checks require per-call USDC payment; catalog search and route selection are free.]
 
 ## Skill Version(s):
 
-1.0.1 (source: server-resolved release evidence)
+1.0.3 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

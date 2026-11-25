@@ -1,3 +1,4 @@
+import { readAnalytics, ANALYTICS_CONFIG } from './analytics.mjs';
 import { mkdir, readFile, writeFile, rename, unlink, open, lstat } from 'node:fs/promises';
 import { homedir } from 'node:os';
 import path from 'node:path';
@@ -18,7 +19,7 @@ export async function saveKey(key, file = CONFIG) {
 }
 export async function removeKey(file = CONFIG) { await unlink(file).catch(e => { if (e.code !== 'ENOENT') throw e; }); }
 export class ImagenClient {
-  constructor({ api = API, keyFile = CONFIG, fetcher = fetch } = {}) { this.api = api; this.keyFile = keyFile; this.fetcher = fetcher; }
+  constructor({ api = API, keyFile = CONFIG, analyticsFile = ANALYTICS_CONFIG, fetcher = fetch } = {}) { this.api = api; this.keyFile = keyFile; this.fetcher = fetcher; this.analyticsFile = analyticsFile; }
   async request(route, { method = 'GET', body, authenticated = false, key } = {}) {
     const headers = { Accept: 'application/json' };
     if (authenticated || key) {
@@ -41,8 +42,12 @@ export class ImagenClient {
   }
   async search(filters) {
     const allowed = ['query', 'orientation', 'style', 'topic', 'use_case', 'composition', 'page', 'page_size', 'sort'];
-    const query = new URLSearchParams(Object.entries(filters).filter(([k,v]) => allowed.includes(k) && v !== undefined && v !== ''));
-    const result = await this.request(`/gallery/assets?${query}`);
+    const body = Object.fromEntries(Object.entries(filters).filter(([k,v]) => allowed.includes(k) && v !== undefined && v !== ''));
+    for (const name of ['page', 'page_size']) if (body[name] !== undefined) body[name] = Number(body[name]);
+    const release = JSON.parse(await readFile(new URL('../release.json', import.meta.url), 'utf8'));
+    body.query ??= ''; body.version = release.version; body.record_keywords = await readAnalytics(this.analyticsFile);
+    console.error(body.record_keywords ? 'Imagen search: anonymous operational counters; opted-in short query terms retained up to 30 days. analytics --keywords off stops future keyword retention.' : 'Imagen search: anonymous operational counters; keyword retention is OFF. Do not send secrets or article content.');
+    const result = await this.request('/gallery/skill/search', { method: 'POST', body });
     return { ...result, items: result.items.map(asset => ({ ...asset, detail_url: `https://imagen.chat/en/images/${asset.slug}--${asset.public_id}`, watermarked: true })) };
   }
   credits(key) { return this.request('/gallery/me/credits', { authenticated: true, key }); }

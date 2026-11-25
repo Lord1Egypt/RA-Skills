@@ -27,6 +27,78 @@ PRIORITY_ORDER = {
     "priority::medium": 2,
     "priority::low": 3,
 }
+# Structured diagnostics are consumed by the read-only Problems helper, never
+# written to the discovery streams. Do not retain raw commands/API responses.
+PROBLEMS = []
+PROBLEM_DETAILS = {
+    "read-retried": ("warning", "A GitLab read timed out and was retried.", "Refresh to check whether the timeout persists."),
+    "author-lookup-failed": ("error", "A collaborator author profile could not be read.", "Check GitLab access to the indicated user."),
+    "author-email-unavailable": ("warning", "A collaborator has no accessible usable email/public_email.", "Use a public verified address or an explicit username/group selector."),
+    "assignment-ambiguous": ("error", "A collaborator assignment write was ambiguous.", "Check the issue's assignees before retrying."),
+    "assignment-unconfirmed": ("error", "A collaborator assignment could not be confirmed.", "Check the issue's current state and assignees."),
+    "assignment-skipped": ("error", "A collaborator candidate could not be processed.", "Check GitLab access and the candidate's current state."),
+    "queue-scan-failed": ("error", "The read-only assigned-work scan could not be completed.", "Check owner configuration, GitLab access and dependency-query availability."),
+    "collaborator-scan-failed": ("error", "Collaborator discovery could not be completed.", "Check collaborators.accept selectors and GitLab access."),
+    "discovery-failed": ("error", "GitLab discovery could not be completed.", "Check the configured owner, authentication and GitLab availability."),
+    "ordering-failed": ("error", "Queue dependency ordering could not be completed.", "Check GitLab dependency-query access and availability."),
+    "glab-unavailable": ("error", "The glab executable is unavailable.", "Install glab in the agent environment."),
+}
+
+
+def record_problem(code, **context):
+    severity, message, remedy = PROBLEM_DETAILS[code]
+    value = {"code": code, "severity": severity, "message": message, "remedy": remedy}
+    value.update({key: val for key, val in context.items()
+                  if key in {"user_id", "project_id", "issue_iid"}
+                  and type(val) is int and val > 0})
+    for key, pattern, limit in (
+        ("user_username", r"[A-Za-z0-9_][A-Za-z0-9_.-]*", 255),
+        ("project_path", r"[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)+", 1024),
+    ):
+        text = context.get(key)
+        if (isinstance(text, str) and len(text) <= limit and re.fullmatch(pattern, text)
+                and all(part not in {".", ".."} for part in text.split("/"))):
+            value[key] = text
+    # URLs are constructed from the candidate, never from profile/config fields.
+    from urllib.parse import urlsplit
+    for key in ("user_url", "issue_url"):
+        url = context.get(key)
+        if not isinstance(url, str) or len(url) > 2048:
+            continue
+        try:
+            parts = urlsplit(url)
+            hostname = parts.hostname
+        except ValueError:
+            continue
+        if (parts.scheme in {"http", "https"} and hostname
+                and not parts.username and not parts.password and not parts.query
+                and not parts.fragment and not any(c.isspace() for c in url)):
+            value[key] = url
+    if value not in PROBLEMS:
+        PROBLEMS.append(value)
+
+
+def record_author_problem(code, item):
+    """Attach one public example to an author diagnostic; never copy profiles."""
+    from urllib.parse import quote, urlsplit, urlunsplit
+
+    author = item.get("author", {})
+    context = {"user_id": author.get("id"), "user_username": author.get("username"),
+               "project_id": item.get("project_id"), "issue_iid": item.get("iid")}
+    try:
+        project, _ = object_endpoint(item, "issue")
+        parts = urlsplit(item["web_url"])
+        origin = urlunsplit((parts.scheme, parts.netloc, "", "", ""))
+        context.update(project_path=project,
+                       issue_url=f"{origin}/{quote(project, safe='/')}/-/issues/{item['iid']}")
+        username = author.get("username")
+        if isinstance(username, str) and re.fullmatch(r"[A-Za-z0-9_][A-Za-z0-9_.-]*", username):
+            context["user_url"] = f"{origin}/{username}"
+    except (ValueError, KeyError, TypeError):
+        pass
+    record_problem(code, **context)
+
+
 CONFIG_PATH_ENV = "OPENCLAW_CONFIG_PATH"
 INCIDENT_PRIORITY = {
     "CRITICAL": "priority::blocker",
@@ -43,7 +115,7 @@ def api_read(command, **kwargs):
     except subprocess.TimeoutExpired:
         import time
 
-        print("GitLab API read timed out after 25s; retrying once", file=sys.stderr)
+        record_problem("read-retried")
         time.sleep(1)
     return subprocess.run(command, timeout=25, **kwargs)
 
@@ -53,7 +125,7 @@ def api_json(endpoint: str) -> object:
         ["glab", "api", endpoint],
         check=True,
         text=True,
-        stdout=subprocess.PIPE,
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE,
     )
     return json.loads(result.stdout)
 
@@ -73,7 +145,7 @@ def graphql_json(query: str, variables: dict[str, str]) -> object:
     command = ["glab", "api", "graphql", "-f", "query=" + query]
     for name, value in variables.items():
         command.extend(("-f", name + "=" + value))
-    result = api_read(command, check=True, text=True, stdout=subprocess.PIPE)
+    result = api_read(command, check=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     payload = json.loads(result.stdout)
     if not isinstance(payload, dict) or payload.get("errors") or not isinstance(payload.get("data"), dict):
         raise ValueError("GitLab GraphQL response is incomplete")
@@ -392,7 +464,7 @@ def assignment_candidates(
 
 
 def assign_unassigned_items(
-    user_id: int, username: str, owner: str, project_cache: dict[int, bool]
+    user_id: int, username: str, owner: str, project_cache: dict[int, bool], *, dry_run: bool = False
 ) -> list[dict[str, object]]:
     """Assign accepted normal collaborator work only after owner and state gates."""
     selectors = configured_accept_entries()
@@ -432,7 +504,7 @@ def assign_unassigned_items(
                             authors[author_id] = profile
                         except (OSError, subprocess.SubprocessError, json.JSONDecodeError, ValueError):
                             authors[author_id] = None
-                            print(f"collaborator author lookup failed for user id {author_id}", file=sys.stderr)
+                            record_author_problem("author-lookup-failed", item)
                     profile = authors[author_id]
                     if (
                         profile is not None
@@ -440,15 +512,11 @@ def assign_unassigned_items(
                         and not any(email_domain(profile.get(field)) for field in ("email", "public_email"))
                     ):
                         diagnosed_missing_email.add(author_id)
-                        print(
-                            f"collaborator author {author_id} has no accessible usable email/public_email; "
-                            "use a public verified address or explicit username/group selector",
-                            file=sys.stderr,
-                        )
+                        record_author_problem("author-email-unavailable", item)
                     accepted = profile is not None and any(
                         user_matches_domain(profile, domain) for domain in domains
                     )
-                if not accepted:
+                if not accepted or dry_run:
                     continue
                 project_path, endpoint = object_endpoint(item, "issue")
                 if username != owner and not owner_created_membership(
@@ -471,11 +539,11 @@ def assign_unassigned_items(
                     continue
                 command = ["glab", "api", "-X", "PUT", "-f", f"assignee_ids={user_id}", endpoint]
                 try:
-                    write = subprocess.run(command, check=True, text=True, stdout=subprocess.PIPE)
+                    write = subprocess.run(command, check=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     result = json.loads(write.stdout)
                 except (OSError, subprocess.SubprocessError, json.JSONDecodeError):
                     result = None
-                    print(f"collaborator assignment write ambiguous for issue {item.get('iid')}", file=sys.stderr)
+                    record_problem("assignment-ambiguous", project_id=item.get("project_id"), issue_iid=item.get("iid"))
                 # A failed or ambiguous write gets a fresh state read, never a blind retry.
                 persisted = api_json(endpoint)
                 assignees = persisted.get("assignees") if isinstance(persisted, dict) else None
@@ -493,12 +561,9 @@ def assign_unassigned_items(
                 ):
                     assigned.append(persisted)
                 else:
-                    print(f"collaborator assignment unconfirmed for issue {item.get('iid')}", file=sys.stderr)
-            except (OSError, subprocess.SubprocessError, json.JSONDecodeError, ValueError) as error:
-                print(
-                    f"collaborator assignment skipped for issue {item.get('iid')}: {type(error).__name__}",
-                    file=sys.stderr,
-                )
+                    record_problem("assignment-unconfirmed", project_id=item.get("project_id"), issue_iid=item.get("iid"))
+            except (OSError, subprocess.SubprocessError, json.JSONDecodeError, ValueError, KeyError, TypeError):
+                record_problem("assignment-skipped", project_id=item.get("project_id"), issue_iid=item.get("iid"))
     finally:
         fcntl.flock(lock_fd, fcntl.LOCK_UN)
         os.close(lock_fd)
@@ -606,7 +671,7 @@ def adopt_incident(
     if removals:
         command += ["-f", "remove_labels=" + ",".join(sorted(removals))]
     command.append(endpoint)
-    result = subprocess.run(command, check=True, text=True, stdout=subprocess.PIPE)
+    result = subprocess.run(command, check=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     adopted = json.loads(result.stdout)
     if not isinstance(adopted, dict) or username not in [
         assignee.get("username") for assignee in adopted.get("assignees", [])
@@ -751,7 +816,8 @@ def order_items(items: list[dict[str, object]]) -> list[dict[str, object]]:
 
 def main() -> int:
     if shutil.which("glab") is None:
-        print("glab is required", file=sys.stderr)
+        record_problem("glab-unavailable")
+        print("[]")
         return 69
     try:
         owner = configured_owner()
@@ -774,8 +840,8 @@ def main() -> int:
         ]
         try:
             collaborator_issues = assign_unassigned_items(agent_id, username, owner, project_cache)
-        except (OSError, subprocess.SubprocessError, json.JSONDecodeError, ValueError) as error:
-            print(f"collaborator assignment unavailable: {type(error).__name__}: {error}", file=sys.stderr)
+        except (OSError, subprocess.SubprocessError, json.JSONDecodeError, ValueError, KeyError, TypeError):
+            record_problem("collaborator-scan-failed")
             collaborator_issues = []
         issue_items = {
             (item.get("project_id"), item.get("iid")): item
@@ -797,14 +863,16 @@ def main() -> int:
             )
         ]
         active = permitted_items(eligible, agent_id, username, owner)
-    except (OSError, subprocess.SubprocessError, json.JSONDecodeError, ValueError) as error:
-        print(f"unable to list active GitLab items: {error}", file=sys.stderr)
+    except (OSError, subprocess.SubprocessError, json.JSONDecodeError, ValueError, KeyError, TypeError):
+        record_problem("discovery-failed")
+        print("[]")
         return 69
 
     try:
         active = order_items(active)
-    except (OSError, subprocess.SubprocessError, json.JSONDecodeError, ValueError) as error:
-        print(f"unable to order active GitLab items: {error}", file=sys.stderr)
+    except (OSError, subprocess.SubprocessError, json.JSONDecodeError, ValueError, KeyError, TypeError):
+        record_problem("ordering-failed")
+        print("[]")
         return 69
     json.dump(active, sys.stdout, indent=2)
     sys.stdout.write("\n")

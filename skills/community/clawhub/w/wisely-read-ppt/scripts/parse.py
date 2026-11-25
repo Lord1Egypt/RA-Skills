@@ -13,17 +13,13 @@ ppt-pdf-to-docx 核心脚本(v3)
   若沙箱存在名为 workspace 的目录(产物目录)，阶段一的 docx / 素材等过程文件
   禁止写入 workspace，自动改写到与其同级的 temp(优先 .temp，其次 temp)。
 
-v3 修复 (vs v2):
-  FIX-001: images_pdf 中 sha256 hash 变量被 img.size 覆盖导致同页去重失效
-  FIX-002: _merge_pdf_lines 短行 flush 阈值从 3 提升到 8,减少页眉/页码误合并
+v3 修复:
   FIX-003: build_docx 多行文字按换行符拆分为多个段落,避免 docx 中文字挤在一行
-  FIX-004: images_pdf 中 Pixmap 显式释放 (del pix)
   FIX-005: _iter_shapes 异常捕获精确化,仅捕获 AttributeError,不吞未知异常
   FIX-006: 移除未实现的 __main__.py 相关说明
   FIX-008: 移除 sys.exit(2) 硬退出,改为 return None 让主流程统一处理
   FIX-009: text_pptx 中 para.text 兜底注释改进,说明其无害性
   FIX-010: --assets-dir 按源文件独立子目录避免多文件覆盖
-  FIX-011: 改进 _merge_pdf_lines 段落合并逻辑,更精确识别断行
   FIX-012: SKILL.md 使用说明改为 `python parse.py` 相对路径方式
 """
 import argparse, os, sys, shutil, subprocess, hashlib, tempfile, re, glob, json
@@ -39,22 +35,59 @@ WORKSPACE_DIR_NAME = "workspace"
 def find_workspace_dir():
     """检测沙箱中名为 workspace 的目录(产物目录)。找不到返回 None。
 
-    检查顺序:当前目录本身、当前目录下、HOME 本身、HOME 下、/workspace。
+    检查顺序:OPENCLAW_WORKSPACE 环境变量、当前目录及祖先目录、
+    HOME、HOME/.openclaw/workspace、HOME/workspace、/workspace。
+    这样既支持 OpenClaw 的真实工作区，也支持 cwd 位于 workspace 子目录的情况。
     """
     cwd = Path.cwd()
     home = Path.home()
-    candidates = [cwd, cwd / WORKSPACE_DIR_NAME, home, home / WORKSPACE_DIR_NAME,
-                  Path("/") / WORKSPACE_DIR_NAME]
+    env_ws = os.environ.get("OPENCLAW_WORKSPACE")
+    if env_ws:
+        try:
+            p = Path(env_ws).expanduser()
+            if p.is_dir():
+                return p.resolve()
+        except Exception:
+            pass
+    # OpenClaw 各 agent 的工作区可能叫 workspace-daniel 而不是 workspace；
+    # 以 AGENTS.md 作为轻量识别信号，避免把普通同名目录误判为产物目录。
+    try:
+        if cwd.name == WORKSPACE_DIR_NAME or (
+            cwd.name.startswith(WORKSPACE_DIR_NAME + "-") and (cwd / "AGENTS.md").is_file()
+        ):
+            if cwd.is_dir():
+                return cwd.resolve()
+    except Exception:
+        pass
+    candidates = [cwd]
+    candidates.extend(cwd.parents)
+    candidates.extend([
+        home,
+        home / ".openclaw" / WORKSPACE_DIR_NAME,
+        home / WORKSPACE_DIR_NAME,
+        Path("/") / WORKSPACE_DIR_NAME,
+    ])
     for p in candidates:
         try:
             if p.name == WORKSPACE_DIR_NAME and p.is_dir():
                 return p.resolve()
-            child = p / WORKSPACE_DIR_NAME
-            if p.name != WORKSPACE_DIR_NAME and child.is_dir():
-                return child.resolve()
         except Exception:
             continue
     return None
+
+
+def load_local_env():
+    """读取可选的 local-env.json（只读，不自动写入）。"""
+    path = Path(__file__).resolve().parents[1] / "local-env.json"
+    if not path.exists():
+        return {}
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data if isinstance(data, dict) else {}
+    except Exception as exc:
+        print(f"[警告] local-env.json 读取失败，已忽略：{exc}")
+        return {}
 
 
 def resolve_temp_root(workspace):
@@ -86,18 +119,26 @@ def redirect_process_path(path, workspace, temp_root, label):
 # 1. 环境探测
 # ---------------------------------------------------------------------------
 def detect_env():
+    local = load_local_env()
+    configured_soffice = local.get("sofficePath")
+    if configured_soffice:
+        configured_soffice = str(Path(str(configured_soffice)).expanduser())
+    if configured_soffice and Path(configured_soffice).is_file():
+        soffice = configured_soffice
+    else:
+        soffice = shutil.which("soffice") or shutil.which("libreoffice")
     env = {
-        "soffice": shutil.which("soffice") or shutil.which("libreoffice"),
-        "wps":     shutil.which("wps") or shutil.which("wpspdf"),
+        "soffice": soffice,
         "pdftoppm":shutil.which("pdftoppm"),
-        "tesseract": shutil.which("tesseract"),
         "xvfb":    shutil.which("xvfb-run"),
-        "pymupdf": False, "pptx": False, "pdfplumber": False, "docx": False,
-        "pytesseract": False, "PIL": False,
+        "pypdfium2": False, "pptx": False, "pdfplumber": False, "docx": False,
+        "PIL": False,
+        "user_pdf_only": local.get("renderer") == "user-pdf",
+        "local_env": local,
     }
-    for mod, key in [("fitz", "pymupdf"), ("pptx", "pptx"),
+    for mod, key in [("pypdfium2", "pypdfium2"), ("pptx", "pptx"),
                      ("pdfplumber", "pdfplumber"), ("docx", "docx"),
-                     ("pytesseract", "pytesseract"), ("PIL", "PIL")]:
+                     ("PIL", "PIL")]:
         try:
             __import__(mod); env[key] = True
         except Exception:
@@ -105,13 +146,12 @@ def detect_env():
     return env
 
 # ---------------------------------------------------------------------------
-# 1b. Python 依赖自动安装
+# 1b. Python 依赖检查（不安装）
 # ---------------------------------------------------------------------------
-PIP_PKGS = ["python-pptx", "pdfplumber", "pymupdf", "python-docx",
-            "pytesseract", "Pillow"]
+PIP_PKGS = ["python-pptx", "pdfplumber", "pypdfium2", "python-docx", "Pillow"]
 _PIP_MOD = {
-    "python-pptx": "pptx", "pdfplumber": "pdfplumber", "pymupdf": "fitz",
-    "python-docx": "docx", "pytesseract": "pytesseract", "Pillow": "PIL",
+    "python-pptx": "pptx", "pdfplumber": "pdfplumber", "pypdfium2": "pypdfium2",
+    "python-docx": "docx", "Pillow": "PIL",
 }
 
 def _import_ok(mod):
@@ -120,34 +160,14 @@ def _import_ok(mod):
     except Exception:
         return False
 
-def _pip_install(pkgs):
-    """尝试安装 pip 包:--user → 普通 → --break-system-packages"""
-    pip_cmds = [
-        [sys.executable, "-m", "pip", "install", "--user"],
-        [sys.executable, "-m", "pip", "install"],
-        [sys.executable, "-m", "pip", "install", "--break-system-packages"],
-    ]
-    for base in pip_cmds:
-        try:
-            r = subprocess.run(base + pkgs,
-                               stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-                               timeout=180)
-            if r.returncode == 0:
-                return True
-        except Exception:
-            pass
-    return False
-
-def ensure_python_deps(auto_install=True):
-    if not auto_install:
-        return
+def ensure_python_deps():
+    """只报告缺失依赖，不安装、不修改 Python 环境。"""
     missing = [p for p in PIP_PKGS if not _import_ok(_PIP_MOD[p])]
     if missing:
-        print(f"[安装] 缺失 Python 依赖: {missing}")
-        if _pip_install(missing):
-            print("       -> pip 安装成功")
-        else:
-            print("       -> pip 安装失败,请手动: pip install " + " ".join(missing))
+        print(f"[依赖] 缺失 Python 依赖: {missing}")
+        print("       请由操作员在受控环境中手动安装后重试。")
+        return False
+    return True
 
 # ---------------------------------------------------------------------------
 # 2. 工具函数
@@ -215,17 +235,18 @@ def render_pptx(pptx_path, out_dir, dpi, env):
     """返回 (png_list, renderer_name)。
     使用 xvfb-run(如有)、独立 LibreOffice profile、清除 Python 路径冲突。"""
     tmp_pdf_dir = tempfile.mkdtemp(prefix="ppt_pdf_")
+    lo_profile_dir = None
     try:
         soffice = env["soffice"]
         if not soffice:
             return [], None
 
-        # 隔离 profile 避免并发锁冲突
-        lo_profile = f"file:///tmp/lo_profile_{os.getpid()}"
-        # 清除 LibreOffice 内嵌 Python 的路径警告
-        lo_env = os.environ.copy()
-        lo_env.pop("PYTHONHOME", None)
-        lo_env.pop("PYTHONPATH", None)
+        # 隔离 profile：使用不可预测的临时目录，结束后清理，避免 /tmp 符号链接抢占。
+        lo_profile_dir = tempfile.mkdtemp(prefix="lo_profile_")
+        lo_profile = Path(lo_profile_dir).as_uri()
+        # 只传最小环境变量，避免把 API key 等敏感变量暴露给 LibreOffice 子进程。
+        keep_env = ("HOME", "PATH", "LANG", "LC_ALL", "LC_CTYPE", "TMPDIR", "DISPLAY")
+        lo_env = {k: os.environ[k] for k in keep_env if k in os.environ}
 
         soffice_cmd = [
             soffice, "--headless",
@@ -257,6 +278,8 @@ def render_pptx(pptx_path, out_dir, dpi, env):
         return pdf_to_png(pdfs[0], out_dir, "page", dpi, env), "LibreOffice"
     finally:
         shutil.rmtree(tmp_pdf_dir, ignore_errors=True)
+        if lo_profile_dir:
+            shutil.rmtree(lo_profile_dir, ignore_errors=True)
 
 def pdf_to_png(pdf_path, out_dir, prefix, dpi, env):
     out = []
@@ -269,15 +292,27 @@ def pdf_to_png(pdf_path, out_dir, prefix, dpi, env):
             print(f"       -> pdftoppm 失败 (rc={r.returncode if r else 'timeout'})")
         else:
             out = glob.glob(str(out_path / f"{prefix}-*.png"))
-    elif env["pymupdf"]:
-        import fitz
-        doc = fitz.open(pdf_path)
+    # pdftoppm 不存在或执行失败时，都尝试 pypdfium2；不能只处理“不存在”。
+    if not out and env.get("pypdfium2"):
+        import pypdfium2 as pdfium
+        doc = pdfium.PdfDocument(str(pdf_path))
         try:
-            for i, pg in enumerate(doc, 1):
-                pix = pg.get_pixmap(dpi=dpi)
-                p = out_path / f"{prefix}-{i:02d}.png"
-                pix.save(str(p))
-                out.append(str(p))
+            for i in range(len(doc)):
+                page = doc[i]
+                try:
+                    bitmap = page.render(scale=dpi / 72)
+                    try:
+                        pil = bitmap.to_pil()
+                        try:
+                            p = out_path / f"{prefix}-{i + 1:02d}.png"
+                            pil.save(str(p))
+                            out.append(str(p))
+                        finally:
+                            pil.close()
+                    finally:
+                        bitmap.close()
+                finally:
+                    page.close()
         finally:
             doc.close()
     def _num(p):
@@ -301,11 +336,9 @@ def text_pptx(pptx_path):
             if sh.has_text_frame:
                 for para in sh.text_frame.paragraphs:
                     # FIX-009: para.text 已包含所有 runs 拼接结果,
-                    # 但有些旧版本 python-pptx 可能返回空,保留 runs 回退作为无害兜底
-                    t = (para.text or "").strip()
-                    if not t:
-                        t = "".join(r.text for r in para.runs).strip()
-                    if t:
+                    # 保留原始首尾空格；只用 strip() 判断是否为空，不把文本改写掉。
+                    t = para.text or "".join(r.text for r in para.runs)
+                    if t.strip():
                         try:
                             top, left = sh.top or 0, sh.left or 0
                         except Exception:
@@ -313,7 +346,7 @@ def text_pptx(pptx_path):
                         items.append((top, left, t))
             if sh.has_table:
                 for row in sh.table.rows:
-                    cells = [c.text.strip() for c in row.cells if c.text.strip()]
+                    cells = [c.text for c in row.cells if c.text.strip()]
                     if cells:
                         try:
                             top, left = sh.top or 0, sh.left or 0
@@ -324,66 +357,6 @@ def text_pptx(pptx_path):
         res[i] = "\n".join(t for _, _, t in items)
         res_detail[i] = [{"top": t, "left": l, "text": txt} for t, l, txt in items]
     return res, res_detail
-
-def _merge_pdf_lines(text):
-    """改进的段落合并。
-
-    规则:
-    - 空行 = 段落分隔
-    - 行尾是句末标点时视为段落结束
-    - 行首小写字母或非标点开头且上行未结束时合并到上行
-    - 短行(< 8 字符)除非是句末标点结束,否则与下行合并尝试
-    """
-    lines = text.split("\n")
-    out = []
-    buf = ""
-    # 句末标点:中英文句号、问号、感叹号、分号、冒号
-    strong_end = set("。！？；：.!?;:")
-
-    for line in lines:
-        s = line.strip()
-        if not s:
-            if buf:
-                out.append(buf)
-                buf = ""
-            continue
-
-        if not buf:
-            buf = s
-            continue
-
-        should_merge = (
-            buf[-1] not in strong_end
-            and (not s[0].isupper() or len(s) < 3)
-        )
-        if should_merge:
-            buf += s
-        else:
-            out.append(buf)
-            buf = s
-
-    if buf:
-        out.append(buf)
-    return "\n".join(out)
-
-
-def merge_single_letters(text):
-    """合并被异常逐字分离的英文。"""
-    toks = text.split()
-    out, buf = [], []
-    for t in toks:
-        if len(t) == 1 and t.isalpha():
-            buf.append(t)
-        else:
-            if len(buf) >= 3:
-                out.append("".join(buf))
-            else:
-                out.extend(buf)
-            buf = []
-            out.append(t)
-    if buf:
-        out.append("".join(buf)) if len(buf) >= 3 else out.extend(buf)
-    return " ".join(out)
 
 def _score_text(d):
     s = 0
@@ -405,22 +378,33 @@ def text_pdf(pdf_path):
     except Exception:
         pass
     try:
-        import fitz
-        doc = fitz.open(pdf_path)
+        import pypdfium2 as pdfium
+        doc = pdfium.PdfDocument(str(pdf_path))
+        pages = {}
         try:
-            cands["fitz"] = {i + 1: doc[i].get_text("text") for i in range(len(doc))}
+            for i in range(len(doc)):
+                page = doc[i]
+                try:
+                    tp = page.get_textpage()
+                    try:
+                        pages[i + 1] = tp.get_text_range()
+                    finally:
+                        tp.close()
+                finally:
+                    page.close()
         finally:
             doc.close()
+        cands["pdfium"] = pages
     except Exception:
         pass
 
     best = None
-    if "plumber" in cands and "fitz" in cands:
-        best = "plumber" if _score_text(cands["plumber"]) >= _score_text(cands["fitz"]) else "fitz"
+    if "plumber" in cands and "pdfium" in cands:
+        best = "plumber" if _score_text(cands["plumber"]) >= _score_text(cands["pdfium"]) else "pdfium"
     elif "plumber" in cands:
         best = "plumber"
-    elif "fitz" in cands:
-        best = "fitz"
+    elif "pdfium" in cands:
+        best = "pdfium"
 
     raw = cands.get(best) if best else None
     if not raw:
@@ -446,15 +430,15 @@ def text_pdf(pdf_path):
         return {}
     result = {}
     for k, v in raw.items():
-        cleaned = merge_single_letters(v).strip()
-        cleaned = _merge_pdf_lines(cleaned)
-        result[k] = cleaned
+        # 不做单字母合并/断行猜测：extracted_text 必须尽可能保留原始文本，
+        # 由 agent 在阶段二对照截图重排，而不是脚本先改写。
+        result[k] = v.replace("\r\n", "\n").replace("\r", "\n").strip("\n")
     return result
 
 # ---------------------------------------------------------------------------
 # 5. 图片提取
 # ---------------------------------------------------------------------------
-IMAGE_MIN_AREA = 100_000  # 10 万像素(约 300x300)
+IMAGE_MIN_AREA = 1  # 只排除 0 像素异常；小 logo/图标也必须进入候选
 
 def images_pptx(pptx_path):
     """递归提取嵌入图片,按 blob hash 同页去重,返回 {page: [{id, name, blob, w, h, pos}]}"""
@@ -479,8 +463,8 @@ def images_pptx(pptx_path):
                     if h in seen_hashes:
                         continue
                     seen_hashes.add(h)
-                    img = Image.open(io.BytesIO(blob))
-                    w_px, h_px = img.size
+                    with Image.open(io.BytesIO(blob)) as img:
+                        w_px, h_px = img.size
                     if w_px * h_px >= IMAGE_MIN_AREA:
                         try:
                             pos = {"left": sh.left or 0, "top": sh.top or 0,
@@ -496,46 +480,57 @@ def images_pptx(pptx_path):
     return res
 
 def images_pdf(pdf_path, dpi):
-    """PDF 图片通过 pymupdf 提取。
-
-    FIX-001: 修复 sha256 hash 变量被 img.size 覆盖导致去重失效。
-    FIX-004: 显式释放 Pixmap 资源。
-    """
-    import fitz
-    from PIL import Image
+    """PDF 图片通过 pypdfium2 提取（BSD-3-Clause / Apache-2.0，无 AGPL 负担）。"""
     import io
-    doc = fitz.open(pdf_path)
+    import pypdfium2 as pdfium
+    from PIL import Image
+
+    doc = pdfium.PdfDocument(str(pdf_path))
     res = {}
-    for pnum in range(len(doc)):
-        page = doc[pnum]
-        imgs = []
-        seen_hashes = set()
-        for idx, img_info in enumerate(page.get_images(full=True)):
-            xref = img_info[0]
+    try:
+        for pnum in range(len(doc)):
+            page = doc[pnum]
+            imgs = []
+            seen_hashes = set()
             try:
-                pix = fitz.Pixmap(doc, xref)
-                if pix.n - pix.alpha >= 4:
-                    old_pix = pix
-                    pix = fitz.Pixmap(fitz.csRGB, pix)
-                    del old_pix
-                blob = pix.tobytes("png")
-                # FIX-001: 使用独立变量名 img_hash,避免被 img.size 覆盖
-                img_hash = sha256(blob)
-                if img_hash in seen_hashes:
-                    del pix  # FIX-004
-                    continue
-                seen_hashes.add(img_hash)
-                img = Image.open(io.BytesIO(blob))
-                img_w, img_h = img.size  # FIX-001: 使用 img_w, img_h 而非 w, h
-                if img_w * img_h >= IMAGE_MIN_AREA:
-                    imgs.append({"name": f"img_{idx}", "blob": blob,
-                                 "w": img_w, "h": img_h, "pos": {}})
-                del pix  # FIX-004
-            except Exception:
-                pass
-        if imgs:
-            res[pnum + 1] = imgs
-    doc.close()
+                for idx, obj in enumerate(page.get_objects()):
+                    if not isinstance(obj, pdfium.PdfImage):
+                        continue
+                    bitmap = None
+                    pil = None
+                    try:
+                        w_px, h_px = obj.get_px_size()
+                        bitmap = obj.get_bitmap()
+                        pil = bitmap.to_pil()
+                        buf = io.BytesIO()
+                        pil.save(buf, format="PNG")
+                        blob = buf.getvalue()
+                        img_hash = sha256(blob)
+                        if img_hash in seen_hashes:
+                            continue
+                        seen_hashes.add(img_hash)
+                        if w_px * h_px >= IMAGE_MIN_AREA:
+                            try:
+                                b = obj.get_bounds()
+                                pos = {"left": b[0], "bottom": b[1],
+                                       "right": b[2], "top": b[3]}
+                            except Exception:
+                                pos = {}
+                            imgs.append({"name": f"img_{idx}", "blob": blob,
+                                         "w": w_px, "h": h_px, "pos": pos})
+                    except Exception:
+                        pass
+                    finally:
+                        if pil is not None:
+                            pil.close()
+                        if bitmap is not None:
+                            bitmap.close()
+            finally:
+                page.close()
+            if imgs:
+                res[pnum + 1] = imgs
+    finally:
+        doc.close()
     return res
 
 # ---------------------------------------------------------------------------
@@ -618,10 +613,14 @@ def build_docx(files_info, out_path, total_pages, slide_size=None):
         img_width = Inches(6.0)
 
     multi = len(files_info) > 1
+    first_page = True
     for fi in files_info:
         if multi:
             doc.add_heading(f"来源文件:{_clean(fi['name'])}", level=1)
         for pg in sorted(fi["pages"]):
+            if not first_page:
+                doc.add_page_break()
+            first_page = False
             doc.add_paragraph(f"page {pg}")
             pngs = fi["pages"][pg].get("png")
             if pngs and pngs[0]:
@@ -670,11 +669,13 @@ def parse_one(path, work, dpi, env, require_renderer_for_pptx=True):
 
     pages = {}
     if ext == ".pptx":
+        if env.get("user_pdf_only"):
+            print("[错误] local-env.json 设置了 renderer=user-pdf，PPT 输入请先导出 PDF。")
+            return None
         if not env["soffice"]:
             if require_renderer_for_pptx:
                 print(f"\n[错误] 未检测到 LibreOffice(soffice),无法渲染 PPT 整页截图。")
-                print(f"  PPT 解析必须有渲染器。请安装 LibreOffice 后重试,或将 PPT 导出为 PDF。")
-                print(f"  安装命令参见 SKILL.md「环境依赖安装」章节。")
+                print(f"  PPT 解析必须有渲染器。请安装 LibreOffice，或在 local-env.json 指定 sofficePath，或将 PPT 导出为 PDF。")
                 return None  # FIX-008: 不再 sys.exit
             else:
                 print("[警告] 无 LibreOffice,仅提取文字和图片,无整页截图。")
@@ -720,7 +721,11 @@ def parse_one(path, work, dpi, env, require_renderer_for_pptx=True):
         texts = text_pdf(str(path))
         texts_detail = {k: [{"top": 0, "left": 0, "text": v}] for k, v in texts.items()}
         print(f"[PDF] 提取内嵌图片...")
-        img_map = images_pdf(str(path), dpi)
+        if env.get("pypdfium2"):
+            img_map = images_pdf(str(path), dpi)
+        else:
+            print("       -> 未安装 pypdfium2，跳过 PDF 内嵌图片提取")
+            img_map = {}
         total_pics = sum(len(v) for v in img_map.values())
         print(f"       -> 共 {total_pics} 张图片分布在 {len(img_map)} 页")
         npages = max(len(texts), len(pngs)) or 1
@@ -748,9 +753,13 @@ def main():
     ap.add_argument("--dpi", type=int, default=150)
     ap.add_argument("--assets-dir", default=None)
     ap.add_argument("--keep", action="store_true")
-    ap.add_argument("--no-install", action="store_true")
+    ap.add_argument("--no-install", action="store_true", help="兼容旧参数；依赖需预先安装")
     ap.add_argument("--allow-no-renderer", action="store_true")
     args = ap.parse_args()
+
+    if args.dpi < 50 or args.dpi > 600:
+        print("[错误] --dpi 必须在 50–600 之间（默认 150，复杂页面用 300）。")
+        sys.exit(1)
 
     # 目录规则:先确认是否存在 workspace(产物目录)
     workspace = find_workspace_dir()
@@ -761,7 +770,31 @@ def main():
     else:
         print("[目录规则] 未检测到 workspace 目录，按当前工作区输出")
 
-    ensure_python_deps(auto_install=not args.no_install)
+    out = Path(args.out)
+    if not out.is_absolute():
+        out = Path.cwd() / out
+    out = redirect_process_path(out, workspace, temp_root, "阶段一 docx")
+    if out.suffix.lower() != ".docx":
+        print(f"[错误] --out 必须是 .docx：{out}")
+        sys.exit(1)
+    try:
+        out_resolved = out.resolve()
+    except Exception as exc:
+        print(f"[错误] 无法解析 --out 路径：{exc}")
+        sys.exit(1)
+    input_paths = []
+    for inp in args.inputs:
+        p = Path(inp)
+        if p.exists():
+            input_paths.append(p.resolve())
+    if any(out_resolved == p for p in input_paths):
+        print("[错误] --out 不能与输入文件相同，否则会覆盖源文件。")
+        sys.exit(1)
+    if out.exists() and out.is_dir():
+        print(f"[错误] --out 指向目录而不是文件：{out}")
+        sys.exit(1)
+
+    ensure_python_deps()
     env = detect_env()
     print("环境检测:", {k: (v if isinstance(v, bool) else (v and '✓'))
                           for k, v in env.items()})
@@ -785,10 +818,6 @@ def main():
     if not files_info:
         print("无有效输入,退出。"); sys.exit(1)
 
-    out = Path(args.out)
-    if not out.is_absolute():
-        out = Path.cwd() / out
-    out = redirect_process_path(out, workspace, temp_root, "阶段一 docx")
     out.parent.mkdir(parents=True, exist_ok=True)
 
     # FIX-010: --assets-dir 按源文件独立子目录避免多文件覆盖
@@ -810,13 +839,25 @@ def main():
 
     # 同步生成无图版本(只有图片被移除，文字与图片解析说明保持不变)
     noimg_path = None
+    noimg_ok = False
     try:
         from strip_images import strip_docx_images
         noimg_path, removed, verified, diff = strip_docx_images(out)
-        state = "通过" if verified else f"失败({diff})"
-        print(f"   无图版本:{noimg_path}(移除图片 {removed} 个，文字一致性校验:{state})")
+        if verified:
+            noimg_ok = True
+            print(f"   无图版本:{noimg_path}(移除图片 {removed} 个，文字与图片残留校验:通过)")
+        else:
+            print(f"   无图版本校验失败:{diff}")
+            if noimg_path and noimg_path.exists():
+                noimg_path.unlink()
     except Exception as exc:
-        print(f"   [警告] 无图版本生成失败:{exc}")
+        print(f"   [错误] 无图版本生成失败:{exc}")
+
+    if not noimg_ok:
+        print("[错误] 无图版本未通过校验，阶段一不交付。")
+        if not args.keep:
+            shutil.rmtree(work, ignore_errors=True)
+        sys.exit(1)
 
     print(f"\n✅ 阶段一完成:{out}")
     print(f"   合计 {total} 页,来源文件 {len(files_info)} 个")

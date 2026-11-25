@@ -17,7 +17,7 @@
   "_notes": [
     "ids: 1-100 post UUIDs; [] returns 400, more than 100 returns 400, a non-UUID returns 400",
     "notFoundIds = ids that don't exist or belong to another workspace; repeating a call is harmless",
-    "Response status is 200, not 201; one call counts as one request (200/hour)",
+    "Response status is 200, not 201; one call counts as one request against this endpoint's own rate limit",
     "To delete everything matching a filter, re-read GET /social-posts?page=0 with the filter and bulk-delete until data is empty"
   ]
 }

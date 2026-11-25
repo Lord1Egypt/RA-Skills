@@ -1,6 +1,6 @@
 ## Description:
 
-Guides an agent through diagnosing principal-agent relationships, estimating agency costs, and designing structural alignment mechanisms for incentives, observability, and selection.
+Analyzes delegated relationships where differing interests and unobservable actions create agency costs, and helps identify structural ways to reduce them.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Employees, leaders, operators, and developers use this skill to analyze delegated relationships where incentives diverge and actions are not fully observable, including executive compensation, outsourcing, fund management, partnerships, and autonomous AI deployment.
+Employees, executives, board members, and operators use this skill to diagnose incentive misalignment in delegated relationships and consider incentive, monitoring, and selection mechanisms. It can also help structure oversight decisions for autonomous AI agents.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill can produce governance, incentive, or delegation recommendations from incomplete user-provided facts.
+Risk: One referenced example was only partially inspected, so the scan does not establish that every component is risk-free.
 
-Mitigation: Use the skill's verification checklist and require a human reviewer to confirm the named principal, agent, unobservable behavior, agency-cost estimate, alignment mechanisms, residual cost, and exit mechanism before acting on recommendations.
+Mitigation: Review the referenced example before relying on its claims.
 
 ## Reference(s):
 
-- [Sources - principal-agent](references/sources.md)
-- [Jensen-Meckling 1976 and the Enron Collapse, 2001](examples/jensen-meckling-1976-and-the-enron-collapse-2001.md)
-- [Delegating to an Autonomous AI Agent, 2024-2026](examples/deploying-autonomous-ai-agents-2024-2026.md)
-- [Theory of the Firm: Managerial Behavior, Agency Costs and Ownership Structure](https://www.sciencedirect.com/science/article/pii/0304405X7690026X)
-- [Specification gaming: the flip side of AI ingenuity](https://deepmind.google/discover/blog/specification-gaming-the-flip-side-of-ai-ingenuity/)
-- [Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)
-- [Practices for Governing Agentic AI Systems](https://openai.com/index/practices-for-governing-agentic-ai-systems/)
+- [Jensen and Meckling (1976), Theory of the Firm](https://www.sciencedirect.com/science/article/pii/0304405X7690026X)
+- [DeepMind, Specification Gaming](https://deepmind.google/discover/blog/specification-gaming-the-flip-side-of-ai-ingenuity/)
+- [Anthropic, Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents)
+- [OpenAI, Practices for Governing Agentic AI Systems](https://openai.com/index/practices-for-governing-agentic-ai-systems/)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Markdown]
+**Output Type(s):** [Analysis, Guidance, Markdown]
 
-**Output Format:** [Markdown]
+**Output Format:** [Structured Markdown principal–agent analysis]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Structured principal-agent analysis with named parties, misalignment diagnosis, agency-cost estimate, alignment mechanisms, residual cost, and verification checklist.]
+**Other Properties Related to Output:** [Includes qualitative diagnosis and order-of-magnitude agency cost estimates.]
 
 ## Skill Version(s):
 
-1.0.5 (source: server release evidence)
+1.0.6 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

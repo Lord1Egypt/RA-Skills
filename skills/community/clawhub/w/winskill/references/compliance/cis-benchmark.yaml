@@ -1,8 +1,8 @@
 ---
-version: "1.0.0"
-updated: "2026-08-24"
+version: "2.0.0"
+updated: "2026-11-19"
 standard: "CIS Benchmark"
-description: "Center for Internet Security - Windows Server 安全基线（精选关键控制项）"
+description: "Center for Internet Security - Windows Server 安全基线（精选关键控制项）— runner 可判定格式"
 ---
 
 items:
@@ -11,48 +11,60 @@ items:
     item: 密码最小长度≥14
     level: Level 1
     module: module-05
-    check: "net accounts | Select-String 'Minimum password length'"
-    expected: ">= 14"
+    check: "net accounts"
+    extract: "Minimum password length\\s+(\\d+)"
+    expect: "ge 14"
+    fix_id: "FIX-CIS-111"
 
   - id: "CIS-1.1.2"
     category: 密码策略
     item: 密码复杂度已启用
     level: Level 1
     module: module-05
-    check: "Get-ItemProperty -Path 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Lsa' -Name PasswordComplexity"
-    expected: "PasswordComplexity = 1"
+    check: "Get-ItemProperty -Path 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Lsa' -Name PasswordComplexity | Select-Object -ExpandProperty PasswordComplexity"
+    extract: "(\\d+)"
+    expect: "eq 1"
+    fix_id: "FIX-CIS-112"
 
   - id: "CIS-2.2.1"
     category: 账户策略
     item: Guest 账户已禁用
     level: Level 1
     module: module-16
-    check: "Get-LocalUser -Name 'Guest' | Select-Object Enabled"
-    expected: "Enabled = False"
+    check: "Get-LocalUser -Name 'Guest' | Select-Object -ExpandProperty Enabled"
+    extract: "(True|False|true|false)"
+    expect: "eq false"
+    fix_id: "FIX-CIS-221"
 
   - id: "CIS-2.3.1.1"
     category: 登录策略
     item: 限制空密码登录
     level: Level 1
     module: module-16
-    check: "Get-ItemProperty -Path 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Lsa' -Name LimitBlankPasswordUse"
-    expected: "LimitBlankPasswordUse = 1"
+    check: "Get-ItemProperty -Path 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Lsa' -Name LimitBlankPasswordUse | Select-Object -ExpandProperty LimitBlankPasswordUse"
+    extract: "(\\d+)"
+    expect: "eq 1"
+    fix_id: "FIX-CIS-2311"
 
   - id: "CIS-5.1"
     category: 系统服务
     item: Windows Update 服务运行中
     level: Level 1
     module: module-08
-    check: "Get-Service -Name wuauserv | Select-Object Status"
-    expected: "Status = Running"
+    check: "Get-Service -Name wuauserv | Select-Object -ExpandProperty Status"
+    extract: "(Running|Stopped)"
+    expect: "eq Running"
+    fix_id: "FIX-CIS-51"
 
   - id: "CIS-9.1"
     category: 防火墙
-    item: 所有防火墙配置文件已启用
+    item: 已启用防火墙配置文件数≥3
     level: Level 1
     module: module-21
-    check: "Get-NetFirewallProfile | Select-Object Name, Enabled"
-    expected: "全部 Enabled = True"
+    check: "Get-NetFirewallProfile | Where-Object Enabled | Measure-Object | Select-Object -ExpandProperty Count"
+    extract: "(\\d+)"
+    expect: "ge 3"
+    fix_id: "FIX-CIS-91"
 
   - id: "CIS-17.1"
     category: 审计策略
@@ -60,4 +72,6 @@ items:
     level: Level 1
     module: module-10
     check: "auditpol /get /subcategory:'Logon'"
-    expected: "Success and Failure"
+    extract: "Logon\\s+(.+)"
+    expect: "contains Success and Failure"
+    fix_id: "FIX-CIS-171"

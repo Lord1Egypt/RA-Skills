@@ -1,6 +1,6 @@
 ## Description:
 
-Audits the DSA problem bank for coverage gaps and proposes new YAML entries
+Audits the DSA problem bank for coverage gaps and proposes new YAML entries.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and maintainers use this skill to compare DSA problem bank counts with the category manifest, identify coverage gaps, and prepare YAML entries for human review.
+Developers maintaining a DSA problem bank use this skill to compare category coverage with the manifest, identify gaps, and prepare YAML problem entries for human review.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review was partial because five referenced local files were unavailable, so behavior connected to them was not assessed.
+Risk: The coverage report may miss or misstate gaps if referenced problem-bank materials are missing or out of date.
 
-Mitigation: Review the referenced files and their behavior before relying on the coverage report or proposed entries.
+Mitigation: Confirm the manifest, problem files, and analysis script are available, then review the category counts and existing problems.
+
+Risk: Proposed problem entries could be inaccurate or misleading.
+
+Mitigation: Have a human review each proposal and validate it against the problem schema before adding it to the bank.
 
 ## Reference(s):
 
-- [Gauntlet plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-gauntlet-problem-bank)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, YAML configuration]
+**Output Type(s):** [Markdown, Configuration]
 
-**Output Format:** [Markdown coverage report with proposed YAML entries]
+**Output Format:** [Markdown coverage report with YAML problem entry proposals]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Proposals are presented for human review and are not written directly into the problem bank.]
+**Other Properties Related to Output:** [Proposals are for human review and validation before inclusion in the problem bank.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release)
 
 ## Ethical Considerations:
 

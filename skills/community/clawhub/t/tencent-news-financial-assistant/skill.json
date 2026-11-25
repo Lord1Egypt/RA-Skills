@@ -1,0 +1,26 @@
+{
+  "name": "tencent-news-financial-assistant",
+  "description": "股票行情查询工具，通过腾讯新闻 CLI 的 stock 能力查询个股实时与历史行情（开盘、最高、最低、收盘、涨跌幅、成交量等）。当用户询问股价、涨跌幅或某只股票的行情走势时使用。",
+  "version": "1.0.0",
+  "displayName": {
+    "zh-CN": "腾讯新闻-金融数据查询助手",
+    "en-US": "Tencent News Financial Assistant"
+  },
+  "examples": [
+    "腾讯控股现在股价多少？",
+    "查一下贵州茅台今天的涨跌幅",
+    "苹果公司最新财报关键指标"
+  ],
+  "examplesEn": [
+    "What is Tencent Holdings' current stock price?",
+    "Check today's price change of Kweichow Moutai",
+    "Key metrics from Apple's latest financial report"
+  ],
+  "owners": ["shasha"],
+  "cli": {
+    "mode": "new",
+    "name": "tencent-news-cli",
+    "integrationDoc": "references/cli-integration.md",
+    "changeRef": "tencent-news-cli v1.0.18（test 渠道构建，与 https://mat1.gtimg.com/qqcdn/qqnews/cli/test/checksums.txt 一致）：最初核实 build 2026-10-19T19:17:10 / linux-amd64 SHA-256 0cbd95c991c702c7e69a41f69d0553f2763d528e9ebf20601a08361444c94e1a，2026-10-28 强制更新后为 build 2026-10-28T11:33:51 / SHA-256 cdedb08d1b48a7c66f02493629f514fc6ff7530883b6e4ae073e03635e0c80b1；新增 stock / stock quote 子命令，2026-10-28 构建起移除 --app-id 参数。CLI 源码 MR 或提交位置尚未提供，待 quonliu 补充"
+  }
+}

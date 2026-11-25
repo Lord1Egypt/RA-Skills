@@ -1,7 +1,7 @@
 ---
 name: tech-content-review-panel
 description: Reviews a tech/AI/industry research or in-depth analysis long-form article before publishing, via a fixed eight-role expert panel (target-reader reps, quality gatekeepers incl. fact+originality check, distribution gatekeeper) in an evaluate-then-optimize loop. Applies to tech/AI/data deep-dives, sector judgment and research pieces — not news, marketing, docs, tutorials, or short opinion posts. Trigger when the user asks to 会审/评审/review a finished deep-analysis draft or wants tech content 接近完美/可发布.
-version: "1.2.4"
+version: "1.2.5"
 agent_created: true
 read_when:
   - "会审 / 评审 / review this article"
@@ -36,7 +36,7 @@ A tech/AI/industry deep-analysis piece aimed at an industry readership and built
 
 ### Step 2 [LLM] G1 Fact & originality check (gate first — reject if it fails)
 - **Facts**: verify every number / company name / date / policy / event. Foundational facts must be verified online with traceable sources. Distinguish confirmed / to-verify / possibly-stale (watch timeliness — do not present old news as new).
-- **Originality**: search (WebSearch) the core argument, framework, and signature phrasing to judge whether it is "independently derived / deepened from public views" (keep, add a clarifying line if needed) or "verbatim-similar and needs rewrite" (plagiarism risk). Every "original / first / exclusive" claim must be verified — never assert originality from memory.
+- **Originality**: search (WebSearch) the core argument, framework, and signature phrasing to judge whether it is "independently derived / deepened from public views" (keep, add a clarifying line if needed) or "verbatim-similar and needs rewrite" (plagiarism risk). Every "original / first / exclusive" claim must be verified — never assert originality from memory. **⚠️ Before searching: this draft is often unpublished/confidential. Confirm with the user that sending draft-derived text (core argument, framework, signature phrasing) to a third-party search service is authorized; if not authorized, do not transmit it — use only minimal, redacted factual queries, or mark originality claims "unverified locally" and skip the external search. Never send the full draft or identifying/sensitive details.**
 
 ### Step 3 [Deterministic] G2 Style red-line scan (reject if not cleared)
 - Grep the full text for red-line phrasing (aligned with the user's long-term writing profile `negative_rules`):
@@ -68,7 +68,7 @@ A tech/AI/industry deep-analysis piece aimed at an industry readership and built
 
 ### Step 7 [LLM] Consolidate and revise
 - Grade feedback: must-fix / suggested / optional / for-author-decision (tension items).
-- Handle all must-fix and suggested; list options for tension items for the author to decide.
+- Deliver all must-fix and suggested items as **recommendations for the author** (list them; do not edit the draft yourself); list options for tension items for the author to decide.
 
 ### Step 8 [Deterministic] Re-check
 - After revision, re-run Step 2 and Step 3 (facts and red-lines must not introduce new problems from the changes; re-grep red-lines to confirm cleared). If Step 6's native-speaker pass flagged must-fix items, re-read the revised passages the same way to confirm they are cleared.
@@ -135,7 +135,7 @@ Two readers agreeing is not sufficient if the suggestion violates the locked sco
 
 #### R5. Limit revision scope
 
-Apply must-fixes and compatible suggested changes in one focused pass. Do not keep adding examples, tables, definitions or sections until every role is satisfied. Re-run only the affected reader test after revision; stop when the core message, intended scope and technical level are understood by the selected roles.
+Output one focused, consolidated set of revision recommendations covering must-fixes and compatible suggested changes for the **author to apply** — this skill is advisory review only and does not rewrite the article itself. Do not keep recommending examples, tables, definitions or sections until every role is satisfied. When the author returns a revised draft, re-run only the affected reader test; stop when the core message, intended scope and technical level are understood by the selected roles.
 
 #### Reader-fit output
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Delegates execution to external CLIs (Gemini, Qwen, MiniMax, GLM, Muse, Codex, OpenCode, Glimmer). Use for execution tasks.
+Delegates execution tasks to external CLIs and providers, including Gemini, Qwen, MiniMax, GLM, Muse, Codex, OpenCode, and Glimmer.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to assess whether execution work is suitable for delegation to external AI providers, prepare handoffs, and validate or integrate the results.
+Developers use this skill to decide which execution work can be delegated to external AI providers, prepare handoffs, estimate costs, and validate returned results.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Delegated prompts or context may be sent to external AI providers.
+Risk: The security evidence reports an undeclared MCP server registration capability.
 
-Mitigation: Keep secrets, credentials, and data that should remain local out of delegated requests.
+Mitigation: Before installing, review the MCP registration instructions and verify and approve each server and permission.
 
-Risk: The skill may configure an MCP server in Claude in addition to delegating to external AI CLIs.
+Risk: The security evidence reports telemetry guidance that may include personal identifiers.
 
-Mitigation: Review the MCP configuration and provider access before enabling or using delegation.
+Mitigation: Review telemetry guidance before use and avoid sending personal identifiers unless their collection and handling are approved.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-conjure-delegation-core)
-- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/conjure)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-conjure-delegation-core)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conjure)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
 
-**Output Format:** [Markdown with tables, checklists, and inline shell examples]
+**Output Format:** [Markdown guidance with shell command examples and delegation plan templates]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Provides task assessment, delegation handoff, provider setup, and result validation guidance.]
+**Other Properties Related to Output:** [Includes provider selection, handoff, cost, validation, and troubleshooting guidance.]
 
 ## Skill Version(s):
 
-1.10.3 (source: artifact frontmatter, server-resolved release metadata)
+1.10.4 (source: server-resolved release evidence; artifact frontmatter lists 1.10.3)
 
 ## Ethical Considerations:
 

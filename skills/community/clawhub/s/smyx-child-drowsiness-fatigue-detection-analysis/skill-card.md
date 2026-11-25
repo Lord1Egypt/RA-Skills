@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes a child's facial video for eye closure, head nodding, and related visual cues to estimate drowsiness and produce a fatigue score.
+Analyzes a child’s facial video for visual signs associated with drowsiness, including eye closure and head movements, and returns a fatigue assessment and report.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Parents and educators can use the skill to review a child's study-session video for visual signs of drowsiness, receive a fatigue estimate and rest reminder, or retrieve prior reports.
+Parents, teachers, or developers can use the skill to request a visual drowsiness assessment of a child’s study video and review fatigue indicators, a score, and rest reminders. The skill documentation says its results are for learning support and are not medical diagnoses.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Analysis may involve remote processing of a child's facial video, which is sensitive personal data.
+Risk: ClawScan marked the skill suspicious because of reported broad account, credential, and data handling behavior and a mismatch with its stated fatigue-analysis purpose; the scan was partial and could not verify some delegated behavior.
 
-Mitigation: Obtain the guardian's informed consent before use, and confirm where video is sent and how reports are retained.
+Mitigation: Avoid installation until the publisher clarifies account creation, credential storage, remote destinations, and video upload behavior, and the missing or unverified behavior has been reviewed.
 
-Risk: The security assessment flags account and credential handling and says an environment-only option may not reliably prevent analysis.
+Risk: The workflow concerns video of children and may send video for remote analysis.
 
-Mitigation: Review the account and credential access before running the skill, and confirm whether analysis will execute; do not rely on the environment-only option as a safety control.
-
-Risk: Security coverage is partial, so the artifact's complete behavior has not been established.
-
-Mitigation: Review the full package and its data flows before use with children's video.
+Mitigation: Before use, obtain guardian consent and confirm where video and reports are sent, stored, and protected; do not submit sensitive footage until those details are clear.
 
 ## Reference(s):
 
-- [API reference](references/api_doc.md)
+- [API interface and reported fatigue fields](artifact/references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-child-drowsiness-fatigue-detection-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Markdown]
+**Output Type(s):** [Analysis results, JSON, Markdown, Guidance]
 
-**Output Format:** [Structured fatigue analysis results and Markdown report listings]
+**Output Format:** [Structured JSON analysis report; Markdown history report list]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Visual fatigue estimates and directional rest reminders; not a medical diagnosis.]
+**Other Properties Related to Output:** [May include fatigue metrics, a score and level, detected events, a summary, rest prompts, and report links.]
 
 ## Skill Version(s):
 
-1.0.15 (source: server release metadata)
+1.0.16 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

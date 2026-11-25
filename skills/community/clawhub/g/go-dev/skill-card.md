@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Go developers use this skill to scaffold or update project tooling for formatting, linting, tests, CI, task running, Git hooks, and database migrations, with pinned tool versions and ready-to-adapt examples.
+Developers use this skill to set up or improve Go projects, including linting, formatting, testing, CI, task recipes, database migrations, and Git hooks.
 
 ### Deployment Geography for Use:
 
@@ -22,55 +22,40 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Installing downloaded Go tools brings executable code into the project environment.
+Risk: The skill recommends running an installer downloaded from the internet without independent integrity verification.
 
-Mitigation: Use pinned versions and verified downloads, and review the tool source or release before installation.
+Mitigation: Use an official release download and verify its checksum or signature independently before execution; review the installation instructions first.
 
-Risk: Git hook recipes can run commands and modify files during commits or pushes.
+Risk: Some referenced content was only partially inspected by the security scan.
 
-Mitigation: Review generated changes and hook behavior before enabling the hooks.
-
-Risk: Migration commands can change or remove data in the configured database.
-
-Mitigation: Confirm the target database and maintain a backup before applying migrations or resets.
-
-Risk: Migration recipes use a database connection string, and downloaded tools may access network resources.
-
-Mitigation: Keep credentials scoped to the project and use isolated container networking where practical.
-
-Risk: Externally downloaded software is outside the artifact review, and optional additional skills have separate behavior.
-
-Mitigation: Verify downloaded software and review optional skills separately before global installation.
+Mitigation: Review the affected referenced content before installing or following its instructions.
 
 ## Reference(s):
 
+- [Project homepage (Clawdis metadata)](https://github.com/tenequm/skills/tree/main/skills/go-dev)
+- [ClawHub release page](https://clawhub.ai/tenequm/skills/go-dev)
+- [Go documentation](https://go.dev/doc/)
 - [Go Toolchain Reference](artifact/references/go-toolchain-reference.md)
-- [Go Correctness Reference](artifact/references/go-correctness-reference.md)
-- [Go Testing Reference](artifact/references/go-testing-reference.md)
 - [golangci-lint Reference](artifact/references/golangci-lint-reference.md)
-- [gofumpt Reference](artifact/references/gofumpt-reference.md)
-- [gotestsum Reference](artifact/references/gotestsum-reference.md)
+- [Go Testing Reference](artifact/references/go-testing-reference.md)
 - [golang-migrate Reference](artifact/references/go-migrate-reference.md)
 - [Justfile Reference](artifact/references/justfile-reference.md)
 - [Lefthook Reference](artifact/references/lefthook-reference.md)
-- [Go Official Docs](https://go.dev/doc/)
-- [Go 1.27 Release Notes](https://go.dev/doc/go1.27)
-- [Go vulnerability checker](https://pkg.go.dev/golang.org/x/vuln/cmd/govulncheck)
-- [ClawHub skill page](https://clawhub.ai/tenequm/skills/go-dev)
+- [gotestsum Reference](artifact/references/gotestsum-reference.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
 
-**Output Format:** [Markdown with Go, shell, and configuration examples]
+**Output Format:** [Markdown with Go, YAML, shell, and Justfile examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reference material and ready-to-adapt project templates]
+**Other Properties Related to Output:** [Versioned setup guidance and configuration examples for Go projects.]
 
 ## Skill Version(s):
 
-0.7.0 (source: SKILL.md frontmatter)
+0.8.0 (source: artifact CHANGELOG.md, evidence release)
 
 ## Ethical Considerations:
 

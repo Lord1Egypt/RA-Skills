@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-US hiring managers, recruiters, and interview panels use this skill to prepare structured, role-specific interview questions, follow-up probes, and a scoring rubric. It also provides a basic lint report to flag checklist issues before the kit is used.
+US hiring managers, recruiters and interview panels can use the skill to prepare structured, role-specific interview questions, follow-up probes, scoring anchors and a do-not-ask list. The included script checks a supplied kit for required sections and flagged phrases, then writes a Markdown lint report.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,32 @@ United States
 
 ## Known Risks and Mitigations:
 
-Risk: The basic lint checks cannot guarantee that interview questions meet legal requirements.
+Risk: The scanner reports a mismatch between the interview-kit purpose and script behavior, along with file writing that is not declared in the skill metadata; the scanner analysis was partial.
 
-Mitigation: Have employment counsel review the questions before use.
+Mitigation: Review the included script and its input and output paths before use, and treat the benign verdict as limited because some referenced paths were unresolved.
 
-Risk: Real candidate information could be exposed when preparing or sharing a kit.
+Risk: The optional Windows toolkit download is a separate, unsigned executable and is not included in the bundle.
 
-Mitigation: Use fictional examples and keep candidate names, resumes, contact details, and answers out of the kit.
-
-Risk: The optional Windows application is unnecessary for the documented workflow and has a separate trust requirement.
-
-Mitigation: Use the local documented workflow; do not run the optional application unless it has been independently reviewed and is needed.
+Mitigation: If choosing to download it, verify the documented SHA-256, keep it in its own folder, and avoid running it as administrator unless needed.
 
 ## Reference(s):
 
-- [Interview question rules](references/interview-question-rules.md)
-- [Interview kit template](templates/interview-kit.yaml)
-- [ClawHub release](https://clawhub.ai/rapidworker1/skills/interview-question-kit)
+- [US pre-employment question rules](references/interview-question-rules.md)
+- [ClawHub release page](https://clawhub.ai/rapidworker1/skills/interview-question-kit)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown]
+**Output Type(s):** [Text, Markdown, Configuration]
 
-**Output Format:** [Markdown interview kit and lint report]
+**Output Format:** [Interview-kit YAML template and Markdown lint report, with structured question, probe, rubric and panel-note content]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Role-specific questions, follow-up probes, scoring rubric, and review guardrails.]
+**Other Properties Related to Output:** [The standalone Python script checks a supplied file and writes a lint report; it does not score or rank candidates.]
 
 ## Skill Version(s):
 
-1.0.6 (source: SKILL.md frontmatter and server release metadata)
+1.0.7 (source: frontmatter)
 
 ## Ethical Considerations:
 

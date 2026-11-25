@@ -1,0 +1,36 @@
+{
+  "knowledge_matrix": [
+    {
+      "character": "乙",
+      "facts": [
+        {
+          "fact": "F-密钥",
+          "status": "确信",
+          "first_known_scene": "S3",
+          "evidence": "甲说：密钥在钟楼。",
+          "basis": "told"
+        }
+      ]
+    },
+    {
+      "character": "甲",
+      "facts": [
+        {
+          "fact": "F-密钥",
+          "status": "确信",
+          "first_known_scene": "S1",
+          "evidence": "甲亲历了密钥藏在钟楼的事实。",
+          "basis": "experienced"
+        }
+      ]
+    }
+  ],
+  "early_information_uses": [
+    {
+      "character": "乙",
+      "fact": "F-密钥",
+      "scene": "S2",
+      "evidence": "乙按自己记下的藏匿地点直奔钟楼，取出密钥后用它打开了门。"
+    }
+  ]
+}

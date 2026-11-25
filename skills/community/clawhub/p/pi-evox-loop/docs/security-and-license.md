@@ -10,9 +10,10 @@
 
 ## 安全与数据外发声明
 
-> **EN**: Security & data-egress statement: all CLI calls are direct argv (no shell); the only egress is `--llm-refine` (opt-in, explicit endpoint); `--fresh` is destructive (auto-backed-up); upstream licenses: light backend MIT, evolver GPL-3.0-or-later (optional), pi MIT.
+> **EN**: Security & data-egress statement: all CLI calls are direct argv (no shell); egress has exactly two opt-in paths - flow-C orchestrator sends task text/code to the user-configured provider (explicit --provider/--model/--api-key required) and `--llm-refine` (opt-in, explicit endpoint); `--fresh` is destructive (auto-backed-up); upstream licenses: light backend MIT, evolver GPL-3.0-or-later (optional), pi MIT.
 
 - **无 shell 执行（0.7.0 起）**：全部 CLI 调用改为 argv 数组形式的 `node <入口>` 直调，**不经 shell、无字符串拼接**，命令注入面已从架构上消除；`--llm-refine` 的外发改用 Node 原生 `fetch`（不再依赖 curl）；
+- **外发边界两轴（0.43 O08 精确化）**：①**进程与存储**（引擎/CLI/钩子/基因库）全部本地——A/B 流程（light 后端）零模型调用、零外发；②**模型请求**仅在两处显式 opt-in 场景外发：流程 C 编排器把任务文本/代码发给**用户配置的 provider**（必须显式传 `--provider/--model/--api-key`），以及 `--llm-refine`（默认禁用）；
 - **`--llm-refine` 涉及数据外发**：会把会话 transcript（截 9000 字符）发送到 `EVOLVER_REFINE_URL` 指定的外部端点。**未配置该变量时此功能自动禁用**，不存在默认外发。请在了解外发范围后启用，或使用本地/自有端点；
 - **`--fresh` 有破坏性**：备份后清空全局经验库 `~/.evomap/assets/`——执行前确认，恢复用备份目录；
 - **实验产物含会话内容**：`--root` 目录下的 sessions/transcript/inject-*.txt 包含任务文本、代码与工具输出，注意保管；
@@ -64,7 +65,7 @@
 
 - 门模块缺失时的降级：**导出/导入 fail-closed（拒绝执行）**；`evolver-recall.mjs` 侧只跳过注入门、其余三门照常（宿主 bootstrap 路径不能因守卫失败而阻断使用者）。**例外**：Pi 扩展桥（`evolver-bridge.ts`）内置**精简版**注入守卫（单文件拷贝部署，无法 import 完整扫描器），编排器 `pi_evolve.mjs` 则用完整扫描器且不降级。
 - **0.31 修复（实测确认的两个漏检）**：① 注入扫描器原先把 `FIX:` **之前**的文本整体丢弃、不进任何扫描区 ⇒ 「指令覆盖类前缀 + `FIX:` 修法后缀」可绕过；② 中文「指令覆盖」正则对动词与指令类名词之间的修饰词限制过死，仅插入一个常见程度副词即不命中。两者均已修复并纳入回归用例。**纪律**：注释与文档里只描述机制类别、不引用触发串原文——说明文字本身会被扫描器当成注入样本（本仓有为此发版的先例）。
-- 回归基线：恶意样本 16/16 拦截、合法样本 7/7 零误杀（0.36 计划扩容至 30+，见 roadmap）。
+- 回归基线：恶意样本 31/31 拦截、合法样本 11/11 零误杀（0.36 计划扩容至 30+，0.42 时点已实测达标；发布门禁每版实测、数字见发布页更新说明；完整回归套件含恶意样本按设计不随包分发、外部不可复跑；随包的 `selftest.mjs` 为快速哨兵——仅验证「扫描器在线 + 合法文本零误杀」）。
 
 ## 注入内容不变量（0.38 · J10/J11）
 

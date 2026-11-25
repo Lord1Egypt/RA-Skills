@@ -1,38 +1,43 @@
 #!/bin/bash
 # verify-inbound-setup.sh - Verify SendGrid Inbound Parse configuration
 #
-# Usage: ./verify-inbound-setup.sh <hostname> [webhook-url]
+# Usage: ./verify-inbound-setup.sh <hostname>
 #
 # Examples:
 #   ./verify-inbound-setup.sh parse.example.com
-#   ./verify-inbound-setup.sh parse.example.com https://webhook.example.com/parse
 
 set -e
 
 # Help
 if [[ "$1" == "--help" ]] || [[ "$1" == "-h" ]]; then
-  echo "Usage: $0 <hostname> [webhook-url]"
+  echo "Usage: $0 <hostname>"
   echo ""
   echo "Verify SendGrid Inbound Parse configuration:"
   echo "  1. Check MX record points to mx.sendgrid.net"
-  echo "  2. Validate DNS propagation"
-  echo "  3. (Optional) Test webhook endpoint accessibility"
+  echo "  DNS-only: active webhook probing is disabled."
   echo ""
   echo "Examples:"
   echo "  $0 parse.example.com"
-  echo "  $0 parse.example.com https://webhook.example.com/parse"
+  echo "Webhook accessibility and authentication are not tested."
   exit 0
+fi
+
+# Reject the removed capability before any DNS or HTTP operation. Do not silently
+# ignore old URL arguments: callers must know no endpoint was tested.
+if [[ $# -gt 1 ]]; then
+  echo "Error: Active webhook probing is disabled. Use: $0 <hostname>" >&2
+  echo "Review an owned, trusted HTTPS endpoint separately; this helper checks MX only." >&2
+  exit 1
 fi
 
 # Validate hostname
 if [[ -z "$1" ]]; then
   echo "❌ Error: Hostname required"
-  echo "Usage: $0 <hostname> [webhook-url]"
+  echo "Usage: $0 <hostname>"
   exit 1
 fi
 
 HOSTNAME="$1"
-WEBHOOK_URL="$2"
 
 # Security: Validate HOSTNAME to prevent shell injection.
 # Only alphanumeric characters, dots, and hyphens are permitted.
@@ -42,20 +47,11 @@ if [[ ! "$HOSTNAME" =~ ^[a-zA-Z0-9]([a-zA-Z0-9.-]{0,251}[a-zA-Z0-9])?$ ]]; then
   exit 1
 fi
 
-# Security: Validate WEBHOOK_URL to prevent SSRF (Server-Side Request Forgery).
-# Only HTTPS URLs with clean hostnames are accepted.
-# This blocks file://, http://, internal addresses, and shell metacharacters.
-if [[ -n "$WEBHOOK_URL" ]]; then
-  if [[ ! "$WEBHOOK_URL" =~ ^https://[a-zA-Z0-9]([a-zA-Z0-9.-]+)(:[0-9]+)?(/.*)?$ ]]; then
-    echo "❌ Error: Webhook URL must use HTTPS (e.g. https://webhook.example.com/parse)"
-    exit 1
-  fi
-fi
-
 echo "🔍 Verifying Inbound Parse setup for: $HOSTNAME"
 echo ""
 
 # Check if dig is available
+USE_NSLOOKUP=0
 if ! command -v dig &> /dev/null; then
   echo "⚠️  Warning: 'dig' command not found, using 'nslookup' instead"
   USE_NSLOOKUP=1
@@ -63,10 +59,22 @@ fi
 
 # Check MX record
 echo "📝 Checking MX record..."
-if [[ -n "$USE_NSLOOKUP" ]]; then
-  MX_RECORDS=$(nslookup -type=MX "$HOSTNAME" 2>&1 | grep "mail exchanger" || true)
+if [[ "$USE_NSLOOKUP" == 1 ]]; then
+  DNS_RESPONSE=$(nslookup -type=MX "$HOSTNAME") || {
+    DNS_STATUS=$?
+    echo "❌ Error: DNS lookup failed (nslookup exit $DNS_STATUS)" >&2
+    exit "$DNS_STATUS"
+  }
+  MX_RECORDS=$(printf '%s\n' "$DNS_RESPONSE" | awk '
+    NF == 6 && $2 == "mail" && $3 == "exchanger" && $4 == "=" && $5 ~ /^[0-9]+$/ {print $5, $6}
+  ')
 else
-  MX_RECORDS=$(dig +short MX "$HOSTNAME" 2>&1 || true)
+  DNS_RESPONSE=$(dig +short MX "$HOSTNAME") || {
+    DNS_STATUS=$?
+    echo "❌ Error: DNS lookup failed (dig exit $DNS_STATUS)" >&2
+    exit "$DNS_STATUS"
+  }
+  MX_RECORDS=$(printf '%s\n' "$DNS_RESPONSE" | awk 'NF == 2 && $1 ~ /^[0-9]+$/ {print $1, $2}')
 fi
 
 if [[ -z "$MX_RECORDS" ]]; then
@@ -86,8 +94,11 @@ echo "✅ MX records found:"
 echo "$MX_RECORDS"
 echo ""
 
-# Check if mx.sendgrid.net is in records
-if echo "$MX_RECORDS" | grep -q "mx.sendgrid.net"; then
+# Compare the exchange field exactly, ignoring DNS case and one trailing dot.
+if printf '%s\n' "$MX_RECORDS" | awk '
+  {exchange = tolower($2); sub(/\.$/, "", exchange); if (exchange == "mx.sendgrid.net") found = 1}
+  END {exit !found}
+'; then
   echo "✅ MX record correctly points to mx.sendgrid.net"
 else
   echo "⚠️  Warning: MX record does not point to mx.sendgrid.net"
@@ -105,54 +116,16 @@ fi
 
 echo ""
 
-# Test webhook if provided
-if [[ -n "$WEBHOOK_URL" ]]; then
-  echo "🌐 Testing webhook endpoint..."
-  echo "URL: $WEBHOOK_URL"
-  echo ""
-  
-  HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$WEBHOOK_URL" \
-    -H "Content-Type: multipart/form-data" \
-    -F "from=test@example.com" \
-    -F "to=$HOSTNAME" \
-    -F "subject=Test" \
-    -F "text=Test message" \
-    2>&1 || echo "000")
-  
-  if [[ "$HTTP_CODE" == "000" ]]; then
-    echo "❌ Error: Could not connect to webhook endpoint"
-    echo ""
-    echo "Check:"
-    echo "  - URL is correct and publicly accessible"
-    echo "  - Firewall/security groups allow incoming traffic"
-    echo "  - Server is running and listening on correct port"
-    exit 1
-  elif [[ "$HTTP_CODE" =~ ^2 ]]; then
-    echo "✅ Webhook endpoint accessible (HTTP $HTTP_CODE)"
-  elif [[ "$HTTP_CODE" == "401" ]]; then
-    echo "✅ Webhook endpoint accessible but requires auth (HTTP $HTTP_CODE)"
-    echo "   This is expected if you've configured basic auth"
-  else
-    echo "⚠️  Webhook returned HTTP $HTTP_CODE"
-    echo "   Endpoint is accessible but may need configuration"
-  fi
-  echo ""
-fi
-
 # Summary
 echo "📋 Summary:"
 echo "  ✅ MX record configured correctly"
-if [[ -n "$WEBHOOK_URL" ]]; then
-  echo "  ✅ Webhook endpoint tested"
-fi
+echo "  Webhook accessibility and authentication were not tested."
 echo ""
 echo "Next steps:"
 echo "  1. Configure Inbound Parse in SendGrid Console"
 echo "     → Settings → Inbound Parse → Add Host & URL"
 echo "  2. Set Hostname: $HOSTNAME"
-if [[ -n "$WEBHOOK_URL" ]]; then
-  echo "  3. Set Destination URL: $WEBHOOK_URL"
-fi
-echo "  4. Send test email to: anything@$HOSTNAME"
+echo "  3. Review an owned, trusted HTTPS destination and its authentication separately."
+echo "  4. Only after recipient/content approval, send a live test email to anything@$HOSTNAME (your controlled parse hostname)."
 echo ""
 echo "Note: DNS propagation can take up to 48 hours"

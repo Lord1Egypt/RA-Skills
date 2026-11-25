@@ -1,6 +1,6 @@
 ## Description:
 
-Detects AI-generated writing patterns in prose
+Detects AI-generated writing patterns in prose.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Writers and documentation maintainers use the skill to review prose for concentrated AI-writing patterns, identity leaks, unsupported claims, and structural issues. It produces findings and suggested edits for human review.
+Writers, editors, and developers use this skill to review prose and code comments for AI-style wording and structural patterns. It reports located findings and suggests fixes for human review.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review reports cleanup and network-check behavior beyond the skill's stated prose-detection purpose.
+Risk: ClawScan rates the release suspicious with high confidence and reports broad project changes that may not match the prose-analysis purpose.
 
-Mitigation: Review the complete behavior and use the skill only when that broader scope is needed.
+Mitigation: Review the skill's scope and requested permissions before installation or execution; the security guidance advises avoiding installation until reviewed.
 
-Risk: The security review reports incomplete inspection: 18 of 21 components were fully inspected, with parser or output limits and missing referenced paths.
+Risk: The security evidence reports persistent configuration edits, remote pushes, and document-triggered network checks; scanner coverage is partial.
 
-Mitigation: Review the uninspected components and unavailable referenced material before installation.
+Mitigation: Inspect these actions and network checks, and account for the stated coverage gaps before using the skill.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-scribe-slop-detector)
-- [Scribe plugin homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/scribe)
+- [ClawHub release](https://clawhub.ai/athola/skills/nm-scribe-slop-detector)
+- [Project homepage (metadata.clawdis)](https://github.com/athola/claude-night-market/tree/master/plugins/scribe)
+- [Publisher profile (athola)](https://clawhub.ai/user/athola)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, Markdown, JSON, Guidance]
 
-**Output Format:** [Markdown audit reports or structured JSON findings]
+**Output Format:** [Markdown report or JSON in CI mode, with file and line references, findings, severity, confidence, evidence, and suggested fixes.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Findings can include file and line locations, category, severity, confidence, rationale, and proposed fixes; low-confidence findings are surfaced for human review.]
+**Other Properties Related to Output:** [Findings are surfaced for human review; low-confidence findings should not be applied automatically.]
 
 ## Skill Version(s):
 
-1.10.3 (source: release metadata, frontmatter)
+1.10.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

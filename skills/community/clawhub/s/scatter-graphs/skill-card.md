@@ -1,38 +1,52 @@
-## Description: <br>
-Visualize relationships between two variables. Use for correlation analysis and pattern identification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visualize relationships between two variables. Use for correlation analysis and pattern identification.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[linuszz](https://clawhub.ai/user/linuszz)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external users, developers, and analysts use this skill to structure scatter-plot correlation analysis, identify relationship patterns, call out outliers, and produce concise implications from paired variables.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad trigger wording may invoke the skill for general correlation questions.
+
+Mitigation: Review whether the scatter-graph analysis framing fits the user's request before applying the template.
+
+Risk: Scatter-plot interpretation can overstate causation from correlation.
+
+Mitigation: Keep causation caveats, outlier review, non-linear relationship checks, and segmentation checks visible in generated analysis.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Analysts, operators, and business users use this skill to examine relationships between two variables, interpret correlation patterns, identify outliers, and produce concise recommendations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Correlation analysis can be mistaken for causal proof or used to support business decisions without checking data quality, outliers, or segmentation. <br>
-Mitigation: Verify conclusions against the underlying data, investigate outliers and segments, and avoid causal claims unless separate evidence supports them. <br>
+**Output Format:** [Markdown analysis template with tables, findings, outliers, and implications]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linuszz/scatter-graphs) <br>
+**Other Properties Related to Output:** [Produces human-facing scatter analysis guidance; it does not execute code or access data.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with tables, findings, outliers, implications, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only analysis aid; no code execution, credentials, persistence, or external tool use indicated by the evidence.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

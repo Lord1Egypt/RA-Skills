@@ -10,6 +10,23 @@
  * @returns {string} 解析到的值
  * @throws {Error} 若值缺失或为另一个 flag
  */
+/**
+ * 只接受十进制整数字符串。拒绝 0x10、1e4、空白这类会被 Number() 悄悄改写的写法。
+ * @param {string} raw
+ * @returns {number}
+ */
+function parseDecimalInteger(raw) {
+  const s = String(raw).trim();
+  if (!/^[0-9]+$/.test(s)) {
+    throw new Error(`须为十进制整数, 收到: "${raw}"`);
+  }
+  const n = Number(s);
+  if (!Number.isSafeInteger(n)) {
+    throw new Error(`须为十进制整数, 收到: "${raw}"`);
+  }
+  return n;
+}
+
 function readValueAfterFlag(args, index, flagName) {
   const next = args[index + 1];
   if (next === undefined) {
@@ -19,6 +36,152 @@ function readValueAfterFlag(args, index, flagName) {
     throw new Error(`参数 ${flagName} 的值不能以 "-" 开头, 收到: "${next}"`);
   }
   return next;
+}
+
+/**
+ * 从 JSON 对象按 schema 填结果（与 flag 路径同一套 default / required / transform）
+ * @param {Object} obj
+ * @param {Object} schema
+ * @returns {Object}
+ */
+function applySchemaFromObject(obj, schema) {
+  if (obj === null || typeof obj !== "object" || Array.isArray(obj)) {
+    throw new Error("--json-args 须为 JSON 对象");
+  }
+
+  const allowed = new Map();
+  for (const def of Object.values(schema.flags)) {
+    allowed.set(def.key, def);
+  }
+
+  for (const key of Object.keys(obj)) {
+    if (!allowed.has(key)) {
+      throw new Error(`--json-args 含未知字段: ${key}`);
+    }
+  }
+
+  const result = {};
+  for (const [flag, def] of Object.entries(schema.flags)) {
+    const key = def.key;
+    if (!Object.prototype.hasOwnProperty.call(obj, key)) {
+      if (def.default !== undefined) {
+        result[key] = def.default;
+      }
+      continue;
+    }
+    const value = obj[key];
+    if (def.type === "boolean") {
+      if (typeof value !== "boolean") {
+        throw new Error(`参数 ${key} 须为布尔值 true/false`);
+      }
+      result[key] = value;
+      continue;
+    }
+    if (def.type === "number") {
+      let raw;
+      if (typeof value === "number") {
+        if (!Number.isFinite(value)) {
+          throw new Error(`参数 ${key} 须为有限数字`);
+        }
+        raw = String(value);
+      } else if (typeof value === "string") {
+        raw = value;
+      } else {
+        throw new Error(`参数 ${key} 须为数字或数字字符串`);
+      }
+      result[key] = def.transform ? def.transform(raw) : parseDecimalInteger(raw);
+      continue;
+    }
+    // string（及未标明 type 时）
+    if (typeof value !== "string") {
+      throw new Error(`参数 ${key} 须为字符串`);
+    }
+    result[key] = def.transform ? def.transform(value) : value;
+  }
+
+  for (const [flag, def] of Object.entries(schema.flags)) {
+    if (def.required && result[def.key] === undefined) {
+      throw new Error(`缺少必填参数: ${flag} (${def.alias || "无别名"})；JSON 字段名用 "${def.key}"`);
+    }
+  }
+
+  return result;
+}
+
+/**
+ * 解析 --json-args 模式；与传统 flag / 位置参数互斥。
+ * @param {string[]} args
+ * @returns {{ raw: string } | null} null 表示未使用 JSON 模式
+ */
+function extractJsonArgsPayload(args) {
+  let hasJsonArgs = false;
+  for (const arg of args) {
+    const name = arg.indexOf("=") > 0 ? arg.slice(0, arg.indexOf("=")) : arg;
+    if (name === "--json-args") {
+      hasJsonArgs = true;
+      break;
+    }
+  }
+  if (!hasJsonArgs) {
+    return null;
+  }
+
+  let raw;
+  let seen = false;
+  for (let i = 0; i < args.length; i++) {
+    const arg = args[i];
+    const eq = arg.indexOf("=");
+    const name = eq > 0 ? arg.slice(0, eq) : arg;
+    const inline = eq > 0 ? arg.slice(eq + 1) : undefined;
+
+    if (name !== "--json-args") {
+      throw new Error(
+        "--json-args 不可与其它参数混用；请把全部业务字段放进 JSON，或改用传统 flag",
+      );
+    }
+    if (seen) {
+      throw new Error("参数 --json-args 重复指定");
+    }
+    seen = true;
+    if (inline !== undefined) {
+      if (inline === "") {
+        throw new Error("参数 --json-args 缺少有效值");
+      }
+      raw = inline;
+    } else {
+      const next = args[i + 1];
+      if (next === undefined || next.startsWith("-")) {
+        throw new Error("参数 --json-args 缺少值");
+      }
+      raw = next;
+      i++;
+    }
+  }
+
+  return { raw };
+}
+
+/**
+ * CLI 统一入口：有 --json-args 走 JSON；否则走传统 parseArgs（语义不变）。
+ * @param {string[]} args - process.argv.slice(2)
+ * @param {Object} schema
+ * @returns {Object}
+ */
+function parseCliArgs(args, schema) {
+  const jsonMode = extractJsonArgsPayload(args);
+  if (!jsonMode) {
+    return parseArgs(args, schema);
+  }
+
+  let obj;
+  try {
+    obj = JSON.parse(jsonMode.raw);
+  } catch (e) {
+    throw new Error(
+      `--json-args JSON 无效: ${e.message}。PowerShell 建议外层单引号: --json-args '{"keyword":"AI"}'`,
+    );
+  }
+  return applySchemaFromObject(obj, schema);
 }
 
 /**
@@ -44,24 +207,32 @@ function parseArgs(args, schema) {
   }
 
   let i = 0;
+  let noMoreFlags = false;
   while (i < args.length) {
     const arg = args[i];
-    const eq = arg.indexOf("=");
+
+    if (!noMoreFlags && arg === "--") {
+      noMoreFlags = true;
+      i++;
+      continue;
+    }
+
+    const eq = !noMoreFlags ? arg.indexOf("=") : -1;
     const argName = eq > 0 ? arg.slice(0, eq) : arg;
     const inlineValue = eq > 0 ? arg.slice(eq + 1) : undefined;
 
-    // 帮助
-    if (argName === "--help" || argName === "-h") {
+    if (!noMoreFlags && (argName === "--help" || argName === "-h")) {
       result._help = true;
       return result;
     }
 
-    // 查找匹配的 flag
     let matched = null;
-    for (const [flag, def] of Object.entries(schema.flags)) {
-      if (argName === flag || (def.alias && argName === def.alias)) {
-        matched = { flag, def };
-        break;
+    if (!noMoreFlags) {
+      for (const [flag, def] of Object.entries(schema.flags)) {
+        if (argName === flag || (def.alias && argName === def.alias)) {
+          matched = { flag, def };
+          break;
+        }
       }
     }
 
@@ -75,7 +246,7 @@ function parseArgs(args, schema) {
       if (def.type === "boolean") {
         result[def.key] = true;
       } else if (inlineValue !== undefined) {
-        if (inlineValue === "" || inlineValue.startsWith("-")) {
+        if (inlineValue === "") {
           throw new Error(`参数 ${argName} 缺少有效值`);
         }
         result[def.key] = def.transform ? def.transform(inlineValue) : inlineValue;
@@ -84,8 +255,7 @@ function parseArgs(args, schema) {
         result[def.key] = def.transform ? def.transform(rawValue) : rawValue;
         i++;
       }
-    } else if (!arg.startsWith("-")) {
-      // 位置参数
+    } else if (noMoreFlags || !arg.startsWith("-")) {
       if (schema.positionalKey && result[schema.positionalKey] === undefined) {
         result[schema.positionalKey] = arg;
       } else {
@@ -124,6 +294,9 @@ function buildHelp(schema, usage, examples = []) {
     lines.push(`  ${flag}\t${alias}\t${placeholder}\t${def.desc}${defHint}`);
   }
   lines.push("  --help\t-h\t\t显示帮助信息");
+  lines.push(
+    "  --json-args\t\t<json>\t一次性传入全部参数的 JSON 对象（与其它 flag 互斥；键名用 keyword/url/sort 等，不用 --keyword）",
+  );
   if (examples.length > 0) {
     lines.push("\n示例:");
     examples.forEach((ex) => lines.push(`  ${ex}`));
@@ -131,4 +304,11 @@ function buildHelp(schema, usage, examples = []) {
   return lines.join("\n");
 }
 
-module.exports = { parseArgs, readValueAfterFlag, buildHelp };
+module.exports = {
+  parseArgs,
+  parseCliArgs,
+  applySchemaFromObject,
+  readValueAfterFlag,
+  buildHelp,
+  parseDecimalInteger,
+};

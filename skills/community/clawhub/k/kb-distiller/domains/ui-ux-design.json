@@ -1,0 +1,152 @@
+{
+  "domain": "ui-ux-design",
+  "skill_name": "ui-ux-design-expert",
+  "language": "zh-CN",
+  "description_keywords": [
+    "UI",
+    "UX",
+    "UI/UX",
+    "视觉设计",
+    "配色",
+    "布局",
+    "排版",
+    "字体",
+    "视觉层次",
+    "色彩",
+    "动效",
+    "无障碍",
+    "WCAG",
+    "可用性",
+    "设计系统",
+    "格式塔",
+    "Gestalt",
+    "用户体验",
+    "界面",
+    "落地页",
+    "设计评审",
+    "交互"
+  ],
+  "trigger_scenarios": "评价、改进或实现网站/App 界面的视觉与交互质量：界面美化、UI 走查、设计评审、配色/排版/布局/动效选型、无障碍合规检查，或需要从『为什么好看』的底层规律（人类视觉、格式塔、构图、色彩法则）出发设计或重构界面",
+  "cross_cutting_files": ["laws", "ai-mistakes", "gotchas", "patterns"],
+  "subdomains": [
+    {
+      "name": "visual-perception",
+      "doc_seeds": ["https://lawsofux.com", "https://www.nngroup.com/articles/"],
+      "page_budget": 6,
+      "elicitation_topics": [
+        "格式塔原则（接近性/相似性/闭合性/连续性/图底关系/共同命运）在界面分组与识别中的应用",
+        "CRAP 设计四原则（Contrast 对比/Repetition 重复/Alignment 对齐/Proximity 亲密）的逐项界面应用与自检方法",
+        "视觉层次构建手段（大小/对比/留白/位置/视觉重量）与眼动扫描模式（F型/Z型/层叠蛋糕）",
+        "UX 认知定律（Hick's Law / Fitts's Law / Miller's Law / Jakob's Law / Von Restorff 效应 / 峰终定律 / 序列位置效应）的适用场景与数值边界",
+        "美学-可用性效应与第一印象形成（毫秒级判断、信任感来源）",
+        "认知负荷三类型（内在/外在/关联）与界面简化策略",
+        "AI 生成界面时的典型视觉认知错误"
+      ]
+    },
+    {
+      "name": "layout-composition",
+      "doc_seeds": ["https://m3.material.io"],
+      "page_budget": 5,
+      "elicitation_topics": [
+        "网格系统（12列栅格/基线网格/8pt 体系）与响应式断点策略",
+        "栅格系统深化（栅格类型：列栅格/基线/模块/分层；12 列数学、gutter/margin 计算、subgrid/container queries、主流框架栅格对照）",
+        "间距系统与留白运用（宏观留白/微观留白/信息密度控制）",
+        "对齐、平衡与比例法则（黄金比例/三分法/视觉中心 vs 几何中心）的应用与滥用",
+        "常见页面版式套路（落地页/仪表盘/详情页/表单页/列表页构图）",
+        "视觉重心与视觉流向编排（CTA 引导路径、阅读动线设计）",
+        "AI 生成布局时的典型错误"
+      ]
+    },
+    {
+      "name": "color-system",
+      "doc_seeds": ["https://m3.material.io", "https://webaim.org"],
+      "page_budget": 6,
+      "elicitation_topics": [
+        "色彩体系构建方法（主色/辅色/中性色/语义色/色阶 tint-shade 生成）",
+        "配色和谐法则（60-30-10 / 单色 / 类比 / 互补 / 分裂互补 / 三角配色）与情绪板驱动配色",
+        "对比度与可读性（WCAG 对比度阈值：正文/大字/UI 组件的差异，对比度计算）",
+        "色彩心理学与语义（品牌感、行业惯例、警示色文化差异）",
+        "深色模式配色策略（surface 叠加变亮/去饱和/语义色反转/纯黑取舍）",
+        "AI 生成配色时的典型错误"
+      ]
+    },
+    {
+      "name": "typography",
+      "doc_seeds": ["https://practicaltypography.com"],
+      "page_budget": 5,
+      "elicitation_topics": [
+        "字体分类与搭配法则（衬线/无衬线搭配、中西文混排、字体数量上限）",
+        "字阶与行高体系（type scale 比率选择、行高 1.4~1.8、行长 45~75 字符）",
+        "可读性 vs 易读性（readability/legibility）、字重层级与数字排版（tabular numbers）",
+        "网页字体性能（font-display、子集化、可变字体）与回退策略（FOUT/FOIT）",
+        "排版细节工艺（字距调整、标点悬挂、孤行寡行消除、全角半角混排空格）",
+        "AI 生成排版时的典型错误"
+      ]
+    },
+    {
+      "name": "style-design-system",
+      "doc_seeds": ["https://m3.material.io", "https://developer.apple.com/design/human-interface-guidelines/"],
+      "page_budget": 6,
+      "elicitation_topics": [
+        "设计风格谱系（极简/扁平/拟物/新拟态/玻璃拟态/新粗野主义）的识别要素与适用边界",
+        "设计令牌体系（Design Tokens：颜色/字阶/间距/圆角/阴影/动效时长）的分层组织",
+        "一致性原则与组件状态体系（默认/hover/focus/active/disabled/error 完整性）",
+        "深度与质感表达（阴影层级 elevation/描边/渐变/噪点/背景模糊的使用与克制）",
+        "品牌感注入手段（品牌色占比/品牌形状语言/插画风格/IP 形象）与设计语言统一",
+        "AI 生成界面风格时的典型错误"
+      ]
+    },
+    {
+      "name": "interaction-motion",
+      "doc_seeds": ["https://developer.apple.com/design/human-interface-guidelines/"],
+      "page_budget": 5,
+      "elicitation_topics": [
+        "微交互设计模型（触发/规则/反馈/循环模式）与状态反馈完整性",
+        "动效原则（时长 150~300ms 区间、缓动曲线选择、Material motion 三原则）",
+        "转场与共享元素动效（视觉连续性、空间关系暗示、转场层级）",
+        "加载体验设计（骨架屏/进度指示/乐观更新/感知性能优化）",
+        "表单交互 UX（即时校验时机、错误提示措辞、防误操作与撤销）",
+        "AI 生成交互动效时的典型错误"
+      ]
+    },
+    {
+      "name": "usability-accessibility",
+      "doc_seeds": ["https://www.w3.org/WAI/standards-guidelines/wcag/", "https://www.nngroup.com/articles/"],
+      "page_budget": 6,
+      "elicitation_topics": [
+        "Nielsen 十大可用性启发式的现代解读与走查方法",
+        "WCAG 2.2 关键成功标准（对比度/焦点可见/目标尺寸/键盘可达/致动方式）",
+        "无障碍视觉设计（色彩不作唯一信息载体、触摸目标尺寸、焦点样式、reduced-motion）",
+        "错误预防与错误信息设计（防错/容错/可恢复，错误提示的内容结构）",
+        "可用性走查与启发式评估的执行流程（走查清单、严重度评级）",
+        "AI 生成界面时的可用性与无障碍典型错误"
+      ]
+    }
+  ],
+  "spin_off_subdomains": [
+    {
+      "name": "wcag22-audit",
+      "title": "WCAG 2.2 逐条审计检查表（A/AA 55 条 + 技法/失败模式对照）",
+      "corpus_home": "corpus/ui-ux-design/usability-accessibility/docs/",
+      "origin": "由 usability-accessibility 全量锚定轮深化拆分；语料寄居母域 docs/，无独立 corpus 目录"
+    },
+    {
+      "name": "aria-patterns",
+      "title": "WAI-ARIA APG 模式契约（30 模式键盘交互与 ARIA 属性全量）",
+      "corpus_home": "corpus/ui-ux-design/usability-accessibility/docs/apg/",
+      "origin": "由 usability-accessibility APG 30 模式全量锚定拆分；语料寄居母域 docs/apg/"
+    },
+    {
+      "name": "industry-themes",
+      "title": "行业主题与配色图谱",
+      "corpus_home": "corpus/ui-ux-design/color-system/ + corpus/ui-ux-design/style-design-system/",
+      "origin": "行业主题深化轮拆分；语料寄居 color-system 与 style-design-system 的 elicited/docs"
+    },
+    {
+      "name": "app-templates",
+      "title": "应用类型模板库",
+      "corpus_home": "corpus/ui-ux-design/_patterns/",
+      "origin": "应用模板深化轮拆分；语料寄居 _patterns/（08-14.md 模式语料）"
+    }
+  ]
+}

@@ -22,7 +22,7 @@ Give Claude a phone. Amber is the first voice/telephony plugin for Claude — ma
 
 ## Setup
 
-1. Clone the repo and install dependencies:
+1. Clone the [Amber GitHub repository](https://github.com/batthis/amber-openclaw-voice-agent) and install dependencies. The Claude plugin manifest and its MCP configuration are in the GitHub checkout under `packaging/cowork/`.
    ```bash
    cd runtime && npm install
    ```

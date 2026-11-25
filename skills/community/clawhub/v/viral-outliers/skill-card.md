@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Marketing and social media teams use this skill to find unusually high-performing posts and creators across TikTok, Instagram, and YouTube, compare profiles, monitor competitors, and develop content ideas from public posts.
+Marketers, creators, and social media researchers use this skill to find unusually high-performing posts, compare creators, track competitors, and review video content across TikTok, Instagram, and YouTube.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The CLI example runs `npx viral-outliers` without pinning a package version, so a later install may execute a changed release. Scanner coverage was partial.
+Risk: The security review classifies the skill as suspicious because it references an unpinned npm package that may change between reviews; scan coverage is incomplete and tool-misuse analysis was degraded.
 
-Mitigation: Review the package and use an explicitly reviewed, version-pinned release with integrity checks. Do not pass a real API key to code that has not been reviewed.
+Mitigation: Review and pin the CLI version before installation, and treat the scan as inconclusive about safety.
 
 ## Reference(s):
 
 - [Viral Outliers documentation](https://viraloutliers.com/docs)
-- [Getting started](https://viraloutliers.com/docs/getting-started)
-- [REST API reference (OpenAPI)](https://viraloutliers.com/openapi.json)
+- [Getting started](references/getting-started.md)
+- [Skill and tool reference](references/skills.md)
+- [OpenAPI specification](https://viraloutliers.com/openapi.json)
+- [Machine-readable product summary](https://viraloutliers.com/llms.txt)
+- [ClawHub release page](https://clawhub.ai/matsclaes2/skills/viral-outliers)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, Markdown, JSON]
+**Output Type(s):** [Text, Markdown, JSON, API calls]
 
-**Output Format:** [Structured API data with textual analysis and content guidance]
+**Output Format:** [Structured social media data and concise text or Markdown analysis, including transcripts and content ideas when requested.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Some operations return asynchronous job references; billable operations use prepaid credits.]
+**Other Properties Related to Output:** [Results depend on tracked public profiles and available data; some operations use prepaid credits.]
 
 ## Skill Version(s):
 
-1.0.18 (source: server-resolved release metadata)
+1.0.20 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

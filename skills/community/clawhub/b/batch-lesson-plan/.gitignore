@@ -17,6 +17,8 @@ __pycache__/
 *.docx
 !tools/**/*.docx
 !examples/**/*.docx
+# 中专教案模板（源资产，需纳入版本库；不属于生成产物）
+!templates/中专教案模板.docx
 
 # 用户/凭据
 .env

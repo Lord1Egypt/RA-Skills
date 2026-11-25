@@ -2,30 +2,30 @@
 
 ## Requirement
 
-Validated demand: Users and support teams need clearer error messages that explain what failed, why it failed, and what action to take next. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
+Validated demand: Users and support teams need clearer error messages that explain what failed, why it failed, and what action to take next. This requirement is supported by 12 separate online signals across 2 source families, so it represents broader demand rather than a single isolated request.
 
 Audience: application developers, support teams, SaaS operators, and users who lose time when vague errors block troubleshooting
 
 Category: `work-productivity`
 
-Demand score: 100/100
+Demand score: 90/100
 
-Evidence coverage: 12 signals across 3 source families.
+Evidence coverage: 12 signals across 2 source families.
 
 ## Evidence
 
-- github-issues: [[Intake] Verified Windows Codex app-server control framing repair: native `app-server pro](https://github.com/Ikalus1988/MisakaNet/issues/4963)
+- github-issues: [[Intake] Four concurrent Qingzhou time-window queries exceeded upstream timeout while ser](https://github.com/Ikalus1988/MisakaNet/issues/5085)
+- github-issues: [[Intake] Qingzhou deployment reports the new version as successful and running, but the s](https://github.com/Ikalus1988/MisakaNet/issues/4881)
 - github-issues: [[Intake] Qingzhou CLI increments qingzhou.yaml during deploy but does not update package.](https://github.com/Ikalus1988/MisakaNet/issues/5067)
-- github-issues: [[Intake] audit-fixture](https://github.com/Ikalus1988/MisakaNet/issues/5012)
-- github-issues: [tree-sitter decommission: YARA on yara-x-parser's CST](https://github.com/opentidehq/opentide/issues/1225)
-- segmentfault-search: [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
-- segmentfault-search: [javascript](https://segmentfault.com/t/javascript)
-- segmentfault-search: [typescript](https://segmentfault.com/t/typescript)
-- segmentfault-search: [ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
-- segmentfault-search: [答： c++单例类编译不通过](https://segmentfault.com/q/1010000004886164/a-1020000004886445)
-- segmentfault-search: [error-messages](https://segmentfault.com/t/error-messages)
-- segmentfault-search: [问： vue自定义指令报错](https://segmentfault.com/q/1010000009322969)
-- hacker-news-search: [C++26 Disapproved](https://news.ycombinator.com/item?id=50361335)
+- github-issues: [[Intake] 录屏窗口帧大量重复时，查看同名抽帧会被缓存误判为动态；先统计唯一图像哈希和像素差，再决定重录或合成可见交互](https://github.com/Ikalus1988/MisakaNet/issues/5228)
+- github-issues: [Add a backup and restore page to the user guide](https://github.com/emreocell/Praxi-Bot/issues/321)
+- hacker-news-search: [Outlook.com is rejecting email from domains without DMARC](https://news.ycombinator.com/item?id=50417017)
+- hacker-news-search: [Things That Turbo Pascal Is Smaller Than (2011)](https://news.ycombinator.com/item?id=50513011)
+- hacker-news-search: [Things That Turbo Pascal Is Smaller Than (2011)](https://news.ycombinator.com/item?id=50510415)
+- hacker-news-search: [How the Telephone Changed the World](https://news.ycombinator.com/item?id=50509574)
+- hacker-news-search: [Seagate's new hybrid drive raises some old questions](https://news.ycombinator.com/item?id=50549092)
+- hacker-news-search: [Live airband on all frequencies from KORS. Victoria, CA also ground stopped](https://news.ycombinator.com/item?id=50498186)
+- github-issues: [Profile improvements](https://github.com/feippe/moviematch/issues/23)
 
 ## How This Skill Meets The Requirement
 

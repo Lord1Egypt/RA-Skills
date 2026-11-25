@@ -1,5 +1,7 @@
 # Video generation
 
+For a reference video whose facial features/hair must change to a selected person, first follow [facial identity replacement](../../workflows/face-identity-replacement.md) to establish appearance references and remove competing source identity. Then submit actual multi-reference fields. Retaining the performer or only changing clothes does not add this stage.
+
 Choose text, single-image, first/last-frame, reference, edit, or extension mode according to the actual request and the [Seedance API](../../api/seedance.md). Preserve an explicit model and supported parameters. Otherwise Seedance 2.5 is the general route; a simple unspecified clip can start with one 5-second, 16:9 output. User requirements, input constraints, and mode restrictions still govern ratio and duration. Resolve paid generation resolution below; local template export settings are separate.
 
 ## Paid video settings

@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes videos of reptiles and arachnids for visible health concerns and returns a structured Pet Safety Guardian health report.
+Analyzes reptile and arachnid videos through a server-side service and returns a structured health report with potential concerns and care suggestions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Pet owners can submit a reptile or arachnid video for a visual health assessment, care suggestions, and a structured report, or retrieve previous reports. The results are for reference and do not replace advice from a qualified veterinarian.
+Pet owners can submit a local reptile or arachnid video, or a video URL, to receive an initial health screening report. The report offers potential health indicators and care suggestions; the skill documentation says it does not replace diagnosis by a qualified veterinarian.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan reports potential privacy exposure and security weaknesses alongside account handling and monitoring beyond video analysis.
+Risk: The security summary rates the release suspicious and says the scan was partial; it flags possible credential disclosure, shared access to report history, and video transmission without clear notice.
 
-Mitigation: Avoid installation unless the added history, account, and camera functions are needed and acceptable; review data handling before use.
-
-Risk: ClawScan reports possible analysis even when an export-only choice is selected.
-
-Mitigation: Do not rely on export-only mode to prevent analysis; confirm its behavior and avoid submitting sensitive video until resolved.
-
-Risk: The security review is incomplete because a local path-like reference could not be resolved.
-
-Mitigation: Treat the review as incomplete until the unresolved reference is assessed.
+Mitigation: Review the skill before use. Avoid sharing credentials or sensitive footage, and confirm how video uploads and report-history access are handled before submitting personal material.
 
 ## Reference(s):
 
-- [API documentation](references/api_doc.md)
-- [Skill introduction and demo](https://lifeemergence.com/sample.html)
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-crawl-analysis)
+- [ClawHub skill release](https://clawhub.ai/smyx-sunjinhui/skills/smyx-crawl-analysis)
+- [API interface notes](references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Markdown]
+**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
 
-**Output Format:** [Structured health report with visual observations, potential health concerns, care suggestions, and report links; available as JSON or text/Markdown.]
+**Output Format:** [Structured JSON health report; Markdown table for historical reports]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [One analysis report per submitted video; results are informational and do not replace veterinary diagnosis.]
+**Other Properties Related to Output:** [May include potential health indicators, warnings, care suggestions, and report links.]
 
 ## Skill Version(s):
 
-1.0.19 (source: server-resolved release metadata)
+1.0.20 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

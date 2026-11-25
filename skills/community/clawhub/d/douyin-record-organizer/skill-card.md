@@ -1,6 +1,6 @@
 ## Description:
 
-Retrieves public Douyin videos, creator posts, comments, trends, and engagement metrics as structured data for content research and analysis.
+Retrieves public Douyin video, creator, comment, and trending data as structured JSON for social media content and performance analysis.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Content creators, analysts, and marketing teams use this skill to search public Douyin content, monitor trends and creator posts, inspect engagement and comments, and organize the results for content and audience analysis.
+Social media operators, marketers, researchers, and analysts can search public Douyin videos and creators, inspect post details and comments, and retrieve trending topics. They can use the structured results to compare content performance, identify topics, and prepare audience or sentiment analyses.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search keywords and Douyin links are sent to the third-party GUAIKEI API, and use requires an API token.
+Risk: ClawScan reports medium confidence with partial coverage (31 of 53 components fully inspected) and flags keyword-based Douyin account discovery as a concern.
 
-Mitigation: Use only public content and non-sensitive queries; confirm the data-sharing scope and keep GUAIKEI_API_TOKEN private.
+Mitigation: Use creator discovery only when it is part of the intended task, keep searches focused on public accounts and relevant terms, and review the partially analyzed material if stronger assurance is needed.
 
-Risk: ClawScan reports a benign result with medium confidence, but its code analysis is incomplete and its tool-misuse analysis was degraded.
+Risk: Queries send keywords and Douyin links or IDs to the GUAIKEI third-party API.
 
-Mitigation: Review the skill and use it only if its stated purpose and remaining analysis uncertainty are acceptable.
+Mitigation: Review query terms and identifiers before running a command, and avoid sending confidential or sensitive information.
 
 ## Reference(s):
 
-- [Demand mining guide](references/demand-mining.md)
-- [Command options](references/options.md)
-- [Changelog](references/changelog.md)
-- [GUAIKEI website and token support](https://www.guaikei.com)
+- [ClawHub skill release](https://clawhub.ai/why20261/skills/douyin-record-organizer)
+- [GUAIKEI service and API access](https://www.guaikei.com)
+- [Output contract](artifact/references/contract.md)
+- [Search options](artifact/references/options.md)
+- [Demand mining guide](artifact/references/demand-mining.md)
+- [Customer acquisition guide](artifact/references/customer-acquisition.md)
+- [Error handling guide](artifact/references/errors.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON data, Analysis, Guidance]
+**Output Type(s):** [JSON, Analysis, Guidance]
 
-**Output Format:** [Structured JSON records and concise text summaries]
+**Output Format:** [Structured JSON records with optional concise analysis or guidance based on the retrieved data]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Read-only public content; results may include engagement metrics and links. Video and share links may expire.]
+**Other Properties Related to Output:** [Read-only public Douyin data; available result volume depends on the query and API plan. Requires a GUAIKEI API token.]
 
 ## Skill Version(s):
 
-1.4.2 (source: changelog, released 2026-11-04; package.json)
+1.5.0 (source: SKILL.md frontmatter, package.json)
 
 ## Ethical Considerations:
 

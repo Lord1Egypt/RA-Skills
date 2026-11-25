@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Go developers use this skill to add the unofficial go-exa client to a project and write integrations for Exa search, page contents, cited answers, agent runs, and Websets.
+Go developers use this skill to integrate the unofficial go-exa client with Exa for web search, page contents, cited answers, agent runs, and Websets.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search queries, page URLs, and answer prompts are sent to Exa and may expose private information.
+Risk: The security analysis was partial because two local path-like references in SKILL.md could not be resolved.
 
-Mitigation: Keep secrets and private data out of requests.
+Mitigation: Review the unresolved references and inspect the skill before installation.
 
-Risk: API calls can incur charges, and agent runs may run longer and cost more.
+Risk: The skill's API key and the queries, URLs, or prompts sent to Exa could expose credentials or private information if handled carelessly.
 
-Mitigation: Consider endpoint costs and start agent runs only when requested.
+Mitigation: Read EXA_API_KEY from the environment, do not hardcode, commit, or log it, and avoid sending secrets or private data to the API.
 
-Risk: The client is unofficial, and its implementation was outside the verified artifact.
+Risk: Exa API calls can incur account charges, and agent runs may take longer and cost more.
 
-Mitigation: Review and pin the dependency before building.
+Mitigation: Make calls only when requested and review endpoint cost information before starting agent runs.
 
 ## Reference(s):
 
-- [Setup and reference](references/setup.md)
-- [go-exa project repository](https://github.com/psyb0t/go-exa)
-- [go-exa package documentation](https://pkg.go.dev/github.com/psyb0t/go-exa)
+- [Setup and API reference](references/setup.md)
+- [Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-exa)
+- [Project homepage listed in skill metadata](https://github.com/psyb0t/go-exa)
+- [Exa dashboard](https://dashboard.exa.ai)
 
 ## Skill Output:
 
 **Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown with Go and shell code blocks]
+**Output Format:** [Markdown guidance with Go code examples and shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Integration guidance for Go code that calls the Exa API.]
 
 ## Skill Version(s):
 
-0.2.0 (source: server-resolved release metadata)
+0.2.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

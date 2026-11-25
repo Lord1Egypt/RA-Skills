@@ -11,6 +11,7 @@ const { simpleParser } = require('mailparser');
 const path = require('path');
 const fs = require('fs');
 const os = require('os');
+const net = require('net');
 const config = require('./config');
 
 function validateWritePath(dirPath) {
@@ -61,8 +62,12 @@ function parseArgs() {
     if (arg.startsWith('--')) {
       const key = arg.slice(2);
       const value = args[i + 1];
-      options[key] = value || true;
-      if (value && !value.startsWith('--')) i++;
+      if (value !== undefined && !value.startsWith('--')) {
+        options[key] = value;
+        i++;
+      } else {
+        options[key] = true;
+      }
     } else {
       positional.push(arg);
     }
@@ -81,6 +86,10 @@ function createImapConfig() {
     tls: config.imap.tls,
     tlsOptions: {
       rejectUnauthorized: config.imap.rejectUnauthorized,
+      // node-imap hands tls.connect() its own socket, so Node does not derive
+      // SNI from the host. Without it, multi-tenant hosts such as Gmail
+      // present a default certificate and verification fails.
+      ...(net.isIP(config.imap.host) ? {} : { servername: config.imap.host }),
     },
     connTimeout: 10000,
     authTimeout: 10000,
@@ -99,23 +108,17 @@ async function connect() {
     const imap = new Imap(imapConfig);
 
     imap.once('ready', () => {
-      // Send IMAP ID command for 163.com compatibility.
-      // Some valid IMAP servers, including Maddy, do not advertise/support ID.
-      // node-imap throws synchronously in that case, so catch and continue.
-      if (typeof imap.id === 'function') {
-        try {
-          imap.id(IMAP_ID, (err) => {
-            if (err) {
-              console.warn('Warning: IMAP ID command failed:', err.message);
-            }
-            resolve(imap);
-          });
-        } catch (err) {
-          console.warn('Warning: IMAP ID command unsupported:', err.message);
+      // Send IMAP ID (RFC 2971) for 163.com compatibility, but only when the
+      // server advertises it. Maddy and other valid servers do not, and
+      // node-imap throws synchronously if ID is sent anyway.
+      if (imap.serverSupports('ID')) {
+        imap.id(IMAP_ID, (err) => {
+          if (err) {
+            console.warn('Warning: IMAP ID command failed:', err.message);
+          }
           resolve(imap);
-        }
+        });
       } else {
-        // ID not supported, continue without it
         resolve(imap);
       }
     });
@@ -138,60 +141,92 @@ function openBox(imap, mailbox, readOnly = false) {
   });
 }
 
-// Search for messages
-function searchMessages(imap, criteria, fetchOptions) {
+// Search and return UIDs only (node-imap search is UID SEARCH, ascending)
+function searchUids(imap, criteria) {
   return new Promise((resolve, reject) => {
     imap.search(criteria, (err, results) => {
-      if (err) {
-        reject(err);
-        return;
-      }
-
-      if (!results || results.length === 0) {
-        resolve([]);
-        return;
-      }
-
-      const fetch = imap.fetch(results, fetchOptions);
-      const messages = [];
-
-      fetch.on('message', (msg) => {
-        const parts = [];
-
-        msg.on('body', (stream, info) => {
-          let buffer = '';
-
-          stream.on('data', (chunk) => {
-            buffer += chunk.toString('utf8');
-          });
-
-          stream.once('end', () => {
-            parts.push({ which: info.which, body: buffer });
-          });
-        });
-
-        msg.once('attributes', (attrs) => {
-          parts.forEach((part) => {
-            part.attributes = attrs;
-          });
-        });
-
-        msg.once('end', () => {
-          if (parts.length > 0) {
-            messages.push(parts[0]);
-          }
-        });
-      });
-
-      fetch.once('error', (err) => {
-        reject(err);
-      });
-
-      fetch.once('end', () => {
-        resolve(messages);
-      });
+      if (err) reject(err);
+      else resolve(results || []);
     });
   });
+}
+
+// Fetch messages by UID. The server returns them in ascending UID order
+// whatever the order of the input array.
+function fetchByUids(imap, uids, fetchOptions) {
+  return new Promise((resolve, reject) => {
+    const fetch = imap.fetch(uids, fetchOptions);
+    const messages = [];
+
+    fetch.on('message', (msg) => {
+      const parts = [];
+
+      msg.on('body', (stream, info) => {
+        let buffer = '';
+
+        stream.on('data', (chunk) => {
+          buffer += chunk.toString('utf8');
+        });
+
+        stream.once('end', () => {
+          parts.push({ which: info.which, body: buffer });
+        });
+      });
+
+      msg.once('attributes', (attrs) => {
+        parts.forEach((part) => {
+          part.attributes = attrs;
+        });
+      });
+
+      msg.once('end', () => {
+        if (parts.length > 0) {
+          messages.push(parts[0]);
+        }
+      });
+    });
+
+    fetch.once('error', (err) => {
+      reject(err);
+    });
+
+    fetch.once('end', () => {
+      resolve(messages);
+    });
+  });
+}
+
+// Search, then fetch every match
+async function searchMessages(imap, criteria, fetchOptions) {
+  const uids = await searchUids(imap, criteria);
+  if (uids.length === 0) return [];
+  return fetchByUids(imap, uids, fetchOptions);
+}
+
+// Fetch the newest `limit` matches, newest first. Uses UID order, which
+// matches arrival order for mail delivered over SMTP.
+async function fetchNewest(imap, criteria, limit, fetchOptions) {
+  const uids = await searchUids(imap, criteria);
+  if (uids.length === 0) return [];
+  return (await fetchByUids(imap, uids.slice(-limit), fetchOptions)).reverse();
+}
+
+// Sort by INTERNALDATE, newest first
+function byInternalDateDesc(a, b) {
+  const dateA = a.attributes.date ? new Date(a.attributes.date) : new Date(0);
+  const dateB = b.attributes.date ? new Date(b.attributes.date) : new Date(0);
+  return dateB - dateA;
+}
+
+// Shape one fetched message for output
+async function toResult(item) {
+  const parsed = await parseEmail(item.body);
+  return {
+    uid: item.attributes.uid,
+    ...parsed,
+    date: item.attributes.date, // INTERNALDATE: when the server received it
+    flags: item.attributes.flags,
+  };
 }
 
 // Parse email from raw buffer
@@ -202,7 +237,7 @@ async function parseEmail(bodyStr, includeAttachments = false) {
     from: parsed.from?.text || 'Unknown',
     to: parsed.to?.text,
     subject: parsed.subject || '(no subject)',
-    date: parsed.date,
+    headerDate: parsed.date, // sender's Date header, can be wrong or forged
     text: parsed.text,
     html: parsed.html,
     snippet: parsed.text
@@ -233,32 +268,17 @@ async function checkEmails(mailbox = DEFAULT_MAILBOX, limit = 10, recentTime = n
       searchCriteria.push(['SINCE', sinceDate]);
     }
 
-    // Fetch messages sorted by date (newest first)
     const fetchOptions = {
       bodies: [''],
       markSeen: false,
     };
 
-    const messages = await searchMessages(imap, searchCriteria, fetchOptions);
-
-    // Sort by date (newest first) - parse from message attributes
-    const sortedMessages = messages.sort((a, b) => {
-      const dateA = a.attributes.date ? new Date(a.attributes.date) : new Date(0);
-      const dateB = b.attributes.date ? new Date(b.attributes.date) : new Date(0);
-      return dateB - dateA;
-    }).slice(0, limit);
+    // Fetch only the newest `limit` messages, not the whole mailbox
+    const messages = await fetchNewest(imap, searchCriteria, limit, fetchOptions);
 
     const results = [];
-
-    for (const item of sortedMessages) {
-      const bodyStr = item.body;
-      const parsed = await parseEmail(bodyStr);
-
-      results.push({
-        uid: item.attributes.uid,
-        ...parsed,
-        flags: item.attributes.flags,
-      });
+    for (const item of messages) {
+      results.push(await toResult(item));
     }
 
     return results;
@@ -286,14 +306,7 @@ async function fetchEmail(uid, mailbox = DEFAULT_MAILBOX) {
       throw new Error(`Message UID ${uid} not found`);
     }
 
-    const item = messages[0];
-    const parsed = await parseEmail(item.body);
-
-    return {
-      uid: item.attributes.uid,
-      ...parsed,
-      flags: item.attributes.flags,
-    };
+    return toResult(messages[0]);
   } finally {
     imap.end();
   }
@@ -406,6 +419,9 @@ async function searchEmails(options) {
 
     const criteria = [];
 
+    if (options.unseen && options.seen) {
+      throw new Error('--unseen and --seen cannot be used together');
+    }
     if (options.unseen) criteria.push('UNSEEN');
     if (options.seen) criteria.push('SEEN');
     if (options.from) criteria.push(['FROM', options.from]);
@@ -428,25 +444,18 @@ async function searchEmails(options) {
       bodies: [''],
       markSeen: false,
     };
-
-    const messages = await searchMessages(imap, criteria, fetchOptions);
     const limit = parseInt(options.limit) || 20;
+
+    // Default: newest by UID, fetching only `limit` messages. --sort date
+    // fetches every match and orders by INTERNALDATE, for mailboxes holding
+    // copied or imported mail whose UID order differs from arrival order.
+    const messages = options.sort === 'date'
+      ? (await searchMessages(imap, criteria, fetchOptions)).sort(byInternalDateDesc).slice(0, limit)
+      : await fetchNewest(imap, criteria, limit, fetchOptions);
+
     const results = [];
-
-    // Sort by date (newest first)
-    const sortedMessages = messages.sort((a, b) => {
-      const dateA = a.attributes.date ? new Date(a.attributes.date) : new Date(0);
-      const dateB = b.attributes.date ? new Date(b.attributes.date) : new Date(0);
-      return dateB - dateA;
-    }).slice(0, limit);
-
-    for (const item of sortedMessages) {
-      const parsed = await parseEmail(item.body);
-      results.push({
-        uid: item.attributes.uid,
-        ...parsed,
-        flags: item.attributes.flags,
-      });
+    for (const item of messages) {
+      results.push(await toResult(item));
     }
 
     return results;
@@ -484,6 +493,88 @@ async function markAsUnread(uids, mailbox = DEFAULT_MAILBOX) {
       imap.delFlags(uids, '\\Seen', (err) => {
         if (err) reject(err);
         else resolve({ success: true, uids, action: 'marked as unread' });
+      });
+    });
+  } finally {
+    imap.end();
+  }
+}
+
+// Create a mailbox if it does not already exist
+async function createMailbox(mailbox) {
+  const imap = await connect();
+
+  try {
+    const mailboxes = await new Promise((resolve, reject) => {
+      imap.getBoxes((err, boxes) => {
+        if (err) reject(err);
+        else resolve(formatMailboxTree(boxes));
+      });
+    });
+
+    const exists = mailboxes.some((box) => box.name === mailbox);
+    if (exists) {
+      return { success: true, mailbox, action: 'already exists' };
+    }
+
+    return new Promise((resolve, reject) => {
+      imap.addBox(mailbox, (err) => {
+        if (err) reject(err);
+        else resolve({ success: true, mailbox, action: 'created' });
+      });
+    });
+  } finally {
+    imap.end();
+  }
+}
+
+// Copy messages to another mailbox
+async function copyMessages(uids, destinationMailbox, mailbox = DEFAULT_MAILBOX) {
+  const imap = await connect();
+
+  try {
+    await openBox(imap, mailbox);
+
+    return new Promise((resolve, reject) => {
+      imap.copy(uids, destinationMailbox, (err, newUIDs) => {
+        if (err) reject(err);
+        else {
+          resolve({
+            success: true,
+            sourceMailbox: mailbox,
+            destinationMailbox,
+            uids,
+            newUIDs,
+            action: 'copied',
+          });
+        }
+      });
+    });
+  } finally {
+    imap.end();
+  }
+}
+
+// Move messages to another mailbox
+async function moveMessages(uids, destinationMailbox, mailbox = DEFAULT_MAILBOX) {
+  const imap = await connect();
+
+  try {
+    await openBox(imap, mailbox);
+
+    return new Promise((resolve, reject) => {
+      imap.move(uids, destinationMailbox, (err, newUIDs) => {
+        if (err) reject(err);
+        else {
+          resolve({
+            success: true,
+            sourceMailbox: mailbox,
+            destinationMailbox,
+            uids,
+            newUIDs,
+            action: 'moved',
+          });
+        }
       });
     });
   } finally {
@@ -587,7 +678,7 @@ async function main() {
           options.mailbox || DEFAULT_MAILBOX,
           parseInt(options.limit) || 10,
           options.recent || null,
-          options.unseen === 'true' // if --unseen is set, only get unread messages
+          !!options.unseen
         );
         break;
 
@@ -623,6 +714,33 @@ async function main() {
         result = await markAsUnread(positional, options.mailbox);
         break;
 
+      case 'create-mailbox':
+        if (!positional[0]) {
+          throw new Error('Mailbox name required: node imap.js create-mailbox <name>');
+        }
+        result = await createMailbox(positional[0]);
+        break;
+
+      case 'copy':
+        if (positional.length === 0) {
+          throw new Error('UID(s) required: node imap.js copy <uid> [uid2...] --to <mailbox>');
+        }
+        if (!options.to) {
+          throw new Error('Destination mailbox required: --to <mailbox>');
+        }
+        result = await copyMessages(positional, options.to, options.mailbox || DEFAULT_MAILBOX);
+        break;
+
+      case 'move':
+        if (positional.length === 0) {
+          throw new Error('UID(s) required: node imap.js move <uid> [uid2...] --to <mailbox>');
+        }
+        if (!options.to) {
+          throw new Error('Destination mailbox required: --to <mailbox>');
+        }
+        result = await moveMessages(positional, options.to, options.mailbox || DEFAULT_MAILBOX);
+        break;
+
       case 'list-mailboxes':
         result = await listMailboxes();
         break;
@@ -637,7 +755,7 @@ async function main() {
 
       default:
         console.error('Unknown command:', command);
-        console.error('Available commands: check, fetch, download, search, mark-read, mark-unread, list-mailboxes, list-accounts');
+        console.error('Available commands: check, fetch, download, search, mark-read, mark-unread, create-mailbox, copy, move, list-mailboxes, list-accounts');
         process.exit(1);
     }
 

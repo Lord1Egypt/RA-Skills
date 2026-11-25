@@ -1,0 +1,8 @@
+{
+  "result": {
+    "title": "抖音安全验证",
+    "url": "https://www.douyin.com/video/1000000000000000001",
+    "text": "登录后继续观看\n请输入验证码完成安全验证\nToken: fake-secret-value\nsession: fixture-session-9988",
+    "interactive": []
+  }
+}

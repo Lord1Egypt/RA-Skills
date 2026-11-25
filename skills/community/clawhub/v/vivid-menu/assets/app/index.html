@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>生动菜单 · Vivid Menu</title>
+<meta name="description" content="把网页变成画布：粘一段菜单文字或放一张菜单照片，逐道菜画成一张能打印、能发朋友圈的菜单。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23b4472f'/><text x='16' y='24' font-size='20' text-anchor='middle' fill='%23fbf7ee' font-family='serif'>菜</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ 顶栏 ============ -->
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">菜</span>
+    <span class="brand-name">生动菜单</span>
+    <span class="brand-sub">Vivid Menu</span>
+  </div>
+
+  <div class="top-actions">
+    <span class="engine" id="engineStatus" title="生成引擎状态">
+      <i class="dot"></i><span id="engineText">内置引擎</span>
+    </span>
+    <button class="btn ghost" id="btnTheme">
+      <span class="swatch" id="themeSwatch"></span>纸张
+    </button>
+    <button class="btn ghost" id="btnGallery">菜单合集</button>
+    <button class="btn ghost" id="btnReset">重新开始</button>
+  </div>
+</header>
+
+<!-- ============ 主舞台 ============ -->
+<main class="stage" id="stage">
+
+  <!-- ---- 左：工作台 ---- -->
+  <aside class="left" id="leftPane">
+    <div class="pane-head">
+      <span class="pane-title">原始菜单</span>
+      <div class="pane-tools">
+        <button class="mini" id="btnPick" title="上传图片">图片</button>
+        <button class="mini" id="btnText" title="粘贴文字">文字</button>
+      </div>
+    </div>
+
+    <div class="source-view" id="sourceView">
+      <!-- 由 JS 注入：照片 / 文字 / 空状态 -->
+    </div>
+
+    <div class="cmd">
+      <textarea id="cmdInput" rows="3" placeholder="粘贴菜单文字，一行一道菜，如「红烧肉 68」"></textarea>
+      <button class="btn primary full" id="btnRun">开始绘制</button>
+    </div>
+
+    <div class="pane-foot">
+      <span class="count" id="dishCount">0 道菜</span>
+      <div class="foot-tools">
+        <button class="mini" id="btnFocus" title="隐藏原图，只看成品">专注</button>
+        <button class="mini" id="btnSvg" title="下载矢量文件">SVG</button>
+        <button class="mini" id="btnPng" title="复制为图片">图片</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ---- 右：纸面 ---- -->
+  <section class="right" id="rightPane">
+    <div class="desk" id="desk">
+      <div class="paper-holder" id="paperHolder">
+        <!-- SVG 菜单 -->
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <div class="progress" id="progress" hidden>
+      <div class="bar"><i></i></div>
+      <span class="label">准备中…</span>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ 开场 ============ -->
+<div class="intro" id="intro">
+  <div class="intro-inner">
+    <h1>把一段菜单，画成一张菜单</h1>
+    <p class="lead">粘一段文字，或放一张菜单照片。每一道菜都会配一幅线条插画，页面负责排版、质检和导出。</p>
+
+    <div class="choices">
+      <button class="choice" data-act="photo">
+        <span class="ico">图</span>
+        <b>上传菜单照片</b>
+        <em>支持拖入、粘贴、选择文件</em>
+      </button>
+      <button class="choice" data-act="text">
+        <span class="ico">字</span>
+        <b>粘贴菜单文字</b>
+        <em>一行一道菜，不用 AI 也能跑</em>
+      </button>
+      <button class="choice" data-act="demo">
+        <span class="ico">例</span>
+        <b>看一个示例</b>
+        <em>三张成品，直接改</em>
+      </button>
+    </div>
+
+    <div class="hint-row">
+      <span>还有一步：</span>
+      <button class="link" id="btnBrief">查看绘制规范</button>
+      <span class="sep">·</span>
+      <span id="mcpHint">正在检测 WebMCP…</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 菜品编辑浮层 ============ -->
+<div class="sheet-mask" id="sheetMask" hidden>
+  <div class="sheet" id="sheet">
+    <div class="sheet-head">
+      <span id="sheetTitle">编辑菜品</span>
+      <button class="x" id="sheetClose">×</button>
+    </div>
+    <div class="sheet-body">
+      <label>菜名<input id="fName" type="text" maxlength="40"></label>
+      <div class="row2">
+        <label>价格<input id="fPrice" type="text" maxlength="12" placeholder="68"></label>
+        <label>分节<input id="fSection" type="text" maxlength="10" placeholder="热菜"></label>
+      </div>
+      <label>一句话说明<textarea id="fBlurb" rows="2" maxlength="80"></textarea></label>
+      <label>标签（逗号分隔）<input id="fTags" type="text" maxlength="30" placeholder="麻辣,下饭"></label>
+      <label class="check">
+        <input id="fSig" type="checkbox"> 标为招牌菜
+      </label>
+      <label id="sigNoteWrap" hidden>招牌依据<input id="fSigNote" type="text" maxlength="40" placeholder="销量第一 / 菜单上手写标注"></label>
+      <div class="art-ops">
+        <button class="mini" id="btnRedraw">换一幅插图</button>
+        <span id="artKind" class="kind-tag">—</span>
+      </div>
+    </div>
+    <div class="sheet-foot">
+      <button class="btn danger" id="btnDel">删除</button>
+      <button class="btn primary" id="btnSaveDish">保存</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 合集抽屉 ============ -->
+<div class="drawer-mask" id="drawerMask" hidden>
+  <div class="drawer" id="drawer">
+    <div class="drawer-head">
+      <span>菜单合集</span>
+      <button class="x" id="drawerClose">×</button>
+    </div>
+    <div class="drawer-body" id="drawerBody"></div>
+  </div>
+</div>
+
+<!-- ============ 规范弹层 ============ -->
+<div class="sheet-mask" id="briefMask" hidden>
+  <div class="sheet wide" id="briefSheet">
+    <div class="sheet-head">
+      <span>绘制规范</span>
+      <button class="x" id="briefClose">×</button>
+    </div>
+    <pre class="brief" id="briefBody"></pre>
+  </div>
+</div>
+
+<input type="file" id="fileInput" accept="image/*" hidden>
+
+<!-- 单文件包：双击本页即可运行，无需服务器 -->
+<script src="app.bundle.js"></script>
+</body>
+</html>

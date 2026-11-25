@@ -1,6 +1,6 @@
 ## Description:
 
-按需分析已完成的视频，提炼可复用的剪辑、声音与叙事参考，并导出制作参考 JSON。
+Analyze a finished reference video locally to extract shot rhythm, loudness/audio density, and contact sheets, then distill reusable editing and storytelling patterns into plain Markdown REFERENCE_NOTES.md without leaking source plot details.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-视频编辑与解说制作人员可用此技能分析已完成的视频，整理镜头节奏、声音分工和叙事结构，并导出 production_reference.json 供后续制作参考。
+Video editors and content creators can use this skill to inspect a finished reference video and turn observed pacing, sound, and visual patterns into reusable editing guidance without carrying over plot details.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: An exported reference may retain source names, dialogue, or timestamps if source checks are incomplete or a nested timestamp target is used.
+Risk: The benign security verdict has medium confidence because scanner coverage was partial, and file-write and shell capabilities were reported.
 
-Mitigation: Review exported material before reuse and check that source details and timestamps have been removed.
+Mitigation: Before installation, check that the reported file-write and shell capabilities fit your needs; resolve the missing local path references or obtain fuller scan coverage before relying on the verdict.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/worldwonderer/skills/video-reference)
-- [Reference schema](references/reference-schema.md)
+- [ClawHub skill release](https://clawhub.ai/worldwonderer/skills/video-reference)
+- [Publisher profile](https://clawhub.ai/user/worldwonderer)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Guidance]
+**Output Type(s):** [Markdown, JSON, Image, Guidance]
 
-**Output Format:** [production_reference.json with measured video and audio metrics, structure, and reusable methods]
+**Output Format:** [Markdown reference notes, JSON metrics, and a JPG contact sheet]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Local analysis of a finished video; exports reusable production guidance.]
+**Other Properties Related to Output:** [Metrics and contact sheets are generated from the selected video; measured reference values are guidance, not production thresholds.]
 
 ## Skill Version(s):
 
-1.0.7 (source: ClawHub release metadata)
+2.0.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

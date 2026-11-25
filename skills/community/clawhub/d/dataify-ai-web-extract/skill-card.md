@@ -1,6 +1,6 @@
 ## Description:
 
-Trigger when the user needs to extract Markdown, raw HTML, clean HTML, or links from a specified public webpage while controlling content filtering, timeout, and wait conditions.
+Extract Markdown, raw HTML, clean HTML, or links from a specified public webpage, with controls for content filtering, timeouts, and wait conditions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to extract selected content or links from a public webpage into a chosen format, with optional controls for content filtering and page-load behavior.
+Agents and developers use this skill to retrieve selected content from a public webpage as Markdown, HTML, or links, with optional controls for filtering and page loading.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Requests share the selected URL and supplied headers with the gateway; dry-run output may display supplied headers.
+Risk: The security guidance notes network and environment capabilities without a declared tool scope.
 
-Mitigation: Keep the API token private, use a trusted HTTPS gateway, and avoid sensitive target headers.
+Mitigation: Use only intended public URLs, review any custom headers, and keep DATAIFY_API_TOKEN private in the environment.
 
 ## Reference(s):
 
-- [AI Web Extract ClawHub Page](https://clawhub.ai/dataify-server/skills/dataify-ai-web-extract)
-- [AI Web API Extract Reference](artifact/references/extract-api.md)
+- [AI Web API Extract parameter contract](references/extract-api.md)
+- [AI Web API /extract endpoint](https://aiwebapi.dataify.com/extract)
+- [ClawHub skill release](https://clawhub.ai/dataify-server/skills/dataify-ai-web-extract)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, HTML, Links]
 
-**Output Format:** [The selected webpage content or links, returned in a response object.]
+**Output Format:** [JSON API response containing the requested extraction output or outputs.]
 
-**Output Parameters:** [1D — one public webpage, with optional extraction and filtering settings.]
+**Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Formats include Markdown, raw HTML, clean HTML, or links; options can control main content, tags, headers, cache age, timeout, wait time, and country.]
+**Other Properties Related to Output:** [The API returns outputs keyed by requested format; successful uncached extractions incur one gateway tool unit charge.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server release metadata)
+1.0.2 (source: server-resolved ClawHub release metadata)
 
 ## Ethical Considerations:
 

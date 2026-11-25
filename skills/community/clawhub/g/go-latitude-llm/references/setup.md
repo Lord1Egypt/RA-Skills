@@ -4,7 +4,7 @@ This module is unofficial and not affiliated with Latitude.
 
 ## Requirements
 
-- Go 1.26.10 or newer, per `go.mod`.
+- Go 1.26.11 or newer, per `go.mod`.
 - An organization API key, available to the calling application as `LATITUDE_API_KEY`, or a user OAuth token for operations that require a user.
 
 ## Install

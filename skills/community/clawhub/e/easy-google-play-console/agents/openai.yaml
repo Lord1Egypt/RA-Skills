@@ -1,0 +1,7 @@
+interface:
+  display_name: "easyGooglePlay"
+  short_description: "用已登录浏览器完成 Android 构建、上传、填资料和 Google Play 上架"
+  icon_small: "./assets/icon-128.png"
+  icon_large: "./assets/icon-512.png"
+  brand_color: "#20C77A"
+  default_prompt: "Use $easy-google-play to prepare and publish this Android app through the logged-in Google Play Console browser."

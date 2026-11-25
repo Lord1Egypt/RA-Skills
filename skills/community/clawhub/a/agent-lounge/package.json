@@ -1,0 +1,14 @@
+{
+  "name": "agent-lounge",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Client for The Agent Lounge (https://lounge.genexxis.com): read, post, and buy a 24 h pass with x402.",
+  "bin": { "agent-lounge": "lounge.mjs" },
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "@x402/core": "2.28.0",
+    "@x402/evm": "2.28.0",
+    "viem": "2.57.10"
+  }
+}

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-People seeking a BaZi reading use the skill to request a four-pillars chart, five-element balance, favorable-element guidance, and discussion of life-cycle or annual trends. The skill requests the required birth details and grounds its reading in the chart service response.
+External users provide birth date, time, gender, and birthplace to request a BaZi chart and a reading of its five-element balance, major cycles, and annual trends. The skill returns an interpretation organized around the user's question.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Using the chart service sends the user's birth date, time, sex, and birthplace to api.xinjianxue.com; retention practices are unspecified.
+Risk: Birth date, time, gender, and birthplace are sent to an external service, and the scanner reports no privacy notice.
 
-Mitigation: Explain the data sharing before submitting details and proceed only with the user's informed consent.
+Mitigation: Before submitting those details, check for clear disclosure of what is sent, who receives it, and how it is handled; share only details you are comfortable providing.
 
-Risk: A delivered chart costs ¥6, and payment details require user review.
+Risk: The skill directs local installation of a third-party payment package and setup of payment-wallet permissions.
 
-Mitigation: Clearly disclose the fee, obtain approval before payment, and use the separate payment capability obtained through Alipay's official channel.
+Mitigation: Proceed only if you are comfortable with the installation and payment setup; review the package and wallet permissions and know how to revoke them.
 
 ## Reference(s):
 
+- [API contract](artifact/references/api.md)
+- [Payment flow](artifact/references/payment.md)
+- [Reading framework](artifact/references/reading.md)
+- [BaZi service endpoint](https://api.xinjianxue.com/api/xinjianxue/aipay/bazi)
 - [ClawHub skill page](https://clawhub.ai/weixin97676414/skills/xinjianxue-bazi)
-- [API contract](references/api.md)
-- [Payment instructions](references/payment.md)
-- [Reading framework](references/reading.md)
-- [Chart service endpoint](https://api.xinjianxue.com/api/xinjianxue/aipay/bazi)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Guidance]
+**Output Type(s):** [Text, JSON]
 
-**Output Format:** [Chinese natural-language birth-chart interpretation with Markdown headings and emphasis]
+**Output Format:** [Markdown interpretation based on chart data returned as JSON]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Chart details are based on the service response; interpretations use non-deterministic language and avoid medical, legal, and investment predictions.]
+**Other Properties Related to Output:** [Uses only fields present in the service response; frames readings as tendencies and avoids medical diagnosis, legal outcomes, and investment predictions.]
 
 ## Skill Version(s):
 
-1.0.0 (source: ClawHub release metadata)
+2.0.0 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

@@ -58,7 +58,7 @@ def main(argv=None):
                 "endpoint", "--root", str(args.root.expanduser()), "--browser", browser],
                 capture_output=True, text=True)
             if probe.returncode:
-                raise ValueError(probe.stderr.strip() + "; use run_tool.py browser-session start once, then keep that session for this task")
+                raise ValueError(probe.stderr.strip())
             return probe.stdout.strip()
 
         if args.tool == "opencli":
@@ -143,8 +143,11 @@ def main(argv=None):
             command = [node, str(SKILL / "scripts/browser_cdp.mjs")]
             if browser:
                 command += ["--browser", browser]
+            if "--endpoint" in args.args and env.get("CODEBUDDY_SANDBOX_BROKER_EXECUTION_ATTEMPT_ID"):
+                raise ValueError("WorkBuddy browser reads must use the shared browser session. Omit --endpoint.")
             if "--endpoint" not in args.args and "--help" not in args.args:
-                command += ["--endpoint", session_endpoint()]
+                env["JOBHUNT_SHARED_CDP_ENDPOINT"] = session_endpoint()
+                command += ["--endpoint", env["JOBHUNT_SHARED_CDP_ENDPOINT"]]
     try:
         if args.workspace and args.tool == 'anysearch':
             from search_capture import run

@@ -1,6 +1,6 @@
 ## Description:
 
-Audits project AGENTS.md and CLAUDE.md files for runtime-configuration quality and produces a scored review with prioritized fixes.
+审计项目中的 AGENTS.md、CLAUDE.md 与 skills 配置，生成评分卡和优先级修复建议，并可在用户确认后协助修改；可选编排宿主环境检查，密钥检测仅静态扫描正文模式。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to assess a project's AGENTS.md or CLAUDE.md for clarity, useful routing, maintainability, and security guidance, then receive a scorecard and prioritized recommendations. It can also propose file edits when the user approves.
+外部开发者可用它检查项目的 AGENTS.md、CLAUDE.md 和 Agent skills 配置，获得评分、定性复核与优先级修复建议；需要时可在确认后修改配置文件。
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates this release suspicious with medium confidence, citing an unpinned Docker image, a CI workflow that runs a remotely downloaded script, and audits beyond the stated configuration-file purpose.
+Risk: Docker examples may use image references that are not pinned to a trusted version or digest, and the project directory is mounted writable.
 
-Mitigation: Before using Docker or CI flows, assess whether you trust the image source and remote script, and review whether the broader skill and environment audits fit your needs. Scanner coverage is partial, and the verdict does not establish malicious intent.
+Mitigation: Before running an example, verify the image source and pin a trusted version or digest; ensure the writable mount points to the intended project directory.
+
+Risk: The security review was partial and did not resolve all referenced paths or assess GIF binary behavior.
+
+Mitigation: Review unresolved referenced files and inspect binary assets separately before relying on them.
 
 ## Reference(s):
 
+- [ClawHub release page](https://clawhub.ai/huiyonghkw/skills/hekouwang-claude-md-doctor-skill)
 - [Project homepage](https://github.com/huiyonghkw/hekouwang-claude-md-doctor-skill)
 - [Doctor suite guide](artifact/references/doctor-suite.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, Markdown, JSON, Configuration guidance]
+**Output Type(s):** [Text, JSON, Markdown, Configuration]
 
-**Output Format:** [Markdown scorecard and prioritized recommendations, with an optional JSON report]
+**Output Format:** [Text or JSON score report with Markdown findings and prioritized remediation guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May propose edits to project configuration files after user approval.]
+**Other Properties Related to Output:** [May suggest or apply configuration edits after user confirmation.]
 
 ## Skill Version(s):
 
-1.3.4 (source: release evidence and SKILL.md frontmatter)
+1.3.7 (source: frontmatter, changelog, server-resolved release)
 
 ## Ethical Considerations:
 

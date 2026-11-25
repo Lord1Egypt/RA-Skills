@@ -4,6 +4,15 @@ Version history of this skill. Current version is recorded in SKILL.md front mat
 
 ## Changelog
 
+### v4.0.0 (2026-11-18) — 合并美术生产管线：从「连上 Blender」扩到「交付资产」
+
+- 🟢 **原独立技能 `blender-art-pipeline` 整体并入本技能**（用户要求；不再维护两个技能，避免双真身漂移）。15 篇章节落成 `references/art-*.md`：`art-standards` `art-pipeline` `art-modeling` `art-uv-texture` `art-materials-lookdev` `art-lighting-render` `art-rig-anim` `art-gn-vfx-sim` `art-optimize-export` `art-qa` `art-reference-match` `art-style-recipes` `art-mcp-execution` `art-coverage-map` `art-NOTICE`（合计 ≈104 KB）。
+- 🟢 **`SKILL.md` 只加「两条主线」路由表 + 三条硬口径**（体积雾 / 先清集合外选择再导出 / `view_settings.look` 名静默失效），主文件 ~19 KB —— 刻意压在扫描器单文件预算内（v3.6.2 的 `SKILL.md (partial)` 6×HIGH 就是体量超预算导致）。
+- 🛠 **两个可执行工具**（在工作区 `generated/tools/`，不在仓库内）：`asset_qa.py` 只读审计（13 类检查、12 档阈值、`--export-gate` / `--strict` / `--json`、退出码可接 CI）；`style_presets.py` 12 套 look（世界色 + 体积雾盒 + 三点光色温 + 相机 + AgX），只写 `COL_Lights_Style` / `COL_Cameras_Style` / `COL_Style_Fog`。
+- ✅ **实测**：两工具 **5.3.0 / 5.2.4 双构建**无头跑通；12 套 look 在 **EEVEE / Cycles** 各 12/12（无黑屏 `mean<0.03` / 无过曝 `mean>0.85` / 无灰平 `p95−p05<0.15`）；「材质骨架」「先清选择再导集合」两段文档片段由断言式探针双构建复现（FBX/GLB 字节内不含集合外对象）。
+- 🔴 **破坏性**：无 API 变动、无工具改名；`name` 仍 `blender-mcp`、GitHub 仓库与 ClawHub slug 不变。仅定位与 `metadata.octop.label` 从「Blender MCP 连接」改为「Blender 工作台」。
+- ✅ 版本号三处一致：`SKILL.md` frontmatter / README 版本行 / 本 Changelog = **4.0.0**
+
 ### v3.7.3 (2026-11-12) — 基线口径切换：生产基准 5.2 LTS → **5.3**，5.2.4 转为兼容下限
 
 - 🟢 **用户拍板（2026-11-12）**：「全面更新到 5.3 然后兼容 5.2」→ 技能内**所有版本口径**改为：**生产基准 = 5.3（5.3.0，2026-11-10 正式发布）**、**兼容下限 = 5.2 LTS（5.2.4）**。

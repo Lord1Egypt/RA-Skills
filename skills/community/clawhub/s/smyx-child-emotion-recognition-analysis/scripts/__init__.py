@@ -1,1 +1,1 @@
-# Pet Analysis scripts package
+# Child Emotion Recognition Analysis scripts package

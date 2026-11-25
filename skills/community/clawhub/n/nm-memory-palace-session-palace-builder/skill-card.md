@@ -1,6 +1,6 @@
 ## Description:
 
-Builds session-scoped temporary memory palaces for extended conversations
+Builds session-scoped temporary memory palaces for extended conversations.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and other knowledge workers use the skill to organize temporary project or conversation state, including decisions, artifacts, issues, and next steps, and recover that context after interruptions.
+Developers and other users can use the skill to organize decisions, research, code, progress, and next steps during long or multi-step conversations. Its session palace templates help preserve context across interruptions and support checkpoints before exporting or archiving session state.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Session palaces may contain sensitive conversation details, code, requirements, or research that could be retained in exported or archived state.
+Risk: Session palaces may collect sensitive conversation details and carry them into exported or archived notes.
 
-Mitigation: Keep credentials and private data out of session state, and review palace contents before exporting or archiving them.
+Mitigation: Keep sensitive information out of session notes unless appropriate, and review the palace contents before export or archive.
 
 ## Reference(s):
 
-- [Session palace templates](modules/templates.md)
-- [Skill homepage (metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace)
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-memory-palace-session-palace-builder)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-memory-palace-session-palace-builder)
+- [Configured homepage](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Structured text or Markdown organized into named rooms and project-state sections]
+**Output Format:** [Markdown with structured session notes, room layouts, and checkpoint guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Session-scoped organization for decisions, progress, issues, artifacts, and next steps, with checkpoint guidance.]
+**Other Properties Related to Output:** [Session-scoped organization of user-provided conversation context]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter; ClawHub release)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

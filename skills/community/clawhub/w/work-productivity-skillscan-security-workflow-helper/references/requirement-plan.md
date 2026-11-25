@@ -2,7 +2,7 @@
 
 ## Live Requirement
 
-Validated demand: Agent users show strong demand for SkillScan-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 10 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
+Validated demand: Agent users show strong demand for SkillScan-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
 
 ## Audience
 
@@ -20,11 +20,11 @@ Demand: 70/70
 
 Local feasibility: 30/30
 
-Evidence coverage: 10 signals across 3 source families.
+Evidence coverage: 12 signals across 3 source families.
 
 Scoring rationale:
 
-- Evidence count: 10; required minimum: 3.
+- Evidence count: 12; required minimum: 3.
 - Distinct source families: 3; sources: clawhub, github, hacker-news.
 - Demand score: 70/70 based on corroboration, source diversity, and professional/community signal.
 - Local feasibility score: 30/30.
@@ -33,16 +33,18 @@ Scoring rationale:
 
 ## Evidence
 
-- hacker-news-ask-hn (2026-11-15T19:49:28+00:00): [Ask HN: Stripe closed us after one $1,500 invoice and never asked for evidence](https://news.ycombinator.com/item?id=50510042)
-- clawhub-popular-skill (2026-10-22T12:42:06.676000+00:00): [Popular Clawhub skill demand: self-improving agent has 493,493 downloads](https://clawhub.ai/skills/self-improving-agent)
-- hacker-news-ask-hn (2026-11-16T02:53:30+00:00): [Tell HN: HN is being scraped for emails to scam](https://news.ycombinator.com/item?id=50513451)
-- clawhub-popular-skill (2026-09-16T21:35:54.485000+00:00): [Popular Clawhub skill demand: Skill Vetter has 283,061 downloads](https://clawhub.ai/skills/skill-vetter)
-- clawhub-popular-skill (2026-05-18T03:40:07.591000+00:00): [Popular Clawhub skill demand: SkillScan has 183,652 downloads](https://clawhub.ai/skills/skillscan)
-- clawhub-popular-skill (2026-06-19T07:09:19.124000+00:00): [Popular Clawhub skill demand: AdMapix has 134,449 downloads](https://clawhub.ai/skills/admapix)
-- clawhub-popular-skill (2026-10-29T13:41:01.601000+00:00): [Popular Clawhub skill demand: PollyReach has 102,357 downloads](https://clawhub.ai/skills/pollyreach)
-- hacker-news-ask-hn (2026-11-17T02:57:04+00:00): [Ask HN: Are the more software malfunctions now than before?](https://news.ycombinator.com/item?id=50526822)
-- hacker-news-ask-hn (2026-11-16T15:38:59+00:00): [Looking for a remote CTO for my micro SaaS ($600K ARR, $250k Profit)](https://news.ycombinator.com/item?id=50518749)
-- github-issues (2026-11-17T04:03:55+00:00): [Copy pass: every page written like a person, not like AI](https://github.com/daniro-san/LAPTracker/issues/362)
+- clawhub-popular-skill (2026-10-22T12:42:06.676000+00:00): [Popular Clawhub skill demand: self-improving agent has 495,007 downloads](https://clawhub.ai/skills/self-improving-agent)
+- hacker-news-ask-hn (2026-11-22T15:52:33+00:00): [Ask HN: Are the trades a safe career transition?](https://news.ycombinator.com/item?id=50600771)
+- clawhub-popular-skill (2026-09-16T21:35:54.485000+00:00): [Popular Clawhub skill demand: Skill Vetter has 284,154 downloads](https://clawhub.ai/skills/skill-vetter)
+- clawhub-popular-skill (2026-05-18T03:40:07.591000+00:00): [Popular Clawhub skill demand: SkillScan has 183,940 downloads](https://clawhub.ai/skills/skillscan)
+- clawhub-popular-skill (2026-06-19T07:09:19.124000+00:00): [Popular Clawhub skill demand: AdMapix has 134,585 downloads](https://clawhub.ai/skills/admapix)
+- clawhub-popular-skill (2026-10-29T13:41:01.601000+00:00): [Popular Clawhub skill demand: PollyReach has 102,470 downloads](https://clawhub.ai/skills/pollyreach)
+- hacker-news-ask-hn (2026-11-23T07:10:50+00:00): [I Think Mathematicians and Software Engineers Will Be the Same in the Future](https://news.ycombinator.com/item?id=50608452)
+- github-issues (2026-11-24T04:59:06+00:00): [enhancement(planner): list a phase's standing harness files in files_modified of every plan that extends them](https://github.com/open-gsd/gsd-core/issues/6636)
+- github-issues (2026-11-24T04:57:35+00:00): [enhancement(ui-phase, plan-checker): keyboard contracts should cover keys whose default action scrolls or activates](https://github.com/open-gsd/gsd-core/issues/6635)
+- github-issues (2026-11-24T04:57:30+00:00): [enhancement(plan-checker): a plan that adds a writer for a tracked file should list the tests that pin it](https://github.com/open-gsd/gsd-core/issues/6634)
+- github-issues (2026-11-24T04:57:25+00:00): [enhancement(plan-checker): flag ids a plan registers that earlier plans already wrote under a different spelling](https://github.com/open-gsd/gsd-core/issues/6633)
+- github-issues (2026-11-24T04:57:08+00:00): [enhancement(planner): trace where a planned test's existing tooling writes before committing the plan](https://github.com/open-gsd/gsd-core/issues/6632)
 
 ## How The Skill Meets The Requirement
 

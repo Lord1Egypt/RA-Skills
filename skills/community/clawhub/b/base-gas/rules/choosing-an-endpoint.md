@@ -1,6 +1,6 @@
 # Choosing an Endpoint
 
-Four paid routes answer four different questions. Picking the wrong one either overpays or returns data that does not answer the user's actual question.
+Five paid routes answer five different questions. Picking the wrong one either overpays or returns data that does not answer the user's actual question.
 
 ## Map the question to the route
 
@@ -10,11 +10,16 @@ Four paid routes answer four different questions. Picking the wrong one either o
 | "How much will this cost?" | `/gas` with `gasLimit` | The estimate comes back already priced for the operation |
 | "What fee should I set?" | `/gas` | `suggestedFees.medium` is ready to pass to a wallet or viem |
 | "Is gas high or low?" | `/gas/history` | Requires a baseline to compare against |
-| "Should I send now or wait?" | `/gas/history` then `/gas/cheapest-window` | The verdict answers now; the window answers when |
+| "Should I send now or wait?" | `/gas/advice` with `gasLimit` | The first call before a single transaction: `send_now` or `wait`, a reason, `now.costUsd`, and ready-to-sign `suggestedFees` (medium tier, wei) |
+| "Is gas high or low, and when will it be cheaper?" | `/gas/history` then `/gas/cheapest-window` | The deeper follow-up: the verdict answers now; the window answers when |
 | "Which chain is cheapest?" | `/gas/compare` | Reads four chains in one paid call |
 | "Is bridging to Base worth it?" | `/gas/compare` | `baseVsEthereum` states the multiplier directly |
 | "When should I schedule this?" | `/gas/cheapest-window` | Hour-of-day ranking |
 | "Do you have enough data?" | `/health` | Free, no payment |
+
+## Start with `/gas/advice` before a single transaction
+
+When the agent is about to send one transaction, call `/gas/advice?gasLimit=<n>` first ($0.003). If `advice` is `send_now`, sign with `suggestedFees` directly. If it is `wait`, wait `waitMinutes` and call again. Reach for `/gas/history` and `/gas/cheapest-window` only when the user wants the trend or a schedule.
 
 ## Do not substitute `/gas` for history
 

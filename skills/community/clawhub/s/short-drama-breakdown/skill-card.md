@@ -1,6 +1,6 @@
 ## Description:
 
-测量并拆解对标短剧或漫剧，比较节奏与叙事手法，并可在授权边界内从视频还原剧本和制作文档。
+拆解短剧或漫剧参考视频，测量节奏与镜头，比较项目差距，并将获授权的素材反推为剧本和制作文档。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-面向短剧与漫剧创作者及开发者，用于测量对标素材的节奏和叙事结构、对照项目计划，并按需整理剧本与制作文档。
+短剧创作者和制作团队可用它快速拆解单段参考视频，或系统测量多集节奏、对比项目差距，并从获授权的素材整理剧本与制作文档。
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Processing long videos or using high sampling rates may exhaust memory.
+Risk: Processing supplied media may exhaust available resources.
 
-Mitigation: Check available memory before processing; use shorter clips or lower sampling rates when resources are limited.
+Mitigation: Limit video size, duration, and sampling; review tool access and install only if you trust the publisher.
 
 ## Reference(s):
 
-- [拆解维度](references/breakdown-dimensions.md)
-- [测量与观看](references/measure-and-read.md)
-- [整集与多集还原](references/reconstruct.md)
-- [差距对照与分工移交](references/gap-and-learning-loop.md)
-- [阶段规范](references/stage-contract.md)
+- [ClawHub skill release](https://clawhub.ai/worldwonderer/skills/short-drama-breakdown)
+- [Breakdown dimensions](references/breakdown-dimensions.md)
+- [Gap comparison and handoff](references/gap-and-learning-loop.md)
+- [Measurement and review](references/measure-and-read.md)
+- [Reconstructing episodes](references/reconstruct.md)
+- [Stage contract](references/stage-contract.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, JSON, Guidance, Files]
+**Output Type(s):** [Analysis, Markdown, JSON, Shell commands]
 
-**Output Format:** [Markdown analysis and production documents, JSON measurements, and image contact sheets]
+**Output Format:** [Markdown breakdowns and comparison tables, with measurement JSON where requested]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Findings distinguish measured observations, analysis, and unresolved questions; comparison material stays within its designated project area unless ownership or authorization is recorded.]
+**Other Properties Related to Output:** [Audio and performance details that cannot be confirmed from available media are marked as unknown.]
 
 ## Skill Version(s):
 
-1.0.6 (source: server-resolved release metadata)
+1.0.12 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

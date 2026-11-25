@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes plant images, environmental data, and growth metrics to produce a 0–100 vitality score and a rising, stable, or declining trend.
+Analyzes plant images, optional environmental readings, and growth metrics to produce a 0–100 vitality score and a recent trend.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Home gardeners and plant-monitoring teams use the skill to review plant vitality from images and optional environmental or growth data. It summarizes condition as a score and trend for care tracking.
+Gardeners and plant-monitoring operators use the skill to assess plant vitality from images and optional environmental or growth data, and to review historical reports.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates the release suspicious, citing account and credential handling, local persistence, selected media uploads without clear disclosure, and possible mismatch with the advertised task; scan coverage is partial.
+Risk: ClawScan rates the release suspicious with high confidence, citing account, credential, and media-handling behavior that does not clearly match its plant-analysis purpose; scan coverage was partial because a referenced local path could not be resolved.
 
-Mitigation: Review the skill and its dependencies before installing, and use it only if its account handling, local persistence, and external media processing are acceptable. Avoid sending sensitive images or credentials.
+Mitigation: Review the account registration, credential handling, remote media upload, and export-only behavior, and resolve the missing scan path before installation; defer use until these concerns are clarified.
 
 ## Reference(s):
 
-- [Plant vitality API reference](artifact/references/api_doc.md)
-- [Skill overview and demo](https://lifeemergence.com/sample.html)
-- [ClawHub release page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-plant-vitality-index-analysis)
+- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-plant-vitality-index-analysis)
+- [Plant vitality API documentation](artifact/references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, JSON]
+**Output Type(s):** [JSON, Markdown]
 
-**Output Format:** [Structured vitality report with a score, grade, trend, and optional sub-scores or alert hint; JSON or Markdown]
+**Output Format:** [Structured JSON analysis reports and Markdown report lists]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Plant-care reference only. Single-image scores may vary with camera angle and lighting; consistent image sequences support trend assessment.]
+**Other Properties Related to Output:** [Reports can include an overall score, grade, trend, sub-scores, alerts, and report links. A single image may not support a trend.]
 
 ## Skill Version(s):
 
-1.0.17 (source: server-resolved release metadata)
+1.0.19 (source: server-resolved release metadata; artifact SKILL.md frontmatter lists 1.0.23)
 
 ## Ethical Considerations:
 

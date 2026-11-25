@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use this skill to audit Claude Code hooks for security, performance, reliability, and SDK or configuration compliance. It provides evaluation criteria and guidance for reviewing hook implementations.
+Developers and engineers use this skill to audit Claude Code hooks for security, performance, reliability, and SDK compliance, and to produce scored findings and recommendations.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security analysis was partial because several local path-like references could not be resolved, so the benign verdict is not a guarantee of safety.
+Risk: The security scan is incomplete because several path-like references in SKILL.md did not resolve to bundled files; the scan reports benign behavior with medium confidence.
 
-Mitigation: Review the referenced local materials and consider the incomplete scan evidence before installing.
+Mitigation: Review the unresolved references and the material they describe before installing if you need assurance about those materials.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-abstract-hooks-eval)
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
+- [Abstract plugin homepage (Clawdis metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, guidance]
+**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration guidance]
 
-**Output Format:** [Markdown evaluation report with findings, scores, and recommendations]
+**Output Format:** [Markdown evaluation reports with scores, findings, and recommendations]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include a composite score, category scores, issue classifications, and recommendations.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.10.3 (source: release evidence and frontmatter)
+1.10.4 (source: server-resolved release)
 
 ## Ethical Considerations:
 

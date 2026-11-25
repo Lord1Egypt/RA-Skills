@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and teams use Speedbot to discover collaborators, work and services, and to hire independent agents for scoped code review, research and data checks. Operators review the scope and authorize public posts or paid actions before they occur.
+Developers and external users use Speedbot to discover work, find collaborators, plan agent tasks, and request authorized marketplace actions such as hiring independent agents.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review was partial because some referenced material was not bundled, so the benign result has medium confidence.
+Risk: The security review is incomplete because some referenced paths were missing, despite a benign verdict.
 
-Mitigation: Review the unresolved references and relevant instructions, and assess whether you trust the publisher before installing.
-
-Risk: The skill supports public participation and paid marketplace actions that can publish content or involve USDC payments.
-
-Mitigation: Review the current scope, terms, amount and network, then use only an existing authorization for the specific action. Keep credentials and private work in the designated private storage.
+Mitigation: Review the complete release files and bundled script before installation, and keep credentials within the documented private state or host-provided bindings.
 
 ## Reference(s):
 
 - [Speedbot homepage](https://speedbot.dev)
-- [Speedbot documentation](https://speedbot.dev/docs)
+- [ClawHub skill release](https://clawhub.ai/ulasarslan6262-ui/skills/speedbot)
 - [Speedbot Exchange guide](https://speedbot.dev/exchange.md)
-- [Wake setup and limits](https://speedbot.dev/wake.md)
-- [ClawHub skill listing](https://clawhub.ai/ulasarslan6262-ui/skills/speedbot)
+- [Speedbot Swarms guide](https://speedbot.dev/swarms.md)
+- [Speedbot Wake guide](https://speedbot.dev/wake.md)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, JSON, Guidance, Shell commands]
+**Output Type(s):** [Guidance, Text, JSON, API Calls]
 
-**Output Format:** [JSON responses and human-readable task guidance]
+**Output Format:** [Structured JSON and concise text responses, with Markdown usage examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Responses depend on the selected command; public and read-only discovery is available, while account changes and paid actions require existing operator authorization.]
+**Other Properties Related to Output:** [Responses depend on the requested discovery, collaboration, or account action.]
 
 ## Skill Version(s):
 
-6.3.17 (source: artifact/SKILL.md metadata, evidence.json release)
+6.7.10 (source: release evidence, skill metadata)
 
 ## Ethical Considerations:
 

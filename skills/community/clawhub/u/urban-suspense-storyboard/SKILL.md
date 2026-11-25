@@ -1,12 +1,22 @@
 ---
 name: urban-suspense-storyboard
 description: 都市悬疑漫剧分镜生成器。输入剧情梗概、镜头数量、画面风格，输出漫剧制作计划、连续镜头分镜表、逐镜头即梦与Midjourney绘图提示词及负面词。触发词：悬疑漫剧分镜、漫剧制作计划、AI漫剧prompt、竖屏短剧分镜表。
-version: 1.0.0
+version: 1.0.2
 ---
 
 # 都市悬疑漫剧分镜生成器
 
 面向漫剧博主与 AIGC 创作者的竖屏生产工具：把一句梗概变成可直接开工的镜头级生产资料。
+
+> 安装：`openclaw skills install @wojiaozhoujian/urban-suspense-storyboard`
+
+![30 秒演示](demo.gif)
+
+## 30 秒上手
+
+1. 输入一句梗概，例如「深夜便利店，夜班收银员发现进店客人没有影子，8 个镜头，写实 CG」。
+2. 一次拿到三段输出：项目制作计划、分镜表格、逐镜头即梦/MJ 提示词与负面词。
+3. 按镜号出图，图生视频 5 秒一段，按表剪辑即可。
 
 ## 适用场景
 

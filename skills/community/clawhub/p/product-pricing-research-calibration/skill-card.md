@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Researchers, analysts, and writers use this skill to assess how enterprise software and AI capabilities are priced and packaged. It helps separate direct pricing evidence from adjacent commercial signals, organize product and purchaser facts, and draft a bounded analysis without turning it into procurement advice.
+Researchers, analysts, and writers use this skill to assess how enterprise software and AI capabilities are priced and attached to products, then structure an evidence-calibrated article before drafting.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review is benign with medium confidence, but one path-like reference could not be resolved, so the evidence is incomplete.
+Risk: One reference could not be resolved, so the scan evidence is incomplete on that point.
 
-Mitigation: Review the unresolved reference and inspect the skill before execution; treat the scan verdict as informative rather than a guarantee of zero risk.
+Mitigation: Review the unresolved reference and confirm its destination is trustworthy before installing or relying on it.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/haiyangchenbj/skills/product-pricing-research-calibration)
+- [ClawHub skill release](https://clawhub.ai/haiyangchenbj/skills/product-pricing-research-calibration)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, Guidance, Markdown]
 
-**Output Format:** [Markdown research outline, fact matrix, and article-drafting guidance]
+**Output Format:** [Structured research brief in Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Separates direct, adjacent, and boundary-only evidence and limits claims to the strength of the evidence.]
+**Other Properties Related to Output:** [Organizes direct, adjacent, and boundary-only pricing evidence; commercial attachment; inference boundaries; article structure; and title checks.]
 
 ## Skill Version(s):
 
-1.0.0 (source: frontmatter)
+1.0.1 (source: frontmatter)
 
 ## Ethical Considerations:
 

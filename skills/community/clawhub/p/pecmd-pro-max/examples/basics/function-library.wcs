@@ -1,0 +1,135 @@
+//2个工具 
+ENVI &&ETOOL=T:\PE_RESEDIT\ResEdit.ntr   //编辑工具
+ENVI &&PTOOL=T:\PE_RESEDIT\pack.dat      //压缩工具
+
+
+SET  ::WM_LBUTTONDOWN                  =0x0201
+SET  ::WM_LBUTTONUP                    =0x0202
+SET  ::WM_COMMAND=0x0111
+SET  ::BN_CLICKED=0
+SET  ::WM_SETTEXT                      =0x000C
+SET  ::WM_GETTEXT                      =0x000D
+SET  ::WM_GETTEXTLENGTH                =0x000E
+
+
+//    ENVI &&SubPid=
+//    EXEC --pid:&SubPid  --exe:%&ETOOL%  ResEdit %&TMP_OUT1%    //编辑
+//    ENVI &&&Clipboard?=&&OLD  //备份剪切板
+//    ENVI &&&Clipboard=%&OLD%  //恢复剪切板
+
+
+//等待%&SubPid%进程的窗口,最多10秒
+//WAIT_FIND_WIND 窗口标题（）     
+_SUB WAIT_FIND_WIND
+    TEAM ENVI  &&WID=0| CALC #&&I=10000 / 20| ENVI &&T=%*
+    LOOP #%&I% > 0,  TEAM WAIT 50| FIND --forpid:%&SubPid% --wid &WID,%&T%| CALC #&I=%&I% -1| IFEX $ %&WID% > 0, ENVI &I=0
+    WAIT 20
+_END
+//    CALL WAIT_FIND_WIND Resource Hacker  -  %&TMPF%
+
+//函数:  HelloWindow  窗口ID  
+_SUB HelloWindow  //确认该窗口能响应
+    ENVI @@SENDMSG=%1;%WM_NULL%;0;0
+_END
+
+//函数:  SetAcative  窗口ID  
+_SUB SetAcative
+    ENVI @@POS=%1:::::::1:1 //激活
+_END
+
+//SetWindowText 控件的窗口ID  文本名称
+_SUB SetWindowText
+    ENVI @@POS=%1:::::::1:1 //激活
+    ENVI @@SENDMSG=%1;%WM_SETTEXT%;0;@%2
+_END
+//    SetWindowText %&EDIT1% &V1
+
+//函数:  GetWindowText  窗口ID   文本变量名
+_SUB GetWindowText
+    ENVI @@POS=%1:::::::1:1 //激活
+    ENVI @@SENDMSG=:&&___LEN__;%1;%WM_GETTEXTLENGTH%;0;0 //长度
+    CALC #&___LEN__=%&___LEN__% + 100
+    ENVI$ %2=*%&___LEN__%  0   //申请内存/缓冲区
+    ENVI @@SENDMSG=%1;%WM_GETTEXT%;%&___LEN__%;@%2
+    //ENVI~ &&__dummy=%2
+    //ENVI   &&__dummy2=%&__dummy% //打印到 LOGS
+_END
+
+//函数:  RUNMENU
+//参数: 窗口ID 序号1 [序号2] [序号3]
+_SUB RUNMENU
+    ENVI &&WID1=%1
+    ENVI &&I1=%2
+    ENVI &&I2=%3
+    ENVI &&I3=%4
+    FIND --menu   &&MENUID,%&WID1%   
+    FIND --menu#%&I1%   &&v,%&MENUID%
+    MSTR*  &&MID=<2>%&v%
+    MSTR*  &&IDD=<3>%&v%
+
+    FIND $ = %&I2%,! FIND --menu#%&I2%   &v,%&MID%
+    FIND $ = %&I2%,! MSTR*  &&MID=<2>%&v%
+    FIND $ = %&I2%,! MSTR*  &&IDD=<3>%&v%
+    //ENVI &M=%&v%
+    FIND $ = %&I3%,! FIND --menu#%&I3%   &v,%&MID%
+    FIND $ = %&I3%,! MSTR*  &&IDD=<3>%&v%
+
+    ENVI @@POS=%&WID1%:::::::1:1 //激活
+    CALC  #&&wp=%IDD% + %&BN_CLICKED% * 0x10000
+    //ENVI @@POS=%&WID3%:::::::1:1 //激活
+    ENVI @@POSTMSG=%&WID1%;%&WM_COMMAND%;%&wp%;0
+_END 
+//    CALL RUNMENU %&WID% 1 3  //保存(&S)
+ 
+
+//函数:  RUNMENU
+//参数: 窗口ID 序号1 [序号2] [序号3]
+_SUB RUNMENUWAIT  //阻塞调用,等待对方执行完毕
+    ENVI &&WID1=%1
+    ENVI &&I1=%2
+    ENVI &&I2=%3
+    ENVI &&I3=%4
+    FIND --menu   &&MENUID,%&WID1%   
+    FIND --menu#%&I1%   &&v,%&MENUID%
+    MSTR*  &&MID=<2>%&v%
+    MSTR*  &&IDD=<3>%&v%
+
+    FIND $ = %&I2%,! FIND --menu#%&I2%   &v,%&MID%
+    FIND $ = %&I2%,! MSTR*  &&MID=<2>%&v%
+    FIND $ = %&I2%,! MSTR*  &&IDD=<3>%&v%
+    //ENVI &M=%&v%
+    FIND $ = %&I3%,! FIND --menu#%&I3%   &v,%&MID%
+    FIND $ = %&I3%,! MSTR*  &&IDD=<3>%&v%
+
+    ENVI @@POS=%&WID1%:::::::1:1 //激活
+    CALC  #&&wp=%IDD% + %&BN_CLICKED% * 0x10000
+    //ENVI @@POS=%&WID3%:::::::1:1 //激活
+    ENVI @@SENDMSG=%&WID1%;%&WM_COMMAND%;%&wp%;0
+_END 
+//    CALL RUNMENUWAIT %&WID% 1 3  //保存(&S)
+
+// RUBBUTTON  窗口ID  按钮ID
+_SUB RUBBUTTON 
+    ENVI &&WID1=%1
+    ENVI &&BWID=%2
+    ENVI @@POS=%&WID1%:::::::1:1 //激活
+    ENVI @@POSTMSG=%&BWID%;%&WM_LBUTTONDOWN%;0;0
+    WAIT 100
+    ENVI @@POSTMSG=%&BWID%;%&WM_LBUTTONUP%;0;0
+    //WAIT 100
+    //ENVI @@SENDMSG=%&WID1%;%&WM_COMMAND%;%&wp%
+_END //RUBBUTTON 
+//    CALL RUBBUTTON  %&&WID2%   %&&BTWIDOPEN%
+
+// RUBBUTTON  窗口ID  按钮ID
+_SUB RUBBUTTONWAIT  //阻塞调用,等待对方执行完毕 
+    ENVI &&WID1=%1
+    ENVI &&BWID=%2
+    ENVI @@POS=%&WID1%:::::::1:1 //激活
+    ENVI @@SENDMSG=%&BWID%;%&WM_LBUTTONDOWN%;0;0
+    WAIT 100
+    ENVI @@SENDMSG=%&BWID%;%&WM_LBUTTONUP%;0;0
+    //WAIT 100
+    //ENVI @@SENDMSG=%&WID1%;%&WM_COMMAND%;%&wp%
+_END //RUBBUTTON 
+//    CALL RUBBUTTONWAIT  %&&WID2%   %&&BTWIDOPEN%

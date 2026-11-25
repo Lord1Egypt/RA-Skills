@@ -875,8 +875,16 @@ def _verify_one_impl(
         and _ROOT.DOI_RE.match(out["doi"])
     ):
         ctx = _ROOT.s2_citation_contexts(out["doi"], timeout)
-        out["checks"]["citation_contexts"] = {"ran": True, "cited_by": ctx.get("cited_by", 0)}
-        if ctx:
+        if ctx.get("skipped") == "cn_mode":
+            # v6.7.0 F67：--cn 短路诚实透出（S2 国内高频超时；语境是增强信号）；
+            # 先判后赋——skip 分支不先写 ran:True（审计 P2：防条件化陷阱）
+            out["checks"]["citation_contexts"] = {
+                "ran": False,
+                "skipped": "cn_mode",
+                "note": "S2 语境在 --cn 模式下跳过（国内可达性差；显式 --s2-key 可放行）",
+            }
+        elif ctx:
+            out["checks"]["citation_contexts"] = {"ran": True, "cited_by": ctx.get("cited_by", 0)}
             out["citation_contexts"] = ctx
             n = ctx["cited_by"]
             cov = ctx.get("coverage", 0)
@@ -884,6 +892,8 @@ def _verify_one_impl(
             if ctx["samples"]:
                 note_ctx += "；后续文献如是以引用：《" + ctx["samples"][0]["citing_title"] + "》"
             out["note"] = (out["note"] + "；" if out["note"] else "") + note_ctx
+        else:
+            out["checks"]["citation_contexts"] = {"ran": True, "cited_by": 0}
 
     miss = _ROOT.missing_fields(ref)
     if out["tier"] in _ROOT.TRUSTED_TIERS and not miss:

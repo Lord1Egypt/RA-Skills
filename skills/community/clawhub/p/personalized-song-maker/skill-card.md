@@ -1,6 +1,6 @@
 ## Description:
 
-Turn a person's story and occasion into original lyrics and a newly generated song. This personalized song maker and custom song generator workflow collects the recipient, relationship, occasion, memories, and must-include details, drafts the title, lyrics, section structure, genre, and mood for approval, then generates one finished original song, and reviews story accuracy, name pronunciation, hook, lyric rendering, and vocal result. Use it for custom birthday songs, wedding songs, anniversary songs, proposal songs, family tribute songs, and company or team anthems, with one approved lyric draft and one song generation per run and honest post-result review.
+Turns a person's story and occasion into original lyrics and a generated song.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users use the skill to turn a real story, occasion, and required details into an approved lyric draft and an original song, such as a birthday, wedding, anniversary, tribute, or team song.
+People creating a personalized song for a birthday, wedding, anniversary, proposal, family tribute, or team or company event use this skill to shape a true story into approved lyrics and one generated song.
 
 ### Deployment Geography for Use:
 
@@ -22,43 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment reports broad shared credential permissions.
+Risk: The skill uses broad shared account access and reports installation and runtime details to the service.
 
-Mitigation: Authorize only the intended account, protect the shared Beatra credential files, and never copy the device token into prompts, logs, or command arguments.
+Mitigation: Proceed only if that access and reporting are acceptable, and review the authorization request before connecting.
 
-Risk: The security assessment reports recurring installation-linked analytics.
+Risk: Uninstall behavior may disrupt other skills that share the account connection.
 
-Mitigation: Review the package's installation registration and telemetry disclosures before connecting the skill.
+Mitigation: Before uninstalling, check whether other installed Beatra skills use the connection and follow the package's uninstall procedure.
 
-Risk: The security assessment reports uninstall behavior that could affect shared credentials if inventory data is malformed.
+Risk: The security review is partial; some local references and the binary icon were not analyzed, so the evidence does not establish that the skill is safe.
 
-Mitigation: Check the installed-skill inventory and confirm other Beatra skills no longer need the shared credentials before uninstalling.
-
-Risk: The workflow sends story details to a remote song-generation service, and personal or private details may be sensitive.
-
-Mitigation: Collect only details needed for the song and omit private information the user does not want included or shared.
+Mitigation: Review the package and icon before installation, and do not treat the partial scan as a safety assurance.
 
 ## Reference(s):
 
-- [Beatra Personalized Song Maker](https://beatra.ai/skills/personalized-song-maker)
-- [ClawHub Personalized Song Maker release](https://clawhub.ai/beatra-ai/skills/personalized-song-maker)
+- [Personalized Song Maker on ClawHub](https://clawhub.ai/beatra-ai/skills/personalized-song-maker)
+- [Beatra Personalized Song Maker page](https://beatra.ai/skills/personalized-song-maker)
 - [Story-to-song workflow](references/workflow.md)
-- [Music editing and audio processing](references/music-editing-and-audio.md)
 - [Updates and security](references/updates-and-security.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Audio files]
+**Output Type(s):** [Text, Markdown, Audio artifact or link]
 
-**Output Format:** [Markdown lyrics and production guidance, plus generated audio artifacts]
+**Output Format:** [Markdown lyrics and production card, followed by a generated song artifact or link]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [One approved lyric draft and one song generation per run; optional paid audio finishing and deliverables.]
+**Other Properties Related to Output:** [One approved lyric draft and one song generation per run; optional paid audio edits or additional deliverables require separate approval.]
 
 ## Skill Version(s):
 
-0.2.5 (source: server-resolved release)
+0.2.6 (source: server-resolved release evidence and manifest.json)
 
 ## Ethical Considerations:
 

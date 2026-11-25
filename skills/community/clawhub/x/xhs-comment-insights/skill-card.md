@@ -1,6 +1,6 @@
 ## Description:
 
-当用户需要做小红书评论分析、小红书评论洞察、小红书用户反馈分析、小红书需求挖掘、痛点总结、购买顾虑整理、FAQ 提炼、口碑分析、评论回复观察或内容讨论复盘时使用。基于用户提供的小红书笔记链接或 note_id 下的评论结果，面向内容运营、产品调研、品牌调研和创作者。
+分析用户提供的小红书笔记评论，归纳用户反馈、痛点、需求与可行动建议。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-内容运营人员、产品与品牌研究者、创作者可用它分析指定小红书笔记已获取的评论和回复，归纳主题、痛点、购买顾虑、需求与 FAQ，并形成可执行的内容或产品建议。
+External content operators, product and brand researchers, and creators use this skill to analyze comments from a supplied Xiaohongshu note link or note ID. It helps identify feedback themes, pain points, purchase concerns, unmet needs, FAQs, and practical content or product actions.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The CLI resolves an unpinned latest package at run time, and the security review was partial.
+Risk: The skill invokes an automatically installed, unpinned latest CLI that may change and can access available credentials.
 
-Mitigation: Review the package and resolved version before execution, especially when scanner coverage is incomplete.
+Mitigation: Review the CLI before use, pin a reviewed version, and expose only the required SocialDataX credential to the execution environment.
 
-Risk: CLI use may involve access to API credentials.
+Risk: Comment data is sent to SocialDataX, and the scan calls for clarity about that disclosure.
 
-Mitigation: Use a trusted execution environment and keep API keys out of chat, logs, screenshots, and project files.
+Mitigation: Review SocialDataX's data handling terms and confirm that the comments may be sent to the service before running an analysis.
+
+Risk: Security analysis is partial because some local references could not be resolved.
+
+Mitigation: Resolve and review the missing references as part of the security review before installation.
 
 ## Reference(s):
 
-- [SocialDataX API Key information](https://socialdatax.com/ai?from=clawhub)
-- [ClawHub skill listing](https://clawhub.ai/devinchen2014/skills/xhs-comment-insights)
-- [Publisher profile](https://clawhub.ai/user/devinchen2014)
+- [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/xhs-comment-insights)
+- [SocialDataX API key and skill information](https://socialdatax.com/ai?from=clawhub)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, Markdown, Guidance]
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [Markdown analysis with themes, pain points, purchase concerns, unmet needs, FAQs, comment evidence, and actionable recommendations]
+**Output Format:** [Structured Markdown report]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Findings are limited to comments and replies returned for the supplied note URL or full note_id; state whether the result covers only a sample or multiple pages.]
+**Other Properties Related to Output:** [Findings are scoped to comments and replies returned for the supplied note; state whether the retrieved sample is partial.]
 
 ## Skill Version(s):
 
-0.1.12 (source: server-resolved release evidence)
+0.1.13 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

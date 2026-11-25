@@ -4,7 +4,7 @@ description: 在 WorkBuddy 的沙箱环境里安全地对 git 仓库做 fetch/pu
 agent_created: true
 slug: git-sandbox-safe-ops
 displayName: 沙箱环境下的 git 安全操作与仓库恢复
-version: 1.0.0
+version: 1.0.2
 category: development
 visibility: public
 license: MIT
@@ -44,8 +44,8 @@ git rev-parse --show-toplevel     # 项目根
 | `git push` 报 `! [rejected] ... (fetch first)` | 远端确实有新提交（例如 GitHub Actions 的每日采集提交）。**不要**用 `git pull --rebase`，走 §4 |
 | `git rebase <sha>` 报 `error: could not mark as interactive: No such file or directory` | 沙箱下 rebase 要建 `.git/rebase-*` 目录，创建失败；**紧接着 `.git` 会被整个删掉**（实测，见 §2） |
 | `git log` 突然报 `fatal: not a git repository` | 上一条的后果，进入 §5 恢复流程 |
-| `git push` 报 `could not read Username ... terminal prompts disabled` | 全局 `credential.https://github.com.helper=!gh auth git-credential` 生效，但 `gh auth status` 是「未登录」。**先按 §8 找现成 token**（通常 `~/.git-credentials` 里就有）；找不到再回落 `git config credential.https://github.com.helper store` |
-| `gh auth status` 说未登录，但 `~/.git-credentials` 里存着一行 `https://<user>:gho_xxx@github.com` | **直接用这行里的 token**，别去麻烦用户。见 §8 |
+| `git push` 报 `could not read Username ... terminal prompts disabled` | 全局 `credential.https://github.com.helper=!gh auth git-credential` 生效，但 `gh auth status` 是「未登录」。**先按 §8 用标准接口取现成 token**；找不到再回落 `git config credential.https://github.com.helper store` |
+| `gh auth status` 说未登录，但本机 git 凭据体系（credential helper）里存着可用 token | **用 `git credential fill` 标准接口取回**，别去麻烦用户。见 §8 |
 | `git branch --set-upstream-to=origin/master` 报 `the requested upstream branch does not exist`，但 `FETCH_HEAD` 里明明有那个 sha | `refs/remotes/**` 写入被沙箱吃掉（同 §3）。**注意**：此时 `.git/refs/remotes/` 目录可能压根没被创建，`ls` 报 ENOENT。按 §3 直写即可；`FETCH_HEAD` 的 sha == 本地 HEAD 就能判定 push 已成功 |
 | `git -c http.proxy= -c https.proxy= fetch origin main` 成功，但同参数 `push` 报 `Recv failure: Connection was reset` | 下载走直连可以、**上传必须走代理**。见 §7 换 `socks5://` |
 | 同参数 `push` **不报错也不结束**（挂住，4 分钟无任何输出，直到被杀） | 与上一条同源：上传方向直连走不通，且这次是**静默挂起**而不是 `Recv failure`。见 §7 —— 别等，直接换 `socks5://` |
@@ -388,9 +388,9 @@ http / socks 分流端口）、`1080`、`8080`。
 用户说「你自己找凭证」时，按下面顺序找，**不要打断用户索要 token**：
 
 ```bash
-# 1) 最优先：~/.git-credentials（明文存着，通常直接可用）
-cat ~/.git-credentials
-#   形如 https://oracis:gho_xxxxx@github.com  —— 冒号后就是 token
+# 1) 最优先：git credential 体系的标准接口（不直接读凭据存档文件）
+printf "protocol=https\nhost=github.com\n\n" | git credential fill
+#   输出 username=<用户名> / password=<token>（github.com 的 PAT/OAuth token）
 
 # 2) 环境变量
 echo "${GH_TOKEN:-unset} ${GITHUB_TOKEN:-unset}"
@@ -450,7 +450,7 @@ git rev-parse HEAD      # 本地 sha 与远端分支 sha 一致 == 推送成功
 先用 API 确认 scope（比猜准，且不用翻设置页）：
 
 ```bash
-TOKEN=$(python -c "import os;from urllib.parse import urlparse;print(urlparse(open(os.path.expanduser('~/.git-credentials'),encoding='utf-8').read().strip().split(chr(10))[0]).password)")
+TOKEN=$(printf "protocol=https\nhost=github.com\n\n" | git credential fill | sed -n 's/^password=//p')
 curl -sS -o /dev/null -D - -H "Authorization: token $TOKEN" https://api.github.com/user \
   | grep -i x-oauth-scopes
 # 期望里要有 workflow；只有 gist, read:org, repo 就是缺

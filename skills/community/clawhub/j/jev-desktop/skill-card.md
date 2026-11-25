@@ -1,6 +1,6 @@
 ## Description:
 
-Guides an agent through goal-driven or single-step desktop automation without exposing the full accessibility tree to the agent.
+Automates desktop applications by turning a plain-language goal or a single intent into screen-aware actions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agents use this skill to control desktop applications from a plain-language goal or resolve and execute one interaction at a time.
+Developers use this skill to automate desktop applications with a whole natural-language goal or to resolve one action at a time while keeping the interaction plan in their control.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Screen descriptions sent to a decision endpoint can expose private documents or form values.
+Risk: Screen descriptions sent to the configured decision service can include private document or form content; the security review is incomplete.
 
-Mitigation: Use only with applications and documents suitable for the configured endpoint; use --no-values for confidential screens.
-
-Risk: High-confidence destructive desktop actions may execute without local confirmation.
-
-Mitigation: Use --confirm-destructive whenever actions could send messages, overwrite files, delete data, confirm warnings, or affect accounts.
-
-Risk: A changed decision endpoint can receive screen descriptions.
-
-Mitigation: Pin and trust TYPESAFE_BASE_URL before use.
+Mitigation: Verify that the configured endpoint is expected and trusted, use --no-values when practical, and avoid sensitive screens or data unless you understand what will be transmitted.
 
 ## Reference(s):
 
 - [jev-desktop on ClawHub](https://clawhub.ai/lahfir/skills/jev-desktop)
+- [Publisher profile: lahfir](https://clawhub.ai/user/lahfir)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands]
+**Output Type(s):** [Shell commands, JSON, Guidance]
 
-**Output Format:** [Markdown instructions and JSON action reports]
+**Output Format:** [Shell command examples, JSON action results, and text guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports actions and stop reasons; may execute desktop interactions.]
+**Other Properties Related to Output:** [Requires a clone of agent-desktop and TYPESAFE_API_KEY; screen descriptions may be sent to the configured decision endpoint.]
 
 ## Skill Version(s):
 
-1.0.1 (source: server-resolved release)
+1.0.2 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

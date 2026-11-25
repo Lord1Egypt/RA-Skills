@@ -1,0 +1,64 @@
+// 以下SHOWFIRST是子过程，在这个子过程当中使用两个线程F_FIND_TXT和F_FIND_JPG，是不是也必须使用消息通知啊？还请指教。
+//回复:可以用 消息通知 ， 也可以不用消息通知。有窗口时也如此。
+//A方案:
+//1) _SUB SHOWFIRST,*  
+//  说明此时 SHOWFIRST 函数到结尾就结束了， 但处在等待THREAD*的2个子线程状态。
+// 也可以B方案(差不多)：
+//1) _SUB SHOWFIRST,# 
+//2) KILL  @@%&WIN1%  //SHOWFIRST  退出
+//  说明此时 SHOWFIRST 函数到结尾就处于空闲状态。需要 KILL 才能退出。
+ 
+
+CALL SHOWFIRST
+MESS NEXT 。 从 SHOWFIRST  返回
+
+//_SUB SHOWFIRST,#   //B方案
+_SUB SHOWFIRST,*   //A方案
+    //ENVI &&WIN1=%&&__WINID%   //B方案
+    ENVI &&TXTLS=
+    ENVI &&JPGLS=
+
+    ENVI &&F_FIND_TXT_OK=0
+    ENVI &&F_FIND_JPG_OK=0
+
+    //ENVI @SHOWFIRST.MSG=#1: CALL OnMsg1
+    THREAD*  F_FIND_TXT
+
+    //ENVI @SHOWFIRST.MSG=#2: CALL OnMsg2
+    THREAD*  F_FIND_JPG
+_END
+
+_SUB  F_FIND_TXT
+    FORX /S T:\*.TXT,ANYTXT,1,  ENVI &TXTLS1=%ANYTXT%
+    FORX /S T:\*.TXT,ANYTXT,0,  ENVI &TXTLS=%&TXTLS%|%ANYTXT%
+    MSTR &TXTLS=2,0,%&TXTLS%
+
+    //ENVI @SHOWFIRST.POSTMSG=#1
+    CALL OnMsg1
+_END
+
+_SUB OnMsg1
+    ENVI &F_FIND_TXT_OK=1
+    CHECKDONE  1
+_END
+
+_SUB  F_FIND_JPG
+    FORX /S T:\*.JPG,ANYJPG,1,  ENVI &JPGLS1=%ANYJPG%
+    FORX /S T:\*.JPG,ANYJPG,0,  ENVI &JPGLS=%&JPGLS%|%ANYJPG%
+    MSTR &JPGLS=2,0,%&JPGLS%
+
+    //ENVI @SHOWFIRST.POSTMSG=#2
+    CALL OnMsg2
+_END
+
+_SUB OnMsg2
+    ENVI &F_FIND_JPG_OK=1
+    CHECKDONE  2
+    //MESS OnMsg2  【%&F_FIND_TXT_OK%%&F_FIND_JPG_OK%】
+_END
+
+_SUB CHECKDONE
+    FIND $%&F_FIND_TXT_OK%%&F_FIND_JPG_OK% = 11,! EXIT _SUB
+    MESS 两个子过程F_FIND_TXT和F_FIND_JPG都完成了。
+    //KILL  @@%&WIN1%  //SHOWFIRST  退出    //B方案
+_END

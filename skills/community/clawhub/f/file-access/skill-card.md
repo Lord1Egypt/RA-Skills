@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-People using an OpenClaw agent can handle everyday files in folders they approve in advance. The skill supports bounded listing, reading, copying, and creating or renaming files in a designated work folder, while recording actions and stopping for specified sensitive requests.
+An agent uses this skill to find, read, summarize, copy, and organize everyday files within folders approved by the owner, while recording actions for later review.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review was partial because some local references could not be resolved, leaving their relevance unassessed.
+Risk: The security review had medium confidence and was partial because several referenced paths were missing.
 
-Mitigation: Review the unresolved local references before installation and keep use within the documented allowlist and limits.
+Mitigation: Check that the missing references are expected before installing, and keep file operations within owner-approved folders.
 
 ## Reference(s):
 
-- [Source repository (server-resolved provenance)](https://github.com/thepodemail-lgtm/openclaw-hardened-file-access/tree/main/skills/file-access)
-- [Hardened File Access on ClawHub](https://clawhub.ai/thepodemail-lgtm/skills/file-access)
+- [GitHub source (skills/file-access)](https://github.com/thepodemail-lgtm/openclaw-hardened-file-access/tree/main/skills/file-access)
+- [ClawHub release](https://clawhub.ai/thepodemail-lgtm/skills/file-access)
 
 ## Skill Output:
 
-**Output Type(s):** [Files, Text, Guidance]
+**Output Type(s):** [Files, Text, Markdown]
 
-**Output Format:** [File listings and metadata, text summaries, copies, and new files]
+**Output Format:** [Files in owner-approved formats, text summaries and metadata, and a Markdown audit log]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Actions are logged; reads and copies have per-file and per-run limits.]
+**Other Properties Related to Output:** [Actions are limited by owner-approved folders and documented size and run caps.]
 
 ## Skill Version(s):
 
-0.1.0 (source: server-resolved release metadata)
+0.1.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

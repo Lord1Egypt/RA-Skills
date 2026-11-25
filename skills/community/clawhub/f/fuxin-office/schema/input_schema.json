@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://fuxin.example.com/skills/fuxin-office-suite/schema/input_schema.json",
   "title": "fuxin-office-suite 入参 Schema",
-  "description": "福昕 Office 全家桶技能套件（对外仅暴露 fuxin-office 一个技能）的入参校验定义。套件入口为 fuxin-office（唯一入口/汇总层），主要输入为自然语言任务描述，由路由层解析到目标能力域与类型；skills 枚举中的 fuxin-word / fuxin-excel 等为网关侧路由目标标识（对应 fuxin-office 内部参考文档 reference/*.md）。",
+  "description": "福昕Office全家桶技能套件（对外仅暴露 fuxin-office 一个技能）的入参校验定义。套件入口为 fuxin-office（唯一入口/汇总层），主要输入为自然语言任务描述，由路由层解析到目标能力域与类型；skills 枚举中的 fuxin-word / fuxin-excel 等为网关侧路由目标标识（对应 fuxin-office 内部参考文档 reference/*.md）。",
   "type": "object",
   "additionalProperties": false,
   "required": ["type"],

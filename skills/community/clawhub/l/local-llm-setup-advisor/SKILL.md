@@ -1,7 +1,7 @@
 ---
 name: local-llm-setup-advisor
 description: >-
-  Help users with Validated demand: Builders need guidance for running useful AI and LLM workflows locally on consumer CPU or family GPU hardware without depending on cloud-only systems. This requirement is supported by 9 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.. Use when a user asks for software-and-data, local llm, consumer gpu, cpu inference, llama.cpp, or needs a practical workflow, artifact, checklist, analysis, or implementation support for this requirement.
+  Help users with Validated demand: Builders need guidance for running useful AI and LLM workflows locally on consumer CPU or family GPU hardware without depending on cloud-only systems. This requirement is supported by 12 separate online signals across 2 source families, so it represents broader demand rather than a single isolated request.. Use when a user asks for software-and-data, local llm, consumer gpu, cpu inference, llama.cpp, or needs a practical workflow, artifact, checklist, analysis, or implementation support for this requirement.
 ---
 
 # Local LLM Setup Advisor
@@ -10,10 +10,10 @@ description: >-
 
 Use this skill to help developers, researchers, privacy-conscious users, hobbyists, and small teams who want local AI workflows on ordinary home machines with:
 
-> Validated demand: Builders need guidance for running useful AI and LLM workflows locally on consumer CPU or family GPU hardware without depending on cloud-only systems. This requirement is supported by 9 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
+> Validated demand: Builders need guidance for running useful AI and LLM workflows locally on consumer CPU or family GPU hardware without depending on cloud-only systems. This requirement is supported by 12 separate online signals across 2 source families, so it represents broader demand rather than a single isolated request.
 
-Demand score: 98/100 (`70/70` demand, `28/30` local feasibility).
-Evidence: 9 signals across 3 source families.
+Demand score: 90/100 (`70/70` demand, `28/30` local feasibility).
+Evidence: 12 signals across 2 source families.
 
 Read `references/requirement-plan.md` when source evidence, planning details, or review criteria are needed.
 

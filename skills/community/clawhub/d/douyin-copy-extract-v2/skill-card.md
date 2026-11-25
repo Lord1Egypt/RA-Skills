@@ -1,6 +1,6 @@
 ## Description:
 
-Extracts video details, descriptions, spoken transcripts, and concise copy from publicly accessible Douyin videos supplied by URL, share text, or aweme ID, and can check an existing job.
+从用户提供的抖音公开视频链接、分享文案或 aweme_id 中提取视频信息、简介与口播逐字稿，并整理成可复制文案和摘要；也可通过已有 job_id 查询任务状态。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Content creators and social media operators use this skill to extract a Douyin video's available details, original description, and spoken transcript for review and content organization. They can submit a public video URL, share text, or aweme ID, then check an existing job until it completes.
+内容创作者和自媒体运营者可提交抖音公开视频链接、分享文案或 aweme_id，获取视频信息、简介和口播逐字稿，并整理成可复制文案与摘要；也可继续查询已有任务。
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Submitted video information is sent to SocialDataX for processing.
+Risk: Repeated use of an unpinned latest CLI release creates a supply-chain risk, and partial scanner coverage leaves the evidence incomplete.
 
-Mitigation: Submit only video information you are comfortable sharing with SocialDataX.
-
-Risk: The CLI commands use an unpinned package version that may change over time.
-
-Mitigation: Review the package release before installation and use a pinned version when reproducibility matters.
-
-Risk: The security scan was partial because some referenced paths had no matching bundled artifact.
-
-Mitigation: Review the referenced material and package behavior before installation.
+Mitigation: Postpone installation until the CLI version is fixed and reviewed. Resolve the local references the scan could not analyze, and do not treat another scanner's clean result as proof of safety.
 
 ## Reference(s):
 
-- [SocialDataX service and API key information](https://socialdatax.com/ai?from=clawhub)
 - [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/douyin-copy-extract-v2)
-- [Publisher profile](https://clawhub.ai/user/devinchen2014)
+- [SocialDataX API access](https://socialdatax.com/ai?from=clawhub)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, JSON]
+**Output Type(s):** [Text, Markdown]
 
-**Output Format:** [Markdown transcript and copy-ready text, with JSON task status and result data]
+**Output Format:** [Markdown containing video details, source description, transcript, copy-ready text, summary, or task status when available.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports only fields returned by the service; pending jobs are checked with the same job ID. Optional SRT file export is available when requested through the CLI.]
+**Other Properties Related to Output:** [Uses fields returned by the task; missing details are not invented.]
 
 ## Skill Version(s):
 
-0.1.6 (source: ClawHub release evidence)
+0.1.7 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

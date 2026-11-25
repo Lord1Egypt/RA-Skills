@@ -1,6 +1,6 @@
 ## Description:
 
-Retrieves public TikTok video search results, creator posts, and video comments as structured JSON for trend and market analysis.
+Searches public TikTok videos, creator posts, and video comments by keyword or URL, returning structured JSON for market and content analysis.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-External marketers, researchers, and social media teams use this skill to retrieve public TikTok videos, creator posts, and comments for market research, content discovery, competitor monitoring, and audience sentiment summaries.
+External creators, marketing teams, and analysts use this skill to find public TikTok videos, review creator posts, and inspect comments for market research, competitor monitoring, and content planning.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: API requests share search terms or TikTok targets with Guaikei and may incur charges; provider collection, retention, and billing practices were not independently verified.
+Risk: The supplied security scan found no issues but rated confidence as medium because 12 of 32 components were only partially inspected and tool misuse analysis was degraded.
 
-Mitigation: Use a dedicated API token, consider charges, and avoid sending sensitive search terms or targets until the provider’s terms are reviewed.
-
-Risk: When optional logging is enabled, queries and results are retained in local temporary-directory logs.
-
-Mitigation: Keep logging disabled unless needed, and review or remove local logs when finished.
+Mitigation: Review the referenced scripts before installation or use, send only public TikTok queries or URLs to the documented Guaikei API, and protect GUAIKEI_API_TOKEN.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/why20261/skills/tiktok-market-insight)
-- [Guaikei service and token access](https://www.guaikei.com)
-- [Command options](references/options.md)
-- [Changelog](references/changelog.md)
+- [ClawHub skill page](https://clawhub.ai/why20261/skills/tiktok-market-insight)
+- [Guaikei service and token information](https://www.guaikei.com)
+- [Command options](artifact/references/options.md)
+- [Release changelog](artifact/references/changelog.md)
+- [Output envelope schema](artifact/assets/output_envelope.schema.json)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis]
+**Output Type(s):** [JSON, Structured data]
 
-**Output Format:** [Structured JSON containing TikTok video, creator, or comment data, with concise text summaries when requested.]
+**Output Format:** [JSON output envelope containing arrays of search results, creator posts, or comments]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results are returned as JSON; successful searches, post lookups, and comment lookups return arrays.]
+**Other Properties Related to Output:** [Results may be empty; the skill does not download video files.]
 
 ## Skill Version(s):
 
-1.1.1 (source: SKILL.md frontmatter, package.json, changelog dated 2026-11-04)
+1.1.2 (source: frontmatter, package.json, changelog)
 
 ## Ethical Considerations:
 

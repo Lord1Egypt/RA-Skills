@@ -1,7 +1,7 @@
 <!--
 本文件是**手工维护**的 curated 参考，不由 scripts/build_dsh_skill.sh 生成。
 （生成器只产出 01~13 号文件；本文件已在脚本的 KEEP 白名单内，重跑不会被删。）
-所有断言均对 DSH `dsh-v0.2.2-alpha.2` / commit `f3803c9697`（2026-10-28）逐条源码核验，
+所有断言均对 DSH `dsh-v0.2.2-rc.5` / commit `9c2670d3bc`（2026-11-18）逐条源码核验，
 复现脚本：`scripts/verify_absorbed_claims.py <DSH 仓库路径>`。
 -->
 
@@ -18,7 +18,7 @@
 **它不是一个核心服务，而是一个插件提供的服务。** 源码 `packages/host/webserver/src/index.ts`，在 Web 组合里由补丁行认领：
 
 ```yaml
-# packages/bundle/web-app/cordis.patch.yml:127-128
+# packages/bundle/web-app/cordis.patch.yml:183-185
 - id: webserver
   name: '@deepseek-ai/dsh-host-webserver'
 ```
@@ -171,17 +171,19 @@ export function apply(ctx) {
 
 同段还写明：生成它的 `clientBundle` tsdown 预设位于 `packages/client/tsdown.client.ts`，**而不在任何已发布的包里**，因此仓库之外的包要自己复刻这一步构建（本手册 `04` §9.6 已就此展开）。
 
-**格式契约**（源码 `packages/client/tsdown.client.ts:930-936`，逐字）：
+**格式契约**（源码 `packages/client/tsdown.client.ts:941-947`，逐字；**`0.2.2-rc.2` 起把署名前缀拆到独立的 `postBanner` 钩子**）：
 
 ```js
-banner: (chunk) => {
-  const registration = `window.__ModuleLoader__.load({ id: ${JSON.stringify(id)}, ${chunk.isEntry ? '' : `chunk: ${JSON.stringify(chunk.fileName)}, `}factory: (require) => {`
+banner: chunk => `window.__ModuleLoader__.load({ id: ${JSON.stringify(id)}, ${chunk.isEntry ? '' : `chunk: ${JSON.stringify(chunk.fileName)}, `}factory: (require) => {`
+postBanner: (chunk) => {
   const prefix = clientBanner?.(chunk.fileName)
-  return prefix === undefined ? registration : `${prefix}\n${registration}`
+  return prefix === undefined ? '' : `${prefix}\n`
 }
 footer: 'return module.exports; } });'
 intro:  'var module = { exports: {} }; var exports = module.exports;'
 ```
+
+> ⚠️ **这是一次形态变动，语义没变**：旧版把 `clientBanner` 前缀与登记串在**同一个 `banner` 函数**里拼（`${prefix}\n${registration}`），新版把前缀挪到 `postBanner`（在 `banner` 之后执行、返回空串表示不加）。**自己复刻构建的插件**如果要沿用旧写法，产物仍能被 loader 接受（登记对象形状不变），但**与官方产物不再逐字相同**；`clientBanner` 选项本身仍在（`packages/client/tsdown.client.ts:246`）。
 
 配套的构建设置：`format: 'cjs'`、`platform: 'browser'`、**默认**产物路径是 `lib/client.js`。
 
@@ -189,11 +191,11 @@ intro:  'var module = { exports: {} }; var exports = module.exports;'
 
 | 项 | 值 | 源码出处 |
 |---|---|---|
-| 分块文件名 | 默认 `client.<name>.js`（入口默认 `client.js`） | `packages/client/tsdown.client.ts:917,920` |
-| 分块的 banner | 对**非入口**分块多写一个 `chunk: "<fileName>",` 字段（入口 chunk 的 banner 与旧版逐字相同） | 同上 `:931` |
-| 动态加载 | 包内动态 import 编译成 `require.async('./client.x.js')`，由 loader 按需拉取 | 同上 `:471`（`asyncChunkRequirePlugin`） |
+| 分块文件名 | 默认 `client.<name>.js`（入口默认 `client.js`） | `packages/client/tsdown.client.ts:928,931` |
+| 分块的 banner | 对**非入口**分块多写一个 `chunk: "<fileName>",` 字段（入口 chunk 的 banner 与旧版逐字相同） | 同上 `:941` |
+| 动态加载 | 包内动态 import 编译成 `require.async('./client.x.js')`，由 loader 按需拉取 | 同上 `:476`（`asyncChunkRequirePlugin`） |
 | 分块名校验 | `/^client\.[A-Za-z0-9][A-Za-z0-9._-]*\.js$/`；不合法抛 `client-modules: invalid package-local chunk` | `packages/client/modules/src/client/system.ts:39,169` |
-| 法务 / 署名 banner | `clientBundle(id, libEntry, { clientBanner: (fileName) => string \| undefined })` 按产物文件名注入前缀文本 | `packages/client/tsdown.client.ts`（`ClientBundleOptions.clientBanner`） |
+| 法务 / 署名 banner | `clientBundle(id, libEntry, { clientBanner: (fileName) => string \| undefined })` 按产物文件名注入前缀文本（**`0.2.2-rc.2` 起经 `postBanner` 拼到登记串之前**） | `packages/client/tsdown.client.ts:246`（选项）/ `:942-945`（`postBanner`） |
 
 > **对第三方作者的意思**：只发一个 `client.js` 的插件**不受影响**（入口 banner 未变）；但如果你复刻产物格式又想用代码分割，注册对象里必须补 `chunk` 字段，否则 `id` 会与入口撞名，抛 `duplicate factory registration`。
 
@@ -203,11 +205,11 @@ intro:  'var module = { exports: {} }; var exports = module.exports;'
 
 | 通道 | 触发方式 | 产物命名 | 源码出处 |
 |---|---|---|---|
-| 浏览器面（默认） | 不传 `dualClient`（`dualClient = false`） | 入口 `client.js`、分块 `client.<name>.js` | `packages/client/tsdown.client.ts:917,920`（三元式的 else 分支） |
-| 浏览器面（双面模式） | `clientBundle(…, { dualClient: true })` | 入口 **`client.browser.js`**、分块 **`client.browser.<name>.js`** | 同上 `:917,920`（三元式的 then 分支） |
-| **Node 面**（仅在双面模式下额外构建） | 同上；`clientFaces` 变成 `[nodeClientConfig(...), client]` 两个面 | 入口 **`client.node.js`**、分块 **`client.node.<name>.js`**；`conditionNames: ['node', 'import', 'module', 'default']` | 同上 `:145-152`（组装）与 `:756-771`（`nodeClientConfig`） |
+| 浏览器面（默认） | 不传 `dualClient`（`dualClient = false`） | 入口 `client.js`、分块 `client.<name>.js` | `packages/client/tsdown.client.ts:928,931`（三元式的 else 分支） |
+| 浏览器面（双面模式） | `clientBundle(…, { dualClient: true })` | 入口 **`client.browser.js`**、分块 **`client.browser.<name>.js`** | 同上 `:928,931`（三元式的 then 分支） |
+| **Node 面**（仅在双面模式下额外构建） | 同上；`clientFaces` 变成 `[nodeClientConfig(...), client]` 两个面 | 入口 **`client.node.js`**、分块 **`client.node.<name>.js`**；`conditionNames: ['node', 'import', 'module', 'default']` | 同上 `:145-152`（组装）与 `:759-774`（`nodeClientConfig`） |
 
-选项类型是 **`readonly dualClient?: boolean`**（`:237`）。另有一条独立的 **`staticLinked(packageDir, libEntry): BuildFaceConfig`**（`:186`，内部走 `staticLinkedConfig`，`:303`），并导出 **`isStaticLinkedConfig()`**（`:204`，返回「至少有一个 config 由 `staticLinked` 构建」）。
+选项类型是 **`readonly dualClient?: boolean`**（`:237`）。另有一条独立的 **`staticLinked(packageDir, libEntry): BuildFaceConfig`**（`:186`，内部走 `staticLinkedConfig`，`:306`），并导出 **`isStaticLinkedConfig()`**（`:204`，返回「至少有一个 config 由 `staticLinked` 构建」）。
 
 > 🔴 **对第三方作者的意思**：① **默认仍叫 `client.js`**，只发单面 `client.js` 的插件**不用改**；② 但如果你的构建脚本、`files` 清单或发布校验**写死了 `client.js` 这个字面量**，而你在用（或被上游预设带着用）`dualClient`，产物会变成 `client.browser.js` + `client.node.js`，**旧的字面量会找不到文件**；③ 分块白名单校验 `/^client\.[A-Za-z0-9][A-Za-z0-9._-]*\.js$/` 仍然匹配 `client.browser.x.js` 与 `client.node.x.js`（点号在字符类里），所以**改名不会触发 `invalid package-local chunk`** —— 这类改名是**静默**的，只有发布校验/`files` 清单能抓住它。
 
@@ -264,7 +266,7 @@ react-dom                   react-dom/client
 // packages/client/ui-renderer/src/client/registry.ts:172
 inject(key: keyof SlotMap & string, callback: () => SlotInjectionEffect): () => void
 
-// packages/client/ui-slots/src/index.ts:1207（实现签名）/ 1161,1188（两个重载）
+// packages/client/ui-slots/src/index.ts:1266（实现签名）/ 1161,1188（两个重载）
 register(options: ErasedOptions, component: unknown): () => void
 ```
 
@@ -287,7 +289,7 @@ register(options: ErasedOptions, component: unknown): () => void
 | `ctx.command('hello <name>').alias().option().action()` | 命令注册是 `ctx.commands.register({...})`（`api-claims.md` M07） |
 | `ctx.tool?.register?.({ params: {...} })` | 工具注册是 `ctx.tools.register(defineTool({...}))`（M06） |
 | `ctx.slots.register({ name, component })` | 组件是**第二个参数**：`ctx.slots.register({ name, id, order }, Component)`（M08） |
-| 插槽名 `'settings'` / `'status'` / `'workspace'` | 三个键在源码中**都不存在**（`settings` 只以 `settings.*` 形式存在）。向未声明 slot 注册会在激活时抛：`slot "<name>" is not declared (a parent entry's children table must declare it)`（`packages/client/ui-slots/src/index.ts:1210`） |
+| 插槽名 `'settings'` / `'status'` / `'workspace'` | 三个键在源码中**都不存在**（`settings` 只以 `settings.*` 形式存在）。向未声明 slot 注册会在激活时抛：`slot "<name>" is not declared (a parent entry's children table must declare it)`（`packages/client/ui-slots/src/index.ts:1269`） |
 | `ctx.setInterval(cb, ms)` + `clearInterval(timer)` | 定时器是 `ctx.interval`（`setInterval` 仅为 deprecated 别名），返回 **disposer** 而非 `Timeout` |
 | `ctx.ui?.request?.('/path')` | **没有 `ui` 这个服务**。浏览器侧做 HTTP 就用平台自带的 `fetch` |
 | `inject = ['slots', 'sessions', 'workspaces', ...]`（client） | 这些服务名**确实存在**（如 `ui-workspace` 的 client inject），但「用不用得到」要按自己的代码定，不能照抄别人的清单 |

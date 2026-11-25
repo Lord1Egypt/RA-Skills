@@ -1,0 +1,16 @@
+{
+  "requirements": [
+    {
+      "field": "product.style",
+      "label": "款式",
+      "expected": "修身",
+      "source": "离线动态商家规则模拟：未提供分类，不是在线采集结果"
+    },
+    {
+      "field": "product.sellingPoint",
+      "label": "卖点",
+      "expected": "统一卖点文案",
+      "source": "离线动态商家规则模拟：未提供分类，不是在线采集结果"
+    }
+  ]
+}

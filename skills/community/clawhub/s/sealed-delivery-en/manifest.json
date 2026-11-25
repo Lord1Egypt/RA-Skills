@@ -1,0 +1,83 @@
+{
+  "id": "sealed-delivery-en",
+  "spec": "usk/3.0",
+  "version": "1.0.0",
+  "name": "Analytics and Algorithm Delivery (Public Trial, Node-Licensed Production)",
+  "description": "Productized delivery for independent analysts, algorithm vendors and small teams: use free mode for a trial package anyone can run, and p2p mode for a production package bound to one customer node. The customer runs it locally, data never leaves their database, and the vendor's source is unreadable end to end. Built on MGC Blackbox 1.6.0, with a runnable minimal example and a delivery checklist.",
+  "author": "MirginCipher Team",
+  "license": "MIT",
+  "tags": [
+    "algorithm-delivery",
+    "script-sales",
+    "trial-version",
+    "node-licensing",
+    "private-deployment",
+    "sealed-delivery",
+    "free-mode",
+    "p2p",
+    "zero-exposure",
+    "mgc"
+  ],
+  "platform_compatibility": ["windows", "macos", "linux"],
+  "mcp_tools": [
+    "mgc_save",
+    "mgc_save_file",
+    "mgc_get",
+    "mgc_run",
+    "mgc_find",
+    "mgc_list",
+    "mgc_seal_package",
+    "mgc_package",
+    "mgc_delete",
+    "mgc_open_webui",
+    "mgc_skill"
+  ],
+  "requirements": {
+    "mgc_version": ">=1.6.0"
+  },
+  "install": "pip install mgc-blackbox>=1.6.0",
+  "runtime": "mgc",
+  "port": 57219,
+  "files": {
+    "skill": "SKILL.md",
+    "readme": "README.md",
+    "example_dir": "examples/"
+  },
+  "example": {
+    "path": "./examples",
+    "entry": "run.py",
+    "scripts": [
+      {"name": "prepare_sample_data.py", "role": "fixture", "note": "generates sample sales CSV, demo only"},
+      {"name": "model.py", "role": "logic", "note": "forecast logic, imported by the entry script"},
+      {"name": "run.py", "role": "entry", "calls": ["model"]},
+      {"name": "role_prompts.md", "role": "template", "note": "deliverer / customer briefs and licensing terms"}
+    ]
+  },
+  "links": {
+    "homepage": "https://github.com/zkeviny/MGC-Blackbox",
+    "issues": "https://github.com/zkeviny/MGC-Blackbox/issues",
+    "contact": "mirgincipher@outlook.com"
+  },
+  "keywords": [
+    "algorithm delivery",
+    "model licensing",
+    "script sales",
+    "trial package",
+    "production license",
+    "private deployment",
+    "customer data stays local",
+    "source protection",
+    "sealed delivery",
+    "node locked"
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "changes": [
+        "Initial release, built on MGC Blackbox 1.6.0.",
+        "Covers free trial packages and p2p node-licensed packages.",
+        "Ships a runnable minimal example: sample data, forecast logic, entry script, and briefs plus licensing terms for both sides."
+      ]
+    }
+  ]
+}

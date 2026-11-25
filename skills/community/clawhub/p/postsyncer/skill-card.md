@@ -1,6 +1,6 @@
 ## Description:
 
-Manage and analyze social media posts, media, comments, campaigns, and analytics across connected platforms through PostSyncer.
+Schedule, publish and manage social media through PostSyncer's REST API on 12 networks - X (Twitter), Instagram, Facebook, LinkedIn, TikTok, YouTube, Threads, Bluesky, Mastodon, Pinterest, Telegram and Google Business Profile. Use it to write posts in a workspace's brand voice, save drafts and schedule them once the user says yes, upload media, use saved snippets and hashtag groups, answer comments and Google reviews, read analytics and manage webhooks. Accounts are connected in PostSyncer, or with a connect link the skill can make.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users managing connected social accounts can use this skill to schedule or publish content, organize media, manage comments and campaigns, and review analytics through PostSyncer. Accounts must already be connected in PostSyncer.
+Social media and marketing teams can use the assistant to draft content in a workspace's brand voice and manage posts, media, comments, reviews and analytics across connected social accounts.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill can perform account and other delete operations, and selected media may be sent to PostSyncer.
+Risk: The service can access connected social accounts using the configured API key.
 
-Mitigation: Limit token abilities to the operations you need; confirm deletion targets and review media and destinations before uploading or publishing.
+Mitigation: Grant only the permissions needed for the task and keep the API key private.
+
+Risk: Scheduling, publishing, and public replies can send content to social networks.
+
+Mitigation: Get the user's clear approval before scheduling or publishing posts or sending public replies.
 
 ## Reference(s):
 
-- [PostSyncer API Reference](https://docs.postsyncer.com/api-reference/introduction)
-- [PostSyncer API Authentication](https://docs.postsyncer.com/essentials/authentication)
-- [PostSyncer MCP and OpenClaw setup](https://postsyncer.com/openclaw)
+- [PostSyncer API reference](https://docs.postsyncer.com/api-reference/introduction)
+- [Authentication and permissions](https://docs.postsyncer.com/essentials/authentication)
+- [PostSyncer MCP tools reference](https://docs.postsyncer.com/mcp/tools-reference)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration instructions]
+**Output Type(s):** [Text, Markdown, API Calls, Configuration instructions]
 
-**Output Format:** [Markdown guidance with JSON API request examples and shell commands]
+**Output Format:** [Social post drafts, summaries, and setup guidance in text or Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Workflows require connected social accounts and a PostSyncer API token or an authorized MCP connection.]
+**Other Properties Related to Output:** [May manage posts, comments, reviews, and account data through connected PostSyncer workspaces.]
 
 ## Skill Version(s):
 
-2.2.2 (source: frontmatter, server-resolved release)
+2.6.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

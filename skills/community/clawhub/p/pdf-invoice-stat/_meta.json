@@ -1,7 +1,21 @@
 {
   "name": "pdf-invoice-stat",
-  "version": "2.4.6",
+  "version": "2.4.7",
   "patch_history": [
+    {
+      "version": "2.4.7",
+      "date": "2026-10-29",
+      "changes": [
+        "新增: train_ticket_rules.py — 铁路电子客票特殊规则模块（纯函数，独立可测）",
+        "修复: 铁路退票费原按 6% 普通应税服务拆税 → 改为价外费用口径（金额=价税合计、税额=0、税率留空）",
+        "新增: 铁路电子客票销售方口径标注「中国铁路（铁路客运服务）」（原为 None）",
+        "保证: 非铁路发票、铁路票价(9%)、上批70张数据 逐张零变化",
+        "保证: Excel 表头与样式完全不变（15列 / D9D9D9 / A2）",
+        "追溯: invoice_extractor.py md5 由 788f0384... 变为 d10b149b...（+4行钩子 +2行销方标注）"
+      ],
+      "stable": true,
+      "release_date": "2026-10-29"
+    },
     {
       "version": "2.4.6",
       "date": "2026-10-23",
@@ -89,8 +103,8 @@
   "output_format": "xlsx (15 列 v2.4.0 / 16 列 v3.0.0)",
   "language": "python>=3.7",
   "release": {
-    "current_stable": "2.4.6",
-    "release_date": "2026-10-23",
+    "current_stable": "2.4.7",
+    "release_date": "2026-10-29",
     "tested_invoices": 48,
     "tested_companies": [
       "优格(海口)项目管理有限公司",
@@ -122,7 +136,14 @@
         "ZIP",
         "RAR"
       ],
-      "ofd_xml_crosscheck": "50/50 fields (100%)"
+      "ofd_xml_crosscheck": "50/50 fields (100%)",
+      "md5_invoice_extractor": "d10b149b3b0528473e10795aa132bb20",
+      "md5_history": {
+        "v2.4.4": "788f0384d9e242b496132003ae5a9398",
+        "v2.4.5": "788f0384d9e242b496132003ae5a9398",
+        "v2.4.6": "788f0384d9e242b496132003ae5a9398",
+        "v2.4.7": "d10b149b3b0528473e10795aa132bb20"
+      }
     }
   },
   "structure_validated": true

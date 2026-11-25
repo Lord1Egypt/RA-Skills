@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-AI developers, language designers, and researchers use this skill to understand Vercel Zero's graph-first workflow, review command and diagnostic examples, and plan agent integrations.
+Developers, language designers, and researchers use this skill to understand Vercel Zero concepts, review command examples and diagnostics, and explore agent integration patterns. Its version-specific guidance should be checked against the official documentation.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Security inspection was partial: one static check was limited by a parser span limit, and several path-like references could not be resolved.
+Risk: The security review is incomplete: tool-misuse analysis was limited and several local references could not be resolved.
 
-Mitigation: Treat the benign verdict as incomplete evidence; review the skill and unresolved references before installation.
+Mitigation: Review the skill and its references before installation; use an isolated, disposable workspace and keep production systems and sensitive data out, as the skill advises.
 
-Risk: The skill includes copyable Zero and shell commands for users to run themselves, and its command guidance may change with toolchain versions.
+Risk: The artifact says Zero is experimental and that commands and behavior can change between versions.
 
-Mitigation: Review each command and check its syntax against the official documentation for the version in use; follow the skill's advice to use an isolated, disposable workspace.
+Mitigation: Verify version-specific claims and commands against the official repository and documentation before relying on them.
 
 ## Reference(s):
 
-- [Vercel Zero Official Documentation](https://vercel.com/docs/zero)
-- [Vercel Zero repository (referenced by the skill)](https://github.com/vercel-labs/zero)
-- [InfoQ: Vercel Labs Ships Zero](https://www.infoq.com/news/2026/08/vercel-ships-zero-ai)
-- [AI Agent Programming Language Analysis](https://blog.csdn.net/irpywp/article/details/161167783)
+- [Vercel Zero GitHub Repository](https://github.com/vercel-labs/zero)
+- [Zero Official Documentation](https://vercel.com/docs/zero)
+- [InfoQ: Vercel Labs Ships Zero, a Graph-First Language Built So Agents Write the Code](https://www.infoq.com/news/2026/08/vercel-ships-zero-ai)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Shell commands, Code, JSON]
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, JSON]
 
-**Output Format:** [Markdown with command and code examples, including JSON diagnostic examples]
+**Output Format:** [Markdown with examples, tables, code blocks, and command snippets]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reference material and example commands for the user to review and run in their own environment.]
+**Other Properties Related to Output:** [Reference material only; command and version details require verification against current official documentation.]
 
 ## Skill Version(s):
 
-1.0.3 (source: server-resolved ClawHub release metadata)
+1.0.4 (source: artifact frontmatter)
 
 ## Ethical Considerations:
 

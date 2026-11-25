@@ -7,6 +7,35 @@ description: Understand the Checkly constructs system including resource lifecyc
 
 The Checkly constructs system provides type-safe abstractions for monitoring resources.
 
+## Validation boundaries
+
+Checks and monitors synthesize default degraded/max limits explicitly, matching backend defaults; absence of an ordering diagnostic is not proof that the API accepts the payload. Retired `me-south-1` is invalid in resource locations, shared `checks.locations` and `cli.runLocation`; remove or replace it. A Slack App alert channel with destinations fails validation if the account reports the app disconnected; connect it or remove the channel. Missing integration state skips this check, not proof of deliverability.
+
+## Dashboard display settings
+
+Checkly CLI **10.4.0+** exposes these optional booleans on `Dashboard`:
+
+| Property | Meaning | Documented default |
+|---|---|---|
+| `sortByStatus` | Show failing checks first | `false` |
+| `showCheckRunLinks` | Show links to check runs on each check's bar chart | `false` |
+| `showGroupNames` | Show group names | `true` |
+
+```typescript
+import { Dashboard } from 'checkly/constructs'
+
+new Dashboard('service-dashboard', {
+  customUrl: 'service-status',
+  sortByStatus: true,
+  showCheckRunLinks: true,
+  showGroupNames: false,
+})
+```
+
+The construct forwards supplied values to the deploy payload and leaves omitted booleans `undefined`; it does not explicitly send the documented default values. Do not assume omission resets an existing stored value or web edit. Put the intended booleans explicitly in code and review the deployment plan. Import/codegen emits each property when it is not `undefined`, preserving explicit `false`. Deploy write-back can offer web edits to these properties for code review; this does not bypass normal deploy authorization.
+
+Source-backed semantics, not a help capture: [construct](https://github.com/checkly/checkly-cli/blob/34833c407768368d6ce64c759a979aec029b732f/packages/cli/src/constructs/dashboard.ts), [codegen](https://github.com/checkly/checkly-cli/blob/34833c407768368d6ce64c759a979aec029b732f/packages/cli/src/constructs/dashboard-codegen.ts), and [write-back rules](https://github.com/checkly/checkly-cli/blob/34833c407768368d6ce64c759a979aec029b732f/packages/cli/src/services/write-back/plan.ts).
+
 ## Core concepts
 
 ### Construct hierarchy
@@ -20,7 +49,6 @@ Construct (base)
 │   │   └── RepairableRuntimeCheck
 │   │       ├── BrowserCheck
 │   │       └── MultiStepCheck
-│   ├── AgenticCheck
 │   └── Monitor
 │       ├── HeartbeatMonitor
 │       ├── TcpMonitor
@@ -48,7 +76,7 @@ new ApiCheck('api-status-check', {  // <- logical ID
 ```
 
 **Rules:**
-- Must be unique within resource type
+- Must be unique within resource type and at most 255 characters
 - Pattern: `[A-Za-z0-9_-/#.]+`
 - Use descriptive IDs: `'homepage-check'` not `'check-1'`
 
@@ -148,15 +176,66 @@ new ApiCheck('dashboard-api', {
 })
 ```
 
-Intent is supported by `ApiCheck`, `BrowserCheck`, `MultiStepCheck`, `PlaywrightCheck`, `TcpMonitor`, `DnsMonitor`, `IcmpMonitor`, `UrlMonitor`, and `GrpcMonitor`. It is not exposed on `AgenticCheck`, `HeartbeatMonitor`, `SslMonitor`, or `TracerouteMonitor`.
+Intent is supported by `ApiCheck`, `BrowserCheck`, `MultiStepCheck`, `PlaywrightCheck`, `TcpMonitor`, `DnsMonitor`, `IcmpMonitor`, `UrlMonitor`, and `GrpcMonitor`. It is not exposed on `HeartbeatMonitor`, `SslMonitor`, or `TracerouteMonitor`.
 
 Deployment semantics are deliberate:
 
-- Omit `intent` to leave any existing backend-authored intent unchanged.
 - Provide an object to set or update intent.
-- Set `intent: null` to explicitly clear it.
+- Omit `intent` or set `intent: null` to have none; both clear any web-authored intent on deployment.
 
 The CLI trims surrounding whitespace. `goal` is required and limited to 2,000 characters after trimming. Constraints use exact uppercase types `REQUIRED_OUTCOME` or `MUST_PRESERVE`; each statement is limited to 1,000 characters, and each type may appear at most 20 times. Unknown fields or constraint types fail validation.
+
+## Removed-property migration
+
+Removed names in this section are migration warnings, not valid construct options:
+
+| Removed API | Current replacement |
+|---|---|
+| `AgenticCheck` | For new/replacement checks, use `BrowserCheck` or `MultiStepCheck` with `aiAutoRepairEnabled: true`. Existing checks can remain on the compatible legacy toolchain until retirement on **2026-12-01**; follow the [temporary compatibility path](references/agentic-check-transition.md) before upgrading. Removing a definition deletes that resource on the next deploy; review the plan and use preservation/adoption where needed. |
+| `doubleCheck` on checks, groups or defaults | `retryStrategy`; use the explicit builders below. |
+| `groupId`, `groupName` on constructs/config entries | `group: myGroup`; use a group declared in config or `CheckGroupV2.fromId()` for existing suite groups. |
+| `ApiCheck.localSetupScript`, `ApiCheck.localTearDownScript` | `setupScript: { content: '…' }`, `tearDownScript: { content: '…' }`. Groups retain their local-script properties for now. |
+| `HeartbeatCheck`, `TcpCheck` and their Props types | `HeartbeatMonitor`, `TcpMonitor` and corresponding Props types. |
+| `AssertionBuilder.responseTme()` | `AssertionBuilder.responseTime()`. |
+
+```typescript
+import { ApiCheck, CheckGroupV2, RetryStrategyBuilder } from 'checkly/constructs'
+
+const group = new CheckGroupV2('api-group', { name: 'API' })
+new ApiCheck('status', {
+  name: 'Status',
+  group,
+  locations: ['us-east-1'],
+  request: { url: 'https://example.com/status', method: 'GET' },
+  retryStrategy: RetryStrategyBuilder.singleRetry({ baseBackoffSeconds: 0, sameRegion: false }),
+  setupScript: { content: 'console.log("Starting check")' },
+  tearDownScript: { content: 'console.log("Finished check")' },
+})
+```
+
+The explicit single retry above replaces the removed enabled retry toggle. For its disabled form use `RetryStrategyBuilder.noRetries()`. A bare `singleRetry()` waits 60 seconds and retries in the same region, so it is not equivalent. API/browser/multistep checks and `CheckGroupV1` default to one immediate retry in another region. Monitors and Playwright suites default to no CLI retries.
+
+`shouldFail` is accepted only by `ApiCheck`, `UrlMonitor` and `TcpMonitor`. Remove it from all other types, even when false. The project-wide default applies only to those three types; previously inherited true becomes false on unsupported types. Removed properties fail validation even in plain JavaScript or through a cast. Removed imports/methods fail at use time.
+
+## Maintenance windows
+
+```typescript
+import { MaintenanceWindow } from 'checkly/constructs'
+
+new MaintenanceWindow('weekly-maintenance', {
+  name: 'Weekly maintenance',
+  startsAt: new Date('2027-01-04T07:00:00Z'),
+  endsAt: new Date('2027-01-04T08:00:00Z'),
+  repeatInterval: 1,
+  repeatUnit: 'WEEK',
+  timezone: 'America/Chicago',
+  tags: ['maintenance'],
+  silenceAlertsTags: ['maintenance'],
+})
+```
+
+`tags` selects paused checks; `pauseAllChecks: true` pauses every check in the account. `silenceAlertsTags` selects alerts to silence, and `silenceAllAlerts: true` overrides that tag filter account-wide. Tags are optional, but a window with no effective pause/silence scope warns that it affects no checks. `timezone` uses a named IANA zone; it preserves recurring local time across DST while start/end Dates remain absolute instants. Numeric offsets and `Etc/GMT` offsets are rejected. Omission resets timezone to UTC and removes `repeatEndsAt`; changing timezone while a window is active fails until it ends.
+
 
 ## Session and Project
 

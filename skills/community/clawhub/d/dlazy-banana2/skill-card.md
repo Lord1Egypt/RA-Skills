@@ -1,45 +1,55 @@
-## Description: <br>
-Generate/edit high-quality images with Nano Banana 2.0. Supports text-to-image and image-to-image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate/edit high-quality images with Nano Banana 2.0. Supports text-to-image and image-to-image.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Developers and external users use this skill to invoke the dLazy Banana2 CLI for text-to-image and image-to-image generation from prompts and optional image inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The dLazy CLI can store an API key in local configuration. <br>
-Mitigation: Prefer per-invocation DLAZY_API_KEY where appropriate, and rotate or revoke saved keys if local configuration is no longer trusted. <br>
-Risk: Local files passed as image inputs may be uploaded to dLazy-hosted services. <br>
-Mitigation: Avoid passing sensitive local files unless the user intends those files to be uploaded for image generation. <br>
-Risk: Global installation persists a third-party CLI on the system. <br>
-Mitigation: Prefer npx for on-demand use or review the @dlazy/cli source before installing globally. <br>
+## Use Case:
 
+Developers and content creators use this skill to generate images from text prompts or edit reference images with Nano Banana 2 through dLazy's hosted service.
 
-## Reference(s): <br>
-- [Dlazy Banana2 ClawHub release](https://clawhub.ai/dlazyai/dlazy-banana2) <br>
-- [dLazy CLI homepage](https://github.com/dlazyai/cli) <br>
-- [@dlazy/cli npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy CLI source](https://github.com/dlazyai/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The invoked CLI returns JSON containing generated image output URLs or asynchronous task status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: Prompts and local reference media are sent to dLazy's hosted services for processing and storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting confidential prompts or media unless their use with this service is approved.
+
+Risk: The security assessment reports that some install and service references were not resolved, leaving parts of the evidence incomplete.
+
+Mitigation: Review the CLI package and dLazy service terms before use.
+
+## Reference(s):
+
+- [CLI project link in skill metadata](https://github.com/dlazy-ai/cli)
+- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy service website](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [Images, JSON]
+
+**Output Format:** [Generated image assets with JSON result metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports text-to-image and image-to-image generation; results may include hosted image URLs or asynchronous task status.]
+
+## Skill Version(s):
+
+1.3.44 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

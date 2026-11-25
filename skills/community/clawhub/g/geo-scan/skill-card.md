@@ -1,6 +1,6 @@
 ## Description:
 
-Audits a public website's technical readiness for AI answer engines and produces a prioritized, evidence-backed fix list.
+Audit the answer-engine readiness (ChatGPT, Perplexity, Claude, Gemini, AI Overviews) of one public website URL and produce a prioritised fix list. Use when someone gives a public site or page URL and asks whether AI engines can crawl, cite or quote it, or wants its robots.txt / snippet-permission / schema check or quotability score. Not for - private or intranet hosts, JS-rendered SPAs, SEO keyword research, writing content to beat competitors. English and German quotability scoring. No API key, no account, Python stdlib only.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Website owners and developers use geo-scan to assess whether public pages are crawlable and quotable by answer engines, then prioritize technical and content improvements.
+Website owners and developers use the skill to assess how answer engines can crawl, parse, and quote a public page, then prioritize technical fixes.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan marks the skill suspicious because of gaps in its stated time limits and robots.txt and file-read scope; the scan evidence is incomplete.
+Risk: ClawScan reports a possible CPU-stalling regular-expression issue; its analysis was partial.
 
-Mitigation: Review the stated time limits, robots.txt handling, and file-read scope before installing, and treat the scan as partial.
+Mitigation: Review the reported regex behavior and obtain a complete security review before installing.
+
+Risk: ClawScan flags a private-network scanning option despite the documented public-only scope; its analysis was partial.
+
+Mitigation: Use the public-only plugin mode and review the standalone private-scan option before enabling it.
 
 ## Reference(s):
 
-- [Source repository](https://github.com/AureliusClaw/geo-scan)
-- [ClawHub skill release](https://clawhub.ai/aureliusclaw/skills/geo-scan)
+- [ClawHub release page](https://clawhub.ai/aureliusclaw/skills/geo-scan)
+- [Project homepage](https://github.com/AureliusClaw/geo-scan)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, JSON]
+**Output Type(s):** [Analysis, Markdown, JSON, Guidance]
 
-**Output Format:** [A scored website audit with evidence, prioritized actions, and per-page findings, as text, Markdown, or JSON.]
+**Output Format:** [Markdown or JSON audit report with evidence and prioritized actions]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Scores technical readiness; it does not establish whether an answer engine will cite a site.]
+**Other Properties Related to Output:** [A 0–100 technical readiness score with evidence; English and German quotability scoring. It does not establish whether an answer engine will cite a page.]
 
 ## Skill Version(s):
 
-1.2.7 (source: SKILL.md frontmatter, server release)
+1.2.8 (source: frontmatter)
 
 ## Ethical Considerations:
 

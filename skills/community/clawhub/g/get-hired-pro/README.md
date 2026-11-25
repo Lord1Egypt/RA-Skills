@@ -4,7 +4,7 @@ Put your OpenClaw to work landing your next job.
 
 Give it your résumé and tell it what work you want. Your Claw finds suitable openings, researches employers and writes applications tailored to each job. It submits them when the employer allows it and tracks each application through replies, interviews and offers.
 
-**Launch Freebie · Free Download · Version 2.0.1**
+**Launch Freebie · Free Download · Version 2.1.1**
 
 ## Give it to your OpenClaw
 
@@ -22,7 +22,7 @@ Still looking? Tell it what work you want. If you don't have a résumé, it help
 
 3. **Refresh your LinkedIn bio.** Get copy tailored to your experience and the roles you want. Want to message a recruiter? Your Claw checks the roles they fill and drafts your introduction.
 
-4. **Get your applications sent.** Your Claw writes a tailored résumé and cover letter in PDF or Word, then submits them when the employer allows it.
+4. **Get your applications sent.** Your Claw writes a tailored résumé and cover letter in PDF or Word, then submits them when the employer allows it. Only one upload? It combines both documents into one file.
 
 5. **Keep track of every application.** See what you sent, when you applied and who replied. Get follow-up drafts when you need them.
 

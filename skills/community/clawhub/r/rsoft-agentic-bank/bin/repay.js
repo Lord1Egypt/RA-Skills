@@ -43,8 +43,19 @@ function transferCalldata(to, amountUnits) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ request_id: info.request_id, tx_hash: transactionHash }),
   });
+  const confText = await confRes.text();
   console.log(`Confirm HTTP ${confRes.status}`);
-  console.log(await confRes.text());
+  console.log(confText);
+  let conf = null;
+  try { conf = JSON.parse(confText); } catch (_) { /* not JSON */ }
+  if (!confRes.ok || !conf || conf.error) {
+    // The USDC already left the wallet. Do NOT pay again: re-confirm with the
+    // same tx hash (the bank also credits the transfer on its own sweep).
+    throw new Error(
+      `The bank did NOT confirm the repayment (tx ${transactionHash} was sent). ` +
+      `Re-confirm with: POST ${READS}/api/repay {"request_id":"${info.request_id}","tx_hash":"${transactionHash}"}`
+    );
+  }
 })().catch((e) => {
   console.error("ERROR:", e.message);
   process.exit(1);

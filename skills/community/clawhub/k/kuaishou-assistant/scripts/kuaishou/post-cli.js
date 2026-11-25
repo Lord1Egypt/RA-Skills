@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 
-const log = require("../utils/log");
 const post = require("../api/post");
 const token = require("../utils/token");
 const utils = require("../utils/utils");
 const validator = require("../validate/url");
 const { assertChoice, assertIntegerRange } = require("../validate/keyword");
-const { parseArgs, buildHelp } = require("../utils/args");
+const { parseCliArgs, buildHelp } = require("../utils/args");
 const {
   emitError,
   emitEmpty,
-  printSuccessEnvelope,
+  buildSuccessEnvelope,
+  finishSuccess,
   emitUncaught,
 } = require("../utils/output");
 
@@ -39,6 +39,12 @@ const SCHEMA = {
       transform: (v) => Number(v),
       desc: "作品数量, 0-10000；包月 Token 实际最多 50；0 表示只取博主信息和互动数据",
     },
+    "--save": {
+      key: "save",
+      type: "boolean",
+      default: false,
+      desc: "将完整结果写入本地日志（也可设 GUAIKEI_ENABLE_LOG=1）",
+    },
   },
   positionalKey: "url",
 };
@@ -55,6 +61,7 @@ function printHelp() {
         'node scripts/kuaishou/post-cli.js --url "https://www.kuaishou.com/profile/3xabc" --limit 20',
         "node scripts/kuaishou/post-cli.js --url 123456 --sort 0 --limit 20",
         "node scripts/kuaishou/post-cli.js --url 123456 --limit 0",
+        `node scripts/kuaishou/post-cli.js --json-args "{\"url\":\"https://www.kuaishou.com/profile/3xabc\",\"limit\":20}"`,
       ],
     ) +
       "\n\n注意:\n" +
@@ -84,7 +91,7 @@ async function main() {
 
   let parsed;
   try {
-    parsed = parseArgs(args, SCHEMA);
+    parsed = parseCliArgs(args, SCHEMA);
   } catch (error) {
     utils.printError(`参数解析错误: ${error.message}`);
     printHelp();
@@ -154,10 +161,11 @@ async function main() {
     limit,
   };
   let postTask = null;
+  let cost;
   try {
     await post.createPostTask(tokenValue, url, sort, limit);
     utils.printSuccess("获取作品任务创建成功, 正在查询中...");
-    postTask = await post.getPostTask(tokenValue, url, sort, limit);
+    ({ results: postTask, cost } = await post.getPostTask(tokenValue, url, sort, limit));
   } catch (error) {
     utils.printError(`获取作品失败: ${error.message}`);
     emitError(
@@ -173,26 +181,24 @@ async function main() {
 
   if (isEmptyPost(postTask)) {
     utils.printInfo("没有找到匹配的博主或作品");
-    emitEmpty("没有找到匹配的博主或作品", startTime, postRequest);
+    emitEmpty("没有找到匹配的博主或作品", startTime, postRequest, cost);
     return;
   }
 
-  const { text } = printSuccessEnvelope(
+  const finalOutput = buildSuccessEnvelope(
     "获取作品任务完成",
     startTime,
     postRequest,
     postTask,
+    cost,
   );
   const postCount = Array.isArray(postTask.post) ? postTask.post.length : 0;
   const hasUser = Boolean(postTask.user && Object.keys(postTask.user).length);
-  utils.printSuccess(
-    `获取作品任务完成, 作品 ${postCount} 条${hasUser ? ", 含博主信息" : ""}`,
-  );
-
-  await log.taskWrite(
-    `${startTime}_${validator.url2Name(url)}_post.json`,
-    text,
-  );
+  await finishSuccess(finalOutput, {
+    logFilename: `${startTime}_${validator.url2Name(url)}_post.json`,
+    stderrMessage: `获取作品任务完成, 作品 ${postCount} 条${hasUser ? ", 含博主信息" : ""}`,
+    save: parsed.save === true,
+  });
 }
 
 main().catch((error) => {

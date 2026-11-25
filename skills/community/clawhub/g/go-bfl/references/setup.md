@@ -4,7 +4,7 @@ This module is unofficial and not affiliated with Black Forest Labs.
 
 ## Requirements and install
 
-Go 1.26.10 or newer, per `go.mod`. Export the API key as `BFL_API_KEY`.
+Go 1.26.11 or newer, per `go.mod`. Export the API key as `BFL_API_KEY`.
 
 ```sh
 go get github.com/psyb0t/go-bfl

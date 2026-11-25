@@ -2,16 +2,15 @@
 name: stocktoday
 slug: stocktoday
 displayName: Stocktoday Data
-summary: A股 / 港股 / 美股 / 基金 / 期货 / 期权 / 债券 / 宏观 数据研究技能, 275 个接口, tushare 协议兼容.
-description: A股 / 港股 / 美股 / 基金 / 期货 / 期权 / 债券 / 宏观 数据研究技能. 提供 275 个数据接口, 后端走 StockToday 自定义加速 (https://tushare.citydata.club/), 接口命名跟 tushare 100% 兼容. 适用于把"看走势 / 查财报 / 比较公司 / 看板块 / 看资金流 / 梳理公告新闻 / 看宏观 / 拉数据导出"这类请求, 转成可执行的金融数据获取 / 清洗 / 对比 / 筛选 / 导出流程.
+summary: A股 / 港股 / 美股 / 基金 / 期货 / 期权 / 债券 / 宏观 数据研究技能, 306 个数据接口. 双地址 (主备自动切换) 高速网关.
+description: A股 / 港股 / 美股 / 基金 / 期货 / 期权 / 债券 / 宏观 数据研究技能. 提供 306 个数据接口, 后端走 StockToday 自定义加速 (主 https://tushare.citydata.club/, 备用 https://backup.citydata.club/, 自动故障切换). 适用于把"看走势 / 查财报 / 比较公司 / 看板块 / 看资金流 / 梳理公告新闻 / 看宏观 / 拉数据导出"这类请求, 转成可执行的金融数据获取 / 清洗 / 对比 / 筛选 / 导出流程.
 author: stocktoday.pro
-version: 2.3.0
+version: 2.4.3
 license: MIT
 tags:
   - finance
   - 股票
   - 金融数据
-  - tushare
   - 量化
 requirements:
   python: 3.7+
@@ -28,7 +27,7 @@ requirements:
 
 # stocktoday
 
-StockToday 自有数据研究技能, 提供 275 个数据接口, 后端走 StockToday 自定义加速 (`https://tushare.citydata.club/`). 接口命名跟 tushare 100% 兼容, LLM 用标准 tushare 写法即可调用.
+StockToday 自有数据研究技能, 提供 306 个数据接口, 后端走 StockToday 自定义加速 (`https://tushare.citydata.club/`).
 
 ## 🚀 首次使用 (必读, 3 步)
 
@@ -63,7 +62,8 @@ TUSHARE_TOKEN=your_token python <skill_dir>/scripts/proxy_demo.py
 ```python
 import tushare as ts
 pro = ts.pro_api("your_token")
-pro._DataApi__http_url = "https://tushare.citydata.club/"  # 走 stocktoday gateway
+pro._DataApi__http_url = "https://tushare.citydata.club/"  # 走 stocktoday gateway (主地址)
+# 备用地址 https://backup.citydata.club/ 由 get_client() 自动故障切换接管
 df = pro.daily(ts_code="600519.SH", start_date="20240101", end_date="20241231")
 ```
 
@@ -81,16 +81,37 @@ pro = get_client("your_token_here")
 # export TUSHARE_TOKEN="your_token_here"
 # pro = get_client()  # 自动读 env
 
-# 然后跟 tushare 官方用法完全一样
+# 然后跟标准用法完全一样
 df = pro.daily(ts_code="600519.SH", start_date="20240101", end_date="20241231")
 print(df.head())
 ```
 
 > 💡 小贴士: `TUSHARE_TOKEN` 可以用环境变量, 也可以在调用 `get_client(token=...)` 时显式传. skill 内部**不存储**任何 token, 也不上传到任何第三方, 流量直连 `https://tushare.citydata.club/`.
+> 🌐 **两个地址**: 主 `https://tushare.citydata.club/` + 备用 `https://backup.citydata.club/` (同一套 API, 独立机器, 各自有效证书). `get_client()` 会**自动故障切换**: 主站连不上就换备用站, 两个地址都是 https, token 与数据全程加密.
+
+## 🌐 两个地址 / 故障切换
+
+| 角色 | 地址 | 说明 |
+|---|---|---|
+| 主 | `https://tushare.citydata.club/` | 默认走它 |
+| 备用 | `https://backup.citydata.club/` | 主站连不上时**自动**切过来 (同一套 API, 独立机器) |
+
+两个地址都是 **https + 有效证书**, 故障切换在 SDK 层完成 —— 调用方不用改代码, 也不用配环境变量.
+自己写 client (不走 `get_client()`) 想手工切换: 把 `pro._DataApi__http_url` 改成备用地址即可.
+
+## 💎 V3 (VIP) 套餐: 7 个 VIP 版历史分钟接口
+
+`stk_mins_vip` / `idx_mins_vip` / `hk_mins_vip` / `etf_mins_vip` / `ft_mins_vip` / `sw_mins_vip` / `opt_mins_vip`
+
+- 与普通版**同表同参**, 单次上限从 **500 行** 提到 **15000 行** (≈ 60 个交易日的 1 分钟线)
+- 权限: **V3 (VIP) 套餐**直连; V1 / V2 / V0 用户需管理员把接口名加进该 token 的 `plugins` 授权
+  (不满足时返回 `该接口为 VIP 套餐专属，请升级套餐后使用`)
+- 这是**平台自造的分层**, 上游官方文档里没有 (官方文档里的 `_vip` 是财务类那 7 个, 不是这个)
+- 走**网关 (SDK)** 直接调; MCP 工具列表暂未单列这 7 个
 
 ## 🧭 任务驱动 (从自然语言到接口)
 
-> **核心原则**: 用户说人话时, 先**判断任务类型** → **选推荐接口** → **套默认参数**, 不要从 275 个接口里瞎挑.
+> **核心原则**: 用户说人话时, 先**判断任务类型** → **选推荐接口** → **套默认参数**, 不要从 306 个接口里瞎挑.
 > 下方 10 大任务路由覆盖 95% 真实请求.
 
 ### 自然语言触发 (这些说法直接进 skill)
@@ -150,7 +171,7 @@ print(df.head())
 
 ### ⭐ 29 个核心接口 (覆盖 80% 任务)
 
-> 优先从这 29 个里选, 其它 250+ 接口按需翻 `references/数据接口.md`.
+> 优先从这 29 个里选, 其它 277+ 接口按需翻 `references/接口索引.md`.
 
 | 分类 | 接口 |
 |---|---|
@@ -430,7 +451,7 @@ ann = pro.anns_d(ts_code=ts_code, start_date="20260101", end_date="20260618")
 
 ## 🛠️ 工具列表 (按分类)
 
-> 完整 275 个工具,按 24 个分类列出。**所有 schema 含 `type` / `required` / `pattern` / `enum` / `default`**, 详见 [references/数据接口.md](./references/数据接口.md).
+> 完整 306 个工具,按 23 个分类列出。**所有 schema 含 `type` / `required` / `pattern` / `enum` / `default`**, 详见 [references/接口索引.md](./references/接口索引.md).
 
 ### 股票-基础数据 (20)
 | 工具 | 说明 |
@@ -447,7 +468,7 @@ ann = pro.anns_d(ts_code=ts_code, start_date="20260101", end_date="20260618")
 | `bak_basic` | 备用基础数据 |
 | `bse_mapping` | 北交所新旧代码对照 |
 | `stock_hsgt` | 沪深港通股票列表 (需 ts_code 或 trade_date) |
-| ... | 还有 8 个,见 references/数据接口.md |
+| ... | 还有 8 个,见 references/接口索引.md |
 
 ### 股票-行情数据 (24)
 | 工具 | 说明 | 必填 |
@@ -467,9 +488,10 @@ ann = pro.anns_d(ts_code=ts_code, start_date="20260101", end_date="20260618")
 | `ggt_daily` | 港股通每日 | trade_date |
 | `ggt_monthly` | 港股通每月 | trade_date |
 | `bak_daily` | 备用每日行情 | trade_date |
-| `stk_mins` | 股票历史分钟 | ts_code + freq='1min'~'60min' **小写** |
-| `idx_mins` | 指数历史分钟 (必传 ts_code + freq) | ts_code + freq |
-| ... | 还有 7 个,见 references/数据接口.md |
+| `stk_mins` | 股票历史分钟 (单次 500 行) | ts_code + freq='1min'~'60min' **小写** |
+| `idx_mins` | 指数历史分钟 (单次 500 行, 必传 ts_code + freq) | ts_code + freq |
+| `hk_mins` / `etf_mins` / `ft_mins` / `sw_mins` / `opt_mins` | 港股/ETF/期货/申万/期权历史分钟 | 同上 |
+| `stk_mins_vip` / `idx_mins_vip` / `hk_mins_vip` / `etf_mins_vip` / `ft_mins_vip` / `sw_mins_vip` / `opt_mins_vip` | **VIP 版历史分钟 (V3 套餐, 单次 15000 行)** | 与对应普通接口**完全同参** |
 
 ### 股票-财务数据 (17)
 | 工具 | 说明 | 必填 |
@@ -518,7 +540,7 @@ ann = pro.anns_d(ts_code=ts_code, start_date="20260101", end_date="20260618")
 | `ci_daily` | 中证指数日线 |
 | `sw_daily` | 申万指数日线 |
 | `idx_factor_pro` | 指数因子 (PE/PB/动量) |
-| ... | 还有 12 个,见 references/数据接口.md |
+| ... | 还有 12 个,见 references/接口索引.md |
 
 ### 打板专题 (16)
 | 工具 | 说明 |
@@ -576,9 +598,10 @@ ann = pro.anns_d(ts_code=ts_code, start_date="20260101", end_date="20260618")
 | 环境变量 | 默认 | 说明 |
 |---|---|---|
 | `TUSHARE_TOKEN` | (无) | **必填**, 你的 API token |
-| `TUSHARE_GATEWAY` | `https://tushare.citydata.club/` | 自定义后端地址. **必须是 https**, 且主机名在白名单 (`tushare.citydata.club`) 内 —— 明文 HTTP 或非白名单主机会把 API token 导向不可信端点, 因此脚本会直接拒绝 |
-| `TUSHARE_GATEWAY_BACKUP2` | (无) | 自备**备用直连地址** (主站 DNS/线路异常时兜底). 需配合 `TUSHARE_GATEWAY_ALLOW_INSECURE=1` 才会生效; 明文 HTTP 下 token 与数据**不加密**, 仅应急, 用完切回 https 主站 |
-| `TUSHARE_GATEWAY_ALLOW_INSECURE` | (无) | 设为 `1` 才允许 http:// 明文 gateway (默认拒绝) |
+| `TUSHARE_GATEWAY` | `https://tushare.citydata.club/` | 自定义**主**地址. **必须是 https**, 且主机名在白名单 (`tushare.citydata.club` / `backup.citydata.club`) 内 —— 明文 HTTP 或非白名单主机会把 API token 导向不可信端点, 因此脚本会直接拒绝 |
+| `TUSHARE_GATEWAY_BACKUP` | `https://backup.citydata.club/` | 自定义**备用**地址 (主站 DNS/线路异常时自动顶上). 同样受 https + 白名单约束 |
+| `TUSHARE_GATEWAY_BACKUP2` | (无) | 第三个**自备**直连地址 (应急). 需配合 `TUSHARE_GATEWAY_ALLOW_INSECURE=1` 才会生效; 明文 HTTP 下 token 与数据**不加密**, 仅应急, 用完切回 https 主站 |
+| `TUSHARE_GATEWAY_ALLOW_INSECURE` | (无) | 设为 `1` 才允许**明文 HTTP** 的自备 gateway (默认拒绝; 官方备用站是 https, 不需要这个开关) |
 
 ## 🆘 故障排查
 
@@ -587,16 +610,31 @@ ann = pro.anns_d(ts_code=ts_code, start_date="20260101", end_date="20260618")
 | `ImportError: No module named 'tushare'` | 依赖没装 | `pip install tushare pandas` |
 | `TOKEN无效` | token 错/失效/被封 | 调 `token_info` 自查 |
 | `UnicodeEncodeError: 'gbk' codec can't encode` | Windows 默认控制台是 GBK, 打印 emoji 崩 | `PYTHONIOENCODING=utf-8 python scripts/proxy_demo.py` (脚本已内置兜底, 若仍报错请换带 emoji 的终端) |
-| 调工具超时 | 网络问题 / gateway 全挂 | 检查 `tushare.citydata.club` 通不通 |
+| 调工具超时 | 网络问题 / gateway 全挂 | 检查 `tushare.citydata.club` 通不通 (备用 `backup.citydata.club` 会自动接管) |
+| `...单次返回数据量超限: 501 行 > 上限 500 行` | 一次要的行数超了 | 按提示缩短 `start_date~end_date` 区间 / 减少 `ts_code` / 改用更大的 `freq`; 分钟接口可用 `_vip` 版 (V3 套餐, 15000 行) |
 | 频繁返 `请求超限20000次` | token 当日额度用完 | 明日 0 点重置, 或换 token |
 | 问"今天"返空 | 今天休市 (周末/节假日) | 改问"最近一个交易日" |
 | `pro.daily(ts_code='000001.SH')` 返空 | 指数代码不能用 daily | 改用 `pro.index_daily(ts_code='000001.SH')` |
 
+## 📚 接口口径速记 (额度 / 入库时间 / 字段单位 / 复权规则)
+
+> `references/接口索引.md` 是**网关契约** (306 个接口的入参/必填/正则/枚举)。
+> 下面是网关契约之外**最容易踩的口径**, 调接口前先扫一眼:
+
+**最容易踩的口径**:
+
+- `daily` 单次 **6000 条** / 500 次每分; `fina_indicator` 单次只有 **100 条**; `index_daily` 单次 8000 行
+- `daily` **15:00~16:00 入库**, 是**未复权**行情, **停牌期间不提供数据**
+- `daily.amount` 单位**千元**; `daily_basic.total_mv/circ_mv` 单位**万元**; `moneyflow_hsgt.north_money` 单位**百万元**
+- `pro_bar` 复权**只支持日线**, 且按 `end_date` **动态复权**(分红再投); `ts_code` 不支持多值(会出重复行)
+- `news`/`major_news` 的日期是 **datetime** 格式; `fx_daily` 是 **GMT** 比北京晚一天
+- `index_weight` 是**月度**数据; `trade_cal` 默认上交所; `stock_hsgt.type`/`dc_index.idx_type` 必填
+- **UI 目录侧 3 条 path 指错接口已修** (2026-11-11: 概念/行业/板块资金流误指个股端点), 另 2 条经实测确认 path 本就对
+
 ## 📞 反馈
 
 - ClawHub: `stocktoday-py` skill 页面
-- 项目目录: `D:\office\stocktoday-data\`
-- 完整接口文档: [references/数据接口.md](./references/数据接口.md)
+- 完整接口文档: [references/接口索引.md](./references/接口索引.md)
 - 接口使用提示 (日期格式/src 大小写/VIP 接口/数据时效): [references/接口使用提示.md](./references/接口使用提示.md)
 - 实战示例: [scripts/proxy_demo.py](./scripts/proxy_demo.py), [scripts/finance_demo.py](./scripts/finance_demo.py), [scripts/sector_demo.py](./scripts/sector_demo.py)
 

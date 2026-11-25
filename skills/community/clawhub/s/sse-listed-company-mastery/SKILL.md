@@ -1,3 +1,8 @@
+---
+name: sse-listed-company-mastery
+description: 上交所上市公司规则理解与实务操作全能手册，覆盖上市规则、信息披露、公司治理与合规运作。
+---
+
 # SSE Listed Company Mastery
 ## 上交所上市公司规则理解与实务操作全能手册
 

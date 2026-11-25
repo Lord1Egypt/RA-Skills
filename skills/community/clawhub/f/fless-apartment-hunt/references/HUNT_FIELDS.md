@@ -19,7 +19,7 @@ This is the exact contract (source: `https://fless.io/hunt-how-to.md` +
 
 | Field | Notes |
 |---|---|
-| `name` | Free text; defaults to `Hunt - {City}` when omitted |
+| `name` | Optional; omit it and Fless derives the title: `2 bed near {first POI}` when bedrooms are set, `Hunt near {first POI}` when not, `Hunt in {City}` when no POI resolves. Custom names are kept verbatim. |
 | `amenities` | Dict `{amenity_name: true}`; canonical keys below; unknown keys are auto-normalized when a synonym matches (e.g. `"gym"` → `"Fitness Center"`), flagged in `issues` |
 | `additional_questions` | Free-text questions answered per building (3 free per hunt); the right place for pet-breed, parking-cost, income-limit questions |
 | `tour_preference` | Subset of: `"Guided"`, `"Self-guided"`, `"Virtual"` |
@@ -69,7 +69,7 @@ the trial: 30 credits included, hunts cost 5.
 After your trial, per-item costs:
 
 - First hunt free; signup grants 25 credits + 5/month; a hunt costs 5 credits.
-- 5 building outreach emails per hunt free, extras 1 credit.
+- 5 building outreach contacts per hunt free (email or website contact form), extras 1 credit.
 - Optional upgrades at creation: advanced matching (3), premium matching (5).
 - Credits: $20/200, $40/450, $80/950, purchased by the human in the web app only.
 

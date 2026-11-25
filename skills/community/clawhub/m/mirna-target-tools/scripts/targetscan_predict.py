@@ -2,67 +2,87 @@
 """
 Run TargetScan miRNA target prediction.
 Usage: python targetscan_predict.py --input mirna_list.txt --output results.txt --database path/to/targetscan_db
+
+Security/reliability notes:
+  * the external tool is invoked with an argv list (never a shell)
+  * the binary is resolved via PATH and reported clearly when missing
+  * parsing skips malformed lines instead of crashing, and pandas is imported
+    lazily so the prediction step works without it
 """
 
 import argparse
+import os
+import shutil
 import subprocess
 import sys
-import os
+
 
 def run_targetscan(input_file, output_file, database_path, species='human'):
-    """Run TargetScan prediction"""
-    
+    """Run TargetScan prediction."""
+    exe = shutil.which('targetscan')
+    if not exe:
+        print("Error: 'targetscan' was not found on PATH.")
+        print("Install TargetScan or run the prediction with predict_targets_genome.py instead.")
+        return False
+
     # Build command - TargetScan is typically run with Perl scripts
-    # This assumes targetscan is properly installed and in PATH
     cmd = [
-        'targetscan',
+        exe,
         '--mirna', input_file,
         '--output', output_file,
         '--species', species
     ]
-    
     if database_path:
         cmd.extend(['--db', database_path])
-    
-    print(f"Running TargetScan with command: {' '.join(cmd)}")
-    
+
+    out_dir = os.path.dirname(os.path.abspath(output_file))
+    os.makedirs(out_dir, exist_ok=True)
+
+    print("Running TargetScan with command: %s" % ' '.join(cmd))
     try:
         result = subprocess.run(cmd, capture_output=True, text=True)
         if result.returncode != 0:
-            print(f"Error running TargetScan:\n{result.stderr}")
+            print("Error running TargetScan:\n%s" % result.stderr)
             return False
-        
-        print(f"TargetScan complete. Results written to {output_file}")
+        print("TargetScan complete. Results written to %s" % output_file)
         return True
-    except Exception as e:
-        print(f"Exception running TargetScan: {e}")
+    except OSError as exc:
+        print("Exception running TargetScan: %s" % exc)
         return False
 
+
 def parse_results(input_file, output_file):
-    """Parse TargetScan results into a cleaner format"""
-    # Implementation depends on TargetScan output format
-    # This is a placeholder for the standard parsing
+    """Parse TargetScan results into a cleaner format."""
     import pandas as pd
-    
-    results = []
-    with open(input_file, 'r') as f:
+
+    results, skipped = [], 0
+    with open(input_file, 'r', errors='replace') as f:
         for line in f:
-            if line.startswith('#') or line.strip() == '':
+            if line.startswith('#') or not line.strip():
                 continue
             fields = line.strip().split()
-            if len(fields) >= 5:
+            if len(fields) < 5:
+                skipped += 1
+                continue
+            try:
                 results.append({
                     'mirna': fields[0],
                     'target_gene': fields[1],
                     'context_score': float(fields[2]),
                     'conservation': float(fields[3]),
-                    'site_type': fields[4]
+                    'site_type': fields[4],
                 })
-    
-    df = pd.DataFrame(results)
+            except ValueError:
+                skipped += 1
+
+    if skipped:
+        print("Skipped %d malformed line(s)." % skipped)
+    df = pd.DataFrame(results, columns=['mirna', 'target_gene', 'context_score',
+                                        'conservation', 'site_type'])
     df.to_csv(output_file, sep='\t', index=False)
-    print(f"Parsed results saved to {output_file}")
+    print("Parsed results saved to %s" % output_file)
     return df
+
 
 def main():
     parser = argparse.ArgumentParser(description='Run TargetScan miRNA target prediction')
@@ -71,24 +91,21 @@ def main():
     parser.add_argument('--database', help='Path to TargetScan database directory')
     parser.add_argument('--species', default='human', help='Species (default: human)')
     parser.add_argument('--parse', action='store_true', help='Parse output to TSV format')
-    
     args = parser.parse_args()
-    
-    # Check input exists
-    if not os.path.exists(args.input):
-        print(f"Input file {args.input} not found!")
+
+    if not os.path.isfile(args.input):
+        print("Input file %s not found!" % args.input)
         sys.exit(1)
-    
-    # Run TargetScan
+
     success = run_targetscan(args.input, args.output, args.database, args.species)
     if not success:
         sys.exit(1)
-    
-    # Parse if requested
-    if args.parse and args.output != args.output + '.tsv':
+
+    if args.parse:
         parse_results(args.output, args.output + '.tsv')
-    
+
     print("Done!")
+
 
 if __name__ == '__main__':
     main()

@@ -1,0 +1,140 @@
+﻿#code=936T950
+ENVI^ ForceLocal=1
+//3分区法。
+//说明，如果 SZpost=0 ，就是2分区法了
+_SUB Mk3PART  //hd   SZpre FSpre   SZpost  FSpos   FSmid [【mkfs2】|mkfs3|show2|show3]  [align]
+    ENVI^   ForceLocal=1
+    @TEAM SET &align=%~8| CALC &align=%align% /1s *1s
+    @TEAM SET &fun=%~7| SET &HD=%~1| CALC -err=-1 #hd=(%hd%)+0
+    IFEX $%hd%<0, EXIT   //errdisk
+    @TEAM SET &SZpre=%~2| SET &FSpre=%~3| CALC #SZpre=(%SZpre%)+0
+    @TEAM SET &SZpost=%~4| SET &FSpost=%~5| CALC #SZpost=(%SZpost%)+0
+    SET &FSmid=%~6 
+    IFEX $%SZpre%<0, SET SZpre=0
+    IFEX $%SZpost%<0, SET SZpost=0
+    PART list DISK %hd%,&&V
+    FIND $%V%=, EXIT  //errdisk
+    FIND $%FSmid%=NTFS, SET &TPMid=0x07! SET &TPMid=0x0E 
+    CALC -base=16 #&&TPMidH=%&TPMid% | 0x10  //隐藏
+    
+    //计算中间分区大小
+    MSTR &&SZ,&&BUS,&&FR=<2><9><11>%&V%
+    CALC #&&SZmid=%SZ% - %SZpre% - %SZpost% - 1M
+    IFEX #%align%>512, TEAM CALC #&&SZmid=%SZmid% / %align% * %align% //对齐
+    IFEX $%SZmid%<0, SET SZmid=0
+    FIND $%FR%=F, SET &hup=! SET &hup=-hup
+    SET &mbr=-mbr
+    
+    @TEAM SET &id=1| SET &Off1=1M
+    CALC &&Off2=%Off1%+%SZpre%
+    CALC &&Off3=%Off2%+%SZmid%
+    FIND $[ '%fun%'='' | '%fun%'='mkfs' ], SET fun=mkfs2
+    MSTR &fun4=1,4,%fun%
+    FIND $%fun4%=mkfs,
+    {
+// 1、先删除PhysicalDrive5所有分区
+   //初始化分区表（同时清除了旧分区表）
+    PART %mbr% -up -super init %hd%
+
+// 3、在PhysicalDrive5前端创建4G未格式化分区--1)格式化
+    //格式化前面分区
+    IFEX $%SZpre%>0,   FmtPart %Off1% %SZpre%   "%FSpre%"
+// 4、剩下中间部分分区创建成NTFS格式分区--1)格式化
+    //格式化中间分区
+    IFEX $%SZmid%>0,   FmtPart %Off2% %SZmid%   "%FSmid%" "U_DATA"
+// 2、在PhysicalDrive5末尾建立2G FAT16主分区，--1)格式化
+    //格式化后面分区
+    IFEX $%SZpost%>0,  FmtPart %Off3% %SZpost%  "%FSpost%" "U_HIGH"
+    }
+
+    FIND $[ %fun%=mkfs3 | %fun%=show3 ], SET &spart=3!  SET &spart=2
+
+    IFEX $%spart%=2,  //中间部分显示
+    {
+//可以随便调整3行（分区）的顺序，希望那个作为可见区，就把他放在最前面
+// 4、剩下中间部分分区创建成NTFS格式分区--2)建分区
+    //创建中间分区, 为分区%id%
+    IFEX $%SZmid%>0,   TEAM PART %mbr% -force -super %hd%#1 a %&TPMid% %Off2% %SZmid%|  CALC id=%id%+1
+// 3、在PhysicalDrive5前端创建4G未格式化分区--2)建分区
+    //创建前面分区, 为分区%id%
+    //IFEX $%SZpre%>0,   TEAM PART %mbr% -force -super %hd%#%id% -a 0x0E %Off1% %SZpre%|  CALC id=%id%+1 //不要分区了
+// 2、在PhysicalDrive5末尾建立2G FAT16主分区，--2)建分区
+    //创建后面分区, 为分区%id%
+    IFEX $%SZpost%>0,  TEAM PART %mbr% -force -super %hd%#4 -a 0x1E %Off3% %SZpost%| CALC id=%id%+1
+    }
+
+    IFEX $%spart%=3,  //后面部分显示
+    {
+//可以随便调整3行（分区）的顺序，希望那个作为可见区，就把他放在最前面
+// 2、在PhysicalDrive5末尾建立2G FAT16主分区，--2)建分区
+    //创建后面分区, 为分区%id%
+    IFEX $%SZpost%>0,  TEAM PART %mbr% -force -super %hd%#1 -a 0x0E %Off3% %SZpost%| CALC id=%id%+1
+// 4、剩下中间部分分区创建成NTFS格式分区--2)建分区
+    //创建中间分区, 为分区%id%
+    IFEX $%SZmid%>0,   TEAM PART %mbr% -force -super %hd%#4 a %&TPMidH% %Off2% %SZmid%|  CALC id=%id%+1
+// 3、在PhysicalDrive5前端创建4G未格式化分区--2)建分区
+    //创建前面分区, 为分区%id%
+    //IFEX $%SZpre%>0,   TEAM PART %mbr% -force -super %hd%#%id% -a 0x0E %Off1% %SZpre%|  CALC id=%id%+1 //不要分区了
+    }
+    FIND $%hup%<>, PART -up hupdate %hd%!  PART update %hd%
+
+//如果系统异常3秒内没有分配盘符，给用户区补个盘符
+    SET &I=3000
+    LOOP #%I%>0,
+    {   PART -phy list part %hd%#1,&V
+        @TEAM MSTR &&drv=<8>%V%| MSTR Drv=1,2,%Drv%
+        FIND $%Drv%<>,  EXIT _SUB  //获得盘符%Drv%，完成
+        @TEAM WAIT 200| CALC I=%I%-200
+    }
+    TEAM FDRV *idlec &&Drvs=*:| MSTR Drv=<1>%Drvs%| FIND $%Drv%<>, SHOW %hd%#1,%Drv%
+_END
+
+//格式化子函数
+_SUB FmtPart
+    @TEAM SET &Off=%~1| SET &SZ=%~2| SET &FS=%~3
+    FIND $%FS%=, EXIT 
+    FIND $%FS%=FAT16, SET FS=FAT  //有人写成FAT16了
+    IFEX $[ %BUS%=7 & '%FS%'='NTFS' ], SET &FS1=FAT32! SET &FS1=
+    //创建临时分区1,用于格式化
+    SHOW  - %hd%#1,
+    TEAM PART %mbr% -up %hup% -force -super -fs  %hd%#1 -a 0x0E %Off% %SZ%| WAIT 100
+    PART -phy list part %hd%#1,&V
+    TEAM MSTR &&drv=<8>%V%| MSTR Drv=1,2,%Drv%
+    //没有盘符就分配一个
+    FIND $%Drv%=,!! TEAM FDRV *idlec *rsort &&Drvs=*:| MSTR Drv=<1>%Drvs%| FIND $%Drv%<>, SHOW %hd%#1,%Drv%! EXIT _SUB
+    SET &I=5000
+    LOOP #%I%>0,
+    {   PART -phy list part %hd%#1,&V
+        @TEAM MSTR &&drv=<8>%V%| MSTR Drv=1,2,%Drv%
+        //获得盘符%Drv%，格式化之，完成
+        FIND $%Drv%<>,
+        {   DFMT %Drv%,%FS%,%~4
+            IFEX $[ %errorlevel%<>0 & '%FS1%'<>'' ],
+            {   TEAM DFMT %Drv%,exFAT,%~4  //NTFS失败，用exFAT格
+                IFEX $%errorlevel%<>0, DFMT %Drv%,FAT32,%~4  //其次用FAT32格
+            }
+            TEAM SUBJ  %Drv%| SHOW  - %hd%#1,| EXIT
+        }
+        @TEAM WAIT 200| CALC I=%I%-200
+    }
+_END
+
+//比如U盘是  PhysicalDrive5
+// 1、先删除PhysicalDrive5所有分区
+// 2、在PhysicalDrive5末尾建立2G FAT16主分区，
+// 3、在PhysicalDrive5前端创建4G未格式化分区
+// 4、剩下中间部分分区创建成NTFS格式分区
+IFEX X.LOG, LOGS **t=1 * X.LOG
+ENVI PARTPARAM=5   4G   ""  2G  FAT    NTFS  
+//ENVI PARTPARAM=1   200M ""  80M FAT    NTFS
+
+/////就格式化
+//   Mk3PART   %PARTPARAM%
+
+
+Mk3PART   %PARTPARAM%  mkfs3  1M   //1.格式化并显示第3部分
+mess 这里赶紧写EFI                 //2.
+Mk3PART   %PARTPARAM%  show2  1M   //3.显示第2部分
+MESS 完毕*20000
+
+

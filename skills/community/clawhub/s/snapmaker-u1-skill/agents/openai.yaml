@@ -1,0 +1,4 @@
+interface:
+  display_name: "Snapmaker U1"
+  short_description: "Create 3D models and prepare verified U1 projects"
+  default_prompt: "Use $snapmaker-u1 to create a 3D model, recommend print settings, and check geometry and slicer readiness."

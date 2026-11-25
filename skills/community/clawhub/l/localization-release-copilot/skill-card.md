@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Editorial and localization teams can use this skill to review a finished source draft against one or more translations before publication. It checks long-form ZH↔EN content for terminology, numbers, proper nouns, attributions, and claim-level structure loss, then produces a human-reviewable preview without editing either text.
+Editorial teams and localization reviewers use it before publishing long-form Chinese↔English content to check terminology, numbers, proper nouns, attributions, and claim-level structure. It produces a reviewable diff and checklist while leaving the translation unchanged.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill has file-writing capability, so unintended paths could be changed during use.
+Risk: Security analysis is incomplete: confidence is medium and two local path-like references could not be resolved.
 
-Mitigation: Review the requested file operations and use host permissions that limit writes to intended review outputs.
+Mitigation: Review the supplied skill files and any unresolved local references before installation.
 
-Risk: A potential release command could conflict with the user's intended publishing workflow.
+Risk: The skill has file-writing capability, and a possible release command may not fit every host or workflow.
 
-Mitigation: Inspect the command and its effects before execution, and keep publication under human control.
-
-Risk: The security inspection was partial because two referenced paths were missing from the bundle.
-
-Mitigation: Check the referenced paths and review any available content before installing or relying on those files.
+Mitigation: Check the effects of release actions and grant only the file and host permissions needed for the review.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/haiyangchenbj/skills/localization-release-copilot)
-- [Terminology & Release Checklist](artifact/references/terminology-checklist.md)
+- [ClawHub skill page](https://clawhub.ai/haiyangchenbj/skills/localization-release-copilot)
+- [Terminology and release checklist](artifact/references/terminology-checklist.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Markdown, Analysis]
+**Output Type(s):** [JSON, Markdown]
 
-**Output Format:** [JSON extraction and glossary-compliance data, plus Markdown diff and review preview]
+**Output Format:** [JSON claim extraction and Markdown review diff, glossary checklist, and release gate]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Review-only; does not rewrite the source or target. SaaS locale-file checks are pending real samples.]
+**Other Properties Related to Output:** [Review-only; does not rewrite source or target text.]
 
 ## Skill Version(s):
 
-1.0.1 (source: frontmatter, server release metadata)
+1.0.2 (source: frontmatter and server release evidence)
 
 ## Ethical Considerations:
 

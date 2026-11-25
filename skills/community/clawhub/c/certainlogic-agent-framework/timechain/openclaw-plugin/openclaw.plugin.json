@@ -1,0 +1,47 @@
+{
+  "id": "cypher-tempre-enforcement",
+  "name": "Cypher Tempre Enforcement",
+  "description": "Native OpenClaw lifecycle plugin that routes turns through the Cypher Tempre Timechain enforcement spine.",
+  "version": "3.30.08",
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "skillRoot": {
+        "type": "string",
+        "description": "Path to the installed cypher-tempre-self-model skill folder. Defaults to CT_SKILL_DIR or ~/.openclaw/workspace/skills/cypher-tempre-self-model."
+      },
+      "chainRoot": {
+        "type": "string",
+        "description": "Optional separate Timechain root. Defaults to CT_ENFORCE_ROOT or skillRoot."
+      },
+      "pythonBin": {
+        "type": "string",
+        "description": "Python executable used to run enforce.py and dormancy.py.",
+        "default": "python3"
+      },
+      "timeoutMs": {
+        "type": "integer",
+        "minimum": 250,
+        "maximum": 30000,
+        "default": 5000,
+        "description": "Per-command timeout for local Python enforcement calls."
+      },
+      "maxFinalizeAttempts": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 10,
+        "default": 3,
+        "description": "Maximum extra model passes requested by before_agent_finalize for one unsealed turn."
+      },
+      "injectReminder": {
+        "type": "boolean",
+        "default": true,
+        "description": "Append a short Timechain loop reminder to the model prompt."
+      }
+    }
+  }
+}

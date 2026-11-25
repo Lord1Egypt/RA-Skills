@@ -1,0 +1,57 @@
+{
+  "changelog": "A poster set now stays visually consistent and includes a short motion cut with music.",
+  "display_name": "Visual Creation",
+  "entry": "SKILL.md",
+  "homepage": "https://beatra.ai/skills/visual-creation",
+  "icon": "https://beatra.ai/textures/icons/visual-creation-0.1.2.png",
+  "localized": {
+    "en": {
+      "description": "Turn one visual brief into a visual creation set: a poster and matching stills that keep the same subject, palette, and type. Visual creation lays out what each frame shows, then makes the poster and stills. Use it for a brand look, a poster series, and a set of pictures that have to belong together.",
+      "display_name": "Visual Creation",
+      "summary": "A poster and matching stills from one visual brief.",
+      "tags": [
+        "visual creation",
+        "poster series",
+        "matching stills",
+        "brand look",
+        "frame plan"
+      ],
+      "title": "Visual Creation"
+    },
+    "ja": {
+      "description": "一つの画面案を、同じ主題と配色のポスターと静止画にします。画面割りを出してから、選んだ枚を作ります。ブランドの見た目やポスターシリーズに向いています。",
+      "display_name": "ビジュアル制作",
+      "summary": "一つの画面案からポスターと揃った静止画を作る。",
+      "tags": [
+        "ビジュアル",
+        "ポスター",
+        "静止画",
+        "ブランド"
+      ],
+      "title": "ビジュアル制作"
+    },
+    "zh": {
+      "description": "把一个画面想法做成视觉创作的一组成品：一张海报，以及和它同一主体、同一配色的静帧。视觉创作先排出每张画面画什么，再出海报和静帧。适合品牌视觉、系列海报和需要看起来是一套的画面。",
+      "display_name": "视觉创作",
+      "summary": "一张海报，加上和它成套的静帧。",
+      "tags": [
+        "视觉创作",
+        "海报",
+        "静帧",
+        "品牌视觉",
+        "系列海报"
+      ],
+      "title": "视觉创作"
+    }
+  },
+  "mcp": {
+    "authentication": "device-bearer",
+    "credential_file": "~/.beatra/credentials.json",
+    "name": "beatra",
+    "transport": "streamable-http",
+    "url": "https://mcp.beatra.ai/mcp"
+  },
+  "name": "visual-creation",
+  "schema_version": 1,
+  "version": "0.1.3"
+}

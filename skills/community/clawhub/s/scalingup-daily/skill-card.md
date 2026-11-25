@@ -1,45 +1,66 @@
-## Description: <br>
-Generates structured Markdown reports on search, advertising, and recommendation model Scaling Up developments, then publishes them to IMA and Tencent Docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a structured Markdown daily report tracking recent search, advertising, and recommendation-system Scaling Up research, articles, open-source projects, and conference activity.
 
-## Publisher: <br>
-[fandywang87](https://clawhub.ai/user/fandywang87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fandywang87](https://clawhub.ai/user/fandywang87)
 
-## Use Case: <br>
-Developers, researchers, and analysts use this skill to track recent papers, technical articles, open source projects, and conference activity in recommendation, search, and advertising model scaling. It produces a verified-link report and can publish the Markdown output to configured knowledge and document platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic publishing can send generated reports to IMA and Tencent Docs using stored cloud credentials. <br>
-Mitigation: Enable automation only after confirming the target IMA knowledge-base ID, Tencent Docs registration, and token ownership, and review the first report before publishing. <br>
-Risk: Credential files and API responses may expose sensitive IMA or Tencent access details if logs or local files are mishandled. <br>
-Mitigation: Restrict credential-file permissions, avoid sharing terminal logs or raw API responses, and rotate credentials if exposure is suspected. <br>
-Risk: The IMA upload flow depends on an external COS upload helper from an installed IMA skill. <br>
-Mitigation: Use only a trusted installed IMA skill and verify the helper path before running uploads. <br>
+## Use Case:
 
+Developers, researchers, and technical operators use this skill to collect recent recommendation-system and advertising-model developments, assemble a daily Markdown report, and publish it to configured knowledge-sharing destinations.
 
-## Reference(s): <br>
-- [Known papers reference](references/known_papers.md) <br>
-- [Daily report template](templates/daily_report_template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/fandywang87/scalingup-daily) <br>
-- [Publisher profile](https://clawhub.ai/user/fandywang87) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with citation index and optional JSON search results from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires web search, WeChat article search, IMA credentials, Tencent Docs MCP access, Node.js, Python 3, jq, and configured platform tokens for publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill publishes generated reports through authenticated IMA and Tencent Docs accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Make publication opt-in, verify destination IDs and document titles before upload, and use accounts scoped for this workflow.
+
+Risk: The skill reads local IMA credentials and depends on Tencent Docs authorization.
+
+Mitigation: Protect stored credentials, rotate them if exposed, and confirm tokens are valid only for the intended workspace or account.
+
+Risk: The skill includes unsafe cross-skill helper discovery for upload support.
+
+Mitigation: Replace recursive helper discovery with a fixed, reviewed helper path or an explicit user-provided path before production use.
+
+Risk: The skill searches external sites and includes Sogou/WeChat scraping behavior.
+
+Mitigation: Review whether this scraping is acceptable for the deployment environment and respect site access restrictions before enabling it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fandywang87/skills/scalingup-daily)
+- [Known papers and project references](references/known_papers.md)
+- [Daily report template](templates/daily_report_template.md)
+- [Meta generative recommenders](https://github.com/meta-recsys/generative-recommenders)
+- [Kuaishou OneRec OpenOneRec](https://github.com/Kuaishou-OneRec/OpenOneRec)
+- [RecBole](https://github.com/RUCAIBox/RecBole)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with citations, plus supporting shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a dated Markdown report and may publish it to IMA and Tencent Docs when required accounts and credentials are configured.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata and artifact/_meta.json; package.json lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

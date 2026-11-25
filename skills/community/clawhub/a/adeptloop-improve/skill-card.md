@@ -1,43 +1,63 @@
-## Description: <br>
-Daily improvement briefings with one-click fixes for your AI agent. Observes traces, diagnoses failures, and applies fixes conversationally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily improvement briefings with one-click fixes for your AI agent. Observes traces, diagnoses failures, and applies fixes conversationally.
 
-## Publisher: <br>
-[pedrocarballo](https://clawhub.ai/user/pedrocarballo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pedrocarballo](https://clawhub.ai/user/pedrocarballo)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure AdeptLoop tracing, receive daily performance briefings, inspect failures, and apply or revert suggested fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables ongoing third-party telemetry for agent diagnostics. <br>
-Mitigation: Confirm what diagnostics-otel sends, how to disable collection, and whether the data handling fits the deployment before installation. <br>
-Risk: The skill stores an AdeptLoop API key in local configuration files. <br>
-Mitigation: Keep openclaw.json and ~/.openclaw/.env out of version control and rotate the key if it is exposed. <br>
-Risk: Suggested fixes and rollback actions can modify project files and git branches. <br>
-Mitigation: Inspect each proposed diff before applying or reverting changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to monitor AI agent performance, receive daily failure briefings, inspect recommended fixes, and apply selected repository changes.
 
-## Reference(s): <br>
-- [AdeptLoop Improve on ClawHub](https://clawhub.ai/pedrocarballo/adeptloop-improve) <br>
-- [AdeptLoop](https://adeptloop.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Daily briefings are intended to stay under 500 tokens and present one fix recommendation at a time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: frontmatter and release evidence) <br>
+Risk: The skill installs telemetry and sends agent trace data to AdeptLoop.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the telemetry scope before installation and proceed only if that data sharing is acceptable for the project.
+
+Risk: The skill stores the AdeptLoop API key in local plaintext configuration.
+
+Mitigation: Prefer managed secret storage or lock down local file permissions before using the skill.
+
+Risk: The skill can schedule recurring daily checks.
+
+Mitigation: Ask for explicit approval before scheduling and make the schedule easy to inspect or remove.
+
+Risk: The skill can apply remotely supplied file edits and create git commits.
+
+Mitigation: Inspect every diff, keep changes on an isolated branch, restrict edits to expected repository paths, and review commits before merging.
+
+## Reference(s):
+
+- [AdeptLoop homepage](https://adeptloop.com)
+- [ClawHub skill page](https://clawhub.ai/pedrocarballo/skills/adeptloop-improve)
+- [Publisher profile](https://clawhub.ai/user/pedrocarballo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Concise Markdown briefings with unified diffs, prompts for user decisions, and inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Briefings are intended to stay under 500 tokens and present one recommended fix at a time.]
+
+## Skill Version(s):
+
+0.1.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

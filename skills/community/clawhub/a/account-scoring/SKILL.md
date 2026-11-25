@@ -1,7 +1,7 @@
 ---
 name: account-scoring
 description: 'Score every account against your ICP on a schedule: a deployed agent tiers each company in a Cargo model (tam-building''s, or your CRM companies) A / B / C / disqualified against the ICP and rubric in workspace context, and the tier, a two-sentence reason and evidence are written onto the row and, optionally, the matching HubSpot or Salesforce company. New companies are tiered hourly; the book is re-scored weekly or on any window set. Triggers: "score our TAM", "tier the market we just sourced", "which accounts should the team work first", "why is this account tier A", "keep our accounts tiered as they arrive", "our lead scoring is a spreadsheet nobody trusts". Cargo project, defineAgent, webSearch, context, tam_companies, tier segments. Skip when: someone hands you a list and wants it scored once, which is score-leads; or there is no account universe yet, which is tam-building.'
-version: "0.5.4"
+version: "0.5.5"
 compatibility: "Requires the cargo-project skill, a Cargo project (cargo.json at its root), @cargo-ai/cdk 1.0.58 or later, an authenticated LLM connector (Anthropic in the example), and a model of companies to tier: tam-building's tam_companies, which this example carries a copy of. No CRM needed; a HubSpot or Salesforce connection only when the tier is written back to it. The repository example does not deploy or tier anything until an agent adapts it in the consumer project."
 homepage: https://github.com/getcargohq/gtm-skills/tree/main/account-scoring
 metadata:
@@ -252,5 +252,6 @@ The CRM write-back is one connector action per tiered company; the pilot's actua
 ## Composes into
 
 `contact-sourcing` (the buyers at every tier A account), `agentic-engagement` (talk to the accounts
-this ranked), `new-hire-detection` (watch tier A for the hires that move a C up). Works best after
+this ranked), `new-hire-detection` (watch tier A for the hires that move a C up), `readiness-scoring` (the timing
+next to the fit: route only tier A accounts whose signals say now). Works best after
 `tam-building`, whose `tam_companies` it tiers.

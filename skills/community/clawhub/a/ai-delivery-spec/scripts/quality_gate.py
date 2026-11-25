@@ -23,17 +23,15 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import unquote, urlsplit
 
+from cli_support import dependency_message, shell_command, input_error_detail, InputReadError, read_utf8_input
+
 try:
     import yaml
     from jsonschema import Draft202012Validator, FormatChecker
 except ModuleNotFoundError as exc:  # pragma: no cover - exercised in a clean environment
     missing = getattr(exc, "name", "PyYAML/jsonschema")
     english_startup = any(value == "en-US" for value in sys.argv)
-    message = (
-        f"Missing runtime dependency {missing}. Run: python -m pip install -r scripts/requirements.txt"
-        if english_startup else
-        f"缺少运行依赖 {missing}。请先执行：python -m pip install -r scripts/requirements.txt"
-    )
+    message = dependency_message(getattr(exc, "name", "PyYAML/jsonschema"), "en-US" in sys.argv)
     print(message, file=sys.stderr)
     raise SystemExit(4) from exc
 
@@ -48,7 +46,7 @@ if str(VALIDATOR_DIR) not in sys.path:
     sys.path.insert(0, str(VALIDATOR_DIR))
 
 from scan_prototype_css import scan as scan_prototype_css
-from validate_acceptance_run import validate_evidence_refs
+from validate_acceptance_run import execution_environment, acceptance_results, summarize_acceptance_claims
 LEVELS = ("L0", "L1", "L2", "L3", "L4")  # Legacy specialized-tool compatibility only.
 from validators.validate_prd_semantics import run_semantic_checks
 from requirement_contract import SEMANTIC_REVIEW_GUIDANCE, semantic_review_guidance
@@ -61,26 +59,14 @@ ROOT = SCRIPT_DIR.parent
 REGISTER_SCHEMA = ROOT / "schemas" / "requirement-register.schema.json"
 INTAKE_SCHEMA = ROOT / "schemas" / "requirement-intake.schema.json"
 HANDOFF_SCHEMA = ROOT / "schemas" / "agent-handoff.schema.json"
-ACCEPTANCE_SCHEMA = ROOT / "schemas" / "acceptance-run.schema.json"
 STATUSES = {
     0: "PASS",
     1: "REVIEW_COMPLETE_WITH_GAPS",
     2: "BLOCKED",
     3: "BLOCKED_BY_P0_UNKNOWN",
 }
-STAGE_ORDER = {
-    "frame": -2,
-    "explore": -1,
-    "inventory": 0,
-    "clarify": 1,
-    "specify": 2,
-    "review": 3,
-    "baseline": 4,
-    "prototype": 4,
-    "implementation": 5,
-    "acceptance": 6,
-    "closed": 7,
-}
+from stage_contract import GOVERNED_INDEX
+STAGE_ORDER = GOVERNED_INDEX
 
 NOT_PROVEN_BY_STATIC_GATE = (
     "业务与领域规则已经客户或权威来源确认",
@@ -136,6 +122,7 @@ class Finding:
 
 
 FINDING_GUIDANCE: dict[str, tuple[str, str]] = {
+    "PRD-FRONTMATTER": ("PRD 的 YAML 元数据语法有误，尚未完成该输入的内容检查。", "按技术明细的行列检查括号、引号、缩进及结束分隔线；只修语法，不补写或改写业务规则。"),
     "PRD-PENDING-EXECUTION": (
         "同一处既写业务选择待确认，又要求确认前按默认值执行，实施依据可能互相冲突。",
         "按 ref 核对原句及授权来源。已有临时方案授权就注明来源并同步待决范围；否则取消依赖未决选择的执行承诺。反例和概念验证不应写成正式执行规则。",
@@ -156,6 +143,10 @@ FINDING_GUIDANCE: dict[str, tuple[str, str]] = {
     "SPEC-CONTENT": ("正文中可能还有两种不同的业务理解。", "先读指出的原句及其规则引用，核实是否已有答案；确有缺口才补决定，不要只添加一条评阅通过记录。"),
     "SPEC-SEMANTIC-NOT-PROVEN": ("现有记录还不能证明这部分业务规则已被复核。", "按提示范围核对来源和关键反例，记录实际评阅结果；尚未评阅就保持缺口，不能补写虚构的通过。"),
     "SPEC-REVIEW-LOCATION": ("工具未定位到这部分内容，不等于作者没有写。", "先在原文定位相应目标、行为或验收；可在已有内容处加 ADS 标记帮助定位，无须增加同义章节。"),
+    "SPEC-EMPTY-SECTION": ("匹配的标题、列或验收标签内尚未定位到正文。", "先核对原文、子章节及提取层级；确实为空才原处补内容，已有内容则修定位，不复制章节或编造规则。"),
+    "ACCEPTANCE-NO-EXECUTION": ("接受结论没有任何已执行项支持。", "保留 pending，实际执行后记录结果和证据；把项目改成可选不能替代执行。"),
+    "ACCEPTANCE-RESULT-MISSING": ("失败或阻塞只有标签，没有实际结果。", "填写观察到的失败结果或不能执行的原因；不要把未执行改成通过。"),
+    "ACCEPTANCE-DUPLICATE-RUN": ("多个文件声明同一验收运行编号，记录身份不明确。", "核对引用的是哪次真实执行；同一次执行只提供权威记录，不同执行使用不同编号并同步引用。"),
     "GATE-MISSING-INPUT": (
         "所选门禁缺少必需输入。",
         "按 finding 指示补充对应的 --requirement、--prd、--prototype、--inventory 或 --manifest 参数。",
@@ -164,10 +155,26 @@ FINDING_GUIDANCE: dict[str, tuple[str, str]] = {
         "输入路径不是可读文件。",
         "修正路径并确认文件存在，然后重跑同一命令。",
     ),
+    "GATE-INPUT-FORMAT": (
+        "本工具读取文本工件，尚未检查这个二进制或 Office 输入的内容。",
+        "保留原件，另存与原件对应的 UTF-8 文本投影；PRD 用 Markdown、原型用 HTML、结构化输入用 YAML/JSON。以投影重跑，Word 图片、表格与排版仍须核对原件并渲染。",
+    ),
+    "GATE-INPUT-ENCODING": (
+        "输入无法按 UTF-8 文本读取，尚未检查其中的业务内容。",
+        "核实原格式与编码，保留原件并另存 UTF-8 文本副本后重跑；不要只改扩展名或用忽略解码错误得到的缺字文本。",
+    ),
+    "GATE-INPUT-READ": (
+        "输入文件读取失败，尚未检查其中的业务内容。",
+        "按所示路径核对文件存在、类型与读取权限，恢复可读后重跑原命令。",
+    ),
     "REQ-PARSE": (
         "需求登记文件不是可读的 UTF-8 YAML。",
         "该 profile 只接收 YAML 需求登记册：修复 YAML 缩进、引号或编码；"
         "若输入是 Markdown 需求卡/PRD，请改用 --profile prd --prd <文件>。",
+    ),
+    "REQ-FORMAT": (
+        "requirement profile 读取 YAML 需求登记册；当前输入是 Markdown。",
+        "保留 Markdown 内容，改用 --profile prd --prd <文件>，再重跑检查。",
     ),
     "REQ-SCHEMA": (
         "需求登记文件不符合 JSON Schema。",
@@ -239,9 +246,11 @@ FINDING_GUIDANCE: dict[str, tuple[str, str]] = {
         "同步基数与枚举清单，并为每个业务枚举值补状态机或规则语义。",
     ),
     "PRD-NO-FRONTMATTER": (
-        "输入不是带 YAML frontmatter 的 Markdown，机器可校验性已经丢失。",
-        "先在 Markdown + frontmatter 形态完成基线，再导出 docx/PDF 分发副本。",
+        "当前结构检查未定位所需声明；这不说明原始文档无效。",
+        "保留现有交付格式；只为这项结构检查提供核对后的文本/必要声明，正文可用 PRD gate，Word/PDF 另查版式。",
     ),
+    "HANDOFF-EMPTY-READY": ("已声明可开工，但没有实际工作范围。", "引用现有模块及验收形成工作包，或保留 draft；不要填空标签。"),
+    "HANDOFF-READY-PLACEHOLDER": ("可开工交接仍有占位内容。", "按位置补真实范围、接收责任或引用；未定部分保持草稿。"),
     "HANDOFF-BINDING-TERM-MISSING": (
         "PRD 声明的绑定词没有同时出现在 PRD 正文和原型可见文本中，跨端用词不一致。",
         "让 finding.ref 指示的绑定词原样出现在 PRD 正文和原型可见文案中，或在评审后收窄 binding_terms 声明。",
@@ -381,20 +390,20 @@ FINDING_GUIDANCE: dict[str, tuple[str, str]] = {
         "按原型内 data-ac 生成 ARUN-*，在真实浏览器执行后用 --acceptance-run 重新校验；缺证据时不得声明原型完成。",
     ),
     "PROTO-BROWSER-EVIDENCE-INCOMPLETE": (
-        "浏览器验收记录没有覆盖原型声明的全部 AC，或没有形成可接受结论。",
-        "补跑缺失 AC，填写 actual_result、evidence_refs、浏览器环境和签署结论，再重跑门禁。",
+        "当前原型的版本、AC 与实际浏览器结果尚未完整对应。",
+        "核对现有基线，补跑缺失 AC，记录 actual_result、evidence_refs 和实际环境；模拟结果不补浏览器覆盖，执行记录与最终验收签署分别判断。",
     ),
     "PROTO-UNHANDLED-ACTION": (
         "原型动作没有可观察的分发路径。",
         "将 data-action 绑定到唯一处理器，并产生页面、弹窗、状态或数据结果。",
     ),
     "PROTO-ORPHAN-HANDLER": (
-        "动作注册表保留了没有源模板入口的处理器，存量交互可能在迭代中丢失。",
-        "恢复对应 data-action 控件；确认无用或已有删除授权时，同步移除死处理器，并在现有变更记录中注明理由与来源。",
+        "注册处理器尚未与静态可识别入口或本次运行证据对应；可能动态生成，也可能确实遗漏。",
+        "先从真实页面打开对应浮层，核对动态 data-action 控件及本次基线证据；确认入口缺失才恢复，确认无用或获准删除才移除处理器。控件可见不等于提交验证通过。",
     ),
     "PROTO-UNREACHABLE-VIEW": (
         "页面、弹窗或抽屉被显式隐藏，但没有静态可发现的入口或路由。",
-        "为该表面增加稳定 data-action/data-view 路由并验证可达性，或经批准删除该死页面。",
+        "先核对动态入口并实际打开；确认缺路由才修复 data-action/data-view，确认不再需要且获准时才删除。不能仅凭静态未定位就判定死页面。",
     ),
     "PROTO-REVIEW-UIACTION-NAMESPACE": (
         "评审开关等纯界面动作错误占用了业务 ACT-* 命名空间。",
@@ -433,8 +442,8 @@ FINDING_GUIDANCE: dict[str, tuple[str, str]] = {
         "用 data-review-role 标记控件、data-review-lens 标记对应内容；镜头只改变密度，不得改变事实。",
     ),
     "PROTO-REVIEW-WORKSPACE-LEGACY": (
-        "旧评审叠加没有 CurrentContext、声明分母、三页签和产品副作用边界。",
-        "保留完整产品操作，迁移为上下文驱动的总览/功能与流转/边界与验收三页签，并嵌入同基线 manifest。",
+        "旧评审叠加缺少当前上下文、声明分母或产品副作用边界。",
+        "保留完整产品操作；按实际 presentation_mode 对齐同基线 manifest。contextual 用就近抽屉，tabs 用三页签，不为校验改业务布局。",
     ),
     "PROTO-REVIEW-WORKSPACE-MANIFEST-INVALID": (
         "评审工作台没有唯一、可解析的同源投影索引。",
@@ -445,12 +454,12 @@ FINDING_GUIDANCE: dict[str, tuple[str, str]] = {
     "PROTO-REVIEW-POINT-COVERAGE": ("声明评审点与可见卡片、落点或上下文归属不闭合。", "对齐 manifest、marker 和 card；无 UI 落点时显式 marker_required=false。"),
     "PROTO-REVIEW-CONTEXT-NUMBERING": ("评审编号没有在当前上下文内按声明顺序从 1 开始。", "按每个 Context 的 review_point_refs 重编号，Overlay 关闭后恢复父上下文编号。"),
     "PROTO-REVIEW-PRODUCT-FINGERPRINT-INVARIANT": ("纯评审动作缺少产品指纹不变量机制。", "分别捕获 Product/Review Fingerprint，并用浏览器证据证明 UIACT-REVIEW-* 前后产品指纹相同。"),
-    "PROTO-REVIEW-TAB-OWNERSHIP": ("三页签的信息所有权缺失、错位或重复。", "总览讲全局，功能与流转讲当前上下文，边界与验收持有规则/状态/指标/AC 详情。"),
+    "PROTO-REVIEW-TAB-OWNERSHIP": ("tabs 模式的信息所有权缺失、错位或重复。", "总览讲全局，功能与流转讲当前上下文，边界与验收持有规则/状态/指标/AC 详情。"),
     "PROTO-REVIEW-STATUS-AXES": ("评审卡没有同步显示业务状态、验证状态和证据来源。", "从同一 ReviewPoint 投影紧凑状态行，勿把三条轴合并或制造三套工作流。"),
     "PROTO-REVIEW-SHARE-LOCATOR": ("分享定位没有绑定 baseline/context/point/tab。", "移除 Journey/Step/Role 定位，首次 hydration 后再建立产品指纹基线。"),
     "PROTO-REVIEW-PROGRESS-DENOMINATOR": ("可见进度不是声明的适用评审点分母。", "浏览不推进进度；只有 confirmed 或 accepted_with_gap 评审处置计入完成。"),
     "PROTO-REVIEW-COLD-READ": ("冷读通过没有未参与者证据。", "让产品、前端、后端、测试分别在 3 分钟内冷读并记录召回、误猜和首次澄清。"),
-    "PROTO-REVIEW-LEVEL": ("评审层恢复了额外一级模式或缺少目标等级的必要入口。", "R1/R2 只保留总览、功能与流转、边界与验收；R0 也不得增加 Journey/Step/Page/Role 模式。"),
+    "PROTO-REVIEW-LEVEL": ("评审层恢复了额外一级模式或缺少目标等级的必要入口。", "核对实际评审等级和 presentation_mode；contextual 不要求三页签，tabs 才核对其页签归属。"),
     "PROTO-REVIEW-CANDIDATE-DIFF": ("Candidate Set 与声明评审点存在未裁决差集。", "人工决定声明或不适用并留依据；门禁不得自动改变官方分母。"),
     "PROTO-REVIEW-SEMANTIC-COVERAGE": ("影响实现或验收的页面语义没有完整映射到人类评审说明。", "从 PRD、Stage 0、页面合同和稳定锚点重建语义分母；每项映射 ReviewPoint 或给出有依据的不适用。"),
     "PROTO-REVIEW-HUMAN-COPY-LEAK": ("稳定 ID、字段名或机器枚举泄露到人类主阅读区。", "主阅读面改写成自然语言；技术标识统一移入默认收起的技术追溯。"),
@@ -612,6 +621,7 @@ PREFIX_GUIDANCE: tuple[tuple[str, str, str], ...] = (
 )
 
 EN_FINDING_GUIDANCE: dict[str, tuple[str, str]] = {
+    "PRD-FRONTMATTER": ("The PRD YAML metadata is malformed; its content check could not complete.", "Repair brackets, quoting, indentation or the closing delimiter at the reported location; do not rewrite business rules."),
     "PRD-PENDING-EXECUTION": (
         "The same passage leaves a choice pending yet requires execution with defaults before confirmation.",
         "Check the passage and its authority at ref. Cite an authorized interim decision and clarify what remains open, or remove the unsupported execution promise. Keep counterexamples and concept-only assumptions distinct from implementation policy.",
@@ -636,8 +646,17 @@ EN_FINDING_GUIDANCE: dict[str, tuple[str, str]] = {
     "SPEC-CONTENT": ("The text may still allow different business interpretations.", "Read the cited sentence and its rule references first. Resolve a real gap or record why the candidate does not apply; do not merely add a review pass."),
     "SPEC-SEMANTIC-NOT-PROVEN": ("The records do not yet establish that this scope was reviewed.", "Review its sources and distinguishing counterexamples, then record the actual result. Do not fabricate a pass."),
     "SPEC-REVIEW-LOCATION": ("The tool could not locate this content; that does not prove it is missing.", "Locate the existing goal, behavior or acceptance text. An ADS marker can help without adding a duplicate section."),
+    "SPEC-EMPTY-SECTION": ("No content was located inside the matched headings, columns or acceptance labels.", "Check the original, child sections and extraction hierarchy first. Fill genuinely empty content in place; repair the locator if content exists. Do not duplicate sections or invent rules."),
+    "ACCEPTANCE-NO-EXECUTION": ("Acceptance has no executed items to support it.", "Keep pending until actual execution is recorded; making items optional does not execute them."),
+    "ACCEPTANCE-RESULT-MISSING": ("A failed or blocked item has no observed outcome.", "Record the actual failure or blocking reason; do not mark an unexecuted item as passed."),
+    "ACCEPTANCE-DUPLICATE-RUN": ("Different files claim the same run identity.", "Resolve the authoritative record for this execution; separate executions need separate IDs and updated references."),
+    "PROTO-BROWSER-EVIDENCE-INCOMPLETE": ("Current prototype version, ACs and browser results are not fully matched.", "Check the existing baseline and execute missing ACs in a browser. Record actual outcomes, references and environment; simulation does not fill browser coverage, and execution is separate from sign-off."),
     "GATE-MISSING-INPUT": ("The selected gate is missing a required input.", "Provide the input named by the finding and rerun the same command."),
     "GATE-NOT-FILE": ("An input path is not a readable file.", "Correct the path, confirm the file exists, and rerun the same command."),
+    "GATE-INPUT-FORMAT": ("This tool reads text artifacts; the binary or Office input was not checked.", "Preserve the original and export a corresponding UTF-8 text projection: Markdown for PRD, HTML for prototype, YAML/JSON for structured inputs. Rerun with that projection; render and inspect the Word original separately for images, tables and layout."),
+    "GATE-INPUT-ENCODING": ("The input is not readable as UTF-8 text; its business content was not checked.", "Confirm the format and encoding, preserve the original, and save a UTF-8 text copy before rerunning. Do not merely rename the file or ignore decoding errors."),
+    "GATE-INPUT-READ": ("The input could not be read; its business content was not checked.", "Check the named path, file type and read permission, restore access, then rerun the command."),
+    "REQ-FORMAT": ("The requirement profile reads YAML registers; this input is Markdown.", "Keep the Markdown content and rerun with --profile prd --prd <file>."),
     "REQ-PARSE": ("The requirement register is not readable UTF-8 YAML.", "Repair YAML syntax or use the PRD profile for a Markdown artifact."),
     "REQ-SCHEMA": ("The requirement register violates its JSON Schema.", "Use finding.ref to repair the field against the requirement-register template."),
     "INTAKE-SCHEMA": ("The requirement intake card violates its contract.", "Use finding.ref and the requirement-intake template to repair the missing or invalid field."),
@@ -647,7 +666,7 @@ EN_FINDING_GUIDANCE: dict[str, tuple[str, str]] = {
     "PRD-GUARD-CONTRADICTION": ("An action's allow set conflicts with its guard reject set.", "Align the allowed, rejected and illegal transition sets."),
     "PRD-ENUM-NOT-DEFINED": ("A cardinality or enum contract is incomplete or inconsistent.", "Align counts and define every business enum in a rule or state machine."),
     "PRD-DUPLICATE-STABLE-ID-DEFINITION": ("A stable ID is defined more than once across authoritative PRD tables.", "Keep one definition; turn other occurrences into references or assign a new stable ID."),
-    "PRD-NO-FRONTMATTER": ("The input is not Markdown with YAML front matter.", "Baseline in Markdown + front matter before exporting distribution copies."),
+    "PRD-NO-FRONTMATTER": ("The input is not Markdown with YAML front matter.", "Keep the delivery format; supply verified text/declarations only for this structural check, and inspect document layout separately."),
     "PRD-UNKNOWN-METADATA-DRIFT": ("The same unknown has conflicting fields at two located declarations.", "Inspect the sources, row numbers and field in the message; repair the actual conflict without adding duplicate declarations."),
     "SPEC-UNKNOWN-STATUS-UNLOCATED": ("The parser cannot locate the status of an existing unknown.", "Review the named row and column meaning; keep the gap instead of assuming the status is absent or closed."),
     "PROTO-DYNAMIC-DECLARATIONS": ("JS declarations were found without resolved template or DOM bindings.", "Verify the candidate IDs, rendered behavior and metric definitions; retain unresolved candidates until the relevant evidence exists."),
@@ -658,6 +677,8 @@ EN_FINDING_GUIDANCE: dict[str, tuple[str, str]] = {
     "HANDOFF-PROTOTYPE-ACTION-NOT-IN-PRD": ("The prototype exposes a product action absent from the PRD baseline.", "Define the ACT-* actor, precondition, result, recovery and acceptance in the PRD, or use UIACT-* for review-shell behavior."),
     "HANDOFF-PROTOTYPE-FIELD-NOT-IN-PRD": ("The prototype field has no PRD field contract.", "Define its source, type, requiredness, authorization, validation and sensitivity in the PRD, or remove it."),
     "HANDOFF-PROTOTYPE-METRIC-NOT-IN-PRD": ("The prototype metric has no PRD caliber contract.", "Define meaning, numerator, denominator, scope, time window, deduplication, refresh, empty-value behavior and authority."),
+    "HANDOFF-EMPTY-READY": ("Ready handoff has no actual work scope.", "Reference the existing module and acceptance in a packet, or keep draft; do not invent empty IDs."),
+    "HANDOFF-READY-PLACEHOLDER": ("Ready handoff still contains placeholders.", "Supply the real scope, receiving owner or reference at the location; keep unresolved work in draft."),
     "HANDOFF-STEP-NOT-IN-PRD": ("A packet references a STEP-* that is absent from the PRD baseline.", "Remove the ghost reference or baseline the complete STEP-* card before handoff."),
     "HANDOFF-PACKET-STEP-MISSING": ("The manifest declares a STEP-* that is absent from the packet body.", "Reference the STEP-* in the packet and preserve its implementation semantics."),
     "HANDOFF-STEP-INCOMPLETE": ("A PRD implementation step lacks a required implementation facet.", "Complete the facet named in the finding; explicitly state none when it is genuinely not applicable."),
@@ -684,8 +705,8 @@ EN_FINDING_GUIDANCE: dict[str, tuple[str, str]] = {
     "PROTO-REMOTE-IFRAME-UNDECLARED": ("The remote iframe lacks ownership, fallback or browser-security attributes.", "Add data-integration-ref, data-fallback, title, sandbox and referrerpolicy."),
     "PROTO-REMOTE-IFRAME-UNVERIFIED": ("The remote iframe is declared but its runtime content and availability remain unverified.", "Execute a browser ARUN-* in the target network and role session, including fallback evidence."),
     "PROTO-UNHANDLED-ACTION": ("A prototype action has no observable dispatch path.", "Bind the data-action to one handler and produce a visible page, modal, state or data result."),
-    "PROTO-ORPHAN-HANDLER": ("The action registry contains a handler with no source control.", "Restore its data-action control, remove confirmed dead code, or record the approved removal."),
-    "PROTO-UNREACHABLE-VIEW": ("A hidden page, modal or drawer has no discoverable route.", "Add a stable data-action/data-view route or remove the approved dead surface."),
+    "PROTO-ORPHAN-HANDLER": ("A registered handler is not yet matched to a static control or current runtime evidence; it may be dynamic or missing.", "Open its real page or overlay and verify the dynamic data-action control against this baseline. Restore only a confirmed missing entry; remove only confirmed unused or approved retired handlers. Visibility is not submission acceptance."),
+    "PROTO-UNREACHABLE-VIEW": ("A hidden page, modal or drawer has no statically discoverable route.", "Check dynamic entry points and actually open it first. Repair a confirmed missing route; remove only a confirmed unneeded and approved surface. Static absence alone does not prove it is dead."),
     "PROTO-REVIEW-UIACTION-NAMESPACE": ("A review-only UI action uses the business ACT-* namespace.", "Rename it to UIACT-REVIEW-* without changing business state or data."),
     "PROTO-METRIC-ID-SEMANTIC-COLLISION": ("One METRIC-* ID is reused for multiple business meanings.", "Assign unique IDs to distinct metrics; repeated displays of one metric must share one semantic label and caliber."),
     "PROTO-METRIC-LABEL-MISSING": ("A repeated metric ID has no stable semantic label.", "Add data-metric-label or split distinct meanings into separate METRIC-* IDs."),
@@ -695,7 +716,7 @@ EN_FINDING_GUIDANCE: dict[str, tuple[str, str]] = {
     "PROTO-REVIEW-LINKAGE-MISSING": ("Review markers and note cards have no stable bidirectional link.", "For RC4, link marker data-review-ref to card data-review-point with matching context/number; data-review-id is legacy migration syntax. Verify both directions in a browser."),
     "PROTO-REVIEW-SELECTION-NOT-SYNCED": ("Review marker clicks do not expose a synchronized selection state.", "Read RC4 data-review-ref/data-review-point, update aria-current on both sides and the target outline, and verify click/scroll behavior. Do not add legacy data-review-id to a new workspace."),
     "PROTO-REVIEW-LENS-COSMETIC": ("Role lenses change controls but have no role-specific content projection.", "Bind data-review-role controls to matching data-review-lens content without changing shared facts."),
-    "PROTO-REVIEW-WORKSPACE-LEGACY": ("The legacy review overlay has no CurrentContext, declared denominator, three-tab projection, or product-effect boundary.", "Preserve the operable product and migrate to a context-driven Overview / Function & Flow / Boundary & Acceptance projection with a baseline-bound manifest."),
+    "PROTO-REVIEW-WORKSPACE-LEGACY": ("The legacy review overlay lacks a current-context, declared-denominator or product-effect contract.", "Preserve the operable product and migrate to a context-driven Overview / Function & Flow / Boundary & Acceptance projection with a baseline-bound manifest."),
     "PROTO-REVIEW-WORKSPACE-MANIFEST-INVALID": ("The review workspace has no unique parseable projection manifest.", "Embed one application/json review-workspace-manifest and validate it against the review-workspace schema."),
     "PROTO-REVIEW-CONTEXT-CONTRACT": ("The CurrentContext declaration or read-only binding is incomplete.", "Resolve the topmost business overlay or active VIEW and let only real product ACT-* actions change it."),
     "PROTO-REVIEW-DECLARED-DENOMINATOR": ("The official review-point denominator is duplicated or ambiguous.", "Use each context's ordered review_point_refs as the sole denominator; never auto-promote candidates."),
@@ -835,7 +856,7 @@ def guidance_for(code: str) -> tuple[str, str]:
     if _is_legacy_review_finding(code):
         return (
             "该 finding 属于 5.4.7 Preview 旧评审合同，原工件仍在使用 Journey/STEP/Role/自适应页面模式。",
-            "不要补旧模式；保留完整产品操作并整体迁移到 Final CurrentContext + 总览/功能与流转/边界与验收三页签投影。",
+            "保留完整产品操作，按当前选择的 contextual 抽屉或 tabs 模式对齐上下文和同基线 manifest；不为工具重建业务。",
         )
     if code in FINDING_GUIDANCE:
         return FINDING_GUIDANCE[code]
@@ -854,7 +875,7 @@ def english_guidance_for(code: str) -> tuple[str, str]:
     if _is_legacy_review_finding(code):
         return (
             "This finding belongs to the deprecated 5.4.7 Preview review contract using Journey/STEP/Role or adaptive page modes.",
-            "Do not repair the old modes; preserve the operable product and migrate the whole projection to Final CurrentContext plus Overview / Function & Flow / Boundary & Acceptance.",
+            "Preserve product behavior and align HTML with its current manifest: contextual drawers or explicitly chosen tabs.",
         )
     if code in EN_FINDING_GUIDANCE:
         return EN_FINDING_GUIDANCE[code]
@@ -868,6 +889,8 @@ def english_guidance_for(code: str) -> tuple[str, str]:
 
 
 REPAIR_EXAMPLES: tuple[tuple[str, str], ...] = (
+    ("SPEC-REVIEW-LOCATION", "例如先查看现有表格的「模块／调整后行为／验收」列；其他命名人工核对即可。可就地加定位标记，不新增同义章节或授权记录。"),
+    ("SPEC-EMPTY-SECTION", "例如「验收」列只有表头时，在原单元格补实际可观察结果；不要为填满表格编造已定规则。"),
     ("PROTO-INLINE-NATIVE-COLLISION", "例如把关闭抽屉绑定到 app.closeDrawer 或 addEventListener；不能不加核对地换成可能关闭浏览器窗口的 window.close。form 同样须明确指向应用函数；修复后点击原入口核对结果。"),
     ("PROTO-CSS-IMPORTANT-POLLUTION", '例如 [aria-invalid="true"] 的错误边框覆盖：核对非法输入变红、纠正后恢复及焦点 outline 仍可见；据实际影响决定保留或调整。'),
     ("SPEC-OPEN-DECISION", "分期期数未决时，合同查询可继续；付款计划生成保持受阻，等待原约定或授权决定。不能默认一期。"),
@@ -896,8 +919,8 @@ REPAIR_EXAMPLES: tuple[tuple[str, str], ...] = (
     ("PROTO-BROWSER-EVIDENCE", "python scripts/ai_delivery_spec_cli.py gate --profile prototype --prototype app.html --level L3 --acceptance-run acceptance/ARUN-PROTOTYPE-001.yaml"),
     ("PROTO-DYNAMIC-ANCHOR", "在模板源码直接写 data-action=\"ACT-COURSE-SAVE\"，不要用 'data-' + 'action' 拼接。"),
     ("PROTO-UNHANDLED-ACTION", "actionRegistry['ACT-COURSE-SAVE'] = saveCourse，并让处理器更新 data-state 或页面数据。"),
-    ("PROTO-ORPHAN-HANDLER", "actionRegistry['ACT-COURSE-SAVE'] 存在时，源模板也应有 data-action=\"ACT-COURSE-SAVE\"；若功能已批准删除，同步删除处理器，并在已有变更记录注明删除来源。"),
-    ("PROTO-UNREACHABLE-VIEW", "为隐藏抽屉增加 data-testid=\"drawer-VIEW-DETAIL\"，并由 data-action=\"ACT-DETAIL-OPEN\" 的处理器显式打开。"),
+    ("PROTO-ORPHAN-HANDLER", "例如 ACT-COURSE-SAVE 在打开编辑抽屉后才生成：先记录真实入口、动作标识与当前文件证据；未找到时再查遗漏或获准删除，不补隐藏假控件。"),
+    ("PROTO-UNREACHABLE-VIEW", "先从详情入口实际打开隐藏抽屉；若证实缺路由，再让 ACT-DETAIL-OPEN 打开 drawer-VIEW-DETAIL，已有动态路径不必重建。"),
     ("PROTO-REVIEW-UIACTION-NAMESPACE", "把 data-action=\"ACT-REVIEW-TOGGLE\" 改为 data-action=\"UIACT-REVIEW-TOGGLE\"。"),
     ("PROTO-DYNAMIC-CLASS-POLLUTION", "使用 class=\"sev sev-high\"；通过 cell.textContent = description 写入已转义说明，不把 description 拼入 class。"),
     ("STAGE0-", "为反推项使用 INV-*，保留 source_ref/location；推断项绑定 review_batch_ref，由责任人批量确认。"),
@@ -907,7 +930,7 @@ REPAIR_EXAMPLES: tuple[tuple[str, str], ...] = (
 
 def repair_example_for(code: str) -> str:
     if _is_legacy_review_finding(code):
-        return "删除旧 Journey/STEP/Role/页面模式入口，生成 5.4.9/RC4 manifest，以真实产品 CurrentContext 驱动三页签和 ReviewPoint。"
+        return "按实际 presentation_mode 同步 HTML 与 manifest；contextual 使用就近抽屉，tabs 才使用三页签，保留原业务操作。"
     for prefix, example in REPAIR_EXAMPLES:
         if code.startswith(prefix):
             return example
@@ -916,8 +939,10 @@ def repair_example_for(code: str) -> str:
 
 def english_repair_example_for(code: str) -> str:
     if _is_legacy_review_finding(code):
-        return "Remove legacy Journey/STEP/Role/page-mode controls and generate a 5.4.9/RC4 manifest driven by the real product CurrentContext, three tabs, and ReviewPoints."
+        return "Align the chosen presentation_mode, actual HTML and baseline-bound manifest; contextual drawers do not require tabs."
     examples = (
+        ("SPEC-REVIEW-LOCATION", "Locate the existing Module / After / Acceptance columns. Review other labels manually or add an in-place locator; do not add duplicate sections or authorization records."),
+        ("SPEC-EMPTY-SECTION", "If an Acceptance column only has a header, add the actual observable result in that cell; do not invent a settled rule to fill it."),
         ("PROTO-INLINE-NATIVE-COLLISION", "For example, bind drawer closing to app.closeDrawer or addEventListener; do not blindly substitute window.close, which may close the browser window. Likewise, form must explicitly refer to the application function. Click the original control after repair."),
         ("PROTO-CSS-IMPORTANT-POLLUTION", 'For an [aria-invalid="true"] border override, verify the invalid border, correction/reset and visible focus outline; keep or adjust it based on the observed effect.'),
         ("SPEC-OPEN-DECISION", "If installment terms are undecided, contract lookup can proceed; payment-plan generation waits for the agreement or authorized decision. Do not default to one installment."),
@@ -927,8 +952,8 @@ def english_repair_example_for(code: str) -> str:
         ("PRD-MODULE-SLICE", "Complete MOD-AUTH-001 with goal, paths, VIEW/FLD/ACT, RULE/STATE, METRIC, recovery, AC and UNK references."),
         ("PROTO-NO-REGION-ANCHOR", '<section data-testid="region-REG-COURSE-FILTERS">...</section>'),
         ("PROTO-UNHANDLED-ACTION", "Bind actionRegistry['ACT-COURSE-SAVE'] = saveCourse and update a visible data-state or page value."),
-        ("PROTO-ORPHAN-HANDLER", 'If ACT-COURSE-SAVE remains registered, keep a source control with data-action="ACT-COURSE-SAVE" or record its approved removal.'),
-        ("PROTO-UNREACHABLE-VIEW", 'Open data-testid="drawer-VIEW-DETAIL" from data-action="ACT-DETAIL-OPEN", or remove the approved dead drawer.'),
+        ("PROTO-ORPHAN-HANDLER", 'If ACT-COURSE-SAVE is generated when the edit drawer opens, record that real path, action and current file evidence first. Investigate absence or approved removal only if still missing; do not add hidden fake controls.'),
+        ("PROTO-UNREACHABLE-VIEW", 'Try the real detail entry first. Only if its route is missing, wire ACT-DETAIL-OPEN to drawer-VIEW-DETAIL; do not duplicate an existing dynamic path.'),
         ("PROTO-REVIEW-UIACTION-NAMESPACE", 'Rename data-action="ACT-REVIEW-TOGGLE" to data-action="UIACT-REVIEW-TOGGLE".'),
         ("PROTO-VISIBLE-COMPARISON-UNESCAPED", "Encode comparison characters in authored HTML text, then verify the visible browser copy against the PRD."),
         ("PROTO-DYNAMIC-CLASS-POLLUTION", 'Use class="severity severity-high" and assign the description through cell.textContent.'),
@@ -1079,10 +1104,13 @@ def _module_slices(raw: str) -> dict[str, str]:
 class Gate(PRDChecks, PrototypeChecks, HandoffChecks):
     def __init__(self) -> None:
         self._cache: dict[Path, str] = {}
+        self._input_errors: dict[Path, InputReadError] = {}
         self.read_counts: Counter[str] = Counter()
         self.findings: list[Finding] = []
         self.metrics: dict[str, Any] = {}
         self.prototype_acceptance_refs: set[str] = set()
+        self.prototype_acceptance_by_path: dict[Path, set[str]] = {}
+        self.acceptance_documents: dict[Path, dict] = {}
         self.prototype_baseline_signatures: Counter[tuple[str, str, str]] = Counter()
         self.prototype_inherited_findings = 0
         self.review_workspace_contracts: list[tuple[Path, dict[str, Any]]] = []
@@ -1090,8 +1118,20 @@ class Gate(PRDChecks, PrototypeChecks, HandoffChecks):
 
     def read(self, path: Path) -> str:
         key = path.resolve()
+        if key in self._input_errors:
+            raise self._input_errors[key]
         if key not in self._cache:
-            self._cache[key] = key.read_text(encoding="utf-8")
+            try:
+                self._cache[key] = read_utf8_input(key)
+            except InputReadError as exc:
+                self._input_errors[key] = exc
+                self.add("BLOCK", exc.code, key, exc.detail, "input",
+                         message_en=exc.detail)
+                self.metrics["input_errors"] = [
+                    {"artifact": str(error.path), "code": error.code, "detail": error.detail,
+                     "content_checked": False} for error in self._input_errors.values()
+                ]
+                raise
             self.read_counts[str(key)] += 1
         return self._cache[key]
 
@@ -1108,6 +1148,9 @@ class Gate(PRDChecks, PrototypeChecks, HandoffChecks):
         binding_source_refs: tuple[str, ...] = (),
         message_en: str = "",
     ) -> None:
+        # A failed read is an input diagnosis, not missing business content.
+        if path.resolve() in self._input_errors and not code.startswith("GATE-INPUT-"):
+            return
         signature = (code, ref, message)
         if severity == "BLOCK" and code.startswith("PROTO-") and self.prototype_baseline_signatures[signature] > 0:
             self.prototype_baseline_signatures[signature] -= 1
@@ -1161,7 +1204,7 @@ class Gate(PRDChecks, PrototypeChecks, HandoffChecks):
         try:
             value = yaml.safe_load(raw)
         except yaml.YAMLError as exc:
-            return None, f"{path.name} 不是有效 YAML：{exc}"
+            return None, f"{path.name} 不是有效 YAML：{input_error_detail(exc)}"
         if not isinstance(value, dict):
             return None, f"{path.name} 顶层必须是对象"
         return value, None
@@ -1173,6 +1216,12 @@ class Gate(PRDChecks, PrototypeChecks, HandoffChecks):
     def check_requirement(self, path: Path) -> None:
         try:
             raw = self.read(path)
+            if path.suffix.casefold() in {".md", ".markdown"}:
+                self.add("BLOCK", "REQ-FORMAT", path,
+                         "Markdown 需求卡或 PRD 请改用 --profile prd --prd <文件>。",
+                         "requirement",
+                         message_en="For a Markdown requirement card or PRD, use --profile prd --prd <file>.")
+                return
             document = yaml.safe_load(raw)
         except (OSError, UnicodeError, yaml.YAMLError) as exc:
             self.add("BLOCK", "REQ-PARSE", path, f"requirement register cannot be read as YAML: {exc}")
@@ -1293,21 +1342,23 @@ def result_payload(gate: Gate, profile: str, retry_command: str = "", output_lan
     rendered_findings = [localized_finding(item, output_language) for item in gate.findings]
     consumed_browser_evidence = bool(gate.metrics.get("prototype_browser_evidence"))
     english = output_language.casefold().startswith("en")
+    input_blocked = bool(gate._input_errors) or any(
+        f.code in {"GATE-NOT-FILE", "GATE-MISSING-INPUT", "PRD-FRONTMATTER", "PRD-FORMAT", "REQ-FORMAT", "REQ-PARSE"} for f in gate.findings)
     coverage = (
         "Deterministic static gate; it does not invoke a browser, LLM or sub-agent"
         if english else "确定性静态门禁；不调用浏览器、LLM 或子 Agent"
     )
     if consumed_browser_evidence:
         coverage += (
-            "; external real-browser ARUN structure, evidence and sign-off were validated"
-            if english else "；已校验外部真实浏览器 ARUN 的结构、证据与签署"
+            "; applicable browser execution records and evidence references were checked; acceptance is a separate conclusion"
+            if english else "；已校验适用的浏览器执行记录及证据引用，验收接受另行判断"
         )
     return {
         "status": STATUSES[code],
         "profile": profile,
         "output_language": output_language,
         "summary": {"blockers": blocks, "p0_unknowns": p0_unknowns, "gaps": gaps, "findings": len(gate.findings)},
-        "assessment": {"kind": "static_check", "label": ("Static checks complete; not business acceptance" if english else "静态检查完成；不代表业务验收通过")},
+        "assessment": {"kind": "input_error" if input_blocked else "static_check", "label": (("Input checks blocked; unread/unparsed content remains unverified" if english else "输入检查受阻；未读取或解析的内容仍未检查") if input_blocked else ("Static checks complete; not business acceptance" if english else "静态检查完成；不代表业务验收通过"))},
         "coverage": coverage,
         "not_proven": not_proven_for(gate, output_language),
         "retry_command": retry_command,
@@ -1321,7 +1372,7 @@ def diagnostic_roots(findings: list[Finding], limit: int) -> tuple[list[tuple[Fi
     """Compact repeated diagnostics; independent open decisions stay visible."""
     first, counts, order = {}, {}, []
     for item in findings:
-        key = (item.code, item.ref if item.code == "SPEC-OPEN-DECISION" else "")
+        key = (item.code, item.artifact, item.ref if item.code == "SPEC-OPEN-DECISION" else "")
         if key not in first:
             first[key] = item
             order.append(key)
@@ -1343,6 +1394,8 @@ def _representative_ref_score(ref: str) -> int:
 
 
 def run_sidecar_validator(gate: Gate, script: str, path: Path, code: str, extra: list[str] | None = None) -> None:
+    # Sidecars obey the same text-input boundary before a separate CLI reads them.
+    gate.read(path)
     result = subprocess.run(
         [sys.executable, str(VALIDATOR_DIR / script), str(path), *(extra or [])],
         capture_output=True, text=True, encoding="utf-8", errors="replace",
@@ -1357,46 +1410,80 @@ def run_sidecar_validator(gate: Gate, script: str, path: Path, code: str, extra:
         gate.add("BLOCK", code, path, line)
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser(description="Lightweight, non-generative final quality gate")
-    parser.add_argument("--profile", choices=["requirement", "prd", "prototype", "handoff", "full", "stage0", "agent_handoff"], required=True)
-    parser.add_argument("--requirement", type=Path, help="requirement register YAML")
-    parser.add_argument("--register", type=Path, action="append", help="profile=requirement 的侧车需求登记册；提供时执行登记册语义校验")
-    parser.add_argument("--review-record", type=Path, help="profile=prd baseline 阶段可选评审记录 YAML；提供时执行签署闭合校验")
-    parser.add_argument("--prd", type=Path, help="unified PRD Markdown")
-    parser.add_argument("--prototype", type=Path, action="append", help="HTML prototype; repeat for admin/H5/multi-surface handoff")
-    parser.add_argument("--prototype-baseline", type=Path, help="Optional previous HTML baseline; inherited prototype blockers become gaps, new regressions still block")
-    parser.add_argument("--review-runtime-evidence", type=Path, help="当前 HTML 指纹绑定的实际浏览器评审观察 JSON；不替代业务验收")
-    parser.add_argument("--require-review-workspace", action="store_true", help="Require the requested review workspace contract, even when the HTML omits review declarations")
-    parser.add_argument("--inventory", type=Path, help="Stage 0 brownfield inventory YAML")
-    parser.add_argument("--manifest", type=Path, help="Agent handoff manifest YAML")
-    parser.add_argument("--acceptance-run", type=Path, action="append", help="Executed ARUN-* YAML; repeat when prototype AC evidence is split")
-    parser.add_argument("--level", choices=["auto", *LEVELS], default="auto")
-    parser.add_argument("--stage", choices=list(STAGE_ORDER), default="baseline")
-    parser.add_argument("--scope-ref", action="append", default=[], help="Limit stage/P0 evaluation to one stable-ID scope; repeat as needed")
-    parser.add_argument("--domain", action="append", default=[], help="当前工件适用的领域 ID；用于隔离 custom 规则，可重复")
-    parser.add_argument("--format", choices=["concise", "json"], default="concise")
-    parser.add_argument("--language", choices=["auto", "zh-CN", "en-US"], default="auto", help="Human-readable gate diagnostics; auto reads document_language or HTML lang")
-    parser.add_argument("--diagnostics", choices=["first", "roots", "summary", "full"], default="roots")
-    parser.add_argument("--max-findings", type=int, default=20)
-    parser.add_argument("--custom-root", type=Path, help="项目本地私有扩展目录；默认自动发现当前目录 custom/")
-    args = parser.parse_args()
-    if args.require_review_workspace and args.profile not in {"prototype", "handoff", "full"}:
-        parser.error("--require-review-workspace requires a prototype, handoff or full profile")
-    explicit_prototype_handoff = args.profile == "prototype" and args.prd is not None
-    required = {
-        "requirement": ("requirement",),
-        "prd": ("prd",),
-        "prototype": ("prd", "prototype") if explicit_prototype_handoff else ("prototype",),
-        "handoff": ("prd", "prototype"),
-        "full": ("requirement", "prd", "prototype"),
-        "stage0": ("inventory",),
-        "agent_handoff": ("manifest",),
-    }[args.profile]
-    gate = Gate()
-    gate.review_runtime_evidence = args.review_runtime_evidence
-    gate.require_review_workspace = args.require_review_workspace
-    gate.metrics["review_workspace_required"] = args.require_review_workspace
+def collect_acceptance_claims(gate: Gate, paths: list[Path]) -> dict[str, dict[str, Any]]:
+    """Keep record identity, results and evidence context together at every consumer."""
+    claims, seen_ids, seen_paths = {}, {}, set()
+    for path in paths:
+        path = path.resolve()
+        if path in seen_paths:
+            continue
+        seen_paths.add(path)
+        if not path.is_file():
+            gate.add("BLOCK", "GATE-NOT-FILE", path, "input does not exist or is not a file", "acceptance-run")
+            continue
+        before = len(gate.findings)
+        _, browser, conclusive = gate.check_acceptance_run(path)
+        document = gate.acceptance_documents.get(path, {})
+        run_id = str(document.get("run_id", "")).upper()
+        if run_id in seen_ids:
+            claims.pop(run_id, None)
+            gate.add("BLOCK", "ACCEPTANCE-DUPLICATE-RUN", path,
+                     f"同一 ARUN 编号由多个文件声明：{seen_ids[run_id]} / {path}；核对真实记录并仅提供本次适用的一份，不能按输入顺序覆盖", run_id)
+            continue
+        if re.fullmatch(r"ARUN-[A-Z0-9-]+", run_id):
+            seen_ids[run_id] = path
+        if any(item.severity == "BLOCK" for item in gate.findings[before:]):
+            continue
+        outcomes = acceptance_results(document)
+        claims[run_id] = {
+            **outcomes, "path": path, "items": document["items"], "item_count": len(document["items"]),
+            "browser": browser, "integration": execution_environment(document)[1],
+            "conclusive": conclusive, "conclusion": document["conclusion"],
+            "baseline_version": str(document["baseline_version"]),
+        }
+    gate.metrics["acceptance_run_items"] = sum(item["item_count"] for item in claims.values())
+    gate.metrics["acceptance_run_evidenced_acs"] = len(summarize_acceptance_claims(list(claims.values()))["passed_acs"])
+    return claims
+
+
+def check_browser_coverage(gate: Gate, claims: dict[str, dict[str, Any]], level: str, fallback_baseline: str = "") -> bool:
+    """Coverage is per current prototype and AC; simulation or sign-off cannot fill it."""
+    complete = []
+    scopes = {}
+    occurrences = Counter()
+    for path, required_acs in gate.prototype_acceptance_by_path.items():
+        versions = {str(doc.get("baseline", {}).get("version", ""))
+                    for source, doc in gate.review_workspace_contracts if source.resolve() == path}
+        versions.discard("")
+        if len(versions) > 1:
+            complete.append(False)
+            if level in {"L3", "L4"}:
+                gate.add("GAP", "PROTO-BROWSER-EVIDENCE-INCOMPLETE", path, "当前原型存在多个基线声明，先核对适用版本", "baseline")
+            continue
+        expected = next(iter(versions), fallback_baseline)
+        scopes[path] = (expected, required_acs)
+        occurrences.update((expected, ac) for ac in required_acs)
+
+    for path, (expected, required_acs) in scopes.items():
+        applicable = [item for item in claims.values() if expected and item["baseline_version"] == expected]
+        passed = summarize_acceptance_claims(applicable)["browser_passed_acs"]
+        missing = required_acs - passed
+        # Legacy run items identify an AC and version, but carry no prototype path.
+        ambiguous = {ac for ac in required_acs & passed if occurrences[(expected, ac)] > 1}
+        complete.append(bool(required_acs) and bool(expected) and not missing and not ambiguous)
+        if ambiguous and level in {"L3", "L4"}:
+            gate.add("GAP", "PROTO-BROWSER-EVIDENCE-INCOMPLETE", path,
+                     "同版多个原型共用验收编号；现有记录无法按入口归属。核对各入口原始操作，也可分别提供该原型及对应运行记录单独检查。",
+                     ", ".join(sorted(ambiguous)))
+        if level in {"L3", "L4"} and (missing or not required_acs or not expected):
+            code = "PROTO-BROWSER-EVIDENCE-INCOMPLETE" if claims else "PROTO-BROWSER-EVIDENCE-MISSING"
+            gate.add("GAP", code, path,
+                     f"当前原型的浏览器执行证据未完整覆盖；基线={expected or '未声明'}。模拟、未执行项及其他基线不能补齐。已执行但未签署不等于未执行；验收接受另行判断。",
+                     ", ".join(sorted(missing)) or "AC mapping missing")
+    return bool(complete) and all(complete)
+
+
+def _run_checks(gate: Gate, args, required: tuple[str, ...], explicit_prototype_handoff: bool) -> None:
     prototype_level = "L2" if args.level == "auto" else args.level
     if args.prototype_baseline:
         if not args.prototype_baseline.is_file():
@@ -1417,6 +1504,11 @@ def main() -> int:
                 "prototype_baseline_blockers": sum(gate.prototype_baseline_signatures.values()),
                 "prototype_inherited_findings": 0,
             })
+    # A combined ready handoff uses the same declared work scope as its
+    # standalone checker. Do not let an unrelated open decision block it.
+    packet_scope = ()
+    if args.manifest and args.prd:
+        packet_scope = gate.ready_handoff_scope(args.manifest, args.prd)
     for name in required:
         value = getattr(args, name)
         values = value if name == "prototype" and isinstance(value, list) else [value]
@@ -1429,7 +1521,9 @@ def main() -> int:
             elif name == "requirement":
                 gate.check_requirement(item)
             elif name == "prd":
-                gate.check_prd(item, args.level, stage=args.stage, scope_refs=tuple(args.scope_ref))
+                gate.check_prd(item, args.level,
+                               stage="implementation" if packet_scope else args.stage,
+                               scope_refs=tuple(args.scope_ref) or packet_scope)
             elif name == "inventory":
                 gate.check_stage0(item)
             elif name == "manifest":
@@ -1483,54 +1577,8 @@ def main() -> int:
     if args.profile in {"handoff", "full"} and valid_prd and args.manifest and args.manifest.is_file():
         gate.check_manifest_prd_binding(valid_prd, args.manifest)
         gate.check_review_manifest_binding(args.manifest)
-    valid_acceptance_runs: list[Path] = []
-    acceptance_claims: dict[str, dict[str, Any]] = {}
-    evidenced_acs: set[str] = set()
-    browser_evidence = False
-    conclusive_evidence = False
-    for acceptance_run in args.acceptance_run or []:
-        if not acceptance_run.is_file():
-            gate.add("BLOCK", "GATE-NOT-FILE", acceptance_run, "input does not exist or is not a file", "acceptance-run")
-            continue
-        valid_acceptance_runs.append(acceptance_run)
-        passed, is_browser, is_conclusive = gate.check_acceptance_run(acceptance_run)
-        try:
-            run_document = yaml.safe_load(gate.read(acceptance_run)) or {}
-        except yaml.YAMLError:
-            run_document = {}
-        if isinstance(run_document, dict):
-            run_id = str(run_document.get("run_id", "")).upper()
-            if re.fullmatch(r"ARUN-[A-Z0-9-]+", run_id):
-                run_items = [item for item in run_document.get("items", []) or [] if isinstance(item, dict)]
-                environment = str(run_document.get("environment", "")).casefold()
-                acceptance_claims[run_id] = {
-                    "browser": is_browser,
-                    "integration": bool(
-                        re.search(r"\b(?:integration|sit|uat|staging)\b", environment)
-                        or any(marker in environment for marker in ("集成", "联调", "预发布"))
-                    ),
-                    "conclusive": is_conclusive,
-                    "baseline_version": str(run_document.get("baseline_version", "")),
-                    "covered_acs": {
-                        str(item.get("acceptance_ref", "")).upper()
-                        for item in run_items if str(item.get("acceptance_ref", "")).upper().startswith("AC-")
-                    },
-                    "passed_acs": set(passed),
-                    "failed_acs": {
-                        str(item.get("acceptance_ref", "")).upper()
-                        for item in run_items
-                        if item.get("result") in {"fail", "blocked"}
-                        and str(item.get("acceptance_ref", "")).upper().startswith("AC-")
-                    },
-                    "failed": str(run_document.get("conclusion", "")).casefold() == "rejected"
-                    or any(
-                        isinstance(item, dict) and item.get("result") in {"fail", "blocked"}
-                        for item in run_document.get("items", []) or []
-                    ),
-                }
-        evidenced_acs.update(passed)
-        browser_evidence = browser_evidence or is_browser
-        conclusive_evidence = conclusive_evidence or is_conclusive
+    acceptance_claims = collect_acceptance_claims(gate, args.acceptance_run or [])
+    conclusive_evidence = any(item["conclusive"] for item in acceptance_claims.values())
     for review_path, review_document in gate.review_workspace_contracts:
         expected_baseline_version = str((review_document.get("baseline") or {}).get("version", ""))
         if str(review_document.get("schema_version", "")) in {"5.4.7-final", "5.4.8"}:
@@ -1571,7 +1619,8 @@ def main() -> int:
                     str(item).upper() for item in point.get("acceptance_refs", []) or []
                     if str(item).upper().startswith("AC-")
                 }
-                covered_acs = set().union(*(item["covered_acs"] for item in resolved))
+                summary = summarize_acceptance_claims(resolved)
+                covered_acs = summary["covered_acs"]
                 if not required_acs or not required_acs <= covered_acs:
                     missing = required_acs - covered_acs
                     gate.add(
@@ -1582,9 +1631,9 @@ def main() -> int:
                     )
                     continue
                 supported_acs = (
-                    set().union(*(item["passed_acs"] for item in resolved))
+                    summary["passed_acs"]
                     if status == "passed" else
-                    set().union(*(item["failed_acs"] for item in resolved))
+                    summary["failed_acs"]
                 )
                 supported = required_acs <= supported_acs if status == "passed" else bool(required_acs & supported_acs)
                 if not supported:
@@ -1640,7 +1689,8 @@ def main() -> int:
                 )
                 and str(item.get("acceptance_ref", "")).upper().startswith("AC-")
             }
-            covered_acs = set().union(*(item["covered_acs"] for item in resolved))
+            summary = summarize_acceptance_claims(resolved)
+            covered_acs = summary["covered_acs"]
             if not required_acs or not required_acs <= covered_acs:
                 missing = required_acs - covered_acs
                 gate.add(
@@ -1651,13 +1701,13 @@ def main() -> int:
                 )
                 continue
             status_supported_acs = (
-                set().union(*(item["covered_acs"] for item in resolved if item["browser"]))
+                summary["browser_covered_acs"]
                 if status == "browser_checked" else
-                set().union(*(item["covered_acs"] for item in resolved if item["integration"]))
+                summary["integration_covered_acs"]
                 if status == "integration_checked" else
-                set().union(*(item["passed_acs"] for item in resolved if item["conclusive"]))
+                summary["accepted_acs"]
                 if status == "accepted" else
-                set().union(*(item["failed_acs"] for item in resolved))
+                summary["failed_acs"]
             )
             level_supported = (
                 bool(required_acs & status_supported_acs) if status == "failed"
@@ -1670,27 +1720,9 @@ def main() -> int:
                     f"{step_id}: {status}",
                     affected_consumers=("product", "frontend", "backend", "qa", "coding_agent"),
                 )
-    if valid_prototypes and prototype_level in {"L3", "L4"}:
-        if not valid_acceptance_runs:
-            gate.add(
-                "GAP", "PROTO-BROWSER-EVIDENCE-MISSING", valid_prototypes[0],
-                "L3/L4 原型只完成静态检查；未提供 ARUN-* 浏览器逐动作证据",
-                affected_consumers=("product", "ux", "frontend", "qa", "customer_acceptor"),
-            )
-        else:
-            missing_acs = sorted(gate.prototype_acceptance_refs - evidenced_acs)
-            if missing_acs:
-                gate.add(
-                    "GAP", "PROTO-BROWSER-EVIDENCE-INCOMPLETE", valid_acceptance_runs[0],
-                    f"浏览器验收缺少 {len(missing_acs)} 个原型 AC",
-                    ", ".join(missing_acs[:20]), related_refs=tuple(missing_acs[:100]),
-                )
-            if not browser_evidence:
-                gate.add("GAP", "PROTO-BROWSER-EVIDENCE-INCOMPLETE", valid_acceptance_runs[0], "ARUN environment 未声明真实浏览器/浏览器自动化环境", "environment")
-            if not conclusive_evidence:
-                gate.add("GAP", "PROTO-BROWSER-EVIDENCE-INCOMPLETE", valid_acceptance_runs[0], "ARUN 尚未形成 accepted/accepted_with_conditions 且有签署的结论", "conclusion/sign_offs")
-    gate.metrics["prototype_browser_evidence"] = bool(valid_acceptance_runs and browser_evidence and conclusive_evidence)
-    gate.metrics["acceptance_run_conclusive"] = bool(valid_acceptance_runs and conclusive_evidence)
+    fallback_baseline = str(gate._frontmatter(gate.read(valid_prd)).get("baseline_version", "")) if valid_prd else ""
+    gate.metrics["prototype_browser_evidence"] = check_browser_coverage(gate, acceptance_claims, prototype_level, fallback_baseline)
+    gate.metrics["acceptance_run_conclusive"] = conclusive_evidence
     custom_root = args.custom_root
     if custom_root is None and (Path.cwd() / "custom").is_dir():
         custom_root = Path.cwd() / "custom"
@@ -1703,7 +1735,72 @@ def main() -> int:
             "handoff": [args.manifest] if args.manifest and args.manifest.is_file() else [],
         }
         gate.check_custom_rules(custom_root, artifact_map, active_domains=tuple(args.domain))
-    retry_command = "python scripts/quality_gate.py " + subprocess.list2cmdline(sys.argv[1:])
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Lightweight, non-generative final quality gate")
+    parser.add_argument("--profile", choices=["requirement", "prd", "prototype", "handoff", "full", "stage0", "agent_handoff"], required=True)
+    parser.add_argument("--requirement", type=Path, help="requirement register YAML")
+    parser.add_argument("--register", type=Path, action="append", help="profile=requirement 的侧车需求登记册；提供时执行登记册语义校验")
+    parser.add_argument("--review-record", type=Path, help="profile=prd baseline 阶段可选评审记录 YAML；提供时执行签署闭合校验")
+    parser.add_argument("--prd", type=Path, help="unified PRD Markdown")
+    parser.add_argument("--prototype", type=Path, action="append", help="HTML prototype; repeat for admin/H5/multi-surface handoff")
+    parser.add_argument("--prototype-baseline", type=Path, help="Optional previous HTML baseline; inherited prototype blockers become gaps, new regressions still block")
+    parser.add_argument("--review-runtime-evidence", type=Path, help="当前 HTML 指纹绑定的实际浏览器评审观察 JSON；不替代业务验收")
+    parser.add_argument("--require-review-workspace", action="store_true", help="Require the requested review workspace contract, even when the HTML omits review declarations")
+    parser.add_argument("--inventory", type=Path, help="Stage 0 brownfield inventory YAML")
+    parser.add_argument("--manifest", type=Path, help="Agent handoff manifest YAML")
+    parser.add_argument("--acceptance-run", type=Path, action="append", help="Executed ARUN-* YAML; repeat when prototype AC evidence is split")
+    parser.add_argument("--level", choices=["auto", *LEVELS], default="auto")
+    parser.add_argument("--stage", choices=list(STAGE_ORDER), default="baseline")
+    parser.add_argument("--scope-ref", action="append", default=[], help="Limit stage/P0 evaluation to one stable-ID scope; repeat as needed")
+    parser.add_argument("--domain", action="append", default=[], help="当前工件适用的领域 ID；用于隔离 custom 规则，可重复")
+    parser.add_argument("--format", choices=["concise", "json"], default="concise")
+    parser.add_argument("--language", choices=["auto", "zh-CN", "en-US"], default="auto", help="Human-readable gate diagnostics; auto reads document_language or HTML lang")
+    parser.add_argument("--diagnostics", choices=["first", "roots", "summary", "full"], default="roots")
+    parser.add_argument("--max-findings", type=int, default=20)
+    parser.add_argument("--custom-root", type=Path, help="项目本地私有扩展目录；默认自动发现当前目录 custom/")
+    args = parser.parse_args()
+    if args.require_review_workspace and args.profile not in {"prototype", "handoff", "full"}:
+        parser.error("--require-review-workspace requires a prototype, handoff or full profile")
+    explicit_prototype_handoff = args.profile == "prototype" and args.prd is not None
+    required = {
+        "requirement": ("requirement",),
+        "prd": ("prd",),
+        "prototype": ("prd", "prototype") if explicit_prototype_handoff else ("prototype",),
+        "handoff": ("prd", "prototype"),
+        "full": ("requirement", "prd", "prototype"),
+        "stage0": ("inventory",),
+        "agent_handoff": ("manifest",),
+    }[args.profile]
+    gate = Gate()
+    gate.review_runtime_evidence = args.review_runtime_evidence
+    gate.require_review_workspace = args.require_review_workspace
+    gate.metrics["review_workspace_required"] = args.require_review_workspace
+    # Reject unreadable text inputs before interpreting any business content.
+    # Inspect each supplied file so one bad input does not hide another one.
+    for name, value in vars(args).items():
+        if name == "custom_root":
+            continue
+        for entry in value if isinstance(value, list) else [value]:
+            if isinstance(entry, Path) and entry.is_file():
+                try:
+                    gate.read(entry)
+                except InputReadError:
+                    pass
+    if not gate._input_errors:
+        try:
+            _run_checks(gate, args, required, explicit_prototype_handoff)
+        except InputReadError:
+            # Nested text dependencies also record their own structured diagnosis.
+            # Stop the dependent checks; never continue with invented empty input.
+            pass
+    path_values = {}
+    for value in vars(args).values():
+        for entry in value if isinstance(value, list) else [value]:
+            if isinstance(entry, Path):
+                path_values[str(entry)] = str(entry.resolve())
+    retry_command = shell_command([sys.executable, Path(__file__).resolve(), *[path_values.get(arg, arg) for arg in sys.argv[1:]]])
     output_language = resolve_output_language(gate, args.language)
     payload = result_payload(gate, args.profile, retry_command, output_language)
     if args.format == "json":
@@ -1725,7 +1822,6 @@ def main() -> int:
                   f": open={counts['open']} P0={counts['declared_open_p0']} blocking_now={counts['blocking_now']} " +
                   f"priority_unspecified={counts['open_priority_unspecified']} status_unresolved={counts['status_unresolved']}")
             print("p0_unknowns " + ("above counts legacy finding severity; it is not the count of open P0 decisions." if english else "仅为旧版诊断级别计数，不是未关闭 P0 决定数。"))
-        print("NOT_PROVEN: " + ("; " if english else "；").join(payload["not_proven"]))
         labels = ("Cause", "Fix", "Example") if english else ("原因", "修复", "示例")
         actionable_findings = [item for item in gate.findings if item.severity != "INFO"]
         information_findings = [item for item in gate.findings if item.severity == "INFO"]
@@ -1735,6 +1831,7 @@ def main() -> int:
                 ref = f" [{item.ref}]" if item.ref else ""
                 localized = localized_finding(item, output_language)
                 print(f"{item.severity} {item.code} x{count}{ref}: {localized['message']}")
+                print(f"  FILE: {item.artifact}")
                 print(f"  {labels[0]}: {localized['cause']}")
                 print(f"  {labels[1]}: {localized['how_to_fix']}")
                 print(f"  {labels[2]}: {localized['repair_example']}")
@@ -1752,6 +1849,7 @@ def main() -> int:
                 ref = f" [{item.ref}]" if item.ref else ""
                 localized = localized_finding(item, output_language)
                 print(f"{item.severity} {item.code}{ref}: {localized['message']}")
+                print(f"  FILE: {item.artifact}")
                 print(f"  {labels[0]}: {localized['cause']}")
                 print(f"  {labels[1]}: {localized['how_to_fix']}")
                 print(f"  {labels[2]}: {localized['repair_example']}")
@@ -1766,6 +1864,7 @@ def main() -> int:
             print(f"... {len(information_findings) - 5} additional INFO records; rerun with --format json")
         if actionable_findings:
             print(f"RETRY: {payload['retry_command']}")
+        print("NOT_PROVEN: " + ("; " if english else "；").join(payload["not_proven"]))
     return int(payload["exit_code"])
 
 

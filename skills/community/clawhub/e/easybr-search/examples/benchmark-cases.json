@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {"name":"chinese-ai-news","options":{"queries":["2026年10月26日 AI 新闻"],"platforms":["baidu","google"],"limit":4,"read":2,"timeoutMs":18000,"concurrency":3}},
+    {"name":"manim-quickstart","options":{"queries":["Manim Community quickstart"],"platforms":["baidu","google"],"limit":4,"read":2,"timeoutMs":18000,"concurrency":3}},
+    {"name":"langgraph-durable","options":{"queries":["LangGraph durable execution documentation"],"platforms":["baidu","google"],"limit":4,"read":2,"timeoutMs":18000,"concurrency":3}},
+    {"name":"ai-manim-social","options":{"queries":["AI Manim 入门"],"platforms":["bilibili","csdn"],"limit":4,"read":2,"timeoutMs":18000,"concurrency":3}},
+    {"name":"douyin-boundary","options":{"queries":["AI动画"],"platforms":["douyin"],"limit":3,"read":0,"timeoutMs":6000,"concurrency":3}}
+  ]
+}

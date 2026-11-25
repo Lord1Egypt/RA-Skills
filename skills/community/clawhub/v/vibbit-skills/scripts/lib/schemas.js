@@ -2,8 +2,10 @@
 
 const { commands, models } = require('./registry')
 const { publicUrl } = require('./media')
-const { validateTranslation, validateEdit, validateConfirm, long } = require('./translation')
+const { validateTranslation, validateEdit, validateConfirm, validateSpeakerVoices, validateRetrySegments, validateResynthesis, long } = require('./translation')
 const { validateProducts } = require('./products')
+const { validateImport } = require('./material-import')
+const { validateMaterials } = require('./materials')
 const object = x => x !== null && typeof x === 'object' && !Array.isArray(x)
 const assert = (condition, message) => { if (!condition) throw new Error(message) }
 
@@ -32,13 +34,19 @@ function validate(name, input) {
     else if (type === 'number') assert(typeof value === 'number' && Number.isFinite(value), `${key} must be a finite number`)
     else if (type === 'boolean') assert(typeof value === 'boolean', `${key} must be boolean`)
     else if (type === 'object') assert(object(value), `${key} must be an object`)
+    else if (type === 'nullable_object') assert(value === null || object(value), `${key} must be an object or null`)
     else if (type === 'objects') assert(Array.isArray(value) && value.every(object), `${key} must be an object array`)
+    else if (type === 'string_array') assert(Array.isArray(value) && value.every(v => typeof v === 'string'), `${key} must be a string array`)
     else if (type === 'strings') assert(Array.isArray(value) && value.length > 0 && value.every(v => typeof v === 'string' && v.trim()), `${key} must be a nonempty string array`)
   }
   if (name === 'gen_image') assert(spec.models.includes(input.model), 'Unsupported image model; choose gpt-image-2, gpt-image-2.5-flare or gpt-image-2.5-sunburst')
   if (name === 'translate_video') validateTranslation(input)
   if (name === 'update_translation') validateEdit(input)
   if (name === 'confirm_translation') validateConfirm(input)
+  if (name === 'update_speaker_voices') validateSpeakerVoices(input)
+  if (name === 'retry_segments') validateRetrySegments(input)
+  if (name === 'resynthesize_language') validateResynthesis(input)
+  if (name === 'get_template') long(input.template_id, 'template_id')
   if (name === 'breakdown') {
     assert(input.sub_tasks.every(v => ['asr', 'hot', 'transition', 'bgm'].includes(v)), 'Supported public sub_tasks: asr, hot, transition, bgm')
     assert(new Set(input.sub_tasks).size === input.sub_tasks.length, 'sub_tasks contains duplicates')
@@ -46,10 +54,13 @@ function validate(name, input) {
   if (name === 'seedance') validateSeedance(input)
   if (name === 'generate_audio') validateAudio(input)
   if (spec.result_kind === 'product') validateProducts(name, input)
+  if (spec.result_kind === 'material_import') validateImport(name, input)
+  if (spec.result_kind === 'material') validateMaterials(name, input)
   return { spec, input, warnings: [
     ...(spec.note ? [spec.note] : []),
     ...(spec.validation === 'example_fields_only' ? ['Local checks cover the listed field types only; inspect the service response and actual output before reporting completion.'] : []),
     ...(name === 'seedance' ? ['URL syntax and reference counts are validated. Remote reachability, redirects, codec, dimensions, file size and duration are not probed.'] : []),
+    ...(name === 'translate_video' && input.default_voice ? ['Explicit voice replacement: default_voice applies to ALL videos and target languages in this batch. Every speaker without a dedicated binding uses this one voice. Explain the scope before submission; do not infer permission to replace voices from speaker detection.'] : []),
   ] }
 }
 

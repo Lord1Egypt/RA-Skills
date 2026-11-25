@@ -1,9 +1,9 @@
 ---
 name: godot-vr
 description: "Build & headless-verify Godot 4.7 OpenXR/VR apps — room-scale workflow, Pimax Crystal tested in-visor, controller-binding pitfalls covered."
-version: 1.0.3
+version: 1.0.4
 author: Maxwell McClure
-license: MIT
+license: MIT-0
 metadata:
   hermes:
     tags: [godot, godot-4, openxr, vr, pimax, room-scale, headless]
@@ -40,7 +40,7 @@ running project verified by execution — not a description. (Sibling of
 - **OpenXR + `--headless` stalls in the main loop, AFTER `_ready`** — scene load and every `_ready` run and print normally, then the engine enters the main loop, detects the HMD, and hangs to timeout (no display/form factor). So a short-timeout headless run IS a valid no-headset check that a code edit landed: `timeout 20 <bin> --headless --path <proj> 2>&1 | grep -iE "Parse Error|SCRIPT ERROR|not found in base|ready"` surfaces scene-load parse errors and your `_ready` prints (e.g. `[LeftHand] ready (tracker=… pose=…)`) before the stall — use it to confirm a change took effect (and it is the only reliable way to catch native-method parse errors, since `--import` does not parse scene scripts against the native API). Use a full run with **OpenXR OFF** for real 0-error / self-test verification, then re-enable OpenXR for delivery. Do not chase a ticking "headless VR" main loop — it won't run past session start without a display.
 - **`--headless` never renders.** Any visual check must run NON-headless (marker arg) so a window opens and GPU draws; the scene saves its own PNG.
 - **Godot 4.7 renamed/changed several 3.x-era APIs** — the "obvious" form throws parse/runtime errors. Check `references/godot-47-api.md` before writing render/particles/physics/XR code; it lists the working forms and the errors they prevent.
-- **`write_file` refuses overwrite even after a full read.** `rm -f` the target first, then write to the fresh path (same workaround works for re-writing scene `.tscn`/`.gd`).
+- **`write_file` refuses overwrite even after a full read.** Back up the target to scratch first (it is user-authored content and the replacement write can fail or be interrupted — restore from the backup if it does), then `rm -f` the original and write to the fresh path (same workaround works for re-writing scene `.tscn`/`.gd`).
 - **Don't trust import alone.** Run the project headless after import — most errors here were *runtime* (wrong API shape), which `--import` does not surface.
 - **Headless-verify passing ≠ controllers work.** A clean headless run + screenshot proves the scene runs and renders; it can't see the visor, so it says nothing about whether controllers track in it. When the user reports "no hands / can't interact," go straight to `references/xr-controller-troubleshooting.md` — do not re-tune the scene or chase a headless VR run.
 - **"No hands" on Pimax Crystal is the binding layer (case A), NOT the runtime.** Verified in-visor: with the case A fixes in place, the same project works on **both** Pimax OpenXR 0.1.0 (Pimax Play built-in) and PimaxXR (Unofficial) 0.4.4. The case A fixes: (1) `XRController3D.tracker` must be set explicitly to `"left_hand"`/`"right_hand"` (no auto-detect — empty never binds), and (2) the OpenXR action map must be trimmed to only the profiles the runtime recognizes — for Crystal keep **only** `oculus/touch_controller`, drop the other three stock profiles (generic, pico4, hand) and every `grip_surface/pose` (OpenXR 1.1 palm-pose) binding. One unsupported path fails the whole `xrSuggestInteractionProfileBindings` call (`XR_ERROR_PATH_UNSUPPORTED`) → no controller binds, on **any** runtime. No `openxr/default_action_map` pin needed — the engine default is already `res://openxr_action_map.tres` (probe-verified); just keep the edited file at that path. (Early "no hands" on PiOpenXR/SteamVR predated the binding fix; the runtime switch that once seemed to fix it was coincidental. SteamVR was never re-tested after the fix — unverified.)

@@ -4,6 +4,12 @@
     "protocol": "tcp",
     "command": "node",
     "comment": "OpenClaw gateway (example). Remove if not applicable."
+  },
+  {
+    "port": 443,
+    "protocol": "tcp",
+    "command": "nginx",
+    "allow_public": true,
+    "comment": "Example of a service that is meant to listen on every interface."
   }
 ]
-

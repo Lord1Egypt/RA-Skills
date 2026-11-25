@@ -1,0 +1,9 @@
+{
+  "runtime": "mock",
+  "accountAlias": "fixture-tech-competitors",
+  "accountUrl": "https://www.douyin.com/user/fixture",
+  "keywords": ["AI工具"],
+  "sampleLimit": 8,
+  "audience": "希望提高效率的上班族",
+  "niche": "AI工具实测"
+}

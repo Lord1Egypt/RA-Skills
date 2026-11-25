@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Designed Resume</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #5d667a;
+      --line: #d9dee8;
+      --accent: #2563eb;
+      --paper: #ffffff;
+      --soft: #f4f7fb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #e9edf4;
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.45;
+    }
+
+    .resume {
+      width: min(100%, 8.5in);
+      min-height: 11in;
+      margin: 0 auto;
+      background: var(--paper);
+      display: grid;
+      grid-template-columns: 2.25in 1fr;
+    }
+
+    .sidebar {
+      background: var(--soft);
+      padding: 0.42in 0.32in;
+      border-right: 1px solid var(--line);
+    }
+
+    .main {
+      padding: 0.42in 0.45in;
+    }
+
+    .photo {
+      width: 1.35in;
+      height: 1.35in;
+      border-radius: 999px;
+      border: 3px solid #ffffff;
+      outline: 1px solid var(--line);
+      object-fit: cover;
+      display: block;
+      margin-bottom: 0.22in;
+      background: #dfe5ee;
+    }
+
+    h1 {
+      font-size: 30px;
+      line-height: 1.05;
+      margin: 0 0 0.08in;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      color: var(--accent);
+      font-size: 13px;
+      margin: 0.24in 0 0.08in;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 0.04in;
+    }
+
+    h3 {
+      font-size: 14px;
+      margin: 0.16in 0 0.03in;
+    }
+
+    p {
+      margin: 0 0 0.08in;
+    }
+
+    ul {
+      margin: 0.05in 0 0.12in;
+      padding-left: 0.18in;
+    }
+
+    li {
+      margin-bottom: 0.05in;
+    }
+
+    .role-meta,
+    .contact,
+    .small {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.05in;
+      margin-top: 0.06in;
+    }
+
+    .tag {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 0.03in 0.06in;
+      background: #ffffff;
+      font-size: 10.5px;
+    }
+
+    @page {
+      size: Letter;
+      margin: 0;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+      }
+
+      .resume {
+        width: 8.5in;
+        margin: 0;
+        box-shadow: none;
+      }
+
+      header,
+      section,
+      .sidebar {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      h1,
+      h2,
+      h3 {
+        break-after: avoid;
+        page-break-after: avoid;
+      }
+
+      ul,
+      p {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Copy this HTML into a browser for PDF export, or use the structure as a source for Canva, Figma, Google Docs, or Word. Replace PROFILE_PHOTO_PATH only when the user provides a profile picture and approves using it. -->
+  <article class="resume">
+    <aside class="sidebar">
+      <!-- Insert this profile photo block only when the user provides and approves a local image path.
+      <img class="photo" src="PROFILE_PHOTO_PATH" alt="Profile photo">
+      -->
+      <section>
+        <h2>Contact</h2>
+        <p class="contact">Name<br>Email<br>Phone<br>Location<br>LinkedIn<br>GitHub</p>
+      </section>
+      <section>
+        <h2>Core Skills</h2>
+        <div class="tag-list">
+          <span class="tag">Skill</span>
+          <span class="tag">Skill</span>
+          <span class="tag">Skill</span>
+        </div>
+      </section>
+      <section>
+        <h2>Education</h2>
+        <p class="small">Degree, School</p>
+      </section>
+    </aside>
+    <main class="main">
+      <header>
+        <h1>Candidate Name</h1>
+        <p class="role-meta">Target Role | Domain | Years of Experience</p>
+      </header>
+      <section>
+        <h2>Summary</h2>
+        <p>Evidence-backed professional summary.</p>
+      </section>
+      <section>
+        <h2>Experience</h2>
+        <h3>Company | Title</h3>
+        <p class="role-meta">Dates</p>
+        <ul>
+          <li>Polished, sanitized impact bullet.</li>
+          <li>Polished, sanitized impact bullet.</li>
+          <li>Polished, sanitized impact bullet.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Selected Projects</h2>
+        <h3>Project Name</h3>
+        <ul>
+          <li>Evidence-backed project bullet.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Open Source</h2>
+        <ul>
+          <li>Public contribution bullet.</li>
+        </ul>
+      </section>
+    </main>
+  </article>
+</body>
+</html>

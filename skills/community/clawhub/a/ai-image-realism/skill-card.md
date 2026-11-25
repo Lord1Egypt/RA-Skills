@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users use the skill to repair visible AI-image artifacts in an existing portrait, product image, or marketing visual while preserving named identity, branding, product shape, and composition where possible.
+External users and creative professionals use an agent to diagnose and repair visible AI-generated image artifacts in existing portraits, product images, marketing visuals, and social covers while preserving named identity, branding, and composition details.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The shared account authorization includes access to media and voice tools beyond image editing, along with spending access.
+Risk: The release is marked suspicious with high confidence because the scanners report broad account permissions and persistent shared credentials beyond the stated image-retouching purpose.
 
-Mitigation: Review the full authorization before connecting, confirm each paid operation, and revoke device access in the Beatra Console if needed.
+Mitigation: Review the requested account permissions and shared-credential behavior carefully; avoid installation unless you are comfortable granting that access and sharing a persistent credential across packages.
 
-Risk: Images selected for editing are sent to Beatra, and installation reporting runs automatically.
+Risk: The security scan was partial because some local references in SKILL.md could not be resolved, leaving evidence about those referenced capabilities incomplete.
 
-Mitigation: Upload only the image approved for the task and account for the automatic installation report when deciding whether to connect.
+Mitigation: Review the unresolved referenced capabilities before installation or granting account access.
 
 ## Reference(s):
 
-- [ClawHub skill listing](https://clawhub.ai/beatra-ai/skills/ai-image-realism)
 - [Beatra skill page](https://beatra.ai/skills/ai-image-realism)
+- [Diagnosis and routing](references/diagnosis-and-routing.md)
 - [Repair recipes](references/repair-recipes.md)
+- [Review and recovery](references/review-and-recovery.md)
+- [Tasks and results](references/tasks-and-results.md)
+- [Billing, errors, and recovery](references/billing-errors-and-recovery.md)
 - [Installation and authentication](references/installation-and-auth.md)
+- [MCP connection diagnostics](references/mcp-connection.md)
 - [Updates and security](references/updates-and-security.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Image files, Text]
+**Output Type(s):** [Image files, Guidance, Task status and billing details]
 
-**Output Format:** [Edited image artifact(s) with a concise result summary]
+**Output Format:** [Edited image files or artifact links with a concise Markdown summary]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Usually one image per paid pass; the agent reports dimensions, final charge, task status, and any visible changes to details the user asked to preserve.]
+**Other Properties Related to Output:** [Usually one output per request; edits preserve the source aspect ratio unless the user requests a change.]
 
 ## Skill Version(s):
 
-0.3.7 (source: server release evidence)
+0.3.8 (source: manifest.json, server release evidence)
 
 ## Ethical Considerations:
 

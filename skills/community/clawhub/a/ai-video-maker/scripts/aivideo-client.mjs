@@ -10,7 +10,7 @@ const DEFAULTS = {
   minBackoffMs: 800,
   maxBackoffMs: 8000,
   source: "agent_skill",
-  skillVersion: "2.1.0",
+  skillVersion: "2.1.4",
   agentPlatform: process.env.AIVIDEO_AGENT_PLATFORM || "unknown",
 };
 

@@ -1,40 +1,53 @@
-## Description: <br>
-Austrian rail travel planner (ÖBB Scotty) for planning rail journeys, checking station departures and arrivals, and reviewing service disruptions across ÖBB trains, S-Bahn, regional trains, and neighboring-country connections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scotty - AT Public Transport Service (ÖBB) helps agents plan Austrian rail journeys, check station arrivals and departures, and retrieve service disruptions for ÖBB, S-Bahn, regional trains, and supported cross-border connections.
 
-## Publisher: <br>
-[manmal](https://clawhub.ai/user/manmal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[manmal](https://clawhub.ai/user/manmal)
 
-## Use Case: <br>
-External users, developers, and travel-support agents use this skill to query ÖBB Scotty for station lookup, journey planning, station boards, and current public-transport disruptions in Austria and nearby cross-border routes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Station names, trip dates, times, and route queries are sent to the ÖBB Scotty API. <br>
-Mitigation: Use normal public-transport inputs and avoid submitting sensitive personal itinerary details. <br>
-Risk: The helper scripts depend on local bash, curl, and jq execution. <br>
-Mitigation: Install these tools from trusted system packages and review commands before running them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ÖBB Scotty HAFAS mgate API endpoint](https://fahrplan.oebb.at/bin/mgate.exe) <br>
-- [ClawHub release page](https://clawhub.ai/manmal/oebb-scotty) <br>
+## Use Case:
 
+External users and developers use this skill to answer Austrian public transport planning questions with shell helpers for station search, journey planning, station arrivals/departures, and service disruptions.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bash, curl, and jq to return station matches, trip summaries, station-board results, and disruption records.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Austria and supported neighboring-country connections
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Travel searches are sent to ÖBB, so station names, dates, times, and route queries may be shared with the external timetable service.
+
+Mitigation: Treat trip-planning inputs as data disclosed to ÖBB and avoid submitting sensitive travel patterns unless that disclosure is acceptable.
+
+Risk: The shell helpers construct JSON request bodies from user-provided station, date, time, and count strings.
+
+Mitigation: Avoid untrusted or unusual inputs until the scripts build JSON with jq and validate numeric, date, and time parameters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/manmal/skills/oebb-scotty)
+- [ÖBB Scotty HAFAS endpoint](https://fahrplan.oebb.at/bin/mgate.exe)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with bash examples and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; timetable, station, and disruption queries are sent to the ÖBB Scotty HAFAS endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

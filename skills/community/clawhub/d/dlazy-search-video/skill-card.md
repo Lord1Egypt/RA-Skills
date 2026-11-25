@@ -1,6 +1,6 @@
 ## Description:
 
-Video search tool: queries Pixabay video API by keywords and returns stock video URLs and metadata for footage sourcing.
+Video search tool: queries the Pixabay video API by keywords and returns stock video URLs and metadata for footage sourcing.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers can search for stock video footage by keyword, narrow results by type, category, or duration, and use the returned URLs and metadata in their projects.
+External users and developers use this skill to search Pixabay stock footage by keyword and retrieve video URLs and metadata for footage sourcing.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan was partial and did not establish the dLazy CLI's authentication behavior or confirm how it supports video search; it also flagged authentication and CLI guidance that does not clearly match the stated purpose.
+Risk: The security review noted a mismatch between the video-search purpose and the documented CLI login and authentication commands; using those commands can change local authentication configuration.
 
-Mitigation: Review and trust the dLazy CLI and its authentication flow before installing. Confirm the command and options against trusted package documentation, and keep API keys private and revocable.
+Mitigation: Review the CLI behavior before installation, run authentication commands only when you intend to configure an account, and keep API keys out of prompts and logs.
 
 ## Reference(s):
 
-- [dLazy CLI project homepage](https://github.com/dlazy-ai/cli)
-- [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-search-video)
+- [dLazy CLI project page](https://github.com/dlazy-ai/cli)
+- [dLazy CLI on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy website](https://dlazy.com)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Video URLs, Video metadata]
+**Output Type(s):** [JSON, Text]
 
-**Output Format:** [JSON returned by the CLI]
+**Output Format:** [JSON containing stock video URLs and metadata]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Supports result filtering and pagination; an optional flag can download a result asset to a local path.]
+**Other Properties Related to Output:** [Search results for video footage, returned through the dLazy CLI.]
 
 ## Skill Version(s):
 
-1.3.42 (source: server-resolved ClawHub release)
+1.3.45 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

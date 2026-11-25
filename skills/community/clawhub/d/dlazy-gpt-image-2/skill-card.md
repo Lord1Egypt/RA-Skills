@@ -1,6 +1,6 @@
 ## Description:
 
-GPT Image 2 model for text-to-image and image editing. Supports generating images from text as well as editing and synthesizing images with reference inputs.
+GPT Image 2 model for text-to-image and image editing, including image synthesis and editing with reference inputs.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and creators use this skill to generate images from text prompts or edit and synthesize images with reference inputs through dLazy's hosted service.
+Developers and agents use this skill to generate images from text prompts or edit and synthesize images using reference images through dLazy's hosted GPT Image 2 service.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment reports an unexplained CLI login step and incomplete scan coverage because some local references could not be resolved.
+Risk: The security review had medium confidence and could not verify the external CLI's authentication, prompt, or media handling; prompts and local reference images are sent to dLazy's hosted service.
 
-Mitigation: Before installing, verify what the CLI login authorizes and that it is for the intended image service; review the CLI and service behavior before sending prompts or reference images.
+Mitigation: Review the CLI's authentication and data handling before use, and only submit prompts and images you are comfortable sending to the service. Use a dedicated API key and rotate or revoke it if needed.
 
 ## Reference(s):
 
-- [dLazy](https://dlazy.com)
-- [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [ClawHub release](https://clawhub.ai/dlazyai/skills/dlazy-gpt-image-2)
+- [dLazy CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy service](https://dlazy.com)
+- [CLI repository listed in skill metadata](https://github.com/dlazy-ai/cli)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, API Calls, JSON]
+**Output Type(s):** [Images, JSON, Text]
 
-**Output Format:** [Image files (JPEG, PNG, or WebP) with JSON result metadata and hosted output URLs]
+**Output Format:** [Generated image files or hosted image URLs, with a JSON response envelope]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Can return an asynchronous task identifier; generated images can be saved to a local path.]
+**Other Properties Related to Output:** [Supports text prompts and up to five reference images; asynchronous mode can return a task identifier before results are ready.]
 
 ## Skill Version(s):
 
-1.3.42 (source: server-resolved release evidence)
+1.3.45 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

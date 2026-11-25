@@ -1,6 +1,6 @@
 ## Description:
 
-Diagnoses whether a small-scale result is likely to hold when scaled by testing it against false positives, population mismatch, situation mismatch, spillovers, and supply-side cost traps before committing to expansion.
+Diagnoses whether an early result will hold at scale by testing it against five common causes of lost impact.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Business operators, founders, investors, and strategy teams use this skill to pressure-test pilots, beta wins, single-market launches, franchise plans, and other scale decisions before investing in rollout.
+Founders, operators, and decision makers use the skill to assess whether a successful pilot, beta, or first-market result is likely to survive expansion. It guides a structured review of result reliability, population and setting fit, scale effects, and marginal costs before committing to growth.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill can produce overconfident scale guidance if the user cannot state the pilot's effect size, sample size, and selection method.
+Risk: Two references in the skill source did not resolve to bundled artifacts, leaving related behavior incompletely assessed.
 
-Mitigation: Apply the artifact's stop rule: stop at the false-positive vital sign, name the missing data, and require a confirmatory test before scale advice.
-
-Risk: The skill shapes an agent toward a skeptical scale-readiness framework that may reject expansion until all five vital signs are addressed.
-
-Mitigation: Use it for scale decisions where that posture is intended, and document which vital sign drives any recommendation to de-risk first or not scale.
+Mitigation: Check the missing referenced material and review the related guidance before relying on it for a scale decision.
 
 ## Reference(s):
 
-- [ClawHub Skill Page](https://clawhub.ai/deciqai/skills/voltage-effect)
-- [Voltage Effect Sources](references/sources.md)
-- [The Voltage Effect](https://www.penguinrandomhouse.com/books/652077/the-voltage-effect-by-john-a-list/)
-- [What Can We Learn from Experiments?](https://www.aeaweb.org/articles?id=10.1257/aer.p20171115)
+- [The Voltage Effect — John A. List](https://www.penguinrandomhouse.com/books/652077/the-voltage-effect-by-john-a-list/)
+- [What Can We Learn from Experiments? Understanding the Threats to the Scalability of Experimental Results](https://www.aeaweb.org/articles?id=10.1257/aer.p20171115)
 - [Why Economists Should Conduct Field Experiments and 14 Tips for Pulling One Off](https://www.aeaweb.org/articles?id=10.1257/jep.25.3.3)
-- [Voltage Effect Machine-Readable Metadata](https://www.deciqai.com/s/voltage-effect.json)
+- [Primary sources and case-study notes](artifact/references/sources.md)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, guidance]
+**Output Type(s):** [Analysis, Guidance, Markdown]
 
-**Output Format:** [Markdown diagnosis with a structured vital-sign checklist, weakest-link assessment, de-risking test, and scale verdict.]
+**Output Format:** [Markdown with a structured five-vital-sign diagnosis and scale verdict]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May pause for user input in coach mode before completing the diagnosis.]
+**Other Properties Related to Output:** [Case-specific analysis; pauses at the first vital sign when essential pilot data is unavailable.]
 
 ## Skill Version(s):
 
-1.0.2 (source: server release evidence)
+1.0.3 (source: server-resolved release)
 
 ## Ethical Considerations:
 

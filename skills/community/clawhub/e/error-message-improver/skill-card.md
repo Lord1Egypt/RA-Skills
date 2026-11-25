@@ -1,6 +1,6 @@
 ## Description:
 
-Helps developers and support teams turn vague error messages into clear explanations of what failed and what users can do next.
+Helps developers and support teams turn unclear error messages into clearer explanations of what failed, why it failed, and what to do next.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Application developers, support teams, SaaS operators, and users can use this skill to clarify an error, identify useful next steps, and produce a practical workflow, checklist, analysis, or implementation artifact.
+Application developers, support teams, SaaS operators, and affected users can use the skill to clarify an error-message problem and produce a practical workflow, checklist, analysis, or implementation artifact.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Broad activation wording could cause the skill to be invoked for unrelated support or debugging requests.
+Risk: Broad activation topics may bring the skill up for unrelated support, productivity, or feedback requests.
 
-Mitigation: Check that a request concerns error messages, debugging, support, or related troubleshooting before relying on the skill's workflow.
+Mitigation: Use it when the request concerns error messages, or specify the exact deliverable needed to keep the response focused.
 
 ## Reference(s):
 
-- [Requirement Plan](artifact/references/requirement-plan.md)
-- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/skills/error-message-improver)
+- [Requirement Plan](references/requirement-plan.md)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
 
-**Output Format:** [Text or Markdown, with code or configuration when requested]
+**Output Format:** [Text or Markdown, with code or configuration snippets when relevant]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Tailored to the user's request; may include a reusable checklist or workflow.]
+**Other Properties Related to Output:** [Tailored to the user's requested workflow, artifact, analysis, or implementation support]
 
 ## Skill Version(s):
 
-0.20261116.40742 (source: server release evidence)
+0.20261119.61237 (source: server-resolved ClawHub release)
 
 ## Ethical Considerations:
 

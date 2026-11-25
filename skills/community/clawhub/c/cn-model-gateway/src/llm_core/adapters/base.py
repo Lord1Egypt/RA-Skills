@@ -59,16 +59,30 @@ class BaseAdapter(abc.ABC):
         msgs = [ChatMessage(role="user", content=prompt, image=image)]
         return self.chat(msgs, model=model, **kwargs)
 
-    # --- Function Calling / Tool Use ---
+    # --- Function Calling / Tool Use (v2.1.0: normalized to OpenAI style) ---
+
+    # Subclasses may override these to declare their wire-format dialect.
+    # Dialects: "openai" (default) | "function_call" (legacy single-call field)
+    tool_format: str = "openai"
 
     def format_tools(self, tools: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        """Format tool definitions into provider-specific format."""
-        formatted = []
-        for tool in tools:
+        """v2.1.0: normalize tool definitions to OpenAI style.
+
+        Accepts either already-normalized OpenAI tool dicts
+        (``{"type":"function","function":{...}}``) or the compact form
+        (``{"name":...,"description":...,"parameters":...}``). Output is always
+        the OpenAI style so every adapter shares ONE wire-format contract.
+        """
+        formatted: List[Dict[str, Any]] = []
+        for tool in tools or []:
+            # Already OpenAI-style → pass through (idempotent).
+            if tool.get("type") == "function" and isinstance(tool.get("function"), dict):
+                formatted.append(tool)
+                continue
             formatted.append({
                 "type": "function",
                 "function": {
-                    "name": tool["name"],
+                    "name": tool.get("name", ""),
                     "description": tool.get("description", ""),
                     "parameters": tool.get("parameters", {"type": "object", "properties": {}}),
                 },
@@ -76,24 +90,84 @@ class BaseAdapter(abc.ABC):
         return formatted
 
     def parse_tool_calls(self, raw: Dict[str, Any]) -> List[Any]:
-        """Parse tool calls from provider response."""
+        """v2.1.0: parse tool calls from any vendor response into unified ToolCall list.
+
+        Handles three wire dialects:
+          1. OpenAI ``message.tool_calls[]`` (multi-call, default)
+          2. Legacy ``message.function_call`` (single call, some vendors)
+          3. Top-level ``tool_calls`` (a few OpenAI-compatible vendors)
+        Arguments may be a JSON string or already a dict.
+        """
         from ..types import ToolCall
-        tool_calls = []
-        message = raw.get("choices", [{}])[0].get("message", {})
-        raw_calls = message.get("tool_calls", [])
+        choices = raw.get("choices") or [{}]
+        message = (choices[0].get("message") if choices else {}) or {}
+
+        raw_calls = message.get("tool_calls") or []
+        if not raw_calls:
+            raw_calls = raw.get("tool_calls") or []
+        if not raw_calls:
+            # Legacy single function_call field
+            legacy = message.get("function_call") or raw.get("function_call")
+            if legacy:
+                raw_calls = [legacy]
+
+        tool_calls: List[Any] = []
         for tc in raw_calls:
-            func = tc.get("function", {})
-            args_str = func.get("arguments", "{}")
-            try:
-                args = json.loads(args_str) if isinstance(args_str, str) else args_str
-            except Exception:
+            # Legacy shape: {"name":..., "arguments":"..."} (no function wrapper)
+            if "function" in tc:
+                func = tc.get("function") or {}
+                name = func.get("name", "")
+                args_str = func.get("arguments", "{}")
+                call_id = tc.get("id", "")
+            else:
+                name = tc.get("name", "")
+                args_str = tc.get("arguments", "{}")
+                call_id = tc.get("id", tc.get("call_id", ""))
+            if isinstance(args_str, str):
+                try:
+                    args = json.loads(args_str) if args_str.strip() else {}
+                except Exception:
+                    args = {}
+            elif isinstance(args_str, dict):
+                args = args_str
+            else:
                 args = {}
-            tool_calls.append(ToolCall(
-                id=tc.get("id", ""),
-                name=func.get("name", ""),
-                arguments=args,
-            ))
+            tool_calls.append(ToolCall(id=call_id, name=name, arguments=args))
         return tool_calls
+
+    def apply_function_calling(self, payload: Dict[str, Any], kwargs: Dict[str, Any]) -> Dict[str, Any]:
+        """v2.1.0: apply normalized Function Calling fields to an OpenAI-style payload.
+
+        Every OpenAI-compatible adapter calls this in ``_build_payload`` so that
+        tool definitions share ONE normalized wire-format regardless of vendor.
+        """
+        tools = kwargs.get("tools")
+        if tools:
+            payload["tools"] = self.format_tools(tools)
+            if "tool_choice" in kwargs:
+                payload["tool_choice"] = kwargs["tool_choice"]
+        return payload
+
+    def normalize_tool_messages(self, messages: List[Any]) -> List[Dict[str, Any]]:
+        """v2.1.0: serialize a multi-round chat (incl. tool results) to OpenAI wire format.
+
+        A multi-round Function Calling chain looks like:
+            user → assistant(tool_calls) → tool(result) → assistant(final)
+        This method preserves ``tool_call_id`` / ``name`` / ``tool_calls`` fields
+        so the model can correlate results back to their originating calls.
+        """
+        out: List[Dict[str, Any]] = []
+        for m in messages:
+            d = m.to_dict() if hasattr(m, "to_dict") else dict(m)
+            # assistant turn that emitted tool calls: attach normalized tool_calls
+            if isinstance(m, dict) and m.get("tool_calls"):
+                from ..types import ToolCall
+                d["tool_calls"] = [
+                    tc.to_openai() if isinstance(tc, ToolCall) else tc
+                    for tc in m["tool_calls"]
+                ]
+            out.append(d)
+        return out
 
     # --- v1.6.0: New MCP tool interfaces ---
 

@@ -1,0 +1,142 @@
+#!PECMD
+IFEX X.LOg, LOGS  * X.LOg
+
+_SUB CreateImg,W436H330,生成磁盘/分区镜像
+    //GROU -center  ,L10T10W410H280,  
+    GROU GPART, L10T13W205H50,  
+    LABE -center -vcenter BPART, L12T21W200H40,分  区  镜  像, CALL  OnP1 
+    GROU GDISK,L215T13W205H50,  
+    LABE -center -vcenter BDISK,L217T21W200H40,磁  盘  镜  像, CALL  OnP2 
+
+    
+    GROU -center  FUNC,L10T55W410H235,  
+    
+    
+    LABE  , L20T72W90H20,镜像文件路径
+    EDIT -3D -vcenter  NAME,L20T90W370H25,
+    LIST   TYPE,L20T140W55H232,定制|360K|720K|800K|1200K|1440K|1680K|2880K,CALL OnTYPE %TYPE%,定制
+    LABE -right  SIZELB, L85T142W44H20,大小
+    EDIT -3D -vcenter  SIZE,L130T140W80H20,5
+    LIST  UNIT,L211T140W39H220,T|G|M|K|S|B,,M
+    CALL  OnTYPE  定制
+                       ITEM  ,    L340T120W50H25,浏览,CALL OnBrow
+
+   
+    LABE -right DPARTOFFLB, L20T172W50H20,开始
+    EDIT  DPARTOFF,L72T170W80H20,63s
+
+    LABE -right DPARTSZLB, L160T172W50H20,分区大小
+    EDIT  DPARTSZ,L212T170W80H20,剩下全部
+
+    LABE -right DPARTTPLB, L300T172W50H20,分区类型
+    EDIT  DPARTTP,L352T170W50H20,0x06
+
+
+    
+    CHEK  BNOW, L20T195W150H25,为镜像分配全部空间,,1
+    LABE -right  MBRL, L280T198W50H25,MBR:
+    LIST   MBR, L332T195W70H225,无|nt6|nt5|dos,CALL OnTYPE %TYPE%,无
+
+    ITEM  BOK,    L130T250W50H25,创建,THREAD* CALL OnOK
+    
+    ITEM  CANCEL,    L230T250W50H25,取消, KILL  \
+    CALL  OnP1
+_END
+
+
+_SUB  OnTYPE
+    ENVI &&SW=0
+    FIND $定制=%1, ENVI &SW=1
+    ENVI @SIZELB.Enable=%&SW%
+    ENVI @SIZE.Enable=%&SW%
+    ENVI @UNIT.Enable=%&SW%
+_END
+
+_SUB OnP1
+    ENVI  BDISK.check=0
+    ENVI @GDISK.Visable=0
+    ENVI @GPART.Visable=1
+    CALL  SHOW_DISK 0 
+_END
+
+_SUB OnP2
+    ENVI  BDISK.check=1
+    ENVI @GPART.Visable=0
+    ENVI @GDISK.Visable=1
+    CALL  SHOW_DISK 1 
+_END
+
+
+_SUB SHOW_DISK
+    TEAM ENVI &&SW=1| ENVI &&SW2=0
+    FIND $0=%1, TEAM ENVI &SW=0| ENVI &&SW2=1
+    ENVI @DPARTOFFLB.Visable=%&SW%
+    ENVI @DPARTOFF.Visable=%&SW%
+    ENVI @DPARTSZLB.Visable=%&SW%
+    ENVI @DPARTSZ.Visable=%&SW%
+    ENVI @DPARTTPLB.Visable=%&SW%
+    ENVI @DPARTTP.Visable=%&SW%
+    ENVI @MBR.Visable=%&SW%
+    ENVI @MBRL.Visable=%&SW%
+    ENVI @TYPE.Enable=%&SW2%
+_END
+
+
+_SUB OnOK
+    ENVI  @BOK.Enable=0
+    ENVI  @CANCEL.Enable=0
+    
+    
+    ENVI &&sz=%SIZE%
+    FIND $=%SIZE%, ENVI &sz=
+    ENVI &&u=1%UNIT%
+    ENVI &&iTYPE=%TYPE%
+    FIND $1=%BDISK.Check%, ENVI &iTYPE=定制
+    
+    FIND $360K=%&iTYPE%,  TEAM ENVI &u=%TYPE%| ENVI &sz=1
+    FIND $720K=%&iTYPE%,  TEAM ENVI &u=%TYPE%| ENVI &sz=1
+    FIND $800K=%&iTYPE%,  TEAM ENVI &u=%TYPE%| ENVI &sz=1
+    FIND $1200K=%&iTYPE%, TEAM ENVI &u=%TYPE%| ENVI &sz=1
+    FIND $1440K=%&iTYPE%, TEAM ENVI &u=%TYPE%| ENVI &sz=1
+    FIND $1680K=%&iTYPE%, TEAM ENVI &u=%TYPE%| ENVI &sz=1
+    FIND $2880K=%&iTYPE%, TEAM ENVI &u=%TYPE%| ENVI &sz=1
+    
+    
+    ENVI &&OK=1
+    FIND $=%NAME%, ENVI &OK=0
+    FIND $=%&sz%, ENVI &OK=0
+    FIND $1=%BDISK.Check%,!! FIND $=%DPARTTP%, ENVI &OK=0
+    FIND $0=%&OK%, TEAM MESS 参数错误@#OK| ENVI  @BOK.Enable=1| ENVI  @CANCEL.Enable=1| EXIT _SUB
+    FIND $1B=%&u%, ENVI &u=1
+    FIND $1G=%&u%, TEAM ENVI &u=16M| CALC #&sz=%&sz% * 64
+    FIND $1T=%&u%, TEAM ENVI &u=16M| CALC #&sz=%&sz% * 64 * 1024
+    ENVI &&plen=%DPARTSZ%
+    CALC #&&LEFT= %&u% * %&sz% - %DPARTOFF%
+//MESS    CALC &&LEFT=[%&LEFT%]
+    
+    FIND $剩下全部=%DPARTSZ%,ENVI &plen=%&LEFT%
+    
+    ENVI &&quick=-qspace
+    
+    FILE %NAME%
+    FIND $0=%BNOW.Check%, ENVI &quick=-quick 
+    SET &DD=PUTF -dd -bs=%&u% -count=%&sz% %&quick%
+--MESS    %&DD% %NAME%,0,zero @#OK
+        %&DD% %NAME%,0,zero
+--MESS    FIND $1=%BDISK.Check%, PART -super -CHS=255:63:512 -img=%NAME%#1 a %DPARTTP% %DPARTOFF%  %&plen%  @#OK
+        FIND $1=%BDISK.Check%, PART -super -CHS=255:63:512 -img=%NAME%#1 a %DPARTTP% %DPARTOFF%  %&plen%
+        FIND $1=%BDISK.Check%,!! FIND $无=%MBR%,!    PART -super /MBR=%MBR% -img=%NAME% 
+    MESS 完成    @#OK *5000 
+    ENVI  @BOK.Enable=1
+    ENVI  @CANCEL.Enable=1
+    //KILL \
+    
+_END
+
+_SUB OnBrow
+    BROW &&bname,&,镜像名,IMG
+    ENVI  @NAME=%&bname%
+_END
+
+
+CreateImg

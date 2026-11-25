@@ -9,7 +9,7 @@
 ## 1. Install
 
 ```bash
-uv tool install vmware-nsx-security==1.17.3
+uv tool install vmware-nsx-security==1.17.4
 ```
 
 Verify:
@@ -150,7 +150,7 @@ In Cursor Settings → MCP Servers:
 ```
 
 > v1.5.15+ recommends the single-command form `vmware-nsx-security mcp`. Pre-1.5.15 used
-> `uvx --from vmware-nsx-security==1.17.3 vmware-nsx-security-mcp`, which still works but re-resolves
+> `uvx --from vmware-nsx-security==1.17.4 vmware-nsx-security-mcp`, which still works but re-resolves
 > from PyPI on each launch and breaks behind corporate TLS proxies. The legacy
 > `vmware-nsx-security-mcp` entry point is also kept for backward compatibility.
 

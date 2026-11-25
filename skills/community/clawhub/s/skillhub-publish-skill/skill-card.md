@@ -1,6 +1,6 @@
 ## Description:
 
-Helps developers prepare, publish, and check skills on SkillHub and ClawHub, including troubleshooting rejected uploads.
+指导开发者预检技能包、发布到 SkillHub 和 ClawHub 并核对发布状态；平台因安全原因拒绝时，指导停止操作并联系官方支持或申诉。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Developers use this skill to prepare and publish skills to SkillHub and ClawHub, inspect release status, and diagnose upload failures.
+Developers use this skill to prepare and publish local agent skills to SkillHub and ClawHub, confirm review and publication status, and diagnose common packaging or metadata errors.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Publishing or deletion can change public marketplace listings using locally stored credentials without an enforced confirmation step.
+Risk: The security assessment flags concerns involving installer verification and authenticated requests.
 
-Mitigation: Review a dry run and require explicit approval before publishing, removing listings, pushing to GitHub, or running ClawHub commands.
+Mitigation: Independently verify the installer and confirm authenticated requests go only to trusted destinations before using credentials.
 
-Risk: Upload troubleshooting includes WAF probing that could be used to preserve content a platform blocks.
+Risk: Collecting files for a release could include unintended local content.
 
-Mitigation: Do not use WAF bisect results to evade platform security controls; remove blocked content or seek platform review.
+Mitigation: Review the dry-run file list and confirm the package contains only the intended skill files.
+
+Risk: The skill includes deletion and GitHub publishing capabilities beyond basic package preparation; deletion is irreversible.
+
+Mitigation: Review these actions against the task, verify the target before deletion, and use the explicit delete confirmation only when permanent removal is intended.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/oracis/skills/skillhub-publish-skill)
-- [SkillHub publishing and CLI setup](artifact/references/cli-install.md)
-- [ClawHub categories and topics](artifact/references/clawhub-catalog.md)
-- [Upload rejection troubleshooting](artifact/references/waf-details.md)
+- [ClawHub skill page](https://clawhub.ai/oracis/skills/skillhub-publish-skill)
+- [SkillHub CLI publishing tutorial](https://skillhub.cn/tutorials#publish-via-cli)
+- [Publishing and release status workflow](SKILL.md)
+- [ClawHub categories and topics](references/clawhub-catalog.md)
+- [GitHub repository workflow](references/github-repo.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Status reports]
+**Output Type(s):** [Guidance, Shell commands, Code, JSON]
 
-**Output Format:** [Markdown with shell commands and status summaries]
+**Output Format:** [Markdown guidance with shell command and JSON examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Publishing actions may change public marketplace listings.]
+**Other Properties Related to Output:** [May include preflight findings, packaging instructions, and release status checks.]
 
 ## Skill Version(s):
 
-1.7.6 (source: release evidence and skill frontmatter)
+1.7.9 (source: frontmatter)
 
 ## Ethical Considerations:
 

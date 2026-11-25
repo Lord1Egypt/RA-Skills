@@ -2,6 +2,8 @@
 
 Turn a novel, story, script, or adopted storyboard into multi-panel pages, a vertical comic, or a comic book. Continue chapters and revise selected pages. Deliver text when only adaptation or storyboards are requested; use [image generation](../capabilities/generation/image-generation.md) directly for one standalone illustration. Continue existing comics from missing work in the adopted version rather than restarting the whole production.
 
+Read library character, scene, prop, style references and historical pages through [material reuse](../resources/materials.md), linking each to the adopted page/panel version. Batch-check selected references before continuing chapters; do not rediscover and silently replace identities. Keep page order, story state, roles and revisions in the comic manifest, preserving this workflow’s image-archiving and file-size checks.
+
 ## Inputs and adaptation scope
 
 Retain the user's source range, adaptation scope, style, language, reading direction, page budget, and delivery purpose. Distinguish faithful adaptation, abridgment, and a creative rewrite. Do not silently change established events, relationships, endings, or exact dialogue to accommodate generated images. Make routine choices within the brief and ask only about consequential missing information.
@@ -75,11 +77,20 @@ Include only relevant style, appearing characters, current setting, or adopted-p
 
 Use one generation per whole page as a starting route for multi-panel pages. Specify layout, reading direction, framing and content per panel, current character and setting states, and every exact text item with box type, order, and attribution. Standalone panels use the image capability. For precise layout or independent editable text, use the host's actual image/document layout tools. `gen_image` provides neither masks nor editable comic layers; whole-page regeneration cannot promise unchanged pixels in other panels.
 
-Model and fields follow [image generation](../capabilities/generation/image-generation.md) and the [API contract](../api/gen_image.md), without invented workflow parameters. A portrait page can start at `1024x1536` (2:3), or use `768x1024` for 3:4. These are not a complete size list; verify availability and actual image dimensions. Keep the prompt's ratio consistent with `size` and retain adopted specifications within a delivery version.
+Model and fields follow [image generation](../capabilities/generation/image-generation.md) and the [API contract](../api/gen_image.md), without invented workflow parameters. Novel-to-comic production defaults to the following **1K image specifications**. Set the actual request's `size` for newly generated comic pages, standalone panels, and character or setting references according to their aspect ratio:
+
+| Aspect ratio | Default `size` (width by height, pixels) |
+| --- | --- |
+| 1:1 | `1024x1024` |
+| 9:16 | `720x1280` |
+
+Retain the work's established aspect ratio; use 9:16 for a new portrait comic when none is specified. Follow explicit user requirements and actual support for other ratios or dimensions. High-resolution examples, templates, or reference originals do not authorize an upgrade. Do not automatically switch to 2K or 4K for crowded text or missing detail; first adjust layout, pagination, and text placement. Reuse successful existing pages and references rather than regenerating them to match defaults.
+
+Request the target dimensions directly instead of generating at a higher specification and downscaling for delivery. Keep the prompt's ratio consistent with `size` and retain adopted specifications within a delivery version. Inspect the actual returned image dimensions rather than assuming the request proves compliance. The per-image limit below 1.5 MB still requires its own check; pixel dimensions do not verify file size.
 
 See the [comic-page request](../../examples/comic-page.json). Replace its example URLs with actual style, character, and entrance references, and adapt its text and events to the adopted storyboard. List permitted dialogue, narration, and other text explicitly. Avoid incidental text on phones, books, or packaging while retaining exact signs requested by the user.
 
-For multi-page work, start with a real production page containing the main characters, text, and a representative layout. Review it, keep it in the final set, then expand rather than generating an unused test page. Batch size follows host capabilities, budget, and results. Fix shared problems before submitting further pages.
+For a new work without a stable adopted page, generate and inspect one real production page containing the main characters, text and a representative layout; retain it in delivery. Reuse existing successful pages without extra test generations. Run other independent pages with ready references, storyboards and text through [bounded comic concurrency](../runtime/comic-batching.md): default to 3 unfinished remote tasks and at most 6 new pages per invocation, refilling each free slot without waiting for the slowest page. Keep genuine dependencies sequential and preserve needed identity/setting references. The Agent reviews completed pages and continues without per-batch user confirmation; pause new submissions if shared problems appear.
 
 ## Execution, review, and focused revisions
 
@@ -120,3 +131,5 @@ For a long image or PDF, verify the host's existing image/document export tools 
 Check platform specifications supplied by the user or read current official requirements before claiming compliance. When file sizes need reduction, try suitable encoding and quality and recheck lettering rather than blindly shrinking resolution. Without export tools, existing pages can be delivered when verified within the per-image limit. Noncompliant images remain production sources or clearly marked pending previews. Identify unfinished exports without fabricating files or installing dependencies by default.
 
 Report actual page count, dimensions, language, formats, and review scope. Distinguish generated, reviewed, adopted, and unfinished work. Sources, references, requests, and actual outputs belong in the user's creative directory, never in the Skill package. Local comics are not reported as synchronized platform projects.
+
+After generation apply shared [image archiving](../runtime/image-archiving.md). The private comic manifest links work/chapter/page/panel/revision, character/environment/prop, generation task, original/delivery files, archive record and verified material ID. Pending registration reflects the missing public image endpoint without blocking actual page delivery. A compressed variant cannot claim its source ID as registration; revising one page does not regenerate other pages.

@@ -1,7 +1,7 @@
 ---
 name: mobile-responsive-layout-fixer
 description: >-
-  Help users with Validated demand: Product teams need reliable workflows for fixing mobile responsiveness, navigation layout, and cross-device UI issues. This requirement is supported by 12 separate online signals across 2 source families, so it represents broader demand rather than a single isolated request.. Use when a user asks for creative-and-content, mobile responsive, responsive design, navbar, layout, or needs a practical workflow, artifact, checklist, analysis, or implementation support for this requirement.
+  Help users with Validated demand: Product teams need reliable workflows for fixing mobile responsiveness, navigation layout, and cross-device UI issues. This requirement is supported by 11 separate online signals across 2 source families, so it represents broader demand rather than a single isolated request.. Use when a user asks for creative-and-content, mobile responsive, responsive design, navbar, layout, or needs a practical workflow, artifact, checklist, analysis, or implementation support for this requirement.
 ---
 
 # Mobile Responsive Layout Fixer
@@ -10,10 +10,10 @@ description: >-
 
 Use this skill to help frontend developers, designers, startup teams, and maintainers responsible for making web interfaces usable on phones and desktop screens with:
 
-> Validated demand: Product teams need reliable workflows for fixing mobile responsiveness, navigation layout, and cross-device UI issues. This requirement is supported by 12 separate online signals across 2 source families, so it represents broader demand rather than a single isolated request.
+> Validated demand: Product teams need reliable workflows for fixing mobile responsiveness, navigation layout, and cross-device UI issues. This requirement is supported by 11 separate online signals across 2 source families, so it represents broader demand rather than a single isolated request.
 
 Demand score: 90/100 (`70/70` demand, `30/30` local feasibility).
-Evidence: 12 signals across 2 source families.
+Evidence: 11 signals across 2 source families.
 
 Read `references/requirement-plan.md` when source evidence, planning details, or review criteria are needed.
 

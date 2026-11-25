@@ -17,6 +17,8 @@ The founder needs a Deacon account and the site's key. Without one, they sign up
 
 On the dashboard's Install page, the founder lists the domains the widget may run on. The widget appears on every page of those domains and nowhere else, and the first domain generates the site's snippet. A listed domain covers its subdomains, www included, so `acme.com` covers `app.acme.com` too. The scheme and port must match, except that `localhost` or `127.0.0.1` listed with no port covers every port. No `https://` is needed when typing one, and a development address (localhost, a `.test` or `.local` site, a private network address) typed without a scheme is saved with `http://`. On a domain that is not listed the widget stays hidden, although the loader has set its visitor cookie by then.
 
+If the founder has no Deacon account yet, they sign up at https://heydeacon.com/register?utm_source=agent-guide. Setup asks for their website, saves it as the first domain and shows the snippet with the site's key on its Install screen, as the dashboard's Install page does.
+
 This step is the founder's, on the dashboard. If the founder gave you the install prompt from Deacon's dashboard, it lists the domains as they stand. If the origin this app runs on is not among them, carry on with the install and say so at the end. Once a page there has loaded the tag, the Install page names that address, and adds it in one click when it is a development address or the listed site over another scheme or port. Either way it is the founder's to add, and nothing you can do from here.
 
 ## 2. The snippet
@@ -77,21 +79,21 @@ The block goes **above** the snippet, in the same layout, because the loader rea
 
 Take the values from the session the app already has, not from a new request:
 
-**Laravel.** In the layout, from the authenticated user. Use `@json` so the values are escaped rather than concatenated into the script:
+**Laravel.** In the layout, from the authenticated user. Blade's `@json` splits its argument at every comma, so an array written inside it stops the layout compiling. Use `Js::from`, which escapes the values rather than concatenating them into the script:
 
 ```blade
 @auth
     <script>
-        window.deaconUser = @json([
+        window.deaconUser = {{ Js::from([
             'id' => auth()->id(),
             'email' => auth()->user()->email,
             'name' => auth()->user()->name,
-        ]);
-        window.deaconContext = @json([
+        ]) }};
+        window.deaconContext = {{ Js::from([
             'plan' => auth()->user()->currentTeam?->plan_name,
             'state' => auth()->user()->currentTeam?->subscriptionState(),
             'role' => auth()->user()->role,
-        ]);
+        ]) }};
     </script>
 @endauth
 ```

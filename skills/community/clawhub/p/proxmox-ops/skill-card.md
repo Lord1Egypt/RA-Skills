@@ -1,6 +1,6 @@
 ## Description:
 
-Ops-focused Proxmox VE management via REST API for monitoring, controlling, provisioning, and troubleshooting VMs and LXC containers.
+Ops-focused Proxmox VE management via REST API — monitor, control, provision, and troubleshoot VMs and LXC containers with operational patterns.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and infrastructure operators use this skill to guide Proxmox VE administration through REST API calls, helper shell commands, provisioning references, and operational safety practices for VMs and LXC containers.
+Developers and infrastructure operators use this skill to monitor and manage Proxmox VE clusters, virtual machines, and LXC containers through the REST API. It provides shell commands and operational guidance for provisioning, snapshots, storage, backups, guest networking, and safe handling of disruptive changes.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill can guide powerful Proxmox administration actions, including VM and container power operations, provisioning, resizing, rollback, and deletion.
+Risk: The security review is partial and reports potential token exposure, unconfirmed force-stop behavior, extra network activity, and a CLAUDE.md change.
 
-Mitigation: Require explicit review of VMID, node, storage, backups, and operation intent before destructive or hard-to-reverse actions.
+Mitigation: Review the skill and its changes before installation. Use a least-privilege API token, keep credential files mode 600, rotate any exposed token, restrict network access to intended Proxmox hosts, and confirm the target before disruptive operations.
 
-Risk: Proxmox API tokens and the optional credential file can expose infrastructure administration capability.
+Risk: The helper uses curl with TLS verification disabled, which weakens protection against an intercepted connection.
 
-Mitigation: Use least-privilege tokens, prefer environment injection or a secret manager, keep credential files mode 600, and rotate exposed tokens immediately.
-
-Risk: The helper commands use TLS verification disabled for self-signed Proxmox certificates.
-
-Mitigation: Install a trusted certificate or CA for Proxmox, remove insecure curl flags when possible, and restrict agent network access to approved Proxmox hosts.
+Mitigation: Use a trusted Proxmox certificate and remove the insecure curl option where possible; otherwise limit connections to the intended Proxmox host and understand the certificate risk.
 
 ## Reference(s):
 
-- [Proxmox Ops ClawHub Page](https://clawhub.ai/eddygk/skills/proxmox-ops)
-- [Proxmox Ops Source Homepage](https://github.com/eddygk/proxmox-ops-skill)
-- [Proxmox Provisioning Reference](references/provisioning.md)
-- [Proxmox VE API Token Documentation](https://pve.proxmox.com/wiki/User_Management#pveum_tokens)
-- [Proxmox Certificate Management](https://pve.proxmox.com/wiki/Certificate_Management)
+- [Setup and API token guidance](references/setup.md)
+- [Common Proxmox API operations](references/api-operations.md)
+- [Guest types and inventory coverage](references/guest-types.md)
+- [Provisioning reference](references/provisioning.md)
+- [Proxmox VE certificate management](https://pve.proxmox.com/wiki/Certificate_Management)
+- [Proxmox API token documentation](https://pve.proxmox.com/wiki/User_Management#pveum_tokens)
+- [Skill homepage](https://github.com/eddygk/proxmox-ops-skill)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
 
-**Output Format:** [Markdown with inline bash commands and configuration examples]
+**Output Format:** [Markdown with inline Bash and curl examples, JSON API responses, and configuration instructions]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes REST API endpoint patterns, helper script usage, provisioning workflows, and operational cautions.]
+**Other Properties Related to Output:** [Examples use user-supplied Proxmox host, API token, node, and guest identifiers. Requires curl and jq.]
 
 ## Skill Version(s):
 
-1.2.0 (source: server release metadata)
+1.2.1 (source: release evidence and CHANGELOG.md, released 2026-10-10)
 
 ## Ethical Considerations:
 

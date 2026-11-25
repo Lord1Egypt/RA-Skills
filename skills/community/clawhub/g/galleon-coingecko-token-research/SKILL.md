@@ -2,10 +2,10 @@
 name: galleon-coingecko-token-research
 description: Resolve CoinGecko token identity, distinguish native and bridged assets, and produce a timestamped price, market cap and liquidity evidence card. Use when researching a token by chain and address, investigating symbol collisions, or reconciling CoinGecko prices with a DEX quote.
 license: MIT
-compatibility: Portable instructions; optional offline helper uses Bun. Live recipes require an existing official provider or public HTTPS access.
+compatibility: Portable instructions. Live recipes require an existing official provider or public HTTPS access.
 metadata:
   author: Galleon Labs
-  version: "0.6.1"
+  version: "0.8.0"
 ---
 
 # CoinGecko token research

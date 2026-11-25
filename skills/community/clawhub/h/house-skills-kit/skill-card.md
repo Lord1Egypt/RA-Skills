@@ -1,6 +1,6 @@
 ## Description:
 
-house-skills-kit is a Chinese real-estate agent skill kit with role-based skills, transaction and mortgage calculators, sales SOP guidance, and configurable templates for generating brand-specific advisor skills.
+Provides 30 role-specific AI skills and templates for Chinese real estate advice, brokerage, sales operations, and property calculations.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-Apache-2.0
+Apache License 2.0
 
 ## Use Case:
 
-Real-estate sales teams, marketers, brokers, channel operators, and buyer-facing advisors use this skill kit to select role-specific workflows, calculate transaction and financing scenarios, follow sales and market-monitoring SOPs, and generate brand-specific advisor skills from configuration.
+Real estate professionals, property buyers and owners, and teams building branded property agents can use the kit to select, install, or adapt role-specific guidance and calculation tools.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,38 @@ China
 
 ## Known Risks and Mitigations:
 
-Risk: The server security summary reports local file-boundary flaws in the generator and installer.
+Risk: ClawScan reports unsafe installation and file-writing behavior.
 
-Mitigation: Review the package before installing, run render.py and install.sh only with trusted configurations and generated skill directories, and inspect generated SKILL.md and manifest.json before installation.
+Mitigation: Review the installer's target paths and existing skill files before running it.
 
-Risk: The skill can produce tax, loan, and policy guidance for real-estate decisions.
+Risk: ClawScan reports shell command execution in documentation.
 
-Mitigation: Verify all tax, loan, and policy outputs against current official sources before using them for real transactions.
+Mitigation: Review documented commands and avoid running the documentation checker on untrusted changes.
 
-Risk: Rendering untrusted YAML could lead to unsafe or misleading generated skill content.
+Risk: ClawScan coverage was partial, so unreported areas were not fully assessed.
 
-Mitigation: Avoid rendering untrusted YAML and review generated content before deploying it to an agent.
+Mitigation: Treat the scan as incomplete and review the remaining areas before installation.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/danfeistar/skills/house-skills-kit)
-- [Artifact README](artifact/README.md)
-- [Skill overview](artifact/SKILL.md)
-- [Calculation toolkit README](artifact/skills/calc-toolkit/README.md)
-- [Kunming reference plates](artifact/examples/kunming/references/plates.md)
+- [House Skills Kit on ClawHub](https://clawhub.ai/danfeistar/skills/house-skills-kit)
+- [Quickstart guide](docs/QUICKSTART.md)
+- [Skill map](docs/SKILL-MAP.md)
+- [Skill authoring specification](docs/SKILL-AUTHORING-SPEC.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+**Output Type(s):** [Guidance, Analysis, Text, Markdown]
 
-**Output Format:** [Markdown guidance with Python command examples, generated SKILL.md files, manifest JSON, and real-estate calculation outputs]
+**Output Format:** [Structured text and Markdown, including recommendations, checklists, calculations, and generated skill files.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Outputs depend on local configuration files and city rules; transaction, loan, tax, and policy results should be checked against current official sources before real use.]
+**Other Properties Related to Output:** [Outputs depend on the selected role skill and supplied scenario details; verify city-specific policy figures against current official sources.]
 
 ## Skill Version(s):
 
-1.7.1 (source: evidence.release.version)
+1.15.0 (source: server-resolved release metadata, CHANGELOG, released 2026-10-28)
 
 ## Ethical Considerations:
 

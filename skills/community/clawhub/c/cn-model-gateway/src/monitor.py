@@ -95,6 +95,10 @@ class Monitor:
                     success INTEGER DEFAULT 1
                 )
             """)
+            # v2.1.0: multi-tenant member tag (additive migration, no data loss)
+            cols = {row[1] for row in conn.execute("PRAGMA table_info(usage_log)").fetchall()}
+            if "member" not in cols:
+                conn.execute("ALTER TABLE usage_log ADD COLUMN member TEXT DEFAULT 'default'")
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS daily_stats (
                     date TEXT PRIMARY KEY,
@@ -106,16 +110,22 @@ class Monitor:
             """)
             conn.commit()
 
-    def record_call(self, tool_name: str, args: Dict[str, Any], result: str) -> None:
-        """Record a tool call to the database."""
+    def record_call(self, tool_name: str, args: Dict[str, Any], result: str,
+                    member: Optional[str] = None) -> None:
+        """Record a tool call to the database.
+
+        v2.1.0: ``member`` (or args['member']) attributes the call to a team
+        member for per-member reporting; defaults to 'default'.
+        """
         now = time.time()
         today = time.strftime("%Y-%m-%d", time.localtime(now))
         provider = args.get("provider", "auto")
+        member = member or args.get("member") or "default"
         with sqlite3.connect(self.db_path) as conn:
             conn.execute(
-                "INSERT INTO usage_log (timestamp, tool_name, provider, model, success) "
-                "VALUES (?, ?, ?, ?, 1)",
-                (now, tool_name, provider, args.get("model", "")),
+                "INSERT INTO usage_log (timestamp, tool_name, provider, model, success, member) "
+                "VALUES (?, ?, ?, ?, 1, ?)",
+                (now, tool_name, provider, args.get("model", ""), member),
             )
             conn.execute(
                 "INSERT INTO daily_stats (date, total_calls, total_duration_ms) "
@@ -166,6 +176,45 @@ class Monitor:
         lines.append(f"\n合计: {total_calls} 次调用")
         lines.append(f"硬件: {self._hardware.get('cpu_cores', '?')} 核 / {self._hardware.get('memory_mb', '?')} MB")
         lines.append(f"并发限制: {self._concurrency_limit}")
+        return "\n".join(lines)
+
+    def get_member_stats(self) -> Dict[str, Any]:
+        """v2.1.0: per-member usage attribution (independent implementation).
+
+        Returns totals and per-member breakdown: call count, tool distribution,
+        provider distribution. Used for team cost allocation reports.
+        """
+        with sqlite3.connect(self.db_path) as conn:
+            conn.row_factory = sqlite3.Row
+            rows = conn.execute(
+                "SELECT member, tool_name, provider, COUNT(*) as cnt "
+                "FROM usage_log GROUP BY member, tool_name, provider"
+            ).fetchall()
+        members: Dict[str, Dict[str, Any]] = {}
+        for r in rows:
+            m = r["member"] or "default"
+            if m not in members:
+                members[m] = {"total_calls": 0, "by_tool": {}, "by_provider": {}}
+            members[m]["total_calls"] += r["cnt"]
+            members[m]["by_tool"][r["tool_name"]] = members[m]["by_tool"].get(r["tool_name"], 0) + r["cnt"]
+            members[m]["by_provider"][r["provider"]] = members[m]["by_provider"].get(r["provider"], 0) + r["cnt"]
+        total = sum(m["total_calls"] for m in members.values())
+        return {
+            "total_calls": total,
+            "member_count": len(members),
+            "members": members,
+        }
+
+    def get_member_report(self) -> str:
+        """v2.1.0: human-readable per-member allocation report."""
+        stats = self.get_member_stats()
+        lines = [f"## 成员用量分摊（共 {stats['member_count']} 位成员，{stats['total_calls']} 次调用）"]
+        total = stats["total_calls"] or 1
+        for member, m in sorted(
+            stats["members"].items(), key=lambda x: x[1]["total_calls"], reverse=True
+        ):
+            pct = m["total_calls"] / total * 100
+            lines.append(f"- {member}: {m['total_calls']} 次 ({pct:.1f}%) | 工具: {m['by_tool']} | 厂商: {m['by_provider']}")
         return "\n".join(lines)
 
     @property

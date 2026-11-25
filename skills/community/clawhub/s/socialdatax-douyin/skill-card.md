@@ -1,6 +1,6 @@
 ## Description:
 
-This skill helps agents research Douyin hot searches, posts, comments, creators, and short-drama series through SocialDataX.
+用于抖音数据助手、抖音热榜、抖音数据分析、作品搜索、作品详情、作品分享链接、评论分析、评论回复分析、达人数据、达人作品和达人短剧/合集。覆盖 Douyin hot search and work research，来自社媒数据助手 SocialDataX。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers use this skill to research Douyin trends and content, inspect videos and comments, and look up creator profiles, posts, and series.
+External users can use this skill to research Douyin trends, posts, creators, and comment activity through SocialDataX.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Automatically installing an unpinned latest CLI package creates supply-chain exposure.
+Risk: ClawScan rates the skill suspicious with medium confidence because it repeatedly runs an automatically installed, unpinned `@latest` CLI; reference resolution was also incomplete.
 
-Mitigation: Use a reviewed, pinned package release and reassess it before upgrading.
-
-Risk: Search terms or share text submitted for lookup may be sent to SocialDataX.
-
-Mitigation: Avoid submitting sensitive or confidential terms and share text.
-
-Risk: The scan is partial and several local references could not be resolved, leaving the security evidence incomplete.
-
-Mitigation: Resolve and review the referenced components before deployment.
+Mitigation: Before using it with credentials, use a reviewed, fixed package version with an integrity-checked installation and treat the current assessment as incomplete.
 
 ## Reference(s):
 
+- [SocialDataX API access](https://socialdatax.com/ai?from=clawhub)
+- [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/socialdatax-douyin)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, Analysis, JSON]
+**Output Type(s):** [API data, Analysis, Text]
 
-**Output Format:** [Structured JSON data with concise research summaries]
+**Output Format:** [Structured API data and concise natural-language summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results depend on the SocialDataX service and the user's access.]
+**Other Properties Related to Output:** [Results depend on the requested Douyin data and API response.]
 
 ## Skill Version(s):
 
-0.1.25 (source: server-resolved ClawHub release)
+0.1.26 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

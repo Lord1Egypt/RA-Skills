@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to scope, outline, draft, and refine step-by-step technical tutorials with runnable examples and verification guidance.
+Developers use the skill to plan, draft, and refine step-by-step technical tutorials with working code, clear prerequisites, expected results, and troubleshooting guidance.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Tutorial examples may ask readers to run commands that change their system, use credentials, or incur costs.
+Risk: Tutorial examples may affect local files or connected services when run.
 
-Mitigation: Review each snippet and its effects before running it, especially for system changes, credentials, and potential charges.
+Mitigation: Review each command and code example against your environment before running; the server security guidance reports medium confidence and partial reference coverage, with two referenced local paths missing.
 
 ## Reference(s):
 
-- [ClawHub release](https://clawhub.ai/athola/skills/nm-scribe-tech-tutorial)
-- [Publisher profile](https://clawhub.ai/user/athola)
-- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/scribe)
+- [Skill homepage (metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/scribe)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-scribe-tech-tutorial)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
 
-**Output Format:** [Markdown tutorials with fenced code examples and expected output]
+**Output Format:** [Markdown tutorial drafts with runnable code blocks]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes audience, prerequisites, outline, troubleshooting, and verification guidance.]
+**Other Properties Related to Output:** [May include commands and examples for readers to review before running.]
 
 ## Skill Version(s):
 
-1.10.3 (source: release metadata and frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

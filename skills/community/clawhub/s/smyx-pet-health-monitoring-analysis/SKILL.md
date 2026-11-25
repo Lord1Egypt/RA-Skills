@@ -1,7 +1,7 @@
 ---
 name: "pet-health-monitoring-analysis"
 description: "Based on computer vision, analyzes pet health indicators such as feeding frequency, drinking frequency, excretion status, mental state, vomiting behavior, and limping abnormalities through camera/feeder monitoring videos, promptly detects abnormal pet health conditions, and outputs health monitoring reports. | 宠物日常健康监测分析技能，基于计算机视觉通过摄像头/喂食器监控视频分析宠物的进食频次、饮水频次、排泄状态、精神状态、呕吐行为、跛行异常等健康指标，及时发现宠物异常健康状况，输出健康监测报告"
-version: "1.0.23"
+version: "1.0.25"
 license: "MIT-0"
 ---
 

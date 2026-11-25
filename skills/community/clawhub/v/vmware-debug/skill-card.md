@@ -1,6 +1,6 @@
 ## Description:
 
-Diagnoses VMware, vSphere, ESXi, and NSX incidents by correlating evidence into a timeline, ranking likely causes, and suggesting next checks.
+Diagnoses VMware, vSphere, ESXi, and NSX incidents by correlating collected evidence, ranking root-cause hypotheses, and recommending next checks.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and VMware administrators use this skill to investigate incidents from collected events, logs, and companion-skill results. It builds a timeline, ranks hypotheses, records a local case history, and recommends follow-up checks without connecting to or changing VMware systems.
+Developers and infrastructure engineers use this skill to investigate VMware incidents from collected events and logs, build an incident timeline, assess likely causes, and decide what to check next. It records investigation evidence locally and routes remediation to separate skills.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment is medium confidence and partial because three local references could not be resolved.
+Risk: Security review coverage is partial because three local references could not be resolved.
 
-Mitigation: Review the unresolved references and assess the complete skill contents before relying on the scan result.
+Mitigation: Review the unresolved references and available security evidence before installing.
 
-Risk: Local case records can contain sensitive host, address, log, and event details and persist until deleted.
+Risk: Investigation case records and the audit trail may contain sensitive operational details; optional HTTPS uses bearer tokens and TLS key material.
 
-Mitigation: Keep case records access-controlled, never include credentials or secrets, and delete cases when they are no longer needed.
+Mitigation: Keep secrets out of case evidence, protect case folders and audit data, and store HTTPS tokens and TLS files as secrets.
 
 ## Reference(s):
 
-- [ClawHub release](https://clawhub.ai/zw008/skills/vmware-debug)
-- [Project homepage](https://github.com/vmware-skills/VMware-Debug)
-- [Capabilities](references/capabilities.md)
-- [Event envelope](references/event-envelope.md)
-- [Routing guide](references/routing.md)
+- [VMware Debug project](https://github.com/vmware-skills/VMware-Debug)
 - [Setup guide](references/setup-guide.md)
-- [CLI reference](references/cli-reference.md)
+- [VM performance investigation](references/vm-performance.md)
+- [Host alarm investigation](references/host-alarms.md)
 - [Agent guardrails](references/agent-guardrails.md)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, JSON, Markdown, Guidance]
 
-**Output Format:** [Structured incident timeline and ranked hypotheses, with next-check guidance; case records in JSON and Markdown]
+**Output Format:** [Structured incident timelines, ranked hypotheses, next-check recommendations, and Markdown case records]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Case records and a separate audit trail are written locally; no VMware API calls or remediation are performed.]
+**Other Properties Related to Output:** [Analysis is based on evidence gathered by the caller; optional case records are written locally.]
 
 ## Skill Version(s):
 
-2.3.3 (source: server-resolved release metadata)
+2.4.0 (source: server-resolved release)
 
 ## Ethical Considerations:
 

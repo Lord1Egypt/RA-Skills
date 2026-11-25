@@ -1,6 +1,6 @@
 ## Description:
 
-Searches the code knowledge graph by function, class, or type using FTS5 full-text search.
+Searches the code knowledge graph by function, class, or type using FTS5 full-text search
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to find functions, classes, and types in a code knowledge graph by name or qualified path. The graph must be built and current for search results to be meaningful.
+Developers use this skill to find functions, classes, and types in a built code knowledge graph. They can search by name or qualified path, review matching locations and relevance, and open a result for further inspection.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan could not resolve four local path references, so their contents were not included in the reviewed skill content.
+Risk: The security scan was partial because it could not resolve several local path references.
 
-Mitigation: Review the referenced scripts in the installed plugin before running them.
+Mitigation: Review unresolved references and the skill requirements before installation if additional assurance is needed.
 
-Risk: A missing or stale code graph can make search unavailable or results unreliable.
+Risk: A missing or stale code graph can prevent useful search results.
 
-Mitigation: Check that the graph exists and is current; build or refresh it with the graph-build skill when needed.
+Mitigation: Build or refresh the graph before searching, and check its status before interpreting zero matches.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-gauntlet-graph-search)
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet)
+- [Gauntlet plugin documentation](https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-gauntlet-graph-search)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, guidance]
+**Output Type(s):** [Text, Markdown]
 
-**Output Format:** [Markdown search results with qualified names, file paths, line numbers, and relevance scores.]
+**Output Format:** [Markdown list or table of matching code entities, with qualified names, file paths, line numbers, and relevance scores]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Accepts a search term and optional entity-kind filter; the documented default result limit is 20. Offers to read the top result's source file.]
+**Other Properties Related to Output:** [Up to 20 matches by default; optional filters can limit results to functions or classes.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

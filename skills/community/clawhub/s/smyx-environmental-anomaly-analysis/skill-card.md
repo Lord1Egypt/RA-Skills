@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes livestock behavior in continuous barn videos alongside environmental sensor data to identify group stress responses associated with abnormal conditions.
+Combines livestock behavior in continuous barn videos with environmental sensor data (temperature, humidity, ammonia, etc.) to identify group stress responses caused by abnormal in-barn conditions. | 结合畜禽行为与环境传感器，识别温湿度异常时的群体应激反应。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Livestock facility operators and animal-care teams can use the skill to correlate barn video behavior with temperature, humidity, ammonia, and other sensor readings, then review environment-linked stress findings and reports. Its documentation describes the results as monitoring references and says it does not provide equipment-control instructions.
+Livestock environment managers use the skill to correlate barn video with environmental sensor readings and identify possible group stress responses during abnormal conditions. The reports support monitoring and inspection; the skill documentation says they are for reference and do not provide equipment or environmental control instructions.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review marks this release suspicious for behavior beyond its livestock-analysis purpose, citing credential handling, broad network actions, and options that may trigger analysis unexpectedly.
+Risk: ClawScan marks the skill suspicious for account and credential handling, broad or unintended actions, and a mismatch with its stated livestock analysis purpose.
 
-Mitigation: Review the findings before installation, with attention to credential transmission to caller-supplied destinations, account registration and token storage, and analysis behavior under export-only options. The scan was partial because one local reference was missing.
+Mitigation: Review the skill and its permissions before use; avoid providing API secrets or private video and sensor data until it has been vetted.
+
+Risk: The available security evidence is incomplete because Skillspector reports an unresolved local path-like reference.
+
+Mitigation: Resolve the referenced path and complete the security review before relying on the scan results.
 
 ## Reference(s):
 
-- [Skill overview and demonstration](https://lifeemergence.com/sample.html)
-- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-environmental-anomaly-analysis)
 - [API reference](artifact/references/api_doc.md)
+- [Skill introduction](https://lifeemergence.com/sample.html)
+- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-environmental-anomaly-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Markdown, Report links]
+**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
 
-**Output Format:** [Structured analysis report with behavior features, environmental correlations, stress level, and report links; history lists are formatted as Markdown tables.]
+**Output Format:** [Structured analysis results and reports, with Markdown tables for historical report lists and report links when available]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [The analysis correlates video observations with optional sensor time series. Results are presented as reference information for monitoring.]
+**Other Properties Related to Output:** [Analysis findings and stress levels are advisory and based on supplied media and sensor data.]
 
 ## Skill Version(s):
 
-1.0.16 (source: server-resolved release metadata)
+1.0.17 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

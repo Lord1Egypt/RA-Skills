@@ -1,6 +1,6 @@
 ## Description:
 
-Creates GPT Image 2 oriented e-commerce product images from text prompts or optional reference images through Qinghu AI.
+Creates and refines product images for cross-border e-commerce from text prompts or reference images, including listing images and advertising visuals.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-E-commerce operators, product photographers, brand teams, and livestream sellers can create product listing images, ads, posters, and social assets for marketplaces and storefronts.
+E-commerce operators, product photographers, and brand teams use this skill to create or refine product listing images, social visuals, and advertising graphics for multiple marketplaces. They can describe an image in a prompt or provide a reference image to guide the result.
 
 ### Deployment Geography for Use:
 
@@ -22,17 +22,13 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Setup guidance requests an API key in chat, which could expose the credential.
+Risk: API credentials could be exposed if shared in chat.
 
-Mitigation: Configure the key through a protected local credential mechanism; rotate any key already shared.
+Mitigation: Do not share API keys in chat; configure credentials through the supported local configuration or environment variable.
 
-Risk: The setup can automatically install or update external software whose behavior and credential storage were not verified.
+Risk: Setup instructions can fetch and run an unpinned package.
 
-Mitigation: Review and pin dependencies before installation or upgrades.
-
-Risk: Reference images are uploaded to Qinghu for processing.
-
-Mitigation: Upload only reference images you intend the service to process.
+Mitigation: Review and pin tools before installation or execution.
 
 ## Reference(s):
 
@@ -41,17 +37,17 @@ Mitigation: Upload only reference images you intend the service to process.
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Text, Shell commands]
+**Output Type(s):** [Images, Text]
 
-**Output Format:** [Generated product images with prompt and command guidance in Markdown]
+**Output Format:** [Generated product images with textual status and image links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Supports optional reference images and configurable image count, size, and prompt.]
+**Other Properties Related to Output:** [A prompt is required; reference images are optional. Image count, size, and model options depend on the live service options.]
 
 ## Skill Version(s):
 
-0.1.4 (source: server-resolved ClawHub release)
+0.1.5 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

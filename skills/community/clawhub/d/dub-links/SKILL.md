@@ -1,7 +1,7 @@
 ---
 name: dub-links
 description: "Manage Dub short links, track conversions, and read link attribution analytics through the superagnt unified API."
-version: 2.0.14
+version: 2.0.19
 author: superagnt
 license: MIT-0
 platforms: [macos, linux, windows]

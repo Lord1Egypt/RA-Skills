@@ -1,6 +1,6 @@
 ## Description:
 
-当用户需要做好看视频选题、短视频内容方向规划或竞品角度复盘时使用。基于用户提供的主题或视频链接，整理相关作品、标题角度与评论反馈，输出带样本依据的选题清单。来自 SocialDataX 社媒数据助手。
+当用户需要做好看视频选题、短视频内容方向规划或竞品角度复盘时使用。基于用户提供的主题或视频链接，整理相关作品、标题角度与评论反馈，输出带样本依据的选题清单。来自社媒数据助手 SocialDataX。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-内容创作者和营销人员可根据主题、受众或好看视频链接，整理相关作品与评论样本，制定短视频选题、内容角度和参考标题。
+内容创作者和营销人员可用它规划好看视频选题、整理短视频内容方向，并复盘竞品角度。技能根据用户给出的主题或视频链接汇总作品、标题角度和评论反馈，形成带样本依据的选题清单。
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: CLI 使用可变的 @latest 包版本，未来版本变化可能带来供应链风险，并接触执行环境中的凭证。
+Risk: The skill installs a changeable CLI package, so a compromised package update could access credentials or data available in its execution environment.
 
-Mitigation: 执行前核对并固定可信的包版本；仅在需要时配置凭证，并避免在不可信环境运行。
+Mitigation: Review the package and updates before installation, and run it only in an environment with the credentials and data needed for the task.
 
-Risk: 主题和视频链接会发送给 SocialDataX，证据中未提供隐私说明。
+Risk: Topics and video links submitted for analysis are sent to SocialDataX.
 
-Mitigation: 调用前避免提交敏感主题或不适合向第三方服务披露的视频链接。
-
-Risk: 扫描证据不完整：Skillspector 无法解析三个本地引用。
-
-Mitigation: 部署前人工审阅无法解析的引用和完整技能内容；不要将另一项扫描的干净结果视为已消除该限制。
+Mitigation: Avoid submitting sensitive topics or links, and confirm the service is appropriate for the material before making a request.
 
 ## Reference(s):
 
-- [好看视频选题分析 on ClawHub](https://clawhub.ai/devinchen2014/skills/haokan-topic-analysis)
-- [SocialDataX API Key and skill access](https://socialdatax.com/ai?from=clawhub)
+- [SocialDataX skill and API access](https://socialdatax.com/ai?from=clawhub)
+- [ClawHub skill page](https://clawhub.ai/devinchen2014/skills/haokan-topic-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Guidance]
+**Output Type(s):** [Text, Markdown, Analysis]
 
-**Output Format:** [Markdown选题清单，附样本作品链接或 ID]
+**Output Format:** [Markdown selection list with topic ideas, audience, angle, suggested title, priority, rationale, and sample video links or IDs]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [可包含候选选题、目标受众、内容角度、参考标题、优先级、理由及样本依据；注明样本数量和缺失信息。]
+**Other Properties Related to Output:** [Separates topic clues, video facts, and comment feedback; states sample counts and missing information when available.]
 
 ## Skill Version(s):
 
-0.1.6 (source: server-resolved release metadata)
+0.1.7 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

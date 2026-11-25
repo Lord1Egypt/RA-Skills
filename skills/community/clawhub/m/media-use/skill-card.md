@@ -1,6 +1,6 @@
 ## Description:
 
-Helps agents find, generate, edit, and reuse media assets for HyperFrames projects, including audio, images, captions, and color treatments.
+Get or make any media for a HyperFrames video - music, sound effects, images, icons, logos, voiceover, avatar and generated video, transcripts, cutouts, colour grades and looks - with HeyGen or free local tools, and mix placed audio. Also for footage that looks dark, flat or dull, or should be stylized or hidden.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and creative teams use this skill to source or generate media, prepare voiceovers and captions, adjust footage, and reuse assets across HyperFrames projects.
+Video editors and HyperFrames project authors use this skill to find or create media assets, prepare footage, and mix placed audio for a HyperFrames video.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,42 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Provider credentials may be loaded from a project environment file and used for external media requests.
+Risk: ClawScan reports a serious Node.js startup-option injection risk and says its review was partial.
 
-Mitigation: Review credentials and provider settings before use, particularly in untrusted repositories; use local-only workflows when external requests are inappropriate.
+Mitigation: Review the reported startup-option issue and scan the full release before installing or running the skill.
 
-Risk: Generated or sourced media may be written locally and retained in a cross-project cache.
+Risk: ClawScan reports cloud services and analytics that are not declared in the skill description.
 
-Mitigation: Review project outputs and the shared ~/.media cache before handling sensitive media or sharing a workspace.
+Mitigation: Confirm which services receive data and what telemetry is collected before using network-backed providers.
 
-Risk: Coarse opt-out usage telemetry may be sent.
+Risk: ClawScan reports many unpinned CLI commands, which can download changing versions.
 
-Mitigation: Review telemetry settings and opt out if usage reporting is not permitted.
+Mitigation: Inspect the commands and pin CLI versions before execution.
 
 ## Reference(s):
 
-- [media-use release on ClawHub](https://clawhub.ai/heygen-com/skills/media-use)
-- [Media resolution and reuse](references/resolve.md)
-- [Audio workflows](references/audio.md)
-- [Media operations](references/operations.md)
-- [Provider setup](references/setup-providers.md)
+- [ClawHub release page](https://clawhub.ai/heygen-com/skills/media-use)
 - [HeyGen CLI documentation](https://developers.heygen.com/cli)
+- [Media asset resolution and reuse](artifact/references/resolve.md)
+- [Media treatments](artifact/references/media-treatments.md)
+- [Audio workflows](artifact/references/audio.md)
+- [Provider setup](artifact/references/setup-providers.md)
+- [Media operations](artifact/references/operations.md)
+- [Audio mixing](artifact/references/mixing.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+**Output Type(s):** [Audio and video files, Image and media assets, Shell commands, Guidance]
 
-**Output Format:** [Plain text and Markdown with commands and local media file paths]
+**Output Format:** [Local media files with Markdown guidance and shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May create local media files, captions, and asset ledger records.]
+**Other Properties Related to Output:** [Media is saved in the HyperFrames project's assets directory with an asset record. Paid HeyGen actions may use credits; local-only mode skips network providers.]
 
 ## Skill Version(s):
 
-1.0.86 (source: ClawHub release metadata)
+1.0.88 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

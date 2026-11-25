@@ -1,6 +1,6 @@
 ## Description:
 
-Detects targets such as people, vehicles, non-motorized vehicles, and pets within target areas; supports batch image analysis, suitable for outdoor surveillance scenarios like courtyards, orchards, and farms. | 户外看护智能监测分析技能，检测目标区域内的人、车、非机动车、宠物等目标，支持批量图片分析，适用于庭院、果园、养殖场等户外区域看护场景
+Analyzes outdoor surveillance images and videos to detect people, vehicles, non-motorized vehicles, and pets, and produces monitoring reports.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Outdoor property owners, farm and orchard operators, and security teams use the skill to analyze surveillance images or videos, identify and count people, vehicles, and pets in target areas, assess possible intrusion risks, and review monitoring reports.
+External users managing courtyards, orchards, farms, and other outdoor areas can submit images or videos for object detection, intrusion assessment, and monitoring reports.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Account and history behavior and privacy-sensitive data transfers have not been clarified in the security evidence.
+Risk: Surveillance media and identity data may be sent to remote services or associated with account and report records.
 
-Mitigation: Confirm what account and history data is used and where submitted media and results are sent or retained; avoid sending sensitive imagery until those details are clear.
+Mitigation: Before submitting media, clarify the destination, account handling, access, and retention practices; avoid sharing sensitive footage unless approved.
 
-Risk: The security evidence reports that an option presented as analysis-only may still run analysis.
+Risk: The scanner reports that the export-only option may still analyze supplied media.
 
-Mitigation: Do not rely on that option to prevent processing; verify its behavior before use and treat it as an execution path until confirmed.
+Mitigation: Do not rely on that option to prevent analysis; clarify its behavior and avoid supplying sensitive media until confirmed.
+
+Risk: The security scan was partial because a referenced local path was missing, so it may not cover the complete skill package.
+
+Mitigation: Review the missing component and complete a full package security review before deployment.
 
 ## Reference(s):
 
-- [API documentation](artifact/references/api_doc.md)
+- [ClawHub skill release](https://clawhub.ai/18072937735/skills/smyx-outdoor-monitoring-analysis)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
-- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-outdoor-monitoring-analysis)
+- [API interface documentation](artifact/references/api_doc.md)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, JSON, Markdown]
 
-**Output Format:** [Structured analysis results and Markdown report tables with report links]
+**Output Format:** [Structured monitoring reports with detection results, counts, risk notes, recommendations, and report links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes detected-object classifications and counts, risk indications, recommendations, and report links; supports batch image analysis.]
+**Other Properties Related to Output:** [Accepts JPG, JPEG, PNG, MP4, AVI, and MOV files up to 10 MB; results are for security reference only.]
 
 ## Skill Version(s):
 
-1.0.21 (source: server-resolved release metadata)
+1.0.22 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

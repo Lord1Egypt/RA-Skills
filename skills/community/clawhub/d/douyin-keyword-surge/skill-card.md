@@ -1,6 +1,6 @@
 ## Description:
 
-Retrieves Douyin keyword-search results, current hot topics, creator posts, public video details, and comments as structured JSON.
+为短视频运营与分析任务查询抖音公开内容，包括关键词搜索、热榜、作者作品、作品详情与评论，并返回结构化 JSON。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-Content strategists and analysts use it to retrieve public Douyin search, trend, creator, video, and comment data for content planning and market monitoring. Do not rely on it for advertised seven-day likes-growth rankings until the publisher corrects and verifies that capability.
+External short-video operators and analysts use the skill to find public Douyin content, monitor creator activity and trends, and summarize engagement or comment themes.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,41 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The advertised seven-day likes-growth rankings are not supported by this release's commands.
+Risk: Search terms, links, or identifiers supplied to the skill are sent to an external API.
 
-Mitigation: Ask the publisher to correct the advertised capability and routing, and verify the corrected release before relying on those rankings.
+Mitigation: Use public content and avoid submitting sensitive identifiers; account for this data transfer before running a query.
 
-Risk: Search queries and public-data requests are sent to a third-party API and may incur charges.
+Risk: The security scan is partial, so its benign verdict does not cover every file or behavior.
 
-Mitigation: Check the service plan and ensure the user intends to send the query or link before making a request.
+Mitigation: Review the commands you plan to use and their data handling before installation or execution.
 
-Risk: The API token and locally saved query/result logs may expose sensitive information.
+Risk: The scanner notes an undeclared account-search capability and does not establish the advertised weekly ranking.
 
-Mitigation: Keep GUAIKEI_API_TOKEN secret and protect or remove local logs according to the user's data-handling needs.
+Mitigation: Use account search only when needed and verify ranking results before relying on them.
 
 ## Reference(s):
 
-- [Usage options](references/options.md)
-- [Comment analysis guide](references/demand-mining.md)
-- [Release notes](references/changelog.md)
-- [Skill release page](https://clawhub.ai/why20261/skills/douyin-keyword-surge)
-- [GuaiKei API service and support](https://www.guaikei.com)
+- [ClawHub skill release](https://clawhub.ai/why20261/skills/douyin-keyword-surge)
+- [API access and support](https://www.guaikei.com)
+- [Options and command guide](references/options.md)
+- [Output contract](references/contract.md)
+- [Errors and retry guidance](references/errors.md)
+- [Comment demand analysis](references/demand-mining.md)
+- [Comment-based customer acquisition](references/customer-acquisition.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Guidance]
+**Output Type(s):** [JSON, Text, Markdown]
 
-**Output Format:** [Structured JSON records with command usage and analysis guidance in Markdown]
+**Output Format:** [Structured JSON results with optional Markdown summaries or analysis]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results are also saved as local JSON log files; agents can summarize search, trend, creator, video, and comment data.]
+**Other Properties Related to Output:** [Requires Node.js 16.14+ and GUAIKEI_API_TOKEN. Queries are sent to an external API; result files may be saved locally.]
 
 ## Skill Version(s):
 
-1.4.2 (source: frontmatter, package.json, changelog released 2026-11-04, server release evidence)
+1.5.0 (source: artifact frontmatter, package.json, server-resolved release)
 
 ## Ethical Considerations:
 

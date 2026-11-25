@@ -1,8 +1,9 @@
 // cache.mjs — block-level routing cache. A System One answer depends only on (adapter, questions, block
 // text), so an unchanged block is never sent twice: re-rendering after an edit only pays for the blocks
 // that changed. Stored next to the logs (PE_CACHE=0 turns it off). Capped, oldest dropped first.
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
-import { join, dirname } from 'node:path';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { writePrivate } from './files.mjs';
 import { createHash } from 'node:crypto';
 import { LOG_DIR } from './trace.mjs';
 export const CACHE = process.env.PE_CACHE_FILE || join(LOG_DIR, '..', 'cache', 'route.json');
@@ -24,7 +25,7 @@ export function withCache(adapter, trace) {
       model = got.model || model;
       miss.forEach((i, j) => { db[keys[i]] = { k: keys[i], a: got[j], m: got.model, t: Date.now() }; });
       const all = Object.entries(db); if (all.length > MAX) db = Object.fromEntries(all.sort((a, b) => a[1].t - b[1].t).slice(-MAX));
-      try { mkdirSync(dirname(CACHE), { recursive: true }); writeFileSync(CACHE, JSON.stringify(db)); } catch {}
+      try { writePrivate(CACHE, JSON.stringify(db)); } catch {}
     }
     return Object.assign(keys.map(k => db[k].a), { model: model || keys.map(k => db[k].m).find(Boolean) });
   } });

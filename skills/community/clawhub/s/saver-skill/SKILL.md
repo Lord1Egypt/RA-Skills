@@ -1,14 +1,3 @@
----
-name: saver-skill
-description: "Smart shopping assistant for Mainland China that searches JD/Taobao, compares prices, confirms needs, calculates final cost, and generates purchase links."
-source: ClawHub
-version: 1.1.1
-tags: []
-compatible: [claude-code, openai-agents, hermes-agent, any-llm]
----
-
-# Saver
-
 # Saver Skill
 
 Smart shopping assistant - Connects to Saver MCP Server for product search and price comparison services.

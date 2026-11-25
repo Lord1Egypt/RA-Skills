@@ -1,6 +1,6 @@
 ## Description:
 
-Detects whether image, video, or audio media is AI-generated, including visual deepfakes and likely generator attribution, and returns confidence scores.
+Detects whether image, video, or audio media is AI-generated and reports confidence scores, possible deepfakes, and likely generator models.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and reviewers use the skill to assess whether image, video, or audio media may be AI-generated or contain a visual deepfake, and to interpret the returned confidence scores and likely generator attribution.
+Developers and other users can submit image, video, or audio media to check for AI generation, visual deepfakes, and likely generator models. The skill returns confidence scores to support review.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Security evidence reports that the inspected content appears to run a login command without showing the advertised detection workflow, and scan coverage is incomplete because local references were unresolved.
+Risk: The security review has partial coverage and medium confidence; the reported login operation and claimed media-detection capability were not connected in the supplied evidence, and referenced files were unavailable to the scan.
 
-Mitigation: Review the complete installed package and confirm the commands it runs before use; begin with non-sensitive media until its behavior is verified.
-
-Risk: The documented workflow uploads local media to dLazy storage or forwards public media URLs to a hosted detection service.
-
-Mitigation: Use media only when you are authorized to share it with the service, especially when it contains personal or confidential information.
+Mitigation: Review the CLI behavior and unavailable references before installation, and submit only media appropriate for processing by dLazy's hosted service.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/dlazyai/skills/dlazy-detect)
-- [dLazy CLI project (metadata link; repository provenance unavailable)](https://github.com/dlazy-ai/cli)
-- [dLazy CLI on npm](https://www.npmjs.com/package/@dlazy/cli)
-- [dLazy](https://dlazy.com)
-- [dLazy API key setup](https://dlazy.com/dashboard/organization/api-key)
+- [dLazy CLI project page (metadata link)](https://github.com/dlazy-ai/cli)
+- [dLazy CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Guidance]
+**Output Type(s):** [JSON, Text]
 
-**Output Format:** [Structured JSON verdict with confidence scores and a human-readable summary]
+**Output Format:** [Structured JSON result with a human-readable summary]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports media type, AI-generation and deepfake scores, boolean classifications, and likely generator attribution when available. Text input is unsupported.]
+**Other Properties Related to Output:** [Includes confidence scores and detection labels; supports image, video, and audio only, not text. Requires a dLazy API key.]
 
 ## Skill Version(s):
 
-1.0.41 (source: server-resolved release metadata)
+1.0.44 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

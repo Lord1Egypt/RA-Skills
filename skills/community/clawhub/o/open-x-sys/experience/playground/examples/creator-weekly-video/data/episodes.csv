@@ -1,0 +1,10 @@
+episode,week_start,topic_source,hours_script,hours_record,hours_edit,hours_title_thumbnail,hours_total,gap_days_finish_to_publish,published_on_thursday,retention_30s_percent
+1,2026-09-07,own,3.0,1.5,4.0,1.0,9.5,2.5,no,57
+2,2026-09-14,own,3.0,1.5,4.0,0.5,9.0,0.4,yes,61
+3,2026-09-21,comment,3.5,1.5,4.0,1.0,10.0,3.0,no,56
+4,2026-09-28,own,3.0,1.5,4.0,1.0,9.5,2.5,no,58
+5,2026-10-05,own,3.0,1.5,4.5,0.5,9.5,0.5,yes,64
+6,2026-10-12,comment,3.0,1.5,4.0,0.5,9.0,0.3,yes,67
+7,2026-10-19,own,3.0,1.5,4.0,0.5,9.0,0.2,yes,65
+8,2026-10-26,comment,3.0,1.5,4.0,0.5,9.0,0.3,yes,68
+9,2026-11-02,own,3.0,1.5,4.0,0.5,9.0,0.2,yes,66

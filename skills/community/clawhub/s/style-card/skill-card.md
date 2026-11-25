@@ -1,6 +1,6 @@
 ## Description:
 
-Reverse-engineers a reference image into a reusable style card, then applies saved style cards to generate new images from text.
+Reverse-engineers a reference image into a reusable style card, then uses that card to create new images in the same visual style.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Developers and creators use this skill to turn a reference image into a reusable visual style guide, then apply that style to new text or image content. It supports image-generation workflows as well as HTML-based graphics and PNG export.
+Creators and designers use this skill to turn a reference image's visual style into a reusable, editable card, then apply it to new text and image requests.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The PNG export helper may fetch an unpinned Playwright package and install it globally, then download Chromium.
+Risk: The PNG export helper can silently install an unpinned Playwright package globally.
 
-Mitigation: Review the helper before running it; choose and pin the Playwright version and install it in an isolated project environment instead of relying on its automatic global install.
+Mitigation: Review the helper and install a pinned Playwright version in a project-local environment before exporting images.
 
-Risk: Sending a reference image to an external image-generation provider may disclose image contents.
+Risk: The documented HTML workflow requests Google Fonts, and reverse-analysis may send reference images or prompts to a model provider.
 
-Mitigation: Use only images you are authorized to share, and check the provider's data-handling terms before submitting sensitive material.
+Mitigation: Use approved local fonts where possible, and avoid sending confidential images or prompts to external providers unless their data handling is acceptable.
+
+Risk: Static checks could not inspect the bundled binary images, so evidence about their contents is incomplete.
+
+Mitigation: Review bundled image assets before relying on them or redistributing them.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/bonniegeng-max/skills/style-card)
-- [Reverse style analysis prompt](references/reverse-meta-prompt.md)
-- [HTML template and rendering guidance](references/html-template.md)
-- [HTML base stylesheet](references/html-base.css)
-- [Generation gotchas](gotchas.md)
-- [Frontend Slides, acknowledged workflow inspiration](https://github.com/zarazhangrui/frontend-slides)
+- [ClawHub release](https://clawhub.ai/bonniegeng-max/skills/style-card)
+- [Style card reverse-analysis prompt](artifact/references/reverse-meta-prompt.md)
+- [HTML output template guidance](artifact/references/html-template.md)
+- [Generation gotchas and mitigations](artifact/gotchas.md)
+- [Acknowledged workflow inspiration: frontend-slides](https://github.com/zarazhangrui/frontend-slides)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, HTML, PNG images, Image-generation prompts, Guidance]
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Images]
 
-**Output Format:** [Reusable style cards and prompts in Markdown; optional single-file HTML and exported PNG graphics]
+**Output Format:** [Markdown style cards and prompts, single-file HTML, PNG images, and optional animation-ready HTML.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Style cards use structured visual parameters and content slots; generated graphics depend on the selected image or HTML engine.]
+**Other Properties Related to Output:** [Style cards use named content slots and include palette, layout, typography, and negative constraints. Image outputs depend on the selected generation engine.]
 
 ## Skill Version(s):
 
-0.6.5 (source: frontmatter, changelog released 2026-11-17)
+1.1.0 (source: frontmatter, ClawHub release)
 
 ## Ethical Considerations:
 

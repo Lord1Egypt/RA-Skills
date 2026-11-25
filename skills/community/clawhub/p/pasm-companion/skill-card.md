@@ -1,6 +1,6 @@
 ## Description:
 
-pasm-companion helps agents integrate an offline elderly companion that remembers key facts, prompts medication schedules, detects crisis expressions, and returns escalation context for a human notifier.
+Provides an offline-capable elderly companion agent for retaining key facts, prompting scheduled medications, and escalating detected crises to a human contact.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and product teams use this skill to add a local PASM-based elderly companion that can retrieve important personal facts, prompt scheduled medication, and hand crisis context to a human-operated notifier. It is medical-adjacent and should not be used as a medical device or as a replacement for professional judgment.
+External developers use the skill to build companion agents that remember a person's key facts, provide scheduled medication prompts, and route detected concerns to a human contact.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill is medical-adjacent and includes medication prompts, crisis detection, and emergency escalation context.
+Risk: The security scan rated the skill benign with medium confidence, but four referenced paths could not be matched, so the scan evidence is incomplete.
 
-Mitigation: Keep a human decision-maker in the loop for medication, diagnosis, emergencies, and any notifier that contacts family or emergency services.
+Mitigation: Review the unavailable referenced materials before installation.
 
-Risk: The skill depends on the external pasm-agents package.
+Risk: Medication prompts and crisis detection could be mistaken for medical assessment or emergency intervention.
 
-Mitigation: Install only after reviewing and accepting that dependency and its source or package distribution.
-
-Risk: The companion stores elder-care facts and interaction state locally.
-
-Mitigation: Treat local state as sensitive personal data and protect the storage location according to the deployment environment.
+Mitigation: Use the agent for reminders and escalation context only; leave medical decisions to qualified professionals and have a person activate any emergency contact or service.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/arronjack/skills/pasm-companion)
-- [pasm-agents project homepage](https://github.com/arronJack/pasm-agents)
-- [pasm-skills tutorial](https://github.com/arronJack/pasm-skills/blob/master/docs/TUTORIAL.md)
-- [pasm-agents source install mirror](https://gitee.com/arronzheng/pasm-agents)
+- [PASM Agents repository](https://github.com/arronJack/pasm-agents)
+- [PASM Skills tutorial](https://github.com/arronJack/pasm-skills/blob/master/docs/TUTORIAL.md)
+- [PASM Agents source installation](https://gitee.com/arronzheng/pasm-agents)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+**Output Type(s):** [Guidance, Text, Markdown, Code, Shell commands, Configuration]
 
-**Output Format:** [Markdown with Python and bash code blocks]
+**Output Format:** [Markdown guidance with Python examples, shell commands, and persona configuration examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes local/offline setup guidance and integration examples for an external pasm-agents dependency.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-0.5.0 (source: server release and SKILL.md frontmatter)
+0.6.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

@@ -30,6 +30,7 @@ import secrets
 import socket
 import ssl
 import sys
+import threading
 import time
 import uuid
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -41,11 +42,38 @@ DEFAULT_CONFIG = {
     "host": "127.0.0.1",
     "port": 3457,
     "upstream": {
-        "url": "https://opencode.ai/zen/v1/chat/completions",
-        "model": "space-bunny-free",
+        # Default now points at the local Zen bridge (see zen_bridge.py), which
+        # forwards to OpenCode Zen through the opencode SDK. Zen's free tier
+        # rejects direct/anonymous calls (FreeTierError), and the previous
+        # default model `space-bunny-free` was retired on 2026-10-16.
+        "url": "http://127.0.0.1:8787/v1/chat/completions",
+        "model": "deepseek-v4.1-flash-free",
         "api_key": "",
+        # Exit-proxy selection. Exactly one of these shapes applies, checked in
+        # this order (an explicit value here always beats the environment):
+        #   "proxies": ["http://127.0.0.1:10808", "http://127.0.0.1:10809"]
+        #       rotate / fail over a pool of exits; each entry should be a
+        #       DISTINCT egress (two listeners of the same node share one IP
+        #       and one daily quota, so rotating between them buys nothing).
+        #   "proxy": "http://127.0.0.1:10808"     one fixed proxy
+        #   neither key                           -> HTTPS_PROXY / HTTP_PROXY
+        #                                            / ALL_PROXY, else DIRECT
+        # "proxy": "" (empty string) forces DIRECT and ignores the environment.
+        # NOTE: NO_PROXY is never consulted.
+        # WARNING: the #1 cause of"SSL: UNEXPECTED_EOF_WHILE_READING" is a proxy
+        # entry with the WRONG PROTOCOL -- typically a SOCKS5 port (Shadowsocks
+        # 10808, v2ray 10809, ...) written as "http://...". An http:// URL against
+        # a SOCKS listener breaks the TLS handshake every time. This bridge is
+        # built on urllib, which cannot speak SOCKS at all: use the SOCKS client's
+        # own HTTP bridge port, or just pass `--proxy ""` and go direct.
+        "proxy_strategy": "failover",
     },
-    "drop_reasoning": True,
+    # StepFun-style reasoning models answer with the thinking chain in
+    # ``reasoning_content``. Claude Code MUST see that chain or its tool-use
+    # loop misbehaves (it plans tool calls inside the thinking), so by default
+    # we translate it into Anthropic ``thinking`` blocks on the way back.
+    # Set false to strip it (saves context, but the model "forgets" its plan).
+    "reasoning_to_thinking": True,
     "timeout": 900,
     # Upstream retries for idempotent request shapes. Measured on2026-10-07:
     # a 183KB classifier payload takes the free endpoint 34-47s, and the
@@ -54,7 +82,49 @@ DEFAULT_CONFIG = {
     # request is a pure ask-for-a-completion with no side effects.
     "retries": 2,
     "retry_backoff": 1.5,
+    # Some upstreams (StepFun step-5-preview notably) occasionally return a 200
+    # with an EMPTY content block and no tool calls -- a server-side quirk, not
+    # a transport fault. Retry that shape up to retry_empty extra times for
+    # non-streaming requests. Streaming is left alone (a committed chunk can't
+    # be un-sent). 0 disables the behaviour.
+    "retry_empty": 2,
+    # Pause before re-sending a request that came back 200-but-empty. Kept
+    # short on purpose: the client (Claude Code) often has its own deadline,
+    # and a long wait here just burns it. 0 retries immediately.
+    "retry_empty_backoff": 0.5,
     "verbose": False,
+    # Forward Anthropic image content blocks to the upstream as OpenAI
+    # image_url parts (data: URIs or http(s) URLs). When False, images are
+    # dropped with a "[image omitted]" placeholder -- the legacy behaviour,
+    # used by upstreams that cannot ingest multimodal content. Set False only
+    # if a specific upstream rejects base64 images.
+    "forward_images": True,
+    # Disable the upstream model's internal "thinking"/reasoning chain. Some
+    # reasoning models (e.g. StepFun step-5-preview) think by default and that
+    # dominates wall-clock latency. When True we send
+    #   chat_template_kwargs: {"enable_thinking": False}
+    # to the upstream so it answers directly. Harmless for non-reasoning models.
+    "no_reasoning": False,
+    # Pin reasoning_effort to one value for every upstream call. Deriving it
+    # per request from the thinking budget makes the parameter flip between
+    # requests, and on StepFun a changed reasoning_effort invalidates the
+    # prompt cache permanently -> every turn re-prefills. Set "" to restore
+    # the old dynamic high/medium/low mapping.
+    "pin_reasoning_effort": "medium",
+    # Log the upstream usage block (notably prompt_tokens_details.cached_tokens)
+    # for every call, so prompt-cache hits are visible instead of inferred.
+    "log_cache_hit": True,
+    # Ask the upstream for a usage block on streamed responses. Required for
+    # log_cache_hit to report anything when stream=true. StepFun supports it.
+    "include_usage": True,
+    # Warn (stderr) when a single turn's estimated input exceeds this many
+    # tokens: past that point cache misses get expensive and /clear is cheaper.
+    "warn_input_tokens": 80000,
+    # Send the "Stepfun-Prompt-Cache: enable" request header on calls to
+    # api.stepfun.com. Without it StepFun does NOT cache, with it the fixed
+    # system prompt / long stable prefix is cached server-side (first round
+    # miss, later rounds hit, TTFT drops sharply). Ignored for other hosts.
+    "prompt_cache": True,
     # Shared secret that local clients must present. Auto-generated on first
     # start so that no other local process can silently use the upstream
     # credential this gateway is configured with. Keep it in sync with the
@@ -74,6 +144,34 @@ STOP_MAP = {
 }
 
 VALID_STOP = {"end_turn", "max_tokens", "stop_sequence", "tool_use", "pause_turn", "refusal"}
+
+
+def log_usage(usage):
+    """Print the upstream usage block, highlighting prompt-cache hits.
+
+    StepFun reports cached prompt tokens as
+    ``usage.prompt_tokens_details.cached_tokens``. Without this the only way
+    to tell whether the cache is working is to watch TTFT, which is noisy.
+    """
+    if not CONFIG.get("log_cache_hit", True) or not isinstance(usage, dict):
+        return
+    pt = usage.get("prompt_tokens")
+    ct = usage.get("completion_tokens")
+    det = usage.get("prompt_tokens_details") or {}
+    cached = det.get("cached_tokens")
+    if cached is None:
+        cached_pt = usage.get("cached_tokens")
+        cached = cached_pt
+    pct = ""
+    if cached is not None and pt:
+        try:
+            pct = " (%d%% cached)" % (100 * int(cached) / int(pt))
+        except (TypeError, ValueError, ZeroDivisionError):
+            pct = ""
+    sys.stderr.write("[ccproxy] usage: prompt=%s completion=%s cached=%s%s\n"
+                     % (pt, ct, cached if cached is not None else "?",
+                        " HIT" + pct if cached else " MISS"))
+    sys.stderr.flush()
 
 
 def log(*a):
@@ -184,6 +282,32 @@ def _text_of(content):
     return "\n".join(p for p in parts if p)
 
 
+def anthropic_image_to_openai_url(b):
+    """Convert an Anthropic ``image`` content block to an OpenAI ``image_url``
+    string (the value that goes into ``image_url.url``).
+
+    Supports ``base64`` sources (emitted as ``data:<media_type>;base64,<data>``)
+    and ``url`` sources (passed through). Returns "" when the block cannot be
+    interpreted, so callers can fall back to a textual placeholder instead of
+    raising -- upstreams vary wildly in the exact image block shape.
+    """
+    src = b.get("source") or {}
+    st = src.get("type")
+    if st == "base64":
+        media = src.get("media_type") or "image/png"
+        data = src.get("data") or ""
+        if not data:
+            return ""
+        return "data:%s;base64,%s" % (media, data)
+    if st == "url":
+        return src.get("url") or ""
+    # Tolerant of non-standard shapes that still carry a data field.
+    if "data" in src and src.get("data"):
+        media = src.get("media_type") or "image/png"
+        return "data:%s;base64,%s" % (media, src["data"])
+    return ""
+
+
 def anthropic_to_openai(req):
     """Anthropic Messages request -> OpenAI chat.completions request."""
     msgs = []
@@ -206,7 +330,11 @@ def anthropic_to_openai(req):
 
         # A user turn may carry tool_result blocks; OpenAI wants those as
         # separate role="tool" messages, so we split them out in order.
-        texts, tool_results, tool_calls = [], [], []
+        # Images are converted to OpenAI image_url parts (when forwarding is
+        # enabled) so multimodal upstreams can actually see them; without the
+        # patch they were silently dropped as "[image omitted]".
+        texts, tool_results, tool_calls, image_parts = [], [], [], []
+        fwd_img = bool(CONFIG.get("forward_images", True))
         for b in content:
             if not isinstance(b, dict):
                 texts.append(str(b))
@@ -219,13 +347,24 @@ def anthropic_to_openai(req):
             elif t == "tool_use":
                 tool_calls.append(b)
             elif t == "image":
+                if fwd_img:
+                    url = anthropic_image_to_openai_url(b)
+                    if url:
+                        image_parts.append(url)
+                        continue
                 texts.append("[image omitted]")
 
-        joined = "\n".join(x for x in texts if x)
+        plain_text = "\n".join(x for x in texts if x)
 
         if tool_results:
-            if joined:
-                msgs.append({"role": role, "content": joined})
+            if plain_text or image_parts:
+                ucontent = []
+                if plain_text:
+                    ucontent.append({"type": "text", "text": plain_text})
+                for url in image_parts:
+                    ucontent.append({"type": "image_url",
+                                     "image_url": {"url": url}})
+                msgs.append({"role": role, "content": ucontent})
             for tr in tool_results:
                 body = tr.get("content")
                 out = _text_of(body)
@@ -252,12 +391,23 @@ def anthropic_to_openai(req):
                     },
                 })
             msg = {"role": "assistant", "tool_calls": oa_calls}
-            if joined:
-                msg["content"] = joined
+            if plain_text or image_parts:
+                # assistant+tool_calls can only carry *text* content (OpenAI
+                # forbids a content array alongside tool_calls), so keep the
+                # text; images in a tool_use turn are dropped (rare, non-fatal).
+                msg["content"] = plain_text or ""
             msgs.append(msg)
             continue
 
-        msgs.append({"role": role, "content": joined})
+        if image_parts:
+            ucontent = []
+            if plain_text:
+                ucontent.append({"type": "text", "text": plain_text})
+            for url in image_parts:
+                ucontent.append({"type": "image_url", "image_url": {"url": url}})
+            msgs.append({"role": role, "content": ucontent})
+        else:
+            msgs.append({"role": role, "content": plain_text})
 
     out = {
         "model": CONFIG["upstream"].get("model", "unknown"),
@@ -298,11 +448,28 @@ def anthropic_to_openai(req):
             out["tool_choice"] = "auto"
 
     # Reasoning hints: map Anthropic's thinking budget onto reasoning_effort.
+    # Pinned by default (see pin_reasoning_effort): a value that changes from
+    # request to request defeats StepFun's prompt cache.
     th = req.get("thinking") or {}
     if isinstance(th, dict) and th.get("type") == "enabled":
-        budget = th.get("budget_tokens") or 0
-        out["reasoning_effort"] = "high" if budget >= 8000 else (
-            "medium" if budget >= 2000 else "low")
+        pinned = CONFIG.get("pin_reasoning_effort")
+        if pinned:
+            out["reasoning_effort"] = pinned
+        else:
+            budget = th.get("budget_tokens") or 0
+            out["reasoning_effort"] = "high" if budget >= 8000 else (
+                "medium" if budget >= 2000 else "low")
+
+    # Ask for a usage block on streamed responses so the prompt-cache hit can
+    # be logged. Not part of the prompt, so it cannot break the cache key.
+    if req.get("stream") and CONFIG.get("log_cache_hit", True) \
+            and CONFIG.get("include_usage", True):
+        out["stream_options"] = {"include_usage": True}
+
+    # no_reasoning: force the upstream to skip its internal thinking chain.
+    # StepFun (vLLM-style) honours chat_template_kwargs.enable_thinking=false.
+    if CONFIG.get("no_reasoning"):
+        out["chat_template_kwargs"] = {"enable_thinking": False}
 
     out["messages"] = _repair_message_sequence(msgs)
 
@@ -320,7 +487,7 @@ def _repair_message_sequence(msgs):
 
     where the ``user`` message separates the assistant from its own tool
     result. Strict OpenAI-compatible gateways reject that shape, and some
-    (OpenCode Zen's anonymous ``space-bunny-free``) answer only
+    (OpenCode Zen's free tier, e.g. the retired ``space-bunny-free``) answer only
     ``invalid_request_error: invalid request`` with no hint about which message
     is at fault -- so the request just fails intermittently mid-session.
 
@@ -354,6 +521,13 @@ def _repair_message_sequence(msgs):
         while out and out[-1].get("role") in ("user", "system"):
             tail.insert(0, out.pop())
         if tail:
+            # Multimodal user content (text + images) cannot be folded into a
+            # tool message without destroying the image parts, so keep it
+            # intact as a separate user message placed AFTER the tool results.
+            if any(isinstance(t.get("content"), list) for t in tail):
+                out.extend(run)
+                out.extend(tail)
+                continue
             text = "\n\n".join(
                 str(x.get("content", "")).strip() for x in tail
                 if str(x.get("content", "")).strip()
@@ -444,41 +618,72 @@ def _dump_failed_request(oa_req, anthropic_req, status, detail):
 
 
 # -------------------------------------------------------------- response side
-def resolve_upstream_proxy(u):
-    """Decide whether to reach the upstream through a proxy.
+# Rotating start index for round-robin proxy selection. One counter shared by
+# every request thread and guarded by a lock; only the offset is contended,
+# never the request itself.
+_PROXY_RR = {"i": 0}
+_PROXY_RR_LOCK = threading.Lock()
 
-    Explicit config wins; otherwise fall back to the standard proxy
-    environment variables. Returns (use_proxy, proxy_url).
+
+def _upstream_proxy_strategy():
+    """'round_robin' or 'failover' (default)."""
+    s = str(CONFIG.get("upstream", {}).get("proxy_strategy") or "").strip().lower()
+    if s in ("round_robin", "roundrobin", "rr", "rotate", "rotation", "spread"):
+        return "round_robin"
+    return "failover"
+
+
+def resolve_upstream_candidates(u):
+    """Ordered list of candidate proxy URLs for the upstream.
+
+    An EMPTY list means "go direct". Precedence (an explicit value always beats
+    the environment):
+        upstream.proxies (non-empty list) -> that pool, in order
+        upstream.proxy   (string)         -> [proxy]; "" forces direct
+        neither key                       -> HTTPS_PROXY / HTTP_PROXY
+                                             [/ ALL_PROXY], else direct
     """
     up = CONFIG.get("upstream", {})
+
+    listed = up.get("proxies")
+    if isinstance(listed, list):
+        clean = [str(p).strip() for p in listed if str(p or "").strip()]
+        if clean:
+            return clean
+        # A blank/empty list falls through to the single value.
+
     explicit = up.get("proxy")
     if explicit is not None:
-        if not explicit:
-            return False, ""
-        return True, explicit
+        return [str(explicit)] if str(explicit).strip() else []
 
     scheme_key = "HTTPS_PROXY" if u.scheme == "https" else "HTTP_PROXY"
     for k in (scheme_key, scheme_key.lower()):
         v = os.environ.get(k) or ""
         if v:
-            return True, v
+            return [v]
     # A generic all_proxy should still work for the http scheme fallback.
     if u.scheme != "https":
         v = os.environ.get("ALL_PROXY") or os.environ.get("all_proxy") or ""
         if v:
-            return True, v
-    return False, ""
+            return [v]
+    return []
 
 
-def upstream_request(oa_req):
+def resolve_upstream_proxy(u):
+    """Single-proxy view of the FIRST candidate, kept for the startup banner
+    and any external caller. Returns (use_proxy, proxy_url)."""
+    cands = resolve_upstream_candidates(u)
+    return (True, cands[0]) if cands else (False, "")
+
+
+def upstream_request(oa_req, proxy_url=None):
     u = urlparse(CONFIG["upstream"]["url"])
     timeout = CONFIG.get("timeout", 900)
     scheme = u.scheme
     host = u.hostname
     port = u.port or (443 if scheme == "https" else 80)
-    use_proxy, proxy_url = resolve_upstream_proxy(u)
 
-    if use_proxy:
+    if proxy_url:
         # CONNECT tunnel: we speak TLS end-to-end with the origin, so the
         # proxy only relays bytes. This keeps the request-target in origin
         # form, which streaming requires, while still using the proxy path.
@@ -511,6 +716,10 @@ def upstream_request(oa_req):
     key = CONFIG["upstream"].get("api_key") or ""
     if key:
         headers["Authorization"] = "Bearer " + key
+    # StepFun prompt cache: the platform only caches when this header is set.
+    # A changing system/context defeats the cache regardless of the header.
+    if CONFIG.get("prompt_cache", True) and host and host.endswith("stepfun.com"):
+        headers["Stepfun-Prompt-Cache"] = "enable"
     body = json.dumps(oa_req, ensure_ascii=False).encode("utf-8")
     conn.request("POST", path, body=body, headers=headers)
     return conn, conn.getresponse()
@@ -540,7 +749,15 @@ def _is_retryable_upstream_error(e):
 
 
 def open_upstream_with_retry(oa_req):
-    """Open the upstream, retrying transport faults.
+    """Open the upstream, retrying transport faults across proxy candidates.
+
+    Candidates come from resolve_upstream_candidates(); an empty pool means a
+    single direct attempt. With more than one candidate the retry loop walks
+    the pool, starting either at a rotating offset (round_robin -> consecutive
+    requests spread over the exits) or at the primary (failover -> only move on
+    once it breaks). Either way every candidate gets one shot before any is
+    retried, so a dead or quota-limited exit is stepped over instead of being
+    hammered.
 
     Returns (conn, resp, attempts). Raises the last error if every attempt
     failed. The caller must close whichever conn it ends up with, so failed
@@ -555,11 +772,29 @@ def open_upstream_with_retry(oa_req):
     except (TypeError, ValueError):
         backoff = 1.5
 
+    u = urlparse(CONFIG["upstream"]["url"])
+    cands = resolve_upstream_candidates(u)
+    n = len(cands)
+
+    # round_robin advances the start point per request; failover pins it to 0.
+    base = 0
+    if n > 1 and _upstream_proxy_strategy() == "round_robin":
+        with _PROXY_RR_LOCK:
+            base = _PROXY_RR["i"] % n
+            _PROXY_RR["i"] = (_PROXY_RR["i"] + 1) % 1000000
+
+    # One pass over the pool, or the configured retry budget, whichever is more.
+    tries = max(attempts + 1, n) if n else attempts + 1
+
     last = None
-    for i in range(attempts + 1):
+    for i in range(tries):
+        proxy_url = cands[(base + i) % n] if n else None
         conn = None
         try:
-            conn, resp = upstream_request(oa_req)
+            conn, resp = upstream_request(oa_req, proxy_url)
+            if i:
+                log_always("upstream recovered via %s (attempt %d/%d)"
+                           % (proxy_url or "direct", i + 1, tries))
             return conn, resp, i + 1
         except Exception as e:
             last = e
@@ -568,11 +803,13 @@ def open_upstream_with_retry(oa_req):
                     conn.close()
                 except Exception:
                     pass
-            if i >= attempts or not _is_retryable_upstream_error(e):
+            if i >= tries - 1 or not _is_retryable_upstream_error(e):
                 raise
             delay = backoff * (2 ** i)
-            log_always("upstream %s on attempt %d/%d, retrying in %.1fs: %s"
-                       % (type(e).__name__, i + 1, attempts + 1, delay, e))
+            nxt = cands[(base + i + 1) % n] if n else None
+            log_always("upstream %s via %s on attempt %d/%d, retrying in %.1fs via %s: %s"
+                       % (type(e).__name__, proxy_url or "direct", i + 1, tries,
+                          delay, nxt or "direct", e))
             time.sleep(delay)
     raise last
 
@@ -582,6 +819,11 @@ def openai_to_anthropic(resp, model):
     choice = (resp.get("choices") or [{}])[0]
     msg = choice.get("message") or {}
     content = []
+
+    # Reasoning chain first (Anthropic expects thinking blocks at the front).
+    rc = msg.get("reasoning_content")
+    if rc and CONFIG.get("reasoning_to_thinking", True):
+        content.append({"type": "thinking", "thinking": rc, "signature": ""})
 
     text = msg.get("content")
     if text:
@@ -636,7 +878,8 @@ class StreamTranslator(object):
         self.msg_id = "msg_" + uuid.uuid4().hex[:24]
         self.input_tokens = estimate_tokens(" " * input_chars)
         self.out_chars = 0
-        self.blocks = []          # list of {"idx":int,"kind":"text"|"tool","open":bool}
+        self.blocks = []          # list of {"idx":int,"kind":"text"|"tool"|"thinking","open":bool}
+        self.think_idx = None
         self.text_idx = None
         self.tool_by_slot = {}    # upstream tool_call index -> our block index
         self.stop_reason = "end_turn"
@@ -659,6 +902,17 @@ class StreamTranslator(object):
                 "stop_sequence": None,
                 "usage": {"input_tokens": self.input_tokens, "output_tokens": 0},
             },
+        })
+
+    def _open_thinking(self):
+        if self.think_idx is not None:
+            return b""
+        idx = len(self.blocks)
+        self.think_idx = idx
+        self.blocks.append({"idx": idx, "kind": "thinking", "open": True})
+        return self.ev("content_block_start", {
+            "type": "content_block_start", "index": idx,
+            "content_block": {"type": "thinking", "thinking": ""},
         })
 
     def _open_text(self):
@@ -695,6 +949,18 @@ class StreamTranslator(object):
             return out
         ch = choices[0]
         delta = ch.get("delta") or {}
+
+        # Reasoning chain deltas -> Anthropic thinking block. Must be injected
+        # BEFORE any text/tool blocks so Claude Code sees the model's plan.
+        rc = delta.get("reasoning_content")
+        if rc and CONFIG.get("reasoning_to_thinking", True):
+            if self.think_idx is None:
+                out += self._open_thinking()
+            self.out_chars += len(rc)
+            out += self.ev("content_block_delta", {
+                "type": "content_block_delta", "index": self.think_idx,
+                "delta": {"type": "thinking_delta", "thinking": rc},
+            })
 
         text = delta.get("content")
         if text:
@@ -1018,6 +1284,16 @@ class Handler(BaseHTTPRequestHandler):
         prompt_chars = sum(len(str(m.get("content", ""))) for m in oa_req["messages"])
         model_for_reply = req.get("model") or CONFIG["upstream"].get("model")
 
+        # Guide tip 6: a turn this large means the next cache miss is expensive
+        # and the context is probably stale. Tell the user to /clear.
+        _warn_at = CONFIG.get("warn_input_tokens") or 0
+        if _warn_at:
+            _est = estimate_tokens(" " * prompt_chars)
+            if _est > int(_warn_at):
+                log_always("LARGE INPUT: ~%d tokens (threshold %d) -- prompt "
+                           "cache misses are expensive at this size; consider "
+                           "/clear or trimming the session" % (_est, int(_warn_at)))
+
         conn = resp = None
         try:
             conn, resp, _attempts = open_upstream_with_retry(oa_req)
@@ -1042,31 +1318,80 @@ class Handler(BaseHTTPRequestHandler):
                 return
 
             if not want_stream:
-                # A non-streaming upstream can still die mid-body: it may
-                # promise a Content-Length and then reset the connection.
-                # ``resp.read()`` then blocks forever, the client never gets
-                # a reply and never sees an error, so the whole session
-                # stalls with no way to recover. Bound the read by the
-                # declared length and fail loudly instead of hanging.
-                try:
-                    raw_body = resp.read()
-                except Exception as e:
-                    log_always("upstream body read failed mid-flight: %s: %s"
-                               % (type(e).__name__, e))
-                    self._send_error_anthropic(
-                        502, "api_error",
-                        "upstream response was truncated: %s" % e)
-                    return
-                try:
-                    data = json.loads(raw_body.decode("utf-8"))
-                except Exception as e:
-                    log_always("upstream sent unparseable body: %s" % e)
-                    self._send_error_anthropic(
-                        502, "api_error",
-                        "upstream sent an invalid body: %s" % e)
-                    return
-                self._send_json(200, openai_to_anthropic(data, model_for_reply))
-                return
+                empty_retries = int(CONFIG.get("retry_empty", 0) or 0)
+                attempt = 0
+                while True:
+                    if resp.status != 200:
+                        detail = resp.read().decode("utf-8", "replace")[:800]
+                        log("upstream", resp.status, detail)
+                        _dump_failed_request(oa_req, req, resp.status, detail)
+                        kind = "authentication_error" if resp.status in (401, 403) else "api_error"
+                        self._send_error_anthropic(resp.status, kind,
+                                                   "upstream %s: %s" % (resp.status, detail))
+                        if conn:
+                            conn.close()
+                        return
+
+                    # A non-streaming upstream can still die mid-body: it may
+                    # promise a Content-Length and then reset the connection.
+                    # ``resp.read()`` then blocks forever, the client never
+                    # gets a reply and never sees an error, so the whole
+                    # session stalls with no way to recover. Bound the read by
+                    # the declared length and fail loudly instead of hanging.
+                    try:
+                        raw_body = resp.read()
+                    except Exception as e:
+                        log_always("upstream body read failed mid-flight: %s: %s"
+                                   % (type(e).__name__, e))
+                        self._send_error_anthropic(
+                            502, "api_error",
+                            "upstream response was truncated: %s" % e)
+                        if conn:
+                            conn.close()
+                        return
+                    try:
+                        data = json.loads(raw_body.decode("utf-8"))
+                    except Exception as e:
+                        log_always("upstream sent unparseable body: %s" % e)
+                        self._send_error_anthropic(
+                            502, "api_error",
+                            "upstream sent an invalid body: %s" % e)
+                        if conn:
+                            conn.close()
+                        return
+
+                    log_usage(data.get("usage"))
+                    conv = openai_to_anthropic(data, model_for_reply)
+                    has_text = any(b.get("type") == "text" and str(b.get("text", "")).strip()
+                                   for b in conv.get("content", []))
+                    has_tool = any(b.get("type") == "tool_use" for b in conv.get("content", []))
+                    if (has_text or has_tool) or attempt >= empty_retries:
+                        if attempt and not (has_text or has_tool):
+                            log_always("empty upstream reply persisted after %d retries; "
+                                       "passing through" % empty_retries)
+                        self._send_json(200, conv)
+                        if conn:
+                            conn.close()
+                        return
+
+                    # StepFun flaky-empty quirk: 200 with no content. Retry.
+                    log_always("empty upstream reply (attempt %d/%d), retrying"
+                               % (attempt + 1, 1 + empty_retries))
+                    if conn:
+                        conn.close()
+                    attempt += 1
+                    _eb = float(CONFIG.get("retry_empty_backoff", 0.5) or 0)
+                    if _eb > 0:
+                        time.sleep(_eb)
+                    try:
+                        conn, resp, _attempts = open_upstream_with_retry(oa_req)
+                    except Exception as e:
+                        log_always("upstream connect failed on empty-retry: %s: %s"
+                                   % (type(e).__name__, e))
+                        self._send_error_anthropic(
+                            502, "api_error", "upstream connect failed: %s" % e)
+                        return
+                return  # unreachable
 
             # ---- streaming ----
             self.send_response(200)
@@ -1086,6 +1411,7 @@ class Handler(BaseHTTPRequestHandler):
             # high-water mark and only replay while nothing has been emitted;
             # past that point failing loudly beats silently repeating.
             emitted = 0
+            last_usage = None
             mid_retries = CONFIG.get("retries", 0)
             try:
                 mid_retries = int(mid_retries)
@@ -1105,6 +1431,10 @@ class Handler(BaseHTTPRequestHandler):
                             chunk = json.loads(payload.decode("utf-8"))
                         except Exception:
                             continue
+                        # Guide tip 4: StepFun echoes usage on streamed chunks
+                        # when include_usage is on; keep the last block.
+                        if isinstance(chunk, dict) and chunk.get("usage"):
+                            last_usage = chunk["usage"]
                         out = tr.feed(chunk)
                         if out:
                             self.wfile.write(out)
@@ -1130,6 +1460,8 @@ class Handler(BaseHTTPRequestHandler):
                     time.sleep(delay)
                     conn, resp, _ = open_upstream_with_retry(oa_req)
 
+            if last_usage:
+                log_usage(last_usage)
             self.wfile.write(tr.finish())
             self.wfile.flush()
         except Exception as e:
@@ -1183,6 +1515,20 @@ def main():
     ap.add_argument("--model")
     ap.add_argument("--key")
     ap.add_argument("--verbose", action="store_true")
+    ap.add_argument("--no-reasoning", action="store_true",
+                    help="Disable the upstream model's internal thinking chain "
+                         "(sends chat_template_kwargs.enable_thinking=false). "
+                         "Use for reasoning models that are too slow by default.")
+    ap.add_argument("--retry-empty", type=int,
+                    help="Retry an upstream 200 with empty content up to N extra "
+                         "times (StepFun flaky-empty workaround). Overrides config.")
+    ap.add_argument("--proxy", default=None,
+                    help="Route upstream calls through this proxy, e.g. "
+                         "http://127.0.0.1:10808. Pass an EMPTY string (--proxy \"\") "
+                         "to force DIRECT and ignore HTTPS_PROXY/HTTP_PROXY -- use "
+                         "that when a stale local proxy breaks TLS and you get "
+                         "'SSL: UNEXPECTED_EOF_WHILE_READING'. Clears any "
+                         "upstream.proxies pool. Overrides config.")
     args = ap.parse_args()
 
     CONFIG = load_config()
@@ -1196,8 +1542,15 @@ def main():
         CONFIG["upstream"]["model"] = args.model
     if args.key is not None:
         CONFIG["upstream"]["api_key"] = args.key
+    if args.proxy is not None:
+        CONFIG["upstream"]["proxy"] = args.proxy
+        CONFIG["upstream"].pop("proxies", None)
     if args.verbose:
         CONFIG["verbose"] = True
+    if args.no_reasoning:
+        CONFIG["no_reasoning"] = True
+    if args.retry_empty is not None:
+        CONFIG["retry_empty"] = max(0, args.retry_empty)
 
     ensure_client_token(CONFIG)
 
@@ -1205,11 +1558,36 @@ def main():
     # start but dies later is otherwise invisible: every request fails with a
     # bare 10061 and the log never says a proxy was even involved.
     _u = urlparse(CONFIG["upstream"]["url"])
-    _use_proxy, _proxy = resolve_upstream_proxy(_u)
-    sys.stderr.write("[ccproxy] upstream route: %s\n"
-                     % (("proxy %s" % _proxy) if _use_proxy else "direct"))
+    _cands = resolve_upstream_candidates(_u)
+    if _cands:
+        _strat = _upstream_proxy_strategy() if len(_cands) > 1 else "single"
+        sys.stderr.write("[ccproxy] upstream route: %s  (strategy=%s)\n"
+                         % (" -> ".join(_cands), _strat))
+    else:
+        sys.stderr.write("[ccproxy] upstream route: direct\n")
     sys.stderr.write("[ccproxy] upstream retries: %s (backoff %s)\n"
                      % (CONFIG.get("retries"), CONFIG.get("retry_backoff")))
+    if CONFIG.get("no_reasoning"):
+        sys.stderr.write("[ccproxy] reasoning DISABLED (no_reasoning: upstream gets "
+                         "chat_template_kwargs.enable_thinking=false)\n")
+    if CONFIG.get("reasoning_to_thinking", True):
+        sys.stderr.write("[ccproxy] reasoning_content -> Anthropic thinking blocks "
+                         "(injected back to client)\n")
+    _eff = CONFIG.get("pin_reasoning_effort")
+    sys.stderr.write("[ccproxy] reasoning_effort: %s (pinned; a changing value "
+                     "would invalidate the prompt cache)\n"
+                     % (_eff if _eff else "dynamic (from thinking budget)"))
+    if CONFIG.get("log_cache_hit", True):
+        sys.stderr.write("[ccproxy] cache_hit logging: ON (usage per upstream call"
+                         "%s)\n" % (", stream via stream_options.include_usage"
+                                    if CONFIG.get("include_usage", True) else ""))
+    sys.stderr.write("[ccproxy] upstream timeout %ss; streaming is chunk "
+                     "passthrough, no full-response preload\n"
+                     % CONFIG.get("timeout"))
+    _host = urlparse(CONFIG["upstream"]["url"]).hostname or ""
+    if CONFIG.get("prompt_cache", True) and _host.endswith("stepfun.com"):
+        sys.stderr.write("[ccproxy] stepfun prompt-cache header enabled "
+                         "(Stepfun-Prompt-Cache: enable)\n")
 
     host, port = CONFIG["host"], CONFIG["port"]
     srv = QuietThreadingHTTPServer((host, port), Handler)

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to manage Tencent Cloud object storage, run media and document processing, search indexed content, and work with knowledge bases. It translates requests into COS and CI operations and summarizes their results.
+Developers use this skill to manage Tencent Cloud object storage and run data processing, retrieval, and knowledge base workflows. It can also guide users to relevant COS console features.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,41 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: HTML previews can expose private files, and exported previews may act as temporary file-access credentials.
+Risk: The security review reports credential-handling weaknesses.
 
-Mitigation: Avoid HTML previews until the reported injection and bucket-binding defects are fixed; treat exported previews as temporary access credentials.
+Mitigation: Review the credential flow before use, prefer temporary STS credentials, and follow the skill's least-privilege guidance.
 
-Risk: Destructive commands lack confirmation safeguards and may change or delete cloud data, depending on assigned permissions.
+Risk: The security review reports vulnerable dependencies and could not fully assess several scripts.
 
-Mitigation: Use temporary credentials restricted to the required bucket and actions, preferably read-only. Strict mode reduces deletion risk but does not make every administrative operation read-only.
+Mitigation: Review the dependency state and the scripts that were not fully assessed before installing or running the skill.
+
+Risk: The security guidance calls out cloud processing, sharing workflows, and a preview-generation flaw.
+
+Mitigation: Check what bucket content and generated previews will be processed or shared, and review preview output before distributing it.
 
 ## Reference(s):
 
-- [Tencent COS Node.js SDK documentation](https://cloud.tencent.com/document/product/436/8629)
-- [Tencent Cloud Infinite documentation](https://cloud.tencent.com/document/product/460)
-- [Skill API reference](artifact/references/api_reference.md)
-- [Dataset search guidance](artifact/references/dataset-search.md)
-- [Console feature guides](artifact/references/console-feature-guides.md)
+- [COS API reference](artifact/references/api_reference.md)
+- [Dataset catalog](artifact/references/dataset-catalog.md)
+- [Dataset search guide](artifact/references/dataset-search.md)
+- [Query specification schema](artifact/references/query-spec.schema.json)
+- [ClawHub release page](https://clawhub.ai/shawnminh/skills/tencent-cos-skill)
+- [Tencent Cloud COS charges](https://cloud.tencent.com/document/product/436/16871)
+- [Tencent Cloud CI charges](https://cloud.tencent.com/document/product/460/6970)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, API results]
+**Output Type(s):** [JSON, Files, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown responses with shell command examples and structured API results]
+**Output Format:** [Structured JSON results, file operations, and concise natural-language guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include signed URLs, file metadata, search results, and processing summaries.]
+**Other Properties Related to Output:** [May create or modify objects and other cloud resources when requested.]
 
 ## Skill Version(s):
 
-1.2.3 (source: server-resolved release metadata)
+1.2.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

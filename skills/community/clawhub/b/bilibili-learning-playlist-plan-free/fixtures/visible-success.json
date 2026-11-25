@@ -1,0 +1,12 @@
+{
+  "goal": "JavaScript 异步 基础",
+  "dailyMinutes": 30,
+  "learningDays": 2,
+  "items": [
+    {"title": "JavaScript 异步基础", "description": "从回调到 Promise 的可见简介", "visibleMinutes": 18, "source": "https://www.bilibili.com/video/BVdemo001"},
+    {"title": "Promise | 练习", "description": "异步练习\n含竖线 | 的可见简介", "visibleDuration": "20:30", "source": "https://www.bilibili.com/video/BVdemo002?from=a|b"},
+    {"title": "超长课程", "description": "可见时长超出预算", "visibleDuration": "01:00:00", "source": "https://www.bilibili.com/video/BVdemo003"},
+    {"title": "课程答疑", "description": "页面没有公开显示时长", "source": "https://www.bilibili.com/video/BVdemo004"},
+    {"title": "第三天内容", "description": "可见时长", "visibleMinutes": 15, "source": "https://www.bilibili.com/video/BVdemo005"}
+  ]
+}

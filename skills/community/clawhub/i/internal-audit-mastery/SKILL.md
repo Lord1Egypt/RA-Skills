@@ -1,3 +1,8 @@
+---
+name: internal-audit-mastery
+description: 基于IIA最新全球准则与中国实战案例的内部审计全流程规范、胜任能力框架及学习发展体系，提升内部审计专业实务水平。
+---
+
 # Internal Audit Mastery — 全球内部审计专业实务体系
 
 > **版本:** 1.0.0  

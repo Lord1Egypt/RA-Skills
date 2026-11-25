@@ -1,6 +1,6 @@
 ## Description:
 
-Analyze origin web access logs for CC attacks, proxy-pool bots, scanning probes, login brute force, abnormal crawlers, traffic surges, status-code surges, and slow resource consumption, then produce an actionable security report with mitigation advice.
+Analyze Nginx, Apache, and IIS access logs to identify common web attack patterns and produce a security report with actionable mitigation guidance.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers, security engineers, and site operators use this skill to analyze user-provided Nginx, Apache, or IIS access logs for web-application attack patterns and operational impact. The skill produces evidence-backed reports that support incident triage and mitigation planning.
+Developers, security staff, and site operators use the skill to review user-provided Nginx, Apache, or IIS access logs, identify likely attack patterns, and prioritize mitigation actions.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Access logs may contain IP addresses, URLs, user agents, and other operational data.
+Risk: A report-writing flaw may overwrite the access log being analyzed.
 
-Mitigation: Only provide logs that are approved for local analysis, and redact or minimize sensitive fields before use when policy requires it.
+Mitigation: Protect original logs, verify the report destination, and avoid installation until the overwrite issue is addressed and the script is reviewed.
 
-Risk: The skill writes a generated report to disk and may fall back to the current working directory if its default output directory is not writable.
+Risk: An issue in traffic attribution may identify the wrong source as abusive.
 
-Mitigation: Use an explicit output path when report location or retention needs to be controlled.
+Mitigation: Verify suspicious source addresses against trusted proxy and origin records before taking blocking action.
 
 ## Reference(s):
 
-- [Log Parsing Module](artifact/references/log_parsing.md)
-- [Attack Detection Module](artifact/references/attack-detection.md)
-- [Report Generation Module](artifact/references/report-generation.md)
-- [ClawHub Skill Page](https://clawhub.ai/sdk-team/skills/alibabacloud-web-application-attacks-analysis)
+- [Log parsing reference](artifact/references/log_parsing.md)
+- [Attack detection reference](artifact/references/attack-detection.md)
+- [Report generation reference](artifact/references/report-generation.md)
+- [ClawHub release page](https://clawhub.ai/sdk-team/skills/alibabacloud-web-application-attacks-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, json, shell commands, guidance]
+**Output Type(s):** [Analysis, Text, Markdown, JSON, Mitigation guidance]
 
-**Output Format:** [Plain text or Markdown report with a Structured Findings JSON section]
+**Output Format:** [Text or Markdown report with a structured JSON findings section]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports are generated locally from a user-provided access log and include an Executive Summary, detailed attack evidence, mitigation recommendations, and machine-readable findings.]
+**Other Properties Related to Output:** [English ASCII output; analyzes a user-provided access log.]
 
 ## Skill Version(s):
 
-0.0.1 (source: server release metadata)
+0.0.2 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

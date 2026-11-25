@@ -1,0 +1,57 @@
+{
+  "changelog": "A review now reads the file you hand over and repairs that same file.",
+  "display_name": "Marketing Asset Review",
+  "entry": "SKILL.md",
+  "homepage": "https://beatra.ai/skills/marketing-asset-review",
+  "icon": "https://beatra.ai/textures/icons/marketing-asset-review-0.1.2.png",
+  "localized": {
+    "en": {
+      "description": "Review finished posters, main images, or short clips as a marketing asset review: a line-by-line note of what should not ship and what to change. Marketing asset review shows the checklist, then looks at the files you hand over, and can remake one replacement still or clip. Marketing assets here mean posters, covers, and main images. Use it for the pass before publishing.",
+      "display_name": "Marketing Asset Review",
+      "summary": "A line-by-line note on a poster, main image, or short clip before it ships.",
+      "tags": [
+        "marketing asset review",
+        "marketing assets",
+        "poster check",
+        "main image check",
+        "before publishing"
+      ],
+      "title": "Marketing Asset Review"
+    },
+    "ja": {
+      "description": "できあがったポスター、メイン画像、短い動画について、出してはいけない点と直す点を一行ずつ書きます。点検項目を出してからファイルを見ます。必要なら差し替えの静止画か動画を一枚作ります。",
+      "display_name": "販促素材の点検",
+      "summary": "ポスター、メイン画像、短い動画を出す前の指摘。",
+      "tags": [
+        "点検",
+        "ポスター",
+        "メイン画像",
+        "短い動画"
+      ],
+      "title": "販促素材の点検"
+    },
+    "zh": {
+      "description": "把已经做好的海报、主图或短片做成营销素材审核：逐条写出哪里不能发、哪里要改。营销素材审核先给出检查单，再看你交出的文件，需要时重出一张替换图或一条替换短片。营销素材包括海报、封面和主图。适合发布前的这一轮。",
+      "display_name": "营销素材审核",
+      "summary": "海报、主图或短片在发出前的逐条修改意见。",
+      "tags": [
+        "营销素材审核",
+        "营销素材",
+        "海报",
+        "主图",
+        "封面"
+      ],
+      "title": "营销素材审核"
+    }
+  },
+  "mcp": {
+    "authentication": "device-bearer",
+    "credential_file": "~/.beatra/credentials.json",
+    "name": "beatra",
+    "transport": "streamable-http",
+    "url": "https://mcp.beatra.ai/mcp"
+  },
+  "name": "marketing-asset-review",
+  "schema_version": 1,
+  "version": "0.1.3"
+}

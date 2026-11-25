@@ -1,6 +1,6 @@
 ## Description:
 
-Read and manage your Skylight Calendar family hub — calendar events, chores and reward stars, shared lists (grocery/to-do), and meal plans. Triggers on phrases like "check Skylight", "what's on the family calendar", "add an event to Skylight", "what chores does [kid] have", "mark [chore] done", "add milk to the grocery list", "what's on our shopping list", "what's for dinner", "what's on the meal plan", "who's on the Skylight frame", or any request involving the Skylight frame, family calendar, chores, rewards, shared lists, or meals. Works against your own signed-in Skylight account via email + password.
+Read and manage Skylight Calendar events, chores, rewards, shared lists, and meal plans through the user's signed-in family hub.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Households and their assistants use this skill to check and update a Skylight family hub, including calendars, chores and rewards, shared lists, meal plans, and related frame content.
+People using a Skylight Calendar family hub can ask an agent to review or update household events, chores, rewards, shared lists, and meal plans. The skill can also help users configure the Skylight MCP connection.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan was partial, and broad activation wording may cause the skill to respond to general household requests.
+Risk: Ordinary meal or shopping requests may activate Skylight handling without clear Skylight context.
 
-Mitigation: Review the setup instructions and use the skill for intended Skylight-related requests.
+Mitigation: Review activation rules and require clear Skylight or family-hub context before accessing the connected account.
 
-Risk: The skill uses account credentials and can change household content or share it through invitations and uploads.
+Risk: Some security scanner reference checks were partial, so coverage is incomplete.
 
-Mitigation: Keep credentials in the configured environment, never paste secrets into chat, and review confirmation previews before approving changes that affect others or multiple items.
+Mitigation: Review the skill's activation rules and requested actions before installing or connecting a personal account.
 
 ## Reference(s):
 
 - [Skylight Calendar](https://www.ourskylight.com)
 - [skylight-mcp on npm](https://www.npmjs.com/package/skylight-mcp)
-- [Skylight MCP on ClawHub](https://clawhub.ai/chrischall/skills/skylight-mcp)
+- [Repository link listed in the skill documentation](https://github.com/chrischall/skylight-mcp)
+- [ClawHub skill page](https://clawhub.ai/chrischall/skills/skylight-mcp)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Calendar and household data, Action results, Configuration guidance]
+**Output Type(s):** [Text, JSON, Configuration instructions]
 
-**Output Format:** [Natural-language responses and structured tool results]
+**Output Format:** [Natural-language summaries, structured Skylight data, and a JSON MCP configuration example]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Can read and manage calendar events, chores, rewards, shared lists, meals, and related Skylight frame content.]
+**Other Properties Related to Output:** [Responses may reflect or confirm changes to the user's Skylight family hub.]
 
 ## Skill Version(s):
 
-1.7.1 (source: release evidence)
+1.8.0 (source: ClawHub release evidence)
 
 ## Ethical Considerations:
 

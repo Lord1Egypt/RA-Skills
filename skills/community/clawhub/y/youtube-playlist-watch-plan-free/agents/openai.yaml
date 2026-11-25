@@ -1,0 +1,8 @@
+interface:
+  display_name: YouTube播放列表观看计划
+  short_description: 从可见播放列表生成每日观看顺序、时长预算与缺项清单
+  default_prompt: $youtube-playlist-watch-plan-free 使用我指定的 browserId 读取这个 YouTube 播放列表，按我每天可用时间生成最多10条的只读观看计划；列出每条来源和缺失信息，不修改任何收藏或队列。
+  icon_small: assets/icon-small.png
+  icon_large: icon-512.png
+policy:
+  allow_implicit_invocation: false

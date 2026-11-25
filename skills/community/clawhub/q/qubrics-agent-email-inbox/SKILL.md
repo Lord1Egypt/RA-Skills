@@ -1,7 +1,7 @@
 ---
 name: "qubrics-agent-email-inbox"
 description: "Use when an AI agent needs read-only triage of an existing Qubrics inbox or unsent reply text from its messages. Trigger for bounded inbox reviews, unread invoice or support searches, and draft-only replies, including agent inbox requests without the Qubrics name. Mailbox mutations and sending are outside this workflow."
-version: "2.0.4"
+version: "2.0.8"
 metadata:
   openclaw:
     skillKey: "qubrics-agent-email-inbox"

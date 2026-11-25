@@ -10,7 +10,7 @@ Tumblr removes embed code from posts. To show your widget, add it to a blog page
 
 > [!NOTE]
 >
-> Tumblr does not allow JavaScript on blog pages. Before you copy the code, open the widget in SnapWidget, turn off **Responsive** and click **Install Widget**. If the code still has `<script>` or `<link>` lines, delete them and keep only the `<iframe>` line.
+> Tumblr does not allow JavaScript on blog pages. Before you copy the code, open the widget in SnapWidget, turn off **Responsive** and click **Install Widget**. If the **Install Widget** window has an **Iframe code** tab, click it. If the code still has `<script>` or `<link>` lines, delete them and keep only the `<iframe>` line.
 
 ### In SnapWidget
 

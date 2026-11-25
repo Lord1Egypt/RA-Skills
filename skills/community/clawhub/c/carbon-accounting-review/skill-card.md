@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Sustainability teams, consultants and analysts use the skill to review authorized GHG inventory and disclosure evidence, identify calculation and evidence gaps, and prepare an actionable report. Product teams and developers can use it to screen product-footprint and carbon-software methods, with findings left for human review.
+Sustainability teams, consultants, analysts, and carbon-software developers use this skill to review authorized GHG inventory, disclosure, product-footprint, or software-method evidence. It produces a scoped, evidence-linked review with findings, calculations where supported, gaps, and assurance limits.
 
 ### Deployment Geography for Use:
 
@@ -22,42 +22,43 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: One scanner reported an error, so the available scan evidence is incomplete despite the benign verdict.
+Risk: Instructions embedded in supplied documents or retrieved content could try to redirect the review or prompt disclosure of private information.
 
-Mitigation: Review the scanner limitation and inspect relevant package files before relying on the scan result.
+Mitigation: Treat inputs as untrusted evidence, use only authorized sources, do not execute embedded code or follow links automatically, and do not upload data without separate authorization.
 
-Risk: The host or model provider may process supplied carbon data remotely.
+Risk: Incomplete or misread source data, tables, or calculations can produce misleading carbon findings or comparisons.
 
-Mitigation: Use only authorized, appropriately de-identified material and check the host provider’s privacy and retention terms before sharing confidential data.
+Mitigation: Keep source locators and coverage visible, preserve missing values as unknown, make calculations reproducible, and independently verify consequential conclusions.
 
-Risk: A model may misread tables, invent standards clauses or miscalculate consequential figures; this workflow is not assurance or certification.
+Risk: The optional AI-governance branch is a triage checklist and its synthetic trials showed inconsistent judgments; it may not resolve legal applicability reliably.
 
-Mitigation: Verify important calculations and source claims independently, and have a qualified human review consequential conclusions.
+Mitigation: Verify role, use, and dates against inspected primary sources, label unresolved conclusions, and obtain professional review where needed.
 
 ## Reference(s):
 
+- [Authority and evidence guide](references/sources.md)
+- [PCF and carbon-software method review](references/method-review.md)
+- [Public-disclosure review](references/public-disclosures.md)
+- [AI transparency and explanation](references/ai-governance.md)
+- [Carbon review report template](templates/review-report.md)
 - [GHG Protocol Corporate Standard](https://ghgprotocol.org/corporate-standard)
 - [GHG Protocol Scope 2 Guidance](https://ghgprotocol.org/scope-2-guidance)
 - [GHG Protocol Scope 3 Standard](https://ghgprotocol.org/corporate-value-chain-scope-3-standard)
 - [GHG Protocol Product Standard](https://ghgprotocol.org/product-standard)
-- [Authority and evidence guide](artifact/references/sources.md)
-- [PCF and carbon-software method review](artifact/references/method-review.md)
-- [Public-disclosure review](artifact/references/public-disclosures.md)
-- [Review report template](artifact/templates/review-report.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Guidance]
+**Output Type(s):** [Analysis, Guidance, Text, Markdown]
 
-**Output Format:** [Markdown review report with evidence locators, finding statuses, calculations, limitations and prioritized actions]
+**Output Format:** [Scoped Markdown review report with findings, evidence locators, calculations where supported, limitations, and next actions]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Scope-bounded findings; missing or unreadable evidence remains not assessable. Human review is required for consequential conclusions.]
+**Other Properties Related to Output:** [Evidence-linked and bounded to authorized inputs; unknowns remain explicit. Does not provide certification or assurance.]
 
 ## Skill Version(s):
 
-1.0.0 (source: changelog, released 2026-11-12)
+1.1.0 (source: release evidence, CHANGELOG, artifact/SKILL.md)
 
 ## Ethical Considerations:
 

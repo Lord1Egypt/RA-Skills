@@ -23,4 +23,4 @@ Respect permission already given for the current task. Install only the selected
 
 Read only the relevant official modules. Report the host and actual installation/render result accurately; do not claim a host has reloaded a skill merely because files were written.
 
-See [engine selection](../engines/index.md) and [local rendering](local-rendering.md).
+See [engine selection](../engines/index.md#engine-selection) and [local rendering](local-rendering.md).

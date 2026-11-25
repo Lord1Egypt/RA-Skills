@@ -11,6 +11,7 @@ import argparse
 import base64
 import json
 import os
+import subprocess
 import sys
 import urllib.error
 import urllib.request
@@ -97,6 +98,26 @@ def main() -> int:
         except urllib.error.URLError as e:
             print(f"error: failed to download image: {e.reason}", file=sys.stderr)
             return 1
+
+    # Shrink in place. The service returns a full-size PNG; an article-embedded
+    # illustration does not need that. The filename stays the same, because the
+    # article's Markdown and any hosted URL carry this path. Palette reduction is
+    # safe for a flat illustration, and a missing ImageMagick only warns: the
+    # image is already on disk and usable.
+    tmp = args.output + ".opt"
+    try:
+        subprocess.run(
+            ["magick", args.output, "-strip", "-colors", "256", tmp],
+            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+            check=True, timeout=180,
+        )
+        os.replace(tmp, args.output)
+    except (OSError, subprocess.SubprocessError) as exc:
+        print(f"warning: could not shrink {args.output}: {exc}", file=sys.stderr)
+        try:
+            os.unlink(tmp)
+        except OSError:
+            pass
 
     print(args.output)
     return 0

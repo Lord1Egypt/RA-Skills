@@ -21,6 +21,8 @@
 ```
 .
 ├── SKILL.md                  # WorkBuddy/Claude 技能说明（含完整工作流）
+├── templates/
+│   └── 中专教案模板.docx      # 15 行中专教案模板（vMerge 已布置，源资产，随仓库提供）
 ├── tools/
 │   └── fill_lesson_plan.py   # JSON → docx 填充工具（保留 vMerge、含结构校验）
 ├── examples/
@@ -39,8 +41,8 @@
   ```bash
   pip install pymupdf lxml pillow
   ```
-- 中专教案模板 `templates/中专教案模板.docx`（含 15 行表格，vMerge 已布置）
-  - 模板可在 WorkBuddy 配套技能 `zhongshan-lesson-plan` 中找到
+- 中专教案模板 `templates/中专教案模板.docx`（含 15 行表格，vMerge 已布置，已随仓库提供）
+  - 也可在 WorkBuddy 配套技能 `zhongshan-lesson-plan` 中找到同结构模板
   - 或自行准备一只同结构的 `.docx` 模板
 
 ### 2. 解析授课计划

@@ -1,0 +1,15 @@
+{
+  "slug": "mglc-xiaohongshu-note-search",
+  "displayName": "小红书作品搜索",
+  "mode": "search_notes",
+  "samplePlan": {
+    "input": {
+      "keyword": "露营装备",
+      "sort": "general"
+    },
+    "maxPages": 2,
+    "maxItems": 30
+  },
+  "version": "1.0.0",
+  "channel": "clawhub"
+}

@@ -1,6 +1,6 @@
 ## Description:
 
-Assists with Chinese government procurement and commercial bidding, from tender analysis and strategy through bid drafting, compliance checks, and post-bid follow-up.
+Helps teams analyze procurement bid documents, plan responses, draft bid materials, review risks, and prepare post-bid follow-up.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,49 +10,44 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-Bid teams working on China procurement and commercial projects can use the skill to analyze tender requirements, plan responses, draft bid materials, and review submissions. Its drafts and compliance guidance should be checked by qualified staff before use.
+Procurement and bid teams working on mainland China government or commercial projects can use it to examine tender requirements, organize response strategy, prepare draft materials, and check submission risks. Outputs are reference drafts that need verification by qualified personnel against current rules and project requirements.
 
 ### Deployment Geography for Use:
 
-China
+Mainland China
 
 ## Known Risks and Mitigations:
 
-Risk: Tender documents may contain confidential pricing, customer information, or technical details.
+Risk: Bid documents may contain confidential pricing, client, or technical information, and third-party AI handling or deletion may not be guaranteed.
 
-Mitigation: Sanitize sensitive content before upload, confirm authorization, and check organizational data-handling policies.
+Mitigation: Sanitize sensitive details, confirm authorization, and check organizational data policies before submitting documents to an AI service.
 
-Risk: The documented installation uses an unpinned CLI version, so a future install could retrieve a different release.
+Risk: Procurement guidance may be outdated or differ by jurisdiction, project, or platform.
 
-Mitigation: Where supported, pin reviewed CLI and skill versions and check package provenance and integrity.
-
-Risk: Security scan coverage was partial because a local reference was unresolved; the advertised bidding functionality could not be verified from the supplied chunk.
-
-Mitigation: Review the complete release and resolve the missing reference before relying on the advertised behavior.
+Mitigation: Verify current requirements with official sources and have qualified personnel review conclusions and drafts before use.
 
 ## Reference(s):
 
-- [Bid document templates](references/bid-document-templates.md)
-- [GitHub repository (server-resolved provenance)](https://github.com/gechengling/tender-bidding-assistant)
-- [ClawHub skill page](https://clawhub.ai/gechengling/skills/tender-bidding-assistant)
+- [ClawHub skill release](https://clawhub.ai/gechengling/skills/tender-bidding-assistant)
+- [Publisher profile](https://clawhub.ai/user/gechengling)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Markdown, JSON]
+**Output Type(s):** [Analysis, Guidance, Markdown, Draft text]
 
-**Output Format:** [Markdown reports, checklists and draft bid documents; structured JSON analysis when requested]
+**Output Format:** [Structured analysis, checklists, and draft Markdown or text materials]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Based on supplied tender text and project details; outputs require human review.]
+**Other Properties Related to Output:** [Outputs are reference drafts for qualified human review.]
 
 ## Skill Version(s):
 
-3.2.6 (source: server-resolved release; SKILL.md frontmatter says 3.2.0)
+3.2.7 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

@@ -4,7 +4,7 @@ Base URL: `https://compute.x402layer.cc`
 
 Paid endpoints support both protocols:
 
-- **x402**: server returns JSON `accepts[]`; client retries with `X-Payment`.
+- **x402**: server returns JSON `accepts[]` (v1) and, where enabled, a `PAYMENT-REQUIRED` header (v2, base64 JSON). Client retries with `PAYMENT-SIGNATURE` (v2) or `X-Payment` (v1). Both carry the same signed payload.
 - **MPP**: server returns `WWW-Authenticate: Payment`; client retries with `Authorization: Payment ...`; success includes `Payment-Receipt`.
 
 Compute plans can be backed by multiple providers:
@@ -207,7 +207,9 @@ Provision a new compute instance. Returns `402 Payment Required` with x402 and, 
 ```
 
 **Notes:**
-- `prepaid_hours` minimum is **24** (1 day). Use `24` for daily, `72` for 3 days, `168` for 1 week, `720` for 1 month, etc.
+- `prepaid_hours` minimum is **24** (1 day) unless hourly rentals are on (below). Use `24` for daily, `72` for 3 days, `168` for 1 week, `720` for 1 month, etc.
+- **By the hour:** when `GET /compute/plans` returns `"hourly": {"enabled": true, "min_hours": 1, "min_hours_by_kind": {"machine": 1, "gpu": 2}, ...}`, Machines can be rented from **1 hour**, GPUs and AI machines from **2 hours** (1 hour on a GPU is refused with 400, nothing charged). Under 24 hours costs the plan's hourly price **+15% for machines, +20% for GPUs** (`is_gpu` on each plan says which), rounded to the cent. 24 hours or more is the normal price. Extensions under 24 hours (`extend_hours`) are priced the same way, with the same minimums (GPUs and AI machines 2 hours). Agent Pods and Grid node deploys (`deploy_node`) keep the 24 hour minimum. Hourly rentals are torn down within about a minute of expiry.
+- `max_total_usd` (optional): the most you agree to pay. A higher price is refused with `409` and `quote_usd`, nothing charged.
 - Provide `ssh_public_key` to enable SSH access. Passwords are not returned by the API.
 - If you do not provide an SSH key, use one-time fallback endpoint `POST /compute/instances/:id/password`.
 - For DigitalOcean plans, `ssh_public_key` or existing `ssh_key_id(s)` is required. Password fallback is Vultr-only.

@@ -1,6 +1,6 @@
 ## Description:
 
-Accepts Xiaoyuzhou or Ximalaya episode links and produces timestamped, speaker-labeled transcripts with in-depth summaries.
+将小宇宙或喜马拉雅单集链接整理为带时间戳和说话人标签的转写稿，并提供深度内容总结。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Podcast listeners use the skill to turn individual Xiaoyuzhou or Ximalaya episodes into timestamped transcripts, speaker-organized notes, and structured summaries.
+播客听众可用此技能把小宇宙或喜马拉雅的单集内容整理成可阅读、可检索的逐段转写稿，并获取主旨、话题结构、对谈要点和提及资源的摘要。
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The setup instructions ask users to paste a full Cue API key into chat, which can expose the credential.
+Risk: Setup guidance asks users to share a full API key in chat, and the security scan reports incomplete coverage.
 
-Mitigation: Configure the key locally through CUE_API_KEY or a user-only configuration file; do not paste it into chat, restrict file access, and rotate any key already shared.
-
-Risk: Short-link redirects and polling behavior need validation before processing.
-
-Mitigation: Validate the final destination of short links and correct the polling limits before use.
-
-Risk: Podcast links and processing are sent to Cue's remote service, whose retention and cleanup behavior is not independently verified in the supplied security evidence.
-
-Mitigation: Check Cue's retention practices before sending sensitive material.
+Mitigation: Do not paste the key into chat; enter it locally using the environment variable or local configuration file, and review the skill before use.
 
 ## Reference(s):
 
 - [Cue Omni Reader online experience](https://cuecue.cn/hub/omni-reader)
-- [Cue Omni Reader remote endpoint](https://mcp.cuecue.cn/api/omni-reader/mcp/)
+- [ClawHub release page](https://clawhub.ai/panting09266-ai/skills/podcast-deep-dive)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [text, markdown]
 
-**Output Format:** [Markdown transcript and structured summary]
+**Output Format:** [Markdown transcript with timestamps and speaker labels, followed by a structured deep summary.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Transcripts are segmented with timestamps and speaker labels; summaries organize themes, viewpoints, quotations, and mentioned resources.]
+**Other Properties Related to Output:** [Transcript sections include topic headings and emphasized key points; speaker numbers are ordering labels, not verified identities.]
 
 ## Skill Version(s):
 
-1.0.2 (source: server-resolved release)
+1.0.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -46,7 +46,7 @@ test('B2: deep imports of every mutating module and client are gated (no request
     () => deployments.chatbotCreate(cfg, {}), () => deployments.chatbotUpdate(cfg, 'c', {}),
     () => deployments.chatbotDocumentCreate(cfg, 'c', 'prj', { filename: 'a.txt', content: 'x' }),
     () => video.uploadCreate(cfg), () => video.videoCreate(cfg, {}), () => video.streamCreate(cfg, {}), () => video.ingestorSelect(cfg, 'i', {}),
-    () => characterRequest(cfg, 'delete', { gameId: 'g', characterId: 'c' }), () => characterRequest(cfg, 'session.message', { sessionId: 's', payload: {} }),
+    () => characterRequest(cfg, 'delete', { gameId: 'g', characterId: 'c' }), () => characterRequest(cfg, 'session.message', { sessionId: 's', payload: { type: 'event', content: 'x' } }),
     () => edgecloudControllerClient.createDeployment(cfg, {}), () => edgecloudControllerClient.deleteDeployment(cfg, 'prj', 's', 'x'),
     () => thetaVideoClient.createStream(cfg, {}), () => onDemandApiClient.createInferRequest(cfg, 'seedance_2_5', { input: { prompt: 'p' } }),
     () => onDemandApiClient.createChatCompletionRequest(cfg, { model: 'seedance_2_5', messages: [{ role: 'user', content: 'x' }] }),

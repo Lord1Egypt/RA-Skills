@@ -1,0 +1,12 @@
+{
+  "name": "douyin-competitor-research-free",
+  "version": "1.0.2",
+  "author": "xxjrq",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node scripts/self-test.mjs",
+    "check": "node --check scripts/douyin-competitor-research-free.mjs && node --check scripts/self-test.mjs && npm test"
+  }
+}

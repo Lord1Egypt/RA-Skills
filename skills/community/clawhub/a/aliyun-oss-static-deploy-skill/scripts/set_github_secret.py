@@ -8,7 +8,7 @@ GitHub 的 Secret 必须先用仓库公钥（libsodium sealed box）加密才能
 依赖：pip install pynacl
 
 用法：
-    export GITHUB_TOKEN=ghp_xxx          # 或自动从 ~/.git-credentials 读
+    export GITHUB_TOKEN=ghp_xxx          # 或经 git credential fill 自动取回
     python set_github_secret.py --repo owner/repo --list
     python set_github_secret.py --repo owner/repo --name OSS_ACCESS_KEY_ID --value "$AK_ID"
     python set_github_secret.py --repo owner/repo --name OSS_BUCKET --value my-bucket --variable
@@ -21,6 +21,7 @@ import base64
 import json
 import os
 import re
+import subprocess
 import sys
 import urllib.error
 import urllib.request
@@ -32,13 +33,19 @@ def get_token():
     tok = os.environ.get("GITHUB_TOKEN", "")
     if tok:
         return tok
-    cred = os.path.join(os.path.expanduser("~"), ".git-credentials")
-    if os.path.exists(cred):
-        m = re.search(r"(gh[oUp]_[A-Za-z0-9]+)",
-                      open(cred, encoding="utf-8", errors="replace").read())
-        if m:
-            return m.group(1)
-    sys.exit("拿不到 GitHub token：设置 GITHUB_TOKEN 或确认 ~/.git-credentials 里有凭据")
+    # 走 git credential 官方接口取回本机凭据（不直接读凭据存档文件）
+    try:
+        out = subprocess.run(
+            ["git", "credential", "fill"],
+            input="protocol=https\nhost=github.com\n\n",
+            capture_output=True, text=True, timeout=15,
+        ).stdout
+        for line in out.splitlines():
+            if line.startswith("password="):
+                return line[len("password="):]
+    except Exception:
+        pass
+    sys.exit("拿不到 GitHub token：设置 GITHUB_TOKEN，或确认本机 git credential helper 里有 github.com 凭据")
 
 
 def req(method, path, token, data=None):

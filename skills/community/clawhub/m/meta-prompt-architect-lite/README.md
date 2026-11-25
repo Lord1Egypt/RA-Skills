@@ -11,13 +11,10 @@ npx skills add NenadZivotic/lite-agent-skills --skill meta-prompt-architect-lite
 ## Run
 
 ```bash
-node scripts/generate.mjs task.txt
-echo "Summarize each meeting transcript into markdown for managers" | node scripts/generate.mjs -
+node scripts/generate.js task.txt
+echo "Summarize each meeting transcript into markdown for managers" | node scripts/generate.js -
 ```
 
 ## Full version
 
-The paid version detects tone/audience, adds edge-case and injection rules, and emits test-case stubs:
-
-- SkillHQ: https://skillhq.dev/skills/sone94/meta-prompt-architect
-- Agensi: https://agensi.io/skills/meta-prompt-architect
+The full `meta-prompt-architect` skill ($9) detects tone/audience, adds edge-case and injection rules, and emits test-case stubs. Ask for it by slug.

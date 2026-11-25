@@ -1,6 +1,6 @@
 ## Description:
 
-Guides users in designing, validating, executing, and monitoring CloudRobo data pipelines, with optional sim and teleoperation data processing.
+Guides users in designing and running CloudRobo sim/teleop data pipelines, drafting pipeline configurations, and monitoring their tasks.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-CloudRobo users and data engineers use this skill to turn natural-language requirements or existing pipeline definitions into validated drafts, then run or monitor selected data processing workflows.
+CloudRobo developers and data engineers use this skill to create or revise sim/teleop data processing workflows, prepare pipeline configuration, and track task progress and outputs.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Cloud credentials may grant access beyond the intended workspace or storage paths.
+Risk: The security review flags a mismatch between the CLI-only submission description and the web monitor's ability to submit cloud tasks.
 
-Mitigation: Use credentials limited to the intended workspace and storage paths.
+Mitigation: Review the submission path and required permissions before using the monitor; use the documented CLI flow when CLI-only submission is required.
 
-Risk: Execution or Web retries can affect selected data, operators, resources, and costs; stopping monitoring or orchestration does not stop existing cloud jobs.
+Risk: Disabling SSL verification weakens protection for cloud API connections.
 
-Mitigation: Review the selected data, operators, resources, and costs before confirming execution or a retry, and track or stop cloud jobs separately when needed.
+Mitigation: Keep SSL verification enabled in production; disable it only temporarily for debugging in a trusted environment.
 
-Risk: Disabling TLS verification weakens the security of cloud connections.
+Risk: The security analysis inspected only part of the artifact, so it does not establish that unreviewed components are safe.
 
-Mitigation: Keep TLS verification enabled.
+Mitigation: Review the remaining components and assess the skill before installation or use with production credentials.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/huaweicloudskill/skills/huawei-cloud-cloudrobo-data-pipeline)
-- [CloudRobo user guide](artifact/references/user-guide.md)
-- [CLI installation guide](artifact/references/cli-installation-guide.md)
-- [IAM policies and access guidance](artifact/references/iam-policies.md)
-- [Pipeline templates and quick reference](artifact/references/pipeline-templates.md)
-- [Custom pipeline authoring](artifact/references/custom-pipeline-authoring.md)
+- [ClawHub release page](https://clawhub.ai/huaweicloudskill/skills/huawei-cloud-cloudrobo-data-pipeline)
+- [Custom pipeline authoring](references/custom-pipeline-authoring.md)
+- [Web monitor guide](references/web-monitor.md)
+- [CLI installation guide](references/cli-installation-guide.md)
+- [IAM policies and security notes](references/iam-policies.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Configuration, Markdown, JSON, Shell commands]
+**Output Type(s):** [Guidance, Markdown, Configuration, Shell commands]
 
-**Output Format:** [Markdown guidance, YAML pipeline files, JSON drafts, and CLI commands]
+**Output Format:** [Markdown guidance, YAML pipeline configuration, and shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include pipeline.yaml, pipeline.draft.json, and a Markdown preview; local draft validation does not confirm live operator availability.]
+**Other Properties Related to Output:** [May include validated pipeline drafts, execution summaries, and monitoring guidance.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server-resolved release)
+1.0.1 (source: server-resolved release metadata; artifact frontmatter says 2.8.0)
 
 ## Ethical Considerations:
 

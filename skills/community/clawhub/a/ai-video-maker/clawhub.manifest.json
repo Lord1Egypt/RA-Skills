@@ -1,7 +1,7 @@
 {
   "name": "ai-video-maker",
   "displayName": "AI Video Maker",
-  "version": "2.1.0",
+  "version": "2.1.4",
   "entry": "SKILL.md",
   "language": ["en"],
   "tags": ["api", "video-generation", "workflow", "automation"],
@@ -33,7 +33,7 @@
       {
         "name": "AIVIDEO_AGENT_PLATFORM",
         "required": false,
-        "description": "Agent client name used for non-sensitive request attribution"
+        "description": "Agent client name used for non-sensitive request attribution; the --platform argument takes precedence"
       }
     ]
   },

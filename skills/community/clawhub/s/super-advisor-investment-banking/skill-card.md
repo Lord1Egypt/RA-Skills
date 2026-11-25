@@ -1,6 +1,6 @@
 ## Description:
 
-Chinese-language finance and consulting skill that helps agents produce enterprise decision-support guidance across strategy, investment banking, asset management, tax planning, fintech, risk, HR, and legal or compliance domains.
+提供战略咨询、投资分析、财务建模与风险管理框架，辅助企业决策和资本运作分析。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and business professionals can use this skill to prompt an agent for Chinese-language frameworks, templates, and analysis support for strategy consulting, M&A, valuation, portfolio management, tax planning, risk management, fintech, and corporate legal or compliance work. Outputs should be reviewed by qualified professionals before use in investment, legal, tax, trading, banking, or regulated business decisions.
+企业决策者、顾问和分析人员可用这些框架梳理战略、投资研究、并购、财务建模及风险管理问题，并起草分析材料。将输出用于投资、税务或法律决策前，应核验数据与适用规则。
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill can produce high-stakes investment, legal, tax, trading, banking, and corporate decision guidance.
+Risk: Investment, tax, legal, or compliance guidance may be inaccurate or unsuitable for a particular decision or jurisdiction.
 
-Mitigation: Treat outputs as decision-support drafts only and require review by qualified professionals before relying on them for regulated, financial, legal, tax, or trading decisions.
-
-Risk: The skill references financial data APIs and finance workflows where users may be tempted to provide sensitive account, brokerage, banking, tax, or API credentials.
-
-Mitigation: Do not provide credentials unless a separate workflow clearly requests consent, explains how the data will be used, and is appropriate for the deployment environment.
-
-Risk: Generated templates, commands, code, or configuration may be incomplete or unsuitable for a user's market, jurisdiction, or internal controls.
-
-Mitigation: Review generated artifacts for jurisdictional fit, data quality, access controls, and operational risk before execution or publication.
+Mitigation: Treat outputs as analytical drafts, verify current data and applicable rules, and seek qualified professional review before consequential decisions.
 
 ## Reference(s):
 
-- [ClawHub Skill Page](https://clawhub.ai/yjkj999999/skills/super-advisor-investment-banking)
-- [Publisher Profile](https://clawhub.ai/user/yjkj999999)
+- [ClawHub skill release](https://clawhub.ai/yjkj999999/skills/super-advisor-investment-banking)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+**Output Type(s):** [Analysis, Guidance, Markdown]
 
-**Output Format:** [Markdown or plain text, with optional code blocks, shell commands, configuration snippets, tables, and report templates]
+**Output Format:** [Structured prose, tables, and Markdown templates]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Chinese-language advisory content; high-stakes financial, legal, tax, and trading guidance requires professional review.]
+**Other Properties Related to Output:** [Advisory drafts; validate data and jurisdiction-specific requirements before consequential use.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server release evidence and artifact/package.json)
+1.0.1 (source: package.json, server release evidence)
 
 ## Ethical Considerations:
 

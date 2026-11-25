@@ -1,6 +1,6 @@
 ## Description:
 
-Connect Juicer to OpenClaw to gather public social posts, manage feeds and event walls, and track brand mentions, topics, and competitors across social networks.
+Connect Juicer to OpenClaw. Juicer pulls public posts from Instagram, TikTok, X, Facebook, LinkedIn, YouTube, Reddit, Bluesky and more into one place: embed social feeds and walls on any website, track brand mentions, listen to topics and check competitors.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and social media teams use Juicer to find public posts across supported networks, create embeddable feeds and event walls, and monitor brands, topics, and competitors. Before lookups, they can check account limits and credit costs.
+OpenClaw users and social media teams use Juicer to find public posts across supported networks and create or manage feeds, social walls, and embed codes.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Email authorization shares the user's address with Juicer and may create an account and send confirmation email.
+Risk: Email-based setup sends the user's email to Juicer, and the supplied security evidence notes that privacy disclosure is not explicit.
 
-Mitigation: Choose the connection method deliberately and explain the email flow before requesting the user's address.
+Mitigation: Explain the email sharing before requesting it and let the user choose OAuth or a developer API key instead.
 
-Risk: The connection can access the user's Juicer account, and API keys can expose that access if mishandled.
+Risk: The security scan was partial and did not fully inspect components.
 
-Mitigation: Review account permissions, store API keys in secrets, never print them or write them into files, and get explicit approval before destructive actions.
+Mitigation: Review the skill and its requested access before connecting a Juicer account.
 
 ## Reference(s):
 
-- [Juicer MCP server setup](https://developers.juicer.io/mcp-server)
-- [Juicer developer documentation](https://developers.juicer.io)
-- [Juicer developer portal](https://www.juicer.io/developer)
+- [Juicer MCP server documentation](https://developers.juicer.io/mcp-server)
+- [Juicer developer API keys](https://www.juicer.io/developer)
+- [Juicer API documentation](https://developers.juicer.io)
+- [Juicer skill release on ClawHub](https://clawhub.ai/juicer/skills/juicer)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+**Output Type(s):** [Guidance, Text, Markdown, Shell commands, Configuration]
 
-**Output Format:** [Markdown with setup instructions, API examples, and social data summaries]
+**Output Format:** [Markdown guidance with optional commands, configuration details, social data summaries, and embed codes]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results depend on connected account permissions, supported network search types, and available credits.]
+**Other Properties Related to Output:** [Available social data and feed behavior depend on supported networks, account plan, and credit balance.]
 
 ## Skill Version(s):
 
-1.0.0 (source: frontmatter)
+1.0.3 (source: frontmatter)
 
 ## Ethical Considerations:
 

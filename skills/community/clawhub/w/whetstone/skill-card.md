@@ -1,6 +1,6 @@
 ## Description:
 
-Scales engineering care to the risk of a software change, keeping small edits light and adding evidence, compatibility and recovery checks as risk grows. Use when writing, fixing, debugging, reviewing, refactoring or shipping code, configuration, schemas and migrations, infrastructure, user interfaces, or LLM and agent features in a software project, including casual add, fix or build requests. Not for prose, slides, explanations, summaries or standalone snippets outside a project.
+Scales engineering care to the risk of a software change, keeping small edits light and adding evidence, compatibility and recovery checks as risk grows.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Coding agents and software developers use Whetstone to scale engineering checks to change risk, preserve contracts, verify behavior, and document recovery when needed.
+Developers and engineering agents use Whetstone to size implementation, review, testing, and recovery work to the risks of changes in a software project. It guides work on code, configuration, infrastructure, interfaces, and AI features while keeping out-of-project prose and standalone snippets out of scope.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill's tool scope is undeclared, and its optional change scanner invokes Git.
+Risk: The skill has environment and shell capabilities without a declared tool scope.
 
-Mitigation: Review the actions and Git commands before use, and run the scanner only from a repository you intend to inspect.
+Mitigation: Review proposed commands and changes, and check host runtime permissions before execution.
 
 ## Reference(s):
 
-- [Verification](references/testing.md)
+- [Whetstone ClawHub release](https://clawhub.ai/ricardodpalmeida/skills/whetstone)
+- [Overview, installation, and release notes](https://github.com/Ricardodpalmeida/whetstone/blob/main/README.md)
+- [Understanding the ask](references/understanding-the-ask.md)
+- [Testing and verification](references/testing.md)
 - [Security](references/security.md)
-- [Dependencies and build permissions](references/supply-chain.md)
-- [AI boundaries](references/ai-features.md)
-- [Whetstone on ClawHub](https://clawhub.ai/ricardodpalmeida/skills/whetstone)
+- [Delivery and release](references/delivery-and-release.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Code, Configuration, Shell commands, Markdown]
+**Output Type(s):** [Guidance, Analysis, Markdown, Code, Configuration, Shell commands]
 
-**Output Format:** [Task-specific engineering guidance, code or configuration changes, and Markdown reports as applicable]
+**Output Format:** [Markdown guidance and project changes such as code, configuration, tests, and verification notes]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Checks and reporting are scaled to the risk of the change.]
+**Other Properties Related to Output:** [Scope and verification depth vary with the risk of the requested change]
 
 ## Skill Version(s):
 
-0.3.7 (source: server-resolved release)
+0.3.8 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

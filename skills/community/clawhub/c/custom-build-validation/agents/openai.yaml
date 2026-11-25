@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenClaw Custom Build Validation"
+  short_description: "Validate PR stacks with OCM and Crabbox proof"
+  default_prompt: "Use $openclaw-custom-build-validation to validate this OpenClaw PR or custom build with OCM locally and Crabbox where remote reproduction adds evidence."

@@ -1,6 +1,6 @@
 ## Description:
 
-Helps agents query VMware Aria Operations and VCF Operations for infrastructure metrics, alerts, capacity, anomalies, reports, and platform health, with a limited set of auditable operational actions.
+Use this skill whenever the user needs VMware Aria Operations (VMware VCF Operations in VCF 9+) data — metrics, alerts, capacity, anomalies, reports.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-VMware administrators and platform engineers use the skill to investigate Aria Operations health and alerts, review infrastructure performance and capacity, and generate reports. It also supports limited alert, alert-definition, report, and resource-maintenance changes.
+Developers and operations engineers use the skill to query VMware Aria Operations for resource metrics, alerts, capacity, anomalies, reports, and platform health. It can also guide approved alert and maintenance actions.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,41 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan reports that setup guidance may overwrite existing configuration without warning.
+Risk: ClawScan marks the release suspicious because setup instructions may overwrite existing configuration.
 
-Mitigation: Back up and inspect existing configuration before installation or initialization, and confirm the setup behavior for the target paths before proceeding.
+Mitigation: Review setup steps and back up existing configuration before copying or initializing files; use the documented no-overwrite handling for existing credential files.
 
-Risk: ClawScan reports authentication-token management capability outside the stated monitoring purpose.
+Risk: ClawScan reports an undeclared token-administration capability.
 
-Mitigation: Review token-related operations before use and restrict them to an authorized environment with least-privilege access; avoid token management unless it is explicitly required.
+Mitigation: Review token-management commands and restrict their use to trusted administrators; store and revoke caller tokens through an approved process.
 
-Risk: The security review was partial and noted unresolved references.
+Risk: Security guidance calls out the Docker image reference for review.
 
-Mitigation: Review unresolved references and the skill's source files before installation; follow the scanner's recommendation to defer installation until the concerns are resolved.
+Mitigation: Verify the image source and tag against a trusted release before using the Docker deployment instructions.
 
 ## Reference(s):
 
 - [Project homepage](https://github.com/vmware-skills/VMware-Aria)
-- [Setup and security guide](references/setup-guide.md)
 - [Capabilities reference](references/capabilities.md)
+- [CLI reference](references/cli-reference.md)
 - [Investigation protocol](references/investigation-protocol.md)
 - [Operations playbooks](references/ops-playbooks.md)
+- [Setup and security guide](references/setup-guide.md)
+- [Agent guardrails](references/agent-guardrails.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance, Operational recommendations]
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
 
-**Output Format:** [Structured text and JSON results, Markdown summaries, and shell commands or configuration guidance when requested.]
+**Output Format:** [Markdown summaries and structured JSON, with shell commands or configuration guidance when relevant]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results depend on the configured Aria Operations targets and available APIs; write operations are audit-logged.]
+**Other Properties Related to Output:** [Content varies with the requested Aria Operations data and action.]
 
 ## Skill Version(s):
 
-2.4.7 (source: server-resolved release metadata)
+2.4.8 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

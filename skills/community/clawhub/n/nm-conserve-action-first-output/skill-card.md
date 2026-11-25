@@ -1,6 +1,6 @@
 ## Description:
 
-Shapes turns to lead with actions, number steps, and restate progress for ADHD-friendly output.
+Shapes responses around the next action, numbered steps, and a brief progress restatement for ADHD-friendly output.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-People using an AI agent for ADHD-friendly or action-oriented assistance use this skill to make responses easier to act on and follow across turns. It is intended for requests that benefit from a clear first action, numbered steps, and visible progress.
+People who prefer ADHD-friendly, action-first responses use this skill to make the next step clear and keep their place during multi-step work.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan is incomplete and reports a low-probability concern involving session-state handling and context handoffs.
+Risk: The skill's guidance includes session-state saving and context handoff that may extend beyond response styling.
 
-Mitigation: Review those behaviors and consider the scan guidance before installing.
+Mitigation: Review those behaviors before enabling the skill and use them only if they fit your workflow.
 
 ## Reference(s):
 
-- [Conserve plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
-- [Original i-have-adhd skill mentioned in the source](https://github.com/ayghri/i-have-adhd)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Action-first prose with numbered steps and progress updates when applicable]
+**Output Format:** [Action-first Markdown prose with numbered steps and progress restatements]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Concise, scannable responses; ends with one concrete next action when work remains.]
+**Other Properties Related to Output:** [Prioritizes an actionable first line, concise steps, and visible progress; lists are capped at five items.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server release metadata; artifact frontmatter says 1.10.3)
 
 ## Ethical Considerations:
 

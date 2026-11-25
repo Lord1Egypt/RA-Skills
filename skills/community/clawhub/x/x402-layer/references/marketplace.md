@@ -57,3 +57,7 @@ Example:
 ```bash
 python discover_marketplace.py details my-endpoint
 ```
+
+## Plan a whole flow (paid)
+
+Have a job that needs several services? `POST https://compute.x402layer.cc/compute/flows/plan` with `{"goal": "..."}` returns an ordered, priced flow of x402 services for it ($0.02 per plan, no charge when nothing fits). See `references/flow-planner.md`.

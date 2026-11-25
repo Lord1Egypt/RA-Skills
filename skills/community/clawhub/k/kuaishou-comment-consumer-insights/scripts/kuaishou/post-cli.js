@@ -1,24 +1,30 @@
 #!/usr/bin/env node
 
-const constants = require("../config/constants");
-const log = require("../utils/log");
 const post = require("../api/post");
 const token = require("../utils/token");
 const utils = require("../utils/utils");
 const validator = require("../validate/url");
-const { parseArgs, buildHelp } = require("../utils/args");
+const { assertChoice, assertIntegerRange } = require("../validate/keyword");
+const { parseCliArgs, buildHelp } = require("../utils/args");
+const {
+  emitError,
+  emitEmpty,
+  buildSuccessEnvelope,
+  finishSuccess,
+  emitUncaught,
+} = require("../utils/output");
 
 const SCHEMA = {
   flags: {
     "--url": {
-      alias: "-U",
+      alias: "-u",
       key: "url",
       type: "string",
       required: true,
-      desc: "快手博主主页URL或博主USER_ID",
+      desc: "快手博主主页链接或数字 user_id",
     },
     "--sort": {
-      alias: "-S",
+      alias: "-s",
       key: "sort",
       type: "number",
       default: 1,
@@ -26,29 +32,52 @@ const SCHEMA = {
       desc: "排序, 0: 最新, 1: 最热(默认)",
     },
     "--limit": {
-      alias: "-L",
+      alias: "-l",
       key: "limit",
       type: "number",
       default: 10,
       transform: (v) => Number(v),
-      desc: "返回数量, 0-10000",
+      desc: "作品数量, 0-10000；包月 Token 实际最多 50；0 表示只取博主信息和互动数据",
+    },
+    "--save": {
+      key: "save",
+      type: "boolean",
+      default: false,
+      desc: "将完整结果写入本地日志（也可设 GUAIKEI_ENABLE_LOG=1）",
     },
   },
   positionalKey: "url",
 };
 
+const AUTH_MESSAGE =
+  "GUAIKEI_API_TOKEN 未配置或格式无效。须为 16-256 位字母、数字、下划线或连字符";
+
 function printHelp() {
-  console.error(
+  process.stderr.write(
     buildHelp(
       SCHEMA,
-      "node scripts/kuaishou/post-cli.js <博主USER_ID> [选项]",
+      "node scripts/kuaishou/post-cli.js <博主主页或user_id> [选项]",
       [
-        "node scripts/kuaishou/post-cli.js -U 123456",
-        'node scripts/kuaishou/post-cli.js -U "https://www.kuaishou.com/profile/3xxx"',
-        "node scripts/kuaishou/post-cli.js --url 123456 --sort 1 --limit 10",
+        'node scripts/kuaishou/post-cli.js --url "https://www.kuaishou.com/profile/3xabc" --limit 20',
+        "node scripts/kuaishou/post-cli.js --url 123456 --sort 0 --limit 20",
+        "node scripts/kuaishou/post-cli.js --url 123456 --limit 0",
+        `node scripts/kuaishou/post-cli.js --json-args "{\"url\":\"https://www.kuaishou.com/profile/3xabc\",\"limit\":20}"`,
       ],
-    ),
+    ) +
+      "\n\n注意:\n" +
+      "  - 这是博主主页或数字 user_id，不是视频链接，也不是裸的 3x 视频 id\n" +
+      "  - 不传 --sort 时是 1（最热）。要最近发布请显式传 --sort 0\n" +
+      "  - --limit 0 只返回博主信息和互动数据\n" +
+      "  - 数量 0-10000；包月 Token 实际最多 50，超限返回 PLAN_LIMIT\n" +
+      "  - 排序和数量若不在允许范围内，命令会直接失败，不会改成默认值后继续请求\n",
   );
+}
+
+function isEmptyPost(task) {
+  if (!task || typeof task !== "object") return true;
+  const hasPosts = Array.isArray(task.post) && task.post.length > 0;
+  const hasUser = task.user && Object.keys(task.user).length > 0;
+  return !hasPosts && !hasUser;
 }
 
 async function main() {
@@ -56,137 +85,123 @@ async function main() {
   const args = process.argv.slice(2);
   if (args.length === 0) {
     printHelp();
-    process.exit(0);
+    emitError("post", "INVALID_ARGS", "缺少命令参数", 2, startTime);
+    return;
   }
 
   let parsed;
   try {
-    parsed = parseArgs(args, SCHEMA);
+    parsed = parseCliArgs(args, SCHEMA);
   } catch (error) {
     utils.printError(`参数解析错误: ${error.message}`);
     printHelp();
-    process.exit(1);
+    emitError(
+      "post",
+      "INVALID_ARGS",
+      `参数解析错误: ${error.message}`,
+      2,
+      startTime,
+    );
+    return;
   }
   if (parsed._help) {
     printHelp();
-    process.exit(0);
+    return;
   }
 
   let { url, sort, limit } = parsed;
+  const urlRaw = url;
 
   utils.printBanner();
-  utils.printInfo(`原始URL: ${url}`);
-  if (!validator.isProfileUrl(url)) {
-    utils.printError(`URL格式错误: ${url}`);
-    printHelp();
-    process.exit(1);
+  utils.printInfo(`原始链接: ${urlRaw}`);
+  try {
+    url = validator.resolveProfileUrl(url);
+  } catch (error) {
+    utils.printError(error.message);
+    emitError("post", "INVALID_URL", error.message, 1, startTime, {
+      command: "post",
+      url_raw: urlRaw,
+    });
+    return;
   }
-  url = validator.normalizeUrl(url);
-  utils.printInfo(`规范后的URL: ${url}`);
-  if (sort !== 0 && sort !== 1) {
-    utils.printError(`排序参数错误: ${sort}`);
-    printHelp();
-    process.exit(1);
+  utils.printInfo(`规范后的链接: ${url}`);
+  try {
+    sort = assertChoice(sort, [0, 1], "排序 sort");
+    limit = assertIntegerRange(limit, 0, 10000, "作品数量 limit");
+  } catch (error) {
+    utils.printError(error.message);
+    emitError("post", "INVALID_ARGS", error.message, 2, startTime, {
+      command: "post",
+      url_raw: urlRaw,
+      url,
+      sort,
+      limit,
+    });
+    return;
   }
-  if (limit < 0 || limit > 10000) {
-    utils.printError(`返回数量参数错误: ${limit}`);
-    printHelp();
-    process.exit(1);
-  }
-  utils.printInfo(`排序参数: ${sort}, 返回数量参数: ${limit}`);
+  utils.printInfo(`排序: ${sort}, 数量: ${limit}`);
 
   const tokenValue = token.skillToken(process.env.GUAIKEI_API_TOKEN);
-  if (tokenValue === "") process.exit(3);
+  if (tokenValue === "") {
+    emitError("post", "AUTH_REQUIRED", AUTH_MESSAGE, 3, startTime, {
+      command: "post",
+      url_raw: urlRaw,
+      url,
+      sort,
+      limit,
+    });
+    return;
+  }
 
+  const postRequest = {
+    command: "post",
+    url_raw: urlRaw,
+    url,
+    sort,
+    limit,
+  };
   let postTask = null;
+  let cost;
   try {
     await post.createPostTask(tokenValue, url, sort, limit);
     utils.printSuccess("获取作品任务创建成功, 正在查询中...");
-
-    postTask = await post.getPostTask(tokenValue, url, sort, limit);
+    ({ results: postTask, cost } = await post.getPostTask(tokenValue, url, sort, limit));
   } catch (error) {
     utils.printError(`获取作品失败: ${error.message}`);
-    const errorOutput = {
-      status: "error",
-      error_code: error.code || "UNKNOWN",
-      message: error.message,
-      timestamp: new Date().toLocaleString(),
-      request: {
-        command: "post",
-        url: url,
-        sort: sort,
-        limit: limit,
-      },
-      skill_metadata: {
-        skill_version: constants.VERSION,
-        runtime_version: process.versions.node,
-        execution_time: Date.now() - startTime,
-      },
-      results: null,
-    };
-    process.stdout.write(JSON.stringify(errorOutput, null, 2) + "\n", () =>
-      process.exit(1),
+    emitError(
+      "post",
+      error.code || "UNKNOWN",
+      error.message,
+      error.name === "AuthError" ? 3 : 1,
+      startTime,
+      postRequest,
     );
     return;
   }
 
-  if (!postTask) {
-    utils.printError(`获取作品任务没有返回结果, 请稍后重试或联系开发者`);
-    const emptyOutput = {
-      status: "empty",
-      error_code: "NO_MATCH",
-      message: "没有找到匹配的作品",
-      timestamp: new Date().toLocaleString(),
-      request: {
-        command: "post",
-        url: url,
-        sort: sort,
-        limit: limit,
-      },
-      skill_metadata: {
-        skill_version: constants.VERSION,
-        runtime_version: process.versions.node,
-        execution_time: Date.now() - startTime,
-      },
-      results: null,
-    };
-    process.stdout.write(JSON.stringify(emptyOutput, null, 2) + "\n", () =>
-      process.exit(1),
-    );
+  if (isEmptyPost(postTask)) {
+    utils.printInfo("没有找到匹配的博主或作品");
+    emitEmpty("没有找到匹配的博主或作品", startTime, postRequest, cost);
     return;
   }
 
-  const finalOutput = {
-    status: "success",
-    error_code: "OK",
-    message: "获取作品任务完成",
-    timestamp: new Date().toLocaleString(),
-    request: {
-      command: "post",
-      url: url,
-      sort: sort,
-      limit: limit,
-    },
-    skill_metadata: {
-      skill_version: constants.VERSION,
-      runtime_version: process.versions.node,
-      execution_time: Date.now() - startTime,
-    },
-    results: postTask,
-  };
-  console.log(JSON.stringify(finalOutput, null, 2));
-  utils.printSuccess(
-    `获取作品任务完成, 共返回 ${finalOutput.results?.post?.length || 0} 条作品`,
+  const finalOutput = buildSuccessEnvelope(
+    "获取作品任务完成",
+    startTime,
+    postRequest,
+    postTask,
+    cost,
   );
-
-  url = validator.url2Name(url);
-  await log.taskWrite(
-    `${startTime}_${url}_post.json`,
-    JSON.stringify(finalOutput, null, 2),
-  );
+  const postCount = Array.isArray(postTask.post) ? postTask.post.length : 0;
+  const hasUser = Boolean(postTask.user && Object.keys(postTask.user).length);
+  await finishSuccess(finalOutput, {
+    logFilename: `${startTime}_${validator.url2Name(url)}_post.json`,
+    stderrMessage: `获取作品任务完成, 作品 ${postCount} 条${hasUser ? ", 含博主信息" : ""}`,
+    save: parsed.save === true,
+  });
 }
 
 main().catch((error) => {
-  utils.printError(error.message);
-  process.exit(1);
+  utils.printError(error.message || String(error));
+  emitUncaught("post", error);
 });

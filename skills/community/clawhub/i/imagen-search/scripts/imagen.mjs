@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { readAnalytics, setAnalytics } from './analytics.mjs';
 import { firstRun } from './first-run.mjs';
 import { writeFile, readFile } from 'node:fs/promises';
 import { ImagenClient, readKey } from './client.mjs';
@@ -16,7 +17,14 @@ for (let i = 0; i < args.length; i++) {
 const client = new ImagenClient();
 try {
   let result;
-  if (command === 'version') {
+  if (command === 'analytics') {
+    if (options.keywords === 'on') {
+      if (options.confirm !== true) throw new Error('Obtain explicit user consent, then use analytics --keywords on --confirm. Terms are stored for 30 days; no articles, conversations or keys.');
+      result = await setAnalytics(true);
+    } else if (options.keywords === 'off') result = await setAnalytics(false);
+    else if (options.keywords) throw new Error('Use --keywords on or off.');
+    else result = { record_keywords: await readAnalytics(), operational_metrics: true, retention_days: 30 };
+  } else if (command === 'version') {
     const installed = JSON.parse(await readFile(new URL('../release.json', import.meta.url), 'utf8'));
     result = { ...installed, checked_online: false };
     if (options.check) {
@@ -65,7 +73,7 @@ try {
     }
     process.on('SIGINT', () => panel.close());
   } else {
-    result = { usage: ['version [--check]', 'start --query \"ancient Rome\" --out NEW_WORKSPACE_FOLDER', 'demand-preview --file request.json', 'demand-submit --file request.json --confirm APPROVED_PAYLOAD_HASH', 'search --query "salt trade" --orientation landscape --limit 8 --out candidates.json', 'place --id PUBLIC_ID --manifest article-images.json --caption "Image caption" --placement "After paragraph 2"', 'place --id REPLACEMENT_ID --manifest article-images.json --slot 2', 'render --manifest article-images.json', 'search --query "salt trade" --format json', 'panel --manifest candidates.json --selection selected.json --open', 'configure --open', 'status', 'detail --id PUBLIC_ID', 'original-link --id PUBLIC_ID --max-credits 1 --operation-id STABLE_UUID', 'download --id PUBLIC_ID --out image.webp', 'download --id PUBLIC_ID --original --max-credits 1 --operation-id STABLE_UUID --out original.png'], requires: 'Node.js 22+' };
+    result = { usage: ['analytics [--keywords on --confirm | --keywords off]', 'version [--check]', 'start --query \"ancient Rome\" --out NEW_WORKSPACE_FOLDER', 'demand-preview --file request.json', 'demand-submit --file request.json --confirm APPROVED_PAYLOAD_HASH', 'search --query "salt trade" --orientation landscape --limit 8 --out candidates.json', 'place --id PUBLIC_ID --manifest article-images.json --caption "Image caption" --placement "After paragraph 2"', 'place --id REPLACEMENT_ID --manifest article-images.json --slot 2', 'render --manifest article-images.json', 'search --query "salt trade" --format json', 'panel --manifest candidates.json --selection selected.json --open', 'configure --open', 'status', 'detail --id PUBLIC_ID', 'original-link --id PUBLIC_ID --max-credits 1 --operation-id STABLE_UUID', 'download --id PUBLIC_ID --out image.webp', 'download --id PUBLIC_ID --original --max-credits 1 --operation-id STABLE_UUID --out original.png'], requires: 'Node.js 22+' };
   }
   if (result) console.log(JSON.stringify(result, null, 2));
 } catch (error) { console.error(error.message); process.exitCode = 1; }

@@ -1,6 +1,6 @@
 ## Description:
 
-Create polished 720p or 2K MiniMax H3 videos from written prompts, images, opening and closing frames, or ordered media references.
+Create polished 2K AI videos with MiniMax H3. Turn a written idea into text-to-video, animate an image, shape a transition between opening and closing frames, or guide a scene with image, video, and audio references. Make AI advertising videos, ecommerce product videos, brand films, dynamic posters, game UI motion, film titles, and social media clips with cinematic movement and native stereo sound. Start with your Beatra account and keep creative progress and finished videos organized in one place.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External creators use this skill to turn a video brief or supplied media into a MiniMax H3 clip, then track, review, and retrieve the result. It supports prompt enhancement and text-, image-, frame-, and reference-guided video generation.
+External creators use this skill to turn a video brief, image, opening and closing frames, or ordered image, video, and audio references into a MiniMax H3 video. It also guides prompt refinement, media preparation, paid request confirmation, task tracking, and result review.
 
 ### Deployment Geography for Use:
 
@@ -22,43 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Connecting this video skill grants broader Beatra account access, including music, speech, and voice-management permissions.
+Risk: The security scan reports broader media-account permissions and installation/runtime reporting, with partial scan coverage.
 
-Mitigation: Review the requested account permissions before connecting; revoke access from the Beatra Console when no longer needed.
+Mitigation: Review the requested account permissions and installation/runtime reporting before authorizing the skill; install only if those terms are acceptable.
 
-Risk: Chosen prompts and media are sent to Beatra, and installation/environment reporting occurs automatically.
+Risk: The security guidance says uninstall could disrupt credentials shared with other skills.
 
-Mitigation: Avoid submitting sensitive prompts or media unless their transfer is appropriate for the task.
-
-Risk: Video generation is paid work and consumes credits.
-
-Mitigation: Confirm the selected model and current price and obtain approval before each paid submission.
+Mitigation: Before uninstalling, check whether other skills share the Beatra credentials and plan for their reconnection if needed.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/beatra-ai/skills/minimax-h3-ai-video)
-- [Beatra](https://beatra.ai)
-- [Video routing](references/video-routing.md)
-- [Workflow and request shapes](references/workflow.md)
-- [Media requirements](references/media-requirements.md)
-- [Scene craft](references/scene-craft.md)
-- [Review and recovery](references/review-and-recovery.md)
-- [Installation and authentication](references/installation-and-auth.md)
-- [Updates and security](references/updates-and-security.md)
+- [Beatra skill page](https://clawhub.ai/beatra-ai/skills/minimax-h3-ai-video)
+- [Beatra skill homepage](https://beatra.ai/skills/minimax-h3-ai-video)
+- [Video routing](artifact/references/video-routing.md)
+- [Workflow and request shapes](artifact/references/workflow.md)
+- [Media requirements](artifact/references/media-requirements.md)
+- [Tasks and results](artifact/references/tasks-and-results.md)
+- [Billing, errors, and recovery](artifact/references/billing-errors-and-recovery.md)
+- [Updates and security](artifact/references/updates-and-security.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Video files, Text, Guidance]
+**Output Type(s):** [Video, Text]
 
-**Output Format:** [MP4 video with text status and artifact links]
+**Output Format:** [Generated MP4 video with textual prompt guidance and task result details]
 
-**Output Parameters:** [1D]
+**Output Parameters:** [One video per generation request]
 
-**Other Properties Related to Output:** [One video per generation; 4–15 seconds at 720p or 2K, with canvas determined by the selected route.]
+**Other Properties Related to Output:** [Supports 720p or 2K output and 4–15 second durations; generated video includes model-native stereo audio.]
 
 ## Skill Version(s):
 
-0.2.5 (source: server-resolved release metadata)
+0.2.8 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

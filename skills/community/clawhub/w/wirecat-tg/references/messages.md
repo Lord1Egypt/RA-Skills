@@ -46,7 +46,11 @@ messenger connection, reserves no write and leaves targets unresolved.
   Without the flag text is literal. Use http/https/mailto links; no unsafe URL schemes.
 - **`--at-time 2h` or `--at-time 2026-10-01T09:00` (local time) hands the message to Telegram to send later.**
   It is never repeated: `--operation-id` is refused with it, and after exit `14` look in
-  `tg personal messages scheduled <chat>` — a second send would be a second message. Cancel one in the app.
+  `tg personal messages scheduled <chat>` — a second send would be a second message.
+- **A scheduled message has its own id, from `tg personal messages scheduled <chat>`.** The same number in the
+  chat's history is another, sent message, so `messages edit` and `messages delete` never take it. Use
+  `messages scheduled cancel <chat> <id>`, `messages scheduled edit <chat> <id> [text] [--at-time 2h]` (only the
+  time, only the text, or both) and `messages scheduled send <chat> <id>` (sends it now, under a new id).
 - **`--photo <path>` or `--file <path>` attaches a file, the text as its caption.**
   Repeat for an album of up to ten items: photos/videos together, or documents only. The caption goes
   on the first item; every item counts toward the hourly limit. JSON returns all `messages`. A photo is

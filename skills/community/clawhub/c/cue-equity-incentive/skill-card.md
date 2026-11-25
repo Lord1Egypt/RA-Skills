@@ -1,6 +1,6 @@
 ## Description:
 
-查询和分析中国上市公司的股权激励与股份回购数据，支持单项和批量查询、方案评估、同行比较及市场趋势报告。
+查询和分析 A 股上市公司的股权激励计划与股份回购数据，并生成方案评估、同行对比和市场趋势报告。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,34 +14,44 @@ MIT-0
 
 ## Use Case:
 
-上市公司董秘、人力资源与薪酬团队、投资者、分析师及顾问可用它查询公开披露的 A 股股权激励和股份回购记录，并评估和对比方案。
+Investors, listed-company teams, advisers, and researchers can use the skill to query public A-share equity incentive and buyback disclosures, compare plans, and assess design and implementation trends.
 
 ### Deployment Geography for Use:
 
-China (A-share market data)
+Global (coverage focuses on China A-share disclosures)
 
 ## Known Risks and Mitigations:
 
-Risk: The security review reports possible credential and question disclosure risks, behavior beyond the stated purpose, and partial scan coverage.
+Risk: The security assessment reports that user questions may be sent to a remote rewrite service.
 
-Mitigation: Review the reported exposure risks and unresolved references before installation; avoid providing credentials or sensitive questions until those risks are understood.
+Mitigation: Before use, confirm that remote processing is acceptable and leave confidential or personal information out of prompts.
+
+Risk: The skill includes wealth-prospecting functionality beyond equity incentive analysis.
+
+Mitigation: Review whether those queries fit the intended purpose and avoid them when they are not needed.
 
 ## Reference(s):
 
+- [ClawHub skill page](https://clawhub.ai/panting09266-ai/skills/cue-equity-incentive)
+- [Cue platform](https://cuecue.cn)
+- [Cue MCP data catalog](https://cuecue.cn/api/mcp-catalog)
+- [Equity incentive data service](https://mcp.cuecue.cn/api/esop/mcp/)
+- [Share buyback data service](https://mcp.cuecue.cn/api/buyback/mcp/)
+- [Example research report](https://cuecue.cn/share/TIxQDFYs)
 
 ## Skill Output:
 
-**Output Type(s):** [Structured data, Analysis, Text, Markdown]
+**Output Type(s):** [Structured data, Analysis, Markdown reports, Guidance]
 
-**Output Format:** [Structured query results or Markdown reports]
+**Output Format:** [Structured query results and Markdown research reports]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports may include source links.]
+**Other Properties Related to Output:** [Results depend on the company and public disclosures available; coverage is limited to listed-company information.]
 
 ## Skill Version(s):
 
-1.1.15 (source: server-resolved release metadata)
+1.1.19 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

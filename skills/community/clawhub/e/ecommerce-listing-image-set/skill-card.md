@@ -1,6 +1,6 @@
 ## Description:
 
-Creates a coordinated ecommerce product-image set from real product photos and verified SKU facts, covering hero, feature, lifestyle, size, and package views.
+Turn verified SKU facts and product photos into AI product listing images: a coordinated ecommerce image set for Amazon listing images, Shopify product images, Etsy listing photos, and online marketplaces. Build a product image set with a hero image, feature and detail visuals, lifestyle product photography, size and fit views, and packaging or in-box images for new launches, storefronts, and product pages.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External sellers and ecommerce operators use this skill to plan and create a coherent image gallery for one verified SKU. It produces an ordered shot plan and product-image deliverables for online listings and storefronts.
+External ecommerce sellers use this skill to plan and create a coordinated listing image gallery for one verified SKU from real product photos and confirmed product facts. It produces a planned set of hero, feature, lifestyle, size or fit, and packaging views while keeping unsupported claims out of the images.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The account authorization includes video, music, speech, and voice management beyond the image-making task.
+Risk: The security assessment reports broad permissions, unclear installation analytics, and uninstall behavior that may affect shared connection state.
 
-Mitigation: Review the broad account grant before connecting, and revoke the device in Beatra Console when its shared access is no longer wanted.
-
-Risk: Product photos can upload before paid generation is approved, and installation telemetry is automatic.
-
-Mitigation: Make these behaviors clear before use; upload only intended product photos and confirm automatic telemetry is acceptable.
+Mitigation: Avoid installation until the provider narrows authorization to image-related needs, explains analytics and offers control over it, and addresses the uninstall inventory issue.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/beatra-ai/skills/ecommerce-listing-image-set)
-- [Beatra skill page](https://beatra.ai/skills/ecommerce-listing-image-set)
-- [Listing-set workflow](references/workflow.md)
-- [Installation and authentication](references/installation-and-auth.md)
-- [Updates and security](references/updates-and-security.md)
+- [Listing set workflow](artifact/references/workflow.md)
+- [Updates and security](artifact/references/updates-and-security.md)
+- [Installation and authentication](artifact/references/installation-and-auth.md)
+- [ClawHub skill page](https://clawhub.ai/beatra-ai/skills/ecommerce-listing-image-set)
+- [Beatra skill homepage](https://beatra.ai/skills/ecommerce-listing-image-set)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Files, Guidance]
+**Output Type(s):** [Images, Text, Markdown, Guidance]
 
-**Output Format:** [Image files with an ordered gallery plan and delivery summary]
+**Output Format:** [Ordered product image files with a Markdown shot plan and delivery summary]
 
-**Output Parameters:** [1D]
+**Output Parameters:** [One verified SKU per gallery, typically six single-image slots]
 
-**Other Properties Related to Output:** [One coordinated gallery for a single verified SKU; image count and slots follow the confirmed plan.]
+**Other Properties Related to Output:** [Uses seller-confirmed product facts and visual direction; any generated on-image text needs review.]
 
 ## Skill Version(s):
 
-0.2.9 (source: server-resolved release metadata)
+0.3.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

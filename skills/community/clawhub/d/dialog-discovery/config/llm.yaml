@@ -1,0 +1,30 @@
+default: qwen3
+models:
+  jdcloud:
+    name: jdcloud Qwen3.5
+    api_key_env: PE_LLM_JDCLOUD_API_KEY
+    base_url_env: PE_LLM_JDCLOUD_BASE_URL
+    model_env: PE_LLM_JDCLOUD_MODEL
+    default_base_url: http://inference-jdaip-inner-cn-north-1.jdcloud.com/queue-a1384c269c357d9283b8310227a4d637/api/predict/llm-fty-v13/v1
+    default_model: /mnt/qwen35
+    is_reasoning: true
+    timeout: 180
+  qwen3:
+    name: Qwen3-235B
+    api_key_env: PE_LLM_QWEN3_API_KEY
+    base_url_env: PE_LLM_QWEN3_BASE_URL
+    model_env: PE_LLM_QWEN3_MODEL
+    default_base_url: http://ai-api.jdcloud.com/v1
+    default_model: Qwen3-235B-A22B
+    is_reasoning: false
+    timeout: 120
+  glm5:
+    name: GLM-5.1
+    api_key_env: PE_LLM_GLM5_API_KEY
+    base_url_env: PE_LLM_GLM5_BASE_URL
+    model_env: PE_LLM_GLM5_MODEL
+    default_base_url: https://modelservice.jdcloud.com/v1
+    default_model: GLM-5.1
+    is_reasoning: true
+    reasoning_field: reasoning_content
+    timeout: 180

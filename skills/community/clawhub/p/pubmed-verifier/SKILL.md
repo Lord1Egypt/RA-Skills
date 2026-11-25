@@ -1,7 +1,7 @@
 ---
 name: pubmed-verifier
 license: MIT-0
-version: 7.0.0
+version: 7.2.1
 description: >-
   Reference checker for AI-fabricated citations: batch-verify PMIDs against
   PubMed and catch the hallucination existence checks miss — a REAL PMID
@@ -20,7 +20,7 @@ description: >-
   DOI check, citation formatting, reference formatter, GB/T 7714.
 ---
 
-# PubMed Citation Verifier v7.0.0
+# PubMed Citation Verifier v7.2.1
 
 Batch verification of PMID citations via the PubMed E-utilities API. Not just
 "does this PMID exist" — **does this PMID point to the paper you claim?**
@@ -105,7 +105,7 @@ mixes both, research first, then audit the final reference list here.
 
 ## Use from Python
 
-One stdlib module, nothing to install:
+One entry file plus six stdlib siblings, nothing to install:
 
 ```python
 import verify_pmids as vp   # sys.path pointing at scripts/
@@ -243,13 +243,12 @@ of the Anti-patterns section below — one fact, one home.
 **❓ unknown vs ❌ invalid — what's the difference?**
 `unknown` (exit 2) = "the source could not be reached, nothing was judged"
 — re-run when the network is up; `invalid` (exit 1) = "checked and the
-record does not exist". Network failures are never reported as
-not-found and never cached.
+record does not exist". Network failures are never reported as not-found
+and never cached. (The full reasoning lives in Anti-pattern #4 below.)
 
 **Why is my citation capped at ⚠ partial?**
-The five-state ladder caps the verdict when a claimed field could not be
-checked — most often a claim without `title` (#2 above), or a
-retracted paper (partial + human-review note, by design).
+A claimed field could not be checked — most often no `title` (#2 in the
+Anti-patterns table), or a retracted paper (by design).
 
 **A network blip made half my batch unknown — re-run everything?**
 No. Unknowns are never cached, so a plain re-run re-fetches only those;
@@ -383,27 +382,16 @@ Full playbook: [references/usage_guide.md](references/usage_guide.md) (caching, 
 
 ## Recent releases (full history in references/CHANGELOG.md)
 
-- **v7.0.0** — `--self-check` gains a live retraction-source health probe
+- **v7.2.1** — privacy hotfix: the package metadata file no longer
+  carries a publisher phone field (chain gate blocks it from returning).
+- **v7.2.0** — leftover bare module imports deleted (notes match source);
+  package `tests/run_tests.py` runs a real sealed offline matrix (13).- **v7.1.0** — consistency: the shipped INTEGRITY_MANIFEST always matches
+  the delivered files (rewritten on SH-whitelist strip); package-mode
+  `tests/run_tests.py` executes the smoke promises offline.- **v7.0.0** — `--self-check` gains a live retraction-source health probe
   (six promises; unreachable registries SKIP honestly); `--title` gives
   a one-liner claim for a single PMID (wrong title → mismatch, no
   claims file needed); `python3 tests/run_tests.py` is the one CI
   command.
-- **v6.9.0** — two more verified-list styles: `--citation-style harvard` and
-  `chicago` render the registry-verified bibliography as author–date
-  entries (7 styles total, GB/T author-date / Harvard / Chicago sorted by
-  first author).
-- **v6.8.0** — the Top-10 NOT-to-do table has one home: the speed index
-  atop the Anti-patterns section (Quick FAQ routes there instead of
-  repeating it, EN+ZH); README features grouped, quick start leaner.
-- **v6.7.0** — the Files table reads the package: every backticked path
-  must exist, every package-carriable sample must appear by its full
-  name (short forms like `.json` or `+_ZH` hid real files from the
-  reader), native-extension `.bib`/`.ris` samples are explicitly marked
-  "GitHub repo and zip only" — two test locks enforce both directions;
-  the Use-cases section (a duplicate of When-to-use) is gone.
-- **v6.6.0** — one count, one home per fact: module counts unified
-  everywhere, locked against the directory; the main doc keeps summaries
-  under a 500-line ceiling.
 
 ## Safety & behavior statement
 
@@ -474,7 +462,7 @@ translate PDFs (doc-holmes) — pick whichever step you need.
 
 | File | Purpose |
 |------|---------|
-| `scripts/verify_pmids.py` | Entry file + orchestration (v7.0.0, stdlib-only; six `pv_*.py` sibling modules beside it) |
+| `scripts/verify_pmids.py` | Entry file + orchestration (v7.2.1, stdlib-only; six `pv_*.py` sibling modules beside it) |
 | `references/usage_guide.md` | full FAQ, worked scenarios, tuning playbook, matching mechanics |
 | `references/troubleshooting.md` / `troubleshooting_ZH.md` | Troubleshooting index — one error, one row (literal text → cause → fix) |
 | `references/flags.md` | Flag cheat sheet — scenario → one command, every flag grouped |

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and reviewers use this skill to check GitHub or GitLab pull requests against stated requirements, classify findings by scope, and prepare review reports and line comments.
+Developers use this skill to review GitHub or GitLab pull requests against their stated requirements, classify findings by scope, and prepare review reports and comments.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,26 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review rates the skill suspicious for unsafe handling of review evidence; the scan is partial and some referenced paths were unresolved.
+Risk: Review evidence may be handled unsafely, and use may publish information or create repository records beyond the stated review purpose.
 
-Mitigation: Inspect the unresolved paths and review how evidence and local files are handled before installing or using the skill.
-
-Risk: The security review reports publishing and tracking beyond the stated review purpose, persistent reviewer records, and an unverified discussion-posting helper.
-
-Mitigation: Check the destinations and behavior of posting and record-keeping steps, and use them only when you intend to publish or retain that information.
-
-Risk: The skill may access local files and Git identity information during review workflows.
-
-Mitigation: Run it only in a workspace and account context whose files and Git identity you are comfortable making available to its review workflow.
+Mitigation: Review proposed findings, comment content, and issue targets before posting; account for the reported partial scan coverage when assessing the skill.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-sanctum-pr-review)
-- [Project homepage (metadata.clawdis.homepage)](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Markdown]
+**Output Type(s):** [Analysis, Markdown, Text]
 
-**Output Format:** [Markdown review report with findings, recommendations, and line comments]
+**Output Format:** [Markdown review report and inline review comments]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May also prepare backlog issue text and capture review knowledge when those workflow steps are used.]
+**Other Properties Related to Output:** [May post review comments or create backlog issues when used with repository access.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, ClawHub release)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

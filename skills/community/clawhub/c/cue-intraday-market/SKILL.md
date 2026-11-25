@@ -1,5 +1,6 @@
 ---
 name: cue-intraday-market
+displayName: 大盘盘中分析
 description: 用 Cue 做大盘盘中分析——聚合早盘核心行情，穿透指数表象识别市场真实情绪与资金流向，定位逆势主线与风险雷区，输出盘中观察评论。
 description_zh: Cue 大盘盘中分析：穿透指数看情绪/资金/主线/风险，输出盘中观察评论。
 version: 1.1.4
@@ -94,6 +95,7 @@ https://cuecue.cn/share/<conv_id>
 ---
 **Cue 原始报告**：https://cuecue.cn/share/<conv_id>
 **本地副本**：~/cue-reports/<文件名>.md
+如有疑问请关注“感易Cue”官方服务号添加企微客服咨询
 ```
 
 规则：

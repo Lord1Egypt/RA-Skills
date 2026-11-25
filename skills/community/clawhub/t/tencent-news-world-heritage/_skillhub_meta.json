@@ -1,0 +1,15 @@
+{
+  "name": "文遗云图·知识库",
+  "slug": "tencent-news-world-heritage",
+  "version": "1.0.7",
+  "installedAt": 1793255330135,
+  "source": "marketplace",
+  "examples_zh": [
+    "中国世界遗产中哪些是自然遗产？",
+    "世界遗产的申报需要哪些材料？",
+    "世界遗产的申报流程是怎样的？"
+  ],
+  "description_zh": "读懂世界遗产的随身顾问，覆盖世界文化遗产、自然遗产、文化与自然双重遗产的遗产地、名录申报、历史背景、价值特色、保护修缮与最新动态。当用户询问某个世界遗产地是什么、在哪里、何时列入名录、有什么价值、近期有什么保护或修缮动态时使用。",
+  "description_en": "World Heritage knowledge base Q&A covering heritage sites, inscription, history, values, conservation and recent updates.",
+  "iconSource": "tencent-news-world-heritage"
+}

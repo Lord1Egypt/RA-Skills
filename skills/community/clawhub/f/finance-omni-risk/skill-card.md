@@ -1,6 +1,6 @@
 ## Description:
 
-Provides Chinese-first frameworks, checklists, and example code for assessing and managing financial risks across credit, market, operational, compliance, anti-money-laundering, and model-risk domains.
+Provides financial institutions with structured guidance for comprehensive risk management across credit, market, operational, compliance, anti-money laundering, and model risks.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,40 +14,43 @@ MIT-0
 
 ## Use Case:
 
-Financial risk officers, analysts, and compliance teams can use the skill to structure risk assessments, monitoring plans, AML/KYC reviews, model-risk controls, and regulatory checklists. Its frameworks and suggestions should be reviewed against current requirements and institutional policy before operational use.
+Risk, compliance, and model governance staff at financial institutions can use the skill to draft risk assessments, monitoring and early-warning plans, AML/KYC checklists, and regulatory preparation materials under mainland China's stated frameworks. Its outputs are reference drafts for qualified human review, not final decisions or instructions for operational systems.
 
 ### Deployment Geography for Use:
 
-Global
+Mainland China
 
 ## Known Risks and Mitigations:
 
-Risk: The skill defaults to Chinese-first responses, which may not suit every user.
+Risk: The security review is incomplete because a local reference in the skill could not be matched to a bundled artifact.
 
-Mitigation: Specify a preferred language or request bilingual output.
+Mitigation: Locate and review the referenced file before relying on the skill.
 
-Risk: Regulatory claims, thresholds, and financial risk suggestions in the artifact may not fit current rules or an institution's circumstances.
+Risk: Regulatory and market guidance can become outdated or depend on jurisdiction-specific interpretations.
 
-Mitigation: Check current official requirements and institutional policy, and have qualified staff review recommendations before operational use.
+Mitigation: Check current official requirements and data, and have qualified local risk or compliance staff review drafts before use.
+
+Risk: Financial risk examples may involve sensitive customer or institution information.
+
+Mitigation: Use abstract placeholders and avoid including identifiable or confidential data in prompts or drafts.
 
 ## Reference(s):
 
-- [Source repository (server-resolved provenance)](https://github.com/gechengling/finance-omni-risk)
-- [ClawHub skill release](https://clawhub.ai/gechengling/skills/finance-omni-risk)
+- [Finance Omni Risk on ClawHub](https://clawhub.ai/gechengling/finance-omni-risk)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Guidance, Analysis, Code, Checklists]
+**Output Type(s):** [Analysis, Guidance, Markdown]
 
-**Output Format:** [Chinese-first Markdown with occasional Python examples]
+**Output Format:** [Chinese prose with structured Markdown tables, checklists, and draft assessments]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Frameworks, assessment prompts, recommendations, and example code; no live monitoring or risk decisions are performed.]
+**Other Properties Related to Output:** [Reference drafts for qualified human review; no final approvals or operational actions.]
 
 ## Skill Version(s):
 
-5.0.4 (source: server-resolved release metadata)
+5.0.5 (source: ClawHub release evidence)
 
 ## Ethical Considerations:
 

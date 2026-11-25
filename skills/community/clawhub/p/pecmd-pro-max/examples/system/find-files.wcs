@@ -1,0 +1,179 @@
+#!PECMD
+SET  ::WM_RBUTTONDOWN                  =0x0204
+SET  ::WM_LBUTTONDOWN                  =0x0201
+SET  ::WM_LBUTTONUP                    =0x0202
+SET  ::WM_LBUTTONDBLCLK                =0x0203
+SET  ::WM_SIZE=0x0005
+SET ::SIZE_MAXHIDE=4
+SET ::SIZE_MAXSHOW=3
+SET ::SIZE_MAXIMIZED=2
+SET ::SIZE_MINIMIZED=1
+SET ::SIZE_RESTORED=0 
+ENVI$ NL=0D 0A
+ENVI$ TAB=09 
+
+//函数：FINDFILES
+//参数：[目录]  [文件名]
+_SUB FINDFILES
+    CALL &FINDFILES_WIN %* 
+_END
+_SUB &FINDFILES_WIN,W410H463,搜索,CALl OnStop,,,, -maxb -size 
+    ENVI &&NAME1=%~2
+    FIND $ = %&NAME1%, ENVI &NAME1=*.*
+    ENVI &bStop=0
+    ENVI &&V=
+    ENVI &&FS=
+    ENVI &&WINID1=%&__WinID%
+    ENVI &&WINID2=0
+    TEAM ENVI &&x=0| ENVI &&y=0| ENVI &&w=0| ENVI &&h=0
+    ITEM &BUTSTART,L71T98W60H30,开始,TEAM CALl OnStart|,
+    LABE -right LABE3,L28T11W60H19,文件名:,,
+    EDIT &NAME0,L100T11W291H18,%&NAME1%,,
+    ITEM  ,L26T40W60H20,目录,TEAM CALl OnDir|,
+    //LABE -right LABE5,L26T44W60H16,目录:,CALL OnDir,
+    EDIT &DIR0,L100T40W291H18,%~1,,
+    LABE -right ,L24T68W60H19,包含文字:,,
+    EDIT &TEXT0,L100T68W291H18,,,
+    // EDIT|- &DISPLAY,L4T143W395H285,%&FS%,,4
+    //    TABL  -color:###0xFF0000 &DISPLAY,L4T143W395H285,*40:%TAB%*335:文件,%&FS%, 0x180840  
+    TABL -color:###0xFF0000 &DISPLAY,L4T143W395H285,*40:%TAB%*335:文件,%&FS%, 0x10040
+    ENVI @&DISPLAY.MSG=_%&WM_LBUTTONDBLCLK%: CALL OnLButtonDownDISPLAY
+    ENVI @&DISPLAY.MSG=_%&WM_RBUTTONDOWN%: CALL OnRButtonDownDISPLAY
+    ITEM &BUTSTOP,L212T96W60H30,停止,CALl OnStop,, //-1
+    ENVI @this.MSG=#1: CALL OnMSG1
+    ENVI @this.MSG=#2: CALL OnAdd 
+    ENVI @this.MSG=_%&WM_SIZE%::&&wParm,&&lParm,CALL OnSize_WIN1 %&wParm%  %&lParm% 
+    CALL OnSize_WIN1 %&SIZE_MAXSHOW% 
+    ENVI &&FNAME=
+    ENVI &&NAME2=
+    LABE -vcenter -center  &LCOUNT,L331T96W60H30,,,
+    ENVI &&I=0
+    ENVI &&J=0
+_END
+
+_SUB OnSize_WIN1
+   TEAM ENVI &&sz=0   //| ENVI &&w=0| ENVI &&h=0
+   IFEX $%1 = %&SIZE_MAXIMIZED%, ENVI &sz=1
+   IFEX $%1 = %&SIZE_MAXSHOW%, ENVI &sz=1
+   IFEX $%1 = %&SIZE_RESTORED%, ENVI &sz=1
+   IFEX $1=%&sz%,
+   {
+        ENVI @this.POS=?::&w:&h
+        CALC #&w=%&w% - (410-395) // 15
+        CALC #&h=%&h% - (463-285)
+        ENVI @&DISPLAY.POS=::%&w%:%&h%
+   }
+    
+_END
+
+_SUB OnAdd
+    ENVI @&DISPLAY.Val=0*;%&FS%
+    ENVI &FS=
+    ENVI &J=0
+    ENVI @&LCOUNT=%&I% 
+_END
+_SUB OnDir
+    ENVI &DIR1=%&DIR0%
+    BROW &&DIR1,*%&DIR0%,请选择一个目录
+    FIND $ = %&DIR1%,!  ENVI @&DIR0=%&DIR1%
+_END
+
+_SUB OnMSG1
+    CALL OnAdd
+    ENVI @&BUTSTART.Enable=1
+    ENVI @&BUTSTOP.Enable=0
+    ENVI &bStop=0
+_END
+
+_SUB OnStart
+   // FIND $ = %&DIR0%, EXIT _SUB
+    ENVI &NAME2=%&NAME0%
+    FIND $ = %&NAME2%, ENVI &NAME2=*.*
+    ENVI &bStop=0
+    ENVI %&COUNT%=
+    ENVI @&BUTSTART.Enable=0
+    ENVI @&BUTSTOP.Enable=1
+    ENVI @&DISPLAY.Val=-*
+    ENVI &FS=
+    ENVI @&DISPLAY=
+//    ENVI @&Timer1=500
+    THREAD* CALl OnStart1
+_END
+
+_SUB OnStart1
+    ENVI &FS=
+    ENVI &I=0
+    ENVI &J=0
+    ENVI &&D=%&DIR0%
+    FIND $ = %&D%, ENVI &&D=\
+    MSTR &&E=-1,1,%&D%
+    ENVI &&T=%&TEXT0%
+    FIND $ \ = %&E%,! ENVI &D=%&DIR0%\
+    FIND $ = %&T%,!!  FORX /S  %D%%&NAME2%,&V,0,  TEAM CALC &I=%&I%+1| ENVI &FS=%&FS%%NL%%&I%%TAB%%&V%|CALC &J=%&J%+1| IFEX $100<= %&J%, ENVI @@SENDMSG=%&WINID1%;#2| FIND $1 = %&bStop%, EXIT FORX
+    FIND $ = %&T%,!
+    {
+        FORX /S  %D%%&NAME1%,&V,0,  TEAM CALL FINDFILE1 %&V% | FIND $1 = %&bStop%, EXIT FORX
+    }
+    ENVI @@POSTMSG=%&WINID1%;#1
+_END
+
+_SUB FINDFILE1
+    SIZE &&iSize=%&V% 
+    IFEX $%&iSize% > 10M, EXIT _SUB //查过10M
+    READ   %&V%,**,&&DATA
+    LPOS*   &&PS=%&T%,1,%&DATA%
+    FIND $0 = %&PS%,! TEAM  CALC &I=%&I%+1| ENVI &FS=%&FS%%NL%%&I%%TAB%%&V%|CALC &J=%&J%+1| IFEX $100<= %&J%,  ENVI @@SENDMSG=%&WINID1%;#2
+_END
+
+_SUB OnStop
+    ENVI &bStop=1
+_END
+
+//////////////
+_SUB OnLButtonDownDISPLAY
+    ENVI @&DISPLAY.Sel=?.&&ROW;&&COL
+    IFEX $ %&ROW% <= 0, EXIT _SUB
+    ENVI @&DISPLAY.VAL=?%&ROW%.2;&FNAME
+    ENVI &&&Clipboard=%&FNAME%  // 下面根据需要自己改
+    MESS 已拷入剪切板[%&FNAME%]
+_END
+
+_SUB OnRButtonDownDISPLAY
+    ENVI @&DISPLAY.Sel=?.&&ROW;&&COL
+    IFEX $ %&ROW% <= 0, EXIT _SUB
+    ENVI @&DISPLAY.VAL=?%&ROW%.2;&FNAME
+//    EXEC $%&FNAME%
+//    CALL @--popmenu       MyMenu1
+    EXEC --poprmenu     %&FNAME%
+_END
+
+
+_SUB MyMenu1
+    MENU Menu1,打开,EXEC $%&FNAME%
+    MENU Menu1,拷入剪切板,ENVI &&&Clipboard=%&FNAME%
+_END
+
+
+_SUB REG
+    HOTK Ctrl + f,EXEC %MyName% LOAD %&CurFile%  /DIR   // Ctrl+F 
+    REGI  HKCR\Folder\shell\zPECMDFIND\=PECMD查找
+    REGI  HKCR\Folder\shell\zPECMDFIND\command\=%MyName% LOAD %&CurFile%  /DIR "%L"   //目录上右键菜单 PECMD查找
+    REGI  HKCR\*\shell\zPECMDFIND\=PECMD查找
+    REGI  HKCR\*\shell\zPECMDFIND\command\=%MyName% LOAD %&CurFile%  /FILE "%L"   //文件上右键菜单 PECMD查找
+_END
+
+//CALL FINDFILES T:\ 
+FIND $ /REG = %~1, CALL REG
+FIND $ /DIR = %~1,  CALL FINDFILES %2 %3
+FIND $ /FILE = %~1,  TEAM  FDIR &&DIR=%~2|CALL FINDFILES "%&DIR%" %3
+
+//调试
+FIND $  = %~1,!! FIND $ 1 = %&&__MAIN__%,!! CALL REG
+FIND $  = %~1,!! FIND $ 1 = %&&__MAIN__%,!! CALL FINDFILES
+
+
+//用法：
+//(1)注册: LOAD FINDFILES.WCS /REG
+//     系统热键Ctrl+F  文件右键菜单“PECMD查找”  目录右键菜单“PECMD查找”
+//(2)查找: LOAD FINDFILES.WCS /DIR  [目录]  [文件名]
+//(3)直接双击: 注册 ＋ 默认查找节面

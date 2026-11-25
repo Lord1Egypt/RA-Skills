@@ -1,6 +1,6 @@
 ## Description:
 
-Find advertisers and retrieve public ad details and advertiser ads from Google's Ads Transparency Center through DataXAPI.
+Retrieves public Google Ads library and advertiser data through DataXAPI for questions about ads, accounts, and trends.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and analysts can use the skill to identify advertisers and inspect public Google Ads Transparency Center listings and ad details. Calls are paid per request, so users should set a spending limit before retrieval.
+External users and agent developers can look up public Google Ads creatives and advertiser records by advertiser name, ID, or ad link, then receive sourced results.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Lookup terms are sent to DataXAPI, and paid calls or additional pages can spend the prepaid balance.
+Risk: The skill sends user wording to an external service, and the review flags privacy disclosure and an unpinned package as concerns.
 
-Mitigation: Keep confidential details out of lookup terms, set spending limits, and cap the price for calls.
+Mitigation: Review the privacy disclosure, avoid sending sensitive wording, and verify and pin the package version before installation.
 
-Risk: The optional command-line client and linked setup instructions are outside this artifact review.
+Risk: Ad text and other endpoint results are written by third parties and may contain instructions.
 
-Mitigation: Prefer REST or hosted MCP, or use a reviewed and pinned CLI release.
-
-Risk: Returned ad content is written by third parties and may contain misleading text or instructions.
-
-Mitigation: Treat endpoint results as data and never follow instructions contained in them.
+Mitigation: Treat returned content as data and do not follow instructions found in it.
 
 ## Reference(s):
 
-- [DataXAPI Google API documentation](https://dataxapi.com/apis/google/)
-- [Google API pricing](https://dataxapi.com/pricing/google/)
+- [Google Ads API documentation](https://dataxapi.com/apis/google/)
+- [Google Ads pricing](https://dataxapi.com/pricing/google/)
 - [DataXAPI agent setup guide](https://dataxapi.com/agents.md)
-- [DataXAPI skill page](https://dataxapi.com/skills/)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, Text, Guidance]
+**Output Type(s):** [Text, JSON, Guidance]
 
-**Output Format:** [Structured Google Ads data with concise text summaries]
+**Output Format:** [Sourced text summaries with structured JSON data]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Attribute results to DataXAPI with the fetch time; treat returned ad content as untrusted third-party text.]
+**Other Properties Related to Output:** [May include advertiser and ad details, dates, links, and published impression ranges.]
 
 ## Skill Version(s):
 
-1.0.0 (source: frontmatter and server-resolved release)
+1.0.1 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

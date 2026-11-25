@@ -1,6 +1,6 @@
 ## Description:
 
-小红书公开数据检索工具，覆盖关键词搜索、笔记详情、评论、博主作品和互动数据，帮助代理为选题调研、竞品监控、KOL 筛选和评论舆情分析获取公开数据。
+社媒平台小红书公开数据检索工具，关键词搜笔记、爆款选题、笔记详情、评论舆情、博主作品、粉丝获赞与收藏，输出 JSON，不登录不发布。触发词：小红薯、xhs、rednote、小红书、笔记链接、博主主页、竞品监控、KOL筛选、评论分析。用户要查小红书笔记、评论、选题、竞品或舆情时使用；抖音、快手、B站、微博、公众号不要用本技能。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-External users, developers, content teams, marketers, and analysts use this skill to run Node.js commands that retrieve public Xiaohongshu keyword, note, comment, creator-post, and interaction datasets for follow-on analysis. It is intended for public-data research, reporting, content planning, competitor monitoring, and trend review, with required attention to API-token handling and data-use limits.
+小红书创作者、运营团队和市场研究人员可用它按关键词、笔记链接或博主主页检索公开笔记、评论和创作者数据，支持选题、竞品与舆情分析。
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search keywords, Xiaohongshu URLs, xsec_token URL values, and the GUAIKEI_API_TOKEN are sent to guaikei.com.
+Risk: The security assessment was partial; runtime permissions were not verified, and some components had limited scanner coverage.
 
-Mitigation: Use only in an approved private environment, avoid sensitive campaign plans or confidential URLs, and confirm authorization before sending query data to the third-party API.
+Mitigation: Review the skill’s permissions and local data handling before installation; treat the benign verdict as a limited assessment.
 
-Risk: Complete returned datasets and tokenized Xiaohongshu URLs are written to predictable local temporary log paths.
+Risk: Successful results may be saved in temporary local logs, which can retain search queries and retrieved information.
 
-Mitigation: Periodically clear the local temporary log directory, restrict filesystem access, and disable or fix logging before collecting large or sensitive comment/profile datasets.
+Mitigation: Review temporary-log retention or set XHS_GUAIKEI_DISABLE_LOG=1 when local result logging is not wanted.
 
-Risk: The skill retrieves and packages public platform data that may be subject to platform terms and downstream distribution limits.
+Risk: The skill sends search queries or links to the Guaikei service and uses GUAIKEI_API_TOKEN for access.
 
-Mitigation: Use results for authorized personal or internal team analysis, review Xiaohongshu and API-provider terms, and do not redistribute collected datasets without permission.
+Mitigation: Avoid sending sensitive query terms or links, and keep the API token private.
 
 ## Reference(s):
 
-- [Server-resolved GitHub import](https://github.com/why20261/xiaohongshu-keyword-search)
-- [ClawHub skill page](https://clawhub.ai/why20261/skills/xiaohongshu-keyword-search)
-- [Artifact homepage from ClawHub metadata](https://github.com/um-why/xiaohongshu-openclaw-skill)
-- [Guaikei API token and support site](https://www.guaikei.com)
-- [Options reference](references/options.md)
-- [Changelog](references/changelog.md)
+- [参数说明](references/options.md)
+- [故障排查](references/troubleshooting.md)
+- [JSON 输出信封结构](assets/output_envelope.schema.json)
+- [Guaikei 小红书数据服务](https://www.guaikei.com)
+- [ClawHub release page](https://clawhub.ai/why20261/skills/xiaohongshu-keyword-search)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+**Output Type(s):** [JSON data, Guidance]
 
-**Output Format:** [Markdown guidance with inline shell commands and structured JSON command output]
+**Output Format:** [JSON envelope containing public notes, comments, creator data, and request/status metadata]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires Node.js and GUAIKEI_API_TOKEN; command results may be saved to local temporary logs.]
+**Other Properties Related to Output:** [One response envelope per command; result fields vary by search, detail, comment, or creator-post request.]
 
 ## Skill Version(s):
 
-0.1.0 (source: server release metadata; artifact frontmatter, package.json, and changelog report 1.1.3)
+1.2.0 (source: ClawHub release metadata, frontmatter, package.json)
 
 ## Ethical Considerations:
 

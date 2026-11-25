@@ -1,7 +1,7 @@
 ---
 name: local-llm-setup-advisor
 description: >-
-  帮助用户处理“Validated demand: Builders need guidance for running useful AI and LLM workflows locally on consumer CPU or family GPU hardware without depending on cloud-only systems. This requirement is supported by 9 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.”。当用户提出 software-and-data, local llm, consumer gpu, cpu inference, llama.cpp，或需要围绕该需求获得实用流程、产物、检查清单、分析或实现支持时使用。
+  帮助用户处理“Validated demand: Builders need guidance for running useful AI and LLM workflows locally on consumer CPU or family GPU hardware without depending on cloud-only systems. This requirement is supported by 12 separate online signals across 2 source families, so it represents broader demand rather than a single isolated request.”。当用户提出 software-and-data, local llm, consumer gpu, cpu inference, llama.cpp，或需要围绕该需求获得实用流程、产物、检查清单、分析或实现支持时使用。
 ---
 
 # Local LLM Setup Advisor
@@ -10,10 +10,10 @@ description: >-
 
 使用这个技能帮助以下用户群体：developers, researchers, privacy-conscious users, hobbyists, and small teams who want local AI workflows on ordinary home machines
 
-> Validated demand: Builders need guidance for running useful AI and LLM workflows locally on consumer CPU or family GPU hardware without depending on cloud-only systems. This requirement is supported by 9 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
+> Validated demand: Builders need guidance for running useful AI and LLM workflows locally on consumer CPU or family GPU hardware without depending on cloud-only systems. This requirement is supported by 12 separate online signals across 2 source families, so it represents broader demand rather than a single isolated request.
 
-需求评分：98/100（需求强度 `70/70`，本地可执行性 `28/30`）。
-证据：9 条信号，覆盖 3 个来源类型。
+需求评分：90/100（需求强度 `70/70`，本地可执行性 `28/30`）。
+证据：12 条信号，覆盖 2 个来源类型。
 
 如需查看来源证据、执行计划或评审标准，请阅读 `references/requirement-plan.md`。
 

@@ -33,18 +33,18 @@ Scoring rationale:
 
 ## Evidence
 
-- clawhub-popular-skill (2026-10-22T12:42:06.676000+00:00): [Popular Clawhub skill demand: self-improving agent has 493,493 downloads](https://clawhub.ai/skills/self-improving-agent)
-- clawhub-popular-skill (2026-05-11T07:53:37.068000+00:00): [Popular Clawhub skill demand: Multi Search Engine has 165,885 downloads](https://clawhub.ai/skills/multi-search-engine)
-- clawhub-popular-skill (2026-05-11T07:50:48.771000+00:00): [Popular Clawhub skill demand: Humanizer has 135,142 downloads](https://clawhub.ai/skills/humanizer)
-- clawhub-popular-skill (2026-05-18T03:40:07.591000+00:00): [Popular Clawhub skill demand: SkillScan has 183,652 downloads](https://clawhub.ai/skills/skillscan)
-- clawhub-popular-skill (2026-06-19T07:09:19.124000+00:00): [Popular Clawhub skill demand: AdMapix has 134,449 downloads](https://clawhub.ai/skills/admapix)
-- clawhub-popular-skill (2026-05-11T07:48:49.679000+00:00): [Popular Clawhub skill demand: Nano Pdf has 123,827 downloads](https://clawhub.ai/skills/nano-pdf)
-- clawhub-popular-skill (2026-05-18T20:48:27.565000+00:00): [Popular Clawhub skill demand: Nano Banana Pro has 108,710 downloads](https://clawhub.ai/skills/nano-banana-pro)
-- clawhub-popular-skill (2026-10-29T13:41:01.601000+00:00): [Popular Clawhub skill demand: PollyReach has 102,357 downloads](https://clawhub.ai/skills/pollyreach)
-- hacker-news-ask-hn (2026-11-15T16:29:34+00:00): [Should proper mouse support be added in CLI harnesses](https://news.ycombinator.com/item?id=50508183)
-- hacker-news-ask-hn (2026-11-14T23:53:20+00:00): [Ask HN: Is post-training make AI models dumber?](https://news.ycombinator.com/item?id=50502344)
-- segmentfault-search (2026-11-17T04:06:39.008858+00:00): [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
-- segmentfault-search (2026-11-17T04:06:39.008858+00:00): [javascript](https://segmentfault.com/t/javascript)
+- clawhub-popular-skill (2026-10-22T12:42:06.676000+00:00): [Popular Clawhub skill demand: self-improving agent has 495,374 downloads](https://clawhub.ai/skills/self-improving-agent)
+- clawhub-popular-skill (2026-05-11T07:53:37.068000+00:00): [Popular Clawhub skill demand: Multi Search Engine has 166,519 downloads](https://clawhub.ai/skills/multi-search-engine)
+- clawhub-popular-skill (2026-05-11T07:50:48.771000+00:00): [Popular Clawhub skill demand: Humanizer has 135,881 downloads](https://clawhub.ai/skills/humanizer)
+- clawhub-popular-skill (2026-05-18T03:40:07.591000+00:00): [Popular Clawhub skill demand: SkillScan has 183,984 downloads](https://clawhub.ai/skills/skillscan)
+- clawhub-popular-skill (2026-06-19T07:09:19.124000+00:00): [Popular Clawhub skill demand: AdMapix has 134,617 downloads](https://clawhub.ai/skills/admapix)
+- clawhub-popular-skill (2026-05-11T07:48:49.679000+00:00): [Popular Clawhub skill demand: Nano Pdf has 124,106 downloads](https://clawhub.ai/skills/nano-pdf)
+- clawhub-popular-skill (2026-05-18T20:48:27.565000+00:00): [Popular Clawhub skill demand: Nano Banana Pro has 108,983 downloads](https://clawhub.ai/skills/nano-banana-pro)
+- clawhub-popular-skill (2026-10-29T13:41:01.601000+00:00): [Popular Clawhub skill demand: PollyReach has 102,499 downloads](https://clawhub.ai/skills/pollyreach)
+- hacker-news-ask-hn (2026-11-24T21:21:50+00:00): [Ask HN: Least cringe AI for natural language?](https://news.ycombinator.com/item?id=50634900)
+- segmentfault-search (2026-11-25T13:49:54.047902+00:00): [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
+- segmentfault-search (2026-11-25T13:49:54.047902+00:00): [javascript](https://segmentfault.com/t/javascript)
+- segmentfault-search (2026-11-25T13:49:54.048413+00:00): [typescript](https://segmentfault.com/t/typescript)
 
 ## How The Skill Meets The Requirement
 

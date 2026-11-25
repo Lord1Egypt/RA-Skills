@@ -1,6 +1,6 @@
 ## Description:
 
-Turn an article into a narrated explainer video by creating an outline and storyboard, generating voiceover, and building and validating the video.
+Turns a written article into a narrated explainer video through outlining, storyboarding, voiceover, video creation, and validation.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-People who want a narrated explainer, report, courseware, or training video from an article or document can use this skill to guide video creation through prompts and follow-up project sessions.
+Content creators and teams use this skill to turn articles or other documents into narrated explainer, report, courseware, or training videos through a project-based CLI conversation.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill sends prompts to dLazy's hosted service and uploads attached files to its media storage.
+Risk: The skill uses dLazy login and project-listing actions, and files attached to a task are uploaded to dLazy media storage.
 
-Mitigation: Review the service details and only send content you are comfortable sharing with dLazy.
-
-Risk: The security scan had medium confidence and was partial; it noted project-listing and login behavior and could not resolve some references or package details.
-
-Mitigation: Review the install and service details and confirm that the login and project-listing behavior fits your needs before use.
-
-Risk: The CLI requires a dLazy API key, which may be saved in the local CLI configuration or supplied through an environment variable.
-
-Mitigation: Keep the key private and rotate or revoke it from the dLazy dashboard if it is exposed.
+Mitigation: Review the login and project-listing steps before use, and attach only files you are comfortable sending to dLazy.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-article-to-video)
-- [CLI project page](https://github.com/dlazy-ai/cli)
-- [CLI npm package](https://www.npmjs.com/package/@dlazy/cli)
-- [dLazy homepage](https://dlazy.com)
+- [CLI project page (declared in skill metadata)](https://github.com/dlazy-ai/cli)
+- [dLazy CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy](https://dlazy.com)
 
 ## Skill Output:
 
-**Output Type(s):** [Video, Text, Shell commands, Configuration instructions]
+**Output Type(s):** [Video, Shell commands, Guidance]
 
-**Output Format:** [Narrated explainer video with textual status and usage guidance]
+**Output Format:** [CLI prompts and commands; generated narrated explainer video]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Projects can continue across multiple chat sessions; attached files are uploaded to the service.]
+**Other Properties Related to Output:** [Requires a dLazy API key; attached local files are uploaded to dLazy media storage.]
 
 ## Skill Version(s):
 
-1.0.46 (source: server-resolved release metadata)
+1.0.49 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

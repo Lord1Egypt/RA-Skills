@@ -1,6 +1,6 @@
 ## Description:
 
-Generates PixVerse C1 videos from text prompts, reference images, or first and last frames.
+PixVerse C1 generates videos from text prompts, images, first and last frames, and reference images.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and creative teams use the skill to generate videos with PixVerse C1 from text prompts, reference images, or first and last frames, then retrieve the generated media.
+External users and developers can generate PixVerse C1 videos from text prompts, reference images, or first and last frames, with controls for duration, resolution, aspect ratio, and optional audio.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan verdict is benign with medium confidence and partial coverage; it flagged a mismatch between the stated video-generation purpose and a login command, plus whitespace padding.
+Risk: The medium-confidence, partial security review flagged a login behavior whose connection to the advertised video-generation purpose is unclear.
 
-Mitigation: Before installing, review the login behavior and the padded section of the Chinese guide, as recommended by the security guidance.
+Mitigation: Before installing, confirm that the dLazy login flow and pinned CLI package are expected, and review the installation and authentication details.
 
-Risk: Prompts and local media provided to the skill are sent to dLazy-hosted services for processing.
+Risk: Prompts and supplied local media are sent to dLazy hosted services for generation.
 
-Mitigation: Only submit prompts and media that are approved for processing by the hosted service.
+Mitigation: Avoid providing sensitive prompts or media unless their use with the hosted service is approved.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-pixverse-c1)
-- [dLazy CLI repository](https://github.com/dlazy-ai/cli)
-- [dLazy CLI on npm](https://www.npmjs.com/package/@dlazy/cli)
-- [dLazy website](https://dlazy.com)
+- [dLazy service](https://dlazy.com)
+- [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
 
 ## Skill Output:
 
-**Output Type(s):** [Video, JSON]
+**Output Type(s):** [Video files, JSON]
 
-**Output Format:** [Generated video media with JSON result metadata and a hosted media URL.]
+**Output Format:** [JSON response containing generated video asset URLs or asynchronous task status]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Accepts a text prompt and optional reference media; supports generation mode, resolution, aspect ratio, duration, and audio settings. Tasks may return asynchronously.]
+**Other Properties Related to Output:** [Generated asset URLs are hosted by dLazy; asynchronous tasks may return a generation ID.]
 
 ## Skill Version(s):
 
-1.2.42 (source: server-resolved release metadata)
+1.2.45 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

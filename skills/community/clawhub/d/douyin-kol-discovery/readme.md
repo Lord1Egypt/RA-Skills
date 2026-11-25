@@ -4,12 +4,12 @@
 
 **一句话简介（给 AI 与搜索引擎）**：基于抖音的实时数据，通过自然语言检索抖音上的达人。支持按关键词、点赞数等方向筛选，并查看达人的作品及作品表现数据、互动数据、评论内容等，分析达人画像、内容特点、活跃表现和近期作品等，帮助用户快速发现和判断适合合作的达人。支持关键词搜索、博主作品、单条作品详情、视频图文评论、实时热榜，全部以结构化 JSON 输出，不登录、不发布。关键词：抖音达人、达人发现、达人筛选、带货达人、抖音搜索、抖音热榜、需求挖掘、竞品分析、舆情监控。
 
-**维护状态**：持续更新中，当前版本 `1.4.2`，[更新日志](references/changelog.md)。
+**维护状态**：持续更新中，当前版本 `1.5.0`，[更新日志](references/changelog.md)。Agent 执行卡见 [SKILL.md](SKILL.md)。
 
 > **🔥核心优势**
 >
 > - 安全：无需登录你的抖音账号，不存在风控 / 封号问题
-> - 强大：按量 Token 单次最多 10000 条；包月 Token 搜索/作品最多 30、评论最多 50
+> - 强大：按量 Token 单次最多 10000 条；包月 Token 视频搜索/用户搜索/作品最多 30、评论最多 50
 > - 全面：出参覆盖作者、互动（点赞/评论/收藏/分享/推荐）、标签、链接、音乐、话题等可用字段
 > - 灵活：支持排序（综合/最多点赞/最新）、时间（1天/7天/半年）、时长、内容类型（视频/图文）多维度筛选
 > - 轻量：零第三方依赖，Node.js 内置模块直接跑，无需部署服务
@@ -20,13 +20,15 @@
 | 你是谁     | 你要做的事                       | 用哪个功能                  |
 | ---------- | -------------------------------- | --------------------------- |
 | 短视频运营 | 找爆款选题、分析高赞视频规律     | 关键词搜索（点赞/最新排序） |
-| 品牌/投放  | 监控对标账号的内容策略和发文节奏 | 博主作品抓取                |
+| 运营/投放  | 按关键词找对标账号、达人         | 用户搜索                    |
+| 销售/增长  | 评论区挖高意向线索、竞品截流     | 搜索→评论 + [获客剧本](references/customer-acquisition.md) |
+| 品牌/投放  | 监控已知账号的内容策略和发文节奏 | 博主作品抓取                |
 | 内容分析   | 看一条视频的文案、播放和互动     | 作品详情                    |
 | 舆情/客服  | 看一条视频评论区在骂还是在夸     | 评论抓取                    |
 | 内容策划   | 快速追热点、找当天的流量入口     | 实时热榜                    |
 | 数据分析   | 把抖音数据导入 Excel/BI 做周报   | 结构化 JSON + 日志落盘      |
 
-**典型产出**：结构化 JSON（含标题、作者、点赞/评论/收藏/分享、标签、视频链接、发布时间），可直接导入 Excel / BI，或交给 AI 生成**选题库、竞品对比表、舆情周报、发文节奏分析**。
+**典型产出**：结构化 JSON（含标题、作者、点赞/评论/收藏/分享、标签、视频链接、发布时间），可直接导入 Excel / BI，或交给 AI 生成**选题库、竞品对比表、舆情周报、发文节奏分析、公域线索表**。剧本见 [需求挖掘](references/demand-mining.md)、[公域获客](references/customer-acquisition.md)。
 
 ---
 
@@ -43,7 +45,7 @@
    node src/douyin/hot-cli.js
    ```
 
-> ⚠️ 一次只跑一条命令，跑完等进程自己退出。小查询常常几十秒；`--limit` 很大时最长约 15–22 分钟，**进程未退出前不要重复发起同一条命令**。
+> ⚠️ 一次只跑一条命令，跑完等进程自己退出。小查询常常十几秒；`--limit` 很大时最长约 15–22 分钟，**进程未退出前不要重复发起同一条命令**。
 
 ---
 
@@ -58,6 +60,9 @@ node src/douyin/search-cli.js --keyword "AI" --sort 1
 
 # 🔎 近 7 天"AI 模型"的最新 20 条
 node src/douyin/search-cli.js --keyword "AI 模型" --sort 2 --time 7 --limit 20
+
+# 👤 按关键词找用户 / 对标账号
+node src/douyin/user-search-cli.js --keyword "AI" --limit 20
 
 # 🦸 抓某个博主的作品（直接粘贴 App 分享链接也行）
 node src/douyin/post-cli.js --url "https://www.douyin.com/user/MS4wLjABxxx" --limit 20
@@ -95,13 +100,13 @@ node src/douyin/hot-cli.js
     "limit": 20
   },
   "metadata": {
-    "skill_version": "1.4.2",
+    "skill_version": "1.5.0",
     "runtime_version": "22.x",
     "execution_time": 34210
   },
   "results": [
     {
-      "aweme_id": "7625431394899016110",
+      "aweme_id": "7625...",
       "desc": "3 分钟讲透 RAG…",
       "author_nickname": "某某说AI",
       "author_sec_uid": "MS4wLjABAAAA…",
@@ -110,7 +115,7 @@ node src/douyin/hot-cli.js
       "comment_count": 118,
       "share_count": 2861,
       "collect_count": 11486,
-      "url": "https://www.douyin.com/video/7625431394899016110",
+      "url": "https://www.douyin.com/video/7625...",
       "create_time": 1775434101,
       "create_time_str": "2026/4/5 10:08:21",
       "tags": ["#AI", "#教程"]
@@ -119,7 +124,7 @@ node src/douyin/hot-cli.js
 }
 ```
 
-- 搜索、评论、热榜成功时 `results` 是**数组**；博主作品成功时 `results` 是**对象**，包含 `post`（作品数组）和 `user`（博主信息）。
+- 视频搜索、用户搜索、评论、热榜成功时 `results` 是**数组**；博主作品成功时 `results` 是**对象**，包含 `post`（作品数组）和 `user`（博主信息）。
 - 空结果是 `"status": "empty"` + `error_code: "NO_MATCH"`，**退出码仍然是 0，属正常情况，不是失败**。
 - 字段较多（含封面图、播放地址等长 URL），向用户汇报时建议只摘取 `desc` / `author_nickname` / `digg_count` / `url` / `create_time_str` 等关键字段。
 
@@ -128,7 +133,8 @@ node src/douyin/hot-cli.js
 ## 📌 适用场景（我该不该用？）
 
 - 需要短视频选题 → 关键词搜索 + 点赞排序（`--sort 1`）
-- 需要研究对标账号 → 按主页链接抓取其公开作品（**一次抓一个账号**，多个账号逐条执行）
+- 需要按词找对标账号 / 达人 → 用户搜索（`user-search-cli.js`）
+- 需要研究已知账号 → 按主页链接抓取其公开作品（**一次抓一个账号**，多个账号逐条执行）
 - 需要看账号体量 → 作品命令加 `--limit 0`，直接拿粉丝数 / 获赞数
 - 需要分析内容舆情 → 获取视频/图文评论，可做观点聚类
 - 需要快速追热点 → 实时热榜（约 50 条，含排名与热度值）
@@ -141,24 +147,81 @@ node src/douyin/hot-cli.js
 | 上手成本       | 一条命令，5 分钟接入       | 0，但整理数据极费时间 | 需要逆向/维护，门槛高        |
 | 登录与封号风险 | **无需登录，只读公开数据** | 无                    | 高（需带登录态，易触发风控） |
 | 数据结构       | 标准 JSON，字段齐全        | 手抄                  | 自己定义                     |
-| 单次规模       | 按量最多 10000；包月更低   | 受限于人肉            | 受限于风控                   |
+| 单次规模       | 按量最多 10000；包月满足基本使用   | 受限于人肉            | 受限于风控                   |
 | 维护成本       | 平台负责更新               | 无                    | 接口一变就失效               |
 | 配合 AI 分析   | 天然适配（stdout 纯 JSON） | 不适配                | 需额外处理                   |
 
 ---
 
-## 🔧 参数详解表
+## 🔧 命令与参数详表
 
-> 两个入口，按需其一即可：
->
-> - 想看人话版完整参数表 → [references/options.md](references/options.md)
-> - 想看机器可校验的规范（JSON Schema draft-07）→ `assets/` 目录：
->   - 输出信封 [output_envelope.schema.json](assets/output_envelope.schema.json)
->   - 关键词搜索 [入参](assets/search_cli_req.schema.json) / [出参](assets/search_cli_resp.schema.json)
->   - 博主作品 [入参](assets/post_cli_req.schema.json) / [出参](assets/post_cli_resp.schema.json)
->   - 评论获取 [入参](assets/comment_cli_req.schema.json) / [出参](assets/comment_cli_resp.schema.json)
->   - 作品详情 [入参](assets/detail_cli_req.schema.json) / [出参](assets/detail_cli_resp.schema.json)
->   - 热榜 [出参](assets/hot_cli_resp.schema.json)
+> 口语化指令枚举续读 [references/options.md](references/options.md)。机器 Schema 见 `assets/`。信封与 `results` 形态见 [references/contract.md](references/contract.md)。
+
+### 关键词搜索 `search-cli.js`
+
+| 参数 | 缩写 | 必填 | 取值 | 默认 |
+| --- | --- | --- | --- | --- |
+| `--keyword` | `-k` | ✅ | 2–50 个字符，不能是链接，不含 `< > " ' &` | — |
+| `--sort` | `-s` | | 0 综合 / 1 最多点赞 / 2 最新发布 | 0 |
+| `--time` | `-t` | | 0 全部 / 1 一天内 / 7 七天内 / 180 半年内 | 0 |
+| `--duration` | `-d` | | 0 不限 / 1 1分钟以下 / 2 1-5分钟 / 3 5分钟以上 | 0 |
+| `--content` | `-c` | | 0 不限 / 1 视频 / 2 图文 | 0 |
+| `--limit` | `-l` | | 1–10000（**包月 Token 实际最多 30**） | 10 |
+
+未指定 `--limit` 时只返回 10 条。用户说「全部」再显式加大，不要自作主张抓 10000。关键词以 `-` 开头时写成 `--keyword=-AI`，或 `node src/douyin/search-cli.js -- -AI`。
+
+**套餐双上限**：技能硬上限 10000（按量）。**包月**超限返回 `PLAN_LIMIT`：视频搜索/用户搜索/作品最多 **30**，评论最多 **50**；详情与热榜无此条数限制。
+
+### 用户搜索 `user-search-cli.js`
+
+按关键词搜用户/达人/账号。成功时 `results` 是**用户数组**（含 `sec_uid`、`nickname`、`fans` 等；有 `sec_uid` 时含 `author_url`）。**不是**视频搜索。暂不支持粉丝量/认证类型筛选。
+
+| 参数 | 缩写 | 必填 | 取值 | 默认 |
+| --- | --- | --- | --- | --- |
+| `--keyword` | `-k` | ✅ | 2–50 个字符，不能是链接，不含 `< > " ' &` | — |
+| `--limit` | `-l` | | 1–10000（**包月最多 30**） | 10 |
+
+找到账号后要看作品，用 `author_url` 或 `sec_uid` 再跑 `post-cli.js`。
+
+### 博主作品 `post-cli.js`
+
+| 参数 | 缩写 | 必填 | 取值 | 默认 |
+| --- | --- | --- | --- | --- |
+| `--url` | `-u` | ✅ | `douyin.com/user/xxx`、`v.douyin.com/xxx`，或 `sec_uid`（`MS4wLjA` 开头） | — |
+| `--limit` | `-l` | | 0–10000（**包月最多 30**；**`0` = 只取博主互动数据**） | 10 |
+
+成功时 `results` 是**对象**，含 `post`（作品数组）和 `user`（博主信息）。
+
+### 视频评论 `comment-cli.js`
+
+| 参数 | 缩写 | 必填 | 取值 | 默认 |
+| --- | --- | --- | --- | --- |
+| `--url` | `-u` | ✅ | `douyin.com/video/xxx`、`douyin.com/note/xxx`、`v.douyin.com/xxx`，或纯数字 `aweme_id` | — |
+| `--limit` | `-l` | | 1–10000（**包月最多 50**） | 10 |
+
+### 作品详情 `detail-cli.js`
+
+| 参数 | 缩写 | 必填 | 取值 | 默认 |
+| --- | --- | --- | --- | --- |
+| `--url` | `-u` | ✅ | `douyin.com/video/xxx`、`douyin.com/note/xxx`、`v.douyin.com/xxx`，或纯数字 `aweme_id` | — |
+
+没有 `--limit`。成功时 `results` 是**一条作品对象**，不是数组，也不含评论。图文（note）通常没有播放数和时长。
+
+### 实时热榜 `hot-cli.js`
+
+不接受参数。返回约 50 条。失败时最多重试 3 次，不走长查询。
+
+### Schema 入口
+
+- 输出信封 [output_envelope.schema.json](assets/output_envelope.schema.json)
+- 关键词搜索 [入参](assets/search_cli_req.schema.json) / [出参](assets/search_cli_resp.schema.json)
+- 用户搜索 [入参](assets/user_search_cli_req.schema.json) / [出参](assets/user_search_cli_resp.schema.json)
+- 博主作品 [入参](assets/post_cli_req.schema.json) / [出参](assets/post_cli_resp.schema.json)
+- 评论 [入参](assets/comment_cli_req.schema.json) / [出参](assets/comment_cli_resp.schema.json)
+- 作品详情 [入参](assets/detail_cli_req.schema.json) / [出参](assets/detail_cli_resp.schema.json)
+- 热榜 [出参](assets/hot_cli_resp.schema.json)
+
+口语 → 命令对照：[references/routing.md](references/routing.md)。错误全表：[references/errors.md](references/errors.md)。
 
 ---
 
@@ -167,7 +230,7 @@ node src/douyin/hot-cli.js
 - 仅抓取抖音**公开**数据，不支持私密/隐藏内容
 - 需要配置 `GUAIKEI_API_TOKEN` 才能运行；调用会把关键词/链接发送至第三方 API（www.guaikei.com）
 - 数据仅限个人/团队内部使用，禁止违规分发
-- 小查询常常几十秒内结束，条数越大越慢。进程会自己创建任务并继续查询，最长约 15–22 分钟才结束
+- 小查询常常十几秒内结束，条数越大越慢。进程会自己创建任务并继续查询，最长约 15–22 分钟才结束
 - 播放地址和分享链接有时效，过期后需要重新获取
 
 ---
@@ -188,9 +251,10 @@ node src/douyin/hot-cli.js
 
 > **Q：输出文件在哪里？**
 >
-> A：搜索 / 作品 / 评论 / 作品详情任务的结果会自动保存在技能目录的 `logs/` 下：
+> A：搜索 / 用户搜索 / 作品 / 评论 / 作品详情任务的结果会自动保存在技能目录的 `logs/` 下：
 >
 > - 搜索任务：`时间戳_关键词_排序_时间_时长_类型_search.json`
+> - 用户搜索：`时间戳_关键词_数量_user_search.json`
 > - 博主作品：`时间戳_博主sec_uid或短链码_post.json`
 > - 评论获取：`时间戳_视频aweme_id或短链码_comment.json`
 > - 作品详情：`时间戳_视频aweme_id或短链码_detail.json`
@@ -202,7 +266,7 @@ node src/douyin/hot-cli.js
 
 > **Q：单次最多多少条？调用失败扣不扣量？**
 >
-> A：技能侧硬上限 10000 条/次（按量 Token）。**包月 Token** 搜索/作品最多 30、评论最多 50，超限返回 `PLAN_LIMIT`（退出码 1），不要当网络错误重试。具体计费口径以官网说明为准。
+> A：技能侧硬上限 10000 条/次（按量 Token）。**包月 Token** 视频搜索/用户搜索/作品最多 30、评论最多 50，超限返回 `PLAN_LIMIT`（退出码 1），不要当网络错误重试。具体计费口径以官网说明为准。
 
 > **Q：报错 `PLAN_LIMIT` / 提示包月受限？**
 >
@@ -222,11 +286,14 @@ node src/douyin/hot-cli.js
 
 - **权限错误**（退出码 3，`AUTH_REQUIRED`/`AUTH_ERROR`）：TOKEN 未配置、无效或过期，提示用户重新配置，**不要重试**
 - **套餐条数超限**（退出码 1，`PLAN_LIMIT`）：包月等套餐单次上限不足，转述 `message`，建议降 `--limit` 或升级；**不要同参重试**
+- **余额不足**（退出码 1，`INSUFFICIENT_BALANCE`）：引导充值；**不要同参重试**
+- **提交过频**（退出码 1，`RATE_LIMITED`）：稍后经用户同意再试；**不要立即重试**
+- **日消费上限**（退出码 1，`DAILY_LIMIT`）：明日再试或到官网调整限额；**不要同参重试**
 - **网络超时**：可告知用户后重试，最多 1 次；仍失败则停止并报告
 
 ### 禁止行为
 
-- ❌ 不要在收到权限错误或 `PLAN_LIMIT` 后继续同参重试
+- ❌ 不要在收到权限错误、`PLAN_LIMIT`、`INSUFFICIENT_BALANCE`、`RATE_LIMITED`、`DAILY_LIMIT` 后继续同参或立即重试
 - ❌ 不要在 API 返回明确错误码后擅自修改参数重试（`PLAN_LIMIT` 降 limit 须先征得用户同意）
 - ❌ 不要在用户未明确要求的情况下自动调整搜索条件
 - ❌ 不要编造数据。空结果是 `status:"empty"`、退出码 0，不要说成有结果
@@ -243,4 +310,4 @@ node src/douyin/hot-cli.js
 
 - 🌐 **自助开通 TOKEN / 查阅使用帮助**：[抖音达人发现与洞察官网](https://www.guaikei.com)
 
-> 🆕 [更新日志](references/changelog.md) ｜ 参数详情见 [references/options.md](references/options.md) ｜ 完整能力说明见 [SKILL.md](SKILL.md)
+> 🆕 [更新日志](references/changelog.md) ｜ [options.md](references/options.md) ｜ [contract.md](references/contract.md) ｜ [errors.md](references/errors.md) ｜ Agent 执行卡 [SKILL.md](SKILL.md)

@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes monitoring images or videos to identify possible personnel absences from assigned posts and returns a structured monitoring report.
+Analyzes images and videos to monitor personnel presence in designated areas, flag possible absences, and produce structured reports.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Operations and site managers use this skill to review images or video from staffed areas such as production floors, control rooms, and service counters. It estimates on-duty status and absence durations and produces a report for human review.
+Operations teams use this skill to review workplace images or videos for personnel presence in designated areas and generate absence monitoring reports. It can also retrieve prior report listings.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment rates the skill suspicious because of credential and account handling, video uploads, and report-history access; the scan is incomplete because a local reference was missing.
+Risk: The security review flags possible unintended remote data transfers, including uncertainty about where video and identity data are sent.
 
-Mitigation: Before installing, review account registration, local token storage, video uploads, and report-history access against your privacy and security requirements.
+Mitigation: Verify the destination and handling of videos, identity data, and credentials before use; avoid sending sensitive footage until those details are clear.
+
+Risk: The security review flags actions that may exceed the stated purpose and unclear side effects, including uncertainty about export-only behavior.
+
+Mitigation: Confirm that actions and side effects match the monitoring task, and verify that export-only mode does not perform analysis before relying on it.
 
 ## Reference(s):
 
 - [API reference](references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub release](https://clawhub.ai/18072937735/skills/smyx-staff-absence-detection-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Markdown, Files]
+**Output Type(s):** [Analysis, JSON, Markdown]
 
-**Output Format:** [Structured JSON or human-readable monitoring report]
+**Output Format:** [Structured JSON reports and Markdown summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include post status, absence counts and durations, detection time, recommendations, and report links; results can be saved to a file.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.0.19 (source: server-resolved release metadata)
+1.0.20 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

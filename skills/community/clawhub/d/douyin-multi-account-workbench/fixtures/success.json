@@ -1,0 +1,8 @@
+{
+  "mode": "mock",
+  "tasks": ["hot-topic", "diagnosis", "comment-insights", "competitor-research", "script"],
+  "accounts": [
+    {"id":"account-a","browserId":"easybr-a","accountUrl":"https://www.douyin.com/user/a"},
+    {"id":"account-b","browserId":"easybr-b","accountUrl":"https://www.douyin.com/user/b"}
+  ]
+}

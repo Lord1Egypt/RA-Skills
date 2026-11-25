@@ -1,0 +1,6 @@
+interface:
+  display_name: "Subclip HyperFrames Layer"
+  short_description: "Author validated HyperFrames timeline layers"
+  default_prompt: "Use $subclip-hyperframes-layer to create a seekable HyperFrames layer in the current Subclip project."
+policy:
+  allow_implicit_invocation: true

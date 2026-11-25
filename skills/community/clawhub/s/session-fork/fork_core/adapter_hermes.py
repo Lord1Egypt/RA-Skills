@@ -31,14 +31,38 @@ SQLite 官方 `FTS5 integrity-check` 通过，`messages_fts` 行数 = `messages`
 `INSERT INTO {table} ({cols}) VALUES (…)` ⇒ 新增列随行原样复制，不受列数变化影响。
 （这条"动态取列"是刻意设计，改动它之前请先想清楚新增列的回填语义。）
 
+## v0.23.1（schema 32 / 33）兼容 —— 2026-11-16 静态取证（未做真机）
+
+**证据来源（可复跑核对）**：上游 `NousResearch/hermes-agent` tag `v0.23.1`（commit `3b42157`）
+的三个文件 —— `hermes_state_common.py`（`SCHEMA_VERSION = 33`、`FTS_STORAGE_VERSION = 3`、
+`SCHEMA_SQL` 里 `sessions` / `messages` 的建表语句）、`hermes_state_schema.py`（v32/v33 的迁移链）、
+`hermes_state_compression.py`（产品自身发布子会话行的那条 `INSERT INTO sessions`）。
+**本次没装 v0.23.1 做真机验收**，故上面这条"证据来源"只到源码，不到产品行为。
+
+结构增量：`sessions` 62 → **65**，新增三列**全部是 `INTEGER NOT NULL DEFAULT 0`** ——
+`runtime_revision`（会话元数据编辑的乐观并发令牌，客户端读回来再写回）、
+`runtime_generation`（逐轮 claim 计数，`claim_session_input` 写 `旧值 + 1`）、
+`transcript_revision`（由触发器在"就地改写行"时 +1，产品只把它当作
+`conversation_revision()` 指纹的一个分量求和）。`messages` 26 → **30 不变**（仍是 30 列）。
+
+**为什么这三列要归零、而不是随行复制**（判据是产品自己怎么建子行，不是我们的推断）：
+产品发布 branch / compression 子行只走 `hermes_state_compression._publish_child_session_row`，
+那条 `INSERT` 显式列 24 列，**这三个 revision/generation 列一个都不在其中** ⇒ 子行一律取
+表默认值 **0**；而 `verify` 侧的 `runtime_generation` 围栏全是"与**同一会话**的
+admission / worker 行等值比较"，新会话没有这些行，归零不可能触发 `stale_generation`。
+反过来，若从源行继承：`runtime_generation` 会被凭空抬高（claim 是 `+1`、import 是 `MAX()`，
+**只能上行不可逆**），`transcript_revision` 会让一个从未被改写的会话自称改写过 N 次 ——
+与 `auto_archived` 同一类"隐性状态污染"，故照同一先例归零。
+（v30 / v31 的表里没有这三列，多出的键不会被 INSERT 使用 —— 列清单取自实际表结构。）
+
 ## 介质契约
 
-`$HERMES_HOME/state.db`（`journal_mode=wal`，`SCHEMA_VERSION` **30 或 31**）。一个会话横跨**两张表**：
+`$HERMES_HOME/state.db`（`journal_mode=wal`，`SCHEMA_VERSION` **30 / 31 / 32 / 33**）。一个会话横跨**两张表**：
 
-| 表 | 列数（v30 → v31） | 作用 | 分支侧要写什么 |
+| 表 | 列数（v30 → v31 → v0.23.1） | 作用 | 分支侧要写什么 |
 |---|---|---|---|
-| `sessions` | 58 → **62** | 会话元数据（`id` 主键、`model_config`、`parent_session_id`…） | 复制源行 + 覆写身份/血缘/时间/标题 |
-| `messages` | 26 → **30** | 消息本体（`id` 自增主键、`session_id` 外键、`role`、`content`…） | 复制前缀，**排除自增 `id`**；其余列**按实际列名**复制 |
+| `sessions` | 58 → **62** → **65** | 会话元数据（`id` 主键、`model_config`、`parent_session_id`…） | 复制源行 + 覆写身份/血缘/时间/标题 |
+| `messages` | 26 → **30** → **30** | 消息本体（`id` 自增主键、`session_id` 外键、`role`、`content`…） | 复制前缀，**排除自增 `id`**；其余列**按实际列名**复制 |
 
 **与其它产品的三处关键差异**（全部实测确定）：
 
@@ -63,7 +87,7 @@ SQLite 官方 `FTS5 integrity-check` 通过，`messages_fts` 行数 = `messages`
 
 ## 已知边界（如实记录）
 
-- 依赖**未公开的内部表结构**（已知 `SCHEMA_VERSION` = **30 / 31**）。故设**版本闸**：
+- 依赖**未公开的内部表结构**（已知 `SCHEMA_VERSION` = **30 / 31 / 32 / 33**）。故设**版本闸**：
   版本**不在白名单**（含比我们更新的版本、以及读不到版本）时 **拒绝写入**并提示升级适配器，
   而不是静默写坏库（产品无 schema 兼容承诺）。
   ⚠️ 代价要说清：白名单只是把"产品再升一版就整体停摆"推后，**下一次产品升版仍会停摆**——
@@ -93,9 +117,15 @@ from .models import SessionMeta, VerifyItem
 #:     迁移到 v31；白名单放开后写入成功，且产品代码 `list_sessions_rich(include_children=True)`
 #:     能列出该分支、`parent_session_id` 指向源会话、消息内容与 `message_uid` 均原样复制、
 #:     SQLite 官方 `FTS5 integrity-check` 通过、`messages_fts` 行数与 `messages` 一致）
+#:   · **32** / **33** = Hermes **v0.23.1**（tag `v0.23.1` = commit `3b42157`，2026-11-10）：
+#:     `hermes_state_common.py` 里 `SCHEMA_VERSION = 33`、`FTS_STORAGE_VERSION` 仍为 3（未变）。
+#:     两个版本的**结构增量只有 `sessions` 62→65 三列**（见下方"
+#:     v0.23.1（schema 32/33）"一节）；上游 v32 是"版本记账"（声明在 SCHEMA_SQL 里的列由
+#:     `_reconcile_columns()` 补齐）、v33 是纯数据迁移（只 `UPDATE model_config` 补
+#:     `_delegate_from`，无 DDL）⇒ 32 与 33 的表形状相同，写侧风险一致。
 #: 白名单**之外**（含更高版本、以及读不到版本）一律拒绝写 —— 版本闸宁可停摆，也不写坏用户的库。
 #: ⚠️ 历史教训：此前是"等于单一值"的等值闸，产品升一个版本就整体停摆（v0.21.6 即如此）。
-KNOWN_SCHEMA_VERSIONS: tuple[int, ...] = (30, 31)
+KNOWN_SCHEMA_VERSIONS: tuple[int, ...] = (30, 31, 32, 33)
 
 #: 展示用（最新已知版本）；判定一律走上面的白名单。
 KNOWN_SCHEMA_VERSION = KNOWN_SCHEMA_VERSIONS[-1]
@@ -454,6 +484,22 @@ class HermesAdapter(TranscriptionAdapter):
             # （当前不影响可见性过滤，但属隐性状态污染）。
             # v30 的 sessions 没有这一列，多出的键不会被 INSERT 使用（列清单取自实际表结构）。
             "auto_archived": 0,
+            # v0.23.1（schema 32/33）新增的三个计数器 —— **同样归零，不随行复制**。
+            # 判据不是"猜"，是产品自己发布子会话行的那条 SQL（`hermes_state_compression` 的
+            # `_publish_child_session_row`，branch 子行也走它）：它显式列 24 列，这三列**不在其中**，
+            # 即产品的 branch 子行一律取表默认值 0。理由逐列：
+            #   · runtime_generation = 逐轮 claim 计数（`claim_session_input` 写 `旧值 + 1`，
+            #     导入用 `MAX()`）⇒ 只能上行、不可逆。继承源值等于让一个从未被 claim 过的新会话
+            #     凭空从 N 起跳。它的围栏都是"与**同一会话**的 admission/worker 行等值比较"，
+            #     新会话没有这些行 ⇒ 归零不会触发 stale_generation。
+            #   · runtime_revision = 元数据编辑的乐观并发令牌（客户端读回来再写回 CAS）⇒
+            #     新会话从 0 起，客户端读到什么就写回什么，两种取值都自洽，但只有 0 是事实。
+            #   · transcript_revision = 触发器在"就地改写行"时 +1 的计数，产品只把它当
+            #     `conversation_revision()` 指纹的一个分量求和 ⇒ 继承会让新会话自称改写过 N 次。
+            # 与 auto_archived 同一类隐性状态污染；v30/v31 无这三列时多出的键被忽略（同上）。
+            "transcript_revision": 0,
+            "runtime_revision": 0,
+            "runtime_generation": 0,
             "last_activity_at": now,
         })
         cur.execute(

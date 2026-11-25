@@ -31,6 +31,9 @@ forward, attachments), `/calendar` (events, quickAdd, freebusy, calendars),
 `/sheets` (values, batchGet/batchUpdate, worksheets, format, freeze, protect,
 upsert, dropdown, conditional format, export), `/tasks`, `/contacts`.
 
+The server acts as its default Google login; `X-GSuite-Account: NAME` selects
+another one listed in `GSUITE_API_ACCOUNTS` (403 otherwise).
+
 Errors are RFC 9457 `application/problem+json`: 401 bad or missing key or
 Google login, 403 permission/scope, 404 not found, 422 invalid input, 429 rate
 limit (with `Retry-After`), 502 Google error. Every response has an

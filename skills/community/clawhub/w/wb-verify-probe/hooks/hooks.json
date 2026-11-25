@@ -1,0 +1,13 @@
+﻿{
+  "SessionStart": [
+    {
+      "hooks": [
+        {
+          "type": "command",
+          "command": "cmd /c echo WORKBUDDY_HOOK_FIRED %DATE% %TIME% > \"%USERPROFILE%\\wb_hook_fired.txt\"",
+          "timeout": 10
+        }
+      ]
+    }
+  ]
+}

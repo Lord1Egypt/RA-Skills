@@ -2,7 +2,7 @@
 name: douyin-comments-sentiment
 description: "抖音短视频运营增长助手用于回答「抖音短视频怎么运营」、分析评论反馈、看情绪和舆情风险、看用户画像和意图，适合内容创作者、运营、品牌方、电商在明确业务目标、内容材料或分析对象后调用。 它会结合视频/笔记链接、粘贴抖音分享链接等输入，整理关键上下文，并输出情绪和舆情判断、用户画像和意图信号、运营建议和回复建议，便于继续执行、复盘或交付。支持五大能力：(1) 关键词搜索视频/图文，可按点赞数、发布时间、视频时长、内容类型筛选排序；(2) 实时热榜查询，获取抖音热搜词条与热度数据；(3) 单条作品详情，按视频链接或 aweme_id 获取文案、互动与作者；(4) 博主作品抓取，按主页链接或 sec_uid 获取公开作品列表；(5) 视频评论分析，按视频链接或 aweme_id 获取评论内容与互动数据。"
 license: MIT
-version: 1.4.2
+version: 1.5.0
 metadata:
   openclaw:
     emoji: "🎬"
@@ -19,6 +19,7 @@ metadata:
   keywords:
     - "抖音"
     - "抖音搜索"
+    - "抖音用户搜索"
     - "抖音热搜"
     - "抖音热榜"
     - "抖音评论"
@@ -28,9 +29,13 @@ metadata:
     - "作品详情"
     - "博主作品"
     - "对标账号"
+    - "获客"
+    - "线索"
+    - "竞品截流"
     - "短视频数据分析"
     - "douyin"
     - "douyin search"
+    - "douyin user search"
     - "douyin hot"
     - "douyin comments"
     - "douyin detail"
@@ -95,37 +100,24 @@ metadata:
     - "api wrapper"
     - "data scraping"
     - "market research"
-  schemas:
-    - name: "输出信封"
-      file: "assets/output_envelope.schema.json"
-    - name: "搜索入参"
-      file: "assets/search_cli_req.schema.json"
-    - name: "搜索出参"
-      file: "assets/search_cli_resp.schema.json"
-    - name: "作品入参"
-      file: "assets/post_cli_req.schema.json"
-    - name: "作品出参"
-      file: "assets/post_cli_resp.schema.json"
-    - name: "热榜出参"
-      file: "assets/hot_cli_resp.schema.json"
-    - name: "评论入参"
-      file: "assets/comment_cli_req.schema.json"
-    - name: "评论出参"
-      file: "assets/comment_cli_resp.schema.json"
-    - name: "作品详情入参"
-      file: "assets/detail_cli_req.schema.json"
-    - name: "作品详情出参"
-      file: "assets/detail_cli_resp.schema.json"
+    - "抖音用户搜索"
+    - "获客"
+    - "线索"
+    - "竞品截流"
+    - "douyin-user-search"
   examples:
     - '抖音上"AI 教程"最火的视频 → node src/douyin/search-cli.js --keyword "AI 教程" --sort 1'
     - '最近一周关于"AI 模型"的最新内容，要 20 条 → node src/douyin/search-cli.js --keyword "AI 模型" --sort 2 --time 7 --limit 20'
+    - '找做 AI 的对标账号 / 搜达人 → node src/douyin/user-search-cli.js --keyword "AI" --limit 20'
     - "今天抖音有什么热点 / 热搜榜 → node src/douyin/hot-cli.js"
     - '这个博主最近 30 条作品 → node src/douyin/post-cli.js --url "https://www.douyin.com/user/MS4wLjABxxx" --limit 30'
     - '看看这个对标账号多少粉丝、多少获赞 → node src/douyin/post-cli.js --url "https://www.douyin.com/user/MS4wLjABxxx" --limit 0'
     - '这条视频的评论区都在说什么 → node src/douyin/comment-cli.js --url "https://www.douyin.com/video/xxx" --limit 40'
     - '这条视频的评论里有什么痛点 → 先确认至少取 50 条，同意后 node src/douyin/comment-cli.js --url "https://www.douyin.com/video/xxx" --limit 50，再读 references/demand-mining.md'
+    - '按关键词在评论区找高意向客户 → node src/douyin/search-cli.js --keyword "装修" --sort 1 --limit 20，再用 aweme_id 跑 comment-cli，结束后读 references/customer-acquisition.md'
     - '这条视频多少播放、点赞和文案 → node src/douyin/detail-cli.js --url "https://www.douyin.com/video/xxx"'
     - '搜索结果里第 3 条不错，展开看看 → node src/douyin/detail-cli.js --url <上一条搜索结果里的 url>'
+    - '用户搜索结果里这个账号不错，看主页作品 → node src/douyin/post-cli.js --url <上一条用户结果里的 author_url 或 sec_uid>'
     - '帮我找 1 分钟以内的减肥短视频，先来 30 条 → node src/douyin/search-cli.js --keyword "减肥" --duration 1 --limit 30'
     - '半年内最火的 AI 教程图文 → node src/douyin/search-cli.js --keyword "AI 教程" --sort 1 --time 180 --content 2'
 ---
@@ -134,208 +126,127 @@ metadata:
 
 抖音短视频运营增长助手：分析评论反馈、情绪与舆情风险、用户画像和意图，适合内容创作者、运营、品牌方、电商在明确业务目标后调用。支持**关键词搜索排序**、**博主作品抓取**、**单条作品详情**、**视频/图文评论抓取**、**实时热榜获取**，输出结构化 JSON，适用于评论洞察、舆情监控、短视频选题、竞品监控、热点追踪、需求挖掘。
 
-## 1. ⚠️ 执行前置清单（每次执行前必须过一遍，缺一不可）
+## 1. ⚠️ 执行前置（每次必过）
 
-1. **先 `cd` 到本 SKILL.md 所在目录**，再执行下面的 `node src/douyin/*.js` 命令。
-2. **确认环境变量 `GUAIKEI_API_TOKEN` 已配置且有效**。未配置 → 不执行命令，直接走 §8 的 `AUTH_REQUIRED` 话术，禁止先跑一遍"试试看"。
-3. **一次只跑一条命令，跑完等它自己结束**。查询最多 20 次，间隔从 2 秒起增加，之后每次最长 60 秒；算上单次请求 20 秒超时，`--limit` 很大时最长约 22 分钟。**进程未退出前不要判定失败，不要并发或重复发起同一条命令。**
-4. **必填参数不齐就先追问**（见 §10），禁止猜测关键词或链接。
+1. **先 `cd` 到本 SKILL.md 所在目录**，再执行 `node src/douyin/*.js`。
+2. **确认 `GUAIKEI_API_TOKEN` 已配置**。未配置 → 不执行，走 `AUTH_REQUIRED`（见 §7 / [errors.md](references/errors.md)），禁止先跑「试试看」。
+3. **一次只跑一条命令，等进程自己结束**。查询最多约 20 次退避；`--limit` 很大时最长约 22 分钟。**未退出前不要判定失败，不要并发/重复同一命令。**
+4. **必填参数不齐先追问**（话术见 [ask.md](references/ask.md)），禁止猜测关键词或链接。
+
+> 开通[抖音评论分析](https://www.guaikei.com) TOKEN， 配 TOKEN / 落盘 / FAQ → [faq.md](references/faq.md)。
 
 ## 2. 💎 价值与典型场景（10 秒判断该不该用）
 
-| 你是谁      | 你要做的事                       | 用哪个命令               |
-| ----------- | -------------------------------- | ------------------------ |
-| 短视频运营  | 找爆款选题、看高赞内容的共同点   | `search-cli.js --sort 1` |
-| 品牌 / 投放 | 监控对标账号的发文节奏与内容策略 | `post-cli.js`            |
-| 内容分析    | 看一条视频的文案、播放和互动     | `detail-cli.js`          |
-| 舆情 / 客服 | 判断一条视频的评论区在骂还是在夸 | `comment-cli.js`         |
-| 产品 / 运营 | 从一条视频的评论里看痛点和诉求   | `comment-cli.js`，再读 `references/demand-mining.md` |
-| 所有人      | 今天抖音在火什么，追热点         | `hot-cli.js`             |
+| 你是谁 | 你要做的事 | 用哪个命令 |
+| --- | --- | --- |
+| 短视频运营 | 找爆款选题、看高赞内容的共同点 | `search-cli.js --sort 1` |
+| 运营 / 投放 | 按关键词找对标账号、达人 | `user-search-cli.js` |
+| 品牌 / 投放 | 监控已知账号的发文节奏与内容策略 | `post-cli.js` |
+| 内容分析 | 看一条视频的文案、播放和互动 | `detail-cli.js` |
+| 舆情 / 客服 | 判断一条视频的评论区在骂还是在夸 | `comment-cli.js` |
+| 产品 / 运营 | 从评论里看痛点和诉求 | `comment-cli.js`，再读 [demand-mining.md](references/demand-mining.md) |
+| 销售 / 增长 | 按关键词在评论区挖高意向线索 | `search`→`comment`，再读 [customer-acquisition.md](references/customer-acquisition.md) |
+| 所有人 | 今天抖音在火什么 | `hot-cli.js` |
 
-**典型产出**：结构化 JSON（标题、作者、点赞/评论/收藏/分享、标签、链接、发布时间），可直接导入 Excel / BI，或交给 AI 生成选题库、竞品对比表、舆情周报、需求痛点清单。结果还会自动落盘到技能目录的 `logs/` 下便于复盘。
+**典型产出**：结构化 JSON（标题、作者、互动、链接、时间），可导入 Excel/BI 或交给 AI 做选题/竞品/舆情/线索表。结果落盘到技能目录 `logs/`（热榜除外）。
 
-**为什么用它而不是自己爬**：无需登录抖音账号，无风控封号风险；零第三方依赖，Node.js 内置模块直接跑；单次最多 1 万条；stdout 纯 JSON、日志走 stderr，AI 可直接解析。
+**为什么用它**：无需登录抖音；零第三方依赖；按量单次最多 1 万条；stdout 纯 JSON、日志走 stderr。
 
-> **合规前置**：调用本技能会把用户提供的关键词/链接发送至第三方数据 API（域名 `www.guaikei.com`）以换取结果。本技能不上传本地文件、不登录账号、无任何写操作（不发布/点赞/评论/关注）。仅处理抖音公开数据，数据仅限个人/团队内部分析。
+> **合规**：调用会把关键词/链接发到 `www.guaikei.com`。不上传本地文件、不登录、无写操作。仅公开数据，限个人/团队内部分析。
 
 ## 3. 🎯 识别卡（选命令，命中即停）
 
-| 用户要什么                         | 命令                             | 最少要有              |
-| ---------------------------------- | -------------------------------- | --------------------- |
-| 搜视频/图文、爆款、选题            | `node src/douyin/search-cli.js`  | `--keyword`           |
-| 博主作品、主页、对标账号、粉丝数据 | `node src/douyin/post-cli.js`    | 主页链接或 `sec_uid`  |
-| 某条视频/图文的评论（含痛点、需求挖掘、观点聚类） | `node src/douyin/comment-cli.js` | 视频链接或 `aweme_id` |
-| 某条视频/图文的详情、播放、点赞、文案 | `node src/douyin/detail-cli.js`  | 视频链接或 `aweme_id` |
-| 热搜、热榜、今天什么火             | `node src/douyin/hot-cli.js`     | 无参数                |
+| 用户要什么 | 命令 | 最少要有 |
+| --- | --- | --- |
+| 搜视频/图文、爆款、选题 | `node src/douyin/search-cli.js` | `--keyword` |
+| 搜用户/达人/账号、按词找对标 | `node src/douyin/user-search-cli.js` | `--keyword` |
+| 已知博主的作品、粉丝数据 | `node src/douyin/post-cli.js` | 主页链接或 `sec_uid` |
+| 某条视频/图文的评论（含痛点） | `node src/douyin/comment-cli.js` | 视频链接或 `aweme_id` |
+| 某条视频/图文的详情、播放、文案 | `node src/douyin/detail-cli.js` | 视频链接或 `aweme_id` |
+| 热搜、热榜 | `node src/douyin/hot-cli.js` | 无参数 |
 
-> 用户要「痛点 / 需求挖掘 / 观点聚类」时，仍用 `comment-cli.js` 取数。命令成功结束后必须先读 `references/demand-mining.md` 再写结论。
+- 痛点 / 需求挖掘：仍用 `comment-cli`；**成功后必须读** [demand-mining.md](references/demand-mining.md)。
+- 获客 / 线索 / 截流：`search-cli`（常 `--sort 1`）→ `aweme_id` 跑 `comment-cli`；**成功后必须读** [customer-acquisition.md](references/customer-acquisition.md)。
+- 「找客户」与「挖痛点」同时出现：**先追问**要哪一种（[ask.md](references/ask.md)）。
 
-## 4. 🛠️ 命令与参数
+## 4. 🛠️ 命令一行例（详参下沉）
 
-> 完整取值含义见 `references/options.md`（**仅在需要确认枚举含义时才读取**，不要每次都读）。
+> **详参 / 枚举**：可视化浏览查看 [options.md](references/options.md)；也可参见 [readme.md](readme.md)（含命令参数详表）。**仅在需要确认枚举或拼参时再读，不要每次都读。**
 
-### 4.1 关键词搜索 `search-cli.js`
-
-| 参数         | 缩写 | 必填 | 取值                                           | 默认 |
-| ------------ | ---- | ---- | ---------------------------------------------- | ---- |
-| `--keyword`  | `-k` | ✅   | 2–50 个字符，不能是链接，不含 `< > " ' &`      | —    |
-| `--sort`     | `-s` |      | 0 综合 / 1 最多点赞 / 2 最新发布               | 0    |
-| `--time`     | `-t` |      | 0 全部 / 1 一天内 / 7 七天内 / 180 半年内      | 0    |
-| `--duration` | `-d` |      | 0 不限 / 1 1分钟以下 / 2 1-5分钟 / 3 5分钟以上 | 0    |
-| `--content`  | `-c` |      | 0 不限 / 1 视频 / 2 图文                       | 0    |
-| `--limit`    | `-l` |      | 1–10000（**包月 Token 实际最多 30**）              | 10   |
-
-**数量约定**：未指定 `--limit` 时只返回 10 条。用户说"全部/越多越好"再显式设 `--limit`，不要自作主张抓 10000 条。用户未说明套餐时优先默认 10；需要更多时先说明可能受套餐限制。关键词以 `-` 开头时写成 `--keyword=-AI`，或 `node src/douyin/search-cli.js -- -AI`。
-
-**套餐双上限（重要）**：技能侧硬上限为 10000（按量 Token）。**包月 Token** 超限会返回 `PLAN_LIMIT`（后端 errcode 14），不要当网络错误重试：搜索/作品最多 **30**，评论最多 **50**；详情与热榜无此条数限制。具体以官网与本次 `message` 为准。
-
-### 4.2 博主作品 `post-cli.js`
-
-| 参数      | 缩写 | 必填 | 取值                                                                           | 默认 |
-| --------- | ---- | ---- | ------------------------------------------------------------------------------ | ---- |
-| `--url`   | `-u` | ✅   | `douyin.com/user/xxx`、`v.douyin.com/xxx` 短链，或 `sec_uid`（`MS4wLjA` 开头） | —    |
-| `--limit` | `-l` |      | 0–10000（**包月最多 30**；**`0` = 只取博主互动数据**）                          | 10   |
-
-成功时 `results` 是**对象**，含 `post`（作品数组）和 `user`（博主信息）。
-
-### 4.3 视频评论 `comment-cli.js`
-
-| 参数      | 缩写 | 必填 | 取值                                                                                   | 默认 |
-| --------- | ---- | ---- | -------------------------------------------------------------------------------------- | ---- |
-| `--url`   | `-u` | ✅   | `douyin.com/video/xxx`、`douyin.com/note/xxx`、`v.douyin.com/xxx`，或纯数字 `aweme_id` | —    |
-| `--limit` | `-l` |      | 1–10000（**包月最多 50**）                                                              | 10   |
-
-### 4.4 作品详情 `detail-cli.js`
-
-| 参数    | 缩写 | 必填 | 取值                                                                                   | 默认 |
-| ------- | ---- | ---- | -------------------------------------------------------------------------------------- | ---- |
-| `--url` | `-u` | ✅   | `douyin.com/video/xxx`、`douyin.com/note/xxx`、`v.douyin.com/xxx`，或纯数字 `aweme_id` | —    |
-
-没有 `--limit`。成功时 `results` 是**一条作品对象**（文案、互动、作者、播放地址），不是数组，也不含评论。图文（note）通常没有播放数和时长，属正常情况。
-
-### 4.5 实时热榜 `hot-cli.js`
-
-不接受任何参数，直接 `node src/douyin/hot-cli.js`。返回约 50 条。失败时最多重试 3 次，不走大约 22 分钟的长查询。
-
-## 5. 🔀 意图路由决策树（按顺序判断，命中即停）
-
-```
-1. 提到"热榜/热搜/热点/今天什么火/榜单"   → hot-cli.js（无参数）
-2. 提到"评论/留言/痛点/需求挖掘/观点聚类"且指向某个视频 → comment-cli.js（需视频链接或 aweme_id）
-3. 提到"痛点/需求挖掘/观点聚类"但没有视频链接 → 先追问视频链接（§10）
-4. 提到单条视频/图文的"详情/播放量/点赞/文案/这条内容本身" → detail-cli.js（需视频链接或 aweme_id）
-5. 提到"作品/主页/账号/博主/对标账号"       → post-cli.js（需主页链接或 sec_uid）
-6. 有关键词且无 1/2/3/4/5 的信号           → search-cli.js（需关键词）
-7. 以上都不明确                            → 先追问（§10），禁止猜测执行
+```bash
+node src/douyin/search-cli.js --keyword "AI 教程" --sort 1 --limit 10
+node src/douyin/user-search-cli.js --keyword "AI" --limit 20
+node src/douyin/post-cli.js --url "https://www.douyin.com/user/MS4wLjABxxx" --limit 30
+node src/douyin/post-cli.js --url "https://www.douyin.com/user/MS4wLjABxxx" --limit 0
+node src/douyin/comment-cli.js --url "https://www.douyin.com/video/xxx" --limit 40
+node src/douyin/detail-cli.js --url "https://www.douyin.com/video/xxx"
+node src/douyin/hot-cli.js
 ```
 
-> ⚠️ 消歧规则：单独出现"视频"二字**不要默认归 post，也不要默认归 detail**。有关键词且无"评论/详情" → search；"这个视频的评论/留言" → comment；"这条视频的播放/点赞/详情" → detail；只有出现"作品列表/主页/账号/博主"才用 post。
-> ⚠️ 链接类型冲突：`/user/` 链接只能给 post。`/video/`、`/note/` 可以给 comment 或 detail：出现「评论」用 comment，出现「详情、播放、点赞、文案」用 detail。两个都没说时先追问，不要猜。传成博主命令会得到 `INVALID_URL`。
-> ⚠️ 痛点、需求挖掘、观点聚类：命令成功结束后，必须先读取 `references/demand-mining.md` 再写结论。当时没有视频链接时先追问链接。用户没同意至少取 50 条之前，不把 `--limit` 改成 50 后直接执行。
+**数量 / 套餐**：未指定 `--limit` 默认 10；不要擅自抓 10000。技能硬上限 10000（按量）。**包月**超限 → `PLAN_LIMIT`：视频搜索/用户搜索/作品 ≤30，评论 ≤50；详情与热榜无此条数限制。
 
-## 6. 🗣️ 自然语言 → 命令映射（执行前对照）
+口语 → flag 对照 → [routing.md](references/routing.md)。
 
-| 用户口语                        | 命令                                         | 参数推导                    |
-| ------------------------------- | -------------------------------------------- | --------------------------- |
-| "搜一下 AI 相关的视频"          | `--keyword "AI"`                             | 带关键词即搜索              |
-| "找点赞最多的 / 最火的 AI 视频" | `--keyword "AI" --sort 1`                    | 最火/点赞最多 → sort=1      |
-| "最新的 AI 教程，要 20 条"      | `--keyword "AI 教程" --sort 2 --limit 20`    | 最新 → sort=2；数量 → limit |
-| "近一周最火的短视频"            | `--keyword "短视频" --time 7 --sort 1`       | 一周 → time=7               |
-| "半年内最火的 AI 教程"          | `--keyword "AI 教程" --sort 1 --time 180`    | 半年 → time=180             |
-| "减肥视频，只要 1 分钟以下的"   | `--keyword "减肥" --duration 1`              | 1分钟以下 → duration=1      |
-| "AI 模型的图文内容，前 30 条"   | `--keyword "AI 模型" --content 2 --limit 30` | 图文 → content=2；包月勿超 30 |
-| "看看这个博主最近发了啥"        | `post-cli.js --url <主页链接> --limit 20`    | 未说条数 → 默认 10，可问    |
-| "他多少粉丝"                    | `post-cli.js --url <主页链接> --limit 0`     | 只要互动数据 → limit=0      |
-| "这条视频评论区在骂什么"        | `comment-cli.js --url <视频链接> --limit 40` | 舆情场景 → 适当加大 limit   |
-| "评论里有什么痛点 / 做需求挖掘" | `comment-cli.js --url <视频链接>`            | 先确认至少 50 条；结束后读 `references/demand-mining.md` |
-| "这条视频多少播放 / 看下详情"   | `detail-cli.js --url <视频链接>`             | 只要这一条，不加 limit。图文通常没有播放数 |
-| "搜索结果里第 3 条不错，展开看看" | `detail-cli.js --url <上一条结果里的 url>` | 用上一条结果里的 url 字段 |
+## 5. 🔀 意图路由（按序命中即停）
 
-## 7. 📜 输出契约
-
-stdout 只有一份统一信封（成功 / 空结果 / 错误结构相同）：
-
-```json
-{
-  "status": "success | empty | error",
-  "error_code": "OK | NO_MATCH | INVALID_KEYWORD | INVALID_URL | INVALID_ARGS | AUTH_REQUIRED | AUTH_ERROR | PLAN_LIMIT | TIMEOUT | NETWORK_ERROR | HTTP_5xx | ...",
-  "message": "人类可读的说明",
-  "timestamp": "2026/10/20 21:30:00",
-  "request": {
-    "command": "search",
-    "keyword": "AI 教程",
-    "sort": 1,
-    "limit": 20
-  },
-  "metadata": {
-    "skill_version": "1.4.2",
-    "runtime_version": "22.x",
-    "execution_time": 34210
-  },
-  "results": [
-    {
-      "aweme_id": "7xxx",
-      "desc": "…",
-      "author_nickname": "…",
-      "digg_count": 123456,
-      "url": "…",
-      "create_time_str": "2026/9/4 20:13:20"
-    }
-  ]
-}
+```
+1. 热榜/热搜/今天什么火 → hot-cli
+2. 获客+痛点同时出现 → 先追问（ask.md），禁止两边都做
+3. 获客/线索/截流/高意向 → search→comment；结束后读 customer-acquisition.md
+4. 评论/留言/痛点/需求挖掘 + 有视频 → comment-cli；痛点类结束后读 demand-mining.md
+5. 痛点/需求挖掘但无视频链接 → 先追问链接
+6. 单条详情/播放/点赞/文案 → detail-cli
+7. 搜用户/达人/对标账号（关键词、无主页链接）→ user-search-cli
+8. 已有主页/sec_uid 或要某账号作品列表 → post-cli
+9. 有关键词且无以上信号 → search-cli
+10. 都不明确 → 先追问（ask.md）
 ```
 
-- `status=error` 时 `results` 为 `null`，原因看 `error_code` + `message`。
-- 信封字段见 `assets/output_envelope.schema.json`。搜索、评论、热榜成功时 `results` 是数组。博主作品成功时 `results` 是对象，包含 `post`（作品数组）和 `user`（博主信息）。作品详情成功时 `results` 是一条作品对象。条目字段见 `assets/*_cli_resp.schema.json`；
-- **向用户汇报时只摘关键字段**（标题/作者/点赞/链接/时间），不要把整份 JSON 原样粘贴——单条结果含大量封面与播放 URL，会撑爆上下文。
-- 适合衔接的后续动作：选题汇总、高赞对比、竞品内容风格总结、博主发文节奏分析、报告与表格生成。
-- 用户要做需求挖掘、痛点或评论观点聚类时，先读取 `references/demand-mining.md`，再按其中的步骤归纳。按该文档第 7 节的四段输出给用户：痛点、诉求、差异化信号、样本说明。不粘贴整份评论 JSON。
+消歧：单独「视频」不要默认 post/detail。`/user/` → 只能 post；`/video|note/` + 评论 → comment，+ 播放/文案 → detail，都没说 → 追问。「对标」仅关键词 → user-search；已有链接 → post。
 
-## 8. 🚨 退出码与错误码 → Agent 应对
+## 6. 📜 输出（摘要）
 
-| error_code                     | 退出码 | 含义                                   | Agent 必须做什么                                                                |
-| ------------------------------ | ------ | -------------------------------------- | ------------------------------------------------------------------------------- |
-| `AUTH_REQUIRED` / `AUTH_ERROR` | 3      | token 未配置 / 无效或过期              | **禁止重试**。引导到 [抖音评论分析](https://www.guaikei.com) 自助开通并配置 `GUAIKEI_API_TOKEN` |
-| `PLAN_LIMIT`                   | 1      | 套餐单次条数超限（常见于包月 Token）   | **禁止同参重试**。转述 `message`；可建议降低 `--limit`（搜索/作品≤30，评论≤50）或到官网升级按量；**须用户同意后再跑** |
-| `INVALID_KEYWORD`              | 1      | 关键词不合法（长度/是链接/含特殊符号） | 转述 `message`，请用户换词；**禁止自动改词重试**                                |
-| `INVALID_URL`                  | 1      | 无法识别链接或 ID，或链接类型传错      | 请用户提供：主页链接（post），或视频/图文链接（comment 评论、detail 详情）       |
-| `INVALID_ARGS`                 | 2      | 参数解析失败，或枚举/范围越界          | 按 `--help` 修正后重试**一次**；**禁止改成默认值后自动再跑**                    |
-| `NO_MATCH`（status=empty）     | 0      | 无结果，**不是失败**                   | 如实告知；可建议放宽（`--time 0`、换更常用词），**经用户同意后**再试            |
-| `TIMEOUT` / `NETWORK_ERROR`    | 1      | 超时或网络错误                             | 可告知用户后重试，**最多 1 次**。搜索约 9 分钟、作品、作品详情和评论约 20 分钟内，服务端仍复用同一任务。热榜不走这组复用。进程被提前结束后，不要马上再跑同一条命令，马上再跑不会更快 |
-| `API_SCHEMA_CHANGED`           | 1      | 成功响应的结果结构与约定不一致             | 按失败报告 `message`。不要把它说成没有结果                                      |
-| `HTTP_5xx` / 其他              | 1      | 服务端或未知错误                       | 如实报告 `message`，不编造原因，不反复重试                                      |
+- stdout = 统一 JSON 信封；stderr = 日志。向用户**只摘关键字段**，勿整份粘贴。
+- `status=empty` + `NO_MATCH` 退出码 0，**不是失败**。
+- `results`：搜/用户/评论/热榜 = 数组；作品 = `{post,user}`；详情 = 单对象。
 
-## 9. 🛑 硬性禁止条款
+完整信封与形态 → [contract.md](references/contract.md)。JSON Schema 文件在 `assets/`（入参/出参/信封），清单见 [readme.md](readme.md) 参数章。
+
+## 7. 🚨 错误应对（摘要）
+
+| error_code | 退出码 | Agent |
+| --- | --- | --- |
+| `AUTH_*` | 3 | **禁止重试**；引导官网配 TOKEN |
+| `PLAN_LIMIT` | 1 | **禁止同参重试**；降 limit 须用户同意 |
+| `INSUFFICIENT_BALANCE` / `DAILY_LIMIT` | 1 | **禁止同参重试**；充值或明日/调限额 |
+| `RATE_LIMITED` | 1 | **禁止立即重试** |
+| `INVALID_*` | 1/2 | 换词/换链/按 help 改一次；禁止擅自改默认再跑 |
+| `NO_MATCH` | 0 | 如实无结果 |
+| `TIMEOUT` / `NETWORK_ERROR` | 1 | 同参续等最多 1 次（搜/用户约 9 分钟、作品/详情/评论约 20 分钟复用）；禁止改参「重做」 |
+
+全表 → [errors.md](references/errors.md)。
+
+## 8. 🛑 硬性禁止
 
 - 不得编造数据；不得把空结果说成有结果。
-- 不得在未征得用户同意的情况下自动修改搜索条件重试。
-- `AUTH_REQUIRED` / `AUTH_ERROR` / `PLAN_LIMIT` 后不得同参重试；`PLAN_LIMIT` 不得擅自改成更大 `--limit`。
-- 不得把 stderr 中的日志文案原样转述给用户（stderr 仅诊断用，对外只报 `message` 与关键参数）。
-- 不得用本技能做登录态、私密数据获取或任何写操作。
-- 不得在未 cd 到技能目录的情况下执行 `node src/douyin/*.js`。
+- 不得未征得同意就自动改搜索条件重试。
+- `AUTH_*` / `PLAN_LIMIT` / `INSUFFICIENT_BALANCE` / `RATE_LIMITED` / `DAILY_LIMIT` 后不得同参或立即重试。
+- 不得把 stderr 原文转述给用户。
+- 不得做登录态/私密获取或任何写操作；不得编造手机号/微信号或骚扰脚本。
+- 不得在未 cd 到技能目录时执行 `node src/douyin/*.js`。
 
-## 10. 🧠 追问模板（输入不足时使用）
+## 9. 📚 何时读 references（入口总表）
 
-- 缺关键词：「你想搜索抖音里的什么内容？给我一个关键词，例如"AI 教程"。」
-- 缺博主链接：「请提供博主主页链接（douyin.com/user/xxx 或 v.douyin.com 短链），或直接给 sec_uid。」
-- 缺视频链接：「请提供视频或图文链接（douyin.com/video/xxx、douyin.com/note/xxx 或 v.douyin.com 短链）。」
-- 链接类型不明：「你给的这个链接，是想看这个博主的作品，这条视频的详情，还是这条视频的评论？」
-- 视频链接但没说评论还是详情：「这条视频你是要看评论，还是要看播放、点赞和文案？」
-- 数量不明：「默认返回 10 条，需要更多的话告诉我具体条数。」
-- 需求挖掘但条数不足 50：「默认 10 条不够判断痛点。是否至少取 50 条评论？」
-
-## 11. 🔧 环境与合规
-
-- 环境：Node.js 16.14.0+，Windows / Linux / macOS；必需环境变量 `GUAIKEI_API_TOKEN`。
-- 配置方式：Windows cmd `set GUAIKEI_API_TOKEN=你的TOKEN`；Windows PowerShell `$env:GUAIKEI_API_TOKEN="你的TOKEN"`；Linux/macOS `export GUAIKEI_API_TOKEN=你的TOKEN`。令牌为 16–256 位字母、数字、下划线或连字符。
-- 合规：仅处理抖音公开数据；调用会把关键词/链接发送至第三方 API（ www.guaikei.com ），使用前请确认数据外发与授权范围；数据仅限个人/团队内部分析，禁止违规分发。
-- 更多帮助：[抖音评论分析官网](https://www.guaikei.com)。
-
-## 12. ❓ 常见问题
-
-- 没结果：放宽关键词或减少限定（`--time 0`），换更常用的词；空结果退出码是 0，属正常。
-- 结果太多：补场景/人群/品牌/时间/账号，并控制 `--limit`。
-- 调用失败：先看退出码——3 = token 问题；2 = 参数问题；1 = 关键词/链接/网络/服务端。
-- 播放地址和分享链接有时效，过期后需要重新获取。图文通常没有播放数和时长。
-- 计费与单次上限以官网说明为准。技能侧硬上限 10000 条/次（按量）；**包月**搜索/作品最多 30、评论最多 50，超限为 `PLAN_LIMIT`，不是网络故障。
-- 账号安全：只读能力，不登录/不发布/不点赞/不评论，无封号风险。
+| 时机 | 打开 |
+| --- | --- |
+| 确认枚举/参数取值 | [options.md](references/options.md) |
+| 口语指令 → flag | [routing.md](references/routing.md) |
+| 信封 / `results` 形态 | [contract.md](references/contract.md) |
+| 完整错误表 | [errors.md](references/errors.md) |
+| 缺参追问话术 | [ask.md](references/ask.md) |
+| 环境 / FAQ | [faq.md](references/faq.md) |
+| 需求挖掘（取数成功后） | [demand-mining.md](references/demand-mining.md) |
+| 公域获客（取数成功后） | [customer-acquisition.md](references/customer-acquisition.md) |
+| 版本变更 | [changelog.md](references/changelog.md) |
+| 技术人员总览（含命令参数详表 / Schema 清单） | [readme.md](readme.md) |
+| 机器可校验 Schema | `assets/*.schema.json` |

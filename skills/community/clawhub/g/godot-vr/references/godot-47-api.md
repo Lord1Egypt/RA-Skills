@@ -59,7 +59,7 @@ Main (root, main.gd)
 
 ## Spatial shaders (procedural materials, 4.7)
 Written against the 4.7 spatial-shader reference + compile errors that actually fired:
-- **`shader_type spatial;` must be the first line of the code string.** If it is missing Godot renders the material as a no-op default white — **no error, no warning in the log**. The only reliable detector is a pixel sample (build a tiny rig that prints `get_viewport().get_texture().get_image().get_pixel(x, y)` for a known-albedo sphere).
+- **`shader_type spatial;` must be the first line of the code string.** If it is missing Godot renders the material as a no-op default white — the engine prints **nothing to the log** about it. The only reliable detector is a pixel sample (build a tiny rig that prints `get_viewport().get_texture().get_image().get_pixel(x, y)` for a known-albedo sphere).
 - Fragment built-ins in 4.7: `VIEW` (NOT `V`), `NORMAL` (view-space), `VERTEX` (**view space** in the fragment stage — model+view already applied; **object space** only in the vertex stage). 4.7 has **NO `WORLD_MATRIX`** (`SHADER ERROR: Unknown identifier`) — `MODEL_MATRIX` is the model→world uniform, but it applies to *object-space* positions only. True world coords for noise, two verified forms (either makes the pattern sit still when the head moves — verified in-visor):
   - the documented recipe, in the fragment: `vec3 wp = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;` (inverse-view × view-space = world) — or
   - a varying: `varying vec3 v_local;` + `v_local = VERTEX;` in `vertex()` (where `VERTEX` IS object space), then `vec3 wp = (MODEL_MATRIX * vec4(v_local, 1.0)).xyz;` in the fragment.

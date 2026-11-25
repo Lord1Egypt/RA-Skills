@@ -1,165 +1,199 @@
-# Mobile App Platform-Specific Testing
+# Mobile App Test Points
 
-> This document defines specialized testing dimensions and strategy highlights specific to mobile apps, distinct from other platforms.
-> See `references/examples/format-spec.md` for output format and `references/checklists/mobile-app-checklist.md` for the checklist.
+> This file defines the test dimensions and strategy points that distinguish mobile apps from other platforms.
+> For the output format, see `references/examples/format-spec.md`; for the checklist, see `references/checklists/mobile-app-checklist.md`.
 
 ---
 
-## I. Gesture Operations
+## 1. Gestures
 
-### Focus Areas
-- Touch target size ≥ 44×44px, especially for icon buttons and list swipe operation areas
-- Gesture conflicts: swipe-to-page vs swipe-to-delete vs swipe-to-go-back
-- Edge gestures: left-swipe-back (iOS), bottom-swipe-up (system gesture area) may be intercepted by the App
+### Key focus points
+- Touch targets: iOS ≥ 44×44pt, Android ≥ 48×48dp, especially icon buttons and swipe-action areas in lists
+- Gesture conflicts: swipe to page vs swipe to delete vs swipe to go back
+- Edge gestures: swipe back from the left edge (iOS) and swipe up from the bottom (system gesture area) may be intercepted by the app
 - Priority between multi-finger and single-finger gestures
 
-### Common Defects
-- Small touch targets causing mis-tapping
+### Common defects
+- Small touch areas cause mis-taps
 - Inner and outer gesture conflicts in nested scrolling
-- Long-press triggering conflicting with scrolling
+- Long press conflicts with scrolling
 
 ---
 
-## II. Interruption Recovery
+## 2. Screen Adaptation
 
-### Focus Areas
-- System interruptions: incoming calls, SMS, alarms, low battery alerts, system update notifications
-- Memory reclamation after backgrounding causing page reconstruction (more aggressive on Android)
-- Mid-form-filling interruption → whether data is retained upon return
-- Payment flow interruption → whether order status is consistent
+### Key focus points
+- Layout on small / medium / large phones and tablets
+- Safe area adaptation for notched / punch-hole / tall screens
+- Layout and state retention when unfolding / folding a foldable
+- Portrait / landscape modes and orientation switching
+- Effect of the system font size setting on layout
 
-### Common Defects
-- White screen or crash after returning from interruption
-- Form data loss
+### Common defects
+- Content hidden by the notch
+- Layout broken after enlarging the system font
+- Abnormal layout after unfolding / folding a foldable
+- Page state lost after switching orientation
+
+---
+
+## 3. Interruption Recovery
+
+### Key focus points
+- System interruptions such as incoming calls / SMS / alarms / low battery pop-ups / system update prompts
+- Page recreation caused by memory reclamation in the background (more aggressive on Android)
+- Interrupted while filling in a form → whether data is retained after returning
+- Payment flow interrupted → whether the order status is consistent
+
+### Common defects
+- Blank screen or crash after returning from an interruption
+- Form data lost
 - Inconsistent payment status (user charged but order not updated)
-- App killed by system after extended backgrounding, abnormal recovery
+- App killed by the system after a long time in the background, with abnormal recovery
 
 ---
 
-## III. Network Switching
+## 4. Network Switching
 
-### Focus Areas
-- Handling of in-progress requests during WiFi ↔ 4G/5G switching
-- User experience under weak network conditions (high latency/low bandwidth/high packet loss)
-- Auto-reconnection after airplane mode/disconnection → recovery
+### Key focus points
+- Handling of in-flight requests when switching between WiFi and 4G/5G
+- User experience on weak networks (high latency / low bandwidth / high packet loss)
+- Airplane mode / offline → automatic reconnection after recovery
 - Degradation when network permission is disabled by the system
 
-### Common Defects
-- Requests hanging without response during network switching
-- Infinite loading without timeout prompts under weak network
-- Image/resource loading failure without placeholders after disconnection
+### Common defects
+- Requests hang without response when the network switches
+- Endless loading without a timeout prompt on weak networks
+- No placeholder when images / resources fail to load after going offline
 
 ---
 
-## IV. Permission Management
+## 5. Permission Management
 
-### Focus Areas
-- Must explain purpose when requesting permissions for the first time (mandatory on iOS, recommended on Android)
-- Function degradation after denial: core paths must not break
-- Guiding to settings page after "Don't ask again"
-- State synchronization after permission revocation (turning off in system settings)
-- iOS/Android permission mechanism differences
+### Key focus points
+- Explain the purpose when first requesting a permission (mandatory on iOS, recommended on Android)
+- Feature degradation after denial: the core path must not break
+- Guide users to the settings page after "Don't ask again"
+- State synchronization after a permission is revoked (turned off in system settings)
+- Differences between iOS and Android permission mechanisms
 
-### Common Defects
+### Common defects
 - Crash or freeze after denial
-- No guidance to settings page; user doesn't know how to restore
-- Permission state not refreshed after returning from background
+- No guidance to the settings page, so users do not know how to restore it
+- Permission state not refreshed after returning from the background
 
 ---
 
-## V. Push Notifications
+## 6. Push Notifications
 
-### Focus Areas
-- Notification permission request timing (should ask after user understands the value)
-- Notification tap navigation: different handling paths for cold start vs warm start
+### Key focus points
+- Timing of the notification permission request (request after the user understands the value)
+- Navigation when tapping a notification: different handling paths for cold start vs hot start
 - Notification parameter passing and page routing
-- iOS/Android notification mechanism differences
+- Differences between iOS and Android notification mechanisms
 
-### Common Defects
-- Tapping notification goes to home page instead of target page
-- Notification parameters lost during cold start
-- No prompt in-app when notification permission is off
-
----
-
-## VI. Device Compatibility
-
-### Focus Areas
-- iOS/Android version differences (new API compatibility, deprecated API handling)
-- Different manufacturer ROM differences (Xiaomi MIUI, Huawei EMUI, OPPO ColorOS, etc.)
-- Notch/punch-hole/foldable/tall screen safe area adaptation
-- Impact of system font size settings on layout
-
-### Common Defects
-- Content obscured by notch
-- Layout broken after system font enlargement
-- Abnormal layout after foldable screen unfolding/folding
+### Common defects
+- Tapping a notification opens the home page instead of the target page
+- Notification parameters lost on cold start
+- No prompt in the app after notification permission is turned off
 
 ---
 
-## VII. Storage & Data
+## 7. Device Compatibility
 
-### Focus Areas
-- Local storage solution selection: SharedPreferences / Keychain / SQLite / Room / CoreData
-- Caching strategy: image caching, API data caching, cache expiration and cleanup
-- Offline data: conflict handling for local cache → online synchronization
-- Recovery behavior after cache clearing/data clearing
-- Secure storage of sensitive data (Token encryption, prohibition of plaintext password storage)
+### Key focus points
+- Differences between iOS / Android versions (new API compatibility, handling of deprecated APIs)
+- Differences between vendor ROMs (Xiaomi MIUI, Huawei EMUI, OPPO ColorOS, etc.)
+- Feature availability on different hardware (low-memory, low-performance devices)
+- Differences between emulators and real devices
 
-### Common Defects
-- Login state lost after cache clearing but UI still shows logged in
-- Offline operation data overwritten during synchronization
-- Unencrypted Token storage causing security risks
-- No cache expiration policy causing stale data
+### Common defects
+- Crashes when calling new APIs on old OS versions
+- App killed in the background or push not received on specific vendor ROMs
+- Stutter or crashes on low-end devices
 
 ---
 
-## VIII. Updates & Versioning
+## 8. System Interaction
 
-### Focus Areas
-- Trigger conditions and user guidance for mandatory vs optional updates
-- Rollback mechanism for hot updates (React Native/Flutter, etc.)
-- Compatibility handling for data structure inconsistencies between old and new versions
-- Phased rollout: gradual release by percentage/region/user group
-- Update package integrity verification (tamper prevention)
-- Downgrade scenarios: data compatibility when user rolls back to old version
+### Key focus points
+- Invoking the system share sheet; correctness of the shared content / link
+- Copy and paste: across apps, format retention
+- Compatibility with the system keyboard and third-party input methods
+- Screenshots / screen recording: anti-capture protection on sensitive pages (payment, password)
+- Launching external apps: system browser, phone, SMS, email, maps
 
-### Common Defects
-- Mandatory update dialog can't be dismissed but download fails, user stuck
-- Old data lost after new version database schema changes
-- App crashes after hot update failure with no auto-rollback
-- Local cache format incompatible after downgrade
+### Common defects
+- Shared content or link missing or wrongly formatted
+- Input issues with third-party input methods
+- No prompt when launching an external app fails
+- No anti-capture protection on payment / password pages
 
 ---
 
-## IX. Performance Experience
+## 9. Storage and Data
 
-### Focus Areas
-- Cold start/warm start time
-- Scroll smoothness (lists, page transitions)
-- Memory usage (especially long lists, image-heavy pages)
+### Key focus points
+- Choice of local storage: SharedPreferences / Keychain / SQLite / Room / CoreData
+- Cache strategy: image cache, API data cache, cache expiration and cleanup
+- Offline data: conflict handling when syncing local cache → online
+- Recovery behavior after clearing cache / clearing data
+- Security of sensitive data storage (encrypted token storage; never store passwords in plain text)
+
+### Common defects
+- After clearing cache, the login session is lost but the UI still shows logged in
+- Offline changes overwritten during sync
+- Tokens stored unencrypted, creating security risks
+- No cache expiration policy, leading to stale data
+
+---
+
+## 10. Updates and Versions
+
+### Key focus points
+- Trigger conditions and user guidance for forced vs optional updates
+- Rollback mechanism for hot updates (React Native / Flutter, etc.)
+- Compatibility handling when data structures differ between old and new versions
+- Gradual rollout: release progressively by percentage / region / user group
+- Update package integrity verification (tamper protection)
+- Downgrade scenario: data compatibility after the user rolls back to an old version
+
+### Common defects
+- The forced update pop-up cannot be closed but the download fails, leaving the user stuck
+- Old data lost after a database schema change in the new version
+- App crashes after a failed hot update and cannot roll back automatically
+- Local cache format incompatible after downgrading
+
+---
+
+## 11. Performance Experience
+
+### Key focus points
+- Cold / hot start time
+- Scrolling smoothness (lists, page transitions)
+- Memory usage (especially long lists and image-heavy pages)
 - Battery consumption (background location, push, etc.)
 
-### Common Defects
-- List scrolling stutter
-- White screen during page transitions
-- Persistent background battery drain
+### Common defects
+- Choppy list scrolling
+- Blank screen during page transitions
+- Continuous battery drain in the background
 
 ---
 
-## X. Accessibility
+## 12. Accessibility
 
-### Focus Areas
+### Key focus points
 - Screen reader compatibility (iOS VoiceOver / Android TalkBack)
-- All images and icons have contentDescription or accessibilityLabel
-- Impact of system font size adjustment on layout (iOS Accessibility → Larger Text)
-- High contrast mode adaptation
-- Touch target size ≥ 44×44dp
+- All images and icons have a contentDescription or accessibilityLabel
+- Effect of system font size on layout (iOS Accessibility → Larger Text)
+- High-contrast mode adaptation
+- Touch target size: iOS ≥ 44×44pt, Android ≥ 48×48dp
 - Focus navigation order (focus movement in accessibility mode)
-- Video/audio content has captions or text alternatives
+- Captions or text alternatives for video / audio content
 
-### Common Defects
-- Images/icons lack accessibility labels
-- Text truncated or overlapping after system font enlargement
-- Screen reader unable to correctly describe page structure
-- Custom components not correctly identified by accessibility APIs
+### Common defects
+- Images / icons missing accessibility labels
+- Text truncated or overlapping after enlarging the system font
+- Screen readers cannot correctly describe the page structure
+- Custom components not correctly recognized by accessibility APIs

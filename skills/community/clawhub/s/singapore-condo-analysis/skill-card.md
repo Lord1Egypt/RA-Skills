@@ -10,45 +10,49 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-External users can request historical price, rent, and rental-yield analysis for Singapore private residential developments or compare districts and condos. The skill returns descriptive market analysis, not financial or investment advice.
+People researching Singapore private residential property can compare condo and EC performance, district price and rental trends, and rental yields using historical data. HDB and overseas properties are out of scope; the analysis is historical and descriptive, not financial or investment advice.
 
 ### Deployment Geography for Use:
 
-Singapore; limited to private residential property, including condos, apartments, and ECs.
+Singapore
 
 ## Known Risks and Mitigations:
 
-Risk: Property analysis could be mistaken for financial or investment advice, or a request could include private personal or financial details.
+Risk: The request is sent to Finch/ChatProperty, and the security guidance notes a possible lack of warning before sharing input.
 
-Mitigation: Use the results as historical descriptive analysis only and avoid sharing private personal or financial details.
+Mitigation: Make the external sharing clear before submitting a request, and avoid personal or sensitive details.
 
-Risk: A run may incur a charge, and connecting the MCP server involves permissions.
+Risk: The security assessment is benign with medium confidence and reports partial scan coverage after a manifest parsing issue.
 
-Mitigation: Use free runs only unless the user explicitly approves a paid run, and review connection permissions before adding the server.
+Mitigation: Treat the scan result as limited assurance and review the skill before use, especially before providing sensitive information.
+
+Risk: Runs may cost 0.5 USDC after any available free runs.
+
+Mitigation: Use free runs only unless the user explicitly approves a paid run.
 
 ## Reference(s):
 
-- [Run ChatProperty](https://www.finchtech.ai/market/chips/agent-b3316156-4cab-47ba-8101-b07dc0266f14/run?utm_source=skill&utm_medium=agent&utm_campaign=toa_skills&utm_content=singapore-condo-analysis)
+- [ChatProperty on Finch](https://www.finchtech.ai/market/chips/agent-b3316156-4cab-47ba-8101-b07dc0266f14/run?utm_source=skill&utm_medium=agent&utm_campaign=toa_skills&utm_content=singapore-condo-analysis)
 - [Finch MCP server](https://www.finchtech.ai/mcp)
-- [Finch agent connection instructions](https://github.com/a0971025732-netizen/finch-agents/blob/main/CONNECT.md)
+- [Finch agent connection guide](https://github.com/a0971025732-netizen/finch-agents/blob/main/CONNECT.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, Markdown]
+**Output Type(s):** [Analysis, Text, Charts]
 
-**Output Format:** [Structured property-market analysis with statistics and charts]
+**Output Format:** [Structured analysis with charts]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Historical and descriptive analysis, not financial advice; availability and run cost may vary.]
+**Other Properties Related to Output:** [Historical and descriptive; Singapore private residential properties only; not financial or investment advice.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server-resolved release metadata)
+1.0.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

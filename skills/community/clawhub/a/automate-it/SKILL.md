@@ -1,6 +1,6 @@
 ---
 name: automate-it
-version: 0.5.2
+version: 0.5.5
 description: Create content tasks and automations in Automate It, do the content work yourself or leave it to the built-in worker, poll task status through the human review gate, and fetch links to published posts. To support that it also reads and writes the surrounding workspace — skills (brand voice and house style, which it can also create/update/delete), workspace files and folders, connected publishing integrations, link shortening — all bounded by the API key's scopes and the caller's workspace role. Deleting tasks, content items, automations, folders, or skills is possible but requires explicit confirmation on each command. Use when asked to draft, schedule, or publish social content via Automate It, or to check the status or published results of a submitted task.
 homepage: https://automate.it.com/agents
 metadata:
@@ -101,7 +101,7 @@ Use this when you (or your runtime) already produce the content and Automate It'
    ./ait.mjs task create --claim --json \
      --title "Post about the v2.0 launch" \
      --instructions "Context for reviewers: announcing Acme v2.0" \
-     --output-types x
+     --platforms x
    ```
 
    Save the `id` (`jq -r '.id'`). `--json` strips any status-line preamble so a successful create still pipes.
@@ -120,6 +120,13 @@ Use this when you (or your runtime) already produce the content and Automate It'
    For images/video: get an upload URL, PUT the file, then attach it by its
    `fileId`. Media must be hosted in the workspace — to attach something from
    elsewhere, download it yourself and upload it the same way.
+
+   If you generated an image or video with your own AI tool before uploading
+   it, add `--ai-disclosed` to that item so YouTube, Instagram, and TikTok
+   publish it with their AI label. The workspace only flags media it generated
+   itself, so it can't tell. Don't add it for anything else: photos, footage,
+   and media of unknown origin publish as real unless the user tells you
+   they're AI-generated.
 
    ```sh
    ./ait.mjs upload-url --filename hero.png --mime-type image/png
@@ -160,6 +167,8 @@ Revise in place. `task add-content` *appends* another post — use it again and 
 
 To rewrite a multi-post thread from scratch, `./ait.mjs task clear-content <taskId> --yes` first, then add each post again. `task delete-content <taskId> <contentItemId> --yes` drops a single one. Both destroy drafted work — prefer `update-content`, which revises in place and destroys nothing. Omit `--media` to leave attachments unchanged.
 
+Each content item publishes only to its own destinations. When you omit `--destinations`, they come from the task's platforms: an `x` post goes to `x`, and an article goes to every feed listed. The add-content result says where each item will publish. To move an item, use `task update-content <taskId> <contentItemId> --destinations rss:news`. To drop a platform a reviewer no longer wants, delete its items. Nothing else needs changing.
+
 A populated `--media` replaces the item's whole set, and media already on a task can carry a `url` with no `fileId`. Such an item stays attached while you omit `--media`, but it can't be passed back — so before swapping one attachment on an item that has others, upload each one you're keeping through `upload-url` and pass its `fileId`, or it is dropped.
 
 Explain yourself if the reviewer's note was ambiguous, or if you deliberately didn't follow it:
@@ -176,7 +185,7 @@ Explain yourself if the reviewer's note was ambiguous, or if you deliberately di
    ./ait.mjs task create --json \
      --title "Post about the v2.0 launch" \
      --instructions "Write an upbeat announcement of Acme v2.0 for developers. Mention the new API and link to https://acme.dev/blog/v2." \
-     --output-types x,linkedin
+     --platforms x,linkedin
    ```
 
 2. **Poll until it resolves.** Poll every 60 seconds or so while generating; once it reaches `review`, a few checks an hour is plenty — humans are slow.
@@ -192,8 +201,9 @@ Explain yourself if the reviewer's note was ambiguous, or if you deliberately di
    | `review` | waiting on a human reviewer | wait (slow — human in the loop) |
    | `approved` | human approved, not yet published | wait (or report approval) |
    | `publishing` | approved and going out now | wait — it is mid-publish |
-   | `published` | live on the destination platforms | fetch links, report success |
-   | `failed` | generation or publish failed | report failure to the operator |
+   | `published` | live on every destination platform | fetch links, report success |
+   | `publish_failed` | at least one destination did not go live (the reason is a task comment); any live ones have links | report the failure; a reviewer reconnects or fixes the cause and retries from the task page |
+   | `failed` | content generation failed | report failure to the operator |
    | `deleted` | task was deleted by a human | stop tracking it, report |
 
 3. **Fetch the published links** once status is `published`:
@@ -212,9 +222,9 @@ Explain yourself if the reviewer's note was ambiguous, or if you deliberately di
 - `--publish-mode manual`: after approval, a human (or a reviewer key) also has to publish or schedule it explicitly.
 - `--no-review` skips the human review gate entirely (auto-publish on completion). **Never use this unless the operator has explicitly told you to.**
 
-### Output types
+### Platforms
 
-Valid `--output-types` / `--type` values: `x`, `linkedin`, `instagram`, `facebook`, `threads`, `discord`, `bluesky`, `youtube`, `tiktok`, `google_business`, `article`, `email`, `carousel`, `podcast`, `rss`, `spreadsheet`, `document`.
+Valid `--platforms` / `--type` values: `x`, `linkedin`, `instagram`, `facebook`, `threads`, `discord`, `bluesky`, `youtube`, `tiktok`, `google_business`, `article`, `email`, `carousel`, `podcast`, `rss`, `spreadsheet`, `document`.
 
 Only platforms the workspace has actually connected will publish. Don't guess and don't ask — check:
 
@@ -408,7 +418,7 @@ You can also assign at creation: `task create --assign <userId|me>`, or `task su
 
 If your key belongs to a reviewer/admin and the operator has asked you to help triage, these exist: `task next-review`, `task approve <id>`, `task reject <id> --comment "..."`, `task unapprove <id> --comment "..."`, `task publish <id>`, `task schedule <id> --at <ISO date>` (or `--auto` for the next open slot per the workspace's posting targets, or `--clear` to return it to manual hold). `--auto` is the right choice for clearing a backlog of held posts — the tool result names the stamped time. **Do not approve or publish content you produced yourself** — the whole point of the review gate is that a different human (or their delegate) signs off.
 
-**Approving a TikTok task takes the operator's explicit choices.** A task whose output types include `tiktok` will not approve without the Post to TikTok settings, and picking them is not your call — the visibility of someone's video is theirs to decide. Ask for the choices, then fill every field in with what the operator said — the shape below is a template, not a default:
+**Approving a TikTok task takes the operator's explicit choices.** A task with content routed to `tiktok` will not approve without the Post to TikTok settings, and picking them is not your call — the visibility of someone's video is theirs to decide. Ask for the choices, then fill every field in with what the operator said — the shape below is a template, not a default:
 
 ```sh
 ./ait.mjs task approve <taskId> --tiktok '{"privacyLevel":"<the level the operator named>","allowComment":<bool>,"allowDuet":<bool>,"allowStitch":<bool>,"commercialDisclosure":<bool>,"yourBrand":<bool>,"brandedContent":<bool>}'
@@ -427,12 +437,14 @@ A task is one-off; an automation is a standing brief that spawns tasks on a sche
 ```sh
 ./ait.mjs automation create --name "Weekly changelog roundup" \
   --instructions "Summarize this week's merged changes as a friendly post." \
-  --output-types x --schedule '{"type":"cron","value":"0 9 * * 1"}'
+  --platforms x --schedule '{"type":"cron","value":"0 9 * * 1"}'
 ./ait.mjs automation list
 ./ait.mjs automation get <automationId>    # includes memory entries: learnings from earlier runs
 ./ait.mjs automation update <automationId> --name "Renamed"
 ./ait.mjs automation run <automationId>    # trigger now; returns the spawned task to poll
 ```
+
+The schedule is `{"type":"cron","value":"<5-field cron>"}` (optionally with `"runLimit": n`) or `{"type":"manual"}`. The cron is **wall-clock time in the workspace's timezone, not UTC** — `0 9 * * 1` is 9:00 AM local every Monday and stays 9:00 AM through daylight-saving changes. Write the time the operator asked for; don't convert it to UTC.
 
 `automation run` returns a task — poll it with `task get`. If the response includes `"alreadyRunning": true`, an earlier run is still in flight; poll that task instead of triggering again.
 

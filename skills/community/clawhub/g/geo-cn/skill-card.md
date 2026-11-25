@@ -1,6 +1,6 @@
 ## Description:
 
-GEO-CN v2.0.4 (AI Native) is a Chinese-market generative engine optimization skill that uses direct AI-answer testing and layered evidence review to guide diagnosis, optimization, and monitoring across major Chinese AI, encyclopedia, social, video, and map ecosystems.
+GEO-CN helps users improve brand citations in Chinese AI answers and diagnose, optimize, and monitor visibility across Chinese AI search platforms and related content and map ecosystems.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users, consultants, and business owners use this skill to evaluate and improve how Chinese-market brands appear in AI-generated recommendations. It guides brand/entity intake, AI visibility testing, evidence-backed scoring, optimization planning, monitoring, and report generation.
+Businesses and GEO consultants use this skill to assess how Chinese AI platforms cite a brand, identify visibility gaps, prepare optimization drafts, and track changes over time.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,27 @@ China
 
 ## Known Risks and Mitigations:
 
-Risk: Generated archives and reports may contain brand, address, phone, platform, competitor, and monitoring data.
+Risk: Customer-derived queries may include nonpublic business information sent to Baidu AI Search.
 
-Mitigation: Keep the geo-clients directory out of shared repositories and shared storage unless the contents have been reviewed and sanitized.
-
-Risk: Customer-facing reports can expose sensitive client details if published or shared broadly.
-
-Mitigation: Review reports before sharing and publish only after removing sensitive fields and receiving customer consent.
-
-Risk: Evidence collected from search, AI platforms, maps, and social platforms can be incomplete or probabilistic.
-
-Mitigation: Use the skill's layered evidence model, mark uncertain findings as pending verification, and avoid treating missing search results as proof that an asset does not exist.
+Mitigation: Disclose this data flow and get approval before including nonpublic details; the available security assessment has incomplete coverage.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/xp1001/skills/geo-cn)
-- [Skill instructions](artifact/SKILL.md)
-- [README](artifact/README.md)
-- [Changelog](artifact/CHANGELOG.md)
+- [GEO-CN on ClawHub](https://clawhub.ai/xp1001/skills/geo-cn)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, code, configuration, guidance]
+**Output Type(s):** [Analysis, Markdown, JSON, Guidance, Configuration]
 
-**Output Format:** [Markdown, HTML, JSON, and structured guidance]
+**Output Format:** [Markdown diagnostic reports and content drafts, JSON monitoring records, and HTML reports where supported]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May create local client archives and reports under the configured geo-clients directory.]
+**Other Properties Related to Output:** [May include brand visibility findings, prioritized action guidance, draft content, and monitoring comparisons.]
 
 ## Skill Version(s):
 
-2.0.4 (source: evidence.json release, artifact frontmatter, _meta.json, and CHANGELOG.md)
+2.1.15 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

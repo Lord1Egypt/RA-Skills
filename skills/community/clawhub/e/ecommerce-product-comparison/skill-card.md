@@ -1,6 +1,6 @@
 ## Description:
 
-当用户需要对比已选商品、比较规格和卖点差异，或准备竞品对照表时使用。输入 2–5 个商品链接或商品资料，输出注明价格口径、信息缺口和来源的商品差异表。在线商品能力支持抖音与小红书，其他平台可基于用户提供的资料分析。来自 SocialDataX 社媒数据助手。
+当用户需要对比已选商品、比较规格和卖点差异，或准备竞品对照表时使用。输入 2–5 个商品链接或商品资料，输出注明价格口径、信息缺口和来源的商品差异表。在线商品能力支持抖音与小红书，其他平台可基于用户提供的资料分析。来自社媒数据助手 SocialDataX。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users can compare 2–5 selected products using supplied product details or supported Douyin and Xiaohongshu listings. The skill prepares a sourced comparison table that highlights price basis, specification and selling-point differences, missing information, and suitable use cases.
+面向需要比较电商商品的用户，依据其选定的 2–5 个商品链接或资料，对照规格、价格条件和可见卖点，并标出来源与信息缺口。
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Online lookups use a changeable, unpinned CLI package that may access credentials and product links or IDs; the security evidence reports no established intentional malicious behavior.
+Risk: Running an unpinned CLI package can expose users to supply-chain changes between releases.
 
-Mitigation: Use the CLI and SocialDataX only if trusted, and limit credential access to the execution environment that needs it.
-
-Risk: Security scan coverage was partial because two referenced paths could not be resolved.
-
-Mitigation: Treat the scan as incomplete and review the unresolved referenced files before deployment.
+Mitigation: Review the package and pin a known version before running it; review changes again before upgrading.
 
 ## Reference(s):
 
-- [商品竞品对比 on ClawHub](https://clawhub.ai/devinchen2014/skills/ecommerce-product-comparison)
-- [SocialDataX API access](https://socialdatax.com/ai?from=clawhub)
+- [ClawHub release](https://clawhub.ai/devinchen2014/skills/ecommerce-product-comparison)
+- [SocialDataX API key information](https://socialdatax.com/ai?from=clawhub)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Guidance]
+**Output Type(s):** [Markdown, Analysis, Guidance]
 
-**Output Format:** [Markdown comparison table with source details and notes on missing information]
+**Output Format:** [Markdown comparison table with product sources, price conditions, visible differences, and missing information]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Compares only user-selected products; records price conditions and data gaps, and avoids unsupported rankings.]
+**Other Properties Related to Output:** [Compares 2–5 user-selected products; records source links and price context, and marks unavailable information.]
 
 ## Skill Version(s):
 
-0.1.7 (source: server-resolved release metadata)
+0.1.8 (source: ClawHub release)
 
 ## Ethical Considerations:
 

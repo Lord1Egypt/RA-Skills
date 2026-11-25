@@ -1,38 +1,49 @@
-## Description: <br>
-Teaches platform engineering fundamentals for building self-service internal platforms that improve developer experience, infrastructure abstraction, observability, cost management, and automated governance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides advanced platform engineering guidance for building self-service internal platforms that improve developer experience, infrastructure abstraction, observability, cost management, and automated governance.
 
-## Publisher: <br>
-[timbohnett-farther](https://clawhub.ai/user/timbohnett-farther) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[timbohnett-farther](https://clawhub.ai/user/timbohnett-farther)
 
-## Use Case: <br>
-Developers, platform engineers, and operations leaders use this skill as reference guidance for designing internal platforms, developer self-service workflows, observability practices, cost visibility, and automated compliance controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Example YAML and policy snippets may be unsuitable if copied directly into a production environment. <br>
-Mitigation: Treat snippets as reference examples and adapt them to the organization's infrastructure, security, compliance, and cost controls before use. <br>
+## Use Case:
 
+Developers, platform engineers, and technical leads use this skill as reference guidance for designing internal developer platforms with self-service workflows, infrastructure standards, observability, cost visibility, and automated compliance controls.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/timbohnett-farther/skill-108) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown reference guidance with example YAML and pseudo-code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static educational content; no code execution or external access required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and package.json) <br>
+Risk: Platform engineering examples mention secrets, infrastructure automation, compliance, and governance, which could be misapplied if treated as production-ready policy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the material as conceptual guidance and review any resulting platform design, configuration, or operational policy against local security, compliance, and change-management requirements before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/timbohnett-farther/skills/skill-108)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with illustrative configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational reference material; does not execute commands or modify systems.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

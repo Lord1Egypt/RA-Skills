@@ -1,6 +1,6 @@
 ## Description:
 
-Identifies individual cats from face images or videos by comparing them with a pre-registered database and provides recognition reports.
+Identifies individual cats by comparing face images or videos against a registered database, including in multi-cat households.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Cat owners and pet-care operators use this skill to identify individual cats from photos or videos and retrieve previous recognition reports.
+External users and pet owners can compare a cat image or video against a registered cat database to identify an individual and review previous analysis reports.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Cat photos, videos, and submitted URLs are sent to lifeemergence.com services for analysis.
+Risk: Images or videos may be sent to a remote service for analysis.
 
-Mitigation: Obtain permission before sending media and avoid sensitive media or private/internal URLs.
+Mitigation: Check the service's data handling terms first and submit only media you are comfortable sharing and have permission to use.
 
-Risk: Cloud report history may be queried automatically, and a service identity may be created or reused without an explicit prompt.
+Risk: Account creation or credential handling may be unnecessary or unclear.
 
-Mitigation: Review the cloud-history and account behavior before use and restrict use to intended accounts and reports.
+Mitigation: Confirm why account or token access is needed, and protect credentials if you decide to use the service.
 
-Risk: Service tokens are stored locally in the workspace data directory.
+Risk: Some behavior has not been fully reviewed, and the findings question whether the functions match the cat identification description.
 
-Mitigation: Limit access to the workspace data directory and remove stored tokens when no longer needed.
+Mitigation: Review the skill before installation and verify its behavior and results before relying on them.
 
 ## Reference(s):
 
-- [Cat face recognition API documentation](artifact/references/api_doc.md)
-- [ClawHub skill release](https://clawhub.ai/18072937735/skills/smyx-cat-face-recognition-analysis)
+- [API reference](references/api_doc.md)
+- [ClawHub skill listing](https://clawhub.ai/18072937735/skills/smyx-cat-face-recognition-analysis)
+- [Skill demo](https://lifeemergence.com/sample.html)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Analysis, Markdown, JSON, Guidance]
 
-**Output Format:** [Structured recognition report and Markdown history table with report links]
+**Output Format:** [Structured analysis report text or JSON, with optional report links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Recognition depends on a pre-registered cat database and clear, well-lit images.]
+**Other Properties Related to Output:** [May include a cat identification result, suggestions, and links to reports.]
 
 ## Skill Version(s):
 
-1.0.12 (source: ClawHub server-resolved release; artifact frontmatter says 1.0.21)
+1.0.13 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Wayza helps agents verify identity claims, reach other Wayza agents, and exchange quick questions through links.
+Provides an assistant with a Wayza address for messaging, identity checks, and link-based questions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and their AI assistants use Wayza to check identity claims, contact Wayza addresses, manage Wayza messages, and exchange quick questions through links.
+People use this skill through their assistant to create a Wayza address, exchange messages with Wayza addresses, check identity claims, and create or answer question links.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Chat-link replies may send a Wayza access key to wayza.me, outside the configured Wayza home.
+Risk: ClawScan marks the skill suspicious because chat-link commands reportedly send the assistant's Bearer credential to an additional web address; the scan was partial and its evidence is incomplete.
 
-Mitigation: Avoid answer-link until the publisher clarifies and constrains where authentication keys are sent.
-
-Risk: The stored access key and private claim link could expose account access if shared.
-
-Mitigation: Keep the key and private claim link confidential, and review outgoing messages before sending.
+Mitigation: Review the reported destination and credential use before installing, and use the skill only if that trust boundary is acceptable; treat the partial scan as incomplete.
 
 ## Reference(s):
 
-- [Wayza homepage](https://wayza.com)
-- [ClawHub skill release](https://clawhub.ai/snappyio/skills/wayza)
+- [Wayza](https://wayza.com)
+- [Wayza MCP endpoint](https://wayza.com/mcp)
+- [Wayza address extension](https://wayza.com/ext/address/v0)
 
 ## Skill Output:
 
 **Output Type(s):** [JSON, Guidance]
 
-**Output Format:** [JSON command results and concise conversational guidance]
+**Output Format:** [JSON command results with concise natural-language guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include private identity or message details; review before sharing.]
+**Other Properties Related to Output:** [Results may include addresses, links, message data, identity-check status, and question answers.]
 
 ## Skill Version(s):
 
-0.1.7 (source: frontmatter)
+0.1.8 (source: frontmatter)
 
 ## Ethical Considerations:
 

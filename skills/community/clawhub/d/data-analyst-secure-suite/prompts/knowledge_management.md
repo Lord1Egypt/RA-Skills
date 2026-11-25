@@ -1,6 +1,6 @@
 # Knowledge Management
 
-This document guides data analysts on how to securely manage knowledge assets — analysis frameworks, prompt templates, business rules, methodologies — in **MGC Blackbox ≥ 1.5.4**, implementing local encrypted storage and zero-exposure access.
+This document guides data analysts on how to securely manage knowledge assets — analysis frameworks, prompt templates, business rules, methodologies — in **MGC Blackbox ≥ 1.6.0**, implementing local encrypted storage and zero-exposure access.
 
 All sensitive operations must be explicitly authorized by the user before proceeding.
 

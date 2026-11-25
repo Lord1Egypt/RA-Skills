@@ -1,11 +1,11 @@
 ---
 name: bring-photo-mcp
 description: Turn product photos into verified Bring! list items via MCP.
-version: 1.0.3
+version: 1.0.4
 author: Thomas Schnuecker
 metadata:
   mcp_server: bring-photo-mcp
-  version: 1.0.3
+  version: 1.0.4
   hermes:
     tags: [bring, shopping-list, photos, mcp]
     related_skills: [bring-shopping-lists]

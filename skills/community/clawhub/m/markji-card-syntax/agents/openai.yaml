@@ -1,0 +1,4 @@
+interface:
+  display_name: "Markji / 墨墨记忆卡语法"
+  short_description: "用中文生成、检查和修正可直接粘贴的 Markji／墨墨记忆卡内容"
+  default_prompt: "使用 $markji-card-syntax 按我的要求生成可直接粘贴使用的 Markji（墨墨记忆卡）内容。"

@@ -1,6 +1,6 @@
 ## Description:
 
-Cross-session memory recovery helps AI agents resume work by loading core memory and checking for changes before re-reading secondary files.
+Provides cross-session memory recovery for AI agents by loading essential context and checking for changes before rereading supporting files.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agent operators use ChangSheng to configure local session-start memory recovery, handovers, and decision recall across their files. It helps agents resume ongoing work without repeatedly re-reading unchanged secondary material.
+Developers and agent users use the skill to carry identity, rules, open tasks, and handover details across sessions while limiting repeated reads. They can also search memory files for the context behind earlier decisions.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Automatic recovery may load unintended or outdated memory when discovered paths and proposed cleanup are not reviewed.
+Risk: ClawScan rates the skill suspicious with medium confidence, citing action-policy enforcement, conflicting guidance about memory edits, and incomplete analysis of some content.
 
-Mitigation: Review discovered memory paths before enabling automatic recovery, keep essential rules on the always-read list, and review proposed cleanup.
+Mitigation: Review the instructions and rule set before installing; enable the optional action-blocking feature only if needed and after checking how it affects actions.
 
-Risk: The keyword gate and editable memory budget are helpers, not security boundaries.
+Risk: The available security analysis did not fully evaluate all content, including some obfuscated text.
 
-Mitigation: Retain the agent's normal permission controls and do not rely on these helpers as a substitute.
+Mitigation: Read the skill files before use and do not treat scanner results as proof that all content is safe.
 
 ## Reference(s):
 
-- [Memory System Design](references/memory-system.md)
-- [ChangSheng on ClawHub](https://clawhub.ai/ccy123abcd/skills/changsheng-agent-memory)
+- [Memory system design](references/memory-system.md)
+- [ClawHub release page](https://clawhub.ai/ccy123abcd/skills/changsheng-agent-memory)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+**Output Type(s):** [Markdown, JSON, Text guidance]
 
-**Output Format:** [Markdown and JSON memory files, shell commands, and recovery guidance]
+**Output Format:** [Markdown and JSON memory files, plus concise plain-text recovery and search results]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Local file-based outputs; Python standard library only, with optional host automation.]
+**Other Properties Related to Output:** [Files are written locally to configured locations; search results are printed as text.]
 
 ## Skill Version(s):
 
-0.99.0 (source: frontmatter, CHANGELOG, released 2026-10-22)
+1.0.1 (source: frontmatter, changelog)
 
 ## Ethical Considerations:
 

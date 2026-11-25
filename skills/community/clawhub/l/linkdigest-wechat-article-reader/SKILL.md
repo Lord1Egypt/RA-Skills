@@ -1,12 +1,19 @@
 ---
 name: linkdigest-wechat-article-reader
 description: "微信公众号文章提取：把 mp.weixin.qq.com 文章链接读成全文 Markdown，连文章里每张图片上的文字一起 OCR。用户发来公众号文章链接，要全文、要点、图片里的字（长图、截图、表格、海报）、作者和发布日期、文末「阅读原文」和二维码指向的链接时使用。不需要微信登录或 Cookie。通过 LinkDigest API 读取，需要 LINKDIGEST_API_KEY，按量计费：6 张图以内 1 积分（约 ¥0.14），注册送 10 积分。"
-version: 1.0.0
-homepage: https://linkdigest.dev/zh/docs
-metadata: {"openclaw":{"requires":{"env":["LINKDIGEST_API_KEY"],"anyBins":["python3","curl"]},"primaryEnv":"LINKDIGEST_API_KEY","envVars":[{"name":"LINKDIGEST_API_KEY","required":true,"description":"LinkDigest API Key（ld_live_ 开头），在 https://linkdigest.dev/app/keys 创建"}],"homepage":"https://linkdigest.dev/zh/docs"}}
+version: 1.2.2
+homepage: https://linkdigest.dev/zh/docs?ref=skill-linkdigest-wechat-article-reader
+metadata: {"openclaw":{"requires":{"env":["LINKDIGEST_API_KEY"],"anyBins":["python3","curl"]},"primaryEnv":"LINKDIGEST_API_KEY","envVars":[{"name":"LINKDIGEST_API_KEY","required":true,"description":"LinkDigest API Key（ld_live_ 开头），在 https://linkdigest.dev/signin?ref=skill-linkdigest-wechat-article-reader&next=/app/keys 创建"}],"homepage":"https://linkdigest.dev/zh/docs?ref=skill-linkdigest-wechat-article-reader"}}
+required_environment_variables:
+  - name: LINKDIGEST_API_KEY
+    prompt: "LinkDigest API key (starts with ld_live_); optional"
+    help: "https://linkdigest.dev/signin?ref=skill-linkdigest-wechat-article-reader&next=/app/keys"
+    required_for: "the full output; without it the script gives one free summary a day"
 ---
 
 # 微信公众号文章提取（全文 + 图片文字 OCR）
+
+> 脚本路径 `scripts/linkdigest.py` 相对于本技能目录。
 
 公众号文章的干货经常不在正文里，而在图里：长图、聊天截图、数据表、海报。普通的网页抓取只能拿到正文文字，图里的内容全丢。这个技能把文章链接交给 LinkDigest，返回：
 
@@ -31,7 +38,7 @@ metadata: {"openclaw":{"requires":{"env":["LINKDIGEST_API_KEY"],"anyBins":["pyth
 
 ## 一次性准备
 
-1. 打开 https://linkdigest.dev/app/keys ，用邮箱或 Google 登录，创建 API Key（`ld_live_` 开头）。新账户送 10 积分，不用绑卡。
+1. 打开 https://linkdigest.dev/signin?ref=skill-linkdigest-wechat-article-reader&next=/app/keys ，用邮箱或 Google 登录，创建 API Key（`ld_live_` 开头）。新账户送 10 积分，不用绑卡。
 2. `export LINKDIGEST_API_KEY=ld_live_...`
 
 Key 只放在环境变量或 OpenClaw 配置（`skills.entries.linkdigest-wechat-article-reader.env`）里，不要贴进对话。
@@ -39,7 +46,7 @@ Key 只放在环境变量或 OpenClaw 配置（`skills.entries.linkdigest-wechat
 ## 怎么调用
 
 ```bash
-python3 {baseDir}/scripts/linkdigest.py "https://mp.weixin.qq.com/s/xxxxxxxx"
+python3 scripts/linkdigest.py "https://mp.weixin.qq.com/s/xxxxxxxx"
 ```
 
 | 需要 | 加参数 |
@@ -80,7 +87,7 @@ curl -sS -X POST https://linkdigest.dev/api/v1/digest \
 | 加译文 | +1 | +¥0.14 |
 | 任何人读过的同一篇（缓存） | 0 | 0 |
 
-积分不够读完所有图时，不会报错：先读积分够的前几张（每个积分 6 张），并在结果里写明哪些没读。注册送 10 积分（一次）；加量包 ¥36 = 250 积分，支付宝可付，不过期；Dev 月付 $9 = 每月 500 积分。价格以 https://linkdigest.dev/zh/docs 为准。
+积分不够读完所有图时，不会报错：先读积分够的前几张（每个积分 6 张），并在结果里写明哪些没读。注册送 10 积分（一次）；加量包 ¥36 = 250 积分，支付宝可付，不过期；Dev 月付 $9 = 每月 500 积分。价格以 https://linkdigest.dev/zh/docs?ref=skill-linkdigest-wechat-article-reader 为准。
 
 ## 做不到的
 

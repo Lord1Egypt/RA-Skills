@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rankizz Keyword Clustering"
+  short_description: "Cluster keywords into a content map"
+  default_prompt: "Use $rankizz-cluster-keywords to group these keywords by intent and map them to pages."

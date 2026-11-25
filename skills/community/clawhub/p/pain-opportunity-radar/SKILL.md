@@ -4,7 +4,7 @@ description: "Systematically discover, verify, score, and validate high-frequenc
 description_zh: "高频痛点与Agent机会雷达"
 description_en: "Pain and agent opportunity radar"
 agent_created: true
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Pain opportunity radar
@@ -151,7 +151,7 @@ Interview questions must focus on the most recent actual task. Hypothetical inte
 
 ## Hard rules
 
-1. Every substantive finding must link to a traceable source.
+1. Every substantive finding must link to a traceable source. Public-source research is read-only: quote or paraphrase public expressions without harvesting or storing personally identifying details (real names, handles tied to private facts, contact info). Anonymize examples before they enter an evidence CSV.
 2. Search snippets and vendor claims do not become primary user evidence.
 3. Do not treat supply as demand. Existing skills prove capability or competition only.
 4. Do not treat downloads, likes, comments, or stars as willingness to pay.

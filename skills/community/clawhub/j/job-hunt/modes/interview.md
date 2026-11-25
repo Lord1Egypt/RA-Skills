@@ -49,15 +49,34 @@ Then confirm three things with the user, in one message:
    the one question that resolves the shape: *"In your field, what does the employer make
    you do live — talk, demonstrate, be scored against written criteria, or be role-played
    at?"*
-3. **Round type for this session** — `behavioural | technical | design | hr`. One per
-   session; see §3.
+3. **Round type for this session** — `behavioural | technical | design | hr | knowledge |
+   coding`. One per session; see §3. `technical` defends the candidate's own technical
+   work. `knowledge` drills checkable knowledge for this posting's field (clinical
+   procedures, accounting standards, legal doctrine, 基础知识 / 八股, ability-test items),
+   and `coding` runs a coding problem against hidden test cases.
+
+**For `knowledge` or `coding`, or when writing a posting plan, read
+`references/preparation.md` before the first question.** It defines the plan, the
+per-question `RECALL` / `SOLVE` records, the hint log, the test runner
+(`scripts/run_mock_tests.py`) and the study notes, and `check_mock.py` fails a learned
+round that has none of them.
+
+**Preparation without a posting is prepare mode** (`modes/prepare.md`), and its
+general plan is `paths.latest_prep_plan(<name>)`. Here, read that plan if it exists
+and write only what this posting adds to it, as `mock/prep-plan.md`
+(`references/preparation.md` §1). With no general plan, the posting plan is the whole
+plan. Offer it when the posting or the loop shape implies a stage the candidate has not
+prepared for. Do not offer a knowledge or coding round for a loop that has none,
+unless the user asks.
 
 ## 1. Fix the shape
 
 From `references/interview-shapes.md`, state the loop the candidate is walking into: the
 rounds, in the local vocabulary, with who is in the room. Say plainly which rounds this
-mode **cannot** simulate (手撕代码 under a watching interviewer, an in-person MMI circuit,
-a whiteboard chalk talk) rather than running a thin imitation of them.
+mode **cannot** simulate (being watched while typing under 手撕代码 time pressure, an
+in-person MMI circuit, a whiteboard chalk talk) rather than running a thin imitation of
+them. The code itself can be run: a `coding` round executes the candidate's solution
+against hidden cases.
 
 Give the interviewer a **named persona** drawn from that shape — a 交叉面 interviewer from
 another department who has not read the CV closely; a Bar Raiser from outside the team; a
@@ -228,11 +247,14 @@ Persona: Sanne de Vries, MR reconstruction team lead — direct, asks for number
 ## 4. Assess — two passes, deliberately different inputs
 
 Dispatch **both** assessors in one message (two `Agent` calls, in parallel). Each gets
-exactly the files in its row and nothing else:
+exactly the files in its row and nothing else. On a host with no `Agent` tool, open each
+pass in a fresh context as `references/portability.md` §2 describes (codex: native
+multi-agent, else `codex exec --skip-git-repo-check`). Never assess the round yourself
+in this conversation: you ran it, so you are not an independent assessor.
 
 | Pass | Agent file | Given | **Deliberately NOT given** |
 |---|---|---|---|
-| 1 — transcript | `agents/mock-assessor-transcript.md` | `mock/transcript-<n>.md`, `posting.yaml`, `cv.md` | `interview-brief.md`, `claims.yaml` — so it cannot credit the candidate for a source fact they never said out loud |
+| 1 — transcript | `agents/mock-assessor-transcript.md` | `mock/transcript-<n>.md`, `posting.yaml`, `cv.md`; in a `coding` round also each `mock/code/round-<n>/Q<n>/result.json` | `interview-brief.md`, `claims.yaml` — so it cannot credit the candidate for a source fact they never said out loud |
 | 2 — provenance | `agents/mock-assessor-provenance.md` | `mock/transcript-<n>.md`, `claims.yaml`, `interview-brief.md` | the rubric — so it cannot drift into grading, which is what makes a provenance-holding assessor lenient |
 
 Two passes fed different inputs is what turns the honesty tripwire from an intention into a
@@ -302,6 +324,12 @@ END-MOCK-PROVENANCE-V1
 ```
 
 ## 5. Write the session artifacts
+
+**A `knowledge` or `coding` round** writes `mock/study-notes-<n>.md` in place of
+`answer-guide.md` (one `## Q<n>` entry per question: the correct answer explained, and
+what the candidate's answer missed, as in `references/preparation.md` §5). It
+adds to `answer-bank.md` only if a real story came up in passing. `open-loops.md` and
+`cheatsheet.md` are written as for every round.
 
 **`~/.claude/job-profiles/<name>/answer-bank.md`** — the profile-level file, not a
 per-application one. It is the only artifact that compounds across applications. One entry
@@ -450,6 +478,15 @@ The `MOCK-ASSESSMENT-V1` block must actually assess something: at least one `BAN
 `mock/cheatsheet.md` must exist and be non-empty (`NO_OPEN_LOOPS`, `NO_CHEATSHEET`). None of
 these applies to `MOCK-PROVENANCE-V1`: `ROUND:` plus `FINDINGS: none` is its documented clean
 
+A `knowledge` or `coding` round carries no `BAND:` and instead must carry one `RECALL:` /
+`SOLVE:` row per question heading (`NO_RECALL_ROW`, `NO_SOLVE_ROW`). Each row's `hint=`
+must equal the highest `**Hint (<level>):**` logged under that question
+(`HINT_MISMATCH`). Each `SOLVE` row's `tests=` must match the `result.json` the runner
+wrote, for the code and cases still on disk (`NO_TEST_RESULT`, `TESTS_MISREPORTED`,
+`STALE_TEST_RESULT`). `study-notes-<n>.md` must have an entry per question
+(`NO_STUDY_NOTES`, `STUDY_NOTE_MISSING`). A prep plan has its own gate:
+`python3 scripts/check_prep_plan.py --workspace <workspace>`.
+
 ## 8. Round n+1
 
 Carry forward an **open-loops summary** only — the unresolved probes and the questions that
@@ -483,7 +520,7 @@ The quick-reference body must still fit on the actual PDF's first page
 (`INTERVIEW_BRIEF_TOO_LONG`). The complete structured `## Walk-back list` follows
 as an appendix in the same Markdown/PDF and may span further pages; retain every
 record and put no further quick-reference sections after it. In the final
-message, point the candidate at the new `面试准备/` copy and say the earlier one is
+message, point the candidate at the new `面试准备/` (or, in the report's language, e.g. `Interview prep/`) copy and say the earlier one is
 superseded.
 
 Then follow SKILL.md "Client deliverables": write `report.md` (read
@@ -497,7 +534,8 @@ not start another mode automatically.
 - [ ] `mock/transcript-<n>.md` was appended to after **every** answer, and never edited
 - [ ] both assessors were dispatched, each with exactly its own pack (`agents/mock-assessor-transcript.md`, `agents/mock-assessor-provenance.md`)
 - [ ] `mock/assessment-<n>.md` contains both blocks verbatim
-- [ ] `mock/question-log.yaml`, `mock/open-loops.md`, `mock/answer-guide.md`, `mock/cheatsheet.md` and the profile-level `answer-bank.md` are written
+- [ ] `mock/question-log.yaml`, `mock/open-loops.md`, `mock/answer-guide.md`, `mock/cheatsheet.md` and the profile-level `answer-bank.md` are written (a `knowledge` / `coding` round: `mock/study-notes-<n>.md` in place of the guide, and the bank only if a story came up)
+- [ ] a `knowledge` / `coding` round or a posting plan: `references/preparation.md` was read, every hint is logged as `**Hint (<level>):**`, every `SOLVE` `tests=` comes from `scripts/run_mock_tests.py`, and a prep plan, if written, passed `scripts/check_prep_plan.py` and is in `report.md`
 - [ ] every `answer-guide.md` entry carries `- row:`, `- basis:` and `- source:`, no entry is a first-person script, and no entry serving a gapped row claims `evidenced`
 - [ ] every walk-back and every promoted claim from §6 is on disk
 - [ ] `scripts/check_mock.py` exited 0 and its receipt is in `journal.jsonl`
@@ -567,3 +605,26 @@ a scale the employer did not publish (the published-rubric exception above appli
   Predicting the **questions** is the job ("大概率会被问到系统设计", "likely to be asked
   about…"); predicting the **outcome** is not, and that includes numberless certainty
   ("你肯定能过", "you will definitely pass").
+
+### Knowledge and coding rounds — teaching is allowed
+
+The four hard rules protect the candidate's **experience**: a story, a number, a scope
+they would repeat in the real room. A `knowledge` or `coding` round tests something
+else, what can be learned, and there the useful thing is to teach. So:
+
+1. **Explaining public knowledge is preparation, not ghostwriting.** After the candidate
+   has answered (never before), give the correct answer, the mechanism, or a model
+   solution. That is what `study-notes-<n>.md` is for.
+2. **Hints only when the candidate asks**, one level at a time (`nudge` → `approach` →
+   `solution`), each logged as its own `**Hint (<level>):**` turn. The `RECALL` / `SOLVE`
+   row reports the highest level given, and the gate counts the hint lines, so the
+   debrief cannot under-report the help.
+3. **Learned is not lived.** Nothing taught in the session enters `answer-bank.md`,
+   `claims.yaml`, the CV or a story. "I now know how a B+ tree works" is not "I tuned
+   indexes at work". When the candidate makes an experience claim in passing ("we used
+   Redis for that at my last job"), the provenance pass treats it as in every round.
+4. **Only executed results are reported.** A pass/fail statement about code comes from
+   `scripts/run_mock_tests.py` and names the case counts it printed ("2 of 3 cases
+   passed; failed: empty input"). Counts of executed cases are a measurement, not the
+   invented "X out of Y" banned above. Never "the solution looks correct" without a
+   run, and never a verdict on the candidate.

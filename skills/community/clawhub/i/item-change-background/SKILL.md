@@ -1,6 +1,6 @@
 ---
 name: item-change-background
-version: 1.0.33
+version: 1.0.36
 description: 商品换背景。白底商品图 → 逼真场景图，光影与投影匹配新环境。当用户说「换背景」「加场景」「白底转场景」「放到桌面上」时使用。
 ---
 

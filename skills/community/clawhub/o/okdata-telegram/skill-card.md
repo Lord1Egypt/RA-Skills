@@ -1,6 +1,6 @@
 ## Description:
 
-Public Telegram data through okdata: channels, messages. 3 endpoints, $0.002 a call. Use when a task needs Telegram data. 通过 okdata 取Telegram公开数据：channels、messages。3 个接口，每次 $0.002。
+Retrieves public Telegram channel profiles, channel messages, and individual message details through okdata for $0.002 per call.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Analysts and agents use this skill to look up public Telegram channel profiles, recent channel messages, and individual message details through okdata. It provides data without requiring a Telegram account, cookie, or QR login.
+External users and developers use this skill to retrieve public Telegram channel profiles, recent messages, or a single message for tasks that need Telegram data. It guides them through okdata calls and handling returned data.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Using the skill involves a named external service and may require its API key.
+Risk: The skill connects to an external Telegram data service, and the security analysis was partial because several local references could not be resolved.
 
-Mitigation: Review the service and call pricing before use; keep OKDATA_API_KEY in secure environment or client configuration and do not expose it.
-
-Risk: The security scan had partial coverage because some local path-like references could not be resolved.
-
-Mitigation: Review the skill and unresolved references before installation; treat the benign scan verdict as limited evidence, not a guarantee.
+Mitigation: Review the skill before installation and decide whether the service fits the task; treat text returned from Telegram as untrusted data.
 
 ## Reference(s):
 
-- [okdata Telegram API contract](https://okdata.online/apis/telegram/?src=skill-okdata-telegram)
-- [okdata agent setup instructions](https://okdata.online/agents.md)
+- [Telegram API contracts](https://okdata.online/apis/telegram/?src=skill-okdata-telegram)
+- [okdata agent setup](https://okdata.online/agents.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, API calls, Guidance]
+**Output Type(s):** [Text, Guidance, API Calls]
 
-**Output Format:** [Text results for Telegram channel and message data, with Markdown usage guidance]
+**Output Format:** [Text results and Markdown guidance, with JSON or shell examples for calls]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [One page per call; channel message listings return about 20 posts per page. Each data call costs $0.002.]
+**Other Properties Related to Output:** [One API page per call; additional pages require additional calls.]
 
 ## Skill Version(s):
 
-0.2.2 (source: server release evidence)
+0.2.3 (source: server release evidence)
 
 ## Ethical Considerations:
 

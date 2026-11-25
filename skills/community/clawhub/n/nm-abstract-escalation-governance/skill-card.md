@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Agent orchestrators and developers use this skill to decide whether a task warrants a higher-capability model. It guides them to investigate the current model's limits, weigh the cost and benefit, and document the reason and scope before escalating.
+Developers and agent orchestrators use this skill to decide whether a task's complexity, uncertainty, novelty, or stakes justify a higher-capability model. It guides them to investigate first and document the reason, scope, and success criteria for any escalation.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Broad activation terms may cause the skill to apply beyond intended model-escalation assessments; the security review was also partial because two referenced paths were unavailable.
+Risk: Broad activation terms may cause the skill to run in situations where escalation governance is not relevant.
 
-Mitigation: Review the listed activation terms and the unavailable paths before relying on the skill, and confirm that its scope fits the intended use.
+Mitigation: Review trigger matches and invoke the skill only when model-selection or escalation decisions are in scope.
+
+Risk: Security analysis coverage is partial because two local references could not be resolved.
+
+Mitigation: Review the skill and confirm its referenced materials before relying on its guidance.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-abstract-escalation-governance)
-- [Project link (metadata.clawdis.homepage)](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
+- [Skill project homepage (Clawdis metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-abstract-escalation-governance)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis]
+**Output Type(s):** [Analysis, Guidance]
 
-**Output Format:** [Markdown guidance and decision criteria]
+**Output Format:** [Markdown guidance with checklists, tables, and escalation rationale]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [No fixed output schema or parameter controls are specified.]
+**Other Properties Related to Output:** [Provides decision guidance; no specific file output is defined.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, release evidence)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

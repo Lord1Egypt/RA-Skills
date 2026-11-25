@@ -1,0 +1,10 @@
+{
+  "_说明": "iTerm2 全局键映射（付费包内容）。setup-gui.sh 读这个文件；文件不在就跳过，不报错。",
+  "_为什么做成数据文件": "脚本全部开源，所以门控的东西必须是数据而不是代码——写死在脚本里的 defaults write 谁都能照抄。",
+  "_Action 说明": "12 = Send Text；Text 存字面量 \\n，iTerm2 会解释成换行，跟 GUI 手填一致。",
+  "_两种格式都要写": "0xd-0x20000 是旧版「字符-修饰位」格式；0xd-0x20000-0x24 是新版「字符-修饰位-键码」（Keycode 13=Return，Modifiers 131072=Shift）。新旧 iTerm2 各认一种。",
+  "GlobalKeyMap": {
+    "0xd-0x20000": "{ Action = 12; Text = \"\\\\n\"; Version = 1; }",
+    "0xd-0x20000-0x24": "{ Action = 12; Keycode = 13; Modifiers = 131072; Text = \"\\\\n\"; Version = 1; }"
+  }
+}

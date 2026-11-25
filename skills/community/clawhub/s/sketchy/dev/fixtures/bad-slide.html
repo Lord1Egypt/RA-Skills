@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" class="sk" data-theme="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fixture: a deck with known problems</title>
+<link rel="stylesheet" href="../../engine/sketchy.css">
+<style>
+  /* One known problem per slide, so lint output can be checked line by line.
+     main.sk-deck has no data-seed on purpose (problem 0). */
+  .sk-slide { color: var(--sk-graphite); }
+  .abs { position: absolute; margin: 0; }
+  h1.abs { font-size: 80px; left: 160px; top: 100px; }
+</style>
+</head>
+<body class="sk">
+<main class="sk-deck">
+
+  <!-- 1. text overflows its box, and one line runs off the right edge of the slide -->
+  <section class="sk-slide" data-layout="title">
+    <h1 class="abs">Overflow</h1>
+    <div class="abs" id="box" style="left:160px; top:300px; width:420px; height:90px; font-size:60px; line-height:1.1; border:2px solid #4a4a4a">
+      This sentence is much too long for the little box it was given
+    </div>
+    <p class="abs" id="runoff" style="left:1500px; top:700px; font-size:56px; white-space:nowrap">This line runs off the slide</p>
+  </section>
+
+  <!-- 2. tiny text, too many words, too many bullets -->
+  <section class="sk-slide" data-layout="steps">
+    <h1 class="abs">Tiny and crowded</h1>
+    <p class="abs" id="tiny" style="left:160px; top:260px; font-size:12px; width:700px">This small print is twelve pixels high and nobody in the back row can read it.</p>
+    <ul class="abs" style="left:160px; top:330px; font-size:26px; width:1500px; line-height:1.3; padding-left:40px">
+      <li>One reason to change the plan and why it matters for the next quarter</li>
+      <li>Two reasons to keep the budget where it is until the audit is done</li>
+      <li>Three reasons the team asked for more time before the launch date</li>
+      <li>Four reasons the old process still works for the smaller accounts</li>
+      <li>Five reasons customers like the new onboarding flow so much more</li>
+      <li>Six reasons the support queue is shorter than it was last spring</li>
+      <li>Seven reasons we should write all of this down before we forget</li>
+    </ul>
+  </section>
+
+  <!-- 3. placeholder text -->
+  <section class="sk-slide" data-layout="title" data-notes="TODO write the speaker notes">
+    <h1 class="abs">Placeholders</h1>
+    <p class="abs" style="left:160px; top:300px; font-size:44px; width:1400px">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <p class="abs" style="left:160px; top:440px; font-size:44px; width:1400px">Revenue was [insert number here], the owner is TBD and the date is xxx.</p>
+  </section>
+
+  <!-- 4. low contrast: pale gray on paper (about 1.3:1), and soft graphite at body size (about 3:1) -->
+  <section class="sk-slide" data-layout="title">
+    <h1 class="abs">Contrast</h1>
+    <p class="abs" id="pale" style="left:160px; top:300px; font-size:48px; color:#b6bbc5; width:1400px">Pale gray pencil on gray paper disappears.</p>
+    <p class="abs" id="soft" style="left:160px; top:440px; font-size:26px; color:var(--sk-graphite-soft); width:1400px">Soft graphite is fine for a caption, not for a sentence you need read.</p>
+  </section>
+
+  <!-- 5. two text boxes on top of each other, and a pencil stroke through a sentence -->
+  <section class="sk-slide" data-layout="title">
+    <h1 class="abs">Collisions</h1>
+    <p class="abs" id="one" style="left:160px; top:300px; font-size:48px; width:900px">First paragraph of the slide</p>
+    <p class="abs" id="two" style="left:260px; top:320px; font-size:48px; width:900px">Second paragraph on top of it</p>
+    <p class="abs" id="struck" style="left:160px; top:600px; font-size:44px; width:1100px">A pencil line goes straight through this sentence.</p>
+    <svg id="cross" class="abs" style="left:140px; top:580px; width:1200px; height:100px" viewBox="0 0 1200 100"></svg>
+  </section>
+
+  <!-- 6. image without alt, chart without its data table, external request -->
+  <section class="sk-slide" data-layout="chart">
+    <h1 class="abs">Accessibility and network</h1>
+    <img class="abs" style="left:160px; top:300px; width:200px; height:120px" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+    <figure class="abs sk-chart" id="nochart" style="left:500px; top:300px; width:600px; height:300px" data-chart='{"type":"bar","title":"Revenue","data":[["Q1",120],["Q2",140]]}'></figure>
+    <link rel="stylesheet" href="http://127.0.0.1:59999/remote.css">
+  </section>
+</main>
+<script src="../../engine/sketchy.js"></script>
+<script src="../../engine/sketchy-deck.js"></script>
+<script>
+  var svg = document.getElementById('cross');
+  var p = Sketchy.pen(svg, { seed: 'cross' });
+  p.line(0, 50, 1000, 54, { stroke: p.tokens.red, width: 3 });
+  SketchyDeck.mount();
+</script>
+</body>
+</html>

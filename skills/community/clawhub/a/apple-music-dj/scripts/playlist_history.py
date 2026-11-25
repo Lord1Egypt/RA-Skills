@@ -18,15 +18,16 @@ As a library:
 import sys
 
 # Python version guard
-if sys.version_info < (3, 10):
+if sys.version_info < (3, 11):
     sys.exit(
-        f"ERROR: Python 3.10+ is required (you have "
+        f"ERROR: Python 3.11+ is required (you have "
         f"{sys.version_info.major}.{sys.version_info.minor}). Please upgrade."
     )
 
 import argparse
 import json
-from datetime import datetime, timezone, timedelta
+import os
+from datetime import datetime, timedelta, UTC
 from pathlib import Path
 
 from _common import write_private
@@ -43,9 +44,31 @@ def load_history() -> list[dict]:
             data = json.load(f)
         if isinstance(data, list):
             return data
-    except (json.JSONDecodeError, OSError):
+    except json.JSONDecodeError:
+        return _set_aside_unreadable_history()
+    except OSError:
         return []
-    return []  # valid JSON, but not a list
+    return _set_aside_unreadable_history()
+
+
+def _set_aside_unreadable_history() -> list[dict]:
+    """Keep an unreadable history file as *.corrupt[.N] (the next save would overwrite it) and start fresh.
+
+    If it cannot be kept, raise: returning an empty history would let the next save destroy the only copy.
+    """
+    backup = HISTORY_FILE.with_suffix(".json.corrupt")
+    for n in range(1, 100):
+        if not backup.exists() and not backup.is_symlink():
+            break
+        backup = HISTORY_FILE.with_suffix(f".json.corrupt.{n}")
+    try:
+        os.link(HISTORY_FILE, backup)  # fails instead of replacing if the name was taken in the meantime
+        os.unlink(HISTORY_FILE)
+    except OSError as e:
+        raise OSError(f"{HISTORY_FILE} is not a valid history file and could not be set aside ({e}); "
+                      f"fix or remove it by hand.") from e
+    print(f"WARN: {HISTORY_FILE} is not a valid history file; kept as {backup} and starting fresh.", file=sys.stderr)
+    return []
 
 
 def save_history(history: list[dict]) -> None:
@@ -59,7 +82,7 @@ def log_playlist(name: str, strategy: str, track_ids: list[str]) -> dict:
 
     entry = {
         "name": name,
-        "date": datetime.now(timezone.utc).isoformat(),
+        "date": datetime.now(UTC).isoformat(),
         "strategy": strategy,
         "track_ids": track_ids,
         "track_count": len(track_ids),
@@ -78,7 +101,7 @@ def log_playlist(name: str, strategy: str, track_ids: list[str]) -> dict:
 def get_recent_track_ids(days: int = 30) -> set[str]:
     """Get all track IDs used in playlists created in the last N days."""
     history = load_history()
-    cutoff = datetime.now(timezone.utc) - timedelta(days=days)
+    cutoff = datetime.now(UTC) - timedelta(days=days)
     recent_ids: set[str] = set()
 
     for entry in history:
@@ -104,8 +127,16 @@ def cmd_log(args):
     """Log a playlist creation."""
     track_ids = []
     if args.track_ids_file:
-        with open(args.track_ids_file) as f:
-            track_ids = [line.strip() for line in f if line.strip()]
+        try:
+            with open(args.track_ids_file) as f:
+                track_ids = [line.strip() for line in f if line.strip()]
+        except FileNotFoundError:
+            print(f"ERROR: Track IDs file not found: {args.track_ids_file}", file=sys.stderr)
+            sys.exit(1)
+        except (OSError, UnicodeDecodeError) as e:
+            print(f"ERROR: Cannot read track IDs file: {args.track_ids_file} ({getattr(e, 'strerror', None) or e})",
+                  file=sys.stderr)
+            sys.exit(1)
     elif args.track_ids:
         track_ids = args.track_ids
 

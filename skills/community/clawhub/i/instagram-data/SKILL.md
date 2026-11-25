@@ -1,7 +1,7 @@
 ---
 name: instagram-data
 description: "Instagram profiles, posts, reels, and hashtags for agents — influencer and brand research with no Instagram login, Business account, or Meta app."
-version: 2.0.14
+version: 2.0.19
 author: superagnt
 license: MIT-0
 platforms: [macos, linux, windows]

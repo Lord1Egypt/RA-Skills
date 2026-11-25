@@ -1,6 +1,6 @@
 ## Description:
 
-Generates conventional commit messages from staged changes.
+Generates conventional commit messages from staged changes
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to draft a conventional commit message from staged Git changes. They review the proposed subject, body, and any applicable footer before using it.
+Developers use this skill to draft conventional commit messages from staged changes, using repository status, staged diffs, recent history, and semantic diff output when available. It stops when there are no staged changes.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan had partial coverage because referenced material was missing from the artifact.
+Risk: A draft can misstate the staged changes or incorrectly signal that a discussion finding is resolved.
 
-Mitigation: Review the referenced material that is needed for your setup before installing, and assess the skill's trigger behavior in your environment.
+Mitigation: Review the message against the staged diff and include an Addresses-Discussion trailer only when the commit resolves that finding.
 
-Risk: The commit trigger may overlap with other commit-related workflows.
+Risk: The security analysis was partial because five local references were unavailable for assessment.
 
-Mitigation: Check that the trigger matches when you want this skill to run before enabling it.
+Mitigation: Review the missing referenced materials and scan the complete skill before deployment.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-sanctum-commit-messages)
-- [Project homepage listed in Clawdis metadata](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-sanctum-commit-messages)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
 - [Publisher profile](https://clawhub.ai/user/athola)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Files]
+**Output Type(s):** [Text]
 
-**Output Format:** [Plain-text conventional commit message with a subject, optional body, and optional footer, written to commit_msg.txt.]
+**Output Format:** [Plain-text conventional commit message]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [The message is a proposal for review; the skill does not create the commit.]
+**Other Properties Related to Output:** [Draft only. The subject is limited to 50 characters; an optional body is wrapped at 72 characters, with applicable footers.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, server release evidence)
+1.10.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

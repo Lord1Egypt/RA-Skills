@@ -16,41 +16,60 @@ import argparse
 import io
 import json
 import os
-import subprocess
 import sys
 import time
+import urllib.parse
 import zipfile
 from datetime import datetime
 
 from sber_api import API, SberAPI
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DEFAULT_OUT_DIR = os.path.join(os.getcwd(), "sber_downloads")
+
+# The download URL arrives from the bank's task response. Pin scheme/host/port
+# so a tampered response cannot redirect the mTLS client certificate or the
+# Bearer token to an arbitrary destination (or inject curl options).
+ALLOWED_DOWNLOAD_HOSTS = {"apifiles.sberbank.ru", "fintech.sberbank.ru"}
+
+
+def validate_download_url(url: str) -> str:
+    """Reject any download URL outside the pinned Sber file hosts (HTTPS only)."""
+    parts = urllib.parse.urlsplit(url)
+    if parts.scheme != "https":
+        raise ValueError(f"Download URL must use https: {url!r}")
+    if parts.hostname not in ALLOWED_DOWNLOAD_HOSTS:
+        raise ValueError(f"Download host not allowed: {parts.hostname!r}")
+    if parts.port not in (None, 443, 9443):
+        raise ValueError(f"Download port not allowed: {parts.port!r}")
+    if parts.username or parts.password:
+        raise ValueError("Download URL must not embed credentials")
+    return url
 
 
 def request_statement_print(account: str, date_str: str, api: SberAPI | None = None) -> str:
     """Запрашивает формирование печатной формы выписки за дату (YYYY-MM-DD). Возвращает taskId."""
+    if not account.isdigit():
+        raise ValueError("account must be a numeric account number")
+    try:
+        datetime.strptime(date_str, "%Y-%m-%d")
+    except ValueError:
+        raise ValueError("date_str must be YYYY-MM-DD") from None
     if api is None:
         api = SberAPI()
     api.refresh()
 
     url = f"{API}/v1/statement/print?accountNumber={account}&statementDate={date_str}&format=PDF"
+    # SECURITY: the Bearer token travels via the stdin curl config (see
+    # SberAPI._curl), never in argv; the header flag bug (token treated as a
+    # second URL) is fixed by using the shared client.
+    code, body = api._curl(url, headers={"Authorization": f"Bearer {api.access_token}"}, timeout=30)
+    if code != 200:
+        raise RuntimeError(f"Sber print request failed: HTTP {code}: {body[:200]!r}")
 
-    def _run(cert: str, key: str, cacert: str):
-        cmd = [
-            "curl", "-sS", "--max-time", "30",
-            "--cert", cert, "--key", key, "--cacert", cacert,
-            url,
-            "Authorization: Bearer " + api.access_token,
-        ]
-        return subprocess.run(cmd, capture_output=True, text=True)
-
-    res = api._execute_with_tls(_run)
-    if res.returncode != 0:
-        raise RuntimeError(f"curl failed: {res.stderr}")
-
-    out = res.stdout.strip().strip('"')
+    out = body.decode("utf-8", "replace").strip().strip('"')
     if not out.isdigit():
-        raise RuntimeError(f"Unexpected response from Sber print request: {res.stdout}")
+        raise RuntimeError(f"Unexpected response from Sber print request: {out[:200]}")
     return out
 
 
@@ -64,24 +83,15 @@ def poll_download_task(task_id: str, timeout_sec: int = 60, api: SberAPI | None 
 
     start = time.time()
     while time.time() - start < timeout_sec:
-        def _run(cert: str, key: str, cacert: str):
-            cmd = [
-                "curl", "-sS", "--max-time", "15",
-                "--cert", cert, "--key", key, "--cacert", cacert,
-                url,
-                "Authorization: Bearer " + api.access_token,
-            ]
-            return subprocess.run(cmd, capture_output=True, text=True)
-
-        res = api._execute_with_tls(_run)
-        if res.returncode == 0:
+        code, body = api._curl(url, headers={"Authorization": f"Bearer {api.access_token}"}, timeout=15)
+        if code == 200:
             try:
-                data = json.loads(res.stdout)
+                data = json.loads(body)
                 state = data.get("state")
                 if state == "EXECUTED":
                     return data
                 elif state in ("FAILED", "ERROR"):
-                    raise RuntimeError(f"Task failed: {res.stdout}")
+                    raise RuntimeError(f"Task failed: {body[:300]!r}")
             except json.JSONDecodeError:
                 pass
         time.sleep(2)
@@ -90,30 +100,24 @@ def poll_download_task(task_id: str, timeout_sec: int = 60, api: SberAPI | None 
 
 
 def download_zip(download_url: str, api: SberAPI | None = None) -> bytes:
-    """Скачивает zip-архив с apifiles.sberbank.ru."""
+    """Скачивает zip-архив с apifiles.sberbank.ru (строго pinned HTTPS-хост)."""
+    validate_download_url(download_url)
     if api is None:
         api = SberAPI()
     api.refresh()
 
-    def _run(cert: str, key: str, cacert: str):
-        cmd = [
-            "curl", "-sS", "--max-time", "60",
-            "--cert", cert, "--key", key, "--cacert", cacert,
-            download_url,
-            "Authorization: Bearer " + api.access_token,
-        ]
-        return subprocess.run(cmd, capture_output=True)
-
-    res = api._execute_with_tls(_run)
-    if res.returncode != 0 or not res.stdout.startswith(b"PK\x03\x04"):
-        raise RuntimeError(f"Failed to download zip from {download_url}: {res.stderr[:200]}")
-    return res.stdout
+    code, body = api._curl(download_url,
+                           headers={"Authorization": f"Bearer {api.access_token}"},
+                           timeout=60)
+    if code != 200 or not body.startswith(b"PK\x03\x04"):
+        raise RuntimeError(f"Failed to download zip from {download_url}: HTTP {code}")
+    return body
 
 
 def fetch_executed_orders(
     date_str: str,
     account: str,
-    out_dir: str = "/home/synthet1x/.openclaw/workspace/media/out",
+    out_dir: str = DEFAULT_OUT_DIR,
     number: str | None = None,
     profile: str = "default",
 ) -> list[str]:
@@ -157,7 +161,7 @@ def main():
     parser.add_argument("--date", default=datetime.now().strftime("%Y-%m-%d"), help="Дата выписки (YYYY-MM-DD), по умолчанию сегодня")
     parser.add_argument("--account", default=None, help="Расчётный счёт (если не указан, берется из профиля)")
     parser.add_argument("--number", default=None, help="Номер конкретного платёжного поручения (например, 61)")
-    parser.add_argument("--out-dir", default="/home/synthet1x/.openclaw/workspace/media/out", help="Папка сохранения")
+    parser.add_argument("--out-dir", default=DEFAULT_OUT_DIR, help="Папка сохранения (по умолчанию ./sber_downloads)")
 
     args = parser.parse_args()
     api = SberAPI(profile=args.profile)

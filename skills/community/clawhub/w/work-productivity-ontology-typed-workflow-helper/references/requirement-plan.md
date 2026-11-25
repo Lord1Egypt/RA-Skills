@@ -2,7 +2,7 @@
 
 ## Live Requirement
 
-Validated demand: Agent users show strong demand for ontology-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 10 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
+Validated demand: Agent users show strong demand for ontology-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 11 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
 
 ## Audience
 
@@ -20,11 +20,11 @@ Demand: 70/70
 
 Local feasibility: 30/30
 
-Evidence coverage: 10 signals across 3 source families.
+Evidence coverage: 11 signals across 3 source families.
 
 Scoring rationale:
 
-- Evidence count: 10; required minimum: 3.
+- Evidence count: 11; required minimum: 3.
 - Distinct source families: 3; sources: clawhub, csdn, github.
 - Demand score: 70/70 based on corroboration, source diversity, and professional/community signal.
 - Local feasibility score: 30/30.
@@ -33,16 +33,17 @@ Scoring rationale:
 
 ## Evidence
 
-- clawhub-popular-skill (2026-10-22T12:42:06.676000+00:00): [Popular Clawhub skill demand: self-improving agent has 493,493 downloads](https://clawhub.ai/skills/self-improving-agent)
-- clawhub-popular-skill (2026-05-11T09:25:56.797000+00:00): [Popular Clawhub skill demand: Self-Improving + Proactive Agent has 215,122 downloads](https://clawhub.ai/skills/self-improving)
-- clawhub-popular-skill (2026-05-11T07:50:52.489000+00:00): [Popular Clawhub skill demand: ontology has 201,919 downloads](https://clawhub.ai/skills/ontology)
-- clawhub-popular-skill (2026-05-11T07:53:37.068000+00:00): [Popular Clawhub skill demand: Multi Search Engine has 165,885 downloads](https://clawhub.ai/skills/multi-search-engine)
-- clawhub-popular-skill (2026-06-19T07:09:19.124000+00:00): [Popular Clawhub skill demand: AdMapix has 134,449 downloads](https://clawhub.ai/skills/admapix)
-- clawhub-popular-skill (2026-05-17T03:07:05.295000+00:00): [Popular Clawhub skill demand: Skill Creator has 104,769 downloads](https://clawhub.ai/skills/skill-creator)
-- clawhub-popular-skill (2026-05-11T07:48:49.679000+00:00): [Popular Clawhub skill demand: Notion has 105,801 downloads](https://clawhub.ai/skills/notion)
-- clawhub-popular-skill (2026-09-16T21:35:54.485000+00:00): [Popular Clawhub skill demand: Tavily Search has 110,615 downloads](https://clawhub.ai/skills/openclaw-tavily-search)
+- clawhub-popular-skill (2026-10-22T12:42:06.676000+00:00): [Popular Clawhub skill demand: self-improving agent has 494,496 downloads](https://clawhub.ai/skills/self-improving-agent)
+- clawhub-popular-skill (2026-05-11T09:25:56.797000+00:00): [Popular Clawhub skill demand: Self-Improving + Proactive Agent has 215,647 downloads](https://clawhub.ai/skills/self-improving)
+- clawhub-popular-skill (2026-05-11T07:50:52.489000+00:00): [Popular Clawhub skill demand: ontology has 202,166 downloads](https://clawhub.ai/skills/ontology)
+- clawhub-popular-skill (2026-05-11T07:53:37.068000+00:00): [Popular Clawhub skill demand: Multi Search Engine has 166,222 downloads](https://clawhub.ai/skills/multi-search-engine)
+- clawhub-popular-skill (2026-06-19T07:09:19.124000+00:00): [Popular Clawhub skill demand: AdMapix has 134,533 downloads](https://clawhub.ai/skills/admapix)
+- clawhub-popular-skill (2026-05-17T03:07:05.295000+00:00): [Popular Clawhub skill demand: Skill Creator has 105,041 downloads](https://clawhub.ai/skills/skill-creator)
+- clawhub-popular-skill (2026-05-11T07:48:49.679000+00:00): [Popular Clawhub skill demand: Notion has 105,985 downloads](https://clawhub.ai/skills/notion)
+- clawhub-popular-skill (2026-09-16T21:35:54.485000+00:00): [Popular Clawhub skill demand: Tavily Search has 110,875 downloads](https://clawhub.ai/skills/openclaw-tavily-search)
+- github-issues (2026-11-21T13:11:09+00:00): [Linux: bring the course past 100 lessons](https://github.com/lauppv/cyberstars/issues/446)
 - github-issues (2026-11-11T19:47:22+00:00): [arXiv digest — 2026-11-11 (14 papers)](https://github.com/Bhanubathini2002/arxiv-radar/issues/67)
-- csdn-search (2026-11-17T04:05:55.703098+00:00): [knowledge _ graph](https://wenku.csdn.net/doc/5ft6mrixva?ops_request_misc=elastic_search_misc&request_id=4eba36db77b2448d85dc328ce72e32dd&biz_id=&utm_medium=distribute.pc_search_result.none-task-c_download-2~all~ElasticCommercialInsert~search_v2-3-5ft6mrixva-null-null.142^v102^pc_search_result_base3&utm_term=ontology%20typed%20knowledge%20graph)
+- csdn-search (2026-11-21T13:13:06.972645+00:00): [knowledge _ graph](https://wenku.csdn.net/doc/5ft6mrixva?ops_request_misc=elastic_search_misc&request_id=576174aa76684baaa023c024863d6735&biz_id=&utm_medium=distribute.pc_search_result.none-task-c_download-2~all~ElasticCommercialInsert~search_v2-3-5ft6mrixva-null-null.142^v102^pc_search_result_base8&utm_term=ontology%20typed%20knowledge%20graph)
 
 ## How The Skill Meets The Requirement
 

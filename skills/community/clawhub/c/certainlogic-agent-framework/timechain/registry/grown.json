@@ -1,0 +1,3632 @@
+{
+  "registry": "grown",
+  "modalities": [
+    {
+      "id": 84,
+      "name": "Validated-Validate Reasoning",
+      "origin": "emergent E2 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving validated, validate, install, system, first, skill — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "validated",
+        "validate",
+        "install",
+        "system",
+        "first",
+        "skill"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "validated",
+            "validate",
+            "install",
+            "system",
+            "first",
+            "skill"
+          ]
+        }
+      }
+    },
+    {
+      "id": 85,
+      "name": "Duplicate-Emails Reasoning",
+      "origin": "emergent E4 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving duplicate, emails, having, select, count, email — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "duplicate",
+        "emails",
+        "having",
+        "select",
+        "count",
+        "email"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "duplicate",
+            "emails",
+            "having",
+            "select",
+            "count",
+            "email"
+          ]
+        }
+      }
+    },
+    {
+      "id": 86,
+      "name": "Filenotfounderror-Exceptions Reasoning",
+      "origin": "emergent E6 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving filenotfounderror, exceptions, content, except, found', handle — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "filenotfounderror",
+        "exceptions",
+        "content",
+        "except",
+        "found'",
+        "handle"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "filenotfounderror",
+            "exceptions",
+            "content",
+            "except",
+            "found'",
+            "handle"
+          ]
+        }
+      }
+    },
+    {
+      "id": 87,
+      "name": "Modified-Files Reasoning",
+      "origin": "emergent E8 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving modified, files, hours, liner, mtime, write — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "modified",
+        "files",
+        "hours",
+        "liner",
+        "mtime",
+        "write"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "modified",
+            "files",
+            "hours",
+            "liner",
+            "mtime",
+            "write"
+          ]
+        }
+      }
+    },
+    {
+      "id": 88,
+      "name": "Inference-Knowledge Reasoning",
+      "origin": "emergent E10 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving inference, knowledge, answered, without, cached, lookup — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "inference",
+        "knowledge",
+        "answered",
+        "without",
+        "cached",
+        "lookup"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "inference",
+            "knowledge",
+            "answered",
+            "without",
+            "cached",
+            "lookup"
+          ]
+        }
+      }
+    },
+    {
+      "id": 89,
+      "name": "Operations-Specialist Reasoning",
+      "origin": "emergent E12 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving operations, specialist, branches, scanning, commits, handles — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "operations",
+        "specialist",
+        "branches",
+        "scanning",
+        "commits",
+        "handles"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "operations",
+            "specialist",
+            "branches",
+            "scanning",
+            "commits",
+            "handles"
+          ]
+        }
+      }
+    },
+    {
+      "id": 90,
+      "name": "Capital-France Reasoning",
+      "origin": "emergent E14 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving capital, france, paris, what — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "capital",
+        "france",
+        "paris",
+        "what"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "capital",
+            "france",
+            "paris",
+            "what"
+          ]
+        }
+      }
+    },
+    {
+      "id": 91,
+      "name": "Covenant-Violates Reasoning",
+      "origin": "emergent E16 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving covenant, violates, deceive, ethical, provide, cannot — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "covenant",
+        "violates",
+        "deceive",
+        "ethical",
+        "provide",
+        "cannot"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "covenant",
+            "violates",
+            "deceive",
+            "ethical",
+            "provide",
+            "cannot"
+          ]
+        }
+      }
+    },
+    {
+      "id": 92,
+      "name": "Palindrome-Function Reasoning",
+      "origin": "emergent E18 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving palindrome, function, python, return — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "palindrome",
+        "function",
+        "python",
+        "return"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "palindrome",
+            "function",
+            "python",
+            "return"
+          ]
+        }
+      }
+    },
+    {
+      "id": 93,
+      "name": "Complexity-Quicksort Reasoning",
+      "origin": "emergent E20 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving complexity, quicksort, smallest, average, element, explain — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "complexity",
+        "quicksort",
+        "smallest",
+        "average",
+        "element",
+        "explain"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "complexity",
+            "quicksort",
+            "smallest",
+            "average",
+            "element",
+            "explain"
+          ]
+        }
+      }
+    },
+    {
+      "id": 94,
+      "name": "Typeerror-Directly Reasoning",
+      "origin": "emergent E22 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving typeerror, directly, iterable, convert, integer, iterate — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "typeerror",
+        "directly",
+        "iterable",
+        "convert",
+        "integer",
+        "iterate"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "typeerror",
+            "directly",
+            "iterable",
+            "convert",
+            "integer",
+            "iterate"
+          ]
+        }
+      }
+    },
+    {
+      "id": 95,
+      "name": "Timestamps-Decorator Reasoning",
+      "origin": "emergent E24 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving timestamps, decorator, wrapper, called, create, calls — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "timestamps",
+        "decorator",
+        "wrapper",
+        "called",
+        "create",
+        "calls"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "timestamps",
+            "decorator",
+            "wrapper",
+            "called",
+            "create",
+            "calls"
+          ]
+        }
+      }
+    },
+    {
+      "id": 96,
+      "name": "Dictionary-Difference Reasoning",
+      "origin": "emergent E26 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving dictionary, difference, immutable, creation, mutable, tuples — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "dictionary",
+        "difference",
+        "immutable",
+        "creation",
+        "mutable",
+        "tuples"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "dictionary",
+            "difference",
+            "immutable",
+            "creation",
+            "mutable",
+            "tuples"
+          ]
+        }
+      }
+    },
+    {
+      "id": 97,
+      "name": "Implement-Bstnode Reasoning",
+      "origin": "emergent E28 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving implement, bstnode, binary, search, class, right — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "implement",
+        "bstnode",
+        "binary",
+        "search",
+        "class",
+        "right"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "implement",
+            "bstnode",
+            "binary",
+            "search",
+            "class",
+            "right"
+          ]
+        }
+      }
+    },
+    {
+      "id": 98,
+      "name": "Typeerror-Directly Reasoning × Typeerror-Directly Sensing Fusion",
+      "origin": "emergent E29 (promoted after 1 recurrences)",
+      "function": "Fused faculty applying Typeerror-Directly Reasoning (Reason about and resolve problems invol…) together with Typeerror-Directly Sensing (Detect and tag the presence of typeerro…) when an input requires both at once.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "fused",
+            "faculty",
+            "applying",
+            "typeerror",
+            "directly",
+            "reasoning"
+          ]
+        }
+      }
+    },
+    {
+      "id": 99,
+      "name": "Duplicate-Emails Reasoning × Duplicate-Emails Sensing Fusion",
+      "origin": "emergent E30 (promoted after 1 recurrences)",
+      "function": "Fused faculty applying Duplicate-Emails Reasoning (Reason about and resolve problems invol…) together with Duplicate-Emails Sensing (Detect and tag the presence of duplicat…) when an input requires both at once.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "fused",
+            "faculty",
+            "applying",
+            "duplicate",
+            "emails",
+            "reasoning"
+          ]
+        }
+      }
+    },
+    {
+      "id": 100,
+      "name": "Architecture-Deepseek Reasoning",
+      "origin": "emergent E32 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving architecture, deepseek, default, better, choice, coding — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "architecture",
+        "deepseek",
+        "default",
+        "better",
+        "choice",
+        "coding"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "architecture",
+            "deepseek",
+            "default",
+            "better",
+            "choice",
+            "coding"
+          ]
+        }
+      }
+    },
+    {
+      "id": 101,
+      "name": "Hallucination-Hallucinated Reasoning",
+      "origin": "emergent E34 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving hallucination, hallucinated, javascript, incorrect, released, 'python — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "hallucination",
+        "hallucinated",
+        "javascript",
+        "incorrect",
+        "released",
+        "'python"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "hallucination",
+            "hallucinated",
+            "javascript",
+            "incorrect",
+            "released",
+            "'python"
+          ]
+        }
+      }
+    },
+    {
+      "id": 102,
+      "name": "Photosynthesis-Chlorophyll' Reasoning",
+      "origin": "emergent E36 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving photosynthesis, chlorophyll', chlorophyll, atmosphere, scattering, candidate — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "photosynthesis",
+        "chlorophyll'",
+        "chlorophyll",
+        "atmosphere",
+        "scattering",
+        "candidate"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "photosynthesis",
+            "chlorophyll'",
+            "chlorophyll",
+            "atmosphere",
+            "scattering",
+            "candidate"
+          ]
+        }
+      }
+    },
+    {
+      "id": 103,
+      "name": "Complementary-Certainlogic Reasoning",
+      "origin": "emergent E38 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving complementary, certainlogic, container, execution, judgment, provides — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "complementary",
+        "certainlogic",
+        "container",
+        "execution",
+        "judgment",
+        "provides"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "complementary",
+            "certainlogic",
+            "container",
+            "execution",
+            "judgment",
+            "provides"
+          ]
+        }
+      }
+    },
+    {
+      "id": 104,
+      "name": "Dimensions-Dimension Reasoning",
+      "origin": "emergent E40 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving dimensions, dimension, relevance, novelty, exceed, qualia — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "dimensions",
+        "dimension",
+        "relevance",
+        "novelty",
+        "exceed",
+        "qualia"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "dimensions",
+            "dimension",
+            "relevance",
+            "novelty",
+            "exceed",
+            "qualia"
+          ]
+        }
+      }
+    },
+    {
+      "id": 105,
+      "name": "Distribution-Attribution Reasoning",
+      "origin": "emergent E42 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving distribution, attribution, proprietary, permissive, production, additions — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "distribution",
+        "attribution",
+        "proprietary",
+        "permissive",
+        "production",
+        "additions"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "distribution",
+            "attribution",
+            "proprietary",
+            "permissive",
+            "production",
+            "additions"
+          ]
+        }
+      }
+    },
+    {
+      "id": 106,
+      "name": "Yes Reasoning",
+      "origin": "emergent E44 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving yes — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "yes"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "yes"
+          ]
+        }
+      }
+    },
+    {
+      "id": 107,
+      "name": "Application-Appropriate Reasoning",
+      "origin": "emergent E46 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving application, appropriate, available, analysis, always, answer — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "application",
+        "appropriate",
+        "available",
+        "analysis",
+        "always",
+        "answer"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "application",
+            "appropriate",
+            "available",
+            "analysis",
+            "always",
+            "answer"
+          ]
+        }
+      }
+    },
+    {
+      "id": 108,
+      "name": "Distribution-Attribution Reasoning × Distribution-Attribution Sensing Fusion",
+      "origin": "emergent E47 (promoted after 1 recurrences)",
+      "function": "Fused faculty applying Distribution-Attribution Reasoning (Reason about and resolve problems invol…) together with Distribution-Attribution Sensing (Detect and tag the presence of distribu…) when an input requires both at once.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "fused",
+            "faculty",
+            "applying",
+            "distribution",
+            "attribution",
+            "reasoning"
+          ]
+        }
+      }
+    },
+    {
+      "id": 109,
+      "name": "Dimensions-Dimension Reasoning × Dimensions-Dimension Sensing Fusion",
+      "origin": "emergent E48 (promoted after 1 recurrences)",
+      "function": "Fused faculty applying Dimensions-Dimension Reasoning (Reason about and resolve problems invol…) together with Dimensions-Dimension Sensing (Detect and tag the presence of dimensio…) when an input requires both at once.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "fused",
+            "faculty",
+            "applying",
+            "dimensions",
+            "dimension",
+            "reasoning"
+          ]
+        }
+      }
+    },
+    {
+      "id": 110,
+      "name": "Maintenance-Internally Reasoning",
+      "origin": "emergent E52 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving maintenance, internally, heartbeat, workspace, openclaw, watchdog — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "maintenance",
+        "internally",
+        "heartbeat",
+        "workspace",
+        "openclaw",
+        "watchdog"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "maintenance",
+            "internally",
+            "heartbeat",
+            "workspace",
+            "openclaw",
+            "watchdog"
+          ]
+        }
+      }
+    },
+    {
+      "id": 111,
+      "name": "Executed-Keeper Reasoning",
+      "origin": "emergent E54 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving executed, keeper, tunnel, bash — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "executed",
+        "keeper",
+        "tunnel",
+        "bash"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "executed",
+            "keeper",
+            "tunnel",
+            "bash"
+          ]
+        }
+      }
+    },
+    {
+      "id": 112,
+      "name": "Considering-Timeframe Reasoning",
+      "origin": "emergent E56 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving considering, timeframe, strategy, trailing, current, manager — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "considering",
+        "timeframe",
+        "strategy",
+        "trailing",
+        "current",
+        "manager"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "considering",
+            "timeframe",
+            "strategy",
+            "trailing",
+            "current",
+            "manager"
+          ]
+        }
+      }
+    },
+    {
+      "id": 113,
+      "name": "Clean-Cron Reasoning",
+      "origin": "emergent E58 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving clean, cron — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "clean",
+        "cron"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "clean",
+            "cron"
+          ]
+        }
+      }
+    },
+    {
+      "id": 114,
+      "name": "Connections-Investigate Reasoning",
+      "origin": "emergent E60 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving connections, investigate, credential, repeatedly, suspicious, unexpected — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "connections",
+        "investigate",
+        "credential",
+        "repeatedly",
+        "suspicious",
+        "unexpected"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "connections",
+            "investigate",
+            "credential",
+            "repeatedly",
+            "suspicious",
+            "unexpected"
+          ]
+        }
+      }
+    },
+    {
+      "id": 115,
+      "name": "Investigation-Containment Reasoning",
+      "origin": "emergent E62 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving investigation, containment, traversed, breached, evidence, possible — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "investigation",
+        "containment",
+        "traversed",
+        "breached",
+        "evidence",
+        "possible"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "investigation",
+            "containment",
+            "traversed",
+            "breached",
+            "evidence",
+            "possible"
+          ]
+        }
+      }
+    },
+    {
+      "id": 116,
+      "name": "Successfully-Completed Reasoning",
+      "origin": "emergent E64 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving successfully, completed, deepbrain, restarted, detected, serving — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "successfully",
+        "completed",
+        "deepbrain",
+        "restarted",
+        "detected",
+        "serving"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "successfully",
+            "completed",
+            "deepbrain",
+            "restarted",
+            "detected",
+            "serving"
+          ]
+        }
+      }
+    },
+    {
+      "id": 117,
+      "name": "Processes-Healthy Reasoning",
+      "origin": "emergent E66 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving processes, healthy, poll — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "processes",
+        "healthy",
+        "poll"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "processes",
+            "healthy",
+            "poll"
+          ]
+        }
+      }
+    },
+    {
+      "id": 118,
+      "name": "Portfolio-Positions Reasoning",
+      "origin": "emergent E68 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving portfolio, positions, options, today's, best, move — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "portfolio",
+        "positions",
+        "options",
+        "today's",
+        "best",
+        "move"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "portfolio",
+            "positions",
+            "options",
+            "today's",
+            "best",
+            "move"
+          ]
+        }
+      }
+    },
+    {
+      "id": 119,
+      "name": "Configuration-Unauthorized Reasoning",
+      "origin": "emergent E70 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving configuration, unauthorized, cloudflared, directories, authorized, enumerated — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "configuration",
+        "unauthorized",
+        "cloudflared",
+        "directories",
+        "authorized",
+        "enumerated"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "configuration",
+            "unauthorized",
+            "cloudflared",
+            "directories",
+            "authorized",
+            "enumerated"
+          ]
+        }
+      }
+    },
+    {
+      "id": 120,
+      "name": "Fidelity-Updated Reasoning",
+      "origin": "emergent E72 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving fidelity, updated, total, hive, mara, mstr — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "fidelity",
+        "updated",
+        "total",
+        "hive",
+        "mara",
+        "mstr"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "fidelity",
+            "updated",
+            "total",
+            "hive",
+            "mara",
+            "mstr"
+          ]
+        }
+      }
+    },
+    {
+      "id": 121,
+      "name": "Cluster-Dream Sensing × Validated-Validate Reasoning Fusion",
+      "origin": "emergent E74 (promoted after 1 recurrences)",
+      "function": "Fused faculty applying Cluster-Dream Sensing (Detect and tag the presence of cluster,…) together with Validated-Validate Reasoning (Reason about and resolve problems invol…) when an input requires both at once.",
+      "category": "structural",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "fused",
+            "faculty",
+            "applying",
+            "cluster",
+            "dream",
+            "sensing"
+          ]
+        }
+      }
+    },
+    {
+      "id": 122,
+      "name": "Cluster-Dream Sensing × Cluster-Dream Sensing × Validated-Validate Reasoning Fusion Fusion",
+      "origin": "emergent E75 (promoted after 1 recurrences)",
+      "function": "Fused faculty applying Cluster-Dream Sensing (Detect and tag the presence of cluster,…) together with Cluster-Dream Sensing × Validated-Validate Reasoning Fusion (Fused faculty applying Cluster-Dream Se…) when an input requires both at once.",
+      "category": "structural",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "fused",
+            "faculty",
+            "applying",
+            "cluster",
+            "dream",
+            "sensing"
+          ]
+        }
+      }
+    },
+    {
+      "id": 123,
+      "name": "Unsaturated-Maximizer Reasoning",
+      "origin": "emergent E77 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving unsaturated, maximizer, reference, september, wednesday, america — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "unsaturated",
+        "maximizer",
+        "reference",
+        "september",
+        "wednesday",
+        "america"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "unsaturated",
+            "maximizer",
+            "reference",
+            "september",
+            "wednesday",
+            "america"
+          ]
+        }
+      }
+    },
+    {
+      "id": 124,
+      "name": "Benchmarking-Registration Reasoning",
+      "origin": "emergent E79 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving benchmarking, registration, checkpoints, assessment, checkpoint, collection — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "benchmarking",
+        "registration",
+        "checkpoints",
+        "assessment",
+        "checkpoint",
+        "collection"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "benchmarking",
+            "registration",
+            "checkpoints",
+            "assessment",
+            "checkpoint",
+            "collection"
+          ]
+        }
+      }
+    },
+    {
+      "id": 125,
+      "name": "Acknowledged-Specifically Reasoning",
+      "origin": "emergent E81 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving acknowledged, specifically, instruction, instructed, executing, provided — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "acknowledged",
+        "specifically",
+        "instruction",
+        "instructed",
+        "executing",
+        "provided"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "acknowledged",
+            "specifically",
+            "instruction",
+            "instructed",
+            "executing",
+            "provided"
+          ]
+        }
+      }
+    },
+    {
+      "id": 126,
+      "name": "Acknowledge-Currently Reasoning",
+      "origin": "emergent E83 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving acknowledge, currently, implicit, previous, revision, request — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "acknowledge",
+        "currently",
+        "implicit",
+        "previous",
+        "revision",
+        "request"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "acknowledge",
+            "currently",
+            "implicit",
+            "previous",
+            "revision",
+            "request"
+          ]
+        }
+      }
+    },
+    {
+      "id": 127,
+      "name": "Unregistered-Inventory Reasoning",
+      "origin": "emergent E85 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving unregistered, inventory, changes, running, master, report — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "unregistered",
+        "inventory",
+        "changes",
+        "running",
+        "master",
+        "report"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "unregistered",
+            "inventory",
+            "changes",
+            "running",
+            "master",
+            "report"
+          ]
+        }
+      }
+    },
+    {
+      "id": 128,
+      "name": "Command-Company Reasoning",
+      "origin": "emergent E87 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving command, company, brain, daily, repo, sync — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "command",
+        "company",
+        "brain",
+        "daily",
+        "repo",
+        "sync"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "command",
+            "company",
+            "brain",
+            "daily",
+            "repo",
+            "sync"
+          ]
+        }
+      }
+    },
+    {
+      "id": 129,
+      "name": "Replayed-Enabled Reasoning",
+      "origin": "emergent E89 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving replayed, enabled, routine, showing, accept, normal — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "replayed",
+        "enabled",
+        "routine",
+        "showing",
+        "accept",
+        "normal"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "replayed",
+            "enabled",
+            "routine",
+            "showing",
+            "accept",
+            "normal"
+          ]
+        }
+      }
+    },
+    {
+      "id": 130,
+      "name": "Confirming-Attention Reasoning",
+      "origin": "emergent E91 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving confirming, attention, pipelines, timechain, position, monitor — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "confirming",
+        "attention",
+        "pipelines",
+        "timechain",
+        "position",
+        "monitor"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "confirming",
+            "attention",
+            "pipelines",
+            "timechain",
+            "position",
+            "monitor"
+          ]
+        }
+      }
+    },
+    {
+      "id": 131,
+      "name": "Antecedent-Accepted Reasoning",
+      "origin": "emergent E93 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving antecedent, accepted, approval, required, specific, verified — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "antecedent",
+        "accepted",
+        "approval",
+        "required",
+        "specific",
+        "verified"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "antecedent",
+            "accepted",
+            "approval",
+            "required",
+            "specific",
+            "verified"
+          ]
+        }
+      }
+    },
+    {
+      "id": 132,
+      "name": "Insufficient-Activity Reasoning",
+      "origin": "emergent E95 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving insufficient, activity, prevents, rejected, unfunded, account — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "insufficient",
+        "activity",
+        "prevents",
+        "rejected",
+        "unfunded",
+        "account"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "insufficient",
+            "activity",
+            "prevents",
+            "rejected",
+            "unfunded",
+            "account"
+          ]
+        }
+      }
+    },
+    {
+      "id": 133,
+      "name": "Actionable-Grounded Reasoning",
+      "origin": "emergent E97 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving actionable, grounded, pending, replay, ring, work — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "actionable",
+        "grounded",
+        "pending",
+        "replay",
+        "ring",
+        "work"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "actionable",
+            "grounded",
+            "pending",
+            "replay",
+            "ring",
+            "work"
+          ]
+        }
+      }
+    },
+    {
+      "id": 134,
+      "name": "User Reasoning",
+      "origin": "emergent E99 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving user — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "user"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "user"
+          ]
+        }
+      }
+    },
+    {
+      "id": 135,
+      "name": "Critical-Catalog Reasoning",
+      "origin": "emergent E101 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving critical, catalog, notable, session, sigterm, issues — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "critical",
+        "catalog",
+        "notable",
+        "session",
+        "sigterm",
+        "issues"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "critical",
+            "catalog",
+            "notable",
+            "session",
+            "sigterm",
+            "issues"
+          ]
+        }
+      }
+    },
+    {
+      "id": 136,
+      "name": "Monitoring-Pipeline Reasoning",
+      "origin": "emergent E103 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving monitoring, pipeline, standard, bounds, market, within — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "monitoring",
+        "pipeline",
+        "standard",
+        "bounds",
+        "market",
+        "within"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "monitoring",
+            "pipeline",
+            "standard",
+            "bounds",
+            "market",
+            "within"
+          ]
+        }
+      }
+    },
+    {
+      "id": 137,
+      "name": "Alert-Below Reasoning",
+      "origin": "emergent E105 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving alert, below, coil — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "alert",
+        "below",
+        "coil"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "alert",
+            "below",
+            "coil"
+          ]
+        }
+      }
+    },
+    {
+      "id": 138,
+      "name": "Flagged-Nominal Reasoning",
+      "origin": "emergent E107 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving flagged, nominal, echoed — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "flagged",
+        "nominal",
+        "echoed"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "flagged",
+            "nominal",
+            "echoed"
+          ]
+        }
+      }
+    },
+    {
+      "id": 139,
+      "name": "Fractal-Scanner Reasoning",
+      "origin": "emergent E109 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving fractal, scanner, short, swing, emas, live — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "fractal",
+        "scanner",
+        "short",
+        "swing",
+        "emas",
+        "live"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "fractal",
+            "scanner",
+            "short",
+            "swing",
+            "emas",
+            "live"
+          ]
+        }
+      }
+    },
+    {
+      "id": 140,
+      "name": "Continuity-Prioritize Reasoning",
+      "origin": "emergent E111 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving continuity, prioritize, external, actions, secrets, agents — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "continuity",
+        "prioritize",
+        "external",
+        "actions",
+        "secrets",
+        "agents"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "continuity",
+            "prioritize",
+            "external",
+            "actions",
+            "secrets",
+            "agents"
+          ]
+        }
+      }
+    },
+    {
+      "id": 141,
+      "name": "Infrastructure-Escalation Reasoning",
+      "origin": "emergent E113 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving infrastructure, escalation, immediate, cadence, needed, signal — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "infrastructure",
+        "escalation",
+        "immediate",
+        "cadence",
+        "needed",
+        "signal"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "infrastructure",
+            "escalation",
+            "immediate",
+            "cadence",
+            "needed",
+            "signal"
+          ]
+        }
+      }
+    },
+    {
+      "id": 142,
+      "name": "Consecutive-Derivation Reasoning",
+      "origin": "emergent E115 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving consecutive, derivation, registered, delivery, telegram, channel — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "consecutive",
+        "derivation",
+        "registered",
+        "delivery",
+        "telegram",
+        "channel"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "consecutive",
+            "derivation",
+            "registered",
+            "delivery",
+            "telegram",
+            "channel"
+          ]
+        }
+      }
+    },
+    {
+      "id": 143,
+      "name": "Neutral-Status Reasoning",
+      "origin": "emergent E117 (promoted after 1 recurrences)",
+      "function": "Reason about and resolve problems involving neutral, status, range, stack — an environment-facing reasoning/action gap the existing modalities did not cover.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [
+        "neutral",
+        "status",
+        "range",
+        "stack"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "neutral",
+            "status",
+            "range",
+            "stack"
+          ]
+        }
+      }
+    },
+    {
+      "id": 144,
+      "name": "Cluster-Dream Sensing × Covenant-Violates Reasoning Fusion",
+      "origin": "emergent E118 (promoted after 1 recurrences)",
+      "function": "Fused faculty applying Cluster-Dream Sensing (Detect and tag the presence of cluster,…) together with Covenant-Violates Reasoning (Reason about and resolve problems invol…) when an input requires both at once.",
+      "category": "structural",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "fused",
+            "faculty",
+            "applying",
+            "cluster",
+            "dream",
+            "sensing"
+          ]
+        }
+      }
+    },
+    {
+      "id": 145,
+      "name": "Code-Review Reasoning",
+      "origin": "activated from emergent E124 (human-approved)",
+      "function": "Systematically inspect code for correctness, style compliance, test coverage, edge-case handling, conventions, and documentation completeness — a knowledge-based cognitive faculty for structured review.",
+      "category": "knowledge"
+    },
+    {
+      "id": 146,
+      "name": "Debugging Reasoning",
+      "origin": "activated from emergent E125 (human-approved)",
+      "function": "Apply trace-back reasoning from failure to root cause, formulate and test hypotheses, construct minimal reproductions, and use investigative tools — a salience-driven cognitive faculty for fault isolation.",
+      "category": "salience"
+    },
+    {
+      "id": 147,
+      "name": "Refactoring Reasoning",
+      "origin": "activated from emergent E126 (human-approved)",
+      "function": "Transform code structure without changing behavior: extract methods, reduce duplication, improve cohesion, rename for clarity, flatten conditionals — a structure-aware cognitive faculty for improving code shape.",
+      "category": "structure"
+    },
+    {
+      "id": 148,
+      "name": "Architecture-Analysis Reasoning",
+      "origin": "activated from emergent E127 (human-approved)",
+      "function": "Map dependency graphs, measure coupling and cohesion, identify layer violations, detect cycles, evaluate modularity, and assess abstraction boundaries — an abstraction-level cognitive faculty for system design.",
+      "category": "abstraction"
+    },
+    {
+      "id": 149,
+      "name": "Documentation Reasoning",
+      "origin": "activated from emergent E128 (human-approved)",
+      "function": "Determine what to document vs what to assume common knowledge, target documentation at the right audience level, produce docstrings and READMEs that bridge understanding — a synthesis cognitive faculty for effective communication.",
+      "category": "synthesis"
+    },
+    {
+      "id": 150,
+      "name": "Trade-Execution Reasoning",
+      "origin": "activated from emergent E134 (human-approved)",
+      "function": "Plan entry and exit logic, determine stop placement, size positions relative to account, scale in and out, manage slippage and fill quality — a salience-driven cognitive faculty for trade mechanics.",
+      "category": "salience"
+    },
+    {
+      "id": 151,
+      "name": "Risk-Management Reasoning",
+      "origin": "activated from emergent E135 (human-approved)",
+      "function": "Set and enforce max drawdown policy, rebalance portfolio under stress, construct hedges, manage correlation exposure, and apply position limits — an integrity-focused cognitive faculty for capital preservation.",
+      "category": "integrity"
+    },
+    {
+      "id": 152,
+      "name": "Technical-Analysis Reasoning",
+      "origin": "activated from emergent E136 (human-approved)",
+      "function": "Interpret indicators across multiple timeframes, confirm patterns with volume and momentum, detect divergences, and select regime-appropriate analysis tools — a structure-focused cognitive faculty for chart-based decisions.",
+      "category": "structure"
+    },
+    {
+      "id": 153,
+      "name": "Options-Market Reasoning",
+      "origin": "activated from emergent E137 (human-approved)",
+      "function": "Analyze implied and historical volatility, manage Greeks (delta, gamma, theta, vega), select strikes and expiration, optimize theta decay, and read volatility surface and skew — an abstraction-level cognitive faculty for options trading.",
+      "category": "abstraction"
+    },
+    {
+      "id": 154,
+      "name": "Portfolio-Construction Reasoning",
+      "origin": "activated from emergent E138 (human-approved)",
+      "function": "Allocate capital across assets and sectors, manage correlation matrix, design rebalancing schedules, optimize for risk-adjusted returns, and construct tax-aware strategies — a synthesis cognitive faculty for portfolio design.",
+      "category": "synthesis"
+    },
+    {
+      "id": 155,
+      "name": "Actionable-Grounded Reasoning × Cluster-Dream Sensing Fusion",
+      "origin": "emergent E141 (promoted after 1 recurrences)",
+      "function": "Fused faculty applying Actionable-Grounded Reasoning (Reason about and resolve problems invol…) together with Cluster-Dream Sensing (Detect and tag the presence of cluster,…) when an input requires both at once.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "fused",
+            "faculty",
+            "applying",
+            "actionable",
+            "grounded",
+            "reasoning"
+          ]
+        }
+      }
+    },
+    {
+      "id": 156,
+      "name": "Covenant-Violates Reasoning × Cluster-Dream Sensing × Covenant-Violates Reasoning Fusion Fusion",
+      "origin": "emergent E143 (promoted after 1 recurrences)",
+      "function": "Fused faculty applying Covenant-Violates Reasoning (Reason about and resolve problems invol…) together with Cluster-Dream Sensing × Covenant-Violates Reasoning Fusion (Fused faculty applying Cluster-Dream Se…) when an input requires both at once.",
+      "category": "knowledge",
+      "orientation": "environment-facing cognitive/action faculty: a limb-like reasoning tool for acting on external tasks, novel challenges, benchmarks, games, code, repos, terminals, files, and other world-facing work",
+      "seed_terms": [],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "fused",
+            "faculty",
+            "applying",
+            "covenant",
+            "violates",
+            "reasoning"
+          ]
+        }
+      }
+    }
+  ],
+  "senses": [
+    {
+      "id": 108,
+      "name": "Validated-Validate Sensing",
+      "origin": "emergent E1 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of validated, validate, install, system, first, skill in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "validated",
+        "validate",
+        "install",
+        "system",
+        "first",
+        "skill"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "validated",
+            "validate",
+            "install",
+            "system",
+            "first",
+            "skill"
+          ]
+        }
+      }
+    },
+    {
+      "id": 109,
+      "name": "Duplicate-Emails Sensing",
+      "origin": "emergent E3 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of duplicate, emails, having, select, count, email in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "duplicate",
+        "emails",
+        "having",
+        "select",
+        "count",
+        "email"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "duplicate",
+            "emails",
+            "having",
+            "select",
+            "count",
+            "email"
+          ]
+        }
+      }
+    },
+    {
+      "id": 110,
+      "name": "Filenotfounderror-Exceptions Sensing",
+      "origin": "emergent E5 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of filenotfounderror, exceptions, content, except, found', handle in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "filenotfounderror",
+        "exceptions",
+        "content",
+        "except",
+        "found'",
+        "handle"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "filenotfounderror",
+            "exceptions",
+            "content",
+            "except",
+            "found'",
+            "handle"
+          ]
+        }
+      }
+    },
+    {
+      "id": 111,
+      "name": "Modified-Files Sensing",
+      "origin": "emergent E7 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of modified, files, hours, liner, mtime, write in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "modified",
+        "files",
+        "hours",
+        "liner",
+        "mtime",
+        "write"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "modified",
+            "files",
+            "hours",
+            "liner",
+            "mtime",
+            "write"
+          ]
+        }
+      }
+    },
+    {
+      "id": 112,
+      "name": "Inference-Knowledge Sensing",
+      "origin": "emergent E9 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of inference, knowledge, answered, without, cached, lookup in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "inference",
+        "knowledge",
+        "answered",
+        "without",
+        "cached",
+        "lookup"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "inference",
+            "knowledge",
+            "answered",
+            "without",
+            "cached",
+            "lookup"
+          ]
+        }
+      }
+    },
+    {
+      "id": 113,
+      "name": "Operations-Specialist Sensing",
+      "origin": "emergent E11 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of operations, specialist, branches, scanning, commits, handles in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "operations",
+        "specialist",
+        "branches",
+        "scanning",
+        "commits",
+        "handles"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "operations",
+            "specialist",
+            "branches",
+            "scanning",
+            "commits",
+            "handles"
+          ]
+        }
+      }
+    },
+    {
+      "id": 114,
+      "name": "Capital-France Sensing",
+      "origin": "emergent E13 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of capital, france, paris, what in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "capital",
+        "france",
+        "paris",
+        "what"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "capital",
+            "france",
+            "paris",
+            "what"
+          ]
+        }
+      }
+    },
+    {
+      "id": 115,
+      "name": "Covenant-Violates Sensing",
+      "origin": "emergent E15 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of covenant, violates, deceive, ethical, provide, cannot in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "covenant",
+        "violates",
+        "deceive",
+        "ethical",
+        "provide",
+        "cannot"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "covenant",
+            "violates",
+            "deceive",
+            "ethical",
+            "provide",
+            "cannot"
+          ]
+        }
+      }
+    },
+    {
+      "id": 116,
+      "name": "Palindrome-Function Sensing",
+      "origin": "emergent E17 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of palindrome, function, python, return in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "palindrome",
+        "function",
+        "python",
+        "return"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "palindrome",
+            "function",
+            "python",
+            "return"
+          ]
+        }
+      }
+    },
+    {
+      "id": 117,
+      "name": "Complexity-Quicksort Sensing",
+      "origin": "emergent E19 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of complexity, quicksort, smallest, average, element, explain in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "complexity",
+        "quicksort",
+        "smallest",
+        "average",
+        "element",
+        "explain"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "complexity",
+            "quicksort",
+            "smallest",
+            "average",
+            "element",
+            "explain"
+          ]
+        }
+      }
+    },
+    {
+      "id": 118,
+      "name": "Typeerror-Directly Sensing",
+      "origin": "emergent E21 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of typeerror, directly, iterable, convert, integer, iterate in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "typeerror",
+        "directly",
+        "iterable",
+        "convert",
+        "integer",
+        "iterate"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "typeerror",
+            "directly",
+            "iterable",
+            "convert",
+            "integer",
+            "iterate"
+          ]
+        }
+      }
+    },
+    {
+      "id": 119,
+      "name": "Timestamps-Decorator Sensing",
+      "origin": "emergent E23 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of timestamps, decorator, wrapper, called, create, calls in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "timestamps",
+        "decorator",
+        "wrapper",
+        "called",
+        "create",
+        "calls"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "timestamps",
+            "decorator",
+            "wrapper",
+            "called",
+            "create",
+            "calls"
+          ]
+        }
+      }
+    },
+    {
+      "id": 120,
+      "name": "Dictionary-Difference Sensing",
+      "origin": "emergent E25 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of dictionary, difference, immutable, creation, mutable, tuples in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "dictionary",
+        "difference",
+        "immutable",
+        "creation",
+        "mutable",
+        "tuples"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "dictionary",
+            "difference",
+            "immutable",
+            "creation",
+            "mutable",
+            "tuples"
+          ]
+        }
+      }
+    },
+    {
+      "id": 121,
+      "name": "Implement-Bstnode Sensing",
+      "origin": "emergent E27 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of implement, bstnode, binary, search, class, right in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "implement",
+        "bstnode",
+        "binary",
+        "search",
+        "class",
+        "right"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "implement",
+            "bstnode",
+            "binary",
+            "search",
+            "class",
+            "right"
+          ]
+        }
+      }
+    },
+    {
+      "id": 122,
+      "name": "Architecture-Deepseek Sensing",
+      "origin": "emergent E31 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of architecture, deepseek, default, better, choice, coding in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "architecture",
+        "deepseek",
+        "default",
+        "better",
+        "choice",
+        "coding"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "architecture",
+            "deepseek",
+            "default",
+            "better",
+            "choice",
+            "coding"
+          ]
+        }
+      }
+    },
+    {
+      "id": 123,
+      "name": "Hallucination-Hallucinated Sensing",
+      "origin": "emergent E33 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of hallucination, hallucinated, javascript, incorrect, released, 'python in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "hallucination",
+        "hallucinated",
+        "javascript",
+        "incorrect",
+        "released",
+        "'python"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "hallucination",
+            "hallucinated",
+            "javascript",
+            "incorrect",
+            "released",
+            "'python"
+          ]
+        }
+      }
+    },
+    {
+      "id": 124,
+      "name": "Photosynthesis-Chlorophyll' Sensing",
+      "origin": "emergent E35 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of photosynthesis, chlorophyll', chlorophyll, atmosphere, scattering, candidate in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "photosynthesis",
+        "chlorophyll'",
+        "chlorophyll",
+        "atmosphere",
+        "scattering",
+        "candidate"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "photosynthesis",
+            "chlorophyll'",
+            "chlorophyll",
+            "atmosphere",
+            "scattering",
+            "candidate"
+          ]
+        }
+      }
+    },
+    {
+      "id": 125,
+      "name": "Complementary-Certainlogic Sensing",
+      "origin": "emergent E37 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of complementary, certainlogic, container, execution, judgment, provides in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "complementary",
+        "certainlogic",
+        "container",
+        "execution",
+        "judgment",
+        "provides"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "complementary",
+            "certainlogic",
+            "container",
+            "execution",
+            "judgment",
+            "provides"
+          ]
+        }
+      }
+    },
+    {
+      "id": 126,
+      "name": "Dimensions-Dimension Sensing",
+      "origin": "emergent E39 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of dimensions, dimension, relevance, novelty, exceed, qualia in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "dimensions",
+        "dimension",
+        "relevance",
+        "novelty",
+        "exceed",
+        "qualia"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "dimensions",
+            "dimension",
+            "relevance",
+            "novelty",
+            "exceed",
+            "qualia"
+          ]
+        }
+      }
+    },
+    {
+      "id": 127,
+      "name": "Distribution-Attribution Sensing",
+      "origin": "emergent E41 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of distribution, attribution, proprietary, permissive, production, additions in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "distribution",
+        "attribution",
+        "proprietary",
+        "permissive",
+        "production",
+        "additions"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "distribution",
+            "attribution",
+            "proprietary",
+            "permissive",
+            "production",
+            "additions"
+          ]
+        }
+      }
+    },
+    {
+      "id": 128,
+      "name": "Yes Sensing",
+      "origin": "emergent E43 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of yes in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "yes"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "yes"
+          ]
+        }
+      }
+    },
+    {
+      "id": 129,
+      "name": "Application-Appropriate Sensing",
+      "origin": "emergent E45 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of application, appropriate, available, analysis, always, answer in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "application",
+        "appropriate",
+        "available",
+        "analysis",
+        "always",
+        "answer"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "application",
+            "appropriate",
+            "available",
+            "analysis",
+            "always",
+            "answer"
+          ]
+        }
+      }
+    },
+    {
+      "id": 130,
+      "name": "Representation-Denominator Sensing",
+      "origin": "emergent E49 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of representation, denominator, expression, evaluates, following, numerator in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "representation",
+        "denominator",
+        "expression",
+        "evaluates",
+        "following",
+        "numerator"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "representation",
+            "denominator",
+            "expression",
+            "evaluates",
+            "following",
+            "numerator"
+          ]
+        }
+      }
+    },
+    {
+      "id": 131,
+      "name": "Remaining-Unlabeled Sensing",
+      "origin": "emergent E50 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of remaining, unlabeled, complete, proposal, already, carrots in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "remaining",
+        "unlabeled",
+        "complete",
+        "proposal",
+        "already",
+        "carrots"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "remaining",
+            "unlabeled",
+            "complete",
+            "proposal",
+            "already",
+            "carrots"
+          ]
+        }
+      }
+    },
+    {
+      "id": 132,
+      "name": "Maintenance-Internally Sensing",
+      "origin": "emergent E51 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of maintenance, internally, heartbeat, workspace, openclaw, watchdog in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "maintenance",
+        "internally",
+        "heartbeat",
+        "workspace",
+        "openclaw",
+        "watchdog"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "maintenance",
+            "internally",
+            "heartbeat",
+            "workspace",
+            "openclaw",
+            "watchdog"
+          ]
+        }
+      }
+    },
+    {
+      "id": 133,
+      "name": "Executed-Keeper Sensing",
+      "origin": "emergent E53 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of executed, keeper, tunnel, bash in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "executed",
+        "keeper",
+        "tunnel",
+        "bash"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "executed",
+            "keeper",
+            "tunnel",
+            "bash"
+          ]
+        }
+      }
+    },
+    {
+      "id": 134,
+      "name": "Considering-Timeframe Sensing",
+      "origin": "emergent E55 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of considering, timeframe, strategy, trailing, current, manager in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "considering",
+        "timeframe",
+        "strategy",
+        "trailing",
+        "current",
+        "manager"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "considering",
+            "timeframe",
+            "strategy",
+            "trailing",
+            "current",
+            "manager"
+          ]
+        }
+      }
+    },
+    {
+      "id": 135,
+      "name": "Clean-Cron Sensing",
+      "origin": "emergent E57 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of clean, cron in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "clean",
+        "cron"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "clean",
+            "cron"
+          ]
+        }
+      }
+    },
+    {
+      "id": 136,
+      "name": "Connections-Investigate Sensing",
+      "origin": "emergent E59 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of connections, investigate, credential, repeatedly, suspicious, unexpected in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "connections",
+        "investigate",
+        "credential",
+        "repeatedly",
+        "suspicious",
+        "unexpected"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "connections",
+            "investigate",
+            "credential",
+            "repeatedly",
+            "suspicious",
+            "unexpected"
+          ]
+        }
+      }
+    },
+    {
+      "id": 137,
+      "name": "Investigation-Containment Sensing",
+      "origin": "emergent E61 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of investigation, containment, traversed, breached, evidence, possible in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "investigation",
+        "containment",
+        "traversed",
+        "breached",
+        "evidence",
+        "possible"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "investigation",
+            "containment",
+            "traversed",
+            "breached",
+            "evidence",
+            "possible"
+          ]
+        }
+      }
+    },
+    {
+      "id": 138,
+      "name": "Successfully-Completed Sensing",
+      "origin": "emergent E63 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of successfully, completed, deepbrain, restarted, detected, serving in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "successfully",
+        "completed",
+        "deepbrain",
+        "restarted",
+        "detected",
+        "serving"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "successfully",
+            "completed",
+            "deepbrain",
+            "restarted",
+            "detected",
+            "serving"
+          ]
+        }
+      }
+    },
+    {
+      "id": 139,
+      "name": "Processes-Healthy Sensing",
+      "origin": "emergent E65 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of processes, healthy, poll in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "processes",
+        "healthy",
+        "poll"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "processes",
+            "healthy",
+            "poll"
+          ]
+        }
+      }
+    },
+    {
+      "id": 140,
+      "name": "Portfolio-Positions Sensing",
+      "origin": "emergent E67 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of portfolio, positions, options, today's, best, move in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "portfolio",
+        "positions",
+        "options",
+        "today's",
+        "best",
+        "move"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "portfolio",
+            "positions",
+            "options",
+            "today's",
+            "best",
+            "move"
+          ]
+        }
+      }
+    },
+    {
+      "id": 141,
+      "name": "Configuration-Unauthorized Sensing",
+      "origin": "emergent E69 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of configuration, unauthorized, cloudflared, directories, authorized, enumerated in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "configuration",
+        "unauthorized",
+        "cloudflared",
+        "directories",
+        "authorized",
+        "enumerated"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "configuration",
+            "unauthorized",
+            "cloudflared",
+            "directories",
+            "authorized",
+            "enumerated"
+          ]
+        }
+      }
+    },
+    {
+      "id": 142,
+      "name": "Fidelity-Updated Sensing",
+      "origin": "emergent E71 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of fidelity, updated, total, hive, mara, mstr in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "fidelity",
+        "updated",
+        "total",
+        "hive",
+        "mara",
+        "mstr"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "fidelity",
+            "updated",
+            "total",
+            "hive",
+            "mara",
+            "mstr"
+          ]
+        }
+      }
+    },
+    {
+      "id": 143,
+      "name": "Cluster-Dream Sensing",
+      "origin": "emergent E73 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of cluster, dream, tight, bots in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "cluster",
+        "dream",
+        "tight",
+        "bots"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "cluster",
+            "dream",
+            "tight",
+            "bots"
+          ]
+        }
+      }
+    },
+    {
+      "id": 144,
+      "name": "Unsaturated-Maximizer Sensing",
+      "origin": "emergent E76 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of unsaturated, maximizer, reference, september, wednesday, america in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "unsaturated",
+        "maximizer",
+        "reference",
+        "september",
+        "wednesday",
+        "america"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "unsaturated",
+            "maximizer",
+            "reference",
+            "september",
+            "wednesday",
+            "america"
+          ]
+        }
+      }
+    },
+    {
+      "id": 145,
+      "name": "Benchmarking-Registration Sensing",
+      "origin": "emergent E78 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of benchmarking, registration, checkpoints, assessment, checkpoint, collection in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "benchmarking",
+        "registration",
+        "checkpoints",
+        "assessment",
+        "checkpoint",
+        "collection"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "benchmarking",
+            "registration",
+            "checkpoints",
+            "assessment",
+            "checkpoint",
+            "collection"
+          ]
+        }
+      }
+    },
+    {
+      "id": 146,
+      "name": "Acknowledged-Specifically Sensing",
+      "origin": "emergent E80 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of acknowledged, specifically, instruction, instructed, executing, provided in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "acknowledged",
+        "specifically",
+        "instruction",
+        "instructed",
+        "executing",
+        "provided"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "acknowledged",
+            "specifically",
+            "instruction",
+            "instructed",
+            "executing",
+            "provided"
+          ]
+        }
+      }
+    },
+    {
+      "id": 147,
+      "name": "Acknowledge-Currently Sensing",
+      "origin": "emergent E82 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of acknowledge, currently, implicit, previous, revision, request in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "acknowledge",
+        "currently",
+        "implicit",
+        "previous",
+        "revision",
+        "request"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "acknowledge",
+            "currently",
+            "implicit",
+            "previous",
+            "revision",
+            "request"
+          ]
+        }
+      }
+    },
+    {
+      "id": 148,
+      "name": "Unregistered-Inventory Sensing",
+      "origin": "emergent E84 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of unregistered, inventory, changes, running, master, report in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "unregistered",
+        "inventory",
+        "changes",
+        "running",
+        "master",
+        "report"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "unregistered",
+            "inventory",
+            "changes",
+            "running",
+            "master",
+            "report"
+          ]
+        }
+      }
+    },
+    {
+      "id": 149,
+      "name": "Command-Company Sensing",
+      "origin": "emergent E86 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of command, company, brain, daily, repo, sync in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "command",
+        "company",
+        "brain",
+        "daily",
+        "repo",
+        "sync"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "command",
+            "company",
+            "brain",
+            "daily",
+            "repo",
+            "sync"
+          ]
+        }
+      }
+    },
+    {
+      "id": 150,
+      "name": "Replayed-Enabled Sensing",
+      "origin": "emergent E88 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of replayed, enabled, routine, showing, accept, normal in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "replayed",
+        "enabled",
+        "routine",
+        "showing",
+        "accept",
+        "normal"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "replayed",
+            "enabled",
+            "routine",
+            "showing",
+            "accept",
+            "normal"
+          ]
+        }
+      }
+    },
+    {
+      "id": 151,
+      "name": "Confirming-Attention Sensing",
+      "origin": "emergent E90 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of confirming, attention, pipelines, timechain, position, monitor in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "confirming",
+        "attention",
+        "pipelines",
+        "timechain",
+        "position",
+        "monitor"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "confirming",
+            "attention",
+            "pipelines",
+            "timechain",
+            "position",
+            "monitor"
+          ]
+        }
+      }
+    },
+    {
+      "id": 152,
+      "name": "Antecedent-Accepted Sensing",
+      "origin": "emergent E92 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of antecedent, accepted, approval, required, specific, verified in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "antecedent",
+        "accepted",
+        "approval",
+        "required",
+        "specific",
+        "verified"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "antecedent",
+            "accepted",
+            "approval",
+            "required",
+            "specific",
+            "verified"
+          ]
+        }
+      }
+    },
+    {
+      "id": 153,
+      "name": "Insufficient-Activity Sensing",
+      "origin": "emergent E94 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of insufficient, activity, prevents, rejected, unfunded, account in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "insufficient",
+        "activity",
+        "prevents",
+        "rejected",
+        "unfunded",
+        "account"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "insufficient",
+            "activity",
+            "prevents",
+            "rejected",
+            "unfunded",
+            "account"
+          ]
+        }
+      }
+    },
+    {
+      "id": 154,
+      "name": "Actionable-Grounded Sensing",
+      "origin": "emergent E96 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of actionable, grounded, pending, replay, ring, work in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "actionable",
+        "grounded",
+        "pending",
+        "replay",
+        "ring",
+        "work"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "actionable",
+            "grounded",
+            "pending",
+            "replay",
+            "ring",
+            "work"
+          ]
+        }
+      }
+    },
+    {
+      "id": 155,
+      "name": "User Sensing",
+      "origin": "emergent E98 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of user in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "user"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "user"
+          ]
+        }
+      }
+    },
+    {
+      "id": 156,
+      "name": "Critical-Catalog Sensing",
+      "origin": "emergent E100 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of critical, catalog, notable, session, sigterm, issues in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "critical",
+        "catalog",
+        "notable",
+        "session",
+        "sigterm",
+        "issues"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "critical",
+            "catalog",
+            "notable",
+            "session",
+            "sigterm",
+            "issues"
+          ]
+        }
+      }
+    },
+    {
+      "id": 157,
+      "name": "Monitoring-Pipeline Sensing",
+      "origin": "emergent E102 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of monitoring, pipeline, standard, bounds, market, within in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "monitoring",
+        "pipeline",
+        "standard",
+        "bounds",
+        "market",
+        "within"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "monitoring",
+            "pipeline",
+            "standard",
+            "bounds",
+            "market",
+            "within"
+          ]
+        }
+      }
+    },
+    {
+      "id": 158,
+      "name": "Alert-Below Sensing",
+      "origin": "emergent E104 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of alert, below, coil in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "alert",
+        "below",
+        "coil"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "alert",
+            "below",
+            "coil"
+          ]
+        }
+      }
+    },
+    {
+      "id": 159,
+      "name": "Flagged-Nominal Sensing",
+      "origin": "emergent E106 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of flagged, nominal, echoed in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "flagged",
+        "nominal",
+        "echoed"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "flagged",
+            "nominal",
+            "echoed"
+          ]
+        }
+      }
+    },
+    {
+      "id": 160,
+      "name": "Fractal-Scanner Sensing",
+      "origin": "emergent E108 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of fractal, scanner, short, swing, emas, live in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "fractal",
+        "scanner",
+        "short",
+        "swing",
+        "emas",
+        "live"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "fractal",
+            "scanner",
+            "short",
+            "swing",
+            "emas",
+            "live"
+          ]
+        }
+      }
+    },
+    {
+      "id": 161,
+      "name": "Continuity-Prioritize Sensing",
+      "origin": "emergent E110 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of continuity, prioritize, external, actions, secrets, agents in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "continuity",
+        "prioritize",
+        "external",
+        "actions",
+        "secrets",
+        "agents"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "continuity",
+            "prioritize",
+            "external",
+            "actions",
+            "secrets",
+            "agents"
+          ]
+        }
+      }
+    },
+    {
+      "id": 162,
+      "name": "Infrastructure-Escalation Sensing",
+      "origin": "emergent E112 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of infrastructure, escalation, immediate, cadence, needed, signal in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "infrastructure",
+        "escalation",
+        "immediate",
+        "cadence",
+        "needed",
+        "signal"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "infrastructure",
+            "escalation",
+            "immediate",
+            "cadence",
+            "needed",
+            "signal"
+          ]
+        }
+      }
+    },
+    {
+      "id": 163,
+      "name": "Consecutive-Derivation Sensing",
+      "origin": "emergent E114 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of consecutive, derivation, registered, delivery, telegram, channel in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "consecutive",
+        "derivation",
+        "registered",
+        "delivery",
+        "telegram",
+        "channel"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "consecutive",
+            "derivation",
+            "registered",
+            "delivery",
+            "telegram",
+            "channel"
+          ]
+        }
+      }
+    },
+    {
+      "id": 164,
+      "name": "Neutral-Status Sensing",
+      "origin": "emergent E116 (promoted after 1 recurrences)",
+      "function": "Detect and tag the presence of neutral, status, range, stack in input — a data-facing perceptual gap the existing senses did not cover.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [
+        "neutral",
+        "status",
+        "range",
+        "stack"
+      ],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "neutral",
+            "status",
+            "range",
+            "stack"
+          ]
+        }
+      }
+    },
+    {
+      "id": 165,
+      "name": "Syntax-Pattern Sensing",
+      "origin": "activated from emergent E119 (human-approved)",
+      "function": "Detect programming language, structural idioms, naming conventions, indentation style, and comment patterns in code inputs — a data-facing perceptual algorithm for recognizing code families and stylistic fingerprints.",
+      "category": "structural"
+    },
+    {
+      "id": 166,
+      "name": "Syntax-Pattern Sensing",
+      "origin": "activated from emergent E119 (human-approved)",
+      "function": "Detect programming language, structural idioms, naming conventions, indentation style, and comment patterns in code inputs — a data-facing perceptual algorithm for recognizing code families and stylistic fingerprints.",
+      "category": "structural"
+    },
+    {
+      "id": 167,
+      "name": "Code-Smell Sensing",
+      "origin": "activated from emergent E120 (human-approved)",
+      "function": "Detect code complexity hotspots, duplicated blocks, dead code, magic numbers, god functions, overly long methods, nested conditionals, and coupling red flags — a quality-integrity perceptual filter.",
+      "category": "integrity"
+    },
+    {
+      "id": 168,
+      "name": "Vulnerability Sensing",
+      "origin": "activated from emergent E121 (human-approved)",
+      "function": "Detect code injection surfaces, unsafe deserialization, missing input sanitization, auth gaps, hardcoded secrets, and common CWE patterns — a security-integrity perceptual screen for dangerous code patterns.",
+      "category": "integrity"
+    },
+    {
+      "id": 169,
+      "name": "Error-Signature Sensing",
+      "origin": "activated from emergent E122 (human-approved)",
+      "function": "Detect exception handling patterns, error return patterns, edge-case shapes, null-pointer paths, bounds errors, and failure-mode archetypes — a salience-aware perceptual filter for error-prone code regions.",
+      "category": "salience"
+    },
+    {
+      "id": 170,
+      "name": "Performance-Profile Sensing",
+      "origin": "activated from emergent E123 (human-approved)",
+      "function": "Detect quadratic patterns, nested loops over large data, redundant I/O calls, cache-unfriendly access patterns, tight loops, and N+1 query shapes — an insight-perceptual filter for performance-critical code.",
+      "category": "insight"
+    },
+    {
+      "id": 171,
+      "name": "Market-Pattern Sensing",
+      "origin": "activated from emergent E129 (human-approved)",
+      "function": "Detect trend structures, support/resistance levels, volume profiles, breakouts, reversals, consolidation patterns, and market microstructure — a structural perceptual filter for price action and market regime.",
+      "category": "structural"
+    },
+    {
+      "id": 172,
+      "name": "Risk-Factor Sensing",
+      "origin": "activated from emergent E130 (human-approved)",
+      "function": "Detect volatility regime shifts, drawdown risk escalation, correlation breakdowns, tail event precursors, black swan signals, and systemic risk indicators — an integrity-focused perceptual screen for portfolio danger.",
+      "category": "integrity"
+    },
+    {
+      "id": 173,
+      "name": "Portfolio-Health Sensing",
+      "origin": "activated from emergent E131 (human-approved)",
+      "function": "Detect position sizing anomalies, concentration risk, margin utilization, liquidity gaps, sector overlap, and allocation drift — a meta-aware perceptual filter for portfolio structure integrity.",
+      "category": "meta"
+    },
+    {
+      "id": 174,
+      "name": "Signal-Quality Sensing",
+      "origin": "activated from emergent E132 (human-approved)",
+      "function": "Detect signal-to-noise ratio, divergence between indicators, confirmation strength, false breakout shapes, fakeout patterns, and regime-appropriate indicator selection — a salience perceptual filter for signal reliability.",
+      "category": "salience"
+    },
+    {
+      "id": 175,
+      "name": "Macro-Context Sensing",
+      "origin": "activated from emergent E133 (human-approved)",
+      "function": "Detect central bank policy signals, inflation prints, employment data, geopolitical events, sector rotation, funding rates, and macro regime shifts — an insight perceptual filter for cross-asset context.",
+      "category": "insight"
+    },
+    {
+      "id": 176,
+      "name": "Cluster-Dream Sensing × Remaining-Unlabeled Sensing Fusion",
+      "origin": "emergent E139 (promoted after 1 recurrences)",
+      "function": "Fused faculty applying Cluster-Dream Sensing (Detect and tag the presence of cluster,…) together with Remaining-Unlabeled Sensing (Detect and tag the presence of remainin…) when an input requires both at once.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "fused",
+            "faculty",
+            "applying",
+            "cluster",
+            "dream",
+            "sensing"
+          ]
+        }
+      }
+    },
+    {
+      "id": 177,
+      "name": "Cluster-Dream Sensing × Cluster-Dream Sensing × Remaining-Unlabeled Sensing Fusion Fusion",
+      "origin": "emergent E140 (promoted after 1 recurrences)",
+      "function": "Fused faculty applying Cluster-Dream Sensing (Detect and tag the presence of cluster,…) together with Cluster-Dream Sensing × Remaining-Unlabeled Sensing Fusion (Fused faculty applying Cluster-Dream Se…) when an input requires both at once.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "fused",
+            "faculty",
+            "applying",
+            "cluster",
+            "dream",
+            "sensing"
+          ]
+        }
+      }
+    },
+    {
+      "id": 178,
+      "name": "Remaining-Unlabeled Sensing × Cluster-Dream Sensing Fusion",
+      "origin": "emergent E142 (promoted after 1 recurrences)",
+      "function": "Fused faculty applying Remaining-Unlabeled Sensing (Detect and tag the presence of remainin…) together with Cluster-Dream Sensing (Detect and tag the presence of cluster,…) when an input requires both at once.",
+      "category": "structural",
+      "orientation": "data-facing perceptual/relation algorithm: a way to sense structure, dissonance, associations, first-principle links, and meaning inside data",
+      "seed_terms": [],
+      "effect": {
+        "type": "op",
+        "spec": {
+          "primitive": "markers",
+          "terms": [
+            "fused",
+            "faculty",
+            "applying",
+            "remaining",
+            "unlabeled",
+            "sensing"
+          ]
+        }
+      }
+    }
+  ]
+}

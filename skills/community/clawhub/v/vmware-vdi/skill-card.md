@@ -1,6 +1,6 @@
 ## Description:
 
-Operates VMware and Omnissa Horizon VDI environments by inspecting and managing desktop pools, farms, sessions, machines, entitlements, health, and instant-clone images.
+Operates VMware/Omnissa Horizon VDI environments through the Connection Server to monitor and manage pools, farms, sessions, desktops, entitlements, events, health, and instant-clone images.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-VDI administrators and help-desk teams use this skill to monitor Horizon health and manage desktop pools, sessions, machines, entitlements, and image rollouts through a Connection Server.
+VDI administrators and help-desk operators use this skill to inspect Horizon health, pools, sessions, and entitlements, and to manage desktops or publish images with a preview of the affected users and resources.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,44 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: TLS troubleshooting guidance includes disabling certificate checks, which could expose credentials or sensitive session data to interception.
+Risk: Some write actions can disrupt users, and pushing an image recreates every desktop in the pool.
 
-Mitigation: Keep TLS verification enabled. Use disabled verification only for self-signed lab certificates where credential and session data are not at risk.
+Mitigation: Review the write preview and blast radius, then confirm only after the affected users and resources are understood.
 
-Risk: The security scan is incomplete because two local references were unresolved.
+Risk: After a write timeout or gateway error, the change may already have completed; retrying immediately can repeat the action.
 
-Mitigation: Resolve and review the missing references before relying on the scan assessment.
+Mitigation: Inspect the Horizon target state before retrying a write.
+
+Risk: The scanner rated the release benign with medium confidence but marked analysis partial because two local references could not be resolved.
+
+Mitigation: Review the setup option and the unresolved references if they affect your use.
+
+Risk: The setup guide says the locally stored password is obfuscated rather than encrypted.
+
+Mitigation: Inject the password from a secret manager when stronger credential protection is needed.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/zw008/skills/vmware-vdi)
-- [Source repository (listed in skill documentation)](https://github.com/vmware-skills/VMware-VDI)
-- [Capabilities reference](artifact/references/capabilities.md)
-- [CLI reference](artifact/references/cli-reference.md)
-- [Setup guide](artifact/references/setup-guide.md)
-- [VMware AIOps companion skill](https://github.com/vmware-skills/VMware-AIops)
-- [VMware Monitor companion skill](https://github.com/vmware-skills/VMware-Monitor)
-- [VMware NSX Security companion skill](https://github.com/vmware-skills/VMware-NSX-Security)
+- [Setup Guide](artifact/references/setup-guide.md)
+- [Capabilities](artifact/references/capabilities.md)
+- [CLI Reference](artifact/references/cli-reference.md)
+- [MCP Result Contract](artifact/references/mcp-result-contract.md)
+- [Project repository (listed in the skill documentation)](https://github.com/vmware-skills/VMware-VDI)
+- [PyPI package](https://pypi.org/project/vmware-vdi/)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+**Output Type(s):** [Text, JSON, Operational guidance, Shell commands, Configuration instructions]
 
-**Output Format:** [Text and structured MCP responses with command examples]
+**Output Format:** [Natural-language guidance and structured Horizon results from CLI or MCP calls]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include read results, operational previews, or confirmed Horizon actions.]
+**Other Properties Related to Output:** [May include status data, write previews, and blast-radius details; write actions use confirmation gates.]
 
 ## Skill Version(s):
 
-2.4.5 (source: server-resolved release metadata)
+2.4.6 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

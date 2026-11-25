@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""pdf-fonts-fixer · detect —— PDF 字体体检（交付前门禁）
+"""pdf-font-fixer · detect —— PDF 字体体检（交付前门禁）
 
 用途
 ----
@@ -37,6 +37,10 @@ import io
 import json
 import os
 import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _deps          # 持久依赖：环境重置后自动从持久目录补齐
+_deps.activate()
 
 try:
     import pymupdf
@@ -121,10 +125,27 @@ def inspect_pdf(path, deep=False):
 
     bad = [f for f in fonts if f['risk'] == RISK_BAD]
     warn = [f for f in fonts if f['risk'] in (RISK_WARN, RISK_INFO)]
+
+    # ---- 第二道体检：字体字典结构（渲染正常但打印机拒收的那一类）----
+    # 典型：简单 TrueType 被标 Symbolic + 单字节伪编码 + 缺 /Encoding
+    struct = dict(fonts=[], issues=[], bad=[], verdict='pass', page={})
+    try:
+        import structcheck
+        struct = structcheck.inspect_structure(path)
+    except Exception as e:
+        struct = dict(fonts=[], issues=[], bad=[], verdict='pass', page={},
+                      skipped='结构校验跳过：%s' % str(e)[:80])
+
+    if bad or struct.get('bad'):
+        _verdict = 'fail'
+    elif struct.get('skipped'):
+        _verdict = 'incomplete'   # 结构关没跑成，不能当通过
+    else:
+        _verdict = 'pass'
     out = dict(path=path, pages=doc.page_count,
                size_mb=_filesize_mb(os.path.getsize(path)),
-               fonts=fonts, bad=bad, warn=warn,
-               verdict='fail' if bad else 'pass')
+               fonts=fonts, bad=bad, warn=warn, struct=struct,
+               verdict=_verdict)
     doc.close()
     return out
 
@@ -195,6 +216,7 @@ def _check_charset(doc, xref, path=None):
 
 
 def report(res, quiet=False):
+    st = res.get('struct') or {}
     if not quiet:
         print('\n文件：%s（%.2f MB，%d 页）' % (res['path'], res['size_mb'], res['pages']))
         if not res['fonts']:
@@ -215,10 +237,32 @@ def report(res, quiet=False):
             for fl in flavors:
                 if fl in HINT:
                     print('     修法：%s' % HINT[fl])
+
+        # 第二道体检：字体字典结构（渲染正常、打印机却拒收的那一类）
+        st_issues = st.get('issues') or []
+        if st_issues:
+            print('\n  字体字典结构：')
+            for i in st_issues:
+                icon = {'bad': '❌', 'warn': '⚠️', 'info': 'ℹ️'}[i['level']]
+                owner = ('  ← %s' % i['font']) if i.get('font') else ''
+                print('   %s %s%s' % (icon, i['msg'], owner))
+        if st.get('skipped'):
+            print('\n  ℹ️ %s' % st['skipped'])
+
+    n_font = len(res['bad'])
+    n_struct = len(st.get('bad') or [])
     if res['verdict'] == 'pass':
-        print('\n✅ 通过：所有字体都是全平台可渲染的格式。')
+        print('\n✅ 通过：字体轮廓格式与字典结构均正常（既能渲染，也能被打印机 RIP 解析）。')
     else:
-        print('\n❌ 不通过：发现 %d 个风险字体，必须修复后再交付。' % len(res['bad']))
+        reasons = []
+        if n_font:
+            reasons.append('%d 个风险字体' % n_font)
+        if n_struct:
+            reasons.append('%d 项字体字典结构异常' % n_struct)
+        print('\n❌ 不通过：%s，必须修复后再交付。' % '、'.join(reasons))
+        if n_struct:
+            print('   （结构异常的文件在电脑上看着正常，但佳能/惠普等打印机可能直接拒收，')
+            print('    报错常是「未导入太大的图像或格式不受支持的文件」——与图像无关。）')
         print('   修复：python3 scripts/fix.py %s' % res['path'])
 
 

@@ -6,13 +6,13 @@ Query, select, parse, save, update and delete products, supplying real inputs fo
 
 | Goal | Operation |
 | --- | --- |
-| Browse my products or search by name | [list_products](../api/list_products.md), following actual pagination |
-| Inspect or use a product | [get_product](../api/get_product.md) for detail |
-| Analyze or preview a link only | [parse_products](../api/parse_products.md), without saving |
-| Add supplied facts manually | [create_product](../api/create_product.md) |
-| Import one or more links | Parse, then [batch_create_products](../api/batch_create_products.md) for selected successful entries |
-| Update product information | Read detail first, then [update_product](../api/update_product.md) |
-| Explicitly delete an identified product | [delete_product](../api/delete_product.md); never automatically clean up candidates |
+| Browse my products or search by name | [list_products](../api/products.md#list-products), following actual pagination |
+| Inspect or use a product | [get_product](../api/products.md#get-product) for detail |
+| Analyze or preview a link only | [parse_products](../api/products.md#parse-products), without saving |
+| Add supplied facts manually | [create_product](../api/products.md#create-product) |
+| Import one or more links | Parse, then [batch_create_products](../api/products.md#batch-create-products) for selected successful entries |
+| Update product information | Read detail first, then [update_product](../api/products.md#update-product) |
+| Explicitly delete an identified product | [delete_product](../api/products.md#delete-product); never automatically clean up candidates |
 
 Pages start at page=0. Use content, total_elements, total_pages, number and size for the actual scope. Resolve duplicate names using real IDs, images, sources and variants. Display numbers are not API IDs. Keep platform IDs as strings; third-party IDs/ASINs cannot replace them. Lists are summaries: read selected detail before production. Returned count does not prove an account-wide inventory.
 

@@ -2,6 +2,10 @@
 
 Start from the user's current topic, script, original audio, or existing performance, and deliver the requested script or video. Digital humans are one production option; preserve an existing human performance when only postproduction is needed.
 
+For switching between original speech, narration, avatar footage, and library B-roll, use [Agent semantic mixcut](semantic-mixcut.md) with cloud editing by default. Arrange picture and speech separately so the same voice continues across B-roll. Generate only missing performance. Segment-level source-sound, narration, or music control requires clean speech and separate supporting tracks; this takes precedence over the combined-audio default for a single talking-head clip.
+
+For existing talking-head footage, audio or supporting visuals, use [material reuse](../resources/materials.md) to restore adopted assets and find inserts matching the speech. Changes to supporting visuals retain the main footage and voice. Audio detail can supply audio_url, but image/video material IDs cannot replace digital_human_id. Sufficient direct-drive inputs need no search.
+
 ## Enter from the available input
 
 - Topic only: establish the message and voice, then check audio/avatar/final-assembly dependencies.
@@ -13,6 +17,20 @@ Start from the user's current topic, script, original audio, or existing perform
 - Avatar tryout without a selection: query existing [digital humans](../resources/digital-humans.md), show all returned entries and available previews with recommendations marked, or choose within existing delegated permission. Bind the selected original record's name, ID, and cover. A tryout does not imply cloning.
 
 Upload is a necessary step already implied by an instruction to use a local audio file to drive an avatar. Use the supported Vibbit transfer path; a local path cannot be `audio_url`. If upload fails, retain the original and selected avatar instead of generating substitute speech.
+
+## Material reuse for avatar-only and avatar-with-B-roll videos
+
+The material library also supports avatar-only videos without requiring the mixcut workflow. Reuse adopted inputs first. When discovery is needed, follow [material reuse](../resources/materials.md): detail for a selected ID, batch lookup for saved references, type/name/group listing for audio/video, and optional content search. Verify account, actual media, and its current role before reuse or generation. Valid audio URL plus avatar ID can drive video directly without another library query.
+
+| Goal | Library use |
+| --- | --- |
+| Avatar-only with existing speech | Read the audio material's actual accessible URL, verify adopted content/voice, and pass it as audio_url with a real digital_human_id; skip duplicate speech generation and upload |
+| New lines in an existing vocal style | Use selected audio as a real [audio-generation](../capabilities/generation/audio-generation.md) reference and generate the current script; old speech is not the new script, and a reference does not create a clone or guarantee identical voice |
+| Reuse an existing avatar video | Retrieve it and check identity, speech, sound, and selected interval; deliver or apply only needed postproduction when it fits. Changed lines require updated sound and lip sync, not new audio pasted onto old mouth movements |
+| Avatar with B-roll | Keep adopted performance/speech, find library image/video inserts, align source intervals to actual speech/actions, and assemble in cloud by default. Generate only missing media without regenerating unchanged avatar or narration |
+| Existing music or effects | Select suitable audio materials as separate supporting tracks for cloud assembly. Adopted music takes precedence over the default combined-audio design, avoiding duplicate music in both performance and postproduction |
+
+Avatar-only means the picture stays on the speaker; do not add B-roll automatically. Music/effects still follow the sound requirements. Avatar selection uses a real digital_human_id or the avatar list; image, video, and audio material_ids cannot substitute for it. To drive a new avatar from a video's sound, first obtain a real accessible audio file meeting the API requirements; a video URL is not audio_url.
 
 ## Identity and expression
 
@@ -30,13 +48,13 @@ Wait for actual completed audio and adopt it before avatar generation; resolve k
 
 Save each actual task ID and query the original job after a timeout. Do not replace video generation with project initialization or a project-page URL. Browser operation is appropriate only when the user actually requests it. This workflow delivers video, not an automatically saved editable platform project.
 
-Current avatar input is audio URL plus avatar ID; creative wardrobe, scene, camera, expression, and gesture directions are not exposed controls. [Role strategy](../platforms/meta/role-play.md) is optional for a new Meta creator concept, not a prerequisite for driving an existing avatar.
+Current avatar input is audio URL plus avatar ID; creative wardrobe, scene, camera, expression, and gesture directions are not exposed controls. [Role strategy](../platforms/meta/role-play.md#role-play) is optional for a new Meta creator concept, not a prerequisite for driving an existing avatar.
 
 ## Full video and focused changes
 
 For B-roll, charts, editing, or templates, treat the completed performance as real input to [hybrid production](hybrid-video.md). Reuse audio and avatar output when only postproduction changes. Download remote media only when a local project needs it.
 
-Ordinary captions use [correction and segmentation](../capabilities/processing/subtitle-addition.md) with real segment times. Segment-level B-roll can share that timeline. Only word-specific graphics/highlighting use [semantic timing](../creation/script-and-timing.md) and real word evidence; segment ASR cannot be evenly split into exact words. Repeated revisions may use [production planning](../contracts/production-plan.md).
+Ordinary captions use [correction and segmentation](../capabilities/processing/subtitles-and-packaging.md#subtitle-addition) with real segment times. Segment-level B-roll can share that timeline. Only word-specific graphics/highlighting use [semantic timing](../creation/script-and-timing.md) and real word evidence; segment ASR cannot be evenly split into exact words. Repeated revisions may use [production planning](../contracts/production-plan.md).
 
 ## Avoid repeating work
 

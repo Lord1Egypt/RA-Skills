@@ -8,6 +8,9 @@
 | 用户决定又变成待批准 | 核对授权来源与适用范围；旧文档未同步不撤销新决定。 |
 | 不同来源冲突 | 按议题核对权威、版本和授权；记录冲突，不能按文件名新旧自动选。 |
 | 指标或权限缺口 | 保持未定，只阻断依赖项；不要借保守默认决定业务政策。 |
+| YAML 元数据报错 | 按报错文件和行列修括号、引号、缩进或分隔线；尚未检查业务内容，不为语法错误补需求。 |
+| Gate 返回 GATE-INPUT-FORMAT / ENCODING / READ | 这是输入错误，内容尚未检查；JSON 保留 BLOCKED、assessment.kind=input_error、对象路径与恢复方法，退出码为2。保留 Word/PDF 等原件，另存 UTF-8 文本投影，按原件核对图表与排版；不要改扩展名或忽略解码错误来绕过。修正输入后重跑。 |
+| 文件或依赖缺失 | 使用本次输出的绝对路径和当前 Python 解释器命令；确认输入存在后重跑，未读取不能称检查完成。 |
 | Gate 报 GAP | 看具体 ref 和未证明事项；可能是定位/证据不足，不能一律理解为业务缺失。 |
 | 局部 gate 被其他模块影响 | 使用 scope-ref；明确归属的正文发现可排除，无归属疑点仍待核实。不要通过删内容或降低等级隐藏缺口。 |
 | 语义评阅显示 pass | 脚本只检查范围、版本与引用声明；仍需实际读取证据，不能证明签署者身份或全部业务正确。 |
@@ -19,7 +22,15 @@
 | 模板校验不过 | 模板含占位符，本来不是项目事实；只填实际已知且当前目标必要的字段。 |
 | 任务中断 | 从最新产物/检查点核实版本，保留未完成范围，继续当前目标。 |
 
+进阶内容按问题进入：[业务判断与未知](discover.md)、[团队模板与设计原件](team-customization.md)、[评审抽屉与图示](review-workspace.md)、[变更与验收证据](change-acceptance.md)、[工具及输入示例](stages.md)。普通任务无需全部阅读。
+
 ## 命令边界
+
+`--scope-ref` 仅限制已明确归属的未知/审查，不过滤无归属风险。静态 PASS 只说明指定声明未发现阻断；GAP与未执行证据保留，不代表业务/浏览器/客户验收。
+
+阶段名称由同一词表识别。`prototype`、`change` 是活动，不自动排在其他阶段前后；未知项阻断这些活动时按本次实际依赖判断，不确定保留 GAP。路由工具支持的目标子集见 `route-stage --help`。
+
+`metrics.unknown_summary` 按范围/阶段去重；旧 `summary.p0_unknowns` 只计同名诊断。兼容入口复用当前内核；无归属疑点仍为GAP，不是已核实阻断或覆盖。
 
 优先看实际工具帮助，不照搬旧版退出码：
 
@@ -48,3 +59,38 @@ UNK 表支持 `| ID | 状态 | 关闭依据 |`：`UNK-X | closed | DEC-X`；粗�
 5.4.x 工件保留已批准业务事实。新版本不保证旧标题门禁、旧 triage 结果键或逐阶段脚手架的行为兼容。调用专业评审/Truth/handoff 时保留实际 Schema 版本，不把版本号改成 5.5.0 就当作完成迁移。
 
 高级 Schema 的结构通过不证明运行效果。外部链接存在、文件哈希匹配和签名字段完整也不能替代实际业务授权。详见 [当前工具](stages.md)、[变更与验收](change-acceptance.md)。
+
+## 契约样例校验
+
+已有机器契约需联调时，按需执行 `python scripts/ai_delivery_spec_cli.py check-examples --input cases.yaml --format json`。复用权威Schema及正反样例，核对拒绝原因；不自动加入PRD gate。输入直接引用同目录的现有 JSON Schema 与正反例；退出码 0=符合预期，1=与预期不符，2=输入/校验环境无效。它不证明自然语言一致性或运行行为，工具失败不能当合法拒绝。
+
+示例 `cases.yaml`（只有机器契约联调需要，不是 PRD 必填项）：
+
+```yaml
+contracts:
+  - id: name-required
+    schema: schema.json
+    cases:
+      - {id: valid-name, instance: valid.json, valid: true}
+      - id: missing-name
+        instance: invalid.json
+        valid: false
+        error: {keyword: required, instance_path: ""}
+```
+
+`schema.json` 声明 JSON Schema 2020-12、对象类型及必填 `name`；`valid.json` 为 `{"name":"工单"}`，`invalid.json` 为 `{}`。负例因指定约束被拒绝才算通过，读不到文件不算。路径在输入目录内解析，不访问远程 Schema。
+
+## 原型机器锚点与诊断
+
+| 属性 | 机器约定 |
+|---|---|
+| `data-action` | `ACT-<DOMAIN>-<NAME>`；纯界面用 `UIACT-*`，评审用 `UIACT-REVIEW-*`；后缀仅字母、数字、连字符，禁止下划线 |
+| `data-testid` | 页面 `page-VIEW-*`，浮层 `modal-MODAL-*` / `drawer-DRAWER-*`，区域 `region-REG-*`；稳定且当前 DOM 唯一 |
+| `data-metric` | `METRIC-*` 按业务含义分配；重复展示须同口径和 `data-metric-label` |
+
+```powershell
+python scripts/ai_delivery_spec_cli.py gate --profile prototype --prototype review.html --prd PRD.md --stage specify --require-review-workspace --format json --diagnostics full
+python scripts/scan_prototype_css.py app.html
+```
+
+正式评审带 `--require-review-workspace` 和实际基线。R*表示评审方式，旧L0–L4不决定篇幅或风险。无IA侧车仅表示未查。机器交接见 [context.md](context.md)。

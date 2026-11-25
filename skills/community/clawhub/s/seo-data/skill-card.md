@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-SEO practitioners and developers use the skill to retrieve search, keyword, competitor, backlink, page-audit, AI visibility, and technology data for research and recurring SEO workflows.
+SEO practitioners, marketers, and developers use this skill to research search rankings, keywords, backlinks, page health, AI answer visibility, and website technologies for a domain or query.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill sends requests to an external SEO data service and uses an API key.
+Risk: The skill uses an external SEO data API and an API key; ClawScan rated it benign with medium confidence, but the scan was partial because two local references could not be resolved.
 
-Mitigation: Use the service only if you trust it, and keep the API key protected.
-
-Risk: API request costs can increase with call volume and returned rows.
-
-Mitigation: Use deliberate result limits and review the service's per-call costs before scaling requests.
+Mitigation: Review the provider documentation and unresolved local references, and use the API key only if comfortable providing it to the service. Check per-call pricing and usage before running larger queries.
 
 ## Reference(s):
 
 - [SEO Data documentation](https://superagnt.com/r/ch-seo-data-docs)
-- [MCP installation guide](https://www.superagnt.com/install?facet=seo)
-- [superagnt app and API keys](https://superagnt.com/r/ch-seo-data-key)
+- [SEO Data MCP server](https://mcp.superagnt.com/mcp/seo)
+- [SEO Data setup](https://www.superagnt.com/install?facet=seo)
+- [API key and credits](https://superagnt.com/r/ch-seo-data-key)
 - [ClawHub listing](https://clawhub.ai/superagnt/skills/seo-data)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Markdown, Text]
+**Output Type(s):** [JSON, Markdown, Analysis]
 
-**Output Format:** [Structured SEO data and summaries in JSON, Markdown, or text]
+**Output Format:** [Structured SEO results in JSON, with Markdown or text summaries as needed]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Live external data; requests are priced per call, with some costs scaling by returned rows.]
+**Other Properties Related to Output:** [Results vary by SEO query and selected fields or row limits.]
 
 ## Skill Version(s):
 
-2.0.14 (source: frontmatter)
+2.0.19 (source: frontmatter)
 
 ## Ethical Considerations:
 

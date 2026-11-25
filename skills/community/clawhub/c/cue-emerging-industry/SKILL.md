@@ -1,5 +1,6 @@
 ---
 name: cue-emerging-industry
+displayName: 新兴产业研究
 description: 用 Cue 一键梳理陌生赛道的行业天花板、竞争格局与核心商业模式——面对新兴产业快速建立认知框架，同时映射 IPO/并购中常见的合规风险与法律争议点。
 description_zh: Cue 新兴产业研究：一键梳理赛道天花板/竞争格局/商业模式，映射IPO/并购合规风险。
 version: 1.1.4
@@ -95,6 +96,7 @@ https://cuecue.cn/share/<conv_id>
 ---
 **Cue 原始报告**：https://cuecue.cn/share/<conv_id>
 **本地副本**：~/cue-reports/<文件名>.md
+如有疑问请关注“感易Cue”官方服务号添加企微客服咨询
 ```
 
 规则：

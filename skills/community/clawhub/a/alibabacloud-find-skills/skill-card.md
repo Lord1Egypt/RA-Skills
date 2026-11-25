@@ -1,6 +1,6 @@
 ## Description:
 
-Helps agents search, browse, inspect, and when requested install Alibaba Cloud agent skills from the AgentExplorer catalog.
+Search and browse Alibaba Cloud agent skills, inspect skill details, and guide installation when requested.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agent users use this skill to discover Alibaba Cloud skills by intent, keyword, or category, inspect matching skill details, and receive installation guidance only when they explicitly request installation.
+Developers and cloud users can find Alibaba Cloud skills by task or product, browse categories, inspect skill details, and install a selected skill when they ask.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search queries may expose secrets, customer names, access keys, incident details, or internal identifiers.
+Risk: The security review flags installation beyond the stated request, broad activation phrases, privacy gaps in external searches, and unpinned installer packages; some references were unresolved, so the review is incomplete.
 
-Mitigation: Sanitize search phrases before use and avoid placing sensitive or private identifiers in AgentExplorer queries.
-
-Risk: The documented installation path can add agent skills globally through unpinned npx commands while skipping confirmation.
-
-Mitigation: Review selected skills before installation, prefer pinned and project-local installs, and use global non-interactive installation only when a persistent global agent change is intended.
+Mitigation: Consider avoiding installation until the author clarifies when installation can occur, what data searches send to Alibaba Cloud, and how installer versions can be pinned.
 
 ## Reference(s):
 
-- [ClawHub Skill Page](https://clawhub.ai/sdk-team/skills/alibabacloud-find-skills)
-- [AgentExplorer API Base URL](https://agentexplorer.aliyuncs.com)
-- [AgentExplorer HTTP API Reference](references/agentexplorer-api.md)
-- [Search Examples](references/search-examples.md)
-- [Category Examples](references/category-examples.md)
-- [Verification Methods](references/verification-method.md)
-- [Curl Shell Compatibility Guide](references/curl-shell-compatibility.md)
-- [Supported Agent Values for npx skills add](references/npx-skills-agents.md)
-- [Acceptance Criteria](references/acceptance-criteria.md)
+- [ClawHub release page](https://clawhub.ai/sdk-team/skills/alibabacloud-find-skills)
+- [AgentExplorer HTTP API reference](references/agentexplorer-api.md)
+- [Verification methods](references/verification-method.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+**Output Type(s):** [text, markdown, shell commands]
 
-**Output Format:** [Markdown with result summaries, tables, and inline shell commands]
+**Output Format:** [Markdown summaries and tables with shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include AgentExplorer API request shapes, selected skill details, and installation commands when installation is requested.]
+**Other Properties Related to Output:** [Search results are summarized for the user's requested task; installation guidance is provided only when requested.]
 
 ## Skill Version(s):
 
-0.0.10 (source: server release metadata and changelog)
+0.0.16 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

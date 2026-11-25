@@ -1,6 +1,6 @@
 ## Description:
 
-Helps teams prepare meeting agendas and turn meeting notes or transcripts into structured summaries, decisions, action items, and follow-up drafts.
+Helps turn meeting materials into drafts of agendas, summaries, action items, follow-ups, and decision records.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Employees and teams use this skill to prepare agendas and turn meeting notes or transcripts into summaries, decision logs, action items, and follow-up drafts.
+Project managers, executives, and distributed teams can use the skill to prepare meeting agendas and turn meeting notes or transcripts into reviewable summaries, decisions, and action-item drafts.
 
 ### Deployment Geography for Use:
 
@@ -22,44 +22,40 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Meeting notes and transcripts can contain personal, confidential, or regulated information.
+Risk: Scan evidence is incomplete because a local reference could not be resolved, despite a benign verdict with medium confidence.
 
-Mitigation: Minimize and de-identify content before processing; keep legally or regulatorily sensitive material local unless an approved assessment permits third-party processing.
+Mitigation: Review the skill and its referenced materials before installation; treat the scan result as reassuring but not conclusive.
 
-Risk: Recording or transcribing without participant consent may violate policy or local requirements.
+Risk: Meeting materials may contain personal, customer, financial, health, or other confidential information.
 
-Mitigation: Confirm participant consent and the organization's policy before recording or enabling transcription.
+Mitigation: Share only the information needed for the task, redact sensitive identifiers, and keep legally or regulatorily sensitive material local unless third-party processing is approved.
 
-Risk: AI-generated summaries may omit or misstate details, especially where legal, financial, or regulatory decisions depend on the record.
+Risk: Recording or transcribing without participant consent may conflict with applicable law or organizational policy.
 
-Mitigation: Have an authorized person review the draft against the meeting source and use the approved minutes as the authoritative record.
+Mitigation: Confirm participant consent and organizational policy before recording or enabling transcription.
 
-Risk: Saving drafts, sending follow-ups, or updating trackers can expose unreviewed sensitive content or create unintended commitments.
+Risk: Draft summaries or analyses may omit context or be inaccurate when used as formal legal, financial, or regulatory records.
 
-Mitigation: Preview the complete draft, identify sensitive content, and obtain explicit confirmation for each save or send action.
-
-Risk: The benign security assessment has medium confidence because one reference check was incomplete.
-
-Mitigation: Review the unresolved reference before relying on the assessment or installing the skill.
+Mitigation: Have a responsible person review drafts; rely on approved records for formal decisions, and explicitly confirm before saving or sending any draft.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/gechengling/skills/ai-meeting-intelligence)
-- [Publisher profile](https://clawhub.ai/user/gechengling)
+- [AI Meeting Intelligence Expert on ClawHub](https://clawhub.ai/gechengling/skills/ai-meeting-intelligence)
+- [Publisher profile: gechengling](https://clawhub.ai/user/gechengling)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
 
-**Output Format:** [Structured text and Markdown]
+**Output Format:** [Structured text and Markdown, including agenda, summary, decision-log, and action-item drafts]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Draft meeting artefacts for human review; no direct meeting access or external actions.]
+**Other Properties Related to Output:** [Drafts for user review; no meeting recording, external sending, or system updates are performed by the skill.]
 
 ## Skill Version(s):
 
-1.0.4 (source: frontmatter)
+1.0.5 (source: frontmatter; release evidence agrees)
 
 ## Ethical Considerations:
 

@@ -1,40 +1,57 @@
-## Description: <br>
-Validates migration SQL, analyzes index health, and applies pending schema migrations to the target database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validates migration SQL, analyzes index health, and applies pending schema migrations to the target database.
 
-## Publisher: <br>
-[ink5725](https://clawhub.ai/user/ink5725) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ink5725](https://clawhub.ai/user/ink5725)
 
-## Use Case: <br>
-Developers and database maintainers use this skill to validate pending SQLite migration files, inspect index health, and apply schema migrations to a target database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify a live database schema by writing and executing index-drop migrations. <br>
-Mitigation: Require an explicit dry run, confirm the target database, and review the generated SQL before any migration is executed. <br>
-Risk: The security review notes weak safeguards and behavior that does not fully match the skill description. <br>
-Mitigation: Audit and modify the script before installation, and remove automatic DROP INDEX execution unless a human has approved the exact migration. <br>
+## Use Case:
 
+Developers and engineers use this skill to validate pending SQLite migration files, inspect index health, and apply schema migrations for an application database.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ink5725/schema-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Shell commands] <br>
-**Output Format:** [JSON status report, with a generated SQL migration file when redundant indexes are found] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write and execute a cleanup migration named 003_drop_redundant_indexes.sql.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can automatically write cleanup migrations and drop indexes in the target database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on disposable or backed-up databases until cleanup generation and execution require explicit approval.
+
+Risk: Migration validation is performed against the configured database connection.
+
+Mitigation: Validate migrations in an isolated database before connecting the skill to production or shared data.
+
+Risk: Generated SQL uses discovered index names in DROP INDEX statements.
+
+Mitigation: Quote SQL identifiers safely and review generated migration files before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ink5725/skills/schema-manager)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, code, shell commands]
+
+**Output Format:** [JSON status output with generated SQL migration files when cleanup is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write cleanup migration files and execute database changes against the configured SQLite database.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

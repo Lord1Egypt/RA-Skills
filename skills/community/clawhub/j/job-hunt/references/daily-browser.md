@@ -33,13 +33,25 @@ OpenCLI capability diagnosis first, following
    `chrome://inspect/#remote-debugging` and accepts Chrome's connection prompt.
    Start `python scripts/run_tool.py browser-session start` once and wait for
    consent; use `browser-session status` instead of repeated starts while waiting.
+   In WorkBuddy, run that command in its own Bash call with
+   `run_in_background: true`; it serves the session and does not exit. Keep the
+   returned Bash task running while using the browser. If the call ran in the
+   foreground, WorkBuddy moves it to the background at its timeout and the
+   session stays up: check `browser-session status` and continue, without
+   `stop`, `reset` or another `start`. Its sandbox authorization is bound to
+   that task; shell detachment via `&` or `nohup` loses it when the call exits.
    Startup briefly waits for an already authorized handshake. If it still reports
    `waiting_for_consent`, check status once before asking the user to find a prompt;
    an updated `connected` state needs no further manual action.
-   A missing or stale endpoint, a disconnected session, or an expired consent
-   request must be handed back with the command's setup guidance. Keep failed
-   starts distinct from `waiting_for_consent`; never report them as connected.
-   OpenCLI and fallback captures reuse this connection. Close it with
+   If the connection drops, the Bash task ends, or consent expires, stop
+   browser work and report the failure. When the user asks to resume in a new
+   WorkBuddy chat, run `browser-session reset` before starting one new session.
+   A WorkBuddy chat cannot reset a session it started, even after a clean stop.
+   An ended session from an older install without a chat ID can be reset from
+   the user's terminal. Keep `stop`, `reset` and `start` outside site and job
+   retry loops.
+   Run OpenCLI (including `auth status`) and fallback captures through
+   `run_tool.py` so they reuse this connection. Close it with
    `browser-session stop` at the end. Idle sessions expire after 30 minutes;
    browser restarts or disconnections require a new explicit start and consent.
    The service listens only on loopback, uses a random private endpoint, and

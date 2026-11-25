@@ -188,6 +188,7 @@ https://cuecue.cn/share/<conv_id>
 **Cue 原始报告**：https://cuecue.cn/share/<conv_id>
 **本地副本**：~/cue-reports/<文件名>.md
 **cue剩余积分 <N>**
+如有疑问请关注“感易Cue”官方服务号添加企微客服咨询
 ```
 
 规则：

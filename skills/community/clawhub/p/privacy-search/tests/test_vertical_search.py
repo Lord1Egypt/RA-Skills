@@ -69,7 +69,12 @@ class TestVerticalRanking(unittest.TestCase):
 
     def test_apply_ranking_with_results(self):
         from vertical_search import apply_vertical_ranking
-        results = [_make_result(score=1.0), _make_result(score=3.0), _make_result(score=2.0)]
+        # rank_results 内部按 URL 聚合，3 条结果需不同 URL 才不会被去重
+        results = [
+            _make_result(url="https://a.com", score=1.0),
+            _make_result(url="https://b.com", score=3.0),
+            _make_result(url="https://c.com", score=2.0),
+        ]
         ranked = apply_vertical_ranking(results, "news")
         self.assertEqual(len(ranked), 3)
 

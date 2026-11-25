@@ -1,6 +1,6 @@
 ## Description:
 
-Turn a comic panel, character sheet, webtoon frame, or frozen story beat into one dynamic comic-drama shot.
+Turns an approved comic image or story beat into a short animated comic shot, with routes for animating a panel, interpolating panels, combining references, or creating an original first frame.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Comic creators and artists use this skill to turn approved panels or visual references into short animated comic-drama shots, then review each shot for identity and art-style consistency.
+External comic, manga, and webtoon creators use the skill to turn an approved visual source or story beat into a short animated shot, then review the generated result for visual consistency.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: This version uses broad shared Beatra account authorization beyond the workflow's needs.
+Risk: The security evidence marks the release suspicious, citing runtime analytics, broad authorization, and external data transfers; the scan is partial and does not establish malicious intent.
 
-Mitigation: Prefer a release with workflow-specific permissions and review the requested authorization before connecting.
+Mitigation: Review the reported concerns and authorization scope before use, and avoid installing the skill if its reported collection or transfers are unacceptable.
 
-Risk: Chosen artwork is uploaded, and recurring installation analytics are sent.
+Risk: Selected comic images are uploaded for remote processing.
 
-Mitigation: Upload only artwork you are permitted to share, and review Beatra's privacy disclosures before installing.
-
-Risk: Removing this version with damaged installation records could disconnect other Beatra skills.
-
-Mitigation: Prefer a release with corrected uninstall checks, and avoid removing this version while shared installation records are damaged.
+Mitigation: Inspect each image before upload and use only artwork that is appropriate to send to the service.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/beatra-ai/skills/ai-comic-drama-shot-maker)
+- [ClawHub release page](https://clawhub.ai/beatra-ai/skills/ai-comic-drama-shot-maker)
+- [Beatra skill page](https://beatra.ai/skills/ai-comic-drama-shot-maker)
 
 ## Skill Output:
 
-**Output Type(s):** [Video files, Text]
+**Output Type(s):** [Video, Text, Guidance]
 
-**Output Format:** [Short generated comic-drama clips with text task and result details]
+**Output Format:** [Short animated comic-drama video with task details and review guidance]
 
 **Output Parameters:** [1D (one shot per request)]
 
-**Other Properties Related to Output:** [Each shot is reviewed independently; video generation consumes credits.]
+**Other Properties Related to Output:** [Generated shots are independent; character identity and art-style consistency require review.]
 
 ## Skill Version(s):
 
-0.2.6 (source: server-resolved release metadata)
+0.3.0 (source: server release evidence)
 
 ## Ethical Considerations:
 

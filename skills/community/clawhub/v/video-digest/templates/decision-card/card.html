@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html data-page-node-id="ec4dOoiiUCEy3kyhhabIc6" lang="zh">
+<head data-page-node-id="COF4e2ph4t4FfOgl8B8yeS">
+<script data-page-node-id="VCOhalqnwErUbPJtYgsryn" src="/page/page_comm/inject.js"></script>
+<meta data-page-node-id="f7axE3rmsZU31u7kC5DIf5" charset="UTF-8">
+<title data-page-node-id="p9k3rjSQmEki1Y7zgYnCoW" data-pnid-children="mS62LgXiQ2oDJYtoB26zlV">结构化决策卡 — video-digest</title>
+<style data-page-node-id="J9QDQJLm9XIEcaRYciCmXr" data-pnid-children="2xUez5MtKQrWoTxYCU9GeI">
+  :root{
+    --ink:#2b2622; --sub:#7a6f66; --line:#e8ded4; --bg:#faf6f1;
+    --terra:#c4552f; --terra-soft:#f7e8e0; --ok:#3e7d5a; --warn:#b3541e;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink)}
+  .card{width:680px;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:20px auto}
+  .head{padding:22px 26px 16px;border-bottom:2px solid var(--ink);position:relative}
+  .kicker{font-size:11px;letter-spacing:.18em;color:var(--terra);font-weight:700;margin-bottom:8px}
+  .title{font-size:21px;line-height:1.45;font-weight:800}
+  .meta{margin-top:10px;font-size:12px;color:var(--sub)}
+  .meta b{color:var(--ink);font-weight:700}
+  .sec{display:flex;gap:14px;padding:15px 26px;border-bottom:1px dashed var(--line)}
+  .sec:last-of-type{border-bottom:none}
+  .no{flex:0 0 30px;height:30px;border-radius:8px;background:var(--terra-soft);color:var(--terra);
+      font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;margin-top:2px}
+  .sec.warn .no{background:#f6e3d8;color:var(--warn)}
+  .st{font-size:13px;font-weight:800;letter-spacing:.06em;margin-bottom:6px}
+  .sec.warn .st{color:var(--warn)}
+  .sc{font-size:13.5px;line-height:1.75;color:#4a423b}
+  .foot{padding:12px 26px 16px;background:var(--bg);font-size:11px;color:var(--sub);display:flex;justify-content:space-between}
+  .foot .brand{color:var(--terra);font-weight:700;letter-spacing:.08em}
+</style>
+</head>
+<body data-page-node-id="Uq76U0R3l2W0qGU8jtWfiw">
+<div data-page-node-id="hZq42BLanyhFdPFzrzPpCz" id="wrap"></div>
+<script data-page-node-id="b9wSB06AzNAnqnS3BhVYo0" data-pnid-children="j8oWUpZ8MuOqDul5ILXEdR">
+/* 结构化决策卡模板（video-digest skill）
+ * 依赖同目录 struct-data.js，格式：
+ * const STRUCT = { "<videoId>": { title:"中文标题(可选)", what:"讲了什么", problem:"解决什么问题",
+ *                                  scope:"适用范围", caveat:"漏洞与偏见" }, ... };
+ * 可选同目录 meta.js 提供视频元数据：const META = { "<videoId>": {owner:"频道名", views:"播放量", dur:"时长"} };
+ * 用法：?v=<videoId> 渲染单张卡；无参数渲染全部。
+ */
+const BLOCKS=[["what","1","讲了什么"],["problem","2","解决什么问题"],["scope","3","适用范围"],["caveat","4","漏洞与偏见"]];
+const params=new URLSearchParams(location.search);
+const only=params.get("v");
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function card(id,s){
+  const m=(typeof META!=="undefined"&&META[id])||{};
+  const title=s.title||m.title||id;
+  const metaBits=[m.owner?("👤 "+m.owner):"", m.views?("👀 "+m.views):"", m.dur?("⏱ "+m.dur):""].filter(Boolean).join(" · ");
+  return `<div class="card" data-id="${id}">
+    <div class="head">
+      <div class="kicker">STRUCTURED NOTE${m.owner?(" · "+esc(m.owner)):""}</div>
+      <div class="title">${esc(title)}</div>
+      <div class="meta">${metaBits?metaBits+" · ":""}🎬 youtube.com/watch?v=${id}</div>
+    </div>
+    ${BLOCKS.map(([k,n,label])=>`
+      <div class="sec${k==="caveat"?" warn":""}">
+        <div class="no">${n}</div>
+        <div style="flex:1"><div class="st">${label}</div><div class="sc">${esc(s[k]||"")}</div></div>
+      </div>`).join("")}
+    <div class="foot"><span class="brand">VIDEO DIGEST · 决策卡</span><span>${new Date().toISOString().slice(0,10)} 生成</span></div>
+  </div>`;
+}
+const ids=Object.keys(STRUCT);
+document.getElementById("wrap").innerHTML =
+  only ? card(only,STRUCT[only]) : ids.map(id=>card(id,STRUCT[id])).join("");
+</script>
+</body>
+</html>

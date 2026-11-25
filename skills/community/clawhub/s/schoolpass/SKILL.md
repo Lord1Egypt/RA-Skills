@@ -169,4 +169,11 @@ On an mcp-host gateway with context groups on, this server is a member of the
   `change_type` is one of absent / late_arrival / early_dismissal / carpool /
   activity / bus / virtual; `move_to_id` is a dismissal-location id
   (schoolpass_list_dismissal_locations) or a carpool id (from the calendar).
+- **Early dismissal has a latest pickup time.** `early_dismissal` needs
+  `time_of_day` (24-hour `HH:MM`), and the school refuses a pickup later than
+  its cutoff (read live from the school's SchoolPass settings). A later time
+  comes back BEFORE any preview as `EARLY_DISMISSAL_AFTER_CUTOFF` with
+  `latestAllowed`; offer the user that time or a call to the school. The limit
+  is on the pickup time, not on when the request is sent — submitting earlier
+  in the day does not help.
 - **Never echo the password or a session token** into the conversation.

@@ -1,7 +1,7 @@
 {
   "name": "FarmDash Trail Marshal",
   "version": "1.1.2",
-  "description": "Use when composing multi-step DeFi workflows from FarmDash tools: plan, run, inspect supervised pipelines. Wallet steps stay policy-gated, preview-only.",
+  "description": "Use when composing multi-step DeFi workflows from FarmDash tools: plan, run, inspect supervised pipelines. Wallet steps stay policy-gated and zero-custody.",
   "tags": [
     "defi",
     "defi-workflows",

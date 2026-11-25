@@ -1,6 +1,6 @@
 ## Description:
 
-诊断并修订网文中的表达、叙事用笔与故事因果问题，同时保留作者文风和已确定的剧情。
+Diagnoses and revises AI-like web fiction prose across expression, narrative emphasis, and story causality while preserving the author's voice and established plot.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT License
 
 ## Use Case:
 
-面向创作中文网文的作者与编辑，用于按指定范围检查文本的表达、场景笔墨和故事因果，并在授权范围内修改正文、保留作者文风与既定剧情。
+Authors and editors of Chinese web fiction use this skill to find and revise formulaic prose, pacing issues, and unsupported story transitions while preserving the intended voice and plot.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Inspection was partial, so behavior of some referenced scripts is not fully confirmed.
+Risk: The security review is incomplete: 6 of 10 components were fully inspected and 4 were only partially inspected; confidence is medium.
 
-Mitigation: Review the remaining referenced scripts before installing or using the skill.
+Mitigation: Consider this uncertainty before installing, especially when relying on the scripts, and review relevant behavior before use.
 
 ## Reference(s):
 
+- [Three-layer deslop guide](artifact/references/deslop-guide.md)
+- [Short-form fiction guidance](artifact/references/short-deslop.md)
+- [Style resolution guidance](artifact/references/style-resolution.md)
+- [AI-pattern signal reference](artifact/references/banned-words.md)
 - [ClawHub skill page](https://clawhub.ai/worldwonderer/skills/story-deslop)
-- [Project link declared in skill metadata](https://github.com/zenstory-ai/oh-story-claudecode)
+- [Project link listed in skill metadata](https://github.com/zenstory-ai/oh-story-claudecode)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, Markdown]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Chinese-language Markdown diagnosis and revised prose]
+**Output Format:** [Revised Chinese prose and Markdown diagnostics]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [The skill may return a diagnosis only or revise supplied prose within the requested scope and authorization.]
+**Other Properties Related to Output:** [Scope follows the user's request; changes to events, motives, outcomes, or reveal timing are proposed for approval.]
 
 ## Skill Version(s):
 
-1.1.52 (source: server release metadata)
+1.1.62 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

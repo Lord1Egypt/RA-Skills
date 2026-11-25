@@ -1,6 +1,6 @@
 ## Description:
 
-Create a Bilibili video cover or Bilibili thumbnail from a topic, title, script, key frame, portrait, product photo, or reference image. This AI thumbnail maker builds a strong focal visual, readable hierarchy, and headline-safe space for Bilibili creators, explainers, tech reviews, lifestyle vlogs, games, food, and entertainment videos, then refines an accepted draft into a repeatable channel look.
+Creates or refines Bilibili thumbnails from a topic, title, script, key frame, portrait, product photo, or reference image, with a clear focal point and space for a headline.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External Bilibili creators use this skill to create a video thumbnail from a topic, title, script, key frame, portrait, product image, reference, or accepted draft, then refine the image into a repeatable channel style.
+Bilibili creators and video teams use this skill to create or refine a cover image from a topic, title, script, key frame, portrait, product photo, or references, with a strong focal subject and headline-safe space.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The authorization grants media capabilities beyond thumbnail creation and is shared across Beatra skills.
+Risk: ClawScan marks the release suspicious because scanners report broad shared permissions, persistent installation tracking, and behavior beyond the thumbnail-making purpose; the scan is partial and does not establish malicious intent.
 
-Mitigation: Review the full authorization before approving; use the Beatra Console to revoke device access when appropriate.
-
-Risk: Generation is paid, and prompts and selected images are sent to Beatra.
-
-Mitigation: Review and confirm the exact prompt, canvas, image order, and paid settings before submission; only provide images you are authorized to share.
-
-Risk: If the local installation inventory is corrupted, uninstall may disconnect another Beatra skill.
-
-Mitigation: Check other installed Beatra skills before uninstalling; reconnect an affected skill and revoke device access explicitly in the Beatra Console if needed.
+Mitigation: Consider avoiding installation unless you are comfortable granting broad media and spending permissions to a shared credential and with automatic installation analytics; review the complete package because some referenced paths were unresolved in the scan.
 
 ## Reference(s):
 
 - [Bilibili Thumbnail Maker on ClawHub](https://clawhub.ai/beatra-ai/skills/bilibili-thumbnail-maker)
 - [Beatra skill page](https://beatra.ai/skills/bilibili-thumbnail-maker)
-- [Workflow and request confirmation](artifact/references/workflow.md)
-- [Installation and authentication](artifact/references/installation-and-auth.md)
-- [Updates and security](artifact/references/updates-and-security.md)
-- [Billing, errors, and recovery](artifact/references/billing-errors-and-recovery.md)
+- [Workflow and thumbnail request guidance](references/workflow.md)
+- [Billing, errors, and recovery](references/billing-errors-and-recovery.md)
+- [Updates and security](references/updates-and-security.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Image files, Text]
+**Output Type(s):** [Image files]
 
-**Output Format:** [Generated thumbnail image asset with artifact link and task summary]
+**Output Format:** [Generated Bilibili thumbnail image with an artifact link]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [One image per request by default; prompt, canvas, source-image roles, and paid settings are confirmed before submission.]
+**Other Properties Related to Output:** [One thumbnail per request; canvas, prompt, and source-image roles are confirmed before generation.]
 
 ## Skill Version(s):
 
-0.2.3 (source: server-resolved ClawHub release evidence)
+0.2.6 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

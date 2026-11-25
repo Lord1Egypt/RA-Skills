@@ -3,8 +3,8 @@
  * 推送到云电脑（auto-publish）。config.json 与本脚本同目录。
  *
  *   node push-to-cloud.js <instanceId|-> html <HTML文件> [categoryId] [publishMode] [targetScope] [idsOrNamesCSV]
- *   node push-to-cloud.js <instanceId|-> img '<JSON/URL/本地路径>' <title> [contentHtml可选] [publishMode] [targetScope] [idsOrNamesCSV]
- *   node push-to-cloud.js <instanceId|-> video '<URL/本地路径/JSON>' <title> [publishMode] [targetScope] [idsOrNamesCSV]
+ *   node push-to-cloud.js <instanceId|-> img '<JSON/URL/本地路径>' <title> [description|content.html] [publishMode] [targetScope] [idsOrNamesCSV]
+ *   node push-to-cloud.js <instanceId|-> video '<URL/本地路径/JSON>' <title> [description] [publishMode] [targetScope] [idsOrNamesCSV]
  *   node push-to-cloud.js <instanceId|-> list-targets [categoryId]
  *   node push-to-cloud.js <instanceId|-> resolve <categoryId> <名称> [prefer]
  *
@@ -15,6 +15,7 @@
  *   environment / account 的末参可为 id，或账号名 / 环境名（自动 resolve）
  * prefer（resolve）：auto（默认）| account | environment | instance
  * 未传 targetScope 时默认 all。
+ * description：分享摘要 / 内容描述（与 auto-publish / design 前端字段一致）；html 模式从 meta description 抽取。
  *
  * 本地图片/视频会先 prepareMediaUpload 直传 CloudBase，再把公网 URL 交给 sendToCloud。
  */
@@ -48,6 +49,46 @@ function titleFromHtml(html) {
     if (raw) return raw;
   }
   return '未命名';
+}
+
+/** 从 HTML 取 description（meta / lead），与 design 前端 extractDescriptionFromHtml 对齐 */
+function descriptionFromHtml(html) {
+  if (!html || typeof html !== 'string') return '';
+  const meta =
+    html.match(
+      /<meta\b[^>]*\bname\s*=\s*["']description["'][^>]*\bcontent\s*=\s*["']([^"']*)["'][^>]*>/i
+    ) ||
+    html.match(
+      /<meta\b[^>]*\bcontent\s*=\s*["']([^"']*)["'][^>]*\bname\s*=\s*["']description["'][^>]*>/i
+    );
+  if (meta && meta[1]) {
+    const t = String(meta[1]).replace(/<[^>]+>/g, '').trim();
+    if (t) return t.slice(0, 500);
+  }
+  const lead = html.match(
+    /<p\b[^>]*class=["'][^"']*autopub-article-description[^"']*["'][^>]*>([\s\S]*?)<\/p>/i
+  );
+  if (lead && lead[1]) {
+    const t = String(lead[1]).replace(/<[^>]+>/g, '').trim();
+    if (t) return t.slice(0, 500);
+  }
+  return '';
+}
+
+/**
+ * 可选描述参数：若下一项是 publishMode / targetScope 则视为未传。
+ * 返回 { description, nextIndex }
+ */
+function takeOptionalDescriptionArg(argv, startIdx) {
+  const raw = argv[startIdx];
+  if (raw == null || String(raw).trim() === '') {
+    return { description: '', nextIndex: startIdx };
+  }
+  const s = String(raw).trim();
+  if (isPublishModeToken(s) || isScopeToken(s)) {
+    return { description: '', nextIndex: startIdx };
+  }
+  return { description: s, nextIndex: startIdx + 1 };
 }
 
 function postJson(apiBase, body) {
@@ -559,8 +600,8 @@ function printUsage() {
   console.error(
     '用法:\n' +
       '  node push-to-cloud.js <instanceId|-> html <file.html> [categoryId] [publishMode] [targetScope] [idsOrNamesCSV]\n' +
-      '  node push-to-cloud.js <instanceId|-> img \'<urls|本地|JSON>\' <title> [content.html] [publishMode] [targetScope] [idsOrNamesCSV]\n' +
-      '  node push-to-cloud.js <instanceId|-> video \'<url|本地|JSON>\' <title> [publishMode] [targetScope] [idsOrNamesCSV]\n' +
+      '  node push-to-cloud.js <instanceId|-> img \'<urls|本地|JSON>\' <title> [description|content.html] [publishMode] [targetScope] [idsOrNamesCSV]\n' +
+      '  node push-to-cloud.js <instanceId|-> video \'<url|本地|JSON>\' <title> [description] [publishMode] [targetScope] [idsOrNamesCSV]\n' +
       '  node push-to-cloud.js <instanceId|-> list-targets [categoryId]\n' +
       '  node push-to-cloud.js <instanceId|-> resolve <categoryId> <名称> [prefer]'
   );
@@ -731,6 +772,8 @@ async function main() {
       skillKey,
       coverAssets
     );
+    const pushTitle = titleFromHtml(content);
+    const pushDescription = descriptionFromHtml(content);
     body = attachTargetFields(
       {
         action: 'sendToCloud',
@@ -738,7 +781,9 @@ async function main() {
         skillKey,
         serverInstanceIds: activeInstanceIds,
         categoryId,
-        title: titleFromHtml(content),
+        title: pushTitle,
+        description: pushDescription,
+        descriptionProvided: true,
         content,
         publishMode: tail.publishMode,
         ...coverFields,
@@ -749,12 +794,18 @@ async function main() {
     const sources = parseMediaSourcesArg(argv[2]);
     const title = String(argv[3] || '配图').trim() || '配图';
     let content = '';
+    let description = '';
     let nextIdx = 4;
-    if (argv[4] && /\.html?$/i.test(argv[4])) {
+    if (argv[4] && /\.html?$/i.test(String(argv[4]))) {
       const htmlPath = resolveInputFile(argv[4]);
       if (!htmlPath) throw new Error('找不到 HTML: ' + argv[4]);
       content = fs.readFileSync(htmlPath, 'utf8');
+      description = descriptionFromHtml(content);
       nextIdx = 5;
+    } else {
+      const opt = takeOptionalDescriptionArg(argv, 4);
+      description = opt.description;
+      nextIdx = opt.nextIndex;
     }
     const tail = takeTailTargetArgs(argv, nextIdx);
     const target = await resolveTargetFromConfigAndArgs(
@@ -777,6 +828,8 @@ async function main() {
         serverInstanceIds: activeInstanceIds,
         categoryId: 'newspic',
         title,
+        description,
+        descriptionProvided: true,
         imgUrls: urls,
         publishMode: tail.publishMode,
         ...(content ? { content } : {}),
@@ -786,7 +839,9 @@ async function main() {
   } else if (mode === 'video') {
     const sources = parseMediaSourcesArg(argv[2]);
     const title = String(argv[3] || '视频').trim() || '视频';
-    const tail = takeTailTargetArgs(argv, 4);
+    const opt = takeOptionalDescriptionArg(argv, 4);
+    const description = opt.description;
+    const tail = takeTailTargetArgs(argv, opt.nextIndex);
     const target = await resolveTargetFromConfigAndArgs(
       cfg,
       apiBase,
@@ -802,7 +857,7 @@ async function main() {
     const coverAssets = resolveCoverAssets({ kind: 'video', anchorPath: firstLocal });
     if (!coverAssets.coverImagePath && !coverAssets.coverHtml) {
       console.warn(
-        '作品目录下找不到封面（cover.png / cover.html / video_cover.html）（本次跳过封面）'
+        '作品目录下找不到封面（cover.png / cover.html）（本次跳过封面）'
       );
     }
     const urls = await resolveMediaUrls(apiBase, openId, skillKey, sources);
@@ -820,6 +875,8 @@ async function main() {
         serverInstanceIds: activeInstanceIds,
         categoryId: 'video',
         title,
+        description,
+        descriptionProvided: true,
         imgUrls: urls,
         publishMode: tail.publishMode,
         ...coverFields,
@@ -835,6 +892,8 @@ async function main() {
     serverInstanceIds: activeInstanceIds,
     categoryId: body.categoryId,
     title: body.title,
+    description: body.description || '',
+    descriptionProvided: body.descriptionProvided === true,
     targetScope: body.targetScope || 'all',
     receiverAccountIds: body.receiverAccountIds || [],
     receiverBrowserProfileIds: body.receiverBrowserProfileIds || [],

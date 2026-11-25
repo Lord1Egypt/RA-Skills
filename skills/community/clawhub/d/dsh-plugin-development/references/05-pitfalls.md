@@ -1,13 +1,13 @@
 > **文件来源**：本文件由 DSH 插件开发手册套件整合生成。直接编辑会在下次整合时被覆盖，因此维护性改动记录在工作区源文档中。
 
-> **本文件用途**：按症状检索的踩坑百科：25 条编号坑点（P1~P24，含 P22b）+ 症状速查表 + 报错信息/界面现象对照表 + 官方 4 篇事故复盘全文摘录与八条红线。插件出问题时第一站。
+> **本文件用途**：按症状检索的踩坑百科：**28 条编号坑点（P1~P27，含 P22b）** + 症状速查表 + 报错信息/界面现象对照表 + 官方 4 篇事故复盘全文摘录与八条红线。插件出问题时第一站。
 > **合成来源**：DSH插件开发实战补充-模板与踩坑.md（第三篇，略去与官方复盘重复的红线摘要） + DSH插件开发指导手册.md（附录 E 报错对照表） + F-official-pitfalls.md
-> **快照警告**：本文件是 DSH 插件知识的**冻结快照**（基线 `dsh-v0.2.2-alpha.2` / commit `f3803c9697`，2026-10-28），其中的**接口名级事实可能已过时**。
+> **快照警告**：本文件是 DSH 插件知识的**冻结快照**（基线 `dsh-v0.2.2-rc.5` / commit `9c2670d3bc`，2026-11-18），其中的**接口名级事实可能已过时**。
 > **写代码前先核验**：`bash scripts/dsh-api-probe.sh <DSH 仓库路径>`（退出码 1 = 有 STALE，**不要直接照抄**）。
 > **分级与核验规则**：`references/00-version-gate.md`、逐条登记 `references/api-claims.md`。
 > **素材名约定**：正文里出现的 `Xxx-yyy.md`（如 `E-official-templates.md`、`B-tools-external.md`）是**生成时的源调研笔记名**，其内容在生成时已合并进本文件——**不是 skill 内的文件**，不必去别处找。
 
-> **本文件导航 —— 共 671 行，不要整读。** 先 `grep` 定位小节，再只读需要的那一节。
+> **本文件导航 —— 共 706 行，不要整读。** 先 `grep` 定位小节，再只读需要的那一节。
 > - **上游素材原文**：约 200 行（32%），起点：`F-official-pitfalls.md`（文件末尾）。**不是本技能重写的整理稿**；性质不一——**有的是官方文档逐字摘录（属权威原文），有的是调研期粗笔记（仅备查）**。读某一段前，务必连带读**该段开头的取材说明**。
 > - **其余部分 = 面向任务的整理稿**，可直接照做；但它同样是基线快照，写代码前先过版本闸门。
 > - 常用检索：`grep -n '^### 坑 P'`（按编号定位单条坑）、`grep -n '^# F\.'`（档案起点）
@@ -49,6 +49,9 @@
 | 卸载后刷新 404 | **P22** | 要在响应完成前先禁掉自己的 entry |
 | 工具注册成功但模型看不到，或报 `ToolExecutorUnavailableError` | **P23** | 执行器已成独立插件，自建组合要自己挂；旧配置键 `mode` / `maxParallelSubCalls` 被拒 |
 | 靠 `system-prompt/assemble` 筛工具，升级后条件不起作用 | **P24** | 该 waterfall 不再携带工具数组，改用 `register(def, { when })` |
+| 照官方指南去开 `apply_patch`，工具却根本不在；以为 `edit` 还会先校验「读过没」 | **P25** | `Config.applyPatch` 默认 `false`，base 与三个 Web preset 全写 `false`；`fs-observation-policy` 交付即 `disabled: true` |
+| 升级后 `interrupt_agent` 凭空消失，自己没改过任何配置 | **P26** | 插件层默认 `true`，但 base 与三个 Web preset 在组合层写 `interrupt: false` |
+| 补丁里的旧账号包名不报错也不生效；`apiKeyEnv` 配了没用；通知方法 TypeError | **P27** | 账号包合并（`-platform` / `-controller` → `dsh-deepseek-account`）+ `web-deepseek-api` 配置键重做 + `searchProvider` 换默认 |
 
 ---
 
@@ -57,7 +60,7 @@
 ### 坑 P1 · 装完毫无反应，但 `pnpm add` 成功了 ★★★
 
 - **现象**：`dsh plugin --profile web add <你的包>` 返回成功，`node_modules` 里也有你的包，但插件完全不起作用。
-- **你会看到这条警告**（逐字，来自源码 `packages/boot/plugin-manager/src/operations.ts:104`）：
+- **你会看到这条警告**（逐字，来自源码 `packages/boot/plugin-manager/src/operations.ts:110`）：
   ```
   dsh: warning: <你的包名> declares no dsh.bundle — installed as a plain dependency, not a profile layer
   ```
@@ -247,7 +250,39 @@ ctx.tools.register(defineTool({ /* … */ }), {
 - 为假 → 四处一并移除；条件抛错 → 轮次以 `TOOL_ACTIVATION_FAILED` 结束；不属于已准入集合的调用 → `UNKNOWN_TOOL`，**不执行**。
 - 若你在做**自定义执行器**，用 `ctx.tools.executable(name, agent, toolSet)` 逐次查找，别自己缓存注册表。
 **两个连带坑**：① 步骤中途重新注册工具（热重载 / MCP 重连 / skill 重载）会让该步骤内**尚未开始**的调用失败 —— 已被准入的批次按原集合结算；② `exit_plan_mode` 现在**只在会话首次进入计划模式之后**才声明，所以「从未进过计划模式」的请求里它不会出现，快照测试要相应更新。
-**判据**：`docs/upgrade-guide/v0.2.1-rc.2/conditional-tools/guide.zh.md` + `packages/core/tools/src/contracts.ts:105-126`。
+**判据**：`docs/upgrade-guide/v0.2.1-rc.2/conditional-tools/guide.zh.md` + `packages/core/tools/src/contracts.ts:106-127`。
+
+### 坑 P25 · `apply_patch` 与「先读后写」的默认值 —— 官方指南和代码说的不是一回事 ★★
+**现象**：照着官方升级指南去做，两处落空。① 以为 `write` / `edit` 还会校验「模型读过没」，实际**直接覆盖 / 直接替换** —— `FS_NOT_OBSERVED` / `FS_STALE_VERSION` 在默认 profile 上根本不出现，依赖这两个拒绝的测试/录制集体失效；② 以为 base 与 Web `standard` preset 已经带 `apply_patch`，实际**调不到这个工具**（不在声明里，硬调就是 `UNKNOWN_TOOL`）。
+**根因（两个默认值，一律以 tag 内代码为准）**：
+- **`fs-observation-policy` 交付即禁用**：`packages/bundle/base/cordis.patch.yml:292-294` 那行带 `disabled: true` → 所有叠加 `dsh-base` 的 profile（`web` / `headless` / `sdk` / `acp`）**都不再做先读校验**；`sdk-minimal` 不叠加 `dsh-base`，本来就没挂过该策略。⚠️ 别把「装在 base 补丁里」当成「已启用」。
+- **`apply_patch` 默认关**：它由 `tool-fs` 的 `Config.applyPatch` 控制，**默认值 `false`**（`packages/fs/tool-fs/src/index.ts:37,53`）。指南正文写「base 与 Web `standard` preset 现在列出 `apply_patch`（`applyPatch: true`）」—— **这句话已被同区间后续提交推翻**：`e1609fe164 fix(fs): temporarily disable apply_patch in shipped defaults`（2026-11-02）把 base 补丁 `:300` 与 Web 的 `standard`(`presets/standard.patch.yml:31`) / `ptc`(`:31`) / `cordis`(`:34`) 三个 preset **全部改成 `false`**。所以**当前基线里默认根本没有这个工具**。
+**怎么修**（都在 profile 的 `cordis.patch.yml`，即 `$DSH_HOME/profiles/<profile>/cordis.patch.yml`）：
+- 要 `apply_patch`：`- {id: tool-fs, config: {applyPatch: true}}`；Web 端也可在 Agent presets 设置页改对应 preset。
+- 要保留先读后写：`- {id: fs-observation-policy, disabled: false}`（已写 `disabled: false` 的 profile 无需改动；为退出策略写过 `disabled: true` 的可以删掉那条覆盖）。
+- 验证：`dsh --profile <profile> --dump-config`，确认这两行的实际值；会话里对**未读文件**执行 `edit`，行禁用时会成功、启用时会以 `FS_NOT_OBSERVED` 失败。
+**判据**：`packages/bundle/base/cordis.patch.yml:292-294,299-301`；`packages/fs/tool-fs/src/index.ts:37,53`；`docs/upgrade-guide/v0.2.2-alpha.2/fs-observation-policy-default-off/guide.zh.md`（原文，**含已被推翻的那句**）；`git log --oneline -S"applyPatch" dsh-v0.2.2-alpha.2..dsh-v0.2.2-alpha.3 -- packages/bundle/base/cordis.patch.yml packages/bundle/web-app/presets/standard.patch.yml`（能看到 `fe5450b152` 开 → `e1609fe164` 关的完整翻转）。
+### 坑 P26 · `interrupt_agent` 突然不在工具列表里 —— 是**随包交付的默认值**关了它 ★★
+**现象**：升级到 `0.2.2-rc.2` 后，模型不再能中断子 agent；`interrupt_agent` 既不在工具定义里，也不报错（`UNKNOWN_TOOL` 只在你硬调时出现）。自己的插件行没动过，`tool-subagent-control` 的 `Config.interrupt` 也确实「默认 `true`」。
+**根因**：默认值是**两层**的 —— 插件层默认 `true`（`packages/subagent/tool-subagent-control/src/index.ts:25,31`：`interrupt?: boolean` + `z.boolean().default(true)`），但**组合层覆盖成 `false`**：base 补丁 `packages/bundle/base/cordis.patch.yml:386-389` 与 Web 的 `standard` / `cordis` / `ptc` 三个 preset 各写一行 `interrupt: false`（`packages/bundle/web-app/presets/standard.patch.yml:98`、`cordis.patch.yml:94`、`ptc.patch.yml:95`）。所以走内置组合的 profile **默认没有这个工具**；消息、发现、收件箱等待与 subagent 服务的中断 API 仍然可用。
+**怎么修**：在 profile 的 `cordis.patch.yml` 里**覆盖外层声明行**（不是顶层 `tool-subagent-control`）：
+```yaml
+- id: preset-standard        # web / desktop 用 preset-cordis / preset-ptc；headless / sdk / acp 直接用 base 的 tool-subagent-control
+  config:
+    interrupt: true          # ⚠️ patch 会整体替换 config：必须把该行的完整 plugins 列表抄回来再改这一项
+```
+> 顶层 patch `tool-subagent-control` 只会改到**已禁用的 Host 行**，preset 内的子行不动 —— 这是最容易「改了没效果」的一处。
+**判据**：`docs/upgrade-guide/v0.2.2-rc.1/subagent-interrupt-default/guide.zh.md`；上面四个文件的行号；`dsh --profile <p> --dump-config` 里该行的实际 `config.interrupt`。
+
+### 坑 P27 · 账号 / 网页搜索的**包名与配置键**同时被重写 —— 旧写法不会报错，只会静默失效 ★★★
+**现象**：升级后自定义 profile 补丁里针对 `@deepseek-ai/dsh-deepseek-account-platform` 的行**既没生效也不报错**；`web-deepseek-api` 的 `apiKeyEnv` / `baseURL` 写了等于没写；账号通知相关方法调用直接 TypeError。
+**根因（三处一起变，`0.2.2-rc.2`）**：
+- **包合并**：`dsh-deepseek-account-platform` 与 `dsh-api-account-controller` **移除**，具体服务落在 `@deepseek-ai/dsh-deepseek-account`（`packages/credentials/deepseek-account/src/index.ts`）；`PlatformAccount` → `DeepSeekAccount`（抽象基类没了，继承它的子类要改）；导入路径改 `/remote` `/typert` `/client-metadata`。服务名 `deepseekAccount`、`ctx.remote.account` 的操作名与参数**未变**，所以「服务还在」会骗过冒烟测试。
+- **配置键重做**：`web-deepseek-api` 移除 `apiKey` / `apiKeyEnv` / `baseURL`；新增 `searchBilling` / `fetchBilling`（`'auto' | 'account' | 'api-key'`）与 `searchBaseURL` / `searchApiKeyEnv` / `fetchBaseURL` / `fetchApiKeyEnv`（`packages/web/web-deepseek-api/src/index.ts:64-96`）。**键名不存在的配置项被静默忽略**，于是「配了 key 却一直走账号」。
+- **默认 provider 换人（🔴 该结论已被 `0.2.2-rc.5` 再次推翻 —— 见下面的「修正」）**：base 补丁 `web` 行 `searchProvider` 从 `deepseek-official` 改为 `deepseek-search-api`（**当时**在 `packages/bundle/base/cordis.patch.yml:487`）。**修正（`0.2.2-rc.5`）**：base 已**删除整个 `searchProvider` 键**（`packages/bundle/base/cordis.patch.yml:488-491`，那里现在只剩 `fetchProvider: http`），改由 `dsh-web` **按模型路由在运行期选择** —— `deepseek-official` / `deepseek-account` 路由上的搜索走 `deepseek-official`（对 `web-search-deepseek` 端点的一次辅助 Messages 请求，不按次收费、计模型 token，会话日志追加 `web/deepseek-search-llm-request`），其它路由才走 `deepseek-search-api`。要恢复「一律走 Search API」，须在 `web` 行显式写 `searchProvider: deepseek-search-api`，或在设置页 / `DSH_WEB_SEARCH_PROVIDER` 显式选择；判据 `docs/upgrade-guide/v0.2.2-rc.4/web-search-deepseek-model-default/guide.zh.md`。
+**怎么修**：把所有旧包名替换为新包名；`apiKeyEnv` → `searchApiKeyEnv`（或直接改用 `searchBilling`）；想固定只用 API key 就写 `searchBilling: api-key` + `fetchBilling: api-key`；通知消费方把 `getUnnotifiedBonuses()` → `getNotifications()`、`ackBonusNotified()` → `reportNotificationEvent(id, event, client)`。
+**判据**：`docs/upgrade-guide/v0.2.2-rc.1/account-remote-provider/`、`account-notification-fields/`、`web-search-billing/` 三篇 + `v0.2.2-rc.4/web-search-deepseek-model-default/`（rc.5 起 base 不再固定 `searchProvider`）；`packages/credentials/deepseek-account/src/index.ts`；`packages/web/web-deepseek-api/src/index.ts:64-96`；`packages/bundle/base/cordis.patch.yml:488-491,493-496`（web 行与 web-search-deepseek 行的现状位置）。
+
 ## 3.3 生命周期 / 热更新类
 
 ### 坑 P10 · 副作用不回收 → 热更新后叠加 ★★★

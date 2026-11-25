@@ -1,6 +1,8 @@
 {
+  "_comment": "api_key 支持单值（旧）或数组（新，启用 Key 池轮询）；member 为可选的多租户成员标识",
+  "member": "default",
   "deepseek": {
-    "api_key": "REDACTED-SECRET"
+    "api_key": ["REDACTED-SECRET"]
   },
   "tongyi": {
     "api_key": "REDACTED-SECRET"

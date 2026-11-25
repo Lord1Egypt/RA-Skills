@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and technical authors use the skill to combine GIFs, videos, and images into media compositions for tutorials and documentation.
+Developers use the skill to combine generated terminal, browser, image, GIF, or video assets into a composite for tutorials and documentation.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review reports that some examples concatenate media sequentially instead of producing the described vertical or grid layout.
+Risk: Output files may replace files already at the chosen paths, and sequential concatenation may differ from the intended layout.
 
-Mitigation: Check that the selected example matches the intended layout, then inspect the resulting composition before using it.
+Mitigation: Review output paths and confirm the selected composition behavior before running.
 
-Risk: The security review reports that FFmpeg examples can silently overwrite existing output files.
+Risk: Security scan coverage was partial because several referenced paths or files could not be resolved.
 
-Mitigation: Choose a new output path or confirm and back up any existing file before running an example.
-
-Risk: The security review was partial because several referenced paths were missing, so its evidence is incomplete.
-
-Mitigation: Review the referenced components and their commands before installing or running the skill.
+Mitigation: Check referenced files and relevant commands before use.
 
 ## Reference(s):
 
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scry)
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-scry-media-composition)
+- [Plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scry)
 
 ## Skill Output:
 
-**Output Type(s):** [Files]
+**Output Type(s):** [Files, Shell commands, Guidance]
 
-**Output Format:** [Composed GIF or video files]
+**Output Format:** [GIF or video composite files with a brief text report of file size and dimensions]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Combines multiple media inputs; reports output dimensions and file size.]
+**Other Properties Related to Output:** [Composition layout and options are specified in a manifest.]
 
 ## Skill Version(s):
 
-1.10.3 (source: skill frontmatter, server-resolved release)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

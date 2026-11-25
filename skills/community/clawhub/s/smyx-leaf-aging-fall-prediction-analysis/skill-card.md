@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes recurring images of houseplant leaves to track aging, estimate leaf-fall risk over the next several days, and suggest general care adjustments.
+Analyzes plant leaf images or video to identify aging signs and estimate leaf-fall risk over the next 3–7 days.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Houseplant owners, plant-care teams, and greenhouse staff use this skill to monitor leaf aging and anticipate leaf fall from image sequences, then adjust routine care.
+Indoor gardeners and horticulture operators can use recurring plant images or video to monitor leaf aging, estimate when leaves may fall, and guide routine care.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates this release suspicious because reported account, credential, and data-handling behavior is not clearly aligned with its plant-monitoring purpose; the scan was partial because a local reference was missing.
+Risk: ClawScan flags behavior that may not match the plant-monitoring description, including external video processing, identity and credential handling, account creation, and unclear side effects; the scan is partial and imported service behavior was not verified.
 
-Mitigation: Avoid installation until the account, credential, and video-upload behavior is clearly explained and the reported issues are addressed; review the missing evidence before reassessing.
+Mitigation: Before installing or submitting media, clarify the skill’s behavior, external video handling, identity and credential use, account creation, and available no-analysis option; review the service behavior because the scan is incomplete.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-leaf-aging-fall-prediction-analysis)
 - [API reference](references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-leaf-aging-fall-prediction-analysis)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, JSON, Markdown, Guidance]
 
-**Output Format:** [Structured text or JSON report with leaf aging indicators, a predicted fall window, at-risk leaves, cause hints, care suggestions, and a report link.]
+**Output Format:** [Structured analysis results in JSON and Markdown-formatted historical report listings]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Accepts local image or video files and network URLs; predictions are described for image sequences collected over multiple days.]
+**Other Properties Related to Output:** [May include aging indicators, predicted leaf-fall windows, at-risk leaf locations, care suggestions, and report links.]
 
 ## Skill Version(s):
 
-1.0.20 (source: server-resolved release evidence)
+1.0.21 (source: server-resolved release metadata; bundled SKILL.md frontmatter identifies 1.0.23)
 
 ## Ethical Considerations:
 

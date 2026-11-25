@@ -4,7 +4,7 @@
 
 ## MCP Server (Remote — no local install needed)
 
-mailbox.bot is a remote MCP server. For clients that support remote HTTP MCP servers, no npm install, Docker, or local process is required. Add this config and you're connected to 45 tools for outbound physical mail, agent mailboxes (a street address + PMB at the staffed, USPS-compliant Manhattan Beach, CA facility; live now, $15/mo) and forwarded document context.
+mailbox.bot is a remote MCP server. For clients that support remote HTTP MCP servers, no npm install, Docker, or local process is required. Add this config and you're connected to 45 tools for outbound physical mail, agent mailboxes (a street address + PMB at the staffed, USPS-compliant Manhattan Beach, CA facility; live now, $20/mo) and forwarded document context.
 
 ### Generic remote HTTP config
 

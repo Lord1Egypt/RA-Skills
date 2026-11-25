@@ -10,7 +10,7 @@ Record resource origin and path without credentials, method, request fingerprint
 
 ## Stream or vesting
 
-Translate a human rate using exact token decimals and seconds, with explicit rounding. Show initial deposit, any buffer, start/cliff/end and projected funding exhaustion. Verify cancelability, recipient transferability, withdrawal rights and whether the protocol accrues debt beyond the deposit. After creation reconcile the emitted stream ID and schedule. Monitoring compares earned, funded, withdrawn, remaining and uncovered amounts without conflating them. Cancellation or voiding has its own irreversible effects and authorization.
+Translate a human rate using exact token decimals and seconds, with explicit rounding, then encode it in the protocol's own rate scale, which can differ from the token's decimals. Show initial deposit, any buffer, start/cliff/end and projected funding exhaustion. Verify cancelability, recipient transferability, withdrawal rights and whether the protocol accrues debt beyond the deposit. After creation reconcile the emitted stream ID and schedule. Monitoring compares earned, funded, withdrawn, remaining and uncovered amounts without conflating them. Cancellation or voiding has its own irreversible effects and authorization.
 
 ## Review scenarios
 

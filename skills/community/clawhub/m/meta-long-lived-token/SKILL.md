@@ -1,6 +1,7 @@
 ---
 name: "meta-long-lived-token"
-description: "Đổi Meta short-lived token (~1-2h) sang long-lived token (~60 ngày) qua Graph API, kiểm tra hạn, lưu vào env gateway và nhắc gia hạn. READ-ONLY với ads."
+version: 1.1.0
+description: "Đổi Meta short-lived token (~1-2h) sang long-lived token (~60 ngày) qua Graph API, kiểm tra hạn và nhắc gia hạn. READ-ONLY với ads. Mọi thay đổi cấu hình chỉ được thực hiện sau khi người dùng xác nhận rõ ràng."
 ---
 
 # Meta Long-Lived Token — đổi & gia hạn token Meta Ads
@@ -47,8 +48,9 @@ python3 -c "import json;d=json.load(open('/opt/openclaw/config/openclaw.json'));
    - Ghi nhận `app_id` của token. **Nếu `app_id` trong token KHÁC `APP_ID` anh vừa đưa → cảnh báo ngay**: token thuộc app khác, secret của app này không dùng được.
 3. **Đổi sang long-lived** (mục 3 bên dưới).
 4. **Kiểm tra** token mới bằng `debug_token` (mục 4).
-5. **Lưu** token mới vào env gateway, **giữ nguyên env cũ**, rồi restart (mục 5).
-6. **Test lại** sau restart — **đọc token từ file** (không dùng `$META_ACCESS_TOKEN`) + **báo ngắn gọn**: token hợp lệ, hạn mới (`expires_at`), số ngày còn lại.
+5. **DỪNG LẠI VÀ HỎI XÁC NHẬN** trước khi ghi cấu hình (mục 5). Không tự ghi, không tự restart.
+6. Chỉ khi người dùng trả lời đồng ý ("đồng ý" / "ok lưu" / "ghi đi") → mới thực hiện mục 5.
+7. **Test lại** — **đọc token từ file** (không dùng `$META_ACCESS_TOKEN`) + **báo ngắn gọn**: token hợp lệ, hạn mới (`expires_at`), số ngày còn lại.
 
 > ⚠️ Nếu token hiện tại đã là long-lived (`expires_at` còn > 30 ngày) → **báo trước** rằng token vẫn đang tốt; nếu anh vẫn muốn gia hạn thì re-exchange bình thường (+60 ngày kể từ lúc đổi).
 > ⚠️ Chỉ thực thi khi người gửi là **owner**. Nếu không chắc → hỏi xác nhận trước khi ghi config.
@@ -104,11 +106,16 @@ curl -s -G "https://graph.facebook.com/v21.0/debug_token" \
 - `data_access_expires_at`: mốc chặn truy cập dữ liệu (thường xa hơn `expires_at`) — **theo dõi mốc này làm mốc phụ**.
 - `scopes`: phải có quyền cần dùng (`ads_read`...).
 
-## 5. Lưu vào env gateway (không hardcode)
+## 5. Lưu vào env gateway — CHỈ SAU KHI NGƯỜI DÙNG ĐỒNG Ý
+
+> 🔴 **Bắt buộc dừng ở đây.** Trước khi ghi bất cứ thứ gì, agent phải trình bày: token mới hợp lệ hay không, `expires_at` mới là ngày nào, và sẽ ghi khoá nào vào file cấu hình nào. Rồi **chờ người dùng trả lời đồng ý**. Người dùng không trả lời / trả lời mơ hồ → KHÔNG ghi, chỉ báo lại kết quả kiểm tra.
+
+Sau khi được đồng ý:
 
 - Đọc config hiện tại, **giữ nguyên toàn bộ env cũ**, chỉ cập nhật khóa `META_ACCESS_TOKEN` (và `META_AD_ACCOUNT_ID` nếu có).
-- Dùng merge (không ghi đè cả file config).
-- Sau khi lưu → **restart gateway** để env nạp lại, rồi chạy lại `debug_token` với `$META_ACCESS_TOKEN` để xác nhận.
+- Dùng merge (không ghi đè cả file config). Sao lưu file cấu hình trước khi ghi.
+- **KHÔNG tự restart gateway.** Nạp lại env là việc của owner. Agent chỉ báo: *"Cần khởi động lại gateway để nạp env mới — anh muốn em restart bây giờ hay anh tự làm?"* và chỉ restart khi được đồng ý.
+- Rồi chạy lại `debug_token` với `$META_ACCESS_TOKEN` để xác nhận.
 - **KHÔNG echo token ra chat/log**, KHÔNG commit token vào git.
 
 ## 6. Theo dõi hạn & nhắc gia hạn

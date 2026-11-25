@@ -3,8 +3,10 @@
 //   fast    family + diagram type, one question set, no gates          (good on a batch adapter)
 //   full    fast + gates: real numbers? source? branches? alternatives? complexity  (confidence-gated routing)
 //   hybrid  fast on one adapter, then full only for blocks where a wrong form costs most
+//   facets  atomic yes/no judgments for every block in one request; code rules pick the form (default)
 //   local   keyword rules, offline
 import { FAMILIES, TYPES } from './catalog.mjs';
+import { FACETS, decide, formOf, stateOf } from '../core/facets.mjs';
 export const MIN_CONF = 0.55;
 // Families whose picture carries structure that prose hides (nesting, links, positions). They clear a lower bar.
 export const STRUCTURAL = new Set(['hierarchy', 'structure', 'state', 'sequence', 'landscape', 'grammar']);
@@ -106,4 +108,17 @@ export async function routeHybrid(texts, fastAdapter, gateAdapter) {
     } catch (e) { res.note = `复核跳过（${e.message}）`; }
   }
   return res;
+}
+
+// One request: every block gets every atomic question; code turns the answers into a form and candidates.
+export async function routeFacets(texts, adapter) {
+  const answers = await adapter.ask(texts.map(stateOf), FACETS);
+  const blocks = texts.map((text, i) => {
+    const s = Object.fromEntries(Object.keys(FACETS).map(k => [k, answers[i]?.[k]?.noul]));
+    if (Object.values(s).some(v => v == null)) throw new Error(`第 ${i + 1} 块缺少 JEV 回答`);
+    const { primary, cands } = decide(s, text);
+    const [family, type] = formOf(primary, TYPES, s);
+    return { text, family, type, proposed: primary, confidence: 1, facets: s, cands };
+  });
+  return { blocks, by: `${adapter.name}${answers.model ? '/' + answers.model : ''} · facets` };
 }

@@ -1,6 +1,6 @@
 ## Description:
 
-Search public Kuaishou videos, retrieve creators’ public posts and video comments, and summarize engagement patterns for account and competitor analysis.
+查询快手公开视频、账号作品和评论数据，并据此为账号诊断与竞品分析提供结构化依据。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Content strategists and social media analysts use the skill to research public Kuaishou creators, compare engagement and posts, and identify content patterns and gaps.
+面向快手内容运营人员、创作者和营销团队，用于发现关键词热点、查看公开账号作品与互动数据、分析视频评论，并整理账号诊断和内容运营建议。
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search keywords and account or video links are sent to the third-party Guaikei service.
+Risk: 查询关键词或快手视频、主页链接会发送至瓜客网服务处理。
 
-Mitigation: Use non-sensitive search terms and public links, and proceed only if comfortable sharing them with Guaikei.
+Mitigation: 仅提交可公开查询且不含敏感信息的关键词与链接；运行前确认接受该第三方处理方式。
+
+Risk: 运行需要 GUAIKEI_API_TOKEN，且安全审查对部分组件的分析不完整。
+
+Mitigation: 只在受信任的本地环境配置令牌，并在使用前核对命令及其外部调用范围。
 
 ## Reference(s):
 
-- [Usage options](references/options.md)
-- [Version history](references/changelog.md)
-- [Output envelope schema](assets/output_envelope.schema.json)
-- [Guaikei service and access information](https://www.guaikei.com)
+- [命令参数说明](references/options.md)
+- [更新日志](references/changelog.md)
+- [瓜客网服务与令牌开通](https://www.guaikei.com)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis]
+**Output Type(s):** [JSON, Analysis, Guidance]
 
-**Output Format:** [JSON envelope with video, creator, or comment results and engagement metrics]
+**Output Format:** [结构化 JSON 数据及简洁的 Markdown 账号分析与运营建议]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Public-data results only; requires a Guaikei API token. Per-plan result limits apply.]
+**Other Properties Related to Output:** [仅包含快手公开数据；返回条数受 API 套餐和命令上限约束。]
 
 ## Skill Version(s):
 
-1.1.1 (source: frontmatter, changelog, package.json; released 2026-11-04)
+1.1.2 (source: release metadata, SKILL.md, package.json, changelog)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Creates tailored, day-by-day travel itineraries with itemized budgets, transport and lodging advice, practical contingencies, and Markdown and PDF delivery.
+Plans personalized domestic and international trips with day-by-day itineraries, itemized budgets, transport and lodging advice, contingency options, and Markdown/PDF delivery.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Travelers and trip planners use the skill to turn requirements for one destination and date range into a practical itinerary, with budgets, booking checks, rest pacing, and contingency options.
+Travelers use this skill to turn trip details such as destination, dates, party size, budget, and pace into an actionable itinerary. It provides day-by-day plans, budget estimates, travel advice, and fallback options in Markdown and a formatted PDF.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment flags an unpinned package installation command, and only part of the artifact was analyzed.
+Risk: The security scan rates the skill suspicious with medium confidence and is incomplete, including partial inspection of the main script.
 
-Mitigation: Before installing, pin and independently verify the package version and review the complete artifact, following the security guidance.
-
-Risk: Trip details and the email address are sent to an external service as part of consultation and delivery.
-
-Mitigation: Review what information is sent and when, and provide only the trip and contact details needed for the service.
+Mitigation: Review the script and confirm the external service and data-sharing terms before installing.
 
 ## Reference(s):
 
-- [Publisher's travel service site](https://xianzongwendao.com)
-- [ClawHub release page](https://clawhub.ai/liveljack/skills/xianzong-travel-aipay)
-- [Beijing itinerary sample (PDF)](https://ai-agency-dev.oss-cn-beijing.aliyuncs.com/static_files/samples/aipay/%E6%97%85%E8%A1%8C%E5%92%A8%E8%AF%A2%E6%96%B9%E6%A1%88_%E5%8C%97%E4%BA%AC.pdf)
-- [UK itinerary sample (PDF)](https://ai-agency-dev.oss-cn-beijing.aliyuncs.com/static_files/samples/aipay/%E6%97%85%E8%A1%8C%E5%92%A8%E8%AF%A2%E6%96%B9%E6%A1%88_%E8%8B%B1%E5%9B%BD.pdf)
-- [Travel service endpoint](https://api.riyuexinzhu.com/aipay/travel_consultant)
-- [402 travel flow reference](references/402-travel-flow.md)
-- [Installation and packaging reference](references/install-and-pack.md)
+- [Travel flow reference](artifact/references/402-travel-flow.md)
+- [Installation and packaging guide](artifact/references/install-and-pack.md)
+- [Xianzong Wendao website](https://xianzongwendao.com)
+- [Alipay payment skills](https://github.com/alipay/payment-skills)
 
 ## Skill Output:
 
 **Output Type(s):** [Markdown, PDF, Travel guidance]
 
-**Output Format:** [Day-by-day itinerary with itemized budget and practical checklists; PDF is delivered by email with a download link.]
+**Output Format:** [A structured day-by-day itinerary with budget tables and practical travel guidance, delivered as Markdown and a formatted PDF.]
 
-**Output Parameters:** [1D]
+**Output Parameters:** [Trip-specific: destination, dates or duration, travelers, budget, pace, and preferences.]
 
-**Other Properties Related to Output:** [One trip per consultation. The PDF cover and email are Chinese-only; travelers should verify prices, opening hours, and booking rules with official sources before acting.]
+**Other Properties Related to Output:** [May include optional destination reference material and fallback plans for common changes.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server-resolved release metadata; artifact frontmatter reports 1.3.0)
+1.0.1 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

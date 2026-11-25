@@ -1,0 +1,7 @@
+{
+  "devices": [{"model":"", "conditions": {}}],
+  "accessories": [{"specification":"USB-C 接口照片，无协议说明"}],
+  "compatibility_rules": [
+    {"device_model":"X2", "accessory_specification":"USB-C 扩展坞", "status":"确认适配", "required_conditions":{"interface_protocol":"USB 3.2 Gen 2", "system_version":">=14"}, "evidence":"厂家适配表要求 USB 3.2 Gen 2 和系统 14 或更高版本。"}
+  ]
+}

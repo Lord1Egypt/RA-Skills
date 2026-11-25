@@ -1,6 +1,6 @@
 ## Description:
 
-快手运营分析助手 helps agents search Kuaishou videos, list creator posts, and fetch video comments as structured JSON for content planning, competitor monitoring, KOL screening, and sentiment or trend analysis.
+一站式快手运营工具，融合选题灵感、数据分析模块。支持爆款标题、热点选题、粉丝分析等，覆盖快手运营数据获取场景。当用户要搜索快手视频/抓取博主作品/拉取视频评论时使用，输出结构化数据，用于爆款选题、竞品监控、KOL 筛选、评论舆情与趋势洞察。支持三大能力：(1) 关键词搜索视频，可按点赞数、发布时间、视频时长筛选排序；(2) 达人作品抓取，按主页链接获取公开作品列表；(3) 视频评论分析，按视频链接获取评论内容与互动数据。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-External creators, marketing teams, analysts, and agent operators use this skill to collect public Kuaishou search results, creator posts, and video comments for trend research, competitor monitoring, KOL screening, and report generation.
+快手运营人员、内容创作者和市场分析师可用关键词搜索公开视频、查看博主公开作品与互动数据，并读取视频评论，辅助选题、竞品观察和舆情分析。
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Kuaishou search terms, profile or video URLs, limits, and GUAIKEI_API_TOKEN are sent to the third-party API service.
+Risk: Search terms and video or profile links are sent to the third-party service at guaikei.com.
 
-Mitigation: Use approved tokens and approved inputs only, and confirm that third-party API use is authorized before submitting business-sensitive targets.
-
-Risk: Generated logs may contain sensitive business research, URLs, comments, or analysis inputs.
-
-Mitigation: Protect the logs directory with appropriate access controls and delete generated logs when they are no longer needed.
-
-Risk: The skill depends on third-party API availability and may return empty, failed, delayed, or incomplete public-data results.
-
-Mitigation: Check the returned status and error_code fields before relying on results, and verify important findings before using them in decisions.
+Mitigation: Avoid confidential queries and links; submit only information you are comfortable sharing with that service.
 
 ## Reference(s):
 
-- [完整选项参数说明](artifact/references/options.md)
-- [更新日志](artifact/references/changelog.md)
-- [快手运营助手官网](https://www.guaikei.com)
-- [ClawHub skill page](https://clawhub.ai/why20261/skills/kuaishou-yunying-zhushou)
+- [Options and parameter guide](references/options.md)
+- [Changelog](references/changelog.md)
+- [Service and token setup](https://www.guaikei.com)
+- [ClawHub release page](https://clawhub.ai/why20261/skills/kuaishou-yunying-zhushou)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+**Output Type(s):** [JSON data, Shell commands]
 
-**Output Format:** [Markdown guidance with shell command examples and structured JSON command results]
+**Output Format:** [Structured JSON results and CLI commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires GUAIKEI_API_TOKEN; successful command output includes status, request metadata, execution metadata, and results, and local logs may be written.]
+**Other Properties Related to Output:** [Results cover public Kuaishou content; per-plan request limits apply.]
 
 ## Skill Version(s):
 
-1.0.0 (source: frontmatter, package.json, changelog, released 2026-09-17)
+1.1.2 (source: frontmatter, package.json)
 
 ## Ethical Considerations:
 

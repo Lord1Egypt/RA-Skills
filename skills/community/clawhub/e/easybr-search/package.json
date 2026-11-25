@@ -1,0 +1,41 @@
+{
+  "name": "easybr-search",
+  "version": "1.0.1",
+  "description": "Free, local cross-browser search tools and an AI skill for web and social platforms",
+  "type": "module",
+  "license": "MIT-0",
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "easybr-search": "scripts/search.mjs",
+    "easybrSearch": "scripts/search.mjs"
+  },
+  "exports": {
+    ".": "./scripts/search.mjs"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "search": "node scripts/search.mjs",
+    "check": "node --check scripts/search.mjs",
+    "doctor": "node scripts/search.mjs doctor",
+    "benchmark": "node scripts/benchmark.mjs",
+    "platform-check": "node scripts/platform-check.mjs"
+  },
+  "files": [
+    "SKILL.md",
+    "agents",
+    "scripts",
+    "references",
+    "README.md",
+    "LICENSE",
+    "examples",
+    "manifest.yaml",
+    "assets/icon-512.png"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aiispower/easybrSearch.git"
+  },
+  "homepage": "https://github.com/aiispower/easybrSearch#readme"
+}

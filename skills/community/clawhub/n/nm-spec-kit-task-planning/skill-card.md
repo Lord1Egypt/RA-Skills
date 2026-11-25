@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill after completing a specification to create phased implementation tasks with explicit dependencies, parallel work opportunities, affected files, and completion criteria.
+Developers use this skill after writing a specification to turn it into a phased implementation plan with explicit dependencies, parallel work opportunities, affected files, and completion criteria.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan was partial because a local path-like reference in SKILL.md did not match a bundled artifact, leaving coverage incomplete.
+Risk: The security review was marked partial because two example file paths referenced in SKILL.md could not be resolved, leaving medium confidence despite a benign verdict.
 
-Mitigation: Review the unresolved reference and scan the complete release artifacts before execution.
+Mitigation: Review the unresolved example references and consider the stated coverage gap before installing.
 
 ## Reference(s):
 
+- [Project link listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/spec-kit)
 - [ClawHub release page](https://clawhub.ai/athola/skills/nm-spec-kit-task-planning)
-- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/spec-kit)
 
 ## Skill Output:
 
 **Output Type(s):** [Markdown, Guidance]
 
-**Output Format:** [Markdown task plan organized into phases, with task IDs, dependencies, parallel markers, affected files, and completion criteria.]
+**Output Format:** [Markdown task plan with phased headings and structured task entries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Dependency-ordered implementation tasks; parallel work is marked only when the stated nonconflict criteria are met.]
+**Other Properties Related to Output:** [Task entries can include IDs, phases, dependencies, parallel markers, file paths, and completion criteria.]
 
 ## Skill Version(s):
 
-1.10.3 (source: SKILL.md frontmatter, server-resolved release metadata)
+1.10.4 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

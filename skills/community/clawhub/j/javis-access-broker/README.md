@@ -52,9 +52,56 @@ and checks what it produces:
   broker never to follow instructions in either, and the checks above hold even
   when it does.
 
+## Handed-over tasks (0.2.0)
+
+When the agent holds a to-do or spending item the user handed over in HiJavis,
+javis-server adds a `HANDED-OVER TASK` block (the task, the user's item and a
+consent line) to the request and puts the item first in the slice. The broker
+then shares only the facts the item needs, one per point, each with `sources`
+and a short `label` (80 characters or fewer, for example "Launch date: Fri Nov
+21"). javis-server stores the labels as the task's shared-facts record and adds
+the closing "Nothing else was shared." line itself, so the broker never writes
+it. Conversations, voice memos and Gmail still go to the user's approval card.
+Requests without the block are handled exactly as in 0.1.x, and the server
+ignores `label` on them.
+
+## 0.2.1
+
+- The hand-over lets Javis share the item itself and the matching to-dos and
+  calendar items without asking, and the broker answers from those first. A
+  question that is only what the item is, or when it is due or was noted, is
+  answered from the item alone.
+- The broker cites a wiki page, conversation or voice memo only for a fact the
+  task needs that the item, to-dos and calendar do not hold, never for an
+  unrelated fact such as other discussion in the same recording. javis-server
+  sends anything the hand-over does not cover (wiki pages built from
+  conversations, conversations, voice memos and Gmail) to the user's approval
+  card per the user's own rules. A category the user set to Ask me waits for
+  their approval; a category set to Always, or a live grant for that agent,
+  shares the answer without a card. The broker does not decide which applies.
+- Every `answer` has at least one point: `points` is an array of
+  `{text, sources}` objects, also for `kind: exact`; `exact_segments` is an
+  optional addition. With nothing to write, the broker declines
+  (`nothing_to_share`, or a reason for a full-transcript or bulk ask).
+  `access_submit_answer` refuses an answer that fails the point checks (no
+  points, a malformed or empty point, a point without sources) with
+  `answer_refused`, a reason and a fix hint, and the broker submits again. The
+  schema keeps `points` an array: `invalid-answer-without-points.json` fails it
+  and the server refuses it; `invalid-points-as-string.json` fails the schema,
+  though javis-server parses a JSON-string `points` value and accepts it.
+
 `references/submit-answer.schema.json` mirrors the static part of the answer
 check. `references/examples/` holds valid and invalid submissions.
 `references/schema-lite.js` is the dependency-free validator the tests use.
+
+## 0.2.2
+
+- A label only names what its point's text says. Javis drops the label of any
+  point that cites an excerpt (conversation or voice-memo words).
+- Labels on an answer that goes to the user's approval card are shown on the
+  card next to each point's text. javis-server keeps a label on the task's
+  shared-facts record only if the user's app showed it and the user approved.
+- An exact (verbatim) answer carries no labels.
 
 ## Iterating from history
 

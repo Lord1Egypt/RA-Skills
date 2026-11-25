@@ -28,10 +28,12 @@ test('SKILL.md [R1]: name and every route skill are the ClawHub listing name jav
   assert.doesNotMatch(md, /Run \/todo-spend-tracker\b/);
 });
 
-test('package.json [R1]: name javis-todo-spend-tracker, version 0.1.1', () => {
+// 0.1.2: bumped so the first GitHub release tag (javis-todo-spend-tracker-v0.1.2)
+// is a new version (install-skill-without-clawhub spec §1/§2).
+test('package.json [R1]: name javis-todo-spend-tracker, version 0.1.2', () => {
   const pkg = JSON.parse(fs.readFileSync(path.join(DIR, 'package.json'), 'utf8'));
   assert.equal(pkg.name, 'javis-todo-spend-tracker');
-  assert.equal(pkg.version, '0.1.1');
+  assert.equal(pkg.version, '0.1.2');
 });
 
 test('data label [R3]: lib.js SLUG and the skill_data label stay todo-spend-tracker', () => {
@@ -74,14 +76,18 @@ test('SKILL.md [R0-5, R0-4, R0-2]: documents the unit field, the date window and
   assert.doesNotMatch(md, /data\/users/);
 });
 
-// iOS reads this allowlist live from main with no owner check, so the new
-// name is added only after ClawHub serves javis-todo-spend-tracker from
-// samuel-wei (spec R2/R4, a follow-up one-line PR). The old name resolves to
-// gmail-wiki-ingest on ClawHub, so it is dropped now.
-test('repo [R2, R13]: hijavis-skills.json lists neither name until the listing is live', () => {
+// Catalog v3 (install-skill-without-clawhub R3): the skill ships from GitHub
+// release tags, so it is listed under its installed name only, as a default
+// skill from this folder. The old name resolves to gmail-wiki-ingest on
+// ClawHub, so it never appears.
+test('repo [R3, TC-S0-2]: hijavis-skills.json lists javis-todo-spend-tracker, never the old name', () => {
   const list = JSON.parse(fs.readFileSync(path.join(DIR, '..', 'hijavis-skills.json'), 'utf8'));
   assert.ok(!list.skills.includes('todo-spend-tracker'));
-  assert.ok(!list.skills.includes('javis-todo-spend-tracker'));
+  assert.ok(list.skills.includes('javis-todo-spend-tracker'));
+  const entry = list.catalog.find((e) => e.slug === 'javis-todo-spend-tracker');
+  assert.ok(entry);
+  assert.equal(entry.folder, 'todo-spend-tracker');
+  assert.equal(entry.default, true);
 });
 
 test('repo: starters.json passes the shared validator', () => {

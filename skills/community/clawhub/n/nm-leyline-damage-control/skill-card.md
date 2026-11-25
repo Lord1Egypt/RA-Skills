@@ -1,6 +1,6 @@
 ## Description:
 
-Recovers broken agent state via crash recovery, context overflow, and merge conflict protocols.
+Recovers broken agent state via crash recovery, context overflow, and merge conflict protocols
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agent orchestrators use this skill to recover work after crashes, context loss, merge conflicts, or inconsistent task and file state. It also provides a risk checklist for Level 1 and higher tasks.
+Developers and agent operators use these procedures to recover work after an agent crash, context loss, merge conflict, or inconsistent task, Git, and disk state.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review marks this release suspicious because its recovery instructions may be disruptive and part of the referenced material was only partially inspected.
+Risk: Recovery steps can alter Git state while work ownership or intent is unclear.
 
-Mitigation: Review the recovery instructions and fully inspect the partially inspected module before installation; the suspicious verdict is not a finding of malicious intent.
+Mitigation: Inspect Git status, diffs, and stashes first; limit changes to work you intend to commit or stash, and escalate when ownership or intent is uncertain.
+
+Risk: A referenced recovery file was only partly inspected by the security scan.
+
+Mitigation: Review the relevant recovery instructions before applying them, especially before aborting a merge or changing staged or unstaged work.
 
 ## Reference(s):
 
-- [Declared project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-leyline-damage-control)
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-leyline-damage-control)
+- [Related Leyline plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Configuration]
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown with inline shell commands and YAML examples]
+**Output Format:** [Markdown with procedural checklists, decision trees, and inline shell or YAML examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Step-by-step recovery procedures and checklists.]
+**Other Properties Related to Output:** [Organized into recovery modules for distinct failure classes]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, release evidence)
+1.10.4 (source: server-resolved release)
 
 ## Ethical Considerations:
 

@@ -1,5 +1,6 @@
 ---
 name: cue-supply-chain-prospecting
+displayName: 产业链上下游拓客
 description: 用 Cue 沿核心企业客户/供应商/招投标关系链，挖掘产业链上下游可拓展名单——给出每家切入点和可能的金融需求，助力对公客户经理精准拓客。
 description_zh: Cue 产业链上下游拓客：沿客户/供应商/招投标关系链挖掘拓客名单，输出切入点和金融需求。
 version: 1.1.4
@@ -113,6 +114,7 @@ https://cuecue.cn/share/<conv_id>
 ---
 **Cue 原始报告**：https://cuecue.cn/share/<conv_id>
 **本地副本**：~/cue-reports/<文件名>.md
+如有疑问请关注“感易Cue”官方服务号添加企微客服咨询
 ```
 
 规则：

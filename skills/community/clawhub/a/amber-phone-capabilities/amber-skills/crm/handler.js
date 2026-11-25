@@ -276,7 +276,7 @@ async function handleUpsertContact(params, context) {
       if (name !== undefined && name !== null) updates.name = safeFreeText(name, 200);
       if (email !== undefined && email !== null) updates.email = safeFreeText(email, 200);
       if (company !== undefined && company !== null) updates.company = safeFreeText(company, 200);
-      if (context_notes !== undefined) updates.context_notes = safeFreeText(context_notes, 1000);
+      if (typeof context_notes === 'string') updates.context_notes = safeFreeText(context_notes, 1000);
       updates.updated_at = now;
 
       if (Object.keys(updates).length > 0) {

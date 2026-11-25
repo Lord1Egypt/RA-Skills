@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers, marketing teams, and researchers use the skill to retrieve Facebook page and group content, Marketplace listings, videos, and advertising data for social listening, creator intelligence, market research, monitoring, and analytics.
+Developers and marketing or research teams use this skill to retrieve Facebook page, post, group, Marketplace, video, and advertising data for social listening, content research, and monitoring workflows.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill depends on an external API service.
+Risk: People search and location filters may return personal or location-related information.
 
-Mitigation: Review the provider's terms and data handling before connecting an API key.
+Mitigation: Use these searches only for an appropriate, authorized purpose, keep queries focused, and avoid retaining unnecessary personal data.
 
-Risk: The scanner notes a people-search capability broader than the manifest description.
+Risk: The skill sends authenticated requests to an external service using an API key.
 
-Mitigation: Review that capability before use and limit people searches to an appropriate user purpose.
+Mitigation: Keep SUPERAGNT_API_KEY in a secret store and review the service terms and account permissions before sending queries.
 
 ## Reference(s):
 
 - [Facebook Data documentation](https://superagnt.com/r/ch-facebook-data-docs)
-- [Facebook Data MCP setup](https://www.superagnt.com/install?facet=facebook)
-- [superagnt API keys](https://superagnt.com/r/ch-facebook-data-key)
+- [Facebook Data MCP server](https://mcp.superagnt.com/mcp/facebook)
+- [MCP installation guide](https://www.superagnt.com/install?facet=facebook)
 - [ClawHub listing](https://clawhub.ai/superagnt/skills/facebook-data)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON data, Shell commands, Configuration instructions, Usage guidance]
+**Output Type(s):** [API Calls, JSON]
 
-**Output Format:** [Structured JSON results with Markdown setup guidance and inline shell commands]
+**Output Format:** [Structured JSON responses from Facebook Data endpoints]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results and available fields depend on the selected Facebook data endpoint. A SUPERAGNT_API_KEY is required.]
+**Other Properties Related to Output:** [Live external data; response fields and availability vary by endpoint and query.]
 
 ## Skill Version(s):
 
-2.0.14 (source: frontmatter)
+2.0.19 (source: frontmatter)
 
 ## Ethical Considerations:
 

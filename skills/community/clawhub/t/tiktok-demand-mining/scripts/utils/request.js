@@ -202,7 +202,13 @@ async function requestApi(
  */
 function classifyPollError(error) {
   if (!error) return "retry";
-  if (String(error.code) === "1") return "pending";
+  const msg = error.message ? String(error.message) : "";
+  // 搜索创建频控也会返回 errcode 1；已映射为 RATE_LIMITED。若未映射，勿当 pending
+  if (String(error.code) === "1") {
+    if (/短时间内请勿提交过多/.test(msg)) return "fail";
+    return "pending";
+  }
+  if (msg.includes("处理中")) return "pending";
   if (
     error.name === "NetworkError" ||
     error.name === "TimeoutError" ||

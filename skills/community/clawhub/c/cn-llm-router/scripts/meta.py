@@ -1,6 +1,6 @@
 """版本与元数据常量。"""
 
-VERSION = "2.7.0"
+VERSION = "2.9.0"
 SKILL_NAME = "cn-llm-router"
 DISPLAY_NAME = "国产大模型统一路由"
 # update-check 默认拉取的版本清单地址（可被 config.json 的 update_url 覆盖）。

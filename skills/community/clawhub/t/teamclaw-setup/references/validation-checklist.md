@@ -14,6 +14,8 @@ Expected shape:
 {"status":"ok","mode":"controller", ...}
 ```
 
+If on-demand provisioning is enabled, `/api/v1/health` can temporarily return a non-OK readiness state during warm-up. When `workerProvisioningRoles` is empty, readiness defaults to waiting for a warm `developer` worker.
+
 Also point them to:
 
 ```text
@@ -41,7 +43,7 @@ If OpenClaw times out first, users often think TeamClaw is broken when the real 
 
 ## Common failure checks
 
-### localRoles or process
+### process provisioning
 
 - confirm the chosen model already works in plain OpenClaw
 - confirm `agents.defaults.workspace` points to a writable path
@@ -67,7 +69,7 @@ If OpenClaw times out first, users often think TeamClaw is broken when the real 
 
 Treat the install as successful only when:
 
-1. controller health is `ok`
+1. controller health is `ok` after startup readiness finishes
 2. expected workers appear in the UI or status view
 3. the smoke-test task completes
 4. files appear in the workspace

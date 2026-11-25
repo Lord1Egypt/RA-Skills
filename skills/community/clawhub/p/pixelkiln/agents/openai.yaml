@@ -1,0 +1,5 @@
+interface:
+  display_name: "PixelKiln"
+  short_description: "Plan and ship provenance-safe pixel art"
+  brand_color: "#FF6B35"
+  default_prompt: "Use $pixelkiln to plan and safely produce this project's pixel-art assets."

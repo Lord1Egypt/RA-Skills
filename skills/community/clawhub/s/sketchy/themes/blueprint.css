@@ -1,0 +1,20 @@
+/*
+ * sketchy theme: blueprint
+ * White chalk lines on Prussian blue with a faint grid. For architecture,
+ * engineering, systems and anything drawn to be built.
+ */
+:root {
+  color-scheme: dark;
+  --sk-paper: #1d4470; --sk-paper-deep: #173a61; --sk-paper-light: #24507f;
+  --sk-sheet: rgba(29, 68, 112, .93); --sk-veil: rgba(23, 58, 97, .62); --sk-halo: rgba(29, 68, 112, .92);
+  --sk-shadow: 6, 18, 36; --sk-paper-kind: dark;
+  /* one image that tiles at its own size: background-image cannot carry a position or size */
+  --sk-paper-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath d='M.5 0V32M0 .5H32' stroke='%23dcebff' stroke-opacity='.09' fill='none'/%3E%3C/svg%3E");
+  --sk-ink: #f4f8ff; --sk-graphite: #e6eefb; --sk-graphite-soft: #a9bfdc; --sk-graphite-faint: rgba(230, 238, 251, .3);
+  --sk-red: #ffb36b; --sk-red-ink: #ffc58c; --sk-red-frame: #ffb36b; --sk-red-soft: #8a6a4a;
+  --sk-blue: #9fd0ff; --sk-green: #9be3b8; --sk-yellow: #ffe28a; --sk-orange: #ffb36b;
+  --sk-violet: #c9b8ff; --sk-rose: #ffaab0; --sk-teal: #8ff0e0; --sk-peach: #ffb36b;
+  --sk-figure: #ffe28a; --sk-gold: #ffe28a;
+  --sk-stamp: #ffb36b; --sk-stamp-blue: #9fd0ff; --sk-stamp-green: #9be3b8;
+  --sk-cover: #1f2533; --sk-door: #0f1a2b; --sk-focus: #ffe28a;
+}

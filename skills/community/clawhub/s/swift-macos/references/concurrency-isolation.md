@@ -53,7 +53,7 @@ Default isolation is per target; there is no per-file switch. Keep logic package
 | `nonisolated(nonsending) func f() async` | the caller's actor, regardless of the flag |
 | `@concurrent func f() async` | the global concurrent pool, always (async only) |
 
-Use `@concurrent` for CPU-heavy or blocking work; do not use it for code that mostly awaits other async calls. Under default isolation every type is MainActor-isolated, including its conformances and computed members. A model decoded or used inside `@concurrent` code must be `nonisolated`:
+Use `@concurrent` for CPU-heavy work; do not use it for code that mostly awaits other async calls. It is no home for blocking work: a `@concurrent` function still runs on the cooperative pool (one thread per core, 3 on a standard CI runner), so a semaphore, a synchronous framework wait or blocking I/O there holds a pool thread and can starve the pool into a hang. Run blocking calls on a dispatch queue and resume a continuation (concurrency-tasks.md); ci-github-actions.md has a CI-only deadlock from exactly this. Under default isolation every type is MainActor-isolated, including its conformances and computed members. A model decoded or used inside `@concurrent` code must be `nonisolated`:
 
 ```swift
 import Foundation
@@ -317,6 +317,30 @@ extension CallController: RoomDelegate {
 ```
 
 Ordering: tasks created with an explicit `@MainActor` closure from one serial thread start on the main actor in creation order ([SE-0431](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0431-isolated-any-functions.md); 20,000 mixed-priority tasks from one serial queue arrived in order). Nothing orders them against callbacks from other queues, an `await` inside a handler lets later ones interleave, a plain `Task {}` without the explicit `@MainActor` has no guarantee, and the callback's arguments are stale by the time the task runs. Make the handler idempotent: ignore the arguments, guard that the object is still current (`room === self.room`), and re-read the live state in one `refresh()`. Pass only `Sendable` values (IDs, `Bool`s, the `Sendable` object itself) into the task. Exception to "re-read the live state": state the SDK resets or moves past (LiveKit's `room.metadata` after a disconnect, `connectionState == .reconnecting` during a reconnect) must be read synchronously in the `nonisolated` callback and passed in as a value.
+
+### Imported async delegate variants complete wherever the body ends
+
+Objective-C delegate methods with a completion handler are also imported as `async` methods, and Swift lets you implement either. In a MainActor-default app, `nonisolated func userNotificationCenter(_:didReceive:) async` crashed on a notification tap inside `-[UIApplication _updateSnapshotAndStateRestorationWithAction:windowScene:]`: the implicit completion ran off the main thread (observed, iOS 27.2). Implement the completion-handler form, copy Sendable values out of the non-Sendable argument, and call the handler on the main actor:
+
+```swift
+import UserNotifications
+
+final class AppDelegate: NSObject, UNUserNotificationCenterDelegate {
+    private(set) var openedThread: String?
+
+    nonisolated func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                            didReceive response: UNNotificationResponse,
+                                            withCompletionHandler completionHandler: @escaping @Sendable () -> Void) {
+        let thread = response.notification.request.content.threadIdentifier   // copy Sendable values out first
+        Task { @MainActor in
+            self.openedThread = thread
+            completionHandler()
+        }
+    }
+}
+```
+
+Compiled with `-swift-version 6 -default-isolation MainActor` against the iOS 27.2 SDK. The same applies to other UIKit and SDK delegates whose `async` variant UIKit awaits before it updates state.
 
 ## Typed throws
 

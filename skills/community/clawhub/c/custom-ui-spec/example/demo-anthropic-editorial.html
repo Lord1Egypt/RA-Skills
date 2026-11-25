@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anthropic Editorial — Design System & UI Theme Showcase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ================================================================
+       Anthropic Editorial Warm — Design Tokens (Light & Dark)
+       Font Stack: Newsreader (Serif) + Plus Jakarta Sans + JetBrains Mono
+       Principles: Editorial Authority, Tactile Warmth, Zero-Shadow Hairlines
+       ================================================================ */
+    :root {
+      --bg: #faf9f5;
+      --surface: #f5f4ed;
+      --surface-warm: #e8e6dc;
+      --surface-oat: #e3dacc;
+
+      --fg: #141413;
+      --fg-2: #3d3d3a;
+      --muted: #5e5d59;
+      --meta: #87867f;
+
+      --border: #c6c4ba;
+      --border-soft: #e8e6dc;
+
+      --accent: #d97757;
+      --accent-on: #faf9f5;
+      --accent-hover: #c6613f;
+
+      --accent-clay: #d97757;
+      --accent-cactus: #788c5d;
+      --accent-sky: #6a9bcc;
+      --accent-fig: #c46686;
+      --accent-coral: #ebcece;
+      --accent-seafoam: #bcd1ca;
+
+      --font-serif: 'Newsreader', Georgia, Cambria, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+      --radius-sm: 4px;
+      --radius-md: 6px;
+      --radius-lg: 12px;
+      --radius-full: 9999px;
+
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html.dark {
+      --bg: #141413;
+      --surface: #1e1e1c;
+      --surface-warm: #2a2a27;
+      --surface-oat: #33312b;
+
+      --fg: #faf9f5;
+      --fg-2: #d8d6cc;
+      --muted: #b0aea5;
+      --meta: #7a786f;
+
+      --border: rgba(250, 249, 245, 0.14);
+      --border-soft: rgba(250, 249, 245, 0.07);
+
+      --accent: #d97757;
+      --accent-on: #141413;
+      --accent-hover: #e38c70;
+
+      --accent-clay: #e08568;
+      --accent-cactus: #8fa372;
+      --accent-sky: #82b0de;
+      --accent-fig: #d47a98;
+      --accent-coral: #4a3535;
+      --accent-seafoam: #2d3d38;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.62;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 180ms var(--ease), color 180ms var(--ease);
+    }
+
+    /* Minimalist Top Header */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: var(--bg);
+      border-bottom: 1px solid var(--border);
+      transition: background-color 180ms var(--ease), border-color 180ms var(--ease);
+    }
+    .top-nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand-mark {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 2px 8px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--muted);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .nav-links a {
+      font-size: 14px;
+      color: var(--fg-2);
+      text-decoration: none;
+      transition: color 150ms var(--ease);
+    }
+    .nav-links a:hover {
+      color: var(--fg);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 40px;
+      padding: 0 18px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 150ms var(--ease);
+      border: 1px solid transparent;
+    }
+    .btn-sm { height: 34px; padding: 0 12px; font-size: 13px; }
+    .btn-primary {
+      background-color: var(--fg);
+      color: var(--bg);
+    }
+    .btn-primary:hover { opacity: 0.86; }
+    .btn-outline {
+      background-color: transparent;
+      border-color: var(--border);
+      color: var(--fg);
+    }
+    .btn-outline:hover {
+      background-color: var(--surface-warm);
+      border-color: var(--fg);
+    }
+    .btn-clay {
+      background-color: var(--accent-clay);
+      color: #faf9f5;
+    }
+    .btn-clay:hover { background-color: var(--accent-hover); }
+
+    /* Layout & Asymmetric Grid */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    .section-band {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-band.ink-chapter {
+      background-color: #141413;
+      color: #faf9f5;
+      --surface: #1e1e1c;
+      --surface-warm: #2a2a27;
+      --fg: #faf9f5;
+      --fg-2: #d8d6cc;
+      --muted: #b0aea5;
+      --border: rgba(250, 249, 245, 0.16);
+      --border-soft: rgba(250, 249, 245, 0.08);
+    }
+    .asymmetric-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .asymmetric-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .sticky-wayfinding {
+      position: sticky;
+      top: 96px;
+    }
+
+    /* Typography Helpers */
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--accent-clay);
+    }
+    .display-hero {
+      font-family: var(--font-serif);
+      font-size: clamp(38px, 5vw, 56px);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      max-width: 18ch;
+      margin-bottom: 24px;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(26px, 3vw, 34px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .lead-prose {
+      font-size: 18px;
+      line-height: 1.65;
+      color: var(--fg-2);
+      max-width: 64ch;
+      margin-bottom: 32px;
+    }
+
+    /* Swatch Grid */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 16px;
+    }
+    .swatch-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 150ms var(--ease);
+    }
+    .swatch-card:hover { border-color: var(--fg); }
+    .swatch-color {
+      height: 84px;
+      border-bottom: 1px solid var(--border);
+    }
+    .swatch-meta { padding: 14px; }
+    .swatch-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .swatch-code {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Editorial Cards (Zero Shadow) */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .editorial-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 240px;
+      transition: background-color 150ms var(--ease), border-color 150ms var(--ease);
+    }
+    .editorial-card:hover {
+      background-color: var(--surface-warm);
+      border-color: var(--fg);
+    }
+    .editorial-card h3 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.28;
+      margin: 8px 0 12px;
+    }
+    .editorial-card p {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .card-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--fg);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Archive Index Rows */
+    .archive-list {
+      border-top: 1px solid var(--border);
+    }
+    .archive-row {
+      display: grid;
+      grid-template-columns: 130px 150px 1fr 32px;
+      gap: 16px;
+      align-items: center;
+      padding: 18px 12px;
+      border-bottom: 1px solid var(--border-soft);
+      text-decoration: none;
+      color: inherit;
+      transition: background-color 150ms var(--ease);
+    }
+    .archive-row:hover {
+      background-color: var(--surface-warm);
+    }
+    .archive-date {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border);
+      width: fit-content;
+    }
+    .archive-title {
+      font-family: var(--font-serif);
+      font-size: 19px;
+      font-weight: 400;
+    }
+
+    /* Form & UI Controls */
+    .controls-panel {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+    }
+    .input-field {
+      width: 100%;
+      height: 40px;
+      padding: 0 14px;
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      color: var(--fg);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      transition: border-color 150ms var(--ease), box-shadow 150ms var(--ease);
+    }
+    .input-field:focus {
+      outline: none;
+      border-color: var(--fg);
+      box-shadow: 0 0 0 1px var(--fg);
+    }
+    .code-box {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.55;
+      overflow-x: auto;
+      position: relative;
+    }
+    .toast-msg {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: var(--fg);
+      color: var(--bg);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 10px 16px;
+      border-radius: var(--radius-md);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 150ms var(--ease);
+    }
+    .toast-msg.visible { opacity: 1; }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="top-nav-inner">
+      <a href="#" class="brand-mark">
+        Anthropic Editorial
+        <span class="brand-badge">Spec v0.1</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#palette">Palette</a>
+        <a href="#typography">Typography</a>
+        <a href="#components">Components</a>
+        <a href="#archive">Archive UX</a>
+        <button class="btn btn-outline btn-sm" id="themeToggle" onclick="toggleTheme()">
+          ◐ Toggle Slate Ink / Ivory
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Chapter 1: Hero Section (Ivory Canvas) -->
+  <section class="section-band">
+    <div class="container">
+      <div class="eyebrow">
+        <span class="eyebrow-dot"></span>
+        <span>DESIGN SYSTEM · ANTHROPIC EDITORIAL WARM</span>
+      </div>
+      <h1 class="display-hero">
+        Literary clarity meets structural precision.
+      </h1>
+      <p class="lead-prose">
+        Inspired by academic monographs and classic broadsheets. Built upon warm parchment ivory (<code>#FAF9F5</code>), deep slate ink (<code>#141413</code>), tripartite typography, and zero-shadow 1px hairline architecture.
+      </p>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <a href="#components" class="btn btn-primary">Explore UI Components</a>
+        <a href="#tokens" class="btn btn-outline">Copy CSS &amp; shadcn Tokens</a>
+        <button class="btn btn-clay" onclick="showToast('Brand Accent CTA triggered')">Clay Highlight Action</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter 2: Color Palette (Asymmetric Split) -->
+  <section class="section-band" id="palette">
+    <div class="container asymmetric-grid">
+      <div class="sticky-wayfinding">
+        <div class="eyebrow">01 · CHROMATIC SYSTEM</div>
+        <h2 class="section-title">Ink, Ivory &amp; Earth Accents</h2>
+        <p style="font-size: 15px; color: var(--muted);">
+          Click any swatch to copy its HEX value. Primary interfaces remain strictly warm-monochrome; domain accents surface in charts, safety badges, and research indices.
+        </p>
+      </div>
+      <div class="swatch-grid">
+        <div class="swatch-card" onclick="copyHex('#FAF9F5', '--bg')">
+          <div class="swatch-color" style="background: #FAF9F5;"></div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Ivory Cream</div>
+            <div class="swatch-code"><span>--bg</span><span>#FAF9F5</span></div>
+          </div>
+        </div>
+        <div class="swatch-card" onclick="copyHex('#141413', '--fg')">
+          <div class="swatch-color" style="background: #141413;"></div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Slate Ink</div>
+            <div class="swatch-code"><span>--fg</span><span>#141413</span></div>
+          </div>
+        </div>
+        <div class="swatch-card" onclick="copyHex('#E8E6DC', '--surface-warm')">
+          <div class="swatch-color" style="background: #E8E6DC;"></div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Warm Stone</div>
+            <div class="swatch-code"><span>--surface-warm</span><span>#E8E6DC</span></div>
+          </div>
+        </div>
+        <div class="swatch-card" onclick="copyHex('#C6C4BA', '--border')">
+          <div class="swatch-color" style="background: #C6C4BA;"></div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Hairline Rule</div>
+            <div class="swatch-code"><span>--border</span><span>#C6C4BA</span></div>
+          </div>
+        </div>
+        <div class="swatch-card" onclick="copyHex('#D97757', '--accent-clay')">
+          <div class="swatch-color" style="background: #D97757;"></div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Clay Terracotta</div>
+            <div class="swatch-code"><span>--accent-clay</span><span>#D97757</span></div>
+          </div>
+        </div>
+        <div class="swatch-card" onclick="copyHex('#788C5D', '--accent-cactus')">
+          <div class="swatch-color" style="background: #788C5D;"></div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Cactus Sage</div>
+            <div class="swatch-code"><span>--accent-cactus</span><span>#788C5D</span></div>
+          </div>
+        </div>
+        <div class="swatch-card" onclick="copyHex('#6A9BCC', '--accent-sky')">
+          <div class="swatch-color" style="background: #6A9BCC;"></div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Sky Slate</div>
+            <div class="swatch-code"><span>--accent-sky</span><span>#6A9BCC</span></div>
+          </div>
+        </div>
+        <div class="swatch-card" onclick="copyHex('#C46686', '--accent-fig')">
+          <div class="swatch-color" style="background: #C46686;"></div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Fig Mauve</div>
+            <div class="swatch-code"><span>--accent-fig</span><span>#C46686</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter 3: Editorial Cards & Zero-Shadow Architecture -->
+  <section class="section-band" id="components">
+    <div class="container asymmetric-grid">
+      <div class="sticky-wayfinding">
+        <div class="eyebrow">02 · ZERO-SHADOW CARDS</div>
+        <h2 class="section-title">1px Hairline Containers</h2>
+        <p style="font-size: 15px; color: var(--muted);">
+          Cards never use drop shadows. Hierarchy is established by warm surface stepping, monospace category eyebrows, and crisp 1px borders that sharpen on hover.
+        </p>
+      </div>
+      <div class="cards-grid">
+        <article class="editorial-card">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-dot" style="background: var(--accent-cactus);"></span>
+              <span>ALIGNMENT · OCT 2026</span>
+            </div>
+            <h3>Constitutional AI &amp; Scalable Oversight</h3>
+            <p>Empirical evaluations of interpretability frameworks across frontier reasoning tasks and multi-step agentic workflows.</p>
+          </div>
+          <a href="#components" class="card-link">Read research paper →</a>
+        </article>
+
+        <article class="editorial-card" style="background-color: var(--surface-oat);">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-dot" style="background: var(--accent-clay);"></span>
+              <span>FEATURED RELEASE · MODEL CARD</span>
+            </div>
+            <h3>System Card &amp; Evaluation Benchmarks</h3>
+            <p>Featured callout surfaces use Warm Oat (<code>#E3DACC</code>) to draw natural visual focus without relying on elevation shadows.</p>
+          </div>
+          <a href="#components" class="card-link">Explore benchmarks →</a>
+        </article>
+
+        <article class="editorial-card">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-dot" style="background: var(--accent-sky);"></span>
+              <span>ECONOMIC INDEX · REPORT</span>
+            </div>
+            <h3>Labor Market Task Automation Patterns</h3>
+            <p>Analyzing how software engineers and researchers collaborate with autonomous coding systems in production.</p>
+          </div>
+          <a href="#components" class="card-link">View dataset →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter 4: Full-Bleed Slate Ink Band (Cream & Ink Pacing) -->
+  <section class="section-band ink-chapter" id="archive">
+    <div class="container asymmetric-grid">
+      <div class="sticky-wayfinding">
+        <div class="eyebrow">03 · ARCHIVE-FIRST UX</div>
+        <h2 class="section-title">Broadsheet Pacing &amp; Index</h2>
+        <p style="font-size: 15px; color: var(--muted);">
+          Full-bleed Slate Ink bands punctuate long pages, resetting visual rhythm while presenting dense research archives in scannable rows.
+        </p>
+      </div>
+      <div>
+        <div class="archive-list">
+          <a href="#archive" class="archive-row">
+            <span class="archive-date">Oct 24, 2026</span>
+            <span class="pill"><span class="eyebrow-dot" style="background: var(--accent-cactus);"></span>Safety</span>
+            <span class="archive-title">Evaluating Frontier Model Autonomy Under Adversarial Constraints</span>
+            <span>→</span>
+          </a>
+          <a href="#archive" class="archive-row">
+            <span class="archive-date">Oct 12, 2026</span>
+            <span class="pill"><span class="eyebrow-dot" style="background: var(--accent-sky);"></span>Engineering</span>
+            <span class="archive-title">Context Engineering &amp; Progressive Disclosure for Multi-Agent Systems</span>
+            <span>→</span>
+          </a>
+          <a href="#archive" class="archive-row">
+            <span class="archive-date">Sep 28, 2026</span>
+            <span class="pill"><span class="eyebrow-dot" style="background: var(--accent-fig);"></span>Policy</span>
+            <span class="archive-title">Global Standards for Transparent AI Governance and Auditing</span>
+            <span>→</span>
+          </a>
+          <a href="#archive" class="archive-row">
+            <span class="archive-date">Sep 15, 2026</span>
+            <span class="pill"><span class="eyebrow-dot" style="background: var(--accent-clay);"></span>Product</span>
+            <span class="archive-title">Introducing Editorial Design Tokens for Production Web Interfaces</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter 5: Form Controls & Ready-to-Use Tokens -->
+  <section class="section-band" id="tokens">
+    <div class="container asymmetric-grid">
+      <div class="sticky-wayfinding">
+        <div class="eyebrow">04 · FORMS &amp; TOKENS</div>
+        <h2 class="section-title">Interactive Controls &amp; CSS</h2>
+        <p style="font-size: 15px; color: var(--muted);">
+          Inputs feature crisp 1px borders and solid 2px Slate Ink focus rings without fuzzy outer glows.
+        </p>
+      </div>
+      <div style="display: grid; gap: 24px;">
+        <div class="controls-panel">
+          <div class="eyebrow" style="margin-bottom: 16px;">FORM SPECIFICATION</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; align-items: end;">
+            <div>
+              <label style="display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px;">Researcher Email</label>
+              <input type="email" class="input-field" placeholder="name@anthropic.com" />
+            </div>
+            <div>
+              <label style="display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px;">Research Track</label>
+              <select class="input-field">
+                <option>Interpretability &amp; Alignment</option>
+                <option>Agentic Systems &amp; Tool Use</option>
+                <option>Economic Index</option>
+              </select>
+            </div>
+            <button class="btn btn-primary" onclick="showToast('Subscribed to research index')">Subscribe</button>
+          </div>
+        </div>
+
+        <div class="code-box">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <span class="eyebrow" style="margin: 0;">SHADCN / TAILWIND GLOBALS.CSS</span>
+            <button class="btn btn-outline btn-sm" onclick="copySnippet()">Copy CSS Variables</button>
+          </div>
+<pre id="cssSnippet">:root {
+  --background: #faf9f5;
+  --foreground: #141413;
+  --card: #f5f4ed;
+  --primary: #141413;
+  --primary-foreground: #faf9f5;
+  --secondary: #e8e6dc;
+  --muted-foreground: #5e5d59;
+  --accent: #d97757;
+  --border: #c6c4ba;
+  --radius: 0.375rem;
+}</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="toast" class="toast-msg">Copied to clipboard</div>
+
+  <script>
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+      const isDark = document.documentElement.classList.contains('dark');
+      showToast(isDark ? 'Switched to Slate Ink Dark Mode' : 'Switched to Ivory Cream Light Mode');
+    }
+    function copyHex(hex, token) {
+      if (navigator.clipboard) navigator.clipboard.writeText(hex);
+      showToast('Copied ' + token + ': ' + hex);
+    }
+    function copySnippet() {
+      const code = document.getElementById('cssSnippet').innerText;
+      if (navigator.clipboard) navigator.clipboard.writeText(code);
+      showToast('Copied shadcn/Tailwind CSS variables');
+    }
+    function showToast(text) {
+      const el = document.getElementById('toast');
+      el.textContent = text;
+      el.classList.add('visible');
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => el.classList.remove('visible'), 2000);
+    }
+  </script>
+</body>
+</html>
+

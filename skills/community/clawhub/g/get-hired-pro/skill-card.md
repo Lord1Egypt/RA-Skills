@@ -1,6 +1,6 @@
 ## Description:
 
-Find suitable jobs, research employers, create tailored applications, manage submissions and follow-ups, and prepare interviews, LinkedIn profiles, outreach and offer responses. Use for Get Hired PRO or this career workflow.
+Find suitable jobs, research employers, create tailored applications, manage submissions and follow-ups, and prepare interviews, LinkedIn profiles, outreach and offer responses.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External job seekers use this skill to identify suitable openings, research employers, prepare tailored application materials, manage agreed submissions and follow-ups, and prepare for interviews, outreach, and offer decisions.
+Job seekers use this skill to search for suitable roles, tailor application materials, manage applications and prepare for interviews and offer negotiations.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Submitting application materials shares personal information with employers or recruiting platforms.
+Risk: Application materials may contain personal information that is sent to employers or applicant-tracking systems.
 
-Mitigation: Agree in advance which applications, documents, and answers may be submitted, and review each submission.
+Mitigation: Review each application before sending and share only information the applicant intends to disclose.
 
-Risk: Career-project files can retain readable document text.
+Risk: The active agent's runtime tool permissions have not been verified.
 
-Mitigation: Keep the career project private and remove retained copies when they are no longer needed.
+Mitigation: Confirm the available tools and permissions before enabling inbox checks or application submission.
 
 ## Reference(s):
 
-- [ClawHub release](https://clawhub.ai/redrookai/skills/get-hired-pro)
-- [Job discovery](references/job-discovery.md)
-- [Application management](references/application-management.md)
-- [Interview preparation](references/interview-preparation.md)
-- [Offers and salary targets](references/offers.md)
+- [Get Hired PRO on ClawHub](https://clawhub.ai/redrookai/skills/get-hired-pro)
+- [Research and sources](artifact/SOURCES.md)
+- [Harvard: Create a strong résumé](https://careerservices.fas.harvard.edu/resources/create-a-strong-resume/)
+- [MIT: Using AI for interview preparation](https://capd.mit.edu/resources/using-ai-for-interview-prep/)
+- [Harvard: Evaluating and negotiating job offers](https://careerservices.fas.harvard.edu/resources/hes-evaluating-and-negotiating-job-offers-2/)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Text, Markdown, PDF files]
+**Output Type(s):** [Text, Markdown, Files, Guidance]
 
-**Output Format:** [Career guidance and tailored application materials in text or Markdown, with resume and cover-letter PDFs when requested.]
+**Output Format:** [Chat responses, Markdown, and PDF or Word application documents]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include job research, application tracking, follow-up messages, interview preparation, LinkedIn and recruiter outreach, and offer responses.]
+**Other Properties Related to Output:** [Tailored to the applicant, role, employer, and stated preferences.]
 
 ## Skill Version(s):
 
-2.0.1 (source: SKILL.md frontmatter, ClawHub release metadata)
+2.1.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

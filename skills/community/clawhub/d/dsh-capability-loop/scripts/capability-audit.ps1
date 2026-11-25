@@ -136,9 +136,22 @@ if ($agentFiles.Count -gt 0) {
 }
 
 # ---------------- D. profile 配置 ----------------
-$profileDir = Join-Path $DshHome 'profiles\web'
+# 活动 profile 不一定是 web（桌面版是 desktop）。优先 desktop → web → 第一个非 default 目录。
+$profilesDir = Join-Path $DshHome 'profiles'
+$profileDir = Join-Path $profilesDir 'desktop'
+if (-not (Test-Path -LiteralPath $profileDir)) { $profileDir = Join-Path $profilesDir 'web' }
+if (-not (Test-Path -LiteralPath $profileDir)) {
+    $candidates = @()
+    if (Test-Path -LiteralPath $profilesDir) {
+        $candidates = @(Get-ChildItem -LiteralPath $profilesDir -Directory -ErrorAction SilentlyContinue |
+            Where-Object { $_.Name -ne 'default' } | Sort-Object Name)
+    }
+    if ($candidates.Count -gt 0) { $profileDir = $candidates[0].FullName }
+}
+$profileName = Split-Path -Leaf $profileDir
 $patch = Join-Path $profileDir 'cordis.patch.yml'
 if (Test-Path -LiteralPath $patch) {
+    Add-R 'D profile' '活动 profile' 'PASS' ($profileName + '（cordis.patch.yml）')
     $pt = Read-Utf8 $patch
     $lines = $pt -split "`r?`n"
     $openAt = ''
@@ -167,7 +180,11 @@ if (Test-Path -LiteralPath $patch) {
     if ($dm.Count -gt 0) { Add-R 'D profile' 'dshmarket 残留' 'WARN' ([string]$dm.Count + ' 行有效引用（自重启会抢端口）') } else { Add-R 'D profile' 'dshmarket 残留' 'PASS' '无有效引用' }
     Add-R 'D profile' 'patch 行数' 'PASS' ([string]$lines.Count)
 } else {
-    Add-R 'D profile' 'cordis.patch.yml' 'FAIL' ('不存在：' + $patch)
+    if (Test-Path -LiteralPath $profileDir) {
+        Add-R 'D profile' 'cordis.patch.yml' 'WARN' ('profile ' + $profileName + ' 无 cordis.patch.yml（patch 可选；检索三件套无法核对）')
+    } else {
+        Add-R 'D profile' 'profile 目录' 'FAIL' ('不存在：' + $profilesDir)
+    }
 }
 
 foreach ($pkg in @('dsh-token-insights', 'dshmarket')) {
@@ -337,6 +354,21 @@ if (Test-Path -LiteralPath $Source) {
     Add-R 'H 自身' '更新检查' 'SKIP' '无源目录（独立分发副本，无法对比）'
 }
 
+# PowerShell 脚本必须 UTF-8 带 BOM：PS 5.1 读无 BOM 的中文会按 ANSI 解，脚本直接语法错。
+$psScripts = @(Get-ChildItem -LiteralPath (Join-Path $Workspace 'scripts') -File -Filter '*.ps1' -ErrorAction SilentlyContinue)
+if ($psScripts.Count -gt 0) {
+    $missingBom = @()
+    foreach ($psFile in $psScripts) {
+        $bytes = [System.IO.File]::ReadAllBytes($psFile.FullName)
+        if (-not ($bytes.Length -ge 3 -and $bytes[0] -eq 0xEF -and $bytes[1] -eq 0xBB -and $bytes[2] -eq 0xBF)) { $missingBom += $psFile.Name }
+    }
+    if ($missingBom.Count -eq 0) {
+        Add-R 'H 自身' 'PowerShell BOM' 'PASS' ([string]$psScripts.Count + ' 个脚本均带 BOM')
+    } else {
+        Add-R 'H 自身' 'PowerShell BOM' 'FAIL' ('缺 BOM（PS 5.1 中文会乱码）：' + ($missingBom -join ', '))
+    }
+}
+
 # ---------------- I. 动态漂移（对比上次体检） ----------------
 $stateDir = Join-Path $Workspace '.tmp\capability-loop'
 $stateFile = Join-Path $stateDir 'audit-state.json'
@@ -447,6 +479,24 @@ if ($OutFile) {
     } catch {
         Write-Host ('报告写入失败：' + $_.Exception.Message) -ForegroundColor Yellow
     }
+}
+
+# ---------------- 状态源同步（P0，仅当工程已接入） ----------------
+try {
+    $loopMarker = Join-Path (Join-Path (Join-Path $Workspace '.dsh') 'loop') 'project.json'
+    if (Test-Path -LiteralPath $loopMarker) {
+        $stateScript = Join-Path $PSScriptRoot 'loop-state.ps1'
+        if (Test-Path -LiteralPath $stateScript) {
+            & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $stateScript -Action sync-audit -Root $Workspace | Out-Host
+            $auditStatus = 'PASS'
+            $auditExit = 0
+            if ($fail -gt 0) { $auditStatus = 'FAIL'; $auditExit = 1 }
+            elseif ($warn -gt 0) { $auditStatus = 'WARN'; $auditExit = 3 }
+            & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $stateScript -Action record-check -Root $Workspace -Check environment-audit -Status $auditStatus -ExitCode $auditExit -Cmd 'capability-audit.ps1' | Out-Host
+        }
+    }
+} catch {
+    Write-Host ('[WARN] 状态源同步失败：' + $_.Exception.Message) -ForegroundColor Yellow
 }
 
 if ($Json) {

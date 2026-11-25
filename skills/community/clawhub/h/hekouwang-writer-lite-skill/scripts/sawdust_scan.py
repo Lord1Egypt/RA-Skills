@@ -11,8 +11,12 @@
     echo "文本" | sawdust_scan.py
     sawdust_scan.py --json FILE      # JSON 输出
     sawdust_scan.py --threshold 5 FILE
+    sawdust_scan.py --json --check-contrast FILE   # 假靶心候选标记（opt-in）
 
 退出码：恒为 0（advisory，只报告不阻断）。
+
+--check-contrast 只在显式传入时于 JSON 增加 contrast_candidates 字段；
+默认调用（含下游 --json + stdin）输出结构与旧版完全一致。
 """
 
 import argparse
@@ -45,6 +49,35 @@ CATEGORIES = {
 
 CJK_RE = re.compile(r"[\u4e00-\u9fff]")
 DEFAULT_THRESHOLD = 3.0  # 处/千字
+
+# 假靶心（Contrast Check）候选模式：只标候选 + 风险提示，不判定。
+# 字符类排除分号与换行，避免跨句、跨段误报。group(1) 是被否定的 A。
+CONTRAST_PATTERNS = [
+    ("不是A，而是B", re.compile(r"不是\s*([^，。；\n]+)[，,]\s*而是")),
+    ("并非A，而是B", re.compile(r"并非\s*([^，。；\n]+)[，,]\s*而是")),
+    ("A已过时，B才是", re.compile(r"([^。；\n]+)已过时[，,]\s*([^。；\n]+)才是")),
+]
+# A 含这些无主体泛指词时，提示 agent 优先核对来源。
+GENERIC_REFERENTS = ("传统", "过去", "其他产品", "别人", "以前", "别家", "其他工具", "其他厂商")
+CONTRAST_NOTE = "候选标记，非判定；是否有据由 agent 按证据纪律核对"
+
+
+def check_contrast(text):
+    """返回假靶心候选列表。只标候选 + risk_hints，绝不判定「A 是否被主张过」。"""
+    candidates = []
+    for label, pattern in CONTRAST_PATTERNS:
+        for m in pattern.finditer(text):
+            negated = m.group(1).strip()
+            hints = [f"A 含无主体泛指词「{w}」" for w in GENERIC_REFERENTS if w in negated]
+            candidates.append({
+                "line": text.count("\n", 0, m.start()) + 1,
+                "pattern": label,
+                "negated": negated,
+                "risk_hints": hints,
+                "note": CONTRAST_NOTE,
+            })
+    candidates.sort(key=lambda c: c["line"])
+    return candidates
 
 
 def scan(text):
@@ -103,6 +136,23 @@ def selftest():
         ok = ok and good
         print(f"  [{'PASS' if good else 'FAIL'}] {name}"
               f"（要求命中 {'≥' + str(min_hits) if min_hits else '0'}，实际 {total}）")
+    # 假靶心候选：三种模式各命中一次；无触发词/跨行不命中；泛指词给提示。
+    contrast_cases = [
+        ("不是A而是B", "不是传统工具只管语法，而是我们的产品更全面。", 1, True),
+        ("并非A而是B", "并非过去的做法有误，而是场景变了。", 1, True),
+        ("已过时才是", "老方案已过时，新架构才是正道。", 1, False),
+        ("无触发词不报", "传统工具只管语法，我们的产品更全面。", 0, False),
+        ("跨行不报", "不是传统工具只管语法\n而是我们的产品更全面。", 0, False),
+    ]
+    for name, text, n_expect, hint_expect in contrast_cases:
+        got = check_contrast(text)
+        good = (len(got) == n_expect and
+                (bool(got[0]["risk_hints"]) == hint_expect if got else not hint_expect))
+        ok = ok and good
+        print(f"  [{'PASS' if good else 'FAIL'}] {name}"
+              f"（期望候选 {n_expect}/泛指提示 {hint_expect}，实际 {len(got)}"
+              f"/{got[0]['risk_hints'] if got else []}）")
+
     print("selftest:", "全部通过" if ok else "有失败项")
     return 0 if ok else 1
 
@@ -113,6 +163,8 @@ def main(argv=None):
     ap.add_argument("--json", action="store_true", help="JSON 输出")
     ap.add_argument("--threshold", type=float, default=DEFAULT_THRESHOLD,
                     help=f"密度上限，处/千字（默认 {DEFAULT_THRESHOLD}）")
+    ap.add_argument("--check-contrast", action="store_true",
+                    help="标记假靶心候选句（只标候选，不判定；仅 --json 时新增字段）")
     ap.add_argument("--selftest", action="store_true", help="运行内置自测")
     args = ap.parse_args(argv)
 
@@ -140,6 +192,9 @@ def main(argv=None):
                         "density": round(density, 2), "findings": findings,
                         "threshold": args.threshold,
                         "over": density > args.threshold})
+        # opt-in：仅在显式 --check-contrast 时追加字段，默认结构逐字节不变。
+        if args.check_contrast:
+            results[-1]["contrast_candidates"] = check_contrast(text)
         if not args.json:
             print(render(path, text, args.threshold))
             print()

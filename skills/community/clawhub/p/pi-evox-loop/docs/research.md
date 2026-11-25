@@ -51,7 +51,7 @@ node code/pi_evolve.mjs exp/encoding-trap-template examples/task-gbk.txt \
 - 不要用「模型可能犯错」型（BOM、`int("120.0")`——对 capable model 实测命中率 0/3，且随模型升级漂移）；
 - 错误统计用精确口径（`isError=true` 的 toolResult），不要用字符串计数（文本提及会混入）；
 - token 对比必须扣除重复执行效应基线（实测 ≈ -22%）——绝对降幅 ≠ 继承收益；
-- 完整 22 节实验报告（含 GBK/JSON 两陷阱的 N=5/N=3 统计证据）：[`experiment-report.md`](experiment-report.md)。
+- 完整 22 节实验报告（含 GBK/JSON 两陷阱的 N=5/N=3 统计证据）：[`experiment-report.md`](https://github.com/stwhwing/pi-evox-lab/blob/main/docs/experiment-report.md)。
 
 ## 可操作手册（命令级，0.26 补）
 
@@ -90,7 +90,7 @@ node code/pi_evolve.mjs <repo模板目录> <任务文件> \
 ### 4. 复现历史实验
 - 编码陷阱：decode errors 11→4、token -55%（[A] 2026-09 私有节点）
 - 非法 JSON：JSONDecodeError 14→3、token -53%
-- 长上下文基线臂：0.25 起支持，结论见 `docs/experiment-report.md`
+- 长上下文基线臂：0.25 起支持，结论见 GitHub 仓库 `docs/experiment-report.md`（包内不含）
 
 ### 5. 何时不该做实验
 生产环境；模型可能自主绕过的陷阱（BOM 类，命中率不可靠）；无对照组的单臂对比。
@@ -234,7 +234,7 @@ DeepSeek 臂（R1 12.5% / R2 75% / R2-pad 62.5%）因 `reasoning-only` 计数伪
 
 ## 22. 已核验未采纳：HarnessMM（0.41 研究索引）
 
-> 本节只登记**已核验但未采纳**的外部研究，防止重复核验，也不把未验证外推写成结论。完整致谢见 `README.md` 致谢节。
+> 本节只登记**已核验但未采纳**的外部研究，防止重复核验，也不把未验证外推写成结论。完整致谢见 `SKILL.md`「致谢与上游」节。
 
 | 项 | 内容 |
 |---|---|

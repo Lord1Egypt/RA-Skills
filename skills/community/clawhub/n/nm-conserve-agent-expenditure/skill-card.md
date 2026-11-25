@@ -1,6 +1,6 @@
 ## Description:
 
-Tracks per-agent token usage and flags waste in parallel dispatch.
+Tracks per-agent token usage and flags waste in parallel dispatch
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agent orchestrators use this skill after parallel agent runs to review token expenditure, duplication, and coordination overhead. It helps identify waste signals and produce a recommendation about future agent counts.
+Developers and engineers use this skill after parallel agent runs to review token expenditure, check for duplicated or low-value work, and decide whether to adjust agent counts.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Waste estimates and dispatch recommendations depend on having token, findings, and file-access data for comparison; incomplete records can skew the assessment.
+Risk: Waste classifications depend on usage, findings, file-access, and historical-baseline data that may be incomplete.
 
-Mitigation: Check which evidence is available and identify unmeasured signals before changing future dispatch sizes.
+Mitigation: Check that the required records and comparison baselines are available; identify missing evidence before making a classification or recommendation.
+
+Risk: The security review notes that one external link was out of scope.
+
+Mitigation: Review the linked source and confirm it is trusted before installing the skill.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-conserve-agent-expenditure)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-conserve-agent-expenditure)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [Markdown review with per-agent checklist findings and a dispatch recommendation]
+**Output Format:** [Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Post-dispatch assessment based on token use, findings, file access, and coordination evidence.]
+**Other Properties Related to Output:** [Post-dispatch checklist, waste-signal assessment, and agent-count recommendation.]
 
 ## Skill Version(s):
 
-1.10.3 (source: server-resolved release, frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

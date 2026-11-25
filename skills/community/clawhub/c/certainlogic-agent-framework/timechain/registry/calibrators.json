@@ -1,0 +1,91 @@
+{
+ "cambium.autogrow_min_salience": {
+  "events": [
+   "use"
+  ],
+  "hi": 255,
+  "lo": 100,
+  "module": "cambium.py",
+  "owner": "dream.calibrate_appetite",
+  "value": 170
+ },
+ "cambium.dissonance_floor": {
+  "events": [
+   "use"
+  ],
+  "hi": 230,
+  "lo": 100,
+  "module": "cambium.py",
+  "owner": "dream.calibrate_appetite",
+  "value": 150
+ },
+ "enforce.max_nudges": {
+  "events": [
+   "adherence_nudge",
+   "adherence_debt"
+  ],
+  "hi": 6,
+  "last_adjustment": {
+   "new": 1,
+   "old": 2,
+   "why": "nudge conversion 18% \u2014 repetition isn't converting; governor escalation carries the load"
+  },
+  "lo": 1,
+  "module": "enforce.py",
+  "owner": "dream.calibrate_governor",
+  "value": 1
+ },
+ "poq.brightness_target": {
+  "events": [
+   "gate_verdict"
+  ],
+  "hi": 220,
+  "lo": 120,
+  "module": "poq.py",
+  "owner": "dream.calibrate_gate",
+  "value": 150
+ },
+ "poq.entity_grounding_floor": {
+  "events": [
+   "gate_verdict"
+  ],
+  "hi": 220,
+  "lo": 64,
+  "module": "poq.py",
+  "owner": "dream.calibrate_gate",
+  "value": 128
+ },
+ "replay.threshold": {
+  "events": [
+   "replay-accept",
+   "replay-reject"
+  ],
+  "hi": 0.9,
+  "lo": 0.3,
+  "module": "replay.py",
+  "owner": "learner.calibrate_appetite",
+  "value": 0.55
+ },
+ "router.partial_floor": {
+  "events": [
+   "route_decision",
+   "route_regret"
+  ],
+  "hi": 0.8,
+  "lo": 0.1,
+  "module": "router.py",
+  "owner": "dream.calibrate_router",
+  "value": 0.35
+ },
+ "router.partial_rings": {
+  "events": [
+   "route_decision",
+   "route_regret"
+  ],
+  "hi": 6,
+  "lo": 1,
+  "module": "router.py",
+  "owner": "dream.calibrate_router",
+  "value": 2
+ }
+}

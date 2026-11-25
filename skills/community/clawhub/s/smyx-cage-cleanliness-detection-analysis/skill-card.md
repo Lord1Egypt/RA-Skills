@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes kennel floor images or videos to estimate feces and urine coverage and cleanliness, then flags cleaning thresholds.
+Analyzes images or video of pet enclosure floors to estimate waste coverage, assess cleanliness, and report when a threshold is exceeded.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Boarding kennel, pet shop, animal hospital, and breeding-facility operators use it to monitor cage floors from camera images or video, review hygiene estimates, and follow up on cleaning alerts.
+Pet boarding, retail, veterinary, and breeding facility staff use the skill to review enclosure cleanliness from camera images or video and prioritize cleaning when detected waste exceeds a set threshold.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review flags account and credential handling, external media processing, and unclear side effects beyond the stated cleanliness analysis purpose; the scan was partial and its suspicious verdict is not a claim of malicious intent.
+Risk: ClawScan rates this release suspicious with high confidence, citing credential handling, external requests, and unclear handling of local media; scan coverage was partial and did not verify the stated detection and alert workflow.
 
-Mitigation: Before installing or sending media, ask the provider to explain why account registration and credential storage are needed and where uploaded media and identity data are sent or stored.
+Mitigation: Review the publisher, credential use, external destinations, and media-transfer behavior before installing, and independently confirm the detection and alert workflow.
 
 ## Reference(s):
 
-- [Skill API reference](references/api_doc.md)
+- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-cage-cleanliness-detection-analysis)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
-- [ClawHub release page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-cage-cleanliness-detection-analysis)
+- [API reference](artifact/references/api_doc.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis report, JSON, Markdown, Cleaning alerts, Report links]
+**Output Type(s):** [text, markdown, guidance]
 
-**Output Format:** [Structured cleanliness results and recommendations; JSON detail or Markdown report listings, with report links when available]
+**Output Format:** [Structured cleanliness analysis report with measurements, findings, and cleaning alerts; Markdown table for history results.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Visual estimates for hygiene management; not medical advice.]
+**Other Properties Related to Output:** [Visual estimates depend on image or video clarity; results are for environmental hygiene management and are not medical advice.]
 
 ## Skill Version(s):
 
-1.0.16 (source: server-resolved release metadata)
+1.0.17 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

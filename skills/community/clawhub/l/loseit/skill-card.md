@@ -1,6 +1,6 @@
 ## Description:
 
-Extracts per-day nutrition from a user's Lose It! data export and returns calories, macros, fiber, meal details, and available budget and exercise figures as JSON.
+Retrieves a user's Lose It! nutrition data and emits daily nutrition and meal breakdowns as JSON.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-People and agents use this skill to retrieve a user's daily Lose It! nutrition for summaries, tracking, or downstream analysis. It supports password-based login, a downloaded export ZIP, or a saved session cookie.
+Individuals and personal assistant agents use the skill to retrieve a user's Lose It! nutrition history for review or downstream analysis.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: config.json can contain the Lose It! email and password in plaintext.
+Risk: The configuration file can contain a plaintext Lose It! password, and the cached session token is a reusable credential that can expose nutrition data if accessed by others.
 
-Mitigation: On shared machines, prefer environment variables. Keep any config file owner-only, gitignored, and outside shared or backed-up directories.
+Mitigation: On shared machines, prefer LOSEIT_EMAIL and LOSEIT_PASSWORD environment variables; keep configuration and token files in owner-only locations and do not share or back them up.
 
-Risk: The cached liauth token is a reusable session credential, and some referenced material was unavailable for review before installation.
+Risk: Nutrition data is retrieved from the account export and printed for the calling agent to use.
 
-Mitigation: Protect the token cache and its containing directory, and review the linked project documentation before relying on the tool.
+Mitigation: Use the skill only in a trusted agent environment and limit downstream handling or sharing to the nutrition data the user intends to disclose.
 
 ## Reference(s):
 
-- [Lose It Nutrition on ClawHub](https://clawhub.ai/stozo04/skills/loseit)
-- [Project releases](https://github.com/stozo04/loseit-cli/releases)
-- [Machine-readable output contract](https://github.com/stozo04/loseit-cli/blob/main/docs/MACHINE_CONTRACT.md)
+- [Lose It CLI project](https://github.com/stozo04/loseit-cli)
+- [Lose It CLI releases](https://github.com/stozo04/loseit-cli/releases)
+- [Machine contract and exit codes](https://github.com/stozo04/loseit-cli/blob/main/docs/MACHINE_CONTRACT.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Shell commands, Configuration instructions]
+**Output Type(s):** [JSON, Text]
 
-**Output Format:** [Per-day JSON on stdout, with optional human-readable tables and Markdown usage guidance]
+**Output Format:** [JSON keyed by date with nutrition totals and meal details; the CLI can also print a human-readable table.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Per-day records keyed by ISO date; users can request recent or selected days.]
+**Other Properties Related to Output:** [Read-only nutrition data is printed to stdout; login may save a session token locally.]
 
 ## Skill Version(s):
 
-1.0.7 (source: ClawHub release metadata)
+1.0.9 (source: release evidence)
 
 ## Ethical Considerations:
 

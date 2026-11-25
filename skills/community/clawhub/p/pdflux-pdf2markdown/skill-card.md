@@ -1,6 +1,6 @@
 ## Description:
 
-Converts PDF, Word, presentation, and image files to reading-order Markdown for document analysis and retrieval.
+Convert unstructured documents into LLM-ready structured data. Supports PDF, Word, PPT, and images; extracts paragraphs, formulas, tables, charts, and other elements in one step; generates up to 8 levels of headings; and outputs Markdown organized in reading order. Useful for field extraction, comparison and validation, knowledge retrieval, and intelligent Q&A.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and other document-processing users convert local files to Markdown for content retrieval, table extraction, summarization, and validation.
+Developers and engineers can submit a local PDF, Word document, presentation, or image for conversion into structured Markdown, then use the extracted text and tables for field extraction, comparison, validation, retrieval, or question answering.
 
 ### Deployment Geography for Use:
 
@@ -22,13 +22,9 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Selected document contents are uploaded to PaodingAI/PDRouter for processing, which may expose sensitive information to an external service.
+Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills.
 
-Mitigation: Use only with approved documents and service access; avoid confidential, regulated, or proprietary files without organizational approval.
-
-Risk: An unverified package source may not match the reviewed release.
-
-Mitigation: Prefer a pinned or otherwise verified package source when installing.
+Mitigation: Review and scan skill before deployment.
 
 ## Reference(s):
 
@@ -36,17 +32,17 @@ Mitigation: Prefer a pinned or otherwise verified package source when installing
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Text, JSON]
+**Output Type(s):** [Markdown, JSON]
 
-**Output Format:** [Markdown text when available; otherwise JSON or plain text]
+**Output Format:** [Markdown text, or a JSON response payload when the service does not return a Markdown field]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Prints the result and can also save it to a local file; image data is excluded by default.]
+**Other Properties Related to Output:** [Structured document content in reading order; embedded image data is off by default.]
 
 ## Skill Version(s):
 
-1.4.0 (source: ClawHub release metadata)
+1.5.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

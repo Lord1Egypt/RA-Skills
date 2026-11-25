@@ -1,6 +1,6 @@
 ## Description:
 
-用于快手达人数据、快手达人作品、作品列表、近期发布、内容调研和创作者内容分析。覆盖 Kuaishou / Kwai creator works，来自 SocialDataX 社媒数据助手。
+用于快手达人数据、快手达人作品、作品列表、近期发布、内容调研和创作者内容分析。覆盖 Kuaishou / Kwai creator works，来自社媒数据助手 SocialDataX。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and analysts use this skill to retrieve Kuaishou creator videos and review recent posts, content style, creator benchmarks, or account activity.
+External users can retrieve Kuaishou creator video lists and review recent posts for content research, style analysis, creator benchmarking, and account tracking.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment rates the skill suspicious with medium confidence because the CLI package is unpinned and may change while handling an API key.
+Risk: The security assessment flags repeated use of an unpinned, automatically fetched CLI as a supply-chain risk, and says scan coverage is partial.
 
-Mitigation: Review the package and its update process before installing. The scan was partial because some referenced paths could not be resolved, so treat the assessment as incomplete.
+Mitigation: Review and trust the CLI source before use, and limit the credentials and environment access available to it.
 
 ## Reference(s):
 
-- [SocialDataX API access and skill information](https://socialdatax.com/ai?from=clawhub)
 - [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/socialdatax-kuaishou-creator-videos)
+- [SocialDataX API access](https://socialdatax.com/ai?from=clawhub)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Guidance]
+**Output Type(s):** [JSON, Analysis]
 
-**Output Format:** [JSON creator-content data with concise text summaries]
+**Output Format:** [JSON creator video records and concise content summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Creator content may be retrieved by user ID or profile URL, with optional pagination.]
+**Other Properties Related to Output:** [Records may include titles or descriptions, publish times, interaction counts, media links, and content types when available.]
 
 ## Skill Version(s):
 
-0.1.24 (source: server-resolved release metadata)
+0.1.25 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

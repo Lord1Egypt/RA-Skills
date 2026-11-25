@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Doubao Seedream"
   author: "OOMOL"
-  version: "1.0.5"
+  version: "1.0.6"
   services: ["doubao_seedream"]
   icon: "https://static.oomol.com/logo/third-party/doubao_seedream.svg"
 ---
@@ -37,7 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `generate_image` — Generate or edit one or more images with Doubao Seedream. [write]
+- `generate_image` — Generate or edit one image, or split one image into a background and up to 16 transparent layers with Seedream Pro or Flash. [write]
 
 ## Safety
 

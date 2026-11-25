@@ -28,8 +28,13 @@ Which permission each endpoint needs:
 | Any write on a post or recurring post another member created | the row above, plus `posts.others` | admin, editor |
 | `POST /upload-urls` | `media.upload` | admin, editor, contributor |
 | `GET /social-accounts`, `GET /linkedin-organizations/lookup` | `accounts.read` | all |
-| `GET /social-accounts/:id/instagram-audio`, `GET /social-accounts/:id/pinterest-boards`, `GET /social-accounts/:id/wordpress-categories`, `POST /social-posts/validate`, `POST /social-posts/bulk/validate` | `posts.draft` | admin, editor, contributor |
+| `GET /social-accounts/:id/instagram-audio`, `GET /social-accounts/:id/pinterest-boards`, `GET /social-accounts/:id/youtube-playlists`, `GET /social-accounts/:id/wordpress-categories`, `POST /social-posts/validate`, `POST /social-posts/bulk/validate` | `posts.draft` | admin, editor, contributor |
 | `POST /social-accounts/:id/check`, `DELETE /social-accounts/:id`, `POST /connect-links`, `DELETE /connect-links/:token` | `accounts.manage` | admin |
+| `GET /workspaces` | none, any valid key | all |
+| `POST /workspaces`, `DELETE /workspaces/:id` | `workspace.manage`, and the key's creator must be an organization owner or admin | admin |
+| `GET /members` | `members.read` | all |
+| `DELETE /members/:userId`, `GET /invitations`, `POST /invitations`, `DELETE /invitations/:id` | `members.manage` | admin |
+| `DELETE /organization/members/:userId` | `members.manage`, and the key's creator must be an organization owner or admin | admin |
 | `GET /webhooks`, `GET /webhooks/:id` | `webhooks.read` | admin, editor, viewer |
 | `POST /webhooks`, `PATCH /webhooks/:id`, `DELETE /webhooks/:id`, `POST /webhooks/:id/test` | `webhooks.manage` | admin, editor |
 | `GET /analytics/*` | `analytics.read` | all |
@@ -182,6 +187,29 @@ List the boards a Pinterest account can pin to, secret boards included. `:id` is
 
 Returns `404` when the account is not found or is not a Pinterest account in this workspace, and `400` when Pinterest refuses the request, usually because the account must be reconnected.
 
+### GET /social-accounts/:id/youtube-playlists
+
+List the playlists of a YouTube channel, private and unlisted ones included. `:id` is the YouTube account `id` from `/social-accounts`.
+
+**Response:**
+
+```json
+{
+  "playlists": [
+    {
+      "id": "PLxxxxxxxx",
+      "title": "Tutorials",
+      "privacyStatus": "public",
+      "itemCount": 12
+    }
+  ]
+}
+```
+
+`id` and `title` are always set; `privacyStatus` and `itemCount` are optional. `privacyStatus` is `public`, `unlisted` or `private`. A playlist belongs to one channel, so list the playlists of each channel you post to. Pass the chosen `id` as `youtubeConfigs[].playlistId` to add the uploaded video to that playlist (see [platform-configs.md](platform-configs.md#youtube--youtubeconfigs)).
+
+Returns `404` when the account is not found or is not a YouTube account in this workspace, and `400` when YouTube refuses the request, usually because the account must be reconnected.
+
 ### GET /linkedin-organizations/lookup
 
 Look up a LinkedIn company page so a LinkedIn post can mention it. Needs `accounts.read`. Read-only.
@@ -206,12 +234,11 @@ Look up a LinkedIn company page so a LinkedIn post can mention it. Needs `accoun
 
 `vanityName` is `null` when the page has none. Paste `mention` into the LinkedIn text as it is. When the post also goes to other platforms, put it in `platformTexts` for `LINKEDIN`, since other platforms show the syntax as raw text.
 
-LinkedIn matches the exact vanity name only, so this is not a search: `acm` or a company name with spaces finds nothing. Ask the user for the page URL when the vanity name is unknown.
+LinkedIn matches the exact vanity name only, so this is not a search: `acm` or a company name with spaces finds nothing, and the answer is `{ "organization": null }`. Ask the user for the page URL when the vanity name is unknown.
 
 Errors carry a `code` in the body:
 
 - `400` `linkedin_organization_query_invalid`: the query is neither a page URL nor a vanity name
-- `404` `linkedin_organization_not_found`: no page has that vanity name
 - `400` `linkedin_organization_lookup_unavailable`: no LinkedIn account of the workspace could run the lookup. Tell the user to connect or reconnect a LinkedIn account, ideally a company page they administer
 
 ### GET /social-accounts/:id/wordpress-categories
@@ -302,13 +329,14 @@ A draft (`saveAsDraft: true`) needs `posts.draft`, with or without a planned dat
 - `telegramConnectionIds` (string[]): Telegram channel and group `id` values from `/social-accounts`. Text up to 4096 characters, up to 10 images (JPEG, PNG or WebP, 10 MB each) or one MP4 or MOV video (50 MB). A caption over 1024 characters goes out as its own message after the media
 - `tumblrConnectionIds` (string[]): Tumblr blog `id` values from `/social-accounts`. Text up to 32768 characters, up to 30 JPEG, PNG or GIF images (10 MB each) or one MP4 video (500 MB, up to 10 minutes)
 - `wordpressConnectionIds` (string[]): WordPress site `id` values from `/social-accounts`. The text becomes the body of a blog post (up to 100,000 characters; blank lines start new paragraphs and bare links become clickable). Up to 20 JPEG, PNG, WebP or GIF images (20 MB each) or one MP4 or MOV video (500 MB); the first image is the featured image and the other images or the video follow the text. A site without a `wordpressConfigs` entry uses the first line of the text as the title
-- `pinterestConfigs` (array): Pinterest-specific settings per connection. Pick the board with `boardId` or `boardName` (the board's name on that account, resolved when the request is handled; `400` when no board or several boards have it), never both. With neither, the pin goes to a public board named "AdaptlyPost"
+- `pinterestConfigs` (array): Pinterest-specific settings per connection. Pick the board with `boardId` or `boardName` (the board's name on that account, resolved when the request is handled; `400` when no board or several boards have it), never both. With neither, the pin goes to a public board named "AdaptlyPost". `aiGenerated: true` discloses that the Pin was made or modified with AI: Pinterest gets the `AI_MODIFIED` disclosure and shows an "AI modified" label on image, video and carousel Pins
 - `tiktokConfigs` (array): TikTok-specific settings per connection
 - `instagramConfigs` (array): Instagram-specific settings per connection
 - `facebookConfigs` (array): Facebook-specific settings per page
 - `youtubeConfigs` (array): YouTube-specific settings per connection. `scheduleOnYouTube: true` uploads the video as soon as the post is scheduled, as a private video that YouTube publishes itself at `scheduledAt`, so the user can set up Test & Compare in YouTube Studio first. It needs `privacyStatus` `public` or unset (`400` `YOUTUBE_SCHEDULE_REQUIRES_PUBLIC`) and no `recurrence` (`400` `YOUTUBE_SCHEDULE_NOT_RECURRING`). With `scheduledAt` less than 15 minutes ahead the video uploads at `scheduledAt` as usual
 - `linkedinConfigs` (array): LinkedIn-specific settings per connection (`documentTitle` for `DOCUMENT` posts, `reshareOf` to reshare a LinkedIn post)
-- `twitterConfigs` (array): X settings per account: `quoteOf` quotes one of the account's own X posts
+- `twitterConfigs` (array): X settings per account, items `{ connectionId, quoteOf?, aiGenerated? }`: `quoteOf` quotes one of the account's own X posts; `aiGenerated: true` discloses that the post contains AI-generated media, which sets `made_with_ai` on the X post, and X labels it
+- `threadsConfigs` (array): Threads settings per account, items `{ connectionId, aiGenerated? }`. `connectionId` must match an entry in `threadsConnectionIds`. `aiGenerated: true` discloses AI-generated content: Threads shows its "AI info" label on the post. Works on text, image, video and carousel posts; on a carousel the label covers the whole post. Thread replies do not carry it
 - `googleBusinessConfigs` (array): Google Business Profile settings per location: topic (update, event or offer), button, event and offer details
 - `tumblrConfigs` (array): Tumblr settings per blog: tags, a title and a source link
 - `wordpressConfigs` (array): WordPress settings per site: title, excerpt, category ids, tags and `status` (`PUBLISH`, the default, publishes the post live; `DRAFT` leaves a WordPress draft; `PENDING` submits it for review). See [platform-configs.md](platform-configs.md#wordpress--wordpressconfigs)
@@ -528,7 +556,9 @@ Platform entry fields set by the newer request fields (absent when not used):
 - Instagram: `instagramCollaborators`, `instagramUserTags` (each `{ username, x, y }`), `instagramAiGenerated` (the post carries the AI info label), `instagramUsername` (the handle it published from), `instagramAudioId`, `instagramAudioTitle`, `instagramAudioArtist`, `instagramAudioVolume`, `instagramVideoVolume`
 - Facebook: `facebookTextFormatPresetId`, `facebookImageLayout` (`GRID` or `CAROUSEL`), `facebookCarouselCards` (each with `link`, `title`, `description`), `facebookAiGenerated` (the post carries the AI info label; see `facebookConfigs[].aiGenerated`)
 - YouTube: `youtubeAiGenerated` (the video carries the altered or synthetic content label; see `youtubeConfigs[].aiGenerated`), `youtubeDefaultAudioLanguage`, `youtubeScheduleOnYouTube`, `youtubeScheduledVideoId` (the YouTube video uploaded ahead of `scheduledAt`; while it is set and the entry is not published, the post cannot be updated, unscheduled or published early)
-- X: `twitterKeepLinks`, `twitterQuoteOf` (the id of the X post this account quotes)
+- X: `twitterKeepLinks`, `twitterQuoteOf` (the id of the X post this account quotes), `twitterAiGenerated` (the post carries the made-with-AI label; see `twitterConfigs[].aiGenerated`)
+- Threads: `threadsAiGenerated` (the post carries the AI info label; see `threadsConfigs[].aiGenerated`)
+- Pinterest: `pinterestAiGenerated` (the Pin carries the AI modified label; see `pinterestConfigs[].aiGenerated`)
 - LinkedIn: `linkedinDocumentTitle`, `linkedinReshareOf` (the LinkedIn post URN this account reshares)
 - TikTok: `tiktokDraftFallback` (TikTok's daily cap was hit, so the content went to the creator's TikTok inbox as a draft instead of being published)
 - Google Business Profile: `googleBusinessTopicType`, `googleBusinessCallToActionType`, `googleBusinessCallToActionUrl`, `googleBusinessEventTitle`, `googleBusinessEventStart`, `googleBusinessEventEnd`, `googleBusinessOfferCouponCode`, `googleBusinessOfferRedeemUrl`, `googleBusinessOfferTerms`
@@ -595,9 +625,9 @@ Schedule up to 100 posts at once. Each post can have its own content, media, and
 **Optional fields (batch-level):**
 
 - Connection ID arrays: `twitterConnectionIds`, `linkedinConnectionIds`, `instagramConnectionIds`, `tiktokConnectionIds`, `youtubeConnectionIds`, `pinterestConnectionIds`, `blueskyConnectionIds`, `mastodonConnectionIds`, `threadsConnectionIds`, `googleBusinessConnectionIds`, `telegramConnectionIds`, `tumblrConnectionIds`, `wordpressConnectionIds`, `pageIds`
-- Platform configs (applied to all posts as default): `pinterestConfigs`, `tiktokConfigs`, `instagramConfigs`, `facebookConfigs`, `youtubeConfigs`, `googleBusinessConfigs`, `tumblrConfigs`, `wordpressConfigs`
+- Platform configs (applied to all posts as default): `pinterestConfigs`, `threadsConfigs`, `twitterConfigs`, `tiktokConfigs`, `instagramConfigs`, `facebookConfigs`, `youtubeConfigs`, `googleBusinessConfigs`, `tumblrConfigs`, `wordpressConfigs`
 
-`firstComments`, `threadReplies`, `platformThumbnails`, `platformMedia` and `platformAspectRatios` go on each post item, not the batch. Bulk does not take `twitterKeepLinks`, `linkedinConfigs`, `twitterConfigs` or `accountIds`.
+`firstComments`, `threadReplies`, `platformThumbnails`, `platformMedia` and `platformAspectRatios` go on each post item, not the batch. Bulk does not take `twitterKeepLinks`, `linkedinConfigs` or `accountIds`.
 
 See [platform-configs.md](platform-configs.md) for config schemas.
 
@@ -612,7 +642,7 @@ See [platform-configs.md](platform-configs.md) for config schemas.
 - `thumbnailUrl` (string): Thumbnail URL for video posts
 - `thumbnailTimestampMs` (number): Thumbnail position in video (ms)
 - `firstComments`, `threadReplies`, `platformThumbnails`, `platformMedia`, `platformAspectRatios` (arrays): Same as on [POST /social-posts](#first-comments)
-- Platform config overrides (per-post): `pinterestConfigs`, `tiktokConfigs`, `instagramConfigs`, `facebookConfigs`, `youtubeConfigs`, `googleBusinessConfigs`, `tumblrConfigs`, `wordpressConfigs` — when set on a post item, these override the batch-level configs for that specific post
+- Platform config overrides (per-post): `pinterestConfigs`, `threadsConfigs`, `twitterConfigs`, `tiktokConfigs`, `instagramConfigs`, `facebookConfigs`, `youtubeConfigs`, `googleBusinessConfigs`, `tumblrConfigs`, `wordpressConfigs` — when set on a post item, these override the batch-level configs for that specific post
 
 A Pinterest `boardName`, at the batch level or on an item, is resolved per item. An item whose name matches no board, or several, fails alone with `success: false` and the reason in `errorMessage`; the other items are still scheduled.
 
@@ -887,6 +917,162 @@ Revoke a connect link before it is used or after it expires.
 **Response:** `{ "success": true }`
 
 Returns `404` when the token does not exist or belongs to another account group.
+
+## Team
+
+Workspaces, members and invitations. Every call acts in the key's own workspace. A key whose role lacks the permission, or whose creator is not an organization owner or admin where that is required, gets `403 permission_denied`. A plan without room for another workspace, or without a team seat for an invitation, gets `403 subscription_required` with `limitKey`, `limit` and `currentUsage` (see [Error Responses](#error-responses)). Every change here needs the user's "yes" first, with what it removes or grants shown (Safety rule 12 in SKILL.md).
+
+### GET /workspaces
+
+Lists the workspaces the caller can act in. An API key reaches only its own, so this returns one entry. Open to every valid key.
+
+```json
+{
+  "workspaces": [
+    {
+      "id": "cmws0001",
+      "name": "Acme",
+      "organization": { "id": "org_01", "name": "Acme Agency" },
+      "role": { "key": "admin", "name": "Admin" },
+      "permissions": ["workspace.read", "workspace.manage", "members.read", "members.manage"],
+      "isDefault": true,
+      "current": true,
+      "can": { "draft": true, "schedule": true, "publish": true }
+    }
+  ]
+}
+```
+
+`permissions` is shortened here; it lists every permission the key holds.
+
+### POST /workspaces
+
+Creates a workspace in the caller's organization. Every organization owner and admin becomes its admin; nobody else is added. Needs `workspace.manage`, and the key's creator must be an organization owner or admin when the call is made.
+
+| Field | Type | Meaning |
+| --- | --- | --- |
+| `name` | string, 1 to 100 characters, required | Unique within the organization. No `<` or `>` |
+| `description` | string, up to 500 characters | No `<` or `>` |
+| `connectionLimit` | integer, 0 to 10000 | Most social accounts the workspace may connect. Leave it out for no limit |
+
+**Response (201):**
+
+```json
+{
+  "id": "cmws0002",
+  "name": "Acme client",
+  "description": null,
+  "organizationId": "org_01",
+  "isDefault": false,
+  "connectionLimit": 5,
+  "createdAt": "2026-11-18T10:00:00.000Z"
+}
+```
+
+`400` for an invalid body or a name the organization already uses. `403 subscription_required` when the plan has no room under `max_workspaces`.
+
+### DELETE /workspaces/:id
+
+Deletes a workspace of the caller's organization with everything it holds: posts, recurring posts, RSS feeds, inbox items, API keys and connect links. Needs `workspace.manage`, and the key's creator must be an organization owner or admin. Deleting the key's own workspace also ends the key.
+
+**Response:** `{ "success": true }`
+
+`400` for the default workspace, the organization's last workspace, and a workspace that still has connected social accounts. `404` when the workspace is not in this organization.
+
+### GET /members
+
+Lists the members of the key's workspace. Needs `members.read`.
+
+```json
+{
+  "members": [
+    {
+      "userId": "user_01",
+      "email": "jane@acme.com",
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "role": "editor",
+      "organizationRoles": ["org-member"],
+      "joinedAt": "2026-10-02T09:30:00.000Z"
+    }
+  ]
+}
+```
+
+`role` is `admin`, `editor`, `contributor` or `viewer`; `organizationRoles` holds `org-owner`, `org-admin` or `org-member`. `firstName` and `lastName` may be `null`.
+
+### DELETE /members/:userId
+
+Removes a member from the key's workspace and revokes their API keys and connect links there. They stay in the organization and in their other workspaces. Needs `members.manage`.
+
+**Response:** `{ "success": true }`
+
+`400` for the caller's own account and for a member's last workspace; remove them from the organization instead. `404` when they are not a member of this workspace.
+
+### DELETE /organization/members/:userId
+
+Removes someone from the organization and every workspace in it, and revokes all their API keys and connect links. Needs `members.manage`, and the key's creator must be an organization owner or admin. The owner cannot be removed, and only the owner can remove an organization admin.
+
+**Response:** `{ "success": true }`
+
+### GET /invitations
+
+Lists the invitations that include the key's workspace, newest first. Needs `members.manage`. Query: `limit` (1 to 100, default 20) and `offset` (default 0); page while `hasMore` is true.
+
+```json
+{
+  "invitations": [
+    {
+      "id": "inv_01",
+      "email": "sam@acme.com",
+      "organizationId": "org_01",
+      "organizationRole": "org-member",
+      "status": "pending",
+      "workspaces": [{ "workspaceId": "cmws0001", "workspaceName": "Acme", "role": "contributor" }],
+      "expiresAt": "2026-11-25T10:00:00.000Z",
+      "createdAt": "2026-11-18T10:00:00.000Z"
+    }
+  ],
+  "total": 1,
+  "hasMore": false
+}
+```
+
+`status` is `pending`, `accepted`, `expired` or `revoked`. `workspaceName` is `null` for a workspace that no longer exists.
+
+### POST /invitations
+
+Emails an invitation to the organization that lasts 7 days. On accepting, the person joins the organization with `organizationRole` and each listed workspace with its role. Needs `members.manage`.
+
+| Field | Type | Meaning |
+| --- | --- | --- |
+| `email` | email address, required | Who to invite |
+| `organizationRole` | `org-member` (default) or `org-admin` | Only the organization owner may invite an `org-admin` |
+| `workspaces` | array of `{ "workspaceId", "role" }`, at least one, required | `role` is `admin`, `editor`, `contributor` or `viewer` |
+| `creditAllowance` | `{ "mode": "MONTHLY", "monthlyAmount": 1 to 100000 }` or `{ "mode": "FIXED", "balance": 0 to 100000 }` | How many of the plan owner's AI credits the person may spend. `MONTHLY` resets every plan cycle, `FIXED` moves only when spent or changed. Only an organization owner or admin may set it |
+
+A key whose creator is not an organization admin may only invite `org-member`, only to workspaces where that creator holds `members.manage`, and only with a role no higher than their own there.
+
+**Request:**
+
+```json
+{
+  "email": "sam@acme.com",
+  "workspaces": [{ "workspaceId": "cmws0001", "role": "contributor" }]
+}
+```
+
+**Response (201):** the invitation, in the shape of a `GET /invitations` entry.
+
+`400` for an invalid body, an unknown workspace, someone already invited, or someone already a member. `403 subscription_required` when the plan has no team seat left.
+
+### DELETE /invitations/:id
+
+Revokes a pending invitation that includes the key's workspace. Needs `members.manage`. Only the owner may revoke an invitation for an organization admin.
+
+**Response:** the invitation with `status: "revoked"`.
+
+`400` when the invitation is no longer pending. `404` when no such invitation includes this workspace.
 
 ## Recurring posts
 
@@ -1509,7 +1695,7 @@ The full OpenAPI 3 spec, and the one endpoint that needs no authentication, so M
 
 - `400` — Bad request (missing fields, invalid data, validation errors)
 - `401` — Invalid, expired, revoked or missing API token. `code: token_issuer_lost_access` means the member who created the key lost access to the workspace, so the key was revoked; a new key from a current member is the only fix
-- `403` — The key's role lacks the permission (`code: permission_denied`), or the workspace plan is not active (`code: subscription_required`). On the inbox, `code: inbox_reconnect_required` means the account must be reconnected in AdaptlyPost
+- `403` — The key's role lacks the permission (`code: permission_denied`), or the workspace plan is not active or has no room for what was asked (`code: subscription_required`). On the inbox, `code: inbox_reconnect_required` means the account must be reconnected in AdaptlyPost
 - `404` — Resource not found or access denied (`code: inbox_item_not_found` on the inbox)
 - `429` — Rate limit exceeded; see `Retry-After`. On the inbox, `code: inbox_rate_limited` means the platform, not AdaptlyPost, rate limited the call
 - `503` — `code: inbox_platform_error`: the platform failed; retry later
@@ -1559,6 +1745,23 @@ The inbox codes and what to do about each are in [Inbox refusals](#refusals).
 ```
 
 `requiredPermission` is the permission the operation needs (see [Roles and permissions](#roles-and-permissions)), `role` is the role actually in force, which is the issuer's role when the member who created the key has since been demoted below the key's role; `keyRole` is the role recorded on the key, `issuerRole` the creator's current role, and `tokenType` is `api_token` or `oauth`. `message` says what the role cannot do and what to do instead, in the request's language. Stop on this error: a retry or another key of the same role gets the same answer.
+
+**Plan limit reached (403):**
+
+```json
+{
+  "statusCode": 403,
+  "error": "Forbidden",
+  "code": "subscription_required",
+  "errorCode": "LIMIT_EXCEEDED",
+  "message": "Workspace limit reached for your plan",
+  "limitKey": "max_workspaces",
+  "limit": 3,
+  "currentUsage": 3
+}
+```
+
+`POST /workspaces` answers this way when the plan has no room for another workspace, and `POST /invitations` when it has no team seat left. Tell the user to upgrade; a retry gets the same answer.
 
 **Key revoked because its creator left (401):**
 

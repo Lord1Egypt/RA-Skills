@@ -1,0 +1,24 @@
+name: video-asset-gap-audit-cn
+slug: video-asset-gap-audit-cn
+display_name: 视频素材缺口表
+description: 输入已批准镜头表与含内容、画幅、可用时长和授权信息的素材清单，为单条视频输出逐镜头匹配、缺失与规格不符表，并给出可执行补拍或补生成条件；资料字段缺失时列为需确认，不按文件名推断素材已到位。
+version: 1.0.0
+repository: https://github.com/xxjrq/video-asset-gap-audit-cn
+license: MIT-0
+icon: icon-512.png
+tags:
+  - 视频制作
+  - 素材管理
+  - 版权核验
+  - 制作前检查
+trigger_words:
+  - 视频素材够不够
+  - 镜头素材缺口
+  - 补拍清单
+interface:
+  display_name: 视频素材缺口表
+  short_description: 核验镜头素材覆盖，输出缺失、规格不符与可执行补料条件
+  default_prompt: 请根据已批准镜头表和现有素材清单，核验内容、画幅、时长与授权覆盖，并输出缺口表。
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+self_test: node scripts/self-test.mjs

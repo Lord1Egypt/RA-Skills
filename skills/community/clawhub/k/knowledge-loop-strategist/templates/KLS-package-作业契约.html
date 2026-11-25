@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>产品拆解优化作业契约</title>
+<style>
+  @page { size: A4; margin: 16mm 15mm 14mm; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 34px 42px 56px; background: #fff; color: #1d1d1b;
+    font-family: "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    font-size: 13.5px; line-height: 1.72;
+  }
+  .wrap { max-width: 810px; margin: 0 auto; }
+
+  header.top { border-bottom: 2px solid #1d1d1b; padding-bottom: 16px; }
+  .eyebrow { font-size: 10.5px; letter-spacing: .2em; color: #8a8578; margin-bottom: 9px; }
+  h1 { font-size: 25px; font-weight: 600; margin: 0 0 11px; line-height: 1.3; }
+  .meta { display: flex; flex-wrap: wrap; gap: 5px 22px; font-size: 11.5px; color: #6b675e; }
+  .meta b { font-weight: 500; color: #1d1d1b; }
+
+  h2 { font-size: 16px; font-weight: 600; margin: 34px 0 12px; padding-bottom: 6px; border-bottom: 1px solid #ddd8cd; display: flex; align-items: baseline; gap: 9px; }
+  h2 .num { font-size: 11.5px; color: #a09a8c; font-weight: 500; min-width: 20px; }
+  h3 { font-size: 13px; font-weight: 600; margin: 20px 0 8px; color: #33302a; }
+  h4 { font-size: 12.5px; font-weight: 600; margin: 17px 0 6px; color: #5a564e; }
+
+  p { margin: 0 0 11px; }
+  strong { font-weight: 600; }
+  em { font-style: normal; background: linear-gradient(transparent 62%, #f2e6c8 62%); padding: 0 1px; }
+  .note { font-size: 12px; color: #6b675e; }
+  .sm { font-size: 11.5px; color: #6b675e; }
+
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 12px; line-height: 1.58; }
+  th, td { border: 1px solid #dcd7cb; padding: 6px 8px; text-align: left; vertical-align: top; }
+  th { background: #f4f1e9; font-weight: 600; font-size: 11.5px; color: #33302a; }
+  td.c, th.c { text-align: center; }
+
+  .callout { background: #f7f5ef; border-left: 3px solid #1d1d1b; padding: 12px 16px; margin: 14px 0; font-size: 12.5px; }
+  .callout.warn { background: #faf1ef; border-left-color: #9a3325; }
+  .callout p:last-child { margin-bottom: 0; }
+
+  ol, ul { margin: 8px 0 13px; padding-left: 21px; }
+  li { margin-bottom: 5px; }
+
+  .st { font-size: 10.5px; font-weight: 600; padding: 1px 6px; border-radius: 2px; white-space: nowrap; }
+  .s1 { background: #e6efe9; color: #1c5e45; }
+  .s2 { background: #f5eedb; color: #7d6117; }
+  .s3 { background: #f6e7e4; color: #8d3325; }
+
+  .pos { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 12px 0 16px; }
+  .pos div { border: 1px solid #dcd7cb; border-top: 3px solid #1d1d1b; padding: 9px 10px; font-size: 11.5px; }
+  .pos div b { display: block; font-size: 12px; font-weight: 600; margin-bottom: 3px; }
+
+  .holes { border: 1px solid #cfc9bb; border-left: 3px solid #9a3325; padding: 12px 16px; margin: 14px 0; background: #faf6f2; }
+  .holes p:last-child { margin-bottom: 0; }
+
+  .chain { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 14px 0 10px; }
+  .chain div { border: 1px solid #dcd7cb; padding: 12px 13px; font-size: 11.8px; }
+  .chain div b { display: block; font-size: 11px; color: #8a8578; letter-spacing: .05em; margin-bottom: 5px; }
+  .chain div p { margin: 0; line-height: 1.55; }
+
+  .nobreak { page-break-inside: avoid; }
+  .pb { page-break-before: always; }
+  footer.end { margin-top: 36px; padding-top: 13px; border-top: 1px solid #ddd8cd; font-size: 11px; color: #8a8578; line-height: 1.75; }
+  .sign { margin-top: 13px; padding-top: 10px; border-top: 1px dotted #ddd8cd; color: #6b675e; line-height: 1.9; }
+  .sign strong { color: #33302a; font-weight: 600; font-size: 11.5px; }
+  .sign a { color: #6b675e; text-decoration: none; border-bottom: 1px solid #cfc9bb; }
+
+  @media print {
+    body { padding: 0; font-size: 9.8pt; }
+    .wrap { max-width: none; }
+    h1 { font-size: 18pt; }
+    h2 { font-size: 12pt; margin-top: 22px; }
+    table { font-size: 8.6pt; }
+    th, td { padding: 4px 6px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="eyebrow">三方共用 · 作业契约</div>
+  <h1>产品拆解优化作业契约</h1>
+  <div class="meta">
+    <span><b>适用</b> 任何具有配方、配比或工艺参数的实体产品与流程</span>
+    <span><b>配套</b> 轮次页 · 配对数据册 · 判据台账</span>
+  </div>
+</header>
+
+<h2><span class="num">00</span>使用说明</h2>
+
+<p><strong>三个用途</strong></p>
+<ol>
+  <li><strong>三方共用</strong>：甲乙丙各持一份，谁填什么、谁能签什么，全在纸上，不靠口头约定</li>
+  <li><strong>每轮作业</strong>：照第 05 节六步走，照第 06 节表填，填完归档，旧页不覆盖</li>
+  <li><strong>交给模型执行</strong>：本契约与判定程序一并提供，模型按第 05 节流程作业</li>
+</ol>
+
+<p><strong>本契约给什么、不给什么</strong></p>
+<p>给<strong>结构</strong>：五个位置怎么定、表怎么填、流程怎么走、谁来签字。</p>
+
+<div class="holes">
+  <p><strong>不给判断。</strong>有三个地方本契约故意留空，只给判定维度，不给判定值：</p>
+  <table style="margin:10px 0 0;">
+    <tr><th style="width:26%">留空处</th><th style="width:36%">本契约提供</th><th>本契约不提供</th></tr>
+    <tr><td>目标量该选哪个指标</td><td>五个位置的定义与三条硬规则</td><td>在你的领域里，哪个数才算“改好了”</td></tr>
+    <tr><td>九个槽位的阈值定多少</td><td>槽位含义与预期上限</td><td>你那行的阈值、指标、检测方法</td></tr>
+    <tr><td>覆盖边界划到哪</td><td>三类边界的写法框架</td><td>你的产品具体哪些情形不适用</td></tr>
+  </table>
+  <p style="margin-top:10px;"><strong>这三处填不出来，整份契约就是空表。</strong>填出来靠的是现场判定，不是照抄。</p>
+</div>
+
+<h2><span class="num">01</span>直觉图景：五个位置</h2>
+
+<p>任何“产品优化”，无论哪个行业，都可以拆成五个空位。<strong>空位是固定的，填进去的东西随领域变。</strong></p>
+
+<div class="pos nobreak">
+  <div><b>输入变量集</b>可调且成本可接受的参数<br><span class="sm">动哪个？动多少？</span></div>
+  <div><b>目标量</b>要改善的那一个数<br><span class="sm">改好了长什么样？</span></div>
+  <div><b>约束量</b>不能变差的那些数<br><span class="sm">底线在哪？</span></div>
+  <div><b>裁决手段</b>能测出前两个数的方法<br><span class="sm">测得准吗？</span></div>
+  <div><b>实施边界</b>改完仍能生产、注册、交付<br><span class="sm">还能不能卖？</span></div>
+</div>
+
+<h3>三条硬规则</h3>
+<ol>
+  <li><strong>目标量只能有一个。</strong>两个以上，这一轮就做不成——因为无法判断取舍。想同时优化两个，说明还没想清楚先要什么。</li>
+  <li><strong>约束量必须先于目标量确定。</strong>先划底线再谈改善。顺序反了，会做出“性能很好但不能卖”的东西。</li>
+  <li><strong>裁决手段决定这一轮能做多细。</strong>测不出来的量，不能当目标量。</li>
+</ol>
+
+<h3>领域实例化</h3>
+
+<table class="nobreak">
+  <tr><th style="width:13%">领域</th><th style="width:23%">输入变量集</th><th style="width:20%">目标量</th><th style="width:23%">约束量</th><th>裁决手段</th></tr>
+  <tr><td><strong>医药制剂</strong></td><td>处方比例、工艺参数、包材选择</td><td>溶出度／含量均匀度</td><td>杂质谱、稳定性、成本、注册符合性</td><td>分析检测 + 加速试验</td></tr>
+  <tr><td><strong>化工材料</strong></td><td>配比、温度曲线、助剂、固化条件</td><td>强度／导电率／耐候性</td><td>成本、重量、加工窗口</td><td>力学与电学测试、老化试验</td></tr>
+  <tr><td><strong>食品饮料</strong></td><td>配比、杀菌条件、pH、包装</td><td>感官评分／保质期</td><td>成本、微生物指标、法规限量</td><td>感官评定 + 微生物检验</td></tr>
+  <tr><td><strong>消费品</strong></td><td>配方、结构、装配公差</td><td>耐用度／体验指标</td><td>成本、良率、外观</td><td>可靠性测试 + 产线抽检</td></tr>
+  <tr><td><strong>软件与算法</strong></td><td>超参、架构选择、数据口径</td><td>准确率／延迟</td><td>成本、内存、可维护性</td><td>基准测试 + 线上 A/B</td></tr>
+</table>
+
+<p class="note"><strong>这张表的意义</strong>：换领域时，五个位置一个都不变，只是填的内容变。所以流程可以跨品类搬——<strong>但判据不能搬，判据必须按领域重写。</strong></p>
+<p class="note">（白话：这套方法是“五个抽屉”，不管你装药、装钢材还是装饮料，抽屉还是那五个。但每个抽屉里该放什么尺子，得按行业重新找。）</p>
+
+<h2 class="pb"><span class="num">02</span>三方分工与签字边界</h2>
+
+<table class="nobreak">
+  <tr><th style="width:11%">角色</th><th style="width:31%">只做这些</th><th style="width:29%">绝不越界</th><th>能签什么字</th></tr>
+  <tr>
+    <td><strong>甲方</strong><br><span class="sm">配方方</span></td>
+    <td>提供输入变量集与约束量的数、历史配对、实施边界；判断值不值</td>
+    <td>不替乙方判断“测不测得出”；不替丙方判断“结论可不可信”</td>
+    <td><strong>商业类</strong>：值不值得做、要不要继续投、要不要对外服务</td>
+  </tr>
+  <tr>
+    <td><strong>乙方</strong><br><span class="sm">验证方</span></td>
+    <td>设计并执行裁决手段；报告实测值与误差；判定技术可行性</td>
+    <td>不替甲方判断商业价值；不修改丙方的判据</td>
+    <td><strong>技术类</strong>：测得准不准、结论成不成立</td>
+  </tr>
+  <tr>
+    <td><strong>丙方</strong><br><span class="sm">建议方</span></td>
+    <td>把输入变量集转成可裁决的假设；定义并维护判据；做失败归因</td>
+    <td>不替甲方决定投不投；不替乙方判定实验做对没做对</td>
+    <td><strong>判据类</strong>：这个结论算不算数、边界划在哪</td>
+  </tr>
+</table>
+
+<p class="note"><strong>AI 是丙方的工具，不是第三方。工具不分裁决权。</strong></p>
+
+<h3>三条界限规则</h3>
+<ol>
+  <li><strong>一人不签两类字。</strong>既当建议方又当验证方，等于自己批自己，结论无效。</li>
+  <li><strong>判据修改权归丙方，但每次修改至少两人签字。</strong>判据是三方共用的，不能一人说了算。</li>
+  <li><strong>结论只有在建议方与验证方都签了之后，才能进数据册。</strong>缺一方签字，该条只作草稿，不得引用。</li>
+</ol>
+
+<h3>数据可见性分级</h3>
+
+<table class="nobreak">
+  <tr><th style="width:14%">级别</th><th style="width:46%">内容</th><th>谁能看</th></tr>
+  <tr><td><strong>公开</strong></td><td>契约、流程、判据定义、覆盖边界</td><td>三方全部</td></tr>
+  <tr><td><strong>受限</strong></td><td>相对偏差值、成本结构比例</td><td>三方，不得外传</td></tr>
+  <tr><td><strong>封闭</strong></td><td>绝对值配方、单价、客户信息</td><td>仅授权人，须书面登记</td></tr>
+</table>
+
+<p class="note"><strong>默认用“受限”这一级。</strong>多数分析只需要相对变化，不需要绝对值——给了绝对值，风险翻倍，分析精度不一定提高。</p>
+
+<div class="callout">
+  <p><strong>入包即降级。</strong>任何写进本包的内容，必须先降到受限级：只写相对偏差、摘要、判据，不写绝对值、原始记录、商业判断。</p>
+  <p><strong>包的边界就是脱敏线。</strong>这不只是保密要求，它同时是三方互锁的前提——包内全透明，包外才保得住各自的原料（见四道锁·锁一）。一旦有人在包里写了绝对值，这个包就不能再给第三方看，“原料独占”也随之失效。</p>
+</div>
+
+<p><strong>入包的信息量尺度：刚好够判定，不够复制。</strong></p>
+
+<table class="nobreak">
+  <tr><th style="width:14%">表</th><th style="width:28%">读到什么</th><th style="width:24%">够做什么</th><th>不够做什么</th></tr>
+  <tr><td>配对表</td><td>相对偏差</td><td>够算边际替代率</td><td>不够还原配方</td></tr>
+  <tr><td>回报表</td><td>三次重复 + 标准差 + 条件</td><td>够判真假</td><td>不够复制工艺</td></tr>
+  <tr><td>候选表</td><td>改什么 + 预期区间</td><td>够验证</td><td>不够学会怎么想</td></tr>
+  <tr><td>判据台账</td><td>判据 + 修正理由</td><td>够共同执行</td><td>不够替代别人在新领域实例化</td></tr>
+</table>
+
+<p class="note">这个尺度是设计出来的，不是偶然的。<strong>写超了，包失去可共享性；写少了，判定做不了。</strong></p>
+
+<h3>谁能改、谁能删</h3>
+
+<p>「读」已经在上一节定了。这一节管另外三个动作：新建、修改、删除。</p>
+<p><strong>总则先记住：只增不改，不删。</strong></p>
+
+<table class="nobreak">
+  <tr><th style="width:16%">文件</th><th style="width:22%">新建</th><th>谁改</th><th style="width:22%">删除</th></tr>
+  <tr><td>作业包说明</td><td>编制方</td><td>编制方，规则变更时</td><td>禁止</td></tr>
+  <tr><td>项目信息</td><td>开包时一次性建立</td><td>三方均可，各改自己那栏；轮次状态由轮末填者更新</td><td>禁止</td></tr>
+  <tr><td>归属与许可</td><td>开包时一次性建立</td><td>三方协商；<strong>签署后任何改动须重新签署</strong></td><td>禁止</td></tr>
+  <tr><td>作业契约</td><td>开包时建立快照</td><td>丙方；涉及规则实质变更须三方确认</td><td>禁止，旧版转 <code>历史版本/</code></td></tr>
+  <tr><td>轮次页</td><td>每轮新建一份</td><td>各填各节（节标题已标“谁填”）；<strong>轮末签字后即锁</strong></td><td>禁止，旧页永不覆盖</td></tr>
+  <tr><td>实验设计</td><td>按需新建</td><td>乙方 + 丙方</td><td>禁止</td></tr>
+  <tr><td>配对数据册</td><td>开包时建空册</td><td>甲方追加；<strong>不得改动已追加的行</strong>，填错补更正行</td><td>禁止</td></tr>
+  <tr><td>判据台账</td><td>开包时建立</td><td>追加三方共填；「当前生效判据」一节归丙方；须两人签字</td><td>禁止</td></tr>
+</table>
+
+<div class="callout warn">
+  <p><strong>删除一律禁止，理由只有一条：历史轨迹本身是资产。</strong></p>
+  <p>删掉一次失败，等于删掉一段边界；删掉一版判据，等于删掉“为什么改成现在这样”。这两样恰恰是包外买不到的东西。</p>
+</div>
+
+<p><strong>缺位代办</strong>：任一方短期无法履职时，可书面授权另一方代填，但代办内容须在行内标注「代：某某」，且<strong>判据类与商业类的签字不得代办</strong>——签字是责任，不能转授。</p>
+
+<h3>为什么三方都能看，却谁也离不开谁</h3>
+
+<p>这份契约对三方完全公开。公开不会削弱任何一方，因为<strong>不可替代性从来不来自“知道什么”，只来自“能做什么”</strong>。四道锁：</p>
+
+<h4>锁一 · 原料独占</h4>
+<p>文件规定了表长什么样，但造不出表里的数据。</p>
+
+<table class="nobreak">
+  <tr><th style="width:16%">表</th><th style="width:56%">原料</th><th>只有谁有</th></tr>
+  <tr><td>配对表</td><td>历史批次、成本实绩、失败记录</td><td><strong>甲方</strong></td></tr>
+  <tr><td>候选表</td><td>判据、跨案例对比、命中率直觉</td><td><strong>丙方</strong></td></tr>
+  <tr><td>回报表</td><td>设备、测量条件、操作手感</td><td><strong>乙方</strong></td></tr>
+</table>
+
+<p class="note"><strong>抄得走格式，抄不走原料。</strong></p>
+
+<h4>锁二 · 签字串联</h4>
+<p>结论要生效，必须有两个不同类别的签字，而一人不得签两类。于是：</p>
+<ul>
+  <li>甲方单独 → 只有商业判断，没有技术背书，结论不可信</li>
+  <li>乙方单独 → 只有实验结果，不知道值不值，结论没用</li>
+  <li>丙方单独 → 只有假设，没人验证也没人认账，等于空想</li>
+</ul>
+<p class="note"><strong>任何一方被排除，产物立刻失效。这不是道德约束，是格式约束。</strong></p>
+
+<h4>锁三 · 能力不可文档化</h4>
+<p>文件写的是“合格线”，不是“达成路径”。</p>
+<ul>
+  <li><strong>合格线</strong>：变化率 &gt; 3 倍标准差 —— 公共的，必须写</li>
+  <li><strong>达成路径</strong>：怎么设计这个实验才测得出来 —— 私有的，写不出来</li>
+</ul>
+<p class="note"><strong>读得懂规则，不等于做得出结果。</strong></p>
+
+<h4>锁四 · 台账共锁</h4>
+<p>判据台账的修改权归丙方，内容却是三方共同产的。这形成一个三向锁：</p>
+<ul>
+  <li>丙方离开 → 台账冻结，没人能合法修改</li>
+  <li>乙方离开 → 台账失去验证来源，只剩主张没有证据</li>
+  <li>甲方离开 → 台账失去原料，新配对断供</li>
+</ul>
+<p class="note"><strong>谁走，这台机器都转不动；但谁留下来，也独吞不了。</strong></p>
+
+<h3>持续的理由</h3>
+<p>不是情谊，是效率。判据每轮准一点，所以第三轮比第一轮快。</p>
+<p><strong>一旦某一轮开始“从零开始”，合作的理由就消失了。</strong>这也是本契约强制要求旧页不覆盖、台账只增不改的真正原因——那两条看起来像纪律，其实是续约条款。</p>
+
+<div class="callout warn">
+  <p><strong>所以这份契约的性质是：不是分权的文件，是相互质押的文件。</strong>每方把自己的一票押进去，谁走都取不出来。</p>
+</div>
+
+<p class="note"><strong>一条诚实的边界</strong>：这四道锁保证的是<strong>合作期内的互锁</strong>，不阻止任何一方在合作之外自建能力。契约管的是“我们之间怎么运转”，管不了“你晚上回家学什么”。要防后者，只能跑得比对方快——那是另一件事。</p>
+
+<h2><span class="num">03</span>裁决点槽位（P1～P9）</h2>
+
+<p><strong>这九个槽位是空的。</strong>每个槽位只有“含义”和“上限”，具体填什么指标、阈值定多少，按当前领域现场判定。</p>
+
+<table class="nobreak">
+  <tr><th style="width:8%" class="c">编号</th><th style="width:22%">槽位含义</th><th>实例化要求</th><th style="width:11%" class="c">预期上限</th></tr>
+  <tr><td class="c">P1</td><td>目标量可算</td><td>能按现有规则、报价体系或检测方法重算，两人独立计算差 ≤2%</td><td class="c"><span class="st s1">已裁决</span></td></tr>
+  <tr><td class="c">P2</td><td>输入变量集守恒</td><td>归一化后总量 100%，单项在允许区间内</td><td class="c"><span class="st s1">已裁决</span></td></tr>
+  <tr><td class="c">P3</td><td>实施边界内</td><td>参数落在设备能力、工艺窗口、注册许可区间内</td><td class="c"><span class="st s1">已裁决</span></td></tr>
+  <tr><td class="c">P4</td><td>双方口径一致</td><td>单位、基准批、测试条件三项逐条对照并签字</td><td class="c"><span class="st s1">已裁决</span></td></tr>
+  <tr><td class="c">P5</td><td>目标量变化是真实的</td><td>变化率 &gt; 3 倍重复测量标准差</td><td class="c"><span class="st s1">已裁决</span></td></tr>
+  <tr><td class="c">P6</td><td>归因到单一变量</td><td>同批次仅一个变量不同，其余全部锁定</td><td class="c"><span class="st s2">已校验</span></td></tr>
+  <tr><td class="c">P7</td><td>边际替代率可信</td><td>≥6 组配对拟合，残差 &lt;20%</td><td class="c"><span class="st s2">已校验</span></td></tr>
+  <tr><td class="c">P8</td><td>长期效应不变</td><td>按领域规定的加速条件或长周期条件验证</td><td class="c"><span class="st s3">待裁决</span></td></tr>
+  <tr><td class="c">P9</td><td>外部价值判断不变</td><td>无可用代理指标，只能问不能算</td><td class="c"><span class="st s3">待裁决</span></td></tr>
+</table>
+
+<h3>三类槽位的性质不同</h3>
+<ul>
+  <li><strong>P1～P4 规则类</strong>：任何时候都能算，不依赖实验。所以上限能到“已裁决”。</li>
+  <li><strong>P5～P7 证据类</strong>：依赖实测数据，上限是“已校验”——一次实验证明的是这一次，不是规则。</li>
+  <li><strong>P8～P9 不可及类</strong>：受现实条件限制，永远达不到上限。<strong>它们存在的意义不是被解决，是被显式承认。</strong></li>
+</ul>
+
+<div class="callout">
+  <p><strong>P7 是整套方法的核心槽位。</strong>它填不出来，“优化”就只是一个感觉词——你只能看到成本降了、性能也降了，然后凭印象说值不值。填出来之后，你才能说“降 8% 成本换 2% 性能，划算”。</p>
+</div>
+
+<h3>三态标注（全流程硬规则）</h3>
+<div class="pos nobreak" style="grid-template-columns:repeat(3,1fr);">
+  <div><b><span class="st s1">已裁决</span></b>规则或计算能直接判定，没有争议空间</div>
+  <div><b><span class="st s2">已校验</span></b>有实测证据支撑方向，但受条件限制</div>
+  <div><b><span class="st s3">待裁决</span></b>现在判不了。两种成因须分开标：依据不足／观测不可及</div>
+</div>
+<p class="note"><strong>不许以“已校验”冒充“已裁决”。</strong>这是全流程里唯一零容忍的一条。</p>
+
+<h2 class="pb"><span class="num">04</span>覆盖边界</h2>
+
+<p><strong>必须显式写出三类，缺一类即视为边界不合格。</strong></p>
+
+<table class="nobreak">
+  <tr><th style="width:20%">类型</th><th style="width:36%">要写什么</th><th>示例句式</th></tr>
+  <tr><td><strong>产品类别边界</strong></td><td>哪类产品本方法不适用</td><td>本契约不覆盖换主料、换体系类的重构</td></tr>
+  <tr><td><strong>工况场景边界</strong></td><td>哪类使用条件下结论失效</td><td>本契约不覆盖长期老化与真实工况表现</td></tr>
+  <tr><td><strong>判断类型边界</strong></td><td>哪类结论本方法永远给不出</td><td>本契约不预测客户支付意愿</td></tr>
+</table>
+
+<h3>两条纪律</h3>
+<ol>
+  <li><strong>边界不得为空。</strong>空白边界等于宣称“什么都能覆盖”，这是所有方法论最后翻车的地方。</li>
+  <li><strong>扩边界比缩边界危险。</strong>缩边界只是承认能力有限；扩边界意味着把没验证过的情形纳入了结论，必须有证据、必须留痕、必须至少两人签字。</li>
+</ol>
+
+<h3>分层校准<span class="note">（白话：这个领域里“对错”有多硬）</span></h3>
+
+<p>判定顺序，命中即停：</p>
+<ol>
+  <li>裁决点能否全部编码为可核验规则、且不需要现实观测？能 → <strong>形式层</strong>（可推到已裁决）</li>
+  <li>对错是否由经验证据与现实观测决定？是 → <strong>实证层</strong>（上限多为已校验）</li>
+  <li>对错标准是否由共同体协商确定？是 → <strong>规范层</strong>（不得标已裁决，须附共识来源）</li>
+  <li>核心判断是否无法言传、只能示范？是 → <strong>默会层</strong>（核心部分不在覆盖范围内）</li>
+</ol>
+
+<p class="note"><strong>医药、材料、食品多落在实证层</strong>：性能类结论上限是“已校验”，配方规则类（守恒、窗口）可以到“已裁决”，客户感知部分落在默会层，明确排除。</p>
+
+<h2><span class="num">05</span>闭环运行方案</h2>
+
+<h3>5.1　六步流程</h3>
+<table class="nobreak">
+  <tr><th style="width:11%">步</th><th style="width:9%">主责</th><th style="width:21%">输入</th><th style="width:24%">输出</th><th>合格线</th></tr>
+  <tr><td>① 定五位置</td><td>三方</td><td>产品与现状</td><td>五位置各一行</td><td>目标量只有一个</td></tr>
+  <tr><td>② 数配对</td><td>甲方</td><td>历史记录</td><td>配对表</td><td>A 级 ≥6 组；不足则走实验设计</td></tr>
+  <tr><td>③ <strong>验测量</strong></td><td>乙方</td><td>裁决手段</td><td>重复性数据</td><td><strong>标准差 &lt; 预期效应 1/3</strong></td></tr>
+  <tr><td>④ 出假设</td><td>丙方</td><td>配对 + 五位置</td><td>候选表 + 失败判据表</td><td>每卡一变量、给区间、指明槽位</td></tr>
+  <tr><td>⑤ 做裁决</td><td>乙方</td><td>候选表</td><td>回报表 + 归因</td><td>三次重复、四选一归因</td></tr>
+  <tr><td>⑥ 回流</td><td>三方</td><td>回报表</td><td>回流记录 + 边界变更</td><td>边界影响栏不为空</td></tr>
+</table>
+
+<div class="callout warn">
+  <p><strong>第 ③ 步是闸门，不是建议。</strong>不通过就停——因为测不准的时候，后面每一步都只会放大噪音，而且全程看起来都很正常。</p>
+</div>
+
+<h3>5.2　轮次类型</h3>
+<p class="note">每轮开始前先定类型，<strong>类型决定成败标准</strong>。</p>
+
+<table class="nobreak">
+  <tr><th style="width:12%">类型</th><th style="width:22%">什么时候用</th><th style="width:20%">本轮目标</th><th style="width:8%" class="c">候选数</th><th>通过标准</th></tr>
+  <tr><td><strong>探边轮</strong></td><td>判据未定，或配对 &lt;6 组</td><td>验证换算关系存不存在</td><td class="c">3～5</td><td>≥3/5 落在预期区间；不通过就回数配对，不追加实验</td></tr>
+  <tr><td><strong>收口轮</strong></td><td>上轮通过，P7 已有 ≥5 组数据</td><td>定位拐点，收窄区间</td><td class="c">3～4</td><td>找到目标量开始掉的区间</td></tr>
+  <tr><td><strong>外推轮</strong></td><td>换产品、换领域、换产线</td><td>验判据能否迁移</td><td class="c">3～5</td><td>判据仍成立；不成立则缩边界，不退标准</td></tr>
+  <tr><td><strong>校准轮</strong></td><td>抽查偏差 &gt;20%，或结论被推翻</td><td>修复判据</td><td class="c">2～3</td><td>复现原结论 ±20%；不通过则全轮统一降级</td></tr>
+</table>
+
+<p class="note"><strong>顺序不能跳。</strong>想跳过前两轮直接外推，等于拿一把没校准过的尺子去量新东西。<strong>外推轮最容易被跳过，也最容易出事</strong>——第一个产品做成之后，所有人的第一反应是“再来一个”，但第二个是检验判据的关口，不是复制第一个的成功。</p>
+
+<h3>5.3　回流机制</h3>
+<p>每张卡实验结束后 48 小时内填回流记录。回流只做一件事——<strong>修正判据，不修正结论</strong>。结论错了不改结论，改的是“我们凭什么这么判”。</p>
+
+<table class="nobreak">
+  <tr><th style="width:18%">归因</th><th style="width:40%">含义</th><th>允许的后续动作</th></tr>
+  <tr><td><strong>机理判断错</strong></td><td>变量与目标量的关系方向就错了</td><td>重画因果链，该变量降级</td></tr>
+  <tr><td><strong>换算系数错</strong></td><td>方向对，幅度错</td><td>修正系数，<strong>唯一允许再试一次的类别</strong></td></tr>
+  <tr><td><strong>执行偏差</strong></td><td>实验没按设计做</td><td>不计入判据，重做</td></tr>
+  <tr><td><strong>测量误差</strong></td><td>变化小于测量精度</td><td>该指标本轮作废，先解决测量</td></tr>
+</table>
+
+<p class="note"><strong>四类必须分开。</strong>混在一起，回流就没有信息量——你会不知道该改哪儿。</p>
+
+<h3>5.4　人工抽查</h3>
+<p>从第二轮起，每 5 张卡由验证方随机抽 1 张，换不同操作者重做。抽查偏差 &gt;20%，本轮全部结论统一降级，并触发校准轮。</p>
+
+<h2 class="pb"><span class="num">06</span>数据契约</h2>
+
+<p class="note">列顺序固定，不得调换。空白表见轮次页。</p>
+
+<h3>表 A · 配对表（甲方填）</h3>
+<table class="nobreak">
+  <tr><th style="width:24%">列</th><th style="width:34%">内容</th><th>合格标准</th></tr>
+  <tr><td>序号</td><td>—</td><td>唯一</td></tr>
+  <tr><td>批次或版本代号</td><td>—</td><td>可追溯，不含真实名称</td></tr>
+  <tr><td>输入变量（相对基准偏差）</td><td>逐项列出</td><td>只填偏差，不填绝对值</td></tr>
+  <tr><td>目标量实测</td><td>数值 + 条件</td><td>条件必填</td></tr>
+  <tr><td>约束量实绩</td><td>数值</td><td>含成本</td></tr>
+  <tr><td>是否失败案例</td><td>是／否</td><td>—</td></tr>
+  <tr><td>等级</td><td>A／B／C</td><td>A＝三项齐全，B＝缺一项，C＝只有输入</td></tr>
+</table>
+
+<h3>表 B · 候选表（丙方填）</h3>
+<table class="nobreak">
+  <tr><th style="width:24%">列</th><th style="width:34%">内容</th><th>合格标准</th></tr>
+  <tr><td>卡号</td><td>轮次-序号</td><td>唯一</td></tr>
+  <tr><td>目标变量</td><td>改什么</td><td><strong>一次只写一个</strong>，写两个即不合格</td></tr>
+  <tr><td>改动幅度</td><td>相对基准 ±%</td><td>必须给数字</td></tr>
+  <tr><td>预期目标量区间</td><td>上限～下限</td><td><strong>必须给区间</strong>，单点即不合格</td></tr>
+  <tr><td>预期约束量区间</td><td>上限～下限</td><td>同上</td></tr>
+  <tr><td>引用槽位</td><td>P__、P__</td><td>至少两个</td></tr>
+  <tr><td>置信度</td><td>高／中／低</td><td>—</td></tr>
+  <tr><td>依据来源</td><td>配对编号，或“机理推导（待验证）”</td><td>来自模型记忆一律标待验证</td></tr>
+</table>
+
+<h3>表 C · 失败判据表（丙方填，与表 B 一一对应）</h3>
+<table class="nobreak">
+  <tr><th style="width:16%">列</th><th style="width:34%">内容</th><th>合格标准</th></tr>
+  <tr><td>卡号</td><td>—</td><td>与表 B 对应</td></tr>
+  <tr><td>若未达预期，说明哪个假设错了</td><td>一句话，指明具体因果判断</td><td><strong>留空即判定该卡是猜的，退回</strong></td></tr>
+</table>
+<p class="note"><strong>为什么单独一张表</strong>：这一栏写的是“我可能会错在哪”。混在候选表里，会被当成客套话填；单独一表，逼着认真写。</p>
+
+<h3>表 D · 回报表（乙方填）</h3>
+<table class="nobreak">
+  <tr><th style="width:24%">列</th><th style="width:34%">内容</th><th>合格标准</th></tr>
+  <tr><td>卡号</td><td>—</td><td>与表 B 对应</td></tr>
+  <tr><td>实测条件</td><td>温度／湿度／设备代号／操作人代号</td><td>四项齐全</td></tr>
+  <tr><td>实测值</td><td>三次重复，逐个填</td><td><strong>单次即不合格</strong></td></tr>
+  <tr><td>标准差</td><td>三次算出</td><td>不得留空</td></tr>
+  <tr><td>是否落区间</td><td>是／否／部分</td><td>三选一</td></tr>
+  <tr><td>偏离方向</td><td>高于／低于／无</td><td>三选一</td></tr>
+  <tr><td>异常记录</td><td>中断、返工、条件漂移</td><td>无异常写“无”，不许留空</td></tr>
+</table>
+
+<h3>表 E · 回流记录（共填，只增不改）</h3>
+<table class="nobreak">
+  <tr><th style="width:24%">列</th><th style="width:34%">内容</th><th>合格标准</th></tr>
+  <tr><td>轮次·卡号</td><td>—</td><td>—</td></tr>
+  <tr><td>归因</td><td>四选一</td><td>—</td></tr>
+  <tr><td>需修正的规则</td><td>哪条槽位、符号还是系数</td><td>必须指向 P1～P9 具体编号</td></tr>
+  <tr><td>修正后新判据</td><td>新判据全文</td><td>不复述旧的，只写新的</td></tr>
+  <tr><td>对覆盖边界的影响</td><td>扩大／缩小／不变 + 具体情形</td><td><strong>不得留空</strong></td></tr>
+  <tr><td>签字</td><td>甲／乙／丙</td><td>至少两人</td></tr>
+</table>
+
+<h3>表 F · 命中率（轮末填，持续累积）</h3>
+<p>候选数、落在区间内、部分达成、未达成、命中率、主要归因、累计命中率。</p>
+
+<h2 class="pb"><span class="num">07</span>产物清单</h2>
+
+<h3>7.1　每轮产出（六件，缺一不可）</h3>
+
+<table class="nobreak">
+  <tr><th style="width:20%">产物</th><th style="width:11%">谁产</th><th style="width:36%">合格标志</th><th>不合格的后果</th></tr>
+  <tr><td>五位置表</td><td>三方</td><td>目标量只有一个</td><td>整轮方向不明，不得开工</td></tr>
+  <tr><td>候选表</td><td>丙方</td><td>每卡一变量、给区间、指槽位</td><td>无法验证，退回</td></tr>
+  <tr><td>失败判据表</td><td>丙方</td><td>无一栏留空</td><td>该卡视为猜测，不得送检</td></tr>
+  <tr><td>回报表</td><td>乙方</td><td>三次重复、条件齐全</td><td>该条作废</td></tr>
+  <tr><td>归因表</td><td>乙方 + 丙方</td><td>四类之一，不写“效果不好”</td><td>回流无信息量</td></tr>
+  <tr><td>回流记录</td><td>三方</td><td>边界影响栏非空、两人签字</td><td>该轮回流不合格</td></tr>
+</table>
+
+<div class="callout warn">
+  <p><strong>注意：没有“优化方案”这一件。</strong>一轮的产出不是方案，是“一个可裁决的假设 + 一次实测裁决 + 一次判据修正”。方案是这三样跑出来的副产品，不是交付物。</p>
+</div>
+
+<h3>7.2　两本账（跨轮累积，只增不改）</h3>
+
+<table class="nobreak">
+  <tr><th style="width:18%">账</th><th style="width:38%">记什么</th><th>为什么它比优化结果值钱</th></tr>
+  <tr><td><strong>配对数据册</strong></td><td>每新增一组“输入变量集 → 目标量 → 约束量”</td><td>优化结果只能用一次，配对能用一辈子。失败案例必须记——它标出边界在哪</td></tr>
+  <tr><td><strong>判据台账</strong></td><td>每次回流修正的“原来以为 X，改成 Y，因为 Z”</td><td>这是唯一能证明“判断力在长”的东西。三年后回看，它比任何单个成功案例值钱</td></tr>
+</table>
+
+<h3>7.3　项目级产物（跑够三轮才显形）</h3>
+
+<div class="chain nobreak">
+  <div><b>判据体系</b><p>P1～P9 在本领域的具体填法与阈值。换个人接手，得从头再推一遍——这就是它的价值。</p></div>
+  <div><b>命中率曲线</b><p>建议质量的时间序列。谈判时唯一无法被辩论掉的东西，因为一次实验就能验证。</p></div>
+  <div><b>边界地图</b><p>哪些情形试过可行、哪些试过不行、哪些根本没试。这张图决定下一轮该往哪走。</p></div>
+</div>
+
+<p class="note">这三样买不到，只能跑出来。</p>
+
+<h3>7.4　一句话</h3>
+
+<p>一轮的产物是“一个假设被验证了一次”；三轮的产物是“一套能重复使用的判据”；十轮的产物是“一张别人抄不走的能力地图”。</p>
+
+<p><strong>所以别把某一轮的优化结果当成最终产物。那只是原料。</strong></p>
+
+<footer class="end">
+  本契约给结构，判断在现场。填得满不等于填得对——每个格子后面都站着一个没有被写下来的判定。<br>
+  配套文件：轮次页（每轮复制一份）· 配对数据册（只增不改）· 判据台账（只增不改）。
+  <div class="sign">
+    <strong>王教成　Wang Jiaocheng（波动几何）</strong><br>
+    版本 1.0.0　｜　2026-11-25　｜　<a href="mailto:wangjiaocheng@foxmail.com">wangjiaocheng@foxmail.com</a>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>

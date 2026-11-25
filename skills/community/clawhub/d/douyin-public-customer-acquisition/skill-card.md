@@ -1,6 +1,6 @@
 ## Description:
 
-只读检索抖音公开视频、用户、作品详情、评论和热榜数据，并输出结构化 JSON，支持内容分析、需求挖掘和公域获客。
+Searches public Douyin videos, creator profiles, comments, and trending lists, returning structured data for content, competitor, sentiment, and lead analysis.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-运营、增长和内容分析人员可用该技能检索抖音公开内容与账号数据，整理热点、竞品、评论诉求或潜在线索，并以 JSON 或简明分析报告供后续工作使用。
+Sales, growth, marketing, and content teams can use this skill to inspect public Douyin content and comments, identify trends and competitor patterns, and organize demand or lead signals for authorized internal analysis.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search terms and Douyin links may be sent to the third-party Guaikei service for lookup.
+Risk: The security review notes that supplied links or IDs may be transmitted to a third-party service, and scanner coverage was partial.
 
-Mitigation: Use only public content and avoid confidential search terms or sensitive URLs; review the service's privacy and usage terms.
+Mitigation: Review the service and data handling before use; submit only public, non-sensitive links or IDs and protect the required API token.
 
-Risk: Public comment data could be reused as lead information or distributed beyond the documented internal-use scope.
+Risk: Comment and creator data could expose personal identifiers or be used for unsolicited outreach or redistribution.
 
-Mitigation: Keep use within the documented personal or team scope, do not invent private contact details, and avoid improper distribution.
+Mitigation: Keep results to authorized internal analysis, remove user IDs before sharing, and do not use the data for harassment or resale.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/um-why/skills/douyin-public-customer-acquisition)
-- [Guaikei service and access support](https://www.guaikei.com)
-- [Customer acquisition guide](references/customer-acquisition.md)
-- [Demand mining guide](references/demand-mining.md)
-- [Request routing guide](references/routing.md)
+- [Douyin data service](https://www.guaikei.com)
+- [Customer acquisition guide](artifact/references/customer-acquisition.md)
+- [Demand mining guide](artifact/references/demand-mining.md)
+- [Usage and command options](artifact/references/options.md)
+- [Error handling guide](artifact/references/errors.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis, Guidance]
+**Output Type(s):** [JSON data, Analysis, Guidance, Shell commands]
 
-**Output Format:** [Structured JSON data with concise Markdown summaries or tables when analysis is requested.]
+**Output Format:** [Structured JSON results and concise text or Markdown summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Public Douyin data only; result fields vary by search, account, work-detail, comment, and trending query.]
+**Other Properties Related to Output:** [Public Douyin data only; results can include content metadata, creator information, engagement counts, comments, and trend data.]
 
 ## Skill Version(s):
 
-1.5.0 (source: server-resolved release metadata and SKILL.md)
+1.5.2 (source: server-resolved release metadata, artifact/package.json)
 
 ## Ethical Considerations:
 

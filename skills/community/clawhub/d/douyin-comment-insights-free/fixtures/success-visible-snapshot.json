@@ -1,0 +1,12 @@
+{
+  "inputUrl": "https://www.douyin.com/video/1234567890123456789",
+  "url": "https://www.douyin.com/video/1234567890123456789",
+  "title": "一个适合新手的自动化工具演示",
+  "text": "评论\n全部评论\n",
+  "comments": [
+    { "text": "有没有适合新手的步骤？我看完还是不会", "likeText": "12" },
+    { "text": "这个功能很方便，但价格太贵了，能不能有免费版？", "likeText": "8" },
+    { "text": "我想要一个能导出表格的版本，链接在哪？", "likeText": "5" },
+    { "text": "用了一下，挺好用，建议增加批量处理。", "likeText": "3" }
+  ]
+}

@@ -24,7 +24,7 @@ Lang: zh
 DuoPlus-API-Key: <DUOPLUS_API_KEY>
 ```
 
-For interactive AI use, require the user to provide this API key directly in the conversation and pass it with `--api-key` for the current invocation. Do not require permanent environment configuration. `DUOPLUS_API_KEY` is an optional non-interactive deployment mechanism.
+Use secure host injection of `DUOPLUS_API_KEY` or a user-selected private file (`DUOPLUS_API_KEY_FILE` / `--api-key-file PATH`). Never request a key in chat or put its value in command arguments. See [Credential setup](credentials.md).
 
 The official limit is 1 QPS per endpoint. A successful envelope has `code: 200`; do not treat HTTP 200 with a non-200 envelope code as success. Source: [DuoPlus interface introduction](https://help.duoplus.cn/docs/introduction).
 
@@ -108,7 +108,7 @@ Gateway operations:
 Use Gateway `SHELL_COMMAND` first. The official `/api/v1/cloudPhone/command` endpoint is a fallback, not a parallel or preferred route. Invoke it through:
 
 ```bash
-python3 scripts/duoplus_ai.py --api-key 'API_KEY' platform-shell IMAGE_ID \
+python3 scripts/duoplus_ai.py platform-shell IMAGE_ID \
   --command 'getprop ro.build.version.release'
 ```
 

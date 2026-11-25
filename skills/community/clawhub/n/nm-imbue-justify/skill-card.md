@@ -1,6 +1,6 @@
 ## Description:
 
-Audits changes for additive bias and Iron Law compliance
+Audits changes for additive bias and Iron Law compliance.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use Justify after implementation and before committing or opening a pull request to assess whether each change was necessary, minimally scoped, and consistent with tests and design invariants.
+Developers use this skill after implementation or before merging to review whether code changes are necessary, minimal, test compliant, and supported by evidence.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Security scan coverage is partial because some referenced files were not included in the package.
+Risk: Some referenced local materials were missing from the completed security scan.
 
-Mitigation: Check whether the missing references matter to your use, and review the skill contents before installing.
+Mitigation: Review those materials before relying on the skill.
 
 ## Reference(s):
 
-- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-imbue-justify)
+- [Claude Night Market Imbue plugin](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+**Output Type(s):** [Analysis, Guidance, Markdown]
 
-**Output Format:** [Markdown justification report with tables and inline shell commands]
+**Output Format:** [Structured Markdown justification report]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Summarizes change metrics, test compliance, per-file rationale, and merge risks when applicable.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

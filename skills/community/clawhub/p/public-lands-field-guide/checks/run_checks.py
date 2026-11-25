@@ -4,7 +4,7 @@
 This checks OUR DATA PATH (the live API and the script), not a language model.
 Python standard library only. About 25 API calls, paced. Usage:
 
-  python run_checks.py            run all 20
+  python run_checks.py            run all 25
   python run_checks.py q06 q15    run only those
 Exit code 0 = all passed, 1 = at least one failed.
 """

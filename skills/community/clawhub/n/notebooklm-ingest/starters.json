@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "title": "NotebookLM",
+  "icon": "book.closed",
+  "starters": [
+    {
+      "id": "notebooklm-ingest",
+      "label": "Bring my NotebookLM notes into my wiki",
+      "prompt": "fetch my notebooklm",
+      "source": "ideas",
+      "requires": [],
+      "order": 40
+    }
+  ]
+}

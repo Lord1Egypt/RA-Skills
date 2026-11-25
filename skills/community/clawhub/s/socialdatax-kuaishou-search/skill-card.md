@@ -1,6 +1,6 @@
 ## Description:
 
-用于快手数据分析、快手作品研究、关键词观察、内容调研、竞品分析和趋势研究。覆盖 Kuaishou / Kwai work research，来自 SocialDataX 社媒数据助手。
+用于快手数据分析、快手作品研究、关键词观察、内容调研、竞品分析和趋势研究。覆盖 Kuaishou / Kwai work research，来自社媒数据助手 SocialDataX。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Analysts and marketers use the skill to search Kuaishou works by keyword and review content for market, competitor, and trend research.
+面向内容研究人员、营销团队及创作者，用于搜索和分析快手作品，开展关键词观察、竞品分析与趋势研究。
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill runs an unpinned CLI package that could change and may access available credentials.
+Risk: Repeatedly running an automatically confirmed, unpinned latest CLI package creates supply-chain risk and may expose credentials available to the process.
 
-Mitigation: Use a trusted execution environment, review and pin a package version before running it, and keep API credentials in protected local configuration or approved secret injection.
+Mitigation: Review the package source before installation, use a reviewed pinned version where possible, and provide only the credentials needed for the search.
 
 ## Reference(s):
 
-- [SocialDataX API access](https://socialdatax.com/ai?from=clawhub)
+- [SocialDataX API access and management](https://socialdatax.com/ai?from=clawhub)
 - [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/socialdatax-kuaishou-search)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Markdown]
+**Output Type(s):** [Text, Markdown, Analysis]
 
-**Output Format:** [JSON search results summarized in Markdown]
+**Output Format:** [Concise text or Markdown summaries of Kuaishou search results]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Read-only keyword search results can include content IDs, share URLs, author details, interaction counts, and publish times.]
+**Other Properties Related to Output:** [May include content IDs, URLs, titles, author details, interaction counts, and publish times when useful.]
 
 ## Skill Version(s):
 
-0.1.24 (source: server-resolved release evidence)
+0.1.25 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

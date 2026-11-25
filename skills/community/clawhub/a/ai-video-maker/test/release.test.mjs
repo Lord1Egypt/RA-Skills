@@ -19,6 +19,12 @@ test("downloadable release has consistent metadata and runs H3 from outside the 
     const archive = await readFile(resolve(dir, name));
     const checksum = await readFile(resolve(dir, `${name}.sha256`), "utf8");
     assert.equal(checksum.split(" ")[0], createHash("sha256").update(archive).digest("hex"));
+    // The version-free link that `npx skills add` and `npx skills update` read.
+    assert.ok(archive.equals(await readFile(resolve(dir, "ai-video-maker.tgz"))));
+    assert.equal(
+      await readFile(resolve(dir, "ai-video-maker.tgz.sha256"), "utf8"),
+      `${checksum.split(" ")[0]}  ai-video-maker.tgz\n`,
+    );
     const files = execFileSync("tar", ["-tzf", resolve(dir, name)], { encoding: "utf8" });
     assert.doesNotMatch(files, /\.env|node_modules|\/test\/|verify-release/);
     execFileSync("tar", ["-xzf", resolve(dir, name), "-C", dir]);

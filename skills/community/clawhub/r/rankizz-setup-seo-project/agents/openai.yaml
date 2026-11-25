@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rankizz SEO Project Setup"
+  short_description: "Set up a reusable SEO project workspace"
+  default_prompt: "Use $rankizz-setup-seo-project to organize this site's goals, audience, competitors, markets, and available SEO data."

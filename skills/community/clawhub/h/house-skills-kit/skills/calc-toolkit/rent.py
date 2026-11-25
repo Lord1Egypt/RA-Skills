@@ -53,9 +53,9 @@ def main() -> None:
     ap.add_argument("--net", action="store_true", help="同时计算净回报率（扣空置/税/维修）")
     ap.add_argument("--target-yield", type=float, default=None,
                     help="目标年化回报率%%（如 4）→ 反推该收月租/该买入价")
-    ap.add_argument("--vacancy", type=float, default=None, help="空置+换租损耗%%（默认5）")
-    ap.add_argument("--tax-rate", type=float, default=None, help="租金综合税负%%（默认5）")
-    ap.add_argument("--maint", type=float, default=None, help="年维修保养占房价%%（默认0.5）")
+    ap.add_argument("--vacancy", type=float, default=None, help="空置+换租损耗，百分数（15 = 15%%，默认取规则库）")
+    ap.add_argument("--tax-rate", type=float, default=None, help="租金综合税负，百分数（5 = 5%%，默认取规则库）")
+    ap.add_argument("--maint", type=float, default=None, help="年维修保养占房价，百分数（0.5 = 0.5%%，默认取规则库）")
     ap.add_argument("--city", default=None, help="城市（取规则库覆盖档）")
     ap.add_argument("--set", action="append", default=[], dest="overrides",
                     help="临时覆盖规则参数 k=v，可多次")
@@ -104,11 +104,17 @@ def main() -> None:
 
     # ===== 净口径 =====
     if args.net:
-        vacancy = (args.vacancy if args.vacancy is not None
-                   else float(rules.get("vacancy", 0.05)))
-        tax_rate = (args.tax_rate if args.tax_rate is not None
-                    else float(rules.get("tax_rate", 0.05)))
-        maint = args.maint if args.maint is not None else float(rules.get("maint", 0.005))
+        # 单位约定：命令行传百分数（15 = 15%），规则库存小数（0.15）；混用会差 100 倍
+        def _pct(v, default_frac, name, hi=100.0):
+            if v is None:
+                return float(default_frac)
+            if v < 0 or v > hi:
+                raise SystemExit(f"参数 {name} 需为百分数（0~{hi:g}，如 15 表示 15%），收到 {v:g}")
+            return v / 100.0
+
+        vacancy = _pct(args.vacancy, rules.get("vacancy", 0.05), "--vacancy")
+        tax_rate = _pct(args.tax_rate, rules.get("tax_rate", 0.05), "--tax-rate")
+        maint = _pct(args.maint, rules.get("maint", 0.005), "--maint", hi=20.0)
         eff = annual * (1 - vacancy) * (1 - tax_rate) - price * maint
         net = eff / price
         print("-" * W)

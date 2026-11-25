@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""pdf-fonts-fixer · autofallback —— 主字体缺字时，自动造一个 TrueType 兜底字体
+"""pdf-font-fixer · autofallback —— 主字体缺字时，自动造一个 TrueType 兜底字体
 
 解决什么问题
 ------------

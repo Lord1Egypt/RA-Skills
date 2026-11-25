@@ -1,6 +1,6 @@
 ## Description:
 
-Operate the installed pixiv CLI to search works and users, reverse-search images with SauceNAO or ascii2d, inspect Pixiv references, read feeds and rankings, and perform explicitly authorized bookmark, follow, comment, account, or download actions.
+Safely operate the pixiv-cli binary for Pixiv discovery, account actions, reverse image search, and downloads.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Agents and users invoke Pixiv discovery, account, and download operations through the installed pixiv CLI. The skill guides scoped commands and credential handling, and requires explicit authorization for account changes and downloads.
+Agents use this skill to handle explicit Pixiv requests, including finding works and users, managing authorized account actions, and downloading selected content while protecting credentials and respecting user scope.
 
 ### Deployment Geography for Use:
 
@@ -22,46 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Refresh tokens and exported credential bundles are plaintext secrets.
+Risk: Cloud vector search can send private or R18 thumbnails and query content to an external embedding service and may incur charges.
 
-Mitigation: Keep tokens and bundles out of chat, logs, and diagnostics; use private destinations or a direct consumer pipeline for exports.
+Mitigation: Use the local vector model when possible. Before cloud processing, review the provider's data handling and costs and explicitly authorize that scope.
 
-Risk: Account changes and downloads can affect user data or write files.
+Risk: Reverse image search uploads the selected image to third-party search providers.
 
-Mitigation: Require explicit authorization for the exact account action, target, and download destination.
-
-Risk: Reverse image search may upload the selected image to third-party providers.
-
-Mitigation: Upload only images the user has authorized for sharing with those providers.
-
-Risk: MCP access or remote login can expose account capabilities to an untrusted client or connection.
-
-Mitigation: Use HTTPS for remote login and grant MCP access only to trusted clients.
+Mitigation: Use only images the user is authorized to share and follow the providers' privacy boundaries.
 
 ## Reference(s):
 
-- [Authentication guide](artifact/references/auth.md)
-- [Discovery guide](artifact/references/discover.md)
-- [Download guide](artifact/references/download.md)
-- [Installation guide](artifact/references/install.md)
-- [MCP guide](artifact/references/mcp.md)
-- [Troubleshooting guide](artifact/references/troubleshooting.md)
-- [Pixiv CLI project](https://github.com/FlanChanXwO/pixiv-cli)
-- [ClawHub skill release](https://clawhub.ai/flanchanxwo/skills/pixiv-cli)
+- [Project homepage](https://github.com/FlanChanXwO/pixiv-cli)
+- [Pixiv CLI reference](https://github.com/FlanChanXwO/pixiv-cli/blob/main/docs/en/cli-reference.md#drawing-tool-catalog)
+- [MCP tool migration table](https://github.com/FlanChanXwO/pixiv-cli/blob/main/docs/en/mcp-tools.md#tool-migration)
+- [Discovery and vector search guidance](artifact/references/discover.md)
+- [Authentication and credential guidance](artifact/references/auth.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON]
+**Output Type(s):** [Guidance, Shell commands, JSON, NDJSON, Downloaded media files]
 
-**Output Format:** [Markdown guidance with shell command examples and JSON or NDJSON CLI results]
+**Output Format:** [Concise text, structured CLI results, and requested media files]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Commands are scoped to the requested Pixiv operation; account changes and downloads require explicit authorization.]
+**Other Properties Related to Output:** [Results follow the requested scope; downloads write files to the selected destination.]
 
 ## Skill Version(s):
 
-1.3.0 (source: server-resolved release metadata)
+1.5.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

@@ -14,18 +14,18 @@ Evidence coverage: 12 signals across 3 source families.
 
 ## Evidence
 
-- clawhub-popular-skill: [Popular Clawhub skill demand: self-improving agent has 493,493 downloads](https://clawhub.ai/skills/self-improving-agent)
-- clawhub-popular-skill: [Popular Clawhub skill demand: Multi Search Engine has 165,885 downloads](https://clawhub.ai/skills/multi-search-engine)
-- clawhub-popular-skill: [Popular Clawhub skill demand: Humanizer has 135,142 downloads](https://clawhub.ai/skills/humanizer)
-- clawhub-popular-skill: [Popular Clawhub skill demand: SkillScan has 183,652 downloads](https://clawhub.ai/skills/skillscan)
-- clawhub-popular-skill: [Popular Clawhub skill demand: AdMapix has 134,449 downloads](https://clawhub.ai/skills/admapix)
-- clawhub-popular-skill: [Popular Clawhub skill demand: Nano Pdf has 123,827 downloads](https://clawhub.ai/skills/nano-pdf)
-- clawhub-popular-skill: [Popular Clawhub skill demand: Nano Banana Pro has 108,710 downloads](https://clawhub.ai/skills/nano-banana-pro)
-- clawhub-popular-skill: [Popular Clawhub skill demand: PollyReach has 102,357 downloads](https://clawhub.ai/skills/pollyreach)
-- hacker-news-ask-hn: [Should proper mouse support be added in CLI harnesses](https://news.ycombinator.com/item?id=50508183)
-- hacker-news-ask-hn: [Ask HN: Is post-training make AI models dumber?](https://news.ycombinator.com/item?id=50502344)
+- clawhub-popular-skill: [Popular Clawhub skill demand: self-improving agent has 495,374 downloads](https://clawhub.ai/skills/self-improving-agent)
+- clawhub-popular-skill: [Popular Clawhub skill demand: Multi Search Engine has 166,519 downloads](https://clawhub.ai/skills/multi-search-engine)
+- clawhub-popular-skill: [Popular Clawhub skill demand: Humanizer has 135,881 downloads](https://clawhub.ai/skills/humanizer)
+- clawhub-popular-skill: [Popular Clawhub skill demand: SkillScan has 183,984 downloads](https://clawhub.ai/skills/skillscan)
+- clawhub-popular-skill: [Popular Clawhub skill demand: AdMapix has 134,617 downloads](https://clawhub.ai/skills/admapix)
+- clawhub-popular-skill: [Popular Clawhub skill demand: Nano Pdf has 124,106 downloads](https://clawhub.ai/skills/nano-pdf)
+- clawhub-popular-skill: [Popular Clawhub skill demand: Nano Banana Pro has 108,983 downloads](https://clawhub.ai/skills/nano-banana-pro)
+- clawhub-popular-skill: [Popular Clawhub skill demand: PollyReach has 102,499 downloads](https://clawhub.ai/skills/pollyreach)
+- hacker-news-ask-hn: [Ask HN: Least cringe AI for natural language?](https://news.ycombinator.com/item?id=50634900)
 - segmentfault-search: [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
 - segmentfault-search: [javascript](https://segmentfault.com/t/javascript)
+- segmentfault-search: [typescript](https://segmentfault.com/t/typescript)
 
 ## How This Skill Meets The Requirement
 

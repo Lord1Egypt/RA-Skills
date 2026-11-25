@@ -1,6 +1,6 @@
 ## Description:
 
-Polishes working code through successive quality passes in fresh subagents. Use after tests pass when code needs multi-dimension refinement before release
+Polishes working code through successive quality passes in fresh subagents. Use after tests pass when code needs multi-dimension refinement before release.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill after implementation and tests are complete to refine working code across correctness, clarity, consistency, and polish before review or release.
+Developers use Dorodango after tests pass to refine working code across correctness, clarity, consistency, and polish before review or release.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Two referenced paths were missing from the scan evidence, leaving scan coverage incomplete.
+Risk: The security review has medium confidence because two file references could not be matched to bundled content.
 
-Mitigation: Review the missing paths and decide whether the coverage is sufficient before installing.
+Mitigation: Review the unresolved references and decide whether they matter before installing; check proposed code changes and test outcomes before accepting them.
 
 ## Reference(s):
 
+- [Pass type definitions](modules/pass-definitions.md)
 - [Attune project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/attune)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Code, Shell commands, Files]
+**Output Type(s):** [Code, Files, Markdown, JSON]
 
-**Output Format:** [Markdown instructions, code edits, shell commands, and a JSON workflow state file]
+**Output Format:** [Code changes, pass summaries, and a JSON workflow state file]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Tracks pass results and convergence in a state file; limits each run to 10 passes.]
+**Other Properties Related to Output:** [May run tests, linters, and formatters while refining the target; up to 10 passes.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

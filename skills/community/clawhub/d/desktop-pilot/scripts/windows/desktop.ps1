@@ -15,10 +15,15 @@ param(
   [string]$Out               # screenshot output path
 )
 $ErrorActionPreference = 'Stop'
+$script:StopFile = Join-Path ([IO.Path]::GetTempPath()) 'desktop-pilot\overlay\stop.flag'
+function Assert-NotStopped {
+  if (Test-Path -LiteralPath $script:StopFile) { Write-Output 'STOPPED_BY_USER'; exit 3 }
+}
+Assert-NotStopped
 if ($TextB64) { $Text = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($TextB64)) }
 Add-Type -AssemblyName System.Windows.Forms, System.Drawing, UIAutomationClient, UIAutomationTypes
 Add-Type @"
-using System; using System.Runtime.InteropServices;
+using System; using System.Runtime.InteropServices; using System.IO;
 public static class DpNative {
   [DllImport("user32.dll")] public static extern bool SetProcessDPIAware();
   [DllImport("user32.dll")] public static extern bool SetCursorPos(int x, int y);
@@ -35,9 +40,9 @@ public static class DpNative {
   [DllImport("user32.dll", CharSet = CharSet.Unicode)] static extern int GetWindowText(IntPtr h, System.Text.StringBuilder s, int n);
   public static string ForegroundTitle() { var sb = new System.Text.StringBuilder(256); GetWindowText(GetForegroundWindow(), sb, 256); return sb.ToString(); }
   public static uint ForegroundPid() { uint p; GetWindowThreadProcessId(GetForegroundWindow(), out p); return p; }
-  static bool IsFg(IntPtr h, uint tpid) { IntPtr fg = GetForegroundWindow(); if (fg == h) return true; uint p; GetWindowThreadProcessId(fg, out p); return tpid != 0 && p == tpid; }
+  static bool IsFg(IntPtr h, uint tpid) { return GetForegroundWindow() == h; }
   // Windows refuses SetForegroundWindow from background processes ("foreground lock"): try plain, then thread-attach, then the ALT trick,
-  // and only report success when the target (or one of its process's windows) really is in the foreground.
+  // and only report success when this exact target window is in the foreground.
   public static bool BringToFront(IntPtr h) {
     ShowWindow(h, IsIconic(h) ? 9 : 5);
     uint tpid; GetWindowThreadProcessId(h, out tpid);
@@ -58,13 +63,15 @@ public static class DpNative {
   [StructLayout(LayoutKind.Explicit, Size = 40)] struct INPUT { [FieldOffset(0)] public uint type; [FieldOffset(8)] public KBD ki; }
   [DllImport("user32.dll", SetLastError = true)] static extern uint SendInput(uint n, INPUT[] i, int size);
   // Unicode key events: independent of the keyboard layout (SendKeys breaks symbols on non-US layouts).
-  public static void TypeUnicode(string s) {
+  public static bool TypeUnicode(string s, string stopFile) {
     foreach (char c in s) {
+      if (File.Exists(stopFile)) return false;
       var down = new INPUT { type = 1 }; down.ki.scan = c; down.ki.flags = 0x0004;
       var up = new INPUT { type = 1 }; up.ki.scan = c; up.ki.flags = 0x0004 | 0x0002;
       SendInput(2, new[] { down, up }, Marshal.SizeOf(typeof(INPUT)));
       System.Threading.Thread.Sleep(5);
     }
+    return true;
   }
 }
 "@
@@ -103,9 +110,9 @@ function Convert-Combo([string]$k) {
 function Focus-Window($w) {
   $h = [IntPtr]$w.Current.NativeWindowHandle
   if ($h -ne [IntPtr]::Zero) { return [DpNative]::BringToFront($h) }
-  try { $w.SetFocus() } catch {}
-  Start-Sleep -Milliseconds 150
-  return ([DpNative]::ForegroundPid() -eq [uint32]$w.Current.ProcessId)
+  # No native handle means we cannot verify this exact window. Fail closed:
+  # another window in the same process must never authorize global input.
+  return $false
 }
 # Input must never land in the wrong window: abort instead of typing blind.
 function Require-Focus($w) {
@@ -114,6 +121,7 @@ function Require-Focus($w) {
   }
 }
 
+Assert-NotStopped
 switch ($Action) {
   'help' {
     'actions: screenshot [-Out path] | windows | buttons -Process|-Title | click -Process|-Title -Name <label>'
@@ -152,6 +160,7 @@ switch ($Action) {
       foreach ($p in [System.Windows.Automation.InvokePattern]::Pattern, [System.Windows.Automation.TogglePattern]::Pattern,
                      [System.Windows.Automation.SelectionItemPattern]::Pattern, [System.Windows.Automation.ExpandCollapsePattern]::Pattern) {
         if ($el.TryGetCurrentPattern($p, [ref]$pat)) {
+          Assert-NotStopped
           switch ($pat.GetType().Name) {
             'InvokePattern' { $pat.Invoke() } 'TogglePattern' { $pat.Toggle() }
             'SelectionItemPattern' { $pat.Select() } 'ExpandCollapsePattern' { $pat.Expand() }
@@ -162,6 +171,7 @@ switch ($Action) {
       # Fallback: physical click at the element center.
       $r = $el.Current.BoundingRectangle
       Require-Focus $w
+      Assert-NotStopped
       [DpNative]::SetCursorPos([int]($r.X + $r.Width / 2), [int]($r.Y + $r.Height / 2)) | Out-Null
       [DpNative]::mouse_event(2, 0, 0, 0, [UIntPtr]::Zero); [DpNative]::mouse_event(4, 0, 0, 0, [UIntPtr]::Zero)
       "OK clicked '$Name' (mouse fallback)"; return
@@ -171,7 +181,7 @@ switch ($Action) {
   'close' {
     foreach ($w in Get-TargetWindows) {
       $pat = $null
-      if ($w.TryGetCurrentPattern([System.Windows.Automation.WindowPattern]::Pattern, [ref]$pat)) { $pat.Close(); "OK closed '$($w.Current.Name)'" }
+      if ($w.TryGetCurrentPattern([System.Windows.Automation.WindowPattern]::Pattern, [ref]$pat)) { Assert-NotStopped; $pat.Close(); "OK closed '$($w.Current.Name)'" }
     }
   }
   'focus' { $w = (Get-TargetWindows)[0]; Require-Focus $w; "OK focused '$($w.Current.Name)' (verified: foreground)" }
@@ -179,20 +189,29 @@ switch ($Action) {
     if (-not $Text) { throw 'Specify -Text' }
     if ($Process -or $Title) { Require-Focus (Get-TargetWindows)[0]; Start-Sleep -Milliseconds 300 }
     else { "NOTE: no -Process/-Title given; typing into the foreground window '$([DpNative]::ForegroundTitle())'" }
-    [DpNative]::TypeUnicode($Text); "OK typed $($Text.Length) chars into '$([DpNative]::ForegroundTitle())'"
+    Assert-NotStopped
+    if (-not [DpNative]::TypeUnicode($Text, $script:StopFile)) { Write-Output 'STOPPED_BY_USER: typing interrupted'; exit 3 }; "OK typed $($Text.Length) chars into '$([DpNative]::ForegroundTitle())'"
   }
   'key' {
     if (-not $Keys) { throw 'Specify -Keys (ctrl+c, alt+f4, enter... or raw SendKeys like {ENTER})' }
     if ($Process -or $Title) { Require-Focus (Get-TargetWindows)[0]; Start-Sleep -Milliseconds 250 }
     else { "NOTE: no -Process/-Title given; sending keys to the foreground window '$([DpNative]::ForegroundTitle())'" }
     $sk = Convert-Combo $Keys
+    Assert-NotStopped
     [System.Windows.Forms.SendKeys]::SendWait($sk); "OK keys $Keys -> $sk (foreground: '$([DpNative]::ForegroundTitle())')"
   }
   'mouse' {
     if ($X -lt 0 -or $Y -lt 0) { throw 'Specify -X and -Y (screen pixels, from the screenshot)' }
+    if ($Process -or $Title) { Require-Focus (Get-TargetWindows)[0] }
+    Assert-NotStopped
     [DpNative]::SetCursorPos($X, $Y) | Out-Null
     $flags = @{ left = @(2, 4); right = @(8, 16); double = @(2, 4, 2, 4); move = @() }[$Button]
-    foreach ($f in $flags) { [DpNative]::mouse_event($f, 0, 0, 0, [UIntPtr]::Zero); Start-Sleep -Milliseconds 40 }
+    for ($i = 0; $i -lt $flags.Count; $i += 2) {
+      Assert-NotStopped
+      [DpNative]::mouse_event($flags[$i], 0, 0, 0, [UIntPtr]::Zero)
+      try { Start-Sleep -Milliseconds 40 }
+      finally { [DpNative]::mouse_event($flags[$i+1], 0, 0, 0, [UIntPtr]::Zero) }
+    }
     "OK mouse $Button at $X,$Y"
   }
 }

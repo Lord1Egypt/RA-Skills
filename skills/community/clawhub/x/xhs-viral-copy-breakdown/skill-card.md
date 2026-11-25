@@ -1,6 +1,6 @@
 ## Description:
 
-当用户给出小红书关键词、赛道、人群、产品方向、笔记链接或 note_id，想拆解爆款文案的标题钩子、开头方式、卖点表达、情绪词、内容结构、互动引导和可复用文案框架时使用。来自 SocialDataX 社媒数据助手。
+分析小红书关键词或笔记样本中的标题钩子、开头、卖点、情绪表达、内容结构和互动引导，并提炼可复用的文案框架。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-面向需要研究小红书内容的创作者和营销人员，依据关键词或指定笔记分析标题钩子、表达方式、内容结构与互动引导，并整理可复用的文案框架。
+内容创作者可提供小红书关键词、赛道、产品方向、笔记链接或完整 note_id，获得基于可见样本的文案拆解和可复用表达框架。
 
 ### Deployment Geography for Use:
 
@@ -22,26 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan marks the release suspicious and partial. Its clearest concern is that instructions run a changeable SocialDataX CLI, including during credential handling; it also flags possible transfer of search inputs to SocialDataX.
+Risk: The skill invokes an unpinned latest CLI that may change between uses and can access credentials available to its process; scanner coverage is incomplete.
 
-Mitigation: Review the scan and CLI source before installation, and avoid sending confidential search inputs unless you are comfortable with that transfer.
+Mitigation: Review the commands and use a reviewed, pinned CLI release when possible. Run it with only the credentials and file access needed for the task.
 
 ## Reference(s):
 
+- [SocialDataX product and API information](https://socialdatax.com/ai?from=clawhub)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [Structured Markdown report with a sample table, copy analysis, and reusable writing frameworks]
+**Output Format:** [Structured Markdown analysis report]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Analysis is limited to the public samples or note details returned; it does not promise complete platform coverage or performance outcomes.]
+**Other Properties Related to Output:** [Sample-based; unavailable fields are identified rather than inferred.]
 
 ## Skill Version(s):
 
-0.1.7 (source: server-resolved release metadata)
+0.1.8 (source: server-resolved ClawHub release)
 
 ## Ethical Considerations:
 

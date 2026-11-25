@@ -1,6 +1,6 @@
 ## Description:
 
-Helps agents inspect and operate Nutanix Prism Central v4 estates, including clusters, virtual machines, storage, disaster recovery, alerts, upgrades, and capacity diagnostics.
+Operates Nutanix Prism Central v4 environments for infrastructure inventory, diagnostics, VM and storage lifecycle, data protection, and upgrades.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Infrastructure operators and developers use this skill to investigate Nutanix estate health and alerts, manage virtual machines and storage, and carry out Prism Central maintenance and disaster recovery tasks.
+Infrastructure engineers and operators use this skill to inspect Nutanix Prism Central v4 estates, diagnose cluster health and alerts, and manage VM, storage, network, data protection, and lifecycle operations.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Destructive actions can affect production infrastructure without an in-skill approval gate or read-only mode.
+Risk: The security review rates the release suspicious because documented workflows could allow destructive infrastructure changes without fresh operator approval; scan coverage was partial.
 
-Mitigation: Start with a read-only Prism account, separate test and production targets, and require human approval before granting credentials for delete, restore, failover, migration, or updates.
-
-Risk: A master password used for non-interactive access could be exposed through logs or CI output.
-
-Mitigation: Keep NUTANIX_AIOPS_MASTER_PASSWORD out of logs and CI output.
+Mitigation: For destructive MCP calls, show the dry-run preview and wait for explicit operator approval; use a least-privilege Prism Central account and confirm audit storage is healthy before real writes.
 
 ## Reference(s):
 
-- [ClawHub skill listing](https://clawhub.ai/zw008/skills/nutanix-aiops)
-- [Project homepage (skill metadata; import provenance unavailable)](https://github.com/AIops-tools/Nutanix-AIops)
-- [Capabilities and tool reference](artifact/references/capabilities.md)
-- [Setup and security guide](artifact/references/setup-guide.md)
+- [Capabilities reference](references/capabilities.md)
+- [CLI reference](references/cli-reference.md)
+- [Setup and security guide](references/setup-guide.md)
+- [Agent guardrails](references/agent-guardrails.md)
+- [Project homepage](https://github.com/AIops-tools/Nutanix-AIops)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+**Output Type(s):** [Analysis, Guidance, JSON, Shell commands, Text]
 
-**Output Format:** [Text or Markdown with command examples and structured tool results]
+**Output Format:** [Structured tool results with concise text or Markdown summaries and shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes estate findings, operational guidance, and action summaries.]
+**Other Properties Related to Output:** [Results depend on the requested Prism Central operation.]
 
 ## Skill Version(s):
 
-0.13.0 (source: ClawHub release metadata)
+0.14.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

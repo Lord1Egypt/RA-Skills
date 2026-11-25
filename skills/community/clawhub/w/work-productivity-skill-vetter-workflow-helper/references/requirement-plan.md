@@ -2,7 +2,7 @@
 
 ## Live Requirement
 
-Validated demand: Agent users show strong demand for Skill Vetter-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
+Validated demand: Agent users show strong demand for Skill Vetter-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 11 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
 
 ## Audience
 
@@ -20,12 +20,12 @@ Demand: 70/70
 
 Local feasibility: 30/30
 
-Evidence coverage: 12 signals across 3 source families.
+Evidence coverage: 11 signals across 3 source families.
 
 Scoring rationale:
 
-- Evidence count: 12; required minimum: 3.
-- Distinct source families: 3; sources: clawhub, hacker-news, segmentfault.
+- Evidence count: 11; required minimum: 3.
+- Distinct source families: 3; sources: clawhub, github, hacker-news.
 - Demand score: 70/70 based on corroboration, source diversity, and professional/community signal.
 - Local feasibility score: 30/30.
 - Implementation is a documentation, workflow, code, or analysis skill that can run on ordinary CPU hardware.
@@ -33,18 +33,17 @@ Scoring rationale:
 
 ## Evidence
 
-- clawhub-popular-skill (2026-10-22T12:42:06.676000+00:00): [Popular Clawhub skill demand: self-improving agent has 491,095 downloads](https://clawhub.ai/skills/self-improving-agent)
-- clawhub-popular-skill (2026-09-16T21:35:54.485000+00:00): [Popular Clawhub skill demand: Skill Vetter has 281,401 downloads](https://clawhub.ai/skills/skill-vetter)
-- clawhub-popular-skill (2026-06-12T12:48:37.834000+00:00): [Popular Clawhub skill demand: Github has 204,117 downloads](https://clawhub.ai/skills/github)
-- clawhub-popular-skill (2026-05-18T03:40:07.591000+00:00): [Popular Clawhub skill demand: SkillScan has 183,252 downloads](https://clawhub.ai/skills/skillscan)
-- hacker-news-ask-hn (2026-11-06T17:27:29+00:00): [Counting words-hacking human-cheat code](https://news.ycombinator.com/item?id=50395404)
-- segmentfault-search (2026-11-07T04:09:58.554299+00:00): [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
-- segmentfault-search (2026-11-07T04:09:58.554299+00:00): [javascript](https://segmentfault.com/t/javascript)
-- segmentfault-search (2026-11-07T04:09:58.554299+00:00): [typescript](https://segmentfault.com/t/typescript)
-- segmentfault-search (2026-11-07T04:09:58.556515+00:00): [ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
-- segmentfault-search (2026-11-07T04:09:58.557087+00:00): [AWS Elastic Load Balancer (ELB) -- CLB & ALB](https://segmentfault.com/a/1190000040977924)
-- segmentfault-search (2026-11-07T04:09:58.557087+00:00): [辅导案例-COMP347-Assignment 2](https://segmentfault.com/a/1190000020835131)
-- segmentfault-search (2026-11-07T04:09:58.557087+00:00): [Api架构奥义：ApiBoot实现零代码整合Spring Security &amp;amp; OAuth2](https://segmentfault.com/a/1190000020979006)
+- clawhub-popular-skill (2026-10-22T12:42:06.676000+00:00): [Popular Clawhub skill demand: self-improving agent has 495,007 downloads](https://clawhub.ai/skills/self-improving-agent)
+- hacker-news-ask-hn (2026-11-22T15:52:33+00:00): [Ask HN: Are the trades a safe career transition?](https://news.ycombinator.com/item?id=50600771)
+- clawhub-popular-skill (2026-09-16T21:35:54.485000+00:00): [Popular Clawhub skill demand: Skill Vetter has 284,154 downloads](https://clawhub.ai/skills/skill-vetter)
+- clawhub-popular-skill (2026-06-12T12:48:37.834000+00:00): [Popular Clawhub skill demand: Github has 206,208 downloads](https://clawhub.ai/skills/github)
+- clawhub-popular-skill (2026-05-18T03:40:07.591000+00:00): [Popular Clawhub skill demand: SkillScan has 183,940 downloads](https://clawhub.ai/skills/skillscan)
+- hacker-news-ask-hn (2026-11-23T20:39:01+00:00): [Ask HN: Anyone know someone at GitHub to help expedite a support request?](https://news.ycombinator.com/item?id=50618910)
+- github-issues (2026-11-24T04:57:08+00:00): [enhancement(planner): trace where a planned test's existing tooling writes before committing the plan](https://github.com/open-gsd/gsd-core/issues/6632)
+- github-issues (2026-11-24T04:57:06+00:00): [enhancement(verify.plan-structure): warn when a task's names a file its leaves out](https://github.com/open-gsd/gsd-core/issues/6631)
+- github-issues (2026-11-24T04:56:58+00:00): [enhancement(plan-checker): check new file and key names against naming rules the project's tests enforce](https://github.com/open-gsd/gsd-core/issues/6630)
+- github-issues (2026-11-24T04:56:19+00:00): [enhancement(plan-phase): resume an interrupted standard-mode planner, and have it write PLAN-OUTLINE.md first as chunked mode does](https://github.com/open-gsd/gsd-core/issues/6626)
+- github-issues (2026-11-24T04:56:05+00:00): [enhancement(new-project, new-milestone): research dimensions and setup questions assume a software project](https://github.com/open-gsd/gsd-core/issues/6623)
 
 ## How The Skill Meets The Requirement
 

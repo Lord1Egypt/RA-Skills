@@ -1,15 +1,15 @@
 ---
 name: btc-similar-setups
 description: When the Bitcoin market looks like it does now, what happened next? Finds past moments with similar funding, basis, positioning, volatility and order-book signals in AgentReeve's recorded history and reports BTC's move over the next 4, 24 and 72 hours against normal - with sample size and an honest quality grade. Free sample; live per request over x402.
-version: 1.0.0
+version: 1.1.0
 ---
 # BTC Similar Setups
 
 Use this when the user asks "has this happened before?", "what usually happens next?" or wants historical context for the current market.
 
 ## Steps
-1. Optional, free: `GET https://agentreeve.com/api/v1/btc/samples/similar-setups`.
-2. Live: `GET https://agentreeve.com/api/v1/btc/similar-setups?k=20&days=180` ($0.08).
+1. Optional, free: `GET https://agentreeve.com/api/v1/samples/similar-setups`.
+2. Live: `GET https://agentreeve.com/api/v1/similar-setups?k=20&days=180` ($0.08).
 3. Report:
    - `after_similar_setups` for 4h, 24h and 72h (median move and `up_share`), **next to** `baseline_all_hours` so the user sees whether it differs from normal.
    - `analogues_found`, `history_days` and `sample_quality` (thin, moderate or solid), every time.

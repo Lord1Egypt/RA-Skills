@@ -2,11 +2,11 @@
 set -euo pipefail
 
 echo "[amber-voice-assistant] Quickstart setup"
-echo "1) Copy references/env.example to your own .env and replace placeholders."
+echo "1) Copy references/env.example.txt to your own .env and replace placeholders."
 
 env_example_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/references"
-if [[ -f "$env_example_dir/env.example" ]]; then
-  echo "   Example file: $env_example_dir/env.example"
+if [[ -f "$env_example_dir/env.example.txt" ]]; then
+  echo "   Example file: $env_example_dir/env.example.txt"
 fi
 
 echo "2) Export required vars (TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_CALLER_ID, OPENAI_API_KEY, OPENAI_PROJECT_ID, OPENAI_WEBHOOK_SECRET, PUBLIC_BASE_URL)."

@@ -1,5 +1,23 @@
 # @opensea/skill
 
+## 2.35.0
+
+### Minor Changes
+
+- Document single-transaction swap quotes, serialized Solana transactions for external signing, and raw route amounts and OpenSea fee-transfer metadata. The CLI quote options require @opensea/cli 5.4.0.
+
+## 2.34.0
+
+### Minor Changes
+
+- Document opt-in volume history and catalog identities after backend deployment, including history bucket semantics and unrestricted public catalog gating.
+
+## 2.33.0
+
+### Minor Changes
+
+- Document existing collection NFT filters, collection depth, public wallet expansion, and collection P&L, including indexed-filter and public-wallet limits.
+
 ## 2.32.0
 
 ### Minor Changes

@@ -1,5 +1,7 @@
 # Best Practices (SendGrid)
 
+**Live-send safety:** these examples send real email through SendGrid and may incur charges. Obtain approval for the sender, all To/CC/BCC recipients, exact subject/body, template data and attachments before running them. Recipient data, content and attachments go to SendGrid and recipients. Minimize personal data; never include secrets, regulated data or sensitive files without authorization. Read only approved attachment/HTML files. Use a Mail Send-only API key from the environment and never print it. Use recipients you control for approved tests; example addresses are placeholders, not delivery approval.
+
 ## Required
 
 - **Verified sender/domain**: Ensure `from` uses a verified sender identity.
@@ -31,4 +33,4 @@ SendGrid doesn’t support idempotency keys for Mail Send. If you need idempoten
 ## Testing
 
 - Avoid fake addresses at real providers (bounces hurt reputation).
-- Prefer sending to addresses you control (e.g., `vince@winkintel.com`).
+- Prefer sending to addresses you control (e.g., `test@example.com`).

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers maintaining repositories use this skill to research relevant README examples, reshape a README into a concise index, apply the edits, and report verification.
+Developers maintaining a repository use this skill to reshape its README as a concise entry point, with installation guidance and links to deeper documentation. It guides repository review, language auditing, exemplar research, editing, and verification.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The scanner reports a potential overwrite of a predictable temporary file. The scan was partial because two local references were unresolved.
+Risk: Security analysis could not resolve two local references, so their contents were not fully assessed.
 
-Mitigation: Review the temporary-file behavior before installation, especially before running the skill on a shared system; the partial scan does not establish that all referenced material was assessed.
+Mitigation: Review the referenced skills and their files before installing or running them.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-sanctum-update-readme)
-- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
+- [Skill release on ClawHub](https://clawhub.ai/athola/skills/nm-sanctum-update-readme)
+- [Related project homepage (Clawdis metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Files, Guidance, Analysis]
+**Output Type(s):** [Markdown, Files, Analysis]
 
-**Output Format:** [README Markdown edits with a concise verification report]
+**Output Format:** [README Markdown edits and a concise verification summary]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Content is based on the target repository and the references available during the workflow.]
+**Other Properties Related to Output:** [May include repository-specific findings, links, and review commands.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, server-resolved release metadata)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

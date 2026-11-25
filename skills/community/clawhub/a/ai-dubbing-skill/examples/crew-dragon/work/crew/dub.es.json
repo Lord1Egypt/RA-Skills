@@ -1,0 +1,55 @@
+{
+ "video": "crew",
+ "language": "es",
+ "voice": "kokoro:em_alex",
+ "signature": "[2, \"kokoro:em_alex\", {\"background\": \"voiceover\", \"max_speed\": 1.15, \"original_volume\": 0.18}, [[\"Otra parte es crear un concepto de c\\u00f3mo,\", 0.0, 4.98], [\"en una nave muy automatizada, no perder de vista la necesidad\", 5.04, 5.34], [\"de que la tripulaci\\u00f3n siempre tenga un camino seguro a casa.\", 10.44, 3.6], [\"No hace falta salvar la misi\\u00f3n con la tripulaci\\u00f3n, sino a la tripulaci\\u00f3n con ella: esa es la idea que planteamos.\", 14.1, 7.24]], 1783584, 1795424101]",
+ "lines": [
+  {
+   "n": 1,
+   "cues": [
+    1
+   ],
+   "start": 0.0,
+   "slot": 4.98,
+   "seconds": 2.57,
+   "speed": 0.9,
+   "text": "Otra parte es crear un concepto de cómo,"
+  },
+  {
+   "n": 2,
+   "cues": [
+    2
+   ],
+   "start": 5.04,
+   "slot": 5.34,
+   "seconds": 3.76,
+   "speed": 0.9,
+   "text": "en una nave muy automatizada, no perder de vista la necesidad"
+  },
+  {
+   "n": 3,
+   "cues": [
+    3
+   ],
+   "start": 10.44,
+   "slot": 3.6,
+   "seconds": 3.37,
+   "speed": 1.0,
+   "text": "de que la tripulación siempre tenga un camino seguro a casa."
+  },
+  {
+   "n": 4,
+   "cues": [
+    4,
+    5,
+    6
+   ],
+   "start": 14.1,
+   "slot": 7.24,
+   "seconds": 6.42,
+   "speed": 1.0,
+   "text": "No hace falta salvar la misión con la tripulación, sino a la tripulación con ella: esa es la idea que planteamos."
+  }
+ ],
+ "too_long": []
+}

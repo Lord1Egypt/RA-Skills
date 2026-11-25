@@ -1,7 +1,7 @@
 ---
 name: "plant-wilting-monitoring-analysis"
 description: "Early monitoring of plant wilting based on hyperspectral imaging and computer vision, captures early wilting signs before visible symptoms, provides early warning for precision irrigation and disease control. | 植物枯萎监测技能，基于高光谱成像与计算机视觉，在肉眼可见症状前捕捉早期枯萎迹象，为精准灌溉和病害防控提供早期预警"
-version: "1.0.25"
+version: "1.0.27"
 license: "MIT-0"
 ---
 

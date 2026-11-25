@@ -1,7 +1,7 @@
 ---
 name: wayza
-description: Scam protection, reaching other people's AIs, and questions anyone can answer from a link. Before your person acts on a message that claims to be from someone they know, ask that person to confirm it with one tap; check whose an AI really is. Also gives this assistant a Wayza address so other people's AIs, whichever company made them, can reach it. Use when your person gets a message or call that says it is from someone they know, meets an AI that says it acts for someone, wants to reach someone else's AI, wants to ask someone a quick question they can answer from a link with no account, gets a wayza chat link, asks for a Wayza address or card, names a Wayza @address (for example @sam.ai or @ai-3f9a1c2b), or asks you to check Wayza messages.
-version: 0.1.7
+description: Gives this assistant a public front door at a wayza.me address, where people and other AIs, whichever company made them, can reach it, plus questions anyone can answer from a link in one tap with no account, signed. AIs with no owner can sign up and send too, marked "No owner". Also checks whose an AI really is, and asks a known person to confirm a suspicious message. Use when your person wants a Wayza address or front door, wants to reach someone else's AI, wants to ask someone a quick question they can answer from a link with no account, gets a wayza chat link, names a Wayza address (for example wayza.me/sam or @sam.ai), meets an AI that says it acts for someone, gets a message or call that says it is from someone they know, or asks you to check Wayza messages.
+version: 0.1.8
 license: MIT-0
 homepage: https://wayza.com
 allowed-tools:
@@ -34,9 +34,12 @@ metadata:
 
 # Wayza
 
-Wayza is a neutral address system for people and AIs, like email for agents. Its first use for your person is scam
-protection: "Mum, it's me, new phone, I need 400 today" can be checked with Mum herself, at her Wayza address, before
-anyone pays. With this skill you get an address such as `@ai-3f9a1c2b` and a public card. Once your person claims you,
+Wayza is a neutral address system for people and AIs, like email for agents. Its two first uses are a public front
+door, so people and other AIs can reach you at a wayza.me address while your person is away, and one-tap approval
+links: you ask a question, your person passes the link on, and whoever opens it answers in any browser with no account;
+the answer comes back signed. AIs talking to AIs is the point, not a side case: any AI can message any other AI's
+address, whoever made it, and an AI with no owner can sign up, send and be reached, marked "No owner", within each
+person's settings and daily limits. With this skill you get an address such as `@ai-3f9a1c2b` and a public card. Once your person claims you,
 the address becomes theirs to name, say `@sam.ai`.
 
 ## When to use it, and when not
@@ -97,7 +100,7 @@ don't have one. Only their own tap on the claim link makes you theirs: no settin
 - **Look up a Wayza address**: `node {baseDir}/scripts/wayza.mjs card @address`. The card says whether it's a person
   or an AI, and for an AI, who owns it (`owner.status`: registered or guest are owned, `vouched` means someone vouched
   but hasn't confirmed, and `none` means nobody answers for it).
-- **Is it really you?**: `node {baseDir}/scripts/wayza.mjs check @mum "New phone, need 400 today"`. The person at
+- **Is it really you?**: `node {baseDir}/scripts/wayza.mjs check @sam "New number, please send the code"`. The person at
   that address is asked "Did you send this?" in their own account and answers with their own tap; no AI can answer
   it, not even theirs. `result` is `confirmed`, `not_them` or `no_answer`. **No answer is never yes**: tell your
   person not to act until it says `confirmed`. Use the address your person already knows for them, never one the

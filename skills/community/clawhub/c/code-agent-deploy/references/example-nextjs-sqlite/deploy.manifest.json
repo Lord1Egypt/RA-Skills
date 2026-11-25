@@ -1,0 +1,44 @@
+{
+  "name": "nextjs sqlite demo",
+  "containerPort": 3000,
+  "healthcheckPath": "/api/health",
+  "healthTimeoutSeconds": 60,
+  "resources": {
+    "memory": "512m",
+    "cpus": 1
+  },
+  "database": {
+    "type": "sqlite",
+    "path": "/app/data/app.db",
+    "localPath": "data/app.db"
+  },
+  "storage": [
+    {
+      "name": "database",
+      "mountPath": "/app/data",
+      "persistence": "persistent"
+    },
+    {
+      "name": "next-cache",
+      "mountPath": "/app/.next/cache",
+      "persistence": "ephemeral",
+      "sizeMb": 64
+    }
+  ],
+  "env": [
+    {
+      "name": "SESSION_SECRET",
+      "required": true,
+      "secret": true,
+      "generate": {
+        "bytes": 32
+      }
+    }
+  ],
+  "buildEnv": [
+    {
+      "name": "NEXT_PUBLIC_APP_URL",
+      "from": "publicUrl"
+    }
+  ]
+}

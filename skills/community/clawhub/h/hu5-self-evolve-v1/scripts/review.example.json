@@ -1,0 +1,23 @@
+{
+  "task": "内部知识体系与工具包交付",
+  "date": "2026-10-25",
+  "did_right": [
+    "先核对名单再批量出卡，避免角色写错",
+    "用同一个模板参数化生成，风格统一、返工少",
+    "批量上传按目录循环，一次完成多库归档"
+  ],
+  "pitfalls": [
+    "dot（graphviz）被沙箱重置，未预检导致一次渲染失败",
+    "并行 file_write 到同一新建目录报 directory exists 冲突"
+  ],
+  "next_time": [
+    "渲染关系图前先 which dot，缺则 apt-get install -y graphviz",
+    "写脚本前先建目录，或串行写入同目录文件",
+    "生成脚本优先落在 skills/<name>/scripts/ 便于固化复用"
+  ],
+  "artifacts": [
+    "身份卡 10 份",
+    "两个配套技能",
+    "《Skill开发规范》V1.5"
+  ]
+}

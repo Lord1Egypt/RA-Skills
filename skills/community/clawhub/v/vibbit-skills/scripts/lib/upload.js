@@ -201,7 +201,14 @@ function contentTypeFor(fileName) {
   }[extension] || 'application/octet-stream'
 }
 
-async function prepareUpload(file, signature) {
+async function validateReferenceAudioFile(file) {
+  if (typeof file !== 'string' || path.extname(file).toLowerCase() !== '.mp3') throw new VibbitError('input', 'Translation voice references require a local MP3 file')
+  let stat
+  try { stat = await fsp.stat(file) } catch { throw new VibbitError('input', 'Reference MP3 does not exist or is not readable') }
+  if (!stat.isFile() || stat.size === 0 || stat.size > MAX_UPLOAD_BYTES) throw new VibbitError('input', 'Reference MP3 must be a nonempty regular file within the upload size limit')
+}
+
+async function prepareUpload(file, signature, options = {}) {
   const filePath = path.resolve(file)
   let stat
   try { stat = await fsp.stat(filePath) } catch { throw new VibbitError('input', 'Upload file does not exist or is not readable') }
@@ -219,7 +226,7 @@ async function prepareUpload(file, signature) {
   if (/[\\\u0000-\u001f\u007f]/.test(dir) || dir.slice(0, -1).split('/').some(part => !part || part === '.' || part === '..')) {
     throw new VibbitError('protocol', 'MATERIAL_UPLOAD returned an invalid object directory')
   }
-  const fileName = safeFileName(filePath)
+  const fileName = options.referenceAudio ? safeFileName(filePath).replace(/\.mp3$/i, '.mp3') : safeFileName(filePath)
   const objectKey = `${dir}${Date.now()}_${crypto.randomUUID().slice(0, 8)}_${fileName}`
   const fields = {
     key: objectKey,
@@ -229,7 +236,7 @@ async function prepareUpload(file, signature) {
     'x-oss-date': text(repaired.xoss_date || repaired.xOssDate, 'xoss_date'),
     'x-oss-signature': text(repaired.signature || repaired.xOssSignature, 'signature'),
     'x-oss-security-token': text(repaired.security_token || repaired.securityToken, 'security_token'),
-    success_action_status: '201',
+    success_action_status: options.referenceAudio ? '200' : '201',
   }
   if (fields['x-oss-signature-version'] !== 'OSS4-HMAC-SHA256') throw new VibbitError('protocol', 'MATERIAL_UPLOAD requires OSS V4 signing')
   validatePolicy(repaired.policy, fields, hostUrl, stat.size, fileName)
@@ -284,8 +291,8 @@ function postMultipart(plan) {
   })
 }
 
-async function uploadLocalFile(file, signature) {
-  const plan = await prepareUpload(file, signature)
+async function uploadLocalFile(file, signature, options) {
+  const plan = await prepareUpload(file, signature, options)
   const response = await postMultipart(plan)
   return {
     ok: true,
@@ -305,4 +312,4 @@ function summarizeInstructions(signature) {
   return Object.fromEntries(['host', 'dir', 'bucket', 'region', 'expire'].filter(key => signature?.[key] !== undefined).map(key => [key, signature[key]]))
 }
 
-module.exports = { MAX_UPLOAD_BYTES, normalizeRegion, regionFromHost, repairSigningRegion, prepareUpload, uploadLocalFile, summarizeInstructions, contentTypeFor }
+module.exports = { MAX_UPLOAD_BYTES, normalizeRegion, regionFromHost, repairSigningRegion, prepareUpload, uploadLocalFile, validateReferenceAudioFile, summarizeInstructions, contentTypeFor }

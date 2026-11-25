@@ -4,19 +4,17 @@ Use English names or stable IDs as canonical keys. Chinese names are display lab
 
 ## Recipe records
 
-`recipes.yaml` stores base recipes and nested variants/extras. Records use stable IDs, bilingual names, prerequisites, ingredients, equipment, and ordered preparation descriptions. Refer to `recipe-steps.yaml` for searchable step order, lexical action terms, and typed duration mentions. The prose in `recipes.yaml` remains the authoritative ordered procedure; do not infer missing inputs, outputs, or equipment from prose.
-
-`recipe-steps.yaml` is a generated search index over those ordered step descriptions. `action_terms` are lexical matches and may include negated or descriptive mentions. `duration_mentions_seconds` preserves the extracted numeric list; `duration_details` aligns each value with a `role` and optional `label`. Roles include `cook_stage_increment`, `cook_duration`, `action_duration`, `burn_delay`, and `total_duration`; use `unknown` whenever wording is ambiguous. These records classify explicit time mentions only; they do not split compound prose into independently verified operations. Read `source_text` before giving a precise process answer.
+[recipes.yaml](recipes.yaml) stores `base_recipes` with nested `variants` and `extras`, plus `side_and_course_workflows`. Records use stable IDs and may include prerequisites, ingredients, equipment, common preparation in `base`, and ordered `steps`. Some nested entries have only a name and ID. Check the base recipe for shared steps or ingredients without assuming a variant keeps every ingredient. Read the steps to distinguish cooking times, extra time for a cooking stage, prep or portioning times, burn delays, and stated totals. Leave missing or ambiguous times unknown.
 
 ## Appliance records
 
-`appliances.yaml` separates upgrade paths, individual appliance records, general rules, and automation interactions. A name appearing in `catalog_by_category` only confirms catalog membership; it does not mean all properties are captured. Records may include verified cost, seats/capacity, quantity, modifiers, function, timing, burn behavior, interaction constraints, upgrade links, and `source_page`. Use `null` for unknown values.
+[appliances.yaml](appliances.yaml) keeps blueprint upgrade edges in `upgrade_paths`. `linear` contains one-step routes without a cycle. `entry_points` lists the confirmed one-action results leading into multistep routes; `followup` contains the later transitions. `partially_documented_entries` records a route shown in the upgrade diagram but does not establish the full set of first outcomes. Stop at a repeated blueprint when describing a cycle. `cost` is the blueprint price when available; `free_at_run_start` is separate. A `patience_duration_multiplier` scales phase duration, not depletion speed.
 
-Each appliance in the catalog has a bilingual display name. `attributes_status: name_only` marks entries with no collected mechanics; `partial_verified` means some fields have a source and other attributes may still be unknown. Do not treat null fields as appliance mechanics.
+`catalog_by_category` confirms catalog membership. `attributes_status: name_only` marks entries with no collected mechanics; `partial_verified` means some fields have a source and others may still be unknown. `null` is unknown.
 
 ## Ingredient mappings
 
-`ingredients.yaml` is an inverse index from ingredient to recipes. Treat recipe names as canonical English names and do not infer quantities or optionality from membership alone. Extras and serving equipment are recorded separately.
+Search `ingredients` on base recipes, variants, extras, and side or course workflows. Merge results with `additional_uses` in [ingredients.yaml](ingredients.yaml), whose lists point to stable recipe IDs, and deduplicate by ID. `wiki_only_uses` names uses without a local recipe record; `extras_and_equipment` records optional add-ons and serving equipment. A match by itself does not establish quantity, optionality, or required equipment; check the recipe steps and prerequisites.
 
 ## Cards
 

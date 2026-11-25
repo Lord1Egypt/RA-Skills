@@ -70,7 +70,7 @@ Approximate cost: `medium-high` (VKE nodes + CR + CLB/EIP + bandwidth; plus data
 
 If the user chooses veFaaS, switch to/call the `volcengine-vefaas` skill. If it fails, return to the main deployment flow and let the user retry veFaaS or switch to ECS/VKE. Do not use the legacy ZIP/API flow in `volcengine-deploy`.
 
-For MCP projects, use `volcengine-vefaas/references/mcp-deployment.md` after selecting veFaaS. VKE is only appropriate when the user explicitly asks for Kubernetes and already has a session-affinity plan.
+For MCP projects, switch to `volcengine-vefaas` after selecting veFaaS and let that skill load its own `references/mcp-deployment.md`. If it is unavailable, use `volcengine-find-skills` to install it and resume in a new thread. VKE is only appropriate when the user explicitly asks for Kubernetes and already has a session-affinity plan.
 
 Approximate cost: `low-medium` (function resources + API Gateway; plus dependency services if used).
 

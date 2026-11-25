@@ -1,0 +1,156 @@
+{
+ "schema": "lgd-ai-index/1.0",
+ "skill": "lgd-skill-review",
+ "author": {
+  "name": "诺声(Logos)@SynomosAI",
+  "ecosystem": "LGD / SynomosAI",
+  "theory_anchor": "三律：有籍（可追溯）/ 有证（可核验）/ 有门禁（可拦截）"
+ },
+ "one_line": "A six-dimension, evidence-based reviewer for any AI skill package, with a fix list and a re-runnable score.",
+ "one_line_zh": "对任意 AI 技能包做 6 维加权评测，出整改清单，可复测；每一分都指到具体文件与具体缺陷。",
+ "intents": [
+  {
+   "when": "用户想给技能包打分/体检",
+   "ask": "帮我评一下这个技能包",
+   "route": "review.py <dir>"
+  },
+  {
+   "when": "技能被平台拒了想找原因",
+   "ask": "我的技能为什么上架被拒",
+   "route": "六维报告 + P0 阻断项"
+  },
+  {
+   "when": "想知道文档和脚本是否一致",
+   "ask": "SKILL.md 里写的命令脚本里都有吗",
+   "route": "consistency 维度"
+  },
+  {
+   "when": "想知道能不能复跑自证",
+   "ask": "这个技能有测试吗，能跑通吗",
+   "route": "reproducible + --run"
+  },
+  {
+   "when": "担心包里泄露密钥",
+   "ask": "这个包有没有泄露 key 或手机号",
+   "route": "hygiene 扫描"
+  },
+  {
+   "when": "AI 想自动改进自己的技能",
+   "ask": "按评测结果自动改进再复测",
+   "route": "P0/P1 清单 + rerun 命令"
+  },
+  {
+   "when": "英文提问同样触发",
+   "ask": "review this skill package and give me a fix list",
+   "route": "same"
+  },
+  {
+   "when": "技能体检",
+   "ask": "技能体检",
+   "route": "review.py <dir>"
+  },
+  {
+   "when": "给我这个技能打个分",
+   "ask": "给我这个技能打个分",
+   "route": "review.py <dir>"
+  },
+  {
+   "when": "上架前帮我检查一遍",
+   "ask": "上架前帮我检查一遍",
+   "route": "review.py <dir> --run"
+  },
+  {
+   "when": "我的技能为什么被拒了",
+   "ask": "我的技能为什么被拒了",
+   "route": "六维报告 + P0 阻断项"
+  },
+  {
+   "when": "给我一份整改清单",
+   "ask": "给我一份整改清单",
+   "route": "P0/P1 actions"
+  },
+  {
+   "when": "按清单改完再复核一遍",
+   "ask": "按清单改完再复核一遍",
+   "route": "rerun after fix"
+  },
+  {
+   "when": "这个包有没有泄露密钥",
+   "ask": "这个包有没有泄露密钥",
+   "route": "hygiene scan"
+  },
+  {
+   "when": "文档写的命令脚本里都有吗",
+   "ask": "文档写的命令脚本里都有吗",
+   "route": "consistency dimension"
+  },
+  {
+   "when": "全库体检一遍",
+   "ask": "全库体检一遍",
+   "route": "batch review"
+  },
+  {
+   "when": "我改完了，确认没改坏",
+   "ask": "我改完了，确认没改坏",
+   "route": "re-review regression"
+  },
+  {
+   "when": "这个技能值不值得装",
+   "ask": "这个技能值不值得装",
+   "route": "third-party package assessment"
+  },
+  {
+   "when": "技能质量门禁怎么定",
+   "ask": "技能质量门禁怎么定",
+   "route": "scoring.md criteria"
+  },
+  {
+   "when": "review my skill",
+   "ask": "review my skill",
+   "route": "review.py <dir>"
+  },
+  {
+   "when": "is this skill releasable",
+   "ask": "is this skill releasable",
+   "route": "verdict PASS/BLOCK"
+  },
+  {
+   "when": "does the doc match the script",
+   "ask": "does the doc match the script",
+   "route": "consistency dimension"
+  },
+  {
+   "when": "skill vetting before install",
+   "ask": "skill vetting before install",
+   "route": "hygiene + consistency"
+  }
+ ],
+ "not_for": [
+  "评测一篇文章的写作质量",
+  "评测模型回答的准确率",
+  "商业方案尽调"
+ ],
+ "entrypoints": {
+  "cli": "python scripts/review.py <skill_dir>",
+  "json": "python scripts/review.py <skill_dir> --json",
+  "run": "python scripts/review.py <skill_dir> --run",
+  "gate": "python tests/run_golden.py",
+  "demo": "python demo/run_demo.py"
+ },
+ "links": [
+  {
+   "skill": "summarize-pro",
+   "when": "评测目标是一个摘要/纪要类技能"
+  },
+  {
+   "skill": "debug-pro",
+   "when": "被测技能的测试跑不通，需要定位原因"
+  },
+  {
+   "skill": "wechat-viral-topic",
+   "when": "评测目标是选题/内容类技能"
+  }
+ ],
+ "discovery_hint": "Match on capability, not name: this package answers 'is this skill package releasable, and what exactly must be fixed'.",
+ "intents_count": 23
+}

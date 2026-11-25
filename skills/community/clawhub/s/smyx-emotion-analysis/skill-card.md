@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes supplied facial video for micro-expression and emotion cues and returns a structured report.
+Analyzes facial videos for expression and emotion cues, then returns a structured report.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Users can submit facial video for an AI-generated micro-expression and emotion report or request a list of saved reports. Results are advisory and depend on the quality of the supplied video.
+People reviewing facial video clips can request basic, micro-expression, or broader emotion analyses and receive a structured report. The skill can also retrieve previously generated reports associated with the account.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates the release suspicious because account, identity, credential, and facial-media handling is not adequately explained; its summary also says some behavior may occur when analysis is disabled.
+Risk: The release is marked suspicious for identity and credential handling, remote account registration, and possible analysis during export-only mode; the scan was partial.
 
-Mitigation: Before use, verify why registration and identity or token storage are needed, and confirm when facial media and identity data are sent, retained, or accessed. Treat the current scan as partial because a referenced path was missing.
+Mitigation: Review what facial media, identity details, and account data are sent or stored, and confirm whether export-only mode can trigger analysis before using the skill.
+
+Risk: Emotion reports can be mistaken for reliable evidence of a person's inner state.
+
+Mitigation: Treat findings as tentative expression cues, account for video quality and occlusion, and do not use the report as a substitute for professional assessment or as the sole basis for consequential decisions.
 
 ## Reference(s):
 
-- [API interface notes](artifact/references/api_doc.md)
-- [Skill demo](https://lifeemergence.com/sample.html)
+- [API interface notes](references/api_doc.md)
+- [Analysis API details](skills/smyx_analysis/references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub release page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-emotion-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, JSON, Markdown]
+**Output Type(s):** [Text, JSON]
 
-**Output Format:** [Structured emotion-analysis report with findings, advisory suggestions, and report links when available]
+**Output Format:** [Structured text or JSON analysis report with a report export link]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Advisory output; video quality affects results, and the analysis does not replace professional psychological assessment.]
+**Other Properties Related to Output:** [Reports may include expression and emotion cues, suggestions, and report links; output detail can be selected.]
 
 ## Skill Version(s):
 
-1.0.21 (source: server-resolved release metadata)
+1.0.22 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

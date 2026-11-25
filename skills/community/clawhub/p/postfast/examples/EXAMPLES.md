@@ -35,12 +35,14 @@ Ready-to-use request bodies for common social media scheduling scenarios.
 | [gbp-offer.json](gbp-offer.json) | Google Business Profile offer with coupon code |
 | [facebook-geotag.json](facebook-geotag.json) | Facebook feed post geotagged with a place (`facebookPlaceId`) and limited to specific countries |
 | [instagram-geotag.json](instagram-geotag.json) | Instagram single-media post geotagged with a place (`instagramLocationId`) |
+| [facebook-link-carousel.json](facebook-link-carousel.json) | Facebook link carousel: each image is a card with its own link (`facebookCarouselMainLink`, `mediaLink`) |
 | [post-analytics.json](post-analytics.json) | Fetch published post metrics (impressions, likes, etc.) |
 | [pinterest-analytics.json](pinterest-analytics.json) | Pinterest pin analytics with extras (pin_clicks, outbound_clicks, save_rate, video metrics) |
 | [bulk-delete.json](bulk-delete.json) | Body for `POST /social-posts/bulk-delete` (up to 100 post ids) with the response shape |
+| [webhook-endpoint.json](webhook-endpoint.json) | Body for `POST /webhook-endpoints` (signed events for published and failed posts, connected and disconnected accounts) with the response shape |
 
 ## Usage
 
-Each JSON file is a complete request body for `POST /social-posts`, except `post-analytics.json` and `pinterest-analytics.json` (a GET request with its response) and `bulk-delete.json` (the body for `POST /social-posts/bulk-delete`). Keys starting with `_` are notes, not API fields. Replace placeholder IDs with real values from `GET /social-media/my-social-accounts` (accounts) or `GET /social-posts` (posts).
+Each JSON file is a complete request body for `POST /social-posts`, except `post-analytics.json` and `pinterest-analytics.json` (a GET request with its response), `bulk-delete.json` (the body for `POST /social-posts/bulk-delete`) and `webhook-endpoint.json` (the body for `POST /webhook-endpoints`). One full cURL call per platform, generated from the PostFast docs, is in [references/post-examples.md](../references/post-examples.md). Keys starting with `_` are notes, not API fields. Replace placeholder IDs with real values from `GET /social-media/my-social-accounts` (accounts) or `GET /social-posts` (posts).
 
 For examples with media, complete the 3-step upload flow first (see [references/upload-flow.md](../references/upload-flow.md)) and replace the `key` values with your actual upload keys.

@@ -36,7 +36,7 @@
 
 | Scope | 能力 |
 |---|---|
-| NOTE_READ | 读笔记 |
+| NOTE_READ | 读笔记与纸质本 |
 | NOTE_WRITE | 写笔记 |
 | TODO_READ | 读待办 |
 | TODO_WRITE | 写待办 |
@@ -81,3 +81,11 @@
 - 默认正文读取：`GET /note/{noteUid}/content?type=summary`，先用纪要/摘要回答。
 - 摘要不足时再追加一种内容：`asr` 用于原文/逐字稿/录音转写，`ocr` 用于手写或页面识别，`insight` 用于 AI 洞察、行动项和扩展分析。
 - 不要默认调用 `includeContent=true` 的详情接口，也不要为了备用一次性获取 `asr`、`ocr`、`insight` 多种内容。
+
+## 10) 纸质本接口
+
+- `GET /notebook/list`：查询当前用户有效纸质本的简单元信息，Scope 为 `NOTE_READ`。
+- `GET /notebook/{bookUid}`：查询纸质本详情、关联笔记和页面页码信息，Scope 为 `NOTE_READ`。
+- 详情页面字段包括 `pageUid`、`sourcePageNo`、`logicalPageNo`、`thumbUrl`。
+- `logicalPageNo` 来自纸质本 manifest 的显式页码映射；manifest 缺失或页面未匹配时为 `null`。
+- `thumbUrl` 是页面手写缩略图预签名地址；不要将其当作永久地址保存。

@@ -1,0 +1,20 @@
+{
+  "fixture_notice": "离线页面资料模拟：仅用于 self-test，不是在线采集结果。",
+  "business_input": {
+    "urls": ["https://mp.weixin.qq.com/s/fixture-login-gated"],
+    "focus_questions": ["文章的关键步骤是什么？"],
+    "browserId": "fixture-browser-id"
+  },
+  "page": "failure-login.html",
+  "expected_brief": {
+    "title": "需要登录后查看",
+    "main_conclusion": "未显示",
+    "key_steps": [],
+    "author": "未显示",
+    "date": "未显示",
+    "publisher": "未显示",
+    "source_url": "https://mp.weixin.qq.com/s/fixture-login-gated",
+    "visible_scope": "登录验证",
+    "missing_items": ["正文未显示", "作者未显示", "日期未显示", "来源公众号未显示"]
+  }
+}

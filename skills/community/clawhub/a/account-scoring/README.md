@@ -139,5 +139,6 @@ cargo-ai project types && cargo-ai project check && cargo-ai project plan
 
 ## Composes into
 
-`contact-sourcing` on tier A, `agentic-engagement`, `new-hire-detection`.
+`contact-sourcing` on tier A, `agentic-engagement`, `new-hire-detection`,
+`readiness-scoring` (timing next to the fit).
 Works best after `tam-building`.

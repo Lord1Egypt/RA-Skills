@@ -1,6 +1,6 @@
 ## Description:
 
-Converts documents and URLs to markdown via tiered fallback (MCP markitdown, native tools, user notice)
+Converts documents and URLs to markdown via tiered fallback (MCP markitdown, native tools, user notice).
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agent builders use this skill to convert documents and URLs into Markdown for downstream processing or editable project imports.
+Developers and engineers use this skill to convert documents and URLs into Markdown for downstream processing, including importing source documents as editable project files.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Converted external content may contain instruction-like text that affects downstream processing.
+Risk: The security review was partial because two local references could not be resolved.
 
-Mitigation: Follow the documented sanitization steps: strip system and instruction tags, apply size limits, and mark external-content boundaries.
-
-Risk: The security scan is partial because two local references in SKILL.md could not be resolved.
-
-Mitigation: Review the unresolved references before installation.
+Mitigation: Review the unresolved references and their contents before relying on the skill.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-leyline-document-conversion)
-- [Night Market Leyline plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
+- [Night Market Leyline project](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Configuration instructions, Guidance]
+**Output Type(s):** [Markdown, Guidance]
 
-**Output Format:** [Markdown text, with JSON configuration examples when conversion support is unavailable]
+**Output Format:** [Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Converted external content is sanitized, wrapped in source boundaries, and limited to 2,000 words per section.]
+**Other Properties Related to Output:** [Converted document content or user guidance when conversion is unavailable.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter; release evidence: 1.10.3)
+1.10.4 (source: ClawHub release evidence; artifact frontmatter reports 1.10.3)
 
 ## Ethical Considerations:
 

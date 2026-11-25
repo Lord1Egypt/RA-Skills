@@ -1,0 +1,21 @@
+{
+ "about": "Words appear as they are spoken, up to 2 lines. Calm, readable, good for explainers.",
+ "font": "Poppins-Bold.ttf",
+ "size": 72,
+ "color": "#FFFFFF",
+ "reveal": true,
+ "keyword": "#FFD43B",
+ "stroke": 7,
+ "stroke_color": "#000000",
+ "shadow": {
+  "dx": 0,
+  "dy": 5,
+  "alpha": 0.45,
+  "blur": 3
+ },
+ "words": 7,
+ "chars": 20,
+ "lines": 2,
+ "pause": 0.4,
+ "position": 0.62
+}

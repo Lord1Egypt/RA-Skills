@@ -1,6 +1,6 @@
 ## Description:
 
-Use an OOMOL-connected Zoom account to read user and meeting data, create meetings, and update existing meetings.
+Use Zoom through a connected OOMOL account to read, create, and update Zoom data.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-People with an OOMOL-connected Zoom account use this skill to retrieve Zoom user and meeting information and to create or update meetings.
+External users and developers use this skill to retrieve Zoom users, meetings, and meeting summaries, and to create or update meetings through an OOMOL-connected account.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: First-time setup can run a changing remote installer and may involve automatic skill installation.
+Risk: The security assessment flags a suspicious, partially scanned release: it includes a live remote oo CLI installer that raises an install security concern and appears mismatched with the Zoom skill’s purpose.
 
-Mitigation: Review the CLI installation and its permissions separately, check OOMOL's Zoom access and automatic installation behavior, and require approval before running a remote installer.
+Mitigation: Before installing, ask the publisher why the oo CLI installer is needed, verify the installation method, and clarify what the remote script does.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/oomol/skills/oo-zoom)
-- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
 - [Zoom Meetings API documentation](https://developers.zoom.us/docs/api/meetings/)
-- [Zoom](https://www.zoom.com)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, API calls, Shell commands, Guidance]
+**Output Type(s):** [Shell commands, JSON, Guidance]
 
-**Output Format:** [Text guidance, shell command examples, and JSON request and response data]
+**Output Format:** [Shell commands with JSON payloads and JSON action results]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Commands use the oo CLI; writes require confirmation before execution.]
+**Other Properties Related to Output:** [Read actions return Zoom data; write actions require user confirmation.]
 
 ## Skill Version(s):
 
-1.0.7 (source: ClawHub release evidence and frontmatter)
+1.0.8 (source: frontmatter; release evidence)
 
 ## Ethical Considerations:
 

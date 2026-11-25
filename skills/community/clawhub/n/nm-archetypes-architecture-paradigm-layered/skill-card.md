@@ -1,6 +1,6 @@
 ## Description:
 
-Layered n-tier architecture for moderate systems that need presentation, domain, and persistence layers.
+Layered n-tier architecture. Use for moderate systems needing presentation, domain, and persistence layers
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and architects use this skill to decide when a layered design fits a moderate system and to plan layer responsibilities, dependency direction, and architecture checks.
+Developers and engineering teams use this skill to decide when a layered architecture fits and to plan layer boundaries, dependency rules, and enforcement practices for a moderate-sized system.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Strict layer boundaries can add pass-through code and latency for features that cross several layers.
+Risk: Strict layering can create pass-through code and add latency when features span several layers.
 
 Mitigation: Use a façade to provide a more direct interface where appropriate.
 
-Risk: Bypassing layer rules can erode the intended architecture.
+Risk: Bypassing layer rules can weaken architectural boundaries.
 
-Mitigation: Make architectural violations fail automated checks or treat them as critical code review issues.
+Mitigation: Use automated architecture checks and treat violations as build failures or critical code review issues.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-layered)
-- [Project information](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-layered)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown]
+**Output Type(s):** [Guidance, Analysis, Markdown]
 
-**Output Format:** [Markdown]
+**Output Format:** [Markdown text]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Architecture recommendations and planning deliverables such as layer definitions, dependency diagrams, and enforcement criteria.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

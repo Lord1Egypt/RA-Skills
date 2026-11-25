@@ -1,8 +1,8 @@
 ## Description:
 
-Manages financial knowledge bases with document organization, knowledge graph, semantic search, and intelligent Q&A for internal financial institutions.
+Provides design guidance for financial institutions organizing internal knowledge bases, including document taxonomy, knowledge graphs, search evaluation, metric definitions, lifecycle governance, and Q&A quality checks.
 
-This skill is ready for commercial/non-commercial use.
+This skill is for demonstration purposes and not for production usage.
 
 ## Publisher:
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Financial institution employees can organize internal regulatory, product, and process knowledge, then retrieve it through semantic search and question answering. The skill also describes customer profiling and investment recommendation workflows, which need appropriate review before use.
+Financial institution knowledge managers and reviewers can use it to draft document taxonomies, knowledge graph schemas, metric registries, retrieval evaluations, and version governance checklists. Outputs are reference drafts for qualified human review and do not operate production systems or provide financial, legal, or compliance advice.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill includes customer profiling and personalized investment recommendations, extending beyond internal knowledge retrieval.
+Risk: The security review was partial, so referenced material may not have been fully inspected.
 
-Mitigation: Review the advisory scope and customer-record retention practices before installation; have qualified compliance staff review investment-facing use.
+Mitigation: Review the skill listing and referenced material before installation, as advised by the security evidence.
 
-Risk: The security review is incomplete; Skillspector inspected only half of the components.
+Risk: Reference guidance may be mistaken for institution-specific financial, legal, or compliance advice or treated as an approved production change.
 
-Mitigation: Treat the suspicious verdict as a caution and complete a full security review before deployment.
+Mitigation: Have qualified reviewers validate sources and applicability; do not use the skill to change production data or permissions or to make professional advice decisions.
 
 ## Reference(s):
 
-- [Source repository (server-resolved provenance)](https://github.com/gechengling/finance-knowledge-base)
-- [Finance Knowledge Base on ClawHub](https://clawhub.ai/gechengling/skills/finance-knowledge-base)
+- [ClawHub release page](https://clawhub.ai/gechengling/skills/finance-knowledge-base)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Markdown, Guidance, Analysis, Code]
 
-**Output Format:** [Markdown or plain text, including knowledge summaries, search answers, product comparisons, and advisory documents.]
+**Output Format:** [Markdown with tables, checklists, and illustrative code snippets]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include customer profile summaries and investment suggestions; review for accuracy and suitability before relying on them.]
+**Other Properties Related to Output:** [Reference drafts for human review; code examples are illustrative.]
 
 ## Skill Version(s):
 
-5.0.6 (source: ClawHub release)
+5.0.7 (source: frontmatter, server-resolved release)
 
 ## Ethical Considerations:
 

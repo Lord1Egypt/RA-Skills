@@ -1,7 +1,10 @@
 # vmware-debug Setup Guide
 
 vmware-debug needs **no VMware endpoint configuration or VMware credentials** — it
-is a pure, offline correlation engine. There is no `config.yaml` and no `.env`.
+provides offline CLI/MCP correlation and case tools. There is no `config.yaml` and no `.env`.
+Optional Python host integration uses authenticated companion MCP sessions supplied
+by the host, with their existing endpoint/credential configuration and guards; see
+[host integration](scenario-host.md).
 
 Default stdio has no listener. Opt-in HTTPS uses caller bearer tokens and TLS
 certificate/key files and opens the configured listener. Case tools write a local
@@ -10,7 +13,7 @@ ledger; every tool also writes the separate `~/.vmware/audit.db` audit trail.
 ## Install
 
 ```bash
-uv tool install vmware-debug==2.3.3
+uv tool install vmware-debug==2.4.0
 vmware-debug categories      # verify it runs
 ```
 
@@ -19,7 +22,7 @@ vmware-debug categories      # verify it runs
 ```json
 {
   "command": "uvx",
-  "args": ["--from", "vmware-debug==2.3.3", "vmware-debug-mcp"]
+  "args": ["--from", "vmware-debug==2.4.0", "vmware-debug-mcp"]
 }
 ```
 

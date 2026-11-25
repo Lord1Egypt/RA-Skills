@@ -39,7 +39,7 @@ over this example. Ask only what is still missing; a current user answer remains
 valid across mode changes for the same target. Never invent an unavailable tool.
 
 **Measured, and it is not only an other-agent problem.** Ten of the fifteen
-`with_skill` runs in the source repository's iteration-2 evaluation recorded
+`with_skill` runs in `evals/iterations/iteration-2-with-skill.md` (source repository) recorded
 `AskUserQuestion` as unavailable — those were Claude Code subagents, which do not
 get the tool either. Any run without an interactive human is in the same
 position: state the assumptions you proceeded on instead, and carry them into the
@@ -55,12 +55,14 @@ tailoring happen is not a second opinion, it is the same opinion.
 Any of these gives you that, in preference order:
 
 1. **A subagent / task / sub-session tool**, if the host has one. Dispatch all
-   three at once so they cannot influence each other's ordering.
+   three at once so they cannot influence each other's ordering. WorkBuddy has an
+   `Agent` tool, and codex has native multi-agent support (`codex features list`
+   shows `multi_agent`); use those before the CLI route below.
 2. **A fresh invocation of the host's own CLI**, which is what makes this
    portable. The persona files are standalone, so:
 
    ```bash
-   codex exec "$(cat agents/ats-screener.md)
+   codex exec --skip-git-repo-check --ephemeral -s read-only "$(cat agents/ats-screener.md)
 
    POSTING:
    $(cat "$WS/posting.yaml")
@@ -73,7 +75,10 @@ Any of these gives you that, in preference order:
 
    Substitute the host's equivalent (`claude -p`, `gemini -p`, and so on). One
    process per judge, run them concurrently, and save each verdict to a file so
-   `parse_verdicts.py` can read it.
+   `parse_verdicts.py` can read it. Keep `--skip-git-repo-check`: without it codex
+   refuses to run outside a git repository (`Not inside a trusted directory`), and
+   an installed copy of this skill and every workspace are not repositories.
+   `-s read-only` is enough, because the persona and its inputs are in the prompt.
 
    **Measured end to end, 2026-09-06, codex-cli 0.147.0.** All three judge
    personas were run through `codex exec` against a real apply workspace from
@@ -134,14 +139,14 @@ The agent prepares missing dependencies and daily-browser CDP using
 python3 scripts/doctor.py          # capabilities, and what each missing one costs
 ```
 
-On a checkout of the source repository (https://github.com/addsumtech/job-hunt), `python3 -m pytest scripts/tests/ -q`
-also runs the enforcement layer on this machine. That test suite is the real portability check: it exercises every gate against
+This package ships without the test suite. On a checkout of the source repository (https://github.com/addsumtech/job-hunt),
+`python3 -m pytest scripts/tests/ -q` is the real portability check: it exercises every gate against
 fixtures and needs no agent at all. A host where it passes can run the gates; a
 host where it fails has a Python or dependency problem, not a skill problem.
 
 ### Optional audit of this machine
 
-The test suite checks supported copy and symlink installations in temporary directories. To audit the actual installed skill against a checkout of the source repository, run `JOBHUNT_CHECK_INSTALL=1 python -m pytest scripts/tests/test_install.py -q` in that checkout. Only a machine that migrated from `job-application` should additionally set `JOBHUNT_CHECK_MIGRATION_ARCHIVE=1`; a fresh installation has no legacy archive to preserve. These checks never create or change the user's runtime skill directories.
+On a checkout of the source repository, the test suite checks supported copy and symlink installations in temporary directories. To audit the actual installed skill against the current checkout, run `JOBHUNT_CHECK_INSTALL=1 python -m pytest scripts/tests/test_install.py -q`. Only a machine that migrated from `job-application` should additionally set `JOBHUNT_CHECK_MIGRATION_ARCHIVE=1`; a fresh installation has no legacy archive to preserve. These checks never create or change the user's runtime skill directories.
 
 ## Saving a master
 

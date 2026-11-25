@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Digital banking developers, wealth advisors, and compliance teams can use this skill for training and design exercises covering product-matching logic, suitability controls, compliance checklists, and customer conversation templates. Its examples are educational materials and require qualified human review before any operational or customer-facing use.
+Digital banking teams, wealth managers, and compliance reviewers can use this as educational reference material for product-matching methods, advisory script structure, and suitability-control checklists. It does not provide customer-specific recommendations or replace qualified human review.
 
 ### Deployment Geography for Use:
 
@@ -22,13 +22,17 @@ China (mainland)
 
 ## Known Risks and Mitigations:
 
-Risk: Generic examples could be mistaken for personalized financial advice or used to make real customer recommendations.
+Risk: Educational examples could be mistaken for customer-specific financial recommendations or production-ready matching logic.
 
-Mitigation: Use fictional or anonymized scenarios only; keep outputs for training and workflow design, and require qualified, licensed staff and compliance review before customer-facing use.
+Mitigation: Keep outputs clearly labeled as reference material and require review by qualified, licensed personnel before any customer-facing or production use.
 
-Risk: Regulatory summaries or illustrative product details may be outdated or incomplete.
+Risk: Real customer or account details could be exposed when discussing example scenarios.
 
-Mitigation: Check current requirements and product facts against official sources and institutional policies before relying on them.
+Mitigation: Use anonymized, minimal example profiles and do not include names, contact details, account identifiers, holdings, or original risk-assessment records.
+
+Risk: Regulatory or market information in the skill may become outdated or require jurisdiction-specific interpretation.
+
+Mitigation: Verify current requirements against official sources and have the institution's compliance team review any material before external use.
 
 ## Reference(s):
 
@@ -36,17 +40,17 @@ Mitigation: Check current requirements and product facts against official source
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Text, Markdown, Code]
+**Output Type(s):** [Guidance, Markdown, Code]
 
-**Output Format:** [Chinese or English Markdown with prose, tables, checklists, and illustrative Python snippets]
+**Output Format:** [Chinese-language Markdown with checklists, tables, scripts, and illustrative Python snippets]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Educational examples only; require qualified human and compliance review and are not executable through this skill.]
+**Other Properties Related to Output:** [Reference-only drafts; illustrative code is not executed by the skill.]
 
 ## Skill Version(s):
 
-3.0.5 (source: frontmatter, server-resolved release)
+3.0.6 (source: frontmatter, server-resolved release metadata)
 
 ## Ethical Considerations:
 

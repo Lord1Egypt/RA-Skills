@@ -30,6 +30,8 @@ compatibility: >
 
 # Veeam AIops
 
+> **Audit availability:** Real writes require a durable audit intent. Reads and previews can continue if audit storage fails; check the warning and audit health before relying on their audit trail.
+
 > **Disclaimer**: This is a community-maintained open-source project and is **not affiliated with, endorsed by, or sponsored by Veeam Software.** "Veeam" is a trademark of its owner. Source code is publicly auditable at [github.com/AIops-tools/Veeam-AIops](https://github.com/AIops-tools/Veeam-AIops) under the MIT license.
 
 Governed Veeam Backup & Replication operations — **27 MCP tools**, every one wrapped with the bundled `@governed_tool` harness: a local unified audit log under `~/.veeam-aiops/`, policy engine, token/runaway budget guard, undo-token recording, and descriptive risk tiers. Credentials are stored **encrypted** (`~/.veeam-aiops/secrets.enc`, Fernet + scrypt) — never plaintext on disk.
@@ -210,7 +212,7 @@ VBR server — writes then fail at the server). There is no read-only switch,
 policy file, or approval gate.
 
 - Credentials stored **encrypted** in `~/.veeam-aiops/secrets.enc` (Fernet/AES-128 + scrypt key derivation; chmod 600) — never plaintext on disk; the master password is never stored, only a per-store salt + ciphertext
-- **Audit is the guarantee, and it is not bypassable.** Every operation — MCP and CLI alike — is logged to `~/.veeam-aiops/audit.db` (relocatable via `VEEAM_AIOPS_HOME`): params (secrets redacted), result, status, duration, and the risk tier. The CLI writes the same row the MCP path does.
+- **Audit is the guarantee, and it is not bypassable.** Every operation — MCP and CLI alike — is logged to `~/.veeam-aiops/audit.db` (relocatable via `VEEAM_AIOPS_HOME`): params (secrets redacted), outcome summary, status, duration, and the risk tier. The CLI writes the same row the MCP path does.
 - `VEEAM_AUDIT_APPROVED_BY` / `VEEAM_AUDIT_RATIONALE` are optional annotations recorded on the audit row (who/why); they are never required and never block.
 - **Runaway guard** — a safety backstop, not authorization: cumulative tool calls and wall-time are capped, and the same call looped in a tight session-poll/retry window trips a circuit breaker.
 - Writes support `--dry-run` / `dry_run=True` and double confirmation at the CLI; CLI writes execute through the same governed tools, so they are audited + undo-recorded.

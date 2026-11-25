@@ -1,6 +1,6 @@
 ## Description:
 
-Automates authenticated uploads, publishing, and forms in web-only consoles using an installed Chrome or Edge browser, and helps test rich-text formatting before publication.
+平台只有网页后台、没有上传 API 时，用本机已装的 Chrome/Edge + CDP 自动化走完上传/发布/填表流程，复用真实登录态并避免安装浏览器。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and operators use this skill to upload files, complete forms, and publish content through authenticated web consoles that lack a usable API. It also guides checks of rich-text formatting and platform-generated layout changes.
+开发者可用此技能通过本机 Chrome 或 Edge 完成需要登录的网页后台上传、发布和表单操作，也可检查富文本内容保存后的效果。
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The agent can read and change content in an authenticated browser session.
+Risk: CDP automation can access a signed-in browser session and change or publish drafts.
 
-Mitigation: Use a temporary browser profile when possible, and confirm the active tab and domain before running browser actions.
+Mitigation: Use an isolated browser profile with only the account session needed for the task; review each intended change and reload the page to confirm saved state.
 
-Risk: Uploads and submissions can expose local files or publish unintended content.
+Risk: A browser debugging endpoint can expose control of the active browser session.
 
-Mitigation: Require user confirmation before selecting local files, submitting forms, or publishing content.
-
-Risk: An exposed browser debugging port can grant others control of the browser session.
-
-Mitigation: Keep the debugging port bound to localhost and avoid allowing all origins unless the risk is understood.
+Mitigation: Keep the debugging endpoint local, review the WebSocket-origin settings before connecting, and close the debugging browser when the task is complete.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/oracis/skills/web-console-cdp-upload)
+- [ClawHub release page](https://clawhub.ai/oracis/skills/web-console-cdp-upload)
+- [Publisher profile](https://clawhub.ai/user/oracis)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Code]
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown with shell and JavaScript examples]
+**Output Format:** [Markdown guide with shell commands, JavaScript snippets, and Python examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include browser-state checks, upload steps, and rich-text formatting comparisons.]
+**Other Properties Related to Output:** [Instructions and examples for browser-backed web workflows.]
 
 ## Skill Version(s):
 
-1.3.0 (source: server release metadata and skill frontmatter)
+1.3.2 (source: server-resolved release; frontmatter)
 
 ## Ethical Considerations:
 

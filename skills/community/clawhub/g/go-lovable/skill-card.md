@@ -1,6 +1,6 @@
 ## Description:
 
-Unofficial typed Go client for managing Lovable projects, publishing, deployment status, analytics, security data, workspaces, groups, and members through the Lovable API.
+An unofficial typed Go client for the Lovable API, with guidance for managing projects, publishing, analytics, security findings, workspaces, groups, and members.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Go developers can use the typed client to read Lovable project, workspace, analytics, and security data, and to perform project management or publishing actions when requested.
+Developers use this skill to integrate Go applications with Lovable for project, publishing, workspace, analytics, and security operations, including requested account changes.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: API keys and embed URLs carry access credentials.
+Risk: Lovable API keys and embed URLs grant scoped or tokenized access to account resources.
 
-Mitigation: Use a minimally scoped Lovable key, keep credentials and token-bearing embed links private, and never log authorization headers.
+Mitigation: Load API keys from environment variables, never log credentials, and share embed URLs only with intended recipients.
 
-Risk: The unofficial Go dependency is outside the security review of the bundled documentation.
+Risk: Project updates, deletion, publishing settings, publishing, and unpublishing can affect account resources or access.
 
-Mitigation: Review and pin the dependency before using it with sensitive projects.
-
-Risk: Project edits and publishing operations can change account resources or access.
-
-Mitigation: Request explicit user authorization before performing account-changing actions.
+Mitigation: Perform write operations only when the user requested them; check deployment and resource state before retrying uncertain writes.
 
 ## Reference(s):
 
 - [Setup and API reference](references/setup.md)
-- [Project homepage](https://github.com/psyb0t/go-lovable)
-- [Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-lovable)
+- [go-lovable repository](https://github.com/psyb0t/go-lovable)
+- [go-lovable package documentation](https://pkg.go.dev/github.com/psyb0t/go-lovable)
+- [Lovable API key settings](https://lovable.dev/settings/api-keys)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [Code, API Calls, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Go code and Markdown guidance with shell commands]
+**Output Format:** [Markdown with Go code examples and shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May cover authenticated API access and account-changing operations.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-0.3.0 (source: server-resolved release metadata)
+0.3.1 (source: release evidence)
 
 ## Ethical Considerations:
 

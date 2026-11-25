@@ -1,6 +1,6 @@
 ## Description:
 
-Helps cross-border legal and compliance teams research foreign regulations and prepare Chinese reports with bilingual key provisions and links to official sources.
+This assistant researches foreign regulations using official databases and produces Chinese reports with bilingual key provisions, legislative context, applicability boundaries, and source links.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,43 +14,54 @@ MIT-0
 
 ## Use Case:
 
-External legal and compliance professionals and cross-border business teams use the skill to find and summarize public regulations, including their scope and exemptions, in major jurisdictions such as the United States, European Union, and Singapore. Its reports are research aids and do not constitute formal legal advice.
+External legal, compliance, and business teams can use the assistant to research cross-border regulatory questions and prepare Chinese summaries with official source links. Its reports support research and do not replace formal legal advice.
 
 ### Deployment Geography for Use:
 
-Primarily the United States, European Union, and Singapore; coverage of other jurisdictions is limited.
+United States, European Union, and Singapore (primary coverage)
 
 ## Known Risks and Mitigations:
 
-Risk: The skill automatically runs changing external runner code, and the artifact review does not fully cover runner or server-side behavior.
+Risk: The security summary reports concerns about billing access and sending research questions to a third-party service, which may affect account credits or expose sensitive business context.
 
-Mitigation: Review and pin the runner to a specific commit, approve updates, and restrict its local access.
+Mitigation: Check billing behavior before use and avoid sending confidential or personal details unless the service's data handling is acceptable.
 
-Risk: Complete business questions may contain confidential identifiers or transaction details, and report-link access or service retention may affect confidentiality.
+Risk: The skill retrieves or updates an external runner, and the security assessment was partial because a referenced runner file was unavailable.
 
-Mitigation: Configure credentials privately rather than pasting them into chat, remove confidential details from questions, and check Cue's data-retention and report-link access policies.
+Mitigation: Review the runner and pin a known revision before execution; review remote changes before updating it.
+
+Risk: The workflow includes promotional prompts and links that may be unexpected during research tasks.
+
+Mitigation: Review promotional content and destinations before sharing information or following links.
+
+Risk: Coverage is limited and the reports are not formal legal opinions.
+
+Mitigation: Check cited primary sources and consult qualified counsel for consequential legal decisions.
 
 ## Reference(s):
 
+- [Cue platform](https://cuecue.cn)
 - [Cue playbook](https://cuecue.cn/playbook)
 - [EUR-Lex](https://eur-lex.europa.eu)
-- [United States Code](https://uscode.house.gov)
-- [Electronic Code of Federal Regulations](https://www.ecfr.gov)
+- [U.S. Code](https://uscode.house.gov)
+- [eCFR](https://www.ecfr.gov)
 - [Singapore Statutes Online](https://sso.agc.gov.sg)
+- [External runner repository referenced by the skill](https://github.com/sensedeal/cue-skills)
+- [Runner repository mirror referenced by the skill](https://gitee.com/sensedeal/cue-skills)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown]
+**Output Type(s):** [Analysis, Guidance, Markdown, Files]
 
-**Output Format:** [Markdown research report, primarily in Chinese, with bilingual key provisions and links to official sources.]
+**Output Format:** [Chinese Markdown research reports with bilingual legal terms and official source links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Coverage focuses on major English-language jurisdictions; reports are based on public sources and are not formal legal advice.]
+**Other Properties Related to Output:** [Coverage focuses on the United States, European Union, and Singapore; conclusions include links for source checking.]
 
 ## Skill Version(s):
 
-1.0.11 (source: server-resolved release evidence)
+1.0.12 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

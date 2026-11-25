@@ -1,5 +1,26 @@
 # 快手洞察与竞品分析助手 更新日志
 
+## 1.1.4
+
+- 精简 frontmatter：删除 `metadata.keywords` / `metadata.category`；有价值词并入精简 `tags`（触发仍以顶层 `description` 为准）。
+- 再删无效字段：`openclaw.emoji`、`metadata.enabled` / `runtime` / `env_desc`（门禁仍靠 `openclaw.primaryEnv` + `requires`）。
+- 精简 `metadata.examples`：search / comment / post 各一条；去掉 search 变体与粉丝查询复读。
+- HTTP 429→`RATE_LIMITED`（`noRetry=false`）；`classifyPollError` 以 `noRetry` 为准（不再依赖 `HTTP_429` 特判或一刀切 `ApiError`）。
+- Create 成功读取出参 `id`（标准 36 字符 uuid）：有 `id` 时查询 `/info` **只传 `id`**（不带业务字段，避免 uuid 未命中时静默回落他单）；无 `id` 或形态不符时仍只按业务字段查。
+- 新增 `references/contract.md`：「上游异步任务」约定；CLI schema / 信封不含任务 uuid。
+- 执行示例改为 `node "<SKILL_ROOT>/scripts/kuaishou/…"`；faq 去掉宿主写死路径，统一用 `<SKILL_ROOT>` 占位。
+- 布尔 flag（如 `--save`）：裸 flag 为 true；`--save=false`/`0` 为 false；非法赋值报错。
+- 业务码映射：`410`（TOKEN 停用 Gone）/`405`（未开通）/`77`（过期）→ `AUTH_ERROR`；未知数字码兜底 `API_ERROR`；传输层补 `HTTP_404`/`HTTP_410` 说明。
+
+## 1.1.3
+
+- 新增 `references/faq.md`；SKILL 写入 Windows cmd/PowerShell 双壳例与「cmd 只用双引号」。
+- CLI 支持 `--json-args`（与传统 flag 互斥；键名用 `keyword`/`url`/`sort` 等）；`parseCliArgs` 统一入口；SKILL/faq 补例。
+- 落盘开关统一为 `GUAIKEI_ENABLE_LOG=1` 或 CLI `--save`；废弃 `KS_GUAIKEI_ENABLE_LOG`。
+- `backendCodes`：在余额判断之后将裸 `errcode === 14` 稳定映射为 `PLAN_LIMIT`（不再仅依赖 errmsg 正则）。
+- 修正 `requestApi` 创建重试注释：以 `noRetry` 为准；频控（多为后端 2）不重试，勿写「2–9 一律重试」。
+- stdout 信封顶层可选 `cost`（透传取数接口花费估算；错误省略）。
+
 ## 1.1.2
 
 - 链接尾部 scrub 补齐中文引号/书名号等，避免 `「」` 粘在短链/视频 id 后误判无效。

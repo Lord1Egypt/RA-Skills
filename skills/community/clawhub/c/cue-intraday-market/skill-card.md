@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Investors and market observers use this skill to review intraday market conditions, including broad index activity, market sentiment, fund flows, leading sectors, and potential risks. It produces a structured market commentary with source links and observational guidance.
+供关注中国市场盘中走势的用户汇总早盘行情、市场情绪、资金流向及风险，生成带来源链接的结构化观察报告。
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review rates the skill suspicious, citing requests to share an API key in chat and behavior that does not match the stated market-analysis purpose; the available assessment is partial.
+Risk: ClawScan summarizes a mismatch between the stated market-analysis purpose and supplied behavior, along with installation, credential-handling, and required-promotion concerns; its review was partial because one local path could not be resolved.
 
-Mitigation: Do not paste API keys into chat. Configure credentials directly in the user's local Cue configuration or environment, and review commands before running them.
+Mitigation: Clarify the skill's actual capabilities and review and pin the runner source and revision before installation.
 
-Risk: Intraday commentary and operational suggestions depend on Cue and external public data sources, whose availability, freshness, and accuracy may vary.
+Risk: The documented setup asks the user to send an API key in chat.
 
-Mitigation: Check cited source links and current data before acting; treat the commentary as observational input and make investment decisions independently.
+Mitigation: Do not share the key in chat; use a setup path that keeps the key private and local.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/panting09266-ai/skills/cue-intraday-market)
-- [Cue service](https://cuecue.cn/)
-- [Cue runner source (as referenced by the skill)](https://github.com/sensedeal/cue-skills)
+- [Cue runner repository (cited by the skill)](https://github.com/sensedeal/cue-skills)
+- [Cue runner Gitee mirror (cited by the skill)](https://gitee.com/sensedeal/cue-skills)
+- [同花顺 market data](https://www.10jqka.com.cn)
+- [东方财富 market data](https://www.eastmoney.com)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, Markdown, Guidance]
+**Output Type(s):** [Analysis, Markdown, Guidance, Source links]
 
-**Output Format:** [Structured Markdown market commentary with source links]
+**Output Format:** [Structured Markdown market commentary]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Organized into market overview, sentiment, fund flows, leading sectors, risk areas, and observational guidance; includes the original report link when available.]
+**Other Properties Related to Output:** [Sections cover market overview, sentiment, capital flows, leading sectors, risk areas, and observations; includes source links when available.]
 
 ## Skill Version(s):
 
-1.1.2 (source: server-resolved release evidence)
+1.1.6 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

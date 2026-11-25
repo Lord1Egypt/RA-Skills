@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes a creator account’s positioning, audience, content patterns, and cadence from supplied material or optional platform lookups, then creates a tailored content plan and first post with a rendered cover and voiced script.
+Analyzes a creator's social account from public posts or user-provided material, then turns the findings into an account strategy and a produced first post.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Creators, marketers, and social media strategists use this skill to assess a creator account and turn observed patterns into a positioning and content plan for their own account.
+Creators, marketers, and social media teams use the skill to benchmark an account, diagnose its positioning and content patterns, and plan their own account and first post.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan marks the skill suspicious for broad, partly undisclosed account access, recurring telemetry, and shared credentials; scanner coverage was partial.
+Risk: ClawScan rates this release suspicious, citing recurring installation telemetry, broad shared credentials and permissions, and account and voice management operations beyond its stated creator-analysis workflow.
 
-Mitigation: Consider avoiding installation unless comfortable with those reported practices. If using the skill, provide screenshots, bios, or post details to use its paste-based analysis route instead of optional account lookups.
+Mitigation: Review the requested permissions and security guidance before installation. Continue only if the recurring environment reporting and shared credential scope are acceptable; the scan is partial, so consult unresolved references.
 
 ## Reference(s):
 
-- [Reading the account](artifact/references/account-read.md)
-- [Reading the account from a handle](artifact/references/account-lookup.md)
-- [Building your own account](artifact/references/build-template.md)
-- [Account teardown workflow](artifact/references/workflow.md)
-- [Speech and audio](artifact/references/speech-and-audio.md)
-- [Updates and security](artifact/references/updates-and-security.md)
 - [ClawHub release page](https://clawhub.ai/beatra-ai/skills/creator-account-teardown)
 - [Beatra skill homepage](https://beatra.ai/skills/creator-account-teardown)
-- [Beatra MCP service](https://mcp.beatra.ai/mcp)
+- [Reading an account from a handle](references/account-lookup.md)
+- [Reading the account](references/account-read.md)
+- [Building your own account](references/build-template.md)
+- [Account teardown workflow](references/workflow.md)
+- [Updates and security](references/updates-and-security.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Markdown, Images, Audio]
+**Output Type(s):** [Analysis, Guidance, Text, Markdown, Image, Audio]
 
-**Output Format:** [Account analysis and content plan in Markdown, with a rendered cover image and voiced narration for a first post.]
+**Output Format:** [Markdown account analysis and strategy, with a generated cover image and spoken narration]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Account facts are attributed to supplied material or optional approved lookups; paid lookups, transcription, and production require separate approval.]
+**Other Properties Related to Output:** [Analysis is based on user-provided material or supported public account data; produced media is for the user's own account.]
 
 ## Skill Version(s):
 
-0.2.8 (source: server-resolved release metadata)
+0.2.9 (source: server-resolved release)
 
 ## Ethical Considerations:
 

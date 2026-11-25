@@ -1,6 +1,7 @@
 // Data flow: sends the project-scoped EdgeCloud API key (x-api-key) plus deployment, chatbot and
 // document payloads (including uploaded document contents) to Theta controller/API hosts only.
-// Every create/update/start/stop/delete call requires confirm:true here, in the client.
+// Every create/update/start/stop/delete call requires confirm:true here, in the client. Results are
+// returned as received; the runtime and facade boundaries name-redact them.
 import { ThetaConfig } from '../config.js';
 import { deleteEmpty, getJson, postJson, putEmpty, putJson } from './http.js';
 import { isStructuredError, fromHttpError } from '../errors.js';

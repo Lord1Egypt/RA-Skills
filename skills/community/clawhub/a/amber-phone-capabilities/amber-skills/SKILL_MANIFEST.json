@@ -1,5 +1,5 @@
 {
-  "_comment": "Explicit allowlist of approved Amber skills. Only skills listed here will be loaded at runtime. Add entries to enable new skills; remove entries to disable them.",
+  "_comment": "Explicit allowlist of approved Amber skills. Only skills listed here can be used by the voice bridge or the local MCP server. Add entries to enable new skills; remove entries to disable them.",
   "approvedSkills": [
     "calendar",
     "crm",

@@ -1,6 +1,6 @@
 ## Description:
 
-Identifies known people in images or videos by comparing faces against an enrolled database and returns recognition results with locations.
+Identifies acquaintances in images or videos by comparing faces with enrolled photos and reports each result's location.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Home and office security users can compare people in images or videos with an enrolled acquaintance database and review matches, locations, and analysis reports.
+Home and office operators can compare faces in supplied images or videos with an enrolled acquaintance database and review recognition locations or prior reports. Results are advisory and are not suitable for legal identity verification.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Facial images may be sent to a remote analysis service, and identity information may be linked to accounts or reports.
+Risk: Facial imagery or video may be sent to an external service for analysis.
 
-Mitigation: Use only with appropriate consent and authorization; review the service's data handling and access to account-linked reports before submitting images.
+Mitigation: Submit footage only when appropriate consent is in place and the service's data handling is acceptable.
 
-Risk: The export-only option may not prevent analysis from running.
+Risk: The security evidence reports automatic account creation and credential storage.
 
-Mitigation: Do not rely on export-only mode to avoid processing; confirm the intended action before invoking the skill and submit only data you are authorized to process.
+Mitigation: Review account and credential handling before use, and run the skill only in an environment where that behavior is acceptable.
+
+Risk: The security evidence reports analysis or uploads in export-only mode.
+
+Mitigation: Treat export-only mode as potentially performing remote processing unless its behavior has been verified; avoid using it with sensitive footage or credentials in the meantime.
 
 ## Reference(s):
 
-- [API reference](references/api_doc.md)
+- [API interface documentation](artifact/references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
-- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-familiar-person-recognition-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Markdown]
+**Output Type(s):** [Analysis, JSON, Markdown]
 
-**Output Format:** [JSON analysis results and Markdown report listings, with report links when available]
+**Output Format:** [Structured recognition report; JSON detail output; Markdown table for history lists.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include recognized identities, locations, and report links.]
+**Other Properties Related to Output:** [Reports matched identities and locations; results are advisory, not legal identity verification.]
 
 ## Skill Version(s):
 
-1.0.21 (source: server-resolved release metadata)
+1.0.22 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

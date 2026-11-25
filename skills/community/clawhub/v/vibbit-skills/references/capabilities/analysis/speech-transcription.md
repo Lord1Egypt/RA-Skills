@@ -31,4 +31,4 @@ Save completed results and source versions, then normalize with [transcript tool
 
 Use [audio content workflows](../../workflows/audio-content.md) for recording organization, original audio with visuals, or audio translation. Reuse supplied SRT/VTT or applicable recognition for current media. A script without timing needs actual timing evidence; unspoken titles/information cards do not require ASR.
 
-Burning subtitles is a separate operation. Use [subtitle correction and segmentation](../processing/subtitle-addition.md); precise word events follow [script and timing](../../creation/script-and-timing.md), without fabricated word boundaries. Audio ASR does not enable the currently unavailable dynamic subtitle templates.
+Burning subtitles is a separate operation. Use [subtitle correction and segmentation](../processing/subtitles-and-packaging.md#subtitle-addition); precise word events follow [script and timing](../../creation/script-and-timing.md), without fabricated word boundaries. Audio ASR does not enable the currently unavailable dynamic subtitle templates.

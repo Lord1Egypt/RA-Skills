@@ -2,7 +2,7 @@
 name: mailbox-bot
 description: "Postal mail API and MCP server for AI agents: send letters, certified mail and postcards, and give an agent its own street address + PMB with webhooks, OCR search and human-approved scan, forward or discard."
 tags: [postal-mail, certified-mail, mail-api, mailing-address, agent-mailbox, ai-agent, mcp, outbound-mail, inbound-mail, print-and-mail, webhooks, openclaw, a2a, agent-tools, openapi]
-version: 5.3.2
+version: 5.3.4
 author: mailbox.bot
 repository: https://github.com/arbengine/mailbox-bot-skill
 metadata: { "openclaw": { "emoji": "📬" } }
@@ -12,7 +12,7 @@ metadata: { "openclaw": { "emoji": "📬" } }
 
 mailbox.bot is a postal mail API and MCP server for AI agents. Agents send letters, notices, postcards, certified
 mail and batch mail through REST or MCP, with webhooks, sandbox keys, cost caps and human approval. Agent mailboxes are live now:
-a street address + PMB at the staffed, USPS-compliant Manhattan Beach, CA facility, $15/mo, where staff
+a street address + PMB at the staffed, USPS-compliant Manhattan Beach, CA facility, $20/mo, where staff
 log every letter and package, OCR scanned pages, and carry out the scan, forward or discard actions an agent proposes once
 its human approves the quoted price.
 
@@ -20,7 +20,7 @@ its human approves the quoted price.
 |---|---|
 | Outbound letters, postcards, certified and batch mail (REST, MCP, webhooks) | Prepaid credits |
 | Digital inbound context forwarded from an address the operator already controls | Included |
-| Agent mailbox: street address + PMB, letters and packages | Live now, $15/mo |
+| Agent mailbox: street address + PMB, letters and packages | Live now, $20/mo |
 
 Mailboxes are live now. Get one at signup or with `POST /v1/mailing-address-requests`. The PMB number is assigned after USPS Form 1583 verification.
 The notary session is online (two IDs, fee waived), and USPS Form 1583 ties a verified human to every agent mailbox.
@@ -98,7 +98,7 @@ return address.
 
 Mail classes (do not infer speed, tracking or proof from a name; use `dry_run` and ask before a costlier class):
 
-- `first_class` — ordinary USPS letter mail, no carrier tracking by default; a 1-page letter starts at $2.00.
+- `first_class` — ordinary USPS letter mail, no carrier tracking by default; a 1-page letter starts at $3.00.
 - `priority` — USPS Priority Mail with USPS Tracking, not Certified proof; $15.00 published one-page floor.
 - `certified` — USPS Certified Mail, proof of mailing and delivery; $20.00 published one-page floor.
 - `certified_return_receipt` — Certified plus Electronic Return Receipt; $24.00 published one-page floor.
@@ -164,7 +164,7 @@ MCP equivalents: `search_inbound_items`, `get_inbound_item`, `get_inbound_pages`
 `request_inbound_action`, `get_inbound_activity`. Errors are `{error, code, retryable, suggested_action}`:
 409 `INBOUND_VERSION_CONFLICT` means re-read; 409 `INBOUND_QUOTE_CHANGED` carries the fresh quote.
 
-Plan: $15/mo includes 30 non-junk pieces and 5 packages a month and two Open & scan requests (first 10 pages each), then
+Plan: $20/mo includes 30 non-junk pieces and 5 packages a month and two Open & scan requests (first 10 pages each), then
 $3.00 per request and $0.10 per page after page 10; forwarding is postage plus $2.00 handling; discard is free.
 `GET /v1/inbound-plan` returns allowances, limits and every rate; `GET /v1/inbound-charges` is the ledger.
 

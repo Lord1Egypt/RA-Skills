@@ -1,6 +1,6 @@
 ## Description:
 
-Identifies possible signs of distress in children from images or video and provides structured analysis reports.
+Analyzes children's video, optionally with audio, to classify apparent emotions and provide soothing suggestions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Caregivers and childcare staff use the skill to review child images or video for possible signs of distress and receive a structured report. Results are advisory and do not replace adult supervision.
+Parents and educators use the skill to review a child's video, optionally with audio, for apparent emotion and receive non-clinical soothing prompts. It supports caregiving and classroom observation, not diagnosis.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan marks the release suspicious, citing reported account and credential handling, possible transmission of sensitive child footage, and mismatches between documented options and behavior; the scan was partial.
+Risk: The security review marks the release suspicious and partial, citing a mismatch with its stated purpose, remote handling of children's recordings, and account-related activity.
 
-Mitigation: Review the reported data handling and account setup before installation. Submit child footage only when authorized and when the external processing is acceptable, and do not rely on the analysis as a substitute for adult supervision.
+Mitigation: Avoid installing or sending recordings until the skill's purpose, remote data handling, registration, and credential storage are clarified. Obtain guardian consent and secure any recordings used.
 
 ## Reference(s):
 
-- [ClawHub release](https://clawhub.ai/18072937735/skills/smyx-child-emotion-recognition-analysis)
-- [API reference](references/api_doc.md)
-- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-child-emotion-recognition-analysis)
+- [API interface reference](references/api_doc.md)
+- [Skill demo](https://lifeemergence.com/sample.html)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, JSON, Markdown, Guidance]
+**Output Type(s):** [JSON, Markdown, Guidance]
 
-**Output Format:** [Structured analysis report with results, suggestions, and report links]
+**Output Format:** [Structured JSON analysis results, Markdown history tables, and short text guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports depend on the supplied image, video, or URL; history requests return report records.]
+**Other Properties Related to Output:** [May include emotion labels, confidence, intensity, duration, alerts, soothing suggestions, and report links.]
 
 ## Skill Version(s):
 
-1.0.39 (source: server-resolved ClawHub release metadata)
+1.0.41 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

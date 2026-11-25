@@ -1,0 +1,53 @@
+{
+  "skill_name": "sketchy",
+  "evals": [
+    {
+      "id": 1,
+      "name": "cfo-cloud-bill-deck",
+      "prompt": "My CFO wants a short deck tomorrow morning about why our AWS bill went from $31,200 in Q2 to $38,900 in Q3. Breakdown for Q3: compute 18,400 (Q2 was 17,100), storage 6,300 (was 5,500), data transfer 9,800 (was 4,200), support 4,400 (same both quarters). Our plan for Q3 was 33,000. Make it 6 to 8 slides in that hand-drawn sketchbook style and give me a PDF too.",
+      "expected_output": "A sketchy deck (one self-contained HTML file) of 6 to 8 slides that leads with the point, files the bill as a slip, shows plan versus record and the benchmark, uses only the given figures, plus a PDF with one page per slide.",
+      "files": [],
+      "assertions": [
+        { "id": "deck-file", "text": "A self-contained HTML deck exists (main.sk-deck present, no external script or stylesheet requests)" },
+        { "id": "slide-count", "text": "The deck has between 6 and 8 slides (.sk-slide)" },
+        { "id": "lint-clean", "text": "skills/sketchy/scripts/lint.mjs reports 0 errors on the final HTML" },
+        { "id": "figures-exact", "text": "The figures 38,900, 31,200, 33,000 and 9,800 appear exactly as given, and no dollar figure appears that is not given or derivable from the given numbers" },
+        { "id": "bill-sums", "text": "Any itemised bill or slip sums to 38,900" },
+        { "id": "benchmark-shown", "text": "The plan of 33,000 or Q2 of 31,200 is shown next to the Q3 total as a benchmark" },
+        { "id": "typewriter-figures", "text": "Numbers are set in the record typeface (.sk-figure, data-count or Courier Prime), not only in handwriting" },
+        { "id": "pdf-pages", "text": "A PDF exists with the same page count as the number of slides" }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "vaccine-lesson-weak-readers",
+      "prompt": "I teach 9th grade biology. Make me a one-page hand-drawn explainer on how vaccines train the immune system, for students who struggle with reading. Keep it visual, and put one quick question at the end so I can check they got it.",
+      "expected_output": "A sketchy explainer page: picture first, numbered steps, short sentences, at least three sketches of real objects, a misconception or check question, readable at phone width, no invented statistics.",
+      "files": [],
+      "assertions": [
+        { "id": "page-file", "text": "A self-contained HTML page exists using the sketchy engine (html.sk and body.sk)" },
+        { "id": "lint-clean", "text": "lint.mjs reports 0 errors on the final HTML, including the 390 px check" },
+        { "id": "sketches-used", "text": "At least three svg[data-sketch] pictures are used" },
+        { "id": "short-text", "text": "Visible body text is at most 450 words" },
+        { "id": "check-question", "text": "The page ends with a question for the students, with the answer hidden or separate" },
+        { "id": "numbered-steps", "text": "The mechanism is explained as numbered steps" },
+        { "id": "no-invented-stats", "text": "Any statistic or figure on the page is either common textbook knowledge or cited" }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "wau-chart-for-team-update",
+      "prompt": "here's our weekly active users for the last 8 weeks: 1210, 1340, 1295, 1460, 1520, 1610, 1580, 1745. we shipped the new onboarding in week 4. can you make one sketchy chart i can paste into our team update as an image",
+      "expected_output": "A sketchy chart page with a line chart of the 8 values, an in-place annotation at week 4, the exact values in the hidden data table, and a PNG of the chart.",
+      "files": [],
+      "assertions": [
+        { "id": "chart-file", "text": "An HTML file with a figure.sk-chart exists" },
+        { "id": "png-exists", "text": "A PNG image of the chart exists" },
+        { "id": "values-exact", "text": "The hidden data table contains exactly the eight values 1210, 1340, 1295, 1460, 1520, 1610, 1580, 1745 in order" },
+        { "id": "week4-annotation", "text": "Week 4 is annotated in place on the chart (a note or marker at the fourth point), not only in a legend or caption" },
+        { "id": "title-states-point", "text": "The chart title states what the data shows, not just 'Weekly active users'" },
+        { "id": "lint-clean", "text": "lint.mjs reports 0 errors on the chart HTML" }
+      ]
+    }
+  ]
+}

@@ -664,7 +664,7 @@ def detect(text: str, lang: str = "auto") -> DetectionReport:
 
     # v3.7.0: L12 篇章结构启发层——自媒体"钩子+反转+口号"三件套等篇章级 AI 腔。
     # 只在中文、≥2 组独立结构命中时给文档级加分(2 组+12, ≥3 组+20, 封顶 20)；
-    # 学术语料几乎不命中(回归见 eval/results/v370_release.json)，主要修复自媒体/叙事语域盲区。
+    # 学术语料几乎不命中(回归见 eval/results/archive/v370_release.json)，主要修复自媒体/叙事语域盲区。
     discourse_hits = []
     discourse_bonus = 0.0
     if lang == "zh" and len(text.strip()) >= 100:

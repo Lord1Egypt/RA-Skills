@@ -411,6 +411,21 @@ export function validateCreatePayload(model, payload) {
   return { ok: true };
 }
 
+// Names the agent for usage attribution. An argument works in every shell, whereas the
+// `AIVIDEO_AGENT_PLATFORM=codex node ...` prefix is POSIX-only and fails in PowerShell and cmd.
+export function agentPlatformArgument(value) {
+  if (typeof value !== "string" || !/^[a-z][a-z0-9_-]{0,31}$/.test(value))
+    throw new Error(
+      "Use --platform codex, --platform claude, --platform openclaw, or your client's name in lowercase.",
+    );
+  return value;
+}
+
+// Official page for adding API credits. Used when a response carries no trusted link.
+// verify-release checks it against the link the API returns to skill callers.
+export const TOP_UP_URL =
+  "https://aivideomaker.ai/skill?utm_source=agent_skill&utm_medium=top_up&utm_campaign=api_credits#pricing";
+
 export function normalizeResult({
   ok,
   status = "UNKNOWN",

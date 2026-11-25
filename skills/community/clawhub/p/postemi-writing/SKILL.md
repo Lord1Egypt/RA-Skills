@@ -1,6 +1,6 @@
 ---
 name: postemi-writing
-description: Write social media posts people stop for and read to the end, then schedule them with Postemi. Covers finding post ideas, hooks and headlines, opening lines, formatting and rhythm, threads, the writing rules of each network (X, LinkedIn, Instagram, Threads, Bluesky, Facebook, TikTok, YouTube and more) and a check before publishing. Use when the user asks to write, rewrite or improve a post, thread, caption, hook or headline, asks what to post about, or wants a post to reach more people.
+description: Write social media posts people stop for and read to the end, then schedule them with Postemi. Covers finding post ideas, hooks and headlines, opening lines, formatting and rhythm, threads, the writing rules of each network (X, LinkedIn, Instagram, Threads, Bluesky, Facebook, TikTok, YouTube, Pinterest and more) and a check before publishing. Writes in the user's language. Use when the user asks to write, rewrite or improve a post, thread, caption, hook or headline, asks what to post about, or wants a post to reach more people.
 ---
 
 # Postemi writing: posts that get read
@@ -17,6 +17,11 @@ This skill is about the words. Other Postemi skills sit next to it:
   repurposing. If it is missing and the user wants a plan, tell them how to
   add it (`postemi skills add growth`, or the `postemi-growth` plugin); ask
   first, never install it yourself.
+
+**Language.** Write in the language the user writes to you in, and in the
+language of the account's audience when the user says it differs. The advice
+below holds in any language. Keep the user's own spelling of names, brands
+and places.
 
 Reference files in this skill:
 
@@ -156,6 +161,7 @@ three hooks for the same post and let them pick.
 | Instagram | the first sentence of the caption (about 125 characters show), plus the image or the first second of the Reel |
 | TikTok, Reels, Shorts | the first one to three seconds and the on-screen text |
 | YouTube | the title (and the thumbnail the user makes) |
+| Pinterest | the pin title and the picture; the description adds search words |
 | Facebook | the first line; long posts fold after a few lines |
 | WordPress, Ghost, Dev.to, Tumblr | the title |
 
@@ -222,7 +228,7 @@ preview shows the result.
 - **Thread** (X, Threads, Bluesky): the first entry must work alone and make
   people open the rest. One point per entry. The last entry sums up and asks
   for a reply or a follow. Ask the user whether they want a thread or one long
-  post. On X, every thread entry counts toward the account's monthly X post
+  post. On X, every thread entry counts toward the workspace's monthly X post
   allowance in Postemi.
 - **Carousel** (LinkedIn image carousel, Instagram multi-image): one point per
   slide, the hook on the first slide, the takeaway on the last. The user
@@ -251,12 +257,15 @@ Short version; details in [reference/networks.md](./reference/networks.md).
 - **TikTok, YouTube:** the video carries it; write a caption and (YouTube) a
   title that make a clear promise. TikTok takes about 15 posts per account per
   day.
+- **Pinterest:** a picture (or a video) people want to save, a clear title,
+  a description with the words people search for, and a link to where the
+  idea lives. Every pin needs a board.
 - **Blog channels (WordPress, Ghost, Dev.to, Tumblr; beta):** a home for the
   long version of the user's best posts, with a title.
 
 Never offer a network Postemi does not support (the main skill has the list;
-Pinterest, Google Business Profile and LinkedIn company pages are not
-schedulable yet).
+Google Business Profile, LinkedIn company pages and Snapchat are coming soon
+and not schedulable yet).
 
 ## 7. Check before publishing
 
@@ -272,7 +281,7 @@ Go through this list for every draft, then show the user:
 7. Every [placeholder] from a template is filled or removed.
 8. It fits the account's character limit (from the schema, not from memory).
 9. Network rules: no link in X posts; the LinkedIn hook sits above "see more";
-   media where the network needs it (Instagram, TikTok, YouTube).
+   media where the network needs it (Instagram, TikTok, YouTube, Pinterest).
 10. It sounds like the user, not like an advert. Read it aloud.
 11. Hashtags, if any: few and relevant. Emojis, if any: where the user would
     use them.
@@ -301,10 +310,16 @@ With the `postemi` CLI (coding agents with a terminal):
 
 1. `postemi auth:status`, then `postemi integrations:list`.
 2. `postemi integrations:settings <id>` for the limit and the settings.
-3. Show the user the text per channel and the local time; wait for a yes.
+3. Show the user, per channel, the account, the text, the media and the local
+   time; wait for a yes.
 4. `postemi posts:create ... -t draft` to save, or with `-s "<date>"
    --timezone <IANA>` to schedule; `--json` for different text per channel.
    `postemi posts:find-slot <id>` suggests the next free slot.
+5. Read `notices` in the result (links removed from X, 24 hour caps) and tell
+   the user.
 
-After it goes out, the numbers tell you which hooks and angles work: see
-`postemi-growth` (optional).
+After it goes out, the numbers tell you which hooks and angles work:
+`postemi analytics:post <id>` (one post) and `postemi analytics:platform <id>`
+(the channel) with the CLI, `get_post_analytics` and `get_analytics` with the
+MCP tools. They are the platform's own numbers. For reading them over weeks,
+see `postemi-growth` (optional).

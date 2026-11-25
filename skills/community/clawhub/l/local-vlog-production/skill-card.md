@@ -1,6 +1,6 @@
 ## Description:
 
-Helps agents create or continue a Vlog project in a local media workspace by reviewing footage and applying established photo, title, text-page, and sound workflows.
+在本地工作区审阅素材、确认故事，并按章节交付同步分镜与 HTML 选材页，再按题材剪辑 Vlog。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External creators and agent operators use this skill to review local photos and video, plan and render story-driven Vlogs, and prepare covers and delivery notes in a project workspace.
+面向需要在本地素材工作区制作或修订 Vlog 的创作者，帮助他们审阅素材、确认故事、交付同步分镜与 HTML 选材页，并完成剪辑和交付检查。
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The current Pillow dependency bound excludes a published fix for an image-processing security flaw.
+Risk: Story-derived prompts may expose personal details when sent to an image-generation service.
 
-Mitigation: Resolve the Pillow requirement and verify a patched build before processing images received from others.
+Mitigation: Check whether the service is local or external and share only the prompt details needed for the requested image.
 
-Risk: Transferred workspaces may contain executable settings, and untrusted media tools can introduce risk.
+Risk: Media processing may run without a time limit.
 
-Mitigation: Use trusted FFmpeg installations and inspect executable settings before using a transferred workspace.
+Mitigation: Set an execution timeout and treat interrupted or incomplete checks as unfinished until the affected media is reviewed.
 
-Risk: Media indexes and transcripts can expose private content; agent viewing or optional online generation may send selected content to a configured service.
+Risk: Dependency versions are unpinned, and the available security analysis is partial.
 
-Mitigation: Keep indexes and transcripts private, and review what content is sent to any configured online service.
+Mitigation: Review and pin dependencies for the deployment environment; do not treat the available analysis as establishing that the artifact is safe.
 
 ## Reference(s):
 
-- [ClawHub Skill Release](https://clawhub.ai/milanor1970/skills/local-vlog-production)
-- [First Run](references/first-run.md)
-- [Visual Presets](references/visual-presets.md)
-- [Validation](references/validation.md)
-- [FFmpeg Downloads](https://ffmpeg.org/download.html)
+- [ClawHub skill release](https://clawhub.ai/milanor1970/skills/local-vlog-production)
+- [Publisher profile](https://clawhub.ai/user/milanor1970)
+- [Storyboard and selection workflow](artifact/references/storyboard-review.md)
+- [First-run guide](artifact/references/first-run.md)
+- [Validation guide](artifact/references/validation.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Files, JSON, Markdown, Shell commands, Guidance]
+**Output Type(s):** [Text, Markdown, HTML, JSON, Code, Video, Images, Guidance]
 
-**Output Format:** [Rendered video and cover files, JSON timelines, Markdown project notes, and shell commands]
+**Output Format:** [Markdown, HTML, JSON, and media files such as video and images]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Local media workflow; footage review and final audio/video checks still require human judgment.]
+**Other Properties Related to Output:** [Project-specific files and reports; deliverables depend on the supplied footage and confirmed story.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server-resolved release)
+1.2.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

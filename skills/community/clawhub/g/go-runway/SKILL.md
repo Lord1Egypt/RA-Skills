@@ -112,6 +112,7 @@ if err != nil {
 
 created, err := client.PostV1TextToImageWithBodyWithResponse(
 	ctx,
+	nil, // optional *PostV1TextToImageParams, for example X-Runway-Tags
 	"application/json",
 	bytes.NewReader(payload),
 )

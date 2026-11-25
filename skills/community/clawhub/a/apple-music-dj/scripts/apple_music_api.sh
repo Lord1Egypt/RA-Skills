@@ -73,13 +73,23 @@ _retry() {
   local attempt=0
   local rc=0
   local tmpfile codefile
+  # Stay inside call_api's 30 s budget: curl is bounded below, and no retry starts past this.
+  local deadline=$(( SECONDS + 25 ))
   tmpfile=$(mktemp "${TMPDIR:-/tmp}/am_api_$$_XXXXXX")
   codefile=$(mktemp "${TMPDIR:-/tmp}/am_code_$$_XXXXXX")
 
   while (( attempt <= max_retries )); do
     local http_code
     local curl_exit=0
-    curl -sS -g -o "$tmpfile" -w '%{http_code}' "$@" > "$codefile" &
+    # No attempt may outlast the deadline: each gets at most 20 s, less whatever is left
+    local budget=$(( deadline - SECONDS ))
+    (( budget > 20 )) && budget=20
+    if (( budget < 1 )); then
+      echo "ERROR: request timed out (rate limited too long). Try again shortly." >&2
+      rc=1
+      break
+    fi
+    curl -sS -g --connect-timeout "$(( budget < 10 ? budget : 10 ))" --max-time "$budget" -o "$tmpfile" -w '%{http_code}' "$@" > "$codefile" &
     _CURL_PID=$!
     wait "$_CURL_PID" || curl_exit=$?
     _CURL_PID=""
@@ -96,7 +106,7 @@ _retry() {
       rc=1
       break
     fi
-    if [[ "$http_code" == "429" && attempt -lt max_retries ]]; then
+    if [[ "$http_code" == "429" && attempt -lt max_retries && $(( SECONDS + delay + 1 )) -lt deadline ]]; then
       (( attempt++ ))
       echo "WARN: Rate limited (429). Retrying in ${delay}s (attempt ${attempt}/${max_retries})..." >&2
       sleep "$delay"
@@ -224,13 +234,21 @@ cmd_user_storefront() {
   fi
 }
 
+_page_failed() {
+  # A page failed mid-listing. Nothing fetched yet: fail. Otherwise keep what we have, but say it is partial.
+  local offset="$1" response="${2:-}"
+  echo "ERROR: request failed at item ${offset}: ${response:0:300}${response:-no response body}" >&2
+  [[ "$offset" -eq 0 ]] && return 1
+  echo "WARN: stopped at item ${offset} after a failed request; results are partial." >&2
+}
+
 cmd_recent_tracks() {
   # Paginate through all 50 available recent tracks
   require_user_token
   local all="[]"
   for offset in 0 10 20 30 40; do
     local page
-    page=$(_get "/v1/me/recent/played/tracks?types=songs&limit=10&offset=${offset}" 2>/dev/null) || break
+    page=$(_get "/v1/me/recent/played/tracks?types=songs&limit=10&offset=${offset}") || { _page_failed "$offset" "${page:-}" || return 1; break; }
     local data
     data=$(echo "$page" | jq -c '.data // []')
     [[ "$data" == "[]" ]] && break
@@ -263,7 +281,7 @@ cmd_library_artists() {
   local offset=0
   while true; do
     local page
-    page=$(_get "/v1/me/library/artists?limit=${limit}&offset=${offset}" 2>/dev/null) || break
+    page=$(_get "/v1/me/library/artists?limit=${limit}&offset=${offset}") || { _page_failed "$offset" "${page:-}" || return 1; break; }
     local data
     data=$(echo "$page" | jq -c '.data // []')
     [[ "$data" == "[]" ]] && break
@@ -272,7 +290,10 @@ cmd_library_artists() {
     count=$(echo "$data" | jq 'length')
     [[ "$count" -lt "$limit" ]] && break
     offset=$((offset + limit))
-    [[ $offset -ge 500 ]] && break  # safety cap
+    if [[ $offset -ge 500 ]]; then  # safety cap
+      echo "NOTE: stopped at ${offset} items; the library may have more, so results cover only the first ${offset}." >&2
+      break
+    fi
   done
   echo "$all" | jq '{"data": .}'
 }
@@ -284,7 +305,7 @@ cmd_library_songs() {
   local offset=0
   while true; do
     local page
-    page=$(_get "/v1/me/library/songs?limit=${limit}&offset=${offset}&include=catalog" 2>/dev/null) || break
+    page=$(_get "/v1/me/library/songs?limit=${limit}&offset=${offset}&include=catalog" ) || { _page_failed "$offset" "${page:-}" || return 1; break; }
     local data
     data=$(echo "$page" | jq -c '.data // []')
     [[ "$data" == "[]" ]] && break
@@ -293,7 +314,10 @@ cmd_library_songs() {
     count=$(echo "$data" | jq 'length')
     [[ "$count" -lt "$limit" ]] && break
     offset=$((offset + limit))
-    [[ $offset -ge 500 ]] && break  # safety cap
+    if [[ $offset -ge 500 ]]; then  # safety cap
+      echo "NOTE: stopped at ${offset} items; the library may have more, so results cover only the first ${offset}." >&2
+      break
+    fi
   done
   echo "$all" | jq '{"data": .}'
 }
@@ -361,6 +385,24 @@ cmd_song_detail() {
   local sf="${1:?Usage: song-detail <storefront> <song_id>}"
   local id="${2:?Usage: song-detail <storefront> <song_id>}"
   _get_catalog "/v1/catalog/${sf}/songs/${id}?include=artists,albums" | jq .
+}
+
+cmd_catalog_playlist() {
+  local sf="${1:?Usage: catalog-playlist <storefront> <playlist_id>}"
+  local id="${2:?Usage: catalog-playlist <storefront> <playlist_id>}"
+  [[ "$sf" =~ ^[a-z]{2}$ ]] || { echo "ERROR: Invalid storefront code: $sf" >&2; return 1; }
+  [[ "$id" =~ ^pl\.[A-Za-z0-9_-]+$ ]] || { echo "ERROR: Invalid catalog playlist ID: $id (expected pl.…)" >&2; return 1; }
+  _get_catalog "/v1/catalog/${sf}/playlists/${id}?include=tracks" | jq .
+}
+
+cmd_catalog_playlist_tracks() {
+  local sf="${1:?Usage: catalog-playlist-tracks <storefront> <playlist_id> [offset]}"
+  local id="${2:?Usage: catalog-playlist-tracks <storefront> <playlist_id> [offset]}"
+  local offset="${3:-0}"
+  [[ "$sf" =~ ^[a-z]{2}$ ]] || { echo "ERROR: Invalid storefront code: $sf" >&2; return 1; }
+  [[ "$id" =~ ^pl\.[A-Za-z0-9_-]+$ ]] || { echo "ERROR: Invalid catalog playlist ID: $id (expected pl.…)" >&2; return 1; }
+  [[ "$offset" =~ ^[0-9]+$ ]] || { echo "ERROR: Invalid offset: $offset" >&2; return 1; }
+  _get_catalog "/v1/catalog/${sf}/playlists/${id}/tracks?limit=100&offset=${offset}" | jq .
 }
 
 cmd_genres() {
@@ -522,6 +564,8 @@ case "$cmd" in
   album-tracks)      cmd_album_tracks "$@" ;;
   song-detail)       cmd_song_detail "$@" ;;
   genres)            cmd_genres "$@" ;;
+  catalog-playlist)  cmd_catalog_playlist "$@" ;;
+  catalog-playlist-tracks) cmd_catalog_playlist_tracks "$@" ;;
   library-playlists) cmd_library_playlists "$@" ;;
   playlist-tracks)   cmd_playlist_tracks "$@" ;;
   create-playlist)   cmd_create_playlist "$@" ;;
@@ -574,6 +618,8 @@ Catalog (require dev token only):
   album-tracks <storefront> <id>      Album with track listing
   song-detail <storefront> <id>       Song with artist & album info
   genres <storefront>                  List all genre categories
+  catalog-playlist <storefront> <id>  An Apple Music (catalog) playlist with its tracks
+  catalog-playlist-tracks <sf> <id> [offset]  The next page of a long playlist's tracks
   similar-artists <storefront> <id>   Artists similar to an artist
   songs-by-isrc <storefront> <isrcs>  Look up songs by ISRC (max 25)
 EOF

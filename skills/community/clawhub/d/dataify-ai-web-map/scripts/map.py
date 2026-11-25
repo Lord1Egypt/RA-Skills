@@ -7,6 +7,7 @@ import sys
 from ai_web_client import DEFAULT_REQUEST_TIMEOUT, emit_dry_run, normalize_public_url, post_json, resolve_base_url, resolve_token, validate_country, validate_int_range
 
 UNIQUE_ID = "map"
+REQUEST_SOURCE = "skills"
 
 def build_parser():
     parser = argparse.ArgumentParser(description="Invoke the AI Web API map endpoint.")
@@ -23,7 +24,7 @@ def build_parser():
 def build_payload(args):
     validate_int_range("limit", args.limit, 1, 100000)
     country = validate_country(args.country)
-    payload = {"unique_id": UNIQUE_ID, "url": normalize_public_url(args.url)}
+    payload = {"unique_id": UNIQUE_ID, "url": normalize_public_url(args.url), "request_source": REQUEST_SOURCE}
     if country: payload["country"] = country
     if args.domain_filter: payload["domain_filter"] = args.domain_filter
     if args.limit is not None: payload["limit"] = args.limit

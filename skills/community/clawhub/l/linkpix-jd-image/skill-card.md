@@ -1,6 +1,6 @@
 ## Description:
 
-Creates JD product images, image sets, detail graphics, and campaign visuals through Qinghu AI using configured image models.
+帮助京东运营团队通过青虎 AI 制作商品主图套图、详情页长图和营销活动海报。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,44 +14,40 @@ MIT-0
 
 ## Use Case:
 
-External e-commerce operators, advertising specialists, and brand teams use the skill to create JD product images, carousel sets, detail graphics, and campaign visuals from product references.
+京东运营人员、广告优化师和品牌团队可用此技能，将商品参考图制作成适配京东、京东国际或京喜的主图套图、详情页图片和活动海报。
 
 ### Deployment Geography for Use:
 
-China; the skill documents the domestic iqinghu.com service and JD-related marketplaces.
+China
 
 ## Known Risks and Mitigations:
 
-Risk: The skill's setup flow asks users to send an API key in chat, which could expose the credential.
+Risk: The supplied security summary flags unpinned package installation that may run with the agent’s permissions.
 
-Mitigation: Configure a narrowly scoped key locally through a protected credential mechanism; rotate any key already shared.
+Mitigation: Review the package installation steps, assess trust in the unpinned package, and limit the skill to the access it needs.
 
-Risk: The setup and upgrade instructions install or update software without pinning its version.
+Risk: The supplied security summary notes setup instructions that request an API key in chat.
 
-Mitigation: Review and pin the CLI and compression tools before allowing automatic setup or upgrades.
-
-Risk: Product reference images are sent for external processing, and image generation can incur usage costs.
-
-Mitigation: Use only reference images approved for external processing and retain the cost-confirmation step.
+Mitigation: Do not share the API key in chat; configure it through an appropriately protected secret or environment variable.
 
 ## Reference(s):
 
 - [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
-- [LinkPix JD Image on ClawHub](https://clawhub.ai/autoagc/skills/linkpix-jd-image)
+- [LinkPix JD image skill listing](https://clawhub.ai/autoagc/skills/linkpix-jd-image)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Text]
+**Output Type(s):** [Image files, Configuration guidance, Shell commands]
 
-**Output Format:** [Product image files or URLs with concise task status and usage guidance]
+**Output Format:** [Generated product image files with Markdown setup and command guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Image count, size, model, platform, and reference images depend on the requested deliverable.]
+**Other Properties Related to Output:** [Image count, model, size, and styling depend on the selected options and user-provided product image or copy.]
 
 ## Skill Version(s):
 
-0.1.4 (source: server-resolved release metadata)
+0.1.5 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

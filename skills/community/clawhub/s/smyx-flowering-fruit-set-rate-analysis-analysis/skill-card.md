@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes tomato and chili flower or fruit images and videos to estimate fruit-set rates and provide growing guidance.
+Analyzes tomato and chili flower or fruit images to count open flowers and young fruits and estimate fruit-set rate.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Home growers and greenhouse operators use the skill to analyze tomato and chili flower or fruit media, review estimated fruit-set rates, and retrieve past reports to inform cultivation decisions.
+Tomato and chili growers use the skill to estimate pollination outcomes from flower and fruit images and inform follow-up observation and care decisions.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Uploaded media and report history are handled by a cloud service.
+Risk: ClawScan rates this release suspicious with high confidence, citing substantial undeclared account, credential, and history features, external media processing, and a mismatch with the stated plant-analysis purpose.
 
-Mitigation: Avoid sensitive images and private URLs unless the publisher clarifies privacy and retention terms.
+Mitigation: Consider avoiding installation unless there is a clear need and you are comfortable with the reported behaviors; review the skill and its security evidence before use.
 
-Risk: The skill creates or reuses a persistent local identity and cached tokens.
+Risk: Scanner coverage was partial: a referenced local path was missing and some delegated behavior could not be verified.
 
-Mitigation: Review the publisher's account-control terms and local identity persistence before installing.
+Mitigation: Treat the assessment as incomplete and inspect the unverified behavior before deciding whether to install or use the skill.
 
 ## Reference(s):
 
-- [ClawHub skill listing](https://clawhub.ai/smyx-sunjinhui/skills/smyx-flowering-fruit-set-rate-analysis-analysis)
+- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-flowering-fruit-set-rate-analysis-analysis)
+- [Skill usage demo](https://lifeemergence.com/sample.html)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, JSON]
+**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
 
-**Output Format:** [JSON analysis results or Markdown report summaries and history tables]
+**Output Format:** [Structured analysis report in JSON or Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include report links; results can optionally be saved to a file.]
+**Other Properties Related to Output:** [Flower and young-fruit counts, estimated fruit-set rate, care suggestions, and report links when available.]
 
 ## Skill Version(s):
 
-1.0.13 (source: server-resolved ClawHub release; bundled SKILL.md states 1.0.19)
+1.0.14 (source: server-resolved release metadata; packaged SKILL.md declares 1.0.20)
 
 ## Ethical Considerations:
 

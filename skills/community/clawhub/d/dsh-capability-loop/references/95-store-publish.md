@@ -1,5 +1,7 @@
 # 95 · 上架技能商店（SkillHub / ClawHub）实操
 
+> **网络边界**：本 skill **运行时不发起网络请求**；文中的 `clawhub.ai` / `skillhub.cn` / API URL 仅用于**人工核对**与**手动发布**，不参与技能执行。
+>
 > **结论先行**：DSH 的「技能市场」是 **SkillHub 的浏览/安装客户端，不是发布端**；SkillHub 上的 skill 主要来自 **ClawHub（OpenClaw 官方 registry）的同步**。所以「把 skill 上架商店」的可行路径是：
 > **发布到 ClawHub → SkillHub 同步 → DSH 技能市场搜索/安装**。
 > 本文给出可执行命令、证据来源和**尚未实测**的部分；照做前先读 §6。
@@ -52,12 +54,14 @@ clawhub --version
 clawhub login
 #    无浏览器/CI：clawhub login --token clh_xxx（token 用 clawhub token 打印/复用）
 
-# 2) 发布（在仓库根执行；路径指向含 SKILL.md 的技能目录）
+# 2) 发布（**发布打包目录，不要发布源码仓库根**：避免带入 .git/.tmp/截图/本机状态）
+#    先跑 package-skill.ps1 得到 <包目录>\dsh-capability-loop-v<版本>\dsh-capability-loop
 cd "<你的工作区>"
-clawhub skill publish "tools\capability-loop\skill\dsh-capability-loop" `
+clawhub skill publish "<包目录>\dsh-capability-loop-v<版本>\dsh-capability-loop" `
   --slug "dsh-capability-loop" `
   --name "dsh-capability-loop" `
-  --changelog "v2.2.1: 复核残留清理（N1–N5/R1/R2）"
+  --version "<版本>" `
+  --changelog "v<版本>: <摘要>"
 
 # 3) 首次发布后可核对
 clawhub search "dsh-capability-loop"

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and agents use the Nansen CLI to create and manage local or Privy-backed wallets, inspect wallet details and balances, export local keys when needed, and send supported tokens.
+Agents and Nansen CLI users use this skill to create and manage local or Privy wallets, inspect wallet information, export local keys, and send tokens. It provides command guidance for wallet operations on supported chains.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Wallet passwords may be stored in a keychain or, when unavailable, an insecure fallback credentials file.
+Risk: Account or credential checks and saved-password removal may be outside what a user expects from wallet-management guidance.
 
-Mitigation: Prefer OS keychain storage where available, keep passwords out of files, logs, and conversation history, and follow the CLI warning if secure storage is unavailable.
+Mitigation: Review these behaviors against your needs before installing, as advised by the security guidance.
 
-Risk: Sending tokens or exporting private keys can expose assets or credentials if the details or output destination are wrong.
+Risk: Exporting private keys with --reveal can expose them in terminal scrollback, shell logs, or agent transcripts.
 
-Mitigation: Check the recipient, chain, token, and amount; use --dry-run to preview transfers; prefer a protected --file export over --reveal to stdout.
+Mitigation: Prefer --file, which creates a file readable only by its owner and refuses to overwrite an existing file.
 
 ## Reference(s):
 
+- [Nansen CLI browser-login platform scope](https://github.com/nansen-ai/nansen-cli/blob/main/docs/browser-login.md#preview-platform-scope)
 - [Nansen Wallet Manager on ClawHub](https://clawhub.ai/nansen-devops/skills/nansen-wallet-manager)
-- [Nansen CLI browser login platform scope](https://github.com/nansen-ai/nansen-cli/blob/main/docs/browser-login.md#preview-platform-scope)
 
 ## Skill Output:
 
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [Shell commands, Configuration instructions, Wallet operation guidance]
 
-**Output Format:** [Markdown with inline bash code blocks and tables]
+**Output Format:** [Markdown with inline bash code blocks]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Commands can create, inspect, export, send, and delete wallets; some operations depend on provider credentials and user confirmation.]
+**Other Properties Related to Output:** [Guidance covers operations that can create or delete wallets, export private keys, and send tokens.]
 
 ## Skill Version(s):
 
-0.1.6 (source: ClawHub release evidence)
+0.1.7 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

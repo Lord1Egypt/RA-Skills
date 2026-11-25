@@ -1,0 +1,742 @@
+ENVI 修改时间=2025.11.13
+
+LOCK --exist #启动盘制作-%修改时间%,锁定进程
+IFEX $%锁定进程%=1,
+{
+	REGI .HKCU\Software\启动盘制作-%修改时间%\CKID,CKID
+	ENVI @@Visable=%CKID%:2
+	ENVI @@POS=%CKID%:::::::1
+	KILL -tree *%&__PID%
+}
+
+ENVI 工具数量=0
+FORX* 7z.dll 7z.exe BOOTICE.exe fatio.exe fbinst.exe gdisk32.exe qemu.exe ud.fba,找工具,IFEX "%CurDir%\bin\%找工具%",CALC 工具数量=%工具数量%+1
+IFEX $%工具数量%=8,
+{
+	ENVI 版本=启动盘制作
+	ENVI ISO-TEMP=%CurDir%\temp
+	ENVI 7zA=
+	ENVI 7zB=%CurDir%\bin\7z.exe
+	ENVI BOOTICEA=
+	ENVI BOOTICEB=%CurDir%\bin\BOOTICE.exe
+	ENVI fatioA=
+	ENVI fatioB=%CurDir%\bin\fatio.exe
+	ENVI fbinstA=
+	ENVI fbinstB=%CurDir%\bin\fbinst.exe
+	ENVI gdisk32A=
+	ENVI gdisk32B=%CurDir%\bin\gdisk32.exe
+	ENVI qemuA=
+	ENVI qemuB=%CurDir%\bin\qemu.exe
+	ENVI ud文件=%CurDir%\bin\ud.fba
+}
+IFEX $%工具数量%<>8,
+{
+	IFEX "%temp%\7z-boot\",EXEC -wait -hide cmd.exe /c rd /s /q "%temp%\7z-boot"
+	EXEC -wait -hide cmd.exe /c md "%temp%\7z-boot"
+	PUTF "%temp%\7z-boot\7z.dll",,#1
+	PUTF "%temp%\7z-boot\7z.exe",,#2
+	PUTF "%temp%\7z-boot\ud.fba",,#8
+	IFEX ["%temp%\7z-boot\7z.dll" & "%temp%\7z-boot\7z.exe" & "%temp%\7z-boot\ud.fba"],!
+	{
+		MESS=+icon5 文件目录不完整，请确保文件完整性@ 提示
+		IFEX "%temp%\7z-boot\",EXEC -wait -hide cmd.exe /c rd /s /q "%temp%\7z-boot"
+		KILL -tree *%&__PID%
+	}
+	ENVI 版本=启动盘制作-单文件
+	ENVI ISO-TEMP=%temp%\ISO-%RANDOM%
+	ENVI 7zA=
+	ENVI 7zB=%temp%\7z-boot\7z.exe
+	ENVI BOOTICEA=-exe:#3
+	ENVI BOOTICEB=BOOTICE.exe
+	ENVI fatioA=-exe:#4
+	ENVI fatioB=fatio.exe
+	ENVI fbinstA=-exe:#5
+	ENVI fbinstB=fbinst.exe
+	ENVI gdisk32A=-exe:#6
+	ENVI gdisk32B=gdisk32.exe
+	ENVI qemuA=-exe:*#7
+	ENVI qemuB=qemu.exe
+	ENVI ud文件=%temp%\7z-boot\ud.fba
+}
+
+ENVI^ DisX64=1,OldCfg
+ENVI diskpart路径=%SystemRoot%\system32\diskpart.exe
+ENVI format路径=%SystemRoot%\system32\format.com
+TEAM ENVI ?ver=WinVer|CALC v1=%ver:~,-8%|CALC v2=0x%ver:~3,4%|CALC v3=0x%ver:~7%|ENVI ver=%v1%%v2%
+TEAM ENVI 退出标记=1|ENVI 空变量=
+SET$ TaskBarlist=*8 0
+SET#$ &CLSID_TaskbarList=44 f3 fd 56 6d fd d0 11 95 8a 00 60 97 c9 a0 90
+SET#$ &ID_ITaskbarList3=91 FB 1A EA 28 9E 86 4B 90 E9 9E 9F 8A 5E EF AF
+CALL 主窗口
+FORX* bin\2 bin\3 gdiskerr.txt,文件,
+{
+	IFEX "%CurDir%\%文件%\",EXEC -wait -hide cmd.exe /c rd /s /q "%CurDir%\%文件%"
+	IFEX "%CurDir%\%文件%",EXEC -wait -hide cmd.exe /c del /f /q /a "%CurDir%\%文件%"
+}
+IFEX "%ISO-TEMP%\",EXEC -wait -hide cmd.exe /c rd /s /q "%ISO-TEMP%"
+IFEX "%temp%\7z-boot\",EXEC -wait -hide cmd.exe /c rd /s /q "%temp%\7z-boot"
+REGI HKCU\Software\启动盘制作-%修改时间%\!
+KILL -tree *%&__PID%
+EXIT
+
+_SUB 主窗口,W500H295,%版本%,,,,,-ntab -trap
+	ENVI 窗口ID=%&__WinID%
+	ENVI @this.MSG=0x0010:THREAD* IFEX $%退出标记%=1,KILL @主窗口!MESS=+icon1 请等待程序执行完毕！@ 提示
+	ENVI @this.MSG=0x0233::wp,,CALL 拖入文件信息 %wp%
+	SWIN -:窗口,L0T0W494H263
+	LOCK #启动盘制作-%修改时间%
+	REGI $HKCU\Software\启动盘制作-%修改时间%\CKID=%&__WINID%
+	EXEC -wait -hide cmd.exe /c ver	//减少内存占用，很神奇
+_END
+
+_SUB 拖入文件信息
+	ENVI ?单个名,全部名=DROPFILE,%1
+	FEXT 单个名后缀名=%单个名%
+	SED 单个名后缀名=0,,\l,%单个名后缀名%
+	IFEX |%单个名后缀名%=iso,ENVI @窗口:ISO镜像=%全部名%!MESS=+icon5 请拖入后缀名为 iso 的镜像文件@ 提示
+_END
+
+_SUB 窗口
+	ENVI @this.Font=:微软雅黑
+	GROU ,L10T2W474H110
+	LABE -vcenter ,L20T17W62H25,磁盘选择：
+	LIST -h 磁盘列表,L82T17W323H130,,,,0x100
+	ITEM ,L414T16W60H27,刷新,THREAD* 获取磁盘
+	LABE -vcenter ,L20T48W62H25,分区格式：
+	LIST 分区格式,L82T48W100H100
+	LABE -vcenter ,L243T48W62H25,分区方案：
+	LIST 分区方案,L305T48W100H100,单分区|双分区|三分区,CALL 格式操作,三分区
+	LABE -vcenter ,L20T79W62H25,制作模式：
+	LIST 制作模式,L82T79W100H100,USB-HDD|USB-ZIP|USB-CHS|USB-ZIP-CHS,,USB-HDD
+	LABE -vcenter ,L243T79W62H25,EFI 大小：
+	LIST EFI分区大小,L305T79W100H100,4096 MB|3072 MB|2048 MB|1024 MB,,4096 MB
+	GROU ,L10T109W474H48
+	LABE -vcenter ,L20T124W62H25,ISO镜像：
+	EDIT -vcenter:2 ISO镜像,L82T124W323H25,支持拖入 ISO 镜像
+	ITEM ,L414T123W60H27,选择,CALL 选择ISO
+	GROU ,L10T154W474H55
+	ITEM ,L19T168W107H34,模拟启动,CALL 模拟启动
+	ITEM ,L135T168W107H34,还原磁盘,CALL 还原磁盘
+	ITEM ,L251T168W107H34,免格升级,CALL 免格升级
+	ITEM ,L367T168W107H34,全新制作,CALL 全新制作
+	GROU ,L10T206W474H48
+	LABE -vcenter 计时显示,L20T221W62H25,进度：
+	PBAR 进度条,L82T221W391H25,0
+	REGI ?HKLM\SYSTEM\ControlSet001\Services\exfat\,exfat服务
+	IFEX [|%exfat服务%<>ERROR & "%SystemRoot%\system32\drivers\exfat.sys"],ENVI 可选格式=NTFS|exFAT|FAT32!ENVI 可选格式=NTFS|FAT32
+	TEAM ENVI @分区格式.VAL=%可选格式%|ENVI @分区格式.isel=1
+	THREAD* 获取磁盘
+_END
+
+_SUB 格式操作
+	ENVI 格式选中=%分区格式.isel%
+	IFEX |%分区方案%=单分区,ENVI @分区格式.VAL=FAT32!ENVI @分区格式.VAL=%可选格式%
+	IFEX |%分区方案%=三分区,ENVI @制作模式.VAL=USB-HDD|USB-ZIP|USB-CHS|USB-ZIP-CHS!ENVI @制作模式.VAL=USB-HDD
+	TEAM ENVI @分区格式.isel=%格式选中%|ENVI @制作模式.isel=1
+_END
+
+_SUB 获取磁盘
+	IFEX $%已选%=1,EXIT!ENVI 已选=1
+	TEAM ENVI @磁盘列表.VAL=搜索磁盘中…|ENVI @磁盘列表.isel=1|WAIT 100
+	PART list disk ,所有磁盘
+	FORX* %所有磁盘%,循环磁序,
+	{
+		PART -devida list disk %循环磁序%,磁盘信息
+		MSTR 大小,媒体,总线,后名,前名=<2><7><9><12><19>%磁盘信息%
+		IFEX [$%总线%=7 $%总线%=12],!EXIT -
+		IFEX |%后名%="(",ENVI 后名=
+		IFEX [|%前名%="(" |%前名%=""],ENVI 磁盘名=%后名:~1,-1%!ENVI 磁盘名=%前名:~1,-1% %后名:~1,-1%
+		TEAM CALC 大小=%大小%/1G#1|ENVI 类型=|ENVI 磁盘盘符=
+		IFEX $%媒体%%总线%=117,ENVI 类型=RD
+		IFEX $%媒体%%总线%=1112,ENVI 类型=SD
+		IFEX |%类型%=%空变量%,ENVI 类型=HD
+		PART list part %循环磁序%,分区序号
+		SED 分区序号=0,[-\@=][1-9][0-9]*[ ]*,,%分区序号%
+		FORX* %分区序号%,循环分序,
+		{
+			PART -iv=8 list part %循环磁序%:%循环分序%,分区盘符
+			FIND $%分区盘符%<>%空变量%,ENVI 磁盘盘符=%磁盘盘符%%分区盘符%
+		}
+		ENVI @磁盘列表.ADD=(%类型%%循环磁序%): %磁盘名% (%磁盘盘符%) %大小%G
+		PART -iv=12 -devid list disk %循环磁序%,磁盘路径记录
+		ENVI 磁盘路径记录-%循环磁序%=%磁盘路径记录%
+	}
+	TEAM ENVI @磁盘列表.DEL=搜索磁盘中…|ENVI @磁盘列表.isel=1|ENVI 已选=0
+	IFEX |%磁盘列表%=%空变量%,ENVI @磁盘列表.VAL=没有发现磁盘
+_END
+
+_SUB 选择ISO
+	BROW 镜像文件,%CurDir%\*.iso,选择ISO,镜像文件 (*.iso)|*.iso
+	IFEX |%镜像文件%=%空变量%,EXIT!ENVI @ISO镜像=%镜像文件%
+_END
+
+_SUB 磁盘状态检测
+	TEAM ENVI 状态检测磁盘=%1|ENVI 磁盘正常=0
+	PART list disk %状态检测磁盘%,有无磁盘
+	IFEX |%有无磁盘%=%空变量%,TEAM MESS=+icon5 未读取到磁盘，疑似被移除@ 提示|EXIT
+	PART -iv=1 -raw list drv %SystemDrive%,WTG环境
+	IFEX $%WTG环境%=%状态检测磁盘%,TEAM MESS=+icon5 操作失败，系统在当前磁盘上运行@ 提示|EXIT
+	PART -iv=1 -raw list drv %CurDrv%,当前磁盘
+	IFEX $%当前磁盘%=%状态检测磁盘%,TEAM MESS=+icon5 操作失败，程序在当前磁盘上运行@ 提示|EXIT
+	PART -iv=12 -devid list disk %状态检测磁盘%,磁盘路径对比
+	IFEX |%磁盘路径记录-%状态检测磁盘%%<>%磁盘路径对比%,TEAM MESS=+icon5 磁盘信息已更新，请点击刷新或重启程序@ 提示|EXIT
+	ENVI 磁盘正常=1
+_END
+
+_SUB 模拟启动
+	IFEX |%磁盘列表%=没有发现磁盘,TEAM MESS=+icon1 %磁盘列表%@ 提示|EXIT
+	SED -ni 所选磁盘=1,\).*,,%磁盘列表:~3%
+	CALL 磁盘状态检测 %所选磁盘%
+	IFEX $%磁盘正常%=0,EXIT
+	ENVI @主窗口.Visible=0
+	EXEC -wait -hide %qemuA% "%qemuB%" -hda \\.\PhysicalDrive%所选磁盘% -m 512 -localtime -vga std -snapshot
+	ENVI @主窗口.Visible=1
+_END
+
+_SUB 还原磁盘
+	IFEX |%磁盘列表%=没有发现磁盘,TEAM MESS=+icon1 %磁盘列表%@ 提示|EXIT
+	TEAM SED -ni 所选磁盘=1,\).*,,%磁盘列表:~3%|ENVI 所选格式=%分区格式%
+	CALL 磁盘状态检测 %所选磁盘%
+	IFEX $%磁盘正常%=0,EXIT
+	TEAM MESS=+icon1 还原磁盘会清空以下磁盘内所有内容\n%磁盘列表%\n是否继续@ 还原磁盘 #YN|FIND $%YESNO%=NO,EXIT
+	CALL 禁止
+	IFEX [$%ver%>=60 & "%diskpart路径%"],
+	{
+		CALL 进度设置 40 正在还原磁盘
+		EXEC -wait -hide cmd.exe /c (echo select disk=%所选磁盘%&echo clean&echo clean&echo create partition primary&echo active&echo format fs=NTFS label="新加卷" quick&echo assign) | diskpart
+		CALL 进度设置 70 格式化磁盘
+		IFEX |%所选格式%=exFAT,EXEC -wait -hide cmd.exe /c (echo select disk=%所选磁盘%&echo select partition=1&echo format fs=exFAT label="新加卷" quick) | diskpart
+		IFEX |%所选格式%=FAT32,EXEC -wait -hide %fatioA% "%fatioB%" mkfs %所选磁盘% 1 FAT32
+		IFEX |%所选格式%=FAT32,EXEC -wait -hide %fatioA% "%fatioB%" label %所选磁盘% 1 新加卷
+		IFEX |%所选格式%=FAT32,PART -super %所选磁盘%#1 0x0C
+	}!
+	{
+		CALL 进度设置 50 初始化磁盘
+		EXEC -wait -hide %fbinstA% "%fbinstB%" (hd%所选磁盘%) format --force --raw --fat32 --align
+	}
+	TEAM CALL 进度设置 100 完成|ENVI @定时器=-del|MESS=+icon2 还原磁盘完成@ 提示|CALL 解除
+_END
+
+_SUB 免格升级
+	IFEX |%磁盘列表%=没有发现磁盘,TEAM MESS=+icon1 %磁盘列表%@ 提示|EXIT
+	SED -ni 所选磁盘=1,\).*,,%磁盘列表:~3%
+	CALL 磁盘状态检测 %所选磁盘%
+	IFEX $%磁盘正常%=0,EXIT
+	TEAM ENVI 免格分区=1|ENVI 单文件=0|ENVI UD满足=0|ENVI 启动盘类型=
+	EXEC* -wait -hide %fatioA% fatio输出="%fatioB%" list %所选磁盘%
+	TEAM READ -,0,fatio输出,%fatio输出%|MSTR 磁盘序号,分区序号,磁盘格式,分区大小=<1*>%fatio输出%
+	IFEX [|%磁盘格式%=fat |%磁盘格式%=fat16 |%磁盘格式%=fat32],ENVI 格式满足=1!ENVI 格式满足=0
+	IFEX [$%磁盘序号%=%所选磁盘% & $%格式满足%=1],ENVI 免格分区=%分区序号%
+	EXEC* -wait -hide %fbinstA% -err+ fbinst输出="%fbinstB%" (hd%所选磁盘%) info
+	READ -,1,fbinst输出,%fbinst输出%
+	IFEX |"%fbinst输出%"="version: 1.7",ENVI UD满足=1 //相同版本
+	IFEX |"%fbinst输出%"="Fbinst: error: version number not match",ENVI UD满足=1 //不同版本
+	IFEX |"%fbinst输出%"="Fbinst: error: fb mbr corrupted",ENVI UD满足=1 //分区损坏
+	IFEX [$%免格分区%=1 & $%UD满足%=0],TEAM DISK 分区盘符,%所选磁盘%,1|IFEX %分区盘符%\bootmgr,ENVI 单文件=1
+	IFEX [$%免格分区%=1 & $%单文件%=1],ENVI 启动盘类型=单分区
+	IFEX [$%免格分区%>1 & $%UD满足%=0],ENVI 启动盘类型=双分区
+	IFEX [$%免格分区%>1 & $%UD满足%=1],ENVI 启动盘类型=三分区
+	IFEX [|%启动盘类型%=%空变量% $%格式满足%=0],TEAM MESS=+icon1 未检测到启动盘，无法免格升级@ 免格升级|EXIT
+
+	IFEX |%ISO镜像%=%空变量%,TEAM MESS=+icon5 请选择或拖入 ISO 镜像@ 提示|EXIT
+	TEAM FEXT ISO后缀名=%ISO镜像%|SED ISO后缀名=0,,\l,%ISO后缀名%
+	IFEX |%ISO后缀名%<>iso,TEAM MESS=+icon5 请选择有效的 ISO 镜像@ 提示|EXIT
+	IFEX "%ISO镜像%",!TEAM MESS=+icon5 未找到 ISO 镜像，疑似被移除@ 提示|EXIT
+	CALL 读取ISO文件大小
+	ENVI 临时目录盘符=%ISO-TEMP:~,2%
+	CALC ISO文件大小A=%ISO文件大小%/1M+100#1 //104857600（100M）
+	IFEX %临时目录盘符%\<%ISO文件大小A%,TEAM MESS=+icon5 %临时目录盘符% 盘没有足够的空间用于释放ISO@ 提示|EXIT
+	CALC ISO文件大小B=%ISO文件大小%/1M+2#1 //2097152(2M)
+	IFEX $%分区大小%<%ISO文件大小B%M,TEAM MESS=+icon5 启动盘的 EFI 分区没有足够的空间@ 提示|EXIT
+	CALL 检查BOOTMGR
+	IFEX $%有无bootmgr%=0,TEAM MESS=+icon5 当前 ISO 中没有 bootmgr 文件，无法制作启动盘@ 提示|EXIT
+
+	TEAM MESS=+icon4 是否对以下磁盘进行免格升级\n%磁盘列表%@ %启动盘类型%免格升级 #YN|FIND $%YESNO%=NO,EXIT
+	IFEX |%启动盘类型%=单分区,ENVI 文件状况=1!ENVI 文件状况=0
+	TEAM CALL 禁止|CALL 免格%启动盘类型%|ENVI @定时器=-del
+	IFEX $%文件状况%=0,TEAM ENVI @进度条=0%错误|CALL 设置任务栏进度 错误|MESS=+icon5 PE文件写入失败@ 提示
+	IFEX $%文件状况%=1,TEAM CALL 进度设置 100 完成|MESS=+icon2 %启动盘类型%免格升级完成@ 提示
+	CALL 解除
+_END
+
+_SUB 免格单分区
+	CALL 进度设置 10 释放ISO文件
+	CALL 释放ISO
+	CALL 进度设置 20 删除PE文件
+	DISK 分区盘符,%所选磁盘%,1
+	FORX *off $"%ISO-TEMP%\*",删除镜像文件,0,
+	{
+		EXEC -wait -hide %fatioA% "%fatioB%" chmod %所选磁盘% 1 \%删除镜像文件% -R -S -H
+		EXEC -wait -hide "%SystemRoot%\system32\attrib.exe" -r -s -h %分区盘符%\%删除镜像文件% /s /d
+		IFEX "%分区盘符%\%删除镜像文件%\",EXEC -wait -hide cmd.exe /c rd /s /q "%分区盘符%\%删除镜像文件%"
+		IFEX "%分区盘符%\%删除镜像文件%",EXEC -wait -hide cmd.exe /c del /f /q /a "%分区盘符%\%删除镜像文件%"
+	}
+	CALL 进度设置 40 更新PE文件
+	CALL PECMD复制 %所选磁盘% 1 "%ISO-TEMP%"
+	CALL 进度设置 60 隐藏PE文件
+	DISK 分区盘符,%所选磁盘%,1
+	FORX *off $"%ISO-TEMP%\*",隐藏镜像文件,0,
+	{
+		EXEC -wait -hide %fatioA% "%fatioB%" chmod %所选磁盘% 1 \%隐藏镜像文件% +R +S +H
+		EXEC -wait -hide "%SystemRoot%\system32\attrib.exe" +r +s +h %分区盘符%\%隐藏镜像文件% /s /d
+	}
+	CALL 进度设置 80 更新引导记录
+	EXEC -wait -hide %BOOTICEA% "%BOOTICEB%" /DEVICE=%所选磁盘% /mbr /install /type=nt60 /nodriveletter /quiet
+	CALL 引导记录 %所选磁盘% 1
+_END
+
+_SUB 免格双分区
+	CALL 进度设置 20 释放ISO文件
+	CALL 释放ISO
+	CALL 进度设置 30 更改磁盘ID
+	PART -super %所选磁盘%#%免格分区% 0x0C
+	CALL 进度设置 40 格式化EFI分区
+	EXEC -wait -hide %fatioA% "%fatioB%" mkfs %所选磁盘% %免格分区% FAT32
+	EXEC -wait -hide %fatioA% "%fatioB%" label %所选磁盘% %免格分区% EFI
+	CALL 进度设置 50 更新PE文件
+	CALL PECMD复制 %所选磁盘% %免格分区% "%ISO-TEMP%"
+	CALL 启动盘文件检测 %所选磁盘% %免格分区%
+	IFEX $%文件状况%=0,EXIT
+	CALL 进度设置 70 更新引导记录
+	EXEC -wait -hide %BOOTICEA% "%BOOTICEB%" /DEVICE=%所选磁盘% /mbr /install /type=nt60 /nodriveletter /quiet
+	CALL 引导记录 %所选磁盘% %免格分区%
+	CALL 进度设置 80 隐藏EFI分区
+	PART -super %所选磁盘%#%免格分区% 0x1C
+	CALL 进度设置 90 清理临时目录
+	EXEC -wait -hide cmd.exe /c rd /s /q "%ISO-TEMP%"
+_END
+
+_SUB 免格三分区
+	CALL 进度设置 10 释放ISO文件
+	CALL 释放ISO
+	CALL 进度设置 20 清空UD分区
+	EXEC -wait -hide %fbinstA% "%fbinstB%" (hd%所选磁盘%) format --align
+	CALL 进度设置 30 更新UD分区
+	EXEC -wait -hide %fbinstA% "%fbinstB%" (hd%所选磁盘%) load "%ud文件%"
+	CALL 进度设置 40 更改磁盘ID
+	PART -super %所选磁盘%#%免格分区% 0x0C
+	CALL 进度设置 60 格式化EFI分区
+	EXEC -wait -hide %fatioA% "%fatioB%" mkfs %所选磁盘% %免格分区% FAT32
+	EXEC -wait -hide %fatioA% "%fatioB%" label %所选磁盘% %免格分区% EFI
+	CALL 进度设置 70 更新PE文件
+	CALL PECMD复制 %所选磁盘% %免格分区% "%ISO-TEMP%"
+	CALL 启动盘文件检测 %所选磁盘% %免格分区%
+	IFEX $%文件状况%=0,EXIT
+	CALL 进度设置 80 隐藏EFI分区
+	EXEC -wait -hide %BOOTICEA% "%BOOTICEB%" /DEVICE=%所选磁盘%:0 /partitions /activate /quiet
+	PART -super %所选磁盘%#%免格分区% 0x1C
+_END
+
+_SUB 全新制作
+	IFEX |%磁盘列表%=没有发现磁盘,TEAM MESS=+icon1 %磁盘列表%@ 提示|EXIT
+	TEAM SED -ni 所选磁盘=1,\).*,,%磁盘列表:~3%|ENVI 所选格式=%分区格式%
+	CALL 磁盘状态检测 %所选磁盘%
+	IFEX $%磁盘正常%=0,EXIT
+
+	IFEX |%ISO镜像%=%空变量%,TEAM MESS=+icon5 请选择或拖入 ISO 镜像@ 提示|EXIT
+	TEAM FEXT ISO后缀名=%ISO镜像%|SED ISO后缀名=0,,\l,%ISO后缀名%
+	IFEX |%ISO后缀名%<>iso,TEAM MESS=+icon5 请选择有效的 ISO 镜像@ 提示|EXIT
+	IFEX "%ISO镜像%",!TEAM MESS=+icon5 未找到 ISO 镜像，疑似被移除@ 提示|EXIT
+	CALL 读取ISO文件大小
+	ENVI 临时目录盘符=%ISO-TEMP:~,2%
+	CALC ISO文件大小A=%ISO文件大小%/1M+100#1 //104857600（100M）
+	IFEX %临时目录盘符%\<%ISO文件大小A%,TEAM MESS=+icon5 %临时目录盘符% 盘没有足够的空间用于释放ISO@ 提示|EXIT
+	MSTR EFI分区大小=<1>%EFI分区大小%
+	CALC ISO文件大小B=%ISO文件大小%/1M+2#1 //2097152(2M)
+	IFEX $%EFI分区大小%<%ISO文件大小B%,TEAM MESS=+icon5 启动盘的 EFI 分区没有足够的空间@ 提示|EXIT
+	CALL 检查BOOTMGR
+	IFEX $%有无bootmgr%=0,TEAM MESS=+icon5 当前 ISO 中没有 bootmgr 文件，无法制作启动盘@ 提示|EXIT
+
+	IFEX |%分区方案%<>单分区,
+	{
+		IFEX [$%ver%>=100 & $%v3%>=15063 & "%diskpart路径%"],TEAM SERV ?收缩卷服务 defragsvc|MSTR 收缩卷服务=<1>%收缩卷服务%!ENVI 收缩卷服务=1
+		IFEX $%收缩卷服务%=0,ENVI 制作方案=1!ENVI 制作方案=0
+		IFEX "%format路径%",
+		{
+			IFEX $%ver%>=60,IFEX [$%制作方案%=0 "%CurDir%\bin\2"],ENVI 制作方案=2
+			IFEX [$%ver%<60 & %SystemRoot%\system32\storprop.dll],ENVI 制作方案=2
+		}
+		IFEX [$%制作方案%=0 "%CurDir%\bin\3"],
+		{
+			ENVI &&ERRORLEVEL=123
+			EXEC -wait -hide %gdisk32A% "%gdisk32B%" /?
+			IFEX $%&&ERRORLEVEL%=0,ENVI 制作方案=3
+		}
+		IFEX $%制作方案%=0,TEAM MESS=+icon5 当前系统环境下，启动盘大概率制作失败\n请在其它电脑或系统上制作。是否继续？@ 提示 #YN|FIND $%YESNO%=NO,EXIT
+		IFEX $%制作方案%=0,ENVI 制作方案=2
+	}
+	IFEX |%分区方案%=单分区,TEAM ENVI 分区状况=1|ENVI 全新制作方案=
+	IFEX |%分区方案%<>单分区,TEAM ENVI 分区状况=0|ENVI 全新制作方案=方案%制作方案%
+	MESS=+icon1 全新制作会清空以下磁盘内所有内容\n%磁盘列表%\n制作方案：%分区方案%  %全新制作方案%\n是否继续@ 全新制作 #YN
+	IFEX |%YESNO%=NO,EXIT
+	TEAM ENVI 文件状况=0|CALL 禁止|CALL 全新%分区方案%|ENVI @定时器=-del
+	IFEX $%分区状况%=0,TEAM ENVI @进度条=0%错误|CALL 设置任务栏进度 错误|MESS=+icon5 EFI分区创建失败@ 提示
+	IFEX [$%分区状况%=1 & $%文件状况%=0],TEAM ENVI @进度条=0%错误|CALL 设置任务栏进度 错误|MESS=+icon5 PE文件写入失败@ 提示
+	IFEX [$%分区状况%=1 & $%文件状况%=1],TEAM CALL 进度设置 100 完成|MESS=+icon2 启动盘制作完成@ 提示
+	CALL 解除
+_END
+
+_SUB 全新单分区
+	CALL 进度设置 10 释放ISO文件
+	CALL 释放ISO
+	CALL 进度设置 30 初始化磁盘
+	EXEC -wait -hide %fbinstA% "%fbinstB%" (hd%所选磁盘%) format --force --raw --fat32 --align
+	EXEC -wait -hide %fatioA% "%fatioB%" label %所选磁盘% 1 启动盘
+	CALL 进度设置 50 写入PE文件
+	CALL PECMD复制 %所选磁盘% 1 "%ISO-TEMP%"
+	CALL 启动盘文件检测 %所选磁盘% 1
+	IFEX $%文件状况%=0,EXIT
+	CALL 进度设置 70 隐藏PE文件
+	DISK 分区盘符,%所选磁盘%,1
+	FORX *off $"%ISO-TEMP%\*",隐藏镜像文件,0,
+	{
+		EXEC -wait -hide %fatioA% "%fatioB%" chmod %所选磁盘% 1 \%隐藏镜像文件% +R +S +H
+		EXEC -wait -hide "%SystemRoot%\system32\attrib.exe" +r +s +h %分区盘符%\%隐藏镜像文件% /s /d
+	}
+	CALL 进度设置 90 设置引导记录
+	EXEC -wait -hide %BOOTICEA% "%BOOTICEB%" /DEVICE=%所选磁盘% /mbr /install /type=nt60 /nodriveletter /quiet
+	CALL 引导记录 %所选磁盘% 1
+_END
+
+_SUB 全新双分区
+	CALL 进度设置 10 释放ISO文件
+	CALL 释放ISO
+	IFEX $%制作方案%=1,
+	{
+		CALL 进度设置 20 初始化磁盘
+		EXEC -wait -hide cmd.exe /c (echo select disk=%所选磁盘%&echo clean&echo clean) | diskpart
+		CALL 进度设置 30 创建DATA分区
+		SERV -demand defragsvc
+		EXEC -wait -hide cmd.exe /c (echo select disk=%所选磁盘%&echo create partition primary&echo format fs=NTFS label="启动盘" quick&echo assign&echo select partition=1&echo shrink desired=%EFI分区大小%) | diskpart
+		CALL 进度设置 40 格式化DATA分区
+		IFEX |%所选格式%=exFAT,EXEC -wait -hide cmd.exe /c (echo select disk=%所选磁盘%&echo select partition=1&echo format fs=exFAT label="启动盘" quick) | diskpart
+		IFEX |%所选格式%=FAT32,EXEC -wait -hide %fatioA% "%fatioB%" mkfs %所选磁盘% 1 FAT32
+		IFEX |%所选格式%=FAT32,EXEC -wait -hide %fatioA% "%fatioB%" label %所选磁盘% 1 启动盘
+		IFEX |%所选格式%=FAT32,PART -super %所选磁盘%#1 0x0C
+		CALL 进度设置 50 创建EFI分区
+		EXEC -wait -hide cmd.exe /c (echo select disk=%所选磁盘%&echo create partition primary&echo format fs=FAT32 label="EFI" quick) | diskpart
+		CALL 启动盘分区检测 %所选磁盘% 2
+		IFEX $%分区状况%=0,EXIT
+		CALL 引导记录 %所选磁盘% 2
+		CALL 进度设置 60 写入PE文件
+		CALL PECMD复制 %所选磁盘% 2 "%ISO-TEMP%"
+		CALL 启动盘文件检测 %所选磁盘% 2
+		IFEX $%文件状况%=0,EXIT
+	}
+	IFEX $%制作方案%=2,
+	{
+		IFEX $%ver%<60,CALL NT5格NTFS 设置
+		IFEX |%所选磁盘%=OUT,EXIT
+		CALL 进度设置 20 初始化磁盘
+		EXEC -wait -hide %fbinstA% "%fbinstB%" (hd%所选磁盘%) format --force --raw --fat32 --align
+		PART -xup -super -force -fs0 -mbr init %所选磁盘%
+		PART -iv=2 -devida list disk %所选磁盘%,磁盘大小
+		CALC 磁盘大小=%磁盘大小%/1M#2
+		CALL 进度设置 30 创建分区
+		CALC 偏移大小=%磁盘大小%-%EFI分区大小%-1
+		EXEC -incmd -wait -hide PECMD.EXE PART -super -force -mbr -fs -xup %所选磁盘%#1 0x0C %偏移大小%M %EFI分区大小%M
+		CALC DATA分区=%磁盘大小%-%EFI分区大小%-2
+		EXEC -incmd -wait -hide PECMD.EXE PART -super -force -mbr -fs -xup %所选磁盘%#2 0x07 1M %DATA分区%M
+		CALL 进度设置 40 格式化EFI分区
+		CALL 磁盘ID %所选磁盘% 1
+		DFMT %目标磁盘ID%,fat32,EFI,1
+		CALL 启动盘分区检测 %所选磁盘% 1
+		IFEX $%分区状况%=0,EXIT
+		CALL 引导记录 %所选磁盘% 1
+		CALL 进度设置 50 写入PE文件
+		CALL PECMD复制 %所选磁盘% 1 "%ISO-TEMP%"
+		CALL 启动盘文件检测 %所选磁盘% 1
+		IFEX $%文件状况%=0,EXIT
+		CALL 进度设置 60 格式化DATA分区
+		EXEC -incmd -wait -hide PECMD.EXE PART -super -xup -swap:2 %所选磁盘%#1 //交换分区
+		CALL 磁盘ID %所选磁盘% 1
+		DFMT %目标磁盘ID%,ntfs,启动盘,1
+		IFEX |%所选格式%=exfat,DFMT %目标磁盘ID%,exfat,启动盘,1
+		IFEX |%所选格式%=FAT32,EXEC -wait -hide %fatioA% "%fatioB%" mkfs %所选磁盘% 1 FAT32
+		IFEX |%所选格式%=FAT32,EXEC -wait -hide %fatioA% "%fatioB%" label %所选磁盘% 1 启动盘
+		IFEX |%所选格式%=FAT32,PART -super %所选磁盘%#1 0x0C
+		IFEX $%ver%<60,CALL NT5格NTFS 恢复
+		IFEX |%所选磁盘%=OUT,EXIT
+	}
+	IFEX $%制作方案%=3,
+	{
+		CALC gdisk=%所选磁盘%+1
+		CALL 进度设置 20 初始化磁盘
+		EXEC -wait -hide %fbinstA% "%fbinstB%" (hd%所选磁盘%) format --force --raw --fat32 --align
+		PART -xup -super -force -fs0 -mbr init %所选磁盘%
+		CALL 进度设置 30 初始化磁盘
+		EXEC -wait -hide %gdisk32A% "%gdisk32B%" %gdisk% /del /all
+		CALL 进度设置 40 创建EFI分区
+		EXEC -wait -hide %gdisk32A% "%gdisk32B%" %gdisk% /cre /pri /sz:%EFI分区大小% /for /q /v:EFI /END
+		SHOW - %所选磁盘%#1
+		CALL 启动盘分区检测 %所选磁盘% 1
+		IFEX $%分区状况%=0,EXIT
+		CALL 引导记录 %所选磁盘% 1
+		CALL 进度设置 50 写入PE文件
+		CALL PECMD复制 %所选磁盘% 1 "%ISO-TEMP%"
+		CALL 启动盘文件检测 %所选磁盘% 1
+		IFEX $%文件状况%=0,EXIT
+		CALL 进度设置 60 创建DATA分区
+		EXEC -wait -hide %gdisk32A% "%gdisk32B%" %gdisk% /cre /pri /for /NTFS /q /v:DATA /y
+		SHOW - %所选磁盘%#2
+		EXEC -incmd -wait -hide PECMD.EXE PART -super -xup -swap:2 %所选磁盘%#1 //交换分区
+		SHOW %所选磁盘%#1
+		PART -iv=1 -phy list part %所选磁盘%#1,目标分序
+		DISK 分区盘符,%所选磁盘%,%目标分序%
+		IFEX |%分区盘符%=%空变量%,TEAM SHOW %所选磁盘%#1|DISK 分区盘符,%所选磁盘%,%目标分序%
+		IFEX |%所选格式%=NTFS,FDRV -setvol %分区盘符%=启动盘
+		IFEX [|%所选格式%=exFAT |%所选格式%=FAT32],EXEC -wait -hide %fatioA% "%fatioB%" mkfs %所选磁盘% 1 %所选格式%
+		IFEX [|%所选格式%=exFAT |%所选格式%=FAT32],EXEC -wait -hide %fatioA% "%fatioB%" label %所选磁盘% 1 启动盘
+		IFEX |%所选格式%=FAT32,PART -super %所选磁盘%#1 0x0C
+	}
+	CALL 进度设置 70 设置引导记录
+	EXEC -wait -hide %BOOTICEA% "%BOOTICEB%" /DEVICE=%所选磁盘% /mbr /install /type=nt60 /nodriveletter /quiet
+	CALL 进度设置 80 隐藏EFI分区
+	PART -super %所选磁盘%#2 0x1C
+	CALL 进度设置 90 清理临时目录
+	EXEC -wait -hide cmd.exe /c rd /s /q "%ISO-TEMP%"
+_END
+
+_SUB 引导记录
+	TEAM ENVI 引导记录磁盘=%1|ENVI 引导记录分区=%2|CALC 引导记录分区=%引导记录分区%-1
+	EXEC -wait -hide %BOOTICEA% "%BOOTICEB%" /DEVICE=%引导记录磁盘%:%引导记录分区% /partitions /hide /quiet
+	EXEC -wait -hide %BOOTICEA% "%BOOTICEB%" /DEVICE=%引导记录磁盘%:%引导记录分区% /partitions /unhide /quiet
+	EXEC -wait -hide %BOOTICEA% "%BOOTICEB%" /DEVICE=%引导记录磁盘%:%引导记录分区% /partitions /activate /quiet
+	EXEC -wait -hide %BOOTICEA% "%BOOTICEB%" /DEVICE=%引导记录磁盘%:%引导记录分区% /pbr /install /type=bootmgr /nodriveletter /quiet
+_END
+
+_SUB 全新三分区
+	CALL 进度设置 10 释放ISO文件
+	CALL 释放ISO
+	IFEX |%制作模式%=USB-HDD,ENVI 磁盘模式=
+	IFEX |%制作模式%=USB-ZIP,ENVI 磁盘模式=--zip
+	IFEX |%制作模式%=USB-CHS,ENVI 磁盘模式=--chs
+	IFEX |%制作模式%=USB-ZIP-CHS,ENVI 磁盘模式=--zip --chs
+	IFEX $%制作方案%=1,
+	{
+		CALL 进度设置 20 初始化磁盘
+		EXEC -wait -hide cmd.exe /c (echo select disk=%所选磁盘%&echo clean&echo clean) | diskpart
+		CALL 进度设置 30 创建DATA分区
+		SERV -demand defragsvc
+		EXEC -wait -hide cmd.exe /c (echo select disk=%所选磁盘%&echo create partition primary offset=10240&echo format fs=NTFS label="启动盘" quick&echo assign&echo select partition=1&echo shrink desired=%EFI分区大小%) | diskpart
+		CALL 进度设置 40 格式化DATA分区
+		IFEX |%所选格式%=exFAT,EXEC -wait -hide cmd.exe /c (echo select disk=%所选磁盘%&echo select partition=1&echo format fs=exFAT label="启动盘" quick) | diskpart
+		IFEX |%所选格式%=FAT32,EXEC -wait -hide %fatioA% "%fatioB%" mkfs %所选磁盘% 1 FAT32
+		IFEX |%所选格式%=FAT32,EXEC -wait -hide %fatioA% "%fatioB%" label %所选磁盘% 1 启动盘
+		IFEX |%所选格式%=FAT32,PART -super %所选磁盘%#1 0x0C
+		CALL 进度设置 50 创建EFI分区
+		EXEC -wait -hide cmd.exe /c (echo select disk=%所选磁盘%&echo create partition primary&echo format fs=FAT32 label="EFI" quick) | diskpart
+		CALL 启动盘分区检测 %所选磁盘% 2
+		IFEX $%分区状况%=0,EXIT
+		CALL 进度设置 60 写入PE文件
+		CALL PECMD复制 %所选磁盘% 2 "%ISO-TEMP%"
+		CALL 启动盘文件检测 %所选磁盘% 2
+		IFEX $%文件状况%=0,EXIT
+	}
+	IFEX $%制作方案%=2,
+	{
+		IFEX $%ver%<60,CALL NT5格NTFS 设置
+		IFEX |%所选磁盘%=OUT,EXIT
+		CALL 进度设置 20 初始化磁盘
+		EXEC -wait -hide %fbinstA% "%fbinstB%" (hd%所选磁盘%) format --force --raw --fat32 --align
+		PART -xup -super -force -fs0 -mbr init %所选磁盘%
+		PART -iv=2 -devida list disk %所选磁盘%,磁盘大小
+		CALC 磁盘大小=%磁盘大小%/1M#2
+		CALL 进度设置 30 创建分区
+		CALC 偏移大小=%磁盘大小%-%EFI分区大小%-1
+		EXEC -incmd -wait -hide PECMD.EXE PART -super -force -mbr -fs -xup %所选磁盘%#1 0x0C %偏移大小%M %EFI分区大小%M
+		CALC DATA分区=%磁盘大小%-10-%EFI分区大小%-1
+		EXEC -incmd -wait -hide PECMD.EXE PART -super -force -mbr -fs -xup %所选磁盘%#2 0x07 10M %DATA分区%M
+		CALL 进度设置 40 格式化EFI分区
+		CALL 磁盘ID %所选磁盘% 1
+		DFMT %目标磁盘ID%,fat32,EFI,1
+		CALL 启动盘分区检测 %所选磁盘% 1
+		IFEX $%分区状况%=0,EXIT
+		CALL 进度设置 50 写入PE文件
+		CALL PECMD复制 %所选磁盘% 1 "%ISO-TEMP%"
+		CALL 启动盘文件检测 %所选磁盘% 1
+		IFEX $%文件状况%=0,EXIT
+		CALL 进度设置 60 格式化DATA分区
+		EXEC -incmd -wait -hide PECMD.EXE PART -super -xup -swap:2 %所选磁盘%#1
+		CALL 磁盘ID %所选磁盘% 1
+		DFMT %目标磁盘ID%,ntfs,启动盘,1
+		IFEX |%所选格式%=exfat,DFMT %目标磁盘ID%,exfat,启动盘,1
+		IFEX |%所选格式%=FAT32,EXEC -wait -hide %fatioA% "%fatioB%" mkfs %所选磁盘% 1 FAT32
+		IFEX |%所选格式%=FAT32,EXEC -wait -hide %fatioA% "%fatioB%" label %所选磁盘% 1 启动盘
+		IFEX |%所选格式%=FAT32,PART -super %所选磁盘%#1 0x0C
+		IFEX $%ver%<60,CALL NT5格NTFS 恢复
+		IFEX |%所选磁盘%=OUT,EXIT
+	}
+	IFEX $%制作方案%=3,
+	{
+		CALC gdisk=%所选磁盘%+1
+		CALL 进度设置 20 初始化磁盘
+		EXEC -wait -hide %fbinstA% "%fbinstB%" (hd%所选磁盘%) format --force --raw --fat32 --align
+		PART -xup -super -force -fs0 -mbr init %所选磁盘%
+		CALL 进度设置 30 初始化磁盘
+		EXEC -wait -hide %gdisk32A% "%gdisk32B%" %gdisk% /del /all
+		CALL 进度设置 40 创建EFI分区
+		EXEC -wait -hide %gdisk32A% "%gdisk32B%" %gdisk% /cre /pri /sz:%EFI分区大小% /for /q /v:EFI /END
+		SHOW - %所选磁盘%#1
+		CALL 启动盘分区检测 %所选磁盘% 1
+		IFEX $%分区状况%=0,EXIT
+		CALL 进度设置 50 写入PE文件
+		CALL PECMD复制 %所选磁盘% 1 "%ISO-TEMP%"
+		CALL 启动盘文件检测 %所选磁盘% 1
+		IFEX $%文件状况%=0,EXIT
+		CALL 进度设置 60 创建DATA分区
+		EXEC -wait -hide %gdisk32A% "%gdisk32B%" %gdisk% /cre /pri /sz:10 /y //预留10M的UD分区
+		SHOW - %所选磁盘%#2
+		EXEC -wait -hide %gdisk32A% "%gdisk32B%" %gdisk% /cre /pri /for /NTFS /q /v:DATA /y
+		SHOW - %所选磁盘%#3
+		EXEC -wait -hide %gdisk32A% "%gdisk32B%" %gdisk% /del /p:1 //删除UD分区预留空间
+		EXEC -incmd -wait -hide PECMD.EXE PART -super -xup -swap:2 %所选磁盘%#1
+		EXEC -incmd -wait -hide PECMD.EXE PART -super -xup -swap:3 %所选磁盘%#1
+		SHOW %所选磁盘%#1
+		PART -iv=1 -phy list part %所选磁盘%#1,目标分序
+		DISK 分区盘符,%所选磁盘%,%目标分序%
+		IFEX |%分区盘符%=%空变量%,TEAM SHOW %所选磁盘%#1|DISK 分区盘符,%所选磁盘%,%目标分序%
+		IFEX |%所选格式%=NTFS,FDRV -setvol %分区盘符%=启动盘
+		IFEX [|%所选格式%=exFAT |%所选格式%=FAT32],EXEC -wait -hide %fatioA% "%fatioB%" mkfs %所选磁盘% 1 %所选格式%
+		IFEX [|%所选格式%=exFAT |%所选格式%=FAT32],EXEC -wait -hide %fatioA% "%fatioB%" label %所选磁盘% 1 启动盘
+		IFEX |%所选格式%=FAT32,PART -super %所选磁盘%#1 0x0C
+	}
+	CALL 进度设置 70 创建UD分区
+	EXEC -wait -hide %fbinstA% "%fbinstB%" (hd%所选磁盘%) format --align %磁盘模式%
+	CALL 进度设置 80 写入UD分区
+	EXEC -wait -hide %fbinstA% "%fbinstB%" (hd%所选磁盘%) load "%ud文件%"
+	CALL 进度设置 90 隐藏EFI分区
+	EXEC -wait -hide %BOOTICEA% "%BOOTICEB%" /DEVICE=%所选磁盘%:0 /partitions /activate /quiet
+	PART -super %所选磁盘%#2 0x1C
+_END
+
+_SUB PECMD复制 //传入的 %3 必须带 ""
+	TEAM ENVI 复制磁盘号=%1|ENVI 复制分区号=%2|ENVI 交换分区号=%2|ENVI 复制的文件=%~3|ENVI 交换分区=0
+	IFEX [$%ver%<100 $%v3%<15063],IFEX $%复制分区号%<>1,TEAM EXEC -incmd -wait -hide PECMD.EXE PART -super -xup -swap:1 %复制磁盘号%#%交换分区号%|ENVI 复制分区号=1|ENVI 交换分区=1
+	CALL 查询可用分区 %复制磁盘号% %复制分区号%
+	IFEX |%可用分区%=%空变量%,EXIT
+	EXEC -incmd -wait -hide PECMD.EXE FORX *off /S @"%复制的文件%\*",文件夹,0,MDIR "%可用分区%\%文件夹%"
+	EXEC -incmd -wait -hide PECMD.EXE FORX *off /S "%复制的文件%\*",文件名,0,FILE -su "%复制的文件%\%文件名%"=>"%可用分区%\%文件名%"
+	IFEX $%交换分区%=1,EXEC -incmd -wait -hide PECMD.EXE PART -super -xup -swap:1 %复制磁盘号%#%交换分区号%
+_END
+
+_SUB 启动盘分区检测
+	IFEX $%ver%<51,TEAM ENVI 分区状况=1|EXIT
+	TEAM ENVI 分区检测磁盘=%1|ENVI 分区检测分区=%2|ENVI 分区状况=0
+	EXEC* -wait -hide %fatioA% fatio输出="%fatioB%" list %分区检测磁盘%
+	TEAM READ -,0,fatio输出,%fatio输出%|MSTR 物理序号,磁盘格式,分区大小=<2><3><4>%fatio输出%
+	IFEX [|%磁盘格式%=fat |%磁盘格式%=fat16 |%磁盘格式%=fat32],ENVI 格式满足=1!ENVI 格式满足=0
+	IFEX [$%分区检测分区%=%物理序号% & $%格式满足%=1],ENVI 分区状况=1
+_END
+
+_SUB 启动盘文件检测
+	TEAM ENVI 文件状况=0|ENVI A=0|ENVI B=0|ENVI 交换分区=0
+	TEAM ENVI 文件检测磁盘=%1|ENVI 文件检测分区=%2|ENVI 交换分区号=%2
+	IFEX [$%ver%<100 $%v3%<15063],IFEX $%文件检测分区%<>1,TEAM EXEC -incmd -wait -hide PECMD.EXE PART -super -xup -swap:1 %文件检测磁盘%#%交换分区号%|ENVI 文件检测分区=1|ENVI 交换分区=1
+	CALL 查询可用分区 %文件检测磁盘% %文件检测分区%
+	IFEX |%可用分区%=%空变量%,EXIT
+	FORX @%可用分区%\*,,0,CALC A=%A%+1
+	FORX %可用分区%\*,,0,CALC B=%B%+1
+	IFEX [$%A%>0 & $%B%>0],ENVI 文件状况=1
+	IFEX $%交换分区%=1,EXEC -incmd -wait -hide PECMD.EXE PART -super -xup -swap:1 %文件检测磁盘%#%交换分区号%
+_END
+
+_SUB 查询可用分区
+	TEAM ENVI 查询的磁盘=%1|ENVI 可用分区=
+	PART -iv=1 -phy list part %查询的磁盘%#%2,查询的分区
+	IFEX |%查询的分区%=%空变量%,EXIT
+	IFEX \\?\Harddisk%查询的磁盘%Partition%查询的分区%\,ENVI 可用分区=\\?\Harddisk%查询的磁盘%Partition%查询的分区%
+	IFEX |%可用分区%=%空变量%,PART -iv=1 list volume %查询的磁盘%:%查询的分区%,可用分区
+	IFEX |%可用分区%=%空变量%,DISK 可用分区,%查询的磁盘%,%查询的分区%
+	IFEX |%可用分区%=%空变量%,TEAM SHOW %查询的磁盘%:%查询的分区%|DISK 可用分区,%查询的磁盘%,%查询的分区%
+_END
+
+_SUB 磁盘ID
+	ENVI 目标磁盘ID=
+	FORX*l 1 1 100,,
+	{
+		WAIT 100
+		PART -iv=2 -phy list part %1#%2,磁盘在线
+		IFEX [$%磁盘在线%=0 |%磁盘在线%=%空变量%],EXIT FORX
+		PART -iv=1 list volume %1#%2,目标磁盘ID
+		IFEX |%目标磁盘ID%<>%空变量%,EXIT FORX
+	}
+	IFEX |%目标磁盘ID%=%空变量%,TEAM PART -iv=1 -phy list part %1#%2,磁盘ID分区号|DISK 目标磁盘ID,%1,%磁盘ID分区号%
+	IFEX |%目标磁盘ID%=%空变量%,TEAM SHOW %1:%磁盘ID分区号%|DISK 目标磁盘ID,%1,%磁盘ID分区号%
+_END
+
+_SUB NT5格NTFS
+	IFEX |%1=设置,TEAM CALL 进度设置 10 修改磁盘属性|ENVI 磁盘属性=2
+	IFEX |%1=恢复,TEAM ENVI @进度条.percent=::::修改磁盘属性|ENVI 磁盘属性=3
+	PART -iv=12 -devid list disk %所选磁盘%,磁盘路径ID
+	REGI #HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Enum\%磁盘路径ID%\Device Parameters\Classpnp\UserRemovalPolicy=%磁盘属性%
+	EXEC -incmd -wait -hide PECMD.EXE DEVI *restart:%磁盘路径ID% //重启设备两次
+	EXEC -incmd -wait -hide PECMD.EXE DEVI *restart:%磁盘路径ID%
+	DEVI *status:磁盘重启状况:%磁盘路径ID%
+	IFEX |%磁盘重启状况%=%空变量%,DEVI *enable:%磁盘路径ID%
+	WAIT 500
+	ENVI 所选磁盘=OUT
+	PART list disk ,所有磁盘
+	FORX* %所有磁盘%,循环磁序,
+	{
+		PART -iv=12 -devid list disk %循环磁序%,对应磁盘路径ID
+		IFEX |%对应磁盘路径ID%=%磁盘路径ID%,ENVI 所选磁盘=%循环磁序%
+	}
+_END
+
+_SUB 读取ISO文件大小
+	EXEC* -wait -hide %7zA% &7z输出="%7zB%" l "%ISO镜像%"
+	READ -,0,7z输出,%&7z输出%
+	MSTR ISO文件大小=<4>%7z输出%
+_END
+
+_SUB 检查BOOTMGR
+	EXEC* -wait -hide %7zA% 7z输出="%7zB%" l "%ISO镜像%" bootmgr
+	MSTR 7z输出=<-2>%7z输出%
+	IFEX |%7z输出%>=1,ENVI 有无bootmgr=1!ENVI 有无bootmgr=0
+_END
+
+_SUB 释放ISO
+	IFEX "%ISO-TEMP%\",EXEC -wait -hide cmd.exe /c rd /s /q "%ISO-TEMP%"
+	EXEC -wait -hide %7zA% "%7zB%" x "%ISO镜像%" -o"%ISO-TEMP%"
+	IFEX "%ISO-TEMP%\[BOOT]\",EXEC -wait -hide cmd.exe /c rd /s /q "%ISO-TEMP%\[BOOT]"
+_END
+
+_SUB 进度设置
+	TEAM ENVI 目标进度=%1|ENVI 进度内容=%2
+	IFEX $%目标进度%=0,TEAM ENVI @进度条=0%|CALL 设置任务栏进度 0|EXIT
+	ENVI @进度条=%目标进度%%%进度内容%
+	CALL 设置任务栏进度 %目标进度%
+_END
+
+_SUB 设置任务栏进度
+	IFEX $%ver%<60,EXIT
+	ENVI 任务栏进度=%1
+	IFEX #%任务栏进度%,ENVI 总进度=100!ENVI 总进度=0
+	IFEX |%任务栏进度%=等待,ENVI 任务栏进度=1
+	IFEX |%任务栏进度%=恢复,ENVI 任务栏进度=2
+	IFEX |%任务栏进度%=错误,ENVI 任务栏进度=4
+	IFEX |%任务栏进度%=暂停,ENVI 任务栏进度=8
+	CALL $--ret:* --qd --16 OLE32.DLL,CoCreateInstance,&&hr,*CLSID_TaskbarList,#0,#0x1,*ID_ITaskbarList3,*TaskBarlist
+	IFEX $%总进度%=0,CALL $--ret:&&rs --qd# #,*&TaskBarlist.10,%窗口ID%,%任务栏进度%
+	IFEX $%总进度%>0,CALL $--ret:&&ri --qd:#<< #,*&TaskBarlist.9,%窗口ID%,%任务栏进度%,%总进度%
+_END
+
+_SUB 禁止
+	TEAM ENVI 秒=-1|ENVI 分=0|ENVI 显示分=00|TIME 定时器,1000,CALL 计时器|CALL 计时器
+	TEAM ENVI 退出标记=0|ENVI @窗口.Enable=0
+_END
+
+_SUB 解除
+	TEAM ENVI @计时显示=进度：|CALL 进度设置 0
+	TEAM ENVI 退出标记=1|ENVI @窗口.Enable=1
+	IFEX "%ISO-TEMP%\",EXEC -wait -hide cmd.exe /c rd /s /q "%ISO-TEMP%"
+_END
+
+_SUB 计时器
+	IFEX $%秒%=59,TEAM CALC 分=%分%+1|ENVI 秒=-1
+	IFEX $%秒%<>59,CALC 秒=%秒%+1
+	IFEX $%秒%<10,ENVI 显示秒=0%秒%!ENVI 显示秒=%秒%
+	IFEX $%分%<10,ENVI 显示分=0%分%!ENVI 显示分=%分%
+	ENVI @计时显示=%显示分%:%显示秒%
+_END

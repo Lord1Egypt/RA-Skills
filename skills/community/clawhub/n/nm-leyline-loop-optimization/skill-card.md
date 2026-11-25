@@ -1,6 +1,6 @@
 ## Description:
 
-Decides hand-vs-compiler for loop transforms (unrolling, SIMD, fusion, branchless).
+Decides hand-vs-compiler for loop transforms (unrolling, SIMD, fusion, branchless)
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use this skill when reviewing or writing a profiled hot loop to decide whether a manual transformation is likely to help, and how to validate a speedup.
+Developers use this skill when reviewing or authoring a profiled hot loop to decide whether a manual transformation is useful, redundant, or likely to hurt compiler optimization. It guides profiling, vectorization checks, and benchmarking on representative data.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Loop changes judged from synthetic or unrepresentative benchmarks may be slower on production data.
+Risk: A clean scan does not establish that the skill is risk-free or that its recommendations fit a particular use case.
 
-Mitigation: Profile first and compare performance on representative production-distribution data before claiming a speedup.
-
-Risk: Branchless rewrites can increase memory use and make loop logic harder to maintain, especially when branch outcomes are predictable or selectivity is skewed.
-
-Mitigation: Check production selectivity and allocation costs, and compare against the ordinary branch on representative inputs before adopting the rewrite.
+Mitigation: Review the skill instructions before use and confirm that its profiling and benchmarking guidance suits the loop and workload.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-leyline-loop-optimization)
-- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
-- [Branchless Rust performance example](https://www.greyblake.com/blog/branchless-rust/)
+- [Project homepage (ClawHub metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
+- [Branchless Rust performance reference](https://www.greyblake.com/blog/branchless-rust/)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance]
+**Output Type(s):** [Guidance, Analysis, Code]
 
 **Output Format:** [Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Recommendations and examples are conditioned on language, compiler behavior, profiling results, and input distribution.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

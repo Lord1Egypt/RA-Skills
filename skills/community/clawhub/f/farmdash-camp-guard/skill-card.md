@@ -1,6 +1,6 @@
 ## Description:
 
-Use for pre-sign safety: allowance audits, route and health sentinel checks, and policy scans of unsigned transactions; it returns verdicts and never signs or broadcasts.
+Use for pre-sign safety: allowance audits, route/health sentinel checks, policy scan of unsigned transactions. Verdicts only; never signs or broadcasts.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-DeFi users and agent operators use Camp Guard to review token approvals, swap routes, account health, and unsigned transactions before signing. Its pass, review, or halt verdicts guide whether a workflow can proceed.
+Developers and AI agents use this skill to review ERC-20 allowances, DeFi route or position risk, and unsigned transactions before proceeding toward signing. It returns pass, review, or halt guidance and does not sign or broadcast transactions.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan reports that wallet, allowance, route, and unsigned-transaction details may be sent to FarmDash without clear user disclosure.
+Risk: Risk checks transmit submitted wallet, allowance, route, or unsigned transaction data to FarmDash; quoted route checks can also send route parameters to external quote and pricing providers.
 
-Mitigation: Before use, review what information will be sent and proceed only if you are comfortable sharing it with FarmDash.
+Mitigation: Send only the data needed for the requested check, omit the optional wallet address when possible, and review the FarmDash privacy policy before sharing unpublished transaction details.
 
-Risk: The security scan was partial, and some local references could not be resolved, so its findings may be incomplete.
+Risk: A pass covers supplied-data policy checks and is not a smart-contract audit or RPC execution simulation.
 
-Mitigation: Treat the scan as incomplete and review unresolved references and the skill's behavior before relying on its verdicts.
+Mitigation: Review returned flags and run an independent wallet, RPC, or Tenderly-style simulation before broadcast.
+
+Risk: The security scan reported no findings but had medium confidence because analysis was partial and some local path-like references could not be resolved.
+
+Mitigation: Review the skill and its unresolved references before installation or use.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/parmasanandgarlic/skills/farmdash-camp-guard)
-- [Canonical FarmDash Camp Guard manual](https://www.farmdash.one/openclaw-skills/farmdash-camp-guard/SKILL.md)
-- [FarmDash agent integration documentation](https://www.farmdash.one/docs)
-- [FarmDash OpenAPI contract](https://www.farmdash.one/agents/openapi.yaml)
-- [FarmDash security and authority boundaries](https://www.farmdash.one/security)
-- [FarmDash fees and commercial terms](https://www.farmdash.one/fees)
+- [FarmDash Camp Guard skill manual](https://www.farmdash.one/agents/skills/farmdash-camp-guard)
+- [FarmDash agent documentation](https://www.farmdash.one/docs)
+- [FarmDash Privacy Policy](https://www.farmdash.one/privacy)
+- [FarmDash Security and Authority Boundaries](https://www.farmdash.one/security)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, JSON]
+**Output Type(s):** [Analysis, API Calls, Guidance, JSON]
 
-**Output Format:** [Structured JSON verdicts and risk flags with concise safety guidance]
+**Output Format:** [Structured risk verdicts with flags and safety guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Verdicts are limited to supplied-data policy checks; transaction simulation is not run.]
+**Other Properties Related to Output:** [Read-only; verdicts are pass, review, or halt and do not sign or broadcast transactions.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server-resolved release metadata)
+1.0.3 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

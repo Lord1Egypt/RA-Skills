@@ -43,7 +43,7 @@ def fmt(n):
 def main():
     ap = argparse.ArgumentParser(description="提前还款测算器：缩期 vs 减月供（等额本息）")
     ap.add_argument("--loan", type=float, help="原贷款本金（元）")
-    ap.add_argument("--rate", type=float, help="年利率%（如 3.10）")
+    ap.add_argument("--rate", type=float, help="年利率%%（如 3.10）")
     ap.add_argument("--years", type=int, help="原贷款年限（年）")
     ap.add_argument("--paid", type=int, default=0, help="已还期数（月）")
     ap.add_argument("--balance", type=float, help="剩余本金（元）——直接给则忽略 loan/years 推导")

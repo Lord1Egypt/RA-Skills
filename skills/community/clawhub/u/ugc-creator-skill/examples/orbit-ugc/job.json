@@ -1,0 +1,17 @@
+{
+ "campaign": "campaign.json",
+ "script": "script.json",
+ "manifest": "videos/manifest.json",
+ "timezone": "America/New_York",
+ "ai_generated": false,
+ "accounts": [
+  {"name": "TikTok", "platform": "TIKTOK", "handle": "@example.creator", "socialAccountId": "example-tiktok-1", "privacyOptions": ["PUBLIC_TO_EVERYONE", "MUTUAL_FOLLOW_FRIENDS", "SELF_ONLY"], "privacyLevel": "PUBLIC_TO_EVERYONE", "allowComment": true, "allowDuet": false, "allowStitch": false, "marketplace_verified": true, "audience": {"US": 0.46, "UK": 0.08, "CA": 0.04}},
+  {"name": "Reels", "platform": "INSTAGRAM", "handle": "@example.creator", "socialAccountId": "example-instagram-1", "marketplace_verified": true, "audience": {"US": 0.41, "UK": 0.1}},
+  {"name": "Shorts", "platform": "YOUTUBE", "handle": "@examplecreator", "privacy": "public", "madeForKids": false, "marketplace_verified": true, "by_hand": true, "audience": {"US": 0.38, "CA": 0.05, "AU": 0.03}}
+ ],
+ "posts": [
+  {"id": "orbit-tiktok", "account": "TikTok", "file": "videos/tiktok.mp4", "caption": "#ad This launch could be your lock screen: a new space photo every day. Example Orbit, made-up app for this demo @example.orbit #exampleorbit #space"},
+  {"id": "orbit-reels", "account": "Reels", "file": "videos/reels.mp4", "caption": "#ad A new space photo every day, two taps to make it your wallpaper. @example.orbit #exampleorbit #space"},
+  {"id": "orbit-shorts", "account": "Shorts", "file": "videos/shorts.mp4", "title": "Finding today's space photo", "caption": "#ad Watch me find today's space photo and save it as a wallpaper in Example Orbit (a made-up app). @example.orbit #exampleorbit", "tags": ["space", "wallpaper", "example"]}
+ ]
+}

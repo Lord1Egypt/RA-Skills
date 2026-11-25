@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "id": "template-demo-mixcut",
+  "kind": "script_template",
+  "revision": 1,
+  "name": "Original opening, explanation and visible demonstration",
+  "tags": ["semantic-mixcut", "fictional-example"],
+  "status": "draft",
+  "sources": [],
+  "assets": [],
+  "payload": {
+    "original_script": "",
+    "variables": {
+      "product_facts": {"required": true, "source": "current product evidence"},
+      "language": {"required": true, "source": "current brief"},
+      "material_scope": {"required": true, "source": "current account and selected material IDs"}
+    },
+    "segments": [
+      {"id": "hook", "purpose": "Introduce the real situation with a complete original utterance"},
+      {"id": "explain", "purpose": "Explain a supported feature and show its demonstration"},
+      {"id": "action", "purpose": "Let the action and its actual sound be heard"},
+      {"id": "close", "purpose": "Explain the visible result"}
+    ],
+    "editing": {
+      "version": 1,
+      "render_target": "vibbit_cloud",
+      "matching_executor": "agent",
+      "reference_times_are_output_timing": false,
+      "beats": [
+        {"id": "opening", "segment_id": "hook", "purpose": "Establish the situation", "visual_need": "The original speaker and relevant action", "audio_mode": "original", "cut_trigger": "A complete original utterance ends", "material_requirements": ["Verified source speech and context"]},
+        {"id": "explanation", "segment_id": "explain", "purpose": "Connect explanation to evidence", "visual_need": "Avatar followed by a visible product demonstration", "audio_mode": "narration", "cut_trigger": "The adopted speech names the demonstrated feature", "material_requirements": ["Current product and actual action", "Avatar driven by adopted audio"]},
+        {"id": "action-sound", "segment_id": "action", "purpose": "Make the action audible", "visual_need": "Complete action with synchronized original sound", "audio_mode": "ambience", "cut_trigger": "The action finishes", "material_requirements": ["Listen to the original sound; no inferred effects"]},
+        {"id": "ending", "segment_id": "close", "purpose": "Explain the result", "visual_need": "Result followed by the speaker", "audio_mode": "narration", "cut_trigger": "The concluding phrase finishes", "material_requirements": ["Verified visible result"]}
+      ],
+      "audio_rules": ["One primary speech track at a time", "Continue the adopted voice across B-roll", "Keep original sound once and lower music under speech"],
+      "selection_rules": ["Agent compares observed candidates within the selected pool", "Do not invent evidence or reuse a different product", "Missing material requires a revised design or an authorized new asset"],
+      "applicability": ["The product has a visible demonstration", "Original speech and action sound are actually available", "Cloud track controls required by the plan have been verified"]
+    }
+  }
+}

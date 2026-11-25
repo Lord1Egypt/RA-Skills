@@ -23,6 +23,7 @@ from crisis_engine import (
     CrisisLevel, CrisisClassification, SafetyScore,
     DecisionPlan, classify_crisis, match_solutions, load_solution_templates,
 )
+from path_safety import safe_component, safe_join
 
 DECISIONS_DIR = PROJECT_ROOT / ".guardian" / "decisions"
 
@@ -140,7 +141,7 @@ def _save_decision_audit(classification: CrisisClassification,
         },
     }
 
-    audit_file = DECISIONS_DIR / f"audit_{selected_plan.plan_id}.json"
+    audit_file = safe_join(DECISIONS_DIR, f"audit_{safe_component(selected_plan.plan_id)}.json")
     with open(audit_file, "w", encoding="utf-8") as f:
         json.dump(audit, f, ensure_ascii=False, indent=2)
 
@@ -152,41 +153,48 @@ def human_in_the_loop(plan: DecisionPlan, crisis_level: CrisisLevel) -> dict:
     Returns:
         包含执行模式和确认要求的字典
     """
+    # v0.3.1: advisory-only. No level may authorize autonomous execution.
+    # timeout_s is a suggested human response window, never an auto-execute trigger.
     modes = {
         CrisisLevel.L5_CRITICAL: {
-            "mode": "autonomous_execute",
-            "description": "自主执行，事后通知",
-            "wait_for_confirm": False,
-            "timeout_s": 0,
-            "reason": "L5危机无时间等待人工确认",
+            "mode": "advisory_only",
+            "description": "输出最高优先级建议并立即通知操作员，由持证操作员决策",
+            "execution": "none",
+            "wait_for_confirm": True,
+            "timeout_s": 3,
+            "reason": "L5 时间极短，但仍不得替代人工决策",
         },
         CrisisLevel.L4_SEVERE: {
-            "mode": "autonomous_with_notification",
-            "description": "自主执行，同步通知操作员",
-            "wait_for_confirm": False,
-            "timeout_s": 0,
-            "reason": "L4危机需立即行动",
+            "mode": "advisory_only",
+            "description": "输出建议并同步通知操作员，由持证操作员决策",
+            "execution": "none",
+            "wait_for_confirm": True,
+            "timeout_s": 10,
+            "reason": "L4 需快速人工响应，但不得自动执行",
         },
         CrisisLevel.L3_MAJOR: {
-            "mode": "recommend_with_timeout",
-            "description": "推荐方案，等待5秒确认，超时自动执行",
+            "mode": "recommend_await_confirm",
+            "description": "推荐方案，等待操作员确认；超时只升级通知，不执行",
+            "execution": "none",
             "wait_for_confirm": True,
             "timeout_s": 5,
-            "reason": "L3危机有短暂决策窗口",
+            "reason": "L3 有短暂人工决策窗口",
         },
         CrisisLevel.L2_MINOR: {
             "mode": "recommend_await_confirm",
-            "description": "推荐方案，等待操作员确认后执行",
+            "description": "推荐方案，等待操作员确认后由其执行",
+            "execution": "none",
             "wait_for_confirm": True,
             "timeout_s": 120,
-            "reason": "L2危机允许人工决策",
+            "reason": "L2 允许常规人工决策",
         },
         CrisisLevel.L1_CAUTION: {
             "mode": "advisory_only",
             "description": "仅提醒，由操作员决策",
+            "execution": "none",
             "wait_for_confirm": True,
             "timeout_s": 300,
-            "reason": "L1级别操作员自行判断",
+            "reason": "L1 由操作员自行判断",
         },
     }
 

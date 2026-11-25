@@ -14,3 +14,6 @@ The Scope 2 page identifies the 2015 guidance and a consultation process; the Pr
 For ISO 14064-1 and ISO 14067, obtain the exact authorized edition from the user or official ISO catalog and record accessible clause coverage. No ISO text is bundled, and licensed clause completeness was not verified for this release. Do not claim ISO conformity merely because a checklist resembles a standard.
 
 Record authority/title/edition, access date, page/table/clause, relevant original paraphrase, evidence coverage and unresolved updates. Separate what the source says from project policy and reviewer judgment. Do not scrape or redistribute restricted text.
+
+## Conditional AI governance
+For authorized AI-workflow questions, see [AI transparency sources and status](ai-governance.md). The2026-11-22legal snapshot does not replace per-engagement checks of current authentic law, role, use case, dates or legal advice. Carbon methodology and assurance remain separate.

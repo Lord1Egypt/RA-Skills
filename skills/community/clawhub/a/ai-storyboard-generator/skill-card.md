@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Filmmakers, advertisers, animators, and social video creators use the skill to turn a script or creative brief into a reviewable shot list, then select up to four shots for storyboard key frames.
+External filmmakers, animators, marketers, and creative teams use this skill to turn scripts, scenes, or advertising briefs into an editable shot plan and selected storyboard key frames for review before production.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The requested Beatra authorization includes spending and voice-management access beyond storyboard creation.
+Risk: The security evidence rates the skill suspicious due to broader-than-needed permissions, recurring installation telemetry, and risky shared-state cleanup; the scan is incomplete because some local references could not be resolved.
 
-Mitigation: Review the authorization scope before connecting; revoke device access through the Beatra Console when needed.
-
-Risk: Uploaded material is shared with Beatra, and the skill uses recurring installation analytics.
-
-Mitigation: Upload only material you are permitted to share, and review the updates and security guidance.
-
-Risk: The uninstall flaw may disconnect other Beatra skills.
-
-Mitigation: If using multiple Beatra skills, confirm corrected uninstall validation before relying on automatic cleanup.
+Mitigation: Review the unresolved references and cleanup behavior before installation, narrow permissions to storyboard work, and require clear telemetry disclosure with an opt-out.
 
 ## Reference(s):
 
-- [Storyboard planning and key frames](references/workflow.md)
-- [Installation and authentication](references/installation-and-auth.md)
-- [Updates and security](references/updates-and-security.md)
-- [Uninstall and disconnect](references/uninstall-and-disconnect.md)
 - [Beatra skill page](https://beatra.ai/skills/ai-storyboard-generator)
 - [ClawHub release page](https://clawhub.ai/beatra-ai/skills/ai-storyboard-generator)
+- [Storyboard planning and key frames](references/workflow.md)
+- [Updates and security](references/updates-and-security.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Images]
+**Output Type(s):** [Text, Markdown, Images]
 
-**Output Format:** [Editable Markdown shot list and up to four generated storyboard key-frame images.]
+**Output Format:** [Structured Markdown shot list with storyboard key-frame image artifacts when requested and approved]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Key frames are optional and require approval before paid generation.]
+**Other Properties Related to Output:** [Includes shot beats, composition, camera intent, timing, dialogue or sound cues, and concise frame prompts; produces one to four approved key frames.]
 
 ## Skill Version(s):
 
-0.2.8 (source: server-resolved release evidence)
+0.2.9 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

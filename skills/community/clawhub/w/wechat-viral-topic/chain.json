@@ -1,0 +1,22 @@
+{
+ "schema": "lgd-chain/1.0",
+ "from": "wechat-viral-topic",
+ "handoff": [
+  {
+   "when": "选题定了，要开评审会定分工",
+   "to": "summarize-pro",
+   "handoff": "会开完把逐字稿交给它，要「定了什么/谁真接活」两栏"
+  },
+  {
+   "when": "选题涉及技术事实，需要核实",
+   "to": "debug-pro",
+   "handoff": "把待核实的技术断言交给它，只要「能确认/未确认」，不接受推测"
+  },
+  {
+   "when": "要证明选题能力本身达标",
+   "to": "lgd-skill-review",
+   "handoff": "`--type content --run`，重点看「红线单列/不作虚假承诺」"
+  }
+ ],
+ "note": "收尾时按 when 条件把活交给 to，并递上 handoff 里点名的材料；不递空话。"
+}

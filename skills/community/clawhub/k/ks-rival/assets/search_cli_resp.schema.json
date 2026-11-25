@@ -1,0 +1,42 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "快手关键词搜索 - results 元素",
+    "description": "搜索成功时 results 数组中的一条。空字符串和数字 0 可能不返回。互动数是数字。整份 stdout 见 output_envelope.schema.json。",
+    "properties": {
+        "id": { "type": "string", "description": "视频 ID。交给评论命令" },
+        "caption": { "type": "string", "description": "视频标题" },
+        "timestamp": { "type": "number", "description": "发布时间戳。文档未写秒或毫秒" },
+        "time": { "type": "string", "description": "发布时间" },
+        "thumbnail": { "type": "string", "description": "视频封面 URL" },
+        "mv": {
+            "type": "array",
+            "description": "视频 URL 列表",
+            "items": { "type": "string", "description": "视频 URL" }
+        },
+        "duration": { "type": "number", "description": "视频时长" },
+        "url": { "type": "string", "description": "视频 URL。交给评论命令" },
+        "user": {
+            "type": "object",
+            "description": "作者信息",
+            "properties": {
+                "id": { "type": "string", "description": "作者快手号。不要把这个字段交给作品命令" },
+                "sex": { "type": "string", "description": "作者性别。文档未给枚举" },
+                "name": { "type": "string", "description": "作者昵称" },
+                "user_id": { "type": "number", "description": "作者 UID。交给作品命令时写成十进制字符串" },
+                "avatar": { "type": "string", "description": "作者头像 URL" },
+                "url": { "type": "string", "description": "作者主页 URL。交给作品命令" }
+            }
+        },
+        "recToFriendCount": { "type": "number", "description": "推荐数" },
+        "rewardCount": { "type": "number", "description": "文档未说明" },
+        "collect_count": { "type": "number", "description": "收藏数" },
+        "screenshotCount": { "type": "number", "description": "文档未说明" },
+        "downloadCount": { "type": "number", "description": "下载数" },
+        "like_count": { "type": "number", "description": "点赞数" },
+        "forward_count": { "type": "number", "description": "转发数" },
+        "view_count": { "type": "number", "description": "播放数" },
+        "share_count": { "type": "number", "description": "分享数" },
+        "comment_count": { "type": "number", "description": "评论数" }
+    }
+}

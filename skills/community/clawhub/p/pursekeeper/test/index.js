@@ -183,3 +183,135 @@ test('send with a lost reply publishes and accepts exactly one block', { timeout
 test('receive with a lost reply returns the original accepted block', { timeout: 15000 }, async t => {
   await lostReply(t, 'receive');
 });
+
+test('post(/v1/process) and post(/v1/work) wait out 429 Retry-After instead of aborting receive or sleeping 20s', { timeout: 15000 }, async t => {
+  const seed = randomBytes(32).toString('hex');
+  const owner = identity(seed);
+  const peer = identity(randomBytes(32).toString('hex'));
+  let frontier = INITIAL_FRONTIER;
+  let balance = INITIAL_BALANCE;
+  let pending = true;
+  let workAttempts = 0;
+  let processAttempts = 0;
+  const dir = await mkdtemp(join(tmpdir(), 'pursekeeper-429-'));
+  const preload = join(dir, 'local-only.cjs');
+  let server;
+  t.after(async () => {
+    if (server?.listening) {
+      await new Promise((done, reject) => {
+        server.close(error => error ? reject(error) : done());
+        server.closeAllConnections();
+      });
+    }
+    await rm(dir, { recursive: true, force: true });
+  });
+  await writeFile(preload, localOnly);
+
+  server = createServer(async (req, res) => {
+    const json = (body, status = 200, extraHeaders = {}) => {
+      res.writeHead(status, { 'Content-Type': 'application/json', ...extraHeaders });
+      res.end(JSON.stringify(body));
+    };
+    const url = new URL(req.url, 'http://127.0.0.1');
+    if (req.method === 'GET' && url.pathname === '/v1/account_info') {
+      return json({ found: true, frontier, balance_raw: balance.toString(), representative: owner.account });
+    }
+    if (req.method === 'GET' && url.pathname === '/v1/receivable') {
+      return json({ blocks: pending ? [{ hash: SOURCE_HASH, amount_raw: AMOUNT.toString(), from: peer.account }] : [] });
+    }
+    if (req.method === 'POST' && url.pathname === '/v1/work') {
+      await readJSON(req);
+      workAttempts++;
+      if (workAttempts === 1) return json({ error: 'limit is 6 free work_generate calls per minute per IP' }, 429, { 'Retry-After': '1' });
+      return json({ work: WORK });
+    }
+    if (req.method === 'POST' && url.pathname === '/v1/process') {
+      const { block } = await readJSON(req);
+      processAttempts++;
+      if (processAttempts === 1) return json({ error: 'limit is 60 checks per minute per IP' }, 429, { 'Retry-After': '1' });
+      const hash = N.hashBlock(block);
+      frontier = hash;
+      balance += AMOUNT;
+      pending = false;
+      return json({ ok: true, hash });
+    }
+    json({ error: 'unexpected route' }, 404);
+  });
+  await new Promise((done, reject) => { server.once('error', reject); server.listen(0, '127.0.0.1', done); });
+  const API = `http://127.0.0.1:${server.address().port}`;
+  const t0 = Date.now();
+  const { stdout, stderr } = await exec(process.execPath, ['--require', preload, script, 'receive'], {
+    cwd: root,
+    env: { API, NANO_SEED: seed, NANO_INDEX: '0', NANO_REP: owner.account, NODE_PATH: join(root, 'node_modules') },
+    timeout: 10000,
+  });
+  const elapsed = Date.now() - t0;
+  assert.equal(workAttempts, 2, 'work retried after 429');
+  assert.equal(processAttempts, 2, 'process retried after 429 instead of aborting publish()');
+  assert.ok(elapsed < 6000, `Retry-After: 1 honoured on POST (elapsed ${elapsed}ms)`);
+  assert.match(stderr, /rate limited on \/v1\/work/);
+  assert.match(stderr, /rate limited on \/v1\/process/);
+  assert.match(stdout, /^receive 1 /);
+});
+
+test('post(/v1/process) with non-JSON 502 HTML body names HTTP status and checks whether the block landed', { timeout: 15000 }, async t => {
+  const seed = randomBytes(32).toString('hex');
+  const owner = identity(seed);
+  const peer = identity(randomBytes(32).toString('hex'));
+  let frontier = INITIAL_FRONTIER;
+  let balance = INITIAL_BALANCE;
+  let acceptedHash = null;
+  const dir = await mkdtemp(join(tmpdir(), 'pursekeeper-html502-'));
+  const preload = join(dir, 'local-only.cjs');
+  let server;
+  t.after(async () => {
+    if (server?.listening) {
+      await new Promise((done, reject) => {
+        server.close(error => error ? reject(error) : done());
+        server.closeAllConnections();
+      });
+    }
+    await rm(dir, { recursive: true, force: true });
+  });
+  await writeFile(preload, localOnly);
+
+  server = createServer(async (req, res) => {
+    const json = (body, status = 200) => {
+      res.writeHead(status, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify(body));
+    };
+    const url = new URL(req.url, 'http://127.0.0.1');
+    if (req.method === 'GET' && url.pathname === '/v1/account_info') {
+      return json({ found: true, frontier, balance_raw: balance.toString(), representative: owner.account });
+    }
+    if (req.method === 'GET' && url.pathname === '/v1/receivable') {
+      return json({ blocks: [] });
+    }
+    if (req.method === 'POST' && url.pathname === '/v1/work') {
+      await readJSON(req);
+      return json({ work: WORK });
+    }
+    if (req.method === 'POST' && url.pathname === '/v1/process') {
+      const { block } = await readJSON(req);
+      acceptedHash = N.hashBlock(block);
+      frontier = acceptedHash;
+      balance -= AMOUNT;
+      res.writeHead(502, { 'Content-Type': 'text/html' });
+      res.end('<html><body>502 Bad Gateway</body></html>');
+      return;
+    }
+    if (req.method === 'GET' && url.pathname === '/v1/verify') {
+      return json({ found: true, hash: acceptedHash });
+    }
+    json({ error: 'unexpected route' }, 404);
+  });
+  await new Promise((done, reject) => { server.once('error', reject); server.listen(0, '127.0.0.1', done); });
+  const API = `http://127.0.0.1:${server.address().port}`;
+  const { stdout, stderr } = await exec(process.execPath, ['--require', preload, script, 'send', peer.account, '1'], {
+    cwd: root,
+    env: { API, NANO_SEED: seed, NANO_INDEX: '0', NANO_REP: owner.account, NODE_PATH: join(root, 'node_modules') },
+    timeout: 10000,
+  });
+  assert.match(stderr, /HTTP 502 from \/v1\/process with no JSON body/);
+  assert.ok(stdout.includes(acceptedHash));
+});

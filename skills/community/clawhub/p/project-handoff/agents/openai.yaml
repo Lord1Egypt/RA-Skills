@@ -1,0 +1,10 @@
+interface:
+  display_name: "Project Handoff"
+  short_description: "Read or generate a project handoff"
+  brand_color: "#C25A2C"
+  default_prompt: "Show the latest active handoff for my Flow Relay project or generate a fresh one."
+policy:
+  products:
+    - CHAT
+    - CODEX
+  allow_implicit_invocation: true

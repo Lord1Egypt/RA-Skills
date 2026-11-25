@@ -1,0 +1,27 @@
+{
+  "manifest": "dubbed/manifest.json",
+  "start": "2026-12-01",
+  "order": ["names", "crew"],
+  "accounts": [
+    {"name": "TikTok ES", "platform": "TIKTOK", "output": "vertical", "language": "es",
+     "timezone": "America/Mexico_City", "times": ["19:00"], "privacyLevel": "PUBLIC_TO_EVERYONE"},
+    {"name": "Shorts ES", "platform": "YOUTUBE", "output": "vertical", "language": "es",
+     "timezone": "America/Mexico_City", "times": ["19:00"], "privacy": "public", "category": "28", "madeForKids": false},
+    {"name": "Reels BR", "platform": "INSTAGRAM", "output": "vertical", "language": "pt-BR",
+     "timezone": "America/Sao_Paulo", "times": ["19:00"]},
+    {"name": "TikTok BR", "platform": "TIKTOK", "output": "vertical", "language": "pt-BR",
+     "timezone": "America/Sao_Paulo", "times": ["19:00"], "privacyLevel": "PUBLIC_TO_EVERYONE"}
+  ],
+  "posts": {
+    "names": {
+      "es": {"text": "Un astronauta de la NASA explica por qué diseñaron la nave Dragon para que nadie maldiga sus nombres en el futuro. #astronauta #nasa #spacex #espacio",
+             "title": "Por qué la nave Dragon tenía que ser fácil de usar"},
+      "pt-BR": {"text": "Um astronauta da NASA conta por que a nave Dragon foi feita para ninguém xingar o nome deles no futuro. #astronauta #nasa #spacex #espaço"}
+    },
+    "crew": {
+      "es": {"text": "La regla de oro de la nave Dragon: no hay que salvar la misión, hay que salvar a la tripulación. #astronauta #nasa #spacex",
+             "title": "La regla de oro de la nave Dragon"},
+      "pt-BR": {"text": "A regra de ouro da nave Dragon: não é salvar a missão, é salvar a tripulação. #astronauta #nasa #spacex"}
+    }
+  }
+}

@@ -1,6 +1,6 @@
 ## Description:
 
-Helps teams compare multi-agent frameworks, design architectures, and prepare starter code and evaluation plans.
+Compares multi-agent frameworks and provides architecture recommendations, starter-code scaffolds, and evaluation guidance.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers, data scientists, and product teams use the skill to select a multi-agent framework and prepare architecture, starter-code, evaluation, and cost-planning materials for review.
+Developers, AI engineers, and product teams use this skill to compare multi-agent frameworks, design orchestration architectures, and prepare starter code, evaluation plans, and cost estimates.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: A CrewAI example may run a workflow that uses external search, beyond architecture advice and scaffolds.
+Risk: Security evidence notes the skill may run a CrewAI research workflow and use external web search when dependencies and credentials are available.
 
-Mitigation: Review generated workflow code and approve any external search access before running it.
+Mitigation: Avoid sharing sensitive information and review whether external research is appropriate before use.
 
-Risk: The security scan is partial because a local reference was unresolved.
+Risk: Security analysis is incomplete because a local reference could not be resolved.
 
-Mitigation: Resolve and review the referenced material before relying on the clean scan verdict.
+Mitigation: Review the unresolved reference before relying on the security assessment.
 
 ## Reference(s):
 
-- [AI Agent Orchestration Advisor on ClawHub](https://clawhub.ai/gechengling/skills/ai-agent-orchestration-advisor)
+- [ClawHub release: AI Agent Orchestration Advisor 3.0.4](https://clawhub.ai/gechengling/skills/ai-agent-orchestration-advisor)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Code, Guidance]
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
 
-**Output Format:** [Markdown with comparison tables, architecture descriptions, Python starter code, and evaluation guidance]
+**Output Format:** [Markdown with comparison tables, architecture diagrams, evaluation checklists, and Python starter code]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Framework recommendations and ecosystem details may become outdated; review against current official documentation.]
+**Other Properties Related to Output:** [Recommendations and starter code are for review; framework capabilities and version details require verification.]
 
 ## Skill Version(s):
 
-3.0.3 (source: frontmatter)
+3.0.4 (source: frontmatter)
 
 ## Ethical Considerations:
 

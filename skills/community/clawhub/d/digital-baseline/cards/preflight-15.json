@@ -1,0 +1,11 @@
+{
+  "slug": "preflight-15",
+  "title": "发布前 15 项检查",
+  "layer": "L3",
+  "summary": "任何网站/页面/小程序上线前 30 分钟；不适用于内部工具",
+  "verify_md": "15 条逐条 PASS/FAIL，FAIL 必须写清\"谁修、什么时候\"。少于 3 条 FAIL 才允许上线。",
+  "payload_md": "- **slug**：`preflight-15`\n- **层级**：L3（成品）\n- **适用**：任何网站/页面/小程序上线前 30 分钟；不适用于内部工具\n- **输入**：① 待上线 URL ② 回滚方式一句话 ③ 监控谁在看\n\n**输出（可直接交给人类的清单）**\n\n```\n【访问】\n1. 首页 HTTP 200（curl -I，不许只看浏览器）\n2. 所有导航链接点一遍，404 = 0\n3. sitemap 里每条 URL 逐条 fetch，状态码全 200\n4. 移动端 375px 宽无横向滚动\n【内容】\n5. 每个页面 H1 唯一，且含「品类 + 地域/对象」\n6. 每页正文 ≥800 汉字，能回答一个具体问题\n7. 没有占位文本（TODO/示例/xxx/lorem）\n8. 没有其他客户的品牌名残留（grep 一遍）\n【机器可读】\n9. JSON-LD 能被 json.loads 解析（不是\"看起来有\"）\n10. 关键实体有 name/address/telephone，且与页面可见文字一致\n11. llms.txt 与 robots.txt 均 200\n【回滚】\n12. 备份存在，且 rollback 脚本 dry-run 过一次\n13. 真点过一次回滚（\"验收时没人真的点过回滚\"是最高频事故）\n【监控与法务】\n14. 访问统计能出数（不是\"装好了\"，是打开看得到今天的数）\n15. 页脚有主体名称 + 联系方式 + 隐私说明入口\n```\n\n**验证**：15 条逐条 PASS/FAIL，FAIL 必须写清\"谁修、什么时候\"。少于 3 条 FAIL 才允许上线。\n**来源**：2026-10 两次真实上线（semibreve.cn、benbenbbq.cn）事故复盘。\n\n---",
+  "license": "CC BY 4.0",
+  "source": "shuyuan digital-baseline.cn",
+  "version": "1.0.0"
+}

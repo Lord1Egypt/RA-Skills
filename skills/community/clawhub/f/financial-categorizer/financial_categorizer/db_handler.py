@@ -153,6 +153,7 @@ class DatabaseHandler:
                             CHECK(status IN ('pending','settled')),
                 matched_rule_id INTEGER REFERENCES match_rules(id) ON DELETE SET NULL,
                 adjusted_amount REAL,
+                balance     REAL,
                 occurrence  INTEGER NOT NULL DEFAULT 1,
                 UNIQUE(date, description, amount, account_id, status, occurrence)
             )""")
@@ -236,6 +237,9 @@ class DatabaseHandler:
         cols_tx = [row[1] for row in cur.fetchall()]
         if "recurring_id" not in cols_tx:
             cur.execute("ALTER TABLE transactions ADD COLUMN recurring_id INTEGER REFERENCES recurring_payments(id) ON DELETE SET NULL")
+
+        if "balance" not in cols_tx:
+            cur.execute("ALTER TABLE transactions ADD COLUMN balance REAL")
 
         cur.execute("PRAGMA table_info(transaction_links)")
         cols_links = [row[1] for row in cur.fetchall()]
@@ -392,6 +396,7 @@ class DatabaseHandler:
                     matched_rule_id INTEGER REFERENCES match_rules(id) ON DELETE SET NULL,
                     adjusted_amount REAL,
                     recurring_id INTEGER REFERENCES recurring_payments(id) ON DELETE SET NULL,
+                    balance     REAL,
                     occurrence  INTEGER NOT NULL DEFAULT 1,
                     UNIQUE(date, description, amount, account_id, status, occurrence)
                 )""")
@@ -404,6 +409,7 @@ class DatabaseHandler:
                 "id", "date", "description", "amount", "account_id",
                 "source_file", "imported_at", "category_id", "comment",
                 "status", "matched_rule_id", "adjusted_amount", "recurring_id",
+                "balance",
             }
             copy_cols = [c for c in legacy_cols if c in new_cols]
             cols_str = ", ".join(copy_cols + ["occurrence"])
@@ -535,6 +541,76 @@ class DatabaseHandler:
             }
             for row in cur.fetchall()
         ]
+
+    def get_balances(self, as_of: str | None = None) -> list[dict]:
+        """Return the latest known balance per account, from imported CSV data.
+
+        The bank CSV ``Saldo`` column is the account balance *after* each
+        posting, so an account's balance is the one on its most recent
+        balance-carrying row. Pending reservations never carry a balance (the
+        money has not left the account yet) and are ignored here.
+
+        Within a single day the exports list postings newest-first, so the
+        newest posting is the row inserted *first* for that date and the
+        closing balance belongs to the lowest id of the most recent import.
+        Ordering by ``id DESC`` would instead return the day's opening balance,
+        because the last row of the block is the oldest posting.
+
+        Args:
+            as_of: Optional ISO date (YYYY-MM-DD). When given, the balance is
+                the last one known on or before that date instead of the
+                latest overall.
+
+        Returns:
+            One dict per account, in name order. ``date`` and ``balance`` are
+            None for accounts with no imported balance data yet.
+        """
+        cur = self.get_cursor()
+        cur.execute("SELECT id, name, type, currency FROM accounts ORDER BY name")
+        accounts = cur.fetchall()
+
+        balances = []
+        for acct_id, name, acct_type, currency in accounts:
+            date_clause = " AND date <= ?" if as_of else ""
+            params = (acct_id, as_of) if as_of else (acct_id,)
+            cur.execute(
+                "SELECT MAX(date) FROM transactions "
+                "WHERE account_id = ? AND balance IS NOT NULL" + date_clause,
+                params,
+            )
+            latest_date = cur.fetchone()[0]
+
+            balance = None
+            if latest_date is not None:
+                cur.execute(
+                    "SELECT id, source_file, balance FROM transactions "
+                    "WHERE account_id = ? AND balance IS NOT NULL AND date = ? "
+                    "ORDER BY id",
+                    (acct_id, latest_date),
+                )
+                day_rows = cur.fetchall()
+                # The newest export covering this date owns its closing
+                # balance: it holds the highest id. Inside that export the
+                # postings are newest-first, so the lowest id of the file is
+                # the newest posting.
+                newest_source = day_rows[-1][1]
+                same_source = [
+                    row for row in day_rows
+                    if row[1] == newest_source or (row[1] is None and newest_source is None)
+                ]
+                balance = same_source[0][2] if same_source else None
+
+            balances.append(
+                {
+                    "account_id": acct_id,
+                    "name": name,
+                    "type": acct_type,
+                    "currency": currency,
+                    "date": latest_date,
+                    "balance": balance,
+                }
+            )
+        return balances
 
     def update_account(
         self,

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-People interested in Western natal astrology use this skill to interpret chart placements and major aspects from their birth date, time, and birthplace. It provides a personalized reading focused on personality themes, strengths, challenges, and the user's question.
+People interested in Western astrology provide their birth date, time, and place to receive a natal-chart interpretation covering the Sun, Moon, Ascendant, planetary placements, and major aspects.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill sends exact birth date, time, and birthplace to api.xinjianxue.com; retention and deletion terms are not supplied.
+Risk: ClawScan reports wallet setup and payment-software installation concerns, along with missing disclosure about sending birth details to an external service; the reports do not establish that a payment or transfer occurs.
 
-Mitigation: Share these details only if comfortable sending them to the service.
-
-Risk: Each completed chart costs ¥6 and requires Alipay authorization.
-
-Mitigation: Check the payment recipient and amount before authorizing payment.
+Mitigation: Before use, review the payment setup and endpoint, disclose how birth details are handled and that a successful chart costs 6 CNY, and obtain consent before installing payment software or initiating payment.
 
 ## Reference(s):
 
-- [Natal chart API contract](artifact/references/api.md)
-- [Chart interpretation framework](artifact/references/reading.md)
+- [Astrology API reference](references/api.md)
+- [Payment process](references/payment.md)
+- [Chart interpretation guidance](references/reading.md)
 - [ClawHub skill page](https://clawhub.ai/weixin97676414/skills/xinjianxue-western-astrology)
+- [Astrology API endpoint](https://api.xinjianxue.com/api/xinjianxue/aipay/astro-natal)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Text, Markdown]
 
-**Output Format:** [Markdown with headings and emphasized key points]
+**Output Format:** [Markdown with section headings and emphasized key points]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Personalized, interpretive chart reading based on service-returned placements and major aspects; uncertainty is stated when birth time is uncertain.]
+**Other Properties Related to Output:** [Uses chart fields returned by the service and notes uncertainty when birth time is unreliable.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server-resolved release evidence)
+2.0.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

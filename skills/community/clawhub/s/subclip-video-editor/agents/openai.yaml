@@ -1,0 +1,4 @@
+interface:
+  display_name: "Subclip Video Editor"
+  short_description: "Route complete edits through Subclip's native tools"
+  default_prompt: "Use -video-editor to inspect this project and complete the requested video edit."

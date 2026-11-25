@@ -59,13 +59,13 @@ if [ -n "${VARG_API_KEY:-}" ]; then
   if command -v curl &>/dev/null; then
     RESPONSE=$(curl -s -w "\n%{http_code}" \
       -H "Authorization: Bearer $VARG_API_KEY" \
-      "https://api.varg.ai/v1/balance" 2>/dev/null || echo "error")
+      "https://api.varg.ai/v2/billing/balance" 2>/dev/null || echo "error")
 
     HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
     BODY=$(echo "$RESPONSE" | sed '$d')
 
     if [ "$HTTP_CODE" = "200" ]; then
-      BALANCE=$(echo "$BODY" | grep -o '"balance_cents":[0-9]*' | grep -o '[0-9]*' || echo "")
+      BALANCE=$(echo "$BODY" | grep -o '"available":[0-9]*' | grep -o '[0-9]*' || echo "")
       if [ -n "$BALANCE" ]; then
         DOLLARS=$(echo "scale=2; $BALANCE / 100" | bc 2>/dev/null || echo "?")
         echo "  $(green '[OK]') Gateway connected. Balance: $BALANCE credits (\$$DOLLARS)"
@@ -90,13 +90,13 @@ elif check_saved_credentials; then
   if command -v curl &>/dev/null; then
     RESPONSE=$(curl -s -w "\n%{http_code}" \
       -H "Authorization: Bearer $VARG_API_KEY" \
-      "https://api.varg.ai/v1/balance" 2>/dev/null || echo "error")
+      "https://api.varg.ai/v2/billing/balance" 2>/dev/null || echo "error")
 
     HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
     BODY=$(echo "$RESPONSE" | sed '$d')
 
     if [ "$HTTP_CODE" = "200" ]; then
-      BALANCE=$(echo "$BODY" | grep -o '"balance_cents":[0-9]*' | grep -o '[0-9]*' || echo "")
+      BALANCE=$(echo "$BODY" | grep -o '"available":[0-9]*' | grep -o '[0-9]*' || echo "")
       if [ -n "$BALANCE" ]; then
         DOLLARS=$(echo "scale=2; $BALANCE / 100" | bc 2>/dev/null || echo "?")
         echo "  $(green '[OK]') Gateway connected. Balance: $BALANCE credits (\$$DOLLARS)"
@@ -112,7 +112,7 @@ elif check_saved_credentials; then
 else
   echo "  $(red '[MISSING]') VARG_API_KEY not set"
   echo ""
-  echo "  Get your API key at: $(cyan 'https://app.varg.ai')"
+  echo "  Get your API key at: $(cyan 'https://varg.ai/dashboard/api')"
   echo ""
   echo "  Then set it:"
   echo "    $(cyan 'export VARG_API_KEY=varg_xxx')"
@@ -161,12 +161,12 @@ if [ "$HAS_BUN" -eq 1 ] && [ "$HAS_FFMPEG" -eq 1 ] && [ "$HAS_FFPROBE" -eq 1 ]; 
   echo "  You have all local tools. You can use either:"
   echo ""
   echo "  Local render (faster, more flexible):"
-  dim "    bunx vargai render video.tsx --preview   (free preview)"
+  dim "    bunx vargai@alpha render video.tsx --preview   (free preview)"
   echo ""
-  dim "    bunx vargai render video.tsx --verbose   (full render)"
+  dim "    bunx vargai@alpha render video.tsx --verbose   (full render)"
   echo ""
   echo "  Cloud render (via API):"
-  echo "  $(dim '  curl -X POST https://render.varg.ai/api/render \')"
+  echo "  $(dim '  curl -X POST https://api.varg.ai/v2/render \')"
   echo "  $(dim '    -H "Authorization: Bearer $VARG_API_KEY" \')"
   echo "  $(dim '    -H "Content-Type: application/json" \')"
   echo "  $(dim '    -d '\''{"code": "..."}'\''')"
@@ -176,7 +176,7 @@ else
   echo ""
   echo "  Send TSX code to the render service via curl:"
   echo ""
-  echo "  $(dim 'curl -X POST https://render.varg.ai/api/render \')"
+  echo "  $(dim 'curl -X POST https://api.varg.ai/v2/render \')"
   echo "  $(dim '  -H "Authorization: Bearer $VARG_API_KEY" \')"
   echo "  $(dim '  -H "Content-Type: application/json" \')"
   echo "  $(dim '  -d '\''{"code": "export default (<Render>...</Render>)"}'\''')"
@@ -198,6 +198,6 @@ fi
 
 if [ "$HAS_KEY" -eq 0 ]; then
   echo "  $(red 'Note: VARG_API_KEY is required for both modes.')"
-  echo "  $(dim "Get your key at $(cyan 'https://app.varg.ai')")"
+  echo "  $(dim "Get your key at $(cyan 'https://varg.ai/dashboard/api')")"
   echo ""
 fi

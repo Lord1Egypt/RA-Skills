@@ -1,6 +1,6 @@
 ## Description:
 
-Provides Go developers with a typed client and guidance for managing Val Town resources through the Val Town API.
+An unofficial typed Go client for calling the Val Town API to manage vals and related account resources.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-Go developers use this skill to integrate Val Town API operations into Go applications, including managing vals, files, variables, blobs, SQLite, and email.
+Go developers use this skill to add and use a typed client for Val Town's API. It provides setup, authentication, endpoint, pagination, and error-handling guidance.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Account operations such as deleting resources, writing SQL, and sending email can make consequential or irreversible changes.
+Risk: The security review was benign with medium confidence, but scanner coverage was partial because some local references could not be resolved.
 
-Mitigation: Only perform these operations when the user requests them; verify target resources first and grant the token only the permissions needed for the task.
+Mitigation: Review the available skill files and resolve the missing references before relying on the scan result.
 
-Risk: The unofficial client uses an API token to access Val Town account data and resources.
+Risk: Some API operations can delete account resources, write SQL, or send email, and the skill says those changes cannot be undone through this client.
 
-Mitigation: Review and pin the dependency, read the token from the environment, and never commit or log the token or Authorization header.
+Mitigation: Use these operations only when requested, verify the target resources and inputs, and keep the API token out of source control and logs.
 
 ## Reference(s):
 
 - [Setup and API reference](references/setup.md)
+- [GitHub project](https://github.com/psyb0t/go-valtown)
 - [Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-valtown)
-- [Val Town API authentication guide](https://docs.val.town/reference/api/authentication)
-- [Project repository](https://github.com/psyb0t/go-valtown)
 
 ## Skill Output:
 
-**Output Type(s):** [Go code, Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [Code, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown with Go and shell code examples]
+**Output Format:** [Markdown with Go code examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Examples use a Val Town API token supplied through the environment.]
 
 ## Skill Version(s):
 
-0.1.4 (source: server-resolved release evidence)
+0.1.5 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

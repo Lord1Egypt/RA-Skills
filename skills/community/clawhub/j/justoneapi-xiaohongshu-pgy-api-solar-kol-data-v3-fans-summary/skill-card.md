@@ -1,42 +1,51 @@
-## Description: <br>
-Call GET /api/xiaohongshu-pgy/api/solar/kol/dataV3/fansSummary/v1 for Xiaohongshu Creator Marketplace (Pugongying) Follower Summary through JustOneAPI with userId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/xiaohongshu-pgy/api/solar/kol/dataV3/fansSummary/v1 for Xiaohongshu Creator Marketplace (Pugongying) Follower Summary through JustOneAPI with userId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to query JustOneAPI for Xiaohongshu Creator Marketplace follower summary data by userId. It supports audience analysis and creator benchmarking by returning endpoint-specific metrics with raw JSON for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a JustOneAPI token to query a third-party follower-summary API. <br>
-Mitigation: Use a limited or short-lived token if available, keep token values out of chat messages, logs, screenshots, and URLs, and rotate the token if it may have been exposed. <br>
-Risk: API errors or unexpected response payloads can affect the reliability of generated summaries. <br>
-Mitigation: Include the returned error payload and operation ID when a request fails, and review raw JSON before relying on follower metrics. <br>
+## Use Case:
 
+Developers and agents use this skill to request Xiaohongshu Creator Marketplace follower summary data for a specific KOL user ID, including growth and engagement metrics for audience analysis and creator benchmarking.
 
-## Reference(s): <br>
-- [JustOneAPI API homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_pgy_api_solar_kol_data_v3_fans_summary&utm_content=project_link) <br>
-- [Xiaohongshu follower summary operations](artifact/generated/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary with raw JSON response data and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a JustOneAPI token and a userId query parameter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles a JustOneAPI token that can be exposed through command-line arguments, request URLs, shell history, process telemetry, or API gateway logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped token when available, avoid logging commands or full request URLs, and rotate the token if exposure is suspected.
+
+## Reference(s):
+
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_pgy_api_solar_kol_data_v3_fans_summary&utm_content=project_link)
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-xiaohongshu-pgy-api-solar-kol-data-v3-fans-summary)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a JustOneAPI token and userId; backend errors include the operation ID and response payload when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

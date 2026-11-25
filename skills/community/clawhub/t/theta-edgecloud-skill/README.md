@@ -1,7 +1,7 @@
 # Theta EdgeCloud skill
 
-Offline security review passed on 2026-10-03, including independent adversarial
-testing and exploit-style regressions. ClawHub's post-publication rating is separate.
+Each release goes through an offline security review with independent adversarial testing and
+exploit-style regressions before publication. ClawHub's post-publication rating is separate.
 See [security scope](references/security.md) for controls and residual risks.
 
 Read [SKILL.md](SKILL.md) for the operating procedure and
@@ -36,14 +36,56 @@ never paste keys into commands or chat. Discovery is read-only. Set
 still run. Outside dry-run, every remote write, video or unknown-service
 inference and webhook requires `confirm:true` after user approval.
 
-## Improvements
+## New in 0.3.1
+
+- The Theta Video client now redacts every response it returns (including livestream
+  `stream_key` values) inside the client, not only at the runtime and facade boundary.
+- `theta.billing.pricing` redacts any non-usage `token` value inside the pricing module too.
+- Tool calls go only to GLM-5.3 and GLM-5.3-Flash unless `allowUnverifiedTools` is exactly
+  `true`; retired GPT-OSS is no longer treated as tool-capable.
+- Event-stream responses that are malformed or mislabelled fail instead of being reported as
+  success.
+- Labelled secrets in error text are redacted through to the next whitespace.
+- The shared HTTP layer refuses any non-`https://` URL.
+- Source comments now state exactly where each guarantee is enforced.
+- Tests restore only the environment variables they set.
+
+## New in 0.3.0
+
+- AI Characters Story mode: groupings (in-fiction events), library messages (authored player
+  outcomes), story lines (one NPC across ordered groupings) and dialogs, with queue and dialog
+  listing. `theta.characters.storyline.generateAll` counts every path first and refuses above your
+  approved `maxPaths` or Theta's 5000 cap. The count is a preflight snapshot; library messages
+  added between the count and the request are not covered.
+- `theta.characters.estimateCost`: offline estimate at Theta's published Characters prices
+  (USD 7.50 input, 20.00 output, 0.20 embeddings per 1M tokens).
+- Characters payload validation (message types, participants, speaking style, story references)
+  and paginated session message history.
+- Theta Video: metadata search, livestream list and ingestor unselect.
+- `theta.billing.pricing` shows readable usage labels and USD prices.
+- Readiness `probe` values are strictly validated (closes the 0.2.0 review follow-up).
+
+## Upgrading from 0.2.0 (applies to 0.3.x)
+
+- Livestream stream keys returned under stream-key names (`stream_key`, `streamKey` and
+  similar) are now redacted from results. Copy stream keys from the Theta Video dashboard when
+  configuring a broadcaster.
+- `theta.billing.pricing` chatbot rows use `usage_type` (for example `prompt_tokens`) and add
+  `price_usd`; the raw credit `price` is unchanged.
+- `probe` values other than exactly `openai` or `gradio` now fail instead of falling back to
+  `openai`.
+- Characters writes validate their payloads; malformed session messages, speaking styles or
+  story references fail before any request.
+- All 69 earlier commands remain; 26 were added (95 total).
+
+## Improvements in earlier releases
 
 - GLM-5.3/Flash direct chat, structured tools, streaming parallel arguments and
   correlated tool-result continuation; reasoning retained separately.
 - Discovery includes full prediction/input schemas and current GLM/image catalog entries.
 - Training/custom templates and stopped GPU restart by base ID.
 - Existing video/stream/ingestor operations exposed through runtime dispatch.
-- Twelve game-key AI Characters/session API adapters with dry-run and contract tests.
+- Game-key AI Characters/session API adapters with dry-run and contract tests.
 - HTTPS origin allowlists, redirect refusal, path encoding, name-based secret redaction of
   results, no resending of writes or inference to the same URL, and fail-closed cleanup
   verification.

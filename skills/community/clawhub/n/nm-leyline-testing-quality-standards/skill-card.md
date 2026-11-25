@@ -1,6 +1,6 @@
 ## Description:
 
-Defines test quality metrics, coverage thresholds, anti-patterns, and pytest config.
+Defines test quality metrics, coverage thresholds, anti-patterns, and pytest configuration.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and test engineers use this skill to set coverage targets and test quality gates, review suites for reliability and maintainability, and apply pytest fixture and CI patterns.
+Developers use this skill to set testing quality gates and coverage targets, improve pytest suites, and apply reusable fixture and CI patterns. It provides checklists and examples for assessing test structure, coverage, maintainability, and reliability.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The example CI workflow uploads coverage data to Codecov, which may not match every team's data handling or workflow requirements.
+Risk: The security review is partial and marks the release suspicious because it found checks outside the stated testing-quality purpose and a Codecov upload in CI examples; this does not establish malicious intent.
 
-Mitigation: Review the workflow and confirm that external coverage uploads are approved before enabling it.
-
-Risk: The skill includes Git fixture operations, and the server security guidance recommends checking that they suit the intended workflow.
-
-Mitigation: Review the fixture commands and run them in an isolated temporary repository.
-
-Risk: The security evidence notes that one reference could not be resolved, leaving the evidence incomplete.
-
-Mitigation: Check relevant references and examples against current project requirements before adopting them.
+Mitigation: Review the less clearly disclosed checks and Git repository helper before installing. For CI examples, check whether coverage data would leave the environment, especially for private or sensitive repositories.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-leyline-testing-quality-standards)
-- [Project homepage (Clawdis metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
+- [ClawHub skill release page](https://clawhub.ai/athola/skills/nm-leyline-testing-quality-standards)
+- [Homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown with Python, shell, and YAML examples]
+**Output Format:** [Markdown guidance with Python, shell, YAML, and configuration examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes testing quality checklists, coverage thresholds, and reusable pytest and CI examples.]
+**Other Properties Related to Output:** [Reusable checklists, code examples, and configuration templates to adapt to the project.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, server release evidence)
+1.10.4 (source: ClawHub release metadata; artifact frontmatter reports 1.10.3)
 
 ## Ethical Considerations:
 

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineering managers use the skill to measure delivery performance from repository history and GitHub activity, then identify the weakest DORA metric as an improvement target.
+Developers and engineering managers use the skill to measure deployment frequency, lead time for changes, change failure rate, and time to restore service, then identify the weakest delivery-performance dimension.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review was incomplete because a local path referenced in SKILL.md was unavailable.
+Risk: The security review found one unresolved local reference, so the available evidence is incomplete.
 
-Mitigation: Review the missing referenced file and rescan the release before installation.
-
-Risk: Incorrect production-branch or failure-label choices can skew DORA metrics and cohort comparisons.
-
-Mitigation: Confirm the production branch and GitHub failure labels, and sample contributing issues before relying on the report.
+Mitigation: Review the material associated with the unresolved reference before relying on the skill.
 
 ## Reference(s):
 
-- [Project homepage (metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/minister)
-- [Agentic Workflow Signals from DORA](modules/agentic-workflow-signals.md)
-- [DORA Tier Thresholds](modules/thresholds.md)
-- [kuva](https://github.com/Psy-Fer/kuva)
+- [Night Market Minister project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/minister)
+- [Agentic Workflow Signals from DORA](artifact/modules/agentic-workflow-signals.md)
+- [DORA Tier Thresholds](artifact/modules/thresholds.md)
+- [kuva plotting reference](https://github.com/Psy-Fer/kuva)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, Text, JSON]
 
-**Output Format:** [Plain-text report or JSON payload]
+**Output Format:** [Short text report or JSON]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Per-metric values and tiers, an overall tier, and the weakest-metric bottleneck.]
+**Other Properties Related to Output:** [Per-metric values and tiers, an overall tier, and a bottleneck key.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release)
 
 ## Ethical Considerations:
 

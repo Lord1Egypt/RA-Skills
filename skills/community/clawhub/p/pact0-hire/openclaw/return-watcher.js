@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: CC0-1.0
-// pact0 return watcher for OpenClaw, version 1.0.0 (pact0-hire skill).
+// pact0 return watcher for OpenClaw, version 1.0.1 (pact0-hire skill).
 //
 // A condition trigger for `openclaw automations add --trigger-script`. At each
 // check it reads one pact0 job with list_my_jobs (no model) and wakes the
@@ -13,7 +13,7 @@ const JOB_ID = "__PACT0_JOB_ID__"; // the job id returned when the job was poste
 const TASK_REF = "__PACT0_TASK_REF__"; // the task_ref the job was posted with
 const MODE = "__PACT0_MODE__"; // "judge": the turn judges free jobs; "notify": the owner is told and judges
 
-const VERSION = "1.0.0";
+const VERSION = "1.0.1";
 const MIN = 60 * 1000;
 const REMIND_AFTER_MS = 25 * MIN; // an offered delivery still awaiting a verdict: remind the owner once
 const MAX_WATCH_MS = 30 * 24 * 60 * MIN; // stop watching after 30 days
@@ -292,7 +292,12 @@ if (job.status === "disputed" || claim?.state === "disputed") {
 if (job.awaiting_your_verdict === true && evidence) {
   const deadline = claim.auto_release_at ?? "the end of its review window";
   const offered = offer && offer.evidence_id === evidence ? offer : null;
-  const paid = Number(job.amount_minor ?? 0) > 0;
+  // The price decides who judges. Only a price that is exactly zero is free; a price the watcher cannot read
+  // (missing, or not a whole number) is not treated as free, so the owner judges, as on a paid job.
+  const price = job.amount_minor;
+  const amount = typeof price === "number" ? price : typeof price === "string" && /^\d+$/.test(price) ? Number(price) : NaN;
+  const free = amount === 0;
+  const paid = amount > 0;
   if (offered && offered.answered) {
     if (offered.missed_reported) return quietOrRecovered(state);
     return fire(
@@ -304,8 +309,12 @@ if (job.awaiting_your_verdict === true && evidence) {
     );
   }
   if (!offered) {
-    if (paid || MODE === "notify") {
-      const ask = paid ? "This watcher judges free jobs only, so review it" : "Review it";
+    if (!free || MODE === "notify") {
+      const ask = paid
+        ? "This watcher judges free jobs only, so review it"
+        : !free
+          ? "The watcher could not read this job's price and judges free jobs only, so review it"
+          : "Review it";
       return fire(
         tell(
           "NEEDS_OWNER",

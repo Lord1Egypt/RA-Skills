@@ -1,0 +1,1630 @@
+{
+ "schema": "oasis-blueprints/drawing-map/0.1",
+ "type": {
+  "key": "new-sfr-1-story",
+  "name": "New single family, 1 story"
+ },
+ "variant": {
+  "key": "wood",
+  "name": "Wood framing"
+ },
+ "sets": 8,
+ "pages": {
+  "min": 5,
+  "median": 17.0,
+  "max": 24
+ },
+ "attributes": {
+  "stories": [
+   [
+    "1",
+    8
+   ]
+  ],
+  "style": [
+   [
+    "farmhouse",
+    1
+   ]
+  ],
+  "walls": [
+   [
+    "wood",
+    2
+   ]
+  ],
+  "foundation": [
+   [
+    "slab",
+    2
+   ]
+  ]
+ },
+ "unlisted": {
+  "views": 1,
+  "sheet_names": 31,
+  "details": 1,
+  "note_blocks": 22
+ },
+ "sheets": [
+  {
+   "kind": "cover",
+   "name": "Cover sheet",
+   "sets": 4,
+   "pct": 50.0,
+   "tier": "common",
+   "position": 0.0,
+   "sheets_per_set": 1.0,
+   "numbering": [
+    [
+     "A",
+     4
+    ]
+   ],
+   "names": [
+    [
+     "COVER SHEET",
+     2
+    ],
+    [
+     "COVER PAGE",
+     2
+    ]
+   ],
+   "views": []
+  },
+  {
+   "kind": "unnamed",
+   "name": "Unnamed",
+   "sets": 1,
+   "pct": 12.5,
+   "tier": "occasional",
+   "position": 0.0,
+   "sheets_per_set": 12,
+   "numbering": [],
+   "names": [],
+   "views": []
+  },
+  {
+   "kind": "site_plan",
+   "name": "Site plan",
+   "sets": 5,
+   "pct": 62.5,
+   "tier": "core",
+   "position": 0.062,
+   "sheets_per_set": 1,
+   "numbering": [
+    [
+     "A",
+     5
+    ]
+   ],
+   "names": [
+    [
+     "SITE PLAN",
+     5
+    ]
+   ],
+   "views": []
+  },
+  {
+   "kind": "floor_plan",
+   "name": "Floor plan",
+   "sets": 8,
+   "pct": 100.0,
+   "tier": "core",
+   "position": 0.125,
+   "sheets_per_set": 1.0,
+   "numbering": [
+    [
+     "A",
+     8
+    ]
+   ],
+   "names": [
+    [
+     "FLOOR PLAN",
+     6
+    ],
+    [
+     "ARCHITECTURAL FLOOR PLAN",
+     1
+    ],
+    [
+     "PROPOSED FLOOR PLAN",
+     1
+    ]
+   ],
+   "views": []
+  },
+  {
+   "kind": "roof_plan",
+   "name": "Roof plan",
+   "sets": 5,
+   "pct": 62.5,
+   "tier": "core",
+   "position": 0.188,
+   "sheets_per_set": 1,
+   "numbering": [
+    [
+     "A",
+     5
+    ]
+   ],
+   "names": [
+    [
+     "ROOF PLAN",
+     5
+    ]
+   ],
+   "views": []
+  },
+  {
+   "kind": "elevations",
+   "name": "Elevations",
+   "sets": 7,
+   "pct": 87.5,
+   "tier": "core",
+   "position": 0.25,
+   "sheets_per_set": 2,
+   "numbering": [
+    [
+     "A",
+     12
+    ]
+   ],
+   "names": [
+    [
+     "ELEVATIONS",
+     7
+    ],
+    [
+     "LEFT ELEVATION",
+     2
+    ],
+    [
+     "PROPOSED ELEVATIONS",
+     1
+    ],
+    [
+     "FRONT ELEVATION",
+     1
+    ],
+    [
+     "RIGHT ELEVATION",
+     1
+    ]
+   ],
+   "views": []
+  },
+  {
+   "kind": "electrical_power",
+   "name": "Electrical, power",
+   "sets": 5,
+   "pct": 62.5,
+   "tier": "core",
+   "position": 0.375,
+   "sheets_per_set": 1,
+   "numbering": [
+    [
+     "E",
+     5
+    ]
+   ],
+   "names": [
+    [
+     "FLOOR POWER PLAN",
+     3
+    ],
+    [
+     "ELECTRICAL PLAN",
+     1
+    ]
+   ],
+   "views": []
+  },
+  {
+   "kind": "electrical_lighting",
+   "name": "Electrical, lighting",
+   "sets": 3,
+   "pct": 37.5,
+   "tier": "common",
+   "position": 0.438,
+   "sheets_per_set": 1,
+   "numbering": [
+    [
+     "E",
+     3
+    ]
+   ],
+   "names": [
+    [
+     "FLOOR LIGHTING PLAN",
+     3
+    ]
+   ],
+   "views": []
+  },
+  {
+   "kind": "sections",
+   "name": "Sections",
+   "sets": 2,
+   "pct": 25.0,
+   "tier": "common",
+   "position": 0.494,
+   "sheets_per_set": 1.5,
+   "numbering": [
+    [
+     "S",
+     2
+    ],
+    [
+     "A",
+     1
+    ]
+   ],
+   "names": [],
+   "views": []
+  },
+  {
+   "kind": "mechanical",
+   "name": "Mechanical",
+   "sets": 4,
+   "pct": 50.0,
+   "tier": "common",
+   "position": 0.5,
+   "sheets_per_set": 1.0,
+   "numbering": [
+    [
+     "M",
+     4
+    ]
+   ],
+   "names": [
+    [
+     "FLOOR MECHANICAL PLAN",
+     2
+    ]
+   ],
+   "views": []
+  },
+  {
+   "kind": "plumbing_water",
+   "name": "Plumbing, water",
+   "sets": 3,
+   "pct": 37.5,
+   "tier": "common",
+   "position": 0.562,
+   "sheets_per_set": 1,
+   "numbering": [
+    [
+     "P",
+     3
+    ]
+   ],
+   "names": [
+    [
+     "FLOOR PLUMBING WATER PLAN",
+     2
+    ],
+    [
+     "PLUMBING PLAN",
+     1
+    ]
+   ],
+   "views": []
+  },
+  {
+   "kind": "legend",
+   "name": "Legend",
+   "sets": 2,
+   "pct": 25.0,
+   "tier": "common",
+   "position": 0.609,
+   "sheets_per_set": 2.5,
+   "numbering": [
+    [
+     "E",
+     2
+    ],
+    [
+     "M",
+     1
+    ],
+    [
+     "P",
+     1
+    ]
+   ],
+   "names": [
+    [
+     "SYMBOL LEGEND",
+     4
+    ]
+   ],
+   "views": []
+  },
+  {
+   "kind": "plumbing_sanitary",
+   "name": "Plumbing, sanitary",
+   "sets": 2,
+   "pct": 25.0,
+   "tier": "common",
+   "position": 0.625,
+   "sheets_per_set": 1.0,
+   "numbering": [
+    [
+     "P",
+     2
+    ]
+   ],
+   "names": [
+    [
+     "FLOOR SANITARY PLAN",
+     2
+    ]
+   ],
+   "views": []
+  },
+  {
+   "kind": "wall_framing",
+   "name": "Wall framing",
+   "sets": 2,
+   "pct": 25.0,
+   "tier": "common",
+   "position": 0.633,
+   "sheets_per_set": 1.5,
+   "numbering": [
+    [
+     "S",
+     3
+    ]
+   ],
+   "names": [
+    [
+     "TYPICAL OPENING IN STUD WALL",
+     1
+    ]
+   ],
+   "views": []
+  },
+  {
+   "kind": "other",
+   "name": "Other",
+   "sets": 5,
+   "pct": 62.5,
+   "tier": "core",
+   "position": 0.643,
+   "sheets_per_set": 2,
+   "numbering": [
+    [
+     "S",
+     19
+    ],
+    [
+     "P",
+     3
+    ],
+    [
+     "A",
+     2
+    ]
+   ],
+   "names": [
+    [
+     "SUBJECT PROPERTY",
+     2
+    ],
+    [
+     "S.W. POST",
+     2
+    ],
+    [
+     "CROSS BRACING: 0.50_ROD",
+     2
+    ],
+    [
+     "CONCRETE SLAB-ON-GRADE",
+     2
+    ],
+    [
+     "REQUIRED LAP",
+     2
+    ]
+   ],
+   "views": []
+  },
+  {
+   "kind": "structural_notes",
+   "name": "Structural notes",
+   "sets": 5,
+   "pct": 62.5,
+   "tier": "core",
+   "position": 0.688,
+   "sheets_per_set": 1,
+   "numbering": [
+    [
+     "S",
+     5
+    ]
+   ],
+   "names": [
+    [
+     "STRUCTURAL NOTES",
+     5
+    ]
+   ],
+   "views": []
+  },
+  {
+   "kind": "schedules",
+   "name": "Schedules",
+   "sets": 2,
+   "pct": 25.0,
+   "tier": "common",
+   "position": 0.733,
+   "sheets_per_set": 1.0,
+   "numbering": [
+    [
+     "S",
+     1
+    ],
+    [
+     "E",
+     1
+    ]
+   ],
+   "names": [],
+   "views": []
+  },
+  {
+   "kind": "foundation_plan",
+   "name": "Foundation plan",
+   "sets": 4,
+   "pct": 50.0,
+   "tier": "common",
+   "position": 0.75,
+   "sheets_per_set": 1.0,
+   "numbering": [
+    [
+     "S",
+     4
+    ]
+   ],
+   "names": [
+    [
+     "FOUNDATION PLAN",
+     3
+    ],
+    [
+     "FOUNDATION & FLOOR FRAMING PLAN",
+     1
+    ]
+   ],
+   "views": []
+  },
+  {
+   "kind": "floor_framing_plan",
+   "name": "Floor or deck framing plan",
+   "sets": 1,
+   "pct": 12.5,
+   "tier": "occasional",
+   "position": 0.75,
+   "sheets_per_set": 1,
+   "numbering": [
+    [
+     "S",
+     1
+    ]
+   ],
+   "names": [
+    [
+     "FOUNDATION & FLOOR FRAMING PLAN",
+     1
+    ]
+   ],
+   "views": []
+  },
+  {
+   "kind": "roof_framing_plan",
+   "name": "Roof framing plan",
+   "sets": 3,
+   "pct": 37.5,
+   "tier": "common",
+   "position": 0.812,
+   "sheets_per_set": 1,
+   "numbering": [
+    [
+     "S",
+     4
+    ]
+   ],
+   "names": [
+    [
+     "ROOF FRAMING PLAN",
+     4
+    ]
+   ],
+   "views": []
+  },
+  {
+   "kind": "details",
+   "name": "Details",
+   "sets": 7,
+   "pct": 87.5,
+   "tier": "core",
+   "position": 0.875,
+   "sheets_per_set": 2,
+   "numbering": [
+    [
+     "S",
+     13
+    ],
+    [
+     "A",
+     2
+    ],
+    [
+     "M",
+     1
+    ]
+   ],
+   "names": [
+    [
+     "STRUCTURAL DETAILS",
+     7
+    ],
+    [
+     "DETAIL {X}",
+     2
+    ]
+   ],
+   "views": []
+  }
+ ],
+ "details": [],
+ "notes": [
+  {
+   "heading": "GENERAL NOTES",
+   "kind": "notes",
+   "sets": 6,
+   "pct": 75.0,
+   "tier": "core",
+   "items_median": 7.5,
+   "on_sheets": [
+    "structural_notes",
+    "site_plan",
+    "cover"
+   ],
+   "wordings": 8,
+   "variants": [
+    {
+     "sets": 4,
+     "items": [
+      "1. The governing Code for this Project is the {year} {state} Building Code, 8th Edition. This Code prescribes which edition of each referenced | standard applies to this Project.",
+      "2. To the best of our knowledge, the Structural Drawings and these Specification Notes comply with the applicable requirements of the governing | Building Code.",
+      "3. Construction is to comply with the requirements of the governing Building Code and all other applicable Federal, State, and Local Codes, | Standards, Regulations and Laws.",
+      "4. The Structural Documents are to be used in conjunction with the Architectural Documents. If a conflict exists, the more stringent governs.",
+      "5. Details labeled \"TYP\" apply to all situations that are the same or similar to those specifically referenced, whether or not they are keyed in at each | location. Questions regarding the applicability of typical details shall be resolved by the Architect.",
+      "6. Openings shown on Structural Drawings are only pictorial. See the Architectural and M.E.P. drawings for the size and location of openings in the | structure.",
+      "7. Contractors who discover discrepancies, omissions or variations in the Contract Documents during bidding shall immediately notify the Architect. | The Architect will resolve the condition and issue a written clarification.",
+      "8. The Contractor shall coordinate all Contract Documents with field conditions and dimensions and Project Shop Drawings prior to construction. Do not scale drawings; use only printed dimensions. Report any discrepancies in writing to the Architect prior to proceeding with work. Do not change size or location of structural members without written instructions from the Structural Engineer of Record.",
+      "9. The Contractor shall protect adjacent property, his own work and the public from harm. The Contractor is solely responsible for construction | means and methods, and jobsite safety including all OSHA requirements.",
+      "10. The Structure is designed to be structurally sound when completed. Prior to completion, the Contractor is responsible for stability and temporary bracing, including, but not limited to, masonry walls. Wherever the Contractor is unsure of these requirements, the Contractor shall retain a {state} Licensed Engineer to design and inspect the temporary bracing and stability of the structure.",
+      "11. For installation of {manufacturer} components and connectors, refer to manufacturer specifications.",
+      "12. Contractor shall exercise extreme caution in areas of buried utilities by calling {company} at {phone}. the contractor is responsible for | repairing and contacting all utilities.",
+      "13. Design Superimposed Loads: | OCCUPANCY/USE Roof Attic Floor Wall Deck",
+      "14. Design Wind Loads | Governing Code Building Risk Category Ultimate Wind Speed Mean Roof Height Directionality Factor Gust-Effect Factor Exposure Internal Pressure Coefficient"
+     ]
+    },
+    {
+     "sets": 1,
+     "items": [
+      "1. ALL WORK PERFORMED SHALL COMPLY WITH THE CONTRACT | DOCUMENTS, DRAWINGS AND SPECIFICATIONS, INCLUDING THESE GENERAL NOTES.",
+      "2. ALL MATERIALS AND WORKMANSHIP SHALL CONFORM TO THE DRAWINGS AND SPECIFICATIONS. IF A CONFLICT IS FOUND BETWEEN DRAWINGS, GENERAL NOTES OR SPECIFICATIONS, CONSULT THE LEAD DESIGNER FOR CLARIFICATION BEFORE PROCEEDING WITH THE WORK",
+      "3. NO DEVIATION FROM DRAWINGS AND SPECIFICATIONS SHALL BE MADE"
+     ]
+    },
+    {
+     "sets": 1,
+     "items": null
+    },
+    {
+     "sets": 1,
+     "items": [
+      "1) THESE PLANS ARE FOR THE CONSTRUCTION OF NEW RESIDENTIAL STRUCTURE.",
+      "2) INDIVIDUAL CONTRACTORS TO PROVIDE THEIR OWN PLANNING AND"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "CONCRETE MASONRY",
+   "kind": "notes",
+   "sets": 6,
+   "pct": 75.0,
+   "tier": "core",
+   "items_median": 11.0,
+   "on_sheets": [
+    "structural_notes",
+    "other"
+   ],
+   "wordings": 2,
+   "variants": [
+    {
+     "sets": 5,
+     "items": [
+      "1. Construct masonry in accordance with ACI 530/ASCE 5, \"Building Code Requirements for Concrete Masonry Structures\"; and ACI 530.1/ASCE | 6, \"Specifications for the Design and Construction of Load-Bearing Concrete Masonry\".",
+      "2. The structure is supported by bearing walls, u.o.n. Erect masonry prior to casting concrete columns within bearing walls or casting beams and | slabs supported by bearing walls.",
+      "3. Use 50% solid, nominal 8x8x16, concrete masonry units conforming to ASTM C90. Block net area compressive strength shall be 2,000 psi. | Determine the minimum f'm of 1,500 psi by the unit test method or prism method. Lay up units in running bond. Sawcut units which are not in multiples of 8\". Units shall be at least 8\" long. Bond corners by lapping ends 8\" in successive vertical courses. Design of walls is based on a f'm of 2,000 psi.",
+      "4. Use Type S mortar in accordance with ASTM C270 except use Type M mortar below grade. Head and bed joints shall be 3/8\" for the thickness of the face shell. Webs are to be fully mortared in all courses of piers, columns and pilasters; in the starting course; and where an adjacent cell is to be grouted. Remove mortar protrusions extending 1/2\" or more into cells to be grouted.",
+      "5. Use standard (9 gauge) horizontal joint reinforcing in every other course. Joint reinforcing and anchors in exterior walls shall conform to ASTM | A 153 Class B2, with a coating thickness of 1.50 oz/sf; conform to ASTM A 641 at interior walls. Overlap discontinuous ends 6\". Use prefabricated corners and tees. Use ladder type in walls with vertical reinforcing. Extend joint reinforcing a minimum of 4\" into tie columns.",
+      "6. Use fine grout conforming to ASTM C-476, with a minimum compressive strength of 2,500 psi in 28 days. Aggregate to conform to ASTM C404 | for fine grout, with slump of 8\" to 10\". Grout all masonry containing reinforcing, all cells of 4 hour rated walls, and where indicated on the drawings. Allow mortar to cure 24 hours prior to grouting. Provide cleanout openings at the base of cells containing reinforcing steel to clean the cell and to tie the vertical bar to the dowel.",
+      "7. Use ASTM A-615 Grade 60 reinforcing steel. Reinforce walls where indicated on the drawings and at all intersections, each side of openings and | at the ends of walls. Use bar spacers at 10'-0\" O/C where grout pour height exceeds 10'-0\".",
+      "8. Reinforced masonry wall construction shall be inspected by an Engineer or Architect in accordance with ACI 530.1/ASCE 6.",
+      "9. Where anchor bolts, wedge anchors or anchors set in epoxy are set in a masonry wall, fill cells with grout for bolted course, one course above and | two courses below.",
+      "10. Provide lintels or headers with min. 8\" bearing over all masonry openings.",
+      "11. Use pressure-treated wood for wood in contact with masonry."
+     ]
+    },
+    {
+     "sets": 1,
+     "items": null
+    }
+   ]
+  },
+  {
+   "heading": "DEMOLITION NOTES",
+   "kind": "notes",
+   "sets": 6,
+   "pct": 75.0,
+   "tier": "core",
+   "items_median": 8.0,
+   "on_sheets": [
+    "structural_notes",
+    "other"
+   ],
+   "wordings": 1,
+   "variants": [
+    {
+     "sets": 6,
+     "items": [
+      "1. At all locations where new construction will interface with existing elements, cut through existing structure in straight and true lines to insure a | neat interface.",
+      "2. At all locations where the demolition of a concrete member leaves the ends of reinforcing steel exposed, provide the following:",
+      "a. Chip concrete from around the steel to a depth of 1\".",
+      "b. Cut off reinforcing steel not less than 3/4\" below the concrete surface.",
+      "c. Fill the cavity flush with a high modulus gel epoxy. See specifications for accepted manufacturers.",
+      "3. Before demolishing any structural element, install all required temporary and/or permanent bracing and supports.",
+      "4. Provide temporary closure of all roof fascia, wall and other openings to protect building from exposure to undesirable elements until new | construction is weatherproofed, at which time such temporary construction shall be removed. All temporary exterior walls that are subject to wind loads are to be designed by a {state} Licensed Delegated Engineer.",
+      "5. Upon completion of new construction under each phase, all demolished areas shall be restored to acceptable usage according to the contract | documents as determined by the Architect or Engineer."
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "STRUCTURAL STEEL",
+   "kind": "notes",
+   "sets": 6,
+   "pct": 75.0,
+   "tier": "core",
+   "items_median": 10.0,
+   "on_sheets": [
+    "structural_notes",
+    "other"
+   ],
+   "wordings": 2,
+   "variants": [
+    {
+     "sets": 5,
+     "items": [
+      "1. Fabricate and erect structural steel in conformance with AISC \"Specification for Structural Steel Buildings\", with Commentary, AISC “Code of Standard Practice for Steel Buildings and Bridges”, AISC “Specification for Structural Joints Using ASTM A325 and A490 Bolts, including Commentary” and all OSHA requirements.",
+      "2. Submit, to the Architect, complete fabrication and erection drawings prepared by or under the direct supervision of a {state} licensed engineer | (Delegated Engineer). Details or connections changed or proposed by the fabricator shall be signed, sealed and dated by the Delegated Engineer.",
+      "3. Fabricate structural steel shapes from the following materials:",
+      "a. Plates: ASTM A36.",
+      "4. All shop and field welding procedures and personnel shall conform to AWS D1.1 Structural Welding Code- Steel. Use E70 series welding | electrodes, u.o.n. Where necessary, remove galvanizing or primer prior to welding.",
+      "5. Cut, drill, or punch holes perpendicular to metal surfaces. Ream holes that must be enlarged to admit bolts as permitted by Architect. Do not | enlarge unfair holes by burning or using drift pins.",
+      "6. Do not splice structural steel members except where indicated on the drawings.",
+      "7. Steel erector to furnish and install temporary bracing as necessary to provide a stable structure during construction.",
+      "8. See Architectural and Mechanical Drawings for miscellaneous steel not shown on the Structural Drawings.",
+      "9. Refer to Architectural Drawings for painting and fireproofing of structural steel. In the absence of other instructions, paint all non-galvanized steel | with a lead and chromate free steel primer. Do not paint steel surfaces in contact with concrete or to be fireproofed."
+     ]
+    },
+    {
+     "sets": 1,
+     "items": [
+      "1. Fabricate and erect structural steel in conformance with AISC \"Specification for Structural Steel Buildings\", with Commentary, | AISC “Code of Standard Practice for Steel Buildings and Bridges”, AISC “Specification for Structural Joints Using ASTM A325 and A490 Bolts, including Commentary” and all OSHA requirements.",
+      "2. Submit, to the Architect, complete fabrication and erection drawings prepared by or under the direct supervision of a {state} | licensed engineer (Delegated Engineer). Details or connections changed or proposed by the fabricator shall be signed, sealed and dated by the Delegated Engineer.",
+      "3. Fabricate structural steel shapes from the following materials: | HSS Shapes W Shapes Continuity Plates Other Shapes And Plates Electrodes Base Plates",
+      "4. All shop and field welding procedures and personnel shall conform to AWS D1.1 Structural Welding Code- Steel. Use E70 series | welding electrodes, u.o.n. Where necessary, remove galvanizing or primer prior to welding.",
+      "5. Cut, drill, or punch holes perpendicular to metal surfaces. Ream holes that must be enlarged to admit bolts as permitted by | Architect. Do not enlarge unfair holes by burning or using drift pins.",
+      "6. Do not splice structural steel members except where indicated on the drawings.",
+      "7. Steel erector to furnish and install temporary bracing as necessary to provide a stable structure during construction.",
+      "8. See Architectural and Mechanical Drawings for miscellaneous steel not shown on the Structural Drawings.",
+      "9. Refer to Architectural Drawings for painting and fireproofing of structural steel. In the absence of other instructions, paint all non-galvanized steel with a lead and chromate free steel primer. Do not paint steel surfaces in contact with concrete or to be fireproofed."
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "SHALLOW FOUNDATIONS",
+   "kind": "notes",
+   "sets": 6,
+   "pct": 75.0,
+   "tier": "core",
+   "items_median": 2.0,
+   "on_sheets": [
+    "structural_notes",
+    "other"
+   ],
+   "wordings": 2,
+   "variants": [
+    {
+     "sets": 5,
+     "items": [
+      "1. As per visual inspection soil conditions at this site are sand & rock with a min bearing capacity of {year} psf should other conditions or materials be encountered, the engineer shall be notified prior to proceeding with the work the architect or engineer shall supply a letter attesting that the site has been observed and the foundation conditions are similar to those upon which the design is based on.",
+      "2. Center all footings under their respective columns or walls, u.o.n."
+     ]
+    },
+    {
+     "sets": 1,
+     "items": null
+    }
+   ]
+  },
+  {
+   "heading": "EXCAVATION, BACKFILL AND DEWATERING",
+   "kind": "notes",
+   "sets": 6,
+   "pct": 75.0,
+   "tier": "core",
+   "items_median": 3.0,
+   "on_sheets": [
+    "structural_notes",
+    "other"
+   ],
+   "wordings": 1,
+   "variants": [
+    {
+     "sets": 6,
+     "items": [
+      "1. The Contractor is solely responsible for all excavation procedures including lagging, shoring, and protection of adjacent property, structures, | streets and utilities in accordance with the requirements of the local building department and OSHA regulations. Do not excavate within one foot of the angle of repose of any soil bearing foundation unless the foundation is properly protected against settlement.",
+      "2. Do not backfill against walls until 7 days after the walls are braced by the structure or are temporarily braced. Do not backfill cantilevered | retaining walls until concrete is 28 days old. Do not backfill until after completion and inspection of any waterproofing.",
+      "3. The Contractor is responsible for the disposal of all accumulated water in a manner that does not inconvenience or damage the work."
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "WOOD",
+   "kind": "notes",
+   "sets": 6,
+   "pct": 75.0,
+   "tier": "core",
+   "items_median": 6.0,
+   "on_sheets": [
+    "structural_notes",
+    "other"
+   ],
+   "wordings": 3,
+   "variants": [
+    {
+     "sets": 3,
+     "items": [
+      "1. All wood construction and connections shall conform to AITC “American Institute of Timber Construction” Manual, and the “National Design | Specifications” for Wood Construction, {year} Edition, and {state} Building Code, Chapter 23.",
+      "2. All member sizes are to be as shown on drawing and provide the following minimum properties: | Member Species | Joists | So. Pine No. 2",
+      "3. All wood in contact with concrete or masonry shall be pressure treated.",
+      "4. All bolts and bolted connections shall conform to ASTM A325, Anchor bolts is F1554-Grade 55. Use washers between wood and all bolt heads | and nuts.",
+      "5. All metal wood connectors shall be galvanized and shall be manufactured by {manufacturer} Co., or approved equal.",
+      "6. All joists shall be laterally supported at ends by solid blocking."
+     ]
+    },
+    {
+     "sets": 2,
+     "items": [
+      "1. All wood construction and connections shall conform to AITC “American Institute of Timber Construction” Manual, and the | “National Design Specifications” for Wood Construction, {year} Edition, and {state} Building Code, Chapter 23.",
+      "2. All member sizes are to be as shown on drawing and provide the following minimum properties: | Member Species | Joists | So. Pine No. 2 1,500",
+      "3. All wood in contact with concrete or masonry shall be pressure treated.",
+      "4. All bolts and bolted connections shall conform to ASTM A325, Anchor bolts is F1554-Grade 55. Use washers between wood and | all bolt heads and nuts.",
+      "5. All metal wood connectors shall be galvanized and shall be manufactured by {manufacturer} Co., or approved equal.",
+      "6. All joists shall be laterally supported at ends by solid blocking."
+     ]
+    },
+    {
+     "sets": 1,
+     "items": [
+      "1. All wood construction and connections shall conform to AITC “American Institute of Timber Construction” Manual, and the | “National Design Specifications” for Wood Construction, {year} Edition, and {state} Building Code, Chapter 23.",
+      "2. All member sizes are to be as shown on drawing and provide the following minimum properties: | Member Species | Joists Beam {manufacturer}® LVL | So. Pine No. 2",
+      "3. All wood in contact with concrete or masonry shall be pressure treated.",
+      "4. All bolts and bolted connections shall conform to ASTM A325, Anchor bolts is F1554-Grade 55. Use washers between wood and | all bolt heads and nuts.",
+      "5. All metal wood connectors shall be galvanized and shall be manufactured by {manufacturer} Co., or approved equal.",
+      "6. All joists shall be laterally supported at ends by solid blocking."
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "SLABS-ON-GRADE",
+   "kind": "notes",
+   "sets": 6,
+   "pct": 75.0,
+   "tier": "core",
+   "items_median": 4.0,
+   "on_sheets": [
+    "structural_notes",
+    "other"
+   ],
+   "wordings": 1,
+   "variants": [
+    {
+     "sets": 6,
+     "items": [
+      "1. Above subgrade, use fill containing not more than 10% passing #200 sieve and maximum 1 inch diameter. Compact to 95% of maximum dry | density as determined by modified proctor ASTM D-1557. Each layer of fill shall not exceed 6\" loose thickness. Compact prior to placement of the next layer.",
+      "2. Fill placement and compaction shall be monitored and accepted by the testing agency. Take a min. of one field density test (ASTM D-1556 or | D-2922) for each 2,500 square feet of each layer. The testing agency shall randomly select test locations.",
+      "3. For interior slabs place 10 mil polyethylene sheeting between soil and bottom of slab. Do not use any sheeting below exterior concrete slabs. | Sheets shall be lapped 6” minimum and taped. Seal all penetrations, including pipes, with tape.",
+      "4. See the Architectural Drawings for slab-on-grade depressions and other requirements."
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "REINFORCED CONCRETE",
+   "kind": "notes",
+   "sets": 6,
+   "pct": 75.0,
+   "tier": "core",
+   "items_median": 12.0,
+   "on_sheets": [
+    "structural_notes",
+    "other"
+   ],
+   "wordings": 4,
+   "variants": [
+    {
+     "sets": 3,
+     "items": [
+      "1. Provide Structural Concrete and concreting practices complying with ACI 301 and 318.",
+      "2. Provide structural concrete proportioned in accordance with ACI 318, Ch. 5.3, with a minimum ultimate compressive design strength in 28 days | as follows: | Element Footings Slabs-on-Grade | Submit statistical data, not more than one year old, for each class of concrete.",
+      "3. Use normal weight concrete for all structural members. u.o.n.",
+      "4. Aggregates are to be clean, free of chlorides, and complying with ASTM C33 gradations. Maximum coarse aggregate size 1\" (C33 size 57). | Minimum F.M. for fine aggregate is 2.4. Use admixtures conforming to ASTM C494. Provide type A, D, F or G admix in all structural concrete and Type D or G when ambient temperature is 85 degrees or higher. Design concrete, with strengths less than 4500 psi, with 4% +/- 1% entrained air, except for trowel finished floors. Do not use calcium chloride in any concrete.",
+      "5. Obtain composite samples of fresh concrete according to ASTM C172. Obtain at least one composite sample for each 100 cu. yd. or fraction thereof of each concrete mix placed each day. For slabs, increase frequency to each 50 cu. yd. or fraction placed each day. Take a slump test, ASTM C143, for each composite sample. Maximum permissible slump is 5 inches. Cast and laboratory cure one set of four compression test standard cylinders, per ASTM C31, for each composite sample. For pumped concrete, take sample at point of placement. Test, per ASTM C39,",
+      "6. Provide ASTM A-615 Grade 60 reinforcing steel. Reinforcing shall be accurately placed, rigidly supported and firmly tied in place, with",
+      "7. Where specified, provide plain, cold-drawn electrically-welded wire reinforcement conforming to ASTM A-185. Supply in flat sheets only. Lap",
+      "8. Utilities shall not penetrate beams or columns but may pass through slabs and walls individually, u.o.n. For openings 24\" long or less, cut",
+      "9. Where reinforcing steel congestion permits, conduit and pipes up to 1\" diameter may be embedded in concrete per ACI 318, Section 20.7. Space at 3 diameters o.c. Place between outer layers of reinforcing if conduits are significantly congested, additional reinforcing perpendicular to piping may be required. Requests to embed larger pipes should be accompanied by a detailed description and be submitted to the architect for evaluation.",
+      "10. Provide construction joints in accordance with ACI 318, Section 6.4. Provide keyways and adequate dowels. Submit drawings showing location",
+      "11. Provide 3/4\" chamfer for all exposed corners.",
+      "12. Provide reinforcing steel placer with a set of Structural Drawings for field reference. Inspect reinforcing steel placing from structural drawings."
+     ]
+    },
+    {
+     "sets": 1,
+     "items": [
+      "1. Provide Structural Concrete and concreting practices complying with ACI 301 and 318.",
+      "2. Provide structural concrete proportioned in accordance with ACI 318, Ch. 5.3, with a minimum ultimate compressive design | strength in 28 days as follows: | Element Footings Slabs-on-Grade | Submit statistical data, not more than one year old, for each class of concrete.",
+      "3. Use normal weight concrete for all structural members. u.o.n.",
+      "4. Aggregates are to be clean, free of chlorides, and complying with ASTM C33 gradations. Maximum coarse aggregate size 1\" (C33 size 57). Minimum F.M. for fine aggregate is 2.4. Use admixtures conforming to ASTM C494. Provide type A, D, F or G admix in all structural concrete and Type D or G when ambient temperature is 85 degrees or higher. Design concrete, with strengths less than 4500 psi, with 4% +/- 1% entrained air, except for trowel finished floors. Do not use calcium chloride in any concrete."
+     ]
+    },
+    {
+     "sets": 1,
+     "items": null
+    },
+    {
+     "sets": 1,
+     "items": [
+      "1. Provide Structural Concrete and concreting practices complying with ACI 301 and 318.",
+      "2. Provide structural concrete proportioned in accordance with ACI 318, Ch. 5.3, with a minimum ultimate compressive design | strength in 28 days as follows: Element Footings Slabs-on-Grade | Submit statistical data, not more than one year old, for each class of concrete.",
+      "3. Use normal weight concrete for all structural members. u.o.n.",
+      "4. Aggregates are to be clean, free of chlorides, and complying with ASTM C33 gradations. Maximum coarse aggregate size 1\" (C33 size 57). Minimum F.M. for fine aggregate is 2.4. Use admixtures conforming to ASTM C494. Provide type A, D, F or G admix in all structural concrete and Type D or G when ambient temperature is 85 degrees or higher. Design concrete, with strengths less than 4500 psi, with 4% +/- 1% entrained air, except for trowel finished floors. Do not use calcium chloride in any concrete.",
+      "5. Obtain composite samples of fresh concrete according to ASTM C172. Obtain at least one composite sample for each 100 cu. yd."
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "CONCRETE SLAB-ON-GRADE",
+   "kind": "notes",
+   "sets": 5,
+   "pct": 62.5,
+   "tier": "core",
+   "items_median": 3,
+   "on_sheets": [
+    "details",
+    "other"
+   ],
+   "wordings": 6,
+   "variants": [
+    {
+     "sets": 1,
+     "items": [
+      "6mm MIN. VAPOR BARRIER ({manufacturer} WRAP OR EQUIVALENT) AT INTERIOR CONDITIONS, S.A.D. | \" 4",
+      "1. 2. 3. 4. 5. 6. 7. 8.",
+      "2. 3. 4. WALL SHEATHING SHALL BE APPLIED OVER STUDS SPACED AT 16\"o.c. ALL SILL FASTENING TO CONCRETE SHALL HAVE AS A MINIMUM 5 5. SHALL EXTEND TO WITHIN 1 NAILS PENETRATING PRESSURE TREATED WOOD SHALL BE HOT-DIPPED GALVANIZED PER ASTM A153, CLASS D. DBL. 2x STUDS AT ABUTTING PANEL EDGES SHALL BE FASTENED TOGETHER w/ 16d NAILS AT EDGE NAIL SPACING. NAILING SPACED AT 3\"o.c. OR LESS SHALL BE STAGGERED 1",
+      "6. 7. 8."
+     ]
+    },
+    {
+     "sets": 1,
+     "items": [
+      "6mm MIN. VAPOR BARRIER ({manufacturer} WRAP OR EQUIVALENT) AT INTERIOR CONDITIONS, S.A.D. | \" 4"
+     ]
+    },
+    {
+     "sets": 1,
+     "items": null
+    },
+    {
+     "sets": 1,
+     "items": null
+    }
+   ]
+  },
+  {
+   "heading": "EDGE NAILING (E.N.)",
+   "kind": "notes",
+   "sets": 4,
+   "pct": 50.0,
+   "tier": "common",
+   "items_median": 1.0,
+   "on_sheets": [
+    "details",
+    "wall_framing"
+   ],
+   "wordings": 3,
+   "variants": [
+    {
+     "sets": 2,
+     "items": [
+      "BOUNDARY NAILING (B.N.) AT PERIMETER, SAME AS EDGE NAILING, U.O.N. | 4'-0\"x8'-0\" SHEATHING WITH FACE GRAIN PERPENDICULAR TO JOISTS, PLACE IN A STAGGERED JOINT PATTERN, TYP. U.O.N. | 2"
+     ]
+    },
+    {
+     "sets": 2,
+     "items": [
+      "FEILD NAILING (F.N.) EDGE NAILING (E.N.) ALONG ALL SIDE OF OPENING 12\"x12\" MAX. OPENING (PROVIDE BLOCKING AT ALL EDGES AND E.N. ALL AROUND) BLOCKING MEMBER TO MATCH STUD SIZE TYPICAL (SEE DETAIL \"C\" FOR OPENING 6\"x6\" & SMALLER)"
+     ]
+    },
+    {
+     "sets": 2,
+     "items": [
+      "BOUNDARY NAILING (B.N.) AT PERIMETER, SAME AS EDGE NAILING, U.O.N. | 4'-0\"x8'-0\" SHEATHING WITH FACE GRAIN PERPENDICULAR TO JOISTS, PLACE IN A STAGGERED JOINT PATTERN, TYP. U.O.N."
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "NOTE",
+   "kind": "notes",
+   "sets": 3,
+   "pct": 37.5,
+   "tier": "common",
+   "items_median": 3,
+   "on_sheets": [
+    "foundation_plan",
+    "roof_framing_plan",
+    "floor_plan"
+   ],
+   "wordings": 4,
+   "variants": [
+    {
+     "sets": 1,
+     "items": [
+      "- STUD PACK FRAMING:",
+      "(4) 2X STUD PACK UNDER EACH END OF SOLID SAWN BEAM. (6) 2X STUD PACK UNDER EACH END OF GLULAM BEAM. (SEE PLAN FOR BEAM SIZE)",
+      "- CONTRACTOR/ OWNER IS RESPONSIBLE FOR THE SOIL / GEOTECH REPORT."
+     ]
+    },
+    {
+     "sets": 1,
+     "items": [
+      "- STUD PACK FRAMING:",
+      "(4) 2X STUD PACK UNDER EACH END OF SOLID SAWN BEAM. (6) 2X STUD PACK UNDER EACH END OF GLULAM BEAM. (SEE PLAN FOR BEAM SIZE)",
+      "- CONTRACTOR/ OWNER IS RESPONSIBLE FOR THE SOIL / GEOTECH REPORT.",
+      "- CONTRACTOR ADD LOAD BEARING WALL FOOTER BASED ON THE TRUSS MANUFACTURE ENGINEER DESIGN."
+     ]
+    },
+    {
+     "sets": 1,
+     "items": null
+    },
+    {
+     "sets": 1,
+     "items": null
+    }
+   ]
+  },
+  {
+   "heading": "STUDS PER SHEAR WALL SCHEDULE",
+   "kind": "schedule",
+   "sets": 3,
+   "pct": 37.5,
+   "tier": "common",
+   "items_median": 3,
+   "on_sheets": [
+    "details"
+   ],
+   "wordings": 2,
+   "variants": [
+    {
+     "sets": 2,
+     "items": [
+      "3x SILL PLATE w/ 5",
+      "(1) TYPICAL WALL VERTICAL BAR (#5 BAR MIN.)",
+      "(1) TYPICAL WALL VERTICAL BAR (#5 BAR MIN.)"
+     ]
+    },
+    {
+     "sets": 1,
+     "items": null
+    }
+   ]
+  },
+  {
+   "heading": "WIDTH",
+   "kind": "notes",
+   "sets": 3,
+   "pct": 37.5,
+   "tier": "common",
+   "items_median": 3,
+   "on_sheets": [
+    "details"
+   ],
+   "wordings": 2,
+   "variants": [
+    {
+     "sets": 2,
+     "items": [
+      "BORED HOLES: MAX. DIAMETER 40% OF WIDTH",
+      "4. 5. 6. 7. 8.",
+      "(2) 2x12"
+     ]
+    },
+    {
+     "sets": 1,
+     "items": [
+      "BORED HOLES: MAX. DIAMETER 40% OF WIDTH",
+      "4. USE CONCEALED FLANGE HANGERS ONLY WHERE INDICATED ON PLANS 5. HANGERS PRODUCED BY {manufacturer}, U.O.N., OR EQUIVALENT APPROVED BY",
+      "6. 7. PROVIDE MAXIMUM FASTENERS LISTED BY MANUFACTURER 8. CONTACT STRUCTURAL ENGINEER OF RECORD FOR BEAM SIZES NOT SHOWN",
+      "(2) 2x12"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "DESIGN CRITERIA",
+   "kind": "notes",
+   "sets": 3,
+   "pct": 37.5,
+   "tier": "common",
+   "items_median": 1,
+   "on_sheets": [
+    "structural_notes"
+   ],
+   "wordings": 3,
+   "variants": [
+    {
+     "sets": 1,
+     "items": null
+    },
+    {
+     "sets": 1,
+     "items": null
+    },
+    {
+     "sets": 1,
+     "items": null
+    }
+   ]
+  },
+  {
+   "heading": "DEFLECTION DESIGN CRITERIA",
+   "kind": "notes",
+   "sets": 3,
+   "pct": 37.5,
+   "tier": "common",
+   "items_median": 1,
+   "on_sheets": [
+    "structural_notes"
+   ],
+   "wordings": 2,
+   "variants": [
+    {
+     "sets": 2,
+     "items": [
+      "All members (beams, slabs, trusses, joists, etc) composing floors have been designed and shall be designed by the delegated engineer for: - - - - Roof members supporting non plaster cellings live: L/240, Total L/180 | Total load: Span/240 Reinforced concrete elements: LL + Long Term Span/380 Wall / Mullions: L/175 Stone tile supporting floors LL: Span/380"
+     ]
+    },
+    {
+     "sets": 1,
+     "items": [
+      "All members (beams, slabs, trusses, joists, etc) composing floors have been designed and shall be designed by the delegated engineer for: - - - - - | Total load: Span/240 Reinforced concrete elements: LL + Long Term Span/380 Wall / Mullions: L/175 Stone tile supporting floors LL: Span/380 Roof members supporting non plaster cellings live: L/240, Total L/180"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "SHEAR WALL SCHEDULE",
+   "kind": "schedule",
+   "sets": 2,
+   "pct": 25.0,
+   "tier": "common",
+   "items_median": 1.0,
+   "on_sheets": [
+    "details"
+   ],
+   "wordings": 2,
+   "variants": [
+    {
+     "sets": 1,
+     "items": [
+      "\"APA RATED\" 2\" WALL SHEATHING STRUCT 1 | TYPE PER PLAN | 6 | 4 | 3 | 2 | 4 - 4"
+     ]
+    },
+    {
+     "sets": 1,
+     "items": null
+    }
+   ]
+  },
+  {
+   "heading": "FEILD NAILING (F.N.)",
+   "kind": "notes",
+   "sets": 2,
+   "pct": 25.0,
+   "tier": "common",
+   "items_median": 1.0,
+   "on_sheets": [
+    "details"
+   ],
+   "wordings": 1,
+   "variants": [
+    {
+     "sets": 2,
+     "items": [
+      "EDGE NAILING (E.N.) ALONG ALL SIDE OF OPENING 12\"x12\" MAX. OPENING (PROVIDE BLOCKING AT ALL EDGES AND E.N. ALL AROUND) BLOCKING MEMBER TO MATCH STUD SIZE TYPICAL (SEE DETAIL \"C\" FOR OPENING 6\"x6\" & SMALLER)"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "DEAD LOAD",
+   "kind": "notes",
+   "sets": 2,
+   "pct": 25.0,
+   "tier": "common",
+   "items_median": 8.5,
+   "on_sheets": [
+    "structural_notes"
+   ],
+   "wordings": 2,
+   "variants": [
+    {
+     "sets": 1,
+     "items": [
+      "17 psf 5 psf 20 psf 12 psf 15 psf",
+      "5. Obtain composite samples of fresh concrete according to ASTM C172. Obtain at least one composite sample for each 100 cu. yd. or fraction thereof of each concrete mix placed each day. For slabs, increase frequency to each 50 cu. yd. or fraction placed each day. Take a slump test, ASTM C143, for each composite sample. Maximum permissible slump is 5 inches. Cast and laboratory cure one set of four compression test standard cylinders, per ASTM C31, for each composite sample. For pumped concrete, take sample at point of placement. Test, per ASTM C39, one cylinder at 7 days and three at 28 days. If one of the first two 28 day tests falls below the specified strength, test the remaining cylinder at 56 days. No concrete test will be accepted if concrete is tampered with in any way after sample is obtained. Repeat sampling if water is added after initial sample is obtained.",
+      "6. Provide ASTM A-615 Grade 60 reinforcing steel. Reinforcing shall be accurately placed, rigidly supported and firmly tied in place, with appropriate bar supports and spacers. Conform to ACI 301, 315, 318 and CRSI Manual of Standard Practice. Lap continuous reinforcing 48 bar dia. Lap bottom steel over supports and top steel at midspan (u.o.n.). Hook discontinuous ends of all top bars and all bars in walls, u.o.n. Provide clear cover over reinforcing as follows:",
+      "7. Where specified, provide plain, cold-drawn electrically-welded wire reinforcement conforming to ASTM A-185. Supply in flat",
+      "8. Utilities shall not penetrate beams or columns but may pass through slabs and walls individually, u.o.n. For openings 24\" long or",
+      "9. Where reinforcing steel congestion permits, conduit and pipes up to 1\" diameter may be embedded in concrete per ACI 318,",
+      "10. Provide construction joints in accordance with ACI 318, Section 6.4. Provide keyways and adequate dowels. Submit drawings",
+      "11. Provide 3/4\" chamfer for all exposed corners.",
+      "12. Provide reinforcing steel placer with a set of Structural Drawings for field reference. Inspect reinforcing steel placing from"
+     ]
+    },
+    {
+     "sets": 1,
+     "items": null
+    }
+   ]
+  },
+  {
+   "heading": "ACCEPTABLE CONNECTION METHODS",
+   "kind": "schedule",
+   "sets": 2,
+   "pct": 25.0,
+   "tier": "common",
+   "items_median": 2.0,
+   "on_sheets": [
+    "other"
+   ],
+   "wordings": 1,
+   "variants": [
+    {
+     "sets": 2,
+     "items": [
+      "Optional: run pipe on top of angle",
+      "(6) 1 (8) 1 (A strut member is a purlin or girt at the bracing points. the struts continue across the length of the building.) See E-drawing for exceptions to size and quantity of bolts."
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "CODE / AUTHORITY",
+   "kind": "notes",
+   "sets": 1,
+   "pct": 12.5,
+   "tier": "occasional",
+   "items_median": 1,
+   "on_sheets": [
+    "cover"
+   ],
+   "wordings": 1,
+   "variants": [
+    {
+     "sets": 1,
+     "items": [
+      "ALL CONSTRUCTION SHALL COMPLY WITH THE CITY ADOPTED CODES AND INTERNATIONAL BUILDING CODE SHALL BE IMPOSED. {year} {state} RESIDENTIAL CODE (FRC) {year} {state} BUILDING CODE (FBC 8TH ED) AMERICAN SOCIETY OF CIVIL ENGINEERS (ASCE 7-16) AMERICAN INSTITUTE OF STEEL CONSTRUCTION (AISC-ASD) ICC G5-{year} ACI 318-16 (STRUCTURAL CONCRETE) TMS 402/602-16 (STRUCTURAL MASONRY)"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "SYMBOLS & LEGENDS",
+   "kind": "legend",
+   "sets": 1,
+   "pct": 12.5,
+   "tier": "occasional",
+   "items_median": 1,
+   "on_sheets": [
+    "cover"
+   ],
+   "wordings": 1,
+   "variants": [
+    {
+     "sets": 1,
+     "items": [
+      "FLOOR LEVEL 0' - 0\" | 1 | A | ROOM NAME - | - | - | - | 1 | A.3 | 3 S2.0 | A | D | C"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "SECTION CUT MARKER",
+   "kind": "notes",
+   "sets": 1,
+   "pct": 12.5,
+   "tier": "occasional",
+   "items_median": 4,
+   "on_sheets": [
+    "cover"
+   ],
+   "wordings": 1,
+   "variants": [
+    {
+     "sets": 1,
+     "items": [
+      "DIRECTION OF CUT SECTION DRAWING NUMBER SECTION DRAWING SHEET NUMBER",
+      "4. FIRE PROTECTION EQUIPMENT AND SERVICE ACCESS MUST BE PROVIDED DURING THE CONSTRUCTION PERIOD OR AS REQUIRED BY THE CITY FIRE DEPARTMENT",
+      "5. BUILDER SHALL MAINTAIN CLEAR EXIT(S) AND TEMPORARY EXIT SIGNS TO",
+      "6. ALL APPLICABLE CODE DESIGNATIONS SHALL COMPLY WITH THE MOST"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "NOTE OR NOTATION",
+   "kind": "notes",
+   "sets": 1,
+   "pct": 12.5,
+   "tier": "occasional",
+   "items_median": 1,
+   "on_sheets": [
+    "cover"
+   ],
+   "wordings": 1,
+   "variants": [
+    {
+     "sets": 1,
+     "items": [
+      "AN ARCHITECTURAL SHEET OR SCHEDULE INDICATES THAT DIMENSIONS PROVIDED ELSEWHERE SHALL GOVERN"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "PLUMBING NOTES",
+   "kind": "notes",
+   "sets": 1,
+   "pct": 12.5,
+   "tier": "occasional",
+   "items_median": 2,
+   "on_sheets": [
+    "plumbing_water",
+    "plumbing_sanitary"
+   ],
+   "wordings": 1,
+   "variants": [
+    {
+     "sets": 1,
+     "items": [
+      "1. THE CONTRACTOR SHALL FURNISH ALL LABOR, MATERIALS, AND EQUIPMENT NECESSARY FOR THE | INSTALLATION OF A COMPLETE SCOPE OF WORK. ALL WORKMANSHIP AND MATERIALS SHALL BE IN STRICT ACCORDANCE WITH THE {state} BUILDING CODE 8TH EDITION ({year}) - PLUMBING, APPLICABLE LOCAL CODES,RULES AND ORDINANCES.",
+      "2. PLUMBING CONTRACTOR SHALL VISIT THE JOB SITE AND THOROUGHLY FAMILIARIZE HIMSELF WITH ALL"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "DENOTES {manufacturer} HANGER PER SCHEDULE 4/S2.1, U.O.N",
+   "kind": "schedule",
+   "sets": 1,
+   "pct": 12.5,
+   "tier": "occasional",
+   "items_median": 1,
+   "on_sheets": [
+    "foundation_plan"
+   ],
+   "wordings": 1,
+   "variants": [
+    {
+     "sets": 1,
+     "items": [
+      "DENOTES {manufacturer} CONCEALED FLANGE HANGER PER SCHEDULE 4/S2.1, U.O.N. | SEE HEADER SCHEDULE ON 8/S2.1 FOR HEADER SIZES, UNLESS NOTED ON PLAN. | 15\" WIDE x 18\" CONCRETE FOOTING, U.O.N."
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "CONSTRUCTION SCOPE OF WORK",
+   "kind": "notes",
+   "sets": 1,
+   "pct": 12.5,
+   "tier": "occasional",
+   "items_median": 2,
+   "on_sheets": [
+    "floor_plan"
+   ],
+   "wordings": 1,
+   "variants": [
+    {
+     "sets": 1,
+     "items": null
+    }
+   ]
+  },
+  {
+   "heading": "STRUCTURAL NOTES",
+   "kind": "notes",
+   "sets": 1,
+   "pct": 12.5,
+   "tier": "occasional",
+   "items_median": 1,
+   "on_sheets": [
+    "roof_framing_plan"
+   ],
+   "wordings": 1,
+   "variants": [
+    {
+     "sets": 1,
+     "items": [
+      "1. CONSTRUCTION OF CMU WALLS IN ACCORDANCE WITH FBC {year} AND PLANS FILLED CELLS WITH LADDER WIRE EVERY OTHER COURSE. INCLUDES BLOCK, 2. MORTAR, CONCRETE, TIE BEAM INSTALLATION, 1/2'' {manufacturer} ON FOIL INSULATION OVER 3/4'' FURRING STRIP OVER BLOCK, WITH LEVEL 4 FINISH PAINTED. #5 REBAR 4' O.C. AT FIELD SEAMS WITH LADDER WIRE. EVERY OTHER COURSE. LEVEL 4 PAINTED FINISH | 3."
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "NAILING SCHEDULE (BLOCKED DIAPHRAGM)",
+   "kind": "schedule",
+   "sets": 1,
+   "pct": 12.5,
+   "tier": "occasional",
+   "items_median": 2,
+   "on_sheets": [
+    "roof_framing_plan"
+   ],
+   "wordings": 1,
+   "variants": [
+    {
+     "sets": 1,
+     "items": null
+    }
+   ]
+  },
+  {
+   "heading": "P.T. 1 X WOOD NAILER AND FURRING STRIPS",
+   "kind": "notes",
+   "sets": 1,
+   "pct": 12.5,
+   "tier": "occasional",
+   "items_median": 1,
+   "on_sheets": [
+    "other"
+   ],
+   "wordings": 1,
+   "variants": [
+    {
+     "sets": 1,
+     "items": [
+      "3 16 \" X 5\" LONG MIN. {manufacturer} CONC.SCREW @12\" O.C. STAGGERED COUNTERSUNK INTO P.T. WD. 1\" x 4\" BUCK SET W/ LIQUID NAIL @ HEAD & SILL."
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "SYMBOL LEGEND",
+   "kind": "legend",
+   "sets": 1,
+   "pct": 12.5,
+   "tier": "occasional",
+   "items_median": 1,
+   "on_sheets": [
+    "electrical_power",
+    "electrical_lighting",
+    "mechanical"
+   ],
+   "wordings": 1,
+   "variants": [
+    {
+     "sets": 1,
+     "items": null
+    }
+   ]
+  },
+  {
+   "heading": "NOTES",
+   "kind": "notes",
+   "sets": 1,
+   "pct": 12.5,
+   "tier": "occasional",
+   "items_median": 8,
+   "on_sheets": [
+    "schedules"
+   ],
+   "wordings": 1,
+   "variants": [
+    {
+     "sets": 1,
+     "items": null
+    }
+   ]
+  },
+  {
+   "heading": "REFERENCE CODES & STANDARDS",
+   "kind": "notes",
+   "sets": 1,
+   "pct": 12.5,
+   "tier": "occasional",
+   "items_median": 1,
+   "on_sheets": [
+    "cover"
+   ],
+   "wordings": 1,
+   "variants": [
+    {
+     "sets": 1,
+     "items": null
+    }
+   ]
+  },
+  {
+   "heading": "NOTES 1)",
+   "kind": "notes",
+   "sets": 1,
+   "pct": 12.5,
+   "tier": "occasional",
+   "items_median": 1,
+   "on_sheets": [
+    "cover"
+   ],
+   "wordings": 1,
+   "variants": [
+    {
+     "sets": 1,
+     "items": [
+      "2) AREAS TO BE PATCHED ARE INTENDED TO BE PATCHED WITH SIMILAR MATERIALS. 3) 4) LOCATIONS, ELEVATIONS, AND DIMENSIONS OF EXISTING FIXTURES, STRUCTURES AND OTHER FEATURES ARE SHOWN ACCORDING TO THE BEST INFORMATION AVAILABLE AT THE TIME OF PREPARATION OF THESE PLANS. THE CONTRACTOR SHALL VERIFY THE LOCATIONS, ELEVATIONS AND DIMENSIONS OF ALL EXISTING FIXTURES, STRUCTURES AND OTHER FEATURES, AFFECTING THIS WORK, PRIOR TO CONSTRUCTION."
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "SCHEDULE OF DOOR & WINDOW OPENINGS",
+   "kind": "schedule",
+   "sets": 1,
+   "pct": 12.5,
+   "tier": "occasional",
+   "items_median": 1,
+   "on_sheets": [
+    "floor_plan"
+   ],
+   "wordings": 1,
+   "variants": [
+    {
+     "sets": 1,
+     "items": null
+    }
+   ]
+  },
+  {
+   "heading": "ELECTRICAL PLAN NOTES",
+   "kind": "notes",
+   "sets": 1,
+   "pct": 12.5,
+   "tier": "occasional",
+   "items_median": 1,
+   "on_sheets": [
+    "electrical_power",
+    "electrical_lighting"
+   ],
+   "wordings": 1,
+   "variants": [
+    {
+     "sets": 1,
+     "items": [
+      "- ELECTRICAL LAYOUT SHOWN IS DIAGRAMMATIC ONLY AND FOR REFERENCE PURPOSES. - FINAL CIRCUIT DESIGN, PANEL SCHEDULES, CONDUIT ROUTING, AND LOAD CALCULATIONS SHALL BE COORDINATED WITH THE LICENSED ELECTRICAL CONTRACTOR. - ELECTRICAL LOAD, SHORT CIRCUIT, AND ENERGY COMPLIANCE CALCULATIONS SHALL BE PREPARED AND CERTIFIED BY OTHERS. - ALL DEVICE LOCATIONS SHALL BE FIELD-VERIFIED FOR ACTUAL CONDITIONS AND CODE CLEARANCES. - ALL WORK SHALL COMPLY WITH THE {year} {state} BUILDING CODE - ELECTRICAL AND THE {year} NATIONAL ELECTRICAL CODE (NFPA 70)."
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "LIVE LOAD",
+   "kind": "notes",
+   "sets": 1,
+   "pct": 12.5,
+   "tier": "occasional",
+   "items_median": 1,
+   "on_sheets": [
+    "structural_notes"
+   ],
+   "wordings": 1,
+   "variants": [
+    {
+     "sets": 1,
+     "items": null
+    }
+   ]
+  }
+ ],
+ "template_seed": {
+  "sheets": [
+   {
+    "kind": "site_plan",
+    "name": "SITE PLAN",
+    "views": []
+   },
+   {
+    "kind": "floor_plan",
+    "name": "FLOOR PLAN",
+    "views": []
+   },
+   {
+    "kind": "roof_plan",
+    "name": "ROOF PLAN",
+    "views": []
+   },
+   {
+    "kind": "elevations",
+    "name": "ELEVATIONS",
+    "views": []
+   },
+   {
+    "kind": "electrical_power",
+    "name": "FLOOR POWER PLAN",
+    "views": []
+   },
+   {
+    "kind": "structural_notes",
+    "name": "STRUCTURAL NOTES",
+    "views": []
+   },
+   {
+    "kind": "details",
+    "name": "STRUCTURAL DETAILS",
+    "views": []
+   }
+  ],
+  "details": [],
+  "note_blocks": [
+   "GENERAL NOTES",
+   "CONCRETE MASONRY",
+   "DEMOLITION NOTES",
+   "STRUCTURAL STEEL",
+   "SHALLOW FOUNDATIONS",
+   "EXCAVATION, BACKFILL AND DEWATERING",
+   "WOOD",
+   "SLABS-ON-GRADE",
+   "REINFORCED CONCRETE",
+   "CONCRETE SLAB-ON-GRADE"
+  ],
+  "legends_and_schedules": []
+ }
+}

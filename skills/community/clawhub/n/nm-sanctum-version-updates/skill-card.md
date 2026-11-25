@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to prepare project releases by coordinating semantic version changes across package manifests, changelogs, and README or other version references, then reviewing the updates. It expects repository changes to be captured first with the Sanctum git workspace review skill.
+Developers use this skill to prepare project releases by locating version references, coordinating version bumps across configuration and documentation, and checking the resulting changes.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The partial security review could not resolve local references, leaving some referenced behavior unassessed.
+Risk: The security scan was partial and could not resolve multiple referenced paths, so its benign verdict does not cover all referenced material.
 
-Mitigation: Review the skill's local references and assess whether its version, release, and changelog triggers overlap with your workflows before installing.
+Mitigation: Review the skill instructions and linked references before installing if the unresolved paths affect your use.
 
 ## Reference(s):
 
-- [Night Market Sanctum plugin page](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
+- [Sanctum plugin information](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
 
 ## Skill Output:
 
-**Output Type(s):** [Configuration, Markdown, Shell commands]
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
 
-**Output Format:** [Updated project configuration and Markdown documentation, with shell commands for verification.]
+**Output Format:** [Markdown with release steps, commands, and proposed file updates]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Five ordered progress checkpoints for release preparation.]
+**Other Properties Related to Output:** [Coordinates version references across project files and release documentation.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

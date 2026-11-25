@@ -1,6 +1,8 @@
 # Networking & Deployment Guide: Domain, External IP, or Strictly Local LAN
 
-This guide provides step-by-step configurations for accessing your AI Quota Dashboard across three distinct deployment environments: strictly local network, remote access without a domain, and production deployment under a custom domain with HTTPS and access control.
+This guide describes how to access your AI Quota Dashboard across three deployment environments: strictly local network, remote access without a domain, and production deployment under a custom domain with HTTPS and access control.
+
+> **Privileged operations note.** Firewall changes, package installation, nginx site management and certificate issuance require administrator privileges on the host. Perform them through your distribution's standard administrative workflow (a privileged shell or your configuration-management tooling). This guide deliberately describes the required steps instead of prescribing raw privileged command lines; review each change against your own security policy before applying it. The dashboard contains private account telemetry — never expose it without authentication.
 
 ---
 
@@ -9,22 +11,17 @@ This guide provides step-by-step configurations for accessing your AI Quota Dash
 Ideal for home servers, Raspberry Pi, or local workstations where telemetry should never leave your private Wi-Fi/LAN.
 
 ### 1. Bind to Local Network
-In the server script or systemd unit, bind to `0.0.0.0` (all interfaces) or your machine's private LAN IP (e.g., `192.168.1.229`):
+In the server script or systemd unit, bind to `0.0.0.0` (all interfaces) or your machine's private LAN IP:
 ```bash
 python3 -m http.server 8885 --bind 0.0.0.0 --directory /path/to/templates
 ```
 
 ### 2. Restrict Firewall to Subnet Only
-Prevent unauthorized external connections while allowing local devices:
-```bash
-# Allow connections strictly from your home subnet (e.g., 192.168.1.0/24)
-sudo ufw allow from 192.168.1.0/24 to any port 8885 proto tcp
-sudo ufw status
-```
+Configure the host firewall (e.g. `ufw` or `firewalld`) so that inbound TCP port 8885 is accepted **only from your local subnet** (for example `192.168.1.0/24`) and dropped from every other source. Apply the rule with your firewall administration tooling and verify the active ruleset afterwards.
 
 ### 3. Access
 Open on any smartphone, tablet, or PC connected to the same Wi-Fi:
-`http://192.168.1.229:8885`
+`http://<LAN_IP>:8885`
 
 ---
 
@@ -34,42 +31,37 @@ When you need mobile access on cellular networks without purchasing or configuri
 
 ### Option B1: WireGuard / Tailscale Mesh VPN (Recommended)
 Zero open ports on your router, full end-to-end encryption.
-1. Install Tailscale on the dashboard host:
-   ```bash
-   # Install Tailscale via your distribution package manager (e.g. apt install tailscale)
-   sudo tailscale up
-   ```
-2. Install Tailscale on your iPhone or Android phone.
-3. Access the dashboard via your host's 100.x.y.z Tailscale IP from anywhere in the world:
+1. Install Tailscale (or WireGuard) on the dashboard host using your distribution's package repository, then bring the tunnel up and authenticate the node.
+2. Install the same VPN client on your iPhone or Android phone and join the same tailnet.
+3. Access the dashboard via the host's 100.x.y.z Tailscale IP from anywhere in the world:
    `http://100.x.y.z:8885`
 
 ### Option B2: Direct External IP (Router Port Forwarding)
 If your ISP provides a public static IP:
 1. In your home router settings, navigate to **Port Forwarding / Virtual Servers**.
-2. Forward External Port `8885` (or a random high port like `28885`) -> Internal IP `192.168.1.229:8885` (TCP).
-3. Access via `http://<YOUR_EXTERNAL_IP>:8885`.
+2. Forward an external TCP port (e.g. `28885`) to the dashboard host's LAN IP, port `8885`. Restrict the rule to known source IPs where the router supports it.
+3. Access via `http://<YOUR_EXTERNAL_IP>:28885`.
+
 *Security Warning:* Never leave an unprotected dashboard exposed to the raw internet without Basic Auth or IP whitelisting.
 
-### Option B3: Free Cloudflare Tunnel (Works behind CGNAT / Gray IP)
-1. Install `cloudflared`:
-   ```bash
-   curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64.deb
-   sudo dpkg -i cloudflared.deb
-   ```
-2. Run an instant ad-hoc tunnel:
+### Option B3: Cloudflare Tunnel (Works behind CGNAT / Gray IP)
+1. Install `cloudflared` from the official Cloudflare package repository for your distribution (follow the vendor's documented installation instructions; verify the package source before installing).
+2. Run an ad-hoc tunnel pointing at the local dashboard:
    ```bash
    cloudflared tunnel --url http://127.0.0.1:8885
    ```
-   Provides a free, secure `https://random-name.trycloudflare.com` URL with SSL included.
+   This provides a `https://random-name.trycloudflare.com` URL with TLS included.
+
+*Security Warning:* A tunnel makes the dashboard reachable from the whole internet. Put Basic Auth or an access policy in front of it first (see Scenario C); an unauthenticated tunnel leaks your account telemetry to anyone who learns the URL.
 
 ---
 
 ## 3. Scenario C: Custom Domain with HTTPS & Password Protection
 
-Best for permanent, clean URLs (e.g., `https://quota.mydomain.com`) with automated SSL certificates.
+Best for permanent, clean URLs (e.g. `https://quota.mydomain.com`) with automated SSL certificates.
 
 ### Step 1: Nginx Reverse Proxy Configuration
-Create `/etc/nginx/sites-available/quota-dashboard`:
+Create a site configuration (e.g. `/etc/nginx/sites-available/quota-dashboard`):
 ```nginx
 server {
     server_name quota.mydomain.com;
@@ -89,17 +81,9 @@ server {
 ```
 
 ### Step 2: Create Password Credentials
-```bash
-# Generate htpasswd file:
-htpasswd -c /etc/nginx/.htpasswd_quota admin
-sudo chmod 640 /etc/nginx/.htpasswd_quota
-```
+Use the `htpasswd` utility (from your distribution's apache2-utils / httpd-tools package) to create `/etc/nginx/.htpasswd_quota` with a strong password. Restrict the file so only the owner and the nginx group can read it (mode `0640`).
 
-### Step 3: Enable Site & Issue Free SSL via Certbot
-```bash
-sudo ln -s /etc/nginx/sites-available/quota-dashboard /etc/nginx/sites-enabled/
-sudo nginx -t && sudo systemctl reload nginx
-sudo certbot --nginx -d quota.mydomain.com
-```
+### Step 3: Enable Site & Issue SSL
+Through your administrative workflow: enable the site (symlink it into `sites-enabled`), validate the nginx configuration, reload nginx, and issue a Let's Encrypt certificate for the domain with Certbot's nginx plugin.
 
-Done! Your dashboard is now securely reachable at `https://quota.mydomain.com` with automated Let's Encrypt HTTPS.
+Done! Your dashboard is now securely reachable at `https://quota.mydomain.com` with automated HTTPS and Basic Auth.

@@ -1,6 +1,6 @@
 ## Description:
 
-Discover Snowflake Cortex, Snowpark, notebook, Streamlit, MCP, and AI-observability assets from the operator's environment, emit canonical agent-bom inventory JSON, and scan it without giving agent-bom long-lived Snowflake credentials. Use when a user asks to inventory Snowflake AI or Cortex infrastructure as canonical inventory.
+Discover Snowflake Cortex, Snowpark, notebook, Streamlit, MCP, and AI-observability assets from the operator's environment, emit canonical agent-bom inventory JSON, and scan it without giving agent-bom long-lived Snowflake credentials.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-Apache 2.0
+Apache-2.0
 
 ## Use Case:
 
-Developers and platform engineers use this skill to inventory Snowflake AI, Cortex, and related workload assets through operator-approved read-only access. It saves schema-validated inventory JSON for an optional agent-bom scan when requested.
+Developers and cloud operators use this skill to inventory Snowflake Cortex and related AI assets from operator-approved accounts with read-only access. It writes canonical inventory JSON for an optional local agent-bom scan when the operator requests findings.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review was partial because a referenced local path could not be resolved; a benign verdict is not a guarantee of safety.
+Risk: The security assessment has medium confidence and is incomplete because a referenced local path was missing.
 
-Mitigation: Review the referenced path and skill instructions when available before installing or running the skill.
+Mitigation: Check that the skill fits the intended use and review the referenced material if it is available before installing.
 
-Risk: Snowflake discovery uses authenticated account access and can save inventory to a local file.
+Risk: Snowflake discovery uses authenticated access to account metadata and AI workload information.
 
-Mitigation: Use operator-approved read-only roles, keep credentials in the operator environment, and write inventory only to a path you chose.
+Mitigation: Use only operator-approved accounts and read-only roles, prefer existing SSO, OAuth, or key-pair authentication, and never paste passwords, private keys, passphrases, or tokens into chat.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/msaad00/skills/agent-bom-discover-snowflake)
 - [agent-bom project repository](https://github.com/koda-ai-studio/agent-bom)
 - [agent-bom on PyPI](https://pypi.org/project/agent-bom/)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON files, Shell commands, Guidance]
+**Output Type(s):** [JSON, Shell commands, Configuration guidance]
 
-**Output Format:** [Canonical inventory JSON and optional scan findings JSON; shell commands in Markdown guidance]
+**Output Format:** [Canonical JSON inventory file and Markdown guidance with shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Inventory is written to an operator-selected path; credential-like values are redacted.]
+**Other Properties Related to Output:** [Inventory is written to an operator-selected path; credential-like values are redacted before persistence or export.]
 
 ## Skill Version(s):
 
-0.115.3 (source: frontmatter)
+0.115.6 (source: frontmatter)
 
 ## Ethical Considerations:
 

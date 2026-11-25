@@ -5,8 +5,8 @@ import { existsSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { homedir } from "node:os";
 import path from "node:path";
-import process from "node:process";
 import { markRunDir, sandboxMayWiden, userApprovedSandboxWiden } from "./safety.mjs";
+import { isInvokedDirectly } from "./direct.mjs";
 import { SHELL_METACHAR } from "./shell-meta.mjs";
 import { STDIO_DISCARD } from "./stdio-modes.mjs";
 
@@ -160,9 +160,31 @@ async function isPng(file) {
 }
 
 function sandboxBlocked(processResult) {
-  const text = (processResult.stderr || "") + "\n" + (processResult.stdout || "").toLowerCase();
+  const text = ((processResult.stderr || "") + "\n" + (processResult.stdout || "")).toLowerCase();
   if (text.includes("operation not permitted")) return true;
   return text.includes("sandbox") && /block|denied|not permitted|permission|eacces|eperm/.test(text);
+}
+
+export function extractCodexAgentError(stdout) {
+  for (const line of String(stdout || "").split(/\n/).reverse()) {
+    let event;
+    try { event = JSON.parse(line); } catch { continue; }
+    const item = event?.item;
+    if (item?.type !== "agent_message" || typeof item.text !== "string") continue;
+    const message = item.text.trim().replace(/^```(?:json)?\s*|\s*```$/gi, "");
+    try {
+      const result = JSON.parse(message);
+      return result?.status === "error" && typeof result.reason === "string" ? result : null;
+    } catch {
+      return null;
+    }
+  }
+  return null;
+}
+
+export function isImageGenUnavailable(reason) {
+  const text = String(reason || "").toLowerCase();
+  return /image_gen/.test(text) && /unavailable|not available/.test(text);
 }
 
 function runCodexExec(codex, instruction, o, cwd) {
@@ -229,7 +251,13 @@ async function main() {
       else process.stdout.write("OK  codex  " + (o.out) + "  (" + (s.size) + " bytes, " + (result.elapsed_seconds) + "s, attempt " + (attempt) + ")\n");
       process.exit(0);
     }
-    lastErr = outputUnchanged
+    const agentErr = extractCodexAgentError(processResult.stdout);
+    if (agentErr && isImageGenUnavailable(agentErr.reason)) {
+      fail("image_gen_unavailable", (agentErr.reason) + " — 这个 Codex 账号没有出图工具（免费套餐常见）");
+    }
+    lastErr = agentErr && agentErr.reason
+      ? agentErr.reason
+      : outputUnchanged
       ? "no new PNG at " + (o.out) + ": the file is unchanged from before this run (codex exec exited " + (processResult.code) + ": " + (processResult.stderr.slice(0, 200)) + ")"
       : processResult.code !== 0 ? "codex exec exited " + (processResult.code) + ": " + (processResult.stderr.slice(0, 200)) : "no valid PNG at " + (o.out) + " (agent may not have called image_gen, or sandbox blocked the write)";
     if (!o.json) process.stderr.write("[codex] attempt " + (attempt) + " failed: " + (lastErr) + "\n");
@@ -251,4 +279,4 @@ async function main() {
   fail("generation_failed", (lastErr) + " (logs: " + (logDir) + ")");
 }
 
-main().catch((e) => fail("spawn_failed", String(e?.stack || e)));
+if (isInvokedDirectly(import.meta.url)) main().catch((e) => fail("spawn_failed", String(e?.stack || e)));

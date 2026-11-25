@@ -19,16 +19,20 @@ UAGCUUAUCAGACUGAUGAUGA
 UUAAUGCUAAUCGUGAUAGGGGU
 ```
 
-**Input 3: 3'UTR FASTA (`3utr.fa`)**  
+**Input 3: 3'UTR FASTA (`3utr.fa`)**
 Downloadable from Ensembl/UCSC.
 
-### 2. Check the environment
+### 2. Install real miRanda 3.3a and check the environment
+
+Real miRanda 3.3a is required for the default hybrid/refinement workflow:
 
 ```bash
+bash ~/.openclaw/skills/mirna-target-tools/scripts/install_miranda_conda.sh
+bash ~/.openclaw/skills/mirna-target-tools/scripts/install_miranda_conda.sh --check
 python3 ~/.openclaw/skills/mirna-target-tools/scripts/check_env.py
 ```
 
-If anything is missing, run the installer:
+If other optional dependencies are missing:
 ```bash
 bash ~/.openclaw/skills/mirna-target-tools/scripts/install_dependencies.sh
 ```
@@ -202,7 +206,7 @@ python3 ~/.openclaw/skills/mirna-target-tools/scripts/predict_targets_genome.py 
 - `--method seed` (default fallback): TargetScan site definitions only.
 - `--method miranda`: full miRanda duplex scan (score + dG) - works for any species,
   but permissive on its own; tighten with `--miranda-score` / `--miranda-energy`.
-- `--method hybrid` (**recommended**, default when miRanda is installed): keeps only seed
+- `--method hybrid` (**default**, requires real miRanda 3.3a): keeps only seed
   sites that a miRanda alignment overlaps, and reports score + dG for each.
 - `--target-region utr`: scan only 3'UTRs (sliced from the Ensembl GTF, downloaded
   automatically for built-in species) instead of full transcripts; `--min-utr-length`
@@ -303,6 +307,47 @@ python3 ~/.openclaw/skills/mirna-target-tools/scripts/conservation_analysis.py \
 - `{prefix}_sequence_logo.png/.svg` - information-content sequence logo
 - `{prefix}_alignment.png/.svg` - multiple sequence alignment figure
 
+## Two-stage 3'UTR refinement (v3.1.0; real-miRanda default in v3.2.0+)
+
+```bash
+# stage 1: cheap seed scan (3'UTR)
+python3 scripts/predict_targets_genome.py --mirna-fa mirna.fa --species goat \
+    --target-region utr --method seed --outdir results/stage1 --prefix goat_seed
+
+# stage 2: extract windows around the best-scoring sites and re-predict
+python3 scripts/refine_sites.py --sites results/stage1/goat_seed_sites.tsv \
+    --species goat --mirna-fa mirna.fa --method both \
+    --outdir results/refine --prefix goat_refine
+```
+
+What stage 2 does:
+
+1. **Selects** seed sites by their preliminary weight (8mer 4 > 7mer-m8 3 >
+   7mer-A1 2 > 6mer 1), capped per miRNA (`--top-per-mirna`) and per
+   (miRNA, transcript) (`--max-per-transcript`).
+2. **Extracts** the annotated 3'UTR window around each site (`--flank`, default
+   60 nt) and verifies that the stage-1 seed sequence is still present at the
+   mapped position (guards against annotation-version drift). Nearby sites are
+   merged into one window. `--window-mode utr` extracts the whole 3'UTR of each
+   selected transcript instead of site-centred windows.
+3. **Re-predicts** only the windows with miRanda (score/dG) and/or RNAhybrid
+   (exact MFE), and writes a per-site `refined_call`
+   (`confirmed` / `partial` / `not_confirmed`).
+
+Outputs: `_selected_sites.tsv`, `_windows.fa`, `_refined_sites.tsv`,
+`_refined_targets.tsv`, `_miranda_hits.tsv`, `_rnahybrid_hits.tsv`,
+`_skipped.tsv`, `_refine_summary.tsv`.
+
+Notes:
+
+- If stage 1 used cDNA coordinates, supply `--gtf` (or `--species`, which fetches
+  one) so sites can be mapped onto the 3'UTR; sites outside the 3'UTR are
+  reported in `_skipped.tsv` with a reason.
+- `--method both` requires both engines; `--strict` turns a missing engine into
+  an error, otherwise the script degrades to the available one.
+- Windows are RNA FASTA; per-site MFE values refer to the window coordinates
+  reported in `rnahybrid_position`.
+
 ## Plotting engine
 
 All figures (enrichment dot plots, sequence logo, alignment) are drawn with **R + ggplot2**
@@ -346,20 +391,20 @@ hundred MB; human cDNA: a few GB). An older laptop or a busy shared server can b
 
 ## FAQ
 
-**Q: TargetScan can't find a database?**  
+**Q: TargetScan can't find a database?**
 A: Download the database for your species manually from https://www.targetscan.org/ and point to it with `--database`.
 
-**Q: miRanda fails to compile?**  
+**Q: miRanda fails to compile?**
 A: Check that gcc is installed. On Ubuntu: `sudo apt-get install build-essential`.
 
-**Q: Too few results?**  
+**Q: Too few results?**
 A: Loosen the cutoff parameters, or stop taking only the intersection.
 
-**Q: Annotation reports "Invalid organism"?**  
+**Q: Annotation reports "Invalid organism"?**
 A: Confirm the species name. Use `goat` for goat (mapped to g:Profiler's `chircus`) and `sheep` for sheep (`oarambouillet`). The script maps them automatically, so the common names work directly.
 
-**Q: Does annotation need internet access?**  
+**Q: Does annotation need internet access?**
 A: Yes. Gene annotation uses MyGene.info and enrichment uses g:Profiler, both online APIs (no local database download). For offline use, cache the results in advance.
 
-**Q: The enrichment results are empty?**  
+**Q: The enrichment results are empty?**
 A: Possibly no pathway in that species' annotation database is significantly enriched for this gene set; relax the p threshold or confirm the gene symbols match the chosen species.

@@ -1,0 +1,63 @@
+# ============================================================
+# GitHub Actions - SARIF end-to-end example (copy & paste)
+# ============================================================
+# 目标：把 Skill 安全扫描结果自动标注到 GitHub Code Scanning 的 Security 标签页。
+# 用法：把本文件内容放到目标仓库 .github/workflows/skill-security.yml
+# 从克隆到看到告警：约 5 分钟（依赖安装 + 一次扫描）。
+#
+# 注意：本文件是示例文档，不参与扫描器运行；扩展名 .yml 是纯文本，非禁止文件类型。
+
+name: Skill Security Scan
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 3 * * 1'   # 每周一凌晨 3 点全量扫描
+
+permissions:
+  contents: read
+  security-events: write   # 上传 SARIF 到 Code Scanning 必需
+
+jobs:
+  skill-security:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      - name: 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: 扫描 Skill 并生成 SARIF
+        # SEC_SCANNER 指向本扫描器的 audit.py（发布后可用 pip/uvx 安装方式替换）
+        env:
+          SEC_SCANNER: ${{ github.workspace }}/.github/scripts/audit.py
+          TARGET_SKILL: ${{ github.workspace }}
+        run: |
+          python "$SEC_SCANNER" "$TARGET_SKILL" \
+            --mode full \
+            --format sarif \
+            --skip-update \
+            --supply-chain \
+            --malicious-db \
+            --rule-engine \
+            -o skill-security.sarif.json
+          echo "SARIF 生成完成：$(wc -c < skill-security.sarif.json) bytes"
+
+      - name: 上传 SARIF 到 GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: skill-security.sarif.json
+          category: skill-security
+
+      - name: 一键快扫（可选，输出裁定到日志）
+        if: always()
+        run: |
+          python "${{ github.workspace }}/.github/scripts/audit.py" \
+            "${{ github.workspace }}" --quick || true
+          # exit 0=干净 / 1=可疑 / 2=恶意；CI 可据此决定阻断

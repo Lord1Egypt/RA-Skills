@@ -1,6 +1,6 @@
 ## Description:
 
-Supports personal ETF and stock research with a five-factor screening framework, risk checks, and trade reviews that produce decision drafts for human consideration.
+Provides a personal investing framework for ETF and stock research, risk checks, and review, with outputs framed as drafts for human judgment.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Individual investors can use it to structure personal ETF and stock research, screen for stated risks, and review decisions. Its outputs are draft analyses for independent human review, not investment advice or trading instructions.
+Individual investors can use the framework to organize ETF and stock research, screen for stated risk factors, and review their own decisions. Its analyses are drafts for personal review, not financial advice or trade instructions.
 
 ### Deployment Geography for Use:
 
@@ -22,13 +22,13 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review had medium confidence and partial coverage because a referenced local path was missing.
+Risk: The security assessment is benign with medium confidence, but the scan was partial and noted a low-probability Unicode identifier warning.
 
-Mitigation: Inspect the complete package and referenced files before installation.
+Mitigation: Review the source and identifiers, and account for the unresolved scan coverage gap before installation.
 
-Risk: Research drafts may be mistaken for reliable financial advice or trading instructions.
+Risk: Investment analyses can rely on stale or incomplete market information and may be mistaken for trade instructions.
 
-Mitigation: Verify current facts against authoritative public sources and apply human review; treat all outputs as decision drafts, not investment advice or orders.
+Mitigation: Verify claims against current authoritative sources and treat all conclusions as drafts requiring human judgment.
 
 ## Reference(s):
 
@@ -38,15 +38,15 @@ Mitigation: Verify current facts against authoritative public sources and apply 
 
 **Output Type(s):** [Analysis, Guidance, Markdown]
 
-**Output Format:** [Markdown decision drafts with checklists, scoring tables, and review summaries]
+**Output Format:** [Markdown text with checklists and tables]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires current public information and human review; no order placement or brokerage access.]
+**Other Properties Related to Output:** [Human-reviewed decision drafts; no executable code or automated trading actions.]
 
 ## Skill Version(s):
 
-3.3.2 (source: frontmatter)
+3.3.3 (source: frontmatter, release evidence)
 
 ## Ethical Considerations:
 

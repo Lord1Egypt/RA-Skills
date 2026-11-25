@@ -1,6 +1,6 @@
 ## Description:
 
-Transcribes audio with ElevenLabs scribe_v1, with automatic language detection and optional speaker diarization.
+Converts audio to text with ElevenLabs scribe_v1, with optional speaker diarization, for subtitles, transcripts, and meeting notes.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-People who need searchable transcripts, subtitles, or meeting notes can submit audio for speech-to-text transcription, optionally with speaker labels.
+Developers and other users can transcribe audio for subtitles, written transcripts, and meeting notes, with optional speaker labels.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review has medium confidence; CLI behavior and some authentication and invocation details were not verified.
+Risk: The security assessment reports a benign verdict with medium confidence and incomplete evidence, including mismatches between the stated transcription purpose and reported dLazy login and language options.
 
-Mitigation: Review the linked CLI project and confirm the documented command and authentication flow before installing or using it.
+Mitigation: Review the complete instructions and confirm the CLI authentication and language options match the intended transcription service before use.
 
-Risk: Audio supplied through a local file path is uploaded to dLazy media storage for hosted transcription.
+Risk: The skill documentation says local audio files are uploaded to dLazy media storage for processing.
 
-Mitigation: Submit only recordings appropriate to send to the service, especially when they contain sensitive or personal information.
+Mitigation: Send only recordings approved for cloud processing, especially when they contain sensitive speech.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-elevenlabs-stt)
-- [dLazy service website](https://dlazy.com)
-- [CLI repository linked by the skill](https://github.com/dlazy-ai/cli)
+- [ClawHub release page](https://clawhub.ai/dlazyai/skills/dlazy-elevenlabs-stt)
+- [dLazy CLI homepage (metadata link)](https://github.com/dlazy-ai/cli)
 - [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy service](https://dlazy.com)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, JSON]
 
-**Output Format:** [JSON containing the transcription text and optional speaker diarization]
+**Output Format:** [Structured JSON containing transcription results]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include detected language and asynchronous task status.]
+**Other Properties Related to Output:** [Optional speaker diarization; asynchronous task status when requested.]
 
 ## Skill Version(s):
 
-1.3.42 (source: server-resolved ClawHub release metadata)
+1.3.45 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

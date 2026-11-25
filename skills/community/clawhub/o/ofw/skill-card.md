@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Agents use this skill to help users access OurFamilyWizard co-parenting messages, calendar events, expenses, and journal entries. It supports reviewing records, preparing drafts, and making requested updates.
+People using OurFamilyWizard and their assistants use this skill to retrieve and manage co-parenting messages, calendar events, shared expenses, attachments, and journal entries.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Credential setup may expose an OFW username and password in a project configuration file; the security scan was partial and could not establish that the artifact is safe.
+Risk: Broad activation phrases may make an ambiguous calendar, expense, or journal request appear to refer to OFW.
 
-Mitigation: Use a private credential method, keep credential files out of version control, and review the unresolved scan scope before installation.
+Mitigation: Confirm that the user means OurFamilyWizard when the request is ambiguous.
 
-Risk: Opening an unread inbox message may mark it read and record a visible First Viewed time.
+Risk: Opening an unread message can mark it read and expose a First Viewed time; sending messages and changing shared records can have lasting or co-parent-visible effects.
 
-Mitigation: Check whether the message is cached first; pass allowMarkRead:false when it must remain unread, and get user approval before opening it.
+Mitigation: Explain read-status effects before fetching unread message bodies, preview co-parent-visible changes, and obtain explicit user confirmation before sending or deleting records.
 
 ## Reference(s):
 
-- [OFW MCP package](https://www.npmjs.com/package/ofw-mcp)
-- [OFW skill release page](https://clawhub.ai/chrischall/skills/ofw)
+- [OFW MCP npm package](https://www.npmjs.com/package/ofw-mcp)
+- [ofw-mcp project repository (linked in the skill documentation)](https://github.com/chrischall/ofw-mcp)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, API calls, Configuration, Shell commands]
+**Output Type(s):** [Text, Markdown, Files, Calendar and expense data]
 
-**Output Format:** [Natural-language summaries, MCP tool calls, and setup instructions]
+**Output Format:** [Text and Markdown responses; OFW records and iCalendar files where requested]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include sensitive family communications and records; some operations change shared OFW data.]
+**Other Properties Related to Output:** [May retrieve, create, or update OFW messages, calendar entries, expenses, and journal entries; attachment and message access can have visibility or read-status effects.]
 
 ## Skill Version(s):
 
-2.29.1 (source: server-resolved release metadata)
+2.30.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

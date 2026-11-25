@@ -1,0 +1,10 @@
+{
+  "name": "b-search",
+  "version": "1.0.0",
+  "private": true,
+  "description": "B站搜索采集 Skill CLI (关键词搜索视频列表, 每页约42条 = 1 点数)",
+  "main": "cli.js",
+  "engines": {
+    "node": ">=18"
+  }
+}

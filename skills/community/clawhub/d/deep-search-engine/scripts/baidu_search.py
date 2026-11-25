@@ -6,7 +6,7 @@
 百度一搜即得。百度结果链接是中转链接（baidu.com/link?url=...），--resolve 解析为真实直链。
 
 用法：
-  python baidu_search.py --query "中国日报 企业搜索 上下文基础设施"
+  python baidu_search.py --query "中国日报 腾讯云 Elastic 上下文基础设施"
   python baidu_search.py --query "..." --resolve --top 5
   python baidu_search.py --query "..." --out result.json
 

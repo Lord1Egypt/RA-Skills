@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1600" height="900" viewBox="0 0 1600 900">
+  <image x="0" y="0" width="1600" height="900" xlink:href="promo-source.png" preserveAspectRatio="xMidYMid slice"/>
+  <rect x="70" y="260" width="740" height="310" rx="30" fill="#f8f6f0" fill-opacity="0.94"/>
+  <text x="125" y="385" fill="#0f2747" font-family="PingFang SC, Noto Sans CJK SC, sans-serif" font-size="76" font-weight="700">商品上架缺项检查</text>
+  <text x="130" y="470" fill="#42556c" font-family="PingFang SC, Noto Sans CJK SC, sans-serif" font-size="38">看见缺项与冲突，再安心补齐</text>
+  <rect x="130" y="510" width="118" height="10" rx="5" fill="#ff7650"/>
+</svg>

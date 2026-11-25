@@ -1,6 +1,6 @@
 ## Description:
 
-Turn any industry into a daily intelligence briefing: an AI agent searches, filters, writes, and delivers structured briefs to nine channels with machine-checked formatting and a business review gate.
+Generates sourced daily industry briefings and prepares them for delivery through configured channels.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Industry analysts and teams use the skill to create recurring, source-linked daily briefs from current industry information. It structures the report, applies a business review gate, and prepares it for delivery to configured channels.
+Business intelligence teams and practitioners use the skill to create recurring, source-backed industry briefs, review them, and deliver them to configured channels.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review flags SMTP certificate verification and gives the release a suspicious verdict.
+Risk: The security review reports an email certificate-verification weakness.
 
-Mitigation: Review the email transport configuration and confirm certificate verification is enabled for the SMTP server before using email delivery.
+Mitigation: Use a mail server with certificate verification enabled, or avoid sending sensitive reports by email.
 
-Risk: Reports deployed through GitHub Pages may be publicly accessible.
+Risk: Publishing reports through GitHub Pages makes them publicly accessible.
 
-Mitigation: Check each report for confidential or sensitive material before enabling or running public Pages deployment.
+Mitigation: Review report contents for confidential or unpublished information before deployment and keep the business review gate in place.
+
+Risk: The skill requests file and network access, and the security scan was partial.
+
+Mitigation: Grant only the file and network access needed for the selected workflow, and review the skill before use.
 
 ## Reference(s):
 
 - [Industry Daily Brief on ClawHub](https://clawhub.ai/haiyangchenbj/skills/data-ai-daily-brief)
-- [CodeBuddy](https://www.codebuddy.ai/)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, HTML, Configuration instructions]
+**Output Type(s):** [Markdown, HTML, Text, Files]
 
-**Output Format:** [Structured daily industry briefs with source links, summaries, impact judgments, and channel-ready concise summaries]
+**Output Format:** [Structured daily brief with source links, summaries, impact judgments, and channel-ready summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [A target date and industry profile guide each brief; output can be customized for delivery channels.]
+**Other Properties Related to Output:** [Industry focus, language, and delivery channels are configurable.]
 
 ## Skill Version(s):
 
-5.0.7 (source: SKILL.md frontmatter)
+5.0.8 (source: frontmatter and server-resolved release)
 
 ## Ethical Considerations:
 

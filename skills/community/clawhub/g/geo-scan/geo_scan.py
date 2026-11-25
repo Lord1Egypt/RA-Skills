@@ -47,6 +47,7 @@ import re
 import socket
 import ssl
 import sys
+import threading
 import time
 import urllib.error
 import urllib.parse
@@ -57,7 +58,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from types import SimpleNamespace
 
-__version__ = "1.2.7"
+__version__ = "1.2.8"
 UA_TOKEN = "geo-scan"
 UA = f"{UA_TOKEN}/{__version__} (+https://github.com/AureliusClaw/geo-scan; answer-engine readiness audit)"
 
@@ -69,6 +70,7 @@ MIN_BUDGET = 10
 DEFAULT_OUT_DIR = "out"      # --json/--md write here, and nowhere else
 MIN_DELAY = 1.0               # seconds between requests; Crawl-delay raises it
 SOCKET_TIMEOUT = 15
+WATCHDOG_GRACE = 0.5          # the watchdog cuts a live socket this far past the deadline
 MAX_REDIRECTS = 4             # hops per redirect chain, urllib's own default, made ours
 CAP_ROBOTS = 512 * 1024       # RFC 9309 lets crawlers stop at 500 KiB
 CAP_LLMS = 1024 * 1024
@@ -158,12 +160,44 @@ def ip_is_public(ip):
     return bool(ip.is_global)
 
 
-def resolve_public_ips(host, port, public_only=True):
+def _getaddrinfo_bounded(host, port, deadline=None):
+    """`socket.getaddrinfo` with a wall-clock bound.
+
+    The resolver has no timeout of its own and synchronous DNS sat outside the
+    scan's declared ceiling (registry finding, 2026-11-23): the lookup runs on a
+    daemon thread and the scan waits at most until the deadline — a stalled
+    resolver can then hold a thread, but not the scan.
+    """
+    if deadline is None:
+        return socket.getaddrinfo(host, port, type=socket.SOCK_STREAM)
+    left = deadline - time.monotonic()
+    if left < 0.2:
+        raise Skipped("scan time budget exhausted before DNS")
+    box = {}
+
+    def look():
+        try:
+            box["r"] = socket.getaddrinfo(host, port, type=socket.SOCK_STREAM)
+        except (socket.gaierror, UnicodeError, OSError) as e:
+            box["e"] = e
+
+    t = threading.Thread(target=look, daemon=True)
+    t.start()
+    t.join(left)
+    if t.is_alive():
+        raise Skipped(f"DNS for {host} did not answer within the scan deadline")
+    if "e" in box:
+        raise box["e"]
+    return box["r"]
+
+
+def resolve_public_ips(host, port, public_only=True, deadline=None):
     """One DNS pass: every answer validated, then returned in resolution order.
 
     The returned tuples are what `connect` dials — the validated answer IS the
     connect target, so a second, different DNS answer (DNS rebinding) cannot move
-    the request to a private host. Raises Skipped when the host must not be dialed.
+    the request to a private host. `deadline` (monotonic clock) bounds the
+    resolver wait. Raises Skipped when the host must not be dialed.
     """
     try:
         literal = ipaddress.ip_address(host.strip("[]"))
@@ -174,7 +208,7 @@ def resolve_public_ips(host, port, public_only=True):
             raise Skipped(f"{host} is a private/loopback/link-local address; refused")
         return [(literal.version, str(literal))]
     try:
-        infos = socket.getaddrinfo(host, port, type=socket.SOCK_STREAM)
+        infos = _getaddrinfo_bounded(host, port, deadline)
     except (socket.gaierror, UnicodeError) as e:
         raise Skipped(f"DNS lookup failed for {host}: {e}") from None
     out, seen = [], set()
@@ -273,12 +307,15 @@ class _GuardedRedirect(urllib.request.HTTPRedirectHandler):
         return super().redirect_request(req, fp, code, msg, headers, newurl)
 
 
-def _validated_socket(host, port, ips, timeout, source_address=None, deadline=None):
+def _validated_socket(host, port, ips, timeout, source_address=None, deadline=None,
+                      register=None):
     """Open the TCP socket to one of the already-validated addresses.
 
     Every dial attempt is bounded by the scan's wall clock, not just by its own socket
     timeout: N addresses at 15 s each would otherwise spend N×15 s before the scan's
-    time limit was ever consulted.
+    time limit was ever consulted. `register` hands each candidate socket to the
+    Scanner's watchdog before the dial, so the deadline can close a socket that a
+    trickling server is holding open.
     """
     last = None
     for version, ip in ips:
@@ -293,6 +330,8 @@ def _validated_socket(host, port, ips, timeout, source_address=None, deadline=No
             sock.settimeout(left)
             if source_address:
                 sock.bind(source_address)
+            if register:
+                register(sock)
             sock.connect(addr)
             return sock
         except OSError as e:
@@ -313,33 +352,39 @@ class _ValidatedHTTPConnection(http.client.HTTPConnection):
     """
 
     def __init__(self, host, port=None, timeout=None, source_address=None, *,
-                 guard=None, deadline=None):
+                 guard=None, deadline=None, register=None):
         super().__init__(host, port, timeout=timeout, source_address=source_address)
         self._guard = guard
         self._deadline = deadline
+        self._register = register
 
     def connect(self):
-        ips = self._guard.approve(self.host, self.port)
+        ips = self._guard.approve(self.host, self.port, deadline=self._deadline)
         self.sock = _validated_socket(self.host, self.port, ips, self.timeout,
-                                       self.source_address, deadline=self._deadline)
+                                       self.source_address, deadline=self._deadline,
+                                       register=self._register)
 
 
 class _ValidatedHTTPSConnection(http.client.HTTPSConnection):
     """HTTPS to a validated IP, with SNI and certificate checks still on the hostname."""
 
     def __init__(self, host, port=None, timeout=None, source_address=None, *,
-                 context=None, guard=None, deadline=None):
+                 context=None, guard=None, deadline=None, register=None):
         super().__init__(host, port, timeout=timeout, source_address=source_address,
                          context=context)
         self._guard = guard
         self._deadline = deadline
+        self._register = register
 
     def connect(self):
-        ips = self._guard.approve(self.host, self.port)
+        ips = self._guard.approve(self.host, self.port, deadline=self._deadline)
         raw = _validated_socket(self.host, self.port, ips, self.timeout,
-                                self.source_address, deadline=self._deadline)
+                                self.source_address, deadline=self._deadline,
+                                register=self._register)
         try:
             self.sock = self._context.wrap_socket(raw, server_hostname=self.host)
+            if self._register:      # the watchdog must cut the TLS socket, not the raw one
+                self._register(self.sock)
         except Exception:
             try:
                 raw.close()
@@ -360,30 +405,34 @@ class HostGuard:
         self.public_only = public_only
         self._log = log or (lambda msg: None)
 
-    def approve(self, host, port):
-        return resolve_public_ips(host, port, public_only=self.public_only)
+    def approve(self, host, port, deadline=None):
+        return resolve_public_ips(host, port, public_only=self.public_only,
+                                  deadline=deadline)
 
 
 class _ValidatedHTTPHandler(urllib.request.HTTPHandler):
-    def __init__(self, guard, deadline=None):
+    def __init__(self, guard, deadline=None, register=None):
         super().__init__()
         self._guard = guard
         self._deadline = deadline
+        self._register = register
 
     def http_open(self, req):
         return self.do_open(_ValidatedHTTPConnection, req, guard=self._guard,
-                            deadline=self._deadline)
+                            deadline=self._deadline, register=self._register)
 
 
 class _ValidatedHTTPSHandler(urllib.request.HTTPSHandler):
-    def __init__(self, guard, context=None, deadline=None):
+    def __init__(self, guard, context=None, deadline=None, register=None):
         super().__init__(context=context)
         self._guard = guard
         self._deadline = deadline
+        self._register = register
 
     def https_open(self, req):
         return self.do_open(_ValidatedHTTPSConnection, req, context=self._context,
-                            guard=self._guard, deadline=self._deadline)
+                            guard=self._guard, deadline=self._deadline,
+                            register=self._register)
 
 
 class Scanner:
@@ -407,6 +456,14 @@ class Scanner:
         self.requests = 0
         self._last = None
         self._log = log or (lambda msg: None)
+        # The ceiling the skill declares has to survive a server that drips bytes:
+        # urllib's header parsing and the BufferedReader behind r.read() block with
+        # no hook at our deadline, so the one thing that ends such a wait for sure
+        # is closing the socket from outside. The watchdog does exactly that.
+        self._live = None
+        self._live_lock = threading.Lock()
+        self._watchdog = None
+        self._aborted = False
         # ProxyHandler({}) on purpose: an HTTP_PROXY in the environment would reroute
         # the audit through a host we never validated and never scored.
         #
@@ -418,14 +475,49 @@ class Scanner:
         self._opener = urllib.request.OpenerDirector()
         for handler in (urllib.request.ProxyHandler({}),
                         urllib.request.UnknownHandler(),
-                        _ValidatedHTTPHandler(self.guard, deadline=self.deadline),
+                        _ValidatedHTTPHandler(self.guard, deadline=self.deadline,
+                                              register=self._register),
                         _ValidatedHTTPSHandler(self.guard,
                                               context=ssl.create_default_context(),
-                                              deadline=self.deadline),
+                                              deadline=self.deadline,
+                                              register=self._register),
                         _GuardedRedirect(self._guard_redirect, pace=self._pace_redirect),
                         urllib.request.HTTPDefaultErrorHandler(),
                         urllib.request.HTTPErrorProcessor()):
             self._opener.add_handler(handler)
+
+    def _register(self, sock):
+        """Hand the live socket to the watchdog; start the watchdog on first use.
+
+        The deadline gives no hook inside urllib's blocking reads, so the watchdog
+        waits until deadline + WATCHDOG_GRACE and then closes whatever socket is
+        live. After the deadline is spent, `fetch` refuses new requests anyway —
+        cutting the in-flight one is the missing half of the declared ceiling.
+        """
+        with self._live_lock:
+            self._live = sock
+        if self._watchdog is None:
+            self._watchdog = threading.Timer(max(0.0, self.remaining()) + WATCHDOG_GRACE,
+                                             self._abort_live)
+            self._watchdog.daemon = True
+            self._watchdog.start()
+
+    def _abort_live(self):
+        self._aborted = True
+        with self._live_lock:
+            sock, self._live = self._live, None
+        if sock is not None:
+            # close() alone does NOT wake a recv() already blocked in another
+            # thread (POSIX leaves it parked); shutdown() is what forces the
+            # blocked read to fail and the fetch to unwind.
+            try:
+                sock.shutdown(socket.SHUT_RDWR)
+            except OSError:
+                pass
+            try:
+                sock.close()
+            except OSError:
+                pass
 
     def _pace_redirect(self):
         """Pacing held on the redirect hop, not just the first request.
@@ -467,7 +559,8 @@ class Scanner:
         if not host:
             raise Skipped(f"{url}: no host to fetch")
         self.guard.approve(host, urllib.parse.urlparse(url).port
-                           or (443 if urllib.parse.urlparse(url).scheme == "https" else 80))
+                           or (443 if urllib.parse.urlparse(url).scheme == "https" else 80),
+                           deadline=self.deadline)
 
     def same_site(self, url):
         return _site(urllib.parse.urlparse(url).hostname) == _site(self.host)
@@ -509,7 +602,16 @@ class Scanner:
                     url=url, final_url=r.geturl(), code=r.getcode(), headers=r.headers,
                     raw=raw, text=_decode(raw, r.headers.get("Content-Type")),
                     truncated=truncated, secs=round(time.monotonic() - t0, 2))
+        except (OSError, urllib.error.URLError, http.client.HTTPException) as e:
+            # the watchdog cut this socket on purpose; say so instead of reporting
+            # whatever OSError the close surfaced as
+            if self._aborted:
+                raise TimeoutError("scan time budget exhausted — in-flight connection "
+                                   "closed at the deadline") from None
+            raise
         finally:
+            with self._live_lock:
+                self._live = None
             self._last = time.monotonic()
 
     def _read(self, r, cap):
@@ -558,15 +660,17 @@ class Robots:
     `Disallow: /a/*/c` both allowed the URLs they name. Here:
 
     * `*` matches any sequence of characters, `$` anchors the end of path-and-query;
-    * the longest match wins, `Allow` beats `Disallow` when two rules match the same
-      length (RFC 9309 2.2.2.3);
+    * rule precedence follows the length of the rule's path pattern — the behaviour
+      of Google's own matcher, so `Disallow: /private` outranks `Allow: /*` — and
+      `Allow` beats `Disallow` at equal length (RFC 9309 2.2.2: most octets wins,
+      allow on ties);
     * the record set used is the one with the most specific matching `User-agent`
       token (`*` as fallback), records with equal tokens merged;
     * `Crawl-delay` is honoured, taking the longest delay among matching records.
     """
 
     def __init__(self, groups=None, sitemaps=None, allow_all=False, disallow_all=False):
-        self.groups = groups or []        # [(tokens, [(allow, regex)], delay)]
+        self.groups = groups or []        # [(tokens, [(allow, regex, spec_len)], delay)]
         self.sitemaps = list(sitemaps or [])
         self.allow_all = allow_all
         self.disallow_all = disallow_all
@@ -609,11 +713,9 @@ class Robots:
         if unquoted != path:
             candidates.append(unquoted)
         best, allowed = -1, True
-        for allow, rx in found[0]:
-            for cand in candidates:
-                m = rx.match(cand)
-                if m and (m.end() > best or (m.end() == best and allow)):
-                    best, allowed = m.end(), allow
+        for allow, rx, spec in found[0]:
+            if any(rx.match(c) for c in candidates) and (spec > best or (spec == best and allow)):
+                best, allowed = spec, allow
         return allowed if best >= 0 else True
 
     def crawl_delay(self, agent):
@@ -649,7 +751,13 @@ def load_robots(text):
         elif key in ("disallow", "allow"):
             if not value:
                 continue                  # `Disallow:` alone means "allow everything"
-            rules.append((key == "allow", _pattern_to_rx(value)))
+            # specificity = length of the pattern as written. This is the behaviour
+            # of Google's own matcher (google/robotstxt, robots.cc:
+            # LongestMatchRobotsMatchStrategy returns `pattern.length()` as the
+            # priority), which is what an audit must agree with: `Disallow:
+            # /private` (8 octets) beats `Allow: /*` (2), not the other way round
+            # as consumed-length ranking would make it.
+            rules.append((key == "allow", _pattern_to_rx(value), len(value)))
         elif key == "crawl-delay":
             try:
                 d = float(value)
@@ -1089,7 +1197,8 @@ def scan(root, max_pages=DEFAULT_PAGES, budget=DEFAULT_BUDGET, public_only=True,
     if public_only:
         try:
             sc.guard.approve(sc.host, urllib.parse.urlparse(root).port
-                             or (443 if urllib.parse.urlparse(root).scheme == "https" else 80))
+                             or (443 if urllib.parse.urlparse(root).scheme == "https" else 80),
+                             deadline=sc.deadline)
         except Skipped as e:
             raise ScanError(str(e)) from None
     f = {"root": root, "version": __version__, "checks": [], "pages": [], "notes": sc.notes,

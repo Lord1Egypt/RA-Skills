@@ -1,7 +1,7 @@
 ---
 name: ai-b-roll-motion-graphics
-description: "Insert contextual B-roll cutaways, animated data charts, lower thirds, and callout overlays on video timelines."
-version: 1.0.4
+description: "Insert AI B-roll cutaways, explainer video visuals, product demo callouts, documentary archive montages, data charts, lower thirds, and title cards onto video timelines."
+version: 1.0.8
 author: brajendrak00068
 license: MIT
 ---
@@ -28,7 +28,7 @@ This skill calls the Levea (livecore.ai) editing service, which requires a Levea
 
 ## Tool interface
 
-Use the registered `ai-video-editor` (OpenClaw plugin) or `autonomous_edit` (MCP server) tool to run edits against a project timeline.
+Use the registered `ai-video-editor` (OpenClaw plugin) or `autonomous_edit` (MCP server) tool, or call `search_skills` / `load_skill` + `execute_action` / `execute_batch` for direct canonical control.
 
 ### Tool parameters
 
@@ -45,6 +45,8 @@ Use the registered `ai-video-editor` (OpenClaw plugin) or `autonomous_edit` (MCP
 - `editedPlan` (object, optional): The user's edited version of a plan returned by an approval pause.
 - `planDecision` (string, optional): Set to `"approve"` to approve the plan from an approval pause; resend it with that response's `workingMemory`.
 - `attachedImages` (array, optional): Reference image URLs for planning (style, branding).
+- `style_reference_url` (string, optional): A reference video whose editing style the result should match (pacing, captions, framing, zooms, transitions, grade).
+- `skills` (array, optional): Your own saved skills (save_skill) to apply to this edit, as "user/<slug>" ids. Skills saved with apply: always are applied to every edit without being named.
 - `flaggedIssues` (array, optional): Specific problems the user flagged that this run must fix.
 - `brandId` (string, optional): Brand kit to apply to this call.
 - `projectBrandId` (string, optional): Default brand kit for the project; persists across calls.
@@ -63,7 +65,8 @@ Use the registered `ai-video-editor` (OpenClaw plugin) or `autonomous_edit` (MCP
 ## Capabilities
 
 - Contextual B-roll placement aligned to transcript timestamps.
-- Animated charts, stat counters, flow diagrams, lower thirds, collage layouts, and text behind the subject.
+- Animated charts, stat counters, flow diagrams, lower thirds, collage layouts, 3D extruded bevelled titles, and text or graphics placed behind the subject.
+- Native After Effects shape layers with arc-length Trim Paths, Repeaters, shape modifiers (pucker & bloat, zig zag, wiggle paths, round corners, offset paths), spatial Bezier motion paths with auto-orient, graph-editor velocity easing, and echo motion trails.
 - Standalone 2D and 3D character motion-graphic films with camera moves, lighting, music, and sound design.
 - Every graphic placed clear of faces and reviewed by an AI critic against a craft checklist.
 - Picture-in-picture and split-screen layout composition with safe-zone aware positioning.

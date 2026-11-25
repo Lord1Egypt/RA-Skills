@@ -1,6 +1,6 @@
 ## Description:
 
-Generates 1–22 second sound effects from text descriptions using the ElevenLabs text-to-sound model, for foley, ambience, alerts, and game audio.
+ElevenLabs text-to-sound model — generates 1–22 second sound effects from a description for foley, ambience, alerts, and game SFX.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers, audio designers, and game creators can generate short sound effects such as foley, ambience, alerts, and game audio from text prompts.
+Creative teams and agents use text descriptions to generate short sound effects for foley, ambience, alerts, and game audio.
 
 ### Deployment Geography for Use:
 
@@ -22,26 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The relationship between dLazy account setup and sound generation is unclear, and some references were unresolved in the security assessment.
+Risk: The security review notes that the dLazy login step is not clearly connected to sound generation.
 
-Mitigation: Review the dLazy setup and linked service information before connecting an account; understand that prompts are sent to the hosted API and use an API key that can be rotated or revoked.
+Mitigation: Before signing in, confirm you trust dLazy's authentication flow and review what will be stored in the local CLI configuration; use a revocable API key where possible.
 
 ## Reference(s):
 
+- [dLazy CLI repository (metadata link)](https://github.com/dlazy-ai/cli)
+- [dLazy CLI on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy homepage](https://dlazy.com)
+- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-elevenlabs-sfx)
 
 ## Skill Output:
 
 **Output Type(s):** [Audio files, JSON]
 
-**Output Format:** [Generated sound effect audio asset, returned through a JSON result envelope as a hosted URL or an optionally saved file.]
+**Output Format:** [Generated sound effects delivered as audio assets with JSON task and result metadata]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Sound effects are 1–22 seconds long; generation may be synchronous or asynchronous.]
+**Other Properties Related to Output:** [Sound effects are 1–22 seconds; generation can run asynchronously, and results can be saved to a local path.]
 
 ## Skill Version(s):
 
-1.3.42 (source: server-resolved release evidence)
+1.3.45 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

@@ -19,8 +19,8 @@ export function assertApproved(cfg: ThetaConfig, confirm: unknown, action: strin
   }
 }
 
-// Plain JSON copy taken once at the client boundary. Getters, toJSON and prototypes run here, before
-// any check, and only this validated copy is ever serialized and sent.
+// Plain JSON copy taken once at the client boundary. Getters, toJSON and prototypes run here.
+// Callers validate, serialize and send only this returned copy, never the original value.
 export function snapshotBody(value: unknown): Record<string, unknown> {
   let copy: unknown;
   try { copy = JSON.parse(JSON.stringify(value)); } catch { throw new Error('Request body must be JSON-serializable'); }
@@ -30,14 +30,15 @@ export function snapshotBody(value: unknown): Record<string, unknown> {
 
 const CALLBACK_KEY = /webhook|callback/i;
 
-// Returns every webhook/callback field found at any depth of a (snapshotted) body.
+// Returns every webhook/callback field found at any depth of a (snapshotted) body, including
+// fields nested inside a matched field.
 export function findCallbackFields(value: unknown, path = ''): Array<{ path: string; value: unknown }> {
   if (!value || typeof value !== 'object') return [];
   const found: Array<{ path: string; value: unknown }> = [];
   for (const [key, item] of Object.entries(value)) {
     const here = path ? `${path}.${key}` : key;
     if (CALLBACK_KEY.test(key)) found.push({ path: here, value: item });
-    else found.push(...findCallbackFields(item, here));
+    found.push(...findCallbackFields(item, here));
   }
   return found;
 }

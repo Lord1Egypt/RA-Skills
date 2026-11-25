@@ -21,7 +21,8 @@
             "type": "array",
             "minItems": 1,
             "items": { "type": "string", "pattern": "^s[0-9]+$" }
-          }
+          },
+          "label": { "type": "string", "minLength": 1, "maxLength": 80 }
         }
       }
     },

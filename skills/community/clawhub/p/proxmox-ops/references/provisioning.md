@@ -4,6 +4,7 @@ Create, clone, template, and delete VMs and LXC containers.
 
 ## Table of Contents
 
+- [Finding a Free Static IP](#finding-a-free-static-ip)
 - [Create LXC Container](#create-lxc-container)
 - [Create VM](#create-vm)
 - [Clone VM/Container](#clone-vmcontainer)
@@ -11,6 +12,57 @@ Create, clone, template, and delete VMs and LXC containers.
 - [Delete VM/Container](#delete-vmcontainer)
 - [Available Templates & ISOs](#available-templates--isos)
 - [Quick Reference](#quick-reference)
+
+---
+
+## Finding a Free Static IP
+
+Before assigning a static IP to a new VM/LXC, check **all three** of these — any one alone misses cases:
+
+### 1. Proxmox-managed IPs (the authoritative source for PVE-controlled assignments)
+
+Cluster-wide enumeration of every IP set in a VM/LXC config. Catches **stopped** containers (which UniFi/ping miss).
+
+```bash
+# Quick: helper command (filter by subnet prefix)
+pve.sh ips 10.10.20
+
+# Or via raw API:
+curl -ks -H "$AUTH" "$PROXMOX_HOST/api2/json/cluster/resources?type=vm" | \
+  jq -r '.data[] | "\(.type) \(.vmid) \(.node)"' | \
+while read -r typ vmid node; do
+  if [[ "$typ" == "lxc" ]]; then
+    fields='.net0,.net1,.net2,.net3'
+  else
+    fields='.ipconfig0,.ipconfig1,.ipconfig2,.ipconfig3'
+  fi
+  curl -ks -H "$AUTH" "$PROXMOX_HOST/api2/json/nodes/$node/$typ/$vmid/config" | \
+    jq -r ".data | $fields | select(. != null)" | \
+    grep -oE 'ip=[0-9.]+' | sed "s|^|$vmid $typ |"
+done | sort
+```
+
+### 2. DHCP / live ARP table (catches DHCP leases + currently-online statics)
+
+Use UniFi/Mikrotik/pfSense client list, OPNsense leases, or an `arp-scan`/`nmap -sn` of the subnet.
+
+### 3. Ping the candidate
+
+Final sanity check from a host on the same VLAN. Free IPs typically return ~1/N packets at ~3000 ms latency (gateway sending ICMP host-unreachable after ARP fails); real hosts return 100% replies at normal RTT.
+
+```bash
+ping -c 3 -W 500 <candidate-ip>
+```
+
+### What each source misses
+
+| Source | Misses |
+|--------|--------|
+| **PVE config** | Guest-side static IPs (set inside the OS, not via cloud-init) — DCs, TrueNAS, hand-configured VMs |
+| **DHCP/UniFi list** | **Stopped** LXCs/VMs that own a static reservation; offline hosts; static IPs configured guest-side that haven't checked in recently |
+| **Ping** | Stopped hosts that own the IP; hosts that drop ICMP |
+
+**Rule of thumb:** stopped LXC with a static `ip=` in its PVE config is the classic trap — invisible to ping and UniFi, visible only via PVE config enumeration.
 
 ---
 

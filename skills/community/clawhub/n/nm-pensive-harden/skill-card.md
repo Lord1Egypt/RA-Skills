@@ -1,6 +1,6 @@
 ## Description:
 
-Applies NIST/CWE security hardening to Python and Rust code
+Applies NIST/CWE security hardening to Python and Rust code.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and security engineers use this skill to audit Python and Rust repositories for security weaknesses and produce citation-backed findings with concrete remediation proposals for review.
+Developers use this skill to audit a repository for security weaknesses and receive citation-backed findings and concrete remediation proposals. It supports Python and Rust checks, cross-cutting supply-chain and CI checks, and NIST SSDF mapping.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan was partial, and some referenced paths could not be resolved, so the available review does not cover everything the skill refers to.
+Risk: Audit summaries and dependency names may reveal information about a repository when reports are shared.
 
-Mitigation: Resolve and review the referenced paths before relying on the findings as a complete assessment.
+Mitigation: Review report contents before sharing and limit access to audit summaries and dependency details.
 
-Risk: Security details could be exposed through pull requests or issues, and dependency metadata could be sent to external services.
+Risk: Some security guidance, including Rust guidance, may be incomplete or misleading; the scanner could not inspect some referenced paths.
 
-Mitigation: Review and redact sensitive details before posting findings; check external-service destinations before submitting dependency metadata.
-
-Risk: The skill is marked suspicious with medium confidence because scanners report possible disclosure risks and concerns about whether its guidance matches its hardening purpose.
-
-Mitigation: Review the skill's guidance and proposed changes before execution or adoption.
+Mitigation: Review the Rust guidance and inspect the referenced paths, then validate recommendations against the repository and cited security references before applying them.
 
 ## Reference(s):
 
-- [Skill release on ClawHub](https://clawhub.ai/athola/skills/nm-pensive-harden)
-- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-pensive-harden)
+- [Pensive project homepage (listed in Clawdis metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
+- [Python hardening checks](modules/python-checks.md)
+- [Rust hardening checks](modules/rust-checks.md)
+- [Cross-cutting hardening checks](modules/cross-cutting.md)
+- [NIST and CWE citation backbone](modules/nist-controls.md)
+- [Remediation proposal format](modules/proposal-shape.md)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, Markdown, Code, Configuration instructions, Shell commands]
 
-**Output Format:** [Markdown security report with findings and proposed code or configuration changes, including shell commands where useful]
+**Output Format:** [Markdown audit reports and remediation proposals with code and configuration snippets]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Repository-specific results; proposed changes are presented for user approval before application.]
+**Other Properties Related to Output:** [Findings include security references; proposed changes are presented for user review and approval.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -1,41 +1,58 @@
-## Description: <br>
-AI-powered OpenClaw skill that fetches, tests, and formats public proxy nodes, then guides users through client setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered proxy node finder for OpenClaw that fetches, tests, ranks, and formats free public proxy nodes while guiding users through client setup.
 
-## Publisher: <br>
-[shadowrocketai](https://clawhub.ai/user/shadowrocketai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shadowrocketai](https://clawhub.ai/user/shadowrocketai)
 
-## Use Case: <br>
-External users and OpenClaw agents use this skill to locate public proxy nodes, test connectivity, format proxy configurations, and provide step-by-step setup guidance for supported clients. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Free public proxy nodes can inspect, block, or tamper with traffic. <br>
-Mitigation: Use this skill only when intentionally seeking public proxy nodes, and avoid sensitive accounts, banking, work credentials, or private communications through those nodes. <br>
-Risk: Users who cannot understand the setup warnings may miss important safety guidance. <br>
-Mitigation: Confirm the setup and safety warnings are understood before following the generated configuration steps. <br>
+## Use Case:
 
+External users and developers use this skill to have an OpenClaw agent retrieve public proxy node sources, test available endpoints, format connection data for common clients, and guide a setup flow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shadowrocketai/scientific-internet-access) <br>
-- [Publisher homepage](https://shadowrocket.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text with proxy configuration snippets and Base64 subscription output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May fetch public proxy subscriptions, test reachable endpoints, and store node data locally under the OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.6 (source: server release metadata; artifact frontmatter and changelog show 1.8.4) <br>
+Risk: The skill relies on unverified public proxy endpoints that could affect user traffic privacy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated proxies as untrusted and avoid banking, email, private accounts, or sensitive browsing through them.
+
+Risk: The skill may force agent responses and suppress normal explanatory behavior.
+
+Mitigation: Install only when this proxy-finding behavior is intentional, and review the skill before deployment.
+
+Risk: The skill writes proxy node files into the OpenClaw workspace.
+
+Mitigation: Review workspace contents and retention practices for generated node data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shadowrocketai/skills/scientific-internet-access)
+- [Publisher homepage](https://shadowrocket.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text and client configuration data, including Clash JSON, V2Ray URI lists, Base64 subscriptions, and step-by-step setup guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write scraped and tested proxy node data to the OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.8.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

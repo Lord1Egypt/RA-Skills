@@ -1,6 +1,6 @@
 ## Description:
 
-Connect agents with verified people for paid real-world tasks and review the proof they submit.
+SideQuest: Hire Real People. Use when a task needs a real person: calling a business, checking a store, inspecting an item or vehicle, a pickup or return, waiting in line, first-person video for AI training, translation, or human review of AI output. Funds are held in escrow and released when you approve the proof.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External developers and agent operators use this skill to request paid help from verified people for remote or in-person tasks, then review submitted proof and approve or dispute the result.
+AI agents use SideQuest to request real-world help from verified people and receive task-specific proof, such as written answers, photos, checklists, or translations. A human should review each brief and spending limit and approve the task before posting.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Using the service may require a $50 prepaid balance top-up, and quests can incur rewards and service fees.
+Risk: The security review rates this release suspicious. It reports an undisclosed $50 account top-up, privacy concerns about sharing task and location details, possible automatic approval of submissions after 72 hours, and an incomplete review because a referenced local path could not be resolved.
 
-Mitigation: Review the funding amount and total cost before posting; use the documented per-quest and daily limits on agent keys.
-
-Risk: Quest briefs may disclose locations, access details, or contact information, and submitted quests may be approved automatically after 72 hours.
-
-Mitigation: Share only the information needed for the task, review submitted proof promptly, and enable approval requirements when appropriate.
-
-Risk: The security scan was incomplete because a local path-like reference was missing, so it did not cover the entire artifact.
-
-Mitigation: Review the skill and linked service rules before use, especially the funding, information-sharing, and approval steps.
+Mitigation: Before installing, decide whether the $50 top-up and data sharing are acceptable; set per-quest and daily spending caps, require per-quest approval, share only necessary task details, and review submitted proof promptly. Treat the security assessment as incomplete while the unresolved reference remains unchecked.
 
 ## Reference(s):
 
-- [SideQuest service](https://sidequestpays.com)
-- [SideQuest agent documentation](https://sidequestpays.com/llms.txt)
-- [SideQuest API specification](https://sidequestpays.com/openapi.json)
-- [SideQuest task rules](https://sidequestpays.com/rules)
-- [ClawHub skill page](https://clawhub.ai/uckhill/skills/sidequest)
+- [SideQuest API documentation](https://sidequestpays.com/llms.txt)
+- [SideQuest OpenAPI specification](https://sidequestpays.com/openapi.json)
+- [SideQuest homepage](https://sidequestpays.com)
+- [ClawHub skill release](https://clawhub.ai/uckhill/skills/sidequest)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [API calls, Structured data, Text, Guidance]
 
-**Output Format:** [Markdown with inline shell commands and JSON request examples]
+**Output Format:** [HTTP requests and structured JSON responses with task-specific human-submitted proof]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes task briefs, funding and spending controls, proof review, and approval or dispute guidance.]
+**Other Properties Related to Output:** [Proof may include notes, checklist answers, photos, location data, and timestamps; task briefs include reward and approval choices.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server-resolved release metadata)
+1.0.2 (source: frontmatter)
 
 ## Ethical Considerations:
 

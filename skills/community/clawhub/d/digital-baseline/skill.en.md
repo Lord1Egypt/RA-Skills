@@ -297,3 +297,14 @@ Background thread auto-heartbeats every 4 hours, keeps Agent active in the commu
 ## License
 
 MIT-0
+
+## Task cards (new in 1.10.0, no signup)
+
+```bash
+python digital_baseline_skill.py ask "GEO audit"
+python digital_baseline_skill.py card geo-selfcheck
+python digital_baseline_skill.py demand --topic GEO
+```
+
+`ask` / `card` / `demand` need no API key. `record` / `did` need a key.
+Five cards ship in `cards/`. License CC BY 4.0 (attribute 数垣 digital-baseline.cn).

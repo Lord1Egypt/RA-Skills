@@ -22,9 +22,9 @@ Needs at least two snapshots (each fresh taste_profiler.py run saves one).
 
 import sys
 
-if sys.version_info < (3, 10):
+if sys.version_info < (3, 11):
     sys.exit(
-        f"ERROR: Python 3.10+ is required (you have "
+        f"ERROR: Python 3.11+ is required (you have "
         f"{sys.version_info.major}.{sys.version_info.minor}). Please upgrade."
     )
 
@@ -94,8 +94,8 @@ def compute_drift(old: dict, new: dict) -> dict:
 
     old_eras, new_eras = _weights(old.get("era_distribution", []), "decade"), _weights(new.get("era_distribution", []), "decade")
     era_deltas = {d: round(new_eras.get(d, 0) - old_eras.get(d, 0), 3) for d in old_eras.keys() | new_eras.keys()}
-    top_era_old = max(old_eras, key=old_eras.get) if old_eras else None
-    top_era_new = max(new_eras, key=new_eras.get) if new_eras else None
+    top_era_old = max(old_eras, key=lambda d: old_eras[d]) if old_eras else None
+    top_era_new = max(new_eras, key=lambda d: new_eras[d]) if new_eras else None
     era_mover = max(era_deltas.items(), key=lambda x: abs(x[1])) if era_deltas else None
 
     arch_old, arch_new = detect_archetype(old)[0], detect_archetype(new)[0]

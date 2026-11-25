@@ -3,7 +3,7 @@ name: wordpress-receipts
 description: "Publish WordPress posts with API and public URL receipts."
 user-invocable: true
 metadata:
-  version: "0.1.3"
+  version: "0.1.6"
   license: "MIT"
   homepage: "https://github.com/LeoStehlik/wordpress-receipts"
   openclaw:
@@ -59,7 +59,7 @@ Only the first three are required. Author and category can also be supplied by f
 Recommended command:
 
 ```bash
-node scripts/wp-publish-receipt.mjs \
+node scripts/wp-publish-receipt.js \
   --env-file .env.wordpress \
   --title-file draft-title.txt \
   --content-file draft.md \
@@ -71,14 +71,14 @@ node scripts/wp-publish-receipt.mjs \
 For one-off verification:
 
 ```bash
-node scripts/wp-verify-receipt.mjs --env-file .env.wordpress --date 2026-07-01
-node scripts/wp-verify-receipt.mjs --env-file .env.wordpress --id 456 --url https://example.com/post-slug/
-node scripts/wp-verify-receipt.mjs --env-file .env.wordpress --id 456
+node scripts/wp-verify-receipt.js --env-file .env.wordpress --date 2026-07-01
+node scripts/wp-verify-receipt.js --env-file .env.wordpress --id 456 --url https://example.com/post-slug/
+node scripts/wp-verify-receipt.js --env-file .env.wordpress --id 456
 ```
 
 ## Cron Guard Pattern
 
-For recurring publishing jobs, add a second scheduled proof check after the publishing window. The proof check should run `wp-verify-receipt.mjs` for the expected local date and alert on failure.
+For recurring publishing jobs, add a second scheduled proof check after the publishing window. The proof check should run `wp-verify-receipt.js` for the expected local date and alert on failure.
 
 Good success signal:
 
@@ -116,7 +116,7 @@ Example stripped-env smoke:
 
 ```bash
 env -i HOME="$HOME" USER="$USER" PATH="/usr/bin:/bin:/usr/sbin:/sbin" \
-  /opt/homebrew/bin/node scripts/wp-verify-receipt.mjs \
+  /opt/homebrew/bin/node scripts/wp-verify-receipt.js \
   --env-file .env.wordpress \
   --date 2026-07-01
 ```

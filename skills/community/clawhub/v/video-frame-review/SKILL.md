@@ -30,3 +30,7 @@ This is visual evidence only: samples cannot establish events between frames or 
 ## Proof before adoption
 
 On a runtime with the dependencies above, run python3 tests/prove_synthetic.py. It generates a local six-second clip, exercises 2-second and 0.2-second sampling, checks PTS mapping, three sheet pages, the full-dimension frame, and the audio limitation. For human visual inspection, run it with --pause, open the printed sheet and full-frame paths, then press Enter to remove the temporary fixture. Syntax checks or missing-dependency messages alone do not establish runtime or visual correctness.
+
+Media subprocesses have a 300-second limit each. Use `--timeout SECONDS` to
+adjust that limit for larger files. A timeout stops processing and reports
+which tool exceeded its limit.

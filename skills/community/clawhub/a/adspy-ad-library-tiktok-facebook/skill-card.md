@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers use this skill to research TikTok ads, Facebook ads, and Meta Ad Library data in one workflow. It supports comparing ad trends, validating advertiser or product presence across platforms, and drilling into ads, products, advertisers, or stores.
+External marketers, advertisers, and ecommerce researchers use the skill to find and compare ads, products, advertisers, and stores across TikTok, Facebook, and Meta Ad Library.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The globally installed third-party MCP server receives the user's PipiAds API key.
+Risk: Search criteria and requested identifiers may be transmitted to PipiAds.
 
-Mitigation: Install only if the pipiads-mcp-server package is trusted, prefer a limited API key, and isolate the global npm install in sensitive environments.
+Mitigation: Avoid including confidential business information or personal data in queries.
 
-Risk: Broad ad research queries can consume PipiAds account credits.
+Risk: Broad searches and detail requests consume PipiAds account credits.
 
-Mitigation: Clarify whether adspy data, ad library data, or both are needed before running broad searches, and monitor account credit usage.
+Mitigation: Clarify whether the user wants adspy, ad library, or both before running broad searches.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/fanyanggod/skills/adspy-ad-library-tiktok-facebook)
-- [PipiAds homepage](https://www.pipiads.com)
-- [PipiSpy API key and billing](https://www.pipispy.com/)
+- [PipiAds](https://www.pipiads.com)
+- [PipiSpy API key and account management](https://www.pipispy.com/)
+- [ClawHub release page](https://clawhub.ai/fanyanggod/skills/adspy-ad-library-tiktok-facebook)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Analysis, Text]
 
-**Output Format:** [Markdown or plain text research summaries with tool-specific findings]
+**Output Format:** [Text summaries and cross-platform comparisons]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires PIPIADS_API_KEY; API calls consume PipiAds account credits.]
+**Other Properties Related to Output:** [Findings depend on the selected search criteria and available ad data.]
 
 ## Skill Version(s):
 
-1.0.2 (source: server release evidence)
+1.0.3 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

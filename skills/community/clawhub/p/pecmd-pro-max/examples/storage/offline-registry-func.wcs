@@ -1,0 +1,226 @@
+;GetOffRegData 封装函数用于读取脱机注册表文件的指定的数据(此封装函数仅支持读取 REG_SZ, REG_EXPAND_SZ, REG_DWORD 和 REG_QWORD 类型)
+;第一个参数为目标脱机注册表配置单元文件的路径
+;第二个参数为要查询数据的注册表项
+;第三个参数为要查询数据的值名称
+;第四个参数为接收返回的注册表项值的数据
+_SUB GetOffRegData
+    TEAM ENVI &HiveFile=%~1| ENVI &SubKey=%~2| ENVI &Value=%~3| ENVI-ret %~4=
+    IFEX #%&bX64%=3, Set &PtrSz=8! SET &PtrSz=4
+    
+    IFEX %&HiveFile%,! EXIT _SUB
+    ENVI$# &phHive=*%&PtrSz% 0
+    CALL $--qd --ret:&ret offreg.dll,OROpenHive,$%&HiveFile%,*&phHive
+    IFEX $%&ret%=0,
+    {
+        ENVI?int &phHive=&hHive
+        ENVI$# &phKey=*%&PtrSz% 0
+        CALL $--qd --ret:&ret offreg.dll,OROpenKey,#%&hHive%,$%&SubKey%,*&phKey
+        IFEX $%&ret%=0,
+        {
+            ENVI?int &phKey=&hKey
+            ENVI$# &pDataSize=*%&PtrSz% 0
+            CALL $--qd --ret:&ret offreg.dll,ORGetValue,#%&hKey%,#0,$%&Value%,#0,#0,*&pDataSize
+            IFEX $%&ret%=0,
+            {
+                ENVI$# &pDataType=*%&PtrSz% 0
+                ENVI?int &pDataSize=&DataSize
+                ENVI$# &pData=*%&DataSize% 0
+                CALL $--qd --ret:&ret offreg.dll,ORGetValue,#%&hKey%,#0,$%&Value%,*&pDataType,*&pData,*&pDataSize
+                IFEX $%&ret%=0,
+                {
+                    ENVI?int &pDataType=&DataType
+                    IFEX [ $%&DataType%=1 | $%&DataType%=2 ],ENVI-ret %~4=%&pData%
+                    IFEX $%&DataType%=4,TEAM ENVI?long &pData=&Data| ENVI-ret %~4=%&Data%
+                    IFEX $%&DataType%=11,TEAM ENVI?longlong &pData=&Data| ENVI-ret %~4=%&Data%
+                }
+            }
+            CALL $--qd --ret:&ret offreg.dll,ORCloseKey,#%&hKey%
+        }
+        CALL $--qd --ret:&ret offreg.dll,ORCloseHive,#%&hHive%
+    }
+_END
+
+;示例
+CALL GetOffRegData "D:\config\SOFTWARE" "Microsoft\Windows NT\CurrentVersion" ProductName &Data
+MESS %&Data%
+
+
+
+
+;SetOffRegData 封装函数用于创建/修改脱机注册表文件的注册表项的数据
+;第一个参数为目标脱机注册表配置单元文件的路径
+;第二个参数为目标注册表子项
+;第三个参数为目标值名称
+;第四个参数为目标注册表数据的类型(当前仅支持 REG_SZ, REG_EXPAND_SZ, REG_DWORD 和 REG_QWORD 类型)
+;第五个参数为要写入的注册表数据
+;第六个参数为可选参数, 用于接收封装函数执行的返回值, 值 1 为执行成功, 值 0 为执行失败
+;PS: 若要写入大量脱机注册表数据, 应尽量减少对 ORSaveHive 函数的调用;
+;    应先多次调用 ORCreateKey(OROpenKey), ORSetValue 和 ORCloseKey 函数以写入所有想要写入的数据, 最后才调用 ORSaveHive 函数进行保存;
+;    一般来说, 对每个注册表配置单元文件的修改, 应仅调用一次 OROpenHive, ORSaveHive 和 ORCloseHive 函数
+_SUB SetOffRegData
+    TEAM ENVI &HiveFile=%~1| ENVI &SubKey=%~2| ENVI &Value=%~3| ENVI &Type=%~4| ENVI &Data=%~5| ENVI-ret %~6=0
+    IFEX #%&bX64%=3, Set &PtrSz=8! SET &PtrSz=4
+    
+    IFEX %&HiveFile%,! EXIT _SUB
+    ENVI$# &phHive=*%&PtrSz% 0
+    CALL $--qd --ret:&ret offreg.dll,OROpenHive,$%&HiveFile%,*&phHive
+    IFEX $%&ret%=0,
+    {
+        ENVI?int &phHive=&hHive
+        ENVI$# &phKey=*%&PtrSz% 0
+        ENVI &WriteData=0
+        CALL $--qd --ret:&ret offreg.dll,ORCreateKey,#%&hHive%,$%&SubKey%,#0,#0,#0,*&phKey,#0
+        IFEX $%&ret%=0,
+        {
+            ENVI?int &phKey=&hKey
+            FIND $%&Type%=REG_SZ,
+            {
+                STRL * &Len=&Data
+                CALC #&Len = %&Len% * 2
+                CALL $--qd --ret:&ret offreg.dll,ORSetValue,#%&hKey%,$%&Value%,#1,*&Data,#%&Len%
+                IFEX $%&ret%=0,ENVI &WriteData=1
+            }
+            FIND $%&Type%=REG_EXPAND_SZ,
+            {
+                STRL * &Len=&Data
+                CALC #&Len = %&Len% * 2
+                CALL $--qd --ret:&ret offreg.dll,ORSetValue,#%&hKey%,$%&Value%,#2,*&Data,#%&Len%
+                IFEX $%&ret%=0,ENVI &WriteData=1
+            }
+            FIND $%&Type%=REG_DWORD,
+            {
+                TEAM ENVI$# &Buffer=*4 0| ENVI-long &Buffer=%&Data%
+                CALL $--qd --ret:&ret offreg.dll,ORSetValue,#%&hKey%,$%&Value%,#4,*&Buffer,#4
+                IFEX $%&ret%=0,ENVI &WriteData=1
+            }
+            FIND $%&Type%=REG_QWORD,
+            {
+                TEAM ENVI$# &Buffer=*8 0| ENVI-longlong &Buffer=%&Data%
+                CALL $--qd --ret:&ret offreg.dll,ORSetValue,#%&hKey%,$%&Value%,#11,*&Buffer,#8
+                IFEX $%&ret%=0,ENVI &WriteData=1
+            }
+            CALL $--qd --ret:&ret offreg.dll,ORCloseKey,#%&hKey%
+        }
+        IFEX $%&WriteData%=1,
+        {
+            TEAM ENVI$# &pMajorVersion=*4 0| ENVI$# &pMinorVersion=*4 0
+            CALL $--qd --ret:&ret ntdll.dll,RtlGetNtVersionNumbers,*&pMajorVersion,*&pMinorVersion,#0
+            TEAM ENVI?long &pMajorVersion=&MajorVersion| ENVI?long &pMinorVersion=&MinorVersion
+            FILE %&HiveFile%->%&HiveFile%_bak
+            CALL $--qd --ret:&ret offreg.dll,ORSaveHive,#%&hHive%,$%&HiveFile%,#%&MajorVersion%,#%&MinorVersion%
+            IFEX $%&ret%=0,
+            {
+                FILE %&HiveFile%_bak
+                ENVI-ret %~6=1
+            }!
+            {
+                FILE %&HiveFile%_bak->%&HiveFile%
+                ENVI-ret %~6=0
+            }
+        }
+        CALL $--qd --ret:&ret offreg.dll,ORCloseHive,#%&hHive%
+    }
+_END
+
+;示例
+CALL SetOffRegData "D:\config\SOFTWARE" "Test" WriteRegData REG_DWORD 0xFF &RetVal
+IFEX $%&RetVal%=1,MESS 成功修改脱机注册表数据! MESS 无法修改脱机注册表数据
+
+
+
+
+;EnumOffRegValue 封装函数用于枚举脱机注册表文件的指定的注册表项的子项
+;第一个参数为目标脱机注册表配置单元文件的路径
+;第二个参数为要枚举其子项的注册表项
+;第三个参数为接收返回的子项数据
+_SUB EnumOffRegKey
+    TEAM ENVI &HiveFile=%~1| ENVI &SubKey=%~2| ENVI-ret %~3=
+    TEAM SET$ &NL=0d 0a| ENVI &KeyList=
+    IFEX #%&bX64%=3, SET &PtrSz=8! SET &PtrSz=4
+    IFEX %&HiveFile%,! EXIT _SUB
+    ENVI$# &phHive=*%&PtrSz% 0
+    CALL $--qd --ret:&ret offreg.dll,OROpenHive,$%&HiveFile%,*&phHive
+    IFEX #%&ret%=0,
+    {
+        ENVI?int &phHive=&hHive
+        ENVI$# &phKey=*%&PtrSz% 0
+        CALL $--qd --ret:&ret offreg.dll,OROpenKey,#%&hHive%,$%&SubKey%,*&phKey
+        IFEX #%&ret%=0,
+        {
+            ENVI?int &phKey=&hKey
+            TEAM ENVI$# &pKeyCount=*4 0| ENVI$# &pMaxSubKeyLen=*4 0
+            CALL $--qd --ret:&ret offreg.dll,ORQueryInfoKey,#%&hKey%,#0,#0,*&pKeyCount,*&pMaxSubKeyLen,#0,#0,#0,#0,#0,#0
+            IFEX #%&ret%=0,
+            {
+                TEAM ENVI?int &pKeyCount=&KeyCount| ENVI?int &pMaxSubKeyLen=&MaxSubKeyLen
+                CALC #&KeySize = %&MaxSubKeyLen% * 2
+                ENVI &Index = 0
+                LOOP #%&Index%<%&KeyCount%,
+                {
+                    ENVI$# &KeyName=*%&KeySize% 0
+                    SET-int &pKeySize=%&KeySize%
+                    CALL $--qd --ret:&ret offreg.dll,OREnumKey,#%&hKey%,#%&Index%,*&KeyName,*&pKeySize,#0,#0,#0
+                    IFEX #%&ret%=0,ENVI &KeyList=%&KeyList%%&KeyName%%&NL%
+                    CALC #&Index = %&Index% + 1
+                }
+            }
+            CALL $--qd --ret:&ret offreg.dll,ORCloseKey,#%&hKey%
+        }
+        CALL $--qd --ret:&ret offreg.dll,ORCloseHive,#%&hHive%
+    }
+    ENVI-ret %~3=%&KeyList%
+_END
+
+;示例
+CALL EnumOffRegKey "D:\config\SOFTWARE" "Microsoft\Windows NT\CurrentVersion\ProfileList" &SubKeys
+MESS %&SubKeys%
+
+
+
+
+
+;EnumOffRegValue 封装函数用于枚举脱机注册表文件的指定的注册表项的值数据
+;第一个参数为目标脱机注册表配置单元文件的路径
+;第二个参数为要枚举其值的注册表项
+;第三个参数为接收返回的值数据
+_SUB EnumOffRegValue
+    TEAM ENVI &HiveFile=%~1| ENVI &SubKey=%~2| ENVI-ret %~3=
+    TEAM SET$ &NL=0d 0a| ENVI &ValueList=
+    IFEX #%&bX64%=3, SET &PtrSz=8! SET &PtrSz=4
+    IFEX %&HiveFile%,! EXIT _SUB
+    ENVI$# &phHive=*%&PtrSz% 0
+    CALL $--qd --ret:&ret offreg.dll,OROpenHive,$%&HiveFile%,*&phHive
+    IFEX #%&ret%=0,
+    {
+        ENVI?int &phHive=&hHive
+        ENVI$# &phKey=*%&PtrSz% 0
+        CALL $--qd --ret:&ret offreg.dll,OROpenKey,#%&hHive%,$%&SubKey%,*&phKey
+        IFEX #%&ret%=0,
+        {
+            ENVI?int &phKey=&hKey
+            TEAM ENVI$# &pValueCount=*4 0| ENVI$# &pMaxValueNameLen=*4 0
+            CALL $--qd --ret:&ret offreg.dll,ORQueryInfoKey,#%&hKey%,#0,#0,#0,#0,#0,*&pValueCount,*&pMaxValueNameLen,#0,#0,#0
+            IFEX #%&ret%=0,
+            {
+                TEAM ENVI?int &pValueCount=&ValueCount| ENVI?int &pMaxValueNameLen=&MaxValueNameLen
+                CALC #&ValueSize = ( %&MaxValueNameLen% + 1 ) * 2
+                ENVI &Index = 0
+                LOOP #%&Index%<%&ValueCount%,
+                {
+                    ENVI$# &ValueName=*%&ValueSize% 0
+                    SET-long &pValueSize=%&ValueSize%
+                    CALL $--qd --ret:&ret offreg.dll,OREnumValue,#%&hKey%,#%&Index%,*&ValueName,*&pValueSize,#0,#0,#0
+                    IFEX #%&ret%=0,ENVI &ValueList=%&ValueList%%&ValueName%%&NL%
+                    CALC #&Index = %&Index% + 1
+                }
+            }
+            CALL $--qd --ret:&ret offreg.dll,ORCloseKey,#%&hKey%
+        }
+        CALL $--qd --ret:&ret offreg.dll,ORCloseHive,#%&hHive%
+    }
+    ENVI-ret %~3=%&ValueList%
+_END
+
+;示例
+CALL EnumOffRegValue "D:\config\SOFTWARE" "Microsoft\Windows NT\CurrentVersion\ProfileList" &Values
+MESS %&Values%

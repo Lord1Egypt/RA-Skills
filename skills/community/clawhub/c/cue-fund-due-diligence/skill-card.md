@@ -1,6 +1,6 @@
 ## Description:
 
-用 Cue 为 A 股公募权益基金生成涵盖基金经理、业绩归因、风格、风险、持仓、费率与规模的尽调报告。
+Analyzes publicly disclosed data for A-share equity mutual funds, covering manager history, performance attribution, style consistency, risk, holdings, fees, and fund size.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-个人投资者、基金投顾与研究人员可用它检查 A 股公募权益基金的经理记录、历史业绩归因、风格稳定性、风险和成本，为研究与申赎决策提供参考。它不覆盖债券、货币或私募基金，也不预测未来表现或提供择时建议。
+Individual fund investors, advisers, and researchers use the skill to review a public equity fund's reported history, manager, style, risks, holdings, fees, and scale before making their own decisions. It does not forecast future returns or recommend market timing.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,37 @@ China (A-share public equity funds)
 
 ## Known Risks and Mitigations:
 
-Risk: The security review reports that the skill asks users to share an API key in chat.
+Risk: The security review reports a request to share an API key and promotional steps unrelated to fund analysis.
 
-Mitigation: Do not send API keys in chat; configure credentials through a trusted local secret store or environment variable, and verify the service before use.
+Mitigation: Do not paste an API key into chat. Review the setup and promotional instructions, and configure any key locally only if you choose to proceed.
 
-Risk: The security review identifies promotional prompts unrelated to fund analysis.
+Risk: The security review is incomplete: a referenced local path was missing and remote repository contents were not assessed.
 
-Mitigation: Ignore reward, purchase, and sharing prompts; keep the interaction limited to the user's requested fund research.
+Mitigation: Inspect the missing path and repository contents, then complete a security review before installing or running the skill.
 
-Risk: The security review says setup and conversion behavior does not match the stated fund-analysis purpose, and notes that the scan was partial.
+Risk: The report depends on disclosed fund data and an external service, so coverage and timeliness may vary.
 
-Mitigation: Inspect and verify the service and runner behavior before execution, and do not rely on the partial scan as proof that all behavior was reviewed.
+Mitigation: Check the report's data cutoff and source links, and treat its analysis as research support rather than a forecast or individualized investment recommendation.
 
 ## Reference(s):
 
-- [Cue platform](https://cuecue.cn)
-- [ClawHub release page](https://clawhub.ai/panting09266-ai/skills/cue-fund-due-diligence)
-- [天天基金](https://fund.eastmoney.com)
-- [晨星中国](https://www.morningstar.cn)
+- [Cue Skills runner repository (GitHub; referenced by the skill)](https://github.com/sensedeal/cue-skills)
+- [Cue Skills runner repository (Gitee mirror; referenced by the skill)](https://gitee.com/sensedeal/cue-skills)
+- [Cue service](https://cuecue.cn)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown]
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [Structured Markdown fund due diligence report with source links]
+**Output Format:** [Structured Markdown due diligence report]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Fund-specific assessment; completeness and timeliness depend on public disclosures and Cue service availability.]
+**Other Properties Related to Output:** [Covers fund and manager profiles, performance attribution, style consistency, risk metrics, holdings, fees, and scale; includes source links and a data cutoff when available.]
 
 ## Skill Version(s):
 
-1.0.14 (source: server-resolved release evidence)
+1.0.15 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

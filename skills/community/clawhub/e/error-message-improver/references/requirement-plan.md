@@ -2,7 +2,7 @@
 
 ## Live Requirement
 
-Validated demand: Users and support teams need clearer error messages that explain what failed, why it failed, and what action to take next. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
+Validated demand: Users and support teams need clearer error messages that explain what failed, why it failed, and what action to take next. This requirement is supported by 12 separate online signals across 2 source families, so it represents broader demand rather than a single isolated request.
 
 ## Audience
 
@@ -14,36 +14,37 @@ work-productivity
 
 ## Requirement Score
 
-Total: 100/100
+Total: 90/100
 
 Demand: 70/70
 
 Local feasibility: 30/30
 
-Evidence coverage: 12 signals across 3 source families.
+Evidence coverage: 12 signals across 2 source families.
 
 Scoring rationale:
 
 - Evidence count: 12; required minimum: 3.
-- Distinct source families: 3; sources: github, hacker-news, segmentfault.
+- Distinct source families: 2; sources: github, hacker-news.
 - Demand score: 70/70 based on corroboration, source diversity, and professional/community signal.
 - Local feasibility score: 30/30.
 - Implementation is a documentation, workflow, code, or analysis skill that can run on ordinary CPU hardware.
+- Score capped because corroborating evidence does not come from at least three different source families.
 
 ## Evidence
 
-- github-issues (2026-11-14T20:22:15+00:00): [[Intake] Verified Windows Codex app-server control framing repair: native `app-server pro](https://github.com/Ikalus1988/MisakaNet/issues/4963)
+- github-issues (2026-11-16T08:10:18+00:00): [[Intake] Four concurrent Qingzhou time-window queries exceeded upstream timeout while ser](https://github.com/Ikalus1988/MisakaNet/issues/5085)
+- github-issues (2026-11-14T06:54:39+00:00): [[Intake] Qingzhou deployment reports the new version as successful and running, but the s](https://github.com/Ikalus1988/MisakaNet/issues/4881)
 - github-issues (2026-11-16T03:40:56+00:00): [[Intake] Qingzhou CLI increments qingzhou.yaml during deploy but does not update package.](https://github.com/Ikalus1988/MisakaNet/issues/5067)
-- github-issues (2026-11-15T07:29:45+00:00): [[Intake] audit-fixture](https://github.com/Ikalus1988/MisakaNet/issues/5012)
-- github-issues (2026-11-14T19:31:11+00:00): [tree-sitter decommission: YARA on yara-x-parser's CST](https://github.com/opentidehq/opentide/issues/1225)
-- segmentfault-search (2026-11-16T04:08:35.395461+00:00): [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
-- segmentfault-search (2026-11-16T04:08:35.395461+00:00): [javascript](https://segmentfault.com/t/javascript)
-- segmentfault-search (2026-11-16T04:08:35.395461+00:00): [typescript](https://segmentfault.com/t/typescript)
-- segmentfault-search (2026-11-16T04:08:35.395461+00:00): [ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
-- segmentfault-search (2026-11-16T04:08:35.395461+00:00): [答： c++单例类编译不通过](https://segmentfault.com/q/1010000004886164/a-1020000004886445)
-- segmentfault-search (2026-11-16T04:08:35.395461+00:00): [error-messages](https://segmentfault.com/t/error-messages)
-- segmentfault-search (2026-11-16T04:08:35.395461+00:00): [问： vue自定义指令报错](https://segmentfault.com/q/1010000009322969)
-- hacker-news-search (2026-11-04T03:55:15+00:00): [C++26 Disapproved](https://news.ycombinator.com/item?id=50361335)
+- github-issues (2026-11-18T07:52:59+00:00): [[Intake] 录屏窗口帧大量重复时，查看同名抽帧会被缓存误判为动态；先统计唯一图像哈希和像素差，再决定重录或合成可见交互](https://github.com/Ikalus1988/MisakaNet/issues/5228)
+- github-issues (2026-11-19T06:10:11+00:00): [Add a backup and restore page to the user guide](https://github.com/emreocell/Praxi-Bot/issues/321)
+- hacker-news-search (2026-11-08T20:45:12+00:00): [Outlook.com is rejecting email from domains without DMARC](https://news.ycombinator.com/item?id=50417017)
+- hacker-news-search (2026-11-16T01:41:23+00:00): [Things That Turbo Pascal Is Smaller Than (2011)](https://news.ycombinator.com/item?id=50513011)
+- hacker-news-search (2026-11-15T20:33:08+00:00): [Things That Turbo Pascal Is Smaller Than (2011)](https://news.ycombinator.com/item?id=50510415)
+- hacker-news-search (2026-11-15T18:55:57+00:00): [How the Telephone Changed the World](https://news.ycombinator.com/item?id=50509574)
+- hacker-news-search (2026-11-18T17:20:25+00:00): [Seagate's new hybrid drive raises some old questions](https://news.ycombinator.com/item?id=50549092)
+- hacker-news-search (2026-11-14T16:14:48+00:00): [Live airband on all frequencies from KORS. Victoria, CA also ground stopped](https://news.ycombinator.com/item?id=50498186)
+- github-issues (2026-11-17T02:04:56+00:00): [Profile improvements](https://github.com/feippe/moviematch/issues/23)
 
 ## How The Skill Meets The Requirement
 

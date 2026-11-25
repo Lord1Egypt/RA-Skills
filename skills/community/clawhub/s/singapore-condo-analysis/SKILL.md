@@ -8,7 +8,7 @@ license: MIT
 
 **What it does (official description):** Research Singapore condos and residential market trends without digging through property data yourself. Wondering how a specific development is performing? Comparing two condos? Looking for price movements or rental yield trends across districts? Ask in plain language and get a structured analysis based on 700K+ historical transactions and 1.1M+ rental contracts. Explore project-level performance, district comparisons, historical price trends, rental patterns, and selected unit-level attributes — with statistical analysis and charts to help you understand the data. Focused on Singapore’s private residential market, including condos, apartments, and ECs. HDB and overseas properties are not covered. * Historical and descriptive analysis, not financial or investment advice *Singapore private residential only; HDB public housing is out of scope
 
-**Price:** 0.5 USDC per run. 10 free runs per account until 2026-11-21 (UTC).
+**Price:** 0.5 USDC per run. 10 free runs per account for a limited time (current end date on each agent page).
 
 ## How to use
 

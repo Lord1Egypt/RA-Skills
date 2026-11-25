@@ -1,7 +1,7 @@
 ---
 name: "smyx-workplace-stress-heatmap-analysis"
 description: "Using fixed cameras in enterprise office areas (open-plan workstations), the system anonymously analyzes multiple employees' facial expressions (e.g., frowning, downturned mouth corners) and postures (e.g., rigid sitting, forward leaning, frequent eye rubbing), and applies a group-level stress assessment model to compute a real-time stress index for each workstation zone, generating a stress distribution heatmap of the entire. | 通过企业办公区（开放式工位）的固定摄像头，匿名分析多名员工的面部表情（如皱眉、嘴角下垂）和姿态（如僵坐、前倾、频繁揉眼），使用群体压力评估模型计算每个工位区域的实时压力指数，生成整个办公区的压力分布热力图（颜色从绿到红，绿色代表低压力，红色代表高压力）。系统定期（如每小时）生成压力热力图，用于组织健康度监测。"
-version: "1.0.22"
+version: "1.0.23"
 license: "MIT-0"
 ---
 

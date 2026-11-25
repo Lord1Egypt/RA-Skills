@@ -1,6 +1,6 @@
 ## Description:
 
-Image search tool: queries Pixabay image API by keywords and returns image URLs and metadata for references, backgrounds, and design assets.
+The release describes this skill as querying the Pixabay image API by keyword and returning image URLs and metadata for references, backgrounds, and design assets.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers can search Pixabay by keyword to find image URLs and metadata for reference images, backgrounds, and design assets.
+Designers and developers can use the release's image-search function to look for candidate image URLs and metadata by keyword for visual references, backgrounds, and design assets. Scanner evidence reports a mismatch between this stated purpose and the documented dLazy CLI authentication and invocation, so the advertised behavior remains unconfirmed.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The partial security scan did not inspect the external dLazy CLI or establish that its commands perform the stated Pixabay search; the documented workflow also requires dLazy authentication.
+Risk: Scanner evidence reports a mismatch between the stated Pixabay image-search purpose and the documented dLazy CLI authentication and invocation; the CLI package and some referenced files were not inspected.
 
-Mitigation: Before use, decide whether you trust dLazy, review the CLI behavior, configure authentication, and confirm that returned results suit the intended search.
+Mitigation: Review the published CLI package and referenced files, and confirm the advertised search behavior before installing or relying on results.
+
+Risk: The skill documentation says search prompts and parameters are sent to dLazy's hosted API.
+
+Mitigation: Avoid sending confidential or sensitive query content unless the service's data handling terms are suitable for that content.
 
 ## Reference(s):
 
-- [dLazy CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-search-image)
+- [dLazy CLI repository listed in skill metadata](https://github.com/dlazy-ai/cli)
+- [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
 - [dLazy website](https://dlazy.com)
 
 ## Skill Output:
 
 **Output Type(s):** [JSON, Image URLs, Image metadata]
 
-**Output Format:** [JSON]
+**Output Format:** [JSON response containing image search results and metadata]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Search results contain image URLs and metadata; the skill also documents optional saving of a result asset to a local path.]
+**Other Properties Related to Output:** [Documented options include query, image type, orientation, page, results per page, and language; results can optionally be saved to a local path.]
 
 ## Skill Version(s):
 
-1.3.42 (source: ClawHub release evidence)
+1.3.45 (source: ClawHub release evidence)
 
 ## Ethical Considerations:
 

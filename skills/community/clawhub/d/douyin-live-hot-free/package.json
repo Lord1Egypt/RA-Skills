@@ -1,0 +1,30 @@
+{
+  "name": "douyin-live-hot-free",
+  "version": "0.2.3",
+  "description": "Free Douyin keyword search reports through Easy WebBridge",
+  "type": "module",
+  "private": false,
+  "license": "MIT-0",
+  "bin": {
+    "douyin-live-hot-free": "scripts/douyin-live-hot-free.mjs"
+  },
+  "scripts": {
+    "check": "node --check scripts/douyin-live-hot-free.mjs && npm test",
+    "test": "node --test",
+    "list": "node scripts/douyin-live-hot-free.mjs list"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "agent-skill",
+    "douyin-search",
+    "douyin-trends",
+    "creator-research",
+    "easy-webbridge",
+    "claude-code",
+    "codex",
+    "opencode",
+    "workbuddy"
+  ]
+}

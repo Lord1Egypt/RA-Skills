@@ -7,7 +7,7 @@ display_name_en: Session Fork
 description: Duplicate any work-in-progress into an independent branch — not just conversations, but tasks, plans, code, writing and research. Context, confirmed conclusions, completed steps and tool results all come along; resume from any point while the original line stays untouched and keeps running. Note that a fork copies the session context only; workspace artifacts are not rolled back — unless they are version-controlled (e.g. git), only their final state exists.
 description_zh: 把走到一半的工作整体复制成独立分支——上下文、已确认的结论、做过的步骤、工具结果都跟着走，从任意节点接着推进，原线不受影响。不只是对话：任务、方案、代码、写作、调研都能分叉（如「这条方向走岔了，回到上一轮重新来」「同一个任务并行试几条路」）。注意：分叉复制的是会话上下文，工作区产物不会跟着回退——除非产物自身有版本记录（如 git），否则只有当前最终态。
 description_en: Duplicate any work-in-progress into an independent branch — not just conversations, but tasks, plans, code, writing and research. Context, confirmed conclusions, completed steps and tool results all come along; resume from any point while the original line stays untouched and keeps running. Note that a fork copies the session context only; workspace artifacts are not rolled back — unless they are version-controlled (e.g. git), only their final state exists.
-version: 2.4.23
+version: 2.4.24
 author: OfferKuai (Offer快) Team
 license: MIT
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
@@ -203,6 +203,8 @@ session-fork/
 | **Hermes** | **无需重启、无需修复命令**：`hermes sessions list` 即可看到；`hermes chat --resume <分支 id>` 续跑 |
 | **pi** | **无需重启**：会话选择器（`/resume`）或 `/tree` 刷新即可 |
 | **OpenClaw** | `openclaw sessions --json` **立即可列出**；若 Gateway 正在运行，重启一次以加载 |
+
+> **OpenClaw 新版的事件压缩不影响打分支**：2026.11 起，较大的事件默认压缩落盘。本工具**按原样复制**这些事件，**不需要任何额外依赖**。只有"按文本定位"（`--match` / 贴 id）与预览才需要解码——那时用系统的 `zstd` 命令、或 Python 3.14+ 自带的实现即可；两者都没有时会给出明确提示，**不会静默产出一条缺事件的坏分支**。
 
 **与你有关的唯一一条**：`--fix` 只支持 WorkBuddy（其他 adapter 会直接报错）；界面按钮 / 重启客户端 / `.workbuddy/` 日志那几条与你无关。
 

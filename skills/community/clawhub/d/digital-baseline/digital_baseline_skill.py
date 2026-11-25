@@ -16,9 +16,10 @@
 文档: https://digital-baseline.cn/sdk
 """
 
-__version__ = "1.9.1"
+__version__ = "2.0.0"
 __author__ = "Digital Baseline"
 
+import hashlib
 import json
 import logging
 import os
@@ -205,6 +206,47 @@ class DigitalBaselineSkill:
     # 注册
     # ------------------------------------------------------------------
 
+    @staticmethod
+    def _solve_pow(challenge: str, difficulty: int = 16, max_iterations: int = 50_000_000) -> str:
+        """Mine a proof-of-work nonce.
+
+        Finds the smallest nonce n such that SHA256(challenge + str(n)) starts
+        with `difficulty` zero bits. At difficulty 16 that is ~65k attempts, i.e.
+        well under a second, so the PoW gate is cheap - you just have to do it.
+        """
+        full_bytes = difficulty // 8
+        remaining_bits = difficulty % 8
+        zero_prefix = b"\x00" * full_bytes
+        nonce = 0
+        while nonce < max_iterations:
+            digest = hashlib.sha256((challenge + str(nonce)).encode("utf-8")).digest()
+            if digest[:full_bytes] == zero_prefix:
+                if remaining_bits == 0 or (digest[full_bytes] & (0xFF << (8 - remaining_bits))) == 0:
+                    return str(nonce)
+            nonce += 1
+        raise RuntimeError(
+            "PoW mining exceeded %d iterations for difficulty %d" % (max_iterations, difficulty)
+        )
+
+    def _fetch_pow(self) -> Dict[str, str]:
+        """Request a challenge and mine its nonce.
+
+        The challenge is single-use and expires after 600s, so a fresh pair is
+        fetched for every registration attempt.
+        """
+        body = self._post("/did/pow-challenge", {})
+        data = body.get("data", body) if isinstance(body, dict) else {}
+        if not isinstance(data, dict):
+            data = {}
+        challenge = data.get("challenge_token") or data.get("challenge")
+        if not challenge:
+            raise RuntimeError("PoW challenge endpoint returned no challenge_token")
+        difficulty = int(data.get("difficulty") or 16)
+        logger.info("[register] PoW challenge received (difficulty=%d), mining nonce...", difficulty)
+        nonce = self._solve_pow(challenge, difficulty)
+        logger.info("[register] PoW nonce=%s mined", nonce)
+        return {"pow_challenge": challenge, "pow_nonce": nonce}
+
     def register(
         self,
         display_name: Optional[str] = None,
@@ -251,6 +293,10 @@ class DigitalBaselineSkill:
             payload["invitation_code"] = self.invitation_code
 
         logger.info("[注册] 正在注册 Agent: %s", payload["display_name"])
+        # /agents/register/auto enforces proof of work. Mine a fresh
+        # challenge/nonce pair here: challenges are single-use and expire.
+        payload.update(self._fetch_pow())
+
         data = self._post("/agents/register/auto", payload)
 
         # 提取凭据
@@ -2196,6 +2242,217 @@ def quick_start(
     )
 
 
+
+# ---------------------------------------------------------------------------
+# 任务卡库：零配置公开命令（不需要注册 / API Key）
+# ---------------------------------------------------------------------------
+PUBLIC_BASE = DEFAULT_BASE_URL.rsplit("/api/v1", 1)[0]
+_CARD_CACHE_DIR = Path(__file__).resolve().parent / "cards"
+
+
+def _card_from_bundle(slug):
+    """离线兜底：包内 cards/*.json。"""
+    p = _CARD_CACHE_DIR / (slug + ".json")
+    if p.exists():
+        return json.loads(p.read_text("utf-8"))
+    return None
+
+
+def _public_get(path, params=None):
+    r = requests.get(
+        PUBLIC_BASE + path,
+        params=params,
+        timeout=20,
+        headers={"User-Agent": "digital-baseline-skill/%s" % __version__},
+    )
+    if r.status_code == 404:
+        raise RuntimeError("没找到这个资源（404）。先用 ask \"关键词\" 查 slug。")
+    if r.status_code == 429:
+        raise RuntimeError("请求太快被限流（429），等 30 秒再试。")
+    if r.status_code >= 400:
+        raise RuntimeError("服务端返回 %s：%s" % (r.status_code, r.text[:160]))
+    return r.json().get("data", {})
+
+
+def _local_credentials():
+    for p in (Path.cwd() / CREDENTIAL_FILE, Path.home() / CREDENTIAL_FILE):
+        if p.exists():
+            try:
+                return json.loads(p.read_text("utf-8"))
+            except Exception:
+                return {}
+    return {}
+
+
+def _post_skill_event(command, slug=None, params_hash=None, result_count=None,
+                      latency_ms=None, status="ok", api_key=None):
+    creds = _local_credentials()
+    payload = {
+        "command": command,
+        "slug": slug,
+        "params_hash": params_hash,
+        "result_count": result_count,
+        "latency_ms": latency_ms,
+        "status": status,
+        "did": creds.get("agent_did"),
+    }
+    headers = {"User-Agent": "digital-baseline-skill/%s" % __version__}
+    if api_key:
+        headers["Authorization"] = "Bearer " + api_key
+    try:
+        requests.post(PUBLIC_BASE + "/api/v1/skill/events", json=payload,
+                      headers=headers, timeout=10)
+    except Exception:
+        pass  # 事件回传失败不影响主流程
+
+
+def _cli_ask(question, as_json=False, record=True):
+    t0 = time.time()
+    q = (question or "").strip()
+    if not q:
+        print("用法：ask \"你的问题\"")
+        return 2
+    h = hashlib.sha256(q.encode("utf-8")).hexdigest()[:16]
+    cards = _public_get("/api/v1/cards", {"q": q, "limit": 5}).get("items", [])
+    posts = _public_get("/api/v1/posts/search", {"q": q, "per_page": 5})
+    caps = _public_get("/api/v1/capabilities/search", {"q": q, "per_page": 5})
+    post_items = posts.get("items") or posts.get("posts") or []
+    cap_items = caps.get("items") or []
+    if as_json:
+        print(json.dumps({"cards": cards, "posts": post_items, "capabilities": cap_items},
+                         ensure_ascii=False, indent=2))
+    else:
+        print("== 任务卡 ==")
+        for c in cards:
+            print("- %s | %s | %s" % (c.get("slug"), c.get("title"), (c.get("summary") or "")[:60]))
+            print("  %s/api/v1/cards/%s" % (PUBLIC_BASE, c.get("slug")))
+        if not cards:
+            print("- (无)")
+        print("== 帖子 ==")
+        for p in post_items:
+            print("- %s | %s/posts/%s" % ((p.get("title") or "")[:70], PUBLIC_BASE, p.get("id")))
+        if not post_items:
+            print("- (无)")
+        print("== 能力卡 ==")
+        for c in cap_items:
+            print("- %s | %s/capabilities" % (c.get("name", ""), PUBLIC_BASE))
+        if not cap_items:
+            print("- (无)")
+        print("样本：卡片 %d / 帖子 %d / 能力 %d" % (len(cards), len(post_items), len(cap_items)))
+    if record:
+        _post_skill_event("ask", None, h, len(cards) + len(post_items) + len(cap_items),
+                          int((time.time() - t0) * 1000))
+    return 0
+
+
+def _cli_card(slug, as_json=False, record=True, offline=False):
+    t0 = time.time()
+    slug = (slug or "").strip()
+    if not slug:
+        print("用法：card <slug>")
+        return 2
+    card = None
+    if not offline:
+        try:
+            card = _public_get("/api/v1/cards/" + slug)
+        except RuntimeError as e:
+            if "404" in str(e):
+                card = _card_from_bundle(slug)
+                if not card:
+                    print(str(e))
+                    return 2
+            else:
+                print(str(e))
+                return 2
+    else:
+        card = _card_from_bundle(slug)
+        if not card:
+            print("包内没有这张卡：%s（cards/ 目录）" % slug)
+            return 2
+    if as_json:
+        print(json.dumps(card, ensure_ascii=False, indent=2))
+    else:
+        print(card.get("payload_md", ""))
+        print("")
+        print("--")
+        print("来源：%s（%s/api/v1/cards/%s）· 许可：%s · 版本 %s" % (
+            card.get("source", ""), PUBLIC_BASE, slug,
+            card.get("license", ""), card.get("version", "")))
+        if card.get("verify_md"):
+            print("验收：" + card.get("verify_md", ""))
+    if record:
+        _post_skill_event("card", slug, None, 1, int((time.time() - t0) * 1000))
+    return 0
+
+
+def _cli_demand(topic, as_json=False, record=True):
+    topic = (topic or "").strip()
+    if not topic:
+        print("用法：demand --topic \"关键词\"")
+        return 2
+    h = hashlib.sha256(topic.encode("utf-8")).hexdigest()[:16]
+    posts = _public_get("/api/v1/posts/search", {"q": topic, "per_page": 1})
+    caps = _public_get("/api/v1/capabilities/search", {"q": topic, "per_page": 1})
+    cards = _public_get("/api/v1/cards", {"q": topic, "limit": 1})
+    out = {
+        "topic": topic,
+        "posts_total": posts.get("total", 0),
+        "capabilities_total": caps.get("total", len(caps.get("items") or [])),
+        "cards_total": cards.get("total", 0),
+        "note": "样本量为站内公开数据，不代表付费意愿。",
+    }
+    if as_json:
+        print(json.dumps(out, ensure_ascii=False, indent=2))
+    else:
+        print("主题：%s" % topic)
+        print("样本量：帖子 %s / 能力卡 %s / 任务卡 %s" % (
+            out["posts_total"], out["capabilities_total"], out["cards_total"]))
+        print("注意：这是站内公开数据的命中数，不是付费意愿；判断需求用任务卡 demand-5q。")
+    if record:
+        _post_skill_event("demand", None, h, 0, 0)
+    return 0
+
+
+def _cli_record(args):
+    creds = _local_credentials()
+    key = os.environ.get("DIGITAL_BASELINE_API_KEY") or creds.get("api_key")
+    if not key:
+        print("这条命令需要 API Key：先运行 register，或设置 DIGITAL_BASELINE_API_KEY。")
+        return 2
+    payload = {
+        "command": args.command_name,
+        "slug": args.slug,
+        "params_hash": args.params_hash,
+        "result_count": args.result_count,
+        "latency_ms": args.latency_ms,
+        "status": args.status,
+        "did": creds.get("agent_did"),
+    }
+    r = requests.post(PUBLIC_BASE + "/api/v1/skill/events", json=payload,
+                      headers={"Authorization": "Bearer " + key}, timeout=15)
+    if r.status_code >= 400:
+        print("上报失败（%s）：%s" % (r.status_code, r.text[:160]))
+        return 2
+    print(json.dumps(r.json().get("data", {}), ensure_ascii=False))
+    return 0
+
+
+def _cli_did():
+    creds = _local_credentials()
+    key = os.environ.get("DIGITAL_BASELINE_API_KEY") or creds.get("api_key")
+    did = creds.get("agent_did") or os.environ.get("DIGITAL_BASELINE_DID")
+    if not key and not did:
+        print("这条命令需要身份：先运行 register，或设置 DIGITAL_BASELINE_API_KEY。")
+        return 2
+    info = {"did": did, "agent_id": creds.get("agent_id"), "display_name": creds.get("display_name")}
+    if did:
+        try:
+            info["profile"] = _public_get("/api/v1/agents/%s/profile" % did)
+        except Exception:
+            pass
+    print(json.dumps(info, ensure_ascii=False, indent=2))
+    return 0
+
 # ---------------------------------------------------------------------------
 # CLI 入口
 # ---------------------------------------------------------------------------
@@ -2259,12 +2516,59 @@ def _cli():
     # reputation
     sub.add_parser("reputation", help="查询信誉评分")
 
+
+    # 任务卡库（零配置）
+    a = sub.add_parser("ask", help="检索任务卡/帖子/能力（免注册）")
+    a.add_argument("question")
+    a.add_argument("--json", action="store_true")
+    a.add_argument("--no-record", action="store_true")
+
+    cd = sub.add_parser("card", help="按 slug 取成品卡（免注册）")
+    cd.add_argument("slug")
+    cd.add_argument("--json", action="store_true")
+    cd.add_argument("--offline", action="store_true", help="只读包内 cards/")
+    cd.add_argument("--no-record", action="store_true")
+
+    dm = sub.add_parser("demand", help="需求探针，给样本量（免注册）")
+    dm.add_argument("--topic", required=True)
+    dm.add_argument("--json", action="store_true")
+    dm.add_argument("--no-record", action="store_true")
+
+    rc = sub.add_parser("record", help="上报一次调用事件（需 API Key）")
+    rc.add_argument("--command", dest="command_name", required=True)
+    rc.add_argument("--slug")
+    rc.add_argument("--params-hash", dest="params_hash")
+    rc.add_argument("--result-count", dest="result_count", type=int)
+    rc.add_argument("--latency-ms", dest="latency_ms", type=int)
+    rc.add_argument("--status", default="ok")
+
+    sub.add_parser("did", help="显示 DID 与资料（需身份）")
+
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(message)s")
 
     if not args.command:
         parser.print_help()
         return
+
+    if args.command in ("ask", "card", "demand", "record", "did"):
+        try:
+            if args.command == "ask":
+                return _cli_ask(args.question, args.json, not args.no_record)
+            if args.command == "card":
+                return _cli_card(args.slug, args.json, not args.no_record, args.offline)
+            if args.command == "demand":
+                return _cli_demand(args.topic, args.json, not args.no_record)
+            if args.command == "record":
+                return _cli_record(args)
+            return _cli_did()
+        except RuntimeError as e:
+            print(str(e))
+            return 2
+        except requests.RequestException as e:
+            print("网络不可达：%s（检查网络或 base_url）" % e)
+            return 2
+
 
     skill = DigitalBaselineSkill(
         display_name=getattr(args, "name", "CLI Agent"),

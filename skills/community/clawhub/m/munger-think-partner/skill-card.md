@@ -1,6 +1,6 @@
 ## Description:
 
-Uses Charlie Munger’s multidisciplinary mental models to help structure decisions and identify cognitive biases in investing, business, and risk management.
+Provides a Charlie Munger inspired, cross-disciplinary framework for examining decisions, identifying cognitive biases, and considering risks in investment, business, and related contexts.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Individuals and teams can use this Chinese-first thought partner to structure investment, business, career, and personal decisions, examine assumptions, and surface possible biases. Its checklists and prompts support reflection; they are not professional advice or verified conclusions.
+Investors, business decision-makers, and individuals considering career or team choices can use its Chinese-first prompts and checklists to examine incentives, failure paths, cognitive biases, and assumptions across disciplines. It is a thinking aid; factual and professional conclusions require independent verification and qualified review.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill may respond primarily in Chinese.
+Risk: The skill responds primarily in Chinese, which may not suit every user.
 
-Mitigation: Specify a preferred response language when needed.
+Mitigation: Confirm that Chinese-first output fits the intended user before relying on the skill.
 
-Risk: The broad personal-reflection trigger may activate for loosely related questions.
+Risk: Decision frameworks and time-sensitive market or policy references may be mistaken for verified professional conclusions.
 
-Mitigation: State the specific decision or reflection question and relevant context.
-
-Risk: Investment and other high-stakes topics can be mistaken for professional advice.
-
-Mitigation: Use the output as a thinking aid, verify underlying facts, and have qualified professionals make high-stakes determinations.
+Mitigation: Use outputs as prompts, verify current facts against authoritative sources, and have qualified professionals make investment or other regulated decisions.
 
 ## Reference(s):
 
-- [Munger Think Partner on ClawHub](https://clawhub.ai/gechengling/skills/munger-think-partner)
+- [Munger Think Partner on ClawHub](https://clawhub.ai/gechengling/munger-think-partner)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Text, Markdown]
+**Output Type(s):** [Analysis, Guidance, Markdown]
 
-**Output Format:** [Chinese-first Markdown with decision frameworks, checklists, and reflection prompts]
+**Output Format:** [Primarily Chinese structured Markdown with prompts, checklists, and decision frameworks]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Language may be primarily Chinese; responses are reference material for user review.]
+**Other Properties Related to Output:** [Chinese-first; intended as a thinking aid, not professional advice.]
 
 ## Skill Version(s):
 
-2.1.4 (source: server-resolved release metadata and artifact SKILL.md)
+2.1.5 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

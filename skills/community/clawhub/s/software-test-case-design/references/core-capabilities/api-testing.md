@@ -1,43 +1,44 @@
 # API Testing
 
-> This document defines specialized testing dimensions and strategy highlights for API testing. It is used complementarily with other test types.
+> This document defines the specific test dimensions and strategy points for API testing. It complements the other test types.
 
 ---
 
-## Table of Contents
+## Contents
 
 | Line | Section |
-|------|---------|
-| 8 | I. Functional Testing |
-| 24 | II. Status Code Verification |
-| 38 | III. Data Validation |
-| 46 | IV. Authentication & Authorization |
-| 54 | V. Security Testing |
-| 68 | VI. Error Handling |
-| 78 | VII. Pagination & Sorting |
-| 86 | VIII. Search & Filtering |
+|------|------|
+| 23 | 1. Functional Testing |
+| 35 | 2. Status Code Verification |
+| 52 | 3. Data Validation |
+| 62 | 4. Authentication and Authorization |
+| 71 | 5. Security Testing |
+| 86 | 6. Error Handling |
+| 96 | 7. Pagination and Sorting |
+| 105 | 8. Search and Filtering |
+| 114 | 9. Version Compatibility |
 
 ---
 
-## I. Functional Testing
+## 1. Functional Testing
 
-| Test Scenario | Test Highlights |
+| Test scenario | Test points |
 |---------|---------|
-| GET Request | Normal single/list data query; query with parameters; handling of empty/incorrect parameter types |
-| POST Request | Normal resource creation; required field validation; field format validation; duplicate creation handling |
-| PUT/PATCH Request | Full update/partial update; updating non-existent resource; concurrent update handling |
-| DELETE Request | Normal deletion; deleting non-existent resource; cascading deletion; soft deletion |
-| Batch Operations | Batch create/update/delete; partial success handling; transaction rollback |
+| GET requests | Query single / list data normally; query with parameters; handling of empty / wrongly typed parameters |
+| POST requests | Create resources normally; required field validation; field format validation; handling of duplicate creation |
+| PUT/PATCH requests | Full update / partial update; updating a non-existent resource; handling of concurrent updates |
+| DELETE requests | Normal deletion; deleting a non-existent resource; cascading deletion; soft deletion |
+| Batch operations | Batch create / update / delete; handling of partial success; transaction rollback |
 
 ---
 
-## II. Status Code Verification
+## 2. Status Code Verification
 
-| Status Code | Description |
+| Status code | Description |
 |-------|------|
 | 200 OK | Normal response |
-| 201 Created | Creation successful |
-| 204 No Content | Deletion successful |
+| 201 Created | Created successfully |
+| 204 No Content | Deleted successfully |
 | 400 Bad Request | Parameter error |
 | 401 Unauthorized | Not authenticated |
 | 403 Forbidden | No permission |
@@ -48,62 +49,72 @@
 
 ---
 
-## III. Data Validation
+## 3. Data Validation
 
-| Test Scenario | Test Highlights |
+| Test scenario | Test points |
 |---------|---------|
-| Field Validation | Required field, type, length, format, range validation |
-| Business Rules | Uniqueness constraints, foreign key constraints, state transition rules |
-| Data Consistency | Database write verification, cache synchronization verification |
+| Field validation | Required fields, type, length, format, range |
+| Business rules | Uniqueness constraints, foreign key constraints, state transition rules |
+| Data consistency | Verify database writes; verify cache synchronization |
 
 ---
 
-## IV. Authentication & Authorization
+## 4. Authentication and Authorization
 
-| Test Scenario | Test Highlights |
+| Test scenario | Test points |
 |---------|---------|
-| Token Authentication | Token generation, refresh, expiry, revocation |
-| Permission Control | Role-based permission, resource permission, data permission verification |
+| Token authentication | Token generation, refresh, expiration, revocation |
+| Access control | Role permissions, resource permissions, data permissions |
 
 ---
 
-## V. Security Testing
+## 5. Security Testing
 
-| Test Scenario | Test Highlights |
+| Test scenario | Test points |
 |---------|---------|
-| Injection Attacks | SQL injection (parameterized query verification), NoSQL injection, command injection |
-| Unauthorized Access | Horizontal privilege escalation (IDOR, modifying resource ID to access others' data), vertical privilege escalation (using normal Token to access admin APIs) |
-| Mass Assignment | Adding read-only fields (e.g., role, isAdmin, balance) to the request body and verifying they are rejected |
-| API Rate Limiting | Sending a large number of requests (>100/sec) in a short period and verifying whether 429 is returned |
-| Sensitive Information Leakage | Whether responses return sensitive fields such as password hashes, Tokens, internal IPs; whether error stack traces expose framework versions |
-| Security Header Check | Security response headers such as X-Content-Type-Options, X-Frame-Options, CSP, HSTS |
-| JWT Security | Unsigned Token (alg=none), expired Token, tampered Payload, key brute-forcing |
-| Parameter Pollution | Duplicate parameters (?id=1&id=2), array injection (?id[]=1&id[]=2), HTTP Parameter Pollution |
+| Injection attacks | SQL injection (verify parameterized queries), NoSQL injection, command injection |
+| Unauthorized access | Horizontal privilege escalation (IDOR, changing a resource ID to access others' data), vertical privilege escalation (a regular token accessing admin APIs) |
+| Mass assignment | Add read-only fields (e.g., role, isAdmin, balance) to the request body and verify they are rejected |
+| API rate limiting | Many requests in a short time (> 100 requests/second); verify 429 is returned |
+| Sensitive data exposure | Whether the response returns password hashes, tokens, internal IPs, or other sensitive fields; whether error stacks expose framework versions |
+| Security headers | X-Content-Type-Options, X-Frame-Options, CSP, HSTS, and other security response headers |
+| JWT security | Unsigned token (alg=none), expired token, tampered payload, key brute-forcing |
+| Parameter pollution | Duplicate parameters (?id=1&id=2), array injection (?id[]=1&id[]=2), HTTP Parameter Pollution |
 
 ---
 
-## VI. Error Handling
+## 6. Error Handling
 
-| Test Scenario | Test Highlights |
+| Test scenario | Test points |
 |---------|---------|
-| Error Response | Error code specification; clear error messages |
-| Exception Handling | Database exceptions, third-party service exceptions, network exceptions, timeout handling |
-| Retry Mechanism | Automatic retry; retry count limit; idempotency guarantee |
+| Error responses | Standardized error codes; clear error messages |
+| Exception handling | Database exceptions, third-party service exceptions, network exceptions, timeout handling |
+| Retry mechanism | Automatic retry; retry count limit; idempotency guarantee |
 
 ---
 
-## VII. Pagination & Sorting
+## 7. Pagination and Sorting
 
-| Test Scenario | Test Highlights |
+| Test scenario | Test points |
 |---------|---------|
-| Pagination | Page number parameter, page size, total count, out-of-bounds handling |
-| Sorting | Single-field/multi-field sorting; sort direction; default sorting |
+| Pagination | Page number parameter, page size, total count, out-of-range handling |
+| Sorting | Single-field / multi-field sorting; sort direction; default sorting |
 
 ---
 
-## VIII. Search & Filtering
+## 8. Search and Filtering
 
-| Test Scenario | Test Highlights |
+| Test scenario | Test points |
 |---------|---------|
-| Search | Exact search, fuzzy search, full-text search, multi-condition combination |
-| Filtering | Time range, status, category, custom filtering |
+| Search | Exact search, fuzzy search, full-text search, multi-condition combinations |
+| Filtering | Time range, status, category, custom filters |
+
+---
+
+## 9. Version Compatibility
+
+| Test scenario | Test points |
+|---------|---------|
+| Multiple versions coexisting | Request and response structures of the old version (e.g., /v1) remain unchanged; new fields in the new version (e.g., /v2) do not affect old-version callers |
+| Invalid version number | Requesting a non-existent version (e.g., /v99) returns 404 or a clear error message |
+| Deprecated fields and APIs | Deprecated fields / APIs continue to be returned as agreed or give a deprecation notice; compatibility handling for old-version callers when a new required field is added |

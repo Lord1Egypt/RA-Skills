@@ -31,6 +31,8 @@ compatibility: >
 
 # CICD AIops
 
+> **Audit availability:** Real writes require a durable audit intent. Reads and previews can continue if audit storage fails; check the warning and audit health before relying on their audit trail.
+
 > **Disclaimer**: Community-maintained open-source project, **not affiliated with, endorsed by, or sponsored by GitLab Inc. or the Gitea project.** GitLab and Gitea are trademarks of their respective owners. Source at [github.com/AIops-tools/CICD-AIops](https://github.com/AIops-tools/CICD-AIops) under the MIT license.
 
 Governed CI/CD operations — **28 MCP tools** across **self-managed GitLab** (REST
@@ -223,7 +225,7 @@ of the token you connect it with (a GitLab/Gitea access token without write
 scope — writes then fail at the server). There is no read-only switch, policy
 file, or approval gate.
 
-- **Audit is the guarantee, and it is not bypassable.** Every operation — MCP and CLI alike — is logged to `~/.cicd-aiops/audit.db` (relocatable via `CICD_AIOPS_HOME`): params, result, status, duration, and the risk tier. The CLI writes the same row the MCP path does.
+- **Audit is the guarantee, and it is not bypassable.** Every operation — MCP and CLI alike — is logged to `~/.cicd-aiops/audit.db` (relocatable via `CICD_AIOPS_HOME`): params, outcome summary, status, duration, and the risk tier. The CLI writes the same row the MCP path does.
 - `CICD_AUDIT_APPROVED_BY` / `CICD_AUDIT_RATIONALE` are optional annotations recorded on the audit row (who/why); they are never required and never block.
 - **Runaway guard** — a safety backstop, not authorization: the same call looped in a tight window trips a circuit breaker. Disable with `CICD_RUNAWAY_MAX=0`.
 - Destructive writes support `--dry-run` / `dry_run=True` and double confirmation at the CLI. `delete_artifacts` is irreversible (priorState records the destroyed count/bytes; audit only).

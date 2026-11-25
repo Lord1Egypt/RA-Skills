@@ -1,6 +1,6 @@
 ## Description:
 
-An end-to-end paper workbench for literature search, drafting, research figures, school-template typesetting, similarity and AI-content checks, and citation verification.
+End-to-end paper service for literature search, drafting, school-template typesetting, similarity and AI-content checks, and citation verification in chat.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External researchers and authors can use this skill to find literature, draft and format papers, create research figures, and review manuscripts, citations, and reports through an agent.
+External students and researchers use the skill to find literature, draft and format papers, create research figures, and request academic checks such as similarity, AI-content, and citation reviews.
 
 ### Deployment Geography for Use:
 
@@ -22,43 +22,44 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Manuscript files may be uploaded to an external service for processing.
+Risk: Paid tasks and account top-ups can incur charges.
 
-Mitigation: Review manuscript contents and use only files approved for external processing before uploading.
+Mitigation: Show the current quote and expected credit charge, then get the user's confirmation before running a paid task or starting a top-up.
 
-Risk: The reported promotional screenshot workflow may expose account or activity details.
+Risk: Uploaded manuscripts may contain private or restricted material.
 
-Mitigation: Check the screenshot for personal or sensitive information before choosing to submit it.
+Mitigation: Upload only the files needed for the requested task after confirming the user wants them processed; avoid sending unrelated or sensitive material.
 
-Risk: The security evidence reports that paid typesetting may run before its price is approved.
+Risk: API credentials can expose the user's account if shared or leaked.
 
-Mitigation: Ask for the current quote and explicitly approve the price before starting typesetting.
+Mitigation: Keep keys in the local credential store or a protected environment variable, do not repeat or relay them, and rotate a key if it is exposed.
 
-Risk: The security scan was partial, leaving some behavior unassessed.
+Risk: Promotional workflows could relay unwanted invitations or announcements.
 
-Mitigation: Review the skill and limit access to files or accounts needed for the requested task.
+Mitigation: Share promotional material only when the user asks, and confirm the intended audience and message before sending.
 
 ## Reference(s):
 
+- [Owlwrite Paper service homepage and pricing](https://paper.skillsutra.cn)
 - [Quickstart](artifact/references/quickstart.md)
 - [Product and capability matrix](artifact/references/product-matrix.md)
+- [Coverage guide](artifact/references/coverage.md)
 - [Typesetting guide](artifact/references/typeset.md)
-- [OwlWrite service site](https://paper.skillsutra.cn)
-- [ClawHub skill page](https://clawhub.ai/j-levee/skills/owlwrite-paper)
+- [MCP setup guide](artifact/references/mcp-setup.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Files, Reports, Figures, Shell commands, Configuration instructions]
+**Output Type(s):** [Text, Markdown, Files, Analysis reports, Citation lists, Charts and diagrams]
 
-**Output Format:** [Text and Markdown responses, manuscript and report files, figures, and shell commands or configuration guidance]
+**Output Format:** [Markdown, text, PDF, Word, and image or diagram files]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [The selected task determines the output; typeset documents and reports may be delivered as files.]
+**Other Properties Related to Output:** [Outputs depend on the requested literature, writing, typesetting, figure, or checking task.]
 
 ## Skill Version(s):
 
-1.3.2 (source: frontmatter, server-resolved release)
+1.3.6 (source: SKILL.md frontmatter)
 
 ## Ethical Considerations:
 

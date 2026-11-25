@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- Go 1.26.10 or newer, per the module's `go.mod`.
+- Go 1.26.11 or newer, per the module's `go.mod`.
 - Runtime dependency: `github.com/oapi-codegen/runtime`.
 - A Fireworks AI API key.
 

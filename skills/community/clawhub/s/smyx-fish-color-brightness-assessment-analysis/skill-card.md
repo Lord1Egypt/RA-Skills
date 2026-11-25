@@ -1,6 +1,6 @@
 ## Description:
 
-Assesses ornamental fish coloration from images or video and reports a vibrancy score against species-specific color ranges.
+Analyzes ornamental fish images or videos for color saturation and brightness, then produces species-aware vibrancy scores and reports.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Aquarium keepers, aquaculture operators, and developers can use the skill to assess fish coloration from a suitable image or video and review a structured report with color trends and husbandry suggestions.
+Aquarium hobbyists, aquaculture staff, and aquarium operators can assess ornamental fish color from side-view images or video and review species-based vibrancy reports over time. The results are husbandry indicators, not veterinary diagnoses.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Account identity and credential handling warrant review before use.
+Risk: The security assessment reports account, credential, and remote-service behavior beyond the stated fish-color analysis purpose, with privacy and execution-control concerns.
 
-Mitigation: Review how identity and credentials are handled, and use only the access needed for the analysis.
+Mitigation: Before installation, independently review account and credential handling, permitted remote destinations, media-upload disclosure, and export-only behavior, as advised by the security evidence.
 
-Risk: The local-media upload and data-handling behavior is not clearly disclosed.
+Risk: Image, video, or URL inputs may be processed by a remote service, creating privacy exposure for media the user is not authorized to share.
 
-Mitigation: Before submitting fish images or videos, verify where they are sent and how they are retained; obtain the aquarium owner's consent where applicable.
+Mitigation: Use only authorized media, disclose remote processing to affected people where appropriate, and avoid images that contain unrelated sensitive information.
 
-Risk: The reported behavior may be limited to exporting analysis results.
+Risk: The security scan was partial and could not resolve one local reference in SKILL.md, leaving connected behavior unverified.
 
-Mitigation: Treat scores and reports as informational, check results against the fish and capture conditions, and do not use them as a diagnosis or to trigger equipment changes automatically.
+Mitigation: Resolve and review that reference and the behavior it connects to before relying on the skill.
 
 ## Reference(s):
 
+- [ClawHub release](https://clawhub.ai/smyx-sunjinhui/skills/smyx-fish-color-brightness-assessment-analysis)
 - [API reference](references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
-- [ClawHub release page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-fish-color-brightness-assessment-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Text, Guidance]
+**Output Type(s):** [Text, JSON, Markdown]
 
-**Output Format:** [Structured JSON report or text summary, with report links when supplied]
+**Output Format:** [Structured JSON analysis reports and Markdown history tables]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Per-fish vibrancy score (0–100), color status, species baseline comparison, and optional 7-day and 30-day trends]
+**Other Properties Related to Output:** [May include HSV measurements, species-baseline comparisons, vibrancy scores and trends, alerts, and husbandry suggestions; not a disease diagnosis.]
 
 ## Skill Version(s):
 
-1.0.16 (source: server-resolved ClawHub release)
+1.0.18 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

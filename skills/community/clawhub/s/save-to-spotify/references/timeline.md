@@ -49,7 +49,7 @@ Each entry in `items` is one of four kinds: `chapter`, `image`, `link`, or `spot
 
 Rules are checked both client-side and on the backend:
 
-- **Chapters:** at least 2, first at `0 ms`, strictly increasing `start_time_ms`, `title` required, `description` optional. Every `start_time_ms` must be strictly less than the episode's audio duration — the CLI and backend can't verify this, so compute timestamps from cumulative segment durations and assert against the assembled MP3 before `timeline set` (see [audio-providers.md](audio-providers.md) "Timeline timestamp calculation").
+- **Chapters:** at least 2, first at `0 ms`, strictly increasing `start_time_ms` with consecutive starts ≥ 5 s apart (the final chapter may be shorter), `title` required, `description` optional. Every `start_time_ms` must be strictly less than the episode's audio duration — the CLI and backend can't verify this, so compute timestamps from cumulative segment durations and assert against the assembled MP3 before `timeline set` (see [audio-providers.md](audio-providers.md) "Timeline timestamp calculation").
 - **Images:** positive `duration_ms`, local file path in `image` (`.jpg`/`.png`, ≤ 1 MB, dimensions 1×1..4096×4096). Optional `url` (tap-through) and `title` (alt text). When an image is tied to one canonical source URL, default to setting that URL here.
 - **Links:** positive `duration_ms`, valid HTTP(S) `url`.
 - **Spotify entities:** `uri` is required and must be a full `spotify:...` URI. `duration_ms` is optional, but when present it must be positive. Use this for Spotify-native references such as tracks, albums, artists, playlists, shows, episodes, and audiobook/catalog entities.
@@ -125,7 +125,7 @@ Generate one or more images per chapter from a themed prompt. File naming must m
 
 ```python
 from openai import OpenAI
-import urllib.request, subprocess, string
+import urllib.request, subprocess, string, tempfile
 
 client = OpenAI()
 
@@ -146,7 +146,7 @@ for idx, (_, prompts) in enumerate(chapter_images):
     for slot_letter, prompt in zip(string.ascii_lowercase, prompts):
         resp = client.images.generate(model="dall-e-3", prompt=prompt,
                                       size="1024x1024", quality="standard", n=1)
-        tmp = f"/tmp/raw_{idx}_{slot_letter}.png"
+        tmp = os.path.join(tempfile.gettempdir(), f"raw_{idx}_{slot_letter}.png")
         urllib.request.urlretrieve(resp.data[0].url, tmp)
         out = f"img_{idx:02d}_{slot_letter}.jpg"
         # Downsize + re-encode to guarantee <= 1 MB, <= 4096x4096, .jpg

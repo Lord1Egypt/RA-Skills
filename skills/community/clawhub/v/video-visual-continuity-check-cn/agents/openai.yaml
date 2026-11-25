@@ -1,0 +1,8 @@
+interface:
+  display_name: "多镜头视觉连续性检查"
+  short_description: "检查既有镜头表的角色、道具、光线与空间连续性并给出最小修订建议"
+  default_prompt: "使用 $video-visual-continuity-check-cn。请根据我提供的镜头表和人物/场景参考，检查角色、道具、光线、空间连续性；缺料请先列出缺项。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

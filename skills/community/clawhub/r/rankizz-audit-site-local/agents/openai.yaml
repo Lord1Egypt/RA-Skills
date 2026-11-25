@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rankizz Local Site Audit"
+  short_description: "Audit a site with local agent resources"
+  default_prompt: "Use $rankizz-audit-site-local to audit this website using only the agent's local and web capabilities."

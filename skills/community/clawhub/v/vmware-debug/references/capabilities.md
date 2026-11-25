@@ -1,7 +1,9 @@
 # vmware-debug Capabilities
 
-Offline incident correlation. No network, no credentials, no writes to any VMware
-system. This table covers the two stateless correlation tools; the twelve case
+The CLI/MCP analysis tools perform offline incident correlation, without VMware
+endpoint credentials or VMware API calls. Optional Python host read bindings call
+explicitly supplied companion MCP sessions; see [host integration](scenario-host.md).
+No helper authorizes an infrastructure write. This table covers the two stateless correlation tools; the twelve case
 investigation-ledger tools (seven of which write, to the local ledger only) are
 listed in `SKILL.md`, and their response sizes are not yet measured here.
 

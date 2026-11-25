@@ -1,0 +1,23 @@
+name: douyin-live-hot-free
+display_name: 抖音实时热点免费版
+slug: douyin-live-hot-free
+version: 0.2.3
+category: 热点研究 / Trend Research
+author: xxjrq
+description: 通过 Easy WebBridge 复用已登录浏览器，免费搜索抖音精选当前内容，生成 JSON、Markdown 和可搜索 HTML 报告。
+trigger_words:
+  - 抖音实时热点
+  - 抖音热榜免费版
+  - 搜索抖音热点
+  - 抖音关键词搜索
+  - 抖音内容搜索
+tags:
+  - douyin
+  - trend-research
+  - easy-webbridge
+  - 热点
+  - 搜索
+  - 免费
+license: MIT-0
+repository: https://github.com/xxjrq/douyin-live-hot-free
+icon: assets/icon-512.png

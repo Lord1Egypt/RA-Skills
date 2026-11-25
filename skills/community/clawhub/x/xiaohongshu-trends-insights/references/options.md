@@ -1,8 +1,12 @@
 # 小红书趋势洞察 完整选项参数说明
 
+> **何时读**：需要确认枚举取值、拼完整命令参数时再读。日常选命令以 `SKILL.md` 为准；口语 → flag 见 [routing.md](routing.md)。
+
 命令在技能目录下执行。stdout 是一份 JSON 信封，字段见 `assets/*.schema.json`。这里只说明输入和该选哪个命令。
 
 没有关键词或链接时先问，不要空跑。短链 `xhslink.com` / `xhslink.cn` 的 `/m/*`、`/o/*` 不能从外形判断是笔记还是主页，先问用户。前缀后面没有 id，或 id 含有字母、数字、下划线、连字符以外的字符时，命令会直接判为无效链接。不带 `www` 的 `xiaohongshu.com` 会补成 `www`。协议和主机名不区分大小写。含空格的关键词要放在一对引号里，拆成多个位置参数会直接失败。
+
+`--url` 支持**整段粘贴小红书 App 分享文案**：会从任意位置抽取 `xiaohongshu.com` / `xhslink` 链接（保留 `xsec_token` 等 query），并剥掉「复制打开小红书」一类尾部中文。裸 24/29 位 id 仍可直接传。
 
 ## 1. 先选命令
 
@@ -101,7 +105,7 @@ node src/xiaohongshu/comment-cli.js --url "https://www.xiaohongshu.com/explore/x
 | 参数 | 说明 | 取值 / 默认 |
 | --- | --- | --- |
 | `--url` `-u` | 笔记链接或笔记 id，必填 | 见下方。含 `explore`、`discovery/item`、短链 |
-| `--expired_at` `-e` | 评论时间过滤 | 正整数天数，或 `YYYY-MM-DD HH:mm:ss`。不传则按北京时间近 6 年换算成一个时间点，创建和查询共用。`--expire` 与它相同 |
+| `--expired_at` `-e` | 评论时间过滤 | `1-2190` 天（约 6 年），或 `YYYY-MM-DD HH:mm:ss`（不早于 2000-01-01、不能未来）。勿传 Unix 时间戳。不传则按北京时间近 6 年换算成一个时间点，创建和查询共用。`--expire` 与它相同 |
 | `--limit` `-l` | 评论数量 | `1–10000`（**包月最多 20**），默认 `10` |
 | `--help` `-h` | 帮助 | 无 |
 

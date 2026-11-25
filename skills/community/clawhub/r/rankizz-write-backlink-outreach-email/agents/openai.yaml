@@ -1,0 +1,4 @@
+interface:
+  display_name: "Backlink Outreach Email"
+  short_description: "Write credible backlink outreach emails"
+  default_prompt: "Use $rankizz-write-backlink-outreach-email to write a concise, evidence-based backlink outreach email for this prospect."

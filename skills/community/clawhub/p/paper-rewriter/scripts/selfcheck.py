@@ -154,9 +154,17 @@ def main():
     mz = re.search(r"功能状态（v([\d.]+)）", zh)
     me = re.search(r"Feature status \(v([\d.]+)\)", en)
     cur = hxt_core.__version__
-    check("S4.双语版本行", bool(mz) and bool(me)
-          and mz.group(1) == cur and me.group(1) == cur,
-          "ZH=%s EN=%s 现役=%s" % (mz and mz.group(1), me and me.group(1), cur))
+    # 双形态自适应（v5.15.0，HXT 评测实锤修复）：
+    # ① SH 打包形态：SKILL.md = SKILL_ZH.md 内容副本（cp 复制，双语=平台机制）
+    #    → SKILL.md 无 EN Feature status 属预期，只验 ZH 行（两文件一致已隐含）；
+    # ② 真双语形态（仓库/HXT EN 主文档）：SKILL.md 含 EN 行 → 双行都验。
+    if en == zh:
+        check("S4.双语版本行[副本形态]", bool(mz) and mz.group(1) == cur,
+              "ZH=%s 现役=%s" % (mz and mz.group(1), cur))
+    else:
+        check("S4.双语版本行[真双语]", bool(mz) and bool(me)
+              and mz.group(1) == cur and me.group(1) == cur,
+              "ZH=%s EN=%s 现役=%s" % (mz and mz.group(1), me and me.group(1), cur))
 
     writes = re.findall(r'os\.path\.join\(bdir, "(\d{2})_', plsrc)
     n_items = len(set(writes))

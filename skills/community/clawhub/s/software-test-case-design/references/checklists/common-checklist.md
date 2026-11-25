@@ -1,245 +1,325 @@
-# General Testing Checklist
+# Common Testing Checklist
 
-This document consolidates checklists for functional testing, linkage testing, routing testing, and UI visual testing. See `checklists/api-checklist.md` for API testing checklist.
+This document combines the checklists for functional testing, linkage testing, routing testing, UI visual testing, interaction testing, and usability and accessibility. For the API testing checklist, see `references/checklists/api-checklist.md`.
 
-## Table of Contents
+## Contents
 
 | Line | Section |
-|------|---------|
-| 17 | 0. Test Case Executability Check |
-| 25 | I. Functional Testing Checklist |
-| 71 | II. Linkage Testing Checklist |
-| 116 | III. Routing Testing Checklist |
-| 167 | IV. UI Visual Testing Checklist |
+|------|------|
+| 19 | 0. Test Case Executability Check |
+| 27 | 1. Functional Testing Checklist |
+| 75 | 2. Linkage Testing Checklist |
+| 120 | 3. Routing Testing Checklist |
+| 171 | 4. UI Visual Testing Checklist |
+| 242 | 5. Interaction Testing Checklist |
+| 293 | 6. Usability and Accessibility Checklist |
 
 ---
 
 ## 0. Test Case Executability Check (common to all test types)
 
-- [ ] Do test steps provide concrete input values/parameters/operation targets (rather than descriptive language)?
-- [ ] Are there any unqualified descriptions such as "enter an excessively long string," "enter special characters," "enter test attack vector," or "fill in form required fields"?
-- [ ] For large data input scenarios (e.g., 10,000-character text, 500MB file), is descriptive language with explicit parameter specifications used?
+- [ ] Do the test steps give concrete input values / parameters / objects to operate on (instead of descriptive language)?
+- [ ] Are there unacceptable descriptions such as "enter an overly long string", "enter special characters", "enter a test attack vector", or "fill in the required form fields"?
+- [ ] Do large data input scenarios (e.g., 10,000-character text, 500 MB file) use descriptive language plus explicit parameters?
 
 ---
 
-## I. Functional Testing Checklist
+## 1. Functional Testing Checklist
 
-### Test Coverage
-- [ ] All function points are covered
+### Test coverage
+- [ ] All feature points are covered
 - [ ] Normal flows are covered
-- [ ] Exception flows are covered
+- [ ] Negative flows are covered
 - [ ] Boundary conditions are covered
 - [ ] Special scenarios are covered
+- [ ] Valid and invalid state transitions are covered (state transition testing)
+- [ ] Multi-condition combination rules are covered one by one (decision table testing)
 
-### Functional Correctness
-- [ ] Functions are implemented per requirements
+### Functional correctness
+- [ ] Features are implemented as required
 - [ ] Business logic is correct
 - [ ] Data processing is correct
 - [ ] State transitions are correct
-- [ ] Permission control is correct
+- [ ] Access control is correct
 
-### Input Validation
+### Input validation
 - [ ] Valid input is handled correctly
-- [ ] Invalid input provides friendly prompts
+- [ ] Invalid input gives friendly prompts
 - [ ] Boundary values are handled correctly
 - [ ] Special characters are handled correctly
-- [ ] Null values are handled correctly
+- [ ] Empty values are handled correctly
 
-### Output Validation
+### Output validation
 - [ ] Displayed content is correct
 - [ ] Data format is correct
 - [ ] Sorting is correct
 - [ ] Filtering is correct
 - [ ] Statistics are correct
 
-### Interaction Testing
+### Interaction
 - [ ] User operation flow is smooth
 - [ ] Page navigation is correct
-- [ ] Button functionality is correct
+- [ ] Buttons work correctly
 - [ ] Form submission is correct
 - [ ] List operations are correct
 
-### Data Consistency
-- [ ] Frontend-backend data is consistent
-- [ ] Multi-platform data is consistent
+### Data consistency
+- [ ] Front-end and back-end data are consistent
+- [ ] Data is consistent across devices
 - [ ] Cache and database are consistent
 - [ ] History records are correct
 - [ ] Real-time data is correct
 
 ---
 
-## II. Linkage Testing Checklist
+## 2. Linkage Testing Checklist
 
-### Form Linkage
-- [ ] Province/city/district cascading
+### Form linkage
+- [ ] Province–city–district cascading
 - [ ] Category selection linkage
-- [ ] Conditional show/hide
-- [ ] Data cascading
+- [ ] Conditional show / hide
+- [ ] Cascading data
 - [ ] Form validation linkage
 - [ ] Submit button state linkage
 
-### List Linkage
-- [ ] Master-detail list linkage
+### List linkage
+- [ ] Master–detail list linkage
 - [ ] Filter condition linkage
 - [ ] Sort linkage
 - [ ] Pagination linkage
 - [ ] Selection state linkage
 
-### Search Linkage
+### Search linkage
 - [ ] Search keyword suggestions
 - [ ] Search result linkage
 - [ ] Search history linkage
 - [ ] Trending search linkage
 
-### State Linkage
+### State linkage
 - [ ] Button state linkage
 - [ ] Menu state linkage
-- [ ] Tab state linkage
+- [ ] Tag state linkage
 - [ ] Icon state linkage
 - [ ] Color state linkage
 
-### Data Linkage
-- [ ] Real-time data synchronization
-- [ ] Multi-platform data synchronization
-- [ ] Cache and database synchronization
-- [ ] Local and remote synchronization
-- [ ] Bidirectional data binding
+### Data linkage
+- [ ] Real-time data sync
+- [ ] Multi-device data sync
+- [ ] Cache and database sync
+- [ ] Local and remote sync
+- [ ] Two-way data binding
 
-### Page Linkage
+### Page linkage
 - [ ] Page parameter passing
-- [ ] Page state synchronization
+- [ ] Page state sync
 - [ ] Multi-window linkage
 - [ ] iframe linkage
 
 ---
 
-## III. Routing Testing Checklist
+## 3. Routing Testing Checklist
 
-### Direct Access
-- [ ] Direct access to home page URL
-- [ ] Direct access to detail page URL
-- [ ] Direct access to list page URL
-- [ ] Direct access to profile page URL
+### Direct access
+- [ ] Direct access to the home page URL
+- [ ] Direct access to a detail page URL
+- [ ] Direct access to a list page URL
+- [ ] Direct access to the user center URL
 
-### Navigation Jumping
-- [ ] Navigation bar click jump
-- [ ] Breadcrumb navigation jump
-- [ ] Bottom navigation jump
-- [ ] Sidebar navigation jump
+### Navigation
+- [ ] Navigation bar clicks
+- [ ] Breadcrumb navigation
+- [ ] Bottom navigation
+- [ ] Sidebar navigation
 - [ ] Tab switching
-- [ ] Button click jump
+- [ ] Button navigation
 
-### Browser Navigation
+### Browser navigation
 - [ ] Browser back
 - [ ] Browser forward
 - [ ] Browser refresh
-- [ ] History records
+- [ ] History
 
-### Deep Links
-- [ ] External link opens specified app page
-- [ ] Push notification opens specified page
-- [ ] Share link opens specified page
+### Deep links
+- [ ] Opening a specific page from an external link (app / mini program / H5)
+- [ ] Opening a specific page from a push notification
+- [ ] Opening a specific page from a share link
 
-### Error Pages
+### Error pages
 - [ ] 404 page display
 - [ ] 403 page display
 - [ ] 500 page display
 
-### Route Parameters
+### Route parameters
 - [ ] URL parameter passing
 - [ ] URL parameter parsing
 - [ ] Missing parameter handling
-- [ ] Invalid parameter handling
+- [ ] Wrong parameter handling
 
-### Route Guards
-- [ ] Login verification
-- [ ] Permission verification
-- [ ] Redirect to login page when not authenticated
-- [ ] Redirect to 403 when unauthorized
+### Route guards
+- [ ] Login check
+- [ ] Permission check
+- [ ] Redirect to the login page when not logged in
+- [ ] Redirect to 403 without permission
 
-### Route Performance
-- [ ] Route switching is smooth
-- [ ] Page loading is fast
-- [ ] Route animations are smooth
+### Routing performance
+- [ ] Smooth route switching
+- [ ] Fast page loading
+- [ ] Smooth route animations
 
 ---
 
-## IV. UI Visual Testing Checklist
+## 4. UI Visual Testing Checklist
 
-### Layout Testing
-- [ ] Alignment is correct
-- [ ] Spacing is consistent
-- [ ] Hierarchy is clear
-- [ ] Responsive layout adapts correctly
+### Layout
+- [ ] Correct alignment
+- [ ] Consistent spacing
+- [ ] Clear hierarchy
+- [ ] Responsive layout adaptation
 - [ ] Elements do not overlap
 - [ ] Content does not overflow
-- [ ] Whitespace is reasonable
-- [ ] Visual balance is maintained
+- [ ] Appropriate whitespace
+- [ ] Visual balance
 
-### Color Testing
-- [ ] Brand colors are correct
-- [ ] Secondary colors are correct
-- [ ] Status colors are correct (success/failure/warning)
+### Color
+- [ ] Correct brand colors
+- [ ] Correct secondary colors
+- [ ] Correct status colors (success / failure / warning)
 - [ ] Contrast meets WCAG standards
 - [ ] Dark mode adaptation
 - [ ] Light mode adaptation
-- [ ] Color semantics are correct
+- [ ] Correct color semantics
 - [ ] Color-blind friendly
 
-### Font Testing
-- [ ] Font family is correct
-- [ ] Font size hierarchy is clear
-- [ ] Line height is appropriate
-- [ ] Font weight is correct
-- [ ] Font color contrast is sufficient
-- [ ] Text is not truncated
-- [ ] Multi-language font adaptation
+### Typography
+- [ ] Correct font family
+- [ ] Clear font size hierarchy
+- [ ] Appropriate line height
+- [ ] Correct font weight
+- [ ] Sufficient font color contrast
+- [ ] Text not truncated
+- [ ] Multilingual font adaptation
 - [ ] Special characters display correctly
 
-### Icon Testing
-- [ ] Icon style is consistent
-- [ ] Icon sizes are uniform
-- [ ] Icon semantics are clear
-- [ ] Icon states are correct (default/hover/click/disabled)
-- [ ] Icon clarity is sufficient
-- [ ] Icon loading is normal
+### Icons
+- [ ] Consistent icon style
+- [ ] Uniform icon size
+- [ ] Clear icon semantics
+- [ ] Correct icon states (default / hover / pressed / disabled)
+- [ ] Sufficient icon clarity
+- [ ] Icons load normally
 
-### Image Testing
-- [ ] Image quality is clear
-- [ ] Image aspect ratio is correct
-- [ ] Loading state shows placeholder
-- [ ] Error state shows error image
-- [ ] Image lazy loading works correctly
-- [ ] Image compression is appropriate
+### Images
+- [ ] Clear image quality
+- [ ] Correct image ratio
+- [ ] Placeholder shown while loading
+- [ ] Error image shown on failure
+- [ ] Image lazy loading works
+- [ ] Appropriate image compression
 
-### Animation Testing
-- [ ] Animation curves are natural
-- [ ] Animation duration is appropriate
-- [ ] Animation performance is smooth (≥60fps)
-- [ ] Animation semantics are clear
+### Animation
+- [ ] Natural easing curves
+- [ ] Appropriate duration
+- [ ] Smooth animation performance (≥ 60fps)
+- [ ] Clear animation semantics
 - [ ] Animations are interruptible
-- [ ] No animation flickering
+- [ ] No animation flicker
 
-### Interaction State Testing
-- [ ] Default state is correct
-- [ ] Hover state is correct
-- [ ] Click state is correct
-- [ ] Disabled state is correct
-- [ ] Focus state is correct
+### Interaction states
+- [ ] Correct default state
+- [ ] Correct hover state
+- [ ] Correct pressed state
+- [ ] Correct disabled state
+- [ ] Correct focus state
 
-### Multi-Theme Testing
-- [ ] Light theme works correctly
-- [ ] Dark theme works correctly
-- [ ] Theme switching is smooth
-- [ ] Theme preference is remembered
+### Multiple themes
+- [ ] Light theme works
+- [ ] Dark theme works
+- [ ] Smooth theme switching
+- [ ] Theme setting remembered
 
 ---
 
-## Inspection Completion Record
+## 5. Interaction Testing Checklist
 
-| Check Item | Result | Issue Notes | Fix Status |
-|-------|---------|---------|---------|
-| Functional Testing | ✅ Pass | - | - |
-| Linkage Testing | To check | - | - |
-| Routing Testing | To check | - | - |
-| UI Visual Testing | To check | - | - |
+### Page loading
+- [ ] First load and refresh work normally
+- [ ] Loading or error prompts on weak networks and offline
+- [ ] Prompt on loading timeout
+- [ ] Retry available after a load failure
+- [ ] Skeleton screen / loading placeholder displays correctly
+
+### Page navigation and switching
+- [ ] Navigation bar displays correctly
+- [ ] Back button returns to the correct page
+- [ ] Tab / modal / drawer / pop-up switching works
+- [ ] State retained or refreshed as needed after switching
+
+### Form interaction
+- [ ] Correct focus / blur states of input boxes
+- [ ] Validation triggered correctly on blur or submit
+- [ ] Correct position and wording of error messages
+- [ ] Autofill and input restrictions take effect
+
+### List interaction
+- [ ] Pull to refresh and load more work
+- [ ] Tap, swipe, and long press actions on list items are correct
+- [ ] List sorting and filtering are correct
+
+### Pop-up interaction
+- [ ] Overlay covers correctly
+- [ ] Closing via the close button, clicking the overlay, and the ESC key behaves as designed
+- [ ] Multiple pop-up layers are stacked correctly and close in the right order
+- [ ] Background cannot scroll while a pop-up is open
+
+### Component interaction
+- [ ] Buttons: normal / hover / pressed / disabled / loading states are correct
+- [ ] Buttons: rapid consecutive clicks do not cause duplicate submissions
+- [ ] Input boxes: special characters, overly long text, copy and paste, and clearing are correct
+- [ ] Drop-downs: expand / collapse, option search, multi-select, cascading, and keyboard operation are correct
+- [ ] Tables: sorting, filtering, pagination, row actions, batch operations, and export are correct
+- [ ] Carousels: automatic / manual switching, indicators, infinite loop, and pause on hover are correct
+- [ ] Tabs: tap / swipe switching, closing, and drag-to-reorder are correct
+
+### Interaction motion
+- [ ] Page transitions and component appear / disappear animations are natural
+- [ ] Click feedback, loading, and success / failure feedback animations are correct
+- [ ] Progress bar animation matches the actual progress
+- [ ] Gesture animations such as scroll inertia, zoom, drag, and pull-down bounce are smooth
+- [ ] Animations can be interrupted by quick operations without freezing
+- [ ] Animation frame rate ≥ 60fps, without stutter or flicker
+
+---
+
+## 6. Usability and Accessibility Checklist
+
+### Navigation and information architecture
+- [ ] Users can clearly tell where they are (title, highlight, breadcrumbs)
+- [ ] Every page has a path back to the upper level or the home page
+- [ ] Entries to core features are prominent and easy to find
+
+### Prompts and feedback
+- [ ] Clear feedback for both successful and failed operations
+- [ ] Error messages explain the cause and how to fix it, without showing raw error codes or stacks
+- [ ] High-risk operations such as delete, overwrite, and payment require a second confirmation
+- [ ] Time-consuming operations show progress or a waiting prompt
+
+### Form usability
+- [ ] Required fields are clearly marked
+- [ ] Input format hints are provided (e.g., placeholders, examples)
+- [ ] Entered data is not lost after a submission error
+- [ ] Default values are reasonable
+
+### Help and guidance
+- [ ] Empty-state pages have an explanation and next-step guidance
+- [ ] Onboarding can be skipped and viewed again
+- [ ] Complex features have a help entry or explanatory text
+
+### Accessibility
+- [ ] All features can be completed with the keyboard only, with a sensible focus order
+- [ ] Keyboard focus is clearly visible
+- [ ] Images and icons have alternative text (alt / accessibility labels)
+- [ ] Form controls have associated labels
+- [ ] Important information is not conveyed by color alone
+- [ ] Text-to-background contrast ≥ 4.5:1
+- [ ] Screen readers correctly read the page structure and control states
+- [ ] Content is not lost and features remain usable when the page is zoomed to 200%

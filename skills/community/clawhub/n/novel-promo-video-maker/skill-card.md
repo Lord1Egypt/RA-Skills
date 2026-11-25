@@ -1,6 +1,6 @@
 ## Description:
 
-Turn a novel chapter, web-novel excerpt, or story script into narrated vertical short video scenes with illustrated shots that keep every character looking the same from beat to beat. This AI story video maker pulls the hook and the beats out of your text, draws one shot for each, records the narration in a voice you choose, and sets each clip to its own narration, so a chapter arrives as an ordered set of scenes for story channels, book trailers, web-novel promotion, chapter recaps, and faceless storytelling accounts.
+Turn a novel chapter, web-novel excerpt, or story script into a narrated vertical video with illustrated, character-consistent scenes.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Story authors, publishers, and social video creators use this skill to turn a chapter, excerpt, synopsis, or script into an ordered set of narrated vertical scenes for book promotion, story channels, recaps, and serialized posts.
+Authors, publishers, and story-channel creators use this skill to adapt a novel chapter, web-novel excerpt, or script into an ordered set of illustrated, narrated vertical video scenes. It can also produce a beat sheet, character references, narration, and aligned subtitles for the scene set.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,44 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security evidence reports persistent installation and environment analytics, broad account permissions, and external transfer of scripts or files; scanner coverage is partial.
+Risk: The security scan marks the skill suspicious and reports routine transmission of installation and environment data; the scan is incomplete.
 
-Mitigation: Review the requested account access and data transfers before installing, limit use to an account and environment where those permissions are acceptable, and inspect the skill's behavior and updates over time.
+Mitigation: Review the scan verdict and data-handling details before installation, and avoid providing sensitive information unless you accept that transmission.
 
-Risk: The security guidance notes possible effects on other installed skills.
+Risk: The scan reports account permissions broader than the video workflow appears to require.
 
-Mitigation: Keep the skill isolated from sensitive workflows and check neighboring installed skills after installation or updates.
+Mitigation: Review the requested account access before authorization; use an account whose access and shared state are appropriate for this workflow.
+
+Risk: The scan reports consequential voice and account-management capabilities beyond the stated video purpose.
+
+Mitigation: Review these capabilities and their account effects before authorizing or using them.
+
+Risk: The scan reports uninstall behavior that may affect shared account state.
+
+Mitigation: Review the uninstall and disconnect guidance and consider shared account effects before removing the skill or disconnecting credentials.
 
 ## Reference(s):
 
+- [Novel Promo Video Maker on ClawHub](https://clawhub.ai/beatra-ai/skills/novel-promo-video-maker)
+- [Novel Promo Video Maker](https://beatra.ai/skills/novel-promo-video-maker)
 - [Novel promo workflow](artifact/references/workflow.md)
 - [Speech and audio](artifact/references/speech-and-audio.md)
-- [Billing, errors, and recovery](artifact/references/billing-errors-and-recovery.md)
 - [Updates and security](artifact/references/updates-and-security.md)
-- [Beatra skill page](https://beatra.ai/skills/novel-promo-video-maker)
-- [ClawHub release page](https://clawhub.ai/beatra-ai/skills/novel-promo-video-maker)
+- [Uninstall and disconnect](artifact/references/uninstall-and-disconnect.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Images, Audio, Video]
+**Output Type(s):** [Video scenes, Images, Audio narration, Text, Subtitles]
 
-**Output Format:** [An ordered set of narrated vertical video scenes with illustrated shots; narration may include aligned subtitles.]
+**Output Format:** [Ordered illustrated video clips with narration audio, plus beat-sheet text and optional aligned JSON, SRT, or VTT subtitles]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Scene count, narration, illustrations, and optional sound effects depend on the user's story and confirmed plan.]
+**Other Properties Related to Output:** [Defaults to a vertical 9:16 canvas and four to six beats; each scene pairs an illustrated shot with its narration.]
 
 ## Skill Version(s):
 
-0.2.9 (source: server-resolved release metadata)
+0.3.0 (source: server-resolved release metadata, manifest.json)
 
 ## Ethical Considerations:
 

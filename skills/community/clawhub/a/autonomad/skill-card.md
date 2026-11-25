@@ -1,6 +1,6 @@
 ## Description:
 
-Book your human's whole trip in one link. Search live flights, hotels, tours, events and restaurants worldwide in one call, then hand your human one autonomad.ai link to review the full price and terms and pay once for the flight, hotel and experiences together; the whole trip goes into Apple Wallet. Use when your human wants to plan or book a trip, find a hotel or compare flights. No API key needed to search. Register your agent to book trips for your human directly and earn a commission on every trip it books.
+Helps agents search travel options, create trip booking links, and optionally register and train to book directly.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Travelers and their agents use Autonomad to search and plan trips, compare flights and stays, and create a single link for reviewing and paying for a trip. Agents may register, train, and certify to book directly for travelers.
+Travel planning agents use this skill to search flights, hotels and experiences, then share a link for travelers to review and pay. Agents can also register and train to become eligible to book directly.
 
 ### Deployment Geography for Use:
 
@@ -22,41 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Direct bookings can involve autonomous spending.
+Risk: The security assessment rates the skill suspicious with medium confidence because registration sends identifiers and signed proof to an external service without a clear privacy warning; one referenced component was only partially inspected.
 
-Mitigation: Review the signed spending limit and cancellation terms first; use search and human-reviewed checkout if you do not want autonomous spending.
-
-Risk: Registration associates the owner's email, wallet address, and principal DID with Autonomad.
-
-Mitigation: Review this data sharing before registering; registration is not needed for search.
-
-Risk: Wallet keys and agent credentials could be exposed through conversation transcripts.
-
-Mitigation: Keep wallet keys local and send credentials through headers rather than chat or transcript-visible identity calls.
-
-Risk: Opting into the agent work pool makes the agent available for work.
-
-Mitigation: Run the duty loop and opt in only while available to respond.
+Mitigation: Review what registration shares and decide whether you are comfortable sending those identifiers and signed proof. Keep credentials out of chat and tool arguments, send them only in headers, and keep the wallet private key in a secret store.
 
 ## Reference(s):
 
-- [Autonomad website](https://www.autonomad.ai)
-- [Autonomad ClawHub release](https://clawhub.ai/autonomad1/skills/autonomad)
-- [Agent onboarding documentation](https://www.autonomad.ai/docs/AGENT_ONBOARDING.md)
+- [Autonomad homepage](https://www.autonomad.ai)
+- [Autonomad agent onboarding guide](https://www.autonomad.ai/docs/AGENT_ONBOARDING.md)
+- [A2A agent card](https://www.autonomad.ai/.well-known/agent.json)
+- [A2A bus reference](artifact/reference/a2a.md)
+- [Training and certification reference](artifact/reference/training-and-certification.md)
+- [Earnings reference](artifact/reference/earnings.md)
+- [Tiers reference](artifact/reference/tiers.md)
+- [Working for Autonomad reference](artifact/reference/working-for-autonomad.md)
+- [ClawHub skill page](https://clawhub.ai/autonomad1/skills/autonomad)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Links, Guidance]
+**Output Type(s):** [Text, Travel options, Booking links, API calls, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Travel options, recommendations, booking links, and trip or booking updates in natural-language responses]
+**Output Format:** [Markdown guidance with JSON tool arguments, shell commands, and service-provided booking links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Direct booking requires agent registration, training, and certification; search does not require registration.]
+**Other Properties Related to Output:** [Travel availability and bookability depend on the service response.]
 
 ## Skill Version(s):
 
-1.3.3 (source: server release metadata)
+1.3.6 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -23,6 +23,7 @@
   - clean 条目必须带可核验标识符（F55 静态锁同源）；
   - planted 条目必须写 planted_notes 形态说明（公开可查，F55 锁同源）。
 """
+
 import argparse
 import json
 import os
@@ -43,19 +44,19 @@ def _norm_doi(doi: str) -> str:
     d = str(doi or "").strip().lower()
     for p in ("https://doi.org/", "http://doi.org/", "doi.org/", "doi:"):
         if d.startswith(p):
-            d = d[len(p):]
+            d = d[len(p) :]
     return d.strip()
 
 
-def build_draft(cand_path: str, out_path: str, expect_planted: str,
-                timeout: float) -> int:
+def build_draft(cand_path: str, out_path: str, expect_planted: str, timeout: float) -> int:
     cands = json.load(open(cand_path, encoding="utf-8"))
     refs = cands["refs"] if isinstance(cands, dict) else cands
     if isinstance(cands, dict) and cands.get("expect_planted"):
         planted_ids = {int(i) for i in cands["expect_planted"]}
     else:
-        planted_ids = ({int(i) for i in expect_planted.split(",") if i.strip()}
-                       if expect_planted else set())
+        planted_ids = (
+            {int(i) for i in expect_planted.split(",") if i.strip()} if expect_planted else set()
+        )
     # 批内 DOI 唯一性前置检查（M5 教训：进集前先拦，不等 CLI 批内掩蔽）
     doi_seen, collisions = {}, []
     for i, r in enumerate(refs, 1):
@@ -82,23 +83,33 @@ def build_draft(cand_path: str, out_path: str, expect_planted: str,
             sug = "planted"
         elif v in ("invalid", "unreachable"):
             status = f"REVIEW({v}——真实条目不应判死/不可达；转 planted 候选需人工确认)"
-        entries.append({
-            "index": i, "ref": ref, "verdict": v, "note": note,
-            "suggest": sug, "status": status,
-        })
-        print(f"[{i}/{len(refs)}] {v:11s} → 建议 {sug:7s} "
-              f"{str(ref.get('title') or ref.get('url') or '')[:46]}")
+        entries.append(
+            {
+                "index": i,
+                "ref": ref,
+                "verdict": v,
+                "note": note,
+                "suggest": sug,
+                "status": status,
+            }
+        )
+        print(
+            f"[{i}/{len(refs)}] {v:11s} → 建议 {sug:7s} "
+            f"{str(ref.get('title') or ref.get('url') or '')[:46]}"
+        )
     draft = {
         "description": f"留出集草案（build_holdout.py 真网逐条核验 "
-                       f"{vr.VERSION}）——suggest 是建议，冻结前逐条人工拍板 reviewed 字段",
+        f"{vr.VERSION}）——suggest 是建议，冻结前逐条人工拍板 reviewed 字段",
         "engine_version": vr.VERSION,
         "entries": entries,
     }
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(draft, f, ensure_ascii=False, indent=2)
     n_clean = sum(1 for e in entries if e["suggest"] == "clean")
-    print(f"\n草案已写：{out_path}（{len(entries)} 条：clean 建议 {n_clean}，"
-          f"复核 {len(entries) - n_clean}）")
+    print(
+        f"\n草案已写：{out_path}（{len(entries)} 条：clean 建议 {n_clean}，"
+        f"复核 {len(entries) - n_clean}）"
+    )
     if problems:
         print(f"预埋未捕获：{problems}——形态或引擎问题，修完重跑")
         return 1
@@ -122,8 +133,10 @@ def freeze(draft_path: str, out_path: str, description: str) -> int:
             assert nt, f"#{e['index']} planted 缺形态说明（公开可查纪律）"
             notes[str(e["index"])] = nt
     if missing:
-        print(f"冻结拦截：{len(missing)} 条未拍板 reviewed 字段：{','.join(missing)}"
-              "（管线只出建议，冻结须逐条人工确认）")
+        print(
+            f"冻结拦截：{len(missing)} 条未拍板 reviewed 字段：{','.join(missing)}"
+            "（管线只出建议，冻结须逐条人工确认）"
+        )
         return 2
     doc = {"description": description, "refs": refs, "expected": expected}
     if notes:
@@ -135,7 +148,8 @@ def freeze(draft_path: str, out_path: str, description: str) -> int:
         return 2
     for i, r in enumerate(refs, 1):
         if expected[str(i)] == "clean" and not any(
-                str(r.get(k) or "").strip() for k in ("doi", "pmid", "arxiv", "url")):
+            str(r.get(k) or "").strip() for k in ("doi", "pmid", "arxiv", "url")
+        ):
             print(f"冻结拦截：clean #{i} 无可核验标识符")
             return 2
     with open(out_path, "w", encoding="utf-8") as f:
@@ -146,21 +160,28 @@ def freeze(draft_path: str, out_path: str, description: str) -> int:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description="留出集半自动构建管线（F58）")
-    ap.add_argument("--candidates", default="", help="候选集 JSON（refs 数组；可含 expect_planted）")
-    ap.add_argument("--expect-planted", default="",
-                    help="预埋条目序号（逗号分隔；候选文件内 expect_planted 优先）")
+    ap.add_argument(
+        "--candidates", default="", help="候选集 JSON（refs 数组；可含 expect_planted）"
+    )
+    ap.add_argument(
+        "--expect-planted",
+        default="",
+        help="预埋条目序号（逗号分隔；候选文件内 expect_planted 优先）",
+    )
     ap.add_argument("--draft", default="", help="草案输出/输入路径")
     ap.add_argument("--freeze", default="", help="冻结输出路径（入 examples/holdout_*.json）")
     ap.add_argument("--description", default="", help="冻结集 description 文案")
     ap.add_argument("--timeout", type=float, default=10.0)
     args = ap.parse_args()
     if args.candidates and args.draft:
-        return build_draft(args.candidates, args.draft, args.expect_planted,
-                           args.timeout)
+        return build_draft(args.candidates, args.draft, args.expect_planted, args.timeout)
     if args.draft and args.freeze:
         return freeze(args.draft, args.freeze, args.description)
-    print("用法：--candidates+--draft（草案）｜--draft+--freeze（冻结）；"
-          "两阶段分离，冻结须逐条 reviewed", file=sys.stderr)
+    print(
+        "用法：--candidates+--draft（草案）｜--draft+--freeze（冻结）；"
+        "两阶段分离，冻结须逐条 reviewed",
+        file=sys.stderr,
+    )
     return 2
 
 

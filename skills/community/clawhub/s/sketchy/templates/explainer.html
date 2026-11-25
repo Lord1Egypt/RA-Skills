@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en" class="sk" data-theme="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- slot:title -->
+<title>Why the Moon changes shape</title>
+<meta name="description" content="A hand-drawn lesson made with sketchy.">
+<link rel="stylesheet" href="../engine/sketchy.css">
+<!-- slot:theme (optional) -->
+<style>
+  /* Lesson layout. Tokens only: var(--sk-*). */
+  .lesson { position: relative; z-index: 1; max-width: 1120px; margin: 0 auto; padding: clamp(28px, 5vw, 64px) 16px 96px; display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(36px, 6vw, 72px); }
+  .lesson-head { text-align: center; display: grid; gap: 12px; justify-items: center; }
+  .lesson-head h1 { font-size: clamp(44px, 7vw, 86px); }
+  .goals { display: grid; gap: 6px; margin: 6px 0 0; padding: 0; list-style: none; text-align: left; }
+  .goals li::before { content: '✓ '; color: var(--sk-green); font-weight: 700; }
+  .howto { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(20px, 4vw, 56px); align-items: center; }
+  .howto svg[data-sketch] { width: 100%; max-width: 460px; justify-self: center; }
+  .steps { display: grid; gap: 16px; }
+  .steps h3 { font-size: clamp(24px, 2.4vw, 30px); }
+  .steps p { margin: 4px 0 0; }
+  .wrong { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+  .check summary { cursor: pointer; font-weight: 600; color: var(--sk-red-ink); list-style: none; }
+  .check summary::before { content: '› '; }
+  .check[open] summary::before { content: '⌄ '; }
+  .recap { display: grid; justify-items: center; }
+  .recap .sk-postcard { width: min(760px, 100%); }
+  .lesson-foot { text-align: center; }
+  @media (max-width: 760px) { .howto, .wrong { grid-template-columns: minmax(0, 1fr); } .lesson .sk-maths { text-align: left; } }
+</style>
+</head>
+<body class="sk">
+<svg class="sk-specks" data-specks="moon-lesson" data-specks-count="90" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+<!--
+  sketchy explainer template: one long page that teaches one idea.
+  Order that works: what you will be able to do, the picture with numbered steps,
+  the math in the margin, the misconception crossed out, a question to check,
+  a recap postcard. Replace all content.
+-->
+<main class="lesson">
+
+  <!-- slot:head -->
+  <header class="lesson-head">
+    <span class="sk-small">Lesson 4 · Space · 20 minutes</span>
+    <h1>Why the Moon changes shape</h1>
+    <p class="sk-line" style="max-width:40ch">It doesn’t. We see a different slice of its sunlit half as it goes round us.</p>
+    <div class="sk-sheet" data-sk="sheet" style="margin-top:10px">
+      <b>After this page you can:</b>
+      <ul class="goals">
+        <li>say why half the Moon is always lit</li>
+        <li>draw where the Moon is at full and at new Moon</li>
+        <li>explain why phases take 29.5 days, not 27.3</li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- slot:howto -->
+  <section class="howto sk-sheet" data-sk="sheet" data-reveal>
+    <svg data-sketch="moon-phases" data-draw viewBox="0 0 140 110" role="img" aria-label="The Moon in four phases around the Earth"></svg>
+    <div class="steps">
+      <div><h3>1. The Sun lights one half</h3><p>Always half. The Moon makes no light of its own; it is a rock in sunshine.</p></div>
+      <div><h3>2. The Moon goes round us</h3><p>Once every <span class="sk-figure">27.3</span> days, the same face turned towards us.</p></div>
+      <div><h3>3. We see part of the lit half</h3><p>Between us and the Sun: the lit half faces away, <span class="sk-note">new Moon</span>. Behind us: it faces us, <span class="sk-note">full Moon</span>.</p></div>
+    </div>
+  </section>
+
+  <!-- slot:math -->
+  <section class="sk-split" data-reveal>
+    <div class="sk-stack">
+      <h2>Why 29.5 days and not 27.3?</h2>
+      <p>While the Moon goes once round, Earth moves about a twelfth of its way round the Sun. The Moon needs two more days to catch up with the same sunlight angle.</p>
+      <span class="sk-callout" data-sk="frame"><b>Try it</b>Walk round a chair while a friend walks round the room. You need extra steps to face the window again.</span>
+    </div>
+    <aside class="sk-maths">
+      Σ show the math<br>
+      1 / P<sub>phases</sub> = 1 / P<sub>orbit</sub> − 1 / P<sub>year</sub> <span class="sk-sect">§1</span><br>
+      = 1 / <span class="val">27.32</span> − 1 / <span class="val">365.25</span><br>
+      P<sub>phases</sub> = <span class="val" data-count>29.53</span> days <span class="sk-sect">§2</span>
+    </aside>
+  </section>
+
+  <!-- slot:misconception -->
+  <section class="wrong" data-reveal>
+    <div class="sk-sheet" data-sk="sheet">
+      <span class="sk-stamp is-blue" style="font-size:16px">Common idea</span>
+      <p style="margin-top:12px"><span data-sk="strike">The dark part is Earth’s shadow.</span></p>
+      <p class="sk-fine">That only happens during a lunar eclipse, a few times a year, and only at full Moon.</p>
+    </div>
+    <div class="sk-sheet" data-sk="sheet">
+      <span class="sk-stamp is-green" data-slam style="font-size:16px">What happens</span>
+      <p style="margin-top:12px">The dark part is the Moon’s own <span data-sk="underline">night side</span>, turned partly towards us.</p>
+    </div>
+  </section>
+
+  <!-- slot:check -->
+  <section class="sk-sheet check" data-sk="sheet" data-reveal>
+    <h3>Check yourself</h3>
+    <p>At full Moon, where are the Sun, Earth and Moon?</p>
+    <details>
+      <summary>Show the answer</summary>
+      <p>Roughly in a line, with Earth in the middle. The Moon’s lit half faces us.</p>
+    </details>
+  </section>
+
+  <!-- slot:recap -->
+  <section class="recap" data-reveal>
+    <div class="sk-postcard">
+      <div class="sk-stack" style="--gap:10px">
+        <span class="sk-small">Recap</span>
+        <h2>Half lit, always.</h2>
+        <p>Phases are our view of that half. A full cycle takes <span class="sk-figure">29.5</span> days because Earth moves too.</p>
+      </div>
+      <div class="sk-stack" style="justify-items:end">
+        <svg data-sketch="postage-stamp" viewBox="0 0 140 110" style="width:120px" aria-hidden="true"></svg>
+        <span class="sk-stamp" data-slam>Learned</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="lesson-foot sk-fine">
+    <span class="sk-sect">§1</span> synodic period formula · <span class="sk-sect">§2</span> NASA lunar fact sheet, mean synodic month 29.53 days
+  </footer>
+</main>
+<script src="../engine/sketchy.js"></script>
+<script src="../engine/sketches.js"></script>
+<script src="../engine/sketchy-charts.js"></script>
+<script>Sketchy.mount();</script>
+</body>
+</html>

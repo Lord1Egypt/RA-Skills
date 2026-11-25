@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External merchants, creators, and live-commerce teams use this skill to prepare three coordinated livestream visuals and matching short copy from merchant-confirmed product and offer facts.
+External merchants, creators, and designers use this skill to plan and generate a coordinated set of Douyin livestream promotional, product, and room visuals from merchant-confirmed product and offer information.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The image-design workflow requires shared access to video, audio, and voice-management capabilities that are unrelated to its core purpose.
+Risk: The security assessment flags broad unrelated permissions and shared credentials.
 
-Mitigation: Review the requested authorization scope before installation and use; revoke the shared device connection in Beatra Console when it is no longer needed.
+Mitigation: Review the requested permissions and shared-credential behavior before connecting, and keep the local credential file private.
 
-Risk: Reference images are uploaded to Beatra for image work, and the skill reports recurring installation analytics.
+Risk: The security assessment flags recurring installation telemetry without clear user choice.
 
-Mitigation: Only upload images approved for external processing, and review the analytics and data handling implications before connecting the skill.
+Mitigation: Review the installation-registration and privacy details before deciding whether this reporting is acceptable.
 
-Risk: Image generation and edits consume Beatra credits, and final charges are based on measured usage.
+Risk: The security assessment reports an uninstall inventory risk.
 
-Mitigation: Review each paid request, including its model, canvas, count, and maximum charge, before confirming; check the reported final billing after completion.
+Mitigation: Review the uninstall decision and shared-installation inventory behavior before relying on cleanup.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/beatra-ai/skills/douyin-live-commerce-visual-kit)
-- [Live-commerce visual workflow](references/workflow.md)
-- [Billing, errors, and recovery](references/billing-errors-and-recovery.md)
-- [Installation and authentication](references/installation-and-auth.md)
-- [Updates and security](references/updates-and-security.md)
-- [Uninstall and disconnect](references/uninstall-and-disconnect.md)
+- [Beatra skill page](https://beatra.ai/skills/douyin-live-commerce-visual-kit)
+- [Live-commerce visual workflow](artifact/references/workflow.md)
+- [Installation and authentication](artifact/references/installation-and-auth.md)
+- [Updates and security](artifact/references/updates-and-security.md)
+- [Uninstall and disconnect](artifact/references/uninstall-and-disconnect.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Text]
+**Output Type(s):** [Images, Text, Guidance]
 
-**Output Format:** [Three coordinated static visual assets with matching live-title and short on-screen-copy options]
+**Output Format:** [Three static visual assets (a pre-live promo cover, product selling-point card, and live-room background or overlay), plus live-title and on-screen-copy options.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Three distinct deliverables; image generation and edits are paid and require user confirmation.]
+**Other Properties Related to Output:** [Canvas and image format depend on the confirmed destination and selected generation model.]
 
 ## Skill Version(s):
 
-0.2.1 (source: server-resolved release metadata)
+0.2.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

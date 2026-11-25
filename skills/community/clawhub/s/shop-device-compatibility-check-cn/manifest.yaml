@@ -1,0 +1,24 @@
+name: shop-device-compatibility-check-cn
+slug: shop-device-compatibility-check-cn
+display_name: 设备配件适配核对
+description: 输入商家确认的设备型号、配件规格、厂家适配或排除表和顾客具体条件，输出逐项对照结论及资料依据，区分确认适配、明确不适配和未知。适用于售前核对；型号不全、资料缺失或仅有接口外观时会请求补充，不凭相似外观推断兼容。
+version: 1.0.0
+repository: https://github.com/xxjrq/shop-device-compatibility-check-cn
+license: MIT-0
+icon: icon-512.png
+tags:
+  - 电商售前
+  - 配件适配
+  - 设备型号
+  - 风险核对
+trigger_words:
+  - 配件适配吗
+  - 设备兼容性核对
+  - 型号能不能用
+interface:
+  display_name: 设备配件适配核对
+  short_description: 根据厂家资料逐项核对设备与配件适配结论、依据及缺失资料
+  default_prompt: 请根据我提供的设备型号、配件规格和厂家适配/排除资料，逐项核对适配性；资料不足时请明确指出需要补充什么。
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+self_test: node scripts/self-test.mjs

@@ -1,0 +1,8 @@
+# Lightweight CAD, mesh preparation, previews and portable tests (Python 3.11).
+numpy==2.4.6
+scipy==1.17.1
+scikit-image==0.26.0
+trimesh==5.2.1
+matplotlib==3.11.2
+Pillow==13.0.0
+manifold3d==3.5.5

@@ -41,16 +41,18 @@ import os
 import re
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 
 CACHE_DIR = os.path.join(os.path.expanduser("~"), ".cache", "mirna-target-tools")
 MATURE_CACHE = os.path.join(CACHE_DIR, "mature.fa")
+MAX_DOWNLOAD_BYTES = int(os.environ.get("MIRNA_MAX_DOWNLOAD_MB", "4096")) * 1024 * 1024
+MAX_API_BYTES = 8 << 20
 
 MIRBASE_URLS = [
     "https://www.mirbase.org/download/mature.fa",
     "https://mirbase.org/download/mature.fa",
     "https://www.mirbase.org/ftp/CURRENT/mature.fa",
-    "ftp://mirbase.org/pub/mirbase/CURRENT/mature.fa",
 ]
 RNACENTRAL_API = "https://rnacentral.org/api/v1/rna/"
 
@@ -80,31 +82,65 @@ def species_prefix(name):
 def download_mature(force=False, verbose=True):
     """Download miRBase mature.fa into the cache. Returns path or None."""
     if os.path.exists(MATURE_CACHE) and not force:
+        if _looks_like_fasta(MATURE_CACHE):
+            if verbose:
+                print("Using cached miRBase file: %s (%.1f MB)"
+                      % (MATURE_CACHE, os.path.getsize(MATURE_CACHE) / 1e6))
+            return MATURE_CACHE
         if verbose:
-            print("Using cached miRBase file: %s (%.1f MB)"
-                  % (MATURE_CACHE, os.path.getsize(MATURE_CACHE) / 1e6))
-        return MATURE_CACHE
+            print("Ignoring invalid cached file: %s" % MATURE_CACHE)
     os.makedirs(CACHE_DIR, exist_ok=True)
     for url in MIRBASE_URLS:
+        if urllib.parse.urlparse(url).scheme.lower() != "https":
+            continue
+        tmp = MATURE_CACHE + ".part"
         try:
             if verbose:
                 print("Trying %s ..." % url)
             req = urllib.request.Request(url, headers={"User-Agent": "mirna-target-tools/3.0"})
-            with urllib.request.urlopen(req, timeout=120) as resp:
-                data = resp.read()
-            if len(data) < 100000:
-                raise RuntimeError("suspiciously small file (%d bytes)" % len(data))
-            tmp = MATURE_CACHE + ".part"
-            with open(tmp, "wb") as fh:
-                fh.write(data)
+            with urllib.request.urlopen(req, timeout=120) as resp, open(tmp, "wb") as fh:
+                length = resp.headers.get("Content-Length")
+                if length and length.isdigit() and int(length) > MAX_DOWNLOAD_BYTES:
+                    raise RuntimeError("remote file exceeds the download safety limit")
+                total = 0
+                while True:
+                    chunk = resp.read(1 << 20)
+                    if not chunk:
+                        break
+                    total += len(chunk)
+                    if total > MAX_DOWNLOAD_BYTES:
+                        raise RuntimeError("download exceeded the %d MB safety limit"
+                                           % (MAX_DOWNLOAD_BYTES // (1024 * 1024)))
+                    fh.write(chunk)
+                fh.flush()
+                os.fsync(fh.fileno())
+            if not _looks_like_fasta(tmp):
+                raise RuntimeError("downloaded file is not a plausible FASTA")
+            os.chmod(tmp, 0o644)
             os.replace(tmp, MATURE_CACHE)
             if verbose:
-                print("Saved %s (%.1f MB)" % (MATURE_CACHE, len(data) / 1e6))
+                print("Saved %s (%.1f MB)"
+                      % (MATURE_CACHE, os.path.getsize(MATURE_CACHE) / 1e6))
             return MATURE_CACHE
         except Exception as exc:
+            try:
+                os.unlink(tmp)
+            except OSError:
+                pass
             if verbose:
                 print("  failed: %s" % exc)
     return None
+
+
+def _looks_like_fasta(path):
+    """Cheap sanity check for a FASTA file (minimum size + leading '>')."""
+    try:
+        if os.path.getsize(path) < 100000:
+            return False
+        with open(path, "rb") as fh:
+            return fh.read(1) == b">"
+    except OSError:
+        return False
 
 
 def mature_path(local=None, allow_download=True, verbose=True):
@@ -114,9 +150,12 @@ def mature_path(local=None, allow_download=True, verbose=True):
             raise SystemExit("Error: --mature-fa %s not found" % local)
         return local
     if os.path.exists(MATURE_CACHE):
+        if _looks_like_fasta(MATURE_CACHE):
+            if verbose:
+                print("Using cached miRBase file: %s" % MATURE_CACHE)
+            return MATURE_CACHE
         if verbose:
-            print("Using cached miRBase file: %s" % MATURE_CACHE)
-        return MATURE_CACHE
+            print("Ignoring invalid cached file: %s" % MATURE_CACHE)
     if allow_download:
         return download_mature(verbose=verbose)
     return None
@@ -193,7 +232,11 @@ def fetch_from_rnacentral(names):
         try:
             req = urllib.request.Request(url, headers={"User-Agent": "mirna-target-tools/3.0"})
             with urllib.request.urlopen(req, timeout=45) as resp:
-                data = json.loads(resp.read().decode("utf-8"))
+                raw = resp.read(MAX_API_BYTES + 1)
+            if len(raw) > MAX_API_BYTES:
+                print("  RNAcentral response for %s is unexpectedly large" % want)
+                continue
+            data = json.loads(raw.decode("utf-8"))
         except Exception as exc:
             print("  RNAcentral lookup of %s failed: %s" % (want, exc))
             continue
@@ -207,9 +250,12 @@ def fetch_from_rnacentral(names):
 
 
 def write_fasta(path, entries):
+    parent = os.path.dirname(os.path.abspath(path))
+    os.makedirs(parent, exist_ok=True)
     with open(path, "w") as fh:
         for name, seq in entries:
-            fh.write(">%s\n%s\n" % (name, seq))
+            clean = str(name).replace("\n", " ").replace("\r", " ").strip() or "unnamed"
+            fh.write(">%s\n%s\n" % (clean, seq))
 
 
 def main():
@@ -279,5 +325,4 @@ def main():
 
 
 if __name__ == "__main__":
-    import urllib.parse
     sys.exit(main())

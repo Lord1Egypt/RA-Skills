@@ -1,6 +1,6 @@
 ## Description:
 
-Supports bank credit due diligence by analyzing borrower information, financial health, industry and ESG risks, and drafting investigation reports and credit recommendations.
+Provides a structured, Chinese-first framework for corporate borrower due diligence, financial and industry risk analysis, and draft investigation reports.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,40 +14,43 @@ MIT-0
 
 ## Use Case:
 
-Bank credit officers, loan analysts, risk managers, and relationship managers use it to structure borrower due diligence, assess financial and industry risks, and draft investigation reports with indicative credit recommendations. Qualified personnel make final credit decisions and review generated reports.
+Bank credit officers, loan analysts, and risk managers can use the framework to organize corporate borrower checks and prepare draft due diligence reports for review. Qualified staff must verify the underlying facts and make all formal credit decisions.
 
 ### Deployment Geography for Use:
 
-China (the banking context described in the skill)
+China
 
 ## Known Risks and Mitigations:
 
-Risk: Audit logs may store sensitive borrower and user details without a privacy warning.
+Risk: Sensitive borrower, personal, account, or credit information shared in a conversation could expose confidential data.
 
-Mitigation: Disclose the logging, obtain appropriate organizational authorization, minimize logged information, and use an approved access-controlled location with retention limits.
+Mitigation: Use aggregated, redacted summaries; omit original records and identifying details, and have authorized staff check sensitive information through approved internal systems.
 
-Risk: The security assessment is incomplete.
+Risk: Generated analysis or regulatory summaries may be inaccurate or out of date and could be mistaken for a formal lending judgment.
 
-Mitigation: Review the remaining components and logging behavior before deployment.
+Mitigation: Check evidence and current official sources, then require qualified staff to review and approve the draft before any use in a credit process.
+
+Risk: The security verdict is benign, but the scanner reports that inspection was partial, so the result is limited evidence for installation decisions.
+
+Mitigation: Review the skill source before installation and treat the scan result as incomplete evidence.
 
 ## Reference(s):
 
-- [Source repository](https://github.com/gechengling/bank-credit-investigation)
-- [ClawHub skill release](https://clawhub.ai/gechengling/skills/bank-credit-investigation)
+- [ClawHub release page](https://clawhub.ai/gechengling/skills/bank-credit-investigation)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [Conversational analysis and structured Markdown investigation reports]
+**Output Format:** [Structured Markdown with checklists, tables, and draft report sections]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include financial and risk summaries, rating frameworks, and credit recommendation templates.]
+**Other Properties Related to Output:** [Draft reference material requiring source verification and qualified human review; not a final credit decision.]
 
 ## Skill Version(s):
 
-5.0.5 (source: server-resolved release metadata; SKILL.md declares 5.0.0)
+5.0.6 (source: ClawHub release evidence)
 
 ## Ethical Considerations:
 

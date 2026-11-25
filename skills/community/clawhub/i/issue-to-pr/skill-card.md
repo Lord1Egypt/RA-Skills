@@ -1,6 +1,6 @@
 ## Description:
 
-issue-to-pr automatically fixes GitHub issues end-to-end by reading the issue, analyzing repository code, implementing a fix, and preparing a pull request for user-approved submission.
+Guides an agent through reproducing a GitHub issue, making and verifying a minimal fix, and preparing a pull request that follows repository conventions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Developers and engineers use this skill to turn GitHub issue references into investigated, locally implemented fixes and review-ready pull requests. It is intended for workflows where an agent can inspect code, run project checks, and wait for user approval before pushing or creating a PR.
+Developers use this skill to investigate and fix a GitHub issue in a local repository, verify the change against a baseline, and prepare a pull request with evidence.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill can act through the user's GitHub account to fork repositories, push branches, and create pull requests.
+Risk: The documented install command does not pin the installer or skill revision, so fetched content could change.
 
-Mitigation: Run it only with GitHub permissions you are comfortable using, and review the diff and PR body before approving push or PR creation.
+Mitigation: Review the resolved skill contents before installation and use a pinned revision when the installer supports it.
 
-Risk: Generated pull request text may include an unrelated promotional footer.
+Risk: Security analysis is incomplete because some referenced paths could not be resolved.
 
-Mitigation: Review the final PR body and remove the footer before allowing PR creation when it is not appropriate.
-
-Risk: Installing from an untrusted or moving source could place unwanted instructions in the local skills directory.
-
-Mitigation: Use a trusted or pinned installer path and review the installer before running it.
+Mitigation: Review the complete skill package, including its referenced files, before installing or running it.
 
 ## Reference(s):
 
+- [Project repository](https://github.com/4yDX3906/issue-to-pr)
 - [ClawHub skill page](https://clawhub.ai/4ydx3906/skills/issue-to-pr)
-- [GitHub CLI documentation](https://cli.github.com)
+- [PR evidence template](references/pr-evidence.md)
+- [Run state schema](references/state.schema.json)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+**Output Type(s):** [Code, Shell commands, Files, Markdown, Guidance]
 
-**Output Format:** [Markdown with inline shell commands, code diffs, commit messages, and pull request text]
+**Output Format:** [Repository changes, verification artifacts, and a Markdown pull request report]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May create or modify repository files locally and may prepare GitHub commits, pushes, forks, and pull requests after user approval.]
+**Other Properties Related to Output:** [May include a resumable run-state file, test evidence, and a pull request URL.]
 
 ## Skill Version(s):
 
-1.3.0 (source: frontmatter, clawhub.json, server release evidence)
+1.4.0 (source: frontmatter, CHANGELOG)
 
 ## Ethical Considerations:
 

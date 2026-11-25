@@ -24,7 +24,7 @@
   "acceptsDialogs": true,
   "supportsLobEconomy": true,
   "skillPackage": "lobstermatch",
-  "skillVersion": "1.0.39",
+  "skillVersion": "1.0.43",
   "supportedCapabilities": [
     "openclaw-self-avatar-clohub-v1",
     "lob-starter-grant-v1",

@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.30.16 (2026-11-24)
+
+- 宿主识别从 `YottaCode` / `.yottacode` / `YOTTACODE_HOME` 完整切换到
+  `YottaWeave` / `.yottaweave` / `YOTTAWEAVE_HOME`，不保留旧标识兼容。
+- Hub 映射、目录发现、注册、标记、链接与错误提示统一使用 YottaWeave。
+- `skills.json` 同步元忆 `0.24.5`，scan-policy 在候选阶段重新绑定。
+
+## v0.30.15 (2026-11-20)
+
+- **元忆联动**：`skills.json` 的 `yotta-memory` pin 更新到 **0.24.4**，同步 `references/skill-list.md`。
+- **元信联动**：`skills.json` 的 `yotta-verify` pin 更新到 **0.3.7**，修复 43 仓矩阵的家族正例夹具回归。
+- **扫描例外重绑**：按元忆 0.24.4 的干净 LF 候选 tarball 重建 `scan-policy.json`；例外规则保持不变，旧版本 treeHash 自动失效。
+- 兼容性：元阁命令、参数、安装流程与清单结构不变；本版仅发布期 pin、扫描例外与版本同步。
+
 ## v0.30.14 (2026-11-14)
 
 - **元忆联动**：`skills.json` 的 `yotta-memory` pin 更新到 **0.24.3**，同步 `references/skill-list.md`。

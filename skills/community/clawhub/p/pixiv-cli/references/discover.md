@@ -72,8 +72,8 @@ pixiv search https://your-image-url.example/image.png --provider all --ndjson
   select image mode only when they resolve to an existing regular file; other
   text remains a keyword.
 - Providers are `saucenao`, `ascii2d-color`, `ascii2d-bovw`, and `all`.
-  `reverse_search_provider` defaults to `saucenao`; `--provider` is a one-call
-  override. `reverse_search_pixiv_only` defaults to true and controls whether
+  `reverse_search.provider` defaults to `saucenao`; `--provider` is a one-call
+  override. `reverse_search.pixiv_only` defaults to true and controls whether
   non-Pixiv evidence stays in `results`.
 - Image mode accepts provider/output/proxy flags only. Do not add keyword
   filters, `--type`, `--limit`, `--page`, or `--trending-tags`.
@@ -84,10 +84,11 @@ pixiv search https://your-image-url.example/image.png --provider all --ndjson
   source once and returns only its kind/hash, so use an image and URL that the
   user is authorized to share. Provider retention/caching follows provider
   policy; ascii2d accepts JPEG/PNG/WEBP and has a provider-specific 10 MB limit.
-- Advanced reverse-search TOML is hand-maintained: `[reverse_search.network]`
-  can select a dedicated ascii2d proxy and User-Agent, while
-  `[reverse_search.flaresolverr]` enables challenge-only JSON recovery. The
-  solver's upstream proxy is separate from solver control traffic and never
+- Use TOML paths such as `reverse_search.network.proxy_url` and
+  `reverse_search.network.user_agent` with `pixiv config set` for a dedicated
+  ascii2d proxy and User-Agent. `reverse_search.flaresolverr.url` enables
+  challenge-only JSON recovery. The solver's upstream proxy is separate from
+  solver control traffic and never
   receives the native ascii2d multipart image upload.
 - JSON returns `input`, provider summaries, raw provider evidence, canonical
   `records`, provider errors, and `partial`. Piped/explicit NDJSON emits only
@@ -282,3 +283,17 @@ detail` accepts an artwork or novel ID/URL with a matching `--type`, but not
 tiers). `remove` variants are symmetrical. These need authentication; on an
 anonymous session report that a login is required instead of attempting
 fallback.
+
+## Search a local vector index
+
+With setup authorized, run `pixiv vector setup` for local CPU inference (default `siglip2-base-512`, optional `siglip2-base-256`). Both download fixed FP32 text/image models and a tokenizer; text queries allow 64 tokens including EOS. macOS arm64, Linux AMD64/ARM64 and Windows AMD64/ARM64 have native assets; Intel macOS uses cloud models. Run `pixiv vector setup --model gemini-embedding-2-preview` for cloud inference (optional `--base-url URL`) and provide the key privately through hidden input or stdin. The saved key is redacted by configuration output. Setup probes controlled text and PNG before saving.
+
+`pixiv vector sync --json` scans both bookmark scopes for the selected local account and calculates shared pending pages. After the initial scan, it checks the head; `--reconcile` traverses selected lists to detect removed or moved memberships, preserving shared artworks/vectors. Use `--restrict public|private|all`, `--content-type all|illust-and-ugoira|illust|manga|ugoira` and `--rating all|sfw|r18|r18g|mature` to limit this run. Metadata is recorded before type/rating filtering. Public/private workers share a minimum 0.2-second Pixiv interval and valid 429 cooldowns, with one SDK read retry; each combined batch of up to 100 list pages is followed by serial embedding. Completed pages/checkpoints survive interruption; rerun the same command to continue. A failed reconciliation keeps prior memberships.
+
+Select original bookmark positions with `vector sync --limit 100`, `--offset 500 --limit 10`, or `--tail 10`. Each selected visibility counts independently (`--restrict all --limit 100` selects up to 200 works). Select positions before type/rating filtering; existing vectors and returned unavailable works still occupy positions. Limit 0 means through the end; tail must be positive, excludes offset/limit, and traverses each list completely before embedding its final selection. Range flags exclude reconcile. Only selected matching works are embedded, with manga still using its first page. Repeat interrupted commands to resume their isolated checkpoints; completed commands start a fresh selection next time. Range completion is separate from a full initial scan. Inspect the optional `range` summary and unfinished `status --json` `ranges`; preserve other pending work for ordinary sync/search.
+
+`pixiv vector add ID_OR_URL...` refreshes and embeds specific artworks, deduplicates within the call and reuses valid vectors; omitted targets read standard artwork NDJSON. It stops at the first error, preserving earlier results; missing works create no placeholder. `pixiv vector search "a rainy city" --json` or `pixiv vector search ./reference.png --ndjson` searches the current model space. Input recognizes actual local images and HTTP(S) image URLs; plain names shared with non-image files remain text. Explicit image paths/URLs report invalid content or loading failures; `--image` remains supported. Tag/character/appearance descriptions are ordinary text queries ranked against image vectors. Results retain snapshots, best-page scores and standard pagination. A busy/limited/stopped catch-up can leave pending pages; inspect `index` and stderr warnings. An empty index with incomplete initial scans prompts `vector sync`. `--no-sync` searches saved vectors without catch-up or requiring login. All local accounts share the index, including private/R18 metadata.
+
+`pixiv vector status --json` shows models, pending pages and private disk usage. `vector clear --unused` removes other models' vectors, `--index` removes records/vectors while retaining configuration, and `--all` removes vector data and disables recording. Cleanup requires confirmation or `--yes`; authorize deletion before running it.
+
+Local vector setup accepts `--device cpu|gpu` (default CPU). GPU downloads WebGPU explicitly and must pass the CPU comparison probe; runtime GPU errors prompt CPU setup. Text stays on CPU; switching devices preserves vectors.

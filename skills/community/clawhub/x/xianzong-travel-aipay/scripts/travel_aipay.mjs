@@ -72,6 +72,11 @@ const OPTIONAL_STRINGS = {
   language: 'language',
 };
 
+// 服务端支持的回答语言（ISO 639-1 两位小写代码）；`cn` 是历史伪代码，服务端会归一为 zh，这里直接拦下。
+const SUPPORTED_LANGUAGES = ['zh', 'en', 'ja', 'ko', 'fr', 'de', 'es', 'it', 'pt', 'ru', 'ar', 'th', 'vi', 'id', 'ms'];
+const LANGUAGE_ALIASES = { cn: 'zh' };
+
+
 // ---------------------------------------------------------------------------
 // 参数解析
 // ---------------------------------------------------------------------------
@@ -109,7 +114,8 @@ const HELP = `仙踪问道·旅行咨询（支付宝 AI 按量付费 402）
   --query  <文本>   用户的旅行咨询问题（必填，目的地城市写在 query 里）
   --email  <邮箱>   接收 PDF 方案的邮箱（必填）
   --country-code / --intro-type / --topic-type
-  --is-group-suitable / --is-family-suitable / --is-leisure / --is-with-ref / --language
+  --is-group-suitable / --is-family-suitable / --is-leisure / --is-with-ref
+  --language <code>  ISO 639-1 两位小写代码（zh/en/ja/ko/fr/de/es/it/pt/ru/ar/th/vi/id/ms），默认 zh
   --options-json <JSON>   扩展参数对象
 
 通用选项：
@@ -165,6 +171,16 @@ function buildBody(flags) {
   }
   if (body.country_code && !/^[A-Za-z]{2}$/.test(body.country_code)) {
     errors.push('country_code 必须是 ISO 3166-1 alpha-2 两位代码（如 CN / IT）');
+  }
+
+  if (body.language) {
+    const code = String(body.language).trim().toLowerCase().replace(/_/g, '-').split('-')[0];
+    const normalized = LANGUAGE_ALIASES[code] || code;
+    if (!SUPPORTED_LANGUAGES.includes(normalized)) {
+      errors.push(`language 必须是 ISO 639-1 两位小写代码（${SUPPORTED_LANGUAGES.join(' / ')}），收到 ${body.language}`);
+    } else {
+      body.language = normalized;
+    }
   }
 
   if (flags['options-json'] !== undefined && flags['options-json'] !== true) {
@@ -273,7 +289,7 @@ function runAlipayBot(args, { quiet = false } = {}) {
     });
     child.on('error', (error) => {
       if (error.code === 'ENOENT') {
-        resolve({ exitCode: 127, stdout, stderr: `${stderr}未找到 alipay-bot（请安装官方 @alipay/agent-payment）` });
+        resolve({ exitCode: 127, stdout, stderr: `${stderr}未找到 alipay-bot（请安装官方 @alipay/agent-payment@1.0.31）` });
         return;
       }
       resolve({ exitCode: 1, stdout, stderr: `${stderr}${error.message}` });
@@ -424,6 +440,16 @@ async function cmdPay(flags) {
   ];
 
   const result = await runAlipayBot(args);
+  if (result.exitCode === 0) {
+    const payPayload = extractJsonObject(result.stdout);
+    const tradeNoMatch = String(result.stdout || '').match(/交易号[：:]\s*([0-9]+)/);
+    const tradeNo = String(payPayload?.tradeNo || payPayload?.trade_no || tradeNoMatch?.[1] || '').trim();
+    if (tradeNo) {
+      state.tradeNo = tradeNo;
+      state.paidAt = new Date().toISOString();
+      writePrivate(path.join(dir, 'state.json'), JSON.stringify(state, null, 2));
+    }
+  }
   return result.exitCode === 0 ? EXIT_OK : 1;
 }
 
@@ -591,13 +617,6 @@ async function cmdComplete(flags) {
 
   // 路径 A（推荐）：官方查询原订单，命令自身会在资源非空时自动发履约回执
   if (!flags.proof) {
-    const outShakeNo = String(flags['out-shake-no'] || '').trim();
-    const tradeNo = String(flags['trade-no'] || '').trim();
-    if (!outShakeNo && !tradeNo) {
-      process.stderr.write('缺少查询单号：请传入官方 CLI 输出的 --out-shake-no（或 --trade-no）。\n');
-      return EXIT_PARAM;
-    }
-
     let state = null;
     try {
       state = readState(dir);
@@ -606,6 +625,13 @@ async function cmdComplete(flags) {
     }
     if (!state) {
       process.stderr.write('找不到本单状态文件：请先用 probe 生成同订单请求。\n');
+      return EXIT_PARAM;
+    }
+
+    const outShakeNo = String(flags['out-shake-no'] || '').trim();
+    const tradeNo = String(flags['trade-no'] || state.tradeNo || '').trim();
+    if (!outShakeNo && !tradeNo) {
+      process.stderr.write('缺少查询单号：请传入官方 CLI 输出的 --trade-no（或 --out-shake-no）。\n');
       return EXIT_PARAM;
     }
 

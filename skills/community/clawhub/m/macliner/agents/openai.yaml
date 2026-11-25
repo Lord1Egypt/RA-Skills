@@ -1,0 +1,5 @@
+# Read by Codex and ChatGPT (skill interface) and by ClawHub (display name, summary, icon).
+interface:
+  display_name: "Macliner"
+  short_description: "Cleans, updates and checks a Mac."
+  icon_small: "./assets/icon-small.svg"

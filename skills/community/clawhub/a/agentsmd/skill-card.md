@@ -1,6 +1,6 @@
 ## Description:
 
-Distill session lessons into a lean AGENTS.md following the open agents.md spec, and organize related project guidance and files with user approval before writing.
+Helps coding agents and work assistants turn session lessons into concise AGENTS.md rules, merge them into existing guidance, and propose changes for user approval.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and teams use the skill after project sessions to turn reusable lessons into concise, merged AGENTS.md guidance and organize related project materials. It requires user approval before making file changes.
+Developers and teams use the skill to preserve recurring lessons as concise, maintainable AGENTS.md guidance for coding or document-focused workspaces. It proposes file changes for user approval before writing them.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security analysis was partial because some local path references could not be resolved.
+Risk: ClawScan rates the release suspicious with medium confidence, citing reported project-file writes and skill updates that may not align with the documented approval expectations.
 
-Mitigation: Review the unresolved referenced files before installing.
+Mitigation: Review the verdict before installing, and check whether automatic lifecycle logging and self-updates fit your needs.
+
+Risk: Installation commands are unpinned, and the lifecycle hook can leave persistent project records.
+
+Mitigation: Use a version-pinned installation when possible, and review the hook configuration and generated records before enabling it.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/kelegele/skills/agentsmd)
-- [agents.md specification summary](references/agents-md-spec.md)
-- [Open agents.md specification](https://agents.md/)
-- [Project homepage listed in skill metadata](https://github.com/kelegele/agentsmd-skill)
+- [Agents.md specification](https://agents.md/)
+- [Project homepage](https://github.com/kelegele/agentsmd-skill)
+- [ClawHub release](https://clawhub.ai/kelegele/skills/agentsmd)
+- [Agents.md reference in the skill](references/agents-md-spec.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Guidance, Files]
+**Output Type(s):** [Markdown, Guidance]
 
-**Output Format:** [Markdown instructions and proposed project-file changes]
+**Output Format:** [Markdown AGENTS.md rules and a proposed change plan]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [File changes require user approval.]
+**Other Properties Related to Output:** [Rules are concise and actionable; file changes are proposed for user approval.]
 
 ## Skill Version(s):
 
-1.5.2 (source: skill frontmatter and server-resolved release)
+1.6.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

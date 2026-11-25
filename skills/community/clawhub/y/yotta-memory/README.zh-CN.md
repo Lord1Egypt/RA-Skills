@@ -185,7 +185,7 @@
 
 - **记忆库即引擎**：`serve` 把记忆目录挂成 MCP 服务，目录随盘走；引擎主机只需装 CLI 当存放点，无需装任何 AI 智能体。
 - **双模式可并存**：本地 `serve --stdio` 零进程（客户端按需拉起）；局域网 streamable HTTP（默认 `0.0.0.0:8787`）+ 每智能体 token 鉴权。
-- **开机自启**：`lan enable` 注册开机自启——Windows 优先计划任务（v0.22.4 起 S4U 主体后台静默、不弹窗口；默认登录自启，`--onstart` 开机即启、无登录会话也可启动，计划任务注册需管理员），非管理员自动降级为**用户级 Startup 静默自启**（免管理员，启动脚本内联启动命令、被清理也会在开机时自动重建，v0.6.3 起不再弹 80070002）；**v0.22.5 起 Electron 宿主（如 YottaCode）自动注入 ELECTRON_RUN_AS_NODE，任务不再拉起 GUI**；Linux 优先 **systemd 用户单元**（`systemctl --user`，登录自启；`--onstart` 附加 `loginctl enable-linger` 开机即启），systemd 不可用时自动降级**用户 crontab @reboot**（v0.6.4）；`lan disable` 移除，`lan status` 查询。
+- **开机自启**：`lan enable` 注册开机自启——Windows 优先计划任务（v0.22.4 起 S4U 主体后台静默、不弹窗口；默认登录自启，`--onstart` 开机即启、无登录会话也可启动，计划任务注册需管理员），非管理员自动降级为**用户级 Startup 静默自启**（免管理员，启动脚本内联启动命令、被清理也会在开机时自动重建，v0.6.3 起不再弹 80070002）；**v0.22.5 起 Electron 宿主（如 YottaWeave）自动注入 ELECTRON_RUN_AS_NODE，任务不再拉起 GUI**；Linux 优先 **systemd 用户单元**（`systemctl --user`，登录自启；`--onstart` 附加 `loginctl enable-linger` 开机即启），systemd 不可用时自动降级**用户 crontab @reboot**（v0.6.4）；`lan disable` 移除，`lan status` 查询。
 - **安全边界**：管理动作（init / config / token / lan / serve）不进 MCP，token 不远程暴露；远程智能体只能读写记忆，且路径限记忆库内（export/import 的 out/src 必须落在库内）、distill 不支持 `--model`（仅本地 CLI），不能改配置、不能管 token。
 - 完整操作步骤见上文「局域网多机共享」章节与 [USER_GUIDE.md](USER_GUIDE.md)。
 

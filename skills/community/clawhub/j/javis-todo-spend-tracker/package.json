@@ -1,6 +1,6 @@
 {
   "name": "javis-todo-spend-tracker",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Keep the user's to-do list and spending ledger from what they say out loud. The javis-server dispatcher runs it once per completed recording or keyboard unit; captured to-dos, purchases and done statements are written PENDING and count only once the user confirms them. In chat it answers 'what's on my list' and 'what did I spend this month' from its counting script. Triggers: 'what's on my list', 'what did I spend this month', '待办', '这个月花了多少'.",
   "keywords": ["to-do", "spending", "what's on my list", "what did I spend this month", "待办", "这个月花了多少"],
   "license": "MIT",

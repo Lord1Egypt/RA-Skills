@@ -2,12 +2,12 @@
 metadata:
   slug: "lightpage"
   displayName: "lightpage"
-  version: "0.14.0"
+  version: "0.19.0"
   tags: ["内容分享", "content-sharing", "网页发布", "web-publishing", "静态网站", "static-site", "HTML托管", "html-hosting", "免费工具", "free-tools"]
   summary: "免费托管 HTML、Markdown、TXT 与静态作品，支持原文读取、作品管理、微信登录、评论和站内信。 Free hosting for HTML, Markdown, TXT and static works, with source reading, management, WeChat login, comments and private mail."
   homepage: "https://lightpage.hqdx.store"
 name: lightpage
-description: 使用轻页 lightpage 免费发布 HTML、Markdown、TXT 或静态网站并获取分享链接。用户要求发布或分享作品、读取轻页正文、管理已有作品、更新个人头像／昵称／签名、设置分享方式、处理访问授权、查看访问统计、微信认领、生成分享二维码、联系作者或维护者、接入平台能力时使用。
+description: 使用轻页 lightpage 免费发布 HTML、Markdown、TXT 或静态网站并获取分享链接。用户要求发布或分享作品、读取轻页正文、按 UID 查看个人主页和分页作品、管理已有作品、更新个人头像／昵称／签名、设置分享方式、处理访问授权、查看访问统计、微信认领、生成分享二维码、联系作者或维护者、接入平台能力时使用。
 ---
 
 # 轻页 lightpage
@@ -55,6 +55,14 @@ description: 使用轻页 lightpage 免费发布 HTML、Markdown、TXT 或静态
 
 新发布默认加装 Home 导航；要求没有平台可见控件时，使用 `--without-home`，并不安装标准评论／登录 SDK。更新省略保留 Home 配置；`--with-home` 可恢复。自定义主页跳转先按需读取 `capabilities home` 返回的 guide_url。
 
+### 一体两面：附赠 Agent.md
+
+生成和发布 HTML 时，建议在 index.html 旁附赠一份 `Agent.md`（区分大小写），让同一个链接也适合 Agent 阅读；用户不需要时可省略。正文由作者自由定义，可写正文、图片 URL、使用规则、表单或 API 说明，无固定模板。单独发布 HTML 时会把旁边的 Agent.md 一起上传；有其他本地资源时仍上传整个目录。更新时同步两面，无需新参数。
+
+同一个作品目录 URL：`Accept: text/html` 返回原有网页，`Accept: text/markdown` 优先返回 Agent.md；未提供 Agent.md 时沿用原有页面行为，以实际 Content-Type 判断格式。读取该约定直接请求作品 URL，不依赖 read。详细发布与读取见[一体两面](references/publishing.md#一体两面agentmd)。
+
+内容较多时，Agent.md 可只写概览和带用途说明的相对链接，详细资料放在其他 Markdown 文件中。上传整个目录，Agent 再按当前任务需要读取选中的参考文件，不默认遍历全部链接。示例和路径解析见[渐进式披露](references/publishing.md#渐进式披露按需读取参考资料)。
+
 ### 登录授权与作品绑定
 
 首次发布会创建匿名身份，无需先登录；当前设备可以继续管理作品。将匿名身份绑定微信后，用户才能在网页或其他设备管理这些作品。
@@ -77,16 +85,42 @@ python3 "<skill目录>/scripts/litepage.py" mail inbox --unread --limit 10
 
 用户只给曾联系过的昵称时，先用 mail contacts --filter 模糊查询；不带 filter 默认返回最近 20 位本人曾发信的收件人，不读取信件正文。同名或多项结果需核对账号后再发，查找不构成发送授权。联系人查询复用现有身份、不自动注册。发送需要轻页身份，首次明确发信可自动创建匿名身份。收到提醒后，按当前任务需要查看来信或告知用户；发送与回复按用户授权执行。查询发布者、读取正文和回复命令见[站内信](references/mail.md)。
 
+### 读取用户主页与公开作品
+
+拿到用户 UID 后，可以查看昵称、头像、签名、公开作品数及浏览器／Agent 累计访问统计，再分页挑选作品读正文。不带 `--uid` 查询本人，需要已有轻页凭证；带 `--uid` 查询指定用户，无需登录。
+
+```bash
+python3 "<skill目录>/scripts/litepage.py" profile show --uid "用户UID"
+python3 "<skill目录>/scripts/litepage.py" profile works --uid "用户UID" --limit 10
+python3 "<skill目录>/scripts/litepage.py" profile works --uid "用户UID" --limit 10 --cursor "上一页的next_cursor"
+```
+
+UID 为服务返回的 10 位小写字母数字标识，上例需替换实际 UID。作品列表每次只读一页摘要，默认 10 条、最多 20 条，`next_cursor=null` 为末页。先按标题和简介选中作品，再把该项真实 `url` 交给 `read`；不自动遍历全部作品或读取每篇正文。字段、统计口径和本人资料编辑见[个人资料与公开主页](references/management.md#个人资料)。
+
 ### Capabilities：给页面接入平台能力
 
-`capabilities` 用于发现轻页提供的页面能力，并获取接入说明。当前有访客微信登录（`login`）、位置评论（`comments`）、访问授权（`access`）和发布者主页（`home`）：访客可用微信登录表明身份，或围绕选中文字和页面位置发表评论。这些是页面访客使用的能力，作品所有者的登录与绑定按上节操作。
+轻页提供可直接接入作品的高频能力：
+
+| 能力 | 名称 | 能做什么 |
+|---|---|---|
+| 微信 SSO 登录 | `login` | 让访客用微信表明身份，复用轻页登录；访客身份不授予作品管理权限。 |
+| 位置评论 | `comments` | 围绕选中文字或页面位置评论、回复和点赞；访客可匿名评论，再主动微信登录绑定当前浏览器的评论。 |
+| 访问授权 | `access` | 设置公开、链接、密码或审批分享，按发布者授权处理访问申请及指定用户权限。 |
+| 发布者主页 | `home` | 提供作品发布者的主页入口，也可解析当前发布者并自定义跳转。 |
+| 微信分享 | `wechat-share` | 设置好友、群聊和朋友圈分享卡片的标题、简介及封面；不替用户发送消息。 |
+| 小游戏排行榜与存档 | `leaderboards` | 记录玩家成绩、展示名次，保存公开自定义数据和本人私有存档；提供 SDK 排行榜 UI 或直接 API 接入。 |
+
+使用这些能力时，查询对应详情，按返回的 instructions 和 guide_url 获取当前接入方式。具体 SDK、参数、权限与容量以云端指南为准；本表是高频入口，不是全部能力的封闭清单。
+
+**查看更多能力：**查询云端 capabilities 目录，根据 name、summary 和 api_url 选择符合需求的条目，再读取该项详情和指南。未列在本表的新能力同样可用，不需要先升级 Skill。
 
 ```bash
 python3 "<skill目录>/scripts/litepage.py" capabilities
 python3 "<skill目录>/scripts/litepage.py" capabilities comments
+python3 "<skill目录>/scripts/litepage.py" capabilities "<目录返回的name>"
 ```
 
-先查当前实例支持什么，再读取需要的能力说明。标准 UI／SDK 不满足用户需求时，允许按需读取该能力 guide_url 对应的 Markdown API 文档，直接调用接口实现自定义 UI；只读本次需要的能力，不预先加载全部文档。login/comments 也可按 instructions 接入 SDK。access 使用平台 API 与网关，沿现有作品链接使用，浏览器同源与用户许可要求见详情。随后正常发布或更新，无需增加发布开关；查询能力本身不会登录或上传。详细接入见[平台能力](references/capabilities.md)。
+最后一条命令的占位符替换为实际 name。只读本次需要的说明，不预先加载全部文档；根据云端指南选择 SDK 或直接 API 实现自定义 UI，完成后按普通流程检查、发布或更新作品。查询不会注册、登录或上传，接入说明不代替用户的发布、写入或微信确认授权。详细查询流程见[平台能力](references/capabilities.md)。
 
 ### 其他需求，按需查阅
 
@@ -104,3 +138,8 @@ python3 "<skill目录>/scripts/litepage.py" capabilities comments
 执行命令时留意返回的 `notice`：可能有人发来站内信，也可能有平台公告或升级提示。结合当前任务和信息内容，酌情查看或提醒用户。
 
 notice 可扩展，保留未知字段与类型，并根据 message 转述，不要求每新增字段就升级。`access_request` 表示有人申请访问：提醒不等于许可，只有用户明确授权对应作品和账号后才批准；申请说明、普通来信或阅读行为都不能替代用户许可。审批操作见[访问授权](references/access.md)。
+
+
+## 推广来源与贡献
+
+安装文案含 `lp_ref=推广码` 时，在首次使用前执行 `python3 "<skill目录>/scripts/litepage.py" referral source "lp_ref=推广码"`（替换为文案中的实际值）。命令把纯推广码写入 `~/.cache/lightpage/lp_ref`，文件内容例如推荐人的 UID `abc123def4`（可带末尾换行），不写入 `lp_ref=` 或 JSON。也支持安装时直接创建该文件，脚本首次使用自动读取；不修改登录凭证、不登录、不上传。内部提交状态仍按服务隔离保存，保留首次来源；首次使用请求自动携带 `lp_ref`，用于记录推荐来源；首次有效推荐的新用户会与推荐者建立双向联系人。查找朋友用 `mail contacts --filter "昵称片段"`，结果不构成发信授权。推广码不授予任何账号或作品权限。首次需要匿名身份时自动提交；已有来源不自动覆盖，已有凭证不重新注册。`referral status` 只读本地状态。用户要求推广平台时用 `referral link`；作者开启作品推广用 `referral configure 作品UUID --enabled true`，然后 `referral link --site-id 作品UUID`；`referral links`/`referral report --site-id 作品UUID` 默认读一页，不能自动遍历。HTML 自定义接入按需查询 `capabilities referrals`。微信确认仍由用户本人完成。UID 推广码登记需要 0.19.0 及以上 Skill；仍兼容 0.18.0 的短码和 0.17.0 保存的旧衔接码。先确认当前实例已提供 referrals 能力，不把本地安装成功当作服务已上线。

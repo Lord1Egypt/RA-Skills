@@ -1,7 +1,7 @@
 ---
 name: "smyx-poop-clean-trigger-analysis"
 description: "Triggers when a user provides a dog toilet / pet defecation-zone video URL or file for analysis; uses a fixed camera on the dog toilet or designated defecation area to monitor video in real time, detects whether the pet is defecating (presence of feces) and, once the pet leaves the area, automatically outputs a cleaning trigger signal that can drive a robot vacuum to that spot for cleanup. Enables fully automated pet-waste handling, reduces owner workload, and keeps the home hygienic. Application: indoor dog toilets, balcony defecation zones, pet kennels. Does NOT provide medical diagnosis — only outputs vision-based event detection results. | 当用户提供狗厕所或宠物固定排便区域视频URL或文件时，触发本技能进行排便事件检测分析；通过安装在狗厕所或宠物固定排便区域的摄像头实时分析视频，识别宠物是否在该区域排便（粪便出现），并在宠物离开该区域后自动输出清扫触发信号，联动扫地机器人前往清理；实现宠物排泄物的即时自动化处理，减轻主人清理负担，保持居家环境卫生。应用场景：宠物家庭室内狗厕所、阳台排便区、宠物笼舍。仅输出基于视觉的事件检测结果，不进行医疗诊断。"
-version: "1.0.23"
+version: "1.0.24"
 license: "MIT-0"
 ---
 

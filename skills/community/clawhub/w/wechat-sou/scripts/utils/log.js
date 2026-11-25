@@ -1,8 +1,35 @@
 const fs = require("fs");
 const path = require("path");
+const os = require("os");
 const utils = require("./utils");
 
-async function writeResultLog(filename, content) {
+function localDateStr() {
+  const d = new Date();
+  return (
+    d.getFullYear() +
+    "-" +
+    String(d.getMonth() + 1).padStart(2, "0") +
+    "-" +
+    String(d.getDate()).padStart(2, "0")
+  );
+}
+
+/**
+ * @param {boolean} [saveFromCli]
+ * @returns {boolean}
+ */
+function isLogEnabled(saveFromCli) {
+  if (saveFromCli === true) return true;
+  return process.env.GUAIKEI_ENABLE_LOG === "1";
+}
+
+/**
+ * @param {string} filename
+ * @param {string} content
+ * @param {boolean} [saveFromCli]
+ */
+async function writeResultLog(filename, content, saveFromCli) {
+  if (!isLogEnabled(saveFromCli)) return;
   if (!filename || typeof filename !== "string") {
     utils.printError("日志文件名必须是非空字符串");
     return;
@@ -15,24 +42,26 @@ async function writeResultLog(filename, content) {
     .replace(/[\\/:*?"<>|]/g, "_")
     .replace(/\.\.+/g, "_")
     .replace(/^\.+|\.+$/g, "");
-
+  const ext = path.extname(safeFilename);
+  const stem = ext ? safeFilename.slice(0, -ext.length) : safeFilename;
   if (safeFilename.length > 200) {
-    safeFilename = safeFilename.slice(0, 200);
+    safeFilename = stem.slice(0, Math.max(1, 200 - ext.length)) + ext;
   }
   if (!safeFilename) {
     safeFilename = `log_${Date.now()}`;
   }
-  const outputFilename = path.join(
-    path.dirname(__filename),
-    "..",
-    "..",
+
+  const outputDir = path.join(
+    os.tmpdir(),
+    "wechat-guaikei",
     "logs",
-    safeFilename,
+    localDateStr(),
   );
+  const outputFilename = path.join(outputDir, safeFilename);
 
   try {
-    await fs.promises.mkdir(path.dirname(outputFilename), { recursive: true });
-    await fs.promises.writeFile(outputFilename, content);
+    await fs.promises.mkdir(outputDir, { recursive: true, mode: 0o700 });
+    await fs.promises.writeFile(outputFilename, content, { mode: 0o600 });
     utils.printSuccess(`  → 已保存到 ${outputFilename}`);
   } catch (error) {
     utils.printError(`日志写入失败: ${error.message}`);
@@ -40,5 +69,6 @@ async function writeResultLog(filename, content) {
 }
 
 module.exports = {
+  isLogEnabled,
   writeResultLog,
 };

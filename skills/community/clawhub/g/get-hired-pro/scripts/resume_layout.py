@@ -123,6 +123,8 @@ def validate_blocks(blocks):
             raise ValueError('role content without a header')
     for ident in role_ids:
         indices = [i for i, b in enumerate(blocks) if b.get('role_id') == ident]
+        if blocks[indices[0]]['kind'] != 'role_header':
+            raise ValueError('role header must precede its content')
         if indices != list(range(min(indices), max(indices) + 1)):
             raise ValueError('role content must remain contiguous')
     return blocks

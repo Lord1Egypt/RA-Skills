@@ -1,0 +1,13 @@
+Lite Skill text license
+=======================
+
+`SKILL.md`, `references/`, `skill-card.md`, and this file are licensed under the
+MIT License — the same terms as the free Typora themes and build scripts.
+See the root `LICENSE` file for the full MIT text.
+
+The paid theme pack (V1 / V2 Pro / V3–V6) is separate and uses
+`LICENSE-PRO.txt` (Pro zip / local `edition/`). This Lite skill grant does not
+include rights to the paid pack.
+
+Historical note: copies published through ClawHub before 2026-11-11 under
+that platform's MIT-0 terms remain MIT-0.

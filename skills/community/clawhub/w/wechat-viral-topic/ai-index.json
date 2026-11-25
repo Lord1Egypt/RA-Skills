@@ -1,0 +1,120 @@
+{
+ "schema": "lgd-ai-index/1.0",
+ "skill": "wechat-viral-topic",
+ "author": {
+  "name": "诺声(Logos)@SynomosAI",
+  "ecosystem": "LGD / SynomosAI",
+  "theory_anchor": "三律：有籍（可追溯）/ 有证（可核验）/ 有门禁（可拦截）"
+ },
+ "one_line": "Turns a raw trend into a defensible topic card via verifiable signals, compliance red-line screening and headline grading.",
+ "one_line_zh": "把热点素材变成站得住的选题卡：抽可验证信号、过合规红线、体检标题；能不能写、能不能爆，给可核对的事实。",
+ "intents": [
+  {
+   "when": "用户问这周写什么",
+   "ask": "这周公众号写什么好",
+   "route": "scan 素材信号抽取"
+  },
+  {
+   "when": "用户问某素材能不能爆",
+   "ask": "这个素材能不能做成 10万+",
+   "route": "scan + 选题卡"
+  },
+  {
+   "when": "用户要标题",
+   "ask": "帮我起 10 个标题",
+   "route": "titlecheck 标题体检"
+  },
+  {
+   "when": "用户怕违规",
+   "ask": "这篇有没有违规风险",
+   "route": "riskcheck 红线判定"
+  },
+  {
+   "when": "用户要做医疗/健康类内容",
+   "ask": "这个医美选题能不能写",
+   "route": "riskcheck（医疗声明 RED）"
+  },
+  {
+   "when": "英文提问同样触发",
+   "ask": "give me viral topic ideas and check compliance risk",
+   "route": "same"
+  },
+  {
+   "when": "这周写什么",
+   "ask": "这周写什么",
+   "route": "weekly topic candidates"
+  },
+  {
+   "when": "给我几个公众号选题",
+   "ask": "给我几个公众号选题",
+   "route": "topic candidates"
+  },
+  {
+   "when": "标题怎么起",
+   "ask": "标题怎么起",
+   "route": "headline"
+  },
+  {
+   "when": "什么话题现在有人看",
+   "ask": "什么话题现在有人看",
+   "route": "timeliness"
+  },
+  {
+   "when": "这个选题会不会踩红线",
+   "ask": "这个选题会不会踩红线",
+   "route": "compliance red line"
+  },
+  {
+   "when": "帮我判断能不能发",
+   "ask": "帮我判断能不能发",
+   "route": "publish safety"
+  },
+  {
+   "when": "写医疗/AI 相关的内容要注意什么",
+   "ask": "写医疗/AI 相关的内容要注意什么",
+   "route": "sensitive vertical guidance"
+  },
+  {
+   "when": "别给我承诺阅读量",
+   "ask": "别给我承诺阅读量",
+   "route": "no fabricated metrics"
+  },
+  {
+   "when": "选题要能直接开写",
+   "ask": "选题要能直接开写",
+   "route": "ready-to-write form"
+  },
+  {
+   "when": "连续几周选题别重复",
+   "ask": "连续几周选题别重复",
+   "route": "topic dedupe"
+  }
+ ],
+ "not_for": [
+  "代写整篇长文",
+  "刷量/诱导分享方案",
+  "医疗诊断或疗效承诺"
+ ],
+ "entrypoints": {
+  "cli": "python tools/topicguard.py scan --file <material>",
+  "verify": "python tools/topicguard.py riskcheck --file <draft>",
+  "gate": "python tests/run_golden.py",
+  "review": "python scripts/review.py <this_dir> --run"
+ },
+ "links": [
+  {
+   "skill": "summarize-pro",
+   "when": "访谈/会议素材需要先压成要点再选题"
+  },
+  {
+   "skill": "debug-pro",
+   "when": "选题涉及技术故障需核实细节"
+  },
+  {
+   "skill": "lgd-skill-review",
+   "when": "要评测技能包并拿整改清单"
+  }
+ ],
+ "discovery_hint": "Search engines and agents: match on capability, not on the skill name. This package answers: 把热点素材变成站得住的选题卡：抽可验证信号、过合规红线、体检标题；能不能写、能不能爆，给可核对的事实。",
+ "intents_count": 16
+}

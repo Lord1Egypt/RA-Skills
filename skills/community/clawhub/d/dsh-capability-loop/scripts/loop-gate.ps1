@@ -1,10 +1,11 @@
 ﻿# loop-gate.ps1 — 聚合门禁：把任务级/环境级验收收成一条命令
 # 兼容 Windows PowerShell 5.1；含中文，必须保存为 UTF-8 带 BOM。
 # 用法：
-#   powershell -NoProfile -ExecutionPolicy Bypass -File .\loop-gate.ps1 -TaskDir <目录> [-Kind auto|design|requirement|test|all] [-Workspace <ws>] [-AllowMissingDesignContext] [-RequireGrill]
+#   powershell -NoProfile -ExecutionPolicy Bypass -File .\loop-gate.ps1 -TaskDir <目录> [-Kind auto|design|requirement|test|all] [-Workspace <ws>] [-AllowMissingDesignContext] [-RequireGrill] [-StateFile <state.json>]
 #   powershell -NoProfile -ExecutionPolicy Bypass -File .\loop-gate.ps1 -Environment [-Workspace <ws>]
 # 说明：design 类别默认要求 design-context*.md（现有系统设计上下文）；确实不需要时用 -AllowMissingDesignContext 显式跳过并写理由。
 #       grill 记录默认 WARN；加 -RequireGrill 变 FAIL（交付前硬门用）。
+#       状态写回：单一类别或 -Environment 时，若给了 -StateFile 或工程有 .dsh/loop/project.json，则调用 loop-state.ps1 记录 checks。<类别>。
 # 退出码：0 = 无 FAIL（允许 WARN/SKIP）；1 = 有 FAIL；2 = 参数错误
 [CmdletBinding()]
 param(
@@ -14,7 +15,8 @@ param(
     [switch]$Environment,
     [switch]$StrictMissing,
     [switch]$AllowMissingDesignContext,
-    [switch]$RequireGrill
+    [switch]$RequireGrill,
+    [string]$StateFile = ''
 )
 
 $ErrorActionPreference = 'Continue'
@@ -155,5 +157,51 @@ foreach ($r in $results) {
 }
 Write-Host ('RESULT: ' + $(if ($fail -gt 0) { 'FAIL' } else { 'PASS' }) + '（PASS=' + [string]$pass + ' WARN=' + [string]$warn + ' FAIL=' + [string]$fail + ' SKIP=' + [string]$skip + '）') -ForegroundColor $(if ($fail -gt 0) { 'Red' } else { 'Green' })
 
-if ($fail -gt 0) { exit 1 }
+if ($fail -gt 0) {
+    # ---------------- 状态写回（P0） ----------------
+    # 只有单一类别（design/requirement/test）或 -Environment 才写回，避免把 all 的整体结果误记到某一类。
+    try {
+        $stateTarget = $StateFile
+        if ($stateTarget -eq '') {
+            $marker = Join-Path (Join-Path (Join-Path $Workspace '.dsh') 'loop') 'project.json'
+            if (Test-Path -LiteralPath $marker) {
+                $stateTarget = Join-Path (Join-Path (Join-Path $Workspace '.dsh') 'loop') 'state.json'
+            }
+        }
+        if ($stateTarget -ne '') {
+            $board = ''
+            if ($Environment) { $board = 'environment' }
+            elseif ($kinds.Count -eq 1) { $board = [string]$kinds[0] }
+            if ($board -ne '') {
+                $stateScript = Join-Path $PSScriptRoot 'loop-state.ps1'
+                & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $stateScript -Action record-check -StateFile $stateTarget -Root $Workspace -Check $board -Status 'FAIL' -ExitCode 1 -Cmd ('loop-gate -Kind ' + $board) | Out-Host
+            }
+        }
+    } catch {
+        Write-Host ('[WARN] 状态写回失败：' + $_.Exception.Message) -ForegroundColor Yellow
+    }
+    exit 1
+}
+
+# ---------------- 状态写回（P0） ----------------
+try {
+    $stateTarget = $StateFile
+    if ($stateTarget -eq '') {
+        $marker = Join-Path (Join-Path (Join-Path $Workspace '.dsh') 'loop') 'project.json'
+        if (Test-Path -LiteralPath $marker) {
+            $stateTarget = Join-Path (Join-Path (Join-Path $Workspace '.dsh') 'loop') 'state.json'
+        }
+    }
+    if ($stateTarget -ne '') {
+        $board = ''
+        if ($Environment) { $board = 'environment' }
+        elseif ($kinds.Count -eq 1) { $board = [string]$kinds[0] }
+        if ($board -ne '') {
+            $stateScript = Join-Path $PSScriptRoot 'loop-state.ps1'
+            & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $stateScript -Action record-check -StateFile $stateTarget -Root $Workspace -Check $board -Status 'PASS' -ExitCode 0 -Cmd ('loop-gate -Kind ' + $board) | Out-Host
+        }
+    }
+} catch {
+    Write-Host ('[WARN] 状态写回失败：' + $_.Exception.Message) -ForegroundColor Yellow
+}
 exit 0

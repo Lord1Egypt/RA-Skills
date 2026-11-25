@@ -1,6 +1,6 @@
 ## Description:
 
-Makes agent reasoning visible, surfaces tradeoffs, and fades help so humans build judgment
+Makes agent reasoning visible, surfaces tradeoffs, and fades help so humans build judgment.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill when working with an agent on code they need to maintain, review, or understand. It helps them choose how much assistance to use, inspect design tradeoffs, and retain judgment as their skills grow.
+Developers use this skill when reviewing or learning from agent-written code, making consequential design choices, or building their own coding skills. It helps them inspect assumptions, compare tradeoffs, and choose an assistance level suited to the task.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Agent-generated code can still be incorrect even when its assumptions and tradeoffs are explained.
+Risk: Accepting agent-written code without understanding or checking it can weaken a developer’s ability to verify the result.
 
-Mitigation: Review and verify changes before relying on them, especially on high-stakes paths.
+Mitigation: Review assumptions, alternatives, and ramifications; use explain mode for unfamiliar or high-stakes work and review the resulting code.
 
 ## Reference(s):
 
 - [ClawHub release page](https://clawhub.ai/athola/skills/nm-imbue-assisted-mastery)
-- [Project homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
+- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
+- [Modes and Fading](artifact/modules/modes-and-fading.md)
+- [Tradeoff Ledger](artifact/modules/tradeoff-ledger.md)
+- [Research Basis](artifact/modules/research-basis.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Code, Markdown]
+**Output Type(s):** [Guidance, Markdown]
 
-**Output Format:** [Markdown explanations and tradeoff summaries, with code or diffs when requested]
+**Output Format:** [Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Assistance mode is selected per task and can fade toward manual work as the human gains skill.]
+**Other Properties Related to Output:** [Provides assumptions, alternatives, ramifications, tradeoff records, and assistance-mode guidance as appropriate.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

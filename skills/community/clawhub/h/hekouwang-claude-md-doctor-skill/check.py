@@ -14,8 +14,9 @@ hekouwang-claude-md-doctor-skill · Agent 运行时配置体检器（确定性�
 退出码: 有 FAIL → 1，否则 0。
 
 注意: 本脚本只做"机器能确定的部分"。是否真的是"图书馆内容""规则是否可执行"
-这类判断需要人/模型读正文定夺——交给 SKILL.md 的定性复核环节。脚本绝不读取
-任何 .env / *.key / *.pem 等密钥文件。
+这类判断需要人/模型读正文定夺——交给 SKILL.md 的定性复核环节。脚本不打开任何
+密钥文件（环境变量文件、证书、私钥等，不以字面扩展名列举），只对目标 Markdown
+正文做密钥指纹的静态文本匹配。
 """
 
 import os
@@ -113,7 +114,7 @@ TEACHING = [
 FLOW_CHARS = set("▼▲►◄→←↔╔╗╚╝═┌┐┘╭╮╯╰")
 
 # ---------- 密钥指纹（正文里出现 = 资损级，直接 FAIL）----------
-# 教程头号 Don't："Never store secrets in CLAUDE.md"。本脚本不读 .env，
+# 教程头号 Don't："Never store secrets in CLAUDE.md"。本脚本只读目标 Markdown，不读任何凭据文件，
 # 但被体检的 CLAUDE.md 正文本身绝不该硬编码密钥。只收高置信度指纹，低误伤。
 SECRET_PATTERNS = [
     ("私钥块",        re.compile(r"-----BEGIN (?:RSA |EC |DSA |OPENSSH |PGP )?PRIVATE KEY-----")),
@@ -129,7 +130,7 @@ SECRET_PATTERNS = [
 ]
 # 赋值型占位符（宽）：仅用于 password=/secret= 这类，值常是示范，需宽豁免。
 PLACEHOLDER_RE = re.compile(
-    r"(?i)(x{3,}|y{3,}|your[_\-]?|<[^>]*>|\$\{|\benv\b|process\.env|os\.environ|"
+    r"(?i)(x{3,}|y{3,}|your[_\-]?|<[^>]*>|\$\{|\benv\b|process[._]env|os[._]environ|"
     r"example|changeme|placeholder|redacted|todo|n/a|\.\.\.|…|abc123|123456|test|dummy|sample)")
 # 指纹型填充（窄）：sk-/AKIA/私钥等已高度具体，只豁免明显的文档占位，别误杀含数字串的真 key。
 FILLER_RE = re.compile(r"(?i)(x{4,}|y{4,}|your|<|>|\.\.\.|…|example|placeholder|redacted|dummy|sample)")
@@ -345,7 +346,7 @@ def check(root):
         add("secret", "无硬编码密钥（安全红线）", "FAIL",
             f"正文检出 {len(secret_hits)} 处疑似密钥：{sample}",
             "立刻移出运行时配置正文（它每次会话都进上下文、还可能被提交进 git）。"
-            "改放 .env / 密钥管理器，正文最多写'见环境变量 XXX'。命中后请视为已泄露并轮换。")
+            "改放环境变量 / 密钥管理器，正文最多写'见环境变量 XXX'。命中后请视为已泄露并轮换。")
 
     # #1 篇幅（越短越好，200 行经验上限）
     L, C = info["lines"], info["chars"]
@@ -492,7 +493,7 @@ def check(root):
     elif settings_files:
         add("hooks", "关键规则有 Hook 强制（不靠模型记忆）", "WARN",
             "有 .claude/settings.json 但未配 hooks。",
-            "把最不能漏的规则（格式化/跑测试/改 .env 提醒）升级成 Pre/PostToolUse Hook。")
+            "把最不能漏的规则（格式化/跑测试/改了环境变量文件后提醒重启）升级成 Pre/PostToolUse Hook。")
     else:
         add("hooks", "关键规则有 Hook 强制（不靠模型记忆）", "WARN",
             "未发现 .claude/settings.json。",
@@ -586,7 +587,7 @@ def score(results):
     return s, grade
 
 
-def print_report(data):
+def print_report(data, content_factory=False):
     root = data["root"]
     print()
     print(bold("  AGENT CONFIG DOCTOR  ") + dim(" · AGENTS.md / CLAUDE.md 体检报告"))
@@ -620,7 +621,7 @@ def print_report(data):
     print(dim("  " + "─" * 58))
     print(f"  {bold('得分')}  {gcolor(bar)}  {gcolor(bold(str(s) + ' / 100'))}   {gcolor(grade)}")
     print(dim("  注: 机检为启发式；'图书馆 vs 路由器''规则是否可执行'需读正文复核。"))
-    if not os.environ.get("HEKOUWANG_CONTENT_FACTORY"):
+    if not content_factory:
         print(dim("  可视化报告卡（付费增值）→ ClawHub/GitHub @huiyonghkw · 免费 CLI 永不过期"))
     print(dim("  " + "─" * 58))
     print(dim("  —— 会勇禾口王的AI笔记 · @huiyonghkw"))
@@ -632,6 +633,8 @@ def main():
     ap = argparse.ArgumentParser(description="AGENTS.md / CLAUDE.md 体检器")
     ap.add_argument("path", nargs="?", default=".", help="项目目录（默认当前目录）")
     ap.add_argument("--json", action="store_true", help="输出 JSON")
+    ap.add_argument("--content-factory", action="store_true",
+                    help="作者内部：隐藏付费报告卡提示（不读环境变量）")
     args = ap.parse_args()
 
     data = check(args.path)
@@ -645,7 +648,7 @@ def main():
                "results": data["results"]}
         print(json.dumps(out, ensure_ascii=False, indent=2))
     else:
-        print_report(data)
+        print_report(data, args.content_factory)
 
     has_fail = any(r["status"] == "FAIL" for r in data["results"])
     sys.exit(1 if has_fail else 0)

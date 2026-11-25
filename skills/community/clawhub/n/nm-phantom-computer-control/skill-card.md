@@ -1,6 +1,6 @@
 ## Description:
 
-Automates desktop GUI workflows through the computer use API with screenshots
+Automates desktop GUI workflows through the computer use API with screenshots.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers can use this skill to automate GUI workflows, test applications visually, and interact with desktop software when a CLI or API is not suitable.
+Developers and engineers can use the skill to automate GUI workflows that lack CLI or API alternatives, test web applications visually, and interact with desktop apps. It supports explicit screenshot-based interaction and visual verification.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,19 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Screenshots can expose private information visible in open applications.
+Risk: Installation may require elevated access to install display tools, and the available evidence notes that some referenced materials could not be reviewed.
 
-Mitigation: Close sensitive applications and keep credentials out of task prompts before starting.
-
-Risk: GUI actions can change application state or cause real-world side effects.
-
-Mitigation: Run in a sandbox and require human approval for actions with real-world consequences.
-
-Risk: Security scan coverage is partial because several local references did not resolve.
-
-Mitigation: Review the referenced material and dependencies before installation or use.
+Mitigation: Review the referenced materials and decide whether elevated installation is acceptable before installing; use a sandbox and human approval for consequential desktop actions.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-phantom-computer-control)
 - [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/phantom)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown guidance with Python and shell examples]
+**Output Format:** [Markdown guidance with Python examples, shell commands, and configuration snippets]
 
 **Output Parameters:** [1D]
 
@@ -51,7 +42,7 @@ Mitigation: Review the referenced material and dependencies before installation 
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

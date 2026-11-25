@@ -1,0 +1,27 @@
+{
+  "id": "aihuihua",
+  "name": "aihuihua-studio",
+  "brand": "鼓鼓AI",
+  "baseUrl": "https://aihuihua.ai",
+  "home": "https://aihuihua.ai/",
+  "buyPage": "https://aihuihua.ai/?buy=points",
+  "artPrefix": "/art/v2/api",
+  "authPage": "https://aihuihua.ai/agent-auth",
+  "pointName": "积分",
+  "ossBase": "https://oc.superx360.com",
+  "mjOssBase": "https://och.superx360.com",
+  "mjOssTypes": [
+    "mj",
+    "midjourney",
+    "sd",
+    "stable-diffusion",
+    "dalle",
+    "dalle2",
+    "dalle3"
+  ],
+  "skillBase": "https://oc.superx360.com/agent-skills",
+  "skillBaseFallback": "https://midjour.oss-cn-beijing.aliyuncs.com/agent-skills",
+  "packages": "v2",
+  "coupon": true,
+  "recordsPage": "https://aihuihua.ai/account/records"
+}

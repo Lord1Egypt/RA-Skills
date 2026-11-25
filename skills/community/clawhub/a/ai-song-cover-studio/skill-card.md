@@ -1,6 +1,6 @@
 ## Description:
 
-Turn a song recording into a newly interpreted cover or rearranged song from a reference performance and a fresh genre, arrangement, and vocal direction. This AI song cover studio and reference-audio cover generator reinterprets a classic song as rock, acoustic, folk, jazz, Chinese-style, ballad, or a new vocal character, and reviews recognizable reference influence, arrangement freshness, vocal delivery, lyrics, pronunciation, and structure. Use it for classic-song reinterpretation, genre swaps, creator demos, tribute performances, and personal practice recordings, with one cover generation per run and honest post-result review.
+Reimagines one reference song as a new cover with a chosen genre, arrangement, and vocal direction, then reviews the generated result.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Creators and music makers use this skill to turn one accessible song recording into a newly arranged cover, changing its genre, instrumentation, or vocal direction and reviewing the result.
+Music creators, singers, and listeners can use a reference recording to make a genre or arrangement reinterpretation, then review its vocals, lyrics, structure, and resemblance to the source.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates the release suspicious based on reported broad access, persistent installation tracking, and uninstall actions beyond the stated music task; the analysis was partial and the evidence is incomplete.
+Risk: ClawScan rates this release suspicious with high confidence because scanners report broad permissions, recurring installation telemetry, and capabilities beyond the stated song-cover purpose. The scan was partial, and the verdict is not a claim of malicious intent.
 
-Mitigation: Review the permission scope, installation telemetry, and uninstall behavior before installing; proceed only if comfortable with the shared account permissions and automatic installation telemetry described in the security guidance.
+Mitigation: Consider avoiding installation unless you need the skill and are comfortable with its reported broad permissions, recurring installation telemetry, and shared credential model.
 
 ## Reference(s):
 
-- [Beatra AI Song Cover Studio](https://beatra.ai/skills/ai-song-cover-studio)
-- [ClawHub release page](https://clawhub.ai/beatra-ai/skills/ai-song-cover-studio)
-- [Song cover workflow](artifact/references/workflow.md)
-- [Updates and security](artifact/references/updates-and-security.md)
-- [Installation registration](artifact/references/installation-registration.md)
+- [ClawHub listing](https://clawhub.ai/beatra-ai/skills/ai-song-cover-studio)
+- [Beatra skill page](https://beatra.ai/skills/ai-song-cover-studio)
 
 ## Skill Output:
 
-**Output Type(s):** [Audio, Guidance]
+**Output Type(s):** [Audio, Text, Guidance]
 
-**Output Format:** [Generated audio artifact or link with a concise text review]
+**Output Format:** [Generated audio artifact or link with a text summary and review]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [One cover per run; optional audio edits are separate paid steps.]
+**Other Properties Related to Output:** [One cover generation per run; reports only returned task and billing details.]
 
 ## Skill Version(s):
 
-0.2.5 (source: server-resolved release evidence)
+0.2.6 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

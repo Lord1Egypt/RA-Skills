@@ -1,7 +1,7 @@
 ---
 name: award-polish
-description: 'Use for a website, web app, landing page, prototype, or other browser UI when the request says "build a website / landing page / web app / prototype / app interface to award level", "polish", "redesign", "stand out through visuals / interaction / motion", "everyone has the same features, how do we do better", "keep improving until nothing is left", or "use Awwwards as the bar", or when a timed take-home, portfolio, or hackathon web project needs finishing. Includes an optional helper to split polish changes into reviewable commits. Not for prose, documents, or non-web work.'
-version: 1.0.4
+description: "Polish a website, landing page, web app, portfolio, or other browser UI toward award-winning, Awwwards-level quality. Use when the user sets Awwwards websites or award-winning web design as the bar, asks to polish or redesign a landing page, or needs to finish a timed take-home, portfolio website, or hackathon web project. Two independent reviewers score each batch and compare it against the best version so far. An optional helper can split polish changes into reviewable commits. Not for prose, documents, or non-web work, and not for writing award-submission essays."
+version: 1.0.6
 license: MIT
 homepage: https://github.com/Ekko237/award-polish
 allowed-tools: Read Write Edit Grep Glob Bash Agent WebFetch
@@ -18,7 +18,7 @@ Given the same brief, everyone ships about the same features; the gap comes from
 
 Use this skill for a website, web app, landing page, prototype, or other browser UI when the request says "build a website / landing page / web app / prototype / app interface to award level", "polish", "redesign", "stand out through visuals / interaction / motion", "everyone has the same features, how do we do better", "keep improving until nothing is left", or "use Awwwards as the bar". Also use it when a timed take-home, portfolio, or hackathon web project needs finishing. Do not use it for prose, documents, or non-web work.
 
-It covers a new site and a redesign of anything that runs in a browser: websites, web apps, prototypes, and tablet or phone app interfaces. The sections below are the workflow: study award sites of the same kind, polish on localhost in batches of goal, process, check and iterate, score each batch on 10 items with two reviewers who did not build it, on one shared ruler, with a blind side-by-side against the best version so far. Before/after images go to the user on the schedule in User checkpoints. Ship only when it is good. Deploy first only when a reachable link is required up front and the user has explicitly confirmed that deploy. Finish, stuck, and deadline stops are in When to stop.
+It covers a new site and a redesign of anything that runs in a browser: websites, web apps, prototypes, and tablet or phone app interfaces. The sections below are the workflow: study award sites of the same kind, polish on localhost in batches of goal, process, check and iterate, score each batch on 10 items with two reviewers who did not build it, on one shared ruler, with a blind side-by-side against the best version so far. Before/after images go to the user on the schedule in User checkpoints. Ship only when it is good. Deploy first only when a reachable link is required up front and the user has explicitly confirmed that deploy, including the hosting destination and whether it should be public. Finish, stuck, and deadline stops are in When to stop.
 
 ## Pick a mode (decide from the project)
 
@@ -100,7 +100,7 @@ At kickoff copy `templates/POLISH_BRIEF.md` into an uncommitted brief and fill t
 
 **Score stuck**: three reviews in a row in the same band means a direction review (`reviewer.md`, "Direction review"), with directions that avoid the rejected looks. Before merging a direction-level redesign, show the user three columns side by side (before, baseline, new direction; home and key pages; 1440 and 375) and merge and ship only what the user picks (on a content site, a new direction scored 80 by reviewers looked ugly to the people who saw it, and the 74-point batch 4 went back live). If the user does not look at images, skip direction-level redesigns: let a small review pick the cheapest-looking screen, redo it within the baseline look, and compare side by side. Merging is not finishing; the loop continues.
 
-**Shipping**: by default everything stays local until it is good. Pushing a branch that publishes the site is a deploy, and it needs an explicit yes from the user before the push. Deploy-first, staged updates, deploy sources, assembling the best version and post-release checks are in `references/release.md`.
+**Shipping**: by default everything stays on a local or access-controlled preview until it is good. Pushing a branch that publishes the site is a deploy, and before any deploy you must ask the user to confirm the hosting destination, whether the deployment should be public or access-restricted, and that no secrets or unapproved assets are included. Deploy-first, staged updates, deploy sources, assembling the best version and post-release checks are in `references/release.md`.
 
 ### 3. How to check
 

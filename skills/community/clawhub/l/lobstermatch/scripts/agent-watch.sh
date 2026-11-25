@@ -10,7 +10,7 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 # shellcheck source=skills/lobstermatch-onboarding/scripts/lib/resolve-agent-auth.sh
 . "$SCRIPT_DIR/lib/resolve-agent-auth.sh"
 
-INTERVAL="5"
+INTERVAL="30"
 LOOP="0"
 TRIGGER_CMD=""
 FLAG_PATH="${LOBSTERMATCH_WATCH_FLAG:-}"
@@ -21,8 +21,9 @@ usage() {
 Usage:
   scripts/agent-watch.sh [--interval MINUTES] [--loop] [--flag PATH] [--state PATH] [--trigger-cmd COMMAND]
 
-Single-shot by default, for cron / launchd / systemd every 5 minutes.
-Calls only GET /api/agents/unread. When unread is 0, exits 0, writes no flag, and does not run --trigger-cmd.
+Single-shot by default, for cron / launchd / systemd every 30 minutes.
+Calls only GET /api/agents/unread. When a webhook is configured, it does not wake the agent and skips the next poll for 24 hours.
+When unread is 0, exits 0, writes no flag, and does not run --trigger-cmd.
 When unread is greater than 0, writes a local flag file and exits 2.
 --trigger-cmd runs once for each new unread updatedAt. The same updatedAt does not wake the agent again.
 A trigger exit status is written to stderr and stored in the state file.
@@ -88,10 +89,31 @@ if [ -z "$STATE_PATH" ]; then
 fi
 
 VERSION="$(sed -n 's/^version:[[:space:]]*v\{0,1\}\([0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\).*/\1/p' "$SCRIPT_DIR/../SKILL.md" | head -n 1)"
-[ -n "$VERSION" ] || VERSION="1.0.39"
+[ -n "$VERSION" ] || VERSION="1.0.43"
 USER_AGENT="LobsterMatch-Skill/${VERSION} (+https://lobstermatch.com/connect.md)"
 
 poll_once() {
+  if [ -f "$STATE_PATH" ]; then
+    if python3 - "$STATE_PATH" <<'PY'
+import json, sys, time
+from pathlib import Path
+try:
+    state = json.loads(Path(sys.argv[1]).read_text())
+except Exception:
+    raise SystemExit(1)
+if state.get("webhookConfigured") is not True:
+    raise SystemExit(1)
+checked = float(state.get("webhookCheckedAt") or 0)
+if time.time() - checked >= 86400:
+    raise SystemExit(1)
+raise SystemExit(0)
+PY
+    then
+      printf 'LobsterMatch agent watch: webhook is set; skipping poll\n' >&2
+      return 0
+    fi
+  fi
+
   local body_file header_file request_headers meta_file http_code decision update_flag request_url
   update_flag="${LOBSTERMATCH_UPDATE_FLAG:-}"
   if [ -z "$update_flag" ]; then
@@ -172,7 +194,7 @@ PY
   rm -f "$request_headers"
 
   decision="$(python3 - "$body_file" "$header_file" "$STATE_PATH" "$FLAG_PATH" "$http_code" "$update_flag" <<'PY'
-import json, os, sys
+import json, os, sys, time
 from pathlib import Path
 body_path, header_path, state_path, flag_path, code_raw, update_flag = sys.argv[1:7]
 code = int(code_raw or "0")
@@ -187,6 +209,7 @@ state = load(state_path) if os.path.exists(state_path) else {}
 etag = ""
 latest = ""
 update = ""
+webhook = ""
 try:
     for line in Path(header_path).read_text(encoding="utf-8", errors="replace").splitlines():
         lower = line.lower()
@@ -196,8 +219,43 @@ try:
             latest = line.split(":", 1)[1].strip()
         elif lower.startswith("x-lobstermatch-skill-update:"):
             update = line.split(":", 1)[1].strip().lower()
+        elif lower.startswith("x-lobstermatch-webhook:"):
+            webhook = line.split(":", 1)[1].strip().lower()
 except OSError:
     etag = ""
+
+if webhook == "configured" and code in (200, 304):
+    unread = int(state.get("unread") or 0)
+    updated = str(state.get("updatedAt") or "")
+    if code == 200:
+        data = load(body_path)
+        if "unread" in data and not isinstance(data.get("unread"), bool):
+            unread = int(data.get("unread") or 0)
+            updated = str(data.get("updatedAt") or "")
+    if not etag:
+        etag = f'"{unread}:{updated}"'
+    tag = etag[1:-1] if etag.startswith('"') and etag.endswith('"') else etag
+    payload = {
+        "webhookConfigured": True,
+        "webhookCheckedAt": time.time(),
+        "unread": unread,
+        "updatedAt": updated,
+        "etag": etag,
+        "since": tag,
+    }
+    Path(state_path).parent.mkdir(parents=True, exist_ok=True)
+    Path(state_path).write_text(json.dumps(payload) + "\n")
+    os.chmod(state_path, 0o600)
+    flag = Path(flag_path)
+    if flag.exists():
+        flag.unlink()
+    update_path = Path(update_flag) if update_flag else None
+    if update_path and update in {"available", "required"} and latest:
+        update_path.parent.mkdir(parents=True, exist_ok=True)
+        update_path.write_text(latest + "\n")
+        os.chmod(update_path, 0o600)
+    print("0")
+    raise SystemExit(0)
 
 if code == 304:
     if "unread" not in state:
@@ -227,6 +285,7 @@ payload = {
     "updatedAt": updated,
     "etag": etag,
     "since": tag,
+    "webhookConfigured": False,
 }
 if unread > 0 and had_trigger:
     payload["triggeredUpdatedAt"] = previous_triggered

@@ -17,4 +17,4 @@ Reuse existing research. For current facts, use browsing or [product research](.
 
 Full exploration uses three audiences × ten motives; user counts and local revisions override that recipe. Each audience has `audience_id`, name, concise profile, rationale, and evidence/hypothesis status. Each motive has `motive_id`, inner monologue, meaning, and product connection.
 
-Use grouped tables and [handoff](../../contracts/creative-handoff.md). Pass only adopted audiences/motives to [hooks](emotional-hooks.md) or [localization](localization.md); unselected ideas do not automatically become paid media.
+Use grouped tables and [handoff](../../contracts/creative-handoff.md). Pass only adopted audiences/motives to [hooks](emotional-hooks.md#emotional-hooks) or [localization](localization.md#localization); unselected ideas do not automatically become paid media.

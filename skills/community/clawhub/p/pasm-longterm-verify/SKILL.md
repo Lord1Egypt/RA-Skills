@@ -6,7 +6,7 @@ description: >-
   drift, behavioural entropy collapse, persona saturation, forgetting curve, 6000-step soak
   degradation, and cross-repo parity. Scenarios drive the real engine in an isolated subprocess and
   emit JSON-archivable, baseline-diffable findings.
-version: 0.5.0
+version: 0.6.0
 license: MIT-0
 author: arronzheng
 homepage: https://github.com/arronJack/pasm-agents
@@ -287,9 +287,116 @@ bounded / max_jump / span / mean / slope / rate / temp_layers / cleanup / TORCH_
 第 7 条最值得记住：**验证器自己也会有 bug，而且它的 bug 最危险** ——
 一个"总报假红"的验证器会让人开始忽略它，比没有验证器更糟。
 
+## 十、验证「观测器自己」：反事实假绿审计（2026-11-12 PASM 实测补）
+
+**假绿比假红更危险**：假红会被人查、会被修；假绿会让所有人放心地继续跑，
+直到真出事。任何"每天全绿"的日报，先证明它在坏输入下**会变红**，否则绿灯无意义。
+
+做法（只读、不改被测源码）：把 `health_check.py` 的汇总逻辑照抄成 `recompute_healthy(r)`，
+用 `unittest.mock.patch` 注入**已知坏输入**，要求每项都必须判红。PASM 实测抓到 3 条：
+
+| 注入的坏输入 | 观测器表现 | 根因模式 |
+|---|---|---|
+| 5 把安全锁全 `False` | 仍 `PASS`、仍 9/9 | 检查函数只在 import 异常时 FAIL，`status` 恒 PASS；汇总只看 status，**不看检查项里的数值**（如 `0/5`） |
+| 基准总分 100 → 0（status 仍 PASS） | 仍 9/9 | 汇总只判 `status == "PASS"`，**没有跨日分数回退比较**；而 README 明确承诺"分数回退判 FAIL" → 契约与实现不符，务必逐条比对文档承诺 |
+| 三端 git 引用全读不到 | 仍判"一致" | `compared = {}` 时 `all([]) == True`；**空集合必须显式判 FAIL**，不能用 `all()` 兜底 |
+
+另外两条低成本检查：
+- **重复计数**：`ConfidenceLedger` 与 `Agenda` 若共用一次子进程输出、各做一个字符串包含判断，
+  报表的 9 项其实是 8 项。核对各项 `detail` 是否雷同即可发现。
+- **天花板效应**：若基准是 `100 * hits / criteria` 的布尔折算且已全命中，分数只能降不能升，
+  算一下最小分步长（100/判据数）。PASM-Bench 5 维 23 判据 → 步长 14.29–33.33 分，
+  "每维各挂 1 个判据"仍有 74.29 分 → 必须补负样本 / 回归注入才抓得住缓慢漂移。
+
+> 纪律：反事实实验只做 mock 与只读审计，**阶段目标是"登记问题"时绝不顺手改源码**。
+> 完整可复现脚本：`E:/AI/pasm/code/PASM/analysis/tools/phase1_analysis.py`。
+
+## 十一、从「查出假绿」到「加固并守住」（2026-11-12 PASM 第三阶段实证）
+
+查出问题只是上半场；加固后如果不配守门，下一次改动会把假绿带回来。标准打法六步：
+
+1. **把判定抽成模块级纯函数**（无 IO / 无网络 / 无子进程），例如
+   `locks_verdict` / `bench_verdict` / `git_verdict` / `docs_verdict`。
+   不要只改内联判断 —— 内联逻辑没法被测试直接调用。
+2. **汇总层也要抽**：假绿常发生在 `all(checks)` 那一层，而不是单个检查函数。
+   暴露 `summarize_health(report)`，让守门能重放「坏输入混过 status」的完整路径。
+3. **加硬数值判据**：除了 9 个 `status`，再校验锁开启数、`total > 0`、
+   `compared_count == len(remotes) > 0`、verdict 等。坏数值即使伪造了 status 也会被拦。
+4. **写双向反事实守门**：`health_check_counterfactual.py` 必须同时验证
+   **坏输入判红 + 好输入判绿**。只测「坏→红」容易写出永远 FAIL 的假修复。
+   PASM 实证 25 例：三条原样坏输入全判红，健康基线 14/14 仍判绿。
+5. **趋势维度排除自引用**：加 `timestamp` / `code_sha` / `prev_*` / `trend.*` 后，
+   若直接做逐字段 diff，会把元信息变化误报成漂移（PASM 初版 97 处虚假 diff）。
+   用前缀黑名单跳过 `meta.*` / `trend.*` / `prev_*`，并**核对 prev/now 标签方向**；
+   修好后同结构连跑两次应 diff=0。每次运行另存带时间戳快照，别再只覆盖当天文件。
+6. **同步契约文档**：README 里承诺的判据（如「分数回退判 FAIL」）必须逐条在实现里找到；
+   实现加固后立刻回填判据表，否则下次又出现「文档说有、代码没有」。
+
+**范围纪律**：加固只动观测层 / 分析工具 / 文档。复盘期发现的**被测侧**验证脚本失效
+（例如 PASM 的 `capabilities.selftest` 断言、`verify_pasm2_stage1` 消融纪律假红）
+要单独排队，先判明「改断言还是改实现」再动，避免"改考卷迁就成绩"；
+并用 `git status --short -- pasm/ pasm2/` 证明零侵入。
+
+**验证资产对齐阶段（P1 执行期）九条打法**（PASM 2026-11-12 第四阶段实证，审核 22/22）：
+1. 修假红的正确姿势是**收紧而非放宽**：把「全关时工具必拒」换成五子条件
+   （认知退化 + 默认放行 + 锁开 + deny 拦截 + strict 拦截），比原判据更严。
+2. 修自检先查**连锁断言**：capabilities line128 失败会掩盖 line137 同类错误
+   （diff.added=35≠36）；只修第一个会按下葫芦浮起瓢。
+3. 对「默认值演进」用**显式契约常量**（如 `EXPECTED_DEFAULT_ON`）钉住：
+   默认集一变就红、强迫人工复核，而不是放宽到「随便几个默认开都行」。
+4. 归一化口径是最隐蔽的真假绿：`total` 只对 implemented 维度平均时，抽空三维
+   仍得 100。补 `coverage`/`effective_total`，且**不改原字段语义**（向后兼容）。
+5. 给基准加负样本用**回归注入**（运行时替换 bits/构造器喂假实现）而非删模块：
+   DriftingEmotion（带剂量单调性）、FrozenDecider、LeakySafety ——
+   用来区分「尺子没刻度」vs「被测对象把判据全满足了」。
+6. 反事实注入 dataclass 默认值时，**改类属性无效**（默认值已固化进 `__init__`
+   签名字面量）；必须定义子类覆盖默认值再 patch 模块属性 —— 守门自身也会假绿。
+7. 拿消融基线做**结构结论**是常见误读：门控开关（`attractors()` 受
+   `use_entity_attractor`）默认关时计数恒 0 是消融纪律的正确表现。
+   判「阈值问题还是探针问题」前先加一组「开门控」对照，否则结论必错。
+8. pytest 同名测试文件（tests/ 与 pasm2/tests/ 与 dist 打包副本）收集冲突，
+   分批跑或 `--ignore`；旧副本失败先抽样确认是否「默认值演进假红」，再决定归档/对齐。
+9. 历史审核脚本是**时点快照**：资产演进后 FAIL 不必改旧脚本，逐项归因写进新报告，
+   另立新口径审核作为当前基线。
+
+> 可复现：`E:/AI/pasm/code/PASM/analysis/tools/health_check_counterfactual.py`，
+> 报告 `analysis/PASM-长期观察-第三阶段推进-2026-11-12.md`。
+
+**P2 收尾阶段五条打法**（PASM 2026-11-12 第五阶段实证，审核 13/13）：
+1. **归档优于对齐**：旧测试副本与现役版双份维护是负债；`git mv` 到 `_archive/`
+   并给文件加前缀（`archive_test_*.py` 避开 pytest 的 `test_*.py`/`*_test.py`
+   收集模式）实现**零配置改动**的静默归档，README 记根因。
+2. **"死系统满分"是最隐蔽的连续量假绿**：有界/不极端/可回落三判据对 valence
+   恒零引擎全部命中（0 永远有界、天然回落）。必须补**活性判据**（刺激段方差）
+   与**方向判据**（±脉冲响应不同），并用守门 G 项证明注入恒零后掉分。
+3. **尺子升级要保读数稳定**：判据 3→5 后真引擎仍满分、total 不变，health_check
+   历史比较才不会误报"回退"。升级前后各跑一次确认。
+4. **给 EMA 系统定探针阈值先实测稳态参数**：±0.8 交替下 EMA(α≈0.13) 稳态摆幅
+   std≈0.066，拍脑袋定 std>0.1 会产生假 FAIL。判"引擎缺陷还是探针阈值错"用
+   **双证据**：稳态值精确性（pos_end 精确到刺激值）+ 同步性（正/负步后均值差）。
+   校准过程与理由必须写入 JSON 留痕。
+5. 审核脚本读他人产物的 JSON **先打印 top keys 再写判据**：猜键名（如
+   `summary` vs 实际 `checks_summary`）会造出审核自身的假 FAIL。
+
+> 报告：`analysis/PASM-长期观察-第五阶段复盘-2026-11-12.md`；
+> 守门 `phase5_bench_continuous_guard_2026-11-12.json`、探针 `phase5_valence_probe_2026-11-12.json`。
+
 ## License
 
 MIT © arronZheng（小志）。
 
 - 本技能来源仓（7 个验证智能体 + 4 个产品智能体）：<https://github.com/arronJack/pasm-agents>
 - 基座仓（框架 / SDK / 场景仿真 / 打包工具 / 教程）：<https://github.com/arronJack/pasm-skills>
+
+**基线累积 + 发版候选阶段打法**（PASM 2026-11-12 第六阶段实证，审核 13/13）：
+1. 升版本前先跑**起点体检**（stage verify 全套 + 统一 runner + 契约镜像 check），
+   全绿才动版本号；升版只动声明层（`__init__.py` + packaging pyproject），运行时零改动。
+2. 构建脚本常有**双处版本一致性校验**（pyproject vs 源码），升版两处必须同步，
+   否则构建直接拒绝——这是好事，让审核脚本只信"构建成功"这个事实。
+3. wheel 验证三件套：构建成功 + `--install-test` 隔离目录安装导入自检 +
+   升版后全量回归重跑（版本号变更也可能被消费方比较逻辑感知）。
+4. 长期基线起步：**框架先行**——数据少（2 天）也先立只读聚合器 + 每日自动跑，
+   轨迹字段取日报稳定键、不猜键名；跨刻度比较（观测器/Bench 升版）必须注记
+   "按新刻度起算"，否则会制造虚假回退。
+5. 用定时自动化承载"连续多日"：每日跑观测器 + 刷新基线分析 + 汇报 diff，
+   失败时如实报错不伪造全绿。

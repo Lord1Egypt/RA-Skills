@@ -1,6 +1,6 @@
 ## Description:
 
-Use Autom to search and read Autom data through an OOMOL-connected account.
+Autom (autom.dev). Use this skill for ANY Autom request — searching and reading data. Whenever a task involves Autom, use this skill instead of calling the API directly.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agents use this skill to search Autom's supported Google countries, languages, and locations, and inspect account usage through an OOMOL-connected account.
+Developers use Autom through an OOMOL-connected account to search web, news, and maps data, retrieve usage information, and look up supported Google locations, languages, and countries. The skill checks an action's schema before submitting its JSON input through the oo CLI.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Setup executes unverified remote code.
+Risk: The supplied security assessment reports an unverified live installer whose behavior could not be determined.
 
-Mitigation: Use a verified oo CLI release, review the installation, and explicitly approve local changes.
-
-Risk: The dependency may make persistent changes to other agents' skills.
-
-Mitigation: Set OO_SKILLS_SYNC_DISABLED=1 before invoking oo when only Autom access is needed.
+Mitigation: Avoid installation until the installer method is verifiable and its effects are clear.
 
 ## Reference(s):
 
-- [Autom release on ClawHub](https://clawhub.ai/oomol/skills/oo-autom)
-- [Autom API documentation](https://docs.autom.dev/usage)
 - [Autom homepage](https://www.autom.dev)
-- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [Autom API documentation](https://docs.autom.dev/usage)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-autom)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+**Output Type(s):** [Text, Guidance, Shell commands]
 
-**Output Format:** [Markdown instructions with shell commands and JSON payloads and responses]
+**Output Format:** [Markdown with shell command examples and JSON payloads]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Autom action inputs and outputs depend on the action schema.]
+**Other Properties Related to Output:** [Search and lookup results depend on the selected Autom action and connected account.]
 
 ## Skill Version(s):
 
-1.0.5 (source: frontmatter, server-resolved release)
+1.0.6 (source: frontmatter, server release evidence)
 
 ## Ethical Considerations:
 

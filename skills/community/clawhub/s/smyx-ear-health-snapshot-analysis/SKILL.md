@@ -1,7 +1,7 @@
 ---
 name: "smyx-ear-health-snapshot-analysis"
 description: "Triggers when a user provides a pet ear/scratching/head-shaking video URL or file for analysis; uses smart camera to monitor head-shaking and ear-scratching actions, automatically captures HD ear-canal images, and applies AI vision analysis to identify ear-canal color (pink/red/dark red), presence of black granular discharge (ear mites), and degree of earwax accumulation. When redness, large discharge or suspected ear mites are detected, outputs abnormality alerts and recommends owner check-up or veterinary visit. Application: pet families, boarding centers, pet hospital pre-screening. Helps early detection of ear-canal diseases and prevents deterioration. | 当用户提供宠物甩耳、挠耳或耳道抓拍视频URL或文件时，触发本技能进行耳道健康监测分析；通过智能摄像头实时监测甩耳/挠耳动作，自动触发高清抓拍耳道内部图像，利用AI视觉分析识别耳道颜色（粉红/红/暗红）、有无黑色颗粒状分泌物（耳螨）、耳垢堆积程度等异常指标；当检测到红肿、大量分泌物或疑似耳螨时，输出异常提示，建议主人进一步检查或就医，仅输出基于视觉的客观描述与建议，不提供医疗诊断。应用场景：宠物家庭日常健康监测、寄养中心批量监控、宠物医院预检。"
-version: "1.0.23"
+version: "1.0.24"
 license: "MIT-0"
 ---
 

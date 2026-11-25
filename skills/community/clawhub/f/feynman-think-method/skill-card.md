@@ -1,6 +1,6 @@
 ## Description:
 
-Uses the Feynman learning method and physics-based questioning to help users explain complex concepts, find gaps in their understanding, and build first-principles insight.
+Guides learners through the Feynman technique and physics-inspired reasoning to explain complex concepts, find gaps in understanding, and build first-principles mental models.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Learners, researchers, and people diagnosing problems use the skill to explain a concept simply, locate gaps through questioning, and refine their understanding with analogies and self-checks. It produces working explanations and learning prompts rather than factual or professional conclusions.
+Learners, researchers, and knowledge workers use this skill to test their understanding of a concept, surface gaps through plain-language explanations and questions, and draft study notes. It supports learning and problem framing; consequential medical, legal, or investment decisions require qualified review.
 
 ### Deployment Geography for Use:
 
@@ -22,17 +22,9 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill may default to Chinese, which may not suit every user.
+Risk: The skill may prefer Chinese output without first checking the user's language preference.
 
-Mitigation: Request the preferred output language when needed.
-
-Risk: Examples may involve sensitive health, financial, client, or business information.
-
-Mitigation: Share only the minimum necessary context and remove identifying or confidential details.
-
-Risk: Time-sensitive market, policy, or regulatory statements in the material may be outdated or unverified.
-
-Mitigation: Check dates, figures, and rules against current primary or official sources before relying on them.
+Mitigation: Ask for or state the preferred output language when the default may not suit the user.
 
 ## Reference(s):
 
@@ -40,17 +32,17 @@ Mitigation: Check dates, figures, and rules against current primary or official 
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Text, Markdown]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Primarily Chinese Markdown with structured steps, questions, analogies, and checklists.]
+**Output Format:** [Chinese-first Markdown explanations, checklists, and question prompts, retaining key English terms where useful]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Draft learning material for user review; no external actions are performed.]
+**Other Properties Related to Output:** [Draft learning aids; verify time-sensitive factual claims against current primary sources.]
 
 ## Skill Version(s):
 
-2.1.4 (source: server-resolved release metadata)
+2.1.5 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

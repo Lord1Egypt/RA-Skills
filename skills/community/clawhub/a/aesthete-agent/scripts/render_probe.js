@@ -49,6 +49,25 @@
       if (fs < minFont) { minFont = fs; fontSample = e.textContent.trim().slice(0, 18); }
     }
   }
+  // v2(0.22):分区级采集——顶层区块/结构语义块的背景色 → 全页面积占比
+  // (即 color_director 的 zones 语义:渲染事实而非声明板,审计"实际画出来的颜色")
+  const zoneAreas = {};
+  const zoneEls = [...document.querySelectorAll(
+    "body > *, section, header, footer, nav, aside, [class*='hero'], [class*='band'], [class*='cta'], [class*='cover']")];
+  for (const e of zoneEls) {
+    const r = e.getBoundingClientRect();
+    if (r.width < 40 || r.height < 40) continue;
+    const cs = getComputedStyle(e);
+    const bg = parse(cs.backgroundColor);
+    if (bg && bg.a > 0.5) {
+      const h = hex(bg);
+      zoneAreas[h] = (zoneAreas[h] || 0) + r.width * Math.min(r.height, innerHeight * 2);
+    }
+  }
+  const ztotal = Object.values(zoneAreas).reduce((a, b) => a + b, 0) || 1;
+  const zones = Object.entries(zoneAreas)
+    .map(([hx, area]) => ({ hex: hx, share: +(area / ztotal).toFixed(4) }))
+    .sort((a, b) => b.share - a.share).slice(0, 8);
   const total = Object.values(colorArea).reduce((a, b) => a + b, 0) || 1;
   const colors = Object.entries(colorArea)
     .map(([hex, area]) => ({ hex, areaRatio: +(area / total).toFixed(4) }))
@@ -60,6 +79,7 @@
     colors: colors.slice(0, 12),
     minFont: +minFont.toFixed(1), fontSample,
     worstPairs: pairs.sort((a, b) => a.ratio - b.ratio).slice(0, 6),
+    zones,
     sections: document.querySelectorAll("section, article, main > div").length
   });
 })()

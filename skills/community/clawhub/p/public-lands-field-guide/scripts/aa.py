@@ -24,7 +24,8 @@ summary instead of JSON.
 All distances are straight-line miles. A null or missing field means UNRECORDED.
 changes_since and what_we_cover are on the MCP connector (https://davelalande.com/mcp, live 2026-11-11).
 land_at (national forests only) is on the MCP connector too (live 2026-11-11).
-trip_check (a whole trip on given dates) and rig_math are MCP connector tools too; this script does not call them.
+trip_check (a whole trip on given dates), rig_math, posted_orders (a forest's own posted orders) and road_to_camp
+(the recorded road to a camp) are MCP connector tools too; this script does not call them.
 """
 import argparse
 import json
@@ -86,6 +87,9 @@ def record_date(data):
     for k in ("updated", "generated", "data_built_at"):
         if isinstance(data, dict) and data.get(k):
             return data[k]
+    src = data.get("source") if isinstance(data, dict) else None
+    if isinstance(src, dict) and src.get("newest_record_date"):     # /api/water (11/17): the newest record date in the answer
+        return src["newest_record_date"]
     return None
 
 
@@ -195,6 +199,8 @@ def main(argv=None):
     s = sub.add_parser("near"); s.add_argument("lat"); s.add_argument("lon"); s.add_argument("--radius", default="25")
     s.add_argument("--cost", choices=["free", "fee", "unpriced"]); s.add_argument("--limit", type=int, default=10)
     s = sub.add_parser("poi"); s.add_argument("lat"); s.add_argument("lon"); s.add_argument("category"); s.add_argument("--radius", default="25")
+    s = sub.add_parser("toilets"); s.add_argument("lat"); s.add_argument("lon"); s.add_argument("--radius", default="25"); s.add_argument("--limit", type=int, default=5)
+    s = sub.add_parser("water"); s.add_argument("lat"); s.add_argument("lon"); s.add_argument("--radius", default="10"); s.add_argument("--type", help="spring, hot_spring, waterfall, lake, reservoir, river, creek or fill_point"); s.add_argument("--limit", type=int, default=10)
     s = sub.add_parser("town"); s.add_argument("name"); s.add_argument("--state"); s.add_argument("--radius", default="25"); s.add_argument("--limit", type=int, default=5)
     s = sub.add_parser("forest"); s.add_argument("q")
     s = sub.add_parser("land"); s.add_argument("q")
@@ -215,6 +221,10 @@ def main(argv=None):
         keep_cost(data, a.cost, a.limit)
     elif a.cmd == "poi":
         url, data = get("/api/near", {"lat": a.lat, "lon": a.lon, "radius": a.radius, "type": "poi", "cat": a.category})
+    elif a.cmd == "water":        # 11/17: the water records (Montana game forests + every Oregon national forest), nearest first, each with its sources
+        url, data = get("/api/water", {"lat": a.lat, "lon": a.lon, "radius": a.radius, "type": a.type, "limit": a.limit})
+    elif a.cmd == "toilets":      # 11/17 (Dave: "Does our skill help you with finding a toilet?"): the 21,390 recorded toilets, nearest first
+        url, data = get("/api/near", {"lat": a.lat, "lon": a.lon, "radius": a.radius, "type": "toilets", "limit": a.limit})
     elif a.cmd == "town":
         lat, lon, name, st, _ = find_town(a.name, a.state)
         url, data = get("/api/near", {"lat": lat, "lon": lon, "radius": a.radius, "limit": 100})

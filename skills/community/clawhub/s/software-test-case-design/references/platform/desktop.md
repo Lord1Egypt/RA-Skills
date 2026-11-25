@@ -1,120 +1,120 @@
-# Desktop Platform-Specific Testing
+# Desktop Test Points
 
-> This document defines specialized testing dimensions and strategy highlights specific to desktop applications, distinct from other platforms.
-> See `references/examples/format-spec.md` for output format and `references/checklists/desktop-checklist.md` for the checklist.
-
----
-
-## I. Window Management
-
-### Focus Areas
-- Layout adaptation when maximizing/minimizing/restoring/fullscreen
-- Window drag-to-move and dragging across multiple monitors
-- Content reflow during window resize (especially minimum width/height constraints)
-- Interaction between modal windows and parent windows
-- Dragging and resizing of frameless/custom-title-bar windows
-
-### Common Defects
-- Content not centered or blank after maximizing
-- Layout broken when window shrunk very small
-- Abnormal window position after dragging across multiple monitors
+> This file defines the test dimensions and strategy points that distinguish desktop applications from other platforms.
+> For the output format, see `references/examples/format-spec.md`; for the checklist, see `references/checklists/desktop-checklist.md`.
 
 ---
 
-## II. Keyboard Shortcuts
+## 1. Window Management
 
-### Focus Areas
+### Key focus points
+- Layout adaptation when maximizing / minimizing / restoring / going full screen
+- Dragging windows, including between multiple monitors
+- Content reflow when resizing windows (especially minimum width / height limits)
+- Interaction between modal windows and their parent window
+- Dragging and resizing windows without a title bar / with a custom-drawn title bar
+
+### Common defects
+- Content not centered or blank areas after maximizing
+- Layout broken when the window is made very small
+- Abnormal window position after dragging across monitors
+
+---
+
+## 2. Keyboard Shortcuts
+
+### Key focus points
 - Common shortcuts: Ctrl+C/V/Z/Y/A/S/F, etc.
 - Conflicts between custom shortcuts and system shortcuts
 - Cross-platform differences: Ctrl (Windows/Linux) vs Cmd (macOS)
-- Global shortcuts (triggered even when app is not in focus)
-- Shortcut behavior in input fields (should not conflict with text editing)
+- Global shortcuts (triggered even when the app is not in focus)
+- Shortcut behavior in input boxes (must not conflict with text editing)
 
-### Common Defects
-- Shortcuts conflict with system or other applications
-- Shortcuts misfire when focus is in an input field
-- Ctrl/Cmd confusion on macOS
+### Common defects
+- Shortcuts conflict with the system or other apps
+- Shortcuts triggered by mistake while focus is in an input box
+- Ctrl / Cmd confused on macOS
 
 ---
 
-## III. File Operations
+## 3. File Operations
 
-### Focus Areas
-- File drag-to-open (drag to window/tray icon)
-- File association and protocol registration (double-click file to open with this app)
-- File save/save-as/auto-save
+### Key focus points
+- Opening files by drag and drop (onto the window / tray icon)
+- File associations and protocol registration (double-clicking a file opens it in this app)
+- Save / Save As / autosave
 - Recent files list
-- Opening and handling of large files/network files
+- Opening and handling large files / network files
 - File locking and concurrent access
 
-### Common Defects
-- No visual feedback on drag
-- File association not registered, preventing double-click open
-- Auto-save conflicts with manual save
+### Common defects
+- No visual feedback while dragging
+- File association not registered, so double-clicking does not open the file
+- Conflicts between autosave and manual save
 - UI freezes when opening large files
 
 ---
 
-## IV. System Integration
+## 4. System Integration
 
-### Focus Areas
-- System tray: icon, right-click menu, minimize to tray
-- Auto-start on boot configuration
+### Key focus points
+- System tray: icon, context menu, minimize to tray
+- Launch at startup setting
 - Protocol handling (e.g., myapp://xxx)
-- Right-click menu integration ("Open with XX" in File Explorer)
-- Clipboard: cross-application copy-paste, format preservation
+- Context menu integration ("Open with XX" in File Explorer)
+- Clipboard: copy and paste across apps, format retention
 - Notification center: display and interaction of system notifications
 
-### Common Defects
-- App not actually exiting after closing window (still in background)
-- Tray icon not displaying or menu clicks not responding
-- Clipboard format loss
+### Common defects
+- The app does not actually exit after closing the window (still running in the background)
+- Tray icon not shown or menu clicks unresponsive
+- Clipboard formatting lost
 
 ---
 
-## V. Multi-Monitor Adaptation
+## 5. Multi-Monitor Adaptation
 
-### Focus Areas
+### Key focus points
 - Moving windows across monitors
-- Dragging between monitors with different DPIs (mixed DPI scenarios)
-- Fullscreen display on specified monitor
-- Window position restoration after disconnecting/connecting monitors
+- Dragging between monitors with different DPI (mixed-DPI scenarios)
+- Full-screen mode on a specified monitor
+- Window position restored after disconnecting / connecting a monitor
 
-### Common Defects
-- Blurry or abnormal scaling under mixed DPI
-- Window invisible after disconnecting external monitor
-- Fullscreen displayed on wrong monitor
+### Common defects
+- Blurry UI or abnormal scaling with mixed DPI
+- Window invisible after disconnecting an external monitor
+- Full screen shown on the wrong monitor
 
 ---
 
-## VI. Installation & Updates
+## 6. Installation and Updates
 
-### Focus Areas
+### Key focus points
 - Installation wizard: install path, shortcuts, license agreement
-- Automatic update detection and silent update
-- Electron/Tauri auto-update mechanisms (electron-updater / Tauri updater)
-- Update package signature verification (tamper prevention)
-- Data migration and configuration preservation after update
-- Uninstallation: residue cleanup, user data retention options
-- Rollback mechanism (restore old version after update failure)
+- Automatic update detection and silent updates
+- Electron / Tauri auto-update mechanisms (electron-updater / Tauri updater)
+- Update package signature verification (tamper protection)
+- Data migration and configuration retention after updates
+- Uninstallation: cleanup of leftovers, option to keep user data
+- Rollback mechanism (restore the old version after an update fails)
 
-### Common Defects
-- Configuration lost after update
-- Residual files/registry entries after uninstallation
-- App unable to start after update failure
+### Common defects
+- Configuration lost after updating
+- Leftover files / registry entries after uninstalling
+- The app cannot start after a failed update
 
 ---
 
-## VII. System Compatibility
+## 7. System Compatibility
 
-### Focus Areas
-- Windows 10/11 differences
+### Key focus points
+- Differences between Windows 10 and 11
 - macOS Intel vs Apple Silicon (ARM64)
-- Administrator privileges vs normal user privileges
-- Dark/light/high-contrast mode adaptation
-- Display on multi-language systems
+- Administrator vs standard user permissions
+- Dark / light / high-contrast mode adaptation
+- Display on systems in different languages
 
-### Common Defects
-- Poor emulated performance on ARM64 devices
-- No prompt for restricted functionality under normal user privileges
+### Common defects
+- Poor performance under translation on ARM64 devices
+- Features restricted under standard user permissions without any prompt
 - Text unreadable in dark mode

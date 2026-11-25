@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="1010" viewBox="0 0 420 1010" role="img" aria-labelledby="title desc" lang="en">
+<title id="title">The OpenXSys journey</title><desc id="desc">See through, think clearly, make it real, connect, grow, and get stronger with use.</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke="#72858f" stroke-width="1.6"/></marker><marker id="r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke="#9b6b2f" stroke-width="1.6"/></marker></defs>
+<style>text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.title{font-size:21px;font-weight:750;fill:#183642}.sub{font-size:12.5px;fill:#58707b}.num{font-size:11px;font-weight:700}.name{font-size:22px;font-weight:750;fill:#183642}.body{font-size:12.5px;fill:#405965}.flow{fill:none;stroke:#72858f;stroke-width:1.7;marker-end:url(#a)}.return{fill:none;stroke:#9b6b2f;stroke-width:1.5;stroke-dasharray:6 6;marker-end:url(#r)}</style>
+<rect x=".5" y=".5" width="419" height="1009" rx="18" fill="#fbfcfa" stroke="#d9e2df"/>
+<text x="24" y="38" class="title">Begin with one ordinary sentence</text><text x="24" y="62" class="sub">Enter anywhere. Keep growing through real outcomes.</text>
+<path class="return" d="M36 172H16V888H42"/><text x="24" y="978" class="sub">Feedback changes the next run · OpenXSys</text>
+<g>
+<rect x="42" y="92" width="354" height="122" rx="13" fill="#edf5fa" stroke="#91afc1"/><text x="60" y="119" class="num" fill="#3c6c8a">01 · UNDERSTAND</text><text x="60" y="157" class="name">See through</text><text x="60" y="184" class="body">The whole, levels, relations, causes, and constraints</text>
+<path class="flow" d="M219 216V231"/>
+<rect x="42" y="235" width="354" height="122" rx="13" fill="#fff4e6" stroke="#c7a06c"/><text x="60" y="262" class="num" fill="#9b6b2f">02 · JUDGE</text><text x="60" y="300" class="name">Think clearly</text><text x="60" y="327" class="body">Find the key; compare paths, costs, and conditions</text>
+<path class="flow" d="M219 359V374"/>
+<rect x="42" y="378" width="354" height="122" rx="13" fill="#edf6f0" stroke="#8eb79e"/><text x="60" y="405" class="num" fill="#347253">03 · CREATE</text><text x="60" y="443" class="name">Make it real</text><text x="60" y="470" class="body">A finished work, real action, or working capability</text>
+<path class="flow" d="M219 502V517"/>
+<rect x="42" y="521" width="354" height="122" rx="13" fill="#eef1fa" stroke="#9ba8ca"/><text x="60" y="548" class="num" fill="#4b6092">04 · RELATE</text><text x="60" y="586" class="name">Connect</text><text x="60" y="613" class="body">Let people, AI, tools, and systems act together</text>
+<path class="flow" d="M219 645V660"/>
+<rect x="42" y="664" width="354" height="122" rx="13" fill="#f4eff8" stroke="#b09cc1"/><text x="60" y="691" class="num" fill="#76578e">05 · FEEDBACK</text><text x="60" y="729" class="name">Grow</text><text x="60" y="756" class="body">Results change understanding, structure, and action</text>
+<path class="flow" d="M219 788V803"/>
+<rect x="42" y="807" width="354" height="122" rx="13" fill="#f0f3e8" stroke="#a5b485"/><text x="60" y="834" class="num" fill="#65733f">06 · COMPOUND</text><text x="60" y="872" class="name">Get stronger with use</text><text x="60" y="899" class="body">Every gain enters your system and raises the next start</text>
+</g>
+<text x="24" y="955" font-size="13" font-weight="700" fill="#183642">You speak what is real. OpenXSys carries the complexity.</text>
+</svg>

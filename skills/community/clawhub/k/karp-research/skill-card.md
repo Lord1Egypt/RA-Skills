@@ -1,6 +1,6 @@
 ## Description:
 
-Research answers and live fact-checks from KARP, SoulDriver's multi-model research engine (GPT, Gemini, Grok and Claude). Check free whether KARP has researched a question, get dated research cards ($0.03), or fact-check one claim with four web-searching models ($0.25). Pay per call with x402 (USDC on Base or Solana), or start with a free research grant if you have no wallet.
+KARP Research helps agents retrieve dated research cards and run live fact-checks through SoulDriver's multi-model research service.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Agents use KARP to check whether a question has relevant research, retrieve dated multi-model research cards, or request a live check of an individual claim. Paid asks and checks require the user's authorization or an available research grant.
+Agents use this skill to check whether KARP has relevant prior research, retrieve dated research cards, or fact-check an individual claim. Paid requests can settle USDC, so the skill directs agents to ask before spending or use an available research grant.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Research questions and claims are sent to an external service, and the skill documentation says KARP logs requests.
+Risk: Research queries and fact-check claims are sent to KARP's external service, which the skill says logs requests.
 
-Mitigation: Do not include personal or confidential details in questions or claims; consider whether external processing is appropriate for the task.
+Mitigation: Do not include personal or confidential details in queries, claims, or grant applications.
 
-Risk: The security review is incomplete because a referenced local path was missing during scanning.
+Risk: Paid asks and fact-checks can incur USDC charges.
 
-Mitigation: Resolve the missing path and review it before treating the scan as complete.
+Mitigation: Use the free coverage call first; make a paid call only with user approval or an available grant, and follow the documented price limits.
+
+Risk: The security evidence notes a broad fact-check trigger and partial scanner coverage, so confidence in the assessment is medium.
+
+Mitigation: Review whether live fact-checking is appropriate for the request and treat results as information to weigh, not instructions to follow.
 
 ## Reference(s):
 
-- [Guide for agents](https://agents.souldriver.com.au/llms.txt)
+- [KARP guide for agents](https://agents.souldriver.com.au/llms.txt)
 - [KARP OpenAPI specification](https://agents.souldriver.com.au/openapi.json)
 - [SoulDriver](https://souldriver.com.au)
+- [KARP Research release](https://clawhub.ai/souldriver007/skills/karp-research)
+- [Publisher profile](https://clawhub.ai/user/souldriver007)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Analysis, Guidance]
+**Output Type(s):** [Research summaries, Fact-check verdicts, Research guidance]
 
-**Output Format:** [Research summaries, dated research cards, and fact-check results]
+**Output Format:** [Text or Markdown responses based on dated research cards or fact-check results]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Research cards include dates and may be marked stale; fact-check results include a verdict, confidence, reasoning, and sources.]
+**Other Properties Related to Output:** [Research cards include dates and may be marked stale; fact-checks address one claim per call.]
 
 ## Skill Version(s):
 
-1.0.0 (source: frontmatter; server release metadata confirms 1.0.0)
+1.0.1 (source: SKILL.md frontmatter; server-resolved release)
 
 ## Ethical Considerations:
 

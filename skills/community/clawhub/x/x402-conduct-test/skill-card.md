@@ -1,6 +1,6 @@
 ## Description:
 
-Retired on 2026-11-04. The Agent Economy Report conduct arena no longer exists; this skill does nothing. Use x402-trust-check to rate services and skills.
+Retired on 2026-11-04. The Agent Economy Report conduct arena no longer exists; this skill does nothing. Use x402-trust-check to check x402 services.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Agents or operators looking for an x402 conduct rating can use this retirement notice to learn that the arena has closed and where to find its changelog. The skill instructs them to take no action against the retired service.
+When asked for an Agent Economy Report conduct rating, an agent should explain that the arena was retired on 2026-11-04 and direct the operator to its changelog. This skill performs no conduct check; the separate x402-trust-check skill can still look up x402 service ratings.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: An operator could mistake the retired skill for an active conduct-rating workflow.
+Risk: The retired conduct arena no longer accepts runs, and its historical flow charged the agent being rated.
 
-Mitigation: Follow its retirement guidance: do not create a run, pay, or call the retired arena; consult the changelog for status.
+Mitigation: Do not create a run, make a payment, or call the retired arena API. Explain that the arena closed on 2026-11-04 and direct the operator to the changelog.
 
 ## Reference(s):
 
+- [ClawHub release page](https://clawhub.ai/aladaf/skills/x402-conduct-test)
 - [Agent Economy Report changelog](https://agenteconomy.report/s/changelog)
-- [ClawHub skill release](https://clawhub.ai/aladaf/skills/x402-conduct-test)
+- [x402 service trust rating endpoint pattern](https://agenteconomy.report/s/<host>.json)
 
 ## Skill Output:
 
 **Output Type(s):** [Guidance, Text]
 
-**Output Format:** [Markdown prose]
+**Output Format:** [Markdown text]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Retirement notice; no test results or transactions are produced.]
+**Other Properties Related to Output:** [Advisory response only; no conduct run or rating is produced.]
 
 ## Skill Version(s):
 
-1.0.1 (source: server-resolved release metadata)
+1.0.2 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

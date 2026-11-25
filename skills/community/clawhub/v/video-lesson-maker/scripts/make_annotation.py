@@ -16,12 +16,14 @@ spec JSON 字段：
     "regions": [
       {"x":100,"y":80,"width":600,"height":120},            # 标题区
       {"x":100,"y":240,"width":500,"height":200,"dur":4000},# 主体1（可覆盖默认时长）
-      {"x":700,"y":240,"width":500,"height":200,
-       "protectedRegions":[{"x":120,"y":260,"width":200,"height":40}]}
+      {"x":700,"y":240,"width":500,"height":200,"lead":300},# 主体2（lead=本块相对上一块结束的偏移）
+      {"x":900,"y":600,"width":10,"height":10,"dur":2000,
+       "mode":"point","path":[[300,400],[800,400]]}         # 指点拍：只移动笔尖不落墨
     ],
     "durationMs": 3000,   # 每个区域默认揭示时长(ms)
     "leadMs": 0,          # 每个区域开始前的留白(ms)
-    "gazeMs": 1500        # 结尾凝视(ms)，计入 sceneDurationMs
+    "gazeMs": 1500,       # 结尾凝视(ms)，计入 sceneDurationMs
+    "sceneDurationMs": 0  # 可选：显式幕时长（v2 build_sync_spec 会写入，优先于 cursor+gaze）
   }
 
 输出：annotation.json（可直接喂给 render_stream_whiteboard.py）
@@ -50,22 +52,29 @@ def main():
     cursor = 0
     for reg in regions:
         dur = int(reg.get("dur", duration_ms))
-        start = cursor + lead_ms
+        lead = int(reg.get("lead", lead_ms))  # v2：同一节拍内多块顺序画的相对偏移
+        start = cursor + lead
+        reveal = {
+            "startMs": start,
+            "durationMs": dur,
+            "protectedRegions": reg.get("protectedRegions", []),
+        }
+        # v2：指点拍（只移动笔尖不落墨）
+        if reg.get("mode"):
+            reveal["mode"] = reg["mode"]
+        if reg.get("path"):
+            reveal["path"] = reg["path"]
         el = {
             "region": {
                 "x": reg["x"], "y": reg["y"],
                 "width": reg["width"], "height": reg["height"],
             },
-            "reveal": {
-                "startMs": start,
-                "durationMs": dur,
-                "protectedRegions": reg.get("protectedRegions", []),
-            },
+            "reveal": reveal,
         }
         elements.append(el)
         cursor = start + dur
 
-    scene_duration = cursor + gaze_ms
+    scene_duration = int(spec.get("sceneDurationMs") or (cursor + gaze_ms))
     ann = {
         "canvas": {"width": canvas["width"], "height": canvas["height"]},
         "sceneDurationMs": scene_duration,

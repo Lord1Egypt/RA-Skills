@@ -1,0 +1,10 @@
+{
+  "agent": "ZCode",
+  "session_id": "sess_78214626-a268-43d8-944d-0a1a9b906e51",
+  "updated_at": "2026-11-09T06:45:57+08:00",
+  "last_event": "SessionStart",
+  "business_status": "待 Agent 核对，钩子不判断业务完成",
+  "started_at": "2026-11-09T05:27:10+08:00",
+  "run_id": "ZCode-df77f481ba25efc238e6",
+  "runtime_status": "会话已启动／恢复"
+}

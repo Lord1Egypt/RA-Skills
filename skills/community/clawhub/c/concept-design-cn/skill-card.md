@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-面向软件开发者和工程师，用概念与同步方法梳理用户需求、编写软件规格、设计协作规则，并按授权实现、审查或解释软件行为。
+供软件开发者从用户需要出发，定义概念与同步规则，并编写或审查软件规格。也可用于按授权实现或重构、解释软件行为，以及生成 Mermaid 关系图。
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment is partial, with two local references unresolved; its benign verdict has moderate confidence.
+Risk: The security guidance reports file-reading, network, and shell capabilities without a declared tool scope; inspection was partial because two local references could not be resolved.
 
-Mitigation: Review the skill before installation and resolve or verify the two references; assess whether its file-reading, network, and shell capabilities and fixed English headings fit your use.
+Mitigation: Review tool access and any proposed file changes or commands, limit access to the intended project resources, and treat the benign scan verdict as informative rather than a safety guarantee.
 
 ## Reference(s):
 
 - [Concept composition and sync](https://essenceofsoftware.com/tutorials/concept-basics/sync/#composing-concepts-with-syncs)
 - [Concept criteria](https://essenceofsoftware.com/tutorials/concept-basics/criteria/)
-- [工程契约与架构](artifact/references/architecture.md)
-- [规格阅读指南](artifact/references/spec-reading.md)
-- [概念设计技能页面](https://clawhub.ai/agenticweb4/skills/concept-design-cn)
-- [发布者资料](https://clawhub.ai/user/agenticweb4)
+- [Architecture guidance](artifact/references/architecture.md)
+- [Specification reading guide](artifact/references/spec-reading.md)
+- [Specification notation](artifact/references/spec-notation.md)
+- [Execution, recovery, and migration](artifact/references/architecture-execution.md)
+- [Diagram format](artifact/references/tool-diagram.md)
 
 ## Skill Output:
 
 **Output Type(s):** [Guidance, Markdown, Code, Shell commands]
 
-**Output Format:** [Markdown specifications, decision records, reviews, and Mermaid diagrams; code changes or command output when requested.]
+**Output Format:** [中文 Markdown 规格、审查说明、Mermaid 图及代码修改]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Outputs depend on the selected mode and the user's authorized scope.]
+**Other Properties Related to Output:** [按请求选择设计、实现、审查、审计或解释模式；审查、审计和规划保持只读。]
 
 ## Skill Version(s):
 
-2.5.2 (source: server-resolved release metadata and SKILL.md frontmatter)
+2.5.4 (source: frontmatter; server release)
 
 ## Ethical Considerations:
 

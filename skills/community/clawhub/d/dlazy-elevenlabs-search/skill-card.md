@@ -1,6 +1,6 @@
 ## Description:
 
-Search the ElevenLabs voice library by keyword, source, and category, returning playable previews to help choose a voice for text-to-speech.
+Searches the ElevenLabs voice library by keyword, source, and category and returns playable previews for choosing voices for TTS.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers can search ElevenLabs voices by descriptor, source, and category, then review playable previews before choosing a voice for text-to-speech.
+External users and developers use the skill to find ElevenLabs voices by descriptor, source, and category, then review playable previews before choosing a voice for text-to-speech.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The release scan was partial and reported unresolved local references.
+Risk: The security review had medium confidence and partial coverage, and flagged a possible mismatch between the ElevenLabs search purpose and dLazy authentication.
 
-Mitigation: Review the skill documentation and CLI installation details before use.
-
-Risk: The skill requires a dLazy API key for requests.
-
-Mitigation: Use the documented device-code login and rotate or revoke the key from the dLazy dashboard if it is exposed.
-
-Risk: Search prompts and parameters are sent to the dLazy hosted API.
-
-Mitigation: Avoid including confidential information in search prompts or parameters.
+Mitigation: Review the linked CLI and package, and confirm dLazy authentication is expected before providing an API key.
 
 ## Reference(s):
 
-- [ClawHub skill release page](https://clawhub.ai/dlazyai/skills/dlazy-elevenlabs-search)
-- [CLI homepage listed in release metadata](https://github.com/dlazy-ai/cli)
-- [dLazy CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
-- [dLazy](https://dlazy.com)
+- [CLI project listed in skill metadata](https://github.com/dlazy-ai/cli)
+- [@dlazy/cli package](https://www.npmjs.com/package/@dlazy/cli)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Guidance]
+**Output Type(s):** [Text, JSON]
 
-**Output Format:** [Structured voice search results with playable preview links]
+**Output Format:** [Voice search results with metadata and playable preview URLs, typically returned as JSON]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results can be filtered by search prompt, voice source, category, and page size.]
+**Other Properties Related to Output:** [Result count can be adjusted with --page_size.]
 
 ## Skill Version(s):
 
-1.3.42 (source: server-resolved release metadata)
+1.3.45 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

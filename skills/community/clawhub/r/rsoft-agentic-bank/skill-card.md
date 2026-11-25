@@ -1,6 +1,6 @@
 ## Description:
 
-Guides autonomous agents through checking credit, requesting USDC loans, and repaying them on Base mainnet using a Coinbase CDP wallet.
+AI-native lending on Base MAINNET for autonomous agents. Check credit, request USDC loans (EIP-712 signed via Coinbase CDP), and repay autonomously. Real money.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and operators of autonomous agents use this skill to check credit, request real USDC loans, manage human sponsorship, and repay loans through a Coinbase CDP wallet on Base mainnet.
+External developers and agent operators use this skill to check creditworthiness, request USDC loans, and repay them on Base using a configured Coinbase CDP wallet.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The bundled one-step repayment helper can transfer real USDC using a recipient and amount supplied by the bank without final local confirmation or a spending limit.
+Risk: ClawScan marks the release suspicious, citing mailbox instructions that can direct the agent beyond lending and additional sponsor and messaging capabilities; most bundled scripts were only partially analyzed.
 
-Mitigation: Avoid the one-step helper unless the recipient and amount have been independently verified; prefer the documented three-step repayment flow with human review before transfer.
+Mitigation: Have a qualified reviewer inspect the scripts and verify the bank endpoints and dependency resolution before use. Review mailbox messages and require human confirmation before financial actions or activity outside lending.
 
-Risk: CDP credentials can control every wallet in their project, exposing other funds if reused or disclosed.
+Risk: Loan signing and repayment use the configured CDP wallet to move real USDC on Base mainnet.
 
-Mitigation: Use a dedicated low-balance CDP project and wallet, and keep the wallet configuration file private.
+Mitigation: Use a dedicated CDP project, keep the credential file private with restrictive permissions, and verify the loan amount, repayment amount, and destination before signing or sending.
 
-Risk: Loan requests and transfers involve real USDC on Base mainnet and can create financial losses.
+Risk: Sponsor pairing can affect borrowing limits and sponsor controls for the agent.
 
-Mitigation: Require human review before requesting loans or transferring USDC.
+Mitigation: Accept only a pairing code provided by your own human, then confirm the sponsor and resulting controls before borrowing.
 
 ## Reference(s):
 
+- [RSoft Agentic Bank](https://rsoft-agentic-bank.com/)
 - [RSoft Agentic Bank documentation](https://rsoft-agentic-bank.com/docs)
-- [RSoft Agentic Bank website](https://rsoft-agentic-bank.com/)
+- [BaseScan](https://basescan.org/)
 - [ClawHub skill release](https://clawhub.ai/rsoft-latam/skills/rsoft-agentic-bank)
+- [Publisher profile](https://clawhub.ai/user/rsoft-latam)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, JSON]
 
-**Output Format:** [Markdown with shell commands and JSON examples]
+**Output Format:** [Markdown instructions with shell commands and JSON responses]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires a Coinbase CDP wallet and credentials; loan requests also require a bank API key.]
+**Other Properties Related to Output:** [Commands use the configured wallet and return loan, repayment, or transaction details.]
 
 ## Skill Version(s):
 
-2.5.0 (source: skill frontmatter, package.json, ClawHub release)
+2.5.1 (source: frontmatter, package.json, server-resolved release)
 
 ## Ethical Considerations:
 

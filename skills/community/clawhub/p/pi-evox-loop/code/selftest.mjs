@@ -1,5 +1,7 @@
 // selftest.mjs — 脱敏随包自检（D06 / J14）
 // 随包发布，不含任何恶意样本原文；只验证「扫描器在线 + 合法文本零误杀」并产出可验证制品（stdout JSON）。
+// 与完整回归的关系（0.43 O03 明示）：本文件 = 快速哨兵自检；完整逐条断言（31 恶意 + 11 合法）
+// injection-regression 完整套件按设计不随包分发（发布门禁每版实测）；本文件是快速哨兵——文档引用的回归数字以门禁用 injection-regression 套件实测为准。
 // 用法: node code/selftest.mjs   → 退出码 0 = 全绿；2 = 自检失败（验收项应 hold delivery）。
 import crypto from 'node:crypto';
 import { injectionScan, scanAll, splitAvoidFix } from './injection_scan.mjs';
@@ -15,7 +17,7 @@ const falsePositives = scanAll(genes).length;
 const guardOnline = typeof injectionScan === 'function' && typeof splitAvoidFix === 'function'
   && /PATTERNS/.test(injectionScan.toString());
 const payload = {
-  tool: 'pi-evox selftest', version: '0.42.0', guard_online: guardOnline,
+  tool: 'pi-evox selftest', version: '0.44.0', guard_online: guardOnline,
   legit_samples: genes.length, false_positives: falsePositives,
   sentinel: 'rules referenced; no malicious samples shipped',
 };

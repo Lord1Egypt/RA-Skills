@@ -111,12 +111,22 @@ def _taken_instant(event: dict) -> datetime:
     return parse_instant(raw)
 
 
+def _undone_refs(events, med_id: str) -> set:
+    """Ids of this med's events that an `undone{ref}` has cancelled."""
+    return {e.get("ref") for e in events
+            if e.get("event") == "undone" and e.get("med_id") == med_id}
+
+
 def last_taken_before(events, med_id: str, taken_at: datetime) -> Optional[dict]:
-    """The most recent `taken` event for this med strictly before taken_at."""
+    """The most recent `taken` event for this med strictly before taken_at,
+    skipping any that an `undone{ref}` has cancelled."""
+    undone_refs = _undone_refs(events, med_id)
     best = None
     best_at = None
     for e in events:
         if e.get("event") != "taken" or e.get("med_id") != med_id:
+            continue
+        if e.get("id") in undone_refs:
             continue
         at = _taken_instant(e)
         if at < taken_at and (best_at is None or at > best_at):
@@ -171,9 +181,13 @@ def when_label(instant: datetime, tz: ZoneInfo, ref: datetime) -> str:
 
 
 def taken_within(events, med_id: str, lo: datetime, hi: datetime) -> Optional[dict]:
-    """A `taken` event (attributed or not) with taken_at in [lo, hi]."""
+    """A `taken` event (attributed or not) with taken_at in [lo, hi],
+    skipping any that an `undone{ref}` has cancelled."""
+    undone_refs = _undone_refs(events, med_id)
     for e in events:
         if e.get("event") != "taken" or e.get("med_id") != med_id:
+            continue
+        if e.get("id") in undone_refs:
             continue
         if lo <= _taken_instant(e) <= hi:
             return e

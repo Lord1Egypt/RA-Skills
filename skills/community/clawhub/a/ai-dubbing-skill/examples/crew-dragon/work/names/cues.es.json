@@ -1,0 +1,164 @@
+{
+ "language": "es",
+ "cues": [
+  {
+   "i": 1,
+   "start": 0.0,
+   "end": 5.157,
+   "text": "Creo que una forma de describirlo, para Doug y para mí, es que esperamos",
+   "tokens": [
+    "Creo",
+    "que",
+    "una",
+    "forma",
+    "de",
+    "describirlo,",
+    "para",
+    "Doug",
+    "y",
+    "para",
+    "mí,",
+    "es",
+    "que",
+    "esperamos"
+   ]
+  },
+  {
+   "i": 2,
+   "start": 5.24,
+   "end": 11.177,
+   "text": "que las futuras tripulaciones de las naves Dragon rumbo a estaciones de la NASA",
+   "tokens": [
+    "que",
+    "las",
+    "futuras",
+    "tripulaciones",
+    "de",
+    "las",
+    "naves",
+    "Dragon",
+    "rumbo",
+    "a",
+    "estaciones",
+    "de",
+    "la",
+    "NASA"
+   ]
+  },
+  {
+   "i": 3,
+   "start": 11.26,
+   "end": 16.297,
+   "text": "no maldigan nuestros nombres por aceptar algo complicado,",
+   "tokens": [
+    "no",
+    "maldigan",
+    "nuestros",
+    "nombres",
+    "por",
+    "aceptar",
+    "algo",
+    "complicado,"
+   ]
+  },
+  {
+   "i": 4,
+   "start": 16.38,
+   "end": 17.857,
+   "text": "difícil de entrenar,",
+   "tokens": [
+    "difícil",
+    "de",
+    "entrenar,"
+   ]
+  },
+  {
+   "i": 5,
+   "start": 17.94,
+   "end": 19.257,
+   "text": "y al final, de operar.",
+   "tokens": [
+    "y",
+    "al",
+    "final,",
+    "de",
+    "operar."
+   ]
+  },
+  {
+   "i": 6,
+   "start": 19.34,
+   "end": 21.297,
+   "text": "Que no digan: no entiendo nada.",
+   "tokens": [
+    "Que",
+    "no",
+    "digan:",
+    "no",
+    "entiendo",
+    "nada."
+   ]
+  },
+  {
+   "i": 7,
+   "start": 21.38,
+   "end": 22.917,
+   "text": "Ni recuerdo por qué es tan fácil,",
+   "tokens": [
+    "Ni",
+    "recuerdo",
+    "por",
+    "qué",
+    "es",
+    "tan",
+    "fácil,"
+   ]
+  },
+  {
+   "i": 8,
+   "start": 23.0,
+   "end": 24.237,
+   "text": "pero lo es.",
+   "tokens": [
+    "pero",
+    "lo",
+    "es."
+   ]
+  },
+  {
+   "i": 9,
+   "start": 24.32,
+   "end": 26.037,
+   "text": "Y que se olviden de nosotros,",
+   "tokens": [
+    "Y",
+    "que",
+    "se",
+    "olviden",
+    "de",
+    "nosotros,"
+   ]
+  },
+  {
+   "i": 10,
+   "start": 26.12,
+   "end": 29.1,
+   "text": "porque no tengan nada por qué maldecirnos.",
+   "tokens": [
+    "porque",
+    "no",
+    "tengan",
+    "nada",
+    "por",
+    "qué",
+    "maldecirnos."
+   ]
+  }
+ ],
+ "emphasis": [
+  "maldigan nuestros nombres",
+  "tan fácil",
+  "camino seguro a casa",
+  "salvar a la tripulación"
+ ]
+}

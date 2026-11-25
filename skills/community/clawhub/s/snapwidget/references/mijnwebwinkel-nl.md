@@ -16,7 +16,8 @@ Mijnwebwinkel laat je geen HTML-code op een pagina plakken. Je plaatst de widget
 
 1. [Maak je widget](https://snapwidget.com/docs/getting-started/create-an-instagram-widget.md), of open een bestaande widget op je [dashboard](https://snapwidget.com/dashboard).
 2. Klik op **Install Widget**.
-3. Klik in het venster **Install Widget** op **Copy Code**.
+3. Voor Mijnwebwinkel heb je de iframe-code nodig. Heeft het venster **Install Widget** een tabblad **Iframe code**? Klik daar dan eerst op.
+4. Klik op **Copy Code**.
 
 ### Koppel Google Tag Manager aan je webshop
 

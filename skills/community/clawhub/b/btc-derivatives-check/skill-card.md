@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-People considering a Bitcoin trade can use the skill to review funding and basis, open interest, positioning, recent liquidations, and nearby order-book walls across exchanges. It summarizes market conditions without recommending a trade.
+Traders and market analysts use the skill to review derivatives positioning, liquidations, and order-book liquidity before considering a Bitcoin trade. It presents market observations for context, not trade recommendations.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Paid data calls can spend up to $0.25 per task without asking, and a low-risk scan does not mean the skill is risk-free.
+Risk: Paid data calls can incur charges of up to $0.25 per task without asking first.
 
-Mitigation: Before paying, confirm the quote names recipient 0xDeA94ef76afa86bf1638B645F76108dF65890c0b, Base (eip155:8453), and USDC; stay within the $0.25 per-task limit and ask before exceeding it.
+Mitigation: Check that the quote specifies the expected recipient, Base network, and USDC asset; stay within the $0.25 per-task limit and ask before exceeding it.
 
-Risk: Market indicators may be stale, unavailable, or conflicting and could be mistaken for trading advice.
+Risk: Market indicators could be mistaken for financial advice.
 
-Mitigation: Report only returned data, state when fresh data is unavailable, note conflicting signals, and present the result as observational information rather than a trade recommendation.
+Mitigation: Present the observations and any conflicting signals without recommending a trade, and state that the data is not financial advice.
 
 ## Reference(s):
 
-- [Server-resolved source repository](https://github.com/shakeelamjid/agentreeve-skills/tree/main/btc-derivatives-check)
-- [ClawHub skill listing](https://clawhub.ai/shakeelamjid/skills/btc-derivatives-check)
-- [AgentReeve BTC derivatives endpoint](https://agentreeve.com/api/v1/btc/derivatives)
-- [AgentReeve BTC positioning endpoint](https://agentreeve.com/api/v1/btc/positioning?hours=24)
-- [AgentReeve BTC liquidations endpoint](https://agentreeve.com/api/v1/btc/liquidations?minutes=60)
-- [AgentReeve BTC order-book walls endpoint](https://agentreeve.com/api/v1/btc/walls?hours=24)
+- [Server-resolved GitHub source](https://github.com/shakeelamjid/agentreeve-skills/tree/main/btc-derivatives-check)
+- [ClawHub skill page](https://clawhub.ai/shakeelamjid/skills/btc-derivatives-check)
+- [AgentReeve derivatives data](https://agentreeve.com/api/v1/derivatives?asset=BTC)
+- [AgentReeve positioning data](https://agentreeve.com/api/v1/positioning?asset=BTC&hours=24)
+- [AgentReeve liquidation data](https://agentreeve.com/api/v1/liquidations?minutes=60)
+- [AgentReeve liquidity data](https://agentreeve.com/api/v1/liquidity?asset=BTC&size_usd=100000)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text]
+**Output Type(s):** [Text, Markdown, Market analysis, Guidance]
 
-**Output Format:** [Concise Markdown summary of market indicators and caveats]
+**Output Format:** [Concise market summary in Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Observational market data; report unavailable or conflicting signals and do not provide trade recommendations.]
+**Other Properties Related to Output:** [Reports observed market data and conflicting signals; does not recommend trades or invent values when data is unavailable.]
 
 ## Skill Version(s):
 
-0.1.1 (source: server-resolved release metadata; artifact frontmatter says 1.0.0)
+0.1.2 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

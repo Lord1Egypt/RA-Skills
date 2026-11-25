@@ -1,6 +1,6 @@
 ## Description:
 
-Guides Go developers in using the unofficial go-togetherai client to call Together AI's REST API through typed request and response methods.
+Guides Go developers in using the unofficial go-togetherai client to call Together AI REST API endpoints with typed requests and responses.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Go developers use this skill to add the go-togetherai client to a project and write typed Go calls to Together AI endpoints, including chat completions, embeddings, and model or endpoint management.
+Developers use this skill to install and integrate the go-togetherai Go client for Together AI models, chat completions, embeddings, and other API operations. It guides setup, authentication, typed requests, and response handling.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan was partial because one referenced path was unavailable.
+Risk: The security scan is incomplete because one local reference was missing.
 
-Mitigation: Review the unavailable referenced path before relying on the clean scan verdict.
+Mitigation: Review the available skill files and account for the missing reference when deciding whether to install.
 
-Risk: API credentials could be exposed if hardcoded, committed, or logged.
+Risk: Prompts and files sent through the client are processed by Together AI; fine-tuning jobs and dedicated resources can incur costs, and delete operations remove data.
 
-Mitigation: Read the bearer key from an environment variable and avoid logging request headers.
+Mitigation: Avoid sending sensitive content unless appropriate, and run costly or deleting operations only when explicitly requested.
 
-Risk: Fine-tuning, dedicated endpoints, and clusters can incur charges, while delete operations remove data.
+Risk: A Together AI API key could be exposed if hardcoded, committed, or logged.
 
-Mitigation: Run cost-incurring or destructive operations only when the user has asked for them.
+Mitigation: Read the key from an environment variable such as TOGETHER_API_KEY, and do not print or log request headers.
 
 ## Reference(s):
 
-- [Setup and API reference](references/setup.md)
-- [go-togetherai project](https://github.com/psyb0t/go-togetherai)
-- [go-togetherai Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-togetherai)
+- [Setup and reference](references/setup.md)
+- [Project homepage](https://github.com/psyb0t/go-togetherai)
+- [Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-togetherai)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [Go code, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown with inline Go and shell code blocks]
+**Output Format:** [Go source code and concise Markdown guidance with shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Requires Go 1.26.11 or newer and a Together AI API key; the client reads full response bodies rather than streaming token by token.]
 
 ## Skill Version(s):
 
-0.7.1 (source: server-resolved release metadata)
+0.8.0 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

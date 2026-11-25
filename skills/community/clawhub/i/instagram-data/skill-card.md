@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers, marketing teams, and researchers use the skill to retrieve Instagram profile and content data for creator research, social listening, and analytics workflows.
+Developers and research teams can use the skill to retrieve Instagram profile and media data for creator research, social listening, monitoring, and analytics workflows.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Using the skill sends SUPERAGNT_API_KEY to superagnt's external API, and requests may use account credits.
+Risk: Using the skill requires sending a SUPERAGNT API key to an external API provider.
 
-Mitigation: Use the key only if you trust the provider, keep it in a secret store, and monitor account credit usage.
+Mitigation: Use the integration only if you trust the provider, and keep the API key protected and limited to the intended service.
 
 ## Reference(s):
 
 - [Instagram Data documentation](https://superagnt.com/r/ch-instagram-data-docs)
-- [Instagram Data API](https://api.superagnt.com/v1/data/instagram)
-- [Instagram Data MCP server](https://mcp.superagnt.com/mcp/instagram)
+- [Scoped Instagram MCP server](https://mcp.superagnt.com/mcp/instagram)
+- [MCP installation guide](https://www.superagnt.com/install?facet=instagram)
+- [superagnt API keys](https://superagnt.com/r/ch-instagram-data-key)
 - [ClawHub listing](https://clawhub.ai/superagnt/skills/instagram-data)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+**Output Type(s):** [JSON, Analysis, Text, Markdown]
 
-**Output Format:** [Markdown instructions, curl requests, and structured JSON API responses]
+**Output Format:** [Structured JSON data summarized as text or Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Response fields vary by endpoint; optional field selection can reduce response size.]
+**Other Properties Related to Output:** [Results depend on the requested Instagram data and the API response.]
 
 ## Skill Version(s):
 
-2.0.14 (source: frontmatter)
+2.0.19 (source: frontmatter)
 
 ## Ethical Considerations:
 

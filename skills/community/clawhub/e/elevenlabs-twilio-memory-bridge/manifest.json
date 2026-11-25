@@ -1,7 +1,7 @@
 {
   "name": "ElevenLabs Twilio Memory Bridge",
   "slug": "elevenlabs-twilio-memory-bridge",
-  "version": "1.2.0",
+  "version": "1.2.4",
   "license": "MIT",
   "description": "FastAPI personalization webhook that adds persistent caller memory and dynamic context injection to ElevenLabs Conversational AI agents on Twilio. No audio proxying, file-based persistence, OpenClaw compatible.",
   "author": "britrik",
@@ -55,12 +55,17 @@
       {
         "key": "WEBHOOK_SECRET",
         "description": "Shared secret for HMAC webhook verification (required — fail-closed)"
+      },
+      {
+        "key": "DATA_ENCRYPTION_KEY",
+        "description": "Fernet key for encrypting session records, memories and notes at rest (required unless ALLOW_PLAINTEXT_STORAGE=true). Generate with: python -c \"from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())\""
       }
     ],
     "optional_env": [
       {
-        "key": "DATA_ENCRYPTION_KEY",
-        "description": "Fernet key for encrypting memories and notes at rest. Generate with: python -c \"from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())\""
+        "key": "ALLOW_PLAINTEXT_STORAGE",
+        "description": "Set to true to run without DATA_ENCRYPTION_KEY and store plain JSON (not recommended)",
+        "default": "false"
       },
       {
         "key": "SOUL_TEMPLATE_PATH",

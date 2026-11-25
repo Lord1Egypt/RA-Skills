@@ -49,3 +49,23 @@
 | **配对解读** | token 变化必须**配对**看：重复执行本身就有约 −22% 的学习效应，基因净贡献 ≈ −30pp |
 
 > **EN**: Related: `docs/overview.md` (boundaries & non-goals), `docs/common-mistakes.md` (anti-patterns with [A] evidence), `docs/advanced.md` (gate details).
+
+## 命令名写法对照（0.44 O16，命令术语对账）
+
+> **EN**: Command-name canonical forms (0.44 O16). This table is the authoritative allowlist for cross-chapter terminology checks — match against this whitelist, not bare tokens (commands have aliases).
+
+下表是命令名的**白名单**（跨章节术语对账判据以此为准，不对裸 token 做 grep——命令有别名会误报）：
+
+| 标准写法（canonical） | 常用别名/简写 | 出现章节 | 说明 |
+|---|---|---|---|
+| `node code/light-cli.mjs info` | `info` | SKILL / quickstart / advanced | 信息面板（零依赖） |
+| `node code/light-cli.mjs recall` | `recall` | SKILL / boundary / quickstart | T1 任务开始召回 |
+| `node code/light-cli.mjs draft` | `draft` | SKILL / quickstart | 流程 B 沉淀草稿 |
+| `node code/light-cli.mjs approve` | `approve` | SKILL / boundary | 审核（需 evidence） |
+| `node code/light-cli.mjs feedback` | `feedback` | SKILL / advanced | 命中回填 |
+| `node code/evolver-recall.mjs --query "..."` | `evolver-recall` | SKILL / quickstart | 独立召回入口 |
+| `node code/selftest.mjs` | `selftest` | overview / security | 包内快速哨兵 |
+| `--gene <id>` | （旧）`--register-hit <N>` | SKILL / common-mistakes | 命中寻址；旧位置参数仅兼容 |
+| `--fresh` | — | providers / examples | 就地重建（破坏性，见警告） |
+
+**口径**：同一命令在不同章节须用同一标准写法；别名只在明确标注"简写"处出现。判据对上表白名单对靶。

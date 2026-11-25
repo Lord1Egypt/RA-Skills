@@ -1,6 +1,6 @@
 ## Description:
 
-Helps an AI agent create articles, image cards, and videos, then publish them to WeChat Official Accounts or websites through a cloud computer; it also supports content produced by other skills.
+Creates AI-assisted articles, image posts, and videos, then sends them to WeChat Official Accounts or cloud computers for publication on other sites.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External content creators use an AI assistant to draft articles, image cards, and videos, then prepare or publish that content to a configured WeChat Official Account or website through a cloud computer.
+External creators and communications teams use this skill to create written, graphic, and video content, then prepare drafts or publish to WeChat and supported sites through a cloud computer.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review reports a remote updater that can replace local files and unpinned install and update commands.
+Risk: The security assessment rates the release suspicious with medium confidence, and inspection was incomplete (8 of 12 components fully inspected).
 
-Mitigation: Review the update behavior and pin the release used for installation or updates; disable automatic updates if they do not fit the deployment.
+Mitigation: Review the partially inspected components and publishing workflow before enabling the skill in an agent environment.
 
-Risk: The security review calls out external data sharing and draft-clearing capability as behaviors to assess before installation.
+Risk: Publishing and draft cleanup can affect external accounts and their content.
 
-Mitigation: Review the data-sharing and draft-clearing behavior and confirm it is appropriate for the configured account before use.
+Mitigation: Confirm the destination account and draft or publish mode before sending; review the target account before using draft cleanup.
 
-Risk: The security review says four executable files were not fully inspected, leaving partial scan coverage.
+Risk: The security guidance calls out broad activation, dependency installation, and reliance on an external publishing service.
 
-Mitigation: Review the remaining executable code before relying on the skill in a sensitive environment.
+Mitigation: Limit activation to the intended content workflow, review optional dependency sources before installation, and use the publishing service only when trusted.
 
 ## Reference(s):
 
-- [ClawHub release](https://clawhub.ai/lihengdao/skills/aigc-web-push)
-- [Configuration wizard](https://design.pcloud.ac.cn/aigc-web-push.html)
-- [虾评Skill listing](https://xiaping.coze.com/skill/015db5c8-8dc6-4c44-b16c-b865ea3c06f0)
+- [ClawHub skill page](https://clawhub.ai/lihengdao/skills/aigc-web-push)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, HTML, Rendered video files, Configuration instructions, Shell commands, Guidance]
+**Output Type(s):** [Text, HTML, Images, Video, Configuration instructions, Shell commands]
 
-**Output Format:** [Markdown, HTML, JSON, shell commands, and rendered video files]
+**Output Format:** [HTML, Markdown, image and video files, configuration guidance, and shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May create content files and publish them to a user-selected destination when requested; publishing requires user-provided account or cloud-computer configuration.]
+**Other Properties Related to Output:** [Content can be prepared as a draft or sent for publication to a selected channel and destination.]
 
 ## Skill Version(s):
 
-3.4.4 (source: release metadata, package.json)
+3.6.11 (source: frontmatter, package.json)
 
 ## Ethical Considerations:
 

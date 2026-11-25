@@ -1,6 +1,6 @@
 ## Description:
 
-Creates SHEIN-ready apparel imagery, including model looks, flat lays, detail shots, product carousels, detail pages, and promotional graphics, through Qinghu AI.
+为 SHEIN 服装卖家生成商品主图套图、详情图和促销活动图。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External apparel sellers use this skill to create SHEIN-oriented product imagery, including model photos, flat lays, detail views, carousels, product detail images, and campaign graphics.
+SHEIN and cross-border apparel sellers can turn product images into platform-oriented listing sets, detail images, and campaign posters.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Sharing an API key in chat could expose account access.
+Risk: The security review rates the skill suspicious: setup and fallback instructions use unpinned packages that may change and run with the user's permissions, and scanners flagged API-key handling.
 
-Mitigation: Store the key locally through a protected environment or secret mechanism, and rotate any key already shared.
-
-Risk: The external qhkit CLI is installed separately, can change over time, and was not bundled or audited in this review.
-
-Mitigation: Review dependency versions and control upgrades before use.
-
-Risk: Reference images are uploaded to Qinghu, and approved generation consumes credits.
-
-Mitigation: Upload only images you are authorized to share, and review the generation request before approval.
+Mitigation: Review the suspicious verdict and medium-severity findings before installing. Avoid sharing API keys in chat and consider whether you trust the package commands and the permissions they use.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-shein-image)
-- [Publisher profile (autoagc)](https://clawhub.ai/user/autoagc)
-- [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
+- [LinkPix SHEIN skill release](https://clawhub.ai/autoagc/skills/linkpix-shein-image)
+- [qhkit package](https://www.npmjs.com/package/@iqinghu/qhkit)
+- [qhkit setup guide](https://xcnzsfe4uxrw.feishu.cn/wiki/KJ0Ywsyw8iAXmRkz5l4cddDbn6g)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [Images, Text, Guidance]
 
-**Output Format:** [Markdown guidance and qhkit shell commands; generated images are returned as URLs]
+**Output Format:** [Generated product-image assets delivered as image URLs, with concise text guidance.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Image generation requires a configured qhkit account and reference images or custom copy where applicable.]
+**Other Properties Related to Output:** [Image count and visual style depend on the selected output and user request.]
 
 ## Skill Version(s):
 
-0.1.4 (source: server-resolved release evidence)
+0.1.5 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Verifies a package exists before install, defending against hallucination and slopsquatting.
+Verifies a package exists before install, defending against hallucination and slopsquatting
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and coding agents use this skill to check proposed dependencies in their package registries and identify nonexistent or typo-like names before installing or recommending them.
+Developers use this skill before adding or recommending a package to confirm that its name exists in the relevant registry and to catch likely typosquats.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review reported medium confidence because some local references were unresolved, despite finding no issues in the reviewed skill content.
+Risk: The security review was partial because four referenced local paths were not present in the scanned artifact.
 
-Mitigation: Review the source and any unresolved local references before relying on the skill.
+Mitigation: Review the unresolved paths and verify the artifact contents before installation.
 
-Risk: A registry lookup can be unavailable, leaving a package unverified.
+Risk: A registry lookup can be unverified during network failures, and the guard reports that state without blocking the install.
 
-Mitigation: Keep the result marked unverified and retry the check when the registry is reachable before installing.
+Mitigation: Treat unverified packages as unresolved and confirm their registry entry before installing or recommending them.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-imbue-dependency-verification)
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
+- [Night Market Imbue project](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
+- [ClawHub release](https://clawhub.ai/athola/skills/nm-imbue-dependency-verification)
+- [Registry checks](modules/registry-checks.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Shell commands]
+**Output Type(s):** [Guidance, Shell commands]
 
-**Output Format:** [Markdown guidance with registry check results and evidence]
+**Output Format:** [Markdown instructions with inline shell examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May report a package as unverified when its registry cannot be reached.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, release metadata)
+1.10.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

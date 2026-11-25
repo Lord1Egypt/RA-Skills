@@ -1,6 +1,6 @@
 ## Description:
 
-Guides agents in using Scavio's Costco API to find products, compare online and warehouse prices, check stock and gas prices, and retrieve coupons, deals, clearance items, and reviews.
+Search Costco products and retrieve structured product details, online and warehouse prices, stock status, gas prices, coupons, deals, clearance items, and reviews.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,50 +14,43 @@ MIT-0
 
 ## Use Case:
 
-Shoppers, analysts, and developers use the skill to look up Costco products and warehouse availability, compare prices, and track promotions using Scavio's API.
+External users and developers can ask an agent to find Costco products and retrieve current product details, online and warehouse prices, stock status, gas prices, coupons, deals, clearance items, and reviews. The skill returns the API data for comparison, research, or catalog enrichment.
 
 ### Deployment Geography for Use:
 
-Global; available Costco data and features vary by country, and coupons are US only.
+Global
 
 ## Known Risks and Mitigations:
 
-Risk: Costco lookup inputs, including location and item identifiers, are sent to a third-party provider.
+Risk: The skill sends product queries and location details, such as a ZIP code or coordinates, to Scavio.
 
-Mitigation: Use Scavio only when sharing the requested lookup inputs is acceptable.
-
-Risk: The API key may be exposed if copied into shared outputs or configuration files.
-
-Mitigation: Store SCAVIO_API_KEY in environment or secret storage and do not include it in responses.
-
-Risk: Broad pagination or multi-warehouse requests can consume paid API credits.
-
-Mitigation: Check expected credit use before running large or repeated lookups.
-
-Risk: Optional SDK or MCP packages add third-party software dependencies.
-
-Mitigation: Review those packages separately before installation.
+Mitigation: Use only the location detail needed for the search, and share product queries with Scavio only when comfortable doing so.
 
 ## Reference(s):
 
-- [Scavio Costco search documentation](https://scavio.dev/docs/costco-search?utm_source=agent-skills&utm_medium=skill&utm_campaign=costco-product-data)
-- [Scavio Costco prices documentation](https://scavio.dev/docs/costco-prices?utm_source=agent-skills&utm_medium=skill&utm_campaign=costco-product-data)
-- [Scavio Costco availability documentation](https://scavio.dev/docs/costco-availability?utm_source=agent-skills&utm_medium=skill&utm_campaign=costco-product-data)
+- [ClawHub release](https://clawhub.ai/scavio-ai/skills/costco-product-data)
+- [Costco API overview](https://scavio.dev/costco-api?utm_source=agent-skills&utm_medium=skill&utm_campaign=costco-product-data)
+- [Costco search documentation](https://scavio.dev/docs/costco-search?utm_source=agent-skills&utm_medium=skill&utm_campaign=costco-product-data)
+- [Costco prices documentation](https://scavio.dev/docs/costco-prices?utm_source=agent-skills&utm_medium=skill&utm_campaign=costco-product-data)
+- [Costco availability documentation](https://scavio.dev/docs/costco-availability?utm_source=agent-skills&utm_medium=skill&utm_campaign=costco-product-data)
+- [Costco gas documentation](https://scavio.dev/docs/costco-gas?utm_source=agent-skills&utm_medium=skill&utm_campaign=costco-product-data)
+- [Costco coupons documentation](https://scavio.dev/docs/costco-coupons?utm_source=agent-skills&utm_medium=skill&utm_campaign=costco-product-data)
+- [Costco clearance documentation](https://scavio.dev/docs/costco-clearance?utm_source=agent-skills&utm_medium=skill&utm_campaign=costco-product-data)
 - [Scavio rate limits](https://scavio.dev/docs/rate-limits?utm_source=agent-skills&utm_medium=skill&utm_campaign=costco-product-data)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance]
+**Output Type(s):** [JSON]
 
-**Output Format:** [Markdown guidance and structured JSON API responses]
+**Output Format:** [Structured JSON containing Costco product, price, stock, warehouse, gas, coupon, deal, clearance, category, autocomplete, or review data]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [API responses include item, price, availability, or promotion data depending on the endpoint.]
+**Other Properties Related to Output:** [Data is returned by the skill's API calls for use in the agent's response.]
 
 ## Skill Version(s):
 
-1.0.1 (source: server-resolved release metadata; artifact frontmatter says 1.0.0)
+1.0.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

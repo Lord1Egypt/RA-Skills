@@ -1,6 +1,6 @@
 ## Description:
 
-当用户需要做百度贴吧用户需求研究、产品痛点归纳、购买顾虑整理或常见问题分析时，基于帖子与楼层讨论输出带原话依据的需求报告。
+基于关键词、贴吧名称或帖子链接，分析百度贴吧讨论中的用户需求、产品痛点、购买顾虑和常见问题，并提供原话依据。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-产品团队、研究人员和内容策划者可用关键词、贴吧名称或帖子链接整理百度贴吧讨论中的需求主题、痛点、购买顾虑与常见问题，并查看帖子和楼层依据。
+产品团队、市场研究人员和开发者可用此技能分析百度贴吧帖子及评论，归纳用户需求、痛点、购买顾虑和常见问题，并形成附原帖依据的报告。
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill invokes the SocialDataX CLI through npx using the mutable latest release, creating supply-chain and API credential exposure risk; scan coverage was partial.
+Risk: 安全审查指出，该技能会通过未固定版本的 CLI 包运行，可能使本地凭证面临供应链风险。
 
-Mitigation: Review and pin the CLI release before use, provide API credentials only in a trusted execution environment, and account for the scan's partial coverage when assessing the release.
+Mitigation: 使用前将 CLI 固定到已审查的版本并核验依赖；确认可以向 SocialDataX 发送搜索词和链接，避免提交机密信息。
+
+Risk: 本次安全扫描未能解析部分本地引用，审查证据不完整。
+
+Mitigation: 使用前检查未解析的引用及相关依赖。
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/tieba-demand-insights)
-- [SocialDataX API key and skill information](https://socialdatax.com/ai?from=clawhub)
-- [SocialDataX billing](https://socialdatax.com/dashboard/billing)
+- [SocialDataX 产品与 API Key 页面](https://socialdatax.com/ai?from=clawhub)
+- [ClawHub 技能发布页](https://clawhub.ai/devinchen2014/skills/tieba-demand-insights)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, Markdown]
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [Markdown demand report with short quotations and post/comment references]
+**Output Format:** [带帖子和评论引用的 Markdown 需求报告]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes sample counts, observation scope, evidence strength, and known gaps when available.]
+**Other Properties Related to Output:** [注明样本量、观察范围、证据强弱、缺失信息和可尝试的后续行动。]
 
 ## Skill Version(s):
 
-0.1.6 (source: ClawHub release metadata)
+0.1.7 (source: server release metadata)
 
 ## Ethical Considerations:
 

@@ -12,7 +12,7 @@ HTTP 入口：`POST http://127.0.0.1:{api_port}`，Body 为 JSON。
 
 **打开意图配置**：Skill 目录 [`opening_malls.json`](opening_malls.json) 记录客户已下达「打开」指令的店铺名。关店 / 关站斧时清理。OpenBrowser 前用 `GetBrowserWebDriver` **只请求 1 次、超时 5s**；超时仍执行 `OpenBrowser`。
 
-**请求方式**：阶段 A **优先 Python `requests`（`timeout=1.5`）**；**禁止**为同一探测在 PowerShell/curl/Python 间换工具试错；**禁止** Windows `curl` 手工转义 JSON。
+**请求方式**：阶段 A **优先内置 Node 脚本（`timeout=1.5`）**；**禁止**为同一探测在 PowerShell/curl/Node 间换工具试错；**禁止** Windows `curl` 手工转义 JSON。
 
 ## 通用约定
 
@@ -630,14 +630,14 @@ SetInstallPlugins([]) → ClearCache（browserId=mall_id）→ OpenBrowser
 2. **首次**打开店铺会下载内核，建议客户先在站斧客户端手动打开一次；不同内核的店铺需分别手动打开一次后再自动化。
 3. 同时安装普通版与 WebDriver 版时，需使用 WebDriver 版。
 4. 用 `GetBrowserList` **能取到数据**判断站斧已打开；**禁止**用 `LoadSuccess` 判断。确认为站斧 WebDriver 时**勿杀进程重启**；打开/关闭店铺均继续 HTTP。仅目标端口无响应、被非站斧占用、或客户明确要求时才冷启动（**空闲端口**，优先 12678，占用则递增）。**打开站斧且探测未打开/非站斧占用时，立刻清空 `opening_malls.json`**；安装目录须按快捷方式/常见目录查找，找不到则向客户索要。**禁止**因 12678 被占用而要求客户先停掉其他服务。
-5. 访问本地 HTTP 服务：单次探测 `timeout=1.5`；冷启动后**立刻轮询** `GetBrowserList`（间隔 0.5s，最多 8s），勿固定干等。`OpenBrowser` 成功后固定等待 **10s** 再取 `WebDriverPort`。
+5. 访问本地 HTTP 服务：单次探测 `timeout=1.5`；冷启动后**立刻轮询** `GetBrowserList`（间隔 0.5s，最多 8s），勿固定干等。`OpenBrowser` 成功后固定等待 **200ms** 再取 `WebDriverPort`（由 `open_mall.mjs` 完成）。
 6. 自动创建店铺后再打开，中间需**等待**列表同步。
 7. 客户要求**打开**但目标店铺已打开时，须询问是否需要**关闭店铺**；客户明确要求**关闭**时直接 `CloseBrowser` 并清理 `opening_malls.json`。
 8. 打开店铺指令（**站斧已打开后**）写入 `opening_malls.json`；OpenBrowser 前 `GetBrowserWebDriver` **单次 5s**，超时仍 `OpenBrowser`。关店 / 关站斧 / **探测站斧未打开**时清理该配置。
 9. `OpenBrowser` / OpenBrowser 后 `GetBrowserWebDriver` 失败时，提醒客户确认店铺是否已绑定 IP/设备，以及是否已手动打开过该店铺下载内核。
 10. 需默认加载插件时，在 `OpenBrowser` **之前**调用 `SetInstallPlugins`；`chrome_id` 可省略或传 `""`；传 `[]` 可清空插件列表。
 11. **清空插件列表**（`installPlugins: []`）后，若插件曾通过自动化安装，须再对该店铺调用 **`ClearCache`** 清除本地缓存后重新 `OpenBrowser`，清空才生效。
-12. Agent 阶段 A **只用 Python requests**，禁止为通断探测切换 PowerShell/curl；杀进程后最多等 1s（Win:`taskkill` / Mac:`killall 站斧`），勿固定等 3s。
+12. Agent 阶段 A **只用内置 Node 脚本**，禁止为通断探测切换 PowerShell/curl；杀进程后最多等 1s（Win:`taskkill` / Mac:`killall 站斧`），勿固定等 3s。
 13. **macOS** 不得调用 `SetDownLoadPath` / `ClearCacheFolder` / `ClearCache` / `SetInstallPlugins`（目前不支持）。
 14. **macOS** 打开/复用店铺后若 `GetBrowserWebDriver.KernalNumber ≤ 130`：立即停止自动化，提示客户切换到 **130 以上**内核（或请主账号切换），并请客户**手动重启站斧**后再继续。
 15. **启动参数禁止减少**：Windows / macOS **均须四项齐全**：`--multip --run_type=web_driver --ipc_type=http --httpport=`（macOS 通过 `open -a … --args` 传入）。

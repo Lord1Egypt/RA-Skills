@@ -1,6 +1,6 @@
 ## Description:
 
-Routes sections of an explanation to suitable formats and can produce an interactive, offline HTML page.
+把回答按内容分块，选择合适的文字、表格、图表或交互组件，并生成可调色和批注的离线讲解页。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and other users can use the skill to explain concepts, processes, architectures, and comparisons in a format suited to each section, either in chat or as an offline interactive page.
+Developers and agents use this skill to turn explanations, comparisons, diagnostics, and procedures into structured Markdown and offline interactive pages. It is intended for answers where diagrams or other structured views can improve understanding.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Untrusted project settings may run code or expose secrets.
+Risk: Answer content may be sent to external classification services, and the security review raises activity and capability concerns with incomplete component analysis.
 
-Mitigation: Use the CLI only in trusted projects or a sandbox without unrelated credentials, and review user and project configuration before running it.
-
-Risk: Local routing does not disable plugins.
-
-Mitigation: Review plugin configuration and do not treat local routing as a plugin safety boundary.
-
-Risk: Private material may be exposed through embedded files or agent-wide hooks.
-
-Mitigation: Check embedded files before sharing private material and avoid agent-wide hooks until file boundaries, temporary-file handling, and log privacy are improved.
+Mitigation: Avoid use with confidential answer content until external classification can be disabled, self-hosted routing behavior is clarified, and activity logging limits are reviewed; assess the components not fully analyzed.
 
 ## Reference(s):
 
+- [ClawHub release page](https://clawhub.ai/dotpopo/skills/call-pele-answer)
+- [Project homepage](https://github.com/dotpopo/call-pele-answer)
+- [CLI and router guide](references/cli.md)
+- [Routing guide](references/routing.md)
+- [Page customization guide](references/page.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, HTML, JSON]
+**Output Type(s):** [Markdown, HTML]
 
-**Output Format:** [Markdown responses, standalone interactive HTML pages, or JSON intermediate representation]
+**Output Format:** [Markdown manuscript and offline interactive HTML page]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Pages can include diagrams, tables, sliders, tabs, and step-by-step views.]
+**Other Properties Related to Output:** [The page can include diagrams, interactive views, color controls, and annotations.]
 
 ## Skill Version(s):
 
-0.4.1 (source: frontmatter, server release)
+0.5.10 (source: artifact frontmatter and server release evidence)
 
 ## Ethical Considerations:
 

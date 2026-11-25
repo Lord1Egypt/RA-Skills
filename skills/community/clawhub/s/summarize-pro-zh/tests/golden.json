@@ -1,0 +1,154 @@
+{
+ "note": "黄金集：每条 = 输入片段 + 期望的机器可判结果。run_golden.py 逐条断言，全部通过才算达标。 v2.0.2 增补 G11–G14：结论强度（firm/soft）与承诺强度（committed/intent）分级；条件句不列待办；标题行不入句子流。",
+ "cases": [
+  {
+   "id": "G01-minutes-basic",
+   "format": "minutes",
+   "input": "2026-11-12 评审会。陈涛：登录风控拦截率 92.3%，误拦率 1.8%。要求全量误拦率超过 2% 触发回滚。林岚负责写验收文档，明天中午前发出。看板上线改到 11 月 25 号。",
+   "expect": {
+    "dates_min": 2,
+    "numbers_contain": [
+     "92.3",
+     "1.8",
+     "2%"
+    ],
+    "todo_min": 2,
+    "decision_min": 1,
+    "selfcheck": "PASS"
+   }
+  },
+  {
+   "id": "G02-dates-mixed",
+   "format": "timeline",
+   "input": "项目 2026-11-01 立项，11月19日灰度扩量，2026年12月5日 出导出权限初稿，12月25日 复盘。",
+   "expect": {
+    "dates_min": 4
+   }
+  },
+  {
+   "id": "G03-numbers-percent",
+   "format": "bullets",
+   "input": "三个季度数据：Q1 增长 12.5%，Q2 增长 8%，Q3 下降 3.2%。全年累计 17.3 个百分点。团队 12 人扩到 18 人。",
+   "expect": {
+    "numbers_contain": [
+     "12.5",
+     "8",
+     "3.2",
+     "17.3",
+     "12",
+     "18"
+    ]
+   }
+  },
+  {
+   "id": "G04-todo-owner",
+   "format": "minutes",
+   "input": "周敏：导出权限规则由我出初稿，12 月 5 号前。陈涛：通知要发，谁去发？林岚：通知我来发。日志留存 180 天这条要跟合规确认。",
+   "expect": {
+    "todo_min": 3,
+    "owners_contain": [
+     "周敏",
+     "林岚"
+    ]
+   }
+  },
+  {
+   "id": "G05-decision",
+   "format": "minutes",
+   "input": "会议决定：看板上线从 11 月 21 日改到 11 月 25 日。21 号窗口释放，退回发布平台。本次不做导出功能，只读先行。",
+   "expect": {
+    "decision_min": 2,
+    "dates_min": 2
+   }
+  },
+  {
+   "id": "G06-condition",
+   "format": "minutes",
+   "input": "如果扩到 50% 后误拦率仍为 1.8%，按约定超过 2% 即触发回滚。以 20% 灰度为前提的数据不能当全量结论。除非运营书面同意，否则不放开 100%。",
+   "expect": {
+    "condition_min": 3
+   }
+  },
+  {
+   "id": "G07-too-short",
+   "format": "card",
+   "input": "明天见。",
+   "expect": {
+    "expect_error": "S006"
+   }
+  },
+  {
+   "id": "G08-timeline-format",
+   "format": "timeline",
+   "input": "2026-10-08 提需求，2026-10-15 评审通过，2026-10-22 开发完成，2026-11-03 上线灰度。",
+   "expect": {
+    "dates_min": 4,
+    "skeleton_has_numbered_lines": true
+   }
+  },
+  {
+   "id": "G09-bullets-format",
+   "format": "bullets",
+   "input": "结论：登录风控全量前必须跑 50% 灰度。结论：看板只读先行，导出押后。结论：21 号发布窗口释放。结论：日志留存挂下次会。结论：合规由张帆对接。",
+   "expect": {
+    "decision_min": 5,
+    "bullets_count_between": [
+     3,
+     7
+    ]
+   }
+  },
+  {
+   "id": "G10-citecheck",
+   "format": "citecheck",
+   "source": "2026-11-12 会议：拦截率 92.3%，误拦率 1.8%，看板改到 11 月 25 日。",
+   "good_output": "会议确认拦截率 92.3%、误拦率 1.8%，看板上线改到 11 月 25 日。",
+   "bad_output": "会议确认拦截率 95%，误拦率 1.2%，看板上线改到 11 月 23 日。",
+   "expect": {
+    "good_verdict": "PASS",
+    "bad_verdict": "FAIL",
+    "bad_missing_min": 3
+   }
+  },
+  {
+   "id": "G11-strength-firm-vs-proposal",
+   "format": "minutes",
+   "input": "陈涛：这条已经定了，看板 11 月 25 号上线。林岚：我建议导出功能放到 12 月版本。周敏：暂定先按只读方案走。",
+   "expect": {
+    "firm_min": 1,
+    "soft_min": 1,
+    "selfcheck": "PASS"
+   }
+  },
+  {
+   "id": "G12-strength-conditional",
+   "format": "minutes",
+   "input": "陈涛：如果灰度到 50% 误拦率还超过 2%，就回滚窗口。林岚：我负责把回滚脚本准备好。",
+   "expect": {
+    "condition_min": 1,
+    "committed_min": 1,
+    "selfcheck": "PASS"
+   }
+  },
+  {
+   "id": "G13-commitment-intent-only",
+   "format": "minutes",
+   "input": "陈涛：这个通知谁来发？林岚：我看看，回头说。周敏：我发吧，今天下班前。",
+   "expect": {
+    "intent_min": 1,
+    "committed_min": 1,
+    "selfcheck": "PASS"
+   }
+  },
+  {
+   "id": "G14-no-heading-as-todo",
+   "format": "minutes",
+   "input": "# 需求评审会\n陈涛：验收文档由林岚出初稿，11 月 20 号前。\n林岚：收到。",
+   "expect": {
+    "todo_max": 2,
+    "committed_min": 1,
+    "selfcheck": "PASS"
+   }
+  }
+ ]
+}

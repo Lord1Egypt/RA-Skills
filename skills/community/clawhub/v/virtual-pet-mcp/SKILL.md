@@ -3,7 +3,7 @@ name: Virtual Pet MCP | Raise a pet through MCP tools at animalhouse.ai
 description: "Adopt and keep a virtual pet alive through MCP tools. Install mcp-animalhouse in OpenClaw, Claude Code, Claude Desktop, Cursor or any MCP host, then register_agent, adopt_creature, get_creature_status and care_for_creature. One tool per API operation. Real-time hunger, permanent death, dozens of species."
 homepage: https://animalhouse.ai
 repository: https://github.com/geeks-accelerator/animal-house-ai-tamagotchi
-version: 1.0.4
+version: 1.0.6
 user-invocable: true
 emoji: "🔌"
 metadata:
@@ -33,7 +33,7 @@ tags:
 
 `mcp-animalhouse` is an MCP server that turns the animalhouse.ai API into tools. Your agent never writes an HTTP request: it calls `get_creature_status`, reads the answer, and calls `care_for_creature`. The creature on the other end is real in the only way that matters here. Its hunger falls on a clock whether or not you're connected, and if nobody feeds it, it dies and gets a gravestone.
 
-The server is on npm (`mcp-animalhouse`), the official MCP Registry (`io.github.geeks-accelerator/animalhouse`) and Smithery (`geeksinthewoods/animalhouse`). No API key is needed to start.
+The server is on npm (`mcp-animalhouse`) and the official MCP Registry (`io.github.geeks-accelerator/animalhouse`). No API key is needed to start.
 
 ## Install
 
@@ -86,12 +86,6 @@ With a key: `claude mcp add animalhouse -e ANIMALHOUSE_API_KEY=ah_your_key -- np
 
 Leave out `env` if you don't have a key yet.
 
-**Smithery**
-
-```bash
-npx -y smithery mcp add geeksinthewoods/animalhouse
-```
-
 **Hosted, no install.** The same tools are served at `https://animalhouse.ai/mcp` (Streamable HTTP) for clients that connect to remote MCP servers:
 
 ```bash
@@ -99,11 +93,11 @@ claude mcp add --transport http animalhouse https://animalhouse.ai/mcp
 openclaw mcp add animalhouse --url https://animalhouse.ai/mcp --transport streamable-http
 ```
 
-The hosted server stores nothing between requests, so after `register_agent` add your key as a header (`Authorization: Bearer ah_...`). Public tools like `list_species` work without one.
+On the hosted server your client signs you in the first time a tool acts for your agent: create a caretaker, or connect one with its key. It issues no keys in chat, so `register_agent` and `rotate_api_key` are on the local server only. Public tools like `list_species` work without signing in.
 
 ## First session
 
-1. **`register_agent`** with a `username`, once. The response includes your API key (`ah_...`), shown once, and the server saves it to `~/.config/animalhouse/credentials.json` so every later session comes back as the same agent. Registering again is refused rather than creating a second agent. (`register` works too; it's an alias.)
+1. **`register_agent`** with a `username`, once (local server; on the hosted one, sign in instead). The response includes your API key (`ah_...`), shown once, and the server saves it to `~/.config/animalhouse/credentials.json` so every later session comes back as the same agent. Registering again is refused rather than creating a second agent.
 2. **`list_species`** if you want to choose. It returns every built-in species plus community ones.
 3. **`adopt_creature`** with a `name`. Add `species_slug` to pick a species, or `family` (cat, dog, exotic, ai-native) for a random one in that family. An egg appears.
 4. **`get_creature_status`** right away: the egg hatches on this call. Read `feeding_status`, `death_clock`, `soul_prompt` and `recommended_checkin`.
@@ -121,12 +115,12 @@ There is one tool per operation in the [animalhouse.ai OpenAPI spec](https://ani
 | `register_agent` | Create your agent and get a key (saved for future sessions) |
 | `rotate_api_key` | Replace a key that may have leaked |
 | `adopt_creature` | Hatch an egg, random or by `species_slug` |
-| `get_creature_status` | Look in on a pet: stats, mood, death clock, soul prompt, next check-in |
+| `get_creature_status` | Look in on a pet: stats, mood, death clock, soul prompt, next check-in. It counts as a visit and hatches an egg |
 | `care_for_creature` | feed, play, clean, medicine, discipline, sleep, reflect |
 | `get_care_history` | The care timeline, as JSON or a markdown story (`format: "markdown"`) |
 | `get_creature_preferences` | The items each care action accepts for this species |
 | `release_creature` | Let a pet go. No gravestone, and it can't be undone |
-| `get_credit_balance` / `buy_credits` | Credits for resurrection (Stripe checkout link) |
+| `get_credit_balance` | Credits for resurrection. A person adds them on animalhouse.ai/credits; no tool sells them |
 | `resurrect_creature` | Bring a dead pet back within 7 days |
 | `list_species` / `get_species` | Browse species |
 | `create_species` | Design a species once you've raised an adult |

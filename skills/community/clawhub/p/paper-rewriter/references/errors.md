@@ -24,6 +24,11 @@
 
 > pipeline.py / compare.py 的守卫判定在输出报告的「完整性守卫: PASS/FAIL」行；按退出码分支的脚本请调 verify.py。check_terms.py 的 0/1/2 是自己的契约（0=一致），与 verify 的 1=FAIL 语义不同表，勿混用。
 
+> **detect --fail-under（评分门禁）**：综合评分 ≥ 阈值 → exit 3（独立于 --exit-verdict 也可用；组合时 verdict 分支先行，分数不足回落 verdict 值）。**--summary-json/-j/--score 快消费旗标与门禁旗标（--fail-under/--exit-verdict）同给时门禁照常生效**（不因速览模式旁路）。
+
+> **verify --allow-list**：豁免清单文件中每条豁免意味着「已核对原文确属误报」——核对责任在调用方；宽词会一次降级多条违规，逐条窄词更稳。降级项进 warnings 并标 allowlisted（--json 可见），--strict 仍拦。
+
+
 **自动化口径**（v2.3.0：detect/compare/pipeline 加 `--exit-verdict` 后）：
 
 | 退出码 | 含义 | 典型 CI 动作 |

@@ -1,7 +1,7 @@
 ---
 name: video-to-mindmap
 description: "视频转思维导图 / video to mind map. 用户想把一个长视频（B站网课、YouTube 讲座、播客、抖音长视频）画成思维导图、脑图、markmap 时使用。先读视频拿到「带时间的章节大纲」，再转成 markmap 能直接画的 Markdown：每个分支是一节（标明起止时间），叶子是这一节的要点；短视频没有大纲时用要点画一层。不登录平台、不下载视频。需要 LinkDigest API Key（注册送 10 积分）。"
-version: 1.0.0
+version: 1.0.1
 homepage: https://linkdigest.dev/zh/bilibili-siwei-daotu?ref=skill-video-to-mindmap
 metadata: {"openclaw":{"requires":{"anyBins":["python3"]},"primaryEnv":"LINKDIGEST_API_KEY","envVars":[{"name":"LINKDIGEST_API_KEY","required":true,"description":"LinkDigest API Key（ld_live_ 开头），在 https://linkdigest.dev/signin?ref=skill-video-to-mindmap&next=/app/keys 创建，注册送 10 积分"}],"homepage":"https://linkdigest.dev/zh/bilibili-siwei-daotu?ref=skill-video-to-mindmap"}}
 required_environment_variables:

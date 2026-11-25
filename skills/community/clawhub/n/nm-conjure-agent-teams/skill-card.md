@@ -1,6 +1,6 @@
 ## Description:
 
-Coordinates Claude Code agent teams through filesystem-based task and messaging workflows.
+Coordinates Claude agent teams over a filesystem protocol. Use for parallel agents with task dependencies.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers using Claude Code use this skill to coordinate parallel agent work, assign tasks and dependencies, exchange messages, and monitor team health.
+Developers use this skill to coordinate Claude Code agents working on parallel tasks, manage task dependencies, and exchange team messages.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Deleting a lock file while related processes are active can allow conflicting access to shared state.
+Risk: Manually removing lock files while agents are coordinating can disrupt shared task or message updates.
 
-Mitigation: Confirm all related processes have stopped before deleting a lock file, and review the referenced components because the security assessment is incomplete.
+Mitigation: Before cleanup, confirm no active agent holds or needs the lock and follow the documented recovery process; do not remove an active lock file.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-conjure-agent-teams)
-- [Project page listed in Clawdis metadata](https://github.com/athola/claude-night-market/tree/master/plugins/conjure)
+- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/conjure)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, JSON configuration, Guidance]
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON]
 
-**Output Format:** [Markdown guidance with shell commands and JSON examples]
+**Output Format:** [Markdown with inline shell commands and JSON examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes task, team, messaging, and health-monitoring procedures.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.10.3 (source: server release metadata)
+1.10.4 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

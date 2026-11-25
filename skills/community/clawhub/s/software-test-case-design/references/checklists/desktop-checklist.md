@@ -1,20 +1,22 @@
 # Desktop Testing Checklist
 
-## Window Management (12 items)
-- [ ] Window resize
+> The sections of this checklist correspond one-to-one with `references/platform/desktop.md` and are used for item-by-item self-checking after test case design.
+
+## Window Management
+- [ ] Window resizing
 - [ ] Window maximize
 - [ ] Window minimize
 - [ ] Window restore
-- [ ] Window drag to move
+- [ ] Window drag and move
 - [ ] Multi-window management
-- [ ] Window always-on-top
-- [ ] Fullscreen mode
+- [ ] Always on top
+- [ ] Full-screen mode
 - [ ] Split-screen mode
-- [ ] Window state persistence
-- [ ] Frameless window
-- [ ] Modal window
+- [ ] Window state retention
+- [ ] Windows without a title bar
+- [ ] Modal windows
 
-## Keyboard Shortcuts (14 items)
+## Keyboard Shortcuts
 - [ ] Copy and paste
 - [ ] Undo and redo
 - [ ] Select all
@@ -24,74 +26,74 @@
 - [ ] Function keys
 - [ ] Custom shortcuts
 - [ ] Shortcut conflicts
-- [ ] Shortcut disabling
+- [ ] Disabling shortcuts
 - [ ] Cross-platform differences
 - [ ] Shortcut hints
 - [ ] Key combinations
 - [ ] Long-press shortcuts
 
-## File Operations (14 items)
-- [ ] File open
-- [ ] Drag to open file
-- [ ] File save
-- [ ] Save as
-- [ ] Auto-save
+## File Operations
+- [ ] Opening files
+- [ ] Opening files by drag and drop
+- [ ] Saving files
+- [ ] Save As
+- [ ] Autosave
 - [ ] File import
 - [ ] File export
-- [ ] Drag to export
+- [ ] Drag-to-export
 - [ ] Clipboard operations
-- [ ] File association
+- [ ] File associations
 - [ ] Recent files
 - [ ] File locking
 - [ ] Large file handling
 - [ ] Network files
 
-## System Integration (10 items)
+## System Integration
 - [ ] System tray icon
-- [ ] Tray right-click menu
+- [ ] Tray context menu
 - [ ] Notification center
-- [ ] Auto-start on boot
-- [ ] File association
+- [ ] Launch at startup
+- [ ] File associations
 - [ ] Protocol handling
-- [ ] Right-click menu integration
+- [ ] Context menu integration
 - [ ] Taskbar integration
 - [ ] Menu bar integration
-- [ ] File sharing
+- [ ] Shared files
 
-## Multi-Monitor Adaptation (8 items)
+## Multi-Monitor Adaptation
 - [ ] Single monitor
-- [ ] Dual-screen extended
-- [ ] Multi-screen extended
+- [ ] Dual-monitor extended mode
+- [ ] Multi-monitor extended mode
 - [ ] Mirror mode
 - [ ] Different resolutions
 - [ ] DPI scaling
-- [ ] Window across screens
-- [ ] Fullscreen across multiple screens
+- [ ] Windows across monitors
+- [ ] Full screen with multiple monitors
 
-## System Compatibility (12 items)
-- [ ] Windows 10
-- [ ] Windows 11
-- [ ] Different macOS versions
-- [ ] Intel chip
-- [ ] ARM64 chip
-- [ ] Chinese system
-- [ ] English system
-- [ ] Other language systems
-- [ ] Light mode
-- [ ] Dark mode
-- [ ] High contrast mode
-- [ ] Virtual machine
-
-## Installation & Updates (12 items)
+## Installation and Updates
 - [ ] Installer download
 - [ ] Installation wizard
-- [ ] Installation location
+- [ ] Install location
 - [ ] Shortcuts
 - [ ] First run
 - [ ] Uninstallation
-- [ ] Residue cleanup
-- [ ] Auto-update detection
-- [ ] Auto-download and install
+- [ ] Leftover cleanup
+- [ ] Automatic update detection
+- [ ] Automatic download and installation
 - [ ] Restart after update
 - [ ] Data migration
 - [ ] Rollback
+
+## System Compatibility
+- [ ] Windows 10
+- [ ] Windows 11
+- [ ] Different macOS versions
+- [ ] Intel chips
+- [ ] ARM64 chips
+- [ ] Chinese-language OS
+- [ ] English-language OS
+- [ ] OS in other languages
+- [ ] Light mode
+- [ ] Dark mode
+- [ ] High-contrast mode
+- [ ] Virtual machines

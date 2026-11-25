@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers, researchers, and marketing teams can use the skill to retrieve X posts, profiles, followers, search results, and related signals for audience research and social listening.
+Developers, marketing teams, and researchers use this skill to retrieve X posts, profiles, follower information, search results, and related signals for audience research and social listening.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Requests send SUPERAGNT_API_KEY to the Superagnt API, and calls may use account credits.
+Risk: API requests require a Superagnt bearer key, and usage is tied to the workspace's credits.
 
-Mitigation: Confirm you expect the Superagnt integration, provide the key through approved secret storage, and monitor account credit usage.
+Mitigation: Keep the key private, provide it only when the user authorizes the connection, and check the workspace balance before making requests.
 
 ## Reference(s):
 
-- [Documentation](https://superagnt.com/r/ch-x-twitter-data-docs)
-- [API key and account credits](https://superagnt.com/r/ch-x-twitter-data-key)
-- [Scoped X MCP server](https://mcp.superagnt.com/mcp/x)
-- [X data API](https://api.superagnt.com/v1/data/x)
+- [X Data documentation](https://superagnt.com/r/ch-x-twitter-data-docs)
+- [X Data API](https://api.superagnt.com/v1/data/x)
+- [Scoped MCP server](https://mcp.superagnt.com/mcp/x)
+- [MCP client setup](https://www.superagnt.com/install?facet=x)
 - [ClawHub listing](https://clawhub.ai/superagnt/skills/x-twitter-data)
+- [API key setup](https://superagnt.com/r/ch-x-twitter-data-key)
 
 ## Skill Output:
 
-**Output Type(s):** [API calls, JSON data]
+**Output Type(s):** [JSON, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Structured JSON responses with Markdown usage guidance and shell command examples]
+**Output Format:** [Structured JSON data with Markdown setup guidance and curl examples.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Live X data; requires SUPERAGNT_API_KEY and may use account credits.]
+**Other Properties Related to Output:** [Responses depend on the selected endpoint and query; continuation tokens support pagination where available.]
 
 ## Skill Version(s):
 
-2.0.14 (source: frontmatter)
+2.0.19 (source: frontmatter)
 
 ## Ethical Considerations:
 

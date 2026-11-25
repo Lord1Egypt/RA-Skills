@@ -1,7 +1,7 @@
 ---
 name: "smyx-livestock-fever-detection-analysis"
 description: "Detects abnormal body temperature rise or drop in livestock and poultry from thermal or visible-light imagery, and outputs fever/hypothermia early warnings based on visual thermal features. | 通过热成像或视觉特征识别畜禽体温异常，预警发热。"
-version: "1.0.20"
+version: "1.0.22"
 license: "MIT-0"
 ---
 

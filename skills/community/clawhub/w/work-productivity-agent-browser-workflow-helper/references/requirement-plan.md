@@ -2,7 +2,7 @@
 
 ## Live Requirement
 
-Validated demand: Agent users show strong demand for Agent Browser-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
+Validated demand: Agent users show strong demand for Agent Browser-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 9 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
 
 ## Audience
 
@@ -20,12 +20,12 @@ Demand: 70/70
 
 Local feasibility: 30/30
 
-Evidence coverage: 12 signals across 3 source families.
+Evidence coverage: 9 signals across 3 source families.
 
 Scoring rationale:
 
-- Evidence count: 12; required minimum: 3.
-- Distinct source families: 3; sources: clawhub, csdn, github.
+- Evidence count: 9; required minimum: 3.
+- Distinct source families: 3; sources: clawhub, github, hacker-news.
 - Demand score: 70/70 based on corroboration, source diversity, and professional/community signal.
 - Local feasibility score: 30/30.
 - Implementation is a documentation, workflow, code, or analysis skill that can run on ordinary CPU hardware.
@@ -33,18 +33,15 @@ Scoring rationale:
 
 ## Evidence
 
-- clawhub-popular-skill (2026-09-16T21:35:54.485000+00:00): [Popular Clawhub skill demand: Gog has 199,902 downloads](https://clawhub.ai/skills/gog)
-- clawhub-popular-skill (2026-06-12T12:48:37.834000+00:00): [Popular Clawhub skill demand: Github has 205,418 downloads](https://clawhub.ai/skills/github)
-- clawhub-popular-skill (2026-05-11T07:50:52.489000+00:00): [Popular Clawhub skill demand: ontology has 201,919 downloads](https://clawhub.ai/skills/ontology)
-- clawhub-popular-skill (2026-05-11T07:50:48.771000+00:00): [Popular Clawhub skill demand: Agent Browser has 159,909 downloads](https://clawhub.ai/skills/agent-browser-clawdbot)
-- clawhub-popular-skill (2026-05-18T20:48:40.034000+00:00): [Popular Clawhub skill demand: Obsidian has 113,345 downloads](https://clawhub.ai/skills/obsidian)
-- clawhub-popular-skill (2026-05-11T07:48:49.679000+00:00): [Popular Clawhub skill demand: Nano Pdf has 123,827 downloads](https://clawhub.ai/skills/nano-pdf)
-- github-issues (2026-11-03T11:45:24+00:00): [Shared agent-detection library](https://github.com/chancery-lane-project/wp-mfa-plugin/issues/46)
-- csdn-search (2026-11-07T00:00:00+00:00): [BrowserSkill：面向CLI的Chromium浏览器能力调度系统](https://blog.csdn.net/weixin_33226548/article/details/170216160?ops_request_misc=elastic_search_misc&request_id=6b377269fe004829986ac64e477ad116&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~ElasticSearch~search_v2-7-170216160-null-null.142^v102^control&utm_term=agent-browser%20browser%20headless%20automation)
-- github-issues (2026-11-16T06:58:08+00:00): [AI Agent Radar 周榜 · 2026-W47](https://github.com/apiiskan/ai-agent-radar/issues/134)
-- github-issues (2026-11-16T05:49:03+00:00): [AI Agent Radar 日报 · 2026-11-16](https://github.com/apiiskan/ai-agent-radar/issues/133)
-- github-issues (2026-11-15T05:48:20+00:00): [AI Agent Radar 日报 · 2026-11-15](https://github.com/apiiskan/ai-agent-radar/issues/132)
-- github-issues (2026-11-14T05:48:10+00:00): [AI Agent Radar 日报 · 2026-11-14](https://github.com/apiiskan/ai-agent-radar/issues/131)
+- clawhub-popular-skill (2026-09-16T21:35:54.485000+00:00): [Popular Clawhub skill demand: Gog has 200,585 downloads](https://clawhub.ai/skills/gog)
+- clawhub-popular-skill (2026-06-12T12:48:37.834000+00:00): [Popular Clawhub skill demand: Github has 206,379 downloads](https://clawhub.ai/skills/github)
+- clawhub-popular-skill (2026-05-11T07:50:52.489000+00:00): [Popular Clawhub skill demand: ontology has 202,433 downloads](https://clawhub.ai/skills/ontology)
+- clawhub-popular-skill (2026-05-11T07:50:48.771000+00:00): [Popular Clawhub skill demand: Agent Browser has 160,526 downloads](https://clawhub.ai/skills/agent-browser-clawdbot)
+- clawhub-popular-skill (2026-05-18T20:48:40.034000+00:00): [Popular Clawhub skill demand: Obsidian has 113,764 downloads](https://clawhub.ai/skills/obsidian)
+- clawhub-popular-skill (2026-05-11T07:48:49.679000+00:00): [Popular Clawhub skill demand: Nano Pdf has 124,106 downloads](https://clawhub.ai/skills/nano-pdf)
+- hacker-news-ask-hn (2026-11-24T22:05:34+00:00): [Four C/C++ libraries ported to pure managed .NET on a $20 plan](https://news.ycombinator.com/item?id=50635452)
+- github-issues (2026-11-25T13:47:18+00:00): [SPEC: 升级为可复现的主题生成器（project bundle + 非交互生成 + 单文件输出）](https://github.com/Jvcon/trime-theme-editor/issues/1)
+- github-issues (2026-11-25T13:44:38+00:00): [[FEATURE] Claude Code desktop (Code tab): keyboard push-to-talk for voice dictation, matching the CLI's hold-to-talk](https://github.com/anthropics/claude-code/issues/112213)
 
 ## How The Skill Meets The Requirement
 

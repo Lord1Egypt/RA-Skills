@@ -1,0 +1,3 @@
+interface:
+  display_name: "Bankgpt Workflow"
+  short_description: "BankGPT data generation, scanning, comparison, merge, and AI summary workflow"

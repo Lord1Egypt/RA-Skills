@@ -38,8 +38,8 @@ Body:
 {
   "list_id": "LIST_ID_HERE",
   "contacts": [
-    { "Email": "alice@corp.com", "First_Name": "Alice", "Company": "Corp Inc" },
-    { "Email": "bob@startup.io", "First_Name": "Bob", "Company": "Startup IO" }
+    { "email": "alice@corp.com", "first_name": "Alice", "company_name": "Corp Inc" },
+    { "email": "bob@startup.io", "first_name": "Bob", "company_name": "Startup IO" }
   ],
   "remove_duplicates": true
 }
@@ -90,13 +90,14 @@ Body:
   "steps": [
     { "type": "email", "template_id": "TEMPLATE_1_ID" },
     { "type": "delay", "days": 3 },
-    { "type": "email", "template_id": "TEMPLATE_2_ID" }
+    { "type": "email", "template_id": "TEMPLATE_2_ID", "send_as": "followup" }
   ],
-  "paused": true
+  "paused": false,
+  "launchTimingMode": "schedule",
+  "scheduledAt": 1751983200000,
+  "timezone": "America/New_York"
 }
 ```
-
-> **Safety**: Create the sequence `paused: true` first. Before launching, show the user the final recipients, sender accounts, templates, schedule, and pause state, and only set `paused: false` or `launchTimingMode: "now"` after explicit confirmation.
 
 ## Clone and Modify Workflow
 
@@ -109,7 +110,7 @@ Goal: Duplicate an existing sequence and tweak it.
 Headers:
 - `Authorization`: `SALESBLINK_API_KEY`
 
-Extract `NEW_SEQ_ID` from response.
+Extract `NEW_SEQ_ID` from `response.data.clonedSequenceId`.
 
 ### 2. Update the cloned sequence with new settings
 
@@ -126,12 +127,12 @@ Body:
   "steps": [
     { "type": "email", "template_id": "NEW_TEMPLATE_ID" },
     { "type": "delay", "days": 5 },
-    { "type": "email", "template_id": "FOLLOW_UP_TEMPLATE_ID" }
+    { "type": "email", "template_id": "FOLLOW_UP_TEMPLATE_ID", "send_as": "followup" }
   ]
 }
 ```
 
-### 3. Launch when ready (requires explicit confirmation)
+### 3. Launch when ready
 
 **PATCH** `/sequences/:id`
 
@@ -146,8 +147,6 @@ Body:
   "launchTimingMode": "now"
 }
 ```
-
-> **Safety**: Only launch after the user has explicitly confirmed the recipients, senders, templates, and schedule. `launchTimingMode: "now"` starts in approximately 5 minutes.
 
 ## Archive Cleanup Workflow
 

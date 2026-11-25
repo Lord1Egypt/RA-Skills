@@ -1,0 +1,4 @@
+interface:
+  display_name: "PPT Bento 策划与设计"
+  short_description: "确认用途与编辑需求，策划 Bento 页面，选择 SVG/PPTX 或 HTML/PPTX 交付"
+  default_prompt: "使用 $ppt-bento，根据我的主题和资料，先用推荐选项及自由输入确认创作意图、交付路线和编辑需求，再规划大纲、逐页策划稿并生成演示页面。"

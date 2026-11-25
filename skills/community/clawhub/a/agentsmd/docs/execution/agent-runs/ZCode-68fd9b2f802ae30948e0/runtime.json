@@ -1,0 +1,10 @@
+{
+  "agent": "ZCode",
+  "session_id": "sess_ea28a33f-39b9-49a6-8919-6da623062000",
+  "updated_at": "2026-11-09T01:10:42+08:00",
+  "last_event": "Stop",
+  "business_status": "待 Agent 核对，钩子不判断业务完成",
+  "started_at": "2026-11-09T01:09:18+08:00",
+  "run_id": "ZCode-68fd9b2f802ae30948e0",
+  "runtime_status": "回合结束，业务完成情况待核对"
+}

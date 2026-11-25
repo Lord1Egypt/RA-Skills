@@ -1,0 +1,27 @@
+name: shop-listing-missing-fields-free
+slug: shop-listing-missing-fields-free
+display_name: 商品后台上架缺项检查
+description: 使用用户指定的商品编辑页、商家规则和浏览器环境，按规格、图文、物流、售后整理可见字段的缺项、冲突与人工补充表。不可见字段明确留空，未提供规则不虚构要求；全程默认只读，不保存、不提交、不上架，交付结果保留每条资料来源与处理边界。
+version: 1.0.4
+repository: "https://github.com/xxjrq/shop-listing-missing-fields-free"
+license: MIT-0
+icon: icon-512.png
+tags:
+  - 商品上架
+  - 缺项检查
+  - 商家后台
+  - 物流售后
+triggers:
+  - 检查商品上架缺什么
+  - 商品编辑页字段检查
+  - 商品后台缺项
+trigger_words:
+  - 商品上架
+  - 缺项
+  - 规格物流
+interface:
+  display_name: 商品后台上架缺项检查
+  short_description: 读取商品编辑页可见资料，输出规格图文物流售后的缺项、冲突和人工补充表
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+self_test: node scripts/self-test.mjs

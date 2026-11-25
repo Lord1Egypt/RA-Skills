@@ -4,7 +4,7 @@ description: 用户说「参考 X 网站改 UI / 照着 X 的风格做 / X 那�
 agent_created: true
 slug: ref-site-ui-tokens
 displayName: 参考网站改 UI：抓设计 token 再落地
-version: 1.0.0
+version: 1.0.2
 category: design-media
 visibility: public
 license: MIT

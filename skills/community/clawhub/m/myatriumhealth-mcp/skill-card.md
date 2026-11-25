@@ -1,6 +1,6 @@
 ## Description:
 
-Use fpx through a signed-in Chrome tab to retrieve MyAtriumHealth MyChart data, including test results, medications, allergies, immunizations, health issues, visits, goals, and messages, in shell workflows.
+Read MyAtriumHealth test results, medications, allergies, immunizations, health issues, visits, goals, and messages through the signed-in patient portal.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and MyAtriumHealth users can retrieve their own portal data, including results, medications, allergies, visits, and messages, in shell workflows using a signed-in Chrome session.
+Individuals and developers use the skill to retrieve information from the active patient's Atrium Health MyChart account, including results, medications, visits, and messages.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security evidence rates the skill suspicious because setup permits capturing portal session cookies, which the scanner considers unnecessary for the described workflow; it did not confirm that cookies are actually captured, and its analysis was partial.
+Risk: The security review rates the release suspicious and flags health-portal cookie capture, persistent trust, and handling of an exported authentication token; the analysis is partial because two local references were unresolved.
 
-Mitigation: Before installing, review and understand the declared cookie and header capture scope and whether it is needed; proceed only if you trust the skill and bridge. Keep retrieved health information private.
+Mitigation: Review the suspicious verdict before installation; approve access only when the bridge and requested cookie scope are trusted, revoke persistent trust when no longer needed, and avoid exposing MAH_TOKEN to untrusted child processes.
 
 ## Reference(s):
 
-- [MyAtriumHealth endpoint recipes](references/endpoints.md)
+- [ClawHub release](https://clawhub.ai/chrischall/skills/myatriumhealth-mcp)
+- [Endpoint recipes](artifact/references/endpoints.md)
+- [Browser helper commands](artifact/references/mah.sh)
 - [ContextMint Bridge releases](https://github.com/nullnet-app/contextmint-bridge/releases)
-- [ClawHub skill page](https://clawhub.ai/chrischall/skills/myatriumhealth-mcp)
+- [MyAtriumHealth portal](https://my.atriumhealth.org/)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Text]
+**Output Type(s):** [Shell commands, API calls, JSON data, Configuration instructions]
 
-**Output Format:** [MyChart API responses, optionally projected into concise JSON or text with jq]
+**Output Format:** [Markdown guidance, shell commands, and JSON responses]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May contain personal health information.]
+**Other Properties Related to Output:** [Responses can contain personal health information and may need jq projection.]
 
 ## Skill Version(s):
 
-1.5.1 (source: server-resolved ClawHub release metadata)
+1.6.0 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

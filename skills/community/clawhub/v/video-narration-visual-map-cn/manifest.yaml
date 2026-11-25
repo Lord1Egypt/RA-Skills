@@ -1,0 +1,22 @@
+name: video-narration-visual-map-cn
+slug: video-narration-visual-map-cn
+display_name: 旁白与既有镜头对应表
+description: 输入已批准旁白、编号镜头或素材说明、目标观看收益与必须展示的证据，交付逐句“旁白→镜头编号→可见证据”对应表及缺项清单。适用于成片前核对解说是否有现成画面支撑；缺少旁白或镜头说明时会明确请求补料，没有证据时标注需补素材而不编造演示。
+repository: https://github.com/xxjrq/video-narration-visual-map-cn
+version: 1.0.0
+license: MIT-0
+icon: icon-512.png
+tags:
+  - 视频制作
+  - 旁白核对
+  - 镜头管理
+  - 内容验收
+trigger_words:
+  - 旁白镜头对应
+  - 有声无画检查
+  - 解说画面核对
+interface:
+  display_name: 旁白与既有镜头对应表
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+self_test: node scripts/self-test.mjs

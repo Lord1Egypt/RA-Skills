@@ -1,0 +1,11 @@
+{
+  "name": "easy-xianyu-title-copy-free",
+  "version": "1.1.1",
+  "private": false,
+  "type": "module",
+  "description": "生成真实、清楚的闲鱼标题文案并检查明显风险表达。",
+  "scripts": {
+    "test": "node scripts/run.mjs --self-test"
+  },
+  "license": "MIT-0"
+}

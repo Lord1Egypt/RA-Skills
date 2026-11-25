@@ -1,7 +1,7 @@
 ---
 name: facebook-data
 description: "Facebook pages, posts, groups, Marketplace listings, and the Ad Library for agents — no Facebook app, review, or login of yours."
-version: 2.0.14
+version: 2.0.19
 author: superagnt
 license: MIT-0
 platforms: [macos, linux, windows]

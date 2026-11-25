@@ -1,0 +1,6 @@
+interface:
+  display_name: "Subclip Rough Cut"
+  short_description: "Remove dead air and filler-word video cuts"
+  default_prompt: "Use $subclip-rough-cut to create a clean first draft from these spoken video clips."
+policy:
+  allow_implicit_invocation: true

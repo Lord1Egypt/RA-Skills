@@ -1,6 +1,6 @@
 ## Description:
 
-搜索小红书公开笔记、查看笔记详情与评论，并读取博主公开作品和互动数据，供趋势调研与内容分析使用。
+小红书高赞笔记搜索工具。支持关键词获取小红书实时高赞（高收藏、高评论）笔记数据，助力创作者发现热门趋势、获取创作灵感。支持四大能力：(1) 关键词搜索笔记/视频，可按点赞数、评论数、收藏数、发布时间、内容类型筛选排序；(2) 博主作品抓取，按主页链接获取博主的互动数据（粉丝量、点赞量或收藏量等）或公开作品列表；(3) 笔记（视频）详情，获取详情数据及互动数据等，分析笔记的市场表现；(4) 笔记评论分析，按笔记链接获取评论内容与互动数据。用户提到小红书/xhs/rednote 且需要查数据、市场调研、舆情监测、做选题、竞品监控、KOL筛选、舆情分析时调用；无需登录账号
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-内容创作者、品牌团队和研究人员可用关键词发现公开笔记趋势，并根据笔记或主页链接查看详情、评论和博主互动数据，以支持选题、竞品观察和评论归纳。
+Creators, marketing teams, and analysts use the skill to search public Xiaohongshu notes, review creator profiles, inspect note details and comments, and support topic research, competitor monitoring, and sentiment analysis.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search terms and Xiaohongshu links are sent to the Guaikei service, and successful results may be saved in local temporary logs.
+Risk: Security evidence marks the release suspicious with medium confidence, citing unclear tool scope, a privacy concern in support guidance, and partial review of 13 of 42 components.
 
-Mitigation: Avoid submitting sensitive query details or links. Set XHS_GUAIKEI_DISABLE_LOG=1 to disable local result logging, or remove the dated logs when finished.
-
-Risk: ClawScan reports medium confidence and incomplete inspection of some JavaScript files; its benign verdict is not a guarantee of safety.
-
-Mitigation: Review the skill and its JavaScript files before installation and decide whether the service and local logging behavior fit your use.
+Mitigation: Review the declared tool scope and data-sharing details before installing; provide only public Xiaohongshu query terms or links you are comfortable sending to Guaikei.
 
 ## Reference(s):
 
-- [Service website](https://www.guaikei.com)
-- [Options reference](references/options.md)
-- [Troubleshooting reference](references/troubleshooting.md)
-- [Changelog](references/changelog.md)
-- [Support issues](https://github.com/um-why/xiaohongshu-openclaw-skill/issues)
 - [ClawHub release page](https://clawhub.ai/why20261/skills/xiaohongshu-notes-search)
+- [Guaikei service and API access](https://www.guaikei.com)
+- [Command options](references/options.md)
+- [Output contract](references/contract.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis]
+**Output Type(s):** [JSON data, Public Xiaohongshu research data]
 
-**Output Format:** [Structured JSON envelope containing public note search results, note details, comments, or creator data]
+**Output Format:** [Structured JSON envelope]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Public data only; request limits depend on the token plan, and results may be saved in the system temporary directory.]
+**Other Properties Related to Output:** [Read-only public data; requires Node.js 16.14+ and GUAIKEI_API_TOKEN. Query keywords and links are sent to Guaikei; local files are not uploaded.]
 
 ## Skill Version(s):
 
-1.2.1 (source: server-resolved release metadata, SKILL.md, package.json)
+1.2.2 (source: evidence.release.version, SKILL.md frontmatter, package.json)
 
 ## Ethical Considerations:
 

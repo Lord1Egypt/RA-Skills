@@ -1,0 +1,4 @@
+interface:
+  display_name: "Outreach Email Finder"
+  short_description: "Find public emails for relevant outreach"
+  default_prompt: "Use $rankizz-find-outreach-emails to find publicly listed outreach contacts for these sites and report the source for each email."

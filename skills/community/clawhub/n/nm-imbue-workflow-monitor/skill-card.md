@@ -1,6 +1,6 @@
 ## Description:
 
-Detects workflow failures and inefficient patterns then files GitHub issues
+Detects workflow failures and inefficient patterns then files GitHub issues.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to review workflow runs for failures and inefficient patterns, prepare evidence-backed improvement reports, and file issues for follow-up.
+Developers and workflow maintainers use this skill to detect failures and inefficiencies, then prepare evidence-backed reports and file improvement issues on the configured Git platform.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Execution or error details and search terms sent to GitHub may expose sensitive information.
+Risk: Command output or session details sent to GitHub or GitLab may contain sensitive information.
 
-Mitigation: Review and sanitize logs, outputs, and search terms before sending them to GitHub; avoid including sensitive data unless the destination is appropriate.
+Mitigation: Review and remove sensitive details from content before sending it, and check the destination and content before issue creation or searches.
 
 ## Reference(s):
 
-- [ClawHub release](https://clawhub.ai/athola/skills/nm-imbue-workflow-monitor)
-- [Metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-imbue-workflow-monitor)
+- [Related plugin page (listed in skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Shell commands]
+**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown workflow efficiency reports and issue drafts, with shell command examples]
+**Output Format:** [Markdown reports and issue bodies, with shell examples and YAML configuration]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include workflow evidence and recommendations for follow-up]
+**Other Properties Related to Output:** [Reports can include reproducible command evidence, output excerpts, and session details.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

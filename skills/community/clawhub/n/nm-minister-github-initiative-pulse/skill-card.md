@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Project and engineering teams use this skill to summarize GitHub initiative progress, surface blockers and risks, and prepare status updates for issues, pull requests, or Discussions. It can also export initiative health metrics as CSV.
+Developers and project teams use the skill to summarize initiative progress, blockers, risks, and milestones from tracker and GitHub Projects data. They can prepare Markdown updates for GitHub discussions and export initiative health data as CSV.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The `status` trigger could conflict with a built-in command in the host agent.
+Risk: The broad “status” trigger could conflict with another skill or workflow in the agent setup.
 
-Mitigation: Check for a command-name conflict in the target agent before enabling the skill.
+Mitigation: Check trigger mappings in the intended setup and confirm that requests for status reporting invoke the desired skill.
 
-Risk: Tracker-derived or GitHub content may be stale or unsuitable for the intended audience when included in a published digest.
+Risk: Digests and CSV exports may expose repository, issue, pull request, or tracker details when shared.
 
-Mitigation: Review the source data, linked issues and pull requests, and intended GitHub audience before publishing.
+Mitigation: Check the destination repository’s audience and the contents of links and tracker fields before posting or distributing exports.
 
-Risk: The security scan was partial because a local reference could not be resolved.
+Risk: Security analysis is partial because a referenced local path was missing.
 
-Mitigation: Review the skill and unresolved reference before installation or use.
+Mitigation: Review the referenced local path and the affected skill behavior before installation; rerun the security analysis when complete coverage is available.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-minister-github-initiative-pulse)
 - [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/minister)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, CSV, Text]
+**Output Type(s):** [Markdown, CSV]
 
 **Output Format:** [Markdown digests and CSV exports]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Initiative status summaries, progress metrics, blockers, risks, and milestone information.]
+**Other Properties Related to Output:** [Initiative summaries based on tracker data and GitHub board metadata.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter and server-resolved release evidence)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

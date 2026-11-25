@@ -1,0 +1,22 @@
+name: easy-google-play
+display_name: easyGooglePlay
+slug: easy-google-play-console
+version: 0.2.2
+category: 应用发布 / App Release
+author: xxjrq
+description: 通过 Easy WebBridge 复用已登录浏览器，完成 Android 构建、资料填写、上传、提交审核和状态检查。
+trigger_words:
+  - Google Play 自动上架
+  - Android 自动上架
+  - 提交 Google Play 审核
+  - 检查谷歌审核
+  - 处理 Google Play 拒绝
+tags:
+  - android
+  - google-play-console
+  - app-release
+  - easy-webbridge
+  - 自动上架
+license: MIT-0
+repository: https://github.com/xxjrq/easy-google-play
+icon: assets/icon-512.png

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and domain experts use this skill to define ubiquitous language and bounded contexts, decide when domain-driven design fits, and evolve systems without adding architecture ceremony prematurely.
+Developers and architects use this skill to model business domains in the language of domain experts, identify bounded contexts, and choose domain structures as real needs emerge.
 
 ### Deployment Geography for Use:
 
@@ -22,22 +22,21 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Shared data types can expose fields unintentionally across network or other IO boundaries.
+Risk: A shared type can expose unintended fields when it crosses an IO boundary.
 
-Mitigation: Audit the fields of every type crossing an IO boundary; use versioned request DTOs when independently deployed systems need to evolve their contracts.
+Mitigation: Audit the fields of every type that crosses an IO boundary, and use a separately versioned request DTO when independently deployed systems need to evolve command shapes.
 
-Risk: Adding DTOs, mappers, or layers without a current need can create unnecessary ceremony.
+Risk: Adding DTOs, mappers, or layers without a current need can add ceremony without improving the model.
 
-Mitigation: Record the concrete need for each added boundary or translation, and defer the split until the view contract and domain model diverge.
+Mitigation: Document the need that justifies each abstraction and remove mappings that only copy fields one-to-one.
 
-Risk: A domain model with no behavior can become a renamed schema while business rules remain elsewhere.
+Risk: A domain model can become anemic when business rules live only in services.
 
-Mitigation: Place rules on the domain objects that own them, or use a simpler model when the domain does not need DDD.
+Mitigation: Keep behavior with the domain objects that own the rules, or recognize when the domain does not need DDD.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-domain-driven)
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
+- [Clawdis homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
 - [SE-Radio Episode 226: Eric Evans on Domain-Driven Design at 10 Years](https://www.youtube.com/watch?v=GogQor9WG-c)
 - [The Core of Domain-Driven Design](https://www.angulararchitects.io/en/blog/the-core-of-domain-driven-design/)
 
@@ -45,15 +44,15 @@ Mitigation: Place rules on the domain objects that own them, or use a simpler mo
 
 **Output Type(s):** [Guidance, Markdown]
 
-**Output Format:** [Markdown prose and structured lists]
+**Output Format:** [Markdown guidance and planning artifacts]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Provides adoption steps, design recommendations, and review criteria; no fixed output template.]
+**Other Properties Related to Output:** [May guide creation of a domain glossary, context map, architecture decision record, and IO-boundary field audit.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, server release evidence)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

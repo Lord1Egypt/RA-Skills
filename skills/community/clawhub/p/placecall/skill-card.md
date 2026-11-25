@@ -1,6 +1,6 @@
 ## Description:
 
-PlaceCall lets your agent call US businesses for reservations, inquiries and quotes, and gets through IVRs, holds and transfers.
+Use PlaceCall to call US businesses to find places, make or change bookings, ask questions, get quotes, or follow up, then return the outcome and transcript.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-People and teams use an AI agent to find US businesses and handle reservations, inquiries, follow-ups, or quote requests by phone, then review the reported outcome and transcript.
+Agents use PlaceCall to find and contact US businesses about reservations, appointments, availability, prices, quotes, orders, or other questions. The skill returns call outcomes and transcripts.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,42 @@ United States (excluding Indiana, Louisiana, Minnesota, Montana, and Nebraska)
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment reports a credential-handling weakness and unsafe storage of an API-returned value as executable shell text.
+Risk: ClawScan marks the release suspicious and its scan partial, citing possible API key exposure in chat and delayed disclosure of sign-up terms and potential key replacement.
 
-Mitigation: Keep PLACECALL_API_KEY in the configured secret slot or an environment variable, never in prompts or chat, and treat API-returned content as data rather than shell commands.
+Mitigation: Review the sign-up and key-handling steps before use, never put the API key in prompts or chat, and confirm the effect of replacing a key.
 
-Risk: Calls reach real people on the user's behalf, and call recordings and transcripts are retained for 90 days.
+Risk: Calls reach real people and are recorded; transcripts and recordings are retained for 90 days.
 
-Mitigation: Call only numbers the user is authorized to contact, review the number and brief before dialing, and include only details needed for the task. Calls open with a recording notice by default.
+Mitigation: Confirm the number and brief before dialing, ensure the recording notice fits the call, and include only information needed for the task.
 
 ## Reference(s):
 
-- [PlaceCall ClawHub release](https://clawhub.ai/voygr/skills/placecall)
-- [Project homepage listed in skill metadata](https://github.com/voygr-tech/placecall)
-- [PlaceCall API deprecations documentation](https://api.voygr.tech/docs/placecall/deprecations/)
+- [Project page](https://github.com/voygr-tech/placecall)
+- [API deprecations](https://api.voygr.tech/docs/placecall/deprecations/)
+- [Credits](references/credits.md)
+- [Errors](references/errors.md)
+- [Gotchas](references/gotchas.md)
+- [Call items](references/items.md)
+- [MCP tools](references/mcp-tools.md)
+- [Opening notice and recording](references/opening-notice.md)
+- [Call results](references/results.md)
+- [Safety](references/safety.md)
+- [Sign-up](references/sign-up.md)
+- [Place suggestions](references/suggest.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON data, Audio recordings]
+**Output Type(s):** [Text, Structured data, Call transcripts]
 
-**Output Format:** [Structured call outcomes, summaries, and transcripts; optional call recordings]
+**Output Format:** [Call outcomes, place suggestions, and transcripts in structured responses]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes place suggestions when no phone number is supplied; calls are limited to supported US destinations.]
+**Other Properties Related to Output:** [Includes a labeled call outcome and transcript; place searches return ranked suggestions.]
 
 ## Skill Version(s):
 
-6.6.3 (source: frontmatter, server release metadata)
+6.7.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

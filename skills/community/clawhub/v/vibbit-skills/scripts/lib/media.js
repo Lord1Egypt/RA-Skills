@@ -5,8 +5,8 @@ const { execFile } = require('node:child_process')
 const { promisify } = require('node:util')
 const net = require('node:net')
 
-function publicUrl(value, label = 'URL') {
-  if (typeof value !== 'string' || value.length > 2048) throw new Error(`${label}: expected HTTP(S) URL of at most 2048 characters`)
+function publicUrl(value, label = 'URL', maxLength = 2048) {
+  if (typeof value !== 'string' || value.length > maxLength) throw new Error(`${label}: expected HTTP(S) URL of at most ${maxLength} characters`)
   let url
   try { url = new URL(value) } catch { throw new Error(`${label}: invalid URL`) }
   const host = url.hostname.toLowerCase().replace(/^\[|\]$/g, '')

@@ -1,0 +1,23 @@
+meta title: 2-out-of-3 传感器系统输出错误
+meta project: SIL 定级 (IEC 61508)
+meta standard: IEC 61508 / IEC 61511
+meta missionTime: 8760
+
+# ============================================================
+# 2oo3 冗余传感器系统 FTA
+# 包含共因失效 (CCF) 分析
+# ============================================================
+
+TOP 2oo3 传感器系统输出错误
+  OR
+    INTER 随机失效
+      VOTE 2/3
+        BASIC 传感器A失效 p=1e-3 ref=FM-A comp=SensorA
+        BASIC 传感器B失效 p=1e-3 ref=FM-B comp=SensorB
+        BASIC 传感器C失效 p=1e-3 ref=FM-C comp=SensorC
+    INTER 共因失效
+      OR
+        BASIC 供电共因失效 p=2e-4 ref=CCF-01 comp=供电
+        BASIC 环境共因失效 p=1e-4 ref=CCF-02 comp=环境
+        BASIC 传感器A-B共因 p=5e-5 ref=CCF-03 comp=SensorAB
+        BASIC 安装支架松动 p=1.5e-4 ref=CCF-04 comp=支架

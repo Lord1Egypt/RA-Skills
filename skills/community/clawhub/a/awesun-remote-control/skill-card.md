@@ -1,6 +1,6 @@
 ## Description:
 
-向日葵远程控制 provides agent tools for managing AweSun devices, starting remote sessions, running remote commands, forwarding ports, and controlling remote desktops.
+Guides an agent in using AweSun’s remote-control CLI to manage devices, connect sessions, operate remote desktops, transfer files, run commands, and configure port forwarding.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and operators use this skill to let an agent manage authorized AweSun devices, open remote desktop, file, CMD, SSH, camera, and port-forwarding sessions, and perform desktop input, screenshots, command execution, and power actions.
+External users and developers use this skill to carry out remote support and administration of AweSun devices, including desktop work, file handling, command execution, and connection setup.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,41 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill can control authorized remote devices, including desktop input, command execution, screenshots, shutdown, wake, device removal, and port forwarding.
+Risk: The skill covers high-impact remote operations, including shell commands, file transfer or deletion, desktop input, and device power controls.
 
-Mitigation: Install only when remote device control is intended, and require human review before high-impact actions are executed.
+Mitigation: Verify the target and access authorization, review commands and file paths, confirm before destructive or disruptive actions, and disconnect sessions when finished.
 
-Risk: The MCP API token is configured as plaintext environment data.
+Risk: The security review is benign with medium confidence and notes that one local reference could not be resolved; setup guidance also describes claiming a free service trial.
 
-Mitigation: Keep the token out of shared workspaces and source control, and replace the placeholder only in a private local configuration.
-
-Risk: The integration depends on a locally configured AweSun MCP server with broad access to remote sessions.
-
-Mitigation: Use only a trusted AweSun MCP server, pin the MCP dependency before installation, and disconnect sessions when work is complete.
+Mitigation: Review the account and connection guides, and decide whether the service-trial capability is wanted before following setup instructions.
 
 ## Reference(s):
 
-- [ClawHub skill listing](https://clawhub.ai/cutecube/skills/awesun-remote-control)
-- [ClawHub publisher profile](https://clawhub.ai/user/cutecube)
+- [AweSun Remote Control release](https://clawhub.ai/cutecube/skills/awesun-remote-control)
+- [Publisher profile: cutecube](https://clawhub.ai/user/cutecube)
+- [Account and service management guide](artifact/references/account-guide.md)
+- [Connection guide](artifact/references/connection-guide.md)
+- [Device management guide](artifact/references/device-guide.md)
+- [Desktop control guide](artifact/references/desktop-guide.md)
+- [File management and transfer guide](artifact/references/file-guide.md)
+- [Port forwarding guide](artifact/references/port-forwarding-guide.md)
+- [Remote command execution and SSH guide](artifact/references/remote-exec-guide.md)
+- [UI element locator guide](artifact/references/ui-locator.md)
+- [UI patterns reference](artifact/references/ui-patterns.md)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON]
 
-**Output Format:** [Markdown guidance with shell command examples and JSON-formatted tool results.]
+**Output Format:** [Markdown guidance with CLI examples and structured JSON examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Tool results may include device and session metadata, command output, port-forwarding status, or Base64 screenshot data from the configured AweSun MCP server.]
+**Other Properties Related to Output:** [Commands may control remote devices and transfer or modify remote data.]
 
 ## Skill Version(s):
 
-1.0.0 (source: release evidence and package.json)
+1.1.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

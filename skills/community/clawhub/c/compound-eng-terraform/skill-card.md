@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and infrastructure engineers use this skill to write and review Terraform or OpenTofu configuration, organize modules, test infrastructure code, and manage state and refactoring safely.
+Developers and infrastructure engineers use this skill to create and review Terraform or OpenTofu configurations, modules, tests, and state changes. It provides HCL conventions and safety guidance for planning, testing, and managing infrastructure changes.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan reported a possible mismatch between the Terraform skill's stated purpose and an evaluation workflow; it also noted unresolved local references and that the scan was partial.
+Risk: The scan was partial: some path-like references were unresolved, the referenced Python tool’s behavior could not be determined, and a scanner noted a possible mismatch between the Terraform description and evaluation tooling.
 
-Mitigation: Review the skill's behavior and available references before use, and check whether the evaluation workflow and referenced tooling fit your task.
+Mitigation: Before installing, consider whether the evaluation and diagnostic tooling fits your needs, and review what the referenced Python tool does.
 
 ## Reference(s):
 
-- [ia-terraform release on ClawHub](https://clawhub.ai/iliaal/skills/compound-eng-terraform)
-- [Publisher profile: iliaal](https://clawhub.ai/user/iliaal)
-- [Native Terraform test patterns](references/native-test-patterns.md)
+- [Plan and state safety](references/plan-and-state-safety.md)
+- [Native test patterns](references/native-test-patterns.md)
+- [ClawHub release page](https://clawhub.ai/iliaal/skills/compound-eng-terraform)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions]
+**Output Type(s):** [Code, Configuration instructions, Shell commands, Guidance]
 
-**Output Format:** [Markdown with HCL, Terraform, and shell code blocks]
+**Output Format:** [Markdown guidance with HCL examples and shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Task-specific examples and review guidance.]
+**Other Properties Related to Output:** [Recommendations for Terraform and OpenTofu configuration, module structure, testing, and state management.]
 
 ## Skill Version(s):
 
-5.1.6 (source: server-resolved release metadata)
+5.1.7 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

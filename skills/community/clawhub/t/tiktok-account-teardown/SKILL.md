@@ -2,7 +2,7 @@
 name: tiktok-account-teardown
 description: "获取TikTok真实一手数据，逆向拆解TikTok平台账号，根据账号互动数据及账号作品数据，产出可复刻的运营手册。当用户提出「拆解某账号」「分析对标号」「看看XX号为什么火」「复刻这个账号的风格」「抓取TikTok账号数据」「竞品账号分析」「对标账号数据」「账号诊断」等需求时使用。产出结构化数据 + 互动指标 + 形态拆解 + 差距定位。提供3个能力①关键词搜索（可按点赞/相关度排序、发布时间筛选）②博主作品获取，按主页链接或用户名批量获取公开作品列表，支持最新/最热排序 ③视频评论抓取，按视频链接或作品 ID 获取评论内容、评论者与互动数据，输出结构化 JSON（含作者、互动数据、标签、链接）。"
 license: MIT
-version: 1.1.1
+version: 1.1.2
 description_zh: 获取TikTok真实一手数据，逆向拆解TikTok平台账号，根据账号互动数据及账号作品数据，产出可复刻的运营手册。当用户提出「拆解某账号」「分析对标号」「看看XX号为什么火」「复刻这个账号的风格」「抓取TikTok账号数据」「竞品账号分析」「对标账号数据」「账号诊断」等需求时使用。产出结构化数据 + 互动指标 + 形态拆解 + 差距定位。
 description_en: Obtain first-hand authentic TikTok data and conduct reverse analysis of TikTok accounts. Generate replicable operation manuals based on account engagement metrics and content performance data. It is triggered when users request deconstruct a specific account, analyze benchmark accounts, find out why Account XX went viral, replicate this account’s style, crawl TikTok account data, competitor account analysis, benchmark account data, account diagnosis and similar requests. Output includes structured data, engagement indicators, content pattern breakdown, and gap identification.
 metadata:
@@ -136,7 +136,7 @@ metadata:
 
 ## 0. 🧭 每次按这个顺序执行
 
-1. 确认环境变量 `GUAIKEI_API_TOKEN` 已配置。没有配置时直接告诉用户去 [GUAIKEI TikTok账号拆解官网](https://www.guaikei.com) 开通，不要先跑一遍试探。
+1. 确认环境变量 `GUAIKEI_API_TOKEN` 已配置。没有配置时直接告诉用户去 [TikTok账号拆解官网](https://www.guaikei.com) 开通，不要先跑一遍试探。
 2. 在本技能根目录执行 `node scripts/tiktok/<命令>.js`。
 3. stderr 出现「处理中」表示任务还在跑。等进程自己退出，再读 stdout 的最后一份 JSON。不要把 stderr 或整份 JSON 念给用户。
 4. 按「4. 📦 读结果」的退出码表决定：改参数再试、告诉用户，或停止。
@@ -231,7 +231,7 @@ metadata:
   "message": "搜索任务完成",
   "timestamp": "2026/10/26 16:20:00",
   "request": { "command": "search", "keyword": "AI", "sort": 1, "time": 0, "limit": 20 },
-  "metadata": { "skill_version": "1.1.1", "runtime_version": "22.22.2", "execution_time": 8421 },
+  "metadata": { "skill_version": "1.1.2", "runtime_version": "22.22.2", "execution_time": 8421 },
   "results": [{ "aweme_id": "123", "desc": "...", "digg_count": 100 }]
 }
 ```
@@ -254,8 +254,9 @@ metadata:
 | 1 | `TIMEOUT` | 任务仍在处理，搜索也可能是没有可保存的结果。不要立刻重跑。搜索的复用窗口大约只有 9 分钟，等满超时后再跑可能新建一条任务 |
 | 1 | `NETWORK_ERROR` / `HTTP_5xx` / `HTTP_429` | 命令内部已经重试过。退出后再失败就告诉用户稍后再试 |
 | 1 | `PLAN_LIMIT` | 套餐单次条数超限（常见于包月）。**禁止同参重试**。转述 `message`；可建议降 `--limit`（搜索/作品≤30，评论≤40）或到官网升级按量；**须用户同意后再跑** |
-| 1 | `"16"`（搜索）或 `"15"`（作品、评论） | 余额不足。转告 `message`，不要改参数连打 |
-| 1 | `"1"` 或 `"2"` | 提交过于密集。等一会儿再试，不要改成另一组参数立刻连打 |
+| 1 | `INSUFFICIENT_BALANCE` | 余额不足（搜索常为后端 16，作品/评论常为 15）。**禁止同参重试**。引导官网充值 |
+| 1 | `RATE_LIMITED` | 短时间提交过多（作品/评论常为 2；搜索可能为 1 + 文案）。**禁止立即重试** |
+| 1 | `DAILY_LIMIT` | 今日消费已达每日上限（后端 18）。**禁止同参重试**。明日再试或到官网调整限额 |
 | 1 | 其它十进制数字 | 把 `message` 原样转告 |
 | 1 | `API_ERROR` / `UNKNOWN` | 转告 `message`，建议联系官网 |
 
@@ -267,4 +268,4 @@ metadata:
 
 成功结果默认不写文件。需要留底时设置 `TT_GUAIKEI_ENABLE_LOG=1`，文件写到系统临时目录的 `tiktok-guaikei/logs/`。POSIX 上权限是仅当前用户可读写；Windows 不使用这组权限位，靠临时目录本身的用户隔离。
 
-开通 token 或更多帮助：[GUAIKEI TikTok账号拆解官网](https://www.guaikei.com)。
+开通 token 或更多帮助：[TikTok账号拆解官网](https://www.guaikei.com)。

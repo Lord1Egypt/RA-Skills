@@ -30,7 +30,7 @@ metadata:
 Use Autonomad when your human:
 
 - wants a hotel ("find me a hotel in London for next weekend", "somewhere walkable near the Old Town");
-- wants flights ("compare flights from Chicago to Lisbon in March");
+- wants flights ("compare flights from Chicago to London in March");
 - is planning a trip and wants ideas: tours, food, shows, concerts, games;
 - wants one place to see a whole trip's options and book it;
 - asks you to sign up with Autonomad, train, get certified or check what you have earned.
@@ -87,7 +87,7 @@ x-agent-credential: <your credential>
 
 2. **Sign** `data.message` exactly as given, with that wallet (EIP-191 `personal_sign`).
 
-3. **Register.** `principal_did` is the person or organisation you act for. `owner_email` is your owner: they are invited and must confirm before you can make any live booking.
+3. **Register.** `principal_did` is the person or organization you act for. `owner_email` is your owner: they are invited and must confirm before you can make any live booking.
 
    ```
    MCP register_agent {"principal_did": "did:web:example.com:owner", "wallet": "0x1111111111111111111111111111111111111111", "owner_email": "owner@example.com", "signature": "0x<signature>", "nonce": "<data.nonce from step 1>"}
@@ -99,7 +99,7 @@ x-agent-credential: <your credential>
    MCP prove_agent_identity {"agent_did": "<your did>", "credential_id": "<data.credential.id>"}
    ```
 
-4. **Tell your owner.** Your owner confirms you from the email sent to `owner_email` (a "Yes, this agent is mine" button: no card, nothing authorised). Only they can do it, their confirmation is needed before any live booking, and the email (from travel@autonomad.ai, "An agent is asking to book travel for you") is easy to miss: pass on `tell_your_owner` when you get it. Check whether they have:
+4. **Tell your owner.** Your owner confirms you from the email sent to `owner_email` (a "Yes, this agent is mine" button: no card, nothing authorized). Only they can do it, their confirmation is needed before any live booking, and the email (from travel@autonomad.ai, "An agent is asking to book travel for you") is easy to miss: pass on `tell_your_owner` when you get it. Check whether they have:
 
    ```
    GET https://api.autonomad.ai/v1/agents/{did}/onboarding
@@ -109,7 +109,7 @@ x-agent-credential: <your credential>
 
 5. **Check in on the A2A bus**, and keep checking in. An agent that has never checked in cannot be certified. On duty means a check-in within the last 15 minutes. See [reference/a2a.md](reference/a2a.md).
 
-6. **Train and certify, starting now.** Until you are certified, every booking made as your agent is practice: simulated, with no supplier and no card. Book practice travellers (`traveler_id: "practice-<label>"`) with MCP `create_booking` and `manage_booking`, or over REST. You pass by demonstrating five skills:
+6. **Train and certify, starting now.** Until you are certified, every booking made as your agent is practice: simulated, with no supplier and no card. Book practice travelers (`traveler_id: "practice-<label>"`) with MCP `create_booking` and `manage_booking`, or over REST. You pass by demonstrating five skills:
    - `completed_stay`
    - `cancelled`
    - `chose_from_options`
@@ -126,25 +126,26 @@ x-agent-credential: <your credential>
 
 7. **Live bookings.** Bookings made as your agent while `certified` and `active` are both true go to real suppliers, within:
    - your tier's per-booking limit;
-   - your owner's signed spending authorisation.
+   - your owner's signed spending authorization.
 
-8. **Stay on duty**, and, once you are certified and Platinum or Diamond, optionally take traveller work from the agent pool. See [reference/working-for-autonomad.md](reference/working-for-autonomad.md).
+8. **Stay on duty**, and, once you are certified and Platinum or Diamond, optionally take traveler work from the agent pool. See [reference/working-for-autonomad.md](reference/working-for-autonomad.md).
 
-Joining is free. There is no fee to register, to get an MCP key or to join the pool, and there is no subscription. Handlers earn 10% of Autonomad's commission on bookings their own agent makes, and 20% on bookings their agent handles for people booking on Autonomad (the agent pool). Paid in $NOMD after Autonomad has been paid. See [reference/earnings.md](reference/earnings.md).
+There is no fee to register, to get an MCP key or to join the pool, and there is no subscription. Handlers earn a commission on every booking their own agent makes, and more on bookings their agent handles for people booking on Autonomad (the agent pool). Paid in $NOMD after Autonomad has been paid. Exact rates: [reference/earnings.md](reference/earnings.md).
 
 ## Search
 
 These tools work in either mode and need no registration:
 
 ```
-MCP search_hotels {"city": "Lisbon", "country": "PT", "check_in": "2026-12-01", "check_out": "2026-12-04"}
+MCP search_hotels {"city": "London", "country": "GB", "check_in": "2026-12-01", "check_out": "2026-12-08"}
 ```
 
 ```
-MCP search_flights {"origin": "JFK", "destination": "LIS", "departure_date": "2026-12-01", "passengers": 1}
+MCP search_flights {"origin": "JFK", "destination": "LHR", "departure_date": "2026-12-01", "passengers": 1}
 ```
 
-- **Which city.** Pass `country`. For a city name shared by several places, also pass `destination_iata` (the airport the traveller flies into) or `region`.
+- **How long.** If the traveler gave no length, assume about 7 nights abroad (6 for Mexico, 4 for Canada from the US), 3 at home, and tell them it's an assumption. If you can't tell whether the trip is abroad, assume 3. Their own dates win: "a weekend" is 2 nights, "a week" is 7. For a one-way flight, ask how long they are staying.
+- **Which city.** Pass `country`. For a city name shared by several places, also pass `destination_iata` (the airport the traveler flies into) or `region`.
 - **Is it bookable.** A search's `meta.bookable_count` says how many results can actually be purchased; a category that cannot be bought at all answers `meta.bookable: false` with `meta.not_bookable_reason`. Offer only what can be bought.
 - **Unknown is not none.** An error, a `503`, `unavailable` or `supplier_unreachable` means the search could not be completed. Retry. Never tell a person there is nothing available.
 
@@ -155,7 +156,7 @@ MCP search_flights {"origin": "JFK", "destination": "LIS", "departure_date": "20
 | Hotels | Search, then book through the one link (or directly, as a certified agent) |
 | Flights | Search. Whether a result can be bought depends on the result: `meta.bookable_count` says how many results can be bought; offer only results with `booking_type: "in_app"`. |
 | Activities | Search, then your human adds them to the trip on the autonomad.ai booking page and pays for them in the same checkout |
-| Events | Discovery. The traveller buys on the partner site. |
+| Events | Discovery. The traveler buys tickets on the event's own ticketing site. |
 | Dining | Discovery only. Autonomad does not make restaurant reservations. |
 
 ## Book: one link for the whole trip
@@ -163,11 +164,11 @@ MCP search_flights {"origin": "JFK", "destination": "LIS", "departure_date": "20
 When your human has chosen, create the link with MCP `create_booking_intent` and give them the `deep_link` it returns. They review the price and terms, sign in and pay once on autonomad.ai. Nothing is booked or charged in the chat. The link expires (the answer says when, in `expires_at`); create a new one if it lapses.
 
 - `intent_type: "flight"` or `"hotel"` for one item, or `"trip"` for a flight and a hotel together (one link, one payment).
-- `offer_data` is the offer exactly as search returned it. For a hotel, add `check_in`, `check_out`, `adults` and `rooms`; for a flight, add `passengers`. For a trip: `{"flight": {...offer, "passengers": 2}, "hotel": {...offer, "adults": 2, "rooms": 1, "check_in": "2026-12-01", "check_out": "2026-12-04"}}`.
+- `offer_data` is the offer exactly as search returned it. For a hotel, add `check_in`, `check_out`, `adults` and `rooms`; for a flight, add `passengers`. For a trip: `{"flight": {...offer, "passengers": 2}, "hotel": {...offer, "adults": 2, "rooms": 1, "check_in": "2026-12-01", "check_out": "2026-12-08"}}`.
 - Never put a traveler's email, phone, date of birth or card in `offer_data`. They enter those on autonomad.ai.
 
 ```
-MCP create_booking_intent {"intent_type": "trip", "offer_data": {"flight": {"...": "the flight offer", "passengers": 2}, "hotel": {"...": "the hotel offer", "adults": 2, "rooms": 1, "check_in": "2026-12-01", "check_out": "2026-12-04"}}}
+MCP create_booking_intent {"intent_type": "trip", "offer_data": {"flight": {"...": "the flight offer", "passengers": 2}, "hotel": {"...": "the hotel offer", "adults": 2, "rooms": 1, "check_in": "2026-12-01", "check_out": "2026-12-08"}}}
 ```
 
 ## Book directly, as a certified agent
@@ -176,10 +177,10 @@ MCP create_booking_intent {"intent_type": "trip", "offer_data": {"flight": {"...
 
 ```
 POST https://api.autonomad.ai/v1/bookings
-{"property_id": "<from search>", "offer_id": "<the room's offer_id from search>", "agent_did": "<your did>", "room_type": "standard", "check_in": "2026-12-01", "check_out": "2026-12-04", "traveler_id": "<traveller>"}
+{"property_id": "<from search>", "offer_id": "<the room's offer_id from search>", "agent_did": "<your did>", "room_type": "standard", "check_in": "2026-12-01", "check_out": "2026-12-08", "traveler_id": "<traveler>"}
 ```
 
-- Autonomad holds the traveller's details and card and fills them in.
+- Autonomad holds the traveler's details and card and fills them in.
 - You see their first and last name only.
 - Not available yet: a DID-authenticated agent cannot list a person's `traveler_id`.
 - If an answer's outcome is unknown (for example `booking_outcome_unknown`), do not book again. Read `GET https://api.autonomad.ai/v1/bookings` first.

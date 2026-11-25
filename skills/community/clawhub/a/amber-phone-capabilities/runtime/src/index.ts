@@ -11,12 +11,15 @@ import { createProvider } from './providers/index.js';
 import type { IVoiceProvider } from './providers/index.js';
 import { loadSkills, registerSkills, isSkillFunction, getSkillTools, handleSkillCall, callSkillDirectly } from './skills/index.js';
 import type { HandleSkillCallDeps } from './skills/index.js';
-import { BRIDGE_CREDENTIAL as DEFAULT_BRIDGE_CREDENTIAL, CRM_ENABLED, CRM_TRANSCRIPT_ENRICHMENT_ENABLED, DEFAULT_OPENAI_VOICE, GATEWAY_BASE_URL, GATEWAY_CREDENTIAL, IS_PRODUCTION_RUNTIME, IS_TEST_RUNTIME, OUTBOUND_CALLS_ENABLED, PROVIDER_WEBHOOK_STRICT, REALTIME_INTERRUPT_RESPONSE, REALTIME_MODEL, REALTIME_NOISE_REDUCTION, REALTIME_VAD_PREFIX_PADDING_MS, REALTIME_VAD_SILENCE_DURATION_MS, REALTIME_VAD_THRESHOLD, RUNTIME_PORT, getPersonalizationConfig, getTelephonyRuntimeConfig, getTelnyxRuntimeConfig, getVoiceProviderName, requireRuntimeEnv } from './config.js';
+import { BRIDGE_CREDENTIAL as DEFAULT_BRIDGE_CREDENTIAL, CRM_ENABLED, CRM_TRANSCRIPT_ENRICHMENT_ENABLED, DEFAULT_OPENAI_VOICE, GATEWAY_BASE_URL, GATEWAY_CREDENTIAL, IS_PRODUCTION_RUNTIME, IS_TEST_RUNTIME, OUTBOUND_CALLS_ENABLED, PROVIDER_WEBHOOK_STRICT, REALTIME_INTERRUPT_RESPONSE, REALTIME_MODEL, REALTIME_MODELS, REALTIME_NOISE_REDUCTION, REALTIME_VAD_PREFIX_PADDING_MS, REALTIME_VAD_SILENCE_DURATION_MS, REALTIME_VAD_THRESHOLD, RUNTIME_PORT, getPersonalizationConfig, getTelephonyRuntimeConfig, getTelnyxRuntimeConfig, getVoiceProviderName, normalizeRealtimeModel, requireRuntimeEnv } from './config.js';
 
 import { CallApprovals, verifyOpenAIWebhook, crmGreetingData } from './security.js';
-import { consultationData, callSessionKey } from './trust-boundaries.js';
+import { freshOutboundIntent, updateOutboundMetadata } from './outbound-metadata.js';
+import { consultationData, callSessionKey, realtimeEventForLog } from './trust-boundaries.js';
 
 const callApprovals = new CallApprovals();
+const bridgeInstance = crypto.randomUUID();
+const bridgeVersion = JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url), 'utf8')).version;
 // ─── Security Helpers ───
 
 /**
@@ -91,7 +94,6 @@ const OPENAI_PROJECT_ID = requireRuntimeEnv('OPENAI_PROJECT_ID');
 const OPENAI_WEBHOOK_SECRET = requireRuntimeEnv('OPENAI_WEBHOOK_SECRET');
 const OPENAI_VOICE = DEFAULT_OPENAI_VOICE;
 const OPENAI_REALTIME_MODEL = REALTIME_MODEL;
-const ALLOWED_OUTBOUND_REALTIME_MODELS = new Set(['gpt-realtime', 'gpt-realtime-mini']);
 
 // OpenClaw gateway for assistant brain-in-loop (Phase C2)
 const OPENCLAW_GATEWAY_URL = GATEWAY_BASE_URL;
@@ -299,6 +301,7 @@ function validateProviderWebhook(req: Request, res: Response, next: express.Next
     console.warn('PROVIDER_WEBHOOK_INVALID_SIGNATURE', { path: req.path, provider: VOICE_PROVIDER, url });
   }
 
+  res.locals.providerWebhookVerified = isValid;
   next();
 }
 
@@ -345,17 +348,45 @@ type InboundCallInfo = {
   callSid: string;
   from: string;
   receivedAtMs: number;
+  realtimeCallId?: string;
 };
 
 type InboundCallScreeningStyle = 'friendly' | 'genz';
 
 const INBOUND_CALL_LOOKBACK_MS = 2 * 60 * 1000;
-const INBOUND_CALL_RETENTION_MS = 10 * 60 * 1000;
-
-const inboundCallBySid = new Map<string, InboundCallInfo>();
+const inboundCallByToken = new Map<string, InboundCallInfo>();
 
 // JSON endpoints
 app.use('/call', express.json());
+app.use('/screening', express.json());
+
+const screeningStatePath = path.join(process.cwd(), 'data', 'screening.json');
+let screeningEnabled = true;
+try {
+  const state = JSON.parse(fs.readFileSync(screeningStatePath, 'utf8'));
+  if (typeof state.enabled !== 'boolean') throw new Error('Missing screening state');
+  screeningEnabled = state.enabled;
+} catch (error) {
+  if ((error as NodeJS.ErrnoException).code !== 'ENOENT') {
+    screeningEnabled = false;
+    console.error('Could not read screening state. Inbound screening is paused.');
+  }
+}
+
+app.post('/screening', requireAuth, (req, res) => {
+  const enabled = req.body?.enabled;
+  if (typeof enabled !== 'boolean') return res.status(400).json({ error: 'enabled must be a boolean' });
+  const temporary = `${screeningStatePath}.${process.pid}.tmp`;
+  try {
+    ensureDirSync(path.dirname(screeningStatePath));
+    fs.writeFileSync(temporary, JSON.stringify({ enabled }), { mode: 0o600 });
+    fs.renameSync(temporary, screeningStatePath);
+    screeningEnabled = enabled;
+  } catch {
+    return res.status(500).json({ error: 'Could not save screening state' });
+  }
+  return res.json({ enabled: screeningEnabled });
+});
 app.use('/openclaw', express.json());
 
 // Stores the desired objective/intent for the next outbound call(s), so the OpenAI
@@ -383,26 +414,34 @@ type OutboundIntent = {
   to?: string; // E.164 number being called — used for CRM lookup on outbound calls
   createdAtMs: number;
 };
-const OUTBOUND_INTENT_RETENTION_MS = 10 * 60 * 1000;
 const outboundIntentByKey = new Map<string, OutboundIntent>();
 
-// ─── Restore outbound intent map from disk on startup ───
-// This ensures Twilio webhook callbacks still work after a bridge restart.
-{
-  const mapPath = path.join(process.cwd(), 'data', 'bridge-outbound-map.json');
-  try {
-    if (fs.existsSync(mapPath)) {
-      const persisted: Record<string, OutboundIntent> = JSON.parse(fs.readFileSync(mapPath, 'utf8'));
-      const cutoff = Date.now() - OUTBOUND_INTENT_RETENTION_MS;
-      for (const [k, v] of Object.entries(persisted)) {
-        if (v.createdAtMs > cutoff) outboundIntentByKey.set(k, v);
-      }
-      console.log(`[startup] Restored ${outboundIntentByKey.size} outbound intent(s) from disk.`);
-    }
-  } catch (e) {
-    console.warn('[startup] Could not restore outbound intent map:', e);
+// Restore only fresh operator-approved intents so pending calls survive a restart.
+try {
+  const now = Date.now();
+  const stored = updateOutboundMetadata<CallPlan>(OUTBOUND_MAP_PATH, now);
+  for (const [id, item] of Object.entries(stored)) {
+    if (!freshOutboundIntent(item.createdAtMs, now)) continue;
+    const key = item.bridgeId ?? id;
+    const callPlan = item.callPlan ?? undefined;
+    const objective = item.objective || callPlanToObjective(callPlan);
+    outboundIntentByKey.set(key, { ...item, key, objective, callPlan });
   }
+} catch {
+  console.warn('[startup] Could not restore outbound call metadata.');
 }
+
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, item] of outboundIntentByKey) {
+    if (!freshOutboundIntent(item.createdAtMs, now)) outboundIntentByKey.delete(key);
+  }
+  try {
+    updateOutboundMetadata<CallPlan>(OUTBOUND_MAP_PATH, now);
+  } catch {
+    console.warn('Could not expire outbound call plans.');
+  }
+}, 60_000).unref();
 
 // Twilio callbacks are typically form-encoded
 app.use('/twilio', express.urlencoded({ extended: false }));
@@ -439,7 +478,13 @@ const gatewayClientOptions: ConstructorParameters<typeof OpenAI>[0] = {
 (gatewayClientOptions as Record<string, unknown>)['api' + 'Key'] = gatewayCredential;
 const clawdClient = new OpenAI(gatewayClientOptions);
 
-app.get('/healthz', (_req, res) => res.status(200).json({ ok: true }));
+app.get('/healthz', (_req, res) => {
+  res.set({
+    'Cache-Control': 'no-store',
+    'X-Amber-Version': bridgeVersion,
+    'X-Amber-Instance': bridgeInstance,
+  }).json({ ok: true });
+});
 
 /**
  * POST /openclaw/ask
@@ -474,25 +519,12 @@ app.post('/openclaw/ask', requireAuth, async (req: Request, res: Response) => {
 app.post('/twilio/status', validateProviderWebhook, (req: Request, res: Response) => {
   try {
     const b = req.body as any;
-    rememberInboundCallFromTwilioBody(b);
     console.log('TWILIO_STATUS', {
       CallSid: b?.CallSid,
       CallStatus: b?.CallStatus,
-      Timestamp: b?.Timestamp,
-      From: b?.From,
-      To: b?.To,
       Direction: b?.Direction,
-      ApiVersion: b?.ApiVersion,
-      AccountSid: b?.AccountSid,
-      // Common debug fields
-      Caller: b?.Caller,
-      Called: b?.Called,
-      CallDuration: b?.CallDuration,
-      // These are sometimes included for <Dial><Sip> failures
       SipResponseCode: b?.SipResponseCode,
-      SipCallId: b?.SipCallId,
       DialCallStatus: b?.DialCallStatus,
-      DialCallSid: b?.DialCallSid,
     });
   } catch (e) {
     console.error('TWILIO_STATUS parse error', e);
@@ -506,15 +538,13 @@ app.post('/twilio/status', validateProviderWebhook, (req: Request, res: Response
  * Security: Optional Twilio webhook signature validation (TWILIO_WEBHOOK_STRICT).
  */
 app.post('/twilio/inbound', validateProviderWebhook, async (req: Request, res: Response) => {
-  try {
-    rememberInboundCallFromTwilioBody(req.body as any);
-  } catch (e) {
-    console.error('TWILIO_INBOUND remember error', e);
-  }
+  const inboundToken = screeningEnabled && res.locals.providerWebhookVerified === true
+    ? rememberInboundCall(req.body)
+    : undefined;
   res
     .type(voiceProvider.responseContentType)
     .status(200)
-    .send(voiceProvider.buildSipBridgeResponse());
+    .send(voiceProvider.buildSipBridgeResponse({ inboundToken, reject: !screeningEnabled }));
 });
 
 /**
@@ -539,9 +569,9 @@ app.post(['/call/outbound', '/call/preview'], requireAuth, async (req: Request, 
 
     const objective = String(req.body?.objective ?? req.body?.intent ?? '').trim();
     const requestedModel = String(req.body?.model ?? '').trim();
-    const model = requestedModel || OPENAI_REALTIME_MODEL;
-    if (!ALLOWED_OUTBOUND_REALTIME_MODELS.has(model)) {
-      return res.status(400).json({ error: 'Invalid `model`. Expected gpt-realtime or gpt-realtime-mini' });
+    const model = normalizeRealtimeModel(requestedModel) || OPENAI_REALTIME_MODEL;
+    if (!REALTIME_MODELS.includes(model)) {
+      return res.status(400).json({ error: `Invalid model. Choose ${REALTIME_MODELS.join(' or ')}.` });
     }
     const callPlan: CallPlan | undefined = req.body?.callPlan && typeof req.body.callPlan === 'object'
       ? req.body.callPlan as CallPlan
@@ -573,29 +603,16 @@ app.post(['/call/outbound', '/call/preview'], requireAuth, async (req: Request, 
       statusCallbackEvents: ['initiated', 'ringing', 'answered', 'completed'],
     });
 
-    // Persist outbound map so downstream log sync can show the dialed PSTN number.
-    // Schema: { schema:1, updatedAt, calls:{ [twilioCallSid]: { to, bridgeId, objective, createdAtMs } } }
+    // Save routing and objective for the dashboard, with a short-lived plan
+    // so an approved outbound call can still connect after a bridge restart.
+    const createdAtMs = Date.now();
     try {
-      const mapPath = OUTBOUND_MAP_PATH;
-      ensureDirSync(path.dirname(mapPath));
-      let existing: any = { schema: 1, updatedAt: new Date().toISOString(), calls: {} };
-      if (fs.existsSync(mapPath)) {
-        try { existing = JSON.parse(fs.readFileSync(mapPath, 'utf8')); } catch {}
-        if (!existing || typeof existing !== 'object') existing = { schema: 1, calls: {} };
-        if (!existing.calls || typeof existing.calls !== 'object') existing.calls = {};
-      }
-      existing.calls[call.sid] = {
-        to,
-        bridgeId,
-        objective: objective || null,
-        callPlan: callPlan || null,
-        model,
-        createdAtMs: Date.now()
-      };
-      existing.updatedAt = new Date().toISOString();
-      fs.writeFileSync(mapPath, JSON.stringify(existing, null, 2) + '\n', 'utf8');
-    } catch (e) {
-      console.error('Failed to persist bridge-outbound-map.json', e);
+      updateOutboundMetadata<CallPlan>(OUTBOUND_MAP_PATH, createdAtMs, {
+        sid: call.sid,
+        metadata: { to, bridgeId, objective: objective || null, callPlan, model, createdAtMs },
+      });
+    } catch {
+      console.error('Failed to persist outbound call metadata.');
     }
 
     if (objective || callPlan || requestedModel) {
@@ -606,7 +623,7 @@ app.post(['/call/outbound', '/call/preview'], requireAuth, async (req: Request, 
         callPlan,
         model,
         to,
-        createdAtMs: Date.now()
+        createdAtMs,
       });
     }
 
@@ -657,26 +674,15 @@ app.post('/openai/webhook', async (req: Request, res: Response) => {
 
     const callId: string | undefined = event?.data?.call_id;
 
-    // Debug: persist raw incoming event so we can see what OpenAI provides (SIP headers/metadata)
-    try {
-      ensureDirSync(logsDir());
-      const incomingEventPath = path.join(logsDir(), 'incoming_' + Date.now() + '.realtime.call.incoming.json');
-      fs.writeFileSync(incomingEventPath, JSON.stringify(event, null, 2));
-      console.log('WROTE_INCOMING_EVENT', incomingEventPath);
-    } catch (e) {
-      console.error('Failed to write incoming event', e);
-    }
-
     if (!callId) {
       return res.status(400).send('Missing call_id');
     }
 
     const nowMs = Date.now();
 
-    const inbound = findRecentInboundCallForWebhook(event, nowMs);
+    const inbound = findInboundCall(event, callId, nowMs);
     const style = selectInboundCallScreeningStyle(inbound?.from);
 
-    const twilioSid = extractTwilioCallSidFromWebhook(event);
     const bridgeId = extractBridgeIdFromWebhook(event);
 
     // SIP metadata is caller-controlled even when OpenAI signs the enclosing event.
@@ -686,6 +692,26 @@ app.post('/openai/webhook', async (req: Request, res: Response) => {
 
     const outboundCallPlan = bridgeId ? getOutboundCallPlanForKey(bridgeId, nowMs) : undefined;
     const outboundModel = bridgeId ? getOutboundModelForKey(bridgeId, nowMs) : undefined;
+
+    const outboundIntent = bridgeId ? outboundIntentByKey.get(bridgeId) : undefined;
+    if (!outboundIntent && !screeningEnabled) return res.sendStatus(200);
+
+    const twilioSid = inbound?.callSid ?? (outboundIntent ? extractTwilioCallSidFromWebhook(event) : undefined);
+    // The dashboard needs routing and call IDs. Keep those fields instead of raw SIP headers.
+    const callRouting = {
+      direction: outboundIntent ? 'outbound' : 'inbound',
+      from: outboundIntent ? VOICE_CALLER_ID : inbound?.from ?? null,
+      to: outboundIntent ? outboundIntent.to ?? null : VOICE_CALLER_ID,
+      twilioCallSid: twilioSid && /^CA[a-f0-9]{32}$/i.test(twilioSid) ? twilioSid : null,
+      bridgeId: outboundIntent ? bridgeId ?? null : null,
+    };
+    try {
+      ensureDirSync(logsDir());
+      const incomingEventPath = path.join(logsDir(), `incoming_${nowMs}_${safeCallId(callId)}.realtime.call.incoming.json`);
+      fs.writeFileSync(incomingEventPath, JSON.stringify({ data: { call_id: callId, callRouting } }), { mode: 0o600 });
+    } catch {
+      console.error('Could not save call routing metadata');
+    }
 
     const instructions = outboundObjective
       ? buildOutboundCallInstructions({ objective: outboundObjective, callPlan: outboundCallPlan })
@@ -727,23 +753,21 @@ const callAccept = {
     }
 
     ensureDirSync(logsDir());
-    const jsonlStream = fs.createWriteStream(logsJsonlPath(callId), { flags: 'a' });
-    const transcriptStream = fs.createWriteStream(logsTranscriptPath(callId), { flags: 'a' });
+    const jsonlStream = fs.createWriteStream(logsJsonlPath(callId), { flags: 'a', mode: 0o600 });
+    const transcriptStream = fs.createWriteStream(logsTranscriptPath(callId), { flags: 'a', mode: 0o600 });
 
     const writeJsonl = (obj: unknown) => {
       jsonlStream.write(`${JSON.stringify(obj)}\n`);
     };
 
     // Debug: log what we think this call is (outbound objective vs inbound screening)
-    const twilioSidForDebug = extractTwilioCallSidFromWebhook(event);
     writeJsonl({
       type: 'call.intent',
       received_at: new Date().toISOString(),
-      twilio_call_sid: twilioSidForDebug ?? null,
+      twilio_call_sid: callRouting.twilioCallSid,
       outbound_objective: outboundObjective ?? null,
       realtime_model: outboundModel || OPENAI_REALTIME_MODEL,
       selected_mode: outboundObjective ? 'outbound' : 'inbound',
-      inbound_from: inbound?.from ?? null,
       inbound_style: style
     });
 
@@ -768,24 +792,10 @@ const callAccept = {
     // For outbound: always use the 'to' number we dialed (bridgeId → intent.to).
     //   inbound?.from on outbound calls is our own Twilio number (SIP leg quirk) — not the callee.
     // For inbound: use the caller's number from Twilio.
-    const outboundTo = bridgeId ? (outboundIntentByKey.get(bridgeId)?.to ?? null) : null;
-    const callerPhone = outboundTo ?? inbound?.from ?? null;
+    const callerPhone = outboundIntent?.to ?? inbound?.from ?? null;
 
     ws.on('open', () => {
       writeJsonl({ type: 'ws.open', call_id: callId, received_at: new Date().toISOString() });
-
-      // Pre-fetch calendar for the week ahead (fire-and-forget)
-      // Gives Amber a static snapshot of availability at call start — faster responses
-      askOpenClaw('Pre-fetch and cache calendar availability for the next 7 days. Return a summary of free/busy times.', {
-        callId,
-        objective: outboundObjective,
-        callPlan: outboundCallPlan,
-        transcript: ''
-      }).then(() => {
-        writeJsonl({ type: 'c2.calendar_prefetch', call_id: callId, received_at: new Date().toISOString(), status: 'ok' });
-      }).catch((e) => {
-        writeJsonl({ type: 'c2.calendar_prefetch', call_id: callId, received_at: new Date().toISOString(), status: 'error', error: String(e) });
-      });
 
       // Phase C2: Re-register tools + VAD tuning via session.update
       {
@@ -841,7 +851,7 @@ const callAccept = {
 
       // CRM auto-lookup — runs before greeting so name/context is available immediately.
       // SQLite is synchronous and local so this resolves in <5ms — no caller-perceptible delay.
-      if (CRM_ENABLED && callerPhone) {
+      if (crmReady && callerPhone) {
         const crmApiDeps = {
           clawdClient,
           operatorName: OPERATOR_NAME || '',
@@ -860,7 +870,7 @@ const callAccept = {
 
             if (!contact) { sendGreeting(); return; } // new caller
 
-            writeJsonl({ type: 'c2.crm_context_injected', call_id: callId, received_at: new Date().toISOString(), contact_name: contact.name ?? null });
+            writeJsonl({ type: 'c2.crm_context_injected', call_id: callId, received_at: new Date().toISOString() });
             sendGreeting(contact.name ? { name: contact.name, context_notes: contact.context_notes ?? undefined } : undefined);
           })
           .catch((e) => {
@@ -925,6 +935,7 @@ const callAccept = {
     // Accumulate function call arguments (they may come in deltas)
     const pendingFunctionCalls = new Map<string, { name: string; args: string }>();
 
+    let callSummary: Record<string, unknown> | null = null;
     ws.on('message', (data, isBinary) => {
       const receivedAt = new Date().toISOString();
       const rawText =
@@ -937,10 +948,18 @@ const callAccept = {
       try {
         parsed = JSON.parse(rawText);
       } catch {
-        parsed = { type: 'unparsed', raw: rawText };
+        parsed = { type: 'unparsed' };
       }
 
-      writeJsonl({ received_at: receivedAt, event: parsed });
+      writeJsonl({ received_at: receivedAt, event: realtimeEventForLog(parsed) });
+
+      const eventType = String(parsed?.type ?? '');
+      const summaryText = eventType === 'response.output_text.done' ? parsed.text
+        : eventType === 'response.audio_transcript.done' ? parsed.transcript : null;
+      if (typeof summaryText === 'string') {
+        const summary = sanitizeSummaryJson(parseSummaryJsonFromTranscript(summaryText));
+        if (summary) callSummary = summary;
+      }
 
       for (const t of extractTranscriptStrings(parsed)) {
         // Strip SUMMARY_JSON lines before writing to transcript log.
@@ -953,7 +972,6 @@ const callAccept = {
       }
 
       // Phase C2: Handle function call events
-      const eventType = String(parsed?.type ?? '');
 
       // Track function call argument deltas
       if (eventType === 'response.function_call_arguments.delta') {
@@ -1014,7 +1032,7 @@ const callAccept = {
             operatorName: OPERATOR_NAME || '',
             operatorTelegramId: undefined, // determined by OpenClaw gateway routing
             callId,
-            callerId: inbound?.from || '',
+            callerId: fnName === 'crm' ? callerPhone ?? '' : inbound?.from ?? '',
             transcript: '', // transcript is streaming; skills get what's available
             writeJsonl,
             sendFunctionCallOutput: (wsRef: any, fCallId: string, output: string) =>
@@ -1048,11 +1066,17 @@ const callAccept = {
         reason: reason.toString()
       });
       await Promise.all([endStream(jsonlStream), endStream(transcriptStream)]);
-      await finalizeSummaryFromTranscript(callId);
+      if (callSummary) {
+        try {
+          await fs.promises.writeFile(logsSummaryPath(callId), JSON.stringify(callSummary), { mode: 0o600 });
+        } catch {
+          console.error('Could not save the structured call summary');
+        }
+      }
 
       // Opt-in CRM auto-log. Enable with AMBER_CRM_ENABLED=true after caller
       // notice/consent and retention practices are configured.
-      if (CRM_ENABLED && callerPhone) {
+      if (crmReady && callerPhone) {
         try {
           const transcriptText = fs.existsSync(logsTranscriptPath(callId))
             ? fs.readFileSync(logsTranscriptPath(callId), 'utf8').trim()
@@ -1084,14 +1108,12 @@ const callAccept = {
             details: { direction, call_id: callId, auto_logged: true },
           }, crmApiDeps);
 
-          writeJsonl({ type: 'c2.crm_auto_logged', call_id: callId, received_at: new Date().toISOString(), phone: callerPhone });
+          writeJsonl({ type: 'c2.crm_auto_logged', call_id: callId, received_at: new Date().toISOString() });
 
-          if (CRM_TRANSCRIPT_ENRICHMENT_ENABLED) {
-            // Pass 2: opt-in LLM extraction enriches name, context_notes, and summary from full transcript.
-            extractAndUpdateCrmFromTranscript(callId, callerPhone, writeJsonl).catch((e) => {
-              writeJsonl({ type: 'c2.crm_extract_fatal', call_id: callId, error: String(e) });
-            });
-          }
+          // Pass 2: opt-in extraction can enrich CRM from the full transcript.
+          extractAndUpdateCrmFromTranscript(callId, callerPhone, writeJsonl).catch((e) => {
+            writeJsonl({ type: 'c2.crm_extract_fatal', call_id: callId, error: String(e) });
+          });
         } catch (e) {
           writeJsonl({ type: 'c2.crm_auto_log_error', call_id: callId, received_at: new Date().toISOString(), error: String(e) });
         }
@@ -1117,13 +1139,12 @@ const callAccept = {
 
 // ─── Load Amber Skills at startup ───
 const SKILLS_DIR = path.resolve(new URL('.', import.meta.url).pathname, '../../amber-skills');
-const loadedSkills = loadSkills(SKILLS_DIR).filter((skill) => {
-  if (skill.manifest.name !== 'crm') return true;
-  if (CRM_ENABLED) return true;
-  console.log('[skills] Skipping crm: AMBER_CRM_ENABLED is not true');
-  return false;
-});
-registerSkills(loadedSkills);
+registerSkills(loadSkills(SKILLS_DIR, (manifest, directoryName) =>
+  CRM_ENABLED || (directoryName !== 'crm'
+    && manifest.name !== 'crm'
+    && manifest.amber.function_schema.name !== 'crm')
+));
+const crmReady = CRM_ENABLED && isSkillFunction('crm');
 
 app.listen(PORT, () => {
   console.log(`twilio-openai-sip-bridge listening on http://127.0.0.1:${PORT}`);
@@ -1600,7 +1621,7 @@ async function askOpenClaw(
 ): Promise<string> {
   const timeoutMs = 20_000;
 
-  // Gateway sessions are isolated by call, including the calendar prefetch.
+  // Gateway sessions are isolated by call.
   if (OPENCLAW_GATEWAY_CREDENTIAL) {
     try {
       const answer = await askOpenClawViaGateway(question, callContext, timeoutMs);
@@ -1732,23 +1753,23 @@ function callPlanToObjective(cp?: CallPlan): string {
 
 function getOutboundCallPlanForKey(key: string, nowMs: number): CallPlan | undefined {
   for (const [k, info] of outboundIntentByKey.entries()) {
-    if (nowMs - info.createdAtMs > OUTBOUND_INTENT_RETENTION_MS) outboundIntentByKey.delete(k);
+    if (!freshOutboundIntent(info.createdAtMs, nowMs)) outboundIntentByKey.delete(k);
   }
   return outboundIntentByKey.get(key)?.callPlan;
 }
 
 function getOutboundModelForKey(key: string, nowMs: number): string | undefined {
   for (const [k, info] of outboundIntentByKey.entries()) {
-    if (nowMs - info.createdAtMs > OUTBOUND_INTENT_RETENTION_MS) outboundIntentByKey.delete(k);
+    if (!freshOutboundIntent(info.createdAtMs, nowMs)) outboundIntentByKey.delete(k);
   }
-  const model = outboundIntentByKey.get(key)?.model;
-  return model && ALLOWED_OUTBOUND_REALTIME_MODELS.has(model) ? model : undefined;
+  const model = normalizeRealtimeModel(outboundIntentByKey.get(key)?.model ?? '');
+  return REALTIME_MODELS.includes(model) ? model : undefined;
 }
 
 function getOutboundObjectiveForKey(key: string, nowMs: number): string | undefined {
   // Cleanup first
   for (const [k, info] of outboundIntentByKey.entries()) {
-    if (nowMs - info.createdAtMs > OUTBOUND_INTENT_RETENTION_MS) outboundIntentByKey.delete(k);
+    if (!freshOutboundIntent(info.createdAtMs, nowMs)) outboundIntentByKey.delete(k);
   }
   const rec = outboundIntentByKey.get(key);
   if (!rec) {
@@ -1764,37 +1785,32 @@ function normalizePhoneLike(s: unknown): string {
   return s.trim();
 }
 
-function rememberInboundCallFromTwilioBody(body: any): void {
+function rememberInboundCall(body: { CallSid?: unknown; From?: unknown; Caller?: unknown } | undefined): string | undefined {
   const callSid = normalizePhoneLike(body?.CallSid);
   const from = normalizePhoneLike(body?.From || body?.Caller);
-  if (!callSid || !from) return;
+  if (!callSid || !isE164(from)) return undefined;
 
-  const nowMs = Date.now();
-  inboundCallBySid.set(callSid, { callSid, from, receivedAtMs: nowMs });
-  cleanupInboundCalls(nowMs);
+  const now = Date.now();
+  for (const [token, info] of inboundCallByToken) {
+    if (now - info.receivedAtMs > INBOUND_CALL_LOOKBACK_MS) inboundCallByToken.delete(token);
+  }
+  const token = crypto.randomBytes(16).toString('hex');
+  inboundCallByToken.set(token, { callSid, from, receivedAtMs: now });
+  return token;
 }
 
-function cleanupInboundCalls(nowMs: number): void {
-  for (const [sid, info] of inboundCallBySid.entries()) {
-    if (nowMs - info.receivedAtMs > INBOUND_CALL_RETENTION_MS) inboundCallBySid.delete(sid);
-  }
-}
+function findInboundCall(event: any, callId: string, now: number): InboundCallInfo | undefined {
+  const headers = event?.data?.sip_headers;
+  if (!Array.isArray(headers)) return undefined;
 
-function findRecentInboundCallForWebhook(event: any, nowMs: number): InboundCallInfo | undefined {
-  cleanupInboundCalls(nowMs);
+  const matches = headers.filter(header => String(header?.name ?? '').toLowerCase() === 'x-amber-inbound');
+  if (matches.length !== 1) return undefined;
 
-  const candidateSid = extractTwilioCallSidFromWebhook(event);
-  if (candidateSid) {
-    const info = inboundCallBySid.get(candidateSid);
-    if (info && nowMs - info.receivedAtMs <= INBOUND_CALL_LOOKBACK_MS) return info;
-  }
-
-  let best: InboundCallInfo | undefined = undefined;
-  for (const info of inboundCallBySid.values()) {
-    if (nowMs - info.receivedAtMs > INBOUND_CALL_LOOKBACK_MS) continue;
-    if (!best || info.receivedAtMs > best.receivedAtMs) best = info;
-  }
-  return best;
+  const info = inboundCallByToken.get(normalizePhoneLike(matches[0]?.value));
+  if (!info || now - info.receivedAtMs > INBOUND_CALL_LOOKBACK_MS) return undefined;
+  if (info.realtimeCallId && info.realtimeCallId !== callId) return undefined;
+  info.realtimeCallId = callId;
+  return info;
 }
 
 function extractTwilioCallSidFromWebhook(event: any): string | undefined {
@@ -2021,6 +2037,7 @@ async function extractAndUpdateCrmFromTranscript(
   callerPhone: string,
   writeJsonl: (obj: unknown) => void
 ): Promise<void> {
+  if (!crmReady || !CRM_TRANSCRIPT_ENRICHMENT_ENABLED) return;
   try {
     const transcriptPath = logsTranscriptPath(callId);
     if (!fs.existsSync(transcriptPath)) return;
@@ -2069,11 +2086,18 @@ Rules:
     try {
       extracted = JSON.parse(raw);
     } catch {
-      writeJsonl({ type: 'c2.crm_extract_parse_error', call_id: callId, raw });
+      writeJsonl({ type: 'c2.crm_extract_parse_error', call_id: callId });
       return;
     }
 
-    writeJsonl({ type: 'c2.crm_extract_result', call_id: callId, received_at: new Date().toISOString(), extracted });
+    writeJsonl({
+      type: 'c2.crm_extract_result',
+      call_id: callId,
+      received_at: new Date().toISOString(),
+      has_contact_fields: Boolean(extracted.caller_name || extracted.caller_email || extracted.caller_company),
+      has_context: Boolean(extracted.context_notes),
+      has_summary: Boolean(extracted.call_summary),
+    });
 
     // Build upsert params — only include fields that were actually extracted
     const upsertParams: Record<string, any> = { action: 'upsert_contact', phone: callerPhone };
@@ -2107,29 +2131,9 @@ Rules:
       }, crmApiDeps);
     }
 
-    writeJsonl({ type: 'c2.crm_extract_done', call_id: callId, received_at: new Date().toISOString(), name: extracted.caller_name, has_context: !!extracted.context_notes });
+    writeJsonl({ type: 'c2.crm_extract_done', call_id: callId, received_at: new Date().toISOString(), has_context: !!extracted.context_notes });
   } catch (e) {
     writeJsonl({ type: 'c2.crm_extract_error', call_id: callId, received_at: new Date().toISOString(), error: String(e) });
-  }
-}
-
-async function finalizeSummaryFromTranscript(callId: string): Promise<void> {
-  try {
-    const transcriptPath = logsTranscriptPath(callId);
-    const summaryPath = logsSummaryPath(callId);
-    if (!fs.existsSync(transcriptPath)) return;
-
-    const text = await fs.promises.readFile(transcriptPath, 'utf8');
-    const raw = parseSummaryJsonFromTranscript(text);
-    if (!raw) return;
-
-    // Sanitize at write, not just at display — defense in depth.
-    const summary = sanitizeSummaryJson(raw);
-    if (!summary) return;
-
-    await fs.promises.writeFile(summaryPath, `${JSON.stringify(summary, null, 2)}\n`, 'utf8');
-  } catch (e) {
-    console.error('finalizeSummaryFromTranscript error', callId, e);
   }
 }
 

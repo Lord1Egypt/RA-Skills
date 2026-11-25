@@ -1,6 +1,8 @@
 # 结果反馈与错误处理
 
-发布、更新、上传或通用 API 请求完成后读取本文件。判断依据是**脚本的输出**：stdout 输出包含成功 JSON 或成功 token 即成功；stderr 输出 `ERROR:<code>` 即失败。
+发布、更新、上传或通用 API 请求完成后读取本文件。判断依据是**服务端返回的实际状态**；stderr 输出 `ERROR:<code>` 表示未完成，不能只因有 stdout 或退出码为 0 就宣称内容已发布。
+
+文本发布结果含真实 `share_id` 和 `share_url` 才能展示发布成功。若返回 `status` 与 `review_id` 的待复核记录，保留该 ID 并按 `content-review.md` 读取决定，不创建替代分享。`INVALID_RESPONSE` 表示响应未确认结果：保留原 ID、请求体及幂等键，先核对状态；只有该操作支持安全重放时才复用同一意图，不用新键重新创建。
 
 ## 1. 发布成功
 
@@ -55,6 +57,7 @@ slug 冲突在两类发布中的表现**不同**，不要混淆：
 
 - 内容违规拦截，HTTP 400：提取 JSON 中的 `detail` 字段展示给用户，例如“发布失败，内容未通过安全审核。原因：<detail>”。
 - 凭据错误 `AUTH_REQUIRED` / `INVALID_API_KEY`：检查当前账号的 Key，保留拥有原分享的身份。`FORBIDDEN` / `AGENT_OWNER_REQUIRED` 是权限问题，不要用新 guest Key 替换身份。密码和登录门禁分别按 `PASSWORD_REQUIRED` / `EMAIL_GATE_REQUIRED` 的 hint 处理。
+- `REMOTE_SOURCE_UNAVAILABLE` / `REMOTE_SOURCE_ACCESS_DENIED` 指向 GitLab 源端网络、凭据或权限；保留 ShareOne 身份，按源错误的 `hint` 恢复。`UNTRUSTED_SHARE_ORIGIN` 要核对部署配置；`UNSAFE_REDIRECT` 要核查目标 HTTPS 链路，保留当前凭据。
 - 找不到页面，HTTP 404：若 PUT 更新遇 404，说明原页面已被后台删除，请询问用户是否作为新页面重新 POST。
 - 二进制文件被误发到 pages JSON 接口，HTTP 400 且提示检测到二进制内容：使用 `publish.js` 重新发布（它会自动分发到正确通道）；该错误只在绕过 `publish.js` 直接调用底层脚本时才可能出现。
 - `ERROR:FILE_PREVIOUSLY_PUBLISHED`：该本地文件之前已发布过，错误提示中带有原 `share_id` 和链接。默认改用 `--share-id <id>` 更新原链接；只有用户明确要求为同一文件再创建一个新链接时，才追加 `--force-new` 重试。

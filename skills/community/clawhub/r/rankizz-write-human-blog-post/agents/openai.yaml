@@ -1,0 +1,4 @@
+interface:
+  display_name: "Human Blog Writing"
+  short_description: "Write a sourced blog post with a human voice"
+  default_prompt: "Use $rankizz-write-human-blog-post to research and write this blog post in a natural human voice."

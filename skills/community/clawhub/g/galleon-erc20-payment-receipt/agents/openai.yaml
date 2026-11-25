@@ -1,0 +1,4 @@
+interface:
+  display_name: "Verify a token payment"
+  short_description: "Check transfer parties, raw amount and block finality"
+  default_prompt: "Use $galleon-erc20-payment-receipt to check this submitted token payment against the original instruction."

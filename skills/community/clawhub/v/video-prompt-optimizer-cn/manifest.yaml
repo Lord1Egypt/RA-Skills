@@ -1,0 +1,24 @@
+name: video-prompt-optimizer-cn
+slug: video-prompt-optimizer-cn
+version: 1.0.2
+display_name: AI视频提示词优化
+description: 面向中文自媒体创作者和小店经营者，将 AI 视频画面意图和原始提示词优化为可复制提示词、镜头动作顺序与连续性约束；不调用视频生成 API，不捏造模型参数。
+repository: https://github.com/xxjrq/video-prompt-optimizer-cn
+license: MIT-0
+icon: icon-512.png
+tags:
+  - ai-video
+  - prompt-engineering
+  - chinese-creators
+  - storyboard
+  - continuity
+trigger_words:
+  - AI视频提示词优化
+  - 优化视频生成提示词
+  - 视频分镜提示词
+  - 镜头连续性约束
+self_test: node scripts/self-test.mjs
+platforms:
+  - github
+  - gitee
+  - skillhub

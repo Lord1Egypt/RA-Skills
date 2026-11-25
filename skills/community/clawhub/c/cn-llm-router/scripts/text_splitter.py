@@ -1,14 +1,16 @@
-"""文本分段与长文路由辅助（v2.6 新增）。
+"""文本分段与长文路由辅助（v2.6 新增，v2.9.0 补齐并行链）。
 
 chunked_call 支持 10 万字级文档处理：
 - 按语义边界分段（段落 → 句子 → 硬切三级降级）
 - map-reduce 摘要合并
 - 单次分段调用不超过模型上下文窗口
+- v2.9.0: chunked_call_parallel 并行分块调用（硬件自适应并发）
 
 设计：纯标准库，零依赖，离线可用。
 """
 
 import re
+import concurrent.futures as _cf
 
 
 def estimate_tokens_simple(text):
@@ -88,6 +90,40 @@ def chunked_call(chunks, task_fn, reduce_fn=None):
         final = reduce_fn(results)
 
     return {"result": final, "chunks": len(chunks)}
+
+
+def chunked_call_parallel(chunks, task_fn, max_workers=4, reduce_fn=None):
+    """v2.9.0：并行对分块调用 task_fn，再合并。保持结果顺序与输入一致。
+
+    task_fn(chunk, idx) 返回该分块的处理结果。
+    max_workers 由调用方按 hardware.profile() 传入（硬件自适应）。
+    单个分块失败不中断整体：该位置记为错误字符串，便于定位。
+    """
+    results = [None] * len(chunks)
+    max_workers = max(1, min(int(max_workers), len(chunks) or 1))
+
+    def run(idx, chunk):
+        try:
+            return idx, task_fn(chunk, idx), None
+        except Exception as e:
+            return idx, "", str(e)
+
+    with _cf.ThreadPoolExecutor(max_workers=max_workers) as pool:
+        futures = [pool.submit(run, i, c) for i, c in enumerate(chunks)]
+        for fut in _cf.as_completed(futures):
+            idx, val, err = fut.result()
+            results[idx] = {"value": val, "error": err, "index": idx}
+
+    values = [r["value"] if r else "" for r in results]
+    errors = [r["error"] for r in results if r and r["error"]]
+    final = reduce_fn(values) if reduce_fn else "\n\n".join(values)
+    return {
+        "result": final,
+        "chunk_values": values,
+        "chunks": len(chunks),
+        "errors": errors,
+        "workers": max_workers,
+    }
 
 
 def auto_chunk_length(model_ctx, overhead=1000):

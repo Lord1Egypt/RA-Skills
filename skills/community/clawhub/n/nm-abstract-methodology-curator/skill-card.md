@@ -1,6 +1,6 @@
 ## Description:
 
-Surface expert frameworks
+Surface expert frameworks.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agents use this skill to find established frameworks for new work and to compare existing skills or hooks against recognized methodologies. It helps them prepare a concise methodology brief before creation or evaluation.
+Developers use the skill before brainstorming or evaluation to identify relevant expert frameworks, and to compare existing skills or hooks with established methods.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: A framework may be a poor fit for the task or its domain category may be misclassified.
+Risk: One external reference was outside the completed security scan.
 
-Mitigation: Compare the two highest-scoring domain modules, explain the selection, and check cited frameworks against the task context before applying them.
+Mitigation: Review that linked material before relying on it.
 
-Risk: Framework summaries may be incomplete or presented without enough context for a particular use.
+Risk: A framework selected for a task may not fit its domain or context.
 
-Mitigation: Review the referenced source material and adapt principles to the task before using them to guide implementation or evaluation.
+Mitigation: Compare the most relevant modules and review the methodology brief before applying its recommendations.
 
 ## Reference(s):
 
-- [Abstract plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
+- [ClawHub skill listing](https://clawhub.ai/athola/skills/nm-abstract-methodology-curator)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Markdown]
+**Output Type(s):** [Guidance, Analysis, Markdown]
 
-**Output Format:** [Markdown methodology brief with framework selections and rationale]
+**Output Format:** [Markdown methodology brief with framework recommendations]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Identifies relevant domain modules, summarizes applicable frameworks, and notes methodology gaps or selection rationale.]
+**Other Properties Related to Output:** [Includes framework selection rationale tailored to the task.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: ClawHub release evidence)
 
 ## Ethical Considerations:
 

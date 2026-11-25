@@ -1,6 +1,6 @@
 ## Description:
 
-Hunts bugs with evidence trails.
+Hunts bugs with evidence trails
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use this skill to investigate reported or suspected defects, document evidence and severity, prepare focused fixes, and plan verification before releases or merges.
+Developers use this skill to investigate suspected defects, record evidence and severity, prepare minimal fixes, and plan verification. It produces structured review findings and proposed code and test changes.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Four referenced paths could not be matched to bundled files, so the security review is incomplete despite a benign, medium-confidence verdict.
+Risk: Some paths referenced by the skill were missing from the bundled artifact, and scanner coverage was partial; helper instructions or dependencies may therefore be unavailable.
 
-Mitigation: Verify the referenced support modules are available and review them before relying on the skill's findings or proposed fixes.
+Mitigation: Check that referenced paths and required dependencies are available before use, and review proposed findings and fixes against the project evidence.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-pensive-bug-review)
-- [Publisher profile](https://clawhub.ai/user/athola)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-pensive-bug-review)
+- [Homepage listed in Clawdis metadata](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Code, Shell commands, Guidance]
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Files]
 
-**Output Format:** [Markdown with structured defect records, code examples, and verification commands]
+**Output Format:** [Markdown defect reports with code diffs, verification commands, and JSON findings]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include proposed code diffs, test updates, and structured findings.]
+**Other Properties Related to Output:** [Includes evidence references, severity classification, proposed fixes, and verification steps.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, server-resolved release)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

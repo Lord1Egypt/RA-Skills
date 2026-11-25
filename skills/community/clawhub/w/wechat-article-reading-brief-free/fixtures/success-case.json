@@ -1,0 +1,20 @@
+{
+  "fixture_notice": "离线页面资料模拟：仅用于 self-test，不是在线采集结果。",
+  "business_input": {
+    "urls": ["https://mp.weixin.qq.com/s/fixture-visible-reading"],
+    "focus_questions": ["可溯源阅读应按什么顺序进行？"],
+    "browserId": "fixture-browser-id"
+  },
+  "page": "success-page.html",
+  "expected_brief": {
+    "title": "如何做一次可溯源阅读",
+    "main_conclusion": "先限定问题，再记录可见证据，最后标记缺项。",
+    "key_steps": ["限定问题", "记录可见证据", "标记缺项"],
+    "author": "示例作者",
+    "date": "2026-01-15",
+    "publisher": "示例公众号",
+    "source_url": "https://mp.weixin.qq.com/s/fixture-visible-reading",
+    "visible_scope": "正文可见",
+    "missing_items": []
+  }
+}

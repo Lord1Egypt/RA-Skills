@@ -1,0 +1,4 @@
+interface:
+  display_name: "Product Photo Kit — by VisualGPT"
+  short_description: "Plan consistent product images for your preferred image tool"
+  default_prompt: "Use $product-photo-kit to turn my product photo into a coordinated ecommerce image plan, complete prompts, and instructions for my preferred image tool."

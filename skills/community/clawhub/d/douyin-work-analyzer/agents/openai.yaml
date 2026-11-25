@@ -1,0 +1,10 @@
+interface:
+  display_name: "免费抖音作品分析"
+  short_description: "免费、免额外登录、免第三方 Key，支持视频和图文"
+  icon_small: "./assets/icon-512.png"
+  icon_large: "./assets/icon-512.png"
+  brand_color: "#2563EB"
+  default_prompt: "使用 $douyin-work-analyzer 免费分析这个抖音视频或图文作品，告诉我它的钩子、结构、亮点、问题和可借鉴方向，并导出 Markdown 与 JSON 报告。"
+
+policy:
+  allow_implicit_invocation: true

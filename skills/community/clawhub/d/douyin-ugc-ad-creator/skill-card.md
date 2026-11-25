@@ -1,6 +1,6 @@
 ## Description:
 
-Create a Douyin shopping video, Douyin UGC ad, or AI creator product pitch from a product photo, product details, and an on-camera direction. This AI UGC ad creator composes a vertical presenter frame with the product, shapes a conversational hook and spoken recommendation, and delivers a short Douyin product video for launches, creator-style reviews, demonstrations, unboxings, and paid social creative.
+Create a Douyin shopping video, Douyin UGC ad, or AI creator product pitch from a product photo, product details, and an on-camera direction.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Merchants, creators, and marketing teams use this skill to prepare and produce short vertical Douyin product ads from an inspectable product photo, merchant-supplied details, and on-camera direction.
+Marketing teams and creators use this skill to turn merchant-supplied product details and an inspected product photo into a short, vertical creator-style product ad with a spoken pitch.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review reports broad shared Beatra account access beyond the ad-creation purpose.
+Risk: The security assessment flags shared credentials and broad account permissions as concerns; the scanners did not establish malicious intent, and their assessment is partial.
 
-Mitigation: Review the shared credential scope before connecting, keep the Device Token private, and limit access to the shared connection.
+Mitigation: Review the installation and authentication guidance and confirm the requested account access before installing or authorizing the skill.
 
-Risk: The security review reports recurring installation telemetry.
+Risk: The security guidance also calls out recurring metadata reporting and uninstall side effects.
 
-Mitigation: Review the documented registration fields and privacy terms before installation; defer use if that reporting is not acceptable.
-
-Risk: The security review reports that uninstall actions could affect other skills through shared connection state.
-
-Mitigation: Use the bundled uninstall flow, check its remaining-skill decision, and do not remove shared Beatra state manually.
+Mitigation: Review the updates and security guidance before use, and the uninstall guidance before removing the skill or disconnecting shared credentials.
 
 ## Reference(s):
 
-- [Beatra skill page](https://beatra.ai/skills/douyin-ugc-ad-creator)
 - [ClawHub release page](https://clawhub.ai/beatra-ai/skills/douyin-ugc-ad-creator)
+- [Beatra skill homepage](https://beatra.ai/skills/douyin-ugc-ad-creator)
 - [Douyin UGC ad workflow](references/workflow.md)
-- [Installation registration](references/installation-registration.md)
-- [Uninstall and disconnect](references/uninstall-and-disconnect.md)
+- [Speech, voices, and audio](references/speech-and-audio.md)
 - [Updates and security](references/updates-and-security.md)
+- [Installation and authentication](references/installation-and-auth.md)
+- [Tasks and results](references/tasks-and-results.md)
+- [Billing, errors, and recovery](references/billing-errors-and-recovery.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Video, Audio, Text, Guidance]
+**Output Type(s):** [Video, Audio, Text, Subtitles, Guidance]
 
-**Output Format:** [Vertical product-ad video with spoken narration and aligned JSON, SRT, and VTT subtitles when available.]
+**Output Format:** [Short vertical product video with spoken narration and aligned subtitles; supporting scripts and workflow guidance in Markdown]
 
-**Output Parameters:** [One vertical 9:16 clip; the default spoken pitch is 8–12 seconds.]
+**Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Product claims are limited to merchant-supplied details; the skill presents paid preparation and video generation as separately confirmed stages.]
+**Other Properties Related to Output:** [Typically one 9:16 clip with a concise 8–12 second pitch; available canvas, duration, and media details depend on the selected live models.]
 
 ## Skill Version(s):
 
-0.3.1 (source: server-resolved release evidence and manifest)
+0.3.2 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

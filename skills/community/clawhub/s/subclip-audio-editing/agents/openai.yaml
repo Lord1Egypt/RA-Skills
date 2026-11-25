@@ -1,0 +1,4 @@
+interface:
+  display_name: "Subclip Audio Editing"
+  short_description: "Mix music, voice, and sound effects safely"
+  default_prompt: "Use -audio-editing to add and mix audio in this project."

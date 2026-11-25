@@ -1,6 +1,6 @@
 ## Description:
 
-Guides agents in creating WeChat Channels promotional videos with qhkit, including media selection, cost review, task tracking, and delivery.
+Generates WeChat Channels commerce videos with QH AI video models and supports storyboard scripting.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,45 +14,43 @@ MIT-0
 
 ## Use Case:
 
-External marketers, merchants, and livestream teams use this skill to plan and generate short product, storytelling, and promotional videos for WeChat Channels and related social placements.
+External WeChat private traffic operators and livestream commerce teams use this skill to create product, recommendation, educational, and livestream promotion videos for WeChat Channels and related placements.
 
 ### Deployment Geography for Use:
 
-Global
+China
 
 ## Known Risks and Mitigations:
 
-Risk: Installing or upgrading qhkit and adjusting a user-level PATH changes the local tool environment.
+Risk: The security scan flags unpinned package versions that can change between runs.
 
-Mitigation: Review installation steps, prefer a pinned qhkit version, and approve any PATH changes before applying them.
+Mitigation: Pin the qhkit package version and review package updates before installing or upgrading.
 
-Risk: Selected media and a qhkit API key are sent to the video provider.
+Risk: Credentials and reference media may be exposed to external services.
 
-Mitigation: Upload only approved media and manage the API key as a secret.
+Mitigation: Do not share API keys in chat, and upload only media you are authorized to send after assessing trust in the service.
 
-Risk: Video generation consumes credits and submitted tasks cannot be cancelled.
+Risk: The scan was partial because several local references were missing.
 
-Mitigation: Review the model, duration, reference media, language, and estimated credits, then obtain explicit approval before submission.
+Mitigation: Retrieve and review the missing references before relying on guidance that depends on them.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-shipinhao-viral-video)
 - [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
-- [Qinghu AI API keys](https://www.iqinghu.com/workbench/dashboard/api-keys?urlCode=1788417429126)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Video links]
+**Output Type(s):** [Videos, Storyboard scripts, Shell commands, Configuration guidance]
 
-**Output Format:** [Markdown with command examples and generated-video links]
+**Output Format:** [Generated video files or URLs, storyboard text, and JSON-formatted CLI commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Typically recommends portrait 9:16 video in Simplified Chinese; generation returns a task ID before a video link is available.]
+**Other Properties Related to Output:** [Defaults to portrait 9:16 and Simplified Chinese when supported; video models and options are checked at runtime.]
 
 ## Skill Version(s):
 
-0.1.5 (source: ClawHub release metadata)
+0.1.7 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

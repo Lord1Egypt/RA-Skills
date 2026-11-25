@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-OpenClaw administrators and developers use this skill to install and configure ArtzAIn Tool Gate so host tool calls receive an allow, deny, or human-review decision from their ArtzAIn Decision API before execution.
+OpenClaw gateway operators and developers use this skill to connect host tool calls to an ArtzAIn Decision API, apply allow, deny, or review decisions, and configure the gateway integration.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Tool names, arguments, and agent IDs are sent to the configured Decision API and recorded in its audit trail; arguments may contain sensitive data.
+Risk: Tool names and arguments are sent to the configured Decision API and recorded in its audit trail.
 
-Mitigation: Keep secrets out of tool arguments and point baseUrl to a deployment you trust.
+Mitigation: Keep secrets out of tool arguments and point the gateway only to a trusted ArtzAIn deployment.
 
-Risk: A key associated with another ArtzAIn account can send decisions to that account, while configuration errors or API failures block tool calls.
+Risk: The security review was partial because the release attestation and install-generated package-lock file were unavailable.
 
-Mitigation: Use a Decision key for the intended account and verify the endpoint and key before enabling the gate.
+Mitigation: Before installing, verify the pinned package version, registry signature, attestation, and package integrity.
 
-Risk: The security review reports no findings but notes unresolved references and unverified external links, leaving some evidence incomplete.
+Risk: A denied decision, review decision, or API/key error blocks host tool calls.
 
-Mitigation: Review the package and links before installation, and verify the package signature and attestation as the instructions describe.
+Mitigation: Check the API endpoint and key, and confirm the review process, before relying on the gateway.
 
 ## Reference(s):
 
-- [ArtzAIn Tool Gate npm package](https://www.npmjs.com/package/@cognexuslabs/openclaw-artzain)
-- [Repository cited by the listing](https://github.com/CogNEXUSlabs/cognexus-tools)
+- [ClawHub release page](https://clawhub.ai/quantumskipper/skills/artzain)
+- [npm package](https://www.npmjs.com/package/@cognexuslabs/openclaw-artzain)
+- [ArtzAIn hosted service](https://app.cognexuslabs.ai)
 
 ## Skill Output:
 
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [Guidance, Shell commands, Configuration]
 
-**Output Format:** [Markdown with shell commands and JSON5 configuration examples]
+**Output Format:** [Markdown instructions with shell commands and a JSON5 configuration example]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes version-pinned installation and setup instructions.]
+**Other Properties Related to Output:** [Version-pinned installation and gateway setup guidance]
 
 ## Skill Version(s):
 
-0.2.10 (source: ClawHub release metadata)
+0.2.11 (source: server-resolved ClawHub release)
 
 ## Ethical Considerations:
 

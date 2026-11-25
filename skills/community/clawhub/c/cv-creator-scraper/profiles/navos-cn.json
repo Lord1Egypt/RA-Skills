@@ -1,0 +1,12 @@
+{
+  "profile": "navos-cn",
+  "auth_mode": "navos",
+  "navos_region": "cn",
+  "prompt_locale": "zh",
+  "default_lang": "cn",
+  "enable_skill_update": false,
+  "default_service_level": "S3",
+  "hide_cv_meta": true,
+  "balance_precheck": true,
+  "partner_code": "navos-cn"
+}

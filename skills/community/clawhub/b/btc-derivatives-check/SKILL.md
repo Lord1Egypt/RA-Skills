@@ -1,18 +1,20 @@
 ---
 name: btc-derivatives-check
 description: Before a Bitcoin trade, check the derivatives picture across exchanges - funding and basis, open interest, long/short positioning, recent liquidations and where the large order-book walls are. Live data from AgentReeve; free samples, live data per request over x402 (USDC on Base).
-version: 1.0.0
+version: 1.1.0
 ---
 # BTC Derivatives Check
 
 Use this when the user is considering a BTC trade or asks whether the market is overheated, crowded or over-leveraged.
 
 ## Steps (about $0.13 in total; ask first if the user set a lower limit)
-1. `GET https://agentreeve.com/api/v1/btc/derivatives` ($0.04): funding and basis by venue.
-2. `GET https://agentreeve.com/api/v1/btc/positioning?hours=24` ($0.03): long/short ratios, top traders vs everyone, 30-day percentile.
-3. `GET https://agentreeve.com/api/v1/btc/liquidations?minutes=60` ($0.03): recent forced closures by side.
-4. `GET https://agentreeve.com/api/v1/btc/walls?hours=24` ($0.03): large resting orders above and below the price.
+1. `GET https://agentreeve.com/api/v1/derivatives?asset=BTC` ($0.04): funding, basis and open interest by venue, plus options and the term structure.
+2. `GET https://agentreeve.com/api/v1/positioning?asset=BTC&hours=24` ($0.03): long/short ratios, top traders vs everyone, 30-day percentile.
+3. `GET https://agentreeve.com/api/v1/liquidations?minutes=60` ($0.03): recent forced closures by side.
+4. `GET https://agentreeve.com/api/v1/liquidity?asset=BTC&size_usd=100000` ($0.03): depth and slippage, with the large resting orders (`walls`) above and below the price.
 5. Summarise as: crowding (positioning + funding), leverage being flushed (liquidations), and nearby support/resistance from walls (price and size).
+
+For another coin, steps 1, 2 and 4 take `asset=ETH` (or any coin); liquidations are Bitcoin only.
 
 Do not tell the user what to trade. Present the data, note conflicting signals, and remind them this is not advice.
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Audits Rust code for unsafe blocks, ownership issues, and Cargo dependency risks
+Audits Rust code for unsafe blocks, ownership issues, and Cargo dependency risks.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to review Rust changes for safety, correctness, concurrency, dependency, performance, and idiom issues before merging.
+Developers use this skill to review Rust changes for safety, correctness, concurrency, dependency, and idiom issues before merging or during focused audits.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,26 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review reports behavior that may not match the Rust-auditing purpose, install guidance that may change the environment, and incomplete inspection of some files and references.
+Risk: ClawScan rated the release suspicious and reported incomplete inspection, with concerns about the relevance of some guidance and file-writing or installation steps.
 
-Mitigation: Review the flagged behavior and install steps, and inspect the files and references that were not fully analyzed before installation.
+Mitigation: Review the full skill contents, including commands that write local files and the cargo-mutants installation step, before running the workflow.
 
 ## Reference(s):
 
-- [ClawHub rust-review release](https://clawhub.ai/athola/skills/nm-pensive-rust-review)
-- [Claude Night Market Pensive plugin (metadata homepage)](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [Markdown Rust audit report with findings, recommendations, and evidence anchors]
+**Output Format:** [Structured Markdown audit report with findings, source locations, evidence anchors, and recommendations.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Findings should include source locations and verbatim anchors when reported.]
+**Other Properties Related to Output:** [Findings are expected to include source locations and verbatim anchors; unsupported findings should be removed or labeled UNVERIFIED.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

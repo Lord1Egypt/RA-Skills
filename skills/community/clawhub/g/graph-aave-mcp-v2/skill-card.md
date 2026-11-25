@@ -1,6 +1,6 @@
 ## Description:
 
-Aave V2/V3/V4 MCP server — 62 tools across 18 Graph subgraphs + Aave V4 API + on-chain view contracts. Reserves, positions, cross-chain liquidation risk monitoring with live HF confirmation, governance, V4 hubs/spokes, Base equity gap shock and oracle status, loan-swap analytics, exchange rates, swap quotes, rewards, protocol history, and a durable findings store that survives context compaction.
+Connects agents to Aave V2, V3, and V4 data for cross-chain market analysis, position monitoring, and read-only risk and swap-quote queries.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agents use this MCP server to query Aave V2/V3/V4 markets, positions, activity, governance, and cross-chain liquidation risk, including live health-factor checks.
+Developers and agents use the MCP server to query Aave markets and positions across supported chains, monitor liquidation risk, and inspect V4 activity. Risk-sensitive decisions can use its live on-chain position checks alongside subgraph data.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review is incomplete because one reference could not be resolved; the benign verdict is not a guarantee that the skill is risk-free.
+Risk: Security analysis was partial because a local reference could not be resolved; the benign verdict has medium confidence.
 
-Mitigation: Review the unresolved reference and use the skill only if its Aave query purpose fits your needs.
+Mitigation: Review the unresolved reference and treat the security analysis as incomplete when deciding whether to install.
 
-Risk: Unfiltered Ethereum reserve queries can return about 28k tokens.
+Risk: Subgraph data and prices can lag, which may affect time-sensitive position or market assessments.
 
-Mitigation: Narrow reserve queries with symbols, limit, or compact options.
-
-Risk: Subgraph data can lag behind the chain.
-
-Mitigation: Check the returned freshness metadata, including lagSeconds, when evaluating recency.
+Mitigation: Check freshness indicators and confirm critical position health factors with the live on-chain tools.
 
 ## Reference(s):
 
+- [ClawHub release](https://clawhub.ai/paulieb14/skills/graph-aave-mcp-v2)
 - [Project homepage](https://github.com/PaulieB14/graph-aave-mcp)
 - [npm package](https://www.npmjs.com/package/graph-aave-mcp)
-- [The Graph Studio](https://thegraph.com/studio/)
+- [The Graph API key setup](https://thegraph.com/studio/)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, Analysis, JSON, Guidance]
+**Output Type(s):** [JSON, Analysis, Text]
 
-**Output Format:** [Structured JSON and text tool results]
+**Output Format:** [Structured JSON data with textual summaries and analysis]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reserve queries support symbols, limit, and compact options; freshness metadata may report subgraph lag.]
+**Other Properties Related to Output:** [Responses may include subgraph freshness indicators; live RPC-backed tools can confirm position health factors on chain.]
 
 ## Skill Version(s):
 
-4.3.3 (source: frontmatter)
+4.3.4 (source: artifact frontmatter, release metadata)
 
 ## Ethical Considerations:
 

@@ -6,7 +6,7 @@ description: >-
   deployment.
 license: Apache-2.0
 metadata:
-  version: "0.3.1"
+  version: "0.3.2"
   author: "NVIDIA <opensource@nvidia.com>"
   tags:
     - nvidia-ontology
@@ -34,6 +34,9 @@ Docker Compose runs the same stack on one machine. `dev_tools/setup_env.sh` is a
 developer tool, not an installer. Typed setup, connection, ingestion,
 compilation, and readiness artifacts are in
 [runtime-contract.yaml](assets/runtime-contract.yaml).
+
+Before a first install, confirm an ontology fits the use case: see *When to
+use* in `nvidia-ontology-query`.
 
 On failure, read [troubleshooting.md](references/troubleshooting.md) instead of
 searching the web.

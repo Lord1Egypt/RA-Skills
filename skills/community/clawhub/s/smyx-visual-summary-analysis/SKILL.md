@@ -1,7 +1,7 @@
 ---
 name: "visual-summary-analysis"
 description: "Performs AI analysis on input video clips/image content and generates a smooth, natural scene description. | 视觉摘要智述技能，对传入的视频片段/图片内容进行AI分析，生成一段通顺自然的场景描述内容"
-version: "1.0.24"
+version: "1.0.26"
 license: "MIT-0"
 ---
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Provides Chinese-language frameworks, checklists, and reference guidance for middle managers across self, team, work, and strategy management.
+提供中层管理者自我、团队、工作及战略管理能力提升的实用工具和方法，助力90%以上管理情境高效应对。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Middle managers, team leads, and agents assisting them use this skill as a Chinese-language reference for communication, cross-functional coordination, execution, department planning, team leadership, role development, and work-method coaching.
+Managers and team leads can use this skill to improve communication, team coordination, work planning, execution, and people management. It provides practical frameworks, questions, and steps for common middle-management situations.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The authoritative license is unclear because server evidence and artifact metadata disagree.
+Risk: General management recommendations may not fit a specific employee situation or organizational policy.
 
-Mitigation: Confirm the release license and redistribution rights before using or republishing the skill.
-
-Risk: The skill is primarily Chinese-language and does not clearly state supported languages.
-
-Mitigation: Use it for Chinese-language management guidance or verify any translated output before relying on it.
-
-Risk: Management guidance may not fit every organization, role, or regulatory environment.
-
-Mitigation: Have a qualified manager adapt recommendations to local policies, employment practices, and business context.
+Mitigation: Have a responsible manager review and adapt recommendations to the people involved and applicable workplace policies.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/yjkj999999/skills/super-middle-manager-academy)
-- [Publisher profile](https://clawhub.ai/user/yjkj999999)
-- [Artifact README](artifact/README.md)
-- [Artifact skill source](artifact/SKILL.md)
+- [ClawHub skill release](https://clawhub.ai/yjkj999999/skills/super-middle-manager-academy)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Guidance, Analysis, Markdown]
 
-**Output Format:** [Markdown prose, tables, checklists, and structured guidance]
+**Output Format:** [Chinese text and Markdown with management frameworks, plans, checklists, and practical recommendations]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Chinese-language management reference output; no code execution.]
+**Other Properties Related to Output:** [Covers self, team, work, and strategy management.]
 
 ## Skill Version(s):
 
-1.0.0 (source: evidence.release.version and package.json)
+1.0.1 (source: server-resolved release metadata, package.json)
 
 ## Ethical Considerations:
 

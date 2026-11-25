@@ -34,7 +34,7 @@ try {
   injectionScan = null;
   console.error('[pi-evox] ⚠ 注入守卫降级：injection_scan.mjs 缺失或加载失败（' + (e?.code || e?.message || e) + '）');
   console.error('         → 本次召回**不经过注入守卫**（修法/叙述/脱敏三门照常；导出/导入仍 fail-closed）。');
-  console.error('         → 修正：恢复 code/injection_scan.mjs 后重跑，或用 `node code/tests/injection-regression.mjs` 自检。');
+  console.error('         → 修正：恢复 code/injection_scan.mjs 后重跑；完整回归在发布门禁实测，包内可跑 selftest.mjs 哨兵。');
 }
 
 // ── 统一错误输出（0.14.7，回应 skillhub errorHandling 4.3「缺统一错误码 / 中英文混杂 / 生硬退出」）──

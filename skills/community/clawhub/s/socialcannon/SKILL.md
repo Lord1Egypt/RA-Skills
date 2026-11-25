@@ -6,7 +6,7 @@ description: >
   A/B testing, engagement inbox, AI content repurposing, optimal timing
   suggestions, auto-scheduling, UTM tracking, and platform-native AI-content
   disclosure labels.
-version: 1.16.0
+version: 1.16.1
 metadata:
   openclaw:
     requires:
@@ -1189,7 +1189,7 @@ curl -X POST https://socialcannon.app/api/v1/posts \
 Four tiers. Twitter/X is the only platform with a per-post API cost passed through, so Twitter/X requires a paid plan and paid tiers carry an X-write quota.
 
 ### Free — $0
-- 2 connected accounts
+- 1 connected account (Free workspaces created before 21 November 2026, 00:00 UTC, keep 2)
 - Unlimited posts and scheduling (within the 30-day scheduling window)
 - Twitter/X requires a paid plan
 - Unlimited media uploads (per-file size and format limits still apply)
@@ -1209,7 +1209,7 @@ Four tiers. Twitter/X is the only platform with a per-post API cost passed throu
 
 ### Agency — $49/month
 - Everything in Pro
-- 50 connected accounts
+- 200 connected accounts
 - **250 Twitter/X posts per billing period**
 - A/B testing (20 concurrent, 6 variants)
 - 365-day calendar range

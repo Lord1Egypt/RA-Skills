@@ -1,6 +1,6 @@
 ## Description:
 
-Manage Jira issues and sprints through the jirac CLI, including search, updates, reporting, and bulk workflows.
+Jira issue management skill for OpenClaw using the jirac CLI. Requires the `jirac` binary to be installed and authenticated before use. Use when listing, viewing, creating, updating, transitioning, commenting on, attaching files to, bulk-editing, cloning, deleting, linking, archiving, moving, changing types of Jira issues, logging work, generating standup or sprint summaries, managing sprint lifecycles, browsing fix versions, scanning Jira mention notifications, rendering markdown to ADF, registering jirac-mcp into MCP clients, or running raw Jira REST calls from agent workflows.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and Jira users can use the skill to inspect and manage issues, run sprint workflows, and prepare summaries through an authenticated jirac CLI.
+Developers and teams use this skill to manage Jira issues and sprints through the jirac command-line interface, including search, updates, reporting, and workflow operations.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Bulk or destructive Jira operations may change many issues or workflow states.
+Risk: Bulk-change and archive commands can affect many Jira issues when a query is broad or incorrect.
 
-Mitigation: Use the intended account and project, preview the matching issues, and confirm the operation before approving it; review --force examples carefully.
+Mitigation: Preview the matching issues and confirm the JQL is narrowly scoped before running bulk-change or archive recipes.
 
-Risk: An attachment may contain content the user did not intend to upload.
+Risk: Jira credentials, local configuration, and attachment paths may contain sensitive information.
 
-Mitigation: Confirm the selected file and its contents before uploading.
-
-Risk: Jira credentials and local configuration are sensitive.
-
-Mitigation: Keep credentials and the local Jira configuration private, and use the intended authenticated profile.
+Mitigation: Keep credentials and local configuration private, and confirm selected files are intended and safe to upload before attaching them.
 
 ## Reference(s):
 
-- [Install guide](references/install.md)
+- [Installation guide](references/install.md)
 - [JQL recipes](references/jql.md)
-- [Project homepage (Clawdis metadata)](https://github.com/mulhamna/jira-commands)
-- [GitHub Releases (Clawdis install metadata)](https://github.com/mulhamna/jira-commands/releases)
+- [Project homepage](https://github.com/mulhamna/jira-commands)
+- [GitHub Releases](https://github.com/mulhamna/jira-commands/releases)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, JSON configuration, API calls]
+**Output Type(s):** [Guidance, Shell commands, API calls, Configuration, Markdown, JSON]
 
-**Output Format:** [Text and Markdown guidance, shell commands, and JSON manifests]
+**Output Format:** [Markdown with jirac commands, JQL examples, and JSON manifests]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires the jirac CLI and configured Jira authentication; jirac-mcp is optional.]
+**Other Properties Related to Output:** [Commands operate on the active Jira profile and may create or modify Jira data.]
 
 ## Skill Version(s):
 
-0.1.9 (source: server-resolved release evidence)
+0.1.10 (source: server-resolved ClawHub release metadata)
 
 ## Ethical Considerations:
 

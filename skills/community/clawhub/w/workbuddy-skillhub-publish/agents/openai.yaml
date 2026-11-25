@@ -1,0 +1,7 @@
+interface:
+  display_name: "workbuddy SkillHub skill 自动发布"
+  short_description: "免费免 Key，自动校验、打包并提交 SkillHub Skill"
+  icon_small: "./assets/icon-128.png"
+  icon_large: "./assets/icon-512.png"
+  brand_color: "#2563EB"
+  default_prompt: "使用 $workbuddy-skillhub-publish 完整发布或更新这个 SkillHub Skill：校验、打包、上传、填写、点击提交，并回读版本和审核状态；只有我明确说只填写或先预览时才停在提交前。"

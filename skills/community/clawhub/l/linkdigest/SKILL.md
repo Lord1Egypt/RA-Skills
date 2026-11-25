@@ -88,10 +88,10 @@ Two of those change how you should use the result:
 
 ## Platforms
 
-Works: Xiaohongshu (小红书), Douyin (抖音), TikTok, YouTube, X, ordinary web pages.
+Works: Xiaohongshu (小红书), Douyin (抖音), TikTok, YouTube, X, Bilibili (B站, since 2026-10-24),
+Instagram reels and photo posts, ordinary web pages.
 
-Not supported: Bilibili returns HTTP 412 to the service's address. Instagram and
-Facebook need a logged-in session for most posts. If the user asks for one of
+Not supported: Facebook needs a logged-in session for most posts. If the user asks for one of
 these, say so rather than trying it.
 
 ## Cost

@@ -1,0 +1,144 @@
+#code=936
+ENVI^ EnviMode=1
+ENVI^ ForceLocal=1
+IFEX %CurFile%.LOG, LOGS * %CurFile%.LOG
+//Win64-pecmd32
+exec*1 &&ProgramFiles=!cmd /c echo %%ProgramFiles%%
+//exec*1 &&ProgramFiles(x86)=!cmd /c echo %%ProgramFiles(x86)%%  //本程序不用 
+
+FNAM  &&CONFIG=%CurFile%
+SET CONFIG=%CurDir%\%CONFIG%.INI
+IFEX %CONFIG%,!WRIT %CONFIG%,1,
+SET-def PLAY=EXEC !"%ProgramFiles%\Windows Media Player\Mplayer2.exe" /play /close
+IFEX %ProgramFiles%\Windows Media Player\Mplayer2.exe,! 
+   \  FORX %ProgramFiles%\Windows Media Player\*player*.exe,&&f,1,SET  PLAY=EXEC !"%f%"  /play /close
+
+CALL 定时提醒 
+
+_SUB 定时提醒,W750H451,定时提醒,ENVI @this.VISABLE=0,,,#2,-DISMINB -TRAP
+    TEAM ENVI @this.VISABLE=0|SET. &NLC=\n|SET &配置=|SET &HAN=0|SET &CMD=
+    CALL 读取配置 %CONFIG%
+    SET TITLE=+40:序号	+40:状态	+70:命令类别	+70:定时类别	+50:次数	+120:到期时间	+60:间隔秒	290:命令/文本
+    TABL -COLOR:0X00F000#0X808000#0XF0E0FF TABL1,W750H393,%TITLE%,%配置%,0x940
+    ENVI @this.MSG=_1109::WP,LP,IFEX $513=%LP%,ENVI @this.VISABLE=2! IFEX $516=%LP%,CALL @--POPMENU MYMENU1!FIND| $512=%LP%,DATE CT|TIPS* 定时提醒,%CT%,,,**
+    ENVI @TABL1.MSG=_515:CALL WINMODIFY
+    ENVI @TABL1.MSG=_513:TEAM ENVI @TABL1.Sel=?WP|SET~ LP=T%WP%|ENVI @LABE1=定时任务%WP%时间为%LP%
+    LABE LABE0,T395W150H30,双击数据区修改删除任务\n双击空白数据区添加任务,,0xFF
+    LABE LABE1,L200T395W300H30,,,
+    TIPS* 定时提醒,,,,#2
+    ENVI @this.MSG=#1::wp,,CALL 执行任务 %wp%
+    ENVI @this.MSG=#2::wp,,%CMD%
+    CALL 首次定时 0 1
+_END
+
+_SUB WINMODIFY,W478H238,
+    SET @TABL1.SEL=?W0
+    FIND $%W0%=0,CALC #THAN=%HAN%+1!SET THAN=%W0%
+    FIND $0=%W0%,SET @this=添加定时器%THAN%!SET @this=修改定时器%THAN%
+    LABE LABE1,L17T9W35H14,状态:,,
+    LIST LIST1,L61T6W50H220,有效|无效,,有效,
+    LABE LABE2,L119T9W60H14,命令类型:,,
+    LIST LIST2,L188T6W85H220,文本|音乐|运行程序|PECMD命令,,文本,
+    LABE LABE3,L282T9W61H14,定时类型:,,
+    LIST LIST3,L346T6W60H220,间隔|到期,CALL DATETIME,到期,
+    LABE LABE4,L17T35W35H14,次数:,,
+    EDIT EDIT1,L61T34W60H16,无限,,
+    LABE LABE5,L128T36W50H14,0为无限,,
+    LABE LABE6,L17T62W58H14,到期时间:,,
+    DTIM DATE1,L76T57W107H24,,,0X20
+    DTIM TIME1,L181T57W75H24,,,0X40
+    LABE LABE7,L262T61W52H15,间隔(秒),,
+    EDIT EDIT2,L313T60W60H17,,,
+    LABE LABE8,L17T101W90H15,命令/文本/音乐,,
+    ITEM ITEM2,L117T94W58H30,选择文件,TEAM BROW EDIT30|SET @EDIT3=%EDIT30%,
+    EDIT EDIT3,L17T134W431H20,,,0x100  
+    IFEX $0=%W0%,ITEM ITEM16,L321T164W60H30,添加,TEAM SET HAN=%THAN%|CALL 添加 0,
+    IFEX| $0<%W0%,ITEM ITEM15,L205T164W60H30,删除,CALL 删除,|ITEM ITEM14,L84T164W60H30,修改,CALL 添加 %W0%,
+    IFEX $0<%W0%,
+    {   ENVI @TABL1.VAL=?%W0%;W1
+        MSTR* W1,W2,W3,W4,W5,W6,W7=<2*>%W1%
+        TEAM SET @LIST1.SEL=%W1%|SET @LIST2.SEL=%W2%|SET @LIST3.SEL=%W3%|SET @EDIT1=%W4%|SET @EDIT2=%W6%|SET @EDIT3=%W7%
+        SED W5=0,[-:], ,%W5%
+        MSTR W1,W2,W3,W4,W5,W6=<1*>%W5%
+        TEAM SET @DATE1.VAL=%W1%;%W2%;%W3%|SET @TIME1.VAL=%W4%;%W5%;%W6%
+        CALL DATETIME
+    }!
+    {   DATE *SPACE0 W1
+        MSTR W1,W2,W3,W4,W5,W6=<1*>%W1%
+        TEAM SET @DATE1.VAL=%W1%;%W2%;%W3%|SET @TIME1.VAL=%W4%;%W5%;%W6%|
+    }
+_END
+
+_SUB 读取配置
+    TEAM SET A9=0|SET A11=|READ %1,**,A10
+    FORX *NL A10,A0,
+    {   MSTR* A1,A2,A3,A4,A5,A6,A7=<1*>%A0%
+        SED A8=0,[-:],,%A5%
+        CALC A9=%A9%+1
+        IFEX $%A1%%A2%%A3%%A4%%A8%%A6%>1370000000000000000,
+        {   CALC HAN=%HAN%+1
+            MSTR A1,A2,A3=<%A1%><%A2%><%A3%>有效 无效 文本 音乐 运行程序 PECMD命令 间隔 到期
+            FIND $%A4%=0,SET A4=无限
+            SET 配置=%配置%%HAN%	%A1%	%A2%	%A3%	%A4%	%A5%	%A6%	%A7%%NLC%
+        }!
+        { SET A11=%A9% %A11%
+        }
+    }
+    FIND $%A11%=,!FORX * %A11%,A12,WRIT %CONFIG%,-%A12%,
+_END
+
+_SUB DATETIME
+    FIND| $%LIST3%=间隔,SET @LABE6.VISABLE=0|SET @DATE1.VISABLE=0|SET @TIME1.VISABLE=0!SET @LABE6.VISABLE=1|SET @DATE1.VISABLE=1|SET @TIME1.VISABLE=1
+_END
+
+_SUB 添加
+    FIND| $%LIST3%=间隔,DATE *SPACE0 A0|MSTR A1,A2,A3,A4,A5,A6=<1*>%A0%
+    FIND| $%LIST3%=到期,SET @DATE1.VAL=?A1;A2;A3|SET @TIME1.VAL=?A4;A5;A6|RSTR A2=2,0%A2%|RSTR A3=2,0%A3%|RSTR A4=2,0%A4%|RSTR A5=2,0%A5%|RSTR A6=2,0%A6%
+    TEAM CALC #EDIT=%EDIT1%|FIND $%EDIT%=0,SET EDIT=无限
+    FIND $%EDIT3%=,!IFEX| $%EDIT2%>1,SET A7=%THAN%	%LIST1%	%LIST2%	%LIST3%	%EDIT%	%A1%-%A2%-%A3%-%A4%:%A5%:%A6%	%EDIT2%	%EDIT3%|SET @TABL1.VAL=%1;%A7%|CALL 写配置|KILL \|SET B2=ENVI @T%THAN%=0|%B2%|CALL 定时 %THAN% 1
+_END
+
+_SUB 删除
+    TEAM SET A1=ENVI @T%W0%=0|%A1%|SET @TABL1.VAL=-%W0%|WRIT %CONFIG%,-%W0%,|CALC HAN=%HAN%-1|KILL \
+    IFEX $%W0%>%HAN%,!LOOP %HAN%>=%W0%,TEAM ENVI @TABL1.VAL=?%W0%.1;W2|SET. B2=ENVI @T%W2%=0\nENVI @T%W0%=0|%B2%|ENVI @TABL1.Val=%W0%.1;%W0%|CALL 定时 %W0% 1|CALC W0=%W0%+1
+_END
+
+_SUB 写配置
+    TEAM SET A7=有效 无效 文本 音乐 运行程序 PECMD命令 间隔 到期|LPOS** A8=%LIST1%,1,%A7%|LPOS** A9=%LIST2%,1,%A7%|LPOS** A10=%LIST3%,1,%A7%|FIND $%EDIT1%=无限,SET EDIT1=0
+    WRIT %CONFIG%,$%THAN%,%A8%	%A9%	%A10%	%EDIT1%	%A1%-%A2%-%A3%-%A4%:%A5%:%A6%	%EDIT2%	%EDIT3%
+_END
+
+_SUB 首次定时
+    SET B1=0
+    LOOP %HAN%>%B1%,TEAM CALC B1=%B1%+1|CALL 定时 %B1% 1
+_END
+
+_SUB 定时
+    ENVI @TABL1.VAL=?%1;W2
+    MSTR* A2,A3,A4,A5,A6,A7=<2*>%W2%
+    SED W9=1:2,-,|0|,%A6%
+    DATE *local:%W9% W9 UTC
+    DATE W10 UTC
+    CALC #W10=%W10%/10000*10000
+    CALC #W11=(%W10%-%W9%)/10000
+    FIND $%2=,IFEX $%W11%<100,IFEX| $%W11%>-100,ENVI @this.SENDMSG=#1;%1|CALC #W12=%W9%+%A7%0000000
+    FIND $%W12%=,!!IFEX $%W11%>0,CALC #W12=%W10%+%A7%0000000-(%W10%-%W9%)% %A7%0000000!SET W12=%W9%
+    DATE *space0 *utc:%W12% A9
+    MSTR W3,W4,W5,W6,W7,W8=<1*>%A9%
+    FIND $%A2%=有效,FIND $%A5%=无限,ENVI @TABL1.Val=%1.6;%W3%-%W4%-%W5%-%W6%:%W7%:%W8%
+    FIND $%2=1,!! IFEX $%A5%>0,!!FIND $%A2%=有效,!! IFEX $%W11%>0,CALC #::J%1=%W9%+%A5%*%A7%0000000!CALC #::J%1=%W9%+%A5%*%A7%0000000-%A7%0000000
+    IFEX $%A5%>0,!!FIND| $%A2%=有效,!!SET~ W14=J%1|IFEX $%W14%>=%W12%,ENVI @TABL1.Val=%1.6;%W3%-%W4%-%W5%-%W6%:%W7%:%W8%!SET A2=无效|SET @TABL1.Val=%A1%.2;无效
+    FIND| $%A2%=有效,!!DATE W13 UTC|CALC #W13=(%W12%-%W13%)/10000-6|IFEX $%W13%>60000,CALC #W13=%W13%/2|SET~ W3=T%1|FIND $%W3%=,SET CMD=TIME -t:1 T%1,%W13%,CALL 定时 %1!SET CMD=ENVI @T%1=%W13%;1|ENVI @定时提醒.SENDMSG=#2
+_END
+
+_SUB 执行任务
+    SET @TABL1.VAL=?%1;W2
+    MSTR* W3,W4=<3><8>%W2%
+    FIND $%W3%=文本,THREAD+$ MESS %W4% @定时提醒#OK*10000!FIND $%W3%=音乐,%PLAY% "%W4%"!FIND $%W3%=运行程序,EXEC %W4%!FIND $%W3%=PECMD命令,THREAD+$ %W4%
+_END
+
+_SUB MYMENU1
+    MENU MENU1,还原,ENVI @this.VISABLE=2
+    MENU -
+    MENU MENU2,退出,TEAM KILL \|KILL \@WINMODIFY
+_END

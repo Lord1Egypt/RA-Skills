@@ -1,5 +1,25 @@
 # 更新日志
 
+## v1.1.1（2026-11-24）
+
+### 🐛 修复：令牌生成与复用的服务器区域不一致
+
+- **问题**：`garmin_auth.py login` 的区域（`is_cn`）由 CLI `--cn` / config.json 决定，而 `get_client()`（所有数据脚本共用）复用令牌时只读 config.json 的 `is_cn`。若用 `--cn` 登录但没有 config.json（或 config 的 `is_cn` 与登录区域不符），会用国际服务器恢复佳明中国签发的令牌，导致所有脚本报"Not authenticated"且重新登录也无法修复
+- **修复**：登录成功后把实际使用的区域持久化到令牌目录下的 `meta.json`；`get_client()` 统一通过 `resolve_is_cn()` 解析区域（优先级：`meta.json` > 环境变量 `GARMIN_IS_CN` > `config.json` 回退），确保"令牌由哪个域签发，复用时就连接哪个域"
+- **增强**：令牌失效时，若 `config.json` 存有账号密码，`get_client()` 自动尝试重新登录一次并刷新令牌；`status` 命令现显示令牌复用所用的服务器区域
+- 文档同步更新：SKILL.md / README.md 说明区域一致性保证与新的排查步骤
+- 旧版令牌（无 `meta.json`）自动回退到原有解析方式，升级后无需强制重新登录；建议重新登录一次以生成 `meta.json`
+
+## v1.1.0（2026-11-24）
+
+### 🎨 统一报告样式（重磅）
+
+- 新增 `scripts/report_style.py` 共享样式模块：抽取 `example/` 比赛分析报告的完整设计系统（全局 CSS、调色板、SVG 图表组件、页面组件），供所有 HTML 报告生成脚本复用
+- `garmin_chart.py` 全面改版：弃用 Chart.js 与 CDN 依赖，改为**纯内联 SVG** 渲染（可离线直接打开），输出样式与比赛分析报告完全一致——蓝色渐变 hero 横幅、编号章节、统计卡片网格、note 提示条、kv 键值行、sleepbar 睡眠阶段堆叠条、sticky 表头表格、中文界面 + 免责声明页脚
+- CLI 完全兼容旧版：`garmin_chart.py {sleep,body_battery,hrv,activities,dashboard} --days N --output path`，数据获取逻辑（garmin_data.py）未做任何改动
+- 各图表新增自动解读 note：睡眠评分/身体电量水平/HRV 趋势按数据自动选择提示色与文案
+- SKILL.md 新增「统一报告样式（report_style.py）」章节，明确所有 HTML 输出（含 AI 自行生成的比赛分析页面）必须采用该样式规范，并禁止外部依赖
+
 ## v1.0.1（2026-11-12）
 
 ### 🌐 平台通用化

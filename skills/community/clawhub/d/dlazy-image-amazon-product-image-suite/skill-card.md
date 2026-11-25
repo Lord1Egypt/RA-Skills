@@ -1,6 +1,6 @@
 ## Description:
 
-A professional product image generation skill purpose-built for the Amazon e-commerce platform, producing listing and A+ content images aligned with Amazon image guidelines.
+Generates Amazon product listing images and A+ Brand Content layouts guided by the platform's stated image requirements.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External Amazon sellers and product-content teams use this skill to plan and generate main and secondary listing images, product infographics, lifestyle and detail shots, and A+ Brand Content modules.
+Amazon sellers, brand teams, and creative operators use this skill to plan product listing image sets and A+ content for product detail pages.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan reports that the CLI login command’s connection to the advertised image-generation purpose is unclear and that scanner coverage was partial; its benign verdict is not a guarantee of safety.
+Risk: The security evidence reports a benign verdict with medium confidence and a partial scan; it flags an unexplained `dlazy login` step and incomplete resolution of package and runtime references.
 
-Mitigation: Review the CLI authentication flow and credential handling before use, and use the documented key rotation or revocation controls if needed.
+Mitigation: Review the CLI package and its authentication behavior before installation, and use a rotatable API key stored with appropriate account permissions.
 
-Risk: The skill sends prompts and supplied media to dLazy-hosted services for processing.
+Risk: The skill says prompts and local media files are sent to dLazy-hosted services for generation.
 
-Mitigation: Avoid sending confidential product or customer material unless it is approved for processing by the hosted service.
+Mitigation: Avoid submitting confidential product information or media unless your organization permits sharing it with that service.
 
 ## Reference(s):
 
-- [dLazy CLI repository (CLI reference; skill provenance unavailable)](https://github.com/dlazy-ai/cli)
+- [ClawHub release](https://clawhub.ai/dlazyai/skills/dlazy-image-amazon-product-image-suite)
+- [CLI repository listed in skill metadata](https://github.com/dlazy-ai/cli)
 - [dLazy CLI on npm](https://www.npmjs.com/package/@dlazy/cli)
 - [dLazy website](https://dlazy.com)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Text, Shell commands, Image-generation requests]
+**Output Type(s):** [Images, Text, Markdown, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown plans and prompts, CLI commands, and generated image URLs]
+**Output Format:** [Generated image files plus Markdown status and checklists, with CLI instructions]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Generation is guided step by step; a full suite typically contains one main image, six secondary images, and eight A+ modules.]
+**Other Properties Related to Output:** [Amazon image specifications and staged image-set delivery; image generation requires the configured dLazy service.]
 
 ## Skill Version(s):
 
-1.3.42 (source: server-resolved release metadata)
+1.3.45 (source: server-resolved release)
 
 ## Ethical Considerations:
 

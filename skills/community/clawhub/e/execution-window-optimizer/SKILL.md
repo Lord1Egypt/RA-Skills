@@ -1,6 +1,6 @@
 ---
 name: execution-window-optimizer
-description: "Paid x402 endpoint: $0.007 USDC per call on Base. Returns identifies optimal execution windows based on volatility and liquidity."
+description: "Paid x402 endpoint: $0.007 USDC per call on Base. Returns an execute-now-or-wait verdict before a large order: scores the current execution window 0-100 from session, regime, Fear & Greed and volatility."
 metadata:
   openclaw:
     requires:
@@ -13,12 +13,12 @@ metadata:
 # execution-window-optimizer
 
 ## What It Does
-Identifies optimal execution windows based on volatility and liquidity. Computed by APEX Runner from live market data, not from backtests.
+An execute-now-or-wait verdict before a large order: scores the current execution window 0-100 from session, regime, Fear & Greed and volatility. Computed by APEX Runner from live market data, not from backtests.
 
 ## When to Use
-- To time order placement for lowest impact
-- During high-volatility periods
-- When latency-sensitive execution is required
+- Before sending a large order: a check costing at most $0.01 says execute now or wait
+- To pick market vs limit for the current session and volatility
+- Together with slippage-forecast, which prices your exact order size
 
 ## How to Use
 The agent makes an x402-authenticated GET request to:
@@ -52,12 +52,33 @@ print(response.json())
 ## Example Response
 ```json
 {
-  "current_window_rating": "GOOD",
-  "execute_now_recommendation": true,
-  "best_windows": [
-    {"utc_hours": "02:00-04:00", "avg_quality_score": 92}
-  ],
-  "timestamp": "2026-06-23T14:00:00Z"
+  "coin": "BTC",
+  "window_score": 83,
+  "verdict": "EXECUTE_NOW",
+  "recommended_order_type": "market",
+  "rationale": "Historically favorable execution conditions",
+  "components": {
+    "time_of_day": {
+      "score": 95,
+      "utc_hour": 14,
+      "session": "US"
+    },
+    "regime": {
+      "score": 80,
+      "regime": "RANGING"
+    },
+    "fear_greed": {
+      "score": 70,
+      "value": 24
+    },
+    "volatility": {
+      "score": 75,
+      "atr_pct": 1.812
+    }
+  },
+  "next_optimal_window": "15:00 UTC (+1h)",
+  "timestamp": "2026-11-20T14:05:00Z",
+  "valid_for_seconds": 300
 }
 ```
 

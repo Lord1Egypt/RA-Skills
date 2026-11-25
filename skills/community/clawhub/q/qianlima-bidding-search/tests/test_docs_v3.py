@@ -29,7 +29,7 @@ class DocumentationV3Tests(unittest.TestCase):
         ui=(ROOT/'agents/openai.yaml').read_text()
         self.assertIn('allow_implicit_invocation: true',ui)
         self.assertIn('$qianlima-bidding-search',ui)
-        self.assertEqual(json.loads((ROOT/'manifest.json').read_text())['version'],'1.0.1')
+        self.assertEqual(json.loads((ROOT/'manifest.json').read_text())['version'],'1.0.2')
 
     def test_all_relative_document_links_exist(self):
         for p in self.docs:

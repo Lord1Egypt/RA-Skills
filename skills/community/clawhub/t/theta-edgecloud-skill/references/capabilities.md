@@ -29,7 +29,7 @@ Uploads: `get_upload_url` returns `uploads[field] = {upload_url, filename}`
 `body.urls`). PUT the bytes with `Content-Type: application/octet-stream`;
 other types fail the signature with 403. Pass `filename` as the input value.
 
-Live public list 2026-10-03 (13): `ling_3_0_flash_fin`, `qwen3_8_max`,
+Live public list (verified 2026-10-03 and unchanged on 2026-11-24, 13 services): `ling_3_0_flash_fin`, `qwen3_8_max`,
 `qwen3_8_flash`, `glm_5_3`, `glm_5_3_flash`, `qwen3`, `seedance_2_5`, `blip`,
 `esrgan`, `image_to_image`, `stable_diffusion_xl_turbo`, `llava`, `whisper`.
 This is a dated snapshot, NOT an allowlist. FLUX, step_video, GLM-5.2,
@@ -83,8 +83,9 @@ retries.
   back to the raw controller credit value if MCP fails.
 - `theta.billing.usage` (`startDate`/`endDate` real YYYY-MM-DD dates, end not before
   start, range at most 366 days; validated locally),
-  `theta.billing.topUps`, `theta.billing.pricing` (chatbot/storage; on-demand
-  list may be empty; GPU prices come from resources).
+  `theta.billing.topUps`, `theta.billing.pricing` (chatbot/storage in credits
+  plus `price_usd`; chatbot rows carry `usage_type` such as `prompt_tokens`;
+  on-demand list may be empty; GPU prices come from resources).
 - `theta.billing.balanceSnapshot`: raw numeric extraction for older flows.
 
 The legacy npm `@thetalabs/on-demand-api-mcp@0.1.7` exposes only four on-demand
@@ -105,35 +106,88 @@ management wrapper. Do not claim deletion commands that are not registered.
 `theta.video.list` takes `serviceAccountId`; also exposed:
 `uploadCreate`, `create` (`payload`), `get` (`videoId`), `streamCreate`
 (`payload`), `streamGet` (`streamId`), `ingestorList`, `ingestorSelect`
-(`ingestorId`, `body`). These call `https://api.thetavideoapi.com` using Video
-service-account credentials, not the on-demand token. Search, stream listing,
-ingestor unselect and analytics are not registered; consult their API specs
-before adding adapters. Video hosting is not on-demand generative video.
+(`ingestorId`, `body`), and:
+- `theta.video.search`: `serviceAccountId`, `filters` (1..10 metadata key/value
+  strings; nested keys use dots, e.g. `obj.key`), optional `operator` `and|or`,
+  `page`, `number` (<=100). `GET /video/{sa}/search`, returns `body.videos[]`.
+- `theta.video.streamList`: `serviceAccountId`, optional `status` `on|off`.
+  `GET /service_account/{sa}/streams`, returns `body.total_count` and `body.streams[]`.
+- `theta.video.ingestorUnselect`: `ingestorId`, `confirm:true`. `PUT
+  /ingestor/{id}/unselect` with `{}`; frees the ingestor and invalidates the live
+  stream key. A selection also expires after 5 minutes without a stream.
+These call `https://api.thetavideoapi.com` using Video service-account
+credentials, not the on-demand token. Livestream stream keys under stream-key names
+(`stream_key`, `streamKey`) are redacted from results; copy them from the Theta Video dashboard. A service account can hold
+at most 3 livestreams. Video delete/update, stream delete and analytics have no
+public API contract and are not registered. Contracts come from Theta's Video API
+docs (2026); search, stream list and unselect were contract-tested, not live-tested.
+Video hosting is not on-demand generative video.
 
 ## AI Characters
 
-Official OpenAPI 1.0.0 base: `https://ai-chars-api.thetaedgecloud.com`.
-Auth: separate per-game `THETA_CHARACTERS_API_KEY` Bearer token.
-Registered `theta.characters.*` operations:
+Base: `https://ai-chars-api.thetaedgecloud.com`. Sources: Theta's public OpenAPI
+1.0.0 (characters, sessions) and the in-dashboard API reference launched with the
+AI Characters dashboard on 2026-11-11 (Story mode).
+Auth: separate per-game `THETA_CHARACTERS_API_KEY` Bearer token (one key per
+game, created with the game in the Theta dashboard).
+Pricing (Theta, 2026-11-11): USD 7.50 per 1M input tokens, 20.00 per 1M output
+tokens, 0.20 per 1M knowledge-base embedding tokens. `theta.characters.estimateCost`
+(`inputTokens`, `outputTokens`, `embeddingTokens`) computes an offline estimate;
+verify with `theta.billing.pricing` and `theta.billing.usage`.
+
+Live mode registered `theta.characters.*` operations:
 - `list|get|create|update|delete`: `gameId`, plus `characterId` for get/update/delete.
 - `session.create`: payload matching SessionCreate.
 - `session.get|session.delete`: `sessionId`.
 - `session.list`: `gameId`.
 - `session.context|session.message`: `sessionId`, `payload` matching the OpenAPI.
-- `session.messages`: `sessionId`.
+  Message `type` is `chat` or `action` (needs `from_id` of a user participant and
+  `content`), `event` (`content`, optional `context`), or
+  `add_participant`/`remove_participant` (`participant_type` `npc|user`,
+  `participant_id`). Every session message is billable (NPC replies).
+- `session.messages`: `sessionId`, optional `page` (1..10000), `number` (1..100).
+- `create|update` payload: `name`, `age`, `appearance`, `personality{traits,
+  temperament}`, `background`, `speaking_style{formality casual|formal|neutral,
+  gesture_frequency low|medium|high, verbosity concise|normal|verbose, vocabulary,
+  quirks}`, `knowledge{knows,doesnt_know}`, `goals`, `mood_default`.
+
+Story mode (dialogue written ahead of release):
+- `grouping.create|list|get|update|delete` (`gameId`, `groupingId`): a named
+  in-fiction event; payload `name`, `description`, `order_index`.
+- `library.create|list|update|delete` (`groupingId`, `messageId`): authored player
+  outcomes inside a grouping; payload `type` (e.g. `event`), `content`, `metadata`.
+- `storyline.create|list|get|update|delete` (`gameId`, `storylineId`): ordered
+  groupings plus one NPC; payload `name`, `description`, `npc_id`, `grouping_ids`
+  (1..20). Updating groupings does not regenerate. Delete removes the story line
+  and its dialogs, keeping groupings and library messages.
+- `storyline.generateAll` (`storylineId`, `maxPaths`, `confirm:true`): BILLABLE
+  BULK. Generates one dialog per path (one library message per grouping). The
+  runtime counts the paths first and refuses above `maxPaths`, above Theta's 5000
+  cap, or when a grouping is empty. Theta skips existing paths (idempotent) and
+  returns `total_paths`, `created`, `skipped`.
+- `storyline.queue` / `storyline.dialogs`: poll until `queued` and `generating`
+  are both 0, then list the dialogs.
+- `dialog.create` (`gameId`, payload `name`, `npc_id`, `message_refs[{grouping_id,
+  message_id}]`), `dialog.list` (`gameId`), `dialog.get` (`dialogId`; poll until
+  `ready`), `dialog.recreate` (billable, sends `{}`), `dialog.delete`.
 
 POST/PUT require an object `payload`. Every non-GET operation, including
 `session.message` and `session.context`, requires `confirm:true` outside dry-run.
 IDs are encoded, host is fixed, mutations honor dry-run and are never resent
-automatically. Payload bodies remain spec-driven
-pass-through; verify schemas when constructing them. No game creation, dashboard
-session capture or game-key renewal is exposed. Runtime tests use fixtures;
-live Characters tests require a configured game and approved test scope.
+automatically. Payloads are copied once, validated where the contract defines
+values, and otherwise passed through. Game create/update/delete/list and key
+rotation need dashboard session headers, not a game key, so they are not exposed;
+create games and keys in the Theta dashboard. Story-mode JSON export, knowledge
+base management, analytics and the realtime (WebSocket) channel have no public
+game-key API and are not exposed. Story mode is contract-tested from Theta's
+published reference; live tests require a configured game and approved test scope.
 
 ## Sources
 
 - https://blog.thetatoken.org/ai-agents-can-now-deploy-edgecloud-gpus-themselves/
 - https://blog.thetatoken.org/build-ai-characters-into-your-game-with-theta/
+- https://blog.thetatoken.org/theta-edgecloud-makes-ai-character-creation-easier-than-ever/
+- https://www.thetaedgecloud.com/ai-characters (product page and in-dashboard API reference)
 - https://github.com/thetatoken/on-demand-api-mcp
 - https://www.thetaedgecloud.com/.well-known/mcp/server-card.json
 - https://blog.thetatoken.org/theta-edgecloud-integrates-ling-3-0-flash-fin-via-zan/

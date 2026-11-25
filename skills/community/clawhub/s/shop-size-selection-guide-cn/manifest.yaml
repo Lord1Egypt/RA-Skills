@@ -1,0 +1,24 @@
+name: shop-size-selection-guide-cn
+slug: shop-size-selection-guide-cn
+display_name: 商品尺码选购指南
+description: 输入商家确认的尺码表、测量方法、单位、适用部位和选码规则，输出统一单位的尺码表、可执行测量步骤、按规则筛选的尺码范围与待确认项。适用于单个商品的客服选码说明；缺单位、量法或关键尺寸即停止推荐，只有身高体重不会推造适配结论。
+version: 1.0.0
+icon: icon-512.png
+repository: https://github.com/xxjrq/shop-size-selection-guide-cn
+license: MIT-0
+tags:
+  - 尺码表
+  - 服装电商
+  - 客服工具
+  - 选码规则
+trigger_words:
+  - 尺码怎么选
+  - 商品尺码表
+  - 根据胸围选码
+interface:
+  display_name: "商品尺码选购指南"
+  short_description: "将商家尺码表与量法整理为可核对的选码范围和待确认项"
+  default_prompt: "使用 $shop-size-selection-guide-cn 根据商家已确认的尺码表、单位、量法、适用部位和选码规则生成选购指南；资料不足时停止推荐。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+self_test: node scripts/self-test.mjs

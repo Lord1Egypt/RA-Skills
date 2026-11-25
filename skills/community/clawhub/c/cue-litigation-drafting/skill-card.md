@@ -1,6 +1,6 @@
 ## Description:
 
-辅助诉讼律师和法务人员根据案件事实及相关材料起草诉讼文书初稿，并整理相关法条与类案参考。
+面向诉讼律师和法务，根据案件事实及对方材料起草诉讼文书初稿，并整理相关法条与类案参考。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,46 +14,45 @@ MIT-0
 
 ## Use Case:
 
-供诉讼律师及法务人员依据案件事实和对方材料起草起诉状、答辩状、质证意见、律师函等文书草稿，并整理相关法律依据与类案参考。
+诉讼律师和法务可用它依据案件事实、己方立场或对方诉讼材料，准备起诉状、答辩状、质证意见、律师函等中文文书初稿，也可整理证据目录或先做法律研究。
 
 ### Deployment Geography for Use:
 
-中国
+China
 
 ## Known Risks and Mitigations:
 
-Risk: The skill's stated data-retention and report-link protections are unverified, so confidential case materials may be exposed.
+Risk: The security summary reports a possible mismatch between the advertised legal-drafting purpose and some behavior.
 
-Mitigation: Confirm Cue's retention and report-link access protections, and redact unnecessary confidential details before sending case materials.
+Mitigation: Review the skill's behavior and confirm it fits your intended use before providing case materials.
 
-Risk: The workflow requires promotional prompts when the account balance is low, which may interrupt drafting follow-up.
+Risk: Case materials may contain confidential information, and processing or retention terms may not be clear.
 
-Mitigation: Review any referral or purchase prompt and choose whether to proceed before continuing.
+Mitigation: Review the runner and service privacy terms; avoid sending confidential material until processing and retention are understood.
 
-Risk: The workflow downloads and executes a runner whose contents may change independently of this skill release.
+Risk: Research, billing, and required promotional steps may affect whether the service fits your needs.
 
-Mitigation: Review and pin the downloaded runner before execution.
+Mitigation: Check the service's usage, billing, and promotion requirements before installing or using it.
 
 ## Reference(s):
 
-- [ClawHub release](https://clawhub.ai/panting09266-ai/skills/cue-litigation-drafting)
+- [ClawHub skill listing](https://clawhub.ai/panting09266-ai/skills/cue-litigation-drafting)
 - [Cue Playbook](https://cuecue.cn/playbook)
-- [国家法律法规数据库](https://flk.npc.gov.cn)
-- [中国裁判文书网](https://wenshu.court.gov.cn)
+- [Cue platform](https://cuecue.cn)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Word documents, Legal research guidance]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Chinese litigation document drafts and research summaries; Markdown with optional editable DOCX conversion]
+**Output Format:** [Chinese-language Markdown drafts and legal research summaries; optional editable Word document]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Drafts require review by a qualified lawyer; verify legal citations and case references before use.]
+**Other Properties Related to Output:** [Drafts require review by a practicing lawyer; verify cited statutes and case references before use.]
 
 ## Skill Version(s):
 
-1.0.12 (source: server-resolved release evidence)
+1.0.14 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

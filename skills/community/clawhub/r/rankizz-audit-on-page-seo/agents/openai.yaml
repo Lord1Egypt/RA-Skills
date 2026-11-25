@@ -1,0 +1,4 @@
+interface:
+  display_name: "On-Page SEO Audit"
+  short_description: "Audit every important on-page SEO signal"
+  default_prompt: "Use $rankizz-audit-on-page-seo to audit this page and return a prioritized on-page SEO report."

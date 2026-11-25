@@ -1,6 +1,6 @@
 ## Description:
 
-Provides an agent with AI market analysis, live monitoring, research, scored news, catalyst tracking, and simulated trading for US stocks and crypto.
+Provides agents with SimianX market research for stocks and crypto, including live analysis, a research committee, scored news, sector catalysts, and simulated autopilots.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-External users can ask an agent for stock or crypto analysis, news, upcoming catalysts, or ongoing market monitoring. Developers can use the SimianX API through an agent for research workflows and simulated positions.
+Agents use this skill to provide stock and crypto research, follow live analysis and news, review upcoming catalysts, and monitor simulated autopilots. Its analysis is for research; SimianX does not place real orders.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan was partial, so its benign result is incomplete evidence.
+Risk: The security assessment has incomplete evidence: 12 of 13 components were scanned, and tool-misuse analysis was degraded for one component.
 
-Mitigation: Review the skill's API access and key use before installation, accounting for the unscanned component and degraded tool misuse analysis.
+Mitigation: Consider the scan uncertainty before installing; the benign verdict does not guarantee the skill is risk-free.
 
-Risk: External news and analysis text may contain instructions that are unrelated to the user's request.
+Risk: Market analysis may be incomplete or inaccurate and could be mistaken for a trading recommendation.
 
-Mitigation: Relay that text as quoted information and follow only the user's directions.
+Mitigation: Treat results as research rather than investment advice, verify information independently, and remember that any positions are simulated.
 
 ## Reference(s):
 
-- [SimianX agent documentation](https://www.simianx.ai/agents)
-- [SimianX API specification](https://service.simianx.ai/v1/openapi.json)
-- [ClawHub skill page](https://clawhub.ai/simianxai/skills/simianx)
-- [Live analysis guide](references/live.md)
-- [Quick analysis guide](references/quick.md)
-- [Research committee guide](references/deep.md)
-- [News guide](references/news.md)
-- [API developer guide](references/developers.md)
+- [SimianX Agent Documentation](https://www.simianx.ai/agents)
+- [SimianX API Reference (OpenAPI)](https://service.simianx.ai/v1/openapi.json)
+- [SimianX API](https://service.simianx.ai)
+- [SimianX AI on ClawHub](https://clawhub.ai/simianxai/skills/simianx)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Text, Markdown, API Calls]
+**Output Type(s):** [Analysis, Text, JSON, PDF report]
 
-**Output Format:** [Markdown and structured JSON data]
+**Output Format:** [Text and structured JSON responses, with optional PDF research reports]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Research and simulated trading only; no real orders are placed.]
+**Other Properties Related to Output:** [Research analysis and simulated position information; no real trade execution.]
 
 ## Skill Version(s):
 
-1.0.14 (source: SKILL.md frontmatter, server-resolved release)
+1.0.16 (source: SKILL.md frontmatter and server release evidence)
 
 ## Ethical Considerations:
 

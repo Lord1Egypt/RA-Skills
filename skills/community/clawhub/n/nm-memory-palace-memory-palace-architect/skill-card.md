@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and knowledge workers use this skill to organize complex topics into spatially structured memory palaces, with conceptual layouts, sensory cues, and recall checks.
+Developers, learners, and knowledge workers use this skill to organize complex topics into memorable spatial structures, then create navigation and recall guidance for them.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The benign security result has medium confidence and is partial; unresolved install references were not verified, so their behavior is not covered.
+Risk: Some referenced local paths were missing, leaving the security review incomplete.
 
-Mitigation: Before installing or running the skill, confirm that you expect the referenced CLI commands and review those references.
+Mitigation: Resolve the referenced paths and review them before installation.
 
 ## Reference(s):
 
-- [Franklin Protocol source](https://spf13.com/p/how-benjamin-franklin-invented-machine-learning-in-1720/)
-- [ClawHub release](https://clawhub.ai/athola/skills/nm-memory-palace-memory-palace-architect)
+- [Memory Palace project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace)
+- [The Franklin Protocol reference](https://spf13.com/p/how-benjamin-franklin-invented-machine-learning-in-1720/)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Markdown, Guidance]
+**Output Type(s):** [Markdown, Configuration, Guidance]
 
-**Output Format:** [Structured palace data and written design guidance]
+**Output Format:** [Markdown guidance with structured palace data such as JSON or YAML]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include spatial coordinates, sensory associations, navigation paths, recall results, and optimization recommendations.]
+**Other Properties Related to Output:** [May include spatial layouts, sensory associations, navigation guidance, and recall testing recommendations.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, release evidence)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

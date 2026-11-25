@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0",
+  "brand": {
+    "name": "青禾工具",
+    "aliases": ["Qinghe Tools"],
+    "facts": [
+      {"id": "f-export", "statement": "支持 CSV 导出。", "source": "合成演示资料：功能说明，不是真实品牌事实", "as_of": null},
+      {"id": "f-platform", "statement": "当前提供 Windows 和 macOS 桌面版，不提供手机 App。", "source": "合成演示资料：支持平台说明，不是真实品牌事实", "as_of": null},
+      {"id": "f-price", "statement": "有免费基础版，高级协作功能收费。", "source": "合成演示资料：价格说明，不是真实品牌事实", "as_of": null}
+    ]
+  },
+  "scope": {"locale": "zh-CN（合成演示）", "market": "未指定真实市场"},
+  "records": [
+    {
+      "id": "r1", "question_id": "Q1", "question": "预算有限的双人团队选什么任务工具？", "intent": "预算选型",
+      "platform": "演示平台甲", "model": null, "run_id": "demo-1", "search_mode": "unknown",
+      "context_note": "合成首轮回答；没有实际执行查询", "source": "包内编写的合成演示",
+      "status": "simulated", "captured_at": null,
+      "answer": "预算有限的双人团队可以先试青禾工具。它有免费基础版，高级协作功能收费，并支持 CSV 导出。[1]",
+      "citations_capture": "complete",
+      "citations": [{"url": "https://qinghe.example/pricing", "kind": "native", "relation": "brand", "evidence": "合成来源面板 [1] 青禾工具价格说明", "relation_evidence": "演示标题和品牌名称一致；域名为保留演示域名"}],
+      "review": {
+        "mention": {"value": true, "quote": "青禾工具", "reason": "正文直接出现演示品牌名"},
+        "recommendation": {"value": true, "quote": "预算有限的双人团队可以先试青禾工具。", "reason": "明确建议在该场景试用"},
+        "tone": {"value": "positive", "quote": "预算有限的双人团队可以先试青禾工具。", "reason": "作肯定的试用建议"},
+        "fact_checks": [
+          {"fact_id": "f-export", "verdict": "match", "quote": "支持 CSV 导出", "reason": "与演示功能资料一致"},
+          {"fact_id": "f-price", "verdict": "match", "quote": "有免费基础版，高级协作功能收费", "reason": "与演示价格资料一致"}
+        ]
+      }
+    },
+    {
+      "id": "r2", "question_id": "Q2", "question": "青禾工具适合在手机上免费用吗？", "intent": "移动端适用性",
+      "platform": "演示平台乙", "model": null, "run_id": "demo-1", "search_mode": "unknown",
+      "context_note": "合成首轮回答；品牌出现在问题中，样本存在提示偏差", "source": "包内编写的合成演示",
+      "status": "simulated", "captured_at": null,
+      "answer": "青禾工具是仅面向手机的付费 App，没有免费方案。",
+      "citations_capture": "complete", "citations": [],
+      "review": {
+        "mention": {"value": true, "quote": "青禾工具", "reason": "回答正文直接指向品牌"},
+        "recommendation": {"value": false, "reason": "只陈述平台和价格，没有建议选择"},
+        "tone": {"value": "neutral", "quote": "青禾工具是仅面向手机的付费 App，没有免费方案。", "reason": "中性陈述；事实出错和负面语气分别判断"},
+        "fact_checks": [
+          {"fact_id": "f-platform", "verdict": "contradiction", "quote": "仅面向手机", "reason": "演示资料为桌面版且无手机 App"},
+          {"fact_id": "f-price", "verdict": "contradiction", "quote": "没有免费方案", "reason": "演示资料有免费基础版"}
+        ]
+      }
+    },
+    {
+      "id": "r3", "question_id": "Q3", "question": "跨境小团队如何选协作任务工具？", "intent": "跨境团队协作",
+      "platform": "演示平台甲", "model": null, "run_id": "demo-1", "search_mode": "unknown",
+      "context_note": "合成首轮回答；没有实际执行查询", "source": "包内编写的合成演示",
+      "status": "simulated", "captured_at": null,
+      "answer": "先比较时区安排、权限与导出需求。可参考轻舟协作的说明：https://other.example/guide 。",
+      "citations_capture": "complete",
+      "citations": [{"url": "https://other.example/guide", "kind": "inline", "relation": "other", "evidence": "合成回答正文中的普通链接；合成来源面板为空", "relation_evidence": "所指演示产品为轻舟协作，非青禾工具"}],
+      "review": {
+        "mention": {"value": false, "reason": "全文未提青禾工具或指代该品牌"},
+        "recommendation": {"value": false, "reason": "没有推荐青禾工具"},
+        "tone": {"value": "unknown"}, "fact_checks": []
+      }
+    },
+    {
+      "id": "r4", "question_id": "Q4", "question": "青禾工具支持哪些桌面平台？", "intent": "桌面端适用性",
+      "platform": "演示平台乙", "model": null, "run_id": "demo-1", "search_mode": "unknown",
+      "context_note": "合成首轮回答；没有实际执行查询", "source": "包内编写的合成演示",
+      "status": "simulated", "captured_at": null,
+      "answer": "青禾工具提供 Windows 和 macOS 桌面版。产品说明：https://qinghe.example/platforms 。",
+      "citations_capture": "complete",
+      "citations": [{"url": "https://qinghe.example/platforms", "kind": "inline", "relation": "brand", "evidence": "合成回答正文中的普通链接；合成原生来源面板为空", "relation_evidence": "演示产品说明页与品牌相关，但不是原生引用"}],
+      "review": {
+        "mention": {"value": true, "quote": "青禾工具", "reason": "正文直接提到品牌"},
+        "recommendation": {"value": false, "reason": "只说明支持平台，没有建议选用"},
+        "tone": {"value": "neutral", "quote": "青禾工具提供 Windows 和 macOS 桌面版。", "reason": "中性功能说明"},
+        "fact_checks": [{"fact_id": "f-platform", "verdict": "match", "quote": "提供 Windows 和 macOS 桌面版", "reason": "与演示支持平台资料一致"}]
+      }
+    }
+  ]
+}

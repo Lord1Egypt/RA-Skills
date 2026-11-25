@@ -9,6 +9,10 @@ annotation.json 的 canvas 一致（本项目统一 1536×864）。
 ⚠️ 铁律：用 toolkit 画上去的每个文字块，都要落在对应 annotation region 框内，
 否则渲染时不会显示（渲染器只在 region 内揭示墨迹）。
 
+坐标只有一份：本脚本用 LAYOUT.begin/save 记录每个图元的实际 bbox，
+再用 scripts/make_spec.py 生成 spec-0N.json。手写 spec 极易与绘制坐标漂移，
+漂移的后果是那块内容在成片里整块不出现（项目3 踩过 13 幕）。
+
 用法（在视频目录下）：
   <ENV_PY> enhance_scenes.py
 """
@@ -22,6 +26,7 @@ sys.path.insert(0, str(SKILL_SCRIPTS))
 from enhance_toolkit import (  # noqa: E402
     Image, ImageDraw, f_kai, f_yahei, INK, RED, BLUE, ORANGE, PAPER_LIGHT,
     draw_title, draw_label_card, draw_note, draw_stamp, sketch_rect, sketch_line,
+    safe_text, LAYOUT,
 )
 
 SRC = "scene-01-xxx-crop.png"   # ← 裁剪后的线稿（1536×864）
@@ -31,21 +36,27 @@ OUT = "scene-01-xxx-enh.png"    # ← 增强输出
 def main():
     im = Image.open(SRC).convert("RGBA")
     d = ImageDraw.Draw(im)
+    LAYOUT.begin(im)          # ← 开始记录本幕图元，供 make_spec.py 生成 spec
 
     # 1) 大标题（居中 + 红色波浪下划线）
     draw_title(d, "本幕标题", cx=768, y=80, size=72, color=INK)
+
+    # 裸文字请用 safe_text（按框自动缩字号 + 边界自检），别直接 d.text 写长句
+    safe_text(d, None, "副标题/说明文字", f_kai(34), box=(300, 170, 1236, 220))
 
     # 2) 标签牌：手绘双线框 + 居中文字（每个牌对应一个 annotation region）
     draw_label_card(d, box=(120, 240, 620, 360), text="左侧要点", font=f_yahei(44))
     draw_label_card(d, box=(900, 240, 1400, 360), text="右侧要点", font=f_yahei(44))
 
     # 3) 便签条（带折角 + 胶带，适合放结论/警示）
-    draw_note(d, im, box=(120, 620, 700, 800), text="一句话结论", font=f_kai(46))
+    # 便签 y1 必须 ≤ 756（画布 y≥762 是字幕区，会被硬字幕压住）
+    draw_note(d, im, box=(120, 620, 700, 748), text="一句话结论", font=f_kai(46))
 
     # 4) 完结印章（可选）
-    draw_stamp(d, cx=1300, cy=720, r=70, text="判定")
+    draw_stamp(d, cx=1300, cy=660, r=64, text="判定")
 
     im.convert("RGB").save(OUT)
+    LAYOUT.save("layout-01.json")      # ← 供 make_spec.py 生成 spec-01.json
     print(f"增强完成 -> {OUT}  ({im.size})")
 
 

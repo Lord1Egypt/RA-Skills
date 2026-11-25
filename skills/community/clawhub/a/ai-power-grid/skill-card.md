@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and OpenClaw users use this skill to generate or edit images, create videos, and request text from AIPG models when they want pay-per-use AI services.
+External developers and OpenClaw users use this skill to request image, video, and text generation through AI Power Grid, using its OpenClaw provider or OpenAI-compatible API. It also guides account setup, credit-aware use, and safe handling of prompts and API credentials.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: AIPG requests and API credentials may be handled by the service and independent GPU operators.
+Risk: Requests go to an external API, and independent operators process submitted content in plain text.
 
-Mitigation: Use the service only if you trust its handling of requests and credentials, and keep secrets and personal data out of prompts.
+Mitigation: Keep secrets, credentials, and personal data out of prompts; store the API key in the environment or a saved profile rather than chat.
 
-Risk: Account setup and key provisioning may rely on mutable external instructions that have not been integrity checked.
+Risk: Paid requests spend account credit, and the security scan was partial because a local reference could not be matched.
 
-Mitigation: Review the setup instructions before use; create and store keys through the service's console or another method you have verified.
+Mitigation: Tell the user before the first paid request, check balance and pricing before costly work, and review the unmatched reference before deployment.
 
 ## Reference(s):
 
 - [AI Power Grid documentation](https://aipowergrid.io/docs)
-- [Project homepage](https://github.com/speteai/openclaw-aipg-provider)
-- [ClawHub skill page](https://clawhub.ai/speteai/skills/ai-power-grid)
+- [OpenClaw AIPG provider repository](https://github.com/speteai/openclaw-aipg-provider)
+- [AI Power Grid ClawHub release](https://clawhub.ai/speteai/skills/ai-power-grid)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Video, Text]
+**Output Type(s):** [Generated images, Generated video, Text, Shell commands, Configuration guidance]
 
-**Output Format:** [Image and video files, plus text responses]
+**Output Format:** [Media files or URLs, text responses, and Markdown instructions with inline shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Image requests support up to four images per call; video duration is specified per request.]
+**Other Properties Related to Output:** [Requests may use account credit; generated images can be saved to a user-visible file path.]
 
 ## Skill Version(s):
 
-0.4.1 (source: server-resolved release metadata)
+0.4.2 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

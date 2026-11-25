@@ -19,16 +19,16 @@
  * relationships, job titles, and addresses.
  */
 
-'use strict';
-
-const fs = require('fs');
-const path = require('path');
-const os = require('os');
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import { fileURLToPath } from 'node:url';
+import Database from 'better-sqlite3';
+import { writePrivateFile } from '../write-private-file.js';
 
 const includeExtendedFields = /^(1|true|yes)$/i.test(process.env.AMBER_CONTACTS_EXTENDED || '');
 
-// Resolve better-sqlite3 relative to this script's location (runtime/scripts/ → runtime/node_modules/)
-const Database = require(path.join(__dirname, '..', 'node_modules', 'better-sqlite3'));
+const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 
 const abDir = path.join(os.homedir(), 'Library', 'Application Support', 'AddressBook');
 const sourcesDir = path.join(abDir, 'Sources');
@@ -57,25 +57,28 @@ function cleanLabel(l) {
 const mergeMap = new Map();
 
 for (const dbPath of dbPaths) {
+  let db;
   try {
-    const db = new Database(dbPath, { readonly: true, fileMustExist: true });
+    db = new Database(dbPath, { readonly: true, fileMustExist: true });
 
     // All queries use parameterized statements — no string interpolation in SQL
-    const recordStmt = db.prepare(
-      'SELECT Z_PK, ZFIRSTNAME, ZLASTNAME, ZNICKNAME, ZORGANIZATION, ZJOBTITLE, ZNOTE FROM ZABCDRECORD'
-    );
+    const recordStmt = db.prepare(includeExtendedFields
+      ? 'SELECT Z_PK, ZFIRSTNAME, ZLASTNAME, ZNICKNAME, ZORGANIZATION, ZJOBTITLE, ZNOTE FROM ZABCDRECORD'
+      : 'SELECT Z_PK, ZFIRSTNAME, ZLASTNAME FROM ZABCDRECORD');
     const phoneStmt = db.prepare(
       'SELECT ZFULLNUMBER, ZLABEL FROM ZABCDPHONENUMBER WHERE ZOWNER = ? AND ZFULLNUMBER IS NOT NULL'
     );
-    const emailStmt = db.prepare(
-      'SELECT ZADDRESS, ZLABEL FROM ZABCDEMAILADDRESS WHERE ZOWNER = ? AND ZADDRESS IS NOT NULL'
-    );
-    const relStmt = db.prepare(
-      'SELECT ZNAME, ZLABEL FROM ZABCDRELATEDNAME WHERE ZOWNER = ? AND ZNAME IS NOT NULL'
-    );
-    const addrStmt = db.prepare(
-      'SELECT ZSTREET, ZCITY, ZSTATE, ZZIPCODE, ZCOUNTRYNAME, ZLABEL FROM ZABCDPOSTALADDRESS WHERE ZOWNER = ?'
-    );
+    const extended = includeExtendedFields ? {
+      emails: db.prepare(
+        'SELECT ZADDRESS, ZLABEL FROM ZABCDEMAILADDRESS WHERE ZOWNER = ? AND ZADDRESS IS NOT NULL'
+      ),
+      relationships: db.prepare(
+        'SELECT ZNAME, ZLABEL FROM ZABCDRELATEDNAME WHERE ZOWNER = ? AND ZNAME IS NOT NULL'
+      ),
+      addresses: db.prepare(
+        'SELECT ZSTREET, ZCITY, ZSTATE, ZZIPCODE, ZCOUNTRYNAME, ZLABEL FROM ZABCDPOSTALADDRESS WHERE ZOWNER = ?'
+      ),
+    } : null;
 
     const records = recordStmt.all();
 
@@ -112,8 +115,8 @@ for (const dbPath of dbPaths) {
         }
       }
 
-      if (includeExtendedFields) {
-        for (const e of emailStmt.all(r.Z_PK)) {
+      if (extended) {
+        for (const e of extended.emails.all(r.Z_PK)) {
           const addr = e.ZADDRESS.toLowerCase();
           if (!contact._seenEmails.has(addr)) {
             contact._seenEmails.add(addr);
@@ -121,7 +124,7 @@ for (const dbPath of dbPaths) {
           }
         }
 
-        for (const rel of relStmt.all(r.Z_PK)) {
+        for (const rel of extended.relationships.all(r.Z_PK)) {
           const relKey = `${rel.ZNAME.toLowerCase()}_${cleanLabel(rel.ZLABEL)}`;
           if (!contact._seenRels.has(relKey)) {
             contact._seenRels.add(relKey);
@@ -130,7 +133,7 @@ for (const dbPath of dbPaths) {
         }
 
         try {
-          for (const a of addrStmt.all(r.Z_PK)) {
+          for (const a of extended.addresses.all(r.Z_PK)) {
             const parts = [a.ZSTREET, a.ZCITY, a.ZSTATE, a.ZZIPCODE, a.ZCOUNTRYNAME].filter(Boolean);
             if (parts.length) {
               contact.addresses.push({ full: parts.join(', '), label: cleanLabel(a.ZLABEL) });
@@ -139,10 +142,10 @@ for (const dbPath of dbPaths) {
         } catch (_) {}
       }
     }
-
-    db.close();
   } catch (e) {
     console.warn(`Skipped ${dbPath}: ${e.message}`);
+  } finally {
+    db?.close();
   }
 }
 
@@ -166,13 +169,13 @@ for (const c of mergeMap.values()) {
 }
 
 // Output path relative to this script (runtime/scripts/ → runtime/contacts-cache.json)
-const outPath = path.join(__dirname, '..', 'contacts-cache.json');
-fs.writeFileSync(outPath, JSON.stringify({
+const outPath = path.join(scriptDir, '..', 'contacts-cache.json');
+writePrivateFile(outPath, JSON.stringify({
   exportedAt: new Date().toISOString(),
   count: contacts.length,
   contacts,
 }, null, 2));
 
 console.log(`✓ Exported ${contacts.length} contacts → contacts-cache.json`);
-console.log(`  Fields: ${includeExtendedFields ? 'extended local-only contact fields' : 'names and phone numbers only'}`);
-console.log('  This file is local-only and excluded from version control.');
+console.log(`  Fields: ${includeExtendedFields ? 'extended local-only contact fields' : 'names, phone numbers, and phone labels only'}`);
+console.log('  This file is owner-only, local, and excluded from version control.');

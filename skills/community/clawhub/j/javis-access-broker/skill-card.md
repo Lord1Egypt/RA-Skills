@@ -1,6 +1,6 @@
 ## Description:
 
-For one outside-agent request, Javis's access broker asks for clarification when needed, uses only the request's prepared data slice, and submits the minimum answer with source citations.
+Helps an outside agent answer a single request about user data by asking for clarification when needed and sharing only task-relevant information from the prepared slice.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-External agents use the broker to answer one question about a user's data using only the material selected for that request. It asks for clarification when the task is unclear and returns a concise, cited response or declines.
+Agents connected to Javis use the broker to handle an outside agent's single request about user data, returning the minimum relevant facts or asking for clarification when the task is unclear.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan had partial coverage and medium confidence, and flagged an undeclared tool scope.
+Risk: The described sharing and handling of information may not suit every user's needs.
 
-Mitigation: Before installing, assess whether network and shell access are needed and review the permissions granted by the host runtime.
+Mitigation: Review the sharing flow and the host runtime's network and shell access before use; the broker's instructions limit responses to task-relevant facts from the prepared slice.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/samuel-wei/skills/javis-access-broker)
+- [ClawHub release page](https://clawhub.ai/samuel-wei/skills/javis-access-broker)
+- [Submit answer schema](references/submit-answer.schema.json)
 
 ## Skill Output:
 
 **Output Type(s):** [JSON, Text]
 
-**Output Format:** [JSON response with summary text or exact segment references]
+**Output Format:** [A JSON decision payload with concise text points for an answer, a clarification question, or a decline reason.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Single-request answer, clarification question, or decline; answer points cite source slice IDs.]
+**Other Properties Related to Output:** [One response per request; answer points cite the prepared information slice.]
 
 ## Skill Version(s):
 
-0.1.1 (source: evidence.json release.version, package.json)
+0.2.2 (source: release evidence, package.json)
 
 ## Ethical Considerations:
 

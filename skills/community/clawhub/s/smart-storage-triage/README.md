@@ -1,4 +1,4 @@
-# Smart Storage Triage & Search (v1.6.0)
+# Smart Storage Triage & Search (v1.7.1)
 
 Fast, zero-bloat local search and storage triage for AI agents with strict privacy & security guards.
 
@@ -16,10 +16,11 @@ When AI agents need to answer questions about a codebase, documents, or large dr
 ## Security & Privacy (Safety First)
 
 - **Zero-Secret Tree & Content Exclusion:** strictly excludes `.env*`, private keys (`*.pem`, `*.key`, `id_rsa*`, `id_ed25519*`), cloud tokens, and sensitive credential stores (`credentials.json`, `token.json`, `auth.json`, `*.kdbx`) from **both** full-text indexing and the `tree.json.gz` snapshot.
-- **Symlink Boundary Protection:** directory symlinks are pruned to prevent directory traversal loops; file symlinks resolving outside the target directory boundary are ignored and never followed.
-- **Broad Scope Safety Guard:** indexing system root (`/`), `/home`, `/root`, or the entire user home directory (`~`) is blocked in code to prevent accidental broad data exposure. Requires the explicit confirmation flag `--allow-broad`.
+- **Symlink Boundary Protection:** directory symlinks are pruned to prevent directory traversal loops; file symlinks resolving outside the target directory boundary are ignored and never followed. The credential denylist is also applied to resolved symlink targets, so an in-root alias (`notes.txt -> .env`) cannot smuggle secrets into the index.
+- **Storage-Boundary Enforcement:** tree-snapshot paths are validated to resolve inside the configured storage root; absolute paths, `..` traversal and escaping symlinks are skipped before any file is read or embedded.
+- **Broad Scope Safety Guard:** indexing system root (`/`), `/home`, `/root`, or the entire user home directory (`~`) is blocked in code to prevent accidental broad data exposure. Requires the explicit confirmation flag `--allow-broad`. Semantic indexing of a whole storage root (empty `active` prefix) requires the same explicit confirmation.
 - **Sensitive Directory Exclusion:** `.ssh`, `.aws`, `.gnupg`, `.azure`, `.kube`, `.secrets`, and `secrets` folders are never scanned or indexed.
-- **100% Local & Zero Telemetry:** runs entirely on local Python, embedded SQLite FTS5, and a LOCAL embedding model. Zero external network calls, zero tracking.
+- **Local-First & Zero Telemetry:** runs entirely on local Python, embedded SQLite FTS5, and a LOCAL embedding model. No tracking. Embedding requests go to a loopback router by default (`http://127.0.0.1:18794`); any non-loopback endpoint is refused unless the operator explicitly passes `--allow-external-router` (or sets `STORAGE_MEDIA_ALLOW_EXTERNAL_ROUTER=1`). Auto-discovered workspace configs can never silently redirect private data outside the host.
 - **No Hardcoded Paths:** safe for any machine or team. Custom paths resolve via CLI arguments, environment variables (`STORAGE_RAG_DB`, `STORAGE_RAG_TREE`, `STORAGE_MEDIA_*`), or `~/.config/smart-storage-triage/config.json`.
 
 ---
@@ -74,7 +75,7 @@ python3 scripts/semantic_media.py search "photos of assembled panels" --kind ima
 python3 scripts/semantic_media.py status
 ```
 
-**Per-workspace binding (v1.6.0):** to give one agent its own storage and an isolated index, drop a `.smart-storage-triage.json` with the same `media` section at that agent's workspace root (or in the working directory / any ancestor of the skill copy). It overrides the global config key-by-key; first match wins. Use a distinct `db` path per bound workspace so indexes never mix. Workspaces without the file keep the shared default. This file is local infrastructure — never ship it inside the published skill folder.
+**Per-workspace binding (v1.6.0):** to give one agent its own storage and an isolated index, drop a `.smart-storage-triage.json` with the same `media` section at that agent's workspace root (or in the working directory / any ancestor of the skill copy). It overrides the global config key-by-key; first match wins. Use a distinct `db` path per bound workspace so indexes never mix. Workspaces without the file keep the shared default. This file is local infrastructure — never ship it inside the published skill folder. Security limits: a workspace binding can never enable a non-loopback embeddings router or broad-scope confirmation — those require explicit operator opt-in (`--allow-external-router` / `--allow-broad`, env, or the user-owned global config).
 
 ---
 

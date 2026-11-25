@@ -1,6 +1,6 @@
 ## Description:
 
-Helps users manage a MyBooks library, reading activity, annotations, book transfers, and administrator-controlled audiobook conversion and voice settings.
+Manage and explore a personal book library, including metadata, reading activity, external book discovery, and optional text-to-speech features.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-MyBooks users can ask an agent to find and organize books, track reading, import annotations, transfer ebooks, and manage audiobooks when authorized.
+People managing a MyBooks library can search and update books, track reading, curate lists, and retrieve public book metadata. Administrators can also use the optional TTS tools to create audiobook audio.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Credentials, book text, voice samples, or TTS keys may be processed by the configured MyBooks server or TTS provider.
+Risk: The security review reports potentially destructive EPUB repair and overwrite risks.
 
-Mitigation: Use a trusted server and HTTPS for non-local hosts, keep credentials session-scoped, and review TTS use before sharing sensitive content.
+Mitigation: Review the target book and preserve a backup before repair or replacement actions.
 
-Risk: Uploading an unintended local ebook or voice sample could expose private material.
+Risk: The security review reports possible local file access beyond the declared permissions.
 
-Mitigation: Upload only files explicitly selected by the user and confirm their destination.
+Mitigation: Provide only the explicit file paths intended for an upload and check the configured destination.
 
-Risk: Library edits, annotation imports, and deletions can change or remove user data.
+Risk: The security review reports unclear disclosure of some actions and data flows, with incomplete analysis coverage.
 
-Mitigation: Preview supported changes and obtain user confirmation before destructive actions.
+Mitigation: Review the skill's actions and network destinations before enabling it; treat the available security analysis as partial.
 
 ## Reference(s):
 
-- [MyBooks skill on ClawHub](https://clawhub.ai/poxenstudio/skills/mybooks)
-- [MyBooks website](https://www.mybooks.top)
+- [MyBooks homepage](https://www.mybooks.top)
+- [Book345 public metadata API](https://www.book345.com/api)
+- [MyBooks 1.0.8 release page](https://clawhub.ai/poxenstudio/skills/mybooks)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+**Output Type(s):** [Text, JSON, Guidance, Audio files]
 
-**Output Format:** [Natural-language responses based on MyBooks API results, with optional commands or configuration steps]
+**Output Format:** [Structured JSON results and natural-language guidance; optional WAV audio output]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May save a requested voice recording as a WAV file.]
+**Other Properties Related to Output:** [Some operations update library data; optional upload and TTS features use user-selected files or save a new WAV file.]
 
 ## Skill Version(s):
 
-1.0.7 (source: ClawHub release evidence)
+1.0.8 (source: server-resolved ClawHub release metadata)
 
 ## Ethical Considerations:
 

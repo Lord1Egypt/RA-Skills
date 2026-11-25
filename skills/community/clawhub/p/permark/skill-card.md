@@ -1,6 +1,6 @@
 ## Description:
 
-Helps agents collaborate in PerMark by inspecting the current Markdown document, finding tagged specifications, reading shared notes, and handling inline review comments.
+PerMark: a Markdown app to read and review what your AI agents write, and steer the work through its documents.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and other PerMark users can help an agent locate relevant Markdown sections, understand their current selection, review shared notes, and address inline feedback.
+Developers working with a PerMark project use the skill to orient to the document or passage a person is reviewing, explore and read project Markdown, and handle comments and notes. Agent access is optional and can be enabled for a local project.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The agent may read document passages and notes shared through PerMark.
+Risk: Common phrases can trigger broad context lookup, including outside a PerMark interaction.
 
-Mitigation: Enable the connection only for projects and shared notes the agent is permitted to inspect.
+Mitigation: Keep agent sharing off unless needed, enable it only for the intended local project, and check which document context is returned.
 
-Risk: Review comments may be marked resolved before the requested work is complete.
+Risk: The partial scan leaves some evidence incomplete despite a benign, medium-confidence verdict.
 
-Mitigation: Resolve a comment only after addressing its feedback and verifying the change.
+Mitigation: Review the skill before enabling project sharing and reassess when a complete scan is available.
 
 ## Reference(s):
 
-- [PerMark skill on ClawHub](https://clawhub.ai/edelmarschneider/skills/permark)
+- [PerMark on ClawHub](https://clawhub.ai/edelmarschneider/skills/permark)
+- [Publisher profile](https://clawhub.ai/user/edelmarschneider)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Natural-language responses and Markdown document edits]
+**Output Format:** [Text or Markdown responses]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Can navigate documents and mark review comments resolved when requested.]
+**Other Properties Related to Output:** [None specified]
 
 ## Skill Version(s):
 
-1.0.0 (source: ClawHub release metadata)
+1.0.1 (source: server-resolved release)
 
 ## Ethical Considerations:
 

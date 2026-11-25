@@ -1,6 +1,6 @@
 ## Description:
 
-Merges, dedupes, ranks, and formats research findings into a report. Use after research agents return results from multiple channels to produce a ranked report.
+Merges, dedupes, ranks, and formats research findings into a report. Use after research agents return results from multiple channels to produce a ranked report
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and research agents use this skill after gathering findings from multiple channels to merge duplicates, rank and group findings by theme, and produce a report.
+Developers use this skill after research agents return findings from multiple channels. It combines and deduplicates those findings, ranks and groups them, then formats a report, brief, or transcript.
 
 ### Deployment Geography for Use:
 
@@ -22,13 +22,13 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill's trigger name may overlap with a built-in command.
+Risk: The possible overlap between the “merge” and “format” triggers may affect which skills activate in a particular agent setup.
 
-Mitigation: Check whether the agent already assigns the same trigger to a built-in command before relying on this skill's activation.
+Mitigation: Check trigger behavior in the intended agent setup and adjust activation rules if the overlap causes unwanted activations.
 
 ## Reference(s):
 
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/tome)
+- [Tome plugin reference](https://github.com/athola/claude-night-market/tree/master/plugins/tome)
 
 ## Skill Output:
 
@@ -38,11 +38,11 @@ Mitigation: Check whether the agent already assigns the same trigger to a built-
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Findings are merged, ranked, and grouped by theme.]
+**Other Properties Related to Output:** [Findings are merged, deduplicated, ranked, and grouped before formatting.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

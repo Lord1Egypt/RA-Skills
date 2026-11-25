@@ -12,12 +12,8 @@ import argparse
 import tempfile
 import shutil
 from pathlib import Path
-import signal
 import re
-
-def timeout_handler(signum, frame):
-    """Handle timeout signal"""
-    raise TimeoutError("Conversion timed out")
+import html as html_lib
 
 def find_calibre_convert():
     """Find ebook-convert command from Calibre installation"""
@@ -32,7 +28,7 @@ def find_calibre_convert():
         try:
             result = subprocess.run([path, "--version"], capture_output=True, text=True, timeout=10)
             if result.returncode == 0:
-                print(f"✓ Found Calibre ebook-convert: {path}")
+                print(f"Found Calibre ebook-convert: {path}")
                 return path
         except (FileNotFoundError, subprocess.TimeoutExpired):
             continue
@@ -48,19 +44,23 @@ def extract_html_metadata(html_file):
         # Extract title
         title_match = re.search(r'<title[^>]*>(.*?)</title>', content, re.IGNORECASE | re.DOTALL)
         if title_match:
-            title = re.sub(r'<[^>]+>', '', title_match.group(1)).strip()
+            title = html_lib.unescape(re.sub(r'<[^>]+>', '', title_match.group(1))).strip()
         else:
             # Try h1 tag
             h1_match = re.search(r'<h1[^>]*>(.*?)</h1>', content, re.IGNORECASE | re.DOTALL)
             if h1_match:
-                title = re.sub(r'<[^>]+>', '', h1_match.group(1)).strip()
+                title = html_lib.unescape(re.sub(r'<[^>]+>', '', h1_match.group(1))).strip()
             else:
                 title = os.path.splitext(os.path.basename(html_file))[0]
         
-        # Extract author
-        author_match = re.search(r'<meta[^>]*name=["\']author["\'][^>]*content=["\']([^"\']*)["\']', content, re.IGNORECASE)
+        # Extract author. The value ends at the quote that opened it; the
+        # other kind of quote may appear inside, as in content="Flann O'Brien".
+        author_match = re.search(
+            r'<meta[^>]*name=["\']author["\'][^>]*content=(["\'])(.*?)\1',
+            content, re.IGNORECASE | re.DOTALL,
+        )
         if author_match:
-            author = author_match.group(1).strip()
+            author = html_lib.unescape(author_match.group(2)).strip()
         else:
             author = "Unknown Author"
         
@@ -70,14 +70,22 @@ def extract_html_metadata(html_file):
         print(f"Warning: Could not extract metadata: {e}")
         return os.path.splitext(os.path.basename(html_file))[0], "Unknown Author"
 
+def _primary_language(lang):
+    """The primary subtag of a language tag: zh for zh-TW, pt for pt_BR.
+
+    Compare it whole: kok is Konkani and jav is Javanese, not Korean or Japanese.
+    """
+    return lang.lower().replace('_', '-').split('-')[0]
+
+
 def _get_font_family_for_lang(lang):
     """Get appropriate font family CSS for the given language."""
-    lang_lower = lang.lower()
-    if lang_lower.startswith('zh'):
+    primary = _primary_language(lang)
+    if primary == 'zh':
         return '"FangSong", "FangSong_GB2312", "仿宋", "仿宋_GB2312", "STFangSong", "SimSun", serif'
-    elif lang_lower.startswith('ja'):
+    elif primary == 'ja':
         return '"Hiragino Mincho ProN", "Yu Mincho", "MS Mincho", serif'
-    elif lang_lower.startswith('ko'):
+    elif primary == 'ko':
         return '"Nanum Myeongjo", "Batang", serif'
     else:
         return 'Georgia, "Times New Roman", Times, serif'
@@ -85,12 +93,12 @@ def _get_font_family_for_lang(lang):
 
 def _get_pdf_font_for_lang(lang):
     """Get PDF font name for the given language."""
-    lang_lower = lang.lower()
-    if lang_lower.startswith('zh'):
+    primary = _primary_language(lang)
+    if primary == 'zh':
         return 'FangSong'
-    elif lang_lower.startswith('ja'):
+    elif primary == 'ja':
         return 'Hiragino Mincho ProN'
-    elif lang_lower.startswith('ko'):
+    elif primary == 'ko':
         return 'Nanum Myeongjo'
     else:
         return 'Georgia'
@@ -154,7 +162,7 @@ a {{
         with open(work_html, 'w', encoding='utf-8') as f:
             f.write(content)
         
-        print("✓ Added font styling and removed underlines from HTML")
+        print("Added font styling and removed underlines from HTML")
         return work_html
         
     except Exception as e:
@@ -177,7 +185,7 @@ def copy_images_if_needed(html_file, temp_dir):
                 shutil.copytree(img_dir, target_dir, dirs_exist_ok=True)
                 image_count = len([f for f in os.listdir(target_dir) 
                                  if f.lower().endswith(('.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.bmp'))])
-                print(f"✓ Copied {image_count} images from {img_dir_name}/")
+                print(f"Copied {image_count} images from {img_dir_name}/")
                 total_image_count += image_count
             except Exception as e:
                 print(f"Warning: Could not copy {img_dir_name}/: {e}")
@@ -190,14 +198,14 @@ def copy_images_if_needed(html_file, temp_dir):
                 dst_file = os.path.join(temp_dir, file)
                 shutil.copy2(src_file, dst_file)
                 total_image_count += 1
-                print(f"✓ Copied loose image file: {file}")
+                print(f"Copied loose image file: {file}")
     except Exception as e:
         print(f"Warning: Could not copy loose image files: {e}")
     
     if total_image_count == 0:
-        print("ℹ No images found")
+        print("No images found")
     else:
-        print(f"✓ Total images copied: {total_image_count}")
+        print(f"Total images copied: {total_image_count}")
     
     return total_image_count
 
@@ -211,7 +219,27 @@ def get_output_format(output_file):
     }
     return format_map.get(ext)
 
-def convert_html_with_calibre(html_file, output_file, format_type, timeout=600, lang="zh-CN"):
+def _toc_xpaths(html_file):
+    """Return the --level1-toc and --level2-toc XPaths for this book.
+
+    Pandoc's title block puts the book title in an <h1 class="title">. When the
+    chapters are h2, `//h:h1` alone makes that title the only top-level entry,
+    with every chapter nested under it. Leaving the title out drops the chapters
+    too, since Calibre discards level-2 entries with no level-1 entry to sit
+    under. So the title shares level 1 with the top content heading level.
+    """
+    try:
+        with open(html_file, encoding='utf-8', errors='replace') as f:
+            html = f.read()
+    except OSError:
+        return "//h:h1", "//h:h2"
+    levels = {int(n) for n in re.findall(r'<h([1-6])\b(?![^>]*class="title")', html, re.IGNORECASE)}
+    top = min(levels, default=1)
+    if top == 1:
+        return "//h:h1", "//h:h2"
+    return f"//h:h1 | //h:h{top}", f"//h:h{top + 1}"
+
+def convert_html_with_calibre(html_file, output_file, format_type, timeout=600, lang="zh-CN", cover=None):
     """Convert HTML to specified format using Calibre with timeout protection"""
     
     calibre_path = find_calibre_convert()
@@ -224,7 +252,9 @@ def convert_html_with_calibre(html_file, output_file, format_type, timeout=600, 
     print(f"Converting HTML to {format_type.upper()} using Calibre...")
     print(f"Title: {title}")
     print(f"Author: {author}")
-    
+
+    level1_toc, level2_toc = _toc_xpaths(html_file)
+
     # Prepare Calibre command
     cmd = [
         calibre_path,
@@ -233,9 +263,14 @@ def convert_html_with_calibre(html_file, output_file, format_type, timeout=600, 
         "--title", title,
         "--authors", author,
         "--language", lang,
-        "--book-producer", "Claude Translator",
+        "--book-producer", "translate-book",
         "--preserve-cover-aspect-ratio",
-        "--smarten-punctuation"
+        "--smarten-punctuation",
+        # Build the TOC from heading levels. Calibre's default chapter
+        # detection only matches English words (chapter, part, ...), so a
+        # translated book otherwise gets no TOC entries for its chapters.
+        "--level1-toc", level1_toc,
+        "--level2-toc", level2_toc,
     ]
     
     # Add format-specific options
@@ -247,6 +282,8 @@ def convert_html_with_calibre(html_file, output_file, format_type, timeout=600, 
         cmd.extend([
             "--epub-version", "3"
         ])
+        if cover:
+            cmd.extend(["--cover", cover])
     elif format_type == 'pdf':
         pdf_font = _get_pdf_font_for_lang(lang)
         cmd.extend([
@@ -259,40 +296,27 @@ def convert_html_with_calibre(html_file, output_file, format_type, timeout=600, 
         ])
     
     try:
-        # Set up timeout signal
-        signal.signal(signal.SIGALRM, timeout_handler)
-        signal.alarm(timeout)
-        
         print(f"Starting conversion (timeout: {timeout}s)...")
         result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
-        
-        # Cancel timeout
-        signal.alarm(0)
         
         if result.returncode == 0:
             if os.path.exists(output_file):
                 file_size = os.path.getsize(output_file)
-                print(f"✓ {format_type.upper()} conversion successful: {output_file} ({file_size} bytes)")
+                print(f"{format_type.upper()} conversion successful: {output_file} ({file_size} bytes)")
                 return True
             else:
-                print(f"✗ {format_type.upper()} file was not created")
+                print(f"ERROR: {format_type.upper()} file was not created")
                 return False
         else:
-            print(f"✗ Calibre conversion failed: {result.stderr}")
+            print(f"ERROR: Calibre conversion failed: {result.stderr}")
             return False
             
     except subprocess.TimeoutExpired:
-        print(f"✗ Conversion timed out after {timeout} seconds")
-        return False
-    except TimeoutError:
-        print(f"✗ Conversion timed out after {timeout} seconds")
+        print(f"ERROR: Conversion timed out after {timeout} seconds")
         return False
     except Exception as e:
-        print(f"✗ Conversion error: {e}")
+        print(f"ERROR: Conversion error: {e}")
         return False
-    finally:
-        # Ensure timeout is cancelled
-        signal.alarm(0)
 
 def main():
     """Main function"""
@@ -303,6 +327,8 @@ def main():
                        help='Conversion timeout in seconds (default: 600)')
     parser.add_argument('--lang', default='zh-CN',
                        help='Language code for output metadata (default: zh-CN)')
+    parser.add_argument('--cover', default=None,
+                       help='Cover image path for EPUB output')
     
     args = parser.parse_args()
     
@@ -319,6 +345,14 @@ def main():
     if not format_type:
         print(f"Error: Unsupported output format. Use .docx, .epub, or .pdf")
         sys.exit(1)
+
+    if args.cover:
+        if format_type != 'epub':
+            print("Error: --cover is only supported for EPUB output")
+            sys.exit(1)
+        if not os.path.isfile(args.cover):
+            print(f"Error: Cover image not found: {args.cover}")
+            sys.exit(1)
     
     # Always use the exact output path provided - 07_generate_formats.py already handles base_temp logic
     final_output = os.path.abspath(output_file)
@@ -343,64 +377,29 @@ def main():
         
         print(f"Working directory: {temp_dir}")
         
-        # Copy images if needed
-        image_count = copy_images_if_needed(input_html, temp_dir)
+        # Copy images into the working dir so Calibre can embed them
+        copy_images_if_needed(input_html, temp_dir)
         
         # Prepare HTML with styling
         work_html = prepare_html_for_conversion(input_html, temp_dir, args.lang)
         
-        # Convert to specified format
-        if convert_html_with_calibre(work_html, final_output, format_type, args.timeout, args.lang):
+        # Convert to specified format. DOCX/EPUB/PDF embed their images during
+        # conversion, so nothing from the working copy needs to be copied back.
+        if convert_html_with_calibre(work_html, final_output, format_type, args.timeout, args.lang, cover=args.cover):
             print("\n" + "="*50)
-            print(f"✅ Conversion completed successfully!")
-            print(f"📁 File: {final_output}")
-            
-            # Copy images directory to the final output directory if they exist in temp
-            image_count = 0
-            if os.path.exists(temp_dir):
-                output_dir = os.path.dirname(final_output)
-                images_dirs = ['images', 'media', 'image', 'pics']
-                
-                for img_dir_name in images_dirs:
-                    temp_img_dir = os.path.join(temp_dir, img_dir_name)
-                    if os.path.exists(temp_img_dir):
-                        target_img_dir = os.path.join(output_dir, img_dir_name)
-                        try:
-                            if os.path.exists(target_img_dir):
-                                shutil.rmtree(target_img_dir)
-                            shutil.copytree(temp_img_dir, target_img_dir)
-                            img_count = len([f for f in os.listdir(target_img_dir) 
-                                           if f.lower().endswith(('.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.bmp'))])
-                            print(f"✓ Copied {img_count} images from {img_dir_name}/ directory to output location")
-                            image_count += img_count
-                        except Exception as e:
-                            print(f"Warning: Could not copy {img_dir_name}/ to output: {e}")
-                
-                # Also copy loose image files
-                try:
-                    for file in os.listdir(temp_dir):
-                        if file.lower().endswith(('.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.bmp')):
-                            src_file = os.path.join(temp_dir, file)
-                            dst_file = os.path.join(output_dir, file)
-                            shutil.copy2(src_file, dst_file)
-                            image_count += 1
-                            print(f"✓ Copied loose image file: {file}")
-                except Exception as e:
-                    print(f"Warning: Could not copy loose images to output: {e}")
-            
+            print("Conversion completed successfully!")
+            print(f"File: {final_output}")
             if os.path.exists(final_output):
                 file_size = os.path.getsize(final_output)
-                print(f"💾 Size: {file_size:,} bytes")
-            print(f"🖼️  Images: {image_count} files")
-            print("🔤 Font: 仿宋体 (FangSong)")
+                print(f"Size: {file_size:,} bytes")
         else:
-            print(f"\n❌ Conversion to {format_type.upper()} failed!")
+            print(f"\nERROR: Conversion to {format_type.upper()} failed!")
             sys.exit(1)
         
         # Clean up temp directory
         try:
             shutil.rmtree(temp_dir)
-            print(f"🧹 Cleaned up temporary directory: {temp_dir}")
+            print(f"Cleaned up temporary directory: {temp_dir}")
         except Exception as e:
             print(f"Warning: Could not clean up temp directory: {e}")
                 

@@ -1,6 +1,6 @@
 metadata:
   count: 766
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   note: 显示器默认不推荐，只有用户明确要求推荐屏幕时才推荐。屏幕只是推荐不是默认预算推荐。
 displays:
@@ -18,9 +18,9 @@ displays:
 - id: display-hkc-23-8-英寸-240hz-猎鹰-g24h3s-经典版
   brand: HKC
   model: HKC 23.8英寸 240Hz 猎鹰 G24H3S经典版
-  price_cny: 526
+  price_cny: 549
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -42,7 +42,7 @@ displays:
   model: 华硕 ROG 绝神 XG27UCG 4K160hz 双模
   price_cny: 2299
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -51,9 +51,9 @@ displays:
 - id: display-aoc-24-5-英寸-2k-300hz-宙斯盾-q25g4s
   brand: AOC
   model: AOC 24.5英寸 2K 300Hz 宙斯盾Q25G4S
-  price_cny: 1190
+  price_cny: 1298
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 24.5
@@ -62,9 +62,9 @@ displays:
 - id: display-华硕-27-英寸-2k-240hz-vg27aqml1a
   brand: 华硕
   model: 华硕  27英寸 2K 240Hz VG27AQML1A
-  price_cny: 1208
+  price_cny: 1399
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -73,9 +73,9 @@ displays:
 - id: display-aoc-q27g4sl-ws-27-英寸-2k-320hz
   brand: AOC
   model: AOC Q27G4SL/WS 27英寸2K 320Hz
-  price_cny: 1189
+  price_cny: 1316
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -84,9 +84,9 @@ displays:
 - id: display-aoc-24-5-英寸-fastips-原生-300hz-超频-310hz-1ms-hdr400-出厂校色
   brand: AOC
   model: AOC 24.5英寸 FastIPS 原生300Hz超频310Hz 1ms HDR400 出厂校色 硬件低蓝光 电竞显示器 宙斯盾25G4S
-  price_cny: 1499
+  price_cny: 1469
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 24.5
@@ -117,9 +117,9 @@ displays:
 - id: display-hkc-23-8-英寸-2k-180hz-猎鹰二代-g24h2
   brand: HKC
   model: HKC 23.8英寸 2K 180HZ 猎鹰二代G24H2
-  price_cny: 768
+  price_cny: 798
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 23.8
@@ -172,9 +172,9 @@ displays:
 - id: display-卓威奇亚-24-1-英寸-1k-400hz-xl2566x
   brand: 卓威奇亚
   model: 卓威奇亚 24.1英寸 1K 400Hz XL2566X+
-  price_cny: 5698
+  price_cny: 5699
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 24.1
@@ -183,9 +183,9 @@ displays:
 - id: display-hkc-24-5-英寸-240hz-猎鹰二代-g25h4
   brand: HKC
   model: HKC 24.5英寸 240Hz 猎鹰二代G25H4
-  price_cny: 898
+  price_cny: 899
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 24.5
@@ -194,9 +194,9 @@ displays:
 - id: display-hkc-g27h4plus-27-英寸-2k300hz
   brand: HKC
   model: HKC G27H4Plus 27英寸2K300Hz
-  price_cny: 998
+  price_cny: 999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -238,9 +238,9 @@ displays:
 - id: display-华硕-rog-26-5-英寸-4k-240hz-xg27ucdmg-绝神
   brand: 华硕
   model: 华硕 ROG 26.5英寸 4K 240Hz XG27UCDMG 绝神
-  price_cny: 4998
+  price_cny: 4999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 26.5
@@ -251,7 +251,7 @@ displays:
   model: 华硕 PA32UCG
   price_cny: 29999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 31.5
@@ -260,9 +260,9 @@ displays:
 - id: display-华硕-rog-xg27aqdmg-26-5-英寸-2k-240hz
   brand: 华硕
   model: 华硕 ROG XG27AQDMG 26.5英寸 2K 240Hz
-  price_cny: 2508
+  price_cny: 2899
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 26.5
@@ -273,7 +273,7 @@ displays:
   model: 三星 LS57CG954NCXXF
   price_cny: 17999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 57.0
@@ -282,9 +282,9 @@ displays:
 - id: display-hkc-g27h2max-27-英寸-2k-220hz
   brand: HKC
   model: HKC G27H2Max 27英寸2K 220Hz
-  price_cny: 775
+  price_cny: 798
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -328,7 +328,7 @@ displays:
   model: 三星 G70F Fast 27英寸 4K180Hz / 1K 360Hz 双模
   price_cny: 2899
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -350,7 +350,7 @@ displays:
   model: 三星 27英寸 G61SD QD-OLED 2K 240Hz
   price_cny: 3499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -359,9 +359,9 @@ displays:
 - id: display-华硕-rog-xg32ucwmg-32-英寸-4k240hz-双模
   brand: 华硕
   model: 华硕 ROG XG32UCWMG 32英寸4K240Hz 双模
-  price_cny: 4898
+  price_cny: 5699
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 32.0
@@ -370,9 +370,9 @@ displays:
 - id: display-华硕-rog-超神-x-31-5-英寸-4k240hz-oled
   brand: 华硕
   model: 华硕 ROG 超神X 31.5英寸 4K240Hz OLED
-  price_cny: 7999
+  price_cny: 8999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 31.5
@@ -383,7 +383,7 @@ displays:
   model: 华硕 ROG 2K 360Hz 26.5英寸 XG27ACDNG 绝梦
   price_cny: 4999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 26.5
@@ -403,9 +403,9 @@ displays:
 - id: display-hkc-23-8-英寸-2k-180hz-猎鹰-g24h2-经典版
   brand: HKC
   model: HKC 23.8英寸 2K 180Hz 猎鹰 G24H2经典版
-  price_cny: 741
+  price_cny: 749
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 23.8
@@ -469,9 +469,9 @@ displays:
 - id: display-华硕-vg32vqm5b-31-5-英寸-240hz-曲面屏
   brand: 华硕
   model: 华硕 VG32VQM5B 31.5英寸240Hz曲面屏
-  price_cny: 1208
+  price_cny: 1299
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 31.5
@@ -480,9 +480,9 @@ displays:
 - id: display-华硕-rog-绝神-26-5-寸-2k280hz-oled
   brand: 华硕
   model: 华硕 ROG 绝神 26.5寸 2K280Hz OLED
-  price_cny: 2700
+  price_cny: 3199
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 26.5
@@ -491,9 +491,9 @@ displays:
 - id: display-aoc-爱攻-ag276uz-27-英寸-4k240hz-双模-480hz
   brand: AOC
   model: AOC 爱攻AG276UZ 27英寸4K240Hz双模480Hz
-  price_cny: 2897
+  price_cny: 2998
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -515,7 +515,7 @@ displays:
   model: HKC G27H7Pro 27英寸4K 160Hz双模320Hz
   price_cny: 1399
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -557,9 +557,9 @@ displays:
 - id: display-华硕-rog-xg27ucs-27-英寸-4k-144hz
   brand: 华硕
   model: 华硕 ROG XG27UCS 27英寸 4K 144Hz
-  price_cny: 1609
+  price_cny: 1899
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -590,9 +590,9 @@ displays:
 - id: display-aoc-27-英寸-2k-180hz-hdr10-曲面屏-cq27g2x
   brand: AOC
   model: AOC 27英寸 2K 180Hz HDR10 曲面屏 CQ27G2X
-  price_cny: 1008
+  price_cny: 1044
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -634,9 +634,9 @@ displays:
 - id: display-ktc-27-英寸-2k-200hz-h27t22s-3-pro
   brand: KTC
   model: KTC 27英寸 2K 200Hz H27T22S-3 Pro
-  price_cny: 707
+  price_cny: 730
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -644,9 +644,9 @@ displays:
 - id: display-hkc-24-5-英寸-ips-v2511-高清显示器
   brand: HKC
   model: HKC 24.5英寸 IPS V2511 高清显示器
-  price_cny: 395
+  price_cny: 399
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 24.5
@@ -666,9 +666,9 @@ displays:
 - id: display-aoc-爱攻-ag276uzd-26-5-英寸-4k240hz
   brand: AOC
   model: AOC 爱攻AG276UZD 26.5英寸 4K240Hz
-  price_cny: 3888
+  price_cny: 4488
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 26.5
@@ -688,9 +688,9 @@ displays:
 - id: display-华硕-vg27aq3a
   brand: 华硕
   model: 华硕 VG27AQ3A
-  price_cny: 908
+  price_cny: 999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -699,9 +699,9 @@ displays:
 - id: display-微星-mag-272qpw-qd-oled-x28-极光-26-5-英寸-2k280hz
   brand: 微星
   model: 微星 MAG 272QPW QD-OLED X28极光26.5英寸2K280Hz
-  price_cny: 2689
+  price_cny: 2849
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 26.5
@@ -732,9 +732,9 @@ displays:
 - id: display-华硕-rog-xg27acg-w-27-英寸-2k-电竞
   brand: 华硕
   model: 华硕ROG XG27ACG-W 27英寸 2K电竞
-  price_cny: 1499
+  price_cny: 3199
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -800,7 +800,7 @@ displays:
   model: 微星 MAG 275QF 27英寸 2K 180Hz
   price_cny: 828
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -820,9 +820,9 @@ displays:
 - id: display-aoc-宙斯盾-u27g4-高性能版-27-英寸-4k-160hz-双模-320hz
   brand: AOC
   model: AOC 宙斯盾U27G4 (高性能版) 27英寸4K 160Hz双模320Hz
-  price_cny: 1399
+  price_cny: 1566
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -866,7 +866,7 @@ displays:
   model: 华硕 ROG XG27UCS 4K 160Hz FastIPS
   price_cny: 1899
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -875,9 +875,9 @@ displays:
 - id: display-华硕-34-英寸-2k-180hz-曲面带鱼屏-vg34vql3a
   brand: 华硕
   model: 华硕 34英寸 2K 180Hz 曲面带鱼屏 VG34VQL3A
-  price_cny: 1483
+  price_cny: 1699
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 34.0
@@ -897,9 +897,9 @@ displays:
 - id: display-华硕-vg258qm
   brand: 华硕
   model: 华硕 VG258QM
-  price_cny: 808
+  price_cny: 999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 24.5
@@ -932,7 +932,7 @@ displays:
   model: AOC 23.8英寸 1K 260Hz 24G51Z
   price_cny: 584
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -953,7 +953,7 @@ displays:
   model: 三星 LS49CG934SCXXF
   price_cny: 8499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 49.0
@@ -962,9 +962,9 @@ displays:
 - id: display-hkc-cg345uk-34-英寸-4k-240hz-带鱼屏
   brand: HKC
   model: HKC CG345UK 34英寸4K 240Hz 带鱼屏
-  price_cny: 1503
+  price_cny: 1549
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 34.0
@@ -1017,9 +1017,9 @@ displays:
 - id: display-hkc-31-5-英寸-2k-144hz-1500r-曲面屏-sg32qc
   brand: HKC
   model: HKC 31.5英寸 2K 144Hz 1500R曲面屏 SG32QC
-  price_cny: 1298
+  price_cny: 1399
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 31.5
@@ -1052,7 +1052,7 @@ displays:
   model: 三星 27英寸 G60SD QD-OLED 2K 360Hz
   price_cny: 5499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -1072,9 +1072,9 @@ displays:
 - id: display-hkc-g24h3max-23-8-英寸-260hz
   brand: HKC
   model: HKC G24H3Max 23.8英寸260Hz
-  price_cny: 558
+  price_cny: 599
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -1083,9 +1083,9 @@ displays:
 - id: display-戴尔-u2724d
   brand: 戴尔
   model: 戴尔 U2724D
-  price_cny: 2279
+  price_cny: 2499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -1094,9 +1094,9 @@ displays:
 - id: display-华硕-27-英寸-2k-144hz-vg27aql3a
   brand: 华硕
   model: 华硕 27英寸 2K 144Hz VG27AQL3A
-  price_cny: 958
+  price_cny: 1049
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -1105,9 +1105,9 @@ displays:
 - id: display-华硕-rog-绝杀-27-二代-27-英寸-2k255hz-xg27acmes
   brand: 华硕
   model: 华硕 ROG绝杀27二代 27英寸2K255Hz XG27ACMES
-  price_cny: 1528
+  price_cny: 1799
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -1115,9 +1115,9 @@ displays:
 - id: display-hkc-g27h4max-27-英寸-2k-275hz
   brand: HKC
   model: HKC G27H4Max 27英寸2K 275Hz
-  price_cny: 898
+  price_cny: 899
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -1139,7 +1139,7 @@ displays:
   model: 海信 27英寸 2K 240Hz 电竞 27G6K
   price_cny: 1599
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-17'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -1159,9 +1159,9 @@ displays:
 - id: display-华硕-xg259cm
   brand: 华硕
   model: 华硕 XG259CM
-  price_cny: 1308
+  price_cny: 1499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 24.5
@@ -1170,9 +1170,9 @@ displays:
 - id: display-hkc-v2719-27-英寸-144hz
   brand: HKC
   model: HKC V2719 27英寸144Hz
-  price_cny: 531
+  price_cny: 539
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 27.0
@@ -1194,7 +1194,7 @@ displays:
   model: AOC 23.8英寸 2K 120Hz IPS 超薄 Q24B35
   price_cny: 699
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 23.8
@@ -1205,7 +1205,7 @@ displays:
   model: 小米 23.8英寸 G24 IPS版 180Hz
   price_cny: 799
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -1258,9 +1258,9 @@ displays:
 - id: display-盛色-27-英寸-2k-320hz-s85
   brand: SANC
   model: 盛色27英寸 2K 320Hz S85
-  price_cny: 1044
+  price_cny: 1098
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -1281,7 +1281,7 @@ displays:
   model: 优派 VX2758-2K-PRO
   price_cny: 899
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -1312,9 +1312,9 @@ displays:
 - id: display-aoc-27-英寸-2k-260hz-q27g4z
   brand: AOC
   model: AOC 27英寸 2K 260Hz Q27G4Z
-  price_cny: 999
+  price_cny: 1099
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -1324,7 +1324,7 @@ displays:
   model: 三星 27英寸 G60SF 2K 500Hz
   price_cny: 6999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -1335,7 +1335,7 @@ displays:
   model: 三星 27英寸 G90XF 4K 165Hz Fast IPS 裸眼3D
   price_cny: 14999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -1344,9 +1344,9 @@ displays:
 - id: display-aoc-24-5-英寸宙斯盾-25g4k-400hz
   brand: AOC
   model: AOC 24.5英寸宙斯盾25G4K 400Hz
-  price_cny: 1220
+  price_cny: 1328
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 24.5
@@ -1377,9 +1377,9 @@ displays:
 - id: display-华硕-rog-xg32uq-32-英寸-4k-144hz
   brand: 华硕
   model: 华硕 ROG XG32UQ 32英寸 4K 144Hz
-  price_cny: 3199
+  price_cny: 3799
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 32.0
@@ -1410,9 +1410,9 @@ displays:
 - id: display-aoc-逐光-u27g4xm-27-英寸-4k160hz-双模-320hz
   brand: AOC
   model: AOC 逐光U27G4XM 27英寸 4K160Hz双模320Hz
-  price_cny: 1749
+  price_cny: 1938
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -1421,9 +1421,9 @@ displays:
 - id: display-华硕-战杀-23-8-英寸-240hz-rgb
   brand: 华硕
   model: 华硕 战杀 23.8英寸 240Hz RGB
-  price_cny: 658
+  price_cny: 799
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -1443,9 +1443,9 @@ displays:
 - id: display-aoc-27-英寸-2k-260hz-q27g41ze
   brand: AOC
   model: AOC 27英寸 2K 260Hz Q27G41ZE
-  price_cny: 909
+  price_cny: 949
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -1453,9 +1453,9 @@ displays:
 - id: display-华硕-战杀-27-英寸-240hz-rgb
   brand: 华硕
   model: 华硕 战杀 27英寸 240Hz RGB
-  price_cny: 758
+  price_cny: 899
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 27.0
@@ -1464,9 +1464,9 @@ displays:
 - id: display-arzopa-g1c
   brand: ARZOPA
   model: ARZOPA G1C
-  price_cny: 597
+  price_cny: 569
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 16.1
@@ -1477,7 +1477,7 @@ displays:
   model: 华硕 PG48UQ
   price_cny: 12999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 47.5
@@ -1507,9 +1507,9 @@ displays:
 - id: display-微星-mpg-274urdfw-e16m-白龙-27-英寸-4k160hz-双模
   brand: 微星
   model: 微星 MPG 274URDFW E16M 白龙 27英寸4K160Hz双模
-  price_cny: 2148
+  price_cny: 2149
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -1518,9 +1518,9 @@ displays:
 - id: display-华硕-rog-27-英寸-4k-144hz-pg27uqr
   brand: 华硕
   model: 华硕 ROG 27英寸 4K 144Hz PG27UQR
-  price_cny: 1949
+  price_cny: 2199
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -1540,9 +1540,9 @@ displays:
 - id: display-aoc-宙斯盾-u32g4-31-5-英寸-4k160hz-双模-320hz
   brand: AOC
   model: AOC 宙斯盾U32G4 31.5英寸 4K160Hz双模320Hz
-  price_cny: 2698
+  price_cny: 2849
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 31.5
@@ -1553,7 +1553,7 @@ displays:
   model: 微星 27英寸 4K 160Hz 双模 MAG 274UPDF E16M
   price_cny: 2499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -1595,9 +1595,9 @@ displays:
 - id: display-hkc-49-英寸-曲面-5k-超清-240hz-超宽带鱼屏-gs49uk
   brand: HKC
   model: HKC 49英寸 曲面 5K超清 240Hz 超宽带鱼屏 GS49UK
-  price_cny: 5499
+  price_cny: 5849
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 49.0
@@ -1619,7 +1619,7 @@ displays:
   model: 华硕 VG27AQL3A-W
   price_cny: 1249
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -1630,7 +1630,7 @@ displays:
   model: AOC 23.8英寸 2K 100Hz 三边微边框 Q24E11
   price_cny: 689
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 23.8
@@ -1652,7 +1652,7 @@ displays:
   model: 小米 27英寸 1K 144Hz P27FDA-RA
   price_cny: 519
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 27.0
@@ -1660,9 +1660,9 @@ displays:
 - id: display-hkc-26-5-英寸-2k-360hz-qd-oled-gs27qes
   brand: HKC
   model: HKC 26.5英寸 2K 360Hz QD-OLED GS27QES
-  price_cny: 2880
+  price_cny: 3239
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 26.5
@@ -1673,7 +1673,7 @@ displays:
   model: 三星 32英寸 G85NB 4K 240Hz
   price_cny: 5499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 32.0
@@ -1704,9 +1704,9 @@ displays:
 - id: display-微星-26-5-英寸-4k-240hz-mag-272up-qd-oled-x24
   brand: 微星
   model: 微星 26.5英寸 4K 240Hz MAG 272UP QD-OLED X24
-  price_cny: 3688
+  price_cny: 3699
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 26.5
@@ -1737,9 +1737,9 @@ displays:
 - id: display-aoc-23-8-英寸-2k-240hz-q24g41ze
   brand: AOC
   model: AOC 23.8英寸 2K 240Hz Q24G41ZE
-  price_cny: 928
+  price_cny: 994
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 23.8
@@ -1747,9 +1747,9 @@ displays:
 - id: display-hkc-g25h5pro-24-5-英寸-420hz
   brand: HKC
   model: HKC G25H5Pro 24.5英寸420Hz
-  price_cny: 1078
+  price_cny: 1079
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 24.5
@@ -1758,9 +1758,9 @@ displays:
 - id: display-aoc-34-英寸-2k-曲面带鱼屏-cu34p2c
   brand: AOC
   model: AOC 34英寸 2K 曲面带鱼屏 CU34P2C
-  price_cny: 2299
+  price_cny: 2231
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 34.0
@@ -1782,7 +1782,7 @@ displays:
   model: 华硕 27英寸 2K 240Hz PG27AQDM
   price_cny: 8299
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -1793,7 +1793,7 @@ displays:
   model: AOC 27英寸 100Hz IPS 27B35H 可壁挂
   price_cny: 579
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 27.0
@@ -1813,9 +1813,9 @@ displays:
 - id: display-微星-mag-245f-x24-24-英寸-240hz
   brand: 微星
   model: 微星 MAG 245F X24 24英寸240Hz
-  price_cny: 528
+  price_cny: 529
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 24.0
@@ -1848,7 +1848,7 @@ displays:
   model: 小米Redmi 27英寸 100Hz P27FBA-RA
   price_cny: 499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 27.0
@@ -1857,9 +1857,9 @@ displays:
 - id: display-hkc-27-英寸-2k-400hz-ug27eq
   brand: HKC
   model: HKC 27英寸2K 400Hz UG27EQ
-  price_cny: 1699
+  price_cny: 1949
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -1903,7 +1903,7 @@ displays:
   model: 微星 27英寸 4K HDR400 专业设计白色显示器 MD272UPHW
   price_cny: 3999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -1914,7 +1914,7 @@ displays:
   model: 微星 MAG 321UPX QD-OLED 31.5英寸 4K 240Hz
   price_cny: 7499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 31.5
@@ -1947,7 +1947,7 @@ displays:
   model: 联想 来酷 27英寸 2K 180Hz K2718Q
   price_cny: 799
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -1956,9 +1956,9 @@ displays:
 - id: display-aoc-31-5-英寸-4k-窄边框-旋转升降-u32p2c
   brand: AOC
   model: AOC 31.5英寸 4K 窄边框 旋转升降 U32P2C
-  price_cny: 2599
+  price_cny: 2379
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 31.5
@@ -1967,9 +1967,9 @@ displays:
 - id: display-泰坦军团-27-英寸-4k-160hz-p275mv-plus-增强版
   brand: 泰坦军团
   model: 泰坦军团 27英寸 4K 160Hz P275MV PLUS增强版
-  price_cny: 1628
+  price_cny: 1799
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -1978,9 +1978,9 @@ displays:
 - id: display-蚂蚁电竞-24-5-英寸-2k-300hz-ant253pq
   brand: 蚂蚁电竞
   model: 蚂蚁电竞 24.5英寸 2K 300Hz ANT253PQ
-  price_cny: 1549
+  price_cny: 1599
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 24.5
@@ -2023,7 +2023,7 @@ displays:
   model: 华硕 PG42UQ
   price_cny: 10999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 41.5
@@ -2063,9 +2063,9 @@ displays:
 - id: display-微星-31-5-英寸-4k-240hz-mpg-321urxw-qd-oled
   brand: 微星
   model: 微星 31.5英寸 4K 240Hz MPG 321URXW QD-OLED
-  price_cny: 4319
+  price_cny: 4699
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 31.5
@@ -2131,7 +2131,7 @@ displays:
   model: 泰坦军团 24.5英寸 1K 260Hz P2510H PLUS+
   price_cny: 560
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 24.5
@@ -2139,9 +2139,9 @@ displays:
 - id: display-aoc-爱攻-7-代-31-5-英寸-4k-240hz-双模-480hz-agp327uzd
   brand: AOC
   model: AOC 爱攻7代 31.5英寸 4K 240Hz双模480Hz  AGP327UZD
-  price_cny: 4388
+  price_cny: 4499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 31.5
@@ -2152,7 +2152,7 @@ displays:
   model: 微星 MAG 255PXF 24.5英寸300Hz
   price_cny: 1199
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 24.5
@@ -2185,7 +2185,7 @@ displays:
   model: 联想 来酷 27英寸 2K 100Hz M2727Q-R
   price_cny: 675
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -2226,9 +2226,9 @@ displays:
 - id: display-华硕-rog-27-英寸-2k-260hz-xg27acmeg-w
   brand: 华硕
   model: 华硕 ROG 27英寸 2K 260Hz XG27ACMEG-W
-  price_cny: 1808
+  price_cny: 2099
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -2238,7 +2238,7 @@ displays:
   model: 小米 27英寸 4K 160Hz  P27UDA-RGP
   price_cny: 1999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -2259,7 +2259,7 @@ displays:
   model: 小米 27英寸 4K 160Hz P27UDA-RG
   price_cny: 1999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -2267,9 +2267,9 @@ displays:
 - id: display-科睿-24-5-英寸-1k-260hz-x5
   brand: 科睿
   model: 科睿 24.5英寸 1K 260Hz X5
-  price_cny: 488
+  price_cny: 489
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 24.5
@@ -2288,9 +2288,9 @@ displays:
 - id: display-微星-mpg-271qr-qd-oled-x50-流光-26-5-英寸-2k500hz
   brand: 微星
   model: 微星 MPG 271QR QD-OLED X50流光 26.5英寸2K500Hz
-  price_cny: 4868
+  price_cny: 4999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 26.5
@@ -2312,7 +2312,7 @@ displays:
   model: 技嘉 M27UP 27英寸 160Hz
   price_cny: 1999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -2332,9 +2332,9 @@ displays:
 - id: display-aoc-34-英寸-4k-120hz-带鱼屏-低蓝光-u34e2m
   brand: AOC
   model: AOC 34英寸 4K 120Hz 带鱼屏 低蓝光 U34E2M
-  price_cny: 1599
+  price_cny: 1559
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 34.0
@@ -2345,7 +2345,7 @@ displays:
   model: AOC 27英寸 2K 100Hz IPS HDR10 HDMI Q27B35
   price_cny: 749
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -2376,9 +2376,9 @@ displays:
 - id: display-明基-pd2706u
   brand: 明基
   model: 明基 PD2706U
-  price_cny: 3949
+  price_cny: 4249
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -2387,9 +2387,9 @@ displays:
 - id: display-lg-27uq850v
   brand: LG
   model: LG 27UQ850V
-  price_cny: 2599
+  price_cny: 2799
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -2409,9 +2409,9 @@ displays:
 - id: display-hkc-27-英寸-2k-高清-170hz-sg27qc
   brand: HKC
   model: HKC 27英寸 2K高清 170Hz SG27QC
-  price_cny: 868
+  price_cny: 949
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -2442,9 +2442,9 @@ displays:
 - id: display-飞利浦-32m2n5500p
   brand: 飞利浦
   model: 飞利浦 32M2N5500P
-  price_cny: 2347
+  price_cny: 2499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 31.5
@@ -2453,9 +2453,9 @@ displays:
 - id: display-lg-27-英寸-4k-180hz-27g810a
   brand: LG
   model: LG 27英寸 4K 180Hz 27G810A
-  price_cny: 2149
+  price_cny: 2299
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -2474,9 +2474,9 @@ displays:
 - id: display-aoc-27-英寸-2k-180hz-q27g41e
   brand: AOC
   model: AOC 27英寸 2K 180Hz Q27G41E
-  price_cny: 749
+  price_cny: 745
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -2518,7 +2518,7 @@ displays:
   model: 三星 27英寸 G70D 4K/144Hz
   price_cny: 2999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -2527,9 +2527,9 @@ displays:
 - id: display-aoc-34-英寸-2k-曲面带鱼屏-144hz-高刷-cu34p2x
   brand: AOC
   model: AOC 34英寸 2K 曲面带鱼屏 144hz高刷 CU34P2X
-  price_cny: 2499
+  price_cny: 2419
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 34.0
@@ -2538,9 +2538,9 @@ displays:
 - id: display-aoc-23-8-英寸-4k-超清-10bit-微边-u24p10r
   brand: AOC
   model: AOC 23.8英寸 4K超清 10bit 微边 U24P10R
-  price_cny: 1599
+  price_cny: 1559
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 23.8
@@ -2562,7 +2562,7 @@ displays:
   model: 雷神 27英寸 2K 升降旋转 电竞 KQ27F240L
   price_cny: 1499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -2571,9 +2571,9 @@ displays:
 - id: display-hkc-31-5-英寸-ips-屏幕-三面微边-可壁挂-v3218
   brand: HKC
   model: HKC 31.5英寸 IPS屏幕 三面微边 可壁挂 V3218
-  price_cny: 918
+  price_cny: 989
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 31.5
@@ -2606,7 +2606,7 @@ displays:
   model: 华硕 27英寸 2K 144Hz VG27AQ3A-L
   price_cny: 1949
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -2617,7 +2617,7 @@ displays:
   model: AOC 27英寸 2K 100Hz IPS 三边窄边 Q27E3S2
   price_cny: 849
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -2626,9 +2626,9 @@ displays:
 - id: display-aoc-23-8-英寸-ips-100hz-三边微边-24e11xh
   brand: AOC
   model: AOC 23.8英寸 IPS 100Hz 三边微边 24E11XH
-  price_cny: 489
+  price_cny: 469
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -2639,7 +2639,7 @@ displays:
   model: AOC 23.8英寸 100Hz IPS 24B35H 超薄机身
   price_cny: 489
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -2659,9 +2659,9 @@ displays:
 - id: display-科睿-23-8-英寸-2k-180hz-mg24h37qs2
   brand: 科睿
   model: 科睿 23.8英寸 2K 180Hz MG24H37QS2
-  price_cny: 678
+  price_cny: 679
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 23.8
@@ -2669,9 +2669,9 @@ displays:
 - id: display-lg-27-英寸-2k-300hz-27g64na
   brand: LG
   model: LG 27英寸 2K 300Hz 27G64NA
-  price_cny: 1249
+  price_cny: 1399
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -2679,9 +2679,9 @@ displays:
 - id: display-盛色-24-5-英寸-1k-240hz-n50pro6
   brand: SANC
   model: 盛色 24.5英寸 1K  240Hz N50Pro6
-  price_cny: 488
+  price_cny: 389
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 24.5
@@ -2702,7 +2702,7 @@ displays:
   model: 华硕 ROG 32英寸 4K 160Hz XG32UQ
   price_cny: 3999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 32.0
@@ -2710,9 +2710,9 @@ displays:
 - id: display-lg-gx7-26-5-英寸-第四代-oled-2k280hz-27gx700a
   brand: LG
   model: LG GX7 26.5英寸 第四代OLED 2K280Hz 27GX700A
-  price_cny: 2679
+  price_cny: 3134
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 26.5
@@ -2753,9 +2753,9 @@ displays:
 - id: display-hkc-27-英寸-2k-100hz-ips-hdr400-l272q
   brand: HKC
   model: HKC 27英寸 2K 100Hz IPS HDR400 L272Q
-  price_cny: 810
+  price_cny: 729
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -2764,9 +2764,9 @@ displays:
 - id: display-aoc-27-英寸-4k-ips-超薄-u27b35
   brand: AOC
   model: AOC 27英寸 4K IPS 超薄 U27B35
-  price_cny: 972
+  price_cny: 999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -2777,7 +2777,7 @@ displays:
   model: 飞利浦 31.5英寸 2K  IPS 升降旋转 325B1LN
   price_cny: 1599
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 31.5
@@ -2797,9 +2797,9 @@ displays:
 - id: display-联合创新-27-英寸-4k-27d1u
   brand: 联合创新
   model: 联合创新 27英寸 4K 27D1U
-  price_cny: 899
+  price_cny: 999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -2810,7 +2810,7 @@ displays:
   model: 宏碁 E200Q bi
   price_cny: 449
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: ''
   size_inch: 19.5
@@ -2840,9 +2840,9 @@ displays:
 - id: display-华硕-vg27vqm
   brand: 华硕
   model: 华硕 VG27VQM
-  price_cny: 1099
+  price_cny: 999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 27.0
@@ -2875,7 +2875,7 @@ displays:
   model: 三星 LS55CG970NCXXF
   price_cny: 16999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 55.0
@@ -2886,7 +2886,7 @@ displays:
   model: AOC 22.5英寸 LG原装IPS屏 可壁挂 X23E1H
   price_cny: 599
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 22.5
@@ -2906,9 +2906,9 @@ displays:
 - id: display-飞利浦-27e1n1510
   brand: 飞利浦
   model: 飞利浦 27E1N1510
-  price_cny: 779
+  price_cny: 799
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -2967,9 +2967,9 @@ displays:
 - id: display-雷神-23-8-英寸-2k-240hz-jq24f240l
   brand: 雷神
   model: 雷神 23.8英寸 2K 240Hz JQ24F240L
-  price_cny: 879
+  price_cny: 898
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 23.8
@@ -2987,9 +2987,9 @@ displays:
 - id: display-aoc-27-英寸-4k190hz-380hz-u27g4f
   brand: AOC
   model: AOC 27英寸4K190Hz 380Hz U27G4F
-  price_cny: 1506
+  price_cny: 1567
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -3009,7 +3009,7 @@ displays:
   model: 三星 37英寸 S70D 4K HDR
   price_cny: 3299
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 37.0
@@ -3053,7 +3053,7 @@ displays:
   model: 戴尔 U2424H
   price_cny: 1499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -3073,9 +3073,9 @@ displays:
 - id: display-泰坦军团-c30sk-pro
   brand: 泰坦军团
   model: 泰坦军团 C30SK PRO
-  price_cny: 915
+  price_cny: 939
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 29.5
@@ -3106,9 +3106,9 @@ displays:
 - id: display-hkc-31-5-英寸-165hz-1500r-曲面-1080p-高清-sg32c
   brand: HKC
   model: HKC 31.5英寸 165Hz 1500R曲面 1080P高清 SG32C
-  price_cny: 1018
+  price_cny: 1099
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 31.5
@@ -3117,9 +3117,9 @@ displays:
 - id: display-hkc-27-英寸-2k-60hz-s2716q
   brand: HKC
   model: HKC 27英寸 2K 60Hz S2716Q
-  price_cny: 593
+  price_cny: 599
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -3128,9 +3128,9 @@ displays:
 - id: display-hkc-31-5-英寸-4k-微边框-t3252u
   brand: HKC
   model: HKC 31.5英寸 4k 微边框 T3252U
-  price_cny: 1167
+  price_cny: 1199
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 31.5
@@ -3139,9 +3139,9 @@ displays:
 - id: display-华硕-pa279crv
   brand: 华硕
   model: 华硕 PA279CRV
-  price_cny: 2097
+  price_cny: 2399
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -3161,9 +3161,9 @@ displays:
 - id: display-盛色-27-英寸-2k-360hz-d76
   brand: SANC
   model: 盛色 27英寸 2K 360Hz D76
-  price_cny: 1085
+  price_cny: 1136
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -3171,9 +3171,9 @@ displays:
 - id: display-联想-27-英寸-2k-200hz-斗战者-n27q
   brand: 联想
   model: 联想 27英寸 2K 200Hz 斗战者 N27Q
-  price_cny: 674
+  price_cny: 847
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -3201,9 +3201,9 @@ displays:
 - id: display-联想-31-5-英寸-4k-240hz-g25315uy0-oled
   brand: 联想
   model: 联想 31.5英寸 4K 240Hz G25315UY0  OLED
-  price_cny: 4399
+  price_cny: 4981
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 31.5
@@ -3223,7 +3223,7 @@ displays:
   model: 创维 27英寸 2K 200Hz F27G32Q Pro
   price_cny: 833
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -3241,9 +3241,9 @@ displays:
 - id: display-aoc-31-5-英寸-4k-高清-va-hdr-u32v11n
   brand: AOC
   model: AOC 31.5英寸 4K高清 VA HDR U32V11N
-  price_cny: 1319
+  price_cny: 1399
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 31.5
@@ -3265,7 +3265,7 @@ displays:
   model: 微星 PRO MP243L E1423.8英寸 144Hz
   price_cny: 579
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -3318,9 +3318,9 @@ displays:
 - id: display-优派-va2763-4k-hd
   brand: 优派
   model: 优派 VA2763-4K-HD
-  price_cny: 1199
+  price_cny: 998
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -3331,7 +3331,7 @@ displays:
   model: 联想 M14d
   price_cny: 1899
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: ''
   size_inch: 14.0
@@ -3342,7 +3342,7 @@ displays:
   model: 华硕 PA348CGV
   price_cny: 6499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 34.0
@@ -3353,7 +3353,7 @@ displays:
   model: 华硕 XG279Q
   price_cny: 5199
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 32.0
@@ -3364,7 +3364,7 @@ displays:
   model: 三星 S49CG954EC
   price_cny: 6999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 49.0
@@ -3384,9 +3384,9 @@ displays:
 - id: display-飞利浦-27e1n5900r
   brand: 飞利浦
   model: 飞利浦 27E1N5900R
-  price_cny: 1278
+  price_cny: 1397
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -3395,9 +3395,9 @@ displays:
 - id: display-aoc-27-英寸-2k-200hz-q27g4-ws
   brand: AOC
   model: AOC  27英寸 2K 200Hz Q27G4/WS
-  price_cny: 1017
+  price_cny: 1044
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -3436,9 +3436,9 @@ displays:
 - id: display-泰坦军团-27-英寸-4k-170hz-p275mv-max
   brand: 泰坦军团
   model: 泰坦军团 27英寸 4K 170Hz P275MV MAX
-  price_cny: 2000
+  price_cny: 2171
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -3447,9 +3447,9 @@ displays:
 - id: display-戴尔-27-英寸-4k-120hz-s2725qs
   brand: 戴尔
   model: 戴尔 27英寸 4K 120Hz S2725QS
-  price_cny: 1789
+  price_cny: 1899
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -3457,9 +3457,9 @@ displays:
 - id: display-泰坦军团-26-5-英寸-2k-240hz-g2785s
   brand: 泰坦军团
   model: 泰坦军团 26.5英寸 2K 240Hz G2785S
-  price_cny: 1699
+  price_cny: 1899
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 26.5
@@ -3470,7 +3470,7 @@ displays:
   model: 华硕 32英寸4K 60Hz  PA329CV
   price_cny: 5999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 32.0
@@ -3490,7 +3490,7 @@ displays:
   model: 雷神 26.5英寸 2K 500Hz DQ27F500E
   price_cny: 4299
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 26.5
@@ -3501,7 +3501,7 @@ displays:
   model: HKC 24.5英寸 240HZ G25H3S经典版
   price_cny: 659
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 24.5
@@ -3510,9 +3510,9 @@ displays:
 - id: display-aoc-26-5-英寸-2k-240hz-q27g41zdf
   brand: AOC
   model: AOC 26.5英寸2K 240Hz Q27G41ZDF
-  price_cny: 1522
+  price_cny: 1777
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 26.5
@@ -3533,7 +3533,7 @@ displays:
   model: 三星 34英寸 G85SD QD-OLED 2K 175Hz G8
   price_cny: 7999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 34.0
@@ -3544,7 +3544,7 @@ displays:
   model: 微星 PRO MP165 E6 15.6英寸便携显示器
   price_cny: 899
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 15.6
@@ -3577,7 +3577,7 @@ displays:
   model: 技嘉 MO27Q2 27英寸240Hz
   price_cny: 3499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -3608,9 +3608,9 @@ displays:
 - id: display-aoc-34-英寸-2k-高清-21-9-带鱼屏-u34p2c
   brand: AOC
   model: AOC 34英寸 2K高清 21:9带鱼屏 U34P2C
-  price_cny: 2699
+  price_cny: 2499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 34.0
@@ -3654,7 +3654,7 @@ displays:
   model: 华硕 XG438Q
   price_cny: 8599
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 43.0
@@ -3685,9 +3685,9 @@ displays:
 - id: display-aoc-27-英寸-100hz-ips-三边微边-27e11h
   brand: AOC
   model: AOC 27英寸 100Hz IPS 三边微边 27E11H
-  price_cny: 599
+  price_cny: 539
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 27.0
@@ -3698,7 +3698,7 @@ displays:
   model: 飞利浦 221i8
   price_cny: 469
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 21.5
@@ -3707,9 +3707,9 @@ displays:
 - id: display-盛色-24-5-英寸-2k-300hz-d55
   brand: SANC
   model: 盛色 24.5英寸 2K 300Hz D55
-  price_cny: 1017
+  price_cny: 1098
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 24.5
@@ -3739,7 +3739,7 @@ displays:
   model: 小米 27英寸 2K 180Hz P27QDA-RGP
   price_cny: 1399
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -3750,7 +3750,7 @@ displays:
   model: 小米 27英寸 1K 200Hz P27FDA-RG
   price_cny: 649
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 27.0
@@ -3769,9 +3769,9 @@ displays:
 - id: display-lg-31-5-英寸-4k-144hz-32g810sa-w
   brand: LG
   model: LG 31.5英寸 4K 144HZ 32G810SA-W
-  price_cny: 3649
+  price_cny: 3799
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 31.5
@@ -3781,7 +3781,7 @@ displays:
   model: 机械师 24.5英寸 2K 300Hz MZQ25F300
   price_cny: 1389
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 24.5
@@ -3789,9 +3789,9 @@ displays:
 - id: display-优派-24-5-英寸-2k-250hz-vx25g26-2k-9
   brand: 优派
   model: 优派 24.5英寸 2K 250Hz VX25G26-2K-9
-  price_cny: 698
+  price_cny: 697
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 24.5
@@ -3811,7 +3811,7 @@ displays:
   model: LG GX9 5KOLED 44.5英寸 45GX950A
   price_cny: 12999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: ''
   size_inch: 44.5
@@ -3830,9 +3830,9 @@ displays:
 - id: display-hkc-27-英寸-4k-双模-144hz-10bit-t2755u
   brand: HKC
   model: HKC 27英寸4K双模144Hz 10bit T2755U
-  price_cny: 1318
+  price_cny: 1399
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -3864,7 +3864,7 @@ displays:
   model: 三星 43英寸 G70NC 4K 144Hz
   price_cny: 4999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 43.0
@@ -3886,7 +3886,7 @@ displays:
   model: 技嘉 FO27Q5P 27英寸500Hz
   price_cny: 5999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -3897,7 +3897,7 @@ displays:
   model: 技嘉 魔鹰Q280G 27英寸2K280Hz
   price_cny: 2699
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -3908,7 +3908,7 @@ displays:
   model: 华硕 Pro Art 24.1英寸电脑显示器 时尚设计师 专业显示器
   price_cny: 2399
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 24.1
@@ -3930,7 +3930,7 @@ displays:
   model: 联想来酷 23.8英寸 100Hz B2431E
   price_cny: 420
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -3952,7 +3952,7 @@ displays:
   model: 明基 SW272Q
   price_cny: 5999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -3985,7 +3985,7 @@ displays:
   model: 联想 Y27qf-30
   price_cny: 2499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -3996,7 +3996,7 @@ displays:
   model: SANC T7Pro
   price_cny: 757
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -4029,7 +4029,7 @@ displays:
   model: 华硕 XG258Q
   price_cny: 2699
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 24.5
@@ -4062,7 +4062,7 @@ displays:
   model: 华硕 VG28UQL1A
   price_cny: 5699
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 28.0
@@ -4093,9 +4093,9 @@ displays:
 - id: display-aoc-q32p2c
   brand: AOC
   model: AOC Q32P2C
-  price_cny: 1799
+  price_cny: 1583
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 31.5
@@ -4104,9 +4104,9 @@ displays:
 - id: display-aoc-27-英寸-2k-75hz-ips-低蓝光-q27p10
   brand: AOC
   model: AOC 27英寸 2K 75Hz IPS 低蓝光 Q27P10
-  price_cny: 989
+  price_cny: 899
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -4126,9 +4126,9 @@ displays:
 - id: display-泰坦军团-27-寸-miniled-2k-425hz-p275mt
   brand: 泰坦军团
   model: 泰坦军团 27寸 MiniLED 2K 425Hz P275MT+
-  price_cny: 2258
+  price_cny: 2399
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -4137,9 +4137,9 @@ displays:
 - id: display-aoc-27-英寸-4k-288hz-u27u3xd
   brand: AOC
   model: AOC 27英寸 4K 288Hz U27U3XD
-  price_cny: 1798
+  price_cny: 1994
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -4149,7 +4149,7 @@ displays:
   model: 小米 24.5英寸 1K 200Hz P25FDA-RG
   price_cny: 699
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 24.5
@@ -4157,9 +4157,9 @@ displays:
 - id: display-飞利浦-27-英寸-4k-240hz-27m2n8800
   brand: 飞利浦
   model: 飞利浦 27英寸 4K 240Hz 27M2N8800
-  price_cny: 3498
+  price_cny: 3799
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -4168,9 +4168,9 @@ displays:
 - id: display-戴尔-27-英寸-2k-144hz-s2725dsm
   brand: 戴尔
   model: 戴尔 27英寸 2K 144Hz S2725DSM
-  price_cny: 1289
+  price_cny: 1399
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -4188,9 +4188,9 @@ displays:
 - id: display-海信-27-英寸-2k-320hz-27g7k
   brand: 海信
   model: 海信 27英寸 2K 320Hz 27G7K
-  price_cny: 1899
+  price_cny: 1999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -4201,7 +4201,7 @@ displays:
   model: 小米 23.8英寸 1K 240Hz A24FDA-RG
   price_cny: 559
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -4209,9 +4209,9 @@ displays:
 - id: display-hkc-34-英寸-4k-200hz-cg343upro
   brand: HKC
   model: HKC 34英寸 4K 200Hz CG343UPro
-  price_cny: 1292
+  price_cny: 1349
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 34.0
@@ -4229,9 +4229,9 @@ displays:
 - id: display-小米-27-英寸-2k-120hz-p27qdb-ra
   brand: 小米
   model: 小米 27英寸 2K 120Hz P27QDB-RA
-  price_cny: 749
+  price_cny: 769
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -4239,9 +4239,9 @@ displays:
 - id: display-飞利浦-27-英寸-2k-300hz-27m2n3500uk
   brand: 飞利浦
   model: 飞利浦 27英寸 2K 300Hz 27M2N3500UK
-  price_cny: 1149
+  price_cny: 1299
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -4251,7 +4251,7 @@ displays:
   model: 三星 32英寸 4K 165Hz LS32BG75BNCXXF G75NB MiniLED
   price_cny: 4499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 32.0
@@ -4283,7 +4283,7 @@ displays:
   model: 机械师 27英寸 2K 320Hz MZQ27F320
   price_cny: 1299
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -4301,9 +4301,9 @@ displays:
 - id: display-盛色-23-8-英寸-2k-260hz-m2463q
   brand: SANC
   model: 盛色 23.8英寸 2K 260Hz M2463Q
-  price_cny: 839
+  price_cny: 898
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 23.8
@@ -4311,9 +4311,9 @@ displays:
 - id: display-小米-23-8-英寸-1k-144hz-p24fda-ra
   brand: 小米
   model: 小米 23.8英寸 1K 144Hz P24FDA-RA
-  price_cny: 429
+  price_cny: 449
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -4331,9 +4331,9 @@ displays:
 - id: display-联想-27-英寸-2k-300hz-legion-27q-11
   brand: 联想
   model: 联想 27英寸 2K 300Hz LEGION 27Q-11
-  price_cny: 1209
+  price_cny: 1430
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -4341,9 +4341,9 @@ displays:
 - id: display-泰坦军团-31-5-英寸-4k-160hz-p326mv-max
   brand: 泰坦军团
   model: 泰坦军团 31.5英寸 4K 160Hz P326MV MAX
-  price_cny: 2669
+  price_cny: 2849
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 31.5
@@ -4352,9 +4352,9 @@ displays:
 - id: display-泰坦军团-24-5-英寸-1k-260hz-p2510h-plus-2
   brand: 泰坦军团
   model: 泰坦军团 24.5英寸 1K 260Hz P2510H PLUS
-  price_cny: 514
+  price_cny: 519
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 24.5
@@ -4362,9 +4362,9 @@ displays:
 - id: display-盛色-23-8-英寸-2k-180hz-g52max
   brand: SANC
   model: 盛色 23.8英寸 2K 180Hz G52Max
-  price_cny: 680
+  price_cny: 729
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 23.8
@@ -4395,7 +4395,7 @@ displays:
   model: 宏碁 23.8英寸 4K 60Hz MG240YK biipx
   price_cny: 1199
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 23.8
@@ -4413,9 +4413,9 @@ displays:
 - id: display-华硕-rog-xg27acmes-w-27-英寸-2k255hz-hdr400
   brand: 华硕
   model: 华硕 ROG XG27ACMES-W 27英寸2K255Hz HDR400
-  price_cny: 1618
+  price_cny: 1899
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -4423,9 +4423,9 @@ displays:
 - id: display-hkc-27-英寸-4k-160hz-双模-320hz-g27m7pro
   brand: HKC
   model: HKC 27英寸4K 160Hz双模320Hz G27M7Pro
-  price_cny: 1998
+  price_cny: 1999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -4443,9 +4443,9 @@ displays:
 - id: display-hkc-27-英寸-4khdr400-t2752u
   brand: HKC
   model: HKC 27英寸4KHDR400 T2752U
-  price_cny: 948
+  price_cny: 999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -4532,7 +4532,7 @@ displays:
   model: 微星 PRO MP273L E14 27英寸144Hz
   price_cny: 799
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 27.0
@@ -4543,7 +4543,7 @@ displays:
   model: 微星 27英寸 4K 莱茵低蓝光认证 微边框 MD271UL
   price_cny: 1099
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -4554,7 +4554,7 @@ displays:
   model: 戴尔 23.8英寸 触碰屏 内置音箱 P2424HT
   price_cny: 2299
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -4563,9 +4563,9 @@ displays:
 - id: display-明基-gw2486tc-23-8-英寸-ips-护眼小白屏
   brand: 明基
   model: 明基 GW2486TC 23.8英寸 IPS 护眼小白屏
-  price_cny: 2749
+  price_cny: 2999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -4585,9 +4585,9 @@ displays:
 - id: display-联合创新-29-英寸-60hz-带鱼屏-准-2k-29c1f-d
   brand: 联合创新
   model: 联合创新 29英寸 60Hz 带鱼屏 准2K 29C1F-D
-  price_cny: 1169
+  price_cny: 1148
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 29.0
@@ -4640,9 +4640,9 @@ displays:
 - id: display-lg-32uq850v-w
   brand: LG
   model: LG 32UQ850V-W
-  price_cny: 3099
+  price_cny: 3299
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 31.5
@@ -4685,7 +4685,7 @@ displays:
   model: AOC 27英寸 2K 100Hz TUV低蓝光 27N3S2
   price_cny: 999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -4696,7 +4696,7 @@ displays:
   model: AOC 27英寸 4K IPS 三边微边 U2790PQU
   price_cny: 1419
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -4735,9 +4735,9 @@ displays:
 - id: display-海信-34-英寸-200hz-34g6k-pro-带鱼屏
   brand: 海信
   model: 海信 34英寸 200Hz 34G6K-PRO 带鱼屏
-  price_cny: 1499
+  price_cny: 1549
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 34.0
@@ -4745,9 +4745,9 @@ displays:
 - id: display-盛色-24-5-英寸-1k-420hz-d5
   brand: SANC
   model: 盛色 24.5英寸 1K 420Hz D5
-  price_cny: 960
+  price_cny: 997
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 24.5
@@ -4755,9 +4755,9 @@ displays:
 - id: display-盛色-24-5-英寸-2k-260hz-g4q-e
   brand: SANC
   model: 盛色 24.5英寸 2K 260Hz G4Q E
-  price_cny: 792
+  price_cny: 849
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 24.5
@@ -4765,9 +4765,9 @@ displays:
 - id: display-联想-23-8-英寸-1k-240hz-legion-24-10
   brand: 联想
   model: 联想 23.8英寸 1K 240Hz LEGION 24-10
-  price_cny: 539
+  price_cny: 677
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -4775,9 +4775,9 @@ displays:
 - id: display-小米-27-英寸-2k-200hz-p27qdc-rg
   brand: 小米
   model: 小米 27英寸 2K 200Hz P27QDC-RG
-  price_cny: 837
+  price_cny: 849
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -4797,7 +4797,7 @@ displays:
   model: 华硕 16英寸 1K 60Hz MB169CK
   price_cny: 799
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 16.0
@@ -4807,7 +4807,7 @@ displays:
   model: 联想 23.8英寸 1K 120Hz B2421-3
   price_cny: 489
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -4815,9 +4815,9 @@ displays:
 - id: display-联想-24-5-英寸-1k-320hz-25-1p
   brand: 联想
   model: 联想 24.5英寸 1K 320Hz 25-1p
-  price_cny: 799
+  price_cny: 839
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 24.5
@@ -4836,9 +4836,9 @@ displays:
 - id: display-盛色-27-英寸-4k-160hz-dm72upro
   brand: SANC
   model: 盛色 27英寸 4K 160Hz DM72uPro
-  price_cny: 1649
+  price_cny: 1704
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -4858,9 +4858,9 @@ displays:
 - id: display-优派-24-5-英寸-2k-180hz-vx25g26-2k-2
   brand: 优派
   model: 优派 24.5英寸 2K 180Hz VX25G26-2K-2
-  price_cny: 697
+  price_cny: 698
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 24.5
@@ -4870,7 +4870,7 @@ displays:
   model: 优派 31.5英寸 4K 60Hz VA3263-4K
   price_cny: 1498
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 31.5
@@ -4881,7 +4881,7 @@ displays:
   model: 戴尔 27英寸 1K 200Hz SE2725HG
   price_cny: 749
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 27.0
@@ -4899,9 +4899,9 @@ displays:
 - id: display-雷神-26-5-英寸-4k-240hz-du27f240e-oled
   brand: 雷神
   model: 雷神 26.5英寸 4K 240Hz DU27F240E OLED
-  price_cny: 3887
+  price_cny: 4499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 26.5
@@ -4911,7 +4911,7 @@ displays:
   model: 联想 27英寸 2K 320Hz K2756QS
   price_cny: 1199
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -4931,7 +4931,7 @@ displays:
   model: 联想 26.5英寸 4K 240Hz W2759PS
   price_cny: 3799
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 26.5
@@ -4960,9 +4960,9 @@ displays:
 - id: display-联想-31-5-英寸-4k-60hz-t32ud-40
   brand: 联想
   model: 联想 31.5英寸 4K 60Hz T32UD-40
-  price_cny: 3199
+  price_cny: 3349
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 31.5
@@ -4970,9 +4970,9 @@ displays:
 - id: display-盛色-27-英寸-2k-240hz-vg272u-w2bmiipx
   brand: SANC
   model: 盛色 27英寸 2K 240Hz VG272U W2bmiipx
-  price_cny: 798
+  price_cny: 878
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -4980,9 +4980,9 @@ displays:
 - id: display-小米-27-英寸-2k-120hz-p27qda-ra
   brand: 小米
   model: 小米 27英寸 2K 120Hz  P27QDA-RA
-  price_cny: 629
+  price_cny: 649
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -5011,9 +5011,9 @@ displays:
 - id: display-戴尔-27-英寸-4k-120hz-u2725qe
   brand: 戴尔
   model: 戴尔 27英寸 4K 120Hz U2725QE
-  price_cny: 4199
+  price_cny: 4499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -5061,9 +5061,9 @@ displays:
 - id: display-lg-27-英寸-4k-27up850k
   brand: LG
   model: LG 27英寸4K 27UP850K
-  price_cny: 1699
+  price_cny: 1799
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -5082,9 +5082,9 @@ displays:
 - id: display-aoc-31-5-英寸-4k-nanoips-type-c96w-u32u3d
   brand: AOC
   model: AOC 31.5英寸4K NanoIPS Type-C96W U32U3D
-  price_cny: 3228
+  price_cny: 3514
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 31.5
@@ -5093,9 +5093,9 @@ displays:
 - id: display-hkc-23-8-英寸-144hz-v2419
   brand: HKC
   model: HKC 23.8英寸144Hz V2419
-  price_cny: 440
+  price_cny: 449
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -5103,9 +5103,9 @@ displays:
 - id: display-hkc-24-1-英寸-420hz-fasttn-ug25ef
   brand: HKC
   model: HKC 24.1英寸420Hz FastTN UG25EF
-  price_cny: 1699
+  price_cny: 1849
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 24.1
@@ -5116,7 +5116,7 @@ displays:
   model: 三星 32英寸 M80D 4K Type-C65w
   price_cny: 3999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 32.0
@@ -5125,9 +5125,9 @@ displays:
 - id: display-三星-49-英寸-g91f-双-2k-144hz
   brand: 三星
   model: 三星 49英寸 G91F 双2K 144Hz
-  price_cny: 5999
+  price_cny: 5987
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 49.0
@@ -5147,9 +5147,9 @@ displays:
 - id: display-aoc-爱攻-ag493ucx2-49-英寸-165hz-曲面带鱼屏
   brand: AOC
   model: AOC 爱攻AG493UCX2 49英寸 165Hz 曲面带鱼屏
-  price_cny: 4819
+  price_cny: 5499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 49.0
@@ -5169,9 +5169,9 @@ displays:
 - id: display-aoc-23-8-英寸-hdmi-可壁挂-24e11xhm
   brand: AOC
   model: AOC 23.8英寸 HDMI 可壁挂 24E11XHM
-  price_cny: 599
+  price_cny: 489
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -5191,9 +5191,9 @@ displays:
 - id: display-aoc-27-英寸-hdmi-低蓝光-27e12hm
   brand: AOC
   model: AOC 27英寸 HDMI 低蓝光 27E12HM
-  price_cny: 699
+  price_cny: 549
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 27.0
@@ -5204,7 +5204,7 @@ displays:
   model: AOC 27英寸 4K IPS 旋转升降 U27N3RN
   price_cny: 1399
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -5215,7 +5215,7 @@ displays:
   model: 飞利浦 27英寸 4K 蓝光护眼 279P1
   price_cny: 1949
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -5259,7 +5259,7 @@ displays:
   model: 联想 21.5英寸 75Hz B2229E
   price_cny: 419
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 21.5
@@ -5270,7 +5270,7 @@ displays:
   model: 联想 来酷 23.8英寸 2K 100Hz B2412Q-R
   price_cny: 628
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 23.8
@@ -5279,9 +5279,9 @@ displays:
 - id: display-联合创新-27-英寸-4k-60hz-27c1u-pro
   brand: 联合创新
   model: 联合创新 27英寸 4K 60Hz 27C1U Pro
-  price_cny: 1394
+  price_cny: 1499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -5290,9 +5290,9 @@ displays:
 - id: display-联合创新-27-英寸-4k-60hz-27c1u-d
   brand: 联合创新
   model: 联合创新 27英寸 4K 60Hz 27C1U-D
-  price_cny: 1123
+  price_cny: 1196
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -5325,7 +5325,7 @@ displays:
   model: 宏碁 KG251Q Zbmiipx
   price_cny: 1179
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 24.5
@@ -5368,7 +5368,7 @@ displays:
   model: 惠普  ZHAN D24v Monitor
   price_cny: 619
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -5390,7 +5390,7 @@ displays:
   model: 优派 VX2762-2K-HD
   price_cny: 798
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -5401,7 +5401,7 @@ displays:
   model: 联想小新
   price_cny: 499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 24.5
@@ -5421,9 +5421,9 @@ displays:
 - id: display-优派-vg2781-5k
   brand: 优派
   model: 优派 VG2781-5K
-  price_cny: 3598
+  price_cny: 3758
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: ''
   size_inch: 27.0
@@ -5432,9 +5432,9 @@ displays:
 - id: display-泰坦军团-c49shc
   brand: 泰坦军团
   model: 泰坦军团 C49SHC
-  price_cny: 3306
+  price_cny: 3599
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 49.0
@@ -5445,7 +5445,7 @@ displays:
   model: 华硕 VG27WQ
   price_cny: 2299
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -5454,9 +5454,9 @@ displays:
 - id: display-华硕-pa279cv
   brand: 华硕
   model: 华硕 PA279CV
-  price_cny: 1898
+  price_cny: 1999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -5467,7 +5467,7 @@ displays:
   model: 三星 S27B800PXC
   price_cny: 2699
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -5478,7 +5478,7 @@ displays:
   model: AOC 27英寸 2K 75Hz IPS 低蓝光 Q27P2C
   price_cny: 1393
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -5487,9 +5487,9 @@ displays:
 - id: display-aoc-27-英寸-2k-100hz-ips-三边微边-q27e12c
   brand: AOC
   model: AOC 27英寸 2K 100hz IPS 三边微边 Q27E12C
-  price_cny: 969
+  price_cny: 949
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -5509,9 +5509,9 @@ displays:
 - id: display-aoc-21-5-英寸-75hz-hdmi-低蓝光-22e11hm
   brand: AOC
   model: AOC 21.5英寸 75Hz HDMI 低蓝光 22E11HM
-  price_cny: 499
+  price_cny: 409
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 21.5
@@ -5522,7 +5522,7 @@ displays:
   model: 飞利浦 27E2F7901
   price_cny: 2899
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -5542,9 +5542,9 @@ displays:
 - id: display-飞利浦-27e1n5500b
   brand: 飞利浦
   model: 飞利浦 27E1N5500B
-  price_cny: 999
+  price_cny: 1099
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -5564,9 +5564,9 @@ displays:
 - id: display-泰坦军团-27-寸-miniled-2k-275hz-p275ms-plus
   brand: 泰坦军团
   model: 泰坦军团 27寸MiniLED 2K 275Hz  P275MS PLUS
-  price_cny: 1241
+  price_cny: 1295
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -5575,9 +5575,9 @@ displays:
 - id: display-泰坦军团-27-英寸-miniled-2k-345hz-p275ms-plus
   brand: 泰坦军团
   model: 泰坦军团 27英寸 MiniLED 2K 345Hz P275MS PLUS+
-  price_cny: 1618
+  price_cny: 1699
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -5609,7 +5609,7 @@ displays:
   model: 飞利浦 31.5英寸 2K 100Hz 32E1N3500
   price_cny: 1399
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 31.5
@@ -5627,9 +5627,9 @@ displays:
 - id: display-三星-27-英寸-2k-100hz-ls27f610eacxxf
   brand: 三星
   model: 三星 27英寸 2K 100Hz LS27F610EACXXF
-  price_cny: 1299
+  price_cny: 1286
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -5637,9 +5637,9 @@ displays:
 - id: display-雷神-23-8-英寸-2k-260hz-jt00ek00z
   brand: 雷神
   model: 雷神 23.8英寸 2K 260Hz JT00EK00Z
-  price_cny: 899
+  price_cny: 919
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 23.8
@@ -5647,9 +5647,9 @@ displays:
 - id: display-海信-34-英寸-240hz-34g6k-ultra-带鱼屏
   brand: 海信
   model: 海信 34英寸 240Hz 34G6K-Ultra 带鱼屏
-  price_cny: 1699
+  price_cny: 1749
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 34.0
@@ -5659,7 +5659,7 @@ displays:
   model: 小米 23.8英寸 1K 100Hz P24FBA-RA
   price_cny: 399
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -5719,7 +5719,7 @@ displays:
   model: 小米 27英寸 4K 60HZ P27UCA-RA
   price_cny: 1110
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -5729,7 +5729,7 @@ displays:
   model: 微星 27英寸 2K 280Hz MAG 271QP QD-OLED X28
   price_cny: 3999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -5760,7 +5760,7 @@ displays:
   model: 宏碁 23.8英寸 1K 144Hz EK241Y P6bi
   price_cny: 499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -5768,9 +5768,9 @@ displays:
 - id: display-联想-23-8-英寸-1k-100hz-xq24e
   brand: 联想
   model: 联想 23.8英寸 1K 100Hz XQ24e
-  price_cny: 359
+  price_cny: 399
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -5789,9 +5789,9 @@ displays:
 - id: display-明基-31-5-英寸-4k-60hz-ma320u
   brand: 明基
   model: 明基 31.5英寸4K 60HZ MA320U
-  price_cny: 4799
+  price_cny: 5399
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 31.5
@@ -5801,7 +5801,7 @@ displays:
   model: 飞利浦 23.8英寸 1K 120Hz 24E2N1110S
   price_cny: 489
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -5809,9 +5809,9 @@ displays:
 - id: display-海信-27-英寸-2k-180hz-27g5k-mini
   brand: 海信
   model: 海信 27英寸 2K 180Hz 27G5K-Mini
-  price_cny: 1369
+  price_cny: 1489
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -5842,7 +5842,7 @@ displays:
   model: 优派 23.8英寸 2K 90Hz VA2457-2K-HD
   price_cny: 698
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 23.8
@@ -5850,9 +5850,9 @@ displays:
 - id: display-联想-27-英寸-2k-240hz-27q-1p
   brand: 联想
   model: 联想 27英寸 2K 240Hz 27Q-1p
-  price_cny: 809
+  price_cny: 1099
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -5903,7 +5903,7 @@ displays:
   model: 三星 27英寸 5K 60HZ LS27C900PABXXF
   price_cny: 8999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: ''
   size_inch: 27.0
@@ -5921,9 +5921,9 @@ displays:
 - id: display-盛色-31-5-英寸-4k-165hz-g9uvpro
   brand: SANC
   model: 盛色 31.5英寸 4K 165Hz G9uvPro
-  price_cny: 1898
+  price_cny: 1925
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 31.5
@@ -5943,7 +5943,7 @@ displays:
   model: 联想 23.8英寸 1K 144Hz M2451
   price_cny: 479
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -5961,9 +5961,9 @@ displays:
 - id: display-联想-26-5-英寸-4k-240hz-pro-27ud-10
   brand: 联想
   model: 联想 26.5英寸 4K 240Hz Pro 27UD-10
-  price_cny: 4199
+  price_cny: 4663
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 26.5
@@ -5982,9 +5982,9 @@ displays:
 - id: display-联想-23-8-英寸-1k-100hz-s24-4e
   brand: 联想
   model: 联想 23.8英寸 1K 100HZ S24-4e
-  price_cny: 549
+  price_cny: 593
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -5994,7 +5994,7 @@ displays:
   model: 联想  23.8英寸 1K 120Hz B2451
   price_cny: 499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -6062,9 +6062,9 @@ displays:
 - id: display-联想-34-英寸-4k-120hz-t34wd-40
   brand: 联想
   model: 联想 34英寸 4K 120Hz T34WD-40
-  price_cny: 2899
+  price_cny: 2999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 34.0
@@ -6074,7 +6074,7 @@ displays:
   model: 联想 49英寸 60HZ P49w-30
   price_cny: 9999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 49.0
@@ -6084,7 +6084,7 @@ displays:
   model: 联想 27英寸 2K 60HZ P27h-30
   price_cny: 2499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -6094,7 +6094,7 @@ displays:
   model: 宏碁 27英寸 2K 200Hz XB273U X1bmiiprx
   price_cny: 1199
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -6115,7 +6115,7 @@ displays:
   model: 宏碁 27英寸 2K 180Hz ED270U S3bmiipx
   price_cny: 1099
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -6188,7 +6188,7 @@ displays:
   model: 明基 31.5英寸 4K 144HZ EX321UX
   price_cny: 8999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 31.5
@@ -6196,9 +6196,9 @@ displays:
 - id: display-明基-27-英寸-2k-100hz-bl2790q
   brand: 明基
   model: 明基 27英寸 2K 100Hz BL2790Q
-  price_cny: 1549
+  price_cny: 1699
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -6248,7 +6248,7 @@ displays:
   model: 宏碁 31.5英寸 6K 60Hz PE320QXT IPS量子点
   price_cny: 6999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: ''
   size_inch: 31.5
@@ -6256,9 +6256,9 @@ displays:
 - id: display-联想-23-8-英寸-2k-100hz-e24q-30
   brand: 联想
   model: 联想 23.8英寸 2k 100Hz E24q-30
-  price_cny: 1099
+  price_cny: 1165
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 23.8
@@ -6266,9 +6266,9 @@ displays:
 - id: display-联想-32-英寸-2k-180hz-r32qc-30
   brand: 联想
   model: 联想 32英寸 2K 180Hz  R32qc-30
-  price_cny: 1903
+  price_cny: 1769
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 32.0
@@ -6309,7 +6309,7 @@ displays:
   model: 联想 27英寸 1K 120Hz B2721-3
   price_cny: 579
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 27.0
@@ -6329,7 +6329,7 @@ displays:
   model: 联想 27英寸 1K 75Hz B2724C
   price_cny: 629
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 27.0
@@ -6357,9 +6357,9 @@ displays:
 - id: display-联想-27-英寸-2k-120hz-p27qd-40
   brand: 联想
   model: 联想 27英寸 2K 120Hz  P27QD-40
-  price_cny: 1899
+  price_cny: 1999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -6369,7 +6369,7 @@ displays:
   model: 联想 31.5英寸 2K 75Hz M3231Q
   price_cny: 1199
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 31.5
@@ -6399,7 +6399,7 @@ displays:
   model: 联想 27英寸 2K 100HZ M2721HL
   price_cny: 999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -6438,9 +6438,9 @@ displays:
 - id: display-联想-31-5-英寸-4k-60hz-m3231ue
   brand: 联想
   model: 联想 31.5英寸 4K 60Hz M3231UE
-  price_cny: 1259
+  price_cny: 1349
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 31.5
@@ -6448,9 +6448,9 @@ displays:
 - id: display-联想-27-英寸-1k-100hz-e27-40
   brand: 联想
   model: 联想 27英寸 1K 100Hz E27-40
-  price_cny: 769
+  price_cny: 847
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 27.0
@@ -6468,9 +6468,9 @@ displays:
 - id: display-联想-23-8-英寸-2k-120hz-p24qd-40
   brand: 联想
   model: 联想 23.8英寸 2K 120Hz P24QD-40
-  price_cny: 1619
+  price_cny: 1699
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 23.8
@@ -6478,9 +6478,9 @@ displays:
 - id: display-联想-21-5-英寸-1k-100hz-s22-4e
   brand: 联想
   model: 联想 21.5英寸 1K 100Hz S22-4e
-  price_cny: 499
+  price_cny: 529
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 21.5
@@ -6509,9 +6509,9 @@ displays:
 - id: display-联想-27-英寸-1k-100hz-s27-4e
   brand: 联想
   model: 联想 27英寸 1K 100Hz S27-4e
-  price_cny: 749
+  price_cny: 759
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 27.0
@@ -6531,7 +6531,7 @@ displays:
   model: 万利达 27英寸 4K 60Hz V2755P
   price_cny: 626
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -6551,7 +6551,7 @@ displays:
   model: 联想 OLED 26.5英寸 2K 500Hz W2759HX
   price_cny: 4499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 26.5
@@ -6580,9 +6580,9 @@ displays:
 - id: display-联想-27-英寸-2k-120hz-t27qd-40
   brand: 联想
   model: 联想 27英寸 2K 120Hz T27QD-40
-  price_cny: 1699
+  price_cny: 1799
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -6590,9 +6590,9 @@ displays:
 - id: display-优派-26-5-英寸-4k-240hz-xg273-2
   brand: 优派
   model: 优派 26.5英寸 4K  240Hz XG273-2
-  price_cny: 5499
+  price_cny: 5488
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 26.5
@@ -6631,9 +6631,9 @@ displays:
 - id: display-联想-27-英寸-1k-120hz-t27-40
   brand: 联想
   model: 联想 27英寸 1K 120Hz T27-40
-  price_cny: 1249
+  price_cny: 1299
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 27.0
@@ -6671,9 +6671,9 @@ displays:
 - id: display-宏碁-24-5-英寸-1k-144hz-ek251q-p6bi
   brand: 宏碁
   model: 宏碁 24.5英寸 1K 144Hz EK251Q P6bi
-  price_cny: 529
+  price_cny: 549
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 24.5
@@ -6693,7 +6693,7 @@ displays:
   model: 小米 27英寸 4K 60Hz P27UDB-RA
   price_cny: 1332
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -6701,9 +6701,9 @@ displays:
 - id: display-盛色-27-英寸-2k-260hz-m2763q
   brand: SANC
   model: 盛色 27英寸 2K 260Hz M2763Q
-  price_cny: 1259
+  price_cny: 818
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -6721,9 +6721,9 @@ displays:
 - id: display-aoc-27-英寸-2k-75hz-q27b35e
   brand: AOC
   model: AOC 27英寸2K 75Hz Q27B35E
-  price_cny: 559
+  price_cny: 629
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -6733,7 +6733,7 @@ displays:
   model: 小米 34英寸 180Hz C34WQDA-RG
   price_cny: 1399
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 34.0
@@ -6760,9 +6760,9 @@ displays:
 - id: display-小米-27-英寸-2k-200hz-p27qdb-rg
   brand: 小米
   model: 小米 27英寸 2K 200Hz P27QDB-RG
-  price_cny: 719
+  price_cny: 799
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -6772,7 +6772,7 @@ displays:
   model: 戴尔 27英寸 2K 180Hz G2725D
   price_cny: 1099
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -6793,7 +6793,7 @@ displays:
   model: 联想 27英寸 2K 260Hz N2757SQ
   price_cny: 899
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -6803,7 +6803,7 @@ displays:
   model: 华为 27英寸 1K 100Hz  XSN-27H
   price_cny: 529
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 27.0
@@ -6811,9 +6811,9 @@ displays:
 - id: display-飞利浦-27-英寸-4k-120hz-27e2n5900rw
   brand: 飞利浦
   model: 飞利浦 27英寸 4K 120Hz 27E2N5900RW
-  price_cny: 1598
+  price_cny: 1849
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -6831,9 +6831,9 @@ displays:
 - id: display-海信-34-英寸-200hz-34g6k
   brand: 海信
   model: 海信 34英寸 200Hz 34G6K
-  price_cny: 1249
+  price_cny: 1289
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 34.0
@@ -6861,9 +6861,9 @@ displays:
 - id: display-明基-27-英寸-2k-200hz-ew270q
   brand: 明基
   model: 明基 27英寸 2K 200Hz EW270Q
-  price_cny: 2249
+  price_cny: 2399
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -6901,9 +6901,9 @@ displays:
 - id: display-明基-27-英寸-4k-165hz-ex271u-b
   brand: 明基
   model: 明基 27英寸 4K 165HZ EX271U-B
-  price_cny: 4199
+  price_cny: 4499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -6913,7 +6913,7 @@ displays:
   model: 飞利浦 32英寸 1K 60Hz 32BDL2210QE
   price_cny: 998
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 32.0
@@ -6923,7 +6923,7 @@ displays:
   model: 明基 23.8英寸 1K 144Hz BL2490TC
   price_cny: 1399
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -6933,7 +6933,7 @@ displays:
   model: 宏碁 27英寸 2K 200Hz MG270U Xbiipx
   price_cny: 899
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -6941,9 +6941,9 @@ displays:
 - id: display-明基-28-2-英寸-4k-60hz-rd280u
   brand: 明基
   model: 明基 28.2英寸 4K 60Hz RD280U
-  price_cny: 4099
+  price_cny: 4499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 28.2
@@ -6974,7 +6974,7 @@ displays:
   model: 华硕 27英寸 2K 75Hz VA27AQ
   price_cny: 799
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -7002,9 +7002,9 @@ displays:
 - id: display-优派-27-英寸-4k-160hz-vx27g81
   brand: 优派
   model: 优派 27英寸 4K 160Hz VX27G81
-  price_cny: 1549
+  price_cny: 1649
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -7024,7 +7024,7 @@ displays:
   model: 戴尔 27英寸 2K 120Hz U2724DE
   price_cny: 3399
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -7032,9 +7032,9 @@ displays:
 - id: display-联想-21-5-英寸-1k-75hz-xq22e
   brand: 联想
   model: 联想 21.5英寸 1K 75Hz XQ22e
-  price_cny: 369
+  price_cny: 449
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 21.5
@@ -7083,9 +7083,9 @@ displays:
 - id: display-明基-27-英寸-2k-100hz-ew2790q
   brand: 明基
   model: 明基 27英寸 2K 100Hz EW2790Q
-  price_cny: 3599
+  price_cny: 3999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -7095,7 +7095,7 @@ displays:
   model: 戴尔 27英寸 1K 100Hz SE2725HM
   price_cny: 799
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 27.0
@@ -7105,7 +7105,7 @@ displays:
   model: 机械师 27英寸 2K 200Hz  MZQ27F210
   price_cny: 746
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -7113,9 +7113,9 @@ displays:
 - id: display-明基-27-英寸-4k-60hz-ma270u
   brand: 明基
   model: 明基 27英寸 4K 60Hz MA270U
-  price_cny: 4099
+  price_cny: 4599
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -7125,7 +7125,7 @@ displays:
   model: 宏碁 27英寸 2K 260Hz MG270U Z1biiprx
   price_cny: 1199
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -7133,9 +7133,9 @@ displays:
 - id: display-联合创新-40-英寸-4k-144hz-40c1r-带鱼屏
   brand: 联合创新
   model: 联合创新 40英寸 4K 144Hz 40C1R 带鱼屏
-  price_cny: 1808
+  price_cny: 2096
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 40.0
@@ -7175,7 +7175,7 @@ displays:
   model: 惠普 23.8英寸 1K 100Hz S24
   price_cny: 435
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -7213,9 +7213,9 @@ displays:
 - id: display-aoc-爱攻-41-5-英寸-4k144hz-ag421uda
   brand: AOC
   model: AOC 爱攻41.5英寸 4K144Hz AG421UDA
-  price_cny: 5224
+  price_cny: 5699
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: ''
   size_inch: 41.5
@@ -7244,9 +7244,9 @@ displays:
 - id: display-hkc-26-5-英寸-2k280hz-gs27qts
   brand: HKC
   model: HKC 26.5英寸2K280Hz GS27QTS
-  price_cny: 1988
+  price_cny: 2199
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 26.5
@@ -7257,7 +7257,7 @@ displays:
   model: AOC 27英寸4K HDR400 Type-C90W U27U3D
   price_cny: 1424
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -7266,9 +7266,9 @@ displays:
 - id: display-hkc-24-1-英寸-500hz-fasttn-ug25hf
   brand: HKC
   model: HKC 24.1英寸500Hz FastTN UG25HF
-  price_cny: 1998
+  price_cny: 1999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 24.1
@@ -7279,7 +7279,7 @@ displays:
   model: 三星 32英寸 S70D 4K HDR 雅典白
   price_cny: 2299
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 32.0
@@ -7301,7 +7301,7 @@ displays:
   model: 三星 27英寸 IPS 4K HDR 10.7亿色
   price_cny: 2199
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -7310,9 +7310,9 @@ displays:
 - id: display-三星-27-英寸-s80ud-ips-4k-hdr-90w-type-c
   brand: 三星
   model: 三星 27英寸 S80UD IPS 4K HDR 90W Type-C
-  price_cny: 2199
+  price_cny: 1999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -7323,7 +7323,7 @@ displays:
   model: 三星 37英寸 S80UD 4K HDR Type-C90W
   price_cny: 3699
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 37.0
@@ -7422,7 +7422,7 @@ displays:
   model: 微星 27英寸 FHD 100Hz PRO MP272L
   price_cny: 589
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 27.0
@@ -7464,9 +7464,9 @@ displays:
 - id: display-aoc-34-英寸-2k-100hz-带鱼屏-u34p2m
   brand: AOC
   model: AOC 34英寸 2K 100Hz 带鱼屏 U34P2M
-  price_cny: 1899
+  price_cny: 1799
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 34.0
@@ -7475,9 +7475,9 @@ displays:
 - id: display-aoc-23-8-英寸-2k-100hz-ips-q24p10c
   brand: AOC
   model: AOC 23.8英寸 2K 100Hz IPS Q24P10C
-  price_cny: 999
+  price_cny: 965
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 23.8
@@ -7488,7 +7488,7 @@ displays:
   model: AOC 27英寸 100Hz IPS 低蓝光 27P10Q
   price_cny: 699
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 27.0
@@ -7497,9 +7497,9 @@ displays:
 - id: display-aoc-23-8-英寸-100hz-ips-低蓝光-24p10q
   brand: AOC
   model: AOC 23.8英寸 100Hz IPS 低蓝光 24P10Q
-  price_cny: 629
+  price_cny: 610
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -7540,9 +7540,9 @@ displays:
 - id: display-优派-23-8-英寸-4k-ips-旋转升降-微边-vg2481-4k
   brand: 优派
   model: 优派 23.8英寸 4K IPS 旋转升降 微边 VG2481-4K
-  price_cny: 1649
+  price_cny: 1698
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 23.8
@@ -7564,7 +7564,7 @@ displays:
   model: 飞利浦 43英寸 4K VA屏 内置音箱 439P1
   price_cny: 3499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 43.0
@@ -7575,7 +7575,7 @@ displays:
   model: 飞利浦 242B9T 23.8英寸 触摸显示器 内置音箱
   price_cny: 2249
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.8
@@ -7586,7 +7586,7 @@ displays:
   model: 联想 来酷 27英寸 100Hz B2731E
   price_cny: 520
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 27.0
@@ -7597,7 +7597,7 @@ displays:
   model: 联想 来酷 27英寸 100Hz B2728-R
   price_cny: 559
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 27.0
@@ -7619,7 +7619,7 @@ displays:
   model: 联想 来酷 32英寸 4K 60HzM3221PL
   price_cny: 2099
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 32.0
@@ -7630,7 +7630,7 @@ displays:
   model: 联想 来酷 27英寸 4K 60Hz M2721PL
   price_cny: 1399
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -7641,7 +7641,7 @@ displays:
   model: 联想来酷 27英寸 4K 60Hz M2721U
   price_cny: 999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -7683,9 +7683,9 @@ displays:
 - id: display-联合创新-49-英寸-5k-120hz-带鱼屏-49c1r
   brand: 联合创新
   model: 联合创新 49英寸 5K 120HZ 带鱼屏 49C1R
-  price_cny: 4328
+  price_cny: 4498
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 49.0
@@ -7694,9 +7694,9 @@ displays:
 - id: display-联合创新-49-英寸-144hz-带鱼屏-49c1g
   brand: 联合创新
   model: 联合创新 49英寸 144Hz 带鱼屏 49C1G
-  price_cny: 3808
+  price_cny: 3598
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 49.0
@@ -7705,9 +7705,9 @@ displays:
 - id: display-联合创新-44-5-英寸-5k-120hz-曲面带鱼屏-45c1r
   brand: 联合创新
   model: 联合创新 44.5英寸 5K 120HZ  曲面带鱼屏 45C1R
-  price_cny: 3626
+  price_cny: 3797
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 44.5
@@ -7740,7 +7740,7 @@ displays:
   model: 宏碁 XB273U KFbmiipruzx
   price_cny: 5999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -7750,7 +7750,7 @@ displays:
   model: 宏碁 EH273U bipx
   price_cny: 1199
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 27.0
@@ -7825,9 +7825,9 @@ displays:
 - id: display-联想-p49w
   brand: 联想
   model: 联想 P49w
-  price_cny: 11199
+  price_cny: 11177
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 49.0
@@ -7838,7 +7838,7 @@ displays:
   model: 联想 M15
   price_cny: 1659
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 15.6
@@ -7880,9 +7880,9 @@ displays:
 - id: display-优派-vg2781-4k
   brand: 优派
   model: 优派 VG2781-4K
-  price_cny: 1648
+  price_cny: 1698
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -7891,9 +7891,9 @@ displays:
 - id: display-优派-vx1622-4k
   brand: 优派
   model: 优派 VX1622-4K
-  price_cny: 2597
+  price_cny: 2899
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 15.6
@@ -7902,9 +7902,9 @@ displays:
 - id: display-arzopa-a1-max
   brand: ARZOPA
   model: ARZOPA A1 MAX
-  price_cny: 821
+  price_cny: 798
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 17.3
@@ -7913,9 +7913,9 @@ displays:
 - id: display-arzopa-a1c
   brand: ARZOPA
   model: ARZOPA A1C
-  price_cny: 576
+  price_cny: 549
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 16.1
@@ -7924,9 +7924,9 @@ displays:
 - id: display-arzopa-z1rc
   brand: ARZOPA
   model: ARZOPA Z1RC
-  price_cny: 766
+  price_cny: 729
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 16.0
@@ -7935,9 +7935,9 @@ displays:
 - id: display-arzopa-a1-gamut
   brand: ARZOPA
   model: ARZOPA A1 GAMUT
-  price_cny: 434
+  price_cny: 459
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 15.6
@@ -7946,9 +7946,9 @@ displays:
 - id: display-arzopa-g1-game-max
   brand: ARZOPA
   model: ARZOPA G1 Game Max
-  price_cny: 682
+  price_cny: 649
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 16.1
@@ -7970,7 +7970,7 @@ displays:
   model: 华硕 XG249CM
   price_cny: 2999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 23.5
@@ -7990,9 +7990,9 @@ displays:
 - id: display-aoc-u27p2c
   brand: AOC
   model: AOC U27P2C
-  price_cny: 1999
+  price_cny: 1799
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 27.0
@@ -8001,9 +8001,9 @@ displays:
 - id: display-aoc-23-8-英寸-2k-75hz-ips-q24p2c
   brand: AOC
   model: AOC 23.8英寸 2K 75Hz IPS Q24P2C
-  price_cny: 1249
+  price_cny: 1199
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 23.8
@@ -8078,9 +8078,9 @@ displays:
 - id: display-飞利浦-32e1n5800l
   brand: 飞利浦
   model: 飞利浦 32E1N5800L
-  price_cny: 1548
+  price_cny: 1699
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 2160p+
   size_inch: 31.5
@@ -8091,7 +8091,7 @@ displays:
   model: 飞利浦 24E1N5600E
   price_cny: 999
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 23.8
@@ -8102,7 +8102,7 @@ displays:
   model: 飞利浦 24E1N5500B
   price_cny: 899
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1440p
   size_inch: 23.8
@@ -8113,7 +8113,7 @@ displays:
   model: AOC 21.5英寸 75Hz HDMI 22B2HN
   price_cny: 499
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 21.5
@@ -8135,7 +8135,7 @@ displays:
   model: 飞利浦 273V7QDSBF
   price_cny: 699
   price_status: channel_quote
-  price_date: '2026-11-11'
+  price_date: '2026-11-22'
   price_source_type: 电商网站公开报价
   resolution: 1080p
   size_inch: 27.0

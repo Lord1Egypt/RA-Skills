@@ -1,6 +1,6 @@
 ## Description:
 
-This skill helps practicing lawyers and in-house counsel research laws and similar cases, calculate litigation amounts, and draft or review legal documents.
+面向执业律师和企业法务，协助检索法规与类案、审查合同、计算诉讼相关费用，并起草和审校诉讼文书。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,21 +14,17 @@ MIT-0
 
 ## Use Case:
 
-Practicing lawyers and in-house counsel can use this assistant for litigation research, case analysis, damages and fee calculations, evidence review, and first drafts of legal documents. Treat its research and drafts as work product for a lawyer to verify before relying on or sharing.
+执业律师及企业法务可用于法规检索、类案分析、合同审查、赔偿及诉讼费测算，以及诉讼文书起草和审校；生成内容供案头参考，须由律师作最终实质审查。
 
 ### Deployment Geography for Use:
 
-Global
+Global; the skill describes coverage for China, the United States, the EU, and other major jurisdictions.
 
 ## Known Risks and Mitigations:
 
-Risk: Sensitive case files may be uploaded, but the supplied evidence does not establish retention, deletion, or report-link access rules.
+Risk: The security assessment marks the skill suspicious because of reported undeclared local log inspection, retrieval and execution of an external helper, and workflows that may expose confidential legal reports; the scan is incomplete.
 
-Mitigation: Verify current retention and deletion rules and who can open report links; use redacted test materials until clarified.
-
-Risk: Setup saves an API key and changes persistent client configuration, and the supplied artifact does not establish the external runner's behavior.
-
-Mitigation: Review and pin the external runner before execution, and understand where the key is stored and what configuration will change.
+Mitigation: Avoid confidential legal work until you have reviewed and trust the helper and service and understand their data handling; disable or carefully review log-inspection and report-sharing workflows.
 
 ## Reference(s):
 
@@ -39,15 +35,15 @@ Mitigation: Review and pin the external runner before execution, and understand 
 
 **Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Markdown reports and legal document drafts with source links where available]
+**Output Format:** [Legal research summaries, calculation breakdowns, and draft litigation documents; Markdown reports when applicable.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Research, calculations, and drafts require lawyer review before use.]
+**Other Properties Related to Output:** [May include source links and legal citations; outputs require lawyer review before external use.]
 
 ## Skill Version(s):
 
-1.7.1 (source: server-resolved release metadata)
+1.7.2 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

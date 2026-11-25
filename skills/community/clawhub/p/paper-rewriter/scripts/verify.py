@@ -360,6 +360,11 @@ def main():
     ap.add_argument("--max-length-change", type=float, default=25.0)
     ap.add_argument("--max-cjk-shift", type=float, default=0.12)
     ap.add_argument("--json", action="store_true")
+    ap.add_argument("--allow-list", metavar="文件",
+                    help="守卫豁免清单（v5.18.0，每行一个词/数字串）：violations 中 detail 含该词的项"
+                         "降级为 warning（标记 allowlisted）——已核对原文的误报收口，不静默丢弃")
+    ap.add_argument("--summary", action="store_true",
+                    help="一行速览（v5.18.0）：VERIFY PASS|FAIL violations=N warnings=M——agent/CI 快消费")
     ap.add_argument("--strict", action="store_true",
                     help="警告升级：任何 warning（如新增句子）也判失败 exit 1"
                          "（缺省警告不拦停，仅人工核对；分级表见 references/errors.md）")
@@ -374,6 +379,38 @@ def main():
         sys.exit(2)
     terms = load_terms(args.terms) if args.terms else None
     r = verify(orig, new, terms, args.max_length_change, args.max_cjk_shift)
+    # --allow-list（v5.18.0）：豁免词降级（violations→warnings[allowlisted]），不静默丢弃
+    if getattr(args, "allow_list", None):
+        try:
+            with open(args.allow_list, encoding="utf-8") as _af:
+                _allow = [ln.strip() for ln in _af
+                          if ln.strip() and not ln.startswith("#")]
+        except OSError as e:
+            print("错误: 豁免清单不可读（%s）" % e, file=sys.stderr)
+            sys.exit(2)
+        _kept, _moved = [], []
+        for _v in r.get("violations", []):
+            _det = _v.get("detail", "")
+            if any(_w in _det for _w in _allow):
+                _v = dict(_v, allowlisted=True)
+                _moved.append(_v)
+            else:
+                _kept.append(_v)
+        if _moved:
+            r["violations"] = _kept
+            r.setdefault("warnings", []).extend(_moved)
+            r["ok"] = not _kept
+            print("--allow-list：%d 项豁免降级为 warning（已核对原文的收口）"
+                  % len(_moved), file=sys.stderr)
+
+    # --summary（v5.18.0）：一行速览
+    if getattr(args, "summary", False):
+        print("VERIFY %s | violations=%d | warnings=%d | length=%+.1f%%"
+              % ("PASS" if r["ok"] else "FAIL",
+                 len(r.get("violations") or []),
+                 len(r.get("warnings") or []),
+                 r["stats"].get("length_delta_pct", 0.0)))
+
     remedies = build_remedies(orig, r)
 
     if args.html:

@@ -23,4 +23,13 @@
 | 19 | Write failure: explicit stderr error + non-zero exit, atomic write (no half file) | ✅ tempfile + `os.replace` |
 | 20 | Markdown cells escape `|` and collapse newlines | ✅ `_md_cell` |
 | 21 | `--format md` / `--output` are mutually exclusive with `--json` / `--names-only` (exit 2) | ✅ `parser.error` |
-| 22 | New unit tests cover export success / empty / write failure / parameter combinations / backward compatibility; all tests pass | ✅ |
+| 22 | New unit tests cover export success / empty / write failure / parameter combinations / backward compatibility; all tests pass | ✅ 114 tests |
+| 23 | `--format csv` and `--output <path>.csv` both produce a CSV file; `--output` with any other suffix keeps Markdown semantics | ✅ `main()` + `CSV_COLUMNS` |
+| 24 | CSV headers/columns identical to the full table and Markdown export (实例 ID/名称/状态/引擎/版本/规格/私有 IP/可用区/区域/创建时间) | ✅ `CSV_COLUMNS = MD_COLUMNS` |
+| 25 | CSV is UTF-8 with BOM (`utf-8-sig`) and parses with `pandas.read_csv` (default and explicit `utf-8-sig`) / Excel | ✅ BOM verified byte-level + pandas 2.x parse |
+| 26 | Standard CSV escaping of comma / double quote / newline via the `csv` module; CRLF row endings | ✅ `render_csv` round-trip tests |
+| 27 | Atomic write with no leftover temp/partial file; failures raise `CSV 文件写出失败` (exit 1) | ✅ `write_text_atomic` + `write_csv` |
+| 28 | Empty list still writes the header row (exit 0) | ✅ |
+| 29 | Default CSV file name `rds_instances_<region>_<timestamp>.csv`; parent dirs auto-created | ✅ `default_csv_output_path` |
+| 30 | `--format csv` / `--output *.csv` mutually exclusive with `--json` / `--names-only` (exit 2) | ✅ `parser.error` |
+| 31 | Existing table / `--json` / `--names-only` / Markdown output and error messages unchanged | ✅ backward-compatibility tests |

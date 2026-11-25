@@ -1,6 +1,6 @@
 ## Description:
 
-当用户需要做抖音竞品研究、抖音竞品分析、同赛道观察、内容角度对比、内容策略对比或品牌内容调研时使用。面向品牌、MCN、内容运营和创作者。
+当用户需要做抖音竞品研究、抖音竞品分析、同赛道观察、内容角度对比、内容策略对比或品牌内容调研时使用。面向品牌、MCN、内容运营和创作者。由社媒数据助手 SocialDataX 提供。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-品牌、MCN、内容运营者与创作者可按关键词或选题方向检索抖音内容，比较同赛道样本、内容角度和策略，并保留来源链接或内容 ID 以便复盘。
+External users including brands, MCNs, content operators, and creators can research Douyin competitors, compare content angles and strategies, and gather brand content examples.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan marks the skill suspicious because its commands run an unpinned @latest package, creating supply-chain risk; scan confidence is medium and coverage is partial.
+Risk: The CLI examples use an unpinned @latest package, which creates a supply-chain risk.
 
-Mitigation: Before running commands while credentials may be available, confirm you trust the package source and review the package version. Treat the partial scan as incomplete coverage.
+Mitigation: Review and pin a package version before use, and inspect updates before supplying credentials.
+
+Risk: Search terms may contain confidential information, and CLI use may involve an API key.
+
+Mitigation: Avoid entering confidential search terms and use credentials only in an environment you trust.
+
+Risk: The security scan was partial because some local references were unresolved.
+
+Mitigation: Treat the scan as incomplete and review the full skill and its referenced components before installation.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/douyin-competitor-research)
+- [SocialDataX AI and API key information](https://socialdatax.com/ai?from=clawhub)
+- [ClawHub release page](https://clawhub.ai/devinchen2014/skills/douyin-competitor-research)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, Markdown, JSON]
+**Output Type(s):** [Text, Markdown, JSON]
 
-**Output Format:** [Concise Markdown summaries with source links or content IDs; CLI responses are JSON.]
+**Output Format:** [Markdown analysis with traceable search samples; API results are returned as JSON]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Read-only search results can include titles, creators, links or content IDs, and follow-up angles.]
+**Other Properties Related to Output:** [May include sample titles, authors, links or content IDs, available metrics, and follow-up research angles.]
 
 ## Skill Version(s):
 
-0.1.6 (source: server-resolved release)
+0.1.7 (source: ClawHub release)
 
 ## Ethical Considerations:
 

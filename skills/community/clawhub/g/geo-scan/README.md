@@ -5,7 +5,7 @@ One file. No API key. No account. No dependencies beyond the Python standard lib
 `geo_scan.py` reads a public website the way an answer engine's crawler would and scores
 **how readily engines such as ChatGPT search, Perplexity, Claude, Gemini / Google AI
 Overviews and Copilot can fetch, parse and quote it**, on a 0–100 scale. It then lists
-the changes that would raise the score. Version 1.2.7.
+the changes that would raise the score. Version 1.2.8.
 
 **Language coverage:** quotability scoring matches definitional, comparison and question
 phrases in **English and German**. German patterns landed in 1.2.3, after a 45-site
@@ -52,12 +52,13 @@ TLS. On macOS with a python.org Python, run `Install Certificates.command` once.
 
 ## How it behaves on your site
 
-* User-Agent: `geo-scan/<version>` — currently `geo-scan/1.2.7 (+https://github.com/AureliusClaw/geo-scan; answer-engine readiness audit)`.
+* User-Agent: `geo-scan/<version>` — currently `geo-scan/1.2.8 (+https://github.com/AureliusClaw/geo-scan; answer-engine readiness audit)`.
 * It reads `robots.txt` first and obeys it for its own token `geo-scan` (and `*`) on every
   later request, redirect targets included. Matching follows RFC 9309: `*` wildcards, `$`
-  end anchors, longest match wins with `Allow` taking ties, the most specific matching
-  `User-agent` record governs, `Crawl-delay` is honoured. URLs it skips are listed in the
-  report's Notes.
+  end anchors, rule precedence by the rule's pattern length — the behaviour of Google's
+  own matcher, so `Disallow: /private` outranks `Allow: /*` — with `Allow` taking ties,
+  the most specific matching `User-agent` record governing, `Crawl-delay` honoured. URLs
+  it skips are listed in the report's Notes.
 * It fetches http(s) and nothing else. `fetch()` checks the scheme before any handler is
   reached and the opener registers no `FTPHandler`/`FileHandler`/`DataHandler`, so a
   `Sitemap: ftp://…` line in a robots.txt can neither open an FTP session nor read a
@@ -70,6 +71,9 @@ TLS. On macOS with a python.org Python, run `Install Certificates.command` once.
   on the audited host (with or without `www.`) and does not follow redirects off it. Downloads are capped (512 KiB robots.txt,
   1 MB llms.txt, 5 MB per sitemap, 2 MB per page), and a whole scan is capped at 120 s
   (`--budget`, clamped to 10–120 s — the ceiling cannot be raised from the command line).
+  The ceiling covers DNS, connect, TLS, headers and body alike: at the deadline a
+  watchdog closes the in-flight socket, so a server that trickles bytes cannot hold the
+  scan past its own budget.
 * At most 25 pages per run (`--pages`, default 8). A typical run makes 5–35 requests.
 * **Opt out:** add this to your robots.txt:
 

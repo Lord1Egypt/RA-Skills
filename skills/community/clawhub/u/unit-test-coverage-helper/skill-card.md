@@ -1,6 +1,6 @@
 ## Description:
 
-Helps software teams plan and add useful unit tests, improve test coverage, and check changes for regressions.
+Helps teams plan, write, and review unit tests for existing codebases to improve useful test coverage and catch regressions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers, QA engineers, maintainers, and product teams use this skill to create practical unit testing workflows, improve coverage, and check changes against project requirements.
+Developers, QA engineers, maintainers, and product teams use this skill to plan and add useful tests, raise coverage, and check changes for regressions. It can produce tailored code changes, test plans, and reusable checklists based on the project's constraints.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Broad activation terms may invoke the skill for requests unrelated to unit testing or coverage.
+Risk: Broad activation keywords may trigger the skill outside unit testing or coverage work.
 
-Mitigation: Use it when the request explicitly concerns unit tests, test coverage, testing, regression checks, or a related workflow.
+Mitigation: Invoke the skill explicitly for testing tasks, or narrow its trigger terms in the agent configuration.
 
 ## Reference(s):
 
-- [Requirement plan](references/requirement-plan.md)
-- [ClawHub skill page](https://clawhub.ai/kyro-ma/skills/unit-test-coverage-helper)
+- [Unit Test Coverage Helper on ClawHub](https://clawhub.ai/kyro-ma/skills/unit-test-coverage-helper)
+- [Requirement Plan](artifact/references/requirement-plan.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Code, Markdown, Shell commands, Files]
+**Output Type(s):** [Guidance, Analysis, Markdown, Code, Shell commands]
 
-**Output Format:** [Markdown, code, and shell commands as appropriate]
+**Output Format:** [Markdown, code snippets or files, and shell commands where relevant]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Tailored to the user's project, constraints, and success criteria.]
+**Other Properties Related to Output:** [Tailored to the user's codebase, constraints, and success criteria]
 
 ## Skill Version(s):
 
-0.20261117.40425 (source: ClawHub release metadata)
+0.20261124.54907 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

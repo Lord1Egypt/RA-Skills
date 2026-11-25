@@ -1,6 +1,6 @@
 ## Description:
 
-Determines nine TCM constitution types including Yin deficiency, Yang deficiency, Qi deficiency, phlegm-dampness, and blood stasis through facial features and physical signs, and provides personalized health preservation and conditioning suggestions.
+Analyzes facial features and physical signs to identify one of nine TCM constitution types and provide personalized wellness suggestions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users can submit a face photo or video for a traditional Chinese medicine constitution assessment and receive a report with constitution tendencies and general wellness suggestions. They can also request a list of prior analysis reports.
+People seeking a TCM constitution assessment can provide a face image or video to receive a constitution profile, health-risk information, and wellness suggestions. Users can also retrieve prior assessment reports.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review rates this release suspicious and flags credential handling, remote account registration, and health-media workflows as privacy and purpose-alignment concerns; it does not establish malicious intent.
+Risk: Facial media, identity data, health reports, or stored tokens may be exposed or handled in unexpected ways.
 
-Mitigation: Review and clearly explain credential handling, account creation, and media upload behavior before installation; avoid use until these workflows are addressed.
-
-Risk: Constitution assessments and wellness suggestions may be mistaken for a clinical diagnosis or treatment plan.
-
-Mitigation: Use results only as general wellness reference; consult a qualified practitioner for diagnosis or treatment, especially when experiencing symptoms.
+Mitigation: Review the skill and its data handling before use; limit sensitive uploads and stored credentials to what is necessary, and verify how reports and credentials are protected.
 
 ## Reference(s):
 
-- [API interface documentation](references/api_doc.md)
+- [API documentation](references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
-- [ClawHub skill listing](https://clawhub.ai/18072937735/skills/smyx-tcm-constitution-recognition-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, JSON, Markdown]
+**Output Type(s):** [Analysis, Guidance, JSON, Markdown]
 
-**Output Format:** [Text with structured JSON analysis reports and Markdown history lists]
+**Output Format:** [Structured assessment reports and wellness guidance; historical report lists in Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports may include constitution types, tendencies, scores, health considerations, and general wellness suggestions.]
+**Other Properties Related to Output:** [Reports may include constitution types, scores, health-risk information, and personalized wellness suggestions.]
 
 ## Skill Version(s):
 
-1.0.18 (source: server-resolved release metadata)
+1.0.20 (source: ClawHub release evidence)
 
 ## Ethical Considerations:
 

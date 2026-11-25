@@ -1,6 +1,6 @@
 ## Description:
 
-Full Didit identity verification platform management for account creation, API keys, sessions, workflows, questionnaires, users, billing, blocklists, webhooks, and other platform administration.
+Use this skill to write backend or API-key integrations for managing Didit's identity verification platform, including account setup, workflows, verification sessions, KYC and KYB records, billing, lists, and webhook signatures.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,10 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
+MIT-0
 
 ## Use Case:
 
-Developers and operations teams use this skill to administer Didit identity-verification workflows, create and retrieve verification sessions, manage user and billing operations, configure blocklists and webhooks, and work with the bundled helper scripts.
+Developers and integration engineers use this skill to set up Didit accounts and manage KYC/KYB workflows, identity sessions and records, billing, and webhook handling through the Didit APIs.
 
 ### Deployment Geography for Use:
 
@@ -21,44 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill can operate with a Didit administrative API key and access identity-verification records.
+Risk: Webhook freshness and unsigned callback handling may allow untrusted or stale event data to influence decisions.
 
-Mitigation: Use scoped keys where available, store DIDIT_API_KEY outside shared terminals and logs, and redact API responses before sharing them.
+Mitigation: Check timestamps and HMAC signatures where provided; for documented unsigned callbacks, verify the request identifier and confirm current state through the authenticated Didit API before acting.
 
-Risk: The skill covers destructive and high-impact account actions such as deleting sessions or users, changing verification status, blocklisting identities, and modifying webhooks.
+Risk: Migration of identity records can expose personal or biometric data when retention and deletion choices are unclear.
 
-Mitigation: Confirm delete, status, billing, blocklist, and webhook actions manually before execution.
-
-Risk: The helper scripts may print full API responses that include credentials, verification data, or session details.
-
-Mitigation: Avoid running scripts in CI or shared terminals and review output before pasting it into chats or tickets.
-
-Risk: Billing and top-up operations can create payment flows or consume account credits.
-
-Mitigation: Check balances and intended amounts before billing operations, and require an operator confirmation for top-ups.
+Mitigation: Define access, retention, and deletion rules before migration; use privacy erasure and purge retained biometric templates when required.
 
 ## Reference(s):
 
 - [Didit Documentation](https://docs.didit.me)
-- [Didit API Overview](https://docs.didit.me/sessions-api/management-api)
-- [Didit Programmatic Registration Guide](https://docs.didit.me/integration/programmatic-registration)
-- [Didit Webhooks Guide](https://docs.didit.me/integration/webhooks)
-- [Didit AI Agent Integration Guide](https://docs.didit.me/integration/ai-agent-integration)
-- [ClawHub Skill Page](https://clawhub.ai/rosasalberto/skills/didit-verification-management)
+- [Management API Overview](https://docs.didit.me/sessions-api/management-api)
+- [API Keys](https://docs.didit.me/console/api-keys)
+- [Webhook Integration Guide](https://docs.didit.me/integration/webhooks)
+- [Pricing](https://docs.didit.me/getting-started/pricing)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+**Output Type(s):** [Code, Shell commands, Configuration guidance, Integration guidance]
 
-**Output Format:** [Markdown with inline JSON, Python, and bash examples]
+**Output Format:** [Markdown with Python examples, API request examples, and shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include API request examples, environment variable setup, helper-script commands, and administrative workflow guidance.]
+**Other Properties Related to Output:** [Includes Python helper scripts; API operations require Didit credentials such as DIDIT_API_KEY.]
 
 ## Skill Version(s):
 
-4.1.0 (source: frontmatter and server release metadata)
+5.2.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

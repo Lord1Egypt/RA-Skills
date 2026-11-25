@@ -1,6 +1,6 @@
 ## Description:
 
-Host HTML/Markdown pages and share PDF, Word, or PowerPoint docs as ShareOne short links. Use for publishing, passwords/watermarks, comments, downloads, updates, or Git-backed remote sources for ShareOne content.
+Publish HTML, Markdown, text, PDF, Word, and PowerPoint content as ShareOne links, and manage existing shares, comments, and settings.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Developers and other ShareOne users use the skill to publish or update HTML, Markdown, and text pages; share PDF, Word, and PowerPoint files; and manage access settings, downloads, and comments through ShareOne links.
+Developers and AI agents use this skill to publish web pages and documents to ShareOne for sharing, then update or manage those shares, retrieve content, and work with comments.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Some commands may send a saved ShareOne API key to an unverified website or over an unencrypted connection.
+Risk: Ambiguous sharing requests may lead to publishing conversation content without a clear provider or audience, and the scanner reports missing sensitive-content checks.
 
-Mitigation: Before using a real API key, require credentials to be restricted to approved HTTPS destinations and reject insecure redirects.
+Mitigation: Use the skill only when ShareOne is explicitly selected, and review the content and intended audience before publishing.
 
-Risk: Publishing, deletion, or a persistent comment watcher may affect content, links, or sessions beyond the intended scope.
+Risk: The security guidance reports a share deletion confirmation gap.
 
-Mitigation: Specify which content may be made public, confirm deletion targets, and explicitly select the project, scope, and session for any persistent watcher.
+Mitigation: Confirm the target share and deletion action before deleting it.
+
+Risk: Scanner coverage was partial, so reported concerns may not cover every behavior.
+
+Mitigation: Review the skill and its requested actions before installation and use.
 
 ## Reference(s):
 
+- [ShareOne skill on ClawHub](https://clawhub.ai/beep879/skills/shareone)
 - [ShareOne website](https://shareone.vip)
-- [ShareOne ClawHub release](https://clawhub.ai/beep879/skills/shareone)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Share links, HTML pages, Markdown pages, Document files]
+**Output Type(s):** [Text, Markdown, HTML, Files]
 
-**Output Format:** [Text results with ShareOne URLs and operation status]
+**Output Format:** [Share links, downloaded content or files, and operation results in text or Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Can publish or retrieve HTML, Markdown, TXT, PDF, Word, and PowerPoint content.]
+**Other Properties Related to Output:** [May publish content to a public link; ShareOne access settings such as passwords and watermarks can be applied.]
 
 ## Skill Version(s):
 
-1.11.1 (source: server-resolved release metadata)
+1.12.0 (source: SKILL.md metadata, server release)
 
 ## Ethical Considerations:
 

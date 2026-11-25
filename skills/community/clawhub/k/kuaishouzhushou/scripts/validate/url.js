@@ -3,7 +3,10 @@ const VIDEO_PREFIX = "https://www.kuaishou.com/short-video/";
 const SHORT_PREFIX = "https://v.kuaishou.com/";
 const ID_RE = /^[A-Za-z0-9_-]+$/;
 const VIDEO_ID_RE = /^3x[A-Za-z0-9_-]+$/;
-const TRAILING_PUNCT = /[\/.,;:!?"'，。！？；：、）】》]+$/;
+// 链接本体不含中文引号/书名号；粘贴污染时截断并剥尾
+const INLINE_CUT = /[「」『』“”‘’《》〈〉]/;
+const TRAILING_PUNCT =
+  /[\/.,;:!?"'，。！？；：、）】》「」『』“”‘’《》〈〉［］〔〕〖〗…—～·]+$/;
 
 const PROFILE_MESSAGE =
   "无法识别博主主页。支持 https://www.kuaishou.com/profile/{id}，或纯数字 user_id。裸的 3x 视频 id 请交给评论命令";
@@ -21,9 +24,16 @@ function codePointLength(value) {
  * @param {string} raw
  * @returns {string}
  */
+function scrubUrlDecorators(raw) {
+  let text = String(raw).trim();
+  const cut = text.search(INLINE_CUT);
+  if (cut >= 0) text = text.slice(0, cut);
+  return text.replace(TRAILING_PUNCT, "").trim();
+}
+
 function normalizeUrl(raw) {
   if (typeof raw !== "string") return "";
-  let url = raw.trim().replace(TRAILING_PUNCT, "");
+  let url = scrubUrlDecorators(raw);
   if (!url || /\s/.test(url)) return "";
   if (/^\d+$/.test(url)) return url;
   if (VIDEO_ID_RE.test(url)) return url;

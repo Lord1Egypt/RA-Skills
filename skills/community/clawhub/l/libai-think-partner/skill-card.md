@@ -1,6 +1,6 @@
 ## Description:
 
-A Chinese-first thinking partner that uses Li Bai’s poetry and life as prompts for creative thinking, handling constraints, reflecting on emotions, developing aesthetic judgment, and pursuing goals with practical checks.
+Offers Li Bai-inspired thinking frameworks to help users explore creative ideas, balance imagination with practical constraints, and express ideas with style.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Chinese-speaking users can use the skill to explore creative ideas, timing, emotional reflection, aesthetic choices, and persistence through five Li Bai-inspired thinking models. It provides reflective guidance and draft text for the user to assess; it is not professional advice or a decision basis.
+Chinese-speaking creators, teams, and individuals use the skill to explore ideas, reflect on setbacks, assess timing, and refine expression through five Li Bai-inspired frameworks. Its output is reference text for the user to judge, not professional advice or a final decision.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Poetic imagery or motivational framing could be mistaken for factual evidence or a reliable basis for a consequential decision.
+Risk: Creative or emotional guidance could be mistaken for professional advice, or its poetic examples could be treated as verified facts.
 
-Mitigation: Keep metaphor and factual claims distinct, verify quotations and current claims against authoritative sources, and use the frameworks as reflection prompts rather than decision advice.
-
-Risk: Users may rely on reflective prompts for persistent emotional distress or major career or financial decisions.
-
-Mitigation: For ongoing distress or significant career or financial decisions, consult an appropriately qualified professional; do not use the skill as a substitute.
+Mitigation: Use the output as a prompt for reflection, verify quotations and factual claims against reliable sources, and consult qualified professionals for ongoing distress or consequential decisions.
 
 ## Reference(s):
 
-- [Libai Think Partner on ClawHub](https://clawhub.ai/gechengling/skills/libai-think-partner)
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/libai-think-partner)
+- [Publisher profile](https://clawhub.ai/user/gechengling)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Conversational guidance, structured reflection prompts, and draft text in Chinese or English]
+**Output Format:** [Conversational text or Markdown, primarily in Chinese; English is also supported.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Text-only suggestions for user review; no files, external services, or system actions]
+**Other Properties Related to Output:** [Text-only thinking prompts and reference guidance; no file or external-service operations.]
 
 ## Skill Version(s):
 
-2.0.4 (source: server-resolved release evidence)
+2.0.5 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

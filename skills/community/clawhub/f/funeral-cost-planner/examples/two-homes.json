@@ -1,0 +1,37 @@
+{
+  "context": { "plan": "direct_cremation", "vault_claimed_law": false },
+  "homes": [
+    {
+      "name": "Restlawn FH",
+      "items": {
+        "direct_cremation": 2395,
+        "basic_services": 0,
+        "cremation_container": 0,
+        "casket_steel18": 1895,
+        "embalming": 0,
+        "death_certificate": 15
+      }
+    },
+    {
+      "name": "Fairhaven FH",
+      "items": {
+        "direct_cremation": 1495,
+        "basic_services": 1950,
+        "cremation_container": 195,
+        "casket_steel18": 2600,
+        "embalming": 695,
+        "viewing_staff_add": 450,
+        "rental_casket": 995,
+        "death_certificate": 15
+      },
+      "package_price": 4995
+    }
+  ],
+  "cemetery": {
+    "plot": 2500,
+    "opening": 1200,
+    "vault": 1400,
+    "marker": 2000,
+    "green_option": 3200
+  }
+}

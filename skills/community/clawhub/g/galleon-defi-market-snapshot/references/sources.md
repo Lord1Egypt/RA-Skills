@@ -9,3 +9,7 @@ Reviewed 2026-10-02. Current docs and public read behavior are separate evidence
 - [DefiLlama official API SDK](https://github.com/DefiLlama/api-sdk): existing provider implementation for broader data workflows; no SDK runtime is copied here.
 
 The helper is an independently authored bounded diagnostic, not a generic adapter service or provider client. Offline tests supply synthetic responses; they exercise IDs, dates, body limits, timeout, redaction, partial failures, aligned comparisons and history gaps without account access or network calls. Research instructions do not establish a running monitor or venue capability.
+
+## Coinbase Exchange venue comparison
+
+Verified 2026-11-22. The public product ticker supplies the last USD trade price, ID and UTC trade time. The helper reads one exact product without an account. [Coinbase Exchange product ticker](https://docs.cdp.coinbase.com/api-reference/exchange-api/rest-api/products/get-product-ticker)

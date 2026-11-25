@@ -1,6 +1,6 @@
 # Interview shapes, bands, and the closed tag sets
 
-Read this **every time** you enter interview mode, before the first question — `modes/interview.md` §0 and the SKILL.md self-check both name it. It holds three things you cannot write `mock/assessment-<n>.md` without: the loop shapes, the four bands, and the two closed tag sets.
+Read this **every time** you enter interview or prepare mode, before the first question — `modes/interview.md` §0 and the SKILL.md self-check both name it. It holds three things you cannot write `mock/assessment-<n>.md` without: the loop shapes, the four bands, and the two closed tag sets.
 
 It **extends** two existing files and duplicates neither:
 - `references/role-families.md` is a *CV-layout* document (what to lead with, what counts as evidence). Interviews need a different axis — what artifact the candidate must produce live. That axis is the role-family table below; the layout recipes stay where they are.
@@ -30,7 +30,16 @@ Every row in the two shape tables begins with its label. A row without one is a 
 | `[F]` | Rounds run 30–45 minutes. Formats: 一对一, 一对多 (common at state enterprises and banks), 多对一 / 群面 |
 | `[S]` | 交叉面 exists at large firms: same-level interviewers from a different business department, no fixed round count, used to give the main interviewer an outside read |
 
-Register notes. **八股文 is a register, not a topic** — rapid rote recall of canonical fundamentals, where the pressure is volume and speed. Running it as three thoughtful discussion questions misses the round entirely. **手撕代码 cannot be simulated here** — there is no shared editor and no watching interviewer; say so and run the verbal half instead (state the approach before coding, the complexity, what breaks on empty input).
+Register notes. **八股文 is a register, not a topic** — rapid rote recall of canonical fundamentals, where the pressure is volume and speed. Running it as three thoughtful discussion questions misses the round entirely. **手撕代码 can be run here, except for the watching.** A `coding` round has the candidate state the approach and its complexity first, then write the code, which is run against hidden cases (`references/preparation.md` §3). What cannot be simulated is an interviewer watching them type under time pressure. Say so rather than pretend.
+
+### China (public sector: 公务员)
+
+| Source | Shape fact |
+|---|---|
+| `[F]` | 国考（中央机关及其直属机构）公共科目笔试：上午行政职业能力测验（9:00—11:00），下午申论（14:00—17:00）；面试由招录机关实施；综合成绩一般笔试、面试成绩各占一半，组织专业能力测试的职位另行合成（新华网，2025-11-30） |
+| `[S]` | 面试以结构化面试为主，部分职位采用无领导小组讨论（一组约 5–7 人）；行测题型包括常识判断、言语理解与表达、数量关系、判断推理、资料分析 |
+
+A 公务员 candidate's preparation is mostly **the written exam**, not the interview: two papers set nationally, then a structured interview the 招录机关 runs. A plan that starts with the interview has the order backwards.
 
 ### United States (tech)
 
@@ -41,6 +50,26 @@ Register notes. **八股文 is a register, not a topic** — rapid rote recall o
 | `[F]` | Amazon's published pronoun guidance: use "I" statements — "Instead of saying 'we improved customer satisfaction,' say 'I implemented a new feedback system…'" |
 | `[F]` | Google documents "with illustrative examples what a poor, borderline, solid, and outstanding answer would cover", and interviewers "take detailed notes of applicant responses" |
 | `[S]` | The generic sequence (recruiter screen → technical phone → onsite loop → sometimes a take-home) is repeated everywhere but no primary source states it canonically |
+
+### United States (federal and general)
+
+| Source | Shape fact |
+|---|---|
+| `[F]` | OPM (federal hiring): in a structured interview "all candidates are asked the same predetermined questions in the same order", scored on one rating scale; it asks about "behavior in past experiences and in proposed hypothetical situations", usually with a panel reaching consensus |
+| `[S]` | Behavioural questions ("Tell me about a time when…") are standard in US university career guidance; a case interview gives a business problem and scores the reasoning; McKinsey pairs each case with a Personal Experience Interview |
+
+### United Kingdom (all sectors)
+
+| Source | Shape fact |
+|---|---|
+| `[F]` | nidirect (UK government): an interview "can be as quick as 20 minutes or might involve assessment over a number of days", in one format or a mixture |
+| `[F]` | Telephone or video interviews are a common first stage, used to screen many candidates quickly; a call may come "out of the blue" |
+| `[F]` | Panel interviews: "Normally two or three people" ask questions in turn |
+| `[F]` | Assessment centres are used by "Employers from every industry", "most common for graduate schemes, retail employers and businesses like call centres"; they may involve written tests, group activities and interviews |
+| `[F]` | Psychometric tests are used "either at the application or interview stage" |
+| `[S]` | Civil Service: online tests (verbal, numerical, judgement, work strengths), and assessment combining an interview, a presentation, a written exercise and/or a role-play; strengths questions sit beside behaviour questions |
+| `[S]` | NHS: values-based recruitment is national guidance; trusts tie questions to their values (one trust names the 6Cs); nursing selection may add multiple mini-interviews or an assessment day |
+| `[S]` | Teacher training: the process varies by provider; candidates are advised to prepare safeguarding scenarios; teaching a lesson or activity is common but not universal |
 
 ### United Kingdom and EU public / academic sector
 
@@ -66,6 +95,8 @@ The academic loop's **meal and hallway are scored informally**. A module that re
 | `[F]` | Non-hierarchical workplaces: teamwork evidence is load-bearing |
 | `[F]` | The local method is **STARR** — Situatie, Taak, Actie, Resultaat, **Reflectie** (what did you learn, what would you do differently, what feedback did you get); **STARRT** adds Transfer, how you will apply it |
 | `[S]` | A case *opdracht* may precede the first or second interview; psychometric assessment scales with seniority; the process closes with an *arbeidsvoorwaardengesprek* held after the decision and before signature |
+| `[F]` | Randstad NL: an assessment is part of "sommige sollicitatieprocedures", used "vooral bij functies met veel verantwoordelijkheid"; usually intelligentietests, persoonlijkheidsvragen, an interview and praktijkcases (rollenspel, postbakoefening), half a day to a full day; the candidate reads the psychologist's report first and decides whether the employer receives it |
+| `[F]` | IGJ, a Dutch government inspectorate: eerste gesprek (motivation, experience, skills), tweede gesprek (job content, team, fit), an assessment for leadership and senior functions after the second gesprek, then the arbeidsvoorwaardengesprek |
 
 The reflectie step **is a scored element, not politeness.** A perfect STAR that stops at Resultaat is an incomplete Dutch answer. That is the single cheapest high-value correction this mode makes for an NL target, and a US-calibrated mock never surfaces it.
 
@@ -77,6 +108,10 @@ The reflectie step **is a scored element, not politeness.** A perfect STAR that 
 | `[F]` | 45–60 minutes (Robert Half: 30–60), with "kein Jobinterview gleicht dem anderen" |
 | `[F]` | The interviewer may come from Geschäftsführung, Personalabteilung, or Fachabteilung depending on company size |
 | `[F]` | Legally impermissible questions are listed (family planning, sexual orientation, health, religion, political beliefs, union membership, finances) and the candidate "muss nicht ausweichen oder sich rechtfertigen" |
+| `[F]` | Bundesagentur für Arbeit: Assessment-Center are common for duale Studiengänge, öffentlicher Dienst, Banken, Versicherungen and internationale Konzerne, and for Ausbildung at large firms and Trainee-Programme; half a day to two days |
+| `[F]` | AC exercises: Selbstpräsentation (2 bis 3 Minuten), Gruppendiskussion, Postkorb-Übung (prioritise tasks or e-mails under time pressure), Rollenspiele (with a Kunde or Kollege), Leistungstests (Logik, Konzentration, Zahlenverständnis, Sprachgefühl), Einzelinterview; also Präsentationen and Fallstudien |
+| `[F]` | AC observers assess Teamfähigkeit, Kommunikation, Selbstbewusstsein, Problemlösung, Zuverlässigkeit und Auftreten |
+| `[F]` | Interview questions "beziehen sich meistens auf deinen Lebenslauf, deine Berufswahl, das Unternehmen und deine Persönlichkeit"; listed examples: why us, Stärken, Schwächen; the candidate should be able to present the Lebenslauf freely and keep every statement consistent with the application |
 | `[U]` | Whether German private-sector hiring normally runs multiple rounds. Two fetched sources describe a single five-phase interview and neither states a round count. **Do not assert a German multi-round loop.** |
 
 For DE/AT/CH targets the prohibited-question list is a rehearsal item **in the opposite direction**: what the candidate needs is a prepared polite refusal, not a prepared answer.
@@ -87,14 +122,17 @@ Keyed on what the candidate must produce live. This is the interview axis; `refe
 
 | Source | Live artifact demanded | Families | Can this mode run it? |
 |---|---|---|---|
-| `[F]` | Working code, watched | SWE, ML eng, quant | **Partly** — the verbal half only. No shared editor exists; say so rather than faking it |
+| `[F]` | Working code, watched | SWE, ML eng, quant | **Mostly**, as a `coding` round: the candidate's code runs against hidden cases. Being watched while typing cannot be simulated. Say so rather than faking it |
 | `[S]` | A design argued aloud | SWE system design, ML system design, data experiment design | **Yes** — text-native, the strongest mode here |
 | `[F]` | A prepared talk | research scientist, academic, senior clinical, some PM | **Yes, via file** — the candidate outlines, you play the Q&A |
 | `[S]` | A defended past artifact | research scientist, PhD track, legal, creative | **Yes** — deep-dive on a real paper, repo, or matter the candidate names |
 | `[S]` | A live role-play with a counterpart | sales, clinical comms, teaching, hospitality, consulting | **Yes** — you play the counterpart |
 | `[F]` | Structured evidence against named criteria | UK/EU public sector, NHS, academic, EU institutions | **Yes** — and the criteria are published, so the rubric is not invented |
-| `[F]` | Rote recall at speed | China tech 八股文, some licensing exams | **Yes** — but as volume, not as three questions |
+| `[F]` | Rote recall at speed | China tech 八股文, some licensing exams | **Yes**, as a `knowledge` round, but as volume, not as three questions |
 | `[S]` | Values scenarios, deliberately non-clinical | NHS and other regulated professions (MMI) | **Yes** — and the classic failure is answering with clinical knowledge |
+| `[S]` | A business case reasoned aloud | consulting, strategy, some finance and product roles | **Yes** — text-native; give the case data piece by piece as it is asked for |
+| `[F]` | Timed ability tests (numerical, verbal, logical; 行测) | graduate schemes, public sector, banks and insurers (the UK, DE, NL and China rows above) | **Partly**, as a `knowledge` drill of original practice items. The real test's timing, norms and difficulty cannot be reproduced; say so |
+| `[F]` | Assessment-centre exercises (in-tray / Postkorb / postbak, self-presentation, group discussion) | graduate and trainee schemes, public sector (the UK, DE and NL rows above) | **Partly**: in-tray prioritisation, a self-presentation and a role-play run here; a live group discussion cannot, because there are no other candidates |
 
 For a family not listed, ask one question that resolves the whole shape: **"In your field, what does the employer make you do live — talk, demonstrate, be scored against written criteria, or be role-played at?"** The answer picks a row above and everything else follows.
 

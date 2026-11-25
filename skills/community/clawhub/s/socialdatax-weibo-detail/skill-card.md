@@ -1,6 +1,6 @@
 ## Description:
 
-用于微博数据分析、微博帖子详情、帖子数据、互动指标、内容调研和内容分析。覆盖 Weibo post details，来自 SocialDataX 社媒数据助手。
+用于微博数据分析、微博帖子详情、帖子数据、互动指标、内容调研和内容分析。覆盖 Weibo post details，来自社媒数据助手 SocialDataX。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-面向需要分析微博帖子的用户与内容研究人员；用于查询单条微博的正文、作者、发布时间、互动指标和媒体信息，并整理成结构化结果。
+Agents use this skill to retrieve and present details for a Weibo post, including its content, author, publish time, media, and available interaction counts, for content research and analysis.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The instructions invoke an unpinned latest CLI, which could change without review; the security scan was partial because two local references were unresolved.
+Risk: The CLI package is invoked at its latest version, so its behavior could change after review and it could access credentials available to it.
 
-Mitigation: Use a reviewed, pinned CLI release from a trusted package source, and review the unresolved referenced files before deployment.
+Mitigation: Consider waiting until the CLI version is pinned to a reviewed release; review the concern before installing.
 
-Risk: CLI use involves API credentials and local runtime resources.
+Risk: The security scan was partial and cannot establish that all behavior is safe.
 
-Mitigation: Run it in a trusted environment, keep credentials in private environment or credential storage, and avoid exposing keys in prompts, logs, or generated files.
+Mitigation: Review the skill and scan findings before installation, and account for the scan's limited coverage.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/socialdatax-weibo-detail)
-- [SocialDataX API access](https://socialdatax.com/ai?from=clawhub)
+- [SocialDataX API access and management](https://socialdatax.com/ai?from=clawhub)
+- [SocialDataX billing](https://socialdatax.com/dashboard/billing)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Text]
+**Output Type(s):** [JSON, Text, Files]
 
-**Output Format:** [Structured post-detail JSON with concise factual text summaries when requested]
+**Output Format:** [Structured JSON containing Weibo post details, with concise factual text summaries; optional media files can be saved locally.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Post fields such as content, author, media, interaction counts, publish time, and URL are included when available.]
+**Other Properties Related to Output:** [Read-only post detail retrieval; optional media saving writes to a user-selected local path.]
 
 ## Skill Version(s):
 
-0.1.23 (source: server-resolved ClawHub release)
+0.1.24 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

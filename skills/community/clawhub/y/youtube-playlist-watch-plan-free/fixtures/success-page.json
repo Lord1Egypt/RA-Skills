@@ -1,0 +1,19 @@
+{
+  "fixture_type": "offline visible-page simulation; not an online collection result",
+  "playlist_url": "https://www.youtube.com/playlist?list=PL_DEMO_VISIBLE",
+  "daily_minutes": 30,
+  "visible_items": [
+    {"position": 1, "title": "Lesson 1: Setup", "duration": "12:34", "source": "https://www.youtube.com/watch?v=demo001"},
+    {"position": 2, "title": "Lesson 2: Practice", "duration": "15:20", "source": "https://www.youtube.com/watch?v=demo002"},
+    {"position": 3, "title": "Lesson 3: Review", "duration": "08:10", "source": "https://www.youtube.com/watch?v=demo003"}
+  ],
+  "expected_business_output": {
+    "budget_status": "complete_from_visible_items",
+    "known_total_duration": "36:04",
+    "daily_batches": [
+      {"day": 1, "positions": [1, 2], "planned_duration": "27:54", "remaining_minutes": "02:06"},
+      {"day": 2, "positions": [3], "planned_duration": "08:10", "remaining_minutes": "21:50"}
+    ],
+    "missing_information": []
+  }
+}

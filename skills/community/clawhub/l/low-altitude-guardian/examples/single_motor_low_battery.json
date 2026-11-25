@@ -1,0 +1,27 @@
+{
+  "timestamp": "2026-11-25T09:30:00+00:00",
+  "device_id": "UAV-SH-00142",
+  "device_type": "多旋翼无人机",
+  "location": "31.2304°N, 121.4737°E",
+  "altitude_agl": 120,
+  "velocity_horizontal": 15,
+  "velocity_vertical": -2,
+  "heading": 30,
+  "wind_speed_ms": 12,
+  "battery_level": 34,
+  "flight_phase": "巡航",
+  "payload": "3.2kg 快递包裹",
+  "nearby_threats": "200m内有建筑群，地面有少量行人",
+  "weather": "风速12m/s，阵风18m/s，阴天",
+  "comms_status": "4G正常，遥控器信号正常",
+  "crisis_trigger": "左前电机异常振动，转速下降30%",
+  "failed_motors": 1,
+  "total_motors": 4,
+  "gps_available": true,
+  "trends": {
+    "battery_temp_trend": "stable",
+    "voltage_trend": "stable",
+    "altitude_trend": "stable"
+  },
+  "additional_failures": ["电池电量低于15%，持续放电"]
+}

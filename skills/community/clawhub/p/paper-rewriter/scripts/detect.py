@@ -55,6 +55,10 @@ def main():
                  help="PDF 最低置信度门闸（v3.3.0 引入；v3.8.0 起缺省=中）：低于阈值即拒收"
                       "并给处置建议——乱码形态的抽取不再混进报告；"
                       "--pdf-min-confidence 低 恢复「只标注不拦」旧行为")
+    ap.add_argument("--top", type=int, default=0, metavar="N",
+                    help="只输出权重×命中数排序的前 N 类命中（0=全部，缺省）——大文件快速浏览")
+    ap.add_argument("--csv", metavar="文件",
+                    help="批量汇总 CSV 导出（v5.19.0，配 --batch：文件/评分/档位/语言/单元数）")
     ap.add_argument("--raw-markdown", action="store_true",
                     help="对 .md 输入保留 markdown 标记扫描（缺省 v3.6.0 起自动剥离"
                          "结构后扫描正文，结构统计单列不计分）")
@@ -65,6 +69,10 @@ def main():
                     help="章节专项（v4.5.0）：只切出指定章节独立诊断——审稿人第一眼重点节"
                          "（摘要/结论）的模板腔最浓缩；全文总分用不带本参数的 detect（与"
                          " --structure/--batch 互斥）")
+    ap.add_argument("--summary-json", action="store_true",
+                    help="单行 JSON 摘要（v5.18.0）：score/level/lang/top_categories——agent 快消费，输出后退出（不做完整报告）")
+    ap.add_argument("--fail-under", type=float, default=0, metavar="分数",
+                    help="分数门禁（v5.17.0）：综合评分 ≥ 分数时 exit 3——与 --exit-verdict 兼容")
     ap.add_argument("--exit-verdict", action="store_true",
                     help="自动化集成（CI/agent 管线）：按判定设退出码——0=低/无残留，"
                          "3=风格特征中及以上（需深改），4=命中模型残留（critical）。"
@@ -198,6 +206,18 @@ def main():
                   "（扫描件/嵌入字体缺失）。建议：检查来源，或统一导出 UTF-8 文本后重跑；"
                   "确要逐个强收可加 --pdf-min-confidence 低（输出需人工复核）" % gate_rej,
                   file=sys.stderr)
+        if getattr(args, "csv", None):
+            # v5.19.0 批量评分汇总 CSV（机器消费）
+            import csv as _csvmod
+            try:
+                with open(args.csv, "w", encoding="utf-8-sig", newline="") as cf:
+                    w = _csvmod.writer(cf)
+                    w.writerow(["file", "score", "level", "critical", "lang"])
+                    for f, sc2, l2, c2, g2 in rows_out:
+                        w.writerow([f, sc2, l2, c2, g2])
+                print("批量汇总 CSV 已写入 %s（%d 行）" % (args.csv, len(rows_out)), file=sys.stderr)
+            except OSError as e:
+                print("错误: 无法写入 CSV（%s）" % e, file=sys.stderr)
         if args.json:
             print(json.dumps([{"file": f, "score": s, "level": l, "critical": c, "lang": g,
                                "retried": retried.get(f, False)}
@@ -383,7 +403,10 @@ def main():
             print("⚠ 命中模型残留（critical）——先 transform.py 清理")
         cats = r.get("categories") or {}
         if cats:
-            for cid, c in sorted(cats.items(), key=lambda kv: -(kv[1]["weight"] * kv[1]["count"])):
+            _cat_items = sorted(cats.items(), key=lambda kv: -(kv[1]["weight"] * kv[1]["count"]))
+            if getattr(args, "top", 0):
+                _cat_items = _cat_items[:max(1, args.top)]
+            for cid, c in _cat_items:
                 print("  - [%s] ×%d" % (c["label"], c["count"]))
                 if c.get("rationale"):
                     print("      依据: %s" % c["rationale"])
@@ -524,11 +547,31 @@ def main():
             print("错误: 无法写入审稿报告（%s）" % e, file=sys.stderr)
             sys.exit(2)
 
+    if getattr(args, "summary_json", False):
+        import json as _json
+        _top = sorted(r.get("categories", {}).items(),
+                      key=lambda kv: -(kv[1]["weight"] * kv[1]["count"]))[:3]
+        print(_json.dumps({"score": r.get("score"), "level": r.get("level"),
+                           "lang": r.get("lang"), "units": r.get("units"),
+                           "top_categories": [{"id": k, "label": v["label"], "count": v["count"]}
+                                              for k, v in _top]},
+                          ensure_ascii=False))
+        # 门禁旗标与 --summary-json 同给时照常生效（v5.15 退出码契约不被快消费旁路）
+        _fu = getattr(args, "fail_under", 0) or 0
+        if args.exit_verdict:
+            sys.exit(hxt_core.verdict_exit_code(r.get("score", 0), r.get("critical_hit")))
+        if _fu and r.get("score", 0) >= _fu:
+            sys.exit(3)
+        sys.exit(0)
     if args.score:
         print("%d/%s" % (r["score"], r["level"]))
         if args.exit_verdict:
             _d = _deg_exit(r)
             sys.exit(_d if _d is not None else hxt_core.verdict_exit_code(r["score"], r["critical_hit"]))
+        # --fail-under 快消费门禁（v5.18：与速览旗标组合不旁路）
+        _fu = getattr(args, "fail_under", 0) or 0
+        if _fu and r["score"] >= _fu:
+            sys.exit(3)
         sys.exit(0)
 
     if args.json:
@@ -536,6 +579,9 @@ def main():
         if args.exit_verdict:
             _d = _deg_exit(r)
             sys.exit(_d if _d is not None else hxt_core.verdict_exit_code(r["score"], r["critical_hit"]))
+        _fu = getattr(args, "fail_under", 0) or 0
+        if _fu and r["score"] >= _fu:
+            sys.exit(3)
         sys.exit(0)
 
     # ---- 人类可读报告 ----
@@ -559,7 +605,10 @@ def main():
     print()
     if r["categories"]:
         print("分类明细:")
-        for cid in sorted(r["categories"], key=lambda k: -r["categories"][k]["count"] * r["categories"][k]["weight"]):
+        _cat_ids = sorted(r["categories"], key=lambda k: -r["categories"][k]["count"] * r["categories"][k]["weight"])
+        if getattr(args, "top", 0):
+            _cat_ids = _cat_ids[:max(1, args.top)]
+        for cid in _cat_ids:
             c = r["categories"][cid]
             mark = " [可自动修]" if cid in hxt_core.AUTO_FIXABLE else ""
             print("  · %-28s %3d 处%s" % (c["label"], c["count"], mark))
@@ -601,7 +650,16 @@ def main():
     print("       python scripts/compare.py 原稿.txt 改稿.txt      # 前后对比+完整性")
     if args.exit_verdict:
         _d = _deg_exit(r)
-        sys.exit(_d if _d is not None else hxt_core.verdict_exit_code(r["score"], r["critical_hit"]))
+        _e = _d if _d is not None else hxt_core.verdict_exit_code(r["score"], r["critical_hit"])
+        # --fail-under（v5.17.0）：评分 ≥ 分数 → 至少 exit 3（与 --exit-verdict 的 0/3/4 兼容）
+        _fu = getattr(args, "fail_under", 0) or 0
+        if _fu and r["score"] >= _fu and _e == 0:
+            _e = 3
+        sys.exit(_e)
+    # --fail-under 独立出口（v5.17.0）：不与 --exit-verdict 同用也可作 CI 门禁
+    _fu = getattr(args, "fail_under", 0) or 0
+    if _fu and r["score"] >= _fu:
+        sys.exit(3)
     sys.exit(0)
 
 

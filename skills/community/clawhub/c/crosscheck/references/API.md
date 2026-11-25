@@ -48,6 +48,10 @@ Security review of a skill or MCP server before install. Request: `{"files": [{"
 
 Verdict: `{"result": "findings", "risk": "high", "summary", "declared_purpose", "findings": [{"severity": "critical|high|medium|low", "category", "file", "location", "explanation", "source": "rule|review"}], "files_scanned", "bundle_sha256", "note"}`. `bundle_sha256` is SHA-256 of the canonical JSON list of `{path, sha256}` for every file, sorted by path. GET `/v1/skillcheck/{bundle_sha256}` returns the latest paid review of the same files (404 if none). The receipt body has `kind: "skillcheck"`, `bundle` (`sha256`, `files`, `chars`), and `review` (`result`, `risk`, `finding_counts`).
 
+## POST /v1/sellercheck and POST /v1/sellerwatch (paid, x402 v2), GET /v1/sellercheck/preflight (free)
+
+For x402 sellers. `/v1/sellercheck` ($0.05): `{"resource": "https://your.api/paid-route", "method": "GET|POST" (optional), "network": "eip155:8453" (optional)}`. The verdict is a report: `pass`, `summary`, `terms` (the Base payment option), `door` (`ok`, `method`, `http_status`, `x402_version`, `response_ms`, `tls`, `terms`, `problems`), `bazaar` (`read`, `valid`, `indexed`, `last_crawled_at`, `failed_checks`, `search`), `router` (agent402: `routable`, `lane`, `settled_calls`, `threshold`), `settlements` (`last_24h` and `last_7d` as `{count, payers}`, or null when the RPCs did not answer), and `findings` (`area`, `ok`, `message`). `/v1/sellerwatch` ($1 once) adds `"notify": {"webhook": "https://...", "ntfy": "<topic>"}` and returns `watch_id`, `record_url` (`/w/<watch_id>`, JSON with a signature at `.json`), `ends_at`, and `first_report`. `GET /v1/sellercheck/preflight?resource=<url>` is free: door and Bazaar only, unsigned, cached an hour. Quotes: POST the same body to `/v1/sellercheck/quote` or `/v1/sellerwatch/quote`.
+
 ## GET /v1/checks/{job_id} (free)
 
 Header: `Authorization: Bearer <result_token>` (the token is not accepted in the URL). Returns the same shape as the order response. `status` is `done`, `pending`, `unserved` (refund owed, recorded in the ledger), or `rejected` (payment not confirmed on chain; no review ran). 404 for an unknown job or wrong token.

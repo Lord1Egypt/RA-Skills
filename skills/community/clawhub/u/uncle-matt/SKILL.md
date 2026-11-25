@@ -4,7 +4,7 @@ slug: uncle-matt
 description: "Uncle Matt is the new and exciting OpenClaw security skill that lets agents use approved API actions through a hardened local Broker without seeing secrets, calling arbitrary URLs, or becoming an open proxy."
 version: 6.420.69
 homepage: "https://bobsturtletank.fun"
-x: "https://x.com/unc_matteth"
+x: "https://x.com/unclematt"
 ---
 
 # Uncle Matt (Security Skill)
@@ -84,7 +84,7 @@ Guides in the repo:
 
 ## By / Contact
 By Uncle Matt.  
-X (Twitter): `https://x.com/unc_matteth`  
+X (Twitter): `https://x.com/unclematt`  
 Website: `https://bobsturtletank.fun`  
 Buy me a coffee: `https://buymeacoffee.com/unclematt`
 

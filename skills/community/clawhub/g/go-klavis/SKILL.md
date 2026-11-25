@@ -53,7 +53,7 @@ go doc -all github.com/psyb0t/go-klavis                          # the whole pac
 
 The same documentation is at https://pkg.go.dev/github.com/psyb0t/go-klavis.
 
-Method names come from the spec's operation IDs. `<OperationId>WithResponse` takes the context, then the path parameters in order, then `*<OperationId>Params` when the operation has query or header parameters, then the request body when it has one. The `JSON200` field (or `JSON201` and so on, per declared status) holds the decoded body; it is nil for any other status. The `SandboxSchemas...GoogleCalendarEvent...` types are deprecated aliases of `GoogleCalendarEvent`; use `GoogleCalendarEvent` in new code.
+Method names come from the spec's operation IDs. `<OperationId>WithResponse` takes the context, then the path parameters in order, then `*<OperationId>Params` when the operation has query or header parameters, then the request body when it has one. The `JSON200` field (or `JSON201` and so on, per declared status) holds the decoded body; it is nil for any other status.
 
 ## Workflow
 

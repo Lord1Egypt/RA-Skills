@@ -1,6 +1,6 @@
 ## Description:
 
-Generate Kling AI videos and images, manage reusable subjects and voices, and check account quotas through Kling's API.
+Call Kling AI for video and image generation, subject and voice management, and account quota inquiries.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and creative teams use this agent skill to generate videos and images with Kling AI, manage reusable subjects and voices, and review account quotas.
+Developers and other users can generate video and image assets with Kling AI, manage reusable subjects and voices, and check account quotas. The skill also supports credential setup for those tasks.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Broad activation wording may lead the skill to be selected for loosely related requests.
+Risk: The security scan noted broad activation terms that may match ordinary words.
 
-Mitigation: Use it when the user clearly requests a Kling task, and clarify ambiguous requests before acting.
+Mitigation: Use the skill when Kling intent is clear, and confirm ambiguous generation requests before submission.
 
-Risk: The security guidance notes that device metadata may be stored during account binding without clear disclosure.
+Risk: The security analysis was partial and does not establish that every component is safe.
 
-Mitigation: Review Kling's binding and privacy terms before binding, and avoid binding from shared devices.
-
-Risk: Generation tasks incur charges and send prompts and reference media to Kling AI.
-
-Mitigation: Submit only when the user has clearly requested generation and understands the charges and media transfer.
+Mitigation: Review the skill and its scripts before deployment, especially where the partial scan could not fully analyze script contents.
 
 ## Reference(s):
 
 - [Kling AI API documentation](https://klingai.com/document-api/)
-- [Kling AI API authentication](https://klingai.com/document-api/api/get-started/authentication.md)
 - [ClawHub skill release](https://clawhub.ai/klingai-dev/skills/klingai)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, Video, Images, Text, Configuration instructions]
+**Output Type(s):** [Text, Images, Video, Files, Configuration]
 
-**Output Format:** [Generated media files, quota and task responses, and command-line guidance]
+**Output Format:** [Text responses, downloadable image and video files, and local credential configuration]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Generation tasks are billable; media outputs can be downloaded locally.]
+**Other Properties Related to Output:** [Image and video generation may take time; account quota inquiry is read-only.]
 
 ## Skill Version(s):
 
-2.0.4 (source: frontmatter)
+2.0.6 (source: server-resolved release)
 
 ## Ethical Considerations:
 

@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "1.0",
+  "mode": "draft-only",
+  "accounts": [
+    {"id": "shop-a", "browserId": "easybr-xianyu-a", "alias": "主店", "status": "needs_user_action", "results": [], "errors": ["浏览器要求验证码"]}
+  ],
+  "summary": {"completed": 0, "needsUserAction": 1}
+}

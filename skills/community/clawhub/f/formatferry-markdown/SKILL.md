@@ -1,7 +1,7 @@
 ---
 name: formatferry-markdown
-description: Local-first document-to-Markdown converter supporting 8 file types (HTML, DOCX, PDF, XLSX, CSV, JSON, XML, PPTX) and 8 output flavours (GitHub, CommonMark, Slack, Discord, Reddit, Confluence, R Markdown, custom). Conversion runs entirely in-process — file content never leaves the machine. No server-side processing for local files.
-version: 1.1.4
+description: "Converts local HTML, DOCX, PDF, XLSX, CSV, JSON, XML and PPTX files (or stdin) to Markdown in 8 flavours (GitHub, CommonMark, Slack, Discord, Reddit, Confluence, Google Docs, R Markdown). Local conversion runs in-process and, with --offline, makes no network calls. Two optional features use the network: --url sends the URL to the FormatFerry API for server-side fetching (needs FORMATFERRY_API_KEY and the user's explicit go-ahead), and a stored license key triggers an entitlement check against formatferry.vibingfun.com unless --offline is passed."
+version: 1.1.6
 metadata:
   openclaw:
     requires:
@@ -18,7 +18,7 @@ metadata:
         description: Required for premium CLI features (--batch mode).
     install:
       - kind: node
-        package: formatferry
+        package: formatferry@1.0.51
         bins: [formatferry]
     emoji: "⛴️"
     homepage: https://github.com/britrik/FormatFerry
@@ -26,7 +26,15 @@ metadata:
 
 # FormatFerry Markdown Converter
 
-Local-first document-to-Markdown converter. File content is processed entirely in-process — nothing leaves your machine. Supports 8 input formats and 8 output flavours, with optional URL extraction and batch mode for premium users.
+Document-to-Markdown converter. Local files and stdin are converted in-process and never uploaded. Supports 8 input formats and 8 output flavours, with optional network-backed URL extraction and premium batch mode.
+
+**Network use at a glance**
+
+| Mode | Network | What is sent |
+|------|---------|--------------|
+| Local file / stdin with `--offline` | None | Nothing |
+| Local file / stdin without `--offline`, license key stored | `formatferry.vibingfun.com` | License key for an entitlement check (cached 24h) |
+| `--url <url>` | FormatFerry API | The URL and API key; the page is fetched and processed server-side |
 
 **Key differentiator vs alternatives:** Output flavours tailor Markdown to specific platforms (Slack `*bold*` vs GitHub `**bold**`, Confluence wiki markup, R Markdown, etc.). No other converter offers this.
 
@@ -36,8 +44,10 @@ Local-first document-to-Markdown converter. File content is processed entirely i
 - Install the CLI globally:
 
 ```bash
-npm install -g formatferry
+npm install -g formatferry@1.0.51
 ```
+
+The skill is tested against CLI 1.0.51; install that exact version rather than the latest.
 
 ## Supported File Types
 
@@ -72,7 +82,7 @@ Use the `-f` / `--flavour` flag to select output format:
 formatferry -i document.docx -o output.md
 
 # Pipe HTML from stdin
-echo '<h1>Hello</h1>' | formatferry
+echo '<h1>Hello</h1>' | formatferry --offline
 
 # Choose a flavour
 formatferry -i notes.html -f slack -o notes.md
@@ -105,27 +115,27 @@ FORMATFERRY_API_KEY=ff_xxxxx formatferry --url https://example.com/article
 ## Privacy
 
 - **Local file conversion is fully in-process** — file content is never uploaded or sent to any server
-- **Optional license validation ping** — if a license key is stored, the CLI may ping `formatferry.vibingfun.com` to check entitlement (cached for 24h, skippable with `--offline`)
-- **URL extraction (`--url`)** is the only feature that sends content to a server — it fetches and processes the URL server-side
-- **`--offline` flag** disables all network calls, falling back to cached or free-tier entitlements
+- **Optional license validation ping** — if a license key is stored, the CLI may contact `formatferry.vibingfun.com` to check entitlement (cached for 24h). `--offline` skips this check
+- **URL extraction (`--url`)** sends the URL to the FormatFerry API, which fetches and processes the page server-side. `--offline` does not change this. Never use `--url` for internal, private or signed URLs
+- **Credentials** — `formatferry auth` stores API and license keys in the CLI's local config. Prefer the `FORMATFERRY_API_KEY` / `FORMATFERRY_LICENSE_KEY` environment variables for one-off use, and run `formatferry auth --logout` to remove stored keys
 
 ## Procedure
 
 1. **Determine input type:**
    - Text/pasted content → pipe to stdin or save to temp file
    - File path → use `-i <path>`
-   - URL → use `--url <url>` (requires `FORMATFERRY_API_KEY`)
+   - URL → only when the user explicitly asks to convert a web page and agrees that the URL is sent to FormatFerry's server; then use `--url <url>` (requires `FORMATFERRY_API_KEY`). Otherwise ask the user for the file
    - Multiple files → use `--batch` (requires `FORMATFERRY_LICENSE_KEY`)
 
 2. **Execute conversion:**
    ```bash
-   # Stdin (most common for agent use)
-   echo "$INPUT" | formatferry
+   # Stdin (most common for agent use): always offline
+   echo "$INPUT" | formatferry --offline
 
-   # File
-   formatferry -i "$FILE_PATH" -o "$OUTPUT_PATH"
+   # File: always offline
+   formatferry --offline -i "$FILE_PATH" -o "$OUTPUT_PATH"
 
-   # URL
+   # URL: only after the user has agreed to server-side fetching
    formatferry --url "$URL" -o output.md
    ```
 
@@ -141,7 +151,7 @@ FORMATFERRY_API_KEY=ff_xxxxx formatferry --url https://example.com/article
 
 | Issue | Solution |
 |-------|----------|
-| `formatferry: command not found` | Install via `npm install -g formatferry` |
+| `formatferry: command not found` | Install via `npm install -g formatferry@1.0.51` |
 | `node: command not found` | Install Node.js 18+ first |
 | API rate limit hit | Wait 60s or use local file input instead of URL |
 | Large file (>20MB PDF) | Consider splitting before conversion |
@@ -152,12 +162,14 @@ FORMATFERRY_API_KEY=ff_xxxxx formatferry --url https://example.com/article
 
 ```bash
 # Test basic conversion
-echo '<h1>Test</h1><p>Content</p>' | formatferry
+echo '<h1>Test</h1><p>Content</p>' | formatferry --offline
 
 # Verify no HTML tags remain
-echo '<div>test</div>' | formatferry | grep -c '<.*>' || echo "Clean: 0 HTML tags"
+echo '<div>test</div>' | formatferry --offline | grep -c '<.*>' || echo "Clean: 0 HTML tags"
 
 # Test file conversion
-echo '<p>File test</p>' > /tmp/test.html
-formatferry -i /tmp/test.html
+TMP_DIR=$(mktemp -d)
+echo '<p>File test</p>' > "$TMP_DIR/test.html"
+formatferry --offline -i "$TMP_DIR/test.html"
+rm -rf "$TMP_DIR"
 ```

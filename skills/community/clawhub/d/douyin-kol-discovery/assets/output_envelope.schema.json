@@ -20,7 +20,7 @@
         },
         "error_code": {
             "type": "string",
-            "description": "OK、NO_MATCH、INVALID_KEYWORD、INVALID_URL、INVALID_ARGS、AUTH_REQUIRED、AUTH_ERROR、PLAN_LIMIT、TIMEOUT、NETWORK_ERROR、HTTP_5xx、API_ERROR、API_SCHEMA_CHANGED、UNKNOWN，或接口返回的业务码字符串。PLAN_LIMIT 对应后端 errcode 14（套餐单次条数超限）"
+            "description": "OK、NO_MATCH、INVALID_KEYWORD、INVALID_URL、INVALID_ARGS、AUTH_REQUIRED、AUTH_ERROR、PLAN_LIMIT、INSUFFICIENT_BALANCE、RATE_LIMITED、DAILY_LIMIT、TIMEOUT、NETWORK_ERROR、HTTP_5xx、API_ERROR、API_SCHEMA_CHANGED、UNKNOWN，或接口返回的业务码字符串。PLAN_LIMIT / INSUFFICIENT_BALANCE 按 errmsg 判别（详情接口的 14 多为余额不足；搜索类 14 多为包月条数超限）；RATE_LIMITED 对应短时提交过多（常为 errcode 2）；DAILY_LIMIT 对应 CheckDayMoney 日消费上限（errcode 18）"
         },
         "message": {
             "type": "string",
@@ -37,16 +37,16 @@
             "properties": {
                 "command": {
                     "type": "string",
-                    "enum": ["search", "post", "comment", "detail", "hot"],
+                    "enum": ["search", "user_search", "post", "comment", "detail", "hot"],
                     "description": "命令名"
                 },
                 "keyword_raw": {
                     "type": "string",
-                    "description": "搜索：用户原始关键词"
+                    "description": "视频搜索或用户搜索：用户原始关键词"
                 },
                 "keyword": {
                     "type": "string",
-                    "description": "搜索：整理空白后实际使用的关键词"
+                    "description": "视频搜索或用户搜索：整理空白后实际使用的关键词"
                 },
                 "sort": {
                     "type": "number",
@@ -74,7 +74,7 @@
                 },
                 "limit": {
                     "type": "number",
-                    "description": "搜索、评论为 1-10000；作品为 0-10000。参数尚未通过校验时可能缺此字段，或仍是用户传入的原值"
+                    "description": "视频搜索、用户搜索、评论为 1-10000；作品为 0-10000。参数尚未通过校验时可能缺此字段，或仍是用户传入的原值"
                 }
             }
         },
@@ -101,7 +101,7 @@
             }
         },
         "results": {
-            "description": "error 与 empty 时为 null。搜索、评论、热榜成功时为数组，条目字段分别见 search_cli_resp、comment_cli_resp、hot_cli_resp。博主作品成功时为对象，字段见 post_cli_resp。作品详情成功时为对象，字段见 detail_cli_resp",
+            "description": "error 与 empty 时为 null。视频搜索、用户搜索、评论、热榜成功时为数组，条目字段分别见 search_cli_resp、user_search_cli_resp、comment_cli_resp、hot_cli_resp。博主作品成功时为对象，字段见 post_cli_resp。作品详情成功时为对象，字段见 detail_cli_resp",
             "oneOf": [
                 {
                     "type": "null"

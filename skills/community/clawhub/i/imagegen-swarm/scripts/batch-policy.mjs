@@ -6,21 +6,34 @@ import { ATTEMPT_FAIL, ATTEMPT_IGNORED, ATTEMPT_WIN } from "./attempt-outcomes.m
 export const RATE_LIMIT_STRIKES = 3;
 export const STEAL_FACTOR = 1.5;
 const QUOTA_DOWN = /\bquota\b|\bcredits?\b|积分|余额|insufficient_quota|预算用完|budget used up|insufficient balance|usage limit|weekly limit|insufficient\s+(?:credits?|quota|balance|funds)|not enough\s+(?:credits?|quota|balance)|out of\s+(?:credits?|quota)/i;
-const AUTH_DOWN = /unauthori[sz]ed|\bnot logged[ -]?in\b|\blog[ -]?in\b|authentication required|ComplianceConfirmation|not_configured/i;
+const AUTH_DOWN = /please\s+sign\s+in|unauthori[sz]ed|\bnot logged[ -]?in\b|\blog[ -]?in\b|\bnot authenticated\b|\b(?:no|missing) credentials\b|authentication required|not_configured/i;
+const COMPLIANCE_DOWN = /ComplianceConfirmation/i;
+const PLAYWRIGHT_MISSING = /ModuleNotFoundError:\s*No module named ['"]playwright['"]|\bplaywright not found\b/i;
+export const PLAYWRIGHT_BROWSER_FAILURE = /playwright_browser_missing|executable (?:doesn't|does not) exist|playwright install|\bspawn\b[^\r\n]{0,200}-88|browserType\.launch|failed to launch|chromium-\d+|error while loading shared libraries|cannot open shared object/i;
 // 「not found / ENOENT」只认引擎本身没装。参考图或输出文件找不到不算整家引擎挂了。
 const NOT_INSTALLED = /not[_\s-]?installed|找不到\s*lv|\b(?:agy|codex(?:\s+CLI|\s+path)?|grok|dreamina|lv|muse|playwright)\s+not found\b|\bnot found:\s*(?:agy|codex|grok|dreamina|lv|muse)\b|\bcommand not found\b|\bspawn\w*\b[^\n]{0,200}\bENOENT\b/i;
 const RATE_LIMIT = /\b429\b|rate[\s-]?limit|too many requests|RESOURCE_EXHAUSTED/i;
 
 export function failureText(report) {
-  const detail = report?.reason ?? report?.error ?? "unknown error";
-  if (report?.error_kind && !String(detail).includes(String(report.error_kind))) return (detail) + " (" + (report.error_kind) + ")";
-  return String(detail);
+  const reported = report?.reason ?? report?.error;
+  const detail = reported == null ? "unknown error" : String(reported);
+  if (report?.error_kind && !detail.includes(String(report.error_kind))) return detail + " (" + report.error_kind + ")";
+  return detail;
+}
+
+export function engineSetupReason(text) {
+  if (QUOTA_DOWN.test(text) || RATE_LIMIT.test(text) || COMPLIANCE_DOWN.test(text)) return null;
+  if (PLAYWRIGHT_MISSING.test(text)) return "missing CLI or runtime (Playwright not found)";
+  if (PLAYWRIGHT_BROWSER_FAILURE.test(text)) return "missing CLI or runtime (Playwright browser missing or broken)";
+  if (NOT_INSTALLED.test(text)) return "missing CLI or runtime";
+  if (AUTH_DOWN.test(text)) return "missing login or credentials";
+  return null;
 }
 
 // 'down' 立刻停用；'rate_limit' 计入连续限流；'retry' 只是这一张失败。
 export function classifyEngineError(reason) {
   const text = String(reason ?? "");
-  if (QUOTA_DOWN.test(text) || AUTH_DOWN.test(text) || NOT_INSTALLED.test(text)) return "down";
+  if (QUOTA_DOWN.test(text) || AUTH_DOWN.test(text) || COMPLIANCE_DOWN.test(text) || NOT_INSTALLED.test(text) || PLAYWRIGHT_MISSING.test(text) || PLAYWRIGHT_BROWSER_FAILURE.test(text)) return "down";
   if (RATE_LIMIT.test(text)) return "rate_limit";
   return "retry";
 }

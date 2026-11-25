@@ -1,6 +1,6 @@
 ## Description:
 
-Searches public TikTok videos, creator posts, and comments to support social media analysis.
+Search public TikTok content, creator posts, and video comments, returning structured data for analysis.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Marketers, researchers, and content teams use this skill to find public TikTok videos, review creator activity, and summarize audience comments for market and content analysis.
+Creators, marketers, and researchers use this skill to find public TikTok posts, compare creator content, and examine comment themes for topic research and social listening.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: API tokens and TikTok search terms or target URLs are sent to Guaikei.
+Risk: The security scan only partially inspected 12 of 32 components, so some behavior remains uncertain.
 
-Mitigation: Confirm the third-party data transfer is acceptable before using the skill; keep the API token confidential.
+Mitigation: Review the partially inspected components before installing if that uncertainty is unacceptable.
 
-Risk: Fetched public results, including usernames and comment text, are saved in system temporary logs.
+Risk: Search terms and TikTok links are sent to the Guaikei service to retrieve data.
 
-Mitigation: Apply your retention policy to those logs and delete them when no longer needed.
+Mitigation: Use public content queries and avoid submitting sensitive or private information.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/why20261/skills/tiktok-social-media-search)
-- [Skill parameter reference](references/options.md)
-- [Guaikei API and token information](https://www.guaikei.com)
+- [Usage options](references/options.md)
+- [Changelog](references/changelog.md)
+- [Guaikei service and access](https://www.guaikei.com)
+- [ClawHub skill listing](https://clawhub.ai/why20261/skills/tiktok-social-media-search)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text]
+**Output Type(s):** [JSON data]
 
-**Output Format:** [Markdown summaries informed by structured JSON lookup results]
+**Output Format:** [Structured JSON containing public TikTok posts, creator details, engagement metrics, or comments]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Public video, creator, and comment data; requires a Guaikei API token.]
+**Other Properties Related to Output:** [The agent can summarize or compare returned results in prose, tables, or reports.]
 
 ## Skill Version(s):
 
-1.0.0 (source: frontmatter, changelog)
+1.1.2 (source: frontmatter, package.json)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Creates event posters, promotional banners, and social graphics from a topic, product photo, or brand references, with clear visual hierarchy and reserved text space.
+Turn a topic description, a product photo, or brand references into a scroll-stopping event poster, promotional banner, or social media graphic. This AI poster maker and design generator creates photo-rich posters with strong visual hierarchy, category-matched styling, and text-safe zones for event, music, movie, product launch, and sale campaigns. Use it as an AI flyer maker for sale flyers, an event poster design tool, a movie poster generator, a music festival poster creator, a banner design AI for product launch posters, or a graphic design poster studio. Start from a campaign topic, transform a product or scene photo with style references, or refine an accepted draft toward a print-ready or share-ready result.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Marketers, event organizers, and designers use this skill to create or refine a poster, flyer, or promotional banner from a campaign brief, product or scene photo, or accepted draft.
+Marketers, event organizers, and creators use this agent to plan and produce a poster, flyer, or promotional banner from a campaign brief, a source photo, or an accepted draft. They can request a focused revision or, after accepting a screen-bound poster, an optional short motion version.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill requires account permissions beyond poster design, and damaged installation records may cause uninstall to disconnect other Beatra skills.
+Risk: The security assessment flags broad access and spending permissions, recurring installation and environment telemetry, and a cleanup flaw affecting shared credentials. It labels the release suspicious but does not establish malicious intent.
 
-Mitigation: Wait for poster-specific permissions where possible, and check which Beatra skills share the connection before uninstalling.
-
-Risk: Files selected for image generation are uploaded to Beatra's service.
-
-Mitigation: Upload only files intended for the requested poster.
+Mitigation: Install only if the remote design service is needed and you are comfortable with the reported permissions and telemetry; review credential cleanup carefully, especially where credentials are shared with other tools.
 
 ## Reference(s):
 
+- [Poster routing](references/poster-routing.md)
+- [Poster craft](references/poster-craft.md)
+- [Workflow and request shapes](references/workflow.md)
+- [Updates and security](references/updates-and-security.md)
+- [Beatra skill page](https://beatra.ai/skills/poster-design-studio)
 - [ClawHub release page](https://clawhub.ai/beatra-ai/skills/poster-design-studio)
-- [Beatra Poster Design Studio](https://beatra.ai/skills/poster-design-studio)
-- [Poster routing](artifact/references/poster-routing.md)
-- [Poster craft](artifact/references/poster-craft.md)
-- [Workflow and request examples](artifact/references/workflow.md)
-- [Updates and security](artifact/references/updates-and-security.md)
-- [Installation and authentication](artifact/references/installation-and-auth.md)
-- [Uninstall and disconnect](artifact/references/uninstall-and-disconnect.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Video, Guidance]
+**Output Type(s):** [Images, Text, Guidance]
 
-**Output Format:** [Generated image or short video artifacts, with Markdown guidance and artifact links]
+**Output Format:** [Generated poster or banner image, with concise text guidance and delivery details; optionally a short animated video]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [One poster per generation request; an optional 5-second motion clip may be offered separately after poster acceptance.]
+**Other Properties Related to Output:** [One poster or banner per request; an optional 5-second animation may be offered after acceptance.]
 
 ## Skill Version(s):
 
-0.2.6 (source: server-resolved release evidence and artifact/manifest.json)
+0.2.7 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

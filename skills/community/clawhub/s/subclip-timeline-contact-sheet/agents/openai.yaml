@@ -1,0 +1,4 @@
+interface:
+  display_name: "Subclip Timeline Contact Sheets"
+  short_description: "Analyse and review the whole timeline in bulk"
+  default_prompt: "Use $subclip-timeline-contact-sheet to analyse this project and review its frames in one round."

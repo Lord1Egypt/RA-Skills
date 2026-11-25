@@ -4,7 +4,7 @@ category: subject_analysis
 description: "运行时读取 invest-skill 项目（Gitee 主源，GitHub 镜像可降级）的方法论与数据纪律并内化，由一个统一入口完成全场景股票投研分析，功能目录随仓库更新自动同步。"
 calls_gateway: false
 author: Warwick
-version: "1.1.0"
+version: "1.1.6"
 spec: SKILL.md
 runtime: llm_prompt
 input:

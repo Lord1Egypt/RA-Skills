@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes code change impact with risk scoring and affected-node mapping. Use before merging to understand what a change touches and what lacks test coverage
+Analyzes code change impact with risk scoring and affected-node mapping.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and reviewers use this skill before merging to map code changes to affected nodes, rank impact risk, and identify affected functions without test coverage.
+Developers and engineers can use this skill before merging to see which code areas a change may affect, identify uncovered functions, and prioritize review actions.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill checks an agent configuration directory while looking for an optional tool; the available security review is marked partial.
+Risk: The security review is partial, and its guidance recommends checking whether the plugin-directory search fits the intended environment.
 
-Mitigation: Review that check before running the skill and treat the security evidence as incomplete.
+Mitigation: Review that search against the local environment and consider the supplied security guidance before deployment.
+
+Risk: Impact results may be incomplete when the required code graph is unavailable or stale.
+
+Mitigation: Confirm the gauntlet graph is available and current; use the documented manual analysis fallback when it is unavailable.
 
 ## Reference(s):
 
-- [Pensive plugin page](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
+- [Project homepage (Clawdis metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-pensive-blast-radius)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, JSON]
+**Output Type(s):** [Analysis, Markdown, JSON, Guidance]
 
-**Output Format:** [Markdown risk table and structured findings JSON]
+**Output Format:** [Risk-ranked Markdown results table with affected nodes, file locations, citation anchors, and review suggestions; findings can also be written as JSON.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Findings include affected nodes, file locations, source anchors, test coverage status, overall risk, and suggested actions.]
+**Other Properties Related to Output:** [May include untested functions and an overall risk level.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release; artifact frontmatter states 1.10.3)
 
 ## Ethical Considerations:
 

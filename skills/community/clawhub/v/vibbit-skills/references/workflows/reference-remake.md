@@ -1,10 +1,16 @@
 # Reference adaptation
 
+When replacing the reference performer's facial features/hair with a supplied person, first use [facial identity replacement](face-identity-replacement.md) to prepare a suitable appearance anchor and anonymized real motion video. Keep the adopted adaptation script and mode rather than silently switching to precise editing. Product-only changes or keeping the original performer do not add this stage.
+
+When the goal is to learn a reference mixcut, its pacing or source-sound/narration changes, or retain that editing pattern, use [Agent semantic mixcut](semantic-mixcut.md). Reuse analysis, request only missing hot/transition/asr, save a reusable mixcut template, and arrange new material. Template-only requests do not start generation. Keeping the original shots while replacing selected elements still uses precise replacement.
+
 Use a reference's structure, rhythm, and expressive relationships to create the user's own script, shots, or video. For preservation of the actual source with people/objects/scenes replaced, use [1:1 remake](one-to-one-remake.md). Clarify only when the distinction changes the deliverable and context cannot resolve it.
 
 For saving a video as a new script template, retaining adopted work, or selecting saved scripts, use the [creative library](creative-library.md). Save-only requests end at persistence. Pin the template revision and write new-product adaptations into the current production records. Viral or replace product/person alone does not select 1:1 work; distinguish preserved source shots/actions from borrowed expressive structure.
 
 Keep the user's explicit choices about what to retain and replace. A single camera/action reference can use supported generation directly without full analysis. Existing adapted scripts, storyboards, and media are the starting point. Planning-only requests end with planning.
+
+For library references or discovery among saved videos, use [material reuse](../resources/materials.md) to locate the actual source, reuse existing descriptions/transcripts, and inspect the audiovisual relationships relevant to this adaptation. Content matches do not establish campaign performance or replace an explicitly selected version. Invoke further analysis or generation only for actual gaps.
 
 ## Choose and understand the relevant evidence
 

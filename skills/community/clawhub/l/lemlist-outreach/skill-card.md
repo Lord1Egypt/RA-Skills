@@ -1,45 +1,57 @@
-## Description: <br>
-Run personalized email outreach campaigns via Lemlist. Manage campaigns, sequences, and tasks, track lead engagement, search people and company databases, and automate outreach workflows with labeling and scheduling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run personalized email outreach campaigns via Lemlist. Manage campaigns, sequences, and tasks, track lead engagement, search people and company databases, and automate outreach workflows with labeling and scheduling.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users and sales teams use this skill to operate Lemlist outreach from an agent, including campaign management, lead actions, task handling, analytics, and people or company database search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ClawLink connects to the user's Lemlist team and proxies authenticated Lemlist API requests. <br>
-Mitigation: Install only when this access is acceptable, then verify the active Lemlist connection and intended team before using campaign or lead tools. <br>
-Risk: Confirmed write actions can create or change campaigns, leads, schedules, tasks, unsubscribe records, and outreach status. <br>
-Mitigation: Use read, list, search, or describe steps first, then review the write preview and confirm the target resource and intended effect before execution. <br>
-Risk: High-impact actions such as deleting schedules, changing lead status, or modifying unsubscribe records can affect active outreach. <br>
-Mitigation: Require explicit confirmation for destructive or outreach-affecting operations and report the real tool error if execution fails. <br>
+## Use Case:
 
+External users and sales teams use this skill to manage Lemlist outreach workflows, including campaigns, leads, sequences, schedules, tasks, suppression lists, analytics, and team information through a connected Lemlist account.
 
-## Reference(s): <br>
-- [Lemlist API Documentation](https://docs.lemlist.com/) <br>
-- [Lemlist Campaign Management](https://help.lemlist.com/en/) <br>
-- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown with inline shell commands and JSON tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses ClawLink tool calls against the connected Lemlist team; write actions are previewed and confirmed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill depends on an unpinned external plugin for OAuth-backed Lemlist access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the ClawLink plugin source, publisher, version, and update policy before installing or enabling it.
+
+Risk: Lemlist write operations can affect campaigns, lead statuses, schedules, unsubscribe or suppression settings, and exports.
+
+Mitigation: Connect an account with the minimum needed permissions and verify previews before any write operation.
+
+## Reference(s):
+
+- [Lemlist API Documentation](https://docs.lemlist.com/)
+- [Lemlist Campaign Management](https://help.lemlist.com/en/)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/lemlist-outreach)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or execute Lemlist read and write operations through ClawLink after connection checks and user confirmation for writes.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

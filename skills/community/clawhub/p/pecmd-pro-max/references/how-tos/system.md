@@ -160,7 +160,7 @@ _SUB CheckSingle *
         IFEX $%&wid%>0,
         {
             ENVI @@Visible=%&wid%:2                 // restore window
-            ENVI @@POS=%&wid%:::::::1               // bring to foreground
+            ENVI @@POS=%&wid%::::::::1               // 第 9 字段：前置+激活
         }
         EXIT FILE
     }
@@ -278,6 +278,8 @@ TIME Timer1,1000, %&callback%
 SET callback=CALL OnTimerB                            // switch handler on next tick
 ```
 
+> `TIME` 回调在 PECMD 主消息循环线程串行执行；长任务会阻塞 UI，必要时用 `THREAD+` 卸载。纯脚本、无消息泵时定时器不会触发。
+
 ---
 
 ## 14. 复合条件与流程控制
@@ -359,11 +361,11 @@ CALC &&pct=100 - 100 * %&used% / %&total% ##1       // percentage, force decimal
 
 ```wcs
 // From second instance, restore first instance:
-ENVI @@Visible=%&windowID%:2                         // SW_RESTORE
-ENVI @@POS=%&windowID%:::::::1                       // bring to foreground + activate
+ENVI @@Visible=%&windowID%:2                         // 2=SW_SHOWNORMAL（不是 SW_RESTORE）
+ENVI @@POS=%&windowID%::::::::1                      // 第 9 字段：前置+激活（SW_SHOWNORMAL 另见 :2）
 
 // In Window, save its HWND:
-ENVI @window.POS=?::&InitW:&InitH
+ENVI @window.POS=?&InitX:&InitY:&InitW:&InitH
 ```
 
 ---
@@ -618,9 +620,8 @@ FORX *NL &cfg,&&line,
 ```wcs
 _SUB EnumDiskDrives
     // GUID_DEVINTERFACE_DISK = 53f56307-b6bf-11d0-94f2-00a0c91efb8b
-    SET &GUID_HEX=53 f5 63 07 b6 bf 11 d0 94 f2 00 a0 c9 1e fb 8b
-    SET$# &guid=*16 0
-    CODE *,%&GUID_HEX%,*UNI,&guid
+    // SET#$$ 按内存字节序分组：4+2+2+2×8（不要用 CODE *HEX）
+    SET#$$ &guid=53f56307 b6bf 11d0 94f2 00a0c91efb8b
 
     SET &::DIGCF_PRESENT=0x02
     SET &::DIGCF_DEVICEINTERFACE=0x10
@@ -630,12 +631,12 @@ _SUB EnumDiskDrives
     IFEX $%&hSetup%=-1, EXIT _SUB
 
     // --- Struct sizes ---
-    // SP_DEVICE_INTERFACE_DATA: cbSize(4) + InterfaceClassGuid(16) + Flags(4) + Reserved(8)
-    //   x86: 32 bytes, x64: 40 bytes (due to alignment)
-    IFEX $%&::bX64%<3, SET &elemSz=32! SET &elemSz=40
-    // SP_DEVICE_INTERFACE_DETAIL_DATA_W: cbSize(4) + DevicePath(variable, ~260 WCHARs)
-    //   Header is cbSize(4), then DevicePath starts at byte 4
-    SET &detailHeader=4
+    // SP_DEVICE_INTERFACE_DATA: cbSize(4) + InterfaceClassGuid(16) + Flags(4) + Reserved(ptr)
+    //   x86: 28 bytes, x64: 32 bytes
+    IFEX $%&::bX64%<3, SET &elemSz=28! SET &elemSz=32
+    // SP_DEVICE_INTERFACE_DETAIL_DATA_W: cbSize(4) + DevicePath(inline WCHAR[])
+    //   Header is cbSize(4) but the struct size field is 6 (x86) / 8 (x64)
+    IFEX $%&::bX64%<3, SET &detailHeader=6! SET &detailHeader=8
 
     SET &i=0
     SET$# &devData=*%&elemSz% 0                         // one element buffer
@@ -649,7 +650,7 @@ _SUB EnumDiskDrives
         IFEX $%&ok%<>1, EXIT LOOP
 
         // --- Read field at offset ---
-        SET?int &devData=&&flags:%&detailHeader% + 16   // Flags at offset 20 (cbSize=4 + guid=16)
+        SET?int &devData=&&flags:20   // Flags at offset 20 (cbSize=4 + guid=16)
         MESS Device #%&i%: Flags=0x%&flags%
 
         // --- Get detail data (contains DevicePath) ---
@@ -666,9 +667,8 @@ _SUB EnumDiskDrives
         SET-long &detailBuf=%&detailHeader%:0
         CALL $--qd --bool Setupapi.dll,SetupDiGetDeviceInterfaceDetailW,#%&hSetup%,*&devData,*&detailBuf,#%&sz%,#0,#0
 
-        // DevicePath is at offset 4 (right after cbSize)
-        SET?ptr &detailBuf=&&pathPtr:4
-        SET-make &&devicePath=&pathPtr;0                    // null-terminated copy
+        // DevicePath 是 offset 4 处的内联 WCHAR[]，不是指针
+        SET-make &&devicePath=&detailBuf@4
         MESS DevicePath: %&devicePath%
         // Trim null terminator if present:
         SED &&devicePath=0,\0.*,,%&devicePath%
@@ -748,7 +748,7 @@ _SUB GetComputerName
     CALL $--qd --ret:&ret Kernel32.dll,GetComputerNameW,*#0,*&nSize
     ENVI?int &nSize=&bufSize
     IFEX #%&bufSize%=0, EXIT _SUB
-    SET$# &buf=*%&bufSize% 0
+    SET$ &buf=*%&bufSize% 0
     CALL $--qd --ret:&ret Kernel32.dll,GetComputerNameW,*&buf,*&nSize
     ENVI-ret %~1=%&buf%
 _END
@@ -760,18 +760,15 @@ _END
 
 ```wcs
 _SUB MakeGuid
-    // Try CLSIDFromString first
+    // 首选：CLSIDFromString，直接输出 16 字节二进制
     CALL $--qd --ret:&ret ole32.dll,CLSIDFromString,${%~2},*%~1
     IFEX #%&ret%>=0, EXIT _SUB
-    // Fallback: regex byte-swap for little-endian GUID layout
-    // Input: {XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX}
-    SED &&hex=0,
-      {\a\a}{\a\a}{\a\a}{\a\a}-{\a\a}{\a\a}-{\a\a}{\a\a}-{\a\a}{\a\a}-{\a\a}{\a\a}{\a\a}{\a\a}{\a\a}{\a\a},
-      0x\4 0x\3 0x\2 0x\1 0x\6 0x\5 0x\8 0x\7 0x\9 0x\10 0x\11 0x\12 0x\13 0x\14 0x\15 0x\16,
-      %~2
-    CODE *,%&hex%,*HEX,%~1
+    MESS CLSIDFromString failed: %&ret%
 _END
 ```
+
+> 正则字节交换只能生成 `0x..` 文本列表，不能直接变成 16 字节 GUID；CODE 没有 HEX 目标格式。
+> 最小 PE 中需要手工构造时，用 `SET#$$` 按 4+2+2+2×8 分组写死（见 `examples/system/wmi-query.wcs`）。
 
 ### 模式 59：Win32 回调的 WndProc 绑定
 
@@ -917,8 +914,7 @@ CALL $--qd --ret:&bret kernel32.dll,QueryDosDeviceW,#0,*&buf,#0x80000
 // Returns null-delimited, double-null terminated device list
 // lpos* * for binary null pattern search
 LPOS* * &&pos=0x00 0x00 0x00 0x00,1,&&buf
-// Extract and decode: GETF -bin → MSTR * → SED -ex → CODE ***unicode
-CODE ***unicode,**.buf,*uni,&&result
+// Extract and decode: 用 CODE 的合法格式转换，如 CODE **-UNICODE,&buf,**-UTF8,&out
 ```
 
 

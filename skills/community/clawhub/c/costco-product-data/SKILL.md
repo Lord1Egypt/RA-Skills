@@ -62,12 +62,12 @@ Authorization: Bearer $SCAVIO_API_KEY
 
 ## Endpoints
 
-Base URL: `https://api.scavio.dev`. Most Costco endpoints cost **1 credit**; the multi-warehouse ones scale with the number of warehouses.
+Base URL: `https://api.scavio.dev`. Most Costco endpoints cost **1 credit**; US search, category, deals and clearance cost **2**, and the multi-warehouse ones scale with the number of warehouses.
 
 | Endpoint | Credits | What it returns |
 |---|---|---|
-| `POST /api/v1/costco/search` | 1 | Keyword or item-number results: online and original price, rating, member-only and stock flags, promotions, facets. With `warehouse_id`, each row adds that warehouse's shelf price, stock and price code |
-| `POST /api/v1/costco/category` | 1 | Products in a category, same filters and row shape as search |
+| `POST /api/v1/costco/search` | 2 on `us` (1 on `ca` and the other countries) | Keyword or item-number results: online and original price, rating, member-only and stock flags, promotions, facets. With `warehouse_id`, each row adds that warehouse's shelf price, stock and price code |
+| `POST /api/v1/costco/category` | 2 on `us` (1 on `ca`) | Products in a category, same filters and row shape as search |
 | `POST /api/v1/costco/categories` | 1 | The department list, or the full subcategory tree under one department |
 | `POST /api/v1/costco/product` | 1 (1-20 ids) | Full detail for up to 20 items: description, features, specifications, variants, purchase limits, delivery fee, promotions with start and end dates |
 | `POST /api/v1/costco/prices` | 1 for 1-9 warehouses, 2 for 10 | Online price vs in-warehouse price per warehouse: discount, final price, promotion dates, per-order and per-member limits, price code |
@@ -76,8 +76,8 @@ Base URL: `https://api.scavio.dev`. Most Costco endpoints cost **1 credit**; the
 | `POST /api/v1/costco/warehouses` | 1 (2 on costco.ca) | Warehouses near a US zip or coordinates: `warehouse_id`, address, hours, departments, services, gas station hours and prices |
 | `POST /api/v1/costco/gas` | 1 by location (2 on costco.ca); by warehouse 1 per 5 (2 per warehouse on costco.ca) | Regular, premium and diesel prices at Costco gas stations |
 | `POST /api/v1/costco/coupons` | 1 | The current member coupon book: item number, amount off, final price, warehouse/online scope, limits, valid dates. US only |
-| `POST /api/v1/costco/deals` | 1 | Deal feeds: `new`, `while_supplies_last`, `treasure_hunt`, `member_favorites`, `online_only`, `on_sale` |
-| `POST /api/v1/costco/clearance` | 1 (any `pages` value) | Items at one warehouse whose shelf price carries a markdown code: .97 clearance, .00/.88 manager markdown, .49/.79/.89 special buy on request |
+| `POST /api/v1/costco/deals` | 2 on `us` (1 on `ca`) | Deal feeds: `new`, `while_supplies_last`, `treasure_hunt`, `member_favorites`, `online_only`, `on_sale` |
+| `POST /api/v1/costco/clearance` | 2 on `us`, 1 on `ca` (any `pages` value) | Items at one warehouse whose shelf price carries a markdown code: .97 clearance, .00/.88 manager markdown, .49/.79/.89 special buy on request |
 | `POST /api/v1/costco/autocomplete` | 1 | Search suggestions for a partial query, plus matching warehouse locations |
 
 **Countries.** `country` is `us` (costco.com, default) or `ca` (costco.ca) on every endpoint except coupons, which is US only and takes no parameters. Search, product and warehouses also accept `uk`, `au`, `mx`, `jp`, `kr` and `tw` for keyword, sort and paging only - no warehouse prices and no gas outside the US and Canada.
@@ -85,7 +85,7 @@ Base URL: `https://api.scavio.dev`. Most Costco endpoints cost **1 credit**; the
 ## Workflow
 
 1. **Find a warehouse:** call `/costco/warehouses` with `zip` (US) or `latitude` + `longitude`. Read `warehouses[].warehouse_id` (e.g. `1062`). `/costco/autocomplete` also resolves a town name to warehouses.
-2. **Find items:** call `/costco/search` with `query` (or `/costco/category` with a `slug` from `/costco/categories`). Pass `warehouse_id` to get that warehouse's shelf price and stock on every row in the same 1 credit.
+2. **Find items:** call `/costco/search` with `query` (or `/costco/category` with a `slug` from `/costco/categories`). Pass `warehouse_id` to get that warehouse's shelf price and stock on every row at no extra cost (2 credits on `us`, 1 on `ca`).
 3. **Item detail:** call `/costco/product` with `item_id`, or up to 20 at once with `item_ids`.
 4. **Price across warehouses:** call `/costco/prices` with the item and `warehouse_ids` (up to 10). The online price is always included.
 5. **Stock:** call `/costco/availability` with `item_number` and `warehouse_ids`.
@@ -95,9 +95,9 @@ Base URL: `https://api.scavio.dev`. Most Costco endpoints cost **1 credit**; the
 
 ### Pagination
 
-- **Search, category and deals:** `page` (1-based, up to 500) and `page_size` (default 24, up to 120; up to 100 on uk, au, mx, jp, kr and tw). The response carries `total_results` and `total_pages`. Each page is 1 credit, so state the budget before looping.
+- **Search, category and deals:** `page` (1-based, up to 500) and `page_size` (default 24, up to 120; up to 100 on uk, au, mx, jp, kr and tw). The response carries `total_results` and `total_pages`. Each page is 2 credits on `us` (1 on `ca` and elsewhere), so state the budget before looping.
 - **Reviews:** `page` and `limit` (default 25, up to 100). Stop at `total_pages`.
-- **Clearance:** `pages` is how many result pages of 120 to scan (default 3, up to 5); still 1 credit.
+- **Clearance:** `pages` is how many result pages of 120 to scan (default 3, up to 5); still one call: 2 credits on `us`, 1 on `ca`.
 - **Product, prices, availability, warehouses, gas, coupons, categories, autocomplete:** no paging.
 
 ## Parameters
@@ -223,7 +223,7 @@ def costco(endpoint, body):
 wh = costco("warehouses", {"zip": "10025", "limit": 5})
 warehouse_id = wh["warehouses"][0]["warehouse_id"]          # "1062"
 
-# 2. Search with that warehouse's shelf price on every row (still 1 credit)
+# 2. Search with that warehouse's shelf price on every row (2 credits on us)
 found = costco("search", {"query": "olive oil", "warehouse_id": warehouse_id, "page_size": 5})
 for row in found["results"]:
     shelf = row.get("warehouse") or {}
@@ -261,13 +261,13 @@ for row in markdowns["results"]:
 
 ## Response shapes
 
-Every response uses the envelope `{ data, response_time, credits_used, credits_remaining }`. Key `data` fields:
+Every response uses the envelope `{ data, response_time, fetched_at, credits_used, credits_remaining }`. `fetched_at` is the ISO time the data was retrieved; nothing is cached, so it is the age of the data. Key `data` fields:
 
 - **search / category / deals** - `country`, `query`, `category`, `redirected_to_category`, `corrected_query`, `warehouse_id`, `total_results`, `page`, `page_size`, `total_pages`, `count`, `results[]`, `facets[]` (deals also `type`).
   A row: `position`, `product_id`, `item_number`, `title`, `brand`, `categories`, `url`, `image`, `rating`, `reviews_count`, `price`, `original_price`, `on_sale`, `currency`, `delivery_availability`, `promotions`, `member_only`, `buyable`, `fsa_eligible`, `sold_in_warehouse`, `max_order_quantity`, `program_types`, `first_listed`, `variants_count`, and with `warehouse_id` a `warehouse` object (`warehouse_id`, `price`, `availability`, `price_code` {`ending`, `meaning`}).
 - **product** - `country`, `count`, `not_found[]`, `products[]` (`product_id`, `item_number`, `id`, `title`, `url`, `image`, `description`, `features[]`, `specifications[]` {`name`, `value`}, `rating`, `reviews_count`, `price`, `currency`, `delivery_fee`, `promotions[]`, `member_only`, `buyable`, `fsa_eligible`, `limit_one_per_order`, `min_order_quantity`, `max_order_quantity`, `reviews_eligible`, `department`, `program_types`, `first_listed`, `variants[]`).
 - **prices** - `country`, `count`, `items[]` (`item_number`, `found`, `online` {`price`, `discount`, `final_price`, `currency`, `promotions[]`}, `warehouses[]` {`warehouse_id`, `available`, `price`, `discount`, `final_price`, `currency`, `promotions[]`, `price_code`}). A promotion: `promotion_id`, `type`, `amount_off`, `start_date`, `end_date`, `order_limit`, `member_limit`, `text`.
-- **availability** - `item_number`, `count`, `warehouses[]` (`warehouse_id`, `in_warehouse`, `channels` {`in_warehouse`, `warehouse_pickup`, `same_day_delivery`}, each with `status`). Status values: `in_stock`, `low_stock`, `out_of_stock`, `not_available`.
+- **availability** - `item_number`, `count`, `warehouses[]` (`warehouse_id`, `in_warehouse`, `channels` {`in_warehouse`, `warehouse_pickup`, `same_day_delivery`}, each with `status`). Status values: `in_stock`, `low_stock`, `out_of_stock`, `not_available`, and `no_record` when Costco keeps no stock record for the item at that warehouse (common for warehouse-only items; `channels` is then `{}`).
 - **reviews** - `product_id`, `product_title`, `rating` {`average`, `count`, `recommended_count`, `distribution`}, `total_results`, `page`, `limit`, `total_pages`, `count`, `reviews[]` (`review_id`, `rating`, `title`, `text`, `author`, `location`, `submitted_at`, `recommended`, `verified_purchaser`, `helpful_votes`, `not_helpful_votes`, `photos`, `language`, `syndicated`).
 - **warehouses** - `country`, `location`, `count`, `warehouses[]` (`warehouse_id`, `name`, `address`, `phone`, `latitude`, `longitude`, `distance_miles`, `opened`, `region`, `hours`, `business_hours`, `pharmacy_hours`, `tire_center_hours`, `gas_station` {`hours`, `prices`} or null, `departments`, `services`, `specialty_departments`, `warehouse_pickup`, `ship_to_warehouse`, `upcoming_holidays`, `currency`).
 - **gas** - `country`, `currency`, `location`, `count`, `stations[]` (`warehouse_id`, `name`, `address`, `latitude`, `longitude`, `distance_miles`, `prices` {`regular`, `premium`, `diesel`}, `hours`).
@@ -349,7 +349,7 @@ A search row with `warehouse_id` (captured, "olive oil" at warehouse 1062):
 ## Guardrails
 
 - `price` on search rows and `online` on prices is the costco.com (or costco.ca) online price. The warehouse shelf price is `warehouse.price` / `warehouses[].price`, and it is often lower. Never present one as the other.
-- Availability is a status per warehouse (`in_stock`, `low_stock`, `out_of_stock`, `not_available`), never a quantity. Do not invent unit counts.
+- Availability is a status per warehouse (`in_stock`, `low_stock`, `out_of_stock`, `not_available`, `no_record`), never a quantity. Do not invent unit counts. `no_record` is not out of stock: say Costco has no stock data for it there, and use `/costco/prices` to check whether that warehouse prices the item.
 - Clearance covers only items Costco lists online; warehouse-only items with no costco.com page cannot appear. A clearance item can already be `out_of_stock` at that warehouse - report `warehouse.availability` with it.
 - `special_buy` endings are common on regular grocery prices, so they are off by default in clearance. Add them only when the user asks.
 - Reviews take `product_id`, which is a different number from the item number. Get it from search or product first.

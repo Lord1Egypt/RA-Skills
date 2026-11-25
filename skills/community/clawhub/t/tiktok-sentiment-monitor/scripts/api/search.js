@@ -1,77 +1,57 @@
 const constants = require("../config/constants");
-const { requestApi } = require("../utils/request");
+const { requestApi, pollTaskResult } = require("../utils/request");
+const { SkillError } = require("../utils/errors");
+const { formatCreateTime } = require("../utils/time");
+const { profileUrl } = require("../validate/url");
 
 function processSearchResults(data) {
-  if (!Array.isArray(data)) {
-    return [];
+  if (!Array.isArray(data)) return [];
+  const out = [];
+  for (const item of data) {
+    if (!item || typeof item !== "object" || !item.aweme_id) continue;
+    const processed = { ...item };
+    const authorUrl = profileUrl(item.author_uid);
+    if (authorUrl) processed.author_url = authorUrl;
+    const timeText = formatCreateTime(item.create_time);
+    if (timeText) processed.create_time_str = timeText;
+    out.push(processed);
   }
-
-  return data.map((item) => {
-    const processedItem = { ...item };
-
-    if (item.author_uid) {
-      processedItem.author_url = `https://www.tiktok.com/@${item.author_uid}`;
-    }
-
-    if (
-      typeof item?.create_time === "number" &&
-      item.create_time &&
-      !item.create_time_str
-    ) {
-      processedItem.create_time_str = new Date(
-        item.create_time * 1000,
-      ).toLocaleString();
-    }
-
-    return processedItem;
-  });
+  return out;
 }
 
 async function createSearchTask(token, keyword, sort, time, limit) {
-  const params = { _: Date.now() };
-
-  const data = {
-    keyword,
-    sort_type: sort,
-    publish_time: time,
-    limit: limit,
-  };
-
   return await requestApi(
     "POST",
     "/api/tiktok/search/keyword",
+    { _: Date.now() },
+    {
+      keyword,
+      sort_type: sort,
+      publish_time: time,
+      limit,
+    },
     token,
-    params,
-    data,
     constants.CREATE_MAX_ATTEMPTS,
     "创建任务",
   );
 }
 
 async function getSearchTask(token, keyword, sort, time, limit) {
-  const params = {
-    _: Date.now(),
-    keyword: keyword,
-    sort_type: sort,
-    publish_time: time,
-    limit: limit,
-  };
-
-  const response = await requestApi(
-    "GET",
+  const response = await pollTaskResult(
     "/api/tiktok/search/info",
+    {
+      keyword,
+      sort_type: sort,
+      publish_time: time,
+      limit,
+    },
     token,
-    params,
-    null,
-    constants.QUERY_MAX_ATTEMPTS,
     "查询任务",
   );
-
-  if (response.data) {
-    return processSearchResults(response.data);
+  if (!Array.isArray(response.data)) {
+    throw new SkillError("API_ERROR", "搜索结果格式错误: data 不是数组", true);
   }
-
-  return [];
+  return processSearchResults(response.data);
 }
 
 module.exports = {

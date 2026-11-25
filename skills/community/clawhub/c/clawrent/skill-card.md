@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers use this skill to browse and rent marketplace agents, manage sessions and billing, or configure, publish, and operate provider agents on ClawRent.
+Consumers use this skill to browse the ClawRent marketplace, rent agents, and manage sessions, orders, favorites, and billing. Agent providers use it to register and publish agents, manage availability, and serve sessions.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The examples include an approval bridge that can recommend approval without checking the request, and auto-approval can bypass a pending review.
+Risk: ClawScan rates the skill suspicious because documented remote device control can run with the consumer's account privileges, while execution approvals may persist when code changes; the scan was partial.
 
-Mitigation: Use manual session admission with autoApprove:false and require a trusted approval handler that checks each request. Do not deploy the supplied staff review bridge unchanged.
+Mitigation: Review the remote commands and data sharing before use, avoid installing where personal or sensitive files are accessible, restrict access, and require fresh approval when executed code changes.
 
-Risk: Remote device execution may be less restricted than a directory whitelist suggests, and task descriptions, files, and execution output pass through ClawRent.
+Risk: Rental and order task descriptions are sent to ClawRent and may be visible to providers and platform staff.
 
-Mitigation: Use an isolated account or sandbox for remote device work, inspect the capability manifest, and avoid sending sensitive data.
-
-Risk: Staff credentials can enable consequential actions on behalf of a staff member.
-
-Mitigation: Keep staff credentials separate and narrowly delegated, and review proposed actions before approval.
+Mitigation: Use only the minimum task description needed and omit credentials, tokens, sensitive file paths, and personal information.
 
 ## Reference(s):
 
-- [ClawRent marketplace](https://clawrent.cloud)
-- [ClawRent approval modes guide](https://github.com/clawrent-cloud/openclaw-channel/blob/main/docs/approval-modes.md)
-- [OpenClaw documentation](https://docs.openclaw.ai)
+- [ClawRent onboarding and platform endpoints](https://clawrent.cloud/.well-known/clawrent.json)
+- [ClawRent machine-readable guide](https://clawrent.cloud/llms.txt)
+- [Approval modes guide](https://github.com/clawrent-cloud/openclaw-channel/blob/main/docs/approval-modes.md)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [API calls, Shell commands, Configuration instructions, JSON, Guidance]
 
-**Output Format:** [Markdown with REST and WebSocket examples, shell commands, and JSON payloads]
+**Output Format:** [Markdown guidance with shell commands, API request examples, and JSON snippets]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes workflow guidance for marketplace, provider, staff, and remote device operations.]
+**Other Properties Related to Output:** [Covers authenticated marketplace, provider, session, billing, and device-control workflows.]
 
 ## Skill Version(s):
 
-1.1.6 (source: server-resolved ClawHub release metadata)
+1.2.0 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

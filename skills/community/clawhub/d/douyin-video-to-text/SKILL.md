@@ -1,7 +1,7 @@
 ---
 name: douyin-video-to-text
-description: "抖音视频转文字：口播逐字稿（带时间）、画面上的字幕和文字、标题简介、章节、要点、点赞评论收藏数。用户发来 douyin.com、v.douyin.com 链接或分享口令，要提取文案、扒口播、提字幕、总结视频时使用。不需要 Key 也能先免费看一条摘要；注册拿 Key（送 10 积分）后给完整逐字稿，1 分钟视频 2 积分（约 ¥0.29）。不下载视频，不需要抖音账号或 Cookie。"
-version: 1.0.3
+description: "抖音文案提取 / 抖音视频转文字：口播逐字稿（带时间）、画面上的字幕和文字、标题简介、章节、要点、点赞评论收藏数。用户发来 douyin.com、v.douyin.com 链接或分享口令，要提取文案、扒口播、提字幕、总结视频时使用。不需要 Key 也能先免费看一条摘要；注册拿 Key（送 10 积分）后给完整逐字稿，1 分钟视频 2 积分（约 ¥0.29）；只要文案（--depth script）每 2 分钟 1 积分、不收基础积分，5 分钟视频 3 积分。不下载视频，不需要抖音账号或 Cookie。"
+version: 1.0.6
 homepage: https://linkdigest.dev/zh/docs?ref=skill-douyin-video-to-text
 metadata: {"openclaw":{"requires":{"anyBins":["python3"]},"primaryEnv":"LINKDIGEST_API_KEY","envVars":[{"name":"LINKDIGEST_API_KEY","required":false,"description":"可选。LinkDigest API Key（ld_live_ 开头），在 https://linkdigest.dev/signin?ref=skill-douyin-video-to-text&next=/app/keys 创建，注册送 10 积分；没有 Key 时每天可免费看 1 条摘要"}],"homepage":"https://linkdigest.dev/zh/docs?ref=skill-douyin-video-to-text"}}
 required_environment_variables:
@@ -56,6 +56,7 @@ python3 {baseDir}/scripts/linkdigest.py "<视频链接或整段分享文案>"
 python3 {baseDir}/scripts/linkdigest.py "<视频链接>" --format json
 python3 {baseDir}/scripts/linkdigest.py "<视频链接>" --translate-to en    # 另附英文译文，+1 积分，原文保留
 python3 {baseDir}/scripts/linkdigest.py "<视频链接>" --max-credits 5      # 超过 5 积分的视频不读、不扣费
+python3 {baseDir}/scripts/linkdigest.py "<视频链接>" --depth script       # 只要文案：只读口播，每 2 分钟 1 积分，不收基础积分
 ```
 
 - 抖音「复制链接」得到的整段分享文案可以直接传，服务端会从里面取出链接。文案里有引号或换行时，从标准输入传：`printf '%s' "$SHARE_TEXT" | python3 {baseDir}/scripts/linkdigest.py -`
@@ -160,6 +161,7 @@ printf '%s\n' "$body"
 - 超过上限默认返回 402（`error_code: media_too_long`），不扣费。
 - 免费账户和加量包账户可以加 `--partial-ok`（HTTP 里是 `"partial_ok": true`）：只读开头，读多长取决于剩余积分，最多 10 分钟；结果里的 `partial` 写明读了多少秒。
 - 长视频省钱档 `--depth transcript`（HTTP 里是 `"depth": "transcript"`，2026-10-06 起）：全程逐字稿 + 少量截帧，基础 1 积分 + 每开始的 2 分钟 1 积分（44 分钟的视频 23 积分，完整档要 45）。长度上限也更高：免费和加量包账户 60 分钟，Dev 月付 2 小时。画面文字只读少量截帧，结果里的 `coverage` 会写明。YouTube 不支持这一档。
+- 只要文案 `--depth script`（HTTP 里是 `"depth": "script"`，2026-10-29 起）：只读口播，不抽帧、不读画面文字，每开始的 2 分钟 1 积分、**不收基础积分**（1 分钟 1 积分，5 分钟 3 积分，10 分钟 5 积分）。用户只要文案、扒口播时用这一档最省。
 - 长视频处理要几分钟，一定会走 202 + 轮询，不要因为第一次返回 202 就重新提交。
 
 ## 限制

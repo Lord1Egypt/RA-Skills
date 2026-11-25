@@ -125,6 +125,76 @@ def load_file(path):
         return load(f.read())
 
 
+# ───────────────────────── 极简 YAML 写入器（v2.9.0 同步自 llm-core） ─────────────────────────
+def _yaml_scalar(v):
+    if v is None:
+        return "null"
+    if v is True:
+        return "true"
+    if v is False:
+        return "false"
+    if isinstance(v, (int, float)):
+        return str(v)
+    s = str(v)
+    if any(c in s for c in ":{}[]&*?|-><!%@`") or s.startswith(("'", '"')):
+        return '"' + s.replace('"', '\\"') + '"'
+    return s
+
+
+def _dump_mapping(mapping, indent_level=0):
+    lines = []
+    prefix = "  " * indent_level
+    for k, v in mapping.items():
+        if isinstance(v, dict):
+            lines.append(prefix + str(k) + ":")
+            lines.append(_dump_mapping(v, indent_level + 1))
+        elif isinstance(v, list):
+            lines.append(prefix + str(k) + ":")
+            lines.append(_dump_seq(v, indent_level + 1))
+        else:
+            lines.append(prefix + str(k) + ": " + _yaml_scalar(v))
+    return "\n".join(lines)
+
+
+def _dump_seq(seq, indent_level=0):
+    lines = []
+    prefix = "  " * indent_level
+    for item in seq:
+        if isinstance(item, dict):
+            first = True
+            for k, v in item.items():
+                if isinstance(v, (dict, list)):
+                    if first:
+                        lines.append(prefix + "- " + str(k) + ":")
+                        first = False
+                    else:
+                        lines.append(prefix + "  " + str(k) + ":")
+                    lines.append(_dump_mapping(v, indent_level + 1) if isinstance(v, dict)
+                                 else _dump_seq(v, indent_level + 1))
+                else:
+                    if first:
+                        lines.append(prefix + "- " + str(k) + ": " + _yaml_scalar(v))
+                        first = False
+                    else:
+                        lines.append(prefix + "  " + str(k) + ": " + _yaml_scalar(v))
+        else:
+            lines.append(prefix + "- " + _yaml_scalar(item))
+    return "\n".join(lines)
+
+
+def dump(data):
+    """把 Python 对象序列化为 YAML 文本（顶层为映射）。"""
+    if not isinstance(data, dict):
+        raise ValueError("顶层必须是映射")
+    return _dump_mapping(data)
+
+
+def dump_file(path, data):
+    """把 Python 对象写入 YAML 文件。签名与 llm-core 一致：(path, data)。"""
+    with open(path, "w", encoding="utf-8", newline="") as f:
+        f.write(dump(data))
+
+
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         import json

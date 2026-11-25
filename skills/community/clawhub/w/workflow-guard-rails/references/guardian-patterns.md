@@ -82,13 +82,13 @@ Record after every run:
 - Human confirmations (what was approved, by whom, when)
 - Changes made
 
-Do not judge compliance on a single run. Track the compliance rate **across runs**. A single deviation in one run is an early warning; a trend across runs is an escalation. Catching drift at the first deviation prevents the "looks fine every day, then suddenly collapses" path.
+Judge compliance across runs, not on a single run. Track the compliance rate **across runs**. A single deviation in one run is an early warning; a trend across runs is an escalation. Catching drift at the first deviation prevents the "looks fine every day, then suddenly collapses" path.
 
 ---
 
 ## Pattern 7: Rule accumulation (guard #7)
 
-When a failure mode is confirmed, capture it into the staging file (`~/.workbuddy/ERROR-PLAYBOOK.staging.md`) immediately — in the same run. Staging has no approval gate on purpose: waiting for a human is what starved the rule library for two months. But staging is not the authoritative store — a staged entry reaches `~/.workbuddy/ERROR-PLAYBOOK.md` only through the promotion gate: the failure recurs (count >= 2) or a human confirms the rule.
+When a failure mode is confirmed, capture it into the staging file (`~/.workbuddy/ERROR-PLAYBOOK.staging.md`) immediately — in the same run. Staging is a reversible draft, not an approval-free authoritative write: requiring a human at capture time is what starved the rule library for two months, so capture stays immediate but every promotion to `~/.workbuddy/ERROR-PLAYBOOK.md` still passes the promotion gate. Staging is not the authoritative store — a staged entry reaches the authoritative file only when the failure recurs (count >= 2) or a human confirms the rule.
 
 Recurring issues (e.g. a summary field that keeps exceeding length) should become permanent guards, not one-off fixes. The guardian's rule set grows from real failures, not from speculation — and from proven failures, not single unreviewed observations.
 

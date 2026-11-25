@@ -67,7 +67,7 @@ then
 
 **Synchronizations are causal rules.** An action occurrence leads to subsequent actions under the specified conditions, without an implicit transaction or rollback across the chain. Express required order through action occurrences, not textual position.
 
-Put business conditions directly in actions or synchronizations. Record concurrency, repetition, timing, and recovery requirements as needed; see [execution and recovery](execution.md) for engineering requirements.
+Put business conditions directly in actions or synchronizations. Record concurrency, repetition, timing, and recovery requirements as needed; see [execution and recovery](architecture-execution.md) for engineering requirements.
 
 ## Tool checks
 

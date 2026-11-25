@@ -1,0 +1,8 @@
+# localhost.run's SSH host key. scripts/tunnel only accepts this key, so
+# the first connection can't be intercepted, and nothing is written to the
+# user's known_hosts.
+#
+# To rotate the server's key: add the new key here as a second line, and
+# release the skill well before the server switches; remove the old line
+# after the switch.
+localhost.run ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILVqOuSMnyeGDVO1lG6EaG5In/dXABCchhmHKkuRU2s9

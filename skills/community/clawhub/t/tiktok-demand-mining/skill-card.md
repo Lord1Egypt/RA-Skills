@@ -1,6 +1,6 @@
 ## Description:
 
-检索 TikTok 公开的关键词搜索结果、博主作品和视频评论，并返回结构化数据，供需求挖掘、竞品研究和评论分析。
+Fetch TikTok videos, creator posts, and comments for demand discovery, sentiment analysis, and content research.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-面向 TikTok 创作者、跨境营销人员和产品研究团队，检索公开视频、博主作品及视频评论，并据此整理内容趋势、用户痛点与需求机会。
+Creators, marketers, and product teams use this skill to search public TikTok videos, review creator activity, and collect comments for demand, sentiment, and competitor analysis.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rated the skill benign but fully inspected only 21 of 33 components, leaving some uncertainty about its purpose and environment use.
+Risk: The benign security verdict has medium confidence because 12 of 33 components were only partially inspected, including executable scripts.
 
-Mitigation: Review the skill's GUAIKEI_API_TOKEN use before installation and keep the token private in the runtime environment.
+Mitigation: Review and scan the skill before running it, especially after updates.
+
+Risk: The skill sends GUAIKEI_API_TOKEN to guaikei.com and returns TikTok creator and commenter data that may identify people.
+
+Mitigation: Keep the token private, confirm the external data handling is acceptable, and anonymize identities before sharing results.
 
 ## Reference(s):
 
+- [Demand mining workflow](references/demand-mining.md)
+- [Command options](references/options.md)
+- [Release notes](references/changelog.md)
 - [GUAIKEI service and token access](https://www.guaikei.com)
 - [ClawHub release page](https://clawhub.ai/why20261/skills/tiktok-demand-mining)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON]
+**Output Type(s):** [JSON, Analysis, Guidance]
 
-**Output Format:** [Structured JSON envelope with status, request, metadata, and TikTok video, creator, or comment records.]
+**Output Format:** [Structured JSON result envelopes with TikTok video, creator post, or comment data; agent summaries can be written in Markdown.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Returned fields and record counts depend on available public data and the service plan; zero or empty fields may be omitted.]
+**Other Properties Related to Output:** [Results depend on the requested filters, available public data, and account plan limits.]
 
 ## Skill Version(s):
 
-1.1.1 (source: frontmatter, package.json, server release)
+1.1.2 (source: frontmatter, package.json, server release metadata)
 
 ## Ethical Considerations:
 

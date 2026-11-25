@@ -1,6 +1,6 @@
 ## Description:
 
-Pdfless (pdfless.com). Use this skill for ANY Pdfless request — searching and reading data. Whenever a task involves Pdfless, use this skill instead of calling the API directly.
+Pdfless (pdfless.com). Use this skill for ANY Pdfless request — reading, creating, and updating data. Whenever a task involves Pdfless, use this skill instead of calling the API directly.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers using an OOMOL-connected Pdfless account can retrieve workspace details and list document templates through the oo CLI connector.
+Developers and operators use this skill to inspect Pdfless action schemas, retrieve workspace or template information, and create PDFs from document templates through a connected account.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Initial setup directs users to install the oo CLI with a remote installer whose precise local changes are unverified.
+Risk: The security review rated the skill suspicious with medium confidence because it recommends an unpinned internet installer; the scan did not verify the installer and coverage was partial.
 
-Mitigation: Use a separately approved, version-pinned CLI installation with verified integrity, and check whether it adds other agent skills.
+Mitigation: Review the installation instructions and installer source before installing the CLI, and manually review the unmatched references because the scan evidence is incomplete.
 
 ## Reference(s):
 
-- [Pdfless](https://pdfless.com)
 - [Pdfless PDF API documentation](https://docs.pdfless.com/pdfs)
-- [oo CLI source repository](https://github.com/oomol-lab/oo-cli)
-- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+- [Pdfless](https://pdfless.com)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, JSON, Text]
+**Output Type(s):** [Shell commands, API responses, PDFs]
 
-**Output Format:** [JSON and text returned by Pdfless connector actions]
+**Output Format:** [Markdown instructions with shell commands, JSON payloads, API response data, and generated PDF links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires an installed, authenticated oo CLI and a connected Pdfless account.]
+**Other Properties Related to Output:** [PDF generation consumes workspace quota; generated download links expire after 10 minutes.]
 
 ## Skill Version(s):
 
-1.0.5 (source: frontmatter, ClawHub release)
+1.0.6 (source: SKILL.md frontmatter; release evidence)
 
 ## Ethical Considerations:
 

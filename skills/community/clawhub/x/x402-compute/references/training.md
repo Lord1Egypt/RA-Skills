@@ -27,7 +27,7 @@ Rules an agent must follow:
 - `owner_wallet` must OWN the dataset, the dataset must be APPROVED, and the SAME wallet
   must pay. Payer != owner is refused before any money moves.
 - Networks: whatever `catalog.networks` lists: today `base` (USDC), `solana` (USDC) and `robinhood` (USDG). EVM payers sign EIP-3009; Solana payers sign an SPL transfer transaction (`--network solana`, `SOLANA_SECRET_KEY`). MegaETH is not offered for training. Asking for an unlisted network returns 400 before anything is charged.
-- Sign EXACTLY `maxAmountRequired`. Any other signed value is refused.
+- Sign EXACTLY `maxAmountRequired` (v1 body) or `amount` (v2 `PAYMENT-REQUIRED` header); they are the same number. Any other signed value is refused. `train_x402.py` saves which header it used and `resume` resends the identical header.
 - EVM: `validBefore` must be no more than `maxTimeoutSeconds` (3600) from now (Solana transactions expire with their blockhash). Standard x402 signers already do this; a longer authorization is refused before anything is charged.
 - Resend the SAME body plus `quote_id`. A changed body (hours, GPU, recipe) is refused.
 - Keep the `claim_token` (shown once). Status states: `payment_pending` (do NOT pay again),

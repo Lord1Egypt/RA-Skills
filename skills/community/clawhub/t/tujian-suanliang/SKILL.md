@@ -2,7 +2,7 @@
 name: tujian-suanliang
 slug: tujian-suanliang
 displayName: 土建算量 · 混凝土与钢筋计划口径速算
-version: 0.9.44
+version: 0.9.45
 platforms: [macos, windows, linux]
 author: lis
 license: CC-BY-NC-SA-4.0

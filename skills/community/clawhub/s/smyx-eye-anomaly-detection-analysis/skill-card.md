@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes close-up pet eye photos or videos for visible redness, tearing, and cloudiness, then returns a structured screening report.
+Analyzes close-up pet images or videos for eye redness, abnormal tearing, and corneal or pupil opacity, then provides visual anomaly alerts.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Pet owners, boarding staff, and veterinary teams can use the skill to screen pet eye images or videos for visible changes and review prior reports. Its findings are visual alerts and do not replace a veterinary diagnosis.
+Pet owners, boarding staff, and veterinary teams can use the skill to review close-up pet eye images or videos for visible signs that may warrant attention. Its output is a visual screening aid and does not replace a veterinarian's diagnosis.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan marks the skill suspicious for credential and identity behavior beyond the advertised analysis; its assessment was partial because a local reference was missing.
+Risk: The security review rates the skill suspicious for account and credential handling, broad credential forwarding, and possible media uploads beyond its stated analysis purpose.
 
-Mitigation: Avoid installation until the credential destination, account creation and storage, media processing disclosure, and export-only behavior are clarified.
+Mitigation: Follow the security guidance: avoid installation until credential handling, account behavior, and external media transfers have been clarified.
+
+Risk: Visual screening results may be mistaken for a veterinary diagnosis.
+
+Mitigation: Treat results as visual alerts only and consult a veterinarian about suspected abnormalities.
 
 ## Reference(s):
 
-- [API interface notes](references/api_doc.md)
-- [Skill demo](https://lifeemergence.com/sample.html)
+- [API reference](references/api_doc.md)
+- [Analysis API reference](skills/smyx_analysis/references/api_doc.md)
+- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-eye-anomaly-detection-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Markdown]
+**Output Type(s):** [Analysis, JSON, Markdown]
 
-**Output Format:** [Structured JSON analysis reports and Markdown report summaries]
+**Output Format:** [Structured eye analysis report as readable text or JSON; Markdown table for history lists]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include anomaly alerts, suggestions, and report links; not a veterinary diagnosis.]
+**Other Properties Related to Output:** [May include anomaly alerts, suggestions, and report links; visual screening only, not a veterinary diagnosis.]
 
 ## Skill Version(s):
 
-1.0.13 (source: server-resolved release metadata)
+1.0.15 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -11,6 +11,23 @@ from openpyxl import load_workbook, Workbook
 from openpyxl.styles import Font, Alignment, PatternFill, Border, Side
 from openpyxl.utils import get_column_letter
 
+# --- 防电子表格公式注入（CWE-1236）：第三方文件里的字段可能以 =/+/−/@ 开头 ---
+def _defuse_formulas(ws, first_data_row=2):
+    """强制把可能被 Excel 当作公式的字符串单元格设为文本类型。"""
+    for row in ws.iter_rows(min_row=first_data_row):
+        for cell in row:
+            if isinstance(cell.value, str) and cell.value[:1] in ('=', '+', '-', '@', '\t'):
+                cell.data_type = 's'
+
+
+def _csv_safe(v):
+    """CSV 输出防公式注入：危险前缀前置单引号（Excel 打开时不求值）。"""
+    if isinstance(v, str) and v[:1] in ('=', '+', '-', '@', '\t'):
+        return "'" + v
+    return v
+
+
+
 HDR_FILL = PatternFill('solid', fgColor='305496')
 HDR_FONT = Font(name='等线', size=11, bold=True, color='FFFFFF')
 BODY = Font(name='等线', size=10)
@@ -102,6 +119,7 @@ def write(ws, title, hdr, data):
         vals = [len(str(ws.cell(r, i).value or '')) for r in range(1, min(ws.max_row, 300) + 1)]
         w = max(vals) if vals else 10
         ws.column_dimensions[get_column_letter(i)].width = min(max(w * 1.3 + 2, 9), 46)
+    _defuse_formulas(ws)
     ws.freeze_panes = 'A2'
     if ws.max_row > 1:
         ws.auto_filter.ref = f"A1:{get_column_letter(len(hdr))}{ws.max_row}"

@@ -1,6 +1,6 @@
 ## Description:
 
-根据抖音公开内容、作者互动和评论数据筛选带货达人候选，并支持热点与市场分析。
+Find and assess Douyin creator candidates using public account, video, post, comment, and trending data.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-营销团队、内容运营者和数据分析人员可用它筛选抖音达人候选，查看公开作品表现、热点和评论，以支持内容与市场研究。
+Marketing, creator-partnership, and content teams can use the skill to find Douyin accounts and public content relevant to a niche, then compare creator, post, engagement, comment, and trend data to prioritize candidates or inform content research.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Security review confidence is medium; 19 of 43 components received only partial analysis, so some behavior remains unverified.
+Risk: ClawScan reports medium confidence and partial inspection, and notes expanded customer-prospecting workflows.
 
-Mitigation: Review the partially analyzed components and their behavior before relying on the skill in a sensitive workflow.
+Mitigation: Review the prospecting workflows and related guidance before use, and confirm that collection and outreach fit your policies.
 
-Risk: Queries send keywords or links to the Guaikei API, and execution requires an API token.
+Risk: Search terms and content links are sent to the third-party service identified in the skill documentation.
 
-Mitigation: Use only authorized public-data queries, avoid sending sensitive information, and keep GUAIKEI_API_TOKEN confidential.
+Mitigation: Avoid submitting sensitive queries or links, and make the data transfer clear to users where appropriate.
 
 ## Reference(s):
 
-- [抖音数据服务](https://www.guaikei.com)
-- [ClawHub release page](https://clawhub.ai/why20261/skills/douyin-creator-match)
-- [options.md](references/options.md)
-- [demand-mining.md](references/demand-mining.md)
-- [changelog.md](references/changelog.md)
+- [Command routing](artifact/references/routing.md)
+- [Command options](artifact/references/options.md)
+- [Output contract](artifact/references/contract.md)
+- [Error handling](artifact/references/errors.md)
+- [Demand mining guidance](artifact/references/demand-mining.md)
+- [Customer acquisition guidance](artifact/references/customer-acquisition.md)
+- [Guaikei service](https://www.guaikei.com)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis, Guidance, Shell commands]
+**Output Type(s):** [JSON, Guidance, Analysis]
 
-**Output Format:** [Structured JSON with concise Chinese analysis or reports]
+**Output Format:** [Structured JSON data with concise text summaries or tables]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Read-only public-data results; selected commands save JSON output for later analysis.]
+**Other Properties Related to Output:** [Uses public Douyin data; results may be empty and should be reported as returned. A configured GUAIKEI_API_TOKEN is required for data requests.]
 
 ## Skill Version(s):
 
-1.4.2 (source: server release metadata, SKILL.md frontmatter, package.json)
+1.5.0 (source: artifact/SKILL.md frontmatter, artifact/package.json, artifact/references/changelog.md entry dated 2026-11-10)
 
 ## Ethical Considerations:
 

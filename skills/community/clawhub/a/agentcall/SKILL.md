@@ -3,7 +3,7 @@
 <!-- BEGIN GENERATED OFFER POLICY -->
 ## Current offer and agent behavior
 
-New accounts receive a one-time 72-hour live trial with one US/Canada local number, 300 managed inbound AI seconds (five minutes) total, and five SMS send attempts to verified destinations. Card verification is required before number allocation; the clock starts when allocation succeeds. There is no monthly reset or automatic paid subscription. Live OTP extraction and outbound calls require Pro.
+New accounts receive a one-time 72-hour live trial with one US/Canada local number, 300 managed inbound AI seconds (five minutes) total, and five SMS send attempts to verified destinations. Card verification with a US- or Canada-issued card is required before number allocation; the clock starts when allocation succeeds. There is no monthly reset or automatic paid subscription. Live OTP extraction and outbound calls require Pro.
 
 Existing Free accounts retain their assigned monthly allowances. Read the account's offerVersion, trial and limits rather than assuming every Free account has the same offer. Only describe a monthly reset when the account response supplies a non-null resetsAt.
 
@@ -11,7 +11,7 @@ Pro is $19.99/month plus number rental and usage: local numbers $2/month each, t
 
 After trial expiry, the number is held for at least 48 hours before release, with a successful expiry notice before release becomes eligible. A delayed notice extends the hold. Trial expiry and number retention are separate; stored configuration and results remain available. Upgrading during the hold preserves the number.
 
-Before quoting allowances or taking a paid action, call get_plan (or GET /v1/account) and use the returned offerVersion, trial, limits, billingStatus and summary. New live_trial_72h_v1 accounts have a one-time 72-hour trial starting at successful number allocation, 300 managed inbound AI seconds total and five verified-destination SMS attempts; card verification is required first. No monthly reset, automatic upgrade or Free overage. Existing free_monthly_v1 accounts retain assigned monthly allowances. Live OTP extraction, outbound calls, BYOK and Premium Voice require Pro for new trial accounts. Explain payment_method_required, payment_recovery_required, trial expiry and quota errors; stop retrying them. Share the returned setup/upgrade link when the user wants to proceed, let the human complete card/payment steps, then reread get_plan before retrying. Do not assume saving a card upgrades the account, or promise a released number can be recovered. Pro is $19.99/month plus number rental and usage. Do not auto-run upgrade_to_pro just because another tool failed. Honor the user's authorization for any real-world action. Read https://api.agentcall.co/llms.txt for the current reference.
+Before quoting allowances or taking a paid action, call get_plan (or GET /v1/account) and use the returned offerVersion, trial, limits, billingStatus and summary. New live_trial_72h_v1 accounts have a one-time 72-hour trial starting at successful number allocation, 300 managed inbound AI seconds total and five verified-destination SMS attempts; verification of a card issued in the US or Canada is required first; a trial_eligibility_required refusal for a card from another country means offer Pro, not a retry. No monthly reset, automatic upgrade or Free overage. Existing free_monthly_v1 accounts retain assigned monthly allowances. Live OTP extraction, outbound calls, BYOK and Premium Voice require Pro for new trial accounts. Explain payment_method_required, payment_recovery_required, trial expiry and quota errors; stop retrying them. Share the returned setup/upgrade link when the user wants to proceed, let the human complete card/payment steps, then reread get_plan before retrying. Do not assume saving a card upgrades the account, or promise a released number can be recovered. Pro is $19.99/month plus number rental and usage. Do not auto-run upgrade_to_pro just because another tool failed. Honor the user's authorization for any real-world action. Read https://api.agentcall.co/llms.txt for the current reference.
 <!-- END GENERATED OFFER POLICY -->
 
 You have access to the AgentCall API for phone numbers, SMS, voice calls, and AI voice calls. Inbound and outbound calls can both be answered or initiated by an AI voice agent.
@@ -27,6 +27,18 @@ The API key is available in the `AGENTCALL_API_KEY` environment variable.
 `https://api.agentcall.co`
 
 For a complete plain-text API reference: `GET https://api.agentcall.co/llms.txt` (no auth required).
+
+## Command Line (optional)
+
+If the user already has the official CLI (`@agentcall/cli`, Node.js 20+), the same tools are available through the `agentcall` command:
+
+```bash
+agentcall tools sms
+agentcall schema send_sms
+agentcall numbers list --json
+```
+
+The CLI reads `AGENTCALL_API_KEY`; keep the key out of command-line arguments. Use `--dry-run` to show the user the tool and arguments, and pass `--yes` only after the user approves that specific action. Guide: https://agentcall.co/docs/cli
 
 ## Cost & Safety: Confirm Before Acting
 

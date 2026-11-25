@@ -1,6 +1,6 @@
 ## Description:
 
-Trello (trello.com). Use this skill for ANY Trello request — reading, creating, updating, and deleting data.
+Trello (trello.com). Use this skill for ANY Trello request — reading, creating, updating, and deleting data. Whenever a task involves Trello, use this skill instead of calling the API directly.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Trello users use this skill to search and read boards, cards, members, and checklists, or to create and update them through their connected account. Confirm the exact payload and effect before writes, and get explicit approval before destructive actions.
+People using Trello can ask the agent to find boards, cards, members, labels, comments, and checklists, or to create and update Trello content through their connected account. The skill requires confirmation of exact effects before write actions and explicit approval before destructive actions.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Setup can run an unverified remote installer automatically.
+Risk: The setup path may execute a downloaded script with local permissions; the script contents were not determined, and the security review was partial.
 
-Mitigation: Review and pin the CLI before installation, and check its automatic agent-skill installation behavior.
+Mitigation: Use an existing oo CLI when available. Before installing, review the installer and resolve the incomplete security review.
 
-Risk: Changes made through Trello actions can alter or remove board data.
+Risk: Write and destructive actions change Trello content.
 
-Mitigation: Keep the skill's approval requirements: confirm the exact payload and effect before writes, and get explicit approval before destructive actions.
+Mitigation: Confirm the exact payload and effect before write actions, and obtain explicit approval for destructive actions.
 
 ## Reference(s):
 
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
 - [Trello](https://trello.com)
 - [Trello REST API documentation](https://developer.atlassian.com/cloud/trello/rest/)
-- [oo CLI](https://github.com/oomol-lab/oo-cli)
-- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
-- [OOMOL Trello connection setup](https://console.oomol.com/connections/trello)
 
 ## Skill Output:
 
-**Output Type(s):** [Shell commands, JSON data, Guidance]
+**Output Type(s):** [API Calls, JSON, Guidance]
 
-**Output Format:** [oo CLI commands with JSON payloads and JSON connector responses]
+**Output Format:** [JSON action results with concise textual guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Read actions return Trello data; write and destructive actions require confirmation as described in the skill.]
+**Other Properties Related to Output:** [Actions may read Trello data or propose changes; write and destructive actions require user confirmation as described in the skill.]
 
 ## Skill Version(s):
 
-1.0.6 (source: frontmatter)
+1.0.7 (source: artifact metadata)
 
 ## Ethical Considerations:
 

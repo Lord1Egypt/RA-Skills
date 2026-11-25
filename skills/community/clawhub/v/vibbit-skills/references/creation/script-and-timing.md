@@ -4,7 +4,7 @@ Use this when captions, B-roll, graphics, or sound must follow particular words.
 
 ## Choose the required precision
 
-Ordinary clause captions and segment-level B-roll or charts can use actual segment times through [subtitle correction and segmentation](../capabilities/processing/subtitle-addition.md). Missing word data does not require installing aligners or block work that segment timing can support.
+Ordinary clause captions and segment-level B-roll or charts can use actual segment times through [subtitle correction and segmentation](../capabilities/processing/subtitles-and-packaging.md#subtitle-addition). Missing word data does not require installing aligners or block work that segment timing can support.
 
 The word-binding procedure below applies to explicit word highlighting and precisely triggered graphics/sound. The local `production` binding tool requires real word evidence; segment captions can go directly to the selected compositor without fabricated word data. If exact effects need unavailable timing, preserve the design and deliverable parts and explain the gap.
 

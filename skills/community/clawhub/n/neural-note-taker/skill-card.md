@@ -1,37 +1,49 @@
-## Description: <br>
-Advanced associative memory helper for building relationships between facts and entities during dense or long-running conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced associative memory helper for building relationships between facts and entities.
 
-## Publisher: <br>
-[balkanblbn](https://clawhub.ai/user/balkanblbn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[balkanblbn](https://clawhub.ai/user/balkanblbn)
 
-## Use Case: <br>
-Agents and users use this skill to extract entities from dense conversations, map relationships between facts, and surface associated memory nodes across long sessions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Conversation associations, including names, projects, dates, and relationships, may be remembered or resurfaced later. <br>
-Mitigation: Avoid using the skill in sensitive conversations unless users are comfortable with that retention, and review surfaced associations before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/balkanblbn/neural-note-taker) <br>
+## Use Case:
 
+External agent users can use this skill to identify entities in dense conversations, map relationships between concepts, and preserve context as associative notes across long sessions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style relationship notes and memo command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May preserve or resurface conversation associations such as names, projects, dates, and relationships.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Relationship notes may preserve associations from sensitive conversations in the agent's memory system.
+
+Mitigation: Use the skill only on conversations where retaining those associations is acceptable, and avoid applying it to sensitive chats unless the memory system's retention behavior is understood.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/balkanblbn/skills/neural-note-taker)
+- [ClawHub publisher profile](https://clawhub.ai/user/balkanblbn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style text with concept-link notation and memory query commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses [[Target]] -> [[Related]] notation for relationship mapping; no bundled code or hidden execution path is identified by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

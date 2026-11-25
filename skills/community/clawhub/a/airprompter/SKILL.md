@@ -1,6 +1,6 @@
 ---
 name: airprompter
-description: Create, run, find, edit, import, or export AirPrompter workflows, skills, and prompts, or diagnose its connection. Use when asked to create a workflow, build a reusable process, or turn this into a skill in AirPrompter. Excludes repository maintenance and explicitly local skill authoring.
+description: Use when the user wants to save a prompt, template or workflow to reuse, find or run one they saved, or share one with their team ("share this prompt with my team"); to create a workflow, build a reusable process, or turn this into a skill; or to edit, import or export AirPrompter workflows, skills, and prompts, or diagnose its connection. Not for repository maintenance, a file, script or skill the user wants kept local, another product the user names, or one-off writing with no reuse.
 ---
 
 # AirPrompter
@@ -9,7 +9,8 @@ description: Create, run, find, edit, import, or export AirPrompter workflows, s
 
 In AirPrompter context, "create a workflow," "create a skill," "make a workflow,"
 "make a skill," "turn this into a skill or workflow," and "build a reusable
-process" mean author a workflow. Load tools by exact name. For new designs,
+process" mean author a workflow; a supplied prompt or template is `create_prompt`,
+no plan. Load tools by exact name. For new designs,
 show a useful preview before asking. Resolve the account before using its data
 or saving. Use `plan_draft` with `target: workflow`. Confirm before `save_workflow`.
 Do not run future actions during authoring.
@@ -22,7 +23,11 @@ local skill flow and skip AirPrompter tools.
 ### Design, preview, and save
 
 1. For a new workflow or skill on the selected account, call `plan_draft`
-   first. Send `target: workflow` and put the user's request in `instruction`.
+   first. Unless the user already asked to use AirPrompter, first say that the
+   request goes to their AirPrompter account to plan it, and continue only if
+   they agree; if not, sketch the preview locally. Send `target: workflow` and
+   put only the user's request in `instruction`, never secrets or unrelated
+   conversation.
    If the host defers tools, search for the exact name `plan_draft`. Describe
    and call the returned tool using its full name and arguments. For Hermes
    Tool Search, pass `calls: [{name, arguments}]` to `tool_call`.
@@ -33,8 +38,8 @@ local skill flow and skip AirPrompter tools.
 3. After confirmation, write the agreed step prompts and save in that turn.
    Use `generate_draft` with the plan and the user's answers if you need
    drafting guidance. Call `save_workflow` once with the approved name and
-   prompts. Send `creationRouting: { mode: "host_planned", interviewSummary:
-   "<one sentence describing the approved design>" }`. Report the tool result.
+   prompts. Send `creationRouting: { mode: "host_planned" }`. Report the tool
+   result.
 
 Use `create_prompt` for a standalone prompt.
 For edits, use `get_workflow` or `get_prompt` to resolve the item, show the

@@ -1,0 +1,117 @@
+LOGS *E:\X.LOG
+ENVI$ NL=0d 0a
+ENVI  &::SO_REUSEADDR=4     //允许重新监视地址
+CALL @WIN1
+
+_SUB WIN1,W494H442,新窗口1,CALL OnQuit,
+    SOCK sk   //监听
+    SOCK sr   //接收
+    SOCK sc   //发送
+    EDIT &TOIP,L112T18W86H32,127.0.0.1,,
+    EDIT &TOPORT,L212T18W60H30,6002,,
+    EDIT &MYIP,L109T178W88H30,0.0.0.0,,
+    EDIT &MYPORT,L212T180W58H30,6001,,
+    MEMO &RMSG,L57T55W381H94,,,0x40
+    MEMO &SMSG,L64T218W366H132,HELLO%NL%,,
+    ITEM &ITEM8,L208T368W60H30,发送,CALL OnSend,
+    ENVI &&OldMYIP=%&MYIP%
+    ENVI &&OldMYPORT=%&MYPORT%
+    ENVI &&OldTOIP=
+    ENVI &&OldTOPORT=
+    ENVI &&bListen=0
+    ENVI$ &&BRMSG=*4096 0 //接收缓冲取 
+    ENVI @this.MSG=#1: CALL OnRecv
+    ENVI @this.MSG=#2: CALL OnServer
+    //CALL OnServer
+    ITEM &BUTLISTEN,L375T182W60H30,监听,CALL OnListen,
+    EDIT &MYIP2,L276T181W88H30,,,
+    EDIT &TOIP2,L275T20W86H30,,,
+    LABE LABE4,L58T19W43H30,对方：,,
+    LABE LABE5,L59T178W44H30,本方：,,
+_END
+_SUB OnRecv
+    ENVI @&RMSG=%&RMSG%%&BRMSG%
+_END
+
+_SUB OnQuit
+    ENVI &bListen=-1
+    ENVI @sk.close=
+    ENVI @sr.close=
+    ENVI @sc.close=
+_END
+
+_SUB OnListen
+    IFEX $ 0 > %&bListen%, EXIT _SUB  
+    FIND $ 0 = %&bListen%, TEAM CALL OnServer| EXIT _SUB
+    TEAM ENVI &bListen=0| ENVI @sk.close=| ENVI @sr.close= //连接断开，会自动连上。
+    //ENVI @&BUTLISTEN.Enable=0  //禁止
+_END
+_SUB OnServer
+    IFEX $ 0 > %&bListen%, EXIT _SUB  
+    ENVI @sk.sock=&&err
+    ENVI#$ &&v=1   
+    ENVI @sk.setsockopt=&&err;;%&SO_REUSEADDR%,&v  //允许重新监视地址
+    ENVI &OldMYIP=%&MYIP%
+    ENVI &OldMYPORT=%&MYPORT%
+    ENVI @sk.bind=&&err;%&MYIP%;%&MYPORT%
+    ENVI @sk.listen=&&err;1
+    ENVI @WIN1=%&OldMYPORT%/%&OldMYIP%
+    ENVI &bListen=1
+    ENVI @&BUTLISTEN=监听中
+    THREAD* CALL  Server
+_END
+
+_SUB OnCLient
+    ENVI @sc.shutdown= //友好关闭
+    WAIT 30
+//    MESS ---wait 111
+    ENVI @sc.sock=&&err
+    ENVI @sc.connect=&&err;%&TOIP%;%&TOPORT%
+    ENVI &OldTOIP=%&TOIP%
+    ENVI &OldTOPORT=%&TOPORT%
+_END
+
+_SUB OnSend
+    //ENVI  &&bOld=0
+    //FIND $%&OldTOIP% = %TOIP%,!!  FIND $%&OldTOPORT% = %TOPORT%,!! ENVI  &&bOld=1
+    //FIND $  0 = %bOld%,   CALL  OnCLient
+    CALL  OnCLient
+    ENVI &&Len=0
+    ENVI &&MSG=%&SMSG%
+    ENVI @sc.write=&&err;&Len;&MSG
+_END
+
+_SUB Server
+    LOOP # %&bListen% = 1,
+    {
+    ENVI &=&bListen=%&bListen%
+        ENVI @sk.fd=&&fd
+        ENVI &&err=0
+        ENVI &&Len=0
+        //MESS -- accept
+        ENVI @sr.accept=&&err;%&&fd%
+        ENVI @sr.getname=;0;&&ip1  //本地实际IP
+        ENVI @&MYIP2=%&ip1%  
+        ENVI @sr.getname=;1;&&ip2  //对方实际IP
+        ENVI @&TOIP2=%&ip2%  
+        ENVI &&OK=1
+        LOOP $ 11 = %&bListen%%&OK%,
+        {
+            ENVI &err=0
+            ENVI @sr.read=&err;&Len;&BRMSG
+            IFEX $ %&Len% > 0,  ENVI @WIN1.SENDMSG=#1 //OnRecv
+            IFEX $ %&Len% <= 0, ENVI &OK=0
+            WAIT 1
+            //MESS --  &Len[ %&Len%]   &bListen[%&bListen%]  &OK[%&OK%] &err[%&err%]
+        }
+        WAIT 2
+    }
+    ENVI @&BUTLISTEN=监听
+    //MESS  监听结束
+    //  IFEX $ %&bListen% = 0,  ENVI @WIN1.SENDMSG=#2 //OnServer
+_END
+
+
+    
+
+

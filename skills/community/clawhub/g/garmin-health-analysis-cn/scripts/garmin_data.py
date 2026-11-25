@@ -194,6 +194,7 @@ def fetch_activities(client, days=7, start=None, end=None):
         activity_list = []
         for activity in activities:
             activity_list.append({
+                "activity_id": activity.get("activityId"),
                 "date": activity.get("startTimeLocal", "").split(" ")[0],
                 "activity_type": activity.get("activityType", {}).get("typeKey"),
                 "activity_name": activity.get("activityName"),

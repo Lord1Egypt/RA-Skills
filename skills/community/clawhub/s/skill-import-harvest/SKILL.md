@@ -1,7 +1,7 @@
 ---
 name: skill-import-harvest
 description: "Use when needed functionality may already exist online: search, quality-check, harvest data."
-version: 1.1.0
+version: 1.1.1
 author: Maxwell McClure
 license: MIT-0
 metadata:
@@ -10,15 +10,15 @@ metadata:
     related_skills: [skill-import-audit, skill-export-audit]
 ---
 
-When the user needs functionality or domain knowledge, harvest what already exists in the community registry BEFORE building. Quality-check every candidate with the same discipline as skill-import-audit — but the output is **data with attribution, not an installed skill**. A candidate that perfectly reflects the need ends in an install question to the user; nothing is installed without their fresh explicit approval, and any install then goes through the full skill-import-audit.
+When the user needs functionality or domain knowledge, what already exists in the community registry is the cheapest source — harvest it BEFORE building, but only as approved: explicit discovery requests run the full workflow immediately; everywhere else (about to build, stuck on a hard problem) the workflow's job is to SUGGEST discovery as an option and get the user's go-ahead before any registry query goes out. Quality-check every candidate with the same discipline as skill-import-audit — but the output is **data with attribution, not an installed skill**. A candidate that perfectly reflects the need ends in an install question to the user; nothing is installed without their fresh explicit approval, and any install then goes through the full skill-import-audit.
 
 ## When to Use
-- The user asks "does a skill for X exist?" or the task needs a capability this machine lacks.
-- About to build a skill or workflow: check first what exists (avoid reinventing — the standing rule for hard problems).
-- The user asks to "search the hubs / compare existing options."
+- **Explicit (run immediately)**: the user asks "does a skill for X exist?", to "search the hubs / compare existing options", or has already approved a registry check for the task.
+- **Suggested (ask first, then run on approval)**: the task needs a capability this machine lacks, or you are about to build a skill or workflow and existing work would avoid reinventing it (the standing rule for hard problems). Ask, showing the EXACT search terms so the user sees what would leave the machine — "Would you like me to run skill-import-harvest to search for <the query terms>?" — and also ask "Are there any topics you would like me to avoid querying external registries concerning?" Proceed only with the user's go-ahead — do not fire registry queries unprompted.
 
 ## Step 1 — Requirements & dimensions
 Extract from the request: the capability dimensions (e.g. security, portability, correctness) and the success bar ("perfectly reflects our need" = covers ALL of them). The dimensions become the columns of the comparison matrix. Write them down first — searching without columns is how you end up with a list instead of a verdict.
+**Query hygiene (before any query leaves the machine):** the search terms must be minimal, generic capability/dimension words — strip project names, internal identifiers, secrets, personal information, and proprietary details before searching. In Suggested mode the terms shown in the permission request ARE what would be transmitted — if a meaningful search would require transmitting sensitive context, state exactly what would be sent and obtain explicit approval before querying; if it cannot be stripped without changing the meaning, do not search. Topics the user names as exclusions must not appear in any query.
 
 ## Step 2 — Breadth search (the registry)
 `clawhub search <query>` — run 8–12 varied query terms: synonyms + dimension words ("skill audit", "security audit", "skill vet", "malware scan", "supply chain", "trust skill" …). One query misses whole families. Result rows are `slug  @owner  displayName  installs/60d`; **slugs can be duplicated across owners** — duplicates appear as separate rows, and `clawhub inspect` has no `--owner` flag: use the `@owner/slug` form for ambiguous slugs. Install counts signal community trust, not correctness.

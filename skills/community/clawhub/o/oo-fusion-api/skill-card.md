@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill with an OOMOL-connected account to inspect action schemas and run OOMOL Fusion API tasks, including media generation and editing, transcription, OCR, document conversion, search, and file uploads.
+Developers use the skill to inspect Fusion API action schemas and run reads, writes, media generation, and other supported tasks through an OOMOL-connected account. Review the payload and expected effect before write or destructive actions.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Some media operations may bypass the skill's approval rules.
+Risk: ClawScan marks the skill suspicious based on an unverified remote installer; the partial scan did not inspect the installer or its resulting changes.
 
-Mitigation: Have the publisher correct the action classifications and require user confirmation for actions that change data.
+Mitigation: Consider avoiding installation until the CLI installer can be independently verified and its effects understood.
 
-Risk: CLI setup runs a remote installer whose local changes were not available for inspection.
+Risk: Some API actions may send content to OOMOL or another provider, and generation or editing may run without confirmation.
 
-Mitigation: Keep CLI setup explicitly user-directed, review the installer and resulting changes, and use a reviewed CLI release.
-
-Risk: Generation and editing requests may incur costs and send content for external processing.
-
-Mitigation: Confirm expected costs and external processing before submitting generation or editing requests.
+Mitigation: Review the action's data flow and whether generation or editing requires confirmation before running it.
 
 ## Reference(s):
 
 - [OOMOL Fusion API](https://www.oomol.com)
-- [oo CLI](https://github.com/oomol-lab/oo-cli)
-- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+- [OOMOL Fusion API skill page](https://clawhub.ai/oomol/skills/oo-fusion-api)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+**Output Type(s):** [API Calls, Shell commands, Guidance]
 
-**Output Format:** [Markdown guidance with shell commands and JSON payload examples]
+**Output Format:** [JSON action payloads, shell commands, and API results]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include API results or task status returned by OOMOL Fusion API actions.]
+**Other Properties Related to Output:** [Results depend on the selected API action; some actions create or modify external data or generate media.]
 
 ## Skill Version(s):
 
-1.0.10 (source: server-resolved release metadata and skill frontmatter)
+1.0.12 (source: frontmatter; server-resolved release)
 
 ## Ethical Considerations:
 

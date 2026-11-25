@@ -1,6 +1,6 @@
 ## Description:
 
-Provides analysis guidance for China exchange-traded options, including Black-Scholes pricing, Greeks, multi-leg strategy P&L, volatility surface analysis, and margin stress testing.
+Provides methods and paper-draft guidance for pricing, Greeks, multi-leg P&L, volatility analysis, and margin stress tests for China exchange-traded options.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,43 +14,39 @@ MIT-0
 
 ## Use Case:
 
-Options traders, quantitative researchers, and risk managers can use this skill to draft educational pricing, Greeks, multi-leg payoff, volatility, and margin stress analyses for China exchange-traded options. Outputs are for qualified review and do not provide trade execution or replace current exchange rules.
+Options traders, quantitative researchers, and risk managers use it to draft educational pricing, Greeks, multi-leg P&L, volatility-surface, margin-stress, and control-checklist analyses for China exchange-traded options.
 
 ### Deployment Geography for Use:
 
-China (exchange-traded options on China market underlyings)
+China
 
 ## Known Risks and Mitigations:
 
-Risk: The security review had incomplete coverage: the skill file was only partially inspected, its manifest could not be parsed, and some local references could not be resolved.
+Risk: Security inspection was partial: Skillspector reported 0% coverage because manifest frontmatter was malformed and local references were unresolved.
 
-Mitigation: Review the complete skill and resolve its manifest and local references before installation or use.
+Mitigation: Review the full artifact and resolve the manifest and reference gaps before relying on the scan result.
 
-Risk: Illustrative pricing, payoff, volatility, or margin analyses may be mistaken for current or executable trading guidance, and options losses can exceed the initial investment.
+Risk: Options examples and paper analyses could be mistaken for current trading guidance or executable parameters.
 
-Mitigation: Treat outputs as educational drafts; have qualified personnel verify inputs, calculations, contract assumptions, and current exchange rules before acting.
-
-Risk: Prompts may contain sensitive account or position information beyond what the analysis needs.
-
-Mitigation: Provide only necessary inputs, use approximate account sizes, and omit account identifiers, credentials, customer information, and unpublished transaction data.
+Mitigation: Treat outputs as educational drafts; have qualified personnel verify assumptions and current exchange rules before any operational use.
 
 ## Reference(s):
 
-- [ClawHub release](https://clawhub.ai/gechengling/skills/security-options-strategy)
+- [ClawHub release page](https://clawhub.ai/gechengling/skills/security-options-strategy)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Markdown, Code]
+**Output Type(s):** [Text, Markdown, Analysis, Code, Guidance]
 
-**Output Format:** [Markdown text with tables, formulas, scenario analyses, and illustrative Python snippets]
+**Output Format:** [Markdown with tables and illustrative code examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Uses user-provided inputs; no market-data access, code execution, file access, or trade execution. Verify assumptions and current exchange rules before relying on results.]
+**Other Properties Related to Output:** [Produces informational paper drafts and examples; it does not execute code, retrieve market data, access accounts, or place orders. Scope is China exchange-traded options.]
 
 ## Skill Version(s):
 
-3.0.4 (source: frontmatter)
+3.0.5 (source: frontmatter)
 
 ## Ethical Considerations:
 

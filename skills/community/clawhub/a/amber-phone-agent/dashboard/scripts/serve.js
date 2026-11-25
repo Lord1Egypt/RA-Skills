@@ -3,7 +3,8 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const { URL } = require('url');
-const { processLogsWithOptions } = require('../process_logs.js');
+const { fork } = require('node:child_process');
+const { DEFAULT_REALTIME_MODEL, REALTIME_MODELS, normalizeRealtimeModel } = require('../../runtime/realtime-models.cjs');
 
 function parseArgs(argv) {
   const args = { port: 8787, host: '127.0.0.1' };
@@ -82,7 +83,36 @@ function sendJson(res, status, payload) {
   res.end(JSON.stringify(payload));
 }
 
-const ALLOWED_REALTIME_MODELS = new Set(['gpt-realtime', 'gpt-realtime-mini']);
+const logWorkerEnvironment = [
+  'LOGS_DIR', 'CONTACTS_FILE', 'BRIDGE_OUTBOUND_MAP',
+  'TWILIO_CALLER_ID', 'ASSISTANT_NAME', 'OPERATOR_NAME',
+];
+let dashboardSync;
+
+function syncCallLogs() {
+  if (!dashboardSync) {
+    dashboardSync = new Promise((resolve, reject) => {
+      const env = Object.fromEntries(logWorkerEnvironment
+        .filter(key => typeof process.env[key] === 'string')
+        .map(key => [key, process.env[key]]));
+      const worker = fork(path.join(root, 'process_logs.js'), ['--dashboard-sync'], {
+        env,
+        execArgv: [],
+        stdio: ['ignore', 'inherit', 'inherit', 'ipc'],
+      });
+      let count;
+      worker.on('message', message => {
+        if (Number.isSafeInteger(message?.count) && message.count >= 0) count = message.count;
+      });
+      worker.once('error', reject);
+      worker.once('close', code => {
+        if (code === 0 && count !== undefined) resolve(count);
+        else reject(new Error('Call log processing failed'));
+      });
+    }).finally(() => { dashboardSync = undefined; });
+  }
+  return dashboardSync;
+}
 
 const server = http.createServer((req, res) => {
   const origin = req.headers.origin;
@@ -122,14 +152,14 @@ const server = http.createServer((req, res) => {
         const bridgeToken = String(body.bridgeToken || (bridgeUrl === configuredBridgeUrl ? resolveBridgeCredential(path.join(root, '..', 'runtime')) : ''));
         const to = String(body.to || '').trim();
         const objective = String(body.objective || '').trim();
-        const model = String(body.model || 'gpt-realtime').trim();
+        const model = normalizeRealtimeModel(String(body.model ?? '')) || DEFAULT_REALTIME_MODEL;
 
         if (!isLoopbackBridgeUrl(bridgeUrl)) {
           sendJson(res, 400, { success: false, error: 'Bridge URL must be localhost/loopback.' });
           return;
         }
-        if (!ALLOWED_REALTIME_MODELS.has(model)) {
-          sendJson(res, 400, { success: false, error: 'Invalid model. Choose gpt-realtime or gpt-realtime-mini.' });
+        if (!REALTIME_MODELS.includes(model)) {
+          sendJson(res, 400, { success: false, error: `Invalid model. Choose ${REALTIME_MODELS.join(' or ')}.` });
           return;
         }
         if (!/^\+[1-9]\d{6,14}$/.test(to)) {
@@ -165,30 +195,15 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // POST /api/sync — manually trigger process_logs.js
-  // Security: target script path is hardcoded (not user-controlled); no user input is
-  // passed to the spawned process. Environment is scoped to only what Node needs.
+  // Run the local log processor without the server's provider credentials.
   if (req.method === 'POST' && req.url === '/api/sync') {
-    // Hardcoded path — not derived from request input
-    const processLogsPath = path.resolve(root, 'process_logs.js');
-    // Verify target stays within the dashboard root (defense in depth)
-    if (!processLogsPath.startsWith(root + path.sep) && processLogsPath !== path.resolve(root, 'process_logs.js')) {
-      res.writeHead(403, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ success: false, error: 'Forbidden' }));
-      return;
-    }
     const startTime = Date.now();
-    processLogsWithOptions({ logsDir: process.env.LOGS_DIR, outputDir: path.join(root, 'data'), writeSample: true })
+    syncCallLogs()
       .then(calls => {
         const durationMs = Date.now() - startTime;
-        console.log(`[sync] processed ${calls.length} calls in ${durationMs}ms`);
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ success: true, calls: calls.length, durationMs, error: null }));
+        sendJson(res, 200, { success: true, calls, durationMs, error: null });
       })
-      .catch(err => {
-        res.writeHead(500, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ success: false, error: err.message }));
-      });
+      .catch(() => sendJson(res, 500, { success: false, error: 'Call log processing failed' }));
     return;
   }
 

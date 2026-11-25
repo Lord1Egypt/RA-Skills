@@ -54,6 +54,7 @@ def main() -> int:
         oc / "env",
         sec / "prompt-policy.json",
         sec / "root-session-state.json",
+        sec / "session-state.key",
     ]
 
     ok_openclaw, found_openclaw = _exists_any(["openclaw"])

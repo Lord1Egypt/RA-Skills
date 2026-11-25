@@ -5,7 +5,7 @@ description_zh: "项目归档清理：保留策划与结果，剥离执行过程
 description_en: "Project archive cleanup"
 disable: false
 agent_created: true
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # project-archive-cleanup
@@ -41,11 +41,11 @@ Do **not** use for: active projects (last activity < ~14 days), the runtime dir 
    - hit only in workspace memory logs or a changelog → process trace, safe to strip.
    - hit in a **result doc** (e.g. a test report) or it is an **operational script** → keep, otherwise the result file loses its referent.
 
-6. **Never delete a skill or dependency copy without checking installation.** Compare against `{p.name for p in (~/.workbuddy/skills).iterdir()}` — if the local copy is not installed there, it is the only copy and long idle time says nothing about disposability.
+6. **Check installation before deleting any skill or dependency copy, and require explicit user confirmation for the deletion.** Compare against `{p.name for p in (~/.workbuddy/skills).iterdir()}` — if the local copy is not installed there, it is the only copy and long idle time says nothing about disposability. Include these items in the dry-run report and obtain approval before any `--apply`.
 
 7. **Two-phase execution.** Dry-run script prints every item with size + reason; only `--apply` writes.
-   - **Batch by shape**: single-file batch and directory batch run in *separate processes*. The safe-delete hook counts expanded files, threshold 50, scope=turn, and terminates the whole run — already-deleted items do **not** roll back.
-   - Directory deletes via .NET: `[System.IO.Directory]::Delete($p, $true)` in PowerShell, then verify with `[System.IO.Directory]::Exists($p)`.
+   - **Respect the safe-delete limit — do not work around it.** Count every file a recursive delete expands, submit the complete deletion manifest through the approved deletion mechanism in one turn, and **stop for explicit user authorization** when the hook's threshold (50 expanded files, scope=turn) is reached. Do not split batches across separate processes or switch to a lower-level API to stay under the limit — already-deleted items do **not** roll back, so a run that hits the limit is reported and resumed only after approval.
+   - Directory deletes go through the same approved mechanism; verify removal with `[System.IO.Directory]::Exists($p)` and reconcile against the manifest.
 
 8. **Back up before delete** to `<workspace>/outputs/_archive_<date>/`, then verify by **comparing file counts src vs bak** for every entry. Do not trust the script's success echo.
 

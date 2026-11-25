@@ -17,7 +17,11 @@ const SEC_UID_RE = /^MS4w[A-Za-z0-9_\-=+]{8,}$/;
 const BARE_UNIQUE_ID_RE = /^@?[A-Za-z0-9._]{2,24}$/;
 const PATH_UNIQUE_ID_RE = /^[A-Za-z0-9._]{1,64}$/;
 const AWEME_ID_RE = /^\d{1,64}$/;
-const TRAILING_PUNCT = /[\/.,;:!?"'，。！？；：、）】》>]+$/u;
+// 链接本体不含中文引号/书名号；粘贴污染时截断并剥尾
+const LEADING_PUNCT = /^[<("'`「『“”‘’【《〈［〔\[]+/u;
+const INLINE_CUT = /[「」『』“”‘’《》〈〉]/u;
+const TRAILING_PUNCT =
+  /[\/.,;:!?"'，。！？；：、）】》>「」『』“”‘’《》〈〉［］〔〕〖〗…—～·]+$/u;
 
 function codePointLength(value) {
   return Array.from(value).length;
@@ -31,10 +35,10 @@ function invalid(message) {
 
 function tidy(raw) {
   if (typeof raw !== "string") return "";
-  let text = raw.trim();
-  text = text.replace(/^[<("'`“”‘’【\[]+/, "");
-  text = text.replace(TRAILING_PUNCT, "");
-  return text.trim();
+  let text = raw.trim().replace(LEADING_PUNCT, "");
+  const cut = text.search(INLINE_CUT);
+  if (cut >= 0) text = text.slice(0, cut);
+  return text.replace(TRAILING_PUNCT, "").trim();
 }
 
 function maybeDecode(text) {

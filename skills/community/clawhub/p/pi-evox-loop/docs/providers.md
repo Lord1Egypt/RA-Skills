@@ -21,6 +21,9 @@ Pi 支持任意 OpenAI 兼容端点。以 `~/.pi/agent/models.json` 为例：
 - **国内 OpenAI 兼容端点**（按其文档填 baseUrl 与模型名）：DeepSeek（`https://api.deepseek.com/v1`）、阿里云百炼、硅基流动、智谱等；
 - **内置 provider 示例**（deepseek 已内置，无需 models.json）：
 
+> ⚠️ **下方示例含 `--fresh`——破坏性操作**：会**清空全局经验库**后重跑。运行前自动备份到 `~/.evomap/assets/backup-<时间戳>/`，恢复时把该目录的 `genes.jsonl` 与 `review.jsonl` **配套**拷回（详见 FAQ Q3）。仅建议在流程 C 实验 / 确认要重建库时使用；**不想清库就去掉 `--fresh`**。
+> **EN**: The example below includes `--fresh` - **destructive**: it wipes the global experience store before rerunning. Auto-backup to `~/.evomap/assets/backup-<ts>/` first; restore by copying back `genes.jsonl` + `review.jsonl` together (see FAQ Q3). Use only for flow-C experiments or intentional rebuilds; **drop `--fresh` to keep your store**.
+
 ```bash
 node code/pi_evolve.mjs <模板目录> <任务文本> \
     --provider deepseek --model deepseek-v4-flash \

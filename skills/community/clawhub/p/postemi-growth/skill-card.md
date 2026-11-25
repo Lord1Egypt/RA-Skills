@@ -1,6 +1,6 @@
 ## Description:
 
-Grow an audience and get results from social posting with Postemi. Covers choosing networks and a first niche, a 30-day posting test, reading the numbers (Postemi Insights and analytics), posting cadence per network, turning one topic into 30 post angles and scheduling them as a content plan, repurposing one idea across networks, bios and profile links that turn followers into sign-ups or customers, and a weekly review loop. Use when the user asks how to grow followers or reach, what or how often to post, for a content plan or calendar, why posts do not perform, or how to get customers from social media.
+Helps users plan social media growth through audience-focused posting, analytics review, content planning, and scheduling with Postemi.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External creators, businesses, and social media managers use this skill to choose a network and niche, plan and schedule a consistent posting test, review engagement results, and refine their content and profile strategy.
+Creators, businesses, and social media managers use this skill to choose channels and a posting cadence, build content plans, interpret post performance, and turn results into next steps for audience growth.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Scheduling sends content to Postemi for later publication on selected accounts.
+Risk: Post content may be sent to Postemi for scheduling and possible later publication.
 
-Mitigation: Review the text, destination accounts, timezone, and times before approval; use draft mode to review items in the calendar. Assess the separate main Postemi integration before connecting accounts.
+Mitigation: Review the content, destination accounts, and timing before scheduling, and remove or explicitly authorize sensitive personal or customer information.
 
 ## Reference(s):
 
-- [One topic, 30 angles](reference/30-angles.md)
-- [The post log and the weekly review](reference/review.md)
+- [Postemi Growth on ClawHub](https://clawhub.ai/norbertlevente/skills/postemi-growth)
 - [Postemi Insights](https://postemi.com/app/insights)
-- [Postemi growth on ClawHub](https://clawhub.ai/norbertlevente/skills/postemi-growth)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Text, Markdown]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Markdown with social content plans, cadence recommendations, and post-review logs]
+**Output Format:** [Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Tailored to the user's audience, goals, selected networks, and available analytics.]
+**Other Properties Related to Output:** [User-specific recommendations, content plans, posting schedules, and analytics review guidance.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server-resolved release evidence)
+1.1.0 (source: server-resolved release)
 
 ## Ethical Considerations:
 

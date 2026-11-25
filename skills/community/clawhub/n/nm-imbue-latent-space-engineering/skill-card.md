@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agent authors use the skill to write delegation prompts and skill instructions, choose instruction-framing techniques, and match an existing code or writing style.
+Developers and agents use this guidance when composing delegation prompts, writing agent instructions, coordinating reviews, and producing code or prose that should match an existing style.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Named-register guidance may fade during long sessions, and its effect depends on the model's prior knowledge of the named standard.
+Risk: Prompt-framing techniques may be applied as guarantees or without checking whether they fit the model and task; the skill describes parts of its evidence base as limited.
 
-Mitigation: Test the register before relying on it and use deterministic checks for critical style requirements.
+Mitigation: Treat techniques as heuristics and check the resulting output against the delegate, task, and available context.
 
-Risk: Competitive review framing can encourage inflated issue counts without evidence requirements.
+Risk: Competitive review framing can encourage inflated issue counts.
 
-Mitigation: Require evidence for each finding and prioritize findings by severity rather than count.
+Mitigation: Require evidence for each finding and prioritize by severity, as the skill recommends.
 
 ## Reference(s):
 
-- [Emotional Framing](modules/emotional-framing.md)
-- [Style Gene Transfer](modules/style-gene-transfer.md)
-- [Competitive Review Framing](modules/competitive-review.md)
-- [Named Register Invocation](modules/named-register-invocation.md)
-- [Know Your Delegate](modules/know-your-delegate.md)
-- [Claude Night Market imbue plugin page](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-imbue-latent-space-engineering)
 
 ## Skill Output:
 
 **Output Type(s):** [Guidance, Text, Markdown]
 
-**Output Format:** [Natural-language guidance and prompt text, commonly in Markdown]
+**Output Format:** [Human-readable guidance, prompt text, examples, and checklists]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Advice is tailored to the task type and the delegate's context.]
+**Other Properties Related to Output:** [Concise procedural guidance with examples and selection criteria for prompt-framing techniques.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

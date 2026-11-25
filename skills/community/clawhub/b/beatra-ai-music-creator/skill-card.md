@@ -1,6 +1,6 @@
 ## Description:
 
-Turn a creative brief, lyric, scene, or reference recording into original songs, instrumentals, or soundtracks, then review and refine the results.
+Turn a theme, lyric, scene, or reference audio into reviewable songs, instrumentals, BGM, and soundtracks with a clear creative direction and focused revisions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Creators use this skill to develop song concepts, lyrics, and production direction, then generate and refine music for videos, brands, podcasts, games, and other projects.
+Songwriters, creators, and teams use the skill to turn a creative brief, lyrics, a scene, or reference audio into songs, instrumentals, background music, and soundtracks, then refine selected results.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan marks the release suspicious for broad account permissions, automatic tracking, and shared-credential and uninstall risks; its analysis is incomplete.
+Risk: ClawScan flags broad permissions and automatic installation data reporting, and raises concerns about notice for audio or voice uploads and safe removal.
 
-Mitigation: Consider avoiding installation until those risks are addressed; review the remaining content because the scan does not establish that all files are safe.
+Mitigation: Review the permission and data handling guidance before installing, and follow the documented removal guidance if uninstalling.
 
 ## Reference(s):
 
 - [ClawHub release page](https://clawhub.ai/beatra-ai/skills/beatra-ai-music-creator)
-- [Beatra skill page](https://beatra.ai/skills/beatra-ai-music-creator)
-- [Intent and routing](artifact/references/intent-and-routing.md)
-- [Creative brief and style](artifact/references/creative-brief-and-style.md)
-- [Lyrics craft](artifact/references/lyrics-craft.md)
-- [Model routing](artifact/references/model-routing.md)
-- [Music editing and audio](artifact/references/music-editing-and-audio.md)
-- [Review and iteration](artifact/references/review-and-iteration.md)
-- [Billing, errors, and recovery](artifact/references/billing-errors-and-recovery.md)
-- [Installation and authentication](artifact/references/installation-and-auth.md)
-- [Updates and security](artifact/references/updates-and-security.md)
-- [Uninstall and disconnect](artifact/references/uninstall-and-disconnect.md)
+- [Beatra AI Music Creator](https://beatra.ai/skills/beatra-ai-music-creator)
+- [Creative brief and style guidance](references/creative-brief-and-style.md)
+- [Music recipes](references/music-recipes.md)
+- [Music editing and audio](references/music-editing-and-audio.md)
+- [Updates and security](references/updates-and-security.md)
+- [Installation and authentication](references/installation-and-auth.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Audio, Guidance]
+**Output Type(s):** [Text, Guidance, Audio files]
 
-**Output Format:** [Text/Markdown and generated audio files]
+**Output Format:** [Conversational guidance, lyrics and production cards, with links to generated audio]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Audio qualities such as pronunciation, duration, and arrangement require review.]
+**Other Properties Related to Output:** [Generated audio and revisions are billable actions; review generated vocals, pronunciation, duration, and arrangement.]
 
 ## Skill Version(s):
 
-1.4.9 (source: server-resolved release evidence)
+1.5.0 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

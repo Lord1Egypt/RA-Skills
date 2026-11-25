@@ -1,6 +1,6 @@
 ## Description:
 
-Generate, quote, monitor, retrieve, and cancel AI videos through the AI Video Maker API. Use when a user asks an agent to create text-to-video, image-to-video, frame-guided, or reference-guided video; estimate video cost before spending; check API setup or balance; resume an existing generation; or automate AI Video Maker workflows.
+Generate, quote, monitor, retrieve, and cancel AI videos through the AI Video Maker API.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and AI agents use this skill to check account setup, estimate video-generation costs, and create or manage AI video tasks through the AI Video Maker API. It guides the agent to obtain approval before paid generation and to return task status and the resulting video link.
+Developers and agents use this skill to create and manage video generation jobs through the AI Video Maker API, estimate costs, check account setup, and resume existing jobs. It requires approval before submitting a paid generation.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates the skill suspicious with medium confidence because of privacy and permission-scope concerns, and the artifact review was incomplete.
+Risk: ClawScan marks the release suspicious with medium confidence because installation and update instructions use an unpinned CLI and changeable releases; script analysis is incomplete, so the scan does not establish that the skill is safe.
 
-Mitigation: Before installing, review how credentials, environment and shell access are used, and decide whether prompts or media may be sent to the external AI Video Maker service.
+Mitigation: Consider avoiding installation until the publisher provides a pinned CLI version and an immutable, integrity-checked release.
 
 ## Reference(s):
 
-- [API Reference](references/api-reference.md)
-- [Usage Examples](references/examples.md)
-- [AI Video Maker service](https://aivideomaker.ai)
 - [ClawHub skill listing](https://clawhub.ai/husu/skills/ai-video-maker)
+- [AI Video Maker API](https://aivideomaker.ai)
+- [API reference](references/api-reference.md)
+- [Prompting and input selection](references/prompting.md)
+- [Creative recipes](references/recipes.md)
+- [Recovery and delivery](references/recovery.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, API calls, Video links, Task status and cost details]
+**Output Type(s):** [Video, Text]
 
-**Output Format:** [Markdown summaries and video URLs; workflow command output is JSON]
+**Output Format:** [Generated video links with task status and concise text guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Video-generation requests can incur API credit charges; outputs include task identifiers and a video link with a 24-hour retention window.]
+**Other Properties Related to Output:** [Video links include a 24-hour retention deadline.]
 
 ## Skill Version(s):
 
-1.0.15 (source: server-resolved release evidence)
+1.0.16 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

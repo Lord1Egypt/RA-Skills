@@ -1,0 +1,8 @@
+interface:
+  display_name: "人物知情状态账本"
+  short_description: "按场景追踪人物获知事实的证据与时间，并标出证据出现前的信息使用"
+  default_prompt: "使用 $novel-knowledge-state-ledger-cn，依据按故事顺序提供的场景、事实编号及人物亲历、告知或推测原文，整理知情矩阵、首次得知与提前使用；材料缺失时先请求补充。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

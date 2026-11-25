@@ -20,6 +20,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
 
+from path_safety import safe_component, safe_join
+
 PROJECT_ROOT = Path(__file__).parent.parent
 KB_ROOT = PROJECT_ROOT / ".guardian" / "enterprise_kb"
 INCIDENTS_DIR = PROJECT_ROOT / ".guardian" / "incidents"
@@ -156,7 +158,7 @@ def _ingest_industry_case(input_path: str):
 
     case_dir = KB_ROOT / "industry_cases"
     case_dir.mkdir(parents=True, exist_ok=True)
-    case_file = case_dir / f"{case['case_id']}.json"
+    case_file = safe_join(case_dir, f"{safe_component(case['case_id'])}.json")
     with open(case_file, "w", encoding="utf-8") as f:
         json.dump(case, f, ensure_ascii=False, indent=2)
 
@@ -182,7 +184,7 @@ def _ingest_vendor_bulletin(input_path: str):
 
     bull_dir = KB_ROOT / "vendor_bulletins"
     bull_dir.mkdir(parents=True, exist_ok=True)
-    with open(bull_dir / f"{bulletin['bulletin_id']}.json", "w", encoding="utf-8") as f:
+    with open(safe_join(bull_dir, f"{safe_component(bulletin['bulletin_id'])}.json"), "w", encoding="utf-8") as f:
         json.dump(bulletin, f, ensure_ascii=False, indent=2)
 
     print(f"[导入] 厂商公告已录入: {bulletin['bulletin_id']}")
@@ -204,7 +206,7 @@ def _ingest_regulation(input_path: str):
         "import_time": datetime.now(timezone.utc).isoformat(),
     }
 
-    with open(KB_COMPLIANCE / f"{reg['reg_id']}.json", "w", encoding="utf-8") as f:
+    with open(safe_join(KB_COMPLIANCE, f"{safe_component(reg['reg_id'])}.json"), "w", encoding="utf-8") as f:
         json.dump(reg, f, ensure_ascii=False, indent=2)
 
     print(f"[导入] 法规已录入: {reg['reg_id']}")
@@ -229,7 +231,7 @@ def _ingest_manual_experience(input_path: str = None):
 
     exp_dir = KB_ROOT / "manual_experiences"
     exp_dir.mkdir(parents=True, exist_ok=True)
-    with open(exp_dir / f"{exp['exp_id']}.json", "w", encoding="utf-8") as f:
+    with open(safe_join(exp_dir, f"{safe_component(exp['exp_id'])}.json"), "w", encoding="utf-8") as f:
         json.dump(exp, f, ensure_ascii=False, indent=2)
 
     print(f"\n[录入完成] 经验记录 {exp['exp_id']}")
@@ -244,7 +246,7 @@ def _index_event(event: dict):
     if crisis_type:
         type_dir = IDX_BY_TYPE / crisis_type
         type_dir.mkdir(parents=True, exist_ok=True)
-        with open(type_dir / f"{incident_id}.json", "w", encoding="utf-8") as f:
+        with open(safe_join(type_dir, f"{safe_component(incident_id)}.json"), "w", encoding="utf-8") as f:
             json.dump(event, f, ensure_ascii=False, indent=2)
 
     # 按设备索引
@@ -252,7 +254,7 @@ def _index_event(event: dict):
     if device_type:
         dev_dir = IDX_BY_DEVICE / device_type.replace(" ", "_")
         dev_dir.mkdir(parents=True, exist_ok=True)
-        with open(dev_dir / f"{incident_id}.json", "w", encoding="utf-8") as f:
+        with open(safe_join(dev_dir, f"{safe_component(incident_id)}.json"), "w", encoding="utf-8") as f:
             json.dump(event, f, ensure_ascii=False, indent=2)
 
     # 按严重等级索引
@@ -260,7 +262,7 @@ def _index_event(event: dict):
     if level:
         sev_dir = IDX_BY_SEVERITY / level
         sev_dir.mkdir(parents=True, exist_ok=True)
-        with open(sev_dir / f"{incident_id}.json", "w", encoding="utf-8") as f:
+        with open(safe_join(sev_dir, f"{safe_component(incident_id)}.json"), "w", encoding="utf-8") as f:
             json.dump(event, f, ensure_ascii=False, indent=2)
 
 

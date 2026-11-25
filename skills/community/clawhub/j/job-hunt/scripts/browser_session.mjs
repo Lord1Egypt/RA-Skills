@@ -3,7 +3,7 @@
 import {createServer} from 'node:http';
 import {randomBytes} from 'node:crypto';
 import {createRequire} from 'node:module';
-import {readFile, writeFile, mkdir, unlink, open} from 'node:fs/promises';
+import {readFile, writeFile, mkdir, unlink, open, rename} from 'node:fs/promises';
 import {join, resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {spawn} from 'node:child_process';
@@ -12,7 +12,14 @@ import {dailyEndpoint} from './browser_cdp.mjs';
 const alive = pid => {try {process.kill(pid, 0);return true;} catch {return false;}};
 const send = (ws, value) => {if (ws?.readyState === 1) ws.send(JSON.stringify(value));};
 const failed = state => ['disconnected', 'consent_timeout'].includes(state);
+const active = state => ['connected', 'waiting_for_consent'].includes(state);
 const connectionHelp = browser => `Cannot connect to the selected daily ${browser}. Keep it open and ${browser === 'chrome' ? 'enable remote debugging at chrome://inspect/#remote-debugging' : 'enable its supported remote-debugging endpoint'}, then start one session and accept the browser's connection prompt.`;
+// WorkBuddy waits at most 600 s on a foreground Bash call (BASH_MAX_TIMEOUT_MS),
+// then moves it to the background and keeps the process. A model that runs
+// `start` without run_in_background is blocked until then and cannot tell the
+// user to accept Chrome's prompt, so the consent window must outlast that wait.
+export const consentMsFor = env => env.CODEBUDDY_SANDBOX_BROKER_EXECUTION_ATTEMPT_ID ? 11 * 60 * 1000 : 120000;
+const stoppedHelp = browser => `The browser session ended. Do not reconnect automatically. WorkBuddy can reset it from a new chat after the user asks to resume, or the user can reset it from a terminal. ${connectionHelp(browser)}`;
 
 export async function createSession({endpoint, WebSocket, WebSocketServer,
   idleMs = 30 * 60 * 1000, consentMs = 120000, changed = () => {}}) {
@@ -146,7 +153,7 @@ export async function createSession({endpoint, WebSocket, WebSocketServer,
   upstream.on('close', () => {
     if (closing) return;
     clearTimeout(consentTimer);
-    for (const client of clients) client.close(1011, 'Browser connection ended; explicitly start a new session');
+    for (const client of clients) client.close(1011, 'Browser connection ended; wait for the user to resume');
     pending.clear();void close('disconnected');
   });
   const consentTimer = setTimeout(() => {void close('consent_timeout');}, consentMs);
@@ -160,101 +167,141 @@ export async function main(argv) {
   const options = {};
   const action = argv.shift();
   for (let i=0;i<argv.length;i+=2) {
-    if (!['--root','--browser'].includes(argv[i]) || !argv[i+1]) throw Error('Use start|status|stop --root PATH --browser chrome|edge');
+    if (!['--root','--browser'].includes(argv[i]) || !argv[i+1]) throw Error('Use start|status|stop|reset --root PATH --browser chrome|edge');
     options[argv[i].slice(2)] = argv[i+1];
   }
   if (!options.root || !['chrome','edge'].includes(options.browser)) throw Error('--root and --browser are required');
   const root = resolve(options.root), browser = options.browser;
+  const managed = Boolean(process.env.CODEBUDDY_SANDBOX_BROKER_EXECUTION_ATTEMPT_ID);
+  const workbuddySession = managed ? process.env.CODEBUDDY_SANDBOX_BROKER_SESSION_ID : undefined;
   await mkdir(root, {recursive:true});
   const stateFile = join(root, `browser-session-${browser}.json`), lockFile = stateFile + '.lock';
-  let previous;try {previous = JSON.parse(await readFile(stateFile,'utf8'));} catch {}
+  async function readState() {
+    try {return JSON.parse(await readFile(stateFile,'utf8'));}
+    catch (err) {if (err.code !== 'ENOENT') throw err;}
+  }
+  const isLive = record => Number.isInteger(record?.pid) && record.pid > 0 && alive(record.pid);
+  const endedUnexpectedly = record => failed(record?.state) || (active(record?.state) && !isLive(record));
+  let previous = await readState();
+  async function withStartLock(action) {
+    let lock;
+    try {lock = await open(lockFile,'wx',0o600);} catch (err) {
+      if (err.code === 'EEXIST') throw Error('A browser session state change is in progress; check status');
+      throw err;
+    }
+    try {return await action();}
+    finally {await lock.close();await unlink(lockFile);}
+  }
   async function contact(suffix, method = 'GET') {
-    if (!previous?.endpoint || !alive(previous.pid)) throw Error('No running browser session; start one session first');
+    if (!previous?.endpoint || !isLive(previous)) throw Error('No running browser session');
     const url = new URL(previous.endpoint);url.protocol = 'http:';url.pathname += suffix;
     const response = await fetch(url,{method,signal:AbortSignal.timeout(2000)});
     if (!response.ok) throw Error(await response.text());
     return response;
   }
   if (action === 'status') {
-    if (!previous || !alive(previous.pid)) {
-      if (failed(previous?.state)) throw Error(connectionHelp(browser));
+    if (endedUnexpectedly(previous)) throw Error(stoppedHelp(browser));
+    if (!isLive(previous) || previous.state === 'closed') {
       console.log(JSON.stringify({state:'stopped',browser}));return;
     }
     const status = await (await contact('/status')).json();
-    if (failed(status.state)) throw Error(connectionHelp(browser));
+    if (failed(status.state)) throw Error(stoppedHelp(browser));
     console.log(JSON.stringify({...status,browser}));return;
   }
   if (action === 'endpoint') {
-    if (failed(previous?.state)) throw Error(connectionHelp(browser));
+    if (endedUnexpectedly(previous)) throw Error(stoppedHelp(browser));
     const status = await (await contact('/status')).json();
     if (status.state !== 'connected') throw Error(`Browser session is ${status.state}; wait for user consent instead of opening another connection`);
-    if (previous.source_endpoint !== await dailyEndpoint(browser)) throw Error('Selected daily browser restarted; start a new consented session');
+    if (previous.source_endpoint !== await dailyEndpoint(browser)) throw Error(stoppedHelp(browser));
     console.log(previous.endpoint);return;
   }
   if (action === 'stop') {
-    if (previous && alive(previous.pid)) await contact('/stop','POST');
-    console.log(JSON.stringify({state:'stopping',browser}));return;
+    return withStartLock(async () => {
+      previous = await readState();
+      if (isLive(previous)) {
+        if (active(previous.state)) await contact('/stop','POST');
+        console.log(JSON.stringify({state:'stopping',browser}));return;
+      }
+      console.log(JSON.stringify({state:'stopped',browser}));
+    });
   }
-  if (!['start','serve'].includes(action)) throw Error('Use start, status or stop');
-  if (action === 'start') {
-    if (previous && alive(previous.pid)) {
-      if (previous.source_endpoint !== await dailyEndpoint(browser)) throw Error('Browser changed; stop the old session before starting a new one');
+  if (action === 'reset') {
+    return withStartLock(async () => {
+      previous = await readState();
+      if (isLive(previous)) throw Error('Wait for the existing browser session to stop before resetting');
+      if (managed && previous && (!workbuddySession || !previous.workbuddy_session ||
+          workbuddySession === previous.workbuddy_session)) throw Error(stoppedHelp(browser));
+      if (previous) await unlink(stateFile);
+      console.log(JSON.stringify({state:'stopped',browser}));
+    });
+  }
+  if (action === 'serve' && !managed) return serve();
+  if (action !== 'start') throw Error('Use start, status, stop or reset');
+  return withStartLock(async () => {
+    previous = await readState();
+    if (endedUnexpectedly(previous) || (managed && previous?.state === 'closed')) throw Error(stoppedHelp(browser));
+    if (isLive(previous)) {
+      if (previous.state === 'closed') throw Error('Browser session is stopping; wait for status to report stopped');
+      if (previous.source_endpoint !== await dailyEndpoint(browser)) throw Error(stoppedHelp(browser));
       const status = await (await contact('/status')).json();
-      if (failed(status.state)) throw Error(connectionHelp(browser));
+      if (failed(status.state)) throw Error(stoppedHelp(browser));
       console.log(JSON.stringify({...status,browser,reused:true}));return;
     }
-    // Fail before spawning when first-run setup has no endpoint at all.
-    try {await dailyEndpoint(browser);} catch (err) {throw Error(`${err.message}. ${connectionHelp(browser)}`);}
-    let lock;
-    try {lock = await open(lockFile,'wx',0o600);} catch (err) {
-      if (err.code === 'EEXIST') throw Error('A session start is already in progress; check status instead of reconnecting');
-      throw err;
+    let sourceEndpoint;
+    try {sourceEndpoint = await dailyEndpoint(browser);} catch (err) {throw Error(`${err.message}. ${connectionHelp(browser)}`);}
+    if (managed) {
+      // WorkBuddy revokes the broker capability when its Bash task exits.
+      // Keep the server in that task. WorkBuddy runs the task in background.
+      const session = await serve(sourceEndpoint);
+      console.log(JSON.stringify({...session.status(),browser,pid:process.pid,reused:false}));
+      return;
     }
-    try {
-      const log = await open(join(root,`browser-session-${browser}.log`),'a',0o600);
-      const child = spawn(process.execPath,[process.argv[1],'serve','--root',root,'--browser',browser],
-        {detached:true,stdio:['ignore',log.fd,log.fd],windowsHide:true});
-      child.unref();await log.close();
-      // Do not launch another process in the gap before serve writes its state.
-      let firstState = null;
-      for (let i=0;i<100;i++) {
-        let s;
-        try {s=JSON.parse(await readFile(stateFile,'utf8'));} catch {}
-        if (s?.pid===child.pid) {
-          // The handshake grace below counts from HERE, not from loop entry.
-          // Sharing one counter meant a slow spawn spent the window meant for
-          // the socket, so an already authorized browser reported
-          // waiting_for_consent and sent the user to accept a prompt that was
-          // never going to appear.
-          if (firstState === null) firstState = i;
-          if (failed(s.state) || s.state === 'closed') throw Error(connectionHelp(browser));
-          // An already authorized browser commonly opens the socket just
-          // after serve writes its first state. Allow that handshake to finish
-          // before telling the user that a consent prompt needs attention.
-          if (s.state === 'waiting_for_consent' && i - firstState < 20) {
-            await new Promise(r=>setTimeout(r,50));
-            continue;
-          }
-          console.log(JSON.stringify({state:s.state,browser,pid:s.pid,reused:false}));return;
+    const log = await open(join(root,`browser-session-${browser}.log`),'a',0o600);
+    const child = spawn(process.execPath,[process.argv[1],'serve','--root',root,'--browser',browser],
+      {detached:true,stdio:['ignore',log.fd,log.fd],windowsHide:true});
+    child.unref();await log.close();
+    // Hold the lock until the child publishes its state. Count the handshake
+    // grace from that point so a slow process launch does not eat the grace.
+    let firstState = null;
+    for (let i=0;i<100;i++) {
+      const state = await readState();
+      if (state?.pid===child.pid) {
+        if (firstState === null) firstState = i;
+        if (failed(state.state)) throw Error(stoppedHelp(browser));
+        if (state.state === 'closed') throw Error(connectionHelp(browser));
+        if (state.state !== 'waiting_for_consent' || i - firstState >= 20) {
+          console.log(JSON.stringify({state:state.state,browser,pid:state.pid,reused:false}));return;
         }
-        await new Promise(r=>setTimeout(r,50));
       }
-      throw Error('Browser session did not start; inspect its local log');
-    } finally {await lock.close();await unlink(lockFile);}
+      await new Promise(r=>setTimeout(r,50));
+    }
+    throw Error('Browser session did not start; inspect its local log');
+  });
+
+  async function serve(sourceEndpoint) {
+    const runtime = JSON.parse(await readFile(join(root,'runtime.json'),'utf8'));
+    const {WebSocket,WebSocketServer} = createRequire(runtime.opencli)('ws');
+    const source_endpoint = sourceEndpoint ?? await dailyEndpoint(browser);
+    const stagingFile = `${stateFile}.${process.pid}.tmp`;
+    let localEndpoint, lastState, writes = Promise.resolve();
+    const save = ({state}) => {
+      if (!localEndpoint || lastState === state) return;
+      lastState = state;
+      writes = writes.then(async () => {
+        await writeFile(stagingFile,JSON.stringify({pid:process.pid,browser,
+          source_endpoint,endpoint:localEndpoint,state,workbuddy_session:workbuddySession}),{mode:0o600});
+        await rename(stagingFile,stateFile);
+      });
+    };
+    const session = await createSession({endpoint:source_endpoint,WebSocket,WebSocketServer,changed:save,
+      consentMs:consentMsFor(process.env)});
+    localEndpoint = session.endpoint;
+    save(session.status());
+    process.once('SIGTERM',()=>{void session.close();});
+    process.once('SIGINT',()=>{void session.close();});
+    await writes;
+    return session;
   }
-  const runtime = JSON.parse(await readFile(join(root,'runtime.json'),'utf8'));
-  const {WebSocket,WebSocketServer} = createRequire(runtime.opencli)('ws');
-  const source_endpoint = await dailyEndpoint(browser);
-  let localEndpoint, writes = Promise.resolve();
-  const save = status => {
-    writes = writes.then(() => writeFile(stateFile,JSON.stringify({pid:process.pid,browser,
-      source_endpoint,endpoint:localEndpoint,...status}),{mode:0o600}));
-  };
-  save({state:'waiting_for_consent'});
-  const session = await createSession({endpoint:source_endpoint,WebSocket,WebSocketServer,changed:save});
-  localEndpoint = session.endpoint;save(session.status());
-  process.once('SIGTERM',()=>{void session.close();});
-  process.once('SIGINT',()=>{void session.close();});
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {

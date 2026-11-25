@@ -1,6 +1,6 @@
 ## Description:
 
-Creates one Amazon A+ module still for each seller-confirmed product selling point.
+Turns seller-confirmed selling points into one Amazon A+ module still per point.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External sellers and listing-content creators use this skill to turn confirmed product selling points into consistent Amazon A+ Content module stills, with a labeled plan before image generation.
+Marketplace sellers and ecommerce teams use the skill to turn confirmed product benefits into a coherent set of Amazon A+ module stills.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Authorization requires account permissions beyond still-image work, including media, voice-management, and spending access.
+Risk: ClawScan reports broad account permissions, a shared credential, recurring installation telemetry, and lifecycle actions beyond the skill's stated image-creation purpose.
 
-Mitigation: Review requested permissions before approval and prefer authorization limited to still-image work when available.
+Mitigation: Review the requested access and data collection and proceed only if they are acceptable; use update instructions that pin a reviewed package version.
 
-Risk: Installation telemetry and chosen reference uploads reach Beatra.
+Risk: ClawScan reports partial coverage because some local references were unresolved, so the security evidence is incomplete.
 
-Mitigation: Account for telemetry and avoid uploading sensitive reference material.
-
-Risk: Removing this skill may disrupt other Beatra skills.
-
-Mitigation: Check for other Beatra skills before uninstalling; revoke device access through the Beatra Console when needed.
+Mitigation: Treat the assessment as incomplete and review the package contents and requested access before installation.
 
 ## Reference(s):
 
-- [ClawHub release](https://clawhub.ai/beatra-ai/skills/amazon-a-plus-module-pack)
 - [A+ module workflow](references/workflow.md)
+- [Billing, errors, and recovery](references/billing-errors-and-recovery.md)
 - [Updates and security](references/updates-and-security.md)
+- [Amazon A+ Module Stills on ClawHub](https://clawhub.ai/beatra-ai/skills/amazon-a-plus-module-pack)
 
 ## Skill Output:
 
-**Output Type(s):** [Image files, Markdown, Guidance]
+**Output Type(s):** [Images, Markdown, Files]
 
-**Output Format:** [Amazon A+ module still files, a labeled Markdown module plan, and task details.]
+**Output Format:** [Generated image files and a labeled Markdown module plan]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [One still per confirmed selling point, with a consistent visual treatment across the set.]
+**Other Properties Related to Output:** [One still per confirmed selling point, with delivery details for completed tasks.]
 
 ## Skill Version(s):
 
-0.2.3 (source: server-resolved release evidence)
+0.2.6 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

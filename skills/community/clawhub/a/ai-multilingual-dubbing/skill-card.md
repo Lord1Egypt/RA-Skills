@@ -1,6 +1,6 @@
 ## Description:
 
-Create reviewable multilingual voice-over audio from prepared scripts by organizing markets and segments, selecting locale-ready voices, and piloting pronunciation and timing.
+Create reviewable multilingual voice-over tracks from approved scripts or authorized recordings, with locale-specific voice selection, pilot checks, and delivery organized by market and segment.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Localization teams, video creators, and e-learning or marketing producers use this agent to plan multilingual voice-over by market, prepare and check scripts, select voices, and deliver reviewable tracks organized by language and segment.
+External content teams and localization producers use it to create multilingual narration for videos, courses, training materials, and campaigns. It helps plan locale and segment coverage, approve voice and timing pilots, and deliver reviewable tracks.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan marks the release suspicious because of broad account permissions and persistent collection of installation data; its scan was partial and the verdict was not malicious.
+Risk: The supplied security assessment rates the release suspicious and cites broad shared account access, possible transmission of scripts and host details, and uninstall behavior; its coverage is partial.
 
-Mitigation: Review the security guidance and avoid installation unless the skill is needed and you are comfortable with the access, installation and environment details, and shared-token behavior described there.
+Mitigation: Review account access, privacy, installation registration, and disconnect guidance before installing or connecting an account; account for unsupported binary content and unresolved references when evaluating the partial assessment.
 
-Risk: Some workflows upload source media and use paid transcription, voice cloning, conversion, synthesis, or audio processing.
+Risk: Voice cloning and speech conversion may involve submitting a person's voice recording to the service.
 
-Mitigation: Upload only media you are authorized to share, confirm the speaker's permission before voice cloning or conversion, and review the quoted scope and price before paid operations.
+Mitigation: Submit only recordings you have permission to use, and obtain the speaker's consent before uploading a sample for cloning, as the skill requires.
 
 ## Reference(s):
 
-- [AI Multilingual Dubbing product page](https://beatra.ai/skills/ai-multilingual-dubbing)
-- [Speech and audio guide](artifact/references/speech-and-audio.md)
-- [Matrix design](artifact/references/matrix-design.md)
-- [Locale readiness and quality](artifact/references/locale-readiness-and-quality.md)
-- [Updates and security](artifact/references/updates-and-security.md)
+- [ClawHub release page](https://clawhub.ai/beatra-ai/skills/ai-multilingual-dubbing)
+- [Beatra skill page](https://beatra.ai/skills/ai-multilingual-dubbing)
+- [Speech and audio guide](references/speech-and-audio.md)
+- [Matrix design](references/matrix-design.md)
+- [Locale readiness and quality](references/locale-readiness-and-quality.md)
+- [Updates and security](references/updates-and-security.md)
+- [Installation and authentication](references/installation-and-auth.md)
+- [Uninstall and disconnect](references/uninstall-and-disconnect.md)
 
 ## Skill Output:
 
 **Output Type(s):** [Audio files, Text, Subtitles]
 
-**Output Format:** [Generated voice-over audio with optional SRT or VTT captions and text delivery details]
+**Output Format:** [Localized narration tracks in MP3, WAV, or FLAC, with optional SRT or VTT captions and delivery details grouped by locale and segment.]
 
-**Output Parameters:** [Segment × locale matrix]
+**Output Parameters:** [2D (locale × segment)]
 
-**Other Properties Related to Output:** [Tracks are organized by market, language, and segment; duration, model, and billing details may accompany completed tasks.]
+**Other Properties Related to Output:** [Pilot-first workflow with reviewable delivery by market, locale, and segment.]
 
 ## Skill Version(s):
 
-0.3.0 (source: artifact/manifest.json, server-resolved release evidence)
+0.3.1 (source: server-resolved release)
 
 ## Ethical Considerations:
 

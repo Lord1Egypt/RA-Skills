@@ -1,6 +1,6 @@
 ## Description:
 
-A Chinese-first strategic thinking partner that uses Zhuge Liang inspired frameworks for planning, systems thinking, prioritization, and complex situations.
+A Chinese-first strategic thinking partner that uses Zhuge Liang-inspired frameworks for long-range planning, system design, prioritization, and ethical negotiation.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Users seeking a structured thinking aid can use the skill to frame strategic choices, diagnose recurring system problems, prioritize limited resources, and explore cooperative approaches. Its outputs are reference guidance and should be checked against current facts and the user's circumstances.
+Chinese-speaking individuals and teams can use this agent as a structured thinking aid to frame strategy, diagnose recurring process problems, prioritize limited resources, and plan contingencies. Treat historical analogies as prompts, verify current facts, and have qualified people make consequential decisions.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Historical analogies and general frameworks may be mistaken for verified facts or situation-specific professional advice.
+Risk: Historical analogies and strategic frameworks may be mistaken for verified facts or professional advice.
 
-Mitigation: Check historical claims and current facts against reliable sources; use qualified review for consequential professional decisions.
+Mitigation: Use the frameworks as prompts, verify facts against reliable sources, and leave consequential decisions to qualified reviewers.
 
-Risk: Psychological-strategy or resource-sharing examples could be applied in misleading or harmful ways.
+Risk: Psychological-strategy examples could be applied to deceive or mislead others.
 
-Mitigation: Keep their use to honest, lawful cooperation; do not use them to deceive, evade oversight, or harm others.
+Mitigation: Keep their use to legitimate collaboration and negotiation; do not use them to fabricate capabilities, conceal material facts, or harm others.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/gechengling/skills/zhugeliang-think-partner)
+- [ClawHub skill release](https://clawhub.ai/gechengling/skills/zhugeliang-think-partner)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance, Analysis]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Chinese or English prose with structured frameworks, tables, and checklists]
+**Output Format:** [Conversational text and structured Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Advisory reference text; no executable code or external actions.]
+**Other Properties Related to Output:** [Primarily Chinese, with English terminology as needed; no executable code or external actions.]
 
 ## Skill Version(s):
 
-2.0.4 (source: server-resolved release evidence)
+2.0.5 (source: server-resolved release evidence and artifact metadata)
 
 ## Ethical Considerations:
 

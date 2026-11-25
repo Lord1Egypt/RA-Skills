@@ -1,45 +1,57 @@
-## Description: <br>
-A structured workflow for managing product documentation in Feishu (Lark), including knowledge-base setup, requirements lifecycle management, versioned product requirements documents, and API integration guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A structured workflow for managing product documentation in Feishu (Lark), including project knowledge bases, product requirement documents, lifecycle states, versioning, and Feishu API setup guidance.
 
-## Publisher: <br>
-[zxc159620352](https://clawhub.ai/user/zxc159620352) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zxc159620352](https://clawhub.ai/user/zxc159620352)
 
-## Use Case: <br>
-External developers and product teams use this skill to set up and maintain Feishu-based product documentation, including knowledge bases, requirements documents, configuration records, and implementation notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports exposed real-looking Feishu credentials in the skill artifact. <br>
-Mitigation: Do not use the included Feishu credentials; revoke and rotate them if they belong to you, and replace them with secrets stored in a secret manager. <br>
-Risk: The skill encourages recording API keys, environment variables, deployment configuration, and other sensitive setup data in shared Feishu documents. <br>
-Mitigation: Store only redacted configuration references in Feishu documents, keep secrets out of shared documentation, and use least-privilege Feishu app permissions. <br>
+## Use Case:
 
+Developers, product managers, and documentation owners use this skill to create and maintain Feishu-based product documentation, including requirements thinking, project and code logic records, configuration records, and versioned PRDs. It also provides Feishu API setup and workflow examples for automated document management.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zxc159620352/simple-product-doc-manager) <br>
-- [Workflow examples](references/workflow-examples.md) <br>
-- [Feishu API setup guide](references/feishu-api-setup.md) <br>
-- [Feishu Open Platform documentation](https://open.feishu.cn/document/) <br>
-- [Obtain user_access_token](https://open.feishu.cn/document/server-docs/authentication-management/access-token/obtain-user_access_token) <br>
-- [Create document API](https://open.feishu.cn/document/server-docs/docs/docs/docx-v1/document/create) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request examples and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides an agent through document structure, lifecycle states, naming conventions, Feishu API setup, and workflow examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The release includes live-looking Feishu credentials and personal/account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revoke and rotate the exposed App Secret, access token, and refresh token, remove personal/account data, and replace all credentials with placeholders before installation or redistribution.
+
+Risk: The documented workflow encourages recording secrets and deployment configuration in collaborative documents.
+
+Mitigation: Treat Feishu documents as non-secret documentation only and store tokens, API keys, passwords, and deployment secrets in a dedicated secret manager.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zxc159620352/skills/simple-product-doc-manager)
+- [workflow-examples.md](references/workflow-examples.md)
+- [feishu-api-setup.md](references/feishu-api-setup.md)
+- [Feishu Open Platform](https://open.feishu.cn/)
+- [Feishu Open Platform documentation](https://open.feishu.cn/document/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with JSON examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes bilingual Chinese and English document templates, lifecycle guidance, Feishu API configuration steps, and workflow examples.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

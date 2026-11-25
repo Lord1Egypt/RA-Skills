@@ -57,7 +57,7 @@ TRUNC_TEMPLATE_RE = re.compile(
     r"([A-Z]{2,8})-\{[^{}]{0,80}?(?:前\s*([0-9]+|[一二三四五六七八九十])\s*(?:位|个字符|个字)|截取|截断)[^{}]{0,60}?\}"
 )
 ENUM_RE = re.compile(r"枚举[值]?[：:]\s*([a-z][a-z0-9_]*(?:\s*[/、,，]\s*[a-z][a-z0-9_]*){2,})")
-STATE_CLAIM_RE = re.compile(r"([0-9]+|[一二三四五六七八九十])\s*(态|个状态|种状态)")
+STATE_CLAIM_RE = re.compile(r"(?<![0-9])([0-9]+|[一二三四五六七八九十])\s*(态|个状态|种状态)")
 STATE_TOKEN_RE = re.compile(r"[a-z][a-z0-9_]*")
 SNAKE_TOKEN_RE = re.compile(r"(?<![A-Za-z0-9_])[a-z][a-z0-9]*_[a-z0-9_]*")
 
@@ -70,7 +70,7 @@ _GUARD_DENY_SET_RE = re.compile(
     r"state\s*∉\s*[\{（(]?\s*([a-z][a-z0-9_]*(?:\s*[/、,，]\s*[a-z][a-z0-9_]*)+)"
 )
 _GUARD_DENY_CN_RE = re.compile(
-    r"([a-z][a-z0-9_]*(?:\s*[/、,，]\s*[a-z][a-z0-9_]*)+)\s*不可\s*([一-龥]{2,4})"
+    r"(?<![a-z0-9_])([a-z][a-z0-9_]*(?:\s*[/、,，]\s*[a-z][a-z0-9_]*)+)\s*不可\s*([一-龥]{2,4})"
 )
 _GUARD_ID_RE = re.compile(r"(?<![A-Za-z0-9-])(?:RULE|ACT)-[A-Z0-9](?:[A-Z0-9_-]*[A-Z0-9])?")
 
@@ -107,9 +107,13 @@ def _headings(lines: list[str]) -> list[tuple[int, str, int]]:
         if stripped.startswith("```") or stripped.startswith("~~~"):
             in_fence = not in_fence
         elif not in_fence:
-            match = re.match(r"^(#{1,6})[ \t]+(.+?)\s*$", line)
+            match = re.match(r"^(#{1,6})[ \t]+(.+)", line.rstrip())
             if match:
-                title = re.sub(r"\s+#+\s*$", "", match.group(2)).strip()
+                title = match.group(2).strip()
+                if title.endswith("#"):
+                    prefix = title.rstrip("#")
+                    if prefix and prefix[-1].isspace():
+                        title = prefix.rstrip()
                 headings.append((len(match.group(1)), title, index))
     return headings
 
@@ -242,6 +246,7 @@ def _collect_ids(raw: str) -> tuple[dict[str, tuple[int, str]], dict[str, list[t
                     if not re.match(rf"(?:{_FAMILY})-", part):
                         define(f"{head}-{part.rstrip('-')}", line_no, "registry")
         backtick_spans = [(m.start(), m.end()) for m in re.finditer(r"`[^`]*`", line)]
+        has_label_annotation = "」" in line
         for token, start, end in occurrences:
             is_def = False
             kind = "prose"
@@ -268,7 +273,8 @@ def _collect_ids(raw: str) -> tuple[dict[str, tuple[int, str]], dict[str, list[t
                 is_def, kind = True, "registry"
             if end < len(line) and line[end] in "（(":
                 is_def = True  # ID（…）注解定义
-            if re.search(rf"」\s*[（(][^（）()]{{0,60}}{re.escape(token)}\b", line):
+            # Headings and other definition sites already establish this ID.
+            if not is_def and has_label_annotation and re.search(rf"」\s*[（(][^（）()]{{0,60}}{re.escape(token)}\b", line):
                 is_def = True  # 「控件标签」（ID…）定义
             if any(lo <= start < hi for lo, hi in enum_ranges):
                 is_def, kind = True, "registry"  # 动作：/事件：枚举定义
@@ -556,43 +562,51 @@ def _confirmed_status(value: str) -> bool:
 
 
 def check_body_decision_conflicts(raw: str) -> list[SemFinding]:
-    """D6: exact-topic conflicts across canonical human decision tables.
-
-    This is deliberately table-bounded rather than broad prose matching, so a
-    product manager's authoritative decision/unknown tables are checked without
-    pretending to understand unrelated natural-language paragraphs. Decisions
-    and unknowns may be split across sections, so collection is document-wide.
-    """
-    findings: list[SemFinding] = []
-    decided: dict[str, tuple[str, int]] = {}
-    opened: dict[str, tuple[str, int]] = {}
-    for _heading, header, rows in _markdown_tables(raw):
-        lowered = [cell.casefold() for cell in header]
-        id_col = next((i for i, cell in enumerate(lowered) if re.search(r"\b(?:unk|dec)(?:\s*/\s*(?:unk|rev|dec))*\s*id\b", re.sub(r"[`*_]", "", cell), re.I)), None)
+    """Compare explicit topic AND applicability; ambiguous joins remain candidates."""
+    records = []
+    dimensions = {
+        "scope": ("适用范围", "范围", "scope", "市场", "market", "租户", "tenant"),
+        "object": ("业务对象", "对象", "object", "subject"),
+        "version": ("适用版本", "版本", "version", "baseline"),
+        "period": ("生效时间", "适用时间", "effective", "period"),
+    }
+    for heading, header, rows in _markdown_tables(raw):
+        lowered = [re.sub(r"[`*_]", "", cell).strip().casefold() for cell in header]
+        id_col = next((i for i, cell in enumerate(lowered) if re.search(r"\b(?:unk|dec)(?:\s*/\s*(?:unk|rev|dec))*\s*id\b", cell, re.I)), None)
         topic_col = next((i for i, cell in enumerate(lowered) if any(term in cell for term in ("问题", "冲突", "topic", "question"))), None)
         status_col = next((i for i, cell in enumerate(lowered) if any(term in cell for term in ("结论", "状态", "status", "decision"))), None)
-        if id_col is None or topic_col is None or status_col is None:
+        if None in (id_col, topic_col, status_col):
             continue
+        columns = {key: next((i for i, cell in enumerate(lowered) if cell in aliases), None) for key, aliases in dimensions.items()}
         for line_no, cells in rows:
             if max(id_col, topic_col, status_col) >= len(cells):
                 continue
-            item_id = cells[id_col].strip("`* ").upper()
-            topic = _normalized_topic(cells[topic_col])
+            identity = cells[id_col].strip("`* ").upper()
             status = _normalized_topic(cells[status_col])
-            if not topic:
+            confirmed = identity.startswith("DEC-") and _confirmed_status(status)
+            opened = identity.startswith("UNK-") and any(word in status for word in ("未关闭", "开放", "阻断", "待确认", "open", "blocked", "unresolved", "pending"))
+            if not (confirmed or opened):
                 continue
-            if item_id.startswith("DEC-") and _confirmed_status(status):
-                decided[topic] = (item_id, line_no)
-            elif item_id.startswith("UNK-") and any(term in status for term in ("未关闭", "开放", "阻断", "待确认", "open", "blocked", "unresolved", "pending")):
-                opened[topic] = (item_id, line_no)
-    for topic in sorted(set(decided) & set(opened)):
-        decision_id, decision_line = decided[topic]
-        unknown_id, unknown_line = opened[topic]
-        findings.append(SemFinding(
-            "BLOCK", "PRD-CONFIRMED-OPEN-UNKNOWN-CONFLICT",
-            f"正文决策表的同一问题同时登记为已确认决策 {decision_id} 和未关闭未知项 {unknown_id}；关闭其中一个并同步 frontmatter/附录",
-            f"{decision_id}@line {decision_line} vs {unknown_id}@line {unknown_line}",
-        ))
+            scope = {key: _normalized_topic(cells[col]) for key, col in columns.items() if col is not None and col < len(cells) and cells[col].strip() not in {"", "-", "待定", "unknown"}}
+            records.append((identity, line_no, _normalized_topic(cells[topic_col]), confirmed, scope))
+    findings = []
+    for decision in [x for x in records if x[3]]:
+        for unknown in [x for x in records if not x[3]]:
+            if not decision[2] or decision[2] != unknown[2]:
+                continue
+            shared = set(decision[4]) & set(unknown[4])
+            differing = [key for key in shared if decision[4][key] != unknown[4][key]]
+            broad = {"全部", "所有", "通用", "全国", "all", "global", "*"}
+            if differing and all(decision[4][key] not in broad and unknown[4][key] not in broad for key in differing):
+                continue  # Explicit distinct applicability labels, not one decision.
+            uncertain = bool(differing or set(decision[4]) != set(unknown[4]))
+            findings.append(SemFinding(
+                "GAP" if uncertain else "BLOCK",
+                "PRD-DECISION-SCOPE-UNRESOLVED" if uncertain else "PRD-CONFIRMED-OPEN-UNKNOWN-CONFLICT",
+                "同主题的决定与未知项缺少可比的适用范围；先核对对象、范围和版本，不能直接关闭未知项" if uncertain else
+                f"同一适用范围的问题同时为已确认 {decision[0]} 和未关闭 {unknown[0]}；核对现行依据并同步实际状态，不为通过检查改写决定",
+                f"{decision[0]}@line {decision[1]} vs {unknown[0]}@line {unknown[1]}",
+            ))
     return findings
 
 
@@ -669,13 +683,34 @@ def check_confirmed_decision_authority(raw: str) -> list[SemFinding]:
 
 
 def check_acceptance_falsifiability(raw: str) -> list[SemFinding]:
-    """D9: canonical AC rows must expose dual results, a counterexample and evidence."""
+    """Check recognized acceptance forms; this is not semantic or runtime proof."""
     findings: list[SemFinding] = []
     weak = re.compile(r"^(?:正常|功能正常|处理成功|显示正确|符合预期|可正常使用|pass|passed|ok|无|暂无|n/?a)$", re.I)
     for _heading, header, rows in _markdown_tables(raw):
         normalized = [re.sub(r"[`*_\s]", "", cell).casefold() for cell in header]
         id_col = next((i for i, cell in enumerate(normalized) if cell in {"acid", "验收id"}), None)
         if id_col is None:
+            # Human-facing cases have no mandatory AC ID, per-row evidence or
+            # separate negative column: rejection cases are ordinary case rows.
+            human_aliases = {
+                "case": {"用例", "验收场景", "case", "scenario"},
+                "steps": {"前置", "前提", "前置数据与操作", "前提与操作", "precondition", "preconditionsandactions"},
+                "visible": {"页面结果", "界面结果", "visibleresult", "pageresult"},
+                "domain": {"业务结果", "领域结果", "businessresult", "domainresult"},
+            }
+            human_columns = {key: next((i for i, cell in enumerate(normalized) if cell in aliases), None)
+                             for key, aliases in human_aliases.items()}
+            if any(index is None for index in human_columns.values()):
+                continue
+            for line_no, cells in rows:
+                failed = [key for key, index in human_columns.items()
+                          if index >= len(cells) or not cells[index].strip()
+                          or weak.fullmatch(re.sub(r"[`*_。.!！]", "", cells[index]).strip())]
+                if failed:
+                    label = cells[human_columns["case"]] if human_columns["case"] < len(cells) else "未命名用例"
+                    findings.append(SemFinding("BLOCK", "PRD-AC-NOT-FALSIFIABLE",
+                        f"验收场景 {label} 缺少可判定的前置/页面/业务结果：{', '.join(failed)}",
+                        f"{label}@line {line_no}"))
             continue
         aliases = {
             "steps": ("步骤/输入", "步骤", "输入", "steps/input", "steps"),
@@ -708,6 +743,29 @@ def check_acceptance_falsifiability(raw: str) -> list[SemFinding]:
                     f"验收标准 {item_id} 缺少可执行、可证伪的双结果/反例/证据：{', '.join(failures)}",
                     f"{item_id}@line {line_no}",
                 ))
+    # Recommended inline scene form. Keep this conservative: only explicitly
+    # titled acceptance scenes are inspected; other prose is not an empty test.
+    lines = raw.splitlines()
+    headings = _headings(lines)
+    label = re.compile(r"^\s*(?:\d+[.、]\s*)?(?:\*\*)?(?:预期结果|Expected result)(?:\*\*)?\s*[:：]\s*(.*)", re.I)
+    next_label = re.compile(r"^\s*(?:\d+[.、]\s*)?(?:\*\*)?(?:场景编号|前提|操作|预期结果|Scenario ID|Preconditions?|Action|Expected result)(?:\*\*)?\s*[:：]", re.I)
+    for index, (level, title, start) in enumerate(headings):
+        if level < 2 or not re.search(r"验收场景|Acceptance scenario", title, re.I):
+            continue
+        end = headings[index + 1][2] if index + 1 < len(headings) else len(lines)
+        section = lines[start + 1:end]
+        result = next(((offset, match[1]) for offset, line in enumerate(section)
+                       if (match := label.match(line))), None)
+        if result is None:
+            continue
+        offset, value = result
+        if not value.strip():
+            continuation = next((line for line in section[offset + 1:] if line.strip()), "")
+            value = "" if next_label.match(continuation) else continuation
+        if not value.strip() or weak.fullmatch(re.sub(r"[`*_。.!！]", "", value).strip()):
+            findings.append(SemFinding("BLOCK", "PRD-AC-NOT-FALSIFIABLE",
+                "验收场景的预期结果不能只写功能正常或符合预期；写可观察、可判定的结果。",
+                f"{title}@line {start + offset + 2}"))
     return findings
 
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Subclip Canvas Layout"
+  short_description: "Design responsive canvas compositions and framing"
+  default_prompt: "Use -canvas-layout to improve this video's canvas composition."

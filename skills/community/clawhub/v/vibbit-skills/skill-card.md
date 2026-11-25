@@ -1,6 +1,6 @@
 ## Description:
 
-Helps agents manage Vibbit product and creative libraries, research products, and plan, generate, localize, and revise marketing images, video, audio, subtitles, and comics.
+Vibbit Skills helps agents manage product and media libraries, plan and create creative content, edit or localize media, and review production results.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Creators, marketers, and developers use this skill to manage product and creative assets, produce ecommerce imagery and advertising videos, and adapt or localize media through Vibbit.
+Creators, marketers, and media producers use the skill through an agent to research products, plan and produce images, videos, audio, and other creative work, and reuse or revise media assets.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Automatic updates use an unpinned installer that can change the skill before use.
+Risk: The reported automatic update uses an unpinned installer, so installed instructions can change without a fresh review; the security analysis was incomplete.
 
-Mitigation: Disable automatic updates or review updates before running the skill.
-
-Risk: The skill can access API credentials, local creative files, and product or media data sent to Vibbit.
-
-Mitigation: Trust the publisher and Vibbit before use, store keys in a host secret manager, and avoid submitting confidential media unless Vibbit processing is acceptable.
-
-Risk: Product deletion and paid generation requests can have irreversible or billable effects.
-
-Mitigation: Confirm deletions and paid generation requests before execution.
+Mitigation: Review update changes and the skill's local, network, and shell actions, and use it only in an environment where updates and those actions can be controlled.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/zgissing/skills/vibbit-skills)
+- [Vibbit product site](https://vibbit.ai/)
 - [Vibbit API documentation](https://vibbit.apifox.cn/)
-- [Skill capabilities and workflows](references/catalog.md)
-- [Authentication and environment](references/runtime/authentication.md)
+- [ClawHub release page](https://clawhub.ai/zgissing/skills/vibbit-skills)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance, Media files]
+**Output Type(s):** [Guidance, Text, Markdown, JSON, Code, Shell commands, Configuration, Images, Audio, Video]
 
-**Output Format:** [Markdown guidance, commands, and generated media files or links]
+**Output Format:** [Markdown, text, structured data, commands, configuration files, and generated media files]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Media generation and account operations may require Vibbit credentials and credits.]
+**Other Properties Related to Output:** [May include production plans, local project files, and media task results.]
 
 ## Skill Version(s):
 
-2.18.0 (source: frontmatter, package.json, ClawHub release)
+2.18.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

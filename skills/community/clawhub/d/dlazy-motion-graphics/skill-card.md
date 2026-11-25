@@ -1,6 +1,6 @@
 ## Description:
 
-Creates motion graphics, kinetic typography, animated text videos, infographics, and explainers with Remotion code, then polishes and exports them; it is intended for code-driven animation rather than AI-generated footage.
+Creates motion graphics, kinetic typography, animated text videos, infographics, and explainers as Remotion code for polishing and export.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers can use the skill to create and continue project-based motion graphics, including kinetic typography, animated infographics, and explainer videos, using Remotion code and the dLazy service.
+Motion designers and developers use this skill to create code-driven animated graphics and explainer videos, then polish and export them. It supports new projects and follow-up work in an existing project.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Prompts and attached local files are sent to dLazy hosted services, and the CLI also supports organization project listing and authentication.
+Risk: The skill requires a dLazy API key and sends prompts and attached files to dLazy hosted services; the security scan says some package and local references were not fully resolved and notes authentication and project listing as potentially beyond the animation task.
 
-Mitigation: Avoid sending sensitive material, review the service terms, and confirm the project and authentication actions are appropriate before using the CLI.
-
-Risk: The security assessment was partial because the referenced local paths and CLI package were unavailable for review.
-
-Mitigation: Review the CLI package and the flagged guide content before installing or relying on the skill.
+Mitigation: Review the dLazy CLI and its permissions before using authentication or project listing, and share only prompts and files appropriate for the service. Use the documented key rotation or revocation controls if needed.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/dlazyai/skills/dlazy-motion-graphics)
-- [dLazy homepage](https://dlazy.com)
-- [dLazy CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
-- [CLI repository link listed in the skill documentation](https://github.com/dlazy-ai/cli)
+- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-motion-graphics)
+- [dLazy CLI repository (metadata link)](https://github.com/dlazy-ai/cli)
+- [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy website](https://dlazy.com)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Files, Guidance]
+**Output Type(s):** [Code, Video, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Remotion project code and rendered motion graphics video, with text guidance]
+**Output Format:** [Remotion project code and exported motion-graphics video, with Markdown guidance and inline shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Code-driven animation using text, shapes, data, logos, and transitions; project work can continue across sessions.]
+**Other Properties Related to Output:** [Project-based workflow; attached local files are uploaded to dLazy storage before use.]
 
 ## Skill Version(s):
 
-1.3.41 (source: server-resolved release metadata)
+1.3.44 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

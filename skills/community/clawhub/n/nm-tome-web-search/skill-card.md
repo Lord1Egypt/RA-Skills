@@ -1,6 +1,6 @@
 ## Description:
 
-Searches the open web for docs, comparisons, and news via You.com MCP or WebSearch
+Searches the open web for docs, comparisons, and news via You.com MCP or WebSearch.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Agents use this skill to find vendor documentation, standards, comparisons, benchmarks, and recent technology news from the open web. It returns ranked search findings for general topics that are not covered by a more specialized search channel.
+Developers use this skill to find vendor documentation, standards, comparisons, benchmarks, and technology news across the open web.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search topics may be disclosed to external search providers.
+Risk: Search topics may disclose sensitive information to external search providers.
 
-Mitigation: Do not include secrets, personal data, or confidential project details in search queries.
+Mitigation: Avoid including confidential or sensitive details in search topics.
 
 ## Reference(s):
 
 - [ClawHub release page](https://clawhub.ai/athola/skills/nm-tome-web-search)
-- [Tome plugin homepage (Clawdis metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/tome)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/tome)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Guidance]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Ranked web search findings with titles, URLs, and relevance scores]
+**Output Format:** [Structured search findings with source links, presented as text or Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results depend on the query and the available search provider.]
+**Other Properties Related to Output:** [Findings are ranked by relevance and include URLs and relevance scores.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -48,6 +48,11 @@ delta = calendar.sync(delta.sync_token)    # later: delta.changed, delta.cancell
 The API takes no time range with sync tokens. When Google invalidates a token,
 `sync` raises `SyncTokenExpiredError`: call it again without one.
 
+Push instead of polling: `channel = calendar.watch("https://host/hook", token="secret")`
+makes Google POST to that HTTPS URL on every change (the token comes back in
+`X-Goog-Channel-Token`; then call `calendar.sync(sync_token)`). Channels expire
+(`channel.expiration`); `calendar.stop_channel(channel)` ends one.
+
 ## Creating and changing
 
 ```python

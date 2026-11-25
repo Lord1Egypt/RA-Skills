@@ -1,6 +1,6 @@
 ## Description:
 
-Retrieve public Kuaishou videos, creator posts, engagement metrics, and comments for content research and performance review.
+Searches public Kuaishou videos, creator posts, and comments, returning structured engagement data for content and audience analysis.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Content creators, social media operators, marketers, and analysts can search public Kuaishou videos, review creator posts and comments, and use engagement metrics to inform content and competitor research.
+External content creators, marketers, and analysts use the skill to search public Kuaishou videos, review creator posts and comments, and assess engagement for research and content planning.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Queries and video links are sent to a third-party provider, whose live behavior and data retention have not been verified.
+Risk: Search terms and video or profile links are sent to GUAIKEI. The security assessment reports a benign verdict with medium confidence, partial script inspection, and an undisclosed third-party data-sharing concern.
 
-Mitigation: Use a GUAIKEI-specific token and avoid confidential search terms.
-
-Risk: Requests may incur provider plan charges or exceed plan-specific result limits.
-
-Mitigation: Check the applicable plan limits before requesting larger result sets.
-
-Risk: Optional logging retains local copies of results.
-
-Mitigation: Enable logging only when retained local copies are needed.
+Mitigation: Use only search terms and public links you are comfortable sharing with GUAIKEI, and account for the partial-inspection caveat when deciding whether to install or use the skill.
 
 ## Reference(s):
 
 - [Usage options](references/options.md)
 - [Changelog](references/changelog.md)
+- [GUAIKEI service website](https://www.guaikei.com)
+- [ClawHub skill release](https://clawhub.ai/why20261/skills/kuaishou-performance-review)
+- [Publisher profile](https://clawhub.ai/user/why20261)
 
 ## Skill Output:
 
 **Output Type(s):** [JSON, Analysis]
 
-**Output Format:** [Structured JSON response envelope]
+**Output Format:** [Structured JSON results for agent analysis and content performance review]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Returns public video search results, creator posts or profile metrics, and comments; result limits depend on the provider plan.]
+**Other Properties Related to Output:** [Uses public Kuaishou data. Monthly-token limits are 30 search results, 50 creator posts, and 60 comments; pay-as-you-go requests have a documented hard cap of 10,000.]
 
 ## Skill Version(s):
 
-1.1.1 (source: release evidence, frontmatter, changelog, package.json)
+1.1.2 (source: SKILL.md frontmatter, package.json, changelog)
 
 ## Ethical Considerations:
 

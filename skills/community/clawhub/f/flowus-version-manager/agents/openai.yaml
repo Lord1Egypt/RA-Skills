@@ -1,0 +1,4 @@
+interface:
+  display_name: "FlowUs 文件版本管理器"
+  short_description: "按需管理 FlowUs 云端文件版本、历史、人工审批及备份恢复"
+  default_prompt: "使用 $flowus-version-manager 查看云端资料并按统一规则处理新文件。"

@@ -1,6 +1,6 @@
 ## Description:
 
-Every GTM API plan on datacircle.dev, as one file you download and query. LinkedIn profiles, people and company search, find and validate email and phone, company data, jobs and posts, each plan with its price per 1,000, score, rate limits, the fields it returns and its docs. Use it to compare or price a GTM data API.
+Datacircle helps compare GTM data APIs with a downloadable catalog of plans, pricing, scores, rate limits, returned fields, and documentation.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and go-to-market teams use this skill to compare pricing, coverage, and limits across GTM data API plans. It downloads the Datacircle catalog and supports querying the data to find plans for a task.
+Developers and GTM teams can download and query a catalog of GTM data API plans to compare providers, pricing, coverage, and limits.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Downloading the catalog to datacircle.json can replace an existing file.
+Risk: The security review had medium confidence and could not fully assess unresolved local references.
 
-Mitigation: Check for an existing file first, or download to a distinct path and preserve any data that must not be overwritten.
-
-Risk: Catalog contents and listed prices are external and may change.
-
-Mitigation: Treat downloaded data as external input and confirm current pricing with the provider before purchasing.
+Mitigation: Review the full skill and its referenced resources before installation or execution.
 
 ## Reference(s):
 
-- [Datacircle release on ClawHub](https://clawhub.ai/waynehamadi/skills/datacircle)
-- [Datacircle API catalog (JSON)](https://datacircle.dev/datacircle.json)
+- [Datacircle JSON dataset](https://datacircle.dev/datacircle.json)
+- [Datacircle CSV dataset](https://datacircle.dev/datacircle.csv)
+- [Datacircle field definitions](https://datacircle.dev/fields)
 - [Datacircle documentation](https://datacircle.dev/docs)
-- [Datacircle field reference](https://datacircle.dev/fields)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Shell commands, JSON]
+**Output Type(s):** [Analysis, Guidance, Shell commands, SQL queries, Python code, JSON, CSV]
 
-**Output Format:** [Pricing comparisons and query results in text or JSON, with shell commands for downloading and querying the catalog]
+**Output Format:** [Markdown guidance and query examples; JSON or CSV dataset]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results depend on the downloaded catalog and selected query criteria]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.0.17 (source: server-resolved release metadata)
+1.0.21 (source: server release metadata)
 
 ## Ethical Considerations:
 

@@ -1,0 +1,206 @@
+
+IFEX %CurFile%.LOG, LOGS * %CurFile%.LOG 
+
+_SUB _INITVAR *
+ENVI^ ForceLocal=1
+SET$ &NL=0d 0a
+IFEX #%&bX64%=3, Set &PtrSz=8! SET &PtrSz=4
+SET &OBJ_CASE_INSENSITIVE=0x00000040
+SET &SYMBOLIC_LINK_QUERY=0x0001
+SET &FILE_SHARE_RW=0x00000003
+SET &OPEN_EXISTING=3
+CALC  #&sizeofMOUNTMGR_MOUNT_POINT=4*3+2*6
+CALC -base=16 #&&IOCTL_MOUNTMGR_QUERY_POINTS=shl(0x0000006D,16) | shl(2,2)  // CTL_CODE(MOUNTMGRCONTROLTYPE, 2, METHOD_BUFFERED, FILE_ANY_ACCESS)
+SET &SystemSystemPartitionInformation=98  // q: SYSTEM_SYSTEM_PARTITION_INFORMATION
+_END
+
+_SUB InitializeObjectAttributes   //p  n  a  r  s 
+    CALC &&Sz=6*%PtrSz%
+    ENVI-long  %~1=%&Sz%:0 //(p)->Length = sizeof(OBJECT_ATTRIBUTES);	
+    ENVI-ptr   %~1=%~4:%PtrSz%   // (p)->RootDirectory = r 	
+    ENVI-ptr   %~1=%~2:(%PtrSz%*2)  //(%PtrSz%+%PtrSz%)  //(p)->ObjectName = n
+    ENVI-long  %~1=%~3:(%PtrSz%*3)  //(%PtrSz%+%PtrSz%+%PtrSz%)  //(p)->Attributes = a
+    ENVI-ptr   %~1=%~5:(%PtrSz%*4)  //(%PtrSz%+%PtrSz%+%PtrSz%+%PtrSz%)  //(p)->SecurityDescriptor = s
+    //ENVI-ptr  &~1=0:(%PtrSz%*5)  //(p)->SecurityQualityOfService = NULL
+_END
+ 
+
+_SUB GetSymbolic  // name  &ret
+    SET  &nm=%~1
+    SET$ &hb=*8 0  //HANDLE
+    SET$ &Attr=*48 0   //OBJECT_ATTRIBUTES 
+	SET$ &arcName=*16 0  //UNICODE_STRING
+	SET$ &retName=*16 0  //UNICODE_STRING
+	CALL $--qd --ret:&&ret  ntdll.dll,RtlInitUnicodeString,*&arcName,*&nm
+    ENVI-addr  &&arcName_ptr=&arcName
+
+	SET$ &buf=*4096 0
+    ENVI-addr  &&buf_ptr=&buf
+    SET-long retName=8192:2          //retName.MaximumLength = 4096 * 2	
+    SET-ptr retName=%&buf_ptr%:%PtrSz%     //retName.Buffer = buf
+
+    InitializeObjectAttributes &Attr %&arcName_ptr%  %&OBJ_CASE_INSENSITIVE%  0  0
+	CALL $--qd --ret:&&ret Ntdll.dll,NtOpenSymbolicLinkObject,*&hb,#%SYMBOLIC_LINK_QUERY%,*&Attr
+    SET?ptr hb=&&h	
+	CALL $--qd --ret:&&ret  Ntdll.dll,NtQuerySymbolicLinkObject,#%h%,*&retName,#0
+    CALL $--qd --ret:&&ret  Kernel32.dll,CloseHandle,#%h%
+	ENVI-ret  %~2=%&buf%
+_END
+
+_SUB GetMnts   //Dev  &ret
+    SET &nm=%~1
+    @FIND *nm=,EXIT
+    CALL $--qd --ret:&&h Kernel32.dll,CreateFileW,$\\.\MountPointManager,#0,#%FILE_SHARE_RW%,#0,#%OPEN_EXISTING%,#0,#0
+	IFEX #%h%=-1, EXIT
+    STRL &&lenb=%nm%
+    CALC #&&lenb=%lenb% * 2
+	CALC #&&SzMnts=%sizeofMOUNTMGR_MOUNT_POINT% + 4096*5
+	CALC #&&SzDev=%sizeofMOUNTMGR_MOUNT_POINT% + %&lenb%
+    SET$#  &Mnts=*%SzMnts% 0  *8 0   //MOUNTMGR_MOUNT_POINTS
+    SET$#  &Dev=*%SzDev% 0  *8 0      //PMOUNTMGR_MOUNT_POINT
+    SET-long  Dev=%&sizeofMOUNTMGR_MOUNT_POINT%:16  //DeviceNameOffset = sizeof(MOUNTMGR_MOUNT_POINT);
+    SET-short  Dev=%&lenb%:20  //DeviceNameLength = %&lenb%
+    SET-copy   Dev=&nm;0;%&lenb%;%&sizeofMOUNTMGR_MOUNT_POINT%
+
+    ENVI$#  &&cbBytesReturned=*8 0 
+
+    CALL $--qd --ret:&&ret Kernel32.dll,DeviceIoControl,#%h%,#%IOCTL_MOUNTMGR_QUERY_POINTS%,*&Dev,#%SzDev%,*&Mnts,#%SzMnts%,*&cbBytesReturned,#0
+    CALL $--qd --ret:&&ret Kernel32.dll,CloseHandle,#%h%
+    ENVI?long  &Mnts=&&NumberOfMountPoints:4
+    @TEAM SET &off=8| SET &I=0| SET &ret1=| SET &ret2=
+    LOOP #%&I%<%&NumberOfMountPoints%,
+    {*  ENVI?long &Mnts=&&SymbolicLinkNameOffset:%off%
+        ENVI?short &Mnts=&&SymbolicLinkNameLength:(%off%+4)
+        ENVI-make  &&Mnti=&Mnts@%SymbolicLinkNameOffset%;%SymbolicLinkNameLength%
+        @MSTR &&L12=1,12,%Mnti%
+        @FIND $\DosDevices\=%&L12%, @TEAM MSTR &&Mnti=13,0,%Mnti%|  ENVI<  ret1=   "%&&Mnti%"!  ENVI<  ret2=   "%&&Mnti%"
+        @TEAM CALC #i=%i% + 1| CALC #off=%off% + %&sizeofMOUNTMGR_MOUNT_POINT%
+    }
+    FIND *ret1=, PART -iv=8  -drv list volume %nm%,ret1 
+    ENVI-ret< %~2=%&ret1% %&ret2%
+_END
+
+_SUB getctrlx  //nm    retName [-m]  [FirmwareBootDevice]
+    ENVI-ret< %~2=%&NL%%~4"%~1"
+    @TEAM GetSymbolic "%~1"  &&nm1| @FIND $%nm1%=,EXIT
+    GetSymbolic "%&nm1%"  &&nm2
+    ENVI-ret< %~2=  "%&&nm1%"  "%&&nm2%"  
+    FIND $[ '%~3'<>'' & '%&&nm2%'<>'' ],!!  TEAM GetMnts "%&nm2%"   &&Drvs|  ENVI-ret< %~2=   %&&Drvs%
+_END
+
+_SUB GetBootDrv  //Ret [-m|-b] 
+   CALL * _INITVAR
+   REGI .HKLM\SYSTEM\CurrentControlSet\Control\FirmwareBootDevice,&&arcname1
+   REGI .HKLM\SYSTEM\CurrentControlSet\Control\SystemBootDevice,&&arcname2
+   getctrlx  "\ArcName\%&arcname1%"  &&ret   "%~2"  "FirmwareBootDevice "
+   FIND $%~2<>-b,!! FIND $%arcname1%<>%arcname2%, getctrlx  "\ArcName\%&arcname2%"   &&ret   "%~2" "SystemBootDevice "! @TEAM MSTR &&v2=<2->%ret%| SET< ret=%NL%SystemBootDevice %&v2%
+   MSTR * &ret=3,0,&ret
+   ENVI-ret %~1=%&ret%
+_END
+
+_SUB GetSystemSystemPartition  //Ret [-m] 
+    CALL * _INITVAR
+    CALC #&&Sz=%PtrSz%  * 2 
+    CALC #&&SzA=%Sz%  + 8192
+	SET$# &retName=*%SzA% 0  *32 0
+    ENVI-mkdummy  &&Nm=&retName@%Sz%;8192
+	CALL $--qd --ret:&&ret Ntdll.dll,NtQuerySystemInformation,#%SystemSystemPartitionInformation%,*&retName,#%SzA%,#0
+    ENVI-ret  %~1=%&Nm%
+	FIND $[ '%~2'<>'' & '%&&Nm%'<>'' ],!!  TEAM GetMnts "%&Nm%"   &&Drvs|  ENVI-ret< %~1=   %&&Drvs%
+_END
+
+_SUB Dev2Drv  //Dev RetName
+    CALL * _INITVAR
+    GetMnts %1 &&Drvs
+    ENVI-ret %~2=%&Drvs%
+_END
+
+
+_SUB Drv2Dev  //Drv_Guid DevRetName
+    CALL * _INITVAR
+    SET &Drv=%~1
+    //纠正  \\?\Volume{  =>  \??\Volume{
+    SED -ni &Drv=1,^\\\\\?\\Volume\{,\\??\\Volume{,%&Drv%
+    GetSymbolic "%&Drv%" &&Dev
+    ENVI-ret %~2=%&Dev%
+_END
+
+
+SET$ &NL=0d 0a
+
+ENVI^ ForceLocal=1
+
+//支持动态磁盘
+
+Dev2Drv "\Device\HarddiskVolume6" &&Drvs
+SET  &vMsg=\Device\HarddiskVolume6 => [%&Drvs%] %&NL%
+
+Drv2Dev "\??\volume{b14e01c4-9f77-11ec-9342-dfa2bf67cad0}" &&Dev
+//Drv2Dev "\\?\Volume{cc0ac7ca-27c4-11e5-ba3b-806e6f6e6963}" &&Dev
+SET< &vMsg=\??\volume{b14e01c4-9f77-11ec-9342-dfa2bf67cad0} => [%&Dev%] %&NL%
+
+MESS. %&vMsg%
+
+
+
+EXIT
+
+_ENDFILE
+
+
+//typedef struct _MOUNTMGR_MOUNT_POINTS {
+//	ULONG Size;
+//	ULONG NumberOfMountPoints;
+//	MOUNTMGR_MOUNT_POINT MountPoints[1];
+//} MOUNTMGR_MOUNT_POINTS, *PMOUNTMGR_MOUNT_POINTS;
+
+
+//typedef struct _MOUNTMGR_MOUNT_POINT {
+//	ULONG SymbolicLinkNameOffset;
+//	USHORT SymbolicLinkNameLength;
+//	USHORT Reserved1;
+//	ULONG UniqueIdOffset;
+//	USHORT UniqueIdLength;
+//	USHORT Reserved2;
+//	ULONG DeviceNameOffset;
+//	USHORT DeviceNameLength;
+//	USHORT Reserved3;
+//} MOUNTMGR_MOUNT_POINT, *PMOUNTMGR_MOUNT_POINT;
+
+//typedef struct _SYSTEM_SYSTEM_PARTITION_INFORMATION
+//{
+//    UNICODE_STRING SystemPartition;
+//} SYSTEM_SYSTEM_PARTITION_INFORMATION, *PSYSTEM_SYSTEM_PARTITION_INFORMATION;
+//     效果:
+//Bootdev: [\Device\HarddiskVolume2      "L:"    "\??\Volume{fafc2065-0000-0000-001e-cc0114000000}"]
+//[FirmwareBootDevice "\ArcName\multi(0)disk(0)rdisk(0)partition(2)"  "\Device\Harddisk1\Partition2"  "\Device\HarddiskVolume2"      "L:"    "\??\Volume{fafc2065-0000-0000-001e-cc0114000000}"
+//SystemBootDevice "\ArcName\multi(0)disk(0)vdisk(0)partition(1)"  "\Device\Harddisk2\Partition1"  "\Device\HarddiskVolume9"      "C:"    "\??\Volume{3e245a5f-0000-0000-0000-100000000000}"]
+
+如果没有盘符，加载盘符
+
+TEAM FDRV *idlec *sort &&Drvs=*:| MSTR  &Drv1=<1>%&Drvs%| SUBJ  & %Drv1%,\Device\HarddiskVolume2
+//SUBJ  & \Device\Harddisk2\Partition1,%Drv1%
+//EXEC -su -incmd =PECMD   SUBJ * %Drv1%,\Device\HarddiskVolume2
+//用完  SUBJ  &- %Drv1%
+
+
+另外， 没有盘符也可以直接操作
+
+列出文件：
+FORX  /S  \\?\Harddisk1Partition2\*.*,&V,,*
+MESS。 %&V%
+FORX  /S  \\?\HarddiskVolume2\*.*,&V,,*
+
+拷出文件：
+FILE -file \\?\HarddiskVolume2\boot\bcd=>bcd
+//FILE -file \\?\Harddisk1Partition2\boot\bcd=>bcd
+
+//修改 BCD 。。。
+
+
+拷回文件：
+FILE -file -su bcd=>\\?\HarddiskVolume2\boot\bcd
+//FILE -file -su bcd=>\\?\Harddisk1Partition2\boot\bcd
+//EXEC -su -incmd =PECMD   FILE -file -su bcd=>\\?\Harddisk1Partition2\boot\bcd
+测试 对 设定“只读+无盘符+隐藏”的GPT-ESP分区， 这样 读写操作也有效
+//[相反] 对 系统已自动分配盘符的   “只读”普通GPT分区，写操作均失败。 真的只读保护了。（必须先去掉只读保护）

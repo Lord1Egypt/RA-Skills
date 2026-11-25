@@ -1,6 +1,6 @@
 ## Description:
 
-使用红鸦 API 创作小红书图文、制作 Live 实况图片，或检测和修改文案敏感词；支持商品档案及个人词库。
+通过红鸦 AI 生成和改写小红书图文及实况图，检查文案，并将完成的作品交至发布编辑器供用户确认。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-External creators and social media marketers use this agent to draft Xiaohongshu posts and page images, turn photos into Live Photos, and review or revise sensitive wording through their RedYA account.
+面向小红书内容创作者，用于起草普通或商品图文、参考原笔记进行逐页改写、制作实况图文、检查文案，并准备发布内容。
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill connects to RedYA's external API using the user's API key, and generation can use account credits.
+Risk: The security scan rates the release benign with medium confidence, but reports partial analysis coverage.
 
-Mitigation: Only provide a key for a service you trust, and review the current charges before requesting paid generation.
+Mitigation: Review the described API actions before installation and use, as the scanner guidance recommends.
 
-Risk: The security review was benign with medium confidence, but reference checks were incomplete and it noted a possible instruction-scope issue.
+Risk: RedYA requests use the user's account and may consume credits; some Live Photo modes and content checks have charges.
 
-Mitigation: Review the skill and any unresolved references before use; follow its draft-and-confirm flow before generating paid images.
+Mitigation: Check current pricing and account for charges before submitting paid work; keep the API key private.
+
+Risk: Content checks do not guarantee platform approval, and publishing requires a separate user confirmation in the platform editor.
+
+Mitigation: Treat review results as suggestions and confirm the content in the target editor before publishing.
 
 ## Reference(s):
 
-- [ClawHub release](https://clawhub.ai/xiaoxuux/skills/redya-xiaohongshu)
-- [RedYA platform](https://hy.ithinkai.cn)
-- [Live Photo saving guide](https://hy.ithinkai.cn/tools/live-photo/save)
+- [红鸦开放平台](https://hy.ithinkai.cn)
+- [Live Photo 保存教程](https://hy.ithinkai.cn/tools/live-photo/save)
+- [ClawHub skill release](https://clawhub.ai/xiaoxuux/skills/redya-xiaohongshu)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Files, Configuration instructions]
+**Output Type(s):** [Text, Markdown, Images, Files]
 
-**Output Format:** [Markdown with generated post copy, image lists, review findings, and setup guidance; may also deliver generated image or Live Photo files.]
+**Output Format:** [Markdown outlines and image links, plus generated images or downloadable Live Photo files.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Generated work may use the user's RedYA account credits.]
+**Other Properties Related to Output:** [Supports one-step or review-before-generation workflows; generation may complete asynchronously.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server-resolved release metadata)
+1.1.2 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

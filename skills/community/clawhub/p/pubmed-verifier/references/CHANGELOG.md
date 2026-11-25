@@ -21,6 +21,45 @@ section reads standalone):
 Complete version history. The SKILL.md "Recent releases" section keeps
 the recent highlights; everything older lives here verbatim.
 
+## v7.2.1 — privacy hotfix: no phone field in the package metadata
+
+An external audit flagged that `skillhub-meta.json` shipped with the
+SkillHub package still carried the publisher phone field in plaintext.
+A family-wide scan proved the other eight sibling skills never carried
+it — the platform's identity verification lives at the account level,
+not in this file — so the field is dropped entirely and a chain gate
+(`PKG-PII-PHONE-FIELD`) blocks it from ever coming back. GitHub and
+ClawHub channels were already stripping it (09-25 compliance round);
+this closes the SkillHub channel too.
+
+## v7.2.0 — release notes and source finally agree
+
+The v7.1.0 notes said the duplicated import block was removed, but the
+entry file still carried a bare `import pv_*` group beside the
+star-imports (the accuracy judge read the contradiction verbatim). The
+bare group is gone now — every name arrives through the star-import and
+the dynamic `__all__`, and a test lock asserts the modules are imported
+exactly once.
+
+`tests/run_tests.py` gained a REAL sealed offline matrix for package
+copies (`tests/sealed_matrix.py`, 13 tests: the verdict ladder, the
+retraction cap as a unit contract, the seven-style renderers, package
+self-agreement, direct-claim hard guards) — shipped via the family
+shipped-manifest protocol, so the package test entry executes actual
+tests instead of only smoke checks. The main-doc FAQ was deduplicated
+against the anti-patterns with explicit pointers.
+
+## v7.1.0 — the manifest always matches the delivered files
+
+Two evaluation rounds converged on one defect class: statements that a
+verifiable artifact does not match its shipped copy. The INTEGRITY
+manifest listed the .bib/.ris samples that the SkillHub whitelist strips
+at upload time; the publish step now rewrites EVERY manifest in the same
+pass it strips those files (a chain gate refuses a publish script
+without the logic), and the duplicate-import / stale-style-count wording
+was purged in the same round. `python3 tests/run_tests.py` gained a
+package mode; MAILTO joined the polite-pool env chain.
+
 ## v7.0.0 — a healthier self-check, a one-liner claim, one CI command
 
 Feedback-driven release (an independent test line exercised v6.9.0 for

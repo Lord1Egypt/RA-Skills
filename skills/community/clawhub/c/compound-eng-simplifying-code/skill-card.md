@@ -1,6 +1,6 @@
 ## Description:
 
-Simplifies, polishes, and declutters code without changing behavior. Use when asked to simplify, clean up, refactor, declutter, remove dead code or AI slop, or improve readability, including analysis-only simplification reports and code pasted inline.
+Simplifies, polishes, and declutters code without changing behavior.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use this skill to simplify and improve code readability while preserving behavior and interfaces. It can also provide analysis-only proposals for code that should be simplified.
+Developers and engineers use this skill to simplify, refactor, and improve code readability while preserving behavior. It can also provide analysis-only recommendations without editing code.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Evaluation and diagnostic commands may be outside the core simplification task, and the supplied command implementation was not assessed.
+Risk: The security assessment notes a possible purpose mismatch and incomplete evidence for one unresolved local reference.
 
-Mitigation: Review command implementations and run only those that fit the task before installation or execution.
+Mitigation: Check that evaluation and negative-case diagnostics fit your use, and review the unresolved reference before relying on its guidance.
 
 ## Reference(s):
 
-- [Simplification patterns](references/simplification-patterns.md)
-- [Orchestrated simplification](references/orchestrated-simplification.md)
-- [ClawHub skill release](https://clawhub.ai/iliaal/skills/compound-eng-simplifying-code)
+- [Simplification Patterns](references/simplification-patterns.md)
+- [Orchestrated Simplification](references/orchestrated-simplification.md)
+- [ClawHub release page](https://clawhub.ai/iliaal/skills/compound-eng-simplifying-code)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Analysis, Guidance]
+**Output Type(s):** [Code, Markdown, Analysis]
 
-**Output Format:** [Code changes or Markdown simplification reports]
+**Output Format:** [Code changes or a Markdown analysis report]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Preserves behavior and interfaces; analysis-only requests return proposals without edits.]
+**Other Properties Related to Output:** [Behavior-preserving code simplifications, or recommendations only for analysis requests.]
 
 ## Skill Version(s):
 
-5.1.6 (source: server-resolved release metadata)
+5.1.7 (source: server-resolved release)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Verifies workspace state and staged changes as a read-only preflight. Use before commits or PRs to confirm staged set is clean and correct
+Verifies workspace state and staged changes as a read-only preflight. Use before commits or PRs to confirm staged set is clean and correct.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill before commits, pull requests, or release-note work to inspect repository status, check code quality, review staged or unstaged diffs, and prepare a summary for downstream workflows.
+Developers use this skill before commit, pull request, or release-note workflows to review repository status, staged and unstaged changes, and diff details.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Instructions to stage or unstage files and abort merges conflict with the read-only preflight description and can change repository state.
+Risk: The security review flags the skill as suspicious because some steps direct changes to files and Git state despite its read-only preflight description, and reported checks may not verify the staged changes or workspace state described.
 
-Mitigation: Review the workflow before use and require explicit approval before changing staged files or merge state.
+Mitigation: Review commands before running them, avoid staging, unstaging, or other workspace changes without explicit approval, and independently confirm repository status and the diff.
 
-Risk: The security analysis is incomplete because a referenced local path was missing.
+Risk: The security scan is partial because a referenced local test path was missing.
 
-Mitigation: Inspect the referenced files and confirm the instructions match the intended workflow before installation or execution.
+Mitigation: Treat the review as incomplete until the referenced test path and the applicable checks are confirmed in the target repository.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-sanctum-git-workspace-review)
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-sanctum-git-workspace-review)
+- [Sanctum project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Shell commands]
+**Output Type(s):** [Guidance, Shell commands, Markdown]
 
-**Output Format:** [Markdown review notes with Git shell commands]
+**Output Format:** [Markdown review notes with inline shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Summarizes repository status, staged changes, quality-check results, and diff themes for downstream workflows.]
+**Other Properties Related to Output:** [Summarizes repository status and diff findings for downstream workflows.]
 
 ## Skill Version(s):
 
-1.10.3 (source: skill frontmatter)
+1.10.4 (source: server-resolved ClawHub release metadata)
 
 ## Ethical Considerations:
 

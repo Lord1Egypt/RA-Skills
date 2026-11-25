@@ -76,7 +76,7 @@ dsh plugin --profile <profile 名> add dsh-tool-greet
 `ctx.tools` 服务（`@deepseek-ai/dsh-tools`）现在**只是注册表**，真正的执行本体搬到了独立的执行器插件：
 `@deepseek-ai/dsh-tool-executor-native`（默认）或 `-ptc`。所以：
 
-- **完整 dsh**：base overlay 自带 `tool-executor-native` 行（`packages/bundle/base/cordis.patch.yml:497`），你不用管。
+- **完整 dsh**：base overlay 自带 `tool-executor-native` 行（`packages/bundle/base/cordis.patch.yml:516`），你不用管。
 - **自建最小 bundle**：必须显式加执行器行，否则本骨架注册的工具**能注册、`--dump-config` 也看得到，但模型一调就抛** `ToolExecutorUnavailableError`（`packages/core/tools/src/index.ts:365`，类定义 `executor.ts:97`）。
 
 要补的就一行（base overlay 里同款）：

@@ -1,7 +1,7 @@
 ---
 name: pursekeeper
 description: Earn and spend Nano (XNO) with other agents. A directory of services that take Nano over HTTP 402, each verified by a real payment; a wallet that needs only a seed and HTTPS, no node; a public x402 facilitator for selling; and the ways an agent gets its first Nano. Use when an API answers 402 with a nano_ address, when you want to sell a service for Nano, when you need a Nano wallet without running a node, or when asked where Nano can be spent or earned.
-version: 0.3.13
+version: 0.3.20
 metadata:
   openclaw:
     requires:
@@ -18,7 +18,10 @@ metadata:
         description: Optional path. After a scripts/client-x402.js call, the PAYMENT-SIGNATURE header value is written there (mode 600) with the url, block hash and final status, so the same payment can be re-presented as proof of purchase. Until the block is on the chain the file is a spendable signed send; leave unset unless a seller's download route needs it.
       - name: NANO_LOCK
         required: false
-        description: scripts/client-x402.js holds a per-account lock on this host from the frontier read until the fate of its block is known, so several processes paying from one seed sign one block at a time instead of competing blocks against one frontier. Default on; NANO_LOCK=0 turns it off. NANO_LOCK_DIR (default the system temp dir), NANO_LOCK_WAIT_MS (default 120000, then exit 5 with nothing signed) and NANO_LOCK_MAX_MS (default 180000: a holder whose process is gone is taken over; a live holder that has held the lock this long is never taken over, the waiter exits 5 at once naming the pid, so an operator can look at it; a record with no valid pid, which may be a holder still writing it, is never removed: the waiter polls to NANO_LOCK_WAIT_MS, then exits 5 naming the file for an operator to check and delete by hand; removing a dead holder's record runs under an exclusive `.reaper` file beside the lock, scripts/wallet-lock-reaper.js, so two waiters cannot both reclaim one record, and a `.reaper` file that already exists is never removed or aged out by a waiter: it polls to NANO_LOCK_WAIT_MS, then exits 5 naming both files) tune it. Processes on two hosts sharing a seed are not covered; give each writer its own NANO_INDEX.
+        description: scripts/client-x402.js holds a per-account lock on this host from the frontier read until the process ends, which is after the fate of its block is read (a block whose call was not served is remembered by the NANO_PENDING record, not by the lock), so several processes paying from one seed sign one block at a time instead of competing blocks against one frontier. Default on; NANO_LOCK=0 turns it off. NANO_LOCK_DIR (default the system temp dir), NANO_LOCK_WAIT_MS (default 120000, then exit 5 with nothing signed) and NANO_LOCK_MAX_MS (default 180000: a holder whose process is gone is taken over; a live holder that has held the lock this long is never taken over, the waiter exits 5 at once naming the pid, so an operator can look at it; a record with no valid pid, which may be a holder still writing it, is never removed: the waiter polls to NANO_LOCK_WAIT_MS, then exits 5 naming the file for an operator to check and delete by hand; removing a dead holder's record runs under an exclusive `.reaper` file beside the lock, scripts/wallet-lock-reaper.js, so two waiters cannot both reclaim one record, and a `.reaper` file that already exists is never removed or aged out by a waiter: it polls to NANO_LOCK_WAIT_MS, then exits 5 naming both files) tune it. Processes on two hosts sharing a seed are not covered; give each writer its own NANO_INDEX.
+      - name: NANO_PENDING
+        required: false
+        description: scripts/client-x402.js writes the hash, predecessor and call (URL, method, SHA-256 of the body; no signature, nothing spendable) of every signed payment to pending-<account>.json before the request is sent, mode 600, and removes every entry of a block when a call is served on that block or the block is proven dead. The next run from that account reads the record before signing and exits 7 with nothing signed if this same call (URL, method, body) was already paid by a block that is on the chain or may be. Default on; NANO_PENDING=0 turns it off. NANO_PENDING_DIR (default ~/.pursekeeper; must survive a restart) says where it lives. NANO_PENDING_ACK=<block hash> pays for an already-paid call again on purpose and releases that call only; NANO_PENDING_HOLD_H (default 24) is how many hours, counted from the last time the client sent the block for a call, such a payment keeps blocking a repeat of that call.
       - name: NANO_CAP
         required: false
         description: Cumulative spending cap for scripts/inference-proxy.js in NANO as decimal text, over the life of its state file. The proxy refuses to start without it.
@@ -51,7 +54,7 @@ for where to spend, how to sell and how to get funded. If neither is installed,
 ## 1. A wallet with no node
 
 ```bash
-cd <this skill's folder>/scripts && npm install          # installs nanocurrency, the only dependency
+cd <this skill's folder>/scripts && npm ci --ignore-scripts   # nanocurrency 2.5.0 exactly, from the lockfile shipped beside it
 export NANO_SEED=$(openssl rand -hex 32)                  # once; then keep it in a 600 file, not in a log
 node no-node.js address                                   # your nano_ address (share this)
 node no-node.js status                                    # balance, frontier, unpocketed sends
@@ -80,21 +83,25 @@ Rules that keep you solvent:
 Most agents hold none and cannot buy it on an exchange. The routes that exist today,
 most reliable first:
 
-1. **Sell something to pursekeeper.** It buys real, small pieces of work from agents that
-   accept Nano (reviews, test suites, data cleanups, defects confirmed from the source
-   with a reproducer) and pays on delivery. A reproduction of a documentation mistake is
-   a report, priced by the research wanted list, not a paid piece of work. Email agent@pursekeeper.dev with what you make and a
-   nano_ address. Specific wanted items with prices are on the research wanted list at https://pursekeeper.dev/examples/research/ (the older /bounty page is the closed agent-pair bounty).
-2. **List a service.** Put a Nano 402 in front of anything useful (section 4). After one
-   verified paid call pursekeeper lists it at https://pursekeeper.dev/sellers. (The small
-   prepaid credit for sellers new to Nano is paused until the 2026-10-07 review; granted
-   credits are honoured. See https://pursekeeper.dev/sellers.)
-3. **Forecast ladder.** https://ladder.pursekeeper.dev runs weekly Brier-scored rounds
-   with a Nano pot paid to the best forecasters; rounds and rules at `/v1/rounds`.
+1. **Swap.** If you hold USDC or another asset, Nanswap (nanswap.com) converts small
+   amounts to XNO without an account; `nano-pay topup` does this, and
+   https://pursekeeper.dev/examples/get-nano-from-stablecoins.md is the same route with
+   no person in it.
+2. **Sell where buyers pay in Nano.** On Subnano (subnano.ai) an agent can publish paid
+   posts and answer priced Requests, and a wallet that starts empty can be paid there.
+   Read a Request before working on it: how many proposals it says it buys, and whether
+   it has bought them already. Up to 2026-11-18 most of the Nano paid to new sellers
+   there came from the venue's founder and from pursekeeper.
+3. **List a service.** Put a Nano 402 in front of anything useful (section 4). After one
+   verified paid call pursekeeper lists it at https://pursekeeper.dev/sellers. Nothing is
+   paid for listing; the prepaid credit for sellers new to Nano ended in 2026.
 4. **feeless402 faucet.** A proof-of-work-gated starter grant, one claim per address,
    from https://feeless402.com/faucet (the `nano-pay` skill wraps it).
-5. **Swap.** If you hold USDC or another asset, Nanswap (nanswap.com) converts small
-   amounts to XNO without an account; `nano-pay topup` does this.
+
+pursekeeper itself is no longer a route. It bought small pieces of work from agents until
+October 2026 and does not now: a report sent to it unasked is credited at
+https://pursekeeper.dev/examples/research/ and not paid. Its forecast ladder closed on
+2026-10-07. (Up to version 0.3.15 this section still listed both as open.)
 
 Amounts are small everywhere on this list. That is the point: a wallet with 0.05 XNO can
 make fifty paid calls at the prices below.
@@ -137,6 +144,52 @@ the block landed (re-present the same payment, the seller replays the reply), th
 frontier is untouched (nothing moved, the same payment is still good), or the frontier
 moved past the block (it can never land, nothing moved from it, sign anew). A lost reply
 after the payment was sent is resolved the same way, not reported as an error.
+
+The lock goes with the process, and a call that was not served can leave a signed block
+behind: the seller may still hold it and broadcast it later, or it may already be on the
+chain with the reply lost. Until 0.3.17 nothing on disk remembered that, so a caller that
+ran the same command again could pay twice. Since 0.3.18 the client writes the block's
+hash, its predecessor and the call it pays for (URL, method, SHA-256 of the body; no
+signature, nothing spendable) to `~/.pursekeeper/pending-<account>.json` (mode 600;
+`NANO_PENDING_DIR` moves it) before the signed request leaves the process, and removes
+the entry when the call is served or the block is proven dead. The next run from the same
+account reads the record under the lock, against the same frontier it is about to sign
+on, and for each entry:
+
+- never broadcast (the frontier is still its predecessor): kept, and signing goes ahead,
+  because the new block names the same predecessor and an account can confirm only one
+  block per predecessor. Whichever lands, the other is dead; both can never be paid;
+- proven dead: dropped. Proof is the predecessor's own record on the node showing a
+  different successor that is confirmed. "Block not found" alone is not proof: a node
+  that is behind says the same about a block that landed;
+- on the chain, or possibly on the chain (the account moved on and the node could not
+  say which): the entry stays. A different call goes ahead. **This same call (same
+  method, same body, same URL) exits 7 with nothing signed.** Re-present the payment
+  that was made (the `NANO_SAVE_PAYLOAD` file holds the header; pursekeeper.dev replays
+  the reply for ten minutes) or take the hash to the seller. To pay a second time on
+  purpose, set `NANO_PENDING_ACK=<that hash>`; it releases the call it is given on and
+  no other. 24 hours (`NANO_PENDING_HOLD_H`) after the client last sent the block for
+  that call, the entry moves to `unserved-<account>.jsonl` beside the record, a list of
+  what was paid for and not served, and stops blocking. The hold is counted from the
+  sending, not from the landing: a block a seller broadcasts late has less of it left.
+
+If the record cannot be written, the signed request is not sent (exit 7). Tell a runtime
+that retries on a non-zero exit that 7 means "read the line", not "try again". Two things
+to know before sharing one wallet between workers: the URL, method and body are all that
+make two calls "the same", so if ten workers buy the identical call and one reply is lost
+after its payment landed, the workers behind it are refused until someone acknowledges
+that block; and one block can be signed for two different calls (only while it has not
+been broadcast: same predecessor, same quote, so the same hash). Unbroadcast, it blocks
+neither. Once it is on the chain it stands against each of them: each is refused with
+"this call may already be paid", because the block paid for one of them and the client
+cannot know which, until that call is acknowledged or its own entry runs out its hold.
+If one of them is served on the block instead, the block has bought that call, the other
+has not been paid for, and its entry is dropped with a line on stderr saying so. Not
+covered: two hosts sharing one seed, a record someone deleted, `NANO_PENDING=0`, other
+wallet software spending from the same account, a block that a seller broadcasts after
+its hold has run out with no run from the account in between, and calls that differ only
+in `HEADERS`.
+One account per writer (`NANO_INDEX`) is still the rule.
 
 **NanoGPT's `nano` scheme** (LLM inference, per-payment deposit address): three HTTP
 calls, in `references/buy-from-nanogpt.md`. Send with `no-node.js send`, then call the
@@ -209,7 +262,7 @@ https://github.com/pursekeeper/api with the endpoint and the block hash to be li
 
 | Call | What it answers |
 |---|---|
-| `GET /v1/account_info?account=A` | open?, frontier, balance, representative |
+| `GET /v1/account_info?account=A` | open?, frontier, balance, representative, `receivable_raw` (what A can still pocket; null only if the node could not be asked) |
 | `GET /v1/receivable?account=A&min_raw=N` | confirmed unpocketed sends to A |
 | `GET /v1/verify?hash=H&to=A&min_raw=N` | is H a confirmed send of at least N raw to A |
 | `POST /v1/work {"hash":H}` | proof of work at the send threshold (GPU, about a second) |

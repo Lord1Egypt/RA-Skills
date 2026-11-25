@@ -1,3 +1,5 @@
+import csv
+import io
 import json
 import os
 import shutil
@@ -5,6 +7,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from datetime import datetime, timezone
 from unittest import mock
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "scripts"))
@@ -13,6 +16,8 @@ from list_dcs import (  # noqa: E402
     ALLOWED_OPERATION,
     MD_COLUMNS,
     MD_HEADERS,
+    MODE_CHOICES,
+    MODE_CSV,
     MODE_JSON,
     MODE_MD,
     MODE_NAMES,
@@ -20,11 +25,14 @@ from list_dcs import (  # noqa: E402
     ApiError,
     AuthError,
     ConfigError,
+    CSV_BOM_CHAR,
     DcsListError,
     GuardError,
     OutputError,
     build_command,
     classify_hcloud_failure,
+    csv_row,
+    default_csv_filename,
     extract_instances,
     extract_json,
     guard_argv,
@@ -36,10 +44,13 @@ from list_dcs import (  # noqa: E402
     main,
     normalize_instance,
     normalized_row,
+    render_csv,
     render_markdown,
     render_table,
+    resolve_csv_output_path,
     resolve_mode,
     sort_instances,
+    write_csv_file,
     write_markdown_file,
 )
 
@@ -737,6 +748,19 @@ class TestMain(unittest.TestCase):
         self.assertNotIn("- cache-demo-02", out)
         self.assertFalse(any("--name=" in part for part in fake.calls[0]))
 
+    def test_name_equal_keeps_tags_filter(self):
+        fake = FakeRunner([(
+            json.dumps({"instances": [INSTANCE_1], "instance_num": 1}), "", 0)])
+        with mock.patch("list_dcs.subprocess.run", fake), \
+                mock.patch("sys.stdout") as stdout, \
+                mock.patch("sys.stderr"):
+            rc = main(["--name-equal", "--name", "CACHE-DEMO-01",
+                       "--tags", "env=prod"])
+        out = "".join(c[0][0] for c in stdout.write.call_args_list)
+        self.assertEqual(rc, 0)
+        self.assertIn("cache-demo-01", out)
+        self.assertTrue(any("--tags=env=prod" in part for part in fake.calls[0]))
+
     def test_sort_by_invalid_value_lists_choices(self):
         # ``created`` must never reach the write-intent guard as ``create``;
         # an unknown value is still rejected with the allowed choices.
@@ -1081,6 +1105,272 @@ class TestMarkdownOutput(unittest.TestCase):
         self.assertEqual(json_out,
                          json.dumps([INSTANCE_1, INSTANCE_2],
                                     ensure_ascii=False, indent=2) + "\n")
+
+
+class TestCsvOutput(unittest.TestCase):
+    """CSV mode (--csv / --format csv / --csv-output / --csv-bom)."""
+
+    HEADER_LINE = ",".join([
+        "名称", "ID", "引擎", "版本", "容量", "规格", "状态",
+        "连接地址", "端口", "可用区"])
+    PAYLOAD = json.dumps({"instances": [INSTANCE_1, INSTANCE_2],
+                          "instance_num": 2})
+
+    def setUp(self):
+        self.tmpdir = tempfile.mkdtemp(prefix="dcs-csv-test-")
+        self.addCleanup(shutil.rmtree, self.tmpdir, True)
+
+    def _run(self, argv, results):
+        fake = FakeRunner(results)
+        with mock.patch("list_dcs.subprocess.run", fake), \
+                mock.patch("sys.stdout") as stdout, \
+                mock.patch("sys.stderr") as stderr:
+            rc = main(argv)
+        out = "".join(c[0][0] for c in stdout.write.call_args_list)
+        err = "".join(c[0][0] for c in stderr.write.call_args_list)
+        return rc, out, err
+
+    @staticmethod
+    def _records(text):
+        return list(csv.reader(io.StringIO(text, newline="")))
+
+    # --- column / escaping contract --------------------------------------
+    def test_csv_is_a_format_choice(self):
+        self.assertEqual(MODE_CSV, "csv")
+        self.assertIn(MODE_CSV, MODE_CHOICES)
+        self.assertEqual(resolve_mode("csv"), MODE_CSV)
+        self.assertEqual(resolve_mode(as_csv=True), MODE_CSV)
+
+    def test_header_is_the_export_ten_columns_and_crlf(self):
+        text = render_csv([INSTANCE_1])
+        self.assertEqual(text.split("\r\n")[0], self.HEADER_LINE)
+        self.assertTrue(text.endswith("\r\n"))
+        self.assertEqual(text.replace("\r\n", "").count("\n"), 0)
+        records = self._records(text)
+        self.assertEqual(records[0], MD_HEADERS)
+        self.assertEqual(len(records[0]), 10)
+
+    def test_row_values_and_missing_fields_empty(self):
+        row = csv_row(INSTANCE_1)
+        self.assertEqual(len(row), 10)
+        self.assertEqual(row[0], "cache-demo-01")
+        self.assertEqual(row[1], "55f47f3d-0001-4a54-a362-a07c9d7f7a02")
+        self.assertEqual(row[2], "Redis")
+        self.assertEqual(row[3], "5.0")
+        self.assertEqual(row[4], "4")
+        self.assertEqual(row[5], "redis.ha.xu1.large.r2.4-h")
+        self.assertEqual(row[6], "RUNNING")
+        self.assertEqual(row[7], "192.168.0.10")
+        self.assertEqual(row[8], "6379")
+        self.assertEqual(row[9], "cn-north-4a")
+        self.assertEqual(csv_row({"instance_id": "id-only"}),
+                         ["", "id-only", "", "", "", "", "", "", "", ""])
+
+    def test_rfc4180_escaping_comma_quote_newline_chinese(self):
+        record = {
+            "name": "a,b", "instance_id": "id-1", "engine": "中文引擎",
+            "spec_code": "line1\nline2", "status": 'x"y',
+        }
+        text = render_csv([record])
+        self.assertIn('"a,b"', text)
+        self.assertIn('"x""y"', text)
+        self.assertIn('"line1\nline2"', text)
+        records = self._records(text)
+        row = records[1]
+        self.assertEqual(row[0], "a,b")
+        self.assertEqual(row[2], "中文引擎")
+        self.assertEqual(row[5], "line1\nline2")
+        self.assertEqual(row[6], 'x"y')
+
+    # --- CLI behaviour ---------------------------------------------------
+    def test_csv_flag_prints_table(self):
+        rc, out, err = self._run(["--csv"], [(self.PAYLOAD, "", 0)])
+        self.assertEqual(rc, 0)
+        self.assertEqual(err, "")
+        self.assertTrue(out.startswith(self.HEADER_LINE + "\r\n"))
+        self.assertTrue(out.endswith("\r\n"))
+        self.assertEqual(len(self._records(out)), 3)  # header + 2 rows
+
+    def test_format_csv_matches_csv_flag(self):
+        _, out_flag, _ = self._run(["--csv"], [(self.PAYLOAD, "", 0)])
+        _, out_fmt, _ = self._run(["--format", "csv"], [(self.PAYLOAD, "", 0)])
+        self.assertEqual(out_flag, out_fmt)
+
+    def test_csv_combines_with_filters_sort_and_paging(self):
+        page1 = json.dumps({"instances": [INSTANCE_1], "instance_num": 2})
+        page2 = json.dumps({"instances": [INSTANCE_2], "instance_num": 2})
+        fake = FakeRunner([(page1, "", 0), (page2, "", 0)])
+        with mock.patch("list_dcs.subprocess.run", fake), \
+                mock.patch("sys.stdout") as stdout, mock.patch("sys.stderr"):
+            rc = main(["--csv", "--status", "RUNNING", "--sort-by", "name",
+                       "--page-size", "1"])
+        self.assertEqual(rc, 0)
+        self.assertIn("--status=RUNNING", " ".join(fake.calls[0]))
+        self.assertIn("--limit=1", " ".join(fake.calls[0]))
+        self.assertIn("--offset=1", " ".join(fake.calls[1]))
+        out = "".join(c[0][0] for c in stdout.write.call_args_list)
+        self.assertIn("cache-demo-01", out)
+        self.assertIn("cache-demo-02", out)
+
+    def test_empty_csv_prints_hint_without_header_or_file(self):
+        target = os.path.join(self.tmpdir, "empty.csv")
+        rc, out, err = self._run(
+            ["--csv", "--csv-output", target, "--status", "RUNNING"],
+            [(json.dumps({"instances": [], "instance_num": 0}), "", 0)])
+        self.assertEqual(rc, 0)
+        self.assertIn("无 DCS 实例", out)
+        self.assertIn("status=RUNNING", out)
+        self.assertNotIn("名称", out)
+        self.assertFalse(os.path.exists(target))
+
+    def test_csv_output_writes_identical_content_and_creates_parent_dir(self):
+        target = os.path.join(self.tmpdir, "a", "b", "dcs.csv")
+        rc, out, err = self._run(
+            ["--csv", "--csv-output", target], [(self.PAYLOAD, "", 0)])
+        self.assertEqual(rc, 0)
+        with open(target, encoding="utf-8", newline="") as handle:
+            written = handle.read()
+        self.assertEqual(written, out)
+        self.assertIn("[已写入]", err)
+
+    def test_csv_output_write_failure_is_nonzero_and_leaves_nothing(self):
+        target = os.path.join(self.tmpdir, "sub", "dcs.csv")
+        with mock.patch("list_dcs.os.replace", side_effect=OSError("disk full")):
+            rc, out, err = self._run(
+                ["--csv", "--csv-output", target], [(self.PAYLOAD, "", 0)])
+        self.assertEqual(rc, 1)
+        self.assertIn("[错误]", err)
+        self.assertIn("未留下残缺文件", err)
+        self.assertFalse(os.path.exists(target))
+        self.assertEqual(
+            [n for n in os.listdir(os.path.dirname(target))
+             if n.endswith(".tmp")], [])
+
+    def test_csv_output_rejected_outside_csv_mode(self):
+        rc, out, err = self._run(
+            ["--table", "--csv-output", os.path.join(self.tmpdir, "x.csv")], [])
+        self.assertEqual(rc, 1)
+        self.assertIn("--csv-output", err)
+
+    def test_csv_bom_rejected_outside_csv_mode(self):
+        rc, out, err = self._run(["--md", "--csv-bom"], [])
+        self.assertEqual(rc, 1)
+        self.assertIn("--csv-bom", err)
+
+    def test_csv_illegal_combinations_are_explicit_errors(self):
+        for argv in (["--csv", "--md"],
+                     ["--csv", "--json"],
+                     ["--csv", "--table"],
+                     ["--csv", "--names-only"],
+                     ["--csv", "--format", "md"],
+                     ["--format", "csv", "--json"],
+                     ["--format", "csv", "--table"]):
+            rc, out, err = self._run(argv, [])
+            self.assertEqual(rc, 1, argv)
+            self.assertIn("不能与", err, argv)
+
+    def test_csv_bom_first_bytes_and_stdout_match_file(self):
+        target = os.path.join(self.tmpdir, "bom.csv")
+        rc, out, err = self._run(
+            ["--csv", "--csv-bom", "--csv-output", target],
+            [(self.PAYLOAD, "", 0)])
+        self.assertEqual(rc, 0)
+        self.assertTrue(out.startswith(CSV_BOM_CHAR))
+        with open(target, "rb") as handle:
+            raw = handle.read()
+        self.assertTrue(raw.startswith(b"\xef\xbb\xbf"))
+        self.assertEqual(raw, out.encode("utf-8"))
+
+    def test_csv_output_default_filename_without_path(self):
+        workdir = os.path.join(self.tmpdir, "cwd")
+        os.makedirs(workdir)
+        old = os.getcwd()
+        os.chdir(workdir)
+        self.addCleanup(os.chdir, old)
+        rc, out, err = self._run(
+            ["--csv", "--csv-output"], [(self.PAYLOAD, "", 0)])
+        self.assertEqual(rc, 0)
+        files = [n for n in os.listdir(workdir)
+                 if n.startswith("dcs_instances_cn-north-4_")
+                 and n.endswith(".csv")]
+        self.assertEqual(len(files), 1)
+        with open(os.path.join(workdir, files[0]), encoding="utf-8",
+                  newline="") as handle:
+            self.assertEqual(handle.read(), out)
+
+    def test_csv_output_directory_uses_default_filename(self):
+        rc, out, err = self._run(
+            ["--csv", "--csv-output", self.tmpdir], [(self.PAYLOAD, "", 0)])
+        self.assertEqual(rc, 0)
+        files = [n for n in os.listdir(self.tmpdir)
+                 if n.startswith("dcs_instances_cn-north-4_")
+                 and n.endswith(".csv")]
+        self.assertEqual(len(files), 1)
+
+    def test_default_csv_filename_shape(self):
+        moment = datetime(2026, 11, 20, 1, 2, 3, tzinfo=timezone.utc)
+        self.assertEqual(
+            default_csv_filename("cn-north-4", moment),
+            "dcs_instances_cn-north-4_20261120T010203Z.csv")
+
+    def test_resolve_csv_output_path(self):
+        self.assertIsNone(resolve_csv_output_path(None, "cn-north-4"))
+        self.assertTrue(resolve_csv_output_path("", "cn-north-4").startswith(
+            "dcs_instances_cn-north-4_"))
+        self.assertTrue(resolve_csv_output_path(
+            self.tmpdir, "cn-north-4").startswith(
+                os.path.join(self.tmpdir, "dcs_instances_cn-north-4_")))
+        explicit = os.path.join(self.tmpdir, "explicit.csv")
+        self.assertEqual(resolve_csv_output_path(explicit, "cn-north-4"),
+                         explicit)
+
+    def test_guard_argv_strips_csv_output_value(self):
+        self.assertFalse(guard_argv(
+            ["--csv", "--csv-output", "/tmp/dcs-backup-restore.csv"]))
+        self.assertFalse(guard_argv(
+            ["--csv", "--csv-output=/tmp/dcs-delete-me.csv"]))
+        self.assertFalse(guard_argv(["--csv", "--csv_output", "/tmp/release.csv"]))
+        with self.assertRaises(GuardError):
+            guard_argv(["--csv", "--name", "delete-me"])
+
+    def test_csv_mode_still_blocks_write_intent(self):
+        rc, out, err = self._run(["--csv", "--name", "delete-me"], [])
+        self.assertEqual(rc, 1)
+        self.assertIn("守卫拦截", err)
+
+
+class TestCsvFileHelper(unittest.TestCase):
+    def setUp(self):
+        self.tmpdir = tempfile.mkdtemp(prefix="dcs-csv-helper-")
+        self.addCleanup(shutil.rmtree, self.tmpdir, True)
+
+    def test_writes_crlf_and_creates_parent_dir(self):
+        target = os.path.join(self.tmpdir, "a", "b", "out.csv")
+        path = write_csv_file("a,b\r\n1,2\r\n", target)
+        self.assertEqual(path, os.path.abspath(target))
+        with open(target, encoding="utf-8", newline="") as handle:
+            self.assertEqual(handle.read(), "a,b\r\n1,2\r\n")
+
+    def test_bom_encoding_writes_bom_once(self):
+        target = os.path.join(self.tmpdir, "bom.csv")
+        write_csv_file("a\r\n", target, bom=True)
+        with open(target, "rb") as handle:
+            raw = handle.read()
+        self.assertTrue(raw.startswith(b"\xef\xbb\xbf"))
+        self.assertEqual(raw.count(b"\xef\xbb\xbf"), 1)
+
+    def test_failure_raises_output_error_and_cleans_temp(self):
+        target = os.path.join(self.tmpdir, "out.csv")
+        with mock.patch("list_dcs.os.replace", side_effect=OSError("boom")):
+            with self.assertRaises(OutputError):
+                write_csv_file("a\r\n", target)
+        self.assertEqual([n for n in os.listdir(self.tmpdir)
+                          if n.endswith(".tmp")], [])
+        self.assertFalse(os.path.exists(target))
+
+    def test_empty_path_rejected(self):
+        with self.assertRaises(OutputError):
+            write_csv_file("a\r\n", "")
 
 
 class TestResolveMode(unittest.TestCase):

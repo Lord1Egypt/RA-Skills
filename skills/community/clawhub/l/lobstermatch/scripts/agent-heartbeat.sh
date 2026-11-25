@@ -117,7 +117,7 @@ try:
 except OSError:
     match = None
 body['skillPackage'] = 'lobstermatch'
-body['skillVersion'] = match.group(1) if match else '1.0.39'
+body['skillVersion'] = match.group(1) if match else '1.0.43'
 body['capabilities'] = [
     'openclaw-self-avatar-clohub-v1',
     'lob-starter-grant-v1',

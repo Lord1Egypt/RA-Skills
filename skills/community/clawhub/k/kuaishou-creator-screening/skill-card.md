@@ -1,6 +1,6 @@
 ## Description:
 
-Helps teams find and evaluate Kuaishou creators by searching public videos, reviewing creator posts, and analyzing video comments to build evidence-based collaboration shortlists.
+Discover and review Kuaishou creators for collaboration by searching public videos, reviewing creator posts and comments, and comparing content and engagement data.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-Marketing, research, and content teams use this skill to screen Kuaishou creators, review public content and engagement, and prepare evidence-based collaboration shortlists and trend analyses.
+Brand marketers, content creators, market analysts, and MCN teams can use this skill to research public Kuaishou videos, creator accounts, and comments, then prepare evidence-based creator shortlists and content insights.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search terms and account or video links are sent to the GUAIKEI third-party service.
+Risk: Search terms and Kuaishou links are sent to the GUAIKEI service.
 
-Mitigation: Use only queries and public links that are appropriate to share with that service.
+Mitigation: Avoid putting confidential or sensitive information in search terms or supplied links, and review the service terms before use.
 
-Risk: The security scan fully inspected 20 of 32 components and partially inspected the remaining 12.
+Risk: The skill requires a GUAIKEI_API_TOKEN, and optional saved logs contain query results and timestamps.
 
-Mitigation: Review the partially inspected components before deploying the skill in a sensitive environment.
+Mitigation: Store the token as a secret, keep optional logging disabled unless needed, and handle any saved logs according to your retention rules.
+
+Risk: The security scan was partial and some code could not be fully interpreted.
+
+Mitigation: Review the required environment access and timestamp behavior before installing or running the skill.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/why20261/skills/kuaishou-creator-screening)
-- [GUAIKEI service and API access](https://www.guaikei.com)
-- [Kuaishou](https://www.kuaishou.com)
+- [ClawHub skill release](https://clawhub.ai/why20261/skills/kuaishou-creator-screening)
+- [Publisher profile](https://clawhub.ai/user/why20261)
+- [GUAIKEI service and token access](https://www.guaikei.com)
+- [Usage options](artifact/references/options.md)
+- [Changelog](artifact/references/changelog.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis, Recommendations]
+**Output Type(s):** [JSON, Analysis, Guidance]
 
-**Output Format:** [JSON result data with concise evidence-based creator shortlists and analysis]
+**Output Format:** [Structured JSON data with concise analysis and creator shortlist guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Public video, creator, and comment data; per-call result limits depend on the API plan.]
+**Other Properties Related to Output:** [Returns public Kuaishou video, creator, and comment data; result counts depend on the token plan.]
 
 ## Skill Version(s):
 
-1.1.1 (source: frontmatter, package.json, release metadata)
+1.1.2 (source: release metadata, SKILL.md frontmatter, package.json, changelog)
 
 ## Ethical Considerations:
 

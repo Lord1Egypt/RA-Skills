@@ -1,14 +1,14 @@
 # 全家技能清单（27 个）
 
 > 机器权威源：`skills.json`（随包分发）；本文件为人工可读副本，新技能发布后须同步更新
-> `skills.json`（登记表为内部台账，不随包分发）。清单更新日期：2026-11-14。
+> `skills.json`（登记表为内部台账，不随包分发）。清单更新日期：2026-11-24。
 
 | slug | 中文名 | npm 包 | 清单版本 | 家族 | 说明 |
 |---|---|---|---|---|
 | `yotta-anti-shallow` | 元谨 | `@yottameta/yotta-anti-shallow` | 1.4.4 | quality | 防 AI 敷衍规则引擎（深入分析/根因追溯时激活） |
 | `yotta-code-quality` | 元质 | `@yottameta/yotta-code-quality` | 0.4.5 | quality | 结对式代码质量评审（十二类腐化风险 + 0-100 健康分） |
 | `yotta-workflow` | 元序 | `@yottameta/yotta-workflow` | 0.4.5 | workflow | 跨会话/跨项目通用工作流协议（状态就近存） |
-| `yotta-memory` | 元忆 | `@yottameta/yotta-memory` | 0.24.3 | memory | 有权限边界的文件式智能体记忆（FACT/PREF/BOUND/COMMIT） |
+| `yotta-memory` | 元忆 | `@yottameta/yotta-memory` | 0.24.5 | memory | 有权限边界的文件式智能体记忆（FACT/PREF/BOUND/COMMIT） |
 | `yotta-learn` | 元习 | `@yottameta/yotta-learn` | 0.6.6 | memory | 跨智能体知识库（CLI / MCP / 本地面板）：可复用经验沉淀为分类条目（草稿→核验→查询）；含归位决策树与首次激活引导 |
 | `yotta-security-audit` | 元安 | `@yottameta/yotta-security-audit` | 0.3.3 | security | 安全扫描引擎：13 类检测器 + 系统安全基线 + 学生数据隐私（教育版） |
 | `yotta-vetter` | 元审 | `@yottameta/yotta-vetter` | 0.2.9 | security | 安全审查协议：四阶段 review + SAFE TO INSTALL 判定 |
@@ -26,7 +26,7 @@
 | `yotta-chain` | 元链 | `@yottameta/yotta-chain` | 0.1.7 | security | 供应链依赖校验引擎 |
 | `yotta-triage` | 元鉴 | `@yottameta/yotta-triage` | 0.1.6 | security | 恶意样本静态初筛引擎（哈希/熵/字符串/PE-ELF） |
 | `yotta-prompt` | 元引 | `@yottameta/yotta-prompt` | 0.2.6 | entry | 意图澄清 + 生态入口（常驻注入，map 串联元阁全家） |
-| `yotta-verify` | 元信 | `@yottameta/yotta-verify` | 0.3.6 | security | 装前安全扫描器 + audited 徽章（prompt injection + 危险模式） |
+| `yotta-verify` | 元信 | `@yottameta/yotta-verify` | 0.3.7 | security | 装前安全扫描器 + audited 徽章（prompt injection + 危险模式） |
 | `yotta-compliance` | 元规 | `@yottameta/yotta-compliance` | 0.1.3 | compliance | 本地确定性合规条款审查（PIPL + 数据出境规则包 / 证据锚点 / 框架覆盖分级） |
 | `yotta-mirror` | 元镜 | `@yottameta/yotta-mirror` | 0.1.3 | education | 本地确定性学情分析（知识点掌握率 / 分层与临界生 / 薄弱点诊断，学生数据不出本机） |
 | `yotta-lesson` | 元案 | `@yottameta/yotta-lesson` | 0.1.4 | education | 本地确定性教案骨架与覆盖校验（课标映射 / 环节时间精确分配 / 缺口检查） |

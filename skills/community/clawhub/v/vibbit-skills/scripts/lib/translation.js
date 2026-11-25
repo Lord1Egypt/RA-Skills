@@ -14,9 +14,10 @@ function fields(v, allowed, p) {
   assert(object(v), `${p} must be an object`)
   for (const k of Object.keys(v)) assert(allowed.includes(k), `Undocumented ${p}.${k}`)
 }
-const common = ['subtitle_enabled', 'lip_sync_enabled', 'remove_subtitles_enabled', 'template_type', 'template_configs', 'subtitle_template_configs', 'settings']
+const switches = ['subtitle_enabled', 'lip_sync_enabled', 'remove_subtitles_enabled', 'align_original_subtitle_position', 'translate_and_align_original_title']
+const common = [...switches, 'template_type', 'template_configs', 'subtitle_template_configs', 'settings']
 function templates(v, p, inheritedType) {
-  for (const k of common.slice(0, 3)) if (v[k] !== undefined) bool(v[k], `${p}.${k}`)
+  for (const k of switches) if (v[k] !== undefined) bool(v[k], `${p}.${k}`)
   assert(v.template_type !== 1 && !Object.hasOwn(v, 'subtitle_template_configs'), `${p}: dynamic subtitle templates are temporarily unavailable; use ordinary subtitles or template_type=0 packaging`)
   if (v.template_type !== undefined) assert(v.template_type === 0, `${p}.template_type must be 0 for ordinary packaging`)
   const active = []
@@ -46,7 +47,15 @@ function validateTranslation(input) {
   for (const k of ['business_id', 'default_digital_human_id']) if (input[k] !== undefined) long(input[k], k)
   if (input.default_speed !== undefined) number(input.default_speed, 'default_speed', 0.5, 3)
   if (input.persona_mode !== undefined) assert(['voice-only', 'with-avatar'].includes(input.persona_mode), 'persona_mode must be voice-only or with-avatar')
+  if (input.default_voice !== undefined && input.default_voice !== null) {
+    fields(input.default_voice, ['reference_audio_url'], 'default_voice')
+    const url = input.default_voice.reference_audio_url
+    assert(typeof url === 'string', 'default_voice.reference_audio_url must be an MP3 URL')
+    publicUrl(url.trim(), 'default_voice.reference_audio_url')
+    assert(/\.mp3$/i.test(new URL(url.trim()).pathname), 'default_voice.reference_audio_url path must end with .mp3')
+  }
   templates(input, 'input')
+  assert(!Object.hasOwn(input.settings || {}, 'default_voice') && !Object.hasOwn(input.settings || {}, 'defaultVoice'), 'default_voice belongs on the parent create object, not settings')
   assert(Array.isArray(input.items) && input.items.length >= 1 && input.items.length <= 100, 'items must contain 1..100 videos')
   input.items.forEach((v, i) => {
     const p = `items[${i}]`
@@ -70,6 +79,15 @@ function validateTranslation(input) {
       assert(new Set(v.target_languages).size === v.target_languages.length, `${p}.target_languages contains duplicates`)
     }
     templates(v, p, input.template_type)
+    assert(!Object.hasOwn(v.settings || {}, 'default_voice') && !Object.hasOwn(v.settings || {}, 'defaultVoice'), `${p}: default_voice cannot be overridden in video settings`)
+    const aliases = { remove_subtitles_enabled: ['removeSubtitlesEnabled', 'remove_subtitles', 'removeSubtitles'],
+      align_original_subtitle_position: ['alignOriginalSubtitlePosition'], translate_and_align_original_title: ['translateAndAlignOriginalTitle'] }
+    const layer = (value, key) => value[key] ?? [key, ...(aliases[key] || [])].map(name => value.settings?.[name]).find(x => x !== undefined)
+    const setting = key => layer(v, key) ?? layer(input, key)
+    if (setting('align_original_subtitle_position') === true) {
+      assert(setting('remove_subtitles_enabled') === true && setting('subtitle_enabled') !== false, `${p}: subtitle position alignment requires subtitle removal and enabled subtitles`)
+    }
+    if (setting('translate_and_align_original_title') === true) assert(setting('remove_subtitles_enabled') === true, `${p}: title alignment requires subtitle removal`)
     if (v.voice_over_clips !== undefined) {
       assert(Array.isArray(v.voice_over_clips), `${p}.voice_over_clips must be an object array`)
       v.voice_over_clips.forEach((clip, j) => {
@@ -91,20 +109,78 @@ function validateEdit(input) {
   assert(Array.isArray(input.segments) && input.segments.length >= 1 && input.segments.length <= 1000, 'segments must contain 1..1000 entries')
   input.segments.forEach((s, i) => {
     const p = `segments[${i}]`
-    fields(s, ['id', 'from', 'to', 'source_text', 'translated_text', 'confidence', 'speaker_id', 'confirmed', 'audio_url', 'audio_duration', 'over_duration', 'audio_group_id', 'audio_fingerprint'], p)
+    fields(s, ['id', 'from', 'to', 'source_text', 'translated_text', 'confidence', 'speaker_id', 'confirmed', 'audio_url', 'audio_duration', 'over_duration', 'audio_group_id', 'audio_fingerprint', 'lip_sync', 'lip_sync_video_url'], p)
     range(s, p, true); text(s.translated_text, `${p}.translated_text`)
     if (s.id !== undefined) long(s.id, `${p}.id`, 0n)
     if (s.speaker_id !== undefined) assert(Number.isSafeInteger(s.speaker_id), `${p}.speaker_id must be integer`)
     for (const k of ['confidence', 'audio_duration']) if (s[k] !== undefined) number(s[k], `${p}.${k}`, k === 'audio_duration' ? 0 : -Infinity)
-    for (const k of ['confirmed', 'over_duration']) if (s[k] !== undefined) bool(s[k], `${p}.${k}`)
+    for (const k of ['confirmed', 'over_duration', 'lip_sync']) if (s[k] !== undefined) bool(s[k], `${p}.${k}`)
     for (const k of ['source_text', 'audio_group_id', 'audio_fingerprint']) if (s[k] !== undefined) text(s[k], `${p}.${k}`, Infinity, true)
     if (s.audio_url !== undefined && s.audio_url !== '') publicUrl(s.audio_url, `${p}.audio_url`)
+    if (s.lip_sync_video_url !== undefined && s.lip_sync_video_url !== '') publicUrl(s.lip_sync_video_url, `${p}.lip_sync_video_url`)
   })
 }
 function validateConfirm(input) {
   if (input.sub_task_id !== undefined) long(input.sub_task_id, 'sub_task_id')
 }
-const idKeys = new Set(['business_id', 'default_digital_human_id', 'material_id', 'digital_human_id', 'template_id', 'subtitle_template_id', 'sub_task_id', 'id', 'file_size'])
+function speaker(value, p) {
+  assert(value === null || (Number.isSafeInteger(value) && value >= 0), `${p} must be an ASR speaker integer, or null for a historical default group`)
+}
+function validateSpeakerVoices(input) {
+  long(input.sub_task_id, 'sub_task_id')
+  const mappings = input.speaker_voice_mappings
+  assert(Array.isArray(mappings) && mappings.length <= 100, 'speaker_voice_mappings must contain 0..100 entries; [] clears all bindings')
+  const seen = new Set()
+  mappings.forEach((m, i) => {
+    const p = `speaker_voice_mappings[${i}]`
+    fields(m, ['speaker_id', 'audio_id', 'reference_audio_url'], p)
+    speaker(m.speaker_id, `${p}.speaker_id`)
+    assert(!seen.has(m.speaker_id), `${p}: duplicate speaker_id`); seen.add(m.speaker_id)
+    assert(Object.hasOwn(m, 'audio_id') !== Object.hasOwn(m, 'reference_audio_url'), `${p}: choose audio_id or reference_audio_url`)
+    if (m.audio_id !== undefined) long(m.audio_id, `${p}.audio_id`)
+    else {
+      publicUrl(m.reference_audio_url, `${p}.reference_audio_url`)
+      assert(new URL(m.reference_audio_url).pathname.endsWith('.mp3'), `${p}.reference_audio_url path must end with .mp3`)
+    }
+  })
+}
+function languageAction(input) {
+  long(input.sub_task_id, 'sub_task_id')
+  text(input.target_language, 'target_language', 32)
+  text(input.request_id, 'request_id (business idempotency key)', 128)
+}
+function uniqueSegments(segments, maximum, p) {
+  assert(Array.isArray(segments) && segments.length >= 1 && segments.length <= maximum, `${p} must contain 1..${maximum} segments`)
+  const seen = new Set()
+  segments.forEach((s, i) => {
+    assert(object(s), `${p}[${i}] must be an object`)
+    long(s.id, `${p}[${i}].id`, 0n)
+    const id = String(s.id)
+    assert(!seen.has(id), `${p}: duplicate segment id`); seen.add(id)
+    text(s.translated_text, `${p}[${i}].translated_text`)
+  })
+}
+function validateRetrySegments(input) {
+  languageAction(input)
+  uniqueSegments(input.segments, 100, 'segments')
+  input.segments.forEach((s, i) => fields(s, ['id', 'translated_text'], `segments[${i}]`))
+}
+function validateResynthesis(input) {
+  languageAction(input)
+  const map = input.translated_segments_by_language
+  assert(object(map) && Object.keys(map).length === 1 && Object.hasOwn(map, input.target_language), 'translated_segments_by_language must contain only target_language')
+  const segments = map[input.target_language]
+  uniqueSegments(segments, 10000, 'translated_segments_by_language')
+  segments.forEach((s, i) => {
+    const p = `translated_segments_by_language[${input.target_language}][${i}]`
+    fields(s, ['id', 'from', 'to', 'source_text', 'translated_text', 'speaker_id', 'lip_sync'], p)
+    range(s, p, true)
+    if (s.source_text !== undefined) text(s.source_text, `${p}.source_text`, Infinity, true)
+    if (s.speaker_id !== undefined) speaker(s.speaker_id, `${p}.speaker_id`)
+    if (s.lip_sync !== undefined) bool(s.lip_sync, `${p}.lip_sync`)
+  })
+}
+const idKeys = new Set(['business_id', 'default_digital_human_id', 'material_id', 'digital_human_id', 'template_id', 'subtitle_template_id', 'sub_task_id', 'audio_id', 'id', 'file_size'])
 function wireIntegers(value, key) {
   if (key === 'settings') return value
   if (idKeys.has(key) && value !== undefined) return BigInt(value)
@@ -114,4 +190,4 @@ function wireIntegers(value, key) {
 }
 // Used for readable dry-runs: unsafe integers stay strings, body_json is the exact wire text.
 const displayBody = value => parseJson(stringifyJson(value))
-module.exports = { validateTranslation, validateEdit, validateConfirm, wireIntegers, displayBody, long }
+module.exports = { validateTranslation, validateEdit, validateConfirm, validateSpeakerVoices, validateRetrySegments, validateResynthesis, wireIntegers, displayBody, long }

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use this skill to review mathematical, scientific, statistical, and machine learning code. It checks requirements, derivations, numerical stability, and test evidence, then produces grounded findings and a review recommendation.
+Developers and engineers use this skill to review mathematical models, algorithms, statistical routines, scientific code, and numerical implementations. It guides requirements mapping, derivation checks, stability assessment, test evidence collection, and grounded findings.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Running tests or notebook cells from an unfamiliar project may have side effects.
+Risk: Running tests or notebooks from an untrusted repository may execute untrusted code; the security review is incomplete because some local references were unresolved.
 
-Mitigation: Review the commands and notebook cells first, and run them only in a trusted, appropriately isolated environment.
-
-Risk: Four local references were unresolved, so the scanner could not establish that all referenced material was reviewed.
-
-Mitigation: Check that referenced guidance is available and review it before relying on the complete workflow.
+Mitigation: Check repository trust before execution and use an isolated environment without credentials or network access; review unresolved local references before relying on the security verdict.
 
 ## Reference(s):
 
-- [math-review release on ClawHub](https://clawhub.ai/athola/skills/nm-pensive-math-review)
-- [Pensive plugin documentation](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
-- [Requirements Mapping](artifact/modules/requirements-mapping.md)
-- [Derivation Verification](artifact/modules/derivation-verification.md)
-- [Numerical Stability Analysis](artifact/modules/numerical-stability.md)
-- [Testing Strategies for Mathematical Code](artifact/modules/testing-strategies.md)
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-pensive-math-review)
+- [Clawdis metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Guidance]
+**Output Type(s):** [Markdown, JSON, Guidance, Shell commands]
 
-**Output Format:** [Markdown review report with findings, evidence references, and a recommendation]
+**Output Format:** [Markdown review report and JSON findings, with command examples where relevant]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Findings should include source locations and supporting evidence; unverified findings are labeled or omitted.]
+**Other Properties Related to Output:** [Findings include source locations, exact anchors, and evidence; unverifiable findings are labeled UNVERIFIED or omitted.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, release evidence)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

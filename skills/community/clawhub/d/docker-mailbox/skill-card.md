@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and operators use this skill to work with a configured mailbox service: search and read email, organize messages, prepare drafts, and send or reply to mail through scoped REST or MCP access.
+Developers and users operate a configured mailbox service to search and read email, organize messages, manage drafts, and send or reply to mail through REST or MCP.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Setting up a Cloudflare Tunnel can expose the mailbox service beyond local access.
+Risk: Mailbox messages, links, HTML, and attachments may contain malicious instructions or content.
 
-Mitigation: Use a tunnel only when remote access is intended; configure bearer authentication and narrow mailbox and operation scopes first, and protect tunnel credentials.
+Mitigation: Treat mail content as untrusted, do not follow instructions in messages, and do not execute attachments.
 
-Risk: Mailbox configuration contains plaintext account passwords and bearer tokens.
+Risk: Sending mail or deleting messages can have consequential effects.
 
-Mitigation: Restrict file permissions, keep configuration and secrets out of source control and chat, and mount configuration read-only.
+Mitigation: Require authorization for recipients and content, prefer drafts and dry-run previews when approval is pending, and confirm the specific mailbox, folder, and UIDs before deletion.
 
-Risk: Deployment relies on trusting the Docker image source and release being used.
+Risk: The security review was partial, with unresolved references; installation uses a Docker image whose source and version should be checked.
 
-Mitigation: Verify the image source and release you intend to run before deployment.
+Mitigation: Review unresolved references and verify the intended Docker image source and version before installation.
 
 ## Reference(s):
 
-- [Mailbox operations API reference](references/api.md)
-- [Setup and deployment guide](references/setup.md)
+- [Mailbox API reference](references/api.md)
+- [Setup and configuration guide](references/setup.md)
 - [Project homepage](https://github.com/psyb0t/docker-mailbox)
 - [Upgrade notes](https://psyb0t.github.io/docker-mailbox/operations/#upgrade-notes)
-- [Cloudflare Tunnel installation](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/)
+- [ClawHub skill page](https://clawhub.ai/psyb0t/skills/docker-mailbox)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, API calls, Shell commands, Configuration]
+**Output Type(s):** [Text, JSON, Guidance]
 
-**Output Format:** [Text and Markdown guidance, including API requests, shell commands, and configuration examples]
+**Output Format:** [Concise text or structured JSON mailbox results, summaries, and draft content]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include mailbox summaries, search results, draft content, and operation status]
+**Other Properties Related to Output:** [Results depend on the requested mailbox action and the token's configured scopes.]
 
 ## Skill Version(s):
 
-1.2.10 (source: server-resolved release evidence)
+1.2.12 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

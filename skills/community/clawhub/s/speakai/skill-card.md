@@ -1,6 +1,6 @@
 ## Description:
 
-Connects an agent to Speak AI and guides it through MCP setup and workflows for transcribing, searching, analyzing, and managing recordings and workspace tools.
+Connects an agent to Speak AI and guides it through setup, available tools and resources, and common recording workflows.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agents use this skill to connect to Speak AI with OAuth or an API key, then choose workflows for transcription, transcript search, analysis, clips, exports, surveys, meeting capture, and workspace management.
+Developers and agents use this guide to connect to Speak AI and choose workflows for transcribing, searching, analyzing, and managing recordings and workspace resources.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The documented local installation command does not pin a package version, and the security review notes that scan coverage was incomplete because two references could not be resolved.
+Risk: The local stdio setup documents an unpinned package command, and the security analysis is incomplete because two path-like references could not be resolved.
 
-Mitigation: Review the unresolved references and package release details before installing; pin a reviewed version when using the local package.
+Mitigation: Review the package and pin a specific version before running it; check the unresolved references and setup instructions before installation.
 
-Risk: Connecting to the remote MCP server gives the agent access to the recordings and workspace actions available to the authorized account.
+Risk: Connecting the skill links an agent to the Speak AI service and workspace.
 
-Mitigation: Use the documented OAuth flow and review the requested workspace action before creating, sharing, scheduling, or changing workspace items.
+Mitigation: Before installing, decide whether you trust the service and are comfortable connecting to it; use the documented OAuth path when the client supports it.
 
 ## Reference(s):
 
-- [Speak AI MCP documentation](https://docs.speakai.co/mcp)
-- [Setup guide](https://docs.speakai.co/mcp/setup/)
-- [Authentication guide](https://docs.speakai.co/mcp/authentication)
+- [Speak AI MCP overview](https://docs.speakai.co/mcp)
+- [MCP setup guide](https://docs.speakai.co/mcp/setup/)
+- [MCP authentication guide](https://docs.speakai.co/mcp/authentication)
 - [MCP tool reference](https://docs.speakai.co/mcp/tools/)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance, Configuration, Shell commands, API calls]
+**Output Type(s):** [Guidance, Shell commands, Configuration]
 
-**Output Format:** [Markdown guidance with configuration snippets, shell commands, and MCP tool workflows]
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Provides setup and workflow guidance for the connected Speak AI workspace.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-2.0.0 (source: server-resolved release metadata)
+2.4.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

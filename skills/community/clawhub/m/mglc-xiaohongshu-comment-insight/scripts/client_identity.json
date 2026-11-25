@@ -1,0 +1,16 @@
+{
+  "slug": "mglc-xiaohongshu-comment-insight",
+  "displayName": "小红书评论洞察",
+  "mode": "insight",
+  "samplePlan": {
+    "keyword": "露营装备",
+    "sort": "general",
+    "searchPages": 3,
+    "maxNotes": 20,
+    "includeDetails": true,
+    "commentsPerNote": 20,
+    "commentPages": 3
+  },
+  "version": "1.0.0",
+  "channel": "clawhub"
+}

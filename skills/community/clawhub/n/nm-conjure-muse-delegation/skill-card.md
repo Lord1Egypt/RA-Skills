@@ -1,6 +1,6 @@
 ## Description:
 
-Delegates to Meta's Muse Code CLI (muse)
+Delegates repository coding work to Meta's Muse Code CLI (muse).
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use the skill when delegation-core selects Muse for repository-scale coding work or unattended tasks. It provides setup, authentication, and invocation guidance for Muse Code.
+Developers use this skill when their delegation workflow selects Muse for repository-scale coding tasks, including unattended runs that need broad repository context.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan flags the remote installer as unverified and reports a mismatch between the documented delegation purpose and the installer command.
+Risk: The documented installer runs a remote script through a shell, and the scanner could not determine the installer's contents or effects.
 
-Mitigation: Review the installer source and official Muse Code documentation before running it, and proceed only if you trust the installer and its requested account permissions.
+Mitigation: Read Meta's Muse Code documentation and inspect the installer source before running it; use the guided setup when its source review is available.
 
-Risk: Repository content may be sent to Meta during delegation.
+Risk: Repository content may be sent to an external model service during delegation.
 
-Mitigation: Review which repository files will be included in the prompt before invoking Muse.
+Mitigation: Review prompts and included files, and exclude credentials or other sensitive repository content unless its transmission is approved.
+
+Risk: The security scan was partial and could not resolve several local references.
+
+Mitigation: Review the full skill and its referenced local files before using it in a repository.
 
 ## Reference(s):
 
-- [Project homepage (Clawdis metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/conjure)
 - [Muse Code documentation](https://dev.meta.ai/docs/muse-code)
 - [Muse Code configuration](https://dev.meta.ai/docs/muse-code/configuration)
 - [Muse models](https://dev.meta.ai/docs/models)
+- [Project homepage (server metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/conjure)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-conjure-muse-delegation)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Markdown]
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance, Code]
 
-**Output Format:** [Markdown with inline shell command examples]
+**Output Format:** [Markdown delegation results with shell command and configuration guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Delegated results are saved to delegations/muse/YYYYMMDD_HHMMSS.md.]
+**Other Properties Related to Output:** [Delegated results are saved as a timestamped Markdown file.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

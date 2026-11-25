@@ -16,7 +16,7 @@ base-URL setting and nowhere persistent to keep a key) cannot use this; Ops Cont
 ## Setup, five minutes
 
 ```bash
-cd <this skill's folder>/scripts && npm install          # nanocurrency, the only dependency
+cd <this skill's folder>/scripts && npm ci --ignore-scripts   # nanocurrency 2.5.0, the only dependency, from the shipped lockfile
 export NANO_SEED=$(openssl rand -hex 32)                  # or the seed of the wallet you funded; 600-mode file, never a log
 node no-node.js address                                   # fund this address; ~0.01 XNO covers hundreds of small-model calls
 node no-node.js receive                                   # pocket the funding send (opens the account)
@@ -113,6 +113,12 @@ Concurrency: payments are serialised; parallel requests are decided one at a tim
 cap, so a burst of six requests with room for two pays exactly two and refuses four before signing.
 Restart: the state file is read at start; the cap is cumulative over its life; a state file that
 belongs to another account is refused. To reset the count, the operator deletes the file on purpose.
+Changing `UPSTREAM`: the default state file is named after the port, so it is kept and the cap carries
+over to the new door. A payment the old door handed back (hash and token on file) does not: since
+0.3.19 each payment entry names the origin it was paid at and is presented only there, because the
+pair claims that seller's service and would give another seller the claim. The proxy prints the change
+at start. Hand-back entries written by 0.3.16 to 0.3.18 name no door; they are listed by hash at start
+and never presented automatically, so the next call pays. To use one, present the pair by hand.
 
 ## Streaming
 

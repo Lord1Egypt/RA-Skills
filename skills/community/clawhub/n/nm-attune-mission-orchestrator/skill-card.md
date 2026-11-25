@@ -1,6 +1,6 @@
 ## Description:
 
-Orchestrates full project lifecycle by auto-detecting state and routing to the correct phase.
+Orchestrates full project lifecycle by auto-detecting state and routing to the correct phase
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to start or resume a software project and route it through the appropriate planning, implementation, or review phases while tracking workflow state and project artifacts.
+Developers use this skill to start or resume project work, route it through planning, implementation, or review phases, and preserve state for later sessions.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan was partial because some referenced local files were unavailable, so the clean verdict has medium confidence.
+Risk: Some referenced files were unavailable for security review, so the scan did not cover all related material.
 
-Mitigation: Before installing, review the referenced phase skills and other local files that were unavailable to the scan.
+Mitigation: Review the skill and related files before relying on it, as the security guidance recommends.
 
 ## Reference(s):
 
 - [ClawHub release page](https://clawhub.ai/athola/skills/nm-attune-mission-orchestrator)
-- [Plugin homepage linked by the skill](https://github.com/athola/claude-night-market/tree/master/plugins/attune)
+- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/attune)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Code, JSON, Configuration]
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
 
-**Output Format:** [Project workflow guidance and artifacts, including Markdown documents, code, and JSON state files]
+**Output Format:** [Project artifacts, code changes, reports, and mission state JSON]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Artifacts depend on the selected mission phases and the phase skills available to the agent.]
+**Other Properties Related to Output:** [Outputs depend on the detected mission type and selected phases.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

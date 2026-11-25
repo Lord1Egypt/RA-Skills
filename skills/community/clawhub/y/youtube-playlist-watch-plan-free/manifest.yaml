@@ -1,0 +1,27 @@
+name: youtube-playlist-watch-plan-free
+slug: youtube-playlist-watch-plan-free
+display_name: YouTube播放列表观看计划
+description: 在用户指定的 Easy WebBridge 浏览器中读取一个 YouTube 播放列表与每日可用时间，最多整理十条可见视频为顺序观看草稿，交付时长预算、逐条来源和缺失项。适用于想把课程或系列视频拆成每日计划的场景；遇到私密、受限或未显示时长的资料会如实标记，不猜测、不改动收藏或观看队列。
+version: 1.0.1
+icon: icon-512.png
+repository: https://github.com/xxjrq/youtube-playlist-watch-plan-free
+license: MIT-0
+tags:
+  - youtube
+  - playlist
+  - watch-plan
+  - time-budget
+  - easy-webbridge
+trigger_words:
+  - YouTube播放列表观看计划
+  - 播放列表每日观看
+  - 视频课程时间规划
+interface:
+  display_name: YouTube播放列表观看计划
+  short_description: 从可见播放列表生成每日观看顺序、时长预算与缺项清单
+  default_prompt: $youtube-playlist-watch-plan-free 使用我指定的 browserId 读取这个 YouTube 播放列表，按我每天可用时间生成最多10条的只读观看计划；列出每条来源和缺失信息，不修改任何收藏或队列。
+  icon_small: assets/icon-small.png
+  icon_large: icon-512.png
+policy:
+  allow_implicit_invocation: false
+self_test: node scripts/self-test.mjs

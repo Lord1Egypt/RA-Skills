@@ -1,0 +1,22 @@
+{
+ "schema": "lgd-chain/1.0",
+ "from": "lgd-skill-review",
+ "handoff": [
+  {
+   "when": "被测包的测试跑不通，需要定位",
+   "to": "debug-pro",
+   "handoff": "把失败输出与包路径交给它，要「层 + 复现分级」"
+  },
+  {
+   "when": "被测对象是纪要/摘要类能力",
+   "to": "summarize-pro",
+   "handoff": "用它的黄金集反向验证被测包是否真能保住证据链"
+  },
+  {
+   "when": "被测对象是内容/选题类能力",
+   "to": "wechat-viral-topic",
+   "handoff": "用它的红线清单交叉核对被测包是否漏了合规边界"
+  }
+ ],
+ "note": "收尾时按 when 条件把活交给 to，并递上 handoff 里点名的材料；不递空话。"
+}

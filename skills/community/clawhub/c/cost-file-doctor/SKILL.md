@@ -6,7 +6,7 @@ description: 工程计价文件「能不能打开」诊断器。识别 .SGCFX/.q
 description_zh: 拿到任何造价软件工程文件，先花 5 分钟诊断再动手：识别厂商格式、熵值+关键词双重证据判定加密状态、评估可解析性，给出本地解析/装原软件/找现成导出件三条路径及代价。内置「先找同目录导出件」检查与分页重复表头清理器，避免在无解的加密文件上浪费时间。
 description_en: Diagnose any construction-cost engineering file before wasting hours on it: identify the vendor format, decide whether it is encrypted (entropy + keyword evidence), and pick among local parsing, vendor software, or an already-exported Excel found in the same folder. Includes a paged-header cleaner for vendor-exported spreadsheets.
 category: data-analysis
-version: 1.0.0
+version: 1.0.3
 author: Lxb
 ---
 

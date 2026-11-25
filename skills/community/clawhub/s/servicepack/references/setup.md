@@ -13,6 +13,7 @@ make own MODNAME=github.com/yourname/yourproject
 `make own` (irreversible on this clone):
 
 - nukes `.git`, runs `git init` fresh on `main`
+- deletes servicepack's own `docs/`, `CHANGELOG.md`, agent files and publishing workflows
 - rewrites the module name everywhere (`go.mod` + every import)
 - replaces `README.md` with a stub for your project name
 - runs the Docker-backed dependency and registration targets
@@ -22,7 +23,7 @@ Your binary name is derived from `go.mod`'s module name (last path segment) at b
 
 ## Go and Docker requirements
 
-`go.mod` declares Go `1.26.9`. The supported Make targets run that project
+`go.mod` declares Go `1.26.11`. The supported Make targets run that project
 toolchain in the development/build Docker images, so `make own` does not reject
 an older host Go installation. Docker must be available for normal dependency,
 generation, build, lint, and test work. Keep the `go.mod` declaration aligned

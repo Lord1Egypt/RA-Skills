@@ -1,6 +1,6 @@
 ## Description:
 
-Guides agents through creating Vidu Q2 product videos from product images and selling points using Qinghu's video tools.
+Helps ecommerce sellers, designers, and online store operators create product marketing videos with Vidu models through Qinghu AI.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,45 +14,43 @@ MIT-0
 
 ## Use Case:
 
-E-commerce merchants, designers, and store operators use this skill to plan and generate short product showcase and advertising videos from product images and selling points.
+Ecommerce sellers, designers, and online store operators use this skill to turn product images and selling points into short product showcases, promotional clips, and ads.
 
 ### Deployment Geography for Use:
 
-Global
+China
 
 ## Known Risks and Mitigations:
 
-Risk: Installing the required npm tool and configuring a local API token exposes the environment to third-party tooling and credential handling.
+Risk: Setup instructions use unpinned package installation commands.
 
-Mitigation: Review the package before installation and keep the API token private in local configuration.
+Mitigation: Review the package and install a specifically reviewed version before running it.
 
-Risk: Selected product images or videos are uploaded to Qinghu for generation.
+Risk: Setup instructions ask the user to share an API key in chat.
 
-Mitigation: Upload only media authorized for sharing with Qinghu.
+Mitigation: Configure credentials through a secure local secret store or environment variable instead of pasting the key into chat.
 
-Risk: Video generation consumes credits and cannot be cancelled after submission.
+Risk: Broad activation terms may invoke the skill when the user did not intend to generate a product video.
 
-Mitigation: Check the estimate and confirm the model, duration, media, and expected cost before submitting.
+Mitigation: Keep activation tied to an explicit request for Vidu Q2 ecommerce video generation.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-vidu-q2-sales)
-- [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
-- [Qinghu API key setup](https://www.iqinghu.com/workbench/dashboard/api-keys?urlCode=1788417429126)
+- [qhkit on npm](https://www.npmjs.com/package/@iqinghu/qhkit)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Markdown]
+**Output Type(s):** [Video, Text, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown with command examples, task status, and video links]
+**Output Format:** [Short product marketing video with concise task status and result details]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include a video task ID, estimated or charged credits, and a generated video URL.]
+**Other Properties Related to Output:** [Video model, duration, orientation, and reference media depend on current options and user input.]
 
 ## Skill Version(s):
 
-0.1.4 (source: ClawHub release)
+0.1.6 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

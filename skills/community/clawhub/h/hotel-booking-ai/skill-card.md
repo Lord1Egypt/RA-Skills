@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-External users use this skill to search hotels worldwide, compare live room rates and availability, review booking terms, and complete booking, payment, cancellation, or order lookup workflows through an agent.
+Travelers use this skill to find and compare hotels using current rates, amenities, and cancellation terms, then manage reservations and payments.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Order actions use a reusable user_key stored in a local plaintext file.
+Risk: An account key is stored in plaintext and sent with searches.
 
-Mitigation: Treat the key like a password, keep it out of prompts, logs, screenshots, backups, and repositories, and restrict local file access where supported.
+Mitigation: Review the privacy implications before signing in, protect access to the local key file, and avoid sharing the key.
 
-Risk: The package includes a remotely driven self-update workflow.
+Risk: The reported self-update process can replace installed skill files, and the security scan is incomplete.
 
-Mitigation: Verify TourMind support and update sources independently before applying an update, and do not proceed unless the agent asks for confirmation.
-
-Risk: Booking, payment, and cancellation actions can affect real travel orders and charges.
-
-Mitigation: Review the displayed room, price, fee, cancellation, and payment details before confirming any order operation.
+Mitigation: Review the skill before installation and inspect the update source and file changes before approving an update.
 
 ## Reference(s):
 
-- [Hotel Booking AI ToC API and Field Reference](references/parameter_guide.md)
-- [ClawHub Skill Page](https://clawhub.ai/tourmind/skills/hotel-booking-ai)
-- [TourMind Skills Product Page](https://tourmind.com/skills)
-- [TourMind API Base URL](https://api.tourmind.com)
+- [TourMind Hotel Booking AI product page](https://tourmind.com/skills)
+- [ClawHub release page](https://clawhub.ai/tourmind/skills/hotel-booking-ai)
+- [Parameter guide](artifact/references/parameter_guide.md)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, API calls, guidance]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Markdown responses with structured hotel options, room-rate details, booking summaries, and confirmation prompts]
+**Output Format:** [Conversational text and Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include localized read-only result links when returned by the TourMind API]
+**Other Properties Related to Output:** [Hotel recommendations, live rate and cancellation comparisons, and booking or order guidance.]
 
 ## Skill Version(s):
 
-1.0.5 (source: server release metadata; artifact metadata.version declares 1.0.8)
+1.1.0 (source: frontmatter metadata.version, server release metadata)
 
 ## Ethical Considerations:
 

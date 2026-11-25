@@ -1825,12 +1825,18 @@ def s2_citation_contexts(doi: str, timeout: float, max_samples: int = 3) -> dict
     诚实边界：S2 contexts 覆盖率不均（实测部分空）——返回 coverage 字段如实标注，
     绝不装作全知。失败静默跳过（语境是增强信号,非判定依据）。CC BY 4.0 数据源。
     返回 {}（无数据）或 {"cited_by": int, "samples": [{"context","intents","influential","citing_title"}],
-    "coverage": float}。"""
+    "coverage": float}；v6.7.0 F67 增 {"skipped": "cn_mode"}（--cn 短路诚实降级，
+    显式 --s2-key 放行）。"""
     url = (
         "https://api.semanticscholar.org/graph/v1/paper/DOI:"
         + quote(doi, safe="")
         + "/citations?fields=contexts,intents,isInfluential,title&limit=30"
     )
+    if _ROOT._OPTS.get("cn_mode") and not _ROOT._OPTS.get("s2_key"):
+        # v6.7.0 F67：--cn 下 S2 短路（诚实降级）。api.semanticscholar.org 在
+        # 国内网络高频超时（断路器实测主力源）；语境是增强信号非判定依据，
+        # 每条 25s×2 重试的白耗不划算。显式配 --s2-key = 用户声明可达，放行。
+        return {"skipped": "cn_mode"}
     key = _ROOT._OPTS.get("s2_key") or ""
     if key:
         url += "&api_key=" + quote(key, safe="")

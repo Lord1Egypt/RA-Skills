@@ -2,7 +2,7 @@
 name: claude-code-third-party-model
 slug: claude-code-third-party-model
 displayName: Claude Code 接入第三方模型
-version: 1.3.0
+version: 1.6.0
 license: MIT
 category: dev-programming
 subCategories: [dev-script, dev-bug-fix]
@@ -921,7 +921,70 @@ if defined OLD taskkill /F /PID !OLD!
 # 第五部分：只有 OpenAI 兼容端点的模型 → 必须加本地网关
 
 **适用**：模型只在 OpenAI 兼容网关上提供，没有 Anthropic 原生端点。
-典型是 Space Bunny（2026-09 匿名免费预览，1M 上下文，强制推理、五档 reasoning effort，$0）。
+典型是 OpenCode Zen 的免费层（2026-09 时是 Space Bunny，1M 上下文、强制推理、五档 effort、$0）。
+
+> ✅ **2026-10-16 更正：`space-bunny-free` 并未下线，实测可用且很快。**
+> 早前记为「已下线」是错的。13:28 经 `zen_bridge`(:8787) 与 ccproxy(:3463) 两段实测：
+> 对话正常、工具调用命中 `get_weather`、端到端 13.5s。现役 profile 为 `zen-ds-flash`
+> （`deepseek-v4.1-flash-free`）。
+>
+> Zen 免费层**不能直连**：直连报 `FreeTierError: only used from within OpenCode`
+> （改 UA 伪装无效），必须走 `opencode serve` + 本地桥接，见**第八部分**。
+>
+> **免费模型已全部接进切换器**（`~/.claude/profiles/` + `claude_model_switcher.pyw` 的
+> `MODELS`/`DEL_LABELS` 已登记；6 个也已进 `~/.workbuddy/models.json`）：
+>
+> | profile | 模型 | ccproxy 端口 | 真实上下文 | 端到端 |
+> |---|---|---|---|---|
+> | `zen-longcat` | `longcat-2.5-preview-free` | 3465 | 1M | 4.2s |
+> | `zen-mimo` | `mimo-v2.6-flash-free` | 3467 | 200k | 4.9s |
+> | `zen-nemotron-vl` | `nemotron-3.5-super-vl-free` | 3464 | 1M | 6.9s |
+> | `zen-big-pickle` | `big-pickle` | 3468 | 200k | 12.1s |
+> | `zen-space-bunny` 👑 | `space-bunny-free` | 3463 | 1M | **1.3s** |
+> | `zen-ll-alpha` | `ll-alpha-free` | 3469 | 256k | 3.5s |
+> | `zen-ds-flash` | `deepseek-v4.1-flash-free` | 3462 | 200k | 4.0s |
+>
+> 不可用：`jev-1.13-free`(500)、`cat-jam-free` 与 `muse-spark-1.3-contributor-free`
+> （**200 但空 content**= 地区封锁）、`muse-spark-1.2-contributor-free`(500)。
+> `nemotron-3.5-lightning-free` 能跑但**用户决定不接入**（端到端偏慢，历史最慢测到 18.6s，
+> 已从 profile / GUI / models.json / KNOWN_FREE 全部移除；端口 3466 因此空出）。
+>
+> 踩坑要点：
+> - **每个模型必须独占一个 ccproxy 端口**（不同 upstream 不能共端口）。新增模型时
+>   `x_gateway_port` 与 `x_ccproxy_args --model` 要成对改。
+> - `[1m]` 后缀只给**真实 1M 上下文**的模型（表中 1M 那几个）。别照抄——
+>   `zen-ds-flash` 标的 `[1m]` 其实只有 200k，靠 `CLAUDE_CODE_AUTO_COMPACT_WINDOW` 兜底。
+> - GUI 模型清单是**硬编码**的，只加 profile 文件 GUI 里**不显示**；`ccswitch.py` 是动态扫目录。
+> - **桥接不开机自启**（2026-10-16 移除 Startup 里的 `zen-bridge-autostart.cmd`，
+>   原文件备份在 `~/.claude/backups/zen-bridge-autostart.cmd.removed-*`）：
+>   改为**点切换器时才起**。GUI 打开后 400ms 自动连 `PREFERRED_PROFILE`
+>   （当前 = `zen-space-bunny` 👑，静默执行不弹框），这条链路顺带把 zen_bridge
+>   和对应 ccproxy 网关都拉起来。冷启动约 30s（含 `opencode serve`）。
+>   改默认模型只需改 GUI 顶部的 `PREFERRED_PROFILE` 常量。
+> - 判「可用」**不能只看 HTTP 200**：地区封锁返回 200 + 空 content。
+> - 🔴 **绝对不要把 Zen 模型配成 WorkBuddy 自定义模型**（2026-10-16 实测踩坑）：
+>   WorkBuddy 发的是**完整 agent 提示词 + 25 个工具定义（约 34K 字符）**，
+>   桥接转给 `opencode serve` 后，**opencode 的 general agent 会把提示当任务自己执行**——
+>   用**它自己内置的工具**去读写用户真实项目文件（实测抓到它跑
+>   `Get-ChildItem D:\ai-case-library\tmp`、`read tmp\*.log`），形成 agent 循环，
+>   WorkBuddy 侧永远停在「准备中」。已从 `~/.workbuddy/models.json` 移除全部 Zen 条目。
+>   - 本文件桥接源码注释其实已预警：「system 会被 opencode agent 自己的提示压掉，
+>     模型会转头去用它内置的工具」——WorkBuddy 的提示词体量让这从「可能」变「必然」。
+>   - `POST /session/:id/abort` **对正在跑的 subagent 循环无效**（返回 200 但仍在更新），
+>     唯一可靠手段是**杀掉 `opencode serve` 进程**。
+>   - 小提示请求不会触发接管，所以端到端测试全绿也掩盖了它——**只有真实 agent 提示词才暴露**。
+>   - Claude Code 侧不受影响：请求经 ccproxy，工具集小，实测 1.3~3.5s 正常返回。
+> - 本机代理 `127.0.0.1:9749` 出口与直连相同（江苏联通），测 VPN 需开 TUN/全局模式。
+> - **上表耗时是单次采样，噪声大，别据此下结论。**以 2 轮基准为准
+>   （真实提示 + 并行工具调用「查北京和上海」）：
+>   `space-bunny-free` **1.3s(1.1/1.4) 👑 最快最稳** > `nemotron-3.5-super-vl-free` 1.7s
+>   > `deepseek-v4.1-flash-free` 1.9s > `big-pickle` 3.2s > `longcat-2.5-preview-free` 5.6s
+>   > `mimo-v2.6-flash-free` 8.2s(3.7/12.8，很不稳)。6 个都能正确一次返回**多个** `tool_use`。
+>   👑 = 实测最优，GUI 已标皇冠，**日常首选**。
+>   ⚠️ 反面教材：单次采样曾把 `space-bunny-free` 测成 13.5s（最慢）、`longcat` 测成 4.2s（第二），
+>   复测后完全颠倒。**性能结论必须多轮。**
+>
+> 本部分剩余内容保留作 **OpenAI→Anthropic 网关类问题** 的历史排查参考。
 
 > ⚠️ **2026-09-29 重大更正：`claude-code-router` 的流式转换是坏的，不要再拿它做方案。**
 > 实测 v2.1.1（npm 上只有 2.1.0/2.1.1，**没有修复版**）输出的 Anthropic SSE：
@@ -939,16 +1002,17 @@ if defined OLD taskkill /F /PID !OLD!
 
 **同一个 stealth 模型往往有多个上游，优先选免 key 的那个**：
 
-| 上游 | 端点 | 模型名 | 认证 |
-|---|---|---|---|
-| **OpenCode Zen** | `https://opencode.ai/zen/v1/chat/completions` | `space-bunny-free` | **免 key（匿名）可用** |
-| OpenRouter | `https://openrouter.ai/api/v1/chat/completions` | `stealth/space-bunny-alpha` | 需 key（注意：整段 `:free` 后缀会 404） |
-| AI/ML API | `https://api.aimlapi.com/v1/chat/completions` | `stealth/space-bunny-alpha` | 需 key |
+| 上游 | 端点 | 模型名 | 认证 | 状态 |
+|---|---|---|---|---|
+| **OpenCode Zen** | `https://opencode.ai/zen/v1/chat/completions` | `deepseek-v4.1-flash-free` | **免 key（匿名）** | ✅ 现役，但**必须走 opencode SDK**（见第八部分） |
+| OpenCode Zen | 同上 | `space-bunny-free` | 免 key | ✅ **实测仍可用**（2026-10-16，profile `zen-space-bunny`，端口 3463）；早前「已下线」的记录有误 |
+| OpenRouter | `https://openrouter.ai/api/v1/chat/completions` | `stealth/space-bunny-alpha` | 需 key（注意：整段 `:free` 后缀会 404） | ❌ 随模型下线 |
+| AI/ML API | `https://api.aimlapi.com/v1/chat/completions` | `stealth/space-bunny-alpha` | 需 key | ❌ 随模型下线 |
 
-- **OpenCode Zen 免 key 实测（2026-09-29）**：不带任何 `Authorization` 头直接 POST
-  `space-bunny-free` 即返回真实结果、`cost:"0"`。**账号被封也不用怕，直接换 Zen。**
-  （限时免费，约 ~2026-09-30 到期；`@namzu/zen` 也称 keyless 走 `space-bunny-free`，
-  但「网关准入随时可能变」。）
+- **Zen 免 key 的代价（2026-10-16 实测）**：Zen 免费层**只接受从 opencode 客户端/SDK 发出的
+  请求**。匿名直连 endpoint 会 `FreeTierError: only used from within OpenCode`，
+  改 `User-Agent` 伪装无效；甚至用 python `urllib` 打 `opencode.ai` 还会被
+  Cloudflare `403 error code: 1010` 拦。所以现役方案是 `opencode serve` + 本地桥接。
 - 两条通道 **模型 ID 不同**：Zen 带 `-free` 后缀，OpenRouter 不带 `:free` 后缀。
 
 ## 为什么必须过网关
@@ -1022,6 +1086,9 @@ cd "C:/Users/<u>/.workbuddy/binaries/node/workspace"
 > **不在** workspace 里（踩过）。
 
 ## 配置模板：`~/.claude-code-router/config-router.json`
+
+> 历史示例（模型名 `space-bunny-free` 已下线，仅作格式参考；新搭建请用第七部分的
+> `ccproxy.py` + 第八部分的 `zen_bridge.py`）。
 
 ```json
 {
@@ -1182,7 +1249,8 @@ python scripts/ccswitch.py gateway
 
 ## 已知限制
 
-- Space Bunny 是**强制推理**模型，默认 effort 较高（偏慢）。想提速要调 reasoning effort，
+- ~~Space Bunny 是**强制推理**模型，默认 effort 较高（偏慢）~~（模型已下线，2026-10-16）。
+  现役的 `deepseek-v4.1-flash-free` 同样支持六档 effort（minimal/low/medium/high/xhigh/max），
   但 Claude Code 的 `CLAUDE_CODE_EFFORT_LEVEL` 经网关**未必能传下去**（同 Step 9，
   很可能是空操作），需要实测确认。
 - 匿名 stealth 模型规格/数据政策未公开（提供方可能保留 prompt，不用于训练），
@@ -1192,20 +1260,50 @@ python scripts/ccswitch.py gateway
 
 # 第六部分：多 profile 一键切换（ccswitch）
 
-**目标**：用户说一句「切 deepseek」/「切 space bunny」就完成切换，不再手工改配置。
+**目标**：用户说一句「切 deepseek」/「切 zen」就完成切换，不再手工改配置。
 
 ## 用法
 
 ```bash
 python scripts/ccswitch.py deepseek          # 切到 DeepSeek 原生端点
-python scripts/ccswitch.py spacebunny        # 切到 Space Bunny（自动拉起网关）
+python scripts/ccswitch.py zen-ds-flash      # 切到 Zen 免费模型（自动拉起桥接+网关）
 python scripts/ccswitch.py status            # 当前 profile + 网关状态
 python scripts/ccswitch.py list              # 列出所有 profile
 python scripts/ccswitch.py gateway           # 只确保网关在跑
 python scripts/ccswitch.py <p> --no-gateway  # 只改 settings，不动网关
 ```
 
-别名：`ds`→deepseek，`bunny`/`sb`/`zen`→spacebunny。
+别名：`ds`/`deepseek-flash`→deepseek，`zen`/`opencode-zen`/`zen-ds`/`ds-flash`→zen-ds-flash。
+
+> 🗑️ `spacebunny` profile 已于 2026-10-16 随模型下线移除。旧别名 `bunny`/`sb`/`space-bunny`
+> 现在统一指向 `zen-ds-flash`，不会再报「unknown profile」。
+
+## 删除模型（免费模型过期/失效时用）
+
+免费模型说没就没，删一个模型的所有入口（切换器 GUI、`ccswitch list`）立即失效，
+不用改代码、不用重新部署：
+
+```bash
+python scripts/ccswitch.py delete <profile>                 # 交互确认（y/N）
+python scripts/ccswitch.py delete <profile> --yes           # 跳过确认
+python scripts/ccswitch.py delete <profile> --permanent     # 连付费模型也真删
+```
+
+**免费模型是真删，付费模型才归档**：
+- profile 带 `"x_free": true` → `os.remove` **直接删除，不留 backup**
+  （免费模型要么不好用、要么已失效，没有保留价值；想重建随时加回来）。
+- 付费模型（用自己的 key，如 deepseek）→ 移入 `~/.claude/backups/deleted/`，
+  想恢复就拷回 `profiles/`。
+- `--permanent` 可强制真删任何 profile（含付费）。
+- `ccswitch list` 会显示 `[free]` / `[paid]` 标记，删前可分辨。
+
+其它注意：
+- 删的是**当前生效**的 profile 时会警告：`settings.json` 本身不动，但从此没有 profile
+  与它对应，删完建议再切一个别的模型。
+- 删不存在的 profile 直接报错并列出现有 profile，不会误伤。
+- GUI 切换器（`claude_model_switcher.pyw`）底部有同样的「删除所选模型」下拉框，
+  下拉显示「显示名 [profile名]」（分得清免费/付费），免费模型确认弹窗会明示
+  「永久删除、不留 backup」，逻辑与 CLI 一致。
 
 ## 设计（可直接照搬到别的工具）
 
@@ -1252,7 +1350,9 @@ python scripts/ccswitch.py <p> --no-gateway  # 只改 settings，不动网关
 |---|---|
 | `scripts/ccproxy.py` | 网关本体（Python 3 **stdlib**，零第三方依赖，约 740 行） |
 | `scripts/ccswitch.py` | profile 切换器 + 网关启停协调（跨平台，约 515 行） |
+| `scripts/zen_bridge.py` | OpenAI `<->` opencode SDK 桥接（零依赖，约 668 行）；`--provider` 切默认 provider，请求里写 `provider/模型名` 可单次覆盖 |
 | `~/.claude-code-proxy.json` | 配置：`host` / `port` / `upstream{url,model,api_key}` / `timeout` / `verbose` / `client_token` |
+| `examples/claude_model_switcher.pyw` | 桌面 GUI 切换器（双击即用，含删除/刷新模型；`~/.local/bin` 同名文件应从此处同步） |
 | `examples/profiles/*.json` | 开箱可用的 `settings.json` 模板，拷到 `~/.claude/profiles/` |
 
 ```bash
@@ -1261,9 +1361,11 @@ python ccproxy.py --upstream <url> --model <name> --key <k>  # 临时换上游
 curl -s -H "x-api-key: $TOKEN" http://127.0.0.1:3457/health  # {"ok":true,"service":"ccproxy",...}
 ```
 
-CLI 参数优先于配置文件（且**不会**被写回配置文件）。当前上游：
-`https://opencode.ai/zen/v1/chat/completions` + `space-bunny-free` + **空 api_key**
-（Zen 免 key；填任何占位值都会被 `AuthError: Invalid API key` 拒）。
+CLI 参数优先于配置文件（且**不会**被写回配置文件）。当前上游（本机现役）：
+`http://127.0.0.1:8787/v1/chat/completions`（= 本地 zen_bridge，再经 opencode SDK 到 Zen）
++ `deepseek-v4.1-flash-free` + **空 api_key**。
+（旧写法 `https://opencode.ai/zen/v1/chat/completions` + `space-bunny-free` 已随模型下线失效：
+直连 Zen 现在一律 `FreeTierError`。见第八部分。）
 
 ## 安全设计（默认即如此，不用额外配置）
 
@@ -1431,3 +1533,369 @@ VPN 换端口时无需改配置。
 2. 用**捕获的真实 payload 重放**，小请求测不出这个问题。
 3. 网关启动时打印 `upstream route:` 和 `upstream retries:`。
    没有这两行，代理是否生效完全不可见 —— 排查时先确认它们。
+
+---
+
+# 第四部分：Zen 免费模型的两段式链路（2026-10-16）
+
+OpenCode Zen 的免费模型（如 `deepseek-v4.1-flash-free`）**不能直连**，也不在
+`opencode models` 的 catalog 里；只有把请求包成 opencode 自己的会话才能用。
+所以链路变成两段中继：
+
+```
+Claude Code ──Anthropic──> ccproxy:3462 ──OpenAI──> zen_bridge:8787 ──SDK──> opencode serve:41234 ──> Zen
+WorkBuddy  ───────────────── OpenAI ───────────────> zen_bridge:8787 ──┘
+```
+
+`scripts/zen_bridge.py`（零依赖单文件）负责 OpenAI `<->` opencode SDK 的转换，
+`opencode serve` 由桥接用 `--auto-start` 自动拉起。
+
+### 免费模型自动换血（`--autopick`）
+
+免费池会随时失效/变慢，所以桥接支持启动后顺手体检一遍：
+
+```bash
+python zen_bridge.py --port 8787 --sdk-port 41234 --auto-start --autopick
+# --autopick-delay 25  默认延迟 25s 再开始，先让桥接能服务请求
+```
+
+它是**后台线程**，跑的是 `free-llm-installer` 技能的
+`install_free_llms.py --auto`：只测当前已装的 N 个，掉队了才全量重选，
+并写回 `~/.workbuddy/models.json`。桥接侧完全不等它，请求照常走。
+
+三道刹车（都在 install_free_llms 一侧，避免被免费池抖动带偏）：
+单次失败重试一次 → 巡检最小间隔 20 分钟 → 全量重选冷却 6 小时。
+
+⚠️ 这里的 `sys.executable` 有坑：桥接原本没 import `sys`，`--autopick` 一跑就
+`name 'sys' is not defined`，而且因为在线程里只写日志、不影响服务，很容易漏掉。
+改这块务必看一眼日志里有没有 `autopick 执行失败`。
+
+`~/.local/bin/zen_bridge_supervisor.pyw` 是配套守护：每 20s 探 `/health`，
+挂了自动 `--auto-start --autopick` 重启（登录自启见启动文件夹的 VBS）。
+
+### 换 provider / 换模型（桥接已支持）
+
+桥接**不限制模型名**：`KNOWN_FREE` 只是 `/v1/models` 的展示清单，`build_payload()`
+直取请求里的 `model` 字段转发。约束只在 provider 上，且现在可配：
+
+```bash
+# 1) 启动时指定默认 provider（默认 opencode）
+python zen_bridge.py --provider siliconflow --model Qwen/Qwen3-8B
+
+# 2) 或在请求里单次覆盖：model 写成 "provider/模型名"，按第一个斜杠切分
+curl http://127.0.0.1:8787/v1/chat/completions -d '{
+  "model": "deepinfra/anthropic/claude-fable-5",
+  "messages": [{"role":"user","content":"hi"}]}'
+```
+
+按**第一个**斜杠切分，所以模型 id 自身含斜杠也能正确解析
+（`deepinfra/anthropic/claude-fable-5` → provider=`deepinfra` + model=`anthropic/claude-fable-5`）。
+
+⚠️ **opencode 有 230 个 provider，但绝大多数没配 API key**：opencode 只是列出了模型目录，
+调用时没有凭据会在发消息阶段返回 **500**（注意：建会话仍返回 200，**不能拿建会话成功当可用性判据**）。
+`opencode` 这个 provider 是特例——Zen 免费层走客户端鉴权，所以不配 key 也能用。
+
+**实测能出字的**（2026-10-16，opencode provider 下）：`deepseek-v4.1-flash-free`(2.0s)、
+`big-pickle`(2.0s)、`space-bunny-free`(1.7s)。
+**空壳/不可用**：`muse-spark-1.3-contributor-free`、`cat-jam-free`（`parts=[]` 无输出）；
+`nemotron-3-ultra-free`（180s 超时）。
+
+## profile 的自描述字段（`x_*`）
+
+带 `x_` 前缀的键是 **ccswitch 专用提示**，永远不会被写进 `settings.json`
+（`strip_internal()` 会剥掉），也不参与 `same_json` 比对：
+
+| 字段 | 作用 |
+|---|---|
+| `x_bridge: true` | 切换时先确保 `zen_bridge` 在跑 |
+| `x_gateway_port` | 该 profile 专用的 ccproxy 端口（不同上游不能共用一个端口） |
+| `x_ccproxy_args` | 传给 ccproxy 的 `--upstream/--model/--key`，避免污染共享的 `~/.claude-code-proxy.json` |
+
+示例见 `~/.claude/profiles/zen-ds-flash.json`。ccswitch 和桌面 GUI
+（`examples/claude_model_switcher.pyw`，本机位于 `~/.local/bin/claude_model_switcher.pyw`）都认这三个字段。
+
+## 四个必须记住的点
+
+1. **ccproxy 忽略请求体里的 model**（源码 408 行只取 `CONFIG["upstream"]["model"]`），
+   所以 profile 里写 `xxx[1m]` 只影响 UI 显示，实际转发永远是 `--model` 指定的值。
+2. **工具调用是靠提示词模拟的**：opencode SDK 的 `tools` 字段只接受
+   `{工具名: true/false}` 开关内置工具，注册不了外部 OpenAI 工具。做法是把工具清单
+   + JSON 契约喂给模型，再解析成标准 `tool_calls`。
+3. **工具指令必须放用户消息里，放 `system` 会被 opencode 的 agent 提示压掉**
+   —— 实测放 system 时模型转头用内置工具干活，把 `ls` 结果写成中文叙述，还耗时 148 秒。
+   但**身份类指令放 system 是有效的**（弱约束不会被压）。
+4. **冷启动约 9-10 秒**（桥接 + `opencode serve`）；热调用 2-6 秒。
+   切换器的 `ensure_bridge()` 会轮询 `/healthz` 等待就绪，不要缩短那个超时。
+
+## 已知限制
+
+- **无 tools 的 stream 请求已支持真流式**（2026-10-18 起）：`prompt_async` + 订阅
+  `/event`，增量是 `message.part.delta(field='text')`，完成信号是 `session.status`
+  的 busy→idle。首字延迟从「整段」降到「第一批增量」（实测 200 字短文 5.9s→1.1s）。
+  订阅/prompt 前的异常自动降级为整段返回；`--no-upstream-stream` 可整体关掉。
+  **坑**：`session.status` 有 `busy`/`retry`/`idle` 三态，免费池限流时上游会
+  busy→retry 反复。**只有 idle 才算结束**——早期版本把「非 busy」当结束，
+  结果限流重试时提前断流、返回空回复（glm-5.3 实测 0.8s 空 vs 修好 77s 正常）。
+- **多轮工具调用的历史序列化**（2026-10-18 修）：助手发起工具调用那条消息
+  `content` 通常是 `null`，早期版本把它放在 `if txt:` 里 → 整条调用记录从历史消失，
+  模型只看到「提问 + 孤立工具结果」，**第二轮必重复调同一个工具**，agent 循环跑不起来。
+  现在 assistant+tool_calls 单独处理、序列化成 `assistant: called fn(args)`，
+  并在工具指令里加了「已有 tool result 就别重复调」的约束。
+- **带 tools 的请求仍整段返回**：工具调用靠提示词模拟，流式吐到一半才发现是
+  工具调用会同时泄出正文 JSON，不如整段回来再判。对 Claude Code 无影响
+  （事件序列依然合规，含 `message_stop`）。
+- 桥接**复用**已运行实例，所以首次之后改桥接代码/启动参数不会生效 —— 要改就得先停掉它。
+
+---
+
+# 附篇 · 脚本级切换 LLM 端点的坑（OpenAI 兼容第三方，适用于 WorkBuddy / 任意 Python 客户端）
+
+> 原 `llm-endpoint-switching` 技能（2026-10-19 并入）。上面各章是 Claude Code 侧的接入与代理基建；
+> 本附篇是**写脚本 / 客户端代码时**切端点的高频坑，与基建层互补。
+
+## 核心结论
+
+OpenAI 兼容端点之间迁移，**通常只改 base + model 两个值**，请求体不用动。
+但有两件事会咬人，且都会伪装成「key 无效」或「参数错误」。
+
+## 坑一：⚠ 第三方端点前面挂 Cloudflare，urllib 默认 UA 被拦
+
+**症状**：HTTP 403，响应体是 `error code: 1010`（有时只有这一个数字，
+没有 JSON、没有 errmsg）。
+
+**根因**：`urllib.request` 的默认 User-Agent 是
+`Python-urllib/3.x`，Cloudflare 的 WAF 规则直接拦下。**这不是鉴权问题，
+换真 key 也照样 403**——因为请求根本到不了鉴权那一步。
+
+**2026-10-01 实测**（OpenCode Zen / Space Bunny）：
+
+| 请求头 | 结果 |
+|---|---|
+| 默认（无 UA） | `HTTP 403  {"error code": 1010}` |
+| `User-Agent: Mozilla/5.0 … Chrome/126.0` | `HTTP 401  Invalid API key` |
+
+403 → 401 的转换本身就是结论：**请求形状已经通了，只差 key**。
+
+**修法**（每次请求都带上，不是只在抓网页时带）：
+
+```python
+req = urllib.request.Request(
+    url, data=body,
+    headers={"Content-Type": "application/json",
+             "Authorization": "Bearer " + key,
+             "User-Agent": UA,          # ← 关键，别漏
+             "Accept": "application/json"})
+```
+
+⚠ **别只在抓网页的函数里带 UA，LLM 请求单独漏掉**——这个漏项极隐蔽，
+代码看着没问题，但一换端点就403，而且所有人都会先怀疑 key。
+
+## 坑二：先ping 再跑批量
+
+换端点后**先发一个极短请求验通**，别直接跑一批 20 条核验任务。
+一次核验的思考 token 可能上千，key 不对就是白烧时间和额度。
+
+实现要点：ping 不碰任何业务数据、不写任何文件，只发一个
+「只回这个 JSON」的请求并打印耗时。
+
+##状态码分诊（别一律报「调用失败」）
+
+这四类指向完全不同的问题，混在一起会让人白排查半天：
+
+| 状态码 | 真实原因 | 下一步 |
+|---|---|---|
+| **403** | Cloudflare/WAF 拦 UA | 补浏览器 UA（**不是 key 问题**） |
+| **401** | key 无效 / 没这个订阅 | 换 key、查订阅状态 |
+| **404** | base 或 model 名写错 | `GET <base>/models` 列可用值 |
+| **400** | 参数被拒 | 多半是 `response_format` 或 `max_tokens` 超上限 |
+
+**400 最常见的两个原因**：
+
+1. 端点不支持 `response_format={"type":"json_object"}`
+   —— 部分第三方端点（尤其聚合/中转站）不支持，
+   而有些脚本的 JSON 解析链路硬依赖它。
+   ⚠ 这时要权衡：要么换端点，要么给该端点单独走「提示词里要求返回 JSON
+   + 代码里容错解析」的降级路径，**别默默把 JSON 模式关掉**。
+2. `max_tokens` 超过端点上限 —— 换个更小的值试。
+
+## 推理模型的 max_tokens 陷阱
+
+**思考 token 也计入 `max_tokens`**。核验类任务（要塞进几万字网页原文、
+要求结构化输出）实测一条要烧 4000+ token，其中思考可能占 3600。
+
+⇒ 把上限放宽到能容纳「思考 + 正文」，并在 `finish_reason == "length"`
+时**明确报错**（内容被截断，JSON 不完整，硬解析会得到莫名其妙的结果）：
+
+```python
+if ch.get("finish_reason") == "length":
+    raise RuntimeError("LLM 回答被 max_tokens 截断（finish_reason=length）"
+                       "——模型思考太长，正文没输出完整 JSON")
+```
+
+⚠ 别拿「超时」当失败结论，但 `finish_reason=length` 是**真实截断**，必须处理。
+
+## base 拼接约定
+
+```
+base = "https://example.com/v1"     ← 填到 /v1，不要带 /chat/completions
+url  = base + "/chat/completions"
+```
+
+**base 尾部斜杠会被 rstrip**，但 base 里**必须包含版本段**。
+写了 `/v1/` 和 `/v1` 效果一样；写成不带 `/v1` 会在拼出
+`/chat/completions` 时404。
+
+## 配置注入的两种方式
+
+```python
+# 1) 环境变量（适合容器/CI，密钥不进代码）
+BASE = os.environ.get("X_AI_BASE", "https://api.deepseek.com").rstrip("/")
+MODEL = os.environ.get("X_AI_MODEL", "deepseek-chat")
+KEY = os.environ.get("X_AI_KEY", "")
+
+# 2) 运行期 configure()（适合后台 GUI 存密钥、CLI 临时切换）
+def configure(api_key=None, base=None, model=None):
+    """不传的项保持原值 —— 后台存 key 就靠这个语义。"""
+    global KEY, BASE, MODEL
+    if api_key: KEY = api_key
+    if base:    BASE = base.rstrip("/")
+    if model:   MODEL = model
+
+configure(model="new-model")          # 只换模型，沿用原 base/key
+```
+
+⚠ **`configure()` 必须「不传的项保持原值」**——如果写成整体覆盖，
+后台只存了 key 却把 base/model 清空了，会表现为「存了密钥反而连不上」。
+
+## 测试怎么写
+
+这几条值得钉死，否则下次重构会静默回归：
+
+1. **请求头必须有浏览器 UA** —— 用假的 `urlopen` 捕获请求对象断言
+   （这是本次唯一的真 bug，最该被回归钉住）。
+2. `configure()` 只覆盖传入项（断言只传 model 时 base/key 不变）。
+3. ⚠ **`configure(api_key="")` 必须真清空 key** —— 用真值判据会静默跳过空串，
+   免 key 端点必401。这条是 2026-10-04 的事故，务必钉死。
+4. `configure()` 会 rstrip base 的尾部斜杠。
+5. ping 在没 key 时**不联网**且返回非零。
+6. ping 对 403/401/404/400 给出**各自不同**的诊断文案。
+7. ⚠ `ai_ready()` / `is_no_key_endpoint()` 的判断口径（无 key 但免 key 端点 → 就绪）。
+
+⚠ 断言请求头时注意 `dict(req.headers)` 的键是**小写**，
+`self.assertIn("Authorization", headers)` 会假失败。
+
+## ⚠⚠ 坑三：切到**免 key 端点**时，空串是真值陷阱（2026-10-04 血案）
+
+从付费端点（DeepSeek 等）切到免 key 端点时，**要改的不只是 base + model**。
+下面每一条都实测撞过，不是理论风险。
+
+### 3.1 `configure()` 用真值判据 ⇒ 旧 key 清不掉 ⇒ 必 401
+
+```python
+# ❌ 错的写法
+def configure(api_key=None, base=None, model=None):
+    if api_key:            # ← "" 是 falsy，空串被跳过！
+        KEY = api_key
+
+# ✅ 正解：判据是 is not None
+def configure(api_key=None, base=None, model=None):
+    if api_key is not None:
+        KEY = api_key
+```
+
+**实测后果**（2026-10-04，OpenCode Zen / Space Bunny）：
+
+| 场景 | 结果 |
+|---|---|
+| 空 Bearer（`AI_KEY = ""`） | ✅ 200 |
+| 带着旧的 DeepSeek key | ❌ 401 `Invalid API key` |
+
+后台 GUI「保存」时通常传空串表示「清空 key」—— 真值判据下这个请求
+**静默不生效**，旧付费 key 被沿用，于是拿付费 key 打免 key 端点，必 401。
+**排查这类 401 时第一件事是打印 `AI_KEY` 到底是不是空**，别盯着 key 有效性查。
+
+⚠ 同一个坑还有 CLI 侧：`if args.ai_key or args.ai_base or args.ai_model`
+会把 `--ai-key ""`（显式清空）当成「没传」。用
+`any(v is not None for v in (...))`。
+
+### 3.2 切端点时旧 key 要删干净，不能只改 base/model
+
+配置文件里留着 `ai_key` 字段 = 每次调用都发付费 key → 401。
+正确做法是**整个字段删掉**，不是留空串（留空串在某些读取侧等价于「有值」）。
+
+### 3.3门禁别拿「有没有 key」当「能不能运行」
+
+免 key 端点**压根没有 key**，所以任何 `if not key: return 400`
+的门禁都会把这类配置全挡在门外 —— 表现为「配置明明对了但点运行就报错」。
+
+```python
+# ✅ 单一判据，CLI / 后台 / 前端共用
+NO_KEY_HOSTS = ("opencode.ai/zen",)
+
+def is_no_key_endpoint(base=None):
+    return any(h in (base or AI_BASE or "") for h in NO_KEY_HOSTS)
+
+def ai_ready(key=None, base=None):
+    k = AI_KEY if key is None else key
+    b = AI_BASE if base is None else base
+    return bool(k) or is_no_key_endpoint(b)
+```
+
+⚠ 后台状态接口要同时给三个字段，**前端只能看 `ready`**：
+
+```python
+{"has_key": bool(k), "ready": ai_ready(k, b), "no_key_endpoint": is_no_key_endpoint(b)}
+```
+
+`has_key` 对免 key 配置恒为 False，前端拿它判「能不能跑」会把可用配置
+误报成「未配置 Key」——用户会以为是配置错了，反复瞎填。
+
+⚠ **门禁里引用配置变量前先确认它已赋值**：写成
+`if not ai_ready(st["key"], ...)` 而 `st = resolve_ai_settings()` 在下一行，
+会得到 `UnboundLocalError`（Python 把它当局部变量），前端表现为
+**HTTP 000 / 连接被拒**，日志里才有真因。
+
+### 3.4 免 key 与付费端点的能力差异要提前说清
+
+免 key 模型往往**更慢**（实测单条核验 152 秒 vs 付费端点的秒级），
+且自报模型名不可信（实测回显 `n="ChatGPT"`）。
+换过去之前告诉用户代价，别让「能跑」被误解成「一样好用」。
+
+## 「模型列表里有 free」≠「现在能调」（2026-10-01 实测）
+
+要回答「现在有哪些免费模型能用」，**必须逐个发真实请求**，不能只分析模型名。
+
+实测某端点：`GET /v1/models` **免 key** 就能列出 **84 个**模型，其中 11 个 id 含
+`free` —— 逐个发真实请求后，**只有 1 个**真能免 key 调用：
+
+| 真实原因 | 数量 | 能否绕过 |
+|---|---|---|
+| `free tier can only be used from within <客户端>` | 6 | ❌ 服务端校验客户端来源，伪造 `X-Client`/`Origin`/`UA` 全部无效 |
+| `not available in your country` | 2 | ❌ 地区限制 |
+| 上游 500 / 模型已下线 | 2 | ❌ 临时故障或下线 |
+
+⇒「模型名带 free」**不能当可用性证据**。免费模型可用性会漂移，
+所以要有个**独立探测项目**定期发真请求，消费方只读它的档案（`ok=true` 才用）。
+
+### 免 key 的正确姿势：发**空 Bearer**，不是省略
+
+| 写法 | 结果 |
+|---|---|
+| `Authorization: Bearer `（空值） | ✅ 200 |
+| 完全省略 `Authorization` 头 | ❌ 挂到**超时**才报错 |
+| `Authorization: Bearer free` | ❌ 401 |
+| `Authorization: Bearer sk-xxx`（占位） | ❌ 401 |
+
+服务端会校验 key 是否**真实存在**，只有空值才走免鉴权分支。
+所以「我没有 key」**不能**表达成 `Bearer 无key`，只能表达成空值。
+⚠ 省掉整个头是最容易踩的写法 —— 表现为超时，不像鉴权问题，很难联想到。
+
+### ⚠ 档案文件绝不能包含密钥
+
+探测项目若要输出「给别的项目消费」的档案，**档案里绝不能有 key**：
+档案会被 HTTP 接口原样返回，也可能被消费方提交进仓库。
+正确做法是**只写 `no_key: true/false` 标记**（这个源要不要 key），
+key 由消费方自己配。再加一层出站脱敏兜底，防将来回归。
+
+⚠ **写测试时别把漏洞行为固化成断言** —— 「带 key 时 auth 落进档案」这种
+断言看着合理，实际是在给泄露开后门。改写成「带 key 时档案里也没有 key」。

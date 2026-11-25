@@ -17,7 +17,7 @@ skill:
   archetype: consumer-buy       # 原型: consumer-buy / developer-sales / brokerage-agent / channel-distributor
   domain: buy
   version: "0.1.0"
-  modules: []                   # 可挂载: content-marketing / estate-review / customer-followup / ad-compliance
+  modules: []                   # 可挂载: content-marketing / estate-review / customer-followup / ad-compliance / marketing-review / media-lead-growth
 
 # ---------- 适配器 ----------
 adapter:

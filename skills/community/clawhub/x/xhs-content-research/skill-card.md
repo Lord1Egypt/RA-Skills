@@ -1,6 +1,6 @@
 ## Description:
 
-面向内容运营、品牌调研和创作者的小红书内容研究辅助技能。适用于 RedNote / XHS / Xiaohongshu（小红书）内容研究、选题分析、关键词观察、趋势判断、竞品内容对比和素材整理。
+面向内容运营、品牌调研和创作者的小红书内容研究辅助技能。适用于 RedNote / XHS / Xiaohongshu（小红书）内容研究、选题分析、关键词观察、趋势判断、竞品内容对比和素材整理。由社媒数据助手 SocialDataX 提供。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Content operators, brand researchers, and creators use it to explore Xiaohongshu topics, compare public posts, assess visible trends, and organize reference material.
+Content operators, brand researchers, and creators use this skill to research Xiaohongshu topics, keywords, trends, and competitor content, then organize samples and follow-up angles.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill runs an unpinned latest package release, and the available security scan is incomplete.
+Risk: The security assessment flags execution of the mutable socialdatax-skills@latest package, including during login when an API key may be supplied.
 
-Mitigation: Review the package and its referenced materials before use, pin an approved release, and limit the environment's credentials and file access.
+Mitigation: Review the package and release before installing or using the login flow, and avoid supplying credentials to a version that has not been reviewed.
 
-Risk: Search keywords are sent to SocialDataX.
+Risk: The security scan was partial because local references were unresolved, so its findings may not cover all skill behavior.
 
-Mitigation: Use only search terms you are comfortable sharing with that service.
+Mitigation: Resolve and review the referenced components and complete a full security scan before relying on the assessment.
 
 ## Reference(s):
 
+- [SocialDataX AI setup and API key management](https://socialdatax.com/ai?from=clawhub)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, Markdown]
+**Output Type(s):** [Analysis, API Calls, Markdown, Guidance]
 
-**Output Format:** [Markdown summaries of relevant titles, creators, links or content IDs, and research angles]
+**Output Format:** [Markdown summaries with content samples and research angles]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Search samples reflect the requested query and page or time limits; results may be partial.]
+**Other Properties Related to Output:** [May include titles, authors or accounts, note links or IDs, and suggested follow-up questions.]
 
 ## Skill Version(s):
 
-0.1.16 (source: server-resolved release metadata)
+0.1.17 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

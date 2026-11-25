@@ -1,42 +1,54 @@
-## Description: <br>
-Saver is a Mainland China shopping assistant that helps agents analyze shopping needs, search JD.com and Taobao/Tmall products, compare prices, and return purchase links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Saver is a Mainland China shopping assistant that helps agents analyze shopping needs, search JD.com and Taobao/Tmall products, compare prices, and return purchase links.
 
-## Publisher: <br>
-[chenyichu86](https://clawhub.ai/user/chenyichu86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenyichu86](https://clawhub.ai/user/chenyichu86)
 
-## Use Case: <br>
-External users and shopping agents use Saver to clarify shopping requirements, search supported Mainland China marketplaces, compare price and ranking signals, calculate effective costs, and return product recommendations with purchase links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Mainland China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping searches are sent to a configured raw HTTP IP service, which can expose shopping intent to the service operator. <br>
-Mitigation: Install only when the operator is trusted, and avoid using the skill for sensitive purchases or private shopping intent. <br>
-Risk: The skill returns monetized affiliate product links while commission details are not shown to users. <br>
-Mitigation: Ask the agent to clearly disclose affiliate links before presenting recommendations. <br>
+## Use Case:
 
+External users and shopping agents use this skill to clarify product requirements, search JD.com and Taobao/Tmall, compare prices and sorting options, and present purchase links for Mainland China shopping workflows.
 
-## Reference(s): <br>
-- [Saver on ClawHub](https://clawhub.ai/chenyichu86/saver-skill) <br>
-- [chenyichu86 publisher profile](https://clawhub.ai/user/chenyichu86) <br>
-- [Saver MCP server](http://81.70.235.20:3001/mcp) <br>
+### Deployment Geography for Use:
 
+Mainland China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls] <br>
-**Output Format:** [Markdown product recommendations with linked product names, price details, and comparison context] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include affiliate purchase links and streaming progress updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata; artifact files describe 1.2.0) <br>
+Risk: Product links may be affiliate or promotional links, and the skill documentation says commission information is not shown to users.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users that purchase links may be affiliate or promotional links before presenting them.
+
+Risk: The skill uses an unauthenticated plaintext remote MCP endpoint for shopping requests.
+
+Mitigation: Avoid sending sensitive shopping details unless the service is moved to authenticated HTTPS and returned links are validated.
+
+## Reference(s):
+
+- [Saver Skill on ClawHub](https://clawhub.ai/chenyichu86/skills/saver-skill)
+- [Publisher profile](https://clawhub.ai/user/chenyichu86)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or text product recommendations with linked product names and shopping guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include streamed progress updates, sorted product lists, prices, coupons or subsidy calculations, and affiliate purchase links.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata; artifact config.json and SKILL.md declare 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

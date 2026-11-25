@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and teams use this skill to manage HeyReach campaigns, leads, inbox conversations, connected sender accounts, and outreach analytics through an agent.
+External users and developers use the skill to manage HeyReach LinkedIn outreach campaigns, leads, inbox conversations, and analytics through connected accounts.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill requires a superagnt API key and uses the connected HeyReach account, so calls may expose account data or have vendor-side effects.
+Risk: The documented capabilities include credit checks and workspace, API-key, and membership administration beyond outreach.
 
-Mitigation: Use a key intended for this integration and keep it private; confirm before sending messages, deleting or changing records, or performing account administration.
+Mitigation: Review these capabilities before connecting the skill, and use administrative endpoints only when explicitly requested.
 
-Risk: Campaign, sender-account, and organization operations can change outreach activity or workspace access.
+Risk: Some campaign and account operations can send messages or make destructive changes.
 
-Mitigation: Limit calls to the user's request and get explicit confirmation before outbound, destructive, or administrative actions.
+Mitigation: Get explicit confirmation before sending messages or making destructive changes.
 
 ## Reference(s):
 
-- [HeyReach Integration documentation](https://superagnt.com/r/ch-heyreach-outreach-docs)
-- [superagnt MCP server](https://mcp.superagnt.com/mcp)
-- [superagnt connections page](https://app.superagnt.com/dashboard/connections)
+- [HeyReach Integration Documentation](https://superagnt.com/r/ch-heyreach-outreach-docs)
+- [superagnt API Keys](https://superagnt.com/r/ch-heyreach-outreach-key)
+- [Connected Accounts](https://app.superagnt.com/dashboard/connections)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, JSON data, Shell commands, Guidance]
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
 
-**Output Format:** [Markdown instructions with curl examples; API responses in JSON]
+**Output Format:** [JSON API responses and Markdown guidance with inline shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Actions and returned data depend on the connected HeyReach account and the requested operation.]
+**Other Properties Related to Output:** [Responses and actions vary by requested endpoint.]
 
 ## Skill Version(s):
 
-2.0.14 (source: frontmatter)
+2.0.19 (source: frontmatter)
 
 ## Ethical Considerations:
 

@@ -4,7 +4,7 @@ description: "仅在显式调用时使用。用 Daniel Jackson 的概念与同�
 metadata:
   language: zh-CN
   translation_of: concept-design
-  version: "2.5.2"
+  version: "2.5.4"
 ---
 
 # 概念设计
@@ -24,22 +24,22 @@ Daniel Jackson 概念设计的方法概括：**应用 = 概念（Concepts）+ �
 - 每项定义只有一处权威来源。区分已确认、建议、推断和未决；以证据、前提和反例检验决定，保留未决与未验证事项。
 - 比较备选，包含不改或删减；反复失败时重查前提。重构保持行为，有意改变须明确说明。
 
-涉及工程设计、实现、审查或项目规则时，按[工程契约](references/architecture.md)固定目录、命名、职责与依赖。
+涉及工程设计、实现、审查或项目规则时，按[工程架构](references/architecture.md)固定目录、命名、职责与依赖。
 
 ## 选择模式
 
-按请求选择模式，只读取该模式及当前步骤所需参考材料。意图不清时先只读检查，跨模式沿用已有授权。
+按请求选择模式，只读取该模式及当前步骤所需参考材料。模式文件直接列出所需的全部参考；参考之间的链接仅为另见。意图不清时先只读检查，跨模式沿用已有授权。
 
 | 模式 | 用途 |
 | --- | --- |
-| [design](modes/design.md) | 设计概念与同步 |
-| [settle](modes/settle.md) | 整理讨论与决定 |
-| [prd](modes/prd.md) | 编写 PRD、规格与验收 |
-| [build](modes/build.md) | 按确认规格实现或重构 |
-| [review](modes/review.md) | 审查设计与实现 |
-| [guard](modes/guard.md) | 审计、回填、漂移检查、管道规格与关系图 |
-| [refine](modes/refine.md) | 比较改进方案并按授权修正 |
-| [explain](modes/explain.md) | 依据规格与源码解释行为 |
+| [design](references/modes/design.md) | 设计概念与同步 |
+| [settle](references/modes/settle.md) | 整理讨论与决定 |
+| [prd](references/modes/prd.md) | 编写 PRD、规格与验收 |
+| [build](references/modes/build.md) | 按确认规格实现或重构 |
+| [review](references/modes/review.md) | 审查设计与实现 |
+| [guard](references/modes/guard.md) | 审计、回填、漂移检查、管道规格与关系图 |
+| [refine](references/modes/refine.md) | 比较改进方案并按授权修正 |
+| [explain](references/modes/explain.md) | 依据规格与源码解释行为 |
 
 审查、审计、漂移及仅规划请求保持只读；其他修改限于授权范围。不得改规格掩盖实现缺陷。
 

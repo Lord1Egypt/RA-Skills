@@ -1,59 +1,78 @@
-# 🔍 Scout
+# ⚙️ Scout
 
-Scout conducts lawful OSINT research on people, companies, and organizations, assembling provenance-backed briefs where every claim carries a source reference, retrieval timestamp, and direct quote. It works through a tiered source waterfall -- public web first, then rate-limited registries, then paid databases only with explicit permission -- collecting no more than the stated research goal requires.
+  <img src="./assets/readme/hero.jpg" width="100%" alt="Scout">
+
+Structured OSINT research on people, companies, and organizations. Use for provenance-backed briefs, entity resolution across public sources, background research with cited sources, or free-first research workflows that escalate to paid sources only with explicit permission. Do not use for topic research without a person/org focus (use Sift) or illegal data collection.
+
+**Skill name:** `ocas-scout`
+**Version:** 4.0.0
+**Type:** 
+**Layer:** research
+**Author:** <agent-name>
 
 ---
 
-## Overview
+## 📖 Overview
 
-Scout makes research provenance a first-class requirement. Every claim in a Scout brief traces to a source with URL, retrieval timestamp, and direct quote -- no unsupported assertions. It works through a tiered source waterfall: public web sources automatically, rate-limited registries if useful, paid OSINT databases only after explicit permission is recorded. Collection is bounded to what the stated research goal actually requires, and private details are suppressed unless explicitly permitted. Confirmed entities and relationships discovered during research are emitted as signal candidates to Chronicle.
+Structured OSINT research on people, companies, and organizations. Use for provenance-backed briefs, entity resolution across public sources, background research with cited sources, or free-first research workflows that escalate to paid sources only with explicit permission. Do not use for topic research without a person/org focus (use Sift) or illegal data collection.
 
-## Commands
+---
 
-| Command | Description |
+## 🔧 Capabilities
+
+- `"user"` — the signal is relevant to the user's personal knowledge graph
+- `"agent_only"` — agent-initiated research with no demonstrated user connection
+- `scout.research.start` — begin a new research request with subject and goal
+- `scout.research.expand --tier <1|2|3>` — escalate to a higher source tier
+- `scout.brief.render` — generate the final markdown brief with findings and sources
+- `scout.brief.render_pdf` — optional PDF brief generation
+- `scout.status` — return current research state
+- `scout.journal` — write journal for the current run; called at end of every run
+- `scout.update` — pull latest from GitHub source; preserves journals and data
+- `scout.sources.discover` — discover new MCP servers relevant to current research
+- `scout.sources.refresh` — refresh curated source lists from GitHub
+- `scout.sources.status` — show state of dynamic source discovery
+- **`gh api` base64 content is unreliable for counting** — `gh api repos/<owner>/<repo>/readme --jq '.content' | base64 -d` can silently return truncated or empty results. For fetching raw GitHub README content, use `curl -s "https://raw.githubusercontent.com/<owner>/<repo>/<branch>/README.md"` instead. This returns clean text that `wc -l` and `grep` can process directly.
+
+---
+
+## 📊 Outputs
+
+See `SKILL.md` for outputs, journals, and persistence rules.
+
+---
+
+## 📄 Files
+
+| File | Purpose |
 |---|---|
-| `scout.research.start` | Begin a new research request with subject and goal |
-| `scout.research.expand --tier <1\|2\|3>` | Escalate to a higher source tier |
-| `scout.brief.render` | Generate the final markdown brief with findings and sources |
-| `scout.brief.render_pdf` | Optional PDF brief generation |
-| `scout.status` | Current research state |
-| `scout.journal` | Write journal for the current run |
-| `scout.update` | Pull latest from GitHub source (preserves journals and data) |
+| `SKILL.md` | Skill definition |
+| `references/` | Supporting documentation |
+| `scripts/` | Helper scripts |
 
-## Setup
-
-`scout.init` runs automatically on first invocation and creates all required directories, config.json, and JSONL files. No manual setup is required. It also registers the `scout:update` cron job (midnight daily) for automatic self-updates.
-
-## Dependencies
-
-**OCAS Skills**
-- [Weave](https://github.com/indigokarasu/weave) -- social graph read-only for identity context
-- [Elephas](https://github.com/indigokarasu/elephas) -- receives Signal files for confirmed entities
-- [Sift](https://github.com/indigokarasu/sift) -- web searches during research
-
-**External**
-- Paid OSINT providers (Tier 3, optional -- requires explicit permission grant before use)
-
-## Scheduled Tasks
-
-| Job | Mechanism | Schedule | Command |
-|---|---|---|---|
-| `scout:update` | cron | `0 0 * * *` (midnight daily) | Self-update from GitHub source |
 
 ## Changelog
 
-### v2.3.0 -- March 27, 2026
-- Added `scout.update` command and midnight cron for automatic version-checked self-updates
+- [2.10.0] - 2026-04-12
+- Added
+- Removed
+- [2026-04-05] Hunter.io parallel OSINT integration
+- Added
+- Changed
+- Validation
+- [2026-04-04] Spec Compliance Update
 
-### v2.2.0 -- March 22, 2026
-- Routing improvements
-
-### v2.1.0 -- March 22, 2026
-- Signal emission to Elephas for confirmed entities and relationships
-- Journaling as mandatory final step in every research run
-
-### v2.0.0 -- March 18, 2026
-- Initial release as part of the unified OCAS skill suite
 ---
 
-*Scout is part of the [OpenClaw Agent Suite](https://github.com/indigokarasu) -- a collection of interconnected skills for personal intelligence, autonomous research, and continuous self-improvement. Each skill owns a narrow responsibility and communicates with others through structured signal files, shared journals, and Chronicle, a long-term knowledge graph that accumulates verified facts over time.*
+## 📚 Documentation
+
+Read `SKILL.md` for operational details, schemas, and validation rules.
+
+Read `references/` for detailed specifications and examples.
+
+
+---
+
+## 📄 License
+
+MIT License — see `LICENSE` for details.

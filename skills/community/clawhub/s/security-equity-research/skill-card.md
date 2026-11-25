@@ -1,6 +1,6 @@
 ## Description:
 
-Provides China A-share research structures and guidance for company and industry analysis, earnings reviews, valuation methods, ESG integration, and short-seller response drafts.
+Provides China A-share analysts with research report frameworks and valuation methods for industry, company, earnings, ESG, and short-seller analysis.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,39 +14,39 @@ MIT-0
 
 ## Use Case:
 
-Equity research analysts and buy-side researchers use the skill to structure China A-share industry and company research, earnings reviews, valuation examples, ESG analysis, and response drafts. They supply sourced public information and have qualified analysts review outputs before publication or investment use.
+External equity research analysts use the skill to structure China A-share industry and company research, earnings reviews, valuation scenarios, and short-seller response drafts. Outputs are reference drafts and require qualified analyst review before use or publication.
 
 ### Deployment Geography for Use:
 
-Global
+China
 
 ## Known Risks and Mitigations:
 
-Risk: The security review is incomplete: the only listed Markdown file was partially inspected after a manifest parsing error and a missing local reference.
+Risk: The security scan was benign but incomplete because the manifest could not be parsed and a referenced local path was unresolved.
 
-Mitigation: Review the full artifact and resolve the manifest and reference gaps before relying on the scan; install only if comfortable with the remaining uncertainty.
+Mitigation: Review the full skill and resolve or verify referenced files before deployment; treat the scan as reassuring but not a guarantee of safety.
 
-Risk: Research examples and market or regulatory context can be inaccurate or outdated, and draft analysis could be mistaken for investment advice or a publish-ready report.
+Risk: Research drafts may contain time-sensitive information or unverified assumptions that could mislead readers if treated as conclusions.
 
-Mitigation: Verify claims against current official sources, record source dates, and require qualified analyst and institutional review before publication or investment use.
+Mitigation: Use dated public sources, distinguish facts from estimates, and have a qualified analyst review drafts before use or publication.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/gechengling/skills/security-equity-research)
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/security-equity-research)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Guidance]
+**Output Type(s):** [Text, Markdown, Research guidance]
 
-**Output Format:** [Markdown research outlines, draft analyses, valuation examples, checklists, and response templates]
+**Output Format:** [Markdown report frameworks, tables, checklists, and illustrative valuation formulas]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reference material and draft structures only; no live market data, tool calls, code execution, or publish-ready research. Requires source checks and qualified analyst review.]
+**Other Properties Related to Output:** [Draft content requires source, date, assumption, and qualified analyst review; no automatic data retrieval or publication.]
 
 ## Skill Version(s):
 
-3.0.4 (source: artifact frontmatter; release evidence)
+3.0.5 (source: frontmatter)
 
 ## Ethical Considerations:
 

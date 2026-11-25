@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-People managing personal finances use this skill to import bank CSVs, categorize transactions, link transfers and reimbursements, and review spending in a local SQLite database.
+Individual finance users and developers can import local bank CSV exports into SQLite, organize transactions with category rules and links, and review balances, spending summaries, recurring payments, and cash flow.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Cleanup, auto-linking, recurring discovery, category deletion, and other mutating commands can change or remove records in the local finance database.
+Risk: ClawScan reports a high-confidence risk that removing a manual category match may also delete user-created transfer links, affecting financial reports. The scan verdict is suspicious, and inspection was incomplete.
 
-Mitigation: Back up the database first, preview with dry-run options when available, and review changes before using --yes.
+Mitigation: Back up the SQLite database and review transaction links before and after manual-match changes; inspect dry-run results before cleanup or auto-linking.
+
+Risk: Supplying --yes or -y can bypass confirmation prompts for destructive database operations.
+
+Mitigation: Back up the database, use a dry run where available, and bypass prompts only after reviewing the intended changes.
 
 ## Reference(s):
 
-- [Financial Categorizer on ClawHub](https://clawhub.ai/patello/skills/financial-categorizer)
+- [financial-categorizer on ClawHub](https://clawhub.ai/patello/skills/financial-categorizer)
+- [patello on ClawHub](https://clawhub.ai/user/patello)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+**Output Type(s):** [Text, SQLite database records and analytical views]
 
-**Output Format:** [Markdown with CLI commands and usage guidance]
+**Output Format:** [Terminal text and local SQLite data]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Commands operate on a user-selected local SQLite database.]
+**Other Properties Related to Output:** [Updates a local finance database; destructive operations provide confirmation prompts and dry-run options where supported.]
 
 ## Skill Version(s):
 
-1.16.0 (source: server-resolved ClawHub release)
+1.17.3 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

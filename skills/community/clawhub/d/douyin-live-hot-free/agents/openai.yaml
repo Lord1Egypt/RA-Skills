@@ -1,0 +1,7 @@
+interface:
+  display_name: "抖音实时热点免费版"
+  short_description: "通过已登录浏览器搜索抖音实时内容并生成 JSON、Markdown 和 HTML 报告"
+  icon_small: "./assets/icon-128.png"
+  icon_large: "./assets/icon-512.png"
+  brand_color: "#EE4055"
+  default_prompt: "Use $douyin-live-hot-free to search Douyin Selected for a keyword and generate JSON, Markdown, and HTML reports."

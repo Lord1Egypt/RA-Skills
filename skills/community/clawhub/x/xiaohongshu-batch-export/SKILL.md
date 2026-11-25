@@ -1,7 +1,7 @@
 ---
 name: xiaohongshu-batch-export
 description: "小红书笔记批量导出 / Xiaohongshu (RedNote) batch export to Markdown. 用户收藏了一批小红书笔记（攻略、测评、竞品、选题素材），想一次导出成文字留档或交给 AI 分析时使用。每条笔记存成一个 Markdown 文件：正文、每张图上的字（OCR）和图片描述、视频笔记的口播逐字稿、话题、互动数据、分享页热评；另附一张索引表。不登录小红书、不要 Cookie，不导出图片和视频文件。需要 LinkDigest API Key（注册送 10 积分，不用绑卡）。"
-version: 1.0.0
+version: 1.0.1
 homepage: https://linkdigest.dev/zh/xiaohongshu-biji-daochu?ref=skill-xiaohongshu-batch-export
 metadata: {"openclaw":{"requires":{"anyBins":["python3"]},"primaryEnv":"LINKDIGEST_API_KEY","envVars":[{"name":"LINKDIGEST_API_KEY","required":true,"description":"LinkDigest API Key（ld_live_ 开头），在 https://linkdigest.dev/signin?ref=skill-xiaohongshu-batch-export&next=/app/keys 创建，注册送 10 积分"}],"homepage":"https://linkdigest.dev/zh/xiaohongshu-biji-daochu?ref=skill-xiaohongshu-batch-export"}}
 required_environment_variables:

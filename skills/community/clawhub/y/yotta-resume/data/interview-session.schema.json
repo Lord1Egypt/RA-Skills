@@ -1,0 +1,425 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/YottaMeta/yotta-resume/data/interview-session.schema.json",
+  "title": "yotta-resume interview session",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "session_id",
+    "created_at",
+    "updated_at",
+    "status",
+    "inputs",
+    "selection",
+    "analysis",
+    "questions",
+    "answers",
+    "current_question_id",
+    "current_phase",
+    "review"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "session_id": {
+      "type": "string",
+      "pattern": "^INT-[a-f0-9]{16}$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "enum": [
+        "in_progress",
+        "completed"
+      ]
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resume_sha256",
+        "jd_sha256",
+        "jd_provided",
+        "industry",
+        "role_family",
+        "role_source",
+        "level",
+        "level_source",
+        "bank_version",
+        "seed_source"
+      ],
+      "properties": {
+        "resume_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "jd_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "jd_provided": {
+          "type": "boolean"
+        },
+        "industry": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "role_family": {
+          "enum": [
+            "soc",
+            "incident_response",
+            "offensive_security",
+            "appsec",
+            "security_engineering",
+            "grc_data_security",
+            "generic"
+          ]
+        },
+        "role_source": {
+          "enum": [
+            "user",
+            "detected",
+            "industry_fallback"
+          ]
+        },
+        "level": {
+          "enum": [
+            "junior",
+            "mid",
+            "senior",
+            "lead"
+          ]
+        },
+        "level_source": {
+          "enum": [
+            "user",
+            "default"
+          ]
+        },
+        "bank_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "seed_source": {
+          "enum": [
+            "user",
+            "derived"
+          ]
+        }
+      }
+    },
+    "selection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "seed",
+        "count",
+        "distribution",
+        "target_distribution",
+        "quota_adjusted",
+        "level_adjusted",
+        "selection_hash"
+      ],
+      "properties": {
+        "seed": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 3,
+          "maximum": 10
+        },
+        "distribution": {
+          "$ref": "#/$defs/distribution"
+        },
+        "target_distribution": {
+          "$ref": "#/$defs/distribution"
+        },
+        "quota_adjusted": {
+          "type": "boolean"
+        },
+        "level_adjusted": {
+          "type": "boolean"
+        },
+        "selection_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "analysis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stats",
+        "industry_detection",
+        "issues",
+        "suggestions",
+        "jd_missing",
+        "disclaimer"
+      ],
+      "properties": {
+        "stats": {
+          "type": "object"
+        },
+        "industry_detection": {
+          "type": "object"
+        },
+        "issues": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "suggestions": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "jd_missing": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "disclaimer": {
+          "type": "string"
+        }
+      }
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "$ref": "#/$defs/question"
+      }
+    },
+    "answers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/answer"
+      }
+    },
+    "current_question_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "current_phase": {
+      "enum": [
+        "primary",
+        "followup",
+        null
+      ]
+    },
+    "review": {
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  },
+  "$defs": {
+    "distribution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resume_followup",
+        "knowledge",
+        "scenario"
+      ],
+      "properties": {
+        "resume_followup": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "knowledge": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "scenario": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "question": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "session_question_id",
+        "bank_question_id",
+        "role_family",
+        "level",
+        "dimension",
+        "kind",
+        "prompt",
+        "expected_evidence",
+        "followups",
+        "answer_boundary",
+        "source_refs",
+        "content_hash",
+        "basis",
+        "followup_used",
+        "followup_prompt"
+      ],
+      "properties": {
+        "session_question_id": {
+          "type": "string",
+          "pattern": "^Q[1-9][0-9]*$"
+        },
+        "bank_question_id": {
+          "type": "string"
+        },
+        "role_family": {
+          "type": "string"
+        },
+        "level": {
+          "type": "string"
+        },
+        "dimension": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "resume_followup",
+            "knowledge",
+            "scenario"
+          ]
+        },
+        "prompt": {
+          "type": "string"
+        },
+        "expected_evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "followups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "answer_boundary": {
+          "type": "string"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "content_hash": {
+          "type": "string"
+        },
+        "basis": {
+          "type": "object"
+        },
+        "followup_used": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "followup_prompt": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "answer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "answer_id",
+        "question_id",
+        "phase",
+        "text",
+        "text_sha256",
+        "recorded_at",
+        "evidence_status",
+        "matched_evidence",
+        "missing_evidence",
+        "detected_categories",
+        "triggered_followup"
+      ],
+      "properties": {
+        "answer_id": {
+          "type": "string",
+          "pattern": "^A[1-9][0-9]*$"
+        },
+        "question_id": {
+          "type": "string"
+        },
+        "phase": {
+          "enum": [
+            "primary",
+            "followup"
+          ]
+        },
+        "text": {
+          "type": "string",
+          "maxLength": 20000
+        },
+        "text_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "recorded_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "evidence_status": {
+          "enum": [
+            "sufficient",
+            "partial",
+            "missing"
+          ]
+        },
+        "matched_evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "missing_evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "detected_categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "triggered_followup": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}

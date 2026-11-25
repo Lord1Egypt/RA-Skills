@@ -1,0 +1,80 @@
+name: Build EXE
+
+# 每次 push 到 main 自动出 exe（作为可下载 artifact）；
+# 每次发布 GitHub Release 时，自动把两个 exe 挂到该 Release 上。
+# 真正的 Windows .exe 只能在 Windows runner 上用 PyInstaller 生成，故用 windows-latest。
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**.pyw"
+      - "build_exe.cmd"
+      - "mm.ico"
+      - ".github/workflows/build-exe.yml"
+  release:
+    types: [published]
+
+permissions:
+  contents: write   # release 上传附件需要写权限
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install PyInstaller
+        run: python -m pip install --upgrade pip pyinstaller
+
+      - name: Stamp version
+        # release：版本号 = tag 名去 v（如 v1.2.0 -> 1.2.0）
+        # push ：在 version.py 现有版本后追加 -dev，区分开发构建
+        # 用环境变量判断，避免出现美元符号+双花括号写法（WAF 易误判为模板注入）
+        run: |
+          if ($env:GITHUB_EVENT_NAME -eq 'release') {
+            $ver = $env:GITHUB_REF_NAME.TrimStart('v')
+          } else {
+            $ver = (python -c "import version; print(version.__version__)") + "-dev"
+          }
+          Set-Content -Path version.py -Value "__version__ = `"$ver`""
+          Write-Host "Version stamped: $ver"
+
+      - name: Build model_manager.exe
+        run: |
+          python -m PyInstaller --noconfirm --onefile --windowed `
+            --name model_manager `
+            --icon "$env:GITHUB_WORKSPACE\mm.ico" `
+            --distpath dist `
+            --workpath build_tmp `
+            --specpath build_tmp `
+            model_manager.pyw
+
+      - name: Build claude_switcher.exe
+        run: |
+          python -m PyInstaller --noconfirm --onefile --windowed `
+            --name claude_switcher `
+            --icon "$env:GITHUB_WORKSPACE\mm.ico" `
+            --distpath dist `
+            --workpath build_tmp `
+            --specpath build_tmp `
+            claude_model_switcher.pyw
+
+      - name: Upload artifacts (push to main)
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v4
+        with:
+          name: exes
+          path: dist/*.exe
+
+      - name: Upload to release
+        if: github.event_name == 'release'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload "$env:GITHUB_REF_NAME" dist/model_manager.exe dist/claude_switcher.exe

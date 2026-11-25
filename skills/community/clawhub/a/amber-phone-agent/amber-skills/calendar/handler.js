@@ -233,9 +233,7 @@ module.exports = async function calendarHandler(params, context) {
 
       context.callLog.write({
         type: 'skill.calendar.create',
-        start, end,
-        calendar: calendar || 'default',
-        title_redacted: true,
+        calendar_selected: Boolean(calendar),
         has_location: Boolean(location),
         has_notes: Boolean(notes),
       });
@@ -253,11 +251,10 @@ module.exports = async function calendarHandler(params, context) {
       message: "I can check availability or add events — which would you like?",
     };
 
-  } catch (e) {
-    const errMsg = e && e.message ? e.message : String(e);
-    // Log the actual error so it shows up in the call JSONL
+  } catch {
+    // Helper errors can include private calendar names or event details.
     try {
-      context.callLog.write({ type: 'skill.calendar.error', error: errMsg });
+      context.callLog.write({ type: 'skill.calendar.error', reason: 'calendar_operation_failed' });
     } catch (_) {}
     return {
       success: false,

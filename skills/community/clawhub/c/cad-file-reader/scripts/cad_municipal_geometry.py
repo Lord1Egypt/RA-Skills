@@ -11,6 +11,7 @@ import argparse
 import csv
 import json
 import math
+import os
 import re
 from collections import Counter
 from pathlib import Path
@@ -323,6 +324,113 @@ def municipal_geometry(data: dict[str, Any], rules: dict[str, Any]) -> tuple[lis
     return out, unmatched
 
 
+def arc_geometry_rows(data: dict[str, Any], rules: dict[str, Any]) -> tuple[list[dict[str, Any]], str]:
+    """从原始 DWG 提取 ARC 实体为市政几何弧段（弧长按圆心角计算，非弦长）。
+
+    背景市政道路中线多为圆弧/缓和曲线，cad_scan --with-geom 只输出
+    LINE/LWPOLYLINE 顶点连线（不展开 bulge），弧段被弦线替代导致里程偏小。
+    本函数直接调 ezdwg raw.decode_arc_entities 补齐弧段证据：
+      * 图层归属用 decode_object_entity_layer_handles + decode_layer_names；
+      * 只收命中 municipal_layer_patterns 且非标注层的弧；
+      * geometry 填弦端点（供连通性/制图），length_drawing_units 填弧长；
+      * "arc" 明细带 center/radius/角度，供人工复核。
+    ezdwg 不可用或无 .dwg 源时返回空并给 note，不影响主流程。
+    """
+    note = ""
+    source_paths = [str(x) for x in (data.get("source_paths") or []) if str(x).lower().endswith(".dwg")]
+    if not source_paths:
+        return [], "detail 无 .dwg source_paths，弧段提取跳过"
+    try:
+        from ezdwg import raw  # 延迟导入：vendor 缺失时主流程不受影响
+    except ImportError:
+        # vendor 跨 Agent 复用探测（对齐 cad_scan._resolve_vendor 口径）
+        import sys as _sys
+        candidates = []
+        env = os.environ.get("CAD_SKILL_VENDOR")
+        if env and Path(env).is_dir():
+            candidates.append(Path(env))
+        for pattern in (".workbuddy/skills/*/cad-file-reader/vendor",
+                        ".claude/skills/cad-file-reader/vendor",
+                        ".codex/skills/cad-file-reader/vendor"):
+            candidates.extend(sorted(Path.home().glob(pattern)))
+        for cand in candidates:
+            if cand.is_dir() and str(cand) not in _sys.path:
+                _sys.path.insert(0, str(cand))
+                try:
+                    from ezdwg import raw
+                    break
+                except ImportError:
+                    continue
+        else:
+            return [], "ezdwg 不可用，弧段提取跳过"
+
+    layer_patterns = [str(x).upper() for x in (rules.get("municipal_layer_patterns") or [])]
+    if not layer_patterns:
+        return [], "rules 无 municipal_layer_patterns，弧段提取跳过"
+
+    out: list[dict[str, Any]] = []
+    for dwg_path in source_paths:
+        try:
+            arcs = list(raw.decode_arc_entities(dwg_path) or [])
+            layer_names = list(raw.decode_layer_names(dwg_path) or [])
+            handles = [a[0] for a in arcs]
+            ent2layer = dict(raw.decode_object_entity_layer_handles(dwg_path, handles) or [])
+        except Exception as exc:  # noqa: BLE001 识图层容错
+            note = "弧段提取失败 %s: %s" % (Path(dwg_path).name, exc)
+            continue
+        h2name = {}
+        for item in layer_names:
+            if isinstance(item, (list, tuple)) and len(item) >= 2:
+                h2name[item[0]] = item[1]
+            elif isinstance(item, str):
+                h2name[len(h2name) + 1] = item  # 无 handle 时跳过精确映射
+        file_name = Path(dwg_path).name
+        for a in arcs:
+            try:
+                handle, cx, cy, _cz, radius, a1, a2 = (float(v) for v in a[:7])
+            except (TypeError, ValueError, IndexError):
+                continue
+            layer = compact(str(h2name.get(ent2layer.get(int(handle), -1), "") or ""))
+            upper_layer = layer.upper()
+            if not layer or ANNO_LAYER_RE.search(layer):
+                continue
+            if not any(token in upper_layer for token in layer_patterns):
+                continue
+            sweep = abs(a2 - a1) % (2.0 * math.pi)
+            if sweep <= 0:
+                sweep = 2.0 * math.pi
+            arc_len = radius * sweep
+            x1, y1 = cx + radius * math.cos(a1), cy + radius * math.sin(a1)
+            x2, y2 = cx + radius * math.cos(a2), cy + radius * math.sin(a2)
+            category, rule, pattern = match_rule(layer, rules.get("component_rules") or [], "category")
+            if not category:
+                _sys, system_rule, system_pattern = match_rule(layer, rules.get("system_rules") or [], "system")
+                if _sys:
+                    rule = system_rule
+                    pattern = system_pattern
+            status = "candidate" if category and category != "unclassified_municipal" else "review"
+            out.append({
+                "type": "municipal_geometry",
+                "category": category or "unclassified_municipal",
+                "system": (rule or {}).get("system") or "",
+                "pattern": pattern,
+                "layer": layer,
+                "file": file_name,
+                "sheet": 1,
+                "geometry": [round(x1, 3), round(y1, 3), round(x2, 3), round(y2, 3)],
+                "length_drawing_units": round(arc_len, 3),
+                "arc": {"center": [round(cx, 3), round(cy, 3)], "radius": round(radius, 3),
+                        "start_angle": round(a1, 6), "end_angle": round(a2, 6),
+                        "sweep_rad": round(sweep, 6), "basis": "arc_length"},
+                "confidence": float((rules.get("confidence") or {}).get("geometry_pattern", 0.86)),
+                "status": status,
+                "review_reason": "" if status == "candidate" else "市政图层未映射到构件类别",
+                "evidence": [{"layer": layer, "kind": "arc", "coord": [round(cx, 3), round(cy, 3)],
+                              "file": file_name, "sheet": 1}],
+            })
+    return out, note
+
+
 ANNO_LAYER_RE = re.compile(r"DIM|TEXT|ANNO|标注|文字|PUB_TITLE|图框|TITLE", re.I)
 
 
@@ -561,6 +669,13 @@ def analyze_file(path: Path, rules: dict[str, Any], snap_tolerance: float,
     references = reference_candidates(records, rules)
     labels = label_candidates(records, rules)
     geometry, unmatched_layers = municipal_geometry(data, rules)
+    arc_rows, arc_note = arc_geometry_rows(data, rules)
+    if arc_rows:
+        # 弧段并入主几何：与直线段同构（length_drawing_units=弧长），算量层零改动
+        geometry = geometry + arc_rows
+        review_notes = "从原图提取 ARC 弧段 %d 个（弧长口径）；%s" % (len(arc_rows), arc_note)
+    else:
+        review_notes = arc_note or ""
     entities, unmatched_entities = entity_geometry(data, rules, records, legend_tolerance,
                                                    segments=geometry, far_tol=entity_far_tol)
     legend_excluded = sum(n for k, n in unmatched_entities.items() if str(k).startswith("图例区"))
@@ -631,6 +746,7 @@ def analyze_file(path: Path, rules: dict[str, Any], snap_tolerance: float,
         "references": references,
         "labels": labels,
         "municipal_geometry": geometry,
+        "arc_extraction": {"count": len(arc_rows), "note": review_notes},
         "entities": entities,
         "connectivity": connectivity,
         "review": review,
@@ -754,7 +870,16 @@ def main() -> int:
             raise FileNotFoundError(src)
         payload = analyze_file(src, rules, args.snap_tolerance, legend_tolerance=args.legend_tolerance,
                                entity_far_tol=args.entity_far_tol)
-        payload = contractize_payload(payload, source=src.name)
+        # 从 detail JSON 提取原始 DWG 路径用于 source_sha256（缺它契约哈希=source_not_found）
+        detail_source_paths: list[str] = []
+        try:
+            detail_doc = json.loads(src.read_text(encoding="utf-8-sig"))
+            raw_paths = detail_doc.get("source_paths") or []
+            detail_source_paths = [str(x) for x in raw_paths if str(x).strip()]
+        except (OSError, ValueError):
+            detail_source_paths = []
+        payload = contractize_payload(payload, source=src.name,
+                                      source_path=detail_source_paths or None)
         json_path = out_dir / f"{src.stem}.municipal.json"
         md_path = out_dir / f"{src.stem}.municipal.md"
         csv_path = out_dir / f"{src.stem}.municipal.csv"
@@ -767,4 +892,7 @@ def main() -> int:
 
 
 if __name__ == "__main__":
+    import pyboot
+    pyboot.ensure_utf8_io()
+    pyboot.configure_pythonpath()
     raise SystemExit(main())

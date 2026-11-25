@@ -20,9 +20,25 @@ latitude/longitude pair, then project it differently for each command:
 - `ride-search` takes origin and destination coordinates as positional arguments:
   - member: `amb ride-search <oLat> <oLng> <dLat> <dLng> [card_uuid] --json`
   - wallet: `amb ride-search <wallet_address> <region> <oLat> <oLng> <dLat> <dLng> --json`
-- `ride-request` takes one JSON argument. Put each pair inside the corresponding
-  `locations[]` object as `latitude` and `longitude`; they are not top-level
-  request fields in either mode:
+
+  Or, preferred when you have the selected place results, the whole place as one
+  location JSON in place of the four coordinates (add `--region <NY|SG|KH|HK>`
+  in member mode; wallet mode already has the region argument):
+  - member: `amb ride-search --pickup '<location>' --dropoff '<location>' --region <region> [card_uuid] [--alternatives <n>] --json`
+  - wallet: `amb ride-search <wallet_address> <region> --pickup '<location>' --dropoff '<location>' [--alternatives <n>] --json`
+
+  A location is `{"lat","lng","name","address","place_id","sub_place_id"}`, copied
+  verbatim from the selected place result (`latitude`/`longitude`, a nested
+  `lat_lng`/`locationPoint`, and `placeId`/`subPlaceId`/`googlePlaceId` are also
+  accepted). Leave out what the result does not have; never invent an id.
+- `ride-search` returns the confirmed `locations` (possibly moved to an allowed
+  point — see **Restricted points** below) bound to its `search_id`.
+  `ride-request` with that `search_id` books exactly those locations, so
+  `locations` can be omitted there when every point has a name and address
+  (see **Restricted points** for a coordinates-only search).
+- `ride-request` takes one JSON argument. When you do pass locations, put each
+  pair inside the corresponding `locations[]` object as `latitude` and
+  `longitude`; they are not top-level request fields in either mode:
 
   ```json
   {"locations":[{"latitude":1.3001,"longitude":103.8001},{"latitude":1.3202,"longitude":103.8202}]}
@@ -30,6 +46,61 @@ latitude/longitude pair, then project it differently for each command:
 
 Add the other mode-specific `ride-request` fields described below; this example
 shows only the coordinate projection.
+
+### Restricted points (pickup/dropoff snap)
+
+Some places only allow pickup or dropoff at designated points (airport stands,
+mall pickup points), and bus-stop areas block a small circle. When `ride-search`
+knows the region (`--region` for member v1; the region argument otherwise), the
+CLI asks the TADA server to check the pickup and dropoff (with their
+`place_id`/`sub_place_id`) before quoting. The server applies the same rules as
+the booking check and reports the restriction; the CLI then moves the point:
+
+- **Not restricted** → nothing moves (also a designated point passed with its own ids).
+- **Restricted area** → the nearest designated point allowed for that leg, with
+  its `place_id`, `sub_place_id`, name and address.
+- **Restricted circle** → its suggested point. The name and address stay;
+  `place_id` and `sub_place_id` are removed.
+- **Blocked** → no bookable point nearby (an area without a designated point for
+  that leg, or a circle without a suggested point).
+
+The output carries `locations` (what will be booked, coordinates exactly as the
+server returned them), `snapped[]` (one entry per moved or blocked point: `kind`
+`area|coordinate`, `location_index`, `leg`, `from`, `to`, `distance_m`,
+`needs_pick`; area entries also have `area_name` (`null` when unknown), the
+point's `disclaimer` for that leg when it has one, and `alternatives[]`: the
+other designated points for that leg in location shape with `distance_m`,
+nearest first, 3 by default — `--alternatives <n>` lists up to `n`, and
+`more_alternatives` counts the ones left out), and, when something moved,
+`next_action` with a `must` text:
+
+| `next_action` | Meaning | What to do |
+|---|---|---|
+| `NOTIFY_SNAPPED_POINTS` | Quote returned for the moved points | With the quote, tell the user each move: distance, new point name, its disclaimer (e.g. no waiting area) and the other designated points, when listed. Book after the usual confirmation. |
+| `ASK_USER_TO_PICK_POINT` | No quote. The pickup would move more than 300 m | Ask the user whether to use `snapped[].to` (or an `alternatives` entry, when listed) or a different place, then re-run `ride-search` with the chosen point passed verbatim as `--pickup`. |
+| `ASK_USER_FOR_ANOTHER_PLACE` | No quote. The point is blocked (`to: null`) | Ask for a different place. In wallet mode a map session (`map-session-create`) is the fallback; re-run `ride-search` with its result. |
+
+If the user prefers another designated point, re-run the same `ride-search` with
+that point (an `alternatives` entry or `snapped[].to`) passed verbatim as the
+`--pickup` / `--dropoff` location JSON. It carries the designated point's own
+ids, so the check passes it unchanged and the search books it without reporting
+a move.
+
+`snap_skipped` explains a skipped check: `region_missing` (no region given),
+`region_unsupported`, or `snap_unavailable` (the server check could not be
+reached or its answer could not be read). The search still runs as before; the
+server remains the final check at booking.
+
+If the server still rejects a point at search time, the CLI asks the server to
+check the points again and retries the quote once. A second rejection returns
+`RESTRICTED_AREA` with `details` (`restricted_point`, `location_index`,
+`restricted_area_name`, …): ask the user for a different point. A rejection at
+`ride-request` also returns `RESTRICTED_AREA`; do not retry the booking — run
+`ride-search` again and confirm the result with the user.
+
+`ride-request` with a `search_id` needs no `locations` when every searched point has a name and address. A coordinates-only search has neither, and booking it without them fails with `MISSING_FIELD` (`location_index`) in both modes: pass `locations` whose `lat`/`lng` are exactly the search result's `locations` and add only `name` and `address` (for example the name and address from `place-reverse-geocode`). Do not add `place_id` or `sub_place_id`, and do not use the reverse-geocode coordinates. If you pass `locations`,
+they must be the same points (and ids) as the search result; otherwise the command fails
+with `LOCATION_CHANGED_RESEARCH` — run `ride-search` again for the new trip.
 
 ### Wallet place search — autocomplete suggestions
 
@@ -87,7 +158,7 @@ Show results to the user using `name` and `address`. Ask them to select one.
 If `next_action` is `REPORT_NO_MATCHES_TO_USER` (empty `results`): inform the user and ask them to try a different search term.
 
 > **⚠️ placeId provenance rule (strictly enforced)**
-> Any `placeId` / `place_id` argument passed to a subsequent command (`amb place-detail`, `amb map-session-create`, `amb ride-request` `locations[].placeId`) MUST be a value taken verbatim from `results[].placeId` of a `place_search` response — or, transitively, from a `place_detail` / `map-session-verify` response that itself originated from one.
+> Any `placeId` / `place_id` value passed to a subsequent command (`amb place-detail`, the `ride-search` location JSON, `amb ride-request` `locations[].placeId`) MUST be a value taken verbatim from `results[].placeId` of a `place_search` response — or, transitively, from a `place_detail` / `map-session-verify` response that itself originated from one.
 > NEVER fabricate or substitute a place ID from any external system or from your own model knowledge.
 > If `results` does not contain the place the user wants, run `place_search` again with a different query.
 
@@ -95,7 +166,7 @@ If `next_action` is `REPORT_NO_MATCHES_TO_USER` (empty `results`): inform the us
 
 Check the selected result's `locationPoint`:
 
-**If `locationPoint` is present (TADA POI / OneMap):** skip `place_detail` — coordinates and subPlaces are already available from the autocomplete result. Proceed directly to Map Location Confirmation.
+**If `locationPoint` is present (TADA POI / OneMap):** skip `place_detail` — coordinates and subPlaces are already available from the autocomplete result. Build the location and continue to `ride-search`.
 
 **If `locationPoint` is null (Google Places):** run `place_detail` to fetch coordinates.
 
@@ -152,28 +223,33 @@ If `locationPoint` is `null`: inform the user and ask them to select a different
 Required: `latitude`, `longitude`, `address`, `name` (all required)
 Optional: `placeId`, `googlePlaceId`, `subPlaceId`
 
-### Map Location Confirmation
+Pass the built location to `ride-search` with `--pickup` / `--dropoff` (place
+fields in snake_case or camelCase are both accepted). When the place has
+`subPlaces`, you do not need the user to pick one first: if the place is inside a
+restricted area, `ride-search` moves the point to the nearest designated point for
+that leg (see **Restricted points**). If the user names a specific sub place, pass
+that sub place as the location (`latitude`/`longitude` from its `locationPoint`,
+its name and address, `placeId` = the place's `placeId`, `subPlaceId` = the sub
+place id).
 
-**⚠️ MANDATORY for Case A (both A-1 and A-2).** You MUST run map confirmation after obtaining coordinates. Do NOT skip this step. Do NOT proceed to `ride_search` without completing map confirmation for both origin and destination. If `subPlaces` exist, do NOT list them as text — they must go to the map.
+### Map Location Confirmation (fallback)
 
-After obtaining coordinates (from autocomplete result in Case A-1, or from place_detail in Case A-2), check whether subPlaces exist:
-
-**If subPlaces exist:** map session is **mandatory** — the user must select a specific subPlace. The place itself is just a group. Do NOT allow the user to skip.
-
-**If subPlaces do not exist:** map session is still created — present the link alongside the result for the user to verify/adjust if they want.
+The map is a **fallback**, not a required step. Use it only when no designated
+point fits the user (`ASK_USER_FOR_ANOTHER_PLACE`, or the user rejects every
+point in `alternatives`), or when the user asks to adjust the point on a map.
+When `--purpose` is passed, the map applies the restricted-area rules for that
+leg: it moves a pin inside a restricted area to the nearest designated point, or
+blocks Confirm when no point fits or the check cannot be completed. Still re-run `ride-search` with the map
+result — the server makes the final decision.
 
 **Step 1: Create map session**
 
-If `subPlaces` exist, transform and pipe them via stdin. The `subPlaces` array from autocomplete/place_detail uses `locationPoint: { latitude, longitude }`, but `map-session-create` expects flat `{ id, name, lat, lng, address }`. Transform each subPlace: `locationPoint.latitude → lat`, `locationPoint.longitude → lng`.
-
 ```bash
-echo '{"subPlaces": [{"id":"...","name":"...","lat":<locationPoint.latitude>,"lng":<locationPoint.longitude>,"address":"..."},...]}'  | amb map-session-create <wallet_address> <city> <lat> <lng> [name]
+amb map-session-create <wallet_address> <city> [lat] [lng] [name] --purpose origin|destination
 ```
 
-If no subPlaces, call without stdin:
-```bash
-amb map-session-create <wallet_address> <city> <lat> <lng> [name]
-```
+- `--purpose` is required: `origin` when choosing the pickup, `destination` when choosing the dropoff.
+- `lat` / `lng` / `name` are the reference point: the place currently being discussed for that leg. Pass it as-is even if it is blocked — the map judges it. If omitted, the map opens at the city center.
 
 Returns `{ sessionId, mapUrl, expiresAt }`.
 
@@ -190,18 +266,16 @@ Poll for the user's selection using `amb map-session-verify <session_id> --json`
 
 | Signal | Action |
 |--------|--------|
-| User says "proceed" / "looks good" | Use the place result as-is. Ignore the poll (session expires naturally). Only allowed when subPlaces do not exist. |
-| Poll result: `completed` | Use the map result (`lat`, `lng`, `address`, `name`, `placeId`, `subPlaceId`) for the locations array. If `subPlaceId` is present, include it. |
-| Poll result: `cancelled` | Ask the user: use the original place result, or search again? |
-| Poll result: `expired` | Proceed with the place result (session timed out). |
-| Poll result: `jwt_expired` | Re-authenticate (SIWE login), then run `map-session-create` again with fresh JWT. |
+| User says "proceed" / "looks good" | Use the place result as-is. Ignore the poll (session expires naturally). |
+| Poll result: `status: "ready"` | Pass `result` (`lat`, `lng`, `address`, `name`, `placeId?`, `subPlaceId?`) as the `--pickup` / `--dropoff` location of a new `ride-search`. |
+| Poll result: `status: "failed"`, `reason: "cancelled"` | Ask the user: use the original place result, or search again? |
+| Poll result: `status: "failed"`, `reason: "expired"` | Proceed with the place result (session timed out). |
+| Poll result: `status: "failed"`, `reason: "jwt_expired"` | Re-authenticate (SIWE login), then run `map-session-create` again with fresh JWT. |
 
-`amb map-session-verify <session_id> --json` output events:
-- `{ "type": "waiting" }` — user has not selected yet
-- `{ "type": "completed", "result": { "lat", "lng", "address", "name", "placeId?", "subPlaceId?" } }` — use this for the locations array
-- `{ "type": "cancelled" }` — user closed the map without confirming
-- `{ "type": "jwt_expired" }` — requires re-authentication
-- `{ "type": "expired" }` — session timed out (5-minute TTL)
+`amb map-session-verify <session_id> --json` prints one result:
+- `{ "status": "ready", "result": { "lat", "lng", "address", "name", "placeId?", "subPlaceId?" } }` — the user confirmed a point
+- `{ "status": "pending", "auth_url": "..." }` — no selection before the poll deadline; run `map-session-verify` again
+- `{ "status": "failed", "reason": "cancelled" | "expired" | "jwt_expired" | "completed_missing_result" }` — exit code 1
 
 Do NOT create a map session when the user provided coordinates directly (Case B).
 
@@ -314,14 +388,16 @@ A logged-in TADA/Throo member pays with a registered card. There is **no separat
 
 The card (`payment_item_uuid` in `ride-request`, `card_uuid` in `ride-search`) is **optional**. When omitted, the CLI resolves it automatically via the gateway `GET /v1/cards` (see **Card resolution** below) — so the normal flow is to leave it out entirely. Pass it explicitly only when re-running after a `needs_card_selection` prompt.
 
-**1. Search** — positional args (no `wallet_address`, no `region`; region is resolved automatically from coordinates). The trailing `card_uuid` is optional:
+**1. Search** — pass the chosen places as location JSON and the region used for `place-search` (no `wallet_address`). The cluster is still chosen from the pickup coordinates; `--region` enables the restricted-point check. The trailing `card_uuid` is optional:
 ```bash
-amb ride-search <origin_lat> <origin_lng> <dest_lat> <dest_lng> [card_uuid] [--coupon-code CODE] --json
+amb ride-search --pickup '<location JSON>' --dropoff '<location JSON>' --region <NY|SG|KH|HK> [card_uuid] [--coupon-code CODE] --json
+amb ride-search <origin_lat> <origin_lng> <dest_lat> <dest_lng> [card_uuid] --region <NY|SG|KH|HK> [--coupon-code CODE] --json   # coordinates only
 ```
+To choose a designated point, pass it as the `--pickup` / `--dropoff` location (see **Restricted points**).
 
-The normal result is `{ options[], routes, journey_id, search_id }`. In member mode `routes` is an **object keyed by car type** (e.g. `routes.CAR`), not an array — the crypto-mode `routes[]` array is a different shape. Each entry carries `distance_display` and `duration_display` already localized to the rider's region (US regions in miles, elsewhere in km), alongside the raw `distance_meter` / `duration_seconds`. Present the `*_display` strings verbatim — do **not** convert distance units yourself.
+The normal result is `{ options[], routes, journey_id, search_id, locations, snapped }`. In member mode `routes` is an **object keyed by car type** (e.g. `routes.CAR`), not an array — the crypto-mode `routes[]` array is a different shape. Each entry carries `distance_display` and `duration_display` already localized to the rider's region (US regions in miles, elsewhere in km), alongside the raw `distance_meter` / `duration_seconds`. Present the `*_display` strings verbatim — do **not** convert distance units yourself.
 
-Preserve the CLI-generated `journey_id` and `search_id`; always pass `search_id` to the following `ride-request`. If local correlation storage is unavailable, the command preserves search behavior and may omit both handles. Each entry in `options[]` carries `product_name` — the rider-facing display name, already region-localized (e.g. `Save Throo` in NY). Present `product_name` to the user; do **not** surface the raw `car_type` / `product_type` enum values (`SEDAN`, `ANYTADA`) — the projection does not return them.
+Preserve the CLI-generated `journey_id` and `search_id`; always pass `search_id` to the following `ride-request`. `search_id` also carries the confirmed `locations`. If local correlation storage is unavailable, the command preserves search behavior and may omit `journey_id`. Each entry in `options[]` carries `product_name` — the rider-facing display name, already region-localized (e.g. `Save Throo` in NY). Present `product_name` to the user; do **not** surface the raw `car_type` / `product_type` enum values (`SEDAN`, `ANYTADA`) — the projection does not return them.
 
 | Field | Meaning |
 |---|---|
@@ -339,11 +415,11 @@ For an applicable coupon, `price` already includes fees that are outside the cou
 
 An option with `na: true` always has `price: null`, and an option with `na: false` always has a `price`. Offer only `na: false` options to the rider.
 
-**2. Request** — a single JSON argument. `locations` is `[origin, destination]`; `payment_item_uuid` (the card) is optional. `product_id` is optional without a coupon and required when `coupon_code` is present:
+**2. Request** — a single JSON argument. With the `search_id` of the selected search, the CLI books that search's `locations`; omit `locations` when every searched point has a `name` and `address` (a `--pickup/--dropoff` search of place results). After a coordinates-only search, pass `locations` with the same points (lat/lng exactly as the search result's `locations`) adding only `name` and `address` — no `place_id`/`sub_place_id`; otherwise the CLI stops with `MISSING_FIELD` before any booking call. `payment_item_uuid` (the card) is optional. `product_id` is optional without a coupon and required when `coupon_code` is present:
 ```bash
-amb ride-request '{"search_id":"<search_id from ride-search>","locations":[{"latitude":<oLat>,"longitude":<oLng>,"name":"<origin name>","address":"<origin address>"},{"latitude":<dLat>,"longitude":<dLng>,"name":"<dest name>","address":"<dest address>"}],"product_id":<required with coupon_code; otherwise optional int>,"coupon_code":"<optional exact code>","confirmed_price":"<required with coupon_code: exact quoted price>"}'
+amb ride-request '{"search_id":"<search_id from ride-search>","product_id":<required with coupon_code; otherwise optional int>,"coupon_code":"<optional exact code>","confirmed_price":"<required with coupon_code: exact quoted price>"}'
 ```
-Agent-required fields are `search_id` from the selected search result and `locations`. The CLI still accepts a missing `search_id` for backward compatibility, but that request cannot join the correlated telemetry funnel. On success the ride is created in `PENDING` and the card is charged — **immediately start `ride-relay.js`** (see the ride-relay section). Do **not** call `ride-pay-prepare`/`ride-pay-confirm`.
+If you include `locations` (`[origin, destination]`), they must be the searched points or the command fails with `LOCATION_CHANGED_RESEARCH`. Without a usable `search_id` (older than 30 minutes, or none), `locations` with `latitude`/`longitude`/`name`/`address` are required as before, and that request cannot join the correlated telemetry funnel. On success the ride is created in `PENDING` and the card is charged — **immediately start `ride-relay.js`** (see the ride-relay section). Do **not** call `ride-pay-prepare`/`ride-pay-confirm`.
 
 #### Member coupons
 
@@ -432,13 +508,18 @@ Card register, delete, and set-default operations are not exposed by the CLI —
 ### ride_search - Search for a ride
 
 ```bash
-amb ride-search <wallet_address> <region> <origin_lat> <origin_lng> <dest_lat> <dest_lng>
+amb ride-search <wallet_address> <region> --pickup '<location JSON>' --dropoff '<location JSON>'
+amb ride-search <wallet_address> <region> <origin_lat> <origin_lng> <dest_lat> <dest_lng>   # coordinates only
 ```
 
 - `region`: Service region code (`SG`, `NY`, `KH`, or `HK`)
 
-Searches available ride products for the given origin/destination coordinates.
-The `search_id` (checkSum) from the result is cached in DB for 3 minutes.
+Searches available ride products for the given origin/destination. The location
+JSON carries `name`, `address` and the place ids, which `ride-request` needs; with
+the coordinates-only form, pass `locations` (with `name`/`address`) to
+`ride-request`. Restricted points are checked first (see **Restricted points**).
+The quote behind `search_id` is cached for 3 minutes; the confirmed `locations`
+stay bound to `search_id` for 30 minutes.
 
 Each entry in the result's `routes[]` carries `distance_display` and `duration_display` already localized to the ride's region (US regions in miles, elsewhere in km). Present these strings verbatim — do **not** convert distance units yourself.
 
@@ -480,7 +561,7 @@ amb ride-request <json_params>
 
 **Before calling `ride-request`, you must have both the rider's name and phone number confirmed by the user. If not already provided in the conversation, ask the user for their name explicitly. Never invent or guess a name.**
 
-The `locations` array is [origin, destination] in order.
+The `locations` array is [origin, destination] in order. With a `search_id` from `ride-search --pickup/--dropoff`, omit `locations`: the CLI books the searched (possibly snapped) points with their `placeId`/`subPlaceId`. If you pass `locations`, they must be the same points, or the command fails with `LOCATION_CHANGED_RESEARCH`.
 
 - `pay_currency`: Always use `USDC_base_sepolia` (Base Sepolia environment)
 - `wallet_provider_id` is determined automatically from `pay_currency` — do not specify it
@@ -498,7 +579,7 @@ Then start `ride-relay.js` in the background. Do NOT start ride-relay while stat
 When the active mode is `tada` (TADA/Throo member), use the five gateway-backed place commands below to resolve a place name or coordinates into a bookable `place_id` + coordinates before calling `ride-search` / `ride-request`.
 
 > **placeId provenance rule (strictly enforced)**
-> Any `place_id` passed to a subsequent command (`place-detail`, `ride-search`, `ride-request` `locations[].place_id`) MUST be copied verbatim from the response of one of these commands. Never fabricate or substitute a place_id from model knowledge.
+> Any `place_id` / `sub_place_id` passed to a subsequent command (`place-detail`, the `ride-search --pickup/--dropoff` location JSON, `ride-request` `locations[]`) MUST be copied verbatim from the response of one of these commands. Never fabricate or substitute a place_id from model knowledge.
 
 ### Command signatures
 
@@ -555,23 +636,19 @@ amb place-reverse-geocode <lat> <lng> <region> [--lang TAG] --json
 2. **User picks a result.** Check `lat_lng`:
    - `lat_lng` present (TADA POI / OneMap): use coordinates directly — skip `place-detail`.
    - `lat_lng` is `null` (Google candidate): run `place-detail` with the same `region` to resolve coordinates. If `place-detail` also returns `null` coords, ask the user to pick a different result.
-3. **Terminal sub_places**: If the place is an airport or major terminal, `sub_places` may contain bookable points. Each sub_place has its own `allowance_type`:
-   - `1` (Pickup): use for origin → book as `sub_place_id` + the sub_place's `lat_lng` + `name_with_main_place`
-   - `2` (Dropoff): use for destination → same pattern
-   - `0` (Both): can be used for either leg
-   Present the relevant sub_places to the user if they exist; ask which one to use.
-4. **Build LocationRequest** — copy values verbatim into the **flat** shape below. `latitude` / `longitude` are top-level (NOT nested under a `lat_lng` object); read them out of the response's `lat_lng` and place them at the top level. Sending a nested `lat_lng` object is rejected with `gateway 400 invalid_parameter`.
+3. **Terminal sub_places**: If the place is an airport or major terminal, `sub_places` may contain designated points, each with its own `allowance_type` (`1` Pickup, `2` Dropoff, `0` Both). You do not need to make the user pick one before searching: pass the place, and `ride-search` moves a pickup/dropoff inside a restricted area to the nearest designated point for that leg. If the user already named a specific sub place, pass that sub place as the location (step 4).
+4. **Build the location** — copy values verbatim:
    ```json
    {
-     "latitude":  <lat_lng.latitude from response>,
-     "longitude": <lat_lng.longitude from response>,
-     "name":      "<name or name_with_main_place from response>",
-     "address":   "<address from response>",
-     "place_id":  "<place_id from response — verbatim>"
+     "lat":      <lat_lng.latitude from response>,
+     "lng":      <lat_lng.longitude from response>,
+     "name":     "<name from response>",
+     "address":  "<address from response>",
+     "place_id": "<place_id from response — verbatim>"
    }
    ```
-   When booking a sub_place, also include `"sub_place_id": "<sub_place.id>"`.
-5. **Ride**: pass the resolved locations into `amb ride-search` / `amb ride-request` (member).
+   Never put a sub place id in `place_id`. For a specific sub place, use its `lat_lng`, `name_with_main_place` and `address`, keep the parent `place_id`, and add `"sub_place_id": "<sub_place.id>"`.
+5. **Ride**: `amb ride-search --pickup '<location>' --dropoff '<location>' --region <region> --json`, tell the user about any `snapped` points, then `amb ride-request '{"search_id":"…"}'` (member).
 
 ### Alternative place-lookup commands
 
@@ -956,21 +1033,18 @@ amb setup-check 0x1234...
 amb place-search 0x1234... SIN "Marina Bay" --json
 # 5b. Get detail for selected place (only if locationPoint is null)
 amb place-detail 0x1234... SIN <place_id> --json
-# 5c. ⚠️ MANDATORY: Create map session (pipe subPlaces if present)
-amb map-session-create 0x1234... SIN <lat> <lng> [name]
-# 5d. Poll map-session-verify until completed/cancelled/expired
-amb map-session-verify <session_id> --json
+# 5c. Fallback only: map session when no designated point fits (see Map Location Confirmation)
 ```
 
-6. Search for a ride
+6. Search for a ride (tell the user about any `snapped` points)
 ```bash
-amb ride-search 0x1234... SG 37.5665 126.9780 37.4979 127.0276
+amb ride-search 0x1234... SG --pickup '{"lat":1.2834,"lng":103.8607,"name":"Marina Bay Sands","address":"1 Bayfront Avenue","place_id":"ChIJ..."}' --dropoff '{"lat":1.3491,"lng":103.8321,"name":"40 Sin Ming Lane","address":"40 Sin Ming Lane"}'
 ```
 
 7. Request a ride
 - Confirm rider name and phone with the user before proceeding. Ask if not already provided.
 ```bash
-amb ride-request '{"wallet_address":"0x1234...","search_id":"...","product_code":"STANDARD","region":"SG","pay_currency":"USDC_base_sepolia","locations":[...],"rider":{"name":"John Doe","phone":"+821012345678"}}'
+amb ride-request '{"wallet_address":"0x1234...","search_id":"...","product_code":"STANDARD","region":"SG","pay_currency":"USDC_base_sepolia","rider":{"name":"John Doe","phone":"+821012345678"}}'
 ```
 
 7-1. (Optional) Cancel — always check status first

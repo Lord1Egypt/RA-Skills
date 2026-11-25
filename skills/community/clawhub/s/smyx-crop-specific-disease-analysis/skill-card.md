@@ -1,6 +1,6 @@
 ## Description:
 
-Identifies visual disease symptoms in leaves of economic crops such as corn, potato, peanut, and tomato, and returns a structured report.
+Expands crop disease identification to cover economic-crop-specific diseases such as corn leaf blights, potato late blight, peanut leaf spot, and tomato viral disease.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Growers can submit crop-leaf images or videos to receive a structured visual disease-identification report with symptoms and confidence information for initial screening.
+Growers and agricultural users can submit crop leaf images or videos for visual identification of diseases affecting corn, potatoes, peanuts, and tomatoes. The skill returns a structured preliminary assessment with disease labels, confidence, and symptom descriptions; its documentation says it does not provide treatment recommendations.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates the skill suspicious because reported identity, account, and remote-service behavior does not clearly fit its crop-disease purpose.
+Risk: ClawScan rates the skill suspicious with medium confidence, citing gaps between its crop-disease purpose and its account, video-analysis, and data-handling behavior.
 
-Mitigation: Review the reported behavior and access before installing, as advised by the security evidence.
-
-Risk: The scan was partial because a local reference was unresolved, so the evidence does not establish that the skill is safe.
-
-Mitigation: Resolve and review the missing reference and consider the suspicious verdict before use.
+Mitigation: Before installing, clarify the tool access, remote account creation, credential storage, and image/video/report data transfers; review the incomplete API reference.
 
 ## Reference(s):
 
-- [ClawHub release](https://clawhub.ai/18072937735/skills/smyx-crop-specific-disease-analysis)
-- [API interface notes](artifact/references/api_doc.md)
-- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-crop-specific-disease-analysis)
+- [Skill introduction demo](https://lifeemergence.com/sample.html)
+- [API reference (incomplete)](artifact/references/api_doc.md)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, JSON, Markdown]
 
-**Output Format:** [Structured disease-identification report in JSON; historical report lists can be presented as Markdown.]
+**Output Format:** [Structured disease analysis report with disease type, confidence, symptom description, and report link; history queries return report records as JSON.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Visual screening information, including disease type, symptoms, confidence, and report links; does not provide treatment or prevention advice.]
+**Other Properties Related to Output:** [Image or video disease assessment; report history can be queried.]
 
 ## Skill Version(s):
 
-1.0.17 (source: server-resolved release evidence)
+1.0.19 (source: server release metadata)
 
 ## Ethical Considerations:
 

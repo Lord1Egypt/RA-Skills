@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teacher Agent - Diagram Renderer</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace;
+    padding: 24px;
+    min-height: 100vh;
+  }
+  .title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .title h1 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #cdd6f4;
+    margin-bottom: 4px;
+  }
+  .title .subtitle {
+    font-size: 14px;
+    color: #a6adc8;
+  }
+  .diagram-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    padding: 20px;
+    overflow: visible;
+  }
+  .diagram-container svg {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 250px;
+  }
+  .legend {
+    margin-top: 20px;
+    padding: 16px;
+    background: #313244;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .legend h3 {
+    color: #89b4fa;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  .legend .item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .legend .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .annotation {
+    position: absolute;
+    background: rgba(49, 50, 68, 0.95);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    max-width: 220px;
+    z-index: 100;
+    pointer-events: none;
+  }
+  /* Layer indicator */
+  .layer-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-right: 6px;
+  }
+  .layer-L1 { background: #a6e3a1; color: #1e1e2e; }
+  .layer-L2 { background: #89b4fa; color: #1e1e2e; }
+  .layer-L3 { background: #f9e2af; color: #1e1e2e; }
+  .layer-L4 { background: #cba6f7; color: #1e1e2e; }
+  .layer-L5 { background: #f38ba8; color: #1e1e2e; }
+</style>
+</head>
+<body>
+  <div class="title">
+    <h1 id="diagram-title">Teacher Agent Diagram</h1>
+    <div class="subtitle" id="diagram-subtitle">Loading...</div>
+  </div>
+  <div class="diagram-container">
+    <div class="mermaid" id="diagram">
+      graph TD
+        A[Loading...] --> B[Waiting for diagram data]
+    </div>
+  </div>
+  <div class="legend" id="legend" style="display:none;">
+    <h3>Legend</h3>
+    <div id="legend-items"></div>
+  </div>
+
+  <script>
+    mermaid.initialize({
+      startOnReady: true,
+      theme: 'dark',
+      themeVariables: {
+        darkMode: true,
+        background: '#1e1e2e',
+        primaryColor: '#89b4fa',
+        primaryTextColor: '#cdd6f4',
+        primaryBorderColor: '#585b70',
+        lineColor: '#a6adc8',
+        secondaryColor: '#a6e3a1',
+        tertiaryColor: '#f9e2af',
+        noteBkgColor: '#313244',
+        noteTextColor: '#cdd6f4',
+        fontSize: '18px'
+      },
+      flowchart: { htmlLabels: true, curve: 'basis', padding: 15 },
+      sequence: { actorMargin: 50, messageMargin: 40, mirrorActors: false }
+    });
+
+    // API for browser automation to call
+    window.TeacherDiagram = {
+      render: async function(code, title, subtitle, legendItems) {
+        // Update title
+        if (title) document.getElementById('diagram-title').textContent = title;
+        if (subtitle) document.getElementById('diagram-subtitle').textContent = subtitle;
+        
+        // Render diagram
+        const container = document.querySelector('.diagram-container');
+        container.innerHTML = '';
+        const div = document.createElement('div');
+        div.className = 'mermaid';
+        div.textContent = code;
+        container.appendChild(div);
+        
+        await mermaid.run({ nodes: [div] });
+        
+        // Legend
+        if (legendItems && legendItems.length > 0) {
+          const legend = document.getElementById('legend');
+          const items = document.getElementById('legend-items');
+          legend.style.display = 'block';
+          items.innerHTML = legendItems.map(item => 
+            `<div class="item"><div class="dot" style="background:${item.color}"></div>${item.text}</div>`
+          ).join('');
+        }
+        
+        return 'rendered';
+      }
+    };
+  </script>
+</body>
+</html>

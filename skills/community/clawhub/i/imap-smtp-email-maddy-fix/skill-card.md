@@ -1,6 +1,6 @@
 ## Description:
 
-Read and send email via IMAP/SMTP, including checking messages, fetching content, searching mailboxes, marking messages read or unread, downloading attachments, and sending email with attachments across multiple accounts.
+Read and send email via IMAP/SMTP. Check for new/unread messages, fetch content, search mailboxes, mark as read/unread, create mailboxes, copy or move messages between mailboxes, and send emails with attachments. Supports multiple accounts and servers without the IMAP ID extension, such as Maddy. Passwords can be Passbolt references, which it fetches by running the local passbolt CLI. Works with any IMAP/SMTP server including Gmail, Outlook, 163.com, vip.163.com, 126.com, vip.126.com, 188.com, and vip.188.com.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT No Attribution
 
 ## Use Case:
 
-Developers and agent users use this skill to let an agent inspect, search, manage, and send email through configured IMAP and SMTP accounts. It is useful for workflows that need mailbox triage, message lookup, attachment handling, or outbound email from a local CLI-backed skill.
+People who manage email through an agent can use this skill to read, search, organize and send messages across IMAP and SMTP accounts, including downloading attachments.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Configured accounts grant mailbox read access and send-as-email authority.
+Risk: Three of eight components were only partially inspected, leaving some behavior unresolved.
 
-Mitigation: Use app passwords or provider authorization codes where available, dedicate the mailbox or account scope to the intended workflow, and rotate credentials if the skill is removed or no longer needed.
+Mitigation: Review all skill scripts and setup steps before installing or using the skill.
 
-Risk: Attachment download and message-body file reads can expose or write local files when broad directories are allowed.
+Risk: Dependency version ranges and the lockfile's trust and use during installation remain unresolved in the security assessment.
 
-Mitigation: Set ALLOWED_READ_DIRS and ALLOWED_WRITE_DIRS to the narrowest practical directories and avoid directories writable by unrelated processes.
+Mitigation: Review the dependency lockfile and install dependencies from a trusted source.
 
-Risk: Setup resolves npm dependencies before the skill runs.
+Risk: The skill can read mailbox contents, send messages, and download attachments using configured account credentials.
 
-Mitigation: Review the dependency set and lock or audit npm resolution in the target environment before running setup for sensitive accounts.
+Mitigation: Limit configured accounts and file-access directories, protect the credentials, and review recipients and attachments before sending or downloading. Keep TLS certificate verification enabled.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/troioi-vn/skills/imap-smtp-email-maddy-fix)
-- [Publisher profile](https://clawhub.ai/user/troioi-vn)
-- [Gmail App Passwords](https://myaccount.google.com/apppasswords)
+- [ClawHub release page](https://clawhub.ai/troioi-vn/skills/imap-smtp-email-maddy-fix)
+- [Google Account App Passwords](https://myaccount.google.com/apppasswords)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+**Output Type(s):** [Text, Email content, Mailbox results, Email messages]
 
-**Output Format:** [Markdown guidance with shell commands and JSON CLI results]
+**Output Format:** [Plain text email content and command results]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires local Node.js/npm and configured IMAP/SMTP credentials; mailbox reads, message changes, attachment downloads, and outbound sends occur through the configured accounts.]
+**Other Properties Related to Output:** [Can include email attachments when requested.]
 
 ## Skill Version(s):
 
-0.0.14 (source: ClawHub release evidence)
+0.0.20 (source: server-resolved ClawHub release metadata)
 
 ## Ethical Considerations:
 

@@ -1,0 +1,20 @@
+{
+ "campaign": "campaign.json",
+ "format": ["split_screen", "face_screen"],
+ "language": "en",
+ "hooks": [
+  {"id": "h1", "text": "This launch could be your lock screen", "claim": "none", "action": "hold the phone up to the camera with the launch photo on screen"},
+  {"id": "h2", "text": "A new space photo every single day?", "claim": "brand", "talking_point": "tp1", "action": "point at the launch on screen, then look at the camera"},
+  {"id": "h3", "text": "Watch me find today's space photo", "claim": "none", "action": "open the app on camera as you say it"},
+  {"id": "h4", "text": "Two taps and this is your wallpaper", "claim": "brand", "talking_point": "tp2", "action": "tap twice on the phone screen toward the camera"}
+ ],
+ "lines": [
+  {"id": "d1", "kind": "disclosure", "say": "Example Orbit is paying me to show you this."},
+  {"id": "l1", "claim": "brand", "talking_point": "tp1", "say": "It shows a new space photo every day."},
+  {"id": "l2", "claim": "experience", "say": "I've opened it every morning this week to see the new one."},
+  {"id": "l3", "claim": "brand", "talking_point": "tp2", "say": "You can save any photo as your phone wallpaper in two taps."},
+  {"id": "l5", "claim": "cut", "say": "Honestly it's the best space app out there."},
+  {"id": "c1", "kind": "cta", "say": "Download Example Orbit, link in bio."}
+ ],
+ "openings": {"TikTok": "h1", "Reels": "h2", "Shorts": "h3"}
+}

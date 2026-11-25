@@ -1,6 +1,6 @@
 ## Description:
 
-Helps agents design voices, clone authorized voice samples, synthesize speech, and plan multi-voice or sound-scene audio with Uydi.
+Uydi Voice helps an agent design voices, transcribe recordings, synthesize speech, create sound scenes and multi-voice projects, and manage voices and generation history through Uydi.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Agents and creators use the skill to draft voice and audio projects, guide authorized cloning, and run Uydi voice-generation workflows with user approval for paid actions.
+Creators and developers use the skill to turn scripts and recordings into narration, transcripts, sound scenes, and multi-speaker audio, and to manage voices and projects through Uydi.
 
 ### Deployment Geography for Use:
 
@@ -22,42 +22,41 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Voice cloning may misuse someone else's recording.
+Risk: The scan reports that voice-cloning rights may be asserted without proof.
 
-Mitigation: Clone only voices the user owns or is explicitly authorized to use; obtain their rights confirmation first.
+Mitigation: Review whether cloning rights are explicitly established before using a voice sample.
 
-Risk: Voice generation can spend Uydi credits.
+Risk: The scan identifies privacy concerns around voice samples and project text.
 
-Mitigation: Check the available balance and current quote, and get approval before paid generation.
+Mitigation: Review how voice samples and project text are shared before use.
 
-Risk: OAuth credentials are stored locally.
+Risk: The scan identifies concern about destructive actions proceeding without confirmation.
 
-Mitigation: Protect the local credentials and use logout to revoke and remove the token when finished.
-
-Risk: Deletion commands can permanently remove voices or projects.
-
-Mitigation: Confirm the exact item and user intent before deletion.
+Mitigation: Require confirmation before destructive actions.
 
 ## Reference(s):
 
-- [Uydi Voice release on ClawHub](https://clawhub.ai/lvyinchao/skills/uydi-voice)
-- [Uydi](https://uydi.com)
-- [Voice Canvas reference](references/voice-canvas.md)
-- [Sound Scenes reference](references/sound-scenes.md)
+- [Uydi homepage](https://uydi.com)
+- [Uydi API and MCP installation guide](https://uydi.com/api-docs#install-mcp)
+- [ClawHub listing](https://clawhub.ai/lvyinchao/skills/uydi-voice)
+- [Voice discovery reference](artifact/references/voice-discovery.md)
+- [Transcription reference](artifact/references/transcription.md)
+- [Voice Canvas reference](artifact/references/voice-canvas.md)
+- [Sound Scenes reference](artifact/references/sound-scenes.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Configuration]
+**Output Type(s):** [Audio files (WAV), Transcribed text and timed segments, JSON project files, Shell commands and guidance]
 
-**Output Format:** [Markdown with inline shell commands]
+**Output Format:** [WAV audio, plain text or timed transcripts, and JSON project data]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Commands can produce WAV audio and JSON project drafts through Uydi.]
+**Other Properties Related to Output:** [Requires Node.js 18+ and Uydi account authorization; audio generation and transcription may use account credits.]
 
 ## Skill Version(s):
 
-1.2.0 (source: release metadata and skill frontmatter)
+1.5.0 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

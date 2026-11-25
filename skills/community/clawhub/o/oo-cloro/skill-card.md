@@ -1,6 +1,6 @@
 ## Description:
 
-Use this skill to read, create, update, and delete Cloro data through an OOMOL-connected account.
+Cloro (cloro.dev). Use this skill for ANY Cloro request — reading, creating, updating, and deleting data. Whenever a task involves Cloro, use this skill instead of calling the API directly.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers can use Cloro to run search and AI monitoring actions, check task status and credits, and manage queued work through their connected account.
+Agents use Cloro through the user's connected OOMOL account to retrieve search and monitoring results, check task and queue status, inspect credits, and submit monitoring tasks.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The required oo CLI may change other assistants’ installed skills, a behavior this skill does not explain.
+Risk: The security scan reports a suspicious instruction to run a remote oo CLI installer that is not clearly related to the stated Cloro data tasks; scan coverage is partial because two local path-like references could not be resolved.
 
-Mitigation: Use a reviewed CLI release and check its documented effects; set OO_SKILLS_SYNC_DISABLED=1 before invoking the CLI if cross-assistant skill syncing is unwanted.
-
-Risk: The exact remote installer is unverified, and Cloro actions can incur costs or delete queued tasks.
-
-Mitigation: Review the CLI before installation, confirm the connected Cloro organization and expected costs, and verify the deletion target before running clear_queue.
-
-Risk: Write and destructive actions can change or remove Cloro data.
-
-Mitigation: Review the exact payload and effect, then obtain user confirmation before running write or destructive actions.
+Mitigation: Review the setup instructions, assess whether the oo CLI is needed and whether the OOMOL installer is trusted, and account for the incomplete scan before installing or running the installer.
 
 ## Reference(s):
 
 - [Cloro homepage](https://cloro.dev)
 - [Cloro API documentation](https://cloro.dev/docs)
-- [oo CLI command documentation](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
-- [Cloro release page](https://clawhub.ai/oomol/skills/oo-cloro)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+**Output Type(s):** [API data, JSON, Text, Shell commands]
 
-**Output Format:** [oo CLI commands with JSON payloads and JSON action results]
+**Output Format:** [JSON action responses and concise text summaries, with inline shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Action schemas are checked before requests; writes and destructive actions require user confirmation.]
+**Other Properties Related to Output:** [Output varies by action; task submissions may return asynchronous task identifiers and require a later status or result lookup.]
 
 ## Skill Version(s):
 
-1.0.2 (source: frontmatter metadata)
+1.0.3 (source: frontmatter and server release evidence)
 
 ## Ethical Considerations:
 

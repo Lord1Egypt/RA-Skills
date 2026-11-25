@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "AIsa"
   author: "OOMOL"
-  version: "1.0.5"
+  version: "1.0.6"
   services: ["aisa"]
   icon: "https://static.oomol.com/logo/third-party/aisa.svg"
 ---
@@ -37,53 +37,320 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
+- `add_linkfox_walmart_favorite_keyword` — Save a Walmart keyword to a Sorftime favorites folder. [write]
+- `aggregate_surf_hyperliquid_closed_trades` — Aggregate closed Hyperliquid trades by UTC day, market, direction, trade size, or holding time. Net PnL excludes funding; the response is not paginated.
+- `answer_crawl4ai_web` — Find a direct web answer or optionally read pages to compose one, with an optional JSON Schema for the answer text.
 - `answer_exa` — Answer a question using Exa web retrieval with source citations and optional structured output.
+- `answer_parallel` — Research a question with Parallel and return a text answer or structured JSON with supporting evidence. Marketplace requests are independent; continuing a prior interaction requires your own AIsa connection.
+- `answer_perplexity` — Answer questions with Perplexity web research and source citations. Use sonar for a factual lookup, sonar-pro for multi-part questions, or sonar-reasoning-pro for analysis and comparison.
+- `audit_dataforseo_page` — Audit one webpage with DataForSEO and return its SEO checks, page metrics, and optional rendering results. Avoid concurrent requests for the same host. Stored HTML and markup reports can be read using the returned task ID.
+- `auto_rotate_pdf` — Automatically correct PDF page orientation with OCR.
+- `autocomplete_accuweather_locations` — Autocomplete Locations through AccuWeather, preserving upstream metadata.
+- `autocomplete_companyenrich_keywords` — Autocomplete Keywords through CompanyEnrich.
+- `autocomplete_companyenrich_positions` — Autocomplete Positions through CompanyEnrich.
+- `autocomplete_companyenrich_technologies` — Autocomplete Technologies through CompanyEnrich.
+- `autocomplete_google_places` — Predict Google places or search queries from partial text, with geographic bias or restriction and optional distance origin. sessionToken groups autocomplete calls for billing; it is not a stored map-session resource.
+- `browse_us_legal_hierarchy` — Browse US statutory divisions in USC, CFR, state statutes, or regulations, retaining the source pagination cursor.
+- `calculate_ninjas_sales_tax` — Estimate US sales tax on a purchase amount using a ZIP code or city and state through API Ninjas. Product-specific exemptions and individual tax treatment are not determined by this query.
+- `cancel_dataforseo_onpage` — Stop a DataForSEO website crawl. Already crawled pages may still be charged; query the crawl summary for its final state and reports. [destructive]
+- `cancel_exa_research` — Request cancellation of the Exa research task. Work already performed may still be charged; poll for final state and pricing. [destructive]
 - `cancel_firecrawl_batch_scrape` — Request cancellation of a Firecrawl task. Work already performed may still be charged; poll the task for final state and pricing. [destructive]
 - `cancel_firecrawl_crawl` — Request cancellation of a Firecrawl task. Work already performed may still be charged; poll the task for final state and pricing. [destructive]
+- `cancel_oxylabs_answer` — Request cancellation of the Oxylabs answer collection task. Work already performed may still be charged; poll for final state and pricing. [destructive]
+- `check_leadmagic_job_change` — Compare a person's current employment with a previously known employer through LeadMagic. Unknown or ambiguous employment is not evidence of a job change.
+- `check_moz_backlink_status` — Check whether up to fifty source pages or domains link to a target, preserving source order in the results.
+- `check_ninjas_domain_availability` — Check domain registration availability through API Ninjas. Non-.com top-level domains may require a supplier premium plan; the check does not reserve or register the domain.
+- `check_ninjas_public_holiday` — Check whether a date is a public holiday in a country through API Ninjas. Holiday coverage and future-year access depend on the supplier plan.
+- `check_ninjas_working_day` — Check whether a date is a working day through API Ninjas, using the country's weekend and holiday calendar or explicit overrides.
+- `check_social_post_length` — Check weighted character counts and text limits across social platforms. X URLs count as 23 characters and emojis as two. The twitterPremium result assumes a paid account and no poll; this check does not resolve account eligibility or guarantee publication.
+- `compare_creator_audience_overlap` — Compare two to ten creators on one platform to measure duplicated and unique audience reach.
+- `compare_dataforseo_ai_mentions` — Compare AI visibility for named groups of domains and brands.
 - `compare_semrush_domains` — Compare organic or paid keyword portfolios across domains.
+- `compare_us_legal_provision_states` — Find corresponding provisions across US states. Returned matches do not establish equivalent legal effect.
+- `compare_weather_model_runs` — Compare current weather forecasts with prior model runs using previous-day variable suffixes.
+- `compress_pdf` — Compress a PDF with presets or advanced image, font, and cleanup settings.
+- `connect_ads_account` — Start an Ads authorization through OOMOL Marketplace. Open authorizationUrl when present; an already-authorized account can return active immediately. [write]
+- `connect_social_account` — Start a Social account authorization through OOMOL Marketplace. Open authorizationUrl; the backend completes binding even when the caller stops polling. [write]
+- `convert_csv_to_pdf` — Convert CSV, XLS, or XLSX files to PDF with page selection and sizing options.
+- `convert_images_to_pdf` — Convert one or more JPG, PNG, or TIFF images to PDF.
+- `convert_webpage_to_pdf` — Render a webpage to PDF with CSS media, page layout, and HTML headers and footers.
+- `count_daily_international_jobs` — Count Daily International Jobs matching employment, location, date, salary, and source filters.
+- `count_us_legal_provisions` — Count US legal provisions by corpus, jurisdiction, status, and statutory hierarchy. This endpoint does not accept a search query.
 - `crawl_tavily` — Synchronously crawl a website through Tavily and return page content. Set limit, depth and breadth to bound the crawl; this does not create a background job.
+- `create_ad` — Ad Campaigns. Can spend money or change spend: needs the ads:spend scope and X-Aisa-Confirm: spend; without the header the request is refused with confirmation_required and nothing is sent. Creates a campaign, ad set and ad in one call; it spends its budget once the platform approves it. validateOnly=true checks the request without acting and needs no confirmation. Creates a paid ad with your own creative, building the campaign and ad set it needs or adding it to existing ones. Works across Meta, Google Ads, Pinterest, TikTok, X, LinkedIn, OpenAI Ads (ChatGPT Ads) and Reddit Ads. Per-platform required fields, budget minimums, and video-ad rules are documented on each property below. ### Request shapes The body selects one of these mutually exclusive shapes: Set confirmSpend=true only with explicit permission to change ad spending. [write]
+- `create_ads_ad_set` — Ad Campaigns. Can spend money or change spend: needs the ads:spend scope and X-Aisa-Confirm: spend; without the header the request is refused with confirmation_required and nothing is sent. Creates an ad set (ad group) that can spend from its own or its campaign's budget. Creates an empty ad group under an existing campaign, ready for ads to be added later. The ad group is created WITHOUT an ad (Google Ads compliance row C.190). Ads join it later via `adSetId` on POST /apis/v1/ads/create. Supports Google Ads and Reddit Ads; every other platform returns 501. Reddit Ads (`platform: reddit`) Set confirmSpend=true only with explicit permission to change ad spending. [write]
+- `create_ads_campaign` — Ad Campaigns. Can spend money or change spend: needs the ads:spend scope and X-Aisa-Confirm: spend; without the header the request is refused with confirmation_required and nothing is sent. Creates a campaign on the ad platform; with a budget and an active status it starts spending. validateOnly=true checks the request without acting and needs no confirmation. Creates an empty campaign, paused, so you can add ad sets and ads to it afterwards. Creates a campaign WITHOUT its first ad set / ad, on the platform of the given `connectionId`. Ad sets join it later via `existingCampaignId` on the create endpoints. Created `PAUSED` (TikTok `DISABLE`) unless `status: ACTIVE` where the platform supports it. Set confirmSpend=true only with explicit permission to change ad spending. [write]
+- `create_jina_embeddings` — Compute Jina embedding vectors for supplied text without storing a retrieval index. AISA documents 1024-dimensional output for the supported models; billing is token-based.
+- `create_social_media_upload` — Create a private Social media upload. Upload bytes with the returned method, uploadUrl and headers, then pass mediaId to create_social_post. Alternatively, post a public media URL directly. [write]
+- `create_social_post` — Creates a draft, a scheduled post, or publishes now. Drafts stay in AIsa until scheduled or published. Returns 201, 207 when some platforms failed synchronously, or 202 with status publishing or scheduled while the outcome is pending. A replay of an idempotent request returns 200 with the original post. Use publishNow=true to publish immediately, scheduledFor to schedule, or isDraft=true to save a draft. Account and profile IDs are resolved from owned connections. [write]
+- `decode_carsxe_license_plate` — Look up vehicle attributes and an available VIN from a US license plate and state. The current AISA contract only permits country=US and require_vin=false; it does not expose international VIN-guarantee options.
+- `decode_carsxe_obd_code` — Decode an OBD-II diagnostic trouble code into the supplier's diagnosis text and record date. A code explanation does not identify the failed component with certainty.
+- `decode_ninjas_vin` — Decode a 17-character vehicle identification number through API Ninjas to retrieve manufacturer and vehicle details. This does not provide an ownership or accident-history report.
+- `delete_ad` — Ad Campaigns. Changes the ad account without starting or raising spend; audited. Deletes an ad on the platform while keeping its history, and removes empty parents only when they were created through this API. The ad is deleted on the platform and marked as cancelled in the database. It is preserved for history. OpenAI Ads has no delete API: the ad is archived instead (a terminal state, the closest equivalent). [destructive]
+- `delete_ads_ad_set` — Ad Campaigns. Changes the ad account without starting or raising spend; audited. Deletes an ad set and its ads while keeping the campaign, archiving it instead on platforms without a hard delete. Locally, every Ad document under the ad set is marked `status: cancelled`. Delete is soft on platforms that have no hard delete: LinkedIn moves the campaign to `PENDING_DELETION`, Pinterest and Reddit archive the ad group, and X soft-flags the line item. Google removes the ad group. [destructive]
+- `delete_ads_campaign` — Ad Campaigns. Changes the ad account without starting or raising spend; audited. Deletes a campaign on its platform, including a campaign that never got any ads. Only the campaign itself is sent to the platform: Meta, Google, TikTok, LinkedIn and X delete it. OpenAI, Reddit and Pinterest have no campaign delete and archive it instead (see below). Locally, all Ad documents for this campaign are marked `status: cancelled`. ### Empty campaigns [destructive]
+- `delete_social_post` — Deletes or cancels a post. Published posts return 409 post_published. Deleting a publishing or partial post stops pending platforms; platforms already in flight may still publish. [destructive]
+- `design_fish_voice_previews` — Generate one to four original voice previews from a description. Returns base64 WAV audio synchronously without creating a persistent voice model. Decode each audio_base64 value to save the preview.
+- `disconnect_ads_connection` — Disable an owned Ads connection immediately and schedule upstream disconnection. Check status until disconnected; this does not cancel published or scheduled content. [destructive]
+- `disconnect_social_account` — Disable an owned Social account immediately and schedule upstream disconnection. Check status until disconnected; this does not cancel published or scheduled content. [destructive]
+- `discover_predict_leads_companies` — Discover Companies through PredictLeads.
+- `discover_predict_leads_intelligence` — Discover Intelligence through PredictLeads.
+- `download_openalex_work_content` — Get a hosted download URL for an OpenAlex work's available PDF or compressed TEI XML content. Check the work's has_content flags before requesting a format.
 - `enrich_akta_company` — Retrieve Akta company profile sections, including firmographics, management, products, and financial estimates.
 - `enrich_apollo_organization` — Enrich one organization from its domain using Apollo's global database.
 - `enrich_apollo_organizations` — Enrich multiple organizations from their domains in one Apollo request.
 - `enrich_apollo_people` — Enrich up to ten people from known identifiers in one Apollo request.
 - `enrich_apollo_person` — Enrich one person from known identifiers using Apollo's global database.
+- `enrich_companyenrich_by_properties` — Enrich company by properties through CompanyEnrich.
+- `enrich_companyenrich_companies` — Batch Enrich Companies through CompanyEnrich.
+- `enrich_pdl_person` — Match one professional profile using names, employer, social profile, phone or an email hash, with confidence and required-field controls. Matching below min_likelihood may return 404; this is distinct from the multi-candidate identity action.
+- `estimate_glassdoor_salary` — Estimate Glassdoor Salary through Glassdoor.
+- `extract_context_structured_web_data` — Extract structured data from a website using your JSON Schema, with optional fact checking and controlled link traversal. fact_check returns unsupported fields as null or empty; stop_after_ms is a soft crawl budget.
+- `extract_parallel` — Extract relevant excerpts or full content from up to 20 URLs, guided by an objective and search terms. Return partial results and per-URL errors.
+- `extract_serper_page` — Extract a public HTTPS webpage through Serper, with optional Markdown, links, images, and videos.
 - `extract_tavily` — Extract content from known URLs through Tavily. Inspect failed_results for per-URL failures; use crawl_tavily to discover and retrieve pages from a website.
+- `fetch_byteplus_page` — Extract a page title, clean text, and detected publication time from a URL using BytePlus.
+- `find_companyenrich_similar_companies` — Find Similar Companies through CompanyEnrich.
+- `find_creator_by_email` — Resolve a known email address to its creator identity and platform profile.
 - `find_foreplay_brands` — Find candidate advertising brands associated with a domain.
+- `find_fundable_company` — Find Fundable company identifiers by name, domain, Crunchbase, or LinkedIn reference for funding research.
+- `find_fundable_investor` — Find Fundable investor identifiers by name, domain, Crunchbase, or LinkedIn reference.
+- `find_fundable_person` — Find a Fundable company leader or investor person by name, UUID or professional profile. Use the returned person UUID for person details or individual financing relationships.
+- `find_hunter_work_email` — Find a professional email using a LinkedIn handle or a person's name and company, retaining verification and public sources.
+- `find_icypeas_profile_url` — Resolve a person's profile URL from first and last name plus company or job title.
+- `find_keepa_deals` — Find Keepa deals using price, ranking and availability filters.
+- `find_keepa_products` — Find Keepa products using structured filters and pagination.
+- `find_keepa_sellers` — Find Keepa sellers using structured filters and pagination.
+- `find_listennotes_episodes_by_title` — Find Listen Notes episodes by title, optionally limited to a podcast identified by Listen Notes, Apple Podcasts, Spotify, or RSS.
+- `find_ninjas_ev_charging_stations` — Find EV charging stations through API Ninjas within a coordinate-based search box, with charging-level filters and pagination. This is not a live connector-availability guarantee.
 - `find_similar_creators` — Find creators similar to a seed account with optional audience filters.
+- `find_spyfu_paid_search_competitors` — Discover domains competing for the same paid-search keywords, with country-market and ranking controls. AISA exposes only the first segment of at most 100 competitors, not full pagination. This measures advertising overlap, not backlink or organic-search competition.
+- `find_surf_matched_prediction_markets` — Find corresponding Polymarket and Kalshi markets and their current price spreads. Related matches may have different settlement rules.
+- `find_tomba_article_author_email` — Resolve an article's author and professional email, preserving article metadata and author candidates even when no email is found.
+- `find_twelvedata_fund_identifiers` — Look up fund identifiers and optional Twelve Data plan availability for one required ticker, with exchange, country and identifier filters. FIGI and security-identifier access can depend on the upstream plan. This AISA route cannot list all funds without a symbol.
+- `generate_media_images` — Generate images synchronously with a catalog-listed image model, or request a free cost quote. Output may contain temporary URLs or base64 image data depending on the model. Image counts, dimensions, reference support, and additional options are model-specific.
+- `generate_parallel_findall_spec` — Convert a natural-language research objective into a suggested FindAll specification without starting a run.
+- `geocode_google_address` — Geocode a complete street address or landmark query into Google address components and coordinates. Ambiguous input may return zero or unintended matches.
+- `geocode_google_place` — Resolve a Google place ID from autocomplete or another public place lookup into its address, location, boundaries and place metadata.
+- `geocode_google_with_filters` — Use Google legacy geocoding with address, coordinate, component or place-ID queries and optional address descriptors or building entrances. Omit key for connection-managed credentials; explicit key overrides require your own AISA connection. Upstream business statuses remain visible.
+- `geocode_graphhopper_place` — Find places using GraphHopper's default geocoder with OSM tag, bounds, location-bias and locale controls. This AISA route requires forward geocoding and does not expose alternate providers or reverse=true. Explicit key overrides require your own connection.
+- `get_1688_listing` — Retrieve 1688 product attributes, images, wholesale price tiers, minimum order quantities, supplier information, shipping origin, SKU variants, and available individual SKU offers. Amounts use CNY.
+- `get_1688_listing_rankings` — Retrieve bestselling 1688 products for a completed calendar month or week in Beijing time. Sales, order counts, and GMV are estimates; retain dims.window and dims.date.
+- `get_accuweather_current_conditions` — Get Current Conditions through AccuWeather, preserving upstream metadata.
+- `get_accuweather_daily_forecast` — Get Daily Forecast through AccuWeather, preserving upstream metadata.
+- `get_accuweather_daily_indices` — Get Daily Indices through AccuWeather, preserving upstream metadata.
+- `get_accuweather_historical_current_conditions` — Get Historical Current Conditions through AccuWeather, preserving upstream metadata.
+- `get_accuweather_hourly_forecast` — Get Hourly Forecast through AccuWeather, preserving upstream metadata.
+- `get_accuweather_index` — Get Index through AccuWeather, preserving upstream metadata.
+- `get_accuweather_index_group` — Get Index Group through AccuWeather, preserving upstream metadata.
+- `get_accuweather_location` — Get Location through AccuWeather, preserving upstream metadata.
+- `get_accuweather_radar_satellite_imagery` — Get timestamped radar and satellite image URLs for a discovered AccuWeather location.
+- `get_accuweather_tropical_storm_current_position` — Get Tropical Storm Current Position through AccuWeather, preserving upstream metadata.
+- `get_ad` — Ad Campaigns. Read only. Shows one ad with its creative, targeting, status and performance metrics. ### Google Search ads Google Search ads include current creative.headlines, creative.descriptions and creative.finalUrls, preserving pinnedField. Top-level cachedAt and stale report cache freshness. Google mutations invalidate this read. RSA enrichment requires a stored advertisingChannelType of SEARCH.
+- `get_ad_analytics` — Ad Insights. Read only. Returns one ad's performance summary and daily timeline, with optional audience breakdowns on Meta, TikTok and LinkedIn. It includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta, TikTok and LinkedIn only). If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. ### History
+- `get_ad_review` — Ad Campaigns. Read only. Shows whether the platform approved an ad, where it may not deliver, and every rejection reason, without re-enabling a paused ad. It reads the ad's review verdict from the platform now, including every rejection reason with TikTok's suggestion and the piece of content it refers to. It is read-only, so it works on a paused ad without re-enabling it. Supported on TikTok, Google and Meta.
+- `get_ads_ad_set` — Ad Campaigns. Read only. Shows a Meta ad set's current settings straight from Meta, including its learning phase, budget, schedule and targeting. The ad set is read live from Meta and returned verbatim. The default projection includes: `learning_stage_info`: learning-phase status, LEARNING / SUCCESS / FAIL / WAIVING. Meta omits its `status` key on paused ad sets. delivery settings, budgets and schedule
+- `get_ads_campaign` — Ad Campaigns. Read only. Shows a Meta campaign's current settings straight from Meta, such as its objective, budget, bid strategy, schedule and delivery issues. It reads one campaign live from Meta, returned verbatim, so a caller that knows a campaign id no longer has to page `GET /apis/v1/ads/campaigns` to find it.
+- `get_ads_connection` — Read the current Ads authorization and account connection status. This is optional display refresh; binding completes in the backend.
+- `get_ads_insights` — Ad Insights. Read only. Runs a custom performance query against Meta, Google Ads or TikTok and returns the platform's rows as is, for reports the fixed endpoints don't cover. The account's platform picks the contract. ### Meta (facebook/instagram) Forwards caller-chosen `fields`, `breakdowns` and `filtering` to any Meta insights node and returns Meta's rows verbatim. `objectId` (required) selects the node.
 - `get_ahrefs_domain_rating` — Get Ahrefs Domain Rating and Ahrefs Rank for a domain on a specified date.
 - `get_ahrefs_site_metrics` — Get Ahrefs organic and paid keyword counts, traffic, and traffic value for a domain.
+- `get_alpha_vantage_forex_daily` — Get daily historical foreign-exchange prices for a currency pair through Alpha Vantage.
+- `get_alpha_vantage_forex_intraday` — Get minute-interval historical foreign-exchange prices for a currency pair through Alpha Vantage.
+- `get_alpha_vantage_news_sentiment` — Find financial news with article and asset sentiment through Alpha Vantage, filtered by assets, topics, and publication time.
+- `get_alpha_vantage_stock_intraday` — Get stock prices at minute intervals through Alpha Vantage, with optional historical month, split and dividend adjustment, and extended trading hours.
+- `get_amazon_category_statistics` — Retrieve US Amazon category statistics for a verified Browse Node and reporting scope. Category ancestry resolution may require additional source calls.
+- `get_amazon_keyword_listings` — Retrieve Amazon products associated with a keyword and language. pageSize limits returned rows; this endpoint does not expose pagination.
+- `get_amazon_keyword_metrics` — Retrieve source-observed Amazon keyword metrics for a marketplace and language. Absent metrics remain missing rather than becoming zero.
+- `get_amazon_listing` — Retrieve Amazon product attributes, offers, and related listings with source provenance. Reported sales can be lower bounds; GMV is estimated, and missing periods are not inferred.
+- `get_amazon_listing_history` — Retrieve historical Amazon prices and sales ranks. UTC timestamps, marketplace currency, separate shipping, and missing observations are preserved without interpolation.
+- `get_amazon_listing_keywords` — Retrieve Amazon listing keywords, ranking and source keyword flags. A full page can return a cursor whose next page is empty.
+- `get_amazon_listing_reviews` — Collect Amazon reviews by star rating and reviewer filters. Collection commonly takes 30-120 seconds; small quotas do not reduce the source's ten-review page cost.
+- `get_amazon_related_keywords` — Retrieve related Amazon search terms and available metrics. pageSize limits returned rows; this endpoint does not expose pagination.
+- `get_amazon_shop` — Retrieve Amazon US seller information and feedback. Feedback rates use a 0-100 scale; observed product counts do not guarantee complete or current inventory.
 - `get_analyst_estimates` — Get analyst estimates for a ticker and reporting period.
+- `get_api_sports_afl_game_player_statistics` — Get AFL player statistics by date or one to ten game IDs.
+- `get_api_sports_afl_game_quarters` — Get AFL quarter scores by game ID, multiple game IDs, or date.
+- `get_api_sports_afl_standings` — Get AFL standings by league and season, optionally filtered to a team.
+- `get_api_sports_football_countries` — Query API Sports football countries, preserving paging and upstream errors.
+- `get_api_sports_football_fixtures` — Query API Sports football fixtures, preserving paging and upstream errors.
+- `get_api_sports_football_fixtures_events` — Query API Sports football fixtures events, preserving paging and upstream errors.
+- `get_api_sports_football_fixtures_headtohead` — Query API Sports football fixtures headtohead, preserving paging and upstream errors.
+- `get_api_sports_football_fixtures_lineups` — Query API Sports football fixtures lineups, preserving paging and upstream errors.
+- `get_api_sports_football_fixtures_players` — Query API Sports football fixtures players, preserving paging and upstream errors.
+- `get_api_sports_football_fixtures_rounds` — Query API Sports football fixtures rounds, preserving paging and upstream errors.
+- `get_api_sports_football_fixtures_statistics` — Query API Sports football fixtures statistics, preserving paging and upstream errors.
+- `get_api_sports_football_injuries` — Query API Sports football injuries, preserving paging and upstream errors.
+- `get_api_sports_football_leagues` — Query API Sports football leagues, preserving paging and upstream errors.
+- `get_api_sports_football_players` — Query API Sports football players, preserving paging and upstream errors.
+- `get_api_sports_football_players_profiles` — Query API Sports football players profiles, preserving paging and upstream errors.
+- `get_api_sports_football_players_seasons` — Query API Sports football players seasons, preserving paging and upstream errors.
+- `get_api_sports_football_players_squads` — Query API Sports football players squads, preserving paging and upstream errors.
+- `get_api_sports_football_players_teams` — Query API Sports football players teams, preserving paging and upstream errors.
+- `get_api_sports_football_players_top_assists` — Query API Sports football players top assists, preserving paging and upstream errors.
+- `get_api_sports_football_players_top_scorers` — Query API Sports football players top scorers, preserving paging and upstream errors.
+- `get_api_sports_football_predictions` — Get supplier predictions and comparisons for a football fixture through API Sports. Predictions are estimates and do not guarantee match outcomes.
+- `get_api_sports_football_sidelined` — Get football player or coach absence records through API Sports.
+- `get_api_sports_football_teams` — Query API Sports football teams, preserving paging and upstream errors.
+- `get_api_sports_football_teams_seasons` — Query API Sports football teams seasons, preserving paging and upstream errors.
+- `get_api_sports_football_teams_statistics` — Query API Sports football teams statistics, preserving paging and upstream errors.
+- `get_api_sports_football_transfers` — Query API Sports football transfers, preserving paging and upstream errors.
+- `get_api_sports_football_trophies` — Get football player or coach trophy records through API Sports, including batch lookups of up to 20 IDs per list.
+- `get_api_sports_football_venues` — Query API Sports football venues, preserving paging and upstream errors.
+- `get_api_sports_mma_fight_fighter_statistics` — Get fighter statistics for MMA fights selected by date, a fight ID, or hyphen-separated fight IDs through API Sports.
+- `get_api_sports_mma_fight_results` — Get MMA fight results by date, a fight ID, or hyphen-separated fight IDs through API Sports.
+- `get_api_sports_mma_fighter_records` — Get an MMA fighter's career record through API Sports.
 - `get_apollo_job_postings` — List live job postings for an Apollo organization.
 - `get_apollo_organization` — Get one complete organization record from Apollo's global database.
 - `get_balance_sheets` — Get standardized balance sheets for a company.
+- `get_bilibili_hot_search` — Get public Bilibili hot-search terms through AIsa's TikHub source. Defaults to 10 results and supports up to 50.
+- `get_brave_place_descriptions` — Read public descriptions for place IDs returned by Brave searches.
+- `get_brave_places` — Read public place details for IDs returned by Brave web or place searches.
+- `get_brave_rich` — Read real-time Brave rich results using a callback key from a previous web search with enableRichCallback enabled. Marketplace accepts only callback tokens returned to the same owner; your own connection uses upstream callback keys.
+- `get_brave_search_context` — Retrieve source-linked text snippets for grounded research with configurable token and source budgets.
+- `get_brazil_company_office` — Look up a Brazilian company office by CNPJ, including registration, address, ownership, and activities. A not-found response may still incur upstream usage.
+- `get_carsxe_model_configuration` — Find the best vehicle configuration by model year, manufacturer, model and optional trim, without requiring a VIN. AISA fixes include_all_trim_options=false; do not rely on exhaustive trim enumeration.
+- `get_carsxe_vehicle_history` — Retrieve available title, insurance, salvage and vehicle-brand history for a VIN. An empty or incomplete report does not prove an incident-free vehicle.
+- `get_carsxe_vehicle_market_value` — Get available auction, retail, trade-in and loan valuations for a VIN, with optional mileage, condition and US-state adjustments. Values are supplier estimates, not guaranteed offers.
+- `get_carsxe_vehicle_specs` — Get VIN-based vehicle specifications, colors, equipment and available warranties. AISA fixes international fallback off and extended-source retrieval off; returned additional fields are preserved.
 - `get_cash_flow_statements` — Get standardized cash-flow statements for a company.
+- `get_central_bank_rate_history` — Read historical central-bank policy rates, or continue a previous page using its cursor.
+- `get_central_bank_rates` — Discover current central-bank policy rates and bank codes, optionally filtered by one bank.
+- `get_climate_projections` — Compare daily climate-model projections for selected models and dates; these are model projections, not observations.
 - `get_company_facts` — Get standardized SEC company facts by ticker or CIK.
+- `get_company_guidance` — Get reported company guidance with metric and period filters.
+- `get_company_kpis` — Get company-specific operating performance indicators.
 - `get_company_news` — Get recent financial news, optionally filtered by ticker.
+- `get_company_non_gaap_metrics` — Get reported non-GAAP financial metrics.
+- `get_companyenrich_company_workforce` — Get Company Workforce through CompanyEnrich.
+- `get_context_brand` — Get brand identity and design assets using a domain, name, work email, stock ticker, direct URL or transaction descriptor. Transaction matching supports location, merchant-category and phone hints, with optional additional verification.
+- `get_context_website_styleguide` — Extract a website's colors, typography and design components. Supply exactly one domain or direct page URL and optionally choose light or dark appearance. Results are JSON design metadata and asset references.
+- `get_crawl4ai_github_trending` — Discover repositories on GitHub Trending for the requested ranking period.
+- `get_crawl4ai_producthunt_launches` — Discover today's Product Hunt launches and enrich each product from its public detail page.
+- `get_creator_analytics` — Get creator performance and audience analytics, optionally including lookalikes.
+- `get_creator_connected_socials` — Discover verified connected accounts across social platforms from one creator handle.
+- `get_creator_full_profile` — Get creator identity, contacts, platform profiles, and audience analytics in one lookup.
+- `get_creator_identity_profile` — Get creator identity, contact-email status, and basic platform statistics.
+- `get_creator_post_details` — Get post metadata, paginated comments, transcript, or Instagram/TikTok audio data.
+- `get_creator_raw_profile` — Get the platform-native creator profile without the full audience enrichment cost.
 - `get_credits_balance` — Get the current AIsa account, key, and go-to-market credit balances.
-- `get_crypto_coin` — Get metadata, market data, and community signals for one coin.
-- `get_crypto_market_chart` — Get price, market-cap, and volume history for a coin over a Unix-time range.
-- `get_crypto_news` — Get recent cryptocurrency news with optional coin and language filters.
+- `get_crypto_coin` — Get metadata, market data, categories, and trading pairs for one coin.
+- `get_crypto_coin_history` — Get a historical coin price, market-cap, and volume snapshot for a calendar date.
+- `get_crypto_coin_tickers` — Compare a coin's trading pairs across exchanges, with liquidity depth and pagination.
+- `get_crypto_exchange` — Research an exchange's trust score, volume, metadata, and trading pairs.
+- `get_crypto_exchange_tickers` — List and filter an exchange's trading pairs, including liquidity depth and pagination.
+- `get_crypto_exchange_volume_chart` — Get historical trading volume for an exchange over a lookback window.
+- `get_crypto_market_chart` — Get price, market-cap, and volume history for a coin over a date or Unix-time range.
+- `get_crypto_market_chart_days` — Get a coin's price, market-cap, and volume history over a lookback window.
 - `get_crypto_ohlc` — Get open, high, low, and close price candles for one coin.
 - `get_crypto_prices` — Get current prices and optional market metrics for multiple coins.
+- `get_daily_international_job_field_statistics` — Get value statistics for a Daily International Jobs field across the supplier dataset. This endpoint does not aggregate a filtered search.
+- `get_dataforseo_ai_chat_gpt_llm_scraper` — Research AI ChatGPT llm scraper through DataForSEO.
 - `get_dataforseo_ai_gemini_search` — Get Gemini search answers through DataForSEO.
 - `get_dataforseo_ai_keyword_volume` — Get AI-search volume estimates for up to 1,000 keywords.
+- `get_dataforseo_ai_llm_mentions_cross_aggregated_metrics` — Research AI mentions cross aggregated metrics through DataForSEO.
+- `get_dataforseo_ai_llm_mentions_search_mentions` — Research AI mentions search mentions through DataForSEO.
+- `get_dataforseo_ai_llm_mentions_target_metrics` — Research AI mentions target metrics through DataForSEO.
+- `get_dataforseo_ai_llm_mentions_target_metrics_lite` — Research AI mentions target metrics lite through DataForSEO.
+- `get_dataforseo_ai_llm_mentions_top_mentioned_brand_categories` — Research AI mentions top mentioned brand categories through DataForSEO.
+- `get_dataforseo_ai_llm_mentions_top_mentioned_brand_categories_lite` — Research AI mentions top mentioned brand categories lite through DataForSEO.
+- `get_dataforseo_ai_llm_mentions_top_mentioned_brands_lite` — Research AI mentions top mentioned brands lite through DataForSEO.
+- `get_dataforseo_ai_llm_mentions_top_mentioned_domains` — Research AI mentions top mentioned domains through DataForSEO.
+- `get_dataforseo_ai_llm_mentions_top_mentioned_domains_lite` — Research AI mentions top mentioned domains lite through DataForSEO.
+- `get_dataforseo_ai_llm_mentions_top_mentioned_pages` — Research AI mentions top mentioned pages through DataForSEO.
+- `get_dataforseo_ai_llm_mentions_top_mentioned_pages_lite` — Research AI mentions top mentioned pages lite through DataForSEO.
+- `get_dataforseo_ai_mentions_delta` — Compare changes in AI mentions across time periods.
+- `get_dataforseo_ai_mentions_history` — Get historical AI mentions for a domain or brand.
+- `get_dataforseo_ai_mentions_new_lost` — Track new and lost AI mentions over time.
 - `get_dataforseo_ai_mentions_top_brands` — Get AI mentioned brands through DataForSEO.
 - `get_dataforseo_ai_mentions_top_pages` — Get AI cited pages through DataForSEO.
 - `get_dataforseo_amazon_asin` — Get Amazon product details through DataForSEO.
 - `get_dataforseo_amazon_products` — Get Amazon product search results through DataForSEO.
 - `get_dataforseo_amazon_sellers` — Get Amazon product sellers through DataForSEO.
+- `get_dataforseo_app_data_google_app_listings_search` — Research Google Play app listings search through DataForSEO.
 - `get_dataforseo_app_store_listings` — Get App Store listings through DataForSEO.
+- `get_dataforseo_apple_app_info` — Read the state and structured results of a DataForSEO App Store app details task. Failed tasks retain their upstream error details in raw.
+- `get_dataforseo_apple_app_list` — Read the state and structured results of a DataForSEO App Store charts task. Failed tasks retain their upstream error details in raw.
+- `get_dataforseo_apple_app_reviews` — Read the state and structured results of a DataForSEO App Store app reviews task. Failed tasks retain their upstream error details in raw.
+- `get_dataforseo_apple_app_searches` — Read the state and structured results of a DataForSEO App Store app search task. Failed tasks retain their upstream error details in raw.
+- `get_dataforseo_backlink_gap` — Compare referring domains linking to selected websites or pages.
+- `get_dataforseo_backlink_history` — Get historical backlink metrics for a domain.
+- `get_dataforseo_backlinks_anchors` — Research backlinks anchors through DataForSEO.
+- `get_dataforseo_backlinks_bulk_backlinks` — Research backlinks bulk backlinks through DataForSEO.
+- `get_dataforseo_backlinks_bulk_new_lost_backlinks` — Research backlinks bulk new lost backlinks through DataForSEO.
+- `get_dataforseo_backlinks_bulk_new_lost_referring_domains` — Research backlinks bulk new lost referring domains through DataForSEO.
+- `get_dataforseo_backlinks_bulk_pages_summary` — Research backlinks bulk pages summary through DataForSEO.
+- `get_dataforseo_backlinks_bulk_ranks` — Research backlinks bulk ranks through DataForSEO.
+- `get_dataforseo_backlinks_bulk_referring_domains` — Research backlinks bulk referring domains through DataForSEO.
 - `get_dataforseo_backlinks_bulk_spam_score` — Get bulk backlink spam scores through DataForSEO.
+- `get_dataforseo_backlinks_competitors` — Research backlinks competitors through DataForSEO.
+- `get_dataforseo_backlinks_domain_pages` — Research backlinks domain pages through DataForSEO.
 - `get_dataforseo_backlinks_domain_pages_summary` — Get page backlink summaries through DataForSEO.
+- `get_dataforseo_backlinks_new_lost` — Track newly acquired and lost backlinks over time.
 - `get_dataforseo_backlinks_page_intersection` — Get referring page intersections through DataForSEO.
 - `get_dataforseo_backlinks_referring_domains` — Get referring domains through DataForSEO.
+- `get_dataforseo_backlinks_referring_networks` — Research backlinks referring networks through DataForSEO.
+- `get_dataforseo_backlinks_summary` — Research backlinks summary through DataForSEO.
+- `get_dataforseo_backlinks_timeseries_summary` — Research backlinks timeseries summary through DataForSEO.
+- `get_dataforseo_baidu_organic` — Read the state and structured results of a DataForSEO Baidu organic search task. Failed tasks retain their upstream error details in raw.
+- `get_dataforseo_bing_organic` — Poll structured bing Organic Standard results for up to thirty days. Keep the original task ID and connection; pending and failed task details remain visible.
+- `get_dataforseo_bing_organic_html` — Poll original HTML pages from a bing Organic Standard task. HTML results are retained for seven days; keep the original task ID and connection. Pending and failed task details remain visible.
+- `get_dataforseo_bing_organic_html_live` — Retrieve original bing search-page HTML synchronously for evidence preservation or custom parsing. HTML is returned inside the JSON task envelope, not downloaded as a binary file. Each crawled page can increase the charge.
+- `get_dataforseo_business_google_hotel_info` — Research business google hotel info through DataForSEO.
+- `get_dataforseo_business_google_hotel_searches` — Research business google hotel searches through DataForSEO.
+- `get_dataforseo_chatgpt_citation_scraper` — Retrieve the state and original HTML of the matching ChatGPT citation scraper task. Expanded citation bars are available only when enabled at submission; failed tasks retain upstream details.
+- `get_dataforseo_content_analysis_rating_distribution` — Research content analysis rating distribution through DataForSEO.
+- `get_dataforseo_content_analysis_search` — Research content analysis search through DataForSEO.
+- `get_dataforseo_content_analysis_summary` — Research content analysis summary through DataForSEO.
 - `get_dataforseo_content_category_trends` — Get content category trends through DataForSEO.
 - `get_dataforseo_content_phrase_trends` — Get content mention trends through DataForSEO.
 - `get_dataforseo_content_sentiment` — Get content sentiment through DataForSEO.
+- `get_dataforseo_domain_technologies_aggregation_technologies` — Research website technology aggregation technologies through DataForSEO.
+- `get_dataforseo_domain_technologies_domain_technologies` — Research website technology website technology through DataForSEO.
+- `get_dataforseo_domain_technologies_domains_by_html_terms` — Research website technology domains by html terms through DataForSEO.
+- `get_dataforseo_domain_technologies_domains_by_technology` — Research website technology domains by technology through DataForSEO.
+- `get_dataforseo_domain_technologies_technologies_summary` — Research website technology technologies summary through DataForSEO.
+- `get_dataforseo_domain_technologies_technology_stats` — Research website technology technology stats through DataForSEO.
+- `get_dataforseo_domain_whois_overview` — Research domain whois overview through DataForSEO.
+- `get_dataforseo_gemini_citation_scraper` — Retrieve the state and original HTML of the matching Gemini citation scraper task. Expanded citation bars are available only when enabled at submission; failed tasks retain upstream details.
+- `get_dataforseo_google_app_info` — Read the state and structured results of a DataForSEO Google Play app details task. Failed tasks retain their upstream error details in raw.
+- `get_dataforseo_google_app_list` — Read the state and structured results of a DataForSEO Google Play charts task. Failed tasks retain their upstream error details in raw.
+- `get_dataforseo_google_app_reviews` — Read the state and structured results of a DataForSEO Google Play app reviews task. Failed tasks retain their upstream error details in raw.
+- `get_dataforseo_google_app_searches` — Read the state and structured results of a DataForSEO Google Play app search task. Failed tasks retain their upstream error details in raw.
 - `get_dataforseo_google_business_info` — Get Google Business profiles through DataForSEO.
 - `get_dataforseo_google_business_questions` — Get Google Business questions and answers through DataForSEO.
+- `get_dataforseo_google_business_reviews` — Read the state and structured results of a DataForSEO Google business reviews task. Failed tasks retain their upstream error details in raw.
+- `get_dataforseo_google_business_updates` — Read the state and structured results of a DataForSEO Google business updates task. Failed tasks retain their upstream error details in raw.
+- `get_dataforseo_google_extended_reviews` — Read the state and structured results of a DataForSEO extended Google business reviews task. Failed tasks retain their upstream error details in raw.
+- `get_dataforseo_google_jobs` — Read the state and structured results of a DataForSEO Google Jobs search task. Failed tasks retain their upstream error details in raw.
+- `get_dataforseo_google_organic` — Poll structured google Organic Standard results for up to thirty days. Keep the original task ID and connection; pending and failed task details remain visible.
+- `get_dataforseo_google_organic_html` — Poll original HTML pages from a google Organic Standard task. HTML results are retained for seven days; keep the original task ID and connection. Pending and failed task details remain visible.
+- `get_dataforseo_google_organic_html_live` — Retrieve original google search-page HTML synchronously for evidence preservation or custom parsing. HTML is returned inside the JSON task envelope, not downloaded as a binary file. Each crawled page can increase the charge.
+- `get_dataforseo_google_search_by_image` — Read the state and structured results of a DataForSEO Google reverse image search task. Failed tasks retain their upstream error details in raw.
+- `get_dataforseo_google_shopping_product_info` — Read the state and structured results of a DataForSEO Google Shopping product details task. Failed tasks retain their upstream error details in raw.
+- `get_dataforseo_google_shopping_products` — Read the state and structured results of a DataForSEO Google Shopping product search task. Failed tasks retain their upstream error details in raw.
+- `get_dataforseo_google_shopping_reviews` — Read the state and structured results of a DataForSEO Google Shopping product reviews task. Failed tasks retain their upstream error details in raw.
+- `get_dataforseo_google_shopping_sellers` — Read the state and structured results of a DataForSEO Google Shopping sellers task. Failed tasks retain their upstream error details in raw.
+- `get_dataforseo_keyword_gap` — Find shared or missing Google keywords between two domains.
 - `get_dataforseo_keyword_trends` — Compare popularity over time for up to five keywords using DataForSEO Trends for Google Search, News, or Shopping. These are DataForSEO estimates, not original Google Trends data or absolute search volumes.
+- `get_dataforseo_keywords_bing_audience_estimation` — Research Bing keyword audience estimation through DataForSEO.
+- `get_dataforseo_keywords_bing_keyword_performance` — Research Bing keyword keyword performance through DataForSEO.
+- `get_dataforseo_keywords_bing_keyword_suggestions_for_url` — Research Bing keyword keyword suggestions for url through DataForSEO.
+- `get_dataforseo_keywords_bing_keywords_for_keywords` — Research Bing keyword keywords for keywords through DataForSEO.
 - `get_dataforseo_keywords_bing_keywords_for_site` — Get Bing keywords for a website through DataForSEO.
+- `get_dataforseo_keywords_bing_search_volume` — Research Bing keyword search volume through DataForSEO.
+- `get_dataforseo_keywords_bing_search_volume_history` — Research Bing keyword search volume history through DataForSEO.
+- `get_dataforseo_keywords_clickstream_data_bulk_search_volume` — Research keyword clickstream data bulk search volume through DataForSEO.
+- `get_dataforseo_keywords_clickstream_data_dataforseo_search_volume` — Research keyword clickstream data dataforseo search volume through DataForSEO.
+- `get_dataforseo_keywords_clickstream_data_global_search_volume` — Research keyword clickstream data global search volume through DataForSEO.
+- `get_dataforseo_keywords_dataforseo_trends_demography` — Research keyword dataforseo trends demography through DataForSEO.
+- `get_dataforseo_keywords_dataforseo_trends_merged_data` — Research keyword dataforseo trends merged data through DataForSEO.
+- `get_dataforseo_keywords_dataforseo_trends_subregion_interests` — Research keyword dataforseo trends subregion interests through DataForSEO.
+- `get_dataforseo_keywords_google_ads_ad_traffic_by_keywords` — Research Google Ads keyword ad traffic by keywords through DataForSEO.
+- `get_dataforseo_keywords_google_ads_keywords_for_keywords` — Research Google Ads keyword keywords for keywords through DataForSEO.
+- `get_dataforseo_keywords_google_ads_keywords_for_site` — Research Google Ads keyword keywords for site through DataForSEO.
+- `get_dataforseo_keywords_google_ads_search_volume` — Research Google Ads keyword search volume through DataForSEO.
+- `get_dataforseo_keywords_google_trends_explore` — Research keyword google trends explore through DataForSEO.
 - `get_dataforseo_labs_amazon_bulk_search_volume` — Get Amazon search volumes through DataForSEO.
 - `get_dataforseo_labs_amazon_product_competitors` — Get Amazon product competitors through DataForSEO.
 - `get_dataforseo_labs_amazon_product_keyword_intersections` — Get Amazon keyword intersections through DataForSEO.
@@ -93,43 +360,242 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_dataforseo_labs_app_store_app_competitors` — Get App Store competitors through DataForSEO.
 - `get_dataforseo_labs_app_store_bulk_app_metrics` — Get App Store app metrics through DataForSEO.
 - `get_dataforseo_labs_app_store_keywords_for_app` — Get App Store app keywords through DataForSEO.
+- `get_dataforseo_labs_apple_app_intersection` — Research Apple Labs app intersection through DataForSEO.
 - `get_dataforseo_labs_bulk_keyword_difficulty` — Get Google keyword difficulty through DataForSEO.
 - `get_dataforseo_labs_competitors_domain` — Get Google domain competitors through DataForSEO.
 - `get_dataforseo_labs_domain_metrics_by_categories` — Get Google domain metrics by category through DataForSEO.
+- `get_dataforseo_labs_google_bulk_app_metrics` — Research Google Labs bulk app metrics through DataForSEO.
+- `get_dataforseo_labs_google_bulk_traffic_estimation` — Research Google Labs bulk traffic estimation through DataForSEO.
+- `get_dataforseo_labs_google_categories_for_domain` — Research Google Labs categories for domain through DataForSEO.
+- `get_dataforseo_labs_google_categories_for_keywords` — Research Google Labs categories for keywords through DataForSEO.
+- `get_dataforseo_labs_google_domain_rank_overview` — Research Google Labs domain rank overview through DataForSEO.
+- `get_dataforseo_labs_google_historical_bulk_traffic_estimation` — Research Google Labs historical bulk traffic estimation through DataForSEO.
+- `get_dataforseo_labs_google_historical_keyword_data` — Research Google Labs historical keyword data through DataForSEO.
+- `get_dataforseo_labs_google_historical_rank_overview` — Research Google Labs historical rank overview through DataForSEO.
+- `get_dataforseo_labs_google_historical_search_volume` — Research Google Labs historical search volume through DataForSEO.
+- `get_dataforseo_labs_google_historical_serps` — Research Google Labs historical serps through DataForSEO.
+- `get_dataforseo_labs_google_keyword_suggestions` — Research Google Labs keyword suggestions through DataForSEO.
+- `get_dataforseo_labs_google_keywords_for_app` — Research Google Labs keywords for app through DataForSEO.
+- `get_dataforseo_labs_google_keywords_for_site` — Research Google Labs keywords for site through DataForSEO.
+- `get_dataforseo_labs_google_page_intersection` — Research Google Labs page intersection through DataForSEO.
 - `get_dataforseo_labs_google_play_app_competitors` — Get Google Play competitors through DataForSEO.
 - `get_dataforseo_labs_google_play_app_intersection` — Get Google Play keyword intersections through DataForSEO.
+- `get_dataforseo_labs_google_ranked_keywords` — Research Google Labs ranked keywords through DataForSEO.
+- `get_dataforseo_labs_google_related_keywords` — Research Google Labs related keywords through DataForSEO.
+- `get_dataforseo_labs_google_relevant_pages` — Research Google Labs relevant pages through DataForSEO.
+- `get_dataforseo_labs_google_search_intent` — Research Google Labs search intent through DataForSEO.
+- `get_dataforseo_labs_google_serp_competitors` — Research Google Labs serp competitors through DataForSEO.
+- `get_dataforseo_labs_google_subdomains` — Research Google Labs subdomains through DataForSEO.
+- `get_dataforseo_labs_google_top_searches` — Research Google Labs top searches through DataForSEO.
 - `get_dataforseo_labs_keyword_ideas` — Get Google keyword ideas through DataForSEO.
 - `get_dataforseo_labs_keyword_overview` — Get Google keyword overview through DataForSEO.
 - `get_dataforseo_labs_keywords_for_categories` — Get Google category keywords through DataForSEO.
-- `get_dataforseo_llm_mention_metrics` — Aggregate LLM mention metrics for domains and keyword entities.
-- `get_dataforseo_llm_mention_top_domains` — Get domains cited most often in LLM responses matching target entities.
+- `get_dataforseo_llm_mention_metrics` — Aggregate AI mentions with initial dataset filters.
+- `get_dataforseo_llm_mention_top_domains` — Rank domains cited in AI mentions with per-list limits.
+- `get_dataforseo_naver_organic` — Read the state and structured results of a DataForSEO Naver organic search task. Failed tasks retain their upstream error details in raw.
+- `get_dataforseo_onpage` — Poll a DataForSEO website crawl and read its domain summary. Completed crawls can be explored with the crawl report action.
 - `get_dataforseo_onpage_lighthouse` — Get Lighthouse audits through DataForSEO.
+- `get_dataforseo_onpage_report` — Read a page, link, resource, duplicate, content, markup, keyword or loading report from a DataForSEO crawl, with report-specific filters and pagination.
+- `get_dataforseo_pinterest_pin_counts` — Count Pinterest saves for up to ten webpage URLs through DataForSEO. Each URL is billed separately; inspect task status codes for partial failures.
 - `get_dataforseo_reference_data` — Look up DataForSEO model names, location codes, categories, or supported filter fields before a research query.
+- `get_dataforseo_serp_bing_organic` — Research Bing organic through DataForSEO.
+- `get_dataforseo_serp_google_ads_advertisers` — Find Google Ads advertisers by keyword and location, returning advertiser IDs for ad creative research.
+- `get_dataforseo_serp_google_ads_search` — Research Google ad creatives by advertiser or domain, with location, platform, format, date-range, and result-depth filters.
 - `get_dataforseo_serp_google_ai_mode` — Get Google AI Mode answers through DataForSEO.
+- `get_dataforseo_serp_google_autocomplete` — Research Google autocomplete through DataForSEO.
+- `get_dataforseo_serp_google_dataset_info` — Research Google dataset info through DataForSEO.
+- `get_dataforseo_serp_google_dataset_search` — Research Google dataset search through DataForSEO.
+- `get_dataforseo_serp_google_events` — Research Google events through DataForSEO.
+- `get_dataforseo_serp_google_finance_explore` — Research Google finance explore through DataForSEO.
 - `get_dataforseo_serp_google_finance_markets` — Get Google Finance markets through DataForSEO.
 - `get_dataforseo_serp_google_finance_quote` — Get Google Finance quotes through DataForSEO.
+- `get_dataforseo_serp_google_finance_ticker_search` — Research Google finance ticker search through DataForSEO.
 - `get_dataforseo_serp_google_images` — Get Google image search results through DataForSEO.
 - `get_dataforseo_serp_google_local_finder` — Get Google local search results through DataForSEO.
+- `get_dataforseo_serp_google_maps` — Research Google maps through DataForSEO.
 - `get_dataforseo_serp_google_news` — Get Google news results through DataForSEO.
+- `get_dataforseo_serp_google_organic` — Research Google organic through DataForSEO.
+- `get_dataforseo_serp_yahoo_organic` — Research Yahoo organic through DataForSEO.
 - `get_dataforseo_serp_youtube_comments` — Get YouTube comments through DataForSEO.
 - `get_dataforseo_serp_youtube_organic` — Get YouTube search results through DataForSEO.
 - `get_dataforseo_serp_youtube_subtitles` — Get YouTube subtitles through DataForSEO.
 - `get_dataforseo_serp_youtube_video_info` — Get YouTube video details through DataForSEO.
+- `get_dataforseo_seznam_organic` — Read the state and structured results of a DataForSEO Seznam organic search task. Failed tasks retain their upstream error details in raw.
+- `get_dataforseo_tripadvisor_reviews` — Read the state and structured results of a DataForSEO Tripadvisor reviews task. Failed tasks retain their upstream error details in raw.
+- `get_dataforseo_tripadvisor_search` — Read the state and structured results of a DataForSEO Tripadvisor business search task. Failed tasks retain their upstream error details in raw.
+- `get_dataforseo_trustpilot_reviews` — Read the state and structured results of a DataForSEO Trustpilot reviews task. Failed tasks retain their upstream error details in raw.
+- `get_dataforseo_trustpilot_search` — Read the state and structured results of a DataForSEO Trustpilot business search task. Failed tasks retain their upstream error details in raw.
+- `get_douban_movie_review` — Read a public Douban long review using the cid or review URL returned by the review list.
+- `get_douban_subject` — Read a public Douban movie or TV subject's details using the ID from its public page.
+- `get_eodhd_macro_indicator` — Get a country's macroeconomic indicator history, including GDP, inflation, employment, population, or trade measures.
+- `get_eodhd_mutual_fund` — Get global mutual fund fundamentals, allocation, fees, holdings, and related fund research sections.
 - `get_exa_contents` — Retrieve text and metadata for known URLs through Exa. Inspect statuses for per-URL failures, including when other URLs succeed.
+- `get_exa_research` — Get the Exa research task state, output and final pricing. Check outputExpired and job errors even after completion.
+- `get_fiber_live_company_profile` — Fetch a company's current LinkedIn profile and optionally company-wide historical headcount. Live retrieval may fall back to cached data: preserve advice and isCached404 rather than treating every HTTP 200 as a fresh observation. This action does not reveal personal contact details.
+- `get_fiber_live_person_profile` — Fetch a public professional LinkedIn profile, optionally expanding schools and employers. This endpoint does not reveal email addresses or phone numbers. A not-found result or cached fallback remains visible through found, isCached404 and advice; live freshness is not guaranteed.
 - `get_filing_items` — Get selected sections and exhibits from a company filing.
 - `get_financial_metrics` — Get historical valuation, profitability, growth, and leverage metrics.
 - `get_financial_metrics_snapshot` — Get the latest available financial metrics for a company.
+- `get_financial_statements` — Read combined income, balance sheet, and cash-flow statements with identifier, date, and cursor filters.
+- `get_finnhub_company_financial_metrics` — Get Finnhub company valuation, financial ratios, and historical metric series.
+- `get_finnhub_company_profile` — Look up a Finnhub company profile by exactly one ticker, ISIN, or CUSIP.
+- `get_finnhub_market_status` — Check whether a Finnhub exchange is open, including its session, holiday, and timezone.
+- `get_finnhub_quote` — Get the latest Finnhub quote, price change, and trading range for a market symbol.
+- `get_finnhub_quotes` — Get Finnhub quotes for up to ten symbols, preserving per-symbol results and missing counts.
+- `get_finnhub_reported_financials` — Read Finnhub SEC financial reports with optional statement details and explicit truncation metadata.
 - `get_firecrawl_batch_scrape` — Get a Firecrawl task state and results. Check outputExpired and job errors even when the task has finished.
 - `get_firecrawl_crawl` — Get a Firecrawl task state and results. Check outputExpired and job errors even when the task has finished.
 - `get_foreplay_brand_ads` — List ads for one or more known Foreplay brand IDs.
 - `get_foreplay_brand_analytics` — Get daily running-ad distribution and creative velocity for a brand page.
+- `get_fred_category` — Read a FRED category, using the root category when no ID is supplied.
+- `get_fred_observations` — Read FRED observations with date, vintage, frequency, and unit transformations.
+- `get_fred_release` — Read metadata for a FRED economic data release.
+- `get_fred_release_dates` — List FRED economic release dates and publication metadata.
+- `get_fred_release_tables` — Explore a FRED release table tree and optionally include observation values.
+- `get_fred_series` — Get FRED series metadata, units, and observation coverage.
+- `get_fred_series_release` — Find the source release for a FRED economic series.
+- `get_fred_source` — Read metadata about an original FRED data source.
+- `get_fundable_company` — Get a company's funding profile through Fundable using a known identifier.
+- `get_fundable_deal` — Get a Fundable financing round by its UUID from a company or deal search.
+- `get_fundable_investor` — Get an investor profile through Fundable using a known identifier.
+- `get_fundable_person` — Retrieve a Fundable person by person UUID or professional profile identifier. Use a person identifier returned by person discovery, not a company or institutional investor UUID.
+- `get_geofred_regional_data` — Compare a cross-section of regional economic data using a series group, date, frequency, units, and seasonality.
+- `get_geofred_series_data` — Read regional economic observations for a FRED series and optional date range. Not every FRED series has geographic data.
+- `get_geofred_series_group` — Discover the regional series group, supported dates, units, frequency, and seasonality for a FRED series.
+- `get_geofred_shapes` — Get public GeoJSON region boundaries for a selected geographic type. Geometry is returned as published without coordinate conversion.
+- `get_glassdoor_company_overview` — Get Glassdoor Company Overview through Glassdoor.
+- `get_glassdoor_company_salary` — Get Glassdoor Company Salaries through Glassdoor.
+- `get_google_location_time_zone` — Find the IANA timezone and standard/DST offsets for a location at a Unix timestamp. The supplied date determines daylight-saving behavior; this is not a fixed longitude-derived offset.
+- `get_graphhopper_custom_route` — Calculate a car route from longitude,latitude coordinate pairs, with optional speed/priority rules and GeoJSON custom areas. Preserve ch.disable=true for custom or advanced routing. AISA does not expose waypoint optimization or non-car profiles.
+- `get_graphhopper_isochrones` — Calculate car-accessibility polygons and nested reachability bands from a point, or reverse-flow areas that can reach it. AISA requires a time_limit from 60 to 600 seconds in one-minute steps; retain optional distance_limit without claiming a distance-only branch.
+- `get_graphhopper_route_from_strings` — Calculate a car route from latitude,longitude waypoint strings, preserving dotted advanced-option keys. AISA exposes only optimize='false'. Flexible routing options require ch.disable=true; geometry can be encoded or explicit coordinates.
+- `get_historical_weather_forecast` — Retrieve archived weather-model forecasts for a date range; this is different from reanalysis observations.
+- `get_imdb_category_news` — Read IMDb news for movies, television, celebrities, or top stories.
+- `get_imdb_streaming_picks` — Read IMDb's streaming recommendations for a supported language and region.
+- `get_imdb_top_chart` — Read IMDb's Top 250 movie or television chart.
 - `get_income_statements` — Get standardized income statements for a company.
 - `get_insider_trades` — List reported insider transactions for a ticker.
+- `get_instagram_basic_profile` — Read a public Instagram profile by numeric user ID. Uses AIsa's native ScrapeCreators source, independently of TikHub.
+- `get_instagram_highlight` — Read a public Instagram highlight using an ID returned by get_instagram_highlights. Uses AIsa's native ScrapeCreators source, independently of TikHub.
+- `get_instagram_highlights` — List public Instagram highlights by handle or user ID; a user ID avoids the handle lookup. Uses AIsa's native ScrapeCreators source, independently of TikHub.
+- `get_instagram_post` — Get a public Instagram post or reel with optional play counts and permanent media downloads. Uses AIsa's native ScrapeCreators source, independently of TikHub.
+- `get_instagram_post_comments` — Read public Instagram post comments with cursor pagination and optional reply expansion. Uses AIsa's native ScrapeCreators source, independently of TikHub.
+- `get_instagram_profile` — Read a public Instagram profile by handle. Uses AIsa's native ScrapeCreators source, independently of TikHub.
+- `get_instagram_profile_embed` — Get the HTML embed for a public Instagram profile. Uses AIsa's native ScrapeCreators source, independently of TikHub.
+- `get_instagram_song_reels` — Find public Instagram reels using an audio ID with cursor pagination. Uses AIsa's native ScrapeCreators source, independently of TikHub.
+- `get_instagram_transcript` — Get available transcripts for a public Instagram post or reel. AI transcription above 120 seconds requires explicit paid opt-in. Uses AIsa's native ScrapeCreators source, independently of TikHub.
+- `get_instagram_trending_reels` — Get currently trending public Instagram reels. Uses AIsa's native ScrapeCreators source, independently of TikHub.
+- `get_instagram_user_posts` — Read posts from a public Instagram account with cursor pagination. Uses AIsa's native ScrapeCreators source, independently of TikHub.
+- `get_instagram_user_reels` — Read reels from a public Instagram account by handle or user ID with cursor pagination. Uses AIsa's native ScrapeCreators source, independently of TikHub.
+- `get_ipinfo_details` — Look up IPinfo network, organization, privacy, and location details for an explicit IP address.
+- `get_ipinfo_geolocation` — Look up IPinfo geolocation details for an explicit IP address.
+- `get_jsearch_company_job_salary` — Get salary estimates for a job title at a company through JSearch, optionally narrowed by location and experience. Results retain source currencies and salary periods.
+- `get_jsearch_estimated_salary` — Estimate salary for a job title and location through JSearch. Preserve source currencies, salary periods, sample sizes, and confidence where provided.
+- `get_jsearch_job_details` — Get a JSearch job's details using its search-result ID, with optional field selection and localization.
+- `get_kalshi_market` — Read a public Kalshi market's prices, settlement rules, status, and volume by ticker.
 - `get_kalshi_markets` — List Kalshi prediction markets with live quotes, settlement rules, and pagination.
+- `get_kalshi_orderbook` — Read public Kalshi order-book levels for a market ticker; zero depth requests all levels.
 - `get_kalshi_trades` — List executed Kalshi trades with prices, size, side, and pagination.
-- `get_polymarket_activity` — Get one wallet's Polymarket split, merge, and redemption activity.
+- `get_keepa_best_sellers` — Get Keepa best-selling product ASINs by category and period.
+- `get_keepa_lightning_deal` — Get lightning deals for an Amazon product.
+- `get_keepa_most_rated_sellers` — Get the most rated Amazon sellers from Keepa.
+- `get_keepa_products` — Get Keepa product data with optional price history and statistics.
+- `get_keepa_seller_storefront` — Get the products in an Amazon seller storefront through Keepa.
+- `get_keepa_sellers` — Get Keepa seller profiles for Amazon seller IDs.
+- `get_linkfox_1688_product` — Get 1688 product, SKU, price, stock, shipping, and supplier details through AIsa LinkFox.
+- `get_linkfox_amazon_products` — Get Amazon product details for up to five ASINs.
+- `get_linkfox_echotik_category` — Get details for a TikTok Shop top-level category in a market through EchoTik.
+- `get_linkfox_echotik_category_trends` — Get TikTok Shop category trends by market and date range through EchoTik.
+- `get_linkfox_echotik_creator_trends` — Get time-series metrics for a TikTok creator through EchoTik.
+- `get_linkfox_echotik_creators` — Get EchoTik creator details by numeric TikTok user IDs or account handles.
+- `get_linkfox_echotik_products` — Get TikTok Shop product details in bulk by product ID or URL through EchoTik.
+- `get_linkfox_echotik_seller` — Get TikTok Shop seller details and aggregate performance metrics through EchoTik.
+- `get_linkfox_echotik_videos` — Get TikTok video details in bulk by video ID or URL through EchoTik.
+- `get_linkfox_google_keyword_trends` — Get Google Trends interest for a keyword by region and date range.
+- `get_linkfox_keepa_product_history` — Get Keepa time series for an Amazon ASIN, including price and ranking metrics.
+- `get_linkfox_sellersprite_market_statistics` — Get SellerSprite market statistics for an Amazon category and snapshot period.
+- `get_linkfox_sif_keyword_overview` — Get SIF Amazon keyword search and traffic metrics for a recent or custom period.
+- `get_linkfox_sif_keyword_summary` — Compare Amazon ASIN traffic metrics for a keyword through SIF.
+- `get_linkfox_temu_product` — Get Temu product details and up to 30 days of history through GeekBI.
+- `get_listennotes_curated_list` — Get a Listen Notes curated podcast list by an ID from curated-list discovery or curated search.
+- `get_listennotes_episode` — Get Listen Notes episode metadata, audio links, and an optional transcript when the upstream plan and episode support it.
+- `get_listennotes_episode_recommendations` — Find episode recommendations based on a known Listen Notes episode, optionally excluding explicit content.
+- `get_listennotes_episodes` — Fetch basic Listen Notes metadata for multiple episode IDs in one request.
+- `get_listennotes_podcast` — Get a Listen Notes podcast and page through its episodes using the returned publication cursor.
+- `get_listennotes_podcast_audience` — Get available audience demographics for a podcast through Listen Notes. Supplier coverage and plan access vary; these data do not represent a complete census of listeners.
+- `get_listennotes_podcast_recommendations` — Find podcast recommendations based on a known Listen Notes podcast, optionally excluding explicit content.
+- `get_listennotes_podcasts` — Fetch podcast metadata by Listen Notes, Apple Podcasts, Spotify, or RSS identifiers, optionally including the latest episodes.
+- `get_location_elevation` — Get terrain elevations for one location or up to 100 aligned coordinate pairs.
+- `get_marine_forecast` — Get wave, swell, sea-temperature, and ocean-current forecasts for selected locations.
+- `get_media_model` — Resolve an AISA model ID or alias to its capabilities and supported public routes. An unavailable or unknown model returns 404.
+- `get_moz_url_metrics` — Get Moz authority, spam, and link metrics for URLs or domains, with optional daily or monthly metric history.
+- `get_ninjas_eu_standard_vat_rate` — Get the standard VAT rate for an EU country through API Ninjas. This action retrieves a tax rate and does not validate a business VAT number.
+- `get_ninjas_income_tax_brackets` — Get income-tax tables for a country and tax year through API Ninjas, optionally restricted to regions. This retrieves reference brackets and does not calculate a person's tax liability.
+- `get_ninjas_mx_records` — Look up a domain's mail-exchange DNS records through API Ninjas.
+- `get_ninjas_population_history_and_forecast` — Get country population history and projections, or screen countries by population.
+- `get_ninjas_property_tax_rates` — Get property-tax reference data by US city, county, or ZIP code through API Ninjas. Regional rates do not determine an individual property's tax bill.
+- `get_ninjas_sales_tax_rates` — Get US sales-tax rates by ZIP code or city and state through API Ninjas. Rates are reference data and may not capture product-specific exemptions.
+- `get_oxylabs_answer` — Get the Oxylabs answer collection task state, output and final pricing. Check outputExpired and job errors even after completion.
+- `get_pinterest_board` — Read pins from a public Pinterest board with cursor pagination. Uses AIsa's native ScrapeCreators source, independently of TikHub.
+- `get_pinterest_pin` — Read a public Pinterest pin by URL. Uses AIsa's native ScrapeCreators source, independently of TikHub.
+- `get_pinterest_user_boards` — List public Pinterest boards for a username. Uses AIsa's native ScrapeCreators source, independently of TikHub.
+- `get_polymarket_batch_price_history` — Get price histories for up to 20 outcome tokens in one request.
+- `get_polymarket_bridge_status` — Read deposits and withdrawals observed at a public bridge address with cursor pagination.
+- `get_polymarket_clob_market` — Resolve a Polymarket condition ID into public outcome tokens and exchange market details for price and order-book research.
+- `get_polymarket_comment` — Read a public comment by its identifier.
+- `get_polymarket_event` — Read a public Polymarket event and its related prediction markets by numeric event ID.
+- `get_polymarket_event_by_slug` — Read an event by its URL slug, with optional chat and template metadata.
+- `get_polymarket_event_tags` — Read the category tags assigned to an event.
 - `get_polymarket_events` — List Polymarket events and their related prediction markets.
+- `get_polymarket_fee_rate` — Read the published base fee rate for an outcome token.
+- `get_polymarket_last_trade_price` — Read the most recent executed trade price and side for an outcome token.
+- `get_polymarket_last_trade_prices` — Read last executed trade prices for multiple outcome tokens.
+- `get_polymarket_maker_rebates` — Read public rebated fees for a maker address on a given date.
+- `get_polymarket_market` — Read a public Polymarket market by its numeric market ID, including outcome and token metadata.
+- `get_polymarket_market_by_slug` — Read a public market by its URL slug.
+- `get_polymarket_market_by_token` — Resolve an outcome token to its condition ID and paired token IDs.
+- `get_polymarket_market_rewards` — Read the public reward configuration for a market condition ID.
+- `get_polymarket_market_tags` — Read the category tags assigned to a market.
 - `get_polymarket_markets` — List Polymarket questions with outcome prices, liquidity, volume, and date filters.
+- `get_polymarket_midpoint` — Read the current midpoint between bid and ask for one outcome token.
+- `get_polymarket_midpoints` — Read current midpoint prices for multiple outcome tokens.
+- `get_polymarket_nonce` — Read the current public Proxy or Safe nonce for a signer address.
+- `get_polymarket_orderbook` — Read bids, asks, and liquidity for a public Polymarket outcome token.
+- `get_polymarket_orderbooks` — Read multiple public orderbooks in one request.
+- `get_polymarket_price` — Read the current public BUY or SELL quote for one outcome token.
+- `get_polymarket_price_history` — Read historical prices for a Polymarket outcome token obtained from market discovery; this does not place trades.
+- `get_polymarket_prices` — Read public BUY or SELL quotes for multiple outcome tokens.
+- `get_polymarket_public_profile` — Read the public profile associated with a wallet address.
+- `get_polymarket_related_tags` — Read tags related to a known tag ID.
+- `get_polymarket_related_tags_by_slug` — Read tags related to a known tag slug.
+- `get_polymarket_relay_payload` — Read the relayer address and nonce for a public signer address.
+- `get_polymarket_relayer_transaction` — Read a relayer transaction by its existing transaction ID, including broadcast status and onchain hash.
+- `get_polymarket_series` — Read a market series and its associated events.
+- `get_polymarket_server_time` — Read the CLOB server timestamp to interpret time-based market data.
+- `get_polymarket_spread` — Read the current bid-ask spread for one outcome token.
+- `get_polymarket_spreads` — Read current bid-ask spreads for multiple outcome tokens.
+- `get_polymarket_tag` — Read a category tag by its identifier.
+- `get_polymarket_tag_by_slug` — Read a category tag by its URL slug.
+- `get_polymarket_tag_relations` — Read relationships between a tag ID and related tags.
+- `get_polymarket_tag_relations_by_slug` — Read relationships between a tag slug and related tags.
+- `get_polymarket_tick_size` — Read the minimum price increment for an outcome token.
+- `get_polymarket_user_comments` — Read public comments authored by a wallet address.
+- `get_polymarket_wallet_deployment` — Check whether a public Polymarket Safe or Deposit Wallet address is deployed onchain.
+- `get_predict_leads_company` — Get Company through PredictLeads.
+- `get_predict_leads_company_intelligence` — Get Company Intelligence through PredictLeads.
+- `get_predict_leads_job` — Get a job posting by id through PredictLeads.
+- `get_predict_leads_news_event` — Get a news event by ID through PredictLeads.
+- `get_predict_leads_product` — Get a product by ID through PredictLeads.
+- `get_predict_leads_sec_filing` — Get an SEC filing by ID through PredictLeads.
+- `get_predict_leads_similar_companies` — Get Similar Companies through PredictLeads.
+- `get_predict_leads_technology` — Get a technology by ID or name through PredictLeads.
+- `get_predict_leads_technology_detection` — Get an extended technology detection by ID through PredictLeads.
+- `get_reddit_post_comments` — Read public Reddit comments for a post URL.
+- `get_reddit_subreddit_details` — Read public subreddit metadata and rules by its case-sensitive name or URL.
+- `get_reddit_subreddit_posts` — Read a public subreddit feed with sorting, time filters, and cursor pagination.
+- `get_related_us_legal_provisions` — Get neighbouring sections for a US legal provision.
+- `get_river_discharge` — Get river-discharge forecasts and historical estimates from GloFAS models.
+- `get_seasonal_forecast` — Get seasonal daily, six-hourly, and interpolated hourly weather forecasts.
 - `get_semrush_backlink_anchors` — Get backlink anchor text and backlink counts for a domain or URL.
 - `get_semrush_backlink_competitors` — Find domains competing with a target for backlinks.
 - `get_semrush_backlinks` — List backlinks pointing to a domain or URL.
@@ -137,21 +603,34 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_semrush_broad_match_keywords` — Find broad-match keyword ideas for a seed phrase.
 - `get_semrush_domain_organic_keywords` — List a domain's Google organic keywords with positions, search volume, CPC, and ranking URLs.
 - `get_semrush_domain_overview` — Get current Semrush rank, organic keyword, traffic, cost, and paid keyword totals for a domain.
+- `get_semrush_domain_paid_keywords` — Find a domain's paid-search keywords, positions, search volume, CPC, and landing pages. Returns up to 20 rows without pagination.
 - `get_semrush_domain_rank_history` — Get historical Semrush rank and search-visibility metrics for a domain.
 - `get_semrush_indexed_pages` — List pages with backlinks and their backlink counts; this report does not verify Google indexation or live HTTP status.
 - `get_semrush_keyword_difficulty` — Get keyword-difficulty scores for up to 20 keywords.
 - `get_semrush_keyword_overview` — Get volume, CPC, competition, and result counts for a keyword.
 - `get_semrush_organic_competitors` — Find Google organic search competitors with relevance and shared keyword counts.
 - `get_semrush_organic_results` — List domains, URLs, and raw SERP feature codes for a keyword in Google organic search.
+- `get_semrush_paid_results` — Find advertisers and landing pages for a keyword in Semrush. Returns up to 20 rows without pagination.
 - `get_semrush_question_keywords` — Find question-form keyword ideas for a seed phrase.
 - `get_semrush_referring_domains` — List domains linking to a target domain or URL.
 - `get_semrush_url_organic_keywords` — List a landing page's Google organic keywords with positions, search volume, and CPC.
+- `get_serpapi_ebay_product` — Inspect a public eBay item's product and seller details after discovering its item ID through eBay search.
+- `get_serpapi_google_ai_overview` — Fetch a deferred Google AI Overview using a continuation token returned by a recent public Google search.
+- `get_serpapi_scholar_author` — Read a Google Scholar author's profile, citation metrics, articles, co-authors, or an individual citation through SerpAPI.
+- `get_serpapi_scholar_citation` — Get formatted citations for a paper using its Google Scholar search result ID.
+- `get_serpapi_search_trends` — Research Google search interest over time, geographic comparisons, and related topics or queries.
+- `get_serpapi_walmart_product` — Inspect a public Walmart product's price, stock, and available reviews using an item ID from search results.
+- `get_serper_place_reviews` — Read and paginate Google place reviews through Serper using a place identifier.
 - `get_similarweb_ad_networks` — List display-ad networks associated with a website.
 - `get_similarweb_audience_interests` — List topics and categories that interest a website's audience.
 - `get_similarweb_audience_overlap` — Compare duplicated and exclusive audiences across two to five websites.
+- `get_similarweb_conversion_rates` — Research monthly estimated website conversion rates with Similarweb worldwide data.
+- `get_similarweb_conversion_rates_aggregated` — Research aggregated estimated website conversion rates with Similarweb worldwide data.
 - `get_similarweb_deduplicated_audience` — Get deduplicated desktop and mobile-web audience measurements.
+- `get_similarweb_demographic_group` — Research estimated website traffic for one age group using Similarweb worldwide data.
 - `get_similarweb_demographics` — Get age and gender distributions for a website's audience in one month.
 - `get_similarweb_keyword_competitors` — List domains competing with a website for organic and paid search clicks.
+- `get_similarweb_keyword_overview` — Compare up to 20 keywords using Similarweb worldwide monthly keyword research.
 - `get_similarweb_landing_pages` — List pages receiving organic or paid search traffic for a website.
 - `get_similarweb_marketing_channels` — Get direct, search, social, referral, mail, and display traffic shares.
 - `get_similarweb_popular_pages` — List the pages that receive the most traffic on a website.
@@ -169,47 +648,510 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_similarweb_traffic_snapshot` — Get the latest visits and engagement snapshot for a website.
 - `get_similarweb_traffic_trend` — Get the recent monthly traffic trend for a website.
 - `get_similarweb_website_keywords` — List organic and paid keywords that send search traffic to a website.
+- `get_social_account` — Read the connected Social account through an active owned connection.
+- `get_social_connection` — Read the current Social authorization and account connection status. This is optional display refresh; binding completes in the backend.
+- `get_social_media_metadata` — Get public YouTube, TikTok, Instagram, X, or Facebook media metadata.
+- `get_social_post` — Get a post and each platform outcome. A partial post can still have pending targets; inspect all platform statuses before treating publication as complete.
+- `get_social_post_analytics` — Returns 202 while every platform is still syncing. Some TikTok metrics arrive 24 to 48 hours after publishing.
+- `get_social_tiktok_creator_info` — Read TikTok creator privacy options and posting permissions before preparing a post. The user's preview and posting consent must still be supplied explicitly.
+- `get_spyfu_ad_history` — Research historical ad copy and keyword associations for an advertiser. AISA returns only the first bounded result segment.
+- `get_spyfu_monthly_domain_stats` — Research up to twelve recent months of a domain's estimated organic traffic, paid clicks, advertising budget and keyword totals. These are SpyFu estimates, not the advertiser's actual spend; each returned month can affect billing.
+- `get_spyfu_paid_keywords` — Find an advertiser's paid keywords with term, search-volume, question, and transactional-intent filters. AISA returns at most the first 100 rows.
+- `get_spyfu_ranked_keywords` — Find organic ranking keywords and compare another domain's rank, change, and ranking URL to identify content gaps. AISA returns at most the first 100 rows.
 - `get_stock_earnings` — Get the most recent earnings snapshot for a ticker.
 - `get_stock_price_snapshot` — Get the latest available market-price snapshot for a ticker.
 - `get_stock_prices` — Get historical market prices for a ticker and date range.
+- `get_surf_defi_metric_history` — Get historical TVL, fees, revenue, volume, or users for a DeFi protocol, with chain and date filters.
+- `get_surf_dex_token_candles` — Query pool-weighted DEX token OHLCV in USD. Bars are ascending; inclusive boundaries can yield 25 hourly bars for 24 hours. The upstream limit is 1500 bars.
+- `get_surf_etf_flows` — Get daily spot crypto ETF net flows in USD with token prices and fund-ticker breakdowns.
+- `get_surf_exchange_candles` — Get venue-specific OHLCV candles and period summary statistics for spot or perpetual pairs.
+- `get_surf_exchange_funding_history` — Get perpetual-contract funding-rate history. Some venues return only recent records even when a start time is supplied.
+- `get_surf_exchange_long_short_history` — Get perpetual long/short ratio history and account percentages. Historical start-time support varies by venue.
+- `get_surf_exchange_orderbook` — Get exchange bid and ask levels with spread, midpoint, and aggregate depth for spot or perpetual markets.
+- `get_surf_hyperliquid_account` — Get a public Hyperliquid account snapshot including perpetuals, spot balances, vaults, and staking. Inspect section errors before treating the portfolio as complete.
+- `get_surf_hyperliquid_candles` — Query ascending Hyperliquid candles in the half-open [from,to) window, at most 5000 candles. Quote volume can be null before coverage begins.
+- `get_surf_hyperliquid_closed_trades` — Read completed Hyperliquid position lifecycles with entry, exit, fees, and realized PnL. Net PnL excludes funding; historical funding may be incomplete.
+- `get_surf_hyperliquid_leaderboard` — Discover public Hyperliquid traders by performance and activity. Leaderboard PnL includes funding and is not directly comparable to the funding-excluded performance summary.
+- `get_surf_hyperliquid_orders` — Inspect public open and terminal Hyperliquid orders, including spot and perpetual markets. Historical orders reflect the latest roughly 2000 updates; inspect section errors for partial success. Spot symbols must not be joined to perpetual positions.
+- `get_surf_hyperliquid_performance` — Read a public Hyperliquid wallet's lifetime performance and live perpetual-account snapshot. Net PnL excludes funding; partial sections are reported through errors and partial flags.
+- `get_surf_hyperliquid_positions` — Read a public Hyperliquid wallet's open perpetual positions and margin risk. Liquidation prices may be null; account value is perpetual equity, not the total portfolio.
+- `get_surf_hyperliquid_trade_context` — Read funding and leverage context for one closed Hyperliquid trade. Copy the trade's composite key from closed-trade history; funding_status distinguishes complete data from unavailable history.
+- `get_surf_kalshi_open_interest_history` — Read daily open-interest history for a Kalshi prediction market.
+- `get_surf_kalshi_orderbook_history` — Read historical YES-side bid and ask depth for a Kalshi market. Snapshot timestamps are milliseconds and prices are cents.
+- `get_surf_kalshi_price_history` — Read Kalshi hourly or daily OHLC history, or the latest trade price.
+- `get_surf_kalshi_volume_history` — Read historical trading volume for a Kalshi prediction market.
+- `get_surf_liquidation_chart` — Get aggregated liquidation chart data for a token on a specific derivatives exchange.
+- `get_surf_onchain_transaction` — Inspect a public onchain transaction discovered through transfer records. Preserve hexadecimal numeric fields without lossy number conversion; optional labels identify sender and receiver.
+- `get_surf_polymarket_ohlcv` — Read Polymarket OHLCV candles with minute-based intervals and Unix-second time bounds.
+- `get_surf_polymarket_open_interest` — Query daily Polymarket market TVL in USD and daily net change. Open-interest snapshots are not cumulative flows and must not be summed; data refreshes about every 30 minutes.
+- `get_surf_polymarket_orderbook_history` — Read historical bid and ask depth snapshots for a Polymarket outcome token, with millisecond time bounds and cursor pagination.
+- `get_surf_polymarket_volume_split` — Read Polymarket trading volume split by YES and NO outcomes over an hourly, daily, or weekly time window.
+- `get_surf_prediction_market_pair_history` — Compare daily volume and open interest for a matched Polymarket and Kalshi pair. Polymarket volume is in USD; Kalshi volume is in contracts.
+- `get_surf_technical_indicator` — Calculate a technical indicator for an exchange pair, returning the latest value or a date-bounded series.
+- `get_surf_token_transfer_stats` — Aggregate token transfers and unique senders or receivers, optionally with daily series. Refreshes daily; USD enrichment can lag three days. Inspect enriched_ratio and keep exact decimal strings. Do not add window totals to their daily breakdown.
+- `get_surf_token_unlocks` — Get cumulative token unlock amounts, allocation breakdowns, and unlocked supply percentages. Do not sum cumulative amounts across timestamps.
+- `get_surf_wallet_detail` — Inspect a public wallet's balance, tokens, labels, NFTs, and optional approvals. Fields remain open for supported expansions; approvals adds upstream calls. Check section errors before interpreting missing data; active chains remain cross-chain.
+- `get_surf_wallet_labels` — Get public entity names, types, and label confidence for up to 100 wallet addresses.
+- `get_temu_listing` — Retrieve Temu product attributes, ratings, price ranges, supply prices, inventory, hosting mode, sales metrics, and SKU variants. Supply prices use CNY; other amounts use marketplace currency.
+- `get_tiktok_shop_category_trends` — Retrieve TikTok Shop category trends using IDs from category discovery. Pages contain up to 10 rows; business-assumed category mappings remain unverified.
+- `get_tiktok_shop_creator` — Retrieve a TikTok Shop creator profile and available audience, engagement, and commerce metrics, preserving reporting windows.
+- `get_tiktok_shop_creator_rankings` — Rank TikTok Shop creators by seven-day GMV in descending order. The window and ordering are fixed; at most five pages, with GMV in marketplace currency.
+- `get_tiktok_shop_creator_trends` — Retrieve daily TikTok Shop creator metrics, with up to 10 rows per page. A full page can be followed by an empty final page.
+- `get_tiktok_shop_listing` — Retrieve TikTok Shop product attributes, variants, and offers from mapped sources. EchoTik is primary; category mappings retain verification evidence.
+- `get_tiktok_shop_listing_rankings` — Retrieve TikTok Shop product rankings for 7 or 30 days, optionally filtered by category. Uses source ordering and at most five pages; GMV is in marketplace currency.
+- `get_tiktok_shop_listing_trends` — Retrieve reported TikTok Shop product snapshots without interpolation. GMV is USD; source timezone and country verification limitations remain in provenance.
+- `get_tiktok_shop_livestream` — Retrieve TikTok Shop livestream session details and metrics. Use room_id; values describe this session, with GMV in USD and missing observations left absent.
+- `get_tiktok_shop_livestream_trends` — Retrieve TikTok Shop livestream session snapshots with source Unix timestamps. Up to 10 snapshots per page; date-range filters are not supported and GMV is USD.
+- `get_tiktok_shop_shop` — Retrieve TikTok Shop shop attributes and available sales metrics, retaining sources and collection metadata.
+- `get_tiktok_shop_shop_rankings` — Rank TikTok Shop shops by cumulative GMV or sales in descending order. The cumulative window is fixed; period filters are not supported.
+- `get_tiktok_shop_shop_trends` — Retrieve reported TikTok Shop shop snapshots without filling missing dates or values. GMV is USD; source timezone and country verification limitations remain in provenance.
+- `get_tiktok_shop_video` — Retrieve TikTok Shop video attributes and available engagement and sales metrics. Missing metrics are not zero values.
+- `get_tiktok_shop_video_rankings` — Rank TikTok Shop videos by sales or views for a selected reporting window and date.
+- `get_tiktok_shop_video_trends` — Retrieve reported TikTok Shop video snapshots without interpolation. GMV is USD; source timezone and country verification limitations remain in provenance.
 - `get_token_data` — Get CoinGecko metadata and market data for a token contract.
+- `get_token_market_chart` — Get a token contract's price, market-cap, and volume history over a date range.
+- `get_token_market_chart_days` — Get a token contract's price, market-cap, and volume history over a lookback window.
 - `get_token_prices` — Get current prices for token contracts on one asset platform.
+- `get_tomba_company_email_patterns` — Get a company's email address patterns through Tomba. A pattern does not confirm that a particular mailbox exists.
 - `get_trending_crypto` — Get coins, NFTs, and categories currently trending on CoinGecko.
+- `get_twelvedata_market_state` — Check exchange open or closed state and time until the next open or close, optionally filtered by MIC, country, or exchange.
+- `get_twitter_article` — Read the full body of an X Article by its post ID.
+- `get_twitter_community` — Read an X community description, membership counts, and rules.
+- `get_twitter_community_members` — List public members of an X community with cursor pagination.
+- `get_twitter_community_moderators` — List the moderators of an X community with cursor pagination.
+- `get_twitter_community_posts` — Read posts in a specific X community with cursor pagination.
+- `get_twitter_follow_relationship` — Check the public follow relationship between two X usernames in both directions.
+- `get_twitter_list_followers` — List subscribers to an X List, distinct from the accounts included in the list.
+- `get_twitter_list_members` — List accounts included in a public X List with cursor pagination.
+- `get_twitter_list_posts` — Read the post timeline of a known public X List with cursor pagination.
 - `get_twitter_mentions` — Get public posts mentioning a Twitter username in an optional time window.
+- `get_twitter_post_quotes` — Read quote posts for an X post, with optional time bounds and reply inclusion.
 - `get_twitter_post_replies` — List public replies to a Twitter post.
+- `get_twitter_post_reposters` — List public accounts that reposted an X post, with cursor pagination.
 - `get_twitter_posts` — Get public Twitter posts by their IDs.
+- `get_twitter_sorted_replies` — Read replies to an X post ordered by relevance, recency, or likes.
 - `get_twitter_thread` — Get the public conversation context surrounding a Twitter post.
 - `get_twitter_trends` — Get public Twitter trends for a Where On Earth location.
 - `get_twitter_user` — Get a public Twitter profile by username through AIsa.
+- `get_twitter_user_about` — Read the public About this account panel, including available location and username-change metadata.
+- `get_twitter_user_followers` — List public followers of an X username with cursor pagination.
+- `get_twitter_user_followings` — List accounts followed by an X username with cursor pagination.
 - `get_twitter_user_recent_posts` — Get a public Twitter user's most recent posts by ID or username.
 - `get_twitter_user_timeline` — Get a public Twitter user's post timeline.
 - `get_twitter_users` — Get public Twitter profiles for multiple user IDs.
+- `get_twitter_verified_followers` — List verified accounts following an X user ID with cursor pagination.
+- `get_us_legal_provision` — Get a US legal provision by its Vaquill act ID.
+- `get_us_legal_provision_body` — Read a US legal provision body, optionally as of a historical date, in the requested representation.
+- `get_us_legal_provision_changes` — Read a US legal provision's change history using change-record IDs for incremental pagination.
+- `get_us_legal_provision_citations` — Find legal sections citing a US provision.
+- `get_us_legal_provision_definitions` — Get defined terms associated with a US legal provision.
+- `get_us_legal_provisions` — Get up to 50 US legal provisions by act ID, optionally including their bodies.
 - `get_usage` — Get AIsa request, token, value, and charged usage in daily buckets.
+- `get_walmart_keyword_listings` — Retrieve Walmart products associated with a keyword. pageSize controls requested rows; pagination is not supported. Use returned native listing IDs for keyword lookups.
+- `get_walmart_keyword_metrics` — Retrieve source-observed Walmart keyword search metrics for the US marketplace and requested language. Preserve reporting windows and missing observations.
+- `get_walmart_listing_keywords` — Retrieve search terms associated with a Walmart product. Pagination is not supported; a successful empty result means the source found no matching keywords.
+- `get_walmart_related_keywords` — Retrieve related Walmart search terms and available metrics. pageSize controls requested rows; pagination is not supported.
+- `get_weather_air_quality` — Get hourly and current air-quality estimates, pollutant levels, and pollen forecasts.
+- `get_weather_ensemble` — Compare weather forecasts across ensemble members and selected models.
+- `get_weather_forecast` — Get current weather, hourly and daily forecasts, and optional 15-minute variables.
+- `get_weather_history` — Get historical weather reanalysis for an explicit date range.
+- `get_youtube_channel_details` — Get YouTube channel details by channel ID, handle, or URL.
+- `get_youtube_playlist_details` — Get YouTube playlist details and its channel.
+- `identify_pdl_person` — Find candidate person matches through People Data Labs using an email and optional identity evidence. This AISA route requires email even though the supplier offers broader matching inputs.
+- `inspect_serpapi_image` — Inspect an image with Google Lens, including image-source background, exact or visual matches, and matching products.
+- `list_accuweather_active_tropical_storms` — List Active Tropical Storms through AccuWeather, preserving upstream metadata.
+- `list_accuweather_index_groups` — List Index Groups through AccuWeather, preserving upstream metadata.
+- `list_accuweather_indices` — List Indices through AccuWeather, preserving upstream metadata.
+- `list_accuweather_tropical_storm_forecasts` — List Tropical Storm Forecasts through AccuWeather, preserving upstream metadata.
+- `list_accuweather_tropical_storm_positions` — List Tropical Storm Positions through AccuWeather, preserving upstream metadata.
+- `list_accuweather_tropical_storm_statuses` — List tropical-storm status metadata through AccuWeather, optionally restricted to a basin.
+- `list_accuweather_tropical_storms_by_year` — Discover historical tropical storms by year and optional basin or government ID through AccuWeather, for subsequent position and forecast queries.
+- `list_accuweather_weather_alarms` — Get forecast weather-risk alarms for an AccuWeather location. These threshold-based forecasts are distinct from official weather alerts.
+- `list_accuweather_weather_alerts` — Get weather alerts for an AccuWeather location, optionally including affected areas and alert text. Coverage depends on the issuing authorities and supplier availability.
+- `list_ads` — Ad Campaigns. Read only. Lists your ads with their performance over a date range, including ads created directly in each platform's ads manager. Returns a paginated list of ads with metrics computed over an optional date range. Use source=all to include externally-synced ads from platform ad managers. If no date range is provided, it defaults to the last 90 days. The date range is capped at 730 days max. ### History
+- `list_ads_accounts` — List advertising accounts accessible through an active owned Ads connection, preserving the upstream account selection and platform fields.
+- `list_ads_ad_sets` — Ad Campaigns. Read only. Lists ad sets (ad groups on Google) with their targeting, bidding and optimization settings, optionally for one campaign. Returns the ad sets (Google ad groups) synced for the connection, optionally filtered by platform and campaignId. It reads the `ad_sets` table directly, independent of the `ads` rollup GET /apis/v1/ads/tree uses.
+- `list_ads_campaigns` — Ad Campaigns. Read only. Lists your campaigns with spend, impressions and clicks summed across their ads, plus each campaign's status and budget. Campaigns are virtual aggregations over ad documents grouped by platform campaign ID. Metrics (spend, impressions, clicks, etc.) are summed across all ads in each campaign.
+- `list_ads_connections` — List owned Ads connections, including pending and disconnected bindings. No shared-key global accounts are returned.
+- `list_amazon_shop_listings` — Read a snapshot of an Amazon US seller's catalog. Cursors are bound to seller and snapshot; restart if a refresh invalidates a cursor. Membership does not guarantee current stock.
+- `list_api_sports_football_top_red_cards` — Get football players ranked by red cards for a league and season through API Sports.
+- `list_api_sports_football_top_yellow_cards` — Get football players ranked by yellow cards for a league and season through API Sports.
+- `list_api_sports_mma_categories` — List or search MMA weight-class categories through API Sports.
+- `list_artificial_analysis_image_editing_models` — List Artificial Analysis image editing model benchmarks, performance, and pricing where available.
+- `list_artificial_analysis_image_to_video_audio_models` — List Artificial Analysis image to video audio model benchmarks, performance, and pricing where available.
+- `list_artificial_analysis_image_to_video_models` — List Artificial Analysis image to video model benchmarks, performance, and pricing where available.
+- `list_artificial_analysis_language_models` — List Artificial Analysis language model benchmarks, performance, and pricing where available.
+- `list_artificial_analysis_music_instrumental_models` — List Artificial Analysis music instrumental model benchmarks, performance, and pricing where available.
+- `list_artificial_analysis_music_with_vocals_models` — List Artificial Analysis music with vocals model benchmarks, performance, and pricing where available.
+- `list_artificial_analysis_speech_to_speech_models` — List Artificial Analysis speech to speech model benchmarks, performance, and pricing where available.
+- `list_artificial_analysis_speech_to_text_models` — List Artificial Analysis speech to text model benchmarks, performance, and pricing where available.
+- `list_artificial_analysis_text_to_image_models` — List Artificial Analysis text to image model benchmarks, performance, and pricing where available.
+- `list_artificial_analysis_text_to_speech_models` — List Artificial Analysis text to speech model benchmarks, performance, and pricing where available.
+- `list_artificial_analysis_text_to_video_audio_models` — List Artificial Analysis text to video audio model benchmarks, performance, and pricing where available.
+- `list_artificial_analysis_text_to_video_models` — List Artificial Analysis text to video model benchmarks, performance, and pricing where available.
+- `list_aviato_company_acquisitions` — List companies acquired by a company identified by domain, LinkedIn URL, or Aviato ID.
 - `list_company_filings` — List SEC filings by ticker, CIK, and filing type.
+- `list_crawl4ai_medium_posts` — Read public Medium posts selected by author, publication, or topic tag.
+- `list_creator_posts` — List recent creator posts and engagement with platform-specific page sizes and opaque continuation tokens.
 - `list_crypto_categories` — List cryptocurrency categories and their aggregate market performance.
+- `list_crypto_category_ids` — Discover category IDs for filtering cryptocurrency markets.
+- `list_crypto_coins` — Discover CoinGecko coin IDs, names, symbols, and optional token contract addresses.
+- `list_crypto_exchange_ids` — Discover exchange IDs and names for trading-pair and volume research.
 - `list_crypto_exchanges` — List exchanges ranked by trust score and trading volume.
 - `list_crypto_markets` — List coin markets with price, capitalization, volume, and change metrics.
+- `list_crypto_quote_currencies` — List supported quote currencies for coin prices and historical market data.
+- `list_daily_international_job_field_values` — List distinct values for a Daily International Jobs field. This endpoint does not accept job-search filters.
+- `list_dataforseo_backlinks` — List backlinks with filters, sorting, and pagination.
+- `list_douban_movie_comments` — Read public Douban short comments for a movie or TV subject, sorted by time or new score.
+- `list_douban_movie_reviews` — Read public Douban long-review summaries and review identifiers, with time or popularity ordering.
+- `list_edinet_filings` — List Japanese EDINET filings for a date, including document IDs and file availability. Defaults to listing documents rather than metadata alone.
+- `list_eodhd_exchanges` — List EODHD exchange codes, countries, currencies, and MIC identifiers for global instrument queries.
+- `list_finnhub_calendar_events` — Find Finnhub earnings or IPO calendar events within a date range.
+- `list_finnhub_earnings_results` — Read Finnhub company earnings results and estimate surprises.
+- `list_finnhub_sec_filings` — Find Finnhub SEC filings by company or accession number with date and form filters.
+- `list_fred_category_children` — Discover child categories in the FRED economic data catalog.
+- `list_fred_category_related_tags` — Find related tags within a FRED category.
+- `list_fred_category_series` — List economic series in a FRED category with filters and pagination.
+- `list_fred_category_tags` — Discover tags used by economic series in a FRED category.
+- `list_fred_related_categories` — Find categories related to a FRED category.
+- `list_fred_related_tags` — Find FRED tags related to a set of existing tags.
+- `list_fred_release_dates` — List publication dates for one FRED release with pagination.
+- `list_fred_release_related_tags` — Find tags related to selected tags within a FRED release.
+- `list_fred_release_series` — List economic series in a FRED release with filters and pagination.
+- `list_fred_release_sources` — Read the original data sources for a FRED release.
+- `list_fred_release_tags` — Discover the tags used by a FRED release.
+- `list_fred_releases` — Discover FRED economic data releases with sorting and pagination.
+- `list_fred_series_categories` — Find the categories containing a FRED economic series.
+- `list_fred_series_tags` — Read the tags assigned to a FRED economic series.
+- `list_fred_series_updates` — List FRED series updated within the last two weeks, optionally narrowed by a paired start and end time.
+- `list_fred_source_releases` — Find releases published by a FRED data source.
+- `list_fred_sources` — Discover the original data sources available through FRED.
+- `list_fred_tag_series` — Find economic series matching all selected FRED tags.
+- `list_fred_tags` — Discover FRED tags with text, group, sorting, and pagination filters.
+- `list_fred_vintage_dates` — Find dates when a FRED series was first published or revised.
+- `list_fundable_company_deals` — List a company's financing rounds through Fundable, preserving deal IDs for investor and round-detail queries.
+- `list_fundable_deal_investors` — List the investors participating in a Fundable financing round.
+- `list_fundable_investor_deals` — List financing rounds involving a Fundable investor to research its investment portfolio.
+- `list_fundable_person_deals` — List financing rounds associated with an individual Fundable person, including individual-investor relationships, with zero-based pagination. This is distinct from institutional investor portfolios.
+- `list_github_trending_developers` — Discover GitHub Trending developers by programming language and daily, weekly, or monthly period.
+- `list_github_trending_repositories` — Discover GitHub Trending repositories with programming-language and spoken-language filters, rather than a global-only ranking.
+- `list_glassdoor_company_interviews` — List Glassdoor Company Interviews through Glassdoor.
+- `list_glassdoor_company_jobs` — List Glassdoor Company Jobs through Glassdoor.
+- `list_glassdoor_company_reviews` — List Glassdoor Company Reviews through Glassdoor.
+- `list_glassdoor_company_salaries` — List Glassdoor Company Salaries through Glassdoor.
+- `list_hackernews_feed` — Read a public Hacker News ask, best, jobs, new, show, or top feed with pagination.
+- `list_hackernews_hiring` — Read public Hacker News Who Is Hiring listings for a selected month, with explicit result pagination.
+- `list_hunter_company_emails` — Find business email addresses at a company through Hunter, with sources, verification metadata, role filters, and optional aggregate breakdowns.
+- `list_keepa_lightning_deals` — List Keepa lightning deals by marketplace and state.
+- `list_linkfox_1688_product_rankings` — List weekly or monthly 1688 product rankings through AIsa LinkFox.
+- `list_linkfox_amazon_reviews` — List Amazon product reviews by rating, keyword, format, and reviewer type.
+- `list_linkfox_echotik_product_videos` — List TikTok videos associated with a product through EchoTik.
+- `list_linkfox_echotik_second_level_categories` — List EchoTik second-level TikTok Shop categories, optionally under a top-level category.
+- `list_linkfox_echotik_seller_products` — List a TikTok Shop seller's products through EchoTik.
+- `list_linkfox_echotik_third_level_categories` — List EchoTik third-level TikTok Shop categories, optionally under a second-level category.
+- `list_linkfox_echotik_top_categories` — List EchoTik top-level TikTok Shop categories in the requested language.
+- `list_linkfox_echotik_video_rankings` — Get daily, weekly, or monthly TikTok video rankings by views or sales through EchoTik.
+- `list_linkfox_kalodata_creator_rankings` — Rank TikTok Shop creators by marketplace, category, followers, or revenue through Kalodata.
+- `list_linkfox_kalodata_product_rankings` — Rank TikTok Shop products by marketplace, category, price, or revenue through Kalodata.
+- `list_linkfox_sif_asin_keywords` — List organic and advertising keywords associated with an Amazon ASIN through SIF.
+- `list_linkfox_temu_categories` — Discover Temu category IDs and their immediate children through GeekBI.
+- `list_listennotes_best_podcasts` — Browse best podcasts by genre, language, listener region, and publisher region through Listen Notes. Regional popularity and publisher location are separate filters.
+- `list_listennotes_curated_lists` — Discover Listen Notes curated podcast lists and their identifiers with pagination.
+- `list_listennotes_genres` — List Listen Notes genre IDs for podcast and episode search filters.
+- `list_listennotes_languages` — List supported Listen Notes podcast languages for search filters.
+- `list_listennotes_publisher_podcasts` — List podcasts published by a domain such as npr.org, with provider pagination.
+- `list_listennotes_regions` — List supported Listen Notes country and region codes for search filters.
+- `list_media_models` — Discover models available to the AISA key, their capabilities, and supported public routes. Filter image models before selecting a model for image generation.
+- `list_moz_anchor_texts` — Audit backlink anchor texts for a URL, subdomain, or root domain with cursor pagination.
+- `list_moz_backlinks` — Find backlinks with source-domain, anchor-text, scope, and link-status filters, plus cursor pagination.
+- `list_moz_linking_domains` — Find referring domains and analyze gained or lost link domains using date filters and cursor pagination.
+- `list_moz_site_top_pages` — Discover a site's most linked pages, including broken-page recovery candidates and optional per-page metric histories.
+- `list_ninjas_public_holidays` — List a country's public holidays for a year through API Ninjas, preserving regional coverage and holiday names.
+- `list_ninjas_working_days` — List working and non-working dates for a country and optional month through API Ninjas, with custom weekend and holiday rules.
+- `list_polymarket_bridge_assets` — List publicly supported bridge assets and chains without initiating a transfer.
+- `list_polymarket_builder_trades` — List public CLOB trades attributed to a supplied Polymarket builder code, with market, asset, time, and cursor filters. This is builder attribution data, not an authenticated account order list. Preserve upstream numeric strings and units; next_cursor LTE= marks the end.
+- `list_polymarket_comments` — List public comments on Polymarket markets, events, or series with filtering and pagination.
+- `list_polymarket_market_summaries` — List simplified CLOB markets with token and reward summaries.
+- `list_polymarket_reward_markets` — List markets with currently active liquidity-reward configurations.
+- `list_polymarket_sampled_market_summaries` — List sampled CLOB market summaries with rewards and token information.
+- `list_polymarket_sampling_markets` — List sampled CLOB markets with descriptive metadata, token summaries, and tags.
+- `list_polymarket_series` — Find recurring market series with category, slug, and pagination filters.
+- `list_polymarket_sports` — Discover sports metadata and classification identifiers for event research.
+- `list_polymarket_sports_market_types` — List valid sports-market types for filtering market research.
+- `list_polymarket_tags` — Discover public category tags with pagination.
+- `list_polymarket_teams` — Discover sports teams by name, league, or abbreviation.
+- `list_predict_leads_technologies` — Browse and search tracked technologies through PredictLeads.
+- `list_social_accounts` — List owned Social accounts, including pending and disconnected bindings. No shared-key global accounts are returned.
+- `list_social_posts` — List posts.
+- `list_surf_exchange_listing_events` — Find token listing, delisting, cancellation, advancement, and postponement events by date and market product.
+- `list_surf_exchange_markets` — Discover exchange trading pairs, market types, active status, and fees for subsequent exchange queries.
+- `list_surf_hyperliquid_fills` — Replay public Hyperliquid fills with fees and realized PnL. Descending queries are capped near 2000 fills; ascending queries with from support full-history cursor pagination. Symbol filtering can leave an empty page with a next cursor. Funding is separate from fill PnL.
+- `list_surf_polymarket_positions` — Inspect a public Polymarket proxy wallet's positions, prices, and PnL. Discover addresses from market trade records; data refreshes about every 30 minutes.
+- `list_surf_polymarket_trades` — Query Polymarket trades by discovered market condition or public wallet. Wallet queries match maker or taker; redemption includes split, merge, and redemption activity. Data refreshes about every five minutes.
+- `list_surf_token_dex_trades` — Inspect token DEX swaps, takers, pairs, and USD amounts. Indexed data refreshes about every 24 hours.
+- `list_surf_token_holders` — Get top holders of a token contract with balances, ownership percentages, and optional entity labels.
+- `list_surf_token_transfer_counterparties` — Rank token transfer receivers or senders by transfer count, token amount, or USD amount over a fixed window. USD enrichment lags about three days; data refreshes daily. Label exclusions can produce fewer results than requested.
+- `list_surf_token_transfers` — Inspect a token contract's transfer events across holders. EVM and Tron indexing refreshes daily; Solana uses a separate source. Preserve decimal amounts without floating-point conversion.
+- `list_surf_wallet_protocols` — Inspect public EVM wallet DeFi positions across lending, staking, liquidity pools, and farms, including token breakdowns and USD valuations.
+- `list_surf_wallet_transfers` — Inspect a public wallet's ERC-20 or SPL token transfers by direction and token. EVM and Tron indexing refreshes daily; Solana uses a separate source. This is token transfer history, not arbitrary transaction history.
+- `list_surf_yield_pools` — Rank individual DeFi yield pools by APY or TVL. APY ranking includes only pools with TVL of at least USD 100,000.
+- `list_temu_categories` — Browse Temu root categories or direct children. The category tree is shared across marketplaces and names are Chinese; all matching children are returned without pagination.
+- `list_tiktok_shop_creator_videos` — Retrieve TikTok Shop videos associated with a creator, optionally filtered by product. Sources can repeat videos across pages; results are not deduplicated.
+- `list_tiktok_shop_listing_videos` — Retrieve TikTok Shop videos associated with a product, optionally filtered by creator and publication dates.
+- `list_tiktok_shop_shop_listings` — Retrieve products associated with a TikTok Shop shop. Returns product-list source fields without fetching every listing in full.
+- `list_twelvedata_etfs` — Discover Twelve Data ETF symbols by country and exchange before requesting fund or market data. The current AISA route only returns JSON; additional supplier metadata is preserved.
+- `list_twelvedata_exchanges` — Find Twelve Data exchange codes, names and timezones, optionally restricted to an ISO country. These supplier identifiers support exchange-specific instrument queries and are not interchangeable with EODHD suffixes.
+- `list_twelvedata_mutual_funds` — Discover mutual-fund symbols by country, exchange and fund type, including available family and rating metadata. This is a directory query without a required ticker, not a holdings or performance-history endpoint.
+- `list_youtube_channel_videos` — List YouTube channel videos, shorts, and live streams.
+- `list_youtube_playlist_videos` — List regular, short, and live video IDs from a YouTube playlist.
+- `lookup_companyenrich_person` — Lookup Person by Email through CompanyEnrich.
 - `lookup_creator_email` — Look up the public contact email for one creator profile; not-found results are billed.
+- `lookup_hlr_phone_network` — Look up current telephone-network information rather than only validating number syntax. This AISA route always bypasses both caches and stores the new result privately. National-format input is limited to GBR; use international E.164 digits without + for other countries. Preserve network-specific availability and business errors.
+- `lookup_keepa_categories` — Look up Keepa categories and optional parent categories.
+- `lookup_ninjas_routing_number` — Look up bank information for a 9-digit routing number through API Ninjas. This does not validate an individual bank account.
+- `map_crawl4ai_website` — Discover a website's URLs through Crawl4AI, optionally including historical URLs from the Wayback Machine.
+- `map_eodhd_instrument_identifiers` — Map global security identifiers including exchange-qualified tickers, ISIN, CUSIP, FIGI, CIK, and LEI.
 - `map_firecrawl` — Discover website links through Firecrawl. Set limit to bound discovery and usage before retrieving individual pages.
+- `map_tavily` — Discover site URLs using path and domain filters, crawl depth, and natural-language instructions.
+- `map_website_links` — Discover links from a website with an optional preferred language.
+- `prospect_lusha_contacts` — Find professional contacts with company and contact include/exclude filters, without saving a shared workspace table.
+- `protect_pdf` — Create an encrypted PDF copy with passwords and document restrictions.
 - `query_dataforseo_chatgpt` — Run a live ChatGPT response query for GEO research through DataForSEO.
 - `query_dataforseo_claude` — Run a live Claude response query for GEO research through DataForSEO.
 - `query_dataforseo_gemini` — Run a live Gemini response query for GEO research through DataForSEO.
 - `query_dataforseo_perplexity` — Run a live Perplexity response query for GEO research through DataForSEO.
+- `query_serpapi_google_ai_mode` — Retrieve Google's AI Mode answer and source references for public search and AI visibility research.
+- `quote_polymarket_bridge` — Estimate bridge fees, received amount, and completion time without submitting a transfer.
+- `recognize_carsxe_license_plate` — Recognize license-plate candidates in a publicly accessible HTTPS image, returning text, bounding boxes and confidence as JSON. The supplier reads the image URL.
+- `rerank_jina_documents` — Rank supplied documents against a query using a Jina reranker, preserving original indexes for retrieval pipelines. No provider index or stored document collection is created; billing is token-based.
+- `research_amazon_products` — Screen Amazon products by category, price, estimated monthly sales, and rating using the source's latest database snapshot.
+- `research_linkfox_walmart_keywords` — Research Walmart keywords and associated products or read saved keyword lists through Sorftime.
+- `resolve_us_legal_citations` — Resolve up to 500 US legal citations to source records for follow-up provision queries.
+- `reverse_geocode_google_location` — Resolve coordinates to Google addresses, optionally filtering address types and preferred language or region.
+- `score_zerobounce_email` — Get ZeroBounce's model-based email quality score, useful after a catch-all or uncertain validation result. Scores range from 0 to 10, where 0 means unknown. A score is not a delivery guarantee or proof of actual recipient engagement; preserve supplier business errors.
 - `scrape_firecrawl` — Retrieve one HTTPS web page as Markdown through Firecrawl. The AIsa route supports basic proxy mode and excludes PDF URLs.
+- `scrape_webpage_markdown` — Extract webpage Markdown and links with language and link removal options.
+- `screen_stocks` — Screen stocks by financial metrics and company identifiers.
+- `screenshot_dataforseo_serp` — Capture a completed DataForSEO search result page that supports HTML. The task must be at most seven days old; returned image URLs expire after one day. Marketplace supports Baidu, Naver, Seznam, and Google Jobs tasks.
+- `scroll_companyenrich_people` — Search professional profiles through CompanyEnrich with cursor pagination beyond 10,000 results.
+- `search_1688_listings` — Search 1688 products using Chinese keywords. Sales, orders, and estimated GMV use the selected 7-day or 30-day window; prices use CNY.
+- `search_1688_listings_by_image` — Find similar 1688 products or suppliers from an HTTP or HTTPS PNG/JPG image. Sales cover the source's past month, GMV is estimated, and wholesale prices use CNY.
+- `search_accuweather_city_by_ip_address` — Resolve an IPv4 or IPv6 address to an AccuWeather city. IP-based location is approximate.
+- `search_accuweather_locations` — Search Locations through AccuWeather, preserving upstream metadata.
+- `search_accuweather_locations_by_coordinates` — Resolve coordinates to AccuWeather locations for forecasts and weather-risk queries.
+- `search_adyntel_linkedin_ads` — Inspect a company's public LinkedIn ads and paginate the archive. The extract hint does not guarantee a count-only response; complete ads can still be returned. Batch scraping and webhooks are not exposed.
+- `search_adyntel_meta_ads` — Inspect a company's public Facebook and Instagram ads, with country, media, status, and continuation filters. Shared-key queries are single-page; automatic scraping and webhooks are not exposed.
+- `search_airbnb_listings` — Research public Airbnb listings by destination or map bounds, dates, guests, amenities, prices, and pagination. This does not book accommodation.
 - `search_akta_companies` — Find Akta companies by name, website, or UUID.
 - `search_akta_company_list` — Search an Akta company list using natural language or structured filters, with optional enrichment and pagination.
 - `search_akta_industries` — Resolve industry terms to ranked Akta industry codes.
+- `search_amazon_categories` — Search Amazon US Browse Node categories or list root categories. Results are not paginated, and rank is node-ID order rather than sales rank.
+- `search_amazon_listings` — Search Amazon listings with available storefront attributes. Page sizes vary, products can repeat, and a continuation cursor can lead to an empty final page.
+- `search_amazon_listings_by_image` — Find Amazon listings using a source-fetched image URL. Results contain search attributes without separately fetching every product.
+- `search_and_enrich_lusha_contacts` — Find and reveal emails or phones for up to 100 contacts, preserving partial matches and synchronous Data Waterfall outcomes.
+- `search_api_sports_afl_games` — Discover AFL games by date, game, league, season, or team; use returned AFL IDs for statistics.
+- `search_api_sports_football_coaches` — Find football coaches by ID, team, or name through API Sports.
+- `search_api_sports_mma_fighters` — Find MMA fighters by name, category, team, or ID through API Sports. Use returned fighter IDs for records and fight queries.
+- `search_api_sports_mma_fights` — Find MMA fights by date, season, category, fighter, or fight ID through API Sports. Fighter queries require a date or season.
 - `search_apollo_company_news` — Search Apollo news articles for known organizations and event categories.
 - `search_apollo_organizations` — Search Apollo's global organization database by domain, location, size, and name.
 - `search_apollo_people` — Search Apollo's global people database by role, location, employer, and seniority.
+- `search_bing_regional` — Search Bing with market, country, device, location, filtering, and result-offset controls.
+- `search_brave_images` — Search images with Brave. Image results are not paginated; use count to request up to 200.
+- `search_brave_news` — Search news with Brave using date, language, country, and pagination filters.
+- `search_brave_places` — Find public businesses and places by query, location name, or coordinates. Radius is a ranking bias, not a strict boundary.
+- `search_brave_rich` — Search Brave and retrieve available real-time rich results in one call. Enables rich callbacks automatically. If no rich result is available, returns the web search with rich=null. If the follow-up fails, preserves the search and returns partial=true with an error; retry get_brave_rich with the returned callback instead of repeating the search. Each upstream request may incur usage.
+- `search_brave_videos` — Search videos with Brave using date, language, and pagination filters.
+- `search_brave_web` — Search the web with Brave, including regional filters, pagination, snippets, and local result identifiers.
+- `search_byteplus_web` — Search current web sources with BytePlus using language, domain, and recency filters.
+- `search_carsxe_vehicle_images` — Search vehicle photographs and return image and thumbnail URLs as JSON. Filter by model, year, trim, angle, color and usage license; photo_type additionally requires year and trim.
+- `search_companyenrich_cities` — Search cities by name or country through CompanyEnrich.
+- `search_companyenrich_companies` — Search companies by criteria through CompanyEnrich.
+- `search_companyenrich_countries` — Search Countries through CompanyEnrich.
+- `search_companyenrich_people` — Search People through CompanyEnrich.
+- `search_companyenrich_states` — Search States through CompanyEnrich.
+- `search_context_brands` — Find up to ten brands by name or domain prefix, returning brand IDs, domains and logo metadata. Prefix matching does not provide typo tolerance.
+- `search_crawl4ai_hackernews_hiring` — Search public Hacker News hiring-thread listings by keyword and remote-work preference, with optional summarization.
+- `search_crawl4ai_remoteok_jobs` — Search public Remote OK job listings by keyword and technical tag.
+- `search_crawl4ai_weworkremotely_jobs` — Search public We Work Remotely jobs within a category and optional keywords.
 - `search_creators` — Find creators from a natural-language brief and optional audience filters.
-- `search_dataforseo_llm_mentions` — Search individual LLM mention records for domains and keywords.
+- `search_daily_international_jobs` — Search Daily International Jobs with employment, location, date, salary, and source filters. Salary filters use each posting's original currency and period.
+- `search_dataforseo_business_listings` — Find business listings by category, location, title, and review filters.
+- `search_dataforseo_llm_mentions` — Search AI mentions with filters, sorting, and pagination.
+- `search_duckduckgo_regional` — Search DuckDuckGo with regional, date, safety, pagination, and optional AI Search Assist controls.
+- `search_ebay_products` — Research public eBay listings by keyword or category, condition, delivery location, buying format, price, and pagination.
+- `search_eodhd_instruments` — Find global stocks, funds, ETFs, bonds, or indexes by ticker, name, or ISIN, with exchange filters.
 - `search_exa` — Search the web semantically through Exa. Request contents to include page text, or retrieve selected URLs with get_exa_contents.
+- `search_financial_line_items` — Compare selected financial line items across companies.
+- `search_finnhub_news` — Read Finnhub market or company news with incremental IDs and explicit result truncation metadata.
+- `search_finnhub_symbols` — Find Finnhub market symbols by ticker, company name, ISIN, or CUSIP.
 - `search_firecrawl` — Search the web through Firecrawl and return ranked URLs, titles, and snippets.
 - `search_foreplay_ads` — Search the Foreplay ad index by text, platform, format, niche, and activity.
+- `search_fred_related_tags` — Find related tags among economic series matching search text.
+- `search_fred_series` — Find FRED economic series by text, tags, and frequency.
+- `search_fred_tags` — Find tags used by economic series matching search text.
+- `search_fundable_companies` — Find funded companies by industry, location, size, investors, and latest financing round through Fundable.
+- `search_fundable_deals` — Find financing rounds by company attributes, investors, financing type, amounts, and dates through Fundable.
+- `search_fundable_investors` — Discover investors by portfolio companies, financing participation, lead investments, location, and size through Fundable.
+- `search_fundable_people` — Discover founders, company leaders and individual investors using company financing, investor portfolios, education and professional roles. Company, investor and person filters remain separate; returned person IDs can be used for person details and financing rounds.
+- `search_glassdoor_companies` — Search Glassdoor Companies through Glassdoor.
+- `search_glassdoor_jobs` — Search Glassdoor Jobs through Glassdoor.
+- `search_hackernews` — Search Hacker News stories, comments, jobs, and discussions by author, domain, date, score, and text-matching options.
+- `search_icypeas_people` — Find people through Icypeas using current and past employers, job titles, education, skills, and location, with cursor pagination.
+- `search_ignav_airports` — Find airports by IATA code, name, city, country or metro-style text before searching public fares. limit caps one complete response and is not a pagination size.
+- `search_ignav_flexible_fares` — Search one or two ordered public flight legs with per-leg dates, local-hour ranges and stop limits, plus shared passenger and baggage filters. AISA currently supports only the US market; no booking operation is performed.
+- `search_ignav_one_way_fares` — Search public one-way fares in the US market with passenger, baggage, airline, cabin and local-hour filters. Prices may change; results do not create bookings, and disabling self-transfer is best effort.
+- `search_ignav_round_trip_fares` — Search public round-trip fares in the US market. Preserve independent outbound and return local-hour filters, baggage and passenger composition; return_date must be on or after departure_date.
+- `search_instagram_hashtag` — Find Google-indexed public Instagram posts and reels for a hashtag. Uses AIsa's native ScrapeCreators source, independently of TikHub.
+- `search_instagram_profiles` — Find public Instagram profiles by biography or caption keywords. Uses AIsa's native ScrapeCreators source, independently of TikHub.
+- `search_instagram_reels` — Search public Instagram reels by keyword, relative publication window, and page. Uses AIsa's native ScrapeCreators source, independently of TikHub.
+- `search_keepa_categories` — Search Keepa categories by keyword.
+- `search_keepa_products` — Search Keepa products by keyword, optionally returning only ASINs.
+- `search_leadmagic_linkedin_ads` — Discover LinkedIn advertising creatives associated with a company domain or company name. Returns the supplier's available public advertising records; absence does not prove a company has never advertised.
+- `search_linkfox_1688_by_image` — Find visually similar 1688 products through AIsa LinkFox.
+- `search_linkfox_1688_products` — Search LinkFox 1688 sourcing listings by Chinese keyword, product URL, or product IDs through AIsa.
+- `search_linkfox_amazon_by_image` — Find visually similar Amazon products from a public image URL.
+- `search_linkfox_amazon_products` — Search Amazon listings by keyword or category.
+- `search_linkfox_echotik_products` — Search TikTok Shop products by market, sales, pricing, and engagement through EchoTik.
+- `search_linkfox_echotik_sellers` — Search TikTok Shop sellers by market, category, and sales performance through EchoTik.
+- `search_linkfox_echotik_videos` — Search TikTok videos by market, creator, product, and performance through EchoTik.
+- `search_linkfox_jungle_scout_keywords` — Discover Amazon keyword ideas and search volumes from a seed keyword through Jungle Scout.
+- `search_linkfox_sellersprite_products` — Search SellerSprite Amazon product data with market, sales, and competition filters.
+- `search_linkfox_temu_products` — Search Temu products by region, category, price, stock, and sales metrics through GeekBI.
+- `search_linkfox_temu_stores` — Search Temu stores by region, category, ratings, and sales through GeekBI.
+- `search_listennotes` — Search Listen Notes episodes, podcasts, and curated lists by topic, with publication, language, region, duration, and podcast filters.
+- `search_lusha_contact_signals` — Look up up to 100 professional contacts and optionally filter dated promotion or company-change signals. Lusha returns profile previews and contact-data availability; this search does not reveal contact details or save a workspace table.
+- `search_ninjas_airports` — Find airports by IATA, ICAO, name, city, region, or country.
+- `search_ninjas_canadian_postal_codes` — Look up Canadian postal codes by postal code, city, or province.
+- `search_ninjas_cities` — Find cities by name, country, population, and geographic bounds.
+- `search_ninjas_countries` — Screen countries by demographic, economic, health, and geographic indicators.
+- `search_ninjas_electric_vehicles` — Search electric-vehicle specifications through API Ninjas by manufacturer, model, model year, and electric range, with pagination.
+- `search_ninjas_financial_filings` — Find company financial statements by CIK, ticker, filing dates, or fiscal periods.
+- `search_ninjas_insider_transactions` — Screen insider transactions by company, role, SEC form, transaction date, code, and USD value.
+- `search_ninjas_swift_codes` — Look up SWIFT/BIC bank codes through API Ninjas by code, bank, city, or country. Partial bank matching and pagination depend on the supplier plan.
+- `search_ninjas_universities` — Find universities by name and country, retaining contact and institutional information.
+- `search_ninjas_us_counties` — Find US counties and preserve county FIPS codes and ZIP code strings.
+- `search_ninjas_us_hospitals` — Find US hospitals by name or location, with geographic filtering within each upstream page.
+- `search_pdl_people_elastic` — Search professional resumes using PDL's Elasticsearch DSL and continue with scroll_token. This route accepts only the resume dataset and does not accept SQL. Preserve upstream empty results, errors and additional profile fields.
+- `search_pinterest` — Search public Pinterest pins by keyword with cursor pagination. Uses AIsa's native ScrapeCreators source, independently of TikHub.
+- `search_polymarket` — Search public Polymarket events, markets, profiles, and tags with filters and pagination.
+- `search_polymarket_events` — Search public events with keyset pagination, sports, time, tag, and liquidity filters.
+- `search_polymarket_markets` — Search public markets with keyset pagination, identifiers, tags, dates, and liquidity filters.
+- `search_polymarket_reward_markets` — Search public market reward configurations by event, price, spread, volume, and text.
+- `search_prospeo_companies` — Discover companies using detailed product, compliance, technology, hiring, financing and traffic filters. Continue with next_cursor alone. Some filters require a supplier plan; account-specific intent topics require your own credentials.
+- `search_prospeo_people` — Discover professional profiles by current and past roles, education, tenure and detailed company criteria. Search reports contact availability without revealing email or mobile values. Account intent and team reveal-history filters require your own credentials.
+- `search_querit` — Search web, code, or finance sources with geographic, language, site, time, and content extraction controls.
+- `search_reddit_posts` — Search public Reddit posts or comments with pagination.
+- `search_reddit_subreddit` — Search public Reddit discussions within one subreddit.
+- `search_scholar_articles` — Search academic papers with source links, abstracts, authors, and citation counts when available.
+- `search_scholar_mixed` — Search academic literature and the web together; author and citation data are optional for mixed sources.
+- `search_scholar_web` — Search web sources with titles, links, and snippets; this does not retrieve full page text.
+- `search_search1api_news` — Search selected news engines or Reuters and Hacker News with language, site, and recency filters.
+- `search_search1api_web` — Search selected global or regional engines, including WeChat, Bilibili, Quark, Baidu, and arXiv, with site and recency filters.
+- `search_serpapi_ad_transparency` — Find an advertiser's publicly visible Google ads by advertiser ID or text, with creative, platform, region, date, and political-ad filters.
+- `search_serpapi_amazon` — Inspect Amazon search-page organic results and product_ads separately for sponsored-placement research.
+- `search_serpapi_app_store` — Search Apple App Store apps or developers with country, language, category, device, and pagination controls.
+- `search_serpapi_baidu` — Search Baidu's regional web index with optional simplified or traditional Chinese language filtering.
+- `search_serpapi_baidu_news` — Find news through Baidu's Chinese news search index.
+- `search_serpapi_google_advanced` — Search Google with precise location, language, device, vertical, and result-filter controls, preserving rich results and AI Overview continuation tokens.
+- `search_serpapi_google_events` — Discover Google event results with dates, locations, and source or ticket links using regional preferences.
+- `search_serpapi_google_maps` — Search Google Maps within a viewport or retrieve a place's details by its Google place ID.
+- `search_serpapi_google_news` — Read Google News headlines, search by text, or follow a returned topic token with country and language preferences.
+- `search_serpapi_google_play` — Search Google Play apps, browse store charts, or continue a results section with its returned token.
+- `search_serpapi_google_shopping` — Inspect Google Shopping result groups, including inline and categorized products, for a specific country, language, and city.
+- `search_serpapi_home_depot` — Search public Home Depot products for US or Canadian home-improvement catalog research.
+- `search_serpapi_hotels` — Find Google Hotels results for a destination, stay dates, and adult guest count.
+- `search_serpapi_images_filtered` — Search Google Images Light by color, dimensions, aspect ratio, upload date, device, and location.
+- `search_serpapi_lens` — Search Google Lens with a public image, optional refining text, and country or language preferences.
+- `search_serpapi_naver` — Search Naver's Korean web, news, image, video, or combined regional results.
+- `search_serpapi_patents` — Search Google Patents with Boolean queries, patent status, chronological sorting, and pagination.
+- `search_serpapi_scholar_pages` — Search Google Scholar with result offsets and per-page limits, retaining citation links and result identifiers.
+- `search_serpapi_tripadvisor` — Search Tripadvisor destinations, restaurants, attractions, hotels, rentals, or forums. Forum results are preserved separately from places.
+- `search_serpapi_walmart` — Search Walmart's public product results to discover item IDs for subsequent price, stock, and review inspection.
+- `search_serpapi_yandex` — Search Yandex's regional web index with a selected interface language.
+- `search_serpapi_yandex_images` — Find images through Yandex's regional image index.
+- `search_serpapi_yelp` — Find Yelp businesses by location, attributes, recommendation or review ranking, and country-specific Yelp domain.
+- `search_serper_lens` — Find Google Lens visual matches for a public JPG or PNG image through Serper.
+- `search_serper_maps` — Search Google Maps through Serper with location identifiers and pagination.
+- `search_serper_news` — Search Google News through Serper with location, date, and pagination filters.
+- `search_serper_patents` — Search Google Patents through Serper.
+- `search_serper_places` — Find Google places through Serper for subsequent place review queries.
+- `search_serper_scholar` — Search Google Scholar through Serper.
+- `search_serper_shopping` — Search Google Shopping through Serper; each page requests forty results.
+- `search_serper_videos` — Search Google video results through Serper.
+- `search_serper_web` — Search Google through Serper; each page requests ten organic results.
+- `search_surf_prediction_markets` — Discover Polymarket and Kalshi markets using keywords, category, status, smart-money direction, volume, or resolution timing.
+- `search_surf_projects` — Discover project IDs, slugs, chains, and associated tokens by name for subsequent project and unlock research.
+- `search_surf_tokens` — Resolve token names or symbols to chain-specific contract addresses before querying holders or on-chain data.
+- `search_surf_wallets` — Discover publicly labeled wallets by search text for subsequent wallet and transfer research.
+- `search_tavily` — Search web, news, or finance sources with Tavily and optionally return answers, images, or extracted text.
+- `search_temu_listings` — Search Temu product titles or browse by category and sort order. Results cover at most the first 10,000 source records; displayed prices use marketplace currency.
+- `search_temu_shops` — Search Temu shops by name or category, returning ratings, counts, followers, sales, estimated GMV, average order value, hosting mode, and opening dates.
+- `search_tiktok_shop_categories` — Search or browse the global TikTok Shop category dictionary, with 100 results per page. Country scopes keys and does not prove local sales; retain mapping evidence.
+- `search_tiktok_shop_listings` — Search TikTok Shop products by keyword or browse with range filters. Keyword search returns up to 30 matches without subsequent pages, range filters, or sort direction.
+- `search_tiktok_shop_listings_by_image` — Find TikTok Shop products from a JPEG or PNG image. Returns image-search fields without fetching every product in full.
+- `search_tiktok_shop_livestreams` — Discover TikTok Shop livestream sessions by creator, status, and session metrics. These are session records, not an official daily, weekly, or monthly leaderboard.
+- `search_tiktok_shop_shops` — Search TikTok Shop shops by category, cross-border operation, sales, and GMV filters, returning available shop attributes and metrics.
+- `search_tiktok_shop_videos` — Search TikTok Shop videos by creator, product, category, publication dates, views, duration, and commerce status.
+- `search_twitter_community_posts` — Search public posts across X communities with latest or top ordering and cursor pagination.
 - `search_twitter_posts` — Search public Twitter posts using X query syntax and cursor pagination.
+- `search_twitter_users` — Find public X profiles by keyword with cursor pagination.
+- `search_us_legal_provisions` — Search US legal provisions across federal and state statutes, rules, guidance, annual editions, and public notices. Use returned act IDs for text, history, citations, and related provisions.
+- `search_weather_locations` — Find locations by name or postal code and return coordinates for weather research.
+- `search_web_full_content` — Search web sources and retrieve full-page content with market, date, and content-format filters.
+- `search_web_smart` — Search web sources with optional long abstracts, dynamic snippets, domain filters, and pagination.
+- `search_youtube` — Search YouTube videos, channels, and playlists with region, language, and opaque filter or pagination tokens.
+- `search_youtube_resources` — Search YouTube videos, channels, and playlists; each page of about 20 results consumes one credit.
+- `spellcheck_brave_query` — Check a search phrase for spelling corrections in a selected country and language.
+- `submit_dataforseo_apple_app_info` — Start a DataForSEO App Store app details task and poll its task ID for results. Higher depth or priority may increase the charge. [write]
+- `submit_dataforseo_apple_app_list` — Start a DataForSEO App Store charts task and poll its task ID for results. Higher depth or priority may increase the charge. [write]
+- `submit_dataforseo_apple_app_reviews` — Start a DataForSEO App Store app reviews task and poll its task ID for results. Higher depth or priority may increase the charge. [write]
+- `submit_dataforseo_apple_app_searches` — Start a DataForSEO App Store app search task and poll its task ID for results. Higher depth or priority may increase the charge. [write]
+- `submit_dataforseo_baidu_organic` — Start a DataForSEO Baidu organic search task and poll its task ID for results. Higher depth or priority may increase the charge. [write]
+- `submit_dataforseo_bing_organic` — Submit one bing Organic Standard task for queued keyword monitoring. Poll structured or original HTML results with the same task ID. Priority, depth and optional enrichment affect cost; AISA pricing is not guaranteed to match the supplier's published rate. [write]
+- `submit_dataforseo_chatgpt_citation_scraper` — Start a DataForSEO ChatGPT scraper task for original HTML and citation auditing. Set expandCitations=true to include the expanded citation bar; ChatGPT also requires forceWebSearch=true. Poll the matching result action. [write]
+- `submit_dataforseo_gemini_citation_scraper` — Start a DataForSEO Gemini scraper task for original HTML and citation auditing. Set expandCitations=true to include the expanded citation bar; ChatGPT also requires forceWebSearch=true. Poll the matching result action. [write]
+- `submit_dataforseo_google_app_info` — Start a DataForSEO Google Play app details task and poll its task ID for results. Higher depth or priority may increase the charge. [write]
+- `submit_dataforseo_google_app_list` — Start a DataForSEO Google Play charts task and poll its task ID for results. Higher depth or priority may increase the charge. [write]
+- `submit_dataforseo_google_app_reviews` — Start a DataForSEO Google Play app reviews task and poll its task ID for results. Higher depth or priority may increase the charge. [write]
+- `submit_dataforseo_google_app_searches` — Start a DataForSEO Google Play app search task and poll its task ID for results. Higher depth or priority may increase the charge. [write]
+- `submit_dataforseo_google_business_reviews` — Start a DataForSEO Google business reviews task and poll its task ID for results. Higher depth or priority may increase the charge. [write]
+- `submit_dataforseo_google_business_updates` — Start a DataForSEO Google business updates task and poll its task ID for results. Higher depth or priority may increase the charge. [write]
+- `submit_dataforseo_google_extended_reviews` — Start a DataForSEO extended Google business reviews task and poll its task ID for results. Higher depth or priority may increase the charge. [write]
+- `submit_dataforseo_google_jobs` — Start a DataForSEO Google Jobs search task and poll its task ID for results. Higher depth or priority may increase the charge. [write]
+- `submit_dataforseo_google_organic` — Submit one google Organic Standard task for queued keyword monitoring. Poll structured or original HTML results with the same task ID. Priority, depth and optional enrichment affect cost; AISA pricing is not guaranteed to match the supplier's published rate. [write]
+- `submit_dataforseo_google_search_by_image` — Start a DataForSEO Google reverse image search task and poll its task ID for results. Higher depth or priority may increase the charge. [write]
+- `submit_dataforseo_google_shopping_product_info` — Start a DataForSEO Google Shopping product details task and poll its task ID for results. Higher depth or priority may increase the charge. [write]
+- `submit_dataforseo_google_shopping_products` — Start a DataForSEO Google Shopping product search task and poll its task ID for results. Higher depth or priority may increase the charge. [write]
+- `submit_dataforseo_google_shopping_reviews` — Start a DataForSEO Google Shopping product reviews task and poll its task ID for results. Higher depth or priority may increase the charge. [write]
+- `submit_dataforseo_google_shopping_sellers` — Start a DataForSEO Google Shopping sellers task and poll its task ID for results. Higher depth or priority may increase the charge. [write]
+- `submit_dataforseo_naver_organic` — Start a DataForSEO Naver organic search task and poll its task ID for results. Higher depth or priority may increase the charge. [write]
+- `submit_dataforseo_onpage` — Start a DataForSEO website audit. Choose crawl limits and optional rendering or stored reports, then poll the crawl summary. [write]
+- `submit_dataforseo_seznam_organic` — Start a DataForSEO Seznam organic search task and poll its task ID for results. Higher depth or priority may increase the charge. [write]
+- `submit_dataforseo_tripadvisor_reviews` — Start a DataForSEO Tripadvisor reviews task and poll its task ID for results. Higher depth or priority may increase the charge. [write]
+- `submit_dataforseo_tripadvisor_search` — Start a DataForSEO Tripadvisor business search task and poll its task ID for results. Higher depth or priority may increase the charge. [write]
+- `submit_dataforseo_trustpilot_reviews` — Start a DataForSEO Trustpilot reviews task and poll its task ID for results. Higher depth or priority may increase the charge. [write]
+- `submit_dataforseo_trustpilot_search` — Start a DataForSEO Trustpilot business search task and poll its task ID for results. Higher depth or priority may increase the charge. [write]
+- `submit_exa_research` — Start background web research with Exa. Poll the returned task ID for the research output. [write]
 - `submit_firecrawl_batch_scrape` — Start a background batch scrape of known URLs through AIsa Firecrawl. Poll the returned task ID for results. [write]
 - `submit_firecrawl_crawl` — Start a background website crawl through AIsa Firecrawl. Poll the returned task ID for results. [write]
+- `submit_oxylabs_answer` — Collect a ChatGPT, Gemini or Perplexity answer with Oxylabs for AI visibility research. Poll the returned task ID for results. [write]
+- `suggest_brave_queries` — Get search-query completions with optional rich result information.
+- `suggest_serpapi_google_queries` — Get Google autocomplete suggestions for a seed query, client, cursor position, country, and language.
+- `suggest_serper_queries` — Get Google autocomplete suggestions through Serper.
+- `summarize_dataforseo_serp` — Summarize a completed DataForSEO organic search result, optionally reading its linked pages. Use a task from the last 30 days. Marketplace supports tasks created by the Baidu, Naver, or Seznam submission actions.
+- `translate_youtube_transcript` — Translate a YouTube transcript to plain text or timestamped chunks.
+- `unlock_pdf` — Create an unprotected PDF copy using the source document password.
+- `update_ad` — Ad Campaigns. Can spend money or change spend: needs the ads:spend scope and X-Aisa-Confirm: spend; without the header the request is refused with confirmation_required and nothing is sent. Changes an ad's budget, targeting or status. Changes an ad's status, budget, targeting or creative and applies the change on the platform. Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform. ### Per-platform support Meta (Facebook + Instagram): all fields supported. Set confirmSpend=true only with explicit permission to change ad spending. [destructive]
+- `update_ad_status` — Ad Campaigns. A pause needs ads:write. A change to active turns delivery on: it needs ads:spend and X-Aisa-Confirm: spend. Pauses or resumes a single ad without touching its ad set, campaign or sibling ads. ### What it flips Ad-scoped pause/resume flips ONLY this ad's own switch, never its parent ad set or campaign, so sibling ads keep running: Meta `configured_status` TikTok `operation_status` Google ad group ad status LinkedIn creative Pinterest ad Reddit ad `configured_status` Set confirmSpend=true only with explicit permission to change ad spending. [destructive]
+- `update_ads_ad_set` — Ad Campaigns. Can spend money or change spend: needs the ads:spend scope and X-Aisa-Confirm: spend; without the header the request is refused with confirmation_required and nothing is sent. Changes an ad set's budget, bidding, schedule, targeting or status. Changes an ad set's settings, such as its budget, bid strategy, status or delivery options. At least one updatable field is required. Use it for: ABO budget updates. Ad-set-scoped pause/resume. Bid-strategy edits. Meta value-rule-set attach/detach. Set confirmSpend=true only with explicit permission to change ad spending. [destructive]
+- `update_ads_ad_set_status` — Ad Campaigns. A pause needs ads:write. A change to active turns delivery on: it needs ads:spend and X-Aisa-Confirm: spend. Pauses or resumes one ad set without touching its campaign, its sibling ad sets or the switches of its ads. It is a thin wrapper over PUT /apis/v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /apis/v1/ads/campaigns/{campaignId}/status. ### What is written It writes the ad set's own on/off switch and nothing else, on every platform: Set confirmSpend=true only with explicit permission to change ad spending. [destructive]
+- `update_ads_campaign` — Ad Campaigns. Can spend money or change spend: needs the ads:spend scope and X-Aisa-Confirm: spend; without the header the request is refused with confirmation_required and nothing is sent. Changes a campaign's budget or bidding. Changes a campaign's settings, such as its name, budget, bidding or tracking URLs. Send at least one of `budget`, `bidStrategy`, `portfolioBidStrategyId`, `targetImpressionShare`, `manualCpc`, `networkSettings`, `trackingUrlTemplate`, `finalUrlSuffix`, `sharedBudgetId`, `name` or `platformSpecificData`. An unsupported field is always an error, never a silent drop. Set confirmSpend=true only with explicit permission to change ad spending. [write]
+- `update_ads_campaign_status` — Ad Campaigns. A pause needs ads:write. A change to active turns delivery on: it needs ads:spend and X-Aisa-Confirm: spend. Pauses or resumes a campaign, leaving the on/off switches of its ad sets and ads as they are. It writes the campaign's own on/off switch and nothing else, on every platform: Meta, TikTok, Google, LinkedIn campaign group, Pinterest, X, ChatGPT (OpenAI). Its ad sets and ads keep their own switches: Pausing stops their delivery through the campaign. Set confirmSpend=true only with explicit permission to change ad spending. [destructive]
+- `update_social_post` — Edits a draft, scheduled or failed post. Turning a draft into a scheduled or published post needs social:publish. Published, publishing, partial and cancelled posts return 409 post_not_editable. [write]
+- `validate_ninjas_email` — Check email syntax, domain DNS, and disposable/public-provider classifications through API Ninjas. A positive result does not prove that the mailbox exists or can receive a message.
+- `validate_ninjas_phone` — Validate and normalize a phone number through API Ninjas, returning country, region, and common formats. This does not confirm subscriber identity or that the number can receive calls.
+- `verify_tomba_email` — Check an email's supplier-reported SMTP, catch-all, disposable, and role-address status through Tomba. Verification cannot guarantee delivery.
 
 ## Safety
 

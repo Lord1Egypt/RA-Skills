@@ -1,6 +1,6 @@
 [project]
 name = "aesthete-agent-mcp"
-version = "0.20.0"
+version = "0.19.0"
 description = "aesthete-agent MCP server — mechanically validated frontend aesthetics: palette library ranking, OKLCH generation, WCAG/APCA contrast, color-blind-safe data colors, theme packs, token exports (w3c/context); zero keys, zero telemetry"
 readme = "README.md"
 requires-python = ">=3.10"

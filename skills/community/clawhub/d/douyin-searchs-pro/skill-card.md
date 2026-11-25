@@ -1,6 +1,6 @@
 ## Description:
 
-Searches public Douyin videos and image posts, trending topics, creator works, individual post details, and comments, returning structured data for analysis.
+根据关键词搜索抖音热门作品，并查询热榜、作品详情、创作者公开作品和评论数据。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Content creators, social media analysts, and marketing teams use this skill to find Douyin content, review public creator and post metrics, inspect comments, and track trending topics. It returns structured data that can support content planning, competitor reviews, and audience analysis.
+内容运营人员、品牌团队和分析人员可用它搜索抖音作品、热榜、创作者公开作品和评论，以发现选题、监控竞品并了解受众反馈。
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review is benign with medium confidence, but 18 of 42 components were only partially inspected.
+Risk: Search terms, video links, or IDs may be sent to the Guaikei third-party API, and the skill also supports creator account searches.
 
-Mitigation: Review the partially inspected components before installation if you need assurance beyond the available scan.
-
-Risk: Search terms and submitted Douyin links are sent to the third-party Guaikei API.
-
-Mitigation: Use public data only and avoid submitting confidential or personal information; confirm that sharing the query or link is appropriate.
-
-Risk: The skill requires an API token to access the service.
-
-Mitigation: Keep GUAIKEI_API_TOKEN private and configure it through the environment rather than sharing it in prompts or output.
+Mitigation: Use only public content and non-sensitive queries, and review the requested search scope before running it.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/why20261/skills/douyin-searchs-pro)
-- [Guaikei service and help](https://www.guaikei.com)
-- [Options and usage reference](artifact/references/options.md)
-- [Comment analysis guide](artifact/references/demand-mining.md)
+- [ClawHub skill listing](https://clawhub.ai/why20261/skills/douyin-searchs-pro)
+- [Publisher profile](https://clawhub.ai/user/why20261)
+- [Guaikei service and access information](https://www.guaikei.com)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis]
+**Output Type(s):** [JSON, Analysis, Guidance]
 
-**Output Format:** [Structured JSON containing public Douyin search, creator, post, comment, and trend data; concise analysis based on returned data]
+**Output Format:** [Structured JSON results with concise text or Markdown summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results depend on API availability and returned public data. A GUAIKEI_API_TOKEN is required; search terms and submitted links are sent to the Guaikei service.]
+**Other Properties Related to Output:** [Results can include public post, creator, engagement, and comment data for the requested query.]
 
 ## Skill Version(s):
 
-1.4.2 (source: SKILL.md frontmatter, package.json, server-resolved release)
+1.5.0 (source: server-resolved release metadata, package.json)
 
 ## Ethical Considerations:
 

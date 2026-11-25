@@ -1,0 +1,8 @@
+interface:
+  display_name: "B站投稿草稿缺项检查"
+  short_description: "只读核对本人B站草稿缺项并交付带来源的修改建议清单"
+  default_prompt: "使用 $bilibili-submission-draft-check-free，使用我指定的 browserId，只读检查我已打开且归属可确认的 B站投稿草稿；列出封面、标题、简介、分区、素材缺项、建议和每条来源，不要保存、提交或发布。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

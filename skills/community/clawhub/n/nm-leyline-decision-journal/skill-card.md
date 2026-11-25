@@ -1,6 +1,6 @@
 ## Description:
 
-Provides conventions and templates for recording tradeoffs and lessons, deferring captures, and organizing stored knowledge.
+Helps record decisions, tradeoffs, lessons learned, deferred work, and reusable knowledge storage patterns.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agent workflows use this skill to record decision tradeoffs, lessons from failed approaches, and deferred work in append-only Markdown logs. It also provides conventions for selecting knowledge templates and organizing stored material.
+Developers and agent workflows use this skill to capture decision tradeoffs and lessons, follow a deferred issue capture contract, and organize knowledge with reusable templates.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Deferred capture may publish session details and local metadata to GitHub issues; the security review is partial because some referenced paths were missing.
+Risk: The security assessment flags lifecycle-management steps that may not match the journaling purpose.
 
-Mitigation: Review the information captured and its destination before using deferred capture, and treat the assessment as incomplete until the missing paths are reviewed.
+Mitigation: Review the lifecycle guidance and use only steps that fit the task.
+
+Risk: A deferred-capture issue template could expose private context when creating an issue.
+
+Mitigation: Check the issue destination and visibility, remove secrets and unnecessary local details, and review the content before sending it.
+
+Risk: The security assessment is incomplete because some references were missing.
+
+Mitigation: Treat its coverage as limited and review the skill's referenced material before relying on the assessment.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-leyline-decision-journal)
-- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Shell commands, JSON]
+**Output Type(s):** [Guidance, Markdown, Shell commands]
 
-**Output Format:** [Markdown conventions and templates with command and JSON examples]
+**Output Format:** [Markdown guidance with journal templates and shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Provides workflow conventions and templates; manual Markdown entry creation is supported when the helper is unavailable.]
+**Other Properties Related to Output:** [Draft journal entries for human confirmation before appending.]
 
 ## Skill Version(s):
 
-1.10.3 (source: skill frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

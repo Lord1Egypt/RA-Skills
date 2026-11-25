@@ -1,4 +1,14 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="session-token" content="__SESSION_TOKEN__"><title>语义工作台 · AI Data Delivery</title><link rel="stylesheet" href="/style.css"></head>
-<body><aside class="sidebar"><div class="brand"><b class="mark">↗</b><div>语义工作台<small>AI DATA DELIVERY</small></div></div><div class="workspace">本地项目 <span class="dot"></span><small id="project-name">正在读取…</small></div><nav aria-label="工作台导航"></nav><div class="sidebar-foot"><span>LOCAL / SINGLE USER</span><p>数据留在本机<br>每次修改都有版本</p><small>v0.1.2</small></div></aside>
-<div class="shell"><header><div id="breadcrumb">工作空间 / 概览</div><div class="header-right"><span id="revision"></span><button id="refresh" class="quiet">刷新</button><span class="avatar">本</span></div></header><main id="main"></main></div><div id="toast" role="status" aria-live="polite"></div><dialog id="editor"><form id="edit-form"><div class="dialog-head"><div><small>语义资产</small><h2 id="editor-title"></h2></div><button type="button" data-close class="quiet" aria-label="关闭">×</button></div><div id="editor-fields"></div><p id="form-error" class="error" role="alert"></p><footer><button type="button" id="delete-asset" class="danger">删除资产</button><span class="spacer"></span><button type="button" data-close>取消</button><button type="submit" class="primary">保存修改</button></footer></form></dialog><script src="/app.js"></script></body></html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="session-token" content="__SESSION_TOKEN__"><title>Graph Editor · AI Data Delivery</title><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/knowledge.css"></head>
+<body class="tool-shell">
+<header class="tool-header">
+  <div class="brand"><span class="mark" aria-hidden="true"><i></i><i></i><i></i></span><span>AI Data Delivery</span></div>
+  <nav aria-label="Model tools" data-ui-aria="模型工具"></nav>
+  <div class="header-right">
+    <span class="tool-project"><span id="project-name"></span><span id="revision"></span></span>
+    <label class="language-control"><span class="sr-only">Language / 语言</span><select id="ui-language" aria-label="Language / 语言"><option value="en">English</option><option value="zh">简体中文</option></select></label>
+    <button id="refresh" class="quiet" data-ui="刷新">Refresh</button>
+  </div>
+</header>
+<div class="shell"><main id="main"></main></div>
+<div id="toast" role="status" aria-live="polite"></div><dialog id="editor"><form id="edit-form"><div class="dialog-head"><div><small data-ui="语义资产">Semantic asset</small><h2 id="editor-title"></h2></div><button type="button" data-close class="quiet" aria-label="Close" data-ui-aria="关闭">×</button></div><div id="editor-fields"></div><p id="form-error" class="error" role="alert"></p><footer><button type="button" id="delete-asset" class="danger" data-ui="删除资产">Delete asset</button><span class="spacer"></span><button type="button" data-close data-ui="取消">Cancel</button><button type="submit" class="primary" data-ui="保存修改">Save changes</button></footer></form></dialog><script src="/ui-en.js"></script><script src="/i18n.js"></script><script src="/vendor/elk.bundled.js"></script><script src="/graph-layout.js"></script><script src="/query-bindings.js"></script><script src="/knowledge.js"></script><script src="/scenarios.js"></script><script src="/metadata.js"></script><script src="/app.js"></script></body></html>

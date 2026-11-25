@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Capability Loop",
+    "description": "Injects a short governance contract on a marked project's first step, and shows its stage, gates, blockers and next step in a sidebar panel.",
+    "detail": "docs/DETAIL.md"
+  }
+}

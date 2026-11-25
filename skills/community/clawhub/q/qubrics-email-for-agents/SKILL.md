@@ -1,7 +1,7 @@
 ---
 name: "qubrics-email-for-agents"
 description: "Give OpenClaw agents a Qubrics inbox to receive, triage, route, reply to, and send email with owner approval and scoped credentials."
-version: "2.0.4"
+version: "2.0.8"
 metadata:
   openclaw:
     skillKey: "qubrics-email-for-agents"

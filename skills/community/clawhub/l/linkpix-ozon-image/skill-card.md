@@ -1,6 +1,6 @@
 ## Description:
 
-Helps Ozon sellers create product image sets, detail pages, and campaign visuals with Qinghu AI, including white-background images and Russian-language selling-point graphics.
+为 Ozon 卖家通过 LinkPix 生成适配俄罗斯市场的商品主图套图、详情图和促销海报。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,48 +14,40 @@ MIT-0
 
 ## Use Case:
 
-Ozon sellers and cross-border commerce teams use this skill to create platform-adapted product listings, Russian-language selling-point images, detail pages, and campaign visuals for Ozon and Ozon Global.
+External Ozon and Ozon Global sellers use this skill to create product image sets, Russian-language selling-point visuals, lifestyle scenes, detail-page images, and campaign posters.
 
 ### Deployment Geography for Use:
 
-Global
+Global, with workflows tailored to Ozon and Russian-market localization.
 
 ## Known Risks and Mitigations:
 
-Risk: Setup instructions ask users to share an API key in chat.
+Risk: Unpinned packages may run with the agent's permissions during setup.
 
-Mitigation: Configure the key locally without pasting it into chat, and rotate any key already shared.
+Mitigation: Review and pin package versions before installation; avoid installing until the package versions have been reviewed.
 
-Risk: The setup can automatically install or update software.
+Risk: Sharing an API key in chat can expose the credential.
 
-Mitigation: Review dependency versions before installation or upgrades.
-
-Risk: Submitted product images are sent to Qinghu AI.
-
-Mitigation: Submit only images you are comfortable sending to Qinghu AI.
-
-Risk: Image generation consumes credits.
-
-Mitigation: Retain the required cost confirmation before submitting a generation task.
+Mitigation: Configure the API key locally through a secure method instead of sharing it in chat.
 
 ## Reference(s):
 
-- [LinkPix on ClawHub](https://clawhub.ai/autoagc/skills/linkpix-ozon-image)
-- [@iqinghu/qhkit on npm](https://www.npmjs.com/package/@iqinghu/qhkit)
+- [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-ozon-image)
+- [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Shell commands, Configuration instructions]
+**Output Type(s):** [Images, Files, Text]
 
-**Output Format:** [Generated image assets and result URLs, with accompanying text and inline shell commands]
+**Output Format:** [Generated product images or image sets, accompanied by result links and task status.]
 
-**Output Parameters:** [1D]
+**Output Parameters:** [Variable image count and composition, according to the selected image workflow.]
 
-**Other Properties Related to Output:** [Image count, platform, model, size, and quality are selected according to the user's request and the available options.]
+**Other Properties Related to Output:** [Product imagery can include white-background images, Russian-language selling points, lifestyle scenes, detail-page visuals, or campaign posters.]
 
 ## Skill Version(s):
 
-0.1.4 (source: server release metadata)
+0.1.5 (source: server-resolved release)
 
 ## Ethical Considerations:
 

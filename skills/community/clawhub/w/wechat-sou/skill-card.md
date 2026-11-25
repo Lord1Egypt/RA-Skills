@@ -1,6 +1,6 @@
 ## Description:
 
-Search public WeChat articles and videos by keyword and return structured results; image search, full-text extraction, and account login are not supported.
+Search public WeChat articles and video content by keyword and return structured JSON results.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-External users and analysts use this skill to search public WeChat articles and videos for topic discovery, trend monitoring, and competitor analysis. Results are intended for individual or team internal analysis.
+External users and developers can search publicly available WeChat articles or video content by keyword for topic discovery, competitor monitoring, and trend analysis.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,40 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The benign security verdict has medium confidence because analysis covered 60% of components and ten files were partly inspected.
+Risk: Search keywords are sent to the third-party Guaikei service to retrieve public WeChat search data.
 
-Mitigation: Review the bundled files before installation and reassess if fuller security analysis becomes available.
+Mitigation: Avoid sensitive or confidential search terms and confirm the service is appropriate for your use.
 
-Risk: Search keywords are sent to the third-party API, and results are written to the skill logs directory.
+Risk: Security inspection was partial, and scanner guidance notes undeclared tool scope.
 
-Mitigation: Use non-sensitive queries and restrict access to local result logs; keep use to public WeChat data for internal analysis.
+Mitigation: Review the skill files and required runtime and network access before installation.
+
+Risk: Timestamps use a fixed Beijing-time format that may differ from the reader's local time.
+
+Mitigation: Account for Beijing time when interpreting result timestamps.
 
 ## Reference(s):
 
-- [Search options and examples](artifact/references/options.md)
-- [GuaiKei API support](https://www.guaikei.com)
+- [ClawHub skill page](https://clawhub.ai/um-why/skills/wechat-sou)
+- [Guaikei service](https://www.guaikei.com)
+- [Search options](references/options.md)
+- [FAQ and environment setup](references/faq.md)
+- [Output contract](references/contract.md)
+- [Changelog](references/changelog.md)
 
 ## Skill Output:
 
 **Output Type(s):** [JSON, Text]
 
-**Output Format:** [Structured JSON search results with concise natural-language summaries]
+**Output Format:** [Structured JSON envelope containing article or video results, request details, and status information.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires a GuaiKei API token. Search terms are sent to the API provider, and results are saved in the skill logs directory; use only public WeChat data for internal analysis.]
+**Other Properties Related to Output:** [Returns up to the requested result limit; timestamps use Beijing time.]
 
 ## Skill Version(s):
 
-1.1.1 (source: server-resolved release metadata, SKILL.md, package.json)
+1.1.3 (source: SKILL.md frontmatter, package.json)
 
 ## Ethical Considerations:
 

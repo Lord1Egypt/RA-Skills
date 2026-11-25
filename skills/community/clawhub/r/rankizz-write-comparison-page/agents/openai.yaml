@@ -1,0 +1,4 @@
+interface:
+  display_name: "Comparison Page Writing"
+  short_description: "Write a sourced product versus product page"
+  default_prompt: "Use $rankizz-write-comparison-page to research and write a balanced comparison of these products."

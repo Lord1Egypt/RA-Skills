@@ -1,6 +1,6 @@
 ## Description:
 
-用户指定 GPT Image 2.6 / 智慧模型2.6，制作 Temu、Shopee、TikTok Shop 或 Ozon 的多平台主图、铺货素材或本地化营销图时使用。Amazon 单独使用 2.6 亚马逊技能。
+用户指定 GPT Image 2.6 / 智慧模型2.6，制作 Temu、Shopee、TikTok Shop 或 Ozon 的多平台主图、铺货素材或本地化营销图时使用。Amazon 单独使用 2.6 亚马逊技能。按平台规范拆分任务并写好提示词，报价经用户确认后出图；没有 CLI 或密钥时交付可直接提交的出图方案。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Cross-border e-commerce sellers and content operators use this skill to create localized product hero images and marketing assets for Temu, Shopee, TikTok Shop, and Ozon. It organizes work by marketplace, country site, and language, with checks for product consistency, localization, and generation cost.
+Cross-border ecommerce sellers and creative operators use this skill to plan and generate localized product listing and marketing images for Temu, Shopee, TikTok Shop, and Ozon. It provides platform-specific prompts and submission-ready parameters when image generation is unavailable.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Reference images are uploaded to Qinghu during generation.
+Risk: The skill runs an unpinned third-party qhkit command-line package with the agent's permissions.
 
-Mitigation: Use only reference images you are comfortable sharing with Qinghu.
+Mitigation: Where possible, pin and review the package version and limit the files and credentials available to it.
 
-Risk: A QHKIT_BASE_HOST override can change the API destination.
+Risk: Generated listing images or copy could misstate product details or contain inaccurate localized text.
 
-Mitigation: Check the configured site and API destination before generation.
-
-Risk: Image generation incurs a cost.
-
-Mitigation: Review the estimate and confirm before starting paid generation.
+Mitigation: Check every image and text against the supplied product details before publishing; verify non-Latin copy with a translation tool or a fluent reviewer.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/autoagc/skills/linkpix-gpt-image-2-6-crossborder-image)
-- [Qinghu API Keys](https://www.iqinghu.com/workbench/dashboard/api-keys?urlCode=1788417429126)
+- [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-gpt-image-2-6-crossborder-image)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Shell commands, Configuration, Guidance]
+**Output Type(s):** [Images, Markdown, JSON, Shell commands]
 
-**Output Format:** [Generated image files, JSON task parameters, shell commands, and a concise generation status report]
+**Output Format:** [Generated product images, or a Markdown image plan with JSON parameters and prompts]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Tasks can be grouped by marketplace, country site, and language; image prompts are limited to 5000 characters.]
+**Other Properties Related to Output:** [Tasks are separated by platform, purpose, and language; image generation is reported only when returned by the CLI.]
 
 ## Skill Version(s):
 
-0.1.0 (source: server-resolved release metadata)
+0.1.1 (source: server release metadata)
 
 ## Ethical Considerations:
 

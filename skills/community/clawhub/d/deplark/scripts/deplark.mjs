@@ -230,7 +230,7 @@ export function pendingAccountAuthorization({origin,agent,home=homedir()}){
     async delete(){try{await rm(join(await directory(),filename),{force:true});}catch(error){if(error.code!=='ENOENT')throw error;}}
   };
 }
-export function createAccountSkillClient({origin,agent,store,pendingStore,fetchImpl=fetch,apiKey,sleep=ms=>new Promise(r=>setTimeout(r,ms))}){
+export function createAccountSkillClient({origin,agent,store,pendingStore,fetchImpl=fetch,apiKey,registrationSource='skill-package',sleep=ms=>new Promise(r=>setTimeout(r,ms))}){
   origin=endpointOrigin(origin);clientName(agent);
   async function call(path,{token,method='GET',body}={}){
     let r;try{r=await fetchImpl(new URL(path,origin),{method,redirect:'error',signal:AbortSignal.timeout(30000),headers:{...(token?{Authorization:'Bearer '+token}:{}),...(body?{'Content-Type':'application/json'}:{})},...(body?{body:JSON.stringify(body)}:{})});}catch{throw problem('SKILL_NETWORK_UNAVAILABLE');}
@@ -241,12 +241,12 @@ export function createAccountSkillClient({origin,agent,store,pendingStore,fetchI
     return {account:{id:data.account.id,email:String(data.account.email||'')},connection:{id:c.id,scope:'account',account:String(c.account||''),workspace_id:c.workspace_id,client:c.client,status:c.status,expires_at:c.expires_at,permissions:c.permissions.filter(p=>['projects:read','deployment:read','project:create','deployment:create'].includes(p))}};}
   async function attach(token,verification){const data=await info(token);if(verification)await call('/api/agent/account-skill-verifications/'+verification+'/connection',{token,method:'POST',body:{}});return {status:'connected',...data};}
   async function start(verification){
-    const verifier=randomBytes(32).toString('base64url'),result=await call('/api/account-skill/auth/start',{method:'POST',body:{client:agent,challenge:createHash('sha256').update(verifier).digest('base64url'),...(verification?{verification_id:verification}:{})}});
+    const verifier=randomBytes(32).toString('base64url'),result=await call('/api/account-skill/auth/start',{method:'POST',body:{client:agent,challenge:createHash('sha256').update(verifier).digest('base64url'),registration_source:registrationSource,...(verification?{verification_id:verification}:{})}});
     let url;try{url=new URL(result.verification_url);}catch{throw problem('CLIENT_RESPONSE_INVALID');}
     if(url.origin!==origin||url.username||url.password||url.pathname!=='/app'||url.searchParams.get('account_skill_connect')!==result.request_id||!/^[A-Za-z0-9_-]{32}$/.test(result.request_id||'')||!Number.isFinite(result.expires_at)||result.expires_at<=Date.now()||result.expires_at>Date.now()+360000)throw problem('CLIENT_RESPONSE_INVALID');
-    return {origin,agent,request_id:result.request_id,verifier,expires_at:result.expires_at,verification,authorization_url:url.href};
+    return {origin,agent,request_id:result.request_id,verifier,expires_at:result.expires_at,verification,registration_source:registrationSource,authorization_url:url.href};
   }
-  function pendingView(row){return {status:'authorization-required',authorization_url:new URL('/app?account_skill_connect='+row.request_id,origin).href,expires_at:row.expires_at,consent_required:true,next_action:'Open the authorization URL with your browser tools, review the account and permissions with the user, then run connect --resume. Never ask for a Key on the webpage. Do not wait in a blocking command.'};}
+  function pendingView(row){const url=new URL('/app?account_skill_connect='+row.request_id,origin);if(row.registration_source){url.searchParams.set('utm_source',row.registration_source);url.searchParams.set('utm_medium','skill-connect');url.searchParams.set('utm_campaign','skill_distribution');}return {status:'authorization-required',authorization_url:url.href,expires_at:row.expires_at,consent_required:true,next_action:'Open the authorization URL with your browser tools, review the account and permissions with the user, then run connect --resume. Never ask for a Key on the webpage. Do not wait in a blocking command.'};}
   async function exchange(row,verification=row.verification){
     if(row.expires_at<=Date.now())throw problem('SKILL_AUTH_EXPIRED');
     const result=await call('/api/account-skill/auth/token',{method:'POST',body:{request_id:row.request_id,verifier:row.verifier}});
@@ -309,7 +309,7 @@ async function uploadWithGrant(origin,manifest,grant,output){
 }
 async function runAccountCLI(command,flags,{origin,agent,scope,manifest,name,runtime={}}){
   const store=runtime.store||(process.platform==='darwin'?keychainStore({origin,agent,accountScope:true}):{get:async()=>process.env.DEPLARK_API_KEY||null,set:async value=>{if(value!==process.env.DEPLARK_API_KEY)throw problem('KEYCHAIN_UNAVAILABLE_USE_DEPLARK_API_KEY');},delete:async()=>{}});
-  const client=createAccountSkillClient({origin,agent,store,pendingStore:pendingAccountAuthorization({origin,agent,home:runtime.home}),apiKey:runtime.apiKey??process.env.DEPLARK_API_KEY});
+  const client=createAccountSkillClient({origin,agent,store,pendingStore:pendingAccountAuthorization({origin,agent,home:runtime.home}),apiKey:runtime.apiKey??process.env.DEPLARK_API_KEY,registrationSource:flags['--source']||manifest?.registration_source||'skill-package'});
   if(command==='status')return client.status();if(command==='projects')return client.projects();if(command==='disconnect')return client.disconnect();
   if(command==='connect'){
     if(['--api-key','--browser','--resume'].filter(flag=>flags[flag]).length>1)throw problem('CHOOSE_ONE_AUTH_METHOD');
@@ -357,7 +357,7 @@ async function secretInput() {
 }
 export async function runSkillCLI(args = process.argv.slice(2),runtime={}) {
   const command = args.shift(), flags = {}, boolean = ['--api-key', '--browser', '--resume', '--replace', '--backup', '--confirm', '--no-open','--account'];
-  const values = ['--bundle', '--agent', '--scope', '--name', '--endpoint', '--project', '--verification', '--dir','--slug','--kind','--entry'];
+  const values = ['--bundle', '--agent', '--scope', '--name', '--endpoint', '--project', '--verification', '--dir','--slug','--kind','--entry','--source'];
   for (let i = 0; i < args.length; i++) {
     const key = args[i]; if (Object.hasOwn(flags, key)) throw problem('DUPLICATE_OPTION');
     if (boolean.includes(key)) flags[key] = true;

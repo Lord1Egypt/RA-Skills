@@ -32,6 +32,8 @@ compatibility: >
 
 # MySQL AIops
 
+> **Audit availability:** Real writes require a durable audit intent. Reads and previews can continue if audit storage fails; check the warning and audit health before relying on their audit trail.
+
 > **Disclaimer**: Community-maintained open-source project, **not affiliated with, endorsed by, or sponsored by Oracle Corporation or the MariaDB Foundation.** "MySQL" and "MariaDB" trademarks belong to their owners. Source at [github.com/AIops-tools/MySQL-AIops](https://github.com/AIops-tools/MySQL-AIops) under the MIT license.
 
 Governed MySQL / MariaDB DBA operations — **35 MCP tools**, every one wrapped with the bundled `@governed_tool` harness: a local unified audit log under `~/.mysql-aiops/`, token/runaway budget guard, undo-token recording, and descriptive risk-tier labels. The account password is stored **encrypted** (`~/.mysql-aiops/secrets.enc`, Fernet + scrypt) — never plaintext on disk.
@@ -207,7 +209,7 @@ permitted. That is your agent's judgement, or the permission of the account you 
 write privileges (no INSERT/UPDATE/DELETE/DDL) — writes then fail at the server). There is no
 read-only switch, policy file, or approval gate.
 
-- **Audit is the guarantee, and it is not bypassable.** Every operation — MCP and CLI alike — is logged to `~/.mysql-aiops/audit.db` (relocatable via `MYSQL_AIOPS_HOME`): params, result, status, duration, and the risk tier. The CLI writes the same row the MCP path does.
+- **Audit is the guarantee, and it is not bypassable.** Every operation — MCP and CLI alike — is logged to `~/.mysql-aiops/audit.db` (relocatable via `MYSQL_AIOPS_HOME`): params, outcome summary, status, duration, and the risk tier. The CLI writes the same row the MCP path does.
 - `MYSQL_AUDIT_APPROVED_BY` / `MYSQL_AUDIT_RATIONALE` are optional annotations recorded on the audit row (who/why); they are never required and never block.
 - **Runaway guard** — a safety backstop, not authorization: the same call looped in a tight window trips a circuit breaker. Disable with `MYSQL_RUNAWAY_MAX=0`.
 - Writes support `--dry-run` / `dry_run=True` and double confirmation at the CLI.

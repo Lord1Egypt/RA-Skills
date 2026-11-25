@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes adolescents' camera footage while they use phones or gaming devices to estimate screen-looking posture and cumulative viewing time, then produces a structured report with gentle reminders.
+Analyzes fixed-camera images or videos to estimate adolescents’ phone or gaming screen-use posture and duration, then returns activity summaries and gentle reminders.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Parents and guardians use it to review adolescents' screen-use posture and viewing time and receive gentle family reminders. The reports are observational and are not medical diagnoses.
+Parents and caregivers can review fixed-camera footage for estimated screen-use posture and duration, while developers can integrate the analysis into family monitoring tools. Results are behavioral estimates, not medical diagnoses, and use involving minors requires informed consent from both the guardian and the adolescent.
 
 ### Deployment Geography for Use:
 
@@ -22,41 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security evidence says account registration, identity handling, and token storage are not adequately explained.
+Risk: The security review flags unclear account and credential handling and potentially broad remote processing of sensitive video, including footage of minors.
 
-Mitigation: Wait for the publisher to explain why registration is needed, what identity and token data is stored, and how it is protected and retained.
+Mitigation: Before use, verify where footage is sent, how credentials are handled, and what retention and access controls apply; obtain informed consent from both the guardian and adolescent and avoid uploading footage until these checks are complete.
 
-Risk: The security evidence flags remote transmission and privacy-sensitive processing of adolescents' video.
+Risk: Posture estimates may mistake ordinary study activities for screen use or be treated as a diagnosis.
 
-Mitigation: Use only after the publisher explains video processing, consent, and export-only safeguards; obtain informed consent from both the guardian and adolescent before submitting footage.
-
-Risk: The security evidence flags broad activation behavior.
-
-Mitigation: Require explicit caregiver intent before processing footage and review the activation triggers before enabling the skill.
-
-Risk: The security scan is partial and could not resolve a local reference, so its evidence is incomplete.
-
-Mitigation: Treat the scan as provisional and request a complete review and publisher clarification before installation.
+Mitigation: Review results in context, keep reminders respectful, and use the output only as a non-diagnostic estimate rather than a basis for punitive or high-stakes decisions.
 
 ## Reference(s):
 
-- [API documentation](references/api_doc.md)
-- [Skill demo](https://lifeemergence.com/sample.html)
-- [ClawHub release page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-teen-screen-addiction-detection-analysis)
+- [API interface and input guidance](references/api_doc.md)
+- [Skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-teen-screen-addiction-detection-analysis)
+- [Skill introduction video](https://lifeemergence.com/sample.html)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, JSON, Markdown]
+**Output Type(s):** [JSON, Markdown, Guidance]
 
-**Output Format:** [Structured JSON analysis reports and Markdown report listings, with report export links]
+**Output Format:** [Structured analysis results with activity summaries, reminders, and report links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes posture and duration summaries, reminder levels, and suggested actions; reports are observational, not medical diagnoses.]
+**Other Properties Related to Output:** [Visual behavior and duration estimates; not a medical diagnosis.]
 
 ## Skill Version(s):
 
-1.0.10 (source: server-resolved release metadata)
+1.0.11 (source: server-resolved release)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Captures and retrieves PR review findings in project memory palaces so teams can reuse durable decisions, patterns, and standards.
+Captures and retrieves PR-review findings in memory palaces to preserve architectural decisions, patterns, and standards for future reference.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use the skill after PR reviews to identify durable findings, organize them as decisions, patterns, standards, or lessons, and retrieve relevant knowledge during future work.
+Developers use this skill after code reviews to identify durable findings, organize them as decisions, patterns, standards, or lessons, and retrieve related review knowledge during future work.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review notes a possible mismatch between the memory-capture purpose and the described GitHub review workflow, and says one module was only partially analyzed.
+Risk: The described GitHub review and posting capability may be broader than the skill's stated knowledge-capture purpose.
 
-Mitigation: Before installing, check that the described review workflow fits your needs and review the partially analyzed module.
+Mitigation: Review requested actions and repository permissions before use, and check review content before it is posted.
+
+Risk: The security assessment covered 75% of components; one module was partly analyzed and a local path reference was unresolved.
+
+Mitigation: Inspect the partly analyzed module and resolve the local path before relying on the assessment.
 
 ## Reference(s):
 
-- [Memory Palace project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace)
 - [ClawHub release page](https://clawhub.ai/athola/skills/nm-memory-palace-review-chamber)
+- [Memory Palace plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Shell commands]
+**Output Type(s):** [Markdown, JSON, Guidance]
 
-**Output Format:** [Markdown guidance and structured review entries, with shell-style commands for capture and search]
+**Output Format:** [Structured review knowledge entries, Markdown summaries, and optional JSON exports]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Review entries can include PR context, tags, room locations, and links to related knowledge.]
+**Other Properties Related to Output:** [Content depends on the supplied review findings and project memory-palace context.]
 
 ## Skill Version(s):
 
-1.10.3 (source: release evidence and skill frontmatter)
+1.10.4 (source: ClawHub release evidence)
 
 ## Ethical Considerations:
 

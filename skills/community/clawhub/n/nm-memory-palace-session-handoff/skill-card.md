@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and people working with AI agents use this skill to preserve decisions, findings, current state, and unresolved questions between sessions, then retrieve relevant notes when work resumes.
+Developers and agents use this skill to capture session findings, decisions, temporary state, and open questions as typed handoff units, then retrieve relevant units when work resumes.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review was partial because some local references were not available to the scanner.
+Risk: Four referenced materials could not be matched to bundled artifacts, so their contents are not covered by the available scan results.
 
-Mitigation: Review the resolved references and their contents before relying on behavior that depends on them.
+Mitigation: Review those referenced materials before installing if they are available.
 
-Risk: The handoff staging file is process-global, so concurrent sessions in one checkout can drain each other’s staged units.
+Risk: The handoff staging file is process-global, so concurrent sessions in one checkout can drain one another's staged units.
 
-Mitigation: Avoid concurrent captures in the same checkout, or use separate checkouts for simultaneous sessions.
+Mitigation: Avoid concurrent capture sessions in the same checkout, or use separate checkouts.
 
 ## Reference(s):
 
+- [Homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace)
 - [ClawHub skill page](https://clawhub.ai/athola/skills/nm-memory-palace-session-handoff)
-- [Memory Palace homepage](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace)
-- [Unit Schema](artifact/modules/unit-schema.md)
-- [Two-Phase Extraction](artifact/modules/two-phase-extraction.md)
-- [Temporal Awareness](artifact/modules/temporal-awareness.md)
 
 ## Skill Output:
 
 **Output Type(s):** [JSON, Text, Guidance]
 
-**Output Format:** [Structured Markdown guidance and JSON handoff-unit records]
+**Output Format:** [Structured JSON handoff units with concise Markdown recall guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Handoff units use typed fields and can identify file dependencies for later staleness checks.]
+**Other Properties Related to Output:** [Units can include thread type, date, state, reasoning, unresolved questions, session reference, and optional file dependencies.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, server release)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

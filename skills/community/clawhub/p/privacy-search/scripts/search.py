@@ -733,6 +733,8 @@ class SearchOrchestrator:
         self._notices: List[str] = []
         # V1.9 新增：记录本次搜索使用的引擎列表（用于可信度标记）
         self._last_engines_used: List[str] = []
+        # V2.1 新增：缓存命中时间（用于「上次搜过」提示）
+        self._cache_hit_time: Optional[str] = None
         # 配置层面的告警独立保存：_notices 每次搜索会被清空，
         # 而配置问题在整个进程生命周期内都应可见
         self._config_warnings: List[str] = list(
@@ -762,6 +764,11 @@ class SearchOrchestrator:
     def last_engines_used(self) -> List[str]:
         """本次搜索使用的引擎列表（V1.9 新增，用于可信度标记）"""
         return self._last_engines_used
+
+    @property
+    def cache_hit_time(self) -> Optional[str]:
+        """缓存命中的写入时间（V2.1 新增，用于「上次搜过」提示）"""
+        return self._cache_hit_time
 
     def _check_rate_limit(self, engine_name: str) -> bool:
         """检查是否超过单引擎日请求上限"""
@@ -888,10 +895,12 @@ class SearchOrchestrator:
         # 缓存查询
         cache_key = make_cache_key(query, active, privacy_mode, num)
         if use_cache and self.cache.available:
-            cached = self.cache.get(cache_key)
-            if cached is not None:
+            # V2.1：用 get_with_time 同时取回写入时间，供「上次搜过」提示
+            cached_entry = self.cache.get_with_time(cache_key)
+            if cached_entry is not None:
                 self._cache_hit = True
-                hit_results = [SearchResult.from_dict(d) for d in cached]
+                self._cache_hit_time = cached_entry.get("time_str")
+                hit_results = [SearchResult.from_dict(d) for d in cached_entry["payload"]]
                 self.logger.log_search(
                     query, active, privacy_mode, len(hit_results),
                     time.time() - entered, cache_hit=True,
@@ -1306,6 +1315,10 @@ def main():
         help="对搜索结果生成摘要（V1.5 新增，需配置 llm_summary.api_key）",
     )
     parser.add_argument(
+        "--synthesize-pro", action="store_true",
+        help="Perplexity 式答案合成（V1.6 新增，V2.1 无 Key 走 RAG-lite 三段答案）",
+    )
+    parser.add_argument(
         "--vertical", choices=["news", "realtime", "academic", "image"],
         help="垂直搜索模式（V1.8 新增）：news=新闻, realtime=实时, academic=学术, image=图片",
     )
@@ -1317,6 +1330,18 @@ def main():
         "--selftest-schedule", choices=["run", "status"],
         help="定时 selftest 调度（V1.6 新增）：run=执行一次, status=查看上次结果",
     )
+    parser.add_argument(
+        "--privacy-score", action="store_true",
+        help="输出本次搜索的隐私量化分数（V2.1 新增）",
+    )
+    parser.add_argument(
+        "--privacy-profile", choices=["report", "dns", "cookie"],
+        help="隐私档案：report=周报, dns=DNS泄露检测, cookie=零残留自检（V2.1 新增）",
+    )
+    parser.add_argument(
+        "--searxng-audit", action="store_true",
+        help="SearXNG 一键自检清单（V2.1 新增）",
+    )
 
     args = parser.parse_args()
     config = load_config(args.config)
@@ -1325,6 +1350,40 @@ def main():
 
     if args.list_engines:
         print(format_engine_table())
+        return
+
+    # V2.1 新增：无需查询词的管理型命令
+    if args.searxng_audit:
+        try:
+            from searxng_audit import audit, format_audit
+        except ImportError:
+            from .searxng_audit import audit, format_audit
+        print(format_audit(audit(config)))
+        return
+
+    if args.privacy_profile:
+        try:
+            from privacy_score import weekly_report, check_dns_leak, check_cookie_residue
+        except ImportError:
+            from .privacy_score import weekly_report, check_dns_leak, check_cookie_residue
+        if args.privacy_profile == "report":
+            report = weekly_report(config=config)
+            print(f"📊 隐私档案周报（{report['period']}）")
+            for k, v in report.items():
+                if k == "period":
+                    continue
+                print(f"   {k}: {v}")
+        elif args.privacy_profile == "dns":
+            dns = check_dns_leak(config)
+            if dns["checked"]:
+                print(f"系统 DNS: {', '.join(dns['system_dns'])}")
+                print(f"隐私 DNS: {', '.join(dns['privacy_dns'][:3])}")
+                print(("⚠️  " if dns["leak"] else "✅ ") + (dns["warning"] or "未发现 DNS 泄露"))
+            else:
+                print(f"⚠️  {dns['warning']}")
+        elif args.privacy_profile == "cookie":
+            cookie = check_cookie_residue(config)
+            print(("✅ " if cookie["clean"] else "⚠️  ") + cookie["evidence"])
         return
 
     orchestrator = SearchOrchestrator(config)
@@ -1460,6 +1519,11 @@ def main():
 
     engines = [e.strip() for e in args.engines.split(",")] if args.engines else None
 
+    # V2.1 新增：近似问题「上次搜过」检测（完全相同的由缓存命中提示处理）
+    similar_hint = None
+    if not args.no_cache and orchestrator.cache.available:
+        similar_hint = orchestrator.cache.find_similar_recent(search_query)
+
     results = asyncio.run(orchestrator.search(
         query=search_query,
         engines=engines,
@@ -1469,11 +1533,32 @@ def main():
         verbose=args.verbose,
     ))
 
+    # V2.1 新增：「上次搜过」提示
+    if orchestrator.cache_hit and orchestrator.cache_hit_time:
+        orchestrator._notices.append(
+            f"上次搜过（{orchestrator.cache_hit_time}），本次为缓存结果；加 --no-cache 强制重搜"
+        )
+    elif similar_hint and not orchestrator.cache_hit:
+        orchestrator._notices.append(
+            f"上次搜过相近问题「{similar_hint['query']}」（{similar_hint['time_str']}，"
+            f"相似度 {similar_hint['similarity']}）"
+        )
+
     # V1.8 新增：高级语法本地过滤
     if syntax_filter.has_filters:
         results, extra_notices = filter_results_locally(results, syntax_filter)
         for n in extra_notices:
             orchestrator._notices.append(n)
+
+    # V2.1 新增：strict 模式 DNS 泄露提示（核心客群要可验证的细节）
+    if args.privacy == "strict":
+        try:
+            from privacy_score import check_dns_leak
+        except ImportError:
+            from .privacy_score import check_dns_leak
+        dns = check_dns_leak(config)
+        if dns["leak"] and dns["warning"]:
+            print(f"提示: {dns['warning']}")
 
     for notice in orchestrator.notices:
         print(f"提示: {notice}")
@@ -1485,6 +1570,21 @@ def main():
         print(format_error_report(errors))
         print()
 
+    # V2.1 新增：隐私分数计算（默认计算，--privacy-score 时显示文本）
+    privacy_score_obj = None
+    try:
+        from privacy_score import compute_privacy_score, format_score, record_score
+    except ImportError:
+        from .privacy_score import compute_privacy_score, format_score, record_score
+    privacy_score_obj = compute_privacy_score(
+        engines_used=orchestrator.last_engines_used,
+        mode=args.privacy,
+        config=config,
+        cache_written=(not args.no_cache and orchestrator.cache.available and not orchestrator.cache_hit),
+        outbound_requests=len(orchestrator.last_engines_used) * 2,
+    )
+    record_score(privacy_score_obj)  # 累计到隐私档案
+
     if args.json:
         payload = {
             "query": args.query,
@@ -1494,6 +1594,7 @@ def main():
             "total_engines": len(orchestrator.last_engines_used) if hasattr(orchestrator, 'last_engines_used') else 10,
             "results": [r.to_dict() for r in results],
             "notices": orchestrator.notices,
+            "privacy_score": privacy_score_obj.to_dict(),
             "errors": [
                 {"engine": e.engine, "category": e.category.value, "message": e.message}
                 for e in errors
@@ -1502,6 +1603,8 @@ def main():
         print(_json.dumps(payload, ensure_ascii=False, indent=2))
     else:
         _print_results(results, args, orchestrator)
+        if args.privacy_score:
+            print(format_score(privacy_score_obj))
 
     # --- V1.5 新增：网页正文抓取 ---
     if args.fetch and results:

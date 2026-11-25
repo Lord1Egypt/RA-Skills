@@ -5,6 +5,7 @@ import argparse
 import json
 import os
 import re
+import shutil
 import stat
 import sys
 import tempfile
@@ -17,6 +18,12 @@ CACHE_ROOT = Path(tempfile.gettempdir()) / f"video-deep-reader-{os.geteuid()}"
 VIDEO_ID = re.compile(r"^[A-Za-z0-9_-]{6,40}$")
 YOUTUBE_HOSTS = ("youtube.com", "youtu.be", "youtube-nocookie.com")
 TRANSCRIPT_LINE = re.compile(r"^\[(\d{1,2}:\d{2}(?::\d{2})?)\]\s*(.+)$")
+# Cookie 模式依赖：bgutil POT provider 脚本（生成 PO Token）+ node 在 PATH 中
+POT_SCRIPT = (
+    Path(__file__).resolve().parent.parent
+    / "vendor" / "bgutil" / "server" / "build" / "generate_once.js"
+)
+NODE_FALLBACK = Path.home() / ".workbuddy/binaries/node/versions/22.22.2-6/bin"
 
 
 class QuietLogger:
@@ -332,8 +339,9 @@ def safe_error(error):
     value = str(error).lower()
     if "sign in" in value or "not a bot" in value or "cookies" in value:
         return (
-            "YouTube requested sign-in or bot verification. Browser cookies are "
-            "intentionally unsupported; paste or upload a transcript, or try later."
+            "YouTube requested sign-in or bot verification. Retry with cookie "
+            "mode (--cookies chrome, requires Chrome quit + logged into YouTube), "
+            "or paste/upload a transcript, or try later."
         )
     if "age" in value or "restricted" in value or "private video" in value:
         return (
@@ -345,16 +353,49 @@ def safe_error(error):
     return "YouTube metadata or subtitle retrieval failed. Try later or provide a transcript."
 
 
-def fetch_one(reference, languages, proxy_port, yt_dlp, root=CACHE_ROOT):
+def cookie_options(cookies, player_client, yt_dlp):
+    """Build options for cookie mode: browser cookies + EJS solver + POT provider.
+
+    Requires (one-time setup, see SKILL.md):
+      .venv/bin/pip install yt-dlp-ejs bgutil-ytdlp-pot-provider
+      vendor/bgutil/server  (npm install && npx tsc)
+    Chrome must be fully quit (Cmd+Q) so its cookie database is unlocked.
+    """
+    options = {}
+    if cookies == "chrome":
+        options["cookiesfrombrowser"] = ("chrome", None, None, None)
+    else:
+        cookie_path = Path(cookies).expanduser()
+        if not cookie_path.is_file():
+            raise RuntimeError(f"cookies file not found: {cookie_path}")
+        options["cookiefile"] = str(cookie_path)
+    options["extractor_args"] = {
+        "youtube": {"player_client": [player_client or "web"]},
+    }
+    if POT_SCRIPT.is_file():
+        options["extractor_args"]["youtubepot-bgutilscript"] = {
+            "script_path": [str(POT_SCRIPT)]
+        }
+    node = NODE_FALLBACK if NODE_FALLBACK.is_dir() else None
+    if node and shutil.which("node") is None:
+        os.environ["PATH"] = f"{node}:{os.environ.get('PATH', '')}"
+    return options
+
+
+def fetch_one(reference, languages, proxy_port, yt_dlp, root=CACHE_ROOT,
+              cookies=None, player_client=None):
     options = {
         "quiet": True,
         "no_warnings": True,
         "skip_download": True,
         "noplaylist": True,
         "logger": QuietLogger(),
+        "ignore_no_formats_error": True,
     }
     if proxy_port:
         options["proxy"] = f"http://127.0.0.1:{proxy_port}"
+    if cookies:
+        options.update(cookie_options(cookies, player_client, yt_dlp))
 
     with yt_dlp.YoutubeDL(options) as downloader:
         info = downloader.extract_info(reference, download=False)
@@ -428,6 +469,17 @@ def main():
     parser.add_argument("references", nargs="*", help="YouTube URLs or video IDs")
     parser.add_argument("--langs", default="en,zh", help="Subtitle preference, e.g. en,zh")
     parser.add_argument("--proxy-port", type=int, choices=range(1, 65536))
+    parser.add_argument(
+        "--cookies",
+        help=(
+            "Cookie mode for bot-checked IPs: 'chrome' to read Chrome cookies "
+            "(quit Chrome first), or a path to a cookies.txt export"
+        ),
+    )
+    parser.add_argument(
+        "--player-client",
+        help="YouTube player client for cookie mode (default: web)",
+    )
     parser.add_argument("--doctor", action="store_true", help="Run a read-only dependency check")
     parser.add_argument("--network", action="store_true", help="With --doctor, test YouTube access")
     parser.add_argument("--retrieve-video", help="Retrieve one managed transcript by video ID")
@@ -503,7 +555,10 @@ def main():
     results = []
     for reference in args.references:
         try:
-            results.append(fetch_one(reference, languages, args.proxy_port, yt_dlp))
+            results.append(fetch_one(
+                reference, languages, args.proxy_port, yt_dlp,
+                cookies=args.cookies, player_client=args.player_client,
+            ))
         except Exception as exc:
             results.append(
                 {"status": "error", "reference": reference, "error": safe_error(exc)}

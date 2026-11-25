@@ -1,0 +1,42 @@
+{
+  "fixture_kind": "offline-page-notes",
+  "fixture_notice": "离线页面资料模拟：仅标题可确认，其他未确认；不是在线采集结果。",
+  "owner_confirmed": true,
+  "page_confirmed": true,
+  "fields": {
+    "cover": "未确认",
+    "title": "真实可见标题",
+    "description": "未确认",
+    "category": "未确认",
+    "assets": [
+      " 未确认 "
+    ]
+  },
+  "sources": [
+    {
+      "field": "cover",
+      "visible_location": "离线模拟：cover栏",
+      "captured_text": "未确认"
+    },
+    {
+      "field": "title",
+      "visible_location": "离线模拟：title栏",
+      "captured_text": "真实可见标题"
+    },
+    {
+      "field": "description",
+      "visible_location": "离线模拟：description栏",
+      "captured_text": "未确认"
+    },
+    {
+      "field": "category",
+      "visible_location": "离线模拟：category栏",
+      "captured_text": "未确认"
+    },
+    {
+      "field": "assets",
+      "visible_location": "离线模拟：assets栏",
+      "captured_text": "未确认"
+    }
+  ]
+}

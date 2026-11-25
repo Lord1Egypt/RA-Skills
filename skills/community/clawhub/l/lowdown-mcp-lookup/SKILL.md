@@ -1,13 +1,13 @@
 ---
 name: lowdown-mcp-lookup
-description: Before installing or connecting to an MCP server, look up what Lowdown has recorded about it - the official MCP Registry declaration and its recent changes, the npm status of the packages it declares (latest version, deprecated, 404), plus daily observed reachability, HTTP status, tool names, and tool-schema changes - through a public read-only API with no key.
+description: Before installing or connecting to an MCP server, look up what Lowdown has recorded about it - the official MCP Registry declaration and its recent changes, the npm and PyPI status of the packages it declares (latest version, deprecated, yanked, 404), plus observed reachability, HTTP status, tool names, tool-schema changes and payment terms stated in HTTP 402 answers - through a public read-only API with no key.
 tools:
   - http
 ---
 
 ## Lowdown MCP lookup
 
-Lowdown is a time-series record of the gap between what the official MCP Registry declares and what is actually observed. It keeps a daily record of every Registry declaration, and once a day it connects to a fixed sample of 5,000 Registry servers, sends `initialize` and `tools/list` only (it never calls a tool or authenticates), and records what it sees. It does not score, grade, or rank servers.
+Lowdown is a time-series record of the gap between what the official MCP Registry declares and what is actually observed. It keeps a daily record of every Registry declaration. Every day it connects to a fixed cohort of 10,000 Registry servers with remote endpoints and to every server someone has looked up; the other remote Registry servers are checked on a 3-day rotation. Each check sends `initialize` and `tools/list` only (it never calls a tool or authenticates) and records what it sees. It does not score, grade, or rank servers.
 
 This skill reads that record. It uses one public GET endpoint, needs no API key, and sends nothing but the server name.
 
@@ -22,13 +22,13 @@ GET https://lowdown-proxy.vercel.app/api/reputation/{target}?ref=clawhub
 ```
 
 - `target` is the Registry name with the `mcp:` prefix, e.g. `mcp:io.github.example/server`. The `/` can be sent as is or encoded as `%2F`. A short name also works when it matches one server; otherwise candidate names are returned.
-- `target` can also be an npm package with the `npm:` prefix, e.g. `npm:@scope/name`. The answer is the Registry entry that declares it; when several entries declare it, all are returned as `registry_candidates` and none is picked.
+- `target` can also be an npm or PyPI package with the `npm:` or `pypi:` prefix, e.g. `npm:@scope/name` or `pypi:package-name` (PyPI names match after PEP 503 normalization). The answer is the Registry entry that declares it; when several entries declare it, all are returned as `registry_candidates` and none is picked.
 
 ### Reading the response
 
 Fields come in this order:
 
-- `message`: one factual sentence saying which records exist. When a declared npm package is deprecated or npm answers 404 for it, that fact comes first.
+- `message`: one factual sentence saying which records exist. When a declared npm package is deprecated, a declared PyPI package's latest version is yanked or the project is archived, quarantined or deprecated, or npm or PyPI answers 404 for it, that fact comes first.
 - `registry`: what the official MCP Registry declares, as recorded by Lowdown since 2026-10-19.
   - `listed`, `declared_version`, `status`, `remote_hosts`, `removed_at`
   - `changes_30d`: Registry changes in the last 30 days (`new`, `version`, `status`, `remotes`, `packages`, `description`, `removed`, `restored`)
@@ -37,8 +37,9 @@ Fields come in this order:
   - `npm.latest`, `npm.latest_deprecated` (the version npm tags as latest only, not other versions), `npm.declared_is_latest`, `npm.checked_at`
   - `npm.status: not_found` only when npm answered HTTP 404. `npm.not_found_since` is the day it started answering 404 after being available, or `first_check` when it has answered 404 since Lowdown's first check.
   - `npm.recent_events`: `latest_changed`, `deprecated`, `undeprecated`, `not_found`, `restored` in the last 30 days
-  - Other package types (pypi, oci, ...) are listed with `npm: null` and are not checked.
-- `scanner`: daily observations (only for servers in the observed sample).
+  - PyPI packages are checked daily from PyPI's public JSON and Index APIs: `pypi.latest`, `pypi.latest_yanked` (that latest version only), `pypi.project_status` (`active`, `archived`, `quarantined`, `deprecated`), `pypi.latest_uploaded`, `pypi.declared_is_latest`, `pypi.checked_at`. `pypi.status: not_found` only when PyPI answered HTTP 404; `pypi.not_found_since` works like the npm field; `pypi.not_found_kind` is `no_releases` (PyPI lists the project but it has no release) or `no_project` (no PyPI project of this name), or null when not known. `pypi.recent_events`: `latest_changed`, `yanked`, `unyanked`, `status_changed`, `not_found`, `restored` in the last 30 days.
+  - Other package types (oci, nuget, ...) are listed and not checked.
+- `scanner`: observations, daily for the fixed cohort and looked-up servers, every 3 days for the rest of the remote Registry servers.
   - `latest.reached_level`: `2` = initialize and tools/list completed, `1` = initialize only, `0` = initialize did not complete
   - `latest.http_status`: HTTP status as observed. `401` means auth is required; it is not a failure.
   - `daily_30d`: one entry per day for the last 30 days (`reached_level`, `http_status`, `error_type`, `tool_count`, `tools_changed`)
@@ -50,10 +51,10 @@ Fields come in this order:
 
 Other cases:
 
-- `scanner.observed: false`: the server is outside the observed sample. This says nothing about its status; the `registry` block still answers.
+- `scanner.observed: false`: the server has no remote endpoint Lowdown checks, or it has not been checked yet. This says nothing about its status; the `registry` block still answers.
 - `registry_candidates` or `scanner_candidates`: a short name matched several servers; repeat with one of the listed names.
 
-These are single daily probes from one location, not uptime. Report them as dated observations, not as a rating.
+These are single probes from one location (daily or every 3 days), not uptime. Report them as dated observations, not as a rating.
 
 ### Example
 

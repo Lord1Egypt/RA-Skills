@@ -1,6 +1,6 @@
 ## Description:
 
-Provides Chinese-language study support for the 2026 China CPA exam across accounting, auditing, financial cost management, strategy and risk management, economic law, and tax law.
+提供2026年中国注册会计师六科全覆盖的权威辅导，涵盖会计、审计、财管、税法、经济法、战略等考试知识与实务支持。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,39 +14,37 @@ MIT-0
 
 ## Use Case:
 
-Chinese-speaking CPA candidates and accounting professionals use this skill for exam review, topic explanations, worked problem guidance, and practical reference across the six China CPA exam subjects.
+CPA candidates in China can use the skill to review accounting, auditing, financial management, strategy, economic law, and tax, and to work through exam-style calculations and case analyses. It also offers practical accounting and audit guidance.
 
 ### Deployment Geography for Use:
 
-Global, with content focused on China CPA exam and China accounting, audit, tax, strategy, and law topics.
+China
 
 ## Known Risks and Mitigations:
 
-Risk: CPA exam, legal, tax, and accounting details can become outdated or differ from official requirements.
+Risk: Accounting, audit, tax, and legal guidance may be incomplete or out of date for a particular exam cycle or real-world decision.
 
-Mitigation: Verify exam requirements and professional conclusions against official materials and current laws and regulations before relying on them.
-
-Risk: Study guidance may be mistaken for professional accounting, audit, legal, or tax advice.
-
-Mitigation: Use outputs as study support and have qualified professionals review decisions before professional use.
+Mitigation: Check time-sensitive conclusions against current official materials and consult a qualified professional before relying on them in practice.
 
 ## Reference(s):
 
-- [ClawHub skill listing](https://clawhub.ai/yjkj999999/skills/cpa-china-2026-pro)
+- [ClawHub skill release](https://clawhub.ai/yjkj999999/skills/cpa-china-2026-pro)
+- [Publisher profile](https://clawhub.ai/user/yjkj999999)
+- [Repository listed in package metadata](https://github.com/yjkj999999/cpa-china-2026-pro)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Text, Markdown, Guidance, Worked calculations, Case analysis]
 
-**Output Format:** [Markdown or plain text answers in Chinese with explanations, outlines, and worked examples.]
+**Output Format:** [Chinese-language text and Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [No executable output; content is focused on Chinese CPA exam study support and related professional guidance.]
+**Other Properties Related to Output:** [Exam explanations and practical guidance across six CPA subjects.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server release metadata and package.json)
+1.0.1 (source: package.json, server release metadata)
 
 ## Ethical Considerations:
 

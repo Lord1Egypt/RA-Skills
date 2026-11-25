@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" class="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Engine test</title>
+<link rel="stylesheet" href="../engine/sketchy.css">
+<style>
+  body.sk { padding: 40px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 1360px; margin: 0 auto; position: relative; z-index: 1; }
+  .row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  #planets { width: 100%; height: auto; display: block; }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body class="sk">
+<svg class="sk-specks" data-specks="test" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+<div class="grid">
+  <div class="sk-sheet sk-in" data-sk="sheet" style="text-align:center">
+    <h1>Weight of the deal</h1>
+    <p class="sk-line">Seven slides, every figure sourced. The lines wobble; the totals add up.</p>
+    <p class="sk-fine">Twelve minutes, then questions.</p>
+    <div class="row" style="justify-content:center; margin-top:14px">
+      <button class="sk-btn" data-sk="button">Today’s letter</button>
+      <button class="sk-btn" data-sk="button" aria-pressed="true">×1</button>
+      <button class="sk-btn is-accent" data-sk="button" style="min-width:200px">Start</button>
+    </div>
+    <p style="margin-top:16px; text-align:left">Revenue grew <span data-sk="circle">41%</span> and churn fell to <span class="sk-figure">3.2%</span>. The <span data-sk="underline">one thing</span> that matters is <span data-sk="highlight">the window</span>.</p>
+  </div>
+  <div class="sk-sheet" data-sk="sheet">
+    <svg id="planets" viewBox="0 0 600 270"></svg>
+  </div>
+  <div class="sk-cover" data-cover="slate" style="min-height:440px">
+    <div class="sk-cover-inner">
+      <div class="sk-label"><span class="sk-label-title">Quarterly Post</span><span class="sk-label-sub">Sketchbook No. 3 · Board update</span></div>
+      <a class="sk-door" href="#">Open the sketchbook</a>
+    </div>
+    <div class="sk-cover-foot">If found, please return to the finance team. Reward: coffee-free biscuits.</div>
+  </div>
+  <div class="sk-sheet" data-sk="sheet">
+    <div class="row">
+      <span class="sk-stamp is-slam">Delivered</span>
+      <span class="sk-stamp is-blue">Express</span>
+      <span class="sk-tape">WORKER_ENABLED</span>
+      <div class="sk-gauge" style="--value:.7; --mark:.2; width:180px"></div>
+    </div>
+    <div class="row" style="align-items:flex-start; margin-top:20px; --gap:26px">
+      <div class="sk-slip">
+        <div class="sk-slip-head"><span class="sk-r">R</span>No. 0001 · Avis</div>
+        <span class="sk-stamp">Urgent</span>
+        <div class="sk-slip-title">We called while you were out.</div>
+        <div>A registered letter awaits you. Signature required.</div>
+        <div class="sk-slip-action">Tap to sign for it</div>
+      </div>
+      <aside class="sk-maths" style="margin-left:auto">Σ hide the math<br>t = π·√((r₁+r₂)³ / 8μ) = <span class="val">8.15 s</span> <span class="sk-sect">§1</span><br>Δv = <span class="val">3.50</span></aside>
+    </div>
+    <svg id="post" viewBox="0 0 320 130" style="width:320px; margin-top:8px"></svg>
+  </div>
+</div>
+<script src="../engine/sketchy.js"></script>
+<script>
+  Sketchy.mount();
+  var C = Sketchy.tokens();
+  Sketchy.variants(document.getElementById('planets'), function (p) {
+    [70, 120, 175, 235].forEach(function (r) { p.ellipse(300, 135, r * 2, r * 1.05, { width: 0.9, passes: 1, opacity: .38, rough: 0.4 }); });
+    p.circle(300, 135, 58, { fill: C.yellow });
+    for (var i = 0; i < 18; i++) { var a = i / 18 * Math.PI * 2, L = i % 2 ? 6 : 11; p.line(300 + Math.cos(a) * 34, 135 + Math.sin(a) * 34, 300 + Math.cos(a) * (34 + L), 135 + Math.sin(a) * (34 + L), { stroke: C.orange, width: 1.6, passes: 1 }); }
+    p.circle(420, 100, 26, { fill: C.blue });
+    p.circle(178, 170, 30, { fill: C.rose });
+    p.circle(512, 175, 36, { fill: C.orange });
+    p.ellipse(512, 175, 70, 18, { width: 1.1, passes: 1 });
+    p.curve([[420, 100], [470, 62], [540, 70], [578, 120]], { stroke: C.red, dash: '5 5', width: 1.4, passes: 1 });
+    p.circle(578, 120, 24, { stroke: C.red, dash: '3 4', width: 1.6, passes: 1 });
+    p.text(560, 98, 'now!', { note: true, size: 18 });
+    p.arrow(120, 44, 165, 138, { width: 1.2 });
+    p.text(92, 38, 'target', { size: 17 });
+  }, { seed: 'orbits', width: 1.15 });
+  Sketchy.variants(document.getElementById('post'), function (q) {
+    Sketchy.cancelWaves(q, 4, 30, 80, { lines: 5 });
+    Sketchy.postage(q, 70, 12, 82, 100, { value: '42¢', label: 'INTERPLANETARY POST', inner: function (pp, b) { pp.circle(b.x + b.w / 2, b.y + b.h / 2 + 2, b.w * .62, { fill: C.blue }); } });
+    Sketchy.postmark(q, 160, 62, 42, 'DELIVERED · MARS', '25 OCT 2026', { center: 'P.O.' });
+  }, { seed: 'post' });
+</script>
+</body>
+</html>

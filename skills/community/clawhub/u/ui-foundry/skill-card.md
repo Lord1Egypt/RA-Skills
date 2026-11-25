@@ -1,6 +1,6 @@
 ## Description:
 
-Leads interface design for websites, product workspaces, and native apps by turning plain-language goals into coherent visual decisions, easier interactions, and verified implementations.
+Design lead with ready-to-use visual foundations, interaction patterns and component adapters for websites and native apps. Choose a complete direction from a plain-language goal, implement it, inspect actual screens and repair failures. Use for new UI, redesigns, text-heavy or generic interfaces, mobile experiences, portable design briefs and design-system improvements.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT No Attribution (MIT-0)
+MIT
 
 ## Use Case:
 
-Product designers and developers use this skill to design or improve web, workspace, and native app interfaces, or to prepare a complete portable design brief. It guides implementation around a clear user outcome and supports review of actual interface and task evidence.
+Developers and product teams use UI Foundry to plan and implement web or native interface work, including new products, redesigns, interaction improvements, and design-system changes. It guides agents to deliver usable interface code or a completed task brief and inspect the result against observable outcomes.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Proposed interface changes or review notes may not match project constraints or may be mistaken for verified product quality.
+Risk: The security assessment rates this release suspicious with medium confidence, citing a high severity vulnerable dependency and location-search capabilities that appear beyond its stated UI design purpose. The analysis is incomplete and does not establish that the skill is safe.
 
-Mitigation: Check recommendations against project rules and the requested user journey; inspect the rendered interface and task results. Treat the optional checker as a review-record format and status check only.
+Mitigation: Consider avoiding installation until the maintainer explains the place-search integration and updates the affected dependency.
 
 ## Reference(s):
 
-- [UI Foundry on ClawHub](https://clawhub.ai/theosunny/skills/ui-foundry)
-- [Project homepage](https://github.com/theosunny/ui-foundry)
-- [Design practice](references/design-practice.md)
-- [Review and repair guide](references/review.md)
-- [Maintenance and tools guide](references/maintenance.md)
-- [Impeccable project](https://github.com/pbakaus/impeccable)
-- [Hallmark project](https://github.com/Nutlope/hallmark)
+- [Visual Recipes](references/visual-recipes.md)
+- [Design Practice](references/design-practice.md)
+- [Component Patterns](references/component-patterns.md)
+- [Review and Repair](references/review.md)
+- [Maintenance and Tools](references/maintenance.md)
+- [Tool Adapters](references/tool-adapters.md)
+- [AMap POI Search API](https://lbs.amap.com/api/webservice/guide/api-advanced/newpoisearch)
+- [HeroUI React Quick Start](https://heroui.com/en/docs/react/getting-started/quick-start)
+- [HeroUI Styles Reference](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/README.md)
+- [Lovable Design Systems](https://docs.lovable.dev/features/design-systems)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Files, Markdown, Guidance]
+**Output Type(s):** [Code, Files, Markdown, Configuration instructions, Shell commands, Guidance]
 
-**Output Format:** [UI implementation files or a Markdown design brief, with concise review findings]
+**Output Format:** [Project-ready interface files and implementation guidance; portable task briefs in Markdown. Code may include React/TypeScript, CSS, SwiftUI, or server-side adapters.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Varies by request; may include evidence for checked outcomes and clearly identified unverified areas.]
+**Other Properties Related to Output:** [Adapted to the current project and platform; review records distinguish observed results from unverified work.]
 
 ## Skill Version(s):
 
-0.1.1 (source: frontmatter, server-resolved release metadata)
+0.2.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

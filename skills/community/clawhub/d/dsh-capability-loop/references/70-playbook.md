@@ -71,7 +71,7 @@
 **ERR-20261112-11 · 沙箱里 Chrome/agent-browser 起不来**
 现象：`Chrome exited early (exit code: -36863) without writing DevToolsActivePort`；stderr：`crashpad_client_win.cc:431 OpenProcess: 拒绝访问 (0x5)`。
 根因：DSH workspace-write 进程沙箱拒绝 crashpad；`~/.agent-browser` 也不可写。
-修法：不要反复重试；走 A/B/C 路径（全权限会话 / 用户终端截图 + `read_image` / 手动截图标注未实测）；若要重定向状态目录，`AGENT_BROWSER_SOCKET_DIR/PROFILE/SCREENSHOT_DIR` 指到工作区（但 crashpad 问题仍在）。
+修法：不要反复重试；走 A/B/C 路径（全权限会话 / 用户终端截图 + `read_image` / 手动截图标注未实测）；若要重定向状态目录，`AGENT_BROWSER_SOCKET_DIR/PROFILE/SCREENSHOT_DIR` 指到工作区（但 crashpad 问题仍在）。这些环境变量**只对当前子进程有效**，不写开机启动/计划任务，也不跨会话持久化。
 
 **ERR-20261112-12 · 截图验证靠「肉眼看」没有留证**
 修法：截图落 `design-qa/<task>/`，文件名带断点/主题（`375-light.png`）；评审结论引用路径。
@@ -105,6 +105,54 @@
 
 **ERR-20261112-19 · ConvertFrom-Json 大对象失败**
 修法：用 Node/Python 解析；或 `-Depth` 增加；不要整文件打印。
+
+**ERR-20261119-01 · 本机目录装的 bundle 顶层 `import '@deepseek-ai/dsh-*'` 整行不激活**
+现象：`plugin_manager action=install_bundle target=<本地目录>` 返回 `packageResult.exitCode=0`，但 `application: failed`，诊断
+`dsh: warning: 1 entry did not activate — failed to import: Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@deepseek-ai/dsh-llm' imported from <工作区>\plugins\<pkg>\index.js`。
+根因：本地目录安装走 **pnpm link（junction）**，插件真实路径在工作区；Node 从真实路径向上找 `node_modules`，永远到不了 profile 的 `node_modules`（dsh 自带包在那里）。只有从 npm/Git 装进 profile 的包才能顶层直接 import dsh 包。
+修法（二选一）：
+1. **不要顶层 import**——在 `apply()` 或首次使用时 `await import('@deepseek-ai/dsh-llm')`，失败则用手工构造兜底（`UserMessage` 就是 `{ id, role:'user', content, source }`，形状见 `dsh-session/src/repair.ts` L168）。本 skill 的 P1 插件用这条。
+2. 把包发布到 npm/ClawHub 再装进 profile（能解析 dsh 包），但更新与调试变慢。
+验证：`plugin_manager action=set_plugin target=include:<row-id> enabled=true` 返回 `application: applied`，才算这一行真的活了。
+
+**ERR-20261119-02 · 插件用 `ctx.fs.writeText` 写文件静默失败（注入成功但没落盘）**
+现象：插件逻辑跑通了（会话里能看到注入内容），但目标文件没更新、也没报错。
+根因：`dsh-fs-sandbox` 的 `checkedTarget` 是 `policy = sandboxPolicy ?? ctx.sandboxPolicy.resolve()`——不传 per-call 策略时用**部署默认**（fail-safe 是 `read-only`），于是写入被 `FS_SANDBOX_DENIED` 拒绝；插件若 `try/catch` 里只吞掉异常，就完全静默。
+修法：写入时显式传**本会话自己的**策略：`ctx.sandboxPolicy.resolve({ session })` 作为 `writeText` 第 5 个参数；并**不要静默 catch**，至少 `logger.warn` 一条。只读会话里写入被拒是正确行为（尊重用户沙箱），降级即可。
+验证：改完看目标文件是否出现当前 session id；`read-only` 会话下应 warn 且不落盘。
+
+**ERR-20261119-03 · 客户端插件读文件：`ctx.connection.fetch` 在浏览器半边不存在**
+现象：面板渲染出来了，但读数据报 `connection.fetch is not a function`（或在桌面壳里 `fetch /api/file` 直接失败）。
+根因：`ctx.connection` 的**浏览器**半边（`dsh-client-connection/src/client/index.ts` 的 `ConnectionHandle`）只暴露 `interactions / isLoopback / generation / state / rpc / openWebSocket / reconnect / registerGenerationSource / start`——**没有 `fetch`、没有 `browserPeer`**。`fetch(request, peer)` 属于 **Host** 侧 Connection（`rpc-host.ts`）。而且桌面渲染器跑在 `dsh-app://` 源上，用 `globalThis.fetch('/api/file?…')` 也命中不了 HTTP API。
+修法：客户端要读文件就走生成的 Remote：`ctx.remote.session.list({})` 拿会话（`SessionSummary` 含 `sessionId` + `cwd`）→ `ctx.remote.workspaceFiles.read(sessionId, '<工作区相对路径>', {}, signal)`。相对路径落在该会话的工作区根，所以连 DSH home 都不用知道。
+**配套的第二个坑**：Cordis 对子服务是点号键，`inject` 里必须写全，否则运行时报
+`cannot get property "remote.session" without inject`。即：
+`inject: ['slots', 'connection', 'remote', 'remote.session', 'remote.workspaceFiles']`。
+验证：面板空态里显示「读取诊断：…」——成功读到时该行显示「未发生错误」；失败时直接把 HTTP 状态/异常文本打出来，别做静默空白。
+
+**ERR-20261119-04 · 插件夹具只拷 `index.js`，新增 `./actions.js` 后整组 ERR_MODULE_NOT_FOUND**
+现象：`takeover.test.mjs` / `fallback.test.mjs` 全红，报 `Cannot find module '<tmp>\plugin\actions.js' imported from '<tmp>\plugin\index.js'`。
+根因：两个夹具为绕开 dsh 包解析，用 `fs.copyFileSync(index.js)` 把插件拷到临时沙箱；新加的本地模块不会被自动带上。
+修法：夹具同时拷 `actions.js`（以后新增模块一律补拷），或改成拷整目录再排除 `test/`。报错路径是 `<tmp>/plugin/<新文件>` 就是漏拷。
+验证：`node plugins/capability-loop/test/takeover.test.mjs` → 13/13。
+
+**ERR-20261119-05 · client 夹具的 vm 沙箱缺 `AbortController`；跨 realm 空数组 `deepEqual` 假失败**
+现象：新增“取消运行”后 5 条 client 夹具一起红，`ReferenceError: AbortController is not defined`；补上后 1 条 `Values have same structure but are not reference-equal`。
+根因：①`vm.runInContext` 沙箱没有 Node 全局（真浏览器里有 `AbortController`）；②`assert.deepEqual(x.attachments, [])` 的 `[]` 与沙箱里创建的空数组不是同一 realm 的 Array。
+修法：沙箱显式注入 `AbortController`；跨 realm 只断长度/类型（`assert.equal(arr.length, 0)`），不要对空数组用 `deepEqual`。
+验证：`node plugins/capability-loop/test/client.test.mjs` → 15/15。
+
+**ERR-20261119-06 · Host 半新增会话命令后「面板点了没反应」**
+现象：`client.js` 刷新后按钮在，点击后结果区显示「命令未被受理（未注册或语法不符）」。
+根因：`commands.register()` 在 `apply()` 里执行，模块在应用启动时就已 import；刷新客户端只重载渲染器，Host 仍是旧模块（Node ESM 缓存），命令不存在。
+修法：改 `index.js` / 新增 `actions.js` 后**重启应用**；只改 `client.js` 才只需刷新页面（Ctrl+R）。面板必须把“未受理”与“语法错”分别提示，不能静默。
+验证：重启后 `/capability-loop run audit` 在会话里可执行；面板点「运行门禁」出现确认框与 `[门禁] PASS`。
+
+**ERR-20261119-07 · 工作区 `.tmp` 写入被 ACL 拒绝（UnauthorizedAccessException）**
+现象：往 `<工程>/.tmp/...` 写探针脚本/截图被拒，同一脚本改到 `docs/` 或 `%TEMP%` 就成功。
+根因：该目录的 ACL 被收紧（与 `.gitignore` 无关），不是脚本写错。用 `icacls <dir>` 可看到拒绝项。
+修法：临时产物放 `%TEMP%`，要交付的截图放工程内 `docs/...`；不要为了单次写入放宽整目录 ACL（诊断见 skill `diagnose-windows-sandbox-acl`）。
+验证：同脚本输出目录换成 `%TEMP%` 后 exit 0。
 
 ## E. 交接与协作
 

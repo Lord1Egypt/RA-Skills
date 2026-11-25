@@ -1,6 +1,6 @@
 ## Description:
 
-Create and manage Automate It content tasks and automations, prepare or delegate content, monitor human review and publishing, and manage related workspace resources within API-key scopes and role limits.
+Create content tasks and automations in Automate It, do the content work yourself or leave it to the built-in worker, poll task status through the human review gate, and fetch links to published posts. To support that it also reads and writes the surrounding workspace — skills (brand voice and house style, which it can also create/update/delete), workspace files and folders, connected publishing integrations, link shortening — all bounded by the API key's scopes and the caller's workspace role. Deleting tasks, content items, automations, folders, or skills is possible but requires explicit confirmation on each command. Use when asked to draft, schedule, or publish social content via Automate It, or to check the status or published results of a submitted task.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and operators use this skill to draft or delegate social and other publishing content, manage review and publishing tasks, schedule recurring automations, and check task or publication status in an Automate It workspace.
+External users and developers use this skill to draft or delegate social and article content, manage Automate It tasks and automations, and track human review and publishing results.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The API key is a bearer credential for workspace operations, including publishing.
+Risk: ClawScan rates the skill suspicious with medium confidence; the bundled executable was only partly inspected, leaving evidence incomplete.
 
-Mitigation: Store it as a secret, use the narrowest required scopes, and configure only a trusted HTTPS API endpoint.
-
-Risk: Content may publish automatically if review safeguards are disabled.
-
-Mitigation: Keep human review enabled unless automatic publishing is deliberately authorized.
-
-Risk: Workspace deletions are permanent, and recurring automations continue until paused or changed.
-
-Mitigation: Require explicit operator authorization for destructive actions, and pause or update an automation when the intent is to stop future runs.
+Mitigation: Treat this as a review-level warning, consider the recommendation not to install, and seek a complete, inspectable analysis of the bundled executable. The scanner evidence does not establish malicious intent.
 
 ## Reference(s):
 
-- [Automate It agent documentation](https://automate.it.com/agents)
-- [ClawHub release](https://clawhub.ai/workingdevshero/skills/automate-it)
-- [Publisher profile](https://clawhub.ai/user/workingdevshero)
+- [Automate It agent guide](https://automate.it.com/agents)
+- [ClawHub skill release](https://clawhub.ai/workingdevshero/skills/automate-it)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Status information, Published-content links]
+**Output Type(s):** [API Calls, JSON, Text, Links]
 
-**Output Format:** [Text and Markdown content, task status, and links; CLI results can be returned as JSON.]
+**Output Format:** [JSON responses and text, including task status and published post links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Content may be prepared by the agent or delegated to the built-in worker; publication is subject to workspace permissions and review settings.]
+**Other Properties Related to Output:** [Can create or update workspace content and submit it for human review; publishing follows the workspace review and permission settings.]
 
 ## Skill Version(s):
 
-0.5.2 (source: server-resolved release metadata)
+0.5.5 (source: frontmatter)
 
 ## Ethical Considerations:
 

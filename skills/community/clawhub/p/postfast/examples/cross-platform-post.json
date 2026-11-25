@@ -5,7 +5,7 @@
       "mediaItems": [
         { "key": "image/YOUR_UPLOAD_KEY.png", "type": "IMAGE", "sortOrder": 0 }
       ],
-      "scheduledAt": "2026-06-15T09:00:00.000Z",
+      "scheduledAt": "2027-02-01T09:00:00.000Z",
       "socialMediaId": "YOUR_LINKEDIN_ACCOUNT_ID"
     },
     {
@@ -13,7 +13,7 @@
       "mediaItems": [
         { "key": "image/YOUR_UPLOAD_KEY.png", "type": "IMAGE", "sortOrder": 0 }
       ],
-      "scheduledAt": "2026-06-15T09:00:00.000Z",
+      "scheduledAt": "2027-02-01T09:00:00.000Z",
       "socialMediaId": "YOUR_X_ACCOUNT_ID"
     },
     {
@@ -21,7 +21,7 @@
       "mediaItems": [
         { "key": "image/YOUR_UPLOAD_KEY.png", "type": "IMAGE", "sortOrder": 0 }
       ],
-      "scheduledAt": "2026-06-15T09:00:00.000Z",
+      "scheduledAt": "2027-02-01T09:00:00.000Z",
       "socialMediaId": "YOUR_THREADS_ACCOUNT_ID"
     }
   ],

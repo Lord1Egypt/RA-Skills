@@ -31,14 +31,14 @@ class TestFactChecker(unittest.TestCase):
 
     def test_unsupported_claim_removed(self):
         from fact_checker import fact_check
-        answer = "量子计算利用量子比特进行并行计算 [1]。\n量子火锅是四川名菜 [2]。"
+        answer = "量子计算利用量子比特进行并行计算 [1]。\n明天市中心将举办马拉松比赛 [2]。"
         result = fact_check(answer, self.sources, {"fact_check": {"remove_unsupported": True}})
         removed_text = " ".join(result["removed_claims"])
-        self.assertIn("量子火锅", removed_text)
+        self.assertIn("马拉松", removed_text)
 
     def test_unsupported_claim_kept_when_configured(self):
         from fact_checker import fact_check
-        answer = "量子计算利用量子比特 [1]。\n量子火锅是名菜 [1]。"
+        answer = "量子计算利用量子比特 [1]。\n明天市中心将举办马拉松比赛 [1]。"
         result = fact_check(answer, self.sources, {"fact_check": {"remove_unsupported": False}})
         self.assertEqual(len(result["removed_claims"]), 0)
         labels = [c["label"] for c in result["claims"]]

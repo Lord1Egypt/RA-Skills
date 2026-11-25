@@ -1,6 +1,6 @@
 ## Description:
 
-Orchestrates Spec Driven Development by coordinating spec, plan, and task skills
+Orchestrates Spec Driven Development by coordinating spec, plan, and task skills.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers working in Spec-kit-enabled repositories use it to coordinate specification, planning, task generation, implementation, and verification across related skills while tracking workflow artifacts.
+Developers use this skill to coordinate a spec-driven development workflow from specification through planning, task generation, implementation, and verification. It tracks workflow progress and helps load the relevant supporting skills.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Security coverage is incomplete because some referenced local files were unavailable during scanning, and a benign verdict is not a guarantee of safety.
+Risk: Some referenced paths were unavailable to the security scanner, so review coverage is incomplete.
 
-Mitigation: Review whether the skill's instructions and referenced local files are available and suitable for your workflow before use.
+Mitigation: Review the skill and its intended use before installing.
 
 ## Reference(s):
 
-- [Spec-kit plugin](https://github.com/athola/claude-night-market/tree/master/plugins/spec-kit)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-spec-kit-speckit-orchestrator)
+- [Project homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/spec-kit)
 
 ## Skill Output:
 
 **Output Type(s):** [Markdown, Guidance]
 
-**Output Format:** [Markdown workflow artifacts and guidance]
+**Output Format:** [Markdown workflow artifacts and progress guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include specifications, plans, task lists, checklists, and supporting design artifacts.]
+**Other Properties Related to Output:** [Coordinates spec, plan, task, and verification work across a development workflow.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

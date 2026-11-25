@@ -1,0 +1,5 @@
+interface:
+  display_name: "Media Canary 43000"
+  short_description: "Inert canary for authorized media pipeline testing."
+  icon_small: "icons/icon.png"
+  icon_large: "icons/icon.png"

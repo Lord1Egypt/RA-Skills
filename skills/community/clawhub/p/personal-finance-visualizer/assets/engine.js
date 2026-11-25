@@ -54,7 +54,10 @@
       const share = t.share == null || t.share === '' ? 1 : Number(t.share);
       if (!Number.isFinite(share) || share < 0 || share > 1 || Math.abs(share * 10000 - Math.round(share * 10000)) > 1e-8) fail('Share must be between zero and one with at most four decimal places.');
       if (t.kind !== 'expense' && share !== 1) fail('Personal shares apply only to expenses.');
-      return {id, date: t.date, description: text(t.description), amount: t.amount, amountCents, kind: t.kind, group, share, category: text(t.category, 'Uncategorized'), merchant: text(t.merchant), incomeType, purpose, account: text(t.account), source: text(t.source)};
+      const bankStatus=t.bankStatus==null||t.bankStatus===''?'posted':t.bankStatus;
+      if(!['posted','pending'].includes(bankStatus))fail('Bank status must be posted or pending.');
+      if(bankStatus==='pending'&&t.kind!=='expense')fail('Pending records must be confirmed expenses.');
+      return {id, bankStatus, date: t.date, description: text(t.description), amount: t.amount, amountCents, kind: t.kind, group, share, category: text(t.category, 'Uncategorized'), merchant: text(t.merchant), incomeType, purpose, account: text(t.account), source: text(t.source)};
     });
     const byId = new Map(transactions.map(t => [t.id, t]));
     if (!Array.isArray(input.refunds || []) || !Array.isArray(input.settlements || []) || !Array.isArray(input.notes || [])) fail('Refunds, settlements and notes must be arrays.');
@@ -83,7 +86,15 @@
       }
       return {outId: out.id, inId: incoming.id, amount: s.amount};
     });
-    return {schemaVersion: 1, currency: input.currency, language: input.language === 'zh-CN' ? 'zh-CN' : 'en', coverage: {start,end}, transactions, refunds, settlements, notes: (input.notes || []).map(n => text(n)), demo: input.demo === true};
+    let budget = null;
+    if (input.budget != null) {
+      if (!input.budget || typeof input.budget !== 'object') fail('Invalid budget integration.');
+      const endpoint = input.budget.endpoint || null;
+      if (endpoint !== null && endpoint !== '/api/budget') fail('Budget settings must use the same-origin budget endpoint.');
+      budget = {endpoint, defaults: validateBudgetSettings(input.budget.defaults), preview: input.budget.preview === true};
+      if (budget.defaults.currency !== input.currency) fail('Budget and report currencies must match.');
+    }
+    return {schemaVersion: 1, currency: input.currency, language: input.language === 'zh-CN' ? 'zh-CN' : 'en', coverage: {start,end}, transactions, refunds, settlements, notes: (input.notes || []).map(n => text(n)), demo: input.demo === true, budget};
   }
   function periods(data, grain) {
     if (!['day','week','month','year'].includes(grain)) fail('Invalid period scale.');
@@ -114,7 +125,7 @@
     for (const t of data.transactions) {
       if (t.date < period.start || t.date > period.end) continue;
       const settledCents = settled.get(t.id)||0;
-      const cashCents = t.kind === 'internal' ? 0 : Math.sign(t.amountCents) * (Math.abs(t.amountCents)-settledCents);
+      const cashCents = t.kind === 'internal' || t.bankStatus === 'pending' ? 0 : Math.sign(t.amountCents) * (Math.abs(t.amountCents)-settledCents);
       const personalUnits = t.kind === 'expense' && !matched.has(t.id) ? -t.amountCents * Math.round(t.share * 10000) : 0;
       const transferCents = t.kind.startsWith('transfer_') ? cashCents : 0;
       result.rows.push({...t, personalCents:personalUnits/10000,cashCents,transferCents,matchedRefund:matched.has(t.id),settledCents});
@@ -132,7 +143,94 @@
     result.rows.sort((a,b)=>b.date.localeCompare(a.date)||a.id.localeCompare(b.id));
     return result;
   }
-  const api = {validate, periods, summarize, cents};
+  function validateBudgetSettings(input) {
+    if (!input || typeof input !== 'object' || Array.isArray(input)) fail('Budget settings must be an object.');
+    const allowed = new Set(['schemaVersion','dailyLimit','currency','timezone','groups','allocationMode','shares']);
+    if (Object.keys(input).some(k=>!allowed.has(k)) || input.schemaVersion !== 1) fail('Unsupported budget settings.');
+    const dailyLimitCents = cents(input.dailyLimit);
+    if (dailyLimitCents < 0 || dailyLimitCents > 10000000) fail('Daily budget is outside the supported range.');
+    if (!/^[A-Z]{3}$/.test(input.currency || '')) fail('Budget currency is required.');
+    try {
+      if (new Intl.NumberFormat('en',{style:'currency',currency:input.currency}).resolvedOptions().maximumFractionDigits !== 2) fail('Unsupported budget currency.');
+      if (typeof input.timezone !== 'string' || input.timezone.length > 80) fail('Budget timezone is required.');
+      new Intl.DateTimeFormat('en',{timeZone:input.timezone}).format(new Date(0));
+    } catch { fail('Invalid budget currency or timezone.'); }
+    if (!Array.isArray(input.groups) || !input.groups.includes('daily') || input.groups.length > groups.length || new Set(input.groups).size !== input.groups.length || input.groups.some(g=>!groups.includes(g))) fail('Invalid budget groups.');
+    if (!['history','manual'].includes(input.allocationMode) || !Array.isArray(input.shares) || input.shares.length > 100) fail('Invalid category allocation.');
+    const seen = new Set();
+    const shares = input.shares.map(item=>{
+      if (!item || Object.keys(item).some(k=>!['category','basisPoints'].includes(k))) fail('Invalid category share.');
+      const category = text(item.category);
+      if (!category || /[\u0000-\u001f]/.test(category) || seen.has(category)) fail('Category shares must be unique.');
+      if (!Number.isInteger(item.basisPoints) || item.basisPoints < 0 || item.basisPoints > 10000) fail('Invalid category percentage.');
+      seen.add(category);return {category,basisPoints:item.basisPoints};
+    });
+    if (input.allocationMode === 'history' && shares.length) fail('Historical allocation does not accept manual shares.');
+    if (input.allocationMode === 'manual' && shares.reduce((n,s)=>n+s.basisPoints,0) !== 10000) fail('Category percentages must total 100%.');
+    return {schemaVersion:1,dailyLimit:(dailyLimitCents/100).toFixed(2),currency:input.currency,timezone:input.timezone,groups:[...input.groups],allocationMode:input.allocationMode,shares};
+  }
+  function budgetDate(settings, now = Date.now()) {
+    const parts = new Intl.DateTimeFormat('en',{timeZone:settings.timezone,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date(now));
+    const value = type=>parts.find(p=>p.type===type).value;
+    return value('year')+'-'+value('month')+'-'+value('day');
+  }
+  function splitBudgetAmount(total, entries) {
+    if (!entries.length || !entries.some(e=>e.weight>0)) return entries.map(e=>({...e,allocated:0}));
+    const weight = entries.reduce((n,e)=>n+e.weight,0);
+    const result = entries.map((e,index)=>{const exact=total*e.weight/weight;return {...e,index,allocated:Math.floor(exact),fraction:exact-Math.floor(exact)};});
+    let remainder = total-result.reduce((n,e)=>n+e.allocated,0);
+    for (const entry of [...result].sort((a,b)=>b.fraction-a.fraction||a.index-b.index)) {if(remainder--<=0)break;entry.allocated++;}
+    return result.map(({index,fraction,...e})=>e);
+  }
+  function dailyBudget(data, rawSettings, asOf) {
+    const settings=validateBudgetSettings(rawSettings);
+    if (settings.currency!==data.currency) fail('Budget and report currencies must match.');
+    const today=date(asOf||budgetDate(settings)), year=today.getUTCFullYear(), month=today.getUTCMonth();
+    const start=iso(new Date(Date.UTC(year,month,1))),end=iso(new Date(Date.UTC(year,month+1,0))),todayISO=iso(today);
+    const daysInMonth=new Date(Date.UTC(year,month+1,0)).getUTCDate(),remainingDays=daysInMonth-today.getUTCDate()+1;
+    const yesterday=iso(new Date(+today-DAY)),dailyLimitCents=cents(settings.dailyLimit),monthlyBudgetCents=dailyLimitCents*daysInMonth;
+    const current=summarize(data,{start,end:todayISO});
+    const rows=current.rows.filter(r=>r.kind==='expense'&&!r.matchedRefund&&settings.groups.includes(r.group));
+    const personalUnits=rs=>rs.reduce((n,r)=>n+Math.round(r.personalCents*10000),0),personalSum=rs=>personalUnits(rs)/10000;
+    const stableText=(a,b)=>a<b?-1:a>b?1:0;
+    const before=rows.filter(r=>r.date<todayISO),todayRows=rows.filter(r=>r.date===todayISO);
+    const beforeUnits=personalUnits(before),todayUnits=personalUnits(todayRows),spentBeforeCents=beforeUnits/10000,spentTodayCents=todayUnits/10000,spentMonthCents=(beforeUnits+todayUnits)/10000;
+    const remainingMonthCents=(monthlyBudgetCents*10000-beforeUnits-todayUnits)/10000;
+    const rawOpening=(monthlyBudgetCents*10000-beforeUnits)/(remainingDays*10000);
+    const openingCents=Math.max(0,Math.min(dailyLimitCents,Math.floor(rawOpening)));
+    const signedRemainingCents=(openingCents*10000-todayUnits)/10000;
+    const usable=data.coverage.start<=start&&data.coverage.end>=yesterday;
+    const availableCents=usable?Math.max(0,Math.floor(signedRemainingCents)):null;
+    const allocatable=category=>!['Uncategorized','未分类','待分类','商户待分类'].includes(category.trim());
+    const historicalMonths=[],history=new Map();
+    for(let offset=1;offset<=600&&historicalMonths.length<3;offset++){
+      const a=iso(new Date(Date.UTC(year,month-offset,1))),b=iso(new Date(Date.UTC(year,month-offset+1,0)));
+      if(b<data.coverage.start)break;
+      if(a<data.coverage.start||b>data.coverage.end)continue;
+      historicalMonths.push(a.slice(0,7));
+      for(const row of summarize(data,{start:a,end:b}).rows){
+        if(row.kind==='expense'&&!row.matchedRefund&&row.group==='daily'&&allocatable(row.category))history.set(row.category,(history.get(row.category)||0)+Math.round(row.personalCents*10000));
+      }
+    }
+    const automatic=splitBudgetAmount(10000,[...history].sort((a,b)=>b[1]-a[1]||stableText(a[0],b[0])).map(([category,weight])=>({category,weight}))).map(e=>({category:e.category,basisPoints:e.allocated}));
+    const references=(settings.allocationMode==='manual'?settings.shares:automatic).filter(s=>allocatable(s.category));
+    const shares=splitBudgetAmount(10000,references.map(s=>({category:s.category,weight:s.basisPoints}))).map(s=>({category:s.category,basisPoints:s.allocated}));
+    const categories=[...new Set([...shares.map(s=>s.category),...history.keys(),...rows.filter(r=>r.group==='daily'&&allocatable(r.category)).map(r=>r.category)])];
+    const allocated=splitBudgetAmount(availableCents??0,categories.map(category=>({category,weight:shares.find(s=>s.category===category)?.basisPoints||0})));
+    const categoryRows=allocated.map(item=>{
+      const items=rows.filter(r=>r.group==='daily'&&r.category===item.category),spent=personalSum(items);
+      return {category:item.category,basisPoints:item.weight,availableCents:usable?item.allocated:null,spentMonthCents:spent,monthlyDailyCostCents:spent/daysInMonth,rows:items};
+    }).sort((a,b)=>b.basisPoints-a.basisPoints||b.spentMonthCents-a.spentMonthCents||stableText(a.category,b.category));
+    const excludedRows=current.rows.filter(r=>r.kind==='expense'&&!r.matchedRefund&&!settings.groups.includes(r.group));
+    const costGroups=settings.groups.filter(g=>g!=='daily').map(group=>{const items=rows.filter(r=>r.group===group),spent=personalSum(items);return {group,spentMonthCents:spent,monthlyDailyCostCents:spent/daysInMonth,rows:items};});
+    return {settings,asOf:todayISO,start,end,daysInMonth,remainingDays,expectedCoverageThrough:yesterday,usable,
+      missingMonthStart:data.coverage.start>start,stale:data.coverage.end<yesterday,dailyLimitCents,monthlyBudgetCents,
+      spentBeforeCents,spentTodayCents,spentMonthCents,remainingMonthCents,openingCents:usable?openingCents:null,
+      availableCents,overspentTodayCents:usable?Math.max(0,-signedRemainingCents):null,monthDeficitCents:Math.max(0,-remainingMonthCents),
+      monthlyDailyCostCents:spentMonthCents/daysInMonth,historicalMonths,automaticShares:automatic,allocationShares:shares,categoryRows,costGroups,
+      excludedCents:personalSum(excludedRows),rows,hasAllocation:shares.some(s=>s.basisPoints>0)};
+  }
+  const api = {validate, periods, summarize, cents, validateBudgetSettings, budgetDate, dailyBudget};
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.Finance = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this);

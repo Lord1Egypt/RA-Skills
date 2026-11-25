@@ -1,10 +1,10 @@
-# Blender MCP Skill
+# Blender Workbench Skill（MCP + 美术生产管线）
 
-An OpenClaw Agent Skill for connecting to and controlling Blender via the official [Blender MCP Server](https://www.blender.org/lab/mcp-server/).
+An OpenClaw Agent Skill for connecting to and controlling Blender via the official [Blender MCP Server](https://www.blender.org/lab/mcp-server/) — **and** for running a spec-driven art production pipeline (modeling → UV → lookdev → lighting → rig → GN/FX → export → QA) on top of it.
 
-用于连接和控制 Blender 的 OpenClaw Agent 技能，通过官方 [Blender MCP Server](https://www.blender.org/lab/mcp-server/) 实现。
+用于连接和控制 Blender 的 OpenClaw Agent 技能，通过官方 [Blender MCP Server](https://www.blender.org/lab/mcp-server/) 实现；**并在同一技能里**按硬规格做可交付美术资产（建模 → UV → 材质 → 灯光 → 绑定 → GN/FX → 导出 → QA）。
 
-**Version: 3.7.3** — Blender 5.1+（官方硬性要求）/ **生产基准 = 5.3（5.3.0，2026-11-10 正式发布，三件套全绿：镜像 `Blender5.3/` + Gitea tag `v5.3.0` + `.msi` 200）** / **兼容下限 = 5.2 LTS（5.2.4，同日发布）** / 5.4 仍 Alpha（until 2027-02-03），只用 `hasattr` 兜底
+**Version: 4.0.0** — Blender 5.1+（官方硬性要求）/ **生产基准 = 5.3（5.3.0，2026-11-10 正式发布）** / **兼容下限 = 5.2 LTS（5.2.4，同日发布）** / 5.4 仍 Alpha（until 2027-02-03），只用 `hasattr` 兜底
 
 > ⚠️ **平台前提**（2026-10-25 核验）：官方 add-on 要求 Blender ≥ 5.1，而 **Blender 5.0 起 macOS 只出 Apple Silicon 构建** → **Intel Mac 上没有可用的「5.1+ × 官方 MCP」组合**（4.5 LTS 是最后一个支持 Intel 的版本）。Windows / Linux 不受影响（Windows 需 4 核 SSE4.2 + OpenGL 4.3 或 Vulkan 1.3、8 GB RAM）。来源：<https://www.blender.org/download/requirements/>
 
@@ -29,6 +29,17 @@ This skill provides full access to Blender's Python API (`bpy`) through the MCP 
 **执行前请始终审查代码。保持重要 `.blend` 文件的备份。**
 
 ---
+
+## What's New in v4.0.0 / 更新内容
+
+### v4.0.0 (2026-11-18) — 合并美术生产管线：一个技能覆盖「连上 Blender」到「交付资产」
+- 🟢 **原独立技能 `blender-art-pipeline` 整体并入本技能**（用户要求，不再维护两个技能）。15 篇美术章节落成 `references/art-*.md`：
+  `art-standards` `art-pipeline` `art-modeling` `art-uv-texture` `art-materials-lookdev` `art-lighting-render` `art-rig-anim` `art-gn-vfx-sim` `art-optimize-export` `art-qa` `art-reference-match` `art-style-recipes` `art-mcp-execution` `art-coverage-map` `art-NOTICE`
+- 🟢 `SKILL.md` **只加「两条主线」路由表 + 三条硬口径**（主文件 ~19 KB，压在扫描器单文件预算内；历史 v3.6.2 的 `SKILL.md (partial)` 就是体量超预算引起的）
+- 🛠 **两个可执行工具**：`generated/tools/asset_qa.py`（13 类检查 / 12 档阈值 / `--export-gate` / `--json`）、`generated/tools/style_presets.py`（12 套 look：世界色 + 体积雾 + 三点光色温 + 相机 + AgX）
+- ✅ **实测**：两工具在 **5.3.0 / 5.2.4 双构建**无头跑通；12 套 look 在 **EEVEE / Cycles** 各 12/12（判据：无黑屏 `mean<0.03`、无过曝 `mean>0.85`、无灰平 `p95−p05<0.15`）；「材质骨架」「先清选择再导集合」两段文档片段由断言式探针双构建复现（FBX/GLB 字节内不含集合外对象）
+- 📌 **破坏性变化：无 API 变动**；但技能定位从「MCP 连接」扩为「Blender 工作台」，`name` 仍为 `blender-mcp`（保持仓库与 ClawHub slug 不变）
+- ⚠️ 三个不能踩的坑（写进 SKILL.md 与 `art-lighting-render` / `art-optimize-export`）：① 雾别挂 World Volume（EEVEE 下背景全黑，实测亮度 0.0003）② 导出前先取消集合外选择，只 `use_selection=True` 会带出上次选中的对象 ③ `view_settings.look` 写不存在的名字会静默失效
 
 ## What's New in v3.7.3 / 更新内容
 
@@ -236,13 +247,19 @@ $env:DISABLE_TELEMETRY=true   # PowerShell
 
 | File | Description |
 |------|-------------|
-| SKILL.md | Complete skill definition — architecture, installation, 20 tools, protocol, 5.1/5.2/5.3 compatibility notes, troubleshooting |
+| SKILL.md | Complete skill definition — architecture, installation, 20 tools, protocol, 5.1/5.2/5.3 compatibility notes, troubleshooting, plus the art-pipeline routing table |
 | README.md | Project overview and quick start guide (bilingual) |
+| references/tools.md · protocol.md · api.md · troubleshooting.md · changelog.md | MCP channel details (tools, TCP protocol, API/version guards, errors, history) |
+| references/art-*.md (15) | Art production pipeline: `standards` `pipeline` `modeling` `uv-texture` `materials-lookdev` `lighting-render` `rig-anim` `gn-vfx-sim` `optimize-export` `qa` `reference-match` `style-recipes` `mcp-execution` `coverage-map` `NOTICE` |
 
 | 文件 | 描述 |
 |------|------|
-| SKILL.md | 完整的技能定义 — 架构、安装、20 个工具、协议、5.1/5.2/5.3 兼容性说明、故障排除 |
+| SKILL.md | 完整的技能定义 — 架构、安装、20 个工具、协议、5.1/5.2/5.3 兼容性说明、故障排除，以及美术管线路由表 |
 | README.md | 项目概述和快速入门指南（双语） |
+| references/tools.md · protocol.md · api.md · troubleshooting.md · changelog.md | MCP 通道细节（工具、TCP 协议、API/版本守卫、错误、历史） |
+| references/art-*.md（15 篇） | 美术生产管线：规格 `standards` / 流水线 `pipeline` / 建模 / UV 贴图 / 材质 lookdev / 灯光渲染 / 绑定动画 / GN 与 FX / 优化导出 / QA / 参考图匹配 / 风格配方 / MCP 执行 / 覆盖面对照 / 第三方声明 |
+
+> 两个脚本不在仓库内，在工作区的 `generated/tools/`：`asset_qa.py`（只读审计）、`style_presets.py`（12 套 look）。
 
 ---
 
@@ -256,6 +273,12 @@ Apache-2.0
 
 > 顺序：最新在上。**版本号三处必须一致**（`SKILL.md` frontmatter / 本文件顶部版本行 / 本 Changelog 首条）。
 > 2026-10-11 修复：本节此前**重复两遍**且缺失 v3.1.0 / v3.1.1 条目（v3.0.0 与 v2.5.x 混排、还残留一行截断文本）。
+
+### v4.0.0 (2026-11-18) — 合并美术生产管线（15 篇 `references/art-*.md` + 两个工具）
+- 🟢 原独立技能 `blender-art-pipeline` 并入：`art-standards` `art-pipeline` `art-modeling` `art-uv-texture` `art-materials-lookdev` `art-lighting-render` `art-rig-anim` `art-gn-vfx-sim` `art-optimize-export` `art-qa` `art-reference-match` `art-style-recipes` `art-mcp-execution` `art-coverage-map` `art-NOTICE`
+- 🟢 `SKILL.md` 加「两条主线」路由表 + 三条硬口径（体积雾 / 先清选择再导出 / `look` 名静默失效），主文件 ~19 KB 仍在扫描预算内
+- 🛠 工具：`asset_qa.py`（13 类检查 / 12 档 / `--export-gate`）、`style_presets.py`（12 look）—— 双构建 5.3.0 / 5.2.4 实测，look 在 EEVEE / Cycles 各 12/12
+- 🔴 破坏性：无 API 变动；`name` 仍 `blender-mcp`、仓库不变。定位扩为「Blender 工作台」，`metadata.octop.label` 改为「Blender 工作台」
 
 ### v3.6.1 (2026-10-25) — 「连不上」的最外层根因：uv 依赖下载被 TLS 证书拦截（官方 issue #67）
 - 🟢 排障表新增：`Failed to download …` + **`invalid peer certificate: UnknownIssuer`**（`files.pythonhosted.org`）→ uv 建不起 venv，表现仍是 "MCP Blender: Server disconnected"（官方 issue **#67**，2026-10-25，日志里 `rpds-py` / `pydantic-core` / `pyyaml` 三包同报）

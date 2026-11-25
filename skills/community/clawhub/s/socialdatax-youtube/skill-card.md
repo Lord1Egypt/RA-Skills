@@ -1,6 +1,6 @@
 ## Description:
 
-用于 YouTube 数据助手、视频搜索、视频详情、评论分析、频道资料以及频道视频和 Shorts 列表。覆盖 YouTube video and channel research，来自 SocialDataX 社媒数据助手。
+用于 YouTube 数据助手、视频搜索、视频详情、评论分析、频道资料以及频道视频和 Shorts 列表。覆盖 YouTube video and channel research，来自社媒数据助手 SocialDataX。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-People doing YouTube research use this skill to search videos, inspect video details and comments, review channel profiles, and list a channel's videos or Shorts.
+Users and analysts use this skill to search public YouTube videos, inspect video details and comments, review channel profiles, and list a channel’s videos and Shorts.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search terms, YouTube URLs, and request parameters are sent to SocialDataX; broad requests such as --all may consume API credits.
+Risk: Search terms, video or channel URLs and IDs, and pagination or reply tokens are sent to SocialDataX for lookups.
 
-Mitigation: Avoid confidential inputs and monitor API credit use, especially with --all.
+Mitigation: Send only the inputs needed for the lookup and keep secrets and private information out of research inputs.
 
-Risk: The supplied skill review does not cover the downloaded CLI or hosted service, and CLI data calls use an API key.
+Risk: Referenced CLI files were unavailable during the security review, so their setup was not fully assessed.
 
-Mitigation: Keep the API key in secret storage and review and pin the CLI version before use.
+Mitigation: Review the CLI and its setup before installing it or providing credentials.
 
 ## Reference(s):
 
 - [SocialDataX API access](https://socialdatax.com/ai?from=clawhub)
-- [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/socialdatax-youtube)
+- [SocialDataX YouTube skill on ClawHub](https://clawhub.ai/devinchen2014/skills/socialdatax-youtube)
+- [Publisher profile: devinchen2014](https://clawhub.ai/user/devinchen2014)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Text, Analysis]
+**Output Type(s):** [JSON data, Analysis]
 
-**Output Format:** [JSON research results and concise text summaries]
+**Output Format:** [Structured YouTube data with optional natural-language summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Read-only YouTube research; no account changes.]
+**Other Properties Related to Output:** [Read-only public YouTube research results; output depends on the selected lookup and available data.]
 
 ## Skill Version(s):
 
-0.1.4 (source: server-resolved release metadata)
+0.1.6 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

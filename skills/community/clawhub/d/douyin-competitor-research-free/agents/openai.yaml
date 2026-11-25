@@ -1,0 +1,9 @@
+interface:
+  display_name: "免费抖音竞品研究助手"
+  short_description: "按关键词或账号分析抖音公开作品结构、钩子和差异机会"
+  icon_small: "./assets/icon-512.png"
+  icon_large: "./assets/icon-512.png"
+  brand_color: "#E11D48"
+  default_prompt: "使用 $douyin-competitor-research-free 分析这个抖音关键词或账号的公开作品样本。"
+policy:
+  allow_implicit_invocation: true

@@ -1,6 +1,6 @@
 ## Description:
 
-An unofficial typed Go client for calling the Label Studio API from Go applications.
+Unofficial Go client for the Label Studio API, generated with oapi-codegen. Package labelstudio (github.com/psyb0t/go-label-studio) provides labelstudio.NewClientWithResponses with a typed ...WithResponse method for every endpoint: projects, tasks, annotations, predictions, imports, exports, storage, ML backends, webhooks, users, organizations and workspaces. Auth is an Authorization: Token header added through a request editor, against a self-hosted or cloud server URL. Use when Go code needs to call the Label Studio API, or already imports go-label-studio.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this typed Go client to integrate Go applications with Label Studio, including project, task, annotation, prediction, storage, and administration workflows.
+Developers use this skill to write Go integrations with a self-hosted or cloud Label Studio instance, including project, task, annotation, prediction, and administration workflows. It helps select generated client methods, configure authentication and server URLs, and handle responses safely.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review is partial because an AGENTS.md reference was missing, so some evidence is incomplete.
+Risk: ClawScan reported one referenced path missing from the bundle, so some scan evidence is incomplete.
 
-Mitigation: Review the available source and the missing reference before relying on the scanner result.
+Mitigation: Check whether the missing context matters to your intended use before installing.
 
-Risk: API calls can create, update, or delete Label Studio data.
+Risk: API credentials and annotation or task content are sent to the configured Label Studio server.
 
-Mitigation: Perform data-changing actions only when requested and on resources within the user's scope.
+Mitigation: Use a verified server URL, use HTTPS for remote servers, and keep API tokens out of source code, commits, logs, and request-header output.
 
-Risk: API credentials and task content are sent to the configured Label Studio server.
+Risk: Create, update, and delete operations can change Label Studio data.
 
-Mitigation: Use a trusted server URL, HTTPS for remote servers, and keep API tokens out of source code, logs, and request headers shared for debugging.
+Mitigation: Run data-changing calls only when requested and only for resources within the user's scope.
 
 ## Reference(s):
 
-- [Setup and reference](artifact/references/setup.md)
-- [go-label-studio on GitHub](https://github.com/psyb0t/go-label-studio)
-- [go-label-studio package documentation](https://pkg.go.dev/github.com/psyb0t/go-label-studio)
+- [Setup and reference](references/setup.md)
+- [Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-label-studio)
+- [Project homepage](https://github.com/psyb0t/go-label-studio)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [Go code, Shell commands, Configuration guidance]
 
-**Output Format:** [Go code and Markdown guidance]
+**Output Format:** [Markdown guidance with Go code examples and shell commands]
 
 **Output Parameters:** [1D]
 
@@ -52,7 +52,7 @@ Mitigation: Use a trusted server URL, HTTPS for remote servers, and keep API tok
 
 ## Skill Version(s):
 
-0.10.0 (source: server-resolved release metadata)
+0.11.2 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

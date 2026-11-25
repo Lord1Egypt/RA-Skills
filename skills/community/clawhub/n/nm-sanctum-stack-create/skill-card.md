@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to turn a plan with sequentially dependent changes into a verified stack of branches, with each branch based on the preceding slice.
+Developers use this skill when a plan has two or more dependent changes, creating an ordered local branch stack so each slice is based on the preceding slice.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review is partial and reports a mismatch between the stated purpose and the behavior it examined.
+Risk: Some reported actions may not create or verify the promised branch stack.
 
-Mitigation: Review the version-control actions and consider whether the scan coverage gap is acceptable before installing.
+Mitigation: Review the proposed slices and confirm the branch parent links and final topology before relying on the stack.
 
-Risk: Creating and switching branches changes the repository's version-control state.
+Risk: The broad ‘pr’ trigger could activate unexpectedly.
 
-Mitigation: Confirm the clean working tree, base branch, and ordered slices before running the commands, then verify the resulting branch topology.
+Mitigation: Invoke the skill explicitly when working on a plan that needs an ordered branch stack.
 
 ## Reference(s):
 
-- [Related Sanctum project homepage (metadata link)](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
+- [Sanctum plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-sanctum-stack-create)
 
 ## Skill Output:
 
 **Output Type(s):** [Guidance, Shell commands]
 
-**Output Format:** [Markdown guidance with inline shell commands]
+**Output Format:** [Markdown with inline shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Branch names and stack topology depend on the user's ordered plan and base branch.]
+**Other Properties Related to Output:** [Creates a local branch stack with one branch per ordered plan slice.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

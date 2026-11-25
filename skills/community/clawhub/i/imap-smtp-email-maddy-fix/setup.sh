@@ -5,6 +5,13 @@
 CONFIG_DIR="$HOME/.config/imap-smtp-email"
 CONFIG_FILE="$CONFIG_DIR/.env"
 
+# Everything this script writes can hold passwords: keep it owner-only, and
+# keep temporary copies inside the private config directory, not in /tmp.
+umask 077
+TEMP_FILE=""
+cleanup() { [ -n "$TEMP_FILE" ] && rm -f "$TEMP_FILE" "$TEMP_FILE.named"; }
+trap cleanup EXIT
+
 echo "================================"
 echo "  IMAP/SMTP Email Skill Setup"
 echo "================================"
@@ -249,7 +256,7 @@ EOF
     ;;
   "reconfigure")
     # Keep only named-account lines (pattern: NAME_IMAP_* or NAME_SMTP_*)
-    TEMP_FILE=$(mktemp)
+    TEMP_FILE=$(mktemp "$CONFIG_DIR/.env.XXXXXX")
     grep -E '^[A-Z0-9]+_(IMAP_|SMTP_)' "$CONFIG_FILE" > "$TEMP_FILE.named" 2>/dev/null || true
 
     cat > "$TEMP_FILE" << EOF
@@ -276,7 +283,7 @@ EOF
     ;;
   "overwrite")
     # Strip existing lines with this account prefix, then append new ones
-    TEMP_FILE=$(mktemp)
+    TEMP_FILE=$(mktemp "$CONFIG_DIR/.env.XXXXXX")
     grep -v "^${ACCOUNT_PREFIX}\(IMAP_\|SMTP_\)" "$CONFIG_FILE" | grep -vi "^# ${ACCOUNT_NAME} account" > "$TEMP_FILE" 2>/dev/null || true
     # Remove trailing blank lines (portable: command substitution strips trailing newlines)
     content=$(cat "$TEMP_FILE") && printf '%s\n' "$content" > "$TEMP_FILE"

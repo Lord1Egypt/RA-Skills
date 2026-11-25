@@ -1,12 +1,12 @@
 ---
 name: newrelic-cli-skills
-version: 1.0.11
+version: 1.0.13
 description: >
   Monitor, query, and manage New Relic observability data via the newrelic CLI.
-  Covers NRQL queries and organization-scoped macros, AI Monitoring telemetry, APM performance triage, deployment
+  Covers NRQL queries and organization-scoped macros, AI Monitoring telemetry and datasets, APM performance triage, deployment
   markers, read-only alert and incident inspection,
   infrastructure monitoring, agent diagnostics, and identity/access administration.
-  Use when user asks about LLM token usage or AI application telemetry, application
+  Use when user asks about LLM token usage, AI application telemetry or datasets, application
   performance, error rates, slow transactions, deployment tracking, incident inspection,
   New Relic setup, users, groups, roles, permissions, or access grants.
 metadata:
@@ -18,7 +18,11 @@ metadata:
       and infrastructure host data from the New Relic API. The documented New Relic CLI
       has no alerts command tree, so alert and incident workflows in this repo are read-only.
       Write operations include deployment marker creation and organization-scoped NRQL
-      macro creation/update/deletion. Require explicit approval before macro writes,
+      macro creation/update/deletion, plus irreversible AI Monitoring dataset/version deletion.
+      Dataset deletion cascades to all versions; last-version deletion also deletes its dataset.
+      Require explicit approval of exact dataset/version IDs and cascade scope, fresh
+      read-back before deletion, and exact-result verification afterward; do not bypass
+      confirmation for automation. See aimonitoring/references/datasets.md. Require explicit approval before macro writes,
       inspect downstream query/dashboard impact with coverage gaps disclosed, and read
       the exact target back. Macros are not supported in alert conditions; cached query
       execution may lag behind stored-state read-back.
@@ -42,7 +46,9 @@ metadata:
       notes: |
         NEW_RELIC_API_KEY must be a User Key (starts with NRAK-).
         NEW_RELIC_ACCOUNT_ID is the numeric account ID from the NR UI.
-        See README.md for CLI installation instructions.
+        AI Monitoring dataset and dataset-version commands require CLI >=v0.117.0;
+        check newrelic --version before using them. This floor applies only to those commands.
+        See references/installation.md for CLI installation instructions.
         Use an API key scoped to the minimum required accounts.
         Macro writes require Organization product admin or Organization manager access;
         Organization read only grants macro reads. Confirm the effective organization
@@ -69,7 +75,7 @@ tags:
 
 **Performance issue reported?** → [`apm/SKILL.md`](apm/SKILL.md)
 **Need to query data or manage organization-scoped NRQL macros?** → [`nrql/SKILL.md`](nrql/SKILL.md)
-**AI/LLM application, token, error, prompt, or response telemetry?** → [`aimonitoring/SKILL.md`](aimonitoring/SKILL.md)
+**AI/LLM telemetry, datasets, or dataset versions?** → [`aimonitoring/SKILL.md`](aimonitoring/SKILL.md)
 **Recording a deployment?** → [`deployments/SKILL.md`](deployments/SKILL.md)
 **Inspecting alerts or incidents?** → [`alerts/SKILL.md`](alerts/SKILL.md)
 **Infrastructure/host issues?** → [`infrastructure/SKILL.md`](infrastructure/SKILL.md)
@@ -80,18 +86,18 @@ tags:
 
 ## Setup & Auth
 
+For installation, use Homebrew on macOS or an official release archive. The Scoop
+route remains blocked by manifest/archive checksum mismatches, including the checked
+default-branch manifest; do not skip or disable checksum checks. Follow the
+[installation reference](references/installation.md) for immutable evidence and the
+manual path: verify the exact archive against its release's official SHA-256 manifest
+(case-insensitive hex comparison) before extraction. This checks integrity, not
+release authenticity. Confirm the selected version with `newrelic --version` before
+configuring credentials.
+
 ```bash
-# Install (manual or package manager)
 # macOS (Homebrew)
 brew install newrelic-cli
-
-# Windows (Scoop)
-scoop bucket add newrelic-cli https://github.com/newrelic/newrelic-cli.git
-scoop install newrelic-cli
-
-# Or manually download a release archive from:
-# https://github.com/newrelic/newrelic-cli/releases
-# Extract it, place the `newrelic` binary on your PATH, then verify with:
 newrelic --version
 
 # Configure profile
@@ -176,7 +182,7 @@ newrelic entity search --name "" --type HOST
 |---|---|
 | [`apm/`](apm/SKILL.md) | Performance triage, slow transactions, error analysis |
 | [`nrql/`](nrql/SKILL.md) | Custom queries, dashboards, ad-hoc exploration, and approval-gated organization macros |
-| [`aimonitoring/`](aimonitoring/SKILL.md) | AI/LLM applications, token usage, errors, prompts, responses, and telemetry |
+| [`aimonitoring/`](aimonitoring/SKILL.md) | AI/LLM telemetry, dataset discovery/version inventory, and approval-gated deletion |
 | [`deployments/`](deployments/SKILL.md) | Mark releases, correlate deploys with performance |
 | [`alerts/`](alerts/SKILL.md) | Read-only incident telemetry and entity alert severity |
 | [`infrastructure/`](infrastructure/SKILL.md) | Host metrics, CPU/memory, process monitoring |
@@ -194,5 +200,6 @@ newrelic entity search --name "" --type HOST
 
 ## References
 
+- [`references/installation.md`](references/installation.md) — CLI installation, checksum checks, and Scoop mismatch evidence
 - [`references/nrql-patterns.md`](references/nrql-patterns.md) — Common NRQL query patterns
 - [`references/performance-triage.md`](references/performance-triage.md) — Step-by-step triage guide

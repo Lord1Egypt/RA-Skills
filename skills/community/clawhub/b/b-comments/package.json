@@ -1,0 +1,10 @@
+{
+  "name": "b-comments",
+  "version": "1.0.0",
+  "private": true,
+  "description": "B站视频评论分步采集 Skill CLI (会话制, 每页主评论或每页二级回复 = 1 点数)",
+  "main": "cli.js",
+  "engines": {
+    "node": ">=18"
+  }
+}

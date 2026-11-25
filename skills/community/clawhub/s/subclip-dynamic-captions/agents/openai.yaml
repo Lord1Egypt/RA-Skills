@@ -1,0 +1,6 @@
+interface:
+  display_name: "Subclip Dynamic Captions"
+  short_description: "Design semantic high-retention editable captions"
+  default_prompt: "Use $subclip-dynamic-captions to turn this transcript into polished dynamic captions."
+policy:
+  allow_implicit_invocation: true

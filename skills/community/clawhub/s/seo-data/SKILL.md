@@ -1,7 +1,7 @@
 ---
 name: seo-data
 description: "SEO and search intelligence for agents: live Google results, keyword research, competitor and backlink gaps, page audits and AI answer visibility."
-version: 2.0.14
+version: 2.0.19
 author: superagnt
 license: MIT-0
 platforms: [macos, linux, windows]
@@ -138,7 +138,7 @@ to an API endpoint under the base URL.
         },
         "load_async_ai_overview": {
           "type": "boolean",
-          "description": "Set to true to load AI Overviews that Google renders asynchronously, so the `ai_overview` item comes back with its text and cited sources (`markdown`, `items`, `references`). Left off, an async overview still appears, flagged `asynchronous_ai_overview: true`, but with those fields null: you can tell an overview exists, not what it cites. In the default markdown view, the overview row lists its cited sources as `cited_domains`. Adds up to about 0.36 cents per call (roughly double the default-depth price), charged only when an overview actually had to be loaded; the response's `meta.costCents` shows what the call billed. Default false."
+          "description": "Set to true to load AI Overviews that Google renders asynchronously, so the `ai_overview` item comes back with its text and cited sources (`markdown`, `items`, `references`). Left off, an async overview still appears, flagged `asynchronous_ai_overview: true`, but with those fields null: you can tell an overview exists, not what it cites. In the default markdown view, the overview row lists its cited sources as `cited_domains`. Adds up to about 0.36 cents per call (roughly double the default-depth price), charged only when an overview actually had to be loaded; the response's `meta.costCents` shows what the call billed. When Google is too slow to load it, or the data provider fails to, the answer comes from a plain search instead, billed as one and marked in `meta.agnt_fallback` with the reason. Default false."
         }
       },
       "required": [
@@ -190,7 +190,7 @@ to an API endpoint under the base URL.
         },
         "language_code": {
           "type": "string",
-          "description": "Two-letter language code. Default 'en'."
+          "description": "Language code, e.g. 'en', 'de' or 'zh-TW'. A location takes only its own languages ('en' or 'es' for the United States, 'de' for Germany, 2276), and any other is refused. Default: 'en' where the location offers it, otherwise the location's main language."
         },
         "limit": {
           "type": "integer",
@@ -232,7 +232,7 @@ to an API endpoint under the base URL.
         },
         "language_code": {
           "type": "string",
-          "description": "Two-letter language code. Default 'en'."
+          "description": "Language code, e.g. 'en', 'de' or 'zh-TW'. A location takes only its own languages ('en' or 'es' for the United States, 'de' for Germany, 2276), and any other is refused. Default: 'en' where the location offers it, otherwise the location's main language."
         }
       },
       "required": [
@@ -280,7 +280,7 @@ to an API endpoint under the base URL.
         },
         "language_code": {
           "type": "string",
-          "description": "Two-letter language code. Default 'en'."
+          "description": "Language code, e.g. 'en', 'de' or 'zh-TW'. A location takes only its own languages ('en' or 'es' for the United States, 'de' for Germany, 2276), and any other is refused. Default: 'en' where the location offers it, otherwise the location's main language."
         },
         "limit": {
           "type": "integer",
@@ -326,7 +326,7 @@ to an API endpoint under the base URL.
         },
         "language_code": {
           "type": "string",
-          "description": "Two-letter language code. Default 'en'."
+          "description": "Language code, e.g. 'en', 'de' or 'zh-TW'. A location takes only its own languages ('en' or 'es' for the United States, 'de' for Germany, 2276), and any other is refused. Default: 'en' where the location offers it, otherwise the location's main language."
         },
         "limit": {
           "type": "integer",
@@ -369,7 +369,7 @@ to an API endpoint under the base URL.
         },
         "language_code": {
           "type": "string",
-          "description": "Two-letter language code. Default 'en'."
+          "description": "Language code, e.g. 'en', 'de' or 'zh-TW'. A location takes only its own languages ('en' or 'es' for the United States, 'de' for Germany, 2276), and any other is refused. Default: 'en' where the location offers it, otherwise the location's main language."
         },
         "limit": {
           "type": "integer",
@@ -407,7 +407,7 @@ to an API endpoint under the base URL.
         },
         "language_code": {
           "type": "string",
-          "description": "Two-letter language code. Default 'en'."
+          "description": "Language code, e.g. 'en', 'de' or 'zh-TW'. A location takes only its own languages ('en' or 'es' for the United States, 'de' for Germany, 2276), and any other is refused. Default: 'en' where the location offers it, otherwise the location's main language."
         }
       },
       "required": [
@@ -670,7 +670,7 @@ to an API endpoint under the base URL.
         },
         "model_name": {
           "type": "string",
-          "description": "The model to ask: claude-haiku-4-5, claude-sonnet-4-5 (default claude-haiku-4-5)."
+          "description": "The model to ask: claude-haiku-4-5, claude-sonnet-4-5, claude-haiku-5-5, claude-sonnet-5-5, claude-opus-5-5 (default claude-haiku-4-5)."
         },
         "max_output_tokens": {
           "type": "integer",

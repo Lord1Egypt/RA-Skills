@@ -1,0 +1,93 @@
+{
+  "schema": "oasis-blueprints/0.2",
+  "jobType": "deck",
+  "status": "draft",
+  "firm": { "name": "Your Company", "wordmark": "Your Company", "lines": ["Street address", "City, State ZIP", "License no.", "Phone", "website"] },
+  "project": {
+    "number": "EX-002", "title": "Backyard Deck", "subtitle": "New freestanding wood deck",
+    "address": "456 Sample Ave", "locality": "Anytown, ST 00000", "permit": "", "relatedPermit": "",
+    "use": "Freestanding residential deck, 2'-6\" above grade. Not attached to the house."
+  },
+  "people": { "drawnBy": "Drafter", "checkedBy": "Engineer", "engineer": "" },
+  "issue": { "date": "2026-11-12", "rev": "0", "revisions": [] },
+  "geometry": {
+    "units": "in",
+    "source": "Sizes and layout as given by the owner. Member sizes are the owner's proposal, to be confirmed by the engineer.",
+    "L": 192, "D": 144, "deckH": 30,
+    "post": 5.5, "postName": "PT 6×6", "postsX": [12, 96, 180],
+    "beamY": [18, 126], "beamDepth": 9.25, "beamPlies": 2, "plyT": 1.5, "beamName": "(2) 2×10",
+    "joistDepth": 7.25, "joistT": 1.5, "joistSpacing": 16, "joistName": "2×8",
+    "deckingT": 1, "deckingName": "5/4×6",
+    "footingDia": 16, "footingDepth": 24
+  },
+  "summary": {
+    "headline": "A 16 × 12 deck on six posts.",
+    "text": "New freestanding wood deck in the back yard: six posts on concrete footings, two beams, joists at 16 in. on centre and deck boards. It does not attach to the house.",
+    "howToRead": "Start with the picture, then the steps. The plan and section give sizes and locations, and the details show each connection. Anything in red is waiting on the engineer.",
+    "sequenceNote": "The sequence is for orientation only. Means, methods and site safety are the contractor's responsibility. Hold points shown here are in addition to the inspections required by the building department.",
+    "reserved": "The engineer's standard general notes go here: governing code and edition, design loads, lumber species, grades and preservative treatment, fasteners and connectors, concrete and soil bearing, and inspections. They are not part of this draft."
+  },
+  "facts": [
+    { "k": "Size", "tag": "", "v": "16'-0\" × 12'-0\"", "s": "Out to out of framing" },
+    { "k": "Joists", "tag": "N", "v": "2×8 @ 16\" o.c.", "s": "To beam: {joistToBeam}" },
+    { "k": "Beams", "tag": "N", "v": "(2) 2×10", "s": "To post: {postCap}" },
+    { "k": "Posts", "tag": "N", "v": "PT 6×6", "s": "Six, on post bases: {postBase}" },
+    { "k": "Footings", "tag": "N", "v": "Concrete", "s": "Size and depth: {footing}" },
+    { "k": "Deck height", "tag": "", "v": "2'-6\"", "s": "Top of deck above grade, verify" }
+  ],
+  "steps": [
+    { "pic": "footings", "title": "Lay out and pour the footings", "text": "Set out the six footings from the plan. Footing size, depth and reinforcing: {footing}", "hold": "Footing inspection before concrete is placed.", "ref": "Detail {d1}" },
+    { "pic": "posts", "title": "Posts and beams", "text": "Set each (N) PT 6×6 post on its post base, plumb, and brace it. Set the (N) (2) 2×10 beams on the posts. Beam to post: {postCap}", "ref": "Details {d1} and {d2}" },
+    { "pic": "joists", "title": "Joists", "text": "(N) 2×8 joists at 16 in. o.c. over the beams, with a rim joist at each end. Joist to beam: {joistToBeam}", "ref": "Detail {d2}" },
+    { "pic": "decking", "title": "Decking", "text": "(N) 5/4×6 deck boards across the joists. Guards and stairs are not part of this set: {guards}" }
+  ],
+  "scope": [
+    { "kind": "n", "item": "Footings", "text": "Six concrete footings. Size, depth and reinforcing: {footing}" },
+    { "kind": "n", "item": "Posts and bases", "text": "Pressure-treated 6×6 posts on post bases. Base and anchor: {postBase}" },
+    { "kind": "n", "item": "Beams", "text": "(2) 2×10 beams on the posts. Connection: {postCap}" },
+    { "kind": "n", "item": "Joists and decking", "text": "2×8 joists at 16 in. o.c. with 5/4×6 decking." },
+    { "kind": "o", "tag": "Not in this set", "item": "Guards and stairs", "text": "Not shown. {guards}" }
+  ],
+  "notes": [
+    { "title": "Scope", "start": 1, "items": [
+      "New freestanding wood deck. The deck is not attached to the house and takes no support from it.",
+      "Work marked **(N)** is new work under this permit."
+    ] },
+    { "title": "Framing", "start": 3, "items": [
+      "**Footings.** Concrete, six locations. Size, depth and reinforcing: {footing}",
+      "**Posts.** Pressure-treated 6×6 on post bases. Base and anchor: {postBase}",
+      "**Beams.** (2) 2×10. Beam to post: {postCap}",
+      "**Joists.** 2×8 at 16 in. o.c. Joist to beam: {joistToBeam}",
+      "**Lateral stability.** {bracing}"
+    ] },
+    { "title": "Before and during the work", "start": 8, "items": [
+      "Locate underground utilities before digging. [HOLD]",
+      "Member sizes shown are as proposed by the owner and are not confirmed until the engineer closes the open items on this sheet.",
+      "Connectors are shown schematically. Install connectors per the manufacturer's instructions."
+    ] }
+  ],
+  "criteria": [
+    { "k": "Use", "v": "Residential deck" },
+    { "k": "Deck height above grade", "v": "2'-6\", verify" },
+    { "k": "Governing code and edition", "v": "" },
+    { "k": "Deck live load and snow load", "v": "" },
+    { "k": "Soil bearing pressure", "v": "" },
+    { "k": "Frost depth", "v": "" },
+    { "k": "Lumber species, grade and treatment", "v": "" },
+    { "k": "Connectors and fasteners", "v": "" }
+  ],
+  "openItems": [
+    { "key": "sizes", "title": "Member sizes and spans", "text": "Joists, beams and posts are drawn as the owner proposed. Confirm or revise for the design loads.", "who": "Engineer", "answer": "" },
+    { "key": "footing", "title": "Footings", "text": "Diameter, depth below grade, reinforcing and soil bearing. Drawn schematically at 16 in. diameter.", "who": "Engineer", "answer": "" },
+    { "key": "postBase", "title": "Post base and anchor", "text": "Post base model and its anchor into the footing.", "who": "Engineer", "answer": "" },
+    { "key": "postCap", "title": "Beam-to-post connection", "text": "Connection of the (2) 2×10 beam to the top of each 6×6 post.", "who": "Engineer", "answer": "" },
+    { "key": "joistToBeam", "title": "Joist-to-beam connection", "text": "Fastening or connector at each joist over each beam.", "who": "Engineer", "answer": "" },
+    { "key": "bracing", "title": "Lateral bracing", "text": "The deck is freestanding. Bracing or another means of lateral stability is required and is not yet designed.", "who": "Engineer", "answer": "" },
+    { "key": "guards", "title": "Guards and stairs", "text": "Whether guards and stairs are required at this height, and who details them.", "who": "Engineer", "answer": "" },
+    { "key": "criteria", "title": "Design criteria and general notes", "text": "Code edition, loads, soil and frost data, material grades and the standard general notes for this sheet.", "who": "Engineer", "answer": "" }
+  ],
+  "sheets": [
+    { "no": "S0.0", "type": "cover", "name": "Cover, scope and notes", "what": "For the office and the plan reviewer: scope, notes, criteria and open items." },
+    { "no": "S1.0", "type": "field", "name": "Framing plan, section and details", "what": "For the field: the picture, the steps, the plan, the section and each connection." }
+  ]
+}

@@ -1,6 +1,6 @@
 ## Description:
 
-Manages VMware NSX security, including distributed firewall policies and rules, security groups, VM tags, Traceflow diagnostics, and IDS/IPS.
+Manage VMware NSX distributed firewall policies and rules, security groups, VM tags, Traceflow diagnostics, and IDPS profiles and status.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Network and security administrators use this skill to inspect and manage NSX distributed firewall policies, security groups, VM tags, Traceflow, and IDS/IPS settings for microsegmentation and troubleshooting.
+External developers and infrastructure security engineers use this skill to inspect and manage NSX distributed firewall rules and groups, tag VMs, trace packet paths, and review IDPS configuration.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan reports partial analysis because a local path-like reference in SKILL.md did not match a bundled artifact, and notes setup guidance includes NSX networking and vSphere monitoring tools outside the stated security scope.
+Risk: A DFW rule or VM tag change can alter traffic enforcement or leave intended VMs outside protection.
 
-Mitigation: Keep this skill focused on NSX security work, route networking or monitoring tasks to their dedicated skills, and review the unavailable reference if complete evidence coverage is needed.
+Mitigation: Check target, group membership, DFW exclusions, and rule order; verify the intended path with Traceflow before enabling deny rules. Review delete previews before confirming a deletion.
+
+Risk: The supplied security scan is partial, and it notes a mismatch between the security scope and setup guidance that also covers networking and monitoring.
+
+Mitigation: Review the setup and networking/monitoring guidance and versioning for the intended deployment before installation; treat the scan verdict as incomplete evidence.
 
 ## Reference(s):
 
+- [ClawHub release page](https://clawhub.ai/zw008/skills/vmware-nsx-security)
+- [Project homepage](https://github.com/vmware-skills/VMware-NSX-Security)
 - [Setup guide](artifact/references/setup-guide.md)
+- [Capabilities reference](artifact/references/capabilities.md)
 - [CLI reference](artifact/references/cli-reference.md)
 - [Agent guardrails](artifact/references/agent-guardrails.md)
-- [Capabilities reference](artifact/references/capabilities.md)
-- [Project homepage](https://github.com/vmware-skills/VMware-NSX-Security)
-- [ClawHub release page](https://clawhub.ai/zw008/skills/vmware-nsx-security)
+- [Detailed guide](artifact/references/detailed-guide.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, API Calls, Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [JSON, Markdown, Shell commands, Configuration, Operational guidance]
 
-**Output Format:** [Markdown guidance and structured tool results, with shell commands when using the CLI.]
+**Output Format:** [Structured JSON tool results and Markdown guidance with shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include findings, proposed NSX changes, or setup instructions depending on the task.]
+**Other Properties Related to Output:** [Results reflect the configured NSX Manager target; write operations can change security policy and VM tags.]
 
 ## Skill Version(s):
 
-1.17.3 (source: server-resolved release metadata)
+1.17.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

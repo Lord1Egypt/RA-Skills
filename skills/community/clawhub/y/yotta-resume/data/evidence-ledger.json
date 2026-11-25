@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "contract_version": "1.0",
+  "generated_at": "2026-11-21",
+  "entries": [
+    {
+      "evidence_id": "EV-EXAMPLE-SOC-001",
+      "section": "experience",
+      "claim": "示例条目：完成示例告警降噪任务，误报下降 20%。该内容不属于任何真实候选人。",
+      "scenario": "获授权 SOC 环境中的示例告警治理",
+      "goal": "演示证据账本字段，不用于成品导出",
+      "responsibility": "assist",
+      "actions": ["分析示例告警样本", "验证降噪前后样本"],
+      "methods": ["SIEM"],
+      "scale": "示例样本 100 条",
+      "result": "示例结果，仅用于字段演示",
+      "supporting_artifacts": ["EXAMPLE_ONLY"],
+      "boundaries": "示例数据，未经候选人确认，不得进入简历或分析报告",
+      "user_confirmed": false,
+      "source_refs": ["nist-nice-2-2-0"],
+      "sensitivity": "public",
+      "export_allowed": false
+    }
+  ]
+}

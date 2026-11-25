@@ -1,7 +1,7 @@
 ---
 name: youtube-data
 description: "YouTube channels, videos, transcripts, and comments for agents — no Google API key or daily quota to manage."
-version: 2.0.14
+version: 2.0.19
 author: superagnt
 license: MIT-0
 platforms: [macos, linux, windows]

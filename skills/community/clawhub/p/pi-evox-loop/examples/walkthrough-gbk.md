@@ -103,4 +103,4 @@ node code/light-cli.mjs approve <上一步打印的 gene_id>
 - **守卫**：只有命中修法信号词（`FIX:` / `encoding` / `gbk` …）且**通过叙述守卫**（首段不是会话旁白）的 strategy 才会被注入；纯成功总结不注入（宁缺毋滥）。
 - **审核门控**：`approve` 之前基因不注入；`quarantine` 能撤销已批准（last-write-wins）。
 - **注入是软提示**：遵从度与模型相关，守卫只保证噪声不入库 / 不出库，不承诺 100% 避坑。
-- 完整机制与逐条出处见 `SKILL.md` 与 `docs/experiment-report.md`。
+- 完整机制与逐条出处见 `SKILL.md` 与GitHub 仓库 `docs/experiment-report.md`（包内不含）。

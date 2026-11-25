@@ -14,6 +14,10 @@ Paste your SnapWidget code into a Bludit page where you want the widget to show.
 2. Click **Install Widget**.
 3. In the **Install Widget** window, click **Copy Code**.
 
+> [!NOTE]
+>
+> For Bludit, use the iframe code. If the **Install Widget** window has an **Iframe code** tab, click it before you click **Copy Code**.
+
 ### In Bludit
 
 1. In the Bludit admin, click **Plugins** under **Settings**.

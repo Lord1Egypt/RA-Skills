@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Website owners and developers use this skill to connect their own or an authorized client's social accounts or review sources, create or update a SnapWidget, and add it to a website or site builder.
+Website owners and developers use this skill to connect their own or authorized social accounts and review sources, configure SnapWidget feeds or review widgets, and install them on a website.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,41 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security summary flags weakening embedded-content protections when adding widgets.
+Risk: Social account content or testimonial details may be shared with SnapWidget and displayed publicly.
 
-Mitigation: Review the integration steps and retain iframe protections where feasible.
+Mitigation: Connect only sources the user owns or has permission to use; review testimonial details and public display before adding them.
 
-Risk: The security summary flags loading third-party scripts across webshop pages, with possible site access and visitor privacy implications; analysis is incomplete because a referenced local path was unavailable.
+Risk: Embedded widgets load externally hosted scripts on the website.
 
-Mitigation: Review the script integration steps, limit third-party scripts to pages that need the widget where feasible, and weigh the site access and visitor privacy implications.
+Mitigation: Review and approve the embed code and its external script before installing it on a live site.
+
+Risk: Some platform instructions may weaken site protections to allow scripts or iframes.
+
+Mitigation: Check those recommendations against the site's security needs and avoid weakening protections unless the user accepts the effect.
+
+Risk: The security analysis was partial because a local path-like reference could not be resolved.
+
+Mitigation: Review the relevant skill instructions and references before use; treat the scan results as incomplete.
 
 ## Reference(s):
 
-- [SnapWidget Help](https://snapwidget.com/docs)
-- [Create an Instagram widget](https://snapwidget.com/docs/getting-started/create-an-instagram-widget.md)
-- [Framework integration guidance](artifact/references/frameworks.md)
-- [Website builder installation guides](artifact/references/index.md)
+- [SnapWidget documentation](https://snapwidget.com/docs)
+- [Website builder installation guides](references/index.md)
+- [JavaScript framework installation guide](references/frameworks.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration instructions]
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration instructions, API calls]
 
-**Output Format:** [Markdown with CLI commands, MCP tool instructions, embed code, and website setup steps]
+**Output Format:** [Markdown guidance with CLI or MCP steps, code snippets, and website setup instructions]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Steps vary by social or review source and website platform; embeds may use HTML, React, or Next.js.]
+**Other Properties Related to Output:** [Platform-specific steps; account access, widget IDs, and embed code depend on the user's SnapWidget setup.]
 
 ## Skill Version(s):
 
-1.0.1 (source: server-resolved ClawHub release metadata)
+1.0.2 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

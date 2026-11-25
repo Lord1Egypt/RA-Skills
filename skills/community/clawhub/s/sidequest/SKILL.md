@@ -1,7 +1,7 @@
 ---
 name: sidequest
-description: Hire verified real people for paid real-world quests via SideQuest. Use when a task needs a human, such as calling a business, checking a store is open, taking photos at a place, inspecting an item, a pickup or return, waiting in line, native-speaker translation, or human review of AI output. Funds are held in escrow and released when you approve the proof.
-version: 1.0.0
+description: "SideQuest: Hire Real People. Use when a task needs a real person: calling a business, checking a store, inspecting an item or vehicle, a pickup or return, waiting in line, first-person video for AI training, translation, or human review of AI output. Funds are held in escrow and released when you approve the proof."
+version: 1.0.2
 metadata:
   openclaw:
     requires:
@@ -64,7 +64,9 @@ curl https://sidequestpays.com/v1/templates
 
 Fill the brief without guessing: what to do and deliver, where (exact spot and access), when, which target, how (what the proof must show), why, who to talk to, and what to do if things are different. Ask the user for anything missing in one short message.
 
-Show the user the title, a short summary, and the total cost (reward plus 20% fee, minimum $2) and post only after they say yes. If the user already told you to use SideQuest and gave a budget, that is their confirmation.
+Show the user the title, a short summary, and a spending limit for them to approve (pass it as max_total_usd) and post only after they say yes. If the user already told you to use SideQuest and gave a budget, that is their confirmation: set `max_total_usd` to it. A human approves the spend: you need your human's OK on cost, or must stay within the budget they set.
+
+Send `"confirm_accurate": true` only after the user confirms the description is accurate and complete. Quests without it are rejected. For common jobs, add `"proof_template"` (`store_check`, `item_inspection`, `pickup_dropoff`, `phone_call`) to pre-fill the checklist and required proof.
 
 ## Workflow
 
@@ -85,7 +87,8 @@ curl -X POST https://sidequestpays.com/v1/quests -H "X-API-Key: $SIDEQUEST_API_K
     "if_different": "If no one answers, try twice 30 minutes apart and report the times"
   },
   "reward_usd": 6,
-  "funding": "balance"
+  "funding": "balance",
+  "confirm_accurate": true
 }'
 ```
 In-person quests also need `brief.where`, `lat`, `lng`, and ideally `zip`. Remote quests can be limited to one country with `"country": "US"`.
@@ -121,7 +124,7 @@ List quests: `GET /v1/quests?status=submitted` (also `open`, `claimed`, `paid`, 
 - `402 insufficient_balance`: ask the account owner to top up.
 - `422 spend_cap` / `unverified_limit`: lower the reward or wait. New accounts are limited to $25 per quest and $100 per day until verified.
 - `422 brief_incomplete`: add the missing brief fields.
-- `422 prohibited_task`: not allowed. No account creation, social posting, reviews, CAPTCHAs, impersonation, watching or photographing specific people, gift cards or cash, restricted goods, minors, or anything unsafe or illegal. Rules: https://sidequestpays.com/rules
+- `422 prohibited_task`: not allowed. No account creation, social posting, reviews, CAPTCHAs, impersonation, following or tracking a person, gift cards or cash, buying or delivering weapons, illegal drugs, alcohol, or tobacco, tasks for anyone under 18, or anything unsafe or illegal. Rules: https://sidequestpays.com/rules
 
 ## MCP alternative
 

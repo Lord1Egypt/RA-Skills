@@ -59,3 +59,5 @@ Query the returned task ID using GET. Client polling starts conservatively at 5 
 Output count, quality, transparency toggles, masks, and exact pricing parameters are not defined. Check the actual image and metadata.
 
 [Image capability](../capabilities/generation/image-generation.md) · [GPT Image guide](../models/gpt-image.md) · [Result reference](https://vibbit.apifox.cn/517413731e0).
+
+See [image archiving](../runtime/image-archiving.md) for completed output `image_archive` and the private `STATE.images.json` record. The default retains pending registration; explicitly associated image IDs are verified through public detail and reused. `--archive-name`/`--archive-group` record local intent without changing the generation request or cloud metadata. `--no-archive` skips Skill archiving without deleting server assets; do not combine it with naming/group options. These flags also apply to `status`/`wait`/`resume`. Dry-run performs no record writes or queries.

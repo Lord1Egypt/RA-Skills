@@ -1,6 +1,6 @@
 ## Description:
 
-按关键词、TikTok账号或视频链接查询公开视频、账号作品和评论，并将结果整理为结构化 JSON，供后续分析使用。
+为 AI 助手提供 TikTok 公开内容的关键词搜索、创作者作品和视频评论查询，并返回结构化 JSON；不提供视频文件下载。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-TikTok创作者、营销团队和研究人员可用它检索公开视频、账号作品和视频评论，再进行选题调研、竞品跟踪或评论分析。
+创作者、营销与研究人员以及开发者可让 AI 助手查询 TikTok 公开搜索结果、创作者作品或视频评论，并将结构化数据用于选题调研、竞品观察和评论分析。
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The release description suggests batch video downloads, while the skill documentation says it retrieves public data and does not download video files; the security review also notes that script inspection was partial.
+Risk: 技能名称与发布摘要提到批量下载，但文档说明命令查询公开视频数据、作品和评论，不下载视频文件。
 
-Mitigation: Confirm the documented search, creator-post, and comment capabilities meet the task before relying on the download wording.
+Mitigation: 使用前确认只需要公开数据查询；不要依赖它生成本地视频文件。
 
-Risk: Search terms or TikTok links and the API token are sent to the third-party data service to retrieve results.
+Risk: 查询会将关键词或 TikTok 链接发送到 Guaikei 服务，并需要 API 访问令牌。
 
-Mitigation: Use only public TikTok material, avoid sending sensitive query text, and confirm the service's data handling is acceptable before configuring a token.
+Mitigation: 仅提交适合发送给该服务的公开查询内容，并妥善保管 GUAIKEI_API_TOKEN。
+
+Risk: 安全评估置信度为中等，部分组件仅经过部分分析。
+
+Mitigation: 在依赖结果前核对返回内容，并在部署时审阅技能及其查询范围。
 
 ## Reference(s):
 
-- [参数与命令说明](artifact/references/options.md)
-- [版本更新记录](artifact/references/changelog.md)
-- [数据服务与支持](https://www.guaikei.com)
-- [ClawHub 技能发布页](https://clawhub.ai/why20261/skills/tiktok-batch-downloader)
+- [参数与结果说明](artifact/references/options.md)
+- [更新日志](artifact/references/changelog.md)
+- [技能发布页](https://clawhub.ai/why20261/skills/tiktok-batch-downloader)
+- [Guaikei 服务](https://www.guaikei.com)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis, Guidance]
+**Output Type(s):** [JSON, Guidance]
 
-**Output Format:** [Structured JSON results, with natural-language summaries or analysis when requested]
+**Output Format:** [包含结构化结果数组的 JSON 信封]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Returns public video, creator, and comment data; it does not download video files. Requires a GUAIKEI_API_TOKEN.]
+**Other Properties Related to Output:** [按搜索、作品或评论命令返回公开数据；不生成视频文件。]
 
 ## Skill Version(s):
 
-1.1.1 (source: frontmatter, package.json)
+1.1.2 (source: release metadata and frontmatter)
 
 ## Ethical Considerations:
 

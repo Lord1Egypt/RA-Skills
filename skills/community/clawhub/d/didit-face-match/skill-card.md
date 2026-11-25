@@ -1,6 +1,6 @@
 ## Description:
 
-Integrate Didit Face Match standalone API to compare two facial images, verify face identity, and return a similarity score with configurable threshold, rotation, and multi-face handling.
+Guides developers in integrating Didit's standalone Face Match API to compare two face images and handle its similarity score and approval decision.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,10 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
+MIT-0
 
 ## Use Case:
 
-Developers and external teams use this skill to add Didit-powered facial image comparison, biometric identity verification, or selfie-to-document matching workflows. It helps agents explain request parameters, authentication, response handling, thresholds, warnings, and the included face-matching utility script.
+Developers use this skill to write backend integrations that compare a selfie or other user image with a reference face through Didit's Face Match API. It explains how to submit images, configure the decision threshold, and handle the returned score and status.
 
 ### Deployment Geography for Use:
 
@@ -21,38 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill uploads facial images and derived biometric metadata to an external Didit service.
+Risk: Face images are sent to Didit, and requests are saved with both images by default.
 
-Mitigation: Use it only with explicit permission to process the images and after confirming Didit's retention and deletion terms.
+Mitigation: Confirm the service's data handling is suitable for the images. Set save_api_request=false when session storage is not needed, and minimize retention of biometric data.
 
-Risk: Artifact behavior may expose more biometric detail than a user needs, including raw JSON fields such as age, gender, face bounding boxes, and detection confidence.
+Risk: The integration requires a Didit API key, and the security guidance calls for protecting it.
 
-Mitigation: Minimize output to the decision status and similarity score unless the additional fields are necessary and authorized.
-
-Risk: Request retention defaults may save face-match requests in Didit systems.
-
-Mitigation: Prefer setting request-retention options to disabled where supported and document any retention choice before upload.
+Mitigation: Provide DIDIT_API_KEY through a secret store or protected environment variable and limit who can access it.
 
 ## Reference(s):
 
-- [Didit documentation](https://docs.didit.me)
-- [Didit Face Match API reference](https://docs.didit.me/standalone-apis/face-match)
-- [Didit Face Match feature guide](https://docs.didit.me/core-technology/face-match/overview)
-- [ClawHub skill page](https://clawhub.ai/rosasalberto/skills/didit-face-match)
+- [Didit Face Match API Reference](https://docs.didit.me/standalone-apis/face-match)
+- [Didit Face Match Feature Guide](https://docs.didit.me/core-technology/face-match/overview)
+- [Didit Pricing](https://docs.didit.me/getting-started/pricing)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, API calls]
+**Output Type(s):** [Code, API Calls, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown guidance with code examples, shell commands, and JSON API responses]
+**Output Format:** [Markdown with Python and TypeScript examples, JSON response examples, and shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires DIDIT_API_KEY. The utility script prints the raw Didit JSON response and a status and score summary.]
+**Other Properties Related to Output:** [Examples require two face image files and a DIDIT_API_KEY; requests can optionally set a decline threshold, image rotation, metadata, and whether the request is saved.]
 
 ## Skill Version(s):
 
-1.3.0 (source: server release evidence; artifact frontmatter reports 1.2.0)
+1.6.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

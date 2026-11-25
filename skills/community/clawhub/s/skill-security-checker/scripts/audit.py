@@ -28,9 +28,12 @@ Features:
  22. Lock-file deep parsing (requirements.txt / package-lock.json / poetry.lock, version-range matching)
  23. Quick scan (--quick / --mode quick): L1 static layer (malicious fingerprint + 6 rules + permission), 3-tier verdict (✅/⚠️/🚫) + Top3 + one-line reason in ≤30s
  24. Report tiering (quick = ≤1 screen verdict; full = JSON/HTML/SARIF full detail)
+ 25. Guard mode (--gate): install-time interceptor, 3-tier exit code (0/1/2), host-callable, no resident process, no platform API
+ 26. Malicious DB incremental update (daily silent sync, configurable source, stale fallback with data-point label)
+ 27. One-page executive report + version security diff + SARIF end-to-end workflow example
 
 Author: njskills@agent.qq.com
-Version: 3.5.5
+Version: 3.7.0
 """
 
 import os
@@ -118,6 +121,30 @@ try:
 except Exception:
     _COMMUNITY_RULES_AVAILABLE = False
 
+# v3.7.0 — Guard mode logger / DB updater / reporting (all optional, stdlib-only)
+try:
+    from gate_logger import GateLogger, format_summary_text as _gate_fmt_summary
+    _GATE_LOGGER_AVAILABLE = True
+except Exception:
+    _GATE_LOGGER_AVAILABLE = False
+try:
+    from db_updater import sync_if_due as _db_sync_if_due
+    _DB_UPDATER_AVAILABLE = True
+except Exception:
+    _DB_UPDATER_AVAILABLE = False
+    def _db_sync_if_due(*a, **kw):
+        return {'status': 'unavailable', 'message': '指纹库更新模块不可用'}
+try:
+    from onepager import build_onepager as _build_onepager, to_html as _onepager_to_html, load_impact_map as _load_impact_map
+    _ONEPAGER_AVAILABLE = True
+except Exception:
+    _ONEPAGER_AVAILABLE = False
+try:
+    from report_diff import diff_reports as _diff_reports, to_html as _diff_to_html, to_text as _diff_to_text
+    _REPORT_DIFF_AVAILABLE = True
+except Exception:
+    _REPORT_DIFF_AVAILABLE = False
+
 # ============================================================
 # Constants & Rule Definitions
 # ============================================================
@@ -172,7 +199,7 @@ COMMAND_INJECTION_PATTERNS = [
     '\\$\\((?:curl|wget|nc|bash|sh)\\)',
 ]
 
-# SSRF - IP detection (safe, no WAF triggers)
+# SSRF - private/reserved IP literal patterns
 SSRF_PATTERNS = [
     r'127\.0\.0\.1',
     r'localhost',
@@ -264,7 +291,7 @@ KNOWN_VULN_DEPS = {
 
 # Update check URL and version info
 UPDATE_CHECK_URL = "https://api.github.com/repos/njskills/skill-security-checker/releases/latest"
-CURRENT_VERSION = "3.5.5"
+CURRENT_VERSION = "3.7.0"
 
 # Update check cache TTL (hours)
 UPDATE_CACHE_HOURS = 24
@@ -411,7 +438,7 @@ class SecurityAuditor:
     def __init__(self, skill_path, dynamic=False, dynamic_options=None, supply_chain=False,
                  malicious_db=False, global_exclude=False, rule_engine=False,
                  syscall_monitor=False, ml_detect=False, taint_tracking=False,
-                 community_rules_path=None, refresh_osv=False):
+                 community_rules_path=None, refresh_osv=False, gate_mode=False):
         self.skill_path = Path(skill_path)
         self.results = []
         self.score = 100
@@ -441,6 +468,9 @@ class SecurityAuditor:
         self.community_rules_loaded = []
         # v3.4.0 new
         self.refresh_osv = refresh_osv
+        # v3.7.0 new
+        self.gate_mode = gate_mode
+        self.db_sync_status = None
         # Initialize
         self._load_skill_md()
         self._load_changelog()
@@ -1226,6 +1256,11 @@ class SecurityAuditor:
 
         Skips sandbox / OSV / taint tracking / ML / community rules for speed (≤30s target).
         """
+        # v3.7.0: daily silent fingerprint DB sync (offline-first, never raises).
+        # Only runs in gate mode to keep normal quick scans fast; guarded by 24h interval.
+        if self.gate_mode and _DB_UPDATER_AVAILABLE:
+            self.db_sync_status = _db_sync_if_due()
+
         # Force-enable L1 detectors
         self.malicious_db = True
         self.rule_engine = True
@@ -1312,6 +1347,8 @@ class SecurityAuditor:
                 'skill_path': str(self.skill_path),
                 'skill_name': self.frontmatter.get('name', 'unknown'),
                 'score': self.score,
+                'gate_mode': self.gate_mode,
+                'db_sync': self.db_sync_status,
             },
             'verdict': verdict,
             'verdict_label': label,
@@ -1838,8 +1875,13 @@ Examples:
   python audit.py /path/to/skill --dynamic --allow-domain api.github.com --sandbox-timeout 60
   python audit.py /path/to/skill --supply-chain
   python audit.py /path/to/skill --format sarif -o sarif.json
+  python audit.py /path/to/skill --gate                 # guard mode: exit 0/1/2
+  python audit.py --gate-log --summary                  # install-audit log view
+  python audit.py --onepager report.json -o onepager.html
+  python audit.py --diff old.json new.json -o diff.html
         ''')
-    parser.add_argument('skill_path', help='Path to skill directory to audit')
+    parser.add_argument('skill_path', nargs='?', default=None,
+                        help='Path to skill directory to audit (not needed for --gate-log/--onepager/--diff)')
     parser.add_argument('--format', choices=['json', 'html', 'text', 'sarif'], default='text',
                         help='Output format (default: text)')
     parser.add_argument('-o', '--output', help='Output file path')
@@ -1872,10 +1914,96 @@ Examples:
                         help='一键快扫模式：仅跑 L1 静态层（恶意指纹+6类规则+权限审计），30秒内出三档裁定 (v3.5.0)')
     parser.add_argument('--mode', choices=['quick', 'full'], default=os.environ.get('SKILLSEC_MODE', 'quick'),
                         help='扫描档位：quick=快扫三档裁定(≤1屏, 默认) / full=全量细节(SARIF/HTML/JSON) (v3.5.0)')
+    # v3.7.0 — Guard mode / one-page report / version diff
+    parser.add_argument('--gate', action='store_true',
+                        help='守护模式：安装前拦截，三档 exit code 0/1/2，宿主可调用 (v3.7.0)')
+    parser.add_argument('--gate-decision', choices=['allowed', 'blocked', 'cancelled'], default=None,
+                        help='记录用户对最近一次守护扫描的决定（配合 --gate 使用）(v3.7.0)')
+    parser.add_argument('--gate-decision-target', default=None,
+                        help='要记录决定的目标名（配合 --gate-decision 使用）(v3.7.0)')
+    parser.add_argument('--gate-log', action='store_true',
+                        help='查看拦截日志摘要（装机审计）(v3.7.0)')
+    parser.add_argument('--gate-days', type=int, default=90,
+                        help='拦截日志回溯天数（默认 90）(v3.7.0)')
+    parser.add_argument('--gate-export', default=None,
+                        help='导出拦截日志到 JSON 文件 (v3.7.0)')
+    parser.add_argument('--onepager', metavar='REPORT_JSON', default=None,
+                        help='从 full 报告生成「给老板的一页纸」HTML (v3.7.0)')
+    parser.add_argument('--onepager-impact-map', default=None,
+                        help='一页纸的外部风险→业务影响话术映射 JSON (v3.7.0)')
+    parser.add_argument('--diff', nargs=2, metavar=('OLD_JSON', 'NEW_JSON'), default=None,
+                        help='对比两个版本的安全报告 JSON（新增风险标红）(v3.7.0)')
     
     args = parser.parse_args()
-    
-    if not os.path.isdir(args.skill_path):
+
+    # ---------- v3.7.0 utility modes (no skill_path needed) ----------
+    # Version diff
+    if args.diff:
+        if not _REPORT_DIFF_AVAILABLE:
+            print("错误：版本对比模块不可用", file=sys.stderr)
+            sys.exit(1)
+        try:
+            import json as _json
+            from pathlib import Path as _Path
+            old = _json.loads(_Path(args.diff[0]).read_text(encoding='utf-8'))
+            new = _json.loads(_Path(args.diff[1]).read_text(encoding='utf-8'))
+            diff = _diff_reports(old, new)
+            if args.output:
+                _diff_to_html(diff, args.output)
+                print(f"Diff HTML 已生成：{args.output}")
+            elif args.format == 'json':
+                print(_json.dumps(diff, ensure_ascii=False, indent=2))
+            else:
+                print(_diff_to_text(diff))
+        except Exception as e:
+            print(f"错误：版本对比失败：{e}", file=sys.stderr)
+            sys.exit(1)
+        sys.exit(0)
+
+    # One-page executive report
+    if args.onepager:
+        if not _ONEPAGER_AVAILABLE:
+            print("错误：一页纸报告模块不可用", file=sys.stderr)
+            sys.exit(1)
+        try:
+            import json as _json
+            from pathlib import Path as _Path
+            full = _json.loads(_Path(args.onepager).read_text(encoding='utf-8'))
+            op = _build_onepager(full, _load_impact_map(args.onepager_impact_map))
+            html = _onepager_to_html(op, args.output)
+            if args.output:
+                print(f"一页纸报告已生成：{args.output}")
+            else:
+                print(_json.dumps(op, ensure_ascii=False, indent=2))
+        except Exception as e:
+            print(f"错误：一页纸报告生成失败：{e}", file=sys.stderr)
+            sys.exit(1)
+        sys.exit(0)
+
+    # Gate log view / export / decision recording
+    if args.gate_log or args.gate_export or args.gate_decision:
+        if not _GATE_LOGGER_AVAILABLE:
+            print("错误：拦截日志模块不可用", file=sys.stderr)
+            sys.exit(1)
+        logger = GateLogger()
+        if args.gate_decision:
+            target = args.gate_decision_target or '(unknown)'
+            rec = logger.log(target, 'n/a', decision=args.gate_decision,
+                             reason='用户在守护扫描后记录的决定')
+            print(f"已记录决定：{target} → {args.gate_decision}")
+        if args.gate_export:
+            n = logger.export(args.gate_export, days=args.gate_days)
+            print(f"已导出 {n} 条记录到 {args.gate_export}")
+        if args.gate_log:
+            summary = logger.summary(days=args.gate_days)
+            if args.format == 'json':
+                print(json.dumps(summary, ensure_ascii=False, indent=2))
+            else:
+                print(_gate_fmt_summary(summary))
+        sys.exit(0)
+
+    # ---------- scan modes require a valid skill_path ----------
+    if not args.skill_path or not os.path.isdir(args.skill_path):
         print(f"Error: Directory does not exist: {args.skill_path}", file=sys.stderr)
         sys.exit(1)
     
@@ -1887,10 +2015,11 @@ Examples:
             network=bool(args.allow_domain),
         )
     
-    mode = 'quick' if args.quick else args.mode
+    mode = 'quick' if (args.quick or args.gate) else args.mode
 
     if mode == 'quick':
-        auditor = SecurityAuditor(args.skill_path, refresh_osv=args.refresh_osv)
+        auditor = SecurityAuditor(args.skill_path, refresh_osv=args.refresh_osv,
+                                  gate_mode=args.gate)
         quick_report = auditor.run_quick(skip_update=True)
         if args.format == 'json':
             out = ReportGenerator.to_json(quick_report, args.output)
@@ -1900,8 +2029,25 @@ Examples:
             out = ReportGenerator.to_quick(quick_report, args.output)
             if not args.output:
                 print(out)
+
         exit_codes = {'malicious': 2, 'suspicious': 1, 'clean': 0}
-        sys.exit(exit_codes.get(quick_report['verdict'], 0))
+        code = exit_codes.get(quick_report['verdict'], 0)
+
+        # v3.7.0 guard mode: append an audit-log entry for this gate scan.
+        if args.gate and _GATE_LOGGER_AVAILABLE:
+            try:
+                top3 = quick_report.get('top3', [])
+                GateLogger().log(
+                    args.skill_path, quick_report['verdict'],
+                    decision='pending', reason=quick_report.get('reason', ''),
+                    score=quick_report['meta'].get('score'),
+                    skill_name=quick_report['meta'].get('skill_name', ''),
+                    top3=top3, full_path=False,
+                    meta={'tool_version': CURRENT_VERSION},
+                )
+            except Exception:
+                pass  # logging must never break the gate verdict
+        sys.exit(code)
 
     auditor = SecurityAuditor(args.skill_path, dynamic=args.dynamic, dynamic_options=dyn_opts,
                               supply_chain=args.supply_chain, malicious_db=args.malicious_db,

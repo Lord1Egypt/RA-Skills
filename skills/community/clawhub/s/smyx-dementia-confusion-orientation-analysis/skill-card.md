@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes fixed-camera video and optional audio in dementia care settings for signs of confusion or disorientation and provides orientation-soothing actions.
+Analyzes fixed-camera video and optional audio in dementia care settings for behavioral signs of confusion or disorientation.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Care teams in dementia facilities or home-care settings use the skill to analyze video and optional audio for possible disorientation cues and receive structured reports and orientation-soothing suggestions. The skill states that it does not provide medical diagnoses.
+Care providers and family caregivers can submit footage from dementia care settings for analysis of behaviors associated with confusion or disorientation. The skill returns structured observations and orientation-support information for care follow-up.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review rates the skill suspicious due to reported concerns about account and identity handling, possible exposure of care reports, and video processing despite an export-only option. The scan is partial because a referenced path was missing.
+Risk: ClawScan marks the skill suspicious and reports unclear consent for processing identifiable care footage or audio.
 
-Mitigation: Review identity and token handling, care-report access, and remote video processing before installation, and account for the scan's missing-path limitation.
+Mitigation: Before submitting identifiable media, confirm consent and understand where it is processed and how long it is retained.
+
+Risk: ClawScan reports unclear account, identity, and credential handling, including broad credential-bearing network requests.
+
+Mitigation: Review the security findings and skill configuration before installation, and verify what identity details or credentials are sent.
+
+Risk: The security analysis is partial because a referenced local path was missing.
+
+Mitigation: Review the missing referenced material before deployment; the available scan does not establish that it is safe.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/smyx-sunjinhui/skills/smyx-dementia-confusion-orientation-analysis)
+- [API reference](references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
-- [API documentation](artifact/references/api_doc.md)
+- [ClawHub release page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-dementia-confusion-orientation-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Markdown, Guidance]
+**Output Type(s):** [Analysis, JSON, Guidance, Markdown]
 
-**Output Format:** [Structured analysis report with detected cues, soothing actions or suggestions, and report links when available; supports basic, standard, and JSON detail levels.]
+**Output Format:** [Structured analysis report; JSON or text, with Markdown tables for history results]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Analyzes a supplied local file or URL; audio is optional.]
+**Other Properties Related to Output:** [Behavioral observations and orientation-support information; not a medical diagnosis.]
 
 ## Skill Version(s):
 
-1.0.13 (source: server-resolved release)
+1.0.14 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -1,0 +1,37 @@
+{
+  "_description": "Facebook link carousel: 2 to 10 images, each a card that links out. facebookCarouselMainLink is the post's link and the destination of any card without its own mediaLink. Images only; with one image the post is a normal photo post.",
+  "posts": [
+    {
+      "content": "Two new guides are up. Swipe to pick one.",
+      "mediaItems": [
+        {
+          "key": "image/YOUR_UPLOAD_KEY_1.jpg",
+          "type": "IMAGE",
+          "sortOrder": 0,
+          "mediaLink": "https://example.com/guides/scheduling",
+          "mediaCaption": "Scheduling basics",
+          "mediaDescription": "5 minute read"
+        },
+        {
+          "key": "image/YOUR_UPLOAD_KEY_2.jpg",
+          "type": "IMAGE",
+          "sortOrder": 1,
+          "mediaLink": "https://example.com/guides/analytics",
+          "mediaCaption": "Reading your analytics",
+          "mediaDescription": "8 minute read"
+        }
+      ],
+      "scheduledAt": "2027-07-20T10:00:00.000Z",
+      "socialMediaId": "YOUR_FACEBOOK_ACCOUNT_ID"
+    }
+  ],
+  "controls": {
+    "facebookContentType": "POST",
+    "facebookCarouselMainLink": "https://example.com/guides",
+    "facebookCarouselShowEndCard": true
+  },
+  "_notes": [
+    "mediaCaption is the card's headline (keep it to 32 characters), mediaDescription the line under it (keep it to 18 characters)",
+    "facebookCarouselShowEndCard adds Facebook's end card after the last card; it is off by default"
+  ]
+}

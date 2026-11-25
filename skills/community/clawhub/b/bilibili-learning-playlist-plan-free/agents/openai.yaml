@@ -1,0 +1,8 @@
+interface:
+  display_name: "B站合集学习顺序单"
+  short_description: "读取可见合集资料，生成带来源与缺项标记的学习顺序和每日预算"
+  default_prompt: "使用 $bilibili-learning-playlist-plan-free，请用我指定的 browserId 读取这个 B 站合集或收藏夹的可见资料，并按我的学习目标和每日时间预算生成学习顺序单；不要发布、发送或推断不可见内容。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: false

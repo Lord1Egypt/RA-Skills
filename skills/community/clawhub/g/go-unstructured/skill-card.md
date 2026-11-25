@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Go developers use this skill to build code that calls Unstructured Platform operations or partitions documents through the Unstructured API clients.
+Go developers use this skill to integrate applications with Unstructured Platform APIs and partition documents into elements through the unofficial typed Go clients.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Uploading a document sends its contents to Unstructured, which may expose sensitive information.
+Risk: Selected documents are sent to Unstructured when using document upload or partition workflows.
 
-Mitigation: Before uploading, check the document's sensitivity and confirm it is appropriate to send to Unstructured.
+Mitigation: Review the document and share it only when the user has authorized sending it to the service.
+
+Risk: The available security scan is incomplete because three path-like references could not be resolved.
+
+Mitigation: Review the skill and the unresolved references before installing or using it.
 
 ## Reference(s):
 
-- [Setup and reference](references/setup.md)
+- [Setup and API reference](artifact/references/setup.md)
+- [Source repository](https://github.com/psyb0t/go-unstructured)
 - [Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-unstructured)
-- [Project homepage](https://github.com/psyb0t/go-unstructured)
+- [ClawHub skill page](https://clawhub.ai/psyb0t/skills/go-unstructured)
 
 ## Skill Output:
 
 **Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Go code and Markdown guidance with shell commands]
+**Output Format:** [Markdown with Go and shell code blocks]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Examples and setup guidance for Platform and Partition API clients]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-0.3.7 (source: server-resolved release)
+0.3.8 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

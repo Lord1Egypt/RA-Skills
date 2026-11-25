@@ -1,6 +1,6 @@
 ## Description:
 
-逆向导入已有小说，将半成品或完本解析为标准项目结构，供后续写作流程续写。
+逆向导入已有小说。将已写好的小说（半成品或完本）反向解析为标准项目目录结构，兼容 story-long-write / story-short-write 后续写作流程；内部复用 story-long-analyze / story-short-analyze 的拆解管道，按篇幅自动分流。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-小说作者可将已有的半成品或完本整理成设定、大纲、正文和追踪文件，并从导入进度继续写作。
+Writers use this skill to turn an existing novel or partial manuscript into a structured project for continued writing, including analysis, settings, outlines, prose files, and (for long works) continuity tracking.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The inspected behavior may not fully match the advertised novel-import workflow, and the security scan was partial.
+Risk: Generic import phrases may activate the skill when the user did not intend to start an import workflow.
 
-Mitigation: Review the skill's outline-viewing and validation behavior and inspect any incompletely scanned or missing files before installation.
+Mitigation: Invoke it with the explicit /story-import command when a clear activation is needed.
 
-Risk: The skill has file and shell capabilities and a broad activation trigger, as noted in the security guidance.
+Risk: Some components were only partially inspected, so the scan does not establish that all behavior is safe.
 
-Mitigation: Check that the requested file access, shell actions, and activation scope match your needs before enabling it.
+Mitigation: Review the skill before installing and seek a complete inspection of the partially analyzed components.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/worldwonderer/skills/story-import)
-- [Length routing guide](artifact/references/length-routing.md)
-- [Deep analysis workflow](artifact/references/deep-analysis.md)
-- [Long-form structure mapping](artifact/references/structure-mapping-long.md)
-- [Short-form structure mapping](artifact/references/structure-mapping-short.md)
-- [Outline reverse workflow](artifact/references/outline-reverse.md)
-- [Import tracking guide](artifact/references/import-tracking.md)
-- [Import report guide](artifact/references/import-report.md)
+- [ClawHub skill listing](https://clawhub.ai/worldwonderer/skills/story-import)
+- [deep-analysis.md](references/deep-analysis.md)
+- [import-report.md](references/import-report.md)
+- [import-tracking.md](references/import-tracking.md)
+- [outline-reverse-rules.md](references/outline-reverse-rules.md)
+- [outline-reverse.md](references/outline-reverse.md)
+- [structure-mapping-long.md](references/structure-mapping-long.md)
+- [structure-mapping-short.md](references/structure-mapping-short.md)
+- [Project link listed in skill metadata](https://github.com/zenstory-ai/oh-story-claudecode)
 
 ## Skill Output:
 
-**Output Type(s):** [Files, Markdown, JSON, Configuration instructions, Guidance]
+**Output Type(s):** [Markdown, Text, Guidance]
 
-**Output Format:** [A novel project directory containing Markdown project documents and JSON tracking data, plus a Markdown import report.]
+**Output Format:** [A structured writing project made of Markdown files, plus a plain-language completion report]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Project files and tracking scope depend on the author's confirmed source range, novel length, and import choices.]
+**Other Properties Related to Output:** [Project contents vary by confirmed manuscript scope and whether it is routed as a long or short work.]
 
 ## Skill Version(s):
 
-1.0.46 (source: server-resolved release)
+1.0.55 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

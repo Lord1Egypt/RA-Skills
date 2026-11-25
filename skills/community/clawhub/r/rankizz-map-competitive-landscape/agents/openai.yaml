@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rankizz Competitive Landscape"
+  short_description: "Map the organic search competitive landscape"
+  default_prompt: "Use $rankizz-map-competitive-landscape to identify who wins this search market and why."

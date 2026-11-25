@@ -1,5 +1,11 @@
-# Add this block to ~/.hermes/config.yaml under the mcp_servers key.
-# If you already have mcp_servers configured, merge mumo as a sibling entry.
+# THE API KEY PATH. Most setups do not need this file: add the server with a
+# browser sign-in instead, and Hermes writes its own config entry:
+#
+#     hermes mcp add mumo --url https://mumo.chat/api/mcp/oauth --auth oauth
+#
+# Use this block for a gateway on a server, a messaging bot, or any unattended
+# run. Add it to ~/.hermes/config.yaml under the mcp_servers key. If you
+# already have mcp_servers configured, merge mumo as a sibling entry.
 #
 # The key itself does not go in this file. Put it in ~/.hermes/.env:
 #
@@ -7,8 +13,6 @@
 #
 # Hermes resolves ${MUMO_API_KEY} in headers at connect time, and .env is where
 # it expects secrets to live — config.yaml is for everything that isn't one.
-# A hub install (`hermes skills install clawhub/mumo-hermes`) prompts for the
-# key and writes that .env line for you.
 #
 # After saving, fully exit and restart Hermes — /reload-mcp is unreliable across versions.
 
@@ -23,6 +27,7 @@ mcp_servers:
     tools:
       include:
         - create_deliberation
+        - ask_a_model
         - wait_for_round
         - append_round
         - get_session

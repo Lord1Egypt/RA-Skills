@@ -1,6 +1,6 @@
 ## Description:
 
-Retrieves and analyzes public Douyin search results, hot lists, creator posts, video details, and comments as structured data for trend, competitor, sentiment, and audience-need analysis.
+Searches public Douyin videos, creator profiles, trending lists, work details, and comments through GuaiKei, returning structured data for content and audience analysis.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Social media analysts, content teams, and product operators use the agent to find public Douyin content and summarize audience feedback, trends, and competitor activity.
+Content teams, marketers, and analysts use the skill to research public Douyin videos, creators, trends, and comments for topic planning, competitor review, audience feedback, and sentiment analysis. It requires a GuaiKei API token and sends submitted search terms, links, or IDs to that service.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review is benign but partial: 24 of 42 components were fully scanned, and some executable files were not fully interpreted.
+Risk: Submitted keywords, Douyin links, or IDs are sent to the third-party GuaiKei service, and scanner inspection was incomplete.
 
-Mitigation: Review the remaining executable components and environment access before installation; keep the API token private.
+Mitigation: Use only public material that is appropriate to share with the service; avoid private or sensitive inputs, and review the skill before using it for sensitive work.
 
-Risk: Search keywords and supplied Douyin links are sent to the GuaiKei third-party API.
+Risk: The security evidence notes an account-search capability and does not establish that every component is safe.
 
-Mitigation: Use public Douyin content and avoid submitting sensitive information; keep retrieved data within the documented personal or team analysis use.
+Mitigation: Use account discovery only for appropriate public research, and review the results before acting on them.
 
 ## Reference(s):
 
-- [Usage and parameter options](references/options.md)
-- [Comment demand-mining guide](references/demand-mining.md)
-- [Changelog](references/changelog.md)
-- [GuaiKei service and token support](https://www.guaikei.com)
+- [ClawHub release](https://clawhub.ai/why20261/skills/douyin-comments-guaikei)
+- [Publisher profile](https://clawhub.ai/user/why20261)
+- [GuaiKei service and API access](https://www.guaikei.com)
+- [Demand mining guidance](artifact/references/demand-mining.md)
+- [Customer acquisition guidance](artifact/references/customer-acquisition.md)
+- [Output contract](artifact/references/contract.md)
 
 ## Skill Output:
 
 **Output Type(s):** [JSON, Analysis, Markdown]
 
-**Output Format:** [Structured JSON with concise analysis in Markdown when requested]
+**Output Format:** [Structured JSON response envelope; concise text or Markdown summaries for analysis]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Public Douyin content and engagement data; available result counts depend on the API plan.]
+**Other Properties Related to Output:** [Results may be arrays or objects depending on the selected Douyin query.]
 
 ## Skill Version(s):
 
-1.4.2 (source: server-resolved release, SKILL.md frontmatter, changelog)
+1.5.0 (source: server release evidence, SKILL.md, package.json)
 
 ## Ethical Considerations:
 

@@ -2,7 +2,7 @@
 name: editorial-topic-portfolio
 slug: editorial-topic-portfolio-skill
 displayName: Editorial Topic Portfolio
-version: "1.0.10"
+version: "1.0.11"
 description: >
   This skill should be used when evaluating a portfolio of technology, AI, data,
   cloud, or enterprise-software content topics. It normalizes Notion or
@@ -32,6 +32,16 @@ read_when:
   - 选题优先级
   - Notion 选题库复核
   - 内容排期
+allowed-tools:
+  - env
+  - Read
+  - Write
+metadata:
+  openclaw:
+    permissions:
+      - env
+      - file_read
+      - file_write
 ---
 
 # Editorial Topic Portfolio
@@ -95,7 +105,7 @@ python scripts/normalize_topics.py --input <input.md|input.json|input.csv> --out
 ### Step 3: [LLM + Search] Research evidence and competition
 
 1. Re-verify key facts, dates, policy status, product status, and amount caliber.
-2. Search Chinese and English for the topic, synonymous judgments, analytical frameworks, signature phrasings, counter-arguments, and historical counter-examples.
+2. Search Chinese and English for the topic, synonymous judgments, analytical frameworks, signature phrasings, counter-arguments, and historical counter-examples. **⚠️ Before sending: topic details may be confidential/unpublished editorial ideas. Confirm with the user that sending them to an external search service is authorized; if not, minimize/redact the query or skip external research and mark the item "locally unverified". Never transmit private positioning or sensitive topic data.**
 3. Check overlap with published, in-progress, and same-batch topics.
 4. For watch items, determine trigger conditions, required evidence, and review date.
 5. Output `03-evidence-review.md`.

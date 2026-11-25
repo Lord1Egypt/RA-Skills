@@ -1,7 +1,7 @@
 ---
 name: weibo-to-text
 description: "微博转文字 / 微博视频文案提取 / 微博 API：一条微博链接读成文字——正文、作者和时间、转发评论点赞数、每张图的描述和图上的字、视频口播逐字稿和画面文字、话题、前几条热评、逐字核对的要点。用户发来 weibo.com、m.weibo.cn 链接，要提取微博内容、扒视频文案、整理热评、做舆情或竞品资料时使用。不用申请微博开放平台，不用微博账号或 Cookie。图文 1 积分起，1 分钟视频 2 积分；注册送 10 积分。"
-version: 1.0.0
+version: 1.0.1
 homepage: https://linkdigest.dev/zh/weibo-api?ref=skill-weibo-to-text
 metadata: {"openclaw":{"requires":{"anyBins":["python3"]},"primaryEnv":"LINKDIGEST_API_KEY","envVars":[{"name":"LINKDIGEST_API_KEY","required":false,"description":"可选。LinkDigest API Key（ld_live_ 开头），在 https://linkdigest.dev/signin?ref=skill-weibo-to-text&next=/app/keys 创建，注册送 10 积分；没有 Key 时每天可免费看 2 条摘要"}],"homepage":"https://linkdigest.dev/zh/weibo-api?ref=skill-weibo-to-text"}}
 required_environment_variables:

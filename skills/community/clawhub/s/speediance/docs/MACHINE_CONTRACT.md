@@ -67,22 +67,24 @@ speediance-cli today --date 2026-06-17 --json   # today | yesterday | YYYY-MM-DD
 # recent completed sessions (a digest, for picking); each row carries `kind`
 speediance-cli workouts --days 7 --json
 
-# full, verbatim detail for one session; auto-detects program/free/rowing
+# full, verbatim detail for one session; auto-detects program/course/free/rowing
 speediance-cli session <training_id> --json
 ```
 
 **The tool auto-detects the session type — the agent stays dumb.** When the user asks
 for their Speediance data, or confirms they want it fetched, call `today`. A passing
 mention of exercising is not a request to read their account: ask first. `today` finds the day's session(s) and returns
-each fully resolved, without you knowing whether it was a program, free weights, or
+each fully resolved, without you knowing whether it was a program, an official course, free weights, or
 rowing. `session <id>` does the same for one id (probes the program namespace, then
-free).
+course, then free).
 
 Output is a uniform **`{training_id, kind, info, detail}`** (`today` returns an
-array of these). `kind` is `"program"`, `"free"`, or `""`:
+array of these). `kind` is `"program"`, `"course"`, `"free"`, or `""`:
 
 - `kind:"program"` → `info` = `cttTrainingInfo` (incl. `completionRate`); `detail` =
   per-exercise, per-rep arrays.
+- `kind:"course"` → official guided courses (types 2/6): `info` = `courseTrainingInfo`
+  (incl. `completionRate`); `detail` = per-exercise, per-rep arrays.
 - `kind:"free"` → the free *namespace* (not "freestyle"): `info` = `freeTraining`
   totals (`totalCapacity`, `totalEnergy`, `totalDistance` for rowing/ski; `name` for
   guided). `detail` is `[]` for a freestyle Free Lift, but **populated** for a
@@ -100,7 +102,7 @@ Speediance's fields aren't always self-consistent, so derive what you need from 
 values (e.g. a rowing split = `distance / time`, not the per-interval `pace` field,
 which is instantaneous) rather than trusting one field. A `trainingId` can mean
 different sessions across namespaces; auto-detect prefers program, and
-`--free`/`--program` force a namespace when an id is ambiguous.
+`--free`/`--program`/`--course` force a namespace when an id is ambiguous.
 
 ## 4. Create a workout (so it appears on the machine)
 
@@ -115,9 +117,16 @@ package doesn't include it; run the command above to get the catalog locally.
 
 ```bash
 # 2) write a plan JSON (you, the agent, author this), then:
-speediance-cli push plan.json --dry-run   # preview payload, no network write
-speediance-cli push plan.json             # create it on the account
+speediance-cli push plan.json --dry-run          # preview payload, no network write
+speediance-cli push plan.json                    # create it on the account
+speediance-cli push plan.json --date 2026-11-25  # create it and reserve it on the calendar (today | YYYY-MM-DD)
 ```
+
+`push --json` prints the server's create response (the template code as a JSON string).
+With `--date` it prints `{"template_code": "…", "scheduled_date": "YYYY-MM-DD"}` instead,
+and `--dry-run --date` prints `{"payload": …, "scheduled_date": "YYYY-MM-DD"}`. If the
+reservation fails (exit 3), `--date --json` still prints the `template_code` with
+`scheduled_date: null`. `--date` only accepts today or later.
 
 ### Plan JSON
 
@@ -136,6 +145,7 @@ speediance-cli push plan.json             # create it on the account
   unit on the machine on first use and adjust if needed)
 - `mode` — 1 Standard, 2 Eccentric, 3 Isokinetic, 4 Constant, 5 Spotter
 - `rest` — seconds
+- `seconds` — optional; makes the set timed (duration in seconds, `reps` ignored), for moves where the cable doesn't move
 
 Always `--dry-run` first when authoring new programs to confirm exercise ids resolved.
 
@@ -151,7 +161,9 @@ per-set detail to store.
 
 - **stdout is parseable** with `--json`; human hints, warnings, and logs go to **stderr**.
   They are never interleaved, so piping stdout into a parser is safe.
-- **Exit codes:** `0` success, `2` auth failure, non-zero for other errors. Check them.
+- **Exit codes:** `0` success, `2` auth failure, `3` `push --date` created the program but
+  could not reserve the day (don't rerun `push`, which would create a duplicate; schedule
+  it in the app), non-zero for other errors. Check them.
 - **No `doctor`/health command — by design.** To diagnose setup programmatically, read
   `config show --json` (what resolved, where) and run `login` (exit `2` = auth/connectivity
   failure; it rewrites the token cache). Don't go looking for a single health command — chain
@@ -177,9 +189,9 @@ per-set detail to store.
 | `login` | authenticate, cache token | — |
 | `workouts --days N` | list recent sessions | yes |
 | `today [--date D]` | every session on a day, auto-resolved to type-correct detail | yes |
-| `session <id> [--free\|--program]` | full, verbatim detail for one session; auto-detects type | yes |
+| `session <id> [--free\|--program\|--course]` | full, verbatim detail for one session; auto-detects type | yes |
 | `library` | dump exercise catalog to `library.json` | yes |
-| `push <plan.json>` | create a program (`--dry-run` to preview) | yes |
+| `push <plan.json>` | create a program (`--dry-run` to preview, `--date D` to reserve it on the calendar) | yes |
 | `config show\|set\|path` | manage `config.json` | yes (`show`) |
 | `version` | build metadata (also `--version`) | yes |
 | `completion <shell>` | shell completion script | — |

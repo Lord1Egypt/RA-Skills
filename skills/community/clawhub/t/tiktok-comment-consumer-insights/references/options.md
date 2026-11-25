@@ -1,4 +1,4 @@
-# GUAIKEI TikTok评论分析与用户洞察 完整选项参数说明
+# TikTok评论分析与用户洞察 完整选项参数说明
 
 所有命令在技能根目录执行。stdout 是一份 JSON 信封，日志在 stderr。字段以 `assets/*.schema.json` 为准。
 

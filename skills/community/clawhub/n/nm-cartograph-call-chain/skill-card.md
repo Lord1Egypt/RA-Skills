@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use this skill to trace how a function executes through a codebase, assess the path's criticality factors, and present the results as a call tree and Mermaid flowchart.
+Developers use this skill to trace a function's execution path through a codebase, assess its criticality, and present the flow for review.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review notes a configuration-directory search and had medium confidence because inspection was partial.
+Risk: Security analysis was partial because two local references could not be resolved, and a scanner reported a local configuration-directory lookup.
 
-Mitigation: Review the skill instructions and confirm that the described search fits your intended use before installing.
-
-Risk: Two local references could not be matched to bundled files during inspection.
-
-Mitigation: Check any referenced resources you rely on before following their guidance.
+Mitigation: Review the referenced local paths and unresolved references, and confirm the lookup is appropriate in the environment where the skill will run.
 
 ## Reference(s):
 
-- [ClawHub call-chain release](https://clawhub.ai/athola/skills/nm-cartograph-call-chain)
-- [Cartograph project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-cartograph-call-chain)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+**Output Type(s):** [Analysis, Markdown]
 
-**Output Format:** [Markdown with an indented call tree, Mermaid flowchart, and criticality breakdown]
+**Output Format:** [Markdown with an indented call tree, Mermaid flowchart, and criticality breakdown table]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Graph-based tracing requires the gauntlet plugin and graph data; otherwise the skill guides static call-pattern analysis.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, server-resolved release)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

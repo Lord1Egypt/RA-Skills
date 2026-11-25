@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""阿里云 OSS/FC 自定义域名证书：Let's Encrypt 签发 -> 上传 CAS -> 分发绑定。
+"""阿里云 OSS 自定义域名证书：Let's Encrypt 签发 -> 上传 CAS -> 分发绑定。
 
 泛域名一次覆盖所有子域，新增站点只加 --domain，不必重签。
 
-依赖：
-    pip install acme josepy cryptography oss2 \
-                alibabacloud_alidns20150109 alibabacloud_cas20200407 alibabacloud_fc_open20210406
+依赖（全部健康包，零官方 SDK）：
+    pip install acme josepy cryptography oss2 requests
+    DNS / CAS 走同目录 aliyun_rpc.py（纯 RPC 签名，只依赖 requests）
 
 环境变量（只从这里读，绝不落盘）：
     ALIBABA_CLOUD_ACCESS_KEY_ID / ALIBABA_CLOUD_ACCESS_KEY_SECRET
@@ -25,6 +25,8 @@ import os
 import sys
 import time
 from datetime import datetime, timedelta, timezone
+
+import aliyun_rpc as R
 
 DEFAULT_CERT_BASE = os.path.join(os.path.expanduser("~"), ".acme-oss")
 
@@ -45,9 +47,9 @@ def parse_args():
     ap.add_argument("--cert-dir", default="", help="证书与 ACME 账号存放目录")
     ap.add_argument("--days", type=int, default=30, help="剩余天数阈值，默认 30")
     ap.add_argument("--targets", default="", help="只跑指定阶段，逗号分隔：cert,cas,oss,fc")
-    ap.add_argument("--fc-domain", default="", help="FC 自定义域名（可选）")
-    ap.add_argument("--fc-service", default="", help="FC 服务名")
-    ap.add_argument("--fc-function", default="", help="FC 函数名")
+    ap.add_argument("--fc-region", default="cn-hongkong", help="FC 所在地域，默认 cn-hongkong")
+    ap.add_argument("--fc-domain", action="append", default=[],
+                    help="FC 自定义域名，可重复；缺省则自动分发到 FC 账号下所有匹配 --domains 的域名")
     ap.add_argument("--force", action="store_true", help="忽略剩余天数，强制重签")
     ap.add_argument("--fix-cname", action="store_true", help="绑定后把 CNAME 修正到桶标准域名")
     return ap.parse_args()
@@ -83,16 +85,15 @@ def wait_txt(fqdn, value, timeout=240):
 
 
 def issue_cert(cfg):
-    """DNS-01 签发。返回 (fullchain_pem, private_key_pem)"""
+    """DNS-01 签发。返回 (fullchain_pem, private_key_pem)。TXT 增删走 aliyun_rpc。"""
     from cryptography import x509
     from cryptography.hazmat.primitives import hashes, serialization
     from cryptography.hazmat.primitives.asymmetric import rsa
     from cryptography.x509.oid import NameOID
     import josepy as jose
     from acme import challenges, client, messages
-    from alibabacloud_alidns20150109 import models as dns_models
 
-    dns, ROOT, CERT_DIR = cfg["dns"], cfg["root"], cfg["cert_dir"]
+    ROOT, CERT_DIR = cfg["root"], cfg["cert_dir"]
     FULLCHAIN = os.path.join(CERT_DIR, "fullchain.pem")
     PRIVKEY = os.path.join(CERT_DIR, "privkey.pem")
     ACCOUNT_KEY = os.path.join(CERT_DIR, "account.key")
@@ -101,16 +102,14 @@ def issue_cert(cfg):
 
     def add_txt(name, value):
         rr = name[: -len("." + ROOT)] if name.endswith("." + ROOT) else name
-        rid = dns.add_domain_record(dns_models.AddDomainRecordRequest(
-            domain_name=ROOT, rr=rr, type="TXT", value=value, ttl=600)).body.record_id
+        rid = R.dns_add(ROOT, rr, "TXT", value, ttl=600)
         added.append(rid)
         log("已添加 TXT %s" % rr)
 
     def cleanup():
         for rid in added:
             try:
-                dns.delete_domain_record(
-                    dns_models.DeleteDomainRecordRequest(record_id=rid))
+                R.dns_delete(rid)
             except Exception:
                 pass
 
@@ -234,16 +233,6 @@ def main():
         [args.root, "*." + args.root]
     cas_name = args.cas_name or (args.root.replace(".", "-") + "-le")
 
-    from alibabacloud_tea_openapi import models as openapi_models
-    from alibabacloud_alidns20150109.client import Client as DnsClient
-
-    def cfg(endpoint):
-        c = openapi_models.Config(access_key_id=AK, access_key_secret=SK)
-        c.endpoint = endpoint
-        return c
-
-    dns = DnsClient(cfg("alidns.cn-hangzhou.aliyuncs.com"))
-
     left = days_left(os.path.join(cert_dir, "fullchain.pem"))
     log("当前证书剩余 %s 天（阈值 %s），路径 %s" % (left, args.days, cert_dir))
 
@@ -252,7 +241,7 @@ def main():
             log("无需续期，退出")
             return 0
         pem, privkey_pem = issue_cert({
-            "dns": dns, "root": args.root, "cert_dir": cert_dir,
+            "root": args.root, "cert_dir": cert_dir,
             "email": args.email, "domains": domains,
         })
     else:
@@ -263,21 +252,20 @@ def main():
 
     cert_id = None
     if DO("cas"):
-        from alibabacloud_cas20200407.client import Client as CasClient
-        from alibabacloud_cas20200407 import models as cas_models
-
-        cas = CasClient(cfg("cas.aliyuncs.com"))
-        # list_user_certificate_order 查不到"上传型"证书，旧 cert_id 只能靠本地 state 记录
+        # 上传型证书 list 查不到，旧 cert_id 只能靠本地 state 记录
         old_id = state.get("cert_id")
         if old_id:
             try:
-                cas.delete_user_certificate(
-                    cas_models.DeleteUserCertificateRequest(certificate_id=old_id))
+                R.call(R.CAS_EP, R.CAS_VER, "DeleteUserCertificate",
+                       {"CertificateId": old_id})
                 log("已删除 CAS 旧证书 %s" % old_id)
             except Exception as e:
                 log("删除旧证书跳过: %s" % str(e)[:80])
-        cert_id = cas.upload_user_certificate(cas_models.UploadUserCertificateRequest(
-            name=cas_name, cert=pem, key=privkey_pem)).body.cert_id
+        resp = R.call(R.CAS_EP, R.CAS_VER, "UploadUserCertificate",
+                      {"Name": cas_name, "Cert": pem, "Key": privkey_pem})
+        cert_id = resp.get("CertificateId") or resp.get("certificateId")
+        if not cert_id:
+            sys.exit("CAS 上传未返回 CertificateId: %s" % str(resp)[:120])
         state["cert_id"] = cert_id
     else:
         cert_id = state.get("cert_id")
@@ -287,9 +275,13 @@ def main():
     log("CAS cert_id = %s" % cert_id)
 
     if DO("oss") and args.domain and args.bucket:
+        # 本机代理会搞挂 oss2；aliyun_rpc 内部 trust_env=False 直连，不受影响。
+        # 只在 OSS 阶段清代理，避免影响 ACME（Let's Encrypt 外网可能需要代理）。
+        for _k in ("HTTP_PROXY", "HTTPS_PROXY", "http_proxy", "https_proxy",
+                   "ALL_PROXY", "all_proxy"):
+            os.environ.pop(_k, None)
         import oss2
-        from oss2 import models as oss_models
-        from alibabacloud_alidns20150109 import models as dns_models
+        from oss2.models import PutBucketCnameRequest
 
         class _Cert(object):
             """oss2 的 cert 参数对象；force 必须是字符串 'true'，传 1 会触发 MalformedXML"""
@@ -302,12 +294,27 @@ def main():
                 self.force = "true"
                 self.delete_certificate = None
 
+        region = args.region if args.region.startswith("oss-") else "oss-" + args.region
         bk = oss2.Bucket(oss2.Auth(AK, SK),
-                         "https://oss-%s.aliyuncs.com" % args.region, args.bucket)
+                         "https://%s.aliyuncs.com" % region, args.bucket)
+        target = "%s.%s.aliyuncs.com" % (args.bucket, region)
+        try:
+            bk.get_bucket_info()
+        except oss2.exceptions.NoSuchBucket:
+            sys.exit("桶不存在: %s" % args.bucket)
+
         for domain in args.domain:
             log("处理 OSS %s -> bucket %s" % (domain, args.bucket))
-            rr_auth = "_dnsauth" if domain == args.root else \
-                "_dnsauth." + domain[: -len("." + args.root)]
+            sub = "@" if domain == args.root else domain[: -len("." + args.root)]
+
+            # 1) CNAME 到桶标准域名（幂等）
+            try:
+                cname_rid = R.dns_upsert(args.root, sub, "CNAME", target)
+                log("  CNAME %s -> %s (记录 %s)" % (domain, target, cname_rid))
+            except Exception as e:
+                log("  CNAME 设置失败: %s" % str(e)[:120])
+
+            # 2) 取归属验证 token
             token = None
             try:
                 token = bk.create_bucket_cname_token(domain).token
@@ -315,89 +322,104 @@ def main():
             except Exception as e:
                 log("  取 token 失败（已绑定时正常）: %s" % str(e)[:80])
 
+            # 3) 写 TXT _dnsauth 并等公网生效
             auth_rid = None
             if token:
                 try:
-                    exist = dns.describe_domain_records(dns_models.DescribeDomainRecordsRequest(
-                        domain_name=args.root, rrkey_word="_dnsauth",
-                        page_number=1, page_size=50))
-                    for r in (exist.body.domain_records.record or []):
-                        if r.rr == rr_auth:
-                            dns.delete_domain_record(
-                                dns_models.DeleteDomainRecordRequest(record_id=r.record_id))
-                except Exception:
-                    pass
-                auth_rid = dns.add_domain_record(dns_models.AddDomainRecordRequest(
-                    domain_name=args.root, rr=rr_auth, type="TXT",
-                    value=token, ttl=600)).body.record_id
-                log("  已写入 TXT %s，等待生效" % rr_auth)
-                if not wait_txt(rr_auth, token):
-                    log("  警告：TXT 迟迟未生效，仍会尝试绑定")
+                    txt_rr = "_dnsauth" if sub == "@" else "_dnsauth." + sub
+                    auth_rid = R.dns_upsert(args.root, txt_rr, "TXT", token)
+                    log("  已写入 TXT %s，等待生效" % txt_rr)
+                    if not wait_txt(txt_rr + "." + args.root, token):
+                        log("  警告：TXT 迟迟未生效，仍会尝试绑定")
+                except Exception as e:
+                    log("  写 TXT 失败: %s" % str(e)[:120])
 
-            ok = False
+            # 4) 绑定（重试）
             for attempt in range(3):
                 try:
-                    bk.put_bucket_cname(oss_models.PutBucketCnameRequest(
-                        domain, _Cert(cert_id)))
+                    bk.put_bucket_cname(PutBucketCnameRequest(domain, _Cert(cert_id)))
                     log("  已绑定自定义域名（cert_id=%s）" % cert_id)
-                    ok = True
                     break
                 except Exception as e:
                     log("  第 %d 次绑定失败: %s" % (attempt + 1, str(e)[:140]))
                     time.sleep(45)
             if auth_rid:
                 try:
-                    dns.delete_domain_record(
-                        dns_models.DeleteDomainRecordRequest(record_id=auth_rid))
+                    R.dns_delete(auth_rid)
                 except Exception:
                     pass
 
-            if ok and args.fix_cname:
-                want = "%s.oss-%s.aliyuncs.com" % (args.bucket, args.region)
+            # 5) 复核：list_bucket_cname 有秒级传播延迟，刚绑定后立即查可能为空 → 重试
+            found = False
+            for attempt in range(6):
+                try:
+                    for c in (bk.list_bucket_cname().cname or []):
+                        if c.domain == domain:
+                            found = True
+                            cert = getattr(c, "certificate", None)
+                            log("  复核: %s | status=%s | cert_id=%s" % (
+                                c.domain, getattr(c, "status", ""),
+                                getattr(cert, "cert_id", "") if cert else ""))
+                            break
+                except Exception as e:
+                    log("  复核查询失败: %s" % str(e)[:100])
+                if found:
+                    break
+                if attempt < 5:
+                    time.sleep(5)
+            if not found:
+                log("  复核未找到绑定（已重试 6 次）: %s" % domain)
+                sys.exit(1)
+
+            if args.fix_cname:
                 rr = "@" if domain == args.root else domain[: -len("." + args.root)]
                 try:
-                    recs = dns.describe_domain_records(
-                        dns_models.DescribeDomainRecordsRequest(
-                            domain_name=args.root, rrkey_word=rr,
-                            page_number=1, page_size=50))
-                    for r in (recs.body.domain_records.record or []):
-                        if r.rr == rr and r.type == "CNAME" and r.value != want:
-                            dns.update_domain_record(
-                                dns_models.UpdateDomainRecordRequest(
-                                    record_id=r.record_id, rr=rr,
-                                    type="CNAME", value=want, ttl=600))
-                            log("  CNAME 已修正: %s -> %s" % (r.value, want))
+                    for r in R.dns_list(args.root, rr):
+                        if (r.get("RR") == rr and r.get("Type") == "CNAME"
+                                and r.get("Value") != target):
+                            R.call(R.DNS_EP, R.DNS_VER, "UpdateDomainRecord", {
+                                "RecordId": r["RecordId"], "RR": rr,
+                                "Type": "CNAME", "Value": target, "TTL": 600})
+                            log("  CNAME 已修正: %s -> %s" % (r["Value"], target))
                 except Exception as e:
                     log("  CNAME 修正失败: %s" % str(e)[:140])
 
-    if DO("fc") and args.fc_domain and args.fc_service and args.fc_function:
-        from alibabacloud_fc_open20210406.client import Client as FCClient
-        from alibabacloud_fc_open20210406 import models as fc_models
-
-        class SimpleRoute(fc_models.RoutePolicy):
-            """SDK 的 RoutePolicy 是新版 condition 结构，
-            fc-open 2021-04-06 实际要 path/serviceName/functionName"""
-
-            def __init__(self, path=None, service_name=None, function_name=None):
-                self.path = path
-                self.service_name = service_name
-                self.function_name = function_name
-
-            def validate(self):
-                pass
-
-            def to_map(self):
-                return {"path": self.path, "serviceName": self.service_name,
-                        "functionName": self.function_name}
-
-        fc = FCClient(cfg("fc.%s.aliyuncs.com" % args.region))
-        fc.update_custom_domain(args.fc_domain, fc_models.UpdateCustomDomainRequest(
-            protocol="HTTP,HTTPS",
-            route_config=fc_models.RouteConfig(routes=[SimpleRoute(
-                "/*", args.fc_service, args.fc_function)]),
-            cert_config=fc_models.CertConfig(
-                cert_name=cas_name, certificate=pem, private_key=privkey_pem)))
-        log("FC 自定义域名 %s 证书已更新" % args.fc_domain)
+    if DO("fc"):
+        # FC 3.0 API（2023-03-30，endpoint fcv3.<region>.aliyuncs.com）。
+        # UpdateCustomDomain 是 ROA + V3 签名（ACS3-HMAC-SHA256），由
+        # aliyun_rpc.roa_call 处理；PUT 语义为整体替换，所以必须先 GET
+        # 现配置，只换 certConfig，protocol/routeConfig/tlsConfig 原样带回。
+        fc_domains = args.fc_domain or []
+        if not fc_domains:
+            fc_domains = [d["domainName"] for d in
+                          R.fc_list_custom_domains(args.fc_region)
+                          if d["domainName"].endswith("." + args.root) or d["domainName"] == args.root]
+            log("FC 未指定 --fc-domain，自动匹配到 %d 个域名: %s" % (len(fc_domains), fc_domains))
+        for domain in fc_domains:
+            log("处理 FC %s (region=%s)" % (domain, args.fc_region))
+            cur = R.fc_get_custom_domain(args.fc_region, domain)
+            body = {
+                "protocol": cur.get("protocol") or "HTTP,HTTPS",
+                "certConfig": {
+                    "certName": cas_name,
+                    "certificate": pem,
+                    "privateKey": privkey_pem,
+                },
+            }
+            if cur.get("routeConfig"):
+                body["routeConfig"] = cur["routeConfig"]
+            if cur.get("tlsConfig"):
+                body["tlsConfig"] = cur["tlsConfig"]
+            R.fc_update_custom_domain(args.fc_region, domain, body)
+            # 复核：GET 回来 certName 应已是新值（私钥不回传属正常）
+            chk = R.fc_get_custom_domain(args.fc_region, domain)
+            got = (chk.get("certConfig") or {}).get("certName", "")
+            if got == cas_name:
+                log("  FC 复核通过: certName=%s | lastModifiedTime=%s" % (
+                    got, chk.get("lastModifiedTime")))
+            else:
+                log("  警告: 复核 certName=%s 与预期 %s 不符" % (got, cas_name))
+                sys.exit(1)
 
     log("全部完成")
     print("RENEW_OK")

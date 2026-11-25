@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers use this skill to create and manage ongoing Facebook advertiser monitoring tasks, review monitored ads, products, landing pages, and copy trends, and organize monitor groups and notifications.
+External marketing and advertising teams use this skill to track Facebook advertisers over time and review changes in ads, products, landing pages, and copy. It also supports organizing monitoring tasks into groups and managing notifications.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill requires a PIPIADS_API_KEY for PipiAds MCP access.
+Risk: The setup references PipiAds and PipiSpy sites that were outside the security scan's scope.
 
-Mitigation: Use a revocable key with the narrowest account permissions available and rotate it when the integration is removed or no longer trusted.
+Mitigation: Check that you trust these sites before following their links or entering account credentials and API keys.
 
-Risk: PipiAds API calls can consume paid account credits.
+Risk: PipiAds API calls consume account credits; list and search costs vary with the number of results returned.
 
-Mitigation: Use exact advertiser names before creating monitoring tasks and confirm billing or recharge settings in the PipiAds account.
-
-Risk: The setup installs a third-party npm package for MCP access.
-
-Mitigation: Install only after reviewing and trusting the PipiAds MCP package and its publisher.
+Mitigation: Use exact advertiser names before creating monitoring tasks, and review expected credit use before repeated monitoring.
 
 ## Reference(s):
 
-- [PipiAds](https://www.pipiads.com)
-- [PipiAds Dashboard](https://pipiads.com/)
-- [PipiSpy API and Billing Portal](https://www.pipispy.com/)
-- [ClawHub Skill Page](https://clawhub.ai/fanyanggod/skills/facebook-ad-tracker-monitor)
+- [PipiAds dashboard](https://www.pipiads.com/)
+- [PipiSpy API keys and account billing](https://www.pipispy.com/)
+- [ClawHub release page](https://clawhub.ai/fanyanggod/skills/facebook-ad-tracker-monitor)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+**Output Type(s):** [API Calls, Analysis, Text]
 
-**Output Format:** [Markdown with tool names, setup steps, and workflow guidance]
+**Output Format:** [Text summaries and monitoring results]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Uses PIPIADS_API_KEY for PipiAds MCP access; API calls may consume account credits.]
+**Other Properties Related to Output:** [Results depend on available PipiAds monitoring data and API credits.]
 
 ## Skill Version(s):
 
-1.0.2 (source: server release evidence)
+1.0.3 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

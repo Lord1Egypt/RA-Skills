@@ -1,0 +1,8 @@
+slug: easybr-search
+display_name: easybrSearch · 跨平台 AI 搜索
+version: 1.0.1
+description: "免费开源的跨浏览器 AI 搜索技能。按指定平台搜索百度、Google、Bing、小红书等，读取相关来源并返回带出处的回答；抖音提供卡片线索及人工衔接。需要 Node.js 22+ 与已连接的 Easy WebBridge，可选 EasyBR 多账号环境，无需商业搜索 API。"
+license: MIT-0
+icon: assets/icon-512.png
+repository: https://github.com/aiispower/easybrSearch
+mirror: https://gitee.com/xxjrq/easybrSearch

@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "Latin Modern Roman";
+  src: url("./assets/fonts/lmroman-subset.woff2") format("woff2");
+  font-weight: 400;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Noto Serif SC";
+  src: url("./assets/fonts/notoserifsc-subset.woff2") format("woff2");
+  font-weight: 400;
+  font-display: block;
+}

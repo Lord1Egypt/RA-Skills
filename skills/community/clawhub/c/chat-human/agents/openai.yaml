@@ -1,0 +1,4 @@
+interface:
+  display_name: "Chat Human"
+  short_description: "Persona-adaptive thumb-typed IM bubbles (opt-in voice)"
+  default_prompt: "Use $chat-human to deliver natural thumb-typed IM messages (via SendMessage bubbles or plain-reply beats) and artifact offload while honoring the active persona or user tone; attach optional voice notes only when voice output is enabled."

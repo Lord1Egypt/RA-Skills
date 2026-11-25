@@ -13,8 +13,8 @@ loopback bridge has priority; otherwise only `pixiv://account/login` can reach
 a current one-time remote hand-off, while other `pixiv://` URLs are delegated to
 the previous handler. Do not invoke hidden protocol-handler helpers directly.
 
-For a cross-machine login, configure `login_relay_public_url` and
-`login_relay_listen_addr` on the account-hosting server. `pixiv auth login`
+For a cross-machine login, configure `login.relay_public_url` and
+`login.relay_listen_addr` on the account-hosting server. `pixiv auth login`
 prints a one-login hand-off URL rather than an authorization URL. Opening it
 redirects directly to `pixiv://account/remote-login`; the local installed CLI
 claims that one session, starts OAuth, and returns the callback to the
@@ -27,16 +27,16 @@ flow.
 
 The relay can use HTTP or HTTPS. `login_relay_secret` and
 `login_relay_target_url` are silently ignored. `pixiv auth devices` has been removed.
-`pixiv config` manages account-pool enabled/strategy, download path, filename
-template, and HTTPS proxy;
-advanced relay settings belong in the private `config.toml`.
+`pixiv config get/set/unset` manages declared TOML paths, including
+`login.relay_public_url` and `login.relay_listen_addr`; the same fields can be
+edited directly in private `config.toml`.
 
 ## Account-pool scheduling
 
 The account pool applies only to safe, non-mutating Pixiv reads and downloads.
-Set `account_pool_enabled=true` and optionally `account_pool_strategy=random`
-through `pixiv config`, then use the database-backed commands below to manage
-which local Pixiv accounts participate:
+Run `pixiv config set account_pool.enabled true` and optionally
+`pixiv config set account_pool.strategy random`, then use the local account
+commands below to manage which local Pixiv accounts participate:
 
 ```text
 pixiv auth pool status --json
@@ -82,10 +82,18 @@ pixiv auth import < /private/path/pixiv-auth.json
 pixiv auth export --all | ssh trusted-host pixiv auth import
 ```
 
-The v1 CLI never reads or migrates the old `~/.pixiv-cli/auth.json`. When
-moving from an older CLI, run `pixiv auth export --all --output <private
-bundle>` with the old version, then restore that private bundle through shell
-redirection or a pipe such as `pixiv auth import < bundle.json`.
+To retain accounts from an older `auth.json`, export with the old CLI before
+upgrading, even if `pixiv-cli.db` also exists:
+`pixiv auth export --all --output <private bundle>`.
+After upgrading, restore with `pixiv auth import < bundle.json`. Restoring a
+bundle replaces existing credentials for matching UIDs.
+
+First account access initializes `~/.pixiv-cli/auth.json` by importing an
+existing `pixiv-cli.db` read-only, or creating an empty account file. The old
+database stays unchanged. Valid JSON with a different/missing schema is replaced
+by that initialization; invalid JSON, damaged own-schema data and newer versions
+report errors while preserving the file content. For transfer to another machine,
+use a private export bundle and restore through shell redirection or a pipe.
 
 With no positional token, the import classifier checks the first non-whitespace
 byte of non-TTY stdin. `{` selects strict versioned bundle decoding; any other

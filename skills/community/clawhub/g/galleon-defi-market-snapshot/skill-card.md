@@ -1,6 +1,6 @@
 ## Description:
 
-Collects sourced crypto price snapshots and validated daily history from public CoinGecko and DefiLlama data, with timestamps, source hashes and explicit gaps.
+Collect CoinGecko and DefiLlama marks or compare one with a Coinbase Exchange trade with exact IDs, provider timestamps, source hashes and explicit gaps; retrieve compatible daily price history. Use when preparing a sourced crypto market brief, comparing fresh prices or collecting evidence for a daily strategy experiment.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Developers and analysts use this skill to prepare cited crypto market briefs, compare fresh price observations and collect daily price history for research. Aggregate marks are not executable quotes or investment advice.
+Developers and researchers use this skill to collect timestamped, source-backed cryptocurrency price marks and daily history for market briefs or strategy experiments, with explicit data gaps and limitations.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Public price requests disclose the requested asset IDs to CoinGecko and DefiLlama.
+Risk: Security analysis is benign but medium confidence because part of a script was only partially inspected.
 
-Mitigation: Use the skill only when public, keyless requests for those IDs are acceptable.
+Mitigation: Consider that uncertainty before installing and review the skill's behavior before use.
 
-Risk: Aggregate prices or stale and incomplete observations could be mistaken for executable quotes or investment advice.
+Risk: Aggregate price marks or daily history could be mistaken for executable prices or independent market corroboration.
 
-Mitigation: Review timestamps and gaps; use official provider or venue tools for consequential financial decisions.
+Mitigation: Keep aggregate marks distinct from venue quotes and balances, report timestamp alignment and source limitations, and do not base a position decision on a snapshot alone.
 
 ## Reference(s):
 
-- [Request and output contract](artifact/references/requests.md)
-- [Primary sources and verification](artifact/references/sources.md)
-- [CoinGecko simple price documentation](https://docs.coingecko.com/demo/reference/simple-price)
-- [CoinGecko market-chart documentation](https://docs.coingecko.com/demo/reference/coins-id-market-chart)
-- [DefiLlama free API reference](https://api-docs.defillama.com/llms-free.txt)
+- [Request and output contract](references/requests.md)
+- [Primary sources and verification](references/sources.md)
+- [CoinGecko simple price](https://docs.coingecko.com/demo/reference/simple-price)
+- [CoinGecko daily market history](https://docs.coingecko.com/demo/reference/coins-id-market-chart)
+- [DefiLlama free endpoint reference](https://api-docs.defillama.com/llms-free.txt)
+- [Coinbase Exchange product ticker](https://docs.cdp.coinbase.com/api-reference/exchange-api/rest-api/products/get-product-ticker)
+- [ClawHub skill page](https://clawhub.ai/galleonlabs/skills/galleon-defi-market-snapshot)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, JSON]
+**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
 
-**Output Format:** [Sourced market brief in Markdown and structured JSON price or history data]
+**Output Format:** [Markdown market brief with structured JSON observations or a daily history dataset]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes exact asset IDs, USD units, observation and retrieval times, source hashes, and explicit missing or stale data.]
+**Other Properties Related to Output:** [Includes exact asset IDs, USD units, observation and retrieval timestamps, source hashes, and explicit gaps or limitations.]
 
 ## Skill Version(s):
 
-0.6.1 (source: skill frontmatter and server release)
+0.8.0 (source: frontmatter, server release metadata)
 
 ## Ethical Considerations:
 

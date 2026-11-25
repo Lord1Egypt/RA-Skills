@@ -66,8 +66,7 @@ reset <site>` only if the user intends to discard that **entire** local override
 After upgrading OpenCLI, re-check; don't force an old patch onto new source.
 
 The versioned replacement data is in [opencli-patches/1.8.7.json](opencli-patches/1.8.7.json).
-Upstream-derived snippets retain the OpenCLI license, Apache-2.0
-(https://www.apache.org/licenses/LICENSE-2.0); upstream: https://github.com/jackwener/opencli.
+Upstream-derived snippets come from [OpenCLI](https://github.com/jackwener/opencli) and remain under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 They were modified for the fixes listed above; no candidate data or cookies are
 part of these patches.
 
@@ -91,9 +90,9 @@ code does not authorize a new read after such a refusal; follow the existing
 user-confirmed recovery workflow. Never call all live tests passed merely because
 unit tests or a patch checksum passed.
 
-The optional DOM integration tests exercise the actual patched browser scripts:
-with `jsdom` available to Node and `OPENCLI_TEST_ADAPTER_DIR` pointing to the local
-`clis` directory, run `node --test scripts/tests/opencli-dom.test.cjs` on a checkout of the source repository. No live
+On a checkout of the source repository (https://github.com/addsumtech/job-hunt), the optional DOM integration tests exercise the actual
+patched browser scripts: with `jsdom` available to Node and `OPENCLI_TEST_ADAPTER_DIR` pointing to the local
+`clis` directory, run `node --test scripts/tests/opencli-dom.test.cjs`. No live
 site access is made by these tests.
 
 
@@ -110,7 +109,7 @@ an apparently successful empty list.
 
 Primary evidence: [51job search page](https://we.51job.com/pc/search), its
 [loaded search application](https://fccdn.51jobcdn.com/we/static/js/app-e2e93592-4d50a46c.js),
-and the dated public-enum fixture in the source repository's test fixtures. A live control
+and the dated public-enum fixture kept in the source repository's `scripts/tests/fixtures/`. A live control
 query with `companyType=04` returned three original `companyTypeString: 国企`
 rows. Recheck the search UI if these enums change; do not substitute a similar
 company-type table found elsewhere in a bundle.

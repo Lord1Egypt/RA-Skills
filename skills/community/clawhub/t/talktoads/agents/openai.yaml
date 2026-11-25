@@ -1,0 +1,12 @@
+interface:
+  display_name: "TalkToAds"
+  short_description: "Run your Meta (Facebook + Instagram) ads by talking: reports, audits, reel boosts, campaigns that start paused until you say go"
+  brand_color: "#151513"
+  default_prompt: "How did my Meta ads do in the last 7 days? Which campaign should I scale?"
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "talktoads"
+      description: "TalkToAds MCP server (Facebook sign-in)"
+      transport: "streamable_http"
+      url: "https://talktoads.com/mcp"

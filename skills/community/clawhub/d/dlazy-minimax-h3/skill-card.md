@@ -1,6 +1,6 @@
 ## Description:
 
-MiniMax Hailuo omni-modal video model with native stereo audio, producing 5–15 second clips at up to 2K, with text-to-video, first/last frame transitions, and multi-asset references for character and scene consistency.
+MiniMax Hailuo omni-modal video model with native stereo audio, producing 5-15 second clips at up to 2K. Supports text-to-video, first/last frame transitions and multi-asset references for character and scene consistency.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Creators and developers use this skill to generate short MiniMax Hailuo videos from text prompts, first and last frames, or image, video, and audio references.
+Developers and creators use this skill to request short MiniMax Hailuo video clips from text prompts or reference media, with controls for frames, assets, duration, aspect ratio, and resolution.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Prompt and input media are sent to dLazy's hosted service, and local media paths may be uploaded for processing.
+Risk: ClawScan reports a mismatch between the advertised video-generation purpose and some CLI descriptions; the referenced local materials were missing, the external CLI package was not inspected, and scan coverage is incomplete.
 
-Mitigation: Review the service details and avoid sending prompts or media that you do not want processed by the hosted service.
-
-Risk: The skill advertises 4K as an option, while the release description summarizes output up to 2K and scanner confidence is medium.
-
-Mitigation: Confirm supported resolution and service behavior before relying on 4K output.
+Mitigation: Before installing, review the @dlazy/cli package and its installation details, and check whether the described login flow and 4K option match the intended use.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-minimax-h3)
-- [dLazy CLI project page](https://github.com/dlazy-ai/cli)
-- [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
-- [dLazy](https://dlazy.com)
+- [dLazy CLI repository (metadata link)](https://github.com/dlazy-ai/cli)
+- [dLazy CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy website](https://dlazy.com)
 
 ## Skill Output:
 
-**Output Type(s):** [Video, JSON, Shell commands]
+**Output Type(s):** [Generated video assets, JSON result metadata, Generation status and result URLs]
 
-**Output Format:** [Generated video assets and JSON result metadata, including hosted asset URLs or asynchronous task IDs]
+**Output Format:** [JSON result with generated media URLs]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Configurable generation mode, duration, aspect ratio, and resolution; input media files may be uploaded to the hosted service.]
+**Other Properties Related to Output:** [With asynchronous execution, a task ID may be returned before the generated asset is ready.]
 
 ## Skill Version(s):
 
-1.2.38 (source: server-resolved ClawHub release evidence)
+1.2.41 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

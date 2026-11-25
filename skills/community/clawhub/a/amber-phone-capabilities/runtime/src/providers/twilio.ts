@@ -77,6 +77,10 @@ export class TwilioProvider implements IVoiceProvider {
    */
   buildSipBridgeResponse(params?: SipBridgeParams): string {
     const twiml = new twilio.twiml.VoiceResponse();
+    if (params?.reject) {
+      twiml.reject({ reason: 'busy' });
+      return twiml.toString();
+    }
     const dial = twiml.dial({ answerOnBridge: true });
 
     const uriParams: string[] = ['transport=tls'];
@@ -87,7 +91,10 @@ export class TwilioProvider implements IVoiceProvider {
       uriParams.push(`x_bridge_id=${encodeURIComponent(params.bridgeId)}`);
     }
 
-    const uri = `sip:${this.openAiProjectId}@sip.api.openai.com;${uriParams.join(';')}`;
+    const inboundHeader = params?.inboundToken
+      ? `?x-amber-inbound=${encodeURIComponent(params.inboundToken)}`
+      : '';
+    const uri = `sip:${this.openAiProjectId}@sip.api.openai.com;${uriParams.join(';')}${inboundHeader}`;
     dial.sip(uri);
     return twiml.toString();
   }

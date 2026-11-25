@@ -1,0 +1,57 @@
+{
+  "changelog": "Listing stills keep the product photo, and the clip is made from the main image.",
+  "display_name": "Ecommerce Product Assets",
+  "entry": "SKILL.md",
+  "homepage": "https://beatra.ai/skills/ecommerce-product-assets",
+  "icon": "https://beatra.ai/textures/icons/ecommerce-product-assets-0.1.2.png",
+  "localized": {
+    "en": {
+      "description": "Turn one product into an ecommerce product asset set: a main image, detail stills, and one product clip. Ecommerce product assets list what each frame shows, then make the stills and clip. The product and background stay consistent. Use it before a listing goes up.",
+      "display_name": "Ecommerce Product Assets",
+      "summary": "A main image, detail stills, and one product clip.",
+      "tags": [
+        "ecommerce product assets",
+        "main image",
+        "detail stills",
+        "product clip",
+        "listing pictures"
+      ],
+      "title": "Ecommerce Product Assets"
+    },
+    "ja": {
+      "description": "一つの商品を、メイン画像、詳細の静止画、一本の短い商品動画にします。各画面の内容を並べてから、静止画と動画を作ります。商品と背景は揃えます。出品前の画像に向いています。",
+      "display_name": "商品素材",
+      "summary": "メイン画像、詳細の静止画、一本の商品動画。",
+      "tags": [
+        "商品素材",
+        "メイン画像",
+        "詳細",
+        "商品動画"
+      ],
+      "title": "商品素材"
+    },
+    "zh": {
+      "description": "把一个商品做成电商商品素材：主图、一组详情配图和一条商品短片。电商商品素材先列出每张图和短片拍什么，再出画面和短片。商品素材保持同一商品、同一背景。适合上架前的主图和详情。",
+      "display_name": "电商商品素材",
+      "summary": "主图、一组详情配图和一条商品短片。",
+      "tags": [
+        "电商商品素材",
+        "商品素材",
+        "主图",
+        "详情配图",
+        "商品短片"
+      ],
+      "title": "电商商品素材"
+    }
+  },
+  "mcp": {
+    "authentication": "device-bearer",
+    "credential_file": "~/.beatra/credentials.json",
+    "name": "beatra",
+    "transport": "streamable-http",
+    "url": "https://mcp.beatra.ai/mcp"
+  },
+  "name": "ecommerce-product-assets",
+  "schema_version": 1,
+  "version": "0.1.3"
+}

@@ -71,6 +71,16 @@ function readSkillMeta() {
   };
 }
 
+function isUpdateDisabledByProfile(meta) {
+  let profile = String(process.env.CV_SKILL_PROFILE || meta.profile || meta.runtime?.profile || 'common')
+    .trim()
+    .toLowerCase();
+  if (profile === 'navos') profile = 'navos-global';
+  return profile === 'navos-cn'
+    || profile === 'navos-global'
+    || meta.runtime?.enable_skill_update === false;
+}
+
 function compareVersion(a, b) {
   const left = String(a || '0').split('.').map((part) => Number.parseInt(part, 10) || 0);
   const right = String(b || '0').split('.').map((part) => Number.parseInt(part, 10) || 0);
@@ -234,6 +244,18 @@ function printResult(result) {
 
 async function check() {
   const meta = readSkillMeta();
+  if (isUpdateDisabledByProfile(meta)) {
+    return {
+      ok: true,
+      skill: meta.name,
+      current_version: meta.version,
+      update_available: false,
+      update_required: false,
+      update_disabled: true,
+      reason: 'Skill self-update is disabled for this runtime profile.',
+    };
+  }
+
   const manifestUrl = getManifestUrl(meta);
   if (!manifestUrl) {
     return {

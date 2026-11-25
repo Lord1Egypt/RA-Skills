@@ -1,3 +1,8 @@
+---
+name: super-middle-manager-academy
+description: 提供中层管理者自我、团队、工作及战略管理能力提升的实用工具和方法，助力90%以上管理情境高效应对。
+---
+
 # Super Middle Manager Academy — 超级中层商学院
 
 > **版本:** 1.0.0  

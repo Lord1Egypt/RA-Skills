@@ -1,0 +1,59 @@
+{
+  "appetite": {
+    "calibrated": {
+      "curve": [
+        {
+          "lo": 0,
+          "hi": 31,
+          "mean_fetched": 6.395,
+          "n": 162
+        },
+        {
+          "lo": 32,
+          "hi": 63,
+          "mean_fetched": 7.295,
+          "n": 166
+        },
+        {
+          "lo": 64,
+          "hi": 95,
+          "mean_fetched": 6.785,
+          "n": 251
+        },
+        {
+          "lo": 96,
+          "hi": 127,
+          "mean_fetched": 6.805,
+          "n": 390
+        },
+        {
+          "lo": 128,
+          "hi": 159,
+          "mean_fetched": 7.041,
+          "n": 1530
+        },
+        {
+          "lo": 160,
+          "hi": 191,
+          "mean_fetched": 6.969,
+          "n": 1156
+        },
+        {
+          "lo": 192,
+          "hi": 223,
+          "mean_fetched": 6.098,
+          "n": 245
+        },
+        {
+          "lo": 224,
+          "hi": 255,
+          "mean_fetched": 2.091,
+          "n": 33
+        }
+      ],
+      "fitted_on": 3933,
+      "at": "2026-11-16T19:26:07.285573+00:00"
+    }
+  },
+  "policy_version": 1
+}

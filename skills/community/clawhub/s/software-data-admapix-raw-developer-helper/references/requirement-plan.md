@@ -25,7 +25,7 @@ Evidence coverage: 12 signals across 3 source families.
 Scoring rationale:
 
 - Evidence count: 12; required minimum: 3.
-- Distinct source families: 3; sources: clawhub, hacker-news, segmentfault.
+- Distinct source families: 3; sources: clawhub, github, segmentfault.
 - Demand score: 70/70 based on corroboration, source diversity, and professional/community signal.
 - Local feasibility score: 30/30.
 - Implementation is a documentation, workflow, code, or analysis skill that can run on ordinary CPU hardware.
@@ -33,18 +33,18 @@ Scoring rationale:
 
 ## Evidence
 
-- clawhub-popular-skill (2026-10-22T12:42:06.676000+00:00): [Popular Clawhub skill demand: self-improving agent has 493,493 downloads](https://clawhub.ai/skills/self-improving-agent)
-- clawhub-popular-skill (2026-05-11T07:50:52.489000+00:00): [Popular Clawhub skill demand: ontology has 201,919 downloads](https://clawhub.ai/skills/ontology)
-- clawhub-popular-skill (2026-05-11T07:50:48.771000+00:00): [Popular Clawhub skill demand: Agent Browser has 159,909 downloads](https://clawhub.ai/skills/agent-browser-clawdbot)
-- clawhub-popular-skill (2026-06-19T07:09:19.124000+00:00): [Popular Clawhub skill demand: AdMapix has 134,449 downloads](https://clawhub.ai/skills/admapix)
-- hacker-news-ask-hn (2026-11-16T15:38:59+00:00): [Looking for a remote CTO for my micro SaaS ($600K ARR, $250k Profit)](https://news.ycombinator.com/item?id=50518749)
-- segmentfault-search (2026-11-17T04:06:35.250553+00:00): [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
-- segmentfault-search (2026-11-17T04:06:35.250553+00:00): [javascript](https://segmentfault.com/t/javascript)
-- segmentfault-search (2026-11-17T04:06:35.250553+00:00): [typescript](https://segmentfault.com/t/typescript)
-- segmentfault-search (2026-11-17T04:06:35.250553+00:00): [ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
-- segmentfault-search (2026-11-17T04:06:35.251093+00:00): [在 DarkNet 模型中编译 YOLO-V2 和 YOLO-V3](https://segmentfault.com/a/1190000044034668)
-- segmentfault-search (2026-11-17T04:06:35.251093+00:00): [How to Implement a DevLake plugin?](https://segmentfault.com/a/1190000042069896)
-- segmentfault-search (2026-11-17T04:06:35.251093+00:00): [一文带你熟悉Pytorch->Caffe->om模型转换流程](https://segmentfault.com/a/1190000039248724)
+- clawhub-popular-skill (2026-10-22T12:42:06.676000+00:00): [Popular Clawhub skill demand: self-improving agent has 495,374 downloads](https://clawhub.ai/skills/self-improving-agent)
+- clawhub-popular-skill (2026-05-11T07:50:52.489000+00:00): [Popular Clawhub skill demand: ontology has 202,433 downloads](https://clawhub.ai/skills/ontology)
+- clawhub-popular-skill (2026-05-11T07:50:48.771000+00:00): [Popular Clawhub skill demand: Agent Browser has 160,526 downloads](https://clawhub.ai/skills/agent-browser-clawdbot)
+- clawhub-popular-skill (2026-06-19T07:09:19.124000+00:00): [Popular Clawhub skill demand: AdMapix has 134,617 downloads](https://clawhub.ai/skills/admapix)
+- segmentfault-search (2026-11-25T13:49:50.126097+00:00): [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
+- segmentfault-search (2026-11-25T13:49:50.126097+00:00): [javascript](https://segmentfault.com/t/javascript)
+- segmentfault-search (2026-11-25T13:49:50.126097+00:00): [typescript](https://segmentfault.com/t/typescript)
+- segmentfault-search (2026-11-25T13:49:50.126097+00:00): [ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
+- segmentfault-search (2026-11-25T13:49:50.126600+00:00): [在 DarkNet 模型中编译 YOLO-V2 和 YOLO-V3](https://segmentfault.com/a/1190000044034668)
+- segmentfault-search (2026-11-25T13:49:50.126600+00:00): [How to Implement a DevLake plugin?](https://segmentfault.com/a/1190000042069896)
+- segmentfault-search (2026-11-25T13:49:50.126600+00:00): [一文带你熟悉Pytorch->Caffe->om模型转换流程](https://segmentfault.com/a/1190000039248724)
+- github-issues (2026-11-25T13:46:18+00:00): [Add Livia In-Albon, Beratung Strategie, who speaks Walliser Deutsch](https://github.com/janoschjost/saftladen/issues/309)
 
 ## How The Skill Meets The Requirement
 

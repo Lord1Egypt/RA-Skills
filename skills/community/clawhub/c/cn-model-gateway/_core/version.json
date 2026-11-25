@@ -1,1 +1,1 @@
-{"version": "1.0.0", "compatible_skills": {"cn-llm-router": ">=2.5.0", "cn-model-gateway": ">=1.7.0"}, "adapters": ["openai_compat", "ernie", "spark"], "modules": ["cost_tracker", "cache", "health_check", "config", "yaml_simple"]}
+{"version": "1.1.0", "compatible_skills": {"cn-llm-router": ">=2.5.0", "cn-model-gateway": ">=2.1.0"}, "adapters": ["openai_compat", "ernie", "spark"], "modules": ["cost_tracker", "cache", "health_check", "config", "yaml_simple", "strategy_router", "fc_normalizer"]}

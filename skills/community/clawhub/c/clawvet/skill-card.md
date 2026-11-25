@@ -1,6 +1,6 @@
 ## Description:
 
-Scan a third-party OpenClaw skill with ClawVet and act on its A to F grade before installing or trusting it. Use when the user says "scan this skill", "is this skill safe", "vet/check this skill", "should I install this", "audit my skills", or "clawvet", or hands you a SKILL.md from ClawHub or another untrusted source.
+ClawVet scans third-party AI agent skills, rules, hooks, and MCP configs, then uses its A-to-F grade to guide installation and trust decisions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Developers use ClawVet to scan third-party OpenClaw skills, review the scanner's A to F grade and coverage, and decide whether to install or trust them. It also provides commands for auditing installed skills and configuring an install gate.
+Agent developers and administrators use ClawVet to review third-party skills and related configuration before installation. They can also audit installed tools and check updates for newly introduced permissions or risks.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The scan was partial because several local references could not be resolved, so the benign verdict does not guarantee zero risk.
+Risk: The security evidence flags unpinned npx references, which can run a package version that changes over time.
 
-Mitigation: Resolve the missing references and scan the complete local skill before relying on the result.
+Mitigation: Review the referenced commands and use a pinned version or an already installed, trusted ClawVet release before running them.
 
-Risk: The security guidance notes an unpinned package reference.
+Risk: The scan was partial because several local references could not be resolved, leaving some behavior outside the scanner's coverage.
 
-Mitigation: Confirm that you trust the package source and pin its version when reproducibility is important.
+Mitigation: Resolve the missing references and rerun a complete local scan before relying on its verdict.
 
 ## Reference(s):
 
-- [ClawVet source repository](https://github.com/MohibShaikh/clawvet)
+- [ClawVet project repository](https://github.com/MohibShaikh/clawvet)
 - [ClawVet on ClawHub](https://clawhub.ai/mohibshaikh/skills/clawvet)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, Guidance, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown with shell commands and scanner findings]
+**Output Format:** [Markdown with findings, shell commands, and configuration examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Recommendations depend on scan coverage and the scanner's reported grade.]
+**Other Properties Related to Output:** [May include a scan grade, findings, capability summaries, and remediation guidance.]
 
 ## Skill Version(s):
 
-0.14.0 (source: frontmatter, server-resolved release metadata)
+0.16.2 (source: server-resolved release metadata; artifact frontmatter lists 0.18.0)
 
 ## Ethical Considerations:
 

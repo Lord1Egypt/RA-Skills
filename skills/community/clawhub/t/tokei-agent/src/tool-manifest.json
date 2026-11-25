@@ -76,7 +76,7 @@
       "def": {
         "name": "pages_get",
         "title": "Get promotion page",
-        "description": "Get one page in full: description, prizes, reward_thresholds, dates, public_url.",
+        "description": "Get one page in full: description, prizes, reward_thresholds, standalone_actions (Share Feedback, Quick Question and Secret Code settings), dates, public_url.",
         "inputSchema": {
           "type": "object",
           "properties": {
@@ -496,7 +496,7 @@
       "def": {
         "name": "pages_update",
         "title": "Update promotion page",
-        "description": "Update a page: title, description, start/end dates, prizes, reward tiers, entry methods (the action buttons on the page), appearance, and the seven media slots (image_video, secondary_image, third_image, fourth_image, fifth_image, background_image, og_image — use media_upload to get a public_url first). At least one field; unknown fields are rejected (422). prizes, reward_thresholds and entry_methods each REPLACE the existing list wholesale — read with pages_get first, modify, send the complete list back. status is not settable here — use pages_publish / pages_unpublish. Needs a read+write key.",
+        "description": "Update a page: title, description, start/end dates, prizes, reward tiers, entry methods (the action buttons on the page), the Share Feedback, Quick Question and Secret Code switches (standalone_actions), appearance, and the seven media slots (image_video, secondary_image, third_image, fourth_image, fifth_image, background_image, og_image — use media_upload to get a public_url first). At least one field; unknown fields are rejected (422). prizes, reward_thresholds and entry_methods each REPLACE the existing list wholesale — read with pages_get first, modify, send the complete list back. status is not settable here — use pages_publish / pages_unpublish. Needs a read+write key.",
         "inputSchema": {
           "type": "object",
           "properties": {
@@ -534,7 +534,7 @@
             },
             "prizes": {
               "type": "array",
-              "maxItems": 20,
+              "maxItems": 50,
               "description": "Replaces the prize list wholesale. Items: {name, winners, value?, currency?}.",
               "items": {
                 "type": "object"
@@ -551,9 +551,159 @@
             "entry_methods": {
               "type": "array",
               "maxItems": 30,
-              "description": "The page's entry actions. Replaces the list wholesale; [] clears every action. Two row shapes, both may carry an optional id (string, 1-64 chars, [A-Za-z0-9_-] only) for stable per-row identity — optional on input, every stored row has one, and a row sent without one is stored as a new action. Changing a row's target keeps credit for entrants who already did it while the row keeps its id; two rows sharing an id in the same array is a 422: Duplicate entry method id \"<id>\" (already used at index <n>). ACTION ROW: {id?, actionType, label, points?, config?, requireVerification?} — actionType must be one of the writable types from actions_catalog, and config's keys are that type's `fields`. CUSTOM LINK ROW: {id?, label, points?, link, actionsRequired?} with NO actionType — a plain http(s) button to any URL, for anything the catalog has no action for; actionsRequired (0-20) hides it until the entrant has completed that many other actions. icon and config.type are server-derived and ignored if sent. label is 1-100 chars, points 0-100 (0 means 'use the action's default'). Labels starting with 'Visit Our ' are reserved for the page's own campaign-URL button — the dashboard rewrites those. At most 5 rows may share one actionType, and only for twitter_follow, instagram_follow and facebook_visit_page; every other actionType is capped at 1 — exceeding it is a 422: Too many \"twitter_follow\" entry methods (max 5 per promotion). / Only one \"tiktok_follow\" entry method is allowed per promotion. for everything else.",
+              "description": "The page's entry actions. Replaces the list wholesale; [] clears every action. Two row shapes, both may carry an optional id (string, 1-64 chars, [A-Za-z0-9_-] only) for stable per-row identity — optional on input, every stored row has one, and a row sent without one is stored as a new action. Changing a row's target keeps credit for entrants who already did it while the row keeps its id; two rows sharing an id in the same array is a 422: Duplicate entry method id \"<id>\" (already used at index <n>). ACTION ROW: {id?, actionType, label, points?, config?, requireVerification?} — actionType must be one of the writable types from actions_catalog, and config's keys are that type's `fields`. CUSTOM LINK ROW: {id?, label, points?, link, actionsRequired?} with NO actionType — a plain http(s) button to any URL, for anything the catalog has no action for; actionsRequired (0-20) hides it until the entrant has completed that many other actions. icon and config.type are server-derived and ignored if sent. label is 1-100 chars, points 0-100 (0 means 'use the action's default'). For an action type whose actions_catalog entry has a non-null entryValueSettingKey, a non-zero points is that type's entry value for the whole promotion: it is written to the page's settings and capped at 99, and rows of one type must send the same non-zero points (different values are a 422), so entry points on duplicate rows must match. Custom Link rows and tokei_cross_promote rows keep their own points, 0-100. Labels starting with 'Visit Our ' (capital O) are reserved for the page's own campaign-URL button: a link row with that label is a 422 unless its link equals the page's campaign URL (a pages_get row passes back unchanged). A 'Visit Our X' button seen in a screenshot is a Custom Link: label it 'Visit our X' (lowercase o). At most 5 rows may share one actionType when actions_catalog marks that type duplicable: true; every other actionType is capped at 1 — exceeding it is a 422: Too many \"twitter_follow\" entry methods (max 5 per promotion). / Only one \"tiktok_follow\" entry method is allowed per promotion. for everything else.",
               "items": {
                 "type": "object"
+              }
+            },
+            "standalone_actions": {
+              "type": "object",
+              "description": "Share Feedback (survey), Quick Question and Secret Code switches, which are not entry_methods rows. Every sub-object and field is optional and only the fields you send change (nothing is replaced wholesale, except options, which replaces the list). pages_get returns the same shape. Unknown keys are a 422. Secret CODES themselves cannot be sent here: upload them in the Tokei dashboard, where the code list lives; this only turns the action on and sets its label, description and points. An enabled Quick Question needs text and 2-6 options with titles, or the call is a 422 (send enabled: false to switch it off). entry_value is the action's points (1-99); actions_required (0-20) hides the action until the entrant has completed that many others.",
+              "properties": {
+                "survey": {
+                  "type": "object",
+                  "description": "Share Feedback: a free-text question entrants answer (read answers with surveys_list).",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean"
+                    },
+                    "question": {
+                      "type": "string",
+                      "maxLength": 1000,
+                      "description": "The question shown to entrants."
+                    },
+                    "label": {
+                      "type": "string",
+                      "maxLength": 100,
+                      "description": "Button label. \"\" restores the page default."
+                    },
+                    "mandatory": {
+                      "type": "boolean",
+                      "description": "Entrants must answer before entering."
+                    },
+                    "entry_value": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 99,
+                      "description": "Points for answering (1-99)."
+                    },
+                    "actions_required": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 20,
+                      "description": "Other actions an entrant must complete first (0-20)."
+                    }
+                  }
+                },
+                "quick_question": {
+                  "type": "object",
+                  "description": "Quick Question: a poll with 2-6 options.",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean"
+                    },
+                    "label": {
+                      "type": "string",
+                      "maxLength": 100,
+                      "description": "Button label. \"\" restores the page default."
+                    },
+                    "text": {
+                      "type": "string",
+                      "maxLength": 1000,
+                      "description": "The question."
+                    },
+                    "options": {
+                      "type": "array",
+                      "maxItems": 6,
+                      "description": "Replaces the option list. 2-6 options, or [] to clear. Keep an option's id to keep the answers recorded against it; an option without an id gets a new one.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 64
+                          },
+                          "title": {
+                            "type": "string",
+                            "maxLength": 60
+                          },
+                          "description": {
+                            "type": "string",
+                            "maxLength": 120
+                          },
+                          "image": {
+                            "type": "string",
+                            "description": "Empty, or an https Tokei media or Cloudinary URL (use media_upload)."
+                          }
+                        },
+                        "required": [
+                          "title"
+                        ]
+                      }
+                    },
+                    "layout": {
+                      "type": "string",
+                      "enum": [
+                        "list",
+                        "grid"
+                      ]
+                    },
+                    "multi_select": {
+                      "type": "boolean"
+                    },
+                    "show_results": {
+                      "type": "boolean",
+                      "description": "Show entrants the results after they answer."
+                    },
+                    "mandatory": {
+                      "type": "boolean"
+                    },
+                    "entry_value": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 99,
+                      "description": "Points for answering (1-99)."
+                    },
+                    "actions_required": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 20,
+                      "description": "Other actions an entrant must complete first (0-20)."
+                    }
+                  }
+                },
+                "secret_code": {
+                  "type": "object",
+                  "description": "Secret Code: entrants type a code to earn points. The codes are uploaded in the Tokei dashboard, never through the API.",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean"
+                    },
+                    "label": {
+                      "type": "string",
+                      "maxLength": 100,
+                      "description": "Button label. \"\" restores the page default."
+                    },
+                    "description": {
+                      "type": "string",
+                      "maxLength": 200,
+                      "description": "Hint shown with the code field."
+                    },
+                    "entry_value": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 99,
+                      "description": "Points for a correct code (1-99)."
+                    },
+                    "actions_required": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 20,
+                      "description": "Other actions an entrant must complete first (0-20)."
+                    }
+                  }
+                }
               }
             },
             "template": {
@@ -564,11 +714,15 @@
                 "future",
                 "simple"
               ],
-              "description": "Page skin/layout template. 'simple' is the Custom template — bare structural markup the creator styles via custom_css."
+              "description": "Page skin/layout template. 'basic-new' (Basic, the default) is the classic giveaway card with entry actions in a vertical list — the closest match for a Gleam-style or KickoffLabs-style giveaway. 'showcase' is a two-column, product-forward layout suited to Product Hunt-style launches. 'future' is a dark, game-style skin for gaming and tech audiences. 'simple' is the Custom template — bare structural markup the creator styles via custom_css."
             },
             "dark_mode_enabled": {
               "type": "boolean",
               "description": "Enable dark mode on the public page."
+            },
+            "compliance_exclude_ai_agents": {
+              "type": "boolean",
+              "description": "When true, entrants whose email is on an AI-agent mailbox domain (mail.grokbot.com, agentmail.to) cannot win the draw and are hidden from the public leaderboard. The entry form tells them to use their own email, and the generated rules say so. Detection is by mailbox domain only. New promotions default to true; a missing key reads as false."
             },
             "custom_css": {
               "type": [
@@ -582,7 +736,7 @@
                 "string",
                 "null"
               ],
-              "description": "Hex colour, e.g. #7d78c6. null resets to the template default."
+              "description": "Hex colour, e.g. #7d78c6. null resets to the template default. It is the page colour: the page background is built from it (the dashboard's background style, Harmony by default). To match a screenshot's page background, set primary_color to that colour; do not upload a solid-colour image as background_image."
             },
             "card_width": {
               "type": "string",
@@ -597,6 +751,34 @@
                 "max-w-7xl"
               ],
               "description": "Content column width. Friendly names map to Tailwind max-w classes server-side."
+            },
+            "card_mode": {
+              "type": "string",
+              "enum": [
+                "dark",
+                "gradient",
+                "light"
+              ],
+              "description": "Card mode, the dashboard Dark | Gradient | Light toggle. gradient is dark mode with a soft gradient card built from card_color, and it also sets dark_mode_enabled true. dark and light drop the gradient but keep card_color. Send it instead of dark_mode_enabled."
+            },
+            "card_color": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Gradient card colour as 6-digit hex, e.g. #33789b (the default). Only paints the card while card_mode is gradient. null clears it."
+            },
+            "card_gradient": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "harmony",
+                "vignette",
+                null
+              ],
+              "description": "Gradient style: harmony (linear sweep, the default) or vignette (radial). null resets to harmony."
             },
             "image_video": {
               "type": [
@@ -672,8 +854,12 @@
           "template",
           "custom_css",
           "dark_mode_enabled",
+          "compliance_exclude_ai_agents",
           "primary_color",
           "card_width",
+          "card_mode",
+          "card_color",
+          "card_gradient",
           "image_video",
           "secondary_image",
           "third_image",
@@ -683,7 +869,8 @@
           "og_image"
         ],
         "flagNames": {
-          "dark_mode_enabled": "dark-mode"
+          "dark_mode_enabled": "dark-mode",
+          "compliance_exclude_ai_agents": "exclude-ai-agents"
         },
         "requireBody": true
       }

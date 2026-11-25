@@ -1,6 +1,6 @@
 ## Description:
 
-Generates Google Ads copy from a product brief.
+Writes Google Search and Performance Max ad copy from a product brief, with every field checked against the real character limits.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-For US DTC brands, agencies, and performance marketers preparing Google Search and Performance Max ad copy from a product brief.
+Media buyers, agencies, and US direct-to-consumer brands use this skill to prepare Google Search and Performance Max ad copy, check draft RSA field lengths, and identify claims that need supporting evidence before ads are used.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,31 @@ United States
 
 ## Known Risks and Mitigations:
 
-Risk: Ad assets may contain unsupported claims or miss character limits; character checks are incomplete, with particular review needed for Performance Max assets.
+Risk: The security evidence reports a suspicious, medium-confidence mismatch between the advertised ad-copy generation and the checking behavior; it does not establish malicious intent.
 
-Mitigation: Manually check every ad asset, verify claims against supplied evidence, and confirm applicable character limits before use.
+Mitigation: Review the generated result against the requested ad-copy task and the supplied brief before using or sharing it.
 
-Risk: The script replaces ad-brief.md in its selected output directory.
+Risk: The security evidence says file-writing scope is undeclared and the scan was partial because some referenced paths were missing.
 
-Mitigation: Choose an output directory where replacing ad-brief.md is acceptable.
-
-Risk: The optional Windows app was outside the security review.
-
-Mitigation: Make a separate trust decision and independently verify the app before running it.
+Mitigation: Review the script and chosen output directory before running it, use a dedicated output folder, and inspect the generated files.
 
 ## Reference(s):
 
 - [Google Ads limits and US claim rules](artifact/references/google-ads-limits.md)
-- [ClawHub release](https://clawhub.ai/rapidworker1/skills/google-ads-copy-generator)
-- [Publisher profile](https://clawhub.ai/user/rapidworker1)
-- [Publisher homepage](https://github.com/rapidworker1)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Ad headlines, descriptions, and claim checks; optional Markdown brief]
+**Output Format:** [Markdown with grouped headlines, descriptions, and claim checks]
 
-**Output Parameters:** [Variable-length copy with ad-field character limits]
+**Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [For Google Search and Performance Max; does not create, modify, or publish ads in an account.]
+**Other Properties Related to Output:** [Responsive Search Ad headlines are limited to 30 characters and descriptions to 90 characters; claims should be paired with evidence supplied by the user.]
 
 ## Skill Version(s):
 
-1.0.6
+1.0.7 (source: frontmatter, server release metadata)
 
 ## Ethical Considerations:
 

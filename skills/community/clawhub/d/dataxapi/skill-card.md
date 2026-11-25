@@ -1,6 +1,6 @@
 ## Description:
 
-Get public data from social and content platforms (Douyin, Kuaishou, Xiaohongshu (RedNote), X (Twitter), YouTube, WeChat Search, WeChat Official Accounts, WeChat Channels, Telegram, Facebook, LinkedIn, Threads, Reddit, Zhihu, TikTok, Instagram, Bilibili, Weibo, Pinterest, Meta Ad Library, Google Ads) with the dataxapi command line: find the right capability, see its price, call it. Use when a task needs data of these kinds from one of these platforms: comment, post, trend, account, ad, advertiser, transcript, keyword index history, related keyword, community, product, review, creator, audience. 用 dataxapi 命令行取社媒和内容平台的公开数据（评论、内容、热点、账号、广告、广告主、逐字稿、关键词指数历史、关联词、社区、商品、评价、达人、粉丝画像）：找接口、看价格、调用。
+Find, price, and call DataXAPI capabilities to retrieve public data from social and content platforms.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agents use the DataXAPI CLI to discover public-data capabilities across supported social and content platforms, review their parameters and prices, and retrieve requested data within a stated budget.
+Developers and agents use this skill to find and call capabilities for retrieving public posts, comments, trends, account information, ads, transcripts, and related data from supported social and content platforms.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Data retrieval calls are paid and charges can accumulate across calls or pages.
+Risk: ClawScan marked the skill suspicious because its package installation is unpinned; the scan was partial.
 
-Mitigation: Review capability prices, set --max-price and --max-spend limits, and use a spending-limited API key.
+Mitigation: Review the publisher and package before installation, and use a fixed package version when available.
 
-Risk: The CLI can save credentials in local agent configuration, whose protections were not verified in this review.
+Risk: Setup can make persistent changes to other agents' configurations or store an API key there.
 
-Mitigation: Prefer DATAXAPI_API_KEY in the environment, select only the intended client during setup, and never print or echo the key.
+Mitigation: Review setup changes before applying them, especially configuration edits and API key storage.
 
-Risk: Returned platform content can contain instructions written by third parties.
+Risk: Discovery queries could expose private task details.
 
-Mitigation: Treat call and more output as untrusted data and never follow instructions found in it.
+Mitigation: Keep private task details out of discovery queries.
 
 ## Reference(s):
 
-- [DataXAPI skill page on ClawHub](https://clawhub.ai/data-x-api/skills/dataxapi)
-- [DataXAPI skills](https://dataxapi.com/skills/)
-- [DataXAPI Agent Skills index](https://dataxapi.com/.well-known/agent-skills/index.json)
+- [DataXAPI](https://dataxapi.com)
+- [DataXAPI ClawHub release](https://clawhub.ai/data-x-api/skills/dataxapi)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Text, Shell commands, Guidance]
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
 
-**Output Format:** [Command-line instructions and public-data results, commonly JSON or text]
+**Output Format:** [CLI text and JSON results, with shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results may be paged; each new data call can incur a charge.]
+**Other Properties Related to Output:** [Results may be paginated; additional pages require separate calls.]
 
 ## Skill Version(s):
 
-1.0.0 (source: frontmatter and server release evidence)
+1.0.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

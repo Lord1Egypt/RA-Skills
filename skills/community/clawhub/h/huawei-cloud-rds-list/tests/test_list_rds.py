@@ -1,3 +1,4 @@
+import csv
 import json
 import os
 import shutil
@@ -13,11 +14,14 @@ from list_rds import (  # noqa: E402
     ALLOWED_OPERATION,
     ApiError,
     AuthError,
+    CSV_COLUMNS,
     ConfigError,
     GuardError,
+    MD_COLUMNS,
     RdsListError,
     build_command,
     classify_hcloud_failure,
+    default_csv_output_path,
     instance_names,
     extract_instances,
     extract_json,
@@ -28,9 +32,12 @@ from list_rds import (  # noqa: E402
     list_instances_via_sdk,
     main,
     normalize_instance,
+    render_csv,
     render_markdown,
     render_table,
+    write_csv,
     write_markdown,
+    write_text_atomic,
 )
 
 INSTANCE_1 = {
@@ -816,6 +823,316 @@ class TestMarkdownExportMain(unittest.TestCase):
             self.assertEqual(handle.read(), "hello")
         self.assertEqual([n for n in os.listdir(self.tmpdir)
                           if n.startswith(".rds-md-")], [])
+
+
+class TestCsvRender(unittest.TestCase):
+    """CSV export: columns mirror the Markdown export, standard escaping."""
+
+    @staticmethod
+    def _rows(text):
+        return list(csv.reader(text.splitlines(True)))
+
+    def test_columns_identical_to_markdown(self):
+        self.assertEqual(
+            CSV_COLUMNS,
+            MD_COLUMNS,
+            "CSV columns must reuse the Markdown column definition",
+        )
+        self.assertEqual(
+            [label for label, _ in CSV_COLUMNS],
+            ["实例 ID", "名称", "状态", "引擎", "版本", "规格",
+             "私有 IP", "可用区", "区域", "创建时间"],
+        )
+
+    def test_header_and_rows(self):
+        rows = self._rows(render_csv([INSTANCE_1, INSTANCE_2], "cn-north-4"))
+        self.assertEqual(rows[0], [label for label, _ in CSV_COLUMNS])
+        self.assertEqual(len(rows), 3)
+        self.assertEqual(rows[1][:7], [
+            "rds-0001", "rds-demo-01", "ACTIVE", "MySQL", "8.0",
+            "rds.mysql.x1.large.2.ha", "192.168.0.10"])
+        self.assertEqual(rows[1][7], "cn-north-4a")
+        self.assertEqual(rows[1][8], "cn-north-4")
+        self.assertEqual(rows[2][0], "rds-0002")
+        self.assertEqual(rows[2][6], "192.168.0.11,192.168.0.12")
+
+    def test_empty_list_writes_header_only(self):
+        text = render_csv([], "cn-south-1")
+        rows = self._rows(text)
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0], [label for label, _ in CSV_COLUMNS])
+        self.assertNotIn("无 RDS 实例", text)
+
+    def test_region_cell_falls_back_to_queried_region(self):
+        rows = self._rows(render_csv([{"id": "rds-x", "name": "rds-x"}], "cn-south-1"))
+        self.assertEqual(rows[1][8], "cn-south-1")
+        self.assertEqual(rows[1][3], "-")
+        self.assertEqual(rows[1][6], "-")
+
+    def test_region_cell_uses_instance_value_when_present(self):
+        rows = self._rows(render_csv([dict(INSTANCE_1, region="cn-east-3")],
+                                     "cn-north-4"))
+        self.assertEqual(rows[1][8], "cn-east-3")
+
+    def test_created_at_fallback_key(self):
+        rows = self._rows(render_csv([{"id": "rds-x", "created_at": "2026-01-02"}],
+                                     "cn-north-4"))
+        self.assertEqual(rows[1][9], "2026-01-02")
+
+    def test_nested_value_rendered_as_compact_json(self):
+        rows = self._rows(render_csv([{"id": "rds-x", "created": {"a": "b,c"}}],
+                                     "cn-north-4"))
+        self.assertEqual(json.loads(rows[1][9]), {"a": "b,c"})
+
+    def test_comma_quote_and_newline_are_escaped(self):
+        instance = {
+            "id": "rds,1",
+            "name": 'demo "quoted" 02',
+            "status": "ACTIVE",
+            "created": "2026-01-02\n03:04",
+        }
+        text = render_csv([instance], "cn-north-4")
+        # A raw (unescaped) comma/newline would shift the row shape; a proper
+        # RFC 4180 round-trip keeps every field in its own column.
+        rows = self._rows(text)
+        self.assertEqual(len(rows), 2)
+        self.assertEqual(len(rows[1]), len(CSV_COLUMNS))
+        self.assertEqual(rows[1][0], "rds,1")
+        self.assertEqual(rows[1][1], 'demo "quoted" 02')
+        self.assertEqual(rows[1][9], "2026-01-02\n03:04")
+        self.assertIn('"demo ""quoted"" 02"', text)
+
+    def test_rows_terminated_with_crlf(self):
+        text = render_csv([INSTANCE_1], "cn-north-4")
+        self.assertTrue(text.endswith("\r\n"))
+        self.assertNotIn("\n", text.replace("\r\n", ""))
+
+    def test_default_csv_output_path(self):
+        path = default_csv_output_path("cn-south-1")
+        name = os.path.basename(path)
+        self.assertTrue(name.startswith("rds_instances_cn-south-1_"))
+        self.assertTrue(name.endswith(".csv"))
+
+
+class TestCsvExportMain(unittest.TestCase):
+    def setUp(self):
+        self.tmpdir = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, self.tmpdir, True)
+        self._cwd = os.getcwd()
+
+    def tearDown(self):
+        os.chdir(self._cwd)
+
+    def _run(self, argv, results):
+        fake = FakeRunner(results)
+        with mock.patch("list_rds.subprocess.run", fake), \
+                mock.patch("sys.stdout") as stdout, \
+                mock.patch("sys.stderr") as stderr:
+            try:
+                rc = main(argv)
+            except SystemExit as exc:
+                rc = exc.code
+        out = "".join(c[0][0] for c in stdout.write.call_args_list)
+        err = "".join(c[0][0] for c in stderr.write.call_args_list)
+        return rc, out, err
+
+    @staticmethod
+    def _payload():
+        return (json.dumps({"instances": [INSTANCE_1, INSTANCE_2],
+                            "total_count": 2}), "", 0)
+
+    @staticmethod
+    def _read_rows(path):
+        with open(path, encoding="utf-8-sig", newline="") as handle:
+            return list(csv.reader(handle))
+
+    def test_format_csv_writes_bom_file(self):
+        out_path = os.path.join(self.tmpdir, "rds.csv")
+        rc, out, err = self._run(["--format", "csv", "--output", out_path],
+                                 [self._payload()])
+        self.assertEqual(rc, 0)
+        self.assertEqual(err, "")
+        self.assertIn("已生成 CSV 文件", out)
+        self.assertIn(os.path.abspath(out_path), out)
+        with open(out_path, "rb") as handle:
+            raw = handle.read()
+        # UTF-8 BOM exactly once, then valid UTF-8 text.
+        self.assertTrue(raw.startswith(b"\xef\xbb\xbf"))
+        self.assertFalse(raw.startswith(b"\xef\xbb\xbf\xef\xbb\xbf"))
+        self.assertIn("实例 ID".encode("utf-8"), raw)
+        rows = self._read_rows(out_path)
+        self.assertEqual(len(rows), 3)
+        self.assertEqual(rows[1][1], "rds-demo-01")
+        self.assertEqual([n for n in os.listdir(self.tmpdir)
+                          if n.startswith(".rds-csv-")], [])
+
+    def test_csv_parses_with_plain_utf8_and_pandas_style(self):
+        out_path = os.path.join(self.tmpdir, "plain.csv")
+        rc, _, _ = self._run(["--format", "csv", "--output", out_path],
+                             [self._payload()])
+        self.assertEqual(rc, 0)
+        with open(out_path, encoding="utf-8-sig") as handle:
+            header = handle.readline().rstrip("\r\n")
+        self.assertEqual(header.split(","), [label for label, _ in CSV_COLUMNS])
+
+    def test_output_suffix_csv_implies_csv_format(self):
+        out_path = os.path.join(self.tmpdir, "implied.csv")
+        rc, out, err = self._run(["--output", out_path], [self._payload()])
+        self.assertEqual(rc, 0)
+        self.assertEqual(err, "")
+        self.assertIn("已生成 CSV 文件", out)
+        self.assertTrue(os.path.isfile(out_path))
+        with open(out_path, encoding="utf-8-sig") as handle:
+            self.assertNotIn("# 华为云 RDS 实例列表", handle.read())
+
+    def test_output_suffix_md_keeps_markdown_semantics(self):
+        out_path = os.path.join(self.tmpdir, "still.md")
+        rc, out, err = self._run(["--output", out_path], [self._payload()])
+        self.assertEqual(rc, 0)
+        self.assertIn("已生成 Markdown 文件", out)
+        self.assertNotIn("CSV", out)
+        with open(out_path, encoding="utf-8") as handle:
+            self.assertIn("| 实例 ID |", handle.read())
+
+    def test_other_suffix_falls_back_to_markdown(self):
+        out_path = os.path.join(self.tmpdir, "report.txt")
+        rc, out, _ = self._run(["--output", out_path], [self._payload()])
+        self.assertEqual(rc, 0)
+        self.assertIn("已生成 Markdown 文件", out)
+
+    def test_default_filename_uses_region_and_timestamp(self):
+        os.chdir(self.tmpdir)
+        rc, out, _ = self._run(
+            ["--format", "csv", "--region", "cn-south-1"], [self._payload()])
+        self.assertEqual(rc, 0)
+        files = os.listdir(self.tmpdir)
+        self.assertEqual(len(files), 1)
+        self.assertTrue(files[0].startswith("rds_instances_cn-south-1_"))
+        self.assertTrue(files[0].endswith(".csv"))
+
+    def test_relative_output_creates_parent_directories(self):
+        os.chdir(self.tmpdir)
+        rc, out, _ = self._run(
+            ["--format", "csv", "--output", "reports/2026/rds.csv"],
+            [self._payload()])
+        self.assertEqual(rc, 0)
+        self.assertTrue(os.path.isfile(
+            os.path.join(self.tmpdir, "reports", "2026", "rds.csv")))
+
+    def test_empty_list_writes_header_exit_zero(self):
+        out_path = os.path.join(self.tmpdir, "empty.csv")
+        rc, out, err = self._run(
+            ["--format", "csv", "--output", out_path],
+            [(json.dumps({"instances": [], "total_count": 0}), "", 0)])
+        self.assertEqual(rc, 0)
+        self.assertEqual(err, "")
+        self.assertIn("无 RDS 实例", out)
+        rows = self._read_rows(out_path)
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0], [label for label, _ in CSV_COLUMNS])
+
+    def test_csv_mutually_exclusive_with_json(self):
+        rc, out, err = self._run(["--format", "csv", "--json"], [])
+        self.assertEqual(rc, 2)
+        self.assertIn("不能同时使用", err)
+
+    def test_csv_mutually_exclusive_with_names_only(self):
+        rc, out, err = self._run(["--format", "csv", "--names-only"], [])
+        self.assertEqual(rc, 2)
+        self.assertIn("不能同时使用", err)
+
+    def test_csv_output_mutually_exclusive_with_json(self):
+        rc, out, err = self._run(
+            ["--output", os.path.join(self.tmpdir, "x.csv"), "--json"], [])
+        self.assertEqual(rc, 2)
+        self.assertIn("不能同时使用", err)
+
+    def test_write_failure_reports_separate_message_and_no_partial_file(self):
+        out_path = os.path.join(self.tmpdir, "broken.csv")
+        with mock.patch("list_rds.os.replace", side_effect=OSError("disk full")):
+            rc, out, err = self._run(
+                ["--format", "csv", "--output", out_path], [self._payload()])
+        self.assertEqual(rc, 1)
+        self.assertIn("[错误]", err)
+        self.assertIn("CSV 文件写出失败", err)
+        self.assertNotIn("Markdown", err)
+        self.assertFalse(os.path.exists(out_path))
+        self.assertEqual([n for n in os.listdir(self.tmpdir)
+                          if n.startswith(".rds-csv-")], [])
+
+    def test_uncreatable_parent_directory_reports_csv_error(self):
+        blocker = os.path.join(self.tmpdir, "blocker")
+        with open(blocker, "w", encoding="utf-8") as handle:
+            handle.write("x")
+        out_path = os.path.join(blocker, "rds.csv")
+        rc, out, err = self._run(["--format", "csv", "--output", out_path],
+                                 [self._payload()])
+        self.assertEqual(rc, 1)
+        self.assertIn("CSV 文件写出失败", err)
+
+    def test_output_path_with_mutating_word_is_allowed(self):
+        out_path = os.path.join(self.tmpdir, "update-reports", "rds.csv")
+        rc, out, err = self._run(["--output", out_path], [self._payload()])
+        self.assertEqual(rc, 0)
+        self.assertEqual(err, "")
+        self.assertTrue(os.path.isfile(out_path))
+
+    def test_table_output_unchanged_without_export_flags(self):
+        os.chdir(self.tmpdir)
+        rc, out, _ = self._run(["--format", "table"], [self._payload()])
+        self.assertEqual(rc, 0)
+        self.assertIn("RDS 实例列表（共 2 个，完整字段）", out)
+        self.assertEqual([n for n in os.listdir(self.tmpdir)
+                          if n.endswith(".csv")], [])
+
+
+class TestAtomicWriters(unittest.TestCase):
+    def setUp(self):
+        self.tmpdir = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, self.tmpdir, True)
+
+    def test_write_csv_is_atomic_on_success(self):
+        out_path = os.path.join(self.tmpdir, "atomic.csv")
+        write_csv("a,b\r\n1,2\r\n", out_path)
+        with open(out_path, "rb") as handle:
+            self.assertTrue(handle.read().startswith(b"\xef\xbb\xbf"))
+        self.assertEqual([n for n in os.listdir(self.tmpdir)
+                          if n.startswith(".rds-csv-")], [])
+
+    def test_write_csv_failure_uses_csv_label_and_cleans_temp(self):
+        out_path = os.path.join(self.tmpdir, "atomic.csv")
+        with mock.patch("list_rds.os.replace", side_effect=OSError("boom")):
+            with self.assertRaises(ApiError) as ctx:
+                write_csv("a,b\r\n", out_path)
+        self.assertIn("CSV 文件写出失败", str(ctx.exception))
+        self.assertFalse(os.path.exists(out_path))
+        self.assertEqual([n for n in os.listdir(self.tmpdir)
+                          if n.startswith(".rds-csv-")], [])
+
+    def test_write_markdown_still_uses_markdown_label(self):
+        out_path = os.path.join(self.tmpdir, "atomic.md")
+        with mock.patch("list_rds.os.replace", side_effect=OSError("boom")):
+            with self.assertRaises(ApiError) as ctx:
+                write_markdown("hello", out_path)
+        self.assertIn("Markdown 文件写出失败", str(ctx.exception))
+
+    def test_write_text_atomic_shared_helper(self):
+        out_path = os.path.join(self.tmpdir, "nested", "x.txt")
+        write_text_atomic("hello", out_path, "TXT 文件写出失败",
+                          encoding="utf-8", tmp_prefix=".rds-txt-")
+        with open(out_path, encoding="utf-8") as handle:
+            self.assertEqual(handle.read(), "hello")
+        self.assertEqual([n for n in os.listdir(os.path.dirname(out_path))
+                          if n.startswith(".rds-txt-")], [])
+
+    def test_write_text_atomic_uncreatable_directory(self):
+        blocker = os.path.join(self.tmpdir, "blocker")
+        with open(blocker, "w", encoding="utf-8") as handle:
+            handle.write("x")
+        with self.assertRaises(ApiError) as ctx:
+            write_text_atomic("hello", os.path.join(blocker, "y.csv"),
+                              "CSV 文件写出失败")
+        self.assertIn("不可创建", str(ctx.exception))
 
 
 class TestErrorHierarchy(unittest.TestCase):

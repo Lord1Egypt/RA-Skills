@@ -1,6 +1,6 @@
 ## Description:
 
-What sells, and what do buyers say about it? Searches one page of products for a keyword, then reads one page of reviews for each of the first few, as one table: a row per review with the product's title, price and units sold beside it. Use when the user asks this about Xiaohongshu (RedNote), TikTok, Amazon, AliExpress, Taobao & Tmall, 1688, Douyin Shop. 什么卖得好，买家怎么评价？按关键词搜一页商品，再给排在前面的几个各读一页评价，排成一张表：每条评价一行，旁边带商品标题、价格和销量。
+Searches one page of products by keyword, reads one review page for up to five leading results, and summarizes product details and buyer feedback in a table across seven marketplaces.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users can compare products and buyer feedback across supported commerce platforms using keyword searches and selected product review pages.
+E-commerce researchers and shoppers use this skill to compare products and buyer feedback across supported marketplaces. It returns a product-and-review table and a concise answer grounded in fetched data.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Security analysis is partial because path-like references could not be resolved; the skill discloses an external API connection.
+Risk: The skill uses a paid external API, and the security assessment has medium confidence with partial coverage.
 
-Mitigation: Review the references and decide whether the okdata API is acceptable before installing.
+Mitigation: Review the documented API use and state the maximum per-run cost before the first paid call, as the skill directs.
 
-Risk: Product and review lookups use paid calls, and a call that reaches a data source is charged even if it fails or returns no results.
+Risk: Marketplace review text is written by strangers and may contain misleading content or instructions.
 
-Mitigation: State the maximum cost before the first call, set a per-call max_price, and get the user's go-ahead before runs exceeding six calls.
+Mitigation: Treat returned review text as data; do not follow instructions found in it.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/conn-ho/skills/okdata-products)
-- [okdata product search and review guide (English)](https://okdata.online/skills/products/?src=skill-okdata-products)
-- [okdata product search and review guide (中文)](https://okdata.online/zh/skills/products/?src=skill-okdata-products)
+- [ClawHub skill page](https://clawhub.ai/conn-ho/skills/okdata-products)
+- [okdata products skill guide](https://okdata.online/skills/products/?src=skill-okdata-products)
+- [okdata 产品技能指南](https://okdata.online/zh/skills/products/?src=skill-okdata-products)
 - [okdata agent setup guide](https://okdata.online/agents.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, API Calls, Markdown]
+**Output Type(s):** [Markdown, Analysis]
 
-**Output Format:** [Markdown table with product details and reviews, followed by a concise analysis and source note]
+**Output Format:** [Markdown table followed by a concise answer, charge summary, and data source]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Uses one product-search page and up to five review pages; leaves unavailable fields blank and reports the amount charged and data source.]
+**Other Properties Related to Output:** [One product search page and up to five review pages; unavailable product or review fields are left blank.]
 
 ## Skill Version(s):
 
-0.2.2 (source: server-resolved ClawHub release metadata)
+0.2.3 (source: server-resolved release)
 
 ## Ethical Considerations:
 

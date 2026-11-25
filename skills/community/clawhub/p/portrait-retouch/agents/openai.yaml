@@ -1,0 +1,4 @@
+interface:
+  display_name: "自然人像精修"
+  short_description: "用原照片局部去痘、减轻油光和眼下阴影，保留个人特征，并排查看修前修后效果"
+  default_prompt: "用 $portrait-retouch 轻修这张照片，按原图挑出最值得调整的细节，保留皮肤纹理，给我成片和前后对比。"

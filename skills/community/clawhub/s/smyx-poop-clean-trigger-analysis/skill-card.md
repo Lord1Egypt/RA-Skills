@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes video from a pet toilet or designated area to report suspected defecation events and issue a cleaning trigger after the pet leaves; a separate smart-home integration is needed to operate a vacuum.
+Analyzes video of a pet's designated toilet area for defecation events and emits a cleaning trigger after the pet leaves.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Pet owners and smart-home integrators can use it to analyze camera video from a designated pet toilet, record suspected defecation events, and pass a trigger to a separately configured cleaning system.
+Pet owners use the skill to review video from a designated pet toilet area, identify a possible defecation event, and receive a cleaning trigger after the pet leaves. The trigger is an event signal; connecting it to a robot vacuum requires a compatible home automation integration.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security evidence marks the release suspicious due to reported credential handling, account and profile persistence, and capabilities unrelated to its stated purpose. The scan is incomplete and the external upload behavior is unclear.
+Risk: Camera footage may be processed externally and expose private household imagery.
 
-Mitigation: Avoid installation until the publisher explains these capabilities and the upload path; verify the explanation and complete a security review before providing credentials or pet video.
+Mitigation: Submit only footage you are authorized to share, limit it to the relevant area, and review the service's processing and retention terms before uploading.
+
+Risk: A reported access-control flaw could expose reports across users.
+
+Mitigation: Limit access to reports and avoid submitting sensitive footage until report access controls have been verified.
+
+Risk: The security review flags account or credential handling beyond the stated purpose and unclear export-only behavior.
+
+Mitigation: Review requested account permissions and credential handling, protect any keys, and confirm what an operation will export before running it.
 
 ## Reference(s):
 
-- [API reference](artifact/references/api_doc.md)
+- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-poop-clean-trigger-analysis)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
-- [ClawHub skill listing](https://clawhub.ai/smyx-sunjinhui/skills/smyx-poop-clean-trigger-analysis)
+- [API reference](references/api_doc.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Markdown, Event signal]
+**Output Type(s):** [Text, Markdown, JSON]
 
-**Output Format:** [Structured analysis results and event status in JSON or text; report lists can be presented as Markdown tables.]
+**Output Format:** [Structured analysis results in JSON; history report listings in Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Vision-based event detection only; it does not provide medical diagnosis or directly operate a vacuum.]
+**Other Properties Related to Output:** [May include event status, timestamps, cleaning trigger signals, and report links when available.]
 
 ## Skill Version(s):
 
-1.0.15 (source: server-resolved release evidence)
+1.0.17 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

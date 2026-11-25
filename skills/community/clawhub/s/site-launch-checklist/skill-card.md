@@ -1,46 +1,66 @@
-## Description: <br>
-Guides agents through an interactive pre-launch website audit covering DNS, analytics, legal compliance, security headers, SEO/GEO, copy quality, social previews, favicons, quality gates, and weekly SEO maintenance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-launch checklist for shipping a new website. Orchestrates analytics setup (GA4, PostHog, Google Search Console, Ahrefs), legal compliance, security headers and audit, SEO and GEO with keyword research validated against Google Trends (robots.txt, sitemaps, llms.txt, AI policy, schema markup, hreflang), copywriting consistency via a TONE.md and a humanizer pass in the matching language, OpenGraph and social previews, full favicon set with manifest, quality gates (Lighthouse, Core Web Vitals, WCAG accessibility, mobile testing), and setup of a weekly SEO agent.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers, site owners, and launch teams use this skill to run an interactive pre-launch audit for marketing, documentation, SaaS, course, and portfolio sites. It helps verify launch readiness and organize blockers, recommended fixes, and optional follow-ups before and after release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags the skill as suspicious because it can involve persistent automation, credential-backed fallbacks, external posting, and permission-bypassing scheduled runs. <br>
-Mitigation: Require explicit confirmation for third-party installs, tracking tools, credential-based API calls, Slack delivery, and scheduled agents; avoid permission-bypass cron runs unless the environment is tightly sandboxed. <br>
-Risk: The skill may set up analytics, SEO, and monitoring services that handle site traffic, search data, or service credentials. <br>
-Mitigation: Review data flows and consent requirements before enabling integrations, keep credentials in a secrets manager, and use least-privilege service accounts where possible. <br>
-Risk: Generated launch, SEO, and security recommendations can affect production site behavior if applied without review. <br>
-Mitigation: Review proposed changes before execution, test configuration changes in staging when practical, and verify results with the provided command checks before launch. <br>
+## Use Case:
 
+Developers, site owners, and launch teams use this skill to run an interactive pre-launch audit for websites, apps, documentation sites, SaaS pages, paid courses, and portfolios. It helps verify infrastructure, analytics, legal/compliance posture, security headers, SEO/GEO readiness, social previews, favicons, quality gates, ecosystem links, and weekly SEO maintenance setup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samber/site-launch-checklist) <br>
-- [Publisher homepage](https://github.com/samber/cc-skills) <br>
-- [Decisions and matrices](references/decisions.md) <br>
-- [Templates](references/templates.md) <br>
-- [Weekly SEO maintenance sub-agent](references/weekly-seo-agent.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Interactive Markdown guidance with command snippets and generated configuration or file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Asks for user confirmation before third-party installs, tracking setup, credential-backed API calls, Slack delivery, or scheduled agents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md metadata) <br>
+Risk: The skill can lead an agent to install third-party skills or tools that are not pinned to immutable versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before each install and review or pin remote packages, skills, commits, and tools before use.
+
+Risk: The weekly SEO maintenance agent may run on a recurring or headless schedule.
+
+Mitigation: Run scheduled jobs only in a tightly sandboxed account with read-only credentials where possible and explicit approvals for shell commands, file writes, and outbound posting.
+
+Risk: API credentials and Slack webhooks may be used for analytics, SEO, and reporting workflows.
+
+Mitigation: Store credentials in a secrets manager or uncommitted environment configuration, limit credential scope, and review outbound reports before posting to external channels.
+
+Risk: Security evidence marks the release suspicious because it combines remote installs, credential-backed calls, recurring agents, and outbound data flows.
+
+Mitigation: Install only after reviewing the release, scan results, requested tools, and data-flow implications for the target workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samber/skills/site-launch-checklist)
+- [Publisher profile](https://clawhub.ai/user/samber)
+- [Source homepage](https://github.com/samber/cc-skills)
+- [Decisions and matrices](references/decisions.md)
+- [Templates](references/templates.md)
+- [Weekly SEO maintenance sub-agent](references/weekly-seo-agent.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown status reports, checklist guidance, inline shell commands, configuration snippets, and optional agent definition files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces phase-by-phase launch status with blockers, recommended fixes, optional improvements, and optional weekly SEO report files.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

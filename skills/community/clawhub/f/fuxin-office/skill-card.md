@@ -1,6 +1,6 @@
 ## Description:
 
-Coordinates Fuxin Office tasks across Word, Excel, and PowerPoint, including document editing, read-only questions, and multi-step workflows.
+The official skill for the Fuxin Office client lets agents handle local Word, Excel, and PowerPoint documents through natural-language requests.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+Proprietary
 
 ## Use Case:
 
-Office users can ask an agent to draft and revise Word documents, analyze Excel sheets, prepare presentations, answer questions about open documents, and coordinate tasks across applications.
+External users can ask the Fuxin Office client to create, edit, organize, and analyze local Word, Excel, and PowerPoint documents, or ask questions about their contents. The skill routes each request to the relevant Office workflow and reports the result.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The agent can modify the active Word, Excel, or PowerPoint document.
+Risk: The documented Chinese-language output requirements may not fit every user's needs.
 
-Mitigation: Install only if local document access is intended; check the active document and review edits before saving.
+Mitigation: Confirm the expected response language and review generated content before use.
 
-Risk: Saving document changes is not covered by ordinary undo.
+Risk: One skill component was only partially inspected, leaving some review evidence incomplete.
 
-Mitigation: Require user confirmation before saving; use the available undo guidance for ordinary edits.
+Mitigation: Review the partially inspected component before deployment.
 
 ## Reference(s):
 
-- [Fuxin Office skill on ClawHub](https://clawhub.ai/foxitnet/skills/fuxin-office)
-- [Connection and preflight reference](artifact/reference/bridge.md)
-- [Document question-answering reference](artifact/reference/doc-qa.md)
+- [ClawHub skill release](https://clawhub.ai/foxitnet/skills/fuxin-office)
+- [Publisher profile](https://clawhub.ai/user/foxitnet)
+- [Fuxin Office](https://www.fuxinoffice.com)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Text, Guidance, Files]
 
-**Output Format:** [Chinese-language progress updates and results summaries]
+**Output Format:** [Natural-language responses and updates to Word, Excel, and PowerPoint documents]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Can also modify open Office documents through the local Fuxin Office bridge.]
+**Other Properties Related to Output:** [Replies default to Simplified Chinese and follow the user's language; document changes depend on the requested task.]
 
 ## Skill Version(s):
 
-1.0.1 (source: ClawHub release evidence)
+1.0.3 (source: frontmatter, CHANGELOG, manifest)
 
 ## Ethical Considerations:
 

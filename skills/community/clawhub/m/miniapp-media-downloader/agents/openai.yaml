@@ -1,0 +1,4 @@
+interface:
+  display_name: "小程序素材下载"
+  short_description: "用于维护视频号抖音小红书解析下载工作流配置和问题排查"
+  default_prompt: "Use $miniapp-media-downloader to inspect and update the mini-program media downloader workflow."

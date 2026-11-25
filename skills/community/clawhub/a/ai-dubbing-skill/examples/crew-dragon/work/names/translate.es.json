@@ -1,0 +1,83 @@
+{
+ "from": "en",
+ "to": "es",
+ "how": "Fill every 'text' with the translation of 'source': the same meaning in natural es, short enough to say aloud in the cue's time, as it is both spoken and shown; keep names and numbers. Optional 'emphasis': words to colour, as in fixes.json. Don't change i, start or end.",
+ "emphasis": [
+  "maldigan nuestros nombres",
+  "tan fácil",
+  "camino seguro a casa",
+  "salvar a la tripulación"
+ ],
+ "cues": [
+  {
+   "i": 1,
+   "start": 0.0,
+   "end": 5.157,
+   "source": "I think one of the ways to describe it for both Doug and I is that we're hopeful",
+   "text": "Creo que una forma de describirlo, para Doug y para mí, es que esperamos"
+  },
+  {
+   "i": 2,
+   "start": 5.24,
+   "end": 11.177,
+   "source": "that future crews on Dragon vehicles headed to NASA space stations",
+   "text": "que las futuras tripulaciones de las naves Dragon rumbo a estaciones de la NASA"
+  },
+  {
+   "i": 3,
+   "start": 11.26,
+   "end": 16.297,
+   "source": "aren't cursing our names because we accepted some feature that was complicated",
+   "text": "no maldigan nuestros nombres por aceptar algo complicado,"
+  },
+  {
+   "i": 4,
+   "start": 16.38,
+   "end": 17.857,
+   "source": "and hard to train, and in the end,",
+   "text": "difícil de entrenar,"
+  },
+  {
+   "i": 5,
+   "start": 17.94,
+   "end": 19.257,
+   "source": "hard to operate.",
+   "text": "y al final, de operar."
+  },
+  {
+   "i": 6,
+   "start": 19.34,
+   "end": 21.297,
+   "source": "They're like, yeah, I can't understand.",
+   "text": "Que no digan: no entiendo nada."
+  },
+  {
+   "i": 7,
+   "start": 21.38,
+   "end": 22.917,
+   "source": "I don't even remember why that's so easy,",
+   "text": "Ni recuerdo por qué es tan fácil,"
+  },
+  {
+   "i": 8,
+   "start": 23.0,
+   "end": 24.237,
+   "source": "but it is so easy.",
+   "text": "pero lo es."
+  },
+  {
+   "i": 9,
+   "start": 24.32,
+   "end": 26.037,
+   "source": "And so that they forget about us,",
+   "text": "Y que se olviden de nosotros,"
+  },
+  {
+   "i": 10,
+   "start": 26.12,
+   "end": 29.1,
+   "source": "because they don't have anything to curse our names over.",
+   "text": "porque no tengan nada por qué maldecirnos."
+  }
+ ]
+}

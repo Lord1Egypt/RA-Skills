@@ -53,9 +53,15 @@ CHECKS: list[tuple[str, str, str, str, str, str]] = [
      r"- id: timer[\s\S]{0,80}@deepseek-ai/cordis-plugin-timer", "has"),
 
     # ── 17.3 浏览器半侧产物格式 ───────────────────────────────────────────
+    # 0.2.2-rc.2 重写：语义未变、**代码形态变了** —— banner 由「块体函数 + registration 局部量」
+    # 改成**单行箭头模板串**（直接产出 `__ModuleLoader__.load({...})` 前缀），署名前缀的拼接
+    # 拆到新增的 `postBanner` 钩子。旧锚 `banner: \(chunk\) => \{` 因此 STALE。
+    # 新锚点只取**语义 token**（箭头式 banner → factory 串 → postBanner 存在），不锚缩进与
+    # 引号形态；两棵树实测：rc.1 不命中 / rc.2 命中 `tsdown.client.ts:941`（区分度已证）。
     ("B01", "S", "客户端 bundle 是 lazy-CJS factory：banner 按 chunk 生成，非入口分块多带 chunk 字段",
      "packages/client/tsdown.client.ts",
-     r"banner: \(chunk\) => \{[\s\S]{0,240}?window\.__ModuleLoader__\.load\(\{ id: \$\{JSON\.stringify\(id\)\}, \$\{chunk\.isEntry", "has"),
+     r"banner: chunk => `window\.__ModuleLoader__\.load\(\{ id: \$\{JSON\.stringify\(id\)\},"
+     r"[\s\S]{0,200}?factory: \(require\) => \{`[\s\S]{0,300}?postBanner:", "has"),
     ("B02", "S", "intro 建立 CJS 的 module/exports 外壳",
      "packages/client/tsdown.client.ts",
      r"intro: 'var module = \{ exports: \{\} \}; var exports = module\.exports;'", "has"),

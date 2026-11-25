@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-const log = require("../utils/log");
 const search = require("../api/search");
 const token = require("../utils/token");
 const utils = require("../utils/utils");
@@ -9,7 +8,8 @@ const { parseArgs, buildHelp } = require("../utils/args");
 const {
   emitError,
   emitEmpty,
-  printSuccessEnvelope,
+  buildSuccessEnvelope,
+  finishSuccess,
   emitUncaught,
 } = require("../utils/output");
 
@@ -186,18 +186,16 @@ async function main() {
     return;
   }
 
-  const { payload: finalOutput, text } = printSuccessEnvelope(
+  const finalOutput = buildSuccessEnvelope(
     "搜索任务完成",
     startTime,
     searchRequest,
     searchTask,
   );
-  utils.printSuccess(`搜索任务完成, 共返回 ${finalOutput.results.length} 条结果`);
-
-  await log.taskWrite(
-    `${startTime}_${keyword}_${sort}_${time}_${limit}_search.json`,
-    text,
-  );
+  await finishSuccess(finalOutput, {
+    logFilename: `${startTime}_${keyword}_${sort}_${time}_${limit}_search.json`,
+    stderrMessage: `搜索任务完成, 共返回 ${finalOutput.results.length} 条结果`,
+  });
 }
 
 main().catch((error) => {

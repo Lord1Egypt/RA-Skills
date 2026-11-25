@@ -125,7 +125,7 @@ Every machine-specific value is an environment variable with a working default:
 | Variable | Default | Changes |
 |---|---|---|
 | `XPS_SSH_HOST` | `xps` | ssh destination (an alias, not an address) |
-| `XPS_URL` | `https://watch.plex.tv/live-tv` | the page opened |
+| `XPS_URL` | `https://watch.plex.tv/live-tv/channel/newsworld` | the page opened (the NewsWorld channel; `…/live-tv` opens the guide) |
 | `XPS_PROXY_URL` | `http://127.0.0.1:10808` | proxy handed to Brave |
 | `XPS_PROXY_ADDR` | `127.0.0.1:10808` | address the readiness check polls |
 | `XPS_V2RAY_DIR` | `$HOME/pool/Downloads/rog_drive/v2rayN-linux-64` | proxy binary location |

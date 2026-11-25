@@ -1,6 +1,6 @@
 ## Description:
 
-Enables agents to manage Stockpile storefronts, inventory, appraisals, customer inquiries, and order fulfillment through MCP tools.
+Autonomous e-commerce storefront operations, store inventory curation, collectible valuations, and order fulfillment via Stockpile MCP.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Store operators and developers use this skill to let agents search products, manage storefronts and inventory, appraise collectibles, and handle orders through Stockpile.
+External merchants and agent developers use Stockpile to manage storefront inventory, route customer inquiries, maintain listings, fulfill orders, and review collectible appraisals.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Agent access to live storefront, inventory, checkout, fulfillment, and message-routing actions can change commerce operations without adequate scoping or confirmation.
+Risk: ClawScan reports that consequential store actions may bypass the documented approval boundary, with billing, appraisal, and message-routing capabilities also flagged.
 
-Mitigation: Review before using a production account; use a least-privilege API key and trial the skill on a non-production or low-risk store.
+Mitigation: Review the approval boundary and these behaviors before use; require explicit user confirmation for inventory changes, message routing, paid upgrades, and order fulfillment, and independently assess appraisal results.
 
-Risk: Inventory deletion, batch listing, checkout creation, fulfillment, message routing, and automated sweeps can have consequential effects.
+Risk: ClawScan reports unpinned install sources and partial scan coverage.
 
-Mitigation: Require human approval for these actions and pin the package version when the runner supports it.
+Mitigation: Use a verified, pinned package or image release and check exact dependency versions against the reported advisories.
 
 ## Reference(s):
 
 - [Stockpile Market](https://stockpile.market)
-- [Stockpile Agent Hub and API keys](https://stockpile.market/agents?tab=api)
-- [Model Context Protocol](https://modelcontextprotocol.io/)
+- [Stockpile agent documentation](https://stockpile.market/agents)
+- [ClawHub release](https://clawhub.ai/casualbrooks/skills/mcp-stockpile)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Guidance, API calls]
+**Output Type(s):** [Text, JSON, Guidance]
 
-**Output Format:** [Text and structured MCP tool responses]
+**Output Format:** [JSON-formatted MCP tool responses and text results]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Actions require a Stockpile API key for authenticated account operations.]
+**Other Properties Related to Output:** [Tool-dependent results covering stores, inventory, orders, routing, and appraisals.]
 
 ## Skill Version(s):
 
-2.0.1 (source: skill frontmatter, pyproject.toml, ClawHub release)
+2.4.0 (source: SKILL.md frontmatter, pyproject.toml)
 
 ## Ethical Considerations:
 

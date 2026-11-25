@@ -2,7 +2,7 @@
 
 ## 需求
 
-Validated demand: Agent users show strong demand for Gog-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 12 separate online signals across 4 source families, so it represents broader demand rather than a single isolated request.
+Validated demand: Agent users show strong demand for Gog-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
 
 目标用户：AI-agent users, skill authors, maintainers, and teams who want proven popular skill patterns adapted into more reliable or adjacent workflows
 
@@ -10,22 +10,22 @@ Validated demand: Agent users show strong demand for Gog-style workflows on Claw
 
 需求评分：100/100
 
-证据覆盖：12 条信号，覆盖 4 个来源类型。
+证据覆盖：12 条信号，覆盖 3 个来源类型。
 
 ## 来源证据
 
-- clawhub-popular-skill：[Popular Clawhub skill demand: self-improving agent has 493,493 downloads](https://clawhub.ai/skills/self-improving-agent)
-- clawhub-popular-skill：[Popular Clawhub skill demand: Gog has 199,902 downloads](https://clawhub.ai/skills/gog)
-- clawhub-popular-skill：[Popular Clawhub skill demand: Github has 205,418 downloads](https://clawhub.ai/skills/github)
-- clawhub-popular-skill：[Popular Clawhub skill demand: ontology has 201,919 downloads](https://clawhub.ai/skills/ontology)
-- clawhub-popular-skill：[Popular Clawhub skill demand: Agent Browser has 159,909 downloads](https://clawhub.ai/skills/agent-browser-clawdbot)
-- clawhub-popular-skill：[Popular Clawhub skill demand: Obsidian has 113,345 downloads](https://clawhub.ai/skills/obsidian)
-- clawhub-popular-skill：[Popular Clawhub skill demand: Nano Pdf has 123,827 downloads](https://clawhub.ai/skills/nano-pdf)
-- clawhub-popular-skill：[Popular Clawhub skill demand: PollyReach has 102,357 downloads](https://clawhub.ai/skills/pollyreach)
-- github-issues：[Mita handoff: isolated SAM boxes, per-instance permissions, and product integration](https://github.com/ReactionLabs/sam/issues/32)
-- v2ex-latest：[一周 391 条新项目，我留下这 10 条](https://www.v2ex.com/t/1257638)
-- segmentfault-search：[HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
-- segmentfault-search：[javascript](https://segmentfault.com/t/javascript)
+- clawhub-popular-skill：[Popular Clawhub skill demand: self-improving agent has 495,007 downloads](https://clawhub.ai/skills/self-improving-agent)
+- clawhub-popular-skill：[Popular Clawhub skill demand: Gog has 200,461 downloads](https://clawhub.ai/skills/gog)
+- v2ex-hot：[2026 年我的常用 Mac 软件分享](https://www.v2ex.com/t/1259301)
+- clawhub-popular-skill：[Popular Clawhub skill demand: Github has 206,208 downloads](https://clawhub.ai/skills/github)
+- clawhub-popular-skill：[Popular Clawhub skill demand: ontology has 202,314 downloads](https://clawhub.ai/skills/ontology)
+- clawhub-popular-skill：[Popular Clawhub skill demand: Agent Browser has 160,405 downloads](https://clawhub.ai/skills/agent-browser-clawdbot)
+- clawhub-popular-skill：[Popular Clawhub skill demand: Obsidian has 113,688 downloads](https://clawhub.ai/skills/obsidian)
+- clawhub-popular-skill：[Popular Clawhub skill demand: Nano Pdf has 124,054 downloads](https://clawhub.ai/skills/nano-pdf)
+- clawhub-popular-skill：[Popular Clawhub skill demand: PollyReach has 102,470 downloads](https://clawhub.ai/skills/pollyreach)
+- github-issues：[[Feature]: Add agent workspace and inbound keyword routing for ClawBot](https://github.com/nightly-labs/openbot/issues/15620)
+- github-issues：[[Feature Request]: Native, File-Based Per-Project Auto-Memory (Shared Across Antigravity App & agy CLI)](https://github.com/google-antigravity/antigravity-cli/issues/1799)
+- github-issues：[[Feature]: Native SSH remote environment execution backend](https://github.com/nightly-labs/openbot/issues/15619)
 
 ## 这个技能如何满足需求
 

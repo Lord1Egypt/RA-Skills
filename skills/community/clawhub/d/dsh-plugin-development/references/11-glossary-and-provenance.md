@@ -2,7 +2,7 @@
 
 > **本文件用途**：术语表、事实来源清单（含「不存在/未证实」的明确清单）、已知的官方文档内部矛盾、以及两套手册各自的诚实边界声明与素材索引。
 > **合成来源**：DSH插件开发指导手册.md（附录 D 术语表 + 附录 F 事实来源） + DSH插件开发实战补充-模板与踩坑.md（附录 素材来源与边界）
-> **快照警告**：本文件是 DSH 插件知识的**冻结快照**（基线 `dsh-v0.2.2-alpha.2` / commit `f3803c9697`，2026-10-28），其中的**接口名级事实可能已过时**。
+> **快照警告**：本文件是 DSH 插件知识的**冻结快照**（基线 `dsh-v0.2.2-rc.5` / commit `9c2670d3bc`，2026-11-18），其中的**接口名级事实可能已过时**。
 > **写代码前先核验**：`bash scripts/dsh-api-probe.sh <DSH 仓库路径>`（退出码 1 = 有 STALE，**不要直接照抄**）。
 > **分级与核验规则**：`references/00-version-gate.md`、逐条登记 `references/api-claims.md`。
 > **素材名约定**：正文里出现的 `Xxx-yyy.md`（如 `E-official-templates.md`、`B-tools-external.md`）是**生成时的源调研笔记名**，其内容在生成时已合并进本文件——**不是 skill 内的文件**，不必去别处找。
@@ -52,8 +52,8 @@
 # 附录 F 本手册的事实来源
 
 **仓库**：`deepseek-ai/deepseek-harness`
-**基线 commit**：`f3803c969748fa190a683e469daa699857e9afe8`（2026-10-28）
-**版本**：`dsh-v0.2.2-alpha.2`
+**基线 commit**：`9c2670d3bce5275e0d1610272958121af87787bb`（2026-11-18）
+**版本**：`dsh-v0.2.2-rc.5`
 **核查日期**：2026-09-11
 
 ## F.1 本手册引用的一手来源
@@ -89,6 +89,7 @@
 | `docs/cookbook/extension-cookbook.zh.md` 的代码片段 | 文件自述**无法直接复制运行**（省略了 import 与辅助实现） |
 | `docs/user/develop/basic/index.zh.md` 展示了对象/类形态用 `export default` | 与 `packages/AGENTS.md:5`「函数插件无 default export」并存；**两形态不要混用** |
 | `adding-a-package.zh.md:25` 说 `private: true` 必填 | 源码模板 `packages/core/tools/package.json` **无此字段**（用 `publishConfig.access: public`）；以 `pnpm run constraints` 实际行为为准 |
+| 🔴 `docs/upgrade-guide/v0.2.2-alpha.2/fs-observation-policy-default-off/guide.zh.md` 正文说「`dsh-base` 的 `tool-fs` 行与 Web 的 `standard` preset 现在列出 `apply_patch`（`applyPatch: true`）」 | **以 tag 内代码为准，指南这句已被同区间后续提交推翻**：`e1609fe164 fix(fs): temporarily disable apply_patch in shipped defaults`（2026-11-02）把 `packages/bundle/base/cordis.patch.yml:300` 与 Web 的 `standard`(`presets/standard.patch.yml:31`) / `ptc`(`:31`) / `cordis`(`:34`) **全部改成 `applyPatch: false`**，而 `Config.applyPatch` 的默认值也是 `false`（`packages/fs/tool-fs/src/index.ts:53`）→ **当前基线默认没有 `apply_patch`**。⚠️ 这类「指南先写意图、代码后改回来」的倒挂，只能靠 `git log -S` 追翻转，别照抄指南 |
 
 ## F.3 明确「不存在 / 未证实」的清单
 
@@ -206,7 +207,7 @@
 3. **上界面**：按 **T8/T9** 做 UI 与设置卡片（需要先跑通 `pnpm install`）。
 4. **长期**：把本文件的 **第五篇** 提示词存成片段，每次让 AI 写 DSH 代码时先贴上"铁律：要求出处"。
 
-> ⚠️ **最后一条风险提示**：本文件基线是 commit `f3803c9697`（`dsh-v0.2.2-alpha.2`，2026-10-28）。DSH 自称 pre-stable、tag 间隔中位数约 1.1 天且有过破坏性变更。**升级前先跑 `git log --grep='!'` 评估影响**，并把 `package.json` 的 `peerDependencies` 写成**区间**而非钉死某个 rc 号。⚠️ 另注：若你还声明了 **`engines.dsh`**，自 `dsh-v0.2.1-alpha.4` 起**只有它决定兼容性**（DSH peer 范围**不再**放宽或收窄它，写 `workspace:` 即判不兼容）→ 要么给它完整范围，要么**不写**、退回 peer 检查（见 `07-conventions.md` §2）。
+> ⚠️ **最后一条风险提示**：本文件基线是 commit `9c2670d3bc`（`dsh-v0.2.2-rc.5`，2026-11-18）。DSH 自称 pre-stable、tag 间隔中位数约 1.4 天且有过破坏性变更。**升级前先跑 `git log --grep='!'` 评估影响**，并把 `package.json` 的 `peerDependencies` 写成**区间**而非钉死某个 rc 号。⚠️ 另注：若你还声明了 **`engines.dsh`**，自 `dsh-v0.2.1-alpha.4` 起**只有它决定兼容性**（DSH peer 范围**不再**放宽或收窄它，写 `workspace:` 即判不兼容）→ 要么给它完整范围，要么**不写**、退回 peer 检查（见 `07-conventions.md` §2）。
 
 ---
 

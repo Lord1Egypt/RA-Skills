@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Sales and operations teams use AI agents to manage Instantly campaigns, leads, sending accounts, and outreach analytics through Superagnt. The skill also supports related account settings and lead workflows.
+Sales and operations teams can use an agent to manage Instantly campaigns and leads, review outreach performance, and automate connected account workflows.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review flags an account-credit lookup that does not match the stated outreach purpose, and the skill sends requests to Superagnt using an API key.
+Risk: The setup check requests account credits from the superagnt API, which also receives the supplied API key.
 
-Mitigation: Review the credit lookup and confirm you are comfortable using Superagnt and providing it your API key before installing.
+Mitigation: Use the integration only if you trust superagnt with the key, and confirm the credits check fits your intended use.
 
-Risk: The documented API can send messages, delete or update records, change settings, and access billing or API-key administration.
+Risk: The connected account can send or forward email and make destructive or administrative changes, including deleting records or changing account settings.
 
-Mitigation: Use only endpoints needed for the user's request, confirm before destructive or outbound actions, and require explicit authorization for account administration, key creation, billing changes, or purchases.
+Mitigation: Confirm outbound, destructive, billing, or credential-changing actions with the user, and call only the endpoints needed for the requested task.
 
 ## Reference(s):
 
-- [Superagnt Instantly integration documentation](https://superagnt.com/r/ch-instantly-outreach-docs)
-- [Superagnt MCP client setup](https://www.superagnt.com/install)
-- [Connect an Instantly account](https://app.superagnt.com/dashboard/connections)
-- [Superagnt API key setup](https://superagnt.com/r/ch-instantly-outreach-key)
+- [Integration documentation](https://superagnt.com/r/ch-instantly-outreach-docs)
+- [Connection setup](https://app.superagnt.com/dashboard/connections)
+- [API key access](https://superagnt.com/r/ch-instantly-outreach-key)
+- [ClawHub listing](https://clawhub.ai/superagnt/skills/instantly-outreach)
 
 ## Skill Output:
 
-**Output Type(s):** [API calls, JSON, Shell commands, Guidance]
+**Output Type(s):** [Shell commands, API requests, Guidance]
 
-**Output Format:** [Markdown instructions with curl commands and JSON API responses]
+**Output Format:** [Markdown guidance with curl examples, endpoint tables, and request schemas]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Operations may send emails, modify or delete records, change account settings, or manage billing and API keys, depending on the requested endpoint.]
+**Other Properties Related to Output:** [Requires curl and SUPERAGNT_API_KEY; actions use the connected Instantly account.]
 
 ## Skill Version(s):
 
-2.0.14 (source: frontmatter, server release metadata)
+2.0.19 (source: artifact frontmatter, server release)
 
 ## Ethical Considerations:
 

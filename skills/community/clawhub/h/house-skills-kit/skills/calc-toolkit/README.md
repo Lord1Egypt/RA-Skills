@@ -25,7 +25,9 @@ python3 skills/calc-toolkit/floor.py --price 25000 --area 100 --floor 15 --top 3
 | ⑦-6 | 一手房成本测算器 | `newhome.py` | 契税/维修基金（按城市×物业类型三档）/首年物业/登记工本费/贷款杂费，五类分组 |
 | ⑦-15 | 楼层差价+折扣叠加 | `floor.py` | 楼层加价 × 营销折上折 × 付款折扣，**折扣真伪校验**（防"先涨后折"）、邻层速查 |
 | ⑦-16 | 公积金贷款额度测算器 | `fund.py` | 四限取最低（上限封顶/房价成数/还贷能力/余额倍数×缴存时间系数），多子女/绿建/人才上浮；昆明=2026-04-07新政（单70/双100，叠加至150万） |
-| ⑦-17 | 佣金/提成试算器 | `commission.py` | 二手中介费买卖分账+活动折扣；渠道阶梯**双算法对账**（全额跳档vs分段累进）；返佣+团队分佣一条龙 |
+| ⑦-17 | 佣金/提成试算器 | `commission.py` | 二手中介费买卖分账+活动折扣；渠道阶梯**双算法对账**（全额跳档vs分段累进）；**租赁佣金**（月租×佣金月数、房东/租客分摊、占年租金折算）；返佣+团队分佣一条龙 |
+| ⑦-22 | 开发项目投前测算器 | `feasibility.py` | 总货值/总投资/净利率/**双口径 IRR（全投资 + 自有资金）**/盈亏平衡售价/三因子 ±10% 敏感性；土地可给总价或楼面地价 |
+| ⑦-23 | 商业物业收益与估值 | `commercial.py` | NOI、毛/净回报、租售比、静态回收、**收益法估值 V=NOI/cap**、隐含 cap 反查、持有期 IRR（含退出 cap） |
 | ⑦-18 | 得房率与单价换算器 | `efficiency.py` | 建面↔套内↔公摊↔使用面积链+反推；单价双向换算；双盘套内口径比价照妖镜 |
 | ⑦-19 | 租金回报率计算器 | `rent.py` | 租售比/毛净回报率/回收年限；五档坐标（价值线/回本线/50城均值/存款/以租养贷）；目标回报率反推 |
 | ⑦-20 | LPR变动影响测算器 | `lpr.py` | 重定价月供变化（合同加点不变）；情景沙盘±10/25/50BP；重定价周期3/6/12选择（存续期仅改一次） |
@@ -72,12 +74,52 @@ python3 tools/mortgage.py --template my_kunming --price 1800000 --downpay 25 --y
 - 综合 = 0.98×0.99×0.98 = **0.9508**，成交 = 253万 × 0.9508 = **2,405,514 元**（优惠 124,486）
 - 套路校验：把基准改 26,000 同样折扣 → 折后更高 → 判定"折扣注水"
 
+## 参数单位约定（2026-10-28 全量核对）
+
+工具历史演进导致单位不完全一致，**混用会差 100 倍**。下表为逐个实测结论：
+
+| 工具 | 参数 | 单位 | 正确写法 |
+|---|---|---|---|
+| `commission.py` | `--buyer-rate` `--seller-rate` `--bonus-rate` `--rebate` `--splits` `--rate` | **小数** | `--seller-rate 0.01` = 1%；`--rebate 0.3` = 返 30% |
+| `commission.py --scene lease` | `--landlord-share` `--tenant-share` | **小数**（0~1 真值） | `--landlord-share 0.5` = 各半；`1` = 全部房东承担 |
+| `commission.py --scene lease` | `--months` | **月数** | `--months 1` = 一个月租金；`1.5` = 一个半月（上限 3） |
+| `feasibility.py` | `--far` **倍**；`--sellable-ratio` **小数**；`--other-pct/--admin-pct/--tax-pct/--finance-pct` **百分数**；`--land-area/--build-cost/--price` 元或㎡ | 混合 | `--far 2.0`；`--sellable-ratio 0.95`；`--tax-pct 10` = 10% |
+| `commercial.py` | `--vacancy/--opex-pct/--tax-pct/--cap/--growth/--exit-cap` **百分数**；`--rent` 元/㎡·月 | 混合 | `--vacancy 8` = 8%；`--rent 120` 指每平米每月 |
+| `efficiency.py` | `--use-coef` | **小数** | `--use-coef 0.88` = 88% |
+| `efficiency.py` | `--rate` `--rate-a` `--rate-b` | 百分数 | `--rate 78` = 78% |
+| `rent.py` | `--vacancy` `--tax-rate` `--maint` `--target-yield` | **百分数** | `--vacancy 15` = 15% |
+| `holding.py` | `--vacancy` | **月数** | `--vacancy 1` = 年空置 1 个月 |
+| `holding.py` | `--tax-rate` | 百分数 | `--tax-rate 5` = 5% |
+| `holding.py` | `--agent-months` | 月租倍数 | `--agent-months 0.5` = 半月租 |
+| `tax.py` `prepay.py` `mortgage.py` `capacity.py` `lpr.py` `buy_vs_invest.py` `area_error.py` | `--rate` `--tax-rate` `--agent` `--down-pct` `--cost-pct` `--ratio` 等 | 百分数 | `--rate 3.1` = 3.1% |
+| `buy_vs_invest.py` | `--growth` | 百分数（逗号分隔多情景） | `--growth=-3,0,5`（负数须用 `=` 连接） |
+
+**越界会拦**：`--use-coef 88` 直接报错并提示改成 `0.88`；`rent.py --vacancy 1500` 报错提示应为百分数；`commission.py --seller-rate 1` 提示"被当作小数处理 → 100%"。看到提示请改参数重跑，不要绕过。
+
+租赁佣金场景示例（`--scene lease` 需要 `--rent`）：
+
+```bash
+python3 skills/calc-toolkit/commission.py --scene lease --rent 3500 --months 1 --landlord-share 0.5
+python3 skills/calc-toolkit/commission.py --scene lease --rent 3500 --months 1.5 --landlord-share 1 --splits '0.4,0.1'
+```
+
 ## 已知边界（诚实声明）
 
 - 规则库全部档位为**演示口径**（yaml 顶部已声明），正式商用前须逐城核对当地最新官方公告——这是产品机制（数据外置+版本标注），不是缺陷
 - 楼层差按"每层递增 X 元/㎡"线性简化；一房一价精确口径以销控表为准
 - 个税"差额20% vs 全额1%"演示取低逻辑，部分城市强制差额法 → 改城市 YAML 即可
 - 契税/增值税以家庭为单位认定（含未成年子女），工具按用户自报 `--first` 计算
+
+## 什么时候不要用我
+
+这是**场景边界**（计算口径上的简化见上一节「已知边界」）。用错场景会得到看似正确但方向相反的结论：
+
+- **要连政策口径一起下判断（限购、首套认定、税费是否适用）** → `buyer-first-home-advisor`（资格与首套三口径）或 `sales-mortgage-sop`（资质预判）；本工具只按你给的参数算数，不做政策认定
+- **要判断一套房"值不值得这个价"** → `buyer-first-home-advisor` 的片区与选筹打分；本工具不做估值
+- **要银行批复或公积金中心的最终数字** → 以银行与公积金中心答复为准；本工具的额度、利率是测算口径
+- **参数不在规则库里（新城市、新政策）** → 用 `--set 键=值` 显式覆盖，并在交付里标明来源与版本；不要手改一个近似值当结论
+
+本技能不提供政策数字与法律结论：一律按当地当期公告现查。
 
 ## 后续 17 件（按锁版清单推进）
 

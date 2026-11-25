@@ -5,7 +5,7 @@
 禁渐变(P0)/紫域大底风险/文字对比对(给调墨后的达标替换值)/字号下限/
 AI 默认签名(玻璃拟态·emoji·默认字体开局·圆角膨胀)。
 只读文档内联样式与全文档色值(SVG 属性计入库存);外链 CSS 不在静态审计范围,如实声明。
-P0 存在或 P1≥2 → FAIL。纯 stdlib,被 palette_forge.py 的 cmd_audit 调用。
+P0 存在或 P1≥1 → FAIL(0.24 默认严,与 lint_page 同口径)。纯 stdlib,被 palette_forge.py 的 cmd_audit 调用。
 """
 import colorsys
 import hashlib
@@ -32,7 +32,14 @@ DEFAULT_FONT_RE = re.compile(r"font-family\s*:\s*[\"']?(inter|roboto|arial|helve
 
 
 def _is_neutral(rgb):
-    return (max(rgb) - min(rgb)) < 30
+    """近中性判定 —— 0.24 起统一走 lint_page 的三闸可复算判据(AE-NEUTRAL:
+    旧 `max-min<30` 无出处谓词已废,不许"同一个 bug 三种口径";判据只收紧不放松)。
+    lint_page 缺席时退回旧口径兜底(正常发布树不会走到)。"""
+    try:
+        import lint_page
+        return lint_page.NEUTRAL(*rgb)
+    except Exception:
+        return (max(rgb) - min(rgb)) < 30
 
 
 def normalize(tok):
@@ -349,6 +356,22 @@ def audit_page(html, declared_palette=None, floor=12.0):
         findings.append({"sev": "P3", "check": "fake_bold",
                          "msg": "font-weight 800/900 但页面无 @font-face 真字重——合成加粗发糊",
                          "fix": "接字体资产管线(scaffold --fonts preset/auto)或钳到 700(宁细勿假粗)"})
+    # 5f 动效剂量(0.21,渲染实证 _motionlab):hover 放大/旋转=邻居位移;transition 迟钝
+    for m in re.finditer(r":hover\s*\{[^}]*\}", css_scope):
+        blk = m.group(0)
+        if re.search(r"transform\s*:[^;}]*(scale|rotate)", blk):
+            findings.append({"sev": "P2", "check": "motion_scale_hover",
+                             "msg": "hover 使用 scale/rotate——放大/旋转挤动邻居元素",
+                             "fix": "hover 反馈=translateY ≤4px+阴影,150-220ms(M2);缩放语义请换尺寸属性"})
+            break
+    # 悬停应答迟钝:只查 :hover 块内的 transition(M1 进入编排 0.7s 合法,M2 才是 150-220ms)
+    hovers_lag = sorted({v for m in re.finditer(r":hover\s*\{[^}]*\}", css_scope)
+                         for v in re.findall(r"(\d+(?:\.\d+)?)s(?![\d])", m.group(0))
+                         if float(v) >= 0.5})
+    if hovers_lag:
+        findings.append({"sev": "P2", "check": "motion_lag",
+                         "msg": "hover 反馈时长 ≥0.5s: %s——应答迟钝(悬停 150-220ms)" % hovers_lag,
+                         "fix": "M2 悬停 150-220ms;进入编排 0.6-0.9s 属合法(错峰 ≤120ms)"})
     radii = [float(x) for x in re.findall(r"border-radius:\s*(\d+(?:\.\d+)?)px", html)]
     if len([r for r in radii if r >= 28]) > 3:
         findings.append({"sev": "P2", "check": "radius_inflation",
@@ -364,7 +387,8 @@ def run(page, declared_palette=None, floor=12.0, out_base=None):
     findings, inv = audit_page(html, declared_palette, floor)
     n = {s: sum(1 for f in findings if f["sev"] == s) for s in ("P0", "P1", "P2")}
     n["P3"] = sum(1 for f in findings if f["sev"] == "P3")
-    verdict = "FAIL" if n["P0"] or n["P1"] >= 2 else ("PASS" if not [f for f in findings if f["sev"] != "P3"] else "WARN")
+    # 0.24 AE-N2 同族改严:单条 P1 即 FAIL(旧 >=2 把"恰好 1 条 P1"永久吞成 PASS,与 lint_page 同口径)
+    verdict = "FAIL" if n["P0"] or n["P1"] >= 1 else ("PASS" if not [f for f in findings if f["sev"] != "P3"] else "WARN")
     order = {"P0": 0, "P1": 1, "P2": 2, "P3": 3}
     findings.sort(key=lambda f: order[f["sev"]])
     with open(page, "rb") as f:

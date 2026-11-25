@@ -37,12 +37,17 @@ function loadConfig() {
 }
 
 // build/redaction.js
-var SECRET_KEYS = ["apikey", "authorization", "secret", "password", "token", "credential", "privatekey", "mnemonic"];
+var SECRET_KEYS = ["apikey", "authorization", "secret", "password", "token", "credential", "privatekey", "mnemonic", "streamkey"];
 function isSecretKey(key, value) {
   const normalized = key.toLowerCase().replace(/[^a-z]/g, "");
   if (typeof value === "number" && normalized.endsWith("tokens"))
     return false;
   return SECRET_KEYS.some((needle) => normalized.includes(needle));
+}
+var PLAINTEXT_SECRET_KEYS = ["cookie", "phrase", "seedword", "accesskey", "jwt"];
+function isSecretLabel(label) {
+  const normalized = label.toLowerCase().replace(/[^a-z]/g, "");
+  return [...SECRET_KEYS, ...PLAINTEXT_SECRET_KEYS].some((needle) => normalized.includes(needle));
 }
 function redact(value) {
   if (!value)
@@ -121,8 +126,7 @@ function findCallbackFields(value, path = "") {
     const here = path ? `${path}.${key}` : key;
     if (CALLBACK_KEY.test(key))
       found.push({ path: here, value: item });
-    else
-      found.push(...findCallbackFields(item, here));
+    found.push(...findCallbackFields(item, here));
   }
   return found;
 }
@@ -145,19 +149,97 @@ function boundChatParams(input, defaultMaxTokens = 500) {
 
 // build/errors.js
 var MAX_MESSAGE_LEN = 280;
+var MAX_SCAN_LEN = 8192;
 function thetaError(input) {
   return input;
+}
+var LABEL_PAIR = /(\\?["'`\u2018\u2019\u201c\u201d]?)([A-Za-z][\w.-]{0,63}(?: [A-Za-z][\w.-]{0,63})?)\\?["'`\u2018\u2019\u201c\u201d]?(\s*(?::=|=>|=|:|\uff1a|\uff1d)\s*)/g;
+var MULTI_WORD_SECRETS = ["mnemonic", "phrase", "seedword", "privatekey"];
+var PEM_BLOCK = /-----BEGIN [A-Z0-9 ]{1,40}-----[\s\S]*?(?:-----END [A-Z0-9 ]{1,40}-----|$)/gi;
+var QUOTE_CLOSE = { '"': '"', "'": "'", "`": "`", "\u201C": "\u201D", "\u2018": "\u2019", "\u201D": "\u201D", "\u2019": "\u2019" };
+function labelledValueEnd(text, start, multiWord = false) {
+  const first = text[start];
+  const skipQuoted = (i) => {
+    const close = QUOTE_CLOSE[text[i]];
+    for (let j = i + 1; j < text.length; j++) {
+      if (text[j] === "\\") {
+        j++;
+        continue;
+      }
+      if (text[j] === close)
+        return j + 1;
+    }
+    return text.length;
+  };
+  if (first === "\\" && text[start + 1] in QUOTE_CLOSE) {
+    const close = `\\${QUOTE_CLOSE[text[start + 1]]}`;
+    const end = text.indexOf(close, start + 2);
+    return end === -1 ? text.length : end + close.length;
+  }
+  if (first in QUOTE_CLOSE)
+    return skipQuoted(start);
+  if (first === "[" || first === "{") {
+    let depth = 0;
+    for (let i = start; i < text.length; ) {
+      const ch = text[i];
+      if (ch in QUOTE_CLOSE) {
+        i = skipQuoted(i);
+        continue;
+      }
+      if (ch === "[" || ch === "{")
+        depth++;
+      else if (ch === "]" || ch === "}") {
+        depth--;
+        if (depth === 0)
+          return i + 1;
+      }
+      i++;
+    }
+    return text.length;
+  }
+  if (multiWord)
+    return text.length;
+  const match = /^(?:(?:Bearer|Basic|Token) )?\S+/i.exec(text.slice(start, start + MAX_SCAN_LEN));
+  return start + (match ? match[0].length : 0);
+}
+function redactLabelledSecrets(text) {
+  const label = new RegExp(LABEL_PAIR.source, "g");
+  let out = "";
+  let last = 0;
+  let match;
+  while (match = label.exec(text)) {
+    const name = match[2];
+    const valueStart = match.index + match[0].length;
+    if (!isSecretLabel(name)) {
+      label.lastIndex = match.index + match[1].length + name.split(" ")[0].length;
+      continue;
+    }
+    const normalized = name.toLowerCase().replace(/[^a-z]/g, "");
+    const valueEnd = labelledValueEnd(text, valueStart, MULTI_WORD_SECRETS.some((n) => normalized.includes(n)));
+    if (valueEnd === valueStart)
+      continue;
+    const value = text.slice(valueStart, valueEnd);
+    if (/tokens$/i.test(name.replace(/[^A-Za-z]/g, "")) && /^\d+[,;]?$/.test(value))
+      continue;
+    const scheme = /^(Bearer|Basic|Token)\s+/i.exec(value);
+    out += `${text.slice(last, valueStart)}${scheme ? `${scheme[1]} ` : ""}[redacted]`;
+    last = valueEnd;
+    label.lastIndex = valueEnd;
+  }
+  return out + text.slice(last);
 }
 function sanitizeHttpErrorMessage(message) {
   if (!message)
     return "HTTP request failed";
+  message = message.slice(0, MAX_SCAN_LEN);
   try {
     const parsed = JSON.parse(message);
     if (parsed && typeof parsed === "object")
       message = JSON.stringify(redactObject(parsed));
   } catch {
   }
-  let out = message.replace(/\s+/g, " ").replace(/\b(Bearer|Basic)\s+([A-Za-z0-9\-._~+/]+=*)/gi, (_m, scheme, token) => `${scheme} ${redact(token)}`).replace(/\b(x-api-key|api[-_]?key|token|secret|password)=([^\s&]+)/gi, (_m, key, value) => `${key}=${redact(value)}`).replace(/\b(authorization|x-api-key|x-tva-sa-secret|api[-_]?key|token|secret|password)\s*:\s*([^\s,;]+)/gi, (_m, key, value) => `${key}: ${redact(value)}`).trim();
+  const scanned = message.slice(0, MAX_SCAN_LEN).replace(/\s+/g, " ").replace(PEM_BLOCK, "[redacted]");
+  let out = redactLabelledSecrets(scanned).replace(/\b(Bearer|Basic)\s+(?!\[redacted\])([A-Za-z0-9\-._~+/]+=*)/gi, (_m, scheme, token) => `${scheme} ${redact(token)}`).trim();
   if (out.length > MAX_MESSAGE_LEN) {
     out = `${out.slice(0, MAX_MESSAGE_LEN - 3)}...`;
   }
@@ -222,6 +304,8 @@ function backoffDelayMs(attempt, baseMs) {
 }
 var sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 async function request(url2, method, body, opts) {
+  if (!/^https:\/\//i.test(url2))
+    throw new Error("Only https:// URLs are allowed");
   const timeoutMs = toPositiveInt(opts?.timeoutMs, 2e4, { min: 1e3, max: 3e5 });
   const maxRetries = method === "GET" ? toPositiveInt(opts?.maxRetries, 2, { min: 0, max: 6 }) : 0;
   const retryBackoffMs = toPositiveInt(opts?.retryBackoffMs, 250, { min: 25, max: 1e4 });
@@ -296,6 +380,13 @@ function thetaUrl(raw, kind) {
     throw new Error("Theta endpoint must be an approved HTTPS origin without credentials, path, query, or fragment");
   }
   return u.origin;
+}
+function validateProbe(value) {
+  if (value === void 0)
+    return "openai";
+  if (value === "openai" || value === "gradio")
+    return value;
+  throw new Error('probe must be exactly "openai" or "gradio"');
 }
 function pathSegment(value, label) {
   if (typeof value !== "string" || !value.trim() || value.trim() === "." || value.trim() === ".." || /[\x00-\x1f\x7f]/.test(value))
@@ -629,6 +720,7 @@ function balanceDelta(before, after) {
   };
 }
 async function waitForDedicatedProbe(cfg, endpoint2, auth2, probe, timeoutMs, intervalMs) {
+  validateProbe(probe);
   const startedAt = Date.now();
   const attempts = [];
   while (Date.now() - startedAt < timeoutMs) {
@@ -667,6 +759,7 @@ var deployments = {
   stop: (cfg, projectId, shard, suffix, confirm) => cfg.dryRun ? { dryRun: true, action: "stop", projectId, shard, suffix } : edgecloudControllerClient.stopDeployment(cfg, projectId, shard, suffix, confirm),
   delete: (cfg, projectId, shard, suffix, confirm) => cfg.dryRun ? { dryRun: true, action: "delete", projectId, shard, suffix } : edgecloudControllerClient.deleteDeployment(cfg, projectId, shard, suffix, confirm),
   validateDisposable: async (cfg, opts) => {
+    const probe = validateProbe(opts.probe);
     const payload = { ...opts.payload };
     const projectId = String(opts.projectId ?? payload.project_id ?? cfg.edgecloudProjectId ?? "").trim();
     if (!projectId)
@@ -677,7 +770,6 @@ var deployments = {
     payload.auth_username = authUser;
     payload.auth_password = authPass;
     const auth2 = { user: authUser, pass: authPass };
-    const probe = opts.probe ?? "openai";
     const readyTimeoutMs = clampInt(opts.readyTimeoutMs, 12e4, 1e3, 18e5);
     const intervalMs = clampInt(opts.intervalMs, 1e4, 500, 6e4);
     if (cfg.dryRun) {
@@ -765,7 +857,7 @@ var deployments = {
       // ok = create, readiness and verified cleanup all succeeded, plus (for the default openai
       // probe) a successful inference smoke call, which needs smokeMessage. smokeTested says
       // whether inference was exercised.
-      ok: !operationFailure && readiness?.ready === true && deleteResult?.ok === true && cleanupVerification?.deletedHandlesAbsent === true && ((opts.probe ?? "openai") !== "openai" || smoke !== void 0),
+      ok: !operationFailure && readiness?.ready === true && deleteResult?.ok === true && cleanupVerification?.deletedHandlesAbsent === true && (probe !== "openai" || smoke !== void 0),
       smokeTested: smoke !== void 0,
       operationFailure,
       createResponse: created,
@@ -822,7 +914,7 @@ var inference = {
     }
   },
   ready: async (cfg, opts = {}) => {
-    const probe = opts.probe ?? "openai";
+    const probe = validateProbe(opts.probe);
     const timeoutMs = clampInt2(opts.timeoutMs, 12e4, 1e3, 18e5);
     const intervalMs = clampInt2(opts.intervalMs, 5e3, 500, 6e4);
     if (cfg.dryRun)
@@ -866,6 +958,42 @@ var inference = {
 
 // build/clients/thetaVideo.js
 var BASE = "https://api.thetavideoapi.com";
+var RESERVED_QUERY = /* @__PURE__ */ new Set(["page", "number", "operator"]);
+var FILTER_KEY = /^[A-Za-z0-9_][A-Za-z0-9_.-]{0,63}$/;
+var MAX_FILTERS = 10;
+function boundedInt(value, label, fallback, min, max) {
+  if (value === void 0)
+    return fallback;
+  if (typeof value !== "number" || !Number.isInteger(value) || value < min || value > max)
+    throw new Error(`${label} must be an integer from ${min} to ${max}`);
+  return value;
+}
+function videoSearchQuery(filters, operator, page, number) {
+  if (!filters || typeof filters !== "object" || Array.isArray(filters))
+    throw new Error("filters must be an object of metadata key -> string value");
+  const entries = Object.entries(filters);
+  if (entries.length < 1 || entries.length > MAX_FILTERS)
+    throw new Error(`filters must have 1 to ${MAX_FILTERS} keys`);
+  const params = new URLSearchParams();
+  for (const [key, value] of entries) {
+    if (!FILTER_KEY.test(key) || RESERVED_QUERY.has(key.toLowerCase()))
+      throw new Error(`invalid filter key: ${key.slice(0, 64)}`);
+    if (typeof value !== "string" || value.length > 256 || /[\x00-\x1f\x7f]/.test(value))
+      throw new Error(`filter ${key} must be a string of at most 256 printable characters`);
+    params.append(key, value);
+  }
+  if (operator !== void 0 && operator !== "and" && operator !== "or")
+    throw new Error('operator must be "and" or "or"');
+  if (operator)
+    params.set("operator", operator);
+  params.set("page", String(boundedInt(page, "page", 1, 1, 1e4)));
+  params.set("number", String(boundedInt(number, "number", 10, 1, 100)));
+  return params.toString();
+}
+async function redacted(result) {
+  const value = await result;
+  return value && typeof value === "object" ? redactObject(value) : value;
+}
 function h(cfg) {
   if (!cfg.videoSaId || !cfg.videoSaSecret)
     throw new Error("THETA_VIDEO_SA_ID / THETA_VIDEO_SA_SECRET missing");
@@ -881,14 +1009,27 @@ function net3(cfg, headers) {
   };
 }
 var thetaVideoClient = {
-  createUploadSession: (cfg, confirm) => assertApproved(cfg, confirm, "theta.video.uploadCreate") ?? postJson(`${BASE}/upload`, {}, net3(cfg, h(cfg))),
-  createVideo: (cfg, payload, confirm) => assertApproved(cfg, confirm, "theta.video.create") ?? postJson(`${BASE}/video`, payload, net3(cfg, h(cfg))),
-  getVideo: (cfg, videoId) => getJson(`${BASE}/video/${pathSegment(videoId, "videoId")}`, net3(cfg, h(cfg))),
-  listVideos: (cfg, serviceAccountId, page = 1, number = 10) => getJson(`${BASE}/video/${pathSegment(serviceAccountId, "serviceAccountId")}/list?${new URLSearchParams({ page: String(page), number: String(number) })}`, net3(cfg, h(cfg))),
-  createStream: (cfg, payload, confirm) => assertApproved(cfg, confirm, "theta.video.streamCreate") ?? postJson(`${BASE}/stream`, payload, net3(cfg, h(cfg))),
-  getStream: (cfg, streamId) => getJson(`${BASE}/stream/${pathSegment(streamId, "streamId")}`, net3(cfg, h(cfg))),
-  listIngestors: (cfg) => getJson(`${BASE}/ingestor/filter`, net3(cfg, h(cfg))),
-  selectIngestor: (cfg, ingestorId, body, confirm) => assertApproved(cfg, confirm, "theta.video.ingestorSelect") ?? putJson(`${BASE}/ingestor/${pathSegment(ingestorId, "ingestorId")}/select`, body, net3(cfg, h(cfg)))
+  createUploadSession: (cfg, confirm) => redacted(assertApproved(cfg, confirm, "theta.video.uploadCreate") ?? postJson(`${BASE}/upload`, {}, net3(cfg, h(cfg)))),
+  createVideo: (cfg, payload, confirm) => redacted(assertApproved(cfg, confirm, "theta.video.create") ?? postJson(`${BASE}/video`, payload, net3(cfg, h(cfg)))),
+  getVideo: (cfg, videoId) => redacted(getJson(`${BASE}/video/${pathSegment(videoId, "videoId")}`, net3(cfg, h(cfg)))),
+  listVideos: (cfg, serviceAccountId, page = 1, number = 10) => redacted(getJson(`${BASE}/video/${pathSegment(serviceAccountId, "serviceAccountId")}/list?${new URLSearchParams({ page: String(page), number: String(number) })}`, net3(cfg, h(cfg)))),
+  // Stream responses carry the livestream key; it is redacted here before returning.
+  createStream: (cfg, payload, confirm) => redacted(assertApproved(cfg, confirm, "theta.video.streamCreate") ?? postJson(`${BASE}/stream`, payload, net3(cfg, h(cfg)))),
+  getStream: (cfg, streamId) => redacted(getJson(`${BASE}/stream/${pathSegment(streamId, "streamId")}`, net3(cfg, h(cfg)))),
+  searchVideos: (cfg, serviceAccountId, filters, operator, page, number) => {
+    const query = videoSearchQuery(filters, operator, page, number);
+    return redacted(getJson(`${BASE}/video/${pathSegment(serviceAccountId, "serviceAccountId")}/search?${query}`, net3(cfg, h(cfg))));
+  },
+  listStreams: (cfg, serviceAccountId, status) => {
+    if (status !== void 0 && status !== "on" && status !== "off")
+      throw new Error('status must be "on" or "off"');
+    const query = status ? `?${new URLSearchParams({ status })}` : "";
+    return redacted(getJson(`${BASE}/service_account/${pathSegment(serviceAccountId, "serviceAccountId")}/streams${query}`, net3(cfg, h(cfg))));
+  },
+  listIngestors: (cfg) => redacted(getJson(`${BASE}/ingestor/filter`, net3(cfg, h(cfg)))),
+  selectIngestor: (cfg, ingestorId, body, confirm) => redacted(assertApproved(cfg, confirm, "theta.video.ingestorSelect") ?? putJson(`${BASE}/ingestor/${pathSegment(ingestorId, "ingestorId")}/select`, body, net3(cfg, h(cfg)))),
+  // Frees the ingestor and invalidates the live stream key. Body is always exactly {}.
+  unselectIngestor: (cfg, ingestorId, confirm) => redacted(assertApproved(cfg, confirm, "theta.video.ingestorUnselect") ?? putJson(`${BASE}/ingestor/${pathSegment(ingestorId, "ingestorId")}/unselect`, {}, net3(cfg, h(cfg))))
 };
 
 // build/commands/video.js
@@ -899,7 +1040,10 @@ var video = {
   videoList: (cfg, serviceAccountId, page = 1, number = 10) => thetaVideoClient.listVideos(cfg, serviceAccountId, page, number),
   streamCreate: (cfg, payload, confirm) => cfg.dryRun ? redactObject({ dryRun: true, payload }) : thetaVideoClient.createStream(cfg, payload, confirm),
   streamGet: (cfg, streamId) => thetaVideoClient.getStream(cfg, streamId),
+  videoSearch: (cfg, serviceAccountId, filters, operator, page, number) => thetaVideoClient.searchVideos(cfg, serviceAccountId, filters, operator, page, number),
+  streamList: (cfg, serviceAccountId, status) => thetaVideoClient.listStreams(cfg, serviceAccountId, status),
   ingestorList: (cfg) => thetaVideoClient.listIngestors(cfg),
+  ingestorUnselect: (cfg, ingestorId, confirm) => cfg.dryRun ? { dryRun: true, method: "PUT", path: `/ingestor/${pathSegment(ingestorId, "ingestorId")}/unselect`, body: {} } : thetaVideoClient.unselectIngestor(cfg, ingestorId, confirm),
   ingestorSelect: (cfg, ingestorId, body, confirm) => cfg.dryRun ? redactObject({ dryRun: true, ingestorId, body }) : thetaVideoClient.selectIngestor(cfg, ingestorId, body, confirm)
 };
 
@@ -925,7 +1069,7 @@ var OPENAI_CHAT_COMPLETION_SERVICES = Object.freeze([
   "qwen3_8_flash",
   "ling_3_0_flash_fin"
 ]);
-var TOOL_CALLING_CHAT_SERVICES = Object.freeze(["glm_5_3", "glm_5_3_flash", "gpt_oss_120b"]);
+var TOOL_CALLING_CHAT_SERVICES = Object.freeze(["glm_5_3", "glm_5_3_flash"]);
 function isOnDemandChatService(slug) {
   return ONDEMAND_CHAT_SERVICE_SLUGS.includes(slug);
 }
@@ -1395,12 +1539,28 @@ async function postJsonOrSse(cfg, url2, body, timeoutMs) {
         }
         throw fromHttpError("theta-ondemand-api", url2, res.status, text);
       }
+      const unreadable = () => ({
+        code: "THETA_ONDEMAND_MALFORMED_STREAM",
+        message: "Malformed or incomplete Theta event stream (the request may already have been billed; it was not retried)",
+        retriable: false,
+        service: "theta-ondemand-api",
+        endpoint: url2,
+        status: res.status
+      });
       try {
         return JSON.parse(text);
       } catch {
-        const parsedSse = parseSseResponse(text);
+        let parsedSse;
+        try {
+          parsedSse = parseSseResponse(text);
+        } catch {
+          throw unreadable();
+        }
         if (parsedSse)
           return parsedSse;
+        const contentType = res.headers.get("content-type") ?? "";
+        if (/event-stream/i.test(contentType) || /^\s*data\s*:/m.test(text))
+          throw unreadable();
         return { status: "success", raw: text };
       }
     } catch (error) {
@@ -1776,7 +1936,7 @@ var ondemand = {
       throw new Error(`Unsupported on-demand chat service: ${service}. Known chat services: ${ONDEMAND_CHAT_SERVICE_SLUGS.join(", ")}`);
     }
     if (opts.tools?.length && opts.allowUnverifiedTools !== true && !TOOL_CALLING_CHAT_SERVICES.includes(service)) {
-      throw new Error(`Service ${service} does not return structured tool calls (live-verified 2026-10-03). Use ${TOOL_CALLING_CHAT_SERVICES.filter((x) => x !== "gpt_oss_120b").join(" or ")} for tool use, or set allowUnverifiedTools:true (exactly) to send anyway.`);
+      throw new Error(`Service ${service} does not return structured tool calls (live-verified 2026-10-03). Use ${TOOL_CALLING_CHAT_SERVICES.join(" or ")} for tool use, or set allowUnverifiedTools:true (exactly) to send anyway.`);
     }
     const effectiveOpts = service === "qwen3" ? { ...opts, stream: opts.stream ?? true, wait: opts.wait ?? 60 } : ["gpt_oss_120b", "glm_5_3", "glm_5_3_flash"].includes(service) ? { ...opts, reasoningEffort: opts.reasoningEffort ?? "low" } : opts;
     const { payload, requestOptions } = buildChatPayload(messages, effectiveOpts, service);
@@ -2050,51 +2210,476 @@ var billing = {
     return callThetaMcpTool(cfg, "get_billing_usage", withProject(projectId, { start_date: startDate, end_date: endDate }));
   },
   topUps: (cfg, projectId, page, number) => callThetaMcpTool(cfg, "list_billing_top_ups", withProject(projectId, { page, number })),
-  pricing: (cfg, projectId) => callThetaMcpTool(cfg, "get_billing_pricing", withProject(projectId))
+  // Usage labels are normalized first (they need the raw `token` value), then the whole result is
+  // name-redacted here, so any other value under `token` never leaves this module.
+  pricing: async (cfg, projectId) => {
+    const normalized = normalizePricing(await callThetaMcpTool(cfg, "get_billing_pricing", withProject(projectId)));
+    return normalized && typeof normalized === "object" ? redactObject(normalized) : normalized;
+  }
 };
+var USAGE_LABELS = /* @__PURE__ */ new Set(["prompt_tokens", "completion_tokens", "embedding_tokens"]);
+function creditsToUsd(value) {
+  const n = typeof value === "number" ? value : typeof value === "string" && value.trim() !== "" ? Number(value) : NaN;
+  return Number.isFinite(n) ? Math.round(n * 1e4) / 1e6 : void 0;
+}
+function normalizePricing(result) {
+  if (!result || typeof result !== "object" || Array.isArray(result))
+    return result;
+  const out = { ...result };
+  if (Array.isArray(out.chatbot)) {
+    out.chatbot = out.chatbot.map((row) => {
+      if (!row || typeof row !== "object" || Array.isArray(row))
+        return row;
+      const { token, ...rest } = row;
+      const usd = creditsToUsd(rest.price);
+      const priced = usd === void 0 ? rest : { ...rest, price_usd: usd };
+      return typeof token === "string" && USAGE_LABELS.has(token) ? { usage_type: token, ...priced } : { token, ...priced };
+    });
+  }
+  if (out.storage && typeof out.storage === "object" && !Array.isArray(out.storage)) {
+    const usd = creditsToUsd(out.storage.price);
+    if (usd !== void 0)
+      out.storage = { ...out.storage, price_usd: usd };
+  }
+  out.priceUnit = "price is in Theta credits; price_usd = credits / 100";
+  return out;
+}
 
 // build/commands/characters.js
+var HOST = "https://ai-chars-api.thetaedgecloud.com";
+function oneOf(path, value, allowed) {
+  if (value !== void 0 && !(typeof value === "string" && allowed.includes(value))) {
+    throw new Error(`${path} must be one of: ${allowed.join(", ")}`);
+  }
+}
+function idString(value, label) {
+  if (typeof value !== "string" || !value.trim() || value.length > 200 || /[\x00-\x1f\x7f]/.test(value)) {
+    throw new Error(`${label} must be a non-empty identifier string`);
+  }
+}
+function idList(value, label, max, required) {
+  if (value === void 0 && !required)
+    return;
+  if (!Array.isArray(value) || value.length < 1 || value.length > max)
+    throw new Error(`${label} must be an array of 1 to ${max} IDs`);
+  value.forEach((entry, i) => idString(entry, `${label}[${i}]`));
+}
+var validateCharacter = (p) => {
+  const style = p.speaking_style;
+  if (style === void 0)
+    return;
+  if (!style || typeof style !== "object" || Array.isArray(style))
+    throw new Error("speaking_style must be an object");
+  const s = style;
+  oneOf("speaking_style.formality", s.formality, ["casual", "formal", "neutral"]);
+  oneOf("speaking_style.gesture_frequency", s.gesture_frequency, ["low", "medium", "high"]);
+  oneOf("speaking_style.verbosity", s.verbosity, ["concise", "normal", "verbose"]);
+};
+var MESSAGE_TYPES = ["chat", "action", "event", "add_participant", "remove_participant"];
+var validateSessionMessage = (p) => {
+  if (!MESSAGE_TYPES.includes(p.type))
+    throw new Error(`type must be one of: ${MESSAGE_TYPES.join(", ")}`);
+  if (p.type === "chat" || p.type === "action") {
+    idString(p.from_id, "from_id");
+    if (typeof p.content !== "string" || !p.content.trim())
+      throw new Error("content must be a non-empty string");
+  }
+  if (p.type === "event" && (typeof p.content !== "string" || !p.content.trim()))
+    throw new Error("content must be a non-empty string");
+  if (p.type === "add_participant" || p.type === "remove_participant") {
+    oneOf("participant_type", p.participant_type, ["npc", "user"]);
+    if (p.participant_type === void 0)
+      throw new Error("participant_type is required");
+    idString(p.participant_id, "participant_id");
+  }
+};
+var validateGrouping = (p) => {
+  if (p.name !== void 0 && (typeof p.name !== "string" || !p.name.trim()))
+    throw new Error("name must be a non-empty string");
+  if (p.order_index !== void 0 && (!Number.isInteger(p.order_index) || p.order_index < 0))
+    throw new Error("order_index must be a non-negative integer");
+};
+var validateLibraryMessage = (p) => {
+  if (p.content !== void 0 && (typeof p.content !== "string" || !p.content.trim()))
+    throw new Error("content must be a non-empty string");
+  if (p.type !== void 0 && typeof p.type !== "string")
+    throw new Error("type must be a string");
+};
+var MAX_GROUPINGS = 20;
+var validateStoryline = (required) => (p) => {
+  if (required)
+    idString(p.npc_id, "npc_id");
+  else if (p.npc_id !== void 0)
+    idString(p.npc_id, "npc_id");
+  idList(p.grouping_ids, "grouping_ids", MAX_GROUPINGS, required);
+};
+var validateDialog = (p) => {
+  idString(p.npc_id, "npc_id");
+  const refs = p.message_refs;
+  if (!Array.isArray(refs) || refs.length < 1 || refs.length > MAX_GROUPINGS)
+    throw new Error(`message_refs must be an array of 1 to ${MAX_GROUPINGS} references`);
+  refs.forEach((ref, i) => {
+    if (!ref || typeof ref !== "object" || Array.isArray(ref))
+      throw new Error(`message_refs[${i}] must be an object`);
+    idString(ref.grouping_id, `message_refs[${i}].grouping_id`);
+    idString(ref.message_id, `message_refs[${i}].message_id`);
+  });
+};
 var characterRoutes = {
   list: { method: "GET", path: "/game/{gameId}/character/list", fields: ["gameId"] },
   get: { method: "GET", path: "/game/{gameId}/character/{characterId}", fields: ["gameId", "characterId"] },
-  create: { method: "POST", path: "/game/{gameId}/character", fields: ["gameId"] },
-  update: { method: "PUT", path: "/game/{gameId}/character/{characterId}", fields: ["gameId", "characterId"] },
+  create: { method: "POST", path: "/game/{gameId}/character", fields: ["gameId"], validate: validateCharacter },
+  update: { method: "PUT", path: "/game/{gameId}/character/{characterId}", fields: ["gameId", "characterId"], validate: validateCharacter },
   delete: { method: "DELETE", path: "/game/{gameId}/character/{characterId}", fields: ["gameId", "characterId"] },
   "session.create": { method: "POST", path: "/session", fields: [] },
   "session.get": { method: "GET", path: "/session/{sessionId}", fields: ["sessionId"] },
   "session.delete": { method: "DELETE", path: "/session/{sessionId}", fields: ["sessionId"] },
   "session.list": { method: "GET", path: "/session/{gameId}/list", fields: ["gameId"] },
   "session.context": { method: "PUT", path: "/session/{sessionId}/context", fields: ["sessionId"] },
-  "session.message": { method: "POST", path: "/session/{sessionId}/message", fields: ["sessionId"] },
-  "session.messages": { method: "GET", path: "/session/{sessionId}/message/list", fields: ["sessionId"] }
+  "session.message": { method: "POST", path: "/session/{sessionId}/message", fields: ["sessionId"], validate: validateSessionMessage, billable: true },
+  "session.messages": { method: "GET", path: "/session/{sessionId}/message/list", fields: ["sessionId"], paginated: true },
+  // Story mode: groupings (in-fiction events) hold library messages (authored player outcomes).
+  "grouping.create": { method: "POST", path: "/game/{gameId}/grouping", fields: ["gameId"], validate: validateGrouping },
+  "grouping.list": { method: "GET", path: "/game/{gameId}/grouping/list", fields: ["gameId"] },
+  "grouping.get": { method: "GET", path: "/game/{gameId}/grouping/{groupingId}", fields: ["gameId", "groupingId"] },
+  "grouping.update": { method: "PUT", path: "/game/{gameId}/grouping/{groupingId}", fields: ["gameId", "groupingId"], validate: validateGrouping },
+  "grouping.delete": { method: "DELETE", path: "/game/{gameId}/grouping/{groupingId}", fields: ["gameId", "groupingId"] },
+  "library.create": { method: "POST", path: "/grouping/{groupingId}/message", fields: ["groupingId"], validate: validateLibraryMessage },
+  "library.list": { method: "GET", path: "/grouping/{groupingId}/message/list", fields: ["groupingId"] },
+  "library.update": { method: "PUT", path: "/grouping/{groupingId}/message/{messageId}", fields: ["groupingId", "messageId"], validate: validateLibraryMessage },
+  "library.delete": { method: "DELETE", path: "/grouping/{groupingId}/message/{messageId}", fields: ["groupingId", "messageId"] },
+  // Story lines: ordered groupings + one NPC. Generation is handled by storylineGenerateAll below.
+  "storyline.create": { method: "POST", path: "/game/{gameId}/storyline", fields: ["gameId"], validate: validateStoryline(true) },
+  "storyline.list": { method: "GET", path: "/game/{gameId}/storyline/list", fields: ["gameId"] },
+  "storyline.get": { method: "GET", path: "/storyline/{storylineId}", fields: ["storylineId"] },
+  "storyline.update": { method: "PUT", path: "/storyline/{storylineId}", fields: ["storylineId"], validate: validateStoryline(false) },
+  "storyline.delete": { method: "DELETE", path: "/storyline/{storylineId}", fields: ["storylineId"] },
+  "storyline.queue": { method: "GET", path: "/storyline/{storylineId}/queue", fields: ["storylineId"] },
+  "storyline.dialogs": { method: "GET", path: "/storyline/{storylineId}/dialog/list", fields: ["storylineId"] },
+  // Dialogs: one generated conversation for an explicit path of library messages.
+  "dialog.create": { method: "POST", path: "/game/{gameId}/dialog", fields: ["gameId"], validate: validateDialog, billable: true },
+  "dialog.list": { method: "GET", path: "/game/{gameId}/dialog/list", fields: ["gameId"] },
+  "dialog.get": { method: "GET", path: "/dialog/{dialogId}", fields: ["dialogId"] },
+  "dialog.recreate": { method: "POST", path: "/dialog/{dialogId}/recreate", fields: ["dialogId"], fixedBody: {}, billable: true },
+  "dialog.delete": { method: "DELETE", path: "/dialog/{dialogId}", fields: ["dialogId"] }
 };
-function characterRequest(cfg, name, args) {
-  const route = characterRoutes[name];
-  if (!route)
-    throw new Error("Unknown AI Characters operation");
+function buildPath(route, args) {
   let path = route.path;
   for (const field of route.fields) {
     if (typeof args[field] !== "string" || !args[field].trim())
       throw new Error(`${field} must be a non-empty string`);
     path = path.replace(`{${field}}`, pathSegment(args[field], field));
   }
-  if (["POST", "PUT"].includes(route.method) && (!args.payload || typeof args.payload !== "object" || Array.isArray(args.payload)))
-    throw new Error("payload must be an object");
-  if (cfg.dryRun && route.method !== "GET")
-    return { dryRun: true, method: route.method, path, payload: redactObject(args.payload ?? {}) };
-  if (route.method !== "GET")
-    assertApproved(cfg, args.confirm, `theta.characters.${name}`);
+  if (route.paginated && (args.page !== void 0 || args.number !== void 0)) {
+    const page = args.page ?? 1;
+    const number = args.number ?? 100;
+    if (!Number.isInteger(page) || page < 1 || page > 1e4)
+      throw new Error("page must be an integer from 1 to 10000");
+    if (!Number.isInteger(number) || number < 1 || number > 100)
+      throw new Error("number must be an integer from 1 to 100");
+    path += `?${new URLSearchParams({ page: String(page), number: String(number) })}`;
+  }
+  return path;
+}
+function netOpts(cfg, method) {
   if (!cfg.charactersApiKey)
     throw new Error("THETA_CHARACTERS_API_KEY missing; use a game-scoped key, not an on-demand key");
-  const url2 = `https://ai-chars-api.thetaedgecloud.com${path}`;
-  const opts = { headers: { Authorization: `Bearer ${cfg.charactersApiKey}` }, service: "theta-characters", timeoutMs: cfg.httpTimeoutMs, maxRetries: route.method === "GET" ? cfg.httpMaxRetries : 0, retryBackoffMs: cfg.httpRetryBackoffMs };
+  return {
+    headers: { Authorization: `Bearer ${cfg.charactersApiKey}` },
+    service: "theta-characters",
+    timeoutMs: cfg.httpTimeoutMs,
+    maxRetries: method === "GET" ? cfg.httpMaxRetries : 0,
+    retryBackoffMs: cfg.httpRetryBackoffMs
+  };
+}
+function characterRequest(cfg, name, args) {
+  const route = Object.hasOwn(characterRoutes, name) ? characterRoutes[name] : void 0;
+  if (!route)
+    throw new Error("Unknown AI Characters operation");
+  const path = buildPath(route, args);
+  let body;
+  if (route.method === "POST" || route.method === "PUT") {
+    if (route.fixedBody)
+      body = { ...route.fixedBody };
+    else {
+      if (!args.payload || typeof args.payload !== "object" || Array.isArray(args.payload))
+        throw new Error("payload must be an object");
+      body = snapshotBody(args.payload);
+      route.validate?.(body);
+    }
+  }
+  if (cfg.dryRun && route.method !== "GET") {
+    return { dryRun: true, method: route.method, path, billable: route.billable === true, payload: redactObject(body ?? {}) };
+  }
+  if (route.method !== "GET")
+    assertApproved(cfg, args.confirm, `theta.characters.${name}`);
+  const url2 = `${HOST}${path}`;
+  const opts = netOpts(cfg, route.method);
   if (route.method === "GET")
     return getJson(url2, opts);
   if (route.method === "POST")
-    return postJson(url2, args.payload, opts);
+    return postJson(url2, body, opts);
   if (route.method === "PUT")
-    return putJson(url2, args.payload, opts);
+    return putJson(url2, body, opts);
   return deleteEmpty(url2, opts);
+}
+var STORYLINE_PATH_CAP = 5e3;
+function pick(obj, keys) {
+  if (!obj || typeof obj !== "object")
+    return void 0;
+  const o = obj;
+  for (const key of keys)
+    if (o[key] !== void 0)
+      return o[key];
+  return void 0;
+}
+function storylineGroupingIds(response) {
+  const body = pick(response, ["body"]) ?? response;
+  const storyline = pick(body, ["storyline"]) ?? body;
+  const copies = [response, body, storyline].filter((c, i, all) => all.indexOf(c) === i).map((c) => pick(c, ["grouping_ids"])).filter((v) => v !== void 0);
+  if (new Set(copies.map((v) => JSON.stringify(v))).size > 1) {
+    throw new Error("Story line response has conflicting grouping_ids; refusing to generate without a path count");
+  }
+  const ids = pick(storyline, ["grouping_ids"]);
+  if (!Array.isArray(ids) || ids.length < 1 || ids.length > MAX_GROUPINGS || !ids.every((id) => typeof id === "string" && id.trim())) {
+    throw new Error("Could not read the story line grouping_ids; refusing to generate without a path count");
+  }
+  return ids;
+}
+var LIST_ALIASES = ["messages", "library_messages", "items"];
+var TOTAL_FIELDS = ["total_count", "totalCount", "total", "count"];
+var MORE_FIELDS = ["has_more", "hasMore", "has_next", "hasNext"];
+var NEXT_FIELDS = ["next", "next_page", "nextPage", "next_cursor", "nextCursor", "next_page_token", "nextPageToken"];
+var PAGES_FIELDS = ["total_pages", "totalPages", "page_count", "pageCount", "pages"];
+var PAGE_FIELDS = ["page", "page_number", "pageNumber", "current_page", "currentPage"];
+var PAGE_SIZE_FIELDS = ["number", "per_page", "perPage", "page_size", "pageSize", "limit", "size", "offset"];
+var PAGINATION_FIELDS = /* @__PURE__ */ new Set([...TOTAL_FIELDS, ...MORE_FIELDS, ...NEXT_FIELDS, ...PAGES_FIELDS, ...PAGE_FIELDS, ...PAGE_SIZE_FIELDS]);
+var INFO_FIELDS = /* @__PURE__ */ new Set([
+  "status",
+  "message",
+  "code",
+  "success",
+  "error",
+  "request_id",
+  "requestId",
+  "id",
+  "grouping_id",
+  "groupingId",
+  "storyline_id",
+  "storylineId",
+  "npc_id",
+  "npcId",
+  "name",
+  "title",
+  "created_at",
+  "createdAt",
+  "updated_at",
+  "updatedAt"
+]);
+function assertOnlyKnownFields(container, allowed) {
+  for (const key of Object.keys(container)) {
+    if (allowed.has(key) || PAGINATION_FIELDS.has(key))
+      continue;
+    const value = container[key];
+    if (INFO_FIELDS.has(key) && (value === null || typeof value !== "object"))
+      continue;
+    refuseCount(`response has an unrecognised field (${key.slice(0, 40)})`);
+  }
+}
+function assertNotFailure(container) {
+  const success = own(container, "success");
+  const status = own(container, "status");
+  const error = own(container, "error");
+  const statusText = typeof status === "string" ? status.trim() : "";
+  const statusCode = typeof status === "number" ? status : /^\d{3}$/.test(statusText) ? Number(statusText) : void 0;
+  if (success !== void 0 && success !== true || /^(err|error|errors|fail|failed|failure)$/i.test(statusText) || statusCode !== void 0 && statusCode >= 400 || error !== void 0 && error !== null && error !== false && error !== "") {
+    refuseCount("list response reports a failure");
+  }
+}
+function isPlainObject(value) {
+  return !!value && typeof value === "object" && !Array.isArray(value);
+}
+function refuseCount(reason) {
+  throw new Error(`Library message ${reason}; refusing to generate without a reliable path count`);
+}
+function own(obj, key) {
+  return Object.prototype.hasOwnProperty.call(obj, key) ? obj[key] : void 0;
+}
+function libraryMessageCount(response) {
+  if (!isPlainObject(response) && !Array.isArray(response))
+    refuseCount("list response is malformed");
+  const containers = [];
+  let body = response;
+  if (isPlainObject(response) && Object.prototype.hasOwnProperty.call(response, "body")) {
+    body = response.body;
+    if (!isPlainObject(body) && !Array.isArray(body))
+      refuseCount("list response body is malformed");
+    assertOnlyKnownFields(response, /* @__PURE__ */ new Set(["body", "pagination"]));
+    containers.push(response);
+  }
+  let list;
+  if (Array.isArray(body))
+    list = body;
+  else {
+    const b = body;
+    containers.push(b);
+    const present = LIST_ALIASES.filter((key) => own(b, key) !== void 0);
+    if (present.length === 0)
+      refuseCount("list is missing");
+    if (present.length > 1)
+      refuseCount(`response has conflicting list fields (${present.join(", ")})`);
+    const value = b[present[0]];
+    if (!Array.isArray(value))
+      refuseCount("list is malformed");
+    assertOnlyKnownFields(b, /* @__PURE__ */ new Set([present[0], "pagination"]));
+    list = value;
+  }
+  for (const c of containers)
+    assertNotFailure(c);
+  for (const container of [...containers]) {
+    const pagination = own(container, "pagination");
+    if (pagination === void 0)
+      continue;
+    if (!isPlainObject(pagination))
+      refuseCount("pagination metadata is malformed");
+    for (const key of Object.keys(pagination)) {
+      if (!PAGINATION_FIELDS.has(key))
+        refuseCount(`pagination metadata has an unsupported field (${key.slice(0, 40)})`);
+    }
+    containers.push(pagination);
+  }
+  const totals = [];
+  const pageSizes = [];
+  let reportedComplete = false;
+  const safeInt = (value) => typeof value === "number" && Number.isSafeInteger(value) && value >= 0;
+  for (const container of containers) {
+    for (const key of TOTAL_FIELDS) {
+      const value = own(container, key);
+      if (value === void 0)
+        continue;
+      if (!safeInt(value))
+        refuseCount("pagination total is malformed");
+      totals.push(value);
+    }
+    for (const key of MORE_FIELDS) {
+      const value = own(container, key);
+      if (value === void 0)
+        continue;
+      if (typeof value !== "boolean")
+        refuseCount("pagination completeness flag is malformed");
+      if (value)
+        refuseCount("list page is incomplete (more pages reported)");
+    }
+    for (const key of NEXT_FIELDS) {
+      const value = own(container, key);
+      if (value === void 0 || value === null || value === "" || value === false)
+        continue;
+      refuseCount("list page is incomplete (a next page is reported)");
+    }
+    for (const key of PAGES_FIELDS) {
+      const value = own(container, key);
+      if (value === void 0)
+        continue;
+      if (!safeInt(value))
+        refuseCount("pagination page count is malformed");
+      if (value > 1)
+        refuseCount("list page is incomplete (more than one page reported)");
+    }
+    for (const key of PAGE_FIELDS) {
+      const value = own(container, key);
+      if (value === void 0)
+        continue;
+      if (!safeInt(value) || value > 1)
+        refuseCount("pagination page is malformed or not the first page");
+    }
+    for (const key of PAGE_SIZE_FIELDS) {
+      const value = own(container, key);
+      if (value === void 0)
+        continue;
+      if (!safeInt(value))
+        refuseCount("pagination page size or offset is malformed");
+      if (key === "offset" && value !== 0)
+        refuseCount("list page is not the first page (offset is not 0)");
+      if (key !== "offset")
+        pageSizes.push(value);
+    }
+    for (const key of MORE_FIELDS)
+      if (own(container, key) === false)
+        reportedComplete = true;
+  }
+  if (totals.length > 1 && new Set(totals).size > 1)
+    refuseCount("pagination totals conflict");
+  const total = totals[0];
+  if (total === void 0 && !reportedComplete && pageSizes.some((size) => list.length >= size)) {
+    refuseCount("list page is full and may be incomplete (no total or has_more:false reported)");
+  }
+  if (total !== void 0 && total < list.length)
+    refuseCount("pagination total is smaller than the returned page");
+  return total !== void 0 ? Math.max(total, list.length) : list.length;
+}
+async function storylineGenerateAll(cfg, args) {
+  const storylineId = pathSegment(String(args.storylineId ?? ""), "storylineId");
+  const maxPaths = args.maxPaths;
+  if (!Number.isInteger(maxPaths) || maxPaths < 1 || maxPaths > STORYLINE_PATH_CAP) {
+    throw new Error(`maxPaths must be an integer from 1 to ${STORYLINE_PATH_CAP}: the most dialog paths you approve generating`);
+  }
+  if (!cfg.dryRun)
+    assertApproved(cfg, args.confirm, "theta.characters.storyline.generateAll");
+  if (cfg.dryRun && !cfg.charactersApiKey) {
+    return { dryRun: true, requiresKeyForPathCount: true, method: "POST", path: `/storyline/${storylineId}/generate_all`, maxPaths };
+  }
+  const read = netOpts(cfg, "GET");
+  const storyline = await getJson(`${HOST}/storyline/${storylineId}`, read);
+  const groupingIds = storylineGroupingIds(storyline);
+  const perGrouping = [];
+  let pathCount = 1;
+  const effectiveLimit = Math.min(maxPaths, STORYLINE_PATH_CAP);
+  for (const groupingId of groupingIds) {
+    const count = libraryMessageCount(await getJson(`${HOST}/grouping/${pathSegment(groupingId, "grouping_id")}/message/list`, read));
+    if (count < 1)
+      throw new Error(`A grouping has no library messages, so there is nothing to generate: ${JSON.stringify(perGrouping)}`);
+    perGrouping.push({ grouping_id: groupingId, library_messages: count });
+    if (pathCount > Math.floor(effectiveLimit / count)) {
+      throw new Error(`This story line exceeds ${effectiveLimit === STORYLINE_PATH_CAP ? `Theta's ${STORYLINE_PATH_CAP}-path cap` : `the approved maxPaths ${maxPaths}`} paths; nothing was generated. Counted so far: ${JSON.stringify(perGrouping)}`);
+    }
+    pathCount *= count;
+  }
+  const summary = { storylineId: args.storylineId, groupings: perGrouping, pathCount, maxPaths, serviceCap: STORYLINE_PATH_CAP };
+  if (!Number.isSafeInteger(pathCount) || pathCount < 1 || pathCount > effectiveLimit) {
+    throw new Error(`Path count failed the final safety check (${pathCount}); refusing to generate`);
+  }
+  if (cfg.dryRun)
+    return { dryRun: true, method: "POST", path: `/storyline/${storylineId}/generate_all`, billable: true, ...summary };
+  const result = await postJson(`${HOST}/storyline/${storylineId}/generate_all`, {}, netOpts(cfg, "POST"));
+  return { ...summary, result };
+}
+var CHARACTERS_PUBLISHED_PRICES = Object.freeze({ inputPer1M: 7.5, outputPer1M: 20, embeddingPer1M: 0.2, source: "published-2026-11-11" });
+function estimateCharactersCost(args) {
+  const tokens = (label) => {
+    const v = args[label];
+    if (v === void 0)
+      return 0;
+    if (typeof v !== "number" || !Number.isFinite(v) || v < 0 || v > 1e12)
+      throw new Error(`${label} must be a number from 0 to 1e12`);
+    return v;
+  };
+  const input = tokens("inputTokens");
+  const output = tokens("outputTokens");
+  const embedding = tokens("embeddingTokens");
+  const p = CHARACTERS_PUBLISHED_PRICES;
+  const round = (n) => Math.round(n * 1e6) / 1e6;
+  const breakdown = {
+    inputUsd: round(input / 1e6 * p.inputPer1M),
+    outputUsd: round(output / 1e6 * p.outputPer1M),
+    embeddingUsd: round(embedding / 1e6 * p.embeddingPer1M)
+  };
+  return {
+    estimateUsd: round(breakdown.inputUsd + breakdown.outputUsd + breakdown.embeddingUsd),
+    breakdown,
+    usage: { inputTokens: input, outputTokens: output, embeddingTokens: embedding },
+    prices: p,
+    note: "Estimate only, from Theta published prices; actual charges depend on usage. Verify current prices with theta.billing.pricing and spend with theta.billing.usage."
+  };
 }
 
 // build/runtime/secretResolver.js
@@ -2272,6 +2857,18 @@ var commandRegistry = {
     schema: { command: "theta.video.ingestorList", description: "List stream ingestors", required: [] },
     handler: (cfg) => video.ingestorList(cfg)
   },
+  "theta.video.search": {
+    schema: { command: "theta.video.search", description: "Search a service account's videos by metadata filters (1-10 key/value pairs, operator and|or, page, number<=100)", required: ["serviceAccountId", "filters"] },
+    handler: (cfg, args) => video.videoSearch(cfg, requireText2(args.serviceAccountId, "serviceAccountId"), args.filters, args.operator, args.page, args.number)
+  },
+  "theta.video.streamList": {
+    schema: { command: "theta.video.streamList", description: "List a service account's livestreams (optional status on|off); stream keys are redacted", required: ["serviceAccountId"] },
+    handler: (cfg, args) => video.streamList(cfg, requireText2(args.serviceAccountId, "serviceAccountId"), args.status)
+  },
+  "theta.video.ingestorUnselect": {
+    schema: { command: "theta.video.ingestorUnselect", description: "Release a selected stream ingestor (invalidates the live stream key)", required: ["ingestorId"] },
+    handler: (cfg, args) => video.ingestorUnselect(cfg, requireText2(args.ingestorId, "ingestorId"), args.confirm === true)
+  },
   "theta.video.ingestorSelect": {
     schema: { command: "theta.video.ingestorSelect", description: "Select stream ingestor", required: ["ingestorId", "body"] },
     handler: (cfg, args) => video.ingestorSelect(cfg, requireText2(args.ingestorId, "ingestorId"), requireObject(args.body, "body"), args.confirm === true)
@@ -2301,7 +2898,7 @@ var commandRegistry = {
   "theta.inference.ready": {
     schema: { command: "theta.inference.ready", description: "Poll dedicated inference endpoint readiness with openai or gradio probe", required: [] },
     handler: (cfg, args) => inference.ready(cfg, {
-      probe: args.probe,
+      probe: validateProbe(args.probe),
       timeoutMs: args.timeoutMs,
       intervalMs: args.intervalMs
     })
@@ -2403,7 +3000,7 @@ var commandRegistry = {
       confirm: args.confirm === true,
       projectId: args.projectId,
       orgId: args.orgId,
-      probe: args.probe,
+      probe: validateProbe(args.probe),
       readyTimeoutMs: args.readyTimeoutMs,
       intervalMs: args.intervalMs,
       smokeMessage: args.smokeMessage,
@@ -2569,13 +3166,9 @@ var confirmRequiredCommands = /* @__PURE__ */ new Set([
   "theta.video.create",
   "theta.video.streamCreate",
   "theta.video.ingestorSelect",
-  "theta.characters.create",
-  "theta.characters.update",
-  "theta.characters.delete",
-  "theta.characters.session.create",
-  "theta.characters.session.delete",
-  "theta.characters.session.context",
-  "theta.characters.session.message",
+  "theta.video.ingestorUnselect",
+  // Every non-GET AI Characters route (characters, sessions, Story mode) is added below from the route table.
+  "theta.characters.storyline.generateAll",
   "theta.gpu.deployments.create",
   "theta.gpu.deployments.start",
   "theta.gpu.deployments.stop",
@@ -2586,11 +3179,34 @@ function thetaCommandRequiresConfirm(command) {
 }
 for (const [name, route] of Object.entries(characterRoutes)) {
   const command = `theta.characters.${name}`;
+  const needsPayload = ["POST", "PUT"].includes(route.method) && !route.fixedBody;
   commandRegistry[command] = {
-    schema: { command, description: `AI Characters ${name}; game-scoped key required`, required: [...route.fields, ...["POST", "PUT"].includes(route.method) ? ["payload"] : []] },
+    schema: {
+      command,
+      description: `AI Characters ${route.method} ${route.path}${route.billable ? " (BILLABLE: generates tokens)" : ""}${route.paginated ? "; optional page/number" : ""}; game-scoped key required`,
+      required: [...route.fields, ...needsPayload ? ["payload"] : []]
+    },
     handler: (cfg, args) => characterRequest(cfg, name, args)
   };
+  if (route.method !== "GET")
+    confirmRequiredCommands.add(command);
 }
+commandRegistry["theta.characters.storyline.generateAll"] = {
+  schema: {
+    command: "theta.characters.storyline.generateAll",
+    description: `BILLABLE BULK: generate every dialog path of a story line. Counts paths first (one library message per grouping) and refuses above maxPaths or ${STORYLINE_PATH_CAP}; game-scoped key required`,
+    required: ["storylineId", "maxPaths"]
+  },
+  handler: (cfg, args) => storylineGenerateAll(cfg, args)
+};
+commandRegistry["theta.characters.estimateCost"] = {
+  schema: {
+    command: "theta.characters.estimateCost",
+    description: "Offline AI Characters cost estimate from token counts (inputTokens, outputTokens, embeddingTokens) at Theta published prices; makes no network request",
+    required: []
+  },
+  handler: (_cfg, args) => estimateCharactersCost(args)
+};
 var thetaRuntimeCommandSchemas = Object.fromEntries(Object.entries(commandRegistry).map(([cmd, reg]) => [cmd, confirmRequiredCommands.has(cmd) ? { ...reg.schema, description: `${reg.schema.description} [requires confirm:true outside dry-run]` } : reg.schema]));
 function listThetaRuntimeCommands() {
   return Object.keys(commandRegistry).sort();

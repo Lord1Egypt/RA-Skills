@@ -1,7 +1,11 @@
 // Data flow: sends chat messages (and optional Basic auth) to the configured Theta-managed dedicated
 // endpoint (*.thetaedgecloud.com / *.onthetaedgecloud.com HTTPS only). *.onthetaedgecloud.com is a
 // shared Theta domain that also hosts other customers' deployments, so configure your own endpoint.
-// max_tokens is clamped to 1..5000 per call.
+// Caller (request-level) endpoint overrides are rejected by the runtime command handlers. This
+// client also accepts an explicit validated Theta endpoint plus explicit auth, used internally to
+// probe a newly created disposable deployment; configured Basic auth is never sent to a different
+// origin. max_tokens is clamped to 1..5000 per call. Results are returned as received; the runtime
+// and facade boundaries name-redact them.
 import { ThetaConfig } from '../config.js';
 import { BasicAuth } from '../types.js';
 import { getJson, postJson } from './http.js';

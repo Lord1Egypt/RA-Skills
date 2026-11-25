@@ -79,7 +79,18 @@ This rollout keeps OWS optional-first:
 - use OWS for pay/discover/sign-message flows
 - use private-key mode where the script still needs direct low-level transaction construction
 
-## X-Payment Header Format
+## x402 v2 (PAYMENT-REQUIRED / PAYMENT-SIGNATURE)
+
+Our servers answer both x402 versions during the v1 sunset window. The scripts pick the version for you through `scripts/x402_wire.py`:
+
+- A 402 that carries a `PAYMENT-REQUIRED` header is v2: the header is base64 JSON `{x402Version: 2, resource, accepts, extensions}`. Each `accepts` entry has `amount` (atomic units, a string) and a CAIP-2 `network` (`eip155:8453` for Base, `solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp` for Solana, exact case).
+- The v2 payment goes in the `PAYMENT-SIGNATURE` header: base64 JSON `{x402Version: 2, resource, accepted, payload, extensions}`, where `accepted` is the chosen `accepts` entry sent back unchanged.
+- Without that header the scripts pay v1 exactly as before: `X-Payment` = base64 JSON `{x402Version: 1, scheme, network, payload}`, amount from `maxAmountRequired`. Set `X402_WIRE=v1` to force v1.
+- The signed `payload` is the same in both versions (EVM: EIP-3009 `{signature, authorization}`; Solana: `{transaction}`).
+- Paid replies may carry `PAYMENT-RESPONSE` (v2) or `X-PAYMENT-RESPONSE` (v1): base64 JSON with the settlement `transaction`. `X-X402-Receipt-Token` is still sent.
+- After a payment is sent, a timeout, `202` or `5xx` means the outcome is not known yet. The scripts answer `pending: true`. Never sign a second payment for it: resend the same header or check first.
+
+## X-Payment Header Format (v1)
 
 Base64 encode the payment JSON:
 ```python

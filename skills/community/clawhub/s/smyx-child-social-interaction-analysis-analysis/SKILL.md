@@ -1,7 +1,7 @@
 ---
 name: "smyx-child-social-interaction-analysis-analysis"
 description: "Using fixed cameras in kindergartens or early-education centers, the system analyzes multi-person video to detect social-interaction behaviors among children, including approach (distance < 1 m), conversation (face-to-face with mouth movement), and cooperative play (collaborative play, chasing, etc.). | 通过幼儿园或早教中心的固定摄像头，分析多人视频，检测儿童之间的社交互动行为，包括接近（距离<1米）、对话（面对面且嘴部运动）、共同游戏（合作玩耍、追逐等）。系统定期生成社交互动热力图，为教师提供参考。"
-version: "1.0.22"
+version: "1.0.24"
 license: "MIT-0"
 ---
 

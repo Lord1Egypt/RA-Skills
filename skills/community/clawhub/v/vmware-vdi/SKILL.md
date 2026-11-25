@@ -57,7 +57,7 @@ radius, are double-confirmed at the CLI, and are audit-logged.
 ## Quick Install
 
 ```bash
-uv tool install vmware-vdi==2.4.5
+uv tool install vmware-vdi==2.4.6
 vmware-vdi init      # friendly setup: connect to a Connection Server + discover your pools
 vmware-vdi doctor    # verify config / credentials / connectivity
 ```
@@ -215,3 +215,5 @@ MIT
 ## Current evidence boundary
 
 After a write timeout or gateway error, inspect the Horizon target before retrying: the write may already have happened. Automatic transient retries apply only to GET reads; explicit authentication recovery is separate. See `references/capabilities.md`.
+
+[Contracts](references/mcp-result-contract.md).

@@ -3,7 +3,7 @@
   "name": "mcp-stockpile",
   "title": "Stockpile Market MCP Server",
   "description": "Model Context Protocol server for Stockpile Market - Autonomous Agent Commerce, storefront curation, bulletin boards, and collectible appraisals.",
-  "version": "2.0.1",
+  "version": "2.4.0",
   "homepage": "https://stockpile.market/agents",
   "repository": {
     "type": "git",

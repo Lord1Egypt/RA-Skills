@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-Developers and other agents use this skill to turn supplied articles, documents, URLs, or topics into infographics. It structures the content and prepares a visual prompt, then generates an image when the configured image service is available.
+Content creators and developers use it to turn supplied articles, documents, URLs, or topics into structured visual summaries and infographic images.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The workflow may send source content to an external image service without a privacy warning.
+Risk: Source-derived content may reach external services.
 
-Mitigation: Review what content the service receives and confirm the provider is approved before sending sensitive material.
+Mitigation: Check for private or sensitive material and confirm it can be sent to the chosen image service before generating.
 
-Risk: The security analysis was marked partial because some referenced paths were missing.
+Risk: ClawScan reports privacy and scope concerns and an unsafe boundary when processing images returned by an external service; scanning was partial.
 
-Mitigation: Review and scan the complete skill contents before installation, since the available scanner evidence is incomplete.
+Mitigation: Review the trigger and image-processing flow, keep inputs within the requested scope, and inspect returned images before using them.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/j3ffyang/skills/custom-infographic)
-- [Upstream project listed in skill metadata](https://github.com/JimLiu/baoyu-skills#baoyu-infographic)
-- [Content analysis framework](artifact/references/analysis-framework.md)
-- [Structured content template](artifact/references/structured-content-template.md)
-- [Base image prompt](artifact/references/base-prompt.md)
+- [Infographic workflow and design references](artifact/SKILL.md)
+- [Analysis framework](artifact/references/analysis-framework.md)
+- [Project reference linked in skill metadata](https://github.com/JimLiu/baoyu-skills#baoyu-infographic)
 
 ## Skill Output:
 
-**Output Type(s):** [Image files, Markdown]
+**Output Type(s):** [Images, Markdown, Text prompts]
 
-**Output Format:** [PNG infographic with Markdown source, analysis, structured content, and image prompt files]
+**Output Format:** [PNG infographic plus Markdown planning files and a Markdown image-generation prompt]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Layout, style, aspect ratio, and language can be selected; supporting Markdown files are saved with the infographic workflow.]
+**Other Properties Related to Output:** [Image generation uses an external image service and requires an API key and an image-capable model.]
 
 ## Skill Version(s):
 
-1.56.6 (source: server-resolved release metadata)
+1.56.7 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

@@ -120,16 +120,15 @@ If ClawHub moderation shows `CLEAN` but SkillSpector (or similar third-party sca
 
 ### Step 5: Rollback strategy (when fixes make things worse)
 
-If 2+ patch attempts have been made and findings are **increasing** (new findings appeared that weren't in the original version), the fixes themselves are the problem. Each added field (trigger keywords, read_when, not_for, disclaimers, Chinese triggers) gives the scanner **more surface to analyze** and **more patterns to match against**.
+If 2+ patch attempts have been made and findings are **increasing**, stop and reassess: the last edits may have made behavior worse, but a lower finding count is **not** the goal — demonstrated risk reduction is. Re-read each new finding on its own merits and classify it as a genuine risk or a false positive with evidence.
 
-**Rollback procedure:**
-1. Identify the last version that passed SkillSpector cleanly (or had the fewest findings)
-2. Take that version's **frontmatter** (description, read_when, not_for — all of it)
-3. Take the current version's **body** (if a scope-level fix like Step 8 rename was already made, keep it — it's a real improvement)
-4. Publish as a new version with changelog: "Rollback frontmatter to [version] original; retain [version] scope fix"
-5. **Do not re-add** trigger keywords, Chinese triggers, NOT disclaimers, read_when narrowing, or not_for items — these are what triggered the new findings
+**Revision procedure:**
+1. Diagnose each finding by layer (Steps 1–3 above) and decide, with written evidence, whether the underlying behavior is actually unsafe. Never remove a field just because it triggered a finding.
+2. **Preserve accurate capability disclosures and necessary usage restrictions** — `not_for`, `read_when`, scope limits, and safety-related metadata stay unless they are factually wrong. Removing them to shorten the scanner's surface is not remediation; it hides real constraints from reviewers.
+3. Fix unsafe **behavior** directly, or if a finding is a false positive, document why with evidence rather than deleting the disclosure.
+4. Publish as a new version with a changelog that names each finding, its classification, and the evidence for any false-positive determination.
 
-**Key insight:** A clean, minimal frontmatter (just name + description + version) has the **smallest attack surface**. Every additional field is a potential finding. If a skill passed at version X, the fastest path to passing again is to return to X's frontmatter, not to add more guards.
+**Key insight:** A minimal frontmatter is fine, but stripping accurate restrictions to make a scanner quiet trades a finding for a real safety gap. Pass again by fixing behavior and documenting evidence, not by deleting safety metadata.
 
 **Real example (social-persona-profiling):**
 - 1.0.4: passed SkillSpector (no findings)

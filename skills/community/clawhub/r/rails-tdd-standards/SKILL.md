@@ -1,8 +1,10 @@
 ---
+
 name: rails-tdd-standards
 description: RSpec testing standards and best practices for Rails applications. Use when writing new tests, reviewing test quality, debugging factory errors, setting up FactoryBot, or enforcing single-expectation patterns. Also use when a test fails due to factory misconfiguration, wrong association keys, or missing role traits. Triggers on phrases like "write a test", "add specs", "factory error", "test is failing", "how should I test this", or when reviewing test code in a Rails project.
-metadata: {"clawdbot":{"emoji":"🧪","requires":{"bins":["bundle"]},"os":["linux","darwin","win32"]}}
+metadata: {"clawdbot":{"emoji":"\ud83e\uddea","requires":{"bins":["bundle"]},"os":["linux","darwin","win32"],"version":"1.1.6"}}
 ---
+
 
 # Rails TDD Standards
 
@@ -165,43 +167,11 @@ RSpec.describe MyService do
 end
 ```
 
-## Rails 8 Gotchas
+## Rails 8 Spec Compatibility
 
-### Status codes changed
-`:unprocessable_entity` is deprecated in Rails 8.0.2+. Use `:unprocessable_content` in response assertions.
-
-```ruby
-# ✅ Rails 8
-expect(response).to have_http_status(:unprocessable_content)
-
-# ❌ Deprecated (will warn/fail)
-expect(response).to have_http_status(:unprocessable_entity)
-```
-
-### params.expect vs require/permit
-Rails 8 introduces `params.expect` as the preferred strong params pattern. But watch out: **`params.expect` strips nested hash-keyed arrays** (like `items_attributes: { "0" => { ... } }`).
-
-```ruby
-# ✅ params.expect — works for flat + simple nested
-params.expect(post: [:title, :body, tag_ids: []])
-
-# ✅ Use require/permit for nested attributes with "0"-keyed hashes
-params.require(:post).permit(:title, items_attributes: [:id, :name, :_destroy])
-
-# ❌ params.expect breaks "0"-keyed nested attributes
-# params.expect(post: [items_attributes: [...]])  ← strips the hash keys
-```
-
-### skip_forgery_protection
-```ruby
-# ✅ Rails 8
-skip_forgery_protection
-
-# ❌ Deprecated
-skip_before_action :verify_authenticity_token
-```
-
----
+Rails 8 changed two controller-side APIs that specs interact with - strong
+parameters and CSRF behavior. What changed, and how to spec it, is in
+`references/rails-8-controller-gotchas.md`.
 
 ## CI Database Setup
 
@@ -404,7 +374,112 @@ bundle exec rspec --only-failures
 bundle exec rspec --format documentation
 ```
 
+---
+
+## Browser & System Spec Testing
+
+System spec references are split by topic so you load only what you need:
+
+- `references/driver-setup.md` - Capybara + Selenium driver configuration
+- `references/browser-divergence.md` - why the same spec passes locally and fails
+  in CI, including a spec that overrides the driver
+- `references/devise-and-mailers.md` - Devise vs Warden sign-in, background mail
+  delivery in specs
+- `references/turbo-and-stimulus.md` - Turbo Stream and Frame semantics,
+  Stimulus controllers, importmap
+- `references/stale-content-and-waiting.md` - stale page content, frame timing
+  conflicts, correct waiting
+- `references/failure-lookup.md` - symptom-to-cause lookup table
+- `references/rails-8-controller-gotchas.md` - Rails 8 parameter and CSRF spec compatibility
+
+The four that cause the most time loss:
+
+**A failure that reproduces on every run is not a flake.** Classify before assuming
+randomness. Browser differences (Firefox vs Chrome, headless viewport height, driver
+version) produce *deterministic* failures that get mislabeled as flakes.
+
+**`sign_in` is not `login_as`.** In a Devise app use Devise's `sign_in`; Warden's
+`login_as` does not create a Devise session and `current_user` comes back `nil` with
+no obvious cause. In request specs, include
+`Devise::Test::IntegrationHelpers, type: :request` or `sign_in` is undefined.
+
+**`deliver_later` does not deliver in the test environment.** The default `:test`
+adapter only records the job. Assert with `have_enqueued_job`, or use
+`perform_enqueued_jobs { ... }` / `queue_adapter = :inline` to also assert delivery.
+
+**`turbo_stream.replace` destroys its target.** A replaced element's Stimulus
+controller is torn down and re-initialized, losing state. Use `update` for a
+targeted swap, `append` to preserve the controller.
+
+---
+
+## Browser-Dependent CI Failures
+
+A spec that passes locally and fails in CI is usually **browser divergence**, not
+flakiness. The usual causes, in order of frequency:
+
+1. **Viewport height** — headless Chrome's default window is ~683px tall. A modal
+   taller than that reports elements as not visible even though they are in the DOM.
+2. **Firefox vs Chrome** — Firefox does not honour `no_proxy` for its own traffic,
+   so WebDriver's localhost connection can get intercepted on a proxied machine.
+   Set `network.proxy.no_proxies_on` to include `localhost,127.0.0.1`.
+3. **Hardcoded browser in the spec** — a spec that forces Firefox while CI runs
+   Chrome tests a different engine than CI will.
+4. **Version drift** — driver and browser versions must match and must be pinned
+   in CI.
+
+```ruby
+# ✅ Pin the driver explicitly rather than inheriting whatever is on PATH
+options.binary = "/path/to/chrome"
+```
+
+See `references/driver-setup.md` for the full driver setup.
+
+---
+
+## RuboCop Gotchas in Specs
+
+RuboCop's `Style/NumericPredicate` cop rewrites `be.positive?` to `be_positive`.
+Applied to RSpec matchers, that produces a `NoMethodError` at runtime because
+`be_positive` is not a valid predicate method — the cop does not know it is
+editing a matcher.
+
+```ruby
+# ✅ keep the matcher form
+expect(result).to be.positive
+
+# ❌ RuboCop's autocorrect produces this — NoMethodError
+expect(result).to be_positive
+```
+
+Two ways to keep it fixed:
+
+```ruby
+# spec/rails_helper.rb
+config.before(:suite) do
+  # keep matcher predicates intact
+end
+```
+
+```yaml
+# .rubocop.yml
+Style/NumericPredicate:
+  AllowedMethods:
+    - be_positive
+    - be_negative
+```
+
+**Always read the diff RuboCop produces** before committing. An autocorrect that
+changes `be.positive?` → `be_positive` is a runtime bug, not a style fix.
+
+---
+
 ## See Also
 
-- `references/factory-patterns.md` — advanced FactoryBot patterns
-- `references/system-specs.md` — Capybara / browser testing setup
+- `references/factory-patterns.md` - advanced FactoryBot patterns
+- `references/driver-setup.md` - Capybara / browser testing setup
+- `references/browser-divergence.md` - local vs CI browser differences
+- `references/devise-and-mailers.md` - Devise sign-in and mail delivery in specs
+- `references/turbo-and-stimulus.md` - Turbo and Stimulus behavior in specs
+- `references/stale-content-and-waiting.md` - stale content and waiting
+- `references/failure-lookup.md` - symptom-to-cause lookup table

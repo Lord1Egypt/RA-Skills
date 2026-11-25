@@ -69,7 +69,7 @@ node scripts/publish.js "<YOUR_FILE_PATH>" --filename "YOUR_FILE_NAME" [--passwo
 
 当用户要求从 GitHub 等远程 URL 发布内容时，使用 `upload_page.js`（不是 `publish.js`，因为没有本地文件供类型检测）的 `--remote-url` 参数。服务端自动拉取内容并存储快照，后续访问时自动检查更新。
 
-Git 源的版本选择、更新和回退先读 [git-backed-versions.md](git-backed-versions.md)：历史由源仓库维护，分支 URL 跟随更新，完整 commit URL 固定文件版本。当前 GitLab 和私有仓库认证尚未接入。
+Git 源的版本选择、更新和回退先读 [git-backed-versions.md](git-backed-versions.md)：历史由源仓库维护。GitHub 可跟随分支，GitLab 只接受完整 commit 的 raw 产物；私库需运营方配置项目/文件/发布者凭据，默认仅所有者和协作者可读。
 
 远程 URL 发布的安全自检只基于用户请求、URL、文件名和显式参数；除非远程内容已经在当前上下文中，不要为了自检主动 fetch、下载、解析或转换远程内容。深度内容检查由服务端拉取后的审核负责。
 
@@ -247,7 +247,7 @@ A?.reportText([{commentId, state: "pending"}]);
 不把 label 当 selector。重新绑定目标是可选的修改操作，不表示刚提交的评论失去目标。
 页面自绘标记保持不拦截输入；平移、缩放和位置报告不触发文字扫描或网络请求。
 
-旧文字评论不会自动转成对象评论；同名文字、未回答的 ID 和明确缺失分别处理。区域评论保存一组 ID，侧栏保留可见、隐藏、缺失和等待各部分的数量。恢复已知隐藏目标用“显示目标”；等待或文字未定位可“重新定位”。绑定公开 GitHub 文件时可查看该文件的 Git 历史；本地上传和内部 ShareOne 指针不新增版本库，不公开内部源地址。GitLab 和私有仓库认证仍需接入。
+旧文字评论不会自动转成对象评论；同名文字、未回答的 ID 和明确缺失分别处理。区域评论保存一组 ID，侧栏保留可见、隐藏、缺失和等待各部分的数量。恢复已知隐藏目标用“显示目标”；等待或文字未定位可“重新定位”。绑定公开 GitHub 文件时可查看该文件的 Git 历史；本地上传和内部 ShareOne 指针不新增版本库，不公开内部源地址。GitLab 版本与私库使用方式见 [git-backed-versions.md](git-backed-versions.md)。
 
 ## 7. 使用 Mermaid.js 绘制图表
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Audits a supplied local HTML file offline for common on-page SEO elements and reports issues with practical fix guidance.
+Offline on-page SEO audit of a local HTML file — title and meta description quality, canonical, robots meta, viewport, Open Graph tags, h1 structure, image alt coverage, lang/charset. Zero network access. Use when the user asks to check a page's SEO basics from saved HTML or a template file.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and site owners use this skill to review the SEO basics of a saved page or HTML template and prioritize simple fixes without fetching a live site.
+Developers and site owners use this skill to check the core on-page SEO elements in a saved HTML page or template. It reports pass, warning, and failure results with concise suggestions for common issues.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Installing an unverified copy could run code from an untrusted source.
+Risk: Reported installation behavior may conflict with the offline audit purpose and may use unpinned remote content.
 
-Mitigation: Install from a trusted source and pin or verify the package or source revision.
+Mitigation: Before installing, review the installation behavior and verify remote content before running it.
 
-Risk: A local-file check can miss live-site issues or be mistaken for a complete SEO assessment.
+Risk: The security scan was incomplete, so its benign verdict does not establish that all behavior is safe.
 
-Mitigation: Provide only the HTML file to audit and treat the findings as on-page guidance, not a live-site or ranking guarantee.
+Mitigation: Review the partially inspected files before installation and execution.
 
 ## Reference(s):
 
-- [SEO Quick Audit Lite on ClawHub](https://clawhub.ai/nenadzivotic/skills/seo-quick-audit-lite)
+- [ClawHub skill release](https://clawhub.ai/nenadzivotic/skills/seo-quick-audit-lite)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Guidance, JSON]
+**Output Type(s):** [Analysis, JSON, Guidance]
 
-**Output Format:** [JSON check results with a concise Markdown summary and fix guidance]
+**Output Format:** [JSON audit report with pass/warn/fail checks and concise remediation guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Ten on-page checks with pass, warn, fail, or info statuses; no live URL, robots.txt, or sitemap audit.]
+**Other Properties Related to Output:** [Audits only the supplied local HTML file; read-only and offline. Results reflect common conventions, not search-engine guarantees.]
 
 ## Skill Version(s):
 
-1.0.0 (source: ClawHub release metadata)
+1.1.0 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

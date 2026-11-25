@@ -1,6 +1,6 @@
 ## Description:
 
-Generate and edit images or videos through supported engines, including reference-guided workflows and optional pay-per-image APIs.
+Routes image and video generation or editing jobs across configured AI engines, with optional series consistency and paid API support.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and creative teams use this skill to generate or edit images and videos through supported services, including reference-guided workflows.
+Developers and creative teams use the skill to create or edit image and video assets from prompts and reference images, including batch jobs and coordinated visual series.
 
 ### Deployment Geography for Use:
 
@@ -22,26 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan reports incomplete inspection and environment-related concerns, with lower-confidence file-upload and profile-path findings.
+Risk: The available security scan is incomplete because parts of several referenced scripts were not fully inspected.
 
-Mitigation: Review the reported concerns before installation and limit credential and file access to what the selected engine needs.
+Mitigation: Review the skill cautiously before installing; wait for a more complete review if stronger assurance is needed.
+
+Risk: The optional pay-per-image API route can incur provider charges, including for images later discarded during local checks.
+
+Mitigation: Leave the paid route unconfigured unless needed, and set deliberate per-batch and monthly spending limits before enabling it.
 
 ## Reference(s):
 
+- [ClawHub skill page](https://clawhub.ai/ekko237/skills/imagegen-swarm)
+- [Project homepage (Clawdis metadata)](https://github.com/Ekko237/imagegen-swarm)
 
 ## Skill Output:
 
-**Output Type(s):** [Image files, Video files, Guidance]
+**Output Type(s):** [Image files, Video files, JSON job summaries]
 
-**Output Format:** [PNG images, MP4 videos, and JSON job and result records]
+**Output Format:** [PNG images, generated video files, and JSON job summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Outputs are saved as files; available engines and reference-image limits vary.]
+**Other Properties Related to Output:** [Files are saved to the requested output paths; batch generation and optional series consistency checks are supported.]
 
 ## Skill Version(s):
 
-1.3.3 (source: artifact frontmatter, server release metadata)
+1.4.6 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

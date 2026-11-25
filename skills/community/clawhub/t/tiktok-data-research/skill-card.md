@@ -1,6 +1,6 @@
 ## Description:
 
-Retrieves public TikTok search results, creator videos, and video comments as structured JSON for content research and analysis.
+Retrieves public TikTok search results, creator posts, and video comments as structured data for content research, competitor monitoring, and audience analysis.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-TikTok creators, marketers, and researchers can retrieve public video search results, creator posts, and comments to support content research, competitor monitoring, and audience analysis.
+TikTok creators, marketing teams, and researchers use the skill to retrieve public videos, creator posts, and comments for topic research, competitor reviews, and audience analysis. An agent can summarize the returned data for the user's requested research task.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security analysis was partial: some components were not fully analyzed.
+Risk: Some components were only partially inspected, so scan coverage is incomplete.
 
-Mitigation: Review the partially analyzed components and confirm the skill's tool scope before deployment.
+Mitigation: Review the partially inspected components before installing, since the scan does not establish their safety.
 
-Risk: Queries use a third-party data service and require an API token.
+Risk: Search keywords and TikTok links are sent to guaikei.com to retrieve data.
 
-Mitigation: Protect GUAIKEI_API_TOKEN and review the service's data handling before sending queries; use only data permitted for your intended use.
+Mitigation: Use public TikTok queries and confirm that sending the requested information to this service is acceptable.
 
 ## Reference(s):
 
-- [TikTok数据智能助手 on ClawHub](https://clawhub.ai/why20261/skills/tiktok-data-research)
-- [Guaikei service and token support](https://www.guaikei.com)
-- [Command options](references/options.md)
-- [Changelog](references/changelog.md)
+- [Official service and support](https://www.guaikei.com)
+- [Command options](artifact/references/options.md)
+- [Release notes](artifact/references/changelog.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis]
+**Output Type(s):** [JSON, Text, Analysis]
 
-**Output Format:** [Structured JSON response envelope containing TikTok search results, creator posts, or video comments]
+**Output Format:** [Structured JSON results with agent-written summaries when requested]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results depend on publicly available data and API responses; fields may be omitted, and video files are not downloaded.]
+**Other Properties Related to Output:** [Results depend on the public TikTok data available for the requested keywords, accounts, or videos.]
 
 ## Skill Version(s):
 
-1.1.1 (source: SKILL.md frontmatter, package.json, changelog, released 2026-11-04)
+1.1.2 (source: SKILL.md frontmatter, package.json, server release)
 
 ## Ethical Considerations:
 

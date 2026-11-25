@@ -1,6 +1,6 @@
 ## Description:
 
-循古黄历获取中国万年历信息，包括二十四节气、农历日期、宜忌、吉凶和黄道吉日等内容。
+查今天或指定公历日期的中国老黄历、万年历，获取农历、干支、宜忌、吉时、冲煞、月相和当日节气。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and agents use this skill to answer Chinese almanac questions about solar terms, lunar dates, auspicious activities, inauspicious activities, lucky hours, ganzhi calendar details, moon phases, Taoist calendar dates, and Buddhist calendar dates.
+People looking up Chinese almanac dates use this skill to check lunar-calendar details, ganzhi, auspicious and inauspicious activities, auspicious hours, and related daily calendar information.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The sample runtime code may expose unrelated secrets by loading key-value pairs from .env files into the agent process.
+Risk: The configured HUANGLI_API_TOKEN is sent with calendar requests to xungufa.com.
 
-Mitigation: Use a dedicated OpenClaw secret or environment variable for HUANGLI_API_TOKEN, avoid colocating unrelated secrets in the same .env files, and prefer code that loads only HUANGLI_API_TOKEN.
+Mitigation: Configure the API key only in a trusted runtime and keep it private.
 
 ## Reference(s):
 
-- [循古排盘](https://xungufa.com)
-- [循古黄历 Calendar API](https://xungufa.com/huangli/api/calendar)
-- [ClawHub skill page](https://clawhub.ai/cnyouker/skills/xungu-huangli)
+- [ClawHub skill listing](https://clawhub.ai/cnyouker/skills/xungu-huangli)
+- [Huangli calendar API](https://www.xungufa.com/huangli/api/calendar)
+- [Request an API key](https://www.xungufa.com/apikey/)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Code, API Calls, Configuration]
+**Output Type(s):** [Text, JSON]
 
-**Output Format:** [Formatted Chinese almanac text with supporting Python code and configuration guidance]
+**Output Format:** [Formatted Chinese almanac text or structured JSON]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires HUANGLI_API_TOKEN for live API calls.]
+**Other Properties Related to Output:** [Date-specific calendar information; JSON mode exposes structured calendar fields.]
 
 ## Skill Version(s):
 
-1.0.1 (source: server release metadata)
+1.0.2 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

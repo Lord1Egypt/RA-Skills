@@ -1,6 +1,6 @@
 ## Description:
 
-Builds or updates the code knowledge graph via tree-sitter AST and SQLite
+Builds or updates the code knowledge graph via tree-sitter AST and SQLite.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to build or update a structural knowledge graph for a codebase before searching it or analyzing change impact.
+Developers and engineers can build or refresh a structural knowledge graph of a codebase before searching it or analyzing the impact of changes. The skill reports build results and suggests graph search or blast-radius analysis as next steps.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review was partial; some `.gauntlet/graph.db` references were unavailable for review.
+Risk: The skill creates or updates `.gauntlet/graph.db` in the selected codebase, and the security scan could not fully resolve references to that local path.
 
-Mitigation: Before installing, confirm that `.gauntlet/graph.db` matches your intended use and review the skill’s behavior in your environment.
+Mitigation: Review the target directory and confirm that creating or updating the graph database is intended before running the skill.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-gauntlet-graph-build)
-- [Project page](https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet)
+- [ClawHub graph-build release](https://clawhub.ai/athola/skills/nm-gauntlet-graph-build)
+- [Related project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet)
 
 ## Skill Output:
 
-**Output Type(s):** [Files, JSON, Shell commands, Guidance]
+**Output Type(s):** [JSON, Guidance]
 
-**Output Format:** [Markdown guidance with shell commands, a JSON build report, and a SQLite graph database]
+**Output Format:** [JSON build report with a concise Markdown summary and next-step guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Builds or updates `.gauntlet/graph.db` in the selected codebase; uses an incremental update when a graph already exists.]
+**Other Properties Related to Output:** [The report includes parsed file, node, edge, and duration counts when available.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, server release metadata)
+1.10.4 (source: server release metadata)
 
 ## Ethical Considerations:
 

@@ -6,9 +6,9 @@ Diagnose a misbehaving multi-agent team by symptom. Most of these are structural
 
 **Looks like:** A hands to B, B hands back to A, repeat. Token spend climbs with no progress.
 
-**Cause:** Either a cycle in the chart, or two roles with overlapping ownership and no refusal to break the tie.
+**Cause:** Either a cycle in the chart with no cap on how often one agent may appear in a chain, or two roles with overlapping ownership and no refusal to break the tie.
 
-**Fix:** Enforce the tree invariant, rejecting any edge that would make an agent its own ancestor. Then check whether the two roles are actually one role. If both can legitimately do the work, neither will reliably keep it.
+**Fix:** Default to the tree invariant, rejecting any edge that would make an agent its own ancestor. If the loop is intentional, such as builder and reviewer, cap how many times one agent may appear in a chain and send the work to a human after about three review passes. Then check whether the two roles are actually one role. If both can legitimately do the work, neither will reliably keep it.
 
 ## One agent does everything
 
@@ -40,7 +40,7 @@ Diagnose a misbehaving multi-agent team by symptom. Most of these are structural
 
 **Cause:** No fan-out cap, no depth cap, or a vague request that the top of the chart split speculatively.
 
-**Fix:** Cap fan-out per turn (3 is a sane default) and chain depth (10). Then require the top of the chart to clarify ambiguous requests before dispatching, rather than covering every interpretation in parallel.
+**Fix:** Cap fan-out per turn (3 is a sane default) and chain depth (10 in a tree). Then require the top of the chart to clarify ambiguous requests before dispatching, rather than covering every interpretation in parallel.
 
 ## A role is missing at runtime
 
@@ -64,7 +64,7 @@ Diagnose a misbehaving multi-agent team by symptom. Most of these are structural
 
 **Cause:** Approval policy assigned per agent rather than per tool, so a single risky tool drags an entire agent into ask-mode.
 
-**Fix:** Classify per tool by blast radius. Reads and tests run on allow. Only genuinely irreversible or costly actions ask. If more than about a fifth of actions are stopping for approval, the classification is too conservative.
+**Fix:** Classify per tool by blast radius. Reads and tests run on allow. Only genuinely irreversible or costly actions ask. If more than about a fifth of actions are stopping for approval, the classification is too conservative. Send whatever does ask to one queue the human watches, so approvals are not scattered across terminals and threads.
 
 ## Results are unauditable
 

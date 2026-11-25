@@ -12,6 +12,9 @@ from ai_web_client import (
 )
 
 
+REQUEST_SOURCE = "skills"
+
+
 MODES = {
     "web": {"unique_id": "search_web", "source": "web"},
     "shopping": {"unique_id": "search_shopping", "source": "shopping"},
@@ -72,7 +75,7 @@ def build_payload(args):
     validate_int_range("max_results", args.max_results, 1, 100)
     country = validate_country(getattr(args, "country", None))
     mode = MODES[args.mode]
-    payload = {"unique_id": mode["unique_id"], "source": mode["source"], "query": query}
+    payload = {"unique_id": mode["unique_id"], "source": mode["source"], "query": query, "request_source": REQUEST_SOURCE}
     if args.max_results is not None:
         payload["max_results"] = args.max_results
     if country:

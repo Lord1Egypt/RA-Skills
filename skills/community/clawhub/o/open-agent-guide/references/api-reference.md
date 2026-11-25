@@ -88,8 +88,14 @@ combine into one OR group.
 | `billing_model`, `payment_method`                                                                              | Slug membership on active offers                                                                                          |
 | `tier`                                                                                                         | AI-native score tier: `S`, `A`, `B`, `C`, or `D`; unscored products do not match                                          |
 | `completion_support`, `route_kind`, `on_behalf_of`, `execution_human_requirement`                              | Completion facets matching one record together; optional job scope; blank leaves the facet unfiltered.                    |
-| `documented_complete_for_job`, `finishes_without_human_for_job`                                                | Documented task completion predicates; each needs a `job_to_be_done` scope and excludes unknown (ADR-0124)                |
+| `documented_complete_for_job`, `finishes_without_human_for_job`                                                | Documented task completion predicates; each needs a `job_to_be_done` scope and excludes unknown                           |
 | `completes_job_via`                                                                                            | Callable interface kinds that complete the scoped job; repeat for OR; needs a `job_to_be_done` scope and excludes unknown |
+
+`finishes_without_human_for_job=true` requires `documented_complete`,
+`execution_human_requirement=none`, and `on_behalf_of=supported` on the same
+record for the scoped job. Conditional, prohibited, and unknown delegation do
+not match. Expanded `documented_task_completions` records include `verdict`, the
+same summary shown in HTML and Markdown. Read it with `scope` and `conditions`.
 
 Completion predicates match records that deliver the linked job's main outcome
 by and large. Scope can limit cases or prerequisites while preserving that
@@ -102,26 +108,45 @@ matches the route recorded for the assessed completion, not mere presence of the
 interface, and asserts neither route eligibility nor delegated authority; a
 `mcp` match does not imply a dialable endpoint, so add `has_mcp_url` for that.
 
+Boolean filters exclude unknown values in both directions. Negative relation
+filters require whole-relation absence evidence without matching support.
+Completion filters use the same job and completion facets in both directions.
+Supporting evidence takes precedence over conflicting absence.
+
+Supported filters report `filter_breakdown` with `matched`, `recorded_nonmatch`,
+and `unknown` counts. Previously covered positive requests retain
+`recorded_negative` as a deprecated alias throughout `/v1/`. Newly covered
+requests omit the alias. Sum only the three canonical counts. All `data_export`
+sets report a breakdown, including sets with `none`.
+
 `free_plan=true` matches products with an active Offer containing a structured
-pricing option with `price_kind: free`. `free_plan=false` selects products with
-no such recorded offer; it does not prove that the vendor has no free access.
-Omitting `free_plan` leaves free access unfiltered. Prose-only free allowances
-and trials do not match unless an active Offer has a qualifying structured
-option. Matched offers can have quotas, eligibility restrictions, noncommercial
-terms, or attribution requirements.
+pricing option with `price_kind: free`. `free_plan=false` and `pay_go=false`
+return zero matches until the catalog supports offer absence. Omitting
+`free_plan` leaves free access unfiltered. Prose-only free allowances and trials
+do not match unless an active Offer has a qualifying structured option. Matched
+offers can have quotas, eligibility restrictions, noncommercial terms, or
+attribution requirements.
+
+Product list and detail records include `pricing_status` before you expand
+offers. `present` means an active offer records a fixed or usage amount, or a
+free option. `quote_only` means active offers record pricing terms without a
+readable amount. `unknown` means no active offer records pricing. Select this
+signal with `fields=pricing_status`. Read `offers[].prices` and
+`offers[].price_description` with `expand=offers` for amounts and conditions. A
+null `free_plan` value means free access is unknown. The `free_plan` and
+`pay_go` filters select specific pricing options.
 
 `free_plan` is also a readable field on each product (list and detail JSON, and
 the Markdown product list), so you can rank a shortlist by cost without opening
-each product. It reads back the filter: `true` when the product has an active
-free-tier offer, `null` when none is recorded. It is never `false` — a missing
-free offer is unresearched, not a confirmed "no free tier". Select it with
-`fields=free_plan`.
+each product. It reports `true` when the product has an active free-tier offer,
+`null` when none is recorded. It is never `false` — a missing free offer is
+unresearched, not a confirmed "no free tier". Select it with `fields=free_plan`.
 
 For example, request `/api/v1/catalog/products/?free_plan=true&expand=offers`.
-Inspect the expanded offers' `lifecycle_status` and `pricing_options` to locate
-the qualifying option, then read `description`, `price_description`, and the
-terms at `url` to check whether the free access suits the workload. Expansion
-includes the product's offers, so inspect each offer independently.
+Inspect the expanded offers' `lifecycle_status` and `prices` to locate the
+qualifying option, then read `description`, `price_description`, and the terms
+at `url` to check whether the free access suits the workload. Expansion includes
+the product's offers, so inspect each offer independently.
 
 Boolean filters accept `true`/`1` and `false`/`0`, with `yes`/`no` and
 `on`/`off` as compatibility aliases. Letter case is ignored. Omit a filter to

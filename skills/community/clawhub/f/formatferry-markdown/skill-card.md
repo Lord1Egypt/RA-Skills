@@ -1,6 +1,6 @@
 ## Description:
 
-Local-first document-to-Markdown converter supporting HTML, DOCX, PDF, XLSX, CSV, JSON, XML, and PPTX inputs with Markdown output flavours for GitHub, CommonMark, Slack, Discord, Reddit, Confluence, R Markdown, and custom formats.
+Converts local documents or stdin to Markdown in platform-specific formats, with optional server-side URL extraction.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agent workflows use this skill to convert local documents, pasted content, or selected web content into platform-specific Markdown through the FormatFerry CLI.
+Developers and agent operators use the skill to convert documents and web content into Markdown tailored to their target platform.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The workflow installs and runs an unpinned global npm executable against potentially sensitive documents.
+Risk: URL extraction sends the URL and API key to the FormatFerry API for server-side fetching.
 
-Mitigation: Use only a trusted and reviewed FormatFerry package version, prefer a pinned install where possible, and avoid broad global installs in shared environments.
+Mitigation: Use URL mode only with the user's agreement, and avoid internal, private, or signed URLs.
 
-Risk: URL extraction sends content to server-side processing.
+Risk: A stored license key can trigger an entitlement check with the license service during local conversion.
 
-Mitigation: Do not use --url for sensitive, internal, or confidential content unless server-side processing is acceptable; use local file or stdin conversion instead.
+Mitigation: Use --offline for local conversions when you want to skip the entitlement check.
 
-Risk: License validation may make a network request when a license key is stored.
+Risk: The benign security verdict has limited assurance because one scanner's review was partial.
 
-Mitigation: Use --offline for private local conversion when network calls are not acceptable.
+Mitigation: Treat the verdict as a summary of completed checks, not a guarantee of zero risk.
 
 ## Reference(s):
 
-- [FormatFerry CLI Reference](references/cli-reference.md)
-- [FormatFerry homepage](https://github.com/britrik/FormatFerry)
-- [ClawHub skill page](https://clawhub.ai/britrik/skills/formatferry-markdown)
+- [FormatFerry project homepage](https://github.com/britrik/FormatFerry)
+- [ClawHub skill release](https://clawhub.ai/britrik/skills/formatferry-markdown)
+- [FormatFerry CLI reference](artifact/references/cli-reference.md)
 
 ## Skill Output:
 
-**Output Type(s):** [markdown, shell commands, files, configuration, guidance]
+**Output Type(s):** [Markdown, Shell commands]
 
-**Output Format:** [Markdown, Markdown file output, and shell command guidance]
+**Output Format:** [Markdown text in the selected flavor, with optional CLI command guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Supports local file, stdin, URL, and batch conversion modes; optional credentials are only needed for URL extraction and premium batch mode.]
+**Other Properties Related to Output:** [Converts supported local inputs or stdin; output flavor can be selected.]
 
 ## Skill Version(s):
 
-1.1.5 (source: server release evidence)
+1.1.6 (source: SKILL.md frontmatter and release evidence)
 
 ## Ethical Considerations:
 

@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "name": "财务发票",
+      "match": {"glob": ["*发票*", "*invoice*", "*fapiao*"]},
+      "dest": "财务/发票/{month}"
+    },
+    {
+      "name": "合同协议",
+      "match": {"regex": "(?i).*(合同|协议|contract).*", "ext": ["pdf", "doc", "docx"]},
+      "dest": "法务/合同/{year}"
+    },
+    {
+      "name": "项目A",
+      "match": {"path_glob": "*项目A*"},
+      "dest": "项目/项目A/{account}/{month}"
+    },
+    {
+      "name": "图片",
+      "match": {"ext": ["png", "jpg", "jpeg", "gif", "webp", "heic"]},
+      "dest": "素材/图片/{month}"
+    }
+  ]
+}

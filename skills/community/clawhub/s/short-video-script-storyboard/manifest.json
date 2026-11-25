@@ -1,0 +1,58 @@
+{
+  "changelog": "The joined vertical clip is published as the next patch of the same script.",
+  "display_name": "Short Video Script and Storyboard",
+  "entry": "SKILL.md",
+  "homepage": "https://beatra.ai/skills/short-video-script-storyboard",
+  "icon": "https://beatra.ai/textures/icons/ai-storyboard-generator-0.2.6.png",
+  "localized": {
+    "en": {
+      "description": "Turn a topic, product, or audience note into a shootable short-video script and storyboard frames. This short video script and storyboard workflow confirms who it is for and the selling point, writes the hook, spoken lines, and shot list, then renders one still per shot. Use it for product clips, creator series, and shop videos when you need the script and the frames before anyone films or animates.",
+      "display_name": "Short Video Script and Storyboard",
+      "summary": "A shootable short-video script plus one storyboard still per shot.",
+      "tags": [
+        "short video script",
+        "storyboard",
+        "shot list",
+        "short video brief",
+        "hook and spoken lines"
+      ],
+      "title": "Short Video Script and Storyboard"
+    },
+    "ja": {
+      "description": "テーマや商品から、撮れるショート動画の台本とカットごとの絵コンテ静止画を作ります。誰に向けるかと売りを先に固め、フック、セリフ、カット表を書いてから静止画にします。",
+      "display_name": "ショート動画の台本と絵コンテ",
+      "summary": "撮れるショート動画の台本と、カットごとの絵コンテ。",
+      "tags": [
+        "ショート動画",
+        "台本",
+        "絵コンテ",
+        "カット表",
+        "セリフ"
+      ],
+      "title": "ショート動画の台本と絵コンテ"
+    },
+    "zh": {
+      "description": "把选题、商品或受众做成能拍的短视频脚本与分镜，满足各种短视频脚本需求：先确认受众和卖点，再写开头、口播和镜头表，并为每个镜头出一张分镜。短视频脚本可以先只出文字，确认后再出画面。适合带货、创作者系列和门店短视频。",
+      "display_name": "短视频脚本与分镜",
+      "summary": "一条能拍的短视频脚本，外加每个镜头一张分镜。",
+      "tags": [
+        "短视频脚本与分镜",
+        "短视频脚本",
+        "分镜",
+        "短视频脚本需求",
+        "镜头表"
+      ],
+      "title": "短视频脚本与分镜"
+    }
+  },
+  "mcp": {
+    "authentication": "device-bearer",
+    "credential_file": "~/.beatra/credentials.json",
+    "name": "beatra",
+    "transport": "streamable-http",
+    "url": "https://mcp.beatra.ai/mcp"
+  },
+  "name": "short-video-script-storyboard",
+  "schema_version": 1,
+  "version": "0.1.3"
+}

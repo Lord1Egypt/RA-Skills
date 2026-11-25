@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Employees, external users, and developers use this skill to examine high-stakes or hard-to-reverse decisions through reversibility scoring, multi-expert analysis, adversarial review, and a synthesized decision brief.
+Product and engineering teams use the skill to evaluate consequential decisions with competing approaches. It assesses reversibility, structures expert review and challenge, and produces a decision record with rationale and follow-up actions.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Decision details and supplied context may be shared with external model providers.
+Risk: Decision summaries may be published to GitHub Discussions by default when available, potentially exposing sensitive information.
 
-Mitigation: Remove confidential or personal information and use only providers approved for the material.
+Mitigation: Review and redact the decision record before publication, and decline publishing when it contains information that should remain private.
 
-Risk: Completed decision details may be published to GitHub Discussions by default.
+Risk: Deliberation context may be shared with external model providers.
 
-Mitigation: Review the decision document before publication and opt out when it should remain private.
+Mitigation: Remove confidential details and use external delegation only when it is permitted for the information involved.
 
-Risk: The reported security scan is incomplete because three local path references were unresolved.
+Risk: The security assessment is partial because three referenced local paths were missing; their contents were not assessed.
 
-Mitigation: Resolve those references and complete the scan before relying on its results.
+Mitigation: Obtain and review the missing referenced files before relying on or installing the skill.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-attune-war-room)
-- [Plugin homepage (metadata link)](https://github.com/athola/claude-night-market/tree/master/plugins/attune)
-- [Jeff Bezos — Type 1 vs Type 2 Decisions](https://ashikuzzaman.com/2025/03/03/amazons-type-1-vs-type-2-decisions-a-framework-for-effective-decision-making/)
-- [Farnam Street — Reversible and Irreversible Decisions](https://fs.blog/reversible-irreversible-decisions/)
-- [Tapan Desai — One-Way and Two-Way Door Decision-Making](https://tapandesai.com/one-way-two-way-doors-decision-making/)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-attune-war-room)
+- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/attune)
+- [Reversible and irreversible decisions](https://fs.blog/reversible-irreversible-decisions/)
+- [One-way and two-way door decisions](https://tapandesai.com/one-way-two-way-doors-decision-making/)
+- [Type 1 and Type 2 decision framework](https://ashikuzzaman.com/2025/03/03/amazons-type-1-vs-type-2-decisions-a-framework-for-effective-decision-making/)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Markdown]
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [Markdown decision brief with assessments, options, tradeoffs, and recommendations]
+**Output Format:** [Markdown decision report with assessment tables and recommendations]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include reversibility scores, dissenting views, implementation orders, watch points, and a reversal plan.]
+**Other Properties Related to Output:** [Includes a reversibility assessment, alternatives, rationale, action items, watch points, and dissenting views; content may be shared with external model providers or published to GitHub Discussions.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved ClawHub release metadata)
 
 ## Ethical Considerations:
 

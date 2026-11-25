@@ -1,6 +1,6 @@
 ## Description:
 
-Turns a plain-language task into a clear loop brief with goals, steps, checks, progress records, and stop conditions.
+Turn a plain-language task into a written AI agent loop: a loop brief with a checkable goal, a per-round process, evidence, a log, and stop conditions that an agent can run on its own. Use when the user asks for an AI agent loop or an agentic loop, says "make loop", "turn this into a loop", "keep iterating until it's good", or pastes a task with /make-loop. By default, only write the brief; do not start executing it in this session unless the user explicitly asks to run it now and confirms the scope. Domain knowledge comes from the current conversation and other skills, not from this one. Not a video or GIF loop tool.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-External users and developers use Make Loop to turn a task request into a reusable brief for iterative AI work. The brief defines measurable checks, iteration steps, progress records, and boundaries for when to stop.
+People using Claude Code, Codex, Cursor, or another supported AI agent can turn a plain-language task into a ready-to-copy loop brief with checkable goals, repeated steps, evidence, a log, and stop conditions.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: An unclear task scope or open-ended loop could lead to unnecessary or extended changes.
+Risk: ClawScan rates this release suspicious because installation commands retrieve mutable remote content and scanners report a mismatch between the stated purpose and installation behavior.
 
-Mitigation: State the scope, testable completion criteria, iteration limit, and stop conditions; confirm scope before starting execution.
+Mitigation: Review the installation instructions and retrieved content before installing; use a reviewed exact CLI version and an immutable, reviewed repository revision.
 
 ## Reference(s):
 
 - [Loop brief template](references/template.md)
+- [Before-and-after examples](references/examples.md)
 - [Delivery checklist](references/checklist.md)
-- [Worked example](references/examples.md)
-- [ClawHub release page](https://clawhub.ai/ekko237/skills/make-loop)
+- [Repository link documented by the skill](https://github.com/Ekko237/make-loop)
+- [ClawHub skill listing](https://clawhub.ai/ekko237/skills/make-loop)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Markdown, Guidance]
 
-**Output Format:** [A copyable Markdown loop brief; optionally saved as a project file.]
+**Output Format:** [Markdown loop brief in a code block, followed by a short summary of defaults and stop conditions]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Organized into goal, process, and checks/iteration, with scope boundaries and stop conditions.]
+**Other Properties Related to Output:** [Writes the brief by default; execution requires a clear request and confirmed scope.]
 
 ## Skill Version(s):
 
-1.0.1 (source: frontmatter)
+1.0.3 (source: SKILL.md frontmatter)
 
 ## Ethical Considerations:
 

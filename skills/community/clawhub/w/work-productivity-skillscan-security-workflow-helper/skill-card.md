@@ -1,6 +1,6 @@
 ## Description:
 
-Helps AI-agent users and skill maintainers turn work or security needs into practical plans, reusable workflows, and reviewable deliverables.
+Helps AI agent users and skill teams turn work productivity and SkillScan related needs into practical workflows, checklists, analyses, and implementation artifacts.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-AI-agent users, skill authors, and maintainers use this skill to turn a work or security need into a focused plan, workflow, checklist, analysis, or implementation, then review the result against the stated goal.
+AI agent users, skill authors, maintainers, and teams use this skill to turn a work productivity or SkillScan related request into a concrete workflow, checklist, analysis, or implementation artifact. It also helps organize validation and follow-up risks.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Broad everyday-word triggers may activate the skill for unrelated requests.
+Risk: Broad activation keywords may cause the skill to start for unrelated requests.
 
-Mitigation: Invoke it with a clear work-productivity or SkillScan-related request, and check that the response matches the task.
+Mitigation: Invoke the skill by name or state the specific work productivity or SkillScan workflow need; review its trigger terms before enabling implicit invocation.
 
 ## Reference(s):
 
-- [ClawHub skill listing](https://clawhub.ai/kyro-ma/skills/work-productivity-skillscan-security-workflow-helper)
-- [Requirement plan](artifact/references/requirement-plan.md)
+- [ClawHub release page](https://clawhub.ai/kyro-ma/skills/work-productivity-skillscan-security-workflow-helper)
+- [Requirement plan](references/requirement-plan.md)
+- [ClawHub SkillScan](https://clawhub.ai/skills/skillscan)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Markdown, Checklists, Code]
+**Output Type(s):** [Text, Markdown, Code, Guidance]
 
-**Output Format:** [Markdown, with code or configuration snippets when useful]
+**Output Format:** [Markdown with workflow templates, checklists, analysis, or code when appropriate]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Tailored to the user's request; may include a reusable workflow and validation checklist.]
+**Other Properties Related to Output:** [Tailored to the user's stated outcome and constraints]
 
 ## Skill Version(s):
 
-0.20261117.40425 (source: server-resolved release metadata)
+0.20261124.54907 (source: server release evidence)
 
 ## Ethical Considerations:
 

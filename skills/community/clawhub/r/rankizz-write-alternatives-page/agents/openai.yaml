@@ -1,0 +1,4 @@
+interface:
+  display_name: "Alternatives Page Writing"
+  short_description: "Write a fair and useful alternatives page"
+  default_prompt: "Use $rankizz-write-alternatives-page to research and write an alternatives page for this competitor."

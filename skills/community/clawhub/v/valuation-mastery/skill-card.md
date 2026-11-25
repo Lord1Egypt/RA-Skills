@@ -1,6 +1,6 @@
 ## Description:
 
-Valuation Mastery is a Chinese-language finance reference that helps agents explain non-listed company valuation using global valuation theory, Chinese regulatory guidance, and practical modeling frameworks.
+融合全球估值理论、中国证券业协会官方指引与建模实战的企业估值全流程体系，涵盖DCF、可比公司、资产基础法等估值方法与A股监管实务。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,41 +14,35 @@ MIT-0
 
 ## Use Case:
 
-Finance professionals, analysts, investors, and valuation practitioners can use this skill to obtain structured guidance on company valuation methods, modeling assumptions, regulatory considerations, ratios, and case-based reasoning. Outputs should be treated as analytical assistance, not financial advice.
+External analysts and finance professionals use this skill to structure company valuations, select methods such as DCF and market multiples, build assumptions, and consider China A-share and private-company valuation guidance.
 
 ### Deployment Geography for Use:
 
-Global
+Global; includes China A-share regulatory practice.
 
 ## Known Risks and Mitigations:
 
-Risk: Users may rely on valuation outputs as financial advice or make decisions from stale or unsupported assumptions.
+Risk: A low-probability Unicode warning leaves some source text uncertain.
 
-Mitigation: Verify assumptions with current market data and qualified professional judgment before making financial decisions.
-
-Risk: Chinese regulatory guidance and non-listed company valuation practices may not directly apply in other jurisdictions or contexts.
-
-Mitigation: Check the applicable local regulatory framework and adapt valuation methods before using the guidance outside its intended context.
+Mitigation: Review flagged text against authoritative valuation references before relying on it.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/yjkj999999/skills/valuation-mastery)
-- [Artifact SKILL.md](artifact/SKILL.md)
-- [Artifact README.md](artifact/README.md)
+- [ClawHub release page](https://clawhub.ai/yjkj999999/skills/valuation-mastery)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, guidance]
+**Output Type(s):** [Guidance, Analysis, Financial valuation frameworks]
 
-**Output Format:** [Markdown and structured explanatory text]
+**Output Format:** [Text or Markdown with formulas, tables, and worked examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Chinese-language finance and valuation reference output; does not execute code or retrieve live market data.]
+**Other Properties Related to Output:** [May summarize valuation methods, modeling steps, assumptions, and example calculations.]
 
 ## Skill Version(s):
 
-1.0.0 (source: evidence release, artifact package.json, and artifact SKILL.md)
+1.0.1 (source: server-resolved release metadata, package.json)
 
 ## Ethical Considerations:
 

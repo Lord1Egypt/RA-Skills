@@ -1,6 +1,6 @@
 ## Description:
 
-Helps sellers turn a reference video into a product-specific script and generate a Vidu Q2 marketing video through Qinghu AI.
+Helps sellers analyze a trending video, adapt its shot structure to their product, and prepare a Vidu Q2 video generation request through Qinghu AI.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,49 +14,40 @@ MIT-0
 
 ## Use Case:
 
-Sellers and marketing teams use a reference video to draft a product-specific script and, after approving the cost and creative details, generate a short promotional video.
+Sellers use this skill to study a reference trend video, adapt its camera movement and pacing to their own product, and create short-form promotional videos for social platforms.
 
 ### Deployment Geography for Use:
 
-Global
+China and global social platforms, as described by the skill.
 
 ## Known Risks and Mitigations:
 
-Risk: Reference videos and product images may be uploaded to Qinghu AI, and an API key is required.
+Risk: Setup may expose an API key if the user shares it in chat.
 
-Mitigation: Upload only approved media and use a scoped or revocable API key where possible.
+Mitigation: Keep API keys out of chat and configure credentials through a protected local configuration or environment variable.
 
-Risk: Video generation consumes credits and submitted tasks cannot be cancelled.
+Risk: Setup instructions may download and run unpinned packages.
 
-Mitigation: Review the generated script, model, duration, assets, and credit estimate; obtain explicit approval before submission.
-
-Risk: Recreating a reference video too closely could copy protected material or misrepresent originality.
-
-Mitigation: Borrow structure and pacing while creating original product-specific visuals and dialogue.
-
-Risk: Installing or upgrading qhkit runs third-party software locally.
-
-Mitigation: Prefer a preinstalled or pinned version and review commands before installation.
+Mitigation: Review package sources and use fixed, reviewed package versions before installation.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-vidu-q2-clone)
-- [qhkit package](https://www.npmjs.com/package/@iqinghu/qhkit)
-- [Qinghu API key settings](https://www.iqinghu.com/workbench/dashboard/api-keys?urlCode=1788417429126)
+- [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown with script comparisons, commands, and video links]
+**Output Format:** [Markdown guidance and JSON command parameters; video generation requests]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports the task ID, completed video URL, and charged credits when available.]
+**Other Properties Related to Output:** [May submit video generation tasks through qhkit; the resulting video is delivered by the connected service.]
 
 ## Skill Version(s):
 
-0.1.4 (source: ClawHub release metadata)
+0.1.6 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

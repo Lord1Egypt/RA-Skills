@@ -256,7 +256,7 @@ CHART_NOTES = {
     "violin": "violin: 小提琴图；JSON datasets/series={组名: 数值数组}+labels 组名列表，或 CSV 每列一分布。",
     "composite": "composite: 多面板组合图；JSON panels 数组（每面板 type+data，可选 layout/span/pos/hero_panel 主面板索引/panel_labels），参考文档 §组合图。",
     "diagram": "diagram: 架构/流程图（CONSORT 式）；JSON blocks [{id,label,x,y,w,h,color,sublabel}]+arrows、background=light。",
-    "flow": "flow: 语义流程图（v8.0.0，第 42 号图型）——只给语义不给坐标：nodes=[{id,label,sublabel,color,shape}]+edges=[{from,to,label,dashed,color}]、layout=chain|layered、direction=TB|LR、groups/annotations 可选；引擎自动布局+磁吸逐段箭头+回边 lane 绕行+标签避让+文本自适应+画布裁剪；--gate strict=三层 bbox 断言（违规 exit 2）。",
+    "flow": "flow: 语义流程图（v8.0 第 42 号图型；v8.0.6 形状/边型/泳道/mermaid 导入）——只给语义不给坐标：nodes=[{id,label,sublabel,color,shape}]+edges=[{from,to,label,dashed,thick,bidirectional,open,color}]、layout=chain|layered|snake(+columns)|swimlane(+lanes 多角色，v8.0.9 转正；TB 纵列+LR 横行带 v8.1.0)、direction=TB|LR、font_size 数据级字号、groups/annotations 可选；--from-mermaid 直接吃 mermaid 源；14 种语义形状（diamond 决策/cylinder 数据库/io 输入输出/hexagon 准备/terminal 起止/predefined 子流程/document/stored-data 等）；角色化配色（明度阶梯+终点唯一强调）；引擎自动布局+磁吸逐段箭头+回边 lane 绕行+标签避让+文本自适应+画布裁剪；legend=true|false 边样式图例（缺省混合样式自动，v8.1.0）；--gate strict=三层 bbox 断言+面积占比闸（违规 exit 2）。",
     "prisma": "prisma: PRISMA 2020 系统综述流程图；JSON 需 records_identified/studies_included，"
               "数字自洽性自动校验（对不上报 ERROR 拒绝出图）；lang=zh 输出中文标准版；"
               "参考文档 §PRISMA 流程图。",

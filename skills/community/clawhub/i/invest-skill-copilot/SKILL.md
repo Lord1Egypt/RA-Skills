@@ -1,21 +1,20 @@
 ---
-name: invest_skill_copilot
-description: |
-  【仓库驱动的全场景投研分析技能】运行时读取 invest-skill 项目（Gitee 主源 warwickInv/invest-skill，
-  GitHub 镜像 chenxyzcyxpp/invest-skill 可降级）的方法论与数据纪律，把仓库投研 Skill 的框架内化后，由一个统一入口直接完成用户要求的股票投研分析，
-  覆盖个股诊断、股票对比、选股策略、行业速报、主题产业链、政策解读、舆情风险、底部信号、宏观配置、
-  市场热点、每日收评、隔夜外围复盘等仓库全部应用场景；输出 Markdown + 自包含 HTML，全程遵守仓库防幻觉护栏。
-  功能目录随仓库更新自动同步：检测远端 commit，有更新即重建 capability-catalog.md 功能目录。
-  触发词：投研分析、帮我分析、个股诊断、这只票怎么样、对比分析、选股、策略选股、行业机会、
-  产业链分析、政策影响、舆情风险、抄底、能不能加仓、宏观配置、市场热点、收评、盘前前瞻、隔夜外围、
-  更新功能目录、同步 invest-skill、有什么新增能力、你能做什么。
-version: 1.1.0
+name: invest-skill-copilot
+display_name: invest-skill全场景投研助手
+display_name_en: Invest Skill Copilot
+description: >-
+  全场景股票投研分析：个股诊断、价值投资分析、对比、选股、行业与产业链、政策解读、舆情风险、底部信号、宏观配置、市场热点、每日收评与隔夜外围复盘，输出带溯源、不编造的 Markdown 与自包含 HTML。
+description_zh: >-
+  一个入口覆盖全部股票投研任务：个股诊断、价值投资分析、策略选股、行业与产业链、政策与宏观解读、舆情风险预警、每日收评与隔夜复盘；输出有据可查、不编造的分析报告。
+description_en: >-
+  One entry point for every stock-research task: diagnose stocks, value investing analysis, screen by strategy, explore sectors and supply chains, interpret policy and macro data, flag sentiment risk, and review daily closes and overnight markets. Sourced, no-hallucination reports.
+version: 1.1.6
 author: Warwick
-source: 方法论源自 invest-skill（Gitee 主源 / GitHub 镜像），运行时动态读取
+source: 方法论源自 invest-skill，运行时读取
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [投研分析, 全场景, 个股诊断, 选股, 行业分析, 政策解读, 复盘, invest-skill]
+    tags: [投研分析, 全场景, 个股诊断, 价值投资, 选股, 行业分析, 政策解读, 复盘, invest-skill]
     related_skills: [stock-5d-deep-analysis, industry-brief, market-daily-review, overnight-review]
   openclaw:
     requires:
@@ -23,7 +22,7 @@ metadata:
       env: []
 ---
 
-# 仓库驱动的全场景投研分析（invest_skill_copilot）
+# 仓库驱动的全场景投研分析（invest-skill-copilot）
 
 > 基于开源项目 `invest-skill`（Gitee 主源 `warwickInv/invest-skill`，GitHub 镜像 `chenxyzcyxpp/invest-skill` 可降级）的投研方法论与数据纪律，做**一个入口、全场景**的股票投研分析。
 > 所有数据可溯源、带时间戳；取数失败如实标注，严禁编造。不构成投资建议。
@@ -121,5 +120,10 @@ metadata:
 本服务内容来源于公开及第三方数据源，仅自动化加工展示，不构成投资建议或承诺，不能替代独立判断。受数据源、传输、解析等因素影响，内容可能存在偏差，不保证内容真实准确完整。服务方及作者不对据此决策产生的后果负责。**市场有风险，投资需谨慎。**
 
 ## 十、更新日志
-- **1.1.0**：新增 GitHub 镜像（`chenxyzcyxpp/invest-skill`）作为双源降级；`repo_sync.py` 支持 `--source auto/gitee/github`，快照记录 `repo_source`+`repo_commit`，换源可正确识别变更。
+- **1.1.6**：市场展示名称改为「invest-skill全场景投研助手」（`display_name`）。功能不变。
+- 1.1.5：同步 invest-skill 仓库变更（Gitee `6cedd15e` → `c22bf708`）——新增 `value_investing`（价值投资分析）能力；功能目录/规范摘要随 commit 自动重建，并补齐场景映射、输出模板索引与触发词。功能框架不变。
+- 1.1.4：修正上架解析校验——`name` 改为 kebab-case（`invest-skill-copilot`），补齐 `display_name` / `display_name_en` / `description_zh` / `description_en` 双语元信息；描述改用 `>-` 折叠块。功能不变。
+- 1.1.3：新增项目 logo（`icon.png`，512×512），设置 ClawHub 展示图标。功能不变。
+- 1.1.2：回退 1.1.1 中适得其反的声明式改动（权限声明、安全声明、宽泛触发词）——这些内容反被扫描器判为"过度授权/诱导触发"；仅保留真实有效的静态导入修复，并精简 description。功能不变。
+- 1.1.0：新增 GitHub 镜像（`chenxyzcyxpp/invest-skill`）作为双源降级；`repo_sync.py` 支持 `--source auto/gitee/github`，快照记录 `repo_source`+`repo_commit`，换源可正确识别变更。
 - 1.0.0：首版——仓库驱动全场景投研分析 + 功能目录随 commit 自动同步。

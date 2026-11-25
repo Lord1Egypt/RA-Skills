@@ -1,7 +1,7 @@
 {
  "meta": {
-  "version": "2.3.19",
-  "updated_at": "2026-11-16T18:12:03.710658+00:00",
+  "version": "2.3.30",
+  "updated_at": "2026-11-24T17:31:42.650011+00:00",
   "source": "综合整理：国家统计局2024年度数据、智联招聘2024年度薪酬报告、前程无忧2024薪酬指南、猎聘2024年度薪酬报告、BOSS直聘2024薪酬数据",
   "total_records": 5389,
   "description": "中国各城市、各行业、各职业层级的薪资数据库，覆盖一线至三线城市，供职业规划参考使用",
@@ -43,8 +43,8 @@
     "scraped_at": "2026-05-04T04:00:56.457826"
    }
   ],
-  "last_refreshed_at": "2026-11-16T18:40:39.757303+00:00",
-  "refresh_count": 167,
+  "last_refreshed_at": "2026-11-24T17:43:05.742444+00:00",
+  "refresh_count": 177,
   "duplicates": [],
   "duplicate_count": 0,
   "last_validated": "2026-07-26T03:40:56+00:00",
@@ -65396,6 +65396,47 @@
    "scraped_at": "2026-11-15T17:31:03.763216+00:00",
    "data_source_id": "s024",
    "source_id": "s024"
+  },
+  {
+   "city_tier": "tier1",
+   "city": "深圳",
+   "industry": "金融/银行/保险",
+   "occupation": "UI设计师",
+   "level": "mid",
+   "salary_min": 18000,
+   "salary_max": 30000,
+   "salary_unit": "月薪",
+   "scraped_at": "2026-11-21T00:13:49.068778+00:00",
+   "data_source_id": "s024",
+   "source_id": "s024"
+  },
+  {
+   "city_tier": "tier1",
+   "city": "深圳",
+   "industry": "消费零售",
+   "occupation": "运营专员",
+   "level": "mid",
+   "salary_min": 60000,
+   "salary_max": 96000,
+   "salary_unit": "年薪",
+   "annual_note": "已折算为年薪口径",
+   "scraped_at": "2026-11-24T17:31:09.343285+00:00",
+   "data_source_id": "s025",
+   "source_id": "s025"
+  },
+  {
+   "city_tier": "tier1",
+   "city": "深圳",
+   "industry": "消费零售",
+   "occupation": "市场专员",
+   "level": "mid",
+   "salary_min": 60000,
+   "salary_max": 96000,
+   "salary_unit": "年薪",
+   "annual_note": "已折算为年薪口径",
+   "scraped_at": "2026-11-24T17:31:14.420843+00:00",
+   "data_source_id": "s025",
+   "source_id": "s025"
   }
  ],
  "source_catalog": [
@@ -65564,6 +65605,13 @@
     "https://ese.xmu.edu.cn/info/1250/33491.htm"
    ],
    "data_source": "https://ese.xmu.edu.cn/info/1250/33491.htm"
+  },
+  {
+   "id": "s025",
+   "urls": [
+    "https://www.job5156.com/salary/14020000_12030009"
+   ],
+   "data_source": "https://www.job5156.com/salary/14020000_12030009"
   }
  ]
 }

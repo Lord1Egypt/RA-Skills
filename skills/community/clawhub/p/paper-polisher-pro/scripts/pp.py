@@ -90,7 +90,7 @@ GROUPS = (
     ("检测", "Detection", ("detect", "gate", "paragraph")),
     ("改写建议", "Rewrite guidance", ("fix", "rewrite-check")),
     ("规范与术语", "Conventions & terms", ("norm", "term", "term-project", "smell", "style")),
-    ("报告与可视化", "Reports & visuals", ("workflow", "quality", "bundle", "html-report", "trend", "batch-report", "evidence", "project")),
+    ("报告与可视化", "Reports & visuals", ("workflow", "explain", "quality", "bundle", "html-report", "trend", "batch-report", "evidence", "project")),
     ("合规与自证", "Compliance & assurance", ("aigc", "verify", "freshness")),
     ("环境", "Environment", ("setup", "doctor", "mcp")),
 )

@@ -1,0 +1,20 @@
+{
+  "name": "Elm Street school run",
+  "kids": [
+    {"name": "Mia", "family": "Novak", "booster": true, "absent": ["2026-12-03"]},
+    {"name": "Tom", "family": "Novak", "booster": false},
+    {"name": "Sara", "family": "Kowalski", "booster": false},
+    {"name": "Ben", "family": "Rossi", "booster": true}
+  ],
+  "drivers": [
+    {"family": "Novak", "name": "Ana", "seats": 4, "boosters": 2,
+     "weekdays": ["Mon", "Tue", "Thu"]},
+    {"family": "Kowalski", "name": "Piotr", "seats": 4, "boosters": 2,
+     "weekdays": ["Mon", "Wed", "Fri"]},
+    {"family": "Rossi", "name": "Elena", "seats": 5, "boosters": 2,
+     "weekdays": ["Tue", "Wed", "Thu", "Fri"]}
+  ],
+  "trips": ["AM", "PM"],
+  "start": "2026-11-30",
+  "blackouts": ["2026-12-24", "2026-12-25", "2027-01-01"]
+}

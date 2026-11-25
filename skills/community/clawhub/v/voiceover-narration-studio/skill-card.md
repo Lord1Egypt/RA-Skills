@@ -1,6 +1,6 @@
 ## Description:
 
-Use Voiceover & Narration Studio as an AI voice generator, text-to-speech workspace, and AI voiceover generator. Choose from the current voice library, turn scripts into ready-to-edit AI narration and voiceover, or create and reuse a custom brand voice through voice cloning. It supports short-video voiceover, script-to-voiceover, course narration, ordered audiobook narration, supplied multilingual text to speech, Cantonese text to speech, and recurring brand audio, with current price estimates, clear output planning, and delivery organized by chapter, language, and use case.
+Helps creators choose or reuse a voice, turn scripts into narration, plan long-form or multilingual audio, and create an authorized custom voice.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External creators, narrators, and production teams use this skill to plan and create voice narration from approved scripts, organize long-form or multilingual audio, and prepare authorized reusable voices for recurring productions.
+Creators, marketers, educators, and production teams use the skill to prepare and generate voiceovers, course narration, ordered long-form reads, multilingual audio, and authorized reusable brand voices.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan classifies the release as suspicious because scanners report broader-than-needed access and recurring installation data collection, with additional privacy and uninstall concerns; the evidence is incomplete.
+Risk: ClawScan marked the skill suspicious over broad authorization, recurring analytics beyond its stated purpose, and uninstall behavior concerns; this is a review verdict, not a finding of malicious intent.
 
-Mitigation: Review whether access beyond narration and automatic installation/runtime reporting are acceptable. Read the update instructions and consider the shared-credential uninstall concern before use.
+Mitigation: Review the requested permissions and recurring reporting, and read the uninstall and disconnect guidance before connecting.
+
+Risk: Scripts and recordings may be sent to an external voice service, and recurring device or environment reporting may have privacy implications.
+
+Mitigation: Send only material you are authorized to share, review the service's reporting implications, and obtain the speaker's explicit authorization before voice cloning.
 
 ## Reference(s):
 
-- [Voiceover & Narration Studio on Clawhub](https://clawhub.ai/beatra-ai/skills/voiceover-narration-studio)
-- [Beatra Voiceover & Narration Studio](https://beatra.ai/skills/voiceover-narration-studio)
-- [Voice casting and delivery guide](artifact/references/voice-casting-and-delivery.md)
-- [Updates and security guide](artifact/references/updates-and-security.md)
+- [Voiceover & Narration Studio on Beatra](https://beatra.ai/skills/voiceover-narration-studio)
+- [Voice casting and delivery](artifact/references/voice-casting-and-delivery.md)
+- [Voice cloning and review](artifact/references/voice-cloning-and-review.md)
+- [Long-form and multilingual production](artifact/references/long-form-and-multilingual.md)
+- [Updates and security](artifact/references/updates-and-security.md)
+- [Uninstall and disconnect](artifact/references/uninstall-and-disconnect.md)
+- [Beatra service endpoint](https://mcp.beatra.ai/mcp)
 
 ## Skill Output:
 
-**Output Type(s):** [Audio files, Text scripts, Subtitles, Production guidance]
+**Output Type(s):** [Audio files, Subtitle files, Production guidance]
 
-**Output Format:** [Generated audio in supported formats such as MP3, WAV, OPUS, or PCM, with optional aligned SRT/VTT subtitles and text production plans.]
+**Output Format:** [Narration audio (MP3 by default), with optional SRT or VTT subtitles and Markdown guidance.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Audio can be organized by chapter, language, and use case; optional subtitles include aligned timing.]
+**Other Properties Related to Output:** [Long-form and multilingual deliveries can be organized by chapter, language, and use case.]
 
 ## Skill Version(s):
 
-0.3.0 (source: server-resolved release evidence, artifact/manifest.json)
+0.3.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

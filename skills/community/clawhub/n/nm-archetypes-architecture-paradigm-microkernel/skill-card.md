@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Software architects and developers use this skill to decide when and how to structure extensible systems around a small core and plugins. It guides plugin contracts, isolation, SDKs, release compatibility, and governance.
+Developers and software architects use this skill to assess when a microkernel architecture fits and plan its core services, plugin contract, sandboxing, SDK, and release governance.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Plugins can expose the core to untrusted code or allow failures to spread when permissions and execution boundaries are unclear.
+Risk: Plugins can fail or exceed their intended access if their capabilities and permissions are not constrained.
 
-Mitigation: Define plugin capabilities and permissions, isolate extensions in a sandbox, and validate them through an automated pipeline.
+Mitigation: Define a plugin permission model and run extensions in an isolated sandbox with limited capabilities.
 
-Risk: Core and plugin versions can drift and break compatibility.
+Risk: Core and plugin versions can drift out of compatibility.
 
-Mitigation: Use semantic versioning, publish a compatibility matrix, and provide shims when older plugin APIs need support.
+Mitigation: Use semantic versioning, publish a compatibility matrix, and provide backward-compatible shims when needed.
+
+Risk: An uncontrolled number of plugins can make ongoing support unsustainable.
+
+Mitigation: Use a formal certification process or marketplace-style review for third-party plugins.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-microkernel)
-- [Homepage from skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-microkernel)
+- [Archetypes project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown]
+**Output Type(s):** [Guidance, Analysis, Markdown]
 
-**Output Format:** [Markdown architecture guidance with adoption steps, deliverables, risks, and exit criteria]
+**Output Format:** [Markdown architecture guidance and checklists]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Recommendations depend on the system's requirements and plugin model.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

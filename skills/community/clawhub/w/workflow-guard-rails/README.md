@@ -56,13 +56,17 @@ being renamed, removed, or republished. Fetch it once:
 mkdir -p ~/.workbuddy
 # Pinned to commit d945aee0 — a mutable `main` URL is a supply-chain risk.
 # To upgrade the playbook, deliberately move the pin to a new reviewed commit.
-curl -o ~/.workbuddy/ERROR-PLAYBOOK.md \
+# Fetch to a NON-authoritative staging path — never write the authoritative playbook directly.
+curl -fSL -o ~/.workbuddy/ERROR-PLAYBOOK.incoming.md \
   https://raw.githubusercontent.com/haiyangchenbj/error-playbook/d945aee01384c6163beb287446147ce768d50661/ERROR-PLAYBOOK.md
 ```
 
-After downloading, verify before relying on it: the file must be non-empty and start with the
-expected playbook header (§0 structure). Do not wire the downloaded file into any workflow until
-that check passes.
+If `~/.workbuddy/ERROR-PLAYBOOK.md` already exists, stop — do not overwrite an established
+playbook. Review the full incoming content, then activate it only through the same promotion gate
+used for any staged rule: recurrence (count >= 2) or explicit human confirmation, with a backup and
+atomic replacement. Verify before relying on it: the incoming file must be non-empty and start with
+the expected playbook header (§0 structure). Do not wire it into any workflow until that check and
+the promotion gate both pass.
 
 It is indexed by **operation type** (write JSON, run shell, call API, git, publish, compute…), not
 by date — the retrieval key for an error is the operation that failed. Do not fork it into a second
@@ -72,7 +76,7 @@ location; a second copy drifts, and a drifted rule is worse than no rule.
 
 Explicit confirmation required before: first high-privilege tool use, any irreversible/external action, low-confidence results, and exhausted retry budget.
 
-Rule accumulation (guard #7) is two-stage: confirmed failures are captured in the same run into `~/.workbuddy/ERROR-PLAYBOOK.staging.md`, with no approval gate on the capture (most failures surface during unattended runs where no human is present — that approval gate is why the rule library stayed empty for two months). A staged entry reaches the authoritative `ERROR-PLAYBOOK.md` only through the promotion gate: the failure recurs (count >= 2) or a human confirms it. A single unreviewed append never becomes durable global guidance.
+Rule accumulation (guard #7) is two-stage: confirmed failures are captured in the same run into `~/.workbuddy/ERROR-PLAYBOOK.staging.md`, a reversible staging draft that never becomes durable guidance without the promotion gate (most failures surface during unattended runs where no human is present — a mandatory approval on every capture is what kept the rule library empty for two months). A staged entry reaches the authoritative `ERROR-PLAYBOOK.md` only through the promotion gate: the failure recurs (count >= 2) or a human confirms it. A single unreviewed append never becomes durable global guidance.
 
 ## Output
 

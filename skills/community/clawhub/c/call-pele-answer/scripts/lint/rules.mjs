@@ -134,7 +134,7 @@ export function lintRouting(doc) {
     const cmp = (prose.match(COMPARE) || []).length;
     if (cmp >= 3 && !p.tables.length && !hasVis) out.push([p.line, 'route/compare-in-prose', `「${p.title}」在正文里做了 ${cmp} 处比较`, '改成表格：行是选项，列是维度']);
     if (prose.length > 600 && !hasVis && !p.tables.length) out.push([p.line, 'route/wall', `「${p.title}」超过 600 字纯文字`, '拆块，或给关系/流程配图']);
-    for (const t of p.tables) if (t.cols < 3 && t.rows > 0 && t.rows <= 6) out.push([t.line, 'route/thin-table', `${t.cols} 列表格`, '两列且行少：写成句子或 kv 列表']);
+    for (const t of p.tables) if (t.cols < 3 && t.rows > 0 && t.rows <= 6) out.push([t.line, 'route/thin-table', `${t.cols} 列表格`, t.shape?.use?.length ? `${t.shape.why} → 改用 ${t.shape.use.join(' / ')}（pe assemble --use ${t.shape.use[0]}），不要加列` : `先问有没有顺序或位置（有→流程图/时序图标注）；都没有再写成句子或 kv 列表。${t.shape?.why || ''}`]);
     for (const b of p.blocks) {
       if (b.type === 'mermaid' && /^(xychart|pie|sankey|radar|quadrantChart|treemap)/.test(b.kind || '') && !/(来源|数据源|示意|source|illustrative)/i.test(prose + b.src)) out.push([b.line, 'route/data-source', '数据图没有来源或“示意”标注', '写出数据来源；模拟数据标“示意”']);
     }

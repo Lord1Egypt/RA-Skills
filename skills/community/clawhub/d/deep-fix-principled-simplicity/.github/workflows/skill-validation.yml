@@ -1,0 +1,32 @@
+name: Validate Agent Skill
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  skill-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate skill structure and links
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          skill = Path('SKILL.md').read_text(encoding='utf-8')
+          match = re.match(r'^---\s*\n(.*?)\n---\s*\n', skill, re.S)
+          assert match, 'SKILL.md requires YAML frontmatter'
+          meta = match.group(1)
+          assert re.search(r'^name:\s*deep-fix\s*$', meta, re.M), 'Unexpected skill name'
+          assert re.search(r'^description:\s*\S', meta, re.M), 'Skill description required'
+          for fname in ('README.md', 'README.en.md'):
+              readme = Path(fname).read_text(encoding='utf-8')
+              assert 'npx skills add Longfellow1/Principled-Simplicity-skill --skill deep-fix' in readme
+          assert Path('LICENSE').is_file() and 'Apache License' in Path('LICENSE').read_text(encoding='utf-8'), 'LICENSE (Apache-2.0) required'
+          for target in re.findall(r'\]\((?:\\./)?((?:examples|references|templates|scripts)/[^)#]+)\)', skill):
+              assert Path(target).exists(), f'Missing reference: {target}'
+          print('Skill structure, ID, install docs and local references OK')
+          PY

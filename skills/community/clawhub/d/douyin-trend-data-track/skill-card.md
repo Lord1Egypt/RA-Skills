@@ -1,6 +1,6 @@
 ## Description:
 
-提供抖音公开内容搜索、作品与评论查询、博主作品查看及实时热榜数据，并以结构化 JSON 返回结果。
+检索抖音公开视频、账号作品、评论和实时热榜，并整理为结构化 JSON，支持短视频选题、竞品分析与舆情研究。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-短视频运营、内容分析、品牌和客服团队可用它检索抖音公开内容、跟踪热点与对标账号，并查看作品互动和评论。调用前需配置服务令牌；用户提供的关键词或链接会发送给第三方数据服务。
+短视频运营、内容分析、品牌投放和数据分析人员可用它搜索抖音内容与账号、查看作品和评论、追踪热榜，并将公开数据整理为选题、竞品或舆情分析材料。
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills.
+Risk: The security review flags account-search behavior beyond the stated capabilities and broad activation triggers; some referenced files were only partially analyzed.
 
-Mitigation: Review and scan skill before deployment.
+Mitigation: Review the account-search command and referenced files before enabling the skill, and invoke account discovery only for an explicit user request.
+
+Risk: Search terms and supplied Douyin links are sent to the external Guaikei service.
+
+Mitigation: Tell the user before running a query and avoid sending sensitive terms or links.
 
 ## Reference(s):
 
-- [命令选项参考](references/options.md)
-- [评论需求挖掘指南](references/demand-mining.md)
-- [ClawHub 发布页](https://clawhub.ai/why20261/skills/douyin-trend-data-track)
-- [GuaiKei 数据服务](https://www.guaikei.com)
+- [Quick start and command reference](readme.md)
+- [Output contract](references/contract.md)
+- [Search options](references/options.md)
+- [Demand mining guide](references/demand-mining.md)
+- [Customer acquisition guide](references/customer-acquisition.md)
+- [Release changelog](references/changelog.md)
+- [Service and token information](https://www.guaikei.com)
+- [Publisher profile](https://clawhub.ai/user/why20261)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis, Markdown]
+**Output Type(s):** [JSON, Analysis, Guidance, Shell commands]
 
-**Output Format:** [JSON response envelope containing structured Douyin search, creator, post, comment, or trending data; agents can summarize it as analysis or Markdown.]
+**Output Format:** [Structured JSON results with concise analysis and command guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [One response envelope per query. Fields vary by command and may include titles, creators, engagement counts, labels, comments, and links.]
+**Other Properties Related to Output:** [May contain public creator and engagement data; results can be saved under the skill's logs directory.]
 
 ## Skill Version(s):
 
-1.4.2 (source: release evidence, SKILL.md frontmatter, package.json)
+1.5.0 (source: release evidence, changelog, package.json)
 
 ## Ethical Considerations:
 

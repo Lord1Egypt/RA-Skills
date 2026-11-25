@@ -1,0 +1,20 @@
+{
+  "records": [
+    {
+      "claim": "Led a platform modernization that improved deployment reliability for multiple product teams.",
+      "source_context_id": "local-fake-docs",
+      "evidence_reference": "platform-modernization.md",
+      "confidence": "medium",
+      "disclosure_level": "public sample",
+      "resume_use": "include"
+    },
+    {
+      "claim": "Profile targets staff platform engineering roles with cloud, reliability, and developer productivity scope.",
+      "source_context_id": "linkedin-fake-export",
+      "evidence_reference": "pasted fake profile summary",
+      "confidence": "high",
+      "disclosure_level": "public sample",
+      "resume_use": "include"
+    }
+  ]
+}

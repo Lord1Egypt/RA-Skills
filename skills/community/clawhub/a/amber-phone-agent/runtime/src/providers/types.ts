@@ -40,6 +40,10 @@ export interface OutboundCallParams {
 }
 
 export interface SipBridgeParams {
+  /** Opaque reference to the authenticated inbound provider callback. */
+  inboundToken?: string;
+  /** Decline a new inbound call while screening is paused. */
+  reject?: boolean;
   /** Provider's call ID to embed in SIP URI parameters for correlation */
   callSid?: string;
   /** Internal bridge-correlation ID (our own, set when initiating outbound calls) */

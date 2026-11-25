@@ -9,7 +9,7 @@
 | 方式 | 适合谁 | 前提 |
 |---|---|---|
 | ① 技能包（推荐） | WorkBuddy、SkillHub / ClawHub 生态的 Agent | 平台内一键安装，无需任何配置 |
-| ② 平台官方 MCP 连接器 | 平台已上架的（陆续接入中，以平台内搜到为准） | 没上架的平台用方式 ③ |
+| ② 平台官方 MCP 连接器 | WorkBuddy 平台：连接器市场搜「维普智图」直接安装；其他平台陆续接入，以平台内搜到为准 | 没上架的平台用方式 ③ |
 | ③ 自助 MCP 配置（本文） | 任何支持自定义 MCP 的 Agent：Claude Desktop / Claude Code / Cursor / Cline / Codex CLI 等 | 只要：注册拿 Key + 本机 Python ≥ 3.11 + 改一份配置文件 |
 
 > 只支持**远程 MCP**（HTTP 地址直连）的 Agent（如千问办公网页版、扣子等）：需要服务端开放远程端点，

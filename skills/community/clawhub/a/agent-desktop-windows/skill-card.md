@@ -1,6 +1,6 @@
 ## Description:
 
-Guides agents using the agent-desktop CLI through Windows desktop automation capabilities, limitations, and troubleshooting.
+Windows platform guide for the agent-desktop CLI, covering supported commands, Windows-specific interaction limits, and troubleshooting.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and operators use this guide to automate Windows applications with agent-desktop, select supported desktop actions, and troubleshoot accessibility and permission boundaries.
+Developers and agents use this guide to understand which agent-desktop commands work on Windows and to troubleshoot Windows UI automation, elevation boundaries, shell surfaces, and application behavior.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Notification, clipboard, screenshot, and UI tree output can expose sensitive information.
+Risk: The troubleshooting guidance includes advice that may weaken a system-wide security control.
 
-Mitigation: Treat captured desktop content as sensitive and limit its disclosure.
+Mitigation: Review that guidance and assess its system-wide impact before following it.
 
-Risk: Headed actions can take the foreground and interact with the user's desktop.
+Risk: An example may overwrite unsaved text.
 
-Mitigation: Use headed actions only when foreground interaction is intended.
+Mitigation: Save the target document before running the example.
 
-Risk: The cursor overlay may affect other users of a shared account or people sensitive to motion.
+Risk: The security scan had partial coverage because a local reference could not be resolved.
 
-Mitigation: Leave the cursor overlay disabled in those environments.
+Mitigation: Review the troubleshooting guidance and relevant references before relying on the skill.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/lahfir/skills/agent-desktop-windows)
-- [Chromium and Electron trees](artifact/references/chromium-and-electron.md)
-- [Permissions and elevation](artifact/references/permissions-and-elevation.md)
-- [Shell surfaces, notifications and cursor overlay](artifact/references/shell-and-overlay.md)
+- [Permissions and Elevation](artifact/references/permissions-and-elevation.md)
+- [Chromium and Electron](artifact/references/chromium-and-electron.md)
+- [Shell and Overlay](artifact/references/shell-and-overlay.md)
 - [Troubleshooting](artifact/references/troubleshooting.md)
+- [ClawHub skill page](https://clawhub.ai/lahfir/skills/agent-desktop-windows)
 
 ## Skill Output:
 
 **Output Type(s):** [Guidance, Shell commands]
 
-**Output Format:** [Markdown with inline commands]
+**Output Format:** [Markdown with PowerShell examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Windows-specific agent-desktop guidance]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.0.1 (source: ClawHub release metadata; skill frontmatter says 0.8.4)
+1.0.2 (source: server release metadata)
 
 ## Ethical Considerations:
 

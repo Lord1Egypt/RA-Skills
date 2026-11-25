@@ -1,6 +1,6 @@
 ## Description:
 
-按关键词搜索快手公开视频、查看博主作品和视频评论，帮助筛选带货达人候选。
+Filter Kuaishou creators by keyword, likes, category, and market to prioritize partnership candidates using engagement and content performance; supports video search, public creator-post retrieval, and comment analysis.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-面向内容运营、品牌营销和市场分析人员，用于查找快手公开视频、分析博主作品与评论，并依据返回数据筛选合作达人候选。
+Marketing teams and creator partnership researchers can search Kuaishou videos, review a creator's public posts, and inspect video comments to identify and prioritize potential collaborators.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search terms and supplied video or profile links are sent to the third-party Guaikei service.
+Risk: Search keywords and supplied links are sent to a third-party data service, and inspection was partial.
 
-Mitigation: Avoid confidential research terms or links unless sharing them with that service is authorized; use public Kuaishou data only.
+Mitigation: Avoid sending confidential research inputs; review the service's data practices and referenced scripts before use.
 
 ## Reference(s):
 
-- [完整选项说明](references/options.md)
-- [更新日志](references/changelog.md)
-- [ClawHub 技能页面](https://clawhub.ai/why20261/skills/kuaishou-creator-match)
-- [Guaikei 服务](https://www.guaikei.com)
+- [Service access and account information](https://www.guaikei.com)
+- [CLI options](artifact/references/options.md)
+- [Output envelope schema](artifact/assets/output_envelope.schema.json)
 
 ## Skill Output:
 
 **Output Type(s):** [JSON, Analysis, Guidance]
 
-**Output Format:** [Structured JSON results with concise natural-language findings]
+**Output Format:** [Structured JSON result envelopes with agent-readable summaries and recommendations]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results cover public video search, creator posts, and video comments; result counts depend on token plan limits.]
+**Other Properties Related to Output:** [Each request returns a result envelope for video search, creator posts, or comments; available fields vary by request.]
 
 ## Skill Version(s):
 
-1.1.1 (source: frontmatter, package.json, changelog, released 2026-11-04)
+1.1.2 (source: SKILL.md frontmatter, server release metadata)
 
 ## Ethical Considerations:
 

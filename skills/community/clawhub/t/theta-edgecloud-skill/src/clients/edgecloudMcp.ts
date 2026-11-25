@@ -1,6 +1,8 @@
 // Data flow: sends the project-scoped EdgeCloud API key (x-api-key) and tool arguments to the
 // official Theta hosted MCP endpoint only. Only the listed read tools and four GPU write tools are
 // sent; writes need confirm:true (and dry-run off), and creation needs a verified price cap.
+// Results are returned as received (billing.pricing needs raw usage labels); the runtime and
+// facade boundaries name-redact them.
 import { ThetaConfig } from '../config.js';
 import { fromHttpError, fromTransportError, sanitizeHttpErrorMessage } from '../errors.js';
 import { assertApproved, snapshotBody } from '../approval.js';

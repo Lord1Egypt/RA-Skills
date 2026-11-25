@@ -1,6 +1,6 @@
 ## Description:
 
-Helps users find domain name ideas, check registration availability, compare domain endings, and review first-year and renewal prices.
+Pick a domain name and ending, check if it can be registered, and find where it is cheapest to register and renew, using tld.expert's free live data (no key). Use when a user is naming a product or business, asks which TLD to use (.com vs .io vs .ai), asks if a domain is available or taken, or asks what a domain costs.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-People naming products or businesses use this skill to compare domain endings, confirm registration availability, review registration and renewal costs, and check related brand-name records.
+Developers and people naming a product or business can use this skill to compare domain endings, check candidate domain availability, and review registration and renewal prices before choosing a domain.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Business briefs and candidate names may be sent to tld.expert, and the available scan is partial.
+Risk: A naming brief may be sent to tld.expert without a privacy warning.
 
-Mitigation: Avoid sending confidential details unless the user has reviewed the disclosure and is comfortable with it; treat the partial scan as incomplete evidence.
+Mitigation: Keep confidential details out of the brief; use a generic description when possible.
+
+Risk: The security analysis is incomplete because several local references could not be resolved.
+
+Mitigation: Review the unresolved references and inspect the skill's external calls before installation.
 
 ## Reference(s):
 
 - [tld.expert](https://tld.expert)
+- [tld.expert API specification](https://tld.expert/openapi.json)
 - [tld.expert MCP server](https://tld.expert/mcp)
-- [tld.expert OpenAPI specification](https://tld.expert/openapi.json)
 - [Renewal traps reference](references/renewal-traps.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Text, Guidance, Domain availability and pricing results]
 
-**Output Format:** [Markdown with concise domain recommendations, availability and pricing details, and source links]
+**Output Format:** [Markdown text with domain suggestions, checked availability and price details, and source links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Uses dated lookup results; shows renewal pricing alongside first-year pricing when quoting a domain offer.]
+**Other Properties Related to Output:** [Availability and prices are live-data results; listed prices are in USD and exclude taxes and currency fees.]
 
 ## Skill Version(s):
 
-1.1.34 (source: server-resolved release)
+1.1.57 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

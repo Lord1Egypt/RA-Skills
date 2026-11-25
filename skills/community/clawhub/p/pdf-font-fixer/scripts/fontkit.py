@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""pdf-fonts-fixer · fontkit —— 字体工具（找同款 / 转换 / 子集）
+"""pdf-font-fixer · fontkit —— 字体工具（找同款 / 转换 / 子集）
 
 三个子命令
 ----------

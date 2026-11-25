@@ -68,7 +68,7 @@ double-confirmed at the CLI, and is audit-logged. Pre-flight the write with `val
 ## Quick Install
 
 ```bash
-uv tool install vmware-privateai==2.5.3
+uv tool install vmware-privateai==2.5.4
 vmware-privateai version
 vmware-privateai gpu host-list        # first read — lists hosts that have a GPU
 ```
@@ -258,3 +258,5 @@ MIT
 ## Current evidence boundary
 
 PAIS gallery cursors are opaque: repeated, overlong or unsafe cursors produce partial coverage without a next cursor. Do not alter a cursor or infer a complete/empty registry from a partial result. See `references/capabilities.md`.
+
+[Contracts](references/mcp-result-contract.md).

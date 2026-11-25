@@ -1,6 +1,6 @@
 ## Description:
 
-Connects OAuth-capable agents to Meo Mai Moi through its MCP gateway to manage pet profiles, care and health records, habits, microchips, sharing, placement, helpers, messages, groups, finances, notifications, and account workflows with scoped authorization.
+Connect to Meo Mai Moi through its OAuth MCP gateway using scopes suited to the requested task.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers use this skill to connect an OAuth-capable agent to Meo Mai Moi, choose appropriate scopes or presets, and perform pet-care workflows through the MCP gateway. It is especially useful for Codex, Cursor, OpenClaw, and similar clients that can configure MCP and complete OAuth.
+Pet owners and agents use this skill to connect with Meo Mai Moi and carry out pet care, account, placement, or other supported tasks through OAuth-authorized MCP tools. It guides scope selection and safe handling of consequential actions.
 
 ### Deployment Geography for Use:
 
@@ -22,41 +22,40 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill can request write-capable OAuth scopes by default for broad connections.
+Risk: Broad OAuth scopes can expose or change sensitive pet, health, finance, messaging, sharing, and account data.
 
-Mitigation: Review requested scopes before authorization, prefer narrow read-only scopes for initial connection when possible, and grant write scopes only for specific tasks.
+Mitigation: Request only scopes needed for the task; use Full management only when explicitly selected and explain its sensitive access.
 
-Risk: A headless authorization code exchange can expose a single-use OAuth code if handled through an unsafe shell or durable log.
+Risk: Consequential writes can affect records, access, finances, or real-world placement.
 
-Mitigation: Use the client's native OAuth flow when possible; if a code must be pasted privately, parse only the code, pass it as a literal argument, exchange it immediately, and do not log or repeat it.
+Mitigation: Read the exact target and its current version before acting, then verify the resulting state.
 
-Risk: Consequential writes involving pet records, access, placement, messages, health data, finances, or invitations can affect people, records, permissions, or money.
+Risk: OAuth credentials and personal records could be exposed in chat or logs.
 
-Mitigation: Read the target immediately before changes, use stable IDs, preserve versions, use a fresh idempotency key, and verify the completed write with a read.
+Mitigation: Do not request or disclose access tokens, refresh tokens, or client secrets; keep personal records out of chat unless needed for a decision.
 
 ## Reference(s):
 
-- [Connection and scope selection](references/connection.md)
-- [OpenClaw native MCP onboarding](references/openclaw.md)
-- [Safety and error handling](references/safety.md)
-- [Meo MCP clients documentation](https://github.com/troioi-vn/meo-mcp/blob/main/docs/clients.md)
-- [Meo MCP tools documentation](https://github.com/troioi-vn/meo-mcp/blob/main/docs/tools.md)
-- [Meo MCP OAuth documentation](https://github.com/troioi-vn/meo-mcp/blob/main/docs/oauth.md)
-- [Meo MCP errors documentation](https://github.com/troioi-vn/meo-mcp/blob/main/docs/errors.md)
+- [Meo Mai Moi MCP clients guide](https://github.com/troioi-vn/meo-mcp/blob/main/docs/clients.md)
+- [Meo Mai Moi MCP tools guide](https://github.com/troioi-vn/meo-mcp/blob/main/docs/tools.md)
+- [Meo Mai Moi MCP OAuth guide](https://github.com/troioi-vn/meo-mcp/blob/main/docs/oauth.md)
+- [Meo Mai Moi MCP errors guide](https://github.com/troioi-vn/meo-mcp/blob/main/docs/errors.md)
+- [Meo Mai Moi MCP gateway](https://mcp.meo-mai-moi.com/mcp)
+- [ClawHub skill page](https://clawhub.ai/troioi-vn/skills/meo-mai-moi-mcp)
 
 ## Skill Output:
 
-**Output Type(s):** [guidance, shell commands, configuration]
+**Output Type(s):** [Guidance, Configuration instructions, API calls]
 
-**Output Format:** [Markdown guidance with inline shell commands and configuration values]
+**Output Format:** [Natural language guidance, OAuth and MCP configuration steps, and structured tool requests]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes OAuth scope presets, MCP endpoint details, readiness checks, and safety constraints.]
+**Other Properties Related to Output:** [Tool actions depend on the user's authorization and selected scopes; sensitive operations require current-state checks and post-action verification.]
 
 ## Skill Version(s):
 
-0.3.1 (source: release evidence)
+0.5.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

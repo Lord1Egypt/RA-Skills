@@ -1,5 +1,6 @@
 // Advanced Checkly Configuration Template
-import { defineConfig, RetryStrategyBuilder } from 'checkly'
+import { defineConfig } from 'checkly'
+import { RetryStrategyBuilder } from 'checkly/constructs'
 
 export default defineConfig({
   projectName: 'Production Monitoring',
@@ -13,7 +14,7 @@ export default defineConfig({
     
     retryStrategy: RetryStrategyBuilder.fixedStrategy({
       baseBackoffSeconds: 60,
-      maxAttempts: 2,
+      maxRetries: 2,
       maxDurationSeconds: 600,
       sameRegion: true,
     }),
@@ -30,6 +31,7 @@ export default defineConfig({
     playwrightConfigPath: './playwright.config.ts',
     playwrightChecks: [
       {
+        logicalId: 'e2e-test-suite',
         name: 'E2E Test Suite',
         frequency: 10,
         testCommand: 'npm run test:e2e',
@@ -41,7 +43,6 @@ export default defineConfig({
   cli: {
     runLocation: 'us-east-1',
     verbose: false,
-    reporters: ['list'],
     retries: 1,
   },
 })

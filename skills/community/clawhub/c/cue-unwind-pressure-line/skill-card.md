@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-投资者可用此技能梳理单只股票上方的套牢筹码、技术阻力和反弹所需量能，并查看结构化报告以辅助判断反弹可能受阻的位置。
+面向希望复核个股反弹阻力的投资者，分析上方套牢筹码、均线共振位置和逐级反弹所需量能，并形成结构化报告供其参考。
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,42 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill asks users to share an API key in chat.
+Risk: Security evidence reports that setup asks users to share an API key in chat and that a command sends the locally stored key to a remote service; it rates the release suspicious.
 
-Mitigation: Configure the API key locally instead of sharing it in chat.
+Mitigation: Avoid installation until the key-handling instructions and remote request have been reviewed. Never paste a reusable API key into chat; use a revocable key and rotate it if exposed.
 
-Risk: The skill installs or updates an external runner without pinning its version before execution.
+Risk: The security scan is partial because a referenced local path was missing, so the available evidence is incomplete.
 
-Mitigation: Review the runner source and verify its version before execution.
+Mitigation: Review the missing referenced file and complete a security scan before use.
 
-Risk: The security review is incomplete because a referenced local path was missing.
+Risk: Market-data freshness and external source availability can affect the analysis, and resistance estimates are not guarantees of future prices.
 
-Mitigation: Review the missing path and complete the scan before relying on the assessment.
+Mitigation: Check each report's data cutoff and source links, corroborate important figures, and treat the analysis as reference material rather than a trading instruction.
 
 ## Reference(s):
 
+- [ClawHub skill release](https://clawhub.ai/panting09266-ai/skills/cue-unwind-pressure-line)
 - [Cue platform](https://cuecue.cn)
-- [Runner source described by the skill](https://github.com/sensedeal/cue-skills)
-- [Runner mirror described by the skill](https://gitee.com/sensedeal/cue-skills)
+- [Cue research runner source (listed by the skill)](https://github.com/sensedeal/cue-skills)
+- [Cue research runner mirror (listed by the skill)](https://gitee.com/sensedeal/cue-skills)
+- [同花顺 market data](https://www.10jqka.com.cn)
+- [东方财富 market data](https://www.eastmoney.com)
+- [雪球 market discussion](https://xueqiu.com)
+- [TradingView charting](https://www.tradingview.com)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [Structured Markdown report with analysis, risk notes, and source links]
+**Output Format:** [Structured Markdown report with source links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [A report about one stock; findings depend on the available market data and Cue service.]
+**Other Properties Related to Output:** [Summarizes resistance zones and estimated volume needs; conclusions depend on available market data and its stated cutoff date.]
 
 ## Skill Version(s):
 
-1.0.3 (source: frontmatter)
+1.0.7 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

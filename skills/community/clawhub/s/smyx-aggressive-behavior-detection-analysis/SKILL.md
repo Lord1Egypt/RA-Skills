@@ -1,7 +1,7 @@
 ---
 name: "smyx-aggressive-behavior-detection-analysis"
 description: "Detects aggressive interactions in livestock and poultry from continuous barn videos — including fighting, biting, chasing and butting — and outputs behavior type, intensity level and alert level. | 识别打斗、撕咬等攻击行为，及时预警。"
-version: "1.0.18"
+version: "1.0.20"
 license: "MIT-0"
 ---
 

@@ -1,29 +1,66 @@
 ---
 name: blender-mcp
-description: "连接运行中的 Blender：安装官方 Lab MCP 插件，再用固定版本的服务进程调用场景、截图、渲染和文档工具，或执行 bpy。需要实时操控 Blender 时使用。"
+description: "Blender 工作台：① 连接运行中的 Blender（官方 Lab MCP 插件 + 固定版本服务进程，调场景/截图/渲染/文档工具，或直跑 bpy）；② 美术生产管线（资产命名与 collection 层级、面数/贴图/TD 预算、LOD 与碰撞、UV 与烘焙、材质灯光渲染、绑定动画、几何节点与 FX、引擎导出与 QA），配 asset_qa.py 一键审计、style_presets.py 一键落地 12 套 look。需要实时操控 Blender、做美术资产、转游戏资产、配导出或跑资产验收时使用。"
 homepage: https://www.blender.org/lab/mcp-server/
 author: taosiuman
-version: 3.7.3
+version: 4.0.0
 metadata:
   octop:
     emoji: "🔌"
     label:
-      zh: "Blender MCP 连接"
-      en: "Blender MCP"
+      zh: "Blender 工作台"
+      en: "Blender Workbench"
     summary:
-      zh: "官方 Blender MCP Server 接入：20+ 工具、bpy 直执行、无头渲染与排障。"
-      en: "Official Blender MCP server: 20+ tools, live bpy execution, headless mode."
+      zh: "官方 MCP Server 接入（20+ 工具、bpy 直执行、无头渲染、排障）+ 美术生产管线（规格/预算/导出/QA + 两个可执行工具）。"
+      en: "Official MCP server (20+ tools, live bpy, headless) plus art production pipeline with hard specs and two CLI tools."
 ---
 
-# Blender MCP Server Connection Skill
+# Blender 工作台（MCP 连接 + 美术生产管线）
 
-Connect to and control a running Blender instance via the official Blender MCP Server.
+Connect to and control a running Blender instance via the official Blender MCP Server, **and** run a spec-driven art production pipeline on top of it.
 
-通过官方 Blender MCP Server 连接和控制运行中的 Blender 实例。
+通过官方 Blender MCP Server 连接和控制运行中的 Blender 实例，**并**在同一套技能里按硬规格做美术资产（建模 → UV → 材质 → 灯光 → 绑定 → GN/FX → 导出 → QA）。
+
+## 两条主线
+
+| 我要… | 走去哪里 |
+|---|---|
+| 连上 Blender、截图、渲染、直跑 `bpy` | 本文 §Installation / §Tools（`references/{tools,protocol,api,troubleshooting,changelog}.md`） |
+| 做一个道具/角色/场景/载具/建筑，要能交付 | `references/art-pipeline.md`（Stage 0–8 与每阶段过关判据） |
+| 命名、collection 层级、面数/贴图/TD 预算 | `references/art-standards.md` |
+| 建模（硬表面布尔、模块化 kit、载具/建筑/植被、雕刻重拓扑） | `references/art-modeling.md` |
+| UV、接缝、texel density、烘焙、ORM 打包 | `references/art-uv-texture.md` |
+| 材质与 lookdev、PBR 数值、master material | `references/art-materials-lookdev.md` |
+| 灯光、相机、渲染设置、雾与合成 | `references/art-lighting-render.md` |
+| 绑定、权重、动画帧数、毛发布料 | `references/art-rig-anim.md` |
+| 几何节点、程序化、物理破碎与缓存 | `references/art-gn-vfx-sim.md` |
+| LOD、碰撞代理、FBX/GLB/USD、Unity/UE/Godot 差异 | `references/art-optimize-export.md` |
+| 交付前验收清单、缺陷分级、verdict 模板 | `references/art-qa.md` |
+| 按参考图做，要对得上 | `references/art-reference-match.md` |
+| 风格/世界观/情绪（赛博朋克、侘寂、liminal…） | `references/art-style-recipes.md` + `style_presets.py`（12 套可执行 look） |
+| 通过 MCP 执行这些片段（批量 payload、超时与后台模式的坑） | `references/art-mcp-execution.md` |
+| 覆盖面对照 / 第三方来源与 MIT 许可 | `references/art-coverage-map.md` / `references/art-NOTICE.md` |
+
+### 两个可执行工具（都在 `generated/tools/`）
+
+```bash
+RT=C:\Users\haowe\.octop\portable\runtime\python.exe
+BL53=generated\blender53\blender-5.3.0-windows-x64\blender.exe
+
+# 资产只读审计（13 类检查、12 档阈值、退出码可接 CI）
+"%BL53%" --background asset.blend --python generated\tools\asset_qa.py -- --tier standard --export-gate --json out\qa.json
+
+# 风格一键落地（只建 COL_Lights_Style / COL_Cameras_Style / COL_Style_Fog，不碰几何）
+"%BL53%" --background --factory-startup --python generated\tools\style_presets.py -- --look cyberpunk-rain --apply --scale 2 --save out\base.blend --json out\look.json
+```
+
+12 套 look：`cyberpunk-rain` `neon-noir` `golden-hour` `nordic-overcast` `liminal-fluorescent` `horror-cold` `cottage-warm` `desert-haze` `moonlit-night` `studio-product` `hd2d-diorama` `post-apoc-dust`
+
+> 三个硬口径：① **雾必须用体积盒**（挂 World Volume 在 EEVEE 下背景全黑，实测亮度 0.0003）；② **导出前先取消集合外所有选择**，只 `use_selection=True` 会把上次选中的对象一起导出；③ **`asset_qa.py` 只读**、`style_presets.py` 只加灯/雾/相机 —— 都不改用户 mesh 数据。
 
 **Version support**: Blender 5.1+（官方 add-on 的硬性要求）；**生产基准 = 5.3（5.3.0，2026-11-10 正式发布）**；**兼容下限 = 5.2 LTS（5.2.4，2026-11-10 发布）**；5.4 仍 Alpha（until 2027-02-03），只用 `hasattr` 兜底 — API compatibility notes included below
 **Platform prerequisite**（2026-10-25 核验）: 官方 add-on 要求 **Blender ≥ 5.1**，而 Blender **5.0 起 macOS 只出 Apple Silicon 构建**（Apple Silicon + macOS 13 Ventura 起；`4.5 LTS` 是最后一个支持 Intel Mac 的版本）→ **Intel Mac 上不存在可用的「Blender 5.1+ × 官方 MCP」组合**；Windows / Linux 无此限制（Windows 需 4 核 SSE4.2 + OpenGL 4.3 或 Vulkan 1.3、8 GB RAM）
-**Last verified**: **2026-11-12**（基线口径对齐版：生产基准切 **5.3**、兼容下限 **5.2 LTS（5.2.4）**；MCP 生态**零增量** —— open issues **27**（最新 #72）、open PR **5** 全未合并、releases **6 条 / 最新 v1.0.3**、stars 37 / forks 38 / watchers 13、`updated_at` 仍 2026-09-29。更长的说明在同目录的 `references/`）
+**Last verified**: **2026-11-18**（**v4.0.0 = 把原独立技能 `blender-art-pipeline` 整体并入本技能**：15 篇美术章节改为 `references/art-*.md`，主文件只加路由与三条硬口径，控制在扫描预算内；`asset_qa.py` 与 `style_presets.py` 均**双构建实测**（5.3.0 `02f0899d78e3` / 5.2.4 `cd5dc428cce1`），12 套 look 在 **EEVEE / Cycles** 各 12/12 通过；文档片段探针（材质骨架 + 先选集合再导出）双构建 PASS。更长的说明在同目录的 `references/`）
 
 ---
 

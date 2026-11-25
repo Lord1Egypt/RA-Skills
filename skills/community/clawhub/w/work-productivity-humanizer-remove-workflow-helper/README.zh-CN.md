@@ -2,7 +2,7 @@
 
 ## 需求
 
-Validated demand: Agent users show strong demand for Humanizer-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 11 separate online signals across 4 source families, so it represents broader demand rather than a single isolated request.
+Validated demand: Agent users show strong demand for Humanizer-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 10 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
 
 目标用户：AI-agent users, skill authors, maintainers, and teams who want proven popular skill patterns adapted into more reliable or adjacent workflows
 
@@ -10,13 +10,12 @@ Validated demand: Agent users show strong demand for Humanizer-style workflows o
 
 需求评分：100/100
 
-证据覆盖：11 条信号，覆盖 4 个来源类型。
+证据覆盖：10 条信号，覆盖 3 个来源类型。
 
 ## 来源证据
 
-- clawhub-popular-skill：[Popular Clawhub skill demand: Humanizer has 135,049 downloads](https://clawhub.ai/skills/humanizer)
-- clawhub-popular-skill：[Popular Clawhub skill demand: Nano Banana Pro has 108,666 downloads](https://clawhub.ai/skills/nano-banana-pro)
-- hacker-news-ask-hn：[Should proper mouse support be added in CLI harnesses](https://news.ycombinator.com/item?id=50508183)
+- clawhub-popular-skill：[Popular Clawhub skill demand: Humanizer has 135,881 downloads](https://clawhub.ai/skills/humanizer)
+- clawhub-popular-skill：[Popular Clawhub skill demand: Nano Banana Pro has 108,983 downloads](https://clawhub.ai/skills/nano-banana-pro)
 - segmentfault-search：[HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
 - segmentfault-search：[javascript](https://segmentfault.com/t/javascript)
 - segmentfault-search：[typescript](https://segmentfault.com/t/typescript)
@@ -24,7 +23,7 @@ Validated demand: Agent users show strong demand for Humanizer-style workflows o
 - segmentfault-search：[答： 从电话号码中删除破折号](https://segmentfault.com/q/1010000042899333/a-1020000042899335)
 - segmentfault-search：[问： 关于Android的浮动框退出程序时移除的问题](https://segmentfault.com/q/1010000004947270)
 - segmentfault-search：[问： 在destroy中移出浮动框的时候报错](https://segmentfault.com/q/1010000004951062)
-- github-issues：[🛰️ 每周发现报告 · 2026-11-03](https://github.com/TWO-ICE/awesome-manyu/issues/2)
+- github-issues：[Simplify/clean polygon paths after editing](https://github.com/LibrePCB/LibrePCB/issues/1944)
 
 ## 这个技能如何满足需求
 

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agents use this skill to inspect and operate a user's connected iPhone through macOS iPhone Mirroring. It supports checked, stepwise interactions with apps and reusable action sequences.
+External users and developers use Mirroir to inspect and operate their own iPhone through macOS iPhone Mirroring, including opening apps, entering text, and replaying saved interaction steps.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The setup uses an unpinned package version, so package contents may change between installations.
+Risk: The MCP package is resolved at launch without a pinned version, so a later release could be installed.
 
-Mitigation: Review the package identity, pin a reviewed version, and verify its integrity before installing.
+Mitigation: Review the package and resolved version before launch, and pin installation to a version you have approved.
 
-Risk: Operation requires Screen Recording and Accessibility permissions, and actions affect the user's real iPhone.
+Risk: Actions run on the user's real iPhone and can affect accounts and personal data.
 
-Mitigation: Grant permissions only to the trusted host application, review sensitive actions, and follow the skill's consent checks before sending, posting, buying, deleting, or changing settings.
+Mitigation: Confirm before sending, posting, buying, deleting, or changing settings; never enter passwords, PINs, or one-time codes.
 
 ## Reference(s):
 
-- [mirroir.dev](https://mirroir.dev)
+- [mirroir documentation](https://mirroir.dev)
 - [mirroir onboarding guide](https://github.com/jfarcand/mirroir-mcp/blob/main/docs/onboarding.md)
-- [ClawHub skill page](https://clawhub.ai/jfarcand/skills/mirroir)
+- [ClawHub release page](https://clawhub.ai/jfarcand/skills/mirroir)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+**Output Type(s):** [Text, Guidance, Shell commands, Configuration]
 
-**Output Format:** [Markdown instructions with inline shell commands]
+**Output Format:** [Text and Markdown with shell commands and configuration guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Stepwise interaction guidance and reusable action sequences; no standalone files are specified.]
+**Other Properties Related to Output:** [Screen descriptions, step-by-step interaction guidance, and results from actions on the user's iPhone.]
 
 ## Skill Version(s):
 
-0.50.1 (source: server-resolved release metadata)
+0.50.2 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

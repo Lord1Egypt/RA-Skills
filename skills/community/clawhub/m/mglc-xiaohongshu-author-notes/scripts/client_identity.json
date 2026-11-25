@@ -1,0 +1,14 @@
+{
+  "slug": "mglc-xiaohongshu-author-notes",
+  "displayName": "小红书作者作品库",
+  "mode": "author_notes",
+  "samplePlan": {
+    "input": {
+      "userId": "000000000000000000000001"
+    },
+    "maxPages": 10,
+    "maxItems": 200
+  },
+  "version": "1.0.0",
+  "channel": "clawhub"
+}

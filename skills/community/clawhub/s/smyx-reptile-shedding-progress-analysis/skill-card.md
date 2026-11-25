@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes reptile images or videos to estimate shedding stage and produce a structured report with care suggestions.
+Analyzes reptile photos or videos to estimate shedding stage from visible body and eye changes and return a structured report with care suggestions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Reptile keepers and breeders can use the skill to review enclosure images or videos, track apparent shedding stages, and receive a structured progress report with husbandry suggestions.
+Reptile keepers can use enclosure images or videos to monitor apparent shedding progress, review care prompts, and retrieve prior analysis reports.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,41 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan marks the skill suspicious for undeclared account and credential handling, media uploads, and bundled workflows that differ from the advertised monitoring purpose. The scan is partial because a referenced local file could not be resolved.
+Risk: The security assessment reports unclear account and credential handling, including risky credential transmission.
 
-Mitigation: Before installation, clarify account, identity, and token handling; review and disclose remote media processing and registration; resolve the missing reference.
+Mitigation: Review how credentials are obtained and sent, and use only a minimally privileged test account until the flow is understood.
+
+Risk: The security assessment reports remote media uploads without clear disclosure.
+
+Mitigation: Confirm the upload destination, retention, and access controls, and obtain consent before submitting enclosure images or videos.
+
+Risk: The security assessment says the export-only option may still run analysis.
+
+Mitigation: Verify the option's behavior before relying on it to avoid analysis or remote processing.
+
+Risk: The security scan is incomplete because a local reference was missing.
+
+Mitigation: Review the missing referenced material before deployment.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-reptile-shedding-progress-analysis)
 - [API reference](references/api_doc.md)
-- [Skill introduction](https://lifeemergence.com/sample.html)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-reptile-shedding-progress-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Markdown, Guidance]
+**Output Type(s):** [Analysis, JSON, Text, Markdown]
 
-**Output Format:** [Structured shedding assessment reports, Markdown history listings, and report links]
+**Output Format:** [Structured JSON report with a text heading and report link; history results are JSON suitable for a Markdown table.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Image-based stage estimates and husbandry suggestions; not a veterinary diagnosis.]
+**Other Properties Related to Output:** [May include visual shedding-stage estimates, care suggestions, risk prompts, and report links.]
 
 ## Skill Version(s):
 
-1.0.17 (source: server-resolved release metadata)
+1.0.18 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

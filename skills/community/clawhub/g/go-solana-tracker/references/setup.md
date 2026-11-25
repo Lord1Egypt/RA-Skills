@@ -4,7 +4,7 @@ This module is unofficial and not affiliated with Solana Tracker.
 
 ## Requirements
 
-- Go 1.26.10 or newer, per `go.mod`.
+- Go 1.26.11 or newer, per `go.mod`.
 - A Data API subscription key exported as `SOLANA_TRACKER_API_KEY`.
 - Premium, Business or Enterprise access for Datastream.
 

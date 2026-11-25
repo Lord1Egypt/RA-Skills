@@ -1,6 +1,6 @@
 ## Description:
 
-Supports spoiler-aware book discussions by tracking a reader’s edition and progress, grounding claims in available text, and avoiding unread material.
+A reading companion that tracks a reader’s edition and progress, checks claims against available evidence, and avoids spoilers beyond what they have read.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-External readers use this skill to discuss books they are reading or have finished, keep track of editions and progress, explore text-grounded interpretations, and reflect without unwanted spoilers.
+Readers use the skill to discuss books they are reading or have finished, work through difficult passages, and assess whether an unread book may suit them. It keeps track of reading context and helps the reader discuss the text within their chosen spoiler boundary.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Local Markdown notes may retain a reader’s history, progress, and ebook paths.
+Risk: The security scan had medium confidence, and a partial scan could not match several local references.
 
-Mitigation: Keep the reading-notes directory private and limit host filesystem access to the files needed for the discussion.
+Mitigation: Review the bundled references and confirm they are present before relying on the skill; the scan result does not establish that the skill is risk-free.
 
-Risk: Direct ebook verification may be unavailable when compatible host tools are absent.
+Risk: Reading progress and profile notes can contain personal information, and private ebook text should not be copied into those notes or shared.
 
-Mitigation: Provide selected excerpts for verification, and treat claims that cannot be checked from available text as unconfirmed.
+Mitigation: Keep reading records private and limited to the information needed for continuity; do not upload or transmit private ebook files.
 
 ## Reference(s):
 
 - [ClawHub skill page](https://clawhub.ai/locoda/skills/duizuo-reading-companion)
-- [Spoiler and evidence guidance](artifact/references/spoiler-and-evidence.md)
-- [Reading note storage guidance](artifact/references/storage.md)
+- [Spoiler and evidence rules](references/spoiler-and-evidence.md)
+- [Reading records and storage](references/storage.md)
+- [Book fit assessment](references/fit.md)
+- [Archiving and progress](references/archiving.md)
+- [Conversation modes](references/modules.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Text, Markdown, Files, Guidance]
 
 **Output Format:** [Conversational text and Markdown reading notes]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Spoiler-aware; grounds claims in available text and confirms reading progress before discussing unread material.]
+**Other Properties Related to Output:** [May maintain concise per-book progress and reading notes when file storage is available; otherwise it should be clear about what it can remember.]
 
 ## Skill Version(s):
 
-0.7.2 (source: SKILL.md frontmatter, server-resolved release)
+0.8.0 (source: release evidence and SKILL.md frontmatter)
 
 ## Ethical Considerations:
 

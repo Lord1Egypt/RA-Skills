@@ -1,0 +1,4 @@
+# Pinned, not floating. This library holds the key and produces every
+# signature; "whatever pip resolves today" is not an acceptable answer for
+# that. Moving it is a deliberate edit, with a signing round-trip re-run.
+eth-account==0.13.7

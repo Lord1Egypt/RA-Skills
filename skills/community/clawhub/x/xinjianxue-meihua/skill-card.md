@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users can provide two positive integers and a brief question about a current situation to receive a Mei Hua Yi Shu reading and a concise, practical suggestion.
+External users provide two numbers and an optional question to receive a Meihua Yishu reading for a current situation, followed by a practical suggestion. The skill excludes medical, legal, investment, and life-or-death questions.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The numbers and optional question are sent to an external provider, and privacy or retention terms are not supplied.
+Risk: The workflow includes Alipay wallet setup and a ¥6 charge for each successfully delivered reading.
 
-Mitigation: Avoid names and confidential details in the question.
+Mitigation: Explain the fee and payment steps, and obtain the user's consent before wallet setup or payment.
 
-Risk: Each successfully delivered reading costs 6 CNY and requires a separate Alipay authorization.
+Risk: Initial setup installs unpinned payment software and the reading uses an external API.
 
-Mitigation: Verify the merchant and amount before authorizing payment; do not proceed if payment is declined or unclear.
-
-Risk: A divination reading could be mistaken for authoritative advice on a high-stakes matter.
-
-Mitigation: Do not use readings for medical diagnosis, legal conclusions, investment decisions, or predictions about life and death.
+Mitigation: Review the installation commands and external payment workflow; proceed only when the user is comfortable with them.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/weixin97676414/skills/xinjianxue-meihua)
-- [Publisher profile](https://clawhub.ai/user/weixin97676414)
-- [Service API contract](https://api.xinjianxue.com/api/xinjianxue/aipay/meihua)
-- [Reading framework](artifact/references/reading.md)
-- [Payment instructions](artifact/references/payment.md)
+- [API contract](references/api.md)
+- [Alipay payment flow](references/payment.md)
+- [Reading framework](references/reading.md)
+- [Meihua Yishu service endpoint](https://api.xinjianxue.com/api/xinjianxue/aipay/meihua)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Concise Markdown reading with headings and emphasized key phrases]
+**Output Format:** [Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Up to 600 Chinese characters; includes the returned hexagram details and one current suggestion. Not for medical, legal, investment, or life-and-death decisions.]
+**Other Properties Related to Output:** [One reading of up to 600 Chinese characters, with a present-focused interpretation and practical suggestion.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server-resolved release metadata)
+2.0.0 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

@@ -1,0 +1,44 @@
+{
+  "name": "pan-hub",
+  "version": "0.7.0",
+  "description": "统一从百度、阿里云盘、夸克、天翼、迅雷、115、123云盘、移动云盘、沃盘、UC、PikPak、坚果云、OneDrive/SharePoint、Google Drive、Dropbox、微云、蓝奏及更多网盘分享链接、转存文件夹或直链到本机、Windows、NAS 或远程私人存储。",
+  "author": "lis",
+  "license": "CC-BY-NC-SA-4.0",
+  "entry": "SKILL.md",
+  "requires": {
+    "python": ">=3.9"
+  },
+  "scripts": [
+    "scripts/pan.py",
+    "scripts/self_test.py",
+    "scripts/pan.ps1",
+    "scripts/pan.cmd"
+  ],
+  "references": [
+    "references/00-使用说明.md",
+    "references/01-百度网盘.md",
+    "references/02-阿里云盘.md",
+    "references/03-夸克网盘.md",
+    "references/04-天翼云盘.md",
+    "references/05-迅雷云盘.md",
+    "references/06-扩展新网盘.md",
+    "references/07-115网盘.md",
+    "references/08-123云盘.md",
+    "references/09-移动云盘.md",
+    "references/10-联通沃盘.md",
+    "references/11-UC网盘.md",
+    "references/12-PikPak.md",
+    "references/13-坚果云.md",
+    "references/14-OneDrive与SharePoint.md",
+    "references/15-GoogleDrive.md",
+    "references/16-Dropbox.md",
+    "references/17-腾讯微云.md",
+    "references/18-蓝奏云.md",
+    "references/19-其他网盘.md",
+    "references/20-Agent调用与隐私.md",
+    "references/21-远程NAS与私有存储.md",
+    "references/22-Windows配置.md"
+  ],
+  "privacy": "凭据只存系统凭据库或第三方工具的受保护配置；下载内容不上传到 Skill 发布渠道。",
+  "boundary": "不破解会员、限速、验证码、广告或风控；不承诺不限速。"
+}

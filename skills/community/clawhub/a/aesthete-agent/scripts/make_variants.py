@@ -96,7 +96,7 @@ def main():
         border-bottom:1px solid rgba(255,255,255,.08)}}
   .hx{{width:22px;height:22px;border-radius:5px;display:inline-block;
       border:1px solid rgba(255,255,255,.25)}}
-  .hexlist{{margin-left:auto;font:11px monospace;opacity:.6}}
+  .hexlist{{margin-left:auto;font:12.5px monospace;opacity:.6}}
   iframe{{width:100%;height:74vh;border:0;display:block;background:#fff}}
   .pick{{padding:8px 14px;background:rgba(255,255,255,.06)}}
   button{{background:#F2CC8F;color:#20242B;border:0;border-radius:6px;padding:6px 14px;

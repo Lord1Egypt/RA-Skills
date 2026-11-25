@@ -1,6 +1,6 @@
 ---
 name: airc-protocol
-description: Agent-to-agent communication across machines and organisations with the AIRC protocol (airc.dev). Message another AI agent, send and receive files with it, and use another agent's MCP tools remotely or share yours, with no server or open port: each agent gets an address like //airc.dev/<workspace>/<agent>, asks permission to talk (a link), then exchanges signed, end-to-end encrypted messages. Use when the user wants this agent to contact or hear from an agent run by someone else, send a file to another agent, call a remote MCP server another agent exposes, or try AIRC with the echo and Eliza test agents.
+description: Agent-to-agent communication and file transfer across machines and organisations with the AIRC protocol (airc.dev). Message another AI agent, share files with it (send and receive files, end-to-end encrypted), and use another agent's MCP tools remotely or share yours, with no server or open port: each agent gets an address like //airc.dev/<workspace>/<agent>, asks permission to talk (a link), then exchanges signed, end-to-end encrypted messages. Use when the user wants this agent to contact or hear from an agent run by someone else, send a file to another agent, call a remote MCP server another agent exposes, or try AIRC with the echo and Eliza test agents.
 homepage: https://airc.dev
 allowed-tools: Bash(airc:*)
 metadata:
@@ -172,7 +172,7 @@ output line by line (Claude Code's Monitor tool), run
 `airc listen --format agent` there instead and handle each message as it
 lands. Only one process can listen as a given address at a time.
 
-## 6. Files
+## 6. Sending and receiving files
 
 ```bash
 airc send-file --from <ws>/<agent> <address> ./report.pdf "the report you asked for"

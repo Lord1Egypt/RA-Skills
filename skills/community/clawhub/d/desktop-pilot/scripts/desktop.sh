@@ -2,14 +2,18 @@
 # Desktop Pilot - one CLI for Windows (incl. from WSL), macOS and Linux desktops.
 # Usage: desktop.sh <action> [--process P] [--title T] [--name LABEL] [--text S] [--keys K] [--x N --y N] [--button left|right|double|move] [--out file.png]
 # Actions: os | screenshot | windows | buttons | click | close | focus | type | key | mouse
-#          overlay start|stop|status|text|clear|lock|unlock|selftest   (Windows: "agent is working" glow + Stop button; see SKILL.md)
+#          overlay start|stop|status|text|clear|lock|unlock|selftest|auto on|off   (Windows: "agent is working" glow + Stop button; see SKILL.md)
 set -euo pipefail
+if (( BASH_VERSINFO[0] < 4 )); then echo "ERROR: Bash 4+ required (macOS: run with an installed modern bash)" >&2; exit 1; fi
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ACTION="${1:-help}"; shift || true
-SUB=""; if [[ "$ACTION" == overlay ]]; then SUB="${1:-status}"; shift || true; fi
+SUB=""; ARG=""; if [[ "$ACTION" == overlay ]]; then SUB="${1:-status}"; shift || true; if [[ "$SUB" == auto ]]; then ARG="${1:-}"; shift || true; fi; fi
 declare -A O=()
 while [[ $# -gt 0 ]]; do
-  case "$1" in --*) O["${1#--}"]="${2:-}"; shift 2 || shift ;; *) shift ;; esac
+  case "$1" in
+    --*) [[ $# -ge 2 ]] || { echo "ERROR: missing value for $1" >&2; exit 1; }; O["${1#--}"]="$2"; shift 2 ;;
+    *) echo "ERROR: unexpected argument $1" >&2; exit 1 ;;
+  esac
 done
 die() { echo "ERROR: $*" >&2; exit 1; }
 has() { command -v "$1" >/dev/null 2>&1; }
@@ -22,6 +26,17 @@ detect_os() {
     *) echo unknown ;;
   esac
 }
+# Validate values before constructing any PowerShell command or changing state.
+for k in idle lock-idle; do
+  if [[ -n "${O[$k]:-}" ]]; then
+    [[ "${O[$k]}" =~ ^[1-9][0-9]{0,3}$ ]] || die "--$k must be a positive integer"
+    (( O[$k] <= 3600 )) || die "--$k must be <= 3600"
+  fi
+done
+for k in lock capture; do
+  [[ -z "${O[$k]:-}" || "${O[$k]}" == 0 || "${O[$k]}" == 1 ]] || die "--$k must be 0 or 1"
+done
+case "$ACTION" in os|screenshot|windows|buttons|click|close|focus|type|key|mouse|help|overlay) ;; *) die "Unknown action: $ACTION" ;; esac
 OS="$(detect_os)"
 [[ "$ACTION" == os ]] && { echo "$OS"; exit 0; }
 
@@ -48,39 +63,59 @@ overlay_paths() {  # sets OV_PS OV_WTEMP OV_L (state dir) OV_W (same dir, Window
 }
 overlay_alive() {
   [[ -f "$OV_L/pid" ]] || return 1
-  local pid; pid="$(tr -d '\r\n ' < "$OV_L/pid")"; [[ -n "$pid" ]] || return 1
+  local pid; pid="$(tr -d '\r\n ' < "$OV_L/pid")"; [[ "$pid" =~ ^[1-9][0-9]{0,9}$ ]] || return 1
   [[ "$("$OV_PS" -NoProfile -Command "if (Get-Process -Id $pid -ErrorAction SilentlyContinue) { 'yes' }" | tr -d '\r\n')" == yes ]]
+}
+overlay_auto() {  # $1 = overlay state dir; starts the overlay on its own before any Windows action when auto mode is on
+  local d="$1" cfg="${XDG_CONFIG_HOME:-$HOME/.config}/desktop-pilot/auto-overlay"
+  [[ "${DESKTOP_PILOT_AUTO_OVERLAY:-}" == 0 ]] && return 0
+  [[ -f "$cfg" || "${DESKTOP_PILOT_AUTO_OVERLAY:-}" == 1 ]] || return 0
+  if [[ -f "$d/pid" && -f "$d/beat" ]] && (( $(date +%s) - $(stat -c %Y "$d/beat") < 100 )); then return 0; fi   # already up and fresh
+  ( SUB=start; O[text]="${O[text]:-$(head -1 "$cfg" 2>/dev/null)}"; run_overlay ) >/dev/null 2>&1 || true
 }
 run_overlay() {
   overlay_paths
   case "$SUB" in
     start)
+      overlay_hook "$OV_L"  # start is not authorization to resume after Stop
       cp "$HERE/windows/overlay.ps1" "$OV_L/../overlay.ps1"
-      rm -f "$OV_L/stop.flag" "$OV_L/quit.flag"
+      cp "$HERE/windows/launch-overlay.ps1" "$OV_L/../launch-overlay.ps1"
+      rm -f "$OV_L/quit.flag"
       if [[ -n "${O[lock]:-}" && "${O[lock]}" != 0 ]]; then touch "$OV_L/lock.flag"; else rm -f "$OV_L/lock.flag"; fi
       printf '%s' "${O[text]:-${DESKTOP_PILOT_OVERLAY_TEXT:-Agent is working...}}" > "$OV_L/text.txt"
       touch "$OV_L/beat"
       if overlay_alive; then echo "OK overlay already running (text updated)"; return; fi
       rm -f "$OV_L/pid"
-      local extra="'-IdleSeconds','${O[idle]:-120}'"; [[ -n "${O[capture]:-}" ]] && extra+=",'-VisibleInCapture'"
-      [[ -n "${O[lock-idle]:-}" ]] && extra+=",'-LockIdleSeconds','${O[lock-idle]}'"
-      "$OV_PS" -NoProfile -Command "Start-Process -WindowStyle Hidden powershell -ArgumentList '-NoProfile','-STA','-ExecutionPolicy','Bypass','-File','${OV_WTEMP}desktop-pilot\\overlay.ps1','-Dir','$OV_W',$extra" >/dev/null
+      local launcher="${OV_WTEMP}desktop-pilot\\launch-overlay.ps1"
+      local launchargs=(-Dir "$OV_W" -IdleSeconds "${O[idle]:-120}" -LockIdleSeconds "${O[lock-idle]:-8}")
+      [[ "${O[capture]:-0}" == 1 ]] && launchargs+=(-VisibleInCapture)
+      "$OV_PS" -NoProfile -File "$launcher" "${launchargs[@]}" >/dev/null
       local i; for i in $(seq 1 30); do [[ -f "$OV_L/pid" ]] && break; sleep 0.3; done
       if overlay_alive; then echo "OK overlay started$([[ -f "$OV_L/lock.flag" ]] && echo ' (input lock requested: user input is ignored while you keep acting; hold Esc 1.5 s or press Stop to release)')"; else echo "ERROR overlay did not start; see $OV_L/log.txt" >&2; [[ -f "$OV_L/log.txt" ]] && tail -5 "$OV_L/log.txt" >&2; exit 1; fi ;;
     text)
+      overlay_hook "$OV_L"
       [[ -n "${O[text]:-}" ]] || die "Specify --text"
       printf '%s' "${O[text]}" > "$OV_L/text.txt"; touch "$OV_L/beat"; echo "OK overlay text updated" ;;
     stop)
       if overlay_alive; then touch "$OV_L/quit.flag"; local i; for i in $(seq 1 15); do overlay_alive || break; sleep 0.3; done
-        overlay_alive && { "$OV_PS" -NoProfile -Command "Stop-Process -Id $(tr -d '\r\n ' < "$OV_L/pid") -Force" >/dev/null; rm -f "$OV_L/pid"; }
+        if overlay_alive; then die "Overlay has not exited yet; quit request retained"; fi
         echo "OK overlay stopped"
       else rm -f "$OV_L/pid"; echo "OK overlay not running"; fi
       rm -f "$OV_L/quit.flag" ;;
     clear) rm -f "$OV_L/stop.flag"; echo "OK stop flag cleared" ;;
     lock)
+      overlay_hook "$OV_L"
       overlay_alive || die "overlay is not running (overlay start first)"
       touch "$OV_L/lock.flag" "$OV_L/beat"; echo "OK input lock requested (engages with your next action, releases 8 s after the last one; Esc held 1.5 s or Stop releases it)" ;;
     unlock) rm -f "$OV_L/lock.flag"; echo "OK input lock released" ;;
+    auto)
+      local cfgdir="${XDG_CONFIG_HOME:-$HOME/.config}/desktop-pilot"
+      case "$ARG" in
+        on) mkdir -p "$cfgdir"; printf '%s\n' "${O[text]:-${DESKTOP_PILOT_OVERLAY_TEXT:-Agent is working...}}" > "$cfgdir/auto-overlay"
+            echo "OK auto overlay ON: the overlay now starts by itself before any action (text: $(head -1 "$cfgdir/auto-overlay")); it closes on its own when idle" ;;
+        off) rm -f "$cfgdir/auto-overlay"; echo "OK auto overlay OFF" ;;
+        *) if [[ -f "$cfgdir/auto-overlay" ]]; then echo "auto overlay: on ($(head -1 "$cfgdir/auto-overlay"))"; else echo "auto overlay: off (enable with: overlay auto on [--text S])"; fi ;;
+      esac ;;
     selftest)
       cp "$HERE/windows/overlay.ps1" "$OV_L/../overlay.ps1"
       "$OV_PS" -NoProfile -STA -ExecutionPolicy Bypass -File "${OV_WTEMP}desktop-pilot\\overlay.ps1" -Dir "$OV_W" -SelfTest | tr -d '\r' ;;
@@ -89,7 +124,7 @@ run_overlay() {
       [[ -f "$OV_L/stop.flag" ]] && echo "stop requested by the user (actions abort until: overlay clear)"
       if [[ -f "$OV_L/lock.flag" ]]; then echo "input lock: requested ($(cat "$OV_L/lock.state" 2>/dev/null || echo unknown))"; else echo "input lock: off"; fi
       [[ -f "$OV_L/text.txt" ]] && echo "text: $(cat "$OV_L/text.txt")"; return 0 ;;
-    *) die "overlay start|stop|status|text|clear|lock|unlock|selftest   [--text S] [--idle SECONDS] [--lock 1] [--lock-idle SECONDS] [--capture 1]" ;;
+    *) die "overlay start|stop|status|text|clear|lock|unlock|selftest|auto on|off   [--text S] [--idle SECONDS] [--lock 1] [--lock-idle SECONDS] [--capture 1]" ;;
   esac
 }
 
@@ -102,11 +137,13 @@ run_windows() {
     local wtemp; wtemp="$("$ps" -NoProfile -Command '[IO.Path]::GetTempPath()' | tr -d '\r')"
     local ltemp; ltemp="$(wslpath -u "$wtemp")"
     mkdir -p "$ltemp/desktop-pilot"; cp "$HERE/windows/desktop.ps1" "$ltemp/desktop-pilot/desktop.ps1"
-    ovdir="$ltemp/desktop-pilot/overlay"; overlay_hook "$ovdir"
+    ovdir="$ltemp/desktop-pilot/overlay"
     winps1="${wtemp}desktop-pilot\\desktop.ps1"
   else
-    ps="$(command -v powershell.exe || command -v pwsh)"; winps1="$HERE/windows/desktop.ps1"
+    ps="$(command -v powershell.exe || command -v pwsh)"; winps1="$(cygpath -w "$HERE/windows/desktop.ps1")"
   fi
+  overlay_paths
+  ovdir="$OV_L"; overlay_hook "$ovdir"; overlay_auto "$ovdir"; overlay_hook "$ovdir"
   args=("$ACTION")
   for k in process title name keys button; do [[ -n "${O[$k]:-}" ]] && args+=("-${k^}" "${O[$k]}"); done
   [[ -n "${O[text]:-}" ]] && args+=(-TextB64 "$(printf %s "${O[text]}" | base64 -w0)")
@@ -182,6 +219,7 @@ run_linux() {
   esac
 }
 
+[[ "$ACTION" == help ]] && { sed -n '2,5p' "$0"; exit 0; }
 [[ "$ACTION" == overlay ]] && { run_overlay; exit 0; }
 case "$OS" in
   wsl|windows) run_windows ;;

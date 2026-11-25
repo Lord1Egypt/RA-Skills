@@ -1,6 +1,6 @@
 ## Description:
 
-Feishu (feishu.cn). Use this skill for ANY Feishu request — reading, creating, updating, and deleting data. Whenever a task involves Feishu, use this skill instead of calling the API directly.
+Use Feishu to read, create, update, and delete workspace data through an OOMOL-connected account.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Feishu users and developers use this skill to read and manage Feishu content and workflows through an OOMOL-connected account, including chat, documents, Drive, mail, calendars, tasks, approvals, and spreadsheets.
+People with an OOMOL-connected Feishu account use the skill to read and manage workspace data, including chats, messages, documents, calendars, mail, tasks, approvals, spreadsheets, and Bases.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Setup executes downloaded code whose release has not been verified in the evidence.
+Risk: First-time setup runs an unpinned installer fetched from the internet; its contents were not available for review, so its behavior is unknown.
 
-Mitigation: Review setup before installation and choose and verify the CLI release yourself.
+Mitigation: Review the installer and verify its source and expected changes before running it; use a verified release when available.
 
-Risk: The CLI dependency's persistent effects are not fully described.
+Risk: Feishu write and destructive actions can change or remove workspace data.
 
-Mitigation: Grant only the Feishu permissions needed and retain confirmation for writes and deletions; consider disabling automatic skill synchronization before invoking it.
+Mitigation: Confirm the target and exact effect with the user before running any write or destructive action, as the skill directs.
 
 ## Reference(s):
 
-- [Feishu](https://www.feishu.cn)
-- [Feishu API documentation](https://open.feishu.cn/document/home/index)
-- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Feishu developer documentation](https://open.feishu.cn/document/home/index)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [Feishu homepage](https://www.feishu.cn)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, JSON, Shell commands]
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
 
-**Output Format:** [Markdown guidance with shell command examples and JSON payloads; Feishu response data]
+**Output Format:** [Shell commands with JSON payloads and structured connector results, plus task guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Actions may read or change Feishu data according to the selected operation and connected account permissions.]
+**Other Properties Related to Output:** [Actions may read or change Feishu workspace data; some actions are destructive.]
 
 ## Skill Version(s):
 
-1.0.8 (source: frontmatter, server release metadata)
+1.0.9 (source: frontmatter; confirmed by server release evidence)
 
 ## Ethical Considerations:
 

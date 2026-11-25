@@ -1,0 +1,10 @@
+{
+  "name": "wb-collect",
+  "version": "1.0.0",
+  "private": true,
+  "description": "微博主帖采集 Skill CLI (正文/作者/发布时间/转发·评论·点赞数, 1 条微博 = 1 点数)",
+  "main": "cli.js",
+  "engines": {
+    "node": ">=18"
+  }
+}

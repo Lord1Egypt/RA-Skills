@@ -82,8 +82,8 @@ conventions.**
 Twelve names, in this order — matching the canonical extraction table in
 `references/job-posting-extraction.md` and the declaration in `modes/apply.md`
 Step 2. The entry skill routes here instead of repeating the schema.
-The source repository's test suite checks these declarations so a mode cannot
-omit a field that a downstream gate requires.
+In the source repository, `scripts/tests/test_posting_schema_agreement.py` checks the declarations so a
+mode cannot omit a field that a downstream gate requires.
 
 ```yaml
 role_title: "..."          # exactly as written in the posting

@@ -88,6 +88,8 @@
 - `noteUid`, `title`, `createTime`, `updateTime`, `labels[{name,uid,type}]`
 - `labelNames`, `type`, `groupName`, `group{name,uid}`, `version`, `top`, `encryptType`
 - `asrContent`, `summaryContent`, `insightContent`, `ocrContent`
+- `handwritingRegular`（手写规整原文）、`handwritingPages[]`
+- `handwritingPages[]` 字段：`pageUid`、`thumbUrl`；`thumbUrl` 为页面手写缩略图预签名地址
 
 按需策略：
 
@@ -98,7 +100,47 @@
 - 补充内容选择：原始会议细节用 `asr`；手写/页面信息用 `ocr`；AI洞察、行动项或扩展分析用 `insight`。
 - 不要调用不带 `includeContent=false` 的详情接口作为默认路径，也不要默认全量拉取 `asr`、`ocr`、`insight`，除非用户明确要求完整原文或全量内容。
 
-### 2.3 查询笔记指定内容
+### 2.3 查询纸质本列表
+
+- **GET** `/aitablet/api/skill/v2/notebook/list`
+- Scope：`NOTE_READ`
+- Header：`Authorization: Bearer {AIWORK_AUTH_TOKEN}`
+
+返回当前用户有效纸质本的简单元信息列表。Skill 只使用：`bookUid`、`title`、`bookType`、`totalPageCount`、`version`、`syncTime`、`createTime`、`updateTime`。
+
+### 2.4 查询纸质本详情
+
+- **GET** `/aitablet/api/skill/v2/notebook/{bookUid}`
+- Scope：`NOTE_READ`
+- Header：`Authorization: Bearer {AIWORK_AUTH_TOKEN}`
+
+详情包含纸质本元信息、关联有效笔记和页面信息：
+
+```json
+{
+  "bookUid": "book_001",
+  "title": "工作记录",
+  "version": 3,
+  "notes": [
+    {
+      "noteUid": "note_001",
+      "title": "会议纪要",
+      "pages": [
+        {
+          "pageUid": "page_001",
+          "sourcePageNo": 116341,
+          "logicalPageNo": 3,
+          "thumbUrl": "https://example.com/page-thumb"
+        }
+      ]
+    }
+  ]
+}
+```
+
+`sourcePageNo` 是纸质实体本原页码，`logicalPageNo` 来自 manifest 的显式页项映射；manifest 缺失或页面未匹配时为 `null`，不能按数组下标推导逻辑页码。`thumbUrl` 是页面手写缩略图预签名地址。
+
+### 2.5 查询笔记指定内容
 
 - **GET** `/aitablet/api/skill/v2/note/{noteUid}/content`
 - Scope：`NOTE_READ`
@@ -117,7 +159,7 @@
 - `type`：内容类型
 - `content`：指定类型内容
 
-### 2.4 删除笔记（入回收站）
+### 2.6 删除笔记（入回收站）
 
 - **DELETE** `/aitablet/api/skill/v2/note/{noteUid}`
 - Scope：`NOTE_WRITE`

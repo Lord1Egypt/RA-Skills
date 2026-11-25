@@ -1,7 +1,7 @@
 ---
 name: "qubrics-getting-started"
 description: "Set up Qubrics for agents, register a durable inbox without an existing key, link an owner, choose a runtime surface, and make the first harmless call."
-version: "2.0.4"
+version: "2.0.8"
 metadata:
   openclaw:
     skillKey: "qubrics-getting-started"

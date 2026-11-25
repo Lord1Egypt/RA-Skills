@@ -33,6 +33,9 @@ python3 scripts/gen_figure.py --list-themes
 | example_roc.json | `python3 scripts/gen_figure.py -t roc -d examples/example_roc.json -o fig.png --cjk` | ROC 曲线（含 AUC） |
 | example_scatter.json | `python3 scripts/gen_figure.py -t scatter -d examples/example_scatter.json -o fig.png --cjk` | 散点图（含相关趋势） |
 | example_stacked.json | `python3 scripts/gen_figure.py -t stacked_bar -d examples/example_stacked.json -o fig.png --cjk` | 构成比堆叠柱状图 |
+| example_flow.json | `python3 scripts/gen_figure.py -t flow -d examples/example_flow.json -o fig.png --cjk` | flow 语义流程图（layered 分层，RCT 主线） |
+| example_flow_swimlane.json | `python3 scripts/gen_figure.py -t flow -d examples/example_flow_swimlane.json -o fig.png --gate strict --cjk` | flow 泳道（临床试验数据流三泳道，TB 纵列） |
+| example_flow_swimlane_lr.json | `python3 scripts/gen_figure.py -t flow -d examples/example_flow_swimlane_lr.json -o fig.png --gate strict --cjk` | flow 泳道（同行评审三泳道，LR 行带·左竖排标题） |
 
 ## 真实科研场景示例（realworld/）
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Evaluates technology and enterprise software topic portfolios, ranks candidates, selects a primary topic and backups, and prepares a confirmed Notion change preview.
+This skill evaluates technology, AI, data, cloud, and enterprise software topics, selects a writing portfolio, and prepares a confirmed Notion change preview.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Editorial strategists and content teams use this skill to assess candidate technology topics, plan a balanced publishing portfolio, and review proposed Notion changes before syncing.
+Editors and research teams use this skill to assess a batch of technology topics, compare evidence, originality, timeliness, and fit, then choose one primary topic and two backups. It can prepare a Notion change preview for review before any writeback.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,40 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Private editorial details may be sent to external search services.
+Risk: Security review confidence is medium because one JavaScript file was only partially inspected.
 
-Mitigation: Before installation, review what information would be shared and confirm that sending editorial details to those services is acceptable.
+Mitigation: Review the adapter behavior before relying on Notion operations, especially writeback.
 
-Risk: The Notion adapter was not fully inspected and runtime permissions are unknown.
+Risk: Topic details may include confidential or unpublished editorial ideas when external research is used.
 
-Mitigation: Review the adapter and runtime permissions before installation.
+Mitigation: Get authorization before sending topic details to external search; redact queries or skip external research when needed.
+
+Risk: Notion writeback can change topic records.
+
+Mitigation: Review the change preview and confirm both the portfolio and writeback before updating records.
 
 ## Reference(s):
 
 - [Editorial Topic Portfolio on ClawHub](https://clawhub.ai/haiyangchenbj/skills/editorial-topic-portfolio-skill)
-- [Scoring Model](references/scoring-model.md)
 - [Evaluation Gates](references/evaluation-gates.md)
+- [Scoring Model](references/scoring-model.md)
 - [Portfolio Rules](references/portfolio-rules.md)
-- [Replay Evaluation](references/replay-evaluation.md)
 - [Notion Adapter Interface](references/notion-adapter-interface.md)
+- [Replay Evaluation](references/replay-evaluation.md)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, Markdown, JSON]
 
-**Output Format:** [Markdown portfolio reports and JSON topic records or change previews]
+**Output Format:** [Markdown and JSON files]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Prepares Notion changes for review; writeback requires confirmation.]
+**Other Properties Related to Output:** [Topic evaluations, portfolio decisions, and a reviewable Notion change preview]
 
 ## Skill Version(s):
 
-1.0.10 (source: frontmatter; corroborated by server release record)
+1.0.11 (source: artifact SKILL.md frontmatter, server-resolved release)
 
 ## Ethical Considerations:
 

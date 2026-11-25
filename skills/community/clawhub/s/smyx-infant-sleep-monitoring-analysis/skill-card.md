@@ -1,6 +1,6 @@
 ## Description:
 
-Identifies sleep states like deep sleep, light sleep, waking, and restlessness, and generates daily sleep reports and schedule analysis to help parents understand their baby's sleep patterns.
+Identifies infant sleep states such as deep sleep, light sleep, waking, and restlessness, and generates daily sleep reports and schedule analysis.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Parents can use the skill to analyze infant sleep-monitoring images or videos, review sleep-state and schedule summaries, and retrieve prior reports.
+Parents and caregivers use the skill to analyze infant sleep-monitoring videos, review sleep-state and timing summaries, and view daily or historical reports. The results are for parenting reference and do not replace pediatric advice.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates the skill suspicious, citing privacy and credential risks, behavior beyond its stated purpose, and mismatches between documented features and implementation.
+Risk: ClawScan rates this release suspicious with high confidence, citing unclear account and credential handling, infant video transfers without a clear consent gate or destination, and possible analysis during export-only mode.
 
-Mitigation: Before considering use, verify clear disclosure and obtain user approval for video uploads and account creation, and require an explanation of credential handling and payment features. The scan was partial, so review the referenced material that was unavailable to scanners.
-
-Risk: The skill states that its sleep analysis is for parenting reference and cannot replace professional medical advice.
-
-Mitigation: Consult a pediatric clinician about concerning sleep patterns or health concerns.
+Mitigation: Consider not installing until account and credential behavior, video consent and destinations, and export-only behavior are explained. The scan was partial because one local reference could not be matched, so review of all referenced material is not established.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/smyx-sunjinhui/skills/smyx-infant-sleep-monitoring-analysis)
-- [API interface documentation](artifact/references/api_doc.md)
-- [Skill introduction](https://lifeemergence.com/sample.html)
+- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-infant-sleep-monitoring-analysis)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [API reference](references/api_doc.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, Markdown, JSON, Guidance]
+**Output Type(s):** [Analysis, JSON, Markdown, Report links]
 
-**Output Format:** [Structured sleep analysis report in JSON or Markdown]
+**Output Format:** [Structured sleep analysis reports, with Markdown tables for historical report lists]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include sleep-state summaries, sleep-time and awakening counts, routine analysis, and report links.]
+**Other Properties Related to Output:** [May include sleep-state classifications, sleep timing and waking summaries, recommendations, and report links; results are for parenting reference, not medical advice.]
 
 ## Skill Version(s):
 
-1.0.18 (source: server-resolved ClawHub release)
+1.0.19 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

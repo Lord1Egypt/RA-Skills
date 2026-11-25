@@ -1,35 +1,17 @@
-/**
- * 应用常量配置
- */
-
+let version = "unknown";
+try {
+  const pkg = require("../../package.json");
+  if (pkg && typeof pkg.version === "string" && pkg.version) {
+    version = pkg.version;
+  }
+} catch (_) {
+  // package.json 缺失时仍应能输出错误信封
+}
 module.exports = {
-  /**
-   * API 基础域名
-   */
   BASE_URL: "www.guaikei.com",
-
-  /**
-   * 请求超时时间 (毫秒)
-   */
   REQUEST_TIMEOUT: 20000,
-
-  /**
-   * 创建任务最大重试次数
-   */
   CREATE_MAX_ATTEMPTS: 3,
-
-  /**
-   * 查询任务最大重试次数
-   */
   QUERY_MAX_ATTEMPTS: 20,
-
-  /**
-   * 重试间隔时间 (毫秒)
-   */
   RETRY_INTERVAL: 2000,
-
-  /**
-   * 技能版本号
-   */
-  VERSION: "1.2.2",
+  VERSION: version,
 };

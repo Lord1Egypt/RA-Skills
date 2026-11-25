@@ -1,0 +1,41 @@
+{
+  "project": "合成山景演示",
+  "edition": "分镜与选材",
+  "version": "v001",
+  "story_version": "v001",
+  "beats": [
+    {
+      "id": "B01",
+      "chapter": "山前",
+      "title": "向前移动",
+      "narration": "黄色方块从山前经过。",
+      "sound": "演示视频为无声动画。",
+      "selected": ["C01"]
+    },
+    {
+      "id": "B02",
+      "chapter": "回望",
+      "title": "停在山景",
+      "narration": "",
+      "sound": "静默停留。",
+      "selected": ["C02"]
+    }
+  ],
+  "candidates": [
+    {
+      "id": "C01", "home": "B01", "asset_id": "A01", "kind": "video",
+      "source": "media/demo_video.mp4", "source_in": 0.8, "source_out": 2.8,
+      "visual": "合成山景前的黄色方块自左向右移动"
+    },
+    {
+      "id": "C02", "home": "B02", "asset_id": "A02", "kind": "photo",
+      "source": "media/demo_photo.jpg", "duration": 1.5,
+      "visual": "整幅山景和天空中的圆日"
+    },
+    {
+      "id": "C03", "home": "B02", "asset_id": "A03", "kind": "photo",
+      "source": "media/demo_card.png", "duration": 2,
+      "visual": "可替换山景作结尾的深色静态文字页"
+    }
+  ]
+}

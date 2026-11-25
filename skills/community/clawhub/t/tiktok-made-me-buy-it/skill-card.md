@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers use this skill to research organic TikTok product interest by searching natural traffic videos and comparing play, like, and creator follower signals.
+Product researchers and sellers can search TikTok natural traffic videos by product keywords and engagement signals, then summarize recurring product themes and organic hooks.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill installs and runs a broader third-party PipiAds MCP server globally with access to the user's API key.
+Risk: Search keywords are sent to the third-party PipiAds service and may contain confidential or sensitive information.
 
-Mitigation: Review the pipiads-mcp-server package before installation, use a revocable quota-limited API key, and prefer running it in an isolated environment.
-
-Risk: API calls consume PipiAds account credits.
-
-Mitigation: Set query limits deliberately and monitor account usage before running broad searches.
+Mitigation: Avoid confidential or sensitive search terms, and use keywords you are comfortable sharing with PipiAds.
 
 ## Reference(s):
 
-- [ClawHub Skill Page](https://clawhub.ai/fanyanggod/skills/tiktok-made-me-buy-it)
-- [PipiAds Homepage](https://www.pipiads.com)
-- [PipiSpy API Key and Billing](https://www.pipispy.com/)
+- [PipiAds](https://www.pipiads.com)
+- [PipiSpy API key and billing](https://www.pipispy.com/)
+- [ClawHub skill page](https://clawhub.ai/fanyanggod/skills/tiktok-made-me-buy-it)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+**Output Type(s):** [API Calls, Analysis, Text, Markdown]
 
-**Output Format:** [Markdown summaries with search criteria, engagement signals, and product-theme observations]
+**Output Format:** [Natural-language summaries of TikTok natural traffic video search results]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires a PipiAds API key and consumes PipiAds account credits for API calls.]
+**Other Properties Related to Output:** [Searches consume PipiAds credits; result themes and engagement signals are summarized for the agent or user.]
 
 ## Skill Version(s):
 
-1.0.1 (source: server release metadata)
+1.0.2 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

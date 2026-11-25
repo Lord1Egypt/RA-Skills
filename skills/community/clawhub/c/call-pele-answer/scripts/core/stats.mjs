@@ -33,7 +33,7 @@ export function agentStats(events) {
   return turns.filter(t => t.end).map(t => {
     const total = t.end - t.start, tool = t.tools.reduce((a, x) => a + x.ms, 0), pe = t.tools.filter(x => x.pe).reduce((a, x) => a + x.ms, 0);
     const steps = t.marks.map(([n, at], k) => ({ step: n, ms: (t.marks[k + 1]?.[1] ?? t.end) - at })).filter(s => s.step !== 'end');
-    return { session: t.session, total, tool, pe, model: total - tool, calls: t.tools.length, steps, slowest: [...t.tools].sort((a, b) => b.ms - a.ms).slice(0, 3) };
+    return { session: t.session, total, tool, pe, model: total - tool, calls: t.tools.length, steps, slowest: [...t.tools].sort((a, b) => b.ms - a.ms).slice(0, 3).map(({ tool, ms, pe, cmd }) => ({ tool, ms, pe, cmd: pe ? cmd : undefined })) };
   });
 }
 
@@ -73,7 +73,7 @@ export function stats(opts = {}) {
     for (const t of turns.slice(-5)) {
       console.log(`  回合 ${ms(t.total)}：模型 ${ms(t.model)} · 工具 ${ms(t.tool)}（其中 pe ${ms(t.pe)}）· ${t.calls} 次调用`);
       for (const s of t.steps) console.log(`    ${s.step.padEnd(16)} ${ms(s.ms)}`);
-      for (const x of t.slowest) console.log(`    慢：${x.tool} ${ms(x.ms)} ${x.cmd || ''}`);
+      for (const x of t.slowest) console.log(`    慢：${x.tool} ${ms(x.ms)}${x.pe ? ' ' + x.cmd : ''}`);
     }
   } else console.log('\n还没有 Agent 回合记录：Claude Code 装插件后自动记录；其他 Agent 用 hooks/agent-hook.mjs mark <步骤>。');
   if (tips.length) { console.log('\n建议'); tips.forEach(t => console.log('  · ' + t)); }

@@ -1,26 +1,511 @@
 {
-  "about": "20 questions about our records. 'right_answer' is what the live record held on 2026-11-11 (data built 2026-09-24). 'check' says how run_checks.py tests it against the output of scripts/aa.py. This tests our data path, not a model. If a record is rebuilt, a changed answer is a finding to read, not always a bug.",
-  "written": "2026-11-11",
-  "questions": [
-    {"id": "q01", "question": "What stay limit does the record hold for Beartooth WMA (Montana)?", "cmd": ["camp", "beartooth-wma-mt-46945n111844w"], "check": {"path": "data.camp.rules.stay_limit_days", "equals": 7}, "right_answer": "7 nights", "record_url": "https://davelalande.com/camps/found/beartooth-wma-mt-46945n111844w.html"},
-    {"id": "q02", "question": "What stay limit does the record hold for Chester City Park (Montana)?", "cmd": ["camp", "chester-city-park-mt-48511n110970w"], "check": {"path": "data.camp.rules.stay_limit_days", "equals": 3}, "right_answer": "3 nights", "record_url": "https://davelalande.com/camps/found/chester-city-park-mt-48511n110970w.html"},
-    {"id": "q03", "question": "What stay limit does the record hold for Cliff Point Campground (Montana)?", "cmd": ["camp", "cliff-point-campground-mt-44792n111560w"], "check": {"path": "data.camp.rules.stay_limit_days", "equals": 16}, "right_answer": "16 days", "record_url": "https://davelalande.com/camps/found/cliff-point-campground-mt-44792n111560w.html"},
-    {"id": "q04", "question": "What is the cost verdict for East Fork Hyalite Creek 3B?", "cmd": ["camp", "east-fork-hyalite-creek-3b-mt-45462n110926w"], "check": {"path": "data.camp.cost", "equals": "free"}, "right_answer": "free", "record_url": "https://davelalande.com/camps/found/east-fork-hyalite-creek-3b-mt-45462n110926w.html"},
-    {"id": "q05", "question": "Who manages Big Sheep Creek Back Country Byway camp?", "cmd": ["camp", "big-sheep-creek-back-country-byway-mt-44707n112686w"], "check": {"path": "data.camp.land_manager", "equals": "BLM"}, "right_answer": "BLM", "record_url": "https://davelalande.com/camps/found/big-sheep-creek-back-country-byway-mt-44707n112686w.html"},
-    {"id": "q06", "question": "Does the season record read open or closed for Beaver Creek Campground (Montana) on July 15, 2027?", "cmd": ["camp", "beaver-creek-campground-mt-44857n111373w", "--date", "2027-07-15"], "check": {"path": "data.camp.season.state", "equals": "open"}, "right_answer": "open (record: May 15 to Sep 27, weather dependent; confirm with the Forest Service office)", "record_url": "https://davelalande.com/camps/found/beaver-creek-campground-mt-44857n111373w.html"},
-    {"id": "q07", "question": "Does the season record read open or closed for Beaver Creek Campground on December 1, 2027? (A trip we would not plan, but the record answers.)", "cmd": ["camp", "beaver-creek-campground-mt-44857n111373w", "--date", "2027-12-01"], "check": {"path": "data.camp.season.state", "equals": "closed"}, "right_answer": "closed by the record", "record_url": "https://davelalande.com/camps/found/beaver-creek-campground-mt-44857n111373w.html"},
-    {"id": "q08", "question": "Which forest is Ft586-01 Middle Cottonwood in?", "cmd": ["camp", "ft586-01-middle-cottonwood-mt-45765n110988w"], "check": {"path": "data.camp.forest.slug", "equals": "custer-gallatin-national-forest"}, "right_answer": "Custer Gallatin National Forest", "record_url": "https://davelalande.com/camps/found/ft586-01-middle-cottonwood-mt-45765n110988w.html"},
-    {"id": "q09", "question": "Which states does the Custer Gallatin National Forest record list?", "cmd": ["forest", "custer-gallatin-national-forest"], "check": {"path": "data.forest.states", "equals": "MT,SD,WY"}, "right_answer": "MT, SD, WY", "record_url": "https://davelalande.com/forests/custer-gallatin-national-forest"},
-    {"id": "q10", "question": "How many national forests and grasslands are in the records?", "cmd": ["root"], "check": {"path": "data.counts.forests", "equals_str": "130"}, "right_answer": "130", "record_url": "https://davelalande.com/api/"},
-    {"id": "q11", "question": "Are the free camps near Bozeman all recorded as free?", "cmd": ["town", "Bozeman", "--state", "MT", "--limit", "5"], "check": {"path": "data.camps[].cost", "all_equal": "free", "min_len": 1}, "right_answer": "yes, all free; each needs its record url", "record_url": "https://davelalande.com/near/bozeman-mt/"},
-    {"id": "q12", "question": "Does a search for 'hyalite' return camp records that each carry a record url?", "cmd": ["find", "hyalite", "--limit", "3"], "check": {"path": "data.camps[].url", "all_startwith": "https://davelalande.com/camps/", "min_len": 1}, "right_answer": "yes", "record_url": "https://davelalande.com/api/camps?q=hyalite"},
-    {"id": "q13", "question": "Where does the fuel layer say its points come from, and what credit does it need?", "cmd": ["poi", "45.68", "-111.04", "fuel"], "check": {"path": "data.attribution", "contains": "OpenStreetMap"}, "right_answer": "OpenStreetMap, via the Overpass API; credit (c) OpenStreetMap contributors (ODbL)", "record_url": "https://davelalande.com/api/near?type=poi&cat=fuel"},
-    {"id": "q14", "question": "Is the forecast for a point near Hyalite from the National Weather Service, with periods?", "cmd": ["weather", "45.46", "-110.93"], "check": {"path": "data.source", "equals": "NWS", "min_len_at": ["data.periods", 1]}, "right_answer": "yes, NWS periods, quoted as written (the forecast changes every hour, so only its shape is checked)", "record_url": "https://davelalande.com/api/weather?lat=45.46&lon=-110.93"},
-    {"id": "q15", "question": "What stay limit does the record hold for East Fork Hyalite Creek 3B?", "cmd": ["camp", "east-fork-hyalite-creek-3b-mt-45462n110926w"], "check": {"path": "data.camp.rules.stay_limit_days", "unrecorded": true}, "right_answer": "unrecorded", "record_url": "https://davelalande.com/camps/found/east-fork-hyalite-creek-3b-mt-45462n110926w.html"},
-    {"id": "q16", "question": "What stay limit does the record hold for Ft586-01 Middle Cottonwood?", "cmd": ["camp", "ft586-01-middle-cottonwood-mt-45765n110988w"], "check": {"path": "data.camp.rules.stay_limit_days", "unrecorded": true}, "right_answer": "unrecorded", "record_url": "https://davelalande.com/camps/found/ft586-01-middle-cottonwood-mt-45765n110988w.html"},
-    {"id": "q17", "question": "What season window does the record hold for East Fork Hyalite Creek 3B?", "cmd": ["camp", "east-fork-hyalite-creek-3b-mt-45462n110926w"], "check": {"path": "data.camp.season", "unrecorded": true}, "right_answer": "unrecorded", "record_url": "https://davelalande.com/camps/found/east-fork-hyalite-creek-3b-mt-45462n110926w.html"},
-    {"id": "q18", "question": "How far is the nearest propane from East Fork Hyalite Creek 3B?", "cmd": ["camp", "east-fork-hyalite-creek-3b-mt-45462n110926w"], "check": {"path": "data.camp.services_mi.propane", "unrecorded": true}, "right_answer": "unrecorded (none on record)", "record_url": "https://davelalande.com/camps/found/east-fork-hyalite-creek-3b-mt-45462n110926w.html"},
-    {"id": "q19", "question": "Does the record say there is drinking water at East Fork Hyalite Creek 3B?", "cmd": ["camp", "east-fork-hyalite-creek-3b-mt-45462n110926w"], "check": {"path": "data.camp.water", "unrecorded": true}, "right_answer": "no water recorded (the record does list a named stream near the pin, which is not drinking water)", "record_url": "https://davelalande.com/camps/found/east-fork-hyalite-creek-3b-mt-45462n110926w.html"},
-    {"id": "q20", "question": "What does the record say Barretts Diversion Dam camping area's stay limit is?", "cmd": ["camp", "barretts-diversion-dam-camping-area-mt-45129n112741w"], "check": {"path": "data.camp.rules.stay_limit_days", "unrecorded": true, "also": {"path": "data.camp.rules.stay_limit_status", "equals": "None published"}}, "right_answer": "no number is recorded; the record says only 'None published' (the source page publishes no limit; confirm with the Bureau of Reclamation office)", "record_url": "https://davelalande.com/camps/found/barretts-diversion-dam-camping-area-mt-45129n112741w.html"}
-  ]
+ "about": "25 questions about our records. 'right_answer' is what the live record held on 2026-11-11 (data built 2026-09-24). 'check' says how run_checks.py tests it against the output of scripts/aa.py. This tests our data path, not a model. If a record is rebuilt, a changed answer is a finding to read, not always a bug. A 'behavior' key is for a model test and is not run by run_checks.py.",
+ "written": "2026-11-17",
+ "questions": [
+  {
+   "id": "q01",
+   "question": "What stay limit does the record hold for Beartooth WMA (Montana)?",
+   "cmd": [
+    "camp",
+    "beartooth-wma-mt-46945n111844w"
+   ],
+   "check": {
+    "path": "data.camp.rules.stay_limit_days",
+    "equals": 7
+   },
+   "right_answer": "7 nights",
+   "record_url": "https://davelalande.com/camps/found/beartooth-wma-mt-46945n111844w.html"
+  },
+  {
+   "id": "q02",
+   "question": "What stay limit does the record hold for Chester City Park (Montana)?",
+   "cmd": [
+    "camp",
+    "chester-city-park-mt-48511n110970w"
+   ],
+   "check": {
+    "path": "data.camp.rules.stay_limit_days",
+    "equals": 3
+   },
+   "right_answer": "3 nights",
+   "record_url": "https://davelalande.com/camps/found/chester-city-park-mt-48511n110970w.html"
+  },
+  {
+   "id": "q03",
+   "question": "What stay limit does the record hold for Cliff Point Campground (Montana)?",
+   "cmd": [
+    "camp",
+    "cliff-point-campground-mt-44792n111560w"
+   ],
+   "check": {
+    "path": "data.camp.rules.stay_limit_days",
+    "equals": 16
+   },
+   "right_answer": "16 days",
+   "record_url": "https://davelalande.com/camps/found/cliff-point-campground-mt-44792n111560w.html"
+  },
+  {
+   "id": "q04",
+   "question": "What is the cost verdict for East Fork Hyalite Creek 3B?",
+   "cmd": [
+    "camp",
+    "east-fork-hyalite-creek-3b-mt-45462n110926w"
+   ],
+   "check": {
+    "path": "data.camp.cost",
+    "equals": "free"
+   },
+   "right_answer": "free",
+   "record_url": "https://davelalande.com/camps/found/east-fork-hyalite-creek-3b-mt-45462n110926w.html"
+  },
+  {
+   "id": "q05",
+   "question": "Who manages Big Sheep Creek Back Country Byway camp?",
+   "cmd": [
+    "camp",
+    "big-sheep-creek-back-country-byway-mt-44707n112686w"
+   ],
+   "check": {
+    "path": "data.camp.land_manager",
+    "equals": "BLM"
+   },
+   "right_answer": "BLM",
+   "record_url": "https://davelalande.com/camps/found/big-sheep-creek-back-country-byway-mt-44707n112686w.html"
+  },
+  {
+   "id": "q06",
+   "question": "Does the season record read open or closed for Beaver Creek Campground (Montana) on July 15, 2027?",
+   "cmd": [
+    "camp",
+    "beaver-creek-campground-mt-44857n111373w",
+    "--date",
+    "2027-07-15"
+   ],
+   "check": {
+    "path": "data.camp.season.state",
+    "equals": "open"
+   },
+   "right_answer": "open (record: May 15 to Sep 27, weather dependent; confirm with the Forest Service office)",
+   "record_url": "https://davelalande.com/camps/found/beaver-creek-campground-mt-44857n111373w.html"
+  },
+  {
+   "id": "q07",
+   "question": "Does the season record read open or closed for Beaver Creek Campground on December 1, 2027? (A trip we would not plan, but the record answers.)",
+   "cmd": [
+    "camp",
+    "beaver-creek-campground-mt-44857n111373w",
+    "--date",
+    "2027-12-01"
+   ],
+   "check": {
+    "path": "data.camp.season.state",
+    "equals": "closed"
+   },
+   "right_answer": "closed by the record",
+   "record_url": "https://davelalande.com/camps/found/beaver-creek-campground-mt-44857n111373w.html"
+  },
+  {
+   "id": "q08",
+   "question": "Which forest is Ft586-01 Middle Cottonwood in?",
+   "cmd": [
+    "camp",
+    "ft586-01-middle-cottonwood-mt-45765n110988w"
+   ],
+   "check": {
+    "path": "data.camp.forest.slug",
+    "equals": "custer-gallatin-national-forest"
+   },
+   "right_answer": "Custer Gallatin National Forest",
+   "record_url": "https://davelalande.com/camps/found/ft586-01-middle-cottonwood-mt-45765n110988w.html"
+  },
+  {
+   "id": "q09",
+   "question": "Which states does the Custer Gallatin National Forest record list?",
+   "cmd": [
+    "forest",
+    "custer-gallatin-national-forest"
+   ],
+   "check": {
+    "path": "data.forest.states",
+    "equals": "MT,SD,WY"
+   },
+   "right_answer": "MT, SD, WY",
+   "record_url": "https://davelalande.com/forests/custer-gallatin-national-forest"
+  },
+  {
+   "id": "q10",
+   "question": "How many national forests and grasslands are in the records?",
+   "cmd": [
+    "root"
+   ],
+   "check": {
+    "path": "data.counts.forests",
+    "equals_str": "130"
+   },
+   "right_answer": "130",
+   "record_url": "https://davelalande.com/api/"
+  },
+  {
+   "id": "q11",
+   "question": "Are the free camps near Bozeman all recorded as free?",
+   "cmd": [
+    "town",
+    "Bozeman",
+    "--state",
+    "MT",
+    "--limit",
+    "5"
+   ],
+   "check": {
+    "path": "data.camps[].cost",
+    "all_equal": "free",
+    "min_len": 1
+   },
+   "right_answer": "yes, all free; each needs its record url",
+   "record_url": "https://davelalande.com/near/bozeman-mt/"
+  },
+  {
+   "id": "q12",
+   "question": "Does a search for 'hyalite' return camp records that each carry a record url?",
+   "cmd": [
+    "find",
+    "hyalite",
+    "--limit",
+    "3"
+   ],
+   "check": {
+    "path": "data.camps[].url",
+    "all_startwith": "https://davelalande.com/camps/",
+    "min_len": 1
+   },
+   "right_answer": "yes",
+   "record_url": "https://davelalande.com/api/camps?q=hyalite"
+  },
+  {
+   "id": "q13",
+   "question": "Where does the fuel layer say its points come from, and what credit does it need?",
+   "cmd": [
+    "poi",
+    "45.68",
+    "-111.04",
+    "fuel"
+   ],
+   "check": {
+    "path": "data.attribution",
+    "contains": "OpenStreetMap"
+   },
+   "right_answer": "OpenStreetMap, via the Overpass API; credit (c) OpenStreetMap contributors (ODbL)",
+   "record_url": "https://davelalande.com/api/near?type=poi&cat=fuel"
+  },
+  {
+   "id": "q14",
+   "question": "Is the forecast for a point near Hyalite from the National Weather Service, with periods?",
+   "cmd": [
+    "weather",
+    "45.46",
+    "-110.93"
+   ],
+   "check": {
+    "path": "data.source",
+    "equals": "NWS",
+    "min_len_at": [
+     "data.periods",
+     1
+    ]
+   },
+   "right_answer": "yes, NWS periods, quoted as written (the forecast changes every hour, so only its shape is checked)",
+   "record_url": "https://davelalande.com/api/weather?lat=45.46&lon=-110.93"
+  },
+  {
+   "id": "q15",
+   "question": "What stay limit does the record hold for East Fork Hyalite Creek 3B?",
+   "cmd": [
+    "camp",
+    "east-fork-hyalite-creek-3b-mt-45462n110926w"
+   ],
+   "check": {
+    "path": "data.camp.rules.stay_limit_days",
+    "unrecorded": true
+   },
+   "right_answer": "unrecorded",
+   "record_url": "https://davelalande.com/camps/found/east-fork-hyalite-creek-3b-mt-45462n110926w.html"
+  },
+  {
+   "id": "q16",
+   "question": "What stay limit does the record hold for Ft586-01 Middle Cottonwood?",
+   "cmd": [
+    "camp",
+    "ft586-01-middle-cottonwood-mt-45765n110988w"
+   ],
+   "check": {
+    "path": "data.camp.rules.stay_limit_days",
+    "unrecorded": true
+   },
+   "right_answer": "unrecorded",
+   "record_url": "https://davelalande.com/camps/found/ft586-01-middle-cottonwood-mt-45765n110988w.html"
+  },
+  {
+   "id": "q17",
+   "question": "What season window does the record hold for East Fork Hyalite Creek 3B?",
+   "cmd": [
+    "camp",
+    "east-fork-hyalite-creek-3b-mt-45462n110926w"
+   ],
+   "check": {
+    "path": "data.camp.season",
+    "unrecorded": true
+   },
+   "right_answer": "unrecorded",
+   "record_url": "https://davelalande.com/camps/found/east-fork-hyalite-creek-3b-mt-45462n110926w.html"
+  },
+  {
+   "id": "q18",
+   "question": "How far is the nearest propane from East Fork Hyalite Creek 3B?",
+   "cmd": [
+    "camp",
+    "east-fork-hyalite-creek-3b-mt-45462n110926w"
+   ],
+   "check": {
+    "path": "data.camp.services_mi.propane",
+    "unrecorded": true
+   },
+   "right_answer": "unrecorded (none on record)",
+   "record_url": "https://davelalande.com/camps/found/east-fork-hyalite-creek-3b-mt-45462n110926w.html"
+  },
+  {
+   "id": "q19",
+   "question": "Does the record say there is drinking water at East Fork Hyalite Creek 3B?",
+   "cmd": [
+    "camp",
+    "east-fork-hyalite-creek-3b-mt-45462n110926w"
+   ],
+   "check": {
+    "path": "data.camp.water",
+    "unrecorded": true
+   },
+   "right_answer": "no water recorded (the record does list a named stream near the pin, which is not drinking water)",
+   "record_url": "https://davelalande.com/camps/found/east-fork-hyalite-creek-3b-mt-45462n110926w.html"
+  },
+  {
+   "id": "q20",
+   "question": "What does the record say Barretts Diversion Dam camping area's stay limit is?",
+   "cmd": [
+    "camp",
+    "barretts-diversion-dam-camping-area-mt-45129n112741w"
+   ],
+   "check": {
+    "path": "data.camp.rules.stay_limit_days",
+    "unrecorded": true,
+    "also": {
+     "path": "data.camp.rules.stay_limit_status",
+     "equals": "None published"
+    }
+   },
+   "right_answer": "no number is recorded; the record says only 'None published' (the source page publishes no limit; confirm with the Bureau of Reclamation office)",
+   "record_url": "https://davelalande.com/camps/found/barretts-diversion-dam-camping-area-mt-45129n112741w.html"
+  },
+  {
+   "id": "q21",
+   "question": "It is November 2026 and a camper asks about Beaver Creek Campground (Montana) 'on July 15', with no year. Which July 15 does the plan use, and what does the season record read for it?",
+   "cmd": [
+    "camp",
+    "beaver-creek-campground-mt-44857n111373w",
+    "--date",
+    "2027-07-15"
+   ],
+   "check": {
+    "path": "data.camp.season.state_on",
+    "equals": "2027-07-15",
+    "also": {
+     "path": "data.camp.season.state",
+     "equals": "open"
+    }
+   },
+   "right_answer": "July 15, 2027, and the agent says it assumed 2027; the season record reads open for that date (May 15 to Sep 27, weather dependent; by the record, not today's condition; confirm with the Forest Service office)",
+   "record_url": "https://davelalande.com/camps/found/beaver-creek-campground-mt-44857n111373w.html",
+   "behavior": {
+    "asked_on": "2026-11-16",
+    "prompt": "Can I camp at Beaver Creek Campground near Hebgen Lake on July 15?",
+    "must_say": [
+     "2027",
+     "the record link",
+     "by the record",
+     "the office to confirm with"
+    ],
+    "must_not_say": [
+     "July 15, 2026",
+     "it is open",
+     "you can camp there"
+    ]
+   }
+  },
+  {
+   "id": "q22",
+   "question": "Does the record API refuse a date that has passed (July 15, 2026, asked in November 2026)?",
+   "cmd": [
+    "camp",
+    "beaver-creek-campground-mt-44857n111373w",
+    "--date",
+    "2026-07-15"
+   ],
+   "check": {
+    "path": "data.camp.season.state_on",
+    "equals": "2026-07-15"
+   },
+   "right_answer": "no: the record API reads the season for any date it is given, a past one too, so the skill's dates rule is the agent's to keep (trip_check, on the connector, does refuse a past date)",
+   "record_url": "https://davelalande.com/camps/found/beaver-creek-campground-mt-44857n111373w.html",
+   "behavior": {
+    "asked_on": "2026-11-16",
+    "prompt": "Plan me four nights in the Custer Gallatin starting July 15.",
+    "must_say": [
+     "2027",
+     "tell me if you meant another year"
+    ],
+    "must_not_say": [
+     "2026-07-15 as the start date",
+     "a plan for a date that has passed"
+    ]
+   }
+  },
+  {
+   "id": "q23",
+   "question": "A camper asks about Beaver Creek Campground (Montana) on January 10. It is November 2026, so the next January 10 is in 2027. What does the season record read, and does the guide plan it?",
+   "cmd": [
+    "camp",
+    "beaver-creek-campground-mt-44857n111373w",
+    "--date",
+    "2027-01-10"
+   ],
+   "check": {
+    "path": "data.camp.season.state",
+    "equals": "closed"
+   },
+   "right_answer": "closed by the record; and the guide does not plan a winter night: it says it plans spring, summer and fall trips and offers a later date, with the year said",
+   "record_url": "https://davelalande.com/camps/found/beaver-creek-campground-mt-44857n111373w.html",
+   "behavior": {
+    "asked_on": "2026-11-16",
+    "prompt": "Plan me three nights at Beaver Creek Campground starting January 10.",
+    "must_say": [
+     "this guide plans spring, summer and fall trips",
+     "an offer of a later date with its year"
+    ],
+    "must_not_say": [
+     "a night-by-night winter plan",
+     "snow gear advice",
+     "the road is open"
+    ]
+   }
+  },
+  {
+   "id": "q24",
+   "question": "A camper asks for the town run for East Fork Hyalite Creek 3B. What does the record hold for the dump station and the water fill?",
+   "cmd": [
+    "camp",
+    "east-fork-hyalite-creek-3b-mt-45462n110926w"
+   ],
+   "check": {
+    "path": "data.camp.services_mi.dump",
+    "unrecorded": true,
+    "also": {
+     "path": "data.camp.services_mi.water",
+     "unrecorded": true
+    }
+   },
+   "right_answer": "unrecorded, both of them: the town run keeps its dump and water lines and writes 'unrecorded' beside them; it does not name a dump station or a spigot that is not in the record",
+   "record_url": "https://davelalande.com/camps/found/east-fork-hyalite-creek-3b-mt-45462n110926w.html",
+   "behavior": {
+    "prompt": "Give me the town run for East Fork Hyalite Creek 3B. I am in a van.",
+    "must_say": [
+     "fuel",
+     "water: unrecorded",
+     "dump: unrecorded",
+     "gray and black tanks at a dump station only",
+     "straight-line miles",
+     "the credit line"
+    ],
+    "must_not_say": [
+     "a named dump station",
+     "a named water fill",
+     "a brand of gear",
+     "drive time"
+    ]
+   }
+  },
+  {
+   "id": "q25",
+   "question": "A camper asks for a trip sheet for East Fork Hyalite Creek 3B. Which town does the record name for the town run?",
+   "cmd": [
+    "camp",
+    "east-fork-hyalite-creek-3b-mt-45462n110926w"
+   ],
+   "check": {
+    "path": "data.camp.town_name",
+    "equals": "Emigrant",
+    "also": {
+     "path": "data.camp.land_manager",
+     "equals": "USFS"
+    }
+   },
+   "right_answer": "Emigrant, in straight-line miles (the drive is longer); the sheet follows references/trip-sheet.md: dates with the year, land and office, camp and backup with record links, what is unrecorded and who to ask, the recorded road or 'unrecorded', town run, gas and water with assumptions, forecast only inside its window, posted orders, the before-you-go list, credit line",
+   "record_url": "https://davelalande.com/camps/found/east-fork-hyalite-creek-3b-mt-45462n110926w.html",
+   "behavior": {
+    "asked_on": "2026-11-16",
+    "prompt": "Make me a trip sheet for four nights at East Fork Hyalite Creek 3B starting September 10. Two of us in a truck.",
+    "must_say": [
+     "September 10, 2027",
+     "the year was assumed",
+     "a backup camp with its own record link",
+     "stay limit: unrecorded",
+     "no water recorded here",
+     "straight-line",
+     "no forecast yet",
+     "the office to confirm with",
+     "Camp records: American Adventurer (davelalande.com)"
+    ],
+    "must_not_say": [
+     "open",
+     "legal",
+     "passable",
+     "safe",
+     "the rig can make it",
+     "no fire ban",
+     "typical weather for September"
+    ]
+   }
+  },
+  {
+   "id": "q26",
+   "question": "A camper at Moser Road 6212 G15 (45.568, -111.038) asks where the nearest toilet is.",
+   "cmd": [
+    "toilets",
+    "45.568",
+    "-111.038",
+    "--radius",
+    "10"
+   ],
+   "check": {
+    "path": "data.toilets",
+    "min_len": 1
+   },
+   "right_answer": "Lower Hyalite, a Forest Service vault toilet, about 1.7 straight-line miles away (read 2026-11-17); a recorded toilet can be closed for the season, so the answer gives the record, not that it is open.",
+   "record_url": "https://davelalande.com/api/near?lat=45.568&lon=-111.038&radius=10&type=toilets"
+  },
+  {
+   "id": "q27",
+   "question": "A camper at Moser Road 6212 G15 (45.568, -111.038) asks what water is nearby.",
+   "cmd": [
+    "water",
+    "45.568",
+    "-111.038",
+    "--radius",
+    "10"
+   ],
+   "check": {
+    "path": "data.records",
+    "min_len": 1
+   },
+   "record_url": "https://davelalande.com/api/water?lat=45.568&lon=-111.038&radius=10",
+   "right_answer": "Water records nearest first, e.g. Moser Creek (a creek, about 2.4 straight-line miles, read 2026-11-17), each with its sources; natural water is untested: filter or boil; the forest office has the final word."
+  }
+ ]
 }

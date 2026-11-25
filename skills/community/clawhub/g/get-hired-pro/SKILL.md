@@ -2,7 +2,7 @@
 name: "get-hired-pro"
 description: "Find suitable jobs, research employers, create tailored applications, manage submissions and follow-ups, and prepare interviews, LinkedIn profiles, outreach and offer responses. Use for Get Hired PRO or this career workflow."
 metadata:
-  version: "2.0.1"
+  version: "2.1.1"
 ---
 
 # Get Hired PRO
@@ -38,6 +38,8 @@ For applicants with automation capability, both documents must show how they can
 The user's current presentation preferences and explicit rejection of hedging/minimization govern generic style advice. Use the bundled [Remove AI Slop guide](references/remove-ai-slop.md) within the consolidated review; its standalone delivery instructions do not replace this task.
 
 Read [stage briefs](references/stage-prompts.md) when delegating a stage. Supply an isolated worker with the relevant instructions and actual source content. Use a separate reviewer only when chosen and available; otherwise review the work yourself.
+
+When the form has one résumé upload and no separate cover-letter submission, combine the complete résumé and cover letter in one accepted file and upload it there. Put the résumé first and start the letter on a new page. Keep separate uploads when both documents have their own fields. Follow an explicit résumé-only request. Use [single-upload delivery](references/runtime.md#single-upload-applications) for the combined file.
 
 Deliver application files as PDF or Word (.docx), following the applicant's choice and the employer's accepted formats. When no preference is given, use PDF for submission and provide an editable Word copy when requested. Export the same final wording in the format the employer needs. Follow [document delivery](references/runtime.md) and [formatting](references/formatting.md). Attach the actual files through the current channel's supported file-delivery route; filesystem-path links do not deliver them. If attachments are unavailable, return the complete finished text and identify the file-delivery gap. Use the fields required by the chosen document tool. Preserve successful outputs; repair a concrete defect at its stage without replaying valid work or adding routine review loops.
 

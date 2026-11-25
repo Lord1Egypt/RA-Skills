@@ -1,0 +1,48 @@
+{
+ "note": "wechat-viral-topic 黄金集：scan 抽信号、riskcheck 判红线、titlecheck 判标题。任何机器可复跑。",
+ "cases": [
+  {"id": "W01-scan-figures", "kind": "scan",
+   "input": "#医疗器械AI# 本月新增注册 12 个，同比增长 47%，最高阅读 8.6 万。",
+   "expect": {"figures_contain_any": ["47%", "12个", "8.6万"], "audience_nonempty": false}},
+
+  {"id": "W02-scan-dates", "kind": "scan",
+   "input": "2026-11-18 发布新版界定，涉及 3 类算法；上周同类选题阅读 1.2 万。",
+   "expect": {"dates_contain_any": ["2026-11-18", "上周"]}},
+
+  {"id": "W03-scan-topics", "kind": "scan",
+   "input": "「AI合规」和 #AI合规# 在 5 个群被问 30 次；医生反馈用不上。",
+   "expect": {"topics_contain_any": ["AI合规"]}},
+
+  {"id": "W04-scan-conflict", "kind": "scan",
+   "input": "厂家说培训没预算，科室却说买回来没人会用；但采购仍在加速，反而催着上线。",
+   "expect": {"conflicts_min": 1}},
+
+  {"id": "W05-scan-no-signal", "kind": "scan",
+   "input": "今天心情不错，天气晴朗，适合出去走走。",
+   "expect": {"expect_error": "W004"}},
+
+  {"id": "W06-risk-medical", "kind": "riskcheck",
+   "input": "这款 AI 能根治近视，无副作用，可替代药物治疗。",
+   "expect": {"verdict": "BLOCK", "red_rules_contain": ["医疗声明"]}},
+
+  {"id": "W07-risk-absolute", "kind": "riskcheck",
+   "input": "这是行业唯一的顶级方案，效果绝对领先。",
+   "expect": {"verdict": "BLOCK", "red_rules_contain": ["绝对化用语"]}},
+
+  {"id": "W08-risk-income", "kind": "riskcheck",
+   "input": "跟着做月入三万，稳赚不赔，零风险。",
+   "expect": {"verdict": "BLOCK", "red_rules_contain": ["收益承诺"]}},
+
+  {"id": "W09-risk-unsourced", "kind": "riskcheck",
+   "input": "据研究，八成编辑都缺选题；专家表示这个方向会火。",
+   "expect": {"verdict": "WARN", "yellow_rules_contain": ["无出处断言"]}},
+
+  {"id": "W10-title-long-and-red", "kind": "titlecheck",
+   "input": "所有人都不知道这是唯一能彻底解决公众号选题焦虑并且保证阅读量翻倍的完整方法论合集第二版",
+   "expect": {"verdict": "FAIL", "problems_min": 2, "problems_contain_any": ["长度", "合规红线"]}},
+
+  {"id": "W11-title-good", "kind": "titlecheck",
+   "input": "3 个信号，说明 AI 诊断要变天",
+   "expect": {"verdict": "PASS", "formulas_contain_any": ["数字型"]}}
+ ]
+}

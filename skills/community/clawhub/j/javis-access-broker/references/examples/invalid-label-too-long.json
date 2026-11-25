@@ -1,0 +1,13 @@
+{
+  "decision": "answer",
+  "kind": "summary",
+  "points": [
+    {
+      "text": "The launch is on Friday, Nov 21.",
+      "sources": ["s2"],
+      "label": "Launch date: Friday, November 21, as set on the team calendar after the Monday planning call"
+    }
+  ],
+  "task_kind": "drafting_replies",
+  "topic": "what the launch email needs"
+}

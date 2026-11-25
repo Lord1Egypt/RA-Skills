@@ -1,3 +1,5 @@
+const { formatBeijingTime } = require("./time");
+
 /**
  * 通用工具函数模块
  */
@@ -18,8 +20,11 @@ function printLog(level, message) {
     WARN: "\x1b[33m",
     ERROR: "\x1b[31m",
   };
+  const tty = Boolean(process.stderr.isTTY);
+  const color = tty ? colorMap[level] || "" : "";
+  const reset = tty ? "\x1b[0m" : "";
   console.error(
-    `${colorMap[level] || ""}[${new Date().toISOString()}] [${level}] ${message}\x1b[0m`,
+    `${color}[${formatBeijingTime(new Date())}] [${level}] ${message}${reset}`,
   );
 }
 

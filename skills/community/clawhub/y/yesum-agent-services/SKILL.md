@@ -1,3 +1,9 @@
+---
+name: yesum-agent-services
+description: Paid x402 microservices for AI agents on Base — crypto data, grading, monitoring, passports, embeddings, and dev tools.
+version: 0.1.2
+---
+
 # yesum Agent Services
 
 Paid microservices for AI agents, served over x402 v2 (USDC on Base). Deterministic,
@@ -23,6 +29,10 @@ deterministic result instead of reasoning it out yourself:
 - **Scheduled URL/wallet checks** for 30 days, for agents without cron → `POST /v1/schedule` ($0.03)
 - **A webhook inbox** for 30 days, for agents without a public URL → `POST /v1/hook/register` ($0.02)
 - **A wallet-scoped memory store** for agents without disk → `POST /v1/memory/write` ($0.01)
+- **A trade-ready symbol brief** (price, 24h change, volume, gas/fees, headlines, risk flag — data only, not investment advice; crypto-only, 31 symbols) → `POST /v1/brief` ($0.03)
+- **A discoverability + cap-fit probe** for your own x402 endpoint (scored 0–100: Bazaar listing, discovery block, description, buyer-cap fit) → `POST /v1/discover` ($0.005)
+- **A seller net-revenue calculator** (net per call after facilitator fees, break-even price, monthly net) → `POST /v1/netrev` ($0.002)
+- **BGE-M3 text embeddings** (up to 16 texts per call, 1024-dim dense vectors, served locally on GPU) → `POST /v1/embeddings` ($0.002)
 
 Free (no payment): submitting payment-proof reviews (`POST /v1/passport/review`),
 verifying a passport signature (`POST /v1/passport/verify`), reading a passport
@@ -37,6 +47,7 @@ endpoints (`/.well-known/x402`, `/openapi.json`, `/llms.txt`).
   payment signature → retry flow). If your harness can't do x402 payments,
   you can't use these endpoints — stop here.
 - Base URL: `https://predator-ubuntu.taild9a745.ts.net`
+- Attribution: append `?ref=clawhub` to every endpoint URL (e.g. `POST /v1/snapshot?ref=clawhub`). This tells the seller you came from this skill — include it on the first call and on the paid retry.
 
 ## How payment works
 
@@ -139,6 +150,35 @@ Long-term memory store for agents without disk: a key-value entry namespaced
 to your payer wallet (reads, keyword search, listing, and deletion are free).
 Body: `{"key": "project-notes", "value": "remember to check the bridge contract"}` (optional `ttl_days`, 1–365, default 90).
 Returns: `key`, `stored_at`, `expires_at`.
+
+### POST /v1/brief — $0.03
+Trade-ready symbol brief for one crypto symbol: price, 24h change, volume,
+gas/fees context, latest headlines, and a deterministic risk flag. Data only —
+not investment advice. Crypto-only, 31 supported symbols (BTC, ETH, SOL, …).
+Body: `{"symbol": "BTC"}`.
+Returns: `symbol`, `price_usd`, `change_24h_pct`, volume, headlines, `risk_flag`.
+
+### POST /v1/discover — $0.005
+Wallet-MCP / Bazaar discoverability + cap-fit probe for your own x402 endpoint:
+scored 0–100 report on whether wallet-client buyers can find it and afford it
+(Bazaar listing, `extensions.bazaar` block, description, $5/call and $50/day
+buyer caps). We only read the endpoint's 402 challenge — we never pay.
+Body: `{"url": "https://example.com/v1/my-tool", "method": "POST", "body": {}}`.
+Returns: `score` (0–100), `overall` (pass/warn/fail), per-check results, fixes.
+
+### POST /v1/netrev — $0.002
+x402 seller net-revenue calculator: net revenue per call after facilitator
+fees, break-even price, and monthly net at N calls/day. Pure deterministic
+math over a cached facilitator fee table (CDP, PayAI, OMNIGATE, 402Proof).
+Body: `{"price_usdc": 0.01, "chain": "eip155:8453", "facilitator": "cdp", "calls_per_day": 100}` (facilitator and calls_per_day optional; omit facilitator to compare all).
+Returns: per-facilitator `net_per_call_usdc`, break-even price, monthly net, cheapest facilitator.
+
+### POST /v1/embeddings — $0.002
+BGE-M3 text embeddings: up to 16 texts per call, 1024-dim dense vectors,
+computed locally on a GPU. Normalized vectors (unit length).
+Body: `{"texts": ["Hello, world!", "x402 payments for agents"]}`.
+Returns: `model` (BGE-M3), `dimensions` (1024), `embeddings` (one vector per
+text, in input order), `usage` (`texts` count).
 
 ## Notes
 

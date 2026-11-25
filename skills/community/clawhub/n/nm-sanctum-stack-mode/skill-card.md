@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill in pull request review or fix workflows to resolve a stack of dependent PRs, run the workflow from base to tip, and prepare a consolidated root-PR summary.
+Developers maintaining pull request review and fix commands use this skill to identify a dependent PR stack and coordinate the normal workflow across its PRs in base-to-tip order.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment reports that unauthenticated PR comments can steer workflow targets.
+Risk: Untrusted PR comments could redirect stack operations.
 
-Mitigation: Review PR-comment input and verify the selected PR targets before workflows act on or comment on them.
+Mitigation: Review how comments affect the workflow and verify the target PR and intended operations before running it on a live repository.
 
-Risk: The security assessment reports that the promised base-to-tip PR ordering is not enforced.
+Risk: The advertised stack-wide behavior may not match the behavior reported by scanners.
 
-Mitigation: Check the resolved PR list and dependency order before starting iteration.
+Mitigation: Check the behavior against the intended workflow and try it on a non-critical PR stack before relying on it.
 
 ## Reference(s):
 
-- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-sanctum-stack-mode)
+- [Project homepage listed in metadata](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Markdown]
+**Output Type(s):** [Guidance, Markdown]
 
-**Output Format:** [Markdown guidance with shell command examples and PR summary tables]
+**Output Format:** [Markdown instructions with inline shell examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Provides workflow guidance and a consolidated stack summary format.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release; artifact frontmatter lists 1.10.3)
 
 ## Ethical Considerations:
 

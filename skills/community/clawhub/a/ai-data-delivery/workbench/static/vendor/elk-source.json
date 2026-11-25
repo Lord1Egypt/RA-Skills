@@ -1,0 +1,12 @@
+{
+  "package": "elkjs",
+  "version": "0.12.1",
+  "source": "https://github.com/kieler/elkjs",
+  "tarball": "https://registry.npmjs.org/elkjs/-/elkjs-0.12.1.tgz",
+  "tarball_sha256": "7a017dd56e31e4963ad5c4b9deb3230db5c37edf53a82dc507a8599f2f01122f",
+  "license": "EPL-2.0 OR GPL-3.0-or-later",
+  "files": {
+    "elk.bundled.js": "b1032b7cfd2a57c54c6f0e8369d7665e19a579954f7cd20a6dae28f1912ea0d7",
+    "elk-LICENSE.md": "637e81f4a1b6b4079535c499fca05e238cf7605c1ff5b76d60d7da7ce96700c9"
+  }
+}

@@ -1,6 +1,6 @@
 ## Description:
 
-Checks how crowded and liquid an asset or perpetual market is and compares venues for execution before a trade.
+Check any coin or perpetual before a trade - funding and open interest on every exchange that lists it, long/short positioning, live order-book liquidity with slippage for your size and the best exchange to buy or sell. Covers 900+ coins plus stock, forex and commodity perpetuals on Binance, Bybit, OKX and Hyperliquid. Live data from AgentReeve per request over x402.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Traders use this skill to review market crowding, liquidity for a planned trade size, and execution venues before trading a supported coin or perpetual.
+External traders use this skill before trading a coin or a stock, forex, or commodity perpetual to review funding, positioning, liquidity, expected slippage for their trade size, and possible execution venues.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review flags that the asset and exact trade size are shared with an external provider without a privacy notice, and that paid requests may occur without prior approval.
+Risk: The security assessment flags that paid requests may spend up to $0.25 per task without prior approval and that trade size is sent to an external provider without a privacy warning.
 
-Mitigation: Tell the user what trade details will be shared and the possible cost before making a paid request; verify the recipient, Base network, and USDC, and ask for approval when the task total exceeds $0.25.
+Mitigation: Before use, decide whether you are comfortable sharing the asset and intended trade size with the provider and allowing paid requests up to $0.25 per task; verify the payment quote details and seek approval before spending more.
 
 ## Reference(s):
 
+- [Source skill on GitHub (server-resolved provenance)](https://github.com/shakeelamjid/agentreeve-skills/tree/main/crypto-coin-check)
 - [ClawHub skill release](https://clawhub.ai/shakeelamjid/skills/crypto-coin-check)
-- [Server-resolved GitHub source](https://github.com/shakeelamjid/agentreeve-skills/tree/main/crypto-coin-check)
-- [AgentReeve market coverage endpoint](https://agentreeve.com/api/v1/crypto/markets)
-- [AgentReeve coin market data endpoint](https://agentreeve.com/api/v1/crypto/coin?asset=SOL&size_usd=100000)
-- [AgentReeve order book endpoint](https://agentreeve.com/api/v1/crypto/coin-liquidity?asset=SOL&size_usd=100000)
-- [AgentReeve chart data endpoint](https://agentreeve.com/api/v1/crypto/coin-candles?asset=SOL&interval=1h&limit=100)
+- [AgentReeve market coverage API](https://agentreeve.com/api/v1/markets)
+- [AgentReeve market snapshot API](https://agentreeve.com/api/v1/snapshot?asset=SOL&size_usd=100000)
+- [AgentReeve liquidity API](https://agentreeve.com/api/v1/liquidity?asset=SOL&size_usd=100000)
+- [AgentReeve candles API](https://agentreeve.com/api/v1/candles?asset=SOL&interval=1h&limit=100)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Text, Analysis, Guidance]
 
 **Output Format:** [Plain-language market summary]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports available market data for the requested asset and trade size; identifies unavailable data without estimating values and labels the information as observational, not financial advice.]
+**Other Properties Related to Output:** [Asset and trade-size specific live market observations; includes funding, positioning, liquidity, slippage, and execution venue comparisons when data is available.]
 
 ## Skill Version(s):
 
-0.1.0 (source: target metadata and server-resolved release evidence)
+0.1.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

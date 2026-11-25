@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#FBF8F1"/>
+  <path d="M0 760C350 620 620 800 980 690C1210 620 1370 520 1600 560V900H0Z" fill="#EAF4F1"/>
+  <text x="112" y="310" fill="#06356B" font-family="PingFang SC, Noto Sans CJK SC, sans-serif" font-size="72" font-weight="700">YouTube 字幕</text>
+  <text x="112" y="405" fill="#06356B" font-family="PingFang SC, Noto Sans CJK SC, sans-serif" font-size="72" font-weight="700">学习笔记</text>
+  <rect x="116" y="468" width="112" height="8" rx="4" fill="#E8B33A"/>
+  <text x="112" y="550" fill="#17685F" font-family="PingFang SC, Noto Sans CJK SC, sans-serif" font-size="34" font-weight="500">可见字幕，变成可复核学习笔记</text>
+  <text x="112" y="616" fill="#557171" font-family="PingFang SC, Noto Sans CJK SC, sans-serif" font-size="28">摘要 · 术语表 · 时间锚点</text>
+  <rect x="1000" y="160" width="430" height="430" rx="44" fill="#FFFFFF" opacity="0.72"/>
+  <image href="icon-source.png" x="1018" y="178" width="394" height="394"/>
+</svg>

@@ -1,6 +1,6 @@
 # 完整示例走查：JSONL 被当单个 JSON 解析 → 经验继承生效
 
-> **EN**: Walkthrough for the invalid-JSON trap: how the trap is generated, what the agent sees, which fix gets deposited, and how the fix is recalled on the next run. Pairs with `examples/walkthrough-encoding.md` (GBK encoding trap).
+> **EN**: Walkthrough for the invalid-JSON trap: how the trap is generated, what the agent sees, which fix gets deposited, and how the fix is recalled on the next run. Pairs with `examples/walkthrough-gbk.md` (GBK encoding trap).
 
 
 > 与 `walkthrough-gbk.md` 平行，这里演示**数据格式类**陷阱（而非编码类）的完整闭环。
@@ -113,4 +113,4 @@ python traps/make_json_trap.py     # 造一个「非法 JSON」失败环境（�
 - **守卫**：只有命中修法信号词（`FIX:` / `json.loads` / `JSONL` …）且**通过叙述守卫**的 strategy 才会被注入；纯成功总结不注入（宁缺毋滥）。
 - **审核门控**：`approve` 之前基因不注入；`quarantine` 能撤销已批准（last-write-wins）。
 - **注入是软提示**：遵从度与模型相关，守卫只保证噪声不入库 / 不出库，不承诺 100% 避坑。
-- 编码类陷阱的完整走查见 `walkthrough-gbk.md`；机制与逐条出处见 `SKILL.md` 与 `docs/experiment-report.md`。
+- 编码类陷阱的完整走查见 `walkthrough-gbk.md`；机制与逐条出处见 `SKILL.md` 与GitHub 仓库 `docs/experiment-report.md`（包内不含）。

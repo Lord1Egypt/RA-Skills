@@ -7,6 +7,7 @@
 
 | 你遇到的 | 它会做 |
 |---|---|
+| 装了 skill 但真实项目里**不接管**（不加载、不做 INTAKE、不跑门禁） | **接管协议**：工程级状态源 `.dsh/loop/state.json` + `off/影子/接管` 三档；12 行 AGENTS 片段让每会话必进上下文（`references/02-takeover.md`） |
 | DSH 越装越慢、skill 互相抢触发、Token 变贵 | 九组只读体检 + 与上次快照的漂移对比，指出该删/该修的具体项（带 `文件:行号`） |
 | 会话检索失效、进程反复退出、3080 端口冲突 | 按 `references/20-runtime-fix.md` 走可回滚修复（先 DryRun，再 apply，再 verify） |
 | 新项目上来就开写，最后返工 | 先问清 ≤6 个问题（项目/角色/真相源/目标/技术栈/交付），产出 `project-profile.md` |

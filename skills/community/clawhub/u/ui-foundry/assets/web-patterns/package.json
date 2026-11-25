@@ -1,0 +1,26 @@
+{
+	"name": "ui-foundry-web-patterns",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"typecheck": "tsc --noEmit",
+		"verify": "npm run typecheck && npm run build"
+	},
+	"dependencies": {
+		"@heroui/react": "3.2.6",
+		"@heroui/styles": "3.2.6",
+		"@internationalized/date": "3.12.4",
+		"@tailwindcss/vite": "4.3.3",
+		"react": "19.3.1",
+		"react-dom": "19.3.1",
+		"tailwindcss": "4.3.3",
+		"vite": "8.3.5"
+	},
+	"devDependencies": {
+		"@types/react": "19.2.7",
+		"@types/react-dom": "19.2.3",
+		"typescript": "5.9.3"
+	}
+}

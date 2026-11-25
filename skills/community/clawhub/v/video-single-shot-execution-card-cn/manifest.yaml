@@ -1,0 +1,30 @@
+name: video-single-shot-execution-card-cn
+slug: video-single-shot-execution-card-cn
+display_name: 单镜头拍摄执行卡
+description: 输入一条已批准的实拍镜头，以及场地、人物、道具、现有设备、动作起止和交付要求，输出摄影与演员可直接执行的单镜头拍摄卡，适用于开拍前协作。关键动作、场地约束或设备缺失时先列缺项；未知曝光、焦段等参数明确标为待试拍，不编造现场事实。
+version: 1.0.0
+icon: icon-512.png
+repository: https://github.com/xxjrq/video-single-shot-execution-card-cn
+license: MIT-0
+tags:
+  - video-production
+  - live-action
+  - shot-planning
+  - on-set-workflow
+trigger_words:
+  - 单镜头执行卡
+  - 现场拍摄口令
+  - 实拍镜头站位
+triggers:
+  - 把这个已批准镜头写成摄影演员能执行的卡
+  - 单条实拍镜头如何现场拍完
+  - 缺少动作和收尾标记时怎样补拍摄信息
+interface:
+  display_name: "单镜头拍摄执行卡"
+  short_description: "将已批准实拍镜头转为摄影与演员可完整照做的现场执行卡"
+  default_prompt: "请使用 $video-single-shot-execution-card-cn，根据用户提供的一条已批准实拍镜头制作执行卡；缺信息先列缺项，未知技术参数标待试拍。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true
+self_test: node scripts/self-test.mjs

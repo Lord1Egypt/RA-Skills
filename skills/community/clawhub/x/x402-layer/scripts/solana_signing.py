@@ -2,7 +2,8 @@
 """
 Shared Solana signing helpers for x402 scripts.
 
-Builds x402-compatible X-Payment headers for Solana accepts options.
+Builds x402 payment headers for Solana accepts options: v2 PAYMENT-SIGNATURE when the 402
+carried a v2 PAYMENT-REQUIRED header, otherwise v1 X-Payment.
 Direct signing still uses SOLANA_SECRET_KEY. OWS support is optional-first for
 wallet lookup and message-signing flows only.
 """
@@ -13,9 +14,11 @@ import os
 import shutil
 import struct
 import subprocess
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Tuple
 
 import requests
+
+import x402_wire
 
 RPC_URL = "https://api.mainnet-beta.solana.com"
 
@@ -392,3 +395,24 @@ def create_solana_xpayment_from_accept(accept_option: Dict[str, Any]) -> str:
         "payload": {"transaction": signed_tx},
     }
     return base64.b64encode(json.dumps(payload).encode()).decode()
+
+
+def create_solana_payment_header(challenge: Dict[str, Any], accept_option: Dict[str, Any]) -> Tuple[str, str]:
+    """(header name, value) paying a Solana `accept_option` from `challenge` (x402_wire.read_challenge).
+
+    v2 challenge -> PAYMENT-SIGNATURE (same signed transaction, v2 envelope).
+    v1 challenge -> X-Payment, exactly what create_solana_xpayment_from_accept sends.
+    """
+    if not x402_wire.uses_v2(challenge, accept_option):
+        return x402_wire.HEADER_X_PAYMENT, create_solana_xpayment_from_accept(accept_option)
+    if x402_wire.network_name(accept_option.get("network")) != "solana":
+        raise ValueError(f"Expected a Solana mainnet option, got network={accept_option.get('network')!r}")
+    if _load_auth_mode() == "awal":
+        raise ValueError("AWAL mode currently supports Base payments only")
+    if not has_solana_credentials():
+        raise ValueError("No Solana signer available. Set SOLANA_SECRET_KEY.")
+    payer = load_solana_wallet_address()
+    if not payer:
+        raise ValueError("Failed to resolve local Solana wallet address")
+    signed_tx = _build_transaction_base64(accept_option, payer_wallet_address=payer)
+    return x402_wire.v2_payment_header(challenge, accept_option, {"transaction": signed_tx})

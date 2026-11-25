@@ -4,7 +4,7 @@ This module is unofficial and not affiliated with Lovable.
 
 ## Requirements
 
-- Go 1.26.10 or newer, per `go.mod`.
+- Go 1.26.11 or newer, per `go.mod`.
 - A Lovable key created at `lovable.dev/settings/api-keys`, exported as `LOVABLE_API_KEY`.
 
 ## Install

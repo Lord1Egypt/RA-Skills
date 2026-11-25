@@ -1,0 +1,7 @@
+{"cases":[
+ {"id":"T1-no-skill-md-blocks","kind":"no_skill_md","expect":{"verdict":"BLOCK"}},
+ {"id":"T2-good-package-passes","kind":"good","expect":{"verdict":"PASS","total_min":80}},
+ {"id":"T3-secret-leak-blocks","kind":"secret","expect":{"verdict":"BLOCK","blocking_contains":"secret_leak"}},
+ {"id":"T4-declared-command-missing-blocks","kind":"declared","expect":{"verdict":"BLOCK","blocking_contains":"declared_command_missing"}},
+ {"id":"T5-self-scores-100","kind":"self","expect":{"total_min":95}}
+]}

@@ -8,7 +8,7 @@ license: MIT
 
 **What it does (official description):** Get a clearer view of the U.S. stock market on Hyperliquid. Maneki analyzes market trends, trading volume, open interest, funding rates, and relevant news for U.S. equity perpetuals. Ask questions in plain English to understand market movements, spot potential opportunities, and identify risks — with clear explanations behind every insight. Make more informed trading decisions with market data, not guesswork.
 
-**Price:** 0.01 USDC per run. 10 free runs per account until 2026-11-21 (UTC).
+**Price:** 0.01 USDC per run. 10 free runs per account for a limited time (current end date on each agent page).
 
 ## How to use
 

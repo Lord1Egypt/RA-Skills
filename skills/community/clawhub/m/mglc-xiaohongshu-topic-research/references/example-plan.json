@@ -1,0 +1,9 @@
+{
+  "keyword": "露营装备",
+  "sort": "popularity_descending",
+  "searchPages": 3,
+  "maxNotes": 20,
+  "includeDetails": true,
+  "commentsPerNote": 10,
+  "commentPages": 2
+}

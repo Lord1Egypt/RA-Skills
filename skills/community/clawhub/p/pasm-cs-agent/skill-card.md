@@ -1,6 +1,6 @@
 ## Description:
 
-Customer-service agents built on the PASM cognitive engine answer from sourced knowledge facts, refuse unsupported answers, escalate complaint classes, isolate each agent's knowledge base, and optionally use a vendor-neutral LLM with fallback to knowledge-base answering.
+Builds customer-service agents that answer from a supplied knowledge base, escalate complaints to a human, and optionally use an LLM with knowledge-base fallback.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and customer-support teams use this skill to embed a customer-service agent that answers from their own FAQ or knowledge-base entries, declines unsupported questions, and returns escalation context for handoff workflows.
+Customer-service developers use the agent to answer questions from their own FAQ or knowledge base, record unanswered questions, and route complaints to human staff.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,40 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Shared default persistence paths can expose one tenant's knowledge-base entries to another tenant's support flow.
+Risk: A configured LLM provider may receive knowledge-base content.
 
-Mitigation: Configure a separate persist_dir or kb_dir for each tenant, store, or deployment.
+Mitigation: Exclude or redact sensitive information, or use a trusted local endpoint.
 
-Risk: The optional HTTP gateway does not provide built-in authentication controls.
+Risk: The security assessment is incomplete because some local references were unresolved.
 
-Mitigation: Enable the gateway only behind an authenticated access layer and apply organization-specific controls for customer support data.
+Mitigation: Review unresolved local references and dependency behavior before deployment.
 
-Risk: Optional external LLM use can send customer-support context to a configured model provider.
+Risk: The HTTP gateway has no built-in session authentication when exposed externally.
 
-Mitigation: Use an approved provider configuration, protect API keys, and apply the organization's data-handling requirements before enabling LLM mode.
+Mitigation: Place the gateway behind an authenticated access layer managed by the deploying application.
+
+Risk: The optional non-resistance safety gate can be unavailable with a missing or outdated dependency.
+
+Mitigation: Check startup_report() and address its degrade_reason when relying on this safeguard.
 
 ## Reference(s):
 
+- [Project repository](https://github.com/arronJack/pasm-agents)
 - [ClawHub skill page](https://clawhub.ai/arronjack/skills/pasm-cs-agent)
-- [Project homepage from skill metadata](https://github.com/arronJack/pasm-agents)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+**Output Type(s):** [Text, JSON]
 
-**Output Format:** [Markdown with Python and shell command examples]
+**Output Format:** [Customer-facing text responses and JSON-serializable escalation context and agent snapshots]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [The agent can also return structured escalation context and machine-readable snapshots when used from code.]
+**Other Properties Related to Output:** [Answers are grounded in configured knowledge-base entries; an optional LLM may phrase responses when enabled.]
 
 ## Skill Version(s):
 
-0.5.0 (source: frontmatter and server release evidence)
+0.6.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

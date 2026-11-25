@@ -1,6 +1,6 @@
 ## Description:
 
-Diagnoses local Ollama call performance, prompt fit, cache reuse, and model memory usage with LLMxRay's read-only tools.
+Diagnoses local Ollama calls and suggests fixes for slow, rejected, truncated, or inefficient requests.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use this skill to identify why their local Ollama calls are slow, truncated, or missing prompt-cache reuse, then choose appropriate context and model settings.
+Developers running local Ollama models use this skill to diagnose latency, context limits, prompt cache reuse, CPU offload, and model fit, then choose a relevant fix.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Running the npm package locally routes Ollama requests through a localhost proxy that may record sensitive prompts.
+Risk: The unpinned npx llmxray command may run a different package release later.
 
-Mitigation: Install only in trusted environments, pin the package version where reproducibility is needed, and avoid routing highly sensitive prompts unless local recording is acceptable.
+Mitigation: Pin llmxray to a reviewed version before running it, and review the unresolved reference noted by the incomplete scan.
 
 ## Reference(s):
 
-- [LLMxRay project](https://github.com/LogneBudo/llmxray)
-- [Diagnose Ollama Calls on ClawHub](https://clawhub.ai/lognebudo/skills/llmxray-diagnose-ollama-calls)
+- [ClawHub skill release](https://clawhub.ai/lognebudo/skills/llmxray-diagnose-ollama-calls)
+- [LLMxRay project homepage](https://github.com/LogneBudo/llmxray)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Shell commands, Configuration instructions]
+**Output Type(s):** [Guidance, Configuration instructions]
 
-**Output Format:** [Text and Markdown]
+**Output Format:** [Natural-language diagnostic findings and Markdown instructions]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Local diagnostics report prioritized findings and suggested fixes; the tools do not change settings.]
+**Other Properties Related to Output:** [Local, read-only guidance; the skill does not change settings, models, or files.]
 
 ## Skill Version(s):
 
-0.8.11 (source: skill metadata and server release)
+0.8.12 (source: server-resolved release and frontmatter)
 
 ## Ethical Considerations:
 

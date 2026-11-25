@@ -1,6 +1,6 @@
 ## Description:
 
-A MGC Blackbox based prompt suite that guides data analysts through credential handling, local script and workflow use, sealed collaboration, and knowledge management.
+A secure data analysis workflow suite based on MGC Blackbox 1.6.0+, providing credential protection, zero-exposure script & workflow application, workflow / skill-package sealed-authorization collaboration, and knowledge management. Supports 1.5.4 double-layer encryption with link authorization and free-mode sealing, plus 1.6.0 chain mode for multi-node sealed distribution (one seal → multiple independent sub-packages + distribution_index.json). Includes a Data Analyst Agent system prompt template.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-Data analysts and teams use the prompts and agent template to manage user-owned analysis scripts, workflows, credentials, and reusable knowledge with explicit authorization.
+Data analysts and developers use this suite to follow workflows for managing credentials and knowledge, storing and running analysis scripts, and collaborating through sealed workflow packages with explicit user authorization.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,41 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill's privacy promises conflict with its instructions, so confidential information could be exposed to an AI service.
+Risk: The security review flagged potentially misleading assurances about credential rotation.
 
-Mitigation: Review the conflicting claims before use and treat knowledge retrieved by the agent as potentially visible to its AI service.
+Mitigation: Confirm that replaced credentials are revoked with the service that issued them.
 
-Risk: The skill recommends a direct API workaround when sandbox tools are blocked, which could bypass sandbox restrictions.
+Risk: The security review flagged potentially misleading assurances about knowledge privacy.
 
-Mitigation: Preserve sandbox restrictions and run only trusted workflows with limited permissions.
+Mitigation: Check whether knowledge sent to the AI can appear in its context before sharing sensitive content.
 
-Risk: After unsealing, workflows run with the invoking user's permissions and may access local files or networks.
+Risk: The local credential API's necessity and trustworthiness should be assessed.
 
-Mitigation: Run only trusted workflows with limited permissions, and rotate or revoke credentials at their provider if compromised.
+Mitigation: Review the local API and its access requirements before relying on it for credential access.
+
+Risk: Security review coverage was partial because some referenced paths could not be resolved.
+
+Mitigation: Review unresolved references before installing or relying on the suite.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/zkeviny/skills/data-analyst-secure-suite)
-- [MGC Blackbox project (manifest link)](https://github.com/zkeviny/MGC-Blackbox)
-- [MGC Blackbox issue tracker (manifest link)](https://github.com/zkeviny/MGC-Blackbox/issues)
+- [MGC Blackbox project](https://github.com/zkeviny/MGC-Blackbox)
+- [MGC Blackbox issue tracker](https://github.com/zkeviny/MGC-Blackbox/issues)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions]
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown guidance with code and command examples]
+**Output Format:** [Markdown instructions with Python examples, shell commands, and configuration examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Step-by-step instructions for user-authorized operations.]
+**Other Properties Related to Output:** [Includes user authorization templates and MGC credential, workflow, collaboration, and knowledge management procedures.]
 
 ## Skill Version(s):
 
-1.4.0 (source: SKILL.md frontmatter)
+1.5.0 (source: release metadata and skill frontmatter)
 
 ## Ethical Considerations:
 

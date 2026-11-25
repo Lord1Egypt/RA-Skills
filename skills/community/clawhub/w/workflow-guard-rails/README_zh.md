@@ -55,11 +55,14 @@ Workflow Guardian 在这些边界上拦截。
 mkdir -p ~/.workbuddy
 # Pin 到 commit d945aee0 —— 可变的 main URL 是供应链风险。
 # 要升级 playbook 时，人工审阅后把 pin 指向新的 commit。
-curl -o ~/.workbuddy/ERROR-PLAYBOOK.md \
+# 下载到非权威的暂存路径——绝不直接写权威 playbook。
+curl -fSL -o ~/.workbuddy/ERROR-PLAYBOOK.incoming.md \
   https://raw.githubusercontent.com/haiyangchenbj/error-playbook/d945aee01384c6163beb287446147ce768d50661/ERROR-PLAYBOOK.md
 ```
 
-下载后先核验再使用：文件必须非空、以预期的 §0 结构开头；核验通过前不要让任何工作流依赖它。
+若 `~/.workbuddy/ERROR-PLAYBOOK.md` 已存在，停止——不得覆盖既有 playbook。审阅下载内容全文后，
+仅通过与任何暂存规则相同的晋升门（复发计数 >= 2 或人工明确确认）激活它，并使用备份与原子替换。
+使用前先核验：下载文件必须非空、以预期的 §0 结构开头；核验与晋升门都通过前不要让任何工作流依赖它。
 
 它按**操作类型**索引（写 JSON、跑 shell、调 API、git、发布、计算……），不按日期——错误的检索键
 是失败的那个操作。不要复制出第二份；副本必然漂移，而漂移的规则比没有规则更糟。

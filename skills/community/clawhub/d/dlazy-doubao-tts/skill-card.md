@@ -1,6 +1,6 @@
 ## Description:
 
-Synthesize text into natural and fluent speech using Doubao TTS.
+Synthesize text into natural and fluent speech using Doubao TTS. 使用豆包 (Doubao) TTS 文本转语音模型，将文字合成为自然流畅的语音播报。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agent users can turn Chinese or English text into spoken audio, choosing from available voices and speech speeds.
+Developers and content creators use the skill to turn Chinese or English text into spoken audio with Doubao TTS, selecting a voice and speech speed. It requires a dLazy API key and sends prompts to dLazy's hosted service.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review found incomplete evidence for referenced package and command details and did not demonstrate how some CLI instructions relate to speech synthesis.
+Risk: The security review was partial and flagged an undeclared CLI login step and unverified install context.
 
-Mitigation: Review the CLI and package details and confirm they are needed before installing or using the skill.
-
-Risk: Text submitted for synthesis is sent to dLazy-hosted services.
-
-Mitigation: Avoid sending sensitive text unless its use with the service is approved.
+Mitigation: Review the pinned CLI package and its login flow before installing it or entering an API key.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-doubao-tts)
-- [dLazy CLI repository listed in the skill metadata](https://github.com/dlazy-ai/cli)
-- [dLazy CLI on npm](https://www.npmjs.com/package/@dlazy/cli)
-- [dLazy](https://dlazy.com)
+- [dLazy CLI repository (listed in skill metadata)](https://github.com/dlazy-ai/cli)
+- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy service](https://dlazy.com)
 
 ## Skill Output:
 
-**Output Type(s):** [Audio, JSON]
+**Output Type(s):** [Audio, Files]
 
-**Output Format:** [Generated speech audio returned as a result URL or saved audio file, with result metadata in JSON.]
+**Output Format:** [Generated audio asset returned through a JSON result with a URL; optionally downloaded to a local file]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Supports Chinese and English voices with selectable voice and speed options.]
+**Other Properties Related to Output:** [Voice language, voice ID, and speech speed can be selected; asynchronous generation is available.]
 
 ## Skill Version(s):
 
-1.3.41 (source: server-resolved release evidence)
+1.3.44 (source: server-resolved release metadata; artifact frontmatter reports 1.3.4)
 
 ## Ethical Considerations:
 

@@ -1,7 +1,7 @@
 ---
 name: "crawl-analysis"
 description: "Triggers diagnostic analysis when users provide video URLs or files for reptiles such as lizards, snakes, and spiders. Supports uploading local videos or network URLs to call the server-side API for health checks. It analyzes features like scales, skin, and body appearance to identify potential diseases and generate a Pet Safety Guardian health report. | 爬行类宠物健康诊断分析工具，当用户提供蜥蜴、蛇、蜘蛛等爬行宠物的视频 URL 或文件需要分析时，触发本技能进行爬行宠物健康诊断分析；支持通过上传本地视频或网络视频 URL，调用服务端 API 进行爬行宠物健康检查，分析鳞片、皮肤、身体外观等特征，识别潜在疾病并输出宠安卫士健康报告"
-version: "1.0.24"
+version: "1.0.25"
 license: "MIT-0"
 ---
 

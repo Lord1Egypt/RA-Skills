@@ -43,21 +43,27 @@ runs it.
 There is one supported path. Follow it in order and stop at the first step that works.
 
 1. **Use the key you were given.** `SENTISENSE_API_KEY` in the environment, or in the host's credential store. A person gets a free one at https://app.sentisense.ai/get-api-key (they sign in or sign up there; that step is theirs).
-2. **No key, and the user has none to give you: mint a temporary one.** `POST https://app.sentisense.ai/api/v1/keys/provision` is the only call that makes a key without a person, and it needs no key and no body. The `init` command of the `sentisense-cli` skill makes the same key. Use the key at once.
-3. **Give the user the `keepUrl` from the answer.** Only a person can keep the key: they open the link, sign in or create a free account, and confirm. The same key then stays on their account, so nothing in the project changes.
-4. **If step 2 is refused or you cannot make the call** (a `403`, a `429` with `provision_limit_reached`, no network or shell), stop and tell the user to get a free key at https://app.sentisense.ai/get-api-key. Do not work around it.
+2. **No key, and the user has none to give you: run `npx sentisense@0.87.0 init`.** It mints a temporary key with no account and prints it as `SENTISENSE_API_KEY=<key>` with its keep link. It needs Node and a shell, and it downloads and runs the official `sentisense` npm package at that pinned version (the `sentisense-cli` skill covers it). No Node? `POST https://app.sentisense.ai/api/v1/keys/provision`, with no key and no body, makes the same key. These two are the only ways to make a key without a person. Use the key at once.
+3. **Give the user the keep link** (`keepUrl` in a JSON answer). Only a person can keep the key: they open the link, sign in or create a free account, and confirm. The same key then stays on their account, so nothing in the project changes.
+4. **If step 2 is refused or you can run neither** (a `403`, a `429` with `provision_limit_reached`, a `503` with `provision_paused` when new keys are paused for the day or `provision_unavailable`, no network or shell), stop and tell the user to get a free key at https://app.sentisense.ai/get-api-key. Do not work around it.
 
 **Never create an account yourself.** Do not call sign-up, sign-in or other `/api/auth/*` or account endpoints, do not guess payloads for them, and do not use throwaway or invented email addresses. Those routes are the human path, not an agent path, and an account made that way has no person behind it to keep or own the key.
 
 ### No key yet
 
-Step 2 in full:
+Step 2 in full. With Node:
 
 ```bash
-curl -sS --fail-with-body -X POST https://app.sentisense.ai/api/v1/keys/provision
+npx sentisense@0.87.0 init
 ```
 
-(The `init` command of the `sentisense-cli` skill does the same and prints the key as `SENTISENSE_API_KEY=<key>`.) The answer carries `apiKey` and `keepUrl`, plus `expiresAt` and `keepUntil` as epoch seconds. Export the key for this session and keep it out of anything you commit. Give the user the `keepUrl` in one sentence. Until it is kept the key works for 72 hours at up to 10 requests a minute, 500 a day and 1,000 in total, and account endpoints refuse it. When a limit or the 72 hours run out, the error names the keep link again; that link works for 14 days. A `429` with `keep_existing_key` means this network already has a temporary key nobody kept: pass that key's link to the user rather than asking for another. A temporary key that reaches a limit gets a `429` with `key_limit_reached`, and when its 72 hours run out a `401` with `key_expired`; both name the keep link, so pass the link on rather than waiting or suggesting a paid plan. Treat the keep link like the key itself: anyone holding it can keep the key, so keep it out of logs, commits and shared screenshots.
+It prints `SENTISENSE_API_KEY=<key>`, the keep link and the limits, and writes nothing into the project (`--json` returns the same as JSON). The plain output shows the key twice (on its first line and again in the starter command), so keep that output out of logs. If a key is already configured, `init` says so and makes no new one: `--json` then returns `apiKey: null`, so check for it before you store the value, and `--new` asks for a fresh key anyway. Without Node, the same key comes from one call:
+
+```bash
+curl -sS -X POST https://app.sentisense.ai/api/v1/keys/provision
+```
+
+The answer carries `apiKey` and `keepUrl`, plus `expiresAt` and `keepUntil` as epoch seconds. Export the key for this session and keep it out of anything you commit. Give the user the `keepUrl` in one sentence. Until it is kept the key works for 72 hours at up to 10 requests a minute, 500 a day and 1,000 in total, and account endpoints refuse it. When a limit or the 72 hours run out, the error names the keep link again; that link works until `keepUntil`, 14 days after the key was made. A `429` with `keep_existing_key` means this network already has a temporary key nobody kept: pass the keep link that key came with to the user rather than asking for another (the error does not repeat it; if you no longer have it, send the user to https://app.sentisense.ai/get-api-key). A temporary key that reaches a limit gets a `429` with `key_limit_reached`, and when its 72 hours run out a `401` with `key_expired`; both name the keep link, so pass the link on rather than waiting or suggesting a paid plan. Treat the keep link like the key itself: anyone holding it can keep the key, so keep it out of logs, commits and shared screenshots.
 
 ## Using the key
 
@@ -91,6 +97,8 @@ config; that entry is the shared credential, not a per-skill secret.
 - Shell: none required.
 - Files: none.
 
+This block describes the REST route. The `npx sentisense@0.87.0 init` route in step 2 needs a shell and Node, downloads that pinned version of the `sentisense` package from the npm registry, and the CLI keeps its configuration, including a random install id, in its own config folder (`~/.config/sentisense`); it writes nothing into your project.
+
 ---
 
 ## Which skill owns the task
@@ -117,7 +125,7 @@ config; that entry is the shared credential, not a per-skill secret.
 | "segment revenue", "iPhone revenue by quarter", "Tesla deliveries", "subscriber counts", "non-GAAP operating metrics", "company KPIs" | `company-kpi-tracker` |
 | "just give me a shell command", "no install", "wire this into a script or a cron job" | `sentisense-cli` |
 | "full API reference", "build an integration", "endpoint documentation", "what is the response shape" | `sentisense` |
-| anything else: prices, news, financial statements, or a task no narrower skill covers | `sentisense` |
+| anything else: prices, news, daily news event counts and headline scores ("what kind of news is driving TSLA"), financial statements, or a task no narrower skill covers | `sentisense` |
 
 Pick one and go. If two look plausible, pick the narrower one and pull anything extra from
 `sentisense`, which documents the whole API.

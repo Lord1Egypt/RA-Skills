@@ -10,14 +10,16 @@ const { probeLocal } = require('./lib/media')
 const { parseJson, stringifyJson } = require('./lib/json')
 const { displayBody } = require('./lib/translation')
 const { previewUrl } = require('./lib/preview')
-const { uploadLocalFile } = require('./lib/upload')
+const { uploadLocalFile, validateReferenceAudioFile, summarizeInstructions } = require('./lib/upload')
 const { resolveAccount, resolveCredential, saveSelection, clearCredential } = require('./lib/auth-store')
 const { startSetup, openBrowser } = require('./lib/auth-setup')
 const { accountLinks, recoveryAction } = require('./lib/account-actions')
+const { archiveRequest } = require('./lib/image-archive')
+const { readMaterials } = require('./lib/materials')
 
-const booleanFlags = new Set(['dry-run', 'wait', 'all', 'all-items', 'allow-legacy', 'allow-known-issue', 'help', 'open', 'check'])
+const booleanFlags = new Set(['dry-run', 'wait', 'all', 'all-items', 'allow-legacy', 'allow-known-issue', 'help', 'open', 'check', 'no-archive'])
 const valueFlags = new Set(['input', 'state', 'submission-id', 'task-id', 'command', 'timeout-seconds', 'poll-seconds', 'file',
-  'prompt', 'model', 'size', 'ref-url', 'url', 'video-url', 'sub-tasks', 'region', 'site', 'lang'])
+  'prompt', 'model', 'size', 'ref-url', 'url', 'video-url', 'sub-tasks', 'region', 'site', 'lang', 'archive-name', 'archive-group'])
 
 function parseArgs(argv) {
   const [command = 'help', ...tokens] = argv
@@ -98,28 +100,39 @@ const help = {
     probe: '--file LOCAL_PATH (optional ffprobe dependency; no upload)',
     preview_url: '--url IMAGE_URL (offline preview address mapping; preserves the original URL)',
     upload_info: '--file LOCAL_PATH [--input request.json] (gets MATERIAL_UPLOAD credentials and uploads the file)',
+    upload_reference_audio: '--task-id ID [--file LOCAL_MP3] (task-scoped upload; returns a reference URL without binding or generating speech)',
   },
   env: ['VIBBIT_API_KEY (or VIBBIT_OPENAPI_KEY), takes precedence over the selected site private credential file', 'VIBBIT_REGION (cn or global; independent of conversation language)', 'VIBBIT_BASE_URL (explicit host API override; must match an explicit region)', 'VIBBIT_CONFIG_DIR (optional absolute private credential directory; outside the project and Skill)', 'VIBBIT_STATE_DIR (default .vibbit/tasks in current working directory)'],
   account_selection: 'Explicit --region / VIBBIT_REGION or host base, then saved site (including one legacy regional key), then --site website hint, then global. Both sites have independent accounts, keys, credits, products and assets. Never retry a key at another site.',
   compatibility: 'gen_image defaults to gpt-image-2.5-sunburst. --allow-known-issue applies only to commands marked known_issue. Dry-run does not submit a task.',
   submission_recovery: 'Keep one submission-id per operation and the same VIBBIT_STATE_DIR. Repeating it reuses the local journal and only queries an existing task ID. It is not sent as a server idempotency key; a lost response without a recorded task ID still needs acceptance verification.',
+  image_archiving: 'Generated images default to private pending-library records; a reported material ID is verified through GET material detail. --archive-name and --archive-group record requested metadata only, not cloud changes. --no-archive skips new image archival work. These flags apply to gen_image and image task status/wait/resume. No general public image-registration API is currently available.',
   exit_codes: { 0: 'success or accepted task', 1: 'API, task, transport or protocol error', 2: 'input or configuration error', 3: 'wait deadline reached; task may continue', 4: 'submission uncertainty / cannot resume without ID', 5: 'partial result failure' },
 }
 
 // Export only the fields needed to form requests and interpret the command.
 function describeCommand(spec) {
-  const keys = ['task_type', 'documentation_url', 'operation', 'method', 'suffix', 'mode', 'wire', 'status',
-    'fields', 'required', 'example', 'result_kind', 'min_poll_ms', 'defaults', 'models', 'requires_opt_in', 'note']
+  const keys = ['task_type', 'documentation_url', 'operation', 'method', 'endpoint', 'suffix', 'mode', 'wire', 'status',
+    'fields', 'required', 'example', 'read_only', 'material_operation', 'result_kind', 'min_poll_ms', 'defaults', 'models', 'requires_opt_in', 'note']
   return Object.fromEntries(keys.filter(key => Object.hasOwn(spec, key)).map(key => [key, spec[key]]))
 }
 
 async function execute(argv, context) {
   const { command, flags } = parseArgs(argv)
   if (['help', '-h', '--help'].includes(command) || flags.help) return help
+  const archiveFlags = ['no-archive', 'archive-name', 'archive-group']
+  const hasArchiveFlags = archiveFlags.some(key => Object.hasOwn(flags, key))
+  if (hasArchiveFlags && !['gen_image', 'status', 'wait', 'resume'].includes(command)) throw new VibbitError('input', 'Image archive flags apply only to gen_image and image task queries')
+  if (flags['no-archive'] && (flags['archive-name'] || flags['archive-group'])) throw new VibbitError('input', 'Choose --no-archive or archive metadata, not both')
+  let imageArchiveRequest
+  if (flags['archive-name'] || flags['archive-group']) {
+    try { imageArchiveRequest = archiveRequest({ ...(flags['archive-name'] ? { name: flags['archive-name'] } : {}),
+      ...(flags['archive-group'] ? { collection_name: flags['archive-group'] } : {}) }) } catch (error) { throw new VibbitError('input', error.message) }
+  }
   const utilityFlags = {
     capabilities: ['all'], describe: ['command'], probe: ['file'], preview_url: ['url'], health: [],
-    status: ['task-id'], wait: ['task-id', 'timeout-seconds', 'poll-seconds'],
-    resume: ['state', 'submission-id', 'timeout-seconds', 'poll-seconds'],
+    status: ['task-id', ...archiveFlags], wait: ['task-id', 'timeout-seconds', 'poll-seconds', ...archiveFlags],
+    resume: ['state', 'submission-id', 'timeout-seconds', 'poll-seconds', ...archiveFlags],
     auth_status: ['check'], auth_setup: ['open', 'timeout-seconds', 'lang'], auth_clear: [], account_links: [], account_select: [],
   }[command]
   if (utilityFlags) for (const key of Object.keys(flags)) {
@@ -144,7 +157,7 @@ async function execute(argv, context) {
     const preview = previewUrl(flags.url)
     return { ok: true, url: flags.url, preview_url: preview, converted: preview !== flags.url }
   }
-  if (flags.file && command !== 'upload_info') throw new VibbitError('input', '--file applies only to upload_info or probe')
+  if (flags.file && !['upload_info', 'upload_reference_audio'].includes(command)) throw new VibbitError('input', '--file applies only to upload_info, upload_reference_audio or probe')
   if (flags.lang && command !== 'auth_setup') throw new VibbitError('input', '--lang applies only to auth_setup')
   const account = await resolveAccount({ region: flags.region, site: flags.site })
   const base = account.base
@@ -154,10 +167,10 @@ async function execute(argv, context) {
     context.key = resolved.key
     return resolved
   }
-  const clientFor = async () => {
+  const clientFor = async (options = {}) => {
     const resolved = await credential()
     if (!resolved.key) throw new VibbitError('authentication_required', 'No credential is available in this execution environment. Use host credential settings, or auth_setup --open on an accessible local computer.')
-    return createClient(resolved)
+    return createClient({ ...resolved, ...options })
   }
   if (command === 'account_links') return { ok: true, base, selection_source: account.selection_source, ...accountLinks(base) }
   if (command === 'auth_clear') return clearCredential({ account })
@@ -193,9 +206,13 @@ async function execute(argv, context) {
   const waitOptions = {
     timeoutMs: seconds(flags['timeout-seconds'], 50, 1, 3600),
     intervalMs: seconds(flags['poll-seconds'], 5, 5, 3600), onProgress,
+    ...(flags['no-archive'] ? { archiveImages: false } : {}),
+    ...(imageArchiveRequest ? { imageArchiveRequest } : {}),
   }
   if (command === 'health') return { ok: true, result: await (await clientFor()).request('GET', '/health') }
-  if (command === 'status') return tasks.status(await clientFor(), flags['task-id'])
+  if (command === 'status') return tasks.status(await clientFor(), flags['task-id'], {
+    ...(flags['no-archive'] ? { image_archive_policy: 'skip' } : {}), image_archive_request: imageArchiveRequest,
+  })
   if (command === 'wait') return tasks.wait(await clientFor(), flags['task-id'], waitOptions)
   if (command === 'resume') {
     if (!!flags.state === !!flags['submission-id']) throw new VibbitError('input', 'resume requires either --state or --submission-id')
@@ -214,6 +231,16 @@ async function execute(argv, context) {
   try { checked = validate(command, input) } catch (error) { throw new VibbitError('input', error.message) }
   const { spec, warnings } = checked
   input = checked.input
+  if (spec.read_only) {
+    for (const key of ['wait', 'state', 'submission-id', 'poll-seconds']) if (flags[key] !== undefined) throw new VibbitError('input', `--${key} does not apply to synchronous material reads`)
+  }
+  if (command === 'get_material_import') {
+    for (const key of ['state', 'submission-id']) if (flags[key]) throw new VibbitError('input', `--${key} does not apply to a read-only import query; use resume for an existing journal`)
+  }
+  if (command === 'upload_reference_audio') {
+    for (const key of ['wait', 'state', 'submission-id']) if (flags[key]) throw new VibbitError('input', `--${key} does not apply to a reference audio upload signature`)
+    if (flags.file) await validateReferenceAudioFile(flags.file)
+  }
   if (command === 'confirm_translation') {
     if (input.sub_task_id === undefined && !flags['all-items']) throw new VibbitError('input', 'Choose a sub_task_id or explicitly use --all-items to confirm the entire batch')
     if (input.sub_task_id !== undefined && flags['all-items']) throw new VibbitError('input', 'Use a sub_task_id or --all-items, never both')
@@ -221,11 +248,23 @@ async function execute(argv, context) {
   const request = tasks.requestSpec(spec, input, flags['task-id'])
   if (flags.state && flags['submission-id']) throw new VibbitError('input', 'Choose --state or --submission-id, not both')
   if (flags['submission-id']) tasks.submissionFile(flags['submission-id'])
-  if (flags['dry-run']) return { ok: true, dry_run: true, command, status: spec.status, method: request.method, endpoint: `${base}${request.route}`, body: displayBody(request.body), ...(flags['submission-id'] ? { submission_id: flags['submission-id'] } : {}), ...(spec.result_kind === 'translation' ? { body_json: stringifyJson(request.body) } : {}), warnings }
+  if (flags['dry-run']) return { ok: true, dry_run: true, command, status: spec.status, method: request.method, endpoint: `${base}${request.route}`, ...(request.body !== undefined ? { body: displayBody(request.body) } : {}), ...(flags['submission-id'] ? { submission_id: flags['submission-id'] } : {}), ...(spec.result_kind === 'translation' ? { body_json: stringifyJson(request.body) } : {}), ...(command === 'gen_image' ? { image_archive_policy: flags['no-archive'] ? 'skip' : 'default', image_archive_request: imageArchiveRequest } : {}), warnings }
   if (spec.status === 'legacy' && spec.requires_opt_in !== false && !flags['allow-legacy']) throw new VibbitError('configuration', 'Legacy contract is disabled by default. Read the capability reference and use --allow-legacy only for an account known to support it.')
   if (spec.status === 'known_issue' && !flags['allow-known-issue']) throw new VibbitError('configuration', 'This API has a recorded support issue. Read the resource reference before using --allow-known-issue for a deliberate verification.')
-  const client = await clientFor()
-  const submitted = await tasks.submit(client, command, input, { stateFile: flags.state, submissionId: flags['submission-id'], taskId: flags['task-id'], onProgress })
+  const client = await clientFor(spec.read_only ? { timeoutMs: seconds(flags['timeout-seconds'], command === 'search_materials' ? 120 : 30, 1, 3600) } : {})
+  if (spec.read_only) return { ...(await readMaterials(client, spec, input)), command, warnings }
+  if (command === 'get_material_import') return flags.wait
+    ? tasks.wait(client, input.import_task_id, { ...waitOptions, spec })
+    : tasks.status(client, input.import_task_id, spec)
+  if (command === 'upload_reference_audio') {
+    const signature = await client.request(request.method, request.route)
+    if (!signature || typeof signature.host !== 'string') throw new VibbitError('protocol', 'Reference audio signature is missing the OSS host')
+    if (!flags.file) return { ok: true, command, task_id: flags['task-id'], upload_instructions: summarizeInstructions(signature), file_required_for_upload: true }
+    const uploaded = await uploadLocalFile(flags.file, signature, { referenceAudio: true })
+    return { ...uploaded, command, task_id: flags['task-id'], reference_audio_url: uploaded.object_url, voice_binding_saved: false, speech_generated: false, warnings }
+  }
+  const submitted = await tasks.submit(client, command, input, { stateFile: flags.state, submissionId: flags['submission-id'], taskId: flags['task-id'],
+    archiveImages: !flags['no-archive'], imageArchiveRequest, onProgress })
   if (command === 'upload_info' && flags.file) {
     if (!submitted.result || typeof submitted.result !== 'object' || Array.isArray(submitted.result)) {
       throw new VibbitError('protocol', 'MATERIAL_UPLOAD did not return upload instructions')
@@ -262,7 +301,7 @@ async function run() {
   } catch (error) {
     const kind = error.kind || (['ENOENT', 'EEXIST', 'EACCES'].includes(error.code) ? 'configuration' : 'input')
     const output = { ok: false, error: { kind, message: error.message,
-      ...Object.fromEntries(['code', 'http_status', 'submission_id', 'request_id', 'task_id', 'status', 'state_file', 'phase', 'ambiguous', 'account_action'].filter(k => error[k] !== undefined).map(k => [k, error[k]])),
+      ...Object.fromEntries(['code', 'http_status', 'submission_id', 'request_id', 'task_id', 'status', 'state_file', 'phase', 'ambiguous', 'read_only', 'account_action'].filter(k => error[k] !== undefined).map(k => [k, error[k]])),
     } }
     process.stdout.write(redact(JSON.stringify(output, null, 2), key) + '\n')
     process.exitCode = error.ambiguous || kind === 'cannot_resume' ? 4 : ['input', 'configuration', 'authentication_required'].includes(kind) ? 2 : 1

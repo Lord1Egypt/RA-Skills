@@ -13,10 +13,10 @@ This is a dated copy, written 2026-11-11. Counts are from the live API that day 
 | Cost | A three-state verdict: free, fee or unpriced, with the evidence | 12,827 free; 1,318 unpriced | Permit prices are not recorded. Name the office. |
 | Rules and stay limits | Partly | 5,067 camps (26%) carry a `rules` object | The other camps are unrecorded. Rules are a snapshot, not today's order. |
 | Is it open (season) | Partly: a season window on some camps | Counts differ across our pages (about 880 to 1,100). Use the live API. | No window means unrecorded |
-| Roads | Not recorded in the records | none | Land manager's office, signs and gates |
+| Roads | `road_to_camp` (MCP): the Forest Service Motor Vehicle Use Map record of the road nearest a camp pin, for camps in 20 national forests. Not today's condition. | 20 national forests | BLM roads and other forests are unrecorded: land manager's office, signs and gates |
 | Water | `water` field, nearest named stream, toilets | 10,522 camps with a water field; 21,390 toilets | A stream is not drinking water. Gauges are paired for very few camps. |
 | Fuel, groceries, dump, propane | OpenStreetMap points, straight-line miles | over 418,000 points | OpenStreetMap is a floor, not a survey. It can be stale. |
-| Fire | Wildfire incident reports via the API. Camp fire rules, where a record holds them, are dated snapshots (`trip_check` quotes them). | live | Perimeters and current orders are not recorded. Name the office. |
+| Fire | Wildfire incident reports via the API. Camp fire rules, where a record holds them, are dated snapshots (`trip_check` quotes them). `posted_orders` (MCP) quotes the forest's own alerts page, for the forests it reads (`what_we_cover` says which). | live | Perimeters are not recorded. An order posted off the alerts page, or after our read, is not here. "Could not read" and "not read" are not none. Name the office. |
 | Weather | National Weather Service forecast via the API | live | Forecast only. Outside spring, summer and fall we do not plan. |
 | Rig math | Plain arithmetic: water and gas (`rig_math`). `trip_check` (MCP) does a whole trip on given dates: gas and water in the game's rig numbers, the forecast inside about a week, dated camp fire rules, camps near. | tool | Assumptions are stated, not facts. No roads, closures or permits. No winter nights. |
 | EV charging | Nearest DC fast charger, snapshot 2026-09-16 | per camp | Say "listed open." Check the network. |

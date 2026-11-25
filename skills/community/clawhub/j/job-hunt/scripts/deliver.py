@@ -80,8 +80,22 @@ APPLICATION_PDF_SOURCES = {
                "<ws>/letter.pdf`, or export the final letter.docx to letter.pdf"),
 }
 # A second mode of the same workspace delivers beside the first, never over it.
-MODE_FOLDERS = {"discover": "岗位搜索", "assess": "岗位评估", "apply": "投递材料",
-                "interview": "模拟面试"}
+# Named in the report's language (text_language); Chinese for an older delivery.
+MODE_FOLDERS_BY_LANG = {
+    "zh": {"discover": "岗位搜索", "assess": "岗位评估", "apply": "投递材料",
+           "interview": "模拟面试", "prepare": "面试准备计划", "": "其他交付"},
+    "en": {"discover": "Job search", "assess": "Posting assessment",
+           "apply": "Application package", "interview": "Mock interview",
+           "prepare": "Preparation plan", "": "Other delivery"},
+    "es": {"discover": "Búsqueda de empleo", "assess": "Evaluación de la oferta",
+           "apply": "Paquete de candidatura", "interview": "Entrevista simulada",
+           "prepare": "Plan de preparación", "": "Otras entregas"},
+    "ja": {"discover": "求人探し", "assess": "求人評価", "apply": "応募書類一式",
+           "interview": "模擬面接", "prepare": "面接準備プラン", "": "その他"},
+    "ko": {"discover": "채용 탐색", "assess": "공고 평가", "apply": "지원 서류 일체",
+           "interview": "모의 면접", "prepare": "면접 준비 계획", "": "기타"},
+}
+MODE_FOLDERS = {k: v for k, v in MODE_FOLDERS_BY_LANG["zh"].items() if k}
 
 
 def report_audience_findings(source: str) -> list[str]:
@@ -166,13 +180,30 @@ def has_han(text: str) -> bool:
     return bool(_HAN.search(text))
 
 
-def _portable_report_style(text: str) -> dict[str, str] | None:
-    """Return a bundled-font report style when every visible glyph is covered."""
-    try:
-        import pymupdf
-    except ImportError:
-        return None
+_SPANISH = re.compile(r"\b(?:tus|candidaturas?|experiencia|puestos?|evidencia|"
+                      r"vacantes?|recomendaci[oó]n|ubicaci[oó]n|consejos?|"
+                      r"entrevistas?|necesidades|usuarios?|requisitos|"
+                      r"curr[ií]culum|trabajo|responsabilidades|confirma|"
+                      r"solicitud|puedes)\b")
+_REPORT_STYLES = {
+    "ja": {"font": "japan", "footer": "キャリア相談レポート",
+           "page": "{number} ページ", "link": "リンク：", "separator": "："},
+    "ko": {"font": "korea", "footer": "커리어 상담 보고서",
+           "page": "{number}쪽", "link": "링크: ", "separator": ": "},
+    "zh": {"font": "china-s", "footer": "职业咨询报告",
+           "page": "第 {number} 页", "link": "链接：", "separator": "："},
+    "es": {"font": "helv", "footer": "Informe de orientación profesional",
+           "page": "Página {number}", "link": "Enlace: ", "separator": ": "},
+    "en": {"font": "helv", "footer": "Career consultation report",
+           "page": "Page {number}", "link": "Link: ", "separator": ": "},
+}
 
+
+def text_language(text: str) -> str:
+    """zh, ja, ko, es or en: the language of the dominant prose.
+
+    The report's PDF labels and the delivered file and folder names both come
+    from this, so a Spanish report never arrives in a folder called 报告/."""
     # A quoted employer or original posting title may use a different script
     # from the consultation. Choose the labels from the dominant prose, while
     # choosing a font separately that also covers those preserved quotations.
@@ -182,28 +213,30 @@ def _portable_report_style(text: str) -> dict[str, str] | None:
     latin = len(re.findall(r"[A-Za-zÀ-ɏ]", text))
     cjk = han + japanese + korean
     if cjk > latin and japanese * 3 > han and japanese > korean:
-        style = {"font": "japan", "footer": "キャリア相談レポート",
-                 "page": "{number} ページ", "link": "リンク：", "separator": "："}
-    elif cjk > latin and korean > japanese and korean > han:
-        style = {"font": "korea", "footer": "커리어 상담 보고서",
-                 "page": "{number}쪽", "link": "링크: ", "separator": ": "}
-    elif cjk > latin and han:
-        style = {"font": "china-s", "footer": "职业咨询报告",
-                 "page": "第 {number} 页", "link": "链接：", "separator": "："}
+        return "ja"
+    if cjk > latin and korean > japanese and korean > han:
+        return "ko"
+    if cjk > latin and han:
+        return "zh"
     # Articles and prepositions such as de/la/un also occur in Dutch, French,
     # Italian and people's names. Require distinct Spanish vocabulary before
     # replacing the documented English fallback for other Latin languages.
-    elif len(set(re.findall(r"\b(?:tus|candidaturas?|experiencia|puestos?|evidencia|"
-                            r"vacantes?|recomendaci[oó]n|ubicaci[oó]n|consejos?|"
-                            r"entrevistas?|necesidades|usuarios?|requisitos|"
-                            r"curr[ií]culum|trabajo|responsabilidades|confirma|"
-                            r"solicitud|puedes)\b", text.casefold()))) >= 2:
-        style = {"font": "helv", "footer": "Informe de orientación profesional",
-                 "page": "Página {number}", "link": "Enlace: ", "separator": ": "}
-    else:
-        style = {"font": "helv", "footer": "Career consultation report",
-                 "page": "Page {number}", "link": "Link: ", "separator": ": "}
+    if len(set(_SPANISH.findall(text.casefold()))) >= 2:
+        return "es"
+    return "en"
 
+
+def _portable_report_style(text: str) -> dict[str, str] | None:
+    """Return a bundled-font report style when every visible glyph is covered."""
+    try:
+        import pymupdf
+    except ImportError:
+        return None
+
+    style = dict(_REPORT_STYLES[text_language(text)])
+    japanese = len(_JAPANESE.findall(text))
+    korean = len(_KOREAN.findall(text))
+    cjk = len(_HAN.findall(text)) + japanese + korean
     if cjk:
         style["font"] = "japan" if japanese else "korea" if korean else "china-s"
 
@@ -322,27 +355,83 @@ def flat_name(slug: str, rel: pathlib.Path) -> str:
     return f"{slug}-" + "__".join(rel.parts)
 
 
-CLIENT_NAMES = {"report": "求职建议报告", "cv": "简历", "letter": "求职信",
-                "rirekisho": "履历书", "supporting-statement": "申请陈述",
-                "interview-brief": "面试准备"}
-CLIENT_FOLDERS = {"report": "报告", "interview-brief": "面试准备"}
+# Client file and folder names per language. The report name itself comes from
+# report_names.report_stem; "report" here is the stem used when nothing names it.
+CLIENT_NAMES_BY_LANG = {
+    "zh": {"report": "求职建议报告", "cv": "简历", "letter": "求职信", "rirekisho": "履历书",
+           "supporting-statement": "申请陈述", "interview-brief": "面试准备"},
+    "en": {"report": "Career consultation report", "cv": "CV", "letter": "Cover letter",
+           "rirekisho": "Rirekisho", "supporting-statement": "Supporting statement",
+           "interview-brief": "Interview brief"},
+    "es": {"report": "Informe de orientación profesional", "cv": "CV",
+           "letter": "Carta de presentación", "rirekisho": "Rirekisho",
+           "supporting-statement": "Declaración de méritos",
+           "interview-brief": "Guía para la entrevista"},
+    "ja": {"report": "キャリア相談レポート", "cv": "職務経歴書", "letter": "カバーレター",
+           "rirekisho": "履歴書", "supporting-statement": "志望動機書",
+           "interview-brief": "面接準備メモ"},
+    "ko": {"report": "커리어 상담 보고서", "cv": "이력서", "letter": "커버레터",
+           "rirekisho": "일본식 이력서", "supporting-statement": "지원 진술서",
+           "interview-brief": "면접 준비 자료"},
+}
+CLIENT_FOLDERS_BY_LANG = {
+    "zh": {"report": "报告", "interview-brief": "面试准备", "": "简历"},
+    "en": {"report": "Report", "interview-brief": "Interview prep", "": "Application"},
+    "es": {"report": "Informe", "interview-brief": "Entrevista", "": "Candidatura"},
+    "ja": {"report": "レポート", "interview-brief": "面接準備", "": "応募書類"},
+    "ko": {"report": "보고서", "interview-brief": "면접 준비", "": "지원 서류"},
+}
+CLIENT_NAMES = CLIENT_NAMES_BY_LANG["zh"]
+CLIENT_FOLDERS = {k: v for k, v in CLIENT_FOLDERS_BY_LANG["zh"].items() if k}
 
 
-def client_path(rel: pathlib.Path, workspace: pathlib.Path | None = None) -> pathlib.Path:
-    """Use real candidate/target labels for reports; keep canonical source names."""
-    folder = CLIENT_FOLDERS.get(rel.stem, "简历")
-    name = CLIENT_NAMES[rel.stem]
+def delivery_language(workspace: pathlib.Path) -> str:
+    """The language the client reads: the report's, else the CV's or letter's.
+
+    zh when there is no text to tell, which is also what every delivery before
+    per-language names used."""
+    for name in ("report.md", "cv.md", "letter.md"):
+        path = pathlib.Path(workspace) / name
+        try:
+            text = path.read_text(encoding="utf-8")
+        except (OSError, UnicodeError):
+            continue
+        if text.strip():
+            return text_language(text)
+    return "zh"
+
+
+def client_path(rel: pathlib.Path, workspace: pathlib.Path | None = None,
+                lang: str | None = None) -> pathlib.Path:
+    """Use real candidate/target labels for reports; keep canonical source names.
+
+    Without a workspace (and no `lang`) this is the Chinese legacy name an older
+    deliver.py wrote, which is what ownership checks compare against."""
+    if lang is None:
+        lang = delivery_language(workspace) if workspace is not None else "zh"
+    folders = CLIENT_FOLDERS_BY_LANG[lang]
+    folder = folders.get(rel.stem, folders[""])
+    name = CLIENT_NAMES_BY_LANG[lang][rel.stem]
     if rel.stem == "report" and workspace is not None:
         from report_names import report_stem
-        name = report_stem(workspace, journal.current_mode(workspace))
+        name = report_stem(workspace, journal.current_mode(workspace), lang)
     return pathlib.Path(folder) / (name + rel.suffix)
 
 
 # Legacy paths remain valid alongside the bounded report namespace checked by
 # _client_tail_ok; neither permits cleanup of arbitrary client files.
-_CLIENT_TAILS = frozenset(client_path(pathlib.Path(stem + suffix)).as_posix()
-                          for stem in CLIENT_NAMES for suffix in (".md", ".pdf", ".docx"))
-_RESERVED_FOLDERS = frozenset({"报告", "简历", "面试准备"})
+_CLIENT_TAILS = frozenset(client_path(pathlib.Path(stem + suffix), lang=lang).as_posix()
+                          for lang, names in CLIENT_NAMES_BY_LANG.items()
+                          for stem in names for suffix in (".md", ".pdf", ".docx"))
+_REPORT_FOLDERS = frozenset(f["report"] for f in CLIENT_FOLDERS_BY_LANG.values())
+_RESERVED_FOLDERS = frozenset(name for folders in CLIENT_FOLDERS_BY_LANG.values()
+                              for name in folders.values())
+
+
+def _report_suffixes() -> tuple[str, ...]:
+    from report_names import LEGACY_NAMES, MODE_NAMES
+    return tuple({*LEGACY_NAMES.values(),
+                  *(name for names in MODE_NAMES.values() for name in names.values())})
 
 
 def _client_tail_ok(tail: str) -> bool:
@@ -350,15 +439,14 @@ def _client_tail_ok(tail: str) -> bool:
     if tail in _CLIENT_TAILS:
         return True
     path = pathlib.PurePosixPath(tail)
-    suffixes = ("岗位推荐报告", "岗位评估报告", "投递建议报告", "面试复盘报告", "求职建议报告")
-    return (len(path.parts) == 2 and path.parts[0] == "报告"
+    return (len(path.parts) == 2 and path.parts[0] in _REPORT_FOLDERS
             and path.suffix in {".md", ".pdf", ".docx"}
             and not any(unicodedata.category(char) in {"Cc", "Cf", "Cs"} for char in path.name)
             and len(path.stem.encode("utf-8")) <= 200
             and path.stem == path.stem.strip().strip(".")
             and not re.search(r'[\x00-\x1f\x7f<>:"/\\|?*]', path.name)
             and any(path.stem.endswith("－" + suffix) and len(path.stem) > len(suffix) + 1
-                    for suffix in suffixes))
+                    for suffix in _report_suffixes()))
 
 
 def is_deliverable(path: pathlib.Path, workspace: pathlib.Path,
@@ -477,10 +565,11 @@ def unaccounted_files(root: pathlib.Path, deliveries: list[dict]) -> list[str]:
     """Client documents at the top of `root` that no manifest entry recorded."""
     recorded = {rel for entry in deliveries for rel in entry["files"]}
     tails = set(_CLIENT_TAILS)
-    directory = root / "报告"
-    if directory.is_dir():
-        tails.update("报告/" + path.name for path in directory.iterdir()
-                     if path.is_file() and _client_tail_ok("报告/" + path.name))
+    for folder in _REPORT_FOLDERS:
+        directory = root / folder
+        if directory.is_dir():
+            tails.update(f"{folder}/{path.name}" for path in directory.iterdir()
+                         if path.is_file() and _client_tail_ok(f"{folder}/{path.name}"))
     return sorted(tail for tail in tails
                   if tail not in recorded and (root / tail).is_file())
 
@@ -503,11 +592,11 @@ def foreign_files(root: pathlib.Path, deliveries: list[dict], workspace: pathlib
     if not unaccounted or root == (DEFAULT_ROOT / workspace.name).resolve():
         return []
     planned = planned_copies(workspace, make_pdf, include_applications)
-    # Older deliveries used a generic report name. Identical bytes establish
-    # the same ownership as before, but an unrecorded old file is retained.
+    # Older deliveries used generic Chinese names (a generic report name, 简历/,
+    # whatever the report's language). Identical bytes under that legacy name
+    # establish the same ownership as before, but an unrecorded old file is retained.
     for src in tuple(planned.values()):
-        if src.stem == "report":
-            planned[client_path(src.relative_to(workspace)).as_posix()] = src
+        planned[client_path(src.relative_to(workspace)).as_posix()] = src
 
     def same(rel: str) -> bool:
         try:
@@ -516,6 +605,31 @@ def foreign_files(root: pathlib.Path, deliveries: list[dict], workspace: pathlib
             return False
 
     return [rel for rel in unaccounted if not same(rel)]
+
+
+def legacy_twins(root: pathlib.Path, deliveries: list[dict], workspace: pathlib.Path,
+                 make_pdf: bool, include_applications: bool | None) -> list[str]:
+    """Unrecorded Chinese-named copies of the documents this round delivers under
+    its own language's names (简历/简历.pdf for Application/CV.pdf, ...).
+
+    Call it only when the round lands in `root` itself, which means every
+    unrecorded file there was proven this workspace's own (see foreign_files).
+    The old names were overwritten in place; with new names they are removed
+    instead, so a stale CV or brief never sits beside the current one. The
+    generic report is left alone, as it always was."""
+    unaccounted = set(unaccounted_files(root, deliveries))
+    if not unaccounted:
+        return []
+    planned = planned_copies(workspace, make_pdf, include_applications)
+    stems = {src.stem for src in planned.values() if src.stem != "report"}
+    twins = []
+    for stem in sorted(stems):
+        for suffix in (".md", ".pdf", ".docx"):
+            legacy = client_path(pathlib.Path(stem + suffix)).as_posix()
+            current = client_path(pathlib.Path(stem + suffix), workspace).as_posix()
+            if legacy != current and legacy in unaccounted:
+                twins.append(legacy)
+    return twins
 
 
 def _safe_folder_name(text: str) -> str:
@@ -556,7 +670,8 @@ def choose_folder(root: pathlib.Path, deliveries: list[dict], workspace: pathlib
         taken[""] = {"unaccounted": list(foreign)}
     if "" not in taken:
         return "", None, None
-    mode_label = MODE_FOLDERS.get(mode, "其他交付")
+    labels = MODE_FOLDERS_BY_LANG[delivery_language(workspace)]
+    mode_label = labels.get(mode, labels[""])
     same_workspace = any(entry["workspace"] == str(workspace) for entry in live)
     # Without posting.yaml (a discover or collection workspace), the workspace
     # name minus its date is the closest thing to what the client calls it.
@@ -607,11 +722,14 @@ def finish_manifest(root: pathlib.Path, deliveries: list[dict], workspace: pathl
                     "that delivery, so it was left in place; remove it if it is obsolete.")
                 continue
             path.unlink()
+            if path.suffix == ".pdf":
+                # No LaTeX source of a stale PDF stays either (a renamed CV leaves it).
+                path.with_suffix(".tex").unlink(missing_ok=True)
             if not any(path.parent.iterdir()):
                 path.parent.rmdir()
         except OSError as exc:
             notices.append(f"NOTICE_STALE_FILE_KEPT: {rel} could not be removed: {exc}")
-    kept = [entry for entry in deliveries if _alive(root, entry)
+    kept =[entry for entry in deliveries if _alive(root, entry)
             and not (entry["workspace"] == str(workspace) and entry["mode"] == mode)]
     kept.append({"workspace": str(workspace), "workspace_name": workspace.name,
                  "mode": mode, "folder": folder, "files": produced,
@@ -1633,7 +1751,7 @@ def _delivery_sources(workspace: pathlib.Path, make_pdf: bool,
     # letter PDF leaves the delivery incomplete. Elsewhere they are existing
     # source documents copied on explicit request: say what is missing, no more.
     mode = journal.current_mode(workspace)
-    applying = mode not in {"discover", "assess", "interview"}
+    applying = mode not in {"discover", "assess", "interview", "prepare"}
     if include_applications is None:
         include_applications = applying
     # Interview mode appends its walk-back list to the brief, so the copy apply
@@ -1902,6 +2020,8 @@ def main(argv: list[str] | None = None) -> int:
               "the folder, or pass a new --to.", file=sys.stderr)
         return 2
     out = dest / folder if folder else dest
+    twins = (legacy_twins(dest, deliveries, ws, not args.no_pdf, include_applications)
+             if not folder else [])
 
     notices: list[str] = []
     written, notes = deliver(ws, out, ws.name, make_pdf=not args.no_pdf,
@@ -1926,6 +2046,19 @@ def main(argv: list[str] | None = None) -> int:
             f"NOTICE_SEPARATE_FOLDER: {dest} already holds {held}, so this delivery went "
             f"to the subfolder {folder}/ instead of overwriting them. Quote both folders "
             "to the user."))
+    for rel in twins:
+        path = dest / rel
+        try:
+            path.unlink()
+            if path.suffix == ".pdf":
+                # As beside a current target: no LaTeX source of an old round stays.
+                path.with_suffix(".tex").unlink(missing_ok=True)
+            if not any(path.parent.iterdir()):
+                path.parent.rmdir()
+            notices.append(f"NOTICE_LEGACY_NAME_REPLACED: {rel} was this workspace's earlier "
+                           "copy under the old Chinese name; this round's copy replaces it.")
+        except OSError as exc:
+            notices.append(f"NOTICE_STALE_FILE_KEPT: {rel} could not be removed: {exc}")
     notices.extend(finish_manifest(dest, deliveries, ws, mode, folder, previous, written))
 
     # A record, not a gate receipt: delivery decides nothing and has no verdict.

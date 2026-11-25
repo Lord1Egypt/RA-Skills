@@ -1,6 +1,6 @@
 ## Description:
 
-为多平台内容发布提供状态管理、幂等对账、串行批处理和发布前质量门禁的编排指导。
+为多平台内容发布提供编排指导，涵盖状态清单、幂等判据、串行批处理和发布前质量门禁。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-内容运营人员和开发者用它规划多平台发布流程、核对本地与远端状态，并在重试或批量发布前检查内容与发布结果。它提供编排指导，不提供各平台的发布适配器。
+面向开发者和内容运营人员，用于规划和核对多平台发布流程，尤其是重发幂等、草稿回读、批次串行和发布前合规检查。
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: A missing or stale publishing record can lead to duplicate posts or skipped content.
+Risk: Reconciliation that matches posts by title could delete or replace distinct posts that share a title.
 
-Mitigation: Synchronize existing platform records before publishing and reconcile local and remote state before retrying.
-
-Risk: A successful save action may not mean the remote draft contains the intended content.
-
-Mitigation: Read back the remote draft and compare its content before marking it saved or published.
-
-Risk: Content suitable for one platform may violate another platform's rules.
-
-Mitigation: Check each destination's requirements and inspect all rendered text, including text on images, before publishing.
+Mitigation: Use stable remote IDs for matching and require explicit confirmation before deleting or merging items.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/oracis/skills/multiplatform-publish-core)
+- [ClawHub release page](https://clawhub.ai/oracis/skills/multiplatform-publish-core)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+**Output Type(s):** [Guidance, Markdown, Shell commands, Code]
 
-**Output Format:** [Markdown with command and configuration examples]
+**Output Format:** [Markdown guidance with workflow diagrams, tables, code, and shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Guidance only; no executable payload or platform-specific posting adapter.]
+**Other Properties Related to Output:** [Platform-independent orchestration guidance; platform adapters and a complete implementation are not included in this release.]
 
 ## Skill Version(s):
 
-0.3.0 (source: server-resolved release metadata and skill frontmatter)
+0.3.2 (source: frontmatter)
 
 ## Ethical Considerations:
 

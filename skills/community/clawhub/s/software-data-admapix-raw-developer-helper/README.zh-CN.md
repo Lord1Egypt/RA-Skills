@@ -14,11 +14,10 @@ Validated demand: Agent users show strong demand for AdMapix-style workflows on 
 
 ## 来源证据
 
-- clawhub-popular-skill：[Popular Clawhub skill demand: self-improving agent has 493,493 downloads](https://clawhub.ai/skills/self-improving-agent)
-- clawhub-popular-skill：[Popular Clawhub skill demand: ontology has 201,919 downloads](https://clawhub.ai/skills/ontology)
-- clawhub-popular-skill：[Popular Clawhub skill demand: Agent Browser has 159,909 downloads](https://clawhub.ai/skills/agent-browser-clawdbot)
-- clawhub-popular-skill：[Popular Clawhub skill demand: AdMapix has 134,449 downloads](https://clawhub.ai/skills/admapix)
-- hacker-news-ask-hn：[Looking for a remote CTO for my micro SaaS ($600K ARR, $250k Profit)](https://news.ycombinator.com/item?id=50518749)
+- clawhub-popular-skill：[Popular Clawhub skill demand: self-improving agent has 495,374 downloads](https://clawhub.ai/skills/self-improving-agent)
+- clawhub-popular-skill：[Popular Clawhub skill demand: ontology has 202,433 downloads](https://clawhub.ai/skills/ontology)
+- clawhub-popular-skill：[Popular Clawhub skill demand: Agent Browser has 160,526 downloads](https://clawhub.ai/skills/agent-browser-clawdbot)
+- clawhub-popular-skill：[Popular Clawhub skill demand: AdMapix has 134,617 downloads](https://clawhub.ai/skills/admapix)
 - segmentfault-search：[HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
 - segmentfault-search：[javascript](https://segmentfault.com/t/javascript)
 - segmentfault-search：[typescript](https://segmentfault.com/t/typescript)
@@ -26,6 +25,7 @@ Validated demand: Agent users show strong demand for AdMapix-style workflows on 
 - segmentfault-search：[在 DarkNet 模型中编译 YOLO-V2 和 YOLO-V3](https://segmentfault.com/a/1190000044034668)
 - segmentfault-search：[How to Implement a DevLake plugin?](https://segmentfault.com/a/1190000042069896)
 - segmentfault-search：[一文带你熟悉Pytorch->Caffe->om模型转换流程](https://segmentfault.com/a/1190000039248724)
+- github-issues：[Add Livia In-Albon, Beratung Strategie, who speaks Walliser Deutsch](https://github.com/janoschjost/saftladen/issues/309)
 
 ## 这个技能如何满足需求
 

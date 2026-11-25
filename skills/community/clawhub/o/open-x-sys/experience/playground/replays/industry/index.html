@@ -1,0 +1,2289 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Industry Core Sample · Intelligence at the surface, profits in the bedrock</title>
+<meta name="description" content="Explore the AI industry as a system: eight layers, profit distribution, capital loops, power bottlenecks and four futures. Data as of November 16, 2026.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2308161c'/%3E%3Cpath d='M6 8h20M6 14h20M6 20h20M6 26h20' stroke='%23d9a441' stroke-width='2'/%3E%3C/svg%3E">
+<style>
+/* ===== 1. tokens ===== */
+:root{
+  --paper:#e9e5da;
+  --paper2:#dbd7ca;
+  --ash:#b9c0bd;
+  --mid:#8ea1a3;
+  --petrol:#244653;
+  --deep:#16313b;
+  --deeper:#0f232b;
+  --bedrock:#08161c;
+  --ink:#121716;
+  --ink2:#38423f;
+  --copper:#bd7134;
+  --copper2:#e0a052;
+  --oxide:#a3452d;
+  --cobalt:#2f5f7d;
+  --teal:#2f5b5e;
+  --sans:"Archivo","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --maxw:1240px;
+  --gutter:clamp(18px,4.2vw,52px);
+}
+body[data-depth="0"]{--bg:var(--bedrock);--fg:var(--paper);--muted:#9db0b2;--line:rgba(233,229,218,.16);--accent:var(--copper2)}
+body[data-depth="1"]{--bg:var(--paper);--fg:var(--ink);--muted:#596360;--line:rgba(18,23,22,.16);--accent:var(--copper)}
+body[data-depth="2"]{--bg:var(--paper2);--fg:var(--ink);--muted:#4e5956;--line:rgba(18,23,22,.18);--accent:var(--copper)}
+body[data-depth="3"]{--bg:var(--mid);--fg:var(--ink);--muted:#2b3a3b;--line:rgba(18,23,22,.22);--accent:var(--ink)}
+body[data-depth="4"]{--bg:var(--petrol);--fg:var(--paper);--muted:#b7c8c8;--line:rgba(233,229,218,.18);--accent:var(--copper2)}
+body[data-depth="5"]{--bg:var(--deep);--fg:var(--paper);--muted:#a6bcbc;--line:rgba(233,229,218,.16);--accent:var(--copper2)}
+body[data-depth="6"]{--bg:var(--deeper);--fg:var(--paper);--muted:#9ab1b2;--line:rgba(233,229,218,.15);--accent:var(--copper2)}
+body[data-depth="7"]{--bg:var(--bedrock);--fg:var(--paper);--muted:#91a7a9;--line:rgba(233,229,218,.15);--accent:var(--copper2)}
+body[data-depth="8"]{--bg:var(--paper);--fg:var(--ink);--muted:#596360;--line:rgba(18,23,22,.16);--accent:var(--copper)}
+
+/* ===== 2. base ===== */
+svg text{font-family:var(--sans);font-variant-numeric:tabular-nums}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bedrock);-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--sans);font-size:16px;line-height:1.75;color:var(--fg);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+h1,h2,h3,h4,p,figure,blockquote,dl,dd{margin:0}
+ul,ol{margin:0;padding:0}
+img,svg{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--copper2);outline-offset:3px}
+::selection{background:var(--copper);color:var(--bedrock)}
+.page{position:relative;background:var(--bg);color:var(--fg);transition:background-color .85s ease,color .85s ease;overflow:clip}
+.page::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.038;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");background-size:180px 180px}
+.wrap{position:relative;z-index:2;width:min(100% - 2*var(--gutter),var(--maxw));margin-inline:auto}
+.wrap--narrow{width:min(100% - 2*var(--gutter),920px)}
+.section{position:relative;z-index:2;padding:clamp(58px,8.4vw,112px) 0}
+.section--tight{padding:clamp(38px,5vw,64px) 0}
+.block-paper{--bg:var(--paper);--fg:var(--ink);--muted:#596360;--line:rgba(18,23,22,.16);--accent:var(--copper);background:var(--bg);color:var(--fg)}
+.block-dark{--bg:var(--bedrock);--fg:var(--paper);--muted:#9db0b2;--line:rgba(233,229,218,.16);--accent:var(--copper2);background:var(--bg);color:var(--fg)}
+.block-china{--bg:#102a33;--fg:#e9e5da;--muted:#a8bcbe;--line:rgba(233,229,218,.16);--accent:#d9a441;background:var(--bg);color:var(--fg)}
+
+/* ===== 3. type ===== */
+.display{font-weight:900;letter-spacing:-.025em;line-height:1.02}
+h1{font-weight:900;font-size:clamp(42px,6.4vw,88px);line-height:.98;letter-spacing:-.03em}
+h2{font-weight:900;font-size:clamp(30px,4.1vw,54px);line-height:1.08;letter-spacing:-.02em;max-width:18em}
+h3{font-weight:700;font-size:clamp(20px,2.2vw,27px);line-height:1.3;letter-spacing:-.01em}
+h4{font-weight:700;font-size:16px;line-height:1.4}
+.lede{font-size:clamp(18px,1.8vw,21px);line-height:1.7;color:var(--fg);max-width:34em}
+p{max-width:44em}
+.body-copy{color:var(--muted);font-size:16px;line-height:1.8}
+.body-copy p+p{margin-top:1em}
+.small{font-size:13px;line-height:1.65;color:var(--muted)}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.kicker{font-size:12px;letter-spacing:.04em;color:var(--muted)}
+
+/* ===== 4. hero ===== */
+.hero{position:relative;z-index:2;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;background:
+  radial-gradient(900px 620px at 78% 42%,rgba(61,104,113,.22),transparent 68%),
+  radial-gradient(600px 400px at 18% 8%,rgba(189,113,52,.08),transparent 70%),
+  var(--bedrock);color:var(--paper);overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(233,229,218,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(233,229,218,.035) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(80% 70% at 60% 40%,#000 30%,transparent 100%)}
+.masthead{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding-top:18px;font-size:12px;letter-spacing:.02em;color:rgba(233,229,218,.55)}
+.masthead .ding{color:var(--copper2)}
+.hero-main{position:relative;z-index:3;flex:1;display:grid;grid-template-columns:1fr;gap:clamp(22px,3.4vw,44px);align-items:center;padding:clamp(28px,5vh,64px) 0 clamp(22px,4vh,42px)}
+.hero-copy{max-width:760px}
+.hero h1{color:var(--paper);margin-bottom:20px}
+.dek{font-size:clamp(17px,1.7vw,20px);line-height:1.7;color:rgba(233,229,218,.74);max-width:30em}
+.hero-note{margin-top:14px;font-size:12px;color:rgba(233,229,218,.46);letter-spacing:.02em}
+.hook{margin-top:clamp(22px,3.2vh,34px);border-top:1px solid rgba(233,229,218,.18);padding-top:16px;max-width:620px}
+.hook-row{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:5px 0}
+.hook-row span{font-size:12px;color:rgba(233,229,218,.6)}
+.hook-row b{font-size:clamp(18px,2vw,24px);font-weight:700;color:var(--copper2);letter-spacing:-.01em;white-space:nowrap}
+.hook p{margin-top:9px;font-size:13px;line-height:1.7;color:rgba(233,229,218,.55);max-width:54em}
+.route{margin-top:clamp(18px,2.6vh,28px);display:flex;align-items:center;gap:0;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;border-top:1px solid rgba(233,229,218,.14);border-bottom:1px solid rgba(233,229,218,.14)}
+.route::-webkit-scrollbar{display:none}
+.route-label{flex:0 0 auto;padding:12px 14px 12px 0;font-size:11px;color:rgba(233,229,218,.42);white-space:nowrap}
+.route-step{flex:0 0 auto;min-height:44px;padding:0 11px;display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(233,229,218,.72);border-left:1px solid rgba(233,229,218,.1);white-space:nowrap}
+.route-step:hover,.route-step[aria-expanded="true"]{color:var(--copper2);background:rgba(224,160,82,.08)}
+.route-step i{font-style:normal;font-size:10px;color:rgba(233,229,218,.32)}
+.route-pop{max-width:680px;min-height:38px;padding-top:10px;font-size:12px;line-height:1.65;color:rgba(233,229,218,.55)}
+.route-pop b{color:var(--copper2);font-weight:600}
+.scroll-cue{position:relative;z-index:3;display:flex;align-items:center;gap:10px;padding-bottom:22px;font-size:11px;color:rgba(233,229,218,.42)}
+.scroll-cue .line{width:1px;height:38px;background:linear-gradient(var(--copper2),transparent);position:relative}
+.scroll-cue .line::after{content:"";position:absolute;left:-2px;top:0;width:5px;height:5px;background:var(--copper2);animation:cue 2.4s ease-in-out infinite}
+@keyframes cue{0%{transform:translateY(0);opacity:1}75%{transform:translateY(32px);opacity:0}100%{opacity:0}}
+
+/* ===== 5. core sample ===== */
+.core-wrap{position:relative;align-self:center;width:100%;max-width:600px;justify-self:end}
+.core-v{width:100%;height:auto;max-height:74vh}
+.core-h{display:none;width:100%}
+.core-svg text{font-family:var(--sans)}
+.core-depth{font-size:11px;fill:rgba(233,229,218,.4);letter-spacing:.03em}
+.core-name{font-size:13px;font-weight:700;fill:var(--paper)}
+.core-val{font-size:10.5px;fill:rgba(233,229,218,.55);letter-spacing:.01em}
+.core-note{font-size:10px;fill:rgba(233,229,218,.38)}
+.core-label{opacity:.3;animation:labelIn .7s ease forwards;animation-delay:calc(.9s + var(--i)*.85s)}
+@keyframes labelIn{to{opacity:1}}
+.core-label.is-on{opacity:1}
+.core-label.is-on .core-name{fill:var(--copper2)}
+.core-arrow{opacity:0;animation:arrowIn .6s ease forwards;animation-delay:calc(1.2s + var(--i)*.85s)}
+@keyframes arrowIn{to{opacity:1}}
+.core-arrow.is-on{opacity:1}
+.drill-line{stroke:var(--copper2);stroke-width:3;stroke-dasharray:660;stroke-dashoffset:660;animation:drill 7.2s cubic-bezier(.5,0,.2,1) forwards}
+.drill-bit{transform:translateY(-632px);animation:bit 7.2s cubic-bezier(.5,0,.2,1) forwards}
+.vein{stroke:var(--copper2);stroke-width:4;stroke-dasharray:9 13;opacity:0;animation:veinIn .6s ease 7.4s forwards,vein 2.8s linear 8s infinite}
+@keyframes drill{0%{stroke-dashoffset:660}100%{stroke-dashoffset:0}}
+@keyframes bit{0%{transform:translateY(-632px)}100%{transform:translateY(0)}}
+@keyframes veinIn{to{opacity:.9}}
+@keyframes vein{from{stroke-dashoffset:0}to{stroke-dashoffset:-44}}
+.core-mini{position:absolute;top:0;right:0;bottom:0;width:14px;display:flex;flex-direction:column;border-left:1px solid rgba(233,229,218,.14)}
+.core-mini span{flex:1}
+.core-mobile{display:none;margin-top:18px}
+.core-mobile svg{width:100%;height:auto}
+.core-mobile .mline{stroke:var(--copper2);stroke-width:2;stroke-dasharray:6 8;animation:mline 3.2s linear infinite}
+@keyframes mline{from{stroke-dashoffset:0}to{stroke-dashoffset:-28}}
+
+/* ===== 6. depth + section headings ===== */
+.depth-tag{display:flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.03em;color:var(--muted);margin-bottom:18px}
+.depth-tag::before{content:"";width:22px;height:1px;background:var(--accent);flex:0 0 auto}
+.depth-num{color:var(--accent);font-weight:600}
+.depth-name{color:var(--muted)}
+.section-head{display:grid;gap:16px;margin-bottom:clamp(28px,4vw,48px)}
+.section-head p{max-width:40em}
+.split{display:grid;grid-template-columns:1fr;gap:clamp(28px,4vw,52px);align-items:start}
+.split-text{min-width:0}
+.split-visual{min-width:0}
+.split--rev .split-visual{order:-1}
+.sticky-visual{position:sticky;top:40px}
+
+/* ===== 7. key numbers, rules, notes ===== */
+.rule{border-top:1px solid var(--line)}
+.key{display:grid;gap:3px;padding:16px 0 0;border-top:1px solid var(--line);margin-top:22px}
+.key-label{font-size:11px;letter-spacing:.03em;color:var(--muted)}
+.key-val{font-size:clamp(32px,4.4vw,52px);font-weight:900;line-height:1.05;letter-spacing:-.03em;color:var(--accent)}
+.key-note{font-size:11px;line-height:1.55;color:var(--muted)}
+.key-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);margin-top:20px}
+.key-cell{background:var(--bg);padding:16px 14px 14px;display:grid;gap:2px}
+.key-cell b{font-size:clamp(22px,2.8vw,30px);font-weight:800;line-height:1.1;letter-spacing:-.02em}
+.key-cell span{font-size:11px;line-height:1.5;color:var(--muted)}
+.quote{border-left:2px solid var(--accent);padding:2px 0 2px 18px;font-size:clamp(17px,1.6vw,20px);line-height:1.65;font-weight:500;color:var(--fg);max-width:34em}
+.quote cite{display:block;margin-top:8px;font-style:normal;font-size:11px;color:var(--muted)}
+.note{font-size:11.5px;line-height:1.65;color:var(--muted);border-top:1px solid var(--line);padding-top:9px;margin-top:18px;max-width:52em}
+.note b{color:var(--fg);font-weight:600}
+.flag{display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:.03em;color:var(--accent);border:1px solid var(--line);padding:3px 7px;white-space:nowrap}
+.flag--risk{color:var(--oxide);border-color:rgba(163,69,45,.35)}
+.cite{font-size:9px;vertical-align:super;line-height:0;color:var(--accent);border-bottom:1px dotted currentColor;margin-left:1px}
+.cite:hover{color:var(--fg);border-bottom-style:solid}
+
+/* ===== 8. charts ===== */
+.chart{margin:0}
+.chart figcaption{font-size:11px;line-height:1.65;color:var(--muted);border-top:1px solid var(--line);padding-top:9px;margin-top:14px;max-width:52em}
+.chart-title{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:11px;color:var(--muted);margin-bottom:12px}
+.chart-title b{font-weight:600;color:var(--fg);font-size:12px}
+.hbars{display:grid;gap:9px}
+.hbar{display:grid;grid-template-columns:minmax(64px,110px) 1fr minmax(48px,76px);align-items:center;gap:10px}
+.hbar-label{font-size:11.5px;line-height:1.35;color:var(--muted)}
+.hbar-track{position:relative;height:16px;border-bottom:1px solid var(--line)}
+.hbar-fill{position:absolute;left:0;top:0;bottom:0;width:var(--w);background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 1.1s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i,0)*70ms)}
+.hbar-fill--outline{background:transparent;border:1px solid var(--accent);border-bottom:0}
+.hbar-fill--oxide{background:var(--oxide)}
+.hbar-fill--muted{background:var(--muted);opacity:.55}
+.hbar-val{font-size:11.5px;text-align:right;font-variant-numeric:tabular-nums;color:var(--fg);white-space:nowrap}
+.chart.is-in .hbar-fill,.chart.is-in .vbar{transform:scaleX(1);transform:scaleY(1)}
+.vchart{display:flex;align-items:flex-end;gap:clamp(8px,1.4vw,16px);height:var(--h,220px);border-bottom:1px solid var(--line);padding-top:12px}
+.vcol{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:flex-end;height:100%;gap:6px}
+.vbar{width:100%;height:var(--h);background:var(--accent);transform:scaleY(0);transform-origin:bottom;transition:transform 1.1s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i,0)*80ms)}
+.vbar--outline{background:transparent;border:1px solid var(--accent);border-bottom:0}
+.vbar--forecast{background:repeating-linear-gradient(135deg,var(--accent) 0 4px,transparent 4px 8px);border:1px solid var(--accent)}
+.vcol-label{font-size:10.5px;line-height:1.35;color:var(--muted);text-align:center}
+.vcol-val{font-size:10.5px;text-align:center;color:var(--fg);font-variant-numeric:tabular-nums}
+.zero-line{position:relative}
+.zero-line::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--line)}
+.stackbar{display:flex;height:24px;border:1px solid var(--line);overflow:hidden}
+.stackbar span{display:block;height:100%;font-size:9px;color:var(--paper);display:flex;align-items:center;justify-content:center;white-space:nowrap}
+.stack-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:8px;font-size:10px;color:var(--muted)}
+.stack-legend i{display:inline-block;width:8px;height:8px;margin-right:5px;vertical-align:-1px}
+.chart-note{font-size:10px;color:var(--muted);margin-top:6px;line-height:1.5}
+.chart-note--risk{color:var(--oxide)}
+.unit-grid{display:grid;grid-template-columns:repeat(13,1fr);gap:4px;max-width:360px;margin-top:4px}
+.unit-grid i{display:block;aspect-ratio:1;background:var(--line);opacity:.55}
+.unit-grid i.on{background:var(--accent);opacity:1}
+.divbars{display:grid;gap:9px}
+.divbar{display:grid;grid-template-columns:minmax(64px,100px) 1fr minmax(48px,72px);align-items:center;gap:9px}
+.divbar-label{font-size:11px;line-height:1.35;color:var(--muted)}
+.divbar-track{position:relative;height:16px;border-bottom:1px solid var(--line)}
+.divbar-track::before{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--line);z-index:1}
+.divbar-fill{position:absolute;top:0;bottom:0;width:calc(var(--w) * .5);transform:scaleX(0);transition:transform 1.1s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i,0)*70ms)}
+.divbar-fill.is-neg{right:50%;transform-origin:right;background:var(--oxide)}
+.divbar-fill.is-pos{left:50%;transform-origin:left;background:var(--accent)}
+.divbar-val{font-size:11px;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.chart.is-in .divbar-fill{transform:scaleX(1)}
+.stackcols{display:flex;align-items:flex-end;gap:clamp(8px,1.4vw,15px);height:240px;border-bottom:1px solid var(--line);padding-top:8px}
+.stackcol{flex:1;min-width:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;gap:6px}
+.stackcol-val{font-size:10.5px;text-align:center;color:var(--fg);font-variant-numeric:tabular-nums}
+.stackcol-bar{position:relative;width:100%;height:var(--h);transform:scaleY(0);transform-origin:bottom;transition:transform 1.1s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i,0)*80ms)}
+.stackcol-bar span{position:absolute;left:0;right:0;display:block}
+.stackcol-bar .seg-h{bottom:0;height:var(--ph);background:var(--cobalt)}
+.stackcol-bar .seg-a{bottom:var(--ph);height:var(--pa);background:var(--copper)}
+.stackcol-label{font-size:10px;line-height:1.35;color:var(--muted);text-align:center;white-space:nowrap}
+.chart.is-in .stackcol-bar{transform:scaleY(1)}
+/* ===== 9. tables ===== */
+.table-wrap{width:100%}
+.table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13.5px;line-height:1.55}
+.table th,.table td{text-align:left;vertical-align:top;padding:11px 10px;border-bottom:1px solid var(--line)}
+.table th{font-size:10.5px;font-weight:600;letter-spacing:.03em;color:var(--muted);border-bottom:1px solid var(--fg)}
+.table td:first-child,.table th:first-child{padding-left:0}
+.table td:last-child,.table th:last-child{padding-right:0}
+.table td b{font-weight:700;color:var(--fg)}
+.table .num{text-align:right;white-space:nowrap}
+.table .muted{color:var(--muted)}
+.table .accent{color:var(--accent);font-weight:700}
+.table tr.is-em td{border-bottom:1px solid var(--accent)}
+.table--compare th:nth-child(2),.table--compare td:nth-child(2){color:var(--fg)}
+.table--compare th:nth-child(3),.table--compare td:nth-child(3){color:var(--fg)}
+.table--tight td,.table--tight th{padding:9px 8px}
+
+/* ===== 10. timeline ===== */
+.timeline{display:grid;gap:0;margin-top:8px}
+.tl-item{display:grid;grid-template-columns:66px 22px 1fr;gap:0;min-height:76px}
+.tl-date{font-size:11px;color:var(--accent);font-weight:600;padding-top:14px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tl-axis{position:relative;display:flex;justify-content:center}
+.tl-axis::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--line);transform:translateX(-50%)}
+.tl-item:first-child .tl-axis::before{top:16px}
+.tl-item:last-child .tl-axis::before{bottom:calc(100% - 16px)}
+.tl-dot{position:relative;z-index:1;width:9px;height:9px;margin-top:15px;background:var(--accent);border-radius:50%;flex:0 0 auto}
+.tl-body{padding:10px 0 18px 14px;min-width:0}
+.tl-body h4{font-size:14px;margin-bottom:2px}
+.tl-body p{font-size:12px;line-height:1.65;color:var(--muted)}
+.tl-body b{color:var(--fg);font-weight:600}
+.tl-item--ghost .tl-dot{background:transparent;border:1px solid var(--muted)}
+
+/* ===== 11. gantt / bars ===== */
+.gantt{display:grid;gap:10px;margin-top:10px}
+.gantt-row{display:grid;grid-template-columns:minmax(90px,130px) 1fr minmax(40px,54px);align-items:center;gap:10px}
+.gantt-label{font-size:11px;line-height:1.35;color:var(--muted)}
+.gantt-track{position:relative;height:18px;border-left:1px solid var(--line);background:linear-gradient(90deg,transparent 0 calc(100% - 1px),var(--line) calc(100% - 1px) 100%)}
+.gantt-track::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--line);opacity:.4}
+.gantt-fill{position:absolute;left:0;top:1px;bottom:1px;width:var(--w);background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 1.1s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i,0)*80ms)}
+.gantt-fill--oxide{background:var(--oxide)}
+.gantt-fill--muted{background:var(--muted);opacity:.6}
+.chart.is-in .gantt-fill{transform:scaleX(1)}
+.gantt-val{font-size:11px;text-align:right;color:var(--fg);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* ===== 12. compare blocks ===== */
+.cycle{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:16px}
+.cycle--3{grid-template-columns:repeat(3,1fr)}
+.cycle-step{background:var(--bg);padding:13px 12px;display:grid;gap:3px;min-width:0}
+.cycle-step b{font-size:13px;line-height:1.3;font-weight:700}
+.cycle-step span{font-size:10px;line-height:1.5;color:var(--muted)}
+.cycle-step.is-now{box-shadow:inset 2px 0 0 var(--accent)}
+@media (min-width:760px){.cycle{grid-template-columns:repeat(4,1fr)}}
+.pos-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:22px}
+.pos{background:var(--bg);padding:18px 16px;display:grid;gap:7px;min-width:0;border-top:1px solid var(--line)}
+.pos-k{font-size:10px;letter-spacing:.03em;color:var(--accent)}
+.pos h3{font-size:18px;line-height:1.3}
+.pos p{font-size:12px;line-height:1.65;color:var(--muted);max-width:none}
+.pos .first-step{font-size:11.5px;line-height:1.6;color:var(--fg);border-left:2px solid var(--accent);padding-left:10px}
+.pos .cost{font-size:11px;color:var(--oxide)}
+@media (min-width:760px){.pos-grid{grid-template-columns:repeat(3,1fr)}}
+.chain{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:16px}
+.chain-step{background:var(--bg);padding:12px 14px;display:grid;gap:2px}
+.chain-step b{font-size:13px}
+.chain-step span{font-size:10px;line-height:1.5;color:var(--muted)}
+.chain-step .bottleneck{color:var(--oxide);font-weight:600}
+@media (min-width:760px){.chain{grid-template-columns:repeat(5,1fr)}}
+.path{font-variant-numeric:tabular-nums;border-bottom:1px dotted var(--line);padding-bottom:1px}
+.fault-edge{margin-top:-34px}
+.compare{display:grid;gap:16px;margin-top:6px}
+.compare-row{display:grid;gap:5px}
+.compare-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.compare-label{font-size:11.5px;color:var(--muted)}
+.compare-val{font-size:clamp(18px,2.2vw,24px);font-weight:800;letter-spacing:-.01em;color:var(--fg);white-space:nowrap}
+.compare-track{height:20px;border-bottom:1px solid var(--line);position:relative}
+.compare-fill{position:absolute;left:0;top:0;bottom:0;width:var(--w);background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 1.1s cubic-bezier(.2,.8,.2,1)}
+.compare-row--outline .compare-fill{background:transparent;border:1px solid var(--accent);border-bottom:0}
+.chart.is-in .compare-fill{transform:scaleX(1)}
+.compare-foot{font-size:11px;color:var(--muted);line-height:1.6}
+.compare-big{font-size:clamp(36px,6vw,76px);font-weight:900;letter-spacing:-.04em;line-height:.98;color:var(--accent)}
+.compare-big small{display:block;font-size:11px;font-weight:400;letter-spacing:.02em;color:var(--muted);margin-top:6px}
+
+/* ===== 13. matrix / scenarios ===== */
+.matrix-wrap{display:grid;grid-template-columns:22px 1fr;grid-template-rows:24px 1fr 24px;gap:6px;margin-top:18px}
+.axis-y{grid-column:1;grid-row:2;writing-mode:vertical-rl;transform:rotate(180deg);font-size:10px;letter-spacing:.04em;color:var(--muted);text-align:center;align-self:center}
+.axis-x{grid-column:2;grid-row:3;font-size:10px;letter-spacing:.04em;color:var(--muted);text-align:center}
+.matrix{grid-column:2;grid-row:2;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.quad{position:relative;background:var(--bg);color:var(--fg);padding:16px 14px;min-height:168px;text-align:left;display:flex;flex-direction:column;gap:7px;transition:background .2s ease}
+.quad:hover{background:rgba(224,160,82,.07)}
+.quad.is-active{outline:2px solid var(--accent);outline-offset:-2px;background:rgba(224,160,82,.08)}
+.quad-k{font-size:9.5px;letter-spacing:.04em;color:var(--muted)}
+.quad h4{font-size:clamp(16px,1.8vw,20px);font-weight:800;letter-spacing:-.01em}
+.quad p{font-size:10.5px;line-height:1.55;color:var(--muted);max-width:none}
+.quad .prob{font-size:10px;color:var(--accent);font-weight:600}
+.scenario-detail{margin-top:22px;border-top:1px solid var(--line);padding-top:18px;display:grid;gap:14px}
+.scenario-detail h3{font-size:clamp(22px,2.6vw,30px)}
+.scenario-detail .sd-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.sd-block{display:grid;gap:4px}
+.sd-block span{font-size:10.5px;letter-spacing:.03em;color:var(--accent)}
+.sd-block p{font-size:12.5px;line-height:1.65;color:var(--muted);max-width:46em}
+.sd-block b{color:var(--fg);font-weight:600}
+
+/* ===== 14. loop ===== */
+.loop-controls{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.loop-btn{min-height:44px;padding:0 13px;border:1px solid var(--line);font-size:11px;color:var(--muted)}
+.loop-btn.is-on{border-color:var(--accent);color:var(--accent);background:rgba(224,160,82,.06)}
+.loop-svg{width:100%;height:auto}
+.loop-svg text{font-family:var(--sans)}
+.loop-node{fill:rgba(8,22,28,.55);stroke:var(--line)}
+.loop-node--key{stroke:var(--accent)}
+.loop-name{font-size:20px;font-weight:700;fill:var(--fg)}
+.loop-sub{font-size:11px;fill:var(--muted)}
+.loop-edge{stroke:var(--muted);stroke-width:1.6;fill:none;opacity:.65}
+.loop-edge--money{stroke:var(--accent);stroke-width:2;opacity:.85}
+.loop-edge--loop{stroke:var(--accent);stroke-width:1.5;stroke-dasharray:7 6;opacity:0;transition:opacity .4s ease}
+.loop-svg.is-loop .loop-edge--loop{opacity:.85}
+.loop-svg.is-loop .loop-edge--loop-anim{animation:loopdash 1.4s linear infinite}
+@keyframes loopdash{to{stroke-dashoffset:-26}}
+.loop-legend{display:flex;flex-wrap:wrap;gap:10px 16px;font-size:10px;color:var(--muted);margin-top:8px}
+.loop-legend i{display:inline-block;width:14px;height:2px;vertical-align:2px;margin-right:5px}
+.loop-svg .edge-label{font-size:10px;fill:var(--muted)}
+.loop-svg .edge-label--hot{fill:var(--accent)}
+
+/* ===== 15. share / system ===== */
+.sys-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:20px}
+.sys-item{background:var(--bg);padding:16px 14px;display:grid;gap:3px}
+.sys-k{font-size:10px;letter-spacing:.03em;color:var(--accent)}
+.sys-item p{font-size:12px;line-height:1.6;color:var(--muted);max-width:none}
+.sys-item b{color:var(--fg);font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 15px;border:1px solid var(--fg);font-size:12px;line-height:1.3;text-align:center;transition:background .18s ease,color .18s ease,border-color .18s ease}
+.btn:hover{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn--accent{border-color:var(--accent);color:var(--accent)}
+.btn--accent:hover{background:var(--accent);color:var(--bedrock);border-color:var(--accent)}
+.btn--small{min-height:40px;padding:0 11px;font-size:11px}
+.share-layout{display:grid;grid-template-columns:1fr;gap:clamp(24px,3vw,40px);align-items:start}
+.share-card-wrap{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.share-card{position:relative;width:min(100%,520px);aspect-ratio:1;background:var(--bedrock);color:var(--paper);padding:clamp(22px,3vw,34px);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;border:1px solid rgba(233,229,218,.14)}
+.share-card.is-tall{width:min(100%,340px);aspect-ratio:9/16;padding:22px}
+.share-card::before{content:"";position:absolute;left:0;top:0;right:0;height:3px;background:var(--copper2)}
+.share-card .sc-label{font-size:10px;letter-spacing:.05em;color:rgba(233,229,218,.5)}
+.share-card .sc-big{font-size:clamp(24px,3vw,32px);font-weight:900;line-height:1.22;letter-spacing:-.02em;max-width:10em;margin-top:14px}
+.share-card .sc-big em{font-style:normal;color:var(--copper2)}
+.share-card .sc-sub{font-size:13px;line-height:1.6;color:rgba(233,229,218,.68);margin-top:12px;max-width:15em}
+.share-card .sc-foot{font-size:9.5px;line-height:1.6;color:rgba(233,229,218,.42);margin-top:16px;padding-top:9px;border-top:1px solid rgba(233,229,218,.16);max-width:16em}
+.share-card.is-tall .sc-big{font-size:28px;max-width:8em}
+.share-card.is-tall .sc-sub{font-size:14px}
+.sc-core{position:absolute;top:0;right:0;bottom:0;width:20px;display:flex;flex-direction:column;opacity:.8}
+.sc-core span{flex:1}
+.share-tools{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.copy-list{display:grid;gap:10px;margin-top:14px}
+.copy-item{border-top:1px solid var(--line);padding-top:10px;display:grid;gap:6px}
+.copy-item p{font-size:12.5px;line-height:1.65;color:var(--fg);max-width:44em}
+.copy-item .btn{align-self:start}
+.alt-text{font-size:11px;line-height:1.65;color:var(--muted);border-top:1px solid var(--line);padding-top:9px;margin-top:14px}
+.location-box{border:1px solid var(--line);padding:18px 16px;margin-top:22px;display:grid;gap:10px}
+.location-box h3{font-size:18px}
+.location-box p{font-size:12px;line-height:1.65;color:var(--muted);max-width:46em}
+.location-box b{color:var(--fg);font-weight:600}
+.location-actions{display:flex;flex-wrap:wrap;gap:6px}
+.next-questions{display:grid;gap:7px;margin-top:14px}
+.next-q{font-size:12.5px;line-height:1.6;color:var(--fg);padding:8px 0;border-bottom:1px solid var(--line);display:flex;gap:9px}
+.next-q span{color:var(--accent);font-weight:700;flex:0 0 auto}
+
+/* ===== 16. sources / footer ===== */
+.sources{font-size:11.5px;line-height:1.65}
+.sources ol{list-style:none;display:grid;gap:9px;margin-top:16px}
+.sources li{display:grid;grid-template-columns:26px 1fr;gap:8px;padding-bottom:8px;border-bottom:1px solid var(--line);scroll-margin-top:30px}
+.sources .s-num{color:var(--accent);font-weight:600;font-variant-numeric:tabular-nums}
+.sources .s-body{color:var(--muted);min-width:0}
+.sources .s-body b{color:var(--fg);font-weight:600}
+.sources .s-body a{color:var(--fg);border-bottom:1px solid var(--line);word-break:break-all}
+.sources .s-body a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.src-tag{display:inline-block;font-size:9px;letter-spacing:.03em;color:var(--accent);border:1px solid var(--line);padding:1px 4px;margin-left:4px;white-space:nowrap;vertical-align:1px}
+.caveat{border:1px solid var(--line);padding:14px 16px;margin-top:18px;display:grid;gap:6px;font-size:11.5px;line-height:1.65;color:var(--muted)}
+.caveat b{color:var(--fg)}
+.footer{position:relative;z-index:2;background:var(--bedrock);color:var(--paper);padding:clamp(40px,6vw,72px) 0;border-top:1px solid rgba(233,229,218,.12)}
+.footer-line{font-size:clamp(22px,3vw,34px);font-weight:900;letter-spacing:-.02em;line-height:1.2;color:var(--paper);max-width:20em}
+.footer-line em{font-style:normal;color:var(--copper2)}
+.footer-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:24px;font-size:11px;color:rgba(233,229,218,.45)}
+.footer-meta a{border-bottom:1px solid rgba(233,229,218,.2)}
+.footer-meta a:hover{color:var(--copper2)}
+
+/* ===== 17. interlude / equation ===== */
+.interlude{padding:clamp(64px,9vw,120px) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.interlude h2{font-size:clamp(34px,6vw,76px);line-height:1.02;letter-spacing:-.035em;max-width:14em}
+.interlude .lede{margin-top:22px;max-width:32em}
+.equation{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:clamp(28px,4vw,44px);max-width:820px}
+.eq-cell{background:var(--bg);padding:18px 16px;display:grid;gap:3px}
+.eq-cell span{font-size:11px;color:var(--muted)}
+.eq-cell b{font-size:clamp(26px,3.4vw,40px);font-weight:900;letter-spacing:-.02em;color:var(--fg);line-height:1.1}
+.eq-cell small{font-size:10px;color:var(--accent)}
+.eq-note{font-size:11px;color:var(--muted);margin-top:8px;grid-column:1/-1}
+
+/* ===== 18. fault edge ===== */
+.fault-edge{position:relative;z-index:2;width:100%;height:34px;margin-bottom:-1px;background:transparent}
+.fault-edge path{stroke:var(--oxide);stroke-width:1.5;fill:none;opacity:.8}
+.fault-label{position:absolute;left:var(--gutter);top:2px;font-size:10px;letter-spacing:.04em;color:var(--oxide)}
+
+/* ===== 19. rail / progress ===== */
+.rail{position:fixed;z-index:20;left:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:0;transition:opacity .3s ease}
+.rail.is-off{opacity:0;pointer-events:none}
+.rail-line{position:absolute;top:8px;bottom:8px;left:50%;width:1px;background:var(--line);transform:translateX(-50%)}
+.rail-dot{position:relative;z-index:1;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:transparent}
+.rail-dot::before{content:"";width:6px;height:6px;background:var(--muted);opacity:.5;border-radius:50%;transition:all .2s ease}
+.rail-dot span{position:absolute;left:48px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--muted);white-space:nowrap;opacity:0;transition:opacity .2s ease;pointer-events:none}
+.rail-dot:hover span,.rail-dot:focus-visible span{opacity:1;color:var(--fg)}
+.rail-dot.is-active::before{width:10px;height:10px;background:var(--accent);opacity:1;box-shadow:0 0 0 3px rgba(224,160,82,.12)}
+.rail-dot.is-active span{opacity:1;color:var(--accent)}
+.progress{position:fixed;z-index:30;left:0;top:0;height:3px;width:100%;background:rgba(8,22,28,.25);transform-origin:left;transform:scaleX(0);transition:transform .12s linear;pointer-events:none}
+.to-top{position:fixed;z-index:25;right:18px;bottom:18px;width:44px;height:44px;border:1px solid var(--line);background:var(--bg);color:var(--fg);display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .2s ease}
+.to-top.is-on{opacity:1;pointer-events:auto}
+.to-top:hover{border-color:var(--accent);color:var(--accent)}
+.toast{position:fixed;z-index:40;left:50%;bottom:22px;transform:translate(-50%,14px);background:var(--fg);color:var(--bg);padding:9px 14px;font-size:12px;line-height:1.4;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;max-width:calc(100% - 36px)}
+.toast.is-on{opacity:1;transform:translate(-50%,0)}
+
+/* ===== 20. motion / reveal ===== */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.reveal.is-in{opacity:1;transform:none}
+.reveal-d1{transition-delay:.1s}
+.reveal-d2{transition-delay:.18s}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .reveal{opacity:1;transform:none}
+  .hbar-fill,.vbar,.compare-fill,.gantt-fill{transform:none!important}
+  .core-label{opacity:1}
+  .core-arrow{opacity:1}
+  .drill-line{stroke-dashoffset:0}
+  .drill-bit{transform:none}
+  .vein{opacity:.9}
+}
+
+/* ===== 21. responsive ===== */
+@media (min-width:760px){
+  .hero-main{grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);padding:clamp(34px,6vh,72px) 0 clamp(28px,5vh,50px)}
+  .split{grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:clamp(34px,5vw,72px)}
+  .split--rev{grid-template-columns:minmax(0,.98fr) minmax(0,1.02fr)}
+  .split--rev .split-visual{order:-1}
+  .key-row{grid-template-columns:1fr 1fr}
+  .sys-grid{grid-template-columns:1fr 1fr}
+  .share-layout{grid-template-columns:minmax(0,1fr) minmax(0,.9fr)}
+  .equation{grid-template-columns:repeat(3,1fr)}
+  .scenario-detail .sd-grid{grid-template-columns:repeat(3,1fr);gap:18px}
+  .sources ol{grid-template-columns:1fr 1fr;gap:9px 26px}
+  .sources li{grid-template-columns:26px 1fr}
+  .sticky-visual{position:sticky;top:34px}
+}
+@media (min-width:1180px){
+  .hero-copy{padding-left:18px}
+  .hero h1{font-size:88px}
+}
+@media (max-width:759px){
+  body{font-size:15.5px}
+  .section{padding:52px 0}
+  .hero{min-height:auto}
+  .hero-main{padding:26px 0 10px;gap:22px}
+  .hero h1{font-size:clamp(38px,11.2vw,54px);letter-spacing:-.04em;margin-bottom:16px}
+  .dek{font-size:16px;max-width:24em}
+  .hook{max-width:none;margin-top:20px}
+  .hook-row{padding:4px 0}
+  .hook-row b{font-size:19px}
+  .hook p{font-size:12px}
+  .route{margin-top:18px}
+  .route-label{padding-right:8px}
+  .route-step{padding:0 9px;font-size:11px}
+  .route-pop{font-size:11.5px}
+  .scroll-cue{padding-bottom:14px}
+  .core-wrap{max-width:none;justify-self:stretch;margin-top:4px}
+  .core-v{display:none}
+  .core-h{display:block}
+  .core-mobile{display:block}
+  .rail{display:none}
+  .progress{height:3px}
+  .to-top{right:12px;bottom:12px}
+  .split{gap:24px}
+  .split--rev .split-visual{order:0}
+  .sticky-visual{position:static}
+  .key-row{grid-template-columns:1fr 1fr}
+  .key-cell{padding:12px 10px}
+  .key-cell b{font-size:20px}
+  .key-cell span{font-size:10px}
+  .table{font-size:12px}
+  .table th,.table td{padding:9px 6px}
+  .table th{font-size:9.5px}
+  .hbar{grid-template-columns:minmax(54px,88px) 1fr minmax(44px,62px);gap:7px}
+  .hbar-label{font-size:10.5px}
+  .hbar-val{font-size:10.5px}
+  .vchart{height:var(--hm,180px)}
+  .tl-item{grid-template-columns:56px 18px 1fr}
+  .tl-date{font-size:10px}
+  .tl-body{padding-left:10px}
+  .gantt-row{grid-template-columns:minmax(80px,106px) 1fr minmax(34px,46px);gap:7px}
+  .gantt-label{font-size:10px}
+  .gantt-val{font-size:10px}
+  .matrix-wrap{grid-template-columns:18px 1fr;grid-template-rows:22px 1fr 22px}
+  .quad{padding:11px 10px;min-height:142px}
+  .quad h4{font-size:15px}
+  .quad p{font-size:9.5px}
+  .quad-k{font-size:8.5px}
+  .sys-grid{grid-template-columns:1fr}
+  .share-layout{grid-template-columns:1fr}
+  .share-card{width:100%}
+  .share-card.is-tall{width:min(100%,320px)}
+  .footer-meta{display:grid;gap:6px}
+  .sources ol{grid-template-columns:1fr}
+}
+/* ===== 22. 1080p type scale calibration ===== */
+@media (min-width:760px){
+body{font-size:18px}
+.body-copy{font-size:18px}
+.lede{font-size:clamp(19px,1.9vw,22px)}
+.dek{font-size:clamp(18px,1.9vw,21px)}
+.small{font-size:14px}
+.kicker{font-size:13px}
+.masthead{font-size:12.5px}
+.hero-note{font-size:12.5px}
+.hook-row span{font-size:13px}
+.hook p{font-size:14px}
+.route-label{font-size:12px}
+.route-step{font-size:13px}
+.route-step i{font-size:11px}
+.route-pop{font-size:13px}
+.scroll-cue{font-size:12px}
+.core-depth{font-size:11.5px}
+.core-name{font-size:14.5px}
+.core-val{font-size:12px}
+.core-note{font-size:11px}
+.depth-tag{font-size:13px}
+.key-label,.key-note,.key-cell span{font-size:12.5px}
+.quote{font-size:19px}
+.quote cite{font-size:12px}
+.note{font-size:13px}
+.flag{font-size:11px}
+.cite{font-size:10px}
+.chart figcaption,.chart-title{font-size:12.5px}
+.chart-title b{font-size:13px}
+.hbar-label,.hbar-val{font-size:13px}
+.vcol-label,.vcol-val,.stackcol-val{font-size:12px}
+.stackbar span{font-size:10.5px}
+.stack-legend,.chart-note,.stackcol-label,.loop-legend,.loop-svg .edge-label{font-size:11.5px}
+.divbar-label,.divbar-val{font-size:12.5px}
+.table{font-size:14.5px}
+.table th{font-size:12px}
+.tl-date{font-size:12px}
+.tl-body h4{font-size:15px}
+.tl-body p{font-size:13.5px}
+.gantt-label,.gantt-val{font-size:12.5px}
+.cycle-step b{font-size:14px}
+.cycle-step span{font-size:11.5px}
+.pos-k{font-size:11.5px}
+.pos p{font-size:13.5px}
+.pos .first-step{font-size:13px}
+.pos .cost{font-size:12.5px}
+.chain-step b{font-size:14px}
+.chain-step span{font-size:11.5px}
+.compare-label{font-size:13px}
+.compare-foot{font-size:12.5px}
+.compare-big small{font-size:12px}
+.axis-y,.axis-x{font-size:11.5px}
+.quad-k{font-size:11px}
+.quad p{font-size:12px}
+.quad .prob{font-size:11.5px}
+.sd-block span{font-size:12px}
+.sd-block p{font-size:13.5px}
+.loop-btn{font-size:12.5px}
+.loop-sub{font-size:12px}
+.sys-k{font-size:11.5px}
+.sys-item p{font-size:13.5px}
+.btn{font-size:13px}
+.btn--small{font-size:12px}
+.share-card .sc-label{font-size:11px}
+.share-card .sc-sub{font-size:14px}
+.share-card .sc-foot{font-size:10.5px}
+.share-card.is-tall .sc-sub{font-size:15px}
+.copy-item p{font-size:13.5px}
+.alt-text{font-size:12.5px}
+.location-box p{font-size:13.5px}
+.next-q{font-size:13.5px}
+.sources{font-size:12.5px}
+.src-tag{font-size:10px}
+.caveat{font-size:12.5px}
+.footer-meta{font-size:12px}
+.eq-cell span{font-size:12px}
+.eq-cell small{font-size:11px}
+.fault-label{font-size:11.5px}
+.rail-dot span{font-size:11px}
+.toast{font-size:13px}
+h4{font-size:17px}
+}
+@media (max-width:759px){
+body{font-size:16.5px}
+.body-copy{font-size:16.5px}
+.lede{font-size:18px}
+.dek{font-size:17px}
+.small{font-size:13.5px}
+.kicker{font-size:12.5px}
+.masthead{font-size:12.5px}
+.hero-note{font-size:12px}
+.hook-row span{font-size:12.5px}
+.hook p{font-size:13px}
+.route-label{font-size:11.5px}
+.route-step{font-size:12px}
+.route-step i{font-size:10.5px}
+.route-pop{font-size:12.5px}
+.scroll-cue{font-size:11.5px}
+.core-depth{font-size:11px}
+.core-name{font-size:14px}
+.core-val{font-size:11.5px}
+.core-note{font-size:10.5px}
+.depth-tag{font-size:12.5px}
+.key-label,.key-note{font-size:12px}
+.key-cell span{font-size:11.5px}
+.quote{font-size:18px}
+.quote cite{font-size:11.5px}
+.note{font-size:12.5px}
+.flag{font-size:10.5px}
+.cite{font-size:9.5px}
+.chart figcaption,.chart-title{font-size:12px}
+.chart-title b{font-size:12.5px}
+.hbar-label,.hbar-val{font-size:12px}
+.vcol-label,.vcol-val,.stackcol-val{font-size:11.5px}
+.stackbar span{font-size:10px}
+.stack-legend,.chart-note,.stackcol-label,.loop-legend,.loop-svg .edge-label{font-size:11px}
+.divbar-label,.divbar-val{font-size:12px}
+.table{font-size:13.5px}
+.table th{font-size:11px}
+.tl-date{font-size:11.5px}
+.tl-body h4{font-size:14px}
+.tl-body p{font-size:13px}
+.gantt-label,.gantt-val{font-size:12px}
+.cycle-step b{font-size:13.5px}
+.cycle-step span{font-size:11px}
+.pos-k{font-size:11px}
+.pos p{font-size:13px}
+.pos .first-step{font-size:12.5px}
+.pos .cost{font-size:12px}
+.chain-step b{font-size:13.5px}
+.chain-step span{font-size:11px}
+.compare-label{font-size:12.5px}
+.compare-foot{font-size:12px}
+.compare-big small{font-size:11.5px}
+.axis-y,.axis-x{font-size:11px}
+.quad-k{font-size:10px}
+.quad p{font-size:11px}
+.quad .prob{font-size:10.5px}
+.sd-block span{font-size:11.5px}
+.sd-block p{font-size:13px}
+.loop-btn{font-size:12px}
+.loop-sub{font-size:11.5px}
+.sys-k{font-size:11px}
+.sys-item p{font-size:13px}
+.btn{font-size:12.5px}
+.btn--small{font-size:11.5px}
+.share-card .sc-label{font-size:10.5px}
+.share-card .sc-sub{font-size:14px}
+.share-card .sc-foot{font-size:10.5px}
+.share-card.is-tall .sc-sub{font-size:15px}
+.copy-item p{font-size:13px}
+.alt-text{font-size:12px}
+.location-box p{font-size:13px}
+.next-q{font-size:13px}
+.sources{font-size:12px}
+.src-tag{font-size:9.5px}
+.caveat{font-size:12px}
+.footer-meta{font-size:11.5px}
+.eq-cell span{font-size:11.5px}
+.eq-cell small{font-size:10.5px}
+.fault-label{font-size:11px}
+.rail-dot span{font-size:10.5px}
+.toast{font-size:12.5px}
+}
+/* Repository showcase: original report with a language switch and run context. */
+.showcase-nav{display:flex;align-items:center;flex-wrap:wrap;gap:14px}
+.showcase-nav a{display:inline-flex;align-items:center;min-height:44px;color:rgba(233,229,218,.68)}
+.showcase-nav a[aria-current="page"]{color:var(--copper2)}
+.showcase-nav a:hover{color:var(--paper)}
+.masthead{align-items:center;flex-wrap:wrap}
+.hero-main{min-width:0}
+.hero-copy,.core-wrap{min-width:0;width:100%}
+.table th,.table td{overflow-wrap:anywhere}
+@media(max-width:759px){.hero-main{grid-template-columns:minmax(0,1fr)}}
+.run-origin{margin-top:16px;color:rgba(233,229,218,.65);font-size:12px;line-height:1.7}
+.run-origin summary{cursor:pointer;color:var(--copper2);padding:5px 0}
+.run-origin code{display:block;white-space:normal;margin:6px 0;font:inherit;color:var(--paper)}
+.run-origin a{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:600px){.masthead{gap:0}.showcase-nav{gap:18px}.showcase-nav a{font-size:12px}}
+</style>
+<style>html:lang(en) h1{font-size:clamp(34px,4.2vw,54px);line-height:1.08}html:lang(en) .core-name{font-size:12px}html:lang(en) .core-val{font-size:9px}html:lang(en) .core-note{font-size:9px}html:lang(en) .share-card .sc-big{font-size:clamp(23px,2.3vw,29px);max-width:14em}html:lang(en) .share-card .sc-sub{max-width:22em}html:lang(en) .share-card .sc-foot{max-width:36em}html:lang(en) .share-card.is-tall .sc-big{font-size:25px;max-width:12em}</style></head>
+<body data-depth="0">
+<div class="page" id="page">
+  <!-- ===== HERO ===== -->
+  <header class="hero" id="top">
+    <div class="wrap">
+      <div class="masthead">
+        <span><span class="ding">[OpenXSys] Ding. System activated.</span></span>
+        <nav class="showcase-nav" aria-label="Page and language"><a href="README.md">Run notes</a><a href="https://github.com/gengshupeng/open-x-sys/blob/main/skills/open-x-sys.zh-CN/experience/playground/replays/industry/index.html" lang="zh-CN">Chinese</a><a href="index.html" lang="en" aria-current="page">English</a></nav>
+      </div>
+      <div class="hero-main">
+        <div class="hero-copy">
+          <p class="kicker">A structural report · About 18 minutes to read</p>
+          <h1>Intelligence at the surface,<br>profits in the bedrock.</h1>
+          <p class="dek">The AI industry sells scarcity. Drill through eight layers: where money comes from, where it accumulates, and which loop is losing pressure.</p>
+          <p class="hero-note">Data as of 2026-11-16 · Market data as of the November 13 close · Sources and definitions at the end</p>
+          <details class="run-origin">
+            <summary>Doubao Work × DeepSeek v4.1 Flash · Generated from one sentence</summary>
+            <p>Prompt (English translation):</p>
+            <code>/open-x-sys I want to research the entire artificial intelligence industry!</code>
+            <p><a href="README.md">About this run →</a></p>
+          </details>
+          <div class="hook">
+            <div class="hook-row"><span>2026 Q3 · Operating profit of the three memory leaders</span><b>$179B</b></div>
+            <div class="hook-row"><span>Same quarter · Capital expenditure of four cloud providers</span><b>$209B</b></div>
+            <div class="hook-row"><span>OpenAI + Anthropic · Annualized revenue</span><b>$131B</b></div>
+            <p>The first figure is profit; the second is spending. A year's revenue from the two leading model companies is less than three months of memory profits.</p>
+          </div>
+          <nav class="route" aria-label="This route">
+            <span class="route-label">This route</span>
+            <button class="route-step" data-route="open" aria-expanded="false">Open <i>01</i></button>
+            <button class="route-step" data-route="xray" aria-expanded="false">X-ray <i>02</i></button>
+            <button class="route-step" data-route="flow" aria-expanded="false">Flow <i>03</i></button>
+            <button class="route-step" data-route="loop" aria-expanded="false">Loops <i>04</i></button>
+            <button class="route-step" data-route="bottleneck" aria-expanded="false">Bottleneck <i>05</i></button>
+            <button class="route-step" data-route="leverage" aria-expanded="false">Leverage <i>06</i></button>
+            <button class="route-step" data-route="make" aria-expanded="false">Make <i>07</i></button>
+          </nav>
+          <div class="route-pop" id="routePop" aria-live="polite">Click a method to see what it examines here. This report is the result of following that route.</div>
+        </div>
+        <div class="core-wrap" aria-hidden="true">
+          <svg class="core-v core-svg" viewBox="0 0 620 760" role="img" aria-label="AI industry core sample: eight layers from applications to power; capital flows down and profits flow up">
+            <defs>
+              <linearGradient id="coreShade" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#ffffff" stop-opacity=".12"></stop>
+                <stop offset=".18" stop-color="#ffffff" stop-opacity="0"></stop>
+                <stop offset=".72" stop-color="#000000" stop-opacity="0"></stop>
+                <stop offset="1" stop-color="#000000" stop-opacity=".42"></stop>
+              </linearGradient>
+              <linearGradient id="veinGrad" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0" stop-color="#e0a052" stop-opacity=".2"></stop>
+                <stop offset=".45" stop-color="#e0a052" stop-opacity="1"></stop>
+                <stop offset="1" stop-color="#e0a052" stop-opacity=".35"></stop>
+              </linearGradient>
+              <pattern id="pSand" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="4" cy="5" r="1" fill="#ffffff" opacity=".18"></circle><circle cx="13" cy="12" r=".8" fill="#000000" opacity=".18"></circle></pattern>
+              <pattern id="pLines" width="16" height="9" patternUnits="userSpaceOnUse"><path d="M0 8h16" stroke="#ffffff" stroke-width=".8" opacity=".2"></path></pattern>
+              <pattern id="pGrid" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M0 0h22v22" stroke="#ffffff" stroke-width=".7" opacity=".14"></path></pattern>
+              <pattern id="pDie" width="26" height="26" patternUnits="userSpaceOnUse"><rect x="2" y="2" width="10" height="10" fill="none" stroke="#ffffff" stroke-width=".8" opacity=".18"></rect><rect x="15" y="15" width="7" height="7" fill="none" stroke="#ffffff" stroke-width=".8" opacity=".12"></rect></pattern>
+              <pattern id="pHbm" width="16" height="10" patternUnits="userSpaceOnUse"><path d="M0 3h16M0 7h16" stroke="#ffffff" stroke-width="1" opacity=".2"></path></pattern>
+              <pattern id="pInter" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0 20L20 0" stroke="#ffffff" stroke-width=".8" opacity=".16"></path></pattern>
+              <pattern id="pHatch" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M0 12L12 0" stroke="#ffffff" stroke-width="1" opacity=".22"></path></pattern>
+              <clipPath id="coreClip">
+                <path d="M168,44 C158,190 180,360 166,690 L462,690 C472,540 450,200 462,44 Z"></path>
+              </clipPath>
+            </defs>
+
+            <!-- depth scale -->
+            <line x1="142" y1="44" x2="142" y2="690" stroke="#e9e5da" stroke-opacity=".18" stroke-width="1"></line>
+            <g class="core-depth">
+              <text x="132" y="70" text-anchor="end">0m</text>
+              <text x="132" y="150" text-anchor="end">10m</text>
+              <text x="132" y="236" text-anchor="end">20m</text>
+              <text x="132" y="328" text-anchor="end">30m</text>
+              <text x="132" y="426" text-anchor="end">40m</text>
+              <text x="132" y="520" text-anchor="end">50m</text>
+              <text x="132" y="620" text-anchor="end">60m</text>
+              <text x="132" y="694" text-anchor="end">70m</text>
+            </g>
+
+            <!-- core body -->
+            <g clip-path="url(#coreClip)">
+              <rect x="160" y="44" width="306" height="80" fill="#b8b1a0"></rect><rect x="160" y="44" width="306" height="80" fill="url(#pSand)"></rect>
+              <rect x="160" y="124" width="306" height="86" fill="#a77b4d"></rect><rect x="160" y="124" width="306" height="86" fill="url(#pLines)"></rect>
+              <rect x="160" y="210" width="306" height="96" fill="#5f7f8a"></rect><rect x="160" y="210" width="306" height="96" fill="url(#pGrid)"></rect>
+              <rect x="160" y="306" width="306" height="100" fill="#35627d"></rect><rect x="160" y="306" width="306" height="100" fill="url(#pDie)"></rect>
+              <rect x="160" y="406" width="306" height="96" fill="#2d565a"></rect><rect x="160" y="406" width="306" height="96" fill="url(#pHbm)"></rect>
+              <rect x="160" y="502" width="306" height="96" fill="#77513a"></rect><rect x="160" y="502" width="306" height="96" fill="url(#pInter)"></rect>
+              <rect x="160" y="598" width="306" height="96" fill="#70382d"></rect><rect x="160" y="598" width="306" height="96" fill="url(#pHatch)"></rect>
+              <rect x="160" y="44" width="306" height="650" fill="url(#coreShade)"></rect>
+              <line x1="160" y1="124" x2="466" y2="124" stroke="#e9e5da" stroke-opacity=".42" stroke-width="1"></line>
+              <line x1="160" y1="210" x2="466" y2="210" stroke="#e9e5da" stroke-opacity=".42" stroke-width="1"></line>
+              <line x1="160" y1="306" x2="466" y2="306" stroke="#e9e5da" stroke-opacity=".42" stroke-width="1"></line>
+              <line x1="160" y1="406" x2="466" y2="406" stroke="#e9e5da" stroke-opacity=".42" stroke-width="1"></line>
+              <line x1="160" y1="502" x2="466" y2="502" stroke="#e9e5da" stroke-opacity=".42" stroke-width="1"></line>
+              <line x1="160" y1="598" x2="466" y2="598" stroke="#e9e5da" stroke-opacity=".42" stroke-width="1"></line>
+            </g>
+            <ellipse cx="315" cy="44" rx="147" ry="11" fill="#c9c2b2" stroke="#e9e5da" stroke-opacity=".35"></ellipse>
+            <ellipse cx="315" cy="690" rx="147" ry="11" fill="#5c322a" stroke="#e9e5da" stroke-opacity=".2"></ellipse>
+            <line x1="168" y1="44" x2="168" y2="690" stroke="#ffffff" stroke-opacity=".16"></line>
+            <line x1="462" y1="44" x2="462" y2="690" stroke="#000000" stroke-opacity=".3"></line>
+
+            <!-- drill + vein -->
+            <line class="drill-line" x1="315" y1="22" x2="315" y2="690"></line>
+            <g class="vein"><line x1="315" y1="688" x2="315" y2="46" stroke="url(#veinGrad)" stroke-width="4"></line></g>
+            <g class="drill-bit"><polygon points="315,688 302,670 315,676 328,670" fill="#e0a052"></polygon><circle cx="315" cy="690" r="3" fill="#fff3df"></circle></g>
+
+            <!-- labels -->
+            <g class="core-label is-on" style="--i:0">
+              <line x1="470" y1="84" x2="500" y2="84" stroke="#e0a052" stroke-opacity=".45"></line>
+              <text class="core-name" x="506" y="79">Applications</text>
+              <text class="core-val" x="506" y="95">$77B · Enterprise applications</text>
+            </g>
+            <g class="core-label is-on" style="--i:1">
+              <line x1="470" y1="167" x2="500" y2="167" stroke="#e0a052" stroke-opacity=".45"></line>
+              <text class="core-name" x="506" y="162">Models</text>
+              <text class="core-val" x="506" y="178">$131B · Annualized revenue</text>
+            </g>
+            <g class="core-label" style="--i:2">
+              <line x1="470" y1="258" x2="500" y2="258" stroke="#e0a052" stroke-opacity=".45"></line>
+              <text class="core-name" x="506" y="253">Cloud &amp; capital</text>
+              <text class="core-val" x="506" y="269">$730B · 2026 capex</text>
+            </g>
+            <g class="core-label" style="--i:3">
+              <line x1="470" y1="356" x2="500" y2="356" stroke="#e0a052" stroke-opacity=".45"></line>
+              <text class="core-name" x="506" y="351">Chips</text>
+              <text class="core-val" x="506" y="367">$96B · Quarterly revenue</text>
+            </g>
+            <g class="core-label" style="--i:4">
+              <line x1="470" y1="454" x2="500" y2="454" stroke="#e0a052" stroke-opacity=".45"></line>
+              <text class="core-name" x="506" y="449">Memory</text>
+              <text class="core-val" x="506" y="465">$179B · Quarterly profit</text>
+            </g>
+            <g class="core-label" style="--i:5">
+              <line x1="470" y1="550" x2="500" y2="550" stroke="#e0a052" stroke-opacity=".45"></line>
+              <text class="core-name" x="506" y="545">Packaging</text>
+              <text class="core-val" x="506" y="561">120–140k wafers / month</text>
+            </g>
+            <g class="core-label" style="--i:6">
+              <line x1="470" y1="646" x2="500" y2="646" stroke="#e0a052" stroke-opacity=".45"></line>
+              <text class="core-name" x="506" y="641">Power</text>
+              <text class="core-val" x="506" y="657">41GW · 2026 load</text>
+            </g>
+
+            <!-- direction legend -->
+            <g class="core-note">
+              <text x="506" y="28">Capital flows down ↓</text>
+              <text x="506" y="44" fill="#e0a052" opacity=".8">Profits flow up ↑</text>
+              <text x="506" y="710" opacity=".6">Deeper means harder to replicate</text>
+            </g>
+            <g class="core-arrow is-on" style="--i:0"><path d="M490,92 l5,-7 l5,7" stroke="#e0a052" stroke-width="1.2" fill="none"></path></g>
+            <g class="core-arrow is-on" style="--i:1"><path d="M490,175 l5,-7 l5,7" stroke="#e0a052" stroke-width="1.2" fill="none"></path></g>
+            <g class="core-arrow" style="--i:2"><path d="M490,266 l5,-7 l5,7" stroke="#e0a052" stroke-width="1.2" fill="none"></path></g>
+            <g class="core-arrow" style="--i:3"><path d="M490,364 l5,-7 l5,7" stroke="#e0a052" stroke-width="1.2" fill="none"></path></g>
+            <g class="core-arrow" style="--i:4"><path d="M490,462 l5,-7 l5,7" stroke="#e0a052" stroke-width="1.4" fill="none"></path></g>
+            <g class="core-arrow" style="--i:5"><path d="M490,558 l5,-7 l5,7" stroke="#e0a052" stroke-width="1.6" fill="none"></path></g>
+            <g class="core-arrow" style="--i:6"><path d="M490,654 l5,-7 l5,7" stroke="#e0a052" stroke-width="1.8" fill="none"></path></g>
+          </svg>
+
+          <svg class="core-h core-svg" viewBox="0 0 360 132" role="img" aria-label="Index of the AI industry's eight layers">
+            <g>
+              <rect x="0" y="22" width="45" height="60" fill="#b8b1a0"></rect><rect x="45" y="22" width="45" height="60" fill="#a77b4d"></rect><rect x="90" y="22" width="45" height="60" fill="#5f7f8a"></rect><rect x="135" y="22" width="45" height="60" fill="#35627d"></rect><rect x="180" y="22" width="45" height="60" fill="#2d565a"></rect><rect x="225" y="22" width="45" height="60" fill="#77513a"></rect><rect x="270" y="22" width="45" height="60" fill="#70382d"></rect><rect x="315" y="22" width="45" height="60" fill="#08161c"></rect>
+              <line x1="0" y1="82" x2="360" y2="82" stroke="#e9e5da" stroke-opacity=".24"></line>
+              <line class="mline" x1="0" y1="52" x2="360" y2="52"></line>
+              <g fill="#e9e5da" font-size="11.5" text-anchor="middle">
+                <text x="22" y="102">Apps</text><text x="67" y="102">Models</text><text x="112" y="102">Cloud</text><text x="157" y="102">Chips</text><text x="202" y="102">Memory</text><text x="247" y="102">Packaging</text><text x="292" y="102">Power</text><text x="337" y="102">Loop</text>
+              </g>
+              <text x="0" y="122" fill="#e9e5da" opacity=".45" font-size="11">Further right means closer to the physical layer—and thicker profits.</text>
+            </g>
+          </svg>
+          <div class="core-mobile small">Capital follows the copper line down; profits follow it up. The page darkens as you descend.</div>
+        </div>
+      </div>
+      <div class="scroll-cue"><span class="line"></span><span>Descend 70 meters</span></div>
+    </div>
+  </header>
+
+<!-- ===== 01 DISCOVERY ===== -->
+<section class="section block-paper" id="s1" data-depth="1">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">Discovery</span><span class="depth-name">First, locate the profits</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>A year's revenue from the two leading model companies is less than one quarter of profit at three memory makers.</h2>
+        <p class="lede" style="margin-top:22px">This reveals the distribution of profit across the chain: closer to “intelligence,” the business looks like a subsidy; closer to what is hard to replicate, it looks like collecting rent.</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>In Q3 2026, Samsung DS, SK hynix and Micron generated combined operating profit of approximately <b>$179 billion</b><a class="cite" href="#source17">17</a><a class="cite" href="#source18">18</a><a class="cite" href="#source19">19</a>; in the same quarter, four cloud providers spent approximately <b>$208.7 billion</b><a class="cite" href="#source12">12</a>on capital expenditure. Memory profits equaled 86% of cloud capex.</p>
+          <p>Meanwhile, OpenAI and Anthropic had combined annualized revenue of approximately <b>$131 billion</b><a class="cite" href="#source9">9</a><a class="cite" href="#source34">34</a>. This compares annualized revenue with quarterly profit. Although the measures differ, their scale illustrates the point: making intelligence earns less than selling memory.</p>
+        </div>
+        <div class="note"><b>Measurement note:</b>Quarterly operating profit and annualized revenue use different measures; this comparison illustrates scale only. Samsung DS includes some foundry operations, SK hynix is converted at KRW 1,400/USD, and Micron uses FY26 Q4, ended September 3.</div>
+      </div>
+      <div class="split-visual">
+        <figure class="chart" data-chart="">
+          <div class="chart-title"><b>One quarter vs. one year</b><span>2026 Q3 / 2026 annualized</span></div>
+          <div class="compare">
+            <div class="compare-row">
+              <div class="compare-top"><span class="compare-label">Three memory leaders · Quarterly operating profit</span><span class="compare-val">$179B</span></div>
+              <div class="compare-track"><span class="compare-fill" style="--w:99.4%"></span></div>
+              <div class="compare-foot">Samsung DS $76B + SK hynix $60B + Micron $44B</div>
+            </div>
+            <div class="compare-row compare-row--outline">
+              <div class="compare-top"><span class="compare-label">OpenAI + Anthropic · Annualized revenue</span><span class="compare-val">$131B</span></div>
+              <div class="compare-track"><span class="compare-fill" style="--w:72.8%"></span></div>
+              <div class="compare-foot">OpenAI $50B + Anthropic $81B</div>
+            </div>
+          </div>
+          <figcaption>Bars use one scale. Memory figures are quarterly operating profit; model-company figures are annualized revenue. Sources: company reports, S-1 filings and media disclosures.</figcaption>
+        </figure>
+
+        <figure class="chart" data-chart="" style="margin-top:30px">
+          <div class="chart-title"><b>For every $52 spent on infrastructure, $1 goes to model software</b><span>Gartner 2026<a class="cite" href="#source10">10</a></span></div>
+          <div class="unit-grid" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i>
+          </div>
+          <div class="stack-legend"><span><i style="background:var(--accent)"></i>Generative model software: $28.3B</span><span><i style="background:var(--muted);opacity:.45"></i>AI infrastructure: $1,480B</span></div>
+          <figcaption>Each cell represents about $2.8 billion. Gartner's “AI infrastructure” includes servers, data centers, networking and devices; it differs from cloud capex. “Model software” also differs from model-company revenue. The ratio illustrates where spending concentrates.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 02 APPLICATION ===== -->
+<section class="section" id="s2" data-depth="2">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">0 m</span><span class="depth-name">Surface · Applications</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>Applications are closest to the customer, yet receive only $77.3 billion.</h2>
+        <p class="lede" style="margin-top:20px">Enterprise AI deployment spending grew from $33 billion to $176.8 billion in one year, but most money went to models and infrastructure; independent applications accounted for 44%.</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>Under Menlo Ventures' 2026 definitions, total enterprise AI deployment spending was <b>$176.8 billion</b>, 5.4 times the 2025 level; infrastructure accounted for <b>$99.5 billion</b>, applications <b>$77.3 billion</b>, and training data and services <b>$15.3 billion</b><a class="cite" href="#source11">11</a>. Within applications, coding received $34 billion and enterprise chatbots $25 billion—a combined 76%.</p>
+          <p>Frontier labs captured <b>$122.7 billion</b>, or 69% of enterprise deployment spending. They supply models and develop applications; independent app companies must consider what happens when their model supplier builds the same product.</p>
+          <p>Meanwhile, 72% of enterprises use AI in production, yet nearly 80% of deployments have brought no net-profit improvement, and 95% of generative AI pilots have produced no direct financial return<a class="cite" href="#source32">32</a>. Failed pilots and successful deployments coexist. The difference is whether AI is embedded in workflows and produces verifiable results.</p>
+        </div>
+        <div class="key">
+          <span class="key-label">Where application spending goes</span>
+          <b class="key-val">76%</b>
+          <span class="key-note">Coding and enterprise chatbots take three quarters of application spending. Healthcare, customer service, legal and financial back offices remain early.</span>
+        </div>
+      </div>
+      <div class="split-visual">
+        <figure class="chart" data-chart="">
+          <div class="chart-title"><b>Enterprise AI deployment spending: $176.8B</b><span>Menlo Ventures 2026</span></div>
+          <div class="stackbar" role="img" aria-label="Enterprise AI deployment spending: infrastructure $99.5B, applications $77.3B, training data and services $15.3B">
+            <span style="width:56.3%;background:var(--cobalt)">Infrastructure 56%</span><span style="width:43.7%;background:var(--copper)">Applications 44%</span>
+          </div>
+          <div class="stack-legend"><span><i style="background:var(--cobalt)"></i>Infrastructure $99.5B</span><span><i style="background:var(--copper)"></i>Applications $77.3B</span><span><i style="background:var(--muted);opacity:.5"></i>Training data &amp; services $15.3B (separate scope)</span></div>
+          <figcaption>Of $77.3 billion in application spending, coding accounts for $34 billion, chatbots $25 billion, healthcare $3.7 billion, customer service $2.7 billion, and the remainder roughly $11.9 billion. Menlo's categories overlap and do not sum to the total; this compares category scale.</figcaption>
+        </figure>
+
+        <figure class="chart" data-chart="" style="margin-top:26px">
+          <div class="chart-title"><b>Concentration of application spending</b><span>2026</span></div>
+          <div class="hbars">
+            <div class="hbar"><span class="hbar-label">Coding</span><div class="hbar-track"><span class="hbar-fill" style="--w:100%;--i:0"></span></div><span class="hbar-val">$34B</span></div>
+            <div class="hbar"><span class="hbar-label">Enterprise chatbots</span><div class="hbar-track"><span class="hbar-fill" style="--w:73.5%;--i:1"></span></div><span class="hbar-val">$25B</span></div>
+            <div class="hbar"><span class="hbar-label">Healthcare</span><div class="hbar-track"><span class="hbar-fill" style="--w:10.9%;--i:2"></span></div><span class="hbar-val">$3.7B</span></div>
+            <div class="hbar"><span class="hbar-label">Customer service</span><div class="hbar-track"><span class="hbar-fill" style="--w:7.9%;--i:3"></span></div><span class="hbar-val">$2.7B</span></div>
+            <div class="hbar"><span class="hbar-label">Other</span><div class="hbar-track"><span class="hbar-fill hbar-fill--muted" style="--w:35%;--i:4"></span></div><span class="hbar-val">$11.9B</span></div>
+          </div>
+          <figcaption>“Other” is the remainder after subtracting listed categories, rather than one category. Coding and chatbots share verifiable outputs, frequent use and low switching costs.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 03 MODEL LAYER ===== -->
+<section class="section" id="s3" data-depth="2">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">10 m</span><span class="depth-name">Models</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>The smartest layer has a margin of just 10%.</h2>
+        <p class="lede" style="margin-top:20px">Model gross margins resemble software; expense ratios resemble heavy industry. These companies sell tokens, pay for compute, sign long-term commitments and face their first public-market valuation.</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>OpenAI reported 2025 revenue of $13.07 billion, total costs of roughly $34 billion and operating losses of $20.92 billion. Payments to Microsoft Azure were <b>$17.2 billion</b>, more than its full-year revenue<a class="cite" href="#source8">8</a>. In H1 2026, revenue was $12.4 billion and operating losses $21.6 billion; Q2 alone brought $6.7 billion in revenue and $12.3 billion in operating losses<a class="cite" href="#source9">9</a>。</p>
+          <p>Anthropic followed a different path: H1 2026 revenue was $16.286 billion, with operating losses of just $693 million. Q2 operating profit reached $974 million, a margin of about 8%; but Q3 revenue of $17 billion and expenses of $17.5 billion brought it back to <b>$567 million in</b> operating losses<a class="cite" href="#source5">5</a><a class="cite" href="#source34">34</a>. Profitability is a choice rather than a settled condition.</p>
+          <p>Both trade the future for the present: OpenAI's nominal ceiling on chip and cloud contracts is approximately <b>$710 billion</b>, with planned negative free cash flow for 2026–2030 of <b>$278 billion</b>and compute and infrastructure spending of <b>$856 billion</b><a class="cite" href="#source9">9</a>; Anthropic's long-term compute commitments are <b>$90.09 billion</b>, including $451.6 billion due before 2030<a class="cite" href="#source5">5</a>。</p>
+        </div>
+        <div class="note"><b>Key difference:</b>OpenAI combines consumer subscriptions, Azure bills and owned compute; Anthropic combines enterprise APIs, higher pricing and more restrained spending. The former has greater scale, the latter better unit economics. Both bet on continued exponential token growth.</div>
+      </div>
+      <div class="split-visual">
+        <figure class="chart" data-chart="">
+          <div class="chart-title"><b>Spending per $1 of revenue</b><span>2026</span></div>
+          <div class="key-row">
+            <div class="key-cell"><b>$2.22</b><span>OpenAI · Total cost / revenue<br>2026 Q1, adjusted</span></div>
+            <div class="key-cell"><b>$1.04</b><span>Anthropic · Total expenses / revenue<br>2026 H1</span></div>
+          </div>
+          <div style="margin-top:18px" class="hbars">
+            <div class="hbar"><span class="hbar-label">OpenAI</span><div class="hbar-track"><span class="hbar-fill hbar-fill--oxide" style="--w:92.5%;--i:0"></span></div><span class="hbar-val">2.22×</span></div>
+            <div class="hbar"><span class="hbar-label">Anthropic</span><div class="hbar-track"><span class="hbar-fill" style="--w:43.3%;--i:1"></span></div><span class="hbar-val">1.04×</span></div>
+            <div class="hbar"><span class="hbar-label">Break-even</span><div class="hbar-track"><span class="hbar-fill hbar-fill--muted" style="--w:41.7%;--i:2"></span></div><span class="hbar-val">1.00×</span></div>
+          </div>
+          <figcaption>Full bars represent 2.4×; 1.00× is break-even. OpenAI uses Q1 adjusted operating losses/revenue; Anthropic uses H1 total expenses/revenue. The measures differ, but point in the same direction: the model layer still trades profit for scale.</figcaption>
+        </figure>
+
+        <figure class="chart" data-chart="" style="margin-top:26px">
+          <div class="chart-title"><b>Enterprise model API share</b><span>Menlo, September 2026</span></div>
+          <div class="stackbar" role="img" aria-label="Enterprise model API share: Anthropic 55%, OpenAI 31%, Google 9%, other 5%">
+            <span style="width:55%;background:var(--copper)">Anthropic 55%</span><span style="width:31%;background:var(--cobalt)">OpenAI 31%</span><span style="width:9%;background:var(--muted)">9%</span><span style="width:5%;background:var(--line)"></span>
+          </div>
+          <div class="stack-legend"><span><i style="background:var(--copper)"></i>Anthropic</span><span><i style="background:var(--cobalt)"></i>OpenAI</span><span><i style="background:var(--muted)"></i>Google</span><span><i style="background:var(--line)"></i>Other 5%</span></div>
+          <figcaption>Enterprise APIs are the model layer's most profitable entry point; consumer subscriptions are a separate market. Menlo Ventures' enterprise survey measures share within its sample, rather than total market revenue.</figcaption>
+        </figure>
+
+        <div class="key" style="margin-top:26px">
+          <span class="key-label">The first public-market valuation</span>
+          <b class="key-val">11-18</b>
+          <span class="key-note">Anthropic plans to list on Nasdaq as ANT at $70–78 per share, issuing 825 million shares. Basic market capitalization would be about $916 billion–$1.02 trillion, or $1.3–1.4 trillion fully diluted. Seven technology companies committed $26 billion in private placements: Google $10B, Nvidia $10B, AMD $2.5B, Broadcom $1B, Micron $1B, Microsoft $1B and TSMC $0.5B.<a class="cite" href="#source6">6</a><a class="cite" href="#source7">7</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:clamp(30px,4vw,48px)">
+      <table class="table table--compare">
+        <colgroup><col style="width:30%"><col style="width:35%"><col style="width:35%"></colgroup>
+        <thead><tr><th>Metric</th><th>OpenAI</th><th>Anthropic</th></tr></thead>
+        <tbody>
+          <tr><td>Annualized revenue</td><td><b>$50B</b>（2026-09）</td><td><b>$81B</b>（2026-10）</td></tr>
+          <tr><td>2026 H1 operating results</td><td>Revenue $12.4B; operating loss <b>$21.6B</b></td><td>Revenue $16.29B; operating loss <b>$0.69B</b></td></tr>
+          <tr><td>Gross margin</td><td>39% (2026 Q1); 33% in 2025</td><td><b>85%</b>(2026 H1)</td></tr>
+          <tr><td>Latest quarterly operating profit</td><td>Q2 approximately <b>-$12.3B</b></td><td>Q2 <b>+$0.97B</b>；Q3 <b>-$0.57B</b></td></tr>
+          <tr><td>Cash on hand</td><td>Approximately $73B (2026 Q1)</td><td><b>$131.8B</b>（2026 Q3）</td></tr>
+          <tr><td>Long-term compute commitments</td><td>$710B chip/cloud contract ceiling; $1.2T infrastructure plan</td><td><b>$900.9B</b>; including $451.6B due before 2030</td></tr>
+          <tr class="is-em"><td>Valuation / IPO</td><td>$852B (2026-03); target $1.4T</td><td>$965B (2026-05); IPO basic market cap $0.92–1.02T</td></tr>
+        </tbody>
+      </table>
+      <div class="note"><b>Note:</b>OpenAI figures follow unaudited media disclosures; Anthropic figures follow its S-1 and amendments. Revenue recognition, compute commitments and stock-based compensation differ. Individual figures do not support a direct ranking; the comparison examines structure.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 04 INTERLUDE ===== -->
+<section class="section interlude block-dark" id="s4" data-depth="4">
+  <div class="wrap wrap--narrow">
+    <div class="depth-tag"><span class="depth-num">Discovery 02</span><span class="depth-name">Why deeper layers earn more</span></div>
+    <h2>Cheaper intelligence,<br>costlier bedrock.</h2>
+    <p class="lede" style="margin-top:24px">Every model cost reduction sends orders to the physical layer. The price of a unit of intelligence falls, while calls, tasks and infrastructure demand grow faster.</p>
+    <div class="equation">
+      <div class="eq-cell"><span>Price per unit of intelligence</span><b>About 50× cheaper</b><small>per year, at fixed capability</small></div>
+      <div class="eq-cell"><span>Global inference tokens</span><b>14×</b><small>year on year; about 30 trillion/month in mid-2026</small></div>
+      <div class="eq-cell"><span>Enterprise AI spending</span><b>+35%</b><small>About $407 billion in 2026</small></div>
+      <div class="eq-note">A direction rather than an equation: faster price declines bring faster growth in use and new tasks; the latter determine total spending. This is the AI industry's version of the Jevons paradox.</div>
+    </div>
+    <div class="body-copy" style="margin-top:28px">
+      <p>In 1865, Jevons observed that more efficient steam engines increased British coal consumption: cheaper power enabled new uses. AI follows a similar curve. Cheaper tokens enable agents, long contexts, multimodality and real-time interaction, ultimately returning the bill to memory, packaging, power and capital<a class="cite" href="#source33">33</a>。</p>
+      <p>Model efficiency gains therefore redistribute value toward capacity that is hardest to expand. The harder the model layer works, the more memory, packaging and power can earn.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 05 CLOUD ===== -->
+<section class="section" id="s5" data-depth="3">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">20 m</span><span class="depth-name">Cloud &amp; capital</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>Cloud providers are AI's bankers.</h2>
+        <p class="lede" style="margin-top:20px">In 2026, four cloud providers will spend about $730 billion on capex—a sum their own free cash flow can no longer cover.</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>The four North American cloud providers spent approximately <b>$208.7 billion</b>, up 84.2% year on year; combined full-year guidance is approximately <b>$720–744.5 billion</b>, versus $413 billion in 2025<a class="cite" href="#source12">12</a>. Including Oracle's FY2027 guidance brings the total to about $835 billion. For 2027, sell-side consensus points to <b>$1.0–1.2 trillion</b><a class="cite" href="#source13">13</a>。</p>
+          <p>Where does the money come from? Hyperscalers issued approximately <b>$182 billion</b>of bonds in 2025, versus $92 billion in 2024. Alphabet's debt rose from about $16 billion to about $100 billion; in June 2026 it also announced <b>an $80 billion equity raise</b><a class="cite" href="#source14">14</a>. JPMorgan estimates that only about 15% of large AI companies' debt and lease commitments appear on their balance sheets<a class="cite" href="#source13">13</a>。</p>
+          <p>And returns? Capex/EBITDA is approximately <b>90%</b>in 2026 and approximately <b>94%</b>in 2027; incremental EBITDA yield on the previous year's capex is only <b>20–40%</b><a class="cite" href="#source13">13</a>. With GPU lifetimes of 5–6 years, a low-return asset approaches retirement just as it pays back.</p>
+        </div>
+        <div class="note"><b>The question is who finances AI.</b>Who advances the money, and for how long? Once capex exceeds operating cash flow, interest rates, credit spreads and share prices set the pace alongside demand.</div>
+      </div>
+      <div class="split-visual">
+        <figure class="chart" data-chart="">
+          <div class="chart-title"><b>Capital expenditure of four cloud providers</b><span>2023–2027E, USD billions</span></div>
+          <div class="vchart" style="--h:250px;--hm:250px" role="img" aria-label="Four cloud providers' capex: about $140B in 2023, $230B in 2024, $413B in 2025, $730B in 2026 and a forecast $1,050B in 2027">
+            <div class="vcol"><span class="vcol-val">$140B</span><span class="vbar" style="--h:29px;--i:0"></span><span class="vcol-label">2023</span></div>
+            <div class="vcol"><span class="vcol-val">$230B</span><span class="vbar" style="--h:48px;--i:1"></span><span class="vcol-label">2024</span></div>
+            <div class="vcol"><span class="vcol-val">$413B</span><span class="vbar" style="--h:87px;--i:2"></span><span class="vcol-label">2025</span></div>
+            <div class="vcol"><span class="vcol-val">$730B</span><span class="vbar" style="--h:153px;--i:3"></span><span class="vcol-label">2026</span></div>
+            <div class="vcol"><span class="vcol-val">~$1.05T</span><span class="vbar vbar--forecast" style="--h:220px;--i:4"></span><span class="vcol-label">2027E</span></div>
+          </div>
+          <figcaption>2023/2024 are industry estimates for the four providers; 2025/2026 use company guidance; 2027 uses sell-side forecasts (Capital Economics: $1.0–1.2T). Bars start at zero; forecast bars are hatched.</figcaption>
+        </figure>
+
+        <figure class="chart" data-chart="" style="margin-top:26px">
+          <div class="chart-title"><b>2026 Q3 free cash flow</b><span>USD billions</span></div>
+          <div class="divbars">
+            <div class="divbar"><span class="divbar-label">Alphabet</span><div class="divbar-track"><span class="divbar-fill is-neg" style="--w:20.2%;--i:0"></span></div><span class="divbar-val">-$9.1B</span></div>
+            <div class="divbar"><span class="divbar-label">Meta</span><div class="divbar-track"><span class="divbar-fill is-neg" style="--w:4.7%;--i:1"></span></div><span class="divbar-val">-$2.1B</span></div>
+            <div class="divbar"><span class="divbar-label">Microsoft</span><div class="divbar-track"><span class="divbar-fill is-pos" style="--w:41.3%;--i:2"></span></div><span class="divbar-val">+$18.6B</span></div>
+            <div class="divbar"><span class="divbar-label">Amazon</span><div class="divbar-track"><span class="divbar-fill is-neg" style="--w:94.2%;--i:3"></span></div><span class="divbar-val">-$42.4B</span></div>
+          </div>
+          <div class="chart-note">Amazon uses trailing-12-month free cash flow; the others use one quarter. Microsoft's figure is positive but down 27% year on year.</div>
+          <figcaption>Free cash flow = operating cash flow − capital expenditure. Three of four are negative: capex has exceeded current cash generation.</figcaption>
+        </figure>
+
+        <figure class="chart" data-chart="" style="margin-top:26px">
+          <div class="chart-title"><b>Five-year recovery per $100 of capex</b><span>Incremental EBITDA yield: 20–40%</span></div>
+          <svg viewBox="0 0 520 220" width="100%" role="img" aria-label="Capital return curves: $20, $30 and $40 annual incremental EBITDA accumulate to $100, $150 and $200 over five years, versus a $100 cost line">
+            <g stroke="var(--line)" stroke-width="1" fill="none">
+              <line x1="46" y1="180" x2="500" y2="180"></line><line x1="46" y1="20" x2="46" y2="180"></line>
+              <line x1="46" y1="100" x2="500" y2="100" stroke-dasharray="4 5"></line>
+            </g>
+            <g font-family="var(--sans)" font-size="11.5" fill="var(--muted)">
+              <text x="46" y="198">0</text><text x="150" y="198">1</text><text x="250" y="198">2</text><text x="350" y="198">3</text><text x="450" y="198">4</text><text x="500" y="198">5 years</text>
+              <text x="8" y="104">$100</text><text x="8" y="28">$200</text><text x="8" y="184">$0</text>
+            </g>
+            <path d="M46,180 L500,100" stroke="var(--muted)" stroke-width="1.2" fill="none" opacity=".5"></path>
+            <path d="M46,180 L500,60" stroke="var(--accent)" stroke-width="1.6" fill="none"></path>
+            <path d="M46,180 L500,20" stroke="var(--copper2)" stroke-width="2" fill="none"></path>
+            <g font-family="var(--sans)" font-size="11.5">
+              <text x="440" y="92" fill="var(--muted)">20%/year</text><text x="440" y="52" fill="var(--accent)">30%/year</text><text x="440" y="14" fill="var(--copper2)">40%/year</text>
+            </g>
+            <line x1="430" y1="20" x2="430" y2="180" stroke="var(--oxide)" stroke-width="1" stroke-dasharray="3 4"></line>
+            <text x="424" y="172" font-family="var(--sans)" font-size="11" fill="var(--oxide)" text-anchor="end">GPU lifetime: 5–6 years</text>
+          </svg>
+          <figcaption>Illustrative curves, rather than actual company returns. At low yields, cumulative recovery only reaches cost near the end of an asset's life; at high yields, payback takes 2.5 years. Utilization and pricing determine the difference.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="key-row" style="margin-top:30px">
+      <div class="key-cell"><b>90% → 94%</b><span>Capex / EBITDA, 2026 → 2027E. Capital expenditure consumes almost all EBITDA.</span></div>
+      <div class="key-cell"><b>15%</b><span>Share of large AI companies' debt and lease commitments on balance sheet. The rest sit off balance sheet, in joint ventures or in supplier financing.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 06 CHIP ===== -->
+<section class="section" id="s6" data-depth="4">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">30 m</span><span class="depth-name">Chips</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>Nvidia collects a tax on compute.</h2>
+        <p class="lede" style="margin-top:20px">FY2027 Q2 revenue was $96.2 billion, with data centers contributing 92.5% and gross margin at 75%; Q3 guidance was $108 billion. Its constraints are supply, governance and the cycle.</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>FY2026 revenue was $215.9 billion (+65%), with a 71.1% gross margin. FY2027 Q2 revenue, for the quarter ended 2026-07-26, was <b>$96.221 billion</b>(+106% year on year, +18% sequentially), including data-center revenue of <b>$89.023 billion</b>(+117% year on year, 92.5% of total); GAAP gross margin was 75.0%, GAAP operating profit about $63.8 billion and GAAP net income $59.688 billion, including $7.78 billion in equity gains<a class="cite" href="#source1">1</a>。</p>
+          <p>Q3 guidance <b>$108 billion</b>(±2%), with a 74% gross margin and no China data-center revenue. The company said customer forecasts suggest potential business could double next fiscal year, but chip, memory, power and construction constraints limit confident growth to approximately <b>70%</b>. This is a supply story.</p>
+          <p>The market prices it cyclically: market cap $3.92 trillion, trailing P/E 20.35× and share price $162.85, down from an October high of about $243 by <b>33%</b>; the November 5 decline alone was 9.3%<a class="cite" href="#source3">3</a><a class="cite" href="#source31">31</a>. At 20× earnings for a $3.9 trillion company, the market already prices in slower growth.</p>
+        </div>
+        <div class="note"><span class="flag flag--risk">Governance risk</span> In November, the founder resigned as CEO; the board launched an independent investigation into related allegations; CFO Colette Kress became interim CEO. At least 10 analysts downgraded the stock to Hold, while Goldman Sachs, JPMorgan and RBC cut targets. The FY2027 Q3 report, due after the November 17 close, is the first earnings report after the event<a class="cite" href="#source3">3</a>. This is a governance stress test for a $3.9 trillion company and an example of key-person risk.</div>
+      </div>
+      <div class="split-visual">
+        <figure class="chart" data-chart="">
+          <div class="chart-title"><b>Data-center revenue: Hyperscale vs. ACIE</b><span>USD billions, FY26 Q2–FY27 Q2</span></div>
+          <div class="stackcols" role="img" aria-label="Nvidia data-center revenue: FY26 Q2 $41B, Q3 $51.2B, Q4 $62.3B, FY27 Q1 $75.2B, Q2 $89B; ACIE grows faster">
+            <div class="stackcol"><span class="stackcol-val">$41B</span><div class="stackcol-bar" style="--h:92px;--i:0"><span class="seg-h" style="--ph:58.1%"></span><span class="seg-a" style="--pa:41.9%"></span></div><span class="stackcol-label">FY26 Q2</span></div>
+            <div class="stackcol"><span class="stackcol-val">$51B</span><div class="stackcol-bar" style="--h:115px;--i:1"><span class="seg-h" style="--ph:59.2%"></span><span class="seg-a" style="--pa:40.8%"></span></div><span class="stackcol-label">FY26 Q3</span></div>
+            <div class="stackcol"><span class="stackcol-val">$62B</span><div class="stackcol-bar" style="--h:140px;--i:2"><span class="seg-h" style="--ph:54.3%"></span><span class="seg-a" style="--pa:45.7%"></span></div><span class="stackcol-label">FY26 Q4</span></div>
+            <div class="stackcol"><span class="stackcol-val">$75B</span><div class="stackcol-bar" style="--h:169px;--i:3"><span class="seg-h" style="--ph:50.3%"></span><span class="seg-a" style="--pa:49.7%"></span></div><span class="stackcol-label">FY27 Q1</span></div>
+            <div class="stackcol"><span class="stackcol-val">$89B</span><div class="stackcol-bar" style="--h:200px;--i:4"><span class="seg-h" style="--ph:54.7%"></span><span class="seg-a" style="--pa:45.3%"></span></div><span class="stackcol-label">FY27 Q2</span></div>
+          </div>
+          <div class="stack-legend"><span><i style="background:var(--cobalt)"></i>Hyperscale cloud</span><span><i style="background:var(--copper)"></i>ACIE: AI cloud / industrial / enterprise / sovereign</span></div>
+          <figcaption>ACIE grew 138% year on year, faster than Hyperscale's 102%; it approached half of revenue in Q1, before Hyperscale reaccelerated in Q2. Demand is broadening but still depends on cloud providers.<a class="cite" href="#source2">2</a></figcaption>
+        </figure>
+
+        <div class="key-row" style="margin-top:26px">
+          <div class="key-cell"><b>$108B</b><span>FY2027 Q3 revenue guidance (±2%), excluding China data centers</span></div>
+          <div class="key-cell"><b>75.0%</b><span>Q2 GAAP gross margin; Q3 guidance: 74%</span></div>
+        </div>
+        <div class="key-row" style="margin-top:1px">
+          <div class="key-cell"><b>20.3×</b><span>Trailing P/E; market cap $3.92 trillion</span></div>
+          <div class="key-cell"><b>-33%</b><span>Decline from the October high; November 5 alone: −9.3%</span></div>
+        </div>
+
+        <figure class="chart" data-chart="" style="margin-top:26px">
+          <div class="chart-title"><b>Supplier commitments, guarantees and receivable days</b><span>2026</span></div>
+          <div class="hbars">
+            <div class="hbar"><span class="hbar-label">Supply-chain commitments</span><div class="hbar-track"><span class="hbar-fill" style="--w:100%;--i:0"></span></div><span class="hbar-val">$279B</span></div>
+            <div class="hbar"><span class="hbar-label">Maximum AI-cloud guarantee</span><div class="hbar-track"><span class="hbar-fill" style="--w:38.9%;--i:1"></span></div><span class="hbar-val">$108.5B</span></div>
+            <div class="hbar"><span class="hbar-label">Days sales outstanding</span><div class="hbar-track"><span class="hbar-fill hbar-fill--oxide" style="--w:21.5%;--i:2"></span></div><span class="hbar-val">60 days</span></div>
+          </div>
+          <figcaption>Supply commitments jumped from $119 billion to $279 billion; DSO stretched from 45 to 60 days. As suppliers finance customers, demand signals become less independent. This leads into the loop examined next.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 07 MEMORY ===== -->
+<section class="section" id="s7" data-depth="5">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">40 m</span><span class="depth-name">Memory</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>HBM is AI's oil: three suppliers, 80% gross margins, annual contracts.</h2>
+        <p class="lede" style="margin-top:20px">This layer has no consumer brand or developer ecosystem—just capacity, yields and qualification cycles. It captures the thickest slice of profit in the chain.</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>SK hynix reported Q3 2026 revenue of KRW 104.62 trillion and operating profit of <b>KRW 83.33 trillion</b>, an operating margin of <b>80%</b>; net income was KRW 39.78 trillion. More than 50% of 2027–2028 capacity is locked in, with 14 customers signing five-year contracts; the company expects shortages through 2030<a class="cite" href="#source17">17</a>。</p>
+          <p>Samsung's Q3 2026 revenue was KRW 195.3 trillion, with operating profit of <b>KRW 107.4 trillion</b>, making it the first technology company to exceed KRW 100 trillion in quarterly operating profit. DS revenue was KRW 147.1 trillion and operating profit <b>KRW 106.5 trillion</b>, a 72% margin; memory revenue was KRW 140.7 trillion. HBM4 represented about 60% of HBM sales, and 2027 HBM capacity was sold out at target prices<a class="cite" href="#source18">18</a>。</p>
+          <p>Micron's FY2026 revenue, for the year ended September 3, was $133.19 billion, with GAAP operating profit of <b>$99.34 billion</b>, an operating margin of <b>80.7%</b>; Q4 operating profit was $43.75 billion. HBM4 36GB 12-high entered volume production in Q1 2026, and all 2026 HBM capacity was sold out<a class="cite" href="#source19">19</a>。</p>
+        </div>
+        <div class="note"><b>Definitions:</b>Samsung DS includes some foundry operations. SK and Samsung use 2026 Q3; Micron uses FY26 Q4. KRW figures are converted at 1,400/USD. Combined quarterly operating profit is approximately $179 billion.</div>
+      </div>
+      <div class="split-visual">
+        <figure class="chart" data-chart="">
+          <div class="chart-title"><b>HBM stacks: each generation costs more</b><span>Price per stack</span></div>
+          <svg viewBox="0 0 420 330" width="100%" role="img" aria-label="HBM schematic: 12-high HBM4, 36GB, about $550 per stack; HBM3E about $300; HBM3 about $200">
+            <g>
+              <rect x="62" y="42" width="128" height="228" fill="#204247" stroke="#e9e5da" stroke-opacity=".25"></rect>
+              <g fill="#3b6b6d" stroke="#e9e5da" stroke-opacity=".2">
+                <rect x="66" y="46" width="120" height="15"></rect><rect x="66" y="63" width="120" height="15"></rect><rect x="66" y="80" width="120" height="15"></rect><rect x="66" y="97" width="120" height="15"></rect><rect x="66" y="114" width="120" height="15"></rect><rect x="66" y="131" width="120" height="15"></rect><rect x="66" y="148" width="120" height="15"></rect><rect x="66" y="165" width="120" height="15"></rect><rect x="66" y="182" width="120" height="15"></rect><rect x="66" y="199" width="120" height="15"></rect><rect x="66" y="216" width="120" height="15"></rect><rect x="66" y="233" width="120" height="15"></rect>
+              </g>
+              <rect x="46" y="270" width="160" height="18" fill="#5c3b2a" stroke="#e9e5da" stroke-opacity=".25"></rect>
+              <text x="126" y="284" font-family="var(--sans)" font-size="11" fill="#e9e5da" text-anchor="middle">Substrate / interposer</text>
+              <line x1="196" y1="42" x2="216" y2="42" stroke="#e0a052" stroke-opacity=".6"></line><line x1="196" y1="270" x2="216" y2="270" stroke="#e0a052" stroke-opacity=".6"></line><line x1="216" y1="42" x2="216" y2="270" stroke="#e0a052" stroke-opacity=".6"></line>
+              <text x="228" y="70" font-family="var(--sans)" font-size="13" fill="#e0a052">12-Hi HBM4</text>
+              <text x="228" y="88" font-family="var(--sans)" font-size="11.5" fill="#e9e5da" opacity=".65">36GB / stack</text>
+              <text x="228" y="112" font-family="var(--sans)" font-size="20" font-weight="700" fill="#e9e5da">$550</text>
+              <text x="228" y="130" font-family="var(--sans)" font-size="11" fill="#e9e5da" opacity=".5">HBM3E: about $300</text>
+              <text x="228" y="144" font-family="var(--sans)" font-size="11" fill="#e9e5da" opacity=".5">HBM3: about $200</text>
+              <text x="228" y="180" font-family="var(--sans)" font-size="11" fill="#e9e5da" opacity=".5">Around one GPU</text>
+              <text x="228" y="194" font-family="var(--sans)" font-size="11" fill="#e9e5da" opacity=".5">typically sit 8 stacks</text>
+              <text x="228" y="220" font-family="var(--sans)" font-size="11" fill="#e9e5da" opacity=".5">Price per GB</text>
+              <text x="228" y="234" font-family="var(--sans)" font-size="11" fill="#e9e5da" opacity=".5">rises with each generation</text>
+            </g>
+          </svg>
+          <figcaption>Schematic, rather than an engineering drawing. HBM4 36GB 12-high costs about $550 per stack; HBM3E about $300 and HBM3 about $200. Supply-chain and media estimates vary with contracts and yields.</figcaption>
+        </figure>
+
+        <figure class="chart" data-chart="" style="margin-top:26px">
+          <div class="chart-title"><b>HBM revenue share</b><span>2026 Q2，Counterpoint</span></div>
+          <div class="hbars" role="img" aria-label="HBM revenue share: SK hynix 50%, Samsung 33%, Micron 18%">
+            <div class="hbar"><span class="hbar-label">SK hynix</span><div class="hbar-track"><span class="hbar-fill" style="--w:100%;--i:0"></span></div><span class="hbar-val">50%</span></div>
+            <div class="hbar"><span class="hbar-label">Samsung</span><div class="hbar-track"><span class="hbar-fill" style="--w:66%;--i:1"></span></div><span class="hbar-val">33%</span></div>
+            <div class="hbar"><span class="hbar-label">Micron</span><div class="hbar-track"><span class="hbar-fill" style="--w:36%;--i:2"></span></div><span class="hbar-val">18%</span></div>
+          </div>
+          <figcaption>SK held about 64% a year earlier. Samsung regained share through early HBM4 volume production; Micron joined the leading tier with HBM4 36GB 12-high. Shares measure revenue rather than capacity; rounding brings the sum slightly above 100%.<a class="cite" href="#source20">20</a></figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:clamp(30px,4vw,48px)">
+      <table class="table table--tight">
+        <colgroup><col style="width:34%"><col style="width:33%"><col style="width:33%"></colgroup>
+        <thead><tr><th>Company / scope</th><th class="num">Operating profit</th><th class="num">Operating margin</th></tr></thead>
+        <tbody>
+          <tr><td><b>SK hynix</b><br><span class="muted">2026 Q3</span></td><td class="num">KRW 83.33 trillion<br><span class="muted">About $59.5B</span></td><td class="num"><b>80%</b></td></tr>
+          <tr><td><b>Samsung DS</b><br><span class="muted">2026 Q3, including some foundry operations</span></td><td class="num">KRW 106.5 trillion<br><span class="muted">About $76.1B</span></td><td class="num"><b>72%</b></td></tr>
+          <tr><td><b>Micron</b><br><span class="muted">FY26 Q4, ended September 3</span></td><td class="num">$43.75B</td><td class="num"><b>80.7%</b></td></tr>
+        </tbody>
+      </table>
+      <div class="note">Combined total: approximately <b>$179B</b> in quarterly operating profit. This is scarcity rent: long HBM qualification cycles, slow capacity expansion and customers willing to sign long contracts. It is also a cyclical peak, rather than a permanent moat.</div>
+    </div>
+
+    <div class="split" style="margin-top:clamp(30px,4vw,48px)">
+      <div class="split-text">
+        <figure class="chart" data-chart="">
+          <div class="chart-title"><b>AI data centers consume 70% of global memory capacity</b><span>2026, IDC / supply chain</span></div>
+          <div class="stackbar" role="img" aria-label="AI data centers are expected to consume 70% of global memory-chip capacity in 2026; phones, PCs and others take 30%">
+            <span style="width:70%;background:var(--copper)">AI data centers 70%</span><span style="width:30%;background:var(--muted)">Phones / PCs / other 30%</span>
+          </div>
+          <div class="stack-legend"><span><i style="background:var(--copper)"></i>AI data centers</span><span><i style="background:var(--muted)"></i>Consumer electronics &amp; other</span></div>
+          <figcaption>HBM consumes 3–4× as much wafer capacity per GB as ordinary DRAM. AI competes for both memory and wafers. IDC forecasts 2026 phone shipments down 5% and PC shipments down 9%.<a class="cite" href="#source21">21</a></figcaption>
+        </figure>
+        <p class="body-copy" style="margin-top:20px">This transmits the “memory tax”: AI accepts 80% HBM gross margins, so memory makers move wafers from DDR5 to HBM, reducing consumer-electronics supply and raising prices. Your next phone may help pay the data-center bill.</p>
+      </div>
+      <div class="split-visual">
+        <figure class="chart" data-chart="">
+          <div class="chart-title"><b>HBM revenue: 2027 is a forecast</b><span>USD billions</span></div>
+          <div class="vchart" style="--h:220px;--hm:220px" role="img" aria-label="HBM revenue: about $34.5B in 2025, $54.6B in 2026, and a forecast above $200B in 2027">
+            <div class="vcol"><span class="vcol-val">$34.5B</span><span class="vbar" style="--h:31px;--i:0"></span><span class="vcol-label">2025</span></div>
+            <div class="vcol"><span class="vcol-val">$54.6B</span><span class="vbar" style="--h:49px;--i:1"></span><span class="vcol-label">2026</span></div>
+            <div class="vcol"><span class="vcol-val">&gt;$200B</span><span class="vbar vbar--forecast" style="--h:180px;--i:2"></span><span class="vcol-label">2027E</span></div>
+          </div>
+          <figcaption>2025 is back-calculated from 2026 growth; 2026 is about $54.6B (BofA, +58%). TrendForce forecasts 2027 ASP growth of 122% to $3.7/Gb and revenue growth of 230%, exceeding $200B. Sell-side forecasts vary widely.</figcaption>
+        </figure>
+        <div class="cycle" style="margin-top:24px">
+          <div class="cycle-step is-now"><b>2026 · Shortage</b><span>Capacity sold out, prices rising, long contracts locked in.</span></div>
+          <div class="cycle-step"><b>2027 · Peak</b><span>ASP forecasts rise, revenue surges and capex accelerates.</span></div>
+          <div class="cycle-step"><b>2028 · Capacity arrives</b><span>New capacity comes online, supply catches up and prices soften.</span></div>
+          <div class="cycle-step"><b>2029 · Downturn</b><span>The cycle turns down, margins normalize and weaker players exit.</span></div>
+        </div>
+        <div class="note"><b>Key judgment:</b>An 80% gross margin is scarcity rent. Qualification cycles and oligopoly are real; so is cyclical pricing. Treating a cyclical peak as perpetual is this layer's biggest misreading.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 08 PACKAGING ===== -->
+<section class="section" id="s8" data-depth="6">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">50 m</span><span class="depth-name">Packaging</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>CoWoS is AI's on-ramp: without it, GPUs cannot leave the line.</h2>
+        <p class="lede" style="margin-top:20px">TSMC has turned packaging from a back-end cost into a source of profit. The constraint is how many GPUs and HBM stacks can fit into one package.</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>TSMC reported Q3 2026 revenue of <b>$46.72 billion</b>(+16.2% sequentially, +41.2% year on year), gross margin of <b>66.4%</b>, operating margin of <b>58.7%</b>and net margin of <b>51.1%</b>, with net income of TWD 763.06 billion; HPC contributed 68%. 2026 capex was $60–64 billion, including $13.84 billion in Q3; Q4 revenue guidance was $52.3–54.3 billion, with roughly 44% full-year USD revenue growth<a class="cite" href="#source15">15</a>。</p>
+          <p>Monthly CoWoS capacity rose from approximately 70,000 wafers in 2025 to <b>120,000–140,000 wafers</b>by year-end 2026. Adding OSAT partners' 50,000–60,000 gives industry capacity of roughly 170,000–200,000 wafers/month. Customers still face a shortage of <b>10–20%</b>; TSMC raised CoWoS prices by 10–20% in October 2026. C. C. Wei said packaging capacity is limiting customer growth<a class="cite" href="#source16">16</a>。</p>
+          <p>Reticle sizes are growing: 3.5× is in volume production; 5×/5.5× entered volume production in 2026; 9× and 14× are in development. The 14× target for 2028 could integrate about 10 large compute dies and 20 HBM stacks. CoWoS wafer ASP approaches $10,000, with margins above TSMC's average and packaging revenue expected to exceed 10% of total.</p>
+        </div>
+        <div class="note"><b>This means:</b>Packaging has become part of the advanced-process system. Access to CoWoS determines who can define next-generation systems. Foundries, HBM makers and packaging providers are becoming three faces of one bottleneck.</div>
+      </div>
+      <div class="split-visual">
+        <figure class="chart" data-chart="">
+          <div class="chart-title"><b>Inside a CoWoS package</b><span>Schematic, rather than engineering drawing</span></div>
+          <svg viewBox="0 0 520 380" width="100%" role="img" aria-label="CoWoS schematic: one GPU compute die and eight HBM stacks on a silicon interposer, above a substrate">
+            <g>
+              <rect x="58" y="292" width="404" height="34" fill="#5c3b2a" stroke="#e9e5da" stroke-opacity=".25"></rect>
+              <text x="260" y="313" font-family="var(--sans)" font-size="11.5" fill="#e9e5da" text-anchor="middle">Substrate / package</text>
+              <rect x="78" y="246" width="364" height="46" fill="#2d565a" stroke="#e9e5da" stroke-opacity=".3"></rect>
+              <text x="260" y="273" font-family="var(--sans)" font-size="11.5" fill="#e9e5da" text-anchor="middle">Silicon interposer · CoWoS</text>
+              <g fill="#3b6b6d" stroke="#e9e5da" stroke-opacity=".25">
+                <rect x="96" y="166" width="18" height="76"></rect><rect x="118" y="166" width="18" height="76"></rect><rect x="140" y="166" width="18" height="76"></rect><rect x="162" y="166" width="18" height="76"></rect>
+                <rect x="340" y="166" width="18" height="76"></rect><rect x="362" y="166" width="18" height="76"></rect><rect x="384" y="166" width="18" height="76"></rect><rect x="406" y="166" width="18" height="76"></rect>
+              </g>
+              <rect x="214" y="148" width="92" height="94" fill="#35627d" stroke="#e9e5da" stroke-opacity=".4"></rect>
+              <text x="260" y="202" font-family="var(--sans)" font-size="13" font-weight="700" fill="#e9e5da" text-anchor="middle">GPU</text>
+              <text x="260" y="218" font-family="var(--sans)" font-size="11" fill="#e9e5da" opacity=".6" text-anchor="middle">Compute die</text>
+              <g fill="#e0a052" opacity=".7">
+                <circle cx="220" cy="238" r="2"></circle><circle cx="236" cy="238" r="2"></circle><circle cx="252" cy="238" r="2"></circle><circle cx="268" cy="238" r="2"></circle><circle cx="284" cy="238" r="2"></circle><circle cx="300" cy="238" r="2"></circle>
+              </g>
+              <g stroke="#e9e5da" stroke-opacity=".18" stroke-width="1">
+                <line x1="110" y1="246" x2="110" y2="292"></line><line x1="130" y1="246" x2="130" y2="292"></line><line x1="150" y1="246" x2="150" y2="292"></line><line x1="170" y1="246" x2="170" y2="292"></line><line x1="350" y1="246" x2="350" y2="292"></line><line x1="370" y1="246" x2="370" y2="292"></line><line x1="390" y1="246" x2="390" y2="292"></line><line x1="410" y1="246" x2="410" y2="292"></line>
+              </g>
+              <text x="106" y="152" font-family="var(--sans)" font-size="11" fill="#e0a052" text-anchor="middle">HBM</text>
+              <text x="386" y="152" font-family="var(--sans)" font-size="11" fill="#e0a052" text-anchor="middle">HBM</text>
+              <text x="260" y="118" font-family="var(--sans)" font-size="12" fill="#e0a052" text-anchor="middle">5.5× reticle · Volume production in 2026</text>
+              <line x1="164" y1="124" x2="356" y2="124" stroke="#e0a052" stroke-opacity=".45"></line>
+              <text x="260" y="348" font-family="var(--sans)" font-size="11" fill="#e9e5da" opacity=".55" text-anchor="middle">One GPU + 8 HBM stacks; the 14× target for 2028 is about 10 compute dies + 20 HBM stacks</text>
+            </g>
+          </svg>
+          <figcaption>CoWoS places the GPU and HBM on one silicon interposer, connected by TSVs and microbumps. Larger packages fit more HBM and bandwidth, but make yield harder. Manufacturing capacity is the bottleneck.</figcaption>
+        </figure>
+
+        <figure class="chart" data-chart="" style="margin-top:26px">
+          <div class="chart-title"><b>Monthly CoWoS capacity</b><span>Thousand wafers/month, equivalent</span></div>
+          <div class="hbars">
+            <div class="hbar"><span class="hbar-label">2025 · TSMC</span><div class="hbar-track"><span class="hbar-fill hbar-fill--muted" style="--w:35%;--i:0"></span></div><span class="hbar-val">70k</span></div>
+            <div class="hbar"><span class="hbar-label">2026 · TSMC</span><div class="hbar-track"><span class="hbar-fill" style="--w:65%;--i:1"></span></div><span class="hbar-val">120–140k</span></div>
+            <div class="hbar"><span class="hbar-label">2026 · + OSAT</span><div class="hbar-track"><span class="hbar-fill" style="--w:92.5%;--i:2"></span></div><span class="hbar-val">170–200k</span></div>
+          </div>
+          <div class="chart-note chart-note--risk">Customers still face a 10–20% shortfall; October prices rose 10–20%.</div>
+          <figcaption>Capacity figures are supply-chain and media estimates in equivalent monthly capacity; consumption varies by product and reticle size. They show the expansion rate rather than a precise supply-demand gap.</figcaption>
+        </figure>
+
+        <div class="cycle" style="margin-top:24px">
+          <div class="cycle-step"><b>3.5× · 2023–24</b><span>In production; the H100-era packaging baseline.</span></div>
+          <div class="cycle-step is-now"><b>5× / 5.5× · 2026</b><span>In production; larger packages for Blackwell / Rubin.</span></div>
+          <div class="cycle-step"><b>9× · 2027–28</b><span>In development; more compute dies and HBM.</span></div>
+          <div class="cycle-step"><b>14× · 2028</b><span>Target; about 10 large compute dies + 20 HBM stacks.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="key-row" style="margin-top:30px">
+      <div class="key-cell"><b>66.4%</b><span>TSMC Q3 2026 gross margin; operating margin: 58.7%.</span></div>
+      <div class="key-cell"><b>10–20%</b><span>CoWoS customer shortfall; packaging now limits growth.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 09 POWER ===== -->
+<section class="section" id="s9" data-depth="7">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">60 m</span><span class="depth-name">Power &amp; the grid</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>AI's next wall is electricity.</h2>
+        <p class="lede" style="margin-top:20px">You can build a data center in 18 months and wait five years for electricity. Power is the one input money cannot supply immediately.</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>Under IEA definitions, global data-center electricity use in 2024 was <b>415 TWh</b>(about 1.5% of the global total), about 485 TWh in 2025 and approximately <b>945 TWh</b>in 2030, approaching Japan's national consumption. AI-optimized servers account for roughly 15% of data-center electricity use, growing about 30% annually<a class="cite" href="#source22">22</a>。</p>
+          <p>US data-center load: about 23 GW in 2023, 31 GW in 2025, 41–42 GW in 2026, <b>66 GW</b>in 2027 and <b>134 GW</b><a class="cite" href="#source23">23</a>in 2030. Grid-connection queues exceed <b>2,060 GW</b>across about 8,200 projects. The median wait for projects commissioned in 2025 exceeded five years; only 13% of capacity proposed in 2000–2020 was built.</p>
+          <p>Prices speak: PJM capacity prices rose from $28.92/MW-day to <b>269.92</b>(+833%), hit the $329.17 ceiling in 2026/27, and reached $325 in 2028/29, with a 6,831 MW shortfall<a class="cite" href="#source24">24</a>. Large-transformer lead times are about 128 weeks, step-up transformers about 144. GE Vernova heavy-duty gas turbines are sold out through 2028, with commitments extending to 2031; prices rose about 300% in three years to roughly $600/kW. Around 50% of planned 2026 capacity may be delayed<a class="cite" href="#source25">25</a>。</p>
+        </div>
+        <div class="note"><b>Time is the constraint.</b>Global data-center investment exceeded $550 billion in 2025 (+17%), surpassing upstream oil and gas investment. Power-purchase agreements reached 45 TWh in H1 2026 (+20%). Nuclear agreements cover 9.8 GW, 13 projects and seven buyers, but most supply starts after 2030.</div>
+      </div>
+      <div class="split-visual">
+        <figure class="chart" data-chart="">
+          <div class="chart-title"><b>US data-center load</b><span>GW，2023–2030E</span></div>
+          <div class="vchart" style="--h:240px;--hm:240px" role="img" aria-label="US data-center load: 23GW in 2023, 31GW in 2025, about 41.5GW in 2026, 66GW in 2027 and 134GW in 2030">
+            <div class="vcol"><span class="vcol-val">23</span><span class="vbar" style="--h:34px;--i:0"></span><span class="vcol-label">2023</span></div>
+            <div class="vcol"><span class="vcol-val">31</span><span class="vbar" style="--h:46px;--i:1"></span><span class="vcol-label">2025</span></div>
+            <div class="vcol"><span class="vcol-val">41.5</span><span class="vbar" style="--h:62px;--i:2"></span><span class="vcol-label">2026</span></div>
+            <div class="vcol"><span class="vcol-val">66</span><span class="vbar" style="--h:98px;--i:3"></span><span class="vcol-label">2027</span></div>
+            <div class="vcol"><span class="vcol-val">134</span><span class="vbar vbar--forecast" style="--h:200px;--i:4"></span><span class="vcol-label">2030E</span></div>
+          </div>
+          <figcaption>2023–2027 use Goldman and the median of several forecasts; 2030 is a forecast. Nearly 6× in five years: a step change.</figcaption>
+        </figure>
+
+        <figure class="chart" data-chart="" style="margin-top:26px">
+          <div class="chart-title"><b>From decision to power: how long?</b><span>Years</span></div>
+          <div class="gantt">
+            <div class="gantt-row"><span class="gantt-label">Data-center construction</span><div class="gantt-track"><span class="gantt-fill" style="--w:15%;--i:0"></span></div><span class="gantt-val">1.5 years</span></div>
+            <div class="gantt-row"><span class="gantt-label">Transformer delivery</span><div class="gantt-track"><span class="gantt-fill" style="--w:26%;--i:1"></span></div><span class="gantt-val">2.6 years</span></div>
+            <div class="gantt-row"><span class="gantt-label">Grid-connection queue</span><div class="gantt-track"><span class="gantt-fill gantt-fill--oxide" style="--w:50%;--i:2"></span></div><span class="gantt-val">5+ years</span></div>
+            <div class="gantt-row"><span class="gantt-label">Heavy-duty gas turbines</span><div class="gantt-track"><span class="gantt-fill gantt-fill--oxide" style="--w:50%;--i:3"></span></div><span class="gantt-val">5 years</span></div>
+            <div class="gantt-row"><span class="gantt-label">Nuclear power</span><div class="gantt-track"><span class="gantt-fill gantt-fill--muted" style="--w:100%;--i:4"></span></div><span class="gantt-val">7–10 years</span></div>
+          </div>
+          <figcaption>Illustrative typical times from investment decision to first power. The slowest input determines the whole: a data center can be built in 18 months, while power takes five years.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="split" style="margin-top:clamp(30px,4vw,48px)">
+      <div class="split-text">
+        <figure class="chart" data-chart="">
+          <div class="chart-title"><b>PJM capacity-auction clearing price</b><span>USD / MW-day</span></div>
+          <svg viewBox="0 0 520 220" width="100%" role="img" aria-label="PJM capacity prices: 28.92 to 269.92 to 329.17, then 325 for 2028/29">
+            <g stroke="var(--line)" stroke-width="1" fill="none">
+              <line x1="52" y1="180" x2="500" y2="180"></line><line x1="52" y1="20" x2="52" y2="180"></line>
+              <line x1="52" y1="132" x2="500" y2="132" stroke-dasharray="3 4"></line><line x1="52" y1="84" x2="500" y2="84" stroke-dasharray="3 4"></line>
+            </g>
+            <g font-family="var(--sans)" font-size="11" fill="var(--muted)">
+              <text x="14" y="184">0</text><text x="14" y="136">100</text><text x="14" y="88">200</text><text x="14" y="24">350</text>
+              <text x="60" y="200">2024/25</text><text x="180" y="200">2025/26</text><text x="300" y="200">2026/27</text><text x="420" y="200">2028/29</text>
+            </g>
+            <path d="M60,167.6 L180,64.3 L300,39.0 L420,40.7" stroke="var(--accent)" stroke-width="2" fill="none"></path>
+            <g fill="var(--accent)">
+              <circle cx="60" cy="167.6" r="3"></circle><circle cx="180" cy="64.3" r="3"></circle><circle cx="300" cy="39" r="3"></circle><circle cx="420" cy="40.7" r="3"></circle>
+            </g>
+            <g font-family="var(--sans)" font-size="11.5" fill="var(--fg)">
+              <text x="60" y="158" text-anchor="middle">$28.92</text><text x="180" y="54" text-anchor="middle">$269.92</text><text x="300" y="30" text-anchor="middle">$329.17</text><text x="420" y="32" text-anchor="middle">$325</text>
+            </g>
+            <g font-family="var(--sans)" font-size="11.5" fill="var(--oxide)">
+              <text x="120" y="112" text-anchor="middle">+833%</text><text x="360" y="58" text-anchor="middle">6,831 MW shortfall</text>
+            </g>
+          </svg>
+          <figcaption>PJM is one of the largest US power markets. Capacity prices pay for availability, rather than electricity itself; rising prices indicate a premium for reliability.</figcaption>
+        </figure>
+        <div class="key" style="margin-top:22px">
+          <span class="key-label">Global data-center investment</span>
+          <b class="key-val">$550B+</b>
+          <span class="key-note">2025 (+17%), exceeding upstream oil and gas investment; major operators' 2026 capex exceeds $700 billion.</span>
+        </div>
+      </div>
+      <div class="split-visual">
+        <div class="key">
+          <span class="key-label">After the November 2026 US midterms</span>
+          <b class="key-val">40 / 41</b>
+          <span class="key-note">local data-center proposals were rejected. Opponents won 40 of 41 referendums; some elected officials favor moratoriums or limits. The November 5 sell-off priced in this political constraint for the first time<a class="cite" href="#source26">26</a>。</span>
+        </div>
+        <p class="body-copy" style="margin-top:22px">Permits also constrain supply. A data center needs land, grid access, air permits, water and local political consent. Each can delay a project; treating electricity only as engineering understates the constraint.</p>
+        <figure class="chart" data-chart="" style="margin-top:26px">
+          <div class="chart-title"><b>The bottleneck moves</b><span>2023–2027+</span></div>
+          <div class="cycle">
+            <div class="cycle-step"><b>2023–24</b><span>CoWoS packaging: the first gate for GPU output.</span></div>
+            <div class="cycle-step"><b>2024–25</b><span>HBM: memory bandwidth and capacity become the next bottleneck.</span></div>
+            <div class="cycle-step is-now"><b>2025–27</b><span>Power and grid access: the constraint money cannot accelerate.</span></div>
+            <div class="cycle-step"><b>2027+</b><span>Demand: if end-market revenue lags, the bottleneck returns to the wallet.</span></div>
+          </div>
+          <figcaption>Goldratt's constraint: system output is set by its slowest link. Bottlenecks move; investment should watch the next one.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 10 PROFIT TABLE ===== -->
+<section class="section" id="s10" data-depth="7">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">65 m</span><span class="depth-name">Put the layers in one table</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>Profit follows irreplaceability.</h2>
+        <p class="lede" style="margin-top:20px">Compare Q3 2026 operating profits: memory captures almost all, with chips and foundries next. The model layer's best performer earns around $1 billion; its worst loses $12.3 billion in a quarter.</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>The model layer creates demand for the industry and bears its research and customer-acquisition costs. On the income statement, it looks more like an intermediate toll point than the final destination.</p>
+          <p>Physical-layer profits come from slow-to-replicate capacity, long qualification cycles and concentrated supply. Model profits come from scale, data and distribution. The former are structural; the latter remain contestable.</p>
+        </div>
+        <div class="note"><b>Definitions:</b>Memory figures use Q3/FY26 Q4 operating profit; Nvidia uses FY27 Q2 GAAP operating profit; TSMC uses Q3 net income; Anthropic uses Q2 operating profit; OpenAI uses Q2 operating losses. Measures differ; compare scale only.</div>
+      </div>
+      <div class="split-visual">
+        <figure class="chart" data-chart="">
+          <div class="chart-title"><b>2026 Q3 profit pool</b><span>USD billions</span></div>
+          <div class="hbars">
+            <div class="hbar"><span class="hbar-label">Three memory leaders</span><div class="hbar-track"><span class="hbar-fill" style="--w:99.4%;--i:0"></span></div><span class="hbar-val">$179B</span></div>
+            <div class="hbar"><span class="hbar-label">Nvidia</span><div class="hbar-track"><span class="hbar-fill" style="--w:35.4%;--i:1"></span></div><span class="hbar-val">$64B</span></div>
+            <div class="hbar"><span class="hbar-label">TSMC</span><div class="hbar-track"><span class="hbar-fill" style="--w:13.3%;--i:2"></span></div><span class="hbar-val">$24B</span></div>
+            <div class="hbar"><span class="hbar-label">Anthropic</span><div class="hbar-track"><span class="hbar-fill" style="--w:1%;--i:3"></span></div><span class="hbar-val">≈$1B</span></div>
+          </div>
+          <div class="key" style="margin-top:22px">
+            <span class="key-label">The model layer's largest quarterly loss</span>
+            <b class="key-val" style="color:var(--oxide)">-$12.3B</b>
+            <span class="key-note">OpenAI's 2026 Q2 operating loss. It buys future compute, users and model capabilities, but its income statement is negative.</span>
+          </div>
+          <figcaption>Full bars represent $180B; Anthropic's $974 million is almost invisible at this scale. TSMC uses net income, while Nvidia uses operating profit.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:clamp(30px,4vw,48px)">
+      <table class="table">
+        <colgroup><col style="width:22%"><col style="width:20%"><col style="width:16%"><col style="width:42%"></colgroup>
+        <thead><tr><th>Layer</th><th>2026 Q3 profit</th><th>Margin</th><th>Who collects the rent / why</th></tr></thead>
+        <tbody>
+          <tr><td><b>Memory</b></td><td>$179B (three combined)</td><td><b>72–81%</b></td><td>Three suppliers, HBM qualification cycles and sold-out capacity: scarcity rent rather than permanent technological monopoly.</td></tr>
+          <tr><td><b>Chips</b></td><td>$64B（Nvidia）</td><td><b>66%</b></td><td>Systems, ecosystem and supply combined; customers are also shareholders and financing recipients.</td></tr>
+          <tr><td><b>Foundry / packaging</b></td><td>$24B (TSMC net income)</td><td><b>51%</b></td><td>Advanced processes and CoWoS capacity; packaging becomes central to manufacturing.</td></tr>
+          <tr><td><b>Models</b></td><td>+$0.97B / -$12.3B</td><td><b>8% / -170%</b></td><td>Scale, data and distribution, but higher compute and customer-acquisition costs.</td></tr>
+          <tr><td><b>Apps</b></td><td>Revenue $77B; profits dispersed</td><td><b>—</b></td><td>Workflows, distribution and verifiable results; vertically squeezed by model providers.</td></tr>
+        </tbody>
+      </table>
+      <div class="note"><b>In one sentence:</b>The smartest layer earns the least; the heaviest layer earns the most. Margins reward being impossible to bypass.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 11 LOOP ===== -->
+<section class="section" id="s11" data-depth="7">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">70 m</span><span class="depth-name">Bedrock · The loop</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>Demand is only part of this machine's fuel.</h2>
+        <p class="lede" style="margin-top:20px">When suppliers are also shareholders, customers and guarantors, demand signals become interdependent. Circular financing postpones independent validation of demand.</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>OpenAI has a nominal ceiling of approximately <b>$710 billion</b>in chip and cloud contracts. Nvidia, Microsoft and Amazon are both suppliers and shareholders. Nvidia's proposed $100 billion OpenAI investment was never signed; its actual investment was about $30 billion at an $852 billion valuation. Nvidia also owns about 9% of CoreWeave, commits to buying unsold cloud capacity (initially $6.3 billion), and acts as supplier, shareholder and customer<a class="cite" href="#source4">4</a>。</p>
+          <p>Nvidia guarantees some leases for OpenAI's Ohio data center; AMD reportedly offers equity-for-orders arrangements to OpenAI / Meta. Anthropic's IPO makes the pattern more direct: Google and Nvidia subscribe $10 billion each, AMD $2.5 billion, Broadcom, Micron and Microsoft $1 billion each, and TSMC $0.5 billion, totaling <b>$26 billion</b>—with suppliers also becoming shareholders<a class="cite" href="#source7">7</a>。</p>
+          <p>These arrangements are not inherently illegal or proof of artificial demand. They finance capacity built ahead of demand. But when supplier and customer money comes from one loop, independent demand validation weakens. Supply commitments of $279B, guarantees of $108.5B and DSO of 60 days are its gauges<a class="cite" href="#source4">4</a>。</p>
+        </div>
+        <div class="note"><b>Minsky's ladder:</b>Build from cash flow → build from the balance sheet → build from valuations. The industry is on the second rung; marginal projects are on the third. The third depends on new financing to service old obligations.</div>
+      </div>
+      <div class="split-visual">
+        <div class="loop-controls">
+          <button class="loop-btn is-on" data-loop="demand" aria-pressed="true">End demand only</button>
+          <button class="loop-btn" data-loop="full" aria-pressed="false">The full loop</button>
+        </div>
+        <figure class="chart" data-chart="">
+          <svg class="loop-svg" id="loopSvg" viewBox="0 0 900 420" role="img" aria-label="AI capital loop: physical layer to Nvidia to cloud/models to end users, with money flowing back; supplier investments and guarantees add another loop">
+            <defs>
+              <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"></path></marker>
+              <marker id="arrowMuted" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"></path></marker>
+            </defs>
+            <g>
+              <rect class="loop-node" x="30" y="160" width="180" height="90"></rect>
+              <text class="loop-name" x="50" y="194">Physical layer</text>
+              <text class="loop-sub" x="50" y="214">TSMC · HBM · Power</text>
+              <text class="loop-sub" x="50" y="230">Slowest, costliest, hardest to replicate</text>
+
+              <rect class="loop-node loop-node--key" x="260" y="160" width="160" height="90"></rect>
+              <text class="loop-name" x="280" y="194">Nvidia</text>
+              <text class="loop-sub" x="280" y="214">Chips + systems</text>
+              <text class="loop-sub" x="280" y="230">Supplier / shareholder / guarantor</text>
+
+              <rect class="loop-node loop-node--key" x="470" y="160" width="200" height="90"></rect>
+              <text class="loop-name" x="490" y="194">Cloud / models</text>
+              <text class="loop-sub" x="490" y="214">OpenAI · Anthropic · Oracle</text>
+              <text class="loop-sub" x="490" y="230">CoreWeave · neoclouds</text>
+
+              <rect class="loop-node" x="720" y="160" width="150" height="90"></rect>
+              <text class="loop-name" x="738" y="194">End users</text>
+              <text class="loop-sub" x="738" y="214">Enterprises · Consumers</text>
+              <text class="loop-sub" x="738" y="230">Sovereign customers</text>
+
+              <path class="loop-edge" d="M210,205 L260,205" marker-end="url(#arrow)"></path>
+              <path class="loop-edge" d="M420,205 L470,205" marker-end="url(#arrow)"></path>
+              <path class="loop-edge" d="M670,205 L720,205" marker-end="url(#arrow)"></path>
+              <text class="edge-label" x="235" y="196">Wafers</text>
+              <text class="edge-label" x="445" y="196">GPU</text>
+              <text class="edge-label" x="695" y="196">token</text>
+
+              <path class="loop-edge loop-edge--money" d="M795,250 L795,320 L570,320 L570,250" marker-end="url(#arrow)"></path>
+              <path class="loop-edge loop-edge--money" d="M570,250 L570,300 L340,300 L340,250" marker-end="url(#arrow)"></path>
+              <path class="loop-edge loop-edge--money" d="M340,250 L340,340 L120,340 L120,250" marker-end="url(#arrow)"></path>
+              <text class="edge-label edge-label--hot" x="620" y="334">Money</text>
+              <text class="edge-label" x="455" y="294">Money</text>
+              <text class="edge-label" x="225" y="354">Money</text>
+
+              <path class="loop-edge loop-edge--loop loop-edge--loop-anim" d="M340,160 C340,90 560,90 560,160" marker-end="url(#arrow)"></path>
+              <path class="loop-edge loop-edge--loop loop-edge--loop-anim" d="M120,160 C120,55 590,55 590,160" marker-end="url(#arrow)"></path>
+              <text class="edge-label edge-label--hot" x="430" y="82">Investment / guarantees</text>
+              <text class="edge-label" x="300" y="47">Equity / IPO subscriptions</text>
+            </g>
+          </svg>
+          <div class="loop-legend"><span><i style="background:var(--muted)"></i>Goods / services</span><span><i style="background:var(--accent)"></i>Money</span><span><i style="background:var(--accent);opacity:.55"></i>Capital / commitments</span></div>
+          <figcaption id="loopCaption">Without the capital loop, one value chain remains: physical layer → chips → cloud/models → end users. Money returns along the same path. Switch to “The full loop” to see supplier investments, guarantees and equity turn the chain into a cycle.</figcaption>
+        </figure>
+
+        <figure class="chart" data-chart="" style="margin-top:26px">
+          <div class="chart-title"><b>Long-term commitments / annualized revenue</b><span>times</span></div>
+          <div class="hbars">
+            <div class="hbar"><span class="hbar-label">OpenAI</span><div class="hbar-track"><span class="hbar-fill hbar-fill--oxide" style="--w:94.7%;--i:0"></span></div><span class="hbar-val">14.2×</span></div>
+            <div class="hbar"><span class="hbar-label">Anthropic</span><div class="hbar-track"><span class="hbar-fill" style="--w:74%;--i:1"></span></div><span class="hbar-val">11.1×</span></div>
+          </div>
+          <figcaption>Nominal contract ceilings / current annualized revenue. Commitments differ from debt but still entail rigid spending. Revenue must grow for commitments to become economies of scale rather than fixed costs.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:clamp(30px,4vw,48px)">
+      <table class="table table--tight">
+        <colgroup><col style="width:28%"><col style="width:20%"><col style="width:52%"></colgroup>
+        <thead><tr><th>Loop gauges</th><th>Reading</th><th>Why watch it</th></tr></thead>
+        <tbody>
+          <tr><td>Supply-chain commitments</td><td><b>$279B</b></td><td>Up from $119B; suppliers lock in future capacity for customers.</td></tr>
+          <tr><td>Maximum AI-cloud guarantee</td><td><b>$108.5B</b></td><td>Suppliers back customers' leases/capacity; failed demand returns to suppliers' balance sheets.</td></tr>
+          <tr><td>Days sales outstanding</td><td><b>60 days</b></td><td>Up from 45 days; the gap between revenue recognition and cash collection is widening.</td></tr>
+          <tr><td>Customer free cash flow</td><td><b>Three negative</b></td><td>Capex exceeds operating cash flow; capital markets begin setting AI's pace.</td></tr>
+          <tr><td>Supplier IPO subscriptions</td><td><b>$26B</b></td><td>Seven technology companies are Anthropic shareholders, suppliers and customers.</td></tr>
+          <tr><td>Commitments / revenue</td><td><b>11–14×</b></td><td>Revenue must keep growing rapidly to absorb fixed commitments.</td></tr>
+        </tbody>
+      </table>
+      <div class="note"><b>Reflexivity.</b>Capex creates revenue expectations, which lift valuations, which support more capex. On the way up, this appears to validate demand; on the way down, the same mechanism contracts balance sheets.</div>
+    </div>
+
+    <div class="cycle cycle--3" style="margin-top:clamp(28px,4vw,42px)">
+      <div class="cycle-step"><b>Build from cash flow</b><span>Capex &lt; operating cash flow. Steadiest but slow; end demand must arrive first.</span></div>
+      <div class="cycle-step is-now"><b>Build from the balance sheet</b><span>Capex &gt; operating cash flow. Debt, equity and leases fund it; the industry is here today.</span></div>
+      <div class="cycle-step"><b>Build from valuations</b><span>Future valuations and supplier financing support capex; marginal projects are here. They break first when the loop reverses.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 12 FAULT ===== -->
+<section class="section block-paper" id="s12" data-depth="8">
+  <svg class="fault-edge" viewBox="0 0 1440 34" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,24 L80,20 L160,26 L240,18 L320,24 L400,16 L480,22 L560,14 L640,20 L720,12 L800,22 L880,16 L960,24 L1040,18 L1120,26 L1200,14 L1280,22 L1360,18 L1440,24"></path>
+    <text x="24" y="28" font-family="var(--sans)" font-size="11.5" fill="#a3452d">2026-11-05 · The fault</text>
+  </svg>
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">The fault</span><span class="depth-name">November 2026</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>On November 5, the market's question changed: from “How big can it grow?” to “When does it pay back?”</h2>
+        <p class="lede" style="margin-top:20px">The pricing framework shifted: capex changed from proof of demand to cash-flow risk; valuation changed from revenue multiples to unit economics.</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>That day, the Nasdaq 100 fell <b>6.4%</b>, the S&amp;P 500 fell <b>4.4%</b>and the Philadelphia Semiconductor Index fell 5.23% (down 11% intraday). About <b>$2.3 trillion</b>in market value vanished. Nvidia fell 9.3%, AMD 17.3%, Micron 17% and Tesla 10.8%; the Magnificent Seven lost about $1.04 trillion<a class="cite" href="#source26">26</a>。</p>
+          <p>Politics appeared to trigger it: after the midterms, 40 of 41 local data-center proposals were rejected, and some officials favored limits or moratoriums. Financial pressures supplied the tinder: capex above operating cash flow, negative free cash flow, off-balance-sheet debt, supplier financing, questioned AI returns and crowded trades.</p>
+          <p>“This is repricing.” Cash-rich giants remain. Marginal projects, off-balance-sheet leverage, high valuations and financing-dependent companies are being reassessed. Nvidia is about 33% below its October high but still trades at 20× earnings; Anthropic IPO expectations fell from $2T to $1.4T; OpenAI's latest round values it at about $1.25T, below a $1.4T target<a class="cite" href="#source3">3</a><a class="cite" href="#source6">6</a>。</p>
+        </div>
+        <div class="key-row" style="margin-top:24px">
+          <div class="key-cell"><b>-6.4% / -4.4%</b><span>Nasdaq 100 / S&amp;P 500, November 5</span></div>
+          <div class="key-cell"><b>$2.3T</b><span>Market value lost that day; Magnificent Seven about −$1.04T</span></div>
+        </div>
+        <div class="key-row" style="margin-top:1px">
+          <div class="key-cell"><b>-5.23%</b><span>Philadelphia Semiconductor Index; down 11% intraday</span></div>
+          <div class="key-cell"><b>-9.3%</b><span>Nvidia that day; AMD −17.3%, Micron −17%</span></div>
+        </div>
+      </div>
+      <div class="split-visual">
+        <figure class="chart" data-chart="">
+          <div class="chart-title"><b>90-day signal calendar</b><span>2026-11 to 2027-04</span></div>
+          <div class="timeline">
+            <div class="tl-item"><span class="tl-date">11-17</span><div class="tl-axis"><span class="tl-dot"></span></div><div class="tl-body"><h4>Nvidia FY2027 Q3 earnings</h4><p>First report after the CEO change. Watch data-center revenue above $100B, Q4 guidance above $120B and gross margin below 73%.</p></div></div>
+            <div class="tl-item"><span class="tl-date">11-18</span><div class="tl-axis"><span class="tl-dot"></span></div><div class="tl-body"><h4>Anthropic IPO pricing</h4><p>Range: $70–78. Above $78 indicates strong demand; below $70 suggests public markets are repricing the model layer.</p></div></div>
+            <div class="tl-item"><span class="tl-date">11-19</span><div class="tl-axis"><span class="tl-dot"></span></div><div class="tl-body"><h4>ANT's first trading day</h4><p>Watch first-day turnover and buying support: the model layer's first continuous public-market pricing.</p></div></div>
+            <div class="tl-item"><span class="tl-date">2027-01/02</span><div class="tl-axis"><span class="tl-dot"></span></div><div class="tl-body"><h4>Cloud Q4 earnings and 2027 guidance</h4><p>Combined 2027 capex above $900B means further acceleration; below $750B means digestion. This is the most important single signal.</p></div></div>
+            <div class="tl-item"><span class="tl-date">2027-Q1</span><div class="tl-axis"><span class="tl-dot"></span></div><div class="tl-body"><h4>Quarterly HBM contract prices</h4><p>Flat or higher sequentially means shortages persist; −20% marks a cyclical turn. Memory income statements respond before share prices.</p></div></div>
+            <div class="tl-item"><span class="tl-date">2027-Q1</span><div class="tl-axis"><span class="tl-dot"></span></div><div class="tl-body"><h4>PJM capacity auction</h4><p>Watch clearing prices and shortfall in MW. Power prices are another measure of data-center costs.</p></div></div>
+            <div class="tl-item"><span class="tl-date">2027-04</span><div class="tl-axis"><span class="tl-dot"></span></div><div class="tl-body"><h4>Nvidia FY2027 Q4 / FY2028 guidance</h4><p>The company says roughly 70% growth is achievable. Guidance below 50% indicates changing supply constraints or demand expectations.</p></div></div>
+          </div>
+          <figcaption>Dates follow public information; company announcements govern earnings dates. Thresholds are monitoring lines rather than forecasts.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:clamp(30px,4vw,48px)">
+      <table class="table">
+        <colgroup><col style="width:22%"><col style="width:39%"><col style="width:39%"></colgroup>
+        <thead><tr><th>The market's question</th><th>2025 – 2026 H1</th><th>After November 2026</th></tr></thead>
+        <tbody>
+          <tr><td><b>Growth</b></td><td>With growth, losses do not matter.</td><td>Growth needs a calculable payback period.</td></tr>
+          <tr><td><b>Capital expenditure</b></td><td>Capex proves demand; more is bullish.</td><td>Capex creates cash-flow risk; more tightens constraints.</td></tr>
+          <tr><td><b>Losses</b></td><td>Losses are investment in future share.</td><td>Losses imply financing dependence: who advances the cash?</td></tr>
+          <tr><td><b>Valuation</b></td><td>Revenue multiples, vision and TAM.</td><td>Unit economics, contracted capacity and free cash flow.</td></tr>
+          <tr><td><b>Financing</b></td><td>Equity and debt are easy; the IPO window opens.</td><td>Credit spreads, IPO pricing and supplier financing set the pace.</td></tr>
+        </tbody>
+      </table>
+      <div class="note"><b>In one sentence:</b>As capex funding moves from operating cash flow to balance sheets and then valuations, market language shifts from growth to solvency. That is the report's reading of November 5.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 13 SCENARIOS ===== -->
+<section class="section block-paper" id="s13" data-depth="8">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">Anticipate</span><span class="depth-name">Four futures</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>Four futures, defined by conditions.</h2>
+        <p class="lede" style="margin-top:20px">Two variables shape the future: end-demand growth and capital availability. Two variables, four combinations.</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>Acceleration needs demand to keep beating expectations and willing capital markets. Digestion needs demand to catch supply as capital becomes selective. A bubble has continuing funding but lagging revenue. An air pocket sees capital withdraw before demand proves itself.</p>
+          <p>These scenarios can form a path: acceleration → digestion → air pocket → bubble → renewed acceleration. The order depends on policy and credit cycles rather than the technical roadmap.</p>
+        </div>
+        <div class="note"><b>Subjective probabilities:</b>Digestion 40%, acceleration 25%, air pocket 20%, bubble 15%. These prioritize monitoring rather than predict outcomes. Two signals turning together trigger a scenario change.</div>
+      </div>
+      <div class="split-visual">
+        <div class="matrix-wrap">
+          <div class="axis-y">Capital availability: tight ↓ / loose ↑</div>
+          <div class="matrix">
+            <button class="quad" data-scenario="bubble" aria-pressed="false"><span class="quad-k">Loose capital · Low demand</span><h4>Bubble</h4><p>Money keeps accumulating without revenue; the loop expands until credit breaks.</p><span class="prob">15%</span></button>
+            <button class="quad" data-scenario="accelerate" aria-pressed="false"><span class="quad-k">Loose capital · High demand</span><h4>Acceleration</h4><p>AI becomes general-purpose infrastructure; capex keeps exceeding expectations and bottlenecks tighten.</p><span class="prob">25%</span></button>
+            <button class="quad" data-scenario="airpocket" aria-pressed="false"><span class="quad-k">Tight capital · Low demand</span><h4>Air pocket</h4><p>Capex orders are cut, memory prices fall and highly valued stocks halve.</p><span class="prob">20%</span></button>
+            <button class="quad is-active" data-scenario="digest" aria-pressed="true"><span class="quad-k">Tight capital · High demand</span><h4>Digestion</h4><p>Demand catches supply; capex slows and margins normalize. The healthiest path.</p><span class="prob">40%</span></button>
+          </div>
+          <div class="axis-x">End-demand growth: low ← / high →</div>
+        </div>
+
+        <div class="scenario-detail" id="scenarioDetail">
+          <h3 id="sdTitle">Digestion · Demand catches supply</h3>
+          <div class="sd-grid">
+            <div class="sd-block"><span>What must be true</span><p id="sdMust">Capex growth falls from +80% to +20–30%; HBM contract prices flatten; cloud free cash flow improves; applications move from pilots to production.</p></div>
+            <div class="sd-block"><span>Early signals</span><p id="sdSignals">Cloud providers stop raising 2027 guidance; HBM prices are flat sequentially; token usage keeps doubling; enterprises shift from buying models to buying results.</p></div>
+            <div class="sd-block"><span>Winners and losers</span><p id="sdWin">Winners: applications, cash-generative cloud providers and undervalued second-tier memory makers. Losers: highly leveraged neoclouds and financing-dependent model companies.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 14 CHINA ===== -->
+<section class="section block-china" id="s14" data-depth="4">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">Another stack</span><span class="depth-name">AI in China</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>China's AI bottleneck is advanced manufacturing.</h2>
+        <p class="lede" style="margin-top:20px">The US lacks power and permits; China lacks advanced logic and HBM. Different constraints create different opportunities.</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>Huawei's H1 2026 revenue was RMB 467.82 billion (+9.6%), R&amp;D represented 25.9% (about RMB 121.4 billion), and attributable net profit was RMB 23.43 billion (down over 30%). H1 shipments of AI chips in China reached <b>572,000 units</b>, a share of <b>28%</b>, second only to Nvidia's 34% (IDC)<a class="cite" href="#source28">28</a>. The 1,024-card Ascend Atlas 900 supernode costs hundreds of millions of yuan and is commercially available, with DeepSeek, ByteDance and Meituan buying. Huawei's computing R&amp;D spending exceeded wireless R&amp;D for the first time.</p>
+          <p>DeepSeek ordered <b>160,000 Ascend 950DT chips</b> from Huawei for inference; training still mainly uses Nvidia<a class="cite" href="#source29">29</a>. Kimi K3, a 2.8-trillion-parameter open model, approaches the closed frontier. CAICT estimates China's daily token consumption in June 2026 at about <b>500 trillion</b>, nearly four times December 2025. China's normalized average token price in 2026 was <b>RMB 13.46 per million</b>, up about 98% from RMB 6.8 in H2 2025, versus roughly RMB 117.8 abroad<a class="cite" href="#source27">27</a>。</p>
+          <p>Power is not an immediate hard limit: Chinese data centers used 196 TWh in 2025, with 300–700 TWh projected for 2030, representing <b>&lt;2%</b>of national electricity use. State Grid's 2026 investment is about RMB 82.5 billion; the east-to-west computing initiative continues<a class="cite" href="#source30">30</a>. The constraints are advanced logic, HBM, high-end equipment and ecosystem migration.</p>
+        </div>
+        <div class="note"><b>A counterintuitive signal:</b>Global token prices are falling while China's are rising. Demand is growing faster than supply, and market structures differ; the price war has not pushed prices to marginal cost.</div>
+      </div>
+      <div class="split-visual">
+        <figure class="chart" data-chart="">
+          <div class="chart-title"><b>Normalized average token price</b><span>RMB / million tokens</span></div>
+          <div class="hbars">
+            <div class="hbar"><span class="hbar-label">China 2025 H2</span><div class="hbar-track"><span class="hbar-fill hbar-fill--muted" style="--w:5.8%;--i:0"></span></div><span class="hbar-val">6.80</span></div>
+            <div class="hbar"><span class="hbar-label">China 2026</span><div class="hbar-track"><span class="hbar-fill" style="--w:11.4%;--i:1"></span></div><span class="hbar-val">13.46</span></div>
+            <div class="hbar"><span class="hbar-label">Outside China 2026</span><div class="hbar-track"><span class="hbar-fill hbar-fill--outline" style="--w:100%;--i:2"></span></div><span class="hbar-val">117.8</span></div>
+          </div>
+          <div class="chart-note">China's 2026 average is about 98% above H2 2025, yet roughly 11% of the overseas average.</div>
+          <figcaption>The normalized average adjusts different models, contexts and cache-hit rates to one scope. It indicates direction rather than a company's quoted price.</figcaption>
+        </figure>
+
+        <div class="key-row" style="margin-top:24px">
+          <div class="key-cell"><b>28%</b><span>Huawei's share of China's AI chip market; Nvidia: 34%</span></div>
+          <div class="key-cell"><b>500T</b><span>Daily token consumption in China, June 2026; 4× in four months</span></div>
+        </div>
+        <div class="key-row" style="margin-top:1px">
+          <div class="key-cell"><b>160,000 chips</b><span>DeepSeek's Huawei Ascend 950DT order for inference</span></div>
+          <div class="key-cell"><b>&lt;2%</b><span>Data centers' share of China's electricity use; power is not the immediate bottleneck</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:clamp(30px,4vw,48px)">
+      <table class="table">
+        <colgroup><col style="width:18%"><col style="width:41%"><col style="width:41%"></colgroup>
+        <thead><tr><th>Dimension</th><th>US stack</th><th>China stack</th></tr></thead>
+        <tbody>
+          <tr><td><b>Constraints</b></td><td>Power, grid access, permits and local politics.</td><td>Advanced logic, HBM, high-end equipment and ecosystem migration.</td></tr>
+          <tr><td><b>Capital</b></td><td>Operating cash flow, debt and public markets; capital availability is tightening.</td><td>Industrial policy, state capital and some public markets; more patient capital with lower return requirements.</td></tr>
+          <tr><td><b>Models</b></td><td>Closed frontier models and enterprise APIs; token-based pricing.</td><td>Open models and vertical use cases; more outcome- and project-based pricing.</td></tr>
+          <tr><td><b>Compute</b></td><td>Nvidia + TSMC + HBM; packaging and power constrain supply.</td><td>Huawei Ascend and domestic substitution; process nodes and HBM constrain supply, with inference first.</td></tr>
+          <tr><td><b>Prices</b></td><td>Deflation: roughly 50× cheaper annually at fixed capability.</td><td>Inflation: average token prices up 98% in 2026; still about 11% of overseas prices.</td></tr>
+          <tr><td><b>Overseas markets</b></td><td>Global markets and allied networks; affected by export controls.</td><td>Global South and Belt and Road; price and sovereign AI provide entry points.</td></tr>
+        </tbody>
+      </table>
+      <div class="note"><b>Judgment:</b>China follows a different growth curve through cheaper inference, more open models and denser grids. Advanced manufacturing sets the ceiling; application demand supports the floor.</div>
+    </div>
+
+    <div class="chain" style="margin-top:clamp(28px,4vw,42px)">
+      <div class="chain-step"><b>Energy</b><span>Strength: robust grids, low electricity prices and data centers using under 2% of national power.</span></div>
+      <div class="chain-step"><b>Domestic compute</b><span class="bottleneck">Bottlenecks: advanced processes, HBM and high-end equipment; inference first, training catching up.</span></div>
+      <div class="chain-step"><b>Open models</b><span>Strength: DeepSeek, Qwen and GLM; availability across all 22 MaaS platforms.</span></div>
+      <div class="chain-step"><b>Vertical applications</b><span>Opportunity: manufacturing, government, healthcare and education; charge for results.</span></div>
+      <div class="chain-step"><b>Overseas markets</b><span>Opportunity: Global South and sovereign AI; openness and pricing win market access.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 15 POSITIONS ===== -->
+<section class="section block-paper" id="s15" data-depth="8">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">Leverage</span><span class="depth-name">Where to stand</span></div>
+    <div class="section-head">
+      <h2>Three positions, three ways to act.</h2>
+      <p class="lede">An observation checklist for three positions. Each has one recommendation, one trade-off, and one low-cost first step.</p>
+    </div>
+    <div class="pos-grid">
+      <article class="pos">
+        <span class="pos-k">Capital allocators</span>
+        <h3>Remove capex growth from the investment thesis.</h3>
+        <p>Watch return on capital and contracted capacity. Capex growth tells a story; free cash flow and payback tell the accounts. Memory's 80% gross margins are cyclical rents.</p>
+        <p class="first-step"><b>First step:</b>Build a six-line monitor: capex/EBITDA, FCF, HBM contract prices, supplier-financing share, credit spreads and PJM prices. Update weekly; record rather than forecast.</p>
+        <p class="cost">Trade-off: you may miss a melt-up, but avoid being passive at the turn.</p>
+        <p><b>When to change:</b>Turn defensive when capex guidance cuts, falling HBM prices and widening credit spreads occur together.</p>
+      </article>
+      <article class="pos">
+        <span class="pos-k">Product builders</span>
+        <h3>Go to applications. Sell outcomes.</h3>
+        <p>Applications receive $77.3 billion versus $1.5 trillion for infrastructure; coding and chatbots take 76%. The next opportunity lies in verifiable results in healthcare, legal work and financial back offices.</p>
+        <p class="first-step"><b>First step:</b>Choose a workflow with measurable results and charge for outcomes. Start with 10 real customers rather than 100 demos. Treat the model as a supplier.</p>
+        <p class="cost">Trade-off: lower margins than infrastructure; distribution and trust are scarcer than model capability.</p>
+        <p><b>When to change:</b>When model companies bundle your features, deepen proprietary data, compliance and workflow integration; avoid a price contest with the model layer.</p>
+      </article>
+      <article class="pos">
+        <span class="pos-k">People building AI in China</span>
+        <h3>Advanced manufacturing is the constraint.</h3>
+        <p>Open models, domestic inference, vertical applications and the Global South create opportunities. Rising token prices signal demand above supply, but per-card performance, power efficiency and ecosystem migration remain hard constraints.</p>
+        <p class="first-step"><b>First step:</b>Run your own workload on a domestic inference stack. Measure throughput, latency and unit cost. Begin with inference and fine-tuning.</p>
+        <p class="cost">Trade-off: export controls, per-card performance and power consumption, and software migration can reduce the short-term experience.</p>
+        <p><b>When to change:</b>Reassess owned training clusters when HBM/advanced-packaging availability improves or open models reach the frontier.</p>
+      </article>
+    </div>
+    <div class="note" style="margin-top:22px"><b>Use:</b>Each scenario names the conditions that make it hold and the signals that would show a transition. Carry those signals into the next observation.</div>
+    <div class="next-questions">
+      <div class="next-q"><span>01</span>Explore memory on its own: where is HBM's 2027 turning point?</div>
+      <div class="next-q"><span>02</span>Make a China–US comparison of the power constraint.</div>
+      <div class="next-q"><span>03</span>If 2027 capex falls 20%, which layers suffer first?</div>
+      <div class="next-q"><span>04</span>Open a system for me: where should I focus within the AI industry?</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 16 SYSTEM ===== -->
+<section class="section block-paper" id="s16" data-depth="8">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">System</span><span class="depth-name">What this run leaves behind</span></div>
+    <div class="split">
+      <div class="split-text">
+        <h2>What this run leaves behind.</h2>
+        <p class="lede" style="margin-top:20px">This page is the deliverable; the card alongside it is the system. The page stays in the conversation. The system can follow you if you give it a home.</p>
+        <div class="body-copy" style="margin-top:22px">
+          <p>This card is the starting point for the next run. It records how the industry works, where the tightest constraint is and what to watch next. Say “Continue” and I start here.</p>
+          <p>The system uses an entry, two understanding records, a practice record and a watch list. These are plain-text files you can read, edit and delete.</p>
+        </div>
+        <div class="note"><b>Not saved yet.</b>On first use, choose a location. No system files have been written yet. The choice is at the bottom; reply 1 or 2.</div>
+      </div>
+      <div class="split-visual">
+        <div class="sys-grid" id="systemCard">
+          <div class="sys-item"><span class="sys-k">Essence in one sentence</span><p>Intelligence at the surface, profits in the bedrock. The AI industry sells scarcity.</p></div>
+          <div class="sys-item"><span class="sys-k">Eight layers</span><p>Applications → models → cloud/capital → chips → memory → packaging → power → the loop.</p></div>
+          <div class="sys-item"><span class="sys-k">Four toll points</span><p>Memory, packaging, power and capital: all resist rapid replication.</p></div>
+          <div class="sys-item"><span class="sys-k">Three loops</span><p>Jevons (efficiency → usage), the memory cycle (shortage → expansion → downturn), and financing (capex → valuation → capex).</p></div>
+          <div class="sys-item"><span class="sys-k">One moving bottleneck</span><p>CoWoS → HBM → power → demand. Watch the next link.</p></div>
+          <div class="sys-item"><span class="sys-k">Six signals</span><p>Anthropic pricing, Nvidia earnings, cloud capex guidance, HBM contract prices, PJM prices and local referendums.</p></div>
+          <div class="sys-item"><span class="sys-k">Data as of</span><p>2026-11-16; market data as of the 2026-11-13 close.</p></div>
+          <div class="sys-item"><span class="sys-k">This run's route</span><p>Open → X-ray → Flow → Loops → Bottleneck → Leverage → Make.</p></div>
+        </div>
+        <div class="share-tools" style="margin-top:12px"><button class="btn btn--accent btn--small" data-copy-target="#systemCard">Copy system summary</button></div>
+      </div>
+    </div>
+
+    <div class="location-box" id="location">
+      <h3>The system has not been saved.</h3>
+      <p>First choose a location. No system files have been written yet; this page is the current deliverable and system summary.</p>
+      <p><b>① Follow me:</b><span class="path">~/.openxsys/</span>, across projects and AI tools. Recommended.<br><b>② This folder only:</b><span class="path">AI-Industry-Research/.openxsys/</span>, for this project.</p>
+      <div class="location-actions">
+        <button class="btn btn--accent btn--small" data-copy-text="I choose 1: follow me (~/.openxsys)">Copy: I choose 1</button>
+        <button class="btn btn--small" data-copy-text="I choose 2: this AI-Industry-Research folder only (.openxsys)">Copy: I choose 2</button>
+      </div>
+      <p class="small">Reply 1 or 2; next turn I write SYSTEM.md, understanding and practice records, and a watch list. The system stores no passwords, keys or sensitive personal information. You can inspect, edit and delete every file.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 17 SHARE ===== -->
+<section class="section block-paper" id="s17" data-depth="8">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">Share</span><span class="depth-name">Take it with you</span></div>
+    <div class="section-head">
+      <h2>One card, three drafts.</h2>
+      <p class="lede">Publish as-is or rewrite in your own words. A small “OpenXSys · 2026-11-16” credit is included; remove it if you prefer.</p>
+    </div>
+    <div class="share-layout">
+      <div class="share-card-wrap">
+        <div class="share-tools">
+          <button class="btn btn--small btn--accent" data-card="square" aria-pressed="true">1:1</button>
+          <button class="btn btn--small" data-card="tall" aria-pressed="false">9:16</button>
+          <button class="btn btn--small" id="downloadCard">Save PNG</button>
+        </div>
+        <div class="share-card" id="shareCard">
+          <div class="sc-core" aria-hidden="true"><span style="background:#b8b1a0"></span><span style="background:#a77b4d"></span><span style="background:#5f7f8a"></span><span style="background:#35627d"></span><span style="background:#2d565a"></span><span style="background:#77513a"></span><span style="background:#70382d"></span><span style="background:#0d232b"></span></div>
+          <div>
+            <p class="sc-label">Discovery 01 · Profits in the bedrock</p>
+            <p class="sc-big">Three memory makers earn more in one quarter than two leading model companies bring in over a year.</p>
+            <p class="sc-sub">The AI industry sells scarcity.</p>
+          </div>
+          <div class="sc-foot">Memory leaders' Q3 operating profit: $179B · OpenAI + Anthropic annualized revenue: $131B<br>OpenXSys · 2026-11-16 · Sources in the report</div>
+        </div>
+        <p class="small" style="max-width:36em">Use 1:1 for feeds and 9:16 for stories or video covers. “Save PNG” generates a 1080×1080 or 1080×1920 image.</p>
+      </div>
+
+      <div>
+        <p class="small" style="font-size:12px;letter-spacing:.04em;color:var(--accent);margin-bottom:8px">Draft copy</p>
+        <div class="copy-list">
+          <div class="copy-item"><p id="copy1">One quarter of operating profit at three memory makers exceeds one year's revenue at two leading model companies. The AI industry sells scarcity.</p><button class="btn btn--small" data-copy-target="#copy1">Copy</button></div>
+          <div class="copy-item"><p id="copy2">In 2026, AI infrastructure spending reaches $1.48 trillion, versus $28.3 billion for generative model software. For every $52 building roads, $1 goes to the driver.</p><button class="btn btn--small" data-copy-target="#copy2">Copy</button></div>
+          <div class="copy-item"><p id="copy3">When suppliers are also shareholders, customers and guarantors, demand signals become interdependent. AI's next wall is power; its next fault line is cash flow.</p><button class="btn btn--small" data-copy-target="#copy3">Copy</button></div>
+        </div>
+
+        <p class="small" style="font-size:12px;letter-spacing:.04em;color:var(--accent);margin:22px 0 8px">Alternative text</p>
+        <div class="alt-text" id="altText">A dark discovery card says that three memory makers earn more in one quarter than two leading model companies bring in over a year. At right, an eight-color core sample descends from paper white to bedrock black. The footer lists memory leaders' Q3 operating profit of $179B, OpenAI + Anthropic annualized revenue of $131B, OpenXSys and the date.</div>
+        <div class="share-tools" style="margin-top:8px"><button class="btn btn--small" data-copy-target="#altText">Copy alternative text</button></div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 18 SOURCES ===== -->
+<section class="section block-paper" id="s18" data-depth="8">
+  <div class="wrap">
+    <div class="depth-tag"><span class="depth-num">Evidence</span><span class="depth-name">Sources &amp; definitions</span></div>
+    <div class="section-head">
+      <h2>Sources and definitions.</h2>
+      <p class="lede">Key figures link back to their sources. Inferences, forecasts and media accounts are labeled separately. Private-company data follows public disclosures, with unaudited items identified.</p>
+    </div>
+    <div class="caveat">
+      <b>Four limitations</b>
+      <span>1. OpenAI is private; financial figures come from media disclosures and leaked documents and are unaudited. Anthropic figures follow its S-1, whose forward-looking statements are conditional.</span>
+      <span>2. Quarterly memory profits are at a cyclical peak; 80% gross margins will not last forever. Valuing cyclical stocks on peak profits is a common error.</span>
+      <span>3. 2027 capex, HBM pricing and power loads are forecasts with wide sell-side disagreement. Read their stated conditions.</span>
+      <span>4. Market caps, share prices and P/E ratios use the 2026-11-13 close. Read later market changes against the conditions and signals stated here.</span>
+    </div>
+    <div class="sources">
+      <ol>
+        <li id="source1"><span class="s-num">1</span><div class="s-body"><b>Nvidia</b>，“NVIDIA Announces Financial Results for Second Quarter Fiscal 2027”，2026-08-26。<a href="https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Second-Quarter-Fiscal-2027/default.aspx?ref=unhyd.com" target="_blank" rel="noopener">Link</a><span class="src-tag">Official earnings</span></div></li>
+        <li id="source2"><span class="s-num">2</span><div class="s-body"><b>Nvidia</b>，“Revenue by Market Qtrly Trend Q127”，2026。<a href="https://s201.q4cdn.com/141608511/files/doc_financials/2027/Q127/Rev_by_Mkt_Qtrly_Trend_Q127-NEW-v3.pdf" target="_blank" rel="noopener">Link</a><span class="src-tag">Official data</span></div></li>
+        <li id="source3"><span class="s-num">3</span><div class="s-body"><b>Tencent News</b>, “Nvidia Q3 earnings date and CEO change,” 2026-11-16.<a href="https://news.qq.com/rain/a/20261116A04RFR00" target="_blank" rel="noopener">Link</a><span class="src-tag">Media</span></div></li>
+        <li id="source4"><span class="s-num">4</span><div class="s-body"><b>AInvest</b>，“The Crises That Price the Nvidia Selloff”，2026-11。<a href="https://www.ainvest.com/news/crises-price-nvidia-selloff-isn-ai-bubble-2611/" target="_blank" rel="noopener">Link</a><span class="src-tag">Media analysis</span></div></li>
+        <li id="source5"><span class="s-num">5</span><div class="s-body"><b>Anthropic</b>, “Prospectus / S-1,” 2026-10-26, with subsequent amendments.<a href="https://ipo.anthropic.com/documents/us/prospectus.pdf" target="_blank" rel="noopener">Link</a><span class="src-tag">Prospectus</span></div></li>
+        <li id="source6"><span class="s-num">6</span><div class="s-body"><b>Invezz</b>，“Anthropic IPO terms”，2026-11。<a href="https://invezz.com/invest/anthropic-ipo/" target="_blank" rel="noopener">Link</a><span class="src-tag">Media</span></div></li>
+        <li id="source7"><span class="s-num">7</span><div class="s-body"><b>Nasdaq</b>，“Nvidia and Alphabet buy $10B each of Anthropic stock”，2026-11。<a href="https://www.nasdaq.com/articles/nvidia-and-alphabet-just-agreed-buy-10-billion-each-anthropic-stock-its-ipo-price" target="_blank" rel="noopener">Link</a><span class="src-tag">Media</span></div></li>
+        <li id="source8"><span class="s-num">8</span><div class="s-body"><b>Safeguard</b>，“OpenAI revenue, losses and cash burn”，2026。<a href="https://safeguard.sh/resources/blog/openai-revenue-losses-and-cash-burn-what-has-been-reported" target="_blank" rel="noopener">Link</a><span class="src-tag">Media compilation</span></div></li>
+        <li id="source9"><span class="s-num">9</span><div class="s-body"><b>ValueAdd VC</b>，“OpenAI revenue 2026”，2026。<a href="https://valueaddvc.com/blog/openai-revenue-2026-20b-arr-4b-month-path-to-profitability" target="_blank" rel="noopener">Link</a><span class="src-tag">Media</span></div></li>
+        <li id="source10"><span class="s-num">10</span><div class="s-body"><b>Gartner</b>，“Worldwide AI spending 2026”，2026-09-16。<a href="https://www.gartner.com/en/newsroom/press-releases/2026-09-16-gartner-forecasts-worldwide-ai-spending-to-grow-49-point-5-percent-in-2026" target="_blank" rel="noopener">Link</a><span class="src-tag">Research forecast</span></div></li>
+        <li id="source11"><span class="s-num">11</span><div class="s-body"><b>Menlo Ventures</b>，“2026: The State of Enterprise AI”，2026。<a href="https://menlovc.com/perspective/2026-the-state-of-enterprise-ai/" target="_blank" rel="noopener">Link</a><span class="src-tag">Research</span></div></li>
+        <li id="source12"><span class="s-num">12</span><div class="s-body"><b>Company earnings compilation</b>，Microsoft / Alphabet / Amazon / Meta 2026 Q3，2026-10。<span class="src-tag">Official earnings</span></div></li>
+        <li id="source13"><span class="s-num">13</span><div class="s-body"><b>TradingKey</b>，“US stock selloff / AI bubble / S&amp;P 500 2027”，2026-11。<a href="https://www.tradingkey.com/analysis/stocks/us-stocks/262305431-us-stock-selloff-wall-street-debates-ai-bubble-sp-500-chip-stocks-2027-tradingkey" target="_blank" rel="noopener">Link</a><span class="src-tag">Media analysis</span></div></li>
+        <li id="source14"><span class="s-num">14</span><div class="s-body"><b>Alphabet</b>, June 2026 equity financing / debt, 2026-06.<a href="https://abc.xyz/investor/" target="_blank" rel="noopener">Link</a><span class="src-tag">Company announcement</span></div></li>
+        <li id="source15"><span class="s-num">15</span><div class="s-body"><b>TSMC</b>，“3Q 2026 Earnings Release”，2026-10。<a href="https://pr.tsmc.com/chinese/news/3346" target="_blank" rel="noopener">Link</a><span class="src-tag">Official earnings</span></div></li>
+        <li id="source16"><span class="s-num">16</span><div class="s-body"><b>TSMC</b>，“3Q26 Transcript / CoWoS reticle”，2026-10。<a href="https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-10/eba4fac72873bf546b669bd2b5d973df5c93215d/TSMC%203Q26%20Transcript.pdf" target="_blank" rel="noopener">Link</a><span class="src-tag">Official earnings call</span></div></li>
+        <li id="source17"><span class="s-num">17</span><div class="s-body"><b>SK hynix</b>, Q3 2026 earnings, 2026-10.<a href="https://news.skhynix.com/" target="_blank" rel="noopener">Link</a><span class="src-tag">Official earnings</span></div></li>
+        <li id="source18"><span class="s-num">18</span><div class="s-body"><b>Samsung Electronics</b>, Q3 2026 earnings, 2026-10.<a href="https://www.samsung.com/global/ir/" target="_blank" rel="noopener">Link</a><span class="src-tag">Official earnings</span></div></li>
+        <li id="source19"><span class="s-num">19</span><div class="s-body"><b>Micron</b>, FY2026 Q4 earnings, 2026-09.<a href="https://investors.micron.com/" target="_blank" rel="noopener">Link</a><span class="src-tag">Official earnings</span></div></li>
+        <li id="source20"><span class="s-num">20</span><div class="s-body"><b>Counterpoint / TrendForce / BofA</b>, HBM share and 2027 forecast, 2026.<a href="https://www.trendforce.com/" target="_blank" rel="noopener">Link</a><span class="src-tag">Research forecast</span></div></li>
+        <li id="source21"><span class="s-num">21</span><div class="s-body"><b>IDC</b>, AI data-center memory use and phone/PC output cuts, 2026.<a href="https://www.idc.com/" target="_blank" rel="noopener">Link</a><span class="src-tag">Research forecast</span></div></li>
+        <li id="source22"><span class="s-num">22</span><div class="s-body"><b>IEA</b>，“Energy and AI”，2026。<a href="https://www.iea.org/reports/energy-and-ai" target="_blank" rel="noopener">Link</a><span class="src-tag">Official research</span></div></li>
+        <li id="source23"><span class="s-num">23</span><div class="s-body"><b>LBNL / Goldman Sachs</b>, grid-connection queues and US data-center load, 2026.<a href="https://emp.lbl.gov/queues" target="_blank" rel="noopener">Link</a><span class="src-tag">Research</span></div></li>
+        <li id="source24"><span class="s-num">24</span><div class="s-body"><b>PJM</b>, capacity-auction results, 2026.<a href="https://www.pjm.com/" target="_blank" rel="noopener">Link</a><span class="src-tag">Official</span></div></li>
+        <li id="source25"><span class="s-num">25</span><div class="s-body"><b>GE Vernova / Wood Mackenzie</b>, gas-turbine and transformer lead times, 2026.<a href="https://www.gevernova.com/" target="_blank" rel="noopener">Link</a><span class="src-tag">Company / research</span></div></li>
+        <li id="source26"><span class="s-num">26</span><div class="s-body"><b>36Kr</b>, “US market sell-off on November 5,” 2026-11-06.<a href="https://36kr.com/p/4057568656446592" target="_blank" rel="noopener">Link</a><span class="src-tag">Media</span></div></li>
+        <li id="source27"><span class="s-num">27</span><div class="s-body"><b>CAICT</b>, token data, 2026-10.<a href="https://www.caict.ac.cn/" target="_blank" rel="noopener">Link</a><span class="src-tag">Official research</span></div></li>
+        <li id="source28"><span class="s-num">28</span><div class="s-body"><b>Huawei H1 2026 report; IDC</b>, China's AI chip share, 2026.<a href="https://www.huawei.com/cn/" target="_blank" rel="noopener">Link</a><span class="src-tag">Official / research</span></div></li>
+        <li id="source29"><span class="s-num">29</span><div class="s-body"><b>Caixin</b>, “DeepSeek's 160,000 Ascend 950DT chips,” 2026-10-31.<span class="src-tag">Media</span></div></li>
+        <li id="source30"><span class="s-num">30</span><div class="s-body"><b>China Energy News</b>, Chinese data-center electricity use, 2026-11-02.<span class="src-tag">Media</span></div></li>
+        <li id="source31"><span class="s-num">31</span><div class="s-body"><b>Wind / Motley Fool</b>, market capitalization and prices, 2026-11-13.<span class="src-tag">Market data</span></div></li>
+        <li id="source32"><span class="s-num">32</span><div class="s-body"><b>McKinsey</b>, “95% of pilots lack direct financial returns,” 2025.<a href="https://www.mckinsey.com/" target="_blank" rel="noopener">Link</a><span class="src-tag">Research</span></div></li>
+        <li id="source33"><span class="s-num">33</span><div class="s-body"><b>Jevons</b>，“The Coal Question”，1865。<a href="https://www.econlib.org/library/YPDBooks/Jevons/jvnCQ.html" target="_blank" rel="noopener">Link</a><span class="src-tag">Primary source</span></div></li>
+        <li id="source34"><span class="s-num">34</span><div class="s-body"><b>Anthropic S-1 / Sina Finance</b>, Q3 financial breakdown, 2026-10-27.<a href="https://finance.sina.com.cn/roll/2026-10-27/doc-iniwsfqt1272792.shtml" target="_blank" rel="noopener">Link</a><span class="src-tag">Official / media</span></div></li>
+        <li id="source35"><span class="s-num">35</span><div class="s-body"><b>PitchBook</b>，“Q2 2026: An Eye on OpenAI”，2026。<a href="https://pitchbook.brightspotcdn.com/98/ff/fb95b2ad477680577917ecb74668/q2-2026-an-eye-on-openai.pdf" target="_blank" rel="noopener">Link</a><span class="src-tag">Research</span></div></li>
+        <li id="source36"><span class="s-num">36</span><div class="s-body"><b>Economic Daily</b>, “The AI bubble and 92% of GDP,” 2025-11-19.<a href="http://paper.ce.cn/pc/attachment/202511/19/5aa122e4-2b89-408e-862b-f600f08b572a.pdf" target="_blank" rel="noopener">Link</a><span class="src-tag">Media</span></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <p class="footer-line">Intelligence will get cheaper;<em>scarcity will not.</em></p>
+    <div class="footer-meta">
+      <span>[OpenXSys] Ding. System activated.</span>
+      <span>One complete run: research, modeling, writing, design and review.</span>
+      <span>Research snapshot · data and conditions dated inside.</span>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<div class="progress" aria-hidden="true" style="transform: scaleX(0);"></div>
+<nav class="rail" aria-label="Depth navigation">
+  <span class="rail-line" aria-hidden="true"></span>
+  <a class="rail-dot" href="#s2" aria-label="0 meters, applications"><span>0m Apps</span></a>
+  <a class="rail-dot" href="#s3" aria-label="10 meters, models"><span>10m Models</span></a>
+  <a class="rail-dot" href="#s5" aria-label="20 meters, cloud and capital"><span>20m Cloud</span></a>
+  <a class="rail-dot" href="#s6" aria-label="30 meters, chips"><span>30m Chips</span></a>
+  <a class="rail-dot" href="#s7" aria-label="40 meters, memory"><span>40m Memory</span></a>
+  <a class="rail-dot" href="#s8" aria-label="50 meters, packaging"><span>50m Packaging</span></a>
+  <a class="rail-dot" href="#s9" aria-label="60 meters, power"><span>60m Power</span></a>
+  <a class="rail-dot" href="#s10" aria-label="65 meters, profit table"><span>65m Profits</span></a>
+  <a class="rail-dot" href="#s11" aria-label="70 meters, the loop"><span>70m Loop</span></a>
+</nav>
+<button class="to-top" aria-label="Back to top">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"></path></svg>
+</button>
+<div class="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  'use strict';
+  const $ = (s, el=document) => el.querySelector(s);
+  const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
+  const body = document.body;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- depth / rail / progress ---------- */
+  const sections = $$('section[data-depth]');
+  const rail = $('.rail');
+  const railDots = $$('.rail-dot');
+  const progress = $('.progress');
+  const toTop = $('.to-top');
+  let ticking = false;
+
+  function updateScroll(){
+    const y = window.scrollY || window.pageYOffset || 0;
+    const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    if (progress) progress.style.transform = 'scaleX(' + Math.min(1, y/max).toFixed(4) + ')';
+    const line = window.innerHeight * 0.36;
+    let active = null;
+    for (let i=0; i<sections.length; i++){
+      const r = sections[i].getBoundingClientRect();
+      if (r.top <= line && r.bottom > line){ active = sections[i]; break; }
+    }
+    if (active){
+      body.dataset.depth = active.dataset.depth || '0';
+      const id = '#' + active.id;
+      railDots.forEach(d => d.classList.toggle('is-active', d.getAttribute('href') === id));
+    }
+    const loop = document.getElementById('s11');
+    if (loop && rail){
+      const r = loop.getBoundingClientRect();
+      rail.classList.toggle('is-off', r.bottom < window.innerHeight * 0.45);
+    }
+    if (toTop) toTop.classList.toggle('is-on', y > window.innerHeight * 0.9);
+    ticking = false;
+  }
+  function onScroll(){ if (!ticking){ ticking = true; requestAnimationFrame(updateScroll); } }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+  updateScroll();
+  if (toTop) toTop.addEventListener('click', () => window.scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'}));
+
+  /* ---------- chart entrance ---------- */
+  if ('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if (e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, {threshold:0.16, rootMargin:'0px 0px -6% 0px'});
+    $$('.chart').forEach(el => io.observe(el));
+  } else {
+    $$('.chart').forEach(el => el.classList.add('is-in'));
+  }
+
+  /* ---------- hero labels ---------- */
+  setTimeout(()=>{
+    $$('.core-label').forEach((el,i)=>setTimeout(()=>el.classList.add('is-on'), i*850));
+    $$('.core-arrow').forEach((el,i)=>setTimeout(()=>el.classList.add('is-on'), i*850));
+  }, 900);
+
+  /* ---------- route ---------- */
+  const ROUTE = {
+    open: "<b>Open</b>: Treat AI as one industry: eight layers, four toll points and one loop. Structure first, figures second.",
+    xray: "<b>X-ray</b>: Look for recurring structures. Why do profits collect in the physical layer? It is the hardest to replicate.",
+    flow: "<b>Flow</b>: Follow the money: end demand → capex → upstream revenue. In 2026, end demand is $176.8B and capex $730B.",
+    loop: "<b>Loops</b>: Three loops: Jevons (efficiency → usage), memory (shortage → expansion → downturn), and financing (capex → valuation → capex).",
+    bottleneck: "<b>Bottleneck</b>: The constraint moves: CoWoS → HBM → power → demand. Each layer thinks its scarcity will last; the next is already waiting.",
+    leverage: "<b>Leverage</b>: Capital allocators, product builders and people working in China each have a different point of leverage. Decide what to monitor.",
+    make: "<b>Make</b>: This page, discovery cards, draft copy and a system summary. Take them with you, or explore further."
+  };
+  const routePop = $('#routePop');
+  $$('.route-step').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      $$('.route-step').forEach(b=>b.setAttribute('aria-expanded','false'));
+      btn.setAttribute('aria-expanded','true');
+      if (routePop) routePop.innerHTML = ROUTE[btn.dataset.route] || '';
+    });
+  });
+
+  /* ---------- scenarios ---------- */
+  const SCENARIOS = {
+    digest: {
+      title: "Digestion · Demand catches supply",
+      must: "Capex growth falls from +80% to +20–30%; HBM contract prices flatten; cloud free cash flow improves; applications move from pilots to production.",
+      signals: "Cloud providers stop raising 2027 guidance; HBM prices are flat sequentially; token usage keeps doubling; enterprises shift from buying models to buying results.",
+      win: "Winners: applications, cash-generative cloud providers and undervalued second-tier memory makers. Losers: highly leveraged neoclouds and financing-dependent model companies."
+    },
+    accelerate: {
+      title: "Acceleration · AI becomes general-purpose infrastructure",
+      must: "Token use grows over 2×; cloud AI revenue accelerates; HBM and power stay tight; total 2027 capex exceeds $1.2T.",
+      signals: "Nvidia data-center revenue above $110B; HBM prices keep rising; PJM capacity prices reach new highs; cloud guidance rises.",
+      win: "Winners: Nvidia, memory, power, TSMC and leading applications. Losers: bears and traditional non-AI hardware."
+    },
+    bubble: {
+      title: "Bubble · Funding continues while revenue lags",
+      must: "Capex keeps rising while cloud AI revenue disappoints; supplier financing increases; DSO lengthens; credit spreads widen.",
+      signals: "Anthropic IPO priced below $70; Nvidia DSO above 70 days; circular financing above 20%; widening high-yield spreads.",
+      win: "Winners: cash-rich giants and short sellers. Losers: neoclouds, marginal model companies and peak-cycle memory."
+    },
+    airpocket: {
+      title: "Air pocket · Capital withdraws before demand is proven",
+      must: "Capex orders are cut; HBM prices fall 20% sequentially; Nvidia book-to-bill falls below 1; highly valued names fall 30–50%.",
+      signals: "Cloud providers cut 2027 capex guidance; HBM contract prices fall; Nvidia growth guidance drops below 50%; the IPO window closes.",
+      win: "Winners: cash, value stocks and defensive assets. Losers: the AI chain, especially highly leveraged links."
+    }
+  };
+  $$('.quad').forEach(q=>{
+    q.addEventListener('click', ()=>{
+      $$('.quad').forEach(x=>{ x.classList.remove('is-active'); x.setAttribute('aria-pressed','false'); });
+      q.classList.add('is-active'); q.setAttribute('aria-pressed','true');
+      const d = SCENARIOS[q.dataset.scenario];
+      if (!d) return;
+      const t=$('#sdTitle'), m=$('#sdMust'), s=$('#sdSignals'), w=$('#sdWin');
+      if (t) t.textContent = d.title;
+      if (m) m.textContent = d.must;
+      if (s) s.textContent = d.signals;
+      if (w) w.textContent = d.win;
+    });
+  });
+
+  /* ---------- loop ---------- */
+  const loopSvg = $('#loopSvg');
+  const loopCaption = $('#loopCaption');
+  $$('.loop-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const full = btn.dataset.loop === 'full';
+      $$('.loop-btn').forEach(b=>{ b.classList.remove('is-on'); b.setAttribute('aria-pressed','false'); });
+      btn.classList.add('is-on'); btn.setAttribute('aria-pressed','true');
+      if (loopSvg) loopSvg.classList.toggle('is-loop', full);
+      if (loopCaption) loopCaption.textContent = full
+        ? "Add the capital loop: suppliers are also shareholders, customers and guarantors. Nvidia invests in OpenAI, guarantees CoreWeave and subscribes to Anthropic. Capital amplifies the demand signal."
+        : "Without the capital loop, one value chain remains: physical layer → chips → cloud/models → end users. Money returns along the same path. Switch to “The full loop” to see supplier investments, guarantees and equity turn the chain into a cycle.";
+    });
+  });
+
+  /* ---------- share card ---------- */
+  const shareCard = $('#shareCard');
+  $$('[data-card]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const tall = btn.dataset.card === 'tall';
+      $$('[data-card]').forEach(b=>{ b.classList.remove('btn--accent'); b.setAttribute('aria-pressed','false'); });
+      btn.classList.add('btn--accent'); btn.setAttribute('aria-pressed','true');
+      if (shareCard) shareCard.classList.toggle('is-tall', tall);
+    });
+  });
+
+  function wrapText(ctx, text, maxWidth){
+    const chars = text.match(/\S+\s*/g) || [text];
+    const lines = [];
+    let line = '';
+    for (const ch of chars){
+      const test = line + ch;
+      if (ctx.measureText(test).width > maxWidth && line){
+        lines.push(line);
+        line = ch;
+      } else {
+        line = test;
+      }
+    }
+    if (line) lines.push(line);
+    return lines;
+  }
+
+  async function downloadCard(){
+    if (!shareCard) return;
+    const tall = shareCard.classList.contains('is-tall');
+    const W = 1080, H = tall ? 1920 : 1080;
+    const c = document.createElement('canvas');
+    c.width = W; c.height = H;
+    const ctx = c.getContext('2d');
+    if (!ctx){ showToast("Could not generate the image. Save a screenshot instead."); return; }
+    try {
+      if (document.fonts && document.fonts.ready) await document.fonts.ready;
+
+      ctx.fillStyle = '#08161c';
+      ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#e0a052';
+      ctx.fillRect(0, 0, W, 8);
+
+      const colors = ['#b8b1a0','#a77b4d','#5f7f8a','#35627d','#2d565a','#77513a','#70382d','#0d232b'];
+      const sw = 56, sh = H / colors.length;
+      colors.forEach((col, i)=>{ ctx.fillStyle = col; ctx.fillRect(W - sw, i * sh, sw, sh); });
+
+      const pad = 80;
+      const maxW = W - pad - 120;
+      const topY = tall ? 220 : 140;
+      const bigY = tall ? 340 : 250;
+      const lineH = tall ? 92 : 86;
+      const subSize = 38;
+
+      ctx.fillStyle = '#e9e5da';
+      ctx.font = '500 30px "Noto Sans SC","Microsoft YaHei",sans-serif';
+      ctx.fillText("Discovery 01 · Profits in the bedrock", pad, topY);
+
+      ctx.fillStyle = '#e9e5da';
+      ctx.font = '900 76px "Noto Sans SC","Microsoft YaHei",sans-serif';
+      const big = "Three memory makers earn more in one quarter than two leading model companies bring in over a year.";
+      const lines = wrapText(ctx, big, maxW);
+      let y = bigY;
+      lines.forEach(line=>{ ctx.fillText(line, pad, y); y += lineH; });
+
+      const subY = bigY + lines.length * lineH + 18;
+      ctx.fillStyle = '#e0a052';
+      ctx.font = '600 ' + subSize + 'px "Noto Sans SC","Microsoft YaHei",sans-serif';
+      ctx.fillText("The AI industry sells scarcity.", pad, subY);
+
+      const foot = "Memory leaders' Q3 operating profit: $179B · OpenAI + Anthropic annualized revenue: $131B";
+      const footY = H - (tall ? 200 : 130);
+      ctx.fillStyle = 'rgba(233,229,218,.55)';
+      ctx.font = '400 24px "Noto Sans SC","Microsoft YaHei",sans-serif';
+      const footLines = wrapText(ctx, foot, maxW);
+      footLines.forEach((line, i)=>{ ctx.fillText(line, pad, footY + i * 32); });
+
+      ctx.fillStyle = 'rgba(233,229,218,.4)';
+      ctx.font = '400 22px "Archivo","Noto Sans SC",sans-serif';
+      ctx.fillText("OpenXSys · 2026-11-16 · Sources in the report", pad, H - (tall ? 90 : 56));
+
+      c.toBlob((blob)=>{
+        if (!blob){ showToast("Could not generate the image. Save a screenshot instead."); return; }
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = tall ? "ai-industry-core-discovery-9x16.png" : "ai-industry-core-discovery-1x1.png";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(()=>URL.revokeObjectURL(url), 1200);
+        showToast("Discovery card generated");
+      }, 'image/png');
+    } catch (e){
+      showToast("Could not generate the image. Save a screenshot instead.");
+    }
+  }
+  const dlBtn = $('#downloadCard');
+  if (dlBtn) dlBtn.addEventListener('click', downloadCard);
+
+  /* ---------- copy / toast ---------- */
+  let toastTimer;
+  function showToast(msg){
+    const t = $('.toast');
+    if (!t) return;
+    t.textContent = msg;
+    t.classList.add('is-on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(()=>t.classList.remove('is-on'), 2200);
+  }
+  function fallbackCopy(text){
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    ta.style.top = '0';
+    document.body.appendChild(ta);
+    ta.focus(); ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (e){ ok = false; }
+    document.body.removeChild(ta);
+    showToast(ok ? "Copied" : "Copy failed. Select and copy the text manually.");
+  }
+  function copyText(text){
+    if (navigator.clipboard && window.isSecureContext){
+      navigator.clipboard.writeText(text).then(()=>showToast("Copied")).catch(()=>fallbackCopy(text));
+    } else {
+      fallbackCopy(text);
+    }
+  }
+  $$('[data-copy-target]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const el = $(btn.dataset.copyTarget);
+      if (el) copyText(el.innerText.trim());
+    });
+  });
+  $$('[data-copy-text]').forEach(btn=>{
+    btn.addEventListener('click', ()=>copyText(btn.dataset.copyText || ''));
+  });
+})();
+</script>
+<script>
+document.querySelectorAll('[data-language-link]').forEach(function(link){
+  link.addEventListener('click',function(){link.href=link.getAttribute('href').split('#')[0]+window.location.hash;});
+});
+</script>
+
+
+<script>
+/* Fit translated labels into the original core-sample diagram. */
+document.fonts.ready.then(function(){
+  document.querySelectorAll('svg.core-svg text').forEach(function(text){
+    var svg=text.ownerSVGElement, x=text.x.baseVal.numberOfItems?text.x.baseVal.getItem(0).value:0;
+    var available=svg.viewBox.baseVal.width-x-10;
+    if(x>450&&available>30&&text.getComputedTextLength()>available){
+      text.setAttribute('textLength',available);text.setAttribute('lengthAdjust','spacingAndGlyphs');
+    }
+  });
+});
+</script>
+</body></html>

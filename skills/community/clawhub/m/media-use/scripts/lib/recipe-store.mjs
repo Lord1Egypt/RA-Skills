@@ -38,7 +38,7 @@ const NON_ASCII_SAFE_DIR_COPY = { recursive: true, force: true, filter: () => tr
 const FRONTMATTER_CONTENT_KEYS = new Set(["message", "audience", "mode"]);
 
 /** BRIEF.md frontmatter keys that describe this run, not the reusable type —
- * a recipe never locks the run's shape, so the intent layer always re-asks. */
+ * a recipe never locks the run's shape, so these are always asked again. */
 const BRIEF_CONTENT_KEYS = new Set(["flow", "storyboard", "message", "audience"]);
 
 /** Per-frame metadata that is content, not structure. */
@@ -283,6 +283,7 @@ export function freezeRecipe({ projectDir, name, workflow, blocks }) {
     const userDir = join(userRecipesDir(), slug);
     mkdirSync(userDir, { recursive: true });
     cpSync(dir, userDir, NON_ASCII_SAFE_DIR_COPY);
+    if (!briefSkeleton) rmSync(join(userDir, "brief-skeleton.md"), { force: true });
   } catch {
     // The project-tier freeze already landed.
   }

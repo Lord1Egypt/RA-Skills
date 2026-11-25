@@ -187,7 +187,7 @@ _SUB MyWin,W400H300,Title,,,,, -trap -nocap -ntab -nfocus
 //   -nosysmenu: no system menu (no icon, no min/max/close)
 //   -top: always on top (TOPMOST)
 //   -maxb: enable maximize button
-//   -minb: enable minimize button
+//   -bottom: place window at the bottom
 
 // Cross-process window hide/show
 ENVI @@Visible=%&WID%:0                           // 不可见
@@ -241,12 +241,12 @@ _SUB MyWin,W400H300,Test,
     // @前缀: 绝对屏幕坐标; 无@: 客户区坐标
     ENVI @@POS=%&WID%:100:100:400:300:3:$200       // 置顶+半透明（$=0-255格式透明度）
     ENVI @this.POS=100:100:400:300                  // 设置位置（相对）
-    ENVI @this.POS=?;&L;&T;&W;&H                   // 查询位置（分号分隔）
+    ENVI @this.POS=?&L:&T:&W:&H                   // 查询位置（: 分隔）
     ENVI @@IsWindow=?%&WID%:&valid                  // 检查窗口是否有效
     ENVI @@Enable=?%&WID%:&enabled                  // 查询启用状态
 
     // --- 跨进程消息发送 ---
-    ENVI @@SENDMSG=%&hwnd%:#0x0010;0;0             // 同步发送 WM_CLOSE
+    ENVI @@SENDMSG=%&hwnd%;0x0010;0;0             // 同步发送 WM_CLOSE（# 前缀=自定义消息）
     ENVI @@POSTMSG=%&hwnd%:#1;0;0                  // 异步投递自定义消息 #1
     ENVI @this.MSG=0x1000: CALL OnMouseEnter       // WM_MOUSEENTER (PECMD 自定义 0x1000)
 ```
@@ -266,7 +266,7 @@ ENVI @DTIM1.VAL=?&&year;&&month;&&day;&&weekday;&&flag
 ENVI @DTIM1.VAL=2024;1;15
 // 鼠标悬停/离开消息:
 ENVI @DTIM1.MSG=0x1000: CALL OnMouseEnter   // WM_MOUSEENTER
-ENVI @DTIM1.MSG=0x1001: CALL OnMouseLeave   // WM_MOUSELEAVE
+ENVI @DTIM1.MSG=0x02A3: CALL OnMouseLeave   // WM_MOUSELEAVE
 ```
 
 ### IPAD — IP 地址编辑器
@@ -972,8 +972,8 @@ SET?int &&si=&&nPos:20        // current scroll position
 CALC &&col=ceil(%&nPos% / %&ColumnWidth%) + 1
 
 // Scroll to specific position via message:
-SET @@sendmsg=%&TBID%;%&lvm_scroll%;%&Pos%;0
-// Or scroll to row: SET @@sendmsg=%&TBID%;%&lvm_ensurevisible%;%&index%;0
+ENVI @@SENDMSG=%&TBID%;%&lvm_scroll%;%&Pos%;0
+// Or scroll to row: ENVI @@SENDMSG=%&TBID%;%&lvm_ensurevisible%;%&index%;0
 ```
 
 ---

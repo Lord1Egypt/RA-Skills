@@ -9,6 +9,28 @@
 2. **不猜业务**：它会把「项目是什么、真相源在哪、验收口径」一次问清（≤6 问），再安排对应专家/角色；不会直接开写。
 3. **不谎报**：跑不了/测不了的写「未实测 + 补测方式」；不自动更新、不自动推送、不锁定你的修改。
 
+## 0.5 让它自动接管（3 分钟，可选但强烈建议）
+
+**问题**：skill 装好了，但真实项目里不接管——不加载、不做 INTAKE、不跑门禁。原因是「加载」靠模型自觉，没有状态就没有闭环。
+
+**解决**：给工程建一个状态源，再加 12 行 AGENTS 片段（DSH 每会话首个请求前自动注入 `AGENTS.md` 链，所以那 12 行一定会进上下文）。
+
+```powershell
+$sk = "$env:USERPROFILE\.dsh\skills\dsh-capability-loop"
+$root = "C:\你的工程根"
+
+# 接入：生成 .dsh/loop/project.json + state.json + .gitignore，默认「影子」档（只记录、不阻断）
+powershell -NoProfile -ExecutionPolicy Bypass -File "$sk\scripts\loop-state.ps1" -Action init -Root $root -ProjectName "<工程名>"
+
+# 看状态 / 切档位 / 推进阶段
+powershell -NoProfile -ExecutionPolicy Bypass -File "$sk\scripts\loop-state.ps1" -Action status -Root $root
+powershell -NoProfile -ExecutionPolicy Bypass -File "$sk\scripts\loop-state.ps1" -Action set-mode -Root $root -Mode on   # 影子→接管
+```
+
+然后把 `templates/agents-loop-fragment.md` 里的 12 行贴进工程 `AGENTS.md`。
+
+**三档**：`off`（不接管）/ `shadow` 影子（只记录、门禁 FAIL 不阻断，建议先跑 3 个会话）/ `on` 接管（治理场景必须 INTAKE/证据/门禁/grill）。接入后 `loop-gate` 与 `capability-audit` 会自动把结果写回 `.dsh/loop/state.json`；**未标记的工程零变化**。细节见 `references/02-takeover.md`。
+
 ## 1. 第一次运行（只读体检，2 分钟）
 
 ```powershell

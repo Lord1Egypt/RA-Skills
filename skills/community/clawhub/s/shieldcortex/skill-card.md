@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers using AI agents use ShieldCortex to retain searchable memory across sessions and scan for prompt injection, credential leakage, and poisoned content.
+Developers and agent users use ShieldCortex for persistent local memory, semantic recall, and security checks that can filter unsafe memory or tool content. It also provides setup and configuration guidance for supported agent integrations.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates this release suspicious with medium confidence and reports unpinned package downloads and execution, changes outside the declared write scope, and access to agent and MCP configuration paths; reference resolution is incomplete.
+Risk: ClawScan rates the skill suspicious because documented integrations use unpinned `npx` commands that can download and run changing packages.
 
-Mitigation: Review the agent and MCP configuration handling, package execution, and automatic hook changes before installing. Proceed only if those behaviors fit your needs and you trust the publisher.
+Mitigation: Review package names and versions before enabling integrations that use `npx`; consider preinstalling reviewed versions where the skill documents this option.
+
+Risk: ClawScan coverage was partial, unresolved local references remained, and executable files were not inspected.
+
+Mitigation: Review the referenced package and local materials before installation; treat the scan as incomplete evidence rather than a full package assessment.
 
 ## Reference(s):
 
 - [ShieldCortex documentation](https://shieldcortex.ai/docs)
-- [ShieldCortex npm package](https://www.npmjs.com/package/shieldcortex)
+- [ShieldCortex website](https://shieldcortex.ai)
+- [ShieldCortex on npm](https://www.npmjs.com/package/shieldcortex)
+- [Publisher GitHub profile](https://github.com/Drakon-Systems-Ltd)
+- [Security audit waiver notes](https://github.com/Drakon-Systems-Ltd/ShieldCortex/blob/main/docs/security/audit-waivers.md)
+- [ClawHub release page](https://clawhub.ai/jarvis-drakon/skills/shieldcortex)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Guidance, Shell commands, Configuration]
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
 
-**Output Format:** [MCP text and structured results, CLI text, and Markdown setup guidance]
+**Output Format:** [Markdown instructions with shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Local-first memory and security results; cloud sync is optional.]
+**Other Properties Related to Output:** [Version-specific setup, security, and usage guidance for ShieldCortex.]
 
 ## Skill Version(s):
 
-5.20.1 (source: server-resolved release metadata)
+5.22.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

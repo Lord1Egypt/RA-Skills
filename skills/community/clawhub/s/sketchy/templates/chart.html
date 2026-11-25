@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" class="sk" data-theme="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- slot:title -->
+<title>Churn before and after onboarding</title>
+<meta name="description" content="Hand-drawn charts made with sketchy.">
+<link rel="stylesheet" href="../engine/sketchy.css">
+<!-- slot:theme (optional) -->
+<style>
+  /* A sheet of charts: one headline, one to four figures, the working in the margin. */
+  .sheet { position: relative; z-index: 1; max-width: 1240px; margin: 0 auto; padding: clamp(24px, 4vw, 56px) 16px 80px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .sheet-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: start; }
+  .sheet-head h1 { font-size: clamp(38px, 5.4vw, 64px); }
+  .figs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(520px, 100%), 1fr)); gap: 26px; }
+  .figs .sk-chart { margin: 0; }
+  @media (max-width: 760px) { .sheet-head { grid-template-columns: minmax(0, 1fr); } .sheet-head .sk-maths { text-align: left; } }
+</style>
+</head>
+<body class="sk">
+<svg class="sk-specks" data-specks="chart-sheet" data-specks-count="60" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+<!--
+  sketchy chart template. The title states what the data shows. Each figure is
+  a spec in data-chart (see references/charts.md); the engine draws it and
+  writes a hidden table with the exact values. Figures below are invented.
+-->
+<main class="sheet">
+  <header class="sheet-head">
+    <div class="sk-stack" style="--gap:8px">
+      <span class="sk-small">Product analytics · March to September</span>
+      <!-- slot:headline -->
+      <h1>The new onboarding halved churn in the first month</h1>
+    </div>
+    <aside class="sk-maths">
+      Σ show the math<br>
+      churn = lost ÷ started <span class="sk-sect">§1</span><br>
+      before = 412 ÷ 3,210 = <span class="val">12.8%</span><br>
+      after = 197 ÷ 3,050 = <span class="val">6.5%</span>
+    </aside>
+  </header>
+  <section class="figs">
+    <!-- slot:figures -->
+    <figure class="sk-chart" data-reveal data-draw data-chart='{"type":"slope","title":"First-month churn","unit":"%","series":[{"name":"before","values":[12.8]},{"name":"after","values":[6.5]}],"data":[["Before","After"],[12.8,6.5]],"highlight":1,"source":"billing export, 30 Sep"}'></figure>
+    <figure class="sk-chart" data-reveal data-draw data-chart='{"type":"line","title":"Accounts still active after 30 days","unit":"%","x":["Mar","Apr","May","Jun","Jul","Aug","Sep"],"series":[{"name":"plan","values":[88,88,89,90,91,92,93],"dashed":true},{"name":"record","values":[87.4,86.9,87.8,90.6,92.9,93.4,93.5]}],"annotate":[{"at":3,"text":"new onboarding"}],"source":"billing export, 30 Sep"}'></figure>
+  </section>
+  <footer class="sk-fine"><span class="sk-sect">§1</span> Billing export, 30 Sep 2026. Churn counts accounts cancelled within 30 days of sign-up.</footer>
+</main>
+<script src="../engine/sketchy.js"></script>
+<script src="../engine/sketchy-charts.js"></script>
+<script>Sketchy.mount();</script>
+</body>
+</html>

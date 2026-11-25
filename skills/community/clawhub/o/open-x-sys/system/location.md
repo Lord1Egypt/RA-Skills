@@ -1,59 +1,48 @@
-# Location: where a system lives
+# Location: Let the System Follow Its Real Owner
 
-> **When to read**: a system is about to be saved for the first time; you must decide what belongs with the person and what belongs with a project; the chosen folder is shared with other people or is a public repository; or the host cannot write where the person chose.
+> **Read when**: a system first enters persistent state; you need to decide what follows a person, project, organization, or external system; several people share the present location; or the host's storage capability changes.
 
-## The system follows the person
+A system's location follows its **real owner, scope of effect, continuity needs, and host capability**. OpenXSys recommends a natural-language entry for portable state and can adapt to files, host memory, a database, or the authoritative entry already held by a domain system.
+
+## Common locations
 
 ```text
-~/.openxsys/                  the person's system: across projects, AIs and sessions
-├── SYSTEM.md                 the root entry: the person
-├── <an opened system>/       one folder for each thing that was opened
-│   ├── SYSTEM.md             that system's entry
-│   └── …                     everything else is organized as the content requires
-└── …                         practices, routes, tools: present only once they exist
+~/.openxsys/                  systems the user owns across projects
+├── SYSTEM.md                 root entry: the best current whole-system view and handoff
+└── <opened system>/
+    └── SYSTEM.md             entry for one system; other parts grow with real content
 
-<a project>/.openxsys/        a project is a system too, and its system belongs to the project
-└── SYSTEM.md                 registered in the root system as a connection
+<project>/.openxsys/          the project-owned system
+└── SYSTEM.md                 continues with code, works, and project state
 ```
 
-Only two things in this picture are fixed: the default place, and one `SYSTEM.md` entry per system. Folder names, further files and their organization follow the content (see `system/shapes.md`).
+These defaults travel easily between AI tools. When project conventions, a team knowledge base, host memory, or an external system can carry state better, use that authoritative location and let the natural-language entry point to it.
 
-## The first choice
+## First landing
 
-When there is nowhere yet for a system to live, the person chooses, and the choice is concrete:
+First identify who owns this system and who will continue it:
 
-> Your system can live: ① with you (`~/.openxsys/`, available in every project and to every AI; recommended) ② only in this folder.
+- understanding, capability, and relations that follow a user across projects belong in a user-owned location;
+- understanding serving one project and useful to its participants belongs with the project;
+- authoritative state held by a team, organization, or domain application stays in its existing system, while OpenXSys preserves the relation and continuation path;
+- temporary exploration can remain in the current active picture and works until lasting value gives it a place in the persistent system.
 
-- **Choosing ①** puts the root and every opened system under `~/.openxsys/`.
-- **Choosing ②** makes this folder's `.openxsys/` the place for systems opened here. See "A folder other people can see" below before anything about the person goes there.
-- **Write no system files before the choice is made.**
-- **The choice never stands in front of the subject.** For an outside subject, research and the deliverable come first and the choice is offered together with them. When the person opens their own system, the choice is part of the opening, and you start reading what you may read without waiting for the answer.
-- **No answer yet?** Finish the understanding and the deliverable, say plainly that the system has not been saved, and write after the answer comes. Mention it once more at a natural moment. Do not chase.
-- **The host cannot write to the chosen place?** Say so, and offer an alternative: another folder, or a portable snapshot of the entry (see `system/entry.md`).
-- **Once chosen, do not ask again.** Later writes happen by themselves and are mentioned in one sentence. The answer is recorded in the root system.
+When the user, project convention, or host environment has already made the location clear, use it directly. When several options would materially change ownership, privacy, or continuity, bring the difference and a recommendation to the user together with the value already completed. Research, understanding, and creation continue; persistent writing completes once location and authority hold.
 
-Deliverables do not wait for this choice. They go into the person's workspace as usual.
+Remember a confirmed location and continue there naturally. If the host cannot write to the target, choose an alternative the user can own or deliver a complete portable snapshot of the entry.
 
-## What goes where
+## Shared spaces
 
-- **With the person** (`~/.openxsys/`): the root, and everything that is about the world or about the person rather than about one project.
-- **With a project** (`<project>/.openxsys/`): understanding that is closely tied to that project and useful to whoever works in it. Create a project system only once there is understanding worth leaving in the project. Creating `.openxsys/` in a project adds something to the person's space: say what it is and that it can be deleted at any time.
-- **Registration.** Every opened system is registered in the root: its one-line essence, where it is, and its connections to other systems.
-- **Deliverables belong to the person** and stay in the person's own places. A system holds understanding and points to deliverables, code and data.
+Team repositories, shared drives, and public repositories carry shared subjects. System content entering them is organized around the project: project understanding, shared works, reusable capabilities, public sources, and team handoff points.
 
-## A folder other people can see
+Personal goals, private constraints, the second record of understanding, and cross-project relations remain person-owned. When a part should enter shared space, its owner chooses the range and sees how it will be used together before it is written.
 
-A project folder may be a shared drive, a team repository or a public repository. What is written there is read by others.
+Version management follows project convention: commit when the project wants a jointly maintained system; use a local exclusion when it serves local personal work; when the team has not decided, make both outcomes and the recommendation clear.
 
-- **Nothing about the person goes into a folder other people can see.** A project system describes the project. The root system, the second record of understanding, the person's goals, constraints and preferences stay with the person.
-- **If the person chose ② in such a folder**, say this plainly and offer the choice again in a form that fits: the project's understanding in this folder, and the part about the person either under `~/.openxsys/` or not saved at all. Proceed as they decide.
-- **How to tell.** Signs that a folder is shared: it is a version-controlled repository with a remote, it sits on a shared or synced drive, or other people's names appear in its history. If you cannot tell, ask once as a choice.
-- **Offer to keep it out of version control.** In a repository, offer to exclude `.openxsys/` (for example through the repository's local exclude file, which changes nothing for collaborators). Whether a project system should be committed for the team is the person's decision; when a project is shared with others, raise creating `.openxsys/` as a choice first.
+## Moving, copying, and forking
 
-## Moving and copying
+A system can move to a new host, be copied, forked, or merged. Update references between entries, connection state, and continuation points, and preserve lineage that explains origin and difference. The original owner decides what happens to the original location. The new location rechecks permissions, tools, and external connections.
 
-A system is a folder of plain files. Moving it is moving the folder and updating the registration in the root, and the host instruction line if there is one (see `system/return.md`). Moving, merging or deleting systems changes what already exists in the person's space: do it when the person asks, and confirm what will change first.
+## Beyond filesystems
 
-## Hosts without a file system
-
-Use the host's own memory to carry the entry. When the person needs it, output a portable snapshot: the full text of the entry, which they can bring back next time to continue.
+A host without a filesystem can carry the entry through persistent memory, a document space, or another portable medium. When the user wants to migrate, output the complete entry together with necessary references to works, relations, and capabilities, so another AI can continue from the same real starting point.

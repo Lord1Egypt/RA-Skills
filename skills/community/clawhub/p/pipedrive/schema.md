@@ -66,25 +66,30 @@ Parameters:
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `data` | `object` | no | Raw JSON body. Keys here win over convenience fields. |
+| `data` | `object` | no | Raw JSON body (merged over convenience fields). Raw custom fields go in data.custom_fields keyed by field code for create_record / update_record, and at the top level of data for leads. Prefer field_values for custom fields. |
+| `field_values` | `object` | no | Set custom fields by name: {"<field display name or field code>": <value>}. Names match case-insensitively. Option fields take option labels (a list of labels for multi-option fields); null clears a field. The connector looks up field codes and option IDs before writing. Supported on create_record / update_record (deal, person, organization, product) and create_lead / update_lead. |
 | `options` | `object` | no | Additional query parameters that do not override connector-set parameters. |
 | `organization_id` | `integer` | no | Associated organization id. Supply person_id or organization_id. |
 | `owner_id` | `integer` | no | Owner user id. |
 | `person_id` | `integer` | no | Associated person id. Supply person_id or organization_id. |
 | `title` | `string` | yes | Lead title. |
-| `value` | `object` | no | Lead monetary value object with amount and currency. |
+| `value` | `object` | no | Deal or lead monetary value as {amount, currency}, e.g. {"amount": 5000, "currency": "USD"}. |
 
 Sample parameters:
 
 ```json
 {
   "data": {},
+  "field_values": {},
   "options": {},
   "organization_id": 1,
   "owner_id": 1,
   "person_id": 1,
   "title": "example title",
-  "value": {}
+  "value": {
+    "amount": 1,
+    "currency": "example currency"
+  }
 }
 ```
 
@@ -93,7 +98,12 @@ Generated JSON parameter schema:
 ```json
 {
   "data": {
-    "description": "Raw JSON body. Keys here win over convenience fields.",
+    "description": "Raw JSON body (merged over convenience fields). Raw custom fields go in data.custom_fields keyed by field code for create_record / update_record, and at the top level of data for leads. Prefer field_values for custom fields.",
+    "required": false,
+    "type": "object"
+  },
+  "field_values": {
+    "description": "Set custom fields by name: {\"<field display name or field code>\": <value>}. Names match case-insensitively. Option fields take option labels (a list of labels for multi-option fields); null clears a field. The connector looks up field codes and option IDs before writing. Supported on create_record / update_record (deal, person, organization, product) and create_lead / update_lead.",
     "required": false,
     "type": "object"
   },
@@ -123,7 +133,19 @@ Generated JSON parameter schema:
     "type": "string"
   },
   "value": {
-    "description": "Lead monetary value object with amount and currency.",
+    "description": "Deal or lead monetary value as {amount, currency}, e.g. {\"amount\": 5000, \"currency\": \"USD\"}.",
+    "properties": {
+      "amount": {
+        "description": "Monetary amount.",
+        "required": false,
+        "type": "number"
+      },
+      "currency": {
+        "description": "ISO 4217 currency code, e.g. USD.",
+        "required": false,
+        "type": "string"
+      }
+    },
     "required": false,
     "type": "object"
   }
@@ -212,14 +234,15 @@ Action slug: `create-record`
 
 Price: `5` credits
 
-Create one core resource record. Requires add permission.
+Create one core resource record. Requires add permission. Set custom fields by name with field_values.
 
 Parameters:
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `data` | `object` | no | Raw JSON body. Keys here win over convenience fields. |
+| `data` | `object` | no | Raw JSON body (merged over convenience fields). Raw custom fields go in data.custom_fields keyed by field code for create_record / update_record, and at the top level of data for leads. Prefer field_values for custom fields. |
 | `deal_id` | `integer` | no | Associated deal id for activity records. |
+| `field_values` | `object` | no | Set custom fields by name: {"<field display name or field code>": <value>}. Names match case-insensitively. Option fields take option labels (a list of labels for multi-option fields); null clears a field. The connector looks up field codes and option IDs before writing. Supported on create_record / update_record (deal, person, organization, product) and create_lead / update_lead. |
 | `name` | `string` | no | Person, organization, product, or file name. |
 | `options` | `object` | no | Additional query parameters that do not override connector-set parameters. |
 | `organization_id` | `integer` | no | Public organization id; connector sends org_id where required. |
@@ -230,7 +253,7 @@ Parameters:
 | `stage_id` | `integer` | no | Stage id for deals. |
 | `subject` | `string` | no | Activity subject. |
 | `title` | `string` | no | Deal title. |
-| `value` | `object` | no | Deal monetary amount. Accepts either a number or object form {amount, currency}; object form is normalized to numeric value plus currency. |
+| `value` | `object` | no | Deal or lead monetary value as {amount, currency}, e.g. {"amount": 5000, "currency": "USD"}. |
 
 Sample parameters:
 
@@ -238,12 +261,12 @@ Sample parameters:
 {
   "data": {},
   "deal_id": 1,
+  "field_values": {},
   "name": "example name",
   "options": {},
   "organization_id": 1,
   "owner_id": 1,
-  "person_id": 1,
-  "pipeline_id": 1
+  "person_id": 1
 }
 ```
 
@@ -252,7 +275,7 @@ Generated JSON parameter schema:
 ```json
 {
   "data": {
-    "description": "Raw JSON body. Keys here win over convenience fields.",
+    "description": "Raw JSON body (merged over convenience fields). Raw custom fields go in data.custom_fields keyed by field code for create_record / update_record, and at the top level of data for leads. Prefer field_values for custom fields.",
     "required": false,
     "type": "object"
   },
@@ -260,6 +283,11 @@ Generated JSON parameter schema:
     "description": "Associated deal id for activity records.",
     "required": false,
     "type": "integer"
+  },
+  "field_values": {
+    "description": "Set custom fields by name: {\"<field display name or field code>\": <value>}. Names match case-insensitively. Option fields take option labels (a list of labels for multi-option fields); null clears a field. The connector looks up field codes and option IDs before writing. Supported on create_record / update_record (deal, person, organization, product) and create_lead / update_lead.",
+    "required": false,
+    "type": "object"
   },
   "name": {
     "description": "Person, organization, product, or file name.",
@@ -319,7 +347,19 @@ Generated JSON parameter schema:
     "type": "string"
   },
   "value": {
-    "description": "Deal monetary amount. Accepts either a number or object form {amount, currency}; object form is normalized to numeric value plus currency.",
+    "description": "Deal or lead monetary value as {amount, currency}, e.g. {\"amount\": 5000, \"currency\": \"USD\"}.",
+    "properties": {
+      "amount": {
+        "description": "Monetary amount.",
+        "required": false,
+        "type": "number"
+      },
+      "currency": {
+        "description": "ISO 4217 currency code, e.g. USD.",
+        "required": false,
+        "type": "string"
+      }
+    },
     "required": false,
     "type": "object"
   }
@@ -894,7 +934,7 @@ Parameters:
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `activity_id` | `integer` | no | Activity id when resource is activity. |
-| `custom_fields` | `array` | no | Custom field hash keys to return. |
+| `custom_fields` | `array` | no | Read-only filter for list_records / get_record: custom field codes (40-character hashes) to return. Does not write anything; use field_values to set custom fields. |
 | `deal_id` | `integer` | no | Deal id when resource is deal. |
 | `include` | `array` | no | Public alias mapped to Pipedrive include_fields where supported. |
 | `options` | `object` | no | Additional query parameters that do not override connector-set parameters. |
@@ -932,7 +972,7 @@ Generated JSON parameter schema:
     "type": "integer"
   },
   "custom_fields": {
-    "description": "Custom field hash keys to return.",
+    "description": "Read-only filter for list_records / get_record: custom field codes (40-character hashes) to return. Does not write anything; use field_values to set custom fields.",
     "items": {
       "type": "string"
     },
@@ -1638,7 +1678,7 @@ Parameters:
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `cursor` | `string` | no | Cursor for v2 pagination. |
-| `custom_fields` | `array` | no | Custom field hash keys to return. |
+| `custom_fields` | `array` | no | Read-only filter for list_records / get_record: custom field codes (40-character hashes) to return. Does not write anything; use field_values to set custom fields. |
 | `deal_id` | `integer` | no | Deal filter for supported resources. |
 | `filter_id` | `integer` | no | Pipedrive filter id. |
 | `include` | `array` | no | Public alias mapped to Pipedrive include_fields where supported. |
@@ -1684,7 +1724,7 @@ Generated JSON parameter schema:
     "type": "string"
   },
   "custom_fields": {
-    "description": "Custom field hash keys to return.",
+    "description": "Read-only filter for list_records / get_record: custom field codes (40-character hashes) to return. Does not write anything; use field_values to set custom fields.",
     "items": {
       "type": "string"
     },
@@ -2184,21 +2224,26 @@ Parameters:
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `data` | `object` | no | Raw JSON body. Keys here win over convenience fields. |
+| `data` | `object` | no | Raw JSON body (merged over convenience fields). Raw custom fields go in data.custom_fields keyed by field code for create_record / update_record, and at the top level of data for leads. Prefer field_values for custom fields. |
+| `field_values` | `object` | no | Set custom fields by name: {"<field display name or field code>": <value>}. Names match case-insensitively. Option fields take option labels (a list of labels for multi-option fields); null clears a field. The connector looks up field codes and option IDs before writing. Supported on create_record / update_record (deal, person, organization, product) and create_lead / update_lead. |
 | `lead_id` | `string` | yes | Lead UUID. |
 | `options` | `object` | no | Additional query parameters that do not override connector-set parameters. |
 | `title` | `string` | no | Lead title. |
-| `value` | `object` | no | Lead monetary value object with amount and currency. |
+| `value` | `object` | no | Deal or lead monetary value as {amount, currency}, e.g. {"amount": 5000, "currency": "USD"}. |
 
 Sample parameters:
 
 ```json
 {
   "data": {},
+  "field_values": {},
   "lead_id": "example lead id",
   "options": {},
   "title": "example title",
-  "value": {}
+  "value": {
+    "amount": 1,
+    "currency": "example currency"
+  }
 }
 ```
 
@@ -2207,7 +2252,12 @@ Generated JSON parameter schema:
 ```json
 {
   "data": {
-    "description": "Raw JSON body. Keys here win over convenience fields.",
+    "description": "Raw JSON body (merged over convenience fields). Raw custom fields go in data.custom_fields keyed by field code for create_record / update_record, and at the top level of data for leads. Prefer field_values for custom fields.",
+    "required": false,
+    "type": "object"
+  },
+  "field_values": {
+    "description": "Set custom fields by name: {\"<field display name or field code>\": <value>}. Names match case-insensitively. Option fields take option labels (a list of labels for multi-option fields); null clears a field. The connector looks up field codes and option IDs before writing. Supported on create_record / update_record (deal, person, organization, product) and create_lead / update_lead.",
     "required": false,
     "type": "object"
   },
@@ -2227,7 +2277,19 @@ Generated JSON parameter schema:
     "type": "string"
   },
   "value": {
-    "description": "Lead monetary value object with amount and currency.",
+    "description": "Deal or lead monetary value as {amount, currency}, e.g. {\"amount\": 5000, \"currency\": \"USD\"}.",
+    "properties": {
+      "amount": {
+        "description": "Monetary amount.",
+        "required": false,
+        "type": "number"
+      },
+      "currency": {
+        "description": "ISO 4217 currency code, e.g. USD.",
+        "required": false,
+        "type": "string"
+      }
+    },
     "required": false,
     "type": "object"
   }
@@ -2295,15 +2357,16 @@ Action slug: `update-record`
 
 Price: `5` credits
 
-Update one core resource record. Requires edit permission.
+Update one core resource record. Requires edit permission. Set custom fields by name with field_values.
 
 Parameters:
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `activity_id` | `integer` | no | Activity id when resource is activity. |
-| `data` | `object` | no | Raw JSON body. Keys here win over convenience fields. |
+| `data` | `object` | no | Raw JSON body (merged over convenience fields). Raw custom fields go in data.custom_fields keyed by field code for create_record / update_record, and at the top level of data for leads. Prefer field_values for custom fields. |
 | `deal_id` | `integer` | no | Deal id when resource is deal. |
+| `field_values` | `object` | no | Set custom fields by name: {"<field display name or field code>": <value>}. Names match case-insensitively. Option fields take option labels (a list of labels for multi-option fields); null clears a field. The connector looks up field codes and option IDs before writing. Supported on create_record / update_record (deal, person, organization, product) and create_lead / update_lead. |
 | `name` | `string` | no | Person, organization, product, or file name. |
 | `options` | `object` | no | Additional query parameters that do not override connector-set parameters. |
 | `organization_id` | `integer` | no | Organization id when resource is organization, or associated organization id for supported body updates. |
@@ -2312,7 +2375,7 @@ Parameters:
 | `resource` | `string` | yes | Core resource to update. |
 | `subject` | `string` | no | Activity subject. |
 | `title` | `string` | no | Deal title. |
-| `value` | `object` | no | Deal monetary amount. Accepts either a number or object form {amount, currency}; object form is normalized to numeric value plus currency. |
+| `value` | `object` | no | Deal or lead monetary value as {amount, currency}, e.g. {"amount": 5000, "currency": "USD"}. |
 
 Sample parameters:
 
@@ -2321,11 +2384,11 @@ Sample parameters:
   "activity_id": 1,
   "data": {},
   "deal_id": 1,
+  "field_values": {},
   "name": "example name",
   "options": {},
   "organization_id": 1,
-  "person_id": 1,
-  "product_id": 1
+  "person_id": 1
 }
 ```
 
@@ -2339,7 +2402,7 @@ Generated JSON parameter schema:
     "type": "integer"
   },
   "data": {
-    "description": "Raw JSON body. Keys here win over convenience fields.",
+    "description": "Raw JSON body (merged over convenience fields). Raw custom fields go in data.custom_fields keyed by field code for create_record / update_record, and at the top level of data for leads. Prefer field_values for custom fields.",
     "required": false,
     "type": "object"
   },
@@ -2347,6 +2410,11 @@ Generated JSON parameter schema:
     "description": "Deal id when resource is deal.",
     "required": false,
     "type": "integer"
+  },
+  "field_values": {
+    "description": "Set custom fields by name: {\"<field display name or field code>\": <value>}. Names match case-insensitively. Option fields take option labels (a list of labels for multi-option fields); null clears a field. The connector looks up field codes and option IDs before writing. Supported on create_record / update_record (deal, person, organization, product) and create_lead / update_lead.",
+    "required": false,
+    "type": "object"
   },
   "name": {
     "description": "Person, organization, product, or file name.",
@@ -2396,7 +2464,19 @@ Generated JSON parameter schema:
     "type": "string"
   },
   "value": {
-    "description": "Deal monetary amount. Accepts either a number or object form {amount, currency}; object form is normalized to numeric value plus currency.",
+    "description": "Deal or lead monetary value as {amount, currency}, e.g. {\"amount\": 5000, \"currency\": \"USD\"}.",
+    "properties": {
+      "amount": {
+        "description": "Monetary amount.",
+        "required": false,
+        "type": "number"
+      },
+      "currency": {
+        "description": "ISO 4217 currency code, e.g. USD.",
+        "required": false,
+        "type": "string"
+      }
+    },
     "required": false,
     "type": "object"
   }

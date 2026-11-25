@@ -476,6 +476,10 @@ export async function main(argv) {
     args[argv[i].slice(2)] = argv[++i];
   }
   if (!args.url || !args.output) throw Error('--url and --output are required');
+  if (process.env.CODEBUDDY_SANDBOX_BROKER_EXECUTION_ATTEMPT_ID &&
+      (!args.endpoint || args.endpoint !== process.env.JOBHUNT_SHARED_CDP_ENDPOINT)) {
+    throw Error('WorkBuddy browser reads require run_tool.py browser and its shared browser session');
+  }
   const endpoint = args.endpoint || await dailyEndpoint(args.browser);
   const snapshot = await capture({endpoint, url:args.url, waitForText:args['wait-for-text'] || '', revealSelector:args['reveal-selector'] || '', clickText:args['click-text'] || '', clickSelector:args['click-selector'] || '', inspectText:args['inspect-text'] || '', steps:args['steps-file'] ? JSON.parse(await readFile(args['steps-file'], 'utf8')) : [], budget:args['budget-file'] ? JSON.parse(await readFile(args['budget-file'], 'utf8')) : null});
   await writeFile(args.output, JSON.stringify(snapshot, null, 2), {flag:'wx'});

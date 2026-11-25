@@ -1,6 +1,6 @@
 ## Description:
 
-Creates Temu-ready product image sets, detail graphics, and promotional posters from product images and copy.
+Helps Temu sellers create product image sets, detail pages, and promotional graphics through the Qinghu AI service.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External sellers use this skill to create Temu listing and campaign visuals, including main image sets, detail graphics, and promotional posters.
+Temu sellers use this skill to create product listing image sets, long detail images, white-background images, and sale graphics from product photos and promotional copy.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The workflow requests API keys in chat and directs automatic installation and upgrading of executable packages.
+Risk: Setup or fallback instructions may install unpinned packages that run on the user's machine.
 
-Mitigation: Set credentials locally through a protected environment or secret store. Review and pin dependency versions, and approve upgrades.
+Mitigation: Review package sources and pin versions before installation or execution.
 
-Risk: Selected product images leave the user's machine for processing.
+Risk: The setup instructions ask the user to share an API key in chat.
 
-Mitigation: Submit only images approved for external processing.
-
-Risk: Image generation spends credits.
-
-Mitigation: Review the estimate and require confirmation before submitting a generation task.
+Mitigation: Do not send API keys in chat; enter credentials through a protected local secret-entry method.
 
 ## Reference(s):
 
+- [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-temu-image)
 - [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
-- [ClawHub skill page](https://clawhub.ai/autoagc/skills/linkpix-temu-image)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Text]
+**Output Type(s):** [Images, Shell commands, Guidance]
 
-**Output Format:** [Generated image files or URLs with concise task status and credit details.]
+**Output Format:** [Generated image files or downloadable URLs, with Markdown guidance and inline shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Can produce a main image set, a detail graphic, or a promotional poster; image count and quality follow the selected options.]
+**Other Properties Related to Output:** [Image dimensions and formats depend on the selected model and options.]
 
 ## Skill Version(s):
 
-0.1.4 (source: server-resolved release metadata)
+0.1.5 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

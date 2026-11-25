@@ -14,11 +14,11 @@ Evidence coverage: 12 signals across 3 source families.
 
 ## Evidence
 
-- clawhub-popular-skill: [Popular Clawhub skill demand: self-improving agent has 492,787 downloads](https://clawhub.ai/skills/self-improving-agent)
-- clawhub-popular-skill: [Popular Clawhub skill demand: Proactive Agent has 179,734 downloads](https://clawhub.ai/skills/proactive-agent)
-- clawhub-popular-skill: [Popular Clawhub skill demand: Self-Improving + Proactive Agent has 214,820 downloads](https://clawhub.ai/skills/self-improving)
-- clawhub-popular-skill: [Popular Clawhub skill demand: Skill Creator has 104,586 downloads](https://clawhub.ai/skills/skill-creator)
-- hacker-news-ask-hn: [Using LLMs outside of reflection is an anti-pattern](https://news.ycombinator.com/item?id=50489240)
+- clawhub-popular-skill: [Popular Clawhub skill demand: self-improving agent has 495,374 downloads](https://clawhub.ai/skills/self-improving-agent)
+- clawhub-popular-skill: [Popular Clawhub skill demand: Proactive Agent has 180,802 downloads](https://clawhub.ai/skills/proactive-agent)
+- clawhub-popular-skill: [Popular Clawhub skill demand: Self-Improving + Proactive Agent has 216,067 downloads](https://clawhub.ai/skills/self-improving)
+- clawhub-popular-skill: [Popular Clawhub skill demand: Skill Creator has 105,301 downloads](https://clawhub.ai/skills/skill-creator)
+- hacker-news-ask-hn: [Ask HN: Would you be interested in contributing to open source software factory?](https://news.ycombinator.com/item?id=50627736)
 - segmentfault-search: [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
 - segmentfault-search: [javascript](https://segmentfault.com/t/javascript)
 - segmentfault-search: [typescript](https://segmentfault.com/t/typescript)

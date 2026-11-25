@@ -136,6 +136,7 @@ class AssignmentTests(unittest.TestCase):
             issue = next(item for item in items if item["iid"] == iid)
             return subprocess.CompletedProcess(command, 0, stdout=json.dumps(assigned(issue)))
 
+        active.PROBLEMS.clear()
         with patch.object(active, "configured_accept_entries", return_value=selectors), patch.object(
             active, "accepted_usernames", return_value=explicit
         ), patch.object(active, "assignment_candidates", return_value=items), patch.object(
@@ -211,8 +212,9 @@ class AssignmentTests(unittest.TestCase):
         )
         self.assertEqual(result, [])
         self.assertEqual(len(writes), 1)
-        self.assertIn("ambiguous", errors)
-        self.assertIn("unconfirmed", errors)
+        self.assertEqual(errors, "")
+        self.assertIn("assignment-ambiguous", [p["code"] for p in active.PROBLEMS])
+        self.assertIn("assignment-unconfirmed", [p["code"] for p in active.PROBLEMS])
 
     def test_ambiguous_write_confirmed_by_fresh_read_is_returned(self):
         result, _, writes, errors = self.run_assignment(
@@ -220,7 +222,8 @@ class AssignmentTests(unittest.TestCase):
         )
         self.assertEqual(len(result), 1)
         self.assertEqual(len(writes), 1)
-        self.assertIn("ambiguous", errors)
+        self.assertEqual(errors, "")
+        self.assertIn("assignment-ambiguous", [p["code"] for p in active.PROBLEMS])
 
     def test_assignment_holds_and_releases_local_lock(self):
         with patch.object(active, "configured_accept_entries", return_value=["alice"]), patch.object(
@@ -337,7 +340,8 @@ class CandidateTests(unittest.TestCase):
             with redirect_stdout(output), redirect_stderr(errors):
                 self.assertEqual(active.main(), 0)
         self.assertEqual({row["iid"] for row in json.loads(output.getvalue())}, {7, 8})
-        self.assertIn("collaborator assignment unavailable", errors.getvalue())
+        self.assertEqual(errors.getvalue(), "")
+        self.assertIn("collaborator-scan-failed", [p["code"] for p in active.PROBLEMS])
 
 
 if __name__ == "__main__":

@@ -103,13 +103,32 @@ test("release smoke check catches the production 404 and modified archive", asyn
       url.pathname.endsWith(".mjs")
         ? 'export async function installSkill() {} const version = "1.2.3";'
         : url.pathname.endsWith(".sha256")
-          ? `${checksum}  ai-video-maker-1.2.3.tgz\n`
+          ? `${checksum}  ${url.pathname.split("/").pop().slice(0, -".sha256".length)}\n`
           : archive,
     );
   await checkDownloads("https://example.test", "1.2.3", fetcher);
+  // A cached or forgotten version-free link would leave `npx skills add` on an old release.
   await assert.rejects(
     checkDownloads("https://example.test", "1.2.3", async (url) =>
-      url.pathname.endsWith(".tgz") ? new Response(Buffer.from([0x1f, 0x8b, 3, 4])) : fetcher(url),
+      url.pathname.endsWith("/ai-video-maker.tgz")
+        ? new Response(Buffer.from([0x1f, 0x8b, 9, 9]))
+        : fetcher(url),
+    ),
+    /ai-video-maker\.tgz is not the 1\.2\.3 archive/,
+  );
+  await assert.rejects(
+    checkDownloads("https://example.test", "1.2.3", async (url) =>
+      url.pathname.endsWith("/ai-video-maker.tgz")
+        ? new Response("not found", { status: 404 })
+        : fetcher(url),
+    ),
+    /ai-video-maker\.tgz: HTTP 404/,
+  );
+  await assert.rejects(
+    checkDownloads("https://example.test", "1.2.3", async (url) =>
+      url.pathname.endsWith("-1.2.3.tgz")
+        ? new Response(Buffer.from([0x1f, 0x8b, 3, 4]))
+        : fetcher(url),
     ),
     /Checksum mismatch/,
   );

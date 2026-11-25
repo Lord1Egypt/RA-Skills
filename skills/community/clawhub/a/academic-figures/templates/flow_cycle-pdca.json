@@ -1,0 +1,57 @@
+{
+ "_command": "python3 scripts/gen_figure.py -t flow -d templates/flow_cycle-pdca.json --gate strict -o flow_pdca.png",
+ "layout": "snake",
+ "columns": 2,
+ "title": "Lab quality improvement loop (snake layout)",
+ "nodes": [
+  {
+   "id": "plan",
+   "label": "Plan",
+   "sublabel": "define acceptance criteria"
+  },
+  {
+   "id": "do",
+   "label": "Do",
+   "sublabel": "run validation batch"
+  },
+  {
+   "id": "check",
+   "label": "Check",
+   "sublabel": "Westgard rules, CV%",
+   "shape": "diamond"
+  },
+  {
+   "id": "act",
+   "label": "Act",
+   "sublabel": "CAPA if OOS",
+   "shape": "hexagon"
+  }
+ ],
+ "edges": [
+  {
+   "from": "plan",
+   "to": "do"
+  },
+  {
+   "from": "do",
+   "to": "check"
+  },
+  {
+   "from": "check",
+   "to": "act",
+   "label": "in control",
+   "thick": true
+  },
+  {
+   "from": "act",
+   "to": "plan",
+   "label": "next cycle",
+   "dashed": true
+  }
+ ],
+ "_chart_type": "flow",
+ "_scene": "",
+ "_description": "",
+ "_caption_template": "",
+ "_note": "实验室质量改进环（snake 布局）：菱形判定 + CAPA 六边形 + cycle 回边——PDCA 循环范式"
+}

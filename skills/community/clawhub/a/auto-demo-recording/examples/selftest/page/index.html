@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>待办清单（技能自检页面）</title>
+<style>
+  :root { --accent: #2f6fed; --ink: #17202e; --muted: #6c7483; --line: #e3e7ee; --bg: #f5f7fa; }
+  html { scrollbar-gutter: stable; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 15px/1.65 "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", sans-serif; color: var(--ink); background: var(--bg); }
+  header { position: sticky; top: 0; z-index: 5; height: 56px; display: flex; align-items: center; gap: 28px; padding: 0 32px; background: #fff; border-bottom: 1px solid var(--line); }
+  .brand { font-weight: 700; font-size: 17px; }
+  .tabs { display: flex; gap: 6px; }
+  .tab { border: 0; background: none; padding: 7px 16px; border-radius: 8px; font: inherit; color: var(--muted); cursor: pointer; }
+  .tab.active { background: #e9f0ff; color: var(--accent); font-weight: 600; }
+  header select { margin-left: auto; font: inherit; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+  main { max-width: 1100px; margin: 0 auto; padding: 26px 32px 60px; }
+  .columns { display: grid; grid-template-columns: 1.15fr 1fr; gap: 22px; align-items: start; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; }
+  h2 { margin: 0 0 14px; font-size: 16px; }
+  #add-form { display: flex; gap: 10px; margin-bottom: 16px; }
+  #new-text { flex: 1; font: inherit; padding: 9px 12px; border: 1px solid var(--line); border-radius: 9px; outline: none; }
+  #new-text:focus { border-color: var(--accent); box-shadow: 0 0 0 3px #e9f0ff; }
+  button.primary { font: inherit; font-weight: 600; color: #fff; background: var(--accent); border: 0; border-radius: 9px; padding: 9px 18px; cursor: pointer; }
+  #items { list-style: none; margin: 0; padding: 0; max-height: 262px; overflow-y: auto; border: 1px solid var(--line); border-radius: 10px; }
+  #items li { display: flex; align-items: center; gap: 10px; padding: 9px 14px; border-bottom: 1px solid var(--line); }
+  #items li:last-child { border-bottom: 0; }
+  #items li.done span { color: var(--muted); text-decoration: line-through; }
+  #items input { width: 17px; height: 17px; accent-color: var(--accent); }
+  .muted { color: var(--muted); }
+  #guide p { margin: 0 0 12px; }
+  .tall { margin-top: 22px; }
+  #summary-view { display: none; }
+  #working { display: none; color: var(--muted); margin-top: 16px; }
+  #summary { display: none; margin-top: 18px; font-size: 16px; }
+  #summary mark { background: #fff3c4; padding: 2px 6px; border-radius: 5px; }
+  #export { display: none; margin-top: 14px; color: var(--accent); font-weight: 600; }
+  .toast { position: fixed; left: 50%; bottom: 40px; transform: translateX(-50%); background: #1d2230; color: #fff; padding: 11px 22px; border-radius: 10px; font-size: 14px; }
+  footer { margin-top: 28px; color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">待办清单</div>
+  <nav class="tabs">
+    <button class="tab active" data-view="list">清单</button>
+    <button class="tab" data-view="summary">小结</button>
+  </nav>
+  <select id="filter" aria-label="筛选">
+    <option value="all">全部</option>
+    <option value="open">未完成</option>
+    <option value="done">已完成</option>
+  </select>
+</header>
+<main>
+  <section id="list-view">
+    <div class="columns">
+      <div class="card">
+        <h2>要做的事</h2>
+        <form id="add-form">
+          <input id="new-text" placeholder="写下要做的事" autocomplete="off">
+          <button class="primary" id="add" type="submit">添加</button>
+        </form>
+        <ul id="items"></ul>
+      </div>
+      <div class="card">
+        <h2>今天</h2>
+        <p id="counts" class="muted"></p>
+        <p class="muted">勾选一项表示完成。完成的事项留在清单里，可以用右上角的筛选只看未完成的。</p>
+      </div>
+    </div>
+    <div class="card tall" id="guide">
+      <h2>使用说明</h2>
+      <p>这个页面是演示录制技能的自检页面：它不连任何服务，打开就能用，关掉就没有了。</p>
+      <p>刷新页面后回到最初的示例数据。清单里的内容不会上传到任何地方，只保存在本机浏览器里。</p>
+      <p>添加：在输入框里写下要做的事，点“添加”，新的一项排在最前面。</p>
+      <p>筛选：右上角可以选择全部、未完成或已完成。</p>
+      <p>小结：第二个页面按当前的清单生成一段小结，并可以导出成文本文件。生成需要几秒钟。</p>
+      <p class="muted">示例数据是随手写的，没有任何含义。</p>
+    </div>
+    <footer>技能自检页面 · 无外部依赖</footer>
+  </section>
+  <section id="summary-view">
+    <div class="card">
+      <h2>小结</h2>
+      <p class="muted">按当前的清单整理一段小结。</p>
+      <button class="primary" id="summarize">生成小结</button>
+      <p id="working">正在整理…</p>
+      <p id="summary"></p>
+      <a id="export" href="#" download="待办小结.txt">导出为文本</a>
+    </div>
+  </section>
+</main>
+<script>
+  const texts = ['确认演示的范围', '准备示例数据', '写分镜和字幕', '试录一遍', '正式录制', '检查时间线', '渲染成片', '生成配音', '核对听写结果', '请同事看一遍', '按意见修改', '交付成片'];
+  let items = texts.map((text, index) => ({ id: index + 1, text, done: index < 2 }));
+  const list = document.getElementById('items'), filter = document.getElementById('filter');
+  function draw() {
+    const shown = items.filter(item => filter.value === 'all' || (filter.value === 'done') === item.done);
+    list.innerHTML = shown.map(item => `<li data-id="${item.id}" class="${item.done ? 'done' : ''}"><input type="checkbox" ${item.done ? 'checked' : ''}><span></span></li>`).join('');
+    shown.forEach((item, index) => { list.children[index].querySelector('span').textContent = item.text; });
+    document.getElementById('counts').textContent = `共 ${items.length} 项，已完成 ${items.filter(item => item.done).length} 项。`;
+  }
+  function toast(text) {
+    const el = document.createElement('div');
+    el.className = 'toast';
+    el.textContent = text;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 3200);
+  }
+  document.getElementById('add-form').addEventListener('submit', event => {
+    event.preventDefault();
+    const input = document.getElementById('new-text'), text = input.value.trim();
+    if (!text) return;
+    items.unshift({ id: Date.now(), text, done: false });
+    input.value = '';
+    list.scrollTop = 0;
+    draw();
+    toast('已添加：' + text);
+  });
+  list.addEventListener('change', event => {
+    const item = items.find(item => String(item.id) === event.target.closest('li').dataset.id);
+    item.done = event.target.checked;
+    draw();
+  });
+  filter.addEventListener('change', draw);
+  document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(other => other.classList.toggle('active', other === tab));
+    document.getElementById('list-view').style.display = tab.dataset.view === 'list' ? '' : 'none';
+    document.getElementById('summary-view').style.display = tab.dataset.view === 'summary' ? 'block' : 'none';
+    filter.style.visibility = tab.dataset.view === 'list' ? '' : 'hidden';
+    scrollTo(0, 0);
+  }));
+  document.getElementById('summarize').addEventListener('click', () => {
+    const working = document.getElementById('working'), summary = document.getElementById('summary'), link = document.getElementById('export');
+    summary.style.display = link.style.display = 'none';
+    working.style.display = 'block';
+    let dots = 0;
+    const ticking = setInterval(() => { working.textContent = '正在整理' + '…'.repeat(1 + (++dots % 3)); }, 400);
+    setTimeout(() => {   // stands for work that takes a while
+      clearInterval(ticking);
+      working.style.display = 'none';
+      const done = items.filter(item => item.done).length, open = items.find(item => !item.done);
+      summary.innerHTML = `共 ${items.length} 项，已完成 ${done} 项。<mark></mark>`;
+      summary.querySelector('mark').textContent = open ? `接下来该做：${open.text}` : '全部完成';
+      summary.style.display = 'block';
+      link.href = URL.createObjectURL(new Blob([summary.textContent], { type: 'text/plain' }));
+      link.style.display = 'inline-block';
+    }, 9000);
+  });
+  draw();
+</script>
+</body>
+</html>

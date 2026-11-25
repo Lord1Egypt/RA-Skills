@@ -1,6 +1,6 @@
 ## Description:
 
-检索快手公开搜索结果、博主作品和视频评论，支持内容选题、增长研究与用户反馈分析。
+Researches Kuaishou search results, creator posts, and video comments to help identify content and market opportunities for further validation.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-内容创作者、运营人员和市场研究者可用它查询快手公开视频、博主作品及评论，以发现选题方向、分析用户反馈并评估内容机会。
+External content creators, marketers, and analysts use this skill to review public Kuaishou videos, creator posts, and audience comments for content ideas, competitor research, and user feedback.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search terms and Kuaishou links are sent to Guaikei; its retention practices have not been verified.
+Risk: Search terms, video links, or creator identifiers are sent to the Guaikei service.
 
-Mitigation: Avoid confidential queries unless sharing them with the service is approved.
+Mitigation: Send only public, task-relevant queries and avoid including sensitive information.
 
-Risk: Optional local logs can retain queries and results.
+Risk: Security analysis was incomplete, with some components only partially inspected.
 
-Mitigation: Enable logging only when needed and remove temporary logs when finished.
+Mitigation: Review the skill scripts and dependencies before using it in a sensitive environment.
 
 ## Reference(s):
 
-- [快手机会研究服务](https://www.guaikei.com)
-- [快手选项说明](references/options.md)
-- [版本更新日志](references/changelog.md)
-- [ClawHub 发布页](https://clawhub.ai/why20261/skills/kuaishou-opportunity-research)
+- [Guaikei service and token access](https://www.guaikei.com)
+- [Kuaishou Opportunity Research on ClawHub](https://clawhub.ai/why20261/skills/kuaishou-opportunity-research)
+- [Command options](artifact/references/options.md)
+- [Changelog](artifact/references/changelog.md)
 
 ## Skill Output:
 
 **Output Type(s):** [JSON, Analysis, Guidance]
 
-**Output Format:** [JSON response envelopes containing public video, comment, creator, and engagement data for agent analysis.]
+**Output Format:** [JSON query results with concise written summaries when relevant]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Public Kuaishou data only; results are not logged by default.]
+**Other Properties Related to Output:** [Uses public Kuaishou search, creator post, and comment data; result availability and request limits depend on the configured service plan.]
 
 ## Skill Version(s):
 
-1.1.1 (source: frontmatter, package.json, changelog, server release evidence)
+1.1.2 (source: frontmatter, package.json, changelog)
 
 ## Ethical Considerations:
 

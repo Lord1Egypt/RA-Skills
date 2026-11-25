@@ -35,7 +35,7 @@ then <兑现目的的后续动作或观察>
 ```
 
 动作输入输出须具名；无输入用 `[]`，无返回用 `=> []`。
-有相关要求时再补充[执行约束](execution.md#执行约束)。
+有相关要求时再补充[执行约束](architecture-execution.md#执行约束)。
 
 可选 `## queries` 将公开关系映射为查询 API：
 
@@ -52,7 +52,7 @@ SYNCS 中的 `Name/_query: [输入] => [输出]` 只能用于 `where`。
 
 include MUST 指向概念或外部入口契约。
 声明别名、具体类型及请求、定时、消息的根动作签名。
-生成图前，按[图契约](diagram-contract.md#身份与解析)核对支持的 include。
+生成图前，按[图契约](tool-diagram.md#身份与解析)核对支持的 include。
 
 `sync` 前 MAY 紧邻添加 `### <业务说明>`。
 

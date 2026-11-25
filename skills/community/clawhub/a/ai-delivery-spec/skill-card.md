@@ -1,6 +1,6 @@
 ## Description:
 
-Clarify, create, review or change product, service and office workflow requirements, PRDs and interactive prototypes. Use for vague goals, process improvements, spreadsheet/form rules, small UI edits and changes to existing systems, even without the word requirement. 中文：产品、服务及办公流程的需求判断、深挖澄清、PRD、原型、变更与验收；一句话想法、表单/表格规则和微小改动也适用。明确的纯翻译、排版、抄录或既定步骤执行由对应工具直接处理。
+Clarify, create, review or change product, service and office workflow requirements, PRDs and interactive prototypes.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Product, service, and operations teams use the skill to clarify business needs, compare options, create requirements and interactive prototypes, and review changes against agreed expectations. Developers and testers can use its outputs as business context and acceptance guidance.
+Product teams, business staff, developers, and testers use this skill to clarify business needs, compare solutions, prepare requirements or prototypes, and review changes against agreed outcomes.
 
 ### Deployment Geography for Use:
 
@@ -22,41 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: An unpinned installation command may install a release that has not been reviewed.
+Risk: ClawScan marks the skill suspicious with medium confidence and says its scan was incomplete; the findings concern validator wiring and the skill's tool scope.
 
-Mitigation: Use a reviewed release and verify the installer before running the installation command.
-
-Risk: Project materials and saved snapshots, team bindings, or browser records may contain private information.
-
-Mitigation: Limit access to intended project materials and treat saved records as private.
-
-Risk: Automated gates may be mistaken for proof of business correctness or approval for production actions.
-
-Mitigation: Use gates as review assistance, verify business correctness, and obtain authorization before production actions.
+Mitigation: Before installing, clarify the validator-wiring weakness and tool scope, review the setup command, and verify the CLI and skill source at a fixed, trusted version.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/franklinxkk/skills/ai-delivery-spec)
+- [AI Delivery Spec on ClawHub](https://clawhub.ai/franklinxkk/skills/ai-delivery-spec)
 - [Discovery guide](references/discover.md)
 - [Specification guide](references/specify.md)
 - [Prototype guide](references/prototype.md)
-- [Change and acceptance guide](references/change-acceptance.md)
-- [Team customization guide](references/team-customization.md)
-- [Tool adapters](references/tool-adapters.md)
+- [Change acceptance guide](references/change-acceptance.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, HTML, JSON, YAML, Code]
+**Output Type(s):** [Analysis, Guidance, Markdown, Code, Configuration, Shell commands]
 
-**Output Format:** [Markdown requirements and PRDs, interactive HTML prototypes, and structured JSON or YAML records.]
+**Output Format:** [Markdown, interactive HTML prototypes, and structured text or configuration files]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Outputs and checks are scoped to the task; passing a structural or automated check does not establish business correctness.]
+**Other Properties Related to Output:** [Task-specific; follows the requested format and existing project conventions.]
 
 ## Skill Version(s):
 
-5.5.6 (source: ClawHub release metadata, changelog released 2026-10-31)
+5.5.7 (source: release evidence and SKILL.md)
 
 ## Ethical Considerations:
 

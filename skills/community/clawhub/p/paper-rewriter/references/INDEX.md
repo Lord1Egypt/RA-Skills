@@ -14,6 +14,7 @@
 | 数字打架（百分比/n 不一致） | [api.md](api.md) check_stats 行 | `python scripts/check_stats.py 文稿` |
 | 验证安装/发布包完整 | [faq.md](faq.md) Q0b | `python scripts/selfcheck.py` |
 | 核实密度阈值依据/自己语料校准 | [calibration.md](calibration.md) | `python scripts/calibrate.py` |
+| CI/批量门禁与机器可读消费 | [automation.md](automation.md) | `pipeline.py … --exit-verdict` |
 | 集成门禁：警告也算失败 | [errors.md](errors.md) verify 分级表 | `python scripts/verify.py 原稿 改稿 --strict` |
 | PDF 读不出/置信度含义 | [pdf_confidence.md](pdf_confidence.md) | `python scripts/detect.py 文件.pdf --json` |
 | 能不能保证检测/过审 | [honest_boundaries.md](honest_boundaries.md) | ——（先读再对外发言） |

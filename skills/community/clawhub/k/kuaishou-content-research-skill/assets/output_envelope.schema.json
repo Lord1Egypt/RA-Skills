@@ -20,7 +20,7 @@
         },
         "error_code": {
             "type": "string",
-            "description": "OK、NO_MATCH、INVALID_KEYWORD、INVALID_URL、INVALID_ARGS、AUTH_REQUIRED、AUTH_ERROR、PLAN_LIMIT、TIMEOUT、NETWORK_ERROR、HTTP_5xx、HTTP_429、API_ERROR，或接口 errcode 的十进制字符串。PLAN_LIMIT 对应后端 errcode 14（套餐单次条数超限）"
+            "description": "OK、NO_MATCH、INVALID_KEYWORD、INVALID_URL、INVALID_ARGS、AUTH_REQUIRED、AUTH_ERROR、PLAN_LIMIT、INSUFFICIENT_BALANCE、RATE_LIMITED、DAILY_LIMIT、TIMEOUT、NETWORK_ERROR、HTTP_5xx、HTTP_429、API_ERROR，或接口 errcode 的十进制字符串。按 errmsg 判别：14 多为包月条数；15 多为余额；2 为短时限流；18 为日消费上限"
         },
         "message": {
             "type": "string",

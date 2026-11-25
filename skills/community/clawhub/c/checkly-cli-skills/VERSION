@@ -1,8 +1,41 @@
-1.0.19
+1.0.23
 
 Release/version change metadata for this skill set lives here, not in individual skill files.
 
 Historical notes consolidated from skill docs:
+
+- checkly-cli v10.3.0-v10.4.0
+  - Reviewed all 9 cumulative commits and 38 changed source leaves since 10.2.0 against Git-blob-verified official source 34833c407768368d6ce64c759a979aec029b732f. Official interrelease comparison identifies 10.3.0 as c58d58c171152336dfc87f2e7b77e742f9b4ffa5 and isolates the five dashboard leaves in 10.4.0.
+  - Documented 10.3.0 spending-cap show/set/remove, exact-account/value or removal authorization, preview/readback, billing permissions, API cents/null semantics and confirmation output. No finance operations were executed.
+  - Updated usage units, self-service pricing filters, optional in-force projections, JSON contracts and rate precision; retained the 10.3.0 compatibility minimum. Recorded upstream installer destinations separately from this package's selective distribution.
+  - Documented 10.4.0 dashboard display settings, documented defaults, import/codegen preservation of false, and deploy write-back support. Independent review corrected omission semantics: the construct leaves omitted booleans undefined rather than explicitly resetting stored values; intended booleans must be declared in code.
+  - Review-candidate clarification: documented unattended mode selection, cancellation/readback and stderr preview routing; restored standalone usage triggers, explicit removed-field mappings and combined-pricing-key compatibility in a skill-local reference; clarified all Dashboard omission behavior from construct and bundle synthesis, and restored related-skills footer ordering/routing.
+  - Source-backed documentation validated with offline extracted-source method fixtures and an isolated selective skills install; no Checkly package installation, live CLI operations or new binary/help-capture claim. Existing historical provenance and unrelated security/publication/install blockers remain unchanged.
+
+- checkly-cli v10.2.0
+  - Reviewed all 19 commits and 193 changed leaves in 10.1.0...10.2.0 against Git-tree-verified official source commit 2b32bb6e0dd4377ca901f3091dd7a7710bcb0b13 on 2026-11-17.
+  - Documented github/json stderr progress and deduplication, unchanged report destinations, GitHub table escaping, Slack app validation, retired Bahrain locations, type-only bundling, crash reporting opt-outs, Rocky AI and MQTT errors, and explicit monitor/check defaults.
+  - Corrected traceroute defaults and threshold ordering, including zero-max semantics and ICMP effective defaults. Documented experimental checkly/codegen, project-default preservation and generated-code review limits.
+  - No new CLI flags or binary-capture claim: semantics were verified from source; existing help provenance and compatibility minima are retained. Upstream CI, dependency and pnpm development-tooling changes introduce no new operator command.
+  - Review-candidate clarification: documented exact per-type one-sided threshold diagnostics separately from synthesis and backend acceptance, moved shared reporter rules above reporter subsections, corrected the Frankfurt location label, and added Rocky-disabled diagnosis to troubleshooting discovery. Kept compact standalone-local reporter and validation safeguards while reducing repeated prose. Offline regression fixtures use explicit session/runtime metadata and no live API credentials or operations.
+
+- checkly-cli v10.1.0
+  - Reviewed the complete 10.0.0...10.1.0 compare (four commits), official source tag 4e450744e9e0bf8e6b842dbbe9e5e68ea5c999c2, and SHA512-integrity/SHA1-verified npm artifact on 2026-10-30.
+  - Documented partial-embed stderr warnings, runner registry-metadata/ETARGET consequences, package-name remediation, direct-tarball-install caveats, and comparison against the shipped/pruned lockfile.
+  - Clarified pnpm sibling workspace-link resolution relative to each importer, keeping normal workspace bundling distinct from registry tarball embedding and truly external links.
+  - Added opt-in GitHub Check re-run metadata forwarding, exact environment-to-payload mappings, trimming/omission semantics, reporter separation, and workflow permission/side-effect review boundaries.
+  - The upstream Slack release-notification change affects upstream CI only; no new CLI command or flag and no repository-local refresh automation are needed.
+  - Review remediation: documented the action caller plus default-branch, event-filtered Re-run handler and actions:write-only scope; retained the CLI 10.1.0 compatibility floor in a skill-local reference, clarified numeric job-ID provenance and dependent-job side effects, corrected Markdown reporter claims and routing, and distinguished finalize-time warnings from validate/empty bundles. Preserved safe single-version pins while requiring all shipped-lockfile versions, exact-workspace-entry errors versus wildcard skips, and partial-bundle/lexical workspace-classification limits. No action/workflow was installed or executed against a live service.
+
+- checkly-cli v10.0.0
+  - Reviewed the complete major-release notes, official source tag 4f88d60 and integrity-verified published npm artifact on 2026-10-27.
+  - Refreshed deploy plans/tokens/drift/write-back, baseline resets and opt-in immediate scheduling; updated stream routing, confirmation exit 3 and invalid-input exit 2.
+  - Migrated usage reporting to the v2 terms/term/summary/series/projections contract, device-flow authentication and immutable account/endpoint selection.
+  - Updated empty-selection, timeout, early-stop, retry and CI reporter guidance; documented project delegation, native TypeScript parsing, maintenance scopes, FlatBuffers and Bun engines.
+  - Agentic Checks retire on 2026-12-01; projects needing to manage them until retirement must remain on 9.x. The current guidance migrates to supported repairable checks.
+  - Removed obsolete construct usage, corrected runnable monitor/script examples, and validated templates against checkly@10.0.0 with matching Playwright in an isolated consumer.
+  - Review remediation: preserved removed-resource history in CI examples and restored a gated runtime/secret-wired pipeline; distinguished REST groupId/doubleCheck from removed construct inputs; linked the temporary Agentic Checks compatibility path; restored unsupported plain-JavaScript repair-input caveats; unified intent ownership; made usage-role diagnosis actionable without equating member roles to service-key permissions; kept the default-project helper no-argument with fail-closed argument rejection and direct confirmation replay; fixed the import authentication diagnostic stream.
+
 - checkly-cli v9.4.0-v9.5.0
   - Reviewed upstream releases `9.4.0` and `9.5.0`, compare `9.3.0...9.5.0`, tags `cac349a` and `6a34c37`, and the released construct source/types/tests on 2026-09-16.
   - Added automatic-check-repair ownership guidance for `BrowserCheck` and `MultiStepCheck`, including omit, explicit boolean, and account-inheritance semantics.

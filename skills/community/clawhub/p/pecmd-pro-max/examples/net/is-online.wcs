@@ -1,0 +1,129 @@
+IFEX %&CurFile%.LOG, LOGS --2 * %&CurFile%.LOG
+ENVI^ ForceLocal=1
+
+
+IsConnectInternet &&InternetRet &&LocalRet 
+MESS Internet[%&InternetRet%]  LocalNet[%LocalRet%]
+
+
+
+_SUB IsConnectInternet  // BICon [bLCon]
+  SET &bIntnet=
+  SET &bLConnect=
+  SET$ &mpNetworkListManager=*8 0
+  SET &CLSCTX_INPROC_SERVER=0x1
+  CALC #&&CLSCTX_ALL=1|2|4|0x10
+  SET#$$ &CLSID_NetworkListManager=DCB00C01  570F  4A9B  8D 69  19 9F DB A5 72 3B //{DCB00C01-570F-4A9B-8D69-199FDBA5723B}
+  SET#$$ &IID_INetworkListManager=DCB00000  570F 4A9B  8D 69  19 9F DB A5 72 3B  //{DCB00000-570F-4A9B-8D69-199FDBA5723B}
+  SET &pNetworkListManager=0
+
+
+  {*
+    lock .ole
+    CALL $--ret:* --qd --16  OLE32.DLL,CoCreateInstance,&&rs,*CLSID_NetworkListManager,#0,#%CLSCTX_ALL%,*IID_INetworkListManager,*mpNetworkListManager
+    IFEX  #[ 0<>%&rs% ], EXIT -
+    //SET &get_IsConnectedToInternet=11  //函数序号
+    //SET &get_IsConnected=12  //函数序号
+  
+    SET#$  &vIsConnect=11 *24 0  //VT_BOOL=11 VARIANT_BOOL  
+    ENVI-mkfixdummy  &&IsConnect=&vIsConnect@8
+    ENVI-addr  &&IsConnectPtr=&IsConnect
+    CALC #&IsConnectPtr=%IsConnectPtr%+8
+    FIND $%~1<>, 
+    {* ^CALL $--ret:&&rs --get --qd #,*&mpNetworkListManager.IsConnectedToInternet,*&IsConnect //IDispatch接口可以直接函数名调用11
+     //^CALL $--ret:&&rs --qd*  #,*&mpNetworkListManager.%get_IsConnectedToInternet%,IsConnect
+        @IFEX #%rs%=0,!! @IFEX #%&IsConnect?short%<>0, SET bIntnet=1! SET SET bIntnet=0
+    }
+    FIND $%~2<>, 
+    {* CALL $--ret:&&rs --get --qd #,*&mpNetworkListManager.IsConnected,*&IsConnect //IsConnected
+     //CALL $--ret:&&rs --qd*  #,*&mpNetworkListManager.%get_IsConnected%,IsConnect
+      @IFEX #%rs%=0,!! @IFEX #%&IsConnect?short%<>0, SET bLConnect=1! SET SET bLConnect=0
+    }
+    CALL $--ret:&&rs  #,*&mpNetworkListManager.2 //2:Release() 释放COM
+  }
+  ENVI-ret %~1=%bIntnet%
+  FIND $%~2<>, ENVI-ret %~2=%bLConnect%
+_END
+
+EXIT FILE
+_ENDFILE
+
+
+ 
+IFEX #0=1,
+{
+    struct INetwork
+    {
+    //IUnknown: [3]
+        __virtual HRESULT STDMETHODCALLTYPE QueryInterface( REFIID riid,void **ppvObject);
+        __virtual ULONG   STDMETHODCALLTYPE AddRef( void);
+        __virtual ULONG   STDMETHODCALLTYPE Release(void); /*2:*/
+    //IDispatch: [4]
+        virtual HRESULT STDMETHODCALLTYPE GetTypeInfoCount( 
+            /* [out] */ __RPC__out UINT *pctinfo) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE GetTypeInfo( 
+            /* [in] */ UINT iTInfo,
+            /* [in] */ LCID lcid,
+            /* [out] */ __RPC__deref_out_opt ITypeInfo **ppTInfo) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE GetIDsOfNames( 
+            /* [in] */ __RPC__in REFIID riid,
+            /* [size_is][in] */ __RPC__in_ecount_full(cNames) LPOLESTR *rgszNames,
+            /* [range][in] */ __RPC__in_range(0,16384) UINT cNames,
+            /* [in] */ LCID lcid,
+            /* [size_is][out] */ __RPC__out_ecount_full(cNames) DISPID *rgDispId) = 0;
+        
+        virtual /* [local] */ HRESULT STDMETHODCALLTYPE Invoke( 
+            /* [annotation][in] */ 
+            _In_  DISPID dispIdMember,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
+            /* [annotation][in] */ 
+            _In_  LCID lcid,
+            /* [annotation][in] */ 
+            _In_  WORD wFlags,
+            /* [annotation][out][in] */ 
+            _In_  DISPPARAMS *pDispParams,
+            /* [annotation][out] */ 
+            _Out_opt_  VARIANT *pVarResult,
+            /* [annotation][out] */ 
+            _Out_opt_  EXCEPINFO *pExcepInfo,
+            /* [annotation][out] */ 
+            _Out_opt_  UINT *puArgErr) = 0;
+    //INetwork:
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE GetNetworks( 
+            /* [in] */ NLM_ENUM_NETWORK Flags,
+            /* [retval][out] */ __RPC__deref_out_opt IEnumNetworks **ppEnumNetwork) = 0;
+        
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE GetNetwork( 
+            /* [in] */ GUID gdNetworkId,
+            /* [retval][out] */ __RPC__deref_out_opt INetwork **ppNetwork) = 0;
+        
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE GetNetworkConnections( 
+            /* [retval][out] */ __RPC__deref_out_opt IEnumNetworkConnections **ppEnum) = 0;
+        
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE GetNetworkConnection( 
+            /* [in] */ GUID gdNetworkConnectionId,
+            /* [retval][out] */ __RPC__deref_out_opt INetworkConnection **ppNetworkConnection) = 0;
+        
+        virtual /* [helpstring][id][propget] */ HRESULT STDMETHODCALLTYPE get_IsConnectedToInternet(    //11: 去掉 get_,实际名称 IsConnectedToInternet
+            /* [retval][out] */ __RPC__out VARIANT_BOOL *pbIsConnected) = 0;
+        
+        virtual /* [helpstring][id][propget] */ HRESULT STDMETHODCALLTYPE get_IsConnected(   //12: 去掉 get_,实际名称 IsConnected
+            /* [retval][out] */ __RPC__out VARIANT_BOOL *pbIsConnected) = 0;
+        
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE GetConnectivity(   //13:  
+            /* [retval][out] */ __RPC__out NLM_CONNECTIVITY *pConnectivity) = 0;
+        
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE SetSimulatedProfileInfo(    //14: 
+            /* [in] */ __RPC__in NLM_SIMULATED_PROFILE_INFO *pSimulatedInfo) = 0;
+        
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE ClearSimulatedProfileInfo( void) = 0;   //15: 
+    };
+
+
+typedef short VARIANT_BOOL;
+#define VARIANT_TRUE ((VARIANT_BOOL)-1)  //0xFFFF
+#define VARIANT_FALSE ((VARIANT_BOOL)0)
+}

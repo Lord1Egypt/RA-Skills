@@ -1,6 +1,6 @@
 ## Description:
 
-Helps agents diagnose PostgreSQL health, slow queries, bloat, and blocking locks, and perform database maintenance when authorized.
+Provides PostgreSQL DBA diagnostics and guided maintenance through cluster health, query, index, table, replication, and lock analysis, plus guarded write operations.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Database administrators and developers use this skill to inspect PostgreSQL clusters, investigate performance and replication issues, and plan or perform authorized maintenance.
+Database administrators and developers use this skill to inspect PostgreSQL health, investigate slow queries, bloat, vacuum activity, locks, and replication, and carry out maintenance operations with previews and audit records.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Database write tools can make production-impacting changes without an enforced approval gate.
+Risk: ClawScan marks the release suspicious because it points to an external OpenClaw plugin whose behavior could not be verified; the scan reports incomplete coverage.
 
-Mitigation: Use a read-only PostgreSQL role by default; restrict write credentials to a narrow target during an approved maintenance window, with a separate approval process for agent writes.
+Mitigation: Review the plugin implementation and safeguards and confirm its advertised PostgreSQL capabilities before installing, following the security guidance.
 
-Risk: Local credentials, audit records, and undo records may expose sensitive operational metadata.
+Risk: The skill can make database changes, including operations that have no safe undo; audit records do not determine whether a write is authorized.
 
-Mitigation: Protect POSTGRES_AIOPS_HOME, the master password, audit.db, and undo.db from unauthorized access.
+Mitigation: Use a least-privilege PostgreSQL role, inspect dry-run previews and confirmation prompts, and reserve irreversible operations for explicitly intended work.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/zw008/skills/postgres-aiops)
+- [ClawHub skill page](https://clawhub.ai/zw008/skills/postgres-aiops)
 - [Project homepage](https://github.com/AIops-tools/Postgres-AIops)
-- [Capabilities](artifact/references/capabilities.md)
+- [Capabilities reference](artifact/references/capabilities.md)
+- [CLI reference](artifact/references/cli-reference.md)
 - [Setup and security guide](artifact/references/setup-guide.md)
 - [Agent guardrails](artifact/references/agent-guardrails.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Shell commands]
+**Output Type(s):** [Analysis, Guidance, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown with command examples]
+**Output Format:** [Structured tool results with concise text or Markdown summaries, shell commands, and configuration examples.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May report diagnostic findings and suggested maintenance actions.]
+**Other Properties Related to Output:** [Analysis reports cite measured findings; limited reads report whether results were truncated.]
 
 ## Skill Version(s):
 
-0.12.0 (source: ClawHub release metadata)
+0.13.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

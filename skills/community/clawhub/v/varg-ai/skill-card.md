@@ -1,6 +1,6 @@
 ## Description:
 
-Generate AI videos, images, voiceovers, music, captions, and multi-scene MP4 renders through the varg service.
+Generate AI images, videos, voiceovers, and music, then compose them into captioned, multi-scene video renders through varg.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers use the skill to generate images, video, voice, and music from prompts or reference media, then assemble those assets into composed videos.
+Developers and creative operators use the skill to generate or edit visual and audio assets from prompts, and to compose them into captioned videos.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The setup instructions request broadly scoped skill updates.
+Risk: The security evidence reports an unscoped updater and an incomplete scan, with two files only partially inspected.
 
-Mitigation: Review the update scope and limit changes to this skill before running an update.
+Mitigation: Review the updater, package, version, and partially inspected files before installation or execution.
 
-Risk: Setup can save the VARG_API_KEY in credential or project files beyond its original location.
+Risk: The security evidence reports persistent API-key storage.
 
-Mitigation: Choose where the key may be saved and protect any credential files that contain it.
+Mitigation: Avoid automatic key storage; use a protected credential store and inspect setup behavior before providing a key.
 
-Risk: Prompts, reference media, and speech text are sent to remote generation services, and generation consumes credits.
+Risk: Prompts and media may be sent to external services for generation.
 
-Mitigation: Avoid sending sensitive material and check expected credit use before generating.
+Mitigation: Confirm that the content may be shared with those services, and avoid sending sensitive material.
 
 ## Reference(s):
 
-- [Varg](https://varg.ai)
-- [Varg API dashboard](https://varg.ai/dashboard/api)
-- [Varg model catalog](https://varg.ai/models/llms.txt)
-- [ClawHub skill release](https://clawhub.ai/vargai/skills/varg-ai)
+- [varg.ai](https://varg.ai)
+- [varg-ai skill release](https://clawhub.ai/vargai/skills/varg-ai)
 
 ## Skill Output:
 
-**Output Type(s):** [Video, Images, Audio, Code, Shell commands, Guidance]
+**Output Type(s):** [Images, Video, Audio, Captions, Code, Shell commands]
 
-**Output Format:** [Generated media files, including MP4 video, and TypeScript/TSX or API request text]
+**Output Format:** [Generated media files plus TSX or REST API request examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Model, duration, quality, and credit use vary by request.]
+**Other Properties Related to Output:** [Generation output depends on the prompt, selected model, and render settings; service generation uses credits.]
 
 ## Skill Version(s):
 
-2.0.13 (source: target metadata and server release evidence; artifact frontmatter reports 2.1.1)
+2.0.14 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

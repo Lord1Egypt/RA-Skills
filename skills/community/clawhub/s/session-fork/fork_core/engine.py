@@ -111,44 +111,88 @@ def locate_last_reply(adapter, lines: list[dict]) -> tuple[int, int]:
     raise ForkError("No completed assistant reply found in transcript")
 
 
+def _turn_shape(obj: dict) -> str:
+    """锚点行的**落盘形态**标签（给用户看：本轮指令在文件里长什么样）。
+
+    Claude Code 有官方路径把"回合还在跑时提交的输入"落成
+    `type:"attachment"` + `attachment.type:"queued_command"`，而不是 `type:"user"`。
+    若 note 里一律写"user 消息"，用户拿这句话去文件里核对时**找不到那条 user 行**，
+    等于把"可当场核对的锚点"重新变成一句不可验证的断言。
+    """
+    t = obj.get("type")
+    if t == "attachment":
+        sub = (obj.get("attachment") or {}).get("type")
+        return f"attachment/{sub}" if sub else "attachment"
+    return str(t)
+
+
 def locate_before_current_turn(adapter, lines: list[dict]) -> tuple[int, int, str]:
     """**从会话内部**打分支（`--session current`）的默认截断点。
 
-    语义（= 文档承诺的"上一轮输出结束"）：截断点 = **最后一条 user 消息之前**的最后一条
+    语义（= 文档承诺的"上一轮输出结束"）：截断点 = **本轮指令之前**的最后一条
     有文本的 assistant 回复末尾。返回 (cut, total, note)。
 
-    为什么必须锚在 user 消息上（2026-09-15 真实事故，两个真实分支现场复原）：
-    agent 执行 fork 时，本轮的 user 消息（"打分支"）与其后的全部叙述**都已经在文件里**。
+    为什么必须锚在"本轮指令"上（2026-09-15 真实事故，两个真实分支现场复原）：
+    agent 执行 fork 时，本轮的用户指令（"打分支"）与其后的全部叙述**都已经在文件里**。
     按"文件末尾最后一条 assistant 文本"切 ⇒ 切点必然落在本轮叙述上：
       · `3ccebc53`（源 `ec48e1ae`）：切在 L18782，正确应为 L18763 —— **多吞 19 行**
         （含"打分支"指令本身、dry-run 的输出、fork 自己的输出）；
       · `5df71252`（源 `d6af6ce6`）：切在 L8452，正确应为 L8424 —— 多吞 28 行。
     且切点随 agent 继续输出而**前移**：同一轮内 dry-run 报 18778、实跑写 18782（漂移 4 行）——
     执行者据此以为"截在上一轮输出结束"，实际截在自己的叙述上。
-    锚在"最后一条 user 消息"上则**在本轮内稳定不漂移**（user 消息在本轮不会新增）。
+    锚在"本轮指令"上则**在本轮内稳定不漂移**（指令行在本轮不会新增）。
+
+    ⚠️ 断点由"**用户指向哪儿**"决定，不由"**指令行被存成什么形态**"决定：
+    判据用 `adapter.is_human_turn()`（= 这一行是不是人发起的指令），**不是**
+    `is_user_message()`（= 这一行长成 `type:"user"` 的样子）。二者在 Claude Code 上会分叉：
+    回合还在跑时提交的输入不写 `type:"user"`，而落成
+    `type:"attachment"` + `attachment.type:"queued_command"`（官方路径）。
+    只认 `is_user_message` ⇒ 锚点跳过它、落到**再上一轮**的 user 行 ⇒ 切点前移一整轮，
+    **静默少一段上下文**（用户只会看到内容变短，看不到任何报错）。
+    第三方 adapter 若没有 `is_human_turn`（本方法之前写的），退回 `is_user_message`，
+    行为与改动前一致 —— 这里用 `getattr` 兜底而不是直接调用，就是为了不让旧 adapter 崩掉。
+
+    ⚠️ 但 `locate_split_point()` 的**边界校验保持窄口径**（仍要求"切在 assistant 行、
+    下一行是 user 或 EOF"）：那里判的是"这种形态能否作为产物边界被写出并复读"，
+    与"用户指的是哪一行"是两个问题；放宽会让"切在工具结果行前面"被当成合法边界。
 
     ⚠️ 该规则同时是被验证器假定的边界形态：`verify_branch` 判"追加区是否开启新回合"时，
-    前提正是 **L(cut+1) 是一条 user 消息**。
+    前提正是 **L(cut+1) 是一条 user 消息**（用窄口径 `is_user_message` 判）。
+    所以 `queued_command` 形态的产物边界在体检里会显示"紧接边界的不是新回合，建议多看一眼"
+    —— 这是**据实提示**（那条指令确实不是 user 行），不是失败，勿为消掉它去放宽校验。
 
     退化情形（都不是错误，退回整份 fork 语义并在 note 里说明，**不静默**）：
-    - 文件里没有 user 消息（纯注入 / 异常会话）；
-    - 最后一条 user 消息之前没有任何有文本的 assistant 回复（单轮会话：用户刚问、助手刚答）。
+    - 文件里没有本轮指令行（纯注入 / 异常会话）；
+    - 本轮指令之前没有任何有文本的 assistant 回复（单轮会话：用户刚问、助手刚答）。
     """
     n = len(lines)
+    is_human_turn = getattr(adapter, "is_human_turn", None)
+    if not callable(is_human_turn):
+        is_human_turn = adapter.is_user_message  # 旧第三方 adapter：行为不变
     last_user = None
     for i, o in enumerate(lines, 1):
-        if adapter.is_user_message(o):
+        if is_human_turn(o):
             last_user = i
     if last_user is None:
         cut, total = locate_last_reply(adapter, lines)
-        return cut, total, "文件内无 user 消息 → 退回整份语义"
+        # 文案保留"无 user 消息"这一句（既有输出契约），但要补上"排队形态也找过了"——
+        # 否则 Claude Code 的 queued_command 会话里这句会读成"你没说过话"，与事实不符。
+        return cut, total, "文件内无 user 消息（含排队指令形态）→ 退回整份语义"
     for i in range(last_user - 1, 0, -1):
         o = lines[i - 1]
         if adapter.is_assistant_message(o) and adapter.get_text(o).strip():
-            return i, n, (
-                f"锚定 L{last_user} 的 user 消息「{_preview(adapter, lines[last_user - 1])}」"
-                f"（= 本轮指令），切在它之前"
-            )
+            anchor = lines[last_user - 1]
+            preview = _preview(adapter, anchor)
+            if adapter.is_user_message(anchor):
+                return i, n, (
+                    f"锚定 L{last_user} 的 user 消息「{preview}」（= 本轮指令），切在它之前"
+                )
+            # 是本轮指令、但不是 user 行 ⇒ 必须把"它被存成了什么形态"说出来：
+            # 用户拿着 "attachment/queued_command" 才能在文件里当场核对这条锚点。
+            shape = _turn_shape(anchor)
+            how = ("本轮指令以排队形态落盘，不是 type:user 行"
+                   if shape.endswith("/queued_command") else "本轮指令不是 type:user 行")
+            return i, n, f"锚定 L{last_user} 的 {shape} 行「{preview}」（{how}），切在它之前"
     cut, total = locate_last_reply(adapter, lines)
     return cut, total, f"L{last_user} 之前无完整回复（单轮会话）→ 退回整份语义"
 
@@ -160,13 +204,22 @@ _RE_PASTED_REQ_ID = re.compile(r'"conversationRequestId"\s*:\s*"([A-Za-z0-9_-]{8
 
 
 def find_pasted_request_id(adapter, lines: list[dict]) -> str | None:
-    """**本轮** user 消息里是否贴了一个 request id（= 用户明确了"切在哪一条回复"）。
+    """**本轮**消息里是否贴了一个 request id（= 用户明确了"切在哪一条回复"）。
 
-    只扫最后一条 user 消息：贴 ID 是"这次操作切哪儿"的指令，不是历史内容。
+    只扫最后一条"人发起的"消息：贴 ID 是"这次操作切哪儿"的指令，不是历史内容。
+
+    ⚠️ 这里必须用 `is_human_turn` 而**不是** `is_user_message`（2026-11-16 补）：
+    本轮指令可能以排队形态（Claude Code 的 `attachment/queued_command`）落盘，
+    那种情况下"贴了 id"就只存在于 attachment 的正文里。若仍按 `type=="user"` 找，
+    会**跳过本轮**、扫到上一轮的消息 ⇒ 本函数返回 None ⇒ 默认模式静默接管，
+    用户贴的 id 一声不响地失效（比切点错更隐蔽：默认点常常"看着也差不多对"）。
+    判据与 `locate_before_current_turn` 保持同一口径，兜底也保持一致。
     """
+    probe = getattr(adapter, "is_human_turn", None)
+    human_turn = probe if callable(probe) else adapter.is_user_message
     last_user = None
     for i, o in enumerate(lines, 1):
-        if adapter.is_user_message(o):
+        if human_turn(o):
             last_user = i
     if last_user is None:
         return None

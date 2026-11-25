@@ -1,6 +1,6 @@
 ## Description:
 
-Tracks the user's stated to-dos and purchases, asks for confirmation before they count, and answers questions about open tasks and spending.
+Keep the user's to-do list and spending ledger from what they say out loud.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-HiJavis users use it to capture their own to-dos and spending from spoken or typed inputs, review pending entries, and ask for confirmed list or monthly spending totals.
+HiJavis users can capture their own to-dos and purchases from recordings or keyboard input, confirm or discard each pending card, and ask chat for their open tasks or monthly spending.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Personal details and short quotes are sent to the HiJavis server before confirmation, including possible content from shared conversations.
+Risk: The scan inspected only 7 of 18 components fully and notes an undeclared tool scope, leaving uncertainty about the skill's behavior and access.
 
-Mitigation: Review pending cards carefully before confirming them, especially when recordings may include other people.
-
-Risk: An exposed gateway token or untrusted server connection could put ledger data at risk.
-
-Mitigation: Keep the gateway token private and use a trusted HTTPS server address outside the internal container network.
-
-Risk: The server's isolation, retention, and app controls were not verified.
-
-Mitigation: Confirm the provider's data handling and controls before relying on the skill for sensitive records.
+Mitigation: Review the skill's requested permissions and behavior before enabling it; confirm or discard each pending record in HiJavis.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/samuel-wei/skills/javis-todo-spend-tracker)
+- [ClawHub skill page](https://clawhub.ai/samuel-wei/skills/javis-todo-spend-tracker)
 - [HiJavis iPhone app](https://apps.apple.com/us/app/hijavis/id6745134765)
 
 ## Skill Output:
 
-**Output Type(s):** [text, JSON]
+**Output Type(s):** [JSON, Text]
 
-**Output Format:** [Short chat responses and structured ledger entries]
+**Output Format:** [Structured to-do and expense records, with concise chat summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Entries remain pending until user confirmation; spending totals keep currencies separate.]
+**Other Properties Related to Output:** [English and Chinese; records remain pending until the user confirms them.]
 
 ## Skill Version(s):
 
-0.1.1 (source: server-resolved release metadata)
+0.1.2 (source: package.json, server-resolved release)
 
 ## Ethical Considerations:
 

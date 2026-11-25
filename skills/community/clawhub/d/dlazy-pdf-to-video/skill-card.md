@@ -1,6 +1,6 @@
 ## Description:
 
-Turns PDFs into explainer, report, courseware, or training videos through parsing, outlining, storyboarding, voiceover, production, and validation.
+pdf to video, pdf to explainer video, pdf to presentation video — parse the PDF, outline, storyboard, voiceover, build, validate. Use when the user gives a PDF and wants an explainer, report broadcast, courseware, or training video.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Content creators, educators, and business teams can use this skill to turn a PDF into an explainer, report broadcast, courseware, or training video.
+People preparing explainer, report, courseware, or training videos use this skill to turn a PDF into a storyboarded, narrated video through dLazy's file-to-video workflow.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Attached documents are uploaded to dLazy media storage for processing.
+Risk: Messages and attached local files are sent to dLazy services for processing.
 
-Mitigation: Only attach documents you are authorized to share, and review dLazy's service terms before sending sensitive material.
+Mitigation: Avoid attaching sensitive files unless their use with dLazy is approved.
 
-Risk: A report-interpretation request may start the video-generation workflow.
+Risk: CLI login and organization project listing may not fit every intended use.
 
-Mitigation: Confirm that the user wants a video project before invoking the skill for report-interpretation requests.
-
-Risk: The skill requires CLI sign-in with a dLazy API key and can list organization projects.
-
-Mitigation: Use the intended dLazy account, keep the API key private, and confirm the correct project before continuing an existing session.
+Mitigation: Review the CLI setup and confirm the organization account and project access are appropriate before use.
 
 ## Reference(s):
 
-- [dLazy CLI project page](https://github.com/dlazy-ai/cli)
-- [dLazy CLI on npm](https://www.npmjs.com/package/@dlazy/cli)
-- [dLazy website](https://dlazy.com)
-- [ClawHub skill page](https://clawhub.ai/dlazyai/skills/dlazy-pdf-to-video)
+- [ClawHub release page](https://clawhub.ai/dlazyai/skills/dlazy-pdf-to-video)
+- [dLazy CLI repository listed in skill metadata](https://github.com/dlazy-ai/cli)
+- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy homepage](https://dlazy.com)
 
 ## Skill Output:
 
-**Output Type(s):** [Video, Text]
+**Output Type(s):** [Video, Text, Shell commands]
 
-**Output Format:** [Generated video files with conversational text responses]
+**Output Format:** [Generated video media with text responses and CLI commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires a dLazy API key; attached files are uploaded to dLazy media storage.]
+**Other Properties Related to Output:** [Project-scoped workflow; optional local file attachments are uploaded to dLazy media storage before use.]
 
 ## Skill Version(s):
 
-1.0.39 (source: server-resolved release)
+1.0.42 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

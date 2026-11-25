@@ -81,8 +81,9 @@ export const OPENAI_CHAT_COMPLETION_SERVICES: readonly string[] = Object.freeze(
 ]) as readonly string[];
 
 // Services that return structured tool_calls. Live 2026-10-03: Qwen3.8-Max/Flash and
-// Ling-3.0-flash-Fin accept a tools array but silently ignore it (plain-text answers).
-export const TOOL_CALLING_CHAT_SERVICES: readonly string[] = Object.freeze(['glm_5_3', 'glm_5_3_flash', 'gpt_oss_120b']) as readonly string[];
+// Ling-3.0-flash-Fin accept a tools array but silently ignore it (plain-text answers). Retired
+// GPT-OSS is not listed: tools go only to GLM-5.3/Flash unless allowUnverifiedTools is exactly true.
+export const TOOL_CALLING_CHAT_SERVICES: readonly string[] = Object.freeze(['glm_5_3', 'glm_5_3_flash']) as readonly string[];
 
 export function isOnDemandChatService(slug: string): slug is OnDemandChatServiceSlug {
   return (ONDEMAND_CHAT_SERVICE_SLUGS as readonly string[]).includes(slug);
@@ -309,8 +310,8 @@ for (const spec of Object.values(ONDEMAND_SERVICE_CATALOG)) {
     : 'retired-not-in-live-list-2026-10-03';
 }
 
-// Inference runs without confirm:true ONLY for these known chat and low-cost image/audio/vision
-// services. Every other slug (video such as seedance_2_5, retired or future services) is high-cost
+// Policy list used by the on-demand clients: confirm:true is not required ONLY for these known chat
+// and low-cost image/audio/vision services. Every other slug (video such as seedance_2_5, retired or future services) is high-cost
 // or unknown and requires confirm:true. This is an allowlist, so new services are gated by default.
 export const UNGATED_INFERENCE_SERVICES: readonly string[] = Object.freeze([
   ...ONDEMAND_CHAT_SERVICE_SLUGS.filter((slug) => LIVE_SERVICES_2026_10_03.includes(slug)),

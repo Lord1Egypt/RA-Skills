@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and API owners use this skill before releasing public API changes to inventory the surface, compare its conventions with relevant exemplars, and review documentation and versioning.
+Developers use this skill to inventory public APIs, compare their design with relevant exemplars, and check consistency and documentation before an API release. It produces evidence-linked findings and a recommendation with action items.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,40 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The unpinned `npx typedoc` command may download and run third-party code.
+Risk: The documented `npx typedoc` command is unpinned and could download and run an unreviewed package.
 
-Mitigation: Use a pinned, reviewed TypeDoc dependency with a lockfile, and avoid implicit package downloads.
+Mitigation: Before running it, confirm TypeDoc is expected and pin it to a reviewed version.
 
-Risk: The security scan is incomplete because three local references could not be resolved.
+Risk: The security scan is partial because three local references could not be resolved, so it does not establish that all behavior was reviewed.
 
-Mitigation: Resolve and review the missing local references before relying on the skill.
+Mitigation: Review the skill instructions and unresolved references before relying on the scan verdict.
 
 ## Reference(s):
 
+- [Pensive project homepage (declared metadata link)](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
 - [pandas DataFrame API](https://pandas.pydata.org/docs/reference/frame.html)
 - [requests API](https://requests.readthedocs.io/en/latest/api/)
-- [Tokio Runtime API](https://docs.rs/tokio/latest/tokio/runtime/)
-- [Serde](https://docs.rs/serde/latest/serde/)
-- [Go net/http](https://pkg.go.dev/net/http)
-- [Go database/sql](https://pkg.go.dev/database/sql)
-- [Express 4 API](https://expressjs.com/en/4x/api.html)
+- [Tokio runtime API](https://docs.rs/tokio/latest/tokio/runtime/)
+- [Serde API](https://docs.rs/serde/latest/serde/)
+- [Go net/http package](https://pkg.go.dev/net/http)
+- [Go database/sql package](https://pkg.go.dev/database/sql)
+- [Express API](https://expressjs.com/en/4x/api.html)
 - [Stripe API](https://stripe.com/docs/api)
 - [GitHub REST API](https://docs.github.com/en/rest)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Shell commands]
+**Output Type(s):** [Analysis, Markdown, JSON, Guidance]
 
-**Output Format:** [Structured Markdown review with an API inventory, exemplar comparison, evidence-backed findings, and action plan]
+**Output Format:** [Markdown API review report with structured findings and a JSON findings record]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Findings include source locations and quoted anchors for verification.]
+**Other Properties Related to Output:** [Project-specific inventory and exemplar comparisons, evidence-linked findings, and a timed action plan.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -2,11 +2,25 @@
 name: smart-storage-triage
 description: "Universal smart search and storage triage for codebases, local files, documents, and archives. SQLite FTS5 (BM25), gzip tree snapshots, and semantic media search (photos/videos/document names) via local EmbeddingGemma2 embeddings with same-model failover. Requires user confirmation before broad directory indexing."
 allowed-tools: [exec, read]
+metadata:
+  capabilities: [shell, network, env, filesystem]
+  network-destinations:
+    - http://127.0.0.1:18794 (LOCAL embeddings router, loopback-only by default; any non-loopback endpoint requires the explicit --allow-external-router flag)
+  filesystem-access:
+    - configured storage root (read-only; tree-snapshot paths validated to stay inside the root)
+    - ~/.config/smart-storage-triage/config.json (user-owned configuration)
+    - ~/.local/share/semantic-media/ (local rebuildable index cache)
 ---
 
-# Smart Storage Triage & Search (v1.6.0)
+# Smart Storage Triage & Search (v1.7.1)
 
 Fast, zero-bloat search across code repositories, local folders, documentation, and deep archives. Avoids burning tens of thousands of tokens by querying indexed SQLite FTS5, compressed directory tree snapshots, and a local semantic media index instead of performing blind shell walks (`find` / `grep`).
+
+### What's New in v1.7.0 (security hardening):
+- **Loopback-only embeddings by default:** the embeddings router must be a loopback endpoint, verified by parsing IP literals with `ipaddress` (v1.7.1: a hostname like `127.evil.example` is NOT loopback and is refused; only true loopback IPs and the exact name `localhost` pass). A non-loopback router is refused unless the operator explicitly passes `--allow-external-router` (or sets `STORAGE_MEDIA_ALLOW_EXTERNAL_ROUTER=1`). An auto-discovered workspace `.smart-storage-triage.json` can NEVER silently redirect private media/query data to an external endpoint.
+- **Storage-boundary enforcement:** every tree-snapshot path is validated to resolve INSIDE the configured storage root (absolute paths, `..` traversal and symlinks escaping the root are skipped), so a crafted snapshot cannot index out-of-scope files.
+- **Symlink-alias secret exclusion:** the credential denylist is applied to symlink RESOLVED targets as well as alias names — `notes.txt -> .env` inside the root can no longer smuggle secrets into the index (both FTS and semantic layers).
+- **Enforced broad-scope confirmation:** indexing with an empty `active` prefix (whole storage root) now requires explicit confirmation in code: `--allow-broad`, `STORAGE_MEDIA_ALLOW_BROAD=1`, or `allow_broad: true` in the user-owned GLOBAL config (never honored from a discovered workspace file).
 
 ### What's New in v1.6.0:
 - **Per-workspace storage binding:** a `.smart-storage-triage.json` file (section `media`) in the working directory or in an ancestor directory of the skill copy (up to the workspace root) overrides the shared global config. Each agent workspace can bind its OWN storage root, tree snapshot, and index DB — separate agents get separate, isolated indexes with zero code changes; workspaces without the file keep the shared default.
@@ -29,11 +43,16 @@ Fast, zero-bloat search across code repositories, local folders, documentation, 
 2. **Symlink Boundary Protection:**
    - Directory symlinks are pruned to prevent directory traversal loops.
    - File symlinks that resolve outside the target directory boundary are strictly ignored and never followed.
+   - The secret denylist is ALSO applied to the resolved symlink target: an in-root alias such as `notes.txt -> .env` is excluded, not indexed.
 3. **Broad Scope Safety Guard:**
    - Direct indexing of the root filesystem (`/`), `/home`, or the user home directory (`~`) is restricted in code to prevent accidental broad data exposure. Indexing broad system targets requires the explicit `--allow-broad` flag.
-4. **100% Local & Zero Telemetry:**
-   - Runs entirely using standard Python, embedded SQLite FTS5, and a LOCAL embedding model. Zero external network calls, zero tracking.
-5. **No Hardcoded Paths:**
+   - Semantic indexing with an empty `active` prefix (whole storage root) likewise requires explicit confirmation (`--allow-broad`, env, or the global config).
+4. **Local-First & Zero Telemetry:**
+   - Runs entirely using standard Python, embedded SQLite FTS5, and a LOCAL embedding model. No tracking, no analytics, no cloud calls.
+   - Embedding requests go to a LOOPBACK router by default (`http://127.0.0.1:18794`). Any non-loopback embeddings endpoint is refused unless the operator explicitly opts in with `--allow-external-router` — private media and queries never leave the host silently.
+5. **Storage-Boundary Enforcement:**
+   - Tree-snapshot entries are validated to stay inside the configured storage root; absolute paths, `..` components and symlinks resolving outside are skipped before any file is read or embedded.
+6. **No Hardcoded Paths:**
    - Works in any directory. Custom paths can be configured via environment variables (`STORAGE_RAG_DB`, `STORAGE_RAG_TREE`, `STORAGE_MEDIA_*`), CLI arguments, or `~/.config/smart-storage-triage/config.json`.
 
 ## Mandatory User Confirmation (Approval Step)
@@ -92,7 +111,8 @@ Meaning-based search over **photos, videos, and document names** in a configured
   }
 }
 ```
-- `active` is a prefix relative to `root`; keep archives OUT of it. `""` = whole root.
+- `active` is a prefix relative to `root`; keep archives OUT of it. `""` = whole root — allowed only with explicit broad-scope confirmation (`--allow-broad`, `STORAGE_MEDIA_ALLOW_BROAD=1`, or `allow_broad: true` in the GLOBAL config).
+- `router` must be a loopback URL by default. To use an external embeddings endpoint you must pass `--allow-external-router` on every invocation (or set `STORAGE_MEDIA_ALLOW_EXTERNAL_ROUTER=1`); workspace binding files cannot enable it.
 - The config and index DB are per-user: several agents on one host share one index. Install the skill into each agent's workspace; no per-agent reindexing.
 - **Per-workspace binding (isolation):** to give one agent its OWN storage and index, put a `.smart-storage-triage.json` with the same `media` section at that agent's workspace root (or anywhere above the skill copy / in the working directory). It overrides the global config key-by-key; the first match wins (CWD first, then the script's ancestors). Use a separate `db` path per bound workspace so indexes never mix. Keep this file OUT of the published skill folder — it is local infrastructure, not skill content.
 
@@ -103,6 +123,8 @@ python3 <skill_dir>/scripts/semantic_media.py search "<query>" [--limit 10] [--k
 
 # Incremental index (needs PIL + pillow-heif for HEIC; ffmpeg for video frames)
 python3 <skill_dir>/scripts/semantic_media.py index [--area SUBSTR] [--kind image|video|doc] [--force] [--max N]
+# Whole-root indexing (empty active prefix) additionally needs --allow-broad;
+# a non-loopback router additionally needs --allow-external-router.
 
 # Coverage and errors
 python3 <skill_dir>/scripts/semantic_media.py status

@@ -1,6 +1,6 @@
 ## Description:
 
-Turn finished lecture scripts into presenter-led course videos with lecture narration. This course video studio prepares the spoken narration for each lesson, then records a digital-teacher delivery, so enablement teams get ready-to-publish lecture videos and training presenter clips.
+Turn finished lecture scripts into presenter-led course videos with spoken narration and digital-teacher delivery.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Enablement teams and course creators use this skill to turn approved lecture scripts, an authorized instructor portrait, and a selected voice into narrated lesson audio, presenter-led video clips, and aligned subtitles.
+Course creators and enablement teams use this skill to turn approved lesson scripts, authorized instructor portraits, and selected voices into narrated presenter-led lesson videos.
 
 ### Deployment Geography for Use:
 
@@ -22,41 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review flags account and spending permissions broader than the stated workflow may need.
+Risk: Security evidence flags persistent installation tracking, broad shared account access, and other undeclared or privacy-sensitive capabilities; scan coverage is partial.
 
-Mitigation: Review the requested permissions before connecting and defer installation until unnecessary access is addressed.
-
-Risk: Installation reporting is flagged, and the review says disclosure and a usable opt-out need attention.
-
-Mitigation: Disclose what installation details are reported and provide a usable opt-out before installation.
-
-Risk: The review flags shared credential or other-skill effects and an unpinned update command.
-
-Mitigation: Review update targets before updating, and check whether other Beatra skills rely on the shared connection before uninstalling.
+Mitigation: Before installing, review what content will be sent to Beatra, what account permissions are granted, and whether other installed skills rely on the shared connection. Avoid the unversioned update command and reconsider installation if those conditions are unacceptable.
 
 ## Reference(s):
 
-- [Course Video Studio on Beatra](https://beatra.ai/skills/course-video-studio)
-- [Workflow and Payloads](references/workflow.md)
+- [Course Video Studio workflow](references/workflow.md)
 - [Speech, Voices, and Audio Finishing](references/speech-and-audio.md)
-- [Installation and Authentication](references/installation-and-auth.md)
-- [Installation Registration](references/installation-registration.md)
-- [Updates and Security](references/updates-and-security.md)
-- [Uninstall and Disconnect](references/uninstall-and-disconnect.md)
+- [Installation and authentication](references/installation-and-auth.md)
+- [Billing errors and recovery](references/billing-errors-and-recovery.md)
+- [MCP connection](references/mcp-connection.md)
+- [Updates and security](references/updates-and-security.md)
+- [Beatra Course Video Studio](https://beatra.ai/skills/course-video-studio)
 
 ## Skill Output:
 
-**Output Type(s):** [Audio, Video, Subtitles, Guidance]
+**Output Type(s):** [Narrated audio files, Presenter-led MP4 video clips, Subtitle files (JSON, SRT, VTT)]
 
-**Output Format:** [Narrated audio, presenter-led MP4 clips, JSON/SRT/VTT subtitles, and optional script pacing or segmentation notes]
+**Output Format:** [Audio, MP4 video, and aligned subtitle files]
 
-**Output Parameters:** [Per lesson segment]
+**Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Subtitle files include speech timing; voice cloning and audio finishing are optional.]
+**Other Properties Related to Output:** [Outputs are organized by lesson segment; speech timing may be included for each take.]
 
 ## Skill Version(s):
 
-0.3.0 (source: server-resolved release metadata)
+0.3.1 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

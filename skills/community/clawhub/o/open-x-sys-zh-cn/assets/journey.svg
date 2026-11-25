@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="410" viewBox="0 0 1400 410" role="img" aria-labelledby="title desc" lang="zh-CN">
+<title id="title">OpenXSys 用户旅程：从一句普通的话，到一个越用越强的系统</title>
+<desc id="desc">看得透、想得清、做得成、连得上、会生长、越用越强。可以从任何位置开始，新证据和真实结果会让系统继续演化。</desc>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke="#72858f" stroke-width="1.6"/></marker>
+  <marker id="return" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke="#9b6b2f" stroke-width="1.6"/></marker>
+</defs>
+<style>
+text{font-family:system-ui,-apple-system,"Segoe UI","Noto Sans SC","Microsoft YaHei",sans-serif}
+.title{font-size:24px;font-weight:750;fill:#183642}.sub{font-size:14px;fill:#58707b}.num{font-size:12px;font-weight:700}.name{font-size:24px;font-weight:750;fill:#183642}.body{font-size:14px;fill:#405965}.flow{fill:none;stroke:#72858f;stroke-width:1.7;marker-end:url(#arrow)}.return{fill:none;stroke:#9b6b2f;stroke-width:1.6;stroke-dasharray:6 6;marker-end:url(#return)}
+</style>
+<rect x=".5" y=".5" width="1399" height="409" rx="20" fill="#fbfcfa" stroke="#d9e2df"/>
+<text x="35" y="43" class="title">从一句普通的话，到一个越用越强的系统</text>
+<text x="35" y="69" class="sub">这是你的体验，不是必须照着走的流程；从任何位置进入，OpenXSys 都会补足所依赖的理解、行动与反馈。</text>
+<path class="return" d="M1290 120V92H130V120"/>
+<text x="710" y="102" text-anchor="middle" font-size="13" fill="#9b6b2f">新证据、用户纠正和真实结果，会改变下一次运行</text>
+<g>
+<rect x="25" y="130" width="210" height="180" rx="14" fill="#edf5fa" stroke="#91afc1"/><text x="43" y="157" class="num" fill="#3c6c8a">01 · 理解</text><text x="43" y="196" class="name">看得透</text><text x="43" y="226" class="body">看见整体、层级、关系</text><text x="43" y="250" class="body">原因、反馈与约束</text><text x="43" y="282" font-size="13" fill="#3c6c8a">看懂 · 解释 · 预见</text>
+<path class="flow" d="M238 220H254"/>
+<rect x="258" y="130" width="210" height="180" rx="14" fill="#fff4e6" stroke="#c7a06c"/><text x="276" y="157" class="num" fill="#9b6b2f">02 · 判断</text><text x="276" y="196" class="name">想得清</text><text x="276" y="226" class="body">找准真正值得用力之处</text><text x="276" y="250" class="body">比较方向、代价与条件</text><text x="276" y="282" font-size="13" fill="#9b6b2f">找准 · 选择</text>
+<path class="flow" d="M471 220H487"/>
+<rect x="491" y="130" width="210" height="180" rx="14" fill="#edf6f0" stroke="#8eb79e"/><text x="509" y="157" class="num" fill="#347253">03 · 创造</text><text x="509" y="196" class="name">做得成</text><text x="509" y="226" class="body">把认识变成完整作品</text><text x="509" y="250" class="body">行动或可工作的能力</text><text x="509" y="282" font-size="13" fill="#347253">作品 · 行动 · 能力</text>
+<path class="flow" d="M704 220H720"/>
+<rect x="724" y="130" width="210" height="180" rx="14" fill="#eef1fa" stroke="#9ba8ca"/><text x="742" y="157" class="num" fill="#4b6092">04 · 关系</text><text x="742" y="196" class="name">连得上</text><text x="742" y="226" class="body">让人、AI、工具与系统</text><text x="742" y="250" class="body">通过真实关系共同作用</text><text x="742" y="282" font-size="13" fill="#4b6092">观察 · 转换 · 确认</text>
+<path class="flow" d="M937 220H953"/>
+<rect x="957" y="130" width="210" height="180" rx="14" fill="#f4eff8" stroke="#b09cc1"/><text x="975" y="157" class="num" fill="#76578e">05 · 反馈</text><text x="975" y="196" class="name">会生长</text><text x="975" y="226" class="body">让结果改变认识、关系</text><text x="975" y="250" class="body">结构与下一次行动</text><text x="975" y="282" font-size="13" fill="#76578e">验证 · 更新 · 演化</text>
+<path class="flow" d="M1170 220H1186"/>
+<rect x="1190" y="130" width="185" height="180" rx="14" fill="#f0f3e8" stroke="#a5b485"/><text x="1208" y="157" class="num" fill="#65733f">06 · 积累</text><text x="1208" y="196" class="name">越用越强</text><text x="1208" y="226" class="body">每次获得进入你的系统</text><text x="1208" y="250" class="body">未来从更高起点继续</text><text x="1208" y="282" font-size="13" fill="#65733f">拥有 · 接续 · 新能力</text>
+</g>
+<text x="35" y="354" font-size="15" font-weight="700" fill="#183642">你只负责说出真实的事情。</text><text x="245" y="354" class="sub">OpenXSys 承担内部复杂性，把发现、作品、行动和新能力交回你手中。</text>
+<text x="35" y="383" class="sub">用系统理解系统，用系统建造系统。</text><text x="1365" y="383" text-anchor="end" font-size="13" font-weight="700" fill="#58707b">OpenXSys</text>
+</svg>

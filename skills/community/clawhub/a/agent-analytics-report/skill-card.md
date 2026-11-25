@@ -1,6 +1,6 @@
 ## Description:
 
-Generates daily, weekly, monthly, and yearly reports of AI-agent usage, including token consumption, estimated costs, task categories, skill use, and automation activity.
+Generates daily, weekly, monthly, and yearly reports on agent usage, token consumption, costs, task types, skill use, and automation runs from local data.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agent users use the skill to review local usage across supported assistants and understand token trends, task mix, skill activity, and automation runs. Cost figures are estimates unless supported by an official usage export, and some data sources provide estimated token counts.
+Employees and developers use this skill to review local agent usage over a chosen period, including token consumption, costs, task and skill patterns, and automation outcomes.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Reports and collected session details may contain private information if saved or shared.
+Risk: The security review flags potentially broad data collection, file writes, and unsafe handling of report content.
 
-Mitigation: Get explicit agreement before saving; choose and protect the destination path, then review session-derived content before sharing.
+Mitigation: Review the selected data sources and output destination before running the skill, and inspect HTML reports before sharing them.
 
-Risk: Enabling LLM task classification sends session-derived text to the selected endpoint.
+Risk: Report content may be inaccurate, and some token usage or cost figures are estimates.
 
-Mitigation: Keep classification disabled unless the user approves the data transfer and endpoint.
-
-Risk: Reported costs may differ from actual bills.
-
-Mitigation: Verify estimates against the provider's actual usage records or bills.
+Mitigation: Check important figures against source records and official billing, especially for sources that estimate tokens locally.
 
 ## Reference(s):
 
-- [Agent Analytics Report on ClawHub](https://clawhub.ai/elisabeth15501/skills/agent-analytics-report)
+- [ClawHub skill page](https://clawhub.ai/elisabeth15501/skills/agent-analytics-report)
+- [Adapter and data source guide](docs/ADAPTERS.md)
+- [Data source reference](references/data_sources.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, HTML, JSON]
+**Output Type(s):** [Analysis, Markdown, HTML, JSON]
 
-**Output Format:** [Usage report in Markdown (default), HTML, or JSON]
+**Output Format:** [Markdown, HTML, or JSON report]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Daily, weekly, monthly, or yearly summaries; includes usage trends and analysis.]
+**Other Properties Related to Output:** [Reports summarize locally collected usage for a selected time period; some token values and costs may be estimates.]
 
 ## Skill Version(s):
 
-1.9.13 (source: server-resolved release)
+1.9.15 (source: frontmatter, server-resolved release)
 
 ## Ethical Considerations:
 

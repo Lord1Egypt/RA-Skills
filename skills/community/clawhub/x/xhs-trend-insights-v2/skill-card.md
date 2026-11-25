@@ -1,6 +1,6 @@
 ## Description:
 
-当用户需要做小红书趋势洞察、小红书趋势分析、热点观察、内容方向判断、趋势线索归纳或营销灵感整理时使用。面向内容运营、品牌调研和创作者。
+当用户需要做小红书趋势洞察、小红书趋势分析、热点观察、内容方向判断、趋势线索归纳或营销灵感整理时使用。面向内容运营、品牌调研和创作者。由社媒数据助手 SocialDataX 提供。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-内容运营人员、品牌研究者和创作者可用它查看小红书热榜或按关键词搜索内容，整理热度信号、相关样本与后续选题角度。
+Content operators, brand researchers, and creators use this skill to review Xiaohongshu trends, hot topics, and search samples, then identify patterns and possible content directions.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The CLI uses an unpinned latest-version package command, creating a supply-chain risk around credential handling.
+Risk: ClawScan rates the skill suspicious because it uses a mutable latest-version CLI that could access available credentials if compromised.
 
-Mitigation: Review the package and credential setup commands before installation; prefer a reviewed, pinned package version when available.
+Mitigation: Review the CLI installation and credential handling before installing, and use only an environment where the available credentials and package version are acceptable.
 
-Risk: Sensitive research topics may be sent to the search service.
+Risk: Search terms are sent to SocialDataX, and the security scan was partial because some local references could not be resolved.
 
-Mitigation: Avoid submitting sensitive topics as search queries.
+Mitigation: Avoid submitting sensitive search terms and review the unresolved references before relying on the security assessment.
 
 ## Reference(s):
 
-- [SocialDataX skill and API key information](https://socialdatax.com/ai?from=clawhub)
-- [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/xhs-trend-insights-v2)
+- [SocialDataX](https://socialdatax.com/ai?from=clawhub)
+- [ClawHub skill page](https://clawhub.ai/devinchen2014/skills/xhs-trend-insights-v2)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+**Output Type(s):** [Analysis, Text, Markdown]
 
-**Output Format:** [Markdown with ranked trend signals, content samples, and follow-up angles]
+**Output Format:** [Markdown summary with trend signals, sample titles and links, and analysis]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Summarizes the requested hot-list or keyword-search results; distinguishes observed signals from analysis and reflects the selected query and page limits.]
+**Other Properties Related to Output:** [May include rankings, popularity signals, creator or account names, and follow-up angles.]
 
 ## Skill Version(s):
 
-0.1.8 (source: server-resolved release metadata)
+0.1.9 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

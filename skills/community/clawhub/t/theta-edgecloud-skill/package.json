@@ -1,8 +1,8 @@
 {
   "name": "theta-edgecloud-skill",
-  "version": "0.2.0",
+  "version": "0.3.1",
   "private": true,
-  "description": "Theta EdgeCloud runtime for OpenClaw: on-demand inference, GPU nodes, RAG agents, video and AI Characters with code-enforced approval gates",
+  "description": "Theta EdgeCloud runtime for OpenClaw: on-demand inference, GPU nodes, RAG agents, video and AI Characters with Story mode, with code-enforced approval gates",
   "type": "module",
   "files": [
     "README.md",
@@ -20,7 +20,7 @@
     "test": "npm run build && node --test tests/**/*.test.ts tests/**/*.test.mjs"
   },
   "devDependencies": {
-    "@types/node": "22.19.11",
+    "@types/node": "22.20.5",
     "esbuild": "0.28.2",
     "typescript": "5.9.3"
   },

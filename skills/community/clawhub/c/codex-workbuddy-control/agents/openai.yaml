@@ -1,0 +1,9 @@
+interface:
+  display_name: "Codex × WorkBuddy 控制"
+  short_description: "任务派发、WBV 只读验收、WBC 隔离候选与共享台账"
+  default_prompt: "使用 $codex-workbuddy-control 建立或检查 Codex 与 WorkBuddy 的任务包、验收状态和回执。"
+  icon_small: "icons/icon-256.png"
+  icon_large: "icons/icon.png"
+
+policy:
+  allow_implicit_invocation: true

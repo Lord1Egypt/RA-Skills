@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes changesets with risk scoring, categorization by type and impact, and release note preparation.
+Analyzes changesets with risk scoring, categorization by type and impact, and release note preparation
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and reviewers use this skill to establish a comparison baseline, categorize changes, assess their risks, and prepare summaries for code reviews, release notes, or planning. It covers git diffs and other changesets such as configuration, API, schema, and document revisions.
+Developers use this skill to compare a baseline with a changeset, group changes by structure and purpose, assess risks, and prepare summaries for code review, release notes, or planning.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The linked external repository was outside the security scan's scope.
+Risk: Incomplete baseline or repository context can lead to missed or misleading change assessments.
 
-Mitigation: Review and scan the linked repository before installing or enabling components from the full plugin.
+Mitigation: State the comparison baseline and intended consumer, then review the summary and risk levels against the source changes.
 
 ## Reference(s):
 
-- [ClawHub release](https://clawhub.ai/athola/skills/nm-imbue-diff-analysis)
-- [Project homepage (declared in skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
-- [sem entity-level diff tool](https://github.com/Ataraxy-Labs/sem)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-imbue-diff-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, Markdown]
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [Structured change analysis and summaries in Markdown]
+**Output Format:** [Structured Markdown summaries with categorized changes, risk assessments, and release notes]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include the baseline, change categories, risk levels, review focus, dependencies, and scope counts when available.]
+**Other Properties Related to Output:** [Content depends on the supplied baseline and changeset.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

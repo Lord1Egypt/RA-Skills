@@ -1,6 +1,6 @@
 ## Description:
 
-Writes hookify rules in markdown that block dangerous commands or restrict AI behavior.
+Writes hookify rules in markdown that block dangerous commands or restrict AI behavior
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to write persistent hookify rules that warn about or block unwanted commands and behavior in Claude Code sessions.
+Developers using Claude Code or OpenClaw use this skill to write persistent hookify rules in Markdown that warn about or block command and file patterns, helping define behavioral guardrails for agent sessions.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security summary reports partial scan coverage, and the examples include rules that can block commands and instructions to delete local rule files.
+Risk: The security scan was partial because some referenced local paths were missing, leaving related evidence incomplete.
 
-Mitigation: Review each rule's event, pattern or conditions, and action; test matching and safe non-matching inputs, and back up rule files before removing them.
+Mitigation: Review the skill and its rules before installation, and test each rule against a matching input and a known-safe example.
 
 ## Reference(s):
 
-- [Hookify plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/hookify)
+- [Hookify project page](https://github.com/athola/claude-night-market/tree/master/plugins/hookify)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Configuration, Shell commands, Guidance]
+**Output Type(s):** [Markdown, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown rule-file guidance with YAML frontmatter, regex patterns, and shell examples]
+**Output Format:** [Markdown rule files with YAML frontmatter, pattern examples, and explanatory messages]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Examples include hookify rule files and optional commands for testing regex patterns.]
+**Other Properties Related to Output:** [Rules can define events, regex patterns or conditions, and warn or block actions.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, release evidence)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

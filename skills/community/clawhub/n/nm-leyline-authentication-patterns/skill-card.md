@@ -1,6 +1,6 @@
 ## Description:
 
-Provides auth patterns for API keys, OAuth, and token management
+Provides auth patterns for API keys, OAuth, and token management.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to plan or review API key, OAuth, and token based authentication for external services. It provides credential checks, verification patterns, failure handling, and interactive authentication guidance.
+Developers integrating external APIs use this skill for guidance on API-key, OAuth, and token authentication, credential verification, and handling authentication failures.
 
 ### Deployment Geography for Use:
 
@@ -22,17 +22,22 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment is incomplete: it reports authentication actions beyond the skill’s stated guidance purpose, and a referenced authentication script is missing from scan evidence.
+Risk: The security evidence reports a suspicious verdict because scanners found repository and cloud actions beyond the stated authentication-guidance purpose, and one referenced script could not be inspected.
 
-Mitigation: Review the referenced script and clarify reported repository, cloud-resource, and cache-clearing actions before installation or execution.
+Mitigation: Review the referenced script and proposed commands, and limit account permissions and access to what the task requires before use.
+
+Risk: The supplied API-key setup example writes a key to a plaintext file under the home directory.
+
+Mitigation: Use a secret manager or protected environment injection, and keep credential files out of source control and shared locations.
 
 ## Reference(s):
 
-- [Leyline project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
+- [ClawHub release](https://clawhub.ai/athola/skills/nm-leyline-authentication-patterns)
+- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Text, Markdown, Code, Shell commands, Configuration instructions]
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions]
 
 **Output Format:** [Markdown with inline Python, shell, and YAML examples]
 
@@ -42,7 +47,7 @@ Mitigation: Review the referenced script and clarify reported repository, cloud-
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

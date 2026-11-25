@@ -3,7 +3,7 @@
 > **文件来源**：本文件由 `10-community-casebook.md` 拆分而来，正文为原文的**逐行搬迁**，未做改写。
 > **本册性质**：**全部是上游一手素材原文** —— 性质不一：既有官方文档的**逐字摘录（属权威原文）**，也有调研期写下的**粗笔记（仅备查）**。**读某一段前，务必连带读该段开头的取材说明**，那是判断这段能信多少的依据。
 > **不要整读**：先 `grep -n '^#{1,2} '` 拿小节清单，再只读需要的那一节。总索引见 `10-community-casebook.md`。
-> **快照警告**：本文件是 DSH 插件知识的**冻结快照**（基线 `dsh-v0.2.2-alpha.2` / commit `f3803c9697`，2026-10-28），其中的**接口名级事实可能已过时**。
+> **快照警告**：本文件是 DSH 插件知识的**冻结快照**（基线 `dsh-v0.2.2-rc.5` / commit `9c2670d3bc`，2026-11-18），其中的**接口名级事实可能已过时**。
 > **写代码前先核验**：`bash scripts/dsh-api-probe.sh <DSH 仓库路径>`（退出码 1 = 有 STALE，**不要直接照抄**）。
 > **分级与核验规则**：`references/00-version-gate.md`、逐条登记 `references/api-claims.md`。
 
@@ -34,7 +34,7 @@
 | **组合包 = 一个 package.json + 一个 cordis.patch.yml + 一个 README，可以零行 JS 代码。** | `Q00_ouroboros/integrations/dsh-plugin/` 只有 3 个文件（`package.json` / `cordis.patch.yml` / `README.md`） |
 | `package.json` 里声明 `"dsh": { "bundle": { "patch": "./cordis.patch.yml" } }`，profile 合成器就认。 | 官方 `packages/boot/app-boot/src/profile.ts:693-695`：`const bundle = bundleManifest.dsh?.bundle`；`if (bundle === undefined) throw ... declares no dsh.bundle` |
 | patch 的相对路径 `name: ./xxx.mjs` **确实被锚到 patch 文件旁边**（官方文档口吻是「绝对路径」，源码实现允许相对）。 | 官方 `packages/boot/app-boot/src/index.ts` `anchorInsertedPluginNames()`：`const base = dirname(resolve(file))` → `entry.name = pathToFileURL(resolve(base, entry.name)).href` |
-| `!!js` 由 Loader 针对每个 entry 的注入就绪 context 求值，因此 `!!js` 里能读到 `process.env`、`ctx.loader.entries()`。 | 官方 `packages/boot/app-boot/src/index.ts:218-223` 注释：`!!js` scalars become expression nodes the Loader interpolates against each entry's injection-ready context |
+| `!!js` 由 Loader 针对每个 entry 的注入就绪 context 求值，因此 `!!js` 里能读到 `process.env`、`ctx.loader.entries()`。 | 官方 `packages/boot/app-boot/src/index.ts:238-243` 注释：`!!js` scalars become expression nodes the Loader interpolates against each entry's injection-ready context |
 | 行顺序**不**决定加载顺序（激活由服务可用性驱动）；但**同一 patch 内 `!!js` 表达式的可见性**是「只看得见它之前的行」。 | `omdsh-dev_DSH-better-sidebar/cordis.patch.yml` 注释原文：`The loader evaluates it when this row is processed (entry-list order, only rows before this one are visible)` |
 | 安装命令 `--profile` **必填**，省略直接报错。 | 官方 `apps/cli/src/args.ts:192` `.requiredOption('--profile <name>', ...)`；`Q00_ouroboros` commit `5258cb19` 原文：「`apps/cli/src/args.ts` declares `.requiredOption('--profile <name>')` on `dsh plugin`, so the root README's command errored out instead of installing」 |
 

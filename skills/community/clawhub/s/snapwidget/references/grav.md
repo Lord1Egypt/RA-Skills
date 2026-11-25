@@ -19,7 +19,7 @@ Paste your SnapWidget code into the content of a Grav page. In Grav 2, the **GFM
 1. In the Grav admin, go to **Configuration** > **System**. On the **Markdown** tab, turn off **GFM Tag Filter** and click **Save**.
 2. Click **Pages** and open the page where you want the widget.
 3. On the **Content** tab, paste your code where you want the widget to show.
-4. Click **Save**. Grav can show a warning about possible XSS issues in the content. The warning is about the `<script>` and `<iframe>` tags in the code, and it does not stop the save.
+4. Click **Save**. Grav can show a warning about possible XSS issues in the content. The warning is about the `<script>` tag in the code, and it does not stop the save.
 
 ### Check your widget
 

@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "default_preset": "equilibrado",
+  "selection_rule": "A preset recommends defaults only for unbound pstack roles. Equilibrado is the default for a new setup with no existing role choices when no preset is named; it never rewrites existing role choices. Show any preserved binding that differs from a selected preset as an explicit override. Preserve explicit role model/effort values, panel lists, aliases, named-specialist bindings, and the operator's selected main model and effort. A missing required model or effort remains unchanged and needs a choice; do not silently substitute. Choose one mode: a role-aware preset or one upstream global budget, never both.",
+  "classes": {
+    "execution": "Roles that implement, repair, tune, or run candidate software changes.",
+    "judgment_planning": "Roles that plan, explain, design, synthesize, cross-judge, or review.",
+    "exploration_tooling": "Narrow discovery, investigation, or tool-oriented roles."
+  },
+  "presets": {
+    "economia": {
+      "label": "Economia",
+      "coordinator": {"model": "gpt-6.1-sol", "effort": "high"},
+      "classes": {
+        "execution": {"model": "gpt-6-luna", "effort": "high"},
+        "judgment_planning": {"model": "gpt-6-astra", "effort": "medium"},
+        "exploration_tooling": {"model": "gpt-6-luna", "effort": "high"}
+      }
+    },
+    "equilibrado": {
+      "label": "Equilibrado",
+      "coordinator": {"model": "gpt-6.1-sol", "effort": "high"},
+      "classes": {
+        "execution": {
+          "model": "gpt-6-luna",
+          "effort": "xhigh",
+          "bounded_small_effort": "high"
+        },
+        "judgment_planning": {"model": "gpt-6-astra", "effort": "medium"},
+        "exploration_tooling": {"model": "gpt-6-luna", "effort": "high"}
+      }
+    },
+    "power": {
+      "label": "Power",
+      "coordinator": {
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "when": "demanding coordination; preserve an explicit operator selection"
+      },
+      "classes": {
+        "execution": {"model": "gpt-6.1-sol", "effort": "medium"},
+        "judgment_planning": {
+          "model": "gpt-6-astra",
+          "effort": "medium",
+          "exceptional_effort": "xhigh"
+        },
+        "exploration_tooling": {"model": "gpt-6.1-sol", "effort": "medium"}
+      }
+    }
+  },
+  "roles": [
+    {"label": "feature, refactoring", "class": "execution", "panel": false},
+    {"label": "bug-fix", "class": "execution", "panel": false},
+    {"label": "perf-issue", "class": "execution", "panel": false},
+    {"label": "hillclimb", "class": "execution", "panel": false},
+    {"label": "judgment and prose", "class": "judgment_planning", "panel": false},
+    {"label": "arena runners", "class": "execution", "panel": true},
+    {"label": "arena cross-judge pool", "class": "judgment_planning", "panel": true},
+    {"label": "swarm workers", "class": "execution", "panel": false},
+    {"label": "interrogate reviewers", "class": "judgment_planning", "panel": true}
+  ]
+}

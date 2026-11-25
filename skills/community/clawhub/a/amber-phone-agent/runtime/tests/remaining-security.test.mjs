@@ -31,7 +31,7 @@ test('calendar lookup/create preserved; exec errors never return private details
  const logs=[],commands=[];const secret='Private medical appointment, account token=secret';const ctx={exec:async args=>{commands.push(args);return '2026-11-09 10:00 - 2026-11-09 11:00 | '+secret;},callLog:{write:x=>logs.push(x)}};
  const lookup=await calendar({action:'lookup',range:'today'},ctx);assert.equal(lookup.success,true);assert(!JSON.stringify(lookup).includes(secret));assert.equal(lookup.result.busy_slots.length,1);
  const created=await calendar({action:'create',title:'Call appointment',start:'2026-11-09T14:00',end:'2026-11-09T15:00',confirmed:true},ctx);assert.equal(created.success,true);assert.equal(commands[1][1],'add');
- const failed=await calendar({action:'lookup',range:'today'},{...ctx,exec:async()=>{throw Error(secret);}});assert.equal(failed.success,false);assert(!JSON.stringify(failed).includes(secret));assert.equal(logs.at(-1).error,secret);
+ const failed=await calendar({action:'lookup',range:'today'},{...ctx,exec:async()=>{throw Error(secret);}});assert.equal(failed.success,false);assert(!JSON.stringify(failed).includes(secret));assert.equal(logs.at(-1).reason,'calendar_operation_failed');assert(!JSON.stringify(logs).includes(secret));
 });
 test('actual bridge gateway transcript stays user data with isolated debug sessions',async()=>{
  const requests=[];const mock=http.createServer(async(req,res)=>{let raw='';for await(const b of req)raw+=b;const payload=JSON.parse(raw);requests.push(payload);res.setHeader('Content-Type','application/json');if(req.url.startsWith('/v1/') && JSON.parse(payload.messages[1].content).question==='Force fallback'){res.statusCode=400;res.end(JSON.stringify({error:{message:'mock gateway unavailable'}}));return;}res.end(JSON.stringify({choices:[{message:{content:'Available at two'}}]}));});mock.listen(0,'127.0.0.1');await once(mock,'listening');const gate=`http://127.0.0.1:${mock.address().port}`;
@@ -42,4 +42,28 @@ test('actual bridge gateway transcript stays user data with isolated debug sessi
  assert.equal(requests.length,2);assert.notEqual(requests[0].user,requests[1].user);for(const request of requests){assert(!request.messages[0].content.includes(attack));assert.equal(JSON.parse(request.messages[1].content).transcript,attack);}
  const fallback=await fetch(`http://127.0.0.1:${port}/openclaw/ask`,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer test-bridge'},body:JSON.stringify({question:'Force fallback',transcript:attack})});assert.equal(fallback.status,200);assert.equal((await fallback.json()).answer,'Available at two');assert.equal(requests.length,4);assert.equal(requests[3].model,'gpt-4o');assert(!requests[3].messages[0].content.includes(attack));assert.equal(JSON.parse(requests[3].messages[1].content).transcript,attack);
  }finally{child.kill();await once(child,'exit');await new Promise(r=>mock.close(r));fs.rmSync(tmp,{recursive:true,force:true});}
+});
+
+test('Realtime diagnostic events keep usage counters without raw caller or tool content', async () => {
+  const { realtimeEventForLog } = await import('../dist/trust-boundaries.js');
+  const privateData = 'SUMMARY_JSON: {"callback":"+12025550142","message":"Private caller details"}';
+  const response = realtimeEventForLog({
+    type: 'response.done',
+    response: {
+      output: [{ content: [{ text: privateData }] }],
+      usage: { total_tokens: 8, input_tokens: 5, output_tokens: 3,
+        input_token_details: { audio_tokens: 5, private: privateData },
+        output_token_details: { text_tokens: 3 } },
+    },
+    raw: privateData,
+  });
+  assert.deepEqual(response, {
+    type: 'response.done',
+    response: { usage: { total_tokens: 8, input_tokens: 5, output_tokens: 3,
+      input_token_details: { audio_tokens: 5 }, output_token_details: { text_tokens: 3 } } },
+  });
+  assert.deepEqual(realtimeEventForLog({ type: 'response.output_text.done', text: privateData }),
+    { type: 'response.output_text.done' });
+  assert.deepEqual(realtimeEventForLog({ type: 'response.function_call_arguments.done', arguments: privateData }),
+    { type: 'response.function_call_arguments.done' });
 });

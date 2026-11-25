@@ -1,6 +1,6 @@
 ## Description:
 
-结构图出混凝土/钢筋估算；不替代翻样结算。触发词：土建算量、混凝土、钢筋。
+Estimates concrete volumes and rebar ranges from structural drawings for material planning, with review flags and stated accuracy limits.
 
 This skill is for research and development only.
 
@@ -14,7 +14,7 @@ CC-BY-NC-SA-4.0
 
 ## Use Case:
 
-Structural estimators and site engineers use this skill to prepare preliminary concrete-volume and rebar estimate bands by floor or pour zone for material planning. The documentation says these estimates do not replace bar detailing, settlement, or final measurement.
+Construction technicians and quantity estimators use it to prepare preliminary concrete and rebar material plans by floor or pour zone from structural drawings. Results are planning estimates, not final takeoffs or settlement quantities.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan marks this release suspicious with medium confidence, citing reported misleading or unsafe quantity-audit behavior and an unclear match between the declared purpose and reported behavior.
+Risk: Scanners report mismatches between the declared quantity-estimation purpose and some implemented behavior, and automatic execution of a separately downloaded dependency; inspection was partial.
 
-Mitigation: Review the declared purpose against the reported behavior, examine audit and evidence-handling concerns, and verify dependencies are pinned before installation.
-
-Risk: The security scan is incomplete: 105 of 110 components were fully scanned, five were partially inspected, and two analyzers were degraded.
-
-Mitigation: Treat the scan as incomplete and consider avoiding installation until the remaining concerns are reviewed and dependencies are pinned to verified versions.
+Mitigation: Avoid installation unless needed; review the setup and quantity outputs before relying on them.
 
 ## Reference(s):
 
 - [ClawHub release page](https://clawhub.ai/lisong2003-lgtm/skills/tujian-suanliang)
-- [Quantity pipeline guide](references/on-demand.md)
-- [Base contract requirements](references/base-contract.md)
+- [Publisher profile](https://clawhub.ai/user/lisong2003-lgtm)
+- [Usage and quantity rules](references/on-demand.md)
+- [Input contract](references/base-contract.md)
 - [Usage examples](references/usage-examples.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Files]
+**Output Type(s):** [Analysis, Markdown, CSV, JSON]
 
-**Output Format:** [Quantity estimate reports and review records in JSON, CSV, and Markdown]
+**Output Format:** [Markdown, CSV, and JSON quantity reports]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Planning estimates include review flags and missing-item notes; rebar results are estimate bands, not final takeoff quantities.]
+**Other Properties Related to Output:** [Per-floor or pour-zone planning estimates with review flags; rebar quantities are ranges.]
 
 ## Skill Version(s):
 
-0.9.44 (source: server-resolved release evidence and SKILL.md frontmatter)
+0.9.45 (source: release evidence and SKILL.md frontmatter)
 
 ## Ethical Considerations:
 

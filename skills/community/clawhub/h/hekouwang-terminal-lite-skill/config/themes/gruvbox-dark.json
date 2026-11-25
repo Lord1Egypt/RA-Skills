@@ -1,0 +1,505 @@
+{
+  "Profiles": [
+    {
+      "Name": "hekouwang · Gruvbox Dark",
+      "Guid": "catppuccin-mocha-dynamic-2026",
+      "Normal Font": "MapleMono-NF-CN-Regular 15",
+      "Non Ascii Font": "SymbolsNFM 15",
+      "Use Non-ASCII Font": true,
+      "ASCII Anti Aliased": true,
+      "Non-ASCII Anti Aliased": true,
+      "Use Bold Font": true,
+      "Use Italic Font": true,
+      "Thin Strokes": 1,
+      "Unicode Version": 9,
+      "Horizontal Spacing": 1,
+      "Vertical Spacing": 1.05,
+      "Columns": 180,
+      "Rows": 46,
+      "Unlimited Scrollback": true,
+      "Scrollback Lines": 0,
+      "Silence Bell": true,
+      "Window Type": 0,
+      "Initial Text": "",
+      "Rewritable": true,
+      "Use Separate Colors for Light and Dark Mode": false,
+      "Transparency": 0.08,
+      "Initial Use Transparency": true,
+      "Only The Default BG Color Uses Transparency": true,
+      "Blur": true,
+      "Blur Radius": 20,
+      "Cursor Type": 1,
+      "Blinking Cursor": false,
+      "Use Cursor Guide": true,
+      "Background Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.1568627450980392,
+        "Green Component": 0.1568627450980392,
+        "Blue Component": 0.1568627450980392,
+        "Alpha Component": 1.0
+      },
+      "Foreground Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.9215686274509803,
+        "Green Component": 0.8588235294117647,
+        "Blue Component": 0.6980392156862745,
+        "Alpha Component": 1.0
+      },
+      "Bold Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.9215686274509803,
+        "Green Component": 0.8588235294117647,
+        "Blue Component": 0.6980392156862745,
+        "Alpha Component": 1.0
+      },
+      "Cursor Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.996078431372549,
+        "Green Component": 0.5019607843137255,
+        "Blue Component": 0.09803921568627451,
+        "Alpha Component": 1.0
+      },
+      "Cursor Text Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.1568627450980392,
+        "Green Component": 0.1568627450980392,
+        "Blue Component": 0.1568627450980392,
+        "Alpha Component": 1.0
+      },
+      "Cursor Guide Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.23921568627450981,
+        "Green Component": 0.23921568627450981,
+        "Blue Component": 0.23921568627450981,
+        "Alpha Component": 0.65
+      },
+      "Selection Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.3137254901960784,
+        "Green Component": 0.28627450980392155,
+        "Blue Component": 0.27058823529411763,
+        "Alpha Component": 1.0
+      },
+      "Selected Text Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.9215686274509803,
+        "Green Component": 0.8588235294117647,
+        "Blue Component": 0.6980392156862745,
+        "Alpha Component": 1.0
+      },
+      "Link Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.3254901960784314,
+        "Green Component": 0.6078431372549019,
+        "Blue Component": 0.6235294117647059,
+        "Alpha Component": 1.0
+      },
+      "Underline Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.3254901960784314,
+        "Green Component": 0.6078431372549019,
+        "Blue Component": 0.6235294117647059,
+        "Alpha Component": 1.0
+      },
+      "Use Underline Color": true,
+      "Badge Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.996078431372549,
+        "Green Component": 0.5019607843137255,
+        "Blue Component": 0.09803921568627451,
+        "Alpha Component": 0.3
+      },
+      "Match Background Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.5019607843137255,
+        "Green Component": 0.34509803921568627,
+        "Blue Component": 0.0,
+        "Alpha Component": 1.0
+      },
+      "Minimum Contrast": 0,
+      "Cursor Boost": 0,
+      "Smart Cursor Color": false,
+      "Brighten Bold Text": true,
+      "Faint Text Alpha": 0.55,
+      "Use Tab Color": true,
+      "Tab Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.1568627450980392,
+        "Green Component": 0.1568627450980392,
+        "Blue Component": 0.1568627450980392,
+        "Alpha Component": 1.0
+      },
+      "Triggers": [
+        {
+          "regex": "\\b(ERROR|ERRORS|FATAL|FAILED|FAILURE|PANIC|Exception)\\b",
+          "action": "HighlightTrigger",
+          "parameter": "{#ebdbb2,#a53f36}",
+          "partial": true
+        },
+        {
+          "regex": "\\b(WARN|WARNING|DEPRECATED|TODO|FIXME)\\b",
+          "action": "HighlightTrigger",
+          "parameter": "{#ebdbb2,#6d5418}",
+          "partial": true
+        },
+        {
+          "regex": "\\b(SUCCESS|SUCCEEDED|SUCCESSFUL|PASSED)\\b",
+          "action": "HighlightTrigger",
+          "parameter": "{#ebdbb2,#4b4a1c}",
+          "partial": true
+        },
+        {
+          "regex": "(^|\\s)([Pp]assword|[Pp]assphrase|[Ss]udo password)( for [^:]+)?:\\s*$",
+          "action": "PasswordTrigger",
+          "parameter": "",
+          "partial": true
+        }
+      ],
+      "Smart Selection Rules": [
+        {
+          "notes": "hekouwang · path:line[:col]",
+          "regex": "(?:~|/|\\./|\\.\\./)?(?:[[:alnum:]._+-]+/)*[[:alnum:]._+-]+\\.[[:alnum:]]+:[0-9]+(?::[0-9]+)?",
+          "precision": "very_high",
+          "actions": [
+            {
+              "title": "Open at line",
+              "action": 0,
+              "parameter": "\\0"
+            },
+            {
+              "title": "Copy path:line",
+              "action": 6,
+              "parameter": "\\0"
+            }
+          ]
+        },
+        {
+          "notes": "hekouwang · Git SHA",
+          "regex": "\\b[0-9a-f]{7,40}\\b",
+          "precision": "high",
+          "actions": [
+            {
+              "title": "git show",
+              "action": 2,
+              "parameter": "git -C '\\d' show --stat \\0"
+            },
+            {
+              "title": "Copy SHA",
+              "action": 6,
+              "parameter": "\\0"
+            }
+          ]
+        },
+        {
+          "notes": "hekouwang · localhost port",
+          "regex": "\\b(?:localhost|127\\.0\\.0\\.1):(3[0-9]{3}|4[0-9]{3}|5[0-9]{3}|8[0-9]{3}|9[0-9]{3})\\b",
+          "precision": "very_high",
+          "actions": [
+            {
+              "title": "Open in browser",
+              "action": 1,
+              "parameter": "http://\\0"
+            },
+            {
+              "title": "Copy host:port",
+              "action": 6,
+              "parameter": "\\0"
+            }
+          ]
+        },
+        {
+          "notes": "Word bounded by whitespace",
+          "regex": "\\S+",
+          "precision": "low"
+        },
+        {
+          "notes": "C++ namespace::identifier",
+          "regex": "([a-zA-Z0-9_]+::)+[a-zA-Z0-9_]+",
+          "precision": "normal"
+        },
+        {
+          "notes": "Paths",
+          "regex": "\\~?/?([[:letter:][:number:]._-]+/+)+[[:letter:][:number:]._-]+/?",
+          "precision": "normal",
+          "actions": [
+            {
+              "title": "Open Path",
+              "action": 0,
+              "parameter": "\\0"
+            }
+          ]
+        },
+        {
+          "notes": "Quoted string",
+          "regex": "@?\"(?:[^\"\\\\]|\\\\.)*\"",
+          "precision": "normal"
+        },
+        {
+          "notes": "Java/Python include paths",
+          "regex": "([[:letter:][:number:]._]+\\.)+[[:letter:][:number:]._]+",
+          "precision": "normal"
+        },
+        {
+          "notes": "mailto URL",
+          "regex": "\\bmailto:([a-z0-9A-Z_]+@)?([a-zA-Z0-9\\-]+\\.)*[a-zA-Z0-9\\-]+\\b",
+          "precision": "normal"
+        },
+        {
+          "notes": "Obj-C selector",
+          "regex": "@selector\\([^)]+\\)",
+          "precision": "high"
+        },
+        {
+          "notes": "email address",
+          "regex": "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}\\b",
+          "precision": "high"
+        },
+        {
+          "notes": "HTTP URL",
+          "regex": "((?<!\\()https?://([a-z0-9A-Z]+(:[a-zA-Z0-9]+)?@)?([a-z0-9A-Z][-a-z0-9A-Z]*\\.)*[A-Za-z][-A-Za-z]*((:[0-9]+)?)(/[a-zA-Z0-9;/\\.\\-_+%?&@=#~()]*)?)|(https?://([a-z0-9A-Z]+(:[a-zA-Z0-9]+)?@)?([a-z0-9A-Z][-a-z0-9A-Z]*\\.)*[A-Za-z][-A-Za-z]*((:[0-9]+)?)(/[a-zA-Z0-9;/\\.\\-_+%?&@=#~(]*)?)",
+          "precision": "very_high",
+          "actions": [
+            {
+              "title": "Open URL",
+              "action": 1,
+              "parameter": "\\0"
+            }
+          ]
+        },
+        {
+          "notes": "SSH URL",
+          "regex": "\\bssh:([a-z0-9A-Z_]+@)?([a-zA-Z0-9\\-]+\\.)*[a-zA-Z0-9\\-]+\\b",
+          "precision": "very_high"
+        },
+        {
+          "notes": "Telnet URL",
+          "regex": "\\btelnet:([a-z0-9A-Z_]+@)?([a-zA-Z0-9\\-]+\\.)*[a-zA-Z0-9\\-]+\\b",
+          "precision": "very_high"
+        }
+      ],
+      "Smart Selection Actions Use Interpolated Strings": false,
+      "Semantic History": {
+        "action": "best editor",
+        "editor": "",
+        "text": ""
+      },
+      "Show Status Bar": false,
+      "Status Bar Layout": {
+        "advanced configuration": {
+          "remove empty components": true
+        },
+        "components": [
+          {
+            "class": "iTermStatusBarCPUUtilizationComponent",
+            "configuration": {
+              "knobs": {
+                "base: priority": 5,
+                "base: compression resistance": 1,
+                "shared text color": {
+                  "Color Space": "sRGB",
+                  "Red Component": 0.9215686274509803,
+                  "Green Component": 0.8588235294117647,
+                  "Blue Component": 0.6980392156862745,
+                  "Alpha Component": 1.0
+                }
+              }
+            }
+          },
+          {
+            "class": "iTermStatusBarMemoryUtilizationComponent",
+            "configuration": {
+              "knobs": {
+                "base: priority": 5,
+                "base: compression resistance": 1,
+                "shared text color": {
+                  "Color Space": "sRGB",
+                  "Red Component": 0.9215686274509803,
+                  "Green Component": 0.8588235294117647,
+                  "Blue Component": 0.6980392156862745,
+                  "Alpha Component": 1.0
+                }
+              }
+            }
+          },
+          {
+            "class": "iTermStatusBarNetworkUtilizationComponent",
+            "configuration": {
+              "knobs": {
+                "base: priority": 5,
+                "base: compression resistance": 1,
+                "shared text color": {
+                  "Color Space": "sRGB",
+                  "Red Component": 0.9215686274509803,
+                  "Green Component": 0.8588235294117647,
+                  "Blue Component": 0.6980392156862745,
+                  "Alpha Component": 1.0
+                }
+              }
+            }
+          },
+          {
+            "class": "iTermStatusBarSpringComponent",
+            "configuration": {
+              "knobs": {
+                "base: priority": 1,
+                "base: compression resistance": 1,
+                "shared text color": {
+                  "Color Space": "sRGB",
+                  "Red Component": 0.9215686274509803,
+                  "Green Component": 0.8588235294117647,
+                  "Blue Component": 0.6980392156862745,
+                  "Alpha Component": 1.0
+                }
+              }
+            }
+          },
+          {
+            "class": "iTermStatusBarBatteryComponent",
+            "configuration": {
+              "knobs": {
+                "base: priority": 5,
+                "base: compression resistance": 1,
+                "shared text color": {
+                  "Color Space": "sRGB",
+                  "Red Component": 0.9215686274509803,
+                  "Green Component": 0.8588235294117647,
+                  "Blue Component": 0.6980392156862745,
+                  "Alpha Component": 1.0
+                }
+              }
+            }
+          },
+          {
+            "class": "iTermStatusBarClockComponent",
+            "configuration": {
+              "knobs": {
+                "base: priority": 5,
+                "base: compression resistance": 1,
+                "shared text color": {
+                  "Color Space": "sRGB",
+                  "Red Component": 0.9215686274509803,
+                  "Green Component": 0.8588235294117647,
+                  "Blue Component": 0.6980392156862745,
+                  "Alpha Component": 1.0
+                },
+                "format": "HH:mm"
+              }
+            }
+          }
+        ]
+      },
+      "Ansi 0 Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.1568627450980392,
+        "Green Component": 0.1568627450980392,
+        "Blue Component": 0.1568627450980392,
+        "Alpha Component": 1.0
+      },
+      "Ansi 1 Color": {
+        "Color Space": "sRGB",
+        "Red Component": 1.0,
+        "Green Component": 0.30980392156862746,
+        "Blue Component": 0.2549019607843137,
+        "Alpha Component": 1.0
+      },
+      "Ansi 2 Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.596078431372549,
+        "Green Component": 0.592156862745098,
+        "Blue Component": 0.0,
+        "Alpha Component": 1.0
+      },
+      "Ansi 3 Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.8549019607843137,
+        "Green Component": 0.596078431372549,
+        "Blue Component": 0.0,
+        "Alpha Component": 1.0
+      },
+      "Ansi 4 Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.3254901960784314,
+        "Green Component": 0.6078431372549019,
+        "Blue Component": 0.6235294117647059,
+        "Alpha Component": 1.0
+      },
+      "Ansi 5 Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.796078431372549,
+        "Green Component": 0.4470588235294118,
+        "Blue Component": 0.611764705882353,
+        "Alpha Component": 1.0
+      },
+      "Ansi 6 Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.38823529411764707,
+        "Green Component": 0.6196078431372549,
+        "Blue Component": 0.4,
+        "Alpha Component": 1.0
+      },
+      "Ansi 7 Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.6588235294117647,
+        "Green Component": 0.6,
+        "Blue Component": 0.5176470588235295,
+        "Alpha Component": 1.0
+      },
+      "Ansi 8 Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.5725490196078431,
+        "Green Component": 0.5137254901960784,
+        "Blue Component": 0.4549019607843137,
+        "Alpha Component": 1.0
+      },
+      "Ansi 9 Color": {
+        "Color Space": "sRGB",
+        "Red Component": 1.0,
+        "Green Component": 0.5098039215686274,
+        "Blue Component": 0.43137254901960786,
+        "Alpha Component": 1.0
+      },
+      "Ansi 10 Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.7254901960784313,
+        "Green Component": 0.7333333333333333,
+        "Blue Component": 0.0,
+        "Alpha Component": 1.0
+      },
+      "Ansi 11 Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.996078431372549,
+        "Green Component": 0.7372549019607844,
+        "Blue Component": 0.0,
+        "Alpha Component": 1.0
+      },
+      "Ansi 12 Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.5333333333333333,
+        "Green Component": 0.6862745098039216,
+        "Blue Component": 0.6313725490196078,
+        "Alpha Component": 1.0
+      },
+      "Ansi 13 Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.8901960784313725,
+        "Green Component": 0.5529411764705883,
+        "Blue Component": 0.6431372549019608,
+        "Alpha Component": 1.0
+      },
+      "Ansi 14 Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.5411764705882353,
+        "Green Component": 0.7568627450980392,
+        "Blue Component": 0.4627450980392157,
+        "Alpha Component": 1.0
+      },
+      "Ansi 15 Color": {
+        "Color Space": "sRGB",
+        "Red Component": 0.9215686274509803,
+        "Green Component": 0.8588235294117647,
+        "Blue Component": 0.6980392156862745,
+        "Alpha Component": 1.0
+      }
+    }
+  ]
+}

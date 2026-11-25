@@ -1,0 +1,10 @@
+{
+  "name": "wb-hot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "微博实时热榜采集 Skill CLI（服务端直接 HTTP 采集，无需微博登录态，每次 1 点数）",
+  "main": "cli.js",
+  "engines": {
+    "node": ">=18"
+  }
+}

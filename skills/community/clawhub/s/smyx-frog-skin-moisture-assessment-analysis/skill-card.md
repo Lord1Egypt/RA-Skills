@@ -1,6 +1,6 @@
 ## Description:
 
-Assesses visible frog skin gloss, wrinkles, and white-film cues from images or video to produce skin-moisture risk reports.
+Through fixed cameras in rainforest tanks or vivariums, the system captures high-definition images of the dorsal or lateral skin of frogs and uses AI visual analysis to detect skin glossiness and assess skin moisture levels.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Frog keepers and amphibian care teams use image or video assessments to review visible skin-moisture cues, check possible dehydration risk, and follow up on reports. The result is visual screening and does not diagnose disease.
+Amphibian keepers and care teams use the skill to review frog skin images or videos for visual moisture indicators, receive structured assessment reports, and retrieve earlier reports.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review reports account, credential, network, and media-upload behavior beyond the stated image-assessment purpose.
+Risk: ClawScan reports account and credential handling, remote registration, media uploads, and broad network capabilities.
 
-Mitigation: Before use, review why persistent account and credential data is handled, how it is protected, and where image, video, and identity data are sent.
+Mitigation: Review credential requests and data transfers before use, and provide only access needed for the intended task.
+
+Risk: The reported behavior may not clearly match the stated frog skin assessment purpose.
+
+Mitigation: Check the skill's behavior and requested permissions against its intended use before installation.
+
+Risk: Security analysis was partial because a local reference was missing.
+
+Mitigation: Review the missing reference before relying on the scan as complete coverage.
 
 ## Reference(s):
 
-- [ClawHub release](https://clawhub.ai/18072937735/skills/smyx-frog-skin-moisture-assessment-analysis)
-- [API documentation](artifact/references/api_doc.md)
+- [API reference](artifact/references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-frog-skin-moisture-assessment-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, Markdown, JSON]
+**Output Type(s):** [Analysis, JSON, Guidance, Markdown]
 
-**Output Format:** [Structured skin-moisture assessment report]
+**Output Format:** [Structured JSON assessment reports and Markdown summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports visible moisture indicators, a risk level, suggested follow-up, and report links; visual screening only.]
+**Other Properties Related to Output:** [Visual moisture estimates, alert levels, recommendations, and report links; results are not veterinary diagnoses.]
 
 ## Skill Version(s):
 
-1.0.15 (source: server-resolved release metadata)
+1.0.16 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

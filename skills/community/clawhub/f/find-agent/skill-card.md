@@ -1,43 +1,55 @@
-## Description: <br>
-OceanBus-powered agent and service discovery via Yellow Pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when you lack a tool or ability for the task, or your tools can't do it, and need to find an agent, MCP server or tool that has it - a missing tool, a service you cannot reach, a specialist job - or when the user asks "is there an agent or MCP server for this?" or "who can do this?". Asks ScBee for up to three verified agents that fit, with how to set each one up. Nothing is added or run; the human chooses. Not for scoring a repository.
 
-## Publisher: <br>
-[ryanbihai](https://clawhub.ai/user/ryanbihai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hmakt99](https://clawhub.ai/user/hmakt99)
 
-## Use Case: <br>
-Agents and their users use Find Agent to search an OceanBus Yellow Pages directory for other agents or services, then use returned identifiers to make contact. Agent publishers can also register, update, or remove their own Yellow Pages listing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can ask to inspect installed skills, system username, and conversation context to personalize discovery or publishing. <br>
-Mitigation: Only allow that profiling when the user explicitly agrees, and use the manual search or publish path if they decline. <br>
-Risk: Search, publish, booking, quote, and listen-mode flows can involve OceanBus network lookups or contact with third-party agents. <br>
-Mitigation: Confirm with the user before publishing directory entries, sending outbound messages, requesting quotes, booking services, or starting listen mode. <br>
+## Use Case:
 
+External users and agents use this skill to find verified agents that may help with a missing capability or specialist task and to review setup options. The human selects any option; the skill does not install or connect it.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryanbihai/find-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/ryanbihai) <br>
-- [Project homepage](https://github.com/ryanbihai/find-agent) <br>
-- [OceanBus package](https://www.npmjs.com/package/oceanbus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON or pretty CLI output from discover.js] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initiate OceanBus network lookups or publish directory entries after user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.5 (source: SKILL.md frontmatter and ClawHub release evidence) <br>
+Risk: A task description is sent to ScBee to find matches, which could disclose sensitive details if included.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the request under 200 characters and omit names, secrets, paths, code, and personal information.
+
+Risk: Descriptions and install instructions supplied by agent owners may be inaccurate or unsafe.
+
+Mitigation: Treat results as untrusted data, review the options and exact install command, and proceed only after the human chooses.
+
+## Reference(s):
+
+- [Find Agent on ClawHub](https://clawhub.ai/hmakt99/skills/find-agent)
+- [ScBee agent search](https://scbee.vercel.app/find)
+- [ScBee](https://scbee.vercel.app)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Shell commands, Links]
+
+**Output Format:** [Concise agent options with descriptions, install lines, and ScBee links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Lists up to three matches; installation and configuration are left to the human.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,156 @@
+LOGS --tmp --p --2 * %CurFile%.LOG
+ENVI^ ENVIMODE=1
+SET$ &NL=0d 0a
+SET &sizeof_ata_smart_values=512
+SET &sizeof_ata_smart_thresholds_pvt=512
+SET$ &smart_value=*512 0
+SET$ &threshold_value=*512 0
+SET &hd=0
+CALL ReadSMARTAttributes  %&hd% &&smart_value  &&threshold_value
+GETF -g=16 -bin &smart_value,0#%&sizeof_ata_smart_values%,&&v1
+GETF -g=16 -bin &threshold_value,0#%&sizeof_ata_smart_thresholds_pvt%,&&v2
+MESS. disk %&hd% [%&__RET%]%NL% smart_value:%NL%%&v1%%NL%---threshold_value:%NL%%&v2%
+
+_SUB ReadSMARTAttributesInit *
+    SET &sizeof_SENDCMDOUTPARAMS=17
+    SET &off_SENDCMDOUTPARAMS_buf=16
+    SET &sizeof_SENDCMDINPARAMS=33
+    SET &sizeof_SENDCMDINPARAMS1=32
+    SET &READ_ATTRIBUTE_BUFFER_SIZE=512 
+    SET &READ_THRESHOLD_BUFFER_SIZE=%READ_ATTRIBUTE_BUFFER_SIZE%
+    SET &NUMBER_ATA_SMART_ATTRIBUTES=30
+    SET &SMART_CYL_LOW=0x4F
+    SET &SMART_CYL_HI=0xC2
+    SET &SMART_CMD=0xB0       // Performs SMART cmd.
+    SET &READ_ATTRIBUTES=0xD0
+    SET &READ_THRESHOLDS=0xD1
+    SET &IOCTL_DISK_BASE=0x00000007
+    SET &METHOD_BUFFERED=0
+    SET &FILE_READWRITE_ACCESS=0x0003
+    CALC -base=16 #&&sizeof_attr=%&sizeof_SENDCMDOUTPARAMS% + %&READ_ATTRIBUTE_BUFFER_SIZE% - 1
+    CALC -base=16  #&&SMART_RCV_DRIVE_DATA=shl(%&IOCTL_DISK_BASE%,16) | (0x0022*4) | %&METHOD_BUFFERED% | shl( %&FILE_READWRITE_ACCESS%,14)
+
+    SET &bRet=0
+    ^CALC -err=-1  #&&ucDriveIndex=(%~1) + 0
+    CALC #&&sizeof_SENDCMDINPARAMS_pad=%&sizeof_SENDCMDINPARAMS% - 13
+
+    SET#% &stCIP=*4 0  %&READ_ATTRIBUTES% 1 1 %&SMART_CYL_LOW% %&SMART_CYL_HI% 0xA0 %&SMART_CMD% 0   %&ucDriveIndex% *%&sizeof_SENDCMDINPARAMS_pad% 0  // *1024 0 
+    SET-long stCIP=%&READ_ATTRIBUTE_BUFFER_SIZE%:0  //cBufferSize
+    ENVI-addr  &&pstCIP=&stCIP
+    SET#% &sAttributes=*%&sizeof_attr% 0  //*1024 0 
+_END
+
+_SUB ReadSMARTAttributes,* //  diskid  &&ata_smart_values &&ata_smart_thresholds_pvt
+    CALL * ReadSMARTAttributesInit %*
+    @TEAM SOCK --file * fd;we;\\.\PhysicalDrive%&ucDriveIndex%| ENVI @fd.fd=&&hDevice| CALC -base=16 #&hDevice=%&hDevice%
+    IFEX #%&hDevice%>0,
+    {*
+        ENVI @fd.DeviceIoControl=&bRet;%&SMART_RCV_DRIVE_DATA%;*&stCIP;;*&sAttributes
+        IFEX #%&bRet%<>0, ^ENVI-ret-copy %~2=&sAttributes;%&off_SENDCMDOUTPARAMS_buf%;%&sizeof_ata_smart_values%
+        SET-char stCIP=%&READ_THRESHOLDS%:4  //.irDriveRegs.bFeaturesReg
+        SET-long stCIP=%&READ_THRESHOLD_BUFFER_SIZE%:0
+        ENVI @fd.DeviceIoControl=&bRet;%&SMART_RCV_DRIVE_DATA%;*&stCIP;;*&sAttributes
+        IFEX #%&bRet%<>0, ^ENVI-ret-copy %~3=&sAttributes;%&off_SENDCMDOUTPARAMS_buf%;%&sizeof_ata_smart_thresholds_pvt%
+    }
+    ENVI-ret &&__RET=%&bRet%
+_END
+
+
+EXIT
+_ENDFILE
+
+
+//4+4*2=12
+typedef struct _DRIVERSTATUS {
+        BYTE     bDriverError;           // Error code from driver,
+                                                                // or 0 if no error.
+        BYTE     bIDEError;                      // Contents of IDE Error register.
+                                                                // Only valid when bDriverError
+                                                                // is SMART_IDE_ERROR.
+        BYTE     bReserved[2];           // Reserved for future expansion.
+        DWORD   dwReserved[2];          // Reserved for future expansion.
+} DRIVERSTATUS, *PDRIVERSTATUS, *LPDRIVERSTATUS;
+
+//4+12+1=17
+//buf_off=4+12=16
+typedef struct _SENDCMDOUTPARAMS {
+        DWORD                   cBufferSize;            // Size of bBuffer in bytes
+        DRIVERSTATUS            DriverStatus;           // Driver status structure.
+        BYTE                    bBuffer[1];             // Buffer of arbitrary length in which to store the data read from the                                                                                  // drive.
+} SENDCMDOUTPARAMS, *PSENDCMDOUTPARAMS, *LPSENDCMDOUTPARAMS;
+
+//8
+typedef struct _IDEREGS {
+        BYTE     bFeaturesReg;           // Used for specifying SMART "commands".
+        BYTE     bSectorCountReg;        // IDE sector count register
+        BYTE     bSectorNumberReg;       // IDE sector number register
+        BYTE     bCylLowReg;             // IDE low order cylinder value
+        BYTE     bCylHighReg;            // IDE high order cylinder value
+        BYTE     bDriveHeadReg;          // IDE drive/head register
+        BYTE     bCommandReg;            // Actual IDE command.
+        BYTE     bReserved;                      // reserved for future use.  Must be zero.
+} IDEREGS, *PIDEREGS, *LPIDEREGS;
+
+//4+8+1+3+4*4+1=33
+typedef struct _SENDCMDINPARAMS {
+        DWORD   cBufferSize;            // Buffer size in bytes
+        IDEREGS irDriveRegs;            // Structure with drive register values.
+        BYTE     bDriveNumber;           // Physical drive number to send
+                                                                // command to (0,1,2,3).
+        BYTE     bReserved[3];           // Reserved for future expansion.
+        DWORD   dwReserved[4];          // For future use.
+        BYTE     bBuffer[1];                     // Input buffer.
+} SENDCMDINPARAMS, *PSENDCMDINPARAMS, *LPSENDCMDINPARAMS;
+
+
+
+
+
+/* Vendor attribute of SMART Threshold (compare to ata_smart_attribute above) */
+//12B
+struct ata_smart_threshold_entry {
+    unsigned char id;
+    unsigned char threshold;
+    unsigned char reserved[10];
+};
+
+/* Format of Read SMART THreshold Command */
+//2 + 12*30 + 149 + 1= 512 Bytes
+struct ata_smart_thresholds_pvt {
+    unsigned short int revnumber;
+    struct ata_smart_threshold_entry thres_entries[NUMBER_ATA_SMART_ATTRIBUTES];  //NUMBER_ATA_SMART_ATTRIBUTES=30
+    unsigned char reserved[149];
+    unsigned char chksum;
+} ;
+
+
+//12B
+struct ata_smart_attribute {
+    unsigned char id;
+    unsigned short flags;
+    unsigned char current;
+    unsigned char worst;
+    unsigned char raw[7];
+};
+
+//SET &sizeof_ata_smart_values=512
+//2+12*30+150=512
+struct ata_smart_values {
+    unsigned short int revnumber;
+    struct ata_smart_attribute vendor_attributes[NUMBER_ATA_SMART_ATTRIBUTES];
+    unsigned char offline_data_collection_status;
+    unsigned char self_test_exec_status;  //IBM # segments for offline collection
+    unsigned short int total_time_to_complete_off_line; // IBM different
+    unsigned char vendor_specific_366; // Maxtor & IBM curent segment pointer
+    unsigned char offline_data_collection_capability;
+    unsigned short int smart_capability;
+    unsigned char errorlog_capability;
+    unsigned char vendor_specific_371;  // Maxtor, IBM: self-test failure checkpoint see below!
+    unsigned char short_test_completion_time;
+    unsigned char extend_test_completion_time_b; // If 0xff, use 16-bit value below
+    unsigned char conveyance_test_completion_time;
+    unsigned short extend_test_completion_time_w; // e04130r2, added to T13/1699-D Revision 1c, April 2005
+    unsigned char reserved_377_385[9];
+    unsigned char vendor_specific_386_510[125]; // Maxtor bytes 508-509 Attribute/Threshold Revision #
+    unsigned char chksum;
+};

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Subclip Asset Options"
+  short_description: "Let the user see and choose stock media, music, sound effects and AI outputs"
+  default_prompt: "Use $subclip-asset-options to show the user a numbered set of options and let them choose."

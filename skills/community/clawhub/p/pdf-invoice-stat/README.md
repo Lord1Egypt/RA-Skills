@@ -1,6 +1,6 @@
 # pdf-invoice-stat
 
-**多格式发票提取 Skill · v2.4.6（稳定版）**
+**多格式发票提取 Skill · v2.4.7（稳定版）**
 
 ## 这是什么
 
@@ -9,7 +9,7 @@
 ## 版本
 
 ```python
-from version import __version__  # "2.4.6"
+from version import __version__  # "2.4.7"
 ```
 
 - **当前状态**: 稳定版（推荐生产使用）

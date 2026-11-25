@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes pet video, with optional audio, for sneeze and cough behaviors and returns event summaries and report history for observation.
+Analyzes pet videos, optionally using audio, to identify sneeze and cough events and report their timing and frequency; results are for behavior observation, not medical diagnosis.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Pet owners, veterinary staff, and boarding staff can review pet videos for sneeze and cough behavior, track event frequency, and retrieve prior reports for observation. Results support monitoring only and do not provide a veterinary diagnosis.
+Pet owners, veterinary clinic staff, and boarding center operators can use the skill to review pet activity videos for sneeze and cough events, their frequency, and related behavior observations.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review flags broad remote media processing as a concern that does not clearly match the stated pet-monitoring purpose.
+Risk: ClawScan marked this release suspicious for undisclosed account and credential handling, external media processing without clear notice, and behavior that may not fully match the stated purpose. The scan was partial because a referenced local path was missing.
 
-Mitigation: Before submitting a video, audio, or URL, confirm you are comfortable sharing that media with the service and only submit material you are authorized to share.
+Mitigation: Review the security assessment and the missing-path coverage before installing. Use an isolated account and avoid sending sensitive footage until identity and token handling, media processing, and retention are understood.
 
-Risk: The security review says account registration and credential storage are unexpected and unexplained.
+Risk: Pet videos may be processed by an external service, and automated behavior observations are not a veterinary diagnosis.
 
-Mitigation: Wait to install or use the skill until the publisher explains why identity registration and credential storage are needed and how credentials are handled.
-
-Risk: The security review is incomplete because a local reference could not be resolved and some imported behavior could not be assessed.
-
-Mitigation: Resolve the missing reference and review the unassessed imported behavior before relying on the skill.
+Mitigation: Submit only footage you are authorized to share, and consult a veterinarian about frequent, persistent, or urgent symptoms.
 
 ## Reference(s):
 
+- [API documentation](artifact/references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
 - [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-sneeze-cough-detection-analysis)
-- [Skill introduction](https://lifeemergence.com/sample.html)
-- [API reference](references/api_doc.md)
-- [Analysis API reference](skills/smyx_analysis/references/api_doc.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Markdown]
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [JSON or Markdown report]
+**Output Format:** [Structured text or JSON report]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include behavior labels, event times and frequency, suggestions, and report links; results are for observation, not medical diagnosis.]
+**Other Properties Related to Output:** [Reports event types, timing, frequency, observations, and report links; can also list prior reports.]
 
 ## Skill Version(s):
 
-1.0.16 (source: server-resolved release evidence)
+1.0.18 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

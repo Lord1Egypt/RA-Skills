@@ -38,6 +38,10 @@ Both `npx checkly import` and `npx checkly import plan` expose the plan command 
 
 ### 2. Review generated code before linking anything
 
+Generated check/group locations omit retired `me-south-1` (Bahrain). Review the remaining public/private coverage rather than reintroducing the region. Generation compares check properties against the loaded project's defaults to avoid silently adopting different settings.
+
+For programmatic generation from resource payloads, read [codegen contracts](references/codegen.md). This experimental package export produces source files in memory; it does not replace the import plan/apply/commit lifecycle.
+
 ```bash
 git status --short
 git diff --check
@@ -81,7 +85,7 @@ Commit is permanent even though it does not directly delete resources. After com
 
 ## Confirmation protocol for commit and cancel
 
-In agent mode, `import commit` and `import cancel` without `--force` return exit code 2 and JSON with:
+In agent mode, `import commit` and `import cancel` without `--force` return exit code 3 and JSON with:
 
 - `status: "confirmation_required"`
 - a human-readable `changes` array
@@ -184,6 +188,10 @@ Commit or stash intentional local work first, regenerate the plan in a clean bra
 ### A deploy happened after apply
 
 Canceling removes the pending links but does not roll back changes already deployed to live resources. Inspect the deployed state and use an explicit corrective deployment only after review.
+
+## Dashboard display settings
+
+With CLI **10.4.0+**, dashboard import/codegen preserves `sortByStatus`, `showCheckRunLinks`, and `showGroupNames`, including explicit `false`; absent values are omitted. Review generated code before deploy. The documented defaults are `false`, `false`, `true` respectively, but the construct leaves omitted booleans `undefined`; do not assume removing a property resets an existing stored value. Set the intended values explicitly. [Immutable codegen source](https://github.com/checkly/checkly-cli/blob/34833c407768368d6ce64c759a979aec029b732f/packages/cli/src/constructs/dashboard-codegen.ts).
 
 ## Related skills
 

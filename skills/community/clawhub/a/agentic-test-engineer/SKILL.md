@@ -1,7 +1,7 @@
 ---
 name: "Agentic Test Engineer"
 description: "AI-powered autonomous test generation and self-healing test maintenance. Generates unit/integration/E2E tests, detects flaky tests, auto-fixes broken selectors, and maintains test coverage. Built for QA engineers and developers. Keywords: AI test automation, self-healing tests, autonomous QA, test generation, Playwright, Selenium, CI/CD testing, flaky test detection, visual AI testing, test coverage, AI-native QA."
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # Agentic Test Engineer
@@ -463,7 +463,7 @@ an inconvenience; an uncontrolled data egress is not.
 | Mutation Testing (advisory) | Assess assertion strength | mutmut, Stryker, PIT | Passing suite + source | Mutation score per module | Equivalent mutants inflate the score | Sample-review surviving mutants |
 | Visual Regression (advisory) | Catch unintended UI change | Playwright snapshots, Percy | Baseline images | Diff images + review queue | Font/AA rendering noise | Approve or reject each diff |
 
-## Ecosystem Status (as of 2026-11-17)
+## Ecosystem Status (as of 2026-11-25)
 
 Tooling in AI-assisted QA changes quickly. Verify each item against the
 project's official releases before relying on it.
@@ -476,7 +476,7 @@ project's official releases before relying on it.
 | Coverage format stability | JSON/XML schema of your coverage tool | Parser breaks silently on major upgrades |
 | AI-generated test review policy | Your org's rule on merging generated tests | Determines the human checkpoint that must exist |
 
-**Recent dynamics (as of 2026-11-17, verify against official sources)**
+**Recent dynamics (as of 2026-11-25, verify against official sources)**
 1. Self-healing and visual-AI testing have become common features rather than
    differentiators, which shifts the buyer question from "does it heal" to
    "can I audit what it healed and why".
@@ -526,7 +526,7 @@ project's official releases before relying on it.
 
 - **1.0.0** (2026-05-19): Initial version.
 
-**Last Updated**: 2026-11-17
+**Last Updated**: 2026-11-25
 
 ## 本轮增量（2026-11-13）：复核维度与举例补充
 
@@ -612,4 +612,46 @@ project's official releases before relying on it.
 ### 时效性说明
 
 - 本期时效性核查：**截至 2026-11-17**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
+- 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。
+
+## 本轮增量（2026-11-25）：复核维度与举例补充
+
+> 本节为 2026-11-25 例行轮转的净增量记录：新增举例与复核维度均为本期首次出现，与既有条目不重复；仅作方法论参考，需具备相应资质的人员复核后使用。
+
+### 补充举例（按模块，本期新增）
+
+**Key Capabilities**：
+
+- 能力清单补一条「生成用例是否附稳定性自查占位项」的占位标注位，由使用者圈选并留白说明，草稿不代为判定通过。
+- 为自愈能力新增一张纸面对照：左列列可自愈的情形标签，右列留白记录仍需人工处理的情形，不预置修复动作。
+
+**Best Practices**：
+
+- 实践清单补一条「重跑次数是否仅作观测记录」的占位检查项，观测结论留白由人员填写。
+- 为隔离策略新增一行「进出规则」占位：标注需人工确认的准入与退出条件，具体阈值留白。
+
+### 新增复核维度表（2026-11-25）
+
+> 本表新增「由谁执行 / 数据来源 / 复核要点 / 风险等级 / 适用边界」等维度列，把口径责任、数据来源与人工复核要求落到具体条目。
+
+| 复核维度 | 由谁执行 | 数据来源 | 复核要点 | 风险等级 | 适用边界 |
+| --- | --- | --- | --- | --- | --- |
+| 用例稳定性自查 | 测试人 + 复核人 | 能力清单草稿 | 是否逐项标注稳定性占位、未代为判定通过 | 中 | 纸面核对，结论需人工确认 |
+| 隔离进出留白 | 测试人 | 实践占位表 | 是否标注待人工确认的进出条件、阈值留白 | 中 | 文档记录，不构成自动处置 |
+
+### 适用边界 / 数据最小化 / 执行边界（本期复核与补齐）
+
+**适用边界**：本技能仅用于测试用例生成与稳定性治理的方法论草稿的方法论参考与纸面草稿，输出为供使用者自行判断的参考文本；不构成正式结论、专业意见或对外发布内容。涉及正式上线、生产环境写操作与对外发布的场景不适用，应由具备相应资质的人员按既有制度独立完成。
+
+**数据最小化**：本期补齐：示例、清单与提问只保留占位标签与抽象情境描述，不写入可识别个人、客户或机构的信息；草稿阶段即标注需人工复核后再补充任何具体背景。
+
+**执行边界**：本期复核：文中「生成 / 输出 / 形成」均指生成待确认的纸面草稿，由使用者自行决定是否采用；不代为发布、提交、保存或进行任何系统操作。
+
+### 参考同类公开框架的补强（2026-11-25）
+
+> 参考同类公开资料把不稳定用例治理整理为方向性清单：把重跑当作观测信号而非修复手段、为不稳定用例设独立的隔离层与明确的进出规则、把根因按等待条件 / 状态隔离 / 选择器漂移 / 环境差异分诊、写明自愈只覆盖选择器与语义等待而不替代测试数据隔离；并强调生成用例须像正式代码一样经人工评审与稳定性核对。仅吸收为文档化维度与占位清单，不写入具体数值、工具名或自动化动作。
+
+### 时效性说明
+
+- 本期时效性核查：**截至 2026-11-25**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
 - 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and skill maintainers use this skill to map Skill(plugin:name) references across a marketplace, identify hubs and orchestrators, and investigate isolates or dangling references during documentation, release, and maintenance audits.
+Developers maintaining skill plugins use this skill to map Skill() references, find hubs and orchestrators, identify isolates and dangling targets, and guide documentation or refactoring reviews.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan was partial because several referenced paths could not be resolved, leaving incomplete evidence despite the benign verdict.
+Risk: The security review had partial coverage because some local references could not be resolved.
 
-Mitigation: Review unresolved references and inspect the available skill files before installation.
+Mitigation: Check the complete plugin and its referenced files before relying on the audit or installing the skill.
 
-Risk: The audit detects Skill(plugin:name) invocations only, so references written in other forms may be missed and counts can be misleading.
+Risk: Graph counts can miss references expressed through bare skill names and can overcount common words; a zero count alone does not establish that a skill is unreachable.
 
-Mitigation: Check router names, dependency declarations, and other calling conventions manually when interpreting zero or missing counts.
+Mitigation: Inspect likely routers, commands, and dependencies before treating counts as evidence for retiring or consolidating a skill.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-abstract-skill-graph-audit)
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-abstract-skill-graph-audit)
+- [Skill metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, JSON, Guidance]
+**Output Type(s):** [Analysis, Text, JSON]
 
-**Output Format:** [Text or JSON graph reports with Markdown usage guidance]
+**Output Format:** [Plain-text summary or JSON graph report, with Markdown interpretation guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Graph counts and classifications depend on the scanned skill sources and supported Skill(plugin:name) syntax.]
+**Other Properties Related to Output:** [Reports Skill(plugin:name) references; module-level dependencies and self-references are not counted.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved ClawHub release metadata)
 
 ## Ethical Considerations:
 

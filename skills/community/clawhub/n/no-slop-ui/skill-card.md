@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Frontend developers and coding agents use this skill to implement, polish, or review user-facing interfaces with concrete guidance on layout, color, motion, and copy.
+Developers using coding agents apply this skill when they explicitly request frontend design, implementation, visual polish, or design review. It guides agents toward functional, restrained interfaces and provides a checklist for reviewing the result.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment reports incomplete analysis of references/banned-patterns.md and notes a purpose mismatch and undeclared tool scope.
+Risk: ClawScan noted a purpose mismatch and incomplete analysis of one referenced file.
 
-Mitigation: Review the partially analyzed reference and confirm the skill’s scope and requested permissions fit your use.
+Mitigation: Review the repository-validation capability and the partially inspected reference to confirm they fit your needs before installing.
 
 ## Reference(s):
 
-- [Banned UI patterns](references/banned-patterns.md)
+- [Banned visual patterns](references/banned-patterns.md)
 - [Colour palettes](references/colour-palettes.md)
-- [Review checklist](examples/review-checklist.md)
+- [Stack recipes](references/stack-recipes.md)
+- [UI review checklist](examples/review-checklist.md)
 - [Agent snippets](docs/agent-snippets.md)
 - [coss ui documentation](https://coss.com/ui)
-- [ClawHub skill page](https://clawhub.ai/leostehlik/skills/no-slop-ui)
+- [WrenLore website example](https://wrenlore.com/)
+- [DoubleMint dashboard example](https://pool.derogold.online/)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Code, Markdown]
+**Output Type(s):** [Code, Guidance, Markdown]
 
-**Output Format:** [Natural-language guidance, frontend code, and Markdown review checklists]
+**Output Format:** [Frontend code and concise review guidance in the project's existing formats]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Framework-agnostic; intended for explicit user-facing UI tasks and subject to the project’s existing design system and requirements.]
+**Other Properties Related to Output:** [Adapted to the requested UI task and the project's existing design system.]
 
 ## Skill Version(s):
 
-0.7.0 (source: SKILL.md frontmatter, ClawHub release metadata)
+0.8.0 (source: frontmatter, changelog)
 
 ## Ethical Considerations:
 

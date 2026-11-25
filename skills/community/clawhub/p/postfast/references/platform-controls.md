@@ -7,7 +7,7 @@ All controls are passed in the `controls` object of `POST /social-posts`.
 | Parameter | Type | Default | Description |
 |---|---|---|---|
 | `tiktokTitle` | string | — | Photo-carousel title, max 90 chars. When set, `content` becomes the description. Photo carousels only |
-| `tiktokPrivacy` | string | — | **Deprecated, no-op. Don't set it.** TikTok videos publish at the account's default privacy (no per-post control); photos default to public. Use a TikTok app draft (`tiktokIsDraft`) for a private post |
+| `tiktokPrivacy` | string | — | **Deprecated. Don't set it, and don't rely on it to choose who sees a post.** Use a TikTok app draft (`tiktokIsDraft`) for a private post and pick the audience in the TikTok app |
 | `tiktokAllowComments` | boolean | `true` | Allow comments |
 | `tiktokAllowDuet` | boolean | `true` | Allow duets |
 | `tiktokAllowStitch` | boolean | `true` | Allow stitches |
@@ -61,6 +61,8 @@ All controls are passed in the `controls` object of `POST /social-posts`.
 | `facebookPlaceId` | string | — | Geotag a feed post (text/photo/carousel, not Reels/Stories/video) with a place ID from `GET /social-media/search-places`. Same numeric ID as `instagramLocationId` |
 | `facebookPlaceName` | string | — | Optional display-only place label. Stored for your dashboard; never sent to Meta |
 | `facebookTargetCountries` | string[] | — | Restrict a feed post to up to 25 ISO 3166-1 alpha-2 country codes (case-insensitive). Audience gating: hidden from everyone else and from logged-out users. Combinable with `facebookPlaceId` |
+| `facebookCarouselMainLink` | string | — | On a post with 2 to 10 images: publish it as a link carousel, each image a card that links out. The main link is the post's link and the destination of any card without its own `mediaLink`. With one image the post is a normal photo post |
+| `facebookCarouselShowEndCard` | boolean | `false` | Add Facebook's end card after the last card of a link carousel |
 
 **Content types:**
 - **POST**: Permanent feed content. Up to 10 images OR 1 video (not mixed). Text limit: 63,206 chars
@@ -71,6 +73,8 @@ All controls are passed in the `controls` object of `POST /social-posts`.
 - Images: JPG/PNG, up to 10 per post (PostFast's upload cap is 10MB per image)
 - Cannot mix images and videos in same post
 - **Cover images for Reels**: Use `coverImageKey` in mediaItems to set a custom cover (any format, max 10MB). Upload the image via the standard 3-step flow first. `coverTimestamp` is NOT supported for Facebook Reels
+
+**Link carousel cards:** each `mediaItems[]` entry of a link carousel can carry `mediaLink` (where the card leads), `mediaCaption` (the card's headline, keep it to 32 characters) and `mediaDescription` (the line under it, keep it to 18 characters). Images only. See SKILL.md "Pattern 14" and `examples/facebook-link-carousel.json`.
 
 **Geotagging & targeting (feed posts only):** Resolve a place with `GET /social-media/search-places`, then set `facebookPlaceId` (optionally `facebookPlaceName` for a display label). Optionally add `facebookTargetCountries` to limit the audience by country. All three are rejected on Reels, Stories, and video posts. See SKILL.md "Pattern 11" for the full flow.
 
@@ -218,3 +222,27 @@ No platform-specific controls.
 - Character limit: 4,096
 - Up to 10 images, videos, or mixed media per post; videos up to 50MB
 - Supports channels and groups (the PostFast bot must be an admin)
+
+## Validation codes
+
+`POST /social-posts` answers `400` with a stable code in `message` when a control is used where it cannot apply. Branch on the code and show `description` to the user.
+
+| Situation | `message` code |
+|---|---|
+| Scheduling to a disconnected account (drafts are still allowed) | `socialMediaDisconnected` |
+| Both `tiktokMusicSoundId` and `tiktokAutoAddMusic: true` | `tiktokMusic.conflictAutoAddMusic` |
+| Invalid Threads topic | `threadsTopicTag.invalid` |
+| First comment on a TikTok account that can't post comments | `firstComment.tiktok.notSupported` |
+| Geo field sent for the wrong platform | `facebookPlaceId.notSupported` / `instagramLocationId.notSupported` / `facebookTargetCountries.notSupported` |
+| Geotag on a Facebook Reel or Story | `facebookPlaceId.contentType.notSupported` |
+| Geotag on a Facebook video post | `facebookPlaceId.video.notSupported` |
+| Geotag on an Instagram carousel | `instagramLocationId.carousel.notSupported` |
+| Country limit on a Facebook Reel or Story | `facebookTargetCountries.contentType.notSupported` |
+| More than 25 countries | `facebookTargetCountries.tooMany` |
+| Non-numeric place/location ID | `facebookPlaceId.invalidId` / `instagramLocationId.invalidId` |
+| Caption file missing, empty, over 10MB, or not timed SRT/WebVTT in plain UTF-8 | `media.invalidMedia` |
+| `youtubeCaptionKey` that isn't a `file/uuid.srt` or `.vtt` upload (checked on every platform) | `youtubeCaptionKey.invalid` |
+| YouTube post with a caption key but no `youtubeLanguage` | `youtubeCaptionKey.languageRequired` |
+| Unknown `youtubeLanguage` code on a YouTube post | `youtubeLanguage.invalid` |
+
+A full post queue is a `403`, not a validation error: `sub.<plan>.maxScheduledPosts` (see SKILL.md "Rate Limits").

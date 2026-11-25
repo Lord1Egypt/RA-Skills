@@ -1,6 +1,6 @@
 ## Description:
 
-Generates Lazada-ready product image sets, detail-page visuals, and campaign posters with Southeast Asian localization through Qinghu AI.
+帮助 Lazada 卖家和东南亚电商运营人员生成本地化商品主图套图、详情图及活动海报。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,40 +14,40 @@ MIT-0
 
 ## Use Case:
 
-Lazada sellers and Southeast Asian ecommerce teams use this skill to create platform-adapted product image sets, detail-page visuals, and promotional posters localized for markets such as Indonesia, Thailand, and the Philippines.
+Lazada sellers and e-commerce operators use this skill to create product image sets, detail-page images, and promotional graphics localized for Southeast Asian markets.
 
 ### Deployment Geography for Use:
 
-Southeast Asia (including Indonesia, Thailand, and the Philippines)
+Global, with localization support for Southeast Asian markets including Indonesia, Thailand, and the Philippines.
 
 ## Known Risks and Mitigations:
 
-Risk: The security review flags that the skill requests API keys through chat and automatically installs or upgrades executable tools.
+Risk: The release security summary flags unpinned command-line package installation as a supply-chain risk.
 
-Mitigation: Set the API key through a protected local secret mechanism, rotate any key already shared, and review and pin executable dependencies before installation or upgrades.
+Mitigation: Review and pin the package version, verify its integrity, and require approval before installing executables.
 
-Risk: Reference images may be processed by Qinghu and its model providers, and external package behavior and service retention are unverified; image generation can also incur cost.
+Risk: The release security summary flags instructions to share an API key in chat as a credential exposure risk.
 
-Mitigation: Confirm that the images may be processed by those providers and approve the generation cost before use.
+Mitigation: Do not send API keys in chat; configure credentials through a secure local method.
 
 ## Reference(s):
 
-- [QHKit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
-- [LinkPix Lazada skill on ClawHub](https://clawhub.ai/autoagc/skills/linkpix-lazada-image)
+- [qhkit package](https://www.npmjs.com/package/@iqinghu/qhkit)
+- [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-lazada-image)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Shell commands, Guidance]
+**Output Type(s):** [Image assets, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Generated image files or URLs, with Markdown guidance and inline shell commands]
+**Output Format:** [Generated image files, command-line JSON results, and Markdown guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Product main-image sets, detail-page visuals, and campaign posters; options and model labels are selected from the service's current choices.]
+**Other Properties Related to Output:** [Image generation options and output depend on the selected template, model, and supplied product images.]
 
 ## Skill Version(s):
 
-0.1.4 (source: server-resolved release metadata)
+0.1.5 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

@@ -6,12 +6,12 @@
     "url": "https://github.com/YottaMeta/yotta-dev-mcp",
     "source": "github"
   },
-  "version": "0.2.8",
+  "version": "0.2.9",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "@yottameta/yotta-dev-mcp",
-      "version": "0.2.8",
+      "version": "0.2.9",
       "transport": {
         "type": "stdio"
       }

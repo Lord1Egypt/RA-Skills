@@ -5,6 +5,83 @@
 
 ---
 
+## [3.19.0] — 2026-11-23
+
+minor：新增 `iterate doctor --annotate` / `iterate report --annotate`——在
+GitHub Actions 里把每条诊断 finding 输出为工作流命令（`::error` /
+`::warning`），GitHub 会把它渲染成 PR 的 **Files changed / Checks 视图内联注释**。
+此前 CI 里 `iterate doctor` 失败只会在 job 日志里留下一段文本，开发者必须打开
+日志、按检查名去找问题；现在失败直接钉在 PR 对应的文件上，无需翻日志。
+`--json` 的 stdout 承诺（恰好一个 JSON 文档）不受影响：注释写到 **stderr**，
+GitHub 会从任一数据流解析工作流命令。`GITHUB_ACTIONS=true` 时自动开启，
+`--no-annotate` 可关闭；`--annotate`/`--no-annotate` 互斥（同传是用法错误，退出码 2）。
+测试套件 2078 → 2103（新增 25 个回归：转义规则、render/emit、finding→注释映射、
+`--annotate`/`--no-annotate`/自动判定，以及 CLI 级 doctor 接线与 `--json` stdout 纯净性）。
+
+> 版本号说明：3.16.0 → 3.19.0（跳过 3.17.0/3.18.0）。这两级已被同仓的
+> `iterate-plugin` 版本线占用（tag v3.17.0 / v3.18.0 指向 plugin 发布提交），
+> skill 的 minor 升版无法复用同名 tag，故取下一个空闲的 v3.19.0。
+
+### 新增功能
+- **`iterate doctor --annotate` / `iterate report --annotate`**（+25 回归）：
+  把 doctor/report 的 warn/error finding 输出为 GitHub Actions 工作流命令。
+  每条 `::error file=iterate.config.yaml::…` / `::warning file=ITERATE.md::…`，
+  `file` 按检查归属钉到 `iterate.config.yaml` 或 `ITERATE.md`；passing（ok）
+  finding 不输出（健康运行不产生噪音）。自动判定：`--annotate` 强制开、
+  `--no-annotate` 强制关、否则看 `GITHUB_ACTIONS` 环境变量（true 才开）。
+  消息与属性按 GitHub 规范转义（`%`→`%25`、CR/LF→`%0D`/`%0A`，属性额外
+  `:`→`%3A`、`,`→`%2C`），含 `%`/换行/逗号路径的 finding 也不会破坏注释。
+  纯格式化/emit 逻辑在 `iterate_cli/annotate.py`，与 doctor/report 解耦，
+  可供未来任何诊断命令复用。
+
+### 全面审查结论
+本轮调用 review-bugbot 对 `iterate_cli/` 全部实现做只读全面审查（正确性、
+边界条件、异常处理、规范一致性、潜在缺陷），**未发现可复现的具体缺陷**——
+代码库已高度加固，所有候选点复核后均为契约一致的 fail-closed 设计或不可
+触发的理论路径（详见会话审查记录）。
+
+---
+
+## [3.16.0] — 2026-11-20
+
+minor：新增 `iterate scan --compare`——把「扫描建议」与「当前配置」放在一起
+对比，直接回答技术栈变化后配置是否落后，并给出可执行的补齐命令（此前只能
+并排读 `scan --json` 与 `show --json`，或翻源码才知道差在哪）。同时修复
+TUI 折行缺陷：键值行首行超宽 1 列导致值被折到第 0 列、长提示/警告续行从
+第 0 列开始看起来像新段落（`status` 的长项目路径最明显）。测试套件
+2050 → 2077。
+
+### 新增功能
+- **`iterate scan --compare`**（+20 回归）：只读、建议式（恒 exit 0）的
+  「配置 vs 最新扫描」差异报告。报告配置**缺少**的建议：未启用的建议维度、
+  未配置的建议命名维度集、没有命令的建议校验模块；每类缺口后给出可直接
+  复制执行的命令（`iterate config set dimensions …` / `iterate refresh`）。
+  `--json` 输出稳定键 `config`/`suggested`/`gaps`/`in_sync`/`next`/`read_only`，
+  供脚本、CI 与其它 skill 消费。未初始化时指向 `init --yes`/`onboard`，配置
+  不可读时指向 `doctor --fix`；额外维度、自定义维度集与手调校验命令视为用户
+  主动选择，不报为缺口。
+
+### 修复（全面审查发现）
+- **TUI 键值行首行超宽 1 列**（`tui.py`，+1 回归）：折行预算漏算标签与值之间
+  的分隔空格，首行恰好比终端宽 1 列，rich 把值整体折到下一行且从第 0 列开始
+  （`iterate status` 的长绝对路径会把 `Project:` 留成孤立一行）。现预算计入
+  分隔符，续行稳定对齐到值列。
+- **长提示/警告续行从第 0 列开始**（`tui.py`，+2 回归）：`hint`/`info`/
+  `success`/`bullet`/`warning`/`error` 依赖 rich 自动折行，续行丢失缩进，
+  长消息看起来像新段落；`warning`/`error` 的 `soft_wrap=True` 还会直接溢出。
+  现按显示宽度（CJK 双宽）预折行，续行与首行同列，标记符只出现在首行。
+- **长命令建议被折断**（`tui.py` + `compare.py`，+1 回归）：补齐命令原本按
+  空格折行，复制粘贴会得到半截命令。新增 `TUI.command()` 原样单行输出，
+  `scan --compare` 的 next steps 使用它。
+- **路径/URL 被从中间截断**（`tui.py`，+3 回归）：键值行里的长绝对路径没有
+  空格可折，硬切会把续行缩进插进路径内部，复制出来是坏路径（`…/complet` +
+  `ions/…`），`iterate completion --install` 的安装路径提示最明显。现对含
+  `/` 或 `\` 的超宽 token 原样单行输出（终端自行滚动；纯 CJK 无分隔符但仍
+  允许硬切，不会误伤中文长值），并顺带修复空值键值行会抛 `IndexError` 的
+  问题（`iterate template` 的无描述模板）。
+
+---
+
 ## [3.15.0] — 2026-11-14
 
 minor：新增 `iterate next`——把「状态」变成「下一步该跑哪条命令」，新手不必

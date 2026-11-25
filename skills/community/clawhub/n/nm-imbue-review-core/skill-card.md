@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to structure detailed code, design, architecture, math, and API reviews. It guides them in establishing scope, recording evidence, verifying findings, and organizing a consistent report.
+Developers and reviewers use this skill to establish review context, inventory scope, capture evidence, verify findings, and organize a consistent final report.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Some referenced paths were unavailable during the partial security inspection, so the scan did not assess those paths.
+Risk: The security review was partial, with medium confidence because some referenced local paths were unavailable.
 
-Mitigation: Review the unresolved referenced paths before installing or relying on the skill, particularly if they affect your use.
+Mitigation: Check that referenced local paths are present and review the skill's suggested process before relying on its review output; the scan guidance recommends installing only if this uncertainty is acceptable.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-imbue-review-core)
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-imbue-review-core)
+- [Skill homepage](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+**Output Type(s):** [Guidance, Text, Markdown, JSON]
 
-**Output Format:** [Markdown review reports, JSON findings records, and shell command examples]
+**Output Format:** [Markdown review report structure and structured JSON findings]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Structured review sections with file-and-line evidence anchors]
+**Other Properties Related to Output:** [Provides a consistent report outline and a grounded finding format.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, release evidence)
+1.10.4 (source: server-resolved ClawHub release metadata)
 
 ## Ethical Considerations:
 

@@ -133,11 +133,13 @@ class TestVariantsCards(unittest.TestCase):
 
 class TestEvidence(unittest.TestCase):
     def make_page(self):
+        # 0.24:墨色必须取板内色(PAL 的 555B6E)。旧 #3D405B 是板外私货,
+        # AE-N2 默认严后单条 P1 即红,evidence 卷宗 verdict=FAIL —— 修夹具不放宽闸。
         p = os.path.join(TMP, "good.html")
         open(p, "w", encoding="utf-8").write(
             "<html><head><style>body{background:#FAF9F9;font-family:system-ui}"
-            ".card{background:#FFFFFF;color:#3D405B;font-size:15px;padding:18px}</style></head>"
-            "<body><div class='card'><h1 style='font-size:24px;color:#3D405B'>素雅落地页样例</h1>"
+            ".card{background:#FFFFFF;color:#555B6E;font-size:15px;padding:18px}</style></head>"
+            "<body><div class='card'><h1 style='font-size:24px;color:#555B6E'>素雅落地页样例</h1>"
             "<p>正文 15px,墨色对浅纸,四道闸应当全过。</p></div></body></html>")
         return p
 

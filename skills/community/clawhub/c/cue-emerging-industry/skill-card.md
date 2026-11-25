@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-投资、IPO 辅导及并购尽调团队可用此 skill 快速梳理陌生产业的市场空间、竞争格局和商业模式，并识别相关合规风险与法律争议点。
+面向投资、IPO辅导及并购尽调等场景的研究人员和从业者，可用该技能快速梳理新兴产业的市场空间、竞争格局、商业模式及相关合规争议。
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan marked the skill suspicious because it installs and runs a remote runner and asks users to share an API key in chat; the scan was partial because a referenced local path was missing.
+Risk: 技能要求用户在聊天中提供 API Key；扫描摘要也指出该技能会安装 runner，且一处引用的本地路径缺失，安全审查并不完整。
 
-Mitigation: Consider avoiding installation until the remote runner and its updates can be verified, and configure credentials through a protected local method rather than sharing an API key in chat.
+Mitigation: 先将 API Key 指引改为使用本机受保护的凭据存储；使用前逐条审阅设置命令（尤其是 sudo 命令），并检查 runner 的来源和修订版本。
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/panting09266-ai/skills/cue-emerging-industry)
-- [Cue platform](https://cuecue.cn)
-- [Cue API key management](https://cuecue.cn/api-key?src=clawhub-emerging-industry)
-- [Cue runner project](https://github.com/sensedeal/cue-skills)
-- [Ministry of Industry and Information Technology of China](https://www.miit.gov.cn)
-- [36Kr Research Institute](https://research.36kr.com)
+- [Cue 平台](https://cuecue.cn)
+- [中国政府网](https://www.gov.cn)
+- [工业和信息化部](https://www.miit.gov.cn)
+- [艾瑞咨询](https://www.iresearch.cn)
+- [36氪研究院](https://research.36kr.com)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance, Source links]
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
 
-**Output Format:** [Structured Markdown research report with source links]
+**Output Format:** [结构化 Markdown 行业研究报告，含来源链接]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Organized into industry overview, market ceiling, competition, business model, compliance risks, and source links.]
+**Other Properties Related to Output:** [报告覆盖赛道概览、市场空间、竞争格局、商业模式和合规风险映射。]
 
 ## Skill Version(s):
 
-1.0.13 (source: server-resolved release evidence)
+1.0.17 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

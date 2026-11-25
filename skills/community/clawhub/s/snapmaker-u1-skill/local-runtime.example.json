@@ -1,0 +1,6 @@
+{
+  "python": "/absolute/path/to/snapmaker-u1/.venv/bin/python",
+  "runtime_dir": "/absolute/path/to/snapmaker-u1/.runtime",
+  "execution_policy": "local_only",
+  "cloud_inference_allowed": false
+}

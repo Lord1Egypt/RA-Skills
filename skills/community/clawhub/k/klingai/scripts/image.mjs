@@ -118,6 +118,11 @@ function rejectUnsupportedImageFlags(args) {
       'Unsupported flag / 请使用 --image 搭配 --image_types（refer_image / style_refer_image / subject_refer_image）传入参考图',
     );
   }
+  if (args.dynamic_range !== undefined || args.hdr !== undefined) {
+    throw new Error(
+      'Unsupported --dynamic_range / --hdr for image / 图片生成不支持动态范围（HDR），--dynamic_range sdr|hdr 仅视频 kling-4.0 支持',
+    );
+  }
 }
 
 function parseImageTypes(rawImageTypesArg, imageCount) {

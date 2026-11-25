@@ -1,6 +1,6 @@
 ## Description:
 
-Pre-implementation gate covering think-first, simplicity, surgical edits, and verifiable goals
+Pre-implementation gate covering think-first, simplicity, surgical edits, and verifiable goals.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and coding agents use this guide before implementation or during review to surface assumptions, keep changes simple and scoped, and define verifiable completion criteria.
+Developers and coding agents use this skill before substantial implementation, during code review, and before reporting work complete. It guides them to surface assumptions, prefer simple and focused changes, and define checkable success criteria.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,26 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review is benign with medium confidence and partial coverage; it flagged examples that appear to describe data export or modification unrelated to the skill's core purpose.
+Risk: Applying the principles rigidly to trivial fixes, throwaway work, documentation-only changes, or production incidents can add unnecessary delay.
 
-Mitigation: Review the available material, especially those examples, and confirm they fit the intended use before installing.
+Mitigation: Use the skill's stated exceptions and scale the review effort to the task's ambiguity, lifetime, and urgency.
 
 ## Reference(s):
 
-- [Project homepage (Clawdis metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
-- [ClawHub release](https://clawhub.ai/athola/skills/nm-imbue-karpathy-principles)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Markdown]
+**Output Type(s):** [Guidance, Markdown]
 
-**Output Format:** [Markdown guidance, questions, and checklists]
+**Output Format:** [Concise written guidance, checklists, and examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Helps structure assumptions, scope, tradeoffs, and completion checks.]
+**Other Properties Related to Output:** [A four-principle self-check with task-specific exceptions.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

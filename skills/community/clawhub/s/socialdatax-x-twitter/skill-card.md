@@ -1,6 +1,6 @@
 ## Description:
 
-Search and analyze X/Twitter posts, comments, creator profiles, post lists, and replies written by creators, including self-replies.
+检索 X / Twitter 帖子与评论、查看帖子详情和创作者资料，并查询创作者发布的帖子及回复。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-People researching X/Twitter conversations and creators can search posts, inspect post details and discussions, view creator profiles and post lists, and review creator-authored replies.
+External users and developers can research X / Twitter content by searching posts, reviewing post details and discussions, and looking up creator profiles, posts, and creator-authored replies.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security summary marks the skill suspicious because it repeatedly runs an unpinned, changing SocialDataX CLI package, creating supply-chain exposure involving credentials and local access.
+Risk: ClawScan marks the repeated use of the moving @latest package suspicious; partial scan coverage means the available evidence is incomplete.
 
-Mitigation: Avoid installation until the CLI is pinned to a reviewed version and its integrity is checked.
-
-Risk: Queries or URLs may be sent to SocialDataX, and the available skill scan is partial.
-
-Mitigation: Use only with queries or URLs you are comfortable sending to SocialDataX, and account for the incomplete security evidence when reviewing the release.
+Mitigation: Review the package source and pin an approved version before installation; treat the scan verdict as unresolved because coverage is partial.
 
 ## Reference(s):
 
 - [SocialDataX API access and product information](https://socialdatax.com/ai?from=clawhub)
-- [ClawHub release page](https://clawhub.ai/devinchen2014/skills/socialdatax-x-twitter)
+- [SocialDataX ClawHub release](https://clawhub.ai/devinchen2014/skills/socialdatax-x-twitter)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Analysis]
+**Output Type(s):** [Text, JSON, Analysis]
 
-**Output Format:** [Text or Markdown summaries of X/Twitter search, post, discussion, and creator data]
+**Output Format:** [Structured X / Twitter data and concise research summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Read-only research results; no account actions.]
+**Other Properties Related to Output:** [Read-only research results; data access requires a SocialDataX API key.]
 
 ## Skill Version(s):
 
-0.1.7 (source: server-resolved release evidence)
+0.1.8 (source: server-resolved ClawHub release metadata)
 
 ## Ethical Considerations:
 

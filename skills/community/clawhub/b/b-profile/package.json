@@ -1,0 +1,10 @@
+{
+  "name": "b-profile",
+  "version": "1.0.0",
+  "private": true,
+  "description": "B站UP主主页投稿采集 Skill CLI (主页链接采集其投稿列表, 每页约42条 = 1 点数)",
+  "main": "cli.js",
+  "engines": {
+    "node": ">=18"
+  }
+}

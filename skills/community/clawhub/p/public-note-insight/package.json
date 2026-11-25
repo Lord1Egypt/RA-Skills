@@ -1,0 +1,44 @@
+{
+  "name": "public-note-insight",
+  "version": "1.2.0",
+  "description": "社交媒体运营数据工具｜当需要小红书、抖音、快手、微信等平台数据，搜索小红书笔记、查看xhs笔记详情与评论、获取单篇笔记评论、获取rednote博主的作品列表时使用，可实现爆款挖掘/竞品分析/KOL筛选/趋势洞察，用数据驱动流量增长，告别盲目创作",
+  "keywords": [
+    "小红书",
+    "xhs",
+    "rednote",
+    "小红书搜索",
+    "小红书评论",
+    "爆款笔记",
+    "竞品分析",
+    "KOL",
+    "舆情分析"
+  ],
+  "homepage": "https://github.com/um-why/xiaohongshu-openclaw-skill#readme",
+  "bugs": {
+    "url": "https://github.com/um-why/xiaohongshu-openclaw-skill/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/xiaohongshu-openclaw-skill.git"
+  },
+  "license": "MIT",
+  "author": "um-why",
+  "engines": {
+    "node": ">=16.14.0"
+  },
+  "main": "src/xiaohongshu/search-cli.js",
+  "files": [
+    "src",
+    "assets",
+    "references",
+    "SKILL.md",
+    "readme.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "search": "node src/xiaohongshu/search-cli.js",
+    "detail": "node src/xiaohongshu/detail-cli.js",
+    "post": "node src/xiaohongshu/post-cli.js",
+    "comment": "node src/xiaohongshu/comment-cli.js"
+  }
+}

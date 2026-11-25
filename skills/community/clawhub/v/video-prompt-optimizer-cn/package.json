@@ -1,0 +1,10 @@
+{
+  "name": "video-prompt-optimizer-cn",
+  "version": "1.0.2",
+  "private": true,
+  "description": "Markdown skill self-test only; no video generation API.",
+  "scripts": {
+    "self-test": "node scripts/self-test.mjs"
+  },
+  "license": "MIT-0"
+}

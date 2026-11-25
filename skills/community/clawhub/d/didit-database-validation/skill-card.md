@@ -1,6 +1,6 @@
 ## Description:
 
-Integrate Didit Database Validation API to verify personal data against government databases for national ID, identity-document, and identity database checks across supported Latin American countries and Spain.
+Helps developers integrate Didit Database Validation to check identity data against government and authoritative registries across 45 countries and receive per-field match results.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,10 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
+MIT-0
 
 ## Use Case:
 
-Developers and identity operations teams use this skill to integrate Didit's database-validation API, validate government-issued identifiers, and interpret match outcomes for supported countries.
+Developers and backend engineers use this skill to build API-key integrations that check identity details against country-specific government and authoritative registries. It helps select services, prepare requests, and interpret per-field match results.
 
 ### Deployment Geography for Use:
 
@@ -21,38 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill sends user-provided identity details to Didit's verification API, which can include sensitive personal data.
+Risk: Registry checks can send sensitive identity details, address data, and, for biometric services, selfie images to Didit and registry providers; API requests are saved as sessions by default, and the utility prints the response.
 
-Mitigation: Use it only with appropriate consent or another lawful basis, avoid logging full identifiers or dates of birth, and share only data required for the validation request.
+Mitigation: Send only fields required by the selected service, obtain required consent, use --no-save when the result should not be stored as a session, and treat printed responses as sensitive.
 
-Risk: API credentials are required to call Didit's service.
+Risk: The skill requires a DIDIT_API_KEY and network access; the security evidence says scan coverage was partial and tool-misuse analysis was degraded.
 
-Mitigation: Use a dedicated DIDIT_API_KEY, store it in the environment or a secret manager, rotate it when needed, and do not commit it to skill files or logs.
-
-Risk: The bundled utility script depends on Python requests and makes outbound HTTPS calls.
-
-Mitigation: Install dependencies in an isolated environment with pinned versions where possible and review outbound API behavior before deployment.
+Mitigation: Review the requested environment and network access, keep the API key in the environment rather than source code, and run the skill in a trusted environment.
 
 ## Reference(s):
 
-- [Didit Documentation](https://docs.didit.me)
-- [Didit Database Validation API Reference](https://docs.didit.me/standalone-apis/database-validation)
-- [Didit Database Validation Feature Guide](https://docs.didit.me/core-technology/database-validation/overview)
-- [Didit Database Validation Supported Countries](https://docs.didit.me/core-technology/database-validation/database-validation-supported-countries)
+- [Didit developer documentation](https://docs.didit.me)
+- [Database Validation API reference](https://docs.didit.me/standalone-apis/database-validation)
+- [Database Validation feature guide](https://docs.didit.me/core-technology/database-validation/overview)
+- [Supported countries and services](https://docs.didit.me/core-technology/database-validation/database-validation-supported-countries)
+- [Database Validation pricing](https://docs.didit.me/getting-started/database-validation-pricing)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+**Output Type(s):** [Code, Shell commands, Configuration instructions, API calls, Guidance]
 
-**Output Format:** [Markdown with inline JSON, Python, TypeScript, and shell command examples]
+**Output Format:** [Markdown with Python and TypeScript examples, REST request fields, and shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May produce API payloads, response-handling guidance, and command-line validation examples that require DIDIT_API_KEY.]
+**Other Properties Related to Output:** [May include country and service selection guidance, request and response interpretation, and credential setup instructions.]
 
 ## Skill Version(s):
 
-1.1.0 (source: server release metadata; artifact frontmatter lists 1.0.0)
+1.4.0 (source: SKILL.md frontmatter; server-resolved release metadata agrees)
 
 ## Ethical Considerations:
 

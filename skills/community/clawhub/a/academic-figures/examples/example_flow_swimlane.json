@@ -1,0 +1,123 @@
+{
+ "layout": "swimlane",
+ "lanes": [
+  "Clinical sites",
+  "Data coordinating centre",
+  "Sponsor / regulatory"
+ ],
+ "font_size": 11,
+ "nodes": [
+  {
+   "id": "enroll",
+   "label": "Enrol participants",
+   "sublabel": "inclusion check",
+   "lane": 0
+  },
+  {
+   "id": "crf",
+   "label": "Complete eCRF",
+   "sublabel": "site data entry",
+   "lane": 0,
+   "shape": "document"
+  },
+  {
+   "id": "query",
+   "label": "Data query raised",
+   "sublabel": "edit-check fail",
+   "lane": 1,
+   "shape": "hexagon"
+  },
+  {
+   "id": "sitefix",
+   "label": "Site response",
+   "sublabel": "source-verified",
+   "lane": 0,
+   "shape": "manual-op"
+  },
+  {
+   "id": "lock",
+   "label": "Database lock",
+   "sublabel": "all queries closed",
+   "lane": 1,
+   "shape": "diamond"
+  },
+  {
+   "id": "tlf",
+   "label": "TLF generation",
+   "sublabel": "SAP-ordered",
+   "lane": 1,
+   "shape": "predefined"
+  },
+  {
+   "id": "review",
+   "label": "DMS review",
+   "sublabel": "clinically meaningful?",
+   "lane": 2,
+   "shape": "diamond"
+  },
+  {
+   "id": "dossier",
+   "label": "Regulatory dossier",
+   "sublabel": "CSR section",
+   "lane": 2,
+   "shape": "document"
+  },
+  {
+   "id": "archive",
+   "label": "Trial archive",
+   "sublabel": "10-year retention",
+   "lane": 2,
+   "shape": "cylinder"
+  }
+ ],
+ "edges": [
+  {
+   "from": "enroll",
+   "to": "crf"
+  },
+  {
+   "from": "crf",
+   "to": "query"
+  },
+  {
+   "from": "query",
+   "to": "sitefix",
+   "label": "48 h SLA"
+  },
+  {
+   "from": "sitefix",
+   "to": "query",
+   "label": "re-check",
+   "dashed": true
+  },
+  {
+   "from": "query",
+   "to": "lock",
+   "thick": true
+  },
+  {
+   "from": "lock",
+   "to": "tlf"
+  },
+  {
+   "from": "tlf",
+   "to": "review"
+  },
+  {
+   "from": "review",
+   "to": "dossier",
+   "label": "accept",
+   "thick": true
+  },
+  {
+   "from": "dossier",
+   "to": "archive"
+  },
+  {
+   "from": "review",
+   "to": "tlf",
+   "label": "rework",
+   "dashed": true
+  }
+ ]
+}

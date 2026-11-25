@@ -1,6 +1,6 @@
 ## Description:
 
-Provides Go developers with an unofficial, typed Twelve Data API client for prices, quotes, time series, technical indicators, fundamentals, instrument metadata, and batch queries.
+Unofficial Go client for the Twelve Data market data API, generated with oapi-codegen, providing typed REST methods for prices, quotes, time series, technical indicators, fundamentals, instrument metadata and batch queries when Go code needs Twelve Data market data or already imports go-twelvedata.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-Go developers use this skill to add typed Twelve Data API calls for market prices, time series, technical indicators, company fundamentals, instrument metadata, and batch requests. It guides installation, authentication, endpoint and type lookup, response handling, and use within API access and credit limits.
+Go developers use this skill to integrate the unofficial, typed Twelve Data client into a project and make market data requests. It guides installation, authentication, endpoint and response handling, and request limits.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan was partial and two local file references could not be resolved, leaving some evidence incomplete.
+Risk: An API key placed in a URL query parameter can appear in URL logs.
 
-Mitigation: Review whether those referenced files are relevant before installation; the scan does not establish that the skill is risk-free.
+Mitigation: Read the key from TWELVEDATA_API_KEY, send it in the Authorization header, and do not hardcode, commit, or log credentials or authenticated requests.
 
-Risk: An API key placed in a query parameter or included in logs could be exposed.
+Risk: Requests, including constituent requests in a batch, consume API credits and may be subject to plan permissions and rate limits.
 
-Mitigation: Read the key from TWELVEDATA_API_KEY, send it in the Authorization header, and never hardcode, commit, or log the key or authenticated request.
+Mitigation: Check the user's plan and data permissions, monitor usage, and handle HTTP 429 responses with bounded backoff and a caller deadline.
 
-Risk: Requests consume API credits, and access depends on the user's plan and data permissions.
+Risk: The security review was partial because two referenced paths were missing, so its benign verdict has medium confidence.
 
-Mitigation: Respect the user's plan, data permissions, and request budget; use bounded backoff and a caller deadline when handling HTTP 429 responses.
+Mitigation: Review the complete skill and its referenced files before deployment; do not treat the scanner verdict as a guarantee of safety.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/psyb0t/skills/go-twelvedata)
-- [Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-twelvedata)
 - [Setup and reference](references/setup.md)
+- [Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-twelvedata)
+- [Project homepage](https://github.com/psyb0t/go-twelvedata)
+- [ClawHub skill page](https://clawhub.ai/psyb0t/skills/go-twelvedata)
 
 ## Skill Output:
 
 **Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown guidance with Go code examples and shell commands]
+**Output Format:** [Markdown with Go and shell code blocks]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Examples and instructions for integrating the Go client; no files are produced by the library itself.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-0.5.0 (source: server-resolved ClawHub release)
+0.7.0 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

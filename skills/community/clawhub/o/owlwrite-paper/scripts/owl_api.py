@@ -29,7 +29,7 @@ import urllib.request
 import zipfile
 
 # 版本同源：SKILL.md / README / scripts/mcp_server.py / connector-meta.json / owl_api.py
-OWL_SKILL_VERSION = "1.3.2"
+OWL_SKILL_VERSION = "1.3.6"
 
 DEFAULT_BASE = "https://owl.skillsutra.cn"
 OFFICIAL_HOSTS = {"owl.skillsutra.cn"}
@@ -306,10 +306,32 @@ def _safe_base_display(base_url):
 
 # ---------------- 21 个操作（与 MCP 工具一一对应） ----------------
 
-def search(query, limit=5, lang="all", expand=False, key=None, base=None):
+def search(query, limit=5, lang="all", expand=False, key=None, base=None,
+           year_from=None, year_to=None, doc_types=None, classification=None,
+           core_only=False, offset=0, sort="relevance", channels=None, auto_expand=None):
+    """文献检索。前六个参数保持原签名不变（老调用 body 完全一致）；
+    后面的硬过滤参数仅在非默认值时透传，未使用则行为与旧版一致。"""
     body = {"query": query, "limit": limit, "lang": lang}
     if expand:
         body["expand"] = True
+    if year_from is not None:
+        body["year_from"] = int(year_from)
+    if year_to is not None:
+        body["year_to"] = int(year_to)
+    if doc_types:
+        body["doc_types"] = list(doc_types)
+    if classification:
+        body["classification"] = classification
+    if core_only:
+        body["core_only"] = True
+    if offset:
+        body["offset"] = int(offset)
+    if sort and sort != "relevance":
+        body["sort"] = sort
+    if channels:
+        body["channels"] = list(channels)
+    if auto_expand is not None:
+        body["auto_expand"] = bool(auto_expand)
     return request("POST", "/v1/search", body, key=key, base=base)
 
 

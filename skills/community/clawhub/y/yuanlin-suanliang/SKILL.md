@@ -2,7 +2,7 @@
 name: yuanlin-suanliang
 slug: yuanlin-suanliang
 displayName: 园林算量 · 苗木统计与铺装面积
-version: 0.4.40
+version: 0.4.41
 platforms: [macos, windows, linux]
 locale: zh-CN
 locales: [zh-CN, en-US]

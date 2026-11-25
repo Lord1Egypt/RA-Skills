@@ -1,6 +1,6 @@
 ## Description:
 
-Provides a Jensen Huang-inspired framework for analyzing AI technology trends, computing strategy, and industry competition.
+以黄仁勋的战略思维和AI行业洞察为核心，帮助分析AI技术趋势、算力战略、行业竞争格局。适用于AI战略规划、技术投资判断、行业分析等场景。2026更新：整合黄仁勋GTC2026主题演讲。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-AI product and business strategists, technology investors, and industry analysts can use the skill to assess AI opportunities, computing and infrastructure needs, and competitive dynamics. It can also draft structured strategy reports and investment-oriented analysis.
+External users and AI strategy teams use this skill to structure analysis of AI technology trends, compute infrastructure, and industry competition through Huang Renxun and NVIDIA-focused frameworks. Its outputs are educational reference drafts and do not provide investment advice or replace qualified professional review.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill includes time-sensitive claims about AI products, markets, and industry developments, plus example investment allocations.
+Risk: Time-sensitive market, technology, and regulatory details may become outdated.
 
-Mitigation: Verify current claims and figures against reliable sources, and treat portfolio examples as illustrative rather than personalized financial advice.
+Mitigation: Check current official sources and confirm dates, figures, and jurisdiction-specific requirements before relying on the analysis.
 
-Risk: The skill prefers Chinese-language output, which may not suit every user.
+Risk: Strategic analysis about investments could be mistaken for individualized financial advice.
 
-Mitigation: Specify the preferred response language when using the skill.
+Mitigation: Use the output only as an analytical framework; route investment-specific decisions, price targets, and investment actions to qualified licensed professionals.
 
 ## Reference(s):
 
-- [Server-resolved GitHub source repository](https://github.com/gechengling/huang-renxun-ai-strategy)
 - [ClawHub skill release](https://clawhub.ai/gechengling/skills/huang-renxun-ai-strategy)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, Guidance, Markdown]
 
-**Output Format:** [Chinese-first Markdown with structured strategic analysis and report sections]
+**Output Format:** [Chinese-first structured analytical prose with English technical terms as needed]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include time-sensitive market and technology claims, example portfolio allocations, and risk sections.]
+**Other Properties Related to Output:** [Advisory reference drafts; requires human review; no executable code or system operations.]
 
 ## Skill Version(s):
 
-5.2.5 (source: server-resolved release metadata)
+5.2.6 (source: frontmatter)
 
 ## Ethical Considerations:
 

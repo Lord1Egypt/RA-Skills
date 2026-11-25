@@ -1,0 +1,10 @@
+{
+  "shots": [
+    {"id":"S01","content":"操作","format":"录屏","aspect_ratio":"16:9","duration_seconds":8},
+    {"id":"S02","content":"产品开箱","aspect_ratio":"16:9","duration_seconds":5}
+  ],
+  "assets": [
+    {"id":"A01","content":"操作","format":"照片","aspect_ratio":"9:16","duration_seconds":3,"license":"owned"},
+    {"id":"A02","content":"产品开箱","aspect_ratio":"16:9","duration_seconds":7,"license":"cleared"}
+  ]
+}

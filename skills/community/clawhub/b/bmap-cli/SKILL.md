@@ -196,7 +196,7 @@ chmod 600 <mcp_config_path>
 |------|------|
 | **直接执行地理任务**（语义化 AI 搜索、语义化 AI 路线规划、地理编码与逆地理编码、天气查询） | `baidu-ai-map` skill |
 | 查询 API 文档（接口参数、限制、定价说明） | `baidu-maps-docs` MCP |
-| 生成调用地图的代码（HTML、JSAPI 示例、WebAPI 集成） | `baidu-map-jsapi-gl` 或 `baidu-map-webapi` skills |
+| 生成调用地图的代码（HTML、JSAPI 示例、WebAPI 集成） | `baidu-map-jsapi-v4` 或 `baidu-map-webapi` skills |
 
 > **强制**：`baidu-ai-map` 是直接执行地理任务的**唯一**入口，`baidu-map-webapi` 不得作为其替代。若 `baidu-ai-map` 尚未加载，须告知用户重启 Claude Code 后重试，**不得**以任何其他 skill 降级替代。
 >
@@ -204,7 +204,7 @@ chmod 600 <mcp_config_path>
 
 #### 代码类请求（需生成或修改代码/文件）
 
-**JSAPI 版本选择（默认使用 GL 版）**：编写地图前端代码时，**默认使用 BMapGL（GL 版）**，即引用 `https://api.map.baidu.com/api?v=1.0&type=webgl&...`，对象命名空间为 `BMapGL`。**仅当用户明确指定「3.0 版本」或已有代码基于 3.0 时**，才使用 `BMapJS`（v3.0）。两套 API 命名空间不得混用。
+**JSAPI 版本选择（默认使用 V4.0）**：编写地图前端代码时，**默认使用 JSAPI V4.0**，即引用 `https://api.map.baidu.com/api?v=4.0&ak=YOUR_AK`，对象命名空间为 `BMap`。**仅当用户明确指定「GL 版本」或已有代码基于 BMapGL 时**，才使用 BMapGL。两套 API 命名空间不得混用。
 
 写代码前**严格按序**执行下面四步，**禁止跳步或乱序**。
 

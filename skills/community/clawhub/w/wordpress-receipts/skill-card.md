@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Developers and operators use this skill to publish WordPress content from agent or scheduled workflows and verify publication against the WordPress API and public page.
+Developers and agent operators use this skill to publish or verify WordPress posts and confirm that each publication has a matching API record and public URL.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates this release suspicious with medium confidence because it found an unexpected issue and could only partially inspect the artifact.
+Risk: Security confidence is medium because analysis was partial and noted undeclared tool scope and persistence or purpose questions.
 
-Mitigation: Review the available source and install only if you trust its source and accept the remaining uncertainty.
+Mitigation: Before installing, consider whether the skill’s environment and network capabilities fit your needs, as the scan guidance recommends.
+
+Risk: Publishing and verification use credentials with the configured WordPress API and make requests to the configured site.
+
+Mitigation: Keep credentials in a private env file or pass them explicitly, and use the API and site you intend to authorize.
 
 ## Reference(s):
 
+- [ClawHub skill page](https://clawhub.ai/leostehlik/skills/wordpress-receipts)
 - [Project homepage](https://github.com/LeoStehlik/wordpress-receipts)
-- [ClawHub release page](https://clawhub.ai/leostehlik/skills/wordpress-receipts)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Text, Shell commands, Guidance]
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON]
 
-**Output Format:** [JSON publication receipts, concise text reports, and Markdown guidance with shell command examples]
+**Output Format:** [Markdown instructions with shell commands and JSON receipt examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Successful receipts identify the post, canonical URL, status, and public HTTP status.]
+**Other Properties Related to Output:** [Receipt examples report the post ID, status, canonical URL, and public HTTP status.]
 
 ## Skill Version(s):
 
-0.1.3 (source: release evidence, skill metadata)
+0.1.6 (source: frontmatter)
 
 ## Ethical Considerations:
 

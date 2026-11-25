@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" class="sk" data-theme="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fixture: a clean deck</title>
+<link rel="stylesheet" href="../../engine/sketchy.css">
+<style>
+  .sk-slide { color: var(--sk-graphite); }
+  .pad { position: absolute; inset: 120px 160px; display: grid; align-content: start; gap: 36px; }
+  .pad h1 { font-size: 88px; }
+  .pad ul { margin: 0; padding-left: 40px; font-size: 44px; line-height: 1.35; }
+  .pad p { font-size: 40px; margin: 0; max-width: 760px; }
+  .split { position: absolute; inset: 120px 160px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .split h1 { font-size: 88px; margin-bottom: 30px; }
+  .split svg { width: 100%; height: 640px; }
+</style>
+</head>
+<body class="sk">
+<main class="sk-deck" data-seed="fixture-good" data-transition="page">
+  <section class="sk-slide" data-layout="cover" data-duration="4">
+    <div class="sk-cover" data-cover="slate" style="position:absolute; inset:0">
+      <div class="sk-cover-inner">
+        <div class="sk-label"><span class="sk-label-title">Quarterly Post</span><span class="sk-label-sub">Sketchbook No. 3, board update</span></div>
+      </div>
+    </div>
+  </section>
+  <section class="sk-slide" data-layout="steps" data-duration="6">
+    <div class="pad">
+      <h1>Three things moved</h1>
+      <ul>
+        <li>Revenue grew 41 percent</li>
+        <li>Churn fell to 3.2 percent</li>
+        <li>Support answered in under a day</li>
+        <li>Onboarding now takes one afternoon</li>
+      </ul>
+    </div>
+  </section>
+  <section class="sk-slide" data-layout="split" data-duration="6" data-notes="Point at the red arrow when you say where the growth came from.">
+    <div class="split">
+      <div>
+        <h1>Where it came from</h1>
+        <p>Most of the growth came from existing customers who added a second team.</p>
+      </div>
+      <svg id="fx-diagram" viewBox="0 0 600 420" role="img" aria-label="Two teams joining one account"></svg>
+    </div>
+  </section>
+</main>
+<script src="../../engine/sketchy.js"></script>
+<script src="../../engine/sketchy-deck.js"></script>
+<script>
+  var svg = document.getElementById('fx-diagram');
+  var p = Sketchy.pen(svg, { seed: 'fx-diagram' });
+  var C = p.tokens;
+  p.rect(40, 60, 200, 120, { fill: C.blue, gap: 4 });
+  p.text(140, 128, 'Team A', { anchor: 'middle', size: 32 });
+  p.rect(360, 60, 200, 120, { fill: C.green, gap: 4 });
+  p.text(460, 128, 'Team B', { anchor: 'middle', size: 32 });
+  p.arrow(140, 190, 280, 300, { stroke: C.red, width: 2.4 });
+  p.arrow(460, 190, 320, 300, { stroke: C.red, width: 2.4 });
+  p.rect(190, 310, 220, 90, { stroke: C.graphite });
+  p.text(300, 366, 'One account', { anchor: 'middle', size: 30 });
+  SketchyDeck.mount();
+</script>
+</body>
+</html>

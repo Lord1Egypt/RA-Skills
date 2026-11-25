@@ -1,10 +1,8 @@
 # Billing & Payment Methods
 
-> **Payment Safety**: These endpoints generate magic login links to manage saved payment methods. Do not request these links unless the user explicitly asks to add or remove a payment card.
-
 ## Add Card Login Link
 
-**POST** `/billing/add-card`
+**GET** `/billing/add-card-link`
 
 Headers:
 - `Authorization`: `SALESBLINK_API_KEY`
@@ -26,7 +24,7 @@ Response:
 
 ## Remove Card Login Link
 
-**POST** `/billing/remove-card`
+**GET** `/billing/remove-card-link`
 
 Headers:
 - `Authorization`: `SALESBLINK_API_KEY`

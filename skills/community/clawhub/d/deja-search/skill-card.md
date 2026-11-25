@@ -1,6 +1,6 @@
 ## Description:
 
-deja-search helps agents search a user's past AI coding sessions with the deja CLI to recover prior decisions, preferences, and solved issues.
+Search a user's past AI coding sessions with the deja CLI to recover prior decisions, conventions, and troubleshooting context.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and coding agents use the skill to recall prior decisions and solved issues before editing, debugging, recommending tools or designs, and reporting work as ready.
+Developers and coding agents use the skill to search prior AI coding sessions for decisions, conventions, and earlier troubleshooting context while working on a task.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The npm fallback is unpinned and may download and run an unreviewed package; the available scan evidence is incomplete.
+Risk: The workflow may download and run an unpinned deja package automatically.
 
-Mitigation: Avoid installing until the package fallback is pinned to a reviewed version and its execution is disclosed. If installing, review prompts to update or synchronize rules; account for the two local paths unavailable to the scan.
+Mitigation: Review and trust the package source, and decide whether automatic unpinned execution is acceptable before using it.
+
+Risk: The workflow can affect broad agent activation and make persistent rule changes.
+
+Mitigation: Review rule changes and any cross-agent synchronization before applying them.
 
 ## Reference(s):
 
-- [deja-vu memory for OpenClaw](https://vshulcz.github.io/deja-vu/guide/memory-for-openclaw.html)
+- [Memory for OpenClaw](https://vshulcz.github.io/deja-vu/guide/memory-for-openclaw.html)
 - [deja-search on ClawHub](https://clawhub.ai/vshulcz/skills/deja-search)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Guidance]
+**Output Type(s):** [Text, Guidance, Shell commands]
 
-**Output Format:** [Plain-text recall results and session summaries]
+**Output Format:** [Text guidance with deja CLI commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results depend on the user's local session history.]
+**Other Properties Related to Output:** [May include information retrieved from the user's local AI coding session history.]
 
 ## Skill Version(s):
 
-0.24.2 (source: server-resolved release evidence)
+0.25.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

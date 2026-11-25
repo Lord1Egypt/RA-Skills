@@ -1,16 +1,16 @@
 ---
 name: usa-business-migration-planner
 description: >-
-  帮助用户处理“Validated demand: People repeatedly need a practical, repeatable way to handle Vercel should fork and maintain Deno. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.”。当用户提出 work-productivity, ask-hn, vercel, fork, maintain，或需要围绕该需求获得实用流程、产物、检查清单、分析或实现支持时使用。
+  帮助用户处理“Validated demand: People repeatedly need a practical, repeatable way to handle vl: 在终端里用 VS Code 风格的界面和 Vim 键位审阅和编辑代码， 10 mb 大小. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.”。当用户提出 software-and-data, v2ex, create, code, vim，或需要围绕该需求获得实用流程、产物、检查清单、分析或实现支持时使用。
 ---
 
 # USA Business Migration Planner
 
 ## 需求
 
-使用这个技能帮助以下用户群体：professionals and teams trying to improve work outcomes, especially users who need a reusable workflow instead of a one-off answer
+使用这个技能帮助以下用户群体：developers, analysts, and technical users, especially users who need a reusable workflow instead of a one-off answer
 
-> Validated demand: People repeatedly need a practical, repeatable way to handle Vercel should fork and maintain Deno. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
+> Validated demand: People repeatedly need a practical, repeatable way to handle vl: 在终端里用 VS Code 风格的界面和 Vim 键位审阅和编辑代码， 10 mb 大小. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
 
 需求评分：100/100（需求强度 `70/70`，本地可执行性 `30/30`）。
 证据：12 条信号，覆盖 3 个来源类型。
@@ -20,7 +20,7 @@ description: >-
 ## 工作流程
 
 1. 重新说明用户想要的结果、限制、已有输入和成功标准。
-2. 创建简洁的工作计划、模板、自动化思路或决策辅助，减少手动协调。
+2. 检查技术限制，提出实现步骤，并在涉及代码或数据时包含测试或验证方法。
 3. 只有当缺失信息会明显改变输出时才提问；否则先做合理假设并继续推进。
 4. 保持本地硬件友好：优先使用脚本、模板、检查清单、小模型或 CPU 可承受的流程，避免依赖云端专用资源或大规模训练。
 5. 产出用户需要的文档、流程、清单、分析、代码修改或决策支持。
@@ -41,10 +41,10 @@ description: >-
 
 ## 触发方式
 
-关键词：`work-productivity`, `ask-hn`, `vercel`, `fork`, `maintain`, `deno`, `given`
+关键词：`software-and-data`, `v2ex`, `create`, `code`, `vim`, `agent`, `vibe`
 
 示例触发句：
 
-- `Help me People repeatedly need a practical, repeatable way to handle Vercel should fork and maintain Deno.`
-- `I need a practical workflow for People repeatedly need a practical, repeatable way to handle Vercel should fork and maintain Deno.`
-- `Use $usa-business-migration-planner to handle People repeatedly need a practical, repeatable way to handle Vercel should fork and maintain Deno.`
+- `Help me People repeatedly need a practical, repeatable way to handle vl: 在终端里用 VS Code 风格的界面和 Vim 键位审阅和编辑代码， 10 mb 大小.`
+- `I need a practical workflow for People repeatedly need a practical, repeatable way to handle vl: 在终端里用 VS Code 风格的界面和 Vim 键位审阅和编辑代码， 10 mb 大小.`
+- `Use $usa-business-migration-planner to handle People repeatedly need a practical, repeatable way to handle vl: 在终端里用 VS Code 风格的界面和 Vim 键位审阅和编辑代码， 10 mb 大小.`

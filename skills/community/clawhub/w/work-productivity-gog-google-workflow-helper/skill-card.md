@@ -1,6 +1,6 @@
 ## Description:
 
-Helps users and skill authors adapt popular work-productivity workflows into practical plans, checklists, analyses, and implementation support.
+Helps users adapt popular Gog-style work productivity patterns by improving setup, safety, reliability, or related workflows.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-AI-agent users, skill authors, maintainers, and teams use this skill to turn a work-productivity need into a concise plan, checklist, decision aid, analysis, or implementation support, then review the result against the stated success criteria.
+AI-agent users, skill authors, maintainers, and teams use this skill to improve Gog-style work productivity workflows, fix setup or reliability problems, and create related checklists, plans, analyses, or implementation artifacts.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Broad activation wording may invoke the skill for unrelated requests.
+Risk: Broad activation terms such as Google or CLI could trigger the skill for unrelated requests.
 
-Mitigation: Review the trigger wording before installation and narrow it to work-productivity requests involving the described workflow.
+Mitigation: Check that the request concerns a work productivity workflow before applying the skill; clarify relevance when the match is ambiguous.
 
 ## Reference(s):
 
+- [Requirement plan](references/requirement-plan.md)
 - [Gog on ClawHub](https://clawhub.ai/skills/gog)
-- [Requirement Plan](references/requirement-plan.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Markdown, Code, Configuration]
+**Output Type(s):** [Text, Markdown, Guidance, Analysis, Code, Configuration]
 
-**Output Format:** [Markdown, with code or configuration when requested]
+**Output Format:** [Text or Markdown, including tailored workflows, checklists, plans, analysis, code, or configuration when requested.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Tailored to the user's task; no fixed output limit is stated.]
+**Other Properties Related to Output:** [Tailored to the user's task; favors practical workflows that can run on ordinary CPU hardware.]
 
 ## Skill Version(s):
 
-0.20261117.40425 (source: server-resolved release evidence)
+0.20261124.54907 (source: ClawHub release evidence)
 
 ## Ethical Considerations:
 

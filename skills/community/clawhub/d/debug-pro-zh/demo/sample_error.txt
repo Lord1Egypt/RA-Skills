@@ -1,0 +1,11 @@
+2026-11-18 09:12:44.301 INFO  app started pid=8842 port=8080
+2026-11-18 09:13:02.117 WARN  cache miss key=user:1024
+2026-11-18 09:13:02.884 ERROR request failed path=/api/v1/orders status=500
+Traceback (most recent call last):
+  File "/srv/app/api/orders.py", line 88, in get_order
+    payload = json.loads(row)
+  File "/usr/lib/python3.11/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+2026-11-18 09:13:03.002 INFO  worker exit code=1

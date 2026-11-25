@@ -1,6 +1,6 @@
 ## Description:
 
-Helps e-commerce teams adapt the structure of popular short videos into product-focused scripts and generate videos through Qinghu AI.
+帮助电商短视频团队分析热门视频的节奏、卖点和脚本结构，并改写为适配淘宝内容渠道的短视频脚本与成片。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,49 +14,43 @@ MIT-0
 
 ## Use Case:
 
-E-commerce video teams use this skill to analyze a reference clip, adapt its pacing and selling points to their product, and request a short video suited to Taobao channels.
+电商短视频团队可用它从参考视频提炼镜头节奏和卖点，再改写为适配淘宝逛逛、点淘等渠道的商品脚本并生成短视频。
 
 ### Deployment Geography for Use:
 
-Global
+中国大陆
 
 ## Known Risks and Mitigations:
 
-Risk: Installation may run unpinned external npm or npx packages.
+Risk: Unpinned packages may run during setup.
 
-Mitigation: Review the package before installation and prefer a preinstalled, pinned qhkit version.
+Mitigation: Review the packages and pin versions before installation, following the security guidance.
 
-Risk: Configuring qhkit requires an API token.
+Risk: The setup guidance asks users to share an API key in chat.
 
-Mitigation: Use a scoped or revocable key and avoid sharing a long-lived secret in chat.
+Mitigation: Configure the key locally through a secure environment variable or local CLI configuration; do not send it in chat.
 
-Risk: Video generation spends credits and submitted tasks cannot be cancelled.
+Risk: Scanner coverage is partial because a referenced local path could not be resolved.
 
-Mitigation: Estimate credits and confirm the script and generation settings with the user before submission.
-
-Risk: Recreating a reference video may copy protected footage or dialogue.
-
-Mitigation: Adapt only the structure and creative approach; do not reuse original footage or dialogue without permission.
+Mitigation: Resolve and review the missing path, then repeat the security review before relying on the scan.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-wanx-3-clone)
-- [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
-- [Qinghu AI API key guide](https://xcnzsfe4uxrw.feishu.cn/wiki/KJ0Ywsyw8iAXmRkz5l4cddDbn6g)
+- [qhkit package](https://www.npmjs.com/package/@iqinghu/qhkit)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Shell commands, Guidance]
+**Output Type(s):** [Analysis, Text, Video]
 
-**Output Format:** [Markdown with commands, script comparison, task status, and video links]
+**Output Format:** [Markdown scripts and generated video files or links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Video generation requires user confirmation; completed tasks return a video link and charged credits.]
+**Other Properties Related to Output:** [Video duration is selected from available model options (5–30 seconds where supported).]
 
 ## Skill Version(s):
 
-0.1.4 (source: ClawHub release metadata)
+0.1.6 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

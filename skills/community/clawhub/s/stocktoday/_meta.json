@@ -1,1 +1,32 @@
-{"slug": "stocktoday", "version": "2.3.0"}
+{
+  "name": "stocktoday",
+  "slug": "stocktoday",
+  "displayName": "Stocktoday Data",
+  "summary": "A股 / 港股 / 美股 / 基金 / 期货 / 期权 / 债券 / 宏观 数据研究技能, 306 个数据接口, 双地址 (主备自动切换) 高速网关.",
+  "description": "A股 / 港股 / 美股 / 基金 / 期货 / 期权 / 债券 / 宏观 数据研究技能. 提供 306 个数据接口, 后端走 StockToday 自定义加速网关 (主 https://tushare.citydata.club/, 备用 https://backup.citydata.club/, 自动故障切换). 适用于把\"看走势 / 查财报 / 比较公司 / 看板块 / 看资金流 / 梳理公告新闻 / 看宏观 / 拉数据导出\"这类请求, 转成可执行的金融数据获取 / 清洗 / 对比 / 筛选 / 导出流程.",
+  "author": "stocktoday.pro",
+  "version": "2.4.3",
+  "license": "MIT",
+  "tags": [
+    "finance",
+    "股票",
+    "金融数据",
+    "量化",
+    "数据接口"
+  ],
+  "entry_point": "scripts/proxy_demo.py",
+  "scripts": [
+    "scripts/proxy_demo.py",
+    "scripts/finance_demo.py",
+    "scripts/sector_demo.py"
+  ],
+  "requirements": [],
+  "excludes": [
+    "secrets/",
+    "*.bak.*",
+    "__pycache__/",
+    "*.pyc",
+    "*.stackdump",
+    "references/*_official/"
+  ]
+}

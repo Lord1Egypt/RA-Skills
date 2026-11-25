@@ -1,0 +1,6 @@
+version: 1
+allow:
+  - rule: SK-EXEC
+    paths:
+      - "SS49415_baseline_path"
+canary: "SS49415_baseline_stderr"

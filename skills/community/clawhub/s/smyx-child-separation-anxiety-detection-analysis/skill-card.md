@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes pre-school drop-off video for crying, clinging, and resistance behaviors and estimates a child's separation-anxiety level with supportive guidance.
+Analyzes pre-school drop-off videos for crying, clinging, and resistance behaviors, then reports a separation-anxiety level and supportive suggestions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Parents and early-childhood educators use it to review drop-off videos, summarize observable distress behaviors, and decide when to offer support. It provides behavioral analysis rather than a psychological diagnosis.
+Parents and preschool staff use the skill to review drop-off videos, understand observed crying or resistance, and consider supportive responses. It provides observational summaries and does not make a clinical diagnosis.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review flags unclear remote video processing, account handling, identity transmission, and token storage; child video is highly sensitive.
+Risk: The security review flags account and credential handling, including broad credential sending, without enough clarity about where credentials go.
 
-Mitigation: Review the service and account data handling before use, obtain explicit parent or guardian consent, and use privacy masking with encrypted, access-controlled storage where possible.
+Mitigation: Avoid installation until the developer explains account creation and credential storage, and restricts the destinations that can receive credentials.
 
-Risk: Video-based behavior estimates may misread crying or distress and could be mistaken for a clinical diagnosis.
+Risk: The security review says child-video upload and consent handling are not clearly disclosed.
 
-Mitigation: Treat results as observational guidance only; consult a child mental-health professional for persistent or severe concerns.
+Mitigation: Before use, confirm when footage is uploaded and how consent is obtained and handled.
+
+Risk: The security review was partial because a referenced path was missing, so it cannot establish that reference's behavior.
+
+Mitigation: Resolve the missing reference and review the complete skill before relying on the scan overview.
 
 ## Reference(s):
 
+- [ClawHub release](https://clawhub.ai/18072937735/skills/smyx-child-separation-anxiety-detection-analysis)
 - [API reference](references/api_doc.md)
-- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-child-separation-anxiety-detection-analysis)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, JSON, Report links]
+**Output Type(s):** [Text, JSON, Markdown, Guidance]
 
-**Output Format:** [Structured JSON analysis with a text summary and report link]
+**Output Format:** [Structured analysis report with behavior observations, a severity level, supportive suggestions, and report links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Summarizes observed behaviors and an estimated separation-anxiety level with supportive guidance.]
+**Other Properties Related to Output:** [May include observed behavior metrics, alerts, and a link to the report.]
 
 ## Skill Version(s):
 
-1.0.17 (source: server-resolved release)
+1.0.18 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

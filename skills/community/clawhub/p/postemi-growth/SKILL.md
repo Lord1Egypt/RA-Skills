@@ -88,9 +88,14 @@ Where the numbers are:
   channel, `postemi analytics:post <post-id> -d 7` for one post. If a post
   answers `{"missing": true}`, link it first (`posts:missing`, then
   `posts:connect`; see the main skill).
-- **The MCP tools** have no analytics tool. Ask the user to open Insights, or
-  to paste or screenshot the numbers, and work from that. `list_posts` gives
-  the post ids, dates and channels to match them to.
+- **The MCP tools:** `get_analytics` (`integrationId`, `days`) for a channel,
+  `get_post_analytics` (`postId`) for one published post. `list_posts` gives
+  the post ids, dates and channels to match them to. If the client does not
+  list these tools yet, ask the user to open Insights, or to paste or
+  screenshot the numbers, and work from that.
+- These are the platform's own numbers, as the network reports them; each
+  network reports a different set (read each entry's `label`), and an empty
+  answer means the network gives none for that channel or post.
 - The network's own analytics, when the user has it open.
 
 What to look at, in this order:

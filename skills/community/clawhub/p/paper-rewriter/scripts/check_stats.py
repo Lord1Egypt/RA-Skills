@@ -300,6 +300,7 @@ def main():
                     help="百分比合计容差（默认 0.3 个百分点）")
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--report", help="生成 markdown 一致性报告")
+    ap.add_argument("--html", help="生成单页 HTML 一致性报告（v5.17.0，打印友好）")
     args = ap.parse_args()
 
     if args.batch:
@@ -358,6 +359,35 @@ def main():
             print("报告已写入 %s" % args.report, file=sys.stderr)
         except OSError as e:
             print("错误: 无法写入报告（%s）" % e, file=sys.stderr)
+
+    if getattr(args, "html", None):
+        # v5.17.0 单页 HTML 一致性报告（复用 reporter 打印友好骨架）
+        import reporter as _rep
+        from html import escape as _esc
+        cards = []
+        _color = "#cf222e" if issues else "#1a7f37"
+        cards.append("<div class='card'><h1>统计一致性报告</h1>"
+                     "<p style='color:%s;font-weight:700'>%s</p>"
+                     "<p class='meta'>%s · %d 项问题 · 内部一致性启发式口径，非统计审查</p></div>"
+                     % (_color, "发现 %d 项问题" % len(issues) if issues else "未发现问题",
+                        _esc(args.file or "(stdin)"), len(issues)))
+        if issues:
+            lis = "".join("<li><b>[%s]</b> %s</li>" % (_esc(x["kind"]), _esc(x["detail"]))
+                          for x in issues)
+            cards.append("<div class='card'><h2>问题清单</h2><ul>%s</ul></div>" % lis)
+        if groups["percent_sum"]:
+            plis = "".join("<li>%s → 各项 %s，合计 %.1f%%</li>" % (
+                _esc(x["context"]), " + ".join("%.1f" % pp for pp in x["parts"]), sum(x["parts"]))
+                           for x in groups["percent_sum"])
+            cards.append("<div class='card'><h2>百分比明细</h2><ul>%s</ul></div>" % plis)
+        cards.append("<div class='card'><p class='meta'>修一致性，先于修文风（以原始数据为准）。</p></div>")
+        try:
+            with open(args.html, "w", encoding="utf-8") as hf:
+                hf.write(_rep._page("统计一致性报告", "".join(cards)))
+            print("HTML 报告已写入 %s" % args.html, file=sys.stderr)
+        except OSError as e:
+            print("错误: 无法写入 HTML（%s）" % e, file=sys.stderr)
+            sys.exit(2)
 
     if not issues:
         print("未发现统计一致性问题。")

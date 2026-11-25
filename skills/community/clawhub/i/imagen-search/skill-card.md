@@ -1,6 +1,6 @@
 ## Description:
 
-Search Imagen Chat for relevant existing images, deliver watermarked links or downloads, and optionally unlock originals with an API key and credits.
+Search Imagen Chat for relevant image URLs, use or download free watermarked images, and obtain temporary original-image links or download originals using an Imagen API key and credits. Supports numbered Markdown references and optional local selection and account setup. Not for image generation or catalog publishing.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Writers and developers use this skill to find existing images for articles, produce numbered Markdown references, and optionally download originals using authorized Imagen credits.
+External users and content creators use this skill to find existing images on Imagen Chat for articles and other documents. It returns watermarked links or downloads and, when authorized, original-image links or downloads.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search terms are sent to Imagen.
+Risk: ClawScan marks the release suspicious with medium confidence, citing undeclared analytics and image-request submission, including reported contact-detail transmission.
 
-Mitigation: Send only generic terms needed for the search, not private article or project context.
+Mitigation: Review outbound data handling before installation; use generic search terms and keep optional keyword retention off unless explicitly opted in.
 
-Risk: Paid original downloads consume credits, and temporary original links can be accessed by anyone who holds them.
+Risk: The scan fully inspected only 7 of 13 components, partly inspected the rest, and had degraded tool-misuse analysis.
 
-Mitigation: Set an explicit total credit budget and share temporary links only with intended recipients.
-
-Risk: Optional catalog suggestions send the approved email and request to Imagen; removing a saved local key does not revoke it remotely.
-
-Mitigation: Submit suggestions only with explicit approval, and revoke unwanted keys in the Imagen account.
+Mitigation: Have a reviewer inspect the remaining components and outbound behavior before relying on the skill.
 
 ## Reference(s):
 
-- [Imagen Search skill documentation](https://imagen.chat/skills/imagen-search)
-- [Imagen Search installation and update guide](https://imagen.chat/install/imagen-search.md)
+- [Imagen Search documentation](https://imagen.chat/skills/imagen-search)
+- [Imagen Search on ClawHub](https://clawhub.ai/liu-cn/skills/imagen-search)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Image URLs, Files, Guidance]
+**Output Type(s):** [Markdown, JSON, Image URLs, Image files]
 
-**Output Format:** [Numbered Markdown image references with source links and optional downloaded image files]
+**Output Format:** [Numbered Markdown with image links and source links; optional JSON manifests and downloaded image files.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Search candidates are metadata-based until visually reviewed; watermarks and asset usage conditions must be preserved.]
+**Other Properties Related to Output:** [Search candidates are metadata-based unless visually reviewed. Original-image links or downloads require an account, credits, and authorization.]
 
 ## Skill Version(s):
 
-1.1.2 (source: frontmatter, release.json)
+1.2.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

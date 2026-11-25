@@ -103,7 +103,11 @@ in the visor. The success signature: PimaxXR log shows `Using interaction profil
   `OpenXR: Running on OpenXR runtime: …` — do not assume the switch took.
 - Switch via the runtime's own UI (SteamVR → Developer → "Set SteamVR as OpenXR Runtime";
   **PimaxXR → PimaxXR Control Center**; the Pimax client's runtime selector) or by
-  setting the registry value directly.
+  setting the registry value directly. **This changes the machine-wide OpenXR default**
+  (`HKLM\SOFTWARE\Khronos\OpenXR\1\ActiveRuntime`, subject to the `XR_RUNTIME_JSON`
+  override) — every other OpenXR application on the machine follows the new runtime.
+  Before switching, record the current `ActiveRuntime` value (`reg query`) and tell the
+  user how to restore it (the same UI, or the recorded value back in the registry).
 
 ## Pimax Crystal / Crystal Super (inside-out) controllers
 - Pimax Crystal is **inside-out** (no base stations); the headset tracks the

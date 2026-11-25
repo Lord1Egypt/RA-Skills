@@ -1,6 +1,6 @@
 ## Description:
 
-Enforces token quota management at session start with conservation and compression checks. Use at the start of every session or before large context loads
+Enforces token quota management at session start with conservation and compression checks.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agents use this skill at session start and before large context loads to check available quota, set a context budget, review whether to delegate or compress work, and log usage.
+Developers and other agent users can apply the checklist at session start or before large context loads to review quotas, plan context use, consider delegation, and compress or log work.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Quota limits described in the workflow may not match the active agent platform's limits.
+Risk: Quota checks and workflow steps may not fit every session or available usage source.
 
-Mitigation: Check the active platform's current usage information before setting a task budget.
+Mitigation: Check that the guidance fits the current task and available status information; the skill itself says to skip simple queries and cases already handled by context optimization.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/athola/skills/nm-conserve-token-conservation)
-- [Project homepage listed in ClawHub metadata](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Text]
+**Output Type(s):** [Text, Markdown, Guidance]
 
 **Output Format:** [Markdown checklist and session guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Recommendations are tailored to the current session and task.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server release metadata)
 
 ## Ethical Considerations:
 

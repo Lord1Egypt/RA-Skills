@@ -115,7 +115,11 @@ export class PatternAnalyzer {
     this.homoglyphChars = new Set(Object.keys(this.homoglyphs));
   }
 
-  analyze(filePath: string, content: string): Finding[] {
+  /**
+   * @param isCode strip JS/TS comments before matching. Prompt-injection
+   * patterns still see the full line, so comments can't hide instructions.
+   */
+  analyze(filePath: string, content: string, isCode = true): Finding[] {
     const findings: Finding[] = [];
 
     // Homoglyph detection (whole-file scan)
@@ -128,15 +132,17 @@ export class PatternAnalyzer {
       const line = lines[i];
       if (line === undefined) continue;
 
-      // Track block comments
-      const { code, stillInBlock } = this.stripComments(line, inBlockComment);
-      inBlockComment = stillInBlock;
-
-      // Skip lines that are entirely comments
-      if (code.trim() === '') continue;
+      let code = line;
+      if (isCode) {
+        const stripped = this.stripComments(line, inBlockComment);
+        inBlockComment = stripped.stillInBlock;
+        code = stripped.code;
+      }
 
       for (const def of this.patterns) {
-        if (def.pattern.test(code)) {
+        const target = def.category === 'PROMPT_INJECTION' ? line : code;
+        if (target.trim() === '') continue;
+        if (def.pattern.test(target)) {
           findings.push({
             id: generateFindingId(),
             severity: def.severity,
@@ -144,7 +150,7 @@ export class PatternAnalyzer {
             message: def.message,
             file: filePath,
             line: i + 1,
-            evidence: truncateEvidence(code),
+            evidence: truncateEvidence(target),
             cwe: def.cwe,
           });
         }

@@ -1,6 +1,6 @@
 ## Description:
 
-Chat with the dLazy sandbox agent, a project-scoped assistant for multi-turn work that runs skills end-to-end.
+Chat with the dLazy sandbox agent, a project-scoped assistant for running skills over multiple turns.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to chat with a hosted, project-scoped dLazy agent, start or continue multi-turn tasks, and discover available skills and projects.
+External users and developers can have project-scoped, multi-turn conversations with the dLazy sandbox agent, discover available skills and projects, and continue ongoing tasks.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Broad conversation triggers could activate the hosted chat service without a clear request.
+Risk: Broad chat triggers could send unrelated messages to dLazy without clear intent.
 
-Mitigation: Review the trigger wording before installing and invoke the skill only when you intend to use the hosted service; consider that messages may be sent externally or billable actions may start.
+Mitigation: Invoke the skill only when explicitly requested and check that its trigger phrases match the intended task.
 
-Risk: The security scan is partial, leaving unresolved references and unexamined behavior uncertain.
+Risk: Files attached with --files are uploaded to dLazy media storage.
 
-Mitigation: Review the skill and CLI behavior before use, and avoid relying on the scan as a complete assessment.
+Mitigation: Attach only files approved for upload to the dLazy service.
 
-Risk: Files attached to a chat are uploaded to dLazy media storage.
+Risk: The security scan was partial, leaving some installation and runtime details unverified.
 
-Mitigation: Attach only files you are comfortable sending to the hosted service.
+Mitigation: Review the CLI installation details and service behavior before use.
 
 ## Reference(s):
 
-- [CLI repository link listed in skill metadata](https://github.com/dlazy-ai/cli)
-- [dLazy CLI package](https://www.npmjs.com/package/@dlazy/cli)
-- [dLazy service](https://dlazy.com)
+- [ClawHub release](https://clawhub.ai/dlazyai/skills/dlazy-chat)
+- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy homepage](https://dlazy.com)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Streamed conversational text, which may include Markdown]
+**Output Format:** [Conversational text, optionally formatted as Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Responses depend on the selected dLazy skill and project context.]
+**Other Properties Related to Output:** [Responses are streamed from a project-scoped chat session.]
 
 ## Skill Version(s):
 
-1.2.44 (source: server-resolved ClawHub release metadata)
+1.2.47 (source: server-resolved release)
 
 ## Ethical Considerations:
 

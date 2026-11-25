@@ -1,0 +1,57 @@
+{
+  "changelog": "Event posters, a spoken read, and a teaser cut from the poster now ship as one kit.",
+  "display_name": "Event Kit Materials",
+  "entry": "SKILL.md",
+  "homepage": "https://beatra.ai/skills/event-kit-materials",
+  "icon": "https://beatra.ai/textures/icons/event-kit-materials-0.1.2.png",
+  "localized": {
+    "en": {
+      "description": "Turn one event into an event kit: posters, one teaser clip, one spoken read, and an optional jingle. The event kit starts with the copy and a frame plan. An ecommerce event plan uses the same kit: after the name, time, and offer are set, it makes the posters, clip, and read. Use it for a store event, a launch, or a promotion.",
+      "display_name": "Event Kit Materials",
+      "summary": "Posters, one teaser clip, one spoken read, and an optional jingle.",
+      "tags": [
+        "event kit",
+        "event posters",
+        "teaser clip",
+        "spoken read",
+        "jingle"
+      ],
+      "title": "Event Kit Materials"
+    },
+    "ja": {
+      "description": "一つのイベントを、ポスター、予告の短い動画、読み上げ、必要なときのジングルにします。文章と画面割りから始めます。店のイベント、発売、セールに向いています。",
+      "display_name": "イベント素材一式",
+      "summary": "ポスター、予告の短い動画、読み上げ、任意のジングル。",
+      "tags": [
+        "イベント",
+        "ポスター",
+        "予告",
+        "読み上げ"
+      ],
+      "title": "イベント素材一式"
+    },
+    "zh": {
+      "description": "把一场活动做成活动全套物料：海报、一条预告短片、一段口播，需要时再加一条广告歌。活动全套物料先给出文案和画面安排。电商活动策划用同一套：活动名、时间和卖点写明后，再出海报、短片和口播。适合门店活动、上新和促销。",
+      "display_name": "活动全套物料",
+      "summary": "海报、一条预告短片、一段口播，需要时再加一条广告歌。",
+      "tags": [
+        "活动全套物料",
+        "电商活动策划",
+        "海报",
+        "预告短片",
+        "口播"
+      ],
+      "title": "活动全套物料"
+    }
+  },
+  "mcp": {
+    "authentication": "device-bearer",
+    "credential_file": "~/.beatra/credentials.json",
+    "name": "beatra",
+    "transport": "streamable-http",
+    "url": "https://mcp.beatra.ai/mcp"
+  },
+  "name": "event-kit-materials",
+  "schema_version": 1,
+  "version": "0.1.3"
+}

@@ -17,8 +17,8 @@ import type { ThetaSecretResolverContext } from './runtime/secretResolver.js';
 
 // theta() is a read-only facade: it can list, inspect and poll. It cannot send prompts, spend
 // credits or change remote resources, and it never returns credential values.
-// executeThetaRuntimeCommand (exported below) runs every command. Approval is not enforced here:
-// the network clients require confirm:true for their mutations, high-cost inference and webhook.
+// executeThetaRuntimeCommand (exported below) runs every command. The network clients enforce
+// confirm:true for their mutations, high-cost inference and webhooks.
 // Facade results get the same labelled-secret redaction as runtime results.
 async function safe<T>(value: T | Promise<T>): Promise<T> {
   const result = await value;

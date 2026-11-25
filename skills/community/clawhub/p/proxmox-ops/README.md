@@ -52,8 +52,11 @@ chmod 600 ~/.proxmox-credentials
 
 | File | Purpose |
 |------|---------|
-| `SKILL.md` | Full reference — API patterns, workflows, safety notes |
+| `SKILL.md` | Usage — helper script, workflow, safety notes; links to `references/` |
 | `scripts/pve.sh` | Helper script with auto node discovery |
+| `references/setup.md` | Credentials file / env vars and API token creation |
+| `references/api-operations.md` | API patterns — nodes, VMs/LXC, power, snapshots, disk resize, guest agent, storage, tasks |
+| `references/guest-types.md` | Why `vms` and `lxc` must both be enumerated for fleet-wide claims |
 | `references/provisioning.md` | Create, clone, template, and delete operations |
 
 ## Using with AI Agents
@@ -65,22 +68,23 @@ The knowledge is in plain markdown and shell scripts — no framework lock-in. H
 Clone into your project and reference it in your project memory. Claude Code auto-loads `CLAUDE.md` at session start, so a one-liner is all you need:
 
 ```bash
-git clone https://github.com/eddygk/proxmox-ops-skill.git proxmox-ops
-echo "For Proxmox operations, read proxmox-ops/SKILL.md and proxmox-ops/references/provisioning.md" >> CLAUDE.md
+git clone https://github.com/eddygk/proxmox-ops.git proxmox-ops
+echo "For Proxmox operations, read proxmox-ops/SKILL.md and the files in proxmox-ops/references/" >> CLAUDE.md
 ```
 
-Or add it as a modular rule:
+Or add it as a modular rule (keep `references/` next to it so the links resolve):
 
 ```bash
-mkdir -p .claude/rules
-cp proxmox-ops/SKILL.md .claude/rules/proxmox.md
+mkdir -p .claude/rules/proxmox
+cp proxmox-ops/SKILL.md .claude/rules/proxmox/proxmox.md
+cp -r proxmox-ops/references .claude/rules/proxmox/
 ```
 
 ### Claude Desktop (Projects)
 
 1. Create a new Project (or open an existing one)
 2. Click **"Set custom instructions"** and add: *"For Proxmox operations, follow the knowledge files."*
-3. Upload `SKILL.md` and `references/provisioning.md` as project knowledge files
+3. Upload `SKILL.md` and every file in `references/` as project knowledge files
 
 ### OpenClaw / ClawHub
 
@@ -90,7 +94,7 @@ clawhub install proxmox-ops
 
 ### Cursor / Windsurf / Other Agents
 
-Drop `SKILL.md` into your project's context directory or reference it in whatever custom instructions mechanism your editor supports. The content is standard markdown — it works anywhere.
+Drop `SKILL.md` and `references/` into your project's context directory or reference it in whatever custom instructions mechanism your editor supports. The content is standard markdown — it works anywhere.
 
 ## Credits
 

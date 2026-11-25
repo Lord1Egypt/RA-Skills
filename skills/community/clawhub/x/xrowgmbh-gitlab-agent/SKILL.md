@@ -32,10 +32,25 @@ Before posting an issue, work item, or merge request status comment, compare the
 * Comment when a meaningful state change occurred, such as reviewer action appearing, unresolved discussions changing, new maintainer feedback, a new blocked or need-human condition, or the required human action changing.
 * Stay silent when the only available comment would repeat a routine no-op state. Record suppressed no-op checks in local logs or memory for auditability instead of posting them to GitLab.
 * Leave out unwanted information such as commit hashes, internal notes, or routine status details that do not affect the current state.
+* This gate suppresses routine status reports, not answers to direct questions or responses to new feedback. Follow [How to comment](#how-to-comment) for both.
 
 ### External upstream contributions
 
 An assigned item that passes both gates may authorize work in an external project only when its description or a later owner/Maintainer note names the exact upstream URL. Inspect only that scope, use an agent-owned fork, and open a cross-project MR; do not run the security gate on the upstream project or require upstream assignment. Keep workflow state on the controlling item and do not change the upstream issue's labels, status comments, time tracking, assignment, or state. Missing upstream membership alone is not `workflow::forbidden` or `workflow::need-human`.
+
+### Downstream fixes and upstream releases
+
+* Prefer a maintained upstream release containing the fix over a local patch.
+* If a workaround is needed, record the affected version, original failure and
+  exact upstream issue/PR on the controlling item. Follow the upstream scope gate.
+* Use the ecosystem's maintained patch mechanism. Keep patches small,
+  version-scoped and fail-closed; never hide application or build failures.
+* On upgrade, verify the fix in the actual release. Remove only the obsolete
+  workaround; preserve unrelated changes and the regression/refusal checks.
+* Qualify a clean build and the affected native workflow without the workaround
+  before rollout. A patch still applying does not prove it is still needed.
+* Distinguish upstream proposed, merged, released, locally verified and deployed.
+  Never claim a production repair from a PR or successful patch application alone.
 
 ### GitLab product contributions
 
@@ -54,13 +69,14 @@ For authorized changes to `gitlab-org/gitlab`, follow the [GitLab contribution g
 * Discovery also claims open unassigned items in member projects after the project-access gate
 * A new instruction from the configured owner or an active project Maintainer/Owner preempts the previously selected item. Apply the latest team-member instruction rule, checkpoint the interrupted work safely, and process the changed item first.
 * If you find the last pipeline of the default branch broken due to an error within the repository. Create a new task for you to fixing.
-* Exhaust actionable work across the full queue before ending a cycle; inspection alone is not completion.
-
-* Continue to work on an item until [Definition of Done](#definition-of-done)
+* Keep working for the full scheduled run. If one item is blocked, work on the next.
 * Revalidate all labels. Ensure `type::*`, `priority::*`, `size::*`, `workflow::*` exist and are correctly set. Especially `workflow::blocked`, `workflow::need-human`, `workflow::review`, and `workflow::stale`: need analysis.
-* Add the time spend to the GitLab time tracking for each item. Record at least one minute and fill out summary.
-* Two minutes before the schedule ends, make a summary about all items. Report action `completed` or `validated`. Others are considered `skipped` and do not need reporting.
-* Full queue completion is desired. Run till the end of the schedule.
+* Add the time spend to the GitLab time tracking for each item, if you worked for more then one minutes on it.
+* When no item is actionable, recheck CI and resume any work it unblocks. If a queued or running pipeline still blocks an agent action or occupies needed capacity, record the pipeline link and next action in the summary. In a paced scheduled run, call `automations` with `{"action":"next_check","in":"5m"}`. Check that the tool accepted the recheck; otherwise rely on the normal cadence. Do not sleep or poll.
+* Keep the normal cadence when no active CI can unblock work. Empty queues, human-only blockers, and manual jobs do not need a faster check. Investigate terminal failures if actionable.
+* If the run deadline is near, checkpoint unfinished work so the next run can resume. Add a [summary](#summary) to the transcript before ending. Report `completed`, `validated`, or `skipped`.
+
+#### Summary
 
 ```markdown
 | Action | Item | State | Outcome |
@@ -96,7 +112,7 @@ For authorized changes to `gitlab-org/gitlab`, follow the [GitLab contribution g
 
 * Push changes with `-o ci.skip`, if there are pipeline capacity errors.
 * Only work merge requests assigned to the current GitLab user, except an agent-authored external contribution MR authorized by its controlling item.
-* Instead of asking your owner or reviewer what to do, decide on your own and do it. Add your decisions as a comment to the merge request.
+* Instead of asking your owner or reviewer what to do, decide on your own and do it. Comment only when the decision meets the [comment relevance gate](#agent-feedback-or-comments-on-items-or-mrs).
 * If the merge pipeline fails, investigate the failure and fix the issue. Ensure at least one exists.
   * If the failure is a network error and not related to the change, retain `workflow::in-progress`, record the evidenced transient failure once, and recheck before a later retry. Work another actionable item meanwhile.
   * If the failure is originating from the main branch, open a new work item, use the linked item feature, assign it to you, use status `workflow::blocked` and return to the merge request once fixed.
@@ -110,7 +126,7 @@ For authorized changes to `gitlab-org/gitlab`, follow the [GitLab contribution g
 * On each commit
   * Add `Generated-By: <current model>` to the commit message.
   * Push with `git push origin <branch> -o ci.skip`
-  * Start the pipeline via `glab ci run --mr`, unless there are active pipelines in main or dev. Never use more than X `[setting: 2 # AGENTS.md -> active-pipelines]` pipelines for your work. Keep `workflow::in-progress` when capacity delays a pipeline start; revisit capacity and work another actionable item meanwhile.
+  * Start the pipeline via `glab ci run --mr`. If `AGENTS.md` has a  setting`max-pipelines`, never start more pipelines as the value of `max-pipelines` defines. `max-pipelines` is a per project setting.
 * After merge or close, update the items and labels to reflect the final state `workflow::done`.
 
 #### Definition of Done
@@ -133,14 +149,17 @@ Before moving a merge request to review, complete this checklist:
 
 #### How to select a reviewer
 
-Run `{baseDir}/scripts/select-reviewer.py <project-path> <merge-request-iid>` to select and assign a reviewer. Every run applies its selection. Never choose a reviewer manually.
+Run `{baseDir}/scripts/select-reviewer.py <project-path> <merge-request-iid>` to select and assign a reviewer. Every run applies its selection. Never choose a reviewer manually. A reviewer was selected before and the reviewers list is empty the meaning is that the item didn`t quality for review yet and the item is handed back to the agent.
 
 #### How to comment
 
-Rules apply to all GitLab items.
+Rules apply to all GitLab items. Always KISS.
 
-* Do not mention time, date, location
-* Mention `@owner` only when requested. Use per default `owner`.
+* Reply as a colleague. Answer direct questions and new feedback first, then state the result and its impact plainly.
+* Before requesting setup, check existing authorized resources and simpler supported alternatives. If input is genuinely needed, explain what is missing, why, and the smallest next action.
+* Omit routine non-action lists and internal bookkeeping. Mention limits only when asked or needed to avoid implying completion. Keep detailed evidence in CI or the MR description.
+* Do not repeat comments or mirror the same update across the issue and MR.
+* Do not mention time, date, or location. Mention `@owner` only when requested; otherwise use `owner`.
 
 #### How to handle merging
 

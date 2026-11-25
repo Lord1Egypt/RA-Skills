@@ -1,6 +1,6 @@
 ## Description:
 
-Automates SalesBlink cold email outreach by helping agents manage sequences, contacts, templates, senders, inbox replies, deliverability tests, reports, and SalesBlink API requests.
+Run cold email sequences on autopilot and manage full sales outreach campaigns via the SalesBlink API.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Sales, growth, and developer users use this skill to operate SalesBlink outreach workflows through an agent, including lead list management, campaign setup, sender configuration, inbox handling, analytics, deliverability checks, billing-sensitive operations, and API-key administration.
+Sales teams and operators use this skill to manage contacts, senders, templates, and multi-step outreach campaigns through SalesBlink, then monitor replies and delivery activity.
 
 ### Deployment Geography for Use:
 
@@ -22,57 +22,40 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Sensitive SalesBlink API keys, signup credentials, or sender passwords could be exposed if pasted into chat or logs.
+Risk: Contact imports may transfer contact details to SalesBlink.
 
-Mitigation: Configure SALESBLINK_API_KEY through the platform secret or environment mechanism, avoid placing passwords in chat, and review OAuth/provider permissions before connecting senders.
+Mitigation: Review imported fields and recipient scope before submitting an import.
 
-Risk: The skill can send cold email campaigns, import lead data, and interact with replies, which may affect recipients and process personal data.
+Risk: Activating a campaign can schedule real outreach.
 
-Mitigation: Require explicit user review of approved lead lists, sender accounts, templates, schedule, stop conditions, and estimated recipient count before imports or campaign launches.
+Mitigation: Review recipients, message content, sender accounts, and schedule before activation.
 
-Risk: Billing, DFY domain/mailbox orders, and API-key administration can create costs or disrupt integrations.
+Risk: The security scan was partial, with two local references unresolved.
 
-Mitigation: Require explicit confirmation of exact domains, mailbox counts, provider, price, card action, key name or ID, and integration impact before executing those actions.
-
-Risk: Persistent or evergreen campaigns may continue sending beyond the user's intended scope.
-
-Mitigation: Create sequences paused by default, default to non-evergreen campaigns, document stop conditions, and periodically audit active or recurring items.
+Mitigation: Review the lead-import and campaign examples and check any unresolved references before use.
 
 ## Reference(s):
 
-- [SalesBlink public API base URL](https://run.salesblink.io/api/public/v1.0.0)
+- [SalesBlink Public API](https://run.salesblink.io/api/public/v1.0.0)
 - [SalesBlink API key settings](https://run.salesblink.io/account/integration/api)
-- [Skill source](artifact/SKILL.md)
-- [Lists](artifact/references/lists.md)
-- [Contacts and Leads](artifact/references/contacts.md)
-- [Email Templates](artifact/references/templates.md)
-- [Sequences](artifact/references/sequences.md)
-- [Email Senders and OAuth](artifact/references/senders.md)
-- [Inbox and Outreach](artifact/references/inbox.md)
-- [Activity Tracking](artifact/references/activity.md)
-- [Reports](artifact/references/reports.md)
-- [Inbox Placement Tests](artifact/references/inbox-placement.md)
-- [Done-For-You Domains and Mailboxes](artifact/references/dfy.md)
-- [Billing and Payment Methods](artifact/references/billing.md)
-- [API Key Management](artifact/references/api-keys.md)
-- [Organization Users and Workspaces](artifact/references/organization.md)
-- [Folders](artifact/references/folders.md)
-- [Account Config](artifact/references/account-config.md)
-- [Workflow Examples](artifact/references/workflows.md)
+- [Campaign workflow examples](artifact/references/workflows.md)
+- [Contacts and leads reference](artifact/references/contacts.md)
+- [Sequences reference](artifact/references/sequences.md)
+- [Email senders reference](artifact/references/senders.md)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+**Output Type(s):** [Guidance, Configuration, Text]
 
-**Output Format:** [Markdown with JSON payloads, HTTP examples, and shell command snippets]
+**Output Format:** [Markdown guidance with HTTP examples and JSON request or response data]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires SALESBLINK_API_KEY and network access to run.salesblink.io for live API operations.]
+**Other Properties Related to Output:** [May initiate contact imports or scheduled outreach in SalesBlink when configured and authorized.]
 
 ## Skill Version(s):
 
-1.0.9 (source: server release metadata; artifact SKILL.md frontmatter is 1.0.0)
+1.2.1 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

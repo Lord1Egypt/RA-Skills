@@ -1,0 +1,9 @@
+# Fleet rollout
+
+1. Publish the approved canonical skill release and verify its exact owner, slug and version in the registry. Do not call an unpublished workspace copy a fleet release.
+2. Inventory one authorized employee at a time: workspace and attachment landing paths, document roots and formats, existing intake and tender workflows, memory index source paths, embedding provider, local converter availability, and current scheduler state. Do not print document contents or secrets.
+3. Install the exact registry-verified release and a local converter on that employee. Add a short reference to the employee's always-on instructions and relevant document-receipt workflow so received and saved documents invoke this skill, regardless of subject. Update canonical shared memory or tender skills only through their own approved source and publication process; do not fork installed fleet skills.
+4. Run the coverage audit read-only, classify in-scope documents and unsupported types, and report the actual gaps. Do not treat skipped paths or a clean extract audit as proof of indexing. Process an approved sample, then verify its path and full-content extraction, active semantic/hybrid search, and an update reflected in search. Confirm the agent reads the startup rule in a fresh ordinary session.
+5. Reconcile the employee's existing document backlog within the authorized scope, recording failures in its existing open-loops file. Report covered, unindexed, stale, unsupported, skipped and unreadable counts separately. Keep source originals; never enable a scheduler or change notifications merely to enforce this policy.
+
+Repeat for the next employee only after the current employee's validation passes. A file that arrives outside the agent's normal workflow can still be missed until an audit; schedule or event-driven coverage only when separately authorized.

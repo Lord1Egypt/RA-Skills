@@ -1,6 +1,6 @@
 ---
 slug: pixiv-cli
-version: 1.3.0
+version: 1.5.0
 displayName: Pixiv CLI
 summary: Safely operate Pixiv with the pixiv-cli binary for discovery, account actions, and downloads.
 license: MIT
@@ -46,7 +46,7 @@ Do not ask for an undisclosed token in chat or launch a hidden prompt in an agen
 | `auth login` | Explicit request and a user present for browser OAuth; follow the documented desktop/remote handoff |
 | `mcp` | Explicit server-start request; starts the unified long-lived server (stdio by default; HTTP with explicit `--port`), not a preflight probe |
 
-`config path` can create baseline configuration if missing. A successful read-looking command is not necessarily filesystem-side-effect-free. `update --check --json` checks only; actual installation does not emit JSON and requires authorization.
+`config path` can create the default configuration with English comments if missing. `config get/set/unset` uses TOML paths; inspect the command help for available keys. `config get` prints values directly, including API keys. A successful read-looking command is not necessarily filesystem-side-effect-free. `update --check --json` checks only; actual installation does not emit JSON and requires authorization.
 
 ## Output and complete results
 
@@ -70,11 +70,15 @@ Public positional commands can fill one missing value from non-TTY stdin. Only a
 
 ## Authentication and service boundaries
 
-Pixiv content is App-only. Use the selected local `auth use` account or an eligible database-managed account when the pool is enabled. There is no anonymous Web fallback and no per-command `--uid`/`--refresh-token` selection or `PIXIV_REFRESH_TOKEN` credential shortcut. The public SDK and MCP have their own explicit runtime credential contracts.
+Pixiv content is App-only. Use the selected local `auth use` account or an eligible locally stored pool account when the pool is enabled. There is no anonymous Web fallback and no per-command `--uid`/`--refresh-token` selection or `PIXIV_REFRESH_TOKEN` credential shortcut. The public SDK and MCP have their own explicit runtime credential contracts.
 
-Pool enabled/strategy settings are configuration; schedulable accounts are managed by `auth pool status|enable|disable`. Reads/downloads may use the pool, but mutations must not be silently assigned to a different account. Removed settings fail explicitly; use the authorized cleanup described in `auth.md`, not an automatic account migration.
+Pool enabled/strategy settings are configuration; schedulable accounts are managed by `auth pool status|enable|disable`. Reads/downloads may use the pool, but mutations must not be silently assigned to a different account.
 
 FANBOX is separate: use `pixiv fanbox --help` and its read-only creator/post/tag/feed/resource capabilities. Importing `FANBOXSESSID` with `pixiv fanbox auth import` or selecting an account with `pixiv fanbox auth use --auto`/an explicit UID is a separately authorized credential/state action, not automatic preflight. FANBOX MCP does not reuse the Pixiv pool. Its optional challenge-only solver does not carry ordinary API/resource traffic or receive the session; never send the session to a non-first-party host.
+
+## Vector search
+
+`pixiv vector setup` defaults to local `siglip2-base-512`; `--model siglip2-base-256` selects the smaller image input. Local setup downloads about 1.5 GB of fixed models plus ONNX Runtime and processes queries locally. A cloud `--model NAME` uploads private/R18 thumbnails and query content and may incur charges; authorize that scope first. Use `vector sync` for resumable public/private bookmark indexing, with optional visibility/type/rating filters or `--reconcile` for removals. Use `vector add ID_OR_URL...` or artwork NDJSON for specific works. `vector search INPUT` recognizes text, local images and HTTP(S) image URLs; `--image` remains available. Plain names shared with non-image files keep their text meaning. Default limit is 30, zero returns all, and page requires a positive limit. Search catches up for up to 30 seconds; `--no-sync` uses saved vectors. Piped canonical records include the best-page `match` and work with `detail`/`download`. See [discovery](references/discover.md#search-a-local-vector-index) for status and cleanup.
 
 ## Search and identity traps
 
@@ -94,7 +98,7 @@ Create/reply/stamp return the upstream comment ID. Delete returns a success stat
 
 Reverse-search image sources are existing regular files or explicit HTTP(S) URLs; an invalid explicit URL is an error, never a keyword fallback. Binary image bytes on stdin do not select image mode. Provider/output/proxy flags apply; keyword filters, entity type, and pagination do not.
 
-Providers are SauceNAO, ascii2d color/BoVW, and `all`. `reverse_search_pixiv_only` controls canonical Pixiv identities. Configure `saucenao_api_key` only through non-TTY stdin or `SAUCENAO_API_KEY`; reads redact it. Upload only authorized images and preserve provider privacy boundaries. One successful provider plus another failure can be a successful **partial** result with a warning; single/all-provider failure is nonzero. Generic reverse-search `type=artwork` records do not prove a Pixiv subtype.
+Providers are SauceNAO, ascii2d color/BoVW, and `all`. `reverse_search.pixiv_only` controls whether external-only matches are retained in `results`; `records` always contain canonical Pixiv identities. Use `pixiv config set reverse_search.saucenao_api_key VALUE` or `SAUCENAO_API_KEY`; `pixiv config get reverse_search.saucenao_api_key` prints the effective key directly. Upload only authorized images and preserve provider privacy boundaries. One successful provider plus another failure can be a successful **partial** result with a warning; single/all-provider failure is nonzero. Generic reverse-search `type=artwork` records do not prove a Pixiv subtype.
 
 `--proxy` and `--no-proxy` are mutually exclusive invocation overrides. Pixiv, FANBOX, reverse-search transport, and solver-browser settings have distinct scopes; the browser's proxy is not automatically inherited. Do not assume a private maintainer's loopback proxy exists. Read `troubleshooting.md` before changing persistent settings or solver configuration.
 

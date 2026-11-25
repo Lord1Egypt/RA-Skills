@@ -1,5 +1,5 @@
-/* Known-good benchmark CSS: 24x24px touch targets + comfortable spacing.
-   Passes axe target-size, pa11y, QualWeb when paired with templates/index.html. */
+/* Validator smoke-test fixture styling only. Do not copy into a scored
+   benchmark submission; create original styles for the assigned task. */
 * {
     box-sizing: border-box;
 }

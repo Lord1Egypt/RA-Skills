@@ -1,3 +1,8 @@
+---
+name: financial-statement-reading
+description: 系统性解析财务报表结构、会计估计、比率分析及现金流，辅助理解企业经营状况与战略关联，用于财报解读与财务分析。
+---
+
 # 财报解读 Skill
 ## Financial Statement Reading & Analysis
 

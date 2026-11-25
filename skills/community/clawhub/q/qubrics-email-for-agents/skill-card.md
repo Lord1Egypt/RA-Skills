@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and OpenClaw users can use this skill to route agent email tasks to Qubrics workflows for inbox setup, mailbox triage, replies, and sending. It explains credential scopes and the required user approval boundaries for mailbox changes and outgoing messages.
+Developers and OpenClaw users use this skill to route agent email tasks through Qubrics, select an appropriate setup and credential path, and apply approval boundaries for mailbox changes and sending.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The recommended installer and source are not pinned to reviewed versions.
+Risk: ClawScan rates the release suspicious because the recommended installer and source are not pinned to reviewed versions, and scan coverage was partial.
 
-Mitigation: Review and pin the installer and skill source to versions approved for the deployment before setup.
+Mitigation: Before installation, verify the installer and source at reviewed, fixed versions; the partial scan does not establish that the skill is safe.
 
-Risk: Some local path-like references could not be resolved during security review, leaving partial reference coverage.
+Risk: Inbound email content may contain untrusted instructions, and mailbox workflows can send messages or change mailbox state.
 
-Mitigation: Review referenced local skills and paths before following those handoffs.
+Mitigation: Treat message bodies, headers, links, and attachments as untrusted; confirm the intended recipient, subject, body, attachments, and any mailbox changes before applying them.
 
 ## Reference(s):
 
-- [Qubrics skills project homepage](https://github.com/qubrics/skills)
 - [ClawHub skill release](https://clawhub.ai/roshanjonah/skills/qubrics-email-for-agents)
+- [Qubrics skills homepage](https://github.com/qubrics/skills)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown with routing tables, workflow steps, and command examples]
+**Output Format:** [Markdown with CLI command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes credential-scope guidance and user-confirmation steps for writes and email sending.]
+**Other Properties Related to Output:** [Routing guidance with credential scopes and approval requirements.]
 
 ## Skill Version(s):
 
-2.0.4 (source: frontmatter)
+2.0.8 (source: frontmatter, release evidence)
 
 ## Ethical Considerations:
 

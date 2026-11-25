@@ -1,6 +1,6 @@
 ## Description:
 
-AI-powered financial data analysis covering financial statements, KPI tracking, market trends, data visualization, stock screening, and automated reporting.
+Provides methods and templates for financial statement analysis, KPI tracking, trend analysis, data visualization, and reporting for financial institutions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,44 +14,38 @@ MIT-0
 
 ## Use Case:
 
-Financial analysts, finance teams, and business users can analyze financial statements, KPIs, and market data, then create dashboards and reports. The skill also provides stock screening and technical-analysis frameworks with risk notes.
+Financial analysts and finance teams at licensed financial institutions use it to define metrics, check data quality, analyze operating variances, and plan dashboards and reports. It provides methodology and draft templates; it does not fetch data or provide investment advice.
 
 ### Deployment Geography for Use:
 
-Global
+China (Mainland)
 
 ## Known Risks and Mitigations:
 
-Risk: Broad Python, data-analysis, and SQL activation triggers may cause the skill to run for requests outside its intended finance-analysis scope.
+Risk: The security review had medium confidence because the Markdown skill was only partially inspected.
 
-Mitigation: Use finance-specific trigger phrases and review the skill's activation behavior in the intended agent environment.
+Mitigation: Review the skill details and referenced paths before installing, as advised by the security evidence.
 
-Risk: The security scan covered only one of two components, and the manifest issue and missing reference remain unresolved.
+Risk: Illustrative financial analysis methods or generated drafts could be mistaken for verified conclusions or formal advice.
 
-Mitigation: Review both release components and resolve the noted manifest and reference gaps before relying on the scan for deployment confidence.
-
-Risk: Stock screening and investment-analysis examples may produce misleading conclusions if market data is stale or incomplete.
-
-Mitigation: Check inputs against current, reliable market sources and present generated analysis as informational with clear uncertainty and risk notes.
+Mitigation: Have qualified business and finance reviewers check metric definitions, data provenance, and conclusions before applying them; do not use outputs as investment, audit, or regulatory advice.
 
 ## Reference(s):
 
-- [Source repository (server-resolved provenance)](https://github.com/gechengling/finance-data-analysis)
-- [ClawHub skill release](https://clawhub.ai/gechengling/skills/finance-data-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Code, Configuration instructions]
+**Output Type(s):** [Text, Markdown, Guidance, Code]
 
-**Output Format:** [Markdown reports, tables, dashboard specifications, and Python-style code examples]
+**Output Format:** [Markdown with analysis guidance, checklists, report and dashboard templates, and illustrative Python or SQL snippets]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Varies by request; may include financial ratios, trend summaries, screening criteria, recommendations, and risk notes.]
+**Other Properties Related to Output:** [Examples are educational and are not executed by the skill; outputs require human review before real-world use.]
 
 ## Skill Version(s):
 
-5.0.6 (source: server-resolved release)
+5.0.7 (source: frontmatter)
 
 ## Ethical Considerations:
 

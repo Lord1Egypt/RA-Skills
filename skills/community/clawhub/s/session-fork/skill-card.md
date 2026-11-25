@@ -1,6 +1,6 @@
 ## Description:
 
-Create an independent branch from a session's history so work can continue from an earlier point, while workspace files remain in their current state.
+Creates an independent branch of a work in progress by copying session context while leaving workspace artifacts in their current state.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Developers and agent users use the skill to branch an in-progress conversation or task and continue from a chosen point without changing the original session. Workspace files remain at their current state unless they have their own version history.
+Developers and AI agents use the skill to branch work in supported coding assistants, carry forward selected conversation context, and continue an alternate path independently. Workspace files remain in their current state unless managed separately with version control or backups.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: WorkBuddy repair mode may alter original conversations, including when used with --dry-run.
+Risk: Security scanning reports concerns that forking may lose or alter conversation history or affect original sessions; the scan was partial.
 
-Mitigation: Avoid WorkBuddy --fix, including with --dry-run, until its safeguards are corrected.
+Mitigation: Follow the scan guidance and avoid installation until the reported session-history and original-session integrity concerns are resolved.
 
-Risk: A copied session may omit referenced Codex history or malformed entries even when verification succeeds.
+Risk: A fork copies session context but does not restore workspace files or undo external actions, which can leave the branch context out of sync with current artifacts.
 
-Mitigation: Back up application session data independently, select an explicit source session ID, and inspect the copied history before resuming.
-
-Risk: Live application compatibility for this version remains unverified.
-
-Mitigation: Review this version before using it on important conversations.
+Mitigation: Check the working tree and preserve needed versions or backups before branching when artifacts must match the fork point.
 
 ## Reference(s):
 
-- [Session Fork English overview](https://github.com/yamingmou/session-fork-core/blob/main/README.en.md)
-- [Session Fork Chinese overview](https://github.com/yamingmou/session-fork-core/blob/main/README.md)
-- [Session Fork project repository](https://github.com/yamingmou/session-fork-core)
 - [ClawHub skill page](https://clawhub.ai/yamingmou/skills/session-fork)
+- [English usage overview](https://github.com/yamingmou/session-fork-core/blob/main/README.en.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Session branch, Text]
+**Output Type(s):** [Files, Guidance]
 
-**Output Format:** [A new session branch with a concise creation report]
+**Output Format:** [Forked session snapshot with a short status report]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [The branch copies session history through the selected cutoff; workspace files and external actions are not reverted.]
+**Other Properties Related to Output:** [Copies session context; workspace artifacts remain in their current state.]
 
 ## Skill Version(s):
 
-2.4.23 (source: SKILL.md frontmatter, server release evidence)
+2.4.24 (source: frontmatter, server-resolved release)
 
 ## Ethical Considerations:
 

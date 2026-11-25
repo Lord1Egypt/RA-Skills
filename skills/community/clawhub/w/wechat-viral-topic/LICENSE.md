@@ -1,22 +1,20 @@
-﻿MIT License
+> **许可声明（License notice · 2026-10-08 校正）**
+>
+> 本包为**纯文档与理论文本件**（无代码文件）。
+> 本包全部内容（`SKILL.md` / `README.md` / `ATTESTATION.md` 及其中**理论文本、方法论与一切理论表述**）
+> 整体**保留所有权利（All Rights Reserved）**，**不适用任何代码许可（含 MIT / Apache-2.0）**。
+>
+> 完整分层声明与权属统一块（《LGD 对外表述规范》§3.2）见本包 `SKILL.md` 文末「License & attribution」段。
 
-Copyright (c) 2026 SynomosAI
+---
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+All Rights Reserved
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Copyright (c) 2026 赵兴华 / Steven Zhao·China (ORCID 0009-0001-0512-1237)
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+未经权利人书面许可，不得复制、修改、分发、再发布或以任何形式利用本包全部或部分内容。
+No part of this package may be copied, modified, distributed, republished, or otherwise used
+without the prior written permission of the copyright holder.
 
+品牌状态 (name status)："SynomosAI" / "MedXpert" — 未申请实体注册、未申请商标注册
+(not a registered legal entity; no trademark registered)

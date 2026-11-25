@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""pdf-fonts-fixer · gate —— 一步式交付门禁（detect + verify 合体）
+"""pdf-font-fixer · gate —— 一步式交付门禁（detect + verify 合体）
 
 其它 skill 只需要记这一条命令：
 
@@ -28,10 +28,14 @@
 import argparse
 import json
 import os
+import subprocess
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+
+import _deps          # 持久依赖：环境重置后自动从持久目录补齐
+_deps.activate()
 
 import detect
 import verify
@@ -43,6 +47,8 @@ def main():
     ap.add_argument('--quiet', action='store_true')
     ap.add_argument('--json', action='store_true')
     ap.add_argument('--deep', action='store_true', help='detect 阶段加查 charset 错位')
+    ap.add_argument('--auto-fix', action='store_true',
+                    help='不通过时自动调 fix.py 产出「无损版 + 轮廓版」兜底；修出可用产物则退出 0')
     a = ap.parse_args()
 
     worst = 0
@@ -57,13 +63,26 @@ def main():
         v = verify.audit(p)
 
         if a.json:
+            st = d.get('struct') or {}
             payload.append(dict(path=p, detect_verdict=d['verdict'],
                                 verify_verdict=v['verdict'],
                                 bad_fonts=[f['basefont'] for f in d['bad']],
+                                struct_bad=[dict(font=i.get('font'), code=i['code'], msg=i['msg'])
+                                            for i in (st.get('bad') or [])],
+                                struct_issues=[dict(level=i['level'], code=i['code'], msg=i['msg'])
+                                               for i in (st.get('issues') or [])],
                                 cff_chars={k: ''.join(r['chars']) for k, r in v['fonts'].items()
                                            if r['kind'] != 'TrueType'},
                                 tofu={k: ''.join(c) for k, c in v['tofu'].items()}))
         else:
+            st = d.get('struct') or {}
+            # 缺依赖导致结构关没跑时必须显式说出来，否则会误判「通过」
+            if st.get('skipped'):
+                print('⚠️ %s' % st['skipped'], file=sys.stderr)
+                print('   → 字体字典结构关未执行：只验证了轮廓格式与逐字归属，'
+                      '「能显示却打不出来」的那类问题可能漏检。', file=sys.stderr)
+                if worst == 0:
+                    worst = 3        # 3 = 门禁未能完整执行（调用方告警放行，但不算通过）
             if not a.quiet:
                 print('\n文件：%s（%.2f MB，%d 页）' % (p, d['size_mb'], d['pages']))
                 for f in d['fonts']:
@@ -77,6 +96,14 @@ def main():
                     if rec['gid0']:
                         print('  ⚠️ %s 里有豆腐块：%s' % (fname, ''.join(rec['gid0'])))
 
+                st_issues = st.get('issues') or []
+                if st_issues:
+                    print('\n  字体字典结构：')
+                    for i in st_issues:
+                        icon = {'bad': '❌', 'warn': '⚠️', 'info': 'ℹ️'}[i['level']]
+                        owner = ('  ← %s' % i['font']) if i.get('font') else ''
+                        print('   %s %s%s' % (icon, i['msg'], owner))
+
             problems = []
             if d['bad']:
                 problems.append('%d 个风险字体' % len(d['bad']))
@@ -85,14 +112,35 @@ def main():
                 problems.append('%d 个字体承载的字符会被手机吃掉' % len(cff_chars))
             if v['tofu']:
                 problems.append('%d 个字体有豆腐块' % len(v['tofu']))
+            struct_bad = st.get('bad') or []
+            if struct_bad:
+                problems.append('%d 项字体字典结构异常（打印机会拒收）' % len(struct_bad))
 
             if problems:
                 print('\n❌ 门禁不通过：%s' % '；'.join(problems))
+                if struct_bad:
+                    print('   ⚠️ 结构类问题（Symbolic 伪符号字体等）：文件在电脑上显示正常，')
+                    print('      但佳能/惠普等打印机可能报「格式不受支持」——与图像大小无关。')
+                    print('      这类问题换字体重出最稳，或 fix.py 转轮廓（牺牲复制）。')
                 print('   → 先换 TrueType 字体重出；缺字用 fontkit to-ttf 造兜底字体挂到 font-family 链；')
                 print('     实在不行 fix.py（会牺牲复制能力，且必须告知用户）。')
                 worst = max(worst, 2)
+
+                if a.auto_fix:
+                    print('\n[auto-fix] 自动修复中（交付版写回原路径，原件另存为 xxx_原生.pdf）…')
+                    fixpy = os.path.join(HERE, 'fix.py')
+                    rc = subprocess.call([sys.executable, fixpy, p, '--replace'])
+                    if rc == 0:
+                        print('[auto-fix] 原路径已是可打印的交付版；需要复制文字时用 xxx_原生.pdf。')
+                        # 原路径已换成可用产物，允许流程继续
+                        worst = 0
+                    else:
+                        print('[auto-fix] 修复失败（rc=%d），必须人工处理。' % rc)
             else:
-                print('\n✅ 门禁通过：字体全是 TrueType，每个字都有归属字形。')
+                if st.get('skipped'):
+                    print('\n⚠️ 门禁不完整：轮廓格式与逐字归属通过，但字典结构关未能执行。')
+                else:
+                    print('\n✅ 门禁通过：字体轮廓为 TrueType、字典结构正常、每个字都有归属字形。')
 
     if a.json:
         print(json.dumps(payload if len(payload) > 1 else (payload[0] if payload else {}),

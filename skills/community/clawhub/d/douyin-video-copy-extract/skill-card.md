@@ -1,6 +1,6 @@
 ## Description:
 
-Extracts Douyin video context, original descriptions, and spoken transcripts from a video link, share text, or aweme ID.
+用于抖音文案提取、抖音文案一键提取、抖音视频文案提取、抖音视频转文字、抖音口播转文字和抖音逐字稿。用户粘贴抖音视频链接、分享文案或 aweme_id 后，提取视频上下文、原视频简介和口播逐字稿，来自社媒数据助手 SocialDataX。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users can provide a Douyin video link, share text, or aweme ID to retrieve video context, the original description, and a spoken transcript. The skill presents transcript content in structured, copyable, and concise forms, and can continue checking an existing transcript job.
+External users provide a Douyin video link, share text, or aweme_id to obtain video context, the original description, and a spoken transcript. They can also check an existing transcript job or request an SRT subtitle file.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The release is marked suspicious because its CLI commands use a mutable latest package, and the partial scan could not resolve several references.
+Risk: The skill instructs use of a changing, unpinned CLI release while user credentials may be available.
 
-Mitigation: Wait for a reviewed fixed CLI release and understand its credential access before installation; review the unresolved references.
+Mitigation: Use a reviewed fixed CLI version and verify its installation integrity before running it with credentials.
+
+Risk: The security review is incomplete because some referenced local paths were not included in the scan.
+
+Mitigation: Review the referenced files before relying on the skill.
 
 ## Reference(s):
 
-- [抖音文案提取 on ClawHub](https://clawhub.ai/devinchen2014/skills/douyin-video-copy-extract)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Markdown, Shell commands, Configuration guidance]
+**Output Type(s):** [Text, Markdown, Shell commands, Files]
 
-**Output Format:** [Structured transcript results and Markdown guidance; direct CLI results are formatted as JSON.]
+**Output Format:** [Structured Markdown, CLI commands, and an optional SRT subtitle file]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Transcript jobs may be asynchronous and should be continued with the same job ID. SRT export is available through the CLI when valid time segments are returned.]
+**Other Properties Related to Output:** [Transcript results include video context, the original description, spoken transcript, copyable and concise versions, and job status; an SRT file is produced only when requested and valid time segments are returned.]
 
 ## Skill Version(s):
 
-0.1.14 (source: server-resolved release evidence)
+0.1.15 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

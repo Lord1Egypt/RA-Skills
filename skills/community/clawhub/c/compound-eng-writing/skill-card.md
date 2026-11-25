@@ -1,6 +1,6 @@
 ## Description:
 
-Edits, rewrites, and humanizes prose for a natural tone, and audits drafts for AI writing patterns without rewriting them.
+Prose editing, rewriting, and humanizing text for natural tone, or auditing a draft for AI tells without rewriting. Use when asked to write, rewrite, edit, humanize, proofread, fix tone, remove AI language, or check whether writing reads as AI. For copy, docs, blog posts, emails, or PRs.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Writers and developers use this skill to draft, edit, proofread, or adjust the tone of copy, documentation, blog posts, emails, and pull requests. They can also request an audit of AI writing patterns without changing the draft.
+Writers, developers, and teams use this skill to edit, proofread, rewrite, or audit human-facing prose while preserving meaning, factual accuracy, and the writer’s voice. It can also identify possible AI-writing patterns without rewriting when requested.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review could not establish the deeper behavior of the bundled evaluation tool.
+Risk: The behavior of development and evaluation tools mentioned by the skill was not determined by the scan.
 
-Mitigation: Review the validation and evaluation commands and their scripts before running them, and confirm they fit your environment.
+Mitigation: Review those tools and decide whether their capabilities fit your use before installing.
 
 ## Reference(s):
 
-- [ClawHub release](https://clawhub.ai/iliaal/skills/compound-eng-writing)
-- [Audit workflow](artifact/references/audit-workflow.md)
-- [Editing and voice](artifact/references/editing-and-voice.md)
-- [Examples](artifact/references/examples.md)
-- [Language and patterns](artifact/references/language-and-patterns.md)
-- [Machine-parsed text](artifact/references/machine-parsed-text.md)
-- [Phrase catalog](artifact/references/phrases.md)
-- [PR descriptions](artifact/references/pr-descriptions.md)
-- [Publication surfaces](artifact/references/publication-surfaces.md)
+- [ia-writing on ClawHub](https://clawhub.ai/iliaal/skills/compound-eng-writing)
+- [Publisher profile: iliaal](https://clawhub.ai/user/iliaal)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Text, Markdown]
 
-**Output Format:** [Edited prose or a concise Markdown audit]
+**Output Format:** [Edited or rewritten prose, or a concise audit listing observed patterns and suggested fixes]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Preserves meaning, factual accuracy, and the writer's voice; audit mode reports observed patterns without rewriting.]
+**Other Properties Related to Output:** [Preserves meaning, factual accuracy, and the writer’s voice; audit-only mode does not rewrite the draft.]
 
 ## Skill Version(s):
 
-5.1.6 (source: server-resolved release metadata)
+5.1.7 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

@@ -15,6 +15,7 @@ function localDateStr() {
 }
 
 async function taskWrite(filename, content) {
+  if (process.env.TT_GUAIKEI_ENABLE_LOG !== "1") return;
   if (!filename || typeof filename !== "string") {
     utils.printError("日志文件名必须是非空字符串");
     return;
@@ -23,21 +24,19 @@ async function taskWrite(filename, content) {
     utils.printError("日志内容必须是非空字符串");
     return;
   }
-  let safeFilename = filename
+  let safeFilename = `${process.pid}_${filename}`
     .replace(/[\\/:*?"<>|]/g, "_")
     .replace(/\.\.+/g, "_")
-    .replace(/^\.+|\.+$/g, "")
-    .replace(/\s+$/g, "");
-  if (/^(con|prn|aux|nul|com[1-9]|lpt[1-9])$/i.test(safeFilename)) {
-    safeFilename = `_${safeFilename}`; // Windows 保留名
-  }
-
+    .replace(/^\.+|\.+$/g, "");
+  const ext = path.extname(safeFilename);
+  const stem = ext ? safeFilename.slice(0, -ext.length) : safeFilename;
   if (safeFilename.length > 200) {
-    safeFilename = safeFilename.slice(0, 200);
+    safeFilename = stem.slice(0, Math.max(1, 200 - ext.length)) + ext;
   }
   if (safeFilename === "") {
     safeFilename = `log_${Date.now()}`;
   }
+
   const outputDir = path.join(
     os.tmpdir(),
     "tiktok-guaikei",
@@ -47,8 +46,8 @@ async function taskWrite(filename, content) {
   const outputFilename = path.join(outputDir, safeFilename);
 
   try {
-    await fs.promises.mkdir(outputDir, { recursive: true });
-    await fs.promises.writeFile(outputFilename, content);
+    await fs.promises.mkdir(outputDir, { recursive: true, mode: 0o700 });
+    await fs.promises.writeFile(outputFilename, content, { mode: 0o600 });
     utils.printSuccess(`  → 已保存到 ${outputFilename}`);
   } catch (error) {
     utils.printError(`日志写入失败: ${error.message}`);

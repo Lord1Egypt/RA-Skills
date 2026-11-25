@@ -1,0 +1,84 @@
+/* 纸白 · 朱砂是可选的展示主题；项目本身不固定配色。
+   换主题变量后，还要核对 SVG 与内联样式里的颜色。 */
+
+:root {
+  --paper: #faf7f0;
+  --paper-2: #f3eee2;
+  --side: #efe9db;
+  --ink: #211e1b;
+  --ink-2: #4a443d;
+  --muted: #8a8275;
+  --rule: #ddd4c2;
+  --accent: #b5342a;
+  --accent-ink: #8e2820;
+  --gold: #a98342;
+  --bg: var(--paper);
+  --grid: var(--rule);
+  --accent-2: var(--gold);
+  --pale: var(--ink-2);
+}
+
+html,
+body,
+.deck-main {
+  background: #e6dfd0;
+}
+
+.deck-bar {
+  background: var(--side);
+}
+
+.deck.presenting .deck-main {
+  background: #000;
+}
+
+/* 以下为示例共用的课件组件；舞台、侧栏与缩略图的布局仍在 base.css。 */
+.hd { font-size: 14px; letter-spacing: 0.1em; color: var(--muted); }
+.hd b { font-weight: 400; color: var(--accent); }
+.hair { height: 1px; background: var(--rule); }
+.pageno { right: 56px; bottom: 34px; font-size: 13px; letter-spacing: 0.12em; color: var(--muted); }
+.h1 { margin: 0; font-size: 42px; font-weight: 400; line-height: 1.25; letter-spacing: 0.01em; }
+.h1 em { font-style: normal; color: var(--accent); }
+.h2 { margin: 0; font-size: 26px; font-weight: 400; line-height: 1.5; color: var(--ink-2); }
+.lead { margin: 0; font-size: 26px; line-height: 1.95; color: var(--ink-2); }
+.small { font-size: 17px; line-height: 1.75; color: var(--muted); }
+.kw { color: var(--accent); padding-bottom: 1px; box-shadow: inset 0 -0.42em 0 rgba(181,52,42,.11); }
+.point { margin: 0 0 16px; padding-left: 26px; font-size: 23px; line-height: 1.6; color: var(--ink-2); }
+.point::before { content: ""; position: absolute; left: 0; top: .72em; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+.eq { font-size: 26px; line-height: 1.5; }
+.eq .katex-display { margin: 0; }
+.eq-n { font-size: 18px; color: var(--muted); letter-spacing: .04em; white-space: nowrap; }
+.op { font-size: 15px; color: var(--accent); letter-spacing: .06em; }
+.op::before { content: ""; display: inline-block; width: 14px; height: 1px; margin: 0 8px 4px 0; background: var(--accent); }
+.panel { background: rgba(255,255,255,.5); border: 1px solid var(--rule); padding: 26px 30px; }
+.card { border: 1px solid var(--rule); background: rgba(255,255,255,.55); padding: 20px 24px; }
+.card-h { font-size: 16px; letter-spacing: .08em; color: var(--accent); margin: 0 0 12px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; border: 1px solid var(--rule); background: rgba(255,255,255,.6); color: var(--ink-2); font: inherit; font-size: 17px; cursor: pointer; transition: border-color .15s, color .15s; }
+.btn:hover,
+.btn.on { border-color: var(--accent); color: var(--accent); }
+.fig-wrap { position: absolute; }
+.fig-wrap svg { display: block; overflow: visible; }
+.flabel { position: absolute; transform: translate(-50%,-50%); font-size: 20px; line-height: 1; color: var(--ink); white-space: nowrap; }
+.flabel.accent { color: var(--accent); }
+.flabel.small { font-size: 16px; color: var(--muted); }
+.cover-num { font-size: 30px; letter-spacing: .22em; color: var(--accent); }
+.cover-title { margin: 0; font-size: 88px; font-weight: 400; line-height: 1.15; letter-spacing: .02em; }
+.row { display: flex; align-items: baseline; gap: 18px; width: 1168px; }
+.row .eq { flex: 1; font-size: 28px; }
+.row .op { margin-left: auto; text-align: right; white-space: nowrap; }
+.standard { display: flex; align-items: baseline; gap: 14px; }
+.standard .cond { font-size: 20px; color: var(--muted); }
+.thanks { inset: 0; display: flex; align-items: center; justify-content: center; font-size: 220px; letter-spacing: .16em; color: var(--ink); }
+.bigread { color: var(--accent); font-variant-numeric: tabular-nums; }
+.readline { font-size: 26px; color: var(--ink); }
+.stepbox { border: 1px solid var(--rule); background: rgba(255,255,255,.5); padding: 16px; }
+.stepbox svg { display: block; width: 100%; height: 100%; }
+.step-tag { position: absolute; left: 12px; top: 7px; font-size: 15px; font-variant-numeric: tabular-nums; color: var(--accent); letter-spacing: .04em; }
+.flow svg { display: block; width: 100%; height: auto; }
+.photo { border: 1px solid var(--rule); background: #fff; padding: 8px; }
+.photo-img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* 保留给只显示舞台的出图入口。 */
+.deck.shot { display: block; }
+.deck.shot .deck-side,
+.deck.shot .deck-bar { display: none; }

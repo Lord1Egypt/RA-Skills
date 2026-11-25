@@ -1,0 +1,87 @@
+/* UI Foundry web foundation. Scope with .uf-ui; replace semantic tokens for brand. */
+.uf-ui {
+  --uf-canvas: #f7f8fa;
+  --uf-surface: #ffffff;
+  --uf-surface-raised: #ffffff;
+  --uf-text: #17202a;
+  --uf-muted: #59697d;
+  --uf-border: #d9e0e8;
+  --uf-accent: #2563eb;
+  --uf-accent-strong: #1d4ed8;
+  --uf-success: #15803d;
+  --uf-warning: #b45309;
+  --uf-danger: #b91c1c;
+  --uf-focus: #2563eb;
+  --uf-radius: 8px;
+  --uf-shadow: 0 8px 24px rgb(23 32 42 / 10%);
+  --uf-font: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+  --uf-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --uf-space-1: 4px;
+  --uf-space-2: 8px;
+  --uf-space-3: 12px;
+  --uf-space-4: 16px;
+  --uf-space-5: 24px;
+  --uf-space-6: 32px;
+  color: var(--uf-text);
+  background: var(--uf-canvas);
+  font: 400 16px/1.55 var(--uf-font);
+}
+
+.uf-ui *, .uf-ui *::before, .uf-ui *::after { box-sizing: border-box; }
+.uf-ui :where(button, input, select, textarea) { font: inherit; }
+.uf-ui :where(button, [role="button"], a, input, select, textarea, summary):focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--uf-focus) 70%, transparent);
+  outline-offset: 2px;
+}
+.uf-ui :where(button, [role="button"], a) { -webkit-tap-highlight-color: transparent; }
+
+.uf-page { min-block-size: 100%; padding: var(--uf-space-5); }
+.uf-workspace { display: grid; grid-template-columns: minmax(220px, 288px) minmax(0, 1fr); gap: var(--uf-space-4); }
+.uf-workspace--inspector { grid-template-columns: minmax(220px, 288px) minmax(0, 1fr) minmax(0, 336px); }
+.uf-main { min-inline-size: 0; max-inline-size: 900px; }
+.uf-sidebar, .uf-inspector, .uf-surface { background: var(--uf-surface); border: 1px solid var(--uf-border); border-radius: var(--uf-radius); }
+.uf-sidebar, .uf-inspector { padding: var(--uf-space-3); }
+.uf-surface { padding: var(--uf-space-5); }
+.uf-toolbar { display: flex; align-items: center; justify-content: space-between; gap: var(--uf-space-3); min-block-size: 44px; }
+.uf-stack { display: grid; gap: var(--uf-space-4); }
+.uf-cluster { display: flex; flex-wrap: wrap; align-items: center; gap: var(--uf-space-2); }
+.uf-title { margin: 0; font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem); line-height: 1.2; letter-spacing: -0.01em; }
+.uf-muted { color: var(--uf-muted); }
+.uf-mono { font-family: var(--uf-mono); }
+
+.uf-ui :where(input:not([type="checkbox"]):not([type="radio"]), select, textarea) { inline-size: 100%; min-block-size: 44px; padding: 10px 12px; color: var(--uf-text); background: var(--uf-surface); border: 1px solid var(--uf-border); border-radius: 6px; }
+.uf-ui :where(input[type="checkbox"], input[type="radio"]) { inline-size: 18px; block-size: 18px; margin: 0; accent-color: var(--uf-accent); }
+.uf-ui textarea { min-block-size: 112px; resize: vertical; }
+.uf-ui :where(input, select, textarea):hover { border-color: color-mix(in srgb, var(--uf-border), var(--uf-text) 28%); }
+.uf-ui :where(input, select, textarea)[aria-invalid="true"] { border-color: var(--uf-danger); }
+.uf-field-error { color: var(--uf-danger); font-size: 0.875rem; }
+.uf-ui :where(input, select, textarea):disabled, .uf-is-disabled { color: color-mix(in srgb, var(--uf-muted), var(--uf-surface) 25%); background: color-mix(in srgb, var(--uf-surface), var(--uf-canvas) 45%); border-color: color-mix(in srgb, var(--uf-border), transparent 35%); cursor: not-allowed; opacity: 1; }
+
+.uf-button { display: inline-flex; align-items: center; justify-content: center; gap: var(--uf-space-2); min-block-size: 44px; padding: 0 16px; color: var(--uf-text); background: var(--uf-surface); border: 1px solid var(--uf-border); border-radius: 6px; cursor: pointer; transition: background-color 150ms ease, border-color 150ms ease, transform 150ms ease; }
+.uf-button:hover { background: color-mix(in srgb, var(--uf-surface), var(--uf-canvas) 60%); }
+.uf-button:active { transform: translateY(1px); }
+.uf-button--primary { color: #fff; background: var(--uf-accent); border-color: var(--uf-accent); }
+.uf-button--primary:hover { background: var(--uf-accent-strong); border-color: var(--uf-accent-strong); }
+.uf-button:disabled { color: color-mix(in srgb, var(--uf-muted), #fff 25%); background: color-mix(in srgb, var(--uf-border), var(--uf-surface) 45%); border-color: transparent; cursor: not-allowed; transform: none; }
+
+.uf-status { display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem; color: var(--uf-muted); }
+.uf-status--success { color: var(--uf-success); }
+.uf-status--warning { color: var(--uf-warning); }
+.uf-status--danger { color: var(--uf-danger); }
+.uf-savebar { position: sticky; inset-block-end: var(--uf-space-4); display: flex; justify-content: space-between; align-items: center; gap: var(--uf-space-3); padding: var(--uf-space-3); background: var(--uf-surface-raised); border: 1px solid var(--uf-border); border-radius: var(--uf-radius); box-shadow: var(--uf-shadow); }
+
+@media (prefers-color-scheme: dark) {
+  .uf-ui { --uf-canvas: #101418; --uf-surface: #182027; --uf-surface-raised: #202a33; --uf-text: #f1f5f9; --uf-muted: #a8b4c2; --uf-border: #344250; --uf-accent: #60a5fa; --uf-accent-strong: #93c5fd; --uf-success: #4ade80; --uf-warning: #fbbf24; --uf-danger: #fca5a5; --uf-focus: #93c5fd; --uf-shadow: 0 8px 24px rgb(0 0 0 / 28%); }
+  .uf-button--primary { color: #101418; }
+}
+
+@media (max-width: 900px) {
+  .uf-page { padding: var(--uf-space-4); }
+  .uf-workspace { grid-template-columns: 1fr; }
+  .uf-sidebar, .uf-inspector { max-inline-size: none; }
+  .uf-main { max-inline-size: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .uf-ui *, .uf-ui *::before, .uf-ui *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}

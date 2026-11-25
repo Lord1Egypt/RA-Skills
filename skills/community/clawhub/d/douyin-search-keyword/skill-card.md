@@ -1,6 +1,6 @@
 ## Description:
 
-抖音公开数据只读：关键词搜视频/图文、用户/达人搜索、博主作品、作品详情、评论、热榜；可做公域获客/竞品截流（search→comment）与需求挖掘。
+在抖音公开内容中搜索关键词和用户、查看作品与评论及热榜，并输出结构化 JSON，支持选题、竞品分析、舆情和需求研究。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Short video operators, marketers, and analysts use this skill to search and inspect public Douyin videos, accounts, comments, and trends, then analyze competitors, audience sentiment, demand, and content opportunities.
+内容运营、品牌和研究人员可用此技能搜索抖音公开视频与创作者，查看作品详情、评论和热榜，以支持选题、竞品分析、舆情跟踪及需求研究。
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search terms and Douyin links or IDs are sent to guaikei.com when requests run; users may not expect this third-party data transfer.
+Risk: Search terms and supplied Douyin links or IDs are sent to guaikei.com to retrieve results.
 
-Mitigation: Explain the transfer before running a query, send only the public keyword or link needed for the requested lookup, and keep the API token private.
+Mitigation: Use public content identifiers and non-sensitive search terms; avoid sending confidential or personal information.
+
+Risk: ClawScan reports a benign verdict with medium confidence because some components were only partly inspected.
+
+Mitigation: Review the skill and its scripts before installation if the scan's stated uncertainty is not acceptable for your use.
 
 ## Reference(s):
 
-- [Douyin data service and token support](https://www.guaikei.com)
-- [Publisher profile: um-why](https://clawhub.ai/user/um-why)
-- [Demand mining guide](artifact/references/demand-mining.md)
-- [Customer acquisition guide](artifact/references/customer-acquisition.md)
+- [Guaikei 服务](https://www.guaikei.com)
+- [ClawHub 发布页](https://clawhub.ai/um-why/skills/douyin-search-keyword)
+- [Response contract](references/contract.md)
+- [Demand mining guidance](references/demand-mining.md)
+- [Customer acquisition guidance](references/customer-acquisition.md)
+- [Error handling](references/errors.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis, Guidance]
+**Output Type(s):** [JSON]
 
-**Output Format:** [Structured JSON records with concise analytical guidance]
+**Output Format:** [Structured JSON response envelope]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results are written as JSON to stdout and saved under logs/ for supported queries; live hot-list results are not saved.]
+**Other Properties Related to Output:** [Results are not saved to disk by default.]
 
 ## Skill Version(s):
 
-1.5.0 (source: server-resolved release evidence, skill frontmatter, package.json)
+1.5.2 (source: frontmatter, package.json)
 
 ## Ethical Considerations:
 

@@ -4,7 +4,7 @@ This module is unofficial and not affiliated with Twelve Data.
 
 ## Requirements
 
-- Go 1.26.10 or newer, per the module's `go.mod`.
+- Go 1.26.11 or newer, per the module's `go.mod`.
 - A Twelve Data API key exported as `TWELVEDATA_API_KEY`.
 - A plan and data permissions that cover the requested instruments and endpoints.
 

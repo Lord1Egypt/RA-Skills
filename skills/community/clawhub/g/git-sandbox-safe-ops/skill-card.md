@@ -1,6 +1,6 @@
 ## Description:
 
-指导开发者在 WorkBuddy 沙箱中安全执行 Git fetch、push 和仓库恢复，并排查引用丢失、推送被拒等问题。
+Guides Git fetch, push, reset, and repository recovery in WorkBuddy sandboxes.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-开发者在受限的 WorkBuddy 沙箱中排查 Git 仓库和远端同步问题，恢复丢失的仓库元数据，并核对推送结果。
+Developers using WorkBuddy sandboxes can diagnose Git failures and recover repositories while preserving local work and checking remote state.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The guidance encourages agents to inspect and reuse stored GitHub credentials without asking first.
+Risk: The security assessment flags credential exposure and publishing-data concerns in the skill's guidance.
 
-Mitigation: Require explicit approval before accessing tokens, environment secrets, or SSH keys; prefer interactive login or scoped credentials for the specific repository.
+Mitigation: Review authentication steps before use, keep tokens out of terminal output and logs, and remove any token-bearing remote URL immediately after use.
 
-Risk: Git recovery steps can change repository state, remote URLs, Git configuration, or persistent PATH settings.
+Risk: Authorization workarounds and repository repair steps could conceal differences between local and remote content.
 
-Mitigation: Review the target repository and proposed changes, preserve important work, and obtain approval before persistent configuration changes or pushes.
+Mitigation: Confirm the repository and authorization context, inspect local and remote diffs before reset or restore, and verify the resulting remote commit.
+
+Risk: The security scan had partial coverage, including unresolved references and a bundled image outside analyzer scope.
+
+Mitigation: Review the complete skill content and referenced material before installation, consistent with the security guidance.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/oracis/skills/git-sandbox-safe-ops)
-- [ClawHub publisher profile](https://clawhub.ai/user/oracis)
+- [ClawHub skill page](https://clawhub.ai/oracis/skills/git-sandbox-safe-ops)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
 
-**Output Format:** [Markdown guidance with shell commands]
+**Output Format:** [Markdown with shell and Python code blocks and tables]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Repository-specific steps require review before execution.]
+**Other Properties Related to Output:** [Includes diagnostic steps and repository recovery commands that may change Git state.]
 
 ## Skill Version(s):
 
-1.0.0 (source: release metadata and skill frontmatter)
+1.0.2 (source: server-resolved release and frontmatter)
 
 ## Ethical Considerations:
 

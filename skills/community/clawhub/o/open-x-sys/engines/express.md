@@ -1,13 +1,13 @@
 # Express: from understanding to a deliverable
 
 > **When to read**: the understanding can be stated clearly and it is time to make something; the person asks for a kind of result ("turn it into a video", "write it up", "give me a plan"); or a later message means the existing deliverable no longer serves.
-> Details of the signature, forms, libraries, the share pack and the quality pass are in `display/`.
+> Details of identity cues, forms, libraries, sharing, and the quality pass are in `../experience/display/`.
 
-A deliverable is the moment understanding actually reaches the person. The same insight makes people nod when it is expressed plainly, and makes them remember it, pass it on and want to go further when it is expressed well. The understanding can be deep. The deliverable must be easy to enter.
+A work is the moment understanding actually reaches the person. The same insight makes people nod when it is expressed plainly, and makes them remember it, pass it on, and want to go further when it is expressed well. Understanding can be deep; a work lets people enter it.
 
-## Thesis, then structure, then form
+## Let thesis, structure, and form interlock
 
-The order cannot be reversed. Choosing a form first and then finding content for it is how control panels get made.
+Begin from the central thesis, organize the reader's path to it, then let form turn that structure into experience. During creation, all three can correct one another, while every visual and interactive choice remains traceable to the understanding it serves.
 
 - **Thesis**: the one thing this deliverable makes people see. One sentence, able to change a view, supported by real research. In a deliverable it appears as the **reveal**: "you think … → actually …". If you cannot write it, go back to `engines/understand.md`.
 - **Structure**: the path from where the reader stands to that one thing. It opens with a reason to keep going: an odd fact, an intuition about to be overturned, a concrete scene. The middle uncovers one layer at a time, each answering the question the last one left. The end returns to the essence, and the reader leaves with a new way of seeing.
@@ -17,19 +17,19 @@ The order cannot be reversed. Choosing a form first and then finding content for
 
 Of ten structures in the system, the deliverable shows the one or two most likely to make someone say "so that is how it works". The others are not wasted. They stay in the system as the answers to the next questions and the source of the next choices.
 
-Easy to enter does not mean reduced to common knowledge. It means the reader does not need your concepts to see the structure you saw, and afterwards has a way of looking that also works on other things.
+Easy to enter means the reader can begin from their own concepts, see the deep structure the system found, and leave with a way of looking that also works on other things.
 
 **Start from what the person already understands.** Use their concepts and things familiar to them. The same understanding for a beginner and for an insider is two different deliverables.
 
-## What is fixed, and what is not
+## The core and freedom of a work
 
-Seven signature elements appear on every deliverable: the Ding line, the method label, the one-line essence as the headline, the reveal designed as a moment, the route strip, the provenance strip, and two to four next prompts (see `display/signature.md`). They make a deliverable recognizable and honest.
+Essence, revelation, and trustworthy grounds hold a research work together. An activation mark, method label, route strip, provenance treatment, and continuation prompts can make it easier to understand, learn from, and share; use the elements the subject and user actually need (see `../experience/display/signature.md`).
 
-Everything else is native to the subject: typeface, color, rhythm, layout, the voice of the narration. Ask: does this look like something made for another subject? If so, which parts are that way only because it was easier? There is no general template and no default layout.
+Typeface, color, rhythm, layout, and narrative voice all grow from the subject. Ask which parts truly belong to this subject and how the central discovery can receive a form worthy of it.
 
 ## Form follows the need
 
-First ask what the reader needs to do in their head. The table is a prompt for judgment, not a lookup.
+First ask what the reader needs to do in their mind. The forms below open creative possibilities; the system can combine, reshape, or invent beyond them.
 
 | The reader needs to … | Forms that can serve |
 |---|---|
@@ -48,7 +48,7 @@ A deliverable can mix forms, with one of them as the body. A simple request does
 
 ## Media at full power
 
-When a video, an animation or a deck would serve the need, and its dependency is ready, make it. Do not offer it and wait. When the dependency is missing, deliver the page and the static card, and say once what the missing runtime would add (see `deps/DEPENDENCIES.md`). Tier 0, a single self-contained page, must be astonishing on its own; the other tiers add reach, they do not rescue a weak page.
+When video, animation, or a deck serves the need and the present host genuinely has the capability, make it. When that capability is absent, complete a self-contained expression with what is actually available: a single-file webpage, static card, complete storyboard, or document fitted to the reader. State the form truly delivered and carry the central discovery all the way to the person (see `../adapters/tools.md`).
 
 ## Two tests
 
@@ -57,7 +57,7 @@ When a video, an animation or a deck would serve the need, and its dependency is
 
 ## Bringing exploration back to the conversation
 
-A deliverable is not an end point. The directions worth taking next are attached as prompts ready to send: one click back into the conversation where the host supports it, one click to copy otherwise. They come from real gaps and connections in the system (see `engines/explore.md`), not to fill a quota.
+A work can become the entry to the next run. Directions worth following grow from real gaps and connections; they can return directly to conversation, copy as questions, or enter another work or capability (see `engines/explore.md`).
 
 ## Professional standard
 
@@ -66,11 +66,11 @@ A deliverable is not an end point. The directions worth taking next are attached
 - **Independent**: it opens and can be shared on its own, without this conversation and without your environment.
 - Articles, reports, code, scripts and storyboards, decks and plans are held to the same bar: finished to the standard a professional would sign. A host that can only output text loses the form, not the information.
 
-Render the work and look at it, including at phone width. Where the host allows, have an expert critic review it. Revise at least once. The full pass is in `display/quality.md`.
+Render the work and look at it, including at phone width. Where the host allows, have an expert critic review it. Revise at least once. The full pass is in `../experience/display/quality.md`.
 
 ## When the person asks for a kind of result
 
-"Turn this research into a video" is not a new task. The system has grown a new form of expression. Use the understanding, practices and connections that already exist. If you do not know how professionals make this kind of thing, find out (see `engines/practice.md`), then make it for this person's conditions, audience and taste. Every key claim in the result still traces back to the understanding and its sources.
+“Turn this research into a video” lets the system grow a new form of expression. Use the understanding, practices, and connections already present. When the medium needs a capability the system lacks, research and build it (see `engines/build.md`), then create for this person's conditions, audience, and taste. Every decisive claim in the result still traces to the understanding and its sources.
 
 ## Where a deliverable lives, and how it changes
 
@@ -81,4 +81,4 @@ Render the work and look at it, including at phone width. Where the host allows,
 ## What this engine reads and writes in the person's system
 
 - **Reads**: the subject's understanding (the thesis comes from here); the second record and the preferred way of being addressed in the root system (where to start, in what voice); existing practices (how this kind of thing was made last time).
-- **Writes**: the system keeps understanding and points to deliverables. Record in the entry where the deliverable is and what it shows. Ways of working that proved effective while making it go to `engines/practice.md` and `engines/evolve.md` to become practice records.
+- **Writes**: the system keeps understanding and points to works. Record in the entry where a work lives and what it reveals. Ways of working that prove effective while making it go to `engines/build.md` and `engines/evolve.md` to become practice records.

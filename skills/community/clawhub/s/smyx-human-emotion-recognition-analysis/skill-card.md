@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes frontal-face images and videos to classify emotional expressions, estimate intensity, flag anomalies, and provide analysis reports.
+Uses visual AI on frontal faces to recognize happiness, sadness, depression, calmness, anger, surprise, and fear in real time, with emotion intensity scoring and abnormal-emotion flags for human-computer interaction and mental health monitoring.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers can submit face images or videos for emotion classifications, intensity estimates, anomaly flags, and report lookup. The skill describes its results as informational and not a substitute for professional mental health assessment.
+People building human-computer interaction or monitoring workflows can submit facial images or videos to receive emotion labels, intensity scores, anomaly flags, and trend summaries. The results are for reference and do not replace professional psychological assessment or diagnosis.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment flags sensitive media processing whose purpose and limits are not clearly disclosed.
+Risk: The security evidence flags remote media processing and credential use with unrestricted URLs.
 
-Mitigation: Obtain consent and verify the media upload destination and handling before submitting face images or videos.
+Mitigation: Submit only media URLs and destinations you trust; review the service's URL handling before sending sensitive content.
 
-Risk: The security assessment flags credential handling and persistent account, identity, and token data.
+Risk: The security evidence flags automatic account handling and storage of user data and tokens.
 
-Mitigation: Restrict where credentials may be sent and understand the account registration and data storage behavior before use. The assessment was partial, so some evidence may be incomplete.
+Mitigation: Review account, token, and report storage behavior before use; avoid sensitive media if retention is unclear.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-human-emotion-recognition-analysis)
-- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub skill release](https://clawhub.ai/18072937735/skills/smyx-human-emotion-recognition-analysis)
+- [Skill demo](https://lifeemergence.com/sample.html)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Markdown]
+**Output Type(s):** [Analysis, JSON, Text, Markdown, Files]
 
-**Output Format:** [Structured JSON analysis reports and Markdown report tables]
+**Output Format:** [Structured JSON or text analysis reports; Markdown tables for report lists, with optional saved output files.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results may include emotion classifications, intensity scores, anomaly flags, and report links; the skill says its results do not replace professional psychological consultation or diagnosis.]
+**Other Properties Related to Output:** [Reports may include emotion labels, intensity scores, anomaly flags, trends, and report links.]
 
 ## Skill Version(s):
 
-1.0.19 (source: server-resolved release)
+1.0.20 (source: server-resolved release metadata; artifact frontmatter states 1.0.25)
 
 ## Ethical Considerations:
 

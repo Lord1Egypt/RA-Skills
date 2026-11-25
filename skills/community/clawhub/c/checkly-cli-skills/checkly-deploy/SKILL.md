@@ -5,405 +5,159 @@ description: Deploy Checkly checks to production with npx checkly deploy, includ
 
 # checkly deploy
 
-Deploy checks to Checkly cloud with `npx checkly deploy`.
+Deploy project definitions to Checkly with a reviewed, property-level plan. These commands contact Checkly; `validate` checks configuration but is not a deploy preview.
 
-## Quick start
+## Review and apply
+
+Validation can stop planning: a `SlackAppAlertChannel` with destinations requires a connected Checkly Slack app when the account API reports its state. This includes channels deployed before disconnection; connect the app or remove the channel. Remove retired `me-south-1` from checks, monitors, groups, `checks.locations` and `cli.runLocation`. These checks also apply to `validate`, `test` and `pw-test`.
+
+Checks and monitors send their default degraded/max limits explicitly, matching existing backend defaults rather than changing unset deployed limits. Review any baseline or payload-format changes in the plan; ICMP and traceroute validation compares explicit values with effective defaults (see `checkly-monitors`).
 
 ```bash
-# Deploy with confirmation prompt
-npx checkly deploy
-
-# Force deploy (skip prompt)
-npx checkly deploy --force
-
-# Keep removed code resources in Checkly instead of deleting run history
-npx checkly deploy --preserve-resources
-
-# Preview changes without deploying
 npx checkly validate
 npx checkly deploy --preview
-
-# Destroy the deployed project resources when intentionally decommissioning
-npx checkly destroy --force
+# Machine-readable plan (does not deploy)
+npx checkly deploy --dry-run > deploy-plan.json
+# Apply a reviewed plan using the token returned by the preview
+npx checkly deploy --plan-token <plan-token>
 ```
 
-## How deployment works
+These are command examples, not captured terminal output. A preview or dry run uploads neither code bundles nor Playwright snapshots. An ordinary deploy parses, validates and bundles locally, requests a plan, asks for confirmation, then uploads and applies that plan. The plan marks `+` creates, `~` updates, `-` deletes and `=` baseline writes, and shows property and script diffs without revealing secrets.
 
-`npx checkly deploy`:
-1. ✅ Parses your project
-2. ✅ Validates all checks
-3. ✅ Bundles code and dependencies
-4. ✅ Shows preview of changes
-5. ⚠️  Asks for confirmation
-6. ✅ Creates/updates resources in Checkly cloud
-7. ✅ Schedules checks to run continuously
+Planning is on by default. Unchanged resources are not written. If the account changes between planning and applying, the CLI refuses the stale plan. An unpinned `--force` run can make a new plan and retry; a run pinned with `--plan-token` stops instead. Preview again and review the new changes before retrying.
 
-## Command reference
+The first planned deploy, including the first after `--no-plan`, writes existing resources once to establish a baseline. Identical resources show `=` and count under “to set a baseline”; changed resources show `~`. Payload changes can also produce updates with the note `payload format changed (CLI upgrade)`. Review resets carefully.
+
+A plan with nothing to apply exits 0 without confirmation, including in CI/agent mode without `--force`. It prints `No changes.` and ends with `Project "<name>" is up to date.` It still records deployment state and renews the comparison baseline. Explicit scheduling with scope `all` can run unchanged checks subject to frequency/threshold filters.
+
+## Confirmation and output
+
+In a terminal, the plan and `Apply these changes?` prompt go to stderr. In CI or agent mode, a deploy that needs approval returns exit **3** with `status: "confirmation_required"`, planned changes and a `confirmCommand` pinned to the plan token when available. Present the changes and run that command verbatim after authorization. Exit **2** means invalid flags or arguments; **1** means failure. Do not treat exit 3 as success or retry it blindly with `--force`.
+
+`--force` skips confirmation; it does not disable planning or bypass a supplied plan token. Use it for already authorized automation. Final results go to stdout; progress, warnings, hints, errors and interactive plans/prompts go to stderr. `--dry-run` emits a JSON envelope on stdout: `status: "dry_run"`, `changes`, `confirmCommand`, and (when planned) `preview: { planToken, diff }`. An unplanned fallback has no `preview` object. `--preview` emits a human-readable plan and a command to apply the token later.
+
+## Options
+
+| Flag | Contract |
+|---|---|
+| `--preview`, `-p` | Show changes without applying them. |
+| `--dry-run` | Print a JSON preview without deploying. |
+| `--plan` / `--no-plan` | Planning defaults on. Opting out writes every resource. |
+| `--plan-token` | Require the supplied plan token to match; unavailable with `--no-plan`. |
+| `--fail-on-drift` / `--no-fail-on-drift` | Refuse overwriting changes made in Checkly since the previous planned deploy. |
+| `--prune-unmanaged-relations` | Delete externally added alert subscriptions/private-location assignments; requires planning. |
+| `--preserve-resources` | Detach resources removed from code, preserving resources and run history for UI management. |
+| `--force`, `-f` | Skip confirmation in authorized automation. |
+| `--output`, `-o` | Show changes after deployment; a boolean, not an output-format selector. |
+| `--verbose`, `-v` | Include resource names and IDs. |
+| `--config`, `-c` | Select the project configuration. |
+| `--verify-runtime-dependencies` / `--no-verify-runtime-dependencies` | Runtime dependency validation defaults on. |
+| `--cancel-in-progress-deployment` | Intentionally supersede an in-progress deployment instead of waiting. |
+
+Migration warning: `--prune-relations` was renamed to `--prune-unmanaged-relations`. Without pruning, unmanaged subscriptions and assignments are kept and listed in the plan.
+
+If planning is unavailable, ordinary deploys may fall back with a warning. `--plan-token`, relation pruning and drift protection require a plan and fail rather than silently dropping that protection.
+
+## Drift protection and writing web changes into code
 
 ```bash
-npx checkly deploy [options]
+# For an authorized pipeline: protect web edits and preserve removed resources/history
+npx checkly deploy --force --fail-on-drift --preserve-resources
+# Review drift without applying
+npx checkly deploy --preview --fail-on-drift
 ```
 
-### Options
+`--fail-on-drift` exits 1 and writes nothing if the deploy would overwrite externally edited or deleted resources. `CHECKLY_FAIL_ON_DRIFT=1` enables it across a pipeline; `--no-fail-on-drift` overrides the environment. It cannot be used with `--no-plan`. `--preview` prints the plan before failing on drift; `--dry-run` ignores this guard and reports changes in JSON. Baseline-only writes have no previous baseline to compare, so produce a warning instead.
 
-| Flag | Description |
-|------|-------------|
-| `--force, -f` | Skip confirmation prompt |
-| `--preserve-resources` | Detach resources removed from code, keeping them and their run history in Checkly for UI management instead of deleting them |
-| `--verbose, -v` | Show created/updated resource names and IDs during deploy output |
-| `--cancel-in-progress-deployment` | If a deployment for this project is already in progress, cancel it instead of waiting for it to finish |
-| `--config=<path>` | Path to checkly.config.ts |
-| `--verify-runtime-dependencies` | Validate npm package compatibility |
+When web edits can be represented in code, the interactive prompt offers **Update my code with the changes made in Checkly**. This edits construct files in place, preserves style and emits helpers such as `Frequency`, `RetryStrategyBuilder` and `AssertionBuilder`. It then stops without deploying. Review `git diff` before another deploy. References, secrets and computed values that cannot be safely rewritten are listed for manual migration; a write-back error may leave some files updated, so review them even on failure.
 
-### Destroy options
+## Properties owned by the deployment
+
+The following properties have explicit omission resets. Dashboard resets apply only to the listed text properties; other omitted Dashboard properties preserve stored values, including web-only edits. Put intended settings into code before applying the plan.
+
+| Resource | Defaults when omitted |
+|---|---|
+| API, browser, multistep checks and `CheckGroupV1` | `retryStrategy`: one immediate retry in another region. |
+| Monitors and `PlaywrightCheck` | No CLI retries; Playwright handles its own retries. |
+| Checks | Empty `description` and `intent`; `aiAutoRepairEnabled` follows the account setting. |
+| Alert channels | `sendRecovery: true`, `sendFailure: true`, `sendDegraded: false`, `sslExpiry: false`, `sslExpiryThreshold: 30`. |
+| `PrivateLocation` | No `proxyUrl`. |
+| `Dashboard` | Only the text properties are cleared: `logo` and `header` to `''`; `customUrl`, `customDomain`, `favicon`, `link`, `description` to `null`. All other omitted Dashboard properties preserve stored values (web edits included): tags, layout, refresh/pagination, display/privacy booleans and custom CSS. Set intended values explicitly. [Immutable synthesis and bundle sources](https://github.com/checkly/checkly-cli/tree/34833c407768368d6ce64c759a979aec029b732f/packages/cli/src/constructs). |
+| `MaintenanceWindow` | `timezone: 'UTC'`, no `repeatEndsAt`; changing timezone while active fails until it ends. |
+
+Removing `group` from a `PlaywrightCheck` also removes the deployed group membership. See `checkly-constructs` for removed-property migration and `shouldFail` restrictions.
+
+## Immediate scheduling is opt-in
+
+Deploying configures ongoing monitoring according to each check's schedule, but does not trigger an immediate run by default.
+
+| Flag | Meaning |
+|---|---|
+| `--schedule-on-deploy` / `--no-schedule-on-deploy` | Enable immediate post-deploy runs; default off. |
+| `--schedule-on-deploy-scope=changed\|all` | Default `changed`: created/updated checks only. `all` includes unchanged checks. |
+| `--schedule-on-deploy-threshold=<n\|auto>` | Schedule none if the eligible count exceeds the threshold. Heartbeats do not count. `auto` currently selects 500; server cap 2000. |
+| `--schedule-on-deploy-min-frequency=<n\|auto>` | Skip checks running more frequently than this many minutes. `0` includes every frequency; `auto` currently selects 10. |
+
+Threshold and minimum-frequency values must be non-negative whole numbers or `auto`. Explicit scheduling sub-options without `--schedule-on-deploy` are invalid (exit 2). Scope and frequency filters apply before the threshold. The CLI reports counts and reasons for skipped scheduling; server-selected limits can change.
 
 ```bash
-npx checkly destroy [options]
+# Explicitly schedule all eligible checks, including frequent ones, after deployment
+npx checkly deploy --schedule-on-deploy --schedule-on-deploy-scope=all --schedule-on-deploy-min-frequency=0
 ```
 
-| Flag | Description |
-|------|-------------|
-| `--force, -f` | Skip confirmation prompt |
-| `--config=<path>` | Path to checkly.config.ts/js |
-| `--preserve-resources` | Remove the project link but keep project resources as normal account-level resources |
-| `--cancel-in-progress-deployment` | If a deploy or destroy operation is already in progress, cancel it instead of waiting before retrying |
+## Authorized CI deployment
 
-## Deployment workflows
+Set `CHECKLY_API_KEY` and `CHECKLY_ACCOUNT_ID` before starting the CLI. Use a supported Node.js runtime **22.13.0 or later**, install the locked project dependencies, run the intended tests, and apply only after they pass.
 
-### Interactive deployment
+`--force` skips confirmation, including approval of deletions in the plan; `--fail-on-drift` protects web edits, not resources removed from code. The examples below use `--preserve-resources` to detach removed resources and keep their history. Review the plan and intentionally authorize the pipeline's creates, updates, resets and detachments. If deletion is intended, review a preview without preservation and pin its `--plan-token` when applying that exact approved plan; do not rely on drift protection as a deletion guard.
 
 ```bash
-npx checkly deploy
-
-# Output:
-# Parsing your project... done
-# 
-# Changes to be deployed:
-#   + 2 checks to create
-#   ~ 1 check to update
-#   - 0 checks to delete
-#
-# Do you want to deploy? (y/N)
+# Run only in already authorized automation; preservation does not make updates harmless.
+npm ci
+npx checkly test && npx checkly deploy --force --fail-on-drift --preserve-resources
 ```
 
-Type `y` to confirm, `n` to cancel.
+### Minimal GitLab CI example
 
-### Force deployment (CI/CD)
-
-```bash
-npx checkly deploy --force
-
-# No confirmation prompt
-# Useful for automated pipelines
-```
-
-`--force` skips confirmation prompts, including the destructive-delete guard. In CI, use it only when the pipeline already reviewed the deployment diff or intentionally accepts destructive changes.
-
-### Agent-mode confirmation
-
-In agent mode, running `npx checkly deploy` without `--force` returns exit code 2 and a JSON `confirmation_required` envelope before project parsing. Present its `changes` to the user and run the returned `confirmCommand` verbatim only after explicit approval.
-
-The confirmation envelope warns that deletion is possible but cannot list the exact resources yet. Preview first whenever resources may have been removed from code:
-
-```bash
-npx checkly deploy --preview --verbose
-```
-
-Review and present any deletions before requesting approval. The interactive itemized delete guard is skipped by `--force`, including the `--force` in an approved `confirmCommand`, so it is not a substitute for previewing. The generated command omits parser defaults and may include deliberate resolved-target flags; do not edit it or append `--force` yourself.
-
-### Preserve removed resources
-
-When a resource is removed from code, a normal deploy deletes it from Checkly and loses run history. With `--preserve-resources`, the resource is detached from the project instead: it remains in the Checkly account, keeps its run history, and becomes UI-managed.
-
-```bash
-# Prefer this when removing checks/groups/dashboards from code but preserving history
-npx checkly deploy --preserve-resources
-
-# CI-safe deploy that detaches removed resources instead of deleting them
-npx checkly deploy --force --preserve-resources
-```
-
-Without `--preserve-resources`, interactive non-forced deploys now do an extra dry-run when deletions are possible and require explicit confirmation before permanently deleting removed resources. Forced deploys skip that second prompt.
-
-### Verbose deployment output
-
-```bash
-npx checkly deploy --verbose
-
-# Shows created/updated resources with human-readable names and IDs
-# Useful when auditing exactly which Checkly resources changed
-```
-
-`--verbose` is most helpful when you need to match deploy output back to specific Checkly resources during debugging or rollout review.
-
-### Concurrent deployments
-
-Deploy runs asynchronously with live progress. If another deployment for the same project is already running, the CLI normally waits for that deployment to finish. Use `--cancel-in-progress-deployment` only when you intentionally want the new deployment to replace the in-flight one:
-
-```bash
-npx checkly deploy --force --cancel-in-progress-deployment
-```
-
-In CI, prefer serializing deploy jobs per environment. Add `--cancel-in-progress-deployment` only for workflows where a newer commit should supersede an older still-running deploy.
-
-### Destroying/decommissioning a project
-
-`npx checkly destroy` is destructive. Use it only when intentionally removing a Checkly CLI project from the account, and prefer a reviewed PR or explicit operator confirmation before running it.
-
-```bash
-# Preview project state first
-npx checkly validate
-
-# Destroy project-managed resources, skipping the prompt only in approved automation
-npx checkly destroy --force
-
-# Detach the project but keep checks/groups/dashboards as account-level resources
-npx checkly destroy --force --preserve-resources
-```
-
-Destroy uses the async backend endpoint: large-project deletion streams progress instead of timing out at the initial HTTP request, waits/retries when another deploy/delete is already in progress, and treats an already-missing project as successfully deleted. Use `--cancel-in-progress-deployment` only when the new destroy should supersede the current in-flight operation.
-
-### Preview changes
-
-```bash
-# Validate without deploying
-npx checkly validate
-
-# Shows what would be deployed
-# Catches errors before deployment
-```
-
-## CI/CD integration
-
-### GitHub Actions
-
-```yaml
-name: Deploy Checks
-
-on:
-  push:
-    branches: [main]
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
-        with:
-          node-version: '22.13.0'
-      
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Test checks
-        env:
-          CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
-          CHECKLY_ACCOUNT_ID: ${{ secrets.CHECKLY_ACCOUNT_ID }}
-        run: npx checkly test
-      
-      - name: Deploy checks
-        env:
-          CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
-          CHECKLY_ACCOUNT_ID: ${{ secrets.CHECKLY_ACCOUNT_ID }}
-        run: npx checkly deploy --force --preserve-resources
-```
-
-### GitLab CI
+Store `CHECKLY_API_KEY` and `CHECKLY_ACCOUNT_ID` as masked/protected GitLab CI/CD variables, scoped to the intended account/environment; never put their values in YAML. The manual default-branch job is an approval gate for the reviewed changes, not permission for an agent to start it. The Node image is above the CLI's minimum runtime floor. Use a deployment-stage job in the project's existing stage list.
 
 ```yaml
 deploy-checks:
   stage: deploy
-  only:
-    - main
+  image: node:24
+  resource_group: checkly-production
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: manual
   script:
     - npm ci
     - npx checkly test
-    - npx checkly deploy --force
-  variables:
-    CHECKLY_API_KEY: $CHECKLY_API_KEY
-    CHECKLY_ACCOUNT_ID: $CHECKLY_ACCOUNT_ID
+    - npx checkly deploy --force --fail-on-drift --preserve-resources
 ```
 
-### Deploy on application deployment
+The job inherits the two protected variables. Restrict default-branch and deployment approval permissions, and use the same locked code and account when reviewing the plan and running the approved job.
+
+### Test-and-review helper
+
+`scripts/test-and-deploy.sh` intentionally accepts no arguments: it tests the default project, then lets the CLI present/confirm its plan. In CI/agent mode a nonempty unapproved plan returns exit 3; an unchanged plan can return 0. After approval, run the returned `confirmCommand` verbatim **directly**, not through the helper. For a custom configuration or already authorized CI flags, invoke `checkly test` and `checkly deploy` directly with the same `--config` path. The helper rejects arguments before running any checks rather than testing one configuration and forwarding a different deploy target.
+
+An empty test selection fails by default. Do not suppress it in a gate intended to prove tests ran. Jenkins, TeamCity and AWS CodeBuild are detected alongside other CI providers; `CI=false`, `0`, `no` or `off` disables CI detection even on provider hosts. Prefer serialized deployment jobs per project.
+
+## Removing resources and projects
+
+Normal deployment deletes resources removed from code and their run history. Use `--preserve-resources` to detach them instead. Review deletions in the plan before authorizing deployment.
 
 ```bash
-#!/bin/bash
-# deploy-app-and-monitoring.sh
-
-# Deploy application
-./deploy-app.sh
-
-# Deploy updated monitoring checks
-npx checkly deploy --force
-
-echo "✅ Application and monitoring deployed"
+npx checkly deploy --preview --preserve-resources
+npx checkly deploy --preserve-resources
+# Decommission a project only when explicitly intended
+npx checkly destroy
+# Keep its resources as account-level resources
+npx checkly destroy --preserve-resources
 ```
 
-## Deployment strategies
+`destroy` also accepts `--force`, `--config` and `--cancel-in-progress-deployment`. It follows asynchronous progress, waits on concurrent operations and treats an already-missing project as deleted. `validate` is not a preview of deletion. A transient lock while verifying a deployment is retried up to three times. Failure to retrieve a heartbeat ping URL after success produces a warning rather than invalidating the deployment.
 
-### Test before deploy
+## Related skills
 
-```bash
-# Validate locally first
-npx checkly test
-
-# Deploy only if tests pass
-if [ $? -eq 0 ]; then
-  npx checkly deploy --force
-fi
-```
-
-### Staged deployment
-
-```bash
-# 1. Deploy to staging project
-CHECKLY_ACCOUNT_ID=$STAGING_ACCOUNT npx checkly deploy --force
-
-# 2. Run smoke tests
-npm run smoke-tests
-
-# 3. Deploy to production
-CHECKLY_ACCOUNT_ID=$PROD_ACCOUNT npx checkly deploy --force
-```
-
-### Feature branch testing
-
-```yaml
-# GitHub Actions - test on PRs, deploy on main
-on:
-  pull_request:
-  push:
-    branches: [main]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      - run: npm ci
-      - run: npx checkly test  # Test on all branches
-        env:
-          CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
-          CHECKLY_ACCOUNT_ID: ${{ secrets.CHECKLY_ACCOUNT_ID }}
-  
-  deploy:
-    needs: test
-    if: github.ref == 'refs/heads/main'  # Deploy only on main
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      - run: npm ci
-      - run: npx checkly deploy --force
-        env:
-          CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
-          CHECKLY_ACCOUNT_ID: ${{ secrets.CHECKLY_ACCOUNT_ID }}
-```
-
-## What gets deployed
-
-### Created resources
-
-- ✅ New checks (API, Browser, Multi-Step, Monitors)
-- ✅ Check groups
-- ✅ Alert channel subscriptions
-- ✅ Private location assignments
-- ✅ Retry strategies
-- ✅ Environment variables
-
-### Updated resources
-
-- ✅ Check configuration changes
-- ✅ Schedule changes (frequency, locations)
-- ✅ Code changes (for checks with scripts)
-- ✅ Alert channel assignments
-
-### NOT deployed
-
-- ❌ Alert channel definitions (configure in UI)
-- ❌ Private location infrastructure (configure in UI)
-- ❌ Account-level settings
-- ❌ Team/user management
-
-## Deployment preview
-
-Before deployment, Checkly shows a summary:
-
-```
-Changes to be deployed:
-
-+ Create checks:
-  • homepage-check (Browser)
-  • api-status-check (API)
-
-~ Update checks:
-  • login-flow-check (Browser)
-    - frequency: 10 → 5 minutes
-    - locations: +eu-west-1
-
-- Delete checks:
-  (none)
-
-Detached (kept in account, now UI-managed):
-  • legacy-status-page (StatusPage)
-
-+ Create groups:
-  • critical-checks
-
-~ Update groups:
-  (none)
-```
-
-## Troubleshooting
-
-### "No changes to deploy"
-
-**Cause**: All checks already deployed and up-to-date
-
-**Solution**: This is normal. Only deploy when you have changes.
-
-### "Cannot deploy: validation errors"
-
-**Solution**:
-```bash
-# Check validation errors
-npx checkly validate
-
-# Fix errors in your code
-# Re-run validate until no errors
-
-# Deploy
-npx checkly deploy
-```
-
-### "Quota exceeded" errors
-
-**Cause**: Account plan limits reached (checks, locations, etc.)
-
-**Solution**:
-- Upgrade your Checkly plan
-- Delete unused checks in UI
-- Contact Checkly support
-
-### Deploy or destroy hangs, conflicts, or times out
-
-The CLI follows async deploy/destroy progress and can wait for an in-flight operation. If it appears stuck, first confirm whether another deploy/delete is already running for the same project. Use `--cancel-in-progress-deployment` only when you intentionally want the current command to replace that in-flight operation.
-
-**Solution:**
-```bash
-# Check network connectivity
-curl https://api.checklyhq.com/health
-
-# Verify authentication
-npx checkly whoami
-
-# Try again with verbose output
-npx checkly deploy --verbose --force
-```
-
-## Related Skills
-
-- See `checkly-test` to test before deploying
-- See `checkly-import` to import existing checks
-- See `checkly-checks` for check creation
-- See `checkly-auth` for CI/CD authentication
+See `checkly-test`, `checkly-auth`, `checkly-config`, and `checkly-import` for test gates, credentials, defaults and existing-resource adoption.

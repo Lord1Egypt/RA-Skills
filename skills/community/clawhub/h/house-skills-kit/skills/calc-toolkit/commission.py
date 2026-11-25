@@ -5,6 +5,7 @@
 
 用法:
   # 二手中介费：买卖分账 + 活动折扣
+  python3 commission.py --scene lease --rent 3500 --months 1 --landlord-share 0.5
   python3 commission.py --scene resale --price 1200000
   python3 commission.py --scene resale --price 1200000 --discount 0.7
 
@@ -79,13 +80,15 @@ def commission_progressive(amount: float, tiers):
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="佣金/提成试算（二手中介费/渠道分销/团队分佣）")
-    ap.add_argument("--scene", default="resale", choices=["resale", "channel"],
-                    help="resale=二手中介费 / channel=新房渠道分销（默认 resale）")
+    ap = argparse.ArgumentParser(description="佣金/提成试算（二手中介费/渠道分销/租赁佣金/团队分佣）")
+    ap.add_argument("--scene", default="resale", choices=["resale", "channel", "lease"],
+                    help="resale=二手中介费 / channel=新房渠道分销 / lease=租赁佣金（默认 resale）")
     ap.add_argument("--price", type=float, default=None, help="单套成交总价（元，resale用）")
     ap.add_argument("--amount", type=float, default=None, help="签约总额（元，channel用；resale多套合计也可用）")
-    ap.add_argument("--buyer-rate", type=float, default=None, help="二手买方费率（默认规则库，昆明2%%）")
-    ap.add_argument("--seller-rate", type=float, default=None, help="二手卖方费率（默认规则库，昆明1%%）")
+    ap.add_argument("--buyer-rate", type=float, default=None,
+                    help="二手买方费率，用小数（0.02 = 2%%，默认规则库）")
+    ap.add_argument("--seller-rate", type=float, default=None,
+                    help="二手卖方费率，用小数（0.01 = 1%%，默认规则库）")
     ap.add_argument("--rate", type=float, default=None, help="渠道固定点位（如 0.03）")
     ap.add_argument("--tiers", default=None,
                     help="渠道阶梯点位 '金额上限:费率;...'（与--rate二选一；给阶梯则双算法并排）")
@@ -94,6 +97,12 @@ def main() -> None:
     ap.add_argument("--rebate", type=float, default=None, help="客户返佣比例（从佣金中返，如 0.3=返30%%）")
     ap.add_argument("--splits", default=None,
                     help="团队分佣比例，逗号分隔（如 '0.35,0.15'=经纪人35%%,店长15%%,公司余量50%%）")
+    ap.add_argument("--rent", type=float, default=None, help="月租金（元，lease用）")
+    ap.add_argument("--months", type=float, default=1.0, help="佣金按几个月租金计（lease用，默认 1）")
+    ap.add_argument("--landlord-share", type=float, default=None,
+                    help="房东承担的佣金比例，用小数（0.5 = 一半，默认规则库；与 --tenant-share 互补）")
+    ap.add_argument("--tenant-share", type=float, default=None,
+                    help="租客承担的佣金比例，用小数（0.5 = 一半）；两者只给一个，另一个自动补足")
     ap.add_argument("--city", default=None, help="城市（规则库城市档）")
     ap.add_argument("--template", default=None, help="我的模板名")
     ap.add_argument("--set", action="append", default=[], dest="overrides",
@@ -110,21 +119,60 @@ def main() -> None:
     rules, srcmap = get_rules("commission", city=args.city, district=None,
                               user_template=args.template, overrides=overrides)
 
-    base = args.price if args.scene == "resale" else args.amount
+    if args.scene == "lease":
+        base = args.rent
+    else:
+        base = args.price if args.scene == "resale" else args.amount
     if base is None:
-        ap.error(f"--scene {args.scene} 需要 " + ("--price" if args.scene == "resale" else "--amount"))
+        need = {"resale": "--price", "channel": "--amount", "lease": "--rent"}[args.scene]
+        ap.error(f"--scene {args.scene} 需要 {need}")
 
     W = 52
     print("=" * W)
     print("佣金/提成试算器")
     print("=" * W)
-    print(f"场景: {'二手中介费' if args.scene=='resale' else '新房渠道分销'}"
+    scene_name = {"resale": "二手中介费", "channel": "新房渠道分销", "lease": "租赁佣金"}[args.scene]
+    print(f"场景: {scene_name}"
           + (f" ｜ 城市: {args.city}" if args.city else ""))
 
     # ---- 段1：佣金计算 ----
-    if args.scene == "resale":
+    if args.scene == "lease":
+        months = args.months if args.months is not None else 1.0
+        if months <= 0 or months > 3:
+            ap.error(f"--months 需在 0~3 之间（常见 0.5 / 1 / 1.5），收到 {months:g}")
+        landlord = args.landlord_share
+        tenant = args.tenant_share
+        if landlord is None and tenant is None:
+            landlord = float(rules.get("lease_landlord_share", 0.5))
+            tenant = 1.0 - landlord
+        elif landlord is None:
+            landlord = 1.0 - tenant
+        elif tenant is None:
+            tenant = 1.0 - landlord
+        for label, val in (("--landlord-share", landlord), ("--tenant-share", tenant)):
+            if val > 1.0 or val < 0:
+                ap.error(f"{label} 需为小数且在 0~1 之间（0.5 = 一半，1 = 全部由该方承担），收到 {val:g}")
+        # 分摊比例本身就是 0~1 的真值（1 表示全部由一方承担），不做百分数换算，故不设单位告警
+        commission = base * months
+        print(f"月租金: {fmt_money(base)} 元 ｜ 佣金月数: {months:g} 个月")
+        print("-" * W)
+        print(f"  佣金合计（{months:g} 个月租金）      {fmt_money(commission):>14} 元")
+        print(f"  {'─'*40}")
+        print(f"  房东承担  {landlord*100:g}% → {fmt_money(commission*landlord):>14} 元")
+        print(f"  租客承担  {tenant*100:g}% → {fmt_money(commission*tenant):>14} 元")
+        print(f"  {'─'*40}")
+        print(f"  折算：相当于 {(commission/base):.2f} 个月租金；占年租金 {(commission/(base*12))*100:.1f}%")
+        if months > 1:
+            print("  ⚠️ 佣金超过 1 个月租金时，租客实际首付=押金+首期租金+佣金，报价前先说清")
+        calc_note = f"租赁佣金 = 月租 {fmt_money(base)} 元 × {months:g} 个月；分摊 房东{landlord*100:g}% / 租客{tenant*100:g}%"
+    elif args.scene == "resale":
         buyer_rate = args.buyer_rate if args.buyer_rate is not None else float(rules.get("resale_buyer_rate", 0.02))
         seller_rate = args.seller_rate if args.seller_rate is not None else float(rules.get("resale_seller_rate", 0.01))
+        # 单位防呆：本工具费率用小数，其它计算器多用百分数，混用会差 100 倍
+        for label, val in (("--buyer-rate", buyer_rate), ("--seller-rate", seller_rate)):
+            if val > 0.2:
+                print(f"⚠️ 单位提醒：{label} {val:g} 被当作小数处理 → {val*100:g}%。"
+                      f"若你本意是 {val:g}%，请改写成 {val/100:g}", file=sys.stderr)
         disc = args.discount if args.discount is not None else 1.0
         b = base * buyer_rate * disc
         s = base * seller_rate * disc
@@ -197,7 +245,7 @@ def main() -> None:
     print("-" * W)
     print(f"计算口径: {calc_note}")
     keys = [k for k in ("resale_buyer_rate", "resale_seller_rate", "channel_rate",
-                        "agent_share") if k in rules]
+                        "lease_landlord_share", "agent_share") if k in rules]
     print("口径出处:")
     print(fmt_provenance(srcmap, keys))
     print("提醒: 佣金以居间/分销合同约定为准；客户保护期内成交才结佣（行业惯例）；")

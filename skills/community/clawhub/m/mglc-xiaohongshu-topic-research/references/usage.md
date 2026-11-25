@@ -1,0 +1,17 @@
+# 使用说明
+
+关键词模式：keyword、sort、searchPages。链接模式：urls 为作品链接列表，与关键词模式设置互斥。maxNotes 为笔记上限；includeDetails 控制正文读取（选题研究须为 true）；commentsPerNote 为每篇一级评论上限，commentPages 为每篇评论调用页数上限。评论洞察的 commentsPerNote 必须大于零。
+
+未知字段、非法数量、链接或排序会在收费调用前拒绝。`--sample-plan` 不联网；`--estimate` 仅查免费目录。有密钥时读客户价，缺少密钥时只给公共价估计；执行必须有密钥。
+
+分页以 `hasMore` / `nextCursor` 为准，短页或空页不直接证明结束。服务端没有明确结束信息时标记 `end_unknown`。`page_limit` 表示达到用户给定的页数上限，不代表读完全部数据；指定条数能否达到取决于实际结果。`end` 表示本次链路返回真实末页。
+
+小红书游标有效期以响应截止时间为准，当前公开说明为空闲约 3 分钟，服务重启等可能提前失效。先保存本批数据再分析；失效时保留已有数据并报告，不自动重新从第一页收费查询。作品链接由接口已有链接优先，没有时使用实际作品 ID 构造官方链接，后续接口拒绝时如实标记缺口。
+
+金额内部按整数微元核算。请求发送前保存幂等键；返回后保存结果与费用回执。任务费用按唯一调用回执统计，恢复复用不重复累计。网关 HTTP 502 且有调用编号的 UPSTREAM_REJECTED、UPSTREAM_UNAVAILABLE、UPSTREAM_BUSINESS_REJECTED、INVALID_UPSTREAM_RESPONSE 按已退款契约记零，并记录依据；其他结果未知或费用缺失会预留额度并暂停，BILLING_REFUND_FAILED 仍待核对。错误保存状态、信息、调用编号及已脱敏诊断。没有自动重试风控、换账号、绕过网关调度或更换数据源的逻辑。
+
+退出码：0 表示所请求动作正常结束，分析型查询还需查看 `delivery.quality=analysis_pending`；2 表示输入、配置或本地错误；5 表示部分完成。部分完成仍交付已取得结果。`--render` 保留匹配的已导入分析；证据改变时旧分析留存但不作为当前报告。
+
+输出：data.json（公开数据）、analysis-input.json（证据与 factsHash）、report.md、report.html、各表 CSV、可选 report.xlsx、delivery.json。CSV 对公式前缀转义；Excel 的长 ID 与文本作为文本单元格。缺少 openpyxl 也能完成数据和其他格式交付。
+
+不要将工作区与安装目录混用。工作区使用系统文件锁避免并发写入；进程结束会释放锁。JSON 先写临时文件再原子替换，成功响应已保存时恢复不重查。同任务计划与密钥必须一致，防止混入其他账号数据。

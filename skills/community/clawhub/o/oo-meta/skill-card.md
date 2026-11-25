@@ -1,6 +1,6 @@
 ## Description:
 
-Meta (business.meta.com). Use this skill for ANY Meta request — searching and reading data. Whenever a task involves Meta, use this skill instead of calling the API directly.
+Operate Meta (Facebook) through an OOMOL-connected account to read advertising and Page data, manage insights reports, and create, update, or delete Page posts.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users, such as business operators and analysts, use the skill to retrieve information from a connected Meta account, including account details, campaigns, and advertising insights.
+People using an OOMOL-connected Meta account can retrieve advertising and Facebook Page data, generate insights reports, and manage Page posts. The skill provides the documented actions and setup guidance for using the oo CLI with Meta.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Setup can execute unverified remote installers without a clear approval step, and automatic skill-installation behavior needs review.
+Risk: The fallback setup runs a remote installer with local user privileges, and the scanner did not inspect that installer's contents.
 
-Mitigation: Review and install a verified CLI separately before enabling the skill, including its automatic skill-installation behavior. Connect only the Meta permissions needed and account for OOMOL-mediated access.
+Mitigation: Review the installer's source and contents before running it; follow the documented setup steps only when the command's origin and effects are understood.
+
+Risk: The security scan had partial coverage because two local path-like references could not be resolved.
+
+Mitigation: Review the unresolved references and the full skill before installation.
 
 ## Reference(s):
 
-- [Meta Marketing API documentation](https://developers.facebook.com/docs/marketing-api/)
-- [Meta Business](https://business.meta.com/)
+- [Meta business homepage](https://business.meta.com/)
+- [Meta developer documentation](https://developers.facebook.com/docs/)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
 - [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
-- [Meta ClawHub skill page](https://clawhub.ai/oomol/skills/oo-meta)
+- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-meta)
 
 ## Skill Output:
 
-**Output Type(s):** [API data, JSON, Guidance]
+**Output Type(s):** [JSON, Text]
 
-**Output Format:** [JSON responses from Meta read actions, with explanatory text as needed]
+**Output Format:** [JSON action responses with concise task results]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results depend on the connected Meta account and its permissions.]
+**Other Properties Related to Output:** [Response content depends on the selected Meta action and the connected account's permissions.]
 
 ## Skill Version(s):
 
-1.0.4 (source: frontmatter)
+1.0.5 (source: frontmatter)
 
 ## Ethical Considerations:
 

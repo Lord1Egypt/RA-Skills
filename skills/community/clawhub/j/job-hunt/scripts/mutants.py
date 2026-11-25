@@ -60,6 +60,9 @@ FAST_TESTS = {
     "check_apply.py": ["test_check_apply.py", "test_receipts_bind_to_bytes.py",
                        "test_structured_only_apply.py"],
     "check_claims.py": ["test_check_claims.py"],
+    "run_mock_tests.py": ["test_mock_learned_rounds.py"],
+    "check_prep_plan.py": ["test_mock_learned_rounds.py", "test_prepare_mode.py"],
+    "check_drill.py": ["test_prepare_mode.py"],
     "render_cv.py": ["test_render_cv.py", "test_render_artifact_integrity.py",
                      "test_render_pdf_compile.py"],
 }

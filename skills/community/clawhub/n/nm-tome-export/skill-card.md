@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Researchers use this skill after gathering findings to export them as a Markdown file that can be reviewed and handed to memory-palace knowledge intake.
+Researchers and knowledge-work agents use this after completing a research session to package findings as Markdown for handoff to memory-palace knowledge-intake. The export carries source links, summaries, relevance, and channel-specific details for downstream review and storage.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: An export can be empty or contain findings that have not been evaluated for intake.
+Risk: Exported research findings may be incomplete or inaccurate when handed off for storage.
 
-Mitigation: Check the finding count and review the exported file before sending it to knowledge intake.
+Mitigation: Review the Markdown export before passing it to knowledge-intake.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-tome-export)
-- [Tome project page listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/tome)
+- [Clawhub release page](https://clawhub.ai/athola/skills/nm-tome-export)
+- [Tome plugin homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/tome)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Files]
+**Output Type(s):** [Markdown]
 
-**Output Format:** [Markdown file with YAML frontmatter and findings grouped by channel]
+**Output Format:** [Markdown with YAML frontmatter and findings grouped by channel]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes session metadata and rendered finding details such as source, URL, relevance, summary, and channel-specific metadata.]
+**Other Properties Related to Output:** [Includes source, URL, relevance, summary, and channel-specific metadata for each finding.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

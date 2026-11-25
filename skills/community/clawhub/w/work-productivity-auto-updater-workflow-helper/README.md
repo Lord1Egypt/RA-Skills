@@ -2,7 +2,7 @@
 
 ## Requirement
 
-Validated demand: Agent users show strong demand for Auto-Updater Skill-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 11 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
+Validated demand: Agent users show strong demand for Auto-Updater Skill-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 12 separate online signals across 4 source families, so it represents broader demand rather than a single isolated request.
 
 Audience: AI-agent users, skill authors, maintainers, and teams who want proven popular skill patterns adapted into more reliable or adjacent workflows
 
@@ -10,13 +10,13 @@ Category: `work-productivity`
 
 Demand score: 100/100
 
-Evidence coverage: 11 signals across 3 source families.
+Evidence coverage: 12 signals across 4 source families.
 
 ## Evidence
 
-- clawhub-popular-skill: [Popular Clawhub skill demand: self-improving agent has 493,493 downloads](https://clawhub.ai/skills/self-improving-agent)
-- clawhub-popular-skill: [Popular Clawhub skill demand: Auto-Updater Skill has 101,601 downloads](https://clawhub.ai/skills/auto-updater)
-- clawhub-popular-skill: [Popular Clawhub skill demand: Skill Creator has 104,769 downloads](https://clawhub.ai/skills/skill-creator)
+- clawhub-popular-skill: [Popular Clawhub skill demand: self-improving agent has 495,374 downloads](https://clawhub.ai/skills/self-improving-agent)
+- clawhub-popular-skill: [Popular Clawhub skill demand: Auto-Updater Skill has 101,927 downloads](https://clawhub.ai/skills/auto-updater)
+- clawhub-popular-skill: [Popular Clawhub skill demand: Skill Creator has 105,301 downloads](https://clawhub.ai/skills/skill-creator)
 - segmentfault-search: [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
 - segmentfault-search: [javascript](https://segmentfault.com/t/javascript)
 - segmentfault-search: [typescript](https://segmentfault.com/t/typescript)
@@ -24,7 +24,8 @@ Evidence coverage: 11 signals across 3 source families.
 - segmentfault-search: [问： electron-builder自动更新缺少依赖](https://segmentfault.com/q/1010000018396754)
 - segmentfault-search: [Mysql多张表关联时的分页查询](https://segmentfault.com/a/1190000040061279)
 - segmentfault-search: [答： SpringBootVFS这个类是干嘛用的?](https://segmentfault.com/q/1010000040626252/a-1020000040626536)
-- csdn-search: [取消Java自动更新[项目源码]](https://wenku.csdn.net/doc/6j0zr9f8xesz?ops_request_misc=elastic_search_misc&request_id=1b20108737094f8388cbdb0c8bef60ff&biz_id=&utm_medium=distribute.pc_search_result.none-task-c_download-2~all~ElasticSearch~search_v2-6-6j0zr9f8xesz-null-null.142^v102^pc_search_result_base1&utm_term=auto-updater-skill%20auto%20updater%20automatically)
+- github-issues: [[Feature] Octo - RC2 - DA1458X - Little Features](https://github.com/kristofferR/ha-adjustable-bed/issues/1182)
+- csdn-search: [取消Java自动更新[项目源码]](https://wenku.csdn.net/doc/6j0zr9f8xesz?ops_request_misc=elastic_search_misc&request_id=91538234ffd34d889f2a504f53a3b184&biz_id=&utm_medium=distribute.pc_search_result.none-task-c_download-2~all~ElasticSearch~search_v2-6-6j0zr9f8xesz-null-null.142^v102^control&utm_term=auto-updater-skill%20auto%20updater%20automatically)
 
 ## How This Skill Meets The Requirement
 

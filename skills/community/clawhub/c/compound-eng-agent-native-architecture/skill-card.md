@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use this skill to design, review, and improve agent-native applications. It provides topic-routed guidance for tool design, agent execution, prompts, hooks, shared workspaces, approvals, mobile patterns, and testing.
+Developers and product teams use this skill to design applications where agents are the primary actors. It helps them choose and review patterns for tools, prompts, execution, shared workspaces, testing, approvals, mobile behavior, and safe self-modification.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates the release suspicious with medium confidence and incomplete coverage; its guidance cites concerns about persistence and environment fit, as well as privacy and authorization weaknesses in examples.
+Risk: ClawScan reports a suspicious verdict, citing self-modification guidance, privacy and approval gaps, and incomplete review of much of the reference material.
 
-Mitigation: Review the skill and the referenced examples against the intended environment before installation, and keep authority, scope, and approval controls in trusted orchestration.
-
-Risk: The implementation of the separate evaluation workflow was unavailable for review.
-
-Mitigation: Review that workflow before relying on its evaluation results.
+Mitigation: Wait for a more complete review; clarify the flagged evaluation commands and confirm safeguards for privacy, publishing, and self-modification before use.
 
 ## Reference(s):
 
-- [Core Principles](artifact/references/core-principles.md)
+- [Quick Start](artifact/references/quick-start.md)
 - [Architecture Patterns](artifact/references/architecture-patterns.md)
 - [Architecture Review Checklist](artifact/references/architecture-review-checklist.md)
 - [MCP Tool Design](artifact/references/mcp-tool-design.md)
 - [Agent Execution Patterns](artifact/references/agent-execution-patterns.md)
 - [Agent-Native Testing](artifact/references/agent-native-testing.md)
-- [Hooks Patterns](artifact/references/hooks-patterns.md)
 - [Operator Approval Loop](artifact/references/operator-approval-loop.md)
-- [ClawHub release page](https://clawhub.ai/iliaal/skills/compound-eng-agent-native-architecture)
+- [Self-Modification](artifact/references/self-modification.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Configuration, Code]
+**Output Type(s):** [Guidance, Markdown, Code, Configuration instructions, Shell commands]
 
-**Output Format:** [Markdown with optional code and configuration examples]
+**Output Format:** [Markdown with explanations, checklists, and illustrative code or configuration examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Topic-routed design recommendations with supporting rationale and unresolved constraints.]
+**Other Properties Related to Output:** [Content is tailored to the selected architecture topic and application context.]
 
 ## Skill Version(s):
 
-5.1.6 (source: server-resolved release metadata)
+5.1.7 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

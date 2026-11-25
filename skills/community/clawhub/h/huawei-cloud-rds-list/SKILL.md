@@ -7,9 +7,11 @@ description: |
      hcloud is not installed.
   2. Four output modes: full-field table (default, every returned field including
      名称/ID/状态/引擎/规格/私网IP/可用区), --json (raw response array),
-     --names-only (compact instance-name list), and optional Markdown export
-     (--format md / --output <path>, Chinese-column table written to a local .md
-     file for inventory/patrol/handover reports).
+     --names-only (compact instance-name list), plus two local file exports:
+     Markdown (--format md / --output <path>.md) and CSV (--format csv /
+     --output <path>.csv, UTF-8 BOM + standard CSV escaping, Excel/pandas
+     friendly), both with the same Chinese headers for inventory/patrol/
+     handover reports.
   3. Supports --status / --name / --datastore-type / --instance-id filtering,
      region override, and automatic offset paging. --name / --datastore-type /
      --instance-id are real ListInstances query parameters; --status is applied
@@ -25,8 +27,9 @@ description: |
      "查询RDS实例", "云数据库列表", "RDS inventory", "list cloud database instances",
      "华为云RDS列表".
   7. Offline unit tests (mocked hcloud subprocess) cover output modes, filters,
-     paging, error scenarios, SDK fallback, Markdown export, and the
-     write-intent guard.
+     paging, error scenarios, SDK fallback, Markdown/CSV export (BOM, escaping,
+     atomic write, empty table, extension inference), and the write-intent
+     guard.
 tags: [huawei-cloud, rds, database, readonly, koo-cli]
 ---
 
@@ -45,7 +48,8 @@ Architecture:
 ```text
 agent → python3 scripts/list_rds.py → hcloud RDS ListInstances --cli-region=<region>
       → Huawei Cloud RDS OpenAPI (regional endpoint) → parsed JSON
-      → table / --json / --names-only / Markdown file (--format md / --output)
+      → table / --json / --names-only / Markdown or CSV file
+        (--format md|csv / --output)
 
 (hcloud binary missing) → fallback: huaweicloudsdkrds v3 RdsClient.list_instances
 ```
@@ -67,8 +71,16 @@ Key properties:
   implies md) writes a valid Markdown table (Chinese headers + separator +
   rows) to a local file, atomically (temp file + `os.replace`). Omitting the
   export flags keeps the existing terminal output byte-for-byte unchanged.
+- **Optional CSV export** — `--format csv` (or `--output <path>.csv`, which
+  implies csv) writes the same columns behind the same Chinese headers as the
+  Markdown export, encoded UTF-8 **with BOM** (`utf-8-sig`, so Excel and
+  `pandas.read_csv` detect the encoding without extra flags), CRLF row
+  endings, and standard `csv`-module escaping for commas / double quotes /
+  newlines. Empty results still write the header row (exit 0), and writes are
+  atomic exactly like the Markdown path (`CSV 文件写出失败` on failure, no
+  partial file left behind).
 - **Offline-testable** — every code path (paging, filters, error
-  classification, guard, SDK fallback, Markdown render/write) is covered by
+  classification, guard, SDK fallback, Markdown/CSV render/write) is covered by
   unit tests that mock the hcloud subprocess.
 
 Out of scope: every mutating RDS action (create / delete / resize / restart /
@@ -98,10 +110,11 @@ require a dedicated write-capable skill and explicit user confirmation.
 3. **Run the list script** with the desired output mode and filters.
 4. **Read the result** — table for humans, `--json` for downstream tooling,
    `--names-only` for a compact inventory, `--format md` / `--output` for a
-   Markdown report file (inventory / patrol / handover).
+   Markdown report file, `--format csv` / `--output *.csv` for a CSV file
+   (Excel / pandas ready; inventory / patrol / handover).
 5. **Handle the empty / error cases** per the Edge Cases table below (the
    script prints an explicit hint for empty region, 403, missing AK/SK, and
-   Markdown write failures).
+   Markdown / CSV write failures).
 
 ## Core Commands
 
@@ -135,6 +148,17 @@ python3 scripts/list_rds.py --format md
 
 # Markdown + filters (empty result still writes header + 「无实例」note, exit 0)
 python3 scripts/list_rds.py --format md --status ACTIVE --output reports/active.md
+
+# Export to CSV (Excel / pandas friendly: UTF-8 BOM, CRLF, standard escaping)
+python3 scripts/list_rds.py --format csv --output reports/rds-cn-north-4.csv
+
+# --output *.csv alone implies --format csv; omitting it uses
+# rds_instances_<region>_<timestamp>.csv in the current directory
+python3 scripts/list_rds.py --output reports/rds.csv
+python3 scripts/list_rds.py --format csv
+
+# CSV + filters (empty result still writes the header row, exit 0)
+python3 scripts/list_rds.py --format csv --status ACTIVE --output reports/active.csv
 ```
 
 Markdown file layout: a title (`# 华为云 RDS 实例列表 — <region>`), a metadata
@@ -143,6 +167,13 @@ line, then a Chinese-header table (`实例 ID / 名称 / 状态 / 引擎 / 版�
 instance. `|` in a cell is escaped as `\|` and newlines are collapsed to spaces.
 Writes are atomic (temp file + `os.replace`), so a failed write never leaves a
 half-written file.
+
+CSV file layout: the same ten Chinese headers and the same column order as the
+Markdown table (`实例 ID / 名称 / 状态 / 引擎 / 版本 / 规格 / 私有 IP / 可用区 /
+区域 / 创建时间`), one row per instance, encoded UTF-8 **with BOM** so Excel and
+`pandas.read_csv` open it directly. The standard `csv` module escapes commas,
+double quotes and embedded newlines; rows end with CRLF. An empty list still
+writes the header row (exit 0), and the write is atomic like the Markdown path.
 
 Equivalent direct KooCLI command (the script wraps exactly this call, with
 paging):
@@ -164,12 +195,14 @@ hcloud RDS ListInstances --cli-region=cn-north-4 --limit=100 --offset=0
 | `--instance-id` | No | Filter by exact instance ID | `rds-0001` |
 | `--page-size` | No | Page size for ListInstances (default 100) | `100` |
 | `--operation` | No | hcloud RDS operation name; only `ListInstances` is allowed | `ListInstances` |
-| `--format` | No | Output format: `table` (default, terminal table) or `md` (Markdown file) | `md` |
-| `--output` / `-o` | No | Markdown file path; **implies `--format md`**. Relative/absolute paths accepted, parent directories auto-created. Default file name `rds_instances_<region>_<timestamp>.md` in the current directory | `reports/rds.md` |
+| `--format` | No | Output format: `table` (default, terminal table), `md` (Markdown file) or `csv` (CSV file, UTF-8 BOM + standard escaping) | `md`, `csv` |
+| `--output` / `-o` | No | Export file path; a `.csv` suffix **implies `--format csv`**, any other suffix (e.g. `.md`) keeps the Markdown semantics. Relative/absolute paths accepted, parent directories auto-created. Default file name `rds_instances_<region>_<timestamp>.md` / `.csv` in the current directory | `reports/rds.csv` |
 
-Output-mode precedence: `--names-only` → `--json` → `--format md` → table
-(default). `--format md` / `--output` are **mutually exclusive** with `--json` /
-`--names-only` (exit code 2 with an explicit message).
+Output-mode precedence: `--names-only` → `--json` → `--format md` / `--format
+csv` → table (default). `--format md` / `--format csv` / `--output` are
+**mutually exclusive** with `--json` / `--names-only` (exit code 2 with an
+explicit message). An explicit `--format md` / `--format csv` wins over the
+suffix implied by `--output`.
 
 ## Write-Intent Guard
 
@@ -215,10 +248,12 @@ hcloud <Service> <Operation> --cli-region=<region> [--key=value ...]
 | KooCLI usage error (`[USE_ERROR] ...`, even with exit code 0) | Exit 1, explicit `hcloud 参数错误` hint pointing to `hcloud RDS ListInstances --help` |
 | Write intent detected | Exit 1, `GuardError` message, no command executed |
 | Markdown write failure (uncreatable directory / I/O error) | Exit 1, `[错误] Markdown 文件写出失败（...）` on stderr; no partial file left behind |
-| `--format md` / `--output` combined with `--json` / `--names-only` | Exit 2, explicit "不能同时使用" message, no query executed |
+| CSV write failure (uncreatable directory / I/O error) | Exit 1, `[错误] CSV 文件写出失败（...）` on stderr; no partial / temp file left behind |
+| `--format md` / `--format csv` / `--output` combined with `--json` / `--names-only` | Exit 2, explicit "不能同时使用" message, no query executed |
 
-Exit codes: `0` success / empty region / empty Markdown export; `1` config,
-auth, guard, API, or Markdown write error; `2` mutually exclusive arguments.
+Exit codes: `0` success / empty region / empty Markdown or CSV export; `1`
+config, auth, guard, API, or export write error; `2` mutually exclusive
+arguments.
 
 ## Edge Cases
 
@@ -233,7 +268,11 @@ auth, guard, API, or Markdown write error; `2` mutually exclusive arguments.
 | Non-JSON hcloud output | `ApiError` with the raw excerpt (first 200 chars) |
 | hcloud absent, SDK installed | Transparent fallback to `huaweicloudsdkrds` list_instances, same output modes |
 | Empty result with `--format md` | Still writes title + header + separator + explicit `_当前区域（<x>）无 RDS 实例。_` note, exit 0 |
+| Empty result with `--format csv` | Still writes the header row only, exit 0 |
 | Markdown cell contains `|` / newline | Pipe escaped as `\|`, newlines collapsed to spaces (table stays valid) |
+| CSV cell contains `,` / `"` / newline | Standard `csv`-module quoting (`"a,b"`, `"say ""hi"""`, quoted multi-line value); column count stays intact |
+| `--output` suffix is `.csv` vs `.md` | `.csv` → CSV export; any other suffix keeps Markdown semantics; an explicit `--format` wins |
+| Excel / pandas opening the CSV | UTF-8 BOM (`utf-8-sig`) + CRLF rows → opens without an encoding flag (`pandas.read_csv` yields one column per header) |
 | `--output` points at a nested / relative path | Parent directories created automatically; atomic temp-file write |
 | `--output` path contains mutating words | Local path values are excluded from the write-intent scan (no false positive) |
 | User asks to create/delete/resize | Out of scope — blocked by the write-intent guard; a write-capable skill with explicit user confirmation is required |
@@ -257,8 +296,11 @@ signature — `status=` must raise TypeError), rendering (table with
 engine/flavor/private IP fields / names / fallbacks), Markdown export
 (render columns/escaping/empty note, explicit and default file names,
 relative paths + parent-dir creation, atomic write, write-failure cleanup,
-mutual exclusivity), and all main() output modes including empty, filter, and
-error paths.
+mutual exclusivity), CSV export (columns equal to the Markdown columns, BOM
+written exactly once, `utf-8-sig` / plain-UTF-8 parseability, comma / quote /
+newline escaping round-trip, CRLF rows, empty header-only file, `.csv` suffix
+inference, default file name, relative paths, atomic write, `CSV 文件写出失败`
+cleanup), and all main() output modes including empty, filter, and error paths.
 
 ## Reference Documents
 

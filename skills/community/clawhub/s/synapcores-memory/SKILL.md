@@ -29,13 +29,14 @@ Long-term memory for the agent, stored in a database you run yourself. Memories
 are embedded on write and retrieved by meaning, not keywords — "what coffee does
 he like" finds "prefers dark roast" without sharing a single word.
 
-Nothing leaves the machine. Embeddings are computed inside the engine; there is
-no external API key and no third-party service in the path.
+Your data stays in the SynapCores gateway you run, which is on this machine unless you
+point `SYNAPCORES_URL` at a server of your own. Embeddings are computed inside the engine;
+there is no external API key and no third-party service in the path.
 
 ## When to use this
 
 - The user says "remember that…", "don't forget…", "for future reference…"
-- The user asks "what do you know about…", "what did I tell you about…"
+- The user asks "what do you remember about…", "what did I tell you about…"
 - The user corrects or retracts something you stored
 - You need context from an earlier session
 
@@ -48,14 +49,15 @@ the published tag can never be swapped under you:
 ```bash
 docker run -d --name synapcores -p 127.0.0.1:8080:8080 \
   -v synapcores-data:/var/lib/synapcores \
-  -e SYNAPCORES_TELEMETRY=off \
   ghcr.io/synapcores/community:v2.5.1-ce@sha256:c2a583fef157b3d6afab1844641d95185d4893ac5a8f1268aa56f7af40707f1a
 ```
 
+SynapCores sends an anonymous install/heartbeat ping (version, OS, a random install id; never data, queries or prompts); add `-e SYNAPCORES_TELEMETRY=off` to turn it off.
+
 On first boot the gateway prints **your own** admin login and a starter API key
 to its own startup console. Read that startup output on your machine and copy
-the `aidb_…` API key it shows. It is your credential on your own machine — the
-plugin only ever sends it to your local gateway, never anywhere else.
+the `aidb_…` API key it shows. It is your credential — the
+plugin only ever sends it to your own gateway, never anywhere else.
 
 **2. Export the key and the gateway URL:**
 
@@ -63,6 +65,12 @@ plugin only ever sends it to your local gateway, never anywhere else.
 export SYNAPCORES_API_KEY="aidb_…"
 export SYNAPCORES_URL="http://127.0.0.1:8080"
 ```
+
+For a gateway on another machine, use its `https://` address instead, so the
+key and your memories stay encrypted on the network. The helper below checks
+this for you: it accepts `https://` anywhere and plain `http://` on this machine
+(`localhost`, `127.0.0.1`, `[::1]`). For a gateway on a private network you
+trust, `export SYNAPCORES_ALLOW_INSECURE_HTTP=1` lets it use plain `http://`.
 
 The first `MEMORY_STORE` below doubles as your connectivity check — a `401`
 means the key is wrong, and a connection error means the gateway is not up yet.
@@ -74,6 +82,15 @@ shell session:
 
 ```bash
 sc() {
+  # The API key rides on every request: keep it on this machine or on TLS.
+  case "$SYNAPCORES_URL" in
+    *@*) echo "sc: SYNAPCORES_URL must not contain '@'" >&2; return 1 ;;
+    https://*|http://localhost|http://localhost[:/]*|http://127.0.0.1|http://127.0.0.1[:/]*|http://\[::1\]|http://\[::1\][:/]*) ;;
+    *) [ "$SYNAPCORES_ALLOW_INSECURE_HTTP" = 1 ] || {
+         echo "sc: use an https:// SYNAPCORES_URL for a gateway on another machine" \
+              "(or set SYNAPCORES_ALLOW_INSECURE_HTTP=1 for a private network you trust)" >&2
+         return 1; } ;;
+  esac
   curl -s -m 120 -X POST "$SYNAPCORES_URL/v1/query/execute" \
     -H 'Content-Type: application/json' \
     -H "Authorization: Bearer $SYNAPCORES_API_KEY" \

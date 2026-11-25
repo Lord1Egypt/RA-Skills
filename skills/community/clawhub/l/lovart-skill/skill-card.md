@@ -1,6 +1,6 @@
 ## Description:
 
-Generate images, videos, and audio or music with Lovart AI, and manage Lovart projects, threads, and settings.
+Generate images, videos, and audio through Lovart AI, and manage Lovart projects, conversation threads, and settings.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers use this skill to ask an agent to create visual or audio assets through Lovart, continue project threads, upload references, retrieve generated files, and manage Lovart project settings.
+Agents use this skill to help users generate images, videos, and audio through Lovart AI, upload and download media, and manage Lovart projects and conversation threads.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Prompts, selected reference files, project or thread metadata, and generated artifacts are sent to Lovart.
+Risk: ClawScan rates this skill suspicious with medium confidence; the scan covered 50% of components and one analyzer was degraded, so its evidence is incomplete.
 
-Mitigation: Use the skill only for content that is appropriate to process with Lovart, and avoid uploading private files unless that processing is intentional.
-
-Risk: The skill persists and reuses local project and thread state.
-
-Mitigation: Review or clear ~/.lovart/state.json and confirm the active project and thread before sensitive work.
-
-Risk: Endpoint or TLS settings can weaken connection safeguards.
-
-Mitigation: Keep LOVART_BASE_URL on the official endpoint and do not enable LOVART_INSECURE_SSL.
+Mitigation: Before installing, consider whether the reported remote project changes and external media uploads are acceptable, and review the upload destination and intended permissions.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/lovart-admin/skills/lovart-skill)
-- [Lovart project canvas](https://www.lovart.ai/canvas?projectId={project_id})
+- [ClawHub skill release](https://clawhub.ai/lovart-admin/skills/lovart-skill)
+- [Project link](https://github.com/lovartai/lovart-skill)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, shell commands, configuration, files]
+**Output Type(s):** [Files, Text, Guidance]
 
-**Output Format:** [Markdown responses with JSON command results, downloaded media file attachments, and Lovart project links.]
+**Output Format:** [Generated image, video, and audio files; text responses and JSON result data]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Uses Lovart access credentials, persists local project and thread state, and can return images, videos, audio files, status details, warnings, and error messages.]
+**Other Properties Related to Output:** [Media downloads may be accompanied by project and thread identifiers or links.]
 
 ## Skill Version(s):
 
-1.1.0 (source: server release metadata and frontmatter)
+1.1.1 (source: frontmatter; ClawHub release 1.1.1)
 
 ## Ethical Considerations:
 

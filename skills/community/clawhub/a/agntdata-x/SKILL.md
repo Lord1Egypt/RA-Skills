@@ -1,7 +1,7 @@
 ---
 name: x-twitter-data
 description: "X posts, profiles, followers, and search for agents — audience research and social listening as structured JSON."
-version: 2.0.14
+version: 2.0.19
 author: superagnt
 license: MIT-0
 platforms: [macos, linux, windows]

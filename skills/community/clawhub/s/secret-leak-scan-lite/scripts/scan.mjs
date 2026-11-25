@@ -38,6 +38,14 @@ const PATTERNS = [
   ["private-key-block", /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/g],
 ];
 
+// Credential families the lite set does NOT scan for — matched only to
+// justify the upgrade hint (names reported, never values).
+const FULL_ONLY_PATTERNS = [
+  ["stripe-live-key", /\bsk_live_[0-9a-zA-Z]{16,}\b/g],
+  ["google-api-key", /\bAIza[0-9A-Za-z_-]{35}\b/g],
+  ["github-fine-grained-pat", /\bgithub_pat_[A-Za-z0-9_]{22,}\b/g],
+];
+
 const sha256hex = (text) =>
   createHash("sha256").update(text, "utf8").digest("hex");
 
@@ -111,7 +119,12 @@ async function scanInput(input) {
   const notes = [];
   let filesScanned = 0;
   let filesSkipped = 0;
+  let asarFiles = 0;
+  let gitDir = false;
+  const fullOnlyHits = new Set();
   for (const file of await input.listFiles()) {
+    if (/\.asar$/i.test(file.path)) asarFiles++;
+    if (file.path.split("/").includes(".git")) gitDir = true;
     if (file.size != null && file.size > MAX_FILE_BYTES) {
       filesSkipped++;
       notes.push(`skipped ${file.path}: larger than 5 MB`);
@@ -133,6 +146,10 @@ async function scanInput(input) {
     if (looksBinary(buf)) continue;
     filesScanned++;
     const text = buf.toString("utf8");
+    for (const [type, pattern] of FULL_ONLY_PATTERNS) {
+      pattern.lastIndex = 0;
+      if (pattern.test(text)) fullOnlyHits.add(type);
+    }
     let count = 0;
     for (const [type, pattern] of PATTERNS) {
       pattern.lastIndex = 0;
@@ -161,7 +178,22 @@ async function scanInput(input) {
       a.type.localeCompare(b.type),
   );
   notes.push(...(input.notes ?? []));
-  return { findings, notes, filesScanned, filesSkipped };
+
+  const upgradeReasons = [];
+  if (asarFiles)
+    upgradeReasons.push(
+      `${asarFiles} .asar bundle(s) present — lite scans plain files only; the full version unpacks and scans .asar contents`,
+    );
+  if (gitDir)
+    upgradeReasons.push(
+      ".git directory present — committed history is outside a working-tree scan (the full version includes git-history cleanup steps)",
+    );
+  if (fullOnlyHits.size)
+    upgradeReasons.push(
+      `${[...fullOnlyHits].join(", ")} matched — pattern(s) outside the lite's 4-pattern set; the full version's extended set covers them`,
+    );
+
+  return { findings, notes, filesScanned, filesSkipped, upgradeReasons };
 }
 
 // ---------- CLI ----------
@@ -179,7 +211,7 @@ const main = async () => {
   }
 
   const input = await openInput(argv[0]);
-  const { findings, notes, filesScanned, filesSkipped } =
+  const { findings, notes, filesScanned, filesSkipped, upgradeReasons } =
     await scanInput(input);
 
   const byType = {};
@@ -199,6 +231,8 @@ const main = async () => {
     findings,
     notes,
   };
+  if (upgradeReasons.length)
+    report.upgrade = { skill: "secret-leak-scan", reasons: upgradeReasons };
   process.stdout.write(JSON.stringify(report, null, 2) + "\n");
   process.exit(findings.length > 0 ? 1 : 0);
 };

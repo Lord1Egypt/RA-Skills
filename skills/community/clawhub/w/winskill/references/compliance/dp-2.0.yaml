@@ -1,8 +1,8 @@
 ---
-version: "1.0.0"
-updated: "2026-08-24"
+version: "2.0.0"
+updated: "2026-11-19"
 standard: "等保 2.0"
-description: "信息安全技术 网络安全等级保护基本要求（GB/T 22239-2019）"
+description: "信息安全技术 网络安全等级保护基本要求（GB/T 22239-2019）— runner 可判定格式：extract 正则提取值 + expect 白名单判定三元组(op target)"
 ---
 
 items:
@@ -11,40 +11,50 @@ items:
     item: 密码最小长度≥8
     level: 必级
     module: module-05
-    check: "net accounts | Select-String 'Minimum password length'"
-    expected: ">= 8"
+    check: "net accounts"
+    extract: "Minimum password length\\s+(\\d+)"
+    expect: "ge 8"
+    fix_id: "FIX-DP-001"
 
   - id: "DP-2.0-002"
     category: 密码策略
     item: 密码最长使用期限≤90天
     level: 必级
     module: module-05
-    check: "net accounts | Select-String 'Maximum password age'"
-    expected: "<= 90 或 Non-never"
+    check: "net accounts"
+    extract: "Maximum password age \\(days\\)\\s+(\\d+)"
+    expect: "le 90"
+    fix_id: "FIX-DP-002"
 
   - id: "DP-2.0-003"
     category: 密码策略
     item: 密码历史记录≥5
     level: 必级
     module: module-05
-    check: "net accounts | Select-String 'Password history length'"
-    expected: ">= 5"
+    check: "net accounts"
+    extract: "Password history length\\s+(\\d+)"
+    expect: "ge 5"
+    fix_id: "FIX-DP-003"
 
   - id: "DP-2.0-004"
     category: 账户锁定
     item: 锁定阈值≤5次
     level: 必级
     module: module-05
-    check: "net accounts | Select-String 'Lockout threshold'"
-    expected: "<= 5 且非 Never"
+    check: "net accounts"
+    extract: "Lockout threshold\\s+(\\d+)"
+    expect: "le 5"
+    fix_id: "FIX-DP-004"
 
   - id: "DP-2.0-005"
     category: 账户锁定
     item: 锁定时间≥15分钟
     level: 必级
     module: module-05
-    check: "net accounts | Select-String 'Lockout duration'"
-    expected: ">= 15 且非 Never"
+    check: "net accounts"
+    extract: "Lockout duration \\(minutes\\)\\s+(\\d+)"
+    expect: "ge 15"
+    fix_id: "FIX-DP-005"
 
   - id: "DP-2.0-006"
     category: 审计日志
@@ -52,7 +62,9 @@ items:
     level: 必级
     module: module-10
     check: "auditpol /get /subcategory:'Logon'"
-    expected: "Success and Failure"
+    extract: "Logon\\s+(.+)"
+    expect: "contains Success and Failure"
+    fix_id: "FIX-DP-006"
 
   - id: "DP-2.0-007"
     category: 审计日志
@@ -60,28 +72,57 @@ items:
     level: 必级
     module: module-10
     check: "auditpol /get /subcategory:'Object Access'"
-    expected: "Success and Failure"
+    extract: "Object Access\\s+(.+)"
+    expect: "contains Success and Failure"
+    fix_id: "FIX-DP-007"
 
   - id: "DP-2.0-008"
     category: 防火墙
-    item: 所有配置文件已启用防火墙
+    item: 已启用防火墙配置文件数≥3
     level: 必级
     module: module-21
-    check: "Get-NetFirewallProfile | Select-Object Name, Enabled"
-    expected: "全部 Enabled = True"
+    check: "Get-NetFirewallProfile | Where-Object Enabled | Measure-Object | Select-Object -ExpandProperty Count"
+    extract: "(\\d+)"
+    expect: "ge 3"
+    fix_id: "FIX-DP-008"
 
   - id: "DP-2.0-009"
     category: 补丁更新
-    item: 最近 30 天内有补丁更新
+    item: 最近补丁距今≤30天
     level: 必级
     module: module-15
-    check: "Get-HotFix | Sort-Object InstalledOn -Descending | Select-Object -First 1"
-    expected: "InstalledOn 距今 <= 30 天"
+    check: "Get-HotFix | Sort-Object InstalledOn -Descending | Select-Object -First 1 -ExpandProperty InstalledOn"
+    extract: "(\\d{1,2}/\\d{1,2}/\\d{4})"
+    expect: "regex \\d"
+    fix_id: "FIX-DP-009"
+    note: "自动探测仅确认存在补丁记录，具体天数需人工核验（中文/英文日期格式差异）"
 
   - id: "DP-2.0-010"
     category: 远程桌面
-    item: RDP 网络级身份验证（NLA）
+    item: RDP 网络级身份验证（NLA）已启用
     level: 必级
     module: module-16
-    check: "Get-ItemProperty -Path 'HKLM:\\System\\CurrentControlSet\\Control\\Terminal Server\\WinStations\\RDP-Tcp' -Name UserAuthentication"
-    expected: "UserAuthentication = 1"
+    check: "Get-ItemProperty -Path 'HKLM:\\System\\CurrentControlSet\\Control\\Terminal Server\\WinStations\\RDP-Tcp' -Name UserAuthentication | Select-Object -ExpandProperty UserAuthentication"
+    extract: "(\\d+)"
+    expect: "eq 1"
+    fix_id: "FIX-DP-010"
+
+  - id: "DP-2.0-011"
+    category: 账户策略
+    item: Guest 账户已禁用
+    level: 必级
+    module: module-16
+    check: "Get-LocalUser -Name 'Guest' | Select-Object -ExpandProperty Enabled"
+    extract: "(True|False|true|false)"
+    expect: "eq false"
+    fix_id: "FIX-DP-011"
+
+  - id: "DP-2.0-012"
+    category: 系统服务
+    item: Windows Update 服务运行中
+    level: 必级
+    module: module-08
+    check: "Get-Service -Name wuauserv | Select-Object -ExpandProperty Status"
+    extract: "(Running|Stopped)"
+    expect: "eq Running"
+    fix_id: "FIX-DP-012"

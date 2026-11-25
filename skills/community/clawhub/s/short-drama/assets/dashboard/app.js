@@ -15,8 +15,8 @@
  */
 
 const hasDocument = typeof document !== "undefined";
-const $ = (selector, root) => (hasDocument ? (root || document).querySelector(selector) : null);
-const $$ = (selector, root) => (hasDocument ? Array.from((root || document).querySelectorAll(selector)) : []);
+const $ = (selector, root) => (typeof document !== "undefined" ? (root || document).querySelector(selector) : null);
+const $$ = (selector, root) => (typeof document !== "undefined" ? Array.from((root || document).querySelectorAll(selector)) : []);
 const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const local = {
   get(key, fallback) { try { const value = localStorage.getItem(`desk.${key}`); return value == null ? fallback : JSON.parse(value); } catch (_error) { return fallback; } },
@@ -266,40 +266,65 @@ function axisOnly(axis, allowed) {
   return active.length > 0 && active.every((value) => allowed.includes(value));
 }
 
-function creatorStatus(lifecycle, recovery = null) {
-  if (!lifecycle || typeof lifecycle !== "object") return ["创作中", "neutral"];
-  const simple = lifecycle.artifact_state;
-  if (typeof simple === "string" || (simple && typeof simple === "object")) {
-    if (valueIs(simple, "revise")) return ["需要修改", "danger"];
-    if (valueIs(simple, "update_needed")) return ["需要更新", "warning"];
-    if (valueIs(simple, "needs_confirmation")) return ["待你确认", "warning"];
-    if (axisOnly(simple, ["approved"])) return ["可以导出", "success"];
-    if (valueIs(simple, "accepted") || valueIs(simple, "approved")) return ["已采用", "success"];
-    return ["创作中", "neutral"];
-  }
+function hasTrackedArtifactState(axis) {
+  if (typeof axis === "string") return Boolean(axis.trim());
+  return Boolean(axis && typeof axis === "object" && Object.values(axis).some((count) => Number(count) > 0));
+}
+
+function episodeSeriesStatus(rows) {
+  const active = (Array.isArray(rows) ? rows : []).filter((row) => row && !row.legacy);
+  if (!active.length) return ["创作中", "neutral"];
+  const steps = active.map((row) => ({ row, next: nextFor(row) }));
+  if (steps.some((item) => item.next.kind === "fix")) return ["需要修改", "danger"];
+  if (steps.every((item) => item.next.kind === "done")) return ["可以导出", "success"];
   if (
-    valueIs(lifecycle.build_state, "failed") || valueIs(lifecycle.build_state, "fail") ||
-    valueIs(lifecycle.validation_state, "failed") || valueIs(lifecycle.validation_state, "fail") ||
-    valueIs(lifecycle.creator_acceptance, "rejected") || valueIs(lifecycle.independent_review, "rejected") ||
-    valueIs(lifecycle.independent_review, "reject") || valueIs(lifecycle.independent_review, "revise")
-  ) return ["需要修改", "danger"];
-  if (recovery?.needed) return ["需要更新", "warning"];
-  if (valueIs(lifecycle.build_state, "stale")) return ["需要更新", "warning"];
-  if (valueIs(lifecycle.creator_acceptance, "pending")) return ["待你确认", "warning"];
-  const accepted = axisOnly(lifecycle.creator_acceptance, ["accepted"]);
-  const reviewed = axisOnly(lifecycle.independent_review, ["approve", "approve_with_notes", "pass"]);
-  const ready = axisOnly(lifecycle.delivery_gate, ["ready", "delivered"]);
-  const built = lifecycle.build_state === undefined || axisOnly(lifecycle.build_state, ["materialized"]);
-  const valid = lifecycle.validation_state === undefined || axisOnly(lifecycle.validation_state, ["pass", "pass_with_warnings"]);
-  if (accepted && reviewed && ready && built && valid) return ["可以导出", "success"];
-  const unfinished =
-    valueIs(lifecycle.build_state, "absent") || valueIs(lifecycle.build_state, "in_progress") ||
-    valueIs(lifecycle.validation_state, "not_run") || valueIs(lifecycle.independent_review, "not_requested") ||
-    valueIs(lifecycle.independent_review, "provisional") || valueIs(lifecycle.delivery_gate, "not_evaluated") ||
-    valueIs(lifecycle.delivery_gate, "blocked");
-  if (accepted && unfinished) return ["已采用", "neutral"];
-  if (accepted) return ["已采用", "success"];
+    steps.some((item) => item.row.has?.review && reviewNeedsAttention(item.row))
+    || steps.every((item) => item.next.kind === "review")
+  ) return ["待你确认", "warning"];
   return ["创作中", "neutral"];
+}
+
+function creatorStatus(lifecycle, recovery = null, rows = null) {
+  if (lifecycle && typeof lifecycle === "object") {
+    const simple = lifecycle.artifact_state;
+    if (hasTrackedArtifactState(simple)) {
+      if (valueIs(simple, "revise")) return ["需要修改", "danger"];
+      if (valueIs(simple, "update_needed")) return ["需要更新", "warning"];
+      if (valueIs(simple, "needs_confirmation")) return ["待你确认", "warning"];
+      if (axisOnly(simple, ["approved"])) return ["可以导出", "success"];
+      if (valueIs(simple, "accepted") || valueIs(simple, "approved")) return ["已采用", "success"];
+      return ["创作中", "neutral"];
+    }
+    const hasLegacyAxes = [
+      "build_state", "validation_state", "creator_acceptance", "independent_review", "delivery_gate",
+    ].some((key) => lifecycle[key] !== undefined);
+    if (hasLegacyAxes || recovery?.needed) {
+      if (
+        valueIs(lifecycle.build_state, "failed") || valueIs(lifecycle.build_state, "fail") ||
+        valueIs(lifecycle.validation_state, "failed") || valueIs(lifecycle.validation_state, "fail") ||
+        valueIs(lifecycle.creator_acceptance, "rejected") || valueIs(lifecycle.independent_review, "rejected") ||
+        valueIs(lifecycle.independent_review, "reject") || valueIs(lifecycle.independent_review, "revise")
+      ) return ["需要修改", "danger"];
+      if (recovery?.needed) return ["需要更新", "warning"];
+      if (valueIs(lifecycle.build_state, "stale")) return ["需要更新", "warning"];
+      if (valueIs(lifecycle.creator_acceptance, "pending")) return ["待你确认", "warning"];
+      const accepted = axisOnly(lifecycle.creator_acceptance, ["accepted"]);
+      const reviewed = axisOnly(lifecycle.independent_review, ["approve", "approve_with_notes", "pass"]);
+      const ready = axisOnly(lifecycle.delivery_gate, ["ready", "delivered"]);
+      const built = lifecycle.build_state === undefined || axisOnly(lifecycle.build_state, ["materialized"]);
+      const valid = lifecycle.validation_state === undefined || axisOnly(lifecycle.validation_state, ["pass", "pass_with_warnings"]);
+      if (accepted && reviewed && ready && built && valid) return ["可以导出", "success"];
+      const unfinished =
+        valueIs(lifecycle.build_state, "absent") || valueIs(lifecycle.build_state, "in_progress") ||
+        valueIs(lifecycle.validation_state, "not_run") || valueIs(lifecycle.independent_review, "not_requested") ||
+        valueIs(lifecycle.independent_review, "provisional") || valueIs(lifecycle.delivery_gate, "not_evaluated") ||
+        valueIs(lifecycle.delivery_gate, "blocked");
+      if (accepted && unfinished) return ["已采用", "neutral"];
+      if (accepted) return ["已采用", "success"];
+      return ["创作中", "neutral"];
+    }
+  }
+  return episodeSeriesStatus(rows);
 }
 
 function mediaKind(fileOrPath) {
@@ -819,6 +844,7 @@ const S = {
   copied: new Set(),
   edit: null,
   lastHash: "",
+  projectSequence: 0,
   renderSequence: 0,
   pendingLine: null,
   palette: { sel: 0, items: [], scope: "ep", timer: null, sequence: 0 },
@@ -866,36 +892,55 @@ function flatten(nodes, out = []) {
 }
 
 async function loadProject(id) {
+  const sequence = ++S.projectSequence;
   const [series, tree] = await Promise.all([
     api(`/api/series?${query({ project: id })}`),
     api(`/api/tree?${query({ project: id })}`),
   ]);
+  if (sequence !== S.projectSequence) return false;
   S.project = id;
   S.series = series;
   S.tree = tree;
   S.files = flatten(tree.tree);
   S.episodes = new Map();
+  S.status = null;
   S.copied = new Set(local.get(`copied.${id}`, []));
   local.set("project", id);
+  if (hasTrackedArtifactState(series?.lifecycle?.artifact_state)) {
+    const status = await api(`/api/status?${query({ project: id })}`).catch(() => null);
+    if (sequence !== S.projectSequence || S.project !== id) return false;
+    S.status = status;
+  }
+  return true;
 }
 
 async function loadEpisode(ep) {
   if (S.episodes.has(ep)) return S.episodes.get(ep);
-  // A save may swap S.episodes while this request is in flight; return what was read, not the new empty cache.
-  const data = await api(`/api/episode?${query({ project: S.project, ep })}`);
-  S.episodes.set(ep, data);
+  const projectId = S.project;
+  const episodesMap = S.episodes;
+  // A save or project switch may swap S.episodes / S.project while this request is in flight;
+  // never populate a newer cache with stale data.
+  const data = await api(`/api/episode?${query({ project: projectId, ep })}`);
+  if (S.project === projectId && S.episodes === episodesMap) {
+    episodesMap.set(ep, data);
+  }
   return data;
 }
 
 async function refreshProject() {
+  const projectId = S.project;
+  const sequence = S.projectSequence;
+  if (!projectId) return false;
   const [series, tree] = await Promise.all([
-    api(`/api/series?${query({ project: S.project })}`),
-    api(`/api/tree?${query({ project: S.project })}`),
+    api(`/api/series?${query({ project: projectId })}`),
+    api(`/api/tree?${query({ project: projectId })}`),
   ]);
+  if (S.project !== projectId || sequence !== S.projectSequence) return false;
   S.series = series;
   S.tree = tree;
   S.files = flatten(tree.tree);
   S.episodes = new Map();
+  return true;
 }
 
 /* ================================================================ chrome */
@@ -956,7 +1001,7 @@ function stageState(row, key) {
 
 function stageMeta(row, E) {
   const findings = row.review.must + row.review.should + row.review.could;
-  const prompts = E ? (E.imagePrompts?.length || 0) + (E.videoPrompts?.length || 0) : null;
+  const prompts = E ? (E.imagePrompts?.length || 0) + (E.videoPrompts?.length || 0) + (E.musicPrompts?.length || 0) : null;
   return {
     "": "",
     script: row.has.script ? (E?.script ? `${E.script.scenes.length} 场` : "已写") : "未写",
@@ -1099,7 +1144,7 @@ function viewOverview() {
   const rows = series.episodes;
   const count = series.format.episode_count || rows.length;
   const perEpisode = target();
-  const [statusLabel] = creatorStatus(series.lifecycle);
+  const [statusLabel] = creatorStatus(series.lifecycle, null, rows);
   const withStage = (key) => rows.filter((row) => row.has[key]).length;
   const cut = rows.filter((row) => row.has.film || row.has.cut).reduce((sum, row) => sum + (row.cutSeconds || 0), 0);
   const whole = perEpisode ? count * perEpisode : 0;
@@ -1137,17 +1182,18 @@ function viewOverview() {
     </thead>
     <tbody>${rows.map((row) => {
       const next = nextFor(row);
+      const dur = row.cutSeconds || row.seconds;
       const dim = !DOCUMENT_STAGES.some((stage) => row.has[stage.key]) && !row.legacy;
       return `<tr data-go="#/${esc(row.id)}" data-episode="${esc(row.id)}" class="${dim ? "dim" : ""}"><td class="ep"><a href="#/${esc(row.id)}">${esc(row.id)}</a></td><td class="ttl">${esc(row.title || (row.legacy ? "旧版格式" : "未开始"))}</td>
       ${STAGES.map((stage) => { const warn = stage.key === "review" && reviewNeedsAttention(row); const on = row.has[stage.key]; const warnNote = row.review.must ? "：有必须改的意见" : `：${row.reviewLabel || "审查未通过"}`;
         return `<td><div class="cell"><span class="pip ${warn ? "warn" : on ? "on" : ""}" title="${stage.label}${warn ? esc(warnNote) : on ? "：已有" : "：还没有"}" data-stage="${stage.key}" data-on="${on ? 1 : 0}">${warn ? icon("alert") : on ? icon("check") : ""}<span class="sr-only">${stage.label}${warn ? esc(warnNote) : on ? "：已有" : "：还没有"}</span></span></div></td>`; }).join("")}
-      <td>${row.seconds ? `<div class="dur"><span class="mono">${fmt(row.cutSeconds || row.seconds)}</span>${perEpisode ? `<span class="bar"><i data-css="width:${Math.min(100, ((row.cutSeconds || row.seconds) / (perEpisode * 1.25)) * 100)}%"></i><span class="tgt" data-css="left:80%"></span></span>` : ""}</div>` : '<span class="muted">—</span>'}</td>
+      <td>${dur ? `<div class="dur"><span class="mono">${fmt(dur)}</span>${perEpisode ? `<span class="bar"><i data-css="width:${Math.min(100, (dur / (perEpisode * 1.25)) * 100)}%"></i><span class="tgt" data-css="left:80%"></span></span>` : ""}</div>` : '<span class="muted">—</span>'}</td>
       <td class="nextcell">${dim ? '<span class="muted">未开始</span>' : next.kind === "fix" ? `<b>${esc(next.text)}</b>` : esc(next.text)}</td></tr>`; }).join("")}</tbody>
   </table></div>
-  <div class="ep-cards">${rows.map((row) => { const next = nextFor(row);
+  <div class="ep-cards">${rows.map((row) => { const next = nextFor(row); const dur = row.cutSeconds || row.seconds;
     return `<a class="card ep-card" href="#/${esc(row.id)}" data-episode="${esc(row.id)}"><div class="r1"><span class="ep">${esc(row.id)}</span><span class="ttl">${esc(row.title || "未开始")}</span>${row.review.must ? `<span class="revdot">${icon("alert")}${row.review.must} 必须改</span>` : reviewNeedsAttention(row) ? `<span class="revdot">${icon("alert")}${esc(row.reviewLabel || "待复核")}</span>` : ""}</div>
     <div class="segs" aria-hidden="true">${STAGES.map((stage) => `<i class="${stage.key === "review" ? (!row.has.review ? "" : reviewPassed(row) ? "on" : "warn") : row.has[stage.key] ? "on" : ""}"></i>`).join("")}</div>
-    <div class="r3"><span>${STAGES.filter((stage) => row.has[stage.key]).length}/8 · ${row.seconds ? fmt(row.cutSeconds || row.seconds) : "—"}</span><span>${esc(next.kind === "done" ? "可以导出" : next.text)}</span></div></a>`; }).join("")}</div>` : `<div class="empty"><h3>还没有分集</h3><p>分集建立在「剧集/EP001」这样的文件夹里。</p></div>`}
+    <div class="r3"><span>${STAGES.filter((stage) => row.has[stage.key]).length}/8 · ${dur ? fmt(dur) : "—"}</span><span>${esc(next.kind === "done" ? "可以导出" : next.text)}</span></div></a>`; }).join("")}</div>` : `<div class="empty"><h3>还没有分集</h3><p>分集建立在「剧集/EP001」这样的文件夹里。</p></div>`}
 
   <div class="twocol">
     <div><div class="section-t"><h3>节奏目标</h3><span class="n">${profile ? "已确认 · 分镜与审查按它核对" : "尚未设定"}</span></div>
@@ -1186,7 +1232,7 @@ function viewEpisode(row, E) {
     script: E.script ? `${C.scenes.length} 场 · ${spoken} 句台词${E.metrics.vo != null ? ` · 旁白 ${pct(E.metrics.vo)}` : ""}` : "按原文阅读",
     settings: E.settings ? `${E.settings.items.length} 项${E.settings.era.period ? ` · 时代：${E.settings.era.period}` : ""}` : "按原文阅读",
     board: E.board ? `${C.shots.length} 镜 · ${num(C.total)} 秒${E.metrics.avg != null ? ` · 平均 ${num(E.metrics.avg)} 秒` : ""}` : "按原文阅读",
-    prompts: `图片 ${E.imagePrompts?.length ?? "—"} 条 · 视频 ${E.videoPrompts?.length ?? "—"} 条`,
+    prompts: `图片 ${E.imagePrompts?.length ?? "—"} 条 · 视频 ${E.videoPrompts?.length ?? "—"} 条${E.musicPrompts?.length ? ` · 配乐 ${E.musicPrompts.length} 条` : ""}`,
     film: E.cutlist ? `${C.cuts.length} 段 · ${fmt(C.cutTotal)}${E.media.film ? " · 已渲染成片" : " · 未渲染"}` : E.media.film ? "已有成片" : "按原文阅读",
     review: E.review ? `${E.review.verdict || "已写"} · 必须改 ${counts.must} · 建议改 ${counts.should}` : "按原文阅读",
   };
@@ -1552,6 +1598,31 @@ function keyframeCopyUnits(shots) {
   return units;
 }
 
+function musicCopyUnits(E) {
+  return (E.musicPrompts || []).map((music) => {
+    const meta = [
+      music.sec ? `${esc(num(music.sec))} 秒` : "",
+      music.range ? `区间：${esc(music.range)}` : "",
+      music.use ? `用途：${esc(music.use)}` : "",
+      music.mood ? `${music.instruments ? "情绪" : "情绪与乐器"}：${esc(music.mood)}` : "",
+      music.style ? `风格：${esc(music.style)}` : "",
+      music.instruments ? `乐器：${esc(music.instruments)}` : "",
+      music.tempo ? `节奏：${esc(music.tempo)}` : "",
+      music.avoid ? `禁用：${esc(music.avoid)}` : "",
+      music.notes ? `备注：${esc(music.notes)}` : "",
+    ].filter(Boolean);
+    return { key: music.id, id: music.id, title: music.title, meta, text: music.prompt };
+  });
+}
+
+function renderPromptCard(item, open) {
+  const hasText = Boolean(item.text);
+  return `<article class="card pcard ${S.copied.has(item.key) ? "copied" : ""}" id="p-${esc(item.id)}" data-key="${esc(item.key)}" data-prompt-id="${esc(item.id)}">
+    <div><div class="pid">${esc(item.id)}</div><div class="pt">${esc(item.title)}</div><div class="pm">${item.meta.filter(Boolean).map((line) => `<span>${line}</span>`).join("")}</div></div>
+    ${hasText ? `<div class="ptext ${open === item.id ? "" : "clamp"}" data-act="expand">${esc(item.text)}</div>` : '<div class="ptext muted">尚未编写可复制提示词</div>'}
+    <div class="pact">${hasText ? `${copyButton(item.text, item.key)}<span class="cc">${item.text.length} 字符</span>` : ""}</div></article>`;
+}
+
 function viewPrompts(row, E, arg, q) {
   if (!row.has.imgp && !row.has.vidp && !row.has.board) return missingView(row, "prompts");
   const C = context(E);
@@ -1560,24 +1631,28 @@ function viewPrompts(row, E, arg, q) {
     keyframe: keyframeCopyUnits(C.shots),
     image: (E.imagePrompts || []).map((prompt) => ({ key: prompt.id, id: prompt.id, title: prompt.title, meta: [esc(prompt.use), `被 ${C.shots.filter((shot) => shot.imgs.some((img) => img.id === prompt.id)).length} 镜引用`], text: prompt.prompt })),
   };
-  const tab = ["video", "keyframe", "image"].includes(arg) ? arg : sets.video.length ? "video" : sets.keyframe.length ? "keyframe" : "image";
+  const musicAll = musicCopyUnits(E);
+  const tab = ["video", "keyframe", "image"].includes(arg) ? arg : (sets.video.length || musicAll.length) ? "video" : sets.keyframe.length ? "keyframe" : "image";
   const list = sets[tab].filter((item) => item.text);
-  const done = list.filter((item) => S.copied.has(item.key)).length;
-  const nextItem = list.find((item) => !S.copied.has(item.key));
+  const musicUnits = tab === "video" ? musicAll : [];
+  const copyable = [...list, ...musicUnits.filter((item) => item.text)];
+  const done = copyable.filter((item) => S.copied.has(item.key)).length;
+  const nextItem = copyable.find((item) => !S.copied.has(item.key));
+  const nextLabel = nextItem ? nextItem.id.replace(/^(MOTION|SHOT|IMG|GROUP)-(EP\d+-)?/, "").replace(/^MUSIC-(EP\d+-)?/, "配乐 ") : "";
   const open = q.get("id");
   const docFor = { video: E.docs["视频提示词.md"], keyframe: E.docs["分镜.md"], image: E.docs["图片提示词.md"] }[tab];
-  const unreadable = { video: row.has.vidp && !E.videoPrompts, image: row.has.imgp && !E.imagePrompts, keyframe: row.has.board && !E.board }[tab];
+  const unreadable = { video: row.has.vidp && !E.videoPrompts && !musicAll.length, image: row.has.imgp && !E.imagePrompts, keyframe: row.has.board && !E.board }[tab];
+  const videoTabLabel = musicAll.length ? `视频 ${sets.video.length} · 配乐 ${musicAll.length}` : `视频 ${sets.video.length}`;
+  const hasItems = list.length > 0 || musicUnits.length > 0;
   return `<div class="wrap" data-view="prompts">
     <div class="head"><div><h2>提示词</h2><div class="sub">整段复制，粘进你的生成工具；一条就是一次生成</div></div>
-      <div class="actions"><div class="seg" role="tablist">${[["video", `视频 ${sets.video.length}`], ["keyframe", `关键帧 ${sets.keyframe.length}`], ["image", `图片 ${sets.image.length}`]].map(([key, label]) => `<a role="tab" href="#/${esc(row.id)}/prompts/${key}" ${tab === key ? 'aria-current="page"' : ""}>${label}</a>`).join("")}</div>${editButton(docFor)}</div></div>
+      <div class="actions"><div class="seg" role="tablist">${[["video", videoTabLabel], ["keyframe", `关键帧 ${sets.keyframe.length}`], ["image", `图片 ${sets.image.length}`]].map(([key, label]) => `<a role="tab" href="#/${esc(row.id)}/prompts/${key}" ${tab === key ? 'aria-current="page"' : ""}>${label}</a>`).join("")}</div>${editButton(docFor)}</div></div>
     ${problemNotices(E)}
-    ${unreadable ? rawFallback(E, docFor, "提示词") : list.length ? `<div class="card copybar"><b>逐条复制</b><span class="bar"><i data-css="width:${(done / list.length) * 100}%"></i></span><span class="muted" id="copyProgress">${done} / ${list.length}</span>
-      ${nextItem ? `<button class="btn sm primary" type="button" data-copy="${esc(nextItem.text)}" data-key="${esc(nextItem.key)}" data-next="1">${icon("copy")}复制下一条 · <span class="mono">${esc(nextItem.id.replace(/^(MOTION|SHOT|IMG|GROUP)-(EP\d+-)?/, ""))}</span></button>` : `<span class="status ok">${icon("check")}全部复制过</span>`}
-      <button class="btn sm ghost" type="button" data-act="clear-copied" data-tab="${tab}">清除标记</button><span class="muted lbl-long">标记只存在这台电脑的浏览器里</span></div>
-    <div class="plist">${list.map((item) => `<article class="card pcard ${S.copied.has(item.key) ? "copied" : ""}" id="p-${esc(item.id)}" data-key="${esc(item.key)}">
-      <div><div class="pid">${esc(item.id)}</div><div class="pt">${esc(item.title)}</div><div class="pm">${item.meta.filter(Boolean).map((line) => `<span>${line}</span>`).join("")}</div></div>
-      <div class="ptext ${open === item.id ? "" : "clamp"}" data-act="expand">${esc(item.text)}</div>
-      <div class="pact">${copyButton(item.text, item.key)}<span class="cc">${item.text.length} 字符</span></div></article>`).join("")}</div>`
+    ${unreadable ? `<div data-raw="${esc(docFor)}"><div class="loading">正在读取原文…</div></div>` : hasItems ? `${copyable.length ? `<div class="card copybar"><b>逐条复制</b><span class="bar"><i data-css="width:${(done / copyable.length) * 100}%"></i></span><span class="muted" id="copyProgress">${done} / ${copyable.length}</span>
+      ${nextItem ? `<button class="btn sm primary" type="button" data-copy="${esc(nextItem.text)}" data-key="${esc(nextItem.key)}" data-next="1">${icon("copy")}复制下一条 · <span class="mono">${esc(nextLabel)}</span></button>` : `<span class="status ok">${icon("check")}全部复制过</span>`}
+      <button class="btn sm ghost" type="button" data-act="clear-copied" data-tab="${tab}">清除标记</button><span class="muted lbl-long">标记只存在这台电脑的浏览器里</span></div>` : ""}
+    ${list.length ? `<div class="plist">${list.map((item) => renderPromptCard(item, open)).join("")}</div>` : ""}
+    ${musicUnits.length ? `<div class="section-t" id="musicPromptsSection"><h3>成片配乐</h3><span class="n">${musicUnits.length} 条</span></div><div class="plist" data-prompt-group="music">${musicUnits.map((item) => renderPromptCard(item, open)).join("")}</div>` : ""}`
       : `<div class="empty"><h3>这一类还没有提示词</h3><p>${tab === "keyframe" ? "分镜里写了「首帧提示词」或「尾帧提示词」的镜头会列在这里。" : "写好后这里会逐条列出。"}</p></div>`}
   </div>`;
 }
@@ -1673,7 +1748,12 @@ function bindFilm(C) {
   const sync = () => place(video ? video.currentTime / scale() : 0);
   const seek = (t) => { if (video) { video.currentTime = t * scale(); } place(t); };
   if (video) ["timeupdate", "seeked", "loadedmetadata"].forEach((name) => video.addEventListener(name, sync));
-  hit.addEventListener("click", (event) => { const box = hit.getBoundingClientRect(); seek(((event.clientX - box.left) / box.width) * total); });
+  hit.addEventListener("click", (event) => {
+    const box = hit.getBoundingClientRect();
+    if (!(box.width > 0)) return;
+    const t = Math.max(0, Math.min(total, ((event.clientX - box.left) / box.width) * total));
+    seek(t);
+  });
   $$(".cuts tr[data-cut], .tl-cut").forEach((node) => node.addEventListener("click", (event) => {
     if (event.target.closest("a")) return;
     const cut = C.cuts.find((item) => item.id === node.dataset.cut);
@@ -2244,8 +2324,8 @@ async function selectProject(id) {
   S.edit = null;
   $("#view").dataset.state = "loading";
   try {
-    await loadProject(id);
-    S.status = await api(`/api/status?${query({ project: id })}`).catch(() => null);
+    const loaded = await loadProject(id);
+    if (!loaded) return;
     if (location.hash !== "#/") { S.lastHash = "#/"; history.replaceState(null, "", "#/"); }
     render();
   } catch (error) {
@@ -2263,8 +2343,8 @@ async function boot() {
     if (!S.projects.length) { $("#topbar").innerHTML = '<a class="zs-mark" href="#/" aria-label="短剧创作台">场</a>'; showError("还没有发现可打开的短剧项目。"); return; }
     const remembered = local.get("project", null);
     const id = S.projects.some((project) => project.id === remembered) ? remembered : S.projects[0].id;
-    await loadProject(id);
-    S.status = await api(`/api/status?${query({ project: id })}`).catch(() => null);
+    const loaded = await loadProject(id);
+    if (!loaded) return;
     S.lastHash = location.hash;
     await render();
   } catch (error) {
@@ -2275,7 +2355,10 @@ async function boot() {
 /** Documents are written in the conversation, not here: reread them when the creator comes back to this tab. */
 async function refreshOnReturn() {
   if (!S.project || parseRoute(location.hash).page === "edit") return;
-  try { await refreshProject(); } catch (_error) { return; }
+  try {
+    const refreshed = await refreshProject();
+    if (!refreshed) return;
+  } catch (_error) { return; }
   render();
 }
 
@@ -2314,13 +2397,17 @@ if (typeof module !== "undefined" && module.exports) {
     keyframeCopyUnits,
     lineShot,
     lineShots,
+    loadEpisode,
+    loadProject,
     mediaKind,
+    musicCopyUnits,
     nextFor,
     parseRoute,
     parseSettingKey,
     pips,
     presence,
     readJsonLines,
+    refreshProject,
     renderMarkdown,
     reviewNeedsAttention,
     reviewPassed,
@@ -2329,13 +2416,16 @@ if (typeof module !== "undefined" && module.exports) {
     savedContentIsCurrent,
     seriesTodos,
     settingKey,
+    stageMeta,
     stageState,
     viewEpisode,
     viewFilm,
     viewForPath,
     viewOverview,
+    viewPrompts,
     viewReview,
     viewSettings,
+    bindFilm,
     OWNER_SECTIONS,
     SECTION_ORDER,
   };

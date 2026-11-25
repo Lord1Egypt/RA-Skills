@@ -1,6 +1,6 @@
 ## Description:
 
-Helps creators and marketing teams plan and generate YouTube product videos, reviews, and ads with the qhkit video service.
+Creates YouTube product marketing videos, including unboxings, explainers, brand films, and product showcases, through Qinghu AI workflows.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Brand marketers, creators, and ad teams use this skill to plan and generate YouTube product demonstrations, reviews, branded ads, and Shorts from prompts and supplied media.
+External brands, creators, and advertising teams use the skill to plan and generate YouTube product videos for ads, brand channels, affiliate marketing, and store traffic.
 
 ### Deployment Geography for Use:
 
@@ -22,41 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Installing or upgrading Node/npm and an unpinned qhkit package can change the local environment.
+Risk: The release is rated suspicious with medium confidence because it references two unpinned tools that may install changing code and asks users to share an API key in chat.
 
-Mitigation: Review installation steps and prefer an already installed, pinned qhkit version.
-
-Risk: Selected images or videos may be uploaded to the qhkit service.
-
-Mitigation: Confirm which media may be shared before submitting a generation task.
-
-Risk: An API key may be stored locally or exposed if pasted into chat or shell history.
-
-Mitigation: Provide credentials through a secure secret mechanism rather than pasting a long-lived key into chat or commands.
-
-Risk: Video generation consumes credits and submitted tasks cannot be canceled.
-
-Mitigation: Show the selected settings and estimated charge, then obtain explicit approval before submission.
+Mitigation: Review and pin tool versions, check their integrity, and approve installations or upgrades. Configure API keys locally and do not paste them into chat.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-youtube-viral-video)
-- [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
-- [Qinghu AI API key setup](https://www.iqinghu.com/workbench/dashboard/api-keys?urlCode=1788417429126)
+- [qhkit package on npm](https://www.npmjs.com/package/@iqinghu/qhkit)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+**Output Type(s):** [Video, Text, Shell commands]
 
-**Output Format:** [Markdown with video links and optional shell commands]
+**Output Format:** [Video assets or result URLs with supporting prompts, storyboards, and CLI commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports task status and credit usage; generated video links are supplied when ready.]
+**Other Properties Related to Output:** [Defaults to landscape 16:9 and English; longer videos may require joining segments of up to about 30 seconds.]
 
 ## Skill Version(s):
 
-0.1.5 (source: server-resolved release metadata)
+0.1.7 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

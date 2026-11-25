@@ -279,7 +279,7 @@ class TestV140(unittest.TestCase):
         self.assertTrue(os.path.exists(os.path.join(self.tmp, "r.csv")), "easy 应自动导出 csv")
 
     def test_version_bumped(self):
-        self.assertEqual(vr.VERSION, "6.6.0")
+        self.assertEqual(vr.VERSION, "6.9.0")
 
 
 class TestHardening(unittest.TestCase):
@@ -1163,7 +1163,7 @@ class TestV170(unittest.TestCase):
         self.assertFalse(os.path.exists(os.path.join(self.tmp, "report.json")) is False)
 
     def test_version_bumped_170(self):
-        self.assertEqual(vr.VERSION, "6.6.0")
+        self.assertEqual(vr.VERSION, "6.9.0")
 
 
 class TestV180(unittest.TestCase):
@@ -1393,7 +1393,7 @@ class TestV180(unittest.TestCase):
         self.assertTrue(r["needs_human_check"])
 
     def test_version_bumped_180(self):
-        self.assertEqual(vr.VERSION, "6.6.0")
+        self.assertEqual(vr.VERSION, "6.9.0")
 
 
 class TestV190(unittest.TestCase):
@@ -1449,7 +1449,7 @@ class TestV190(unittest.TestCase):
     # ---------- S2 第三源交叉确认 ----------
 
     def test_version_bumped_190(self):
-        self.assertEqual(vr.VERSION, "6.6.0")
+        self.assertEqual(vr.VERSION, "6.9.0")
 
     def test_s2_confirms_and_rescues_403_landing(self):
         # DOI.org 元数据获取失败（传输错误×2）→ S2 确认存在 → 着陆页 403 救回 verified

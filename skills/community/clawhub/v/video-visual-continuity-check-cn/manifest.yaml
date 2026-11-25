@@ -1,0 +1,28 @@
+name: video-visual-continuity-check-cn
+slug: video-visual-continuity-check-cn
+display_name: 多镜头视觉连续性检查
+repository: https://github.com/xxjrq/video-visual-continuity-check-cn
+description: 输入已完成的镜头表与人物、场景参考说明，检查相邻镜头中角色状态、道具、光线与空间位置的视觉衔接，输出可追溯镜头编号的问题清单及不改故事的最小改动建议。适用于单章节、单场景或短片方案（最多100行）；缺少镜头表或参考资料时会列出缺项，不虚构设定。
+version: 1.0.0
+icon: icon-512.png
+license: MIT-0
+tags:
+  - video-production
+  - storyboard-review
+  - continuity
+  - chinese
+triggers:
+  - 检查镜头之间是否连贯
+  - 找出角色道具光线连续性问题
+  - 审核已有分镜的空间方位
+trigger_words:
+  - 镜头连续性
+  - 穿帮检查
+  - 分镜审核
+interface:
+  display_name: 多镜头视觉连续性检查
+  short_description: 检查既有镜头表的角色、道具、光线与空间连续性并给出最小修订建议
+  default_prompt: 请根据我提供的镜头表和人物/场景参考，检查角色、道具、光线、空间连续性；缺料请先列出缺项。
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+self_test: python3 scripts/self_test.py

@@ -1,6 +1,6 @@
 ---
 name: ride
-version: 1.6.0
+version: 1.7.3
 description: Ambient Ride skill for TADA/Throo ride-hailing and taxi service. Wallet, USDC bridge status and recovery, deposit, collateral, ride, payment, chat, and tipping workflows; use it for wallet balances, starting and resuming USDC bridges, and bridge progress.
 metadata:
   openclaw:
@@ -230,8 +230,7 @@ argument. Do not run `--help`, an incomplete usage probe, or a guessed command b
 Run each successful sequence command once; a failed or ambiguous mutation follows the fail-closed
 rule below, and only explicit `approval_pending` permits the exact-command resume.
 
-Before a wallet-mode ride search, verify collateral and readiness, then use the positional search
-form exactly once:
+Before a wallet-mode ride search, verify collateral and readiness, then search exactly once:
 
 ```bash
 amb deposit-status <wallet_address> --json
@@ -239,8 +238,10 @@ amb setup-check <wallet_address> --json
 amb ride-search <wallet_address> <region> <origin_lat> <origin_lng> <destination_lat> <destination_lng> --json
 ```
 
-Do not substitute named coordinate flags for the positional wallet-mode `ride-search` form or probe
-an alternate form.
+When you have the selected place results, you may pass them instead of the four coordinates as
+`--pickup '<location JSON>' --dropoff '<location JSON>'` (see "Restricted pickup/dropoff points").
+Do not substitute named coordinate flags (such as `--origin-lat`) for the positional wallet-mode
+`ride-search` form or probe an alternate form.
 
 For MetaMask mutation commands such as `wallet-connect-metamask` and typed signatures, only an
 explicit `status: "approval_pending"` authorizes the identical-command resume above. If a command
@@ -517,13 +518,23 @@ When the active mode is `tada` (TADA/Throo member) and the user names a place, a
 - **Named place** → `amb place-search <query> <region> [originLat originLng] --json`. Present the list; if the selected result has `lat_lng: null` (Google candidate), run `amb place-detail <place_id> <region> --json` to get coordinates.
 - **Near me / nearby pickup** → `amb place-nearby <lat> <lng> --json` (TADA POIs only; requires user's current coordinates).
 - **Airport / terminal** → `amb place-airports <city> --json` (e.g. `amb place-airports NYC`).
-- **Coordinates only** → `amb place-reverse-geocode <lat> <lng> <region> --json` to convert to a named place.
+- **Coordinates only** → `amb place-reverse-geocode <lat> <lng> <region> --json` to convert to a named place. If you already ran `ride-search` with coordinates only, book with `locations` whose `lat`/`lng` are exactly the search result's `locations` and add only `name` and `address`; never add `place_id`/`sub_place_id` or the reverse-geocode coordinates (that is a different point: `LOCATION_CHANGED_RESEARCH`).
 
 Region whitelist is currently **NY**, **SG**, **KH**, and **HK**; any other value returns an error.
 
-After resolving: copy `place_id`, `lat_lng.{latitude,longitude}`, `name`, and `address` verbatim into the ride `LocationRequest` — never fabricate or alter these values. For airports/terminals with `sub_places`, ask the user to pick the Pickup (`allowance_type 1`) or Dropoff (`allowance_type 2`) sub-point and book using `sub_place_id` + that sub_place's coordinates.
+After resolving: pass each chosen place to `ride-search` as one location JSON `{"lat","lng","name","address","place_id"}` copied verbatim (lat/lng from `lat_lng`), with the same `--region` you used for `place-search`: `amb ride-search --pickup '<location>' --dropoff '<location>' --region <region> --json`. Never fabricate or alter these values, and never put a `sub_places[].id` into `place_id`. For airports/terminals with `sub_places` you do not need to ask for a sub-point up front — see "Restricted pickup/dropoff points". If the user names a specific sub-point, pass that sub-point as the location instead: `lat`/`lng` from its `lat_lng`, its `name` and `address`, `place_id` = the parent `place_id`, `sub_place_id` = its `id`.
 
 For the full command signatures, field reference, and resolve→ride flow, see `references/ride.md` → "Member place search".
+
+## Restricted pickup/dropoff points
+
+Airports, malls and bus-stop areas only allow pickup or dropoff at designated points. Before quoting, `ride-search` asks the TADA server to check the points (it needs the region) and moves a blocked one to the nearest designated point for that leg, or to a bus stop's suggested point. Its output carries `locations` (what will be booked), `snapped[]` (each move with `distance_m`, plus the point's `disclaimer` and the other designated points in `alternatives`, nearest first, 3 by default — `--alternatives <n>` lists more; `more_alternatives` counts the unlisted ones) and, when something moved, `next_action` + `must`:
+
+- `NOTIFY_SNAPPED_POINTS` — with the quote, tell the user each move: how far, the new point, its disclaimer, and the other designated points. Book after the usual confirmation.
+- `ASK_USER_TO_PICK_POINT` — no quote: the pickup would move more than 300 m. Ask the user to choose, then re-run `ride-search` with the chosen point (`snapped[].to` or an `alternatives` entry) passed verbatim as `--pickup`.
+- `ASK_USER_FOR_ANOTHER_PLACE` — no quote: the point is restricted and has no bookable point nearby. Ask for a different place (wallet mode may fall back to a map session).
+
+To use another designated point, re-run `ride-search` with that `alternatives` entry passed verbatim as the `--pickup` / `--dropoff` location JSON. Book with `ride-request` using that search's `search_id` and no hand-built `locations`; changed locations fail with `LOCATION_CHANGED_RESEARCH` (search again). A point without `name`/`address` (coordinates-only search) fails with `MISSING_FIELD`: pass `locations` with the same `lat`/`lng`, adding only `name` and `address` (no `place_id`/`sub_place_id`). `RESTRICTED_AREA` means the server still rejected a point: ask the user for a different point and search again; never retry `ride-request` on it. Details: `references/ride.md` → "Restricted points".
 
 ## USDC bridge
 

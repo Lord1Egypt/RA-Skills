@@ -1,6 +1,6 @@
 # 官方 CLI 安装与网页 CDP 兜底
 
-> **优先用 `scripts/publish.py`**（自动化、含预检与 WAF 判定）。
+> **优先用 `scripts/publish.py`**（自动化、含发布前预检）。
 > 本文件覆盖：手工安装/修复官方 CLI、以及 CLI 不可用时走网页的兜底路径。
 
 ## 官方 CLI 安装（2026.8.5+，支持 publish）

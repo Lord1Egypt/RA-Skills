@@ -1,0 +1,58 @@
+{
+  "changelog": "Titles now come with a cover and a short hook clip you can post.",
+  "display_name": "Viral Titles and Topics",
+  "entry": "SKILL.md",
+  "homepage": "https://beatra.ai/skills/viral-title-topic",
+  "icon": "https://beatra.ai/textures/icons/hot-topic-content-maker-0.3.3.png",
+  "localized": {
+    "en": {
+      "description": "Turn a product, an account, or posts you paste into title options and a topic list grounded in what people are already publishing. This title and topic workflow reads public posts on Douyin, Xiaohongshu, TikTok, and X when you want a live read, then writes hooks and titles you can shoot today. Use it for trend titles, topic selection, and the next post on an existing account.",
+      "display_name": "Viral Titles and Topics",
+      "summary": "Titles and a topic list from pasted posts or a live public read.",
+      "tags": [
+        "viral titles",
+        "topic selection",
+        "hook titles",
+        "trend topics",
+        "what to post next"
+      ],
+      "title": "Viral Titles and Topics"
+    },
+    "ja": {
+      "description": "商品、アカウント、または貼った投稿から、今日撮れるタイトルと企画を作ります。公開投稿を読むときは Douyin、Xiaohongshu、TikTok、X を読みます。",
+      "display_name": "バズるタイトルと企画",
+      "summary": "貼った投稿か公開投稿の読み取りから、タイトルと今日撮れる企画を書く。",
+      "tags": [
+        "タイトル",
+        "企画",
+        "公開投稿",
+        "貼った投稿",
+        "今日撮れる"
+      ],
+      "title": "バズるタイトルと企画"
+    },
+    "zh": {
+      "description": "把商品、账号或你贴来的帖子做成爆款标题与选题。爆款标题给出可直接用的标题开头，选题按今天能拍的角度分组。需要看别人正在发什么时，读取抖音、小红书、TikTok 和 X 的公开热帖，再写你的标题。适合已有账号的下一篇，也适合从一个卖点起一组标题。",
+      "display_name": "爆款标题与选题",
+      "summary": "从你贴来的帖子或一次公开热帖读取里，写出标题和今天能拍的选题。",
+      "tags": [
+        "爆款标题与选题",
+        "爆款标题",
+        "选题",
+        "热帖",
+        "标题开头"
+      ],
+      "title": "爆款标题与选题"
+    }
+  },
+  "mcp": {
+    "authentication": "device-bearer",
+    "credential_file": "~/.beatra/credentials.json",
+    "name": "beatra",
+    "transport": "streamable-http",
+    "url": "https://mcp.beatra.ai/mcp"
+  },
+  "name": "viral-title-topic",
+  "schema_version": 1,
+  "version": "0.1.2"
+}

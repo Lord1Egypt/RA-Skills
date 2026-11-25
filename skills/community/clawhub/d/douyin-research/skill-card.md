@@ -1,6 +1,6 @@
 ## Description:
 
-Searches public Douyin videos, creator profiles, comments, and trending topics, returning structured data for content and market research.
+使用抖音公开数据分析视频、达人、评论和热榜，为市场调研与经营判断提供结构化数据。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-External users and content or market researchers can search public Douyin content, inspect creator activity, review comments and trends, and use the returned data to inform content planning, competitor analysis, and market research.
+运营人员、市场研究者和分析人员可用关键词搜索、热榜、作品详情、公开达人作品及评论数据，整理选题、趋势、竞品和舆情分析。
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search keywords and Douyin links are sent to the third-party provider API.
+Risk: Queries send submitted keywords, links, or IDs to the third-party service described by the scanner.
 
-Mitigation: Send only queries and public links that are appropriate for third-party processing; avoid sensitive search terms or URLs.
+Mitigation: Use public-data queries and avoid submitting sensitive or confidential information; check that the provider is appropriate for the data being sent.
 
-Risk: The security assessment is benign with medium confidence because inspection was partial (24 of 42 components fully inspected).
+Risk: ClawScan reports medium confidence and partial inspection; keyword-based account discovery is not clearly covered by the listed capabilities.
 
-Mitigation: Treat the verdict as limited evidence and review the remaining components before deployment.
-
-Risk: Supported commands save retrieved data and query details in local logs/ files.
-
-Mitigation: Limit access to those files and remove them when they are no longer needed.
+Mitigation: Review account-search behavior and results before relying on them, and confirm the query matches the intended public-data analysis.
 
 ## Reference(s):
 
-- [Search and command options](references/options.md)
-- [Comment demand-mining guide](references/demand-mining.md)
-- [Output envelope schema](assets/output_envelope.schema.json)
-- [Provider website](https://www.guaikei.com)
-- [ClawHub listing](https://clawhub.ai/why20261/skills/douyin-research)
+- [ClawHub skill release](https://clawhub.ai/why20261/skills/douyin-research)
+- [Guaikei service and token access](https://www.guaikei.com)
+- [Usage and command options](artifact/references/options.md)
+- [Output contract](artifact/references/contract.md)
+- [Demand mining guidance](artifact/references/demand-mining.md)
+- [Customer acquisition guidance](artifact/references/customer-acquisition.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Text analysis, Guidance]
+**Output Type(s):** [JSON, Analysis, Guidance]
 
-**Output Format:** [Structured JSON results, with concise text analysis when interpreting results]
+**Output Format:** [Structured JSON records; synthesized findings may be presented as Markdown or tables.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires Node.js 16.14+ and GUAIKEI_API_TOKEN. Queries use public Douyin data through the provider API; supported command results are saved under logs/.]
+**Other Properties Related to Output:** [Records can include video, creator, engagement, comment, and trend fields for downstream analysis.]
 
 ## Skill Version(s):
 
-1.4.2 (source: SKILL.md frontmatter, package.json, changelog dated 2026-11-04)
+1.5.0 (source: frontmatter, release metadata)
 
 ## Ethical Considerations:
 

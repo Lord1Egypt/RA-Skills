@@ -1,6 +1,6 @@
 ## Description:
 
-从短剧剧本拆出角色与造型、场景与视角、道具与状态及跨场连戏关系，写成创作者可读的视觉设定。用户说“拆角色/场景/道具”“做视觉设定”“判断沿用还是新造型”“更新造型/道具状态”，或拿现成剧本直接拆美术设定时使用；不写图片提示词，不生成媒体。
+从短剧剧本拆解并维护人物、造型、场景、道具、角色声线设定及跨场连戏锁，写入《视觉设定.md》。用于“拆角色/场景/道具”“做视觉设定”“判断沿用或新造型”“更新造型状态与声线”；不写图片或视频提示词，不负责跨文档审查或媒体生成。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-短剧编剧、导演与美术或制片创作者可用它从定稿剧本逐场拆解角色、造型、地点与戏用道具，整理可跨场沿用的视觉设定，并标明状态变化、连戏要求和待确认的歧义。
+短剧编剧、导演和美术团队可用此技能从定稿剧本整理人物、造型、地点、道具、角色声线与跨场状态，形成供后续制作环节使用的视觉设定文档。
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Ambiguous script references could lead to an incorrect character, location, or prop assignment.
+Risk: Ambiguous script references or unsupported visual assumptions could create incorrect character or continuity notes.
 
-Mitigation: List plausible candidates and leave the decision for creator confirmation instead of guessing.
+Mitigation: Ground entries in visible script evidence and mark unclear identities or details for creator decision.
 
 ## Reference(s):
 
-- [视觉设定拆解指南](references/asset-design-guide.md)
-- [跨场连戏与连戏锁指南](references/continuity-and-locks.md)
-- [阶段规则](references/stage-contract.md)
-- [角色声线与配音设定](references/voice-direction.md)
-- [ClawHub skill page](https://clawhub.ai/worldwonderer/skills/short-drama-assets)
+- [ClawHub release: 短剧视觉设定拆解](https://clawhub.ai/worldwonderer/skills/short-drama-assets)
+- [视觉设定拆解指南](artifact/references/asset-design-guide.md)
+- [阶段规则](artifact/references/stage-contract.md)
+- [跨场连戏与连戏锁指南](artifact/references/continuity-and-locks.md)
+- [角色声线与配音设定](artifact/references/voice-direction.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Files, Guidance]
+**Output Type(s):** [Markdown, Guidance]
 
-**Output Format:** [Markdown file (剧集/<EP>/视觉设定.md) plus a concise completion summary]
+**Output Format:** [Markdown document (视觉设定.md)]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Separates stable visual traits from episode-specific states; does not generate images, image prompts, or video prompts.]
+**Other Properties Related to Output:** [Per-episode settings for people, looks, locations, props, voice, and continuity.]
 
 ## Skill Version(s):
 
-1.0.32 (source: server-resolved release metadata)
+1.0.37 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

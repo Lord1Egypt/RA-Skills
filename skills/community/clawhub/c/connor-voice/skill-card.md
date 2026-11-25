@@ -1,6 +1,6 @@
 ## Description:
 
-Installs a persistent Connor-inspired speaking style focused on conclusions, concise sentences, exact details, and action-focused reporting.
+Installs a persistent Connor (RK800) inspired writing style built around conclusion first, concise sentences, exact details, and action focused reporting.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-External agent users use this skill to add a persistent Connor-inspired speaking style to an existing persona and calibrate it without replacing the persona's existing content.
+Agent operators who want consistent, concise, conclusion first communication can use this skill to add and calibrate a durable writing style while preserving existing persona instructions.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Security review found the skill benign with medium confidence, but scan coverage was partial and an instruction-related warning was not fully assessed.
+Risk: The automated security review is medium confidence and partial; its summary notes one low probability, contextually discounted instruction concern and two unresolved local references.
 
-Mitigation: Review the skill instructions before installation and inspect the persona-file changes before accepting them.
-
-Risk: Applying the style changes persistent persona files, which may alter an agent's normal responses.
-
-Mitigation: Preserve existing sections, review the proposed edits, and calibrate the style before keeping it.
+Mitigation: Review the skill's guidance and decide whether its voice rules fit the agent before installing.
 
 ## Reference(s):
 
-- [Voice Rules](references/voice-rules.md)
-- [Before / After Calibration](references/before-after.md)
-- [Self-check](references/self-check.md)
-- [Quote Bank (source material)](references/quote-bank.md)
-- [SOUL.md Snippet](assets/SOUL-snippet.md)
 - [Connor Voice on ClawHub](https://clawhub.ai/qq2292720945/skills/connor-voice)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+**Output Type(s):** [Markdown, Configuration, Guidance]
 
-**Output Format:** [Markdown voice rules, calibration examples, and persona-file instructions]
+**Output Format:** [Markdown voice guidance and persona configuration]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Persistent style guidance; preserve existing persona sections when applying it]
+**Other Properties Related to Output:** [Adapted to the user's language and calibrated to feedback.]
 
 ## Skill Version(s):
 
-1.0.0 (source: ClawHub release metadata)
+1.0.3 (source: skill metadata and server-resolved release)
 
 ## Ethical Considerations:
 

@@ -1,7 +1,7 @@
 {
   "name": "apple-music-dj",
-  "version": "3.4.1",
-  "description": "Your AI Apple Music curator — taste profiling, playlists from your real listening, discovery and insights. Try the built-in demo with no tokens.",
+  "version": "3.5.1",
+  "description": "Your AI Apple Music curator — moving from Spotify? Import playlists into Apple Music. Build personalized playlists, discovery and insights from your real listening. Try the built-in demo with no tokens.",
   "author": "Andernet (Matthew Anderson)",
   "license": "MIT-0",
   "homepage": "https://github.com/and3rn3t/apple-music-dj",

@@ -1,0 +1,6 @@
+{
+  "requirements": [
+    { "category": "物流", "field": "shipping.freightTemplate", "label": "运费模板", "expected": "包邮模板", "action": "选择包邮模板", "source": "离线商家规则模拟" },
+    { "category": "售后", "field": "afterSale.returnPolicy", "label": "退货承诺", "expected": "7天无理由退货", "action": "设置7天无理由退货", "source": "离线商家规则模拟" }
+  ]
+}

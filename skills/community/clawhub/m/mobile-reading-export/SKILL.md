@@ -5,7 +5,15 @@ description_zh: "手机阅读版导出"
 description_en: "Mobile reading export"
 disable: false
 agent_created: true
-version: "1.0.0"
+version: "1.0.1"
+allowed-tools:
+  - Write
+  - Bash
+metadata:
+  openclaw:
+    permissions:
+      - file_write
+      - shell
 ---
 
 # mobile-reading-export
@@ -102,13 +110,13 @@ python scripts/card.py <templates/share-card.json> "<out_dir>/card_*.html"
 python scripts/cap.py "<out_dir>/card_F.html" "<out_dir>/card_F" 2
 ```
 
-Five blocks: four pillars, structure, strength, seasonal adjustment, luck-cycle mainline. Copy `<prefix>_full.png` as the deliverable.
+The bundled card template is tuned for a 命理档案-style structured input; its five default blocks are four pillars, structure, strength, seasonal adjustment, luck-cycle mainline. For a non-astrology document, derive the five blocks from that document's own structure instead of inserting astrology fields that are not present. Copy `<prefix>_full.png` as the deliverable.
 
 ## Pitfalls
 
 ### Windows + headless Chrome (the ones that cost real time)
 
-- **`--window-size` has a minimum on Windows (~552 CSS px).** Asking for `393` silently yields a ~526px layout viewport while the screenshot is still 393px wide — content is clipped on *both* sides (the left side loses the start of each wrapped line). There is no error and no warning.
+- **`--window-size` has a minimum on Windows (~552 CSS px).** Asking for `393` silently yields a ~526px layout viewport while the screenshot is still 393px wide — content is clipped on *both* sides (the left side loses the start of each wrapped line). Chrome emits no error and no warning for this clamp, so you must actively verify the rendered width (step 3) and warn the user that a silently clipped layout is possible.
 - **`--force-device-scale-factor` scales the PNG but does not shrink the CSS viewport.** `--window-size=393,850 --force-device-scale-factor=2` gives a 786×1700 PNG of a 526px-wide layout.
 - **Without `--window-size`, Chrome's default layout viewport is ~754px.** Any measurement taken without passing the window size is measuring the wrong viewport.
 - **A full-width coloured probe cannot detect the clamp.** A bar spanning the full viewport, clipped to the image width, measures exactly the image width. Measure a fixed-width element or read `documentElement.clientWidth` instead.
@@ -128,7 +136,7 @@ Five blocks: four pillars, structure, strength, seasonal adjustment, luck-cycle 
 - **`document.body.scrollHeight` can under-report.** Crop the image to the last row containing non-background pixels instead of trusting the measured height.
 - **`h1,h2,h3{break-inside:avoid}`** is needed as well, otherwise heading text splits mid-line across pages.
 - Read PNG dimensions straight from the header (width/height big-endian at bytes 16–23); `Add-Type -AssemblyName System.Drawing` is blocked by security policy in some environments.
-- On Windows, `Remove-Item` may be blocked by a fail-closed safe-delete hook. Use `[System.IO.File]::Delete()`.
+- On Windows, `Remove-Item` may be blocked by a fail-closed safe-delete hook. Treat that block as a stop condition: do not switch to `[System.IO.File]::Delete()` or any other API to bypass it. Leave the blocked file in place, report the denial to the user, and proceed only through an approved cleanup path or after explicit user authorization.
 
 ### Design
 

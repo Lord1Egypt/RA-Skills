@@ -1,6 +1,6 @@
 ## Description:
 
-Compares two local documents through Calliper and returns their differences as Markdown for review and downstream analysis.
+Compare two local documents and convert differences into LLM-ready Markdown in one synchronous call. Supports PDF, Word, PPT, and image documents accepted by Calliper, and returns a structured markdown diff table suitable for change review, clause comparison, downstream extraction, and rule-based validation.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and document reviewers compare two selected files to review changes, inspect clause differences, or feed structured Markdown differences into follow-up checks.
+Developers and engineers can compare two local documents and review the returned Markdown diff table for changes, clause differences, or downstream extraction and validation.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Selected document contents and filenames are sent to the configured Calliper endpoint.
+Risk: The security assessment marks the skill suspicious because the workflow uploads documents, includes an install command that adds external skills, and has an unpinned download source; one script was only partially inspected.
 
-Mitigation: Confirm the destination before use and obtain approval before submitting confidential or regulated documents.
-
-Risk: Overridden endpoint settings can send documents and an API token to an unintended service.
-
-Mitigation: Verify endpoint-related environment variables before running the skill.
-
-Risk: Unreviewed updates may change what code runs locally.
-
-Mitigation: Install a pinned version or reviewed commit when possible.
+Mitigation: Before installing or using it, verify the external CLI and repository source, understand where documents are sent, confirm uploads are acceptable, and account for the incomplete script inspection.
 
 ## Reference(s):
 
-- [Calliper SaaS Markdown on ClawHub](https://clawhub.ai/paodingai/skills/calliper-compare2markdown)
-- [paodingai publisher profile](https://clawhub.ai/user/paodingai)
+- [ClawHub skill page](https://clawhub.ai/paodingai/skills/calliper-compare2markdown)
+- [PDRouter platform API](https://platform.paodingai.com/platform/)
 
 ## Skill Output:
 
 **Output Type(s):** [Markdown, Text]
 
-**Output Format:** [Markdown diff table; plain text or JSON if returned by the service]
+**Output Format:** [Markdown diff table or returned API text]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Prints the result and optionally saves it to a Markdown file.]
+**Other Properties Related to Output:** [Can print the result and optionally save it to a Markdown file.]
 
 ## Skill Version(s):
 
-1.4.0 (source: ClawHub release)
+1.5.0 (source: server release metadata)
 
 ## Ethical Considerations:
 

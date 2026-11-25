@@ -1,7 +1,7 @@
 ---
 name: pipedrive
 description: "Pipedrive: Manage Pipedrive sales workflows: discover fields and users, search CRM records, create and update deals, persons, organizations, activities, products, leads, and notes, move records through pipelines and stages. Use when an agent needs pipedrive, capture and convert inbound leads, create and update deals contacts and organizations, move deals through pipeline stages, schedule follow up calls and log notes, convert lead, lead id, data through AgentPMT-hosted remote tool calls."
-version: 1.0.0
+version: 1.0.1
 homepage: https://www.agentpmt.com/marketplace/pipedrive
 compatibility: "Agent instructions for AgentPMT-hosted remote tool calls. Follow this skill body for supported account, wallet, and setup routes. No local command runtime is declared."
 metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/marketplace/pipedrive"}}
@@ -9,7 +9,7 @@ metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/
 # Pipedrive
 
 ## Freshness
-Last updated: `2026-06-24`.
+Last updated: `2026-11-19`.
 
 If the current date is more than 7 days after the last updated date, reinstall this skill from skills.sh or ClawHub before relying on endpoints, schemas, setup steps, or examples.
 
@@ -26,6 +26,7 @@ Manage deals, persons, organizations, activities, products, leads, notes, pipeli
 - Connection and access checks are handled by the platform.
 - Writes require the matching permission scope: `add` for create, `edit` for update, `delete` for delete. Reads are allowed by default.
 - `data` is a pass-through JSON body for writes. Convenience fields (`title`, `name`, `value`, `subject`, `content`) are merged underneath `data`; keys in `data` win.
+- `field_values` sets custom fields by display name and option label. See [Custom fields](#custom-fields).
 - `options` is a pass-through query-param dict. It can only fill gaps — the dispatcher's params always win. It cannot change the URL or HTTP verb.
 - Pagination: v2 actions use `cursor` + `limit` (max 500). v1 actions use `start` + `limit`. Responses expose `additional_data.next_cursor` (v2) or `additional_data.pagination` (v1).
 - Every response is wrapped in `{"action": "...", "result": <raw Pipedrive body>}`.
@@ -34,13 +35,13 @@ Manage deals, persons, organizations, activities, products, leads, notes, pipeli
 
 - `organization_id` is the public AgentPMT field. The connector maps it to Pipedrive `org_id` for deal, person, activity, notes, and files actions that require `org_id`. Lead and search actions that document `organization_id` keep that spelling.
 - `include` is the public AgentPMT field for extra returned fields. The connector maps it to Pipedrive `include_fields`.
-- Deal `value` can be sent as a number or as `{ "amount": 5000, "currency": "USD" }`. The object form is accepted for compatibility and normalized to numeric `value` plus `currency` for deal create/update. Lead `value` remains `{ "amount": 5000, "currency": "USD" }`.
+- Send `value` as `{ "amount": 5000, "currency": "USD" }` for both deals and leads. For deals the connector converts it to Pipedrive's numeric `value` plus `currency`.
 - `data` wins over convenience fields. If raw `data` supplies `org_id`, `value`, or `currency`, that raw intent is preserved. Unsupported `organization_id` in a body is normalized to `org_id` only for actions that require `org_id`.
 
 #### Discovery flow
 
 1. `who_am_i` — confirm connection, company, locale.
-2. `list_fields` with `module` in `{deals, persons, organizations, activities, products}` — discover field names and hash keys for custom fields.
+2. `list_fields` with `module` in `{deals, persons, organizations, activities, products}` lists field names, types, and options. You don't need it before writing custom fields: `field_values` looks them up for you.
 3. `list_pipelines` + `list_stages` — find `pipeline_id` / `stage_id`.
 4. `search_records` or `item_search` — look up records by term.
 5. Read → update → verify.
@@ -53,8 +54,9 @@ All five core resources share a single set of six verbs and a `resource` paramet
 {"action":"list_records","resource":"deal","limit":50,"pipeline_id":1,"status":"open"}
 {"action":"get_record","resource":"deal","deal_id":42,"include":["products_count"]}
 {"action":"create_record","resource":"deal","title":"Acme website","value":{"amount":5000,"currency":"USD"},"person_id":10}
-{"action":"create_record","resource":"deal","title":"Acme website","value":5000,"data":{"currency":"USD"},"person_id":10,"organization_id":20}
+{"action":"create_record","resource":"deal","title":"Acme website","person_id":10,"organization_id":20,"field_values":{"Contract Tier":"Gold"}}
 {"action":"update_record","resource":"deal","deal_id":42,"data":{"stage_id":3,"status":"won"}}
+{"action":"update_record","resource":"deal","deal_id":42,"field_values":{"Contract Tier":"Platinum","Renewal Date":"2027-01-31"}}
 {"action":"delete_record","resource":"deal","deal_id":42}
 {"action":"search_records","resource":"deal","term":"Acme","fields":["title"],"limit":25}
 
@@ -74,6 +76,50 @@ Required primary field for `create_record` by resource:
 - `activity` → `subject`
 
 `search_records` is not supported for `activity` (use `list_records` with filters).
+
+#### Custom fields
+
+Use `field_values` to set custom fields by their display name. The connector reads the account's field list, finds each field's code, converts option labels to option IDs, and formats the value the way Pipedrive expects. It does this before writing, so a bad name or option fails without changing the record.
+
+- Works on `create_record` / `update_record` for `deal`, `person`, `organization`, `product`, and on `create_lead` / `update_lead` (leads use the deal custom fields). Not supported for `activity`.
+- Keys: the field's display name (case-insensitive) or its field code (40-character hash).
+- Built-in fields such as `expected_close_date` or `stage_id` are not custom fields. Set them with `data` or the convenience parameters.
+- Unknown names and options return an error listing the closest matches or the valid options.
+- The response includes `resolved_fields` showing each field name, field code, and the value sent.
+- `field_values` can be combined with `data`, but don't set the same field in both.
+
+```json
+{"action":"update_record","resource":"deal","deal_id":42,"field_values":{"Contract Tier":"Gold","Add-ons":["Support","Training"],"Contract Value":{"amount":1200,"currency":"USD"}}}
+{"action":"update_record","resource":"person","person_id":10,"field_values":{"LinkedIn URL":"https://linkedin.com/in/jane"}}
+{"action":"update_lead","lead_id":"a1b2c3d4-...","field_values":{"Contract Tier":"Silver"}}
+{"action":"update_record","resource":"deal","deal_id":42,"field_values":{"Contract Tier":null}}
+```
+
+Value formats by field type:
+
+| Field type | Send |
+|---|---|
+| Text, long text, phone, autocomplete | string |
+| Numeric | number |
+| Date | `"YYYY-MM-DD"` |
+| Single option | option label, e.g. `"Gold"` |
+| Multiple options | list of labels, e.g. `["Support","Training"]` |
+| Monetary | `{"amount": 1200, "currency": "USD"}` |
+| Date range | `{"start": "2027-01-01", "until": "2027-03-31"}` |
+| Time | `"09:30"`, or `{"value": "09:30", "timezone_name": "Europe/London"}` |
+| Time range | `{"start": "09:00", "until": "17:00"}` (optional `timezone_name`, not for leads) |
+| Address | full address string, or `{"value": "<full address>", "locality": "...", "country": "..."}` |
+| User / person / organization | numeric Pipedrive ID (find it with `list_users` or `search_records`) |
+| Any type | `null` clears the field |
+
+Raw form, if you already have field codes: put them in `data.custom_fields` for `create_record` / `update_record`, and at the top level of `data` for leads. Raw values must already be Pipedrive's format (option IDs, not labels).
+
+```json
+{"action":"update_record","resource":"deal","deal_id":42,"data":{"custom_fields":{"<field-code>":123}}}
+{"action":"update_lead","lead_id":"a1b2c3d4-...","data":{"<field-code>":123}}
+```
+
+To read custom fields, `get_record` and `list_records` return them under `custom_fields` keyed by field code; `list_fields` maps codes to names. The `custom_fields` request parameter only limits which custom fields a read returns.
 
 #### Leads
 
@@ -162,6 +208,8 @@ Every call returns:
 
 `additional_data.next_cursor` (v2) / `additional_data.pagination.next_start` (v1) drive pagination.
 
+Writes that use `field_values` also include `resolved_fields` next to `result`.
+
 ## When To Use
 - Use this skill for `Pipedrive` on AgentPMT.
 - Use it when an agent needs this specific tool's behavior, schema, inputs, outputs, and invocation shape.
@@ -192,9 +240,9 @@ Supported action count: `36`.
 x402 availability: not enabled for this product.
 
 - `convert_lead` (action slug: `convert-lead`): Convert a lead by UUID. Price: `5` credits. Parameters: `data`, `lead_id`, `options`.
-- `create_lead` (action slug: `create-lead`): Create a lead. Requires add permission and title plus person_id or organization_id. Price: `5` credits. Parameters: `data`, `options`, `organization_id`, `owner_id`, `person_id`, `title`, `value`.
+- `create_lead` (action slug: `create-lead`): Create a lead. Requires add permission and title plus person_id or organization_id. Price: `5` credits. Parameters: `data`, `field_values`, `options`, `organization_id`, `owner_id`, `person_id`, `title`, `value`.
 - `create_note` (action slug: `create-note`): Create a note linked to one record. Requires add permission. Price: `5` credits. Parameters: `content`, `data`, `deal_id`, `lead_id`, `options`, `organization_id`, `person_id`.
-- `create_record` (action slug: `create-record`): Create one core resource record. Requires add permission. Price: `5` credits. Parameters: `data`, `deal_id`, `name`, `options`, `organization_id`, `owner_id`, `person_id`, `pipeline_id`, plus 5 more.
+- `create_record` (action slug: `create-record`): Create one core resource record. Requires add permission. Set custom fields by name with field_values. Price: `5` credits. Parameters: `data`, `deal_id`, `field_values`, `name`, `options`, `organization_id`, `owner_id`, `person_id`, plus 6 more.
 - `create_webhook` (action slug: `create-webhook`): Subscribe an HTTPS URL to Pipedrive change events. Requires add permission. Price: `5` credits. Parameters: `event_action`, `event_object`, `options`, `subscription_url`, `user_id`, `webhook_name`, `webhook_version`.
 - `delete_file` (action slug: `delete-file`): Delete a Pipedrive file. Requires delete permission. Price: `5` credits. Parameters: `pipedrive_file_id`.
 - `delete_lead` (action slug: `delete-lead`): Delete a lead by UUID. Requires delete permission. Price: `5` credits. Parameters: `lead_id`, `options`.
@@ -222,9 +270,9 @@ x402 availability: not enabled for this product.
 - `search_leads` (action slug: `search-leads`): Search leads by term. Price: `5` credits. Parameters: `cursor`, `exact_match`, `fields`, `include`, `limit`, `options`, `term`.
 - `search_records` (action slug: `search-records`): Search deal, person, organization, or product records by term. Activity is not searchable. Price: `5` credits. Parameters: `cursor`, `exact_match`, `fields`, `include`, `limit`, `options`, `organization_id`, `person_id`, plus 3 more.
 - `update_file` (action slug: `update-file`): Rename or update a Pipedrive file description. Requires edit permission. Price: `5` credits. Parameters: `file_description`, `file_name_override`, `pipedrive_file_id`.
-- `update_lead` (action slug: `update-lead`): Update a lead by UUID. Requires edit permission. Price: `5` credits. Parameters: `data`, `lead_id`, `options`, `title`, `value`.
+- `update_lead` (action slug: `update-lead`): Update a lead by UUID. Requires edit permission. Price: `5` credits. Parameters: `data`, `field_values`, `lead_id`, `options`, `title`, `value`.
 - `update_note` (action slug: `update-note`): Update a note by id. Requires edit permission. Price: `5` credits. Parameters: `content`, `data`, `note_id`, `options`.
-- `update_record` (action slug: `update-record`): Update one core resource record. Requires edit permission. Price: `5` credits. Parameters: `activity_id`, `data`, `deal_id`, `name`, `options`, `organization_id`, `person_id`, `product_id`, plus 4 more.
+- `update_record` (action slug: `update-record`): Update one core resource record. Requires edit permission. Set custom fields by name with field_values. Price: `5` credits. Parameters: `activity_id`, `data`, `deal_id`, `field_values`, `name`, `options`, `organization_id`, `person_id`, plus 5 more.
 - `upload_file` (action slug: `upload-file`): Upload an AgentPMT File Manager file to Pipedrive as an attachment. Requires add permission. Price: `5` credits. Parameters: `activity_id`, `deal_id`, `file_id`, `file_name_override`, `lead_id`, `organization_id`, `person_id`, `product_id`.
 - `who_am_i` (action slug: `who-am-i`): Return the connected Pipedrive user and company details. Price: `5` credits. Parameters: `options`.
 

@@ -526,6 +526,14 @@ describe("main — write commands", () => {
     expect(typeof body.dark_mode_enabled).toBe("boolean");
   });
 
+  it("pages:update --exclude-ai-agents true -> compliance_exclude_ai_agents is a real boolean", async () => {
+    const h = harness();
+    const code = await main(["pages:update", "c-1", "--exclude-ai-agents", "true"], h.io);
+    expect(code).toBe(0);
+    const body = JSON.parse(h.calls[0].init.body!);
+    expect(body.compliance_exclude_ai_agents).toBe(true);
+  });
+
   it("pages:update --dark-mode maybe -> usage error, exit 2, no call", async () => {
     const h = harness();
     const code = await main(["pages:update", "c-1", "--dark-mode", "maybe"], h.io);
@@ -879,6 +887,24 @@ describe("main — --data handling", () => {
     expect(JSON.parse(h.calls[0].init.body!)).toEqual({
       title: "From JSON",
       end_date: "2027-01-01T00:00:00Z",
+    });
+  });
+
+  it("pages:update --data sends standalone_actions untouched", async () => {
+    const h = harness();
+    const code = await main(
+      [
+        "pages:update",
+        "c-1",
+        "--data",
+        '{"standalone_actions":{"quick_question":{"enabled":true,"text":"Q","options":[{"title":"A"},{"title":"B"}]}}}',
+      ],
+      h.io,
+    );
+    expect(code).toBe(0);
+    expect(h.calls[0].init.method).toBe("PATCH");
+    expect(JSON.parse(h.calls[0].init.body!)).toEqual({
+      standalone_actions: { quick_question: { enabled: true, text: "Q", options: [{ title: "A" }, { title: "B" }] } },
     });
   });
 

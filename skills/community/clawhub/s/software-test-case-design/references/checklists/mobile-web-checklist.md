@@ -1,141 +1,145 @@
 # Mobile Web Testing Checklist
 
-## Browser Compatibility (12 items)
-- [ ] iOS Safari latest version works correctly
-- [ ] iOS Safari mainstream version compatible
-- [ ] Android Chrome works correctly
-- [ ] Android Chrome mainstream version compatible
-- [ ] WeChat built-in browser works correctly
-- [ ] QQ Browser works correctly
-- [ ] UC Browser works correctly
-- [ ] Quark Browser works correctly
-- [ ] Samsung Internet works correctly
-- [ ] Private/Incognito mode works correctly
-- [ ] WebView (WKWebView/Android) compatible
+> The sections of this checklist correspond one-to-one with `references/platform/mobile-web.md` and are used for item-by-item self-checking after test case design.
+
+## Browser Compatibility
+- [ ] Latest iOS Safari works
+- [ ] Mainstream iOS Safari versions are compatible
+- [ ] Android Chrome works
+- [ ] Mainstream Android Chrome versions are compatible
+- [ ] WeChat built-in browser works
+- [ ] QQ Browser works
+- [ ] UC Browser works
+- [ ] Quark Browser works
+- [ ] Samsung Internet works
+- [ ] Private / incognito mode works
+- [ ] WebView (WKWebView / Android) compatibility
 - [ ] JavaScript feature compatibility
 
-## Touch Interaction (14 items)
-- [ ] Single tap responds correctly
-- [ ] Double-tap zoom functionality
-- [ ] Long-press triggers context menu
-- [ ] Left-right swipe to switch
-- [ ] Up-down swipe to scroll
-- [ ] Pinch-to-zoom functionality
-- [ ] Pull-to-refresh functionality
-- [ ] Pull-up to load more
-- [ ] Tap state visual feedback
-- [ ] Touch disable setting takes effect
-- [ ] Nested scrolling has no conflicts
-- [ ] Rubber band effect works correctly
-- [ ] Inertial scrolling is smooth
-- [ ] Gesture conflict handling is correct
+## Touch Interaction
+- [ ] Single tap responds normally
+- [ ] Double-tap to zoom
+- [ ] Long press triggers the context menu
+- [ ] Swipe left / right to switch
+- [ ] Swipe up / down to scroll
+- [ ] Pinch to zoom
+- [ ] Pull to refresh
+- [ ] Load more on scroll
+- [ ] Visual feedback on tap
+- [ ] Touch disabling settings take effect
+- [ ] No conflicts in nested scrolling
+- [ ] Rubber-band effect works
+- [ ] Smooth momentum scrolling
+- [ ] Gesture conflicts handled correctly
 
-## Responsive Layout (12 items)
-- [ ] 320px width works correctly
-- [ ] 375px width works correctly
-- [ ] 414px width works correctly
-- [ ] 768px (iPad) width works correctly
-- [ ] Tall screen (19.5:9) adaptation
-- [ ] Notch screen content is not obstructed
-- [ ] Media query breakpoints are correct
-- [ ] Image widths are responsive
-- [ ] Font sizes adapt correctly
-- [ ] Horizontal scrolling lists work correctly
-- [ ] Fixed-position elements work correctly
-- [ ] Landscape layout is correct
+## Responsive Layout
+- [ ] 320px width works
+- [ ] 375px width works
+- [ ] 414px width works
+- [ ] 768px (iPad) width works
+- [ ] Tall screens (19.5:9) adapted
+- [ ] Content not hidden by the notch
+- [ ] Correct media query breakpoints
+- [ ] Images adapt to width
+- [ ] Font size adaptation
+- [ ] Horizontal scrolling lists work
+- [ ] Fixed-position elements work
+- [ ] Correct landscape layout
 
-## Viewport Configuration (8 items)
-- [ ] viewport setting is correct
-- [ ] Notch screen safe area adaptation
+## Viewport Configuration
+- [ ] Viewport set correctly
+- [ ] Safe area adaptation for notched screens
 - [ ] Punch-hole screen adaptation
-- [ ] Viewport recalculation on screen rotation
-- [ ] Keyboard popup layout adjustment
-- [ ] Keyboard dismissal layout restoration
-- [ ] Zoom restriction takes effect
+- [ ] Viewport recalculated on rotation
+- [ ] Layout adjusts when the keyboard opens
+- [ ] Layout restores when the keyboard closes
+- [ ] Zoom restrictions take effect
 - [ ] Split-screen mode adaptation
 
-## Keyboard & Input (10 items)
-- [ ] Input field focus works correctly
-- [ ] Keyboard popup animation is smooth
-- [ ] Keyboard does not obscure input fields
-- [ ] Number/email keyboard types are correct
-- [ ] Chinese input method works correctly
-- [ ] Auto-correction works correctly
-- [ ] Password show/hide toggle works
-- [ ] Form autofill works correctly
-- [ ] Maximum length restriction takes effect
+## Keyboard and Input
+- [ ] Input focus works
+- [ ] Smooth keyboard open animation
+- [ ] Keyboard does not cover the input box
+- [ ] Correct numeric / email keyboard types
+- [ ] Chinese IME works
+- [ ] Autocorrect works
+- [ ] Show / hide password toggle
+- [ ] Form autofill works
+- [ ] Maximum length limit takes effect
 - [ ] Input format regex validation
 
-## H5-Specific Features (10 items)
-- [ ] tel: link dials phone correctly
-- [ ] sms: link sends SMS correctly
-- [ ] mailto: link opens email correctly
+## H5-Specific Features
+- [ ] tel: links make calls correctly
+- [ ] sms: links send SMS correctly
+- [ ] mailto: links open email correctly
 - [ ] Map links open correctly
-- [ ] Web Share API sharing works correctly
-- [ ] Add to Home Screen functionality
+- [ ] Web Share API sharing works
+- [ ] Add to home screen
 - [ ] Splash screen displays correctly
-- [ ] Fullscreen mode works correctly
-- [ ] PWA offline functionality works correctly
-- [ ] Notification push functionality works correctly
+- [ ] Full-screen mode works
+- [ ] PWA offline features work
+- [ ] Push notifications work
 
-## Third-Party Login & Payment (10 items)
-- [ ] WeChat H5 login works correctly
-- [ ] Alipay H5 login works correctly
-- [ ] QQ H5 login works correctly
-- [ ] Weibo H5 login works correctly
-- [ ] WeChat H5 payment works correctly
-- [ ] Alipay H5 payment works correctly
-- [ ] Login state persistence works correctly
-- [ ] Multi-account switching works correctly
-- [ ] Authorization callback works correctly
-- [ ] Payment result query works correctly
+## Third-Party Login and Payment
+- [ ] WeChat H5 login works
+- [ ] Alipay H5 login works
+- [ ] QQ H5 login works
+- [ ] Weibo H5 login works
+- [ ] WeChat H5 payment works
+- [ ] Alipay H5 payment works
+- [ ] Login state persists
+- [ ] Multi-account switching works
+- [ ] Authorization callback works
+- [ ] Payment result query works
 
-## WebView-Specific (12 items)
-- [ ] JSBridge calls work correctly
-- [ ] Camera invocation works correctly
-- [ ] Photo library invocation works correctly
-- [ ] Location invocation works correctly
-- [ ] QR code scanning works correctly
-- [ ] Physical back button handling is correct
-- [ ] Navigation bar customization works correctly
+## WebView-Specific
+- [ ] JSBridge calls work
+- [ ] Camera invocation works
+- [ ] Photo album invocation works
+- [ ] Location invocation works
+- [ ] QR scanning works
+- [ ] Physical back button handled correctly
+- [ ] Custom navigation bar works
 - [ ] Loading progress bar displays correctly
 - [ ] Error page displays correctly
-- [ ] Pull-to-refresh works correctly
-- [ ] Sharing functionality works correctly
-- [ ] Login state synchronization works correctly
+- [ ] Pull to refresh works
+- [ ] Sharing works
+- [ ] Login state sync works
 
-## Network & Cache (10 items)
-- [ ] WiFi network works correctly
-- [ ] 4G/5G network works correctly
-- [ ] Weak network environment has friendly prompts
-- [ ] Offline prompts are friendly
-- [ ] Auto-reconnect on network recovery
-- [ ] Service Worker offline caching
-- [ ] LocalStorage works correctly
-- [ ] SessionStorage works correctly
-- [ ] Image lazy loading works correctly
-- [ ] Cache update strategy works correctly
+## Network and Cache
+- [ ] WiFi network works
+- [ ] 4G/5G network works
+- [ ] Friendly prompts on weak networks
+- [ ] Friendly prompts when offline
+- [ ] Automatic reconnection after network recovery
+- [ ] Service Worker offline cache
+- [ ] LocalStorage works
+- [ ] SessionStorage works
+- [ ] Image lazy loading works
+- [ ] Cache update strategy works
 
-## Performance Optimization (10 items)
+## Performance Experience
+> Follow project requirements for metrics; when none exist, use these as reference values.
+
 - [ ] First-screen load < 3 seconds
-- [ ] FCP time < 1.8 seconds
-- [ ] LCP time < 2.5 seconds
-- [ ] Image compression optimization
+- [ ] FCP < 1.8 seconds
+- [ ] LCP < 2.5 seconds
+- [ ] Image compression optimized
 - [ ] Code splitting takes effect
-- [ ] No noticeable rendering stutter
+- [ ] No obvious rendering stutter
 - [ ] No memory leaks
 - [ ] Skeleton screen displays correctly
-- [ ] CDN resource loading works correctly
-- [ ] First-screen monitoring data is correct
+- [ ] CDN resources load correctly
+- [ ] First-screen monitoring data is normal
 
-## SEO & Sharing (10 items)
-- [ ] Meta tags are complete
-- [ ] Page title optimization
-- [ ] WeChat share card content is correct
-- [ ] QQ share card content is correct
-- [ ] Weibo share card content is correct
-- [ ] OG tags are complete
-- [ ] Twitter Cards are complete
-- [ ] Structured data is correct
-- [ ] Share callback works correctly
-- [ ] Anti-blocking handling works correctly
+## SEO and Sharing
+- [ ] Complete meta tags
+- [ ] Optimized page title
+- [ ] Correct WeChat share card content
+- [ ] Correct QQ share card content
+- [ ] Correct Weibo share card content
+- [ ] Complete OG tags
+- [ ] Complete Twitter Card
+- [ ] Correct structured data
+- [ ] Share callback works
+- [ ] Anti-blocking handling works

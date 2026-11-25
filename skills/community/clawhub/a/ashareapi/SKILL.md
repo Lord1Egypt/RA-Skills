@@ -1,10 +1,10 @@
 ---
 name: ashareapi
-description: 用 ashareapi 获取 A 股数据：行情 / K线 / 财务三表 / 资金流 / 龙虎榜 / 板块 / 可转债 / 因子选股 / 量化回测 / 宏观 / 产业链。当用户要查 A 股现价、K线走势、财报（营收净利毛利率）、主力资金、龙虎榜（机构/游资）、涨停、板块轮动、可转债条款（强赎/双低）、ETF、新股打新、指数估值、产业链上下游，或要写调用 A 股数据的代码、接 REST API / 官方 SDK（Python：pip install ashareapi · Node.js：npm install ashareapi）时使用。含 40 个端点的参数与字段语义、单位换算（volume 是手 / amount 是元 / 比率为百分数）、数据日期语义、常见错误与限流处理（匿名 5 次/分、单次 250 条、每天 10 万条；解一次 PoW 挑战提到 15 次/分，每日条数不变）。
+description: 用 ashareapi 获取 A 股数据：行情 / K线 / 财务三表 / 资金流 / 龙虎榜 / 板块 / 可转债 / 因子选股 / 量化回测 / 宏观 / 产业链 / 短线打板（涨停 / 复盘 / 异动 / 竞价）/ 资讯公告。当用户要查 A 股现价、K线走势、财报（营收净利毛利率）、主力资金、龙虎榜（机构/游资）、涨停、板块轮动、可转债条款（强赎/双低）、ETF、新股打新、指数估值、产业链上下游，或要写调用 A 股数据的代码、接 REST API / 官方 SDK（Python：pip install ashareapi · Node.js：npm install ashareapi）时使用。含 102 个端点的参数与字段语义、单位换算（volume 是手 / amount 是元 / 比率为百分数）、数据日期语义、常见错误与限流处理（匿名 5 次/分、单次 250 条、每天 10 万条；解一次 PoW 挑战提到 15 次/分，每日条数不变）。
 license: MIT
 metadata:
-  version: "0.2.8"
-  updated: "2026-10-08"
+  version: "0.3.1"
+  updated: "2026-11-09"
   homepage: "https://ashareapi.com"
   docs: "https://ashareapi.com/docs"
   endpoints: "https://ashareapi.com/endpoints"
@@ -13,8 +13,8 @@ metadata:
 
 # ashareapi — A 股数据 API
 
-**40 个 HTTP 端点**（`https://api.ashareapi.com/v1/...`），覆盖行情 / K线 / **五档盘口** / 财务 / 资金 / 龙虎榜 / 板块 / 转债 / 选股 / 量化回测 / 宏观 / 产业链。
-**5 个端点无需 Key**（装上就能调），其余需要 Key（¥9.9 起）。另有**官方 SDK**：Python `pip install ashareapi` · Node.js / TypeScript `npm install ashareapi`。
+**102 个 HTTP 端点**（`https://api.ashareapi.com/v1/...`），覆盖**行情（分时 · 五档盘口）** / K线 / 全字段画像 / 财务 / 资金 / 龙虎榜 / **L2 大单** / 板块 / 可转债 / ETF / 因子选股 / 量化回测 / **异动偏离值** / **集合竞价** / **期货外汇** / 宏观 / 产业链 / **自选列表** / **短线打板** / 资讯公告。
+**10 个端点无需 Key**（装上就能调），其余需要 Key（¥9.9 起）。另有**官方 SDK**：Python `pip install ashareapi` · Node.js / TypeScript `npm install ashareapi`。
 
 ---
 
@@ -22,10 +22,10 @@ metadata:
 
 | 任务 | 免费端点够不够 |
 |---|---|
-| 现价 / K线 / 热搜 / 市场总览 / 涨跌分布 | ✅ **够，无需 Key**（先试这个）|
-| 财报 / 资金流 / 龙虎榜 / 板块 / 转债 / 选股 / 全历史K线 / **量化回测** / 宏观 … | ❌ 需要 Key（`Authorization: Bearer <key>`）|
+| 现价 / K线 / 热搜 / 市场总览 / 涨跌分布 / 文档检索 / 交易日历 / 模型清单 | ✅ **够，无需 Key**（先试这个）|
+| 财报 / 资金流 / 龙虎榜 / 板块 / 转债 / ETF / 选股 / 全历史K线 / 分时 / 五档盘口 / L2 大单 / 量化回测 / 异动 / 集合竞价 / 期货外汇 / 自选 / 资讯公告 … | ❌ 需要 Key（`Authorization: Bearer <key>`）|
 
-**免费 5 个**：`/v1/quote`（行情）· `/v1/kline`（K线）· `/v1/hot`（热搜）· `/v1/market-overview`（大盘画像）· `/v1/changedist`（涨跌分布）
+**免费 8 个**（7 个数据端点 + 1 个文档检索）：`/v1/quote`（行情）· `/v1/kline`（K线）· `/v1/hot`（热搜）· `/v1/market-overview`（大盘画像）· `/v1/changedist`（涨跌分布）· `/v1/wiki`（文档检索）· `/v1/trade-calendar`（交易日历）· `/v1/models`（模型清单）
 **工具端点**（也免 Key）：`/v1/health`（健康检查）· `/v1/challenge`（PoW 提额）
 
 ## 二、免费端点：直接调（无需任何鉴权）
@@ -50,7 +50,7 @@ r = requests.get("https://api.ashareapi.com/v1/quote",
                  params={"code": "sh600667"}, timeout=10)
 body = r.json()
 if not body.get("ok"):
-    raise RuntimeError(body)          # 上游取数失败（已自动换源，且不扣次数）
+    raise RuntimeError(body)          # 取数失败（已自动换源，且不扣次数）
 bar = body["data"][0]                 # 最新一根（当日实时）
 print(bar["date"], bar["last"], bar["turnover"])
 ```
@@ -78,7 +78,7 @@ Key 从 https://ashareapi.com/pricing 获取。**401 = 没带 Key 调了付费�
 | 涨跌家数 / 涨停家数 / 市场广度 | `/v1/changedist` | 免费；**当期口径**（别用 market-overview?type=updown，那是 T-1）|
 | 财报 / 营收 / 净利润 / 毛利率 | `/v1/finance` | 三表 |
 | 主力资金 / 资金流 / 龙虎榜 / 大宗 / 两融 | **`/v1/fund`** | **一个接口拿全交易面**（优先用）|
-| 龙虎榜分榜（机构 / 游资 / 席位）| `/v1/lhb` | `type=institution/hotmoney/activeseat` |
+| 龙虎榜分榜（机构 / 游资 / 席位 / 高胜率）| `/v1/lhb` | `type` 6 种：`all`（总榜）/ `institution` / `activeseat` / `winbuy` / `winseat` / `hotmoney`（⚠️ 暂无数据）|
 | 技术面 / MACD / KDJ / RSI / BOLL | `/v1/technical` | |
 | 谁在持有 / 股东户数 / 机构持仓 | `/v1/shareholder` | |
 | 筹码 / 套牢盘 / 成本分布 | `/v1/chip` | |
@@ -93,19 +93,44 @@ Key 从 https://ashareapi.com/pricing 获取。**401 = 没带 Key 调了付费�
 | 研报 / 机构观点 | `/v1/dehydrated` | `mode=list/detail` |
 | 宏观 / LPR / CPI / GDP | `/v1/macro` | `region=cn/us/...` |
 | 产业链 / 上下游 / 某公司链上位置 | `/v1/industry-chain` | `mode=list/graph/stock` |
-| 筛选股票 / 低估高 ROE | `/v1/screen` | `expr` 多因子交集 或 `preset`（22 个预设）|
+| 筛选股票 / 低估高 ROE / 排行 / 主题池 / 事件 | `/v1/screen` | **五个模式**（`mode`）：`filter` 条件筛选（默认，`filters=pe_ttm:0..20,roe_ttm:>=15`）· `pool` 主题池/属性标签（108 个，`asset=etf` 切 ETF 池 48 个）· `rank` 排行（`metric=overall/capital/fundamental/risk/technical`）· `strategy` 策略（98 个）· `event` 事件（42 个）。⭐ **取值不用猜：`list=fields\|pools\|presets\|metrics\|strategies\|events\|boards` 自发现**（猜字段会 422）。`limit` 在 filter 模式**无上限**（9999 取全市场）· `offset` 翻页 · `date` 历史截面 · `slim` 省 42% 体积 |
 | 只知道名字，要代码 | `/v1/search` | **先搜代码再查数据** |
 | 公司是做什么的 | `/v1/profile` | |
 | 融资融券 | `/v1/margin-trade` | `code` 必填（支持批量）|
 | 大宗交易 | `/v1/block-trade` | |
 | 我的用量 / 额度 | `/v1/usage` | |
-| **回测某策略 / 历史收益 / 最大回撤** | **`/v1/backtest`** | `mode=single` 单标的·实时（配 `code`）· `mode=portfolio` 组合·查预置区间。⚠️ 成本已计入 |
+| **回测某策略 / 历史收益 / 最大回撤** | **`/v1/backtest`** | `mode=single` 单标的·实时（配 `code`）· `mode=portfolio` 组合·查预置区间（全周期 / 近 4 年 / 近 2 年 / 前半段）。⚠️ 成本已计入（佣金万三 / 印花税 0.05% / 滑点千一）；`weighting=inv_vol` 属机构版 |
 | **多标的 × 多策略对比** | `/v1/backtest-batch` | ≤20 标的 × ≤10 策略 |
 | **有哪些策略 / 参数范围** | `/v1/strategies` | **先查再回测**（静态清单，不占额度）|
 | 有哪些因子 / 筛股模板 | `/v1/factors` | ⚠️ 要用因子**实际选股**请用 `/v1/screen` |
-| 怎么判断市场（方法论）| `/v1/playbooks` | 13 条流程（判据/阶段/实测证据），**不是数据** |
+| 怎么判断市场（方法论）| `/v1/playbooks` | 25 条流程（判据/阶段/依据），**不是数据** |
+| **L2 大单 / 主力净额榜 / 挂撤单队列 / 大单历史** | `/v1/bigorder` · `/v1/bigorder-flow` · `/v1/bigorder-flow-full` · `/v1/bigorder-history` · `/v1/bigorder-queue` · `/v1/bigorder-rank` · `/v1/bigorder-split` | 7 个，微观结构 |
+| 异动 / 偏离值（短线监管口径）| `/v1/abnormal` | 6 类 mode |
+| 集合竞价（9:15–9:25）| `/v1/auction` | 含「竞价触及涨停」判定 · 专业版 |
+| 涨停池 / 涨停原因 | `/v1/limit-up` · `/v1/limit-reason` | `limit-up` 含 `mode=auction` 竞价涨停；`limit-reason` 机构版 |
+| 短线复盘（板块主线 / 连板梯队）| `/v1/review` | 天梯约 16:30 汇总完成 |
+| 断板 / 炸板 | `/v1/broken-board` | 机构版 |
+| 尾盘抢筹 | `/v1/tail-chase` | 机构版（前 4 行代码/名称被隐藏）|
+| 创新高 | `/v1/new-high` | 机构版 |
+| 停复牌 | `/v1/suspension` | |
+| 期货（单合约快照）| `/v1/futures` | 机构版 |
+| 外汇（10 个现货）| `/v1/forex` | 机构版 |
+| 全历史 K 线（10 年）| `/v1/kline-full` | |
+| 全市场单日 K 线 | `/v1/market-kline` | 专业版 |
+| 个股资讯 | `/v1/news` | |
+| 公告（可回溯约 16 年）| `/v1/notice` | |
+| 盘中快讯 | `/v1/flash` | |
+| 评级 / 一致预期 | `/v1/rating` · `/v1/consensus` | |
+| 自选列表 | `/v1/watchlist` · `/v1/watchlist/quotes` | |
+| 指数成分 | `/v1/index-constituent` | |
+| 批量取数（9 个）| `/v1/quote-batch` · `/v1/kline-batch` · `/v1/snapshot-batch` · `/v1/finance-batch` · `/v1/technical-batch` · `/v1/chip-batch` · `/v1/shareholder-batch` · `/v1/profile-batch` · `/v1/fund-batch` | 一次 150 只约 2 秒 |
+| 文档检索（免费）| `/v1/wiki` | 不确定字段含义时先查它 |
+| 交易日历（免费）| `/v1/trade-calendar` | |
+| 模型清单（免费）| `/v1/models` | |
+| 健康检查（免费）| `/v1/health` | |
 
 **完整参数与返回字段** → 读 `references/endpoints.md`。
+本表按任务索引；Agent 对话（`agent-*` / `chat` / `messages` / `responses`）、资金细分（`fund-flow` / `fund-south` / `fund-short` / `northbound`）、龙虎榜明细（`lhb-agency` / `lhb-seats`）等较少直接问的，见 `references/endpoints.md` 第十二节。
 
 ## 五、四个必知语义（最常踩的坑）
 
@@ -123,15 +148,15 @@ Key 从 https://ashareapi.com/pricing 获取。**401 = 没带 Key 调了付费�
    - ⚠️ `/v1/health` · `/v1/challenge` · `/v1/usage` · `/v1/ip-whitelist` 信封**没有 `data`**
    - 四种形状怎么判别 + 通吃写法 → `references/endpoints.md` §返回形态
 
-4. **`ok:false` 不等于"我们写错了"**：那是**上游取数失败**（我们已自动换源，**不扣调用次数**）→ 重试一次通常就好。**空结果**（如当天没大宗交易）与"失败"是两件事。
+4. **`ok:false` 不等于代码写错了**：那是**取数失败**（已自动换源，**不扣调用次数**）→ 重试一次通常就好。**空结果**（如当天没大宗交易）与"失败"是两件事。
 
 ## 六、错误与限流
 
 | 现象 | 含义 | 怎么办 |
 |---|---|---|
-| **401** | 没带 Key 调了付费端点 | 拿 Key，或改用 5 个免费端点 |
+| **401** | 没带 Key 调了付费端点 | 拿 Key，或改用 10 个免费端点 |
 | **429** | 超出限额（匿名：**每分钟次数** 或 **当天条数**）| 次数超 → 降频，或**解一次 PoW 挑战提到 15 次/分**（见下）；**条数超 → 解 PoW 无效**，次日恢复，或用 Key |
-| **`ok:false`** | 上游取数失败（已自动换源）| **不扣次数**，重试一次 |
+| **`ok:false`** | 取数失败（已自动换源）| **不扣次数**，重试一次 |
 | **200 但 data 为空** | 当前确实没有这类数据（如当天无大宗交易）| 换条件 / 稍后再试，**不是故障** |
 | **5xx** | 重试耗尽 | 稍后再试 |
 
@@ -149,7 +174,20 @@ curl -H "X-PoW: <challenge>.<nonce>" "https://api.ashareapi.com/v1/quote?code=sh
 
 详细错误语义 → 读 `references/errors.md`。
 
-## 七、要写代码？用官方 SDK（Python / Node.js）
+## 七、取数方式（有很多种，挑一种）
+
+按情况挑：
+
+| 情况 | 走法 | 要装东西吗 |
+|---|---|---|
+| **只需要取数**（含 Go / Java / C# 等无官方 SDK 的语言） | **直接 HTTP**（`curl` / `requests` / `fetch`）调 `https://api.ashareapi.com/v1/...` | **不用装任何东西**，免费端点连 Key 都不用 |
+| **Python** 项目 | **Python SDK**：`pip install ashareapi`（`"ashareapi[pandas]"` 加 DataFrame）—— 一条 `python -c` 也能用，不必是完整项目 | 装一次即可 |
+| **Node / TypeScript** 项目 | **Node SDK**：`npm install ashareapi` —— 自带 TS 类型，零运行时依赖 | 装一次即可 |
+| 用 **MCP 客户端**（Claude Code / Cursor / Codex…） | 装 **MCP 服务器**，让 Agent 自己去调工具 | 与本 skill **无关**，两者可同时装 |
+
+> 四种走法**数据完全相同**（同一个服务端）。**本 skill 提供「知道怎么调」；「调用能力」由 Agent 自带。**
+
+想把 MCP 服务跑在**自己的机器 / 内网**：用 Docker 镜像 `docker.io/ashareapi/mcp`（数据仍走 `api.ashareapi.com`）。
 
 **Python**：
 
@@ -184,14 +222,14 @@ const bars = await cli.quote("sh600667");    // → 对象数组
 console.log(bars[0].last);
 
 const paid = new AShareAPI({ apiKey: "ct-你的Key" });
-console.log(await paid.screen("", "low_pe", 10, "ROETTM"));
+console.log(await paid.screen({ preset: "low_pe", sort: "roe_ttm", limit: 10 }));
 ```
 
-> 两个 SDK **同 40 个方法 / 同 5 类异常 / 同重试策略**；差异只是语言惯例：
+> 两个 SDK **同 102 个方法 / 同 5 类异常 / 同重试策略**；差异仅在语言惯例：
 > Python 用 `snake_case` 且返回 DataFrame，Node 用 `camelCase`（也认 `snake_case` 别名）且**全部返回 Promise**。
 
-**代码格式随便写**：`sh600667` / `600667.SH` / `600667` 都认（自动归一化）。
-**40 个端点 = 40 个方法**（`/v1/margin-trade` → Python `margin_trade()` / Node `marginTrade()`）。
+**代码格式自动识别**：`sh600667` / `600667.SH` / `600667` 都认（自动补市场前缀）。
+**102 个端点 = 102 个方法**（`/v1/margin-trade` → Python `margin_trade()` / Node `marginTrade()`）。⚠️ **`/v1/wiki` 是文档检索，不进 SDK**（供 AI Agent 读取，不是取数接口 ⇒ 103 个 path − 1 = 102 个方法）。
 
 完整用法与 5 类异常 → 读 `references/sdk.md`。
 
@@ -215,12 +253,21 @@ console.log(await paid.screen("", "low_pe", 10, "ROETTM"));
 
 ## 九、本 skill 版本
 
-**当前版本：`0.2.8`（2026-10-08）**
+**当前版本：`0.3.1`（2026-11-09）**
 
-**本版更新**：
-- **新增 7 个端点**（端点数 **33 → 40**）：量化回测 `/v1/backtest`（单标的实时 / 组合预置区间）· `/v1/backtest-batch`（多标的×多策略矩阵，≤20×≤10）· `/v1/strategies`（策略清单 20+9 条）· `/v1/factors`（因子库 88 因子 + 50 筛选入口 + 22 预设）· `/v1/playbooks`（方法论 13 条）· `/v1/kline-full`（10 年全历史日线，可选复权）· `/v1/ip-whitelist`（IP 白名单，Unlimited 档）。
-- **MCP 工具 25 → 31**、**SDK 方法 33 → 40**（`references/` 三份同步）。
-- **修正边界说明**：此前写「K 线没有分钟级」与实际不符 —— 分钟线（`m1`~`m120`）与分时 `/v1/minute` 均已提供（属付费层）。
+**本版覆盖**：
+- **102 个端点 / 94 个 MCP 工具**（免费端点 8 个 + 2 个工具端点无需 Key）。
+- 相对上一版新增的能力集中在：量化回测 / 批量回测 / 策略 / 因子 / 方法论、全历史 K 线、L2 大单拆解、期货外汇、自选列表、资讯公告、事件评级研报。
+- 逐项差异见站点更新日志：<https://ashareapi.com/changelog>
+
+**上一版（0.2.9 · 2026-10-10）更新**：
+- **新增 1 个端点**（端点数 **40 → 41**）：`/v1/wiki` **产品文档检索** —— 字段单位 / 口径说明 / 常见误用 / 跨市场差异。⚠️ **不确定某字段含义或单位时先查它，别猜**。**渐进加载**（不带参 = 目录 · `q=` = 摘要含片段 · `slug=` = 单篇全文），⛔ 不会一次返回全部文档。
+- **MCP 工具 31 → 32**（新增 `ashare_wiki_search`）。⚠️ **SDK 方法数不变（仍 40）** —— `/v1/wiki` 是供 AI Agent 读取的文档检索，**不进 SDK**（保持「40 数据端点 = 40 方法」的对称）。
+
+**上一版（0.2.8）更新**：
+- **新增 7 个端点**（端点数 **33 → 40**）：量化回测 `/v1/backtest`（单标的实时 / 组合预置区间）· `/v1/backtest-batch`（多标的×多策略矩阵，≤20×≤10）· `/v1/strategies`（策略清单 20+9 条）· `/v1/factors`（因子库 87 因子 + 50 筛选入口 + 22 预设）· `/v1/playbooks`（方法论 13 条）· `/v1/kline-full`（10 年全历史日线，可选复权）· `/v1/ip-whitelist`（IP 白名单，机构版）。
+- **MCP 工具 25 → 31**、**SDK 方法 33 → 40**。
+- **边界补充**：K 线分钟级（`m1`~`m120`）与分时 `/v1/minute` 均已提供（属付费层）。
 - **补 `/v1/kline-full` 说明**：与 `/v1/kline` 的区别是「全历史 + 复权口径可选」。
 
 ### 怎么知道该更新
@@ -230,15 +277,15 @@ console.log(await paid.screen("", "low_pe", 10, "ROETTM"));
 | 检查 | 说明 |
 |---|---|
 | `metadata.version` | 看本文件 frontmatter 的版本号 |
-| **端点总数** | 对比现实：**当前 40 个**（`endpoints.md` 标题也是这个数）|
-| **MCP 工具数** | 当前 **31 个**（`list_tools` 返回数量）|
+| **端点总数** | 对比现实：**当前 102 个**（`endpoints.md` 标题也是这个数）|
+| **MCP 工具数** | 当前 **94 个**（`list_tools` 返回数量）|
 
 **任一项对不上 → 你装的是旧版。**
 
 ### 怎么更新
 
 1. 重新下载：**https://ashareapi.com/skill**（页面有 zip 下载）
-2. 解压覆盖到你的 skills 目录（`.claude/skills/` · `.agents/skills/` · `.opencode/skills/` 等）
+2. 解压覆盖到 skills 目录（`.claude/skills/` · `.agents/skills/` · `.opencode/skills/` 等）
 3. 重启客户端
 
 > ⚠️ **API 本身不需要更新** —— 端点永远是最新的（服务端演进）；需要更新的是**这份说明**（否则你可能不知道新端点存在）。
@@ -247,7 +294,8 @@ console.log(await paid.screen("", "low_pe", 10, "ROETTM"));
 
 | 版本 | 日期 | 变化 |
 |---|---|---|
-| `0.2.8` | 2026-10-08 | **新增 7 个端点**：量化回测 `/v1/backtest`（单标的实时 / 组合预置区间）· `/v1/backtest-batch`（多标的×多策略矩阵）· `/v1/strategies`（策略清单 20+9）· `/v1/factors`（因子库 88+50+22）· `/v1/playbooks`（方法论 13 条）· `/v1/kline-full`（10 年全历史）· `/v1/ip-whitelist`（IP 白名单，Unlimited 档）· 端点数 **33 → 40** · MCP 工具 **25 → 31** · SDK 方法 **33 → 40**（`references/` 三份同步） |
+| `0.2.9` | 2026-10-10 | **新增 `/v1/wiki`**（产品文档检索：字段单位 / 口径 / 常见误用，渐进加载）· 端点数 **40 → 41** · MCP 工具 **31 → 32**（`ashare_wiki_search`）· ⚠️ **SDK 方法数不变（40）** —— wiki 是给 AI Agent 读的文档，不进 SDK |
+| `0.2.8` | 2026-10-08 | **新增 7 个端点**：量化回测 `/v1/backtest`（单标的实时 / 组合预置区间）· `/v1/backtest-batch`（多标的×多策略矩阵）· `/v1/strategies`（策略清单 20+9）· `/v1/factors`（因子库 87+50+22）· `/v1/playbooks`（方法论 13 条）· `/v1/kline-full`（10 年全历史）· `/v1/ip-whitelist`（IP 白名单，机构版）· 端点数 **33 → 40** · MCP 工具 **25 → 31** · SDK 方法 **33 → 40** |
 | `0.2.7` | 2026-10-06 | **新增 `/v1/minute` 分时端点**（当日 / 近 5 日盘中走势，`days` 只有 `1`/`5` 两档）· 端点数 **32 → 33** · `/v1/kline` 放开**分钟线**（`m1`~`m120`）与 `start`/`end` 日期范围（均属付费层）· MCP 工具 **24 → 25** |
 | `0.2.6` | 2026-10-03 | 匿名 **429 提示口径更准确**（单次最多 250 条 / 每天最多 10 万条；区分「每分钟次数超」与「当天条数超」） |
 | `0.2.5` | 2026-10-01 | 文档更新：K 线复权口径表述统一 · 明确 `days` 只有 `1`/`5` 两档 |

@@ -1,0 +1,63 @@
+{
+  "_comment": "Shipped defaults. Do not put personal preferences here; override any key in ~/.config/crew/roles.json. 'arena' lists category keys of ~/.config/crew/rankings.json.",
+  "policy": {
+    "elo_margin": 50,
+    "min_quota": 20,
+    "avoid_for_members": []
+  },
+  "tasks": {
+    "frontend": {
+      "label": "前端 / UI / 网页",
+      "arena": [
+        "webdev",
+        "image-to-webdev"
+      ]
+    },
+    "coding": {
+      "label": "通用编码 / 重构 / 修 bug",
+      "arena": [
+        "coding"
+      ]
+    },
+    "agentic": {
+      "label": "长链路代理任务 / 多步执行",
+      "arena": [
+        "agent",
+        "task-outcome"
+      ]
+    },
+    "review": {
+      "label": "代码评审 / 规范核对",
+      "arena": [
+        "coding",
+        "steering"
+      ]
+    },
+    "writing": {
+      "label": "文档 / 文案 / 对话",
+      "arena": [
+        "text"
+      ]
+    },
+    "vision": {
+      "label": "看图 / 截图分析",
+      "arena": [
+        "vision"
+      ]
+    },
+    "research": {
+      "label": "检索 / 调研",
+      "arena": [
+        "search"
+      ]
+    },
+    "3d": {
+      "label": "3D / 图形",
+      "arena": []
+    },
+    "labeling": {
+      "label": "数据打标 / 标注 / 结构化抽取",
+      "arena": []
+    }
+  }
+}

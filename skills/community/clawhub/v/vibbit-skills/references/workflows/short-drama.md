@@ -6,6 +6,8 @@ A premise needs character objectives, conflict, and this episode's change. An ad
 
 Check references, shot generation, sound, and assembly capabilities before producing a batch. Map dialogue and voice to each role; [audio generation](../capabilities/generation/audio-generation.md) can prepare speech, music, and effects as needed. If a required voice or postproduction route is unavailable, state the concrete gap before paying for dependent assets. Local scripts/media are not automatically saved editable platform drama projects.
 
+Use [material reuse](../resources/materials.md) to restore adopted character, scene, prop references and shots across scenes or episodes; search by content/category only for gaps. Categories are discovery hints. Scripts and production records govern appearance, costume, story state and continuity; inspect candidates before adoption rather than reset characters or the world with similar assets.
+
 ## Story through action
 
 Give key characters an objective, obstacle, and choice. Show conflict through behavior and dialogue rather than announcing tension in narration. Establish what changes in knowledge, possession, situation, or relationship during each scene; remove shots without a narrative purpose.

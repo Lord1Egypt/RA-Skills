@@ -1,6 +1,6 @@
 ## Description:
 
-Turns a supplied still image into a short, directed image-to-video clip and guides review of the result.
+Animate a supplied still image into a short video with directed subject motion and camera movement.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and creators use the skill to animate a supplied photo, product image, portrait, illustration, or artwork into a short video clip, then review the result for visual drift and motion quality.
+Creators and product teams use this skill to turn a supplied photo, portrait, product image, illustration, or AI artwork into a short, directed video clip and review it for visual drift.
 
 ### Deployment Geography for Use:
 
@@ -22,43 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The connection requests unrelated music, speech, voice-management, and spending permissions.
+Risk: ClawScan marks the skill suspicious and reports broad, partly undisclosed access and shared-state risks beyond its animation purpose; the scan is partial.
 
-Mitigation: Review the requested permissions before approval and ask the publisher to narrow the authorization.
+Mitigation: Review the requested permissions and data flows before connecting an account, and avoid using an account with sensitive unrelated data.
 
-Risk: Selected images are uploaded externally, and installation/device details are reported automatically.
+Risk: The selected image is uploaded to Beatra, and installation registration reports package, installation, network, and coarse runtime details.
 
-Mitigation: Avoid uploading sensitive images and review the data-sharing behavior before installing or using the skill.
-
-Risk: Removing the skill can mistakenly disconnect other Beatra skills if installation inventory is inaccurate.
-
-Mitigation: Check other Beatra installations before removal and use the Beatra Console when confirmed revocation is needed.
+Mitigation: Upload only images you are authorized to share and comfortable processing remotely; avoid sensitive source images and review the registration disclosures.
 
 ## Reference(s):
 
-- [Image to Motion on ClawHub](https://clawhub.ai/beatra-ai/skills/image-to-motion)
-- [Beatra MCP service](https://mcp.beatra.ai/mcp)
-- [Workflow](references/workflow.md)
-- [Billing, errors, and recovery](references/billing-errors-and-recovery.md)
-- [Installation and authentication](references/installation-and-auth.md)
-- [Updates and security](references/updates-and-security.md)
-- [MCP connection](references/mcp-connection.md)
-- [Tasks and results](references/tasks-and-results.md)
-- [Uninstall and disconnect](references/uninstall-and-disconnect.md)
+- [ClawHub release page](https://clawhub.ai/beatra-ai/skills/image-to-motion)
+- [Beatra Image to Motion](https://beatra.ai/skills/image-to-motion)
 
 ## Skill Output:
 
 **Output Type(s):** [Video, Guidance]
 
-**Output Format:** [Short image-to-video clip with concise text task status and review guidance]
+**Output Format:** [Short video artifact or link, with concise task and delivery details]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [One supplied still image per clip; review the generated video for visual drift and motion quality.]
+**Other Properties Related to Output:** [One clip by default; generation settings follow the live model capabilities.]
 
 ## Skill Version(s):
 
-0.2.7 (source: server-resolved release evidence)
+0.2.9 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

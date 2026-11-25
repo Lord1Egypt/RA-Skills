@@ -13,16 +13,22 @@ CHROME = r'C:\Program Files\Google\Chrome\Application\chrome.exe'
 
 
 def to_pdf(src, out):
-    if os.path.exists(out):
-        os.remove(out)
+    import tempfile
+    if os.path.abspath(out) == os.path.abspath(src):
+        return None, 'refusing to overwrite the source file'
+    if os.path.exists(out) and '--overwrite' not in sys.argv:
+        return None, ('output already exists: %s — pass --overwrite after confirming the '
+                      'replacement; the original is kept until a valid PDF is verified' % out)
+    fd, staged = tempfile.mkstemp(suffix='.pdf', prefix='.', dir=os.path.dirname(os.path.abspath(out)))
+    os.close(fd)
     url = 'file:///' + os.path.abspath(src).replace('\\', '/')
     r = subprocess.run([CHROME, '--headless=new', '--disable-gpu', '--no-sandbox',
                         '--no-pdf-header-footer', '--virtual-time-budget=6000',
-                        f'--print-to-pdf={os.path.abspath(out)}', url],
+                        f'--print-to-pdf={staged}', url],
                        capture_output=True)
-    if not os.path.exists(out):
+    if not os.path.exists(staged) or os.path.getsize(staged) == 0:
         return None, r.stderr.decode('utf-8', 'replace')
-    raw = open(out, 'rb').read()
+    raw = open(staged, 'rb').read()
     boxes = re.findall(rb'/MediaBox\s*\[([^\]]*)\]', raw)
     pages = len(re.findall(rb'/Type\s*/Page[^s]', raw))
     dims = []
@@ -30,6 +36,7 @@ def to_pdf(src, out):
         v = [float(x) for x in b.split()]
         dims.append((round(v[2], 1), round(v[3], 1)))
     uniq = sorted(set(dims))
+    os.replace(staged, out)
     return {'bytes': len(raw), 'pages': pages, 'media': uniq}, ''
 
 

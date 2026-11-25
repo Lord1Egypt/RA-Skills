@@ -1,0 +1,121 @@
+---
+version: "1.0.0"
+updated: "2026-11-19"
+standard: "修复映射表"
+description: "不达标项 → 修复建议 + 风险提示。写操作仅供展示，必须走「展示清单→用户确认」流程，runner 绝不自动执行"
+---
+
+fixes:
+  - id: "FIX-DP-001"
+    item: 密码最小长度≥8
+    command: "net accounts /minpwlen:8"
+    risk: "提升密码强度，可能导致弱密码用户无法登录，需提前通知"
+    level: 需确认
+
+  - id: "FIX-DP-002"
+    item: 密码最长使用期限≤90天
+    command: "net accounts /maxpwage:90"
+    risk: "用户需在 90 天内改密，可能影响自动化服务账户"
+    level: 需确认
+
+  - id: "FIX-DP-003"
+    item: 密码历史记录≥5
+    command: "net accounts /uniquepw:5"
+    risk: "用户不能重复使用最近 5 个密码"
+    level: 需确认
+
+  - id: "FIX-DP-004"
+    item: 锁定阈值≤5次
+    command: "net accounts /lockoutthreshold:5"
+    risk: "设过低可能遭恶意锁定攻击（DoS），建议配合解锁流程"
+    level: 需确认
+
+  - id: "FIX-DP-005"
+    item: 锁定时间≥15分钟
+    command: "net accounts /lockoutduration:15"
+    risk: "锁定期间用户无法登录，需确保管理员有应急账户"
+    level: 需确认
+
+  - id: "FIX-DP-006"
+    item: 登录事件审计（成功+失败）
+    command: "auditpol /set /subcategory:'Logon' /success:enable /failure:enable"
+    risk: "审计日志量增大，需确认磁盘空间与日志留存策略"
+    level: 需确认
+
+  - id: "FIX-DP-007"
+    item: 对象访问审计（成功+失败）
+    command: "auditpol /set /subcategory:'Object Access' /success:enable /failure:enable"
+    risk: "对象访问日志量很大，建议先评估性能影响"
+    level: 需确认
+
+  - id: "FIX-DP-008"
+    item: 防火墙配置文件启用
+    command: "Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled True"
+    risk: "启用防火墙可能阻断现有业务端口，需先确认放行规则"
+    level: 需确认
+
+  - id: "FIX-DP-009"
+    item: 补丁更新
+    command: "通过 Windows Update 或 WSUS 安装最新补丁（不在本 skill 自动执行）"
+    risk: "补丁可能引起兼容性问题，建议先在测试机验证"
+    level: 需确认
+
+  - id: "FIX-DP-010"
+    item: RDP 网络级身份验证（NLA）
+    command: "Set-ItemProperty -Path 'HKLM:\\System\\CurrentControlSet\\Control\\Terminal Server\\WinStations\\RDP-Tcp' -Name UserAuthentication -Value 1"
+    risk: "启用 NLA 后旧版 RDP 客户端可能无法连接"
+    level: 需确认
+
+  - id: "FIX-DP-011"
+    item: Guest 账户已禁用
+    command: "Disable-LocalUser -Name 'Guest'"
+    risk: "确认无业务依赖 Guest 账户"
+    level: 需确认
+
+  - id: "FIX-DP-012"
+    item: Windows Update 服务运行中
+    command: "Set-Service -Name wuauserv -StartupType Automatic; Start-Service wuauserv"
+    risk: "服务启动可能触发后台更新，占用带宽"
+    level: 需确认
+
+  - id: "FIX-CIS-111"
+    item: 密码最小长度≥14
+    command: "net accounts /minpwlen:14"
+    risk: "密码要求提高，需提前通知用户"
+    level: 需确认
+
+  - id: "FIX-CIS-112"
+    item: 密码复杂度已启用
+    command: "secedit /configure /cfg %windir%\\repair\\secpol.inf /db secedit.sdb /areas SECURITYPOLICY"
+    risk: "导入安全策略会影响多项设置，建议逐项确认"
+    level: 需确认
+
+  - id: "FIX-CIS-221"
+    item: Guest 账户已禁用
+    command: "Disable-LocalUser -Name 'Guest'"
+    risk: "确认无业务依赖 Guest 账户"
+    level: 需确认
+
+  - id: "FIX-CIS-2311"
+    item: 限制空密码登录
+    command: "Set-ItemProperty -Path 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Lsa' -Name LimitBlankPasswordUse -Value 1"
+    risk: "空密码账户将无法登录，需确认无此类账户"
+    level: 需确认
+
+  - id: "FIX-CIS-51"
+    item: Windows Update 服务运行中
+    command: "Set-Service -Name wuauserv -StartupType Automatic; Start-Service wuauserv"
+    risk: "服务启动可能触发后台更新"
+    level: 需确认
+
+  - id: "FIX-CIS-91"
+    item: 防火墙配置文件启用
+    command: "Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled True"
+    risk: "需先确认业务端口放行规则"
+    level: 需确认
+
+  - id: "FIX-CIS-171"
+    item: 登录事件审计（成功+失败）
+    command: "auditpol /set /subcategory:'Logon' /success:enable /failure:enable"
+    risk: "审计日志量增大，需评估存储空间"
+    level: 需确认

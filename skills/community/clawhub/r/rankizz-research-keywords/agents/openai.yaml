@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rankizz Keyword Research"
+  short_description: "Research and prioritize SEO keywords"
+  default_prompt: "Use $rankizz-research-keywords to find and prioritize keyword opportunities for this site."

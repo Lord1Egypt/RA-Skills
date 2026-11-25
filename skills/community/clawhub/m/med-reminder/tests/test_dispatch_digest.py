@@ -194,13 +194,13 @@ def test_digest_skips_weekly_meds_on_their_off_days(env):
     env.write(meds=weekly_and_daily(), digest_time="07:30")
     friday = digest_on(env, 3)                       # Fri Apr 24
     assert "MOTS-c" not in friday
-    assert "1. Ipamorelin" in friday and "2. T " in friday
+    assert "1. T " in friday and "2. Ipamorelin" in friday
 
 
 def test_digest_lists_weekly_meds_on_their_days(env):
     env.write(meds=weekly_and_daily(), digest_time="07:30")
     tuesday = digest_on(env, 0)                      # Tue Apr 21
-    assert "1. MOTS-c" in tuesday and "2. Ipamorelin" in tuesday and "3. T " in tuesday
+    assert "1. MOTS-c" in tuesday and "2. T " in tuesday and "3. Ipamorelin" in tuesday
     saturday = digest_on(env, 4)                     # Sat Apr 25
     assert "1. MOTS-c" in saturday and "Ipamorelin" not in saturday
 
@@ -208,7 +208,7 @@ def test_digest_lists_weekly_meds_on_their_days(env):
 def test_position_order_matches_the_listed_meds(env):
     env.write(meds=weekly_and_daily(), digest_time="07:30")
     digest_on(env, 3)
-    assert env.state()["global"]["last_digest_order"] == ["med-002", "med-003"]
+    assert env.state()["global"]["last_digest_order"] == ["med-003", "med-002"]
 
 
 def test_off_day_med_keeps_its_supplies_line(env):
@@ -221,3 +221,36 @@ def test_off_day_med_keeps_its_supplies_line(env):
     friday = digest_on(env, 3)
     assert "Supplies:\nMOTS-c: ~2 vials left" in friday
     assert "1. MOTS-c" not in friday
+
+
+# ── listed by time of day, not by the order meds were added ───────────────────
+
+def test_digest_lists_meds_by_time_of_day(env):
+    meds = weekly_and_daily()
+    meds.append(make_med(med_id="med-004", name="Wolverine", frequency="once_daily",
+                         times=["19:00"]))
+    env.write(meds=meds, digest_time="07:30")
+    tuesday = digest_on(env, 0)                      # Tue Apr 21
+    assert ("1. MOTS-c" in tuesday and "2. T " in tuesday
+            and "3. Ipamorelin" in tuesday and "4. Wolverine" in tuesday)
+
+
+def test_position_follows_the_time_order(env):
+    # --position N must pick the med the digest shows as number N
+    env.write(meds=weekly_and_daily(), digest_time="07:30")
+    digest_on(env, 0)
+    assert env.state()["global"]["last_digest_order"] == ["med-001", "med-003", "med-002"]
+
+
+def test_multi_dose_med_sorts_by_its_first_dose_and_untimed_meds_go_last(env):
+    env.write(meds=[
+        make_med(med_id="med-001", name="AsNeeded", frequency="as_needed", times=[]),
+        make_med(med_id="med-002", name="Interval", frequency="interval", times=[],
+                 interval_hours=6),
+        make_med(med_id="med-003", name="Evening", frequency="once_daily", times=["20:00"]),
+        make_med(med_id="med-004", name="Twice", frequency="twice_daily",
+                 times=["21:00", "09:00"]),
+    ], digest_time="07:30")
+    digest_on(env, 0)
+    assert env.state()["global"]["last_digest_order"] == [
+        "med-004", "med-003", "med-002", "med-001"]

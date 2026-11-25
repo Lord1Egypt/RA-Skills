@@ -1,6 +1,6 @@
 ## Description:
 
-Provides a methodology for analyzing long documents and improving retrieval-augmented generation pipelines through chunking, hybrid search, retrieval evaluation, and multi-document reasoning.
+Analyze and optimize retrieval-augmented generation pipelines for 100K–2M token documents using hybrid search, chunking, reasoning, and structured reporting.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers, analysts, researchers, and legal professionals use it as a methodology reference to plan and evaluate long-document RAG workflows, including chunking, hybrid search, citation practices, and structured reporting.
+Developers, analysts, legal professionals, and researchers use it to plan and evaluate RAG workflows for large document collections and draft structured, source-aware analyses. Its outputs are methodological drafts for human review, not professional advice or publication-ready conclusions.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Security inspection was partial: the manifest was malformed, a local reference was unresolved, and no component was fully inspected.
+Risk: The supplied security scan covered only part of the artifact, so its benign verdict does not establish that the skill is risk-free.
 
-Mitigation: Review the unresolved reference and manifest-dependent behavior before installing; the benign verdict does not establish that the release is risk-free.
+Mitigation: Review the complete artifact before relying on the scan result.
 
-Risk: The guidance addresses documents that may contain sensitive customer, financial, health, or internal information.
+Risk: Documents processed using this guidance may contain sensitive personal, financial, legal, or business information.
 
-Mitigation: Minimize the document set and redact or aggregate sensitive fields before indexing; review the complete report before saving or sending it.
+Mitigation: Use only the documents needed for the task, redact or aggregate sensitive fields, or confirm authorization before indexing.
+
+Risk: Draft analyses may be mistaken for professional conclusions or reports ready for external release.
+
+Mitigation: Have a qualified reviewer check sources, figures, and assumptions, and obtain explicit approval of the complete preview before exporting or sending.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/gechengling/skills/long-context-rag-analyzer)
+- [Long Context RAG Analyzer on ClawHub](https://clawhub.ai/gechengling/skills/long-context-rag-analyzer)
+- [Publisher profile: gechengling](https://clawhub.ai/user/gechengling)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Markdown, Configuration, Code]
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [Structured Markdown reports and guidance, with illustrative code and configuration snippets]
+**Output Format:** [Structured Markdown with prose, tables, citations, and illustrative code/configuration examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include citations and confidence annotations where source material supports them; verify outputs against original documents before relying on them.]
+**Other Properties Related to Output:** [Reference drafts for human review; the skill describes methods and does not execute pipelines or perform system operations.]
 
 ## Skill Version(s):
 
-3.0.5 (source: frontmatter)
+3.0.6 (source: frontmatter)
 
 ## Ethical Considerations:
 

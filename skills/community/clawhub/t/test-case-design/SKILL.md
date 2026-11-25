@@ -5,28 +5,99 @@ description: 这项技能应在为特定场景或者功能生成测试用例、�
 
 ## 执行流程
 
-1. **识别用例类型**：
-   - 含"接口测试"/"API 测试" → 接口测试用例
-   - 含"AI agent测试"/"Agent 测试"/"Agent"/"智能体" → Agent 测试用例
-   - 默认 → 功能测试用例
-2. **加载能力文件**：始终加载 `references/templates/common-rules.md`（规则），能力文件按类型选择：
-   - 接口测试 → `references/core-capabilities/api-testing.md`
-   - Agent 测试 → `references/core-capabilities/agent-testing.md`+ `references/core-capabilities/functional-testing.md中的第一部分：测试用例设计方法+第二部分：测试用例质量标准` 
-   - 功能测试 → `references/core-capabilities/functional-testing.md`
-3. **加载平台专项**（接口测试跳过此步骤）：
-   - 匹配平台关键词 → 加载 `references/platform/{平台}.md`
-4. **生成用例**：按加载的能力文件以及平台专项生成测试用例
-5. **自查**：
-   - 接口测试 → `references/checklists/api-checklist.md`
-   - Agent 测试 → `references/checklists/agent-checklist.md` + `references/checklists/common-checklist.md中的一、功能测试检查清单`
-   -  Agent 测试+平台 → `references/checklists/agent-checklist.md` + `references/checklists/common-checklist.md中的一、功能测试检查清单`+  `references/checklists/{平台}-checklist.md`
-   - 功能测试+平台 → `references/checklists/common-checklist.md`+ `references/checklists/{平台}-checklist.md` 
-   - 功能测试无平台 → `references/checklists/common-checklist.md`
-6. **输出**：按 `references/examples/format-spec.md` 规定的表格格式，Markdown 表格输出
+1. **识别模式**：
+   - 出现"补充"/"补全"/"完善"/"查漏补缺"/"增加异常用例"/"增加边界用例"，或用户提供了已有用例 → 补充模式（规则见"补充模式规则"；第 2~5 步、第 7~8 步照常执行，第 6 步改按补充模式规则生成）
+   - 其他情况 → 新建模式
+2. **识别用例类型**（规则见"类型识别规则"）：
+   - 仅有接口信号 → 接口测试用例
+   - 仅有 Agent 信号 → Agent 测试用例
+   - 同时有接口信号和 Agent 信号 → 先向用户确认测试范围
+   - 两种信号都没有 → 功能测试用例（默认）
+3. **识别平台**（接口测试跳过此步骤）：按"平台文件"表的关键词匹配，歧义按"平台识别规则"处理
+4. **需求分析与澄清**：
+   - 提取被测对象、功能点、输入约束（类型/长度/范围/必填）、业务规则、状态流转、角色权限、平台
+   - **输入材料处理**：用户提供了需求材料时，优先从材料中提取约束，再判断是否需要提问
+     - PRD/需求文档：逐条提取功能点、字段约束、业务规则、异常说明；需求编号或章节填入"关联需求"
+     - 原型图/UI 截图：识别页面元素（输入框、按钮、下拉框、列表等）、文案、跳转关系和交互状态；图中无法确定的约束（如长度、范围）按缺失约束处理
+     - Swagger/OpenAPI/接口文档：提取 URL、请求方法、参数（类型/必填/枚举/范围）、请求与响应示例、错误码、认证方式
+     - 已有测试用例：按"补充模式规则"解析
+     - 多份材料互相矛盾时，列出冲突点向用户确认；用户要求直接生成时，以最新版本的材料为准，并把冲突点写入"待确认假设"
+   - 关键约束缺失、无法给出具体测试数据时，一次性向用户提问，最多 3 个问题
+   - 用户要求直接生成时，将合理假设写入预置条件并标注"（假设）"，如"假设用户名长度为 6-18 位（假设）"，并在输出末尾列出"待确认假设"
+5. **加载文件**：
+   - 规则文件：始终加载 `references/templates/common-rules.md`
+   - 能力文件：按"能力文件"表加载
+   - 平台文件：按识别出的平台加载 `references/platform/{平台}.md`，可叠加多个
+6. **生成用例**：按加载的规则文件、能力文件和平台文件生成测试用例
+7. **自查**：按下表对照检查清单逐项自查，发现遗漏直接补充用例，输出中不罗列检查清单
+
+   | 用例类型 | 检查清单 |
+   |---------|---------|
+   | 接口测试 | `references/checklists/api-checklist.md` |
+   | Agent 测试 | `references/checklists/agent-checklist.md` + `references/checklists/common-checklist.md`（仅"一、功能测试检查清单"） |
+   | Agent 测试 + 平台 | Agent 测试的清单 + `references/checklists/{平台}-checklist.md` |
+   | Agent + 接口 | 接口部分按"接口测试"；Agent 部分按"Agent 测试"或"Agent 测试 + 平台" |
+   | 功能测试 + 平台 | `references/checklists/common-checklist.md` + `references/checklists/{平台}-checklist.md` |
+   | 功能测试（无平台） | `references/checklists/common-checklist.md` |
+
+8. **输出**：按 `references/examples/format-spec.md` 规定的表格格式，以 Markdown 表格输出
 
 ## 能力边界
 ✅ 可生成：功能测试、接口测试、AI agent测试（含 Agent 安全与边界）、平台专项测试
 ❌ 不可生成：测试方案、测试策略、测试计划、渗透测试执行、漏洞扫描、性能压测（并发/压力/负载）、自动化脚本
+
+> 性能类用例仅生成可人工或借助工具观测的性能体验用例（如启动时长、首屏加载、滑动帧率、内存是否持续增长），不生成并发、压力、负载、稳定性、容量类用例。
+
+## 类型识别规则
+
+- **接口信号**："接口测试"、"API 测试"，或需求中提供了 URL、请求方法、请求/响应体、Swagger/OpenAPI 文档
+- **Agent 信号**："Agent 测试"、"AI agent 测试"、"智能体"、"AI 助手"、"对话机器人"、"大模型应用"
+  - 单独出现"Agent"一词时需结合上下文判断：指 AI 智能体时视为 Agent 信号；"代理商 Agent"、"User-Agent"等不属于；无法判断时向用户确认
+
+| 情况 | 处理方式 |
+|-----|---------|
+| 仅有 Agent 信号 | 按 Agent 测试处理 |
+| 仅有接口信号 | 按接口测试处理 |
+| 两种信号都有，且用户未说明测试范围 | 先向用户提问（模板见下） |
+| 用户已明确两类都要测 | 不提问，按"Agent + 接口"处理 |
+| 已提问，但用户要求直接生成 | 默认按"Agent + 接口"处理 |
+
+**提问模板**：
+
+> 你的需求同时涉及 Agent 和接口，请确认测试范围：
+> 1. 仅 Agent 测试（对话理解、行为、工具调用、安全边界等）
+> 2. 仅接口测试（Agent 服务对外提供的 API）
+> 3. Agent + 接口（两类都生成）
+
+**"Agent + 接口"处理规则**：
+- 加载：`references/core-capabilities/api-testing.md` + `references/core-capabilities/agent-testing.md` + `references/core-capabilities/functional-testing.md`（仅第一部分"测试用例设计方法"和第二部分"测试用例质量标准"）
+- 输出：分为"一、接口测试用例"和"二、Agent 测试用例"两部分，编号分别使用 `TC_API_` 和 `TC_AGENT_` 前缀，序号各自从 001 开始
+- 平台：平台文件只叠加到 Agent 部分，接口部分不叠加
+- 自查：按第 7 步表格中"Agent + 接口"一行执行
+- 去重：同一场景两部分各测一面。例如"工具调用失败"，接口部分只验证接口返回的错误码和报文，Agent 部分只验证 Agent 如何处理并告知用户
+
+## 平台识别规则
+
+- **未匹配到平台**：按通用功能测试生成；需求中出现"兼容性测试"/"适应性测试"/"适配"但未说明平台时，先询问平台，再加载对应平台文件（兼容性、适应性测试点包含在各平台文件中）
+- **关键词重叠（最长匹配优先）**：先匹配最长的关键词，被其包含的短关键词不再单独计数。例如："移动 Web 端"只命中 mobile-web，不再因"Web 端"命中 pc-web；"桌面 App""桌面应用"只命中 desktop，不再因"App"命中 mobile-app；"手机网页""微信内网页""公众号网页"只命中 mobile-web，不再按"网页"规则询问
+- **匹配到多个平台**（按最长匹配去重后仍有多个）：全部叠加加载；通用功能用例只写一次，平台专项用例按平台分组输出
+- **"移动端"**：上下文含"下载"/"安装"/"应用商店" → mobile-app；含"浏览器"/"链接"/"H5" → mobile-web；无法判断时询问用户
+- **"客户端"**：含"PC"/"电脑" → desktop；含"手机" → mobile-app；无法判断时询问用户
+- **"网页"**：含"手机"/"移动" → mobile-web；其他情况询问用户是 PC Web 还是移动 Web（H5）（已命中"PC Web"、"Web 端"等其他平台关键词时按对应平台处理）
+
+## 补充模式规则
+
+1. 解析用户已有用例的编号、功能模块和已覆盖的测试点，并按执行流程第 2、3 步识别用例类型和平台
+2. 按用例类型选择补充依据，结合等价类、边界值、错误推测法，找出未覆盖的测试点：
+   - 功能测试：`references/core-capabilities/functional-testing.md` 中"1.9 异常与边界补充要点"
+   - 接口测试：`references/core-capabilities/api-testing.md` 各维度，重点检查参数校验（必填/类型/长度/范围/格式）、认证授权、安全测试、错误处理、分页越界
+   - Agent 测试：`references/core-capabilities/agent-testing.md` 各维度，重点检查模糊指令、超范围指令、工具调用失败、安全与边界、极端输入；同时参考 functional-testing.md"1.9"中的文本输入要点
+   - Agent + 接口：两部分分别按上面对应的依据补充
+   - 涉及平台时：叠加对应平台文件中的专项点（如中断恢复、网络切换、权限拒绝）
+3. 只输出新增用例，不重复输出已有用例
+4. 编号：用户已有用例有编号时，沿用其编号风格并接续最大序号；没有编号时按 `references/templates/common-rules.md` 的编号规则编号
+5. 输出末尾附"补充覆盖说明"表（格式见 `references/examples/format-spec.md`）
+6. 用户未提供已有用例、只要求"补充异常和边界"时，只生成异常场景和边界值类用例
 
 ## 指令映射表
 
@@ -36,16 +107,17 @@ description: 这项技能应在为特定场景或者功能生成测试用例、�
 
 | 关键词触发 | 加载 | 说明 |
 |-----------|------|------|
-| "接口测试"、"API 测试" | `references/core-capabilities/api-testing.md` | 独立使用，不叠加平台 |
-| "Agent 测试"、"Agent"、"智能体" | `references/core-capabilities/agent-testing.md`+`references/core-capabilities/functional-testing.md中的第一部分：测试用例设计方法+第二部分：测试用例质量标准` | 可叠加任意平台 |
+| 接口信号（"接口测试"、"API 测试"等） | `references/core-capabilities/api-testing.md` | 独立使用，不叠加平台 |
+| Agent 信号（"Agent 测试"、"智能体"等） | `references/core-capabilities/agent-testing.md` + `references/core-capabilities/functional-testing.md`（仅第一部分"测试用例设计方法"和第二部分"测试用例质量标准"） | 可叠加任意平台 |
+| Agent + 接口 | 以上两行的文件合并加载 | 平台只叠加到 Agent 部分 |
 | 默认 | `references/core-capabilities/functional-testing.md` | 功能测试 |
 
 ### 平台文件（叠加到能力文件之上，接口测试除外）
 
 | 关键词触发 | 加载 | 说明 |
 |-----------|------|------|
-| "移动端测试"、"App 测试" | `references/platform/mobile-app.md` | 手势/中断/网络/权限/推送/兼容/性能 |
-| "小程序测试" | `references/platform/mini-program.md` | 生命周期/授权/分享/支付/跳转/订阅 |
-| "移动 Web 测试"、"H5 测试" | `references/platform/mobile-web.md` | 响应式/触摸/浏览器/视口/H5/SEO |
-| "桌面端测试"、"桌面应用测试" | `references/platform/desktop.md` | 窗口/快捷键/文件/系统集成/多显示器 |
-| "PC Web 测试"、"Web 端测试" | `references/platform/pc-web.md` | 浏览器/布局/键盘/表单/会话/路由/拖拽 |
+| "移动端测试"、"App 测试"、"App"、"iOS"、"Android"、"安卓"、"手机应用" | `references/platform/mobile-app.md` | 手势/屏幕适配/中断/网络/权限/推送/设备兼容/系统交互/存储/更新/性能/可访问性 |
+| "小程序测试"、"小程序"、"微信小程序"、"支付宝小程序"、"抖音小程序" | `references/platform/mini-program.md` | 生命周期/授权/分享/支付/跳转/订阅消息/存储/地图定位/平台差异 |
+| "移动 Web 测试"、"H5 测试"、"H5"、"移动 Web"、"手机网页"、"WAP"、"公众号网页"、"微信内网页" | `references/platform/mobile-web.md` | 浏览器/触摸/响应式/视口/键盘输入/H5 特有/第三方登录支付/WebView/网络缓存/性能/SEO 分享 |
+| "桌面端测试"、"桌面应用测试"、"桌面端"、"桌面应用"、"PC 客户端"、"Windows 应用"、"macOS 应用" | `references/platform/desktop.md` | 窗口/快捷键/文件/系统集成/多显示器/安装更新/系统兼容 |
+| "PC Web 测试"、"Web 端测试"、"PC Web"、"Web 端"、"网页"（按"平台识别规则"确认） | `references/platform/pc-web.md` | 浏览器/布局/键盘/表单/会话/多窗口/路由/联动/拖拽/富文本/文件/国际化/深色模式/打印/网络缓存/性能 |

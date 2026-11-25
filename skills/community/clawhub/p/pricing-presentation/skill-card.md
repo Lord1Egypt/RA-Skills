@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-US sales teams and founders use this skill to prepare tiered pricing-presentation material and tracked links. Generated material requires substantial manual completion and review before it is ready to share with buyers.
+US sales teams and founders use this skill to prepare pricing presentations with comparable tiers, tracked links, and clear price disclosures.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,28 @@ United States
 
 ## Known Risks and Mitigations:
 
-Risk: The generated files do not constitute the promised complete pricing deck, and the default CTA destination is a placeholder.
+Risk: The scan was partial, and the reported implementation does not match the advertised presentation workflow; file-writing capability was also flagged.
 
-Mitigation: Complete and verify the presentation manually; replace the CTA destination and test every generated link before sharing.
-
-Risk: The skill's legal pricing guidance may be inaccurate, including its California pricing statement.
-
-Mitigation: Independently confirm current requirements against authoritative regulator guidance and qualified legal advice before using claims with customers.
-
-Risk: The optional Windows app is unsigned and is not needed for the bundled workflow.
-
-Mitigation: Avoid downloading or running it unless necessary and separately reviewed; do not treat a matching hash alone as proof of publisher trust.
+Mitigation: Review the script’s output and intended file access before installing, and inspect generated files before using them in a customer presentation.
 
 ## Reference(s):
 
-- [Pricing disclosure rules (skill reference)](references/pricing-disclosure-rules.md)
-- [California DOJ Hidden Fees Guidance](https://oag.ca.gov/hiddenfees)
-- [ClawHub skill listing](https://clawhub.ai/rapidworker1/skills/pricing-presentation)
-- [Publisher homepage (Clawdis metadata)](https://github.com/rapidworker1)
+- [US price advertising and disclosure rules](references/pricing-disclosure-rules.md)
+- [Pricing Presentation on ClawHub](https://clawhub.ai/rapidworker1/skills/pricing-presentation)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Configuration]
+**Output Type(s):** [Text, Markdown, Configuration, Shell commands]
 
-**Output Format:** [Tracked-links Markdown report and YAML pricing brief template]
+**Output Format:** [Markdown pricing deck outline and tracked links, with a YAML input template]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires manual completion and review; does not produce a complete pricing slide deck.]
+**Other Properties Related to Output:** [Uses user-provided tier details, pricing terms, and a link base.]
 
 ## Skill Version(s):
 
-1.0.6 (source: frontmatter)
+1.0.8 (source: frontmatter)
 
 ## Ethical Considerations:
 

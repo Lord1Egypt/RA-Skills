@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes multi-angle pet videos to estimate a 1–9 Body Condition Score and produce a structured observation report; it does not diagnose disease or prescribe treatment.
+Analyzes multi-angle pet videos to estimate body shape and a 1–9 Body Condition Score (BCS), returning structured weight-management observations without diagnosing disease or recommending treatment.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Pet owners and developers use the skill to assess a pet's body condition from local or linked multi-angle video and review a structured report. It can also retrieve prior reports through the service; results are for weight-management reference and should not replace veterinary assessment.
+Pet-care teams and developers can use this skill to estimate a cat’s or dog’s body condition from multi-angle video and review structured observations for weight management. Results are visual estimates and are not veterinary diagnoses.
 
 ### Deployment Geography for Use:
 
@@ -22,18 +22,17 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security evidence flags privacy, identity, and account-handling concerns, including unexpected history retrieval; the scan is partial.
+Risk: Security evidence flags identity and credential handling, account creation, and access to report history; scanner coverage is partial.
 
-Mitigation: Review the reported behavior before use, especially in shared workspaces, and avoid submitting private video until you understand how it is handled.
+Mitigation: Review identity, credential, and report-data handling before installation, and grant access only to trusted users and services.
 
-Risk: The security evidence reports that a no-analysis option may still run analysis.
+Risk: Security evidence reports that an export-only option may still run analysis.
 
-Mitigation: Use the skill only with an explicit analysis input and check the resulting behavior before relying on it.
+Mitigation: Treat export-only mode as potentially executing analysis until verified, and avoid using sensitive video inputs with it.
 
 ## Reference(s):
 
-- [API interface reference](artifact/references/api_doc.md)
-- [API error codes](artifact/skills/smyx_analysis/references/api_doc.md)
+- [Pet health analysis API documentation](references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
 - [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-pet-body-condition-score-3d-analysis)
 
@@ -41,15 +40,15 @@ Mitigation: Use the skill only with an explicit analysis input and check the res
 
 **Output Type(s):** [Analysis, JSON, Markdown]
 
-**Output Format:** [Structured body-condition report as JSON or Markdown, including a BCS estimate, body-type classification, observations, and report links when available]
+**Output Format:** [Structured BCS report in JSON or Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Visual estimate for weight-management reference; does not diagnose disease or prescribe treatment.]
+**Other Properties Related to Output:** [Includes a BCS score, body-condition category, observations, and report links; visual estimates may differ from palpation.]
 
 ## Skill Version(s):
 
-1.0.15 (source: server-resolved release evidence)
+1.0.16 (source: server-resolved release metadata; artifact frontmatter reports 1.0.23)
 
 ## Ethical Considerations:
 

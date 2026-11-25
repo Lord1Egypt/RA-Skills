@@ -15,7 +15,7 @@ description: >
 > - **Author**: Evan Song <Songhonglei@users.noreply.github.com>
 > - **Repository**: https://github.com/Songhonglei/build-better-skills
 > - **License**: MIT — see [LICENSE](./LICENSE)
-> - **Version**: 1.0.0
+> - **Version**: 1.0.2
 
 # skill-sediment
 

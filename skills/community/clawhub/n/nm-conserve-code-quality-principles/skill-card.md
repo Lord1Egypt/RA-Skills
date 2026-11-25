@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use this skill to review or refactor code for readability and maintainability by applying KISS, YAGNI, and SOLID principles. It provides questions and examples to help decide when a design is unnecessarily complex or over-abstracted.
+Developers use this skill when reviewing or refactoring code to improve readability and maintainability. It applies KISS, YAGNI, and SOLID with language-specific examples and a code review checklist.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: A referenced document is missing, so the scanner could not assess all referenced context.
+Risk: The security review is incomplete because a local reference could not be matched to a bundled artifact.
 
-Mitigation: Use judgment before installing or applying the guidance, and review the skill and its relevant documentation.
+Mitigation: Review unavailable referenced material and consider the scan limitation before relying on the skill.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/athola/skills/nm-conserve-code-quality-principles)
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
+- [Project homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Code, Text]
+**Output Type(s):** [Guidance, Code, Shell commands]
 
-**Output Format:** [Markdown with language-specific code examples, tables, and checklists]
+**Output Format:** [Markdown guidance with language-specific code examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Examples cover Python, Rust, and TypeScript; includes a code review checklist.]
+**Other Properties Related to Output:** [Recommendations depend on project context; examples use Python, Rust, and TypeScript.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

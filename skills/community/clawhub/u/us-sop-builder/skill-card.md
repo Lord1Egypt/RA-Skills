@@ -1,6 +1,6 @@
 ## Description:
 
-Creates numbered US-style SOPs with owners, triggers, steps, exceptions, and sign-off details.
+Turns a messy process into a numbered US-style SOP with owner, trigger, steps, exceptions and a sign-off line.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Employees and operations managers at US small businesses use this skill to document repeatable processes as numbered SOPs and identify gaps before review.
+US small business owners and operations managers use it to turn a process description into a reviewable SOP with an owner, trigger, tools, numbered steps, exceptions, sign-off, and a list of gaps.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,33 @@ United States
 
 ## Known Risks and Mitigations:
 
-Risk: The checker cannot confirm that every SOP step has an owner or deadline.
+Risk: ClawScan reports a mismatch between the SOP-building purpose and the script's reported behavior, and says the scan is partial; it does not establish malicious intent.
 
-Mitigation: Manually review the completed SOP for step owners and deadlines before use.
+Mitigation: Review the script's behavior against the intended task and check the host runtime's file access before installation; treat unresolved scan coverage as uncertainty.
 
-Risk: Running the checker overwrites an existing lint-report.md in its output folder.
+Risk: The skill points to a separate unsigned Windows toolkit executable.
 
-Mitigation: Use a dedicated output folder for each run.
-
-Risk: The optional Windows app is unsigned and is separate from the skill's review.
-
-Mitigation: Evaluate it independently and verify its published SHA-256 before running it.
+Mitigation: Skip the optional download unless needed; if used, verify its stated SHA-256 and keep it isolated without administrator privileges.
 
 ## Reference(s):
 
-- [How US teams structure an SOP](references/sop-structure.md)
+- [SOP structure reference](references/sop-structure.md)
+- [ClawHub release](https://clawhub.ai/rapidworker1/skills/us-sop-builder)
+- [Publisher homepage](https://github.com/rapidworker1)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Configuration, Guidance]
+**Output Type(s):** [Markdown, Guidance]
 
-**Output Format:** [Markdown SOP drafts and lint reports, with a YAML outline template]
+**Output Format:** [Numbered SOP sections with exceptions, sign-off, and gaps; a Markdown lint report.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Drafts require owner review before adoption as company policy.]
+**Other Properties Related to Output:** [The owner reviews and approves the SOP before adopting it as company policy.]
 
 ## Skill Version(s):
 
-1.0.6 (source: frontmatter)
+1.0.7 (source: evidence.json release.version and SKILL.md frontmatter)
 
 ## Ethical Considerations:
 

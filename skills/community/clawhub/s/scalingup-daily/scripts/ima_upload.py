@@ -48,7 +48,7 @@ def ima_api(path, body, client_id, api_key):
         headers={
             "ima-openapi-clientid": client_id,
             "ima-openapi-apikey": api_key,
-            "ima-openapi-ctx": "skill_version=1.0.0",
+            "ima-openapi-ctx": "skill_version=1.1.7",
             "Content-Type": "application/json"
         },
         method="POST"

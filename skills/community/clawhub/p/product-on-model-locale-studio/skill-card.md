@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Fashion sellers and ecommerce teams use this skill to plan and create product-on-model visuals from confirmed apparel or wearable-product photos, with a distinct localized image for each selected market.
+Ecommerce sellers and fashion marketing teams use this skill to plan and create a product-on-model visual for each selected sales market from a confirmed product photo, with market-specific model direction, styling, pose, and scene.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The account grant includes audio/video generation, voice management, and spending permissions beyond this image skill's stated purpose; selected images leave the device, and installation analytics run automatically.
+Risk: ClawScan marks the skill suspicious based on reports of broad, unrelated permissions, recurring installation telemetry, and an issue that could disrupt shared connection state; its analysis is partial.
 
-Mitigation: Review the full Beatra account grant, image handling, and analytics before approving; proceed only if the broader permissions and data handling are acceptable.
+Mitigation: Consider avoiding installation until the publisher explains the unrelated permissions and telemetry and addresses the shared-connection uninstall issue. If proceeding, review the authorization request carefully and use a reviewed, pinned updater.
 
-Risk: The uninstall defect can disrupt other Beatra skills that share the connection.
+Risk: Skillspector's analysis is partial because some local references could not be resolved.
 
-Mitigation: Do not rely on uninstall to preserve other Beatra skills until the defect is fixed; consider the shared connection before revoking it in the console.
+Mitigation: Treat the unresolved-reference uncertainty as outstanding; the clean AIG result does not remove it.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/beatra-ai/skills/product-on-model-locale-studio)
-- [Publisher profile](https://clawhub.ai/user/beatra-ai)
-- [Beatra skill page](https://beatra.ai/skills/product-on-model-locale-studio)
-- [Beatra MCP service](https://mcp.beatra.ai/mcp)
+- [Beatra product-on-model locale studio](https://beatra.ai/skills/product-on-model-locale-studio)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Guidance]
+**Output Type(s):** [Guidance, API Calls, Images]
 
-**Output Format:** [Market-specific product-on-model image requests and resulting candidate images, with review guidance.]
+**Output Format:** [Market-specific visual briefs, image-generation requests, and product-on-model images]
 
-**Output Parameters:** [One image per selected market, based on the confirmed product photo and the seller's market, destination, styling, pose, and scene choices.]
+**Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Candidate images should be reviewed for product readability, protected product details, and destination fit.]
+**Other Properties Related to Output:** [One image request per selected market; generated images are candidates for review against the confirmed product details.]
 
 ## Skill Version(s):
 
-0.2.3
+0.2.5 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

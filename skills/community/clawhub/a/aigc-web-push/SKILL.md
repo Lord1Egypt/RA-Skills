@@ -1,9 +1,16 @@
 ---
 name: aigc-web-push · AI内容生成与全网推送
+slug: aigc-web-push
+displayName: aigc-web-push · AI内容生成与全网推送
+version: 3.6.11
+summary: AI 生成文章/图文/视频，并推送到微信公众号或云电脑全网发布
+license: MIT
 description: 支持通过 AI 生成文章、图文卡片与视频，并推送到微信公众号（无需泄露公众号 Secret，无需配置 IP 白名单）或经由云电脑推送至全球任意站点；兼容其它技能产出的文章、图片与视频。
 ---
 
 # aigc-web-push · AI内容生成与全网推送
+
+**版本 3.6.11**
 
 ## 文件路径与作用
 
@@ -11,12 +18,12 @@ description: 支持通过 AI 生成文章、图文卡片与视频，并推送到
 | --- | --- | --- |
 | **SKILL.md** | `aigc-web-push/` | 本说明 |
 | **design.md** | 同上 | HTML 格式规范（文章 / 贴图 / 封面） |
-| **remotion-video.md** | 同上 | Remotion 视频成片规范 |
+| **design-video.md** | 同上 | 兜底成片；公共条款见 §2 / §3.1 / §3.2 / §5.3 / §6 / §7.1 / §11 |
 | **Humanizer-zh.md** / **Humanizer.md** | 同上 | 去 AI 味（中 / 英） |
 | **config.json** | 同上 | 配置向导生成后的真实配置 |
 | **config.example.json** | 同上 | 字段说明 + 示例 |
-| **package.json** | 同上 | 固定 CommonJS（`private`，不发 npm）；`version` 与 ClawHub 对齐 |
-| **check-update.js** | 同上 | 推送前核对 / 自升级（由 `push.js` 调用） |
+| **package.json** | 同上 | 固定 CommonJS（`private`，不发 npm）；`version` 为技能版本 |
+| **check-update.js** | 同上 | 推送前核对版本；落后则暂停并提示询问用户是否升级（由 `push.js` 调用） |
 | **push.js** | 同上 | 统一推送入口（公众号 / 云电脑） |
 | **push-to-wechat-mp.js** | 同上 | 公众号推送实现 |
 | **push-to-cloud.js** | 同上 | 云电脑推送实现（本地媒体上传、按名解析目标） |
@@ -55,7 +62,7 @@ works/20261117-gugong-ye-you/
 works/20261117-gugong-ye-you/
   remotion/            # Remotion 工程
   audio/               # TTS、音乐、音效
-  out/aigc-video.mp4   # 成片
+  out/gugong-ye-you.mp4  # 成片 out/<主题>.mp4
   cover.html           # 可选封面 HTML；也可放在 out/ 下
   cover.png            # 可选封面图（有则优先；作品目录或 out/）
 ```
@@ -76,7 +83,10 @@ works/20261117-gugong-ye-you/
 | **配置向导地址** | [https://design.pcloud.ac.cn/aigc-web-push.html](https://design.pcloud.ac.cn/aigc-web-push.html) |
 | **流程** | AI 发向导给**当前操作用户** → 已在 design 登录则直接继续，否则微信扫码 → 选默认公众号 / 默认云电脑 → 用户复制发给 **自己的** AI |
 
-AI 检查 **aigc-web-push 目录** 下是否存在 `config.json`。如果不存在，则无法使用本技能，AI 需要发送配置向导地址给用户完成配置。
+AI 检查 **aigc-web-push 目录** 下是否存在含有效 `openId` + `skillKey` 的 `config.json`。
+
+- **写文章 / 贴图 / 做视频（含旁白、画面、成片）不要求登录**，无配置也可继续。
+- **缺配置时不可用：** 推送、平台音乐搜索。需要时再发上方配置向导；无配置时配乐按「视频」第 8 条改走其它曲库。
 
 **说明：**
 
@@ -122,18 +132,22 @@ EOF
 - `accounts`：有公众号才写入；`selected: true` 为默认（至多一项）。
 - `instances`：有云电脑才写入；`selected: true` 为默认（至多一项）。
 - `defaultTargetScope`：向导固定为 `all`；推送时可用 CLI 覆盖为 `environment` / `account`。
-- `skillKey`：向导签发；推送与 `remotion-video.md` 中音乐搜索等需鉴权接口必带。
-- `autoUpdate`：可选；`false` 关闭推送前自动升级。
+- `skillKey`：向导签发；推送与音乐搜索必带。
+- `autoUpdate`：可选；`false` 关闭推送前版本检查。
 
 ---
 
-## 自动升级
+## 版本检查
 
-`push.js` 推送前对照 [ClawHub](https://clawhub.ai/lihengdao/aigc-web-push) 最新版；落后则升级技能文件并继续推送（**保留 `config.json`**）。同目录 24 小时检查一次。网络失败不阻断推送。
+`push.js` 推送前对照远端最新版。有新版本时**只向用户问是否升级**，并退出码 2（不自动改文件）。
 
-关闭：`config.json` 设 `"autoUpdate": false`，或环境变量 `AIGC_WEB_PUSH_NO_UPDATE=1`。
+**Agent 收到退出码 2 后：**
 
-手动：`npx clawhub update aigc-web-push` 或 `npx skills update aigc-web-push`。
+1. 询问用户是否升级（勿把命令行细节甩给用户）。
+2. **同意**：保留本目录 `config.json`，执行 `npx skills add lihengdao/AIGC-Web-Push -g -y`，再重新推送。
+3. **暂不升级**：设 `AIGC_WEB_PUSH_NO_UPDATE=1` 后重新推送。
+
+同目录 24 小时检查一次；网络失败不阻断。关闭检查：`config.json` 的 `autoUpdate: false`，或 `AIGC_WEB_PUSH_NO_UPDATE=1`。
 
 ---
 
@@ -153,16 +167,42 @@ EOF
 
 ### 视频（Remotion）
 
-必须按 `remotion-video.md` 成片，再推云电脑。公众号不支持视频；云电脑须已绑定 `contentType=video` 的账号。
+公众号不支持视频。推送仅云电脑；账号须已绑定 `contentType=video`。
 
-1. 在作品目录内创建 `remotion/` 等子目录，**不要**把 Remotion 工程建在技能根目录。
-2. 准备 Remotion Agent Skills 后编码：
-   - 已有 Remotion / `@remotion/cli`：`npx remotion skills add`
-   - 尚未安装 Remotion：`npx skills add remotion-dev/skills`
-   - 加载 `remotion-best-practices`；写场景加载 `remotion-markup`；查 API 用 `remotion-docs` 或官网文档。
-   - 无法安装时告知用户并查官方文档，禁止凭记忆硬写。
-3. 流程：旁白文案 → 锁定 TTS → 字词级对齐 → 字幕 → 分镜 → Remotion → 渲染 → 验收。
-4. 成片：`works/.../out/aigc-video.mp4`；可选 `cover.html` / `video_cover.html`，或封面图 `cover.png`（作品目录或 `out/`；有图优先）。
+本技能负责：分流、作品目录、成片路径、公共质量底线、封面、推送、配乐与音效。制作流水线与镜头语法以**选定能力的文档**为准，禁止凭本节或记忆开写。**第 2–4、8–9 条及所引 `design-video.md` 条款对一切能力生效**；与能力文档冲突时以本节为准。写代码前满足第 2–4 条；推送前通过第 9 条。
+
+1. **作品目录** — `works/<日期>-<主题>/`；工程、音频、成片均在此，禁止写入技能根目录。成片路径：`out/<主题>.mp4`。
+
+2. **画面与素材** — 主体为**程序化绘制**（Remotion / SVG / Canvas / CSS / R3F 等）。禁止为填镜头搜索、下载或采集图库照片、库存视频、网页截图或实拍；禁止用 AI 生成图/视频作主体镜头（封面除外）。**仅当用户明确上传或授权**外部素材时方可使用，并核实许可。能力文档中的采图、截图、B-roll、素材闸门要求与本条冲突时，跳过并以程序化等价镜头继续。画不准、质感不够或主题不易程序化时，按 `design-video.md` §3.2 依次换画法、换讲法或收窄表达，并完成完整成片。
+
+3. **结构开合与正文（写稿或分镜前完成）** — 全片须有 **建立 → 展开 → 收束**（有旁白落在文案；无旁白落在画面段落）。建立给出观看理由或主题锚定；展开递进，禁止开场即散点罗列；收束闭合，禁止突然中断。有旁白时：先完成完整文案再配音；按 `design-video.md` §2.2 **依内容**选定主叙事结构，不得为套模型而硬套；旁白速率固定 **1.0**，禁止为卡点或时长变速（§5.3）。旁白与字幕只写主题内容，遵守 §6.5（禁止制作元话术）。事实不足则降低断言强度，不得编造。用户未要求逐步确认时自主推进到成片。
+
+4. **镜头叙事（分镜与成片均须满足）** — 遵守 `design-video.md` §3.1 与 §6.5：核心信息点呈现「对象 → 可见变化 → 结果」；主段以连续状态变化推动观看，开场数秒内有可感知运动；按内容选型（界面 / 过程 / 结构 / 数据 / 情绪），不强制三维或固定配色；一镜一主表达，段落有承接，全片视觉语言统一；不以信息卡、要点列表轮播或节点流程图为主段；旁白、字幕与画面文字无制作元话术。
+
+5. **分流（只选一个；看片子怎么讲，不看题材名）**
+
+| 判断 | 能力 |
+| --- | --- |
+| 产品 / 网站 / App 的界面动效或软件产品介绍 | `video-shotcraft` |
+| 旁白 / 口播 / 讲解为主 | `video-talkcraft` |
+| 皆不明显，或自由视觉 / 无旁白 | `design-video.md` + Remotion 官方 Skills |
+
+用户点名从其点名；歧义则问清后二选一，禁止并行；仍不清则 `design-video.md`。选定能力提供镜头语法与工程流程，**不免除第 2–4、8–9 条**。
+
+6. **选定 `video-shotcraft` / `video-talkcraft` 后（写代码前）**
+   - 未装则 `npx skills add Vincentwei1021/video-shotcraft` 或 `…/video-talkcraft`；失败则改 `design-video.md` 并告知用户。
+   - 定位 skill 目录（`~/.agents/skills/`、`~/.claude/skills/`、`~/.codex/skills/` 或 CLI 提示路径），确认有 `SKILL.md`。
+   - **完整阅读**该 `SKILL.md`，再按其指示阅读 `references/` 等。
+   - 分镜、镜头配方与工程从其文档；与第 2–4 条冲突的采图、截图、库存素材或中途逐步确认要求，按本节公共底线执行。工程与成片在当前作品目录（第 1 条）。
+
+7. **选定 `design-video.md` 后** — 安装 Remotion Skills（有 `@remotion/cli`：`npx remotion skills add`；否则 `npx skills add remotion-dev/skills`），加载 `remotion-best-practices`（场景 `remotion-markup`，API `remotion-docs` 或官网），完整执行 `design-video.md`（含 §2 / §3.1 / §6 / §11）。无法安装则告知用户并查阅官方文档，禁止凭记忆硬写。
+
+8. **配乐与音效** — 遵守 `design-video.md` §7。配乐：用户指定 → 有配置则按 §7.1 下载到作品 `audio/` → 否则用其它曲库；接入时间线并按 §7.5 混音与机器判据验收（对白段音乐相对旁白工作电平低约 12～18 dB，停顿段恢复；侧链压低非静音）。音效：分镜列出动作点并同步取材接入。除用户明确静音外，成片须有可感知配乐；有动作点须有同步音效。禁止为对齐配乐而变速旁白。
+
+9. **发布收口** — 唯一成片：`out/<主题>.mp4`；`push.js`（标题 + 描述，面向读者）。剪映工程、工作台、本地 preview 不替代本通道。
+   - **封面：** 作品目录或 `out/` 若无封面，按 §3.2 补：`cover.png`（可用 AI 图，仅作封面）或 `cover.html`；推送时有图优先。
+   - **技术验收：** 可播放、音画同步、无黑屏或缺资源；有旁白则字幕对齐且速率为 1.0。
+   - **视觉与正文验收：** 对照第 2–4、8 条与 `design-video.md` §3.1 / §3.2 / §6.5 / §7 / §11；用时间码标出若干「对象—变化—结果」镜头；确认开合、开场运动、换方案、配乐接入与 §7.5 可感知、动作点音效；旁白、字幕、画面文字无 §6.5 元话术。技术通过不表示画面或声音合格；主段若为信息卡、方块连线、无变化讲解、缺乏可见动态、含元话术，或无静音例外却无配乐 / 配乐不可感知 / 有动作点却无同步音效，须返修重渲。
 
 ---
 
@@ -210,30 +250,29 @@ cd aigc-web-push
 node push.js wechat - html ../works/20261117-demo/main.html
 node push.js wechat "我的订阅号" html ../works/20261117-demo/main.html
 
-# 公众号 · 图片 URL
-node push.js wechat - img '["https://cdn.example.com/1.png"]' "标题" "正文"
+# 公众号 · 图片 URL（第 4 参为描述 / 图说）
+node push.js wechat - img '["https://cdn.example.com/1.png"]' "标题" "描述"
 
-# 云电脑 · HTML
+# 云电脑 · HTML（标题←title，描述←meta description）
 node push.js cloud - html ../works/20261117-demo/main.html article draft
 node push.js cloud - html ../works/20261117-demo/main.html article draft account "官网账号"
 
-# 云电脑 · 本地图
-node push.js cloud - img ../works/20261117-demo/poster.png "标题" draft
+# 云电脑 · 本地图（可选描述）
+node push.js cloud - img ../works/20261117-demo/poster.png "标题" "描述" draft
 
-# 云电脑 · 视频
-node push.js cloud - video ../works/20261117-demo/out/aigc-video.mp4 "标题" draft
-node push.js cloud - video ../works/20261117-demo/out/aigc-video.mp4 "标题" draft account "抖音主号"
+# 云电脑 · 视频（标题 + 描述 + 可选封面）
+node push.js cloud - video ../works/20261117-gugong-ye-you/out/gugong-ye-you.mp4 "故宫夜游指南" "三条路线带你逛亮灯后的故宫。" draft
+node push.js cloud - video ../works/20261117-gugong-ye-you/out/gugong-ye-you.mp4 "故宫夜游指南" "三条路线带你逛亮灯后的故宫。" draft account "抖音主号"
 ```
 
-封面：推送时自动附带。封面图固定为 `cover.png`（有则优先）；否则文章用同目录 `*_cover.html`，视频用 `cover.html` / `video_cover.html`。
+字段对齐 auto-publish / design 前端：`title`、`description`、封面（`cover.png` 优先，否则文章 `*_cover.html` / 视频 `cover.html`）。
 
 ### 说明
 
-- 公众号未指定时用 `-` / `default` → `accounts` 中 `selected: true`；也可传名称或 AppID。
-- 云电脑未指定时用 `-` → `instances` 中 `selected: true`；也可传机名或 id。
-- 云电脑指定环境/账号时，末参的 id 与名称一律经 `resolveCloudPublishTarget` 解析，歧义则失败并打印候选。
-- API：`apiBase`（缺省 `https://api.pcloud.ac.cn/openAccessService`）。公众号 `sendToWechat`；云电脑 `sendToCloud`；列目标 `listCloudPublishTargets`；按名解析 `resolveCloudPublishTarget`；上传 `prepareMediaUpload`。
-- **云电脑入队即完成**：勿轮询站点结果、勿因「还没发出」而重推。
+- 公众号 / 云电脑未指定时用 `-` → 配置里 `selected: true` 项；也可传名称或 id。
+- 云电脑指定环境/账号时按名称解析，歧义则失败并打印候选。
+- API 基址：`apiBase`（缺省 `https://api.pcloud.ac.cn/openAccessService`）。
+- **云电脑入队即完成**：勿轮询、勿因「还没发出」重推。
 - **公众号超时**：可视为已受理，勿狂推；请用户看服务通知或草稿箱。
 
 ## 其它功能

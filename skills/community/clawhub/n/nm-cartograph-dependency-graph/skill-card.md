@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use this skill to visualize import dependencies between modules, packages, or plugins, helping them understand coupling, find circular dependencies, and assess refactoring impact.
+Developers and engineers use this skill to understand module dependencies, find circular dependencies, assess coupling, and plan refactors.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Dependency names and relationships may be sent to Mermaid Chart without a privacy warning.
+Risk: Rendering may send module names and dependency relationships from a codebase to Mermaid Chart.
 
-Mitigation: Before installing, check whether sharing dependency information with Mermaid Chart is acceptable and whether that destination is approved under your repository’s data-sharing rules.
+Mitigation: Before analyzing a private repository, review Mermaid Chart's destination and data-handling practices; use local rendering or obtain appropriate approval if repository details are sensitive.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-cartograph-dependency-graph)
-- [Project page listed in Clawdis metadata](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-cartograph-dependency-graph)
+- [Project homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Text]
+**Output Type(s):** [Code, Text]
 
-**Output Format:** [Mermaid flowchart with dependency analysis notes]
+**Output Format:** [Mermaid flowchart syntax with concise dependency analysis notes]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Shows directed import relationships, dependency groupings, external or optional dependencies, and any detected cycles.]
+**Other Properties Related to Output:** [Directed dependency relationships, including internal and external imports.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

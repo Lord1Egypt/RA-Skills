@@ -1,0 +1,382 @@
+{
+  "schema_version": "1.0",
+  "brand": {
+    "name": "青禾工具",
+    "aliases": [],
+    "facts": []
+  },
+  "scope": {
+    "locale": null,
+    "market": null
+  },
+  "metric_system": "local-answer-evidence-v1 (not ABI)",
+  "measurement_basis": "Imported observed answers only; source authenticity and semantic labels require Agent review.",
+  "status_counts": {
+    "observed": 0,
+    "query_failed": 1,
+    "missing": 1,
+    "not_run": 1,
+    "simulated": 1
+  },
+  "measured": {
+    "valid_answers": 0,
+    "metrics": {
+      "mention_rate": {
+        "numerator": null,
+        "denominator": 0,
+        "percent": null,
+        "unknown": 0
+      },
+      "recommendation_rate": {
+        "numerator": null,
+        "denominator": 0,
+        "percent": null,
+        "unknown": 0
+      },
+      "native_brand_citation_rate": {
+        "numerator": null,
+        "denominator": 0,
+        "percent": null,
+        "unknown": 0
+      },
+      "fact_match_rate": {
+        "numerator": null,
+        "denominator": 0,
+        "percent": null,
+        "unknown": 0
+      },
+      "intent_coverage": {
+        "numerator": null,
+        "denominator": 0,
+        "percent": null,
+        "unknown": 0
+      }
+    },
+    "tone": {
+      "reviewed_answers": 0,
+      "unknown_answers": 0,
+      "counts": {
+        "positive": null,
+        "neutral": null,
+        "negative": null,
+        "mixed": null
+      }
+    },
+    "fact_review_disagreements": [],
+    "captured_at_range": {
+      "first": null,
+      "last": null
+    },
+    "missing_capture_time_ids": [],
+    "answers_without_fact_checks": 0,
+    "questions": [
+      {
+        "question_id": "Q1",
+        "question": "预算有限的小团队选什么工具？",
+        "intent": "预算选型",
+        "record_ids": [
+          "failed"
+        ],
+        "status_counts": {
+          "query_failed": 1
+        },
+        "valid_answers": 0,
+        "mention_reviewed": 0,
+        "mention_hits": null,
+        "unmentioned_in_all_valid_answers": null
+      },
+      {
+        "question_id": "Q2",
+        "question": "青禾工具支持手机吗？",
+        "intent": "移动端适用性",
+        "record_ids": [
+          "missing"
+        ],
+        "status_counts": {
+          "missing": 1
+        },
+        "valid_answers": 0,
+        "mention_reviewed": 0,
+        "mention_hits": null,
+        "unmentioned_in_all_valid_answers": null
+      },
+      {
+        "question_id": "Q3",
+        "question": "青禾工具免费吗？",
+        "intent": "价格",
+        "record_ids": [
+          "not-run"
+        ],
+        "status_counts": {
+          "not_run": 1
+        },
+        "valid_answers": 0,
+        "mention_reviewed": 0,
+        "mention_hits": null,
+        "unmentioned_in_all_valid_answers": null
+      },
+      {
+        "question_id": "Q4",
+        "question": "团队导出数据可以选什么工具？",
+        "intent": "数据迁移",
+        "record_ids": [
+          "simulated"
+        ],
+        "status_counts": {
+          "simulated": 1
+        },
+        "valid_answers": 0,
+        "mention_reviewed": 0,
+        "mention_hits": null,
+        "unmentioned_in_all_valid_answers": null
+      }
+    ],
+    "by_platform_model_search": []
+  },
+  "simulation_preview": {
+    "label": "SYNTHETIC ONLY — excluded from measured results",
+    "summary": {
+      "valid_answers": 1,
+      "metrics": {
+        "mention_rate": {
+          "numerator": null,
+          "denominator": 0,
+          "percent": null,
+          "unknown": 1
+        },
+        "recommendation_rate": {
+          "numerator": null,
+          "denominator": 0,
+          "percent": null,
+          "unknown": 1
+        },
+        "native_brand_citation_rate": {
+          "numerator": null,
+          "denominator": 0,
+          "percent": null,
+          "unknown": 1
+        },
+        "fact_match_rate": {
+          "numerator": null,
+          "denominator": 0,
+          "percent": null,
+          "unknown": 0
+        },
+        "intent_coverage": {
+          "numerator": null,
+          "denominator": 0,
+          "percent": null,
+          "unknown": 1
+        }
+      },
+      "tone": {
+        "reviewed_answers": 0,
+        "unknown_answers": 1,
+        "counts": {
+          "positive": null,
+          "neutral": null,
+          "negative": null,
+          "mixed": null
+        }
+      },
+      "fact_review_disagreements": [],
+      "captured_at_range": {
+        "first": null,
+        "last": null
+      },
+      "missing_capture_time_ids": [
+        "simulated"
+      ],
+      "answers_without_fact_checks": 1
+    },
+    "questions": [
+      {
+        "question_id": "Q4",
+        "question": "团队导出数据可以选什么工具？",
+        "intent": "数据迁移",
+        "record_ids": [
+          "simulated"
+        ],
+        "status_counts": {
+          "simulated": 1
+        },
+        "valid_answers": 1,
+        "mention_reviewed": 0,
+        "mention_hits": null,
+        "unmentioned_in_all_valid_answers": null
+      }
+    ]
+  },
+  "records": [
+    {
+      "id": "failed",
+      "question_id": "Q1",
+      "question": "预算有限的小团队选什么工具？",
+      "intent": "预算选型",
+      "platform": "合成平台",
+      "run_id": "demo-1",
+      "source": "合成失败边界示例，并非实际查询故障",
+      "status": "query_failed",
+      "model": null,
+      "search_mode": "unknown",
+      "context_note": null,
+      "captured_at": null,
+      "answer": null,
+      "reason": "演示查询超时；未获得完整回答",
+      "citations_capture": "not_captured",
+      "citations": [],
+      "review": {
+        "mention": {
+          "value": null,
+          "quote": null,
+          "reason": null
+        },
+        "recommendation": {
+          "value": null,
+          "quote": null,
+          "reason": null
+        },
+        "tone": {
+          "value": "unknown",
+          "quote": null,
+          "reason": null
+        },
+        "fact_checks": []
+      },
+      "literal_candidates": [],
+      "answer_sha256": null,
+      "native_brand_urls": [],
+      "native_brand_citation_count": null,
+      "brand_native_cited": null,
+      "included_in_measured_metrics": false
+    },
+    {
+      "id": "missing",
+      "question_id": "Q2",
+      "question": "青禾工具支持手机吗？",
+      "intent": "移动端适用性",
+      "platform": "合成平台",
+      "run_id": "demo-1",
+      "source": "合成缺失边界示例",
+      "status": "missing",
+      "model": null,
+      "search_mode": "unknown",
+      "context_note": null,
+      "captured_at": null,
+      "answer": null,
+      "reason": "演示用户说查询过，但没有附回答正文",
+      "citations_capture": "not_captured",
+      "citations": [],
+      "review": {
+        "mention": {
+          "value": null,
+          "quote": null,
+          "reason": null
+        },
+        "recommendation": {
+          "value": null,
+          "quote": null,
+          "reason": null
+        },
+        "tone": {
+          "value": "unknown",
+          "quote": null,
+          "reason": null
+        },
+        "fact_checks": []
+      },
+      "literal_candidates": [],
+      "answer_sha256": null,
+      "native_brand_urls": [],
+      "native_brand_citation_count": null,
+      "brand_native_cited": null,
+      "included_in_measured_metrics": false
+    },
+    {
+      "id": "not-run",
+      "question_id": "Q3",
+      "question": "青禾工具免费吗？",
+      "intent": "价格",
+      "platform": "合成平台",
+      "run_id": "demo-1",
+      "source": "合成计划示例",
+      "status": "not_run",
+      "model": null,
+      "search_mode": "unknown",
+      "context_note": null,
+      "captured_at": null,
+      "answer": null,
+      "reason": "尚未执行；只是待查询问题",
+      "citations_capture": "not_captured",
+      "citations": [],
+      "review": {
+        "mention": {
+          "value": null,
+          "quote": null,
+          "reason": null
+        },
+        "recommendation": {
+          "value": null,
+          "quote": null,
+          "reason": null
+        },
+        "tone": {
+          "value": "unknown",
+          "quote": null,
+          "reason": null
+        },
+        "fact_checks": []
+      },
+      "literal_candidates": [],
+      "answer_sha256": null,
+      "native_brand_urls": [],
+      "native_brand_citation_count": null,
+      "brand_native_cited": null,
+      "included_in_measured_metrics": false
+    },
+    {
+      "id": "simulated",
+      "question_id": "Q4",
+      "question": "团队导出数据可以选什么工具？",
+      "intent": "数据迁移",
+      "platform": "合成平台",
+      "run_id": "demo-1",
+      "source": "合成回答示例",
+      "status": "simulated",
+      "model": null,
+      "search_mode": "unknown",
+      "context_note": null,
+      "captured_at": null,
+      "answer": "青禾工具可以作为一个候选。",
+      "reason": null,
+      "citations_capture": "not_captured",
+      "citations": [],
+      "review": {
+        "mention": {
+          "value": null,
+          "quote": null,
+          "reason": null
+        },
+        "recommendation": {
+          "value": null,
+          "quote": null,
+          "reason": null
+        },
+        "tone": {
+          "value": "unknown",
+          "quote": null,
+          "reason": null
+        },
+        "fact_checks": []
+      },
+      "literal_candidates": [
+        "青禾工具"
+      ],
+      "answer_sha256": "8f4e27c0b8ddbe6b85480bd1f5ff11d914428d848150a59d262cbbd3f0628dee",
+      "native_brand_urls": [],
+      "native_brand_citation_count": null,
+      "brand_native_cited": null,
+      "included_in_measured_metrics": false
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 ## Description:
 
-Separates image foregrounds from backgrounds and returns a transparent-background image URL for product photos, portraits, and compositing.
+Separates an image's foreground from its background and returns a transparent-background image URL for product processing, portrait cutouts, and compositing.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and content creators can use the skill to remove an image background for product photos, portraits, and compositing. It sends the image to dLazy's hosted service and returns a transparent-background image URL.
+External users and developers use this skill to remove image backgrounds for product photos, portrait cutouts, and compositing workflows.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review notes that the documented login and authentication commands do not match the image-processing purpose, despite a benign verdict.
+Risk: The security review reported a mismatch between the image-processing description and authentication commands, and its analysis was partial.
 
-Mitigation: Review the CLI setup and confirm its authentication behavior before providing an API key.
+Mitigation: Review the CLI authentication and API-key setup to confirm they match the expected dLazy workflow before configuring credentials.
+
+Risk: The skill documentation says local image inputs are uploaded to dLazy media storage for processing.
+
+Mitigation: Submit only images you are authorized to share with the service.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-imageseg)
-- [dLazy CLI package](https://www.npmjs.com/package/@dlazy/cli)
-- [dLazy service](https://dlazy.com)
-- [dLazy API key setup](https://dlazy.com/dashboard/organization/api-key)
+- [ClawHub release](https://clawhub.ai/dlazyai/skills/dlazy-imageseg)
 - [CLI repository (listed in skill metadata)](https://github.com/dlazy-ai/cli)
+- [dLazy CLI on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy](https://dlazy.com)
 
 ## Skill Output:
 
-**Output Type(s):** [Image, URL, JSON]
+**Output Type(s):** [Image, JSON, URLs]
 
-**Output Format:** [JSON containing the hosted URL and image metadata for the transparent-background result]
+**Output Format:** [JSON response containing a generated image URL, or an asynchronous task identifier when requested]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [The result is hosted at files.dlazy.com; asynchronous mode can return a task ID before the image is ready.]
+**Other Properties Related to Output:** [Generated images are hosted by dLazy; the CLI can optionally save an output locally.]
 
 ## Skill Version(s):
 
-1.3.41 (source: server-resolved release evidence)
+1.3.44 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

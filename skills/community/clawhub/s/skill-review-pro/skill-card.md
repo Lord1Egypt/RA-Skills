@@ -1,6 +1,6 @@
 ## Description:
 
-Evaluates agent skills through static analysis, assigns a 100-point quality score, and provides review reports and improvement recommendations using type-aware policies.
+Reviews agent skills through static analysis, type-aware policies, scoring, adversarial checks, and actionable improvement guidance.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and skill authors use this skill to assess agent skill quality and robustness, receive a scored review with prioritized improvements, and validate suggested fixes when requested.
+Skill authors and reviewers use it to assess skill quality, produce scored review reports, and plan improvements. It also supports repository audits and read-only ClawHub release checks when requested.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,40 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: A bundled script can run an unrestricted executable through an option passed to it.
+Risk: Security review reports a benign result with medium confidence and partial scanner coverage.
 
-Mitigation: Review the script execution option and its behavior before running it; only use a trusted, intended executable.
+Mitigation: Review the skill files and their behavior before installation; treat the scanner result as limited coverage.
 
-Risk: The delegated CI rerun workflow and unpinned npx references may invoke tools or actions whose behavior is not fixed.
+Risk: Unpinned package references may change over time.
 
-Mitigation: Inspect the rerun workflow, verify the package source, and pin tool versions before relying on those actions.
+Mitigation: Review package sources and versions before using the related checks.
 
-Risk: The security scan could not resolve some local references, so its verdict does not establish that the skill is safe.
+Risk: The remote CI rerun option can trigger a remote workflow.
 
-Mitigation: Review unresolved local references and inspect the skill and its scripts before installation.
+Mitigation: Confirm the target workflow and intended retry before initiating a rerun.
+
+Risk: Generic fix triggers could activate outside a skill review.
+
+Mitigation: Confirm the target skill and requested fix action before applying changes.
 
 ## Reference(s):
 
+- [ClawHub release page](https://clawhub.ai/z-zihan/skills/skill-review-pro)
 - [Project homepage](https://github.com/z-Zihan/awesome-skills)
-- [ClawHub skill release](https://clawhub.ai/z-zihan/skills/skill-review-pro)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Guidance]
+**Output Type(s):** [Analysis, Markdown, Guidance, Files]
 
-**Output Format:** [Markdown review report with scores, findings, and prioritized improvement recommendations]
+**Output Format:** [Markdown review reports, scores, recommendations, and structured checklists; optional user-confirmed skill-file edits.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Findings are based on the supplied skill and its selected review policies; fixes are applied only when requested.]
+**Other Properties Related to Output:** [Chinese or English, following the user's language.]
 
 ## Skill Version(s):
 
-2.3.1 (source: frontmatter, release evidence)
+2.3.2 (source: frontmatter, server release metadata)
 
 ## Ethical Considerations:
 

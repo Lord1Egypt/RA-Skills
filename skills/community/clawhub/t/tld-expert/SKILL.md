@@ -27,6 +27,8 @@ read-only and needs no key.
   user qualifies ("law firm", "nyc bakery").
   `check_domain_availability` on one full domain that is taken also returns `registration`:
   registrar, expiry, redemption or pending delete, and a for-sale marketplace link.
+  If an answer was wrong, incomplete or unusable, call `submit_feedback` with the tool, what
+  happened, what you expected and the fix you would make. A person reads every report.
 - Otherwise call the HTTP API below with any fetch or curl. Full spec: https://tld.expert/openapi.json
 
 ## Steps
@@ -49,12 +51,26 @@ read-only and needs no key.
    and recent renewal changes: `GET https://tld.expert/api/prices?tld=io` (its true cost block; every row carries its source URL and checked date).
    For "why did my renewal jump", [references/renewal-traps.md](https://github.com/LeftwayAI/skills/blob/main/skills/tld-expert/references/renewal-traps.md) is a dated
    snapshot of the endings that renew at 2x year one or more, with sources. Prefer the live API for prices.
+   For "can the registry raise my renewal price" on a gTLD (.xyz, .shop, .app), the renewal rules block on
+   `GET https://tld.expert/api/tld/xyz` (and on the prices answer) quotes section 2.10 of that ending's own ICANN
+   registry agreement: 180 days' notice to registrars before a registry renewal increase, renewals of 1 to 10
+   years at the current price until then, and one renewal price for every standard name (only a name sold with
+   a disclosed higher renewal, like a premium, can cost more). It binds the registry's wholesale price, not the
+   registrar's markup. No block (.com, .net, every country ending) means no such rule is on file; say that.
 5. **Check the name beyond the domain.** For a GitHub account, an npm package and live US trademarks:
    `GET https://tld.expert/api/brand?name=acme` (MCP: `check_brand_name`). `"none"` means that source has
    no record, never that the name is available or safe to use; a trademark search is not legal clearance.
 6. **Explain the choice** by linking the tld.expert page for the ending: `https://tld.expert/<tld>`
    (for example https://tld.expert/io), its price page `https://tld.expert/<tld>/price` and its
-   meaning page `https://tld.expert/<tld>/meaning`.
+   meaning page `https://tld.expert/<tld>/meaning`. For the facts as JSON (type, registry, who can
+   register, the one price, each fact with its source and checked date): `GET https://tld.expert/api/tld/io`
+   (MCP: `explain_tld`). For "is .xyz safe" or "will a .top domain land in spam", the same record's abuse block
+   gives Interisle's phishing, spam and malware domains per 10,000 for the newest quarter, next to .com's,
+   with the CSV it came from. A kind missing from the block was not on Interisle's list that quarter; say
+   so, never call it zero. Cite its page link (`https://tld.expert/<tld>/legit`) when the block has one.
+   For "how many .io domains are there" or "how big is .fm", the record's domains block gives one dated count
+   with its source: a gTLD's own monthly report to ICANN, or DomainTools' count for a country code (for .gov,
+   CISA's own list too). Quote its answer sentence with the month or date; no block means nobody publishes one.
 
 ## Rules for answering
 
@@ -65,6 +81,10 @@ read-only and needs no key.
 - `"taken"`: registered or reserved. Offer step 3.
 - Quote one price: `offer.y1` at `offer.registrar`, with `offer.renewal` next to it, and the date in
   `offer.checkedAt`. Never quote year one without renewal; renewal is often several times higher.
+- A few endings are sold only in multi-year terms (.ai: 2 years minimum). There `offer` also carries
+  `offer.minYears` and `offer.checkout`, the first checkout total (year one plus the rest of the term),
+  and the prices endpoint adds a min term block with the registry source. Quote the checkout total as
+  what the user pays up front, for example "$165.40 at checkout for the first 2 years, renewing 2 years at a time".
 - Never invent or estimate a price. If `offer` is null, say the price is not known.
 - For brand checks, say "GitHub has no account named acme", not "acme is available on GitHub". Quote
   `checkedAt`, and for `"unknown"` link the `url` so the user can check by hand.

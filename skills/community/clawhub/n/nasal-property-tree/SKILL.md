@@ -6,9 +6,9 @@ description: Explains the components of the property tree, introduces the Nasal 
 ## Components of the Property Tree
 
 - **Nodes**: A node can hold a typed value as well as child nodes, and both can coexist at the same time.
-* **Indices**: Sibling nodes sharing an identical identifier are organized as an indexed array using zero-based numerical offsets. Omitting brackets defaults to index `0` (e.g., `/sim/view` = `/sim/view[0]`). Deleting an indexed node does not re-index or shift subsequent elements, leaving the vacated slot available for reuse.
-* **Aliases**: Allows a node to dynamically mirror another target node path, routing all read and write operations directly to the destination.
-* **Node attributes**: Flags defining internal engine behaviors, including read/write permissions, runtime state preservation, logging triggers, and persistent serialization.
+- **Indices**: Sibling nodes sharing an identical identifier are organized as an indexed array using zero-based numerical offsets. Omitting brackets defaults to index `0` (e.g., `/sim/view` = `/sim/view[0]`). Deleting an indexed node does not re-index or shift subsequent elements, leaving the vacated slot available for reuse.
+- **Aliases**: Allows a node to dynamically mirror another target node path, routing all read and write operations directly to the destination.
+- **Node attributes**: Flags defining internal engine behaviors, including read/write permissions, runtime state preservation, logging triggers, and persistent serialization.
 
 Besides the lossless XML format, properties can also be represented as a Nasal hash. If a node contains both a value and child nodes, only the child nodes are preserved when converted to a Nasal hash.
 
@@ -130,15 +130,16 @@ print("Altitude: " ~ virtual_alt.getValue());
 
 Nodes carry internal binary flags that control permission and engine processing behaviors:
 
-| Attribute | String Identifier | Purpose |
-| --- | --- | --- |
-| `READ` | `"readable"` | Determines if Nasal or systems can query the node's data. |
-| `WRITE` | `"writable"` | Determines if values can be written to the node. |
-| `ARCHIVE` | `"archive"` | Includes the property in basic `"save"` engine dumps. |
-| `TRACE_READ` | `"trace-read"` | Generates terminal logger inputs whenever the node is read. |
-| `TRACE_WRITE` | `"trace-write"` | Generates terminal logger inputs whenever the node is updated. |
-| `USERARCHIVE` | `"userarchive"` | Saves the node configuration directly into the user's flight history file (`autosave.xml`). |
-| `PRESERVE` | `"preserve"` | Prevents values from being wiped or reset during aircraft state resets. |
+| String Identifier | Purpose |
+| --- | --- |
+| `"readable"` | Determines if Nasal or systems can query the node's data. |
+| `"writable"` | Determines if values can be written to the node. |
+| `"archive"` | Includes the property in basic `"save"` engine dumps. |
+| `"trace-read"` | Generates terminal logger inputs whenever the node is read. |
+| `"trace-write"` | Generates terminal logger inputs whenever the node is updated. |
+| `"userarchive"` | Saves the node configuration directly into the user's flight history file (`autosave.xml`). |
+| `"preserve"` | Prevents values from being wiped or reset during aircraft state resets. |
+| `"tied"` | Determines if the property is directly mapped to a internal C++ variable. Tied properties cannot be listened to using `setlistener()`. |
 
 * `.getAttribute([rel_path, ]name)`: Reads specific attribute configurations. If called with zero parameters, it returns the raw integer bitmask representation of all set attributes.
 * `.setAttribute([rel_path, ]name, value)`: Sets a specific attribute flag to `1` or `0`. Passing a single combined integer bitmask argument allows configuring multiple attributes simultaneously.

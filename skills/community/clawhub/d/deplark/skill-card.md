@@ -1,6 +1,6 @@
 ## Description:
 
-Quickly deploy static websites and Node.js apps to Deplark / 速栈 for fast access from mainland China, using Codex or Claude Code.
+Deploy static websites and Node.js apps to Deplark for fast access from mainland China using Codex or Claude Code.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,21 +14,21 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill from Codex or Claude Code to publish static websites and Node.js apps through Deplark, especially for users in mainland China. It guides account connection, target selection, local builds, and deployment.
+Developers use this skill to publish static websites and Node.js apps on Deplark for users in mainland China, reusing an account connection across projects.
 
 ### Deployment Geography for Use:
 
-China (mainland)
+Global
 
 ## Known Risks and Mitigations:
 
-Risk: Account authorization or an API key enables network access to Deplark and project operations; the security scan was incomplete.
+Risk: ClawScan marks the skill suspicious: its partial scan covered 66.7% of components and noted credential-storage access plus environment and network capabilities without a declared tool scope; it reported no clear malicious intent.
 
-Mitigation: Review requested account permissions, keep keys out of files, chat, URLs, command arguments, and logs, and inspect the skill before connecting an account.
+Mitigation: Before installation, review how the skill uses credentials and confirm its local environment and network access fit your needs; treat the verdict as based on incomplete evidence.
 
-Risk: The workflow runs local project build commands and publishes selected build output.
+Risk: After account consent, the macOS client uses Deplark-specific Keychain items, and the account connection can be reused across projects.
 
-Mitigation: Inspect the repository's build steps and output, and exclude credentials and private files before deployment.
+Mitigation: Review the account and requested permissions before consenting, and keep API keys out of chat, repositories, URLs, command arguments, and logs.
 
 ## Reference(s):
 
@@ -37,17 +37,17 @@ Mitigation: Inspect the repository's build steps and output, and exclude credent
 
 ## Skill Output:
 
-**Output Type(s):** [Shell commands, Configuration instructions, Deployment status and URL]
+**Output Type(s):** [Shell commands, Guidance, JSON]
 
-**Output Format:** [Markdown guidance with shell commands]
+**Output Format:** [Shell commands and JSON command responses, including a deployment URL]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Deployment output depends on the selected project and its local build.]
+**Other Properties Related to Output:** [May build and publish a selected project after the user requests deployment and authorizes the account connection.]
 
 ## Skill Version(s):
 
-1.0.1 (source: server-resolved release metadata)
+1.0.2 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

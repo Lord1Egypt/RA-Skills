@@ -251,6 +251,41 @@ iterate 生态目前有 **三个** 会独立对外发布的项目。本手册把
       > 新增 `backup/2026-10-23-harness-wip` 保存主工作区里一条 harness
       > docstring WIP 后恢复干净。
       >
+      > **3.16.0 状态（2026-11-20）**：minor。本轮全面审查（review-bugbot 子代理
+      > 因本机免费额度用尽不可用，改由人工全量复审 + 矩阵冒烟替代）确认 3 处
+      > TUI 缺陷并全部修复；增长产出为净新增能力 `iterate scan --compare`
+      > （配置 ↔ 最新扫描的只读差异分析，含 `--json` 稳定键与可复制执行的补齐
+      > 命令，补齐「能扫出建议但看不出配置落后」的断链）。提交
+      > `ca99e291`（feat scan --compare）、`3b7369e4`（fix TUI 折行）、
+      > `5e00a943`（release），全部 GPG 签名并推送；signed annotated tag
+      > `v3.16.0` → `5e00a943`，`git verify-tag` 完好（plugin 的轻量 `v3.16.0`
+      > 已按惯例 force 替换，plugin-origin 保留自己的 tag；origin 此前无
+      > `v3.16.0`，推送为 `[new tag]`）。
+      > ✅ **GitHub Release**（run `44651604745` success，6 资产）：
+      > `iterate-skill.tar.gz` 794 KB / `iterate-qoder.zip` 841 KB；
+      > `shasum -a 256 -c SHA256SUMS.txt` → OK；三份 `.asc` 均对本机校验通过；
+      > `harness/|kernel/` 均为 **0 条**；包内 `SKILL.md version: 3.16.0`、
+      > `pyproject.toml 3.16.0`、`npm-installer/package.json 3.16.0` 三处一致。
+      > ✅ **npm**（run `44651604968` success）：`npm view iterate-skill-installer
+      > version` → **3.16.0**，`npx -y iterate-skill-installer@latest --version`
+      > → `3.16.0`。
+      > ✅ **ModelScope**（`jingzhao0/iterate-skill`）：精简包 827.4 KB /
+      > 81 文件，`upload_file_to_openapi` → `update_skill_settings` 成功（file_id
+      > `26e7b586-b09b-4151-8347-e952311b234c`）；消费端 `download_skill()` 实测
+      > 81 文件、`harness/|kernel/` 0 条、`SKILL.md version: 3.16.0`、包内含
+      > `iterate_cli/compare.py`。
+      > ✅ **ClawHub**（skillId `kd73s950z2gathsjtaenp987cx8ax0mm`）：79 文件 /
+      > 2,410,761 字节发布（`ok:true`，versionId
+      > `k97158f5qk2jzykqaryzqj8a7n8jkedb`，`publicationStatus=pending`）；
+      > 约 13 分钟后晋升：`GET /api/v1/skills/iterate-skill` →
+      > `latestVersion.version = 3.16.0`。
+      > ✅ **SkillHub**（skillId `104490`）：77 文件 / 844,847 字节，`ok:true`，
+      > versionId `532911`，`tags.latest = 3.16.0`；
+      > `reviewStatus/securityScanStatus/contentAuditStatus=pending` 为平台异步审核。
+      > 测试 **2077 passed, 1 skipped**（1 skipped：本机未安装 fish），
+      > `ruff check iterate_cli/ tests/ scripts/` 通过，CI on main success，
+      > 三平台 + npm 版本一致 = 3.16.0。
+      >
       > **3.11.0 状态（2026-11-04）**：minor。本轮全面审查确认 2 处中 + 2 处低
       > 缺陷并全部修复；增长产出为净新增能力 `iterate backup list` /
       > `iterate backup restore`（此前写了时间戳备份却无命令可列/可恢复，用户
@@ -2031,6 +2066,62 @@ stamp 不匹配会自动重装到新 tag。
       > 构建 `iterate_harness-1.16.3-py3-none-any.whl` 上传 release + 自动发布 PyPI 1.16.3
       >（已验证 PyPI latest=1.16.3）；npm `iterate-harness@1.16.3` 已发布（registry 传播约 60s），
       > npm 包装器 `ih --version` 验证 =1.16.3。
+      >
+      > **2.24.0 发布记录（2026-11-19）**：例行审查 + 修复 + 新能力发版（minor）。主要变更：
+      > ① **findings 分诊第一次在终端/CI 可达且真正生效**——新增 `ih iterate triage
+      > list|ignore|restore`（`iterate/triage.py`）：`list` 从 decision log 的
+      > `review_result` / `report` 条目重建去重 findings（同键取最新 severity/summary），
+      > 合并分诊日志与引擎 `known_intentional` 给出 open/approved/rejected/ignored 与稳定编号；
+      > `ignore` 写入引擎真正读取的 personalization + `iterate.config.yaml`（带
+      > `triaged-intentional:` 机器标记）、分诊日志与 decision log 审计；`restore` 只移除机器
+      > 写入的条目（手写 `known_intentional` 永不误删），并清理 config 残留。支持
+      > `1,3-5` / `all` 选择器、severity/维度/文件过滤、`--dry-run`、`--json` 与脚本退出码
+      > （无选择/越界 → 1；「忽略全部」必须显式 `all`）。② **一致性**：personalization
+      > 读-改-写由 `personalization.json.lock` 串行化；分诊日志写失败时回滚本次新增的过滤条目
+      > 并以非零退出，绝不「隐藏了 finding 却没有记录」。③ **WebUI**：Runs 页新增「永久忽略」
+      > （approve/reject/ignore 三态），单条撤销与「清除全部审批记录」会解除机器写入的过滤条目。
+      > ④ **修复真实缺陷**：`api/__init__.py` 与 `services/__init__.py` 改为 PEP 562 惰性导出，
+      > `import iterate_harness.services.cron_scheduler` 由约 **37s** 降至约 **2s**，cron 守护
+      > 进程重新落在 20s 认领窗口内。版本号在 `__init__.py` / `npm/package.json` /
+      > `frontend/web/package.json` / lock 与 `CHANGELOG.md` 同步至 2.24.0；校验 **3421 pytest
+      > + 6 skip**、ruff clean、mypy clean（287 源文件）、npm 包装器 **89 passed**、前端
+      > `tsc --noEmit` + vitest 16 files/161 tests + `vite build` 85 modules。主仓库 push 提交
+      > `c1bf656f`（rebase 至 badge 提交后）。发布仓走 `.release/iterate-harness` 替代路径按
+      > 已提交树同步（702 文件，+3 新增）提交 `1598fee` 并快进推送（`a483c47..1598fee`）；推
+      > annotated tag `v2.24.0` 触发 release.yml（run 44460074179，success 50s，幂等建 Release
+      > + 构建 wheel/.asc/.sha256）与 npm publish 工作流（run 44460074114，success 23s）；
+      > 已验证 PyPI latest=2.24.0、GitHub Release v2.24.0 为 Latest 且含三件资产、npm
+      > latest=2.24.0；临时前缀安装后 `ih --version` = `iterate_harness 2.24.0`，
+      > `ih iterate triage --help` 可见 list/ignore/restore。
+
+      > **2.25.0 发布记录（2026-11-22）**：例行审查 + 新能力发版（minor）。主要变更：
+      > ① **无头运行的跨终端干预通道**——新增 `ih iterate control
+      > status|nudge|pause|stop|clear`（`iterate/control.py`）：运行进程发布
+      > `.iterate/run-control.json`，任意终端向 append-only `run-control.jsonl` 追加命令，
+      > 运行进程用带 `lastId` 的单调游标消费；`nudge` 走与 WebUI 督促框相同的
+      > `_pending_nudges` 注入路径，`pause`/`stop` 在下一个轮次边界优雅收尾、保留可续跑
+      > checkpoint，并把 `control-nudge`/`control-pause`/`control-stop` 写进决策日志审计。
+      > ② **状态可解释**：`status` 只读，`active`（可控无头运行）与 `leaseActive`
+      > （TUI/WebUI 仅持租约）分开表达，后者明确「not controllable」并指向自己的 UI；
+      > `--require-run` 供监控脚本。③ **失败开放**：控制面缺失/畸形/游标写失败只记 warning，
+      > 下一轮重读；无活跃运行写命令直接拒绝并给 remedy；进程内 id 集合兜底一次失败的游标
+      > 写入，避免重复注入。④ **零行为变化**：只有自己发布了运行状态的进程才拿到
+      > `ControlChannel`，TUI/WebUI 保持 `control_channel=None`。版本号在 `__init__.py` /
+      > `npm/package.json` / `frontend/web/package.json` / lock 与 `CHANGELOG.md` 同步至
+      > 2.25.0；校验 **3450 pytest + 6 skip**、ruff clean、mypy clean（288 源文件）、npm
+      > 包装器 **89 passed**（bootstrap 68）、前端 `tsc --noEmit` + vitest 16 files/161
+      > tests + `vite build` 85 modules。端到端（两个真实进程）：`status` 显示
+      > `running (controllable)`，`nudge "focus on auth"` 注入下一轮，`stop --reason
+      > "e2e done"` 产出 `operator stop requested via ih iterate control: e2e done`，
+      > 决策日志记录两条 control 条目。主仓库 push 提交 `bac317d6`（rebase 至 badge
+      > 提交后）。`git subtree split` 产物与公开 main 历史分叉（NOT_ANCESTOR），按手册
+      > 改走 `.release/iterate-harness` 替代路径同步已提交树（15 文件，+3 新增）提交
+      > `2e18686` 并快进推送（`ddf3c25..2e18686`）；推 annotated tag `v2.25.0` 触发
+      > release.yml（run 44984080095，success 35s，幂等建 Release + 构建
+      > wheel/.asc/.sha256）与 npm publish 工作流（run 44984080107，success 21s）；
+      > 已验证 PyPI latest=2.25.0、GitHub Release v2.25.0 非 draft/prerelease 且含三件
+      > 资产、npm latest=2.25.0；临时前缀安装后 `ih --version` = `iterate_harness 2.25.0`，
+      > `ih iterate control --help` 可见 status/nudge/pause/stop/clear。
 
 ---
 

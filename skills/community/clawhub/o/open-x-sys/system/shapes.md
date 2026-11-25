@@ -2,9 +2,9 @@
 
 > **When to read**: you are deciding what shape a system should take; or you notice that the system in your hands is starting to look like the last one, like a table, or like one of the examples in this file.
 
-**These are not templates.** They calibrate one thing only: how different systems should be when the subject, the person and the purpose differ. Do not copy the structure, file names or wording of any of them. Faced with an identical subject, judge again.
+These shapes show how the same system semantics can produce radically different structures for different subjects, users, and purposes. Treat them as a calibration of possibility, then generate structure, files, and language anew for the subject at hand.
 
-Wherever real people and companies appear, conclusions are written as "(from research)". A shape can be demonstrated. A conclusion can only come from research.
+When real people and companies appear, conclusions carry research grounds and sources. Shapes can demonstrate; conclusions grow from research.
 
 The only thing every example has is a `SYSTEM.md` entry. None of them turns the six zero-level questions, the seven stages or the parts of a system into section headings. Those are ways of thinking while building a system. They are not its table of contents.
 
@@ -118,7 +118,7 @@ A concept everybody "knows". The whole system is one `SYSTEM.md` of twenty or th
 
 Its body is one corrected misunderstanding and one newly learned distinction. The second record takes half the space, because the value of this system is how far this person's understanding has got: what they used to say, what they can now tell apart, which comparison of their own they use. Sources sit beside the sentences; there is no separate source table. What is left for next time is one deeper question.
 
-Small is not incomplete. It passes the same test: a new AI reading only this file knows where to start next time.
+A very small system can still be complete: a new AI reading only this file knows where to begin next time.
 
 ---
 
@@ -131,7 +131,7 @@ What decides the shape of a system:
 - **How fast it changes**: this decides how fine the evidence must be, whether signals need watching, and whether data must be refreshed by code.
 - **Whether it must act**: a system that runs a practice needs results, and perhaps code and connections; a system that explains a concept needs none.
 - **What the person already understands**: this decides where to start writing and what can be left out.
-- **Who else can see it**: a shared folder holds the project and never the person.
+- **Who else can see it**: shared locations carry shared projects; personal understanding and private relations remain person-owned; parts the user chooses to make public can enter a shared system.
 - **The least that is enough**: what one file can say clearly does not need two.
 
 A test: cover every name and look only at the structure. Can you still tell what kind of subject it is about and what kind of person it was built for? If not, it is a template.

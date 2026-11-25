@@ -1,6 +1,6 @@
 ## Description:
 
-Helps users adapt PollyReach-style work-productivity workflows by troubleshooting issues, improving setup and safety, and creating practical plans, checklists, analyses, or implementation support.
+Helps agent users and skill teams plan practical workflows, troubleshoot bugs, improve setup safety and reliability, and create related work artifacts.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-AI-agent users, skill authors, maintainers, and teams use this skill to adapt work-productivity workflows, troubleshoot issues, strengthen setup and safety, and produce a concrete workflow or related deliverable.
+AI-agent users, skill authors, maintainers, and teams use this skill to turn a work need into a scoped plan, checklist, analysis, implementation support, or reusable workflow, then check the result against stated goals.
 
 ### Deployment Geography for Use:
 
@@ -24,27 +24,26 @@ Global
 
 Risk: Broad trigger wording may activate the skill for unrelated requests.
 
-Mitigation: Confirm the request concerns work productivity, PollyReach-style workflows, troubleshooting, setup or safety improvements, or adjacent workflow work before applying the guidance.
+Mitigation: Check that the request matches the skill's work-planning or workflow support purpose before applying its process; narrow trigger terms when adapting the skill.
 
 ## Reference(s):
 
-- [Requirement plan](references/requirement-plan.md)
+- [Requirement Plan](references/requirement-plan.md)
 - [PollyReach on ClawHub](https://clawhub.ai/skills/pollyreach)
-- [Skill listing on ClawHub](https://clawhub.ai/kyro-ma/skills/work-productivity-pollyreach-gives-workflow-helper)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+**Output Type(s):** [Guidance, Analysis, Markdown, Code, Configuration]
 
-**Output Format:** [Markdown, with code or configuration snippets when requested]
+**Output Format:** [Text or Markdown, with code or configuration snippets when requested]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Tailored plans, checklists, analyses, implementation support, and verification notes.]
+**Other Properties Related to Output:** [Tailored to the user's stated outcome, constraints, and success criteria]
 
 ## Skill Version(s):
 
-0.20261114.40627 (source: server-resolved release metadata)
+0.20261122.85829 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

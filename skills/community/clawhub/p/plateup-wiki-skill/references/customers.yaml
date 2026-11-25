@@ -8,7 +8,7 @@ phases:
   - {id: queuing, zh: 排队, base_seconds_day: 90, night_seconds: 45, exits_when: "suitable dining or coffee table becomes available", shared_bar: true}
   - {id: waiting_for_table, zh: 等待桌位, base_seconds: 150, exits_when: "suitable dining table becomes available", requires: [Hosting Stand, Coffee Table]}
   - {id: thinking, zh: 思考点单, base_seconds: 2.5, exits_when: "timer elapsed", patience_modifier_applies: false}
-  - {id: service, zh: 服务/点单, base_seconds: 150, exits_when: "player or Ordering Terminal takes order"}
+  - {id: service, zh: 服务, base_seconds: 150, exits_when: "player or Ordering Terminal takes order"}
   - {id: waiting_for_food, zh: 等待上菜, base_seconds: 90, exits_when: "first food delivered"}
   - {id: delivery, zh: 配送, base_seconds: 15, increment_per_delivery: 2, exits_when: "all remaining food delivered"}
   - {id: eating, zh: 用餐, base_seconds: 3, exits_when: "timer elapsed", patience_modifier_applies: false}

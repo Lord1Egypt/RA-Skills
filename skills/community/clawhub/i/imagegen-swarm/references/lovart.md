@@ -19,16 +19,23 @@ node scripts/lovart.mjs --out shot.png --aspect 2:3 --ref product.jpg --prompt "
 `--lv` points at an optional wrapper. Failure `error_kind` values: `invalid_args`, `not_configured`
 (no client or credentials), `timeout`, `no_image` (text reply only), `error`.
 
-## Wrapper
+## Client selection and billing
 
-`scripts/lovart.mjs` runs `scripts/lovart_agent.py`. It reads the file `$HOME/.lovart/env` (or
-`LOVART_ENV`) as text and checks that the file is owner-only. Only `LOVART_ACCESS_KEY`,
-`LOVART_SECRET_KEY`, and `LOVART_BASE_URL` are kept. A mode such as `644` is refused; `600` is
-accepted. When the mode cannot be read, the client still runs, so a real "no credits" response is
-not hidden behind a failed permission check. An optional wrapper,
-`examples/lovart-lv.example.sh` in the git repository (not shipped in the installed skill), runs the same entry file and copies only those three
-names. It does not source the file. It uses `stat -c %a` when GNU stat is available, and
-`stat -f %Lp` otherwise. Do not clone or execute a remote copy. See [SETUP.md](../SETUP.md).
+The selection order is `--lv`, `LOVART_LV`, then an existing `~/tools/lovart-skill/lv`.
+The fallback is `scripts/lovart_agent.py` with AK/SK from the environment or from
+`~/.lovart/env` (override with `LOVART_ENV`). The shipped client path reads that file as text,
+refuses group or other write access, and warns with `chmod 600` guidance if group or others can
+read it. The optional example wrapper in the repository retains its owner-only requirements.
+See [SETUP.md](../SETUP.md).
+
+Use `node scripts/lovart.mjs --query-mode --json` to see `auth`, `billing_mode` and
+`unlimited_models` without generating. The generation command checks mode before uploading
+or generating and warns if mode is fast or the selected model is outside the unlimited
+whitelist. Without `--require-free`, it proceeds and spends credits in those cases.
+`--require-free` stops with `would_spend_credits`.
+An unverifiable billing query stops with `billing_mode_unknown`. The script never switches
+mode. The generation JSON identifies the client as `lv-wrapper` or `shipped-client` and
+reports the queried billing mode.
 
 During `chat`, if the remote project's current name is empty, `Untitled`, or a short prefix of the
 project id, the client renames that project to the first 30 characters of the prompt. A project
@@ -36,9 +43,8 @@ that already has another name is left unchanged. `project-add` and `project-rena
 `$HOME/.lovart/state.json` and, when access keys are present, also send a rename to Lovart. Do not
 run those two commands unless the user asked to add or rename that project.
 
-Underlying CLI: `lv query-mode` (check the key and billing mode), `lv upload --file x.jpg`, `lv chat
---prompt ... --attachments <URL> --json --download --output-dir out/`, `lv set-mode
---fast|--unlimited`.
+The underlying wrapper supports `lv query-mode`, `lv upload --file x.jpg` and
+`lv chat --prompt ... --attachments <URL> --json --download --output-dir out/`.
 
 ## Credits
 

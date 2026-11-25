@@ -14,6 +14,8 @@ Each record names its own source. Read it from the record and credit it. The API
 | USGS 3DEP | Slope of the hillside around the pin | "USGS 3DEP" |
 | National Weather Service | Forecast, via `/api/weather` | "National Weather Service (weather.gov)", with the read time |
 | NIFC | Wildfire incident reports, via `/api/fire` (reports, not perimeters or restrictions) | "National Interagency Fire Center" |
+| US Forest Service alerts pages | Orders a national forest posted on its own alerts page, via `posted_orders` (the forest's words, with our read time) | "USDA Forest Service" and the alerts page link the answer gives |
+| US Forest Service Motor Vehicle Use Map | The recorded road nearest a camp, via `road_to_camp` | "USDA Forest Service Motor Vehicle Use Map", with the record's own link |
 | US DOE Alternative Fuels Data Center | Nearest DC fast charger, snapshot dated in the record | "US DOE AFDC", with the snapshot date |
 | USDOT/BTS and US Census | Nearest mapped rail line and primary highway (a mapped line is not a running train) | "USDOT/BTS NARN" and "US Census TIGER/Line" |
 

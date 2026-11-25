@@ -61,7 +61,7 @@ MCP 默认使用本地 stdio。启用可选 HTTPS 后会打开配置的监听端
 需要 Python `>=3.10` 和 `uv`。
 
 ```bash
-uv tool install vmware-aria==2.4.7
+uv tool install vmware-aria==2.4.8
 vmware-aria --help
 ```
 
@@ -74,7 +74,7 @@ vmware-aria --help
 
 ```bash
 # 安装
-uv tool install vmware-aria==2.4.7
+uv tool install vmware-aria==2.4.8
 
 # 配置
 mkdir -p ~/.vmware-aria
@@ -188,7 +188,7 @@ Token 为 6 小时滑动有效期（每次调用自动延长，官方规范行�
   "mcpServers": {
     "vmware-aria": {
       "command": "uvx",
-      "args": ["--from", "vmware-aria==2.4.7", "vmware-aria-mcp"],
+      "args": ["--from", "vmware-aria==2.4.8", "vmware-aria-mcp"],
       "env": {
         "VMWARE_ARIA_CONFIG": "~/.vmware-aria/config.yaml"
       }
@@ -204,7 +204,7 @@ Token 为 6 小时滑动有效期（每次调用自动延长，官方规范行�
 
 ### MCP 配置（Claude Code）
 
-完成 `uv tool install vmware-aria==2.4.7` 后，在 `~/.claude.json` 中添加：
+完成 `uv tool install vmware-aria==2.4.8` 后，在 `~/.claude.json` 中添加：
 
 ```json
 {
@@ -221,7 +221,7 @@ Token 为 6 小时滑动有效期（每次调用自动延长，官方规范行�
 ```
 
 > **v1.5.15+** 推荐使用单命令 `vmware-aria mcp`。旧的 `vmware-aria-mcp` 入口仍然
-> 保留以向后兼容。如必须使用 `uvx --from vmware-aria==2.4.7 vmware-aria mcp`（不安装）
+> 保留以向后兼容。如必须使用 `uvx --from vmware-aria==2.4.8 vmware-aria mcp`（不安装）
 > 且公司 TLS 代理报 `invalid peer certificate: UnknownIssuer`，请设置
 > `UV_NATIVE_TLS=true`，或直接使用上面的 `vmware-aria mcp` 形式。
 
@@ -396,3 +396,21 @@ MIT
 重试次数也只发送一次：未收到响应时，变更可能已经生效。再次写入前应先检查
 目标状态。明确认证拒绝后的单次认证恢复单独处理。该边界已通过合成 HTTP
 契约测试，不能据此宣称获得真实设备兼容性结论。
+
+## 按问题缩小资源查询范围
+
+先用 `list_resources` 按名称/类型筛选并设置较小的 `limit`，再针对选定 UUID
+调用 `get_resource`。优先使用专用工具；`get_api_path` 会返回额外 API 字段，
+用于专用工具尚未覆盖的读取。
+
+查询配置时只取名称匹配的属性。例如，
+`get_resource_properties(resource_id="<uuid>", name_filter="summary|", limit=10)`
+返回摘要属性的第一页；如果问题允许，应选择更精确的属性名称子串。
+查询关联关系时指定所需 `relationship_type` 和较小的 `limit`。
+检查 `total`、`truncated` 和 `next_offset`，答案需要更多行时继续翻页；
+不能把一页结果当作不存在其他属性或关联资源的证据。
+`next_offset` 为 null 时停止翻页；`truncated` 表示本页不是整个集合，
+最后一页也可能仍为 true，不能据此判断是否继续翻页。
+
+这些选择能减少回答具体问题时送入模型上下文的数据量。取完全部页面可能消耗相同
+或更多的数据；这是按需检索，不是无损压缩。响应字节数也不等于精确的模型 token 数。

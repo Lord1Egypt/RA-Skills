@@ -1,6 +1,6 @@
 ## Description:
 
-Helps developers assess code review feedback against their codebase, respond with evidence, and implement verified suggestions when authorized.
+Helps agents evaluate code review feedback against the codebase, respond with evidence, and implement verified suggestions within authorized scope.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use this skill to triage PR or MR feedback, explain disagreements with evidence, and apply and verify approved fixes.
+Developers and engineers use this skill to assess PR/MR review comments, classify findings, prepare evidence-based replies, and make verified fixes within authorized scope.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Applying incorrect review suggestions could introduce regressions.
+Risk: ClawScan notes a possible mismatch between the code-review purpose and evaluation tooling; the scan could not assess script internals.
 
-Mitigation: Verify each finding against the codebase, test individual fixes, and re-review patches before marking them resolved.
-
-Risk: The agent could edit code or publish PR replies without the required authority.
-
-Mitigation: Limit changes to authorized scope, obtain explicit approval for external replies, and escalate uncertain decisions in headless mode.
+Mitigation: Before installing, check whether the evaluation and diagnostic tooling fits your intended use, and review scripts before running them.
 
 ## Reference(s):
 
-- [ClawHub release](https://clawhub.ai/iliaal/skills/compound-eng-receiving-code-review)
-- [Feedback triage](references/feedback-triage.md)
-- [Evidence and disagreement](references/evidence-and-disagreement.md)
-- [Fix and handoff](references/fix-and-handoff.md)
-- [Headless mode](references/headless-mode.md)
-- [Review modes](references/review-modes.md)
+- [Evidence and disagreement](artifact/references/evidence-and-disagreement.md)
+- [Feedback triage](artifact/references/feedback-triage.md)
+- [Fix and handoff](artifact/references/fix-and-handoff.md)
+- [Headless mode](artifact/references/headless-mode.md)
+- [Review modes](artifact/references/review-modes.md)
+- [ClawHub skill release](https://clawhub.ai/iliaal/skills/compound-eng-receiving-code-review)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands]
+**Output Type(s):** [Analysis, Markdown, Code]
 
-**Output Format:** [Markdown findings and dispositions, with optional code changes or command suggestions]
+**Output Format:** [Evidence-based review triage and responses in Markdown, with scoped code changes when authorized.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Headless use returns structured triage results; review-only use stops at findings and recommendations.]
+**Other Properties Related to Output:** [Classifies findings and reports supporting evidence and remaining uncertainty.]
 
 ## Skill Version(s):
 
-5.1.2 (source: ClawHub release metadata)
+5.1.7 (source: server-resolved release metadata, changelog)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-用于知乎数据助手、知乎热榜、内容搜索、回答文章视频详情、评论分析、创作者资料和文章列表。覆盖 Zhihu content research，来自 SocialDataX 社媒数据助手。
+用于知乎数据助手、知乎热榜、内容搜索、回答文章视频详情、评论分析、创作者资料和文章列表。覆盖 Zhihu content research，来自社媒数据助手 SocialDataX。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and users can research Zhihu hot lists, search for content, inspect answers, articles, and videos, analyze comments, and review creator profiles and posts.
+Zhihu users and researchers can use the skill to review hot lists, search questions and content, inspect answers, articles, videos and comments, and look up creator profiles and posts. Its documented actions are read-only.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,26 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The automatically installed, unpinned CLI package may change and can access local credentials.
+Risk: The skill repeatedly runs an automatically installed, unpinned latest CLI package; a compromised future release could expose credentials or the local environment. Scanner coverage was incomplete because three local references could not be resolved.
 
-Mitigation: Review the package and use a fixed version before installation; configure credentials only in a trusted runtime and avoid sensitive search terms or personal information.
+Mitigation: Review the CLI package before installing, and use the skill only in an environment with appropriately limited credentials and local access.
 
 ## Reference(s):
 
-- [SocialDataX API access](https://socialdatax.com/ai?from=clawhub)
-- [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/socialdatax-zhihu)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, Analysis, Text]
+**Output Type(s):** [API data, JSON, Analysis, Guidance, Shell commands]
 
-**Output Format:** [Structured research data and concise summaries]
+**Output Format:** [Structured JSON results and concise text guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Read-only Zhihu research; no account actions.]
+**Other Properties Related to Output:** [Read-only Zhihu research results; no account actions.]
 
 ## Skill Version(s):
 
-0.1.6 (source: server-resolved release)
+0.1.7 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

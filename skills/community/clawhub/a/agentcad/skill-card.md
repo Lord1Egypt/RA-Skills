@@ -1,6 +1,6 @@
 ## Description:
 
-AgentCAD helps agents design, inspect, validate, and export 3D models using build123d Python scripts.
+CAD tool for AI agents that helps users design, model, or build 3D objects and produces STEP files, PNG renders, mesh exports, and geometric metrics.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+Apache-2.0
 
 ## Use Case:
 
-Developers and engineers use AgentCAD to create or revise 3D geometry from a written specification, then inspect and validate the result. It can deliver STEP models, rendered previews, mesh exports, and geometry metrics.
+Developers can use AI agents to create or revise 3D CAD models through an inspect, specify, build, validate, and deliver workflow, then review geometry and export model files.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The feedback workflow may send task details and session diagnostics to the vendor without user approval.
+Risk: The installer version is not pinned, and scan coverage was incomplete because referenced paths were missing and an external skill was not inspected.
 
-Mitigation: Review feedback contents before sending; use `agentcad feedback --local-only` to save feedback without uploading it.
+Mitigation: Check the install source and version, and review the referenced or external content before installing.
 
-Risk: The installation instructions use an unpinned AgentCAD package version.
+Risk: Optional feedback or diagnostic steps may upload text or project-related data.
 
-Mitigation: Pin a reviewed AgentCAD version in the installation environment.
-
-Risk: The security analysis is incomplete because many local references could not be resolved.
-
-Mitigation: Review the complete skill materials and referenced documentation before installation or execution.
+Mitigation: Review the upload prompt and the exact data it describes; send feedback or diagnostics only when needed.
 
 ## Reference(s):
 
-- [AgentCAD documentation and project site](https://agentcad.dev)
-- [AgentCAD ClawHub release](https://clawhub.ai/jdilla1277/skills/agentcad)
-- [Publisher profile](https://clawhub.ai/user/jdilla1277)
+- [AgentCAD website and gallery](https://agentcad.dev)
+- [AgentCAD on PyPI](https://pypi.org/project/agentcad/)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, 3D model files, Images, Metrics, Guidance]
+**Output Type(s):** [Code, 3D model files, Images, Geometric analysis]
 
-**Output Format:** [Python scripts; STEP, PNG, STL, GLB, and OBJ files; structured geometry metrics]
+**Output Format:** [Python build123d scripts; STEP, STL, GLB, and OBJ models; PNG renders; JSON metrics]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Artifacts and formats depend on the requested model and selected exports.]
+**Other Properties Related to Output:** [Versioned geometry with validation and measurement results]
 
 ## Skill Version(s):
 
-0.8.0 (source: frontmatter, release metadata)
+0.8.1 (source: SKILL.md frontmatter, release evidence)
 
 ## Ethical Considerations:
 

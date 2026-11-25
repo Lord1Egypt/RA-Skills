@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Developers and skill maintainers use this agent skill to scan third-party agent skills and review scan coverage, findings, and recommendations before deciding whether to install, enable, or run them.
+Developers and agent users use this skill to scan third-party skills before installing, enabling, or running them. It guides users to check scan coverage, findings, recommendations, and declared capabilities before deciding what to do.
 
 ### Deployment Geography for Use:
 
@@ -22,26 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The scan evidence is incomplete; the unpinned package reference and unresolved local references leave uncertainty.
+Risk: The ClawVet command is unpinned, so an upstream change could alter what runs.
 
-Mitigation: Resolve the local references and use an installed ClawVet for a complete local scan before relying on the grade for an installation decision.
+Mitigation: Pin a ClawVet version before installing or relying on the scan.
+
+Risk: Skillspector coverage was partial because two local references could not be resolved, so the scan evidence is incomplete.
+
+Mitigation: Resolve the missing local references and rerun the scan before relying on its results.
 
 ## Reference(s):
 
+- [ClawHub release page](https://clawhub.ai/mohibshaikh/skills/clawvet-guard)
+- [ClawVet project repository](https://github.com/MohibShaikh/clawvet)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands]
+**Output Type(s):** [Analysis, Shell commands, Guidance, JSON]
 
-**Output Format:** [Markdown guidance with inline shell commands]
+**Output Format:** [Markdown guidance summarizing scan coverage, findings, recommendation, and capabilities, based on ClawVet results]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Recommendations depend on the scan status, coverage, findings, and grade.]
+**Other Properties Related to Output:** [Can include grade and sensitive capability information reported by ClawVet.]
 
 ## Skill Version(s):
 
-1.0.6 (source: frontmatter, release metadata)
+1.0.10 (source: server-resolved release metadata; artifact frontmatter reports 1.0.8)
 
 ## Ethical Considerations:
 

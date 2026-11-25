@@ -1,6 +1,6 @@
 ## Description:
 
-Paid microservices for AI agents, served over x402 v2 (USDC on Base).
+Paid x402 microservices for AI agents on Base — crypto data, grading, monitoring, passports, embeddings, and dev tools.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agents use the skill to access paid x402 services for crypto snapshots, utilities, research, extraction, grading, monitoring, payment verification, and related endpoint tools.
+External developers and AI agent builders use the skill to call paid x402 services on Base for market snapshots, utility operations, research extraction, endpoint checks, and related structured tasks.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Paid calls can authorize USDC payments on Base.
+Risk: Security scan confidence is medium because one SKILL.md reference could not be resolved, leaving coverage incomplete.
 
-Mitigation: Check the amount and recipient before signing, and use a wallet with limited funds.
+Mitigation: Review the unresolved reference before installation if it affects whether you trust or use the service.
 
-Risk: Submitted content goes to the external provider, and memory or webhook content may be retained for a limited time; privacy and access-control claims were not independently verified.
+Risk: Paid x402 requests spend USDC on Base, and the service's payment flow retries after signing a payment.
 
-Mitigation: Choose carefully what to submit, especially what you place in the memory store or webhook inbox.
+Mitigation: Check the 402 price and authorize each paid request or set spending limits in the x402 client before signing.
+
+Risk: Crypto briefs and market snapshots provide financial data that may be incomplete or unsuitable as a trading decision on their own.
+
+Mitigation: Verify time-sensitive data independently and treat the brief as data, not investment advice.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/hiyesum/skills/yesum-agent-services)
-- [Source repository (server-resolved provenance)](https://github.com/hiyesum/yesum-clawhub-skill)
+- [ClawHub release page](https://clawhub.ai/hiyesum/skills/yesum-agent-services)
+- [x402 service catalog (OpenAPI)](https://predator-ubuntu.taild9a745.ts.net/openapi.json)
+- [x402 discovery catalog](https://predator-ubuntu.taild9a745.ts.net/.well-known/x402)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Markdown, Python and JavaScript code]
+**Output Type(s):** [API Calls, JSON, Markdown, Code, Analysis]
 
-**Output Format:** [JSON service responses; some responses contain extracted Markdown or generated Python/JavaScript code.]
+**Output Format:** [JSON responses, Markdown article extracts, and Python or JavaScript client code]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results vary by endpoint and may include identifiers for time-limited monitoring, inbox, schedule, or memory services.]
+**Other Properties Related to Output:** [Paid endpoints use USDC on Base; selected status, memory, passport, and discovery operations are free.]
 
 ## Skill Version(s):
 
-0.1.0 (source: server release metadata)
+0.1.2 (source: SKILL.md frontmatter, release evidence)
 
 ## Ethical Considerations:
 

@@ -101,21 +101,25 @@ def main(argv: list[str] | None = None) -> int:
     if args.dry_run:
         print(f"would write {target}")
     else:
-        target.parent.mkdir(parents=True, exist_ok=True)
-        if replaced is not None and replaced.exists():
-            # A counter, because three saves in one day left the ORIGINAL
-            # unrecoverable: each `.bak-<date>` overwrote the last while both runs
-            # printed "backed up".
-            stem = f"{replaced.name}.bak-{datetime.date.today().isoformat()}"
-            backup = replaced.with_name(stem)
-            n = 2
-            while backup.exists():
-                backup = replaced.with_name(f"{stem}-{n}")
-                n += 1
-            shutil.copy2(replaced, backup)
-            print(f"backed up {replaced.name} -> {backup.name}")
-        shutil.copy2(src, target)
-        print(f"saved {target}")
+        try:
+            target.parent.mkdir(parents=True, exist_ok=True)
+            if replaced is not None and replaced.exists():
+                # A counter, because three saves in one day left the ORIGINAL
+                # unrecoverable: each `.bak-<date>` overwrote the last while both runs
+                # printed "backed up".
+                stem = f"{replaced.name}.bak-{datetime.date.today().isoformat()}"
+                backup = replaced.with_name(stem)
+                n = 2
+                while backup.exists():
+                    backup = replaced.with_name(f"{stem}-{n}")
+                    n += 1
+                shutil.copy2(replaced, backup)
+                print(f"backed up {replaced.name} -> {backup.name}")
+            shutil.copy2(src, target)
+            print(f"saved {target}")
+        except PermissionError as exc:
+            print(paths.unwritable_store(target.parent, exc), file=sys.stderr)
+            return 2
 
     print(f"  language: {language}")
     print(f"  {'replaced' if replaced else 'new slot'}: {target.name}")

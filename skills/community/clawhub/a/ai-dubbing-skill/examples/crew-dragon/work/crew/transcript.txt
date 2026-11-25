@@ -1,0 +1,10 @@
+# crew.mp4: 71 words via faster-whisper (small), language en
+# Fix mistakes in fixes.json (see references/proofreading.md), never in this file.
+L1 [00:00.0-00:10.4] I think another piece of it is kind of coming up with a concept of how for a highly automated vehicle, you don't lose sight of kind of the need
+L2 [00:10.4-00:13.5] for the crew to always have a safe path home.
+L3 [00:14.1-00:21.1] You don't necessarily have to save the mission with the crew, but you need to save the crew with the crew is kind of the mindset that we've put out
+L4 [00:21.1-00:21.3] there.
+
+# Unsure words (confidence under 0.6): check these first
+#  00:01.9 kind (0.50)
+#  00:18.5 is (0.49)

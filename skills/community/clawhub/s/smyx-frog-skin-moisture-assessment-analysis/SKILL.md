@@ -1,7 +1,7 @@
 ---
 name: "smyx-frog-skin-moisture-assessment-analysis"
 description: "Through fixed cameras in rainforest tanks or vivariums, the system captures high-definition images of the dorsal or lateral skin of frogs (such as tree frogs, horned frogs, dart frogs), and uses AI visual analysis to detect skin glossiness (specular reflection intensity) and assess skin moisture levels. | 通过雨林缸或饲养箱固定摄像头，拍摄蛙类（如树蛙、角蛙、箭毒蛙）的背部或侧身皮肤高清图像，利用 AI 视觉分析技术检测皮肤的光泽度（反光强度），评估皮肤的湿润程度。健康的蛙类皮肤应湿润、有光泽；当皮肤干燥时，光泽度显著下降，甚至出现皱褶或白膜。"
-version: "1.0.22"
+version: "1.0.24"
 license: "MIT-0"
 ---
 

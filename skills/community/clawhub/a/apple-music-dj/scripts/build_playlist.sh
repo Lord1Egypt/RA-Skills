@@ -35,12 +35,15 @@ case "$MODE" in
     IDS_FILE="${4:?Usage: build_playlist.sh create <name> <description> <song_ids_file>}"
     [[ ! -f "$IDS_FILE" ]] && { echo "ERROR: File not found: ${IDS_FILE}" >&2; exit 1; }
 
-    track_count=$(grep -c -v '^\s*$' "$IDS_FILE" 2>/dev/null || echo 0)
+    track_count=$(grep -c -v '^\s*$' "$IDS_FILE" 2>/dev/null || true)
     [[ "$track_count" -eq 0 ]] && { echo "ERROR: No song IDs in ${IDS_FILE}" >&2; exit 1; }
     _require_yes "create playlist '${NAME}' with ${track_count} tracks"
 
     # ── Playlist deduplication: check if a playlist with this name already exists ──
-    existing_playlists=$("$SCRIPT_DIR/apple_music_api.sh" library-playlists 100 2>/dev/null || true)
+    existing_playlists=$("$SCRIPT_DIR/apple_music_api.sh" library-playlists 100 2>/dev/null) || {
+      existing_playlists=""
+      echo "WARN: could not check for an existing '${NAME}' playlist; a duplicate may be created." >&2
+    }
     if [[ -n "$existing_playlists" ]]; then
         existing_id=$(echo "$existing_playlists" | jq -r --arg name "$NAME" \
             '.data[]? | select(.attributes.name == $name) | .id' 2>/dev/null | head -1)
@@ -75,7 +78,7 @@ case "$MODE" in
 
     # Log to playlist history
     if command -v python3 &>/dev/null && [[ -f "$SCRIPT_DIR/playlist_history.py" ]]; then
-      (cd "$SCRIPT_DIR" && python3 playlist_history.py log "$NAME" "manual" "$IDS_FILE" 2>/dev/null) || true
+      (cd "$SCRIPT_DIR" && python3 playlist_history.py log "$NAME" "manual" "$IDS_FILE") || echo "WARN: playlist created, but it could not be added to the history." >&2
     fi
     ;;
 
@@ -84,7 +87,7 @@ case "$MODE" in
     IDS_FILE="${3:?Usage: build_playlist.sh refresh <playlist_id> <song_ids_file>}"
     [[ ! -f "$IDS_FILE" ]] && { echo "ERROR: File not found: ${IDS_FILE}" >&2; exit 1; }
 
-    track_count=$(grep -c -v '^\s*$' "$IDS_FILE" 2>/dev/null || echo 0)
+    track_count=$(grep -c -v '^\s*$' "$IDS_FILE" 2>/dev/null || true)
     [[ "$track_count" -eq 0 ]] && { echo "ERROR: No song IDs in ${IDS_FILE}" >&2; exit 1; }
 
     _require_yes "add ${track_count} tracks to playlist ${PID}"
@@ -107,7 +110,7 @@ case "$MODE" in
     IDS_FILE="${3:?Usage: build_playlist.sh remove <playlist_id> <song_ids_file>}"
     [[ ! -f "$IDS_FILE" ]] && { echo "ERROR: File not found: ${IDS_FILE}" >&2; exit 1; }
 
-    track_count=$(grep -c -v '^\s*$' "$IDS_FILE" 2>/dev/null || echo 0)
+    track_count=$(grep -c -v '^\s*$' "$IDS_FILE" 2>/dev/null || true)
     [[ "$track_count" -eq 0 ]] && { echo "ERROR: No song IDs in ${IDS_FILE}" >&2; exit 1; }
 
     _require_yes "remove ${track_count} tracks from playlist ${PID}"

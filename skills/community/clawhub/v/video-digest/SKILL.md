@@ -1,6 +1,6 @@
 ---
 name: video-digest
-version: 2.0.8
+version: 2.2.0
 description: 把一段视频变成能读的笔记——公开字幕抓进本地私有缓存，按时间戳产出 Quick / Deep / Research 三档笔记，每句都能定位回原片。适合"三十分钟的视频只想花三分钟"和"口播内容想存成可检索文字"。Turn a video into timestamped Quick / Deep / Research notes from public captions or a supplied transcript, cached privately per user. Use when the user shares a video link and wants a summary, deep notes, or a citation-ready excerpt; also when they ask whether captions are available or why transcript fetching fails.
 allowed-tools: RunCommand, Bash, Read, Write, WebSearch, WebFetch
 metadata:
@@ -61,6 +61,7 @@ Bundled scripts emit machine-readable JSON, status codes, and transcript text ra
 | “深读”, “完整笔记”, “论证过程”, “详细整理” | Deep | Timestamped structured notes |
 | “核验”, “查证”, “research”, “是真的吗” | Research | Deep notes plus selected claim verification |
 | Two or more links | Batch Quick | One Quick card per video |
+| “决策卡”, “一张图看懂”, “结构化卡片”, 批量沉淀/建站 | Decision Card | One structured PNG per video (see templates/decision-card) |
 
 If the requested depth is ambiguous, use Quick as the content mode. Still follow host confirmation requirements for package installation, file creation, and every other state-changing action.
 
@@ -109,6 +110,42 @@ The script:
 - prints the cache directory as JSON.
 
 The cache hierarchy must be owned by the current user with `0700` directory permissions. Cache files use atomic replacement, `0600` permissions, and reject symbolic links. Temporary cache is not a durable archive. Create a user-visible note file only when the user explicitly requests one.
+
+### Cookie mode (bot check fix)
+
+Shared/data-center egress IPs trigger YouTube's bot check ("Sign in to confirm
+you're not a bot") on the player/caption endpoints, while playlist listing still
+works. When a fetch fails that way, retry in cookie mode — **only after the user
+has explicitly agreed to use their YouTube login**:
+
+```bash
+python3 <skill_dir>/scripts/fetch_video.py "<youtube-url>" --cookies chrome
+# or with an exported cookies.txt:
+python3 <skill_dir>/scripts/fetch_video.py "<youtube-url>" --cookies /path/to/cookies.txt
+```
+
+One-time setup (already done on this machine):
+
+```bash
+.venv/bin/pip install yt-dlp-ejs bgutil-ytdlp-pot-provider
+# bgutil POT provider script (generates the PO Token YouTube requires):
+git clone --depth 1 https://github.com/Brainicism/bgutil-ytdlp-pot-provider.git vendor/bgutil
+cd vendor/bgutil/server && npm install && npx tsc   # produces build/generate_once.js
+```
+
+Requirements and behavior:
+
+- `--cookies chrome` reads Chrome cookies directly; **Chrome must be fully quit
+  (Cmd+Q)** or the cookie database is locked. A keychain prompt may appear — user
+  clicks Allow.
+- Cookie mode forces `player_client=web` (overridable via `--player-client`),
+  wires the bundled yt-dlp-ejs solver (needs `node` in PATH) and the bgutil
+  POT script; `ignore_no_formats_error` is enabled so caption-only fetches
+  succeed even when video formats are unavailable.
+- `ios`/`android` clients ignore cookies; `tv` needs none but is bot-checked on
+  these IPs — keep the default `web`.
+- Use sparingly (batches of ~10), the fetch runs under the user's logged-in
+  identity. Never log, copy, or transmit cookie contents.
 
 ### Supplied transcript
 
@@ -170,6 +207,16 @@ For each video provide:
 - recommendation: Deep now / Save / Skip.
 
 Compare videos only on common dimensions.
+
+### Decision Card（结构化决策卡，输出升级层）
+
+在 Quick/Deep 之上的可选输出：1 视频 = 1 张图 = 4 区块——讲了什么 / 解决什么问题 / 适用范围 / 漏洞与偏见。定位是「决定看不看」的决策层，适合批量沉淀和内容分发。
+
+- 模板与数据格式见 `templates/decision-card/`（card.html + README.md）。
+- 数据文件 `struct-data.js`：每个视频一条 `STRUCT` 记录（title/what/problem/scope/caveat）。
+- `caveat` 必须写该视频真实的局限（样本、立场、时效、幸存者偏差），禁止套话。
+- 渲染：本地 http 服务 + WebKit headless，按 README 的 boundingBox+clip 方式逐张截图。
+- 批量场景（如视频站每周更新）：新视频先出 Quick 笔记，高价值条目再升级决策卡。
 
 ## Follow-up Retrieval
 

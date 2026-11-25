@@ -1,0 +1,8 @@
+interface:
+  display_name: "公众号素材库目录"
+  short_description: "只读整理公众号素材库当前可见内容，输出带来源和缺项的目录草稿"
+  default_prompt: "使用 $wechat-materials-index-free，只读整理我指定 browserId 中本人公众号素材库当前可见的最多20条素材，保留逐条来源与缺项；登录或权限不足时立即停止。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: false

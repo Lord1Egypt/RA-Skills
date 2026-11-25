@@ -41,6 +41,30 @@ function titleFromHtml(html) {
   return '未命名';
 }
 
+/** 从 HTML 取 description（meta / lead），与 design 前端对齐 */
+function descriptionFromHtml(html) {
+  if (!html || typeof html !== 'string') return '';
+  const meta =
+    html.match(
+      /<meta\b[^>]*\bname\s*=\s*["']description["'][^>]*\bcontent\s*=\s*["']([^"']*)["'][^>]*>/i
+    ) ||
+    html.match(
+      /<meta\b[^>]*\bcontent\s*=\s*["']([^"']*)["'][^>]*\bname\s*=\s*["']description["'][^>]*>/i
+    );
+  if (meta && meta[1]) {
+    const t = String(meta[1]).replace(/<[^>]+>/g, '').trim();
+    if (t) return t.slice(0, 500);
+  }
+  const lead = html.match(
+    /<p\b[^>]*class=["'][^"']*autopub-article-description[^"']*["'][^>]*>([\s\S]*?)<\/p>/i
+  );
+  if (lead && lead[1]) {
+    const t = String(lead[1]).replace(/<[^>]+>/g, '').trim();
+    if (t) return t.slice(0, 500);
+  }
+  return '';
+}
+
 function parseImgUrlsArg(arg) {
   let trimmed = String(arg || '').trim();
   if (!trimmed) throw new Error('图片模式需要第二参：图片链接的 JSON 数组字符串');
@@ -60,8 +84,7 @@ function parseImgUrlsArg(arg) {
     originalError = e;
   }
 
-  // 如果直接解析失败，尝试兼容处理
-  // 兼容 PowerShell 单引号传参导致外层方括号丢失的情况
+  // PowerShell 单引号传参时常见：方括号/引号被剥掉
   if (!trimmed.startsWith('[')) {
     trimmed = '[' + trimmed;
   }
@@ -69,12 +92,8 @@ function parseImgUrlsArg(arg) {
     trimmed = trimmed + ']';
   }
 
-  // 兼容 PowerShell 单引号传参导致内部双引号丢失的情况
   if (!trimmed.includes('"')) {
-    // 移除外层方括号，获取内容
     let content = trimmed.slice(1, -1);
-
-    // 更稳健的方法：按逗号分割，但智能合并包含URL的片段
     const parts = content.split(',');
     const urls = [];
     let currentUrl = '';
@@ -82,7 +101,6 @@ function parseImgUrlsArg(arg) {
     for (let i = 0; i < parts.length; i++) {
       const part = parts[i].trim();
       if (part.startsWith('http://') || part.startsWith('https://')) {
-        // 如果currentUrl不为空，说明这是一个新的URL开始
         if (currentUrl) {
           urls.push(currentUrl.trim());
         }
@@ -254,6 +272,7 @@ async function main() {
   const mode = String(args[1] || '').toLowerCase();
   let title;
   let content;
+  let description = '';
   let thumbImageContent = '';
   let sendMode;
   /** @type {string[]|undefined} */
@@ -262,12 +281,14 @@ async function main() {
   if (mode === 'img') {
     if (args.length < 5) {
       throw new Error(
-        '图片模式参数不足。示例: node push-to-wechat-mp.js targetAppId img \'["https://example.com/a.png"]\' "标题" "正文说明" draft'
+        '图片模式参数不足。示例: node push-to-wechat-mp.js targetAppId img \'["https://example.com/a.png"]\' "标题" "描述" draft'
       );
     }
     imgUrls = parseImgUrlsArg(args[2]);
     title = String(args[3] || '').trim() || '未命名';
-    content = String(args[4] ? args[4] : '图文卡片');
+    // 第 4 参为描述（图说）；同时作为 content 以满足 sendToWechat 必填
+    description = String(args[4] ? args[4] : '').trim();
+    content = description || '图文卡片';
     sendMode = (args[5] && args[5].trim()) || 'draft';
   } else if (mode === 'html') {
     if (args.length < 3) {
@@ -299,6 +320,7 @@ async function main() {
     content = fs.readFileSync(htmlPath, 'utf8');
     if (!content.trim()) throw new Error('文件为空: ' + htmlPath);
     title = titleFromHtml(content);
+    description = descriptionFromHtml(content);
 
     const base = path.basename(htmlPath, path.extname(htmlPath));
     const thumbImagePath = path.join(path.dirname(htmlPath), base + '_cover.html');
@@ -322,8 +344,10 @@ async function main() {
     openId: cfg.openId,
     skillKey,
     title: title.slice(0, 64),
+    description,
+    descriptionProvided: true,
     thumbImageContent,
-    content, 
+    content,
     sendMode,
   };
   if (imgUrls && imgUrls.length > 0) {
@@ -343,11 +367,12 @@ async function main() {
       accLabel,
       '| 标题',
       title.slice(0, 30) + (title.length > 30 ? '…' : ''),
+      '| 描述',
+      (description || '').slice(0, 30) +
+        ((description || '').length > 30 ? '…' : ''),
       '| 图',
       imgUrls.length,
-      '张',
-      '| 正文长度',
-      content.length
+      '张'
     );
   } else {
     console.error(
@@ -357,6 +382,9 @@ async function main() {
       accLabel,
       '| 标题',
       title.slice(0, 30) + (title.length > 30 ? '…' : ''),
+      '| 描述',
+      (description || '').slice(0, 30) +
+        ((description || '').length > 30 ? '…' : ''),
       '| 正文长度',
       content.length
     );

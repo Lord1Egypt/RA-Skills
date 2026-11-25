@@ -1,6 +1,6 @@
 ## Description:
 
-Helps users plan budget desktop PC builds and upgrades, check component compatibility, and size hardware for gaming, creative work, and local AI, using China-market prices in CNY as references.
+Helps plan desktop PC builds and upgrades, check component compatibility, and select hardware for gaming, creator work, and local AI using China-market CNY price references.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,45 +14,43 @@ MIT-0
 
 ## Use Case:
 
-English- and Chinese-speaking PC builders use the skill to choose and upgrade desktop components, review compatibility, and estimate hardware fit for gaming, creator workloads, or local AI.
+External users planning a desktop PC build or upgrade use the skill to compare components, check compatibility, and size hardware for gaming, creator workloads, and local AI.
 
 ### Deployment Geography for Use:
 
-Global
+Global; bundled price references cover the China market in CNY.
 
 ## Known Risks and Mitigations:
 
-Risk: Incomplete or inaccurate hardware details can affect build recommendations.
+Risk: File-reading and network scope is not declared, and the host runtime’s permission limits were not verified.
 
-Mitigation: Before relying on a build, verify CPU graphics support and compatibility across the selected platform and components.
+Mitigation: Review the requested file and network access against the host’s permission controls before enabling the skill.
 
-Risk: Bundled China-market prices may not match current prices or the currency used by the reader.
+Risk: Some responses may be large for workflows with limited output capacity.
 
-Mitigation: Check the currency shown and confirm current channel prices before relying on a budget estimate.
+Mitigation: Ask for a focused set of components or a concise summary when output size matters.
 
 ## Reference(s):
 
-- [PC Build Assistant release page](https://clawhub.ai/gongyu0918-debug/skills/pc-builder-assistant)
-- [Routing and workflows](references/routing.md)
-- [Compatibility guidance](references/compatibility.md)
-- [Pricing guidance](references/pricing.md)
-- [Local model and hardware fit](references/local-model-fit.md)
-- [Hugging Face quantization documentation](https://huggingface.co/docs/transformers/main/en/quantization)
-- [Hugging Face KV cache documentation](https://huggingface.co/docs/transformers/kv_cache)
+- [PC Build Assistant on ClawHub](https://clawhub.ai/gongyu0918-debug/skills/pc-builder-assistant)
+- [Component compatibility guidance](artifact/references/compatibility.md)
+- [Pricing guidance](artifact/references/pricing.md)
+- [Local model hardware fit guidance](artifact/references/local-model-fit.md)
+- [Hugging Face Transformers quantization documentation](https://huggingface.co/docs/transformers/main/en/quantization)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Configuration]
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-**Output Format:** [Natural-language Markdown with component tables and compatibility or pricing notes]
+**Output Format:** [Markdown recommendations with component lists, price summaries, and compatibility guidance.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Recommendations and estimates depend on catalog coverage, current part specifications, and currency-specific price data.]
+**Other Properties Related to Output:** [Bundled prices are China-market CNY references with evidence dates; user-provided overlays keep their currencies separate.]
 
 ## Skill Version(s):
 
-0.1.55 (source: server-resolved release metadata)
+0.1.57 (source: server release metadata)
 
 ## Ethical Considerations:
 

@@ -17,6 +17,12 @@ available; the other two never are.
 1. `mock/transcript-<n>.md` — the full round, verbatim.
 2. `posting.yaml` — the extracted posting, for the must-have list.
 3. `cv.md` — the tailored CV as the candidate submitted it.
+4. **Coding rounds only:** each question's `mock/code/round-<n>/Q<n>/result.json`, the
+   test runner's record.
+
+**A prepare-mode drill** has no posting: you get the transcript, `direction.yaml` (the
+target roles, market and level) and `cv.md` in place of items 2 and 3. Emit no
+`COVERAGE` rows then. `SHAPE` rows are optional.
 
 ## What you are deliberately NOT given, and why
 
@@ -77,14 +83,39 @@ require knowing what this employer expects at this level, and you do not.
 `contradicted` is **not a band value** — it is a flag owned by the provenance pass. The
 gate fails `value=contradicted` with `NOT_A_BAND`.
 
-**Coverage.** One `COVERAGE` line per must-have in `posting.yaml`, with
+**Coverage.** One `COVERAGE` line per must-have in `posting.yaml` (none in a prepare drill), with
 `status=evidenced|asked_thin|not_asked`. This is the **session's** coverage, not the
 candidate's competence.
 
 **Shape.** One `SHAPE` line per round the target market and family actually runs, with
 `status=rehearsed|partial|not_attempted|cannot_simulate`. Use `cannot_simulate`
-honestly — 手撕代码 under a watching interviewer, an in-person MMI circuit, and a
-whiteboard chalk talk cannot be run here, and saying so is more useful than pretending.
+honestly — being watched while typing under 手撕代码 time pressure, an in-person MMI
+circuit, and a whiteboard chalk talk cannot be run here, and saying so is more useful
+than pretending. (The code itself can be run: that is a `coding` round, below.)
+
+## Knowledge and coding rounds (`ROUND-TYPE: knowledge | coding`)
+
+These rounds test what can be learned, not what was lived, so you assess **correctness
+per question** instead of banding the five experience dimensions. Emit no `BAND` lines
+in them. Emit exactly one row per `## Q<n>` heading in the transcript:
+
+- **knowledge:** `RECALL: result=<r> | hint=<h> | ref=Q<n> | quote=<the candidate's words>`.
+  `result` is `correct` (the checkable core right, nothing wrong stated), `partial`
+  (some right, something missing or one wrong claim: quote the wrong claim),
+  `incorrect` (the core is wrong) or `no_answer` (quote what they said).
+- **coding:** `SOLVE: tests=<t> | complexity=<c> | hint=<h> | ref=Q<n> | quote=<the candidate's approach or complexity statement>`.
+  `tests` is copied from the `result.json` pasted below the transcript, never judged
+  from the code: `all_passed`, `some_failed`, `none_passed`, or `not_run` when no
+  result exists for that question. `complexity` is `stated_correct`, `stated_wrong` or
+  `not_stated`, judged against the code as written.
+- `hint` is the highest level logged under that question as `**Hint (<level>):**`:
+  `none`, `nudge`, `approach` or `solution`. The gate counts those lines and fails
+  `HINT_MISMATCH` if you round down.
+
+Answer-shape tags built for stories (`NO-INSTANCE`, `NO-OUTCOME`, `NO-ACTOR`,
+`NO-REFLECTION`) do not apply to a knowledge or coding answer. `PROBE-COLLAPSE`,
+`DRIFT` and `NO-TRADEOFF` still can. `COVERAGE` and `SHAPE` rows are emitted as in
+every round.
 
 ## Vocabulary you must not use
 
@@ -107,15 +138,19 @@ treated as an assessment that did not happen, and the round is re-dispatched.
 ```
 MOCK-ASSESSMENT-V1
 ROUND: <integer>
-ROUND-TYPE: behavioural | technical | design | hr
+ROUND-TYPE: behavioural | technical | design | hr | knowledge | coding
 MARKET: cn | nl | de | uk | us | other
 FAMILY: <role-family slug, e.g. ml-engineering>
 FINDING: tag=<TAG> | ref=<Qn> | quote=<verbatim, to end of line>
 BAND: dimension=<dimension> | value=<band> | ref=<Qn> | quote=<verbatim, to end of line>
 COVERAGE: status=<status> | must_have=<text, to end of line>
 SHAPE: status=<status> | round_name=<text, to end of line>
+RECALL: result=<result> | hint=<level> | ref=<Qn> | quote=<verbatim, to end of line>
+SOLVE: tests=<tests> | complexity=<status> | hint=<level> | ref=<Qn> | quote=<verbatim, to end of line>
 END-MOCK-ASSESSMENT-V1
 ```
+
+`RECALL` and `SOLVE` appear only in their own round type; `BAND` only outside them.
 
 Rules for the block:
 

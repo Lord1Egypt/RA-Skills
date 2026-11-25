@@ -1,6 +1,6 @@
 ## Description:
 
-A curated collection of 3220+ best agent skills — AI tools, productivity, marketing, frontend, mobile, backend, DevOps and more. Harness-agnostic, refreshed daily by MyClaw.ai — Powered by MyClaw.ai
+A daily refreshed, harness-agnostic collection of agent skills spanning development, productivity, research, creative tools, and other categories.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Agent operators and developers can browse the collection's skill categories and get installation guidance for agent runtimes that read the Agent Skills format.
+Agent builders and users use this collection to find reusable skills for tasks across multiple agent harnesses. They can use its installation guidance to add selected skills to supported runtimes.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill's broad activation descriptions may trigger it for unrelated work.
+Risk: Broad activation language may cause the collection to be used for unrelated requests.
 
-Mitigation: Before installing, consider whether the skill is needed and whether its broad activation descriptions are acceptable.
+Mitigation: Limit activation to directly relevant tasks and review each selected skill’s triggers and instructions before enabling it.
+
+Risk: Installation guidance refers to agent configuration directories.
+
+Mitigation: Check the destination and permissions before copying skills, and install only the selected skill directories.
 
 ## Reference(s):
 
-- [Install Agent Master Skills](artifact/references/install-guide.md)
 - [ClawHub release page](https://clawhub.ai/leoyeai/skills/agent-master-skills)
+- [Installation guide](references/install-guide.md)
 - [MyClaw.ai](https://myclaw.ai)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands]
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown with inline shell commands]
+**Output Format:** [Markdown with installation commands and harness-specific directory guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Collection index and installation guidance]
 
 ## Skill Version(s):
 
-0.22.11 (source: server-resolved release metadata)
+0.22.14 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

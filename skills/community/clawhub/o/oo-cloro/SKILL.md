@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Cloro"
   author: "OOMOL"
-  version: "1.0.2"
+  version: "1.0.3"
   services: ["cloro"]
   icon: "https://static.oomol.com/logo/third-party/cloro.svg"
 ---
@@ -46,13 +46,12 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_countries` — List supported country codes, optionally filtered by engine.
 - `list_states` — List supported US states. Other country codes return an empty list.
 - `monitor_aimode` — Retrieve Google AI Mode results synchronously. For long-running or bulk work, use create_task or create_batch_tasks. Sync calls include a credit surcharge; Google product tokens expire after five minutes.
+- `monitor_bing_aimode` — Retrieve Bing AI Mode results synchronously. For long-running or bulk work, use create_task or create_batch_tasks. Sync calls include a credit surcharge; Google product tokens expire after five minutes.
 - `monitor_chatgpt` — Retrieve ChatGPT results synchronously. For long-running or bulk work, use create_task or create_batch_tasks. Sync calls include a credit surcharge; Google product tokens expire after five minutes.
-- `monitor_copilot` — Retrieve Copilot results synchronously. For long-running or bulk work, use create_task or create_batch_tasks. Sync calls include a credit surcharge; Google product tokens expire after five minutes.
 - `monitor_gemini` — Retrieve Gemini results synchronously. For long-running or bulk work, use create_task or create_batch_tasks. Sync calls include a credit surcharge; Google product tokens expire after five minutes.
 - `monitor_google` — Retrieve Google Search results synchronously. For long-running or bulk work, use create_task or create_batch_tasks. Sync calls include a credit surcharge; Google product tokens expire after five minutes.
 - `monitor_google_news` — Retrieve Google News results synchronously. For long-running or bulk work, use create_task or create_batch_tasks. Sync calls include a credit surcharge; Google product tokens expire after five minutes.
 - `monitor_google_product` — Retrieve Google product details results synchronously. For long-running or bulk work, use create_task or create_batch_tasks. Sync calls include a credit surcharge; Google product tokens expire after five minutes.
-- `monitor_perplexity` — Retrieve Perplexity results synchronously. For long-running or bulk work, use create_task or create_batch_tasks. Sync calls include a credit surcharge; Google product tokens expire after five minutes.
 - `resolve_google_link` — Resolve a Google redirect link through Cloro without consuming credits.
 
 ## Safety

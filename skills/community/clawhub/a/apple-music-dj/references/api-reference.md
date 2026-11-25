@@ -7,6 +7,16 @@ Base URL: `https://api.music.apple.com`
 
 ---
 
+## Checking Tokens
+
+```
+GET /v1/storefronts/us                              (developer token)
+GET /v1/me/recent/played/tracks?limit=1             (user token)
+```
+Wrapper: `apple_music_api.sh verify` — checks each token with one cheap request.
+
+---
+
 ## Personalized Endpoints
 
 ### Recently Played Tracks
@@ -15,18 +25,21 @@ GET /v1/me/recent/played/tracks?types=songs&limit=10&offset=0
 ```
 Max 10 per request. Paginate: offset 0, 10, 20, 30, 40. Max 50 total.
 Returns deduplicated (repeat listens collapsed).
+Wrapper: `apple_music_api.sh recent-tracks`.
 
 ### Recently Played Resources
 ```
 GET /v1/me/recent/played?limit=10
 ```
 Returns albums, playlists, stations (not individual tracks).
+Wrapper: `apple_music_api.sh recent-played`.
 
 ### Heavy Rotation
 ```
 GET /v1/me/history/heavy-rotation?limit=10
 ```
 Albums and playlists on heavy repeat. May be empty for new users.
+Wrapper: `apple_music_api.sh heavy-rotation`.
 
 ### Ratings
 ```
@@ -34,23 +47,27 @@ GET /v1/me/ratings/songs?limit=100
 GET /v1/me/ratings/albums?limit=100
 ```
 Returns items with `value`: 1 (loved) or -1 (disliked).
+Wrapper: `apple_music_api.sh ratings [songs|albums|playlists]`.
 
 ### Library Artists
 ```
 GET /v1/me/library/artists?limit=25&offset=0
 ```
+Wrapper: `apple_music_api.sh library-artists [limit]`.
 
 ### Library Songs
 ```
 GET /v1/me/library/songs?limit=100&offset=0&include=catalog
 ```
 Use `include=catalog` to get catalog IDs alongside library IDs.
+Wrapper: `apple_music_api.sh library-songs [limit]`.
 
 ### Recommendations
 ```
 GET /v1/me/recommendations?limit=10
 ```
 Returns recommendation groups containing albums, playlists, stations.
+Wrapper: `apple_music_api.sh recommendations`.
 
 ### Replay / Music Summaries
 ```
@@ -61,12 +78,20 @@ GET /v1/me/music-summaries/milestones?filter[year]=2025
 ```
 Annual listening stats: top artists, albums, songs, listen time, milestones.
 Not available for all users/regions.
+Wrappers: `apple_music_api.sh replay-summary [year]` and `apple_music_api.sh replay-milestones [year]`.
 
 ### User Storefront
 ```
 GET /v1/me/storefront
 ```
 Returns the user's storefront (country code). Use to auto-detect locale.
+Wrapper: `apple_music_api.sh user-storefront`.
+
+### List Library Playlists
+```
+GET /v1/me/library/playlists?limit=25
+```
+Wrapper: `apple_music_api.sh library-playlists [limit]`.
 
 ### Create Playlist
 ```
@@ -89,6 +114,7 @@ Content-Type: application/json
 }
 ```
 Use **catalog** song IDs (not library IDs). Returns 201.
+Wrapper: `apple_music_api.sh create-playlist <json_file> --yes`. **Writes to the account** (needs `--yes`).
 
 ### Add Tracks to Playlist
 ```
@@ -98,11 +124,22 @@ Content-Type: application/json
 ```json
 {"data": [{"id": "CATALOG_SONG_ID", "type": "songs"}]}
 ```
+Wrapper: `apple_music_api.sh add-to-playlist <playlist_id> <json_file> --yes`. **Writes to the account** (needs `--yes`).
+
+### Remove Tracks from Playlist
+```
+DELETE /v1/me/library/playlists/{id}/tracks
+Content-Type: application/json
+```
+Same body shape as adding tracks. Wrapper: `apple_music_api.sh remove-from-playlist <playlist_id> <json_file> --yes`.
+**Writes to the account** (needs `--yes`). Not verified against the live API: Apple's public docs
+don't list a DELETE for library playlist tracks, so check before relying on it.
 
 ### Get Playlist Tracks
 ```
 GET /v1/me/library/playlists/{id}/tracks?limit=100
 ```
+Wrapper: `apple_music_api.sh playlist-tracks <playlist_id>`.
 
 ### Recently Added
 ```
@@ -110,6 +147,7 @@ GET /v1/me/library/recently-added?limit=25
 ```
 Albums and playlists recently added to the library. Albums carry `artistName` and
 `genreNames`; playlists don't, so the profiler skips them. Used as a "what I'm into now" signal.
+Wrapper: `apple_music_api.sh recently-added [limit]`.
 
 ### Recent Radio Stations
 ```
@@ -117,6 +155,7 @@ GET /v1/me/recent/radio-stations?limit=10
 ```
 Station resources have no genre attribute, so the profiler only picks up genres that appear
 in the station *title* (e.g. "Alternative Radio") and treats them as a very light signal.
+Wrapper: `apple_music_api.sh recent-stations`.
 
 ### Add Albums / Songs to Library
 ```
@@ -138,7 +177,7 @@ so the profiler keeps using ratings (loved/disliked) as its explicit-preference 
 PUT    /v1/me/ratings/songs/{id}     body: {"type":"rating","attributes":{"value":1}}   (1 = love, -1 = dislike)
 DELETE /v1/me/ratings/songs/{id}
 ```
-Wrappers: `apple_music_api.sh rate <id> <1|-1> --yes` and `unrate <id> --yes`. **Writes to the account** (need `--yes`).
+Wrappers: `apple_music_api.sh rate <id> <1|-1> --yes` and `apple_music_api.sh unrate <id> --yes`. **Writes to the account** (need `--yes`).
 
 ---
 
@@ -148,32 +187,60 @@ Wrappers: `apple_music_api.sh rate <id> <1|-1> --yes` and `unrate <id> --yes`. *
 ```
 GET /v1/catalog/{storefront}/search?term=query&types=songs,artists,albums&limit=25
 ```
+Wrapper: `apple_music_api.sh search <storefront> <query> [types]`.
 
 ### Charts
 ```
 GET /v1/catalog/{storefront}/charts?types=songs,albums&limit=25&genre=GENRE_ID
 ```
 Supports `with=dailyGlobalTopCharts,cityCharts` for chart playlists.
+Wrapper: `apple_music_api.sh charts <storefront> [genre_id]`.
 
 ### Artist Albums
 ```
 GET /v1/catalog/{storefront}/artists/{id}/albums?limit=25
 ```
+Wrapper: `apple_music_api.sh artist-albums <storefront> <artist_id>`.
 
 ### Artist Top Songs
 ```
 GET /v1/catalog/{storefront}/artists/{id}?views=top-songs
 ```
+Wrapper: `apple_music_api.sh artist-top <storefront> <artist_id>`.
+
+### Artist Detail
+```
+GET /v1/catalog/{storefront}/artists/{id}?include=albums,genres
+```
+Wrapper: `apple_music_api.sh artist-detail <storefront> <artist_id>`.
+
+### Album Tracks
+```
+GET /v1/catalog/{storefront}/albums/{id}?include=tracks
+```
+Wrapper: `apple_music_api.sh album-tracks <storefront> <album_id>`.
 
 ### Song Details
 ```
 GET /v1/catalog/{storefront}/songs/{id}?include=artists,albums
 ```
+Wrapper: `apple_music_api.sh song-detail <storefront> <song_id>`.
+
+### Catalog Playlist
+```
+GET /v1/catalog/{storefront}/playlists/{id}?include=tracks
+```
+An editorial or shared playlist (`pl.…` ID, the last part of its music.apple.com URL) with its tracks in `relationships.tracks.data`.
+Wrapper: `apple_music_api.sh catalog-playlist <storefront> <playlist_id>`.
+A long playlist's `relationships.tracks` carries a `next` link; the rest come from
+`GET /v1/catalog/{storefront}/playlists/{id}/tracks?limit=100&offset=N`
+(wrapper: `apple_music_api.sh catalog-playlist-tracks <storefront> <playlist_id> [offset]`).
 
 ### Genres
 ```
 GET /v1/catalog/{storefront}/genres?limit=40
 ```
+Wrapper: `apple_music_api.sh genres <storefront>`.
 
 ### Similar Artists
 ```

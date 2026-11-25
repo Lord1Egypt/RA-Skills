@@ -1,6 +1,6 @@
 ## Description:
 
-Helps sellers create narrated product-promotion videos from product images and selling points through the Qinghu AI service, selecting an available model when Grok is not listed.
+Helps cross-border sellers create short product marketing videos from product images and selling points through LinkPix, using Grok when available or a suitable listed alternative.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Sellers and content teams use this skill to plan and generate short, narrated product videos for social-media marketing from product imagery and a brief.
+Cross-border sellers and content teams use this skill to turn product images and selling points into short-form social commerce videos for platforms such as TikTok, Instagram Reels, Xiaohongshu, and Douyin.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: API credentials may be exposed when shared in chat or commands.
+Risk: The security review reports unpinned tools that may install and run unreviewed packages.
 
-Mitigation: Keep the token in a local environment variable or secret store rather than pasting it into chat.
+Mitigation: Review the package and use a trusted, pinned version before installation.
 
-Risk: Product images and other media are uploaded to a third-party service.
+Risk: The setup guidance may lead users to share an API key in chat.
 
-Mitigation: Use only media approved for upload and confirm trust in the qhkit/iqinghu service before submitting it.
-
-Risk: Runtime package installation and video generation can introduce supply-chain exposure and consume credits.
-
-Mitigation: Review and pin the npm package version; obtain approval for the estimated credit cost before generation.
+Mitigation: Do not share API keys in chat; configure credentials locally using protected storage.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-grok-sales)
 - [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
-- [Qinghu AI API key guide](https://xcnzsfe4uxrw.feishu.cn/wiki/KJ0Ywsyw8iAXmRkz5l4cddDbn6g)
+- [LinkPix Grok sales video skill on ClawHub](https://clawhub.ai/autoagc/skills/linkpix-grok-sales)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Video links]
+**Output Type(s):** [Video, Text, Shell commands, Configuration guidance]
 
-**Output Format:** [Markdown with shell commands and links to generated videos]
+**Output Format:** [Generated video files with task status and delivery links, plus text guidance and command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Video generation consumes service credits and requires user confirmation before submission.]
+**Other Properties Related to Output:** [Video duration, orientation, language, model, and product image inputs depend on the selected workflow and available options.]
 
 ## Skill Version(s):
 
-0.1.4 (source: ClawHub release)
+0.1.6 (source: server release evidence)
 
 ## Ethical Considerations:
 

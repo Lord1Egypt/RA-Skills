@@ -1,7 +1,7 @@
 ---
 name: "smyx-snake-stomatitis-detection-analysis"
 description: "Through fixed enclosure cameras, the system captures high-definition images of the moment a snake opens its mouth (yawning, post-feeding, or oral examination) and uses AI visual analysis to detect oral mucosa color (normal pink, mild inflammation red, severe inflammation dark-red or pale), the presence of pus points (white or yellow dots), ulcers, or necrotic tissue (irregular depressions, necrotic patches), comprehensively. | 通过蛇箱固定摄像头，捕捉蛇张口（打哈欠、进食后或口腔检查）时的瞬间高清图像，利用 AI 视觉分析技术检测口腔黏膜颜色（正常粉红色、轻度炎症红色、重度炎症暗红或苍白）、有无脓点（白色或黄色点状物）、溃疡或腐肉（不规则凹陷、坏死组织），综合输出口炎风险等级（低/中/高）。该技能有助于早期发现蛇类口腔感染，预防败血症。"
-version: "1.0.18"
+version: "1.0.20"
 license: "MIT-0"
 ---
 

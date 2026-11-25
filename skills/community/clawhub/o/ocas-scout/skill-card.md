@@ -1,46 +1,62 @@
-## Description: <br>
-Scout helps agents conduct structured OSINT research on people, companies, and organizations and produce provenance-backed briefs with cited findings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scout helps agents conduct lawful, provenance-backed OSINT research on people, companies, and organizations, including entity resolution, cited background briefs, and source-tiered research workflows.
 
-## Publisher: <br>
-[indigokarasu](https://clawhub.ai/user/indigokarasu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[indigokarasu](https://clawhub.ai/user/indigokarasu)
 
-## Use Case: <br>
-External users and developers use Scout to research a person, company, or organization, resolve identity across public sources, and generate concise markdown briefs with source logs and uncertainty notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Scout can keep local OSINT records and share confirmed identity findings with other OpenClaw components. <br>
-Mitigation: Review the configured storage paths, retention expectations, and signal-sharing path before deployment; limit collection to the stated research goal. <br>
-Risk: Scout registers a daily self-updater that can replace skill files from a remote source. <br>
-Mitigation: Prefer disabling the cron job or using manual reviewed updates before installing changes. <br>
-Risk: OSINT research on people or organizations can expose private or sensitive details. <br>
-Mitigation: Keep minimization enabled, suppress private details unless explicitly permitted, and require explicit permission before paid source escalation. <br>
+## Use Case:
 
+External users and developers use Scout to conduct lawful OSINT research, due diligence, and background research on people, companies, and organizations. It is intended for workflows that need cited findings, identity-resolution notes, source logs, and explicit escalation controls for paid or rate-limited sources.
 
-## Reference(s): <br>
-- [ClawHub Scout release page](https://clawhub.ai/indigokarasu/ocas-scout) <br>
-- [Scout schemas](references/scout_schemas.md) <br>
-- [Scout source waterfall](references/scout_source_waterfall.md) <br>
-- [Scout brief template](references/scout_brief_template.md) <br>
-- [Scout journal format](references/journal.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown briefs, optional PDF briefs, JSON records, signal files, journals, and status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Every retained finding is expected to include source provenance with URL, retrieval timestamp, and supporting quote.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: release evidence and skill.json) <br>
+Risk: Unattended OSINT runs and self-updates may occur if the bundled background tasks are enabled without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and disable cron/background tasks unless unattended runs and updates are explicitly intended.
+
+Risk: The skill can collect and store sensitive personal data during person or organization research.
+
+Mitigation: Run with restricted network egress, avoid broad tokens in profile environment files, and treat outputs as sensitive data subject to legal and policy limits.
+
+Risk: OSINT results can be incomplete, stale, or incorrectly correlated across public sources.
+
+Mitigation: Require source-backed provenance, confidence labels, and identity-resolution notes before acting on findings.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/indigokarasu/skills/ocas-scout)
+- [Scout Source Waterfall](references/scout_source_waterfall.md)
+- [Scout Public Records](references/scout_public_records.md)
+- [Scout Schemas](references/scout_schemas.md)
+- [Scout Brief Template](references/scout_brief_template.md)
+- [Source Reliability](references/source_reliability.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown briefs with cited source logs, JSONL journal entries, Signal payloads, and optional shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings include provenance, confidence, and uncertainty notes; sensitive personal data can be minimized when requested.]
+
+## Skill Version(s):
+
+2.3.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

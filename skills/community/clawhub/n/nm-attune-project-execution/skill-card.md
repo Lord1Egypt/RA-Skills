@@ -1,6 +1,6 @@
 ## Description:
 
-Executes implementation plans with progress tracking, checkpoint validation, and quality gates.
+Executes implementation plans with progress tracking, checkpoint validation, and quality gates. Use after planning is complete and tasks are ready to implement.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill after planning to implement tasks in dependency order, track progress, and check work against acceptance criteria, tests, and quality gates.
+Developers use this skill after planning to carry out implementation tasks in dependency order, track progress, and check work against acceptance criteria and quality gates.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: External delegation may expose project information without checking destination approval or giving a user-facing privacy warning.
+Risk: Delegation may share project context with external model providers without warning.
 
-Mitigation: Before delegating, review whether the destination is approved, consider what project information will be shared, and inform the user.
+Mitigation: Review which providers receive project context and confirm that sharing is acceptable before using delegation.
 
-Risk: The security report notes instruction-scope concerns and partial scan coverage, so unresolved references and other behavior may not have been fully assessed.
+Risk: The security scan was incomplete because some referenced paths were missing from the bundle.
 
-Mitigation: Review referenced materials and the skill's behavior before use, and restrict delegated access to the project information needed for the task.
+Mitigation: Review the complete release contents and rescan before deployment.
 
 ## Reference(s):
 
 - [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/attune)
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-attune-project-execution)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Markdown, Configuration, Shell commands]
+**Output Type(s):** [Code, Markdown, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Code changes, Markdown checklists and progress reports, shell commands, and JSON execution-state data.]
+**Output Format:** [Code and text, including Markdown reports, shell command examples, and JSON configuration examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Outputs depend on the implementation plan and project; execution-state data may record task status and progress metrics.]
+**Other Properties Related to Output:** [Output depends on the implementation plan and may include progress and checkpoint reports.]
 
 ## Skill Version(s):
 
-1.10.3 (source: SKILL.md frontmatter, server release metadata)
+1.10.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

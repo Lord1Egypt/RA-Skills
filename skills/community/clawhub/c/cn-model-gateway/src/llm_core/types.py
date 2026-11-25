@@ -4,17 +4,25 @@ These types are shared between MCP and CLI forms.
 """
 from __future__ import annotations
 
+import json
 import time
 from dataclasses import dataclass, field
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 
 @dataclass
 class ChatMessage:
-    """A single chat message."""
-    role: str          # "user" | "assistant" | "system"
+    """A single chat message.
+
+    v2.1.0: added tool_call_id / name / tool_calls for multi-round
+    Function Calling chains (OpenAI-style round-trip).
+    """
+    role: str          # "user" | "assistant" | "system" | "tool"
     content: str
     image: str = ""    # base64 / URL / file path (empty = text-only)
+    tool_call_id: str = ""                    # v2.1.0: role=tool → which call this result belongs to
+    name: str = ""                            # v2.1.0: role=tool → tool name
+    tool_calls: Optional[List[Dict[str, Any]]] = None  # v2.1.0: role=assistant → emitted tool calls
 
     def to_dict(self) -> Dict[str, Any]:
         d: Dict[str, Any] = {"role": self.role}
@@ -25,6 +33,14 @@ class ChatMessage:
             ]
         else:
             d["content"] = self.content
+        # v2.1.0: multi-round Function Calling chain fields (only emitted when set,
+        # so legacy `{"role","content"}` shape stays unchanged for plain messages).
+        if self.tool_call_id:
+            d["tool_call_id"] = self.tool_call_id
+        if self.name:
+            d["name"] = self.name
+        if self.tool_calls is not None:
+            d["tool_calls"] = self.tool_calls
         return d
 
 
@@ -51,6 +67,17 @@ class ToolCall:
 
     def to_dict(self) -> Dict[str, Any]:
         return {"id": self.id, "name": self.name, "arguments": self.arguments}
+
+    def to_openai(self) -> Dict[str, Any]:
+        """v2.1.0: normalize to OpenAI-style tool_call for multi-round chains."""
+        return {
+            "id": self.id,
+            "type": "function",
+            "function": {
+                "name": self.name,
+                "arguments": json.dumps(self.arguments, ensure_ascii=False),
+            },
+        }
 
 
 @dataclass

@@ -9,7 +9,8 @@ TEMP_FILES=()
 
 pass() { echo "  ✅ $1"; }
 fail() { echo "  ❌ $1"; ERRORS=$((ERRORS + 1)); }
-skip() { echo "  ⏭️  $1"; }
+SKIPS=0
+skip() { echo "  ⏭️  $1"; SKIPS=$((SKIPS + 1)); }
 
 # Cleanup trap for background MCP processes and temp files
 cleanup() {
@@ -117,14 +118,13 @@ fi
 echo "Test 6: MCP protocol handshake (invalid token)"
 if command -v "$MCP" >/dev/null 2>&1; then
   RESULT_FILE=$(mktemp) && TEMP_FILES+=("$RESULT_FILE")
-  export WORKFLOW_WEAVER_REFRESH_TOKEN="smoke-test-invalid-token"
 
   # Feed JSON-RPC initialize + initialized notification to MCP, capture output
   {
     echo '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"smoke-test","version":"1.0.0"}}}'
     sleep 0.5
     echo '{"jsonrpc":"2.0","method":"notifications/initialized"}'
-  } | $MCP > "$RESULT_FILE" 2>&1 &
+  } | WORKFLOW_WEAVER_REFRESH_TOKEN="smoke-test-invalid-token" $MCP > "$RESULT_FILE" 2>&1 &
   MCP_PID=$!
 
   # Poll for up to 5 seconds
@@ -148,13 +148,10 @@ if command -v "$MCP" >/dev/null 2>&1; then
     wait "$MCP_PID" 2>/dev/null || true
   fi
 
-  # Unset leaked env var so tests 7-8 skip correctly
-  unset WORKFLOW_WEAVER_REFRESH_TOKEN 2>/dev/null || true
-
   # Evaluate: must contain a valid JSON-RPC response or a clear auth error
   if [ -s "$RESULT_FILE" ] && grep -q '"jsonrpc":"2.0"' "$RESULT_FILE" && grep -q '"id":1' "$RESULT_FILE"; then
     pass "MCP responded to protocol handshake with valid initialize response"
-  elif [ -s "$RESULT_FILE" ] && grep -qiE 'AUTH_FAILED|not authenticated|token|unauthorized|missing|invalid|error' "$RESULT_FILE"; then
+  elif [ -s "$RESULT_FILE" ] && grep -qiE 'AUTH_FAILED|not authenticated|token|unauthorized|missing|invalid' "$RESULT_FILE"; then
     pass "MCP rejected invalid token (expected auth error)"
   else
     fail "MCP did not respond with valid JSON-RPC or clear error"
@@ -210,7 +207,11 @@ fi
 # ── Summary ──
 echo ""
 if [ "$ERRORS" -eq 0 ]; then
-  echo "=== ✅ All checks passed ==="
+  if [ "$SKIPS" -gt 0 ]; then
+    echo "=== ✅ All run checks passed ($SKIPS skipped) ==="
+  else
+    echo "=== ✅ All checks passed ==="
+  fi
   exit 0
 else
   echo "=== ❌ $ERRORS check(s) failed ==="

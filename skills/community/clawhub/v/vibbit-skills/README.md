@@ -1,5 +1,7 @@
 # Vibbit Skills
 
+![Vibbit](assets/vibbit-logo.png)
+
 [中文说明](README.zh-CN.md)
 
 Create images and videos with Vibbit through conversation in your Agent. Start with a product link, an idea, a script, or reference content.
@@ -7,12 +9,17 @@ Create images and videos with Vibbit through conversation in your Agent. Start w
 ## What you can do
 
 - **Ecommerce marketing:** Extract information from a product link, save it to your product library, and use product details and reference images to create ecommerce hero images, marketing visuals, and advertising videos.
-- **Talking-head videos:** Combine a script or existing audio with a digital avatar to create a talking-head video.
+- **Talking-head videos:** Use a script or library audio to drive an avatar, reuse a suitable existing performance, or add library B-roll when requested. Avatar-only videos keep the speaker on screen.
 - **Video creation:** Turn ideas, scripts, and references into plans, storyboards, generated content, and revisions.
+- **Person replacement:** Use your model photos to replace facial features and hairstyles in reference videos while retaining the selected outfit, scene, and presentation.
 - **Comics:** Adapt novels, stories, or scripts into comic pages with consistent characters, settings, and props, then continue chapters or revise individual pages.
 - **Creative reuse:** Save scripts, talent, and scenes in private persistent storage, extract new script templates from videos, and reuse selected entries for new-product video variants.
-- **Multilingual content:** Translate videos and create voiceovers and subtitles in your target language.
+- **Multilingual content:** Translate videos while preserving original voices, or use your selected voice for everyone or individual speakers, with subtitles and speech corrections as needed.
 - **Audio and subtitles:** Transcribe recordings, export subtitle files, check voiceovers against scripts, and locate keyword passages.
+- **Semantic mixcuts:** Analyze reference edits and save reusable rules. The Agent matches library footage and arranges original sound, avatars, and narration, with cloud editing by default.
+- **Material reuse:** Find library images, audio and video by name, tags or content; retrieve original files and matching clips for scripts, editing, references and continued production.
+- **Video storage:** Save local or linked videos in your Vibbit material library, choose a name and an existing group, and optionally enable analysis.
+- **Video links:** Use platform videos for translation, transcription and reference-based creation; additional platforms can use the optional yt-dlp downloader when the Agent environment supports it.
 
 ## Install
 

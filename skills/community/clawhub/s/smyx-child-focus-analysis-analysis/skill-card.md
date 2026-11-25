@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes video of a child's study area to estimate per-minute focus, identify distraction periods, and produce focus reports.
+Analyzes study-area camera footage to report children's focus indicators, distraction periods, and per-minute focus scores.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Parents and teachers use the skill to review a child's study-session video, see estimated focus scores and distraction periods, and follow changes in study behavior.
+Parents and teachers can review reported focus indicators and distraction periods from a child's study-area video to inform their own observations of learning sessions.
 
 ### Deployment Geography for Use:
 
@@ -22,41 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review flags remote processing of children's videos and unclear handling of identity or credential data.
+Risk: Study videos and behavior records concern children and may contain sensitive personal information.
 
-Mitigation: Before use, clarify where footage and identity data are sent, what is stored, and who can access it; obtain explicit guardian consent and limit uploads to authorized footage.
+Mitigation: Obtain guardian consent, provide only authorized footage, and confirm remote upload, access, and retention practices before sending video.
 
-Risk: The security guidance reports an HTTP configuration risk.
+Risk: ClawScan marked the release suspicious based on a reported mismatch between its description and account/API behavior; the scan was partial.
 
-Mitigation: Use HTTPS endpoints where available and avoid sending sensitive video or identity data over unencrypted connections.
-
-Risk: The security scan was partial because a referenced local path was missing, so not every relevant component was assessed.
-
-Mitigation: Review the missing component and complete a full security assessment before relying on the scan.
-
-Risk: The security summary reports unclear purpose alignment and broad activation.
-
-Mitigation: Review the skill's triggers and intended scope before enabling it, and restrict activation to the study-video analysis tasks you intend to support.
+Mitigation: Review permissions, account and identity handling, remote API behavior, and video handling before installation or use; treat the scan as a reason to investigate, not proof of malicious intent.
 
 ## Reference(s):
 
-- [API documentation](references/api_doc.md)
+- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-child-focus-analysis-analysis)
+- [Publisher profile](https://clawhub.ai/user/smyx-sunjinhui)
+- [Skill API reference](artifact/references/api_doc.md)
+- [Analysis API reference](artifact/skills/smyx_analysis/references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
-- [ClawHub release page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-child-focus-analysis-analysis)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, JSON, Markdown]
 
-**Output Format:** [Structured focus report with per-minute scores and distraction event summaries]
+**Output Format:** [Structured analysis results in JSON; Markdown tables for report listings]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include an overall focus level, distraction duration, alerts, and a report link when returned by the service.]
+**Other Properties Related to Output:** [May include overall and per-minute focus scores, distraction events, and report links. Scores are behavioral indicators for reference.]
 
 ## Skill Version(s):
 
-1.0.16 (source: server-resolved release metadata)
+1.0.17 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "闲鱼商品上架"
+  short_description: "通过指定已登录指纹浏览器检查草稿并安全执行一次闲鱼上架"
+  default_prompt: "使用 $easy-xianyu-publish-free 检查商品草稿并在我确认后通过指定 browserId 上架。"

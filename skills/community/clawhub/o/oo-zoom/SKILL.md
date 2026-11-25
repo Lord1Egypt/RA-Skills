@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Zoom"
   author: "OOMOL"
-  version: "1.0.7"
+  version: "1.0.8"
   services: ["zoom"]
   icon: "https://static.oomol.com/logo/third-party/zoom.svg"
 ---
@@ -38,8 +38,10 @@ Each action is listed below with a one-line description; actions that change sta
 ## Available actions
 
 - `create_meeting` — Create a Zoom meeting for a user with the core official scheduling fields and first-pass settings. [write]
-- `get_user` — Fetch one Zoom user by user ID, email address, or me when supported by the app.
+- `get_meeting_summary` — Fetch the AI Companion summary of one meeting instance by its UUID. When Zoom answers 403 code 2305 (summary access restricted to IP ranges, summaries shared by email only, or the summary in Trash), the result is available false with a reason instead of an error.
+- `get_user` — Fetch one Zoom user by ID or email, or the connected user when userId is omitted.
 - `list_meetings` — List scheduled, live, upcoming, or previous meetings for a Zoom user using official pagination.
+- `list_user_meeting_summaries` — List a user's AI Companion meeting summaries in a time window, newest first, without their content. Zoom's page token expires 15 minutes after it is issued; an expired token is refused as invalid input.
 - `update_meeting` — Update a Zoom meeting by meeting ID with the core official scheduling fields and first-pass settings. [write]
 
 ## Safety

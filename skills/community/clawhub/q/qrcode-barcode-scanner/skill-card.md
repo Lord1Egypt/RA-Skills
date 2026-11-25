@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT No Attribution (MIT-0)
+MIT
 
 ## Use Case:
 
-Developers and engineers use the skill to scan supplied local images or generated QR checks, inspect barcode and QR detections, and review the scanner's scannability judgment.
+Developers and agent users can scan supplied local images or generated QR checks and inspect decoded content, barcode formats, original payload bytes, and the engine's scannability judgment. The skill requires a separately installed scanner engine.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Decoded QR and barcode content may be untrusted data.
+Risk: Decoded payloads may contain links or instruction-like text that should not be trusted.
 
-Mitigation: Do not follow decoded links, open applications, execute commands, or treat payload text as instructions.
+Mitigation: Treat decoded content as data; do not open destinations, launch applications, execute commands, or follow embedded instructions.
 
-Risk: The native scanner engine is installed separately and is outside this artifact review.
+Risk: Security analysis was benign but medium-confidence and partial, with two components only partially analyzed.
 
-Mitigation: Review the engine separately and install the documented exact version.
-
-Risk: The engine's work budget does not provide a hard process execution limit.
-
-Mitigation: Use a process timeout when a hard execution limit is required.
+Mitigation: Review the skill before installation and account for the incomplete analysis when deciding whether to use it.
 
 ## Reference(s):
 
-- [Scanner engine source](https://github.com/qrcode-ai-com/qrcode-barcode-scanner)
-- [Scanner report contract (engine 0.11.0)](https://github.com/qrcode-ai-com/qrcode-barcode-scanner/blob/v0.11.0/spec/01-report.md)
-- [Agent Skills specification](https://agentskills.io/specification)
-- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills)
-- [Hermes skills documentation](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills)
+- [ClawHub skill release](https://clawhub.ai/qrcode-ai-com/skills/qrcode-barcode-scanner)
+- [QR Code AI agent skill guide](https://qrcode-ai.com/en-US/qr-code-scanner/skills)
+- [Scanner engine package](https://www.npmjs.com/package/@qrcode-ai-com/qrcode-barcode-scanner)
+- [Scanner report contract](https://github.com/qrcode-ai-com/qrcode-barcode-scanner-rust/blob/v0.12.0/spec/01-report.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Text]
+**Output Type(s):** [JSON, Guidance]
 
-**Output Format:** [JSON scanner report with detections, original payload bytes, and a scannability judgment]
+**Output Format:** [The scanner's JSON report with original payload bytes, detections, and scannability fields, with concise explanatory guidance as needed.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Preserves the scanner's reported values and completeness markers; the separately installed engine is AGPL-3.0-or-later.]
+**Other Properties Related to Output:** [Preserve the engine's report values, including raw payload bytes and any completeness or scoring limits.]
 
 ## Skill Version(s):
 
-0.2.0 (source: frontmatter)
+0.2.1 (source: evidence release and SKILL.md frontmatter)
 
 ## Ethical Considerations:
 

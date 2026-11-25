@@ -1,6 +1,6 @@
 ## Description:
 
-Modular monolith with enforced internal boundaries. Use for service-level autonomy without a distributed system
+Modular monolith with enforced internal boundaries. Use for service-level autonomy without a distributed system.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and software architects use this skill to define bounded modules, document their contracts, and enforce internal dependency boundaries in a monolithic codebase.
+Developers and software architects use this skill to define module boundaries and contracts in a monolithic codebase, maintain team autonomy, and assess when a module may be ready to become a separate service.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Module boundaries can erode into tightly coupled code.
+Risk: Without consistent enforcement, internal module boundaries may erode and dependencies can become tangled.
 
-Mitigation: Make forbidden dependencies fail automated checks and review boundary changes consistently.
+Mitigation: Make boundary violations build-breaking and review dependencies regularly.
 
-Risk: Shared database hotspots can create contention and coupling between modules.
+Risk: A shared database can become a contention hotspot and couple modules through their data access.
 
-Mitigation: Assign schema ownership and consider restricted views or data replication where appropriate.
+Mitigation: Define schema ownership, restrict visibility, and consider replication where appropriate.
 
 ## Reference(s):
 
 - [ClawHub release page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-modular-monolith)
-- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
 
 ## Skill Output:
 
 **Output Type(s):** [Guidance, Markdown]
 
-**Output Format:** [Markdown architectural guidance and checklists]
+**Output Format:** [Markdown architectural guidance, recommendations, and checklists]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Provides recommendations and example deliverables; implementation depends on the project's language and architecture.]
+**Other Properties Related to Output:** [Describes module boundaries, contracts, enforcement practices, and exit criteria.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, ClawHub release)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

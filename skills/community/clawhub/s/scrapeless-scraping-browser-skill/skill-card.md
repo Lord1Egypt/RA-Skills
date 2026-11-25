@@ -1,44 +1,63 @@
-## Description: <br>
-Cloud browser automation CLI for AI agents powered by Scrapeless for navigating pages, filling forms, clicking buttons, taking screenshots, extracting data, testing web apps, and using proxy or anti-detection browser sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cloud browser automation CLI for AI agents powered by Scrapeless that can navigate pages, fill forms, click buttons, take screenshots, extract data, test web apps, and automate browser tasks with residential proxies and anti-detection features.
 
-## Publisher: <br>
-[scrapelesshq](https://clawhub.ai/user/scrapelesshq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scrapelesshq](https://clawhub.ai/user/scrapelesshq)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to direct an agent through Scrapeless cloud browser sessions for web interaction, scraping, screenshots, form workflows, and web app testing. It is intended for authorized browser automation workflows that require cloud execution, session management, or proxy-backed browser configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad browser automation, proxy, and anti-detection capabilities can be misused on sites where automation is not authorized. <br>
-Mitigation: Use the skill only on websites the operator is authorized to automate, and avoid proxy or anti-detection options unless they are clearly permitted for the workflow. <br>
-Risk: API keys, proxy credentials, cookies, localStorage values, screenshots, and live preview URLs can expose sensitive account or session data. <br>
-Mitigation: Protect Scrapeless API keys and proxy credentials, treat browser outputs as sensitive secrets, and avoid running workflows on sensitive logged-in accounts without explicit need. <br>
-Risk: Session recording can retain sensitive browser activity on Scrapeless-managed infrastructure. <br>
-Mitigation: Keep recording disabled by default and enable it only for deliberate debugging or audit workflows where captured data is approved for storage. <br>
+## Use Case:
 
+Developers and agent operators use this skill to drive Scrapeless cloud browser sessions for website navigation, form interaction, screenshots, extraction, web app testing, and proxy-backed browser automation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/scrapelesshq/scrapeless-scraping-browser-skill) <br>
-- [Authentication](references/authentication.md) <br>
-- [Scrapeless Dashboard](https://app.scrapeless.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline bash, JSON, and TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include session IDs, element references, screenshots, cookies, localStorage values, extracted page data, and live preview URLs from browser automation workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Remote browsing workflows may send browsing activity, extracted data, screenshots, cookies/storage data, live preview access, or session recordings through Scrapeless.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly scoped API tokens, avoid sensitive accounts and secrets, and enable recording or live preview only when necessary.
+
+Risk: Proxy and anti-detection features can be misused or conflict with website authorization or terms.
+
+Mitigation: Confirm site authorization and acceptable-use requirements before using proxy or anti-detection options.
+
+Risk: Unpinned package execution can run a changed version of the Scrapeless CLI.
+
+Mitigation: Prefer a pinned and reviewed package version for production workflows.
+
+Risk: Command-line credentials such as API tokens, real passwords, or proxy credentials can leak through shell history or process listings.
+
+Mitigation: Use the supported config-file or environment-variable authentication paths and avoid passing sensitive credentials directly in commands.
+
+## Reference(s):
+
+- [Authentication](references/authentication.md)
+- [Scrapeless Dashboard](https://app.scrapeless.com)
+- [ClawHub Skill Page](https://clawhub.ai/scrapelesshq/skills/scrapeless-scraping-browser-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or retrieve session IDs, screenshots, page text, URLs, titles, cookies/storage data, and live preview links through Scrapeless CLI commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

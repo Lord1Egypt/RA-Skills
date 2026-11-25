@@ -8,7 +8,7 @@ Install from ClawHub once published: `clawhub install pursekeeper`. Until then:
 
 ```
 git clone https://github.com/pursekeeper/skill ~/.openclaw/skills/pursekeeper   # or your skills dir
-cd ~/.openclaw/skills/pursekeeper/scripts && npm install
+cd ~/.openclaw/skills/pursekeeper/scripts && npm ci --ignore-scripts   # the one dependency, at the version in the shipped lockfile
 ```
 
 Everything here is MIT-0, like every ClawHub skill. Source of the recipes and the

@@ -1,6 +1,6 @@
 ## Description:
 
-用于小红书热榜选题、小红书热点选题、小红书热榜分析、小红书热点分析和趋势选题参考。先看当前小红书热榜，再结合相关热门笔记样本，把热榜信号整理成可执行选题，来自 SocialDataX 社媒数据助手。
+用于小红书热榜选题、小红书热点选题、小红书热榜分析、小红书热点分析和趋势选题参考。先看当前小红书热榜，再结合相关热门笔记样本，把热榜信号整理成可执行选题，来自社媒数据助手 SocialDataX。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Content planners and creators can use this skill to review Xiaohongshu hot-search signals and relevant popular-note samples, then develop trend-aware topic candidates, title hooks, and content angles.
+内容创作者和运营人员可用它查看小红书当前热榜，并结合返回的热门笔记样本整理趋势信号、选题候选、标题钩子和内容角度。
 
 ### Deployment Geography for Use:
 
@@ -22,17 +22,13 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: CLI use stores credentials in the execution user’s configuration directory.
+Risk: The security review noted credential-storage instructions for CLI use.
 
-Mitigation: Use a trusted execution environment, keep the credentials directory private, and never include credentials in generated output.
+Mitigation: Keep the API key in the documented private per-user CLI store and do not expose it in chat, logs, or generated files.
 
-Risk: Search terms are sent to SocialDataX.
+Risk: The security review noted an unpinned npx reference and could not resolve three local path-like references, so its analysis was partial.
 
-Mitigation: Avoid submitting sensitive or personal terms that should not be shared with the service.
-
-Risk: The security scan flagged an unpinned npx reference and could not resolve three local references, leaving the analysis partial.
-
-Mitigation: Review the unresolved references and ensure package invocations use an explicitly pinned version before execution.
+Mitigation: Confirm the package version before CLI execution and review the unresolved references or a complete scan before relying on the skill.
 
 ## Reference(s):
 
@@ -42,17 +38,17 @@ Mitigation: Review the unresolved references and ensure package invocations use 
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Markdown]
+**Output Type(s):** [Analysis, Text, Markdown, Guidance]
 
-**Output Format:** [Markdown text with hot-list signals, topic candidates, note samples, title hooks, content angles, and next-step suggestions]
+**Output Format:** [Markdown analysis with hot-list signals, topic candidates, note samples, title hooks, content angles, and next steps]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Based on the current hot list and returned public note samples; does not promise complete platform coverage or predictable traffic outcomes.]
+**Other Properties Related to Output:** [Based on the current hot list and returned public note samples; does not promise full-platform coverage or guaranteed traffic outcomes.]
 
 ## Skill Version(s):
 
-0.1.16 (source: ClawHub release metadata)
+0.1.17 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

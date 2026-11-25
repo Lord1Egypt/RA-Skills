@@ -203,12 +203,32 @@ fact_check:
   # 是否启用事实核查（配合 --synthesize-pro 使用）
   enabled: true
   
-  # 无源论断处理方式：remove=默认剔除；keep=保留但标注 [无源]
-  remove_unsupported: true
-  
+  # V2.1 起默认标注保留：无源不等于假，小众真相常无源
+  # remove_unsupported: false = 标注 [无源] 保留在正文；true = 剔除
+  remove_unsupported: false
+  mark_unsupported: true         # 无源论断前加 [无源] 标记
+
   # 支撑度阈值（余弦相似度，0-1）
   sufficient_threshold: 0.55     # ≥此值 = 充分支撑
   partial_threshold: 0.25        # ≥此值 = 部分支撑，<此值 = 无源
+
+# ═══════ 可信答案 RAG-lite（V2.1 新增） ═══════
+rag_lite:
+  # 无 Key 时的合成方式：本地 TF-IDF 抽取式（结论/依据/反证三段）
+  top_k_evidence: 3        # 依据块数量上限
+  top_k_counter: 2         # 反证块数量上限
+  counter_overlap_max: 0.45  # 反证与依据相似度低于此值才算"另一面"
+  chunk_size: 1200         # 单块字符数
+  max_answer_chars: 1500   # 答案总长度上限
+
+# ═══════ 隐私量化报告（V2.1 新增） ═══════
+privacy_score:
+  engine_weight: 50.0      # 引擎评级满分
+  proxy_bonus: 20.0        # 启用代理加分
+  cache_bonus: 10.0        # 写入缓存加分
+  cookie_bonus: 10.0       # cookie 无残留加分
+  request_penalty: 3.0     # 每个外发请求扣分
+  request_penalty_cap: 30.0  # 外发扣分上限
 
 # ═══════ 垂直搜索配置（V1.8 新增） ═══════
 vertical_search:

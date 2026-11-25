@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes meal videos for eating habits and dietary patterns, producing structured reports and nutrition suggestions.
+Analyzes meal videos to assess eating habits and dietary patterns, then provides structured reports and nutrition suggestions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Individuals and wellness practitioners can submit meal videos to assess eating speed, habits, and dietary patterns and review reports with improvement suggestions. The reports are informational and do not replace professional medical or nutritional advice.
+Individuals can use the skill to review meal videos, understand observable eating patterns, and receive structured reports with general nutrition suggestions.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Meal videos and related health-adjacent information are sent to a provider API.
+Risk: ClawScan rates this release suspicious, citing remote account and credential handling and analysis behavior that may conflict with its stated dietary video purpose. The scan was partial because a local reference was missing.
 
-Mitigation: Submit only media you are willing to share with the provider; avoid sensitive medical or private household footage unless its data practices are acceptable.
-
-Risk: The skill silently creates or reuses a cloud-linked identity and retains authentication tokens locally for report history.
-
-Mitigation: Review the identity, report retention, and local token practices before installing or using cloud history.
-
-Risk: Automated dietary assessments can be mistaken for clinical advice.
-
-Mitigation: Treat reports as informational and consult a qualified clinician or dietitian for medical or nutritional decisions.
+Mitigation: Review the verdict and partial-scan limitation before installing. Avoid providing private videos or health-related information until the skill's behavior and data handling have been reviewed.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/smyx-sunjinhui/skills/smyx-diet-analysis)
-- [Diet analysis API documentation](references/api_doc.md)
+- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-diet-analysis)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
+- [API interface reference](references/api_doc.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Report links]
+**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
 
-**Output Format:** [Text or JSON-formatted report with optional Markdown report links]
+**Output Format:** [Structured analysis report with observations, suggestions, and report links; historical reports are shown in a Markdown table.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Supports basic, standard, and JSON detail levels and cloud report-history lookup.]
+**Other Properties Related to Output:** [Accepts video or image files and URLs; dietary suggestions are for general reference and do not replace advice from a nutritionist or physician.]
 
 ## Skill Version(s):
 
-1.0.16 (source: ClawHub release metadata)
+1.0.17 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

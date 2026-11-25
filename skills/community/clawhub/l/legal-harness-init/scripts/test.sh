@@ -14,7 +14,7 @@ pass() { passed=$((passed + 1)); printf 'PASS %s\n' "$1"; }
 fail() { failed=$((failed + 1)); printf 'FAIL %s\n' "$1" >&2; }
 assert_contains() {
     local text="$1" pattern="$2" name="$3"
-    if printf '%s' "$text" | grep -Fq "$pattern"; then pass "$name"; else fail "$name"; fi
+    if printf '%s' "$text" | grep -Fq -- "$pattern"; then pass "$name"; else fail "$name"; fi
 }
 
 mkdir -p "$TEST_ROOT/home" "$TEST_ROOT/only-docs/docs"
@@ -25,7 +25,7 @@ detect_explicit=$(cd "$TEST_ROOT/only-docs" && HOME="$TEST_ROOT/home" bash "$SCR
 assert_contains "$detect_explicit" '"current_runtime": "codex"' "显式 runtime 优先"
 assert_contains "$detect_explicit" '"current_runtime_source": "explicit"' "显式 runtime 保留证据"
 
-detect_env=$(cd "$TEST_ROOT/only-docs" && HOME="$TEST_ROOT/home" CODEX_THREAD_ID=test bash "$SCRIPT_DIR/detect.sh" 2>/dev/null || true)
+detect_env=$(cd "$TEST_ROOT/only-docs" && env -i HOME="$TEST_ROOT/home" CODEX_THREAD_ID=test bash "$SCRIPT_DIR/detect.sh" 2>/dev/null || true)
 assert_contains "$detect_env" '"current_runtime": "codex"' "CODEX_THREAD_ID 可识别 Codex"
 assert_contains "$detect_env" 'env:CODEX_THREAD_ID' "runtime 输出证据信号"
 
@@ -33,18 +33,58 @@ mkdir -p "$TEST_ROOT/project"
 printf '# 用户区块\n' > "$TEST_ROOT/project/AGENTS.md"
 printf '# 法律协作基线\n\n- 项目代号：LIT-001\n- 真实事实：见 .legal-context.local.md\n' > "$TEST_ROOT/content.md"
 mkdir -p "$TEST_ROOT/clean-project"
-clean_write=$(HOME="$TEST_ROOT/home" bash "$SCRIPT_DIR/write.sh" --content-file "$TEST_ROOT/content.md" --level project --platforms codex --project-dir "$TEST_ROOT/clean-project" --mode update --block-id legal-baseline --privacy-mode strict 2>/dev/null)
+clean_write=$(HOME="$TEST_ROOT/home" bash "$SCRIPT_DIR/write.sh" --content-file "$TEST_ROOT/content.md" --level project --platforms codex --project-dir "$TEST_ROOT/clean-project" --mode update --block-id legal-baseline --privacy-mode strict --model "clean-model" 2>/dev/null)
 assert_contains "$clean_write" '"status":"written"' "干净项目创建 AGENTS.md"
+clean_reported_sha=$(printf '%s' "$clean_write" | sed -n 's/.*"after_sha256":"\([0-9a-f]*\)".*/\1/p' | head -1)
+clean_actual_sha=$(shasum -a 256 "$TEST_ROOT/clean-project/AGENTS.md" | awk '{print $1}')
+if [ -n "$clean_reported_sha" ] && [ "$clean_reported_sha" = "$clean_actual_sha" ]; then pass "回执哈希对应最终产物"; else fail "回执哈希对应最终产物"; fi
 if [ -s "$TEST_ROOT/clean-project/AGENTS.md" ]; then pass "干净创建产物非空"; else fail "干净创建产物非空"; fi
-write_one=$(HOME="$TEST_ROOT/home" bash "$SCRIPT_DIR/write.sh" --content-file "$TEST_ROOT/content.md" --level project --platforms codex,openclaw --project-dir "$TEST_ROOT/project" --mode update --block-id legal-baseline --privacy-mode strict 2>/dev/null)
+write_one=$(HOME="$TEST_ROOT/home" bash "$SCRIPT_DIR/write.sh" --content-file "$TEST_ROOT/content.md" --level project --platforms codex,openclaw --project-dir "$TEST_ROOT/project" --mode update --block-id legal-baseline --privacy-mode strict --model regression-model 2>/dev/null)
 assert_contains "$write_one" '"platform":"codex,openclaw"' "同路径平台合并为单一目标"
 schema_count=$(printf '%s' "$write_one" | grep -c '"schema_version"')
 if [ "$schema_count" -eq 1 ]; then pass "write.sh stdout 仅含一个 JSON 文档"; else fail "write.sh stdout 仅含一个 JSON 文档"; fi
+
+# write.sh 真实落盘后自动调 record-init-env.sh（model 显式传）
+mkdir -p "$TEST_ROOT/auto-record"
+env -i HOME="$TEST_ROOT/home" bash "$SCRIPT_DIR/write.sh" \
+    --content-file "$TEST_ROOT/content.md" --level project --platforms codex \
+    --project-dir "$TEST_ROOT/auto-record" --mode update --block-id legal-baseline \
+    --privacy-mode strict --model "write-sh-passed" 2>/dev/null >/dev/null
+if grep -Fq '<!-- legal-harness-init:init-environment:start -->' "$TEST_ROOT/auto-record/AGENTS.md" \
+    && grep -Fq 'write-sh-passed' "$TEST_ROOT/auto-record/AGENTS.md"; then
+    pass "write.sh 真实落盘后自动追加 init-environment"
+else
+    fail "write.sh 真实落盘后自动追加 init-environment"
+fi
+
+# --record-init-env=false 时不应自动追加
+mkdir -p "$TEST_ROOT/no-record"
+env -i HOME="$TEST_ROOT/home" bash "$SCRIPT_DIR/write.sh" \
+    --content-file "$TEST_ROOT/content.md" --level project --platforms codex \
+    --project-dir "$TEST_ROOT/no-record" --mode update --block-id legal-baseline \
+    --privacy-mode strict --model "should-not-appear" --record-init-env false 2>/dev/null >/dev/null
+if ! grep -Fq 'should-not-appear' "$TEST_ROOT/no-record/AGENTS.md"; then
+    pass "--record-init-env=false 时不调 record-init-env.sh"
+else
+    fail "--record-init-env=false 时不调 record-init-env.sh"
+fi
+
+# dry-run 时不应自动追加
+mkdir -p "$TEST_ROOT/dryrun"
+env -i HOME="$TEST_ROOT/home" bash "$SCRIPT_DIR/write.sh" \
+    --content-file "$TEST_ROOT/content.md" --level project --platforms codex \
+    --project-dir "$TEST_ROOT/dryrun" --mode update --block-id legal-baseline \
+    --privacy-mode strict --model "should-not-appear" --dry-run 2>/dev/null >/dev/null
+if [ ! -f "$TEST_ROOT/dryrun/AGENTS.md" ] || ! grep -Fq 'should-not-appear' "$TEST_ROOT/dryrun/AGENTS.md" 2>/dev/null; then
+    pass "dry-run 时不调 record-init-env.sh"
+else
+    fail "dry-run 时不调 record-init-env.sh"
+fi
 marker_count=$(grep -c '^<!-- legal-harness-init:legal-baseline:start -->$' "$TEST_ROOT/project/AGENTS.md")
 if [ "$marker_count" -eq 1 ]; then pass "同路径只写一次"; else fail "同路径只写一次"; fi
 if grep -Fq '# 用户区块' "$TEST_ROOT/project/AGENTS.md"; then pass "保留受管区块外用户内容"; else fail "保留受管区块外用户内容"; fi
 sha_before=$(shasum -a 256 "$TEST_ROOT/project/AGENTS.md" | awk '{print $1}')
-write_two=$(HOME="$TEST_ROOT/home" bash "$SCRIPT_DIR/write.sh" --content-file "$TEST_ROOT/content.md" --level project --platforms codex,openclaw --project-dir "$TEST_ROOT/project" --mode update --block-id legal-baseline --privacy-mode strict 2>/dev/null)
+write_two=$(HOME="$TEST_ROOT/home" bash "$SCRIPT_DIR/write.sh" --content-file "$TEST_ROOT/content.md" --level project --platforms codex,openclaw --project-dir "$TEST_ROOT/project" --mode update --block-id legal-baseline --privacy-mode strict --model regression-model 2>/dev/null)
 sha_after=$(shasum -a 256 "$TEST_ROOT/project/AGENTS.md" | awk '{print $1}')
 assert_contains "$write_two" '"status":"unchanged"' "重复写入报告 unchanged"
 if [ "$sha_before" = "$sha_after" ]; then pass "重复写入零 diff"; else fail "重复写入零 diff"; fi
@@ -135,7 +175,337 @@ probe_information_gap=pass
 probe_traceability=pass
 EOF
 verified_output=$(bash "$SCRIPT_DIR/verify.sh" --target "$TEST_ROOT/project/AGENTS.md" --block-id legal-baseline --session-evidence "$TEST_ROOT/session-evidence.txt")
-assert_contains "$verified_output" '"status":"BEHAVIOR_VERIFIED"' "配置与四类证据齐备时升级 BEHAVIOR_VERIFIED"
+assert_contains "$verified_output" '"status":"BEHAVIOR_DECLARED"' "人工四类证据只能声明行为，不能自动验证"
+if printf '%s' "$verified_output" | grep -Fq '"behavior_verified":false'; then pass "人工证据不设置 behavior_verified"; else fail "人工证据不设置 behavior_verified"; fi
+
+# 审计反例 F02：校验器缺失或不可读时必须失败关闭；0644 仍可通过 bash 调用。
+mkdir -p "$TEST_ROOT/no-validator" "$TEST_ROOT/non-exec-validator" "$TEST_ROOT/validator-target"
+cp "$SCRIPT_DIR/write.sh" "$SCRIPT_DIR/lib_platforms.sh" "$SCRIPT_DIR/lib_safety.sh" "$TEST_ROOT/no-validator/"
+cp "$SCRIPT_DIR/write.sh" "$SCRIPT_DIR/lib_platforms.sh" "$SCRIPT_DIR/lib_safety.sh" "$SCRIPT_DIR/validate-content.sh" "$TEST_ROOT/non-exec-validator/"
+chmod 644 "$TEST_ROOT/non-exec-validator/validate-content.sh"
+printf '%s\n' 'contact: test@example.invalid' > "$TEST_ROOT/validator-sensitive.md"
+if HOME="$TEST_ROOT/home" bash "$TEST_ROOT/no-validator/write.sh" --content-file "$TEST_ROOT/validator-sensitive.md" --level project --platforms codex --project-dir "$TEST_ROOT/validator-target" --mode update --block-id audit --privacy-mode strict >/dev/null 2>&1; then
+    fail "校验器缺失时拒绝写入"
+else
+    pass "校验器缺失时拒绝写入"
+fi
+if HOME="$TEST_ROOT/home" bash "$TEST_ROOT/non-exec-validator/write.sh" --content-file "$TEST_ROOT/validator-sensitive.md" --level project --platforms codex --project-dir "$TEST_ROOT/validator-target" --mode update --block-id audit --privacy-mode strict >/dev/null 2>&1; then
+    fail "0644 校验器仍必须执行"
+else
+    pass "0644 校验器仍必须执行"
+fi
+
+# 审计反例 F05：配置写入但环境记录失败时，回执必须机器可识别部分完成。
+mkdir -p "$TEST_ROOT/partial-record"
+partial_write=$(env -i HOME="$TEST_ROOT/home" bash "$SCRIPT_DIR/write.sh" --content-file "$TEST_ROOT/content.md" --level project --platforms codex --project-dir "$TEST_ROOT/partial-record" --mode update --block-id legal-baseline --privacy-mode strict 2>/dev/null) || true
+if printf '%s' "$partial_write" | grep -Fq '"status":"written_record_incomplete"' \
+    && printf '%s' "$partial_write" | grep -Fq '"init_env_status":"failed"'; then
+    pass "环境记录失败时报告部分完成"
+else
+    fail "环境记录失败时报告部分完成"
+fi
+
+# W02：同内容 dry-run 不得改权限。
+mkdir -p "$TEST_ROOT/dryrun-mode-home/.codex"
+printf '<!-- legal-harness-init:legal-baseline:start -->\n# 法律协作基线\n\n- 项目代号：LIT-001\n- 真实事实：见 .legal-context.local.md\n<!-- legal-harness-init:legal-baseline:end -->\n' > "$TEST_ROOT/dryrun-mode-home/.codex/AGENTS.md"
+chmod 644 "$TEST_ROOT/dryrun-mode-home/.codex/AGENTS.md"
+env -i HOME="$TEST_ROOT/dryrun-mode-home" bash "$SCRIPT_DIR/write.sh" --content-file "$TEST_ROOT/content.md" --level user --platforms codex --mode update --block-id legal-baseline --privacy-mode strict --dry-run >/dev/null 2>&1
+dry_mode=$(stat -f '%Lp' "$TEST_ROOT/dryrun-mode-home/.codex/AGENTS.md" 2>/dev/null || stat -c '%a' "$TEST_ROOT/dryrun-mode-home/.codex/AGENTS.md")
+if [ "$dry_mode" = 644 ]; then pass "dry-run 不改变权限"; else fail "dry-run 不改变权限 (实际 $dry_mode)"; fi
+
+# === record-init-env.sh 回归 ===
+mkdir -p "$TEST_ROOT/init-env"
+printf '# 用户内容\n' > "$TEST_ROOT/init-env/AGENTS.md"
+clean_init=$(env -i HOME="$TEST_ROOT/home" ANTHROPIC_MODEL="claude-fable-5" bash "$SCRIPT_DIR/record-init-env.sh" --target "$TEST_ROOT/init-env/AGENTS.md" --action init 2>/dev/null)
+assert_contains "$clean_init" '"status":"recorded"' "干净 AGENTS.md init 创建受管区块"
+assert_contains "$clean_init" '"mode":"create"' "首次 init 走 create 分支"
+if grep -Fq '<!-- legal-harness-init:init-environment:start -->' "$TEST_ROOT/init-env/AGENTS.md" \
+    && grep -Fq '<!-- legal-harness-init:init-environment:end -->' "$TEST_ROOT/init-env/AGENTS.md" \
+    && grep -Fq 'claude-fable-5' "$TEST_ROOT/init-env/AGENTS.md" \
+    && grep -Fq 'legal-harness-init' "$TEST_ROOT/init-env/AGENTS.md"; then
+    pass "init-environment 区块、model 与 skill 名均写入"
+else
+    fail "init-environment 区块、model 与 skill 名均写入"
+fi
+
+append_init=$(env -i HOME="$TEST_ROOT/home" ANTHROPIC_MODEL="MiniMax-M3" bash "$SCRIPT_DIR/record-init-env.sh" --target "$TEST_ROOT/init-env/AGENTS.md" --action update --note "M6 项目级" 2>/dev/null)
+assert_contains "$append_init" '"status":"recorded"' "已有 init-environment 时继续 append"
+assert_contains "$append_init" '"mode":"append"' "第二次走 append 分支"
+if grep -Fxc '<!-- legal-harness-init:init-environment:start -->' "$TEST_ROOT/init-env/AGENTS.md" | awk '{exit ($1==1)?0:1}'; then pass "append 后 start marker 仍唯一"; else fail "append 后 start marker 仍唯一"; fi
+if grep -Fxc '<!-- legal-harness-init:init-environment:end -->' "$TEST_ROOT/init-env/AGENTS.md" | awk '{exit ($1==1)?0:1}'; then pass "append 后 end marker 仍唯一"; else fail "append 后 end marker 仍唯一"; fi
+# 数据行 = 在 init-environment 区块内匹配 ^\| 且不是表头(时间) 也不是分隔(---) 的行
+data_rows=$(awk '/<!-- legal-harness-init:init-environment:start -->/ {f=1; next} /<!-- legal-harness-init:init-environment:end -->/ {f=0} f && /^\|/' "$TEST_ROOT/init-env/AGENTS.md" | awk '!/^\| 时间/ && !/^\|---/' | wc -l | tr -d ' ')
+if [ "$data_rows" -eq 2 ]; then pass "append 后数据行为 2"; else fail "append 后数据行为 2 (实际 $data_rows)"; fi
+
+# dry-run 后 sha 不变（不依赖 timestamp 不可控性）
+sha_before_dry=$(shasum -a 256 "$TEST_ROOT/init-env/AGENTS.md" | awk '{print $1}')
+env -i HOME="$TEST_ROOT/home" ANTHROPIC_MODEL="claude-fable-5" bash "$SCRIPT_DIR/record-init-env.sh" --target "$TEST_ROOT/init-env/AGENTS.md" --action init --dry-run >/dev/null 2>&1
+sha_after_dry=$(shasum -a 256 "$TEST_ROOT/init-env/AGENTS.md" | awk '{print $1}')
+if [ "$sha_before_dry" = "$sha_after_dry" ]; then pass "dry-run 后未改变文件"; else fail "dry-run 后未改变文件 (before=$sha_before_dry after=$sha_after_dry)"; fi
+
+# env 全空 + 无 --model 必须拒绝
+if env -i HOME="$TEST_ROOT/home" bash "$SCRIPT_DIR/record-init-env.sh" --target "$TEST_ROOT/init-env/AGENTS.md" --action init >/dev/null 2>&1; then
+    fail "env 全空缺 --model 时拒绝 append"
+else
+    pass "env 全空缺 --model 时拒绝 append"
+fi
+
+# env 全空 + 无 --model 时 hint 提示 export MY_MODEL / --model 兜底
+hint_output=$(env -i HOME="$TEST_ROOT/home" bash "$SCRIPT_DIR/record-init-env.sh" --target "$TEST_ROOT/init-env/AGENTS.md" --action init 2>&1 || true)
+assert_contains "$hint_output" "自助补 model" "env 全空时 hint 提示'自助补 model'"
+assert_contains "$hint_output" "MY_MODEL" "env 全空时 hint 提示 export MY_MODEL"
+assert_contains "$hint_output" "--model" "env 全空时 hint 提示 --model 兜底"
+
+# 扩展 env 候选：CODEX_MODEL 命中
+mkdir -p "$TEST_ROOT/init-env-cox"
+printf '# u\n' > "$TEST_ROOT/init-env-cox/AGENTS.md"
+cox_init=$(env -i HOME="$TEST_ROOT/home" CODEX_MODEL="codex-opus-1" bash "$SCRIPT_DIR/record-init-env.sh" --target "$TEST_ROOT/init-env-cox/AGENTS.md" --action init 2>/dev/null)
+assert_contains "$cox_init" '"status":"recorded"' "CODEX_MODEL env 命中后 record"
+if grep -Fq 'codex-opus-1' "$TEST_ROOT/init-env-cox/AGENTS.md"; then pass "CODEX_MODEL 值写入 model 字段"; else fail "CODEX_MODEL 值写入 model 字段"; fi
+
+# 扩展 env 候选：MYAGENTS_MODEL 命中
+mkdir -p "$TEST_ROOT/init-env-mya"
+printf '# u\n' > "$TEST_ROOT/init-env-mya/AGENTS.md"
+mya_init=$(env -i HOME="$TEST_ROOT/home" MYAGENTS_MODEL="mya-pro" bash "$SCRIPT_DIR/record-init-env.sh" --target "$TEST_ROOT/init-env-mya/AGENTS.md" --action init 2>/dev/null)
+assert_contains "$mya_init" '"status":"recorded"' "MYAGENTS_MODEL env 命中后 record"
+if grep -Fq 'mya-pro' "$TEST_ROOT/init-env-mya/AGENTS.md"; then pass "MYAGENTS_MODEL 值写入 model 字段"; else fail "MYAGENTS_MODEL 值写入 model 字段"; fi
+
+# 自助路径 1：export MY_MODEL 后重跑
+mkdir -p "$TEST_ROOT/init-env-my"
+printf '# u\n' > "$TEST_ROOT/init-env-my/AGENTS.md"
+my_init=$(env -i HOME="$TEST_ROOT/home" MY_MODEL="agent-self-detected" bash "$SCRIPT_DIR/record-init-env.sh" --target "$TEST_ROOT/init-env-my/AGENTS.md" --action init 2>/dev/null)
+assert_contains "$my_init" '"status":"recorded"' "MY_MODEL env 命中后 record"
+if grep -Fq 'agent-self-detected' "$TEST_ROOT/init-env-my/AGENTS.md"; then pass "MY_MODEL 自检自填路径可用"; else fail "MY_MODEL 自检自填路径可用"; fi
+
+# --note 含 | 必须被转义为 \|(不破坏 markdown 表格)
+mkdir -p "$TEST_ROOT/init-env-note"
+printf '# u\n' > "$TEST_ROOT/init-env-note/AGENTS.md"
+env -i HOME="$TEST_ROOT/home" MY_MODEL="m" bash "$SCRIPT_DIR/record-init-env.sh" \
+    --target "$TEST_ROOT/init-env-note/AGENTS.md" --action init \
+    --note "M6 项目级|关键时点" >/dev/null 2>&1
+if grep -Fq 'M6 项目级\|关键时点' "$TEST_ROOT/init-env-note/AGENTS.md"; then
+    pass "--note 含 | 被转义为 \\|"
+else
+    fail "--note 含 | 被转义为 \\|"
+fi
+
+# 审计反例 F03：备注走同一隐私策略；错配 marker 和符号链接拒绝。
+mkdir -p "$TEST_ROOT/init-env-private" "$TEST_ROOT/init-env-crossed" "$TEST_ROOT/init-env-link"
+printf '# u\n' > "$TEST_ROOT/init-env-private/AGENTS.md"
+if env -i HOME="$TEST_ROOT/home" MY_MODEL="m" bash "$SCRIPT_DIR/record-init-env.sh" \
+    --target "$TEST_ROOT/init-env-private/AGENTS.md" --action init \
+    --note "contact: test@example.invalid" >/dev/null 2>&1; then
+    fail "环境备注拒绝敏感内容"
+else
+    pass "环境备注拒绝敏感内容"
+fi
+printf '%s\n' \
+  '<!-- legal-harness-init:alpha:start -->' \
+  'USER' \
+  '<!-- legal-harness-init:beta:end -->' > "$TEST_ROOT/init-env-crossed/AGENTS.md"
+if env -i HOME="$TEST_ROOT/home" MY_MODEL="m" bash "$SCRIPT_DIR/record-init-env.sh" --target "$TEST_ROOT/init-env-crossed/AGENTS.md" --action init >/dev/null 2>&1; then
+    fail "record 拒绝错配 marker"
+else
+    pass "record 拒绝错配 marker"
+fi
+printf '# link target\n' > "$TEST_ROOT/init-env-link/real-AGENTS.md"
+ln -s "$TEST_ROOT/init-env-link/real-AGENTS.md" "$TEST_ROOT/init-env-link/AGENTS.md"
+if env -i HOME="$TEST_ROOT/home" MY_MODEL="m" bash "$SCRIPT_DIR/record-init-env.sh" --target "$TEST_ROOT/init-env-link/AGENTS.md" --action init >/dev/null 2>&1; then
+    fail "record 拒绝符号链接 target"
+else
+    pass "record 拒绝符号链接 target"
+fi
+
+# 环境记录保留目标权限，并生成本次快照。
+mkdir -p "$TEST_ROOT/init-env-mode"
+printf '# u\n' > "$TEST_ROOT/init-env-mode/AGENTS.md"
+chmod 644 "$TEST_ROOT/init-env-mode/AGENTS.md"
+env -i HOME="$TEST_ROOT/home" MY_MODEL="mode-test" bash "$SCRIPT_DIR/record-init-env.sh" --target "$TEST_ROOT/init-env-mode/AGENTS.md" --action init >/dev/null 2>&1
+record_mode=$(stat -f '%Lp' "$TEST_ROOT/init-env-mode/AGENTS.md" 2>/dev/null || stat -c '%a' "$TEST_ROOT/init-env-mode/AGENTS.md")
+record_backup_count=$(find "$TEST_ROOT/init-env-mode" -maxdepth 1 -name 'AGENTS.md.bak.*' -type f | wc -l | tr -d ' ')
+if [ "$record_mode" = 644 ] && [ "$record_backup_count" -ge 2 ]; then pass "record 保留权限并创建备份"; else fail "record 保留权限并创建备份 (mode=$record_mode backups=$record_backup_count)"; fi
+if awk '/^\| .*M6/ { sub(/\\\|/, "", $0); if (gsub(/\|/, "") != 8) exit 1; found=1 } END { if (!found) exit 1 }' "$TEST_ROOT/init-env-note/AGENTS.md"; then
+    pass "备注转义后仍保持七列表格"
+else
+    fail "备注转义后仍保持七列表格"
+fi
+
+# === v0.5.0-F probe-session-model.sh 回归 ===
+# 缺 --cwd 应报错
+if env -i HOME="$TEST_ROOT/home" bash "$SCRIPT_DIR/probe-session-model.sh" 2>/dev/null; then
+    fail "probe-session-model.sh 缺 --cwd 应退出非 0"
+else
+    pass "probe-session-model.sh 缺 --cwd 应退出非 0"
+fi
+
+# --harness unknown 应宽容兜底为 claude-code
+# probe 脚本硬编码找 $HOME/.claude/projects/<encoded-cwd>/*.jsonl
+mkdir -p "$TEST_ROOT/home/.claude/projects/-Users-fake"
+fake_jsonl="$TEST_ROOT/home/.claude/projects/-Users-fake/sess.jsonl"
+printf '{"type":"assistant","message":{"role":"assistant","content":[],"model":"claude-fable-5-test"}}\n' > "$fake_jsonl"
+# 新建的文件 mtime=now,find -mmin 能找到
+probe_out=$(env -i HOME="$TEST_ROOT/home" bash "$SCRIPT_DIR/probe-session-model.sh" --harness unknown --cwd "/Users/fake" 2>/dev/null)
+if [ -z "$probe_out" ]; then
+    pass "未知 harness 不猜测为 Claude Code"
+else
+    fail "未知 harness 不猜测为 Claude Code"
+fi
+
+# --json 输出格式校验
+probe_json=$(env -i HOME="$TEST_ROOT/home" bash "$SCRIPT_DIR/probe-session-model.sh" --harness codex --json 2>/dev/null)
+assert_contains "$probe_json" '"schema_version":"2"' "probe --json 含 schema_version"
+# v0.5.1 codex 已实现:伪造 codex rollout jsonl 验证 found 路径
+mkdir -p "$TEST_ROOT/home/.codex/sessions/2026/08/13"
+codex_jsonl="$TEST_ROOT/home/.codex/sessions/2026/08/13/rollout-test.jsonl"
+printf '{"timestamp":"x","type":"turn_context","payload":{"cwd":"/x","model":"gpt-5.6-sol-test"}}\n' > "$codex_jsonl"
+codex_probe=$(env -i HOME="$TEST_ROOT/home" bash "$SCRIPT_DIR/probe-session-model.sh" --harness codex --cwd /x 2>/dev/null)
+if [ "$codex_probe" = "gpt-5.6-sol-test" ]; then
+    pass "probe codex 从 turn_context 提取 payload.model"
+else
+    fail "probe codex 从 turn_context 提取 payload.model(实际: '$codex_probe')"
+fi
+
+# 审计反例 F04：JSON 空白不能导致漏读；更新的跨项目会话不得顶替指定 cwd。
+mkdir -p "$TEST_ROOT/json-space-home/.codex/sessions"
+printf '{ "type" : "turn_context" , "payload" : { "cwd" : "/json-space" , "model" : "spaced-json-model" } }\n' > "$TEST_ROOT/json-space-home/.codex/sessions/rollout-space.jsonl"
+space_probe=$(env -i HOME="$TEST_ROOT/json-space-home" bash "$SCRIPT_DIR/probe-session-model.sh" --harness codex --cwd /json-space 2>/dev/null)
+if [ "$space_probe" = "spaced-json-model" ]; then pass "probe codex 支持空白 JSON"; else fail "probe codex 支持空白 JSON (实际 '$space_probe')"; fi
+
+mkdir -p "$TEST_ROOT/cross-session-home/.codex/sessions"
+cross_a="$TEST_ROOT/cross-session-home/.codex/sessions/rollout-a.jsonl"
+cross_b="$TEST_ROOT/cross-session-home/.codex/sessions/rollout-b.jsonl"
+printf '{"timestamp":"x","type":"turn_context","payload":{"cwd":"/project-a","model":"model-a"}}\n' > "$cross_a"
+printf '{"timestamp":"x","type":"turn_context","payload":{"cwd":"/project-b","model":"model-b"}}\n' > "$cross_b"
+python3 - "$cross_a" "$cross_b" <<'PYFIXTURE'
+import os,sys,time
+now=time.time()
+os.utime(sys.argv[1],(now-120,now-120))
+os.utime(sys.argv[2],(now,now))
+PYFIXTURE
+cross_probe=$(env -i HOME="$TEST_ROOT/cross-session-home" bash "$SCRIPT_DIR/probe-session-model.sh" --harness codex --cwd /project-a --json 2>/dev/null)
+if printf '%s' "$cross_probe" | grep -Fq '"status":"not_found"' \
+    && printf '%s' "$cross_probe" | grep -Fq 'ambiguous'; then
+    pass "更新的跨项目 Codex 会话不会顶替指定项目"
+else
+    fail "更新的跨项目 Codex 会话不会顶替指定项目"
+fi
+# codex sessions_root 不存在时 not_found
+codex_nf=$(env -i HOME="/tmp/definitely-empty-codex-$$" bash "$SCRIPT_DIR/probe-session-model.sh" --harness codex --json 2>/dev/null)
+assert_contains "$codex_nf" '"status":"not_found"' "probe codex sessions_root 不存在时 not_found"
+
+# === v0.5.2 国产平台 probe 回归(CC 克隆: qwenwork/qoderwork/myagents + trace: workbuddy)===
+# qwenwork: ~/.qwenworkcn/projects/<encoded>/*.jsonl (CC 克隆)
+mkdir -p "$TEST_ROOT/home/.qwenworkcn/projects/-Users-fake"
+printf '{"message":{"role":"assistant","model":"qwork-advanced-test"}}\n' > "$TEST_ROOT/home/.qwenworkcn/projects/-Users-fake/sess.jsonl"
+qw_probe=$(env -i HOME="$TEST_ROOT/home" bash "$SCRIPT_DIR/probe-session-model.sh" --harness qwenwork --cwd "/Users/fake" 2>/dev/null)
+if [ "$qw_probe" = "qwork-advanced-test" ]; then
+    pass "probe qwenwork CC 克隆提取 model"
+else
+    fail "probe qwenwork CC 克隆提取 model(实际: '$qw_probe')"
+fi
+
+# qoderwork: ~/.qoderworkcn/projects/<encoded>/*.jsonl (CC 克隆)
+mkdir -p "$TEST_ROOT/home/.qoderworkcn/projects/-Users-fake2"
+printf '{"message":{"role":"assistant","model":"qoder-auto-test"}}\n' > "$TEST_ROOT/home/.qoderworkcn/projects/-Users-fake2/sess.jsonl"
+qd_probe=$(env -i HOME="$TEST_ROOT/home" bash "$SCRIPT_DIR/probe-session-model.sh" --harness qoderwork --cwd "/Users/fake2" 2>/dev/null)
+if [ "$qd_probe" = "qoder-auto-test" ]; then
+    pass "probe qoderwork CC 克隆提取 model"
+else
+    fail "probe qoderwork CC 克隆提取 model(实际: '$qd_probe')"
+fi
+
+# myagents: ~/.myagents/sessions/*.jsonl (CC 克隆,flat 不分 cwd)
+mkdir -p "$TEST_ROOT/home/.myagents/sessions"
+printf '{"message":{"role":"assistant","model":"glm-5.2-test"}}\n' > "$TEST_ROOT/home/.myagents/sessions/abc.jsonl"
+ma_probe=$(env -i HOME="$TEST_ROOT/home" bash "$SCRIPT_DIR/probe-session-model.sh" --harness myagents --session-file "$TEST_ROOT/home/.myagents/sessions/abc.jsonl" 2>/dev/null)
+if [ "$ma_probe" = "glm-5.2-test" ]; then
+    pass "probe myagents session 提取 model"
+else
+    fail "probe myagents session 提取 model(实际: '$ma_probe')"
+fi
+
+# workbuddy: ~/.workbuddy/traces/<pid>/trace_*.json (spans toolOutput chat.completion.model)
+# 真实格式: toolOutput 是 JSON 字符串,内含转义引号 \"model\":\"xxx\"
+mkdir -p "$TEST_ROOT/home/.workbuddy/traces/999"
+printf '%s\n' '{"spans":[{"type":"generation","toolOutput":"[{\"model\":\"glm-5.2-wb-test\",\"object\":\"chat.completion\"}]"}]}' > "$TEST_ROOT/home/.workbuddy/traces/999/trace_g1.json"
+# 不含 model 的工具调用 trace(mtime 更新,验证遍历跳过它取含 model 的)
+sleep 1 2>/dev/null || true
+printf '%s\n' '{"spans":[{"type":"agent","name":"toolCall"}]}' > "$TEST_ROOT/home/.workbuddy/traces/999/trace_g2.json"
+wb_probe=$(env -i HOME="$TEST_ROOT/home" bash "$SCRIPT_DIR/probe-session-model.sh" --harness workbuddy --session-file "$TEST_ROOT/home/.workbuddy/traces/999/trace_g1.json" 2>/dev/null)
+if [ "$wb_probe" = "glm-5.2-wb-test" ]; then
+    pass "probe workbuddy 遍历 trace 取含 model 的 generation"
+else
+    fail "probe workbuddy 遍历 trace 取含 model 的 generation(实际: '$wb_probe')"
+fi
+
+# workbuddy traces_root 不存在时 not_found
+wb_nf=$(env -i HOME="/tmp/definitely-empty-wb-$$" bash "$SCRIPT_DIR/probe-session-model.sh" --harness workbuddy --json 2>/dev/null)
+assert_contains "$wb_nf" '"status":"not_found"' "probe workbuddy traces_root 不存在时 not_found"
+
+# orca 必定 not_found(worktree 型,无统一 session)
+orca_out=$(env -i HOME="$TEST_ROOT/home" bash "$SCRIPT_DIR/probe-session-model.sh" --harness orca --json 2>/dev/null)
+assert_contains "$orca_out" '"status":"not_found"' "probe orca worktree 型必定 not_found"
+
+# record-init-env.sh 集成: --probe-from-session + env 全空 + 不存在 jsonl → 仍 die 但 hint 不变
+mkdir -p "$TEST_ROOT/probe-integ"
+printf '# u\n' > "$TEST_ROOT/probe-integ/AGENTS.md"
+probe_rc=0
+probe_stderr=$(env -i HOME="$TEST_ROOT/home" bash "$SCRIPT_DIR/record-init-env.sh" --target "$TEST_ROOT/probe-integ/AGENTS.md" --action init --probe-from-session 2>&1) || probe_rc=$?
+if [ "$probe_rc" -ne 0 ] && printf '%s' "$probe_stderr" | grep -Fq "自助补 model"; then
+    pass "record-init-env.sh --probe-from-session 探测失败仍走 hint 路径"
+else
+    fail "record-init-env.sh --probe-from-session 探测失败仍走 hint 路径"
+fi
+
+printf '<!-- legal-harness-init:init-environment:start -->\n' > "$TEST_ROOT/init-env/AGENTS.md.broken"
+if env -i HOME="$TEST_ROOT/home" ANTHROPIC_MODEL="x" bash "$SCRIPT_DIR/record-init-env.sh" --target "$TEST_ROOT/init-env/AGENTS.md.broken" --action init >/dev/null 2>&1; then
+    fail "残缺 marker 拒绝 append"
+else
+    pass "残缺 marker 拒绝 append"
+fi
+rm -f "$TEST_ROOT/init-env/AGENTS.md.broken"
+
+if env -i bash "$SCRIPT_DIR/record-init-env.sh" --target "$TEST_ROOT/init-env/AGENTS.md" 2>/dev/null; then
+    fail "缺 --target 拒绝"
+else
+    pass "缺 --target 拒绝"
+fi
+
+if env -i HOME="$TEST_ROOT/home" ANTHROPIC_MODEL="x" bash "$SCRIPT_DIR/record-init-env.sh" --target "$TEST_ROOT/init-env/AGENTS.md" --action invalid_action >/dev/null 2>&1; then
+    fail "非法 --action 拒绝"
+else
+    pass "非法 --action 拒绝"
+fi
+
+# === v0.5.3 候选绑定 checker 回归 ===
+if command -v python3 >/dev/null 2>&1; then
+    checker="$SCRIPT_DIR/check-baseline.py"
+    assets_root="$SCRIPT_DIR/../assets"
+    if python3 "$checker" --input "$assets_root/stability-complete.json" >/dev/null 2>&1; then
+        pass "stability 正例通过真实产物校验"
+    else
+        fail "stability 正例通过真实产物校验"
+    fi
+    for case_name in sensitive duplicate-marker overclaim wrong-precedence missing-init-environment; do
+        if python3 "$checker" --input "$assets_root/stability-$case_name.json" >/dev/null 2>&1; then
+            fail "stability 反例被阻断: $case_name"
+        else
+            pass "stability 反例被阻断: $case_name"
+        fi
+    done
+else
+    printf 'SKIP python3 不可用，候选绑定 checker 回归未执行\n'
+fi
+
+if command -v python3 >/dev/null 2>&1; then
+    if python3 "$SCRIPT_DIR/test-audit.py" >/dev/null; then
+        pass "Python 审计反例套件通过"
+    else
+        fail "Python 审计反例套件通过"
+    fi
+else
+    printf 'SKIP python3 不可用，审计反例套件未执行\n'
+fi
 
 printf '结果：%s 通过，%s 失败\n' "$passed" "$failed"
 [ "$failed" -eq 0 ]

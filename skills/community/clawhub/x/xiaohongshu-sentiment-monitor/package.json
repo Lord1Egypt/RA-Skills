@@ -1,18 +1,17 @@
 {
   "name": "xiaohongshu-sentiment-monitor",
-  "version": "1.1.4",
-  "description": "输入关键词、小红书账号主页链接，自动拉取垂类笔记、账号笔记并解析下载链接，支持一键批量下载到本地。",
+  "version": "1.2.2",
+  "description": "输入关键词、小红书账号主页链接，自动拉取垂类笔记、账号笔记并解析下载链接，支持一键批量下载到本地。支持四大能力：(1) 关键词搜索笔记/视频，可按点赞数、评论数、收藏数、发布时间、内容类型筛选排序；(2) 博主作品抓取，按主页链接获取博主的互动数据（粉丝量、点赞量或收藏量等）或公开作品列表；(3) 笔记（视频）详情，获取详情数据及互动数据等，分析笔记的市场表现；(4) 笔记评论分析，按笔记链接获取评论内容与互动数据。",
   "keywords": [
     "小红书",
+    "xhs",
+    "rednote",
+    "小红书搜索",
+    "小红书评论",
     "爆款笔记",
-    "数据分析",
-    "市场调研",
-    "数据挖掘",
-    "趋势监控",
     "竞品分析",
-    "KOL营销",
-    "流量增长",
-    "用户画像"
+    "KOL",
+    "舆情分析"
   ],
   "homepage": "https://github.com/um-why/xiaohongshu-openclaw-skill#readme",
   "bugs": {
@@ -25,9 +24,17 @@
   "license": "MIT",
   "author": "um-why",
   "engines": {
-    "node": ">=16"
+    "node": ">=16.14.0"
   },
   "main": "src/xiaohongshu/search-cli.js",
+  "files": [
+    "src",
+    "assets",
+    "references",
+    "SKILL.md",
+    "readme.md",
+    "LICENSE"
+  ],
   "scripts": {
     "search": "node src/xiaohongshu/search-cli.js",
     "detail": "node src/xiaohongshu/detail-cli.js",

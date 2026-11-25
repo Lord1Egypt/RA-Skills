@@ -4,6 +4,7 @@
 const constants = require("../config/constants");
 const { SkillError } = require("../utils/errors");
 const { requestApi, pollTaskResult } = require("../utils/request");
+const { pickCost, pickTaskId } = require("../utils/cost");
 const { formatUnixSeconds } = require("../utils/time");
 
 /**
@@ -16,9 +17,10 @@ function processArticleResults(data) {
   }
 
   return data.map((item) => {
+    if (!item || typeof item !== "object") return item;
     const processedItem = { ...item };
     if (
-      typeof item?.pubtime === "number" &&
+      typeof item.pubtime === "number" &&
       item.pubtime &&
       !item.pubtime_str
     ) {
@@ -30,6 +32,7 @@ function processArticleResults(data) {
 
 /**
  * 创建微信文章搜索任务
+ * @returns {Promise<string|undefined>} Create 成功时的任务 id（uuid）；缺失则查询仅带业务字段
  */
 async function createSearchTask(token, keyword, sort, publish_time, limit) {
   const params = { _: Date.now() };
@@ -41,7 +44,7 @@ async function createSearchTask(token, keyword, sort, publish_time, limit) {
     limit,
   };
 
-  return await requestApi(
+  const response = await requestApi(
     "POST",
     "/api/wechat/article-search/keyword",
     params,
@@ -50,18 +53,29 @@ async function createSearchTask(token, keyword, sort, publish_time, limit) {
     constants.CREATE_MAX_ATTEMPTS,
     "创建任务",
   );
+  return pickTaskId(response);
 }
 
 /**
  * 获取微信文章搜索任务结果
+ * @param {string} [taskId] Create 返回的任务 id；有则查询只传 id（不带业务字段）
  */
-async function getSearchTask(token, keyword, sort, publish_time, limit) {
-  const params = {
-    keyword: keyword,
-    sort: sort,
-    publish_time: publish_time,
-    limit: limit,
-  };
+async function getSearchTask(
+  token,
+  keyword,
+  sort,
+  publish_time,
+  limit,
+  taskId,
+) {
+  const params = taskId
+    ? { id: taskId }
+    : {
+        keyword: keyword,
+        sort: sort,
+        publish_time: publish_time,
+        limit: limit,
+      };
 
   const response = await pollTaskResult(
     "/api/wechat/article-search/info",
@@ -70,11 +84,12 @@ async function getSearchTask(token, keyword, sort, publish_time, limit) {
     "查询任务",
   );
 
+  const cost = pickCost(response);
   if (response.data) {
-    return processArticleResults(response.data);
+    return { results: processArticleResults(response.data), cost };
   }
 
-  return [];
+  return { results: [], cost };
 }
 
 module.exports = {

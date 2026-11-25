@@ -16,33 +16,16 @@ const {
     resolveDirectApiKey,
 } = require('./shareone_client');
 
-function usage() {
-    console.error('Usage: node refresh_share.js <share_link_or_ref> [--api-key <key>]');
-    console.error('  仅对绑定了远程源 URL 的分享有效；非 remote-bound 会返回 NOT_REMOTE_BOUND。');
-}
-
-
-const args = process.argv.slice(2);
-let ref = null;
-let apiKey = null;
-
-for (let i = 0; i < args.length; i++) {
-    const arg = args[i];
-    if (arg === '--api-key') {
-        apiKey = args[++i];
-    } else if (!arg.startsWith('--') && !ref) {
-        ref = arg;
-    } else {
-        emitError(`ERROR:UNKNOWN_ARGUMENT:${arg}`);
-    }
-}
-
-if (!ref) {
-    usage();
-    emitError('BAD_ARGS', 'Required arguments are missing.');
-}
+const {commandLine} = require('./cli_args');
+const {values, positional: ref} = commandLine({
+    summary: 'refetch an owner-managed remote-bound share now. A pinned GitLab/GitHub commit remains pinned; use upload_page to select another source commit.',
+    result: 'JSON with remote_fetch_status, accepted revision/digest and source error. error/busy exits nonzero; updated/not_modified confirms the fetch. Static shares return NOT_REMOTE_BOUND.',
+    positional: 'share_link_or_ref', options: {'--api-key': true},
+});
+const apiKey = values['api-key'];
 
 (async () => {
+    const shareRef = encodeURIComponent(extractShareRef(ref));
     const credentialMode = await detectCredentialMode();
     if (credentialMode.mode === CREDENTIAL_MODE_SUDOWORK_PROXY && apiKey) {
         emitError('ERROR:SUDOWORK_MANAGED_KEY', ['Sudowork 模式下不要传 --api-key；请通过本 skill 的 save_api_key.js 或 create_guest_key.js 设置 ShareOne API Key。'].join('\n'));
@@ -51,12 +34,15 @@ if (!ref) {
         emitError('ERROR:KEY_NOT_FOUND');
     }
 
-    const shareRef = encodeURIComponent(extractShareRef(ref));
     const result = await requestShareOneJson(`/api/v1/pages/${shareRef}/refresh`, {
         method: 'POST',
         apiKey,
     });
     process.stdout.write(JSON.stringify(result, null, 2) + '\n');
+    if (result.remote_fetch_status === 'error' || result.remote_fetch_status === 'busy' || result.remote_last_error) {
+        emitError(result.remote_error_code || (result.remote_fetch_status === 'busy' ? 'REMOTE_SOURCE_BUSY' : 'REMOTE_SOURCE_UNAVAILABLE'),
+            result.remote_last_error || 'The source was not refreshed; the accepted cache remains unchanged.');
+    }
     console.error(`SHARE_REFRESHED:${extractShareRef(ref)}`);
 })().catch((error) => {
     process.exit(printShareOneScriptError(error));

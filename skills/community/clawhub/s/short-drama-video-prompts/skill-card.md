@@ -1,6 +1,6 @@
 ## Description:
 
-把短剧分镜和首帧写成可直接复制的视频提示词 Markdown，也可按用户要求写成片配乐或主题曲提示词。
+把短剧分镜和首帧写成可直接复制的视频提示词，也可独立起草视频动作或成片配乐/主题曲提示词。用于文生/图生视频动作、人物表演、运镜、口型、环境动态、镜头时长与配乐提示词编写；不调生成接口、不写歌词、不改分镜起止状态。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Short-drama creators use this skill to turn finalized storyboards and opening frames into copy-ready, shot-by-shot video prompts covering action, performance, camera movement, sound, and continuity. It can also draft soundtrack or theme-music prompts when requested.
+短剧编剧、分镜师和视频制作人员可用此技能，把已定稿的分镜和首帧整理成可复制的视频生成提示词，也可起草独立的视频动作或成片配乐提示词。
 
 ### Deployment Geography for Use:
 
@@ -22,44 +22,50 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Model-specific workflows may impose prompt-language requirements that do not fit every project.
+Risk: The prompt guidance includes English or Chinese language requirements that may not fit every user's workflow.
 
-Mitigation: Check the selected model and project language settings before using the generated prompts.
+Mitigation: Check the language requirements against the project's intended prompt language before adopting the guidance.
 
-Risk: Prompts or reference media copied into external video services may expose sensitive project material.
+Risk: Security scan coverage was partial because a local path-like reference in SKILL.md could not be matched to a bundled artifact.
 
-Mitigation: Review the service's privacy terms and avoid submitting confidential material unless its use is permitted.
+Mitigation: Review the referenced local material and complete coverage checks for the full release package before relying on the scan assessment.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/worldwonderer/skills/short-drama-video-prompts)
-- [Video prompt writing guide](artifact/references/video-prompt-guide.md)
-- [Model and delivery profiles](artifact/references/model-and-delivery-profiles.md)
-- [Performance and action timing](artifact/references/performance-action-timing.md)
-- [Camera, audio, and continuity](artifact/references/camera-audio-continuity.md)
-- [Stage contract](artifact/references/stage-contract.md)
-- [Seedance 2.0 guide](artifact/references/seedance-2.0.md)
-- [Seedance 2.5 guide](artifact/references/seedance-2.5.md)
-- [MiniMax H3 guide](artifact/references/minimax-h3.md)
-- [Wan 3.0 guide](artifact/references/wan-3.0.md)
-- [Volcengine video generation API](https://docs.volcengine.com/docs/82379/1520757)
-- [Seedance prompt guide](https://docs.volcengine.com/docs/82379/2607689)
-- [Wan 3.0 video generation API](https://help.aliyun.com/zh/model-studio/wan3-video-generation-api-reference)
-- [MiniMax video generation API](https://platform.minimax.io/docs/api-reference/video-generation-v2-create)
+- [视频提示词格式规范](references/format-spec.md)
+- [阶段职责与规则](references/stage-contract.md)
+- [视频提示词写作指南](references/video-prompt-guide.md)
+- [目标模型与交付配置指南](references/model-and-delivery-profiles.md)
+- [表演弧线与动作计时](references/performance-action-timing.md)
+- [运镜、现场声与跨镜连戏](references/camera-audio-continuity.md)
+- [Seedance 2.0 提示词写法](references/seedance-2.0.md)
+- [Seedance 2.5 提示词写法](references/seedance-2.5.md)
+- [Wan 3.0 提示词写法](references/wan-3.0.md)
+- [MiniMax H3 提示词写法](references/minimax-h3.md)
+- [Seedance 视频生成 API](https://docs.volcengine.com/docs/82379/1520757)
+- [Seedance 提示词指南](https://docs.volcengine.com/docs/82379/2607689)
+- [Wan 3.0 视频生成 API](https://help.aliyun.com/zh/model-studio/wan3-video-generation-api-reference)
+- [Wan 3.0 视频生成指南](https://platform.qianwenai.com/docs/developer-guides/video-generation/wan30-video)
+- [MiniMax H3 Base 提示词指南](https://github.com/MiniMax-AI/MiniMax-H3/blob/main/skills/h3-prompt-writing/references/base-en.txt)
+- [MiniMax H3 Full-reference 指南](https://github.com/MiniMax-AI/MiniMax-H3/blob/main/skills/h3-prompt-writing/references/ref-en.txt)
+- [MiniMax 视频生成 API](https://platform.minimax.io/docs/api-reference/video-generation-v2-create)
+- [MiniMax H3 Context-IR API](https://platform.minimax.io/docs/api-reference/video-generation-v2-h3-context-ir)
+- [Skill 发布页](https://clawhub.ai/worldwonderer/skills/short-drama-video-prompts)
+- [Publisher profile](https://clawhub.ai/user/worldwonderer)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Markdown with copy-ready video prompts and optional soundtrack or theme-music prompts]
+**Output Format:** [Standalone video or music prompts, or Markdown project files with structured MOTION, GROUP, and MUSIC entries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Prompts preserve finalized storyboard timing and start/end states; the skill does not call generation interfaces or invent lyrics.]
+**Other Properties Related to Output:** [Prompt drafting only; it does not call generation services, write lyrics, or change approved shot start and end states.]
 
 ## Skill Version(s):
 
-1.0.21 (source: server-resolved release metadata)
+1.0.25 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

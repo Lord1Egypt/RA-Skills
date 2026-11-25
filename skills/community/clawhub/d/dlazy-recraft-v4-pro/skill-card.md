@@ -1,6 +1,6 @@
 ## Description:
 
-Generates 4MP high-resolution raster images suitable for print-ready assets and large-scale use.
+Generates 4MP high-resolution raster images with Recraft V4 Pro for print-ready and large-format assets.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and creative teams use this skill to generate 4MP Recraft V4 Pro raster images from prompts, with an optional aspect ratio and local save path.
+Developers and creative professionals use the skill to create high-resolution raster image assets from text prompts for print and large-format projects.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The inspected content describes CLI authentication without demonstrating how it is tied to image generation; the CLI package and linked API behavior were not inspected.
+Risk: Prompts and local media paths provided to the CLI are sent to dLazy's hosted service, and generated assets are hosted there.
 
-Mitigation: Review the CLI package and linked API behavior before authenticating, and use the documented key rotation or revocation controls if needed.
+Mitigation: Avoid submitting sensitive prompts or files unless dLazy's service terms and data handling are acceptable.
+
+Risk: Security review confidence is medium because scanner coverage was partial and some local references were unresolved.
+
+Mitigation: Review the CLI and service behavior before configuring credentials or relying on unresolved references.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-recraft-v4-pro)
-- [dLazy CLI project (listed as the skill homepage)](https://github.com/dlazy-ai/cli)
-- [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
-- [dLazy service](https://dlazy.com)
+- [dLazy homepage](https://dlazy.com)
+- [@dlazy/cli package on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [CLI project link listed in skill metadata](https://github.com/dlazy-ai/cli)
+- [dLazy API key dashboard](https://dlazy.com/dashboard/organization/api-key)
 
 ## Skill Output:
 
-**Output Type(s):** [Raster images, JSON]
+**Output Type(s):** [JSON, Image files]
 
-**Output Format:** [JSON response with generated image URLs or asynchronous task status; optionally saved image files]
+**Output Format:** [JSON generation response with hosted image URLs; optional saved raster image file.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Prompt-based generation with optional aspect ratio, asynchronous execution, and local file saving.]
+**Other Properties Related to Output:** [The response may include an asynchronous task ID; generated image assets are hosted by dLazy and can optionally be saved locally.]
 
 ## Skill Version(s):
 
-1.3.41 (source: server-resolved release metadata)
+1.3.44 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

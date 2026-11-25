@@ -1,12 +1,18 @@
 #!/usr/bin/env node
 
-const constants = require("../config/constants");
 const log = require("../utils/log");
 const post = require("../api/post");
 const token = require("../utils/token");
 const utils = require("../utils/utils");
 const validator = require("../validate/post");
-const { parseArgs, buildHelp } = require("../utils/args");
+const { parseArgs, buildHelp, parseDecimalInteger } = require("../utils/args");
+const {
+  emitError,
+  emitEmpty,
+  buildSuccessEnvelope,
+  finishSuccess,
+  emitUncaught,
+} = require("../utils/output");
 
 const SCHEMA = {
   flags: {
@@ -22,7 +28,7 @@ const SCHEMA = {
       key: "limit",
       type: "number",
       default: 10,
-      transform: (v) => Number(v),
+      transform: parseDecimalInteger,
       desc: "获取的作品数量, 0-10000",
     },
   },
@@ -34,27 +40,11 @@ function printHelp() {
     buildHelp(SCHEMA, "node src/douyin/post-cli.js <url> [选项]", [
       "node src/douyin/post-cli.js https://www.douyin.com/user/MS4wLjABxxx",
       'node src/douyin/post-cli.js --url "https://v.douyin.com/xxx" --limit 20',
-      "node src/douyin/post-cli.js -u MS4wLjABxxx -l 100",
-    ]),
+      "node src/douyin/post-cli.js -u MS4wLjABxxx -l 30",
+    ]) +
+      "\n\n注意:\n" +
+      "  - 数量 0-10000；包月 Token 实际最多 30（0 = 只要博主互动数据），超限返回 PLAN_LIMIT\n",
   );
-}
-
-function emitError(command, code, message, exitCode, startTime, request) {
-  const payload = {
-    status: "error",
-    error_code: code,
-    message: message,
-    timestamp: new Date().toLocaleString(),
-    request: request || { command },
-    metadata: {
-      skill_version: constants.VERSION,
-      runtime_version: process.versions.node,
-      execution_time: Date.now() - startTime,
-    },
-    results: null,
-  };
-  process.stdout.write(JSON.stringify(payload, null, 2) + "\n");
-  process.exitCode = exitCode;
 }
 
 function isEmptyResult(t) {
@@ -76,7 +66,7 @@ async function main() {
   const args = process.argv.slice(2);
   if (args.length === 0) {
     printHelp();
-    process.exitCode = 2;
+    emitError("post", "INVALID_ARGS", "缺少命令参数", 2, startTime);
     return;
   }
 
@@ -105,13 +95,13 @@ async function main() {
 
   utils.printBanner();
   utils.printInfo(`原始URL: ${urlRaw}`);
-  url = validator.douyinUserUrl(url);
+  url = validator.parseDouyinUser(url);
   if (!url) {
     utils.printError("无法识别抖音博主主页链接或 sec_uid");
     emitError(
       "post",
       "INVALID_URL",
-      "无法识别博主主页链接或 sec_uid。支持: https://www.douyin.com/user/xxx、https://v.douyin.com/xxx, 或直接输入 sec_uid (MS4wLjAB 开头)",
+      "无法识别博主主页链接或 sec_uid。支持: https://www.douyin.com/user/xxx、https://v.douyin.com/xxx, 或直接输入 sec_uid (MS4wLjA 开头)",
       1,
       startTime,
       { command: "post", url_raw: urlRaw },
@@ -119,17 +109,28 @@ async function main() {
     return;
   }
   utils.printInfo(`规范后的URL: ${url}`);
-  limit = validator.optionFormat(limit);
+  try {
+    limit = validator.assertPostLimit(limit);
+  } catch (error) {
+    utils.printError(error.message);
+    emitError("post", "INVALID_ARGS", error.message, 2, startTime, {
+      command: "post",
+      url_raw: urlRaw,
+      url: url,
+      limit: limit,
+    });
+    return;
+  }
 
   const tokenValue = token.skillToken(process.env.GUAIKEI_API_TOKEN);
   if (tokenValue === "") {
     emitError(
       "post",
       "AUTH_REQUIRED",
-      "GUAIKEI_API_TOKEN 未配置或无效, 请配置环境变量后重试",
+      "GUAIKEI_API_TOKEN 未配置或格式无效。须为 16-256 位字母、数字、下划线或连字符",
       3,
       startTime,
-      { command: "post", url: url },
+      { command: "post", url_raw: urlRaw, url: url },
     );
     return;
   }
@@ -147,72 +148,40 @@ async function main() {
       error.message,
       error.name === "AuthError" ? 3 : 1,
       startTime,
-      { command: "post", url: url, limit: limit },
+      { command: "post", url_raw: urlRaw, url: url, limit: limit },
     );
     return;
   }
 
-  if (isEmptyResult(postTask)) {
-    utils.printError(`获取作品任务没有返回结果, 请稍后重试或联系开发者`);
-    const emptyOutput = {
-      status: "empty",
-      error_code: "NO_MATCH",
-      message: "没有找到匹配的作品",
-      timestamp: new Date().toLocaleString(),
-      request: {
-        command: "post",
-        url: url,
-        limit: limit,
-      },
-      metadata: {
-        skill_version: constants.VERSION,
-        runtime_version: process.versions.node,
-        execution_time: Date.now() - startTime,
-      },
-      results: null,
-    };
-    process.stdout.write(JSON.stringify(emptyOutput, null, 2) + "\n", () =>
-      process.exit(0),
-    );
-    return;
-  }
-
-  // 输出作品结果
-  const finalOutput = {
-    status: "success",
-    error_code: "OK",
-    message: "获取作品任务完成",
-    timestamp: new Date().toLocaleString(),
-    request: {
-      command: "post",
-      url: url,
-      limit: limit,
-    },
-    metadata: {
-      skill_version: constants.VERSION,
-      runtime_version: process.versions.node,
-      execution_time: Date.now() - startTime,
-    },
-    results: postTask,
+  const postRequest = {
+    command: "post",
+    url_raw: urlRaw,
+    url: url,
+    limit: limit,
   };
-  console.log(JSON.stringify(finalOutput, null, 2));
-  const resultCount = Array.isArray(postTask)
-    ? postTask.length
-    : Array.isArray(postTask.post)
-      ? postTask.post.length
-      : 0;
-  utils.printSuccess(`获取作品任务完成, 共 ${resultCount} 条结果`);
+  if (isEmptyResult(postTask)) {
+    utils.printInfo("没有找到匹配的博主或作品");
+    emitEmpty("没有找到匹配的博主或作品", startTime, postRequest);
+    return;
+  }
 
-  url = url.replace(/[^a-zA-Z0-9_-]/g, "");
-  url = url.replace("httpswwwdouyincomuser", "");
-  url = url.replace("httpsvdouyincom", "");
-  await log.taskWrite(
-    `${startTime}_${url}_post.json`,
-    JSON.stringify(finalOutput, null, 2),
+  const finalOutput = buildSuccessEnvelope(
+    "获取作品任务完成",
+    startTime,
+    postRequest,
+    postTask,
   );
+  const postCount = Array.isArray(postTask.post) ? postTask.post.length : 0;
+  const hasUser = Boolean(
+    postTask.user && Object.keys(postTask.user).length > 0,
+  );
+  await finishSuccess(finalOutput, {
+    logFilename: `${startTime}_${log.resourceId(url)}_post.json`,
+    stderrMessage: `获取作品任务完成, 作品 ${postCount} 条${hasUser ? ", 含博主信息" : ""}`,
+  });
 }
 
 main().catch((error) => {
-  utils.printError(error.message);
-  process.exit(1);
+  utils.printError(error.message || String(error));
+  emitUncaught("post", error);
 });

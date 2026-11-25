@@ -1,10 +1,14 @@
 ---
 name: make-loop
-version: 1.0.1
-description: 把用户一句大白话的任务，改写成一个写得清清楚楚、能放心让 AI 自己跑的循环（loop）任务说明。结构是三段：目标（我要做什么）→ 过程（它要怎么做）→ 检查迭代（做完检查，再接着改）；里面写全五件事：目标是什么、每轮做什么、怎么检查、记录什么、什么时候停。自带这些经验：评审一次给全清单、开发一口气改完；评审用统一的尺子；定期让用户本人看前后对比；刹车写全但不乱停。用户不会写 loop，只要说「帮我变成 loop」「做成循环」「写个 loop」「让它自己一轮一轮改到好」「反复迭代直到没问题」「让它一直跑」，或者丢来一个任务加一句 /make-loop，就用这个技能。适用任何任务。默认只把任务写成 loop，不开始执行；只有用户明确要求现在就在这次对话里执行，并先确认范围，才动手。任务本身的专业知识由当时的对话和其他技能提供。
+version: 1.0.3
+description: "Turn a plain-language task into a written AI agent loop: a loop brief with a checkable goal, a per-round process, evidence, a log, and stop conditions that an agent can run on its own. Use when the user asks for an AI agent loop or an agentic loop, says \"make loop\", \"turn this into a loop\", \"keep iterating until it's good\", or pastes a task with /make-loop. By default, only write the brief; do not start executing it in this session unless the user explicitly asks to run it now and confirms the scope. Domain knowledge comes from the current conversation and other skills, not from this one. Not a video or GIF loop tool."
 ---
 
 # make-loop：把任务变成一个好 loop
+
+## 中文触发语
+
+把用户一句大白话的任务，改写成一个写得清清楚楚、能放心让 AI 自己跑的循环（loop）任务说明。结构是三段：目标（我要做什么）→ 过程（它要怎么做）→ 检查迭代（做完检查，再接着改）；里面写全五件事：目标是什么、每轮做什么、怎么检查、记录什么、什么时候停。自带这些经验：评审一次给全清单、开发一口气改完；评审用统一的尺子；定期让用户本人看前后对比；刹车写全但不乱停。用户不会写 loop，只要说「帮我变成 loop」「做成循环」「写个 loop」「让它自己一轮一轮改到好」「反复迭代直到没问题」「让它一直跑」，或者丢来一个任务加一句 /make-loop，就用这个技能。适用任何任务。默认只把任务写成 loop，不开始执行；只有用户明确要求现在就在这次对话里执行，并先确认范围，才动手。任务本身的专业知识由当时的对话和其他技能提供。
 
 用户不会写 loop。他给你一个任务（可能就一句话），你把它改写成一份**完整、可直接执行的循环任务说明**。
 
@@ -77,3 +81,7 @@ description: 把用户一句大白话的任务，改写成一个写得清清楚�
 ## 范例
 
 `references/examples.md` 里有一个改写前后对照：抖音上的「双人横版闯关游戏」loop。
+
+## 安装脚本
+
+本仓库的 `install.sh` 只用本机的 `bash`、`cp`、`mkdir`、`rsync` 和 `touch`，把仓库文件（排除 `install.sh`、`.git`、`.DS_Store`）复制到已有的 `~/.claude/skills/make-loop` 和/或 `~/.codex/skills/make-loop`；它不会访问网络，也不会安装依赖。

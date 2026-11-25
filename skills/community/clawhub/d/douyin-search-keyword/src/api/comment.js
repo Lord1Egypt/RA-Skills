@@ -5,6 +5,7 @@ const constants = require("../config/constants");
 const { SkillError } = require("../utils/errors");
 const { requestApi, pollTaskResult } = require("../utils/request");
 const { formatUnixSeconds } = require("../utils/time");
+const { pickCost, pickTaskId } = require("../utils/cost");
 
 function enrichCommentItem(item) {
   if (!item || typeof item !== "object") return item;
@@ -41,7 +42,7 @@ function processCommentResults(data) {
  * @param {string} token - 技能令牌
  * @param {string} url - 视频URL
  * @param {number} limit - 评论数量, 1-10000
- * @returns {Promise<Object>} 评论任务状态
+ * @returns {Promise<string|undefined>} Create 成功时的任务 id（uuid）
  * @throws {Error} API调用失败时抛出错误
  */
 async function createCommentTask(token, url, limit) {
@@ -52,7 +53,7 @@ async function createCommentTask(token, url, limit) {
     limit,
   };
 
-  return await requestApi(
+  const response = await requestApi(
     "POST",
     "/api/douyin/comment/url",
     params,
@@ -61,6 +62,7 @@ async function createCommentTask(token, url, limit) {
     constants.CREATE_MAX_ATTEMPTS,
     "创建任务",
   );
+  return pickTaskId(response);
 }
 
 /**
@@ -68,14 +70,12 @@ async function createCommentTask(token, url, limit) {
  * @param {string} token - 技能令牌
  * @param {string} url - 视频URL
  * @param {number} limit - 评论数量, 1-10000
- * @returns {Promise<Array>} 评论列表数组
+ * @param {string} [taskId] - Create 返回的任务 id；有则查询只传 id（不带业务字段）
+ * @returns {Promise<{ results: Array, cost?: number }>}
  * @throws {Error} API调用失败时抛出错误
  */
-async function getCommentTask(token, url, limit) {
-  const params = {
-    url: url,
-    limit: limit,
-  };
+async function getCommentTask(token, url, limit, taskId) {
+  const params = taskId ? { id: taskId } : { url: url, limit: limit };
 
   const response = await pollTaskResult(
     "/api/douyin/comment/info",
@@ -83,12 +83,13 @@ async function getCommentTask(token, url, limit) {
     token,
     "查询任务",
   );
+  const cost = pickCost(response);
 
   if (response.data) {
-    return processCommentResults(response.data);
+    return { results: processCommentResults(response.data), cost };
   }
 
-  return [];
+  return { results: [], cost };
 }
 
 module.exports = {

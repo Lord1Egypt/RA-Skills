@@ -12,7 +12,7 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SKILL_ROOT="$(dirname "$SCRIPT_DIR")"
-TEMPLATE="$SKILL_ROOT/templates/generate-docs-skill.sh.tmpl"
+TEMPLATE="$SKILL_ROOT/templates/generate-docs-skill.tmpl.sh"
 
 NAME=""
 TOOL_NAME=""
@@ -133,14 +133,34 @@ $SOURCE_URL
 ./scripts/generate-docs-skill.sh
 \`\`\`
 
+## Install in OpenClaw
+
+After generation, install the generated skill directory into the existing
+OpenClaw agent workspace. Set the path below to the generated directory:
+
+\`\`\`bash
+SKILL_DIR=\"$OUTPUT_DIR/skills/$SKILL_NAME\"
+openclaw skills install \"\$SKILL_DIR\" --agent main
+openclaw skills list --agent main
+openclaw skills check --agent main
+\`\`\`
+
+Replace \`main\` with the existing agent ID. For a shared managed install
+visible to local agents, use:
+
+\`\`\`bash
+openclaw skills install \"\$SKILL_DIR\" --global
+\`\`\`
+
+The global install uses \`~/.openclaw/skills\` and cannot be combined with
+\`--agent\`. Review the generated skill before installing it, and do not
+bypass an OpenClaw install-policy warning or block.
+
 ## Install in Codex
 
-After generation, install the generated skill directory with the Codex native
-skill installer or copy \`skills/$SKILL_NAME\` into:
-
-\`\`\`text
-\$HOME/.codex/skills/$SKILL_NAME
-\`\`\`
+Copy \`skills/$SKILL_NAME\` to the selected \`CODEX_HOME/skills/$SKILL_NAME\`
+or use the native Codex skill installer. Confirm discovery in the target
+Codex home; a file copy alone does not prove the skill loaded.
 "
 
 PLACEHOLDER="# $TOOL_NAME Documentation Skill

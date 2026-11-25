@@ -405,15 +405,26 @@ def percent_scale(series):
     return (series.get("unit") or "").strip().lower() in PERCENT_UNITS
 
 
+def money_prefix(unit):
+    """"$" only for USD or a missing unit. Any other unit prints as its own code ("CAD 1.73B").
+
+    A money unit can be any ISO 4217 code. A code printed as itself cannot be misread as dollars,
+    and needs no table that a new currency could fall outside of."""
+    if not unit or unit.upper() == "USD":
+        return "$"
+    return f"{unit} "
+
+
 def format_value(value, series):
     """Render per displayFormat, falling back to the raw value plus its unit."""
     fmt = (series.get("displayFormat") or "").lower()
     unit = safe(series.get("unit"), 24)
     if fmt == "currency_abbreviated":
         sign = "-" if value < 0 else ""
-        return abbreviate(abs(value), f"{sign}$")
+        return abbreviate(abs(value), f"{sign}{money_prefix(unit)}")
     if fmt == "currency":
-        return f"${trim(value.quantize(Decimal('0.01')))}"
+        sign = "-" if value < 0 else ""
+        return f"{sign}{money_prefix(unit)}{trim(abs(value).quantize(Decimal('0.01')))}"
     if fmt in ("abbreviated", "number_abbreviated"):
         return with_unit(abbreviate(value), unit)
     if fmt == "percent":

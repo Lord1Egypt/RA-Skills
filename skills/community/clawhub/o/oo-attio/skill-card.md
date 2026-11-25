@@ -1,6 +1,6 @@
 ## Description:
 
-Use this skill to read, create, update, and delete Attio data through an OOMOL-connected account.
+Operate Attio records, lists, notes, tasks, and discussions through a connected OOMOL account.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-People who manage an Attio workspace can use the skill to inspect records and objects, identify the connected account, and create, update, or delete records through OOMOL.
+Employees and external users can use this skill to read and manage Attio records, lists, notes, tasks, and discussions through a connected OOMOL account. It supports creating, updating, and deleting data, with confirmation required for writes and destructive actions.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Setup can execute downloaded installation code without separate approval or integrity verification.
+Risk: The security evidence marks the skill suspicious because its data-management purpose includes guidance to run a remotely downloaded installer, and scan coverage is partial.
 
-Mitigation: Prefer a trusted CLI installed beforehand, or separately inspect and approve a version-pinned, integrity-verified installation. Grant only necessary permissions and retain the documented change and deletion confirmations.
+Mitigation: Avoid installation until the installer's source and effects have been independently checked; the partial scan does not establish what the downloaded installer would do.
 
 ## Reference(s):
 
-- [Attio API documentation](https://docs.attio.com/)
 - [Attio](https://attio.com)
-- [oo CLI](https://github.com/oomol-lab/oo-cli)
-- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+- [Attio API documentation](https://docs.attio.com/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, JSON, Guidance]
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
 
-**Output Format:** [Structured Attio data returned as JSON, with concise natural-language summaries as appropriate]
+**Output Format:** [Markdown guidance with shell command examples and JSON request and response data]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Actions may read or modify Attio workspace data; write and destructive actions require user confirmation.]
+**Other Properties Related to Output:** [Covers read, write, and destructive actions; writes and destructive actions require user confirmation.]
 
 ## Skill Version(s):
 
-1.0.6 (source: frontmatter)
+1.0.7 (source: frontmatter)
 
 ## Ethical Considerations:
 

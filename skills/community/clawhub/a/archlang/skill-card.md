@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Developers and designers use ArchLang to author, edit, and inspect architectural floor plans as text and compile them into drawing or plan data formats. The CLI also checks plans and reports rooms, areas, adjacency, and material quantities.
+Developers and design professionals use ArchLang to create, edit, and inspect architectural floor plans as text, then compile and validate those plans with its CLI. It can also export the plan to drawing and data formats for further review or use.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan marks the skill suspicious because its setup and examples repeatedly run unpinned npm packages, creating supply-chain risk; the scan found no clear malicious behavior and inspected only one Markdown file.
+Risk: The recommended package-fetch commands do not pin a version, so package contents may change between installs.
 
-Mitigation: Review the package and install steps, and use a fixed package version before execution. Review how playground links handle plan data before sharing them.
+Mitigation: Pin a reviewed package version before fetching or running it.
+
+Risk: The security scan had incomplete coverage because referenced local paths were unavailable for resolution.
+
+Mitigation: Review the package and its referenced files before running it.
 
 ## Reference(s):
 
-- [ArchLang Intent Schema](https://archlang.uk/intent.schema.json)
-- [ArchLang Plan Schema](https://archlang.uk/plan.schema.json)
-- [ArchLang GBNF Grammar](https://archlang.uk/archlang.gbnf)
+- [ArchLang Plan JSON schema](https://archlang.uk/plan.schema.json)
+- [ArchLang intent schema](https://archlang.uk/intent.schema.json)
+- [ArchLang grammar (GBNF)](https://archlang.uk/archlang.gbnf)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Files, Shell commands, Guidance]
+**Output Type(s):** [Code, Shell commands, Files, Guidance]
 
-**Output Format:** [ArchLang (.arch) source and SVG, DXF, TXT, PDF, PNG, or Plan JSON]
+**Output Format:** [ArchLang source, CLI commands, and generated SVG, PNG, PDF, DXF, TXT, or Plan JSON files]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [The selected drawing or data format depends on the CLI options.]
+**Other Properties Related to Output:** [Plan files can be compiled and checked with the ArchLang CLI.]
 
 ## Skill Version(s):
 
-1.63.0 (source: server-resolved release metadata)
+1.68.2 (source: ClawHub release evidence)
 
 ## Ethical Considerations:
 

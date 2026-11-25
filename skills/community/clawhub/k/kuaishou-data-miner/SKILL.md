@@ -2,56 +2,29 @@
 name: kuaishou-data-miner
 description: "快手公开数据只读技能：关键词搜视频、博主作品与粉丝数据、视频评论，输出 JSON，不登录不发布。触发词：快手、Kuaishou、kwai、快手搜索、快手评论、快手博主。用户要查快手视频、评论、爆款选题、竞品监控、KOL 筛选或评论舆情时使用；抖音、小红书、B站、微博、公众号不要用本技能。"
 license: MIT
-version: 1.1.2
+version: 1.1.4
 metadata:
   openclaw:
-    emoji: "📷"
     primaryEnv: GUAIKEI_API_TOKEN
     requires:
       bins:
         - node
       env:
         - GUAIKEI_API_TOKEN
-  enabled: true
   type: command
-  runtime: "nodejs@16.14.0+"
   requires:
     bins: ["node"]
     env: ["GUAIKEI_API_TOKEN"]
-  env_desc:
-    GUAIKEI_API_TOKEN: "快手数据 API 访问令牌。未配置时无法调用接口；可通过 https://www.guaikei.com 开通。"
-  keywords:
-    - "快手"
-    - "Kuaishou"
+  tags:
     - "快手搜索"
     - "快手评论"
     - "快手博主"
+    - "博主作品"
     - "爆款选题"
     - "竞品分析"
     - "评论舆情"
-  category:
-    - "Integrations"
-    - "Research"
-    - "数据分析"
-    - "内容创作"
-    - "商业运营"
-  tags:
     - "快手"
     - "Kuaishou"
-    - "短视频"
-    - "关键词搜索"
-    - "视频评论"
-    - "博主作品"
-    - "竞品分析"
-    - "选题调研"
-    - "舆情分析"
-    - "爆款挖掘"
-    - "趋势洞察"
-    - "内容选题"
-    - "快手运营"
-    - "快手内容创作"
-    - "快手营销"
-    - "快手互动数据统计"
   schemas:
     - name: "输出信封"
       file: "assets/output_envelope.schema.json"
@@ -68,11 +41,9 @@ metadata:
     - name: "评论出参"
       file: "assets/comment_cli_resp.schema.json"
   examples:
-    - "帮我搜快手里「具身智能」的高赞视频 → node scripts/kuaishou/search-cli.js --keyword \"具身智能\" --sort 2 --limit 20"
-    - "最近一周最新的快手 AI 教程，要 20 条 → node scripts/kuaishou/search-cli.js --keyword \"AI 教程\" --sort 1 --time 7 --limit 20"
-    - "这条快手视频评论区在说什么 → node scripts/kuaishou/comment-cli.js --url \"https://www.kuaishou.com/short-video/3xabc\" --limit 40"
-    - "这个快手博主最近 20 条作品 → node scripts/kuaishou/post-cli.js --url \"https://www.kuaishou.com/profile/3xabc\" --sort 0 --limit 20"
-    - "这个快手博主多少粉丝 → node scripts/kuaishou/post-cli.js --url 123456 --limit 0"
+    - "帮我搜快手里「具身智能」的高赞视频 → node \"<SKILL_ROOT>/scripts/kuaishou/search-cli.js\" --keyword \"具身智能\" --sort 2 --limit 20"
+    - "这条快手视频评论区在说什么 → node \"<SKILL_ROOT>/scripts/kuaishou/comment-cli.js\" --url \"https://www.kuaishou.com/short-video/3xabc\" --limit 40"
+    - "这个快手博主最近 20 条作品 → node \"<SKILL_ROOT>/scripts/kuaishou/post-cli.js\" --url \"https://www.kuaishou.com/profile/3xabc\" --sort 0 --limit 20"
 ---
 
 # 快手洞察与竞品分析助手
@@ -91,9 +62,10 @@ metadata:
 ## 0. 每次按这个顺序执行
 
 1. 确认环境变量 `GUAIKEI_API_TOKEN` 已配置。没有配置时直接告诉用户去 https://www.guaikei.com 开通，不要先跑一遍试探。
-2. 在本技能根目录执行 `node scripts/kuaishou/<命令>.js`。
+2. **用绝对路径执行**：`node "<SKILL_ROOT>/scripts/kuaishou/<命令>.js" …`。`<SKILL_ROOT>` = 含本 `SKILL.md` 的那一层真实目录（以当前会话为准；勿套用其它宿主示例路径，勿用 frontmatter `name` 冒充目录名）。已 `cd` 到技能根时可用相对路径 `node scripts/kuaishou/…`（见 [references/faq.md](references/faq.md)）。
 3. stderr 出现「处理中」表示任务还在跑。等进程自己退出，再读 stdout 的最后一份 JSON。不要把 stderr 或整份 JSON 念给用户。
 4. 按「4. 读结果」的退出码表决定：改参数再试、告诉用户，或停止。
+5. **Windows 拼参：cmd 只用双引号**包含空格/中文/URL 的参数；不要用 bash 单引号。引号仍拆坏 → 改用 `--json-args`（[faq.md](references/faq.md)）。Windows / 弱模型优先 `--json-args`。
 
 查询最多 20 次。间隔从 2 秒起按 2、4、8、16、32 秒增加，之后每次 60 秒，只算等待大约 15 分钟。每次请求本身还有最多 20 秒超时。宿主如果更早结束进程，按超时处理，不要立刻用同一组参数连打。
 
@@ -149,7 +121,19 @@ metadata:
 
 ## 3. 参数
 
-枚举和数量不在允许范围内时，命令直接失败（退出码 2，`INVALID_ARGS`），不会改成默认值再请求。三个命令都支持 `--help` / `-h`：帮助打在 stderr，退出码 0，stdout 为空，这是正常现象。短参数大小写都可以。含空格的关键词用双引号包成一个参数。关键词以 `-` 开头时写成 `--keyword=-AI`，或 `node scripts/kuaishou/search-cli.js -- -AI`。完整字段见 `assets/*_cli_req.schema.json` 与 [references/options.md](references/options.md)。
+枚举和数量不在允许范围内时，命令直接失败（退出码 2，`INVALID_ARGS`），不会改成默认值再请求。三个命令都支持 `--help` / `-h`：帮助打在 stderr，退出码 0，stdout 为空，这是正常现象。短参数大小写都可以。含空格的关键词用双引号包成一个参数。关键词以 `-` 开头时写成 `--keyword=-AI`，或 `node "<SKILL_ROOT>/scripts/kuaishou/search-cli.js" -- -AI`。完整字段见 `assets/*_cli_req.schema.json` 与 [references/options.md](references/options.md)。**Windows**：cmd **只用双引号**；仍拆坏或弱模型 → `--json-args`。双壳例与绝对路径 → [references/faq.md](references/faq.md)。
+
+**Windows 双壳（同一条搜索；把 `<SKILL_ROOT>` 换成真实技能根）**：
+
+```bat
+REM cmd —— 不要用单引号
+node "<SKILL_ROOT>\scripts\kuaishou\search-cli.js" --keyword "AI 教程" --sort 2 --limit 20
+```
+
+```powershell
+# PowerShell
+node "<SKILL_ROOT>/scripts/kuaishou/search-cli.js" --keyword "AI 教程" --sort 2 --limit 20
+```
 
 ### 3.1 关键词搜索
 
@@ -178,7 +162,7 @@ metadata:
 
 ## 4. 读结果
 
-成功、空结果、失败都是同一份信封。只读 stdout 的最后一份 JSON。`--help` 时 stdout 为空，帮助在 stderr，不要把它当成命令崩溃。字段以 `assets/output_envelope.schema.json` 和 `assets/*_cli_resp.schema.json` 为准。
+成功、空结果、失败都是同一份信封。只读 stdout 的最后一份 JSON。`--help` 时 stdout 为空，帮助在 stderr，不要把它当成命令崩溃。字段以 `assets/output_envelope.schema.json` 和 `assets/*_cli_resp.schema.json` 为准。取数成功/empty 时信封顶层可能有 `cost`（花费估算：包月为 `1`，按次为条数×单价）；错误响应无此字段。上游 Create `id` → `/info` 只传 `id` 的约定见 [contract.md](references/contract.md)（不影响 CLI 信封）。
 
 ```json
 {
@@ -187,8 +171,9 @@ metadata:
   "message": "搜索任务完成",
   "timestamp": "2026/10/26 16:20:00",
   "request": { "command": "search", "keyword": "具身智能", "sort": 2, "time": 0, "duration": 0, "limit": 20 },
-  "metadata": { "skill_version": "1.1.2", "runtime_version": "22.22.2", "execution_time": 8421 },
-  "results": [{ "id": "3xabc", "caption": "..." }]
+  "metadata": { "skill_version": "1.1.4", "runtime_version": "22.22.2", "execution_time": 8421 },
+  "results": [{ "id": "3xabc", "caption": "..." }],
+  "cost": 0.08
 }
 ```
 
@@ -204,15 +189,14 @@ metadata:
 | 0 | `OK` / `NO_MATCH` | 没有结果就告诉用户没有匹配内容，不要当成失败重试 |
 | 2 | `INVALID_ARGS` / `INVALID_KEYWORD` | 按上一节改参数后再试一次。关键词缺失或是链接时先问用户 |
 | 1 | `INVALID_URL` | 按路由换命令，或向用户确认这是视频还是主页 |
-| 3 | `AUTH_REQUIRED` / `AUTH_ERROR` | 停止重试，让用户配置 `GUAIKEI_API_TOKEN` |
+| 3 | `AUTH_REQUIRED` / `AUTH_ERROR` | 停止重试；引导官网检查/开通/续期 TOKEN（含停用业务码 410 Gone、未开通 405；**勿**当成接口下线或任务过期） |
 | 1 | `PLAN_LIMIT` | 套餐单次条数超限（常见于包月 Token）。**禁止同参重试**。转述 `message`；可建议降低 `--limit`（搜索≤30，作品≤50，评论≤60）或到官网升级按量；**须用户同意后再跑**。禁止擅自加大 limit |
 | 1 | `INSUFFICIENT_BALANCE` | 余额不足（常为后端 15）。**禁止同参重试**。引导官网充值 |
 | 1 | `RATE_LIMITED` | 短时间提交过多（常为后端 2）。**禁止立即重试**。稍后经用户同意再跑 |
 | 1 | `DAILY_LIMIT` | 今日消费已达每日上限（后端 18）。**禁止同参重试**。明日再试或到官网调整限额 |
 | 1 | `TIMEOUT` | 任务仍在处理。大约 20 分钟内用同一组参数重跑会复用已有任务。宿主提前结束进程时不要立刻连打 |
-| 1 | `NETWORK_ERROR` / `HTTP_5xx` / `HTTP_429` | 命令内部已经重试过。退出后再失败就告诉用户稍后再试，不要立刻连打 |
-| 1 | 十进制数字，例如 `"12"` | 把 `message` 原样转告。不要把 `"1"` 当成业务失败，那是处理中，命令会自己等 |
-| 1 | `API_ERROR` / `UNKNOWN` | 转告 `message`，建议联系官网 |
+| 1 | `NETWORK_ERROR` / `HTTP_5xx` / `HTTP_429` / `HTTP_404` / `HTTP_410` | 命令内部已经重试过。传输层 410 与业务码 Gone（TOKEN 停用→`AUTH_ERROR`）不同。退出后再失败就告诉用户稍后再试，不要立刻连打 |
+| 1 | `API_ERROR` / `UNKNOWN` | 未映射业务码已收成 `API_ERROR`（不再裸透数字）。转告 `message`，建议联系官网 |
 
 `error_code` 是字符串。查询还在处理、次数用尽时是 `TIMEOUT`，不是空结果。
 
@@ -220,6 +204,6 @@ metadata:
 
 只处理快手公开数据。调用时会把关键词或链接发到 `www.guaikei.com`。不上传本地文件，不登录，不发布。
 
-成功结果默认不写文件。需要留底时设置 `KS_GUAIKEI_ENABLE_LOG=1`，文件写到系统临时目录的 `kuaishou-guaikei/logs/`。POSIX 上权限是仅当前用户可读写；Windows 不使用这组权限位，靠临时目录本身的用户隔离。
+成功结果默认不写文件。需要留底时加 `--save`，或设置 `GUAIKEI_ENABLE_LOG=1`，文件写到系统临时目录的 `kuaishou-guaikei/logs/`。POSIX 上权限是仅当前用户可读写；Windows 不使用这组权限位，靠临时目录本身的用户隔离。旧变量 `KS_GUAIKEI_ENABLE_LOG` 已废弃。
 
 开通 token 或人工支持：[快手实时数据获取技能官网](https://www.guaikei.com)。

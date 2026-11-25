@@ -1,0 +1,79 @@
+---
+name: "ecommerce-product-assets"
+description: "Turn one product into an ecommerce product asset set: a main image, detail stills, and one product clip. Ecommerce product assets list what each frame shows, then make the stills and clip. The product and background stay consistent. Use it before a listing goes up."
+---
+
+# Ecommerce Product Assets
+
+## What you get
+
+- A frame list: the main image, a material close-up, a scale picture, an in-use picture, and the clip.
+- One main image and the detail stills you confirm. A product photo, when you supply one, is the product in every frame.
+- One spoken product clip under fifteen seconds, made from the accepted main image, with a light bed under the voice.
+
+## Ways to run it
+
+- Stills and a clip. The default.
+- List only. The default until you confirm the frames. Strike any frame on the card.
+- With a category read. One lookup of how this kind of product is being shown on Douyin or Xiaohongshu, before the frame list freezes, and only when you ask for it.
+
+Open this when a product needs its listing pictures and one clip before it goes up.
+
+## Scope and adjacent routes
+
+Use this route for the pictures and one clip a product needs before it is listed. A brand poster series without a product listing belongs on a visual-creation workflow. A review of files you already exported belongs on a marketing-asset review.
+
+## Inputs and defaults
+
+The hard input is the product: what it is and what it must look like. Ask only for that. Default to a square main image, 3:4 detail stills, and a vertical clip under fifteen seconds. If the user supplies a product photo, upload it with `beatra.assets.upload` and keep that product in every frame. If there is no photo, say the frames are drawn from the description. Do not read a store admin, orders, or an ad account.
+
+## Golden path
+
+1. Write the frame list and show it. This writing is free.
+2. If a category read is in scope, one lookup card: `beatra.social.tools.search`, `beatra.social.tools.get`, copy `schema_hash`, one `beatra.social.execute`. Allowed keys are `social.douyin.video.search` and `social.xiaohongshu.note.search`. Use it to choose the framing. Do not treat those posts as this store's sales.
+3. Each confirmed still is one `beatra.images.transform` after `beatra.models.list` with `{"capability": "image_to_image"}`, from the product photo or from the accepted main image. `beatra.images.generate` after `{"capability": "text_to_image"}` is only the main image when no photo exists. One `beatra.images.edit` after `{"capability": "image_edit"}` restores the product if a still changed it.
+4. `beatra.voices.list`, one `beatra.speech.synthesize` after `{"capability": "text_to_speech"}` of the selling line, and one light instrumental `beatra.music.generate` after `{"capability": "text_to_music"}`.
+5. Materials card, then the video card: one `beatra.videos.animate` after `{"capability": "image_to_video"}` from the accepted main image, the line as `driving_audio`, duration the next whole second.
+6. One `beatra.videos.compose` keeps the line and ducks the bed. Poll with `beatra.tasks.get` and deliver the frames, the clip, and `billing.net_charged_credits`.
+
+## Decisions that require confirmation
+
+Planning and the written deliverable are free. They are not approval.
+
+Before every paid call, show a current production card and wait:
+
+1. Work — what will be made, in the user's words, and whether this call is a generate or a lookup.
+2. Credits — the live price just read from the model card or from `beatra.social.tools.get`. Do not reuse a remembered number.
+3. Count — one paid call per slot. The materials card may list every still, the line, and the bed; each slot has its own `client_request_id`. A later lookup page is another call. The clip waits for its own card.
+4. Identity — one new opaque `client_request_id` per call. A changed prompt, file, model, or control mints a new ID.
+5. If we stop here — the free writing remains usable.
+6. If the balance is insufficient — relay the official message and its top-up URL. Do not retry until the user says they have topped up.
+
+A lookup and a generate are two cards. Approved stills and audio do not authorize the clip. Invoke every remote Beatra tool only through the bundled `scripts/mcp_client.py`. The tool name is the command argument and the JSON arguments are the standard input. Do not configure, call, or use a host Beatra Connector. Do not use REST/OpenAPI as a fallback.
+
+If a create response is lost, retry only the identical payload and the same `client_request_id`. If the task id is lost, call `beatra.tasks.list`, then `beatra.tasks.get`, and match the frozen request before any identical retry. Call `beatra.tasks.cancel` only when the user asks to cancel, then confirm that task with `beatra.tasks.get`.
+
+When the user asks how many credits remain, call `beatra.wallet.get`. When they ask what was charged, call `beatra.wallet.ledger`.
+
+## References by task
+
+Read [the scenario workflow](references/workflow.md) for the frame jobs, the clip payload, and a worked set.
+Read [answers when a run goes wrong](references/faq.md) when a task stalls, a response is lost, a price looks wrong, or a frame changed the product.
+Read [installation and authentication](references/installation-and-auth.md) when the connection is not ready.
+Read [installation registration](references/installation-registration.md) for first-use registration.
+Read [Bundled MCP Client diagnostics](references/mcp-connection.md) when a call fails before a task exists.
+Read [tasks and results](references/tasks-and-results.md) when a task is queued, running, or missing.
+Read [billing, errors, and recovery](references/billing-errors-and-recovery.md) when a charge, a refund, or a lost response needs the shared rules.
+Read [uninstall and disconnect](references/uninstall-and-disconnect.md) when the user wants to stop and remove the connection.
+
+## Updates and security
+
+This Skill runs only the files installed with it and leaves them unchanged while
+it runs; it never downloads or executes other code. It talks to Beatra's official
+services over HTTPS, and a file you choose to upload goes only to the one-time
+upload address Beatra issues for it.
+
+Once a day at most, the bundled client reads Beatra's public version list. When
+the store or tool you installed from has a newer version, it prints one line with
+the command that updates it there. Updating stays your choice, through that store
+or tool. See [updates and security](references/updates-and-security.md).

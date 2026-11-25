@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.24.5 (2026-11-24)
+
+- Electron 宿主识别与开机自启测试切换为 `YottaWeave`，不再保留 `yottacode` 兼容标识。
+- 活跃文档、身份示例、任务路径与测试夹具统一使用 `yottaweave` / `YottaWeave`。
+- 不改变记忆格式、索引格式、命令参数或既有数据目录。
+
+## v0.24.4 (2026-11-20)
+
+- **Windows 多用户自启隔离**：计划任务名改为 `YottaMemoryServe-<SHA-256(大写 SID) 前 16 位>`；`lan enable / status / disable` 与 runtime 受管重启统一使用当前用户 SID，并在操作前验证目标任务主体归属。其他用户或归属未知的任务不会被覆盖、删除、停止或运行。
+- **旧任务安全迁移**：新 SID 任务创建成功后才查询旧固定任务 `YottaMemoryServe`；只有任务 XML 能证明属于当前用户时才删除，foreign / unknown 一律保留。
+- **profile 兼容**：`serve-profile.json` 保持 schema 1，新增可选 `userSid`；`lan status` 检查 profile SID、当前 SID 与派生任务名的一致性。
+- **跨平台边界**：Windows 专用 SID 探测与 `schtasks` 路径不影响 Linux / macOS；SID 缺失或非法时 fail-closed，不回退固定任务名。
+
 ## v0.24.3 (2026-11-14)
 
 - **CI 精度回归**：将命中打点后的 mtime 断言收紧到 Node 原生精度边界内（纳秒偏差 < 5µs）并保留可见毫秒不变；避免 Linux 上 `utimesSync` 的亚微秒浮点误差把正确行为误判为失败。

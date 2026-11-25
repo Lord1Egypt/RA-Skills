@@ -1,0 +1,13 @@
+{
+  "name": "douyin-multi-account-workbench",
+  "version": "1.0.3",
+  "private": true,
+  "type": "module",
+  "license": "MIT-0",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node scripts/self-test.mjs",
+    "check": "node --check scripts/workbench.mjs && node --check scripts/self-test.mjs && npm test",
+    "start": "node scripts/workbench.mjs"
+  }
+}

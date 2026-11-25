@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-面向希望在 A 股开盘前了解隔夜事件影响的个人投资者，整理公开市场、政策与产业信息，形成关注方向、潜在利好利空和风险提示。
+Individual investors use this skill before the A-share market opens to review overnight events, understand possible sector impacts, and see a ranked list of areas to watch. Its reports are public-information analysis, not investment advice or real-time trading signals.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Scanners rate the skill suspicious because its credential requests and account-related behavior do not clearly match its stated market analysis purpose; review is incomplete.
+Risk: The security evidence flags requests to provide an API key in chat.
 
-Mitigation: Avoid sharing an API key in chat. Review credential handling and the reported account checks, scheduled runs, and promotional prompts before use; proceed only with behavior you approve.
+Mitigation: Do not share a reusable API key in chat; configure credentials through a secure local credential mechanism.
 
-Risk: The generated market analysis is based on public information and may be affected by unavailable or delayed sources; it is not a guarantee of market movement.
+Risk: The security evidence flags promotional prompts and a mismatch between the stated pre-market research purpose and some reported actions.
 
-Mitigation: Check the linked sources and current market data independently, and treat the report as informational context rather than investment advice.
+Mitigation: Review third-party service requests, recurring schedules, and privileged installation steps before following them.
+
+Risk: The security scan was partial because some referenced local paths could not be resolved, so its evidence is incomplete.
+
+Mitigation: Review unresolved files and scan the complete skill package before installation.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/panting09266-ai/skills/cue-pre-market-strategy)
-- [Cue runner project (linked by the skill documentation)](https://github.com/sensedeal/cue-skills)
 - [Cue service](https://cuecue.cn)
+- [Eastmoney](https://www.eastmoney.com)
+- [CLS](https://www.cls.cn)
+- [Wallstreetcn](https://wallstreetcn.com)
+- [Sina Finance](https://finance.sina.com.cn)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Guidance]
+**Output Type(s):** [Analysis, Text, Markdown]
 
-**Output Format:** [Markdown report with overnight events, A-share sector implications, ranked areas to watch, risk notes, and source links]
+**Output Format:** [Markdown report with source links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Based on public information; not real-time market data, trading signals, or investment advice.]
+**Other Properties Related to Output:** [A single pre-market report covering overnight events, possible A-share impacts, ranked areas to watch, and risk notes.]
 
 ## Skill Version(s):
 
-1.0.10 (source: server-resolved release metadata; artifact frontmatter states 1.2.4)
+1.0.14 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

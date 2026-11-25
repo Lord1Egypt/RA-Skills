@@ -1,0 +1,8 @@
+{
+ "format": "lgd-redteam-expectations/1.0",
+ "cases": [
+  {"probe": "shape", "why": "runner prints PASS with zero assertions", "expect_total_below": 80, "expect_repro_below": 20},
+  {"probe": "vacuity", "why": "formally complete, empty content", "expect_total": "any", "expect_repro_below": 20}
+ ],
+ "note": "两个探针的期望值写在文件里，回归时按这张表比对，而不是凭记忆"
+}

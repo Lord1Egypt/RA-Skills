@@ -1,6 +1,6 @@
 ## Description:
 
-Serverless FaaS patterns. Use for bursty event-driven workloads with pay-per-execution cost and little infrastructure
+Serverless FaaS patterns for bursty event-driven workloads that benefit from pay-per-execution pricing and minimal infrastructure management.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and architects use this skill to assess whether serverless functions fit event-driven workloads and to plan function boundaries, state management, deployment, observability, and cost controls.
+Developers and cloud architects use this skill to assess whether serverless functions fit an event-driven workload and plan state management, deployment, observability, cost controls, and key tradeoffs.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Provider-specific APIs can make it costly to move the workload between cloud providers.
+Risk: Cold starts, function timeouts, and provider quotas can make serverless unsuitable for latency-sensitive or long-running workloads.
 
-Mitigation: Where practical, place provider-specific calls behind interfaces or use portable frameworks.
+Mitigation: Check latency and execution limits against the workload, and monitor cold starts, concurrency, and memory quotas; use provisioned concurrency or sharding where appropriate.
 
-Risk: Distributed function execution can make failures and latency difficult to trace.
+Risk: Distributed functions can be difficult to debug, and repeated event delivery can create unintended side effects.
 
-Mitigation: Standardize tracing and structured logging across functions.
+Mitigation: Use structured logs and tracing, and make handlers idempotent with replay tests.
 
-Risk: Concurrency, memory, and other provider limits can constrain workload growth.
+Risk: Provider-specific services can increase cloud vendor lock-in.
 
-Mitigation: Monitor provider quotas and design workloads to be shardable or horizontally scalable.
+Mitigation: Where practical, isolate provider APIs behind interfaces or use portable deployment frameworks.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-serverless)
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-serverless)
+- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
 
 ## Skill Output:
 
 **Output Type(s):** [Guidance, Markdown]
 
-**Output Format:** [Markdown prose and structured recommendations]
+**Output Format:** [Markdown guidance, planning recommendations, and checklists]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include serverless adoption steps, architecture decision record guidance, and infrastructure, deployment, observability, and cost recommendations.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved ClawHub release metadata)
 
 ## Ethical Considerations:
 

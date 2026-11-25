@@ -2,7 +2,7 @@
 name: gangjiegou-suanliang
 slug: gangjiegou-suanliang
 displayName: 钢结构算量 · 吨位估算带
-version: 0.4.3
+version: 0.4.4
 platforms: [macos, windows, linux]
 author: lis
 license: CC-BY-NC-SA-4.0

@@ -1,6 +1,6 @@
 ## Description:
 
-Enforces markdown line-wrap and structure rules for clean git diffs.
+Enforces markdown line-wrap and structure rules for clean git diffs
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and documentation authors use it when writing, reviewing, or editing committed Markdown to keep prose and structure consistent and produce clean diffs.
+Developers use this skill when writing or reviewing committed Markdown documentation. It helps keep prose readable and diffs clean through consistent line wrapping and document structure.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: A local path-like reference could not be resolved during the partial scan, leaving scan coverage incomplete.
+Risk: A local path-like reference could not be resolved, so the security evidence is incomplete.
 
-Mitigation: Review the unresolved reference manually if it is relevant to your environment.
+Mitigation: Consider whether the missing reference matters before installing.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-leyline-markdown-formatting)
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-leyline-markdown-formatting)
+- [Project homepage (listed in skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
 
 ## Skill Output:
 
 **Output Type(s):** [Markdown, Guidance]
 
-**Output Format:** [Markdown document text]
+**Output Format:** [Markdown formatting guidance and revised Markdown prose]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Wraps prose to 80 characters and applies heading and list spacing rules; preserves tables, code blocks, and frontmatter.]
+**Other Properties Related to Output:** [Applies 80-character prose wrapping and structural rules; code blocks, tables, and frontmatter are exempt.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

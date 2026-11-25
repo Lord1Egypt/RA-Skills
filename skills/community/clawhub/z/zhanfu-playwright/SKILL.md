@@ -1,19 +1,44 @@
 ---
 name: zhanfu-playwright
 description: >-
-  站斧 WebDriver 版 Playwright 自动化（Windows≥5.2.12、macOS 版本高于 5.2.10、强制有界面、通讯失败即停）。
+  站斧 WebDriver 版 Playwright 自动化（Node≥18、Windows≥5.2.12、macOS>5.2.10、强制有界面、通讯失败即停）。
   获取 WebDriver 端口前仅 HTTP 调用 WebDriverModule；获取端口后 CDP 执行业务。
-  「战斧」同义「站斧」（如打开战斧=打开站斧）。
+  端口读 api_port.json；支持打开/关闭站斧。战斧=站斧。
   适用于站斧、战斧、ZhanFu、WebDriver、Playwright、店铺自动化、小龙虾 OpenClaw RPA。
 ---
 
 # 站斧 Playwright 自动化
 
+## 仅开店（最高优先级 · 读完本节即可执行 · 勿往下翻）
+
+客户意图只要是「打开店铺 / 打开战斧店铺 / 拿 WebDriverPort」且**未**要求填表、抓取、点页面时：
+
+1. 缺店名 → 只问店名，问完就停；有店名继续。
+2. 在 Skill 目录**唯一动作**：
+   ```bash
+   node scripts/open_mall.mjs --mall-name {店铺名}
+   ```
+3. 只看结尾 `RESULT_JSON=`，按下表**一句话回复客户后立即结束本回合**。
+
+| `status` | 对客户动作（禁止扩写、禁止追问关店、禁止阶段 B） |
+|----------|------------------------------------------------------|
+| `already_open` / `opened` | `已打开 {mall_name}，mall_id={mall_id}，WebDriverPort={WebDriverPort}` |
+| `zhanfu_down` | 先跑 `node scripts/open_zhanfu.mjs`，成功后再重跑 `open_mall.mjs` |
+| `open_failed` / `no_webdriver_port` | 转述脚本失败信息（可含 IP/设备绑定与内核提示）；本店停止 |
+
+**仅开店禁止**（违反即慢）：事先 `GetBrowserList` / 8s 登录轮询 / 手调 `GetMallByName`·`OpenBrowser`·`GetBrowserWebDriver` / 读 `reference.md` / 进阶段 B / `check_device_security.mjs` / 多段解释 / 再问「是否关闭」。
+
+多家：`node scripts/open_malls.mjs --mall-name 店A --mall-name 店B`。对话结束/暂停：`node scripts/stop_open_malls.mjs`。
+
+**【macOS】** 成功 JSON 里若 `KernalNumber ≤ 130`：不进阶段 B，按后文「macOS 低内核对客户话术」提示后停。
+
+---
+
 通过站斧 WebDriver 版 **HTTP API** 控制客户端与店铺；**拿到 WebDriverPort 之后**才用 Playwright `connect_over_cdp` 做页面自动化。
 
-**Agent 提示**：技能**首次安装**、客户问「怎么用 / 如何使用」时，**先向客户发送下方「客户使用指南」**（可摘要，不必全文照搬）。
+**Agent 提示**：技能**首次安装**、客户问「怎么用 / 如何使用」时，**先向客户发送下方「客户使用指南」**（可摘要，不必全文照搬）。**仅开店不要先发指南。**
 
-**前置（Agent）**：站斧版本要求 **Windows ≥ 5.2.12**，**macOS > 5.2.10**；环境已安装 `playwright`、`requests`。
+**前置（Agent）**：站斧版本要求 **Windows ≥ 5.2.12**，**macOS > 5.2.10**；已装 Node ≥18；首次运行脚本会自动 npm install（含 playwright）。HTTP 端口读 Skill 目录 `[api_port.json](api_port.json)`（**不要**用 `Http.ini`）。
 
 > **macOS 限制**：`SetDownLoadPath`、`ClearCacheFolder`、`ClearCache`、`SetInstallPlugins` **目前不支持**。客户在 Mac 上提出这些需求时，应直接说明暂不支持并停止，勿调用对应 HTTP 接口。
 >
@@ -62,7 +87,7 @@ description: >-
 
 ### 四、店铺已经打开时
 
-若您要的店铺**已经在运行**，系统会先问：**是否需要关闭该店铺？** 按您的选择回复即可；不需要关闭则可直接继续后续操作。
+若您要的店铺**已经在运行**，系统会**直接复用**现有自动化端口并告知您，不会重复打开。只有您明确要求「关闭 / 关掉重开」时才会关店或再开。
 
 ### 五、页面自动化（进阶）
 
@@ -215,12 +240,12 @@ description: >-
 
 在 `**OpenBrowser` 打开店铺并成功拿到 `WebDriverPort` 之前**：
 
-- **禁止**新建或运行任何 `.py` / `.js` / `.sh` 等可执行脚本文件（含 `_tmp_*.py`、临时业务脚本）
+- **禁止**新建或运行任何临时可执行脚本（含 `_tmp_*.mjs` / `.js` / `.sh` 等业务脚本）
 - **禁止**为完成任务而编写「一次性自动化脚本」
 - **只允许**调用本 Skill 提供的 **HTTP 接口**（见 [reference.md](reference.md)）或 Shell 直接发 HTTP 请求
 - **允许**读写临时**数据文件**（如 `api_port.json`、`mall_cache.json`、`opening_malls.json` 状态文件），但数据文件不可执行
 
-> **例外（内置脚本）**：打开站斧运行 [`scripts/open_zhanfu.py`](scripts/open_zhanfu.py)；打开店铺运行 [`scripts/open_mall.py`](scripts/open_mall.py)；关店 / 列表 / 关站斧 / 登录 / 创建与插件等分别运行 `close_mall.py`、`list_malls.py`、`close_zhanfu.py`、`login_zhanfu.py`、`zhanfu_ops.py`。**禁止**另写一次性脚本。阶段 B 页面自动化仍禁止落盘为业务 `.py`。
+> **例外（内置脚本）**：打开站斧运行 [`scripts/open_zhanfu.mjs`](scripts/open_zhanfu.mjs)；打开店铺运行 [`scripts/open_mall.mjs`](scripts/open_mall.mjs)；关店 / 列表 / 关站斧 / 登录 / 创建与插件等分别运行 `close_mall.mjs`、`list_malls.mjs`、`close_zhanfu.mjs`、`login_zhanfu.mjs`、`zhanfu_ops.mjs`。**禁止**另写一次性脚本。阶段 B 页面自动化仍禁止落盘为业务 `.mjs`/`.js`。
 
 ### 2. 通讯失败或关键操作报错：立即结束
 
@@ -298,7 +323,7 @@ Content-Type: application/json
 }
 ```
 
-> **`browserId` 类型硬规矩**：`OpenBrowser`、`GetBrowserWebDriver`（以及同样传 `browserId` 的 `CloseBrowser` / `UpdateAccount` / `ClearCache` 等）的 **`browserId` 必须是 JSON 字符串**（如 `"3514488"`），**禁止**传数字（如 `3514488`）。从 `mall_id` 取值后一律 `str(mall_id)` 再写入请求。
+> **`browserId` 类型硬规矩**：`OpenBrowser`、`GetBrowserWebDriver`（以及同样传 `browserId` 的 `CloseBrowser` / `UpdateAccount` / `ClearCache` 等）的 **`browserId` 必须是 JSON 字符串**（如 `"3514488"`），**禁止**传数字（如 `3514488`）。从 `mall_id` 取值后一律 `String(mall_id)` 再写入请求。
 
 站斧启动命令行参数（按操作系统）：
 
@@ -334,44 +359,37 @@ open -a /Applications/站斧.app --args --multip --run_type=web_driver --ipc_typ
 
 #### HTTP 请求方式（阶段 A · 禁止 curl / 禁止换工具试错）
 
-**Agent 默认只用 Python `requests`**（稳定、无引号逃逸坑）。**禁止**为同一探测在 PowerShell / curl / Python 之间来回换工具（浪费时间）。
+**Agent 默认只用内置 Node 脚本**（稳定、无引号逃逸坑）。**禁止**为同一探测在 PowerShell / curl / Node 之间来回换工具（浪费时间）。
 
 **单次探测超时**：`timeout=1.5` 秒（够判通断，勿用 3～30s 长超时堵死）。
 
 **推荐模板**（直接复制，勿改成复杂转义；`{api_port}` 换成 `api_port.json` 中的端口，默认 `12678`）：
 
-```python
-import requests, json
-api_port = 12678  # 读自 api_port.json，无文件则用 12678
-r = requests.post(
-    f"http://127.0.0.1:{api_port}",
-    json={"module": "WebDriverModule", "action": "GetBrowserList",
-          "args": json.dumps({"page": 1, "limit": 20})},
-    timeout=1.5,
-)
-print(r.text)
+```js
+// 优先直接跑内置脚本；手搓探测仅调试用。端口读自 api_port.json，默认 12678
+const api_port = 12678;
+const r = await fetch(`http://127.0.0.1:${api_port}`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    module: "WebDriverModule",
+    action: "GetBrowserList",
+    args: JSON.stringify({ page: 1, limit: 20 }),
+  }),
+  signal: AbortSignal.timeout(1500),
+});
+console.log(await r.text());
 ```
 
 连接拒绝 / 超时 → 视为**站斧未打开**，立刻清空 `opening_malls.json` 并冷启动；**不要**改用 PowerShell 再探一次。
 
 **冷启动分配空闲端口**（判定站斧未打开之后、启动之前必做；直接复制）：
 
-```python
-import socket
-def get_available_port(start=12678):
-    port = max(1, int(start))
-    while port < 65535:
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            try:
-                s.bind(("127.0.0.1", port))
-                return port
-            except OSError:
-                port += 1
-    raise RuntimeError(f"自 {start} 起未找到可用端口")
-
-# preferred = api_port.json 的 api_port（默认 12678）
-api_port = get_available_port(preferred)
-print(api_port)  # 若 12678 被占用，会得到 12679…
+```js
+// 冷启动请直接 node scripts/open_zhanfu.mjs（内含 getAvailablePort）
+import { getAvailablePort, preferredPort } from "./scripts/zhanfu_http.mjs";
+const api_port = getAvailablePort(preferredPort());
+console.log(api_port); // 若 12678 被占用，会得到 12679…
 ```
 
 > 首选端口被占用（含非站斧服务、TIME_WAIT 等）→ **换下一空闲端口继续启动**，**禁止**要求客户先释放 12678；**禁止**盲扫 8081/8082 碰已运行站斧。
@@ -390,7 +408,7 @@ Invoke-RestMethod -Uri "http://127.0.0.1:12678" -Method Post -Body $body -Conten
 客户说「打开站斧 / 打开战斧」时，在 Skill 目录运行：
 
 ```bash
-python scripts/open_zhanfu.py
+node scripts/open_zhanfu.mjs
 ```
 
 客户已提供安装路径：`--folder-path "I:\ZhanFu"`；已提供登录账号：`--username ... --password ...`。
@@ -408,20 +426,27 @@ python scripts/open_zhanfu.py
 
 #### 打开店铺快速路径
 
-先确保站斧已开。客户说「打开店铺 xxx」时：
+先确保站斧已开。客户说「打开店铺 xxx」时**只跑脚本**（脚本内完成：按店名取 ID → 按 ID 打开 → 等 200ms → 取自动化端口）；拿到端口后**立即结束**，不进阶段 B：
 
 ```bash
-python scripts/open_mall.py --mall-name xxx
+node scripts/open_mall.mjs --mall-name xxx
 ```
+
+多家：`node scripts/open_malls.mjs --mall-name 店A --mall-name 店B`（串行；取端口失败仍继续下一家）。
+
+**对话结束 / 暂停**：立刻 `node scripts/stop_open_malls.mjs`（只停开店子进程，不停 `watch_opened_ports.mjs`）。**禁止**用 `node -e` 临时开店，**禁止**逐步手调 `GetMallByName` / `OpenBrowser` / `GetBrowserWebDriver`。
 
 | `status` | 动作 |
 |----------|------|
-| `already_open` | **不要**再 OpenBrowser；把 `WebDriverPort` 告诉客户。若客户本意是「打开」且店铺已开，再问是否需要关闭 |
+| `already_open` | 把 `WebDriverPort` 告诉客户并结束；**禁止**追问是否关闭（客户明确要求关店/重开除外） |
 | `opened` | 返回 `mall_id` / `WebDriverPort` |
-| `zhanfu_down` | 先跑 `open_zhanfu.py` |
-| `open_failed` / `no_webdriver_port` | 停止并提醒 IP/设备绑定与内核下载 |
+| `zhanfu_down` | 先跑 `open_zhanfu.mjs` |
+| `open_failed` | **只这一家**停止并提醒 IP/设备绑定与内核下载；**不要**因此卡住后面的店 |
+| `no_webdriver_port` | OpenBrowser 后等 200ms，再最多取 20 次端口（每次 HTTP 2s，无端口隔 0.3s）；20 次都失败仍占槽。提醒 IP/设备绑定；**不要**因此卡住其他店 |
 
-关闭店铺：`python scripts/close_mall.py --mall-name xxx`（成功 `returnObj === null`）。
+**队列**：无同时数量上限；串行等上一店取端口结束（失败也继续）再开下一店，隔 0.3 秒。`CloseBrowser` 或监听到端口退出才释放登记。冷启动 `open_zhanfu.mjs` 清空登记。
+
+关闭店铺：`node scripts/close_mall.mjs --mall-name xxx`。
 
 #### 阶段 B — 拿到 WebDriverPort 之后
 
@@ -429,8 +454,8 @@ python scripts/open_mall.py --mall-name xxx
 | 工具 / 方法                                | 用途                                |
 | -------------------------------------- | --------------------------------- |
 | `playwright.chromium.connect_over_cdp` | 接管站斧店铺浏览器                         |
-| `scripts/check_device_security.py`     | 业务自动化前设备安全检测（Skill 内置，**仅端口拿到后**） |
-| `ensure_headed_mode()`                 | 强制有界面（见 `scripts/headed_mode.py`） |
+| `scripts/check_device_security.mjs`     | 业务自动化前设备安全检测（Skill 内置，**仅端口拿到后**） |
+| `ensureHeadedMode()`                 | 强制有界面（见 `scripts/headed_mode.mjs`） |
 
 
 **禁止**：`playwright.chromium.launch`、`browser_navigate`（MCP）、Puppeteer `launch`。
@@ -442,11 +467,11 @@ python scripts/open_mall.py --mall-name xxx
 ```
 阶段 A（仅 HTTP，禁止脚本 / 禁止 Playwright / 失败即停）
   [读 api_port.json → 单次 GetBrowserList 探测该端口] → 能取到数据则站斧已打开，直接继续（开/关店铺均不重启）
-  → 无 HTTP 响应 / 非站斧占用 = 站斧未打开 → **立刻清空 opening_malls.json** → 查路径 → 杀站斧进程 → **get_available_port(首选)（占用则 12679…）** → 冷启动
+  → 无 HTTP 响应 / 非站斧占用 = 站斧未打开 → **立刻清空 opening_malls.json 与 opened_malls.json** → 查路径 → 杀站斧进程 → **get_available_port(首选)（占用则 12679…）** → 冷启动
   → 冷启动前查找站斧：api_port.json →（Windows 快捷方式/常见目录；macOS `/Applications`/`~/Applications`）；**全部找不到则停止并向客户索要安装路径**（禁止全盘搜）
   → GetBrowserList 探测运行态/登录（最多 8s；能取到数据=已打开；禁止用 LoadSuccess 判断）→ [未登录则提示 Login]
   → [SetInstallPlugins / SetDownLoadPath 可选，**仅 Windows**，须在 OpenBrowser 前；**macOS 跳过且勿调用**]
-  → 打开（站斧已打开之后）：写入 opening_malls.json → resolve mall_id → GetBrowserWebDriver **单次 5s** 判是否已开（超时仍 OpenBrowser）→ OpenBrowser → GetBrowserWebDriver → **【macOS】检查 `KernalNumber`，≤130 则停并提示切内核/主账号切换 + 手动重启站斧**
+  → 打开：`node scripts/open_mall.mjs --mall-name {店铺名}`（脚本内：取 ID → OpenBrowser → 等 200ms → 取端口；已开则跳过 OpenBrowser；仅开店则拿到端口即结束）。**【macOS】** `KernalNumber`≤130 则停并提示切内核/主账号切换 + 手动重启站斧
   → 关闭：resolve mall_id → CloseBrowser → 从 opening_malls.json 去掉该店铺名
   → 关闭站斧：ExitClient → 清空 opening_malls.json
 
@@ -460,19 +485,15 @@ Task Progress:
 - [ ] 2. 【阶段 A】读 `api_port.json`，对**唯一目标端口**单次 `GetBrowserList`（无文件则用 **12678**）；**能取到数据 = 站斧已打开，禁止冷启动**（开/关店铺均适用；**禁止**用 `LoadSuccess` 判断）
 - [ ] 3. 【阶段 A · 探测到站斧未打开】**立刻清空 `opening_malls.json`** → 查安装路径 → 杀进程（Win:`taskkill` / Mac:`killall 站斧`，最多等 1s）→ **`api_port = get_available_port(首选)`（首选被占用则递增）** → 冷启动 `--httpport={api_port}` → **立刻**轮询 `GetBrowserList`（间隔 0.5s，最多 8s）→ 写回 `api_port.json`
 - [ ] 4. 【阶段 A】`GetBrowserList` 探测运行态/登录（间隔 **0.5s**，**总计最多 8s**）；能取到 `mall_list` = 已打开且已登录；仍无法确认则提示客户提供账号密码
-- [ ] 5. 【阶段 A · 打开店铺 · 仅站斧已打开后】将 `mall_name` **写入** `opening_malls.json`（打开意图配置；**禁止**在站斧未打开时写入）
-- [ ] 6. 【阶段 A】resolve mall_id（读 `mall_cache.json` → 未命中则 `GetMallByName` 并写缓存）/ `CreateBrowser`（失败即停）
-- [ ] 7. 【阶段 A】resolve mall_id（关店则跳过 OpenBrowser 相关步骤）
-- [ ] 8. 【阶段 A · 打开店铺】`GetBrowserWebDriver` **只请求一次、超时 5s** 判断是否已打开；超时/无端口则**仍执行 OpenBrowser**（禁止二次探测、禁止 15s 长超时）
-- [ ] 9. 【阶段 A · 已打开】询问客户是否需要关闭店铺；未确认不操作
-- [ ] 10. 【阶段 A · 需打开】OpenBrowser（失败即停）→ GetBrowserWebDriver
-- [ ] 10b. 【阶段 A · macOS 内核】`GetBrowserWebDriver` 成功后若 `KernalNumber ≤ 130` → **立即停止**，按「macOS 低内核对客户话术」提示，**禁止**进入阶段 B
-- [ ] 11. 【阶段 A · 关闭店铺】CloseBrowser → **从 `opening_malls.json` 去掉该店铺名**（HTTP 正常时不重启站斧）
-- [ ] 12. 【阶段 A · 关闭站斧】ExitClient → **清空 `opening_malls.json`**
-- [ ] 13. 【阶段 B】connect_over_cdp
-- [ ] 14. 【阶段 B · 仅业务自动化】设备安全检测（15s 超时）
-- [ ] 15. 【阶段 B】执行业务自动化
-- [ ] 16. 收尾：CloseBrowser / ExitClient（**仅客户明确要求时** ExitClient；关店/关站斧时同步清理 `opening_malls.json`）
+- [ ] 5. 【阶段 A · 打开店铺】`node scripts/open_mall.mjs --mall-name {店铺名}`（取 ID / 开店 / 等 200ms 取端口均在脚本内）；仅开店意图拿到端口后结束，不进阶段 B
+- [ ] 6. 【阶段 A · 已打开】`already_open` → 告知 `WebDriverPort` 并结束；禁止追问是否关闭（客户明确要求关店/重开除外）
+- [ ] 7. 【阶段 A · macOS 内核】拿到端口后若 `KernalNumber ≤ 130` → **立即停止**，禁止进入阶段 B
+- [ ] 8. 【阶段 A · 关闭店铺】`node scripts/close_mall.mjs --mall-name {店铺名}`
+- [ ] 9. 【阶段 A · 关闭站斧】`node scripts/close_zhanfu.mjs`
+- [ ] 10. 【阶段 B】connect_over_cdp
+- [ ] 11. 【阶段 B · 仅业务自动化】设备安全检测（15s 超时）
+- [ ] 12. 【阶段 B】执行业务自动化
+- [ ] 13. 收尾：关店 / 关站斧仅客户明确要求时
 ```
 
 ---
@@ -481,7 +502,7 @@ Task Progress:
 
 1. 站斧必须以 WebDriver 模式**有界面**启动
 2. 只能 `connect_over_cdp`，禁止 `launch(headless=True)`
-3. 执行 Playwright 前调用 `ensure_headed_mode()`，设置 `PLAYWRIGHT_HEADLESS=0`
+3. 执行 Playwright 前调用 `ensureHeadedMode()`，设置 `PLAYWRIGHT_HEADLESS=0`
 4. 禁止使用 Cursor 内置 browser MCP 替代站斧浏览器
 
 ---
@@ -605,7 +626,7 @@ Login 请求示例：
 1. `SetInstallPlugins`（`installPlugins: []`）
 2. resolve mall_id 取 `mall_id`
 3. `ClearCache`（`browserId` = `mall_id`；会关闭该店铺）
-4. `OpenBrowser` → 等 10s → `GetBrowserWebDriver`
+4. `node scripts/open_mall.mjs --mall-name xxx`（脚本内 OpenBrowser 后等 **200ms** 再取端口）
 
 `returnObj.success != true` → **立即结束**，原样报告 `returnObj.msg`。
 
@@ -626,7 +647,7 @@ Login 请求示例：
 
 | 客户意图                       | `GetBrowserList` 探测        | 动作                                                                                                                                                    |
 | -------------------------- | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **打开店铺**                   | **能取到数据**（站斧已打开）或有 HTTP 响应 | **禁止**杀进程 / 冷启动 / `ExitClient`；将 `mall_name` 写入 `opening_malls.json` → resolve mall_id → `GetBrowserWebDriver` **单次 5s** 判是否已开 → 未开/超时则 `OpenBrowser` |
+| **打开店铺**                   | **能取到数据**（站斧已打开）或有 HTTP 响应 | **禁止**杀进程 / 冷启动 / `ExitClient`；`node scripts/open_mall.mjs --mall-name {店铺名}` |
 | **关闭店铺**                   | **能取到数据**或有 HTTP 响应        | **禁止**杀进程 / 冷启动 / `ExitClient`；直接 HTTP：resolve mall_id → `CloseBrowser` → **从 `opening_malls.json` 去掉该店铺名**                                           |
 | **关闭站斧** / **关闭战斧** / `ExitClient`    | 任意                         | `ExitClient` → **清空 `opening_malls.json`**                                                                                                            |
 | **创建店铺**                   | **能取到数据**或有 HTTP 响应        | **禁止**重启；`CreateBrowser` → 等待同步 → resolve mall_id → `OpenBrowser`（参数见客户指南「七、创建店铺」）                                                                    |
@@ -811,50 +832,18 @@ Login 请求示例：
 
 ---
 
-## 已打开店铺的确认（OpenBrowser 前）
+## 已打开店铺的确认
 
-客户要求**打开**某店铺时：
+客户要求**打开**某店铺时跑 `open_mall.mjs`。脚本会：按名取 ID → 槽内已有存活端口则复用 → 否则 OpenBrowser → **等 200ms** → 最多取端口 20 次。仅开店意图拿到端口后立即结束。
 
-1. **立刻**将 `mall_name` 写入 `opening_malls.json`（见「打开意图配置」；站斧须已打开）
-2. resolve mall_id 拿到 `mall_id`
-3. **先**调 `GetBrowserWebDriver` 判断目标店铺是否已打开——**只请求一次，超时固定 5 秒**
+| 情况 | 动作 |
+| ---- | ---- |
+| `already_open` | 告知 `WebDriverPort` 并结束；**禁止**追问是否关闭；仅客户明确要求关店时才 `CloseBrowser` |
+| `opened` | 把 `mall_id` / `WebDriverPort` 告诉客户 |
+| 客户确认需要关闭 | `node scripts/close_mall.mjs --mall-name xxx`；若还要再开，确认后再跑 `open_mall.mjs` |
+| 客户明确说关闭店铺 | 直接 `close_mall.mjs`，无需再问 |
 
-```json
-{"action": "GetBrowserWebDriver", "module": "WebDriverModule", "browserId": "3514488"}
-```
-
-> **`browserId` 必须为字符串**（如 `"3514488"`），**禁止**传 JSON 数字。
-
-**判定已打开**：5s 内 `returnObj.success == true` 且 `WebDriverPort` 有值。
-
-### 探测规则（一律单次 5s，禁止加长或重试）
-
-
-| 步骤                     | 规则                                                                              |
-| ---------------------- | ------------------------------------------------------------------------------- |
-| 次数 / 超时                | **只请求 1 次**，HTTP `timeout=5`；**禁止**先用 15s 再探测、**禁止**连打第二次                       |
-| 5s 内拿到端口               | 按「已打开」处理（询问是否关闭）                                                                |
-| **5s 超时 / 连接异常 / 无端口** | **视为未开**，**不要结束流程**，**直接 `OpenBrowser`** → 等 10s → 再 `GetBrowserWebDriver`（取端口） |
-
-
-
-| 情况                         | 动作                                                                                                                                   |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| 目标店铺**未打开**（含探测 **5s 超时**） | 直接 `OpenBrowser` → 等 10s → `GetBrowserWebDriver`                                                                                     |
-| 目标店铺**已打开**                | **必须先询问客户**：「店铺 {mall_name} 已打开（WebDriverPort={port}），是否需要关闭店铺？」                                                                     |
-| 客户确认**需要关闭**               | `CloseBrowser` → 从 `opening_malls.json` 去掉该名 → 确认关闭成功后，再询问是否重新 `OpenBrowser`；确认后再写入配置并 `OpenBrowser` → 等 10s → `GetBrowserWebDriver` |
-| 客户确认**不需要关闭** / 继续使用当前店铺   | **跳过** `OpenBrowser` 与 `CloseBrowser`，直接用现有 `WebDriverPort` 进入阶段 B 或结束                                                               |
-| 客户未明确表态                    | **不得**擅自 `OpenBrowser` 或 `CloseBrowser`，等待客户回复                                                                                       |
-
-
-**禁止**：
-
-- 检测到店铺已打开仍静默调用 `OpenBrowser`（会干扰客户当前页面）
-- 检测到店铺已打开未经确认就调用 `CloseBrowser`
-- OpenBrowser 前因 `GetBrowserWebDriver` **超时**而整流程失败退出（应改走 `OpenBrowser`）
-- OpenBrowser 前对 `GetBrowserWebDriver` **重试或拉长超时**（整体只许 **1 次 × 5s**）
-
-**与客户说「关闭店铺」的区别**：客户**明确说关闭**且 HTTP 正常 → 直接 `CloseBrowser` 并清理 `opening_malls.json`，无需再问是否关闭；客户**说打开**但检测到已开 → 才须询问是否关闭。
+**禁止**：已开仍静默再 OpenBrowser；未确认就 CloseBrowser。客户说关闭且 HTTP 正常 → 直接关店，不必再问。
 
 ---
 
@@ -879,7 +868,7 @@ killall 站斧
 
 杀进程后**最多等 1s**（可用短轮询看进程是否消失）；进程已退出则**立刻**继续，**禁止**固定干等 3s。
 
-3. **分配空闲端口**（判定站斧未打开后必做）：`api_port = get_available_port(首选)`（首选 = `api_port.json` 的 `api_port` 或默认 `12678`）；用 `socket.bind(("127.0.0.1", port))` 探测——**能 bind = 空闲**；失败则 `port += 1` 继续。12678 被占用则自动用 12679…，**禁止**因此停下来要求客户释放端口，**禁止**盲扫 8081/8082。
+3. **分配空闲端口**（判定站斧未打开后必做）：`api_port = get_available_port(首选)`（首选 = `api_port.json` 的 `api_port` 或默认 `12678`）；用 `getAvailablePort(首选)` 探测——**能 bind = 空闲**；失败则 `port += 1` 继续。12678 被占用则自动用 12679…，**禁止**因此停下来要求客户释放端口，**禁止**盲扫 8081/8082。
 4. 再以 WebDriver 参数启动（见上文接口清单；**Win/Mac 均四项缺一不可、禁止减少**；**macOS 用 `open -a`，同样带 `--multip`**），`--httpport=` 用上一步分配的端口。
 5. 启动后**立刻**轮询 `GetBrowserList`（对**实际端口**，间隔 **0.5s**，总计最多 **8s**），端口/列表就绪即继续；**禁止**启动后再固定 sleep 再探测。
 6. **8s 内仍无 WebDriver 通讯** → **立即停止、禁止重试**，按「通讯失败对客户话术」提示客户。
@@ -971,7 +960,7 @@ killall 站斧
 - 有 HTTP 响应但 **8s 内**仍 `success=false`、`data=null`、无法解析 `mall_list` → **停止**，提示客户：**「站斧未登录，请提供账号和密码」**；拿到凭证后再 `Login`（**禁止**因此冷启动）
 - 连接拒绝 / 无响应 → **站斧未打开**，走冷启动
 - 客户未提供账号密码 → **停止**，不猜测、不擅自登录
-- **单次请求** `timeout=1.5`；Agent **只用 Python requests**，禁止为通断探测切换 PowerShell/curl
+- **单次请求** `timeout=1.5`；Agent **只用内置 Node 脚本**，禁止为通断探测切换 PowerShell/curl
 
 > `CheckClientOpen` **不再作为流程步骤**；勿等待 `LoadSuccess`。
 
@@ -979,11 +968,11 @@ killall 站斧
 
 仅在 `GetBrowserList` 表明未登录且**客户已提供**账号密码时调用；`isboss` **固定** `true`。**禁止**使用内测或历史会话中的账号。`success != true` → **立即结束**。
 
-### GetMallByName / resolve mall_id / CreateBrowser
+### 开店三步（由 `open_mall.mjs` 一次完成，勿逐步手调）
 
-**resolve mall_id**：先读 `mall_cache.json`；未命中才调 `GetMallByName`，成功后立即写缓存。
+`GetMallByName` → `OpenBrowser` → 等 **200ms** → `GetBrowserWebDriver` 都在 [`scripts/open_mall.mjs`](scripts/open_mall.mjs) 内。`browserId` 必须是字符串。失败即停（探测已开的超时除外，超时仍 OpenBrowser）。OpenBrowser / 取端口失败时提醒 IP/设备绑定与手动打开下载内核。
 
-任一步 `GetMallByName` / `CreateBrowser` 的 `success != true` 或缺字段 → **立即结束**，不重试（缓存 id 导致后续 API 失败时的**一次**刷新重试除外，见「本地店铺 ID 缓存」）。
+CreateBrowser / 缓存刷新仍见「本地店铺 ID 缓存」：缓存 id 导致后续失败时删缓存、`GetMallByName` **仅重试一次**。
 
 ### UpdateAccount（修改店铺账号密码）
 
@@ -1010,32 +999,15 @@ killall 站斧
 - `returnObj.success != true` → **立即结束**，原样报告 `returnObj.msg`（如「缺少 browserId」）
 - 成功：`success == true`（`data` 可为 `{}`）
 
-### OpenBrowser（须先过「已打开店铺确认」）
+### OpenBrowser / GetBrowserWebDriver
 
-```json
-{"action": "OpenBrowser", "module": "WebDriverModule", "browserId": "3514488", "args": "{\"isDownLoadConfirm\":false,\"isOpenMallIndex\":true,\"isSwitchDynamicNetwork\":false}"}
-```
+开店请跑 `open_mall.mjs`，不要逐步手调这两步。脚本：槽里已有存活端口则直接复用；否则 OpenBrowser，**固定等 200ms**，再最多取端口 20 次（每次 HTTP 2s，无端口隔 0.3s）。未开店铺不再先做长探测。`browserId` 必须是字符串。仅开店拿到端口后立即结束，不进阶段 B。
 
-- **`browserId` 必须是字符串**（`"3514488"`），**禁止**数字 `3514488`
-- **仅站斧已打开后**再写入 `opening_malls.json`（探测未打开时已清空，禁止未打开就写入）
-- 目标店铺**未打开**（含 OpenBrowser 前探测 **5s 超时**）→ 可直接 `OpenBrowser`
-- 目标店铺**已打开**（客户要求**打开**该店）→ 须先询问客户**是否需要关闭店铺**；确认关闭后再视情况 `CloseBrowser` / `OpenBrowser`（见「已打开店铺的确认」）
-- 客户**明确说关闭店铺**且 HTTP 正常 → 直接 `CloseBrowser`，清理 `opening_malls.json`，**不重启**站斧
-- `OpenBrowser` 本身 `returnObj !== true` 或 `ret != 200` → **立即结束**，并**提醒客户**：
-  > **打开店铺失败，请确认该店铺是否已绑定 IP / 设备。** 可在站斧客户端查看店铺绑定设备后再试。
-- `OpenBrowser` **之后**的 `GetBrowserWebDriver` 失败（含「超时未获取到」）→ 同上，**一并提醒检查 IP/设备绑定**；并提醒客户：**首次使用请先在站斧客户端手动打开该店铺以下载内核；不同内核的店铺需分别手动打开一次**
-
-### GetBrowserWebDriver
-
-```json
-{"action": "GetBrowserWebDriver", "module": "WebDriverModule", "browserId": "3514488"}
-```
-
-- **`browserId` 必须是字符串**（`"3514488"`），**禁止**数字 `3514488`
-- **OpenBrowser 前探测（是否已开）**：**只请求 1 次，`timeout=5`**；超时/无端口 → **仍 `OpenBrowser`**；禁止重试、禁止加长超时
-- **OpenBrowser 后取端口**：`WebDriverPort` 为空或请求失败 → **立即结束**（禁止循环重试、禁止「再等一会」方案）
-- `OpenBrowser` 后允许**单次**固定等待 10s 再调 `GetBrowserWebDriver`（不算重试）；若仍失败则结束。
-- **macOS 内核检查（拿到端口后、进入阶段 B 前必做）**：若当前 OS 为 **macOS**，且 `returnObj.KernalNumber` 存在且 **≤ 130** → **立即停止**，**禁止** `connect_over_cdp` / 页面自动化，按下方「macOS 低内核对客户话术」提示客户；**Windows 不校验此限制**。复用已开店铺（客户确认不关闭、直接用现有端口）时同样要检查 `KernalNumber`。
+- 客户要求打开且脚本返回 `already_open` → 告知端口并结束；禁止追问是否关闭
+- 客户明确关店 → `close_mall.mjs`，不重启站斧
+- OpenBrowser `returnObj !== true` 或取不到端口 → 提醒：
+  > **打开店铺失败，请确认该店铺是否已绑定 IP / 设备。** 首次使用请先在站斧客户端手动打开该店铺以下载内核。
+- **macOS**：拿到端口后若 `KernalNumber ≤ 130` → 立即停止阶段 B，按下方话术提示
 
 ### macOS 低内核对客户话术（KernalNumber ≤ 130 · 必须原样）
 
@@ -1054,14 +1026,14 @@ killall 站斧
 ## 阶段 B：Playwright CDP（端口拿到后）
 
 > **macOS**：进入本节前须已确认 `KernalNumber > 130`；否则不得 `connect_over_cdp`。
-```python
-from headed_mode import ensure_headed_mode
-from playwright.sync_api import sync_playwright
+```js
+import { ensureHeadedMode } from "./scripts/headed_mode.mjs";
+import { chromium } from "playwright";
 
-ensure_headed_mode()
-browser = sync_playwright().start().chromium.connect_over_cdp(
-    f"http://127.0.0.1:{webdriver_port}"
-)
+ensureHeadedMode();
+const browser = await chromium.connectOverCDP(
+  `http://127.0.0.1:${webdriver_port}`
+);
 ```
 
 连接失败 → **立即结束**，禁止换系统浏览器替代。
@@ -1078,12 +1050,12 @@ browser = sync_playwright().start().chromium.connect_over_cdp(
 可运行 Skill 内置（**仅阶段 B**）：
 
 ```bash
-python scripts/check_device_security.py --port {webdriver_port} --wait --timeout 15
+node scripts/check_device_security.mjs --port {webdriver_port} --wait --timeout 15
 ```
 
 ### 业务自动化
 
-检测通过后，按客户需求用 Playwright 操作页面。**禁止**在 Skill 目录新增业务脚本；临时逻辑在对话中执行，不落盘为 `.py`。
+检测通过后，按客户需求用 Playwright 操作页面。**禁止**在 Skill 目录新增业务脚本；临时逻辑在对话中执行，不落盘为业务 `.mjs`/`.js`。
 
 ---
 
@@ -1113,10 +1085,10 @@ python scripts/check_device_security.py --port {webdriver_port} --wait --timeout
 | 情况                                                 | 动作                                                                                                                  |
 | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | 目标端口无 HTTP 响应 / **打开站斧且站斧未打开**                     | **立刻清空 `opening_malls.json`** → 查安装目录（快捷方式/常见目录找不到则向客户索要）→ **`get_available_port(首选)`（占用则递增）** → 冷启动并写 `api_port.json`；冷启动后 **8s 仍无通讯** → 按「通讯失败对客户话术」报告（版本无误且卡顿可延迟时可再试，请客户说「打开站斧」） |
-| `GetBrowserList` 能取到数据 + **打开店铺**                  | **站斧已打开，不重启**；写入 `opening_malls.json` → HTTP 开店铺流程                                                                  |
+| `GetBrowserList` 能取到数据 + **打开店铺**                  | **站斧已打开，不重启**；`node scripts/open_mall.mjs --mall-name {店铺名}` |
 | `GetBrowserList` 能取到数据 + **关闭店铺**                  | **不重启**；resolve mall_id → `CloseBrowser` → 清理 `opening_malls.json`                                                  |
 | API 已运行 + 开新店铺                                     | **不重启**站斧，直接 HTTP 开店铺                                                                                               |
-| 目标店铺已打开（客户要求**打开**）                                | **询问客户**是否需要关闭店铺；未确认不调用 `OpenBrowser` / `CloseBrowser`                                                              |
+| 目标店铺已打开（客户要求**打开**）                                | 复用端口告知客户并结束；**禁止**追问是否关闭；仅客户明确要求关店/重开时才 `CloseBrowser` / 再开                                      |
 | OpenBrowser 前 `GetBrowserWebDriver` **5s 超时**      | **不结束**；继续 `OpenBrowser`（只许探测 1 次）                                                                                  |
 | 客户明确要求关闭已开店铺                                       | 直接 `CloseBrowser` → 清理 `opening_malls.json`                                                                         |
 | 客户明确要求关闭站斧                                         | `ExitClient` → **清空** `opening_malls.json`                                                                          |
@@ -1138,21 +1110,21 @@ python scripts/check_device_security.py --port {webdriver_port} --wait --timeout
 
 | 意图 | 命令 |
 |------|------|
-| 打开站斧 | `python scripts/open_zhanfu.py` |
-| 打开店铺 | `python scripts/open_mall.py --mall-name ztest126` |
-| 关闭店铺 | `python scripts/close_mall.py --mall-name ztest126` |
-| 店铺列表 | `python scripts/list_malls.py` |
-| 关闭站斧 | `python scripts/close_zhanfu.py` |
-| 登录 | `python scripts/login_zhanfu.py --username ... --password ...` |
-| 创建店铺 | `python scripts/zhanfu_ops.py create-mall --mall-name ... --platform ...` |
-| 改店铺账号 | `python scripts/zhanfu_ops.py update-account --mall-name ... --username ... --password ...` |
-| 下载目录 | `python scripts/zhanfu_ops.py set-download --file-path D:\downloads` |
-| 店铺插件 | `python scripts/zhanfu_ops.py set-plugins --plugin-name 紫竹自动化插件 --chrome-id ""` |
-| 清缓存 | `python scripts/zhanfu_ops.py clear-cache --mall-name ztest126` 或 `--all` |
+| 打开站斧 | `node scripts/open_zhanfu.mjs` |
+| 打开店铺 | `node scripts/open_mall.mjs --mall-name ztest126` |
+| 关闭店铺 | `node scripts/close_mall.mjs --mall-name ztest126` |
+| 店铺列表 | `node scripts/list_malls.mjs` |
+| 关闭站斧 | `node scripts/close_zhanfu.mjs` |
+| 登录 | `node scripts/login_zhanfu.mjs --username ... --password ...` |
+| 创建店铺 | `node scripts/zhanfu_ops.mjs create-mall --mall-name ... --platform ...` |
+| 改店铺账号 | `node scripts/zhanfu_ops.mjs update-account --mall-name ... --username ... --password ...` |
+| 下载目录 | `node scripts/zhanfu_ops.mjs set-download --file-path D:\downloads` |
+| 店铺插件 | `node scripts/zhanfu_ops.mjs set-plugins --plugin-name 紫竹自动化插件 --chrome-id ""` |
+| 清缓存 | `node scripts/zhanfu_ops.mjs clear-cache --mall-name ztest126` 或 `--all` |
 
-- [scripts/zhanfu_http.py](scripts/zhanfu_http.py) — 公共 HTTP 库（`browserId` 强制字符串）
-- [scripts/zhanfu_playwright.py](scripts/zhanfu_playwright.py) — 全流程参考实现
-- [scripts/check_device_security.py](scripts/check_device_security.py) — 阶段 B 设备检测
-- [scripts/headed_mode.py](scripts/headed_mode.py) — 强制有界面
+- [scripts/zhanfu_http.mjs](scripts/zhanfu_http.mjs) — 公共 HTTP 库（`browserId` 强制字符串）
+- [scripts/zhanfu_playwright.mjs](scripts/zhanfu_playwright.mjs) — 全流程参考实现
+- [scripts/check_device_security.mjs](scripts/check_device_security.mjs) — 阶段 B 设备检测
+- [scripts/headed_mode.mjs](scripts/headed_mode.mjs) — 强制有界面
 
 API 详情（含通用约定与全部接口）：[reference.md](reference.md)

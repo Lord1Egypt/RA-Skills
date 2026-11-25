@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Developers and reviewers use this skill to inspect local video clips with repeatable timestamped samples, contact sheets, and selected full-dimension frames while documenting coverage and audio limitations.
+Developers and reviewers use this skill to inspect local video through timestamped frame samples, contact sheets, and selected full-dimension decoded frames. It documents the sampled coverage and the limits of visual inspection.
 
 ### Deployment Geography for Use:
 
@@ -22,13 +22,9 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Damaged or untrusted footage can cause processing to stall.
+Risk: The security review rates the skill benign with high confidence and notes an undeclared tool scope and subprocess use.
 
-Mitigation: Use an external execution timeout and resource limits; choose a fresh output folder and allow space for decoded images.
-
-Risk: Review files contain video imagery and the source path.
-
-Mitigation: Review the generated files and their contents before sharing them.
+Mitigation: Review the required local media tools and allow subprocess execution only in an environment where those tools are approved.
 
 ## Reference(s):
 
@@ -36,17 +32,17 @@ Mitigation: Review the generated files and their contents before sharing them.
 
 ## Skill Output:
 
-**Output Type(s):** [Images, JSON]
+**Output Type(s):** [Images, JSON, Files, Guidance]
 
-**Output Format:** [PNG contact sheets and selected full-dimension frames, plus a JSON manifest]
+**Output Format:** [PNG contact sheets and full-dimension frames, plus a JSON manifest]
 
-**Output Parameters:** [Local video path, coverage window, sampling interval, optional dense intervals and full-frame timestamps, and output directory]
+**Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Offline visual evidence only; the source video is not edited and audio is not reviewed. Sampling may miss events between frames or outside the selected coverage.]
+**Other Properties Related to Output:** [The manifest records requested times, decoded frame timestamps, coverage, and sampling limitations.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server-resolved release metadata)
+1.0.1 (source: server release metadata)
 
 ## Ethical Considerations:
 

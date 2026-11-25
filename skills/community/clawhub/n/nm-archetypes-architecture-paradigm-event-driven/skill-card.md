@@ -1,6 +1,6 @@
 ## Description:
 
-Event-driven async messaging
+Event-driven async messaging.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and architects use this skill to assess when event-driven design fits and to plan event schemas, messaging topology, failure handling, and observability for asynchronous systems.
+Developers and architects use this skill to assess when event-driven architecture fits and plan asynchronous systems, including event schemas, messaging topology, failure handling, and observability.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Consumers can become implicitly coupled to undocumented event meanings or fields.
+Risk: Consumers may become coupled through undocumented event meanings or fields.
 
-Mitigation: Maintain an event catalog or schema registry and lint event structures.
+Mitigation: Maintain an event catalog or schema registry and validate event structures.
 
-Risk: Stalled consumers and message failures can be difficult to diagnose without observability.
+Risk: Failures across asynchronous consumers can be difficult to diagnose.
 
-Mitigation: Use distributed tracing, standardized alerts, and dashboards for consumer lag, throughput, schema failures, and dead-letter queues.
+Mitigation: Use distributed tracing and standardized alerts, and monitor consumer lag, throughput, schema failures, and dead-letter queue depth.
 
-Risk: Event-storming workshops can delay decisions when their scope is not managed.
+Risk: Event modeling can become prolonged without clear scope.
 
-Mitigation: Time-box modeling sessions and focus first on high-value business contexts.
+Mitigation: Time-box modeling sessions and start with high-value business contexts.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-event-driven)
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-event-driven)
+- [Homepage listed in release metadata](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Guidance, Analysis, Markdown]
 
-**Output Format:** [Markdown architecture guidance]
+**Output Format:** [Markdown guidance and checklists]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Provides architecture decision guidance, adoption steps, risks, and operational exit criteria; does not itself implement the architecture.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

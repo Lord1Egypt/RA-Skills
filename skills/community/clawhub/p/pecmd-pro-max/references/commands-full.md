@@ -31,7 +31,7 @@ _SUB WinName,<shape>,[title],[closeCmd],[icon],[style],[mask] [-flag1 -flag2 ...
 窗口标志：
 `-top`（始终置顶），`-nocap`（无标题栏），`-nosysmenu`（无系统菜单），
 `-trap`（关闭时不退出），`-size`（可调整大小），`-maxb`（启用最大化），
-`-minb`（启用最小化），`-disminb`（禁用最小化按钮），
+`-bottom`（置于底部），`-mv`（整窗拖动），`-altmv`（ALT 拖动），`-disminb`（禁用最小化按钮），
 `-discloseb`（禁用关闭按钮），`-nfocus`（不接受键盘焦点），
 `-ntab`（无 Tab 键导航），`-disaltmv`（禁用 ALT 拖动），
 `-forcenomin`（阻止最小化），`-scalef`（XP 风格 DPI 缩放），
@@ -50,8 +50,8 @@ CALL @-WinName [args...]             // 后台窗口
 CALL @~WinName [args...]             // 后台，非阻塞
 CALL @+WinName [args...]             // 抛弃式子窗口
 CALL @^WinName [args...]             // 并行，父窗口不阻塞子窗口
-CALL @--popmenu WinName [x.y[:align]] // 弹出菜单
-CALL @--WinName                      // 销毁 Win 环境
+CALL @--popmenu[:x.y[:对齐]] MenuName // 弹出菜单（对齐：1=左 2=上 4=右 8=下）
+CALL @--                             // 卸载当前 Win 环境（不接窗口名；关窗用 KILL）
 CALL @WinName                        // 初始化 Win 环境
 
 // DLL 调用（缓冲区输出用 `*&buf` 形式传递，见下方说明；需要 PECMD2012 v1.88+ 完整版）
@@ -67,7 +67,7 @@ CALL $--ret:var ,-LoadLibrary,^<DLLpath                         // COM DLL 加�
 DLL 标志：`--cd`=切换目录，`--nrcd`=不恢复目录，`--c`=C 调用约定（默认 PASCAL/stdcall），
 `--bool`=BOOL 返回，`--ret:*`=通过指针返回，`--m`=内存中，
 `--1`=剩余全部作为一个参数，`--co`=注册 DLL（默认），`--nco`=不注册 DLL。
-`--qd`=启用类型前缀系统（qualified mode），允许用 `#`/`$`/`*` 等前缀为每个参数指定类型。
+`--qd`=启用完整类型前缀表（`$` `<` `*` `=` `>` `~` 等）；默认模式仅 `@` 窄串和 `#` 整数。
 
 **类型前缀系统（--qd）：** 每个参数的类型覆盖，使用 `--qd:类型1,类型2,...`
 | 前缀 | 类型 | 描述 |
@@ -96,13 +96,13 @@ DLL 标志：`--cd`=切换目录，`--nrcd`=不恢复目录，`--c`=C 调用约�
 ^                // 变量超出作用域时自动释放
 ```
 
-**实测验证的调用格式（PECMD2012 v1.88+, 32-bit / 64-bit 行为一致）：**
+**实测验证的调用格式（PECMD2012 v1.88+, 32-bit / 64-bit 语法一致）：**
 - 正确格式：`CALL $ --qd --ret:&&r DLL,Func,#intParam,$strParam`（逗号分隔，`#` 整数，`$` 字符串）
-- `--qd` 影响字符串传递方式（无 --qd 时字符串多含 null 终止符，建议始终加 `--qd`）
-- 点语法（`Func.#param`）不工作，整数无 `#` 前缀返回 0
-- **缓冲区输出**：`*&buf` 形式传递 PE 变量地址，DLL 写入可回传；`SET$#` 原始缓冲区 + `*` 不加 `&` 可能不回传
-- `GetProcAddress` 始终返回 0x0（实现问题），建议直接用函数名调用
-- 整数返回和字符串输入参数正常工作，32-bit 和 64-bit 行为完全一致
+- `--qd` 启用前缀解析；无 `--qd` 时 `$A` 的 `$` 是字面字符（lstrlenW 得 2），有 `--qd` 时剥离（得 1）
+- 点号（`Func.#param`）不是参数分隔；COM 的 `.vFun:` / `*&pObj.方法` 是另一套语法
+- **缓冲区输出**：`*&buf` 传递 PE 变量地址，DLL 写入可回传；容量单位按 API（WCHAR 或字节）
+- `GetProcAddress` 不是首选：需要地址时用 `*函数名` 或 `?` 查询，优先直接写函数名
+- 32/64 位语法一致，但结构体布局与可加载 DLL 位数不同
 
 地址调用：DLL 路径=`#`，函数=原始地址。函数名加 `*` 前缀 = 取地址。参数加 `&` 前缀 = 组合变量地址。
 内置：`-DllRegisterServer` / `-DllUnregisterServer`。
@@ -110,7 +110,7 @@ DLL 架构必须与 PECMD 进程（x86/x64）匹配。
 
 ### EXIT — 终止
 ```
-EXIT FILE      // 终止整个脚本
+EXIT FILE      // 退出当前 LOAD 文件/脚本层并返回调用者；主脚本中等于结束
 EXIT WIN       // 退出当前窗口（销毁窗口环境）
 EXIT _SUB      // 退出当前函数
 EXIT LOOP      // 跳出循环（同 EXIT BREAK）
@@ -118,7 +118,6 @@ EXIT FORX      // 跳出 FORX 循环（同 EXIT BREAK）
 EXIT CONTINUE  // 继续下一次迭代（LOOP/FORX）
 EXIT BLOCK     // 跳到当前 {} 块尾部
 EXIT -         // 同 EXIT BLOCK
-EXIT _SIB      // 跳过当前 FORX 迭代的剩余兄弟命令，进入下一迭代
 EXIT ToWin     // 中止函数执行，立即返回窗口消息循环（推荐使用）
 ```
 
@@ -454,16 +453,16 @@ FIND $str1=str2, command        // 等于（不区分大小写，*c 后缀区分
 FIND $str1<>str2, command       // 不等于
 FIND $=%var%, command           // 变量为空
 FIND $%var%=, command           // 变量为空（同上，变量在左侧）
-FIND *=var, command              // 惯用法：变量为空（主要源模式）
-FIND *<>var, command             // 惯用法：变量非空
-FIND $str1=str2,! cmd1! cmd2   // if else（用 ! 分隔）
-FIND $str1=str2,!! command      // 仅 else
+FIND *=var, command              // * 模式：PE 变量为空
+FIND *<>var, command             // * 模式：PE 变量非空
+FIND $str1=str2, cmd1!cmd2      // if / else（! 分隔）
+FIND $str1=str2,!! command      // 只有 IF 分支（没有 ELSE）
 FIND |num1>num2, command        // 数值比较
 FIND $'%var%'='', command       // 安全的空值检查（单引号保护）
 FIND [$][A & B], command         // 复合 AND（条件之间用 &）
 FIND [$][A | B], command         // 复合 OR（条件之间用 |）
-FIND --pid &var,ProcessName            // 获取进程 PID
-FIND --pid &var                        // 返回 5 个值：空闲时间 总时间 CPU个数 1秒时钟数 一时钟100ns数
+FIND --pid &var                        // 仅系统时间 5 值，不是 PID
+FIND --pid*@ &list,prog                // 按进程名过滤进程列表（字段 1=PID）
 FIND --pid*@[.ext|#parentPID] &var,    // 进程列表（可选：扩展名过滤或父进程 PID）
 FIND [--user] --pid*@[.ext|#parentPID] &var,prog[|用户名]  // 按用户名过滤进程
 FIND [--sub][--forpid:PID|--fortid:TID] --wid*@[parentWID] &var,[title]   // 窗口列表（* = 标题前缀匹配）
@@ -546,8 +545,9 @@ TEAM cmd1 | cmd2 | cmd3 ...
 
 ### LOCK — 临界区 / 互斥锁
 ```
-LOCK #lockName,&retVar           // 创建/获取命名锁
-LOCK --exist #lockName,&retVar   // 检查锁是否存在（1=是，0=否）
+LOCK #lockName,&retVar           // 创建/获取命名锁（已锁时阻塞）
+LOCK --exist #lockName,&retVar   // 检查：0=无 1=有 -1=失败
+LOCK --try #lockName,&retVar     // 尝试：0=成功 1=未锁住
 { LOCK #pecmd ... }              // 用花括号包裹以创建原子作用域
 ```
 
@@ -558,8 +558,9 @@ LOCK --exist #lockName,&retVar   // 检查锁是否存在（1=是，0=否）
 ### READ — 读取文件
 ```
 READ[-UNICODE|-UNICODEB|-UTF8|-GBK|-BIG5|-ANSI|-<codepage>] [*fix] path,*r,&var     // 原始（不转换行尾符）
-READ path,*,&var      // UNIX LF -> 本地
-READ path,**,&var     // DOS CRLF -> 本地
+READ path,*,&var      // 读整个文件（换行作为分隔）
+READ path,*r,&var     // 读整个文件（CRLF 作为分隔）
+READ path,**,&var     // 读整个文件（保留原始换行）
 READ -,-1,&count,&var // 获取行数
 READ -,lineNo,&line,&var  // 读取指定行（lineNo=-1 获取行数）
 READ -,10,&line,&var  // 从 stdin 读取最多 10 字节
@@ -607,18 +608,21 @@ GETF -bin &src,offset#size,&hexOut // 读取为十六进制字符串输出
 ### PUTF — 二进制文件写入
 ```
 PUTF -dd -len=0 path,0,zero       // 创建/截断
-PUTF path,offset,#&data            // 在偏移处写入
+PUTF# path,offset,&data        // 写 PE 变量（命令后缀 #）
+PUTF path,offset,#101              // 写 EXEDATA 资源 #101
 PUTF -dd -bs=1M src,0,dst,0,-len=size  // 磁盘到磁盘复制
 ```
 
 ### FILE — 文件/目录操作
 ```
-FILE src -> dst               // 复制
-FILE -force src -> dst        // 强制覆盖
+FILE src => dst               // 复制（=> 不是 ->）
+FILE src -> dst               // 移动
+FILE src >> newname           // 改名（目录不变）
+FILE -force src=>dst          // 强制覆盖
 FILE src                      // 删除
-FILE -r dir                   // 递归删除
-FILE -md dir                  // 创建目录
-FILE -simpleprogress src -> dst  // 带进度条
+FILE -rd dir                  // 删除空目录
+FILE -progress src=>dst       // 带进度条
+MDIR dir                      // 创建目录（或 PATH dir）
 ```
 
 ### DIR — 列出目录
@@ -630,8 +634,9 @@ DIR &var /s /b path            // 获取目录列表到变量
 ```
 FDIR &var=fullPath              // 目录部分
 FEXT &var=fullPath              // 扩展名（如 "EXE"）
-FNAM &var=fullPath              // 带扩展名的文件名
-NAME &var=fullPath              // 不带扩展名的文件名
+FNAM &var=fullPath              // 基本名（默认不含扩展名）
+FNAM -ext &var=fullPath         // 保留扩展名
+NAME &var=fullPath              // 同 FNAM（默认不含扩展名）
 ```
 
 ### SIZE — 文件大小
@@ -668,7 +673,7 @@ FLNK targetPath,                       // 删除链接（源为空）
 ```
 // 列出/信息操作
 PART list disk,&var                         // 列出所有磁盘号
-PART list disk N,&var                       // 磁盘信息（大小、柱面、磁头、介质类型、签名、总线、类型、可移动）
+PART list disk N,&var                       // 磁盘信息（2=大小 7=媒体 8=签名 9=总线 10=分区类型；另含柱面/磁头/可移动）
 PART list part N,&var                       // 列出磁盘 N 上的分区号
 PART -hextp list part N#M,&var              // 分区信息（十六进制类型 0xNN）
 PART -hextp -phy list part N#M,&var         // 分区信息，含物理编号（1-4 主分区，5-N 逻辑分区）
@@ -742,13 +747,13 @@ PART -CHS=C:H:S                             // 覆盖柱面/磁头/扇区几何�
 PART -clear                                 // 强制清除分区内有效信息（不可恢复）
 ```
 
-PART MBR 输出字段：`分区号 类型(hex) 激活 起始(字节) 长度(字节) 隐藏扇区 结束(字节) 物理# 盘符`
-PART GPT 输出字段：`分区号 GUID 属性 起始(字节) 长度(字节) 结束(字节) 物理# 盘符`
+PART MBR 输出字段：`分区号 类型(hex) 引导标志 起始偏移 大小 隐藏扇区 结尾 物理# 盘符`
+PART GPT 输出字段：`分区号 类型GUID GPT 起始偏移 大小 属性 分区GUID 物理# 盘符`
 
 ### MOUN — WIM/VHD/UDM 挂载
 ```
 // WIM 挂载
-MOUN [-svr] WimPath,MountDir,[ImageID],[TempDir]  // 只读挂载 WIM（ID=1 可省略）
+MOUN [-svr] WimPath,MountDir,[ImageID],[TempDir]  // 省略 TempDir=只读；给出 TempDir 或 *=读写
 MOUN -u MountDir                                   // 卸载 WIM
 MOUN -query VarName[=rw],MountDir,WimPath          // 查询挂载状态（=rw 仅返回 RW 标志）
 
@@ -824,16 +829,15 @@ FDRV -idle[c][:盘符集] &var               // 空闲盘符（-idlec 排除 A/B
 FDRV -link? 返名,所有名,终极名=符号名      // 返回链接对象
 ```
 
-### FORM — 驱动器类型（全面）
+### FORM — 驱动器类型
 ```
-// 基本文件系统查询
-FORM &var=D:                               // 文件系统类型字符串（如 "NTFS"、"FAT32"、"CDFS"）
-FORM -raw &var=D:                          // 驱动器类型常量（见下表）
-FORM TYPE,&var,BUS=D:                      // 总线类型字符串（如 "USB"、"SATA"、"SCSI"、"NVMe"）
-FORM -raw &type,&bus,&drvType=&dsk,<drive>  // 全面：一次调用获取所有类型信息
-
-// 驱动器类型常量（FORM -raw 返回）
+FORM &var=D:                               // 类型字符串（如 DRIVE_FIXED、DRIVE_REMOVABLE）
+FORM &var,BUS=D:                           // 总线类型字符串（USB、SATA、SCSI、NVMe）
+FORM &var,BUSNAME=D:                       // 总线名称
+FORM &var=\\.\HarddiskVolume3              // 设备路径也可
+FORM -raw &var=D:                          // 不区分 USB/软驱（仍返回字符串名）
 ```
+> 命令返回的是字符串名，不是下表的 0-9 数值；下表仅用于对照 Windows 常量。
 | 常量 | 值 | 描述 |
 |---|---|---|
 | DRIVE_UNKNOWN | 0 | 未知驱动器类型 |
@@ -876,8 +880,9 @@ FORM -raw &type,&bus,&drvType=&dsk,<drive>  // 全面：一次调用获取所有
 
 ### DFMT — 格式化
 ```
-DFMT d:,NTFS,label,quick
-DFMT d:,FAT32,,quick
+DFMT d:,NTFS,label,1          // 第4参非0=快格
+DFMT d:,FAT32,,0              // 0=完全格式化
+DFMT d:,exFAT                 // 省略第4参=快格
 ```
 
 ### EJEC — 弹出
@@ -895,15 +900,17 @@ EJEC U- HDD#1                 // 弹出磁盘 1 上的 USB 磁盘
 ### DISK — 磁盘操作
 ```
 DISK [varName],[diskNum],[partNum],function,[USBDriveLetters][,options]
-  // function 1=分配，2=释放，3=重新分配，22=第一个主分区
-  // USBDriveLetters：例如 "UW" 表示 USB 从 W: 开始分配（盘符表）
+  // 功能号只在“硬盘号/分区号/变量名为空”时生效
+  // 1或4：按硬盘/分区序号重排全部可见分区（4 默认含 0x4）
+  // 2或22：先给各硬盘第一主分区分配，再给其它分区（22=第一主分区）
+  // 3：不调整固定硬盘，只调整 U 盘
 ```
 | 功能 | 描述 |
 |---|---|
-| 1 | 分配盘符 |
-| 2 | 释放盘符 |
-| 3 | 重新分配（重排 + 分配） |
-| 22 | 第一个主分区分配 |
+| 1 / 4 | 按序号重排全部固定硬盘盘符 |
+| 2 / 22 | 先第一主分区，再其它分区 |
+| 3 | 只调整 U 盘盘符 |
+| `DISK ,hd,pt` | 释放指定分区盘符 |
 | **varName 特殊形式：** | |
 | `&drvLetter,diskNum,partNum` | 获取指定分区的盘符 |
 | `uAllPart,diskNum,partNum` | 分配 USB → 新分区盘符 |
@@ -931,15 +938,13 @@ DISK [varName],[diskNum],[partNum],function,[USBDriveLetters][,options]
 
 ### WIM 挂载
 ```
-MOUN[-svr] [!] wimFile,mountDir,[imageID],[tempDir]    // 挂载（读写）
-MOUN[-svr] -w [!] wimFile,mountDir,[imageID],[tempDir]  // 挂载为可写
-MOUN[-svr] -m [!] wimFile,mountDir,[imageID],[tempDir]  // 挂载为只读（无 -w）
-MOUN -u mountDir                                         // 卸载
-MOUN -query &var                                        // 查询已挂载镜像
-MOUN[-svr] -u [!] wimFile,mountDir,[imageID],[tempDir]   // 卸载并提交
-MOUN[-svr] -rw [!] wimFile,mountDir,...                  // 挂载为读写（别名）
+MOUN wimFile,mountDir,[imageID]              // 只读挂载
+MOUN wimFile,mountDir,[imageID],*            // 读写挂载（第 4 参 tempDir 决定 RW）
+MOUN wimFile,mountDir,[imageID],%&tempDir%   // 指定临时目录（RW）
+MOUN -u mountDir                              // 卸载
+MOUN -query &var                              // 查询已挂载镜像
 ```
-选项：`-dll WIMDLLpath:` 指定 wimgapi.dll 位置。
+选项：`-dll WIMDLLpath:` 指定 wimgapi.dll 位置。旧写法 `-w/-m/-rw` 不存在。
 
 ### VHD/VHDX 挂载
 ```
@@ -1077,8 +1082,8 @@ HKEY --del:keyname                          // 按名称取消注册
 
 ### DATE — 日期/时间变量和子变量
 ```
-DATE &var                                  // 获取当前日期（yyyy mm dd HH MM SS ms weekday 格式）
-DATE &var yyyy-mm-dd-HH-MM-SS-ms-wd        // 设置系统日期/时间（可部分设置）
+DATE &var                                  // 获取当前日期（只读；格式 yyyy-mm-dd|星期|时:分:秒）
+DATE &var y                                // 子项取年（也可 %&var:y%）
 DATE -h &var                               // 高精度计时器（微秒）
 DATE -r &var                               // 同步 + 读取高精度计时器
 DATE -space0 &var                          // 空格分隔，0 填充
@@ -1125,11 +1130,14 @@ RUNS prog,Name                       // 添加到 HKLM\...\Run
 RUNS -d Name                         // 删除条目
 ```
 
-### PATH — 设置搜索路径
+### PATH — 工作目录/目录操作
 ```
-PATH C:\Tools;%PATH%                 // 设置 PATH 环境变量
-PATH %CurDir%\Tools                  // 追加到现有值
+PATH dir                     // 创建目录（支持多级）
+PATH @dir                    // 设置 PECMD 当前工作目录
+PATH #dir                    // 删除目录
+PATH                         // 恢复默认目录 %SystemRoot%\SYSTEM32
 ```
+设置 PATH 环境变量用 `ENVI $PATH=...`（系统级广播）或 `ENVI ^PATH=...`（进程环境）。
 
 ### RECY — 设置回收站容量
 ```
@@ -1193,44 +1201,25 @@ WALL ""                                  // 清除壁纸（纯色）
 
 ### SITE — 文件属性查询/设置
 ```
-// 查询
-SITE ?filePath                           // 在消息框中显示属性
-SITE &var,filePath                       // 获取属性到变量（如 "A--RHS-"）
-SITE ?-attr,&var=&attr                   // 查询原始属性标志
+// 查询（FATTR/FVER/FTIME 子命令）
+SITE ?&A,&H,&R,&S,&full=FATTR,filePath      // 属性
+SITE ?&fileVer,&prodVer=FVER,filePath       // 文件版本/产品版本
+SITE ?&ct,&wt,&at=FTIME,filePath            // 创建/写入/访问时间
+SITE ?-local &ct,&wt,&at=FTIME,filePath     // 本地时间
 
-// 设置
-SITE +R,filePath                         // 设置只读
-SITE +H,filePath                         // 设置隐藏
-SITE +S,filePath                         // 设置系统
-SITE +A,filePath                         // 设置存档
-SITE -R,filePath                         // 移除只读
-SITE +R+H+S+A,filePath                   // 组合多个
-SITE +R-H,filePath                       // 设置只读并移除隐藏
-SITE -R-H-S-A,filePath                   // 清除所有属性
-SITE +R+H,dirPath\*                      // 应用于目录中所有文件（路径末尾加反斜杠）
-
-// 编码变量（安全）
-SITE ?-all,VAR=variable                  // 编码变量（PECMD 风格）
-SITE ?-sys,VAR=variable                  // 以系统标志编码
-SITE ?H:hWnd,variable1[,variable2]       // 复制到剪贴板
-
-// 文件版本查询
-SITE ?fileVerVar[,prodVerVar]=FVER,filePath  // 查询文件版本（如 "1.2.3.4"）
-
-// 文件时间查询
-SITE ?[-local -ws -link] [[*]creationVar,[*]writeVar,[*]accessVar]=FTIME,filePath
-  // * 前缀 → 返回 UTC 时间整数（可直接比较）
-  // 无 * → 返回 "yyyy mm dd HH MM SS us weekday"（固定宽度字段）
-  // -local → 本地时间（默认：UTC）
-  // -ws → 追加年内周数；-ws1 → 周日为周末边界
-  // -link → 跟随符号链接
-
-// 文件属性查询
-SITE ?[attrVar][,hidVar][,roVar][,sysVar][,fullVar]=FATTR,filePath
-
-// 更新文件时间戳
-SITE *touch[:[cr][*local:|*local0:|*sys:|*sys0:|*utc:]time],<file>[,retVar]
+// 设置：语法是“路径,属性”
+SITE filePath,+R                            // 设置只读
+SITE filePath,+H                            // 设置隐藏
+SITE filePath,+S                            // 设置系统
+SITE filePath,+A                            // 设置存档
+SITE filePath,-R                            // 移除只读
+SITE filePath,+R+H+S+A                      // 组合多个
+SITE filePath,+R-H                          // 设置只读并移除隐藏
+SITE filePath,-R-H-S-A                      // 清除所有属性
+SITE dirPath\*,+H                           // 应用于目录中所有文件
 ```
+FTIME 选项：`-local` 本地时间（默认 UTC）、`-ws` 追加年内周数、`-link` 跟随符号链接；变量名加 `*` 返回 UTC 整数，便于比较。
+更新时间戳：`SITE *touch[:[cr][*local:|*utc:]时间],<文件>[,返回名]`。
 查询结果中的属性标志：`R`=只读，`H`=隐藏，`S`=系统，`A`=存档，
 `N`=普通，`D`=目录，`C`=压缩，`E`=加密，`T`=临时，`O`=脱机。
 
@@ -1293,7 +1282,7 @@ REGI ^HKLM\SOFTWARE\Key\Val,&var          // REG_LINK
 REGI bHKLM\SOFTWARE\Key\Val,&var          // REG_QWORD_BIG_ENDIAN
 REGI uHKLM\SOFTWARE\Key\Val,&var          // REG_MUI_SZ
 REGI nHKLM\SOFTWARE\Key\Val,&var          // REG_NONE
-REGI .HKLM\SOFTWARE\Key\Val,&var          // 离线注册表（离线 Windows/system）
+REGI .HKLM\SOFTWARE\Key\Val,&var,&type    // 任意类型，并返回类型（不是离线！）
 REGI HKCU\Software\Key\,&&keys            // 枚举子键（换行分隔）
 
 // 写入
@@ -1305,9 +1294,9 @@ REGI HKCU\abc=""                           // 写入空字符串（"" 表示空�
 // 高级操作
 REGI --ak HKCU\Software\Key\,&all             // 枚举所有子键 (k=keys)
 REGI --av HKCU\Software\Key\,&all             // 枚举所有值 (v=values)
-REGI .?\HKLM\SOFTWARE\Key\Val,&type           // 查询值类型（点+问号）
+REGI .HKLM\SOFTWARE\Key\Val,&var,&type        // 任意类型 + 类型变量（无 .? 语法）
 REGI --16 ...                                 // 十六进制数据输入
-REGI --su path\val=value                      // 以 SYSTEM 身份运行（提升权限）— 用于 32 位在 64 位系统上
+REGI -su path\val=value                       // 以 SYSTEM 身份运行（单横线）
 REGI --init path\val,&var                     // 读取失败时返回空字符串
 REGI --name path\val,&var                     // 数据变量名模式
 REGI --k path\key\                            // 仅创建键（不设置值）
@@ -1326,29 +1315,17 @@ REGI ?HKLM\SOFTWARE\Key\,&&VT               // 检查键是否存在
 FIND $%&VT%=NI, MESS Data not set!          // NI = 键存在但无数据
 ```
 
-### HIVE — 加载/卸载离线注册表配置单元（全面）
-> help.txt 文档化标志：`-u`（加载到 HKU）、`-super`/`-super_r`（强制权限）、`-quick`（不添加权限）、`*`（导出到文件）。
-> 以下 `-tmp`、`-restore`、`ACL` 为未文档化扩展，实测可用但可能因版本而异。
+### HIVE — 加载/卸载离线注册表配置单元
+> 语法：`HIVE 子项名,[文件名]`。子项是 HKLM 下一级名称；省略文件名=卸载。
 ```
-// 将离线配置单元挂载到 HKLM（或 HKU）下的挂载点
-HIVE E:\Windows\System32\config\SOFTWARE,HKLM\PE-SYS     // 加载离线 SOFTWARE 配置单元
-HIVE E:\Windows\System32\config\SYSTEM,HKLM\PE-SYS       // 加载离线 SYSTEM 配置单元
-HIVE E:\Users\Default\NTUSER.DAT,HKU\PE-DEF             // 加载离线用户配置单元
-HIVE HKLM\PE-SYS,                                        // 卸载（路径为空，相同挂载点）
-
-// [未文档化] 加载时保留安全描述符（保留 ACL）
-HIVE E:\...\SOFTWARE,HKLM\PE-SYS,ACL                    // 带安全/ACL 加载
-
-// [未文档化] 作为临时配置单元加载（卸载时丢弃更改）
-HIVE -tmp E:\...\SOFTWARE,HKLM\PE-TMP                   // 使用临时配置单元（只读意图）
-
-// [未文档化] 加载并在卸载时还原（将更改保存回配置单元文件）
-HIVE -restore E:\...\SOFTWARE,HKLM\PE-SYS               // 卸载时还原（写回）
-HIVE -restore HKLM\PE-SYS,                               // 卸载并还原（保存更改）
+HIVE PE-SYS,%SystemDrive%\Windows\System32\config\SOFTWARE   // 加载 → HKLM\PE-SYS
+REGI $HKLM\PE-SYS\Microsoft\Windows NT\CurrentVersion\ProductName,&name
+HIVE PE-SYS                                                    // 卸载
+HIVE -u PE-DEF,%&ntuser%                                       // 加载到 HKEY_USERS
+HIVE -super_r PE-SYS,%&file%                                   // 强制设置子孙项权限
+HIVE * PE-SYS,%&outFile%                                       // 导出到文件
 ```
-挂载点语法：`HKLM\PE-SYS` = 将配置单元挂载到 `HKEY_LOCAL_MACHINE\PE-SYS`。
-挂载后，使用 `REGI .HKLM\PE-SYS\...` 访问（点前缀表示离线注册表）。
-要卸载，提供相同的挂载点并留空路径（或使用 `-restore` 前缀来保存更改）。
+挂载后按 **普通路径** `HKLM\PE-SYS\...` 访问，不需要也不存在“点前缀离线”写法。
 
 ---
 
@@ -1402,13 +1379,15 @@ UPNP add|del TCP|UDP,port,internalIP                  // 端口转发
 ```
 EXEC [=][!][@][^][&][*] [flags] program [args]
 ```
-基本：`=`=等待完成，`!`=隐藏运行，`@`=不等待+隐藏，`^`=不等待，`*`=不等待
+基本：`=`=等待完成；`!`=隐藏；`@`=后台桌面（WinLogon）；`^`/`_`=最小化；`&`=最大化；`*`=隐藏；`$`=文档模式。
+默认本来就不等待；等待用 `=` 或 `-wait`。
 
 附加标志（最常用）：
 ```
 -err+                  // 捕获 stderr 到同一输出
 -err                   // 单独捕获 stderr
--cmd:::Callback        // 实时输出行回调
+-cmd:[:ms:]CMD         // 定时/超时执行命令（默认 1000ms），不是逐行回调
+-wait                  // 等待进程结束（普通 EXEC）
 -wd:path               // 设置工作目录
 -pid:var               // 获取进程 PID
 -su[acde]              // 以 SYSTEM 身份运行
@@ -1455,7 +1434,7 @@ EXEC [=][!][@][^][&][*] [flags] program [args]
 
 ### EXEC* — 捕获输出
 ```
-EXEC* [*1|*N|*-] [-catch] [-cmd:::Callback] [-err+] [&]outputVar=program [args]
+EXEC* [*1|*N|*-] [-catch] [--cmd::5000:Callback] [-err+] [&]outputVar=program [args]
 ```
 `*1`=仅第一行，`*N`=合并行，`*-`=去除尾部换行，`*$`=首行+变量展开，`*^`=首行+推迟展开
 `NAME+=` — 追加模式（在 EXEC* 中，NAME+= 将输出追加到变量而非覆盖）
@@ -1525,7 +1504,7 @@ LINK [?]Name.lnk                          // 查询快捷方式信息
 ```
 MSTR &a,&b=<1><3>%&data%              // 提取字段 1 和 3
 MSTR &rest=<5->%&data%                 // 字段 5 到末尾（`-` = 到末尾）
-MSTR &single=<5*>%&data%               // 仅字段 5（`*` = 单字段）
+MSTR &tail=<5*>%&data%               // 从第 5 段到末尾（单变量时取剩余全部）
 MSTR &restq=<~5>%&data%                 // 字段 5 并剥离外层引号（~ = 去除引号）
 MSTR &s=pos,len,%&str%                 // 指定位置的子串
 MSTR &last=<-1>%&data%                 // 最后一个字段（负索引）
@@ -1599,11 +1578,14 @@ count < 1 时返回最右边位置。返回 0 表示未找到。
 
 ### 其他字符串操作
 ```
-LSTR &left=N,%&str%                     // 前 N 个字符
-RSTR &right=N,%&str%                    // 后 N 个字符
+LSTR &left=N,%&str%                     // 前 N 个字符（N<1 返回整串）
+RSTR &right=N,%&str%                    // 后 N 个字符（N<1 返回整串）
 SSTR [-case] &pos=needle,count,%&str%    // LPOS* 别名——查找子字符串位置（非子串提取）
 RPOS &pos=needle,[1],%&haystack%        // 查找最后一个（行为与 LPOS 类似，从右起）
-STRL &len=%&str%                        // 字符串长度
+STRL &len=%&str%                        // Unicode 字符数（汉字计 1）
+STRL -8 &len=%&str%                     // UTF-8 字节数
+STRL * &len=varName                     // * 后是变量名；变量不存在返回 -1
+STRL -bin &len=&pevar                   // PE 变量对象的内存字节数
 RAND &var                               // 随机 63 位整数
 ```
 

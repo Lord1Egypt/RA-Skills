@@ -2,8 +2,8 @@ import { ThetaConfig } from '../config.js';
 import { boundChatParams, snapshotBody } from '../approval.js';
 import { edgecloudInferenceClient } from '../clients/edgecloudInference.js';
 import { isStructuredError, thetaError } from '../errors.js';
+import { validateProbe, type ReadyProbe } from '../security.js';
 
-type ReadyProbe = 'openai' | 'gradio';
 type ReadyOptions = {
   probe?: ReadyProbe;
   timeoutMs?: number;
@@ -49,7 +49,7 @@ export const inference = {
     }
   },
   ready: async (cfg: ThetaConfig, opts: ReadyOptions = {}) => {
-    const probe = opts.probe ?? 'openai';
+    const probe = validateProbe(opts.probe);
     const timeoutMs = clampInt(opts.timeoutMs, 120000, 1000, 1800000);
     const intervalMs = clampInt(opts.intervalMs, 5000, 500, 60000);
     if (cfg.dryRun) return { dryRun: true, probe, timeoutMs, intervalMs };

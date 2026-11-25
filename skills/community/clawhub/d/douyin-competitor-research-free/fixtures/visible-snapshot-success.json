@@ -1,0 +1,52 @@
+{
+  "capturedAt": "2026-09-08T02:00:00.000Z",
+  "pages": [
+    {
+      "sourceType": "account",
+      "sourceUrl": "https://www.douyin.com/user/fixture",
+      "pageText": "公开作品",
+      "items": [
+        {
+          "title": "3步把会议整理成行动清单",
+          "description": "一个公开可见的效率工具演示",
+          "author": "测试账号A",
+          "publishedText": "2天前",
+          "visibleMetricsText": ["1.2万赞"],
+          "workUrl": "https://www.douyin.com/video/fixture001"
+        },
+        {
+          "title": "不会代码也能做小工具吗？",
+          "description": "从一个工作场景开始说明",
+          "author": "测试账号A",
+          "publishedText": "5天前",
+          "visibleMetricsText": [],
+          "workUrl": "https://www.douyin.com/note/fixture002"
+        }
+      ]
+    },
+    {
+      "sourceType": "keyword-search",
+      "keyword": "AI工具",
+      "sourceUrl": "https://www.douyin.com/jingxuan/search/AI%E5%B7%A5%E5%85%B7",
+      "pageText": "综合搜索结果",
+      "items": [
+        {
+          "title": "别急着装一堆工具，先看这个结果",
+          "description": "真实动作和结果展示",
+          "author": "测试账号B",
+          "publishedText": "1周前",
+          "visibleMetricsText": ["860赞", "评论12"],
+          "workUrl": "https://www.douyin.com/video/fixture003"
+        },
+        {
+          "title": "同一个任务，自动化和手动差在哪",
+          "description": "用对比方式拆解选择",
+          "author": "测试账号C",
+          "publishedText": "3周前",
+          "visibleMetricsText": ["收藏34"],
+          "workUrl": "https://www.douyin.com/video/fixture004"
+        }
+      ]
+    }
+  ]
+}

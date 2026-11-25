@@ -1,51 +1,52 @@
 const constants = require("../config/constants");
-const { requestApi } = require("../utils/request");
+const { requestApi, pollTaskResult } = require("../utils/request");
+const { SkillError } = require("../utils/errors");
+const { formatCreateTime } = require("../utils/time");
 
 function processPostResults(data) {
-  if (!Array.isArray(data)) {
-    return [];
+  if (!Array.isArray(data)) return [];
+  const out = [];
+  for (const item of data) {
+    if (!item || typeof item !== "object" || !item.aweme_id) continue;
+    const processed = { ...item };
+    const timeText = formatCreateTime(item.create_time);
+    if (timeText) processed.create_time_str = timeText;
+    out.push(processed);
   }
-  return data;
+  return out;
 }
 
 async function createPostTask(token, url, sort, limit) {
-  const params = { _: Date.now() };
-  const data = {
-    url: url,
-    sort_type: sort,
-    limit: limit,
-  };
   return await requestApi(
     "POST",
     "/api/tiktok/post/url",
+    { _: Date.now() },
+    {
+      url,
+      sort_type: sort,
+      limit,
+    },
     token,
-    params,
-    data,
     constants.CREATE_MAX_ATTEMPTS,
     "创建任务",
   );
 }
 
 async function getPostTask(token, url, sort, limit) {
-  const params = {
-    _: Date.now(),
-    url: url,
-    sort_type: sort,
-    limit: limit,
-  };
-  const response = await requestApi(
-    "GET",
+  const response = await pollTaskResult(
     "/api/tiktok/post/info",
+    {
+      url,
+      sort_type: sort,
+      limit,
+    },
     token,
-    params,
-    null,
-    constants.QUERY_MAX_ATTEMPTS,
     "查询任务",
   );
-  if (response.data) {
-    return processPostResults(response.data);
+  if (!Array.isArray(response.data)) {
+    throw new SkillError("API_ERROR", "作品结果格式错误: data 不是数组", true);
   }
-  return [];
+  return processPostResults(response.data);
 }
 
 module.exports = {

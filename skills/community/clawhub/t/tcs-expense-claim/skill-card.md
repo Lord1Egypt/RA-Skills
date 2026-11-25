@@ -1,46 +1,59 @@
-## Description: <br>
-Processes uploaded receipts, bills, invoices, and screenshots into categorized expense claim PDFs, an XLSX summary, currency-conversion totals, and portal-ready tables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end business travel expense claim processor that organizes uploaded receipts, categorizes expenses, generates claim PDFs and XLSX summaries, and prepares tables for reimbursement entry.
 
-## Publisher: <br>
-[insanelyqurious](https://clawhub.ai/user/insanelyqurious) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[insanelyqurious](https://clawhub.ai/user/insanelyqurious)
 
-## Use Case: <br>
-Employees preparing business travel reimbursement claims use this skill to classify receipts by TCS category, generate per-day PDF bundles and XLSX summaries, and produce manual-entry tables for expense portals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Receipts and invoices can contain personal, financial, travel, and employer reimbursement details. <br>
-Mitigation: Use the skill only for receipts intended for claim processing and keep generated PDFs, spreadsheets, and summaries within the appropriate expense workflow. <br>
-Risk: Generated claim packages may contain incorrect classifications, missing receipt details, ambiguous currencies, or stale exchange rates. <br>
-Mitigation: Review all generated PDFs, spreadsheet rows, currency notes, and flagged items before submitting an expense claim. <br>
-Risk: Spreadsheet output may include text extracted from untrusted receipts. <br>
-Mitigation: Open generated spreadsheets cautiously and inspect suspicious receipt-derived fields before reuse or submission. <br>
-Risk: Live FX lookup can expose query context and may be unnecessary for claims that can use provided or finance-approved rates. <br>
-Mitigation: Avoid live FX lookup unless needed and verify exchange rates against the applicable finance policy for the travel dates. <br>
+## Use Case:
 
+Employees and business travelers use this skill to turn receipt images and PDFs into reimbursement-ready claim packages. It is especially tailored for TCS-style expense categories, currency conversion notes, and manual portal entry tables.
 
-## Reference(s): <br>
-- [TCS Expense Categories - Eligibility & Filing Rules](tcs_categories.md) <br>
-- [Standard FX Rates Reference](fx_rates.md) <br>
-- [ClawHub release page](https://clawhub.ai/insanelyqurious/tcs-expense-claim) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands] <br>
-**Output Format:** [Markdown tables plus generated PDF and XLSX files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces one PDF per day and category, an expense_claim.xlsx workbook, summary tables, currency notes, and flagged items for review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Helper scripts may read or write broader local paths than intended when given manifests or output paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review manifests and output paths before execution, and use only receipts intended for reimbursement until path containment and filename sanitization are added.
+
+Risk: Generated claim PDFs and spreadsheets can contain sensitive reimbursement information.
+
+Mitigation: Inspect generated files before submission or sharing, and run the skill only for receipts the user intends to package for reimbursement.
+
+Risk: Externally supplied expense text may be carried into spreadsheet outputs.
+
+Mitigation: Avoid untrusted expense text until spreadsheet text escaping is added, and review XLSX contents before distributing the workbook.
+
+## Reference(s):
+
+- [TCS Expense Categories](artifact/tcs_categories.md)
+- [Standard FX Rates Reference](artifact/fx_rates.md)
+- [ClawHub Skill Page](https://clawhub.ai/insanelyqurious/skills/tcs-expense-claim)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with generated PDF and XLSX files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates per-day per-category PDF claim packages, an expense_claim.xlsx workbook, and summary tables for manual reimbursement entry.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

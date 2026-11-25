@@ -1,8 +1,8 @@
 ---
 name: postfast
-description: Schedule and manage social media posts across TikTok, Instagram, Facebook, X (Twitter), YouTube, LinkedIn, Threads, Bluesky, Pinterest, Telegram, and Google Business Profile using the PostFast API. Use when the user wants to schedule social media posts, manage social media content, upload media for social posting, list connected social accounts, check scheduled posts (filtered by account, platform, status or date), delete posts one at a time or up to 100 per call, cross-post content to multiple platforms, manage Google Business Profile posts, geotag posts with real-world places, pick trending pre-cleared TikTok sounds for photo and carousel posts, read or reply to the comments on their posts (social inbox on TikTok, Instagram, Facebook, Threads), triage or moderate comment conversations, generate a connect link so an agency client or their own app's user can connect accounts without a PostFast account, or automate their social media workflow. PostFast is a SaaS tool, no self-hosting required.
+description: Schedule and manage social media posts across TikTok, Instagram, Facebook, X (Twitter), YouTube, LinkedIn, Threads, Bluesky, Pinterest, Telegram, and Google Business Profile using the PostFast API. Use when the user wants to schedule social media posts, upload media for social posting, list connected social accounts, check scheduled posts (filtered by account, platform, status or date), delete posts one at a time or up to 100 per call, cross-post content to multiple platforms, manage Google Business Profile posts, geotag posts with real-world places, pick trending pre-cleared TikTok sounds, read or reply to the comments on their posts (social inbox on TikTok, Instagram, Facebook, Threads), triage or moderate comment conversations, generate a connect link so an agency client or their own app's user can connect accounts without a PostFast account, get webhooks when a post publishes or fails or an account disconnects, or automate their social media workflow. PostFast is a SaaS tool, no self-hosting required.
 homepage: https://postfa.st
-version: 1.19.0
+version: 1.21.1
 metadata: {"openclaw":{"emoji":"⚡","primaryEnv":"POSTFAST_API_KEY","requires":{"env":["POSTFAST_API_KEY"]}},"hermes":{"tags":["social-media","scheduling","marketing","automation"],"category":"productivity"}}
 ---
 
@@ -57,7 +57,7 @@ curl -X POST https://api.postfa.st/social-posts \
     "posts": [{
       "content": "Your post text here",
       "mediaItems": [],
-      "scheduledAt": "2026-06-15T10:00:00.000Z",
+      "scheduledAt": "2027-02-01T10:00:00.000Z",
       "socialMediaId": "ACCOUNT_ID_HERE"
     }],
     "controls": {}
@@ -93,7 +93,7 @@ curl -X POST https://api.postfa.st/social-posts \
     "posts": [{
       "content": "Post with image!",
       "mediaItems": [{ "key": "image/uuid.png", "type": "IMAGE", "sortOrder": 0 }],
-      "scheduledAt": "2026-06-15T10:00:00.000Z",
+      "scheduledAt": "2027-02-01T10:00:00.000Z",
       "socialMediaId": "ACCOUNT_ID_HERE"
     }],
     "controls": {}
@@ -119,7 +119,7 @@ Returns `{ "data": [...], "totalCount": 25, "pageInfo": { "page": 1, "hasNextPag
 - `statuses` (string): comma-separated, any of `DRAFT`, `SCHEDULED`, `PUBLISHED`, `FAILED`
 - `from` / `to` (ISO 8601 UTC): date range filter on `scheduledAt`
 
-Example, one account's scheduled posts in June: `GET /social-posts?socialMediaIds=ACCOUNT_ID&statuses=SCHEDULED&from=2026-06-01T00:00:00Z&to=2026-06-30T23:59:59Z&limit=50`
+Example, one account's scheduled posts in February: `GET /social-posts?socialMediaIds=ACCOUNT_ID&statuses=SCHEDULED&from=2027-02-01T00:00:00Z&to=2027-02-28T23:59:59Z&limit=50`
 
 - `ids` and `socialMediaIds` only match this workspace: an id from another workspace matches nothing (`200`, no posts).
 - To skip a filter, leave the parameter out. An empty value (`ids=`), a trailing comma, a non-UUID or more than 100 entries returns `400`.
@@ -127,7 +127,7 @@ Example, one account's scheduled posts in June: `GET /social-posts?socialMediaId
 - Results are ordered by `scheduledAt`, then `id`, so paging through a list that isn't changing is stable.
 - When nothing matches, `data` is `[]` and `totalCount` is `null`, not `0`.
 
-Each post carries `id`, `socialMediaId`, `content`, `status`, `approvalStatus`, `scheduledAt`, `publishedAt`, `failedAt`, `platformPostId`, `mediaItems`, `lastError`, `firstComment`, `firstCommentError`, `groupId`, and `controls` with the stored `threadsTopicTag`, `instagramPublishType`, `facebookContentType`, `tiktokIsDraft` and `youtubePrivacy` (posts created over the API carry every platform's defaults, so read only the field for the post's own platform). There is no `platform` field on a post: map `socialMediaId` to the account list. The list also includes posts imported when an account was connected (see section 1).
+Each post carries `id`, `socialMediaId`, `platform`, `content`, `status`, `approvalStatus`, `scheduledAt`, `publishedAt`, `failedAt`, `platformPostId`, `mediaItems`, `lastError`, `firstComment`, `firstCommentError`, `groupId`, and `controls` with the stored `threadsTopicTag`, `instagramPublishType`, `facebookContentType`, `tiktokIsDraft` and `youtubePrivacy` (posts created over the API carry every platform's defaults, so read only the field for the post's own platform). `platform` holds the same values as the account list and is `null` when the post's account has since been removed. `approvalStatus` is one of `PENDING_APPROVAL`, `IN_PROGRESS`, `APPROVED`, `REJECTED`, `NEEDS_WORK`. The list also includes posts imported when an account was connected (see section 1).
 
 ### 5. Delete posts
 
@@ -178,16 +178,19 @@ curl -X POST https://api.postfa.st/social-media/connect-link \
   }'
 ```
 
-Returns `{ "connectUrl": "https://app.postfa.st/connect?token=..." }`. Share the URL so they can connect accounts directly. The token is a long JWT: pass the full URL on as returned, never truncate it. Rate limit: 60/hour.
+Returns `{ "connectUrl": "https://app.postfa.st/connect?token=..." }`. Share the URL so they can connect accounts directly. The token is a long JWT: pass the full URL on as returned, never truncate it.
 
 Every field is optional (`expiryDays` is 1-30, default 7):
 
 - `platforms` restricts which of the 11 the link offers. Omit it to offer all of them, and never send an empty array (rejected). The scope is baked into the link's token and enforced server-side, so a scoped link cannot connect any other platform.
-- `redirectUrl` makes the connect page offer a `Return to <your host>` button once connecting finishes, carrying `status` (`success` or `error`), plus `platform` and `accountId` on success or `message` on error, plus your `externalId`. `accountId` is the same id `my-social-accounts` returns (for Facebook, the first Page the user picked), so it is the completion signal: there is no webhook and no need to poll and diff. After the Facebook or LinkedIn page step the return URL also carries `accountIds`, every account connected, comma-separated. Bluesky and Telegram connect inside the page and don't offer the button. https only (`http` is accepted on `localhost` / `127.0.0.1` / `[::1]`), max 2000 chars, no credentials in the URL.
+- `redirectUrl` makes the connect page offer a `Return to <your host>` button once connecting finishes, carrying `status` (`success` or `error`), plus `platform` and `accountId` on success or `message` on error, plus your `externalId`. `accountId` is the same id `my-social-accounts` returns (for Facebook, the first Page the user picked), so it is the completion signal in the browser, with no need to poll and diff. After the Facebook or LinkedIn page step the return URL also carries `accountIds`, every account connected, comma-separated. A Pinterest account with no board yet adds `needsBoard=true`, and a Google Business Profile account with no location adds `needsLocation=true`; neither can be posted to until it has one. On your server, the `account.connected` webhook event says the same thing once per account and carries your `externalId` (see [Webhooks](#webhooks)). Bluesky and Telegram connect inside the page and don't offer the button. https only (`http` is accepted on `localhost` / `127.0.0.1` / `[::1]`), max 2000 chars, no credentials in the URL.
+- `skipConnectPage` (default false) skips the connect page, for links your own product opens: the user goes straight to the platform's login and, once the platform hands back, straight to your `redirectUrl`, with no click on PostFast's page. It needs exactly one platform in `platforms` and cannot be combined with `sendEmail`. `LINKEDIN`, `BLUESKY` and `TELEGRAM` links accept it but show the connect page anyway, and a `FACEBOOK` link still stops at the Pages picker. The automatic return happens only in the browser tab that went out to the platform: in any other tab or browser, or when the link cannot start (no active plan, or the account limit is reached), the page shows the `Return to` button, which then carries `status=error` and `message`. Without a `redirectUrl`, a skip link ends on the connect page's success message.
 - `externalId` is your own reference (a tenant or user id), echoed back unchanged on that return URL. Max 128 chars, `A-Za-z0-9-._~:@` only.
 - `sendEmail` + `email` email the link to the client. Delivery is best effort: a failed send still returns the link.
 
-The same fields exist as `generate_connect_link` MCP tool arguments in `postfast-mcp` ≥ 0.6.0.
+Validation errors (`400`) carry a stable code in `message`: `connectLink.redirectUrlNotHttps`, `connectLink.redirectUrlInvalid` (for example a URL that carries credentials), `connectLink.externalIdInvalid`, `connectLink.skipConnectPageNeedsOnePlatform` (`skipConnectPage` with no platform or more than one), `connectLink.skipConnectPageWithEmail` (`skipConnectPage` together with `sendEmail`); the last two carry the reason in `description`. Enum and length violations come back as a `message` array instead, such as `"platforms should not be empty"` or `"externalId must be shorter than or equal to 128 characters"`.
+
+The same fields exist as `generate_connect_link` MCP tool arguments in `postfast-mcp` ≥ 0.6.0 (`skipConnectPage` since 0.16.0).
 
 ### 8. Create a draft post
 
@@ -243,7 +246,7 @@ curl -s -H "pf-api-key: $POSTFAST_API_KEY" \
 - `platforms` (string, optional): comma-separated filter
 - `socialMediaIds` (string, optional): comma-separated account UUIDs
 
-Returns `{ "data": [{ id, content, socialMediaId, platformPostId, publishedAt, latestMetric }] }`. Only `PUBLISHED` posts that have a `platformPostId` appear. There is no pagination, so keep date ranges reasonable. Rate limit: 1,260/hour, 12,600/day.
+Returns `{ "data": [{ id, content, socialMediaId, platformPostId, publishedAt, latestMetric }] }`. Only `PUBLISHED` posts that have a `platformPostId` appear. There is no pagination, so keep date ranges reasonable.
 
 `latestMetric` fields: `impressions`, `reach`, `likes`, `comments`, `shares`, `totalInteractions`, `fetchedAt`, `extras`. The count fields are strings (bigint). `latestMetric` is null if metrics haven't been fetched yet.
 
@@ -313,9 +316,9 @@ curl -X POST https://api.postfa.st/social-posts \
   -H "Content-Type: application/json" \
   -d '{
     "posts": [
-      { "content": "Big announcement!", "mediaItems": [], "scheduledAt": "2026-06-15T09:00:00.000Z", "socialMediaId": "LINKEDIN_ID" },
-      { "content": "Big announcement!", "mediaItems": [], "scheduledAt": "2026-06-15T09:00:00.000Z", "socialMediaId": "X_ID" },
-      { "content": "Big announcement!", "mediaItems": [], "scheduledAt": "2026-06-15T09:00:00.000Z", "socialMediaId": "THREADS_ID" }
+      { "content": "Big announcement!", "mediaItems": [], "scheduledAt": "2027-02-01T09:00:00.000Z", "socialMediaId": "LINKEDIN_ID" },
+      { "content": "Big announcement!", "mediaItems": [], "scheduledAt": "2027-02-01T09:00:00.000Z", "socialMediaId": "X_ID" },
+      { "content": "Big announcement!", "mediaItems": [], "scheduledAt": "2027-02-01T09:00:00.000Z", "socialMediaId": "THREADS_ID" }
     ],
     "controls": {}
   }'
@@ -347,7 +350,7 @@ Upload video, then post with interaction controls:
 }
 ```
 
-**`tiktokPrivacy` is deprecated. Don't set it.** TikTok videos publish at the account's default privacy (no per-post control) and photos default to public. For a private post, save it as a TikTok app draft (`tiktokIsDraft: true`) and set visibility on the phone.
+**`tiktokPrivacy` is deprecated. Don't set it, and don't rely on it to choose who sees a post.** For a private post, save it as a TikTok app draft (`tiktokIsDraft: true`) and pick the audience when you finish it in the TikTok app.
 
 **Sound:** `tiktokMusicSoundId` (a `musicSoundId` from the tiktok-sounds helper) attaches a licensed trending track to a photo carousel **or** a video; on a video the track and the video's original sound each play at 50% volume (no volume or trim controls). `tiktokAutoAddMusic: true` lets TikTok pick a track, photo posts only. The two are mutually exclusive (both set returns `tiktokMusic.conflictAutoAddMusic`). With neither set, a photo post publishes silent and a video keeps its own audio. Music controls are not applied to TikTok app drafts (`tiktokIsDraft: true`).
 
@@ -481,12 +484,12 @@ Add a `firstComment` to any post. It's auto-posted ~10 seconds after the main po
 
 ```json
 {
-  "posts": [{ "content": "Main post text", "firstComment": "Link: https://postfa.st", "mediaItems": [], "scheduledAt": "...", "socialMediaId": "X_ID" }],
+  "posts": [{ "content": "Main post text", "firstComment": "A first comment, posted under the post", "mediaItems": [], "scheduledAt": "...", "socialMediaId": "X_ID" }],
   "controls": {}
 }
 ```
 
-Supported on: X, Instagram, Facebook, YouTube, Threads, and TikTok. NOT supported on: Pinterest, Bluesky, LinkedIn, Google Business Profile (a validation error). **TikTok caveat:** max 1,200 chars, comments must be enabled on the post, and a TikTok account that can't post comments is rejected with `firstComment.tiktok.notSupported`. On X, a link in the first comment counts toward the monthly X link-post allowance (see [Rate Limits](#rate-limits)).
+Supported on: X, Instagram, Facebook, YouTube, Threads, and TikTok. NOT supported on: Pinterest, Bluesky, LinkedIn, Google Business Profile (a validation error). **TikTok caveat:** max 1,200 chars, comments must be enabled on the post, and a TikTok account that can't post comments is rejected with `firstComment.tiktok.notSupported`. On X, a link in the first comment needs an active paid plan (gotcha 47: refused during the trial) and counts toward the monthly X link-post allowance (see [Rate Limits](#rate-limits)); a link in both the post and its first comment counts as two.
 
 See [examples/x-first-comment.json](examples/x-first-comment.json).
 
@@ -505,7 +508,7 @@ See [examples/x-retweet.json](examples/x-retweet.json).
 
 ### Pattern 10: Batch scheduling (a week of posts)
 
-Schedule multiple posts at different times in a single API call (up to 15 posts per request; the endpoint allows 180 requests per minute and 420 per day). Before a large batch, check the per-account daily posting limits and the plan's queue ceiling in [Rate Limits](#rate-limits).
+Schedule multiple posts at different times in a single API call (up to 15 posts per request; the endpoint's own rate-limit windows are in [Rate Limits](#rate-limits)). Before a large batch, check the per-account daily posting limits and the plan's queue ceiling in [Rate Limits](#rate-limits).
 
 See [examples/batch-scheduling.json](examples/batch-scheduling.json).
 
@@ -554,7 +557,7 @@ See [examples/facebook-geotag.json](examples/facebook-geotag.json) and [examples
 
 ```json
 {
-  "posts": [{ "content": "Five things we learned shipping our API", "mediaItems": [], "scheduledAt": "2026-06-15T09:00:00.000Z", "socialMediaId": "THREADS_ID" }],
+  "posts": [{ "content": "Five things we learned shipping our API", "mediaItems": [], "scheduledAt": "2027-02-01T09:00:00.000Z", "socialMediaId": "THREADS_ID" }],
   "controls": { "threadsTopicTag": "Startups" }
 }
 ```
@@ -573,15 +576,21 @@ They are set at creation only: there is no route to update a post, and on Instag
 
 See [examples/tiktok-aigc-video.json](examples/tiktok-aigc-video.json).
 
+### Pattern 14: Facebook link carousel
+
+Set `facebookCarouselMainLink` in `controls` on a Facebook post with 2 to 10 images and it publishes as a link carousel: each image is a card that links out (with one image it posts as a normal photo post). Each `mediaItems[]` entry can carry `mediaLink` (where the card leads), `mediaCaption` (the card's headline, keep it to 32 characters) and `mediaDescription` (the line under it, keep it to 18 characters). The main link is the post's link and the destination of any card without its own `mediaLink`. A link carousel takes images only. `facebookCarouselShowEndCard: true` adds Facebook's end card after the last card; it is off by default.
+
+See [examples/facebook-link-carousel.json](examples/facebook-link-carousel.json).
+
 ## Platform-Specific Controls
 
 Pass these in the `controls` object. See [references/platform-controls.md](references/platform-controls.md) for full details.
 
 | Platform | Key Controls |
 |---|---|
-| **TikTok** | `tiktokTitle` (photo carousels, max 90), `tiktokAllowComments`, `tiktokAllowDuet`, `tiktokAllowStitch`, `tiktokIsDraft`, `tiktokIsAigc`, `tiktokBrandOrganic`, `tiktokBrandContent`, `tiktokAutoAddMusic`, `tiktokMusicSoundId` (trending Commercial Music Library sound from the tiktok-sounds helper below, max 128 chars; photo carousels AND videos on Business-API connections; on a video it plays at 50% over the original sound at 50%; mutually exclusive with `tiktokAutoAddMusic`, sending both is rejected; not applied when `tiktokIsDraft` is true), `tiktokMusicSoundName` (display-only label for the chosen sound, max 256 chars, never sent to TikTok; set it whenever the id is set). `tiktokAutoAddMusic` is photo posts only. `tiktokPrivacy` is **deprecated** (no-op) |
+| **TikTok** | `tiktokTitle` (photo carousels, max 90), `tiktokAllowComments`, `tiktokAllowDuet`, `tiktokAllowStitch`, `tiktokIsDraft`, `tiktokIsAigc`, `tiktokBrandOrganic`, `tiktokBrandContent`, `tiktokAutoAddMusic`, `tiktokMusicSoundId` (trending Commercial Music Library sound from the tiktok-sounds helper below, max 128 chars; photo carousels AND videos on Business-API connections; on a video it plays at 50% over the original sound at 50%; mutually exclusive with `tiktokAutoAddMusic`, sending both is rejected; not applied when `tiktokIsDraft` is true), `tiktokMusicSoundName` (display-only label for the chosen sound, max 256 chars, never sent to TikTok; set it whenever the id is set). `tiktokAutoAddMusic` is photo posts only. `tiktokPrivacy` is **deprecated** (don't rely on it) |
 | **Instagram** | `instagramPublishType` (TIMELINE/STORY/REEL), `instagramPostToGrid`, `instagramCollaborators`, `instagramTrialReelStrategy`, `instagramLocationId`, `instagramLocationName`, `instagramIsAiGenerated` |
-| **Facebook** | `facebookContentType` (POST/REEL/STORY), `facebookReelsCollaborators`, `facebookPlaceId`, `facebookPlaceName`, `facebookTargetCountries` |
+| **Facebook** | `facebookContentType` (POST/REEL/STORY), `facebookReelsCollaborators`, `facebookPlaceId`, `facebookPlaceName`, `facebookTargetCountries`, `facebookCarouselMainLink` (2 to 10 images become a link carousel; per card `mediaLink`, `mediaCaption`, `mediaDescription` in `mediaItems`), `facebookCarouselShowEndCard` |
 | **YouTube** | `youtubeIsShort`, `youtubeTitle`, `youtubePrivacy`, `youtubePlaylistId`, `youtubeTags`, `youtubeMadeForKids`, `youtubeCategoryId`, `youtubeThumbnailKey`, `youtubeContainsSyntheticMedia`, `youtubeLanguage` (BCP-47 code), `youtubeCaptionKey` (an uploaded .srt or .vtt file; needs `youtubeLanguage`) |
 | **LinkedIn** | `linkedinAttachmentKey`, `linkedinAttachmentTitle` (for document posts) |
 | **X (Twitter)** | `xRetweetUrl` (retweet) |
@@ -597,9 +606,9 @@ Pass these in the `controls` object. See [references/platform-controls.md](refer
 - **YouTube playlists**: `GET /social-media/{id}/youtube-playlists` → returns `[{ id, playlistId, title, description, thumbnailUrl }]`. Use `playlistId` (not `id`) as `youtubePlaylistId`
 - **GBP locations**: `GET /social-media/{id}/gbp-locations` → returns `[{ id, locationId, title, address, mapsUri }]`. Use `locationId` as `gbpLocationId` in controls. A missing location appears after Sync Locations in the dashboard
 - **Follower history**: `GET /social-media/{id}/follower-history?from=&to=` → daily snapshots `{ series: [{ capturedAt, followerCount }], currentFollowerCount, delta, trackingStartedAt }`. Forward-only, default 90d, max 365d. Covers every platform except X and personal Facebook
-- **Place search (geotag)**: `GET /social-media/search-places?q=<text>` → returns `[{ id, name, link?, city?, country?, street?, zip?, pictureUrl? }]`. The `id` is a Facebook Page ID that works as BOTH `facebookPlaceId` (Facebook) and `instagramLocationId` (Instagram); `link` is the place's Facebook Page URL. `q` needs min 2 chars, returns up to 100 address-carrying Pages, cached 7 days. Rate limit: 110/hour
-- **Connect link**: `POST /social-media/connect-link` → returns `{ connectUrl }`. Let clients connect accounts without a PostFast account. Params: `expiryDays` (1-30, default 7), `platforms` (string[], restricts which platforms the link offers; omit for all 11, empty array rejected, enforced server-side), `redirectUrl` (https except `http` on localhost, max 2000 chars; the connect page then offers a return button carrying `status`, `platform`, `accountId`, `externalId`, plus `accountIds` after the Facebook/LinkedIn page step), `externalId` (your own reference, max 128 chars, `A-Za-z0-9-._~:@`), `sendEmail` (bool, best effort), `email` (required if sendEmail=true). Rate limit: 60/hour
-- **TikTok trending sounds**: `GET /social-media/{id}/tiktok-sounds?genre=&countryCode=&dateRange=` → up to 100 trending pre-cleared Commercial Music Library tracks, already ordered by trending rank: `[{ musicSoundId, name, artist, duration, thumbnailUrl, previewUrl, rankPosition, genres, commercialMusicId, fullDurationClipId, trendingClipId }]` (`duration` is the seconds of the exact clip, `previewUrl` plays exactly what gets attached). No pagination: narrow with the params and filter the rest yourself. TikTok **Business-API connections only**: an account connected long ago returns `400 tiktokMusic.requiresBusinessApi` until it is reconnected once. `genre` takes raw TikTok values like `POP`, `HIP_HOP/RAP`, `R&B/SOUL`, `K-POP`, default all genres (URL-encode the `/` and `&`, e.g. `HIP_HOP%2FRAP`); `countryCode` = 2-letter uppercase, default US; `dateRange` = `1DAY | 7DAY | 30DAY | 90DAY`, default 7DAY. Bad values return `400` `tiktokSounds.invalidGenre` / `tiktokSounds.invalidCountryCode` / `tiktokSounds.invalidDateRange`; a valid country with no TikTok chart returns `200 []`; an id that isn't a TikTok account in this workspace returns `404 tiktokSounds.socialMediaNotFound`. The list rotates roughly daily (each filter combination is cached ~6h), so fetch fresh instead of reusing old ids. Use a result's `musicSoundId` as `tiktokMusicSoundId` in the post's controls (plus `tiktokMusicSoundName` for the label). Rate limit: 110/hour
+- **Place search (geotag)**: `GET /social-media/search-places?q=<text>` → returns `[{ id, name, link?, city?, country?, street?, zip?, pictureUrl? }]`. The `id` is a Facebook Page ID that works as BOTH `facebookPlaceId` (Facebook) and `instagramLocationId` (Instagram); `link` is the place's Facebook Page URL. `q` needs min 2 chars, returns up to 100 address-carrying Pages, cached 7 days
+- **Connect link**: `POST /social-media/connect-link` → returns `{ connectUrl }`. Let clients connect accounts without a PostFast account. Params: `expiryDays` (1-30, default 7), `platforms` (string[], restricts which platforms the link offers; omit for all 11, empty array rejected, enforced server-side), `redirectUrl` (https except `http` on localhost, max 2000 chars; the connect page then offers a return button carrying `status`, `platform`, `accountId`, `externalId`, plus `accountIds` after the Facebook/LinkedIn page step), `skipConnectPage` (bool; skips the connect page for a link your own product opens, needs exactly one platform and no `sendEmail`), `externalId` (your own reference, max 128 chars, `A-Za-z0-9-._~:@`), `sendEmail` (bool, best effort), `email` (required if sendEmail=true). The `account.connected` webhook event reports each account connected through the link
+- **TikTok trending sounds**: `GET /social-media/{id}/tiktok-sounds?genre=&countryCode=&dateRange=` → up to 100 trending pre-cleared Commercial Music Library tracks, already ordered by trending rank: `[{ musicSoundId, name, artist, duration, thumbnailUrl, previewUrl, rankPosition, genres, commercialMusicId, fullDurationClipId, trendingClipId }]` (`duration` is the seconds of the exact clip, `previewUrl` plays exactly what gets attached). No pagination: narrow with the params and filter the rest yourself. TikTok **Business-API connections only**: an account connected long ago returns `400 tiktokMusic.requiresBusinessApi` until it is reconnected once. `genre` takes raw TikTok values like `POP`, `HIP_HOP/RAP`, `R&B/SOUL`, `K-POP`, default all genres (URL-encode the `/` and `&`, e.g. `HIP_HOP%2FRAP`); `countryCode` = 2-letter uppercase, default US; `dateRange` = `1DAY | 7DAY | 30DAY | 90DAY`, default 7DAY. Bad values return `400` `tiktokSounds.invalidGenre` / `tiktokSounds.invalidCountryCode` / `tiktokSounds.invalidDateRange`; a valid country with no TikTok chart returns `200 []`; an id that isn't a TikTok account in this workspace returns `404 tiktokSounds.socialMediaNotFound`. The list rotates roughly daily (each filter combination is cached ~6h), so fetch fresh instead of reusing old ids. Use a result's `musicSoundId` as `tiktokMusicSoundId` in the post's controls (plus `tiktokMusicSoundName` for the label)
 
 ## Social Inbox (Comments)
 
@@ -620,40 +629,95 @@ Lists use the same envelope as posts (`{ data, totalCount, pageInfo }`, `page` 0
 - **Mark read**: `POST /social-inbox/conversations/{conversationId}/read` (PostFast state only, nothing changes on the platform)
 - **Set status**: `POST /social-inbox/conversations/{conversationId}/status` with `{ "status": "OPEN" | "SNOOZED" | "CLOSED" }` (PostFast state only)
 - **Assign**: `POST /social-inbox/conversations/{conversationId}/assign` with `{ "assigneeUserId": "..." }`; send `{}` to unassign; a non-member returns `inbox.assigneeNotMember`
+- **Reply pause**: when Facebook or Instagram refuses a reply because it has restricted the account (a spam or abuse block), PostFast pauses replies from that account for 24 hours. The refused reply and every further reply from that account fail with `inbox.replyPaused`, and `description` carries the platform's reason and the time the pause ends (ISO 8601 UTC). Stop sending from that account until then: each call fails the same way and still counts against the rate limit. Other accounts, hiding, deleting and private replies keep working
+- **Moderation the platform refuses**: a hide, unhide or delete the platform refuses fails with `400 inbox.moderationFailed`, and `description` carries the platform's reason (most often the comment is already gone). `DELETE` on a comment that is already deleted returns `201` and makes no platform call, so repeating it is safe; `HIDE` and `UNHIDE` on a deleted comment return `inbox.itemNotFound`; `DELETE` on a reply that is still sending returns `inbox.replyInProgress`
 
-Errors come back as `{ "statusCode": <number>, "message": "<code>" }`, where `message` is usually a stable `inbox.*` code (`inbox.conversationNotFound`, `inbox.itemNotFound`, `inbox.replyTooLong`, `inbox.replyNotSupported`, `inbox.rateLimited`, and the ones above). Branch on the code, not on the wording.
+Errors come back as `{ "statusCode": <number>, "message": "<code>" }`, where `message` is usually a stable `inbox.*` code (`inbox.conversationNotFound`, `inbox.itemNotFound`, `inbox.replyTooLong`, `inbox.replyNotSupported`, `inbox.rateLimited`, and the ones above). Branch on the code, not on the wording. Every field, error code and edge case: [references/social-inbox.md](references/social-inbox.md).
 
 `list_accounts` marks which accounts feed the inbox via `inboxCapable`. Facebook accounts connected before 2026-07-28 and Threads accounts connected before 2026-08-04 need one reconnect in the PostFast dashboard before comments flow. Replies you send appear exactly once, with no duplicate when the platform reports the reply back. The same operations are exposed as MCP tools (`list_inbox_conversations`, `get_inbox_conversation`, `list_inbox_items`, `get_inbox_unread_count`, `reply_to_inbox_item`, `send_inbox_private_reply`, `set_inbox_item_state`, `mark_inbox_conversation_read`, `set_inbox_conversation_status`, `assign_inbox_conversation`) in `postfast-mcp` ≥0.3.0.
+
+## Webhooks
+
+Instead of polling `GET /social-posts` or the account list, register an HTTPS endpoint and PostFast sends it a signed `POST` when something happens. Webhooks are on every plan, including the trial.
+
+**Events:**
+
+- `post.published`: a post reaches `PUBLISHED`. `data` is `{ post }`.
+- `post.failed`: a post fails for good (after its last automatic retry, on an error a retry cannot fix, or when it missed its time). Never sent for a failure that will still be retried. `data` is `{ post }`.
+- `account.connected`: an account is connected or reconnected. One event per account, so a Facebook or LinkedIn page selection can send several. `data` is `{ account, reconnected, externalId? }`; `externalId` is there only when a connect link carried one.
+- `account.disconnected`: PostFast paused an account (a revoked or expired token, a suspension, an action block). `data.account.disabledReason` says why.
+
+`data.post` is the same object as an item of `GET /social-posts`, and `data.account` the same object as an item of `GET /social-media/my-social-accounts`.
+
+**Set it up:**
+
+1. Register the receiver and store the `secret` from the response. It is returned this one time only.
+   ```bash
+   curl -X POST https://api.postfa.st/webhook-endpoints \
+     -H "pf-api-key: $POSTFAST_API_KEY" \
+     -H "Content-Type: application/json" \
+     -d '{ "url": "https://example.com/webhooks/postfast", "events": ["post.published", "post.failed"], "description": "Production receiver" }'
+   ```
+2. Send a sample: `POST /webhook-endpoints/{id}/test` with `{ "sampleEvent": "post.published" }` (no body sends `webhook.test`). The answer is `{ eventId, type, delivered, statusCode, latencyMs, error }` with status `200` even when the receiver failed, so read `delivered`.
+3. In the receiver: verify the signature on the raw body, deduplicate on the event `id`, and answer `2xx` within 15 seconds.
+
+**What a receiver must know:**
+
+- Deliveries are signed to the Standard Webhooks spec (`webhook-id`, `webhook-timestamp` and `webhook-signature` headers), so the `standardwebhooks` library on npm or PyPI verifies them with the endpoint's secret. Verify the raw bytes, never a body that was parsed and serialized again.
+- Delivery is at-least-once and unordered: the same event can arrive twice with the same `id`. A post can also change after its event (TikTok can still publish a post marked failed), so go by the latest `timestamp` for a post or read it back with `GET /social-posts`.
+- A failed delivery is retried, up to 8 attempts over about a day. Redirects are not followed. A `410` turns the endpoint off at once, and an endpoint that keeps failing for 5 days is disabled (`active: false`, `disabledReason: FAILING`). Turn it back on with `PATCH /webhook-endpoints/{id}` and `{ "active": true }`; events sent while it was off are not replayed.
+- The URL must be `https` on port 443 with a public hostname (no IP address, no `localhost`). A workspace can have 5 active endpoints.
+- Posts imported from a platform when an account connects send no events, and neither does a first comment that fails.
+
+**Routes:** `POST /webhook-endpoints` (create; body `url`, `events`, optional `description`), `GET /webhook-endpoints` (list), `GET /webhook-endpoints/{id}`, `PATCH /webhook-endpoints/{id}` (any of `url`, `events`, `description`, `active`), `DELETE /webhook-endpoints/{id}` (also deletes its delivery log), `GET /webhook-endpoints/{id}/deliveries` (the last 30 days: each attempt's status code, latency and error, and the payload as sent), `POST /webhook-endpoints/{id}/test`. Errors carry a `webhook.*` code in `message`, for example `webhook.urlNotHttps`, `webhook.urlHostNotAllowed`, `webhook.limitReached` and `webhook.notFound`.
+
+Payload examples for each event, the retry schedule, every error code and the signature check in Node.js and Python: [references/webhooks.md](references/webhooks.md). The same operations are MCP tools in `postfast-mcp`: `create_webhook_endpoint`, `list_webhook_endpoints`, `get_webhook_endpoint`, `update_webhook_endpoint`, `delete_webhook_endpoint`, `test_webhook_endpoint`, `list_webhook_deliveries`.
 
 ## Rate Limits
 
 API limits are counted **per endpoint, per workspace API key**: calls to one endpoint never use another endpoint's budget. Every endpoint has four windows (1 minute, 5 minutes, 1 hour, 24 hours), and exceeding any of them returns `429`.
 
+<!-- BEGIN GENERATED rate-limits: built from https://postfa.st/docs.md, do not edit by hand -->
 **Default** (every endpoint, for each window it doesn't set itself): 72/minute, 180/5 minutes, 360/hour, 2,400/day.
 
 **Endpoints that set their own windows:**
 
 | Endpoint | Own limits |
 |---|---|
-| `POST /social-posts` (up to 15 posts per call) | 180/minute, 420/day |
-| `GET /social-posts` | 720/hour, 7,200/day |
-| `DELETE /social-posts/:id` | 200/hour |
-| `POST /social-posts/bulk-delete` (up to 100 ids per call) | 200/hour |
-| `GET /social-posts/analytics` | 1,260/hour, 12,600/day |
-| `POST /file/get-signed-upload-urls` | 180/minute, 420/day |
-| `GET /social-media/my-social-accounts` | 1,260/hour, 12,600/day |
-| `GET /social-media/:id/follower-history` | 720/hour, 7,200/day |
-| `GET /social-media/:id/pinterest-boards`, `/youtube-playlists`, `/gbp-locations` | 330/hour, 3,300/day |
+| `POST /file/get-signed-upload-urls` | 180/minute, 1,260/day |
+| `GET /social-media/my-social-accounts` | 216/minute, 540/5 minutes, 3,780/hour, 37,800/day |
+| `GET /social-media/:id/follower-history` | 2,160/hour, 21,600/day |
 | `GET /social-media/search-places` | 110/hour |
+| `GET /social-media/:id/pinterest-boards` | 990/hour, 9,900/day |
+| `GET /social-media/:id/youtube-playlists` | 990/hour, 9,900/day |
+| `GET /social-media/:id/gbp-locations` | 990/hour, 9,900/day |
 | `GET /social-media/:id/tiktok-sounds` | 110/hour |
-| `POST /social-media/connect-link` | 60/hour |
-| Social Inbox reads (`GET /social-inbox/...`) and mark-read | 1,080/hour, 10,800/day |
-| `POST /social-inbox/items/:id/reply` | 180/minute, 420/day |
-| `POST /social-inbox/items/:id/private-reply` | 120/minute, 360/day |
-| `POST /social-inbox/items/:id/state` | 240/hour |
-| `POST /social-inbox/conversations/:id/status` and `/assign` | 720/hour, 7,200/day |
+| `POST /social-media/connect-link` | 180/hour |
+| `GET /social-posts` | 216/minute, 540/5 minutes, 2,160/hour, 21,600/day |
+| `POST /social-posts` | 180/minute, 1,260/day |
+| `DELETE /social-posts/:id` | 600/hour, 6,000/day |
+| `POST /social-posts/bulk-delete` | 600/hour, 6,000/day |
+| `GET /social-posts/analytics` | 216/minute, 540/5 minutes, 3,780/hour, 37,800/day |
+| `GET /social-inbox/conversations` | 360/minute, 900/5 minutes, 5,400/hour, 54,000/day |
+| `GET /social-inbox/conversations/:id` | 360/minute, 900/5 minutes, 5,400/hour, 54,000/day |
+| `GET /social-inbox/conversations/:id/items` | 360/minute, 900/5 minutes, 5,400/hour, 54,000/day |
+| `GET /social-inbox/unread-count` | 360/minute, 900/5 minutes, 5,400/hour, 54,000/day |
+| `POST /social-inbox/items/:id/reply` | 180/minute, 720/hour, 7,200/day |
+| `POST /social-inbox/items/:id/private-reply` | 120/minute, 1,800/day |
+| `POST /social-inbox/items/:id/state` | 1,200/hour, 12,000/day |
+| `POST /social-inbox/conversations/:id/read` | 360/minute, 900/5 minutes, 5,400/hour, 54,000/day |
+| `POST /social-inbox/conversations/:id/status` | 360/minute, 900/5 minutes, 3,600/hour, 36,000/day |
+| `POST /social-inbox/conversations/:id/assign` | 360/minute, 900/5 minutes, 3,600/hour, 36,000/day |
+| `POST /webhook-endpoints` | 180/hour |
+| `GET /webhook-endpoints` | 600/hour, 6,000/day |
+| `GET /webhook-endpoints/:id` | 600/hour, 6,000/day |
+| `PATCH /webhook-endpoints/:id` | 180/hour |
+| `DELETE /webhook-endpoints/:id` | 180/hour |
+| `GET /webhook-endpoints/:id/deliveries` | 600/hour, 6,000/day |
+| `POST /webhook-endpoints/:id/test` | 10/minute, 60/hour, 600/day |
 
-For example, `DELETE /social-posts/:id` sets 200/hour, so it allows 72/minute, 180/5 minutes, 200/hour and 2,400/day.
+For example, `DELETE /social-posts/:id` sets 600/hour, 6,000/day, so it allows 72/minute, 180/5 minutes, 600/hour, 6,000/day.
+<!-- END GENERATED rate-limits -->
 
 **How the windows behave:** a window starts at the endpoint's first call, not on a clock boundary (the 24-hour window is not a midnight reset). Once a window is exceeded, that endpoint stays blocked for the full length of the window, and **calls made while blocked still count toward it**, so retrying in a loop keeps it blocked.
 
@@ -661,11 +725,13 @@ For example, `DELETE /social-posts/:id` sets 200/hour, so it allows 72/minute, 1
 
 **429 response:** `Retry-After-<window>`, named after the window that was exceeded, plus the standard `Retry-After` with the same value in seconds (up to 60 for the minute window, up to 86,400 for the daily one). Body: `{"statusCode":429,"message":"Too many requests. Please try again later.","error":"Too Many Requests"}`.
 
-**Staying inside the limits:** read `X-RateLimit-Remaining-<window>` before a burst; on a `429`, wait `Retry-After` seconds before calling that endpoint again (other endpoints keep working); batch up to 15 posts per create call and up to 100 ids per bulk delete; never poll the account list or the post list in a tight loop.
+**Staying inside the limits:** read `X-RateLimit-Remaining-<window>` before a burst; on a `429`, wait `Retry-After` seconds before calling that endpoint again (other endpoints keep working); batch up to 15 posts per create call and up to 100 ids per bulk delete; never poll the account list or the post list in a tight loop. To learn when a post publishes or fails, use a webhook instead of polling (see [Webhooks](#webhooks)).
 
 **Posting limits per social account** (PostFast Fair Usage Policy, separate from the API limits above): each account can publish per day Instagram 35, Facebook 25, LinkedIn 35, TikTok 15, YouTube 10, Pinterest 15, Bluesky 70, Threads 65, Telegram 25, Google Business Profile 5, X 6 (9 on Pro and Enterprise). The count is tracked per social account across every workspace it is connected to, and resets at midnight UTC.
 
-**X (Twitter) also has organization-wide caps** that depend on the plan: a daily pool shared by every X account in the organization (8 posts/day on Starter up to 280 on Enterprise) and a monthly allowance of posts containing a link (14 on Starter up to 120 on Enterprise; a link in the text or the first comment counts, a link in both counts twice). Each plan also caps how many posts can sit in the queue and how many drafts can be stored. Per-plan tables: [references/platform-controls.md](references/platform-controls.md) (X) and [references/api-reference.md](references/api-reference.md) (queue ceilings).
+**X (Twitter) also has organization-wide caps** that depend on the plan: a daily pool shared by every X account in the organization (8 posts/day on Starter up to 280 on Enterprise) and a monthly allowance of posts containing a link (14 on Starter up to 120 on Enterprise; a link in the text or the first comment counts, a link in both counts twice). The per-plan X table is in [references/platform-controls.md](references/platform-controls.md).
+
+**Queue and draft ceilings per plan** (how many posts can sit queued at once and how many drafts can be stored, not a monthly cap): Starter 150 / 50, Creator 3,000 / 600, Growth 5,000 / 2,000, Pro 50,000 / 50,000, Enterprise 80,000 / 80,000. A queued post is one scheduled to publish, approved or waiting for approval, in any workspace of the organization; drafts, failed posts and published posts don't count. When the queue is full, `POST /social-posts` returns `403` with `message` `sub.<plan>.maxScheduledPosts` (for example `sub.starter.maxScheduledPosts`), and `description` names the ceiling and how many posts are queued now. This is not a rate limit and carries no `Retry-After`: stop sending scheduled posts, then wait for queued posts to publish, save the rest as drafts (`status: DRAFT`), or tell the user the plan's ceiling is reached.
 
 These limits can change; https://postfa.st/fair-usage is the source of truth. Warn the user before a batch that would cross them.
 
@@ -729,6 +795,13 @@ Upload caps for every platform: 250MB per video (Bluesky 100MB, Telegram 50MB), 
 38. **YouTube titles and descriptions can't contain `<` or `>`**: YouTube doesn't allow either character, and PostFast rejects the post before saving it. The description holds up to 5,000 characters; the title 100.
 39. **Bluesky video needs a verified email**: Bluesky-hosted accounts must verify their email before the first video upload, and Bluesky caps video uploads per account per day. A rejected upload shows as an error on the post.
 40. **YouTube captions go in `controls` and need a language**: upload the .srt or .vtt with `contentType` `application/x-subrip` or `text/vtt`, then put the `file/` key in `controls.youtubeCaptionKey` (never in `mediaItems`) together with `controls.youtubeLanguage`. Errors at creation: `youtubeCaptionKey.languageRequired` (no language), `youtubeLanguage.invalid` (unknown code), `youtubeCaptionKey.invalid` (not an .srt or .vtt upload; checked on every platform) and `media.invalidMedia` (file missing, empty, over 10MB, or not timed SRT/WebVTT in plain UTF-8).
+41. **A full queue is a `403`, not a `429`**: `sub.<plan>.maxScheduledPosts` on `POST /social-posts` means the plan's queue ceiling is reached. It has no `Retry-After`, so don't retry in a loop: wait for queued posts to publish, save drafts, or tell the user. See [Rate Limits](#rate-limits).
+42. **The webhook secret is returned once**: only the response of `POST /webhook-endpoints` carries it. Store it at creation and never print it; if it is lost, delete the endpoint and create a new one.
+43. **Webhook deliveries can repeat and arrive out of order**: deduplicate on the event `id`, verify the signature on the raw request body, and answer `2xx` within 15 seconds.
+44. **A restricted account pauses replies for 24 hours**: after `inbox.replyPaused`, every reply from that account fails until the time in `description`. Stop sending from it instead of retrying.
+45. **Facebook link carousels are images only**: `facebookCarouselMainLink` needs 2 to 10 images; with one image the post is a normal photo post.
+46. **No active plan is a `403 subscription.required` on every endpoint**: the account's trial or plan ended, or its first payment failed. It is not a rate limit and has no `Retry-After`: stop, don't retry in a loop, and show the account owner the `description` (it names where the plan is restarted). The key is not revoked and works again as soon as the plan is active, so never tell the user to make a new one. Branch on `message`, not on the status: other refusals are `403` too.
+47. **X posts with a link need an active paid plan**: scheduling one during the trial, or while a payment is failing, returns `400 xLinkRequiresActivePlan` and refuses the whole request, posts to other platforms included. Anything X reads as a link counts, in `content` or `firstComment`, a bare domain like `example.com` too. Sending it again returns the same `400`: send the X post without the link, or save it as a draft. Drafts are not checked.
 
 ## Troubleshooting
 
@@ -765,6 +838,18 @@ The `pf-api-key` header is either missing from the request or the value is empty
 
 You exceeded one of the four windows of the endpoint you called (limits are per endpoint, see [Rate Limits](#rate-limits)). Wait the number of seconds in the `Retry-After` response header before calling that endpoint again; `Retry-After-short`, `-medium`, `-long` or `-daily` names the window you hit. Calls made while blocked still count, so retrying immediately keeps the endpoint blocked. Other endpoints keep working in the meantime.
 
+### 403 `sub.<plan>.maxScheduledPosts`
+
+The organization's post queue is full for its plan (see the ceilings in [Rate Limits](#rate-limits)). It is not a rate limit: there is no `Retry-After`, and retrying does not help. Wait until queued posts have published, save the remaining posts as drafts (`status: "DRAFT"`), or tell the user a bigger plan raises the ceiling.
+
+### 403 `subscription.required`
+
+The key's account has no active plan: its trial ended, its plan ended, or its first payment failed (a paid plan whose renewal failed keeps API access while the payment is retried). Every endpoint answers this way until the plan is active again. Stop calling and don't retry in a loop; show the account owner the `description`, which says where the plan is restarted (`https://app.postfa.st/dashboard/payments`). The key itself is fine: the same key works again once the plan is active.
+
+### 400 `xLinkRequiresActivePlan`
+
+A scheduled post to an X account has a link in `content` or `firstComment` while the account is on its trial or its payment is failing. The whole request is refused, posts to other platforms included, and sending it again changes nothing. Send the X post without the link, or save it as a draft (`status: "DRAFT"`); link posts on X work once the account is on an active paid plan. A link post scheduled while the plan was active is checked again when it publishes.
+
 ### 400 on `GET /social-posts` with a filter
 
 `ids` and `socialMediaIds` take comma-separated UUIDs, at most 100. An empty value (`socialMediaIds=`), a trailing comma or a non-UUID returns `400` ("Each socialMediaId must be a valid UUID"). Leave the parameter out to skip the filter.
@@ -776,7 +861,10 @@ Unknown query parameters and body fields are ignored without an error. Check the
 ## Supporting Resources
 
 **Reference docs:**
-- [references/api-reference.md](references/api-reference.md): Complete API endpoint reference with response examples
+- [references/api-reference.md](references/api-reference.md): Every endpoint with its fields, rules, own rate limits and a cURL call. Generated from the PostFast API docs
+- [references/post-examples.md](references/post-examples.md): One complete `POST /social-posts` call per platform and post type. Generated from the docs
+- [references/social-inbox.md](references/social-inbox.md): The Social Inbox routes, objects and error codes. Generated from the docs
+- [references/webhooks.md](references/webhooks.md): Webhook events with payload examples, signature check, retries, endpoint routes and error codes. Generated from the docs
 - [references/platform-controls.md](references/platform-controls.md): All platform-specific controls with types and defaults
 - [references/media-specs.md](references/media-specs.md): Media size, format, and dimension limits per platform
 - [references/upload-flow.md](references/upload-flow.md): Detailed media upload walkthrough
@@ -811,6 +899,8 @@ Unknown query parameters and body fields are ignored without an error. Check the
 - [examples/gbp-event.json](examples/gbp-event.json): Google Business Profile event post
 - [examples/gbp-offer.json](examples/gbp-offer.json): Google Business Profile offer with coupon code
 - [examples/facebook-geotag.json](examples/facebook-geotag.json): Facebook feed post geotagged with a place and limited to specific countries
+- [examples/facebook-link-carousel.json](examples/facebook-link-carousel.json): Facebook link carousel (each image is a card with its own link)
+- [examples/webhook-endpoint.json](examples/webhook-endpoint.json): Request body for `POST /webhook-endpoints` with the response shape
 - [examples/instagram-geotag.json](examples/instagram-geotag.json): Instagram post geotagged with a place
 - [examples/telegram-mixed-media.json](examples/telegram-mixed-media.json): Telegram mixed media
 - [examples/pinterest-analytics.json](examples/pinterest-analytics.json): Pinterest pin analytics with extras (pin_clicks, outbound_clicks, save_rate, video metrics)
@@ -832,7 +922,7 @@ POST /social-posts  { posts: [...], status: "DRAFT", controls: {} }
 
 # List posts (page is 0-based, limit max 50, filters AND-ed, unknown params ignored)
 GET /social-posts?page=0&limit=20
-GET /social-posts?page=0&limit=50&platforms=X,LINKEDIN&statuses=SCHEDULED&from=2026-06-01T00:00:00Z&to=2026-06-30T23:59:59Z
+GET /social-posts?page=0&limit=50&platforms=X,LINKEDIN&statuses=SCHEDULED&from=2027-02-01T00:00:00Z&to=2027-02-28T23:59:59Z
 GET /social-posts?socialMediaIds=ACCOUNT_ID_1,ACCOUNT_ID_2&statuses=SCHEDULED
 GET /social-posts?ids=POST_ID_1,POST_ID_2
 
@@ -867,7 +957,7 @@ GET /social-media/:id/follower-history?from=...&to=...
 GET /social-media/:id/tiktok-sounds?genre=&countryCode=&dateRange=
 
 # Connect link (for clients)
-POST /social-media/connect-link  { expiryDays?, platforms?, redirectUrl?, externalId?, sendEmail?, email? }
+POST /social-media/connect-link  { expiryDays?, platforms?, redirectUrl?, skipConnectPage?, externalId?, sendEmail?, email? }
 
 # Social Inbox (comments)
 GET  /social-inbox/conversations?unreadOnly=true
@@ -876,13 +966,25 @@ POST /social-inbox/items/:itemId/reply          { text, idempotencyKey? }
 POST /social-inbox/items/:itemId/private-reply  { text, idempotencyKey? }   (Instagram only)
 POST /social-inbox/items/:itemId/state          { action: HIDE | UNHIDE | DELETE }
 
+# Webhooks (signed events instead of polling; the secret is returned once, at creation)
+POST   /webhook-endpoints            { url, events: [post.published | post.failed | account.connected | account.disconnected], description? }
+GET    /webhook-endpoints
+GET    /webhook-endpoints/:id
+PATCH  /webhook-endpoints/:id        { url?, events?, description?, active? }
+DELETE /webhook-endpoints/:id
+GET    /webhook-endpoints/:id/deliveries
+POST   /webhook-endpoints/:id/test   { sampleEvent? }
+
 # Rate limits: per endpoint; on 429 wait Retry-After seconds (blocked calls still count)
+# Queue full: 403 sub.<plan>.maxScheduledPosts is not a rate limit, don't retry
+# No active plan: 403 subscription.required on every endpoint; stop, tell the owner, keep the key
 ```
 
 ## Tips for the Agent
 
 - **Confirm before anything destructive or public-facing.** Deleting posts (one or in bulk), deleting or hiding a comment, sending an Instagram private reply and publishing to a live account all take effect immediately and cannot be undone (inbox `DELETE` removes the comment on the platform itself). When the user has not named the exact target, show what you are about to act on (for a bulk delete, the count and a sample) and wait for a yes.
 - **Deleting a post doesn't unpublish it.** Post deletes remove it from PostFast only; if it already went out, tell the user it stays live on the platform.
+- **Treat a webhook secret like the API key.** Never print it, log it or paste it into a chat. Deleting a webhook endpoint also deletes its delivery log, so confirm first.
 - **Treat a connect link like a credential.** Whoever opens it can attach social accounts to this workspace for the platforms the link was scoped to, so send it only to the person who asked for it and never post it anywhere public.
 - Always call `my-social-accounts` first to get valid `socialMediaId` values.
 - For media posts, complete the full 3-step upload flow (signed URL → S3 PUT → create post).
@@ -905,3 +1007,4 @@ POST /social-inbox/items/:itemId/state          { action: HIDE | UNHIDE | DELETE
 - Check `connectionStatus` before scheduling: `DISABLED` accounts reject scheduled posts but still accept drafts. The user reconnects from the dashboard to resolve it.
 - Pace yourself by the `X-RateLimit-Remaining-<window>` headers. On a `429`, wait `Retry-After` seconds before calling that endpoint again; never retry in a tight loop, because blocked calls still count.
 - Social Inbox replies: pass an `idempotencyKey` when you might retry, and vary the wording across replies (identical text is rejected with `inbox.repetitiveReply`).
+- When the user wants to know that a post went out or failed, or that an account dropped off, set up a webhook instead of polling the post list or the account list.

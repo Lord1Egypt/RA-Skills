@@ -1,0 +1,275 @@
+[
+  {
+    "category": "product",
+    "key": "agentpathfinder_name",
+    "value": "AgentPathfinder",
+    "source": "certainlogic/agents",
+    "type": "string"
+  },
+  {
+    "category": "product",
+    "key": "agentpathfinder_tagline",
+    "value": "Cryptographically-auditable task tracking for AI agents",
+    "source": "certainlogic/agents",
+    "type": "string"
+  },
+  {
+    "category": "product",
+    "key": "agentpathfinder_free_features",
+    "value": "Unlimited tasks, unlimited agents, local CLI, audit trails with HMAC-SHA256, zero dependency, no usage caps, no registration, runs offline",
+    "source": "pricing/v1",
+    "type": "string"
+  },
+  {
+    "category": "product",
+    "key": "agentpathfinder_pro_features",
+    "value": "Browser dashboard with live data, CSV/JSON export, multi-agent filtering, build tracking, subagent delegation monitor, webhook integrations, priority support",
+    "source": "pricing/v1",
+    "type": "string"
+  },
+  {
+    "category": "product",
+    "key": "agentpathfinder_business_features",
+    "value": "Everything in Pro plus remote vault (team-shared state), role-based access, SLA guarantees, dedicated support channel",
+    "source": "pricing/v1",
+    "type": "string"
+  },
+  {
+    "category": "product",
+    "key": "agentpathfinder_enterprise_features",
+    "value": "On-premise deployment, custom integrations, audit-ready compliance reports, dedicated success engineer",
+    "source": "pricing/v1",
+    "type": "string"
+  },
+  {
+    "category": "product",
+    "key": "agentpathfinder_pricing_free",
+    "value": "Free forever, unlimited usage",
+    "source": "pricing/v1",
+    "type": "string"
+  },
+  {
+    "category": "product",
+    "key": "agentpathfinder_pricing_pro",
+    "value": "$29/month per developer",
+    "source": "pricing/v1",
+    "type": "string"
+  },
+  {
+    "category": "product",
+    "key": "agentpathfinder_pricing_business",
+    "value": "$79/month per user minimum 3 users",
+    "source": "pricing/v1",
+    "type": "string"
+  },
+  {
+    "category": "product",
+    "key": "agentpathfinder_pricing_enterprise",
+    "value": "$299+/month custom quote",
+    "source": "pricing/v1",
+    "type": "string"
+  },
+  {
+    "category": "product",
+    "key": "agentpathfinder_install_time",
+    "value": "Under 5 minutes: pip install, one-line setup, zero dependencies",
+    "source": "docs/install",
+    "type": "string"
+  },
+  {
+    "category": "product",
+    "key": "agentpathfinder_security_model",
+    "value": "Tamper-evident not tamper-proof. Local filesystem can be modified. Pro tier remote vault eliminates local attack. HMAC-SHA256 audit trail, deterministic tokens",
+    "source": "docs/security",
+    "type": "string"
+  },
+  {
+    "category": "product",
+    "key": "agentpathfinder_clawhub_url",
+    "value": "https://clawhub.ai/certainlogicai/agentpathfinder-agent-task-tracker-free",
+    "source": "clawhub",
+    "type": "string"
+  },
+  {
+    "category": "product",
+    "key": "agentpathfinder_github_repo",
+    "value": "https://github.com/CertainLogicAI/agentpathfinder",
+    "source": "github",
+    "type": "string"
+  },
+  {
+    "category": "brand",
+    "key": "certainlogic_name",
+    "value": "CertainLogic.ai",
+    "source": "brand/v1",
+    "type": "string"
+  },
+  {
+    "category": "brand",
+    "key": "certainlogic_tagline",
+    "value": "Deterministic AI you can trust",
+    "source": "brand/v1",
+    "type": "string"
+  },
+  {
+    "category": "brand",
+    "key": "x_voice_rules",
+    "value": "Direct conversational. Slightly frustrated at problem then fired up about fix. Short sentences. Emojis: 🟢=good/truth, 🔴=broken, 😤=pain. Words: gaslit, fake 'Done', vibe-based, lied to, never again, I built this. First-person ownership: 'I got tired of... so I built...'. End with question or CTA. Keep under 280 chars. NO corporate stiffness, no 'revolutionizing' or buzzword salad. Sound like real indie builder who ships.",
+    "source": "x-strategy/v1",
+    "type": "string"
+  },
+  {
+    "category": "brand",
+    "key": "certainlogic_colors",
+    "value": "Navy #0F1724, Electric Blue #2563EB, white text",
+    "source": "brand/design",
+    "type": "string"
+  },
+  {
+    "category": "brand",
+    "key": "certainlogic_x_handle",
+    "value": "@CertainLogicAI",
+    "source": "social",
+    "type": "string"
+  },
+  {
+    "category": "business",
+    "key": "funnel_stages",
+    "value": "Free skills (ClawHub) → Blog → Shop → Consulting ($2-10K builds) → Retainers ($200-500/mo)",
+    "source": "business/strategy",
+    "type": "string"
+  },
+  {
+    "category": "business",
+    "key": "consulting_rate_range",
+    "value": "$2,000-$10,000 per custom build project",
+    "source": "pricing/consulting",
+    "type": "string"
+  },
+  {
+    "category": "business",
+    "key": "retainer_rate_range",
+    "value": "$200-$500 per month for ongoing support",
+    "source": "pricing/retainer",
+    "type": "string"
+  },
+  {
+    "category": "business",
+    "key": "stripe_status",
+    "value": "BLOCKED — Waiting for articles of organization to arrive in mail. Then bank account. Then Stripe.",
+    "source": "ops/blockers",
+    "type": "string"
+  },
+  {
+    "category": "business",
+    "key": "articles_of_org_status",
+    "value": "Physically in mail. Anton waiting for delivery to proceed with bank account.",
+    "source": "ops/blockers",
+    "type": "string"
+  },
+  {
+    "category": "competitor",
+    "key": "langsmith_pricing",
+    "value": "Usage-based, gets expensive fast. No unlimited free tier.",
+    "source": "competitive-analysis",
+    "type": "string"
+  },
+  {
+    "category": "competitor",
+    "key": "arize_differentiator",
+    "value": "Enterprise observability. Different market — no agent-focused tracking.",
+    "source": "competitive-analysis",
+    "type": "string"
+  },
+  {
+    "category": "competitor",
+    "key": "temporal_differentiator",
+    "value": "Workflow orchestration, not agent tracking. Complex infrastructure.",
+    "source": "competitive-analysis",
+    "type": "string"
+  },
+  {
+    "category": "competitor",
+    "key": "agent_framework_comparison",
+    "value": "CrewAI, AutoGen, LangGraph — all have tracking but none cryptographically verified. AgentPathfinder fills gap.",
+    "source": "competitive-analysis",
+    "type": "string"
+  },
+  {
+    "category": "tech",
+    "key": "tech_stack",
+    "value": "Astro v6 + Tailwind v4 + Cloudflare Pages (site), Python + HMAC-SHA256 (backend), PGLite + Bun (brain), Flask (dashboard), Pytest (testing)",
+    "source": "tech/v1",
+    "type": "string"
+  },
+  {
+    "category": "tech",
+    "key": "model_preference",
+    "value": "Kimi K2.6 default. Haiku for cron jobs. Opus for hard reasoning. DeepSeek V4 Pro tested but too slow/unpredictable.",
+    "source": "tech/models",
+    "type": "string"
+  },
+  {
+    "category": "tech",
+    "key": "brain_api_location",
+    "value": "localhost:8000, 443 facts loaded, keyword search functional, embeddings blocked (no OpenAI key)",
+    "source": "tech/infrastructure",
+    "type": "string"
+  },
+  {
+    "category": "tech",
+    "key": "backup_schedule",
+    "value": "Daily 3AM EDT to Backblaze B2 (OpenclawBackup1/openclaw/daily/)",
+    "source": "tech/infrastructure",
+    "type": "string"
+  },
+  {
+    "category": "decision",
+    "key": "no_patent_filing",
+    "value": "Keep deterministic AI brain as trade secret. Consult IP attorney before month 6. Do NOT file patent.",
+    "source": "decisions/2026",
+    "type": "string"
+  },
+  {
+    "category": "decision",
+    "key": "free_tier_strategy",
+    "value": "Unlimited free tier — no usage caps. Feature-gate the paid tiers. Differentiator vs LangSmith/Arize.",
+    "source": "decisions/2026",
+    "type": "string"
+  },
+  {
+    "category": "build_spec",
+    "key": "email_validator_v1",
+    "value": "Python module email_validator.py with validate_email() function. RFC 5322 simplified regex. Optional MX record check. 10 pytest tests. Type hints. Docstrings.",
+    "source": "auto-build",
+    "type": "string"
+  },
+  {
+    "category": "persona",
+    "key": "alex_identity",
+    "value": "Trusted colleague, not an assistant. Brutal clarity, accuracy over speed, no shortcuts. Actions over words. Disagree when should. Self-sufficient. Never assume environment matches Anton's.",
+    "source": "persona/v1",
+    "type": "string"
+  },
+  {
+    "category": "persona",
+    "key": "anton_background",
+    "value": "Controls engineer, marketing degree, sales/crypto/real estate background. CST timezone. Building CertainLogic.ai. @CertainLogicAI on X.",
+    "source": "persona/v1",
+    "type": "string"
+  },
+  {
+    "category": "contact",
+    "key": "discord_community",
+    "value": "https://discord.com/invite/clawd",
+    "source": "contact",
+    "type": "string"
+  },
+  {
+    "category": "contact",
+    "key": "documentation_site",
+    "value": "https://docs.openclaw.ai",
+    "source": "contact",
+    "type": "string"
+  }
+]

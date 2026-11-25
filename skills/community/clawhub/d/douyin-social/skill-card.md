@@ -1,6 +1,6 @@
 ## Description:
 
-提供抖音公开视频与评论的只读检索，涵盖关键词搜索、热榜、作品详情、博主作品和评论数据，支持选题、竞品与舆情分析。
+面向社媒运营与内容分析，检索抖音公开视频、作者、评论和热榜数据，以结构化结果辅助选题、竞品分析与舆情监控。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-短视频运营、内容策划和市场分析团队可用此技能检索抖音公开内容与互动数据，支持热点选题、竞品观察、评论洞察和舆情跟踪。
+社媒运营人员、内容策划者和分析人员可用它检索抖音公开内容及互动数据，为选题规划、竞品观察、热点跟踪和舆情分析提供依据。
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan inspected only part of the skill, so its benign verdict does not cover every component.
+Risk: Links, IDs, or search terms provided for queries are sent to a third-party API; the security review also notes that account search is not clearly disclosed in the skill description and that its scan was partial.
 
-Mitigation: Review components that were not fully inspected before installing.
-
-Risk: Broad planning queries may send search terms or links to a third-party API.
-
-Mitigation: Keep requests scoped to authorized public data and confirm the query is appropriate to share.
+Mitigation: Review the provider's data handling and account-search behavior before use, and submit only public-content queries you are comfortable sharing with the service.
 
 ## Reference(s):
 
-- [使用选项](artifact/references/options.md)
-- [评论需求挖掘指南](artifact/references/demand-mining.md)
-- [更新日志](artifact/references/changelog.md)
-- [瓜客官网与 API 服务](https://www.guaikei.com)
+- [ClawHub skill release](https://clawhub.ai/why20261/skills/douyin-social)
+- [服务与令牌开通](https://www.guaikei.com)
+- [使用说明与参数](artifact/readme.md)
+- [需求挖掘指南](artifact/references/demand-mining.md)
 
 ## Skill Output:
 
 **Output Type(s):** [JSON, Analysis, Guidance]
 
-**Output Format:** [结构化 JSON 数据；按需提供简洁的自然语言分析与建议]
+**Output Format:** [Structured JSON records, with concise Markdown summaries or guidance when useful]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [结果可能同时保存为 JSON 文件；数据范围、条数和时效受 API 套餐与服务限制。]
+**Other Properties Related to Output:** [Results may include public post and comment text, account details, engagement metrics, and time-limited media links; query results are also saved locally.]
 
 ## Skill Version(s):
 
-1.4.2 (source: artifact/SKILL.md frontmatter, server-resolved release)
+1.5.0 (source: server release metadata, SKILL.md frontmatter, package.json)
 
 ## Ethical Considerations:
 

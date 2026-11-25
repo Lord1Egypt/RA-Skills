@@ -222,6 +222,24 @@ def test_reminder_and_nudge_carry_units(env):
                for m in sent)
 
 
+def test_digest_shows_units_like_the_reminder(env):
+    # 2026-11-04: the digest printed only "250mcg" while reminders said units
+    env.write(meds=[peptide(times=["19:00"])], digest_time="07:30")
+    handle_reconstitute("med-001", 5, 2, dry_run=False, clock=FakeClock(local_dt(6)))
+    env.run(local_dt(7))
+    env.run(local_dt(7, 32))
+    digest = [m for m in env.sent() if m.startswith("Meds for")][0]
+    assert "1. Wolverine 250mcg = 10 units on your U-100 | 7:00pm" in digest
+
+
+def test_digest_without_mix_shows_the_plain_dose(env):
+    env.write(meds=[peptide(times=["19:00"])], digest_time="07:30")
+    env.run(local_dt(7))
+    env.run(local_dt(7, 32))
+    digest = [m for m in env.sent() if m.startswith("Meds for")][0]
+    assert "1. Wolverine 250mcg | 7:00pm" in digest
+
+
 def test_reminder_without_mix_is_unchanged(env):
     env.write(meds=[peptide(times=["08:00"])])
     env.run(local_dt(7))          # first tick sets the watermark

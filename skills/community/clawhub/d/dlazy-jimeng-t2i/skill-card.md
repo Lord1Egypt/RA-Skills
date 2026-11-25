@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Creators, designers, and developers can generate images with Jimeng from text prompts, optionally supplying reference images, through the dLazy CLI.
+Developers and other users can submit text prompts, optionally with reference images, to create images with Jimeng through the dLazy service.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The scan was partial and noted a mismatch between the image-generation purpose and reported login-only behavior, so some evidence is incomplete.
+Risk: ClawScan reports partial coverage and a mismatch between the advertised image-generation purpose and a login-only command; it found no confirmed harmful behavior.
 
-Mitigation: Verify that the pinned @dlazy/cli package and its authentication flow are expected, and confirm the skill performs the image-generation task before relying on it.
+Mitigation: Before installing or relying on the skill, review the dLazy CLI/package and confirm that the generation command behaves as expected.
+
+Risk: The documentation says prompts are sent to dLazy and local reference images are uploaded to its media storage.
+
+Mitigation: Only submit prompts and reference images that you are authorized to share with the service.
 
 ## Reference(s):
 
-- [dLazy website](https://dlazy.com)
-- [dLazy CLI project page](https://github.com/dlazy-ai/cli)
-- [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
-- [ClawHub release page](https://clawhub.ai/dlazyai/skills/dlazy-jimeng-t2i)
+- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-jimeng-t2i)
+- [dLazy CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy service](https://dlazy.com)
+- [dLazy API key settings](https://dlazy.com/dashboard/organization/api-key)
 
 ## Skill Output:
 
 **Output Type(s):** [Images, JSON]
 
-**Output Format:** [Generated image files or hosted image URLs with JSON result metadata.]
+**Output Format:** [JSON result envelope with generated image URLs and metadata; image files can be saved locally.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Can return asynchronously; optional reference images may be uploaded to dLazy media storage.]
+**Other Properties Related to Output:** [May return a task identifier for asynchronous generation; reference images are optional inputs.]
 
 ## Skill Version(s):
 
-1.3.41 (source: server-resolved release metadata)
+1.3.44 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

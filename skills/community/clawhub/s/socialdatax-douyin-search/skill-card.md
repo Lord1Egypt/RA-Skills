@@ -1,6 +1,6 @@
 ## Description:
 
-用于抖音数据分析、抖音热榜、抖音作品搜索、图文搜索、关键词检索、内容调研、竞品分析和趋势研究。覆盖 Douyin hot search and work search，来自 SocialDataX 社媒数据助手。
+Helps users review Douyin hot searches and find video and image/text posts for keyword research, content research, competitor analysis, and trend monitoring.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users, content researchers, and marketing or competitor analysts can use this skill to inspect Douyin hot searches and search public video and image-text posts by keyword for content and trend research.
+Analysts and marketers use this skill to review Douyin hot searches and find video or image/text posts for keyword research, content research, competitor analysis, and trend monitoring.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Broad activation wording could cause search terms to be sent to SocialDataX unexpectedly.
+Risk: Broad research requests could activate Douyin search when the user did not intend to use it.
 
-Mitigation: Limit use to explicit Douyin search requests, disclose that queries go to SocialDataX, and avoid private search terms.
+Mitigation: Use this skill when the request calls for Douyin hot-search or work-search research; clarify ambiguous requests before searching.
 
-Risk: The security scan is incomplete because Skillspector reported missing local references.
+Risk: The security review had partial coverage, so its benign verdict does not cover every concern.
 
-Mitigation: Resolve the missing references and review the complete skill before relying on the scan.
+Mitigation: Review the skill and its CLI setup and package version before deployment.
 
 ## Reference(s):
 
-- [SocialDataX](https://socialdatax.com/ai?from=clawhub)
+- [SocialDataX API access](https://socialdatax.com/ai?from=clawhub)
+- [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/socialdatax-douyin-search)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+**Output Type(s):** [JSON, Text, Markdown]
 
-**Output Format:** [Markdown summaries; structured JSON search data when needed]
+**Output Format:** [Structured search results with concise text or Markdown summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Search results are query-based and may be paginated; they have no stable complete-result boundary.]
+**Other Properties Related to Output:** [Results depend on the selected hot-search or keyword request and optional filters.]
 
 ## Skill Version(s):
 
-0.1.25 (source: server-resolved ClawHub release evidence)
+0.1.26 (source: server-resolved ClawHub release evidence)
 
 ## Ethical Considerations:
 

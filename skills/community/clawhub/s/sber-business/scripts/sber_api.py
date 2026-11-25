@@ -14,10 +14,8 @@ from __future__ import annotations
 
 import json
 import os
-import re
 import subprocess
 import sys
-import tempfile
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -32,6 +30,32 @@ TOKEN_URL = f"{HOST}/ic/sso/api/v2/oauth/token"
 API = f"{HOST}/fintech/api"
 TIMEOUT = 40
 SECRETS_DIR = Path(os.path.expanduser("~/.openclaw/secrets"))
+
+
+def _curl_cfg_value(v: str) -> str:
+    """Quote a value for a curl --config file (streamed via stdin)."""
+    esc = (v.replace("\\", "\\\\").replace('"', '\\"')
+            .replace("\n", "\\n").replace("\r", "\\r").replace("\t", "\\t"))
+    return '"' + esc + '"'
+
+
+def build_curl_config(headers: dict | None = None, form_fields: dict | None = None,
+                      raw_data: str | None = None) -> str:
+    """Build curl config text passed via STDIN (``--config -``).
+
+    SECURITY: Authorization headers, OAuth client secrets, refresh tokens and
+    request bodies NEVER appear in process argv (visible via ``ps`` /
+    ``/proc/<pid>/cmdline`` to other local users and monitoring tools). They are
+    streamed to curl on stdin instead. The argv list stays fixed and shell-free.
+    """
+    lines = []
+    for k, v in (headers or {}).items():
+        lines.append("header = " + _curl_cfg_value(f"{k}: {v}"))
+    for k, v in (form_fields or {}).items():
+        lines.append("data-urlencode = " + _curl_cfg_value(f"{k}={v}"))
+    if raw_data is not None:
+        lines.append("data = " + _curl_cfg_value(raw_data))
+    return "\n".join(lines) + ("\n" if lines else "")
 
 
 class SberAPI:
@@ -111,12 +135,14 @@ class SberAPI:
                 "curl", "-sS", "--max-time", str(timeout),
                 "--cert", cert, "--key", key, "--cacert", cacert,
                 "-w", "\n%{http_code}",
+                "--config", "-",
+                url,
             ]
-            for k, v in (headers or {}).items():
-                cmd += ["-H", f"{k}: {v}"]
-            cmd.append(url)
-
-            out = subprocess.run(cmd, capture_output=True, timeout=timeout + 10)
+            # SECURITY: headers (incl. the Bearer token) go through the stdin
+            # config file, never through argv -> no process-argument leak.
+            cfg = build_curl_config(headers=headers)
+            out = subprocess.run(cmd, input=cfg.encode("utf-8"),
+                                 capture_output=True, timeout=timeout + 10)
             raw = out.stdout
             body, _, code = raw.rpartition(b"\n")
             try:
@@ -133,12 +159,16 @@ class SberAPI:
                 "--cert", cert, "--key", key, "--cacert", cacert,
                 "-w", "\n%{http_code}",
                 "-X", "POST", url,
-                "-H", "Content-Type: application/x-www-form-urlencoded",
-                "-H", "Accept: application/json",
+                "--config", "-",
             ]
-            for k, v in fields.items():
-                cmd += ["--data-urlencode", f"{k}={v}"]
-            out = subprocess.run(cmd, capture_output=True, timeout=timeout + 10)
+            # SECURITY: client_secret / refresh_token are streamed via the stdin
+            # config (data-urlencode), never placed in argv.
+            cfg = build_curl_config(
+                headers={"Content-Type": "application/x-www-form-urlencoded",
+                         "Accept": "application/json"},
+                form_fields=fields)
+            out = subprocess.run(cmd, input=cfg.encode("utf-8"),
+                                 capture_output=True, timeout=timeout + 10)
             raw = out.stdout
             body, _, code = raw.rpartition(b"\n")
             try:

@@ -1,9 +1,9 @@
 ---
 name: wcag-skill
-description: "Build, audit, and repair web content against WCAG 2.2. Use when: (1) creating accessible HTML/CSS/JS, (2) remediating accessibility defects, (3) running reproducible automated audits, (4) preparing WCAG 2.2 AAA evidence and human-test records, or (5) running the optional AI-WCAG-Gauntlet benchmark."
+description: "Build, audit, and repair web content against WCAG 2.2. Use when: (1) creating accessible HTML/CSS/JS, (2) remediating accessibility defects, (3) running reproducible automated audits, (4) preparing WCAG 2.2 AAA evidence and human-test records, or (5) running the optional AI-WCAG-Gauntlet benchmark. For benchmarks, require an unscored preflight of tag coverage, W3C, axe, Pa11y, and QualWeb before the first scored run."
 allowed-tools: Bash, Read, Write, Edit, Env
 metadata:
-  version: 2.0.32
+  version: 2.0.36
   openclaw:
     requires:
       bins:
@@ -198,14 +198,16 @@ elements do not always expose banner/contentinfo landmarks.
 ## Low-memory audit guardrail (script-level)
 
 When running on hosts with <2 GB RAM or in containers, use `scripts/a11y-audit-limited.sh`. Never delete this script (see PR #12 rejection rule below).
-It reads memory from `/proc/meminfo` (MemAvailable first), falls back to `free -m` (6th column = available memory in MB), then prefers the cgroup limit (`memory.limit_in_bytes` v1 or `memory.max` v2). It ignores the v1 unlimited sentinel (`9223372036854775807`) and caps unreasonably large values. Memory limits (ulimit -v and NODE_OPTIONS) are configurable via `ULIMIT_PERCENT`/`ULIMIT_MIN_MB` and `NODE_PERCENT`/`NODE_MIN_MB` environment variables with sensible defaults, and always capped to the available budget (never exceed it). If `ulimit -v` fails, the wrapper exits with an explicit error rather than swallowing it.
+
+The wrapper determines and applies its memory budget in this order:
+
+1. Read `MemAvailable` and `MemTotal` from `/proc/meminfo`. If `MemAvailable` is unavailable, use the `available` field from `free -m`.
+2. Read the cgroup v1 limit from `memory.limit_in_bytes`. Ignore the unlimited sentinel (`9223372036854775807`).
+3. Independently read the cgroup v2 limit from `memory.max` (`if`, not `elif`), even if v1 returned a valid limit. Ignore `max`, which means unlimited.
+4. Use only positive numeric cgroup limits. Cap any cgroup limit greater than the host's `MemTotal` from `/proc/meminfo` at `MemTotal`, and use the smallest available value among host available memory and the valid cgroup limits. In containers, verify the guardrail against the cgroup quota instead of relying on host memory alone.
+5. Apply `ulimit -v` and `NODE_OPTIONS` using `ULIMIT_PERCENT`/`ULIMIT_MIN_MB` and `NODE_PERCENT`/`NODE_MIN_MB`, respectively, with sensible defaults. Neither limit may exceed the available budget. If `ulimit -v` fails, exit with an explicit error.
 
 In extremely constrained environments (<512MB available), you may need to explicitly set `NODE_OPTIONS="--max-old-space-size=256"` before running the audit wrapper.
-
-Pitfall: never rely on host `/proc/meminfo` inside a container — verify the container's cgroup quota (v1 `memory.limit_in_bytes`, v2 `memory.max`) matches the guardrail; the wrapper checks cgroup first but host and container budgets can diverge.
-
-Pitfall: the v2 cgroup branch (`memory.max`) must be `if`, not `elif`, or a v2-only container skips the limit. Never delete `scripts/a11y-audit-limited.sh` (PR #12 guard). If `ulimit -v` fails, exit with an explicit error — do not swallow it.
-Pitfall: vnu requires Java 17+; using older Java causes `UnsupportedClassVersionError`. In CI, set `JAVA_HOME` to a Java 17+ installation and add `_JAVA_OPTIONS="-Xmx256m -Xshare:off -Djava.io.tmpdir=/tmp"` to redirect temp storage to disk and avoid shared-memory exhaustion.
 
 - See also [`references/pil-logo-grid.md`](references/pil-logo-grid.md) for the PIL circular-logo layout pattern used when updating grid images.
 
@@ -215,15 +217,15 @@ Keep GitHub Actions workflows (`.github/workflows/*.yml`) in sync with the pinne
 When the Chrome version on the runner changes, the `Align chromedriver to the installed Chrome major version` step must use a reliable version extraction: `chrome_major=$(/opt/hostedtoolcache/setup-chrome/chromium/stable/x64/chrome --version 2>/dev/null | grep -oE '[0-9]+' | head -1)`.
 This prevents `npm error ETARGET` when requesting a non‑existent chromedriver version.
 
-Periodically run `npm ci` in a clean environment to verify that the pinned dependencies install without errors on the target Node version (>=22).
+Run `npm ci` in a clean environment before each release and whenever `package.json` or the lockfile changes to verify that the pinned dependencies install without errors on the target Node version (>=22).
 If you encounter heap-limit errors, increase the Node old space via `NODE_OPTIONS` (e.g., `NODE_OPTIONS="--max-old-space-size=512"`) before running `npm ci`.
 
 ## CI / audit environment notes
 
 - `vnu-jar` requires Java 17 or newer; CI runners with older Java will throw `UnsupportedClassVersionError`. Set `JAVA_HOME` to a Java 17+ installation when needed.
 - `vnu` writes temporary files to `/dev/shm`. On CI runners with small shared-memory partitions, add `_JAVA_OPTIONS="-Xshare:off -Djava.io.tmpdir=/tmp -Xmx256m"` to redirect temp storage to disk and cap heap.
-- The audit wrapper (`scripts/a11y-audit-limited.sh`) reads container memory via `memory.limit_in_bytes` (v1) and `memory.max` (v2). The v2 branch must remain independent (`if`, not `elif`) so both limits are checked in environments where both files exist. When v1 returns a valid (non-sentinel, non-excessive) limit, use it; fall back to v2 only when v1 is unreadable or yields an invalid value.
 - The `scripts/run-w3c-validator.mjs` script must be able to parse vnu output that may include warning messages; it now combines stdout and stderr and extracts a JSON object if necessary.
+  If no valid JSON object can be extracted from vnu output, write an error record to the output file with the raw stderr text and exit non-zero. Do not write an empty report.
 
 
 ## Use the right numeric target
@@ -252,6 +254,10 @@ projects.
 1. Install the tools listed in the frontmatter and make Chrome/Chromium plus a
    matching Chromedriver available. Set `AXE_CHROME_PATH` and
    `AXE_CHROMEDRIVER_PATH` when auto-detection is insufficient.
+   If either binary still cannot be found or their major versions differ,
+   stop the audit and do not record any automated results. Report each missing
+   binary and its configured path, or report both paths and major versions
+   if they do not match.
    In low-memory environments (e.g., <2GB RAM), consider using the headless
    shell and limiting memory via `NODE_OPTIONS` and `ulimit -v`; see
    `scripts/a11y-audit-limited.sh` for an example.
@@ -294,8 +300,18 @@ result. Say “no automated findings” when that is all the tools establish.
 
 The AI-WCAG-Gauntlet tag-coverage experiment is **not** a production
 accessibility gate. Use it only when the task explicitly requests benchmark
-scoring. Read [`benchmark/README.md`](benchmark/README.md) then; never copy its
-reference template into a benchmark submission. Its
+scoring. Read [`benchmark/README.md`](benchmark/README.md) before setup,
+generation, or either test suite. It requires a complete, unscored preflight of
+tag coverage, W3C, axe, Pa11y, and QualWeb before the first official scored
+run; preflight findings must be fixed and all five checks rerun before scoring.
+Preflight reports and browser profiles stay in OS temporary storage and never
+increment the benchmark counter. The official suite is still mandatory after
+the preflight is clean; if it fails, follow its scored-iteration loop. Never
+use a scored test-suite run as a preflight.
+
+Write an original candidate for the assigned task. Reference templates are
+validator smoke-test material only and must not be copied into scored
+submissions. The benchmark extension's
 [legacy-repair task](https://github.com/turbolego/AI-WCAG-Gauntlet/blob/main/BENCHMARK.md#legacy-repair-task)
 retains all 113 required tags and adds preservation and legacy checks to the
 validator loop; a production repair does not require benchmark tag coverage.

@@ -1,0 +1,23 @@
+# dsh-capability-loop-bundle — bundle patch
+#
+# Inserts the takeover plugin row into the profile roster. The row references
+# the package by its npm name; the host half (exports ".") runs in the host
+# process and hooks `agent/pre-step`.
+#
+# Install (from this directory):
+#   plugin_manager action=install_bundle target=<abs path to this directory>
+#
+- insert:
+    - id: capability-loop
+      name: dsh-capability-loop-bundle
+      config:
+        # 未标记工程的默认档位：off | shadow | on（保持 off，安装不等于接管）
+        defaultMode: off
+        # 契约字符上限（on 档）；超过则截断并标注
+        maxContractChars: 1600
+        # 影子档单行提示字符上限
+        maxShadowChars: 140
+        # 是否记录影子观察（写 .dsh/loop/shadow-log.jsonl，供 loop-state.ps1 计数）
+        shadowLog: true
+        # 调试：把每次注入决策打到 host 日志
+        debug: false

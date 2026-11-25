@@ -1,0 +1,26 @@
+name: youtube-transcript-study-notes-free
+slug: youtube-transcript-study-notes-free
+display_name: YouTube 字幕学习笔记
+description: 使用用户指定的浏览器环境读取 YouTube 视频页面中实际可见的字幕，按目标语言与学习目标整理摘要、术语表和时间锚点。适合单个章节、场景或短文学习；字幕关闭、缺失或语言不匹配时明确记录限制与缺项，绝不根据音频臆造内容。
+version: 1.0.2
+license: MIT-0
+repository: https://github.com/xxjrq/youtube-transcript-study-notes-free
+icon: icon-512.png
+tags:
+  - youtube
+  - subtitles
+  - language-learning
+  - study-notes
+  - easy-webbridge
+trigger_words:
+  - YouTube字幕学习笔记
+  - 视频字幕摘要
+  - YouTube术语表
+  - 带时间戳的学习笔记
+interface:
+  display_name: YouTube 字幕学习笔记
+  short_description: 从可见 YouTube 字幕生成可复核的学习摘要、术语表与时间锚点
+  default_prompt: 请用我指定的 browserId 读取这个 YouTube 视频页面的可见字幕，并按语言和学习目标生成学习笔记；若字幕不可见、关闭或语言不匹配，请只报告限制与缺项，不要编造内容。
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+self_test: node scripts/self-test.mjs

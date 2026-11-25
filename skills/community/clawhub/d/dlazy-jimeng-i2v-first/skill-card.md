@@ -1,6 +1,6 @@
 ## Description:
 
-Generate dynamic videos with Jimeng from a single first-frame image and a prompt.
+Generate videos from a single first-frame image and a text prompt using Jimeng.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and creators can submit a first-frame image and prompt to generate a Jimeng video through dLazy's hosted service.
+External users and developers can provide a first-frame image and prompt to request a Jimeng image-to-video generation through the dLazy CLI.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan was partial and did not establish the relationship between the login command and the video-generation purpose; some referenced details were unavailable for review.
+Risk: The security review reports a mismatch between the stated video-generation purpose and the authentication steps, and scanner coverage is partial.
 
-Mitigation: Review the CLI and its authentication behavior, and confirm the service purpose before installing or authenticating.
+Mitigation: Review the CLI help and setup flow, and confirm it provides the expected video-generation output before relying on the skill.
 
 ## Reference(s):
 
-- [dLazy service](https://dlazy.com)
-- [dLazy CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
-- [CLI repository listed in skill metadata](https://github.com/dlazy-ai/cli)
+- [dLazy CLI repository (skill metadata link)](https://github.com/dlazy-ai/cli)
+- [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy](https://dlazy.com)
 
 ## Skill Output:
 
-**Output Type(s):** [Video assets, JSON, Shell commands]
+**Output Type(s):** [JSON, Media asset URLs, Shell commands, Configuration guidance]
 
-**Output Format:** [Generated video URL and JSON task or result data; command-line invocation]
+**Output Format:** [JSON response with generation status and output URLs]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Video generation accepts a first-frame image, prompt, and optional duration; output may be asynchronous.]
+**Other Properties Related to Output:** [Generation may return a task ID for asynchronous work; duration options are 5 or 10 seconds.]
 
 ## Skill Version(s):
 
-1.3.41 (source: server-resolved release metadata)
+1.3.44 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

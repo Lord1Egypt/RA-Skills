@@ -33,8 +33,8 @@ Every Fless agent surface returns the same error shape:
 - `POST /hunts/{id}/review/decision` on anything other than
   `awaiting_user_approval` (or the client deciding a realtor hunt at
   `awaiting_client_approval`) returns 409 naming the current state.
-- Outreach is gated by `OutreachGatedError` semantics: outreach emails may
-  ONLY be sent for legacy hunts (review_state NULL) or hunts explicitly
+- Outreach is gated by `OutreachGatedError` semantics: outreach (email or contact form) may
+  ONLY be released for legacy hunts (review_state NULL) or hunts explicitly
   released via the decision endpoint. Every other gate value blocks outreach;
   fail-closed. Agents do not trigger this error directly, the backend enforces
   it in the workflow, all outreach tasks, and the send service.

@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/YottaMeta/yotta-resume/data/question-bank.schema.json",
+  "title": "yotta-resume question bank",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_version",
+    "bank_version",
+    "generated_at",
+    "questions"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "contract_version": {
+      "const": "1.0"
+    },
+    "bank_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "question_id",
+          "role_family",
+          "level",
+          "dimension",
+          "kind",
+          "prompt",
+          "expected_evidence",
+          "followups",
+          "answer_boundary",
+          "source_refs",
+          "status",
+          "last_verified_at",
+          "stale_after_days",
+          "content_hash"
+        ],
+        "properties": {
+          "question_id": {
+            "type": "string",
+            "pattern": "^sec-[a-z0-9-]+$"
+          },
+          "role_family": {
+            "enum": [
+              "soc",
+              "incident_response",
+              "offensive_security",
+              "appsec",
+              "security_engineering",
+              "grc_data_security",
+              "software_engineering",
+              "data_ai",
+              "business_operations",
+              "generic"
+            ]
+          },
+          "level": {
+            "enum": [
+              "junior",
+              "mid",
+              "senior",
+              "lead"
+            ]
+          },
+          "dimension": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "knowledge",
+              "scenario",
+              "resume_followup"
+            ]
+          },
+          "prompt": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expected_evidence": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "followups": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "answer_boundary": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "enum": [
+              "draft",
+              "active",
+              "retired"
+            ]
+          },
+          "last_verified_at": {
+            "type": "string",
+            "format": "date"
+          },
+          "stale_after_days": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "freshness_label": {
+            "enum": [
+              "latest",
+              "current",
+              "historical"
+            ]
+          },
+          "content_hash": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      }
+    }
+  }
+}

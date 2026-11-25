@@ -1,6 +1,6 @@
 ## Description:
 
-Applies client-server architecture for web/mobile apps
+Applies client-server architecture for web/mobile apps.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and software architects use this skill to plan client-server or peer-to-peer systems, define trust boundaries and API contracts, manage client-server version skew, and account for intermittent connectivity.
+Developers and architects use this skill to plan client-server or peer-to-peer systems, define trust boundaries and API contracts, and document versioning, connectivity, and rollout decisions.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Chatty clients can create avoidable latency and poor performance.
+Risk: Frequent small client requests can hurt performance.
 
-Mitigation: Consolidate requests behind a facade or gateway and use client-side or edge caching where appropriate.
+Mitigation: Consolidate API calls through a façade or gateway and use client-side or edge caching.
 
-Risk: Duplicated business logic across clients can become inconsistent with server behavior.
+Risk: Duplicated business logic in clients can drift out of sync with server rules.
 
-Mitigation: Keep rules on the server or share validation through a common library.
+Mitigation: Share validation logic in a common library or make the server the definitive owner of those rules.
 
-Risk: Peer-to-peer updates can conflict when devices change data independently.
+Risk: Peer-to-peer synchronization can produce conflicting data updates.
 
-Mitigation: Define a conflict-resolution approach, such as CRDTs, last-write-wins, or consensus, during design.
+Mitigation: Choose and document a conflict-resolution approach, such as CRDTs or last-write-wins, before implementation.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-client-server)
-- [Related project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-client-server)
+- [Publisher profile](https://clawhub.ai/user/athola)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Markdown]
+**Output Type(s):** [Guidance, Markdown]
 
-**Output Format:** [Markdown architecture guidance, recommendations, and checklists]
+**Output Format:** [Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Tailored to the described system; covers client-server and, where relevant, peer-to-peer design considerations.]
+**Other Properties Related to Output:** [Architecture recommendations and documentation outlines, including ADR, API or protocol specification, compatibility criteria, and rollout runbook guidance.]
 
 ## Skill Version(s):
 
-1.10.3 (source: release evidence and frontmatter)
+1.10.4 (source: server-resolved release metadata; artifact frontmatter lists 1.10.3)
 
 ## Ethical Considerations:
 

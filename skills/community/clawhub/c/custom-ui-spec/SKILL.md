@@ -1,8 +1,8 @@
 ---
 name: custom-ui-spec
-version: "0.1.0"
+version: "0.2.0"
 license: Apache-2.0
-description: "A highly customizable UI design specification system based on headless component libraries (shadcn/ui, Radix UI), integrating Apple HIG, Microsoft Fluent, and Google Material Design. Unlike using off-the-shelf frameworks (Ant Design, Element Plus), this skill is for scenarios requiring full control over component styles and DOM structure, emphasizing design freedom and brand customization. Use when: generating custom UI code, reviewing custom UI designs, or needing to follow platform-specific design guidelines. Supports HIG / Fluent / Material / All specification modes. Keywords: shadcn/ui, Radix UI, headless, custom components, HIG, Fluent, Material Design."
+description: "A highly customizable UI design specification system based on headless component libraries (shadcn/ui, Radix UI), integrating Apple HIG, Microsoft Fluent, Google Material Design, Anthropic Editorial Warm, OpenAI Swiss Modernist, and ArtCraft Studio Blueprint. Unlike using off-the-shelf frameworks (Ant Design, Element Plus), this skill is for scenarios requiring full control over component styles and DOM structure, emphasizing design freedom and brand customization. Use when: generating custom UI code, reviewing custom UI designs, or needing to follow platform-specific or AI-native design guidelines. Supports HIG / Fluent / Material / Anthropic / OpenAI / ArtCraft / All specification modes. Keywords: shadcn/ui, Radix UI, headless, custom components, HIG, Fluent, Material Design, Anthropic, Claude, OpenAI, ChatGPT, ArtCraft, editorial UI, modernist UI, blueprint UI."
 metadata:
   openclaw:
     emoji: 📐
@@ -15,7 +15,7 @@ metadata:
 
 ## Overview
 
-This skill provides strict definitions for the three major design specifications — Apple HIG, Microsoft Fluent, and Google Material Design — to guide highly customizable UI implementations based on headless component libraries like shadcn/ui and Radix UI.
+This skill provides strict definitions for six major design specifications — Apple HIG, Microsoft Fluent, Google Material Design, Anthropic Editorial, OpenAI Modernist, and ArtCraft Blueprint — to guide highly customizable UI implementations based on headless component libraries like shadcn/ui and Radix UI.
 
 Unlike scenarios using off-the-shelf UI frameworks (e.g., TDesign), this skill is for projects that require full control over component anatomy and styling, emphasizing design freedom, brand customization, and cross-platform design consistency.
 
@@ -28,6 +28,9 @@ Unlike scenarios using off-the-shelf UI frameworks (e.g., TDesign), this skill i
 | iOS / iPadOS / macOS / watchOS / tvOS | HIG | Native Apple ecosystem experience |
 | Windows / Xbox | Fluent | Native Microsoft ecosystem experience |
 | Android / Web / Flutter | Material | Native Google ecosystem experience |
+| AI Research Hubs / Editorial / Long-form Docs | Anthropic Editorial | Warm literary authority, high readability, zero-shadow hairline structure |
+| Conversational AI / Multimodal Galleries / Modern SaaS | OpenAI Modernist | Swiss geometric clarity, borderless pearl surfaces, prompt-first UX |
+| Creative Studios / Local-First AI Workbenches / Pro Tools | ArtCraft Blueprint | Zero-radius CAD blueprint grid, corner crosshair ticks, 3-tier sunken viewports |
 | Cross-platform / Unsure | Ask about design tone preference | See Dimension B |
 
 **Dimension B: Design Tone Preference (when platform is unclear)**
@@ -37,6 +40,9 @@ Unlike scenarios using off-the-shelf UI frameworks (e.g., TDesign), this skill i
 | Refined, native, restrained, layered | HIG | Utility apps, productivity software, Apple ecosystem products |
 | Productive, professional, deep, luminous | Fluent | Enterprise software, office suites, Windows ecosystem products |
 | Bold, graphical, tactile, dynamic | Material | Consumer apps, creative products, Google ecosystem products |
+| Warm, literary, academic, hairline-structured | Anthropic Editorial | AI research portals, documentation hubs, academic journals, knowledge tools |
+| Crisp, gallery-white, borderless, atmospheric | OpenAI Modernist | Conversational AI apps, generative media showcases (video/audio), modern workspaces |
+| Architectural, zero-radius, blueprint-grid, industrial HUD | ArtCraft Blueprint | Creative AI studios, node workflow editors, 3D/video pipelines, developer tools |
 
 **Decision Flow:**
 
@@ -142,6 +148,9 @@ See `references/component-specs.md` for detailed definitions.
 | `references/apple-hig.md` | When HIG spec is selected |
 | `references/microsoft-fluent.md` | When Fluent spec is selected |
 | `references/google-material.md` | When Material spec is selected |
+| `references/anthropic-editorial.md` | When Anthropic Editorial spec is selected |
+| `references/openai-modernist.md` | When OpenAI Modernist spec is selected |
+| `references/artcraft-blueprint.md` | When ArtCraft Blueprint spec is selected |
 | `references/component-specs.md` | When detailed component definitions or cross-spec comparison is needed |
 | `references/interaction-guidelines.md` | When user interaction behavior specs (navigation/gestures/feedback/confirmation/undo) are needed |
 | `references/checklist.md` | When performing manual self-checks |

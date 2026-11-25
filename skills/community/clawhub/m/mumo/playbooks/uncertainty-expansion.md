@@ -10,7 +10,7 @@ Explicitly invite divergence: "I'm less interested in agreement than in perspect
 
 ## What to look for in round 1
 
-The claim map in an expansion round will typically be fragmented — many isolated claims, few convergence points. That's the intended outcome, not a sign the deliberation failed.
+The models' reactions in an expansion round will typically be sparse — few convergence points, with many threads living only in one model's response. That's the intended outcome, not a sign the deliberation failed.
 
 The valuable signal is in the claims that only one model raised. Use EXPLORE on promising threads that were dropped after a single mention. Use KEEP on surprising frames that recast the problem.
 

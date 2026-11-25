@@ -1,6 +1,6 @@
 ## Description:
 
-Routes text and multimodal tasks across Chinese language-model providers and helps compare usage and costs.
+Routes text and image tasks across Chinese model providers with task-aware model selection, cost tracking, and local evaluation.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and other agent users can select and call Chinese language models for chat, document, image, embedding, and reranking tasks, while comparing estimated costs and usage across providers.
+Developers can use one command-line interface to route work across model providers, compare cost and capability, and review local evaluation results.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Prompts, documents, embeddings, and rerank inputs may be sent to configured model providers despite inconsistent privacy documentation.
+Risk: ClawScan marks this release suspicious, citing mismatches between advertised features and behavior plus unexpected network and data-retention risks; six referenced paths were unresolved.
 
-Mitigation: Use only providers you trust and avoid sending secrets or sensitive content without approval.
+Mitigation: Review the scanner findings and unresolved paths before installation, and proceed only if the reported behavior is acceptable.
 
-Risk: Prompts and related session data may persist in local storage; cached answers may be stale or mismatched.
+Risk: Prompts may be sent to selected model providers; optional webhook alerts, possible model downloads, and local caching add data-handling considerations.
 
-Mitigation: Use --no-cache for sensitive or critical prompts and clear ~/.cn_llm_router data when needed.
-
-Risk: The legacy ERNIE AK/SK authentication path requires handling additional credentials.
-
-Mitigation: Prefer ERNIE_OPENAI_KEY over the legacy ERNIE AK/SK path.
+Mitigation: Send only prompts approved for the selected providers, configure webhook destinations deliberately, review download sources, and disable or clear caching for sensitive tasks.
 
 ## Reference(s):
 
-- [ClawHub skill listing](https://clawhub.ai/fyniujin/skills/cn-llm-router)
-- [Routing rules](artifact/references/routing-rules.md)
-- [Model registry](artifact/references/models.yaml)
-- [Price history](artifact/references/price_history.yaml)
+- [ClawHub skill page](https://clawhub.ai/fyniujin/skills/cn-llm-router)
+- [SkillHub project page](https://skillhub.cn/skill/cn-llm-router)
+- [Routing rules](references/routing-rules.md)
+- [Model registry](references/models.yaml)
+- [Local evaluation suite](references/eval_suite.json)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Guidance]
+**Output Type(s):** [Text, Code, JSON, Reports, Guidance]
 
-**Output Format:** [Plain text or JSON; optional HTML cost reports]
+**Output Format:** [Provider responses as text or JSON, with Markdown or HTML reports and SVG evaluation charts]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include model recommendations, responses, usage and cost estimates, embeddings, or reranked results.]
+**Other Properties Related to Output:** [Responses depend on the selected provider and model; streaming is supported where available.]
 
 ## Skill Version(s):
 
-2.7.0 (source: ClawHub release and SKILL.md frontmatter)
+2.9.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

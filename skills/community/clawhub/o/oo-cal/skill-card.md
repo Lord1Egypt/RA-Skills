@@ -1,6 +1,6 @@
 ## Description:
 
-Cal.com (cal.com). Use this skill for ANY Cal.com request — reading, creating, updating, and deleting data. Whenever a task involves Cal.com, use this skill instead of calling the API directly.
+Connects an OOMOL account to Cal.com to inspect and manage bookings, event types, schedules, availability, and profile settings.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and agents use this skill to read and manage Cal.com bookings, availability, event types, schedules, and profile settings through an OOMOL-connected account.
+Cal.com account holders and assistants use this skill to review calendar data and manage bookings, event types, schedules, availability, and profile settings through a connected account.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Setup directs users to run a remote installer whose integrity is unverified, and automatic skill synchronization could modify agent configuration.
+Risk: The security evidence rates this release suspicious because its declared Cal.com purpose is undermined by an instruction to run a remotely downloaded installer; scan coverage is incomplete.
 
-Mitigation: Review and approve installation separately, use a pinned release with independently verified integrity, and check automatic skill synchronization before allowing configuration changes.
-
-Risk: The skill accesses the connected calendar account and includes actions that can create, update, or delete calendar data.
-
-Mitigation: Confirm the exact payload and effect before write actions, and confirm the target before destructive actions.
+Mitigation: Avoid installation unless the installer can be verified through a trusted, integrity-checked method and its system changes are approved.
 
 ## Reference(s):
 
 - [Cal.com API documentation](https://cal.com/docs/api-reference/v2/introduction)
 - [Cal.com](https://cal.com)
 - [oo CLI](https://github.com/oomol-lab/oo-cli)
-- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+- [Cal.com skill release on ClawHub](https://clawhub.ai/oomol/skills/oo-cal)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, JSON, Guidance]
+**Output Type(s):** [API Calls, Text, JSON]
 
-**Output Format:** [JSON connector responses and concise natural-language guidance]
+**Output Format:** [JSON connector responses and natural-language summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Responses can contain connected calendar data; some actions change bookings, schedules, event types, profiles, or calendar settings.]
+**Other Properties Related to Output:** [Responses depend on the connected Cal.com account and the selected action.]
 
 ## Skill Version(s):
 
-1.0.7 (source: frontmatter)
+1.0.8 (source: frontmatter and release evidence)
 
 ## Ethical Considerations:
 

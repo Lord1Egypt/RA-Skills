@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes Weibo comments and replies to surface audience feedback, sentiment themes, objections, pain points, FAQs, and discussion summaries.
+用于微博评论分析、微博评论回复、微博评论洞察、用户反馈、口碑分析、痛点总结和内容讨论分析。覆盖 Weibo comments and comment replies，来自社媒数据助手 SocialDataX。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Social media analysts and content teams use this skill to review Weibo post comments and replies, identify recurring audience themes, objections, pain points, and FAQs, and prepare discussion summaries.
+External users and social media analysts use this skill to retrieve Weibo post comments and replies, then identify audience feedback, sentiment themes, objections, pain points, FAQs, and discussion patterns.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security summary marks the release suspicious because its CLI examples use a changeable latest package; the scan was partial, and a changed or compromised package could run with local permissions and access credentials.
+Risk: The security scan rates the skill suspicious because it repeatedly uses an unpinned latest CLI package, including in credential-handling commands. The scan was partial and does not establish malicious intent or harmful activity.
 
-Mitigation: Review the package and release before execution, use a reviewed fixed version where possible, and provide only the permissions and credentials needed for the task.
+Mitigation: Review the supply-chain and credential risks before installing; use a reviewed, fixed CLI version instead of @latest, and account for the scan's incomplete coverage.
 
 ## Reference(s):
 
-- [SocialDataX API access](https://socialdatax.com/ai?from=clawhub)
-- [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/socialdatax-weibo-comments)
+- [SocialDataX API access and product information](https://socialdatax.com/ai?from=clawhub)
+- [ClawHub skill listing](https://clawhub.ai/devinchen2014/skills/socialdatax-weibo-comments)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis, Text]
+**Output Type(s):** [JSON, Analysis, Guidance]
 
-**Output Format:** [Structured comment and reply data with concise text summaries]
+**Output Format:** [Structured comment and reply data with a written thematic summary]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Pagination may return one or multiple pages; an empty comment set can be a valid result.]
+**Other Properties Related to Output:** [Comment and reply results may span multiple pages; summaries can group observed themes before interpreting sentiment or demand.]
 
 ## Skill Version(s):
 
-0.1.24 (source: server-resolved release metadata)
+0.1.25 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -33,14 +33,14 @@ Scoring rationale:
 
 ## Evidence
 
-- clawhub-popular-skill (2026-05-11T09:25:56.797000+00:00): [Popular Clawhub skill demand: Self-Improving + Proactive Agent has 214,713 downloads](https://clawhub.ai/skills/self-improving)
-- clawhub-popular-skill (2026-05-11T07:50:52.489000+00:00): [Popular Clawhub skill demand: ontology has 201,674 downloads](https://clawhub.ai/skills/ontology)
-- clawhub-popular-skill (2026-05-11T07:53:37.068000+00:00): [Popular Clawhub skill demand: Multi Search Engine has 165,563 downloads](https://clawhub.ai/skills/multi-search-engine)
-- clawhub-popular-skill (2026-06-19T07:09:19.124000+00:00): [Popular Clawhub skill demand: AdMapix has 134,361 downloads](https://clawhub.ai/skills/admapix)
-- clawhub-popular-skill (2026-09-16T21:35:54.485000+00:00): [Popular Clawhub skill demand: Tavily Search has 110,346 downloads](https://clawhub.ai/skills/openclaw-tavily-search)
-- hacker-news-ask-hn (2026-11-12T14:23:23+00:00): [Tell HN: I'm working on original approaches to tag-based file organization](https://news.ycombinator.com/item?id=50467717)
-- hacker-news-ask-hn (2026-11-12T14:02:38+00:00): [Claude Code's API billing depends on how often the cache expires](https://news.ycombinator.com/item?id=50467233)
-- github-issues (2026-11-13T04:02:16+00:00): [[FEATURE] File browser and code editor](https://github.com/MacRimi/ProxMenux/issues/658)
+- hacker-news-ask-hn (2026-11-21T04:31:38+00:00): [Tell HN: OpenRouter prompts to Minimax may have been read](https://news.ycombinator.com/item?id=50585962)
+- clawhub-popular-skill (2026-05-11T09:25:56.797000+00:00): [Popular Clawhub skill demand: Self-Improving + Proactive Agent has 215,737 downloads](https://clawhub.ai/skills/self-improving)
+- clawhub-popular-skill (2026-05-11T07:50:52.489000+00:00): [Popular Clawhub skill demand: ontology has 202,216 downloads](https://clawhub.ai/skills/ontology)
+- clawhub-popular-skill (2026-05-11T07:53:37.068000+00:00): [Popular Clawhub skill demand: Multi Search Engine has 166,287 downloads](https://clawhub.ai/skills/multi-search-engine)
+- clawhub-popular-skill (2026-06-19T07:09:19.124000+00:00): [Popular Clawhub skill demand: AdMapix has 134,547 downloads](https://clawhub.ai/skills/admapix)
+- clawhub-popular-skill (2026-09-16T21:35:54.485000+00:00): [Popular Clawhub skill demand: Tavily Search has 110,929 downloads](https://clawhub.ai/skills/openclaw-tavily-search)
+- hacker-news-ask-hn (2026-11-21T15:03:30+00:00): [Ask HN: Is blogging (text content creation) dead?](https://news.ycombinator.com/item?id=50589910)
+- github-issues (2026-11-22T08:57:30+00:00): [Release the non-React routes as the next minor through the release workflow](https://github.com/MapCairn/mapcairn/issues/679)
 
 ## How The Skill Meets The Requirement
 

@@ -82,7 +82,7 @@ function isNoisePath(dir, baseDir) {
     if (part === 'temp' || part === 'tmp') return true;
     if (/\.bak$/.test(part)) return true;
     if (part === 'plugin-sources' || part === 'plugins' || part === 'node_modules') return true;
-    if (part === '.yottacode') return true;
+    if (part === '.yottaweave') return true;
     if (part === 'candidate' || part.startsWith('candidate-') || part.includes('staging')) return true;
     if (part === 'memories' || part === 'connectors' || part === 'workspace') return true;
   }
@@ -193,7 +193,7 @@ function commonRoots(options) {
   add(env.OPENCLAW_STATE_DIR, 2);
   add(env.CLAUDE_CONFIG_DIR, 2);
   add(env.CODEX_HOME, 2);
-  // YOTTACODE_HOME 不扫描（YottaCode 自带三层技能管理，0.29.1 U2）。
+  // YOTTAWEAVE_HOME 不扫描（YottaWeave 自带三层技能管理，0.29.1 U2）。
 
   // A portable agent install often lives beside the current workspace. The
   // scanner only follows agent-looking branches, so this stays bounded.
@@ -336,20 +336,20 @@ function discoverHosts(options) {
   for (const item of registry.overrides || []) {
     for (const prev of item.previousDirs || []) previousDirKeys.add(normalizePath(prev).toLowerCase());
   }
-  // YottaCode 不接管：.yottacode 路径 + YOTTACODE_HOME 整棵子树（含任意自定义目录名）。
-  const yottacodeHome = envObject(options).YOTTACODE_HOME
-    ? path.resolve(envObject(options).YOTTACODE_HOME)
+  // YottaWeave 不接管：.yottaweave 路径 + YOTTAWEAVE_HOME 整棵子树（含任意自定义目录名）。
+  const yottaweaveHome = envObject(options).YOTTAWEAVE_HOME
+    ? path.resolve(envObject(options).YOTTAWEAVE_HOME)
     : null;
-  const isYottaCodePath = (dir) => {
+  const isYottaWeavePath = (dir) => {
     if (!dir) return false;
-    if (agentDirs.isYottaCodeDir(dir)) return true;
-    if (!yottacodeHome) return false;
+    if (agentDirs.isYottaWeaveDir(dir)) return true;
+    if (!yottaweaveHome) return false;
     const resolved = path.resolve(dir);
-    const relative = path.relative(yottacodeHome, resolved);
+    const relative = path.relative(yottaweaveHome, resolved);
     return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
   };
   const isExcluded = (meta) => Boolean(hostsRegistry.excludedEntryFor(registry, meta || {}));
-  const skipDir = (dir, agentId) => isYottaCodePath(dir) || isExcluded({ dir, agentId });
+  const skipDir = (dir, agentId) => isYottaWeavePath(dir) || isExcluded({ dir, agentId });
 
   for (const root of agentDirs.knownRoots(options)) {
     const override = root.agentId ? overridesByAgent.get(String(root.agentId).toLowerCase()) : null;
@@ -425,7 +425,7 @@ function discoverHosts(options) {
     installedSeen.add(key);
     installed.push({ label, source, hasSkillsDir: false });
   };
-  // 0.29.1 U2：不接管（excluded）/ neverLink（YottaCode）宿主的应用标记同样跳过显示。
+  // 0.29.1 U2：不接管（excluded）/ neverLink（YottaWeave）宿主的应用标记同样跳过显示。
   const isMarkerSuppressed = (name) => {
     for (const [agentId, info] of Object.entries(agentDirs.AGENT_DIRS)) {
       if (!info.neverLink) continue;

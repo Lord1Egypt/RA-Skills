@@ -4,12 +4,46 @@
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
-| `/lists/:id/leads` | GET | Get leads in a list (paginated) |
+| `/lists/:id/leads` | GET | Get leads in a list (paginated, supports `sequence` + `status` filters) |
 | `/contacts` | POST | Add up to 500 leads to a list |
 | `/contacts/remove` | POST | Remove a single lead by email from a list |
 | `/leads/:id` | PATCH | Update lead fields |
 | `/leads/:id/move` | PUT | Move a lead to a different list |
 | `/contacts/:id/archive` | PUT | Archive or unarchive a contact |
+| `/leads/activity` | GET | Get activity history for a lead by email query parameter |
+| `/leads/:id/activity` | GET | Get activity history for a lead by ID |
+| `/leads/:id/unsubscribe` | POST | Globally unsubscribe a lead from all sequences |
+
+## Get Lead Activity by ID
+
+**GET** `/leads/:id/activity`
+
+Headers:
+- `Authorization`: `SALESBLINK_API_KEY`
+
+Query params: `sequence_id`, `from`, `to` (Unix ms), `limit` (max 500), `skip`
+
+Response: `{ success, data: [...], lead, count, skip, limit }`
+
+## Get Lead Activity by Email
+
+**GET** `/leads/activity?email=lead@example.com`
+
+Headers:
+- `Authorization`: `SALESBLINK_API_KEY`
+
+Query params: `email` (required), `sequence_id`, `from`, `to` (Unix ms), `limit` (max 500), `skip`
+
+> Use this endpoint when you have the lead's email address but not the internal lead ID. Response shape is the same as `/leads/:id/activity`.
+
+## Globally Unsubscribe Lead
+
+**POST** `/leads/:id/unsubscribe`
+
+Headers:
+- `Authorization`: `SALESBLINK_API_KEY`
+
+Adds the lead to the global unsubscribe list and cancels pending tasks across all sequences.
 
 ## Get Leads
 
@@ -18,7 +52,9 @@
 Headers:
 - `Authorization`: `SALESBLINK_API_KEY`
 
-Query params: `limit` (max 100), `skip`
+Query params: `limit` (max 100), `skip`, `search`, `archived`, `sort` (`asc`/`desc`), `sequence`, `status`
+
+The `status` filter (`not_contacted`, `contacted`, `opened`, `clicked`, `replied`, `bounced`, `unsubscribed`) works with or without `sequence`. Without it, the status matches across all sequences (e.g. `replied` = replied in any sequence); `not_contacted` matches leads with no activity in any sequence. Omit `status` (or use `all`) to return the full list.
 
 ## Add Contacts
 
@@ -34,20 +70,18 @@ Body:
   "list_id": "a1b2c3d4-e5f6-7890-abcd-abcdef123456",
   "contacts": [
     {
-      "Email": "john@example.com",
-      "First_Name": "John",
-      "Last_Name": "Doe",
-      "Phone": "+1234567890",
-      "Company": "Acme Inc",
-      "Title": "VP Sales",
-      "Custom_Field": "any value"
+      "email": "john@example.com",
+      "first_name": "John",
+      "last_name": "Doe",
+      "phone": "+1234567890",
+      "company_name": "Acme Inc",
+      "job_title": "VP Sales",
+      "custom_field": "any value"
     }
   ],
   "remove_duplicates": true
 }
 ```
-
-> **Privacy**: Only upload leads and files the user has explicitly approved for SalesBlink. Review CSV contents before bulk import to avoid including unrelated private data.
 
 | Field | Type | Req | Description |
 |-------|------|-----|-------------|
@@ -59,15 +93,16 @@ Each contact object:
 
 | Field | Type | Req | Description |
 |-------|------|-----|-------------|
-| `Email` | string | ✅ | Lead's email address |
-| `First_Name` | string | | First name |
-| `Last_Name` | string | | Last name |
-| `Phone` | string | | Phone number |
-| `Company` | string | | Company name |
-| `Title` | string | | Job title |
+| `email` | string | ✅ | Lead's email address |
+| `first_name` | string | | First name |
+| `last_name` | string | | Last name |
+| `phone` | string | | Phone number |
+| `company_name` | string | | Company name |
+| `job_title` | string | | Job title |
+| `starred` | boolean | | Mark/unmark the contact as starred. This is a contact setting, not a data field/column. |
 | _(any key)_ | string | | Custom fields are supported |
 
-> **Field naming**: Use **PascalCase with underscores** (`First_Name`, `Last_Name`, `Email`).
+> **Field naming**: All field names **must be snake_case** (`first_name`, `last_name`, `email`, `company_name`, `lead_score`). Requests with non-snake_case field names are rejected with a 400 error. New custom fields are automatically added to the list's columns. The `starred` boolean is a contact setting and is NOT added as a list column. Use `PUT /contacts/:id/archive` to archive/unarchive contacts.
 
 ## Remove Contact
 
@@ -101,15 +136,18 @@ Headers:
 Body:
 ```json
 {
-  "First_Name": "Updated",
-  "Last_Name": "Name",
-  "Title": "CTO"
+  "first_name": "Updated",
+  "last_name": "Name",
+  "job_title": "CTO",
+  "starred": true
 }
 ```
 
-Any standard or custom contact fields can be updated. System fields (`_id`, `id`, `list_id`, `account_id`, `user_id`, `accuracy`, `provider`, `custom_fields`, `removed_sequences`, `verification_required`, `archive_invalid_contacts`, `archive_risky_contacts`, `processing`, `completed`, `completedAt`, `last_modified`, `created_date`, `verification_blocked`, `didOpen`, `didClick`, `didReply`, `contactStats`, `retryCount`, `esg_name`, `archived`, `deleted`) **cannot** be modified.
+Any standard or custom contact fields can be updated. All field names **must be snake_case**; requests with non-snake_case field names are rejected with a 400 error. System fields (`_id`, `id`, `list_id`, `account_id`, `user_id`, `accuracy`, `provider`, `custom_fields`, `removed_sequences`, `verification_required`, `archive_invalid_contacts`, `archive_risky_contacts`, `processing`, `completed`, `completedAt`, `last_modified`, `created_date`, `verification_blocked`, `didOpen`, `didClick`, `didReply`, `contactStats`, `retryCount`, `esg_name`, `archived`, `deleted`) **cannot** be modified.
 
-If updating `Email`, it is automatically lowercased.
+Use the dedicated `starred` boolean property to mark/unmark the lead as starred; `starred` is a contact setting and is NOT added as a list column. Use `PUT /contacts/:id/archive` to archive/unarchive contacts.
+
+If updating `email`, it is automatically lowercased.
 
 ## Move Lead
 

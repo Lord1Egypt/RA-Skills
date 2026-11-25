@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """DuoPlus cloud-phone lifecycle and HTTP Gateway client.
 
-Only an API key supplied by the user is required. Pass it with --api-key for
-the current invocation or provide DUOPLUS_API_KEY. Optional environment
+Use a securely injected DUOPLUS_API_KEY or a private DUOPLUS_API_KEY_FILE.
+Do not put secret values into chat, generated commands or process arguments.
+Optional environment
 variables provide deployment overrides without changing the skill:
 
   DUOPLUS_API_BASE
@@ -19,6 +20,7 @@ import base64
 import binascii
 import json
 import os
+import stat
 import re
 import sys
 import time
@@ -32,6 +34,41 @@ from urllib.request import Request, urlopen
 # Default to DuoPlus' official global production OpenAPI. Mainland production
 # deployments can override this with DUOPLUS_API_BASE or --api-base.
 DEFAULT_API_BASE = "https://openapi.duoplus.net"
+
+
+def load_api_key(api_key=None, api_key_file=None):
+    """Resolve credentials without echoing file contents or secret values."""
+    if api_key:  # Legacy caller compatibility; not a recommended public workflow.
+        return api_key
+    path = api_key_file
+    if not path:
+        key = os.environ.get("DUOPLUS_API_KEY", "")
+        if key:
+            return key
+        path = os.environ.get("DUOPLUS_API_KEY_FILE", "")
+    if not path:
+        return ""
+    descriptor = None
+    try:
+        if Path(path).is_symlink():
+            raise ValueError("symlink")
+        descriptor = os.open(path, os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_NONBLOCK", 0))
+        info = os.fstat(descriptor)
+        if not stat.S_ISREG(info.st_mode) or info.st_size > 4096:
+            raise ValueError("invalid file")
+        if os.name != "nt" and info.st_mode & 0o077:
+            raise ValueError("private file permissions required")
+        with os.fdopen(descriptor, "r", encoding="utf-8-sig") as stream:
+            descriptor = None
+            key = stream.read(4097).strip()
+        if not key or len(key) > 4096 or "\n" in key or "\r" in key:
+            raise ValueError("expected one nonempty key")
+        return key
+    except (OSError, ValueError, UnicodeError):
+        raise DuoPlusError("Cannot load private API-key file. Use a regular UTF-8 file containing one key; restrict access to its owner (0600 on POSIX).") from None
+    finally:
+        if descriptor is not None:
+            os.close(descriptor)
 DEFAULT_GATEWAY_TEMPLATE = "https://agent-gateway.duoplus.net/agent-command"
 PHONE_STATUS = {
     0: "proxy_not_configured",
@@ -309,8 +346,8 @@ class DuoPlusClient:
     ) -> None:
         if not api_key:
             raise DuoPlusError(
-                "API key is required. Ask the user to provide it directly, then pass it "
-                "with --api-key for the current invocation."
+                "API key is required. Configure DUOPLUS_API_KEY through a secure host secret "
+                "or select a private file with DUOPLUS_API_KEY_FILE/--api-key-file. Do not paste keys into chat."
             )
         self.api_key = api_key
         self.api_base = api_base.rstrip("/")
@@ -878,8 +915,9 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--api-key",
-        help="API key supplied directly by the user for this invocation",
+        help=argparse.SUPPRESS,
     )
+    parser.add_argument("--api-key-file", help="Path to a private UTF-8 key file; never the key itself")
     parser.add_argument("--api-base", default=_env("DUOPLUS_API_BASE", DEFAULT_API_BASE))
     parser.add_argument("--lang", default=_env("DUOPLUS_LANG", "zh"))
     parser.add_argument("--timeout", type=float, default=30.0)
@@ -989,7 +1027,7 @@ def _build_parser() -> argparse.ArgumentParser:
 
 def _client(args: argparse.Namespace) -> DuoPlusClient:
     return DuoPlusClient(
-        api_key=args.api_key or _env("DUOPLUS_API_KEY", "") or "",
+        api_key=load_api_key(args.api_key, getattr(args, "api_key_file", None)),
         api_base=args.api_base,
         lang=args.lang,
         timeout=args.timeout,

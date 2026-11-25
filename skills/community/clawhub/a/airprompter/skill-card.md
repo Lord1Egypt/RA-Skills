@@ -1,6 +1,6 @@
 ## Description:
 
-Create, run, find, edit, import, or export AirPrompter workflows, skills, and prompts, or diagnose its connection.
+AirPrompter helps users save, find, run, share, create, edit, import, and export reusable prompts, workflows, and skills, and diagnose its connection.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-People using AirPrompter can create and manage reusable workflows, prompts, and skills, run workflows, import or export skills, and diagnose their connection. During authoring, the requested content may be sent to AirPrompter.
+External users can manage reusable prompts, workflows, and skills with AirPrompter, run saved items, and diagnose the service connection.
 
 ### Deployment Geography for Use:
 
@@ -22,9 +22,9 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Authoring requests may be sent to AirPrompter before a data-sharing warning, which could expose private information.
+Risk: Workflow drafts or imported content may contain inaccurate instructions, and execution sends the workflow's needed inputs and step results to the selected AirPrompter account.
 
-Mitigation: Check requests for private information before starting an authoring flow.
+Mitigation: Review previews before saving, omit secrets and unrelated conversation, and confirm before consequential actions.
 
 ## Reference(s):
 
@@ -32,17 +32,17 @@ Mitigation: Check requests for private information before starting an authoring 
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Text, Configuration]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Text and structured workflow, prompt, and skill content]
+**Output Format:** [Natural language text and structured prompt or workflow content]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May create or update reusable AirPrompter workflows, prompts, and skills.]
+**Other Properties Related to Output:** [May include previews, reusable workflow steps, prompt content, or execution results, depending on the task.]
 
 ## Skill Version(s):
 
-0.2.6 (source: ClawHub release)
+0.2.8 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

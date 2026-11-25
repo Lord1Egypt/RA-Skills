@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""pdf-fonts-fixer · fix —— 修复已有 PDF 的字体问题
+"""pdf-font-fixer · fix —— 修复已有 PDF 的字体问题
 
 修复策略是**递进**的，能用轻手段就不用重手段：
 
@@ -36,6 +36,9 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+
+import _deps          # 持久依赖：环境重置后自动从持久目录补齐
+_deps.activate()
 
 import common as C
 from detect import inspect_pdf, report
@@ -127,19 +130,137 @@ def fix_charset(path, out_path):
     return True, '重写 %d 个字体的 charset（无损，复制能力保留）' % changed
 
 
+# ---------------- 第 1b 级：去掉伪 Symbolic 标记（无损） ----------------
+
+def fix_symbolic(path, out_path):
+    """把**简单字体**的 /Flags 由 Symbolic 改成 Nonsymbolic，并清掉 Tagged 结构树
+    与导出器私有 trailer 键。
+
+    针对 python-docx → LibreOffice 那类产物：中文字体被当符号字体导出
+    （FirstChar 0 + 单字节伪编码 + 缺 /Encoding），电脑能显示、打印机却拒收。
+
+    ⚠️ 这一级不保证打印机就认——它只把「最扎眼的那面旗子」摘掉。
+    所以 fix.py 会同时产出【轮廓版】作为保底，让用户先试无损版。
+    """
+    try:
+        import pikepdf
+    except ImportError:
+        return False, '未安装 pikepdf，跳过 Symbolic 修复'
+    try:
+        pdf = pikepdf.open(path)
+    except Exception as e:
+        return False, '打不开：%s' % e
+
+    changed = 0
+    for page in pdf.pages:
+        try:
+            fres = (page.get('/Resources') or {}).get('/Font')
+        except Exception:
+            continue
+        if fres is None:
+            continue
+        for _k, font in fres.items():
+            try:
+                # CID 字体（Type0）标 Symbolic 是正常做法，绝不动
+                if str(font.get('/Subtype') or '') == '/Type0':
+                    continue
+                fd = font.get('/FontDescriptor')
+                if fd is None:
+                    continue
+                flags = int(fd.get('/Flags', 0))
+                if flags & 4:
+                    fd['/Flags'] = (flags & ~4) | 32
+                    changed += 1
+            except Exception:
+                continue
+
+    cleaned = []
+    try:
+        root = pdf.Root
+        for k in ('/MarkInfo', '/StructTreeRoot'):
+            if k in root:
+                del root[k]
+                cleaned.append(k)
+    except Exception:
+        pass
+    try:
+        for k in list(pdf.trailer.keys()):
+            if k not in ('/Size', '/Root', '/Info', '/ID', '/Prev', '/Encrypt', '/XRefStm'):
+                del pdf.trailer[k]
+                cleaned.append(k)
+    except Exception:
+        pass
+
+    if changed == 0 and not cleaned:
+        pdf.close()
+        return False, '没有可改的 Symbolic 标记或私有结构'
+    pdf.save(out_path, linearize=True,
+             object_stream_mode=pikepdf.ObjectStreamMode.disable)
+    pdf.close()
+    return True, '摘掉 %d 个字体的 Symbolic 标记；清理结构 %s（无损，文字可复制）' % (
+        changed, ' '.join(cleaned) if cleaned else '无')
+
+
 # ---------------- 第 2 级：转矢量轮廓 ----------------
 
-def to_outline(src, dst):
-    gs = C.find_gs()
-    if not gs:
-        return False, '未安装 ghostscript（apt install ghostscript / brew install ghostscript）'
-    rc, out = C.run([gs, '-q', '-dNOPAUSE', '-dBATCH', '-dSAFER',
-                     '-sDEVICE=pdfwrite', '-dNoOutputFonts',
-                     '-dCompatibilityLevel=1.7',
-                     '-sOutputFile=' + dst, src], timeout=600)
-    if rc != 0 or not os.path.exists(dst):
-        return False, 'gs 转轮廓失败：%s' % out.strip()[:200]
+def _outline_via_pymupdf(src, dst):
+    """无 ghostscript 时的转轮廓：逐页渲染为 SVG（文字转路径）再合成 PDF。
+
+    已验证：与原 PDF 150dpi 逐像素对比内容一致，只差边缘抗锯齿。
+    """
+    try:
+        import pymupdf
+    except ImportError:
+        return False, '需要 pymupdf（pip install pymupdf）'
+    try:
+        import cairosvg
+    except ImportError:
+        return False, '转轮廓需要 ghostscript 或 cairosvg（pip install cairosvg）'
+    try:
+        import pikepdf
+    except ImportError:
+        return False, '需要 pikepdf 合并页面（pip install pikepdf）'
+
+    import re
+    import tempfile
+    doc = pymupdf.open(src)
+    parts = []
+    tmpdir = tempfile.mkdtemp(prefix='ol_')
+    try:
+        for i, page in enumerate(doc, 1):
+            svg = page.get_svg_image(text_as_path=True)
+            # cairosvg 把无单位数值当 px（96dpi），必须补 pt 才能保住 A4 尺寸
+            svg = re.sub(r'(<svg[^>]*?width="[\d.]+)"', r'\1pt"', svg, count=1)
+            svg = re.sub(r'(<svg[^>]*?height="[\d.]+)"', r'\1pt"', svg, count=1)
+            part = os.path.join(tmpdir, 'p%d.pdf' % i)
+            cairosvg.svg2pdf(bytestring=svg.encode('utf-8'), write_to=part)
+            parts.append(part)
+        if not parts:
+            return False, 'PDF 没有页面'
+        out = pikepdf.open(parts[0])
+        for p in parts[1:]:
+            out.pages.extend(pikepdf.open(p).pages)
+        out.save(dst, min_version='1.4')
+        out.close()
+    except Exception as e:
+        return False, '转轮廓失败：%s' % str(e)[:160]
+    finally:
+        doc.close()
+        shutil.rmtree(tmpdir, ignore_errors=True)
     return True, '已转矢量轮廓（PDF 内 0 个字体）'
+
+
+def to_outline(src, dst):
+    gs = shutil.which('gs') or shutil.which('gswin64c') or shutil.which('gswin32c')
+    if gs:
+        rc, out = C.run([gs, '-q', '-dNOPAUSE', '-dBATCH', '-dSAFER',
+                         '-sDEVICE=pdfwrite', '-dNoOutputFonts',
+                         '-dCompatibilityLevel=1.7',
+                         '-sOutputFile=' + dst, src], timeout=600)
+        if rc == 0 and os.path.exists(dst):
+            return True, '已转矢量轮廓（ghostscript，PDF 内 0 个字体）'
+        print('   （ghostscript 转轮廓失败，改用 pymupdf 路径：%s）' % out.strip()[:120])
+    return _outline_via_pymupdf(src, dst)
 
 
 # ---------------- 第 3 级：位图（扫描版） ----------------
@@ -178,6 +299,9 @@ def main():
     ap.add_argument('--charset-only', action='store_true',
                     help='只做 charset 重写（无损、保留复制）；修完仍有字体风险就如实报告')
     ap.add_argument('--dry-run', action='store_true')
+    ap.add_argument('--replace', action='store_true',
+                    help='自动修复模式：把「一定能打印」的轮廓版写回原路径，原件另存为 xxx_原生.pdf。'
+                         '供 gate --auto-fix 调用，让调用方拿到的就是可交付文件')
     a = ap.parse_args()
 
     if not os.path.isfile(a.pdf):
@@ -186,7 +310,9 @@ def main():
     res = inspect_pdf(a.pdf, deep=True)
     report(res)
 
-    if not res['bad']:
+    struct = res.get('struct') or {}
+    st_bad = struct.get('bad') or []
+    if not res['bad'] and not st_bad:
         print('\n✅ 无需修复。')
         return 0
 
@@ -199,17 +325,74 @@ def main():
         sug = C.suggest_replacement(f['basefont'])
         names.append('%s → 换成 %s' % (f['basefont'], sug))
     charset_broken = any((f.get('charmap') or {}).get('ok') is False for f in res['bad'])
+    symbolic_bad = [i for i in st_bad if i.get('code') == 'symbolic_cjk']
 
-    print('\n[计划] 需要修复 %d 个风险字体' % len(res['bad']))
+    print('\n[计划] 需要修复：%d 个风险字体、%d 项结构异常'
+          % (len(res['bad']), len(st_bad)))
+    if symbolic_bad:
+        print('   1a) 摘掉 Symbolic 标记 + 清理私有结构（无损、保留复制）')
+        print('       —— 打印机未必认账，只作首选尝试，下面仍会出轮廓版保底')
     if charset_broken:
-        print('   1) 先尝试 charset 重写（无损、保留复制）')
-    print('   2) 再转矢量轮廓（显示 100% 保真，但失去复制）')
+        print('   1b) 先尝试 charset 重写（无损、保留复制）')
+    print('   2)  再转矢量轮廓（显示 100% 保真，但失去复制）—— 打印机的可靠解')
     if a.dry_run:
         print('\n（--dry-run：未改动文件）')
         return 2
 
+    # ---- 自动修复模式（gate --auto-fix 走这里）----
+    # 关键：不能只产出兜底件就返回 0 —— 调用方手里仍是原来那份坏 PDF。
+    # 所以把「一定能打印」的版本写回原路径，原件另存，交付物直接可用。
+    if a.replace:
+        native = C.unique_path(stem + '_原生.pdf')
+        shutil.copy2(a.pdf, native)
+        tmp = C.unique_path(stem + '_ol.pdf')
+        ok, msg = to_outline(a.pdf, tmp)
+        mode = '轮廓版'
+        if not ok:
+            print('   （转轮廓不可用：%s → 改出位图）' % msg)
+            ok, msg = to_raster(a.pdf, tmp, dpi=a.dpi)
+            mode = '扫描版'
+        if not ok:
+            print('\n❌ 自动修复失败：%s' % msg)
+            return 2
+        shutil.move(tmp, out)
+        print('\n✅ 自动修复完成（%s）' % mode)
+        print('   交付版（已写回原路径）：%s' % out)
+        print('   原生版（保留可复制文字）：%s' % native)
+        print('   ⚠️ 交付版已转为%s：文字不能复制/搜索，但任何设备与打印机都能解析。'
+              % ('矢量轮廓' if mode == '轮廓版' else '位图'))
+        print('   需要复制/检索文字时用原生版；要打印请用交付版。')
+        return 0
+
     work = a.pdf
+    neg_out = None
     done = []
+
+    # 第 1a 级：伪 Symbolic 标记（无损轻修）
+    if symbolic_bad and not (a.outline or a.raster):
+        tmp = C.unique_path(stem + '_nf.pdf')
+        ok, msg = fix_symbolic(a.pdf, tmp)
+        if ok:
+            print('   ✓ ' + msg)
+            done.append('Symbolic 标记：' + msg)
+            r2 = inspect_pdf(tmp, deep=True)
+            if not (r2.get('struct') or {}).get('bad'):
+                neg_out = C.unique_path(stem + '_无损修复.pdf')
+                shutil.move(tmp, neg_out)
+                work = neg_out
+                print('   → 无损版已输出：%s' % neg_out)
+                if a.keep_copy:
+                    print('\n✅ --keep-copy：已输出无损版 -> %s' % neg_out)
+                    print('   注意：只摘了结构标记，打印机是否认账必须真机确认；')
+                    print('   若仍报错，去掉 --keep-copy 重跑，会额外产出轮廓版。')
+                    return 0
+                print('     先用它试打；打不了再用下面的轮廓版。')
+            else:
+                if os.path.exists(tmp):
+                    os.remove(tmp)
+                print('   （去标记后结构仍异常，继续下一级）')
+        else:
+            print('   （%s，继续下一级）' % msg)
 
     # 第 1 级
     if charset_broken and not (a.outline or a.raster):
@@ -244,16 +427,28 @@ def main():
         ok, msg = to_outline(work, tmp)
         if ok:
             r2 = inspect_pdf(tmp)
-            if not r2['bad']:
+            left_font = r2['bad']
+            left_struct = (r2.get('struct') or {}).get('bad') or []
+            if not left_font and not left_struct:
                 out2 = C.tag_path(out, '【轮廓版】')
                 shutil.move(tmp, out2)
-                print('\n✅ 修复完成（第 2 级：转矢量轮廓）-> %s' % out2)
-                print('   原生版仍在原处：%s（先用手机预览它，能正常显示就不用轮廓版）' % a.pdf)
-                print('\n   ⚠️ 可复制性已牺牲，要保留复制请替换以下字体后重新生成：')
+                print('\n✅ 已输出轮廓版（第 2 级：转矢量轮廓）-> %s' % out2)
+                print('   PDF 内 0 个字体，任何设备与打印机 RIP 都能解析。')
+                if neg_out:
+                    print('\n   两份产物，按这个顺序试：')
+                    print('     ① %s' % neg_out)
+                    print('        无损版：文字可复制、文件小；但只摘了标记，打印机未必认账。')
+                    print('     ② %s' % out2)
+                    print('        轮廓版：一定打得出来，代价是不能复制/搜索文字。')
+                    print('   先试①，打印机认就留它；报错就换②。')
+                else:
+                    print('   原生版仍在原处：%s（先用手机预览，能正常显示就不用轮廓版）' % a.pdf)
+                print('\n   ⚠️ 轮廓版可复制性已牺牲，要两全请替换以下字体后重新生成：')
                 for n in names:
                     print('      - ' + n)
                 return 0
-            print('   （转轮廓后仍有风险字体：%s）' % [f['basefont'] for f in r2['bad']])
+            print('   （转轮廓后仍有风险：字体 %d / 结构 %d）'
+                  % (len(left_font), len(left_struct)))
             if a.keep_copy:
                 pass
             else:

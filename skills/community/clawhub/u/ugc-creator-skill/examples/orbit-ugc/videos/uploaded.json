@@ -1,0 +1,18 @@
+{
+ "tiktok.mp4": {
+  "sha256": "8175e9d2b69bcf3448e9613941a10e70b40f59b7401ab7dc44b6a3d21c0ad1c9",
+  "bytes": 597237,
+  "uploaded": "2026-11-18T14:00:00Z",
+  "uploadSessionId": "example-session-tiktok",
+  "mediaId": "example-media-tiktok",
+  "completed": "2026-11-18T14:05:00Z"
+ },
+ "reels.mp4": {
+  "sha256": "d3ff1d44edaf61a26c928822ddfe4b723adc037584d194d20036f45c04ab8bbf",
+  "bytes": 638554,
+  "uploaded": "2026-11-18T14:00:00Z",
+  "uploadSessionId": "example-session-reels",
+  "mediaId": "example-media-reels",
+  "completed": "2026-11-18T14:05:00Z"
+ }
+}

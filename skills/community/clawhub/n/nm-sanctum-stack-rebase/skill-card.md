@@ -1,6 +1,6 @@
 ## Description:
 
-Cascades a rebase through an entire PR stack after a base PR merges or upstream changes
+Cascades a rebase through an entire PR stack after a base PR merges or upstream changes.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to rebase a published pull request branch stack when its base changes, then update affected branches and pull request bases. It guides conflict handling and verification of the resulting stack.
+Developers use this skill to rebase a published pull request stack after its base merges, upstream changes, or a middle slice is revised, then update affected branches and pull request bases.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The scanner reports that actions may publish or change repository and pull-request state in ways that do not match the stated stacked-rebase purpose.
+Risk: The server security review marks this release suspicious, citing publishing beyond the selected pull request stack and behavior that may not consistently match the stated rebasing purpose.
 
-Mitigation: Review the planned rebase, branch pushes, and pull-request base changes before execution, and confirm each action matches the intended stack update.
-
-Risk: Rebasing rewrites branch history and pushing updated slices may affect remote work or leave pull-request reviews stale.
-
-Mitigation: Confirm the stack branches and remote state, inspect the rebased commits, use the documented --force-with-lease guard, and verify pull-request bases and review status afterward.
+Mitigation: Before running its publishing steps, inspect the target branches and confirm that no unrelated or unpublished work will be sent to a remote.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-sanctum-stack-rebase)
-- [Homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
+- [Sanctum plugin page](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-sanctum-stack-rebase)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+**Output Type(s):** [Guidance, Shell commands, Git and GitHub CLI commands]
 
-**Output Format:** [Markdown with inline shell code blocks and a progress checklist]
+**Output Format:** [Markdown with inline shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes commands that rebase branches, push updated branches, and edit pull request bases.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata; artifact frontmatter lists 1.10.3)
 
 ## Ethical Considerations:
 

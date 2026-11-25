@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""pdf-fonts-fixer · locate —— 跨环境定位器（其它 skill 靠它找到本 skill）
+"""pdf-font-fixer · locate —— 跨环境定位器（其它 skill 靠它找到本 skill）
 
 为什么需要
 ----------
-`$HOME/.skills/pdf-fonts-fixer` 只是**本环境**的约定。换一台机器、换一个平台
+`$HOME/.skills/pdf-font-fixer` 只是**本环境**的约定。换一台机器、换一个平台
 （WorkBuddy / Claude Code / Codex / 项目内安装 / Windows），skill 的落地位置都不一样，
 硬编码路径必然断。
 
@@ -13,7 +13,7 @@
   0. 脚本自身位置（最可靠：脚本就在 skill 里，往上两级就是 skill 根目录）
   1. 环境变量 `PDF_FONT_FIXER`（显式覆盖，安装脚本/用户手工指定）
   2. 常见安装约定的候选目录
-  3. 用户目录下有限深度的目录名搜索（`pdf-fonts-fixer`）
+  3. 用户目录下有限深度的目录名搜索（`pdf-font-fixer`）
 
 用法
 ----
@@ -28,10 +28,10 @@
     here = os.path.dirname(os.path.abspath(__file__))
     # ① 环境变量 ② 与当前 skill 同级 ③ 各平台约定
     cands = [os.environ.get('PDF_FONT_FIXER', ''),
-             os.path.join(os.path.dirname(os.path.dirname(here)), 'pdf-fonts-fixer'),
-             os.path.expanduser('~/.skills/pdf-fonts-fixer'),
-             os.path.expanduser('~/.claude/skills/pdf-fonts-fixer'),
-             os.path.expanduser('~/.codebuddy/skills/pdf-fonts-fixer')]
+             os.path.join(os.path.dirname(os.path.dirname(here)), 'pdf-font-fixer'),
+             os.path.expanduser('~/.skills/pdf-font-fixer'),
+             os.path.expanduser('~/.claude/skills/pdf-font-fixer'),
+             os.path.expanduser('~/.codebuddy/skills/pdf-font-fixer')]
     fixer = next((p for p in cands if p and os.path.isfile(
         os.path.join(p, 'scripts', 'gate.py'))), None)
 """
@@ -44,8 +44,8 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 SELF_ROOT = os.path.dirname(HERE)          # scripts/ 的上一级
 
-SKILL_NAME = 'pdf-fonts-fixer'
-LEGACY_NAMES = ('pdf-font-fixer',)   # 兼容早期安装目录名
+SKILL_NAME = 'pdf-font-fixer'
+LEGACY_NAMES = ('pdf-fonts-fixer',)   # 兼容新版（市场版）目录名
 
 
 def _is_skill_dir(p):
@@ -150,7 +150,7 @@ def check():
     root = find_root()
     print('skill 根目录：%s' % (root or '❌ 未找到'))
     if not root:
-        print('   设置环境变量 PDF_FONT_FIXER 指向 pdf-fonts-fixer 目录即可。')
+        print('   设置环境变量 PDF_FONT_FIXER 指向 pdf-font-fixer 目录即可。')
         return 2
     ok = True
     for s in ('detect.py', 'verify.py', 'gate.py', 'fix.py', 'pptx.py', 'fontkit.py',
@@ -183,7 +183,7 @@ def check():
 
 
 def main():
-    ap = argparse.ArgumentParser(description='跨环境定位 pdf-fonts-fixer')
+    ap = argparse.ArgumentParser(description='跨环境定位 pdf-font-fixer')
     ap.add_argument('--check', action='store_true')
     ap.add_argument('--fonts', action='store_true')
     ap.add_argument('--sh', action='store_true', help='输出可 eval 的 shell 片段')
@@ -204,12 +204,12 @@ def main():
         if root:
             print('export PDF_FONT_FIXER="%s"' % root)
         else:
-            print('echo "pdf-fonts-fixer 未找到，请设置 PDF_FONT_FIXER" >&2; exit 2')
+            print('echo "pdf-font-fixer 未找到，请设置 PDF_FONT_FIXER" >&2; exit 2')
         return 0 if root else 2
     if root:
         print(root)
         return 0
-    print('pdf-fonts-fixer 未找到（可用 PDF_FONT_FIXER 环境变量指定）', file=sys.stderr)
+    print('pdf-font-fixer 未找到（可用 PDF_FONT_FIXER 环境变量指定）', file=sys.stderr)
     return 2
 
 

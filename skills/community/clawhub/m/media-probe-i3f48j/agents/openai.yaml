@@ -1,0 +1,4 @@
+interface:
+  display_name: Media Probe
+  short_description: media decode probe
+  icon_small: assets/icon.svgz

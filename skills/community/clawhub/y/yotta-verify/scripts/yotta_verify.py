@@ -53,7 +53,7 @@ sys.path.insert(0, str(_HERE))
 import verify_rules  # noqa: E402
 import threat_engine  # noqa: E402
 
-VERSION = "0.3.6"
+VERSION = "0.3.7"
 TOOL_NAME = "yotta-verify"
 CN_NAME = "元信"
 

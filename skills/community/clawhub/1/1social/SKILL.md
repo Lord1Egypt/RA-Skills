@@ -1,13 +1,13 @@
 ---
 name: 1social
-description: "Publish and schedule social media posts to Instagram, TikTok, X (Twitter), Threads, LinkedIn, Facebook Pages, YouTube Shorts and Bluesky from OpenClaw, Hermes, Claude Code or Codex. One post adapted to each network's limits, cross-posted now or scheduled up to 30 days ahead, with a per-network delivery receipt, via the 1Social MCP server (OAuth, no API key). Use to post on social media, cross-post, schedule posts, plan a content calendar, or check what was published."
+description: "Publish and schedule social media posts to Instagram, TikTok, X (Twitter), Threads, LinkedIn, Facebook Pages, YouTube Shorts, Bluesky, Pinterest, Telegram and Tumblr from OpenClaw, Hermes, Claude Code or Codex. One post adapted to each network's limits, cross-posted now or scheduled up to 30 days ahead, with a per-network delivery receipt, via the 1Social MCP server (OAuth, no API key). Use to post on social media, cross-post, schedule posts, plan a content calendar, or check what was published."
 license: MIT
 metadata:
   openclaw:
     emoji: "📣"
     homepage: "https://1social.dev/mcp?ref=skill"
   hermes:
-    tags: ["social-media", "scheduler", "cross-posting", "instagram", "tiktok", "linkedin", "x", "twitter", "threads", "facebook", "youtube", "bluesky"]
+    tags: ["social-media", "scheduler", "cross-posting", "instagram", "tiktok", "linkedin", "x", "twitter", "threads", "facebook", "youtube", "bluesky", "pinterest", "telegram", "tumblr"]
     category: social-media
 ---
 
@@ -35,7 +35,7 @@ The user needs a 1Social account. New accounts start with a free trial; publishi
 
 ## Workflow
 
-1. **Find the account.** Call `list_accounts`. It returns the connected channels with their ids, each network's live limits, the plan and the remaining monthly quota. If no matching account is connected, tell the user to connect one at https://1social.dev/app — connecting needs a browser and cannot be done from chat. If `list_accounts` reports a limit that differs from this skill, trust `list_accounts`.
+1. **Find the account.** Call `list_accounts`. It returns the connected channels with their ids, each network's live limits, the plan and the remaining monthly quota. If no matching account is connected, give the user the matching link from `connectLinks` in that result: it opens 1Social in their browser with a one-click Connect button. When they say they are done, call `list_accounts` again. If `list_accounts` reports a limit that differs from this skill, trust `list_accounts`.
 2. **Draft for the network.** Write the post to the rules below. A post is a list of `segments`; each segment is `{ text, mediaIds? }`.
 3. **Attach media.**
    - The user attached a file in chat → put it in `media`.
@@ -58,9 +58,12 @@ The user needs a 1Social account. New accounts start with a free trial; publishi
 | Instagram | 2,200 | **required**, 4:5 to 1.91:1 | joined into one post | no |
 | TikTok | 2,200 | **required**, video or JPEG photos | joined into one post | no |
 | YouTube Shorts | title 100, description 5,000 bytes | **one vertical video ≤ 3 min** | — | no |
+| Pinterest | description 800, title 100 | **1–5 images** (JPEG/PNG/WEBP), needs a board | — | yes |
+| Telegram (channels) | 4,096 (caption 1,024, longer text follows the media) | optional, album ≤ 10, ≤ 50 MB | joined into one post | within 48 h |
+| Tumblr (per blog) | long-form; title, link, source, tags | optional, ≤ 30 images **or** 1 video | joined into one post | yes |
 
 - Pick the channels with the user, then check the strictest limit among them. A 280-character X post and a 3,000-character LinkedIn post are different posts — if the networks differ a lot, offer to publish separate versions as separate posts rather than cutting everything to the shortest limit.
-- If any selected network requires media (Instagram, TikTok, YouTube Shorts), ask for it before drafting. YouTube Shorts takes only one vertical video of up to 3 minutes.
+- If any selected network requires media (Instagram, TikTok, YouTube Shorts, Pinterest), ask for it before drafting. YouTube Shorts takes only one vertical video of up to 3 minutes; Pinterest takes images only and needs a board (the channel's default, or `pinterest.boardId`).
 - Segments become a native thread on X and Bluesky and are joined into one post everywhere else; preview_post says which will happen per network.
 - Instagram, TikTok, Threads and YouTube posts cannot be deleted through 1Social, so confirm with the user before publishing there.
 
@@ -74,5 +77,5 @@ For a week or month of posts, draft the whole plan first and get the user's appr
 - **Change a scheduled post:** `update_post`. Only works before the post has gone out.
 - **Unschedule:** `cancel_post`. Use this, not `delete_post`, for a post that has not been published.
 - **Delete a published post:** `delete_post`, only after the user confirms. Report per network what actually came down: Instagram, TikTok, Threads and YouTube posts stay live and only the user can remove them.
-- **A delivery failed:** `retry_delivery` retries one network and spends quota again. It is refused for permanent failures such as a revoked connection — then the user must reconnect at https://1social.dev/app.
+- **A delivery failed:** `retry_delivery` retries one network and spends quota again. It is refused for permanent failures such as a revoked connection — then give the user that account's `reconnectUrl` from `list_accounts`.
 - **A delivery is `unknown`:** ask the user to look at the network. Only when they tell you whether the post is live, call `confirm_delivery` with their answer. Never guess, and never `retry_delivery` with `force` without asking — it may publish a second copy.

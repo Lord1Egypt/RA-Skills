@@ -25,6 +25,8 @@
 //      NANO_ALLOW_PAYTO (optional comma-separated accounts; when set, a quote's payTo must be on it;
 //                        NanoGPT issues a fresh account per payment, so leave it unset for that door),
 //      STATE_FILE (default ~/.pursekeeper/inference-proxy-<port>.json; spent, received, every payment),
+//                 (named after the port, so the cap survives a change of UPSTREAM; a handed-back payment on file is
+//                 presented only to the origin it was paid at, never to another one),
 //      PORT (default 3402; the proxy binds 127.0.0.1 only),
 //      NANO_RPC (optional node RPC; else the free endpoints at API, default https://pursekeeper.dev),
 //      WORK_URL (optional RPC-style work_generate endpoint; else API /v1/work, else local CPU, slow),
@@ -55,6 +57,7 @@ const b64 = s => Buffer.from(JSON.stringify(s)).toString('base64');
 const unb64 = s => JSON.parse(Buffer.from(s, 'base64').toString('utf8'));
 const sleep = ms => new Promise(s => setTimeout(s, ms));
 const log = (...a) => console.error(new Date().toISOString(), ...a);
+const normAddr = s => String(s ?? '').trim().replace(/^xrb_/, 'nano_');
 
 // ---- configuration, all read once; a missing control is a refusal to start, not a default ----
 const cfg = (() => {
@@ -69,7 +72,7 @@ const cfg = (() => {
   if (cap === null || cap <= 0n) die('set NANO_CAP, the cumulative spending cap in XNO as decimal text (e.g. 0.1)');
   const perCall = toRaw(process.env.NANO_MAX_PER_CALL ?? '0.001');
   if (perCall === null || perCall <= 0n) die('NANO_MAX_PER_CALL must be a decimal XNO amount');
-  const allow = (process.env.NANO_ALLOW_PAYTO || '').split(',').map(s => s.trim()).filter(Boolean);
+  const allow = (process.env.NANO_ALLOW_PAYTO || '').split(',').map(normAddr).filter(Boolean);
   for (const a of allow) if (!N.checkAddress(a)) die('NANO_ALLOW_PAYTO: not a Nano address: ' + a);
   const port = Number(process.env.PORT || 3402);
   const keyHash = createHash('sha256').update(proxyKey).digest();
@@ -78,7 +81,7 @@ const cfg = (() => {
   const account = N.deriveAddress(pub, { useNanoPrefix: true });
   return {
     keyHash,
-    upstream, host: u.host, protocol: u.protocol, cap, perCall, allow, port, sk, pub, account,
+    upstream, host: u.host, protocol: u.protocol, origin: u.origin, cap, perCall, allow, port, sk, pub, account,
     state: process.env.STATE_FILE || path.join(os.homedir(), '.pursekeeper', `inference-proxy-${port}.json`),
     rpc: process.env.NANO_RPC || null,
     api: (process.env.API || 'https://pursekeeper.dev').replace(/\/$/, ''),
@@ -100,6 +103,19 @@ function persist() {
   fs.writeFileSync(tmp, JSON.stringify(state, null, 1), { mode: 0o600 });
   fs.renameSync(tmp, cfg.state);
 }
+// The state file is named after the port, not the door, so it outlives a change of UPSTREAM, and so does the cap, which
+// is the point of it. Its hand-backs do not carry over: each is presented only to the door it was paid at (recoverHandedBack).
+{
+  const handedBack = state.payments.filter(p => p && p.status === 'broadcast_not_served' && p.represent_token && !p.recovery);
+  const elsewhere = handedBack.filter(p => p.door && p.door !== cfg.origin), doorless = handedBack.filter(p => !p.door);
+  if (state.upstream !== cfg.upstream) {
+    console.error(`state file ${cfg.state} was written for ${state.upstream || 'a door it does not name'}; UPSTREAM is now ${cfg.upstream}. Cap and spend carry over.` +
+      (elsewhere.length ? ` ${elsewhere.length} handed-back payment(s) on file were paid at another door; they are kept for it and not presented here.` : ''));
+    state.upstream = cfg.upstream;
+  }
+  if (doorless.length) console.error(`${doorless.length} handed-back payment(s) on file were written before 0.3.19 and do not name the door they were paid at: ${doorless.map(p => p.hash).join(', ')}. ` +
+    'They are not presented automatically, so the next call pays. To use one, send X-Nano-Payment (the hash) and X-Nano-Represent (represent_token in the state file) to the door that handed it back.');
+}
 const spent = () => BigInt(state.spent_raw);
 // Every payment entry carries `counted`: whether its amount is inside spent_raw right now. Count and uncount only through this.
 function count(p, counted) {
@@ -115,7 +131,13 @@ async function accountInfo() {
   if (cfg.rpc) {
     const r = await post(cfg.rpc, { action: 'account_info', account: cfg.account, representative: 'true', include_confirmed: 'true' });
     if (r.error) return /not found/i.test(r.error) ? { found: false } : { error: r.error };
-    return { found: true, frontier: r.frontier, balance: r.balance, representative: r.representative, height: Number(r.block_count), confirmed_height: Number(r.confirmation_height), confirmed_frontier: r.confirmed_frontier || null };
+    // With include_confirmed the node answers confirmed_height / confirmed_frontier and leaves out the legacy
+    // confirmation_height / confirmation_height_frontier (json_handler.cpp, account_info: "For backwards compatibility
+    // purposes" only without include_confirmed). Reading only confirmation_height made confirmed_height NaN on every real
+    // node, so a retired send was never released from the cap in NANO_RPC mode. Both spellings are read, new first.
+    // Found by PlatinumVera (AI agent), 2026-10-23.
+    const ch = r.confirmed_height ?? r.confirmation_height;
+    return { found: true, frontier: r.frontier, balance: r.balance, representative: r.representative, height: Number(r.block_count), confirmed_height: ch == null ? NaN : Number(ch), confirmed_frontier: r.confirmed_frontier || r.confirmation_height_frontier || null };
   }
   const r = await fetch(cfg.api + '/v1/account_info?account=' + cfg.account);
   if (!r.ok) throw new Error('account_info HTTP ' + r.status);
@@ -264,14 +286,14 @@ function parseQuote(status, headers, bodyText) {
     if (v.x402Version !== 2 || !Array.isArray(v.accepts)) throw new Refuse('malformed_quote', { field: 'x402Version' });
     const a = v.accepts.find(x => x.scheme === 'exact' && x.network === 'nano:mainnet');
     if (!a) throw new Refuse('no_nano_option', { accepts: v.accepts.map(x => `${x.scheme}/${x.network}`) });
-    return { kind: 'exact', payTo: a.payTo, amount: a.amount, pr: v, accepted: a, sellerWork: a.extra && a.extra.work === 'optional' };
+    return { kind: 'exact', payTo: normAddr(a.payTo), amount: a.amount, pr: v, accepted: a, sellerWork: !!(a.extra && (a.extra.work === 'optional' || a.extra.workOptional === true)) };
   }
   let j; try { j = JSON.parse(bodyText); } catch { throw new Refuse('malformed_quote', { field: 'body' }); }
   const list = j && j.payment && Array.isArray(j.payment.accepted) ? j.payment.accepted : null;
   if (list) {
     const a = list.find(x => x.scheme === 'nano' && /^nano[-:]mainnet$/.test(String(x.network)));
     if (!a) throw new Refuse('no_nano_option', { accepts: list.map(x => `${x.scheme}/${x.network}`) });
-    return { kind: 'nano', payTo: a.payTo, amount: a.amount, paymentId: a.paymentId || j.payment.paymentId, completeUrl: a.completeUrl || j.payment.completeUrl, statusUrl: a.statusUrl || j.payment.statusUrl, expiresAt: a.expiresAt || j.payment.expiresAt };
+    return { kind: 'nano', payTo: normAddr(a.payTo), amount: a.amount, paymentId: a.paymentId || j.payment.paymentId, completeUrl: a.completeUrl || j.payment.completeUrl, statusUrl: a.statusUrl || j.payment.statusUrl, expiresAt: a.expiresAt || j.payment.expiresAt };
   }
   if (j && j.x402 && j.x402.x402Version === 2) return parseQuote(402, new Map([['payment-required', b64(j.x402)]]), '');
   throw new Refuse('malformed_quote', { field: 'unknown dialect' });
@@ -324,7 +346,7 @@ function decide(q) {
 // and the proxy is the one paying. Until 0.2.3 only authorization and proxy-authorization were dropped, so a
 // runtime that sends its key as x-api-key forwarded it verbatim (pyfile-toolkit, api#89, 2026-10-10).
 const CREDENTIAL = ['authorization', 'proxy-authorization', 'x-api-key', 'api-key', 'x-auth-token', 'x-goog-api-key', 'cookie'];
-const HOP = new Set(['host', 'connection', 'keep-alive', 'transfer-encoding', 'content-length', ...CREDENTIAL, 'payment-signature', 'x-payment', 'x-nano-represent', 'x-x402', 'x-x402-payment-id']);
+const HOP = new Set(['host', 'connection', 'keep-alive', 'transfer-encoding', 'content-length', ...CREDENTIAL, 'payment-signature', 'x-payment', 'x-nano-payment', 'x-nano-represent', 'x-x402', 'x-x402-payment-id']);
 function doorHeaders(req, extra) {
   const h = {};
   for (const [k, v] of Object.entries(req.headers)) if (!HOP.has(k)) h[k] = Array.isArray(v) ? v.join(', ') : v;
@@ -399,6 +421,33 @@ function keyPresented(req) {
   return keyMatches(m && m[1]) || keyMatches(req.headers['x-api-key']);
 }
 
+// A call the door charged and then handed back (status broadcast_not_served with the door's token) is served without a
+// new block: the next call to the door first presents the landed hash as X-Nano-Payment with X-Nano-Represent,
+// the pair the door honours a handed-back x402 payment on (api PR #119). One attempt per hand-back: a refusal is written
+// on the entry and the call goes on to a fresh quote, since the credit is then not this proxy's to spend. Until 0.3.16
+// the token on the hand-back reply was not kept and no recovery was tried, so the next call signed a second block for
+// the same door (pyfile-toolkit, skill#10, 2026-10-27, offline repro: two broadcasts for one served call).
+async function recoverHandedBack(quote, send) {
+  // An entry is presented only to the door it was paid at. The hash and the token together claim that door's service, so
+  // sending them to another seller would hand it the claim, and the state file outlives a change of UPSTREAM. Since 0.3.19
+  // every entry names its door (the origin of UPSTREAM when it was paid). An older entry names none and is never presented
+  // from here: matching it by pay-to account would let any door trigger it by quoting that account, which is public.
+  // At its own door the credit sits on the hash, not on a pay-to or a path.
+  const prior = state.payments.find(p => p.kind === 'exact' && p.status === 'broadcast_not_served' && p.represent_token && !p.recovery && p.door === cfg.origin);
+  if (!prior) return null;
+  let r;
+  try { r = await send({ 'x-nano-payment': prior.hash, 'x-nano-represent': prior.represent_token }); }
+  catch (e) { prior.recovery = { t: new Date().toISOString(), error: e.message }; persist(); return null; }
+  if (r.ok) {
+    prior.status = 'served_on_recovery'; prior.final = true; prior.recovery = { t: new Date().toISOString(), status: r.status };
+    state.paid++; persist(); log('recovered ' + prior.hash + ': served on the handed-back payment, no new block');
+    return { entry: prior, amount: BigInt(prior.amount_raw), response: r, recovered: true };
+  }
+  prior.recovery = { t: new Date().toISOString(), status: r.status, body: (await r.text().catch(() => '')).slice(0, 200) };
+  persist(); log('recovery of ' + prior.hash + ' refused with ' + r.status + '; paying fresh');
+  return null;
+}
+
 async function handle(req, res) {
   const g = gate(req);
   if (g) return refuse(res, g.status, g.code, g.detail);
@@ -433,17 +482,18 @@ async function handle(req, res) {
   try {
     paid = await withLock(async () => {
       await settlePending();
+      if (quote.kind === 'exact') { const recovered = await recoverHandedBack(quote, send); if (recovered) return recovered; }
       const amount = decide(quote);                                 // first: nothing below runs for a refused quote
       await pocket();
       const info = await accountInfo();
       if (info.error) throw new Refuse('account_unreadable', { error: info.error });
       if (!info.found) throw new Refuse('account_not_opened', { account: cfg.account });
-      const entry = { t: new Date().toISOString(), kind: quote.kind, amount_raw: amount.toString(), payTo: quote.payTo, paymentId: quote.paymentId || null, hash: null, status: 'deciding', counted: false, final: false, path: req.url };
-      state.payments.push(entry);
+      if (BigInt(info.balance) < amount) throw new Refuse('insufficient_balance', { balance_raw: String(info.balance), amount_raw: String(amount) });
+      const entry = { t: new Date().toISOString(), kind: quote.kind, amount_raw: amount.toString(), payTo: quote.payTo, paymentId: quote.paymentId || null, hash: null, status: 'deciding', counted: false, final: false, path: req.url, door: cfg.origin };
       if (quote.kind === 'nano') {
         const w = await work(info.frontier);
         const { block, hash } = signSend(info, amount, quote.payTo, w);
-        entry.hash = hash; entry.previous = info.frontier; entry.height = info.height + 1; entry.work = w; entry.status = 'signed'; count(entry, true); persist();   // counted before the network sees it
+        entry.hash = hash; entry.previous = info.frontier; entry.height = info.height + 1; entry.work = w; entry.status = 'signed'; state.payments.push(entry); count(entry, true); persist();   // counted before the network sees it
         try { await broadcast(block, 'send'); entry.status = 'broadcast'; entry.final = true; }
         catch (e) {
           let on; try { on = await landed(hash); } catch { on = null; }
@@ -462,27 +512,35 @@ async function handle(req, res) {
       // exact: sign, then present; the seller broadcasts. Counted at signing; a refusal is settled against the chain below.
       const w = quote.sellerWork ? '0' : await work(info.frontier);
       const { block, hash } = signSend(info, amount, quote.payTo, w);
-      entry.hash = hash; entry.previous = info.frontier; entry.height = info.height + 1; entry.work = w; entry.status = 'signed'; count(entry, true); persist();
+      entry.hash = hash; entry.previous = info.frontier; entry.height = info.height + 1; entry.work = w; entry.status = 'signed'; state.payments.push(entry); count(entry, true); persist();
       const payload = { x402Version: 2, resource: quote.pr.resource, accepted: quote.accepted, payload: { block } };
       const extra = { 'payment-signature': b64(payload) };
-      let r = await send(extra);
-      for (let waited = 0; r.status === 402 && waited < 60000; waited += 2000) {
-        const b = await r.clone().json().catch(() => null);
-        if (!b || !/not (yet )?confirmed/.test(String(b.note || b.error || ''))) break;
-        const tok = r.headers.get('x-nano-represent') || b.represent_token;
-        if (tok) extra['x-nano-represent'] = String(tok); else delete extra['x-nano-represent'];
-        await sleep(2000); r = await send(extra);
-      }
-      if (r.ok) { entry.status = 'served'; entry.final = true; state.paid++; persist(); return { entry, amount, response: r }; }
+      let r = null, sendErr = null;
+      try {
+        r = await send(extra);
+        for (let waited = 0; r.status === 402 && waited < 60000; waited += 2000) {
+          const b = await r.clone().json().catch(() => null);
+          if (!b || !/not (yet )?confirmed/.test(String(b.note || b.error || ''))) break;
+          const tok = r.headers.get('x-nano-represent') || b.represent_token;
+          if (tok) extra['x-nano-represent'] = String(tok); else delete extra['x-nano-represent'];
+          await sleep(2000); r = await send(extra);
+        }
+      } catch (e) { sendErr = e; r = null; }
+      if (r && r.ok) { entry.status = 'served'; entry.final = true; state.paid++; persist(); return { entry, amount, response: r }; }
       // Not served. Was the block broadcast? Landed: counted, reported with the hash and the seller's token. Not landed: the
       // seller still holds a valid signed block, so it is retired with a change block at the same height and uncounted once a
       // block is confirmed there. The payload is not kept: a refused call is a new quote and a new send, never a re-presentation.
       let on; try { on = await landed(hash); } catch { on = null; }
+      // The reply that handed the call back carries the recovery token (header, or represent_token in the body); it is
+      // the key to being served on this payment later, so it is kept on the entry and told to the runtime.
+      const bodyText = r ? await r.text().catch(() => '') : '';
+      let finalTok = r ? (r.headers.get('x-nano-represent') || null) : null;
+      if (!finalTok && bodyText) { try { const b = JSON.parse(bodyText); if (b && b.represent_token) finalTok = String(b.represent_token); } catch { /* not JSON */ } }
       entry.status = on === true ? 'broadcast_not_served' : on === false ? 'not_broadcast_refused' : 'unknown';
-      if (on === true) { entry.final = true; entry.represent_token = extra['x-nano-represent'] || null; }
+      if (on === true) { entry.final = true; entry.represent_token = finalTok || extra['x-nano-represent'] || null; }
       persist();
       if (on === false) await settlePending([entry]);
-      throw new Refuse('not_served_after_payment', { status: r.status, hash, broadcast: on, counted: !!entry.counted, invalidated_by: entry.invalidated_by || null, body: (await r.text().catch(() => '')).slice(0, 300) });
+      throw new Refuse('not_served_after_payment', { status: r ? r.status : null, ...(sendErr ? { error: sendErr.message } : {}), hash, broadcast: on, represent_token: on === true ? entry.represent_token || null : null, counted: !!entry.counted, invalidated_by: entry.invalidated_by || null, body: bodyText.slice(0, 300) });
     });
   } catch (e) {
     if (e instanceof Refuse) return refuse(res, e.code === 'not_served_after_payment' ? 502 : 402, e.code, e.detail);
@@ -490,7 +548,7 @@ async function handle(req, res) {
     return refuse(res, 502, 'payment_error', { error: e.message });
   }
 
-  if (quote.kind === 'exact') return relay(res, paid.response, wantStream, { 'x-payer-paid': fmt(paid.amount), 'x-payer-hash': paid.entry.hash });
+  if (quote.kind === 'exact') return relay(res, paid.response, wantStream, { 'x-payer-paid': fmt(paid.amount), 'x-payer-hash': paid.entry.hash, ...(paid.recovered ? { 'x-payer-recovered': 'true' } : {}) });
   // nano: the money moved; complete the call outside the lock so the next request can pay in parallel.
   // The door sees the send a few seconds after the broadcast (NanoGPT: status "paid", readyToComplete true; a complete
   // posted before that answers 402 with the money already spent, seen 2026-10-10), so poll the status URL first, then

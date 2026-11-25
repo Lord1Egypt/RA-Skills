@@ -2,7 +2,7 @@
 
 ## Requirement
 
-Validated demand: Agent users show strong demand for Skill Vetter-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
+Validated demand: Agent users show strong demand for Skill Vetter-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 11 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
 
 Audience: AI-agent users, skill authors, maintainers, and teams who want proven popular skill patterns adapted into more reliable or adjacent workflows
 
@@ -10,22 +10,21 @@ Category: `work-productivity`
 
 Demand score: 100/100
 
-Evidence coverage: 12 signals across 3 source families.
+Evidence coverage: 11 signals across 3 source families.
 
 ## Evidence
 
-- clawhub-popular-skill: [Popular Clawhub skill demand: self-improving agent has 491,095 downloads](https://clawhub.ai/skills/self-improving-agent)
-- clawhub-popular-skill: [Popular Clawhub skill demand: Skill Vetter has 281,401 downloads](https://clawhub.ai/skills/skill-vetter)
-- clawhub-popular-skill: [Popular Clawhub skill demand: Github has 204,117 downloads](https://clawhub.ai/skills/github)
-- clawhub-popular-skill: [Popular Clawhub skill demand: SkillScan has 183,252 downloads](https://clawhub.ai/skills/skillscan)
-- hacker-news-ask-hn: [Counting words-hacking human-cheat code](https://news.ycombinator.com/item?id=50395404)
-- segmentfault-search: [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
-- segmentfault-search: [javascript](https://segmentfault.com/t/javascript)
-- segmentfault-search: [typescript](https://segmentfault.com/t/typescript)
-- segmentfault-search: [ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
-- segmentfault-search: [AWS Elastic Load Balancer (ELB) -- CLB & ALB](https://segmentfault.com/a/1190000040977924)
-- segmentfault-search: [辅导案例-COMP347-Assignment 2](https://segmentfault.com/a/1190000020835131)
-- segmentfault-search: [Api架构奥义：ApiBoot实现零代码整合Spring Security &amp;amp; OAuth2](https://segmentfault.com/a/1190000020979006)
+- clawhub-popular-skill: [Popular Clawhub skill demand: self-improving agent has 495,007 downloads](https://clawhub.ai/skills/self-improving-agent)
+- hacker-news-ask-hn: [Ask HN: Are the trades a safe career transition?](https://news.ycombinator.com/item?id=50600771)
+- clawhub-popular-skill: [Popular Clawhub skill demand: Skill Vetter has 284,154 downloads](https://clawhub.ai/skills/skill-vetter)
+- clawhub-popular-skill: [Popular Clawhub skill demand: Github has 206,208 downloads](https://clawhub.ai/skills/github)
+- clawhub-popular-skill: [Popular Clawhub skill demand: SkillScan has 183,940 downloads](https://clawhub.ai/skills/skillscan)
+- hacker-news-ask-hn: [Ask HN: Anyone know someone at GitHub to help expedite a support request?](https://news.ycombinator.com/item?id=50618910)
+- github-issues: [enhancement(planner): trace where a planned test's existing tooling writes before committing the plan](https://github.com/open-gsd/gsd-core/issues/6632)
+- github-issues: [enhancement(verify.plan-structure): warn when a task's names a file its leaves out](https://github.com/open-gsd/gsd-core/issues/6631)
+- github-issues: [enhancement(plan-checker): check new file and key names against naming rules the project's tests enforce](https://github.com/open-gsd/gsd-core/issues/6630)
+- github-issues: [enhancement(plan-phase): resume an interrupted standard-mode planner, and have it write PLAN-OUTLINE.md first as chunked mode does](https://github.com/open-gsd/gsd-core/issues/6626)
+- github-issues: [enhancement(new-project, new-milestone): research dimensions and setup questions assume a software project](https://github.com/open-gsd/gsd-core/issues/6623)
 
 ## How This Skill Meets The Requirement
 

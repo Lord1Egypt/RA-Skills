@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers can compare lending and yield pools, build stablecoin ladders, or review delta-neutral spot legs using net expected yield, pool depth, risk exposure, and data quality. The skill provides read-only selection guidance; deposits require user-signed approval.
+External users and agents can compare lending and yield pools using expected yield, liquidity depth, stability history, stablecoin exposure, and impermanent-loss risk. The results support research and pool selection before any deposit decision.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment has medium confidence and incomplete coverage; two local references were reported missing, so their contents were not assessed.
+Risk: The security scan found a mismatch between stated deposit approval limits and a handoff that allows bounded autonomous execution.
 
-Mitigation: Review the missing references and the linked security guidance before installation.
+Mitigation: Review the deposit authorization terms before installing. Confirm each deposit requires explicit approval, or that any delegation is clearly disclosed and limited.
 
-Risk: The scanner reported a low-confidence, disputed skill-enumeration pattern associated with links and companion-skill references.
+Risk: The security scan was partial, and unresolved references leave some evidence incomplete.
 
-Mitigation: Consider the scanner's stated limitation when reviewing the skill and its references before installation.
-
-Risk: Yield rankings may be misleading when history, token identity, exit terms, or reward composition is missing, and pool risks can change over time.
-
-Mitigation: Apply the documented data-quality penalties, review missing information and protocol risks, and treat stablecoin and reward-token exposure as risk rather than guaranteed yield.
+Mitigation: Review the remaining authorization references and do not treat the partial scan as complete evidence.
 
 ## Reference(s):
 
-- [FarmDash Agent integration documentation](https://www.farmdash.one/docs)
-- [FarmDash Supply Master skill manual](https://www.farmdash.one/openclaw-skills/farmdash-supply-master/SKILL.md)
+- [ClawHub release page](https://clawhub.ai/parmasanandgarlic/skills/farmdash-supply-master)
+- [FarmDash Supply Master manual](https://www.farmdash.one/agents/skills/farmdash-supply-master)
+- [FarmDash agent documentation](https://www.farmdash.one/docs)
 - [FarmDash OpenAPI contract](https://www.farmdash.one/agents/openapi.yaml)
 - [FarmDash MCP discovery manifest](https://www.farmdash.one/.well-known/mcp.json)
-- [FarmDash live agent status](https://www.farmdash.one/api/v1/agent/status)
-- [ClawHub release page](https://clawhub.ai/parmasanandgarlic/skills/farmdash-supply-master)
+- [FarmDash security and authority boundaries](https://www.farmdash.one/security)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance, Text, Markdown]
+**Output Type(s):** [Analysis, Guidance, JSON]
 
-**Output Format:** [Yield pool comparisons with rankings, risk notes, and data-quality caveats]
+**Output Format:** [Structured yield comparison and ranking with risk context]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Read-only selection guidance; rankings are cross-sectional and do not establish protocol safety or guarantee yield.]
+**Other Properties Related to Output:** [Results depend on available yield data and the selected pool filters.]
 
 ## Skill Version(s):
 
-1.1.2 (source: frontmatter)
+1.0.1 (source: server-resolved ClawHub release metadata)
 
 ## Ethical Considerations:
 

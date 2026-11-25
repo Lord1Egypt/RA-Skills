@@ -1,6 +1,6 @@
 ## Description:
 
-抖音评论获取助手 retrieves public Douyin search results, trending topics, creator posts, and video or image-post comments as structured JSON for content research and social media analysis.
+读取抖音公开数据，按关键词搜索视频和图文、查看热榜、抓取博主公开作品并获取视频评论，以结构化 JSON 返回。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-External users and developers use this skill to collect public Douyin data for short-video topic research, competitor monitoring, sentiment review, trend tracking, and follow-on reporting.
+短视频运营、品牌和数据分析人员可用它发现抖音内容与热点、查看公开账号作品，并汇总视频评论，用于选题、竞品分析和舆情观察。
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security summary reports a Review verdict because the tool sends GUAIKEI_API_TOKEN in URL parameters.
+Risk: 查询会把用户提供的关键词或链接发送给第三方数据服务；扫描覆盖不完整，部分源文件也未能完全解析。
 
-Mitigation: Install only if sending the token to guaikei.com is acceptable, and prefer a release that transmits tokens in authorization headers.
-
-Risk: The security guidance says generated logs may contain usernames, IDs, comment text, and research targets.
-
-Mitigation: Protect or delete generated logs after use, and prefer explicit save/no-save or output-path controls when available.
-
-Risk: The tool sends Douyin keywords, URLs, identifiers, and the API token to a third-party API service.
-
-Mitigation: Confirm the intended data-sharing and authorization scope before use, especially for commercial or customer-facing analysis.
+Mitigation: 启用前核对技能用途及其发送的数据是否符合需要；只查询抖音公开数据，并避免提交不必要的信息或令牌。
 
 ## Reference(s):
 
-- [Server-resolved GitHub repository](https://github.com/why20261/douyin-comment-assistant)
-- [Server-resolved source commit](https://github.com/why20261/douyin-comment-assistant/commit/a1b26a241a1f2b8ab2d5232c0635912f01419519)
-- [ClawHub skill page](https://clawhub.ai/why20261/skills/douyin-comment-assistant)
-- [抖音数据获取官网](https://www.guaikei.com)
-- [完整选项说明](references/options.md)
+- [使用说明与参数选项](references/options.md)
 - [更新日志](references/changelog.md)
+- [抖音数据服务与令牌配置](https://www.guaikei.com)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Shell commands, Configuration]
+**Output Type(s):** [JSON, Analysis, Guidance]
 
-**Output Format:** [Markdown guidance with inline shell commands and structured JSON command output]
+**Output Format:** [结构化 JSON 数据，以及命令使用和令牌配置说明]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Commands require Node.js 16.14.0+ and GUAIKEI_API_TOKEN; successful CLI runs write JSON to stdout and may save local logs.]
+**Other Properties Related to Output:** [结果包含搜索、热榜、公开作品或评论数据；支持按关键词、时间、排序、内容类型和数量筛选。]
 
 ## Skill Version(s):
 
-0.1.0 (source: ClawHub release metadata; artifact metadata and changelog report 1.2.2)
+1.4.0 (source: frontmatter, package.json)
 
 ## Ethical Considerations:
 

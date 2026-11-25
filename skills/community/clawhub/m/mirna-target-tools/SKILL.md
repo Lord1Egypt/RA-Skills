@@ -1,6 +1,6 @@
 ---
 name: mirna-target-tools
-version: 3.0.0
+version: 3.2.2
 description: >-
   End-to-end miRNA target analysis from miRNA sequences alone: whole-transcriptome
   target prediction across built-in species (human, mouse, rat, sheep, goat, cow,
@@ -8,7 +8,9 @@ description: >-
   sites, miRanda duplex confirmation and 3'UTR-restricted scanning; TargetScan
   and miRanda workflows, gene annotation, GO/KEGG enrichment with
   Benjamini-Hochberg FDR, seed-region conservation analysis, publication-quality
-  R/ggplot2 figures, and Cytoscape network export. Fetches miRNA sequences from
+  R/ggplot2 figures, and Cytoscape network export. Also includes a two-stage
+  coarse-to-fine refinement: score seed sites first, then cut 3'UTR windows and
+  re-predict them with miRanda/RNAhybrid for thermodynamic evidence. Fetches miRNA sequences from
   public databases itself (miRBase / RNAcentral), by name or for a whole species.
 ---
 
@@ -34,6 +36,32 @@ Cytoscape-ready regulatory network:
   journal-friendly style (300 dpi PNG plus editable-text SVG, matplotlib
   fallback), with a one-command installer for R and the required packages
 - **Networks** — `.sif` network plus node-attribute export for Cytoscape
+- **Two-stage refinement** — preliminary seed scoring selects candidate sites,
+  the surrounding **3'UTR windows are extracted**, and only those windows are
+  re-predicted with miRanda and/or RNAhybrid (exact MFE), with per-site
+  confirmation calls
+
+## Requirements
+
+- **Real miRanda 3.3a is required by the default workflow** (`--method auto`
+  resolves to hybrid; `refine_sites.py` defaults to miRanda + RNAhybrid when
+  available). There is no stub and no silent seed-only fallback.
+- Install/verify it with conda (no sudo):
+  ```bash
+  bash scripts/install_miranda_conda.sh          # conda install -c bioconda miranda=3.3a
+  bash scripts/install_miranda_conda.sh --check  # verify the real binary
+  python3 scripts/check_env.py
+  ```
+- `--method seed` remains available as an explicit seed-only opt-out (no
+  miRanda needed); `refine_sites.py --method rnahybrid` is the explicit
+  RNAhybrid-only opt-out.
+- Python 3.8+; `pandas`/`numpy` for the legacy TargetScan/miRanda merge and
+  enrichment tables. R + ggplot2 is optional (matplotlib fallback).
+
+External tools are resolved from `PATH` first, then from the usual conda
+prefixes (`$CONDA_PREFIX`, `~/anaconda3`, `~/miniconda3`, `~/mambaforge`,
+`/opt/conda`), so a real miRanda/RNAhybrid works even when the conda base
+environment is not activated in the current shell.
 
 ## Core features
 
@@ -83,6 +111,11 @@ Multi-species conservation analysis of a target miRNA (publication grade):
 
 Script: `scripts/conservation_analysis.py`
 
+External tools are resolved from `PATH` first, then from the usual conda
+prefixes (`$CONDA_PREFIX`, `~/anaconda3`, `~/miniconda3`, `~/mambaforge`,
+`/opt/conda`), so a real miRanda/RNAhybrid works even when the conda base
+environment is not activated in the current shell.
+
 ### 8. Whole-transcriptome target prediction (new in 2.0.0)
 Predict **every target site** of user-supplied mature miRNA sequences across the **entire mRNA set (transcriptome) of a species** — no TargetScan database required.
 
@@ -98,8 +131,8 @@ Predict **every target site** of user-supplied mature miRNA sequences across the
 - **Prediction engine** (`--method`):
   - `seed` — canonical TargetScan seed sites (8mer / 7mer-m8 / 7mer-A1 / 6mer, weights 4/3/2/1). This is TargetScan's *site definition* only, **not** context++: that model needs pre-computed multi-species UTR alignments and does not exist for sheep/goat
   - `miranda` — run miRanda (Enright et al. 2003) over every miRNA x transcript pair: full duplex alignment with score and dG
-  - `hybrid` — (**recommended**, and the default when miRanda is installed) seed sites are kept only when a miRanda alignment overlaps them, and each confirmed site carries its miRanda score and dG; this combines the precise seed definition with thermodynamic evidence
-  - `auto` — hybrid when miRanda is available, otherwise seed
+  - `hybrid` — (**default**) seed sites are kept only when a real miRanda 3.3a alignment overlaps them, and each confirmed site carries its miRanda score and dG; this combines the precise seed definition with thermodynamic evidence
+  - `auto` — the default: requires real miRanda 3.3a and resolves to `hybrid`; it errors with installation instructions if the binary is missing (use `--method seed` for an explicit seed-only run)
 - **Target region** (`--target-region`): `cdna` (full spliced transcript) or `utr` (3'UTR only, sliced from the Ensembl GTF - miRNA targeting is 3'UTR-dominant, so this is the biologically faithful choice)
 - **Tuning**: `--miranda-score` (default 140), `--miranda-energy` (default -20 kcal/mol), `--rnahybrid-energy` (default -20 kcal/mol), `--rnahybrid-dataset` (p-value dataset; only fly/worm/human ship with the tool), `--rnahybrid-max-target` (default 10000 nt - RNAhybrid silently skips longer targets), `--min-utr-length` (default 30 nt), `--jobs`
 
@@ -139,6 +172,56 @@ candidate set.
 
 Script: `scripts/predict_targets_genome.py`
 
+### 9. Two-stage 3'UTR refinement (new in 3.1.0; real-miRanda default in 3.2.0)
+
+Turn the fast seed scan into a focused thermodynamic analysis:
+
+1. **Preliminary scoring** — stage 1 (`predict_targets_genome.py --method seed`)
+   ranks every 8mer/7mer-m8/7mer-A1/6mer site. `weight` (4/3/2/1) is the
+   preliminary score; the default selection keeps the top sites per miRNA.
+2. **3'UTR window extraction** — for each selected site the script locates the
+   site in the annotated 3'UTR, verifies that the stored seed sequence is still
+   present at that position, and cuts a window (`--flank`, default 60 nt on each
+   side). Nearby sites in the same transcript are merged into one window.
+   With `--window-mode utr` it instead extracts the **whole annotated 3'UTR** of
+   each selected transcript and re-predicts that full region.
+3. **Further prediction** — miRanda (score/dG) and/or RNAhybrid (exact minimum
+   free energy) are run **only on the windows**, which is orders of magnitude
+   cheaper than scanning whole cDNAs. Each seed site gets a `refined_call` of
+   `confirmed` (both engines, when both are used), `partial`, or
+   `not_confirmed`, plus the raw score/dG/MFE values.
+
+```bash
+# stage 1: cheap seed scan over the 3'UTR
+python predict_targets_genome.py --mirna-fa mirna.fa --species goat \
+    --target-region utr --method seed --outdir results/stage1 --prefix goat_seed
+
+# stage 2: refine the best seed sites with miRanda + RNAhybrid
+python refine_sites.py --sites results/stage1/goat_seed_sites.tsv \
+    --species goat --mirna-fa mirna.fa --method both \
+    --top-per-mirna 200 --flank 60 \
+    --outdir results/refine --prefix goat_refine
+```
+
+Inputs can also be your own data: `--mrna-fa transcripts.fa --gtf annotation.gtf`
+(a cDNA-coordinate stage-1 table is mapped back onto the 3'UTR automatically) or
+`--genome-fa genome.fa --gtf annotation.gtf`. miRNA sequences are read from
+`--mirna-fa` or resolved from miRBase (`--mature-fa` or the shared cache).
+
+Key options: `--top-per-mirna` (default 200), `--max-per-transcript` (5),
+`--max-sites` (5000), `--max-windows` (4000), `--min-weight`, `--flank` (60),
+`--merge-gap` (20), `--method auto|miranda|rnahybrid|both` (`auto` requires
+real miRanda 3.3a; `rnahybrid` is the explicit no-miRanda option), `--strict`,
+`--window-mode site|utr` (default `site`), `--locate-tolerance` (5 nt; guards
+against annotation drift).
+
+Outputs: `{prefix}_selected_sites.tsv`, `{prefix}_windows.fa`,
+`{prefix}_refined_sites.tsv`, `{prefix}_refined_targets.tsv`,
+`{prefix}_miranda_hits.tsv`, `{prefix}_rnahybrid_hits.tsv`,
+`{prefix}_skipped.tsv`, `{prefix}_refine_summary.tsv`.
+
+Script: `scripts/refine_sites.py`
+
 ## Runtime and hardware
 
 Prediction time depends on **your machine and the engine you pick**, not only on the
@@ -167,7 +250,7 @@ Practical notes:
 
 **Standard miRNA target prediction + annotation + regulatory network workflow:**
 
-1. Check the environment: confirm TargetScan, miRanda, and Python dependencies are installed
+1. Check the environment: confirm **real miRanda 3.3a** and Python dependencies are installed (`bash scripts/install_miranda_conda.sh --check`; TargetScan is optional)
 2. Provide the input miRNA list/sequence file
 3. Predict targets with TargetScan and miRanda separately — **or**, if you have no TargetScan database, predict genome-wide directly from miRNA sequences with `predict_targets_genome.py`
 4. Merge results and take the intersection to obtain high-confidence targets
@@ -175,6 +258,40 @@ Practical notes:
 6. (Optional) Run multi-species conserved sequence analysis on the target miRNA to validate seed-region conservation
 7. Generate Cytoscape network files (`.sif`)
 8. Guide the user through importing into Cytoscape for visualization and clustering
+
+## Security model
+
+These scripts treat reference files, downloaded archives and user tables as
+untrusted input. The hardening that ships with 3.2.2+:
+
+- **No shell execution** — every external program (miRanda, RNAhybrid, Rscript,
+  TargetScan) is launched with an argv list; no `shell=True`, `os.system` or
+  string interpolation of paths into a command. R package checks pass package
+  names as separate `argv` entries, never into R source text.
+- **Downloads** — HTTPS only, streamed to a `.part` file under the cache,
+  capped by `Content-Length` **and** a running byte counter
+  (`MIRNA_MAX_DOWNLOAD_MB`, default 4096), written atomically with
+  `os.replace`, and sanity-checked (FASTA must start with `>`). Aborted
+  downloads are removed.
+- **Installation** — `install_dependencies.sh` never runs `sudo` and has no
+  source-build fallback: the real miRanda 3.3a is installed from bioconda
+  (`miranda=3.3a`), and `install_miranda_conda.sh --check` verifies the binary.
+  Python packages go to the user site and R packages to `~/R/library`.
+- **Path traversal** — `--prefix` values are validated (no `/`, `\`, `..`, NUL,
+  tab or newline), so outputs cannot escape `--outdir`.
+- **Temporary files** — every `mkdtemp` is removed in a `finally` block.
+- **Bounded parsing** — FASTA input is capped (`MIRNA_MAX_FASTA_BASES`, default
+  3 Gb), directory listings are capped at 8 MB, API responses at 64 MB, and
+  malformed TSV/ranges are skipped instead of crashing.
+- **Spreadsheet safety** — `annotate_targets.py` prefixes cells that begin with
+  `=`, `+`, `-` or `@` with an apostrophe so a gene description cannot become an
+  Excel/LibreOffice formula (`--no-formula-guard` opts out).
+- **Download sources** — only HTTPS mirrors are attempted (the legacy plain-FTP
+  miRBase mirror was removed).
+
+Network egress is limited to Ensembl FTP over HTTPS, miRBase, RNAcentral and
+ g:Profiler (plus CRAN when you run the R installer). Nothing is uploaded except
+the gene list you explicitly pass to `annotate_targets.py`.
 
 ## Environment check
 
@@ -184,7 +301,15 @@ Run `scripts/check_env.py` before use to check whether the tools are installed:
 python3 ~/.openclaw/skills/mirna-target-tools/scripts/check_env.py
 ```
 
-If a tool is missing, the script prints installation steps.
+Real miRanda 3.3a is a **required** tool for the default workflow (TargetScan,
+RNAhybrid and Cytoscape are optional). Install/verify it with:
+
+```bash
+bash scripts/install_miranda_conda.sh
+bash scripts/install_miranda_conda.sh --check
+```
+
+If a tool is missing, the script prints the exact installation command.
 
 ## Input formats
 
@@ -287,6 +412,18 @@ python format_cytoscape.py --input merged.txt --output network.sif --attr-output
 ```
 
 ## Dependency installation
+
+**Real miRanda 3.3a (required for the default workflow):**
+
+```bash
+bash scripts/install_miranda_conda.sh            # conda/mamba, bioconda miranda=3.3a
+bash scripts/install_miranda_conda.sh --check    # verify only
+```
+
+The installer uses an existing conda/mamba/micromamba, never sudo, and pins
+`miranda=3.3a`. If no conda is present it prints the Miniconda bootstrap
+commands and exits. `scripts/check_env.py` fails if the binary is missing or its
+version is not 3.3a.
 
 **R + ggplot2 (default plotting engine):**
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Provides a framework for analyzing specific China A-share IPOs, planning subscription allocations, screening break-issue risks, and tracking lock-up expiries.
+Provides a paper-analysis framework for a specific China A-share IPO or subscription batch, covering valuation, sector and fundamentals, subscription allocation, and lock-up pressure.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,40 +14,43 @@ MIT-0
 
 ## Use Case:
 
-Investors and IPO research or compliance staff can use the skill to prepare a structured analysis of a specific China A-share IPO or subscription batch, including valuation, risk signals, allocation assumptions, and lock-up pressure. Outputs are reference material for qualified human review and do not execute subscriptions or guarantee returns.
+Investors and research or compliance staff use the skill to structure a paper review of a specific new issue or subscription batch, including risk screening, hypothetical capital allocation, and lock-up monitoring. Outputs are drafts for independent checking, not transaction instructions.
 
 ### Deployment Geography for Use:
 
-China
+Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review was benign but incomplete: manifest parsing failed, a tool-misuse check was degraded, and a referenced local path was unavailable.
+Risk: Security scanning reported no findings but had partial coverage, so the clean verdict is based on incomplete evidence.
 
-Mitigation: Review the release contents and any local-path references before installing or relying on the skill.
+Mitigation: Review the complete artifact and repeat security checks before installation.
 
-Risk: Illustrative IPO scores, expected returns, and lock-up estimates may be inaccurate or out of date, and IPOs can list below their issue price.
+Risk: IPO examples, scoring assumptions, rules, and market information may be incomplete or outdated, and draft analysis could be mistaken for a reliable investment outcome.
 
-Mitigation: Verify inputs against current official disclosures and rules, label assumptions, and have qualified research or compliance staff review the analysis before use.
+Mitigation: Check current official offering documents, exchange rules, source dates, and input assumptions; treat outputs as reference drafts and account for possible losses.
+
+Risk: Unnecessary brokerage or identity details could expose sensitive personal or financial information.
+
+Mitigation: Provide only the issue details and approximate discretionary capital needed; omit account numbers, identity documents, banking details, and actual allotment records.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/gechengling/skills/security-ipo-strategy)
-- [Publisher profile](https://clawhub.ai/user/gechengling)
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/security-ipo-strategy)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, guidance, code]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Structured IPO analysis with Markdown tables, illustrative calculation examples, and pseudocode]
+**Output Format:** [Markdown prose, scoring tables, and calendar or checklist drafts]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Methodology and draft analysis based on user-provided information; the skill itself does not fetch market data, execute code, or place orders.]
+**Other Properties Related to Output:** [Paper drafts based on user-provided inputs; no live market data access or transaction execution.]
 
 ## Skill Version(s):
 
-3.0.4 (source: frontmatter, server-resolved release)
+3.0.5 (source: frontmatter)
 
 ## Ethical Considerations:
 

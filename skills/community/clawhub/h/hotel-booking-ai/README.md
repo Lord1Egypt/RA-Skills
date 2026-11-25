@@ -26,7 +26,7 @@
 <br />
 
 [![ClawHub downloads](https://img.shields.io/badge/ClawHub_downloads-1.6k-F97316)](https://clawhub.ai/tourmind/skills/hotel-booking-ai)
-[![Skill version](https://img.shields.io/badge/Skill_version-1.0.8-2563EB)](SKILL.md)
+[![Skill version](https://img.shields.io/badge/Skill_version-1.1.0-2563EB)](SKILL.md)
 [![License](https://img.shields.io/github/license/tourmind-com/Hotel-Booking-AI)](LICENSE)
 
 </div>
@@ -44,7 +44,7 @@
 
 Turn your AI agent into a personal hotel booking assistant. Hotel Booking AI searches hotels worldwide, compares live room prices from leading OTAs and hotel suppliers, shows photos and cancellation terms, verifies the final rate, and helps you complete booking, payment, cancellation, and order lookup in one conversation.
 
-Hotel search, room details, live rates, and availability checks are public—no account or sign-in is required until you are ready to book.
+Hotel search, room details, live rates, and availability checks are public. Sign in to see whether coupons offer a lower price or to manage a booking.
 
 ## Demo
 
@@ -129,14 +129,14 @@ Common personal Skill locations:
 
 Reload Skills or restart your AI client, then ask for a hotel. No local MCP server is required; Hotel Booking AI calls the TourMind API directly over HTTPS.
 
-## Search first, sign in only when you book
+## Search without signing in
 
-You can search hotels, inspect hotel and room details, compare live rates, and verify availability without a `user_key`.
+You can search hotels, inspect rooms, compare live rates and verify availability without signing in. When you sign in, hotel and room comparisons automatically use eligible coupon prices unless you decline coupons. If you ask about discounts, the agent tells you when a checked quote has no eligible coupons or when it could not complete the check.
 
-When you are ready to create, view, cancel, or pay for a booking:
+To check coupons or create, view, cancel, or pay for a booking:
 
 1. Sign in with Google at [auth.journione.ai](https://auth.journione.ai).
-2. Copy your `user_key` and save it as `user_key.txt` in the installed `hotel-booking-ai` folder. Your AI agent can also guide you through this step when you start an order operation.
+2. Copy your `user_key` and save it as `user_key.txt` in the installed `hotel-booking-ai` folder. Your AI agent can also guide you through this step when you request coupons or start an order operation.
 3. On macOS or Linux, restrict access to the file:
 
    ```bash
@@ -176,6 +176,7 @@ Your destination, dates, and guests
   → resolve the city, hotel, or point of interest
   → search up to 20 hotel candidates
   → query matching live room products
+  → when signed in and using coupons, verify comparable rates and check coupons before applying an after-coupon budget
   → rank and present the five best verified hotels
   → show hotel details, room photos, and current quotes
   → recheck the selected room's price and availability
@@ -183,16 +184,16 @@ Your destination, dates, and guests
   → pay, query, or cancel the order when requested
 ```
 
-The price shown during the initial hotel search is only a candidate signal. Prices presented for comparison come from matching live room products, and the final booking uses the latest rate returned by the availability check.
+The initial search price is only a candidate signal. If you decline coupons, lists use matching live room prices. A request for immediate availability includes only rooms that do not need supplier confirmation. The agent rechecks a specific rate when you select it for final review or ask for verification.
 
 ## Privacy, booking, and payment
 
 - Public hotel discovery and live-rate comparison do not require a sign-in.
-- Order operations use the `user_key` stored locally in `user_key.txt`; keep it out of prompts, screenshots, logs, URLs, commits, and issue reports.
+- Coupon and order operations use the `user_key` stored locally in `user_key.txt`; keep it out of prompts, screenshots, logs, URLs, commits, and issue reports.
 - Hotel Booking AI asks for the guest's full legal name and a contact email only when a confirmed booking is about to be created. It does not collect a phone number.
 - Booking, cancellation, and payment are explicit actions. The agent must show the relevant details and wait for your confirmation before proceeding.
 - TourMind room prices include taxes. A small number of destinations may require the hotel to collect a city or tourism tax at check-in; any returned mandatory fee is shown separately.
-- Stripe adds a 3.5% payment-processing fee when selected. WeChat Pay and Alipay are also supported.
+- A coupon reduces the room charge. When you choose Stripe, the payment total includes a separate 3.5% fee on the discounted room charge. WeChat Pay and Alipay are available for CNY orders.
 - Read-only hotel-result links can display hotel and room information but cannot book, pay, cancel, or access account and finance pages.
 - If a stored key becomes invalid, remove `user_key.txt`, sign in again, and save the new key locally.
 
@@ -200,9 +201,9 @@ The price shown during the initial hotel search is only a candidate signal. Pric
 
 | Audience | Integration | Authentication model | Product and repository |
 |---|---|---|---|
-| Consumer / ToC | Direct HTTP Skill | Public search and availability; `user_key` only for order operations | **[Hotel-booking-ai](https://github.com/tourmind-com/Hotel-Booking-AI)** |
+| Consumer / ToC | Direct HTTP Skill | Public search and availability; `user_key` for coupon and order operations | **[Hotel-booking-ai](https://github.com/tourmind-com/Hotel-Booking-AI)** |
 | Business / ToB | Direct HTTP Skill | Skill Token required for every API call | [Tourmind-booking-skill](https://github.com/tourmind-com/Tourmind-Booking-Skills) |
-| Consumer / ToC | MCP package + companion Skill | Public MCP connection; `user_key` only for order operations | [Hotel Booking AI MCP](https://github.com/tourmind-com/Hotel-Booking-AI-MCP) |
+| Consumer / ToC | MCP package + companion Skill | Public MCP connection; `user_key` for coupon and order operations | [Hotel Booking AI MCP](https://github.com/tourmind-com/Hotel-Booking-AI-MCP) |
 | Business / ToB | MCP package + companion Skill | Bearer-authenticated MCP connection | [TourMind Booking MCP](https://github.com/tourmind-com/Tourmind-Booking-MCP) |
 
 ## API and support
@@ -216,7 +217,9 @@ The price shown during the initial hotel search is only a candidate signal. Pric
 | `POST /skill/toc/search_hotels` | Search hotel candidates | No |
 | `POST /skill/toc/get_hotel_detail` | Get hotel details and images | No |
 | `POST /skill/toc/query_room_rates` | Get live rooms and rates | No |
+| `POST /skill/toc/batch_query_room_rates` | Get live rooms and rates for up to 20 hotels | No |
 | `POST /skill/toc/check_room_availability` | Recheck the selected rate and inventory | No |
+| `POST /skill/toc/query_available_coupons` | Preview available coupons for a checked quote | Yes |
 | `POST /skill/toc/create_booking` | Create a booking after confirmation | Yes |
 | `POST /skill/toc/query_booking` | Query an order | Yes |
 | `POST /skill/toc/cancel_booking` | Cancel an eligible order after confirmation | Yes |

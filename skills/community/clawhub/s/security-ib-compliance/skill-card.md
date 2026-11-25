@@ -1,6 +1,6 @@
 ## Description:
 
-Provides investment banking compliance review frameworks for IPO sponsorship, M&A, bond issuance, private equity, AML/KYC, and regulatory monitoring in China.
+Provides China-focused investment banking compliance checklists and draft review guidance for IPO, M&A, bond, private equity, AML/KYC, and regulatory monitoring workflows.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,25 +14,25 @@ MIT-0
 
 ## Use Case:
 
-Investment banking compliance officers, in-house counsel, and deal teams use it to prepare review checklists, transaction compliance frameworks, and regulatory monitoring plans for China-related work. Outputs are drafts for qualified staff to review.
+Investment banking compliance officers, in-house counsel, and deal teams use the skill to draft review checklists and reference frameworks for transactions and ongoing monitoring. Qualified professionals should verify current rules and review any conclusions before use.
 
 ### Deployment Geography for Use:
 
-China, including cross-border transaction scenarios
+China
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan verdict is benign with medium confidence; Skillspector inspected only part of the skill and raised a Unicode-related flag.
+Risk: Regulatory details and examples may be incomplete or out of date, and the security scan reported only partial coverage with medium confidence.
 
-Mitigation: Review the complete skill and investigate the Unicode flag before use.
+Mitigation: Check applicable requirements against current official sources and have qualified compliance staff review the material; treat the scan as limited assurance.
 
-Risk: Compliance work may involve sensitive identity, ownership, and transaction information.
+Risk: Draft checklists or illustrative screening guidance could be mistaken for a formal legal or compliance conclusion.
 
-Mitigation: Provide only the minimum necessary public or de-identified information, and keep records within approved institutional systems.
+Mitigation: Use outputs as working references only and require qualified professionals to verify evidence, assumptions, and conclusions before acting or submitting anything.
 
-Risk: Regulatory guidance can become outdated and the skill does not provide authoritative legal conclusions.
+Risk: AML/KYC and transaction reviews can involve sensitive personal, customer, and non-public information.
 
-Mitigation: Check current requirements against official sources and have qualified compliance staff review conclusions before acting.
+Mitigation: Provide only the minimum necessary, de-identified or public information; do not include identity documents, account details, client lists, inside information, or other unredacted sensitive data.
 
 ## Reference(s):
 
@@ -40,17 +40,17 @@ Mitigation: Check current requirements against official sources and have qualifi
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Code]
+**Output Type(s):** [Text, Markdown, Guidance, Code]
 
-**Output Format:** [Markdown checklists, tables, timelines, templates, and illustrative code blocks]
+**Output Format:** [Markdown with checklists, tables, and illustrative pseudocode]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Advisory drafts require verification against current official rules and review by qualified compliance staff.]
+**Other Properties Related to Output:** [Draft reference material; code examples are illustrative and are not executed by the skill.]
 
 ## Skill Version(s):
 
-3.0.4 (source: release evidence, SKILL.md frontmatter)
+3.0.5 (source: frontmatter)
 
 ## Ethical Considerations:
 

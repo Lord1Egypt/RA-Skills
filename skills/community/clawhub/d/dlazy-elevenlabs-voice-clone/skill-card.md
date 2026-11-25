@@ -1,6 +1,6 @@
 ## Description:
 
-Clones a custom ElevenLabs voice from a clean audio sample for use with text-to-speech.
+Creates an ElevenLabs Instant Voice Clone from a clean voice sample for use with ElevenLabs text-to-speech.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and creators use the skill to create a custom voice from a clean sample for ElevenLabs text-to-speech. It sends the request through dLazy's hosted service and returns a result or asynchronous task status.
+Developers and creators provide a clean voice sample to create a custom voice with ElevenLabs Instant Voice Cloning for TTS narration.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan was partial and flags that the reported login command is not linked to the skill's stated voice-cloning purpose in the scan evidence.
+Risk: The security review reports medium confidence and incomplete evidence, including an unresolved CLI package reference and an unclear connection between the voice-cloning purpose and the login command.
 
-Mitigation: Review the CLI login behavior and confirm it matches your expectations before installing or signing in.
+Mitigation: Review and decide whether you trust the CLI and its login flow before installing; investigate the package and login behavior if those details matter to your use.
 
-Risk: The skill sends audio samples to a hosted service for voice cloning.
+Risk: Local audio files supplied to the skill are uploaded to dLazy media storage, and request parameters are sent to its hosted API.
 
-Mitigation: Use samples you have permission to clone, avoid sensitive recordings, and review the service's data terms before uploading.
+Mitigation: Only submit audio and accompanying information that you are comfortable sending to the dLazy service.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/dlazyai/skills/dlazy-elevenlabs-voice-clone)
-- [CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
-- [CLI homepage listed in release metadata](https://github.com/dlazy-ai/cli)
+- [ClawHub release](https://clawhub.ai/dlazyai/skills/dlazy-elevenlabs-voice-clone)
+- [Publisher profile](https://clawhub.ai/user/dlazyai)
+- [dLazy CLI package](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy service](https://dlazy.com)
+- [dLazy API key settings](https://dlazy.com/dashboard/organization/api-key)
+- [CLI homepage listed in skill metadata](https://github.com/dlazy-ai/cli)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, Audio, JSON, Guidance]
+**Output Type(s):** [Audio, JSON]
 
-**Output Format:** [JSON result with output details or asynchronous task status]
+**Output Format:** [JSON API response with generated voice output details and hosted result URLs]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Voice-cloning requests may return immediately with a task identifier when asynchronous mode is used.]
+**Other Properties Related to Output:** [Voice generation may run asynchronously; generated output URLs are hosted by dLazy.]
 
 ## Skill Version(s):
 
-1.3.41 (source: server-resolved release metadata)
+1.3.44 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

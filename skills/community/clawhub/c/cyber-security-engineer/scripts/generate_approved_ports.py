@@ -82,6 +82,9 @@ def normalize_listeners(listening: List[Dict[str, object]], include_command: boo
         # Note: keep extra fields for human review; port_monitor ignores unknown keys.
         if entry.get("host"):
             rule["host"] = entry.get("host")
+        if str(entry.get("host")) in ("*", "0.0.0.0", "::"):
+            # Listens on every interface. Change to true only if that exposure is intended.
+            rule["allow_public"] = False
         if entry.get("user"):
             rule["user"] = entry.get("user")
         if entry.get("pid") not in (None, "", "unknown"):

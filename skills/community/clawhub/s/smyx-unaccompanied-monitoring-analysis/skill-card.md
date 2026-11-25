@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes home-monitoring images or videos for prolonged periods without interaction or visitors and returns structured monitoring results and report links for elderly people living alone.
+Analyzes monitoring images or videos for prolonged periods without interaction or visitors and returns structured reports to support remote elder-care review.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Families and care providers can use the skill to review monitoring images or videos for extended periods without interaction or visits and receive structured care reports. The results are intended to support remote check-ins for older adults living alone.
+Families and elder-care providers can review monitoring images or videos and query prior reports as one input to remote check-ins for older adults living alone.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review rates the skill suspicious because its elderly-care description does not fully match its video-analysis and reporting capabilities, and it raises concerns about private data handling and account or credential behavior. The scan is partial and does not establish malicious intent.
+Risk: The security review rates the skill suspicious with high confidence and reports a possible mismatch between its elder-monitoring description and its video-analysis and reporting features.
 
-Mitigation: Review the security verdict and service behavior before installing. Avoid providing private household footage, and do not rely on the export-only option to prevent analysis.
+Mitigation: Review the actual analysis and reporting behavior before use, and confirm that it matches the intended care workflow.
+
+Risk: The security review raises privacy concerns about media and identity information sent to external services, possible account creation, and processing that may occur even when a no-analysis option is claimed.
+
+Mitigation: Before sharing footage, clarify what media and identity data is transmitted and whether accounts or processing are triggered; use only with appropriate consent.
+
+Risk: Automated monitoring results may be incomplete or misleading, and the security review says the external analysis behavior remains unverified because scan coverage was partial.
+
+Mitigation: Treat reports as prompts for a human welfare check, verify alerts before acting, and do not use them as a substitute for direct contact or professional care.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-unaccompanied-monitoring-analysis)
+- [API reference](artifact/references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
-- [API interface documentation](artifact/references/api_doc.md)
+- [ClawHub release page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-unaccompanied-monitoring-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Text, Report links]
+**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
 
-**Output Format:** [Structured JSON or text, with report links]
+**Output Format:** [Structured analysis results and report links, presented as text or JSON]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Supports analysis of local images or videos and network URLs, plus historical report listings.]
+**Other Properties Related to Output:** [Reports may include monitoring findings, recommendations, and links to report exports.]
 
 ## Skill Version(s):
 
-1.0.17 (source: server-resolved release metadata; artifact frontmatter lists 1.0.25)
+1.0.18 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

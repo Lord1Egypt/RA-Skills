@@ -23,6 +23,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { getMcpRuntimeConfig } from './config.js';
 import { runLocalHelper } from './local-helper-runner.js';
+import { loadApprovedSkills } from './skills/loader.js';
 
 // ─── Configuration ───
 
@@ -34,6 +35,8 @@ const OPERATOR_NAME = runtimeConfig.operatorName;
 const LOGS_DIR = runtimeConfig.logsDir;
 const OUTBOUND_CALLS_ENABLED = runtimeConfig.outboundCallsEnabled;
 const CRM_ENABLED = runtimeConfig.crmEnabled;
+const skillsDir = path.join(__dirname, '..', '..', 'amber-skills');
+const approvedSkills = loadApprovedSkills(skillsDir);
 
 // ─── Helpers ───
 
@@ -62,10 +65,16 @@ async function bridgeRequest(endpoint: string, body: Record<string, any>): Promi
  * These don't need the bridge running — they use local binaries/files.
  */
 async function executeSkillHandler(
-  skillName: string,
+  skillName: 'calendar' | 'crm',
   params: Record<string, any>
 ): Promise<{ success: boolean; message?: string; result?: any; error?: string }> {
-  const handlerPath = path.join(__dirname, '..', '..', 'amber-skills', skillName, 'handler.js');
+  if (!approvedSkills.has(skillName)) {
+    return {
+      success: false,
+      message: `Amber skill "${skillName}" is disabled by the operator's approved skill list.`,
+    };
+  }
+  const handlerPath = path.join(skillsDir, skillName, 'handler.js');
 
   if (!fs.existsSync(handlerPath)) {
     return { success: false, error: `Skill handler not found: ${skillName}` };
@@ -98,7 +107,7 @@ function buildMcpSkillContext() {
       if (!allowedBins.has(baseBin) && !allowedBins.has(file)) {
         throw new Error(`Permission denied: binary "${baseBin}" not allowed`);
       }
-      return runLocalHelper(file, args);
+      return runLocalHelper(file, args, { allowedBinaries: [...allowedBins] });
     },
 
     callLog: {
@@ -261,7 +270,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     {
       name: 'start_screening',
       description:
-        'Enable inbound call screening. Amber will answer incoming calls, ' +
+        'Resume inbound call screening. Amber will answer new incoming calls, ' +
         'identify the caller, take a message, and deliver a structured summary.',
       inputSchema: {
         type: 'object' as const,
@@ -270,13 +279,13 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     },
     {
       name: 'stop_screening',
-      description: 'Disable inbound call screening. Calls will ring through normally.',
+      description: 'Pause inbound call screening. Amber declines new incoming calls as busy until screening is resumed.',
       inputSchema: {
         type: 'object' as const,
         properties: {},
       },
     },
-    {
+    ...(approvedSkills.has('calendar') ? [{
       name: 'calendar_query',
       description:
         'Check calendar availability or create events. For lookups, returns ' +
@@ -324,8 +333,8 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         },
         required: ['action'],
       },
-    },
-    ...(CRM_ENABLED ? [{
+    }] : []),
+    ...(CRM_ENABLED && approvedSkills.has('crm') ? [{
       name: 'crm',
       description:
         'Manage contacts and interaction history. Look up contacts by phone or name, ' +
@@ -357,6 +366,10 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
           notes: {
             type: 'string',
             description: 'Notes about the contact or interaction',
+          },
+          context_notes: {
+            type: 'string',
+            description: 'Contact notes for create or update. Omit to retain the existing notes. Use an empty string to clear them.',
           },
           tags: {
             type: 'array',
@@ -534,35 +547,17 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         return { content: [{ type: 'text', text: formatted.join('\n\n') }] };
       }
 
-      case 'start_screening': {
-        // The bridge handles screening automatically when running.
-        // This is a status confirmation — use GET /healthz directly.
-        try {
-          const res = await fetch(`${BRIDGE_URL}/healthz`);
-          const data = await res.json();
-          if (!data.ok) throw new Error('unhealthy');
-          return {
-            content: [{
-              type: 'text',
-              text: 'Call screening is active. Amber is answering incoming calls on your Twilio number. Summaries will appear in your call history.',
-            }],
-          };
-        } catch {
-          return {
-            content: [{
-              type: 'text',
-              text: 'The Amber bridge is not running. Start it with `npm start` in the runtime directory, then screening will activate automatically.',
-            }],
-            isError: true,
-          };
-        }
-      }
-
+      case 'start_screening':
       case 'stop_screening': {
+        const enabled = name === 'start_screening';
+        const result = await bridgeRequest('/screening', { enabled });
+        if (result.enabled !== enabled) throw new Error('The Amber bridge did not confirm the screening change');
         return {
           content: [{
             type: 'text',
-            text: 'To stop screening, shut down the Amber bridge process. While the bridge is running, it automatically answers inbound calls.',
+            text: enabled
+              ? 'Call screening is active. Amber will answer new incoming calls.'
+              : 'Call screening is paused. Amber will decline new incoming calls as busy. Active calls and outbound calling remain available.',
           }],
         };
       }

@@ -1,6 +1,6 @@
 ## Description:
 
-Chinese-language skill for generating standardized software test case tables for functional, API, AI agent, UI, routing, linkage, and platform-specific testing scenarios.
+Designs structured test cases for functional, compatibility, API, UI, platform-specific, and AI agent testing from requirements or existing cases.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-QA engineers, product teams, and developers use this skill to turn software features, APIs, agent behaviors, and platform requirements into executable Markdown test case tables. It focuses on test case design and excludes test plans, test strategy, penetration testing execution, vulnerability scanning, load testing, and automation scripts.
+QA professionals, product teams, and developers use the skill to turn requirements into structured test cases or identify gaps and add cases to an existing suite.
 
 ### Deployment Geography for Use:
 
@@ -22,42 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Generated cases may include illustrative credentials, token-like values, payments, permissions, file operations, or agent tool actions.
+Risk: High-volume API test cases could send excessive traffic to an unapproved target.
 
-Mitigation: Use fake secrets, test accounts, non-production payment paths, and controlled environments when adapting generated cases.
+Mitigation: Run high-volume tests only against an approved target with a defined traffic limit.
 
-Risk: The Agent trigger is broad and may produce agent-oriented cases when a request only loosely mentions agents.
+Risk: Security review coverage is partial because one referenced local path could not be resolved.
 
-Mitigation: Review generated cases for scope fit before using them in a test suite, especially for credential, file, permission, or tool-use scenarios.
+Mitigation: Review the unresolved reference and applicable instructions before relying on related test guidance.
 
 ## Reference(s):
 
-- [ClawHub Skill Page](https://clawhub.ai/cassianran/skills/test-case-design)
-- [Skill Definition](SKILL.md)
-- [Common Test Case Rules](references/templates/common-rules.md)
-- [Output Format Specification](references/examples/format-spec.md)
-- [Functional Testing Capability](references/core-capabilities/functional-testing.md)
-- [API Testing Capability](references/core-capabilities/api-testing.md)
-- [AI Agent Testing Capability](references/core-capabilities/agent-testing.md)
-- [PC Web Platform Testing](references/platform/pc-web.md)
-- [Mobile App Platform Testing](references/platform/mobile-app.md)
-- [Mini Program Platform Testing](references/platform/mini-program.md)
-- [Mobile Web Platform Testing](references/platform/mobile-web.md)
-- [Desktop Platform Testing](references/platform/desktop.md)
+- [Common test case rules](artifact/references/templates/common-rules.md)
+- [Functional testing guidance](artifact/references/core-capabilities/functional-testing.md)
+- [API testing guidance](artifact/references/core-capabilities/api-testing.md)
+- [Agent testing guidance](artifact/references/core-capabilities/agent-testing.md)
+- [Test case output format](artifact/references/examples/format-spec.md)
+- [ClawHub skill release](https://clawhub.ai/cassianran/skills/test-case-design)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Guidance]
+**Output Type(s):** [Text, Markdown, Test case guidance]
 
-**Output Format:** [Markdown tables]
+**Output Format:** [Markdown tables of structured test cases, with assumptions or coverage notes when relevant]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Outputs standardized test case fields including ID, title, type, module, priority, preconditions, steps, expected results, actual result, and status.]
+**Other Properties Related to Output:** [Focuses on test case design; does not produce test plans, strategies, or automation scripts.]
 
 ## Skill Version(s):
 
-1.0.8 (source: server release evidence)
+1.0.9 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

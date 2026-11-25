@@ -110,9 +110,32 @@ def main():
             chk(f"完整性深检 --deep（{len(mf.get('files', {}))} 文件哈希+解析）",
                 not bad and n_ok == len(mf.get("files", {})),
                 "; ".join(bad[:3]) or "全部一致",
-                required=False)
+                required=True)  # v7.9.0: 完整性漂移=硬失败（收包验收必须显性退出）
         except Exception as e:
-            chk("完整性深检 --deep", False, f"清单读取失败: {e}", required=False)
+            chk("完整性深检 --deep", False, f"清单读取失败: {e}", required=True)
+        # v7.9.0 收包验收：全包清单（pkg_dual_lang.sh 打包时生成，覆盖 data/ 外全部
+        # 随包文件）在位则一并核对——数据清单与包清单双检，分发链路任何一层截断
+        # 都给出精确到文件的证据。trunk 作者侧无此清单=自动跳过（行为不变）。
+        _pkg_mf = ROOT / "data" / "PACKAGE_MANIFEST.json"
+        if _pkg_mf.is_file():
+            try:
+                pmf = json.load(open(_pkg_mf, encoding="utf-8"))
+                import hashlib as _hl2
+                bad2 = []
+                for rel, want in sorted(pmf.get("files", {}).items()):
+                    fp = ROOT / rel
+                    if not fp.is_file():
+                        bad2.append(f"{rel}: 文件缺失")
+                        continue
+                    b = fp.read_bytes()
+                    got = _hl2.sha256(b).hexdigest()
+                    if got != want.get("sha256"):
+                        bad2.append(f"{rel}: 哈希不符（期望 {want.get('sha256','')[:12]}… "
+                                    f"实际 {got[:12]}…，{want.get('bytes','?')}B→{len(b)}B）")
+                chk(f"包完整性验收 --deep（{len(pmf.get('files', {}))} 文件哈希核对）",
+                    not bad2, "; ".join(bad2[:3]) or "全部一致", required=True)
+            except Exception as e:
+                chk("包完整性验收 --deep", False, f"包清单读取失败: {e}", required=True)
 
     # 4b. 指纹库新鲜度（用户可见: 参考模型是否过时）
     try:

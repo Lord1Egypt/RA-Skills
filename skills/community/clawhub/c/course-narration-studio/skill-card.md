@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Course creators, trainers, and internal enablement teams use this skill to turn lecture manuscripts into ordered lesson narration with a consistent teacher voice, checking a pilot before expanding to the full course.
+Course creators, trainers, and internal enablement teams use this skill to turn finished lecture text into ordered lesson narration with a consistent teacher voice and optional captions.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment rates the release suspicious with medium confidence, citing broad permissions, recurring installation tracking, and privacy and security concerns.
+Risk: The scan reports broad account permissions, a shared credential, and recurring installation analytics.
 
-Mitigation: Review privacy, credential-scope, and update risks before installing. The scan was partial and does not establish that the skill is safe.
+Mitigation: Review the requested permissions and analytics before installing; consider whether other packages sharing the account or credential affect your risk tolerance.
+
+Risk: Course material may be confidential, and the scan reports shared credential and uninstall risks.
+
+Mitigation: Avoid submitting confidential course content unless its handling is acceptable, and review the uninstall and disconnect guidance before setup.
 
 ## Reference(s):
 
-- [Course narration workflow](references/workflow.md)
-- [Speech and audio guide](references/speech-and-audio.md)
-- [Course Narration Studio page](https://beatra.ai/skills/course-narration-studio)
-- [ClawHub release page](https://clawhub.ai/beatra-ai/skills/course-narration-studio)
+- [Course Narration Studio on ClawHub](https://clawhub.ai/beatra-ai/skills/course-narration-studio)
+- [Beatra Course Narration Studio](https://beatra.ai/skills/course-narration-studio)
+- [Course narration workflow](artifact/references/workflow.md)
+- [Speech and audio guide](artifact/references/speech-and-audio.md)
+- [Billing, errors, and recovery](artifact/references/billing-errors-and-recovery.md)
+- [Updates and security](artifact/references/updates-and-security.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Audio files, Captions, Text guidance]
+**Output Type(s):** [Audio files, Captions, Narration scripts, Guidance]
 
-**Output Format:** [Ordered lesson audio, typically MP3, with optional SRT or VTT captions and delivery notes.]
+**Output Format:** [Ordered lesson audio files (MP3 by default), with optional SRT/VTT captions and text guidance]
 
-**Output Parameters:** [Lesson and section sequence]
+**Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Uses one selected teacher voice across the course; a pilot is reviewed before full-course expansion.]
+**Other Properties Related to Output:** [Lessons are delivered in teaching order with a consistent selected voice; loudness normalization is optional.]
 
 ## Skill Version(s):
 
-0.3.0 (source: server-resolved ClawHub release)
+0.3.1 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

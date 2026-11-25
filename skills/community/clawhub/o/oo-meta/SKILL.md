@@ -1,22 +1,22 @@
 ---
 name: oo-meta
-description: "Meta (business.meta.com). Use this skill for ANY Meta request — searching and reading data. Whenever a task involves Meta, use this skill instead of calling the API directly."
+description: "Meta (Facebook) (business.meta.com). Use this skill for ANY Meta (Facebook) request — reading, creating, updating, and deleting data. Whenever a task involves Meta (Facebook), use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
-  title: "Meta"
+  title: "Meta (Facebook)"
   author: "OOMOL"
-  version: "1.0.4"
+  version: "1.0.5"
   services: ["meta"]
   icon: "https://static.oomol.com/logo/third-party/meta.svg"
 ---
 
-# Meta
+# Meta (Facebook)
 
-Operate **Meta** through your OOMOL-connected account. This skill calls the `meta` connector with the [oo CLI](https://github.com/oomol-lab/oo-cli); OOMOL injects credentials server-side, so you never handle raw tokens.
+Operate **Meta (Facebook)** through your OOMOL-connected account. This skill calls the `meta` connector with the [oo CLI](https://github.com/oomol-lab/oo-cli); OOMOL injects credentials server-side, so you never handle raw tokens.
 
 ## Running an action
 
-Assume the user has already installed the oo CLI, signed in, and connected Meta. **Do not run `oo auth login` or open the connection URL proactively — just run the action.** Fall back to [First-time setup](#first-time-setup) only when a command actually fails with an auth or connection error.
+Assume the user has already installed the oo CLI, signed in, and connected Meta (Facebook). **Do not run `oo auth login` or open the connection URL proactively — just run the action.** Fall back to [First-time setup](#first-time-setup) only when a command actually fails with an auth or connection error.
 
 **1. Inspect the contract** to get the authoritative input/output schema before building a payload:
 
@@ -37,15 +37,33 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
+- `create_insights_report` — Start an asynchronous Meta Ads insights report. Use get_insights_report to poll and retrieve its first result page; report handles expire after 30 days. [write]
+- `create_page_post` — Create a text, link, or attached-photo post on a managed Facebook Page, immediately, unpublished, or scheduled. Upload unpublished photos first to obtain attachment IDs. [write]
+- `delete_page_post` — Delete a post from a managed Facebook Page. [destructive]
+- `get_ad` — Retrieve one Meta ad and its creative reference.
+- `get_ad_account` — Retrieve one Meta ad account.
+- `get_ad_creative` — Retrieve one Meta ad creative.
+- `get_ad_set` — Retrieve one Meta ad set including budget, targeting, and delivery settings.
+- `get_campaign` — Retrieve one Meta advertising campaign.
 - `get_current_user` — Retrieve the current Meta Graph API user for the connected access token.
 - `get_insights` — Retrieve Meta Ads insights for an ad account, campaign, ad set, or ad object.
+- `get_insights_report` — Check an asynchronous Meta Ads report and fetch a result page once complete. Pass the returned after cursor to retrieve further pages.
+- `get_page` — Retrieve a managed Facebook Page using its Page access token.
+- `get_page_post` — Retrieve a Facebook Page post using the owning Page access token.
 - `list_ad_accounts` — List Meta ad accounts available to the connected access token.
+- `list_ad_creatives` — List Meta ad creatives under an ad account.
+- `list_ad_sets` — List Meta ad sets under an ad account.
+- `list_ads` — List Meta ads under an ad account.
 - `list_campaigns` — List campaigns under one Meta ad account with optional delivery status filters.
+- `list_page_posts` — List posts from a managed Facebook Page feed, including visitor content where permitted. Inspect is_published to distinguish published and unpublished posts.
+- `list_pages` — List Facebook Pages available to the connected user or system user, including assigned tasks. Access tokens are never returned.
+- `publish_page_photo` — Publish or stage a photo on a managed Facebook Page from a public image URL. Meta downloads the image. Set published=false to obtain a photo ID for an attached-media post. [write]
+- `update_page_post` — Update a Facebook Page post created by the same Meta app, including text, attachments, and publishing settings. [write]
 
 ## Safety
 
 - Untagged actions are reads (get / list / search) — safe to run directly.
-- **Actions tagged `[write]` change Meta state — confirm the exact payload and effect with the user before running.**
+- **Actions tagged `[write]` change Meta (Facebook) state — confirm the exact payload and effect with the user before running.**
 - **Actions tagged `[destructive]` remove or overwrite data — always confirm the target and get explicit approval first.**
 
 ## First-time setup
@@ -68,7 +86,7 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
   oo auth login
   ```
 
-- **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Meta is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
+- **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Meta (Facebook) is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2, API key) at:
 
   ```text
   https://console.oomol.com/connections/meta
@@ -80,5 +98,5 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 
 ## Resources
 
-- Meta homepage: https://business.meta.com/
-- API documentation: https://developers.facebook.com/docs/marketing-api/
+- Meta (Facebook) homepage: https://business.meta.com/
+- API documentation: https://developers.facebook.com/docs/

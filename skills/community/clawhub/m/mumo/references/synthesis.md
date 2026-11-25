@@ -6,7 +6,7 @@ After each round, share your read of the panel with the user. This reference cov
 
 Before summarizing:
 
-1. Scan the claim map for convergence and live disagreement.
+1. Scan the models' reactions for convergence and live disagreement.
 2. Read prose behind the central claims.
 3. Identify which points are panel consensus, which are contested, and which are your own judgment.
 
@@ -45,4 +45,4 @@ Do not present your synthesis as the panel's raw output. The user should know wh
 - Per-model quality commentary ("GPT had the best answer").
 - Hedging that adds no information ("Of course, this is just one perspective...").
 
-Offer to share the session when the user might want to review raw responses or the claim map directly.
+Surface the round's `Web URL` when the user might want to review raw responses or the reactions directly; it is private to their account. Offer `share_session` only when they want a link for someone else, because it publishes a page anyone with the link can read.

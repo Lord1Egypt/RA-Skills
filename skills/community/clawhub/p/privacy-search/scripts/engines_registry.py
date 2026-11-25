@@ -214,6 +214,12 @@ def get_authority(engine: str) -> float:
     return meta.authority if meta else 1.0
 
 
+def get_engine_privacy_level(engine: str) -> str:
+    """获取引擎隐私评级 high | medium | low（V2.1 隐私分数用），未知引擎返回 low"""
+    meta = ENGINE_REGISTRY.get(engine)
+    return meta.privacy_level if meta else "low"
+
+
 def is_valid_engine(engine: str) -> bool:
     """校验引擎名是否合法"""
     return engine in ENGINE_REGISTRY

@@ -9,7 +9,8 @@
         "tokenEndpoint": "https://mcp.hubspot.com/oauth/v3/token",
         "clientIdEnv": "MAVERICK_HUBSPOT_MCP_CLIENT_ID",
         "clientSecretEnv": "MAVERICK_HUBSPOT_MCP_CLIENT_SECRET",
-        "clientAuthMethod": "client_secret_post"
+        "clientAuthMethod": "client_secret_post",
+        "resource": "https://mcp.hubspot.com"
       }
     }
   }

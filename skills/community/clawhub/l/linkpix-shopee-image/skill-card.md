@@ -1,6 +1,6 @@
 ## Description:
 
-帮助 Shopee 卖家和东南亚电商运营人员生成商品主图套图、详情长图及促销海报，并适配不同站点的视觉和语言需求。
+Generates Shopee-ready product image sets, detail images, and promotional creatives from product photos through LinkPix.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,40 +14,40 @@ MIT-0
 
 ## Use Case:
 
-Shopee sellers and Southeast Asian ecommerce operators use this skill to create product image sets, long-form detail images, and promotional artwork for marketplace listings.
+Shopee sellers and Southeast Asian ecommerce operators use this skill to create localized product listing images, detail graphics, and campaign visuals from product photos.
 
 ### Deployment Geography for Use:
 
-Global
+Southeast Asia
 
 ## Known Risks and Mitigations:
 
-Risk: The skill asks users to provide API keys through chat and recommends automatic installation and updates of external software.
+Risk: Setup asks users to share an API key in conversation.
 
-Mitigation: Configure API keys locally and rotate any key already shared; require approval for installations and upgrades, and use reviewed dependency versions.
+Mitigation: Do not send API keys in chat; enter them through a trusted local secret method.
 
-Risk: Image generation uploads product images and can consume account credits.
+Risk: The skill can install unpinned packages that may change and run with local permissions.
 
-Mitigation: Upload only intended product images and check the quoted credit cost before generation.
+Mitigation: Review and pin package versions before installation, and limit their local access.
 
 ## Reference(s):
 
-- [ClawHub release](https://clawhub.ai/autoagc/skills/linkpix-shopee-image)
-- [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
+- [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-shopee-image)
+- [qhkit package on npm](https://www.npmjs.com/package/@iqinghu/qhkit)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Guidance, Shell commands]
+**Output Type(s):** [Image assets, Guidance]
 
-**Output Format:** [Generated image files or URLs with Markdown guidance and inline shell commands]
+**Output Format:** [Generated product images returned as image URLs, with concise usage guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Product image assets with optional platform-specific sizing, model selection, and localized promotional copy.]
+**Other Properties Related to Output:** [Image count, platform, model, and visual options vary by request.]
 
 ## Skill Version(s):
 
-0.1.4 (source: server-resolved release evidence)
+0.1.5 (source: server-resolved ClawHub release metadata)
 
 ## Ethical Considerations:
 

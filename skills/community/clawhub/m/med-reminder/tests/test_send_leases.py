@@ -136,10 +136,13 @@ def test_ac23_real_process_killed_between_send_and_record(tmp_path):
     trip_flag.write_text("30", encoding="utf-8")
     env_vars["FAKE_SEND_TRIP"] = str(trip_flag)
     env_vars["MEDS_FAKE_NOW"] = "2026-04-21T08:05:00-07:00"
+    # ClawHub security audit: kill_tree() uses killpg on POSIX, so the tick
+    # must lead its own process group — otherwise the group is pytest's and
+    # killpg would take down the test runner (and any agent that invoked it).
     p = subprocess.Popen(
         [sys.executable, str(REPO / "dispatch.py"), "--state", str(sf), "tick"],
         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-        cwd=str(REPO), env=env_vars)
+        cwd=str(REPO), env=env_vars, start_new_session=os.name != "nt")
     try:
         deadline = time.monotonic() + 20
         while time.monotonic() < deadline:

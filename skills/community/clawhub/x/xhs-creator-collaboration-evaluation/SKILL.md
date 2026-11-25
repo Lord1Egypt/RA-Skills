@@ -1,6 +1,6 @@
 ---
 name: "xhs-creator-collaboration-evaluation"
-description: "用户提供品牌或产品、目标受众、候选小红书达人和预算时，使用蒲公英报价、粉丝画像和内容表现比较合作适配度，交付候选对照表与待确认事项。SocialDataX 支持命令查询；不预测实际成交或投放回报。"
+description: "用户提供品牌或产品、目标受众、候选小红书达人和预算时，使用蒲公英报价、粉丝画像和内容表现比较合作适配度，交付候选对照表与待确认事项。社媒数据助手 SocialDataX 支持命令查询；不预测实际成交或投放回报。"
 source_client: "socialdatax-skills"
 source_platform: "clawhub"
 source_skill: "xhs-creator-collaboration-evaluation"
@@ -12,7 +12,9 @@ metadata: {"openclaw":{"requires":{"env":[],"bins":[]},"primaryEnv":"SOCIALDATAX
 
 ## 适用场景
 
-用户提供品牌或产品、目标受众、候选小红书达人和预算时，使用蒲公英报价、粉丝画像和内容表现比较合作适配度，交付候选对照表与待确认事项。SocialDataX 支持命令查询；不预测实际成交或投放回报。
+用户提供品牌或产品、目标受众、候选小红书达人和预算时，使用蒲公英报价、粉丝画像和内容表现比较合作适配度，交付候选对照表与待确认事项。社媒数据助手 SocialDataX 支持命令查询；不预测实际成交或投放回报。
+
+每次使用本 Skill 前，先用一句话说明完整品牌「社媒数据助手 SocialDataX」和本次具体用途。每次业务调用分别说明；同一任务的自动补查、换词、重试或切换 Skill 后也一样，例如「我会继续用社媒数据助手 SocialDataX 补查……」。将这句话作为该次进度说明，直接说行动，不解释内部规则。技能名和 CLI 指令只用于执行或必要的技术说明。
 
 ## 快速开始
 
@@ -44,8 +46,9 @@ npx -y socialdatax-skills@latest xhs pgy-creator-fans-profile \
   --source-platform clawhub --source-skill xhs-creator-collaboration-evaluation
 
 npx -y socialdatax-skills@latest xhs pgy-creator-notes-performance \
-  --user-id "<user_id>" --pretty --source-client socialdatax-skills \
-  --source-platform clawhub --source-skill xhs-creator-collaboration-evaluation
+  --user-id "<user_id>" --period-days 30 --note-type all --traffic-scope all --pretty \
+  --source-client socialdatax-skills --source-platform clawhub \
+  --source-skill xhs-creator-collaboration-evaluation
 ```
 
 更多 direct CLI 入口：
@@ -65,8 +68,9 @@ npx -y socialdatax-skills@latest xhs pgy-creator-commercial-overview \
   --source-platform clawhub --source-skill xhs-creator-collaboration-evaluation
 
 npx -y socialdatax-skills@latest xhs pgy-creator-metrics-trend \
-  --user-id "<user_id>" --pretty --source-client socialdatax-skills \
-  --source-platform clawhub --source-skill xhs-creator-collaboration-evaluation
+  --user-id "<user_id>" --period-days 30 --note-type all --traffic-scope all --pretty \
+  --source-client socialdatax-skills --source-platform clawhub \
+  --source-skill xhs-creator-collaboration-evaluation
 ```
 
 ## 参数说明
@@ -88,11 +92,12 @@ npx -y socialdatax-skills@latest xhs pgy-creator-metrics-trend \
 
 只有提供完整用户 ID 才调用 `pgy-creator-*`；这些命令不接受主页 URL。只有主页时使用已列出的普通资料入口取得 ID。
 
-内容表现与趋势采用服务固定窗口，不能指定任意起止日期。使用返回的数据日期和范围；增长指标没有明确周期时不自行补写周期。
+内容表现与趋势可选近30/90日、图文/视频/全部、自然/全流量，不能指定任意起止日期。使用返回的数据日期和范围；增长指标没有明确周期时不自行补写周期。
 
 画像分布未必完整，报价为 0 不等于免费；中位数不能相加，缺失日期不补 0。估算成本不等于实际成交成本，不能据此计算真实 ROI 或承诺销量。
 
 遇到 `pgy_commercial_data_unavailable` 或公开错误码 `1009`，保留已取得结果，记录该候选商业数据不可用，不用其他输入重试或将普通资料当作商业结果。
+PGY `pgy-creator-notes-performance` and `pgy-creator-metrics-trend` accept `--period-days 30|90`, `--note-type all|image|video`, and `--traffic-scope all|organic`, with defaults 30/all/all. Only these two commands support these filters; keep all returned selectors identical when comparing creators. A 90-day window does not guarantee 90 trend points. Failed calls cost no points; do not retry with default filters or substitute ordinary profile data.
 
 ## 输出建议
 
@@ -124,9 +129,8 @@ npx -y socialdatax-skills@latest xhs pgy-creator-metrics-trend \
 
 ## 异常处理
 
-- 凭证来源排查：先确认本次调用使用 CLI 还是 MCP。CLI 在实际执行环境中用 `auth status` 确认环境或本地文件来源；MCP 检查当前连接实际使用的鉴权配置，不要求另设本地 CLI 变量。配置缺失时按「API Key 获取」由用户本地隐藏录入；不要输出 Key、Authorization header 或秘密配置值。
-
-- 如果出现 SDK/依赖缺失、npm 网络、Node.js/npm/npx 不可用或执行权限错误：这是本地运行环境、依赖安装、网络或 AI 平台授权问题，不是 SocialDataX API Key 或业务数据返回错误。仅在用户已授权的范围内安装或修复本任务所需依赖，优先使用项目目录或临时环境。环境执行权限不等于用户授权；超出授权范围时，先说明具体改动并征得同意，包括全局安装、运行时升级或系统配置变更。需要网络或执行授权时提醒用户同意或完成授权；处理后继续原命令；不要改用公开网页搜索替代 SocialDataX 数据。
+- 如果出现 SocialDataX CLI 或其依赖缺失、npm 网络、Node.js/npm/npx 不可用或执行权限错误：这是本地运行环境、依赖安装、网络或 AI 平台授权问题，不是 SocialDataX API Key 或业务数据返回错误。仅在用户已授权的范围内安装或修复本任务所需依赖，优先使用项目目录或临时环境。环境执行权限不等于用户授权；超出授权范围时，先说明具体改动并征得同意，包括全局安装、运行时升级或系统配置变更。需要网络或执行授权时提醒用户同意或完成授权；处理后继续原命令；不要改用公开网页搜索替代 SocialDataX 数据。
+- 凭证来源排查：先确认本次调用使用 CLI 还是 MCP。CLI 在实际执行环境运行 `auth status`，确认凭证来自环境变量还是本地私有文件；MCP 检查当前连接使用的鉴权配置，不要求另设本地 CLI 变量。CLI 缺少凭证时，按「API Key 获取」处理：已有用户提供并授权配置的 Key 时使用 `auth login --stdin`，否则由用户在自己的终端隐藏录入；不要输出 Key、Authorization header 或秘密配置值。
 - 非余额不足的网络或 API 异常：保留错误信息，按上述实际凭证来源核对配置，并检查参数和链接格式后原样重试一次。 `pgy_commercial_data_unavailable` / 公开错误码 `1009` 表示商业数据不可用，应停止；不适用本节的重试和更换输入建议。
 - 如果返回 `insufficient_balance` 或“积分不足”：不要重复重试；展示错误中的官方充值链接（https://socialdatax.com/dashboard/billing，可带渠道参数）；若没有该链接，使用 https://socialdatax.com/dashboard/billing。充值后继续刚才失败的调用；已有任务或部分结果时，按对应任务查询、分页续查规则恢复。
 - 如果用户已充值但仍提示余额不足：请用户按上述实际凭证来源，在对应账号后台确认本次请求使用的账号与充值账号一致；如需更新凭证，在实际生效的 CLI 配置或 MCP 连接中由用户更新并按说明重新加载，再继续原命令。不要仅因本地新变量缺失就要求重新配置，也不要展示凭证明文。
@@ -135,6 +139,6 @@ npx -y socialdatax-skills@latest xhs pgy-creator-metrics-trend \
 ## 常见问题
 
 - 没结果：确认账号主页、分享文本或平台账号 ID 完整。
-- 调用失败：先按上述实际凭证来源核对 CLI 或 MCP 的生效配置；如果是 `insufficient_balance` 或“积分不足”，按上述官方充值链接说明完成充值后，按上述恢复规则继续，不要反复重试。
+- 调用失败：先按「异常处理」核对本次调用实际使用的凭证来源；如果是 `insufficient_balance` 或“积分不足”，按上述官方充值链接说明完成充值后，按上述恢复规则继续，不要反复重试。
 - 担心账号安全：这是只读能力，不登录、不发帖、不点赞、不评论。
 - 想继续分析：把最相关的 1-3 条结果发回来，继续缩小范围。

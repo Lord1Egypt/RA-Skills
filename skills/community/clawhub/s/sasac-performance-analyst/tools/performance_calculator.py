@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
 SASAC Performance Calculator - 国资委绩效计算引擎
-基于2025年版《企业绩效评价标准值》的五档线性插值评分系统
+基于2026年版《企业绩效评价标准值》的五档线性插值评分系统
 
 Author: 王东杰 (Wang Dongjie)
 License: MIT
-Version: 2.0.0
+Version: 2.1.0
 """
 
 import json
@@ -69,12 +69,13 @@ GRADE_MAP = [
 # ─── Data Loading ─────────────────────────────────────────────────
 
 class SASACDatabase:
-    """国资委绩效评价标准值数据库"""
+    """国资委绩效评价标准值数据库（默认2026年版，可切换至2025年版）"""
     
-    def __init__(self, data_dir: Optional[str] = None):
+    def __init__(self, data_dir: Optional[str] = None, standard_year: int = 2026):
         if data_dir is None:
             data_dir = os.path.join(os.path.dirname(__file__), '..', 'data')
         self.data_dir = data_dir
+        self.standard_year = standard_year
         self._domestic = None
         self._international = None
         self._index = {}
@@ -95,7 +96,10 @@ class SASACDatabase:
         return self._international
     
     def _load_domestic(self):
-        path = os.path.join(self.data_dir, 'sasac_2025_standards.json')
+        if self.standard_year == 2025:
+            path = os.path.join(self.data_dir, 'sasac_2025_standards.json')
+        else:
+            path = os.path.join(self.data_dir, 'sasac_2026_standards.json')
         with open(path, 'r', encoding='utf-8') as f:
             data = json.load(f)
         self._domestic = data['tables']

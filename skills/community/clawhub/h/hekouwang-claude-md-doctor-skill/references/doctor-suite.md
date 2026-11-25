@@ -12,8 +12,12 @@ hekouwang-doctor-suite（概念）
 ## 一键跑
 
 ```bash
-bash scripts/run-all-doctors.sh /path/to/your-project
+bash scripts/run-all-doctors.sh /path/to/your-project                    # md + 项目内 skill
+bash scripts/run-all-doctors.sh /path/to/your-project --with-env-doctor  # 再加本机环境扫描
 ```
+
+默认不扫本机（env-doctor 会读宿主目录与版本管理器，属额外权限面）；只有显式加
+`--with-env-doctor` 才调用，未安装则跳过。
 
 （脚本在 `hekouwang-claude-md-doctor-skill`；`skill-doctor` / `env-doctor` 仓内各有一份相同副本。）
 

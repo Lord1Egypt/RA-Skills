@@ -1,6 +1,6 @@
 ## Description:
 
-Retrieves public Xiaohongshu (RedNote) data through DataXAPI, including notes, images, topics, users, comments, trends, creator marketplace metrics, and shop products.
+Public Xiaohongshu (RedNote) data through DataXAPI: videos, notes, images, topics, users, comments, PGY, Xiaohongshu Shop. 30 endpoints, $0.0200 to $0.0400 a call, a failed call is free. Use when the user asks about Xiaohongshu (RedNote) content, accounts, comments or trends, or gives a Xiaohongshu (RedNote) link, ID or account name. 通过 DataXAPI 取小红书的公开数据：视频、笔记、图片、话题、用户、评论、蒲公英、小红书商城。30 个接口，一次 $0.0200 到 $0.0400，失败不收费。用户问到小红书的内容、账号、评论或热点，或给出小红书的链接、编号、账号名时使用。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agents use this skill to find and summarize public Xiaohongshu content, account activity, comments, trends, creator metrics, and shop listings through DataXAPI.
+External users and developers can retrieve public Xiaohongshu (RedNote) notes, accounts, comments, trends, creator marketplace data, and shop information. The agent selects an appropriate DataXAPI endpoint, observes per-call pricing, and summarizes returned data with its source and retrieval time.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search and discovery terms are sent to DataXAPI and may contain sensitive context.
+Risk: The skill sends query wording to DataXAPI when making external requests.
 
-Mitigation: Omit secrets and unnecessary personal context from queries.
+Mitigation: Avoid including sensitive or confidential details in query wording.
 
-Risk: Paid calls and additional pages can incur charges.
+Risk: The package is unpinned, creating uncertainty about which package version will run.
 
-Mitigation: Set a spending budget or per-call price cap and request only the pages needed.
+Mitigation: Review the package version and pin a release you trust before installation.
 
-Risk: Using the CLI may require installing external software.
+Risk: The security scan was partial and does not establish that the skill is safe.
 
-Mitigation: Prefer REST or hosted MCP, or review and pin the CLI version before installation.
+Mitigation: Review the package and its behavior before installation.
 
 ## Reference(s):
 
-- [DataXAPI Skills](https://dataxapi.com/skills/)
-- [Xiaohongshu API documentation](https://dataxapi.com/apis/xiaohongshu/)
-- [Xiaohongshu pricing](https://dataxapi.com/pricing/xiaohongshu/)
-- [DataXAPI agent setup](https://dataxapi.com/agents.md)
-- [ClawHub skill release](https://clawhub.ai/data-x-api/skills/dataxapi-xiaohongshu)
+- [DataXAPI homepage](https://dataxapi.com)
+- [Xiaohongshu API reference](https://dataxapi.com/apis/xiaohongshu/)
+- [DataXAPI agent setup guide](https://dataxapi.com/agents.md)
+- [Xiaohongshu API pricing](https://dataxapi.com/pricing/xiaohongshu/)
+- [ClawHub skill listing](https://clawhub.ai/data-x-api/skills/dataxapi-xiaohongshu)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, JSON, Text]
+**Output Type(s):** [JSON, Text, Analysis]
 
-**Output Format:** [Structured API results summarized as text or Markdown]
+**Output Format:** [Structured API data with concise Markdown summaries and source attribution]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results are paginated; additional pages may incur charges.]
+**Other Properties Related to Output:** [Paginated results; endpoint calls cost $0.02 to $0.04 each, while endpoint discovery and pricing lookup are free.]
 
 ## Skill Version(s):
 
-1.0.0 (source: frontmatter)
+1.0.1 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

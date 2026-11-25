@@ -1,0 +1,110 @@
+//authored by mdyblog@163.com
+@IFEX %&CurFile%.LOG, LOGS * %&CurFile%.LOG
+@TEAM ENVI^ EnviMode=1| ENVI^ ForceLocal=1
+//SET &RetBrow=0
+//SET< RetBrow=\XXX
+//MESS. RetBrow[%RetBrow%]
+
+SET$ &NL=0d 0a
+SET$ &NLd=0d
+SET$ &NLa=0a
+SET$ TAB=09
+
+IFEX #%&bX64%=3, SET &PTR_LEN=8!  SET &PTR_LEN=4
+IFEX #%&bX64%=3, SET &SetWindowLongPtrW=SetWindowLongPtrW! SET &SetWindowLongPtrW=SetWindowLongW
+SET &cmb1=1136
+SET &cmb13=1148
+SET &stc2=1089
+SET &stc3=1090
+SET &chx1=1040
+SET &IDOK=1
+SET &IDCANCEL=2
+CALC -base=16 #&&CDN_INITDONE=0 - 601 - 0x0000
+CALC -base=16 #&&CDM_GETFOLDERPATH=0x0400 + 100 + 0x0002
+
+SET &SW_HIDE=0x0
+CALC #&&WM_NOTIFY=0x004E
+CALC #&&WM_COMMAND=0x0111
+SET &WM_INITDIALOG=0x0110
+CALC -base=16 #&&GWLP_WNDPROC=-4
+
+SET &BorwOriWndProc=0
+SET &RetBrow.flg=0
+SET &RetBrow=
+
+ENVI^ WndProc1,&&WndProc1Adr
+ENVI^ WndProc2,&&WndProc2Adr
+
+
+_SUB OnWndProc1  //hdlg uiMsg wParm lParam
+    @TEAM SET &hdlg=%~1| SET &uiMsg=%~2| SET &wParam=%~3| SET &lParam=%~4
+	IFEX #[ %uiMsg%=%WM_INITDIALOG% & %hdlg%<>0 & %RetBrow.flg%=0 ],
+	{	SET$ &wcsClassName1=*2048 0
+		SET$ &wcsClassName2=*2048 0
+        CALL $--ret:&&hParent user32.dll,GetParent,#%hdlg%
+        CALL $--ret:&&n1 --qd user32.dll,GetClassNameW,#%hParent%,*wcsClassName1,#2047
+        CALL $--ret:&&n2 --qd user32.dll,GetClassNameW,#%hdlg%,*wcsClassName2,#2047
+		FIND $%wcsClassName1% = %wcsClassName2%,
+        {	SET RetBrow.flg=0x1
+            ^CALL $--ret:&BorwOriWndProc --qd user32.dll,%SetWindowLongPtrW%,#%hParent%,#%GWLP_WNDPROC%,#%WndProc2Adr%
+		}
+	}
+    //HWND hwndFrom;UINT_PTR idFrom;UINT code;
+	IFEX #%uiMsg%=%WM_NOTIFY%,
+    {	ENVI?ints %lParam%=&&pnmh_code:(%PTR_LEN% * 2)    //LPNMHDR-->code 
+		IFEX #%CDN_INITDONE%=%pnmh_code%,
+		{	CALL $--ret:&hParent user32.dll,GetParent,#%hdlg%
+            CALL $--ret:&w user32.dll,GetDlgItem,#%hParent%,#%cmb1%
+            CALL $--ret:&&ret user32.dll,ShowWindow,#%w%,#%SW_HIDE%  //cmb1=1136 文件类型
+            CALL $--ret:&w user32.dll,GetDlgItem,#%hParent%,#%cmb13%
+            CALL $--ret:&ret user32.dll,ShowWindow,#%w%,#%SW_HIDE%  //cmb13=1148 文件名
+            CALL $--ret:&w user32.dll,GetDlgItem,#%hParent%,#%stc3%
+            CALL $--ret:&ret user32.dll,ShowWindow,#%w%,#%SW_HIDE%  //stc3=1090 文件名标签
+            CALL $--ret:&w user32.dll,GetDlgItem,#%hParent%,#%stc2%
+            CALL $--ret:&ret user32.dll,ShowWindow,#%w%,#%SW_HIDE%  //stc2=1089 文件类型标签
+            CALL $--ret:&w user32.dll,GetDlgItem,#%hParent%,#%chx1%
+            CALL $--ret:&ret user32.dll,ShowWindow,#%w%,#%SW_HIDE%  ///chx1=1040 以只读方式打开(&R)
+		}
+	}
+	EXIT= 0
+_END
+
+_SUB OnWndProc2  //hWnd uiMsg wParm lParam
+    @TEAM SET &hWnd=%~1| SET &uiMsg=%~2| SET &wParam=%~3| SET &lParam=%~4
+	IFEX #[ %uiMsg%=%WM_COMMAND% & %wParam%=%IDOK% ],
+    {
+        SET RetBrow.flg=0x00
+        SET$ RetBrow=*8192 0 0
+        CALL $--ret:&&w user32.dll,GetDlgItem,#%hwnd%,#%cmb13%
+        SET$ &&V=*8192 0
+        CALL $--qd --ret:&&ok user32.dll,GetWindowTextW,#%w%,*&V,#8191
+        ENVI @@SENDMSG=%hwnd%:%CDM_GETFOLDERPATH%;8191;@RetBrow
+        SED -ex &&i=?1,[\*\?],,&V
+        IFEX [ '%RetBrow%'<>'' && '%V%'<>'' & #%i%<1 &  %RetBrow%\%&&V% ], SET RetBrow=%RetBrow%\%&&V%
+        CALL $--qd --ret:&&ret user32.dll,%SetWindowLongPtrW%,#%hwnd%,#%GWLP_WNDPROC%,#%BorwOriWndProc%
+        ENVI @@SENDMSG=%hwnd%:%uiMsg%;%IDCANCEL%;%lParam% 
+        EXIT= 0
+        EXIT _SUB
+    }
+	IFEX #[ %uiMsg%=%WM_COMMAND% & %wParam%=%IDCANCEL% ],
+    {
+        SET RetBrow.flg=0x00
+        CALL $--qd --ret:&&ret user32.dll,%SetWindowLongPtrW%,#%hwnd%,#%GWLP_WNDPROC%,#%BorwOriWndProc%
+        ENVI @@SENDMSG=%hwnd%:%uiMsg%;%IDCANCEL%;%lParam% 
+        //EXIT= %IDCANCEL%
+        EXIT _SUB
+    }
+    CALL $#,%BorwOriWndProc%,#%1,#%2,#%3,#%4
+	EXIT= 0
+_END
+
+//带上 ;RetBrow.flg， 自动初始化标志RetBrow.flg
+//只选择目录 注意带引号  注意 *..*   0x80000
+BROW RetBrow;RetBrow.flg,"%WinDir%\*..*",请选择一个文件夹一保存驱动程序,,0x81000,%WndProc1Adr%
+MESS. [%RetBrow%]
+
+
+//选择文件和目录  注意带引号 0x80000
+BROW RetBrow;RetBrow.flg,"%WinDir%\*.*",请选择一个文件夹或文件,,0x81000,%WndProc1Adr%
+MESS. [%RetBrow%]
+

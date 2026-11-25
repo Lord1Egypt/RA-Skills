@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-US customer service managers, e-commerce support leads, and shop owners use the skill to define complaint severity tiers, response and resolution targets, approved remedies, repeat-issue handling, and complaint-record practices.
+US customer service managers, e-commerce support leads, and shop owners use the skill to set complaint severity tiers, response targets, remedy approvals, repeat-issue handling, and record-keeping rules.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,31 @@ United States
 
 ## Known Risks and Mitigations:
 
-Risk: The bundled script reports duplicate complaints but does not produce the complete escalation plan described by the skill.
+Risk: The reported duplicate-reporting behavior may not match the stated complaint-escalation purpose.
 
-Mitigation: Treat its report as one input and separately complete and review the tiers, remedies, deadlines, and record notes.
+Mitigation: Review the skill's actual behavior against the intended complaint-escalation tasks before use.
 
-Risk: The CSV reader can misread the template header when its two leading comment lines remain.
+Risk: The skill's file-writing scope is not declared.
 
-Mitigation: Remove those comment lines before running the script and confirm that the expected columns were read.
-
-Risk: Complaint reports may contain customer details.
-
-Mitigation: Limit access to reports and store them using the organization's approved handling practices.
-
-Risk: The optional Windows application is a separate unsigned download and is not part of the skill bundle.
-
-Mitigation: Assess the application separately, verify its published SHA-256 before use, and avoid running it with elevated privileges unless necessary.
+Mitigation: Review where the script writes output and direct it only to an approved folder.
 
 ## Reference(s):
 
-- [US complaint, refund and dispute rules](artifact/references/complaint-escalation-rules.md)
-- [ClawHub skill release](https://clawhub.ai/rapidworker1/skills/customer-complaint-escalation)
+- [US complaint, refund and dispute rules](references/complaint-escalation-rules.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Structured complaint escalation guidance and Markdown duplicate report]
+**Output Format:** [Structured complaint-escalation guidance and a Markdown duplicate report]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Human review is required before customer communication or remedy approval; the duplicate-report script does not generate a complete escalation plan.]
+**Other Properties Related to Output:** [Uses a CSV complaint log as input; the included script writes duplicates.md to the selected output directory.]
 
 ## Skill Version(s):
 
-1.0.6 (source: frontmatter, server-resolved release)
+1.0.7 (source: frontmatter)
 
 ## Ethical Considerations:
 

@@ -1,0 +1,23 @@
+#!/bin/bash
+# 词条表 · 中文 · setup-gui.sh
+
+M_GUI_INSIDE="⚠ 检测到本脚本正跑在 iTerm2 里，跳过 GUI 设置这一步。"
+M_GUI_INSIDE_1="  原因：这几项设置必须在 iTerm2 退出后写，否则它退出时会用内存里的旧配置盖掉。"
+M_GUI_INSIDE_2="  而在这里退出 iTerm2 = 连你正在用的这个终端一起关掉，脚本会被中断。"
+M_GUI_INSIDE_3=""
+M_GUI_INSIDE_4="  怎么补（二选一，都只要十几秒）："
+M_GUI_INSIDE_A="    A. 用系统自带「终端」App 打开，跑一次： %s"
+M_GUI_INSIDE_B="    B. 先 Cmd+Q 完全退出 iTerm2，再从「终端」App 跑上面那条"
+M_GUI_INSIDE_5="  跳过的是：Minimal 主题 / 默认 Profile / Shift+Enter 换行 / 隐藏滚动条等。"
+M_GUI_INSIDE_6="  配色、字体、CLI 工具、生态配色这些都不受影响，已经生效。"
+M_GUI_INSIDE_7="  跑 ./scripts/doctor.sh 第 4 节可以随时复检这几项。"
+M_GUI_QUIT="iTerm2 正在运行，先退出它再写设置（你的窗口会关闭）..."
+M_GUI_MINIMAL="设 Minimal 主题..."
+M_GUI_TEXTURE="设质感层全局项（隐藏滚动条 / 非活动分屏压暗）..."
+M_GUI_FUNC="设功能层全局项（状态栏置底 / 工具带）..."
+M_GUI_PROFILE="设默认 Profile（本 skill 主题）..."
+M_GUI_KEYMAP="写全局键映射（Shift+Enter 换行，AI CLI 多行输入）..."
+M_GUI_KEYMAP_SKIP="· 跳过全局键映射（Shift+Enter 等属付费包，开源版不含）"
+M_GUI_DONE="✅ GUI 三步已自动写好"
+M_GUI_DONE_1="  验证：./scripts/doctor.sh 第 4 节会复检这三项。"
+M_GUI_DONE_2="  下次启动 iTerm2 即生效（本脚本已退出 iTerm2）。"

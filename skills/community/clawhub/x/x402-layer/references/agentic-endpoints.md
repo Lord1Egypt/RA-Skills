@@ -22,6 +22,12 @@ Top-up: $1 = 500 credits
 4. Send X-Payment header
 5. Receive gateway URL and API key
 
+## Payment outcomes (create and top-up)
+- `201` / `200`: done. A second send of the SAME payment for the same request returns `200` with `already_created` (create) or `already_applied` (top-up); it is never charged twice.
+- `202` with `status: settlement_pending` (or `fulfilment_pending` / `needs_review`): the payment may already have gone through. Do NOT sign a new payment. Send the same request again later with the SAME payment header (for create: the same fields, from the same account), or wait; top-ups are also credited automatically.
+- `409` `payment_already_used`: that payment was already used for another endpoint, slug or request. Nothing was charged for this request.
+- `402`: not paid (the reply carries the offers again). Only then is a new payment safe.
+
 ## Seller-side controls now available in the skill
 
 Agents can now configure the same endpoint-level settings humans use in Studio for direct endpoints:

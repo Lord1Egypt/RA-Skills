@@ -1,12 +1,16 @@
 ---
 name: job-screening
-version: 1.0.2
-description: 帮求职者在一家公司的招聘岗位列表里选出该投的 1–3 个岗位，说清楚哪个最适合、成功率最高，以及其余的为什么不投。首次使用会先收简历、做一轮求职访谈建档，并基于简历反推还能投哪些职位方向。用户会用截图、粘贴文本、PDF/Excel 岗位表、招聘链接的形式把岗位发进来。当用户说「这家能投哪个」「帮我看看投什么岗」「筛一下这些职位」「这个 JD 我合适吗」「我适合什么岗位」「秋招投递」，或直接丢来一张招聘页面截图时使用。只做单家公司内的选岗，不负责选公司。
+version: 1.0.3
+description: "Job screening for campus recruiting and new-grad jobs: from one company's role list, pick the 1–3 jobs to apply for, identify the strongest fit, and explain every exclusion. Use when a student or new-grad candidate pastes, screenshots, or links a single employer's openings and asks which roles to apply to, or says \"which jobs should I apply for here\". First use builds a profile from the résumé and a short intake, and can also suggest other role directions. It checks eligibility and matches résumé evidence; it does not choose which companies to target, does not write the résumé unless the user asks later, and is not an employer tool for automated resume screening."
 metadata:
   short-description: 校招选岗：一家公司投哪几个、哪个成功率最高
 ---
 
 # 职位筛选
+
+## 中文触发语
+
+帮求职者在一家公司的招聘岗位列表里选出该投的 1–3 个岗位，说清楚哪个最适合、成功率最高，以及其余的为什么不投。首次使用会先收简历、做一轮求职访谈建档，并基于简历反推还能投哪些职位方向。用户会用截图、粘贴文本、PDF/Excel 岗位表、招聘链接的形式把岗位发进来。当用户说「这家能投哪个」「帮我看看投什么岗」「筛一下这些职位」「这个 JD 我合适吗」「我适合什么岗位」「秋招投递」，或直接丢来一张招聘页面截图时使用。只做单家公司内的选岗，不负责选公司。
 
 校招每家公司通常只能投 1–3 个岗，但列表常有几十上百个。这个 skill 的职责是：
 **在一家公司的岗位列表里选出该投的那几个，指明哪个成功率最高，并说清楚其余的为什么不投。**

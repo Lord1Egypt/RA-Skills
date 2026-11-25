@@ -5,7 +5,7 @@ license: MIT
 compatibility: Portable instructions for official Sablier contracts, SDK/CLI examples and read-only EVM tools. No signer or provider runtime is included.
 metadata:
   author: Andrew Wilkinson and Galleon Labs
-  version: "0.2.1"
+  version: "0.3.0"
 ---
 
 # Sablier stream lifecycle

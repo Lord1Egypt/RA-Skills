@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en" class="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sound test</title>
+<link rel="stylesheet" href="../engine/sketchy.css">
+<style>
+  body.sk { padding: 32px; }
+  .wrap { max-width: 980px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; position: relative; z-index: 1; }
+  .panel { padding: 24px 30px; min-width: 0; }
+  code { overflow-wrap: anywhere; }
+  @media (max-width: 600px) { body.sk { padding: 16px; } .panel { padding: 18px; } }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 14px; }
+  .row label { display: inline-flex; gap: 8px; align-items: center; }
+  input[type="text"], input[type="number"], select { font: inherit; padding: 4px 8px; width: 11em; background: transparent; border: 1px solid var(--sk-graphite-faint, #999); color: inherit; }
+  input[type="number"] { width: 5em; }
+  #status, #renderStatus { min-height: 1.4em; }
+  audio { width: 100%; margin-top: 12px; }
+</style>
+</head>
+<body class="sk">
+<div class="wrap">
+
+  <div class="sk-sheet panel" data-sk="frame">
+    <h1>Sound test</h1>
+    <p>Sound is off until you turn it on. The choice is stored in <code>localStorage['sketchy:sound']</code>.</p>
+    <div class="row">
+      <button class="sk-btn" data-sk="button" data-sk-sound-toggle>muted</button>
+      <span id="status" class="sk-fine"></span>
+    </div>
+  </div>
+
+  <div class="sk-sheet panel" data-sk="frame">
+    <h2>Effects</h2>
+    <p class="sk-fine">Click one repeatedly: the rate limit and the small random variation keep it from sounding like a machine.</p>
+    <div class="row" id="sfx">
+      <button class="sk-btn" data-sk="button" data-sfx="pencil">pencil</button>
+      <button class="sk-btn" data-sk="button" data-sfx="scribble">scribble</button>
+      <button class="sk-btn" data-sk="button" data-sfx="page">page</button>
+      <button class="sk-btn" data-sk="button" data-sfx="flip">flip</button>
+      <button class="sk-btn" data-sk="button" data-sfx="stamp">stamp</button>
+      <button class="sk-btn" data-sk="button" data-sfx="tap">tap</button>
+      <button class="sk-btn" data-sk="button" data-sfx="tick">tick</button>
+      <button class="sk-btn" data-sk="button" data-sfx="pop">pop</button>
+      <button class="sk-btn" data-sk="button" data-sfx="whoosh">whoosh</button>
+      <button class="sk-btn" data-sk="button" data-sfx="bell">bell</button>
+      <button class="sk-btn" data-sk="button" data-sfx="chime">chime</button>
+      <button class="sk-btn" data-sk="button" data-sfx="success">success</button>
+      <button class="sk-btn" data-sk="button" data-sfx="fail">fail</button>
+      <button class="sk-btn" data-sk="button" data-sfx="paper">paper</button>
+    </div>
+  </div>
+
+  <div class="sk-sheet panel" data-sk="frame">
+    <h2>Music</h2>
+    <div class="row">
+      <label>seed <input type="text" id="seed" value="sketchy-demo"></label>
+    </div>
+    <div class="row" id="moods">
+      <button class="sk-btn" data-sk="button" data-mood="sketchbook">sketchbook</button>
+      <button class="sk-btn" data-sk="button" data-mood="ledger">ledger</button>
+      <button class="sk-btn" data-sk="button" data-mood="focus">focus</button>
+      <button class="sk-btn" data-sk="button" data-mood="calm">calm</button>
+      <button class="sk-btn" data-sk="button" id="stop">stop music</button>
+    </div>
+    <div class="row" id="sections">
+      <button class="sk-btn is-on" data-sk="button" data-section="calm">calm</button>
+      <button class="sk-btn" data-sk="button" data-section="build">build</button>
+      <button class="sk-btn" data-sk="button" data-section="flight">flight</button>
+      <button class="sk-btn" data-sk="button" data-section="resolve">resolve</button>
+    </div>
+  </div>
+
+  <div class="sk-sheet panel" data-sk="frame">
+    <h2>Offline render</h2>
+    <p class="sk-fine">Renders the chosen mood and seed with a few cues and all four sections, then offers the WAV. Rendering the same seed twice gives identical samples.</p>
+    <div class="row">
+      <label>mood
+        <select id="renderMood">
+          <option>sketchbook</option><option>ledger</option><option>focus</option><option>calm</option>
+        </select>
+      </label>
+      <label>seconds <input type="number" id="renderSeconds" value="20" min="2" max="120"></label>
+      <button class="sk-btn is-accent" data-sk="button" data-sk-color="red" id="render">render</button>
+    </div>
+    <p id="renderStatus" class="sk-fine"></p>
+    <a id="download" hidden>download WAV</a>
+    <audio id="preview" controls hidden></audio>
+  </div>
+
+</div>
+
+<script src="../engine/sketchy.js"></script>
+<script src="../engine/sketchy-sound.js"></script>
+<script>
+  Sketchy.mount();
+  var S = window.SketchySound;
+  var currentMood = null;
+
+  function seedValue() { return document.getElementById('seed').value || 'sketchy-demo'; }
+  // The first click both turns sound on and unlocks the audio context, so wait for it.
+  function whenOn() { return S.isOn ? Promise.resolve(true) : S.enable(); }
+
+  document.querySelectorAll('[data-sfx]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      whenOn().then(function () { S.play(b.getAttribute('data-sfx'), { length: 1.6 }); });
+    });
+  });
+
+  function mark(group, attr, value) {
+    document.querySelectorAll(group + ' [' + attr + ']').forEach(function (b) {
+      b.classList.toggle('is-on', b.getAttribute(attr) === value);
+    });
+  }
+  document.querySelectorAll('[data-mood]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      currentMood = b.getAttribute('data-mood');
+      mark('#moods', 'data-mood', currentMood);
+      whenOn().then(function () { S.music.start({ mood: currentMood, seed: seedValue() }); });
+    });
+  });
+  document.getElementById('stop').addEventListener('click', function () {
+    currentMood = null; mark('#moods', 'data-mood', ''); S.music.stop();
+  });
+  document.querySelectorAll('[data-section]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      mark('#sections', 'data-section', b.getAttribute('data-section'));
+      S.music.section(b.getAttribute('data-section'));
+    });
+  });
+
+  setInterval(function () {
+    var i = S.music.info();
+    document.getElementById('status').textContent = S.isOn
+      ? (i ? i.mood + ', ' + i.key + ' ' + i.mode + ', ' + i.bpm + ' bpm, section ' + i.section : 'sound on, no music')
+      : 'sound off';
+  }, 400);
+
+  var lastUrl = null;
+  document.getElementById('render').addEventListener('click', function () {
+    var mood = document.getElementById('renderMood').value;
+    var secs = Math.max(2, Math.min(120, +document.getElementById('renderSeconds').value || 20));
+    var seed = seedValue(), st = document.getElementById('renderStatus');
+    st.textContent = 'rendering ' + secs + ' s of ' + mood + '...';
+    var cues = [
+      { t: 1.0, name: 'page' }, { t: 2.2, name: 'pencil' }, { t: 2.5, name: 'pencil' }, { t: 3.2, name: 'scribble', opts: { length: 1.6 } },
+      { t: 5.0, name: 'stamp' }, { t: 6.5, name: 'tap' }, { t: 7.0, name: 'bell' }, { t: 7.6, name: 'bell' },
+      { t: 9.0, name: 'whoosh' }, { t: 11.0, name: 'flip' }, { t: 12.0, name: 'chime' }, { t: 13.5, name: 'paper' },
+      { t: 15.0, name: 'success' }, { t: 17.5, name: 'fail' }
+    ].filter(function (c) { return c.t < secs - 1; });
+    var sections = [{ t: 0, name: 'calm' }, { t: secs * 0.3, name: 'build' }, { t: secs * 0.5, name: 'flight' }, { t: secs * 0.8, name: 'resolve' }];
+    S.renderOffline({ duration: secs, seed: seed, mood: mood, cues: cues, sections: sections }).then(function (buf) {
+      var pk = 0;
+      for (var c = 0; c < buf.numberOfChannels; c++) { var d = buf.getChannelData(c); for (var i = 0; i < d.length; i++) { var a = Math.abs(d[i]); if (a > pk) pk = a; } }
+      var wav = S.toWav(buf), blob = new Blob([wav], { type: 'audio/wav' });
+      if (lastUrl) URL.revokeObjectURL(lastUrl);
+      lastUrl = URL.createObjectURL(blob);
+      var a = document.getElementById('download');
+      a.href = lastUrl; a.download = 'sketchy-' + mood + '-' + seed + '.wav'; a.hidden = false;
+      a.textContent = 'download ' + a.download + ' (' + (wav.byteLength / 1048576).toFixed(1) + ' MB)';
+      var au = document.getElementById('preview'); au.src = lastUrl; au.hidden = false;
+      st.textContent = 'done: ' + buf.duration.toFixed(1) + ' s, ' + buf.sampleRate + ' Hz, peak ' + (20 * Math.log10(pk || 1e-9)).toFixed(1) + ' dBFS';
+    }, function (err) { st.textContent = 'render failed: ' + err.message; });
+  });
+</script>
+</body>
+</html>

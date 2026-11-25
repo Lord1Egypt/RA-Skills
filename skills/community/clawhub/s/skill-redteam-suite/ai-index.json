@@ -1,0 +1,12 @@
+{
+  "name": "skill-redteam-suite",
+  "version": "1.0.0",
+  "summary": "An adversarial benchmark for skill reviewers: two fake packages that verify nothing.",
+  "intents": [
+    "test whether a skill reviewer can be fooled by an empty package",
+    "check a reviewer for anti-gaming rules",
+    "regression test after changing scoring rules"
+  ],
+  "triggers": ["redteam", "adversarial benchmark", "禁作弊基准", "评测器抗攻击"],
+  "entry": "run_suite.py"
+}

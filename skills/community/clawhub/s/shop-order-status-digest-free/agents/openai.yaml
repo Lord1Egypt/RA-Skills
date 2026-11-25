@@ -1,0 +1,8 @@
+interface:
+  display_name: 店铺订单状态清单
+  short_description: 只读汇总已确认范围内订单状态、待办事项与可见证据位置
+  default_prompt: 如果本轮请求已说明这是我本人或有权查看的店铺，直接使用我指定的 browserId 和日期范围，只读汇总当前可见订单列表，最多 20 单，遮盖敏感信息，不修改订单或发送消息；只有归属或授权确实不清楚时才询问。
+  icon_small: ../icon-512.png
+  icon_large: ../icon-512.png
+policy:
+  allow_implicit_invocation: true

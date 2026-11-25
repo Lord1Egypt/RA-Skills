@@ -1,6 +1,6 @@
 ## Description:
 
-Creates Xiaohongshu/REDnote titles, post copy, cover wording, hashtags, and comment starters from a brief, with optional Xiaohongshu research and a matching cover image.
+Creates Xiaohongshu or REDnote post copy, cover wording, and a matching cover image, with optional platform research.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External creators and businesses use it to turn a product, experience, topic, or audience brief into Xiaohongshu/REDnote post copy and, after approval, a matching cover. Optional paid Xiaohongshu note, comment, and account lookups can ground the research.
+Content creators and marketers use the skill to turn a product, experience, topic, or audience brief into Xiaohongshu or REDnote titles, a post body, cover wording, hashtags, and a comment starter. It can optionally research public Xiaohongshu notes and comments and produce a matching cover image.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The authorization requests broader account permissions than the writing task needs.
+Risk: ClawScan reports broad permissions, persistent installation metadata reporting, and shared-authorization cleanup risks beyond the stated writing and research purpose; scan coverage is partial.
 
-Mitigation: Review the full Beatra authorization and prefer a release with narrower permissions; revoke access through the Beatra Console when it is no longer needed.
-
-Risk: An uninstall cleanup flaw can disconnect other Beatra skills.
-
-Mitigation: Prefer a release with corrected uninstall inventory validation and check the inventory before removing the skill.
-
-Risk: Optional Xiaohongshu lookups and cover generation consume credits.
-
-Mitigation: Review the current price and approve each paid lookup or image generation separately before it runs.
+Mitigation: Consider avoiding installation unless the skill is needed and you are comfortable with these reported risks; account for incomplete scan coverage when evaluating it.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/beatra-ai/skills/zhongcao-note-copywriter)
-- [Beatra skill homepage](https://beatra.ai/skills/zhongcao-note-copywriter)
-- [Workflow and writing guidance](references/workflow.md)
-- [Xiaohongshu lookup guidance](references/note-lookup.md)
-- [Updates and security guidance](references/updates-and-security.md)
+- [ClawHub release page](https://clawhub.ai/beatra-ai/skills/zhongcao-note-copywriter)
+- [Beatra skill page](https://beatra.ai/skills/zhongcao-note-copywriter)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Images]
+**Output Type(s):** [Text, Markdown, Image]
 
-**Output Format:** [Markdown post copy and a vertical 3:4 cover image]
+**Output Format:** [Markdown copy and a generated vertical cover image]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Title options, note body, cover wording, hashtags, and a comment starter; one cover image when approved.]
+**Other Properties Related to Output:** [Title options, a note body, cover wording, hashtags, and a comment starter; the cover and platform research are optional.]
 
 ## Skill Version(s):
 
-0.2.7 (source: server-resolved release)
+0.2.8 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

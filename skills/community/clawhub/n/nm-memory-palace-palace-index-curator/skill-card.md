@@ -1,6 +1,6 @@
 ## Description:
 
-Curate the web-capture index.
+Curate the web-capture index
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and knowledge workers use the skill to review a web-research capture index, promote or archive pending entries, repair capture metadata, and surface valuable stored research.
+Developers and knowledge workers use the skill to review capture-index health, propose promotions or archiving for pending research, and surface useful stored research during work.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Some referenced files were missing from the inspected release, leaving their behavior unverified.
+Risk: Behavior involving multiple unresolved local references was not fully assessed in the security scan.
 
-Mitigation: Review the complete plugin and referenced scripts or hooks before enabling the skill.
-
-Risk: Apply modes can persist promotion, archive, or repair changes to local capture data.
-
-Mitigation: Run the report and dry-run commands first, inspect the proposed changes, and confirm the documented backup is created before applying.
+Mitigation: Review the unresolved references and their behavior before installing the skill.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-memory-palace-palace-index-curator)
-- [Memory Palace plugin homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace)
-- [Archive Pattern module](artifact/modules/archive-pattern.md)
+- [Memory Palace plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-memory-palace-palace-index-curator)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown reports, Shell commands, Configuration guidance]
+**Output Type(s):** [text, markdown, shell commands, configuration]
 
-**Output Format:** [Markdown reports and shell command examples]
+**Output Format:** [Index health reports and promotion or archive proposals, with shell command examples and configuration guidance.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Read-only reporting and dry-run modes are available; apply modes update the local capture index or capture files, with backups documented for these operations.]
+**Other Properties Related to Output:** [Promotion proposals can be reviewed in a dry run before changes are applied.]
 
 ## Skill Version(s):
 
-1.10.3 (source: release evidence and artifact/SKILL.md frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

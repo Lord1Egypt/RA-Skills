@@ -116,8 +116,9 @@ class TestScene(unittest.TestCase):
         self.assertIn("p-balance", html)          # 钱包场景结构
         self.assertNotIn("linear-gradient", html)  # 零渐变
         pal = re.search(r"主题色板\(声明\): ([0-9A-F,]+)", r.stdout).group(1)
-        lint = run([os.path.join(ROOT, "scripts", "lint_page.py"), out,
-                    "--palette", pal, "--floor", "9"])   # 设备 mockup 微字豁免
+        # 0.24:幽灵规则已令牌化(AE-FONT-UP 把 8.5px 幽灵收进 type_tokens 12px 档),
+        # 不再用 --floor 9 放水 —— 默认 12px 下限直接过闸。
+        lint = run([os.path.join(ROOT, "scripts", "lint_page.py"), out, "--palette", pal])
         self.assertEqual(lint.returncode, 0, lint.stdout)
 
     def test_scene_purple_guard(self):

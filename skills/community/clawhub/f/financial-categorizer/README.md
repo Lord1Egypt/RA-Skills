@@ -127,6 +127,7 @@ The following commands require confirmation:
 |---------|-------------|
 | `import <files>` | Import bank CSV transactions |
 | `accounts` | List all registered bank accounts |
+| `balances [--date <YYYY-MM-DD>]` | Latest known account balance, parsed from the CSV `Saldo` column |
 | `add-account <name>` | Create a new bank account |
 | `update-account <id>` | Update account ownership ratio, type, name, etc. |
 | `delete-account <id> [--yes]` | Delete a bank account (requires confirmation or `-y`) |

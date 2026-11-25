@@ -1,6 +1,6 @@
 ## Description:
 
-Audits Claude Code, OpenClaw, and Hermes Agent configurations for misconfigurations, token waste, security issues, and stale authentication.
+Audits Claude Code, OpenClaw, and Hermes Agent configurations for misconfigurations, security issues, stale authentication, and optimization opportunities.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and administrators use the CLI to audit Claude Code, OpenClaw, and Hermes Agent configurations, review optimization suggestions, and apply approved changes.
+Developers and administrators use the CLI to review Claude Code, OpenClaw, and Hermes Agent setup, identify configuration and security concerns, and plan or apply selected optimizations.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The tool reads sensitive local configuration and can access remote hosts through fleet SSH.
+Risk: The CLI inspects agent configuration, authentication profile, and workspace files that may contain sensitive settings.
 
-Mitigation: Start with read-only audits and dry-run previews, approve specific configuration changes, and review the package version before granting access to local credentials or remote hosts.
+Mitigation: Review the documented paths and run it only where that access is appropriate; the release evidence says audit, scan, and optimize do not transmit those file contents.
 
-Risk: Optional monitoring adds scheduled audits and sends summary reporting to a server.
+Risk: Optional monitoring, license activation, updates, and fleet audits use network connections when those commands are run.
 
-Mitigation: Enable monitoring only when wanted; use monitor disable to remove its schedule.
+Mitigation: Review the disclosed data and destinations before enabling monitoring or activating a license, and limit fleet targets to hosts you are authorized to inspect.
 
 ## Reference(s):
 
 - [Agent Optimizer product page](https://drakonsystems.com/products/agent-optimizer)
-- [Agent Optimizer npm package](https://www.npmjs.com/package/@drakon-systems/agent-optimizer)
+- [Agent Optimizer on npm](https://www.npmjs.com/package/@drakon-systems/agent-optimizer)
+- [ClawHub release page](https://clawhub.ai/jarvis-drakon/skills/drakon-agent-optimizer)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Shell commands, Configuration instructions]
+**Output Type(s):** [Analysis, JSON, Shell commands, Configuration guidance]
 
-**Output Format:** [JSON audit reports and plans, with CLI commands and configuration recommendations]
+**Output Format:** [JSON reports and terminal text]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports include findings and suggested changes; applying configuration changes requires explicit user approval.]
+**Other Properties Related to Output:** [Audit findings, scan results, optimization plans, and recommendations.]
 
 ## Skill Version(s):
 
-0.16.3 (source: frontmatter, server release)
+0.16.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -3,9 +3,8 @@
  */
 
 const constants = require("../config/constants");
-const { getJson } = require("../utils/request");
-const { withRetry } = require("../utils/retry");
-const utils = require("../utils/utils");
+const { SkillError } = require("../utils/errors");
+const { requestApi } = require("../utils/request");
 
 /**
  * 获取抖音热门榜结果
@@ -13,25 +12,25 @@ const utils = require("../utils/utils");
  * @returns {Promise<Array>} 热门榜结果数组
  * @throws {Error} API调用失败时抛出错误
  */
-async function getHotTask(token) {
-  return await withRetry(
-    async () => {
-      const res = await getJson(
-        "/api/douyin/hot-search",
-        { _: Date.now() },
-        token,
-      );
-      return res.data;
-    },
-    constants.QUERY_MAX_ATTEMPTS,
-    (attempt, err) => {
-      utils.printError(
-        `【获取抖音热榜重试】 ${attempt + 1}/${constants.QUERY_MAX_ATTEMPTS} 次 - ${err.message}`,
-      );
-    },
+async function getHotSearch(token) {
+  const response = await requestApi(
+    "GET",
+    "/api/douyin/hot-search",
+    {},
+    null,
+    token,
+    constants.CREATE_MAX_ATTEMPTS,
+    "获取抖音热榜",
   );
+  if (response.data == null) {
+    return [];
+  }
+  if (!Array.isArray(response.data)) {
+    throw new SkillError("API_SCHEMA_CHANGED", "热榜结果格式异常", true);
+  }
+  return response.data;
 }
 
 module.exports = {
-  getHotTask,
+  getHotSearch,
 };

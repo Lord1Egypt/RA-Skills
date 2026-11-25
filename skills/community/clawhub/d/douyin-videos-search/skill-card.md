@@ -1,6 +1,6 @@
 ## Description:
 
-抖音热门视频搜索工具，支持按关键词搜索获取最多点赞热门内容数据，基于抖音的实时数据返回特定关键词的热门视频数据，助力创作者、品牌方和MCN机构发现热门趋势、获取创作灵感。支持五大能力：(1) 关键词搜索视频/图文，可按点赞数、发布时间、视频时长、内容类型筛选排序；(2) 实时热榜查询，获取抖音热搜词条与热度数据；(3) 单条作品详情，按视频链接或 aweme_id 获取文案、互动与作者；(4) 博主作品抓取，按主页链接或 sec_uid 获取公开作品列表；(5) 视频评论分析，按视频链接或 aweme_id 获取评论内容与互动数据；评论需求/痛点挖掘（取评后见 demand-mining）。
+Searches public Douyin videos, users, creator posts, comments, individual post details, and trending topics, returning structured data for content and audience research.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-内容创作者、品牌团队和数据分析人员可用它检索抖音公开视频、图文、博主作品、评论与热榜数据，为选题、竞品观察和舆情分析提供结构化资料。
+Creators, marketers, and analysts use the skill to find public Douyin content, research creators and trends, and review post engagement or comments. It supports topic research, competitor monitoring, and public audience insight using returned structured data.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review is marked benign, but static analysis was partial and its confidence is medium.
+Risk: ClawScan reports a benign verdict with medium confidence and partial analysis, and flags account search as broader than the declared capabilities.
 
-Mitigation: Review the declared scope and environment-variable access before use, and install only if comfortable with the remaining uncertainty.
+Mitigation: Use account search for creator or account discovery when relevant to the request, and review its returned scope before summarizing results.
 
-Risk: Queries send the supplied keyword or Douyin link to the third-party Guaikei API, and access depends on GUAIKEI_API_TOKEN.
+Risk: The service receives submitted search terms and supplied Douyin links or IDs.
 
-Mitigation: Use only queries you are comfortable sharing with that provider, and keep the API token confidential.
-
-Risk: The skill retrieves public user-generated content and its documentation limits use to personal or team analysis and prohibits unauthorized distribution.
-
-Mitigation: Use returned content for internal analysis and follow applicable platform and data-use requirements before sharing it.
+Mitigation: Use public Douyin content and non-sensitive search terms; do not submit private or sensitive material.
 
 ## Reference(s):
 
-- [抖音数据 API 服务](https://www.guaikei.com)
-- [ClawHub skill release](https://clawhub.ai/why20261/skills/douyin-videos-search)
-- [Command options](references/options.md)
-- [Demand mining guide](references/demand-mining.md)
-- [Changelog](references/changelog.md)
+- [Service and token setup](https://www.guaikei.com)
+- [Usage guide and command reference](readme.md)
+- [Output contract](references/contract.md)
+- [Error handling guidance](references/errors.md)
+- [Comment demand analysis guidance](references/demand-mining.md)
+- [Public audience research guidance](references/customer-acquisition.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Guidance]
+**Output Type(s):** [JSON, Analysis, Guidance]
 
-**Output Format:** [Structured JSON response envelopes and concise analysis guidance]
+**Output Format:** [Structured JSON data with concise analytical summaries or tables when requested]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results may include public post, author, engagement and comment data; media links may expire. Query volume depends on the API plan.]
+**Other Properties Related to Output:** [Read-only public Douyin data; requires Node.js 16.14+ and GUAIKEI_API_TOKEN. Search terms and supplied Douyin links or IDs are sent to guaikei.com.]
 
 ## Skill Version(s):
 
-1.4.2 (source: frontmatter, package.json, server release)
+1.5.0 (source: release evidence, SKILL.md, package.json)
 
 ## Ethical Considerations:
 

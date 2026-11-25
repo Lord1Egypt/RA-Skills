@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use this skill to audit Python dependencies for known-bad versions, lockfile integrity issues, and suspicious installed artifacts. It also provides checklists and remediation guidance for suspected supply-chain incidents.
+Developers and security engineers use this skill to audit Python project dependencies against known-bad versions, inspect lockfile and artifact integrity, and guide response to suspected supply-chain compromises.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The incident checklist captures the full environment in a temporary file, which may include credentials.
+Risk: A full environment snapshot written to a plaintext temporary file could expose credentials.
 
-Mitigation: Avoid capturing the full environment; use a reviewed allowlist of needed values and redact secrets before saving any incident notes.
-
-Risk: The security scan was partial, so its evidence does not cover several referenced files.
-
-Mitigation: Review the referenced files and verify the guidance before relying on it for an incident response.
+Mitigation: Avoid dumping the full environment; capture only necessary values, redact secrets, restrict file permissions, and limit retention.
 
 ## Reference(s):
 
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
-- [ClawHub release](https://clawhub.ai/athola/skills/nm-leyline-supply-chain-advisory)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-leyline-supply-chain-advisory)
+- [Metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Shell commands, Code, Configuration instructions]
+**Output Type(s):** [Analysis, Code, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown with checklists, shell commands, and code examples]
+**Output Format:** [Markdown with inline shell commands and Python code snippets]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Recommendations use project lockfiles, package versions, and known-bad version indicators as inputs.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.10.3 (source: SKILL.md frontmatter)
+1.10.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

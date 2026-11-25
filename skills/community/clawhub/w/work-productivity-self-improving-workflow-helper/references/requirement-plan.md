@@ -33,18 +33,18 @@ Scoring rationale:
 
 ## Evidence
 
-- clawhub-popular-skill (2026-10-22T12:42:06.676000+00:00): [Popular Clawhub skill demand: self-improving agent has 492,787 downloads](https://clawhub.ai/skills/self-improving-agent)
-- clawhub-popular-skill (2026-05-18T03:54:46.067000+00:00): [Popular Clawhub skill demand: Proactive Agent has 179,734 downloads](https://clawhub.ai/skills/proactive-agent)
-- clawhub-popular-skill (2026-05-11T09:25:56.797000+00:00): [Popular Clawhub skill demand: Self-Improving + Proactive Agent has 214,820 downloads](https://clawhub.ai/skills/self-improving)
-- clawhub-popular-skill (2026-05-17T03:07:05.295000+00:00): [Popular Clawhub skill demand: Skill Creator has 104,586 downloads](https://clawhub.ai/skills/skill-creator)
-- hacker-news-ask-hn (2026-11-13T20:32:40+00:00): [Using LLMs outside of reflection is an anti-pattern](https://news.ycombinator.com/item?id=50489240)
-- segmentfault-search (2026-11-14T04:07:52.419179+00:00): [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
-- segmentfault-search (2026-11-14T04:07:52.419738+00:00): [javascript](https://segmentfault.com/t/javascript)
-- segmentfault-search (2026-11-14T04:07:52.419738+00:00): [typescript](https://segmentfault.com/t/typescript)
-- segmentfault-search (2026-11-14T04:07:52.419738+00:00): [ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
-- segmentfault-search (2026-11-14T04:07:52.420748+00:00): [OpenClaw 必装的 10 个 Skills，让你少躺 90% 以上的坑！！](https://segmentfault.com/a/1190000047666647)
-- segmentfault-search (2026-11-14T04:07:52.420748+00:00): [Keep_Improving](https://segmentfault.com/blog/keep_improving)
-- segmentfault-search (2026-11-14T04:07:52.420748+00:00): [self 与 Self](https://segmentfault.com/a/1190000044250449)
+- clawhub-popular-skill (2026-10-22T12:42:06.676000+00:00): [Popular Clawhub skill demand: self-improving agent has 495,374 downloads](https://clawhub.ai/skills/self-improving-agent)
+- clawhub-popular-skill (2026-05-18T03:54:46.067000+00:00): [Popular Clawhub skill demand: Proactive Agent has 180,802 downloads](https://clawhub.ai/skills/proactive-agent)
+- clawhub-popular-skill (2026-05-11T09:25:56.797000+00:00): [Popular Clawhub skill demand: Self-Improving + Proactive Agent has 216,067 downloads](https://clawhub.ai/skills/self-improving)
+- clawhub-popular-skill (2026-05-17T03:07:05.295000+00:00): [Popular Clawhub skill demand: Skill Creator has 105,301 downloads](https://clawhub.ai/skills/skill-creator)
+- hacker-news-ask-hn (2026-11-24T13:15:18+00:00): [Ask HN: Would you be interested in contributing to open source software factory?](https://news.ycombinator.com/item?id=50627736)
+- segmentfault-search (2026-11-25T13:49:22.528741+00:00): [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
+- segmentfault-search (2026-11-25T13:49:22.528741+00:00): [javascript](https://segmentfault.com/t/javascript)
+- segmentfault-search (2026-11-25T13:49:22.528741+00:00): [typescript](https://segmentfault.com/t/typescript)
+- segmentfault-search (2026-11-25T13:49:22.528741+00:00): [ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
+- segmentfault-search (2026-11-25T13:49:22.528741+00:00): [OpenClaw 必装的 10 个 Skills，让你少躺 90% 以上的坑！！](https://segmentfault.com/a/1190000047666647)
+- segmentfault-search (2026-11-25T13:49:22.528741+00:00): [Keep_Improving](https://segmentfault.com/blog/keep_improving)
+- segmentfault-search (2026-11-25T13:49:22.528741+00:00): [self 与 Self](https://segmentfault.com/a/1190000044250449)
 
 ## How The Skill Meets The Requirement
 

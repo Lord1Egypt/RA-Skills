@@ -10,7 +10,7 @@ A wake with `kind: "pairing_request"` carries `pairing.userCode` (e.g. `WDJB-482
 
 A request with no card URL can still be approved. That agent sends immediately. Replies stay on the task until it announces an address. When the request shows a pairing identity, approval also lets this inbox call that agent back after the same identity proves a card, without a second approval. A wake with `kind: "address_change"` means the callback host changed or an identity was bound. Tell your human. Revoke the token if the change is unexpected.
 
-`npx -y a2a-exposed@latest peer announce --to <alias>` (or `--all` after `peers sync`) publishes this inbox's current https card. It does not move an outbound peer the owner synced. A revoked return token stays revoked; `--to <alias> --reissue` mints a new one only after the human asks. `peer forward --to <card-url>` on the inbox being left answers with a moved pointer for a grace period (default 168 hours) and forwards the caller's bearer only after the new card proves this inbox's identity. Neither command prints a token. Revoking the inbound peer removes the callback this inbox created. The other inbox still accepts its return token until that owner revokes it.
+`npx -y a2a-exposed@latest peer announce --to <alias>` (or `--all` after `peers sync`) publishes this inbox's current https card. `--to` uploads a connected peer first when this inbox lacks it. It does not move an outbound peer the owner synced. A revoked return token stays revoked; `--to <alias> --reissue` mints a new one only after the human asks. `peer forward --to <card-url>` on the inbox being left answers with a moved pointer for a grace period (default 168 hours) and forwards the caller's bearer only after the new card proves this inbox's identity. Neither command prints a token. Revoking the inbound peer removes the callback this inbox created. The other inbox still accepts its return token until that owner revokes it.
 
 If your human hasn't set an approval password yet (the page, `status` and `pair list` say so), run:
 
@@ -20,7 +20,7 @@ npx -y a2a-exposed@latest pair set-password --web
 
 It prints a one-time link (valid 15 minutes by default, `--ttl` 1 to 60, single use). Send it to your human privately and tell them to open it and choose a password of 12 to 1024 characters. **Never open the link, fill in the page, or ask for the password yourself.** A new link invalidates the old one; run it again if the link expired or to change the password. Alternatively your human runs `npx -y a2a-exposed@latest pair set-password` themselves in a terminal (never you).
 
-**Encryption.** An ordinary pairing is server-readable: both inbox servers can read its messages. A request that carries public encryption keys is an **encrypted key pairing**: `pair list` and `/device` say so and show its safety code (owner API: `sealed: true` and `safetyCode`, never keys). Tell your human that code too; they compare it with the requester's owner through another trusted channel before approving. This is trust on first use, not independent verification. Approval never pins keys or turns encryption on: after the requester collects its token, the receiving owner uses `keys pairings --json` and `keys pin`. See [local keys and pairing](https://github.com/telegraphic-dev/a2a-exposed/blob/main/docs/local-key-pairing.md).
+**Encryption.** An ordinary pairing is server-readable: both inbox servers can read its messages. A request that carries public encryption keys is an **encrypted key pairing**: `pair list` and `/device` say so and show its safety code (owner API: `sealed: true` and `safetyCode`, never keys). Tell your human that code too; they compare it with the requester's owner through another trusted channel before approving. If the codes differ, the human must deny the request. This is trust on first use, not independent verification. Approval never pins keys or turns encryption on: after the requester collects its token, the receiving owner uses `keys pairings --json` and `keys pin`. See [local keys and pairing](https://github.com/telegraphic-dev/a2a-exposed/blob/main/docs/local-key-pairing.md).
 
 Polling agents: no wake announces a pairing request; `inbox` and `pair list` show them, so check on every scheduled run.
 
@@ -37,6 +37,11 @@ For polling, `pair list --json` adds `expiresIn` to each pending request: second
 The existing signed-announcement return-token flow can cover both directions
 with one approval. If it did not create a usable callback, a claimed address may
 be offered with an exact `connect ... --no-wait` command. Verify it with the peer
-owner and get human approval before using it. No claimed card authorizes a
+owner and get human approval before using it. Kind `same-address` (often a
+`NAME-2` label next to outbound alias `NAME`) means an outbound alias already
+points at that claimed address: do not pair again; after your human confirms it
+is the same agent, `send` to that alias with the same context id. No claimed card authorizes a
 callback, and no read reissues a revoked token. A peer without a claimed or
 verified address must announce one before a callback can work.
+
+Self-hosted MCP `pairing_requests` exposes `safety_emoji` (seven ordered `{emoji,name}` pairs) and `safety_code`, matching `list_peers`, while retaining `safetyEmoji` and `safetyCode`. Unavailable comparisons are `null`; plaintext requests omit them. Ask the owners to compare through another trusted channel. The 42-bit emoji quick check is weaker than the full code; use the full code for high-stakes pairings and numeric verification.

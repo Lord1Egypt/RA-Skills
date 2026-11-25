@@ -1,6 +1,6 @@
 ## Description:
 
-Huawei Cloud LTS Log Inspector helps agents analyze log traffic, inspect collection health, retrieve concise log context, and manage scoped OBS transfer tasks for batch log export.
+Analyzes Huawei Cloud LTS traffic and collection health, retrieves bounded log context, and manages scoped OBS transfers for batch export.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,53 +14,46 @@ MIT-0
 
 ## Use Case:
 
-Developers, operators, and cloud support engineers use this skill to troubleshoot Huawei Cloud LTS traffic surges, collection outages, log flooding, and targeted historical log export workflows.
+Cloud operations engineers use the skill to investigate LTS traffic changes, retrieve relevant log context, and check host collection status. For scoped batch exports, it can create and monitor OBS transfer tasks after a cost warning and user confirmation.
 
 ### Deployment Geography for Use:
 
-Global where Huawei Cloud LTS and OBS services are available.
+Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill can expose or act on cloud log data from the wrong Huawei Cloud account or region.
+Risk: An OBS transfer can create ongoing log copies and incur LTS transfer and OBS storage charges.
 
-Mitigation: Verify the active hcloud profile, target account, and region before running reports or transfer operations.
+Mitigation: Warn about potential charges, confirm the log group, stream, destination, and transfer scope before creating a task, and require clear confirmation before deleting a transfer.
 
-Risk: OBS transfer creation or deletion can incur cost, alter export configuration, or affect stored log exports.
+Risk: The downloaded hcloud installer may access local files and credentials.
 
-Mitigation: Use read-only IAM permissions unless export management is required, and require explicit confirmation before CreateTransfer or DeleteTransfer.
-
-Risk: Batch export can create excessive storage or transfer volume if scope is too broad.
-
-Mitigation: Require a specific log group and log stream, show the cost and storage warning before execution, and avoid bulk export of all logs.
-
-Risk: Large or sensitive log context output can be difficult to review safely.
-
-Mitigation: Return concise context fragments within the documented size limits and avoid full-log dumps in diagnostic output.
+Mitigation: Review the installer source and verify its integrity before running it.
 
 ## Reference(s):
 
-- [hcloud CLI Installation Guide](artifact/references/cli-installation-guide.md)
-- [IAM Policies for LTS Log Inspector](artifact/references/iam-policies.md)
-- [Verification Method](artifact/references/verification-method.md)
-- [LTS API Command Quick Reference](artifact/references/lts-api-reference.md)
-- [Acceptance Criteria](artifact/references/acceptance-criteria.md)
-- [Data Flow Diagram](artifact/references/dataflow-diagram.md)
-- [Huawei Cloud hcloud CLI Installer](https://hwcloudcli.obs.cn-north-1.myhuaweicloud.com/cli/latest/hcloud_install.sh)
+- [ClawHub release page](https://clawhub.ai/huaweicloudskill/skills/huawei-cloud-lts-log-inspector)
+- [hcloud CLI installation guide](references/cli-installation-guide.md)
+- [LTS IAM policies](references/iam-policies.md)
+- [LTS API command reference](references/lts-api-reference.md)
+- [Verification method](references/verification-method.md)
+- [Data flow diagram](references/dataflow-diagram.md)
+- [Acceptance criteria](references/acceptance-criteria.md)
+- [Huawei Cloud hcloud CLI installer](https://hwcloudcli.obs.cn-north-1.myhuaweicloud.com/cli/latest/hcloud_install.sh)
 
 ## Skill Output:
 
-**Output Type(s):** [guidance, markdown, shell commands, configuration]
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-**Output Format:** [Markdown with inline hcloud CLI commands and structured diagnostic checklists]
+**Output Format:** [Markdown diagnostic reports and concise log fragments, with shell command examples and configuration guidance.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Context log fragments are bounded by documented before/after limits, and OBS transfer actions require confirmation.]
+**Other Properties Related to Output:** [Log context is bounded to at most 500 lines before and after a target. OBS exports require a specific log group and stream; bulk export of all logs is not supported.]
 
 ## Skill Version(s):
 
-1.0.1 (source: server release evidence)
+1.0.2 (source: server release metadata)
 
 ## Ethical Considerations:
 

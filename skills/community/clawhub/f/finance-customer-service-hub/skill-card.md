@@ -1,6 +1,6 @@
 ## Description:
 
-Provides financial institutions with frameworks for unified knowledge bases, intelligent routing, omnichannel service standards, compliance checks, ticketing, and service metrics across banking, insurance, securities, and funds.
+AI-powered unified customer service hub for financial industry — unified knowledge base governance, intelligent routing rules, omnichannel service standards, smart-service compliance checks, ticketing and quality metrics across banking/insurance/securities/fund lines. Scope: designing and operating a customer-service centre framework; scripts are drafts requiring business and compliance review.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,43 +14,44 @@ MIT-0
 
 ## Use Case:
 
-Financial customer-service product, operations, and compliance teams can use this skill to draft cross-business knowledge structures, routing rules, service standards, ticket workflows, and quality metrics. Treat scripts and regulatory summaries as drafts for qualified business and compliance review.
+Financial-sector customer-service platform designers, product and operations teams, and service leads use this skill to draft cross-line knowledge-base structures, routing and human-handoff rules, omnichannel standards, ticket workflows, compliance review checklists, and service quality measures. Treat suggested scripts and operational thresholds as draft references and obtain qualified business and compliance review before use.
 
 ### Deployment Geography for Use:
 
-China
+Global
 
 ## Known Risks and Mitigations:
 
-Risk: Security review was partial because the manifest frontmatter was malformed and a local reference could not be resolved.
+Risk: The security review was partial, so its benign verdict does not establish that every part of the artifact is safe.
 
-Mitigation: Confirm what the unresolved reference concerns and review the source before installation, as advised by the security evidence.
+Mitigation: Review the artifact and install it only when its publisher and intended use are trusted.
 
-Risk: Regulatory summaries, service targets, and draft response guidance may be outdated or unsuitable for a particular institution.
+Risk: Customer conversations, identity details, account information, or unmasked tickets could expose sensitive personal or financial data.
 
-Mitigation: Check current official sources and obtain qualified business and compliance review before using externally.
+Mitigation: Use only necessary inputs and masked or rewritten examples; do not include real customer records in prompts or drafts.
 
-Risk: Real customer records or identifiers could expose sensitive personal or financial information during drafting.
+Risk: Financial-service scripts, regulatory summaries, thresholds, or routing criteria may be outdated or unsuitable for a specific institution.
 
-Mitigation: Use only necessary, masked examples; do not include customer conversations, identifiers, contact details, or account balances.
+Mitigation: Check current authoritative sources and have qualified business and compliance staff review drafts before operational or external use.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/gechengling/skills/finance-customer-service-hub)
+- [Finance Customer Service Hub on ClawHub](https://clawhub.ai/gechengling/skills/finance-customer-service-hub)
+- [Publisher profile on ClawHub](https://clawhub.ai/user/gechengling)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+**Output Type(s):** [Guidance, Markdown, Configuration, Code]
 
-**Output Format:** [Markdown with tables and illustrative Python snippets]
+**Output Format:** [Markdown prose and tables, with optional Python-like pseudocode and reusable framework templates]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Draft frameworks, rules, checklists, and metrics for human review; examples do not connect to customer-service systems.]
+**Other Properties Related to Output:** [Draft knowledge-base structures, routing rules, service standards, ticket classifications, review checklists, metrics, and script outlines; requires appropriate business and compliance review before operational or external use.]
 
 ## Skill Version(s):
 
-3.0.4 (source: frontmatter; server release metadata)
+3.0.5 (source: frontmatter)
 
 ## Ethical Considerations:
 

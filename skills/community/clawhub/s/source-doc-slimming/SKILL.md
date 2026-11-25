@@ -5,7 +5,13 @@ description_zh: "把过大的「必读」源文件瘦身——叙事外置 + 留
 description_en: "Slim an oversized always-read source doc without losing content"
 disable: false
 agent_created: true
-version: "1.0.0"
+version: "1.0.1"
+allowed-tools:
+  - Read
+metadata:
+  openclaw:
+    permissions:
+      - file_read
 ---
 
 # Source-document slimming

@@ -1,0 +1,8 @@
+{
+  "status": "needs_material",
+  "missing": [
+    "shots[1].id（镜头编号）",
+    "shots[2]（画面信息：character/prop/lighting/space/description/visual）"
+  ],
+  "issues": []
+}

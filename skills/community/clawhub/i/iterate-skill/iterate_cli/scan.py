@@ -536,4 +536,7 @@ def render_scan(data: dict[str, Any], json_output: bool = False) -> int:
         "`iterate config set <key> <value>`."
     )
     tui.hint("Machine-readable: `iterate scan --json`")
+    tui.hint(
+        "Compare these suggestions with your config: `iterate scan --compare`"
+    )
     return 0

@@ -99,7 +99,7 @@ for c in cands[:3]:
 
 ## 6. Plain-text reference lists & formatted output (v4.0.0)
 
-> 纯文本参考文献表解析 + 四种引文格式排版输出（GB/T/Vancouver/APA/AMA）+ BibTeX/RIS/CSL 导出。
+> 纯文本参考文献表解析 + 七种引文格式排版输出（GB/T 7714 数字与著者-年份 / Vancouver / APA / AMA / Harvard / Chicago）+ BibTeX/RIS/CSL 导出。
 
 ```python
 entries, issues = vp.parse_plaintext_references("refs_list.txt")

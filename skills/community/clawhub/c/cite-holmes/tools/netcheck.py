@@ -60,9 +60,20 @@ def run_engine(refs, out_prefix, timeout=420):
     with open(refs_path, "w", encoding="utf-8") as f:
         json.dump(refs, f, ensure_ascii=False)
     p = subprocess.run(
-        [sys.executable, ENGINE, "--refs", refs_path,
-         "--out", out_prefix + ".md", "--interval", "1.5"],
-        capture_output=True, text=True, timeout=timeout)
+        [
+            sys.executable,
+            ENGINE,
+            "--refs",
+            refs_path,
+            "--out",
+            out_prefix + ".md",
+            "--interval",
+            "1.5",
+        ],
+        capture_output=True,
+        text=True,
+        timeout=timeout,
+    )
     doc = json.load(open(out_prefix + ".json", encoding="utf-8"))
     return doc["results"], p.returncode
 
@@ -71,17 +82,49 @@ def n1_probes():
     """八注册库探针（可达性，≥6 通即过——单库抖动属诚实态）。"""
     probes = [
         ("DOI.org", "https://doi.org/10.1542/peds.2006-2223", 302, 404),
-        ("Crossref", "https://api.crossref.org/works/10.1542/peds.2006-2223", 200,),
-        ("E-utilities", "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmode=json&retmax=1&term=bronchiolitis", 200,),
-        ("arXiv", "https://export.arxiv.org/api/query?search_query=all:electron&id_list=2005.00001&max_results=1", 200,),
-        ("OpenAlex", "https://api.openalex.org/works?search=bronchiolitis&per-page=1", 200,),
-        ("Semantic Scholar", "https://api.semanticscholar.org/graph/v1/paper/DOI:10.1542/peds.2006-2223?fields=title", 200, 429),
-        ("Unpaywall", "https://api.unpaywall.org/v2/10.1542/peds.2006-2223?email=netcheck@docsor.cn", 200, 404),
+        (
+            "Crossref",
+            "https://api.crossref.org/works/10.1542/peds.2006-2223",
+            200,
+        ),
+        (
+            "E-utilities",
+            "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmode=json&retmax=1&term=bronchiolitis",
+            200,
+        ),
+        (
+            "arXiv",
+            "https://export.arxiv.org/api/query?search_query=all:electron&id_list=2005.00001&max_results=1",
+            200,
+        ),
+        (
+            "OpenAlex",
+            "https://api.openalex.org/works?search=bronchiolitis&per-page=1",
+            200,
+        ),
+        (
+            "Semantic Scholar",
+            "https://api.semanticscholar.org/graph/v1/paper/DOI:10.1542/peds.2006-2223?fields=title",
+            200,
+            429,
+        ),
+        (
+            "Unpaywall",
+            "https://api.unpaywall.org/v2/10.1542/peds.2006-2223?email=netcheck@docsor.cn",
+            200,
+            404,
+        ),
         # M1 闸门：Cloudflare TLS1.3 指纹类 CDN 站（OpenSSL 3.0.13 交互实测
         # 对此类站 TLS 握手超时——引擎 TLS1.2 降级重试的靶面，403 反爬也算通）
-        ("Cloudflare CDN", "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills", 200, 403),
+        (
+            "Cloudflare CDN",
+            "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills",
+            200,
+            403,
+        ),
     ]
     ok, names = 0, []
+
     class _NoRedirect(urllib.request.HTTPRedirectHandler):
         def redirect_request(self, req, fp, code, msg, headers, newurl):
             return None
@@ -110,15 +153,33 @@ def n2_pubmed_ring(td, n=4):
     invalid，判定力活证据；真网圆环测的是通路稳定性，夹具必须诚实。）"""
     try:
         q = urllib.parse.urlencode(
-            {"db": "pubmed", "retmode": "json", "retmax": n,
-             "term": "bronchiolitis infants[MeSH Terms]", "sort": "date"})
-        ids = [x for x in (http_json(
-            "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?" + q)
-            .get("esearchresult", {}).get("idlist") or []) if x]
+            {
+                "db": "pubmed",
+                "retmode": "json",
+                "retmax": n,
+                "term": "bronchiolitis infants[MeSH Terms]",
+                "sort": "date",
+            }
+        )
+        ids = [
+            x
+            for x in (
+                http_json("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?" + q)
+                .get("esearchresult", {})
+                .get("idlist")
+                or []
+            )
+            if x
+        ]
         time.sleep(0.5)
-        sm = (http_json("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
-                        "esummary.fcgi?db=pubmed&id=" + ",".join(ids) +
-                        "&retmode=json").get("result", {}) if ids else {})
+        sm = (
+            http_json(
+                "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
+                "esummary.fcgi?db=pubmed&id=" + ",".join(ids) + "&retmode=json"
+            ).get("result", {})
+            if ids
+            else {}
+        )
     except Exception as e:
         return None, f"E-utilities 拉取异常: {type(e).__name__}"
     refs = []
@@ -128,8 +189,7 @@ def n2_pubmed_ring(td, n=4):
         src_j = item.get("fulljournalname") or item.get("source") or ""
         y = item.get("pubdate", "")[:4]
         if t and src_j and y.isdigit():
-            refs.append({"title": t, "pmid": pid, "source": src_j,
-                         "year": int(y)})
+            refs.append({"title": t, "pmid": pid, "source": src_j, "year": int(y)})
     if not refs:
         return None, "esummary 无可用登记记录"
     results, rc = run_engine(refs, os.path.join(td, "n2"))
@@ -143,16 +203,22 @@ def n3_crossref_ring(td, n=4):
     """Crossref 实时圆环：最新 DOI（登记题名原样）→ 引擎零 invalid。"""
     try:
         q = urllib.parse.urlencode(
-            {"query.bibliographic": "bronchiolitis", "rows": n,
-             "sort": "created", "select": "DOI,title,issued"})
-        items = (http_json("https://api.crossref.org/works?" + q)
-                 .get("message", {}).get("items") or [])
+            {
+                "query.bibliographic": "bronchiolitis",
+                "rows": n,
+                "sort": "created",
+                "select": "DOI,title,issued",
+            }
+        )
+        items = (
+            http_json("https://api.crossref.org/works?" + q).get("message", {}).get("items") or []
+        )
     except Exception as e:
         return None, f"Crossref 拉取异常: {type(e).__name__}"
     refs = []
     for i, it in enumerate(items, 1):
         title = (it.get("title") or [""])[0]
-        year = ((it.get("issued", {}).get("date-parts") or [[None]])[0][0])
+        year = (it.get("issued", {}).get("date-parts") or [[None]])[0][0]
         refs.append({"title": title, "doi": it.get("DOI"), "year": year})
     refs = [r for r in refs if r["title"] and r["doi"]]
     if not refs:
@@ -170,11 +236,14 @@ def n5_cross_registry():
     诚实边界：任一库不可达=SKIP（环境态），不伪装通过；三库齐才可比。"""
     import difflib
     import re as _re
+
     doi, pmid = "10.1542/peds.2006-2223", "17015575"
     titles = {"Crossref": "", "OpenAlex": "", "PubMed": ""}
     try:
-        t = (http_json(f"https://api.crossref.org/works/{doi}").get("message", {})
-             .get("title") or [""])[0]
+        t = (
+            http_json(f"https://api.crossref.org/works/{doi}").get("message", {}).get("title")
+            or [""]
+        )[0]
         if t:
             titles["Crossref"] = t
     except Exception as e:
@@ -186,9 +255,14 @@ def n5_cross_registry():
     except Exception as e:
         print(f"  [N5] OpenAlex 不可达: {type(e).__name__}")
     try:
-        sm = http_json("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
-                       "esummary.fcgi?db=pubmed&id=" + pmid + "&retmode=json"
-                       ).get("result", {}).get(pmid, {})
+        sm = (
+            http_json(
+                "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
+                "esummary.fcgi?db=pubmed&id=" + pmid + "&retmode=json"
+            )
+            .get("result", {})
+            .get(pmid, {})
+        )
         titles["PubMed"] = sm.get("title", "")
     except Exception as e:
         print(f"  [N5] PubMed 不可达: {type(e).__name__}")
@@ -197,10 +271,11 @@ def n5_cross_registry():
         missing = sorted(set(titles) - set(got))
         return None, f"SKIP（{'/'.join(missing)} 不可达——三库齐才可比）"
     norm = lambda s: _re.sub(r"[^a-z0-9]+", " ", s.lower()).strip()
-    pairs = [("Crossref", "OpenAlex"), ("Crossref", "PubMed"),
-             ("OpenAlex", "PubMed")]
-    ratios = {f"{a}~{b}": round(difflib.SequenceMatcher(
-        None, norm(got[a]), norm(got[b])).ratio(), 3) for a, b in pairs}
+    pairs = [("Crossref", "OpenAlex"), ("Crossref", "PubMed"), ("OpenAlex", "PubMed")]
+    ratios = {
+        f"{a}~{b}": round(difflib.SequenceMatcher(None, norm(got[a]), norm(got[b])).ratio(), 3)
+        for a, b in pairs
+    }
     return ratios, got["Crossref"]
 
 
@@ -208,18 +283,34 @@ def n4_mines(td):
     """埋雷矩阵：4 雷（全部应非 verified，其中编造 DOI/拼接应 invalid）
     +2 条真引用（零误伤）。真引用=#1-#2（真网核验过的稳定公开论文）。"""
     refs = [
-        {"title": "Comparative Efficacy of Bronchiolitis Interventions in Acute Care: A Network Meta-analysis",
-         "doi": "10.1542/peds.2020-040816", "year": 2021},
-        {"title": "Clinical practice guideline: the diagnosis, management, and prevention of bronchiolitis",
-         "doi": "10.1542/peds.2014-2742", "year": 2014},
-        {"title": "Comparative Efficacy of Bronchiolitis Interventions in Acute Care: A Network Meta-analysis",
-         "doi": "10.1038/s41586-026-77777-a", "year": 2021},   # 雷：真题名配假 DOI
-        {"title": "A fabricated study of citation integrity in agents",
-         "doi": "10.1038/s41586-026-99999-x", "year": 2026},   # 雷：编造 DOI
-        {"title": "A survey of arxiv preprint quality control methods",
-         "arxiv": "2601.99999"},                                # 雷：假 arXiv
-        {"title": "Hallucinated citations are polluting the scientific literature",
-         "url": "https://example.invalid/dead-link-probe-6f3a"},  # 雷：死链域
+        {
+            "title": "Comparative Efficacy of Bronchiolitis Interventions in Acute Care: A Network Meta-analysis",
+            "doi": "10.1542/peds.2020-040816",
+            "year": 2021,
+        },
+        {
+            "title": "Clinical practice guideline: the diagnosis, management, and prevention of bronchiolitis",
+            "doi": "10.1542/peds.2014-2742",
+            "year": 2014,
+        },
+        {
+            "title": "Comparative Efficacy of Bronchiolitis Interventions in Acute Care: A Network Meta-analysis",
+            "doi": "10.1038/s41586-026-77777-a",
+            "year": 2021,
+        },  # 雷：真题名配假 DOI
+        {
+            "title": "A fabricated study of citation integrity in agents",
+            "doi": "10.1038/s41586-026-99999-x",
+            "year": 2026,
+        },  # 雷：编造 DOI
+        {
+            "title": "A survey of arxiv preprint quality control methods",
+            "arxiv": "2601.99999",
+        },  # 雷：假 arXiv
+        {
+            "title": "Hallucinated citations are polluting the scientific literature",
+            "url": "https://example.invalid/dead-link-probe-6f3a",
+        },  # 雷：死链域
     ]
     try:
         results, rc = run_engine(refs, os.path.join(td, "n4"))
@@ -233,8 +324,7 @@ def n4_mines(td):
 
 def main():
     ap = argparse.ArgumentParser(description="cite-holmes 真网稳定性自检")
-    ap.add_argument("--quick", action="store_true",
-                    help="快档：注册库探针+埋雷矩阵（跳过圆环）")
+    ap.add_argument("--quick", action="store_true", help="快档：注册库探针+埋雷矩阵（跳过圆环）")
     args = ap.parse_args()
     print(f"cite-holmes netcheck（真网稳定性自检）——{SK}")
     with tempfile.TemporaryDirectory() as td:
@@ -247,17 +337,20 @@ def main():
                 PASS.append("N2 SKIP")
             else:
                 vs = [r["verdict"] for r in res]
-                check(f"N2 PubMed 实时圆环全 verified（{len(res)} 条）",
-                      all(v == "verified" for v in vs), f"实测 {vs}")
+                check(
+                    f"N2 PubMed 实时圆环全 verified（{len(res)} 条）",
+                    all(v == "verified" for v in vs),
+                    f"实测 {vs}",
+                )
             res, err = n3_crossref_ring(td)
             if res is None:
                 check("N3 Crossref 圆环（环境跳过）", True, "SKIP: " + str(err))
                 PASS.append("N3 SKIP")
             else:
-                bad = [(r["index"], r["verdict"]) for r in res
-                       if r["verdict"] == "invalid"]
-                check(f"N3 Crossref 实时圆环零 invalid（{len(res)} 条）",
-                      not bad, f"invalid: {bad}")
+                bad = [(r["index"], r["verdict"]) for r in res if r["verdict"] == "invalid"]
+                check(
+                    f"N3 Crossref 实时圆环零 invalid（{len(res)} 条）", not bad, f"invalid: {bad}"
+                )
             # F60：跨注册库一致性（三库登记题名归一互比，库间不一致=引擎
             # 多库元数据交叉的输入面失真信号；任一库不可达=SKIP 诚实）
             ratios, err = n5_cross_registry()
@@ -266,8 +359,9 @@ def main():
                 PASS.append("N5 SKIP")
             else:
                 worst = min(ratios.values())
-                check(f"N5 三库登记题名一致（最低相似度 {worst}）",
-                      worst >= 0.85, f"逐对: {ratios}")
+                check(
+                    f"N5 三库登记题名一致（最低相似度 {worst}）", worst >= 0.85, f"逐对: {ratios}"
+                )
         res, rc = n4_mines(td)
         if res is None:
             check("N4 埋雷矩阵（引擎调用失败）", False, str(rc))
@@ -275,22 +369,26 @@ def main():
             return 1
         by_idx = {r["index"]: r for r in res}
         mines = (3, 4, 5, 6)
-        mines_ok = all(by_idx[i]["verdict"] != "verified" for i in mines
-                       if i in by_idx)
-        hard = [i for i in (3, 4) if i in by_idx
-                and by_idx[i]["verdict"] == "invalid"]
-        clean_ok = all(by_idx[i]["verdict"] != "invalid" for i in (1, 2)
-                       if i in by_idx)
-        check("N4 埋雷全落网（4 雷全非 verified）", mines_ok,
-              str({i: by_idx.get(i, {}).get("verdict") for i in mines}))
-        check("N4 编造 DOI+错配 DOI 实锤 invalid", len(hard) == 2,
-              f"实锤 {hard}")
-        check("N4 真引用零误伤（2 条非 invalid）", clean_ok,
-              str({i: by_idx.get(i, {}).get("verdict") for i in (1, 2)}))
+        mines_ok = all(by_idx[i]["verdict"] != "verified" for i in mines if i in by_idx)
+        hard = [i for i in (3, 4) if i in by_idx and by_idx[i]["verdict"] == "invalid"]
+        clean_ok = all(by_idx[i]["verdict"] != "invalid" for i in (1, 2) if i in by_idx)
+        check(
+            "N4 埋雷全落网（4 雷全非 verified）",
+            mines_ok,
+            str({i: by_idx.get(i, {}).get("verdict") for i in mines}),
+        )
+        check("N4 编造 DOI+错配 DOI 实锤 invalid", len(hard) == 2, f"实锤 {hard}")
+        check(
+            "N4 真引用零误伤（2 条非 invalid）",
+            clean_ok,
+            str({i: by_idx.get(i, {}).get("verdict") for i in (1, 2)}),
+        )
     n_fail = len(FAIL)
     n_skip = sum(1 for p in PASS if "SKIP" in p)
-    print(f"\n汇总: {len(PASS) - n_skip} PASS / {n_fail} FAIL"
-          + (f" / {n_skip} SKIP（环境跳过，不计入通过）" if n_skip else ""))
+    print(
+        f"\n汇总: {len(PASS) - n_skip} PASS / {n_fail} FAIL"
+        + (f" / {n_skip} SKIP（环境跳过，不计入通过）" if n_skip else "")
+    )
     if n_fail:
         for f in FAIL:
             print(f"  FAIL: {f}")

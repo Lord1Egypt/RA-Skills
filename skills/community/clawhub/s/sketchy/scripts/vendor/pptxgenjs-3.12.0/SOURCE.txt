@@ -1,0 +1,7 @@
+PptxGenJS 3.12.0, browser bundle (pptxgen.bundle.js), unmodified.
+Source:   https://registry.npmjs.org/pptxgenjs/-/pptxgenjs-3.12.0.tgz  (dist/pptxgen.bundle.js)
+Integrity of the tarball (npm): sha512-ZozkYKWb1MoPR4ucw3/aFYlHkVIJxo9czikEclcUVnS4Iw/M+r+TEwdlB3fyAWO9JY1USxJDt0Y0/r15IR/RUA==
+SHA-256 of the bundle: cd078ca9e91c6f9e061ee0a3c310d6ff157c3a71b1dea7f40fd53818017266ff
+License:  MIT, Copyright (c) 2015-2022 Brent Ely (see LICENSE).
+The bundle also contains JSZip, used under its MIT option, and the permissively licensed packages JSZip depends on.
+Used by scripts/export-pptx.mjs, which loads it in Node without a network or an install.

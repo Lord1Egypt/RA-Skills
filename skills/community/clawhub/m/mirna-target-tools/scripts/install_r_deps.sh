@@ -5,14 +5,18 @@
 #   bash scripts/install_r_deps.sh --minimal   # required packages only
 #
 # Packages install into the user library (~/R/library), so no sudo is needed
-# once R itself is present. If R is missing we try conda/mamba first and then
-# print the system-package commands to run with sudo.
-set -u
+# once R itself is present. If R is missing we try conda/mamba first; if that
+# is unavailable we PRINT the system command instead of running sudo.
+set -euo pipefail
 
 MINIMAL=0
-[ "${1:-}" = "--minimal" ] && MINIMAL=1
+if [ "${1:-}" = "--minimal" ]; then MINIMAL=1; fi
 
 have() { command -v "$1" >/dev/null 2>&1; }
+
+REQUIRED=(ggplot2 dplyr stringr scales)
+OPTIONAL=(svglite ggrepel patchwork ggsci forcats)
+[ "${MINIMAL}" = "1" ] && OPTIONAL=()
 
 # ---- 1. R itself ----------------------------------------------------------
 if ! have Rscript; then
@@ -27,7 +31,8 @@ if ! have Rscript; then
       || echo "   mamba install failed - install R manually (see below)"
   else
     cat <<'EOF'
-No conda/mamba found. Install R with your system package manager, e.g.:
+No conda/mamba found. Install R with your system package manager (this script
+does not run sudo for you):
 
   Ubuntu/Debian : sudo apt-get update && sudo apt-get install -y r-base r-base-dev
   macOS (brew)  : brew install r
@@ -43,15 +48,11 @@ if ! have Rscript; then
   echo "R is still unavailable after the attempt - stopping." >&2
   exit 1
 fi
-echo "R found: $(Rscript -e 'cat(R.version.string)' 2>/dev/null)"
+echo "R found: $(Rscript --vanilla -e 'cat(R.version.string)' 2>/dev/null)"
 
 # ---- 2. R packages --------------------------------------------------------
-REQUIRED="ggplot2 dplyr stringr scales"
-OPTIONAL="svglite ggrepel patchwork ggsci forcats"
-[ "${MINIMAL}" = "1" ] && OPTIONAL=""
-
-echo "Installing R packages into: $(Rscript -e 'cat(.libPaths()[1])')"
-Rscript -e '
+echo "Installing R packages into: $(Rscript --vanilla -e 'cat(.libPaths()[1])')"
+Rscript --vanilla -e '
 pkg <- commandArgs(TRUE)
 repos <- c(CRAN = "https://cloud.r-project.org")
 missing <- setdiff(pkg, rownames(installed.packages()))
@@ -67,7 +68,7 @@ if (length(still)) {
   quit(status = 1)
 }
 cat("R plotting dependencies OK\n")
-' $REQUIRED $OPTIONAL
+' "${REQUIRED[@]}" "${OPTIONAL[@]}"
 
 echo
 echo "Done. Plotting engine: R (ggplot2)."

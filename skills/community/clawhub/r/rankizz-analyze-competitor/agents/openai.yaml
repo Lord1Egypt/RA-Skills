@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rankizz Competitor Analysis"
+  short_description: "Analyze one SEO competitor deeply"
+  default_prompt: "Use $rankizz-analyze-competitor to analyze this competitor's organic visibility and strategic gaps."

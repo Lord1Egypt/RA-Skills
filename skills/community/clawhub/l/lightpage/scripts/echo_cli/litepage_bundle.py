@@ -58,6 +58,12 @@ def bundle(source, preview=None):
             raise RuntimeError("Single-file publishing requires HTML, Markdown or TXT")
         suffix = source.suffix.lower()
         candidates = [("index" + (".html" if suffix == ".htm" else suffix), source)]
+        if suffix in {".html", ".htm"}:
+            agent = next(
+                (path for path in source.parent.iterdir() if path.name == "Agent.md"), None
+            )
+            if agent is not None:
+                candidates.append(("Agent.md", agent))
     else:
         # Traverse explicitly so excluded directories are never entered.
         pending = [source]
@@ -118,15 +124,24 @@ def bundle(source, preview=None):
         raise RuntimeError(
             "Provide a nonempty index.html, index.md or index.txt at the output root"
         )
-    if entry != "index.html":
-        if len(files[entry]) > 2 * 1024 * 1024:
+    documents = [entry] if entry != "index.html" else []
+    documents.extend(
+        name
+        for name in files
+        if PurePosixPath(name).name == "Agent.md"
+        and str(PurePosixPath(name).with_name("index.html")) in files
+    )
+    for name in documents:
+        if len(files[name]) > 2 * 1024 * 1024:
             raise RuntimeError("Markdown/TXT documents must not exceed 2 MiB")
         try:
-            text = files[entry].decode("utf-8")
+            text = files[name].decode("utf-8")
         except UnicodeDecodeError:
             raise RuntimeError("Use UTF-8 for Markdown/TXT documents") from None
         if "\x00" in text:
             raise RuntimeError("Markdown/TXT documents must not contain NUL")
+        if PurePosixPath(name).name == "Agent.md" and not text.strip():
+            raise RuntimeError("Agent.md must be nonempty")
     if preview is not None:
         from echo_cli.litepage_cover import cover
 

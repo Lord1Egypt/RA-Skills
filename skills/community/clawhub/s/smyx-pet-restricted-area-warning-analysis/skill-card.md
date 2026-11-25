@@ -1,6 +1,6 @@
 ## Description:
 
-Monitors restricted area intrusions, climbing on dining tables, and rummaging through trash cans, and issues real-time alerts, suitable for home pet monitoring scenarios.
+Analyzes pet monitoring images and videos for restricted-area entry, table climbing, and trash rummaging, and returns alerts and structured reports.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Pet owners can use the skill to review home monitoring videos for pets entering restricted areas, climbing on tables, or rummaging through trash, and receive alerts with a structured report. It also supports querying historical reports.
+Home pet owners use the skill to review monitoring footage for pets entering restricted areas, climbing onto tables, or rummaging through trash, and to receive alerts and structured reports.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review marked this release suspicious due to reported account and credential handling, unclear data sharing, and behavior that does not consistently match its pet-monitoring description.
+Risk: Household footage and activity may be exposed during video analysis or through cloud reports.
 
-Mitigation: Before installation, clarify why the skill handles accounts and credentials, what identity and media it sends to remote services, and whether those actions require consent; defer use until these concerns are resolved.
+Mitigation: Before submitting footage, confirm what data the analysis service receives and how reports are stored or shared.
+
+Risk: Account registration and credential sharing may create privacy and access-control concerns.
+
+Mitigation: Clarify why account and report features are needed, and avoid sharing credentials until these flows have been independently reviewed.
 
 ## Reference(s):
 
 - [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-pet-restricted-area-warning-analysis)
-- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [Skill usage introduction](https://lifeemergence.com/sample.html)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, json]
+**Output Type(s):** [Analysis, Text, JSON, Markdown]
 
-**Output Format:** [Structured JSON analysis reports and Markdown historical report lists]
+**Output Format:** [Structured text or JSON analysis reports; Markdown tables for report listings]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports may include behavior findings, alert details, suggestions, and report links.]
+**Other Properties Related to Output:** [Reports can include detected behavior counts, confidence values, alerts, and report links.]
 
 ## Skill Version(s):
 
-1.0.20 (source: server-resolved release metadata)
+1.0.22 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

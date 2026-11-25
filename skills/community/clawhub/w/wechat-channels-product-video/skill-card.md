@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Product sellers, small businesses, and creators use this skill to plan a vertical WeChat Channels showcase from an authorized product photo and user-confirmed facts, then prepare a title and publishing copy. Paid media generation proceeds only after the user confirms each proposed stage.
+Product marketers, small businesses, and creators use the skill to plan and prepare a concise vertical WeChat Channels showcase video from a real product photo and confirmed product facts, with a title and publishing copy.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,40 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates the skill suspicious for broad shared account access, persistent installation reporting, and uninstall actions beyond its stated video workflow; scan coverage is partial.
+Risk: Product photos are uploaded to the service for processing, which may expose private or sensitive image content.
 
-Mitigation: Review the reported account access, installation reporting, cleanup behavior, and unresolved referenced paths before installing, and proceed only if they match your expectations.
+Mitigation: Upload only photos you have permission to use and are comfortable sharing with the service; review the selected image before submitting it.
 
-Risk: Image and video generation stages consume credits.
+Risk: The security review flags automatic installation and runtime reporting as privacy concerns.
 
-Mitigation: Review and confirm each stage's inputs, route, settings, and live estimate before paid execution.
+Mitigation: Review the installation and reporting behavior before connecting the skill, and use its documented uninstall flow when you no longer need it.
+
+Risk: Shared full-scope credentials can increase the impact of credential or device exposure.
+
+Mitigation: Use a trusted device, keep the credential files restricted to your user account, and follow the documented disconnect process when retiring the device.
 
 ## Reference(s):
 
+- [Video channel planning](artifact/references/video-channel-planning.md)
+- [Video workflow](artifact/references/workflow.md)
+- [Updates and security](artifact/references/updates-and-security.md)
+- [Installation and authentication](artifact/references/installation-and-auth.md)
+- [Beatra skill page](https://beatra.ai/skills/wechat-channels-product-video)
 - [ClawHub release page](https://clawhub.ai/beatra-ai/skills/wechat-channels-product-video)
-- [Beatra skill homepage](https://beatra.ai/skills/wechat-channels-product-video)
-- [Video Channels product-display planning](references/video-channel-planning.md)
-- [Product video workflow](references/workflow.md)
-- [Updates and security](references/updates-and-security.md)
-- [MCP connection](references/mcp-connection.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Video, Text]
+**Output Type(s):** [Video, Text, Markdown]
 
-**Output Format:** [Vertical product showcase video with a title and publishing copy]
+**Output Format:** [Video artifact with a product-display plan, title, and publishing copy in text or Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [A product-led opening, one detail or use moment, and a clean ending; publishing claims are limited to user-confirmed facts.]
+**Other Properties Related to Output:** [A single vertical product showcase video; paid generation stages require confirmation before execution.]
 
 ## Skill Version(s):
 
-0.3.0 (source: server-resolved release)
+0.3.1 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

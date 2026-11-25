@@ -165,3 +165,46 @@ def test_caution_names_today(env):
                                     taken_at_utc=utc(local_dt(2, 30)).isoformat())])
     env.run(local_dt(8, 5))
     assert "You logged Metformin today at 2:30am." in env.sent()[0]
+
+
+# ── an undone log no longer counts (2026-11-03: stray "took both" undone) ─────
+
+def stray_then_undone(med_id, at_local_dt):
+    stray = event_store.new_event(med_id, "taken", utc(at_local_dt),
+                                  taken_at_utc=utc(at_local_dt).isoformat())
+    undo = event_store.new_event(med_id, "undone", utc(at_local_dt) + timedelta(seconds=18),
+                                 ref=stray["id"])
+    return [stray, undo]
+
+
+def tue_sat_med():
+    return make_med(frequency="weekly", times=["08:00"], day_of_week=["tue", "sat"])
+
+
+def test_reminder_has_no_caution_for_an_undone_log(env):
+    env.write(meds=[tue_sat_med()])
+    env.seed(stray_then_undone("med-001", local_dt(20, 17) - timedelta(days=1)))
+    env.run(local_dt(7, 55))
+    env.run(local_dt(8, 5))
+    assert env.sent_count("Reminder: Metformin") == 1
+    assert env.sent_count("You logged") == 0
+
+
+def test_confirm_is_not_refused_by_an_undone_log(env, capsys):
+    env.write(meds=[tue_sat_med()])
+    env.seed(stray_then_undone("med-001", local_dt(20, 17) - timedelta(days=1)))
+    handle_confirm("med-001", None, dry_run=False, clock=FakeClock(local_dt(11, 5)))
+    assert "Logged as your 8:00am dose." in capsys.readouterr().out
+
+
+def test_undo_only_cancels_the_log_it_names(env):
+    # a real dose before the undone one still triggers the double-log refusal
+    med = tue_sat_med()
+    env.write(meds=[med])
+    earlier = local_dt(19, 0) - timedelta(days=1)
+    real = event_store.new_event("med-001", "taken", utc(earlier),
+                                 taken_at_utc=utc(earlier).isoformat())
+    env.seed([real] + stray_then_undone("med-001", local_dt(20, 17) - timedelta(days=1)))
+    with pytest.raises(SystemExit) as e:
+        handle_confirm("med-001", None, dry_run=False, clock=FakeClock(local_dt(11, 5)))
+    assert e.value.code == EXIT_DUPLICATE

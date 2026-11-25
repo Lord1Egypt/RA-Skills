@@ -1,6 +1,6 @@
 ## Description:
 
-Drafts structured corporate bank credit analyses, ratings, facility recommendations, and credit memos from user-provided information.
+Drafts structured corporate credit analyses, rating assessments, and facility recommendations for bank credit memos.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,43 +14,40 @@ MIT-0
 
 ## Use Case:
 
-Bank credit officers, risk managers, and relationship managers use it to draft corporate lending analyses and credit memo reports from aggregated borrower information. Outputs are drafts for qualified human review and do not make final approval decisions.
+Bank credit officers, relationship managers, and risk reviewers can use it to draft paper credit analyses and memo sections from aggregated, redacted borrower information. Its rating and facility suggestions are reference drafts that need independent review by qualified staff.
 
 ### Deployment Geography for Use:
 
-Global
+China
 
 ## Known Risks and Mitigations:
 
-Risk: The security inspection was incomplete: the manifest could not be parsed and two references were unresolved, despite a benign verdict.
+Risk: Borrower, employee, or guarantor information could be exposed in a draft.
 
-Mitigation: Review the unresolved references and manifest, and assess the skill before installation; the benign verdict is not a safety guarantee.
+Mitigation: Provide aggregated financial summaries, redact company and personal identifiers, and leave sensitive source details for authorized in-bank review.
 
-Risk: Borrower materials may contain confidential business or personal information.
+Risk: Credit conclusions or regulatory and policy details may be inaccurate or out of date.
 
-Mitigation: Provide aggregated, anonymized summaries and keep raw statements, account records, names, and personal identifiers out of prompts and drafts.
-
-Risk: Draft ratings and facility recommendations could be mistaken for final credit decisions.
-
-Mitigation: Have qualified credit and risk staff independently verify the facts and analysis, record their review, and obtain approval from authorized decision makers.
+Mitigation: Check current facts against authoritative sources and require an independent review by qualified credit or risk staff before using a draft.
 
 ## Reference(s):
 
-- [Bank Credit Memo on ClawHub](https://clawhub.ai/gechengling/skills/bank-credit-memo)
+- [ClawHub release page](https://clawhub.ai/gechengling/skills/bank-credit-memo)
+- [Publisher profile](https://clawhub.ai/user/gechengling)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, Markdown, Guidance]
+**Output Type(s):** [Analysis, Guidance, Markdown]
 
-**Output Format:** [Structured Chinese or English Markdown credit analysis and memo drafts]
+**Output Format:** [Structured credit memo drafts and analysis tables in Simplified Chinese, or English or bilingual text when requested]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Draft content based on user-provided summaries; requires qualified human review before use in credit decisions.]
+**Other Properties Related to Output:** [Uses aggregated, redacted inputs; drafts require qualified human review and do not constitute approval decisions.]
 
 ## Skill Version(s):
 
-4.1.5 (source: frontmatter)
+4.1.6 (source: frontmatter; server release 4.1.6)
 
 ## Ethical Considerations:
 

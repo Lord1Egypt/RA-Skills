@@ -1,6 +1,6 @@
 ## Description:
 
-你最了解自己的数字分身。把自己蒸馏成六个思维面相，与更强的自己对话，获得辅助思考、扩展认知、解决问题的力量。
+Helps users distill their own thinking into six perspectives and use them for reflection, problem solving, and decision support.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-External users can use the skill to structure self-reflection and explore a decision through six complementary thinking perspectives. It provides conversational prompts and draft guidance for the user to review.
+Individuals use the skill to structure self-reflection and examine a personal question through six complementary perspectives. Its responses are prompts for the user to assess, not final decisions.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Installation guidance may leave the package version unpinned.
+Risk: The manual installation command may download an unpinned CLI.
 
-Mitigation: Before installing, pin the intended version and verify the publisher against the ClawHub release page.
+Mitigation: Verify the package and release before running the command.
 
-Risk: Personal reflections may contain sensitive information and are processed under the AI platform's retention practices.
+Risk: The security scan is partial because four referenced local files were not found.
 
-Mitigation: Share only details needed for the current question, remove credentials and identifying details, and use anonymized summaries for sensitive topics.
+Mitigation: Review the referenced files that were not covered before installing the skill.
+
+Risk: Personal reflections entered into the skill are processed by the AI platform, whose retention practices are outside the skill's control.
+
+Mitigation: Share only information needed for the current question, omit identifying or highly sensitive details, and use role labels for other people.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/gechengling/skills/prometheus-fire)
-- [Publisher profile](https://clawhub.ai/user/gechengling)
+- [Prometheus Fire on ClawHub](https://clawhub.ai/gechengling/skills/prometheus-fire)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Text, Markdown]
+**Output Type(s):** [Text, Guidance]
 
-**Output Format:** [Conversational text or Markdown]
+**Output Format:** [Conversational text with labeled perspectives and suggested reflection prompts]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Draft reflections, questions, and suggestions for user review; the skill does not itself save records or make decisions.]
+**Other Properties Related to Output:** [Responses are based on user-provided context; the skill declares no tool permissions and does not create files or take external actions.]
 
 ## Skill Version(s):
 
-3.1.5 (source: frontmatter, server release evidence)
+3.1.6 (source: release evidence and frontmatter)
 
 ## Ethical Considerations:
 

@@ -2,6 +2,10 @@
 
 Use for recordings, podcasts, interviews, generated speech, or spoken creative briefs. Follow the actual input and requested deliverable. A transcription-only request can go directly to [speech transcription](../capabilities/analysis/speech-transcription.md), without planning a video or generating new speech.
 
+To pair recordings/source speech with library visuals, narration, or avatars, continue through [Agent semantic mixcut](semantic-mixcut.md). Reuse real speech and transcript timing; the Agent selects pictures and defaults assembly to cloud. Narration can span multiple shots, with action sound routed separately. Picture changes do not require new speech or muting every original track.
+
+To find content in saved recordings/interviews, use [material reuse](../resources/materials.md) to search existing transcripts, retrieve selected audio and intervals, and listen at cut boundaries. Reuse sufficient text; material-segment times are not sentence/word subtitle evidence, so obtain ASR only when finer timing is needed. Find library images or footage for audio-led videos while retaining the original audio.
+
 ## Share one source and transcript
 
 Identify the adopted audio version. [Upload](../runtime/media-inputs.md) a local file or use an existing accessible URL; reuse an applicable saved transcript. After `transcribe_audio`, preserve its task ID, completed result, source, and adoption record. Normalize once with [transcript tools](../runtime/transcript-tools.md).

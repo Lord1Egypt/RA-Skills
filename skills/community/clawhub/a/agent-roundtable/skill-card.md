@@ -1,6 +1,6 @@
 ## Description:
 
-Multi-agent roundtable discussion — topic-driven multi-round debate with convergence detection and conclusion generation.
+Turn source materials into evidence-backed, actionable recommendations for important decisions and Code Review, using host-run professional roles where they improve the result.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agent operators use Agent Roundtable to coordinate multiple AI agents through structured design reviews, product decisions, root-cause analysis, requirements clarification, and architecture debates while preserving discussion history and generated conclusions.
+Developers, project owners, and teams use Roundtable to turn source materials into actionable recommendations for important decisions and structured code reviews. It helps compare options, surface evidence gaps and trade-offs, and keep recommendations separate from user approval.
 
 ### Deployment Geography for Use:
 
@@ -22,45 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The server security verdict is suspicious because web viewer and export features can expose local discussion data through broad file writes, a persistent network service, and viewer-side flaws.
+Risk: The scan has medium confidence and incomplete reference coverage; the skill also includes publishing and external notification guidance.
 
-Mitigation: Install only after trusting the publisher and reviewing the skill; enable web mode only on trusted machines and networks.
-
-Risk: Web mode can serve discussion data through a PM2-managed Node process.
-
-Mitigation: Prefer loopback-only binding, avoid sharing viewer URLs broadly, and manually clean up PM2 processes after use.
-
-Risk: Export paths can write discussion output outside the intended location if misconfigured.
-
-Mitigation: Use output_path values only inside an intended project output directory.
-
-Risk: Untrusted participant metadata may affect viewer-side display and sharing behavior.
-
-Mitigation: Avoid untrusted participant metadata and review generated discussion content before publishing or sharing.
+Mitigation: Before installing, review those workflows and confirm their destinations suit your needs.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/parsifalc/skills/agent-roundtable)
-- [Roundtable homepage](https://roundtable.izmw.me)
-- [README_EN.md](README_EN.md)
-- [API Reference](docs/API.md)
-- [Integration Guide](docs/INTEGRATION.md)
-- [Roundtable Adapter Guide](docs/ADAPTER.md)
-- [Roundtable Architecture](docs/architecture.md)
+- [Agent Roundtable on ClawHub](https://clawhub.ai/parsifalc/skills/agent-roundtable)
+- [Publisher profile](https://clawhub.ai/user/parsifalc)
+- [Roundtable project homepage](https://roundtable.izmw.me)
+- [Real-time Notifications Reference](references/notifications-example.md)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+**Output Type(s):** [Analysis, Guidance, Markdown]
 
-**Output Format:** [Markdown guidance with inline Python, YAML, shell, and JSON examples.]
+**Output Format:** [Evidence-backed recommendations and code review findings in concise Markdown or host-rendered reports]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May produce discussion records, structured summaries, notifications guidance, and conclusion text for the coordinating agent.]
+**Other Properties Related to Output:** [Grounded in supplied materials, with sources, trade-offs, uncertainties, and follow-up conditions made explicit]
 
 ## Skill Version(s):
 
-1.2.4 (source: server release metadata, SKILL.md frontmatter, pyproject.toml, package.json)
+2.2.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

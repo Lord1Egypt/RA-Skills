@@ -1,6 +1,6 @@
 ## Description:
 
-Helps agent users and skill teams adapt popular Tavily Search-style workflows into practical checklists, analyses, and implementation support.
+Helps AI-agent users, skill authors, and teams adapt popular Tavily Search-style workflows into practical processes for troubleshooting, safety hardening, reliability, and adjacent skill planning.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-AI-agent users, skill authors, maintainers, and teams use this skill to turn a practical need into a repeatable workflow, checklist, template, lightweight analysis, or implementation deliverable, then check it against the stated success criteria.
+AI-agent users, skill authors, maintainers, and teams use this skill to turn a practical business or operations need into a repeatable workflow, checklist, lightweight analysis, or requested artifact, then review it against the stated goals.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Broad activation words such as ‘search’ or ‘return’ may trigger the skill for unrelated requests.
+Risk: Broad activation terms may cause the skill to be considered for requests outside its intended workflow-planning scope.
 
-Mitigation: Check that the request matches this skill's business-planning workflow before using it; maintainers can narrow broad trigger terms.
+Mitigation: Review the skill's trigger terms and invoke it when the requested business or operations workflow fits its purpose.
 
 ## Reference(s):
 
 - [Requirement plan](references/requirement-plan.md)
-- [Tavily Search on ClawHub](https://clawhub.ai/skills/openclaw-tavily-search)
+- [Tavily Search on Clawhub](https://clawhub.ai/skills/openclaw-tavily-search)
+- [Skill release on Clawhub](https://clawhub.ai/kyro-ma/skills/business-operations-tavily-search-business-planner)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance, Analysis, Code, Configuration]
+**Output Type(s):** [Guidance, Analysis, Markdown, Code]
 
-**Output Format:** [Markdown, with checklists, templates, analysis, code, or configuration guidance as needed]
+**Output Format:** [Tailored guidance, workflows, checklists, lightweight analyses, or requested code artifacts]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Tailored to the user's inputs and may include a verification note and follow-up risks.]
+**Other Properties Related to Output:** [Adapted to the user's stated outcome, constraints, available inputs, and success criteria.]
 
 ## Skill Version(s):
 
-0.20261113.40335 (source: server-resolved release metadata)
+0.20261122.85829 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

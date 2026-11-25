@@ -1,0 +1,31 @@
+{
+  "name": "levermath",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "dev:ellipse": "vite --mode origami-ellipse",
+    "dev:norm": "vite --mode vector-p-norm",
+    "build": "bun run check && bun run fonts:template && vite build",
+    "build:ellipse": "bun run check && bun run fonts:ellipse && vite build --mode origami-ellipse",
+    "build:norm": "bun run check && bun run fonts:norm && vite build --mode vector-p-norm",
+    "fonts:template": "uv run --offline --with fonttools --with brotli python -I scripts/subset_fonts.py --target template",
+    "fonts:ellipse": "uv run --offline --with fonttools --with brotli python -I scripts/subset_fonts.py --target origami-ellipse",
+    "fonts:norm": "uv run --offline --with fonttools --with brotli python -I scripts/subset_fonts.py --target vector-p-norm",
+    "check": "tsc --noEmit",
+    "preview": "vite preview",
+    "figures": "bash scripts/build-figures.sh"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8",
+    "vite-plugin-singlefile": "^2.3.4"
+  },
+  "dependencies": {
+    "jsxgraph": "^1.14.3",
+    "katex": "^0.19.1"
+  }
+}

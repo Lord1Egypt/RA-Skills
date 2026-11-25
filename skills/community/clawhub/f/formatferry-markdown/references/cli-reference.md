@@ -15,9 +15,11 @@ Options:
                            reddit, confluence, rmarkdown, custom) (default:
                            "github")
   --url <url>              Fetch article from URL (requires FORMATFERRY_API_KEY)
+                           NETWORK: the URL is sent to the FormatFerry API and fetched server-side
   --batch <glob>           Batch convert files (requires FORMATFERRY_LICENSE_KEY)
   --output-dir <dir>       Output directory for batch mode
   --offline                Skip entitlement check (use cached or free tier)
+                           Local conversion makes no network calls with this flag; it does not affect --url
   --timeout <ms>           License server timeout in milliseconds (default: 2000)
   -h, --help               display help for command
 
@@ -39,6 +41,10 @@ Options:
   --logout               Remove stored credentials
   -h, --help             display help for command
 ```
+
+## Credential storage
+
+`formatferry auth --api-key` and `--license-key` save keys to the CLI's local config file, readable by your user account. Use the environment variables for one-off runs, and `formatferry auth --logout` to delete stored keys.
 
 ## Supported File Types
 

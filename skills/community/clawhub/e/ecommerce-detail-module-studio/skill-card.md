@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Ecommerce sellers and content teams use the skill to turn confirmed SKU details and product photos into a cohesive three-to-six-module product-page story and a layout handoff for Amazon A+ Content, Shopify, and other storefronts.
+External ecommerce sellers and product marketing teams use the skill to turn confirmed SKU facts and product photos into a sequenced set of product-detail or A+ visual modules, with a layout handoff for the target storefront or campaign.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,43 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The image workflow requires shared Beatra authorization that also covers audio, video, and voice management.
+Risk: The security review flags broad, undisclosed authorization permissions.
 
-Mitigation: Review and accept the broad authorization scope before connecting; use Beatra Console to revoke the shared credential when it is no longer needed.
+Mitigation: Review the requested access before authorizing; avoid installation until the permission scope is clarified or narrowed.
 
-Risk: Product photos are uploaded to Beatra, generation can incur charges, and installation metadata may be reported.
+Risk: The security review flags recurring installation data reporting.
 
-Mitigation: Upload only photos you are comfortable sharing with Beatra, review generation charges, and account for installation metadata reporting.
+Mitigation: Review the installation reporting behavior and its data scope before installing.
 
-Risk: Uninstall may preserve a shared connection for other skills or may mistakenly revoke it if local inventory records are malformed.
+Risk: The security review flags shared account cleanup behavior.
 
-Mitigation: Check whether other Beatra skills rely on the connection before uninstalling, and use Beatra Console for direct revocation when you need to control the shared credential.
+Mitigation: Check whether other Beatra skills share the account connection before uninstalling or disconnecting.
+
+Risk: Uploaded product images may contain information the seller does not intend to share.
+
+Mitigation: Review requested access and each image before uploading; use only a reviewed update command.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/beatra-ai/skills/ecommerce-detail-module-studio)
-- [Beatra skill page](https://beatra.ai/skills/ecommerce-detail-module-studio)
-- [Workflow guide](references/workflow.md)
-- [Tasks and results](references/tasks-and-results.md)
-- [Updates and security](references/updates-and-security.md)
+- [Beatra skill listing](https://clawhub.ai/beatra-ai/skills/ecommerce-detail-module-studio)
+- [Beatra product page](https://beatra.ai/skills/ecommerce-detail-module-studio)
+- [Module workflow](artifact/references/workflow.md)
+- [Updates and security](artifact/references/updates-and-security.md)
+- [Installation registration](artifact/references/installation-registration.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Text, Guidance]
+**Output Type(s):** [Images, Markdown, Guidance]
 
-**Output Format:** [Three to six coordinated ecommerce image modules with a written product story and layout guide]
+**Output Format:** [AI-generated image artifacts and a Markdown detail-page handoff]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Visuals are based on confirmed SKU facts and user-provided product photos.]
+**Other Properties Related to Output:** [Three to six ordered visual modules, each paired with its buyer question, supporting fact source, visual role, and placement notes.]
 
 ## Skill Version(s):
 
-0.2.3 (source: artifact/manifest.json, server release)
+0.2.5 (source: server release metadata, manifest.json)
 
 ## Ethical Considerations:
 

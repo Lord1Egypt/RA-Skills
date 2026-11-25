@@ -32,6 +32,8 @@ Connectivity test for the stage-one parsing leg (parsing runs through the omni-r
 
 Fixture names are not cosmetic: they must follow `part_series_number` (e.g. `01_phil_001.md`). Under any other naming, `overlap_check.py` and `dedup_boundary.py` compare nothing at all and still print a row of green ticks - the silent false pass recorded as hard rule 8.
 
+**What the merged book looks like**: `scripts/fixtures/good_merged_sample.md` is the verbatim `merge_build.py` output for this package's three synthetic good-sample segments under `scripts/fixtures/good/` - chapter headings, original page numbers on their own lines, body text, per-segment notes, and the whole-book term appendix at the end, not one line edited. That "German book" and its segment numbers are invented. The sample header gives two ways to re-run it, both zero-network: `check_translation.py --selftest` proves the whole chain with one command (its temp root is deleted afterwards, so the book file itself is not left on disk), and the four-step chain reproduces this very file into a temp root you create (the last command takes an extension-less output prefix).
+
 ## Specs (`references/`)
 
 | File | Content |

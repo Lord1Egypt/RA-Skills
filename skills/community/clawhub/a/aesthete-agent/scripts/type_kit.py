@@ -18,13 +18,42 @@ ROLES = {"3xl": "display", "2xl": "display", "xl": "heading", "lg": "heading",
 
 
 def _fluid(target_px, floor=12.0):
-    """display 级流体字阶:375px 视口取 0.62×,1440px 视口取 1.15×,中段线性。"""
+    """display 级流体字阶:375px 视口取 0.62×,1440px 视口取 1.15×,中段线性。
+    纪律出处(web.dev Baseline 流式字阶):min/max 端点用 rem(根字号未被覆写时
+    等于用户偏好);vw 增量保持最小;**max≤2.5×min 必过 WCAG SC 1.4.4**(本实现
+    恒 1.855,由 assert_fluid_discipline 守卫——放宽倍率=闸门自弃)。"""
     lo = max(target_px * 0.62, floor)
     hi = target_px * 1.15
     vw = (hi - lo) / (14.40 - 3.75)
     base = lo - 3.75 * vw
     rem = lambda x: round(x / 16, 3)
     return (f"clamp({rem(lo)}rem, calc({rem(base)}rem + {round(vw, 3)}vw), {rem(hi)}rem)")
+
+
+FLUID_MAX_RATIO = 2.5  # web.dev/Maxwell Barvian:max≤2.5×min ⇒ 缩放永远有效(SC 1.4.4)
+
+
+def assert_fluid_discipline():
+    """流体档位纪律断言(0.28):参数网格下 max/min > 2.5 即拒绝产出。
+    与 type_tokens.assert_floor 同族——放宽的闸门等于没有闸门。
+    网格覆盖:默认参数/大字极端/floor 生效(小字被钳到 12px)三种工况。"""
+    bad = []
+    grid = ((16.0, 1.25, 12.0), (48.0, 1.5, 12.0), (12.05, 1.125, 12.0))
+    order = {"3xl": 4, "2xl": 3, "xl": 2, "lg": 1}
+    for base, ratio, floor in grid:
+        for name in FLUID_STEPS:
+            probe = base * (ratio ** order[name])
+            lo = max(probe * 0.62, floor)
+            hi = probe * 1.15
+            r = hi / lo
+            if r > FLUID_MAX_RATIO:
+                bad.append("%s@base%g/%g:%.2f" % (name, base, ratio, r))
+    if bad:
+        raise ValueError(
+            "type_kit: 流体档位 max/min 超 %.1f(违反 WCAG SC 1.4.4 缩放纪律): %s"
+            " —— 0.28 闸门拒绝产出(要更醒目请调 ratio,不是放宽倍率)"
+            % (FLUID_MAX_RATIO, ", ".join(bad)))
+    return True
 
 
 def build(base=16.0, ratio=1.25, floor=12.0, fluid=False):
@@ -47,6 +76,15 @@ def build(base=16.0, ratio=1.25, floor=12.0, fluid=False):
         "display_vs_body": round(sizes[0] / sizes[4], 2),
     }
     checks["verdict"] = "PASS" if checks["monotonic"] else "FAIL"
+    # 0.28 流体纪律:2.5x 缩放规则(web.dev)——违约即 FAIL,不只断言探针
+    checks["fluid_ratio_ok"] = True
+    if fluid:
+        try:
+            assert_fluid_discipline()
+        except ValueError as e:
+            checks["fluid_ratio_ok"] = False
+            checks["verdict"] = "FAIL"
+            checks["fluid_error"] = str(e)
     return tokens, checks
 
 

@@ -552,6 +552,80 @@ def test_clear_windows_keeps_other_states_tick(sandbox, state_file):
     assert list(fake.tasks) == ["\\MedReminder\\tick-deadbeef"]
 
 
+# ── multi-state-safe Windows cleanup (ClawHub security audit) ─────────────────
+
+UNKNOWN_TASK = "\\MedReminder\\my-own-backup"
+LEGACY_A = "\\MedReminder\\fire_med-001_0"     # pre-PR3 per-dose scheme
+
+
+def two_state_windows(tmp_path, state_file, b_registry=True):
+    """States A (state_file) and B, each with a Windows registry; FakeOs
+    holds A tick, B tick, an A legacy per-dose task and a foreign task."""
+    b_file = tmp_path / "meds-state-b.json"
+    b_file.write_text("{}", encoding="utf-8")
+    ha, hb = setup_tasks.state_hash(state_file), setup_tasks.state_hash(b_file)
+    for h, registered in ((ha, True), (hb, b_registry)):
+        if registered:
+            setup_tasks.save_registry(h, {"scheduler": "windows",
+                                          "task": setup_tasks.tick_task_full_name(h)})
+    fake = FakeOs(tasks={
+        setup_tasks.tick_task_full_name(ha): True,
+        setup_tasks.tick_task_full_name(hb): True,
+        LEGACY_A: True,
+        UNKNOWN_TASK: True,
+    })
+    return ha, hb, fake
+
+
+def on_windows(fn, *args, **kw):
+    old = sys.platform
+    sys.platform = "win32"
+    try:
+        return fn(*args, **kw)
+    finally:
+        sys.platform = old
+
+
+@pytest.mark.parametrize("b_registry", [True, False])
+def test_remove_legacy_windows_spares_other_state_and_unknown(
+        sandbox, state_file, tmp_path, capsys, b_registry):
+    ha, hb, fake = two_state_windows(tmp_path, state_file, b_registry)
+    assert setup_tasks.remove_legacy_windows(ha, run=fake) == 0
+    assert setup_tasks.tick_task_full_name(hb) in fake.tasks    # B tick survives
+    assert setup_tasks.tick_task_full_name(ha) in fake.tasks
+    assert LEGACY_A not in fake.tasks                           # A legacy deleted
+    assert UNKNOWN_TASK in fake.tasks                           # unknown untouched
+    assert f"UNRECOGNIZED (untouched): {UNKNOWN_TASK}" in capsys.readouterr().out
+
+
+def test_remove_legacy_windows_purge_unknown(sandbox, state_file, tmp_path, capsys):
+    ha, hb, fake = two_state_windows(tmp_path, state_file)
+    assert setup_tasks.remove_legacy_windows(ha, run=fake, purge_unknown=True) == 0
+    assert sorted(fake.tasks) == sorted([setup_tasks.tick_task_full_name(ha),
+                                         setup_tasks.tick_task_full_name(hb)])
+    assert UNKNOWN_TASK in capsys.readouterr().out              # still printed
+
+
+def test_migrate_purge_unknown_flag_reaches_cleanup(sandbox, state_file, tmp_path):
+    ha, hb, fake = two_state_windows(tmp_path, state_file)
+    assert on_windows(setup_tasks.migrate, ha, state_file, 5, run=fake) == 0
+    assert UNKNOWN_TASK in fake.tasks
+    assert on_windows(setup_tasks.migrate, ha, state_file, 5, run=fake,
+                      purge_unknown=True) == 0
+    assert UNKNOWN_TASK not in fake.tasks
+    assert setup_tasks.tick_task_full_name(hb) in fake.tasks
+
+
+@pytest.mark.parametrize("b_registry", [True, False])
+def test_clear_windows_spares_other_state_tick(sandbox, state_file, tmp_path,
+                                              b_registry):
+    ha, hb, fake = two_state_windows(tmp_path, state_file, b_registry)
+    on_windows(setup_tasks.clear, ha, state_file, run=fake)
+    assert setup_tasks.tick_task_full_name(hb) in fake.tasks    # B tick survives
+    assert setup_tasks.tick_task_full_name(ha) not in fake.tasks
+    assert LEGACY_A not in fake.tasks
+
+
 # ── doctor's scheduler checks (AC 35) ─────────────────────────────────────────
 
 def doctor_scheduler_results(monkeypatch, state_file, fake, platform_name):

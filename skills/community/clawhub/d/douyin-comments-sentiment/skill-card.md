@@ -1,6 +1,6 @@
 ## Description:
 
-A Douyin assistant that retrieves public video, creator, comment, and trending data for sentiment, audience, intent, and content analysis.
+Analyzes public Douyin comments and content signals, and retrieves related video, creator, and trending data to support sentiment and content planning.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-Content creators, social media operators, brands, and e-commerce teams use the skill to find public Douyin videos and creator posts, review comments and trends, and prepare sentiment, audience, intent, and content insights.
+Content creators, social media operators, brands, and e-commerce teams use this skill to find public Douyin posts, inspect creator activity, and analyze comment themes and sentiment for content planning and monitoring.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: User-provided keywords and links are sent to the third-party GuaiKei API; this may expose sensitive query or content context.
+Risk: The security review was partial, and keyword-based account search was flagged as outside the skill’s stated purpose.
 
-Mitigation: Avoid sending confidential or personal information, and use the skill only with data approved for external processing.
+Mitigation: Review the account-search capability and any unreviewed portions before installation, and confirm they fit your intended use.
 
-Risk: The benign security verdict is based on partial analysis and leaves some uncertainty.
+Risk: Supplied Douyin links or IDs are transmitted to a third-party API.
 
-Mitigation: Review the skill’s instructions and behavior before installation, and follow your organization’s review process for third-party skills.
+Mitigation: Only submit links or IDs you are permitted to share, and review the service terms before sending them.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/why20261/skills/douyin-comments-sentiment)
-- [GuaiKei API service and token access](https://www.guaikei.com)
-- [Demand mining guide](artifact/references/demand-mining.md)
-- [Command options](artifact/references/options.md)
-- [Release changelog](artifact/references/changelog.md)
-- [Output envelope schema](artifact/assets/output_envelope.schema.json)
+- [Demand mining guide](references/demand-mining.md)
+- [Customer acquisition guide](references/customer-acquisition.md)
+- [Output contract](references/contract.md)
+- [GuaiKei service and API access](https://www.guaikei.com)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis, Guidance]
+**Output Type(s):** [JSON data, Analysis, Guidance]
 
-**Output Format:** [Structured JSON records with human-readable analysis and recommendations]
+**Output Format:** [Structured JSON data with concise text or Markdown summaries and recommendations.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results depend on public Douyin data and the configured service plan; returned data may be empty or unavailable.]
+**Other Properties Related to Output:** [Can include public post, creator, engagement, trend, and comment data for follow-up analysis.]
 
 ## Skill Version(s):
 
-1.4.2 (source: server-resolved release, package.json, changelog released 2026-11-04)
+1.5.0 (source: evidence release and artifact frontmatter/package.json)
 
 ## Ethical Considerations:
 

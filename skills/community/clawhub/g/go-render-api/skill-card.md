@@ -1,6 +1,6 @@
 ## Description:
 
-Guides Go developers in using the unofficial go-render-api client to call Render's REST API, including authentication, pagination, typed endpoint operations, and response handling.
+Provides an unofficial typed Go client and usage guidance for calling Render’s public REST API.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-Developers use this skill to write Go code that calls Render's REST API to inspect or manage services and other Render resources. It is also useful when a Go project already uses the go-render-api package.
+Developers use the Go package to call Render’s API from Go projects, including listing resources and managing services, deployments, and related infrastructure.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Deploy, suspend, scale, update, and delete operations can change live infrastructure.
+Risk: Some API operations can change live infrastructure, including deploying, suspending, scaling, updating, or deleting services.
 
-Mitigation: Use these operations only for services the user named and actions the user requested.
+Mitigation: Call those operations only for services the user named and only when the user asked for that action.
 
-Risk: A Render API key can authorize account actions.
+Risk: The Render API key grants access to account resources.
 
-Mitigation: Read the key from an environment variable; never hardcode, commit, or log it, and never print request headers.
+Mitigation: Read the key from an environment variable; do not hardcode, commit, log, or print request headers containing it.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/psyb0t/skills/go-render-api)
-- [go-render-api repository](https://github.com/psyb0t/go-render-api)
-- [Package documentation](https://pkg.go.dev/github.com/psyb0t/go-render-api)
-- [Render API pagination documentation](https://api-docs.render.com/reference/pagination)
-- [Setup and reference](artifact/references/setup.md)
+- [Setup and reference](references/setup.md)
+- [Project repository](https://github.com/psyb0t/go-render-api)
+- [Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-render-api)
+- [Render pagination documentation](https://api-docs.render.com/reference/pagination)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, API Calls, Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [Code, API calls, Configuration instructions, Guidance]
 
-**Output Format:** [Go code examples and API usage guidance in Markdown, with shell commands where useful]
+**Output Format:** [Markdown guidance with Go code examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include operations that change live Render infrastructure; follow the user's explicit scope for such actions.]
+**Other Properties Related to Output:** [Examples show typed API requests, pagination, authentication setup, and decoded responses.]
 
 ## Skill Version(s):
 
-0.11.0 (source: server-resolved release metadata)
+0.15.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

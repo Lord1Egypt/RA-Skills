@@ -4,7 +4,7 @@ description: "Use only when explicitly invoked. Design, specify, implement, revi
 metadata:
   language: en
   translation_of: concept-design-cn
-  version: "2.5.2"
+  version: "2.5.4"
 ---
 
 # Concept design
@@ -24,22 +24,22 @@ Start from user needs. Concepts define independent behavior; external synchroniz
 - Each definition has one authoritative source. Distinguish confirmed, proposed, inferred, and open statements; test decisions with evidence, assumptions, and counterexamples. Keep unresolved matters open and unexecuted checks unverified.
 - Compare alternatives, including no change or removal; revisit assumptions after repeated failures. Refactoring preserves behavior; state intentional changes explicitly.
 
-For engineering design, implementation, review, or project rules, apply the [architecture contract](references/architecture.md) for directories, naming, responsibilities, and dependencies.
+For engineering design, implementation, review, or project rules, apply the [engineering architecture](references/architecture.md) for directories, naming, responsibilities, and dependencies.
 
 ## Choose a mode
 
-Select a mode from the request and read only that mode and references needed for the current step. Inspect read-only when intent is unclear; carry existing authorization across modes.
+Select a mode from the request and read only that mode and references needed for the current step. Each mode file links every reference it needs directly; links between references are see-also only. Inspect read-only when intent is unclear; carry existing authorization across modes.
 
 | Mode | Purpose |
 | --- | --- |
-| [design](modes/design.md) | Design concepts and synchronizations |
-| [settle](modes/settle.md) | Consolidate discussions and decisions |
-| [prd](modes/prd.md) | Write the PRD, specifications, and acceptance criteria |
-| [build](modes/build.md) | Implement or refactor against confirmed specifications |
-| [review](modes/review.md) | Review design and implementation |
-| [guard](modes/guard.md) | Audit, reconstruct, check drift, specify pipelines, and generate diagrams |
-| [refine](modes/refine.md) | Compare improvements and apply authorized corrections |
-| [explain](modes/explain.md) | Explain behavior from specifications and source code |
+| [design](references/modes/design.md) | Design concepts and synchronizations |
+| [settle](references/modes/settle.md) | Consolidate discussions and decisions |
+| [prd](references/modes/prd.md) | Write the PRD, specifications, and acceptance criteria |
+| [build](references/modes/build.md) | Implement or refactor against confirmed specifications |
+| [review](references/modes/review.md) | Review design and implementation |
+| [guard](references/modes/guard.md) | Audit, reconstruct, check drift, specify pipelines, and generate diagrams |
+| [refine](references/modes/refine.md) | Compare improvements and apply authorized corrections |
+| [explain](references/modes/explain.md) | Explain behavior from specifications and source code |
 
 Review, audit, drift, and plan-only requests remain read-only; other changes stay within authorized scope. Do not change specifications to conceal implementation defects.
 

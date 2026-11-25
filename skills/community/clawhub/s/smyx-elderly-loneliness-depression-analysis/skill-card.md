@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes video of older adults living alone to summarize observable behaviors associated with loneliness or depressive tendencies and produce emotional-risk reports for caregivers.
+Analyzes video of older adults living alone for behaviors such as prolonged stillness, sighing, and self-talk, then reports behavior summaries and an estimated emotional risk level.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Family members, care staff, and community workers can use the skill to review video-based summaries of observable behavior and receive prompts for follow-up care. It is a behavioral support aid and does not provide depression screening or diagnosis.
+Families and community care workers can review video-based behavior summaries to decide when to offer supportive contact. The results are behavioral risk indicators, not a clinical diagnosis.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Sensitive video may be sent to an analysis service without clear disclosure, and account or credential handling is not clearly explained.
+Risk: Handling of sensitive home video, identity, and credentials is not clearly disclosed in the security summary.
 
-Mitigation: Before installation, ask the author to clarify account and token handling, where footage is sent, and how it is retained; obtain the older adult's informed consent and protect footage as recommended in the skill documentation.
+Mitigation: Review handling before use, obtain the older adult's informed consent, and apply the documented video protection measures such as encryption and face masking.
 
-Risk: The export-only option may still run analysis.
+Risk: The security review reports behavior that may not match the stated purpose, and scanner coverage is incomplete.
 
-Mitigation: Avoid relying on export-only behavior until the author fixes or documents it.
-
-Risk: The security assessment is incomplete: one of 29 components was not inspected and one static analysis was degraded.
-
-Mitigation: Treat the scan as incomplete and seek clarification and review before installation.
+Mitigation: Treat this as review-needed, inspect the skill's behavior before installation, and do not assume the available scan assessed every behavior.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/smyx-sunjinhui/skills/smyx-elderly-loneliness-depression-analysis)
+- [API interface and input guidance](artifact/references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
+**Output Type(s):** [JSON, Markdown, Guidance]
 
-**Output Format:** [Structured JSON analysis results and Markdown report summaries]
+**Output Format:** [Structured behavior summaries and risk indicators; Markdown report listings and supportive follow-up suggestions]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include behavior counts and durations, baseline comparisons, risk-level prompts, recommendations, and report links; results are behavior-based and are not a medical diagnosis.]
+**Other Properties Related to Output:** [May include behavior counts and durations, baseline comparisons, risk level, suggested follow-up, and report links; it does not provide a clinical diagnosis.]
 
 ## Skill Version(s):
 
-1.0.14 (source: server-resolved ClawHub release metadata)
+1.0.15 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

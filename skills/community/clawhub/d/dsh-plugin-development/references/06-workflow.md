@@ -2,7 +2,7 @@
 
 > **本文件用途**：插件开发的完整工作流，四部分顺序阅读：① 环境准备（版本对照、从源码跑起来、三个环境坑、验收清单）② CLI 与安装机制逐字实证（DSH_HOME 默认值、profile 目录布局、dsh plugin 的 pnpm 转发逻辑、declares no dsh.bundle 警告的判定代码）③ 打包与分发（文件结构、package.json 逐字、patch 引用、三种分发方式对比）④ 调试与排错五招 + 五步排错法。注意：DSH_HOME 与 profile 在 ① 和 ② 都出现，以 ② 的源码实证为准。
 > **合成来源**：DSH插件开发指导手册.md（第 2/11/12 章） + G-install-and-cli.md
-> **快照警告**：本文件是 DSH 插件知识的**冻结快照**（基线 `dsh-v0.2.2-alpha.2` / commit `f3803c9697`，2026-10-28），其中的**接口名级事实可能已过时**。
+> **快照警告**：本文件是 DSH 插件知识的**冻结快照**（基线 `dsh-v0.2.2-rc.5` / commit `9c2670d3bc`，2026-11-18），其中的**接口名级事实可能已过时**。
 > **写代码前先核验**：`bash scripts/dsh-api-probe.sh <DSH 仓库路径>`（退出码 1 = 有 STALE，**不要直接照抄**）。
 > **分级与核验规则**：`references/00-version-gate.md`、逐条登记 `references/api-claims.md`。
 > **素材名约定**：正文里出现的 `Xxx-yyy.md`（如 `E-official-templates.md`、`B-tools-external.md`）是**生成时的源调研笔记名**，其内容在生成时已合并进本文件——**不是 skill 内的文件**，不必去别处找。
@@ -113,7 +113,7 @@ C:\Users\<你的用户名>\.dsh
     root: ['.']
 ```
 
-⚠️ HMR 仍依赖 `@deepseek-ai/cordis-plugin-timer`（`packages/boot/hmr/package.json:31` 的 peerDependency），缺了它会永久 PENDING。
+⚠️ HMR 仍依赖 `@deepseek-ai/cordis-plugin-timer`（`packages/boot/hmr/package.json:34` 的 peerDependency），缺了它会永久 PENDING。
 
 ### 坑 3：改了 `cordis.yml` 里的 `config` 会自动热替换
 
@@ -159,7 +159,7 @@ C:\Users\<你的用户名>\.dsh
 > /** Harness home used when `path` is omitted; defaults to `$DSH_HOME` or `~/.dsh`. */
 > ```
 
-> `packages/shell/shell-env/src/index.ts:31`
+> `packages/shell/shell-env/src/index.ts:35`
 > ```
 > /** DeepSeek Harness home directory exposed as `DSH_HOME`; defaults to `$DSH_HOME` or `~/.dsh`. */
 > ```
@@ -284,7 +284,7 @@ async function reconcile(before: ProfileManifest, dir: string, anchor: string, o
 >
 > 顺带新增的两条 CLI 诊断（`:19-23`）：`pnpm` 不在 PATH 时打印 `dsh: pnpm was not found`；走 `git+` / `github:` / `.git` 的依赖装失败时，直接提示把 pnpm 打印的键加到 profile 的 `pnpm-workspace.yaml` 的 `allowBuilds` 下（见 §4 的 git 安装一节）。
 
-### 2.4 装插件最常见的那个警告（逐字，`packages/boot/plugin-manager/src/operations.ts:103-106`）
+### 2.4 装插件最常见的那个警告（逐字，`packages/boot/plugin-manager/src/operations.ts:109-112`）
 
 ```ts
     if (metadata?.dsh?.bundle === undefined) {
@@ -515,10 +515,10 @@ dsh plugin --profile demo add ./hello-plugin
 
 `dsh plugin` 本质是**在 profile 目录里把参数转发给 pnpm**，然后在 pnpm 成功后重算 bundles 列表。
 
-**源码实证**（`packages/boot/plugin-manager/src/operations.ts:90-120` 的 `reconcile()`）：
-- 凡是解析到的包 manifest 声明了 `"dsh": { "bundle": { "patch": ... } }`，该依赖就**加入层栈**（按依赖顺序追加），并 `loadOverlayPatches()` 载入它的补丁（`:112`）
-- 没有 `dsh.bundle` 声明的依赖保留为普通依赖，并向 stderr 打印**一条警告**后 `continue`（`:104-105`）
-- 被移除的依赖从层栈删除（`:96-99` 的 `filter`）
+**源码实证**（`packages/boot/plugin-manager/src/operations.ts:96-126` 的 `reconcile()`）：
+- 凡是解析到的包 manifest 声明了 `"dsh": { "bundle": { "patch": ... } }`，该依赖就**加入层栈**（按依赖顺序追加），并 `loadOverlayPatches()` 载入它的补丁（`:118`）
+- 没有 `dsh.bundle` 声明的依赖保留为普通依赖，并向 stderr 打印**一条警告**后 `continue`（`:110-111`）
+- 被移除的依赖从层栈删除（`:102-105` 的 `filter`）
 
 安装后 profile manifest 变成（`publish.zh.md:85-100`）：
 
@@ -661,7 +661,7 @@ dsh --profile web --patch ./extra.yml --dump-config                      # 加�
 
 ## 12.2 第二招：看 PENDING 审计（插件没反应时第一件事）
 
-DSH 启动时会自动审计。源码实证（`packages/boot/app-boot/src/index.ts:1112` 单条格式串、`:1132` 分组汇总表）：对仍 PENDING 的条目打印
+DSH 启动时会自动审计。源码实证（`packages/boot/app-boot/src/index.ts:1149` 单条格式串、`:1129` 分组汇总表）：对仍 PENDING 的条目打印
 
 ```
 <name>: pending (waiting for service: <缺失服务>)

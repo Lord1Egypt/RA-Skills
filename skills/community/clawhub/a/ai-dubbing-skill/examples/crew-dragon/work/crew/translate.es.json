@@ -1,0 +1,55 @@
+{
+ "from": "en",
+ "to": "es",
+ "how": "Fill every 'text' with the translation of 'source': the same meaning in natural es, short enough to say aloud in the cue's time, as it is both spoken and shown; keep names and numbers. Optional 'emphasis': words to colour, as in fixes.json. Don't change i, start or end.",
+ "emphasis": [
+  "maldigan nuestros nombres",
+  "tan fácil",
+  "camino seguro a casa",
+  "salvar a la tripulación"
+ ],
+ "cues": [
+  {
+   "i": 1,
+   "start": 0.0,
+   "end": 4.957,
+   "source": "I think another piece of it is kind of coming up with a concept of how,",
+   "text": "Otra parte es crear un concepto de cómo,"
+  },
+  {
+   "i": 2,
+   "start": 5.04,
+   "end": 10.357,
+   "source": "for a highly automated vehicle, you don't lose sight of kind of the need",
+   "text": "en una nave muy automatizada, no perder de vista la necesidad"
+  },
+  {
+   "i": 3,
+   "start": 10.44,
+   "end": 14.017,
+   "source": "for the crew to always have a safe path home.",
+   "text": "de que la tripulación siempre tenga un camino seguro a casa."
+  },
+  {
+   "i": 4,
+   "start": 14.1,
+   "end": 16.617,
+   "source": "You don't necessarily have to save the mission with the crew,",
+   "text": "No hace falta salvar la misión con la tripulación,"
+  },
+  {
+   "i": 5,
+   "start": 16.7,
+   "end": 18.457,
+   "source": "but you need to save the crew with the crew,",
+   "text": "sino a la tripulación con ella:"
+  },
+  {
+   "i": 6,
+   "start": 18.54,
+   "end": 21.4,
+   "source": "is kind of the mindset that we've put out there.",
+   "text": "esa es la idea que planteamos."
+  }
+ ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Subclip Review and Safety"
+  short_description: "Inspect frames, validate edits, and recover history"
+  default_prompt: "Use -review-safety to review this edit and safely correct problems."

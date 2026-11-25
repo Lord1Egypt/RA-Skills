@@ -1,6 +1,6 @@
 ## Description:
 
-Turn a vertical short-drama episode script into labeled voiceover tracks or clips, using one consistent voice for each role.
+Creates labeled dialogue clips or tracks for a vertical short-drama episode, keeping one consistent voice per role.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Creators and editors use this skill to turn an attributed episode script into ordered, role-labeled dialogue audio with consistent casting. It can also provide aligned subtitles and optional sound effects or audio finishing when requested.
+External creators and editors use this skill to turn an attributed vertical short-drama script into consistent role-based dialogue audio, delivered as labeled clips or scene tracks.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security evidence flags broad, persistent credentials and recurring installation analytics beyond the skill's stated audio purpose.
+Risk: The security summary flags broad account permissions, installation-linked analytics, and account-level voice management beyond dialogue audio; the scan was partial.
 
-Mitigation: Before installing, review the requested credential scope and analytics behavior, and decide whether Beatra should receive the episode scripts or any voice samples.
-
-Risk: The security review is partial and does not establish that the skill is safe.
-
-Mitigation: Review the skill and its bundled files before use, especially where unresolved local references affect your assessment.
+Mitigation: Review the permissions and privacy practices before installation or sending scripts and context, and inspect unresolved references because the scan did not cover every reference.
 
 ## Reference(s):
 
-- [Short-drama voice-pack workflow](artifact/references/workflow.md)
-- [Speech, voices, cloning, and audio finishing](artifact/references/speech-and-audio.md)
-- [Installation and authentication](artifact/references/installation-and-auth.md)
-- [Billing, errors, and recovery](artifact/references/billing-errors-and-recovery.md)
-- [Updates and security](artifact/references/updates-and-security.md)
-- [Beatra skill page](https://beatra.ai/skills/short-drama-voice-pack)
 - [ClawHub release page](https://clawhub.ai/beatra-ai/skills/short-drama-voice-pack)
+- [Beatra skill page](https://beatra.ai/skills/short-drama-voice-pack)
+- [Short-Drama Voice-Pack Workflow](references/workflow.md)
+- [Speech, Voices, Cloning, and Audio Finishing](references/speech-and-audio.md)
+- [Updates and security](references/updates-and-security.md)
+- [Billing, errors, and recovery](references/billing-errors-and-recovery.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Audio files, Text subtitles, Dialogue and segment metadata]
+**Output Type(s):** [Audio files, Files, Text]
 
-**Output Format:** [MP3 audio by default; optional aligned subtitles and segment details]
+**Output Format:** [MP3 clips or dialogue segments with role and line labels, plus optional aligned subtitles and segment metadata]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Tracks or clips follow script order and keep one assigned voice per role. Optional sound effects and loudness finishing are available.]
+**Other Properties Related to Output:** [One consistent voice per role; clips and scenes follow script order. Synthesis, cloning, sound effects, and audio finishing may incur charges and require confirmation.]
 
 ## Skill Version(s):
 
-0.2.5 (source: server-resolved release evidence and manifest)
+0.2.6 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

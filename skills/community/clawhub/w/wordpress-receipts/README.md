@@ -34,7 +34,7 @@ Do not commit real env files.
 ## Publish
 
 ```bash
-node scripts/wp-publish-receipt.mjs \
+node scripts/wp-publish-receipt.js \
   --env-file .env.wordpress \
   --title "My Post" \
   --content-file draft.md \
@@ -59,16 +59,16 @@ Output:
 ## Verify
 
 ```bash
-node scripts/wp-verify-receipt.mjs --env-file .env.wordpress --date 2026-07-01
-node scripts/wp-verify-receipt.mjs --env-file .env.wordpress --id 456
-node scripts/wp-verify-receipt.mjs --env-file .env.wordpress --id 456 --url https://example.com/my-post/
+node scripts/wp-verify-receipt.js --env-file .env.wordpress --date 2026-07-01
+node scripts/wp-verify-receipt.js --env-file .env.wordpress --id 456
+node scripts/wp-verify-receipt.js --env-file .env.wordpress --id 456 --url https://example.com/my-post/
 ```
 
 ## Cron Pattern
 
 1. Main cron publishes the post.
 2. A second cron runs shortly after the publish window.
-3. The second cron runs `wp-verify-receipt.mjs`.
+3. The second cron runs `wp-verify-receipt.js`.
 4. If verification fails, alert the human with the exact missing receipt.
 
 That turns "the job sounded fine" into "the artifact exists".
@@ -89,7 +89,7 @@ Stripped-env smoke:
 
 ```bash
 env -i HOME="$HOME" USER="$USER" PATH="/usr/bin:/bin:/usr/sbin:/sbin" \
-  /opt/homebrew/bin/node scripts/wp-verify-receipt.mjs \
+  /opt/homebrew/bin/node scripts/wp-verify-receipt.js \
   --env-file .env.wordpress \
   --date 2026-07-01
 ```

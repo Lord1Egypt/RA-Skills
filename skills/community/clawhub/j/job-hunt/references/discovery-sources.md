@@ -34,7 +34,7 @@ not retained as available adapters.
 
 ## The machine-readable block
 
-The source repository's test suite parses this block and cross-checks it
+In the source repository, `scripts/tests/test_discovery_docs.py` parses this block and cross-checks it
 against `check_opencli_result.IDENTITY_FIELD`. Keep it accurate rather than tidy.
 
 ```yaml
@@ -244,12 +244,12 @@ separately from a CAPTCHA; hand off to the user and resume only after confirmati
 
 **2026-09-08 runtime check (OpenCLI 1.8.7):** an Indeed search for Python in
 New York returned exit 1, empty stdout and `Indeed served a Cloudflare challenge
-page`. The raw stderr is retained in the source repository's test fixtures.
+page`. The raw stderr is retained in the source repository at `scripts/tests/fixtures/indeed-cloudflare.err`.
 A separate 51job Python search in Beijing returned structured `error.code:
 ANTI_BOT` and `51job returned HTML (likely Aliyun WAF slider). Refresh browser
 session.` The classifier uses that machine code as a stop (`opencli-anti-bot`),
-not as a reason to refresh/retry. The raw error is kept in
-the source repository's test fixtures. Both sites were stopped.
+not as a reason to refresh/retry. The raw error is in the source repository at
+`scripts/tests/fixtures/51job-anti-bot.err`. Both sites were stopped.
 
 Searches for London/Berlin and live Indeed job details were
 **not completed**. Other patterns remain unverified unless explicitly marked.

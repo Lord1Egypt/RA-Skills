@@ -4,7 +4,7 @@
 #   bash code/setup.sh          安装 + 全量自检（含依赖可用性、召回冒烟）
 #   bash code/setup.sh --demo   额外跑一次「隔离演示」：用临时经验库演示召回/沉淀闭环（不触碰真实库）
 # 说明：流程 A/B（召回/沉淀）零 npm 依赖即可运行（内置 light 引擎）；
-#       可选集成最低：pi 1.5.1 → Node >=22.19.0；evolver 2.0.50 → ^22.13.0 || >=23.4.0。
+#       可选集成最低：pi 1.5.2 → Node >=22.19.0；evolver 2.0.51 → ^22.13.0 || >=23.4.0（三轴口径见 docs/version-standards.md）。
 #       `npm install` 只为可选集成（evolver）与流程 C（实验，需 pi CLI）准备。
 set -u
 DEMO=0
@@ -38,7 +38,7 @@ else
   if npm install --ignore-scripts --no-fund --no-audit 2>&1 | tail -1; then
     [ -x node_modules/.bin/evolver ] && good "依赖安装完成" || warn "安装完成但 evolver CLI 缺失，请检查上方输出"
   else
-    warn "npm install 失败——检查网络或换镜像后重试"
+    warn "npm install 失败——检查网络或换镜像后重试（npm config set registry https://registry.npmmirror.com，详见 docs/faq.md Q7）"
   fi
 fi
 

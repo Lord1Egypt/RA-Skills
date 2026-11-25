@@ -277,7 +277,7 @@ Tektolo does not look at photos. You do, then you send findings and the engine p
 - If a call says the daily free limit is reached, tell the user when it resets (the message
   names the time) and do not retry. On a hosted assistant (Claude, ChatGPT) the shared server
   URL has one limit for everyone; the message names the page for a free connector URL with its own allowance.
-  Volume and integrations go through the Contact page.
+  Higher limits, team use and volume go through the Contact page (/contact#more).
 
 ## Make it yours
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Maps China A-share industry supply chains, explains public-data-based business-cycle transmission, and identifies companies for further research.
+Maps public A-share industry chains, explains business-cycle transmission, and screens listed companies for research using public information.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,41 +14,41 @@ MIT-0
 
 ## Use Case:
 
-External users, including individual investors and industry researchers, use the skill to map listed-company supply chains, assess how industry conditions may pass between sectors, and find companies for further due diligence. It produces research context and risk notes rather than buy or sell instructions.
+Industry researchers and investors can use the skill to map listed-company supply chains, trace demand and pricing trends across upstream and downstream segments, and identify companies for further diligence. Its documentation limits the work to public-information research and excludes trade timing or buy/sell advice.
 
 ### Deployment Geography for Use:
 
-China (A-share market coverage)
+China (A-share markets: Shanghai, Shenzhen, and Beijing)
 
 ## Known Risks and Mitigations:
 
-Risk: The server security review rates the release suspicious, citing account diagnostics, package setup or cleanup, and credential handling that do not match its advertised research purpose.
+Risk: The security assessment flags credential-exposure concerns, actions outside the stated research purpose, and external-package and mutable-repository dependencies; it also reports incomplete analysis.
 
-Mitigation: Clarify the credential instructions and package or repository operations before installation; if proceeding, keep the API key in a secure local secret method and never paste it into chat.
+Mitigation: Review and correct credential-handling instructions and unrelated actions before installation; do not share API keys in chat. Review and pin external package and repository sources before use.
 
-Risk: The security review has partial coverage, including unresolved local references and unsupported binary metadata.
+Risk: Company screening and elasticity analysis could be mistaken for reliable investment recommendations.
 
-Mitigation: Treat the review as incomplete and inspect those unresolved references and binary metadata before relying on the release.
+Mitigation: Treat the report as preliminary research, verify claims against linked public filings and sources, and do not use it as buy/sell or timing advice.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/panting09266-ai/skills/cue-supply-chain-mining)
-- [Omni Reader Bridge CLI manual](artifact/cli-manual.md)
-- [Cue service health endpoint](https://cuecue.cn/api/health)
+- [ClawHub skill release](https://clawhub.ai/panting09266-ai/skills/cue-supply-chain-mining)
+- [Cue platform](https://cuecue.cn)
+- [Example research report](https://cuecue.cn/share/F8PzjKYbVBgYX2oN9clWB)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, Markdown]
+**Output Type(s):** [Analysis, Markdown]
 
-**Output Format:** [Structured Markdown report with tables and source links]
+**Output Format:** [Structured Markdown report with an industry-chain map, transmission analysis, company screening, elasticity assessment, risk notes, and source links.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes a supply-chain map, transmission logic, company shortlist, elasticity assessment, risk notes, and source links.]
+**Other Properties Related to Output:** [One industry-chain query; findings are linked to public sources where available.]
 
 ## Skill Version(s):
 
-1.1.11 (source: server-resolved release)
+1.1.12 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

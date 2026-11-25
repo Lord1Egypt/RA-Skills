@@ -47,10 +47,14 @@ OWL_API_KEY = os.environ.get("OWL_API_KEY", "")
 # ⚠️ 发布前必须与 SKILL.md 的 version / connector-meta.version / meta.json latest_version
 #    四处对齐（preflight A30 守门），否则装的是最新版也会被自己判成旧版——每次开工都
 #    提示「有新版本」，而更新完还是同一句（假提示，严重时 426 全停）。
-OWL_SKILL_VERSION = "1.3.2"
+OWL_SKILL_VERSION = "1.3.6"
 
 mcp = MCPServer(
     "owlwrite",
+    # 2026-11-14（§107）：此前未传 version，MCP initialize 的 serverInfo.version 恒为空串，
+    # 客户端显示不出对端版本，排查「用户装的到底是哪版」时只能靠猜。这里直接绑版本常量，
+    # 与 OWL_SKILL_VERSION 同源，避免又一处手写数字漂移。
+    version=OWL_SKILL_VERSION,
     instructions=(
         "OwlWrite（夜猫子论文写作）：文献检索、论文写作、查重、引文核验一站式服务。"
         "典型工作流：1) owl_search 检索文献；2) owl_quote 对写作/查重/核验/排版报价；"
@@ -171,7 +175,10 @@ def _raise_if_error(r, data) -> None:
 # ---------------- 工具定义 ----------------
 
 @mcp.tool()
-async def owl_search(query: str, limit: int = 5, lang: str = "all", expand: bool = False) -> str:
+async def owl_search(query: str, limit: int = 5, lang: str = "all", expand: bool = False,
+                     year_from: int = 0, year_to: int = 0, doc_types: list[str] | None = None,
+                     classification: str = "", core_only: bool = False,
+                     sort: str = "relevance", offset: int = 0) -> str:
     """文献检索（同步返回）。返回题名/作者/期刊/年份/DOI/摘要，并按相关性重排。
 
     返回字段里值得转告用户的：
@@ -184,12 +191,33 @@ async def owl_search(query: str, limit: int = 5, lang: str = "all", expand: bool
         limit: 返回条数，1-50，默认 5。
         lang: all / zh / en，默认 all（按 query 自动判断）。
         expand: 是否强制关键词扩展（同义词替换再检一轮）。结果 <3 条时会自动扩一次。
+        year_from: 发表年份起（如 2022），0 表示不限。
+        year_to: 发表年份止（如 2025），0 表示不限。区间跨度须 ≤20 年。
+        doc_types: 文献类型列表，可多选，journal 期刊 / thesis 学位 / standard 标准 / patent 专利。
+        classification: 分类号，L=中图号（如 L=TP3）或 C=学科（如 C=计算机），仅中文库支持。
+        core_only: 是否只要核心期刊（真实硬过滤）。
+        sort: relevance 相关度（默认）/ newest 年份最新 / cited 被引最多。
+        offset: 跳过前 N 条取后续页（0-1000），配合 limit 翻页。
 
-    计费：命中 2 积分，缓存命中 1 积分，无结果 0 积分。
+    计费：命中 2 积分，缓存命中 1 积分，无结果 0 积分。硬过滤与检索同一次调用，不多扣费。
     """
     body = {"query": query, "limit": limit, "lang": lang}
     if expand:
         body["expand"] = True
+    if year_from:
+        body["year_from"] = int(year_from)
+    if year_to:
+        body["year_to"] = int(year_to)
+    if doc_types:
+        body["doc_types"] = list(doc_types)
+    if classification:
+        body["classification"] = classification
+    if core_only:
+        body["core_only"] = True
+    if sort and sort != "relevance":
+        body["sort"] = sort
+    if offset:
+        body["offset"] = int(offset)
     return _dump(await _call("POST", "/v1/search", body))
 
 

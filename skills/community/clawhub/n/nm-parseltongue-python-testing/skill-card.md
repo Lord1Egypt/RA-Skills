@@ -1,6 +1,6 @@
 ## Description:
 
-Python testing patterns with pytest, fixtures, TDD, mocking, async and integration tests.
+Python testing patterns with pytest, fixtures, TDD, mocking, async and integration tests
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Python developers use this skill to design and configure maintainable unit, integration, and asynchronous test suites with pytest, fixtures, mocks, coverage, and CI workflows.
+Developers use this skill to write and maintain Python unit, integration, and asynchronous tests with pytest. It provides test patterns, fixture and mocking guidance, project configuration, and CI workflow examples.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The recommended CI workflow uploads coverage data to Codecov.
+Risk: The example CI workflow uploads coverage data to Codecov.
 
-Mitigation: Confirm that your project permits sending coverage data to Codecov before using that workflow.
-
-Risk: Two local references were unresolved, so the security scan does not establish that every referenced item was assessed.
-
-Mitigation: Review the unresolved references before relying on the security assessment.
+Mitigation: Review what the coverage upload contains and confirm the provider and upload settings before adopting the workflow.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-parseltongue-python-testing)
-- [Project homepage (Clawdis metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/parseltongue)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/parseltongue)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-parseltongue-python-testing)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown with Python examples, shell commands, and TOML or YAML configuration]
+**Output Format:** [Markdown with Python code, shell commands, and configuration examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Examples and configuration guidance for Python test suites.]
+**Other Properties Related to Output:** [Examples should be adapted to the project's imports, paths, dependencies, and CI settings.]
 
 ## Skill Version(s):
 
-1.10.3 (source: release evidence and frontmatter)
+1.10.4 (source: server-resolved release)
 
 ## Ethical Considerations:
 

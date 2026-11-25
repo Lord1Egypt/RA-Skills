@@ -14,23 +14,38 @@ _MAX_BYTES = 200
 _DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
 # Control characters plus characters that are illegal in file names.
 _UNSAFE = re.compile(r"[\x00-\x1f\x7f-\x9f\u2028\u2029\ufeff\\/:*?\"<>|]")
-_MODES = {
-    "discover": "岗位推荐报告",
-    "assess": "岗位评估报告",
-    "apply": "投递建议报告",
-    "interview": "面试复盘报告",
+# The report type ends the file name, in the report's own language (deliver.py's
+# text_language). Chinese is the default and the only form an older delivery has.
+MODE_NAMES = {
+    "zh": {"discover": "岗位推荐报告", "assess": "岗位评估报告", "apply": "投递建议报告",
+           "interview": "面试复盘报告", "prepare": "面试准备计划"},
+    "en": {"discover": "Job recommendations", "assess": "Job assessment",
+           "apply": "Application advice", "interview": "Interview debrief",
+           "prepare": "Interview preparation plan"},
+    "es": {"discover": "Recomendación de puestos", "assess": "Evaluación del puesto",
+           "apply": "Consejos de candidatura", "interview": "Revisión de la entrevista",
+           "prepare": "Plan de preparación de entrevistas"},
+    "ja": {"discover": "求人推薦レポート", "assess": "求人評価レポート", "apply": "応募アドバイス",
+           "interview": "面接振り返りレポート", "prepare": "面接準備プラン"},
+    "ko": {"discover": "채용 추천 보고서", "assess": "채용 평가 보고서", "apply": "지원 조언 보고서",
+           "interview": "면접 복기 보고서", "prepare": "면접 준비 계획"},
 }
-_LEGACY = "求职建议报告"
+LEGACY_NAMES = {"zh": "求职建议报告", "en": "Career consultation report",
+                "es": "Informe de orientación profesional", "ja": "キャリア相談レポート",
+                "ko": "커리어 상담 보고서"}
+_MODES = MODE_NAMES["zh"]
+_LEGACY = LEGACY_NAMES["zh"]
 _PROFILE_FILES = ("candidate-profile.yaml", "tailored-profile.yaml", "profile.yaml")
 
 
-def report_stem(workspace: Path, mode: str) -> str:
+def report_stem(workspace: Path, mode: str, lang: str = "zh") -> str:
     """Build a UTF-8 filename stem of at most 200 bytes.
 
     Name comes from the first readable profile ``meta.name``. Context comes from
     ``posting.yaml`` (company plus role_title, otherwise title), or else from up
     to three ``brief.yaml`` locations plus the brief's ``report_label`` (a short
-    reader-facing direction), falling back to its first target title. The date is the
+    reader-facing direction), falling back to its first target title, or else
+    from the first ``direction.yaml`` target title (prepare mode). The date is the
     first YYYY-MM-DD in ``workspace.name``. Missing pieces are left out. With
     neither a name nor a context, the legacy stem is returned.
     """
@@ -38,14 +53,14 @@ def report_stem(workspace: Path, mode: str) -> str:
     name = _person_name(workspace)
     context = _context(workspace)
     if not name and not context:
-        return _LEGACY
+        return LEGACY_NAMES.get(lang, _LEGACY)
     found = _DATE.search(workspace.name)
-    parts = [name, context, found.group(0) if found else None, _report_type(mode)]
+    parts = [name, context, found.group(0) if found else None, _report_type(mode, lang)]
     return _fit(_SEP.join(part for part in parts if part))
 
 
-def _report_type(mode: str) -> str:
-    return _MODES.get(mode, _LEGACY)
+def _report_type(mode: str, lang: str = "zh") -> str:
+    return MODE_NAMES.get(lang, _MODES).get(mode, LEGACY_NAMES.get(lang, _LEGACY))
 
 
 def _person_name(workspace: Path) -> str | None:
@@ -72,7 +87,11 @@ def _context(workspace: Path) -> str | None:
             return _SEP.join(parts)
     brief = _mapping(workspace, "brief.yaml")
     if brief is None:
-        return None
+        # A prepare workspace has neither a posting nor a brief; its direction.yaml
+        # names the target, and the first title stands for the session.
+        direction_file = _mapping(workspace, "direction.yaml")
+        titles = _strings(direction_file.get("target_titles"), limit=1) if direction_file else []
+        return titles[0] if titles else None
     # target_titles are search queries, written in both market languages and in
     # run order. Measured 2026-11-01, three of them made a 180-byte name mixing
     # English and Dutch query variants ("…medical imaging AI－medische

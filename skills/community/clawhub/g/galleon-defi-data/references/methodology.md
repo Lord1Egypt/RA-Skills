@@ -32,10 +32,6 @@ Compare the same capital basis and time horizon. Separate reward-token price exp
 
 For product assessments, extend these metric checks with [yield, collateral, oracle and exit diligence](diligence.md). Preserve canonical block hashes and finality when conclusions depend on chain state.
 
-## Research queue and re-entry triggers
-
-Keep a decision queue for screened candidates: rejection reason, supporting evidence, next review time and a specific re-entry trigger. Do not re-fetch an unchanged reject without its trigger changing. Screen a new lead on mechanism, independent observable confirmation, signal age, horizon and invalidation before spending a full cycle on deeper diligence; park it with the missing evidence when it fails, and do not invent a thesis to fill a research slot. When repeated cycles only advance controls or attribution without a current thesis, rotate the next slot to discovery. Record each learning delta with the question, prior belief, new evidence with source, block and time, conclusion or explicit unknown, changed decision and next smallest probe. Provider outages and failed fallbacks are gaps, not discoveries.
-
 ## Social and trader signals
 
 A profile's displayed address is a provider claim about identity, not proof of trading custody; promote it only after a transaction receipt and token-flow evidence match. A social verified flag is not cryptographic control, and the same address across chains does not prove activity on each. A zero-to-positive balance at a receipt block supports new inventory at that destination, not lifetime first entry, origin funding or person control. Alert values that embed realized profit are not sale proceeds; bought and received positions need actual swap legs and cost basis. Follow edges indicate attention, and simultaneous posts from one network or shared source count as one source. Mixed-venue portfolio returns are not evidence of edge at one venue, and copying a trader's next buy does not reproduce their book, inventory or reach.

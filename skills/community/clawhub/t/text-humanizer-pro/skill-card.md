@@ -1,6 +1,6 @@
 ## Description:
 
-Humanizes AI-written text through a cloud processing engine, with selectable modes, two-stage recipes, multilingual output, and a before-and-after quality report.
+Rewrites AI-written text to sound more natural while aiming to preserve its meaning, facts, and voice.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Writers, content creators, and developers can use the skill to revise AI-generated essays, articles, fiction, marketing copy, work documents, and social posts while aiming to preserve the source meaning and facts. Developers can also connect compatible clients to its OpenAI-style API.
+External users and developers use it to polish AI-drafted essays, posts, fiction, marketing copy, and work documents through a cloud text-processing service.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security summary rates the release suspicious because optional plaintext API-key storage conflicts with the skill's broad claim that nothing is stored.
+Risk: Broad polishing and ChatGPT-related triggers may activate the skill unexpectedly.
 
-Mitigation: Review the local key-storage behavior before use. Avoid saving a personal key on shared or untrusted devices; use the environment-variable option or clear saved key configuration when finished.
+Mitigation: Review the skill's trigger rules and invoke it only when the user requests text processing.
+
+Risk: Submitted text is sent to a cloud service, and host runtime network permissions were not confirmed.
+
+Mitigation: Avoid submitting sensitive personal information and confirm network access is acceptable for the intended use.
+
+Risk: A personal API key is stored in plaintext when the user explicitly saves it.
+
+Mitigation: Save a personal key only when needed, keep the local config file protected, and clear the key when it is no longer required.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/abcqq1234567/skills/text-humanizer-pro)
-- [OpenAI-compatible API endpoint](https://1257655569-3o00dbw8fr.ap-singapore.tencentscf.com/v1/chat/completions)
+- [ClawHub Skill Page](https://clawhub.ai/abcqq1234567/skills/text-humanizer-pro)
+- [Humanizer API](https://1257655569-3o00dbw8fr.ap-singapore.tencentscf.com/v1/chat/completions)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Guidance]
+**Output Type(s):** [Text, Guidance]
 
-**Output Format:** [Humanized text with a five-dimension before-and-after quality report; CLI results are returned as JSON.]
+**Output Format:** [Rewritten natural-language text with an optional quality report]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Language-adaptive output; the skill says it returns text in the input language.]
+**Other Properties Related to Output:** [Preserves the input language and aims to retain the original meaning, facts, and voice.]
 
 ## Skill Version(s):
 
-1.7.0 (source: ClawHub release evidence)
+1.7.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

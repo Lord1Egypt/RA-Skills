@@ -33,8 +33,6 @@ node code/light-cli.mjs doctor    # 环境自检
 node code/light-cli.mjs list      # 查看台账
 ```
 只有在用 evolver 集成（`--engine evolver`）时才需先 `npm install`。
-**Q8 补充：可选集成的运行版本**：可选集成的最低运行版本为 pi-coding-agent 1.5.1 → Node ≥22.19.0、evolver 2.0.50 → Node ^22.13.0 或 ≥23.4.0；默认 light 后端仍只需 Node ≥22。**EN**: Optional integrations require Node >=22.19.0 (pi 1.5.1) or ^22.13.0/>=23.4.0 (evolver 2.0.50); the default light backend needs only Node >=22.
-
 **EN A5**: The default light backend has zero external dependencies - Node >= 22 suffices. `doctor` for environment self-check. npm install only needed for the evolver integration.
 
 
@@ -45,12 +43,14 @@ node code/light-cli.mjs list      # 查看台账
 
 **Q7：国内网络 npm/GitHub 慢？**
 npm 换国内镜像：`npm config set registry https://registry.npmmirror.com`；GitHub 克隆可用镜像代理或直接下载 Release zip。
-**EN A7**: npm domestic mirror: `npm config set registry https://registry.npmmirror.com`; for GitHub, use a mirror proxy or download the Release zip directly.
+**版本检查（查看上游最新版）的国内等价写法**：`npm view @earendil-works/pi-coding-agent version --registry=https://registry.npmmirror.com`（evolver 同理，把包名换成 `@evomap/evolver`）——npmmirror 与官方源同步通常有分钟级延迟，双源核对以官方 registry 为准（见 `docs/version-standards.md`）。
+**EN A7**: npm domestic mirror: `npm config set registry https://registry.npmmirror.com`; for GitHub, use a mirror proxy or download the Release zip. Version checks against the domestic mirror: `npm view <pkg> version --registry=https://registry.npmmirror.com` (npmmirror syncs from the official registry with minute-level delay; authoritative checks use the official registry, see `docs/version-standards.md`).
 
 
 **Q8：Node 版本要求？**
 ≥22（traps 生成器还需 Python 3）。版本过低时 pi/evolver 可能启动失败。
-**EN A8**: >= 22 (traps also need Python 3). Lower versions may fail to start pi/evolver.
+可选集成的最低运行版本更高：pi-coding-agent 1.5.2 → Node ≥22.19.0；evolver 2.0.51 → Node ^22.13.0 或 ≥23.4.0；默认 light 后端仍只需 Node ≥22。
+**EN A8**: >= 22 (traps also need Python 3). Lower versions may fail to start pi/evolver. Optional integrations require Node >=22.19.0 (pi 1.5.2) or ^22.13.0/>=23.4.0 (evolver 2.0.51); the default light backend needs only Node >=22.
 
 
 **Q9：我沉淀了很多，但好像从来没被用过？**
@@ -99,10 +99,10 @@ node code/light-cli.mjs info      # 看「召回次数 / 命中 / 待审」
 
 
 **Q16：文档里的「锁定依赖版本」和「上游实测版本」有什么区别？**
-前者是 `package.json` 的 `optionalDependencies` 锁定值（pi 0.74.2 / evolver 2.0.30），只在你主动安装可选集成时生效，A/B 流程零 npm 依赖；后者是每版开发前 C42 上游检查实测到的最新版（pi 1.5.1 / evolver 2.0.50），只用于兼容性评估与最低运行版本说明，**不是本项目安装的版本**。两者由同一生成器写入，语义不可混用。
-**EN A16**: Locked dependency versions (pi 0.74.2 / evolver 2.0.30) are the pinned optional integrations in package.json; upstream-checked versions (pi 1.5.1 / evolver 2.0.50) come from the C42 pre-development check and are used only for compatibility assessment, never installed.
+前者是 `package.json` 的 `optionalDependencies` 锁定值（pi 0.74.2 / evolver 2.0.30），只在你主动安装可选集成时生效，A/B 流程零 npm 依赖；后者是每版开发前 C42 上游检查实测到的最新版（pi 1.5.2 / evolver 2.0.51，0.42 时点），只用于兼容性评估与最低运行版本说明，**不是本项目安装的版本**。两者由同一生成器写入，语义不可混用。三轴完整口径见 `docs/version-standards.md`。
+**EN A16**: Locked dependency versions (pi 0.74.2 / evolver 2.0.30) are the pinned optional integrations in package.json; upstream-checked versions (pi 1.5.2 / evolver 2.0.51, as of 0.42) come from the C42 pre-development check and are used only for compatibility assessment, never installed. See `docs/version-standards.md` for the full three-axis standards.
 
-**Q17： 常见英文技术术语对照表（错误提示与文档共用）**
+**Q17：常见英文技术术语对照表（错误提示与文档共用）**
 **EN A17**: Chinese–English glossary for terms appearing in CLI errors and docs.
 
 | 英文术语 | 中文含义 | 出现在哪 |

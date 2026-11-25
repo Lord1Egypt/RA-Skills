@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes pet images or videos to estimate breed or body type and coat density, then recommends a drying temperature and duration curve.
+Analyzes full-body pet images or video to estimate breed or body type and fur density, then returns a personalized drying temperature and duration curve.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Pet groomers and smart pet-care device operators use the skill to obtain drying temperature and duration guidance from pet images or videos and to retrieve previous reports. Recommendations are for grooming, not medical care.
+Pet owners, groomers, and pet-care device operators use the skill to estimate a pet's breed or body type and fur density from full-body media, then review a suggested drying temperature and duration curve. The recommendations are for care guidance and are not medical advice.
 
 ### Deployment Geography for Use:
 
@@ -22,41 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Pet media or supplied URLs are sent to lifeemergence.com services for processing.
+Risk: The security review flags credential handling and persistent personal data, while noting that the evidence is partial and does not establish malicious intent.
 
-Mitigation: Review and approve remote processing before use; share only pet media and URLs authorized for upload.
+Mitigation: Review credential handling, account creation, and report storage before installation; use only a trusted service configuration.
 
-Risk: The skill can create or reuse an account identifier and store authentication tokens in the workspace data directory.
+Risk: The skill sends local or network pet images and videos to remote analysis services, and the security review calls out remote media processing.
 
-Mitigation: Review account linkage and local token storage before installation; restrict access to the workspace data directory.
+Mitigation: Submit only media you are authorized to share, and check the service's data handling and retention practices first.
 
-Risk: Broad history-related prompts can trigger queries of cloud-stored reports.
+Risk: The security scan was partial, and the analysis implementation was not fully available for verification.
 
-Mitigation: Confirm intent and authorization before querying or sharing previous reports.
-
-Risk: Automated temperature recommendations may be unsuitable for a particular pet.
-
-Mitigation: Treat recommendations as grooming guidance, not medical advice; monitor the pet and verify device settings before use.
+Mitigation: Review the complete source and dependencies before using real media or credentials.
 
 ## Reference(s):
 
-- [Skill API documentation](references/api_doc.md)
-- [Skill demonstration](https://lifeemergence.com/sample.html)
-- [ClawHub release](https://clawhub.ai/18072937735/skills/smyx-adaptive-pet-drying-temperature-analysis)
+- [ClawHub skill release](https://clawhub.ai/18072937735/skills/smyx-adaptive-pet-drying-temperature-analysis)
+- [Publisher profile](https://clawhub.ai/user/18072937735)
+- [API reference](references/api_doc.md)
+- [Usage demonstration](https://lifeemergence.com/sample.html)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, JSON]
+**Output Type(s):** [Analysis, Guidance, JSON, Markdown]
 
-**Output Format:** [Structured analysis report or Markdown history table; optional JSON file]
+**Output Format:** [Structured JSON analysis report; historical report lists can be presented as Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes recommended drying temperatures (°C), durations (minutes), and report links when available.]
+**Other Properties Related to Output:** [May include breed or body-type estimate, fur-density estimate, drying temperature and duration recommendations, risk notes, and a report link.]
 
 ## Skill Version(s):
 
-1.0.13 (source: server-resolved ClawHub release metadata)
+1.0.14 (source: server-resolved ClawHub release)
 
 ## Ethical Considerations:
 

@@ -1,0 +1,8 @@
+interface:
+  display_name: "商品尺码选购指南"
+  short_description: "将商家尺码表与量法整理为可核对的选码范围和待确认项"
+  default_prompt: "使用 $shop-size-selection-guide-cn 根据商家已确认的尺码表、单位、量法、适用部位和选码规则生成选购指南；资料不足时停止推荐。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

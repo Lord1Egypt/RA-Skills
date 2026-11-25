@@ -1,6 +1,6 @@
 ## Description:
 
-AI-powered digital human (virtual avatar) operations assistant for financial institutions — covers script design, content planning, live streaming management, interaction optimization, and performance analytics. Built for bank and insurance digital marketing teams.
+AI-powered digital human (virtual avatar) operations assistant for financial institutions — covers script design, content planning, live streaming management, interaction optimization, and performance analytics. Built for bank and insurance digital marketing teams. Keywords: digital human, virtual avatar, live streaming, virtual spokesperson, financial marketing, 数字人, 虚拟主播, 直播运营, 虚拟形象, 金融营销, AI主播, 数字人运营, 虚拟人设.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,21 +14,25 @@ MIT-0
 
 ## Use Case:
 
-Bank and insurance content, compliance, and digital marketing teams use this skill to draft digital-human scripts, plan content calendars, shape virtual-persona interactions, and review performance metrics. It provides templates and guidance for qualified staff to review before publication.
+Bank and insurance digital marketing employees use this skill to draft digital-human scripts, content calendars, interaction ideas, and performance review guidance. Its examples are working drafts for qualified staff to check before any external use.
 
 ### Deployment Geography for Use:
 
-China
+China (the regulatory examples are China-focused).
 
 ## Known Risks and Mitigations:
 
-Risk: The skill scan was benign but incomplete: no findings were reported, and the manifest could not be parsed while a local reference was missing.
+Risk: Security inspection was partial: the verdict is benign with medium confidence, but scanner coverage was zero percent.
 
-Mitigation: Review the skill files and check the missing reference before installation if that uncertainty matters.
+Mitigation: Review the skill and consider whether its source is trusted before installing, as advised by the security evidence.
 
-Risk: Time-sensitive regulatory and financial marketing guidance may be stale or unsuitable for a specific institution.
+Risk: Regulatory and financial examples may be incomplete or out of date and could be mistaken for approved advice.
 
-Mitigation: Verify claims against current official sources and have qualified compliance staff review drafts before publication.
+Mitigation: Have qualified compliance staff verify current official sources and approve any draft before publication or use in a customer-facing setting.
+
+Risk: Providing customer identifiers, account details, holdings, or nonpublic financial information could expose sensitive data.
+
+Mitigation: Use only the minimum necessary information, redact customer examples, and do not provide identifiers, account numbers, holdings, or internal customer lists.
 
 ## Reference(s):
 
@@ -36,17 +40,17 @@ Mitigation: Verify claims against current official sources and have qualified co
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Guidance, Markdown, Code]
 
-**Output Format:** [Markdown with scripts, checklists, and tables]
+**Output Format:** [Text and Markdown with tables, checklists, templates, and illustrative code examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Drafts and analysis guidance; code examples are illustrative.]
+**Other Properties Related to Output:** [Produces draft guidance and examples for human review; code blocks are illustrative and are not executed by the skill.]
 
 ## Skill Version(s):
 
-3.0.5 (source: frontmatter)
+3.0.6 (source: frontmatter; confirmed by server-resolved release metadata)
 
 ## Ethical Considerations:
 

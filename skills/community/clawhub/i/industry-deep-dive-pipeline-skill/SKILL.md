@@ -22,7 +22,7 @@ description: >
   写的推广文、技术教程——这类内容请用对应项目工作区里专门的写作 Skill；本 Skill 不做品牌露出与营销措辞，也不产出发布物料。
 description_zh: 产业深度文章全流程编排
 description_en: Industry deep-dive pipeline
-version: "1.1.3"
+version: "1.1.4"
 agent_created: true
 read_when:
   - 产业深度文章
@@ -32,6 +32,14 @@ read_when:
   - 科技行业长文
   - industry deep dive
   - research article pipeline
+allowed-tools:
+  - Read
+  - Write
+metadata:
+  openclaw:
+    permissions:
+      - file_read
+      - file_write
 ---
 
 # Industry Deep-Dive Pipeline
@@ -96,7 +104,7 @@ python scripts/validate_case_bundle.py --case-dir <case-dir> --stage input --enf
 ### Step 3: [LLM] Review originality and competition
 
 1. 拆出核心判断、分析框架和标志性表达。
-2. 搜索中英文新闻覆盖、同主题分析和高度相似论证。
+2. 搜索中英文新闻覆盖、同主题分析和高度相似论证。**⚠️ 外发前确认**：待搜的核心判断、分析框架与标志性表达可能来自未公开/内部材料；向第三方搜索服务发送前须确认这些内容允许外发，未经确认只发最小化、脱敏后的查询片段，或跳过外发并把原创性标为「本地待核」。
 3. 区分公共观点、独立深化、可验证差异和表述撞车。
 4. 主动查找直接反方、历史反例和证伪变量。
 5. 输出 `02-originality-review.md`。

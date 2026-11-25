@@ -47,6 +47,11 @@ SKILL_SCRIPTS = os.path.dirname(os.path.abspath(__file__))
 R_PLOT_SCRIPT = os.path.join(SKILL_SCRIPTS, 'plot_enrichment.R')
 R_PLOT_PKGS = ('ggplot2', 'dplyr', 'stringr', 'scales')
 
+# Package names travel as argv entries; the R expression itself is constant.
+R_PKG_CHECK = ('args <- commandArgs(TRUE); '
+               'ok <- vapply(args, function(p) requireNamespace(p, quietly=TRUE), '
+               'logical(1)); cat(all(ok))')
+
 INK = '#222222'
 MUTED = '#6b7280'
 GRID = '#e9e9e9'
@@ -92,9 +97,8 @@ def r_engine_status():
     """Return (ok, message) for the R plotting engine (Rscript + packages)."""
     if shutil.which('Rscript') is None:
         return False, 'Rscript not found on PATH'
-    check = ' && '.join('requireNamespace("%s", quietly=TRUE)' % p for p in R_PLOT_PKGS)
     try:
-        proc = subprocess.run(['Rscript', '-e', 'cat(%s)' % check],
+        proc = subprocess.run(['Rscript', '--vanilla', '-e', R_PKG_CHECK] + list(R_PLOT_PKGS),
                               capture_output=True, text=True, timeout=180)
     except Exception as exc:                      # pragma: no cover
         return False, 'Rscript failed: %s' % exc
@@ -108,7 +112,7 @@ def run_r_plot(args):
     if not os.path.exists(R_PLOT_SCRIPT):
         print('R plotting script not found: %s' % R_PLOT_SCRIPT)
         return 1
-    cmd = ['Rscript', R_PLOT_SCRIPT,
+    cmd = ['Rscript', '--vanilla', R_PLOT_SCRIPT,
            '--input', args.input, '--output', args.output,
            '--top', str(args.top), '--dpi', str(args.dpi),
            '--wrap', str(args.wrap), '--sort', args.sort]

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#211b12">
+<title>AI四库全典 · 阅读器</title>
+<link rel="stylesheet" href="reader.css">
+</head>
+<body>
+<div id="progress"><div id="progressBar"></div></div>
+
+<header id="topbar">
+  <button id="btnSidebar" class="icon-btn" title="目录">☰</button>
+  <div id="brand"><span class="brand-main">AI四库全典</span><span class="brand-sub">经以明道 · 史以知往 · 子以载术 · 集以存用</span><span id="chNow"></span></div>
+  <div id="searchWrap">
+    <span class="s-ico">⌕</span>
+    <input id="searchInput" type="text" placeholder="全书检索：48 卷 2,571 节，键入即查（Ctrl+K）" autocomplete="off">
+    <kbd>Ctrl K</kbd>
+  </div>
+  <div id="topActions">
+    <span id="pctTxt">0%</span>
+    <button id="btnFontDown" class="icon-btn" title="字号减小">A−</button>
+    <button id="btnFontUp" class="icon-btn" title="字号增大">A＋</button>
+    <button id="btnTheme" class="icon-btn" title="夜读模式">◐</button>
+    <button id="btnAI" class="ai-toggle on" title="AI 助手">✦ AI 导读</button>
+  </div>
+</header>
+
+<div id="scrim"></div>
+
+<div id="layout">
+  <!-- 左缘热区：光标贴近滑出目录 -->
+  <div id="edgeZone" title="移入展开目录"></div>
+
+  <aside id="sidebar">
+    <div id="sidebarHead">
+      <span class="toc-title">目录</span>
+      <button id="btnTocPin" title="固定目录">📌</button>
+    </div>
+    <div id="sidebarTabs">
+      <button data-tab="toc" class="tab active">卷目</button>
+      <button data-tab="anno" class="tab">我的批注 <span id="annoCount" class="badge"></span></button>
+    </div>
+    <div id="tab-toc" class="tab-body">
+      <div id="tocTree"></div>
+      <div id="indexStatus" class="index-status"></div>
+    </div>
+    <div id="tab-anno" class="tab-body hidden">
+      <div id="annoList" class="empty-hint">尚无批注。<br>在正文中选中文字即可圈点或写札记。</div>
+    </div>
+  </aside>
+
+  <main id="reader">
+    <div id="breadcrumb"></div>
+    <article id="content"></article>
+    <div id="volFooter">
+      <button id="btnPrev" class="nav-btn">← 上一节</button>
+      <button id="btnTop" class="nav-btn">回卷首</button>
+      <button id="btnNext" class="nav-btn">下一节 →</button>
+    </div>
+  </main>
+
+  <aside id="aiPanel">
+    <div id="aiHead">
+      <span class="ai-title">✦ AI 导读</span>
+      <button id="btnAISettings" class="icon-btn small" title="接入大模型">⚙</button>
+      <button id="btnAIClose" class="icon-btn small" title="收起">×</button>
+    </div>
+    <div id="aiMode" class="ai-mode">当前：书内检索模式 —— 直接问，AI 从全书 48 卷中找出最相关的段落并给出处。<a id="lnkSettings">接入大模型</a>后可自由对话。</div>
+    <div id="aiChat"></div>
+    <div id="aiInputWrap">
+      <div id="aiQuote" class="hidden"></div>
+      <textarea id="aiInput" rows="2" placeholder="问点什么，例如：RAG 为什么需要向量数据库？"></textarea>
+      <button id="btnAISend">发送</button>
+    </div>
+  </aside>
+</div>
+
+<!-- 手机端底部工具栏 -->
+<nav id="mBar">
+  <button data-m="toc"><i>☰</i><span>目录</span></button>
+  <button data-m="search"><i>⌕</i><span>检索</span></button>
+  <button data-m="anno"><i>✎</i><span>批注</span></button>
+  <button data-m="aa"><i>Aa</i><span>排版</span></button>
+  <button data-m="ai"><i>✦</i><span>AI</span></button>
+</nav>
+
+<!-- 排版底部抽屉 -->
+<div id="aaSheet">
+  <div class="sheet-hd"><b>排版</b><button id="aaClose">完成</button></div>
+  <div class="sheet-row">
+    <label>字号</label>
+    <input id="aaFont" type="range" min="15" max="27" step="1">
+    <b id="aaFontVal">19</b>
+  </div>
+  <div class="sheet-row">
+    <label>行距</label>
+    <input id="aaLine" type="range" min="170" max="230" step="5">
+    <b id="aaLineVal">2.0</b>
+  </div>
+  <div class="sheet-row">
+    <label>版心宽度</label>
+    <input id="aaWidth" type="range" min="620" max="980" step="20">
+    <b id="aaWidthVal">860</b>
+  </div>
+  <div class="sheet-row">
+    <label>夜读</label>
+    <button id="aaDark" class="switch">关</button>
+  </div>
+  <div class="sheet-row">
+    <label>左右滑翻节</label>
+    <button id="aaSwipe" class="switch on">开</button>
+  </div>
+  <p class="sheet-tip">正文点按中央可隐显工具栏；双指捏合实时调字号。</p>
+</div>
+
+<!-- 搜索面板 -->
+<div id="searchOverlay" class="overlay hidden">
+  <div id="searchPanel">
+    <input id="searchPanelInput" type="text" placeholder="在全书 48 卷中检索…" autocomplete="off">
+    <div id="searchResults" class="empty-hint">输入关键词开始检索（支持多个词，空格分隔，须同时命中）</div>
+  </div>
+</div>
+
+<!-- 笔记弹窗 -->
+<div id="noteOverlay" class="overlay hidden">
+  <div id="notePanel">
+    <h3>札记</h3>
+    <blockquote id="noteQuote"></blockquote>
+    <textarea id="noteText" rows="4" placeholder="你的批语…"></textarea>
+    <div id="noteActions">
+      <button id="noteDelete" class="nav-btn hidden">删除圈点</button>
+      <button id="noteCancel" class="nav-btn">取消</button>
+      <button id="noteSave" class="primary-btn">保存</button>
+    </div>
+  </div>
+</div>
+
+<!-- AI 设置弹窗 -->
+<div id="cfgOverlay" class="overlay hidden">
+  <div id="cfgPanel">
+    <h3>接入大模型（OpenAI 兼容接口）</h3>
+    <p class="cfg-tip">填好后，AI 导读从"书内检索"升级为真对话：会自动把全书检索到的相关段落作为参考送入模型。密钥只存在本机，不会上传。</p>
+    <div class="cfg-presets">
+      <span>常用服务：</span>
+      <button data-p="deepseek">DeepSeek</button>
+      <button data-p="qwen">通义千问</button>
+      <button data-p="zhipu">智谱 GLM</button>
+      <button data-p="moonshot">Kimi</button>
+      <button data-p="openai">OpenAI</button>
+    </div>
+    <label>接口地址<input id="cfgBase" type="text" placeholder="https://api.deepseek.com/chat/completions" autocomplete="off" spellcheck="false"></label>
+    <label>API Key<input id="cfgKey" type="password" placeholder="sk-…" autocomplete="off" spellcheck="false"></label>
+    <label>模型名称<input id="cfgModel" type="text" placeholder="deepseek-chat / qwen-plus / glm-4-flash…" autocomplete="off" spellcheck="false"></label>
+    <div id="cfgTestRow">
+      <button id="cfgTest" class="nav-btn">测试连接</button>
+      <span id="cfgTestOut"></span>
+    </div>
+    <div id="noteActions">
+      <button id="cfgCancel" class="nav-btn">取消</button>
+      <button id="cfgSave" class="primary-btn">保存</button>
+    </div>
+  </div>
+</div>
+
+<!-- 选中工具条 -->
+<div id="selBar" class="hidden">
+  <button data-color="y" class="hl-dot y" title="赭黄圈点"></button>
+  <button data-color="g" class="hl-dot g" title="黛绿圈点"></button>
+  <button data-color="b" class="hl-dot b" title="黛蓝圈点"></button>
+  <button data-color="r" class="hl-dot r" title="朱砂圈点"></button>
+  <span class="sep"></span>
+  <button data-act="note">📝 札记</button>
+  <button data-act="ask">✦ 问 AI</button>
+  <button data-act="copy">复制</button>
+</div>
+
+<!-- 扉页 -->
+<div id="welcome" class="overlay">
+  <div id="welcomePanel">
+    <div class="w-frame">
+      <div class="w-seal">四库</div>
+      <h1>AI四库全典</h1>
+      <div class="w-rule"><i></i><b>❖</b><i></i></div>
+      <p class="w-sub">经以明道 · 史以知往 · 子以载术 · 集以存用</p>
+      <div class="w-parts">
+        <div class="wp jing"><b>经</b><span>元道篇</span><small>哲学公理与科学根基</small></div>
+        <div class="wp shi"><b>史</b><span>鉴往篇</span><small>编年谱系与各国对比</small></div>
+        <div class="wp zi"><b>子</b><span>术法篇</span><small>从机器学习到对齐</small></div>
+        <div class="wp ji"><b>集</b><span>致用篇</span><small>行业应用与落地SOP</small></div>
+      </div>
+      <p class="w-desc">四部四十八卷 · 实测二百五十五万九千言 —— 光标移至左缘唤出卷目，<br>选中文字可圈点批注，右栏 AI 导读随问随答。</p>
+      <button id="welcomeGo" class="primary-btn">展 卷</button>
+      <p class="w-credit">上海巧未来人工智能科技有限公司 · 开发<br>学来学去学习社 AI 学伴团 · 主编</p>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="hidden"></div>
+
+<script src="content-1.js"></script>
+<script src="content-2.js"></script>
+<script src="content-3.js"></script>
+<script src="content-4.js"></script>
+<script src="catalog.js"></script>
+<script src="reader.js"></script>
+</body>
+</html>

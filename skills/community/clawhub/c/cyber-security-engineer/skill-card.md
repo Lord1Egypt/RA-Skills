@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and security engineers use this skill to assess and harden OpenClaw privilege governance, approval-first elevated execution, port and egress controls, and ISO 27001/NIST-aligned compliance reporting.
+Developers and security engineers use this skill to harden OpenClaw privilege handling, monitor ports and outbound connections, and produce ISO 27001/NIST-aligned assessment reports with mitigations.
 
 ### Deployment Geography for Use:
 
@@ -22,41 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The sudo runtime hook can create serious review concerns around persistent PATH changes, caller-controlled guard paths, and approval bypasses.
+Risk: ClawScan rates this release suspicious because of reported weaknesses in privilege controls and security checks; some files and analyses were only partially inspected.
 
-Mitigation: Install only after review; do not enable the sudo runtime hook until caller-controlled paths are removed, policy files fail closed, approval-state mutation is protected, and LaunchAgent PATH changes have explicit confirmation and rollback.
+Mitigation: Review the reported sudo authentication assumptions, executable replacement protections, and checks that may fail open before installation. Treat the scan as a review warning, not a claim about the author's intent.
 
-Risk: Privileged execution controls may be incomplete if policy files are absent or elevated paths bypass the guarded wrapper.
+Risk: The security scan is incomplete: 27 of 29 components were fully inspected, two were partially inspected, and several static analyzers were degraded.
 
-Mitigation: Make policy files mandatory for privileged actions and route every elevated operation through guarded_privileged_exec.py with explicit user approval.
-
-Risk: Unapproved listening ports or outbound destinations can remain exposed when baselines are missing or incomplete.
-
-Mitigation: Maintain reviewed approved_ports.json and egress_allowlist.json baselines, then review and remediate all unapproved port and egress findings.
+Mitigation: Review the partially inspected components and rerun suitable analysis before relying on the skill's security controls.
 
 ## Reference(s):
 
-- [Least-Privilege Policy For OpenClaw](references/least-privilege-policy.md)
-- [Port Monitoring Policy For OpenClaw](references/port-monitoring-policy.md)
-- [Compliance Controls Map](references/compliance-controls-map.json)
-- [Approved Ports Template](references/approved_ports.template.json)
-- [Command Policy Template](references/command-policy.template.json)
-- [Egress Allowlist Template](references/egress-allowlist.template.json)
-- [Prompt Policy Template](references/prompt-policy.template.json)
+- [Project homepage](https://github.com/FletcherFrimpong/OpenClaw-Cyber-Analyst)
+- [ClawHub release page](https://clawhub.ai/fletcherfrimpong/skills/cyber-security-engineer)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Markdown]
+**Output Type(s):** [Analysis, Code, Shell commands, Configuration instructions, Guidance, Files]
 
-**Output Format:** [Markdown status reports with inline shell commands and generated JSON or HTML assessment files]
+**Output Format:** [Markdown reports, JSON assessments and configuration, HTML dashboards, and Python or shell scripts]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Outputs include check IDs, status, risk, evidence, and concrete mitigations for security and compliance findings.]
+**Other Properties Related to Output:** [Reports include evidence, affected checks, risks, and concrete mitigations when available.]
 
 ## Skill Version(s):
 
-0.1.9 (source: frontmatter and server release evidence)
+0.2.1 (source: frontmatter)
 
 ## Ethical Considerations:
 

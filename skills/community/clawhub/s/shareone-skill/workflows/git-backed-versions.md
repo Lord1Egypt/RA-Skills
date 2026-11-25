@@ -8,7 +8,8 @@
 | --- | --- |
 | 公开 GitHub `.html` / `.md` / `.txt` 文件 | 可直接绑定 HTTPS `github.com/.../blob/...` 或 `raw.githubusercontent.com` 文件 URL；blob 自动转 raw |
 | GitHub 私有仓库 | 当前没有仓库凭据接入，不能假定 ShareOne 能读取；保留仓库原有访问范围，不把 token 拼进 URL |
-| GitLab / 企业 GitLab | 当前域名白名单不含 GitLab；接入域名、服务端网络和仓库认证后才可绑定 remote URL。已有仓库也可按 §3.1 手动发布选定版本的本地文件 |
+| GitLab 公开文件 | `gitlab.com` 可直接绑定 `/-/raw/<完整 commit SHA>/<产物路径>`；不接受分支、标签或 blob URL |
+| GitLab 私库 / 企业 GitLab | 需运营方注册确切 HTTPS origin、项目、产物路径、ShareOne 所有者 ID 和服务端只读凭据引用；自建域名需注册，内网需实际接通。按 §2.1 执行 |
 | 本地文件上传 | 按原发布流程保存当前内容；不会自动建立 Git 历史或绑定仓库 |
 | ShareOne 内链 pointer | 多个分享同步同一份源内容，可各设密码/水印；不保存源的历史版本 |
 
@@ -40,6 +41,24 @@ node scripts/upload_page.js --share-id <REF> --remote-url "https://github.com/or
 
 这会更新原分享并保留其评论；省略 `--share-id` 会创建另一个分享。需要保持原链接时，不改 slug、不使用 `--force-new`。既有 `.shareone_active_task` 中的目标仍然有效。
 
+### 2.1 GitLab 固定产物与私库
+
+GitLab 保管规范源文件、历史与评审；ShareOne 读取经过 CI 验证的完整编译 HTML。不要把 ShareOne 缓存变成第二份模型源，也不要为接入私库把它镜像到公开 GitHub。
+
+```bash
+node scripts/upload_page.js --remote-url "https://gitlab.com/group/project/-/raw/<FULL_COMMIT_SHA>/dist/review.html"
+# 换版 / 回退：更新原分享，评论和 URL 保留
+node scripts/upload_page.js --share-id <REF> --remote-url "https://gitlab.com/group/project/-/raw/<NEW_FULL_COMMIT_SHA>/dist/review.html"
+```
+
+私库需先由部署运营方在服务端 `SHAREONE_GITLAB_SOURCES` 注册确切 origin、项目、产物路径和有权发布的 ShareOne 用户 ID，并配置 `SHAREONE_GITLAB_TOKEN_*` 只读凭据引用，token 仅需该项目的 `read_repository`。不要向用户索要聊天里粘贴 token，不把 token 放进命令参数、源 URL、页面、评论或日志。自建 GitLab 需注册 HTTPS origin（含端口）；内网还需部署可达的网络路线/连接器与受信 TLS，不能把注册成功称为内网已接通。
+
+凭据支持读取不代表访客有权查看。私库默认 `owner_and_collaborators`，现有所有者/协作者登录后才能读取，包括下载、评论、页面共享数据和 blob、签署及证书。密码只是额外门槛，不提供成员权限。`putShared` 对获准访客共享，不能当作行级数据库授权。
+
+只有用户明确要公开产物时，才申请运营方为该确切产物设置 `allow_public_export`，再由所有者显式提交 `viewer_scope: "link"`；可用 `shareone_api_request.js` 的 pages PUT，或在绑定命令中加 `--viewer-scope link`。正常公开内容复核仍适用。运营方允许公开不会自动放开已有私有分享；`is_public` 另控制 Explore 广场。不要为解决拒绝改门禁、解绑或创建 pointer。撤销源 token 后不能继续抓取，但已有缓存保持其访问规则；撤销 ShareOne 协作者或关闭分享才撤回其阅读权限。
+
+返回 `remote_revision` 与 `remote_content_sha256` 应匹配选定 commit 和编译产物完整字节。强制刷新只读当前固定 commit，不跟随 HEAD；`remote_fetch_status` 为 `updated` / `not_modified` 才算完成，`error` / `busy` 时脚本非零退出并保留原缓存。版本切换后验收原 URL、评论、摘要和匿名/无关账号不可读。真实私库连通性需真实环境验收，本地夹具测试不能证明客户内网可用。
+
 ## 3. 修改源内容并同步
 
 1. 确认源仓库、文件和当前 ref。已有分享可用 `node scripts/download_share.js "<REF>" --save` 查看 owner 下载返回的 `INFO:REMOTE_SOURCE`；下载得到的是 ShareOne 当前缓存，源 URL 仅在有权限的下载中返回。
@@ -52,13 +71,13 @@ node scripts/refresh_share.js "<REF>"
 node scripts/download_share.js "<REF>" --save
 ```
 
-检查刷新 JSON 中的 `remote_last_error`，并核对下载内容包含预期修改。只有 HTTP 成功或出现 `SHARE_REFRESHED` 不能证明已更新：抓取失败时可能继续保留旧缓存。自然刷新只在打开渲染页时触发，受 60 秒下限、无 ETag 时 10 分钟 TTL 限制；下载本身不会触发刷新。
+检查刷新 JSON 中的 `remote_fetch_status`、`remote_error_code`、`remote_last_error` 和实际内容摘要，再核对下载内容。`error` / `busy` 是未完成，脚本非零退出；`not_modified` 表示内容未变。旧服务若没有状态字段也需检查错误和下载。自然刷新只在打开渲染页时触发，受 60 秒下限、无 ETag 时 10 分钟 TTL 限制；下载本身不会触发刷新。
 
 远程源页面不能通过上传本地副本覆盖正文，会返回 `REMOTE_SOURCE_BOUND`。先修改源头再刷新；不为绕过错误自动解绑。若没有仓库写权限，交付修改建议或按已有权限创建 PR，说明尚待合并/同步的步骤。
 
 ### 3.1 从 Git 仓库手动发布本地文件
 
-GitLab 或私有仓库尚不能直连时，若用户采用手动同步，可用已有仓库访问权限取出选定 commit 的文本文件，再走本地发布流程。文件历史仍保存在 Git 仓库；ShareOne 不会自动跟随后续提交。
+某个仓库尚未配置连接时，若用户采用手动同步，可用已有仓库访问权限取出选定 commit 的文本文件，再走本地发布流程。文件历史仍保存在 Git 仓库；ShareOne 不会自动跟随后续提交。此路径不证明私库远程读取已经接通。
 
 ```bash
 # 更新已有、未绑定 remote URL 的分享；首次创建才省略 --share-id

@@ -1,0 +1,4 @@
+interface:
+  display_name: "小红书作品搜索"
+  short_description: "小红书作品搜索，查询公开资料、保留证据与费用记录，并按需导出结果和报告"
+  default_prompt: "使用 $mglc-xiaohongshu-note-search，按我的小红书任务要求查询并整理结果。"

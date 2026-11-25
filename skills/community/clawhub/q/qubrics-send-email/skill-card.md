@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Agents and developers use this skill to prepare and send approved outbound email through Qubrics using MCP, CLI, SDK, or HTTP, including single messages, batches, and attachments.
+Developers and agent operators use this skill to prepare and send single or batch outbound emails through Qubrics. Sending requires approved credentials and explicit confirmation of the complete sender, recipients, subject, body, and attachments.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Sending to the wrong account or recipients, or sending unapproved message content, can cause unintended disclosure or contact.
+Risk: Security scan coverage is incomplete because some local references could not be resolved.
 
-Mitigation: Verify the connection identity and mailbox, then get explicit approval of the complete sender, recipients, subject, body, and attachments before sending.
+Mitigation: Review the skill requirements and confirm that you trust the Qubrics service and the credentials selected for use.
 
-Risk: Email credentials can grant access to sending and may be exposed if shared in chat or placed in command arguments or output.
+Risk: Sending an email to the wrong recipient or with unintended content can disclose information or create an unwanted communication.
 
-Mitigation: Load only the intended credential from a secret store; keep it out of chat, arguments, and output, and use an isolated process for CLI or SDK examples.
-
-Risk: The security assessment is incomplete because some referenced material could not be resolved during scanning.
-
-Mitigation: Review the referenced material and repeat the security scan when coverage gaps can be resolved.
+Mitigation: Verify the selected account and confirm every sender, recipient, subject, body, and attachment before sending; do not invent message details.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/roshanjonah/skills/qubrics-send-email)
-- [Declared project homepage](https://github.com/qubrics/skills)
+- [Qubrics project homepage](https://github.com/qubrics/skills)
+- [Qubrics Sending API endpoint](https://smtp.qubrics.com/api/v1/emails/send)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, API Calls, Code, Shell commands, Configuration instructions]
+**Output Type(s):** [Guidance, API calls, Shell commands, Code, JSON, Configuration instructions]
 
-**Output Format:** [Markdown guidance with JSON payloads, CLI commands, TypeScript examples, and HTTP requests]
+**Output Format:** [Markdown guidance with JSON examples, shell commands, and TypeScript code]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes single-send and batch-send examples, credential setup guidance, attachment workflows, and response handling.]
+**Other Properties Related to Output:** [Examples use user-approved message details and credentials supplied through an authorised secret store or profile.]
 
 ## Skill Version(s):
 
-2.0.4 (source: frontmatter)
+2.0.8 (source: frontmatter)
 
 ## Ethical Considerations:
 

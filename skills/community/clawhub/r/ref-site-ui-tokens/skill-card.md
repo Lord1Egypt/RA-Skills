@@ -1,6 +1,6 @@
 ## Description:
 
-Helps developers extract CSS design tokens from a reference website and adapt local UI styles without requiring a browser.
+当用户希望参考某个网站改造界面时，本技能指导智能体用 curl 和标准库 Python 提取 CSS 设计 token，并将合适的视觉规范应用到本地样式表。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to inspect a reference site's CSS variables, select reusable design tokens, and apply them to local UI styles while preserving project-specific color meanings.
+前端开发者可用本技能参考目标网站的视觉规范，为本地界面提取并应用颜色、圆角、字重、字号和间距等设计 token。
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Fetching an untrusted or private website can access unintended network resources.
+Risk: The security review flags possible requests to private-network services.
 
-Mitigation: Use only URLs intentionally supplied for the task; avoid private and internal addresses.
+Mitigation: Use only trusted public URLs and check the destination host before running the fetcher.
 
-Risk: Extracted tokens or bulk stylesheet edits can misrepresent the reference design or alter existing color meanings.
+Risk: The security review reports undeclared tool scope and says static analysis was partial.
 
-Mitigation: Review token output and local CSS changes before committing; retain project-specific semantic colors.
+Mitigation: Review the skill and fetcher behavior before installation or execution; treat the scan as incomplete.
 
 ## Reference(s):
 
-- [ClawHub skill listing](https://clawhub.ai/oracis/skills/ref-site-ui-tokens)
+- [ClawHub skill release](https://clawhub.ai/oracis/skills/ref-site-ui-tokens)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Code, Guidance]
+**Output Type(s):** [Guidance, Shell commands, Code, JSON]
 
-**Output Format:** [Markdown guidance and optional JSON design tokens or CSS edits]
+**Output Format:** [Markdown guidance, shell commands, and extracted CSS token data (text or JSON)]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Review extracted tokens and proposed stylesheet edits before applying them.]
+**Other Properties Related to Output:** [Uses a target website URL; token data can be saved as JSON.]
 
 ## Skill Version(s):
 
-1.0.0 (source: frontmatter and release metadata)
+1.0.2 (source: frontmatter, server-resolved release metadata)
 
 ## Ethical Considerations:
 

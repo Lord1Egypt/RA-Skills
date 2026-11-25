@@ -1,6 +1,6 @@
 ---
 name: stocktoday
-description: A股 / 港股 / 美股 / 基金 / 期货 / 期权 / 债券 / 宏观 数据研究技能. 提供 235+ 个数据接口, 后端走 StockToday 自定义加速 (https://tushare.citydata.club/), 接口命名跟 tushare 100% 兼容. 适用于把"看走势 / 查财报 / 比较公司 / 看板块 / 看资金流 / 梳理公告新闻 / 看宏观 / 拉数据导出"这类请求, 转成可执行的金融数据获取 / 清洗 / 对比 / 筛选 / 导出流程.
+description: A股 / 港股 / 美股 / 基金 / 期货 / 期权 / 债券 / 宏观 数据研究技能. 提供 276 个数据接口, 后端走 StockToday 自定义加速 (https://tushare.citydata.club/), 接口命名跟 tushare 100% 兼容. 适用于把"看走势 / 查财报 / 比较公司 / 看板块 / 看资金流 / 梳理公告新闻 / 看宏观 / 拉数据导出"这类请求, 转成可执行的金融数据获取 / 清洗 / 对比 / 筛选 / 导出流程.
 author: stocktoday.pro
 version: 2.0.2
 requirements:
@@ -18,7 +18,7 @@ requirements:
 
 # stocktoday
 
-StockToday 自有数据研究技能, 提供 235+ 个数据接口, 后端走 StockToday 自定义加速 (`https://tushare.citydata.club/`). 接口命名跟 tushare 100% 兼容, LLM 用标准 tushare 写法即可调用.
+StockToday 自有数据研究技能, 提供 276 个数据接口, 后端走 StockToday 自定义加速 (`https://tushare.citydata.club/`). 接口命名跟 tushare 100% 兼容, LLM 用标准 tushare 写法即可调用.
 
 ## 🚀 首次使用 (必读, 3 步)
 
@@ -75,7 +75,7 @@ print(df.head())
 
 ## 🧭 任务驱动 (从自然语言到接口)
 
-> **核心原则**: 用户说人话时, 先**判断任务类型** → **选推荐接口** → **套默认参数**, 不要从 235 个接口里瞎挑.
+> **核心原则**: 用户说人话时, 先**判断任务类型** → **选推荐接口** → **套默认参数**, 不要从 276 个接口里瞎挑.
 > 下方 10 大任务路由覆盖 95% 真实请求.
 
 ### 自然语言触发 (这些说法直接进 skill)
@@ -135,7 +135,7 @@ print(df.head())
 
 ### ⭐ 29 个核心接口 (覆盖 80% 任务)
 
-> 优先从这 29 个里选, 其它 200+ 接口按需翻 `references/数据接口.md`.
+> 优先从这 29 个里选, 其它 250+ 接口按需翻 `references/数据接口.md`.
 
 | 分类 | 接口 |
 |---|---|
@@ -415,7 +415,7 @@ ann = pro.anns_d(ts_code=ts_code, start_date="20260101", end_date="20260618")
 
 ## 🛠️ 工具列表 (按分类)
 
-> 完整 235 个工具,按 23 个分类列出。**所有 schema 含 `type` / `required` / `pattern` / `enum` / `default`**, 详见 [references/数据接口.md](./references/数据接口.md).
+> 完整 276 个工具,按 24 个分类列出。**所有 schema 含 `type` / `required` / `pattern` / `enum` / `default`**, 详见 [references/数据接口.md](./references/数据接口.md).
 
 ### 股票-基础数据 (18)
 | 工具 | 说明 |

@@ -1,133 +1,185 @@
-# Mobile Web Platform-Specific Testing
+# Mobile Web Test Points
 
-> This document defines specialized testing dimensions and strategy highlights specific to Mobile Web (H5), distinct from other platforms.
-> See `references/examples/format-spec.md` for output format and `references/checklists/mobile-web-checklist.md` for the checklist.
-
----
-
-## I. Responsive Layout
-
-### Focus Areas
-- Key breakpoint adaptation: 320px / 375px / 414px / 768px
-- Whether media query breakpoints cover all target devices
-- Notch/punch-hole screen safe area adaptation (env(safe-area-inset-*))
-- Landscape layout switching
-- Content display differences between tall screens (19.5:9) and short screens (16:9)
-
-### Common Defects
-- Text truncation or overlap on small screens
-- Layout broken in landscape mode
-- Content obscured by notch
+> This file defines the test dimensions and strategy points that distinguish mobile web (H5) from other platforms.
+> For the output format, see `references/examples/format-spec.md`; for the checklist, see `references/checklists/mobile-web-checklist.md`.
 
 ---
 
-## II. Touch Interaction
+## 1. Browser Compatibility
 
-### Focus Areas
-- Tap-state visual feedback (:active pseudo-class compatibility on mobile)
-- 300ms tap delay and touch-action handling
-- Smoothness of swipe-to-page/carousel
-- Pinch-to-zoom restrictions and page-level zoom control
-- Gesture conflicts in nested scroll areas
-- Inertial scrolling and rubber band effect
-
-### Common Defects
-- No visual feedback on tap; user unsure if it registered
-- Page stutter during fast swiping
-- Inner/outer scroll conflicts in nested lists
-
----
-
-## III. Browser Compatibility
-
-### Focus Areas
+### Key focus points
 - iOS Safari / Android Chrome / WeChat built-in browser / QQ Browser / UC Browser
 - WebView container differences (WKWebView vs Android WebView)
 - CSS feature compatibility (flexbox gap, aspect-ratio, etc.)
 - JavaScript API compatibility (IntersectionObserver, ResizeObserver, etc.)
-- Impact of private/incognito mode on Storage
+- Effect of private / incognito mode on Storage
 
-### Common Defects
-- iOS Safari date format parsing differences (requires yyyy-MM-dd compatibility)
-- WeChat built-in browser long-press QR code recognition interfering with page interaction
-- localStorage write errors in private mode
+### Common defects
+- Date format parsing differences in iOS Safari (yyyy-MM-dd must be handled)
+- Long-press QR code recognition in the WeChat built-in browser interferes with page interaction
+- localStorage writes throw errors in private mode
 
 ---
 
-## IV. Viewport & Input
+## 2. Touch Interaction
 
-### Focus Areas
+### Key focus points
+- Visual feedback for tap states (compatibility of the :active pseudo-class on mobile)
+- Tap delay compatibility in older WebViews (touch-action / viewport configuration)
+- Smoothness of swipe paging / carousels
+- Pinch-zoom restrictions and page-level zoom control
+- Gesture conflicts in nested scroll areas
+- Momentum scrolling and rubber-band effect
+
+### Common defects
+- No visual feedback on tap, so the user is unsure whether it registered
+- Page stutters when scrolling quickly
+- Inner and outer scrolling conflicts in nested lists
+
+---
+
+## 3. Responsive Layout
+
+### Key focus points
+- Key breakpoints: 320px / 375px / 414px / 768px
+- Whether media query breakpoints cover all target devices
+- Safe area adaptation for notched / punch-hole screens (env(safe-area-inset-*))
+- Landscape layout switching
+- Content display differences between tall screens (19.5:9) and short screens (16:9)
+
+### Common defects
+- Text truncated or overlapping on small screens
+- Layout broken in landscape
+- Content hidden by the notch
+
+---
+
+## 4. Viewport Configuration
+
+### Key focus points
 - viewport meta configuration (width, initial-scale, viewport-fit)
-- Layout adjustment when virtual keyboard appears (100vh behavior on mobile)
-- Input field obscured by keyboard when focused
-- Keyboard types triggered by different input types (number/tel/email/url)
-- Chinese input method composition events (compositionstart/end)
+- Viewport height changes when the virtual keyboard opens / closes (behavior of 100vh on mobile)
+- Viewport recalculation on screen rotation
+- Whether zoom restrictions (user-scalable, maximum-scale) take effect
+- Viewport adaptation in split-screen mode
 
-### Common Defects
-- Input field obscured after keyboard appears
-- 100vh including address bar height causing page height calculation errors
-- Multiple requests triggered during Chinese input method search
+### Common defects
+- 100vh includes the address bar height, causing wrong page height calculations
+- Layout not recalculated after rotating the screen
+- Page does not return to its original position after the keyboard closes
 
 ---
 
-## V. Third-Party Login & Payment
+## 5. Keyboard and Input
 
-### Focus Areas
-- WeChat H5 authorized login (must be in WeChat browser, uses OAuth2.0)
-- WeChat H5 payment (must configure payment directory and domain)
+### Key focus points
+- Input box hidden by the keyboard after focusing
+- Keyboard types triggered by different input types (number / tel / email / url)
+- Chinese IME composition events (compositionstart / end)
+- Form autofill, show / hide password toggle
+- Maximum length restrictions and input format validation
+
+### Common defects
+- Input box hidden after the keyboard opens
+- Multiple requests triggered while searching with a Chinese IME
+- Full keyboard shown for a numeric input box
+
+---
+
+## 6. H5-Specific Features
+
+### Key focus points
+- Triggering and parameters of tel: / sms: / mailto: links
+- Browser support and fallback for the Web Share API
+- PWA: add to home screen, Service Worker offline cache
+- Geolocation / camera access (requires HTTPS + user authorization)
+- Scroll-through and scroll locking for pop-ups
+
+### Common defects
+- Background still scrolls when a pop-up is open (scroll-through)
+- Wrong PWA manifest configuration causes add-to-home-screen to fail
+- Geolocation API unavailable in HTTP environments
+
+---
+
+## 7. Third-Party Login and Payment
+
+### Key focus points
+- WeChat H5 authorized login (must be in the WeChat browser, uses OAuth 2.0)
+- WeChat H5 payment (payment directory and domain must be configured)
 - Alipay H5 payment flow
-- Parameter passing and state restoration in authorization callback URLs
+- Parameter passing and state restoration for authorization callback URLs
 - Login state synchronization across multiple tabs
 
-### Common Defects
-- Cannot invoke WeChat login outside WeChat browser
-- Payment callback URL misconfiguration causing payment failure
+### Common defects
+- WeChat login cannot be invoked outside the WeChat browser
+- Wrong payment callback URL configuration causes payment to fail
 - Login state not synchronized across tabs
 
 ---
 
-## VI. H5-Specific Features
+## 8. WebView-Specific
 
-### Focus Areas
-- tel:/sms:/mailto: link triggering and parameters
-- Web Share API browser support and degradation
-- PWA: Add to Home Screen, Service Worker offline caching
-- Geolocation/camera invocation (requires HTTPS + user authorization)
-- Scroll penetration and modal locking
+### Key focus points
+- JSBridge: two-way calls between H5 and the native app, handling of call failures
+- Physical back button (Android): go back to the previous page or close the WebView
+- Navigation bar: title synchronization, custom navigation bar
+- Invoking native capabilities: camera, photo album, location, QR scanning
+- Login state synchronization: passing the app login state to H5 (cookie / token sync)
+- Loading progress bar and load-failure error page
 
-### Common Defects
-- Background still scrollable when modal is open (scroll penetration)
-- PWA manifest misconfiguration causing Add to Home Screen failure
-- Geolocation API unavailable under HTTP
+### Common defects
+- JSBridge called before injection completes, causing failure
+- Android back button closes the whole WebView directly
+- App is logged in but the H5 page shows not logged in
 
 ---
 
-## VII. Cache & Offline
+## 9. Network and Cache
 
-### Focus Areas
-- Service Worker caching strategies: Cache First / Network First / Stale While Revalidate
+### Key focus points
+- Loading prompts and timeout handling on weak networks
+- Offline prompt and automatic reconnection after network recovery
+- Service Worker cache strategies: Cache First / Network First / Stale While Revalidate
 - HTTP cache header configuration (Cache-Control / ETag / Last-Modified)
-- Offline access degradation: which features are available, which require prompts
-- Cache update mechanism: how users get the latest resources after version update
-- Pre-caching critical resources (App Shell pattern)
+- Offline degradation: which features are available and which need a prompt
+- Cache update mechanism: how users get the latest resources after a version update
+- Pre-caching key resources (App Shell model)
 
-### Common Defects
-- Incorrect caching strategy causing users to always see old version
-- White screen with no degradation prompt when offline
-- Old resources not invalidated after cache update
-- Service Worker anomaly causing permanent page load failure
+### Common defects
+- Endless loading without a timeout prompt on weak networks
+- Wrong cache strategy causes users to always see the old version
+- Blank page with no fallback prompt when offline
+- Old resources not invalidated after a cache update
+- Service Worker errors make the page permanently unable to load
 
 ---
 
-## VIII. SEO & Sharing
+## 10. Performance Experience
 
-### Focus Areas
-- WeChat share card: title/description/cover image (relies on JS-SDK or meta tags)
+### Key focus points
+- First-screen load time, FCP, LCP, and other core metrics (follow project requirements; when none exist, use the reference values in the checklist)
+- Image compression and lazy loading
+- Skeleton screen display
+- Rendering smoothness for scrolling, animation, etc.
+- Memory usage after staying on the page for a long time (whether it keeps growing)
+
+### Common defects
+- Long blank first screen
+- Uncompressed images cause slow loading and heavy data usage
+- Choppy scrolling in long lists
+
+---
+
+## 11. SEO and Sharing
+
+### Key focus points
+- WeChat share card: title / description / cover image (depends on JS-SDK or meta tags)
 - Open Graph tag configuration
 - Page title and meta description
-- URL parameter passing in share links
+- Passing URL parameters in share links
 
-### Common Defects
-- WeChat share not calling JS-SDK, resulting in default page content scraping
+### Common defects
+- WeChat share not using JS-SDK, so page content is scraped by default
 - Share cover image not configured
-- URL parameters lost in sharing
+- URL parameters lost when sharing

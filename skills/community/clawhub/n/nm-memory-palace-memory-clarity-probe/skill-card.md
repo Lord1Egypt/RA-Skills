@@ -1,6 +1,6 @@
 ## Description:
 
-Probe memory/summary clarity via dual anchor questions: task progress, info gaps.
+Probe memory/summary clarity via dual anchor questions: task progress, info gaps
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agent operators use this skill to check whether a saved memory or session summary clearly states completed work and bounded open questions before a handoff, checkpoint, or compression.
+Developers and agents use this skill to assess whether a memory, summary, or session state clearly records completed work and bounded information gaps before handoff, checkpointing, or completion.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: A qualitative clarity result can be mistaken for confirmation that a memory is factually correct.
+Risk: Qualitative probing can encourage premature confidence and does not validate whether remembered task facts are true.
 
-Mitigation: Use the probe as a clarity check only; compare progress claims with task facts and read the underlying requirements before relying on the summary.
-
-Risk: A model may sound confident despite an incomplete or inaccurate memory.
-
-Mitigation: Use both progress and gap probes, and treat the result as a necessary quality check rather than a sufficient validation.
+Mitigation: Use the probe as a clarity check, then compare progress claims with task requirements and known facts before relying on the memory.
 
 ## Reference(s):
 
+- [Memory Palace plugin](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace)
 - [ClawHub release page](https://clawhub.ai/athola/skills/nm-memory-palace-memory-clarity-probe)
-- [Plugin homepage (metadata link)](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace)
-- [Meta-Cognitive Memory Policy Optimization paper](https://arxiv.org/abs/2605.30159)
+- [MMPO paper](https://arxiv.org/abs/2605.30159)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Guidance]
+**Output Type(s):** [Analysis, Guidance, Text]
 
-**Output Format:** [Markdown clarity assessment with progress and gap probe scores, a composite result, a recommendation, and specific issues when needed]
+**Output Format:** [Markdown clarity assessment with progress and gap probe scores, a composite score, recommendation, and specific issues when needed]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Qualitative assessment of memory clarity; it does not verify factual correctness or compute token-level predictive entropy.]
+**Other Properties Related to Output:** [Qualitative assessment; it does not calculate token-level predictive entropy or establish factual correctness.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved ClawHub release)
 
 ## Ethical Considerations:
 

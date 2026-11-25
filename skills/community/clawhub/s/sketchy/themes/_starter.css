@@ -1,0 +1,59 @@
+/*
+ * sketchy theme starter
+ * Copy this file to ./.sketchy/themes/<name>.css (one project) or
+ * ~/.sketchy/themes/<name>.css (all your work), rename it, change values.
+ * Load it after engine/sketchy.css. A theme changes tokens only: every stroke,
+ * hatch, stamp and chart reads them, so nothing else needs editing.
+ *
+ * Rules that keep it sketchy:
+ *  - paper stays a mid or dark tone with grain; never pure white or flat cream
+ *  - one graphite (lines and words) and one accent pencil (the thing that matters)
+ *  - coloured pencils are soft and distinct from each other, in data order
+ *  - check contrast: graphite and figures on paper at least 4.5:1
+ */
+:root {
+  /* paper */
+  --sk-paper: #c3c8d1;
+  --sk-paper-deep: #b4bac5;
+  --sk-paper-light: #d6dae1;
+  --sk-sheet: rgba(195, 200, 209, .92);     /* paper with a little transparency */
+  --sk-veil: rgba(214, 218, 225, .62);
+  --sk-halo: rgba(195, 200, 209, .9);       /* same as paper: keeps text readable over lines */
+  --sk-shadow: 40, 46, 72;                  /* r, g, b of a shadow tinted like the paper */
+  --sk-paper-kind: light;                   /* light or dark grain */
+  --sk-paper-pattern: none;                 /* a grid or ruling, see themes/graph.css */
+  /* graphite */
+  --sk-ink: #262626;
+  --sk-graphite: #4a4a4a;
+  --sk-graphite-soft: #4f525a;
+  --sk-graphite-faint: rgba(74, 74, 74, .38);
+  /* the accent pencil: lines, writing, frame of the main button */
+  --sk-red: #d98a8a;
+  --sk-red-ink: #86353c;
+  --sk-red-frame: #a84f55;
+  --sk-red-soft: #e7b9b5;
+  /* coloured pencils in data order */
+  --sk-blue: #a2b6e2;
+  --sk-green: #a9cfa0;
+  --sk-yellow: #f6d98b;
+  --sk-orange: #f2b880;
+  --sk-violet: #bdb1de;
+  --sk-rose: #e3a99a;
+  --sk-teal: #a9d8d3;
+  --sk-peach: #f2b880;                      /* selected state */
+  /* records and postal objects */
+  --sk-figure: #2f2f35;                     /* every number */
+  --sk-gold: #b8862f;
+  --sk-cream: #e6e3da;                      /* labels on covers */
+  --sk-card: #efece4;                       /* postcards and slips */
+  --sk-stamp: #86353c;
+  --sk-stamp-blue: #34507a;
+  --sk-stamp-green: #2a5c41;
+  --sk-tape: #26272c;
+  --sk-tape-text: #f1efe8;
+  --sk-cover: #5e6a7e;
+  --sk-door: #2c2e35;
+  /* type: a handwriting face for people, a typewriter face for the record */
+  --sk-font-hand: 'Caveat', 'Segoe Print', 'Bradley Hand', cursive;
+  --sk-font-mono: 'Courier Prime', 'Courier New', ui-monospace, monospace;
+}

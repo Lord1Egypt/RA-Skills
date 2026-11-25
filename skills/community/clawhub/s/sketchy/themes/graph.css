@@ -1,0 +1,14 @@
+/*
+ * sketchy theme: graph paper
+ * Graphite on pale blue-grey squared paper. For maths, physics, finance
+ * models and any page where the reader should trust the measurements.
+ */
+:root {
+  --sk-paper: #d3d8df; --sk-paper-deep: #c6ccd5; --sk-paper-light: #dfe3e8;
+  --sk-sheet: rgba(211, 216, 223, .94); --sk-veil: rgba(223, 227, 232, .62); --sk-halo: rgba(211, 216, 223, .92);
+  --sk-paper-kind: light;
+  /* one image that tiles at its own size: background-image cannot carry a position or size */
+  --sk-paper-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cpath d='M24 0V120M48 0V120M72 0V120M96 0V120M0 24H120M0 48H120M0 72H120M0 96H120' stroke='%235476a8' stroke-opacity='.15' fill='none'/%3E%3Cpath d='M.5 0V120M0 .5H120' stroke='%235476a8' stroke-opacity='.24' fill='none'/%3E%3C/svg%3E");
+  --sk-graphite: #3e4046; --sk-ink: #222327; --sk-figure: #222327;
+  --sk-cover: #4e5c49;
+}

@@ -3,6 +3,7 @@
  */
 const constants = require("../config/constants");
 const { requestApi, pollTaskResult } = require("../utils/request");
+const { pickCost, pickTaskId } = require("../utils/cost");
 
 function isEmptyValue(value) {
   if (value == null) return true;
@@ -42,10 +43,10 @@ function processDetailResult(data) {
  * 创建抖音作品详情任务
  * @param {string} token - 技能令牌
  * @param {string} url - 视频或图文 URL，或 aweme_id
- * @returns {Promise<Object>} 任务状态
+ * @returns {Promise<string|undefined>} Create 成功时的任务 id（uuid）
  */
 async function createDetailTask(token, url) {
-  return await requestApi(
+  const response = await requestApi(
     "POST",
     "/api/douyin/detail/url",
     { _: Date.now() },
@@ -54,27 +55,31 @@ async function createDetailTask(token, url) {
     constants.CREATE_MAX_ATTEMPTS,
     "创建任务",
   );
+  return pickTaskId(response);
 }
 
 /**
  * 获取抖音作品详情
  * @param {string} token - 技能令牌
  * @param {string} url - 与创建时相同的 url
- * @returns {Promise<Object|null>} 作品详情对象
+ * @param {string} [taskId] - Create 返回的任务 id；有则查询只传 id（不带业务字段）
+ * @returns {Promise<{ results: Object|null, cost?: number }>}
  */
-async function getDetailTask(token, url) {
+async function getDetailTask(token, url, taskId) {
+  const params = taskId ? { id: taskId } : { url };
   const response = await pollTaskResult(
     "/api/douyin/detail/info",
-    { url },
+    params,
     token,
     "查询任务",
   );
+  const cost = pickCost(response);
 
   if (response.data) {
-    return processDetailResult(response.data);
+    return { results: processDetailResult(response.data), cost };
   }
 
-  return null;
+  return { results: null, cost };
 }
 
 module.exports = {

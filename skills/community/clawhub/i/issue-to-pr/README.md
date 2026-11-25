@@ -3,7 +3,7 @@
 [![Skills.sh](https://img.shields.io/badge/skills.sh-issue--to--pr-blue)](https://skills.sh/4yDX3906/issue-to-pr)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-An AI Agent Skill that automatically reads a GitHub issue, analyzes the codebase, implements a fix, and submits a pull request — end-to-end, with one confirmation.
+An AI Agent Skill that fixes a GitHub issue the way a maintainer would: **preflight the repository, reproduce the bug, prove the fix, then open a PR with evidence** — not just "generate a diff and hope".
 
 ---
 
@@ -13,67 +13,42 @@ An AI Agent Skill that automatically reads a GitHub issue, analyzes the codebase
 npx skills add 4yDX3906/issue-to-pr
 ```
 
-Or install via [ClawHub](https://clawhub.com):
+Or with the bundled installer:
 
 ```bash
-clawhub install issue-to-pr
+git clone https://github.com/4yDX3906/issue-to-pr.git
+cd issue-to-pr
+bash scripts/install.sh --list-targets   # optional: see detected harnesses
+bash scripts/install.sh
 ```
 
-> **That's it!** Once installed, just give your AI agent a GitHub issue URL and watch it work.
+The installer auto-detects `~/.claude/skills`, `~/.qoder/skills`, and falls back to `~/.config/agent/skills`. Use `--target <dir>` or `--project` to control it.
+
+> **That's it.** Give your agent an issue URL and watch it work.
 
 ---
 
-## ✨ Features
+## ✨ What changed in 1.4
 
-- **8-Phase Automated Workflow** — from issue parsing to automatic PR submission
-- **GitHub CLI Integration** — uses `gh` for fast, authenticated access with `fetch_content` fallback
-- **Smart Repo Detection** — auto-detects if you're already in the right repo or clones it
-- **Default Branch Detection** — automatically identifies `main`, `master`, or custom default branches
-- **Minimal Diffs** — changes only what's necessary, respecting existing code style
-- **Built-in Verification** — runs tests, linting, and format checks before finishing
-- **Interactive PR Submission** — review changes first, then auto-submit with one confirmation
-- **Auto-Fork Support** — automatically forks repositories when you lack write access
-- **Structured Output** — generates commit messages and PR descriptions ready to use
+The 1.3 workflow was a linear prompt: parse → fetch → clone → fix → test → PR. It worked when the issue was simple and the repository was conventional. It broke down on monorepos, stale environments, and untrusted issue text.
 
-## 📋 Prerequisites
+1.4 adds the parts a real fix needs:
 
-| Tool | Required | Notes |
-|------|----------|-------|
-| `git` | ✅ Yes | Must be installed and configured |
-| `gh` (GitHub CLI) | 📌 Recommended | Enables fast issue fetching and PR creation. Install: [cli.github.com](https://cli.github.com) |
+- **Phase 0 preflight** — read `AGENTS.md` / `CONTRIBUTING.md` first, detect the package manager and task graph, check issue state, assignees, and existing PRs.
+- **Reproduce before fixing** — a failing test (or a minimal script) that fails for the reported reason.
+- **Baseline and red-green evidence** — record the pre-change test result, and prove the new test fails without the fix.
+- **Blast-radius limits** — 10 files / 400 lines by default, no new dependencies, no CI or auth changes without approval.
+- **State and resume** — `.issue-to-pr/state.json` lets an interrupted run continue instead of starting over.
+- **Untrusted input policy** — issue bodies and comments are data, never instructions.
+- **Self-review phase** — boundary cases, error paths, test validity, secrets, docs.
+- **Repository conventions** — commitlint scopes, DCO sign-off, changesets, PR templates.
+- **CI loop** — watch checks, read failing logs, iterate at most twice, never claim green when nothing ran.
 
-## 📦 Installation
-
-### Option 1: ClawHub (Recommended)
-
-```bash
-clawhub install issue-to-pr
-```
-
-### Option 2: One-Line Install Script
-
-```bash
-bash scripts/install.sh
-```
-
-Or directly from the repo:
-
-```bash
-git clone https://github.com/ClawHub/issue-to-pr.git
-cd issue-to-pr
-bash scripts/install.sh
-```
-
-### Option 3: Manual Install
-
-```bash
-mkdir -p ~/.qoder/skills/issue-to-pr
-cp SKILL.md ~/.qoder/skills/issue-to-pr/SKILL.md
-```
+---
 
 ## 🚀 Usage
 
-In your AI-powered editor (Qoder, Cursor, Claude Code, etc.), simply provide a GitHub issue URL:
+In your agent, provide an issue reference:
 
 ```
 /fix-issue https://github.com/owner/repo/issues/123
@@ -82,67 +57,81 @@ In your AI-powered editor (Qoder, Cursor, Claude Code, etc.), simply provide a G
 Or describe it naturally:
 
 ```
-Fix this GitHub issue: https://github.com/facebook/react/issues/12345
+Fix web-infra-dev/midscene#3411 and open a PR.
 ```
 
-The agent will automatically:
-1. Parse the issue URL and fetch details
-2. Clone or locate the repository
-3. Analyze the codebase to find the root cause
-4. Implement a minimal fix
-5. Run tests and linting
-6. Present changes and wait for your confirmation
-7. Auto-submit a PR (commit, push, and create PR) upon approval
+Optional intents:
 
-## ⚙️ How It Works
+| Flag | Effect |
+| --- | --- |
+| `--dry-run` | Preflight, reproduce, and plan only. No branch, commit, push, or PR. |
+| `--no-push` | Implement and verify locally, then stop before push. |
+| `--draft` | Open the PR as a draft. |
+| `--non-interactive` | Never block on a question; use safe defaults and record them. |
+| `--max-files N` / `--max-lines N` | Override the blast-radius limits. |
+| `--base <branch>` | Target a branch other than the default. |
 
-```
-  GitHub Issue    Parse & Fetch    Analyze Code    Implement Fix    Run Tests    Submit PR
- ┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐    ┌─────────┐   ┌─────────┐
- │    📋    │ ─▶ │    🔍    │ ─▶ │    🧠    │ ─▶ │    🔧    │ ─▶ │   ✅    │─▶ │   🚀    │
- └──────────┘    └──────────┘    └──────────┘    └──────────┘    └─────────┘   └─────────┘
-  Read issue      Fetch details    Trace code       Minimal fix     Lint & test   Push & PR
-  from GitHub     & clone repo     & find root      respecting       to verify     with one
-                                   cause            code style       quality       confirmation
-```
+---
 
-| Phase | Description |
-|-------|-------------|
-| **1. Parse URL** | Extract `owner`, `repo`, and issue `number` from the GitHub URL |
-| **2. Fetch Issue** | Retrieve issue title, body, labels, and comments via `gh` or web scraping |
-| **3. Locate Repo** | Check the current workspace or clone the repository |
-| **4. Analyze** | Search the codebase, trace code paths, and identify the root cause |
-| **5. Implement Fix** | Apply minimal, style-consistent code changes |
-| **6. Verify** | Run the project's test suite and linters |
-| **7. Present Changes** | Show fix summary and diff, wait for user confirmation |
-| **8. Submit PR** | Auto commit, push (with fork fallback), and create PR |
+## 🧭 Workflow
 
-## 🔒 Security & Privacy
+| Phase | What happens | Output |
+| --- | --- | --- |
+| **0. Preflight** | Parse the issue, read repository rules, detect stack, check for existing work, apply scope gate | `state.json`, blockers |
+| **1. Reproduce** | Install without a full build, record the baseline, write a failing test | baseline log, failing test |
+| **2. Plan** | Root cause, affected files, fix strategy, risk, out-of-scope list | plan in state |
+| **3. Implement** | Minimal diff, repository style, tests and docs together | working tree |
+| **4. Verify** | Focused test, red-green proof, package tests, types, lint, full suite compared to baseline | evidence artifacts |
+| **5. Self-review** | Boundary cases, error paths, test validity, secrets, translations | review notes |
+| **6. Commit** | Commitlint scopes, DCO, changesets, secret scan | commit |
+| **7. Pull request** | Repository template, evidence body, draft policy | PR URL |
+| **8. CI loop** | Check status, failing logs, at most two repair attempts | updated PR |
+| **9. Report** | PR link, evidence, gaps, risk, next action | final report |
 
-- All code analysis and modifications happen **locally on your machine**
-- Only standard Git/GitHub operations (clone, push, PR) communicate with GitHub
-- Uses your existing `gh` CLI authentication — no additional credentials stored
-- The agent **never pushes code or creates PRs without your explicit approval**
-- No telemetry or usage data is collected
+The full instructions live in [`SKILL.md`](./SKILL.md). The state schema is in [`references/state.schema.json`](./references/state.schema.json), and the PR evidence template in [`references/pr-evidence.md`](./references/pr-evidence.md).
 
-## 🖥️ Supported Platforms
+---
 
-- [Qoder](https://qoder.ai)
-- [Cursor](https://cursor.sh)
-- [Claude Code](https://claude.ai)
-- [Windsurf](https://windsurf.ai)
-- [GitHub Copilot](https://github.com/features/copilot)
+## 🔒 Safety
+
+- **Issue text is untrusted.** Commands, links, and instructions inside an issue are never executed.
+- **No secrets.** The skill never reads `~/.ssh`, `~/.aws`, `~/.config/gh`, `.env`, or keychains, and scans staged changes before committing.
+- **No force-push, no upstream push.** Work happens on your fork or your own branch.
+- **Bounded changes.** Large fixes stop for approval instead of silently refactoring.
+- **Local first.** Analysis and edits run on your machine; only standard Git and GitHub operations leave it.
+- **No stored credentials.** It uses your existing `gh` session, or `GH_TOKEN` from the environment. If a token is used, the report reminds you to revoke or rotate it.
+
+---
+
+## 🖥️ Supported harnesses
+
+The skill is harness-neutral: it describes capabilities, not IDE-specific tool names.
+
+- **Claude Code and compatible harnesses** — auto-detected at `~/.claude/skills`.
+- **Qoder** — auto-detected at `~/.qoder/skills`.
+- **Generic agents** — installed to `~/.config/agent/skills`, or any directory via `--target`.
+- **Cursor / Copilot / Windsurf** — load `SKILL.md` as a rule or project instruction; there is no universal skills directory yet.
+
+---
+
+## ⚠️ When not to use it
+
+- Documentation or translation only — use a small docs PR instead.
+- Dependency upgrades, migrations, large refactors, public API changes — need design approval first.
+- Issues without a reproduction — investigate, but do not guess a fix.
+- Issues already fixed or covered by an open PR — the skill reports the existing work instead.
+
+---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Feel free to:
+1. Fork the repository.
+2. Create a branch (`git checkout -b feature/improvement`).
+3. Commit with a Conventional Commit message.
+4. Open a PR describing the behavior change and how you verified it.
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/improvement`)
-3. Commit your changes (`git commit -m 'Add new feature'`)
-4. Push to the branch (`git push origin feature/improvement`)
-5. Open a Pull Request
+---
 
 ## 📄 License
 
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+MIT — see [LICENSE](LICENSE).

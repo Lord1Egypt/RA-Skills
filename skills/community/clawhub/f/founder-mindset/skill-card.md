@@ -1,6 +1,6 @@
 ## Description:
 
-Founder Mindset helps agents coach early-stage founders through Default Alive or Default Dead analysis, hard-decision avoidance, premature scaling checks, unscalable customer work, and founder stress patterns.
+Guides early-stage founders through a structured audit of runway, avoided decisions, premature scaling, and one concrete next action.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External founders and startup operators use this skill to audit early-stage company decisions about burn, fundraising, hiring, firing, pivots, customer work, and premature scaling. It is most useful when a founder needs structured coaching to identify the single uncomfortable action they should take next.
+External founders and startup teams use this skill to examine early-stage company decisions such as hiring, fundraising, burn, customer work, and scaling. It guides a stepwise Founder-Mode Audit and ends with one action to take within seven days.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill may influence sensitive founder decisions such as firing, fundraising, pivots, and burn reduction.
+Risk: The security review has medium confidence because one referenced example was only partially inspected.
 
-Mitigation: Treat recommendations as prompts for human judgment rather than automatic decisions, and confirm the skill is relevant before applying it to sensitive company choices.
-
-Risk: Broad activation language could apply the coaching frame to decisions outside its intended early-stage founder context.
-
-Mitigation: Use the documented fit checks and avoid applying the skill to mature businesses, fixed-scope employee decisions, or purely tactical choices.
+Mitigation: Review the skill and the partially inspected example before relying on or installing it.
 
 ## Reference(s):
 
-- [Sources - founder-mindset](references/sources.md)
-- [Paul Graham, Default Alive or Default Dead?](http://paulgraham.com/aord.html)
-- [Paul Graham, Do Things That Don't Scale](http://paulgraham.com/ds.html)
-- [Paul Graham, Schlep Blindness](http://paulgraham.com/schlep.html)
-- [Paul Graham, Founder Mode](http://paulgraham.com/foundermode.html)
-- [Y Combinator Companies](https://www.ycombinator.com/companies)
-- [ClawHub Founder Mindset skill page](https://clawhub.ai/deciqai/skills/founder-mindset)
+- [ClawHub founder-mindset release](https://clawhub.ai/deciqai/skills/founder-mindset)
+- [Sources listed by the skill](artifact/references/sources.md)
+- [Paul Graham: Default Alive or Default Dead?](http://paulgraham.com/aord.html)
+- [Paul Graham: Do Things That Don't Scale](http://paulgraham.com/ds.html)
+- [Paul Graham: Schlep Blindness](http://paulgraham.com/schlep.html)
+- [Paul Graham: Founder Mode](http://paulgraham.com/foundermode.html)
+- [Y Combinator company directory](https://www.ycombinator.com/companies)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, guidance]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Markdown Founder-Mode Audit with concise coaching prompts]
+**Output Format:** [Markdown audit and stepwise coaching prompts]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Advice-only founder coaching; no tool calls, code execution, or automation.]
+**Other Properties Related to Output:** [Identifies one concrete action for the next seven days; coaching mode pauses for user input between steps.]
 
 ## Skill Version(s):
 
-1.0.4 (source: server release evidence)
+1.0.5 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

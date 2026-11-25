@@ -1,6 +1,6 @@
 ## Description:
 
-Classifies agent tasks into 4 risk tiers (GREEN/YELLOW/RED/CRITICAL).
+Classifies agent tasks into 4 risk tiers (GREEN/YELLOW/RED/CRITICAL)
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agent orchestrators use the skill to assign task risk tiers, determine verification and approval controls, and guide safe parallel execution before work begins.
+Developers use this skill to classify agent tasks by scope and impact, select verification requirements, and assess whether tasks can run in parallel.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The reported gap in change-classification rules could assign cross-module moves a tier that is too low.
+Risk: The security summary reports a confirmed classification gap that could cause risky changes to be underclassified; the scan is partial and notes two unresolved local path references.
 
-Mitigation: Manually check cross-module moves and renames, and escalate for review when the tier is uncertain before relying on the classification.
+Mitigation: Review classification and escalation behavior against your own policy before acting on security-sensitive, data-affecting, or irreversible work, and inspect the unresolved local references before installation.
 
 ## Reference(s):
 
-- [ClawHub skill listing](https://clawhub.ai/athola/skills/nm-leyline-risk-classification)
-- [Plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-leyline-risk-classification)
+- [Plugin homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
 
 ## Skill Output:
 
-**Output Type(s):** [Risk classification guidance, Task metadata, Markdown]
+**Output Type(s):** [Analysis, Text, Guidance, Task metadata]
 
-**Output Format:** [Text guidance and structured task metadata, including risk-tier markers]
+**Output Format:** [Concise risk tier assessment with rationale and verification guidance; may include task metadata]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Provides tier-specific verification, approval, and parallel-execution guidance.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

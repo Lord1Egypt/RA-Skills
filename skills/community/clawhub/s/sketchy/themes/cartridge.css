@@ -1,0 +1,14 @@
+/*
+ * sketchy theme: cartridge
+ * Graphite on light, cool cartridge paper with visible tooth. For printed
+ * reports and handouts, where a darker sheet would waste toner.
+ */
+:root {
+  --sk-paper: #e2e4e8; --sk-paper-deep: #d5d8dd; --sk-paper-light: #eceef1;
+  --sk-sheet: rgba(226, 228, 232, .94); --sk-veil: rgba(236, 238, 241, .62); --sk-halo: rgba(226, 228, 232, .92);
+  --sk-shadow: 60, 66, 84; --sk-paper-kind: light;
+  --sk-graphite: #3f4044; --sk-ink: #1f2023; --sk-graphite-soft: #55575d; --sk-figure: #1f2023;
+  --sk-blue: #8ea6d6; --sk-green: #95c48b; --sk-yellow: #f0cc6f; --sk-orange: #eda46a;
+  --sk-violet: #a99bd4; --sk-rose: #db9787; --sk-teal: #91ccc5;
+  --sk-cover: #5e6a7e;
+}

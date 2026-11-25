@@ -1,6 +1,6 @@
 ## Description:
 
-Use when the user asks to analyze, consult, setup, manage, configure, or design a Volcengine Landing Zone, including organization, accounts, finance, identity, cloudtrail, or network infrastructure.
+Use when the user asks to analyze, consult, setup, manage, configure, or design a Volcengine Landing Zone, including organization, accounts, finance, identity, cloudtrail, or network infrastructure, or to deploy a solution/blueprint.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers, cloud platform engineers, and consultants use this skill to design and operate Volcengine landing zones, including organization setup, account factory workflows, baseline application, and failure recovery. It supports read-only consulting as well as gated infrastructure execution.
+Cloud platform developers and engineers use this skill to design and manage Volcengine landing zones, create accounts and baselines, and deploy solution blueprints. It provides planning guidance and execution workflows for organization, finance, identity, audit, and network foundations.
 
 ### Deployment Geography for Use:
 
@@ -22,42 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill can run privileged Volcengine infrastructure changes.
+Risk: The security review flags concerns about targeting the intended cloud account and persistent privileges, and scanner coverage is incomplete.
 
-Mitigation: Use short-lived least-privilege credentials and review Terraform plans before applying changes.
-
-Risk: Workspace baseline packages can override built-in baseline packages when names collide.
-
-Mitigation: Verify the resolved package source and review package contents before baseline apply.
-
-Risk: Credential material or generated administrator password files may be exposed if handled carelessly.
-
-Mitigation: Keep credentials outside chat and repositories, and protect or delete generated password files after first use.
+Mitigation: Review account targets and privilege scope in the proposed configuration and plan, resolve the flagged undeclared capabilities and unresolved paths, and defer installation until these concerns have been reviewed.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/volc-sdk-team/skills/volcengine-landing-zone)
-- [Preflight Checks](references/preflight-checks.md)
-- [Volcengine Landing Zone Setup Guide](references/landing-zone-setup/guidebook.md)
-- [Account Factory Workflow](references/account-factory/guidebook.md)
-- [Failure Recovery](references/failure-recovery.md)
-- [Account Factory Baseline Schema](references/account-factory/baseline.schema.json)
-- [Volcengine CLI README](https://github.com/volcengine/volcengine-cli/blob/master/README.MD)
-- [Volcengine Terraform Provider README](https://github.com/volcengine/terraform-provider-volcenginecc)
+- [Publisher profile](https://clawhub.ai/user/volc-sdk-team)
+- [Landing Zone setup guidebook](references/landing-zone-setup/guidebook.md)
+- [Account Factory guidebook](references/account-factory/guidebook.md)
+- [Solution Deployment guidebook](references/solution-deployment/guidebook.md)
+- [Preflight checks](references/preflight-checks.md)
+- [Failure recovery guide](references/failure-recovery.md)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration]
 
-**Output Format:** [Markdown responses with inline shell commands, Terraform configuration guidance, JSON runtime files, and generated HTML review files]
+**Output Format:** [Markdown guidance, JSON architecture and hand-off files, Terraform HCL, shell commands, and HTML reports]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May create workspace-scoped execution files, Terraform variable files, status JSON, login information, baseline plans, and setup reports during authorized runs]
+**Other Properties Related to Output:** [May produce deployable infrastructure configuration and execution plans.]
 
 ## Skill Version(s):
 
-1.0.3 (source: release evidence changelog and server release metadata)
+1.1.0 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

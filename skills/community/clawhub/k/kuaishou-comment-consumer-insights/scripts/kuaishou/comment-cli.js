@@ -1,45 +1,64 @@
 #!/usr/bin/env node
 
-const constants = require("../config/constants");
-const log = require("../utils/log");
 const comment = require("../api/comment");
 const token = require("../utils/token");
 const utils = require("../utils/utils");
 const validator = require("../validate/url");
-const { parseArgs, buildHelp } = require("../utils/args");
+const { assertIntegerRange } = require("../validate/keyword");
+const { parseCliArgs, buildHelp } = require("../utils/args");
+const {
+  emitError,
+  emitEmpty,
+  buildSuccessEnvelope,
+  finishSuccess,
+  emitUncaught,
+} = require("../utils/output");
 
 const SCHEMA = {
   flags: {
     "--url": {
-      alias: "-U",
+      alias: "-u",
       key: "url",
       type: "string",
       required: true,
-      desc: "快手视频URL或视频ID",
+      desc: "快手视频链接或 3x 视频 id",
     },
     "--limit": {
-      alias: "-L",
+      alias: "-l",
       key: "limit",
       type: "number",
       default: 10,
       transform: (v) => Number(v),
-      desc: "评论数量, 1-10000",
+      desc: "评论数量, 1-10000；包月 Token 实际最多 60",
+    },
+    "--save": {
+      key: "save",
+      type: "boolean",
+      default: false,
+      desc: "将完整结果写入本地日志（也可设 GUAIKEI_ENABLE_LOG=1）",
     },
   },
   positionalKey: "url",
 };
 
+const AUTH_MESSAGE =
+  "GUAIKEI_API_TOKEN 未配置或格式无效。须为 16-256 位字母、数字、下划线或连字符";
+
 function printHelp() {
-  console.error(
+  process.stderr.write(
     buildHelp(
       SCHEMA,
-      "node scripts/kuaishou/comment-cli.js <视频URL或视频ID> [选项]",
+      "node scripts/kuaishou/comment-cli.js <视频链接或视频id> [选项]",
       [
-        "node scripts/kuaishou/comment-cli.js -U 3xxxx",
-        'node scripts/kuaishou/comment-cli.js -U "https://www.kuaishou.com/short-video/3xxxx"',
-        "node scripts/kuaishou/comment-cli.js --url 3xxxx --limit 100",
+        'node scripts/kuaishou/comment-cli.js --url "https://www.kuaishou.com/short-video/3xabc" --limit 40',
+        "node scripts/kuaishou/comment-cli.js --url 3xabc --limit 40",
+        `node scripts/kuaishou/comment-cli.js --json-args "{\"url\":\"https://www.kuaishou.com/short-video/3xabc\",\"limit\":40}"`,
       ],
-    ),
+    ) +
+      "\n\n注意:\n" +
+      "  - 这是视频链接或 3x 视频 id，不是博主主页，也不是纯数字 user_id\n" +
+      "  - 数量 1-10000；包月 Token 实际最多 60，超限返回 PLAN_LIMIT\n" +
+      "  - 数量若不在 1-10000，命令会直接失败，不会改成默认值后继续请求\n",
   );
 }
 
@@ -48,125 +67,117 @@ async function main() {
   const args = process.argv.slice(2);
   if (args.length === 0) {
     printHelp();
-    process.exit(0);
+    emitError("comment", "INVALID_ARGS", "缺少命令参数", 2, startTime);
+    return;
   }
 
   let parsed;
   try {
-    parsed = parseArgs(args, SCHEMA);
+    parsed = parseCliArgs(args, SCHEMA);
   } catch (error) {
     utils.printError(`参数解析错误: ${error.message}`);
     printHelp();
-    process.exit(1);
+    emitError(
+      "comment",
+      "INVALID_ARGS",
+      `参数解析错误: ${error.message}`,
+      2,
+      startTime,
+    );
+    return;
   }
   if (parsed._help) {
     printHelp();
-    process.exit(0);
+    return;
   }
 
   let { url, limit } = parsed;
+  const urlRaw = url;
+
   utils.printBanner();
-  utils.printInfo(`原始URL: ${url}`);
-  if (!validator.isVideoUrl(url)) {
-    utils.printError(`URL格式错误: ${url}`);
-    printHelp();
-    process.exit(1);
+  utils.printInfo(`原始链接: ${urlRaw}`);
+  try {
+    url = validator.resolveVideoUrl(url);
+  } catch (error) {
+    utils.printError(error.message);
+    emitError("comment", "INVALID_URL", error.message, 1, startTime, {
+      command: "comment",
+      url_raw: urlRaw,
+    });
+    return;
   }
-  url = validator.normalizeUrl(url);
-  utils.printInfo(`规范后的URL: ${url}`);
-  if (limit < 1 || limit > 10000) {
-    utils.printError(`评论数量参数错误: ${limit}`);
-    printHelp();
-    process.exit(1);
+  utils.printInfo(`规范后的链接: ${url}`);
+  try {
+    limit = assertIntegerRange(limit, 1, 10000, "评论数量 limit");
+  } catch (error) {
+    utils.printError(error.message);
+    emitError("comment", "INVALID_ARGS", error.message, 2, startTime, {
+      command: "comment",
+      url_raw: urlRaw,
+      url,
+      limit,
+    });
+    return;
   }
+  utils.printInfo(`评论数量: ${limit}`);
 
   const tokenValue = token.skillToken(process.env.GUAIKEI_API_TOKEN);
-  if (tokenValue === "") process.exit(3);
+  if (tokenValue === "") {
+    emitError("comment", "AUTH_REQUIRED", AUTH_MESSAGE, 3, startTime, {
+      command: "comment",
+      url_raw: urlRaw,
+      url,
+      limit,
+    });
+    return;
+  }
 
+  const commentRequest = {
+    command: "comment",
+    url_raw: urlRaw,
+    url,
+    limit,
+  };
   let commentTask = null;
+  let cost;
   try {
-    commentTask = await comment.createCommentTask(tokenValue, url, limit);
+    await comment.createCommentTask(tokenValue, url, limit);
     utils.printSuccess("获取评论任务创建成功, 正在查询中...");
-
-    commentTask = await comment.getCommentTask(tokenValue, url, limit);
+    ({ results: commentTask, cost } = await comment.getCommentTask(tokenValue, url, limit));
   } catch (error) {
     utils.printError(`获取评论失败: ${error.message}`);
-    const errorOutput = {
-      status: "error",
-      error_code: error.code || "UNKNOWN",
-      message: error.message,
-      timestamp: new Date().toLocaleString(),
-      request: {
-        command: "comment",
-        url: url,
-        limit: limit,
-      },
-      skill_metadata: {
-        skill_version: constants.VERSION,
-        runtime_version: process.versions.node,
-        execution_time: Date.now() - startTime,
-      },
-      results: null,
-    };
-    process.stdout.write(JSON.stringify(errorOutput, null, 2) + "\n", () =>
-      process.exit(1),
+    emitError(
+      "comment",
+      error.code || "UNKNOWN",
+      error.message,
+      error.name === "AuthError" ? 3 : 1,
+      startTime,
+      commentRequest,
     );
     return;
   }
 
-  if (!commentTask || !Array.isArray(commentTask) || commentTask.length === 0) {
-    utils.printError(`获取评论任务没有返回结果, 请稍后重试或联系开发者`);
-    const emptyOutput = {
-      status: "empty",
-      error_code: "NO_MATCH",
-      message: "没有找到匹配的评论",
-      timestamp: new Date().toLocaleString(),
-      request: {
-        command: "comment",
-        url: url,
-        limit: limit,
-      },
-      skill_metadata: {
-        skill_version: constants.VERSION,
-        runtime_version: process.versions.node,
-        execution_time: Date.now() - startTime,
-      },
-      results: null,
-    };
-    process.stdout.write(JSON.stringify(emptyOutput, null, 2) + "\n", () =>
-      process.exit(1),
-    );
+  if (!Array.isArray(commentTask) || commentTask.length === 0) {
+    utils.printInfo("没有找到匹配的评论");
+    emitEmpty("没有找到匹配的评论", startTime, commentRequest, cost);
     return;
   }
 
-  const finalOutput = {
-    status: "success",
-    error_code: "OK",
-    message: "获取评论任务完成",
-    timestamp: new Date().toLocaleString(),
-    request: {
-      command: "comment",
-      url: url,
-      limit: limit,
-    },
-    skill_metadata: {
-      skill_version: constants.VERSION,
-      runtime_version: process.versions.node,
-      execution_time: Date.now() - startTime,
-    },
-    results: commentTask,
-  };
-  console.log(JSON.stringify(finalOutput, null, 2));
-  utils.printSuccess(`获取评论任务完成, 共获取 ${commentTask.length} 条评论`);
-
-  url = validator.url2Name(url);
-  await log.taskWrite(
-    `${startTime}_${url}_comment.json`,
-    JSON.stringify(finalOutput, null, 2),
+  const finalOutput = buildSuccessEnvelope(
+    "获取评论任务完成",
+    startTime,
+    commentRequest,
+    commentTask,
+    cost,
   );
+  await finishSuccess(finalOutput, {
+    logFilename: `${startTime}_${validator.url2Name(url)}_comment.json`,
+    stderrMessage: `获取评论任务完成, 共获取 ${commentTask.length} 条评论`,
+    save: parsed.save === true,
+  });
 }
 
 main().catch((error) => {
-  utils.printError(error.message);
-  process.exit(1);
+  utils.printError(error.message || String(error));
+  emitUncaught("comment", error);
 });

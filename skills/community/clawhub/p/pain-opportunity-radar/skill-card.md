@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Product researchers, founders, and workflow designers use this skill to find recurring user problems in public sources, compare evidence-backed opportunities, and plan real-task validation. It emphasizes traceable evidence and human checkpoints when decisions could have significant consequences.
+Product managers, founders, researchers, and developers use this skill to find and rank recurring pain points from public sources, then plan interviews or real-task validation for potential Agent, Skill, or human-in-the-loop workflows.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review is incomplete because a local path-like reference could not be resolved.
+Risk: The scanner guidance flags autonomous decision-making and default Chinese and English query languages for review.
 
-Mitigation: Review the unresolved reference and skill contents before installing, and confirm that the required Chinese and English query coverage fits the research.
+Mitigation: Check that query languages fit the research context, review evidence behind rankings, and keep human checkpoints for consequential decisions.
+
+Risk: Public-source research may include personally identifying details.
+
+Mitigation: Keep research read-only and anonymize examples before saving them in evidence records.
+
+Risk: The security review was partial because one local reference could not be resolved.
+
+Mitigation: Resolve and review the missing reference before relying on the security verdict.
 
 ## Reference(s):
 
-- [Clawhub skill page](https://clawhub.ai/haiyangchenbj/skills/pain-opportunity-radar)
+- [ClawHub skill page](https://clawhub.ai/haiyangchenbj/skills/pain-opportunity-radar)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, CSV]
+**Output Type(s):** [Analysis, CSV, Markdown, Research guidance]
 
-**Output Format:** [Markdown reports and CSV evidence and opportunity scorecards]
+**Output Format:** [Evidence tables, ranked opportunity reports, and validation plans in CSV and Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Source-linked findings, evidence limitations, opportunity rankings, and real-task validation plans with human checkpoints.]
+**Other Properties Related to Output:** [May include lane maps, evidence records, opportunity scorecards, decision reports, interview plans, and experiment logs.]
 
 ## Skill Version(s):
 
-1.0.0 (source: frontmatter)
+1.0.1 (source: frontmatter)
 
 ## Ethical Considerations:
 

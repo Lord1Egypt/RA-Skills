@@ -1,43 +1,60 @@
-## Description: <br>
-Tests and optimizes prompts for token usage, estimated cost, timing, and model/provider comparison with the singleshot CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Test and optimize prompts for cost, token use, performance, and report quality with singleshot across multiple model providers.
 
-## Publisher: <br>
-[vincentzhangz](https://clawhub.ai/user/vincentzhangz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vincentzhangz](https://clawhub.ai/user/vincentzhangz)
 
-## Use Case: <br>
-Developers and prompt engineers use this skill to benchmark prompt variants before production, compare providers and models, and produce markdown reports for token use, estimated cost, and timing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Provider API keys and paid model calls can create cost and credential exposure if used without controls. <br>
-Mitigation: Use scoped provider API keys, set spending limits, verify the singleshot installation source, and test with low-cost or local providers when possible. <br>
-Risk: Prompt tests and generated reports may contain raw prompts, model outputs, secrets, customer data, or confidential content. <br>
-Mitigation: Avoid testing sensitive data with third-party providers and protect or delete generated reports when they contain sensitive prompts or outputs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vincentzhangz/singleshot-prompt-testing) <br>
-- [Singleshot CLI repository](https://github.com/vincentzhangz/singleshot) <br>
-- [README](artifact/README.md) <br>
-- [Quick Start](artifact/QUICKSTART.md) <br>
-- [Release Notes](artifact/RELEASE_NOTES.md) <br>
+## Use Case:
 
+Developers and prompt engineers use this skill before production implementation to benchmark prompt variants, compare provider and model cost, review token usage, and generate Markdown reports for optimization decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides users to generate markdown reports containing token usage, estimated cost, timing metrics, and model responses.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and artifact metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, images, and API-key-backed requests may be sent to external model providers during testing.
+
+Mitigation: Use non-sensitive or redacted test inputs, choose providers deliberately, and expose only the API key needed for the current test.
+
+Risk: The skill installs or invokes a third-party CLI that may be unpinned.
+
+Mitigation: Review before installing and prefer pinned or verified CLI releases when available.
+
+Risk: Generated reports may contain prompt content, response content, token metrics, cost estimates, and timing data.
+
+Mitigation: Store generated reports only in approved locations and redact sensitive content before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vincentzhangz/skills/singleshot-prompt-testing)
+- [Singleshot repository](https://github.com/vincentzhangz/singleshot)
+- [README](artifact/README.md)
+- [Quick Start](artifact/QUICKSTART.md)
+- [Release Notes](artifact/RELEASE_NOTES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and report examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or inspect local Markdown reports containing token, cost, timing, and response details.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

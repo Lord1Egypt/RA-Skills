@@ -1,5 +1,5 @@
 {
-  "description": "独立留出评测集 v2：36 条，每条经真实网络逐条核验后入集（build_holdout.py 半自动管线：草案真网核验→逐条人工拍板→冻结；两阶段分离防草案直通）。v1（16 条，2026-11-06 校准）+v2 扩容 20 条（2026-11-15 真网逐条校准）：clean 扩至 21 条覆盖医学/生物/化学/物理/计算机/心理/气候/生态多域真实文献；planted 扩至 15 条新增 7 形态（真 arXiv 配错题名/真实撤稿论文/真 PMID 配编造 DOI/真 URL+编造 DOI 多标识符矛盾/真题名配编造 DOI/真题名配假 arXiv/编造 DOI 解析 URL）。预埋位置公开（设计性夹具，docs/benchmark.md 边界 4）——本集测判定方向正确性与零误伤，非真实世界伪造率。批内 DOI 唯一（M5 教训：CLI 批内缓存按 DOI 复用判定，同 DOI 多条掩蔽腐蚀——集合须对 run_eval 逐条隔离与 CLI 批内两种通路都诚实）。online 口径数字随注册库漂移（边界 2），offline 口径可复现。闸门：run_tests.sh --held-out（F59）。",
+  "description": "独立留出评测集 v3：54 条，每条经真实网络逐条核验后入集（build_holdout.py 半自动管线：草案真网核验→逐条人工拍板→冻结；两阶段分离防草案直通）。v1（16 条，2026-11-06 校准）+v2 扩容 20 条（2026-11-15 真网逐条校准；2026-11-21 v6.8.0 build_holdout.py 动态取样扩容[Crossref 实时登记条目 18 条真网核验]）：clean 扩至 21 条覆盖医学/生物/化学/物理/计算机/心理/气候/生态多域真实文献；planted 扩至 15 条新增 7 形态（真 arXiv 配错题名/真实撤稿论文/真 PMID 配编造 DOI/真 URL+编造 DOI 多标识符矛盾/真题名配编造 DOI/真题名配假 arXiv/编造 DOI 解析 URL）。预埋位置公开（设计性夹具，docs/benchmark.md 边界 4）——本集测判定方向正确性与零误伤，非真实世界伪造率。批内 DOI 唯一（M5 教训：CLI 批内缓存按 DOI 复用判定，同 DOI 多条掩蔽腐蚀——集合须对 run_eval 逐条隔离与 CLI 批内两种通路都诚实）。online 口径数字随注册库漂移（边界 2），offline 口径可复现。闸门：run_tests.sh --held-out（F59）。",
   "refs": [
     {
       "title": "Comparative Efficacy of Bronchiolitis Interventions in Acute Care: A Network Meta-analysis",
@@ -183,18 +183,153 @@
     {
       "title": "Hallucinated citations are polluting the scientific literature",
       "url": "https://doi.org/10.8765/fakejournal.2026/link"
+    },
+    {
+      "title": "ANÁLISE EPIDEMIOLÓGICA DAS INTERNAÇÕES POR BRONQUIOLITE AGUDA EM CRIANÇAS NO ESTADO DO PARANÁ ENTRE 2015 E 2025",
+      "doi": "10.51891/rease.v12i11.32173",
+      "year": 2026
+    },
+    {
+      "title": "Patterns and Trends in Bronchiolitis and RSV‐Associated Hospitalizations in Infants in Israel Prior to Nirsevimab Introduction (2018–2023)",
+      "doi": "10.1002/ppul.71926",
+      "year": 2026
+    },
+    {
+      "title": "Evaluation of Interleukin-6, Tumor Necrosis Factor-α, and C—C Motif Chemokine Ligand 5 (CCL5) Association With Hospitalized RSV Bronchiolitis",
+      "doi": "10.33640/2405-609x.3490",
+      "year": 2026
+    },
+    {
+      "title": "Bronchiolitis epidemiology after the COVID-19 pandemic: a partial return toward pre-pandemic patterns? An Italian surveillance study",
+      "doi": "10.1186/s13052-026-02381-9",
+      "year": 2026
+    },
+    {
+      "title": "Effectiveness of nirsevimab in infants and young children with bronchiolitis: a systematic review and meta-analysis",
+      "doi": "10.21037/tp-2026-0774",
+      "year": 2026
+    },
+    {
+      "title": "Nasal Wash Lactate Dehydrogenase versus Serum Lactate Dehydrogenase as a Predictor of Bronchiolitis Severity in Children: Authors’ Reply",
+      "doi": "10.1007/s12098-026-06520-2",
+      "year": 2026
+    },
+    {
+      "title": "Reduction in Emergency Department Attendances for Acute Bronchiolitis in Infants Aged Under 1 Year in England During Winter 2025/2026 Following Introduction of Maternal RSV Vaccination",
+      "doi": "10.1111/irv.70362",
+      "year": 2026
+    },
+    {
+      "title": "Acute-phase clinical characteristics associated with pediatric post-infectious bronchiolitis or bronchitis obliterans: a systematic review and meta-analysis",
+      "doi": "10.3389/fped.2026.1949105",
+      "year": 2026
+    },
+    {
+      "title": "Sleep-related body movement as a marker of nocturnal glycaemic levels in older adults with type 1 diabetes: An exploratory study",
+      "doi": "10.1177/20552076261493717",
+      "year": 2026
+    },
+    {
+      "title": "Insulin resistance evaluated by metabolic syndrome, estimated glucose disposal rate, and visceral fat analysis in young adults with type 1 diabetes: A case control study",
+      "doi": "10.1016/j.ando.2026.103108",
+      "year": 2026
+    },
+    {
+      "title": "Évolution des maladies auto-immunes (MAI) associées au diabète de type 1 (DT1) après greffe d’îlots seule",
+      "doi": "10.1016/j.ando.2026.103107",
+      "year": 2026
+    },
+    {
+      "title": "Acquired resistance to anti-EGFR therapy in metastatic wild-type RAS colorectal cancer: A CARE-compliant 2-case report",
+      "doi": "10.1097/md.0000000000051611",
+      "year": 2026
+    },
+    {
+      "title": "Effects of telerehabilitation pelvic floor muscle training on urinary incontinence in patients with multiple sclerosis: A systematic review and meta-analysis of randomized controlled trials",
+      "doi": "10.1097/md.0000000000051670",
+      "year": 2026
+    },
+    {
+      "title": "Effects of Chinese herbal medicine with hCG on luteinized unruptured follicle syndrome: A systematic review and meta-analysis of randomized controlled trials",
+      "doi": "10.1097/md.0000000000051649",
+      "year": 2026
+    },
+    {
+      "title": "Effects of a 12-week multi-strain probiotics supplementation on circulating endotoxin and antioxidant enzymes among overweight/obese Saudi adults: Randomized, double-blind, placebo-controlled trial",
+      "doi": "10.1097/md.0000000000051573",
+      "year": 2026
+    },
+    {
+      "title": "Comparing outcomes of trigger finger release in patients with and without diabetes mellitus: A meta-analysis",
+      "doi": "10.1097/md.0000000000051243",
+      "year": 2026
+    },
+    {
+      "title": "Motherly Plus: Study Protocol of a Randomized Controlled Trial Evaluating a Smartphone-Assisted Single-Session Psychotherapy Intervention for Postpartum Depression",
+      "doi": "10.64898/2026.11.18.26368427",
+      "year": 2026
+    },
+    {
+      "title": "Activation of the Arabidopsis thaliana GCN2-eIF2α module by salicylic acid: Biochemical and phenotypic similarities between gcn2 mutant and wild type",
+      "doi": "10.17912/micropub.biology.001771",
+      "year": 2025
     }
   ],
   "expected": {
-    "1": "clean", "2": "clean", "3": "clean", "4": "clean",
-    "5": "clean", "6": "clean", "7": "clean", "8": "clean",
-    "9": "planted", "10": "planted", "11": "planted", "12": "planted",
-    "13": "planted", "14": "planted", "15": "planted", "16": "planted",
-    "17": "clean", "18": "clean", "19": "clean", "20": "clean",
-    "21": "clean", "22": "clean", "23": "clean", "24": "clean",
-    "25": "clean", "26": "clean", "27": "clean", "28": "clean",
-    "29": "clean", "30": "planted", "31": "planted", "32": "planted",
-    "33": "planted", "34": "planted", "35": "planted", "36": "planted"
+    "1": "clean",
+    "2": "clean",
+    "3": "clean",
+    "4": "clean",
+    "5": "clean",
+    "6": "clean",
+    "7": "clean",
+    "8": "clean",
+    "9": "planted",
+    "10": "planted",
+    "11": "planted",
+    "12": "planted",
+    "13": "planted",
+    "14": "planted",
+    "15": "planted",
+    "16": "planted",
+    "17": "clean",
+    "18": "clean",
+    "19": "clean",
+    "20": "clean",
+    "21": "clean",
+    "22": "clean",
+    "23": "clean",
+    "24": "clean",
+    "25": "clean",
+    "26": "clean",
+    "27": "clean",
+    "28": "clean",
+    "29": "clean",
+    "30": "planted",
+    "31": "planted",
+    "32": "planted",
+    "33": "planted",
+    "34": "planted",
+    "35": "planted",
+    "36": "planted",
+    "37": "clean",
+    "38": "clean",
+    "39": "clean",
+    "40": "clean",
+    "41": "clean",
+    "42": "clean",
+    "43": "clean",
+    "44": "clean",
+    "45": "clean",
+    "46": "clean",
+    "47": "clean",
+    "48": "clean",
+    "49": "clean",
+    "50": "clean",
+    "51": "clean",
+    "52": "clean",
+    "53": "clean",
+    "54": "clean"
   },
   "planted_notes": {
     "9": "良构假 DOI（10.1038 前缀+不存在尾号）",

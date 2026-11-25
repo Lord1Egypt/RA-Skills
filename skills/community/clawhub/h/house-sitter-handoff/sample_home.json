@@ -1,0 +1,52 @@
+{
+  "household": {
+    "address": "12 Elm St, Springfield",
+    "occupants_away": ["Denis"],
+    "sitter": "Jane (neighbor's daughter)",
+    "dates": "2026-12-20 to 2026-12-28",
+    "wifi": {"ssid": "ElmGuest", "password": "guest2026pass"},
+    "thermostat": "Nest in hallway; keep 19C, do not turn below 12C",
+    "alarm": {"brand": "SimpliSafe", "code": "4821", "in_doc": false},
+    "winter": true
+  },
+  "pets": [
+    {
+      "name": "Barsik", "species": "cat", "age": 9,
+      "feeding": "40g dry in the morning ONLY; no treats (diet)",
+      "meds": "None",
+      "litter": "Scoop every 2 days, spare bags under sink",
+      "quirks": "Hides under bed from strangers - do not chase, shake treat bag",
+      "vet": {"clinic": "Springfield Animal Clinic", "phone": "555-0142"},
+      "emergency_note": "If not eating >24h - call owner first"
+    }
+  ],
+  "plants": [
+    {"name": "Monstera", "where": "living room", "water": "200ml every 5 days"},
+    {"name": "Herb pots", "where": "kitchen window", "water": "touch-dry, ~every 2 days"}
+  ],
+  "trash": {"days": ["Tuesday"], "note": "Bins out Monday evening, bring in Wednesday"},
+  "mail": "Hold at post office, small slot - nothing accumulates",
+  "quirks": [
+    "Back door needs LIFT-then-turn or it sticks",
+    "Boiler pilot sometimes cuts out - reset switch behind white panel, hold 5s",
+    "Kitchen faucet drips if not pushed fully left"
+  ],
+  "shutoffs": {
+    "water_main": "Under kitchen sink, red lever, turn clockwise",
+    "electricity": "Breaker box in hallway closet, main switch top-left",
+    "gas": "Yellow valve behind stove - DO NOT touch, call 555-0199"
+  },
+  "contacts": [
+    {"role": "owner (me)", "name": "Denis", "phone": "+1-555-0181"},
+    {"role": "backup (family)", "name": "Anna", "phone": "+1-555-0170"},
+    {"role": "neighbor with spare key", "name": "Mr. Olsen", "phone": "+1-555-0135"},
+    {"role": "plumber", "name": "FastFix", "phone": "555-0155"}
+  ],
+  "escalation": [
+    {"if": "Water leak anywhere", "do": "Close water main, call Denis, then plumber"},
+    {"if": "No heating in winter", "do": "Reset boiler (quirks list). If fails: electric heaters in hall closet, open under-sink cabinets, call Denis"},
+    {"if": "Barsik acts sick", "do": "Call vet, then Denis. Spend limit 500 before calling"}
+  ],
+  "spending_rule": "Up to 100 for anything urgent, keep receipts",
+  "key_location": "Lockbox attached to gas meter, code given verbally"
+}

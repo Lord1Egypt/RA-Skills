@@ -1,6 +1,6 @@
 ## Description:
 
-Creates drafts of appointment policies, cancellation rules, and reminder copy for U.S. service businesses.
+Writes appointment and cancellation rules plus CAN-SPAM and TCPA ready reminder copy for US service businesses. Use when the user asks for appointment policy template, cancellation and no show policy, email reminder template compliance. For US dental, salon, clinic, auto repair and field service owners who schedule appointments and send reminder messages.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External U.S. service businesses use the skill to draft appointment and cancellation policies and email or text reminders. Treat the results as drafts, and have the business owner or qualified counsel review legal, consent, privacy, and state-specific requirements before use.
+US service business owners use the skill to draft appointment, cancellation, deposit, and no-show policies, plus email and text reminder templates and consent-record checklists. It helps identify state-specific items for review by the owner or counsel.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,30 @@ United States
 
 ## Known Risks and Mitigations:
 
-Risk: The included checker may miss warning phrases it is intended to detect, so its results may not reliably flag problematic reminder copy.
+Risk: The security review is incomplete: it flags file-writing capability without a declared tool scope and references files missing from the bundle.
 
-Mitigation: Correct and test the checker before relying on its results, and review the copy independently.
-
-Risk: Draft policies and reminders may not satisfy applicable privacy, consent, legal, or state-specific requirements.
-
-Mitigation: Have the business owner and qualified counsel independently review requirements before sending or adopting the drafts.
-
-Risk: Real customer details in shared templates could expose private information.
-
-Mitigation: Keep real customer details out of shared templates.
-
-Risk: The optional Windows app is unsigned and is not needed for the bundled workflow.
-
-Mitigation: Assess it separately before use; the bundled workflow runs with Python and does not require the app.
+Mitigation: Review the missing references and clarify the purpose of file writing before installing; the suspicious verdict does not establish malicious intent.
 
 ## Reference(s):
 
-- [US appointment, reminder and cancellation rules](artifact/references/appointment-and-reminder-rules.md)
-- [ClawHub release](https://clawhub.ai/rapidworker1/skills/appointment-scheduling-rules)
+- [Appointment and reminder rules](references/appointment-and-reminder-rules.md)
+- [ClawHub skill release](https://clawhub.ai/rapidworker1/skills/appointment-scheduling-rules)
+- [Publisher profile](https://clawhub.ai/user/rapidworker1)
+- [Declared publisher homepage](https://github.com/rapidworker1)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+**Output Type(s):** [Markdown, Configuration, Guidance]
 
-**Output Format:** [Appointment policy and reminder drafts, typically in Markdown or YAML]
+**Output Format:** [Markdown policy drafts, reminder templates, consent-record checklists, state-specific review items, and lint reports; YAML input brief]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Draft content requires review; do not include real customer details in shared templates.]
+**Other Properties Related to Output:** [Drafts only; fee amounts require business approval, state-specific items require owner or counsel review, and the lint report flags wording for human review.]
 
 ## Skill Version(s):
 
-1.0.6 (source: frontmatter and server-resolved release)
+1.0.7 (source: frontmatter)
 
 ## Ethical Considerations:
 

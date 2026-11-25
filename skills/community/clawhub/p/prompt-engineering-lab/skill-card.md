@@ -1,6 +1,6 @@
 ## Description:
 
-Provides guidance for drafting and diagnosing prompts, designing A/B tests and evaluation rubrics, and managing prompt versions; it does not call model APIs or run evaluations.
+Provides structured guidance for drafting, diagnosing, comparing, and maintaining prompts with rubrics, examples, and review checklists.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers, prompt engineers, and AI product teams use this skill to draft and refine prompts, diagnose output issues, plan prompt comparisons and regression checks, and review prompt versioning and launch practices. It provides written guidance and templates for users to apply in their own environments.
+Developers, prompt engineers, and AI product teams use the skill to draft and diagnose prompts, plan comparisons and regression checks, and prepare prompt review materials.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The scanners reported a benign verdict and no findings, but two unresolved local references leave some evidence incomplete.
+Risk: The security review was partial because two local references could not be resolved.
 
-Mitigation: Review the skill and the unresolved references before installing, if those references can be located.
+Mitigation: Resolve and review those references before relying on the clean verdict; the scan does not guarantee the skill is risk-free.
+
+Risk: Shared prompt examples may contain customer or internal information.
+
+Mitigation: Share only relevant excerpts and replace names, identifiers, internal details, and credentials with placeholders.
 
 ## Reference(s):
 
 - [Prompt Engineering Lab on ClawHub](https://clawhub.ai/gechengling/skills/prompt-engineering-lab)
-- [Publisher profile: gechengling](https://clawhub.ai/user/gechengling)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Markdown prompt drafts, analysis, comparison plans, rubrics, and checklists]
+**Output Format:** [Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Illustrative thresholds and examples require validation for the target model, task, and domain; the skill does not execute prompts or evaluations.]
+**Other Properties Related to Output:** [Prompt drafts, rubrics, comparison plans, and review checklists; model calls, evaluations, and file or system actions are performed by the user outside this skill.]
 
 ## Skill Version(s):
 
-3.0.4 (source: frontmatter)
+3.0.5 (source: frontmatter)
 
 ## Ethical Considerations:
 

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use this skill to find dead or stale code, duplication, complexity, documentation and dependency bloat, and growth trends during maintenance or before a release. It organizes findings into confidence-ranked analysis and remediation guidance for human review.
+Developers and engineers use the skill to inspect a codebase for dead code, duplication, complexity, documentation bloat, dependency issues, and growth trends, then prioritize review or cleanup.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Optional package registry checks may disclose dependency names.
+Risk: Optional registry or SonarQube access may share project information with external services.
 
-Mitigation: Run only the checks needed for the task, and skip registry lookups when that disclosure is unacceptable.
+Mitigation: Check which services are enabled and their destinations before scanning; avoid using them on sensitive projects unless that data sharing is acceptable.
 
-Risk: Some commands are reported as posing file-overwrite risk, and the security scan could not resolve some local references.
+Risk: Scan commands may overwrite or delete files in the project directory.
 
-Mitigation: Inspect commands and target paths before running them; use dry-run options and backups for file-changing cleanup, and review referenced components when needed.
+Mitigation: Review the commands before running them, use dry-run or preview options where available, and ensure the project is recoverable from version control or backups.
+
+Risk: The partial security scan missed two referenced local files, so its evidence is incomplete.
+
+Mitigation: Review the missing files and treat the security assessment as incomplete until they are available and assessed.
 
 ## Reference(s):
 
+- [ClawHub release](https://clawhub.ai/athola/skills/nm-conserve-bloat-detector)
 - [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-conserve-bloat-detector)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Guidance]
+**Output Type(s):** [Analysis, Text, Markdown, Shell commands, Guidance]
 
-**Output Format:** [Markdown or JSON findings with optional shell commands for analysis]
+**Output Format:** [Terminal findings and Markdown reports, with optional YAML or JSON summaries and inline shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Tiered findings include confidence and prioritization; remediation proposals are reviewed by the user before changes.]
+**Other Properties Related to Output:** [Tiered analysis; deeper scans may use optional local tools and Git history.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, server-resolved release)
+1.10.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

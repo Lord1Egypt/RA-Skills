@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-面向关注中国 A 股盘中行情的交易者与市场研究人员，用于追踪热点板块、梳理催化逻辑和受益方向，并查看生成的报告与图表。
+External users following the Chinese A-share market can use the skill to review intraday sector activity and recent catalysts, then receive a summarized dashboard image, a full report image, and a Cue report link.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,36 @@ China
 
 ## Known Risks and Mitigations:
 
-Risk: The security review rates this release suspicious and cites a request to share an API key in chat.
+Risk: ClawScan reports a mismatch between the market-research description and the inspected document-conversion code, so the advertised research behavior may not match the reviewed code.
 
-Mitigation: Do not send a live API key in chat; have the user configure it through a secure local mechanism.
+Mitigation: Review the skill and its referenced files before use, and verify market claims against current sources.
 
-Risk: The security guidance flags recurring scheduling instructions and asks users to understand what jobs may be created.
+Risk: The security scan was partial because a referenced local path was missing; the scanner also reports remote fetching and scheduled-run instructions.
 
-Mitigation: Review any proposed schedule before enabling it and confirm how to disable the recurring job.
+Mitigation: Treat the scan as incomplete, inspect the missing path, keep the Cue API key in local configuration or an environment variable, and enable recurring runs only by explicit choice.
 
-Risk: The security analysis is partial because a referenced local path was missing, leaving some setup behavior unexamined.
+Risk: The guidance includes purchase, reward, and referral prompts.
 
-Mitigation: Review the complete setup behavior before installation, including any remote-fetch step noted in the security guidance.
+Mitigation: Review those prompts independently and follow them only when you choose to.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/panting09266-ai/skills/cue-hotspot-tracker)
-- [SOP schema](references/sop-schema.md)
-- [Cue platform](https://cuecue.cn)
+- [SOP dashboard schema](references/sop-schema.md)
+- [ClawHub skill release page](https://clawhub.ai/panting09266-ai/skills/cue-hotspot-tracker)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Images, Links]
+**Output Type(s):** [Analysis, Markdown, Files, Guidance]
 
-**Output Format:** [Markdown report, dashboard image, long-form report image, and Cue report link]
+**Output Format:** [Intraday research report, dashboard and long-form PNG images, and a Cue share link]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [盘中 A 股热点与催化分析；不构成投资建议。]
+**Other Properties Related to Output:** [The report is delivered through a Cue link; the skill documentation says not to paste the full report into chat by default.]
 
 ## Skill Version(s):
 
-1.0.14 (source: server-resolved release metadata)
+1.0.15 (source: server-resolved release)
 
 ## Ethical Considerations:
 

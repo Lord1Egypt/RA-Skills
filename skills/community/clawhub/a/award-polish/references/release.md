@@ -11,6 +11,7 @@ Deploying or publishing needs an explicit yes from the user first. That includes
 
 ## Before shipping
 
+- **Confirm destination, visibility, and contents before any deploy**: before any deploy or push to a publishing branch (including `Deploy first`, `Staged updates`, and `Final release`), ask the user to confirm the hosting destination, whether the deployment should be public or access-restricted (using a local or access-controlled preview until public release is approved), and verify that the deploy contents do not expose secrets or unapproved private assets.
 - **Find everyone who publishes this site**: before a deploy the user has explicitly confirmed, read the platform's recent publishes and match each one to a source by time (a host that publishes after a merged PR, scheduled jobs running a release script from some working directory, other collaborators). The shipped code has to reach every source's branch and working directory, or the next merge or scheduled job rolls the site back. Do not publish to those sources without that confirmation.
 - **Record the rollback target**: the current live version and the rollback command go in the log.
 - The build must pass; redesigns also pass the preservation and brand checks in `mode-redesign.md`.

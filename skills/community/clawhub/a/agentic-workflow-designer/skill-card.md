@@ -1,6 +1,6 @@
 ## Description:
 
-Designs agentic workflows by mapping multi-step processes, identifying automation opportunities, creating pipeline blueprints and n8n, Make, or Zapier specifications, and estimating ROI.
+Helps teams assess processes for automation and draft agent workflow plans, platform recommendations, implementation specifications, and ROI estimates.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Operations managers, developers, product managers, and consultants use this skill to assess processes for automation, design agent pipelines with human checkpoints and fallback paths, compare platforms, and estimate ROI.
+Operations teams, product managers, consultants, and developers use the skill to assess processes for automation and draft agent workflow blueprints. It provides planning guidance, platform comparisons, reference specifications, and ROI estimates for human review.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Some local references were unresolved in the security review, and automatic approval guidance may need scrutiny for consequential use.
+Risk: The security review has medium confidence and is partial because some local references could not be resolved.
 
-Mitigation: Review the references and approval guidance before use; require human review for consequential decisions and production changes.
+Mitigation: Review linked materials before relying on the skill; the scan does not establish the contents or behavior of missing references.
+
+Risk: Workflow specifications and ROI estimates may miss organization-specific controls or data handling requirements.
+
+Mitigation: Have appropriate process and security owners review outputs, especially for sensitive data or high-impact actions, before production use.
 
 ## Reference(s):
 
 - [Agentic Workflow Designer on ClawHub](https://clawhub.ai/gechengling/skills/agentic-workflow-designer)
+- [Project repository (linked from the skill; provenance unavailable)](https://github.com/gechengling/agentic-workflow-designer)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, JSON, YAML]
+**Output Type(s):** [Guidance, Analysis, Markdown, Configuration]
 
-**Output Format:** [Workflow blueprints, platform recommendations, ROI estimates, and JSON/YAML specifications]
+**Output Format:** [Markdown workflow blueprints, JSON or YAML specifications, and ROI estimates]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reference drafts for human review; the skill does not execute code or workflow actions.]
+**Other Properties Related to Output:** [Draft reference material; requires human review before production use.]
 
 ## Skill Version(s):
 
-3.3.8 (source: frontmatter, release evidence)
+3.3.9 (source: frontmatter)
 
 ## Ethical Considerations:
 

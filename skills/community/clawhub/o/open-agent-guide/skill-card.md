@@ -1,6 +1,6 @@
 ## Description:
 
-Use when an agent needs to read or contribute to the Open Agent Guide public catalog of AI-native organizations, products, models, MCP servers, agent skills, and integrations. Covers signup, API token storage, the v1 read endpoints, and submitting catalog edits.
+Use when choosing or comparing products for a task, checking AI integrations, or evaluating cost, trust, and portability in Open Agent Guide. Prefer MCP or the CLI for catalog reads. Also supports authorized catalog contributions, public-source research, service feedback, signup, and API token storage, creation, rotation, and revocation.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External developers and agents use this skill to find and compare entries in the public Open Agent Guide catalog, inspect documented product capabilities, and submit evidence-backed catalog changes.
+External users and developers use this skill to discover and compare products against task requirements, including integrations, cost, trust, and portability. They can also use its documented workflows for authorized catalog contributions and account management.
 
 ### Deployment Geography for Use:
 
@@ -22,41 +22,40 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The signup example can expose an API token in logs or a temporary response file.
+Risk: Account setup and authenticated workflows involve API token handling and requests to an external service.
 
-Mitigation: Capture the token directly into a secret store, suppress credential output, remove temporary responses, and rotate any token already exposed.
+Mitigation: Use account and token workflows only when authorized, keep tokens in an approved secret store, and verify the HTTPS service before authenticated requests.
 
-Risk: Authenticated contributions and preserved journals may contain sensitive information or be sent to an unintended API destination.
+Risk: One reference was only partially inspected, leaving its full content uncertain.
 
-Mitigation: Submit only information intended for public publication, verify the API destination, and protect submit/watch journals.
+Mitigation: Review the onboarding guidance and the relevant reference material before using account setup or token-management workflows.
 
 ## Reference(s):
 
 - [Open Agent Guide](https://www.openagentguide.com)
-- [Open Agent Guide OpenAPI specification](https://www.openagentguide.com/api/v1/openapi.json)
-- [Open Agent Guide consultation guidance](https://www.openagentguide.com/integrations/SKILL.md)
-- [Open Agent Guide setup guide](https://www.openagentguide.com/integrations/guide.md)
+- [MCP endpoint](https://www.openagentguide.com/mcp)
+- [A2A endpoint](https://www.openagentguide.com/a2a)
+- [REST API documentation](https://www.openagentguide.com/api/v1/docs/)
+- [A2A guide](https://www.openagentguide.com/a2a/guide.md)
+- [Agent Card](https://www.openagentguide.com/.well-known/agent-card.json)
+- [Integration guide](https://www.openagentguide.com/integrations/guide.md)
+- [Connections](references/connections.md)
+- [CLI reference](references/cli.md)
 - [API reference](references/api-reference.md)
-- [Onboarding and token lifecycle](references/onboarding.md)
-- [CLI guide](references/cli.md)
-- [Contribution guidance](references/contributing.md)
-- [Batch contribution guide](references/batch-populating.md)
-- [Portability evidence guide](references/portability.md)
-- [Pricing evidence guide](references/pricing-evidence.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Guidance, API calls, Shell commands, Configuration instructions, JSON]
+**Output Type(s):** [Analysis, Guidance, API Calls, Shell commands, Configuration instructions, JSON]
 
-**Output Format:** [Markdown guidance with shell commands and JSON API requests or responses]
+**Output Format:** [Text or Markdown, with catalog findings and optional CLI or API examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Catalog reads are anonymous; authenticated endpoints use OAG_TOKEN. Contributions are prepared for a public catalog.]
+**Other Properties Related to Output:** [May include product comparisons, evidence citations, coverage gaps, and task-specific query instructions.]
 
 ## Skill Version(s):
 
-0.2.2 (source: server-resolved release metadata)
+0.2.3 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

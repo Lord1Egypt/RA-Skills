@@ -1,6 +1,6 @@
 ## Description:
 
-Conducts video analysis of learning behavior for children and students, identifies poor learning habits, and provides structured reports and family education suggestions.
+Analyzes videos of children's and students' study behavior and returns structured reports with observations and family education suggestions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Parents and caregivers use the skill to review a child's learning behavior video and receive structured observations about attention, posture, and study habits, along with family education suggestions. Reports are for educational reference and do not replace assessment by a teacher or mental health professional.
+Parents and educators can submit a study video to review observed focus, posture, and study habits and receive family education suggestions for reference. The skill documentation says its analysis does not replace professional assessment.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security evidence reports that local video may be sent for remote analysis without clear notice, and that analysis may continue despite an export-only request.
+Risk: ClawScan rates this release suspicious, reporting that its actions may go beyond study-video analysis, including unexpected activity in export-only mode.
 
-Mitigation: Before submitting a child's video, verify the service's video handling and export-only behavior, explain the remote analysis to the relevant people, and obtain appropriate consent.
+Mitigation: Review the reported behavior and consider avoiding installation until you are comfortable with it, as advised by the security guidance.
 
-Risk: The security evidence reports undeclared account and credential handling, possible credential transmission, and identity or credential data used in remote account requests.
+Risk: The security summary reports account credential handling in remote requests and remote video analysis; the scan was partial and does not prove the skill safe.
 
-Mitigation: Review account and credential data flows before use, and avoid providing sensitive identity or credential information until those flows are understood.
-
-Risk: The security assessment is incomplete: Skillspector marked analysis partial because a local reference was missing, although AIG completed without findings.
-
-Mitigation: Treat the suspicious verdict as unresolved and complete a security review before installing or sending sensitive content.
+Mitigation: Consider avoiding installation until you understand and are comfortable with the account, credential, and remote video-analysis behavior; do not treat the partial scan or separate no-findings scan as resolving these concerns.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-study-analysis)
-- [API interface documentation](references/api_doc.md)
-- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [Study analysis API reference](artifact/references/api_doc.md)
+- [Skill introduction and demo](https://lifeemergence.com/sample.html)
+- [ClawHub release 1.0.23](https://clawhub.ai/smyx-sunjinhui/skills/smyx-study-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
+**Output Type(s):** [Analysis reports, JSON, Markdown, Guidance]
 
-**Output Format:** [Structured analysis results in JSON or text, with Markdown report lists and education suggestions]
+**Output Format:** [Structured JSON or text reports; history listings can be presented as Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include attention and behavior observations, risk notices, suggestions, and report links; intended for family education reference.]
+**Other Properties Related to Output:** [Accepts local video files or video URLs; local video files are limited to 10 MB per skill documentation.]
 
 ## Skill Version(s):
 
-1.0.21 (source: server-resolved release metadata)
+1.0.23 (source: server-resolved release evidence; bundled SKILL.md states 1.0.26)
 
 ## Ethical Considerations:
 

@@ -1,7 +1,7 @@
 ---
 
 name: Kosu
-version: 1.1.1
+version: 1.1.2
 description: Add, reorder, and manage content in a Kosu queue via API. Use when adding URLs, checking what's queued, suggesting content, reordering items, or tracking what's been read.
 homepage: https://usekosu.com
 metadata: '{"openclaw": {"emoji": "💧", "api_base": "https://usekosu.com/api/v1", "homepage": "https://usekosu.com", "primaryEnv": "KOSU_API_KEY"}}'
@@ -131,7 +131,7 @@ curl -s -X PATCH "$BASE/items/itm_xxx" -H "$AUTH" -H "Content-Type: application/
 curl -s -X PATCH "$BASE/items/itm_xxx" -H "$AUTH" -H "Content-Type: application/json" \
   -d '{"state": "queue"}'
 
-# Record open (extends decay protection 1 day, max once per 24h)
+# Record open (keeps the item for at least 3 more days)
 curl -s -X PATCH "$BASE/items/itm_xxx" -H "$AUTH" -H "Content-Type: application/json" \
   -d '{"opened": true}'
 
@@ -182,7 +182,7 @@ curl -s -X POST "$BASE/suggestions/sug_xxx" -H "$AUTH" -H "Content-Type: applica
 | State    | `{"state": "read\|archived\|queue\|suggested"}` | `suggested` requires `reason` field                                       |
 | Position | `{"position": {"after": "itm_x"\|null}}`        | `null` = top. Also supports `before`                                      |
 | Fields   | `{"title": "...", "source": "..."}`             | At least one of: title, source, thumbnail, channel_name, duration_minutes |
-| Opened   | `{"opened": true}`                              | Extends decay by 1 day                                                    |
+| Opened   | `{"opened": true}`                              | Keeps the item for at least 3 more days                                   |
 
 ## Pagination
 

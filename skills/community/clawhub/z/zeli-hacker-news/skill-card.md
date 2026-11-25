@@ -1,6 +1,6 @@
 ## Description:
 
-Read Hacker News with AI summaries in seven supported languages via zeli.app, including daily markdown digests, JSON front-page data, story summary pages, and RSS feeds.
+Fetch Hacker News digests and story summaries in any of seven supported languages through Zeli.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and agents use this skill to fetch concise Hacker News briefings, topic checks, translated story summaries, and links to original stories or discussions without browsing manually.
+Agents use Zeli to prepare a daily Hacker News briefing, find stories by topic, or share summaries in a reader’s preferred supported language.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Using the skill sends requests to zeli.app and depends on that third-party service for summaries and translations.
+Risk: Scanner coverage is partial because a local path-like reference could not be resolved.
 
-Mitigation: Use it for public Hacker News content, avoid sending private data through requests, and review important summaries against the linked original source or HN discussion.
+Mitigation: Review the skill and its references before deployment; the benign scan verdict does not guarantee the skill is risk-free.
 
-Risk: Hourly digests and translated summaries may be stale, incomplete, or imperfect.
+Risk: AI-generated summaries or quotes may omit or misstate details from a story.
 
-Mitigation: Respect the documented polling guidance, cache immutable dated digests, and verify high-impact details against primary links before acting on them.
+Mitigation: Attribute quoted summaries to Zeli and include the original article or Hacker News discussion link so readers can check the source.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/mazzzystar/skills/zeli-hacker-news)
-- [Zeli homepage](https://zeli.app)
-- [Zeli LLM context](https://zeli.app/llms.txt)
-- [Canonical Zeli skill](https://zeli.app/skill.md)
+- [ClawHub skill release](https://clawhub.ai/mazzzystar/skills/zeli-hacker-news)
+- [Zeli documentation for language models](https://zeli.app/llms.txt)
+- [Canonical Zeli skill file](https://zeli.app/skill.md)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+**Output Type(s):** [Markdown, JSON, Text]
 
-**Output Format:** [Markdown or JSON-backed summaries with links and optional shell commands]
+**Output Format:** [Hacker News digest or story content in Markdown or JSON, with concise summaries and source links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include public Hacker News metadata, summaries, quotes, original links, discussion links, RSS feed references, and translated content from zeli.app.]
+**Other Properties Related to Output:** [Content is available in English, Chinese, Japanese, Korean, German, Spanish, and Russian.]
 
 ## Skill Version(s):
 
-1.0.1 (source: server-resolved release metadata)
+1.1.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

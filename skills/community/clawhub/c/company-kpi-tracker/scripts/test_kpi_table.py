@@ -311,6 +311,33 @@ class UnitsAndRounding(unittest.TestCase):
         self.assertEqual(
             kpi.format_value(Decimal("-7604000000"), AAPL_IPHONE), "-$7.604B")
 
+    def test_a_non_usd_currency_never_prints_a_dollar_sign(self):
+        # Money is served as filed, in the filer's currency: CHF for Roche, DKK for Novo, EUR for
+        # SAP, CAD for Canadian National. Each prints as its own code.
+        cases = [
+            ("CHF", "currency_abbreviated", "30600000000", "CHF 30.6B"),
+            ("DKK", "currency_abbreviated", "29706000000", "DKK 29.706B"),
+            ("EUR", "currency_abbreviated", "-8400000000", "-EUR 8.4B"),
+            ("CAD", "currency_abbreviated", "1730000000", "CAD 1.73B"),
+            ("DKK", "currency", "5.12", "DKK 5.12"),
+            ("BRL", "currency", "1.26", "BRL 1.26"),
+        ]
+        for unit, fmt, raw, expected in cases:
+            money = series(unit=unit, displayFormat=fmt)
+            text = kpi.format_value(Decimal(raw), money)
+            self.assertEqual(text, expected)
+            self.assertNotIn("$", text)
+
+    def test_a_per_share_loss_keeps_its_sign(self):
+        eps = series(unit="USD", displayFormat="currency")
+        self.assertEqual(kpi.format_value(Decimal("-0.42"), eps), "-$0.42")
+        self.assertEqual(kpi.format_value(Decimal("1.5"), eps), "$1.5")
+
+    def test_a_currency_change_carries_the_code(self):
+        money = series(unit="CAD", displayFormat="currency_abbreviated")
+        delta = (Decimal("120000000"), Decimal("7.5"))
+        self.assertEqual(kpi.format_change(delta, money), "+CAD 120M (+7.5%)")
+
     def test_counts_keep_their_unit_and_grouping(self):
         deliveries = series(unit="vehicles", displayFormat="number")
         self.assertEqual(kpi.format_value(Decimal("480126"), deliveries), "480,126 vehicles")

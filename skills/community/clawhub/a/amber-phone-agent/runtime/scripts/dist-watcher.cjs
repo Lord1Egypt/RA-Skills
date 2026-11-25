@@ -20,20 +20,26 @@ const { execFileSync, spawnSync } = require('child_process');
 const DIST_DIR = path.resolve(__dirname, '../dist');
 const LAUNCHCTL_LABEL = 'com.jarvis.twilio-bridge';
 const CHECK_INTERVAL_MS = 60_000;
+const LAUNCHCTL = '/bin/launchctl';
+const PS = '/bin/ps';
+const COMMAND_ENV = { LC_ALL: 'C' };
 
 /** Get the start time (epoch ms) of the twilio-bridge process, or null if not running. */
 function getRuntimeStartMs() {
   try {
-    // Find the PID
-    const result = spawnSync('pgrep', ['-f', 'dist/index.js'], { encoding: 'utf8' });
-    if (result.status !== 0 || !result.stdout.trim()) return null;
+    // Look up the named launchd service so an unrelated Node process cannot
+    // affect when Amber is restarted.
+    const result = spawnSync(LAUNCHCTL, ['list'], { encoding: 'utf8', timeout: 5_000, env: COMMAND_ENV });
+    if (result.status !== 0 || !result.stdout) return null;
+    const job = result.stdout.split('\n').map(line => line.trim().split(/\s+/))
+      .find(([, , label]) => label === LAUNCHCTL_LABEL);
+    const pid = job?.[0];
+    if (!pid || !/^[1-9]\d*$/.test(pid)) return null;
 
-    const pids = result.stdout.trim().split('\n').map(Number).filter(Boolean);
-    if (!pids.length) return null;
-
-    // Get start time for first matching PID using ps
-    // ps lstart format: "Thu Feb 20 18:00:00 2026"
-    const psResult = spawnSync('ps', ['-p', String(pids[0]), '-o', 'lstart='], { encoding: 'utf8' });
+    // ps lstart uses localized names. Use the C locale so Date.parse is stable.
+    const psResult = spawnSync(PS, ['-p', pid, '-o', 'lstart='], {
+      encoding: 'utf8', timeout: 5_000, env: COMMAND_ENV,
+    });
     if (psResult.status !== 0 || !psResult.stdout.trim()) return null;
 
     const startMs = Date.parse(psResult.stdout.trim());
@@ -70,9 +76,10 @@ function getNewestDistMtimeMs() {
 function restartRuntime() {
   try {
     const uid = process.getuid();
-    execFileSync('launchctl', ['kickstart', '-k', `gui/${uid}/${LAUNCHCTL_LABEL}`], {
+    execFileSync(LAUNCHCTL, ['kickstart', '-k', `gui/${uid}/${LAUNCHCTL_LABEL}`], {
       encoding: 'utf8',
       timeout: 10_000,
+      env: COMMAND_ENV,
     });
     console.log(`[dist-watcher] Restarted ${LAUNCHCTL_LABEL}`);
   } catch (e) {

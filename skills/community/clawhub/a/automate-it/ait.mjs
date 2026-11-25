@@ -46,7 +46,7 @@ Discovery:
 
 Tasks (the review-gate loop):
   ait task create --title <t>          Create a task
-      [--instructions <text>] [--output-types x,linkedin,...]
+      [--instructions <text>] [--platforms x,linkedin,...]
       [--publish-mode manual|immediate|scheduled] [--publish-at <ISO date>]
       Omitted --publish-mode falls back to the workspace's default publish
       mode; scheduled without --publish-at auto-schedules at approval.
@@ -60,18 +60,19 @@ Tasks (the review-gate loop):
   ait task submit --title <t> --body <text>
       [--type <contentType>] [--media '<json array>'] [same flags as create]
       [--link-url <url>] [--link-action learn_more|book|order|buy|sign_up]
-      [--topic <topic>]
+      [--topic <topic>] [--ai-disclosed] [--destinations x,...]
       One-shot: creates the task WITH finished content — it skips todo/working
       and lands directly in the human review queue.
   ait task list [--status <s>] [--mine] [--limit <n>] [--offset <n>]
       --mine filters to tasks assigned to you (find your agent's work with
       --mine --status todo).
                                        Statuses: todo working review approved
-                                       publishing published deleted failed
+                                       publishing published publish_failed
+                                       deleted failed
   ait task get <taskId>                Full task detail, incl. reviewer comments
                                        and the memory entries to apply
   ait task update <taskId>             Patch task fields (admin keys)
-      [--title <t>] [--instructions <text>] [--output-types x,linkedin,...]
+      [--title <t>] [--instructions <text>] [--platforms x,linkedin,...]
       [--publish-mode manual|immediate|scheduled] [--publish-at <ISO date>]
       [--clear-publish-at] [--review] [--no-review]
                                        Only provided flags are changed.
@@ -85,6 +86,8 @@ Tasks (the review-gate loop):
   ait task add-content <taskId>        Add generated content to a claimed task
       [--body <text>] [--type <contentType>] [--title <t>]
       [--media '<json array>'] [--sort-order <n>]
+      [--destinations rss:news,ghost]  Where this item publishes. Omitted,
+                                       it comes from the task's platforms.
       [--link-url <url>] [--link-action learn_more|book|order|buy|sign_up]
       --link-url is where the post sends readers; Google Business Profile
       publishes it as the post's button, which --link-action names (default
@@ -95,13 +98,20 @@ Tasks (the review-gate loop):
                                        topic here (no #, 1-50 chars, no . or
                                        &), never as a #tag in the body.
                                        First post of a thread only.
+      [--ai-disclosed]                 Declare this item's media as
+                                       AI-generated even though the workspace
+                                       didn't generate it (e.g. an upload from
+                                       an outside tool). Media generated in
+                                       this workspace is disclosed
+                                       automatically — only needed for
+                                       outside-generated uploads.
       --media items are [{"type":"image|video|audio|document","fileId":"<id>"}]
       — get a fileId from "ait upload-url"; URLs are not accepted.
       --items '<json array>'           Several posts in ONE call: each entry
                                        has the single-post fields (body, type
                                        as contentType, title, media, sortOrder,
-                                       outputType, linkUrl, linkAction,
-                                       topicTag). A
+                                       destinations, linkUrl, linkAction,
+                                       topicTag, aiDisclosed). A
                                        thread is one call with
                                        sortOrder 0, 1, 2...; all-or-nothing —
                                        a bad item means nothing is added and
@@ -116,11 +126,18 @@ Tasks (the review-gate loop):
       [--body <text>] [--title <t>] [--media '<json array>']
       [--link-url <url>] [--link-action learn_more|book|order|buy|sign_up]
       [--clear-link] [--topic <topic>] [--clear-topic]
+      [--ai-disclosed | --ai-disclosed=false] [--destinations x,...]
                                        Rewrite a content item in place.
                                        Omit --media to leave attachments;
                                        --media '[]' clears them. --clear-link
                                        removes the item's link and button;
                                        --clear-topic removes a Threads topic.
+                                       --ai-disclosed declares the item's
+                                       media as AI-generated even though the
+                                       workspace didn't generate it;
+                                       --ai-disclosed=false retracts a wrong
+                                       declaration (it never suppresses a
+                                       disclosure provenance already found).
   ait task delete-content <taskId> <contentItemId> --yes
   ait task clear-content <taskId> --yes
                                        Remove every content item from a task
@@ -162,11 +179,11 @@ Skills (workspace voice, formatting rules, bundled reference files):
 
 Automations:
   ait automation create --name <n>     [--instructions <text>]
-      [--output-types x,...] [--schedule <json>] [--no-review]
+      [--platforms x,...] [--schedule <json>] [--no-review]
   ait automation list
   ait automation get <automationId>    Full detail, including memory entries
   ait automation update <automationId> [--name <n>] [--instructions <text>]
-      [--output-types x,...] [--schedule <json>]
+      [--platforms x,...] [--schedule <json>]
   ait automation delete <automationId> --yes
                                        Also deletes its unfinished tasks (to
                                        do, in progress, in review); approved
@@ -215,7 +232,7 @@ JSON. Pass --json to print only the JSON value, pipable to jq.`;
 
 export class CliError extends Error {}
 
-const BOOLEAN_FLAGS = new Set(["no-review", "review", "claim", "mine", "clear", "clear-publish-at", "auto", "help", "yes", "root", "json", "clear-link", "clear-topic"]);
+const BOOLEAN_FLAGS = new Set(["no-review", "review", "claim", "mine", "clear", "clear-publish-at", "auto", "help", "yes", "root", "json", "clear-link", "clear-topic", "ai-disclosed"]);
 
 // MCP tools that permanently remove data, keyed to what they destroy. Keyed by
 // tool rather than by command so the gate lives next to the thing that does
@@ -284,6 +301,11 @@ function linkArgs(flags) {
     ...(flags["link-url"] !== undefined ? { linkUrl: flags["link-url"] } : {}),
     ...(flags["link-action"] !== undefined ? { linkAction: flags["link-action"] } : {}),
   };
+}
+
+/** --ai-disclosed as the content field it sets, when given. */
+function aiDisclosedArgs(flags) {
+  return flags["ai-disclosed"] !== undefined ? { aiDisclosed: flags["ai-disclosed"] } : {};
 }
 
 function parseJsonFlag(value, flagName) {
@@ -451,7 +473,7 @@ function buildCreateTaskArgs(flags) {
   return {
     title: flags.title,
     ...(flags.instructions ? { instructions: flags.instructions } : {}),
-    outputTypes: csv(flags["output-types"]),
+    platforms: csv(flags["platforms"]),
     ...(publishMode ? { publishMode } : {}),
     ...(flags["publish-at"] ? { publishAt: flags["publish-at"] } : {}),
     requiresReview: flags["no-review"] !== true,
@@ -572,6 +594,8 @@ export async function runCommand(argv, opts = {}) {
             ...(flags.media ? { media: parseJsonFlag(flags.media, "media") } : {}),
             ...linkArgs(flags),
             ...topicArgs(flags),
+            ...aiDisclosedArgs(flags),
+            ...(flags.destinations !== undefined ? { destinations: csv(flags.destinations) } : {}),
           },
         ],
       });
@@ -612,7 +636,7 @@ export async function runCommand(argv, opts = {}) {
         taskId,
         ...(flags.title ? { title: flags.title } : {}),
         ...(flags.instructions !== undefined ? { instructions: flags.instructions } : {}),
-        ...(flags["output-types"] ? { outputTypes: csv(flags["output-types"]) } : {}),
+        ...(flags["platforms"] ? { platforms: csv(flags["platforms"]) } : {}),
         ...(publishMode ? { publishMode } : {}),
         ...(publishAt !== undefined ? { publishAt } : {}),
         ...(requiresReview !== undefined ? { requiresReview } : {}),
@@ -711,7 +735,7 @@ export async function runCommand(argv, opts = {}) {
       if (flags.items !== undefined) {
         // One call for every post; the server validates the batch together
         // and inserts it as one transaction.
-        const singleFlags = ["body", "media", "type", "title", "sort-order", "link-url", "link-action", "topic"].filter((f) => flags[f] !== undefined);
+        const singleFlags = ["body", "media", "type", "title", "sort-order", "destinations", "link-url", "link-action", "topic", "ai-disclosed"].filter((f) => flags[f] !== undefined);
         if (singleFlags.length > 0) {
           throw new CliError(
             `task add-content takes either --items or the single-post flags (${singleFlags.map((f) => `--${f}`).join(", ")}), not both`
@@ -736,8 +760,10 @@ export async function runCommand(argv, opts = {}) {
         ...(flags.type ? { contentType: flags.type } : {}),
         ...(flags.media ? { media: parseJsonFlag(flags.media, "media") } : {}),
         ...(flags["sort-order"] !== undefined ? { sortOrder: Number(flags["sort-order"]) } : {}),
+        ...(flags.destinations !== undefined ? { destinations: csv(flags.destinations) } : {}),
         ...linkArgs(flags),
         ...topicArgs(flags),
+        ...aiDisclosedArgs(flags),
       });
     }
 
@@ -753,7 +779,7 @@ export async function runCommand(argv, opts = {}) {
         workspaceId,
         name: flags.name,
         ...(flags.instructions ? { instructions: flags.instructions } : {}),
-        outputTypes: csv(flags["output-types"]),
+        platforms: csv(flags["platforms"]),
         ...(flags.schedule ? { schedule: parseJsonFlag(flags.schedule, "schedule") } : {}),
         requiresReview: flags["no-review"] !== true,
       });
@@ -781,7 +807,7 @@ export async function runCommand(argv, opts = {}) {
         automationId,
         ...(flags.name ? { name: flags.name } : {}),
         ...(flags.instructions ? { instructions: flags.instructions } : {}),
-        ...(flags["output-types"] ? { outputTypes: csv(flags["output-types"]) } : {}),
+        ...(flags["platforms"] ? { platforms: csv(flags["platforms"]) } : {}),
         ...(flags.schedule ? { schedule: parseJsonFlag(flags.schedule, "schedule") } : {}),
       });
     }
@@ -821,10 +847,10 @@ export async function runCommand(argv, opts = {}) {
       const usage = "ait task update-content <taskId> <contentItemId>";
       const taskId = requirePositionalAt(rest, 0, "taskId", usage);
       const contentItemId = requirePositionalAt(rest, 1, "contentItemId", usage);
-      const fieldFlags = ["link-url", "link-action", "clear-link", "topic", "clear-topic"].filter((f) => flags[f] !== undefined);
+      const fieldFlags = ["link-url", "link-action", "clear-link", "topic", "clear-topic", "ai-disclosed", "destinations"].filter((f) => flags[f] !== undefined);
       if (flags.body === undefined && flags.title === undefined && flags.media === undefined && fieldFlags.length === 0) {
         throw new CliError(
-          "at least one of --body, --title, --media, --link-url, --link-action, --clear-link, --topic, or --clear-topic is required for task update-content"
+          "at least one of --body, --title, --media, --link-url, --link-action, --clear-link, --topic, --clear-topic, --ai-disclosed, or --destinations is required for task update-content"
         );
       }
       if (flags["clear-topic"] === true && flags.topic !== undefined) {
@@ -843,6 +869,8 @@ export async function runCommand(argv, opts = {}) {
         ...(flags.media !== undefined ? { media: parseJsonFlag(flags.media, "media") } : {}),
         ...(flags["clear-link"] === true ? { linkUrl: null } : linkArgs(flags)),
         ...(flags["clear-topic"] === true ? { topicTag: null } : topicArgs(flags)),
+        ...aiDisclosedArgs(flags),
+        ...(flags.destinations !== undefined ? { destinations: csv(flags.destinations) } : {}),
       });
     }
 

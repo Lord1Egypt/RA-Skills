@@ -1,96 +1,71 @@
-# ai-data-delivery · v0.1.2
+# AI Data Delivery · 0.3.10
 
-让 FDE 和数据产品经理把一个业务问题，变成**能看懂定义、能核对结果、能交给应用或 Agent 使用的数据语义**。
+**Turn a database schema into a source-linked semantic model that another Agent can read offline.**
 
-已有表、字段说明、指标或关系图，就从它们继续；只有部分资料也能开始。你提供业务问题和材料，使用本 skill 的 Agent 整理模型、运行工具并解释结果。可选的本地工作台负责编辑、试算、保存和导出，本身不内置大模型。
+[简体中文](README.zh-CN.md) · [Releases](https://github.com/franklinxkk/ai-data-delivery/releases) · [Security](SECURITY.md)
 
-[MIT](LICENSE) · [安全边界](SECURITY.md) · [本版验证](references/v0.1.2-validation.md)
+## Import a schema and read the result
 
-## 它具体帮你做什么
-
-| 你遇到的问题 | 用它得到什么 | 需要你判断什么 |
-| --- | --- | --- |
-| 表很多，不知道一个业务问题该用哪些 | 复用已有结构、关系和说明，形成当前问题的对象、字段、指标映射 | 真实业务身份、粒度和口径，不能靠同名字段猜 |
-| BI、报表、AI给出不同数字 | 在同一范围和快照中核对指标值与输入明细，定位过滤、NULL、去重或关联放大问题 | 哪个口径才是本次被认可的定义 |
-| 建好了语义，却不知道怎么给Agent用 | 带来源的指标上下文包，消费前核对是否过期；已有引擎可另做明确范围的接口联调 | 实际消费者、可见范围及尚未实现的能力 |
-| 改字段或公式后怕影响已有应用 | 引用/漂移检查、重算与历史证据；已过期结果不继续显示为当前通过 | 哪些业务变更已获授权、哪些要保留历史 |
-
-## 第一次：先完成一次练习
-
-在解压后的 skill 目录执行；需要 Python 3.10+，依赖只有 PyYAML：
+Extract the ZIP and enter the directory containing `requirements.txt` and `scripts/`. Use Python 3.10 or later. On Windows you can substitute `py -3` or your virtual environment's Python. Install the pinned dependencies once.
 
 ```bash
 python -m pip install -r requirements.txt
-python scripts/start.py --project ./work/demo --demo
 ```
 
-打开终端打印的本机网址，首页点击 **“开始数值与明细练习”**，再点击执行。模型、模拟快照和字段已经准备好，不必先写 YAML。
+To check the installation, run `python scripts/smoke.py`. It imports synthetic tables and reads the exported package in a temporary directory. Use the commands below to keep a model you can edit.
 
-这份练习解释为什么 A、A、NULL 三条输入，记录行数是3、非空计数是2、去重非空计数是1。查看明细、换指标、预览相关语义，然后在“交付与版本”下载结果。未填独立预期只记“完成计算”；练习通过不等于生产验收。
-
-关闭后继续同一个项目：
+Run the example in a fresh project directory. The import reads the supplied synthetic SQL as text and saves physical drafts. The export writes a new ZIP. The third command reads that ZIP in a separate process. These commands run locally without a server or model key.
 
 ```bash
-python scripts/start.py --project ./work/demo
+python -X utf8 scripts/knowledge.py --project "./work/transport" import --file "examples/semantic-workbench/transport.sql" --seed-draft
+python -X utf8 scripts/knowledge.py --project "./work/transport" export --out "./work/transport.zip" --draft
+python -X utf8 scripts/semantic_read.py --package "./work/transport.zip" verify
 ```
 
-不要再次带 `--demo` 覆盖项目。零售练习可用新目录加 `--demo retail`。首次启动不会申请数据库密码、调用外部模型或终止其他服务。
+In the first receipt, `result.result.seeded.counts` contains `{"dataset": 2, "field": 5, "relation": 1}`. The reader returns the following excerpt.
 
-## FDE：拿真实资料打通一个问题
+```json
+{"status": "verified", "draft": true, "asset_count": 8, "complete": false}
+```
 
-向已安装本 skill 的 Agent 直接说：
-
-> 使用 ai-data-delivery。我需要回答【具体业务问题】，DDL/已有模型在【路径】，可用快照在【路径，可暂缺】。先复用已有结构，只补当前问题需要的定义；请给出可读口径、可执行验证与消费交接，说明未验证范围。项目保存到【目录】。
-
-Agent负责选择工具、准备输入与解释缺口；你核对映射和实际消费者。已有模型与独立SQLite快照时，也可直接打开：
+The package passed integrity checks. All eight definitions are drafts. To inspect the vehicle table, search the package:
 
 ```bash
-python scripts/start.py --project ./work/customer-a --model ./semantic.yaml --sample ./snapshot.sqlite --provenance deidentified
+python -X utf8 scripts/semantic_read.py --package "./work/transport.zip" search --query vehicle --kind dataset
 ```
 
-只有SQLite/MySQL DDL时，将 `--model` 换成 `--ddl ./source.sql`，省略快照。`deidentified`只是你对样本来源的声明，不会自动脱敏。没有数据时可以建草案，但不会生成“数值验证通过”。
+The example returns one match. Use `matches[0].asset.id` with `sources --id ID` to read the original `CREATE TABLE vehicle` passage. It establishes a reference from `vehicle.company_id` to `company.id`. Ownership and maintenance obligations need separate evidence. For a different schema, substitute your DDL path and use terms from its tables. [Reader commands and paging](references/agent-reader.md)
 
-完整但不强制的路径见 [FDE快速上手](references/quickstart-fde.md)。`rebuild.py` 是另行授权的高级本机服务辅助工具，首次使用和语义建模都不需要运行它。
+## Add a business definition
 
-## 数据产品经理：描述业务，直接看结果
-
-无需先学SQL或维护模型文件。可直接说：
-
-> 使用 ai-data-delivery。我想统计【对象和指标】，范围是【主体/时间/状态】，现有资料在【路径】。请先用人话说明包含与排除，给我必要的候选解释，只问会改变结果的问题；把确认后的口径和实际结果放到我能查看的位置。
-
-你主要看三件事：**算谁、怎么算、结果由哪些记录组成**。对业务决定按实际授权确认；数据是否真实、计算是否正确仍需验证。修改文字描述不会自动改变计算公式，Agent/FDE应同步修改并重算。
-
-没有资料时也可以先梳理问题；不能据此声称已有数据库、接口或可执行结果。操作路径见 [产品经理快速上手](references/quickstart-pm.md)。
-
-## 交出去的是什么
-
-给人查看时，先打开交付ZIP中的 **00-human-review.html**，或在工作台直接下载“可视化验收页”：可展开思维导图串起问题、对象、指标、映射与证据，点开就是业务说明和预期/实际对照；FDE可展开技术定义。PM按业务范围与正反例核对，FDE按粒度、字段、关联与消费结果核对。具体见[如何人眼验收](references/human-review.md)。图由同一模型生成，不能拿它与模型互相一致就证明业务正确。
-
-工作台“交付与版本”可下载模型、可读字典、场景约定、确认记录、问题与验证证据；项目备份另含SQLite及导入附件。CLI也能输出指标数值/明细和按问题选择的Agent上下文包。
-
-上下文包是文件，不是生产API。源模型变化后，消费方需要重新执行检查；它不会自动撤回已经发出的文件。真正的问数服务、身份认证和行列权限仍由目标系统承担。见 [指标与上下文消费路径](references/metric-context.md) 与 [元数据到消费](references/metadata-to-consumption.md)。
-
-## 按需要继续
-
-- [工作台操作](workbench/README.md)：导入、建模、检查、历史与导出。
-- [模型合同](references/contract.md)、[补齐会话](references/onboarding.md)：具体字段、确认和映射。
-- [问题诊断](references/diagnosis-playbook.md)、[全部工具](references/tools.md)：遇到问题再查，不必先全部跑一遍。
-- [既有项目证据](references/evidence/traffic/README.md)、[大会机制取舍](references/conference-practices-2026.md)：按来源和证据范围理解，不把案例效果当收益承诺。
-- [领域起步包](starter_packs/README.md)、[标准边界](references/standards.md)：候选模型与规范适用性需核对。
-- [分阶段交付](references/delivery-playbook.md)、[大型项目故事地图](references/story-map.md)：供较大任务裁剪，不是所有任务的必经流程或工期保证。
-
-## 本版变化与安装
-
-v0.1.2统一包内、文档与后续市场发布版本；继承本地v0.0.12功能。新增一条首次启动入口，收拢FDE/PM路线，并修复环境继承、网络请求和服务生命周期的已知问题。当前验证和未验证范围见 [本版记录](references/v0.1.2-validation.md)。旧版记录保留为历史，不代表新包平台审计已经通过。
-
-把完整目录安装到宿主支持的 skills 位置，再请 Agent 使用 `ai-data-delivery`；具体安装方式以宿主为准。无需为了使用本 skill 另装 ai-delivery-spec。下载包保留所有运行工具和示例，开发测试目录只在源码仓库。
-
-维护者在源码仓库运行：
+Try asking your Agent, “Which company is responsible for vehicle maintenance, and where does the source say so?” Register the bundled synthetic business notes in the **same project**:
 
 ```bash
-python -m unittest discover -s tests -v
-python mocks/run_mock.py --all
-python maintainer/build_skill.py --out dist
+python -X utf8 scripts/knowledge.py --project "./work/transport" import --file "examples/semantic-workbench/transport-v1.txt"
 ```
 
-**English:** Chinese-first documentation; users may interact in any language. Give your agent a business question and existing materials, or run `scripts/start.py --project ./work/demo --demo` for a local synthetic walkthrough. This is a semantic delivery and verification toolkit, not a production query gateway, universal SQL compiler, OWL reasoner or permission service.
+The receipt gives `result.result.batch_id`. The Agent can use `task --batch BATCH_ID` to read the passage “企业负责本企业车辆维护。” (“A company maintains its own vehicles.”). Attach the exact excerpt and its source revision to the business relationship, then inspect its dependencies. Keep that role in draft until authorized review. The previously exported ZIP still contains the earlier revision. Export to a new file to hand off the revised model. [Modeling and scoped export](references/modeling.md)
+
+To review visually, run `python -X utf8 scripts/start.py --project "./work/transport"` and open the printed local URL. Click a table to inspect columns, or choose **New object** to create a business object. **Connect** takes the two endpoints in order and shows the direction before saving. **3D connections** opens the graph around a change. Stop the editor with **Ctrl+C**. To share that view offline, run `python scripts/knowledge.py --project "./work/transport" graph-view --out change.html` and review its included quotations before sharing.
+
+## Common questions
+
+| What happened? | What to do |
+| --- | --- |
+| Installation must work offline | On a connected machine with matching OS, architecture and Python version, run `python -m pip download --only-binary=:all: -r requirements.txt -d wheels`. Transfer the wheels, then run `python -m pip install --no-index --find-links ./wheels -r requirements.txt` at the destination. |
+| The authoring CLI returned `argument_error` | Put global options such as `--project`, `--language zh`, `--revision` and `--progress` before the command. Put `--file`, `--seed-draft` or `--out` after their respective command. `--progress` writes stage events to stderr and keeps one JSON receipt on stdout. |
+| The model already exists, or the SQL changed | Reopen the same project. Omit `--seed-draft` on subsequent imports and review the changes. For recurring DDL exports use a stable `--source-key` from first import, or use `--source-id` for a registered source. For GBK text use `import --encoding gb18030 --file FILE`. |
+| The write result is uncertain, or another edit changed the project | For a retryable write, supply a unique global `--operation-id` up front. After interruption, run `receipt OPERATION_ID` on the same project. For `status: conflict`, use `state --summary` for the revision, read the affected assets in `state`, compare your input and reapply the reconciled edit with its reviewed revision. |
+| Export failed | Use an existing destination directory and a new filename. For `details.code: NOT_PUBLISHABLE`, inspect the listed issues and review the relevant definitions and dependencies. Use `--draft` when the recipient requested a draft. |
+| A reader search has no matches, or an ID is unknown | Inspect `fallback.candidates` for available terms on a no-match search. For `error.code: UNKNOWN_ID`, search the supplied snapshot and copy an ID from its matches. |
+
+## Other tasks
+
+| Goal | Entry point |
+| --- | --- |
+| Find possible joins in a schema with few foreign keys | `knowledge.py --project DIR relation-hints` lists field pairs with their metadata. Check business evidence before saving a relationship. |
+| Connect selected SQLite, PostgreSQL or MySQL tables | [Read-only catalog setup](references/readonly-metadata.md) |
+| Hand off a particular question or check the impact of a change | [Question handoff and impact](references/question-delivery.md) |
+| Exchange definitions with Neo4j or ontology-graph-spec | [Offline interchange](references/neo4j-interop.md) |
+
+The host Agent interprets the materials. This tool stores the model and its sources locally. Production queries, enterprise access control and multi-user administration are outside its scope. Keep a backup when upgrading an existing project. The distribution includes the MIT license in `LICENSE.md`. [Architecture](references/architecture.md) · [License in source](https://github.com/franklinxkk/ai-data-delivery/blob/main/LICENSE) · [Skill instructions](SKILL.md) · [Changelog](CHANGELOG.md)

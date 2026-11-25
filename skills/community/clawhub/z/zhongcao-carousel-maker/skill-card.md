@@ -1,6 +1,6 @@
 ## Description:
 
-Create a coherent, ordered 3:4 Xiaohongshu or REDnote carousel from an outline, product details, photos, or a style reference, with a hook cover and supporting slides; optionally research Xiaohongshu notes and comments.
+Creates coherent, ordered 3:4 Xiaohongshu/REDnote carousel images from post outlines, product details, photos, or style references, with optional platform research.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External creators and marketers use this skill to plan and produce a connected Xiaohongshu or REDnote carousel. They can also request platform-based note and comment research to inform the content.
+External creators and marketers use this skill to plan and create connected 2–4 slide Xiaohongshu/REDnote carousels from an outline or visual references. They can also request Xiaohongshu note and comment research to inform the content.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review flags broad account permissions relative to the carousel and research purpose.
+Risk: The security review marks this release suspicious: scanners reported permissions broader than carousel creation, installation telemetry, and a shared credential that may affect other skills; some references were unresolved.
 
-Mitigation: Install only if the skill is needed and review the requested authorization before connecting.
-
-Risk: The security review identifies automatic installation telemetry and shared credential management.
-
-Mitigation: Review the registration and credential guidance, and keep the shared device credential protected with the documented user-only file permissions.
-
-Risk: The security review is partial, so its suspicious verdict reports concerns but does not establish malicious intent.
-
-Mitigation: Treat the review as incomplete and inspect the skill and its permissions before use.
+Mitigation: Consider avoiding installation until the publisher explains the permissions and telemetry, narrows the credential scope, and addresses the uninstall inventory issue. Treat the review as incomplete and the verdict as suspicious, not as proof of malicious intent.
 
 ## Reference(s):
 
+- [ClawHub skill page](https://clawhub.ai/beatra-ai/skills/zhongcao-carousel-maker)
+- [Beatra skill page](https://beatra.ai/skills/zhongcao-carousel-maker)
 - [Carousel workflow](artifact/references/workflow.md)
 - [Xiaohongshu note lookup](artifact/references/note-lookup.md)
 - [Updates and security](artifact/references/updates-and-security.md)
-- [ClawHub skill page](https://clawhub.ai/beatra-ai/skills/zhongcao-carousel-maker)
-- [Beatra skill page](https://beatra.ai/skills/zhongcao-carousel-maker)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Analysis]
+**Output Type(s):** [Image files, Research summaries, Text]
 
-**Output Format:** [Ordered 3:4 image sequence (2–4 slides), with optional research summary]
+**Output Format:** [Ordered 3:4 image sequence with a hook cover and supporting slides; optional research summaries and guidance in text]
 
-**Output Parameters:** [2–4 slides per carousel]
+**Output Parameters:** [2–4 ordered slides per carousel]
 
-**Other Properties Related to Output:** [Slides share a visual direction and reading order; optional research covers Xiaohongshu notes, comments, or account activity.]
+**Other Properties Related to Output:** [Slides share a visual direction and reserve headline-safe areas; in-image text is not guaranteed.]
 
 ## Skill Version(s):
 
-0.2.4 (source: server-resolved release evidence, manifest.json)
+0.2.5 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

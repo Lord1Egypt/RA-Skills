@@ -15,14 +15,41 @@
 | 42902 | 402 | Daily quota exhausted | Wait until UTC 00:00 reset or upgrade plan |
 | 50001 | 500 | Server error | Record request_id, contact support |
 
-## Export-Specific Errors
+## Video Script Audit Errors
 
-| Scenario | HTTP | Description |
-|----------|------|-------------|
-| Unsupported format (e.g., `feishu_doc`) | 400 | Format not yet supported |
-| Task not found or not owned by tenant | 404 | Task not found |
-| Task has no data to export | 404 | No data available for export |
-| OSS upload / DB insert / signing failed | 500 | Export failed |
+The same code carries different meanings per endpoint — always resolve it against the endpoint you called.
+
+| code | Endpoint | HTTP | Description | Action |
+|------|----------|------|-------------|--------|
+| 40004 | `/tasks/submit` | 400 | Video URL not in the platform whitelist (TikTok / YouTube Shorts / Instagram Reels only) | Do not retry. Report the reason plus the accepted formats to the user and ask for a new link. No credits are charged |
+| 40001 | `/tasks/submit` | 400 | Invalid request parameters (e.g. `video_url` / `oss_url` not mutually exclusive) | Caller-side parameter bug; fix the payload and retry |
+| 40001 | `/tasks/status`, `/tasks/result` | 200 | Audit task not found (invalid `task_id`) | Verify the task UUID; ensure it was submitted by the same tenant |
+| 40002 | `/tasks/result` | 200 | Audit task not completed yet (`status ≠ completed`) | Continue polling via `/tasks/status`; do not retry `result` immediately |
+| 40003 | `/tasks/result` | 200 | A completed task has no stored result | Report the missing result and keep the task ID for support |
+
+### Task-Level Failures (no error code)
+
+When `/tasks/status` returns `success: true` with `data.status = "failed"`, the failure happened inside the
+worker and is reported only through `data.error_message`. There is no error code for these.
+
+| `error_message` keyword | Meaning | Action |
+|------------------------|---------|--------|
+| 不支持的视频 URL | URL outside the whitelist | Ask for a whitelisted link |
+| 视频时长 … 超过限制 | The processing service rejected this video's duration | Ask for a shorter video |
+| 视频文件大小 … 超过限制 | The processing service rejected this file size | Use a smaller asset, or upload a compressed video of up to 500 MB |
+| 下载失败 / not_found / invalid | Video deleted, private, or download service error | Confirm the link is still publicly reachable; retry later |
+
+> `data.error_message` MUST be surfaced verbatim to the user. `success: true` only means the status query
+> itself succeeded — it says nothing about whether the audit task succeeded.
+
+## Media Upload Errors
+
+| code | HTTP | Description | Action |
+|------|------|-------------|--------|
+| 40001 | 200 | Unsupported file format or file too large | Check extension (mp4/mov/avi/mkv/webm) and size (≤ 500MB) |
+
+> 40002 is a business state, not a hard failure. Treat it as "keep polling" rather than triggering retry/backoff.
+> Submit-time `40201` (insufficient credits) follows the global rule — only this code confirms a credits shortage.
 
 ## Troubleshooting
 
@@ -57,17 +84,7 @@ Valid format: `cv_live_` prefix + random string, e.g., `cv_live_Y8nil_BsKAbITdqj
 - `meta.credits_remaining` is the actual OpenAPI credits balance when present
 - A successful response must never be converted into an insufficient-credits warning
 
-### Collection task timeout
-
-- Collection tasks are async, typically 5~30 minutes
-- Recommended poll interval: 60 seconds
-- Status `timeout` means the task timed out; try resubmitting
-
 ### Permission denied
 
-API Key `scopes` field controls endpoint access:
-- `["*"]` — full access
-- `["collection:submit"]` — link/username collection only
-- `["collection:keyword-submit"]` — keyword collection only
-- `["collection:export"]` — export only
-- `["file:download"]` — file download only
+API Key scopes control endpoint access. For example, structured TikTok search uses
+`creator:tiktok:search`, natural-language creator search uses `creator:nl_search`, and video search uses `video:search`.

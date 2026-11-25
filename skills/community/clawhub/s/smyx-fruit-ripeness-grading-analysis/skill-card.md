@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes tomato and strawberry images or videos to estimate fruit color, colored-area coverage, gloss, relative size, and ripeness stage, then returns a structured grading report and harvest guidance.
+Analyzes tomato and strawberry images or videos to estimate fruit color, size, and ripeness stage, then provides a grading report and harvest guidance.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Growers, greenhouse operators, fruit cooperatives, and home gardeners can use the skill to assess tomato or strawberry images and videos, classify fruit by ripeness stage, and support harvest timing decisions.
+Growers, greenhouse operators, and fruit cooperatives can use the skill to assess tomato or strawberry ripeness from images or videos and inform harvest timing. Its visual estimates are for decision support; commercial grading should be checked against applicable standards.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment flags substantial account and credential handling and network activity beyond the stated grading purpose.
+Risk: The security review flags account and credential handling, automatic account registration, external media uploads, and export-only behavior as concerns beyond the stated fruit-grading purpose.
 
-Mitigation: Review the account behavior and required permissions before use, and restrict credentials to the minimum necessary until their use is understood.
-
-Risk: Images or videos may be uploaded for analysis, and the security guidance calls for clarifying media handling.
-
-Mitigation: Confirm the service destination and data handling before submitting media; use only images or videos you are authorized to share.
-
-Risk: The security assessment notes analysis may run despite an export-only option.
-
-Mitigation: Do not rely on export-only mode to avoid analysis until its behavior is verified; review the behavior before execution.
+Mitigation: Clarify credential handling, account creation, media destinations, and export-only behavior before installation.
 
 ## Reference(s):
 
 - [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-fruit-ripeness-grading-analysis)
-- [Skill usage demo](https://lifeemergence.com/sample.html)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [API reference](references/api_doc.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
+**Output Type(s):** [Analysis, Guidance, Markdown, JSON]
 
-**Output Format:** [Structured JSON or Markdown report with ripeness grades, observations, and harvest guidance]
+**Output Format:** [Structured ripeness analysis reports; Markdown tables for historical report lists]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Analyzes image or video inputs; reports fruit color, colored-area ratio, gloss, relative size, and ripeness stage. Results are visual estimates for harvest decisions.]
+**Other Properties Related to Output:** [Estimates depend on image or video quality; results are decision support and should be checked against commercial grading standards.]
 
 ## Skill Version(s):
 
-1.0.14 (source: evidence.json release metadata)
+1.0.15 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Identifies common pests in crop leaf, bud, and fruit images or videos and returns pest types with confidence scores.
+Analyzes crop leaf, bud, and fruit images or videos to identify common pests and report pest types with confidence scores.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Farmers and agricultural practitioners can submit crop photos or videos to identify common pests and review estimated counts, confidence scores, and report links. Results are for reference only; the skill does not provide pesticide or treatment recommendations.
+Farmers and agricultural practitioners can analyze crop images or videos to identify common pests, estimate counts, and review confidence scores for early detection. Results are for reference and do not include pesticide or pest-control recommendations.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan was partial because a referenced local path was missing, and it flags account, profile, token-storage, and report-history behavior for clarification.
+Risk: The security scan flags account and profile handling, report-history retrieval, file writing, and analysis that may continue when an option says not to analyze. The scan is partial because a referenced local path was missing.
 
-Mitigation: Review the relevant behaviors and all referenced files before installation; avoid installation until these points are clarified.
+Mitigation: Avoid installation until these behaviors are clearly explained. If used, assume local media may be sent to a remote service and avoid relying on an option alone to prevent analysis.
 
-Risk: The security scan reports that operations may run despite an export-only option.
+Risk: Identity or token data may be stored or transmitted while processing images or videos.
 
-Mitigation: Confirm the option's behavior before relying on it to prevent analysis or other operations.
+Mitigation: Use only media you are authorized to share and review the service's identity and data-handling behavior before use.
 
 ## Reference(s):
 
 - [API documentation](references/api_doc.md)
-- [Skill listing on ClawHub](https://clawhub.ai/18072937735/skills/smyx-crop-pest-identification-analysis)
-- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [Skill introduction demo](https://lifeemergence.com/sample.html)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, JSON, Markdown]
+**Output Type(s):** [Text, Markdown, JSON]
 
-**Output Format:** [Structured pest identification report; Markdown table for report history]
+**Output Format:** [Structured pest identification report or Markdown table]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include pest types, estimated counts, confidence scores, affected plant parts, and report links; results are for reference.]
+**Other Properties Related to Output:** [May include pest types, estimated counts, affected plant parts, confidence scores, and report links.]
 
 ## Skill Version(s):
 
-1.0.15 (source: server-resolved release metadata)
+1.0.16 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -28,19 +28,19 @@ No full live-compatibility result for 9.1.1.0 is claimed by this guidance.
 ### Via uv (recommended)
 
 ```bash
-uv tool install vmware-aria==2.4.7
+uv tool install vmware-aria==2.4.8
 ```
 
 ### Via pip
 
 ```bash
-pip install vmware-aria==2.4.7
+pip install vmware-aria==2.4.8
 ```
 
 ### From source
 
 ```bash
-git clone --branch v2.4.7 https://github.com/vmware-skills/VMware-Aria.git
+git clone --branch v2.4.8 https://github.com/vmware-skills/VMware-Aria.git
 cd VMware-Aria
 pip install -e .
 ```
@@ -211,7 +211,7 @@ Add to `~/.claude.json` (or use `claude mcp add`):
 
 > v1.5.15+ recommends `vmware-aria mcp`. Pre-1.5.15 used the legacy
 > `vmware-aria-mcp` console script (still kept for backward compatibility).
-> If using `uvx --from vmware-aria==2.4.7 vmware-aria mcp` and you hit
+> If using `uvx --from vmware-aria==2.4.8 vmware-aria mcp` and you hit
 > `invalid peer certificate: UnknownIssuer` behind a corporate TLS proxy,
 > set `UV_NATIVE_TLS=true` or use the recommended form above.
 
@@ -324,11 +324,11 @@ decide:
 ### Build and run
 
 ```bash
-docker build -t vmware-aria:2.4.7 .
+docker build -t vmware-aria:2.4.8 .
 docker run --pull=never -i \
   -v ~/.vmware-aria:/root/.vmware-aria:ro \
   -e VMWARE_ARIA_CONFIG=/root/.vmware-aria/config.yaml \
-  vmware-aria:2.4.7
+  vmware-aria:2.4.8
 ```
 
 These commands run the image built locally above; `--pull=never` prevents a missing local image from falling back to a registry. The version tag identifies this build, not an immutable digest.

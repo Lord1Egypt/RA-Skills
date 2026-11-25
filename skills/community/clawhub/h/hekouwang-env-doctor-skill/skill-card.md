@@ -1,6 +1,6 @@
 ## Description:
 
-Scans macOS and Linux developer storage, identifies likely unused toolchains and caches, and guides users through a confirmation-based cleanup.
+Helps developers inspect macOS and Linux development environments, classify tool storage as data, cache, or likely leftovers, and review user-confirmed official cache cleanup options.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Developers use this skill to understand which development tools, runtimes, caches, and AI-related directories are using disk space on macOS or Linux. It groups findings into data, cache, and likely leftovers, then helps users review cleanup choices.
+Developers use this skill to inspect development-tool storage on macOS and Linux, distinguish active data, caches, and likely leftovers, and decide what to clean. It provides manual guidance for likely leftover version managers and routes cache cleanup through individually confirmed official commands.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Cleanup choices may remove active language toolchains or Homebrew versions beyond their descriptions; two scripts were only partially inspected.
+Risk: Security scan coverage is incomplete: one script was only partially inspected.
 
-Mitigation: Review each target and command, start with `bash scripts/clean.sh --dry-run`, and leave any unclear toolchain or Homebrew item unselected.
+Mitigation: Review the skill scripts before use; inspect cleanup options with --dry-run and confirm each selected command individually.
+
+Risk: Official cache cleanup can remove cached packages or downloads that may need to be fetched again.
+
+Mitigation: Review the listed command and its stated cost for each item, and select only caches you are willing to rebuild.
 
 ## Reference(s):
 
-- [Cleanup classification rules](references/rules.md)
-- [Report workflow](references/report.md)
+- [ClawHub skill page](https://clawhub.ai/huiyonghkw/skills/hekouwang-env-doctor-skill)
+- [GitHub repository](https://github.com/huiyonghkw/hekouwang-env-doctor-skill)
 - [Safety boundaries](references/safety.md)
-- [Source repository](https://github.com/huiyonghkw/hekouwang-env-doctor-skill)
-- [ClawHub release page](https://clawhub.ai/huiyonghkw/skills/hekouwang-env-doctor-skill)
+- [Classification rules](references/rules.md)
+- [Report format](references/report.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-**Output Format:** [Markdown report with shell command examples]
+**Output Format:** [Markdown report with tables and inline shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Disk usage findings grouped as data, cache, and likely leftovers, with reasons and cleanup tradeoffs.]
+**Other Properties Related to Output:** [Read-only scan guidance; cleanup requires item-by-item user confirmation.]
 
 ## Skill Version(s):
 
-1.2.4 (source: frontmatter, server release metadata)
+1.3.0 (source: frontmatter, CHANGELOG, server release metadata)
 
 ## Ethical Considerations:
 

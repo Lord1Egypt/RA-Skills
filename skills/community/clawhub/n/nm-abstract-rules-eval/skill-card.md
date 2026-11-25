@@ -1,6 +1,6 @@
 ## Description:
 
-Evaluates Claude Code rules in `.claude/rules/` for frontmatter validity, glob patterns, content quality, and organization.
+Evaluate Claude Code rules in .claude/rules/ for frontmatter, glob patterns, and quality.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to audit Claude Code rules for valid frontmatter, useful path globs, clear content, and consistent organization, with scores and corrective findings.
+Developers use this skill to audit Claude Code rule files for valid frontmatter, suitable glob patterns, actionable content, organization, and token efficiency.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The partial security scan reports an undeclared action that changes the rules directory and a missing referenced file; the scan is incomplete.
+Risk: The skill is rated suspicious because it may change rule configuration beyond its stated auditing purpose.
 
-Mitigation: Review the reported rules-directory change and missing validator reference before installing.
+Mitigation: Review the skill’s rule-configuration changes and the shared rule file before installing.
+
+Risk: The partial scan does not fully establish the behavior of a referenced validator script that was missing.
+
+Mitigation: Review the referenced validator before installing; treat the available scan as incomplete until its behavior is established.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-abstract-rules-eval)
-- [Homepage from Clawdis metadata](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-abstract-rules-eval)
+- [Project homepage (metadata.clawdis)](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, Markdown]
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [Markdown evaluation report with scores, findings, and recommendations]
+**Output Format:** [Markdown report with scores, findings, and recommendations]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Audits Claude Code rules in .claude/rules/; requires the night-market.skills-eval configuration.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

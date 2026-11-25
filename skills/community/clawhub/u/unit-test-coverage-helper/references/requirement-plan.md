@@ -32,18 +32,18 @@ Scoring rationale:
 
 ## Evidence
 
-- github-issues (2026-11-11T22:32:10+00:00): [[P1][Organization] 组织成员签发普通成员邀请，并按邀请范围撤销及接受](https://github.com/alexj11324/Mikka/issues/2076)
-- github-issues (2026-11-15T23:03:45+00:00): [sim/selftest.sh PVT smoke fails on PDK-equipped hosts: grid spread checks read n/a](https://github.com/2AMLogic/gf180-temp-por/issues/555)
-- hacker-news-ask-hn (2026-11-16T23:52:37+00:00): [Ask HN: Who's really winning with AI-Coding?](https://news.ycombinator.com/item?id=50525329)
+- github-issues (2026-11-18T17:31:31+00:00): [lampOS: the Queue (continued from #6811)](https://github.com/autonomous-ai/lampOS/issues/7814)
+- github-issues (2026-11-23T21:47:07+00:00): [feat(targeting): systematic ICP target-list builder — Phases 2-5 (follow-up of #2630)](https://github.com/christopherqueenconsulting/linkedin_engagement_manager/issues/2655)
+- github-issues (2026-11-23T20:33:57+00:00): [feat(engagement): reach up to 100 reviewed comments a day — Phases 2-6 (follow-up of #2635)](https://github.com/christopherqueenconsulting/linkedin_engagement_manager/issues/2647)
+- hacker-news-search (2026-11-16T23:52:37+00:00): [Ask HN: Who's really winning with AI-Coding?](https://news.ycombinator.com/item?id=50525329)
 - hacker-news-search (2026-11-10T07:20:54+00:00): [Question: How to control unit tests in Agentic Pipelines](https://news.ycombinator.com/item?id=50437119)
-- github-issues (2026-11-13T16:28:23+00:00): [Writing to a well-known folder (Pictures, Screenshots, Downloads) without a picker per file](https://github.com/expo/exact/issues/507)
-- hacker-news-ask-hn (2026-11-15T17:39:49+00:00): [Ask HN: Tips for maintainability of large software projects using agents?](https://news.ycombinator.com/item?id=50508896)
-- segmentfault-search (2026-11-17T04:04:50.168168+00:00): [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
-- segmentfault-search (2026-11-17T04:04:50.168168+00:00): [javascript](https://segmentfault.com/t/javascript)
-- segmentfault-search (2026-11-17T04:04:50.168168+00:00): [typescript](https://segmentfault.com/t/typescript)
-- segmentfault-search (2026-11-17T04:04:50.168168+00:00): [ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
-- segmentfault-search (2026-11-17T04:04:50.168937+00:00): [Writing Great Unit Tests: Best and Worst Practices](https://segmentfault.com/a/1190000009709754)
-- segmentfault-search (2026-11-17T04:04:50.168937+00:00): [Android自动化测试一 UiAutomator官方介绍](https://segmentfault.com/a/1190000045114982)
+- github-issues (2026-11-23T06:48:57+00:00): [Redraw the Heart icon to be symmetric and proportional](https://github.com/BibleGarden/Lampada-Mobile/issues/96)
+- segmentfault-search (2026-11-24T05:49:29.248320+00:00): [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
+- segmentfault-search (2026-11-24T05:49:29.248320+00:00): [javascript](https://segmentfault.com/t/javascript)
+- segmentfault-search (2026-11-24T05:49:29.248320+00:00): [typescript](https://segmentfault.com/t/typescript)
+- segmentfault-search (2026-11-24T05:49:29.248320+00:00): [ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
+- segmentfault-search (2026-11-24T05:49:29.248822+00:00): [Writing Great Unit Tests: Best and Worst Practices](https://segmentfault.com/a/1190000009709754)
+- segmentfault-search (2026-11-24T05:49:29.248822+00:00): [Android自动化测试一 UiAutomator官方介绍](https://segmentfault.com/a/1190000045114982)
 
 ## How The Skill Meets The Requirement
 

@@ -1,0 +1,97 @@
+{
+ "schema": "oasis-blueprints/type-map/0.1",
+ "_about": [
+  "Joins the three vocabularies in this repository so a project type can be looked up in one place:",
+  "the skill's job types (skills/oasis-blueprints/assets/views), the drawing-map project types and sheet kinds",
+  "(library/drawing-map/taxonomy.json, sheet_kinds.json) and the detail categories (library/details/<collection>/index.json).",
+  "It says where to look, not what a job needs. The drawing map counts what past sets contained and a library detail",
+  "is the engineer's drawing: the engineer of record decides which sheets and details go on a set."
+ ],
+ "job_types": [
+  {
+   "job_type": "deck",
+   "draws": "Freestanding rectangular deck on posts and footings",
+   "field_sheet_covers": [
+    "floor_framing_plan",
+    "sections",
+    "details",
+    "view_3d",
+    "assembly_steps"
+   ],
+   "drawing_map": [
+    {
+     "type": "deck",
+     "variants": [
+      "freestanding"
+     ]
+    }
+   ]
+  },
+  {
+   "job_type": "sunroom",
+   "draws": "Sloped roof on posts against a house",
+   "field_sheet_covers": [
+    "roof_framing_plan",
+    "sections",
+    "elevations",
+    "details",
+    "view_3d",
+    "assembly_steps"
+   ],
+   "drawing_map": [
+    {
+     "type": "patio-lanai-addition",
+     "variants": [
+      "sunroom-monoslope",
+      "sunroom",
+      "covered-porch",
+      "covered-patio"
+     ]
+    }
+   ]
+  },
+  {
+   "job_type": "library",
+   "draws": "Sheets of library details only",
+   "field_sheet_covers": [],
+   "drawing_map": []
+  }
+ ],
+ "sheet_kinds": [
+  {"kind": "cover", "kit_sheet_type": "cover", "detail_categories": []},
+  {"kind": "general_notes", "kit_sheet_type": "cover", "detail_categories": []},
+  {"kind": "structural_notes", "kit_sheet_type": "cover", "detail_categories": []},
+  {"kind": "site_plan", "kit_sheet_type": "reserved", "detail_categories": []},
+  {"kind": "demolition_plan", "kit_sheet_type": "reserved", "detail_categories": []},
+  {"kind": "floor_plan", "kit_sheet_type": "reserved", "detail_categories": []},
+  {"kind": "foundation_plan", "kit_sheet_type": "reserved", "detail_categories": ["Foundation"]},
+  {"kind": "floor_framing_plan", "kit_sheet_type": "reserved", "detail_categories": ["Joist-Floor", "Beam", "Post-Column", "Ledger", "Connection"]},
+  {"kind": "wall_framing", "kit_sheet_type": "reserved", "detail_categories": ["Wall", "Door-Window"]},
+  {"kind": "sheathing_plan", "kit_sheet_type": "reserved", "detail_categories": ["Wall"]},
+  {"kind": "ceiling_framing_plan", "kit_sheet_type": "reserved", "detail_categories": []},
+  {"kind": "roof_framing_plan", "kit_sheet_type": "reserved", "detail_categories": ["Roof", "Beam", "Connection"]},
+  {"kind": "roof_plan", "kit_sheet_type": "reserved", "detail_categories": []},
+  {"kind": "decking_plan", "kit_sheet_type": "reserved", "detail_categories": ["Joist-Floor", "Ledger"]},
+  {"kind": "railing_plan", "kit_sheet_type": "reserved", "detail_categories": []},
+  {"kind": "stair", "kit_sheet_type": "reserved", "detail_categories": ["Stairs"]},
+  {"kind": "elevations", "kit_sheet_type": "reserved", "detail_categories": []},
+  {"kind": "sections", "kit_sheet_type": "reserved", "detail_categories": []},
+  {"kind": "details", "kit_sheet_type": "details", "detail_categories": ["Foundation", "Wall", "Roof", "Beam", "Post-Column", "Joist-Floor", "Connection", "Door-Window", "Ledger", "Stairs", "Other"]},
+  {"kind": "schedules", "kit_sheet_type": "reserved", "detail_categories": []},
+  {"kind": "legend", "kit_sheet_type": "reserved", "detail_categories": []},
+  {"kind": "view_3d", "kit_sheet_type": "reserved", "detail_categories": []},
+  {"kind": "material_list", "kit_sheet_type": "reserved", "detail_categories": []},
+  {"kind": "assembly_steps", "kit_sheet_type": "reserved", "detail_categories": []},
+  {"kind": "electrical_power", "kit_sheet_type": "reserved", "detail_categories": []},
+  {"kind": "electrical_lighting", "kit_sheet_type": "reserved", "detail_categories": []},
+  {"kind": "mechanical", "kit_sheet_type": "reserved", "detail_categories": []},
+  {"kind": "plumbing_water", "kit_sheet_type": "reserved", "detail_categories": []},
+  {"kind": "plumbing_sanitary", "kit_sheet_type": "reserved", "detail_categories": []},
+  {"kind": "existing_conditions", "kit_sheet_type": "reserved", "detail_categories": []}
+ ],
+ "_kit_sheet_type": {
+  "cover": "Drawn on the kit's cover sheet (scope, notes, criteria, general notes band).",
+  "details": "A sheet of type \"details\" filled from the detail library.",
+  "reserved": "The kit has no drawing code for this kind. Unless the job type's field sheet covers it (see field_sheet_covers) or the job adds its own sheet type, it is a \"reserved\" sheet that holds the place for a drawing from elsewhere."
+ }
+}

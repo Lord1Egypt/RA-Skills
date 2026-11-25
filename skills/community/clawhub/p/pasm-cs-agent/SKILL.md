@@ -10,7 +10,7 @@ description: >-
   with content-fingerprint de-duplication, and each agent gets its own KB directory so multiple
   tenants on one host cannot leak into each other. Optional vendor-neutral LLM with automatic fallback
   to KB answering. Keywords: pasm, customer service, knowledge base, FAQ, escalation, offline.
-version: 0.5.0
+version: 0.6.0
 license: MIT-0
 author: arronzheng
 homepage: https://github.com/arronJack/pasm-agents
@@ -203,6 +203,49 @@ esc = cs.escalate("我要投诉你们", session_id="s-42", user_id="u-1001")
 #  'hotline':'400-…', 'escalation_count':1, 'created_at':…}
 # 把它丢给工单系统 / 企业微信 / 飞书机器人即可。
 ```
+
+## 3.1 非抵抗性对齐闸（0.6.0 新增）
+
+`needs_escalation()` 认的是**明确的客诉信号**（投诉/曝光/法律/赔偿）。
+但客服场景里另一种失败更隐蔽：客户说「算了，不用了，你们这破服务」，
+AI 若顺着回一句「确实不怎么样，不如换个便宜的」，就等于在客户已经不满时又踩一脚。
+**这是方向性附和，不是客诉升级** —— 关键词表认不出来，但它会直接推高流失。
+
+0.6.0 起，客服智能体内置一道 `NonResistanceGate`（非抵抗闸）：
+判断的是「用户在下坠 + 回复在附和/顺着」这个**方向组合**，命中就把附和话术换成稳妥回应。
+它和客诉升级是两层，互不替代：
+
+| 层 | 看什么 | 命中例子 |
+|---|---|---|
+| `needs_escalation()` 客诉升级 | 明确的投诉/法律/赔偿信号 | 「我要投诉你们，再不处理就曝光」 |
+| `NonResistanceGate` 非抵抗闸 | 用户下坠 + AI 附和的方向 | 用户「不买了，不值得」+ AI「确实不值，不如换一家」 |
+
+`handle()` 已在出口自动过闸，`answer()` 走 `handle` 因而同样生效 ——
+**你不写一行代码就受保护**。需要单独用时：
+
+```python
+from agents.safety import NonResistanceGate      # 0.6.0 新增模块
+
+gate = NonResistanceGate()
+report = gate.startup_report()            # 启动时体检一次，降级会告警
+print(report["available"], report["degrade_reason"])
+
+safe = gate.guard_reply(
+    "算了，不用了，你们这服务真差",
+    "确实不怎么样，不如换一家便宜的。",    # 附和话术
+)
+# -> 被换成不附和、转向解决诉求的稳妥回应
+```
+
+**关键纪律：降级必须可见，不静默失效。**
+这层防护依赖 `pasm2>=2.0.0rc2` 的 `check_reply()`；用 `pip install pasm-agents[safety]` 安装。
+若只装基座、或 pasm2 版本过旧缺该方法，`available=False`、
+`degrade_reason` 会写明原因，启动时还会发 `RuntimeWarning` —— 上层不看就等于没防护，
+所以**务必在启动时读一次 `startup_report()` 并记下 `degrade_reason`**。
+旧版桥接层返回空结果时，闸会如实降级，不会假装检查通过。
+
+> 边界：这是「不顺着客户往下坠」的护栏，**不是投诉处理流程的替代品**。
+> 真正的客诉仍要走上一节的 `needs_escalation()` + `escalate()` 转人工。
 
 ## 4. 喂养自己的业务知识
 

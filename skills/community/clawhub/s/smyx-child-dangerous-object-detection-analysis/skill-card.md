@@ -1,6 +1,6 @@
 ## Description:
 
-Provides a workflow for submitting child activity videos for dangerous-object and electrical-socket contact analysis, returning structured findings and alerts.
+Analyzes submitted video for a child's possible contact with preset dangerous objects or electrical outlets and returns structured warnings and report links.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Families, childcare providers, and developers can submit child activity videos to check for contact with preset hazardous objects or electrical sockets, then review structured findings, alert text, and report links.
+Caregivers and childcare operators use the skill to review submitted video from child activity areas for possible contact with listed hazards and retrieve analysis reports.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan flags a mismatch between the child-safety monitoring description and supplied capabilities, along with privacy and unintended-action concerns. Its partial scan does not establish that advertised real-time monitoring or alerts work.
+Risk: The remote service may receive children's video and identity data, and its data and credential retention practices are unclear.
 
-Mitigation: Before installation, verify the service destination, what video and account information it sends or stores, and the permissions it receives. Treat results as supplemental and maintain adult supervision.
+Mitigation: Before use, verify the service, the data it receives, and how it retains data and credentials; obtain guardian consent and protect recordings.
+
+Risk: Analysis alerts may not provide continuous monitoring or immediate notification.
+
+Mitigation: Use results only as supplementary warnings and maintain adult supervision; do not rely on the skill for continuous monitoring or urgent alerts.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-child-dangerous-object-detection-analysis)
-- [API interface reference](artifact/references/api_doc.md)
-- [Skill demonstration page](https://lifeemergence.com/sample.html)
+- [API documentation](references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis results, JSON, Markdown, Alert text, Report links]
+**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
 
-**Output Format:** [Structured JSON results and text; historical reports can be presented as a Markdown table.]
+**Output Format:** [Structured text or JSON, with report links when available]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include detected behavior, confidence, event time, alert level, snapshot URL, and report links when returned by the service.]
+**Other Properties Related to Output:** [Detail can be basic, standard, or JSON. Results are supplementary warnings and do not replace adult supervision.]
 
 ## Skill Version(s):
 
-1.0.11 (source: server-resolved release metadata)
+1.0.13 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

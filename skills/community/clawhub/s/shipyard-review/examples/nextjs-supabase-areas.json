@@ -1,0 +1,87 @@
+[
+ {
+  "key": "auth-signin",
+  "strong": true,
+  "scope": "SECURITY: sign-in and sessions: src/proxy.ts (or middleware.ts), src/app/sign-in/**, src/app/auth/** (callback, confirm, sign-out), src/app/api/auth/**, src/lib/supabase/*, src/lib/auth/*, onboarding pages, any Google or other OAuth button. Check open redirects in next/redirect values, nonce handling for ID-token sign-in, CSRF on cookie-authenticated POSTs, cookie flags, public-path lists that expose private pages or APIs, signed-out /api/* calls that get a redirect instead of 401 JSON, sign-up or reset flows that set a password from an email alone, tracking writes that use the server key with user-controlled data."
+ },
+ {
+  "key": "api-routes",
+  "strong": true,
+  "scope": "SECURITY: every route handler under src/app/api/** that is not sign-in. For each: who may call it (login, bearer token, public), ownership checks on every id in the path or body (IDOR), the Supabase client used (the person's own vs the server key), request body size caps, rate limits on anything that costs money or sends email, GETs that change data, error answers that leak internals, lookups on user-supplied keys without Object.hasOwn (?error=__proto__)."
+ },
+ {
+  "key": "db-rls",
+  "strong": true,
+  "scope": "Database: every file in supabase/migrations/*.sql and supabase/isolation.json, plus how the app queries (grep for .from( and .rpc( in src/; which client each uses). If the supabase-postgres-best-practices skill is installed, read it. Check tables without RLS or with permissive policies, update policies that do not limit columns, SECURITY DEFINER functions without search_path or ownership checks, views without security_invoker, missing indexes on hot filters (user_id, owner ids, tokens), N+1 queries in API routes, unbounded selects of large columns on list endpoints, lists that read only the first 1000 rows."
+ },
+ {
+  "key": "sharing-links",
+  "strong": true,
+  "scope": "SECURITY: anything shared outside the owner's account: public share links and their tokens, invites, assign-by-email links, signed storage URLs, exports, team or folder access. Check token guessability and lifetime, share scope leaks (a link that was meant to show part of a record showing all of it), revoked links that still work, email header injection in invite emails, bulk operations without ownership checks, search that returns other people's data."
+ },
+ {
+  "key": "ai-llm",
+  "strong": true,
+  "scope": "AI and model calls: every file that calls an AI provider (grep for openai, anthropic, openrouter, gemini, groq, fetch to /v1/), prompt building, JSON parsing of model output, fallback chains. Check that the client can never pick the model on the app's key (allowlist the model ids), caps per person and per day, timeouts shorter than the hosting limit, retries that multiply cost, whole records re-sent on every call, cache staleness, model ids that no longer exist, errors that silently drop the result, prompt injection from user documents into actions."
+ },
+ {
+  "key": "api-keys-mcp",
+  "strong": true,
+  "scope": "SECURITY: personal API tokens, bring-your-own-key storage, MCP server routes (src/app/api/mcp or similar), any proxy that forwards to an LLM, speech-to-text or text-to-speech provider. Check token hashing and timing-safe compare, scopes, rate limits charged per tools/call (not per HTTP request), batch size caps on JSON-RPC batches, an open proxy that gives anyone free model calls, encryption IV reuse, keys leaking to the browser or logs, MCP tools that reach other users' data, deprecated auth (?token=) that should keep working with a log line."
+ },
+ {
+  "key": "realtime-live",
+  "strong": true,
+  "scope": "Live and realtime features (recording, live transcription, websockets, Supabase realtime channels, collaborative editing): their pages, components, hooks and API routes. Check races between stop/save, reconnect and pushes, stuck 'Saving...' states, lost audio or data parts, timers, listeners and media streams not cleaned up, debounced saves that are lost when the tab closes (flush on pagehide/visibilitychange with keepalive), usage metering that can be bypassed, unbounded loops."
+ },
+ {
+  "key": "uploads-media",
+  "strong": false,
+  "scope": "Uploads, files and media: upload routes and components, chunked or resumable uploads, storage paths, file conversion, media players. Check part size caps on chunked uploads, leaving the page while parts failed, storage paths built from user input (prefix checks before any server-key delete), temp file cleanup, timeouts versus hosting limits, quota metering, playback position lost when a signed URL is renewed (restore it after loadedmetadata), stuck processing states."
+ },
+ {
+  "key": "account-data",
+  "strong": false,
+  "scope": "Account and personal data: src/app/settings/**, src/app/api/account/**, src/lib/account/*, profile, usage and quota code, email sending, newsletter and unsubscribe, admin pages and their APIs, cookie notice and analytics consent. Check that account deletion removes every table and stored file, that deleting data never resets monthly usage or quota counters, admin route protection, unsubscribe token forgery, analytics firing before consent, emails built from the Host header instead of the site address."
+ },
+ {
+  "key": "payments",
+  "strong": false,
+  "scope": "Payments, only if the app has them (skip the area otherwise): checkout and portal routes, webhooks, plan limits, the billing settings page. Check webhook signature checks, event ids stored only after the change is saved, out-of-order events, a 500 on database errors so the sender retries, plan columns writable from the browser, paid plans advertised while live payments are off."
+ },
+ {
+  "key": "seo-visibility",
+  "strong": false,
+  "scope": "Search and AI visibility: src/app/robots.ts, src/app/sitemap.ts, public/llms.txt, opengraph images, icons, the manifest, JSON-LD, metadata in layout.tsx and public pages. Check private or signed-in pages that can be indexed, canonical tags (one per page, never in the layout), invalid JSON-LD, a sitemap listing missing or private URLs, metadata in every UI language, broken links, a noindex left on from beta."
+ },
+ {
+  "key": "public-pages-copy",
+  "strong": false,
+  "scope": "What visitors read: home page, help, about, pricing, privacy, terms, onboarding. Compare with what the code really does today (read recent commits). Check features that shipped but are not mentioned, claims that are now wrong (limits, plan names, removed features), a privacy page that does not name new data captured or new AI or email processors, advertised plans that cannot be bought, fake numbers or reviews."
+ },
+ {
+  "key": "i18n",
+  "strong": false,
+  "scope": "UI languages, only if the app has more than one: the translation dictionaries, the locale provider and switcher, locale detection. Find hard-coded user-facing strings in src/components and src/app (JSX text, aria-label, title, placeholder, toast and error text shown to users) that bypass the dictionaries, keys missing a translation, keys defined but unused, server and client rendering different languages. Group many strings in one file into one finding with a list of lines."
+ },
+ {
+  "key": "themes-design",
+  "strong": false,
+  "scope": "Look and themes: src/app/globals.css and any theme CSS, the theme bootstrap script in layout.tsx, theme and look pickers, DESIGN.md. Check flashes and hydration mismatches on load, persistence of the chosen look, light and dark pairs, CSS rules that break other looks (selectors like :root:is(...) button:not([class]) outrank menu and toggle buttons), dead selectors for classes no component uses, contrast under 4.5:1 for muted text, touch targets under 44px."
+ },
+ {
+  "key": "react-client-perf",
+  "strong": false,
+  "scope": "Client React quality and speed: the biggest components in src/components and the client stores and hooks. If the vercel-react-best-practices skill is installed, read it. Check effect leaks (listeners, intervals, realtime channels not removed), stale closures, re-render storms, huge components shipped to every page, heavy widgets without next/dynamic, hydration mismatches, duplicated realtime subscriptions."
+ },
+ {
+  "key": "tests-e2e",
+  "strong": false,
+  "scope": "Tests and CI: tests/**, any e2e or Playwright folder, package.json scripts, .github/workflows/*.yml. Check tests that cannot pass or test nothing, test files no npm script runs, .ts tests that node --test runs without a type check (next build type-checks them, so a typo breaks the deploy: CI needs tsc --noEmit before the tests), next lint on Next 16 (removed), CI jobs that never run their steps, missing tests for sign-in, data rules and payments."
+ },
+ {
+  "key": "cleanup-tooling",
+  "strong": false,
+  "scope": "Dead code and tooling. Run (read-only) `npx -y knip@5 --no-progress --reporter compact` (if it fails, fall back to grep); verify each item before reporting (Next.js app route files, proxy.ts, instrumentation, scripts in package.json are entry points, not dead). Also: dependencies nothing imports, stale or misleading docs at the repo root, junk tracked by git (.DS_Store, *.tsbuildinfo), .gitignore gaps, obsolete scripts, duplicated helpers across src/lib. Batch small items into a few findings. Do not propose changes to the build or deploy scripts."
+ }
+]

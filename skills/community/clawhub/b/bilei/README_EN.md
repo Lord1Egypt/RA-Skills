@@ -2,10 +2,58 @@
 
 English ｜ [中文](README.md)
 
-> **One sentence, 10 seconds to defuse a product category.**
+> **Before you buy anything, check the negative data PR can't touch, then decide whether to pay.**
 >
-> In an era of ads everywhere, check for landmines before you pay.
 > Better to skip than to buy wrong.
+
+## Install
+
+Pick one:
+
+1. Tell your agent (Claude Code / Cursor / Codex / WorkBuddy, etc.): **"Install this skill: https://github.com/zhashushu/bilei-skill"**
+2. Universal CLI (auto-detects your runtime):
+
+```bash
+npx skills add zhashushu/bilei-skill
+```
+
+3. With the ClawHub CLI already installed (published slug `bilei`):
+
+```bash
+clawhub install bilei
+```
+
+Or copy the whole folder into your agent's skills directory (e.g. `~/.claude/skills/`, `~/.workbuddy/skills/`). The folder name doesn't matter; the name in the UI comes from `display_name` in SKILL.md.
+
+## One real run: air fryer (2026-11-17)
+
+The ask was 「想买个空气炸锅，帮我避雷」. The skill checked 17 public sources and did not push a model.
+
+| Verdict | Why it would not name one | L1 |
+|---|---|---|
+| No single model you can order outright | The high-scoring reviews are from 2022; whether it is still on sale, and what you would actually pay, had no reliable source | 合肥荣事达 RS-B821: the knob turns, but it was not wired. 合市监处罚〔2026〕56号, fine 76.14 万元 |
+
+Recommendation strength cannot exceed evidence strength.
+
+The same screen also listed: knob turns but is not wired; coating migration may be over the limit; claimed capacity is not actual capacity; mechanical-knob temperature off by 10–20°C; electrical safety / hot housing; coating peeling and after-sales disputes.
+
+## How this differs from a normal AI recommendation
+
+- L1 penalties, inspections and recalls come first. A hit on the exact model knocks that model out.
+- L3 splits into L3a (borrowed from a user, or self-purchased), L3b (vendor-sent or commissioned) and L3c (paid custom). SGS, TÜV and 华测 samples default to L3b, and are not graded L2.
+- A press release counts as one source, however many times it is reposted.
+- If no reliable option is left, it says none right now.
+
+## Light edition and heavy edition
+
+| Edition | Fit | How it works | Repo |
+|---|---|---|---|
+| Light (this repo) | See whether anything in the category is buyable now | Single agent, no orchestration | This repo |
+| Heavy | Full audit over ¥2000, and for safety-critical categories | Evidence / quantitative comparison / verdict / price intel, role-isolated; price lookup happens after the verdict | [bilei-team-skill](https://github.com/zhashushu/bilei-team-skill) |
+
+If this run was useful, star the repo, and name the next category in an issue.
+
+---
 
 Renovating your new home, you want a reliable air conditioner —
 
@@ -15,17 +63,6 @@ the feeds are flooded with GEO-poisoned posts by amateur accounts,
 the few negatives get PR'd away, then buried by the algorithm.
 
 Even a 17-year ad-industry veteran can't escape it. What about everyone else?
-
-**Bilei is an anti-astro-turfing shopping advisor Skill:**
-
-Give it a category and a budget.
-It checks what PR can't touch — administrative penalties, inspection failures, recall notices —
-digs up negative reviews scattered across complaint platforms and community corners,
-grades the evidence by strength, runs quantitative trade-offs, and delivers a verdict first.
-
-If no reliable option exists right now, it says "none right now" — no pushing.
-
-**From power banks and cables to TVs, sofas and fridges — anything you'll keep for years can be vetted with it.**
 
 ---
 
@@ -57,21 +94,6 @@ That's one real reason you can't find objective reviews: **the truth isn't absen
 
 ---
 
-## Install
-
-Just two steps:
-
-1. Open your agent (Claude Code / Cursor / Codex / WorkBuddy, etc.)
-2. Say: **"Install this skill: https://github.com/zhashushu/bilei-skill"**
-
-Or use the universal CLI installer (auto-detects your runtime):
-
-```bash
-npx skills add zhashushu/bilei-skill
-```
-
-Or manually: copy the whole folder into your agent's skills directory (e.g. `~/.claude/skills/`, `~/.workbuddy/skills/`). The folder name doesn't matter — rename it freely; what shows in the UI comes from `display_name` in SKILL.md.
-
 ## Usage
 
 After installing, just say —
@@ -85,7 +107,7 @@ After installing, just say —
 
 1. **Mandatory certifications & standards** — does this category have them? Where to verify (China 3C: `cx.cnca.cn`; recalls: `samrdprc.org.cn`)
 2. **Blacklist** — which brands/models were penalized, failed spot checks, or got recalled: model, authority, date, source, item by item
-3. **Evidence grading** — official penalties/inspections > third-party tests > independent media benchmarks > user complaints > vendor claims/soft ads; every claim gets a grade
+3. **Evidence grading** — L1 official penalties / inspections / recalls > L2 tests with no commercial tie > L3 media or creator tests (L3a borrowed from a user or self-purchased, L3b vendor-sent or commissioned, L3c paid custom) > L4 user complaints > L0 vendor claims. A model-level L1 primary source knocks that model out; a reprint alone, with no original document, is not enough to exclude it by itself
 4. **Source profiling** — for every cited reviewer: who pays them (paid testing / vendor samples / commissions / self-purchased); conflict of interest discounts opinions, never facts
 5. **Astro-turfing detection** — 10 links may trace back to 1 press release; near-duplicate posts are treated as GEO poisoning
 6. **Quantitative trade-off** — premiums must go through the script (`scripts/premium_decision.py`): TCO/EAC, critical failure rate p\*, premium ROI, fair-price ceiling. No mental math

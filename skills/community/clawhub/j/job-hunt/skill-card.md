@@ -1,6 +1,6 @@
 ## Description:
 
-Helps users discover roles, assess job fit, prepare honest application materials, and rehearse interviews.
+A career coaching skill that helps job seekers find roles, assess job postings, prepare evidence-based applications, plan for interviews, and rehearse interview answers.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Job seekers use the skill to find and assess openings, create evidence-based CVs and application documents, and practise interviews. It supports market-specific materials while keeping claims grounded in the user's real experience.
+Job seekers use this skill to explore roles, assess fit against a posting, create application materials grounded in their real experience, prepare for their field and market, and practise interviews. It provides guidance and documents without submitting applications for the user.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review flags broad browser access as a review-needed concern.
+Risk: ClawScan rates this release suspicious with high confidence, citing broad browser access, host-level command execution, recurring scheduling, some credential or external-service use, and incomplete analysis of parts of the artifact.
 
-Mitigation: Limit browsing to the requested job sources, keep discovery read-only, and let the user handle login or verification steps.
-
-Risk: The security review flags recurring scheduling and inbox handling for review.
-
-Mitigation: Set up a recurring digest only when requested, confirm its schedule and mailbox scope, and stop it when no longer needed.
-
-Risk: The security review flags external data-sharing behavior as a review-needed concern.
-
-Mitigation: Review destinations before sharing CV or profile details, and get the user's direction before submitting or sending information.
+Mitigation: Review carefully before installing. Check the requested capabilities and access against your needs; the scan is a warning and establishes neither malicious intent nor that the artifact is safe.
 
 ## Reference(s):
 
 - [ClawHub release page](https://clawhub.ai/dong845/skills/job-hunt)
-- [Project repository (listed in the plugin manifest)](https://github.com/addsumtech/job-hunt)
-- [Discovery workflow](modes/discover.md)
-- [Application workflow](modes/apply.md)
-- [Weekly job digest guidance](references/weekly-digest.md)
-- [Source policy](references/source-policy.md)
+- [Project homepage listed in the plugin manifest](https://github.com/addsumtech/job-hunt)
+- [Market conventions guide](artifact/references/market-conventions/README.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Markdown, Word documents, PDF documents]
+**Output Type(s):** [Analysis, Guidance, Text, Markdown, Word documents, PDF documents]
 
-**Output Format:** [Text guidance and client reports; application documents in Markdown, Word, and PDF.]
+**Output Format:** [Chat responses and Markdown, Word (.docx), or PDF documents]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Market-specific formats and conventions; applications are not submitted by the skill.]
+**Other Properties Related to Output:** [Content varies by selected workflow and target market; application claims are grounded in user-provided evidence.]
 
 ## Skill Version(s):
 
-1.4.0 (source: server-resolved release metadata)
+1.5.0 (source: server-resolved release metadata and plugin manifest)
 
 ## Ethical Considerations:
 

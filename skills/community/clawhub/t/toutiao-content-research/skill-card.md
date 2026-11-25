@@ -1,6 +1,6 @@
 ## Description:
 
-帮助用户基于今日头条主题或内容链接研究相关作品，概览样本、标题模式并整理可继续验证的内容方向。
+当用户需要做今日头条内容研究、文章选题、热点角度整理或同主题内容对比时使用。输入主题或内容链接，基于相关作品和详情输出样本概览、标题模式与可继续验证的内容方向。来自社媒数据助手 SocialDataX。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-内容创作者与研究人员可用此 skill 研究今日头条主题、比较同主题作品，并整理可继续验证的选题方向。
+Content researchers and editors use this skill to examine Toutiao topics or posts, compare representative articles, identify title patterns, and develop follow-up angles grounded in retrieved samples.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The CLI comes from a changeable latest release, so its behavior may change without review.
+Risk: The release invokes the mutable socialdatax-skills@latest package, which carries supply-chain risk.
 
-Mitigation: Review the package version and its changes before running it.
+Mitigation: Review the package release and its behavior before installing or using it, especially when credentials are available.
 
-Risk: Research topics and links are sent to SocialDataX during use.
+Risk: Research topics or content links submitted for analysis may be sent to SocialDataX.
 
-Mitigation: Submit only research inputs you are comfortable sharing with SocialDataX.
+Mitigation: Avoid submitting confidential topics or links unless sharing them with SocialDataX is acceptable and authorized.
 
-Risk: The security scan was partial because some local references could not be resolved.
+Risk: The security scan has partial coverage, so its assessment is incomplete.
 
-Mitigation: Review unresolved references before relying on the scan as a complete assessment.
+Mitigation: Treat the security result as incomplete and review the release before relying on it.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/devinchen2014/skills/toutiao-content-research)
-- [SocialDataX service information and API key access](https://socialdatax.com/ai?from=clawhub)
+- [SocialDataX AI skill information](https://socialdatax.com/ai?from=clawhub)
+- [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/toutiao-content-research)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Research guidance]
+**Output Type(s):** [Analysis, Text, Markdown, Guidance]
 
-**Output Format:** [Markdown summaries with linked content samples and follow-up directions]
+**Output Format:** [Markdown with sample summaries, linked source items, title patterns, and follow-up angles]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports sample scope and missing information, and distinguishes observed popularity signals from analysis judgments.]
+**Other Properties Related to Output:** [Reports observed sample scope and missing information when available; distinguishes engagement signals from analysis.]
 
 ## Skill Version(s):
 
-0.1.6 (source: ClawHub release metadata)
+0.1.7 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

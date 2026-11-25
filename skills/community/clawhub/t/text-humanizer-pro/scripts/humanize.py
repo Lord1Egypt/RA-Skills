@@ -8,9 +8,9 @@ describe, enable or disable them at any time — always fetch the list fresh
 with --list-modes instead of guessing from memory.
 
 Key resolution order:
-  1. SK_HAI_KEY env var (personal key) — wins if set
-  2. Personal key saved on this machine (~/.slop-text-humanizer-pro/config.json)
-  3. Shared free key — fetched automatically from the engine's public config
+  1. Personal key saved on this machine (~/.slop-text-humanizer-pro/config.json)
+     — saved only at the user's explicit request via --save-key
+  2. Shared free key — fetched automatically from the engine's public config
      endpoint at runtime. The package never ships a key; server-side key
      rotation takes effect instantly.
 
@@ -55,8 +55,8 @@ RECIPES = [
 ]
 
 NO_KEY_MSG = ("Could not get a key right now (not configured on the engine "
-              "side, or network issue). Retry shortly, or set SK_HAI_KEY / "
-              "use --save-key with a personal key.")
+              "side, or network issue). Retry shortly, or use --save-key "
+              "with a personal key.")
 
 
 def out(payload):
@@ -127,9 +127,6 @@ def resolve_key(args):
     explicit = (args.api_key or "").replace("Bearer", "").strip()
     if explicit:
         return explicit
-    env = os.environ.get("SK_HAI_KEY", "").strip()
-    if env:
-        return env
     if load_saved_mode(args.config_path) != "public":
         saved = load_saved_key(args.config_path)
         if saved:

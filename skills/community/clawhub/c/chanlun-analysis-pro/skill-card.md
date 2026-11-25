@@ -1,8 +1,8 @@
 ## Description:
 
-Provides Chanlun-based A-share technical analysis, including chart-structure concepts, divergence, buy and sell point frameworks, multi-timeframe analysis, and Python examples.
+Provides educational A-share market analysis using Chanlun concepts such as fractals, strokes, central hubs, divergence, and multi-timeframe structure.
 
-This skill is ready for commercial/non-commercial use.
+This skill is for demonstration purposes and not for production usage.
 
 ## Publisher:
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-A-share traders, Chanlun learners, and quantitative analysis developers use the skill to organize technical chart analysis, examine possible market structures and signal interpretations, and generate Python examples or analysis templates.
+A-share learners and quantitative analysis researchers can use it to study Chanlun concepts and draft structural and multi-timeframe analysis notes. Its examples are educational and should be independently checked against authorized market data before use.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment reports an unpinned installation command, potentially broad activation terms, and incomplete inspection coverage.
+Risk: Broad trigger terms could route unrelated requests into financial analysis.
 
-Mitigation: Review the source and activation scope, and install only a trusted, reviewed exact release. The benign assessment is not a guarantee.
+Mitigation: Review and narrow activation terms to explicit Chanlun or A-share analysis requests.
 
-Risk: Technical examples and buy or sell point interpretations may be incomplete or misleading when applied to changing market data.
+Risk: The security scan had incomplete coverage of the manifest and some referenced paths.
 
-Mitigation: Check analyses against current, reliable price data and independent review before using them to inform a decision.
+Mitigation: Review the manifest and referenced paths before installation.
 
 ## Reference(s):
 
-- [Chanlun Analysis Pro on ClawHub](https://clawhub.ai/gechengling/skills/chanlun-analysis-pro)
-- [Server-resolved GitHub provenance](https://github.com/gechengling/chanlun-analysis-pro)
-- [chanlun_algorithm_python.md](references/chanlun_algorithm_python.md)
-- [chanlun_analysis_templates.md](references/chanlun_analysis_templates.md)
-- [chanlun_practice_guide.md](references/chanlun_practice_guide.md)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, Code, Guidance]
 
-**Output Format:** [Markdown analysis with optional tables, Python examples, and structured templates]
+**Output Format:** [Markdown prose with tables, structured analysis notes, and illustrative Python snippets.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include chart-structure and buy or sell point interpretations.]
+**Other Properties Related to Output:** [Educational examples and structure labels require independent validation against authorized market data; outputs are reference drafts.]
 
 ## Skill Version(s):
 
-5.2.6 (source: server-resolved ClawHub release; artifact frontmatter says 5.0.1)
+5.2.7 (source: frontmatter)
 
 ## Ethical Considerations:
 

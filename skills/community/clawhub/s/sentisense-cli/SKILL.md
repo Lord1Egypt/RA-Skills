@@ -32,7 +32,7 @@ package from the npm registry and runs it on the user's machine with that proces
 and environment, `SENTISENSE_API_KEY` included, so **ask the user before running it the first time
 and say plainly that it downloads and runs code**. Every command below also has a plain HTTPS
 equivalent documented in the `sentisense` skill, and REST is the path to prefer when the user did
-not ask for a shell command. Commands here pin version 0.78.1 deliberately: pinning prevents version drift, but it does not verify the artifact.
+not ask for a shell command. Commands here pin version 0.87.0, the CLI release current when this skill was built: pinning prevents version drift, but it does not verify the artifact.
 Install via your package manager's normal review process.
 
 ## Permissions
@@ -47,18 +47,18 @@ This block describes the REST fallback. Running the CLI itself writes nothing in
 ## Quickstart
 
 ```bash
-npx -y sentisense@0.78.1 health --base-url https://app.sentisense.ai
-npx -y sentisense@0.78.1 quote --base-url https://app.sentisense.ai NVDA
-npx -y sentisense@0.78.1 sentiment --base-url https://app.sentisense.ai TSLA --days 30
-npx -y sentisense@0.78.1 mood --base-url https://app.sentisense.ai --json
+npx -y sentisense@0.87.0 health --base-url https://app.sentisense.ai
+npx -y sentisense@0.87.0 quote --base-url https://app.sentisense.ai NVDA
+npx -y sentisense@0.87.0 sentiment --base-url https://app.sentisense.ai TSLA --days 30
+npx -y sentisense@0.87.0 mood --base-url https://app.sentisense.ai --json
 ```
 
 Auth: set `SENTISENSE_API_KEY` in the environment; commands read it directly, without a secret in argv.
-In version 0.78.1, saving a key with `auth` accepts it as a positional argument, not an environment-input option.
+In version 0.87.0, saving a key with `auth` accepts it as a positional argument, not an environment-input option.
 Prefer the environment path and skip key persistence. An argument-free `auth` inspects the resolved configuration;
 it does not save the environment key. `health` confirms reachability, key validity, and latency in one call.
 
-No key yet? `npx -y sentisense@0.78.1 init` prints a temporary one and a link the user opens to keep it.
+No key yet? `npx -y sentisense@0.87.0 init` prints a temporary one and a link the user opens to keep it.
 
 The permission block describes the REST fallback, which needs no shell or file writes.
 Explicit CLI use downloads and executes a package, and npx keeps the downloaded package in npm's own cache folder, outside your project.
@@ -94,13 +94,18 @@ export SENTISENSE_AGENT_NAME=my-research-bot # what your agent is called
 | `congress [ticker]` | Congressional stock disclosures |
 | `news [ticker]` | Clustered news stories |
 | `flows [ticker]` | Institutional 13F flows, or one ticker's holders |
-| `options <ticker>` | End-of-day options positioning |
+| `options [--etfs] [--limit N]` | The Options Radar: the session's market aggregates, the stock board ranked by interest score, and the session highlights; `--etfs` shows the ETF board, ranked separately. `--limit` sets the rows printed (default 15), `--full` prints every served row. A free key gets the top 25 rows and the top 3 highlights of each board, with every aggregate, and the output names the full board's size |
+| `options <ticker> [--full]` | One stock or ETF's end-of-day dossier: IV rank, put/call, ATM IV, skew, volumes, open interest, max pain, the walls and the session's unusual contracts. A delisted ticker says so first, as the last dossier on record; on a free key the dossier ends with the full dossiers left this month and the reset date whenever the API reports them. `--full` adds the IV term structure, net delta, more percentiles (5y put/call, open-interest put/call, unusual premium), the 5 and 20 session expected moves, each side's open interest at the wall expiry and at max pain, and the open interest follow-up on the unusual contracts |
+| `options <ticker> --history [--window W] [--limit N]` | Daily sessions, newest first (default 20, `--limit` changes it, `--full` prints all): call and put volume, put/call, call and put open interest, ATM IV, skew and the largest unusual premium. `--window` takes 1y, 2y or 5y and implies `--history`, and the output names the window served, which on a free key is 1y except for the sample companies |
+| `options <ticker> --intraday [--session YYYY-MM-DD]` | One session's intraday series at every 15-minute cycle: volumes, put/call, unusual-contract count and ATM IV (PRO, or a sample company on a free key). `--session` implies `--intraday`; without it, the latest session |
 | `screen --filter ...` | Filter the tracked universe on Score, analyst, technical, price and end-of-day options fields |
 | `init [--new] [--json]` | A temporary key with no signup, printed as `SENTISENSE_API_KEY=<key>` with a link the user opens to keep it. Writes nothing into your project; it keeps a random install id in its own config folder. `--new` asks for a fresh key when one is already configured; `--json` returns the key, link, expiry and limits. Needs CLI 0.73.0 or later |
 
 On a free key, the sample companies return full data and the output says so; a preview for any other company lists them. `--json` carries `sampleCompany` and `upgrade.sampleTickers` unchanged.
 
-Run `npx -y sentisense@0.78.1 --help` for the full list, and `help <command>` for flags and
+Only `options` with no ticker at all prints the Radar. An explicitly empty one, as in `options "$TICKER"` with the variable unset, exits 2 instead of answering with the market board; so do `--etfs` with a ticker, `--limit` on a dossier, and `--history` with `--session`.
+
+Run `npx -y sentisense@0.87.0 --help` for the full list, and `help <command>` for flags and
 copy-paste examples. The help is the reference: every example in it runs as written.
 
 ## Output modes: which one to use
@@ -118,7 +123,7 @@ copy-paste examples. The help is the reference: every example in it runs as writ
 
 ## Exit codes: branch on them
 
-Stable across versions: `0` ok, `2` usage error, `3` auth, `4` not found, `5` rate limited
+Stable across versions: `0` ok, `1` API error (including a request the API rejected as invalid), `2` usage error, `3` auth, `4` not found, `5` rate limited
 or monthly allowance used up, `6` network. Two behaviors worth knowing: an empty result verifies
 the ticker before reporting no data, so a typo exits 4 rather than looking like a company with
 nothing to report; and every error prints a one-line next step on stderr, so recovery rarely
@@ -127,7 +132,7 @@ limits apart: the per-minute limit says how many seconds to wait, while a used-u
 allowance says it resets at the start of next month and links pricing, so do not retry it.
 
 ```bash
-npx -y sentisense@0.78.1 insiders --base-url https://app.sentisense.ai "$TICKER" || echo "exit $? tells you which way it failed"
+npx -y sentisense@0.87.0 insiders --base-url https://app.sentisense.ai "$TICKER" || echo "exit $? tells you which way it failed"
 ```
 
 ## Scripting patterns
@@ -135,13 +140,13 @@ npx -y sentisense@0.78.1 insiders --base-url https://app.sentisense.ai "$TICKER"
 ```bash
 # One call, several tickers. A ticker that fails is named on stderr and the others still print;
 # the exit code is the failed ticker's (4 for an unknown symbol), and --json leaves it out.
-npx -y sentisense@0.78.1 quote --base-url https://app.sentisense.ai NVDA AMD AVGO
+npx -y sentisense@0.87.0 quote --base-url https://app.sentisense.ai NVDA AMD AVGO
 
 # Feed a field into another tool
-npx -y sentisense@0.78.1 quote --base-url https://app.sentisense.ai NVDA --json | jq .changePercent
+npx -y sentisense@0.87.0 quote --base-url https://app.sentisense.ai NVDA --json | jq .changePercent
 
 # Screen, then inspect a hit (rows come back in the screen's own sort, not Score order)
-npx -y sentisense@0.78.1 screen --base-url https://app.sentisense.ai --filter SENTI_SCORE_7D:GTE:13 --limit 5
+npx -y sentisense@0.87.0 screen --base-url https://app.sentisense.ai --filter SENTI_SCORE_7D:GTE:13 --limit 5
 ```
 
 ## Without the CLI

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Subclip Remotion Layer"
+  short_description: "Author frame-driven Remotion timeline layers"
+  default_prompt: "Use $subclip-remotion-layer to create a validated Remotion component in the current Subclip project."
+policy:
+  allow_implicit_invocation: true

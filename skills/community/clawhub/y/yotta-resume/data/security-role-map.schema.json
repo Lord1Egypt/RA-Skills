@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/YottaMeta/yotta-resume/data/security-role-map.schema.json",
+  "title": "yotta-resume security role map",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_version",
+    "generated_at",
+    "levels",
+    "role_families"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "contract_version": {
+      "const": "1.0"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "levels": {
+      "type": "array",
+      "minItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "junior",
+          "mid",
+          "senior",
+          "lead"
+        ]
+      }
+    },
+    "role_families": {
+      "type": "array",
+      "minItems": 6,
+      "items": {
+        "$ref": "#/$defs/roleFamily"
+      }
+    }
+  },
+  "$defs": {
+    "stringList": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "roleFamily": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "display_name",
+        "aliases",
+        "nice_work_roles",
+        "evidence_dimensions",
+        "interview_dimensions",
+        "risk_rules",
+        "resume_evidence_requirements"
+      ],
+      "properties": {
+        "id": {
+          "enum": [
+            "soc",
+            "incident_response",
+            "offensive_security",
+            "appsec",
+            "security_engineering",
+            "grc_data_security",
+            "software_engineering",
+            "data_ai",
+            "business_operations",
+            "generic"
+          ]
+        },
+        "display_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "aliases": {
+          "$ref": "#/$defs/stringList"
+        },
+        "nice_work_roles": {
+          "$ref": "#/$defs/stringList"
+        },
+        "evidence_dimensions": {
+          "$ref": "#/$defs/stringList"
+        },
+        "interview_dimensions": {
+          "$ref": "#/$defs/stringList"
+        },
+        "risk_rules": {
+          "$ref": "#/$defs/stringList"
+        },
+        "resume_evidence_requirements": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    }
+  }
+}

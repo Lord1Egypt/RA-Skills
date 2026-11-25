@@ -1,37 +1,53 @@
-## Description: <br>
-Scientific Drawing helps agents create research figures such as technical roadmaps, flowcharts, schematics, architecture diagrams, timelines, and data visualizations with Python plotting tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scientific Drawing helps agents create research diagrams, including technical roadmaps, flowcharts, schematics, architecture diagrams, Gantt charts, and data visualizations, using Python matplotlib/Pillow with high-resolution PNG and SVG output.
 
-## Publisher: <br>
-[jirboy](https://clawhub.ai/user/jirboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jirboy](https://clawhub.ai/user/jirboy)
 
-## Use Case: <br>
-Researchers, students, and technical writers use this skill to draft publication- and grant-ready scientific diagrams, generate Python drawing code, and refine high-resolution figures for academic documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated drawing scripts may write files to an unintended location if fixed output paths or unsafe filenames are used. <br>
-Mitigation: Run the skill in a contained workspace, choose a safe output directory, normalize filenames, block path traversal, and review generated scripts before execution. <br>
+## Use Case:
 
+Researchers, grant writers, academic authors, and supporting developers use this skill to turn diagram requirements into Python-generated figures for proposals and papers.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Files] <br>
-**Output Format:** [Markdown with Python code blocks and generated figure file paths; figures are PNG, SVG, or PDF when executed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to high-resolution scientific figures; output paths and filenames should be reviewed before running generated code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated drawing helpers write image files to fixed or caller-controlled filesystem paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a workspace or sandbox and validate or constrain output paths before executing generated or helper code.
+
+Risk: Figure-generation code depends on local fonts and platform-specific output paths.
+
+Mitigation: Confirm required fonts and redirect output to a controlled project directory before relying on generated figures.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jirboy/skills/scientific-drawing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with Python code and generated PNG/SVG/PDF figure files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default figure output is 300 DPI; helper scripts use matplotlib/Pillow and a fixed local output directory unless adjusted.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

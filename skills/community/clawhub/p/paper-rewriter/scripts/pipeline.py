@@ -100,6 +100,9 @@ def main():
     ap.add_argument("--lexicon", metavar="文件",
                     help="外挂词表 JSON（v5.11.0）：同名键逐项追加——多 skill 共享同一外部词表；"
                          "透传扫描与清理")
+    ap.add_argument("--summary", action="store_true",
+                    help="一行速览：单文件=SUMMARY 行替换详细报告（分数前后/档位/守卫/违规数）；"
+                         "--batch=逐文件 SUMMARY 行——agent/CI 快消费")
     ap.add_argument("--version", action="version", version="%(prog)s " + hxt_core.__version__)
     args = ap.parse_args()
 
@@ -263,10 +266,19 @@ def main():
             print("[提示] --deep 在 --batch 下暂不生效（逐文件请单跑 pipeline --deep）", file=sys.stderr)
         if getattr(args, "handoff", None):
             print("[提示] pipeline --batch 暂不生成 --handoff（可对重点单稿单跑）", file=sys.stderr)
-        writer = _csv.writer(sys.stdout)
-        writer.writerow(["file", "before", "after", "integrity", "len_delta"])
-        for row in rows_out:
-            writer.writerow(row)
+        if getattr(args, "summary", False):
+            # v5.19.0 批量一行速览：逐文件 SUMMARY 行（agent/CI 快消费）
+            for row in rows_out:
+                _g = row[3]
+                _guard = "PASS" if _g == "PASS" else "FAIL"
+                print("SUMMARY | %s | score %s→%s | guard %s(%s) | delta %s"
+                      % (row[0], row[1], row[2].split("[")[0],
+                         _guard, _g, row[4]))
+        else:
+            writer = _csv.writer(sys.stdout)
+            writer.writerow(["file", "before", "after", "integrity", "len_delta"])
+            for row in rows_out:
+                writer.writerow(row)
         if args.output:
             if args.output.lower().endswith(".docx"):
                 print("[提示] --batch 的 -o 是汇总 CSV（逐文件评分表），"
@@ -701,10 +713,19 @@ def main():
         if _deg:
             print("⚠ 降级：%d 块超时未评分（已重试）——覆盖不完整，勿当完整报告使用"
                   % len(_deg))
-        print("风格特征分: %d [%s] → %d [%s]%s" % (
-            ro["score"], ro["level"], rn["score"], rn["level"],
-            "  ⚠ 仍含模型残留" if rn["critical_hit"] else ""))
-        print("完整性守卫: %s" % ("PASS ✓" if vr["ok"] else "FAIL ✗"))
+        if getattr(args, "summary", False):
+            # v5.16.0 一行速览：agent/CI 快消费（详细报告照常在各文件/JSON）
+            _bad = len(vr.get("violations") or [])
+            _warn = len(vr.get("warnings") or [])
+            print("SUMMARY | score %d[%s]→%d[%s] | guard %s | violations %d | warnings %d | residue %s"
+                  % (ro["score"], ro["level"], rn["score"], rn["level"],
+                     "PASS" if vr["ok"] else "FAIL", _bad, _warn,
+                     "yes" if rn["critical_hit"] else "no"))
+        else:
+            print("风格特征分: %d [%s] → %d [%s]%s" % (
+                ro["score"], ro["level"], rn["score"], rn["level"],
+                "  ⚠ 仍含模型残留" if rn["critical_hit"] else ""))
+            print("完整性守卫: %s" % ("PASS ✓" if vr["ok"] else "FAIL ✗"))
         _remedies = vf.build_remedies(orig, vr)
         for v in vr["violations"]:
             print("  ✗ [%s] %s" % (v["check"], v["detail"]))

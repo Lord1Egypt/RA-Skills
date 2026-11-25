@@ -1,5 +1,26 @@
 # 技能更新日志
 
+## v1.2.4
+
+- 精简 frontmatter：删除顶层/`metadata` 的 `category` 与 `metadata.keywords`；有价值词并入精简 `tags`（触发仍以顶层 `description` 为准）。
+- 再删无效字段：`openclaw.emoji`、`metadata.enabled` / `runtime` / `env_desc`（门禁仍靠 `openclaw.primaryEnv` + `requires`）。
+- 精简 `metadata.examples`：四命令各一条；参数改双引号；去掉 search/comment 变体与粉丝查询复读。
+- HTTP 429/5xx：可重试（429→`RATE_LIMITED` 且 `noRetry=false`；与业务裸 2 区分）；`classifyPollError` 不再把所有 `ApiError` 一刀切为 fail。
+- Create 成功读取出参 `id`（标准 36 字符 uuid）：有 `id` 时查询 `/info` **只传 `id`**（不带业务字段，避免 uuid 未命中时静默回落他单）；无 `id` 或形态不符时仍只按业务字段查。
+- `contract.md` 写入「上游异步任务」约定；明确 CLI schema / 信封不含任务 uuid。
+- 执行示例改为 `node "<SKILL_ROOT>/src/xiaohongshu/…"`；faq 去掉宿主写死路径，统一用 `<SKILL_ROOT>` 占位。
+- 布尔 flag（如 `--save`）：裸 flag 为 true；`--save=false`/`0` 为 false；非法赋值报错。
+- 业务码映射：`410`（TOKEN 停用 Gone）/`405`（未开通）/`77`（过期）→ `AUTH_ERROR`；未知数字码兜底 `API_ERROR`；传输层补 `HTTP_404`/`HTTP_410` 说明。
+
+## v1.2.3
+
+- Windows cmd / PowerShell 双壳例与「cmd 只用双引号」写入 `SKILL.md` / `faq.md`（含 Workbuddy 绝对路径例）。
+- CLI 支持 `--json-args`（与传统 flag 互斥；键名用 `keyword`/`url`/`sort` 等）；`parseCliArgs` 统一入口；SKILL/faq 补例。
+- 成功结果默认不落盘；`--save` 或 `GUAIKEI_ENABLE_LOG=1` 时写入临时目录。废弃 `XHS_GUAIKEI_DISABLE_LOG`。
+- `backendCodes`：在余额文案判断之后将裸 `errcode === 14` / `16` 稳定映射为 `PLAN_LIMIT`（详情 14=余额仍靠 errmsg 先命中；评论包月官方码为 16）。
+- 补全 `requestApi` 创建重试注释：以 `noRetry` 为准（频控等稳定业务码不重试）。
+- stdout 信封顶层可选 `cost`（透传取数接口花费估算；错误省略）。
+
 ## v1.2.2
 
 - 链接归一剥首尾中文引号/书名号等，避免 `「」『』` 粘在 explore/短链后误判无效。
@@ -93,7 +114,6 @@
 
 - 新增小红书笔记详情，支持通过笔记链接获取详细数据。
 - 增强关键词搜索脚本，支持更丰富的查询选项与数据输出格式。
-- 技能名称由“xiaohongshu-search”升级为“xiaohongshu-radar”，能力范围拓展。
 - 技能文档全面更新，补充更多用例与参数说明。
 
 ## v1.0.0

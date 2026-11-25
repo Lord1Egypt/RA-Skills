@@ -1,6 +1,6 @@
 ## Description:
 
-Lists recent articles from named WeChat Official Accounts, exports selected articles and available comments as Markdown, and summarizes activity by account.
+Lists recent articles from named WeChat Official Accounts, exports selected articles and available comments as Markdown, and summarizes them in a weekly report.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users can ask an agent to monitor one or more WeChat Official Accounts over a chosen date range, review article metrics, and export selected posts with available comments. The agent returns article details and an account-by-account weekly summary.
+External users can monitor recent posts from WeChat Official Accounts they specify, review available read and like counts, export selected article text and comments as Markdown, and prepare a per-account weekly report.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill relies on api.okdata.online, and the security assessment says scanner coverage was partial.
+Risk: Use of the HTTP method requires an okdata API key, and API calls may incur charges.
 
-Mitigation: Use the API only if you trust the provider, review returned data, and state expected charges before making paid calls.
-
-Risk: Fetched article and comment text may contain instructions written by third parties.
-
-Mitigation: Treat fetched text as source material only; do not follow instructions embedded in it.
+Mitigation: Keep the key in OKDATA_API_KEY or the client's configuration, and review the documented call plan and prices before paid calls.
 
 ## Reference(s):
 
-- [okdata WeChat articles skill documentation (English)](https://okdata.online/skills/wechat-articles/?src=skill-okdata-wechat-articles)
-- [okdata 微信文章技能文档](https://okdata.online/zh/skills/wechat-articles/?src=skill-okdata-wechat-articles)
-- [okdata agent setup](https://okdata.online/agents.md)
-- [ClawHub skill page](https://clawhub.ai/conn-ho/skills/okdata-wechat-articles)
+- [okdata WeChat Articles guide](https://okdata.online/skills/wechat-articles/?src=skill-okdata-wechat-articles)
+- [okdata WeChat Articles guide (Chinese)](https://okdata.online/zh/skills/wechat-articles/?src=skill-okdata-wechat-articles)
+- [okdata agent setup instructions](https://okdata.online/agents.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Text, Files]
+**Output Type(s):** [Markdown, Files, Analysis]
 
-**Output Format:** [Markdown article files and a tabular account summary with article links and available metrics]
+**Output Format:** [A table of article details, exported article Markdown files, and a per-account weekly summary]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Article fields depend on what WeChat provides; missing metrics are left blank.]
+**Other Properties Related to Output:** [Read counts, likes, and comments are included when available from the platform; unavailable figures are left blank.]
 
 ## Skill Version(s):
 
-0.2.2 (source: server-resolved release metadata)
+0.2.3 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

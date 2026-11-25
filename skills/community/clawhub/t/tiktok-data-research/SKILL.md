@@ -2,7 +2,7 @@
 name: tiktok-data-research
 description: "TikTok数据智能助手。自媒体从业者的数据获取工具，提供TikTok搜索、作品获取、实时评论数据等实时数据的批量获取，为后续的内容研究、选题分析、用户痛点、数据分析、市场调研、对标账号监控、舆情分析、TikTok增长等场景提供真实可靠的数据支撑。提供3个能力①关键词搜索（可按点赞/相关度排序、发布时间筛选）②博主作品获取，按主页链接或用户名批量获取公开作品列表，支持最新/最热排序 ③视频评论抓取，按视频链接或作品 ID 获取评论内容、评论者与互动数据，输出结构化 JSON（含作者、互动数据、标签、链接）。"
 license: MIT
-version: 1.1.1
+version: 1.1.2
 description_zh: TikTok数据智能助手。自媒体从业者的数据获取工具，提供TikTok搜索、作品获取、实时评论数据等实时数据的批量获取，为后续的内容研究、选题分析、用户痛点、数据分析、市场调研、对标账号监控、舆情分析、TikTok增长等场景提供真实可靠的数据支撑。
 description_en: TikTok Data Intelligence Assistant. A data acquisition tool for self-media practitioners. It supports bulk retrieval of real-time data including TikTok search results, content extraction and live comment data. It provides authentic and reliable data support for subsequent scenarios such as content research, topic ideation analysis, user pain point identification, data analysis, market research, benchmark account monitoring, public opinion analysis and TikTok growth analysis.
 metadata:
@@ -231,7 +231,7 @@ metadata:
   "message": "搜索任务完成",
   "timestamp": "2026/10/26 16:20:00",
   "request": { "command": "search", "keyword": "AI", "sort": 1, "time": 0, "limit": 20 },
-  "metadata": { "skill_version": "1.1.1", "runtime_version": "22.22.2", "execution_time": 8421 },
+  "metadata": { "skill_version": "1.1.2", "runtime_version": "22.22.2", "execution_time": 8421 },
   "results": [{ "aweme_id": "123", "desc": "...", "digg_count": 100 }]
 }
 ```
@@ -254,8 +254,9 @@ metadata:
 | 1 | `TIMEOUT` | 任务仍在处理，搜索也可能是没有可保存的结果。不要立刻重跑。搜索的复用窗口大约只有 9 分钟，等满超时后再跑可能新建一条任务 |
 | 1 | `NETWORK_ERROR` / `HTTP_5xx` / `HTTP_429` | 命令内部已经重试过。退出后再失败就告诉用户稍后再试 |
 | 1 | `PLAN_LIMIT` | 套餐单次条数超限（常见于包月）。**禁止同参重试**。转述 `message`；可建议降 `--limit`（搜索/作品≤30，评论≤40）或到官网升级按量；**须用户同意后再跑** |
-| 1 | `"16"`（搜索）或 `"15"`（作品、评论） | 余额不足。转告 `message`，不要改参数连打 |
-| 1 | `"1"` 或 `"2"` | 提交过于密集。等一会儿再试，不要改成另一组参数立刻连打 |
+| 1 | `INSUFFICIENT_BALANCE` | 余额不足（搜索常为后端 16，作品/评论常为 15）。**禁止同参重试**。引导官网充值 |
+| 1 | `RATE_LIMITED` | 短时间提交过多（作品/评论常为 2；搜索可能为 1 + 文案）。**禁止立即重试** |
+| 1 | `DAILY_LIMIT` | 今日消费已达每日上限（后端 18）。**禁止同参重试**。明日再试或到官网调整限额 |
 | 1 | 其它十进制数字 | 把 `message` 原样转告 |
 | 1 | `API_ERROR` / `UNKNOWN` | 转告 `message`，建议联系官网 |
 

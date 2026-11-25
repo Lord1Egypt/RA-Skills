@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers building agents use this skill to register Qubrics inboxes, manage profiles and credentials, and carry out mailbox, sending, and account management tasks from the terminal.
+OpenClaw agents and developers use the Qubrics CLI to register durable agent inboxes, manage profiles, validate account connections, and perform mailbox, sending, and account-management workflows from a terminal.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review had incomplete coverage because several local path-like references could not be resolved, and its overall confidence is medium.
+Risk: The supplied security review reports medium confidence and a partial Skillspector review; workflows may involve credentials and actions that send or change data.
 
-Mitigation: Review those referenced files and the CLI package source before installation.
-
-Risk: Commands can access account data or make mailbox and sending changes using local credentials.
-
-Mitigation: Keep credentials in a secret store, clear inherited credentials before setup, verify the selected account identity before reads or mutations, and confirm destructive actions explicitly.
+Mitigation: Review the instructions around account identity and data-changing actions before running, verify the intended connection, and manage credentials through a secret store rather than chat.
 
 ## Reference(s):
 
-- [Qubrics OAuth for REST APIs](https://qubrics.com/docs/developer-tools/oauth)
-- [Qubrics project homepage (listed in skill metadata)](https://github.com/qubrics/skills)
-- [ClawHub skill page](https://clawhub.ai/roshanjonah/skills/qubrics-cli)
+- [Qubrics skills repository](https://github.com/qubrics/skills)
+- [OAuth for REST APIs](https://qubrics.com/docs/developer-tools/oauth)
+- [Qubrics CLI on ClawHub](https://clawhub.ai/roshanjonah/skills/qubrics-cli)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON examples]
+**Output Type(s):** [Shell commands, API calls, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown instructions with shell examples and JSON request examples]
+**Output Format:** [Markdown with inline shell commands and JSON examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes credential, account identity, and command-surface guidance.]
+**Other Properties Related to Output:** [Provides command examples, profile and credential setup guidance, and JSON request examples.]
 
 ## Skill Version(s):
 
-2.0.4 (source: artifact frontmatter, server release metadata)
+2.0.8 (source: frontmatter)
 
 ## Ethical Considerations:
 

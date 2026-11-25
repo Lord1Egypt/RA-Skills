@@ -1,0 +1,26 @@
+{
+ "content": [
+  {
+   "text": "Um astronauta da NASA conta por que a nave Dragon foi feita para ninguém xingar o nome deles no futuro. #astronauta #nasa #spacex #espaço",
+   "media": [
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId of dubbed/names/names.vertical.pt-BR.mp4>"
+    }
+   ]
+  }
+ ],
+ "schedule": {
+  "type": "SCHEDULE_FOR_LATER",
+  "scheduledFor": "2026-12-01T22:00:00Z"
+ },
+ "socialAccounts": [
+  {
+   "platform": "INSTAGRAM",
+   "socialAccountId": "<connect this account>",
+   "postType": "REEL",
+   "isAiGeneratedContent": true
+  }
+ ],
+ "autoDeleteMediaAfterPublish": false
+}

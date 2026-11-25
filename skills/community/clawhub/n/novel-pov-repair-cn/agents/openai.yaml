@@ -1,0 +1,8 @@
+interface:
+  display_name: "叙事视角诊断与修订"
+  short_description: "检查小说场景的 POV 越界，并保留情节给出最小修订片段"
+  default_prompt: "使用 $novel-pov-repair-cn 检查我提供的章节、场景或短文及指定视角人物，定位越界并给出保持动作、台词和人物知情的最小修订。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

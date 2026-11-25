@@ -35,7 +35,7 @@ import doctor
 import journal
 import paths
 
-MODES = ("discover", "assess", "apply", "interview")
+MODES = ("discover", "assess", "apply", "interview", "prepare")
 
 
 def _now() -> str:

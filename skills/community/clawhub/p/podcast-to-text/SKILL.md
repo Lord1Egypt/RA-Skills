@@ -1,7 +1,7 @@
 ---
 name: podcast-to-text
 description: "播客转文字 / Podcast to text：小宇宙、Apple Podcasts 单集链接 → 带时间的逐字稿、节目简介（shownotes）、要点（每条附逐字核对过的原文）、播放和评论数、小宇宙页面上的热评。用户发来 xiaoyuzhoufm.com/episode/… 或 podcasts.apple.com/…?i=… 链接，要整理播客笔记、提取金句、做摘要、找某段说了什么时使用。只读声音：每开始的 2 分钟 1 积分，不收基础积分，45 分钟一集 23 积分；读过的单集再读 0 积分，读不出来不扣费。不登录小宇宙或 Apple 账号。需要 LinkDigest API Key（注册送 10 积分，不用绑卡）。"
-version: 1.0.0
+version: 1.0.1
 homepage: https://linkdigest.dev/platforms?ref=skill-podcast-to-text
 metadata: {"openclaw":{"requires":{"anyBins":["python3"]},"primaryEnv":"LINKDIGEST_API_KEY","envVars":[{"name":"LINKDIGEST_API_KEY","required":true,"description":"LinkDigest API Key（ld_live_ 开头），在 https://linkdigest.dev/signin?ref=skill-podcast-to-text&next=/app/keys 创建，注册送 10 积分"}],"homepage":"https://linkdigest.dev/platforms?ref=skill-podcast-to-text"}}
 required_environment_variables:

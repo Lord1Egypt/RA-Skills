@@ -95,3 +95,4 @@ def engine_full_text():
     for p in sorted(_glob.glob(os.path.join(_base, "ch_*.py"))):
         parts.append(open(p, encoding="utf-8").read())
     return "\n".join(parts)
+

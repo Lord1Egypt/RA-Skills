@@ -1,6 +1,6 @@
 ## Description:
 
-OpenXSys helps an agent understand, explain, anticipate, decide, design, build, or review a whole system, then carry useful learning into later sessions.
+OpenXSys is a system-level Skill that runs inside AI tools. It uses systems thinking, systems science, and the methods of exceptional practitioners to open a system for anything—and to help people own systems of their own.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-People and teams use OpenXSys to understand systems such as organizations, projects, technologies, decisions, or their own work. The agent develops grounded explanations, recommendations, and practical deliverables, carrying useful learning into later sessions.
+People and developers use OpenXSys to understand, explain, anticipate, decide, create, connect, or review a system such as a company, project, technology, codebase, or personal work. It helps turn that understanding into usable work and capabilities that can be continued and updated from real outcomes.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment reports that installers may write outside the selected location and that the PowerShell confirmation check may fail to stop deletion.
+Risk: The security evidence marks the skill suspicious, citing persistent learning assessments without a clear privacy notice and broad activation conditions; it also reports incomplete scan coverage.
 
-Mitigation: Avoid installation or removal until destination behavior, confirmation behavior, and removal instructions are clarified; review the installer before execution.
-
-Risk: The security scan was partial: 79 of 80 components were scanned, and one shell-installer analysis was limited.
-
-Mitigation: Treat the assessment as incomplete and obtain complete coverage before relying on it.
+Mitigation: Review privacy and data handling before installation, especially if Learn mode may receive personal learning information, and consider the scan's stated coverage limits.
 
 ## Reference(s):
 
-- [OpenXSys on ClawHub](https://clawhub.ai/gengshupeng/skills/open-x-sys)
-- [Publisher profile: gengshupeng](https://clawhub.ai/user/gengshupeng)
+- [OpenXSys release page](https://clawhub.ai/gengshupeng/skills/open-x-sys)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance, Code, Shell commands, Configuration, Files]
+**Output Type(s):** [Analysis, Guidance, Markdown, Code, Configuration instructions]
 
-**Output Format:** [Text and Markdown, with deliverables such as pages, documents, code, and system files as appropriate]
+**Output Format:** [Task-shaped text and artifacts, including Markdown, code, or configuration when appropriate]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Varies with the subject and requested deliverable]
+**Other Properties Related to Output:** [Varies with the task; distinguish observed facts, inferences, and unknowns.]
 
 ## Skill Version(s):
 
-0.0.1 (ClawHub release; embedded skill metadata: 0.0.1-alpha.1)
+0.1.1 (source: server-resolved release)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Projects a web page or Plex stream fullscreen on a second laptop over SSH and helps diagnose playback audio issues.
+Projects a requested web page onto a second laptop over SSH and helps diagnose proxy, browser, fullscreen, and page audio status.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and other users can use the skill to check the remote laptop's proxy and browser state, open a page on its screen, and diagnose muted Plex playback. It is intended for explicit requests to manage that projection or its audio.
+Users with a configured second laptop use this skill to project pages or streams, check proxy and browser state, and diagnose muted playback.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Opening a page may close unrelated browser sessions or delete Firefox recovery data; Brave may use normal browsing data instead of an isolated profile.
+Risk: Opening a page can close unrelated browser windows or remove Firefox session recovery data.
 
-Mitigation: Before running the open command, check whether browser sessions or recovery data need to be preserved. Use the dedicated Firefox profile when profile isolation matters, and disclose the normal-profile behavior before choosing Brave.
+Mitigation: Use the open action only for an explicit page request, and check the current browser windows before proceeding when they may contain unrelated work.
 
-Risk: The audio troubleshooting trigger may be unclear about which device its settings affect.
+Risk: Reusing a browser window may not reliably open the requested page.
 
-Mitigation: Confirm the target device and the user's intent before changing remote audio settings; report measured state and ask before raising system volume.
+Mitigation: Confirm the reported window title and fullscreen state before reporting that the page opened.
+
+Risk: A mute shortcut can reach the wrong window or fail to unmute the page.
+
+Mitigation: Focus the intended page by its window address and verify an active browser audio stream before reporting that playback is unmuted.
 
 ## Reference(s):
 
+- [xps-plex on ClawHub](https://clawhub.ai/j3ffyang/skills/xps-plex)
 - [Projecting a Page Onto Another Machine](https://github.com/j3ffyang/ai-thoughts/blob/main/docs/261110-projecting-a-page-onto-another-machine.md)
 - [A Skill or an MCP Server?](https://github.com/j3ffyang/ai-thoughts/blob/main/docs/261111-skill-vs-mcp.md)
-- [xps-plex on ClawHub](https://clawhub.ai/j3ffyang/skills/xps-plex)
 
 ## Skill Output:
 
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [Shell commands, Text, Guidance]
 
-**Output Format:** [Shell commands with concise text guidance and key-value status output]
+**Output Format:** [Shell commands and concise status or diagnostic text]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Commands can report proxy, browser, window, and fullscreen state.]
+**Other Properties Related to Output:** [Reports proxy, browser, and window state; may start the proxy or browser and open the configured page.]
 
 ## Skill Version(s):
 
-1.0.1 (source: server-resolved release metadata)
+1.0.2 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

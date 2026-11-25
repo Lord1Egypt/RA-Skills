@@ -1,44 +1,60 @@
-## Description: <br>
-AI-powered tool for searching and downloading academic papers through Sci-Hub. <br>
+## Description:
 
-This skill is for research and development only. <br>
+AI-powered tool for searching and downloading academic papers through Sci-Hub
 
-## Publisher: <br>
-[JackKuo666](https://clawhub.ai/user/JackKuo666) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jackkuo666](https://clawhub.ai/user/jackkuo666)
 
-## Use Case: <br>
-External researchers and developers use this skill to search for academic papers by DOI, title, or keyword, retrieve metadata, and download available PDFs through Sci-Hub-backed command-line workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can download content from broad URLs and write files to local paths. <br>
-Mitigation: Run it in an isolated Python environment, download only trusted Sci-Hub or PDF URLs, and choose a non-sensitive output directory. <br>
-Risk: Dependency and installer behavior may change outside the reviewed artifact. <br>
-Mitigation: Review and pin Python dependencies before use, and avoid curl-piped installers where possible. <br>
-Risk: Sci-Hub access and downloaded-paper use may be restricted by local rules or copyright obligations. <br>
-Mitigation: Use the skill only where its Sci-Hub access pattern is allowed and follow the artifact guidance to respect copyright and local law. <br>
+## Use Case:
 
+Researchers and developers use this skill to search for academic papers by DOI, title, or keyword, retrieve metadata, and optionally download PDFs through Sci-Hub. Use requires review for copyright, organizational policy, and jurisdiction-specific legality.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/JackKuo666/sci-hub-search-skill) <br>
-- [Crossref Works API](https://api.crossref.org/works) <br>
-- [scihub Python Package](https://pypi.org/project/scihub/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text, JSON, Markdown guidance with bash code blocks, and downloaded PDF files when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write search results or metadata to a user-specified output file and can save downloaded PDFs to a user-specified path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Search terms, paper titles, and DOIs may be sent to CrossRef and Sci-Hub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run searches only for non-sensitive queries and only when Sci-Hub use is legal and acceptable for the user, jurisdiction, and organization.
+
+Risk: Download commands can write retrieved PDFs or command output to local paths.
+
+Mitigation: Use a dedicated download directory, avoid sensitive or arbitrary output paths, and review downloaded files before sharing or opening them.
+
+Risk: Installation and dependency setup can grant local and network authority, especially when using remote installer commands.
+
+Mitigation: Prefer a local virtual environment, pin dependencies and release revisions, and review the skill before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jackkuo666/skills/sci-hub-search-skill)
+- [Crossref Works API](https://api.crossref.org/works)
+- [Sci-Hub](https://sci-hub.se)
+- [scihub PyPI package](https://pypi.org/project/scihub/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, files, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, console text, JSON records, and downloaded PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include DOI, title, author, year, PDF URL, status fields, and local output paths.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,6 @@
 ## Description:
 
-Use for creative strategy, marketing engineering and competitor ad research on live ad-library data (Meta Ad Library/Facebook/Instagram, Google Ads Transparency Center, LinkedIn Ad Library, TikTok).
+Use Proxy to research live competitor ads and turn findings into creative strategy, marketing workflows, and reports.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Marketing teams, creative strategists, and marketing engineers use the skill to research live competitor ads across supported ad libraries, compare hooks, offers, and formats, and create creative briefs, reports, or marketing data workflows.
+Creative strategists, marketing engineers, and researchers use this skill to find and compare competitor advertising across Meta, Google, LinkedIn, and TikTok, then prepare briefs, reports, or monitoring workflows.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Connecting sends research queries and the confirmed company domain to Proxy.
+Risk: The skill asks the user to send their company domain to Proxy for competitor discovery.
 
-Mitigation: Confirm the company domain before the first query and review the OAuth permissions before connecting.
+Mitigation: Confirm the company domain with the user before sending it, as the skill instructs.
 
-Risk: Weekly research can continue running and use credits.
+Risk: The security review was partial because two local references were unresolved.
 
-Mitigation: Schedule recurring research only with the user's consent, and review credit use and pricing.
-
-Risk: The hosted Proxy server's implementation was not independently verified.
-
-Mitigation: Review OAuth permissions before authorizing the connection and share only information appropriate for the planned research.
+Mitigation: Review the skill and resolve the referenced materials before relying on its guidance or connecting the service.
 
 ## Reference(s):
 
 - [Proxy](https://useproxy.dev)
-- [Getting Started](https://useproxy.dev/welcome.md)
-- [Pricing and Credits](https://useproxy.dev/pricing.md)
+- [Setup guide](https://useproxy.dev/welcome.md)
+- [Proxy playbooks](https://useproxy.dev/playbooks.md)
+- [Pricing and credits](https://useproxy.dev/pricing.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Code, Guidance]
+**Output Type(s):** [Analysis, Text, Markdown, Configuration instructions]
 
-**Output Format:** [Ad research summaries, creative briefs, reports, and requested code or workflow guidance in text or Markdown.]
+**Output Format:** [Markdown research summaries, creative briefs, reports, and setup guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Content depends on the selected platforms, research scope, and available credits.]
+**Other Properties Related to Output:** [Content depends on live ad-library results and the platforms available for the requested research.]
 
 ## Skill Version(s):
 
-1.3.2 (source: frontmatter and server-resolved release)
+1.3.4 (source: frontmatter)
 
 ## Ethical Considerations:
 

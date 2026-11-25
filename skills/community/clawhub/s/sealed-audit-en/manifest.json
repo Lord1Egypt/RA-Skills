@@ -1,0 +1,82 @@
+{
+  "id": "sealed-audit-en",
+  "spec": "usk/3.0",
+  "version": "1.0.0",
+  "name": "Compliance Audit and Due-Diligence Review (Data Stays Home, Logic Stays Yours)",
+  "description": "For investment due diligence, supplier audits, internal-control and data-compliance checks: the reviewer seals its checking logic into a package for the auditee, the auditee runs it against its local database and returns only a summary of findings. Data never leaves the auditee; the checking logic is never readable by the auditee — protection in both directions. Built on MGC Blackbox 1.6.0, supports p2p single-node licensing and free-mode standard check packages, and ships with a runnable minimal example.",
+  "author": "MirginCipher Team",
+  "license": "MIT",
+  "tags": [
+    "audit",
+    "due-diligence",
+    "compliance",
+    "data-sovereignty",
+    "sealed-delivery",
+    "p2p",
+    "free-mode",
+    "zero-exposure",
+    "mgc",
+    "blackbox"
+  ],
+  "platform_compatibility": ["windows", "macos", "linux"],
+  "mcp_tools": [
+    "mgc_save",
+    "mgc_save_file",
+    "mgc_get",
+    "mgc_run",
+    "mgc_find",
+    "mgc_list",
+    "mgc_seal_package",
+    "mgc_delete",
+    "mgc_open_webui",
+    "mgc_skill"
+  ],
+  "requirements": {
+    "mgc_version": ">=1.6.0"
+  },
+  "install": "pip install mgc-blackbox>=1.6.0",
+  "runtime": "mgc",
+  "port": 57219,
+  "files": {
+    "skill": "SKILL.md",
+    "readme": "README.md",
+    "example_dir": "examples/"
+  },
+  "example": {
+    "path": "./examples",
+    "entry": "run_audit.py",
+    "scripts": [
+      {"name": "prepare_sample_db.py", "role": "fixture", "note": "generates a mock auditee database for local demos only"},
+      {"name": "checks.py", "role": "rules", "note": "checking rules, imported by the entry script at the same level"},
+      {"name": "run_audit.py", "role": "entry", "calls": ["checks"]},
+      {"name": "role_prompts.md", "role": "template", "note": "reviewer / auditee task briefs"}
+    ]
+  },
+  "links": {
+    "homepage": "https://github.com/zkeviny/MGC-Blackbox",
+    "issues": "https://github.com/zkeviny/MGC-Blackbox/issues",
+    "contact": "mirgincipher@outlook.com"
+  },
+  "keywords": [
+    "compliance audit",
+    "due diligence",
+    "supplier audit",
+    "internal control",
+    "data stays local",
+    "protect checking logic",
+    "sealed audit",
+    "local execution",
+    "summary only",
+    "no raw data"
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "changes": [
+        "Initial release, built on MGC Blackbox 1.6.0.",
+        "Covers p2p one-to-one audits and free-mode standard check packages.",
+        "Ships a runnable minimal example: mock auditee database, checking rules, entry script, and task briefs for both sides."
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 ## Description:
 
-对比抖音品牌内容表现、互动数据和讨论趋势，并通过关键词搜索、热榜、作品详情、账号作品与评论数据，为竞品分析和传播复盘提供结构化证据。
+Compare brands' content performance, engagement metrics and discussion trends on Douyin, using historical data to identify differences, supporting evidence and actionable opportunities for competitor analysis, brand benchmarking, periodic change assessment, communication reviews and brand strategy.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Brand teams, marketers, and content analysts use the skill to compare public Douyin content and creator activity, track discussion trends, and review audience comments. It helps identify content differences and opportunities for brand benchmarking, campaign review, and strategy planning.
+Brand, marketing and content teams use this skill to research publicly available Douyin videos, accounts, comments and trending topics. They can compare content and engagement, review audience discussions, and identify evidence-based opportunities for internal planning.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Keywords or Douyin links submitted for analysis are sent to a third-party API.
+Risk: Supplied links or IDs may be transferred to a third-party API, and the security scan reports incomplete coverage: 58.5% coverage with 22 files only partly inspected.
 
-Mitigation: Avoid sending confidential or identifying terms or links; use only inputs approved for that service.
+Mitigation: Use public content and avoid sending sensitive identifiers; review the remaining files before installation if the incomplete scan coverage affects your decision.
 
-Risk: The security scan was partial, so some code review evidence is incomplete.
+Risk: Account discovery and lead-list workflows can produce information about identifiable users.
 
-Mitigation: Review the remaining uninspected components before installation if the incomplete scan is not acceptable.
+Mitigation: Limit lead use to authorized internal analysis, do not resell or use the data to harass people, and redact user IDs before sharing results externally.
 
 ## Reference(s):
 
-- [Demand mining guide](references/demand-mining.md)
-- [Command options](references/options.md)
-- [Changelog](references/changelog.md)
-- [Guaikei API access and support](https://www.guaikei.com)
 - [ClawHub release page](https://clawhub.ai/why20261/skills/douyin-competitor-radar)
+- [GuaiKei API service and access information](https://www.guaikei.com)
+- [API token setup and FAQ](references/faq.md)
+- [Command options](references/options.md)
+- [Structured output contract](references/contract.md)
+- [Comment demand analysis guidance](references/demand-mining.md)
+- [Public lead workflow and handling guidance](references/customer-acquisition.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis, Markdown]
+**Output Type(s):** [Analysis, JSON data, Shell commands, Guidance]
 
-**Output Format:** [Structured JSON data with concise Markdown analysis when requested]
+**Output Format:** [Structured JSON results with concise textual analysis and recommendations]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include public post text, authors, engagement metrics, comments, timestamps, and links; available fields depend on the source data.]
+**Other Properties Related to Output:** [Results may be saved as JSON logs in the skill directory; the skill directs agents to report concise findings rather than paste full result payloads.]
 
 ## Skill Version(s):
 
-1.4.2 (source: server-resolved release, SKILL.md frontmatter, changelog, package.json)
+1.5.0 (source: server-resolved release, SKILL.md, changelog released 2026-11-10, package.json)
 
 ## Ethical Considerations:
 

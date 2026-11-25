@@ -1,6 +1,6 @@
 ## Description:
 
-Access public X (Twitter) posts, users, threads, trends, communities, and lists through DataXAPI.
+Retrieves public X (Twitter) posts, profiles, threads, trends, communities, lists, and video transcripts through DataXAPI.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agents use this skill to find and retrieve public X posts, account information, conversations, trends, community data, and list data through DataXAPI. It provides endpoint discovery and calling guidance through MCP, REST, or the command line, with per-call prices documented.
+External users and developers use this skill to retrieve public X content and account data for questions about posts, users, conversations, trends, communities, and lists.
 
 ### Deployment Geography for Use:
 
@@ -22,43 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Lookup terms and endpoint-discovery wording are sent to DataXAPI and may contain sensitive details.
+Risk: Endpoint discovery may send the user's query words to DataXAPI, creating a privacy risk for confidential details.
 
-Mitigation: Omit confidential details from lookup terms.
+Mitigation: Keep confidential or sensitive information out of discovery queries and review the privacy implications before sending a query.
 
-Risk: Paid data retrieval calls can add to account spending.
+Risk: The skill recommends running a CLI without pinning a version, and the security scan could not resolve all local references.
 
-Mitigation: Set spending limits and use the documented per-call price caps.
+Mitigation: Review the referenced material and install a fixed, trusted package version before running the CLI.
 
-Risk: The API key could be exposed while configuring or using a client.
+Risk: API calls are billed per request and can spend the prepaid balance.
 
-Mitigation: Protect the key; do not print it, log it, or place it in a URL.
-
-Risk: The external CLI package and service are outside the artifact review.
-
-Mitigation: Prefer REST or hosted MCP, or use a reviewed, fixed CLI version.
+Mitigation: Check endpoint prices, tell the user the expected cost before multi-call tasks, and set a maximum price for calls.
 
 ## Reference(s):
 
-- [DataXAPI Skills](https://dataxapi.com/skills/)
-- [DataXAPI Agent Setup](https://dataxapi.com/agents.md)
-- [DataXAPI X API Reference](https://dataxapi.com/apis/x/)
-- [DataXAPI X Pricing](https://dataxapi.com/pricing/x/)
-- [DataXAPI MCP Endpoint](https://api.dataxapi.com/mcp)
+- [DataXAPI X API documentation](https://dataxapi.com/apis/x/)
+- [DataXAPI pricing for X endpoints](https://dataxapi.com/pricing/x/)
+- [DataXAPI agent setup guide](https://dataxapi.com/agents.md)
+- [ClawHub release page](https://clawhub.ai/data-x-api/skills/dataxapi-x)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, API calls, Guidance, Shell commands, Configuration instructions]
+**Output Type(s):** [Text, JSON, Guidance]
 
-**Output Format:** [Text or Markdown, with JSON, shell, or REST request examples]
+**Output Format:** [Structured JSON data with concise textual guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Public X data; data retrieval calls may incur the documented per-call charges.]
+**Other Properties Related to Output:** [Live public X data; API calls may incur per-call charges.]
 
 ## Skill Version(s):
 
-1.0.0 (source: frontmatter, release evidence)
+1.0.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

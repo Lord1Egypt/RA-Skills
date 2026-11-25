@@ -1,5 +1,6 @@
 import copy
 import json
+import math
 import os
 import sys
 from pathlib import Path
@@ -456,6 +457,38 @@ def _deep_merge_params(base, override):
     return out
 
 
+def _prepare_invoke_task(name, params=None, profile=None):
+    """Validate and merge an invoke preset without performing network side effects."""
+    import config as app_config
+
+    table = getattr(app_config, "INVOKE", None) or {}
+    if name not in table:
+        raise KeyError(f"Unknown invoke preset {name!r}; add it to config.INVOKE")
+    spec = table[name]
+    if not isinstance(spec, dict) or "task" not in spec:
+        raise ValueError(
+            f"config.INVOKE[{name!r}] must include 'task'; optional 'params'/'profile' "
+            f"(default {{}}), optional 'task_type' (default mtlab)"
+        )
+    task = str(spec.get("task") or "").strip()
+    if not task:
+        raise ValueError(f"config.INVOKE[{name!r}]['task'] must be a non-empty string")
+    cfg_params = spec.get("params")
+    if cfg_params is not None and not isinstance(cfg_params, dict):
+        raise TypeError(f"config.INVOKE[{name!r}]['params'] must be a dict or omit")
+    if params is not None and not isinstance(params, dict):
+        raise TypeError("params must be a dict or omit")
+    merged = _deep_merge_params(cfg_params or {}, params or {})
+    cfg_profile = spec.get("profile")
+    if cfg_profile is not None and not isinstance(cfg_profile, dict):
+        raise TypeError(f"config.INVOKE[{name!r}]['profile'] must be a dict or omit")
+    if profile is not None and not isinstance(profile, dict):
+        raise TypeError("profile must be a dict or omit")
+    merged_profile = _deep_merge_params(cfg_profile or {}, profile or {})
+    task_type = _default_task_type(spec.get("task_type"))
+    return task, merged, merged_profile, task_type
+
+
 def _default_connection_config():
     """Connection settings from project config.py (regions, token_policy)."""
     import config as app_config
@@ -652,6 +685,36 @@ class AiApi:
         return None
 
         
+    def _task_sync_timeout(self, policy):
+        """Use server timeout by default; published adapters can retain their policy."""
+        timeout = policy.get("sync_timeout")
+        if (type(timeout) not in (int, float) or timeout < 0
+                or (isinstance(timeout, float) and not math.isfinite(timeout))):
+            raise RuntimeError("Invalid algorithm policy: sync_timeout must be a finite non-negative number")
+        return timeout
+
+    def _validate_execution_policy(self, policy, *, polling=False):
+        """Reject unusable strategy fields before quota consumption or network submit.
+
+        Sync-only policies may omit status_query; supplied polling configuration
+        must be usable. Existing adapters retain their timeout/path conventions.
+        """
+        if not isinstance(policy, dict):
+            raise RuntimeError("Invalid algorithm policy: expected an object")
+        if not polling:
+            self._task_sync_timeout(policy)
+        if polling or "status_query" in policy or "status_path" in policy:
+            try:
+                path = self._status_query_path(policy)
+            except (KeyError, TypeError, AttributeError):
+                path = None
+            if not isinstance(path, str) or not path.strip():
+                raise RuntimeError("Invalid algorithm policy: status query path must be a non-empty string")
+
+    def _status_query_path(self, policy):
+        """Use the server's existing overseas query-path contract."""
+        return policy["status_query"]["path"]
+
     def run(
         self,
         imageUrl,
@@ -676,6 +739,7 @@ class AiApi:
         taskType = _default_task_type(taskType)
         signer = sign.Signer(self.Key, self.Secret)
         policy=self.getAiStrategy()
+        self._validate_execution_policy(policy)
         host = policy["url"]
         if host.find("https")>-1 :
             host =host[8:]
@@ -734,6 +798,7 @@ class AiApi:
         :params policy query policy with retry and gaps with every retry
         :return: The handled result data in json.
         """
+        self._validate_execution_policy(policy, polling=True)
         host = policy["url"]
         if host.find("https")>-1 :
             host =host[8:]
@@ -881,37 +946,16 @@ class AiApi:
         Run invoke with merged params/profile from config.INVOKE[name], overridden by the caller.
         Optional ``task_type`` on the preset (server-driven); if absent or empty, uses mtlab.
         """
-        import config as app_config
-
-        table = getattr(app_config, "INVOKE", None) or {}
-        if name not in table:
-            raise KeyError(f"Unknown invoke preset {name!r}; add it to config.INVOKE")
-        spec = table[name]
-        if not isinstance(spec, dict) or "task" not in spec:
-            raise ValueError(
-                f"config.INVOKE[{name!r}] must include 'task'; optional 'params'/'profile' "
-                f"(default {{}}), optional 'task_type' (default mtlab)"
-            )
-        cfg_params = spec.get("params")
-        if cfg_params is not None and not isinstance(cfg_params, dict):
-            raise TypeError(f"config.INVOKE[{name!r}]['params'] must be a dict or omit")
-        merged = _deep_merge_params(cfg_params or {}, params or {})
-        cfg_profile = spec.get("profile")
-        if cfg_profile is not None and not isinstance(cfg_profile, dict):
-            raise TypeError(f"config.INVOKE[{name!r}]['profile'] must be a dict or omit")
-        if profile is not None and not isinstance(profile, dict):
-            raise TypeError("profile must be a dict or omit")
-        merged_profile = _deep_merge_params(cfg_profile or {}, profile or {})
-        task_type = _default_task_type(spec.get("task_type"))
+        task, merged, merged_profile, task_type = _prepare_invoke_task(name, params, profile)
         profile_kwargs = {"profile": merged_profile} if merged_profile else {}
         if on_async_submitted is None:
             return self.invoke(
-                url, merged, spec["task"], context, task_type, **profile_kwargs
+                url, merged, task, context, task_type, **profile_kwargs
             )
         return self.invoke(
             url,
             merged,
-            spec["task"],
+            task,
             context,
             task_type,
             on_async_submitted=on_async_submitted,
@@ -951,6 +995,24 @@ class AiApi:
         :return: The handled result data in json.
         """
         task_type = _default_task_type(task_type)
+        if isinstance(url, (list, tuple)):
+            # A list already represents init_images, not one URL containing a list.
+            # Keep the legacy global profile scoped to the first input only.
+            images = copy.deepcopy(list(url))
+            images = [{"url": item} if isinstance(item, str) else item for item in images]
+            if images and profile:
+                own_profile = images[0].get("profile") or {}
+                first_type = own_profile.get("media_profiles", {}).get("media_type")
+                base = copy.deepcopy(profile)
+                base_media = base.get("media_profiles")
+                base_type = base_media.get("media_type") if isinstance(base_media, dict) else None
+                if first_type and base_type and first_type != base_type:
+                    base.pop("media_profiles", None)
+                images[0]["profile"] = _deep_merge_params(base, own_profile)
+            return self.run(
+                images, params, task, task_type, context,
+                on_async_submitted=on_async_submitted,
+            )
         if url == None :
             return self.run(
                 None,

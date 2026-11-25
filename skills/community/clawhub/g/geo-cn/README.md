@@ -6,7 +6,7 @@
 
 | | GEO（国际版） | GEO-CN（本技能） |
 |---|---|---|
-| 目标平台 | ChatGPT, Perplexity, Gemini | **豆包、文心一言、DeepSeek、Kimi、通义千问** |
+| 目标平台 | ChatGPT, Perplexity, Gemini | **豆包、文心一言、DeepSeek、Kimi、元宝、360AI** |
 | 信源 | Wikipedia, Reddit, Quora | **百度百科、抖音百科、360百科、搜狗百科、知乎、地图POI** |
 | 内容渠道 | Product Hunt, TechCrunch | **抖音、B站、小红书、大众点评** |
 | 执行粒度 | 战略框架 | **模板+规则+优先级排序，可落地** |
@@ -18,7 +18,8 @@
 ## 安装
 
 ```bash
-# 复制到你的 OpenClaw skills 目录即可
+# 方式一：skillhub 安装（搜索 geo-cn-4u）
+# 方式二：复制到你的 OpenClaw skills 目录
 cp -r geo-cn /path/to/your/agent/skills/
 ```
 

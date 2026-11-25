@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and marketing analysts use this skill to research TikTok ad activity, inspect advertiser details, and manage ongoing PipiAds monitoring workflows.
+Advertisers and marketing researchers use this skill to find and inspect TikTok ads, then monitor advertiser activity and review changes to ads, products, and landing pages over time.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill requires sharing a PipiAds API key with the local PipiAds MCP package.
+Risk: The security evidence says the two linked websites were outside the scan scope, so their contents were not covered by the benign scan verdict.
 
-Mitigation: Use a revocable and narrowly scoped API key when available, and remove or rotate the key when the skill is no longer needed.
+Mitigation: Check that each site is the intended PipiAds or PipiSpy destination before entering the PIPIADS_API_KEY.
 
-Risk: Installing and running the PipiAds MCP package through npm introduces local package execution risk.
+Risk: Broad searches and monitoring activity can consume PipiAds account credits.
 
-Mitigation: Install only if comfortable running the package locally, keep the npm environment controlled, and remove the global package when finished.
-
-Risk: PipiAds API calls and monitor workflows can consume account credits or create ongoing monitoring tasks.
-
-Mitigation: Prefer narrow TikTok searches, review monitor-task changes, and monitor credit usage during normal operation.
+Mitigation: Use narrow searches and filters before creating broad monitoring workflows, as recommended in the skill.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/fanyanggod/skills/tiktok-ad-tracker-monitor)
-- [PipiAds homepage](https://www.pipiads.com)
-- [PipiSpy API key and billing portal](https://www.pipispy.com/)
+- [PipiAds product website](https://www.pipiads.com/)
+- [PipiSpy API key and account management](https://www.pipispy.com/)
+- [ClawHub release page](https://clawhub.ai/fanyanggod/skills/tiktok-ad-tracker-monitor)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+**Output Type(s):** [Analysis, Text, Guidance]
 
-**Output Format:** [Markdown guidance with inline tool names, setup commands, and configuration values]
+**Output Format:** [Ad research findings and monitoring summaries presented as text or Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires a PIPIADS_API_KEY environment variable and npm installation of the PipiAds MCP package.]
+**Other Properties Related to Output:** [Findings depend on available PipiAds data and selected filters. API calls consume account credits.]
 
 ## Skill Version(s):
 
-1.0.2 (source: server release metadata)
+1.0.3 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

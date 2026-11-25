@@ -1,6 +1,6 @@
 ## Description:
 
-Retrieves structured details and engagement metrics for Xiaohongshu (XHS/RedNote) notes through SocialDataX.
+用于小红书数据分析、小红书笔记详情、笔记数据、互动指标、内容调研和内容分析。覆盖 Xiaohongshu / XHS / RedNote note details，来自社媒数据助手 SocialDataX。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers can retrieve structured details for a Xiaohongshu note, including available content and engagement metrics, for content research and analysis.
+Content researchers, analysts, and SocialDataX users can retrieve Xiaohongshu/XHS/RedNote note details and engagement metrics for content research and analysis.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The CLI resolves a mutable package release, creating supply-chain risk around local permissions and credentials.
+Risk: The security review marks the release suspicious because its commands can run a changing, unpinned CLI package, including during credential setup.
 
-Mitigation: Review the resolved package before running it, use a least-privilege environment, and keep credentials in the documented private credential store or existing secret injection.
+Mitigation: Use a reviewed, fixed package version and a controlled installation, including when setting up credentials.
+
+Risk: The security scan is partial, so its evidence does not cover all resolved references.
+
+Mitigation: Review dependencies and references outside the scan coverage before relying on the scan result.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/socialdatax-xhs-detail)
 - [SocialDataX API access and key management](https://socialdatax.com/ai?from=clawhub)
+- [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/socialdatax-xhs-detail)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Text]
+**Output Type(s):** [JSON, Analysis]
 
-**Output Format:** [JSON note details with factual text summaries when requested]
+**Output Format:** [Structured JSON with note details, engagement metrics, and available media summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Read-only detail data; fields depend on the source response.]
+**Other Properties Related to Output:** [One note per detail request; fields depend on the returned data.]
 
 ## Skill Version(s):
 
-0.1.20 (source: server-resolved release metadata)
+0.1.21 (source: server-resolved release)
 
 ## Ethical Considerations:
 

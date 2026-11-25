@@ -81,7 +81,7 @@ function buildSkillReviewPrompt(opts: { hasPriorHandoff?: boolean } = {}): strin
 
   return (
     priorHandoffPreamble +
-    "Review the converssation and decide whether to create / promote / update a skill.\n\n" +
+    "Review the conversation and decide whether to create / promote / update a skill.\n\n" +
     "=== STEP 1 — Reusability gate ===\n" +
     "  --- STEP 1.0 — Fast reject ---\n" +
     "  Immediately output `Nothing to save.` (skip STEP 2, jump to STEP 3) when ANY of:\n" +
@@ -180,6 +180,9 @@ const skillSedimentPlugin = {
       promoteMaturationDays?: number;
     };
     const enableAutoReview = config.enableAutoReview !== false; // default: true
+    // nudgeInterval 的默认值收敛在 auto-review.ts 的 SKILL_NUDGE_INTERVAL（单一真相源）。
+    // 这里保持透传 undefined，由 createAutoReviewer 内部 `?? SKILL_NUDGE_INTERVAL` 兜底，
+    // 避免在本文件再写一个 15 造成第三处默认值漂移。
     const nudgeInterval = config.nudgeInterval;
     const validAgentAllowlist = resolveValidAgentAllowlistFromConfig(api.pluginConfig);
 
@@ -360,7 +363,10 @@ const skillSedimentPlugin = {
         );
       }
     };
-    // 插件注册时立即对默认 agent 执行迁移
+    // 插件注册时立即对默认 agent 执行迁移。
+    // 注意：迁移 + TTL/LRU 回收【有意】不受 enableAutoReview 开关控制——它们是纯数据维护
+    // （历史目录格式统一 + 死沉淀回收），即使关闭自动 review，也应保持沉淀池的目录健康，
+    // 否则关闭一段时间后重新开启会看到过期沉淀堆积。开关只控制"是否新产生沉淀"（agent_end/工具注册）。
     {
       const cfg = api.runtime.config.loadConfig();
       const defaultSkillsDir = resolveSkillsDirForAgent(cfg, undefined);
@@ -396,6 +402,11 @@ const skillSedimentPlugin = {
 
     api.registerTool(
       (toolCtx) => {
+        // auto-review 关闭时，不会有 review 子 Agent 被拉起，skill_manage 永远无人调用，
+        // 因此一并不暴露，保证 enableAutoReview=false 时插件对所有 session 完全无副作用。
+        if (!enableAutoReview) {
+          return null;
+        }
         // 仅 skill-review subagent 可见；其他 session 完全感知不到此工具。
         if (!isSkillReviewSession(toolCtx?.sessionKey)) {
           return null;

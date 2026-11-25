@@ -2,7 +2,7 @@
 
 > **本文件用途**：DSH 与 Cordis 的心智模型、插件三种形态、profile/组合包的加载机制、方向决策树（做什么该用哪个模板），以及第一个最小插件的完整走通过程。写插件前先读这个，选错形态会导致后面全部返工。
 > **合成来源**：DSH插件开发指导手册.md（第 0/1/3 章） + DSH插件开发实战补充-模板与踩坑.md（第一篇）
-> **快照警告**：本文件是 DSH 插件知识的**冻结快照**（基线 `dsh-v0.2.2-alpha.2` / commit `f3803c9697`，2026-10-28），其中的**接口名级事实可能已过时**。
+> **快照警告**：本文件是 DSH 插件知识的**冻结快照**（基线 `dsh-v0.2.2-rc.5` / commit `9c2670d3bc`，2026-11-18），其中的**接口名级事实可能已过时**。
 > **写代码前先核验**：`bash scripts/dsh-api-probe.sh <DSH 仓库路径>`（退出码 1 = 有 STALE，**不要直接照抄**）。
 > **分级与核验规则**：`references/00-version-gate.md`、逐条登记 `references/api-claims.md`。
 > **素材名约定**：正文里出现的 `Xxx-yyy.md`（如 `E-official-templates.md`、`B-tools-external.md`）是**生成时的源调研笔记名**，其内容在生成时已合并进本文件——**不是 skill 内的文件**，不必去别处找。
@@ -164,7 +164,7 @@ DSH 的一切交互，都通过这三个东西：
 
 这是官方架构文档里最关键的一个概念，直接决定你的插件该写什么。
 
-官方原文（`docs/architecture.zh.md:140`，逐字）：
+官方原文（`docs/architecture.zh.md:142`，逐字）：
 
 > 一个 **seam** 是一项可替换能力，包含三种角色：声明接口的 **Service Definition**、实现它的 **Service Provider**，以及使用它的 **Consumer**（通常是面向模型的工具）。一个包可以合并承担多个角色，但单一角色本身不是 seam；添加一项能力意味着把三者一并设计。
 
@@ -344,7 +344,7 @@ export function apply(ctx: Context) {
 |---|---|
 | `docs/user/develop/basic/index.zh.md:56` | 「插件路径必须是绝对路径。patch 文件只贡献配置，不会改变 loader 解析模块路径时使用的 profile 目录。」 |
 | `docs/user/develop/basic/config.zh.md:36-43` | 示例用的是**相对路径**：`name: './src/my-plugin.ts'` |
-| **源码 `packages/boot/app-boot/src/index.ts:548-550`** | 实际行为：若 `name` 是绝对路径，或以 `./` `../` 开头，会被重写为**相对该 patch 文件所在目录**的 file URL |
+| **源码 `packages/boot/app-boot/src/index.ts:568-570`** | 实际行为：若 `name` 是绝对路径，或以 `./` `../` 开头，会被重写为**相对该 patch 文件所在目录**的 file URL |
 | **测试 `packages/boot/app-boot/tests/user-patches.spec.ts:128`** | 有单元测试固定了这个「相对路径锚定到 patch 文件旁」的行为 |
 
 **本手册的建议（以源码为准）**：

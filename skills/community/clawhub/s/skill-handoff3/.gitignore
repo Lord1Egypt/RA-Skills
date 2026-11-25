@@ -1,0 +1,18 @@
+# 技能目录运行时产物（不属于技能本体）
+*.bak
+*.bak-*
+.SKILL-REPORT.html
+SKILL-REPORT.html
+
+# 数据目录（记忆库可能被 root.txt 指回项目内 .handoff3）
+.handoff3/memory/
+.handoff3/handoff_memory.md
+.handoff3/handoff_report.md
+.handoff3/handoff_patches.md
+
+# 编译器中间产物（exe 是交付物，obj 不是）
+*.obj
+
+# 编辑器 / 系统垃圾
+.DS_Store
+Thumbs.db

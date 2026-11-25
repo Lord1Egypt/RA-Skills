@@ -1,0 +1,96 @@
+# Copy to ~/.config/trading-idea-analyst/sources.toml (or to the path in the
+# TRADING_IDEA_SOURCES environment variable) and edit; not into the skill folder,
+# which updates replace. Nothing here is required:
+# without it the skill uses web search and whatever market data tools exist.
+
+[user]
+timezone = "UTC"                 # all event times are shown in this timezone, e.g. "America/New_York", "Europe/London", "Asia/Singapore"
+base_currency = "USD"
+home_central_bank = ""           # e.g. "Bank of England"; leave empty if the Fed is enough
+markets = ["US"]                 # markets the user can trade, e.g. ["US", "LSE", "XETRA", "TSE"]
+# Markets with weak public price coverage (smaller or regional exchanges): name a price
+# source here; the agent notes quotes in the idea's own entries (idea log or journal)
+# so ideas on those tickers can still be scored. `trade price set` is only for the
+# current price of an open position.
+price_sources = {}               # e.g. { "SGX" = "broker platform" }
+instruments_allowed = ["stock", "etf"]   # add "option", "leveraged_etf", "future" if used
+broker_notes = ""                # e.g. "premarket access; options are expensive"
+
+[scan]
+extra_regions = []               # e.g. ["EU", "Japan", "India"]
+max_theses = 4
+
+# Built-in default (no config needed): the macro checklist is covered with web
+# search against primary global sources: central bank sites and calendars
+# (Federal Reserve, ECB, BoJ, BoE, PBoC), official statistics (BLS, BEA, Eurostat,
+# NBS China), FRED for rates/credit/spreads, CME FedWatch for the implied rate
+# path, Cboe for VIX, EIA/OPEC for oil, company filings (SEC EDGAR) and an
+# economic calendar. Add your own sources below; they are read in addition.
+#
+# One block per source. kind: web | rss | telegram | newsletter | api | file
+# 'bias' is your own note on the source's slant, shown next to its summary.
+# --- Global examples ---
+[[sources]]
+name = "FRED (St. Louis Fed)"
+kind = "web"
+location = "https://fred.stlouisfed.org"   # yields, spreads, macro series
+focus = "rates, credit, macro data"
+bias = "none (data)"
+
+[[sources]]
+name = "Example macro newsletter"
+kind = "rss"
+location = "https://example.com/feed.xml"
+focus = "rates, credit"
+bias = ""
+
+[[sources]]
+name = "Example broker research"
+kind = "file"
+location = "~/research/broker-notes/"   # exported PDFs or notes; chat channels (Telegram, Discord) work via a tool or an export
+focus = "home market, earnings previews"
+bias = "broker house view"
+
+# --- Regional examples (uncomment what applies to you) ---
+# [[sources]]
+# name = "Your central bank"            # e.g. Bank of England, RBI, Bank of Japan
+# kind = "web"
+# location = "https://www.bankofengland.co.uk/monetary-policy"
+# focus = "home rates, currency"
+#
+# [[sources]]
+# name = "Your exchange's announcements" # e.g. LSE RNS, NSE India, a regional exchange
+# kind = "web"
+# location = ""
+# focus = "listings, corporate actions, local index"
+#
+# [[sources]]
+# name = "Local market channel"          # Telegram / Discord / X lists via a tool or export
+# kind = "telegram"
+# location = "@your_channel"
+# focus = "local news flow"
+# bias = "note the author's house view"
+
+[risk]
+event_size_factor = 0.5          # theses that rest on a single event or decision
+event_time_stop_days = 3         # trading days unless hedged (calendar days for 24/7 markets)
+leveraged_size_factor = 0.4
+leveraged_max_days = 5           # 3x products; calendar days for 24/7 markets
+max_ticker_share = 0.30          # share of portfolio in base_currency
+max_correlated_positions = 2
+
+[storage]
+ideas_file = "trading-ideas.md"  # standalone idea log; ignored when the trade CLI is used
+
+[research]
+parallel_subagents = true
+subagent_timeout_minutes = 10
+
+[schedule]
+# Optional scheduled runs, in [user].timezone. Use your platform's scheduler
+# (cron, Claude Code scheduled tasks, etc.) to invoke the skill at these times.
+mode = "delta"                   # "delta": single agent, changes since last scan; "full": whole pipeline
+auto_record = false              # record scheduled ideas in the idea log / journal automatically
+# premarket = "08:30"
+# post_close = "16:15"
+# daily_digest = "21:00"

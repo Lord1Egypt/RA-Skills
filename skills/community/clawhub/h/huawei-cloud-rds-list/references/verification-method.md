@@ -17,8 +17,9 @@ python3 -m unittest discover -s tests -v
   never sent to the server"), JSON extraction, failure classification (missing
   AK/SK / 403 / generic / `[USE_ERROR]` with rc=0), client-side status
   filtering (exact / case-insensitive / no-match), paging (total, full-page,
-  empty), SDK fallback (success / unavailable), rendering, and all main()
-  output modes.
+  empty), SDK fallback (success / unavailable), rendering, CSV/Markdown export
+  (BOM, escaping, atomic write, empty table, extension inference), and all
+  main() output modes.
 
 ## Live verification (when credentials exist)
 
@@ -30,6 +31,9 @@ python3 scripts/list_rds.py --json | python3 -m json.tool >/dev/null   # JSON va
 python3 scripts/list_rds.py --names-only
 python3 scripts/list_rds.py --status ACTIVE                            # client-side filter
 python3 scripts/list_rds.py --datastore-type MySQL
+python3 scripts/list_rds.py --format csv --output /tmp/rds.csv         # CSV export
+file /tmp/rds.csv                                                      # "CSV text"
+python3 -c "import pandas as pd; print(pd.read_csv('/tmp/rds.csv').shape)"   # BOM auto-detected
 ```
 
 Live verification against the real environment (2026-10-16):

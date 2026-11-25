@@ -1,6 +1,6 @@
 ## Description:
 
-Provides access to Alibaba's Qwen 3.8 Max reasoning model for text and image prompts, supporting complex reasoning, code engineering, and long-context analysis.
+通义千问旗舰推理模型（2.4 万亿参数 MoE），擅长复杂推理、代码工程与长上下文分析。支持文本与图片输入。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to submit text or image prompts to the Qwen 3.8 Max model for reasoning, coding, and long-context analysis, then receive generated results through the dLazy service.
+Developers use this skill to send text prompts and optional images to dLazy's hosted Qwen service and receive generated content.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan reports incomplete analysis and flags CLI authentication and package use that are not clearly connected to the Qwen purpose; the package itself was not inspected.
+Risk: The security review reports a mismatch between the Qwen model description and the CLI authentication or invocation steps; the CLI package and some referenced material were not fully reviewed.
 
-Mitigation: Review the pinned @dlazy/cli package and its behavior before installing or invoking it, and confirm that the release matches the intended Qwen use.
+Mitigation: Check the CLI's authentication and invocation instructions and review the package behavior before use.
 
-Risk: Prompts are sent to dLazy's API, and local media paths may be uploaded to its storage service.
+Risk: The skill sends prompts to dLazy's hosted API and describes uploading local media to its storage service; the security guidance says service handling of prompts and media was not fully reviewed.
 
-Mitigation: Avoid submitting secrets or sensitive files, and obtain consent before sending private content to the hosted service.
+Mitigation: Review dLazy's service terms and data handling, and avoid sending sensitive prompts or media unless that use is appropriate.
 
 ## Reference(s):
 
-- [dLazy CLI repository](https://github.com/dlazy-ai/cli)
-- [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
-- [dLazy service](https://dlazy.com)
-- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-qwen3-8-max)
+- [dLazy homepage](https://dlazy.com)
+- [CLI repository linked in skill metadata (provenance unavailable)](https://github.com/dlazy-ai/cli)
+- [@dlazy/cli package](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy API key dashboard](https://dlazy.com/dashboard/organization/api-key)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, JSON]
 
-**Output Format:** [JSON response containing generated model output]
+**Output Format:** [JSON response envelope containing generated content]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Accepts optional image inputs; asynchronous requests may return a task handle.]
+**Other Properties Related to Output:** [Generated response content; asynchronous requests may initially return a task identifier.]
 
 ## Skill Version(s):
 
-1.2.37 (source: server-resolved release metadata)
+1.2.40 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

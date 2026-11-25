@@ -1,8 +1,8 @@
 ---
 name: vibbit-skills
-description: "Manage the Vibbit product library and turn product links into saved products, ecommerce images, and advertising videos. Save and reuse script templates, talent, and scenes to make variants for new products. Also research products, plan scripts, generate media, produce talking-head videos and short dramas, adapt novels into comics, recreate or adapt references, transcribe audio/video, export captions, check speech, translate videos, and review or revise results. Use for Vibbit product management, creative libraries, planning, and production tasks; discussion-only requests stay in planning."
+description: "Manage the Vibbit product library, find and reuse media from the material library, and turn product links into saved products, ecommerce images, and advertising videos. Save and reuse script templates, talent, and scenes to make variants for new products. Analyze reference edits, save and reuse mixcut templates, match materials in the Agent, and arrange original sound, avatars, and narration with cloud editing by default. Also research products, plan scripts, generate media, produce talking-head videos and short dramas, adapt novels into comics, replace facial features and hairstyles, recreate or adapt references, transcribe audio/video, export captions, check speech, translate videos, save videos to the material library, and review or revise results. Use for Vibbit product management, creative libraries, planning, and production tasks; discussion-only requests stay in planning."
 metadata:
-  version: "2.18.0"
+  version: "2.18.6"
 ---
 
 # Vibbit Skills
@@ -33,6 +33,8 @@ Vibbit dynamic subtitle templates are temporarily unavailable. Do not discover, 
 
 If installation fails or the installed copy cannot load, follow [installation fallback](references/runtime/api-client.md#installation-fallback) to continue the authorized Vibbit installation through a marketplace supported by the current platform.
 
+Installation guidance or opening the local client with a known editing Job ID follows [desktop draft handoff](references/workflows/jianying-draft.md) without key setup. Check authentication when online queries or generation are needed.
+
 Local saving, listing, or filtering of script templates, talent, and scenes uses the [creative library](references/workflows/creative-library.md) without key setup. Authenticate when online parsing, transcription, or generation is needed. Saving a video as a script template ends with saving, rather than starting production automatically.
 
 Start with this file. Select one entry, then load only the API, resource, or model guide it needs. Installed references need not all enter context.
@@ -53,6 +55,7 @@ Start with this file. Select one entry, then load only the API, resource, or mod
 | Try, create, continue, or revise talking-head/digital-human videos | [Talking-head videos](references/workflows/oral-broadcast.md) |
 | Create a short drama, continue an episode, revise characters/shots | [Short dramas](references/workflows/short-drama.md) |
 | Adapt a novel, story, or script into comic pages or a vertical comic; continue chapters or revise a page | [Novel-to-comic adaptation](references/workflows/novel-comic.md) |
+| Replace source facial features/hair with a selected person, or correct an unchanged old face | [Facial identity replacement](references/workflows/face-identity-replacement.md): establish the target appearance, remove competing source identity, then generate and compare |
 | Preserve an actual source video's shots/actions while replacing selected entities, optionally translating afterward | [Precise element replacement](references/workflows/one-to-one-remake.md) |
 | Borrow a reference's structure while rewriting speech or redesigning demonstrations for the user's product | [Reference adaptation](references/workflows/reference-remake.md) |
 | Find product opportunities, evaluate candidates, combine reviews and supply research | [Product research](references/workflows/product-research.md) |
@@ -70,20 +73,22 @@ Start with this file. Select one entry, then load only the API, resource, or mod
 | Text/image/first-last-frame/multiple-reference video | [Video generation](references/capabilities/generation/video-generation.md) |
 | Images with or without references | [Image generation](references/capabilities/generation/image-generation.md) |
 | Speech, music, effects, or combined audio with up to 3 references | [Audio generation](references/capabilities/generation/audio-generation.md) |
-| Existing avatar plus an audio file or URL | [Digital-human video](references/capabilities/generation/digital-human-video.md) |
+| Avatar-only video using library audio, a file, or an audio URL | [Digital-human video](references/capabilities/generation/digital-human-video.md) |
 | Explicitly create or clone a reusable digital human | [Digital-human creation](references/capabilities/generation/digital-human-creation.md) |
-| Resolve a share link | [Content URL parsing](references/capabilities/analysis/content-url-parsing.md) |
+| Acquire share links, YouTube or other platform videos for translation, transcription or creation | [Shared external video acquisition](references/runtime/external-video.md), using native parsing or yt-dlp as appropriate |
 | Analyze video structure or identify music | [Video breakdown](references/capabilities/analysis/video-breakdown.md) |
-| Translate, dub, or review multilingual videos | [Video translation](references/capabilities/processing/video-translation.md) |
-| Remove subtitles | [Subtitle removal](references/capabilities/processing/subtitle-removal.md) |
+| Translate, dub, review, change speaker voices, or revise translated speech | [Video translation](references/capabilities/processing/video-translation.md) |
+| Remove subtitles | [Subtitle removal](references/capabilities/processing/subtitles-and-packaging.md#subtitle-removal) |
 | Transcribe audio/video, check speech, export TXT/SRT/VTT, or obtain caption timing (ASR) | [Speech transcription](references/capabilities/analysis/speech-transcription.md) |
-| Correct, segment, wrap, or add captions | [Subtitle processing](references/capabilities/processing/subtitle-addition.md) |
-| Edit or extend a video | [Video editing](references/capabilities/processing/video-segment-edit.md) |
-| Join, trim, overlay, mix, subtitle, or locally composite media | [Local composition](references/capabilities/processing/local-composition.md) |
+| Correct, segment, wrap, or add captions | [Subtitle processing](references/capabilities/processing/subtitles-and-packaging.md#subtitle-addition) |
+| Edit or extend a video | [Video editing](references/capabilities/processing/video-editing.md#video-segment-edit) |
+| Join, trim, mix, or subtitle media | [Production route](references/workflows/hybrid-video.md), cloud by default; [local composition](references/capabilities/processing/local-composition.md) for an explicit local choice |
 | Animated graphics, programmatic or template-based video | [Programmatic video](references/capabilities/generation/programmatic-video.md) |
 | Select an existing animation/video template | [Render templates](references/resources/render-templates.md) |
 | Choose local production, cloud editing, or both | [Hybrid production](references/workflows/hybrid-video.md) |
-| B-roll, chart inserts, transparent overlays | [B-roll production](references/workflows/broll-production.md) |
+| Save a Jianying draft, install or open the Jisi desktop client | [Desktop draft handoff](references/workflows/jianying-draft.md): current OpenAPI export-ID gap, installation guidance, task-prefilled launch only with a real ID |
+| Library mixcuts, learning reference editing, reusable mixcut templates, original sound/avatar/narration orchestration | [Agent semantic mixcut](references/workflows/semantic-mixcut.md): Agent selection, cloud editing by default |
+| Library B-roll, avatar inserts, charts, or transparent overlays | [B-roll production](references/workflows/broll-production.md) |
 | Vibbit cloud tracks, packaging, captions | [Media composition](references/capabilities/processing/media-composition.md) |
 | Generate and assemble storyboard shots | [Storyboard production](references/workflows/storyboard-video.md) |
 | Localize or batch-produce | [Localization](references/workflows/video-localization.md) / [Batches](references/workflows/batch-production.md) |
@@ -96,10 +101,13 @@ Start with this file. Select one entry, then load only the API, resource, or mod
 | Platform-specific or cross-platform methods | [Platform index](references/platforms/index.md) |
 | Model selection or input differences | [Model index](references/models/index.md), or the selected model directly |
 | Search videos, visually similar products, suppliers, or reviews | [Resource catalog](references/catalog.md#resources) |
+| Find library images, audio or video by name/tags/content, read clips, restore references, or save videos and check imports | [Material library and reuse](references/resources/materials.md) |
 | Query/manage the product library, parse product links, or import/update/delete products | [Product library and creative inputs](references/resources/products.md) |
 | Query avatars, voices, templates, or capability scope | [Module catalog](references/catalog.md) |
 
 Before calling Vibbit, read [API client](references/runtime/api-client.md), then authentication and task recording as directed. Read [media inputs](references/runtime/media-inputs.md) for upload/probing and [troubleshooting](references/runtime/troubleshooting.md) for failures.
+
+Video translation preserves original voices by default. Only use global or speaker-specific replacements for an explicit user request, following [voice intent and scope](references/capabilities/processing/video-translation.md#voice-intent-and-scope). Explain affected videos, languages and speakers before submission; detected single-voice audio does not authorize replacement.
 
 For reference audio, pass the `object_url` returned by `upload_info --file` directly in `reference_audio_urls`; library registration is unnecessary. Existing material IDs remain supported. See the [audio API](references/api/generate_audio.md).
 
@@ -109,7 +117,7 @@ Workflows connect existing inputs to deliverables. Product marketing reuses libr
 
 For an actual Vibbit analysis, resource query, or production task, check [authentication](references/runtime/authentication.md) early. Reuse credentials already verified for the same account/environment. If missing, actively open a supported setup entry or provide actionable links, verify, and continue the original task. Do not stop with only a missing-key notice or switch to local frame analysis/other tools to bypass setup. Discussion, capability explanations, dry runs, and explicitly requested local-only work need no setup. After configuration, use existing media inspection and local composition tools as production requires.
 
-External engines have separately installed official skills. Load only the selected engine and necessary modules from the [engine index](references/engines/index.md).
+External engines have separately installed official skills. Load only the selected engine and necessary modules from the [engine index](references/engines/index.md#engine-selection).
 
 ## Decision rules
 
@@ -118,15 +126,19 @@ External engines have separately installed official skills. Load only the select
 3. Reuse confirmed choices. Ask only about consequential gaps. Keep parameters within the selected capability's documented contract.
 4. Check downstream dependencies before spending credits on unusable intermediate results. Add B-roll, alternate takes, or samples only when useful and authorized.
 5. Use [capability discovery](references/runtime/capability-discovery.md) to verify inputs and execution conditions. Do not invent APIs, resources, or service steps.
-6. Respect execution location, installation preferences, and the available environment. Choose a route with [hybrid production](references/workflows/hybrid-video.md).
-7. Conserve credits on video revisions through [video review](references/capabilities/analysis/video-review.md): prefer reliable local fixes; when generation is needed, edit only affected intervals with necessary context, then splice them into the complete video. Reuse unaffected footage and adopted assets, and retain user-specified models, resolution, and audio requirements. A local defect does not default to a full-video regeneration.
+6. Default editing to Vibbit cloud; the Agent handles semantic matching, planning, and private records on its host. Respect explicit execution location, installation preferences, and existing projects. Choose a route with [hybrid production](references/workflows/hybrid-video.md).
+7. Conserve credits on video revisions through [video review](references/capabilities/analysis/video-review.md): prefer reliable postproduction fixes within the selected cloud or explicit local route; when generation is needed, edit only affected intervals with necessary context, then splice them into the complete video. Reuse unaffected footage and adopted assets, and retain user-specified models, resolution, and audio requirements. A local defect does not default to a full-video regeneration.
 8. For paid video generation and editing with a selectable resolution, including extension and localized regeneration, default to `720p` unless the user explicitly specifies another resolution. Higher-resolution sources, references, templates, or old requests do not authorize an upgrade. Do not upgrade models or switch to 1080p/4k for detail or repairs on your own. Construct and check actual requests under [paid video settings](references/capabilities/generation/video-generation.md#paid-video-settings), reusing established requirements without routine reconfirmation.
 
 ## Continuity and delivery
 
+For requested Jianying drafts, check export eligibility through [desktop draft handoff](references/workflows/jianying-draft.md). Current OpenAPI cannot supply the required Job ID; without a separate valid ID, report draft export blocked and retain the output. Proactively guide official installation when absent. Only a real ID enables task-prefilled launch, followed by the user saving.
+
+Use shared [image archiving](references/runtime/image-archiving.md) for reusable generated images: retain outputs, revisions and pending records, and claim registration only after verifying a real image material ID. Follow [materials](references/resources/materials.md) for videos: Seedance is registered by the service; a missing material ID never triggers reimport. Import external videos or new local outputs as needed. Track generation, registration and analysis separately without regenerating to solve archive problems. Honor no-archive requests for Skill actions without promising to disable server retention. Disclose unavailable audio registration.
+
 Maintain one adopted script across narration, subtitles, and lip sync. Preserve user wording or original audio; reconcile discrepancies before independently changing dependent outputs. Use [creative handoff](references/contracts/creative-handoff.md) when work spans stages.
 
-Save actual inputs, IDs, and records. Investigate uncertain submissions before resubmitting; another request may incur another charge. Follow [task lifecycle](references/runtime/task-lifecycle.md) for waiting, stopping, and resuming.
+Save actual inputs, IDs, and records. Investigate uncertain submissions before resubmitting; another request may incur another charge. Follow [task lifecycle](references/runtime/task-lifecycle.md) for waiting, stopping, and resuming. While the host permits execution, follow the task and finish authorized downstream production through delivery; an expired wait window does not require another user confirmation to continue. Report actual progress and blockers during execution.
 
 Inspect the actual deliverable against the request. For comics, use [novel-to-comic adaptation](references/workflows/novel-comic.md) to review and revise affected pages; for video, use [video review](references/capabilities/analysis/video-review.md); for other images/audio, inspect that medium. Report generation status separately from the scope of quality review.
 

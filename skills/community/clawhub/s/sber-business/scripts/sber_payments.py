@@ -17,7 +17,7 @@ import sys
 import uuid
 from typing import Any
 
-from sber_api import API, SberAPI
+from sber_api import API, SberAPI, build_curl_config
 
 MCP_URL = f"{API}/business-payments/mcp"
 SBI_PORTAL = "https://sbi.sberbank.ru:9443"
@@ -43,12 +43,16 @@ def mcp_call(method: str, params: dict | None = None, api: SberAPI | None = None
             "curl", "-sS", "--max-time", "30",
             "--cert", cert, "--key", key, "--cacert", cacert,
             "-X", "POST", MCP_URL,
-            "-H", "Content-Type: application/json",
-            "-H", "Accept: application/json, text/event-stream",
-            "-H", f"Authorization: Bearer {api.access_token}",
-            "-d", payload_bytes,
+            "--config", "-",
         ]
-        return subprocess.run(cmd, capture_output=True, text=True)
+        # SECURITY: Bearer token and JSON-RPC body are streamed via the stdin
+        # curl config, never placed in process argv.
+        cfg = build_curl_config(
+            headers={"Content-Type": "application/json",
+                     "Accept": "application/json, text/event-stream",
+                     "Authorization": f"Bearer {api.access_token}"},
+            raw_data=payload_bytes)
+        return subprocess.run(cmd, input=cfg, capture_output=True, text=True)
 
     res = api._execute_with_tls(_run)
     if res.returncode != 0:

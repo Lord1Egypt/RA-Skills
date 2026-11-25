@@ -1,6 +1,6 @@
 ## Description:
 
-Syncs a production config file against the latest upstream sample by copying only reference comments while preserving live settings and leaving only real configuration differences visible in diffs.
+Sync a production config file (e.g. hyprland.lua.gpd) against the latest upstream sample (e.g. hyprland.lua.260917) by copying only reference info/URL comments while preserving the user's actual configuration. Use when the user drops a freshly downloaded sample alongside a live config, mentions keeping the newest sample as the diff baseline, or wants only real config differences to remain visible in diff.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use this skill when maintaining a live configuration file beside a freshly downloaded upstream sample. It helps classify diff hunks, copy only inert reference comments, preserve user configuration, and produce a final diff for review.
+Developers maintaining a production configuration use this skill to compare it with a freshly downloaded upstream sample, remove comment and reference drift, and keep intentional configuration differences visible. It guides review of each diff hunk and preserves actual settings while updating inert reference text.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill is intended to guide edits to a production configuration file.
+Risk: The security assessment reports behavior outside the stated comment-synchronization purpose and notes that the example may introduce active configuration changes.
 
-Mitigation: Review the final diff before accepting changes and confirm that the sample file is unmodified, no live settings changed, and only real configuration differences remain.
+Mitigation: Review every proposed hunk, copy only inert reference information, and confirm that production values and active blocks remain unchanged.
 
-Risk: Ambiguous upstream changes, such as renames or deprecations, can look like ordinary configuration differences.
+Risk: The security scan was partial because several referenced resources were missing, so its available evidence does not cover those references.
 
-Mitigation: Investigate ambiguous hunks against the sample, upstream project history, and the installed version, then get user confirmation before applying any edit.
+Mitigation: Review the referenced materials and the skill instructions before installation; do not treat the partial scan as complete coverage.
 
 ## Reference(s):
 
+- [ClawHub skill release](https://clawhub.ai/j3ffyang/skills/sync-config-with-sample)
+- [Upstream Hyprland sample referenced by the skill (provenance unavailable)](https://github.com/hyprwm/Hyprland/blob/main/example/hyprland.lua)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+**Output Type(s):** [Analysis, Configuration instructions, Shell commands, Guidance]
 
-**Output Format:** [Markdown with diff summaries and inline shell commands]
+**Output Format:** [Markdown guidance with shell commands, diff classifications, and proposed configuration edits]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes hunk classifications, recommended edits, final diff review, and a list of preserved configuration differences.]
+**Other Properties Related to Output:** [Edits are limited to inert reference comments; configuration changes are reviewed separately.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server release evidence)
+1.0.2 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

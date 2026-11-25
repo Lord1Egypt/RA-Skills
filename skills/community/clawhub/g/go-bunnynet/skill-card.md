@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to add Bunny.net core API integrations to Go projects with the unofficial go-bunnynet client, including CDN, DNS, storage and video library configuration, statistics, load balancers, and billing.
+Developers use this skill to write Go code that configures and queries Bunny.net core services through the unofficial go-bunnynet client. It guides dependency setup, authentication, endpoint and response handling, and account-impacting operations.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The Bunny.net account API key can authorize account requests.
+Risk: The security scan is benign with medium confidence, but two local references were unmatched, leaving some evidence incomplete.
 
-Mitigation: Keep the key private in the environment; do not hardcode or log it.
+Mitigation: Review the referenced material and consider the scan's stated limitation when deciding whether to install.
 
-Risk: Creating, changing, deleting, purging, rotating keys, or closing accounts can affect the user's account.
+Risk: Using the client can affect the user's Bunny.net account, including creating or deleting resources, purging caches, rotating keys, or closing accounts.
 
-Mitigation: Request specific account changes deliberately and confirm the intended operation before applying it.
-
-Risk: This is an unofficial integration, and the security assessment covers the bundled instructions rather than a full audit of downloaded dependency code.
-
-Mitigation: Review and pin the dependency version before use.
+Mitigation: Use the API key from the environment, never hardcode or log credentials, and perform account-changing operations only when requested.
 
 ## Reference(s):
 
 - [Setup and API reference](references/setup.md)
-- [go-bunnynet package documentation](https://pkg.go.dev/github.com/psyb0t/go-bunnynet)
-- [go-bunnynet project homepage](https://github.com/psyb0t/go-bunnynet)
-- [ClawHub release](https://clawhub.ai/psyb0t/skills/go-bunnynet)
+- [GitHub repository](https://github.com/psyb0t/go-bunnynet)
+- [Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-bunnynet)
 
 ## Skill Output:
 
 **Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Go code and Markdown guidance with shell command examples]
+**Output Format:** [Go code and Markdown guidance with shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Examples and integration guidance vary with the requested Bunny.net core API operation.]
+**Other Properties Related to Output:** [Examples and API usage guidance; the library reads and writes no files.]
 
 ## Skill Version(s):
 
-0.4.0 (source: server-resolved release evidence)
+0.5.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

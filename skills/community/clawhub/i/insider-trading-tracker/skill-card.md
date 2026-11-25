@@ -1,6 +1,6 @@
 ## Description:
 
-Track insider trading from SEC Form 4 filings: insider buying and selling by ticker, market-wide insider activity, cluster buy signals where 3 or more insiders buy the same stock, and 10b5-1 plan detection for officer, director, and 10% owner trades. Read-only.
+Retrieves SEC Form 4 insider activity by ticker and market, including cluster buys and 10b5-1 plan indicators, through the read-only SentiSense API.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Investors and financial researchers use this skill to review public insider transaction disclosures by ticker or across the market, identify cluster buying, and distinguish planned sales from other reported activity. It provides informational context and does not offer personalized investment advice or place trades.
+Investors and analysts use the skill to inspect disclosed insider transactions, market-wide activity, and cluster buys as informational context.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Queries sent to the SentiSense API reveal the requested tickers or insider-activity questions to that service.
+Risk: The scan was partial with medium confidence because some local path-like references could not be resolved.
 
-Mitigation: Use a dedicated SentiSense API key and avoid including sensitive information in requests.
+Mitigation: Review the skill instructions and any referenced material available before installation.
 
-Risk: Free-tier preview results may omit filings, so a partial result can be mistaken for a complete view of insider activity.
+Risk: A free-tier preview may contain only the newest five filings, which cannot establish full-window totals or absence of insider buying.
 
-Mitigation: Clearly label preview results and do not make whole-window claims from a truncated slice.
+Mitigation: Check preview status and totalCount, and qualify conclusions when the response is truncated.
 
-Risk: Readers could mistake public filing summaries for personalized investment recommendations.
+Risk: Awards, exercises, gifts, plan purchases, and tax withholding can be mistaken for discretionary insider buying or selling.
 
-Mitigation: Present the results as informational context only, distinguish transaction types, and do not infer motives or recommend trades.
+Mitigation: Separate open-market P/S trades from corporate mechanics, exclude plan purchases from buy counts, and identify confirmed 10b5-1 sales.
 
 ## Reference(s):
 
 - [SentiSense API documentation](https://sentisense.ai/docs/api/#full-sample-responses-with-a-free-key)
-- [Get a SentiSense API key](https://app.sentisense.ai/get-api-key)
 - [SentiSense](https://sentisense.ai)
 - [ClawHub skill release](https://clawhub.ai/thesentitrader/skills/insider-trading-tracker)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, Text, Markdown]
+**Output Type(s):** [Analysis, Text, Guidance]
 
-**Output Format:** [Markdown summaries of SEC Form 4 data returned by the SentiSense API]
+**Output Format:** [Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Informational and educational; read-only. Free-tier market-wide endpoints may return only a preview slice.]
+**Other Properties Related to Output:** [Informational summaries based on returned API data; free-tier responses may be previews.]
 
 ## Skill Version(s):
 
-1.1.0 (source: server-resolved release evidence)
+1.2.0 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

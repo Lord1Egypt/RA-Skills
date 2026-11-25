@@ -1,6 +1,6 @@
 ## Description:
 
-Automates multi-round code review and iteration, with a defensive-programming mode for incremental coding tasks.
+Guides agents through iterative, multi-dimension code review and fixes, with a defensive workflow for incremental coding tasks.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use the skill to review and improve a codebase across multiple rounds, or to carry out an incremental coding task with pre-checks, validation, and a review gate. Its review-only mode supports read-only code health checks.
+Developers use this skill to review and improve code through repeated review and validation rounds, or to carry out incremental coding tasks with defensive checks.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Automated iterations can change project files or introduce regressions.
+Risk: Onboarding instructions may create ITERATE.md and iterate.config.yaml during review-only or dry-run workflows; the security scan was partial.
 
-Mitigation: Use a clean branch or worktree, confirm the project scope, review edits, and run configured validation; choose review-only mode for read-only checks.
-
-Risk: The bundle ends during onboarding and omits the referenced CLI implementation, so its safeguards cannot be assessed from these files alone.
-
-Mitigation: Review any separately installed tooling before relying on its onboarding, validation, or execution safeguards.
+Mitigation: Before onboarding, confirm those project files may be created, then inspect the working tree and generated files.
 
 ## Reference(s):
 
-- [Project README](https://github.com/jingzhao-l/iterate-skill)
+- [ClawHub skill release](https://clawhub.ai/jingzhao-l/skills/iterate-skill-slimtest)
 
 ## Skill Output:
 
-**Output Type(s):** [Code, Files, Shell commands, Markdown, Guidance]
+**Output Type(s):** [Code, Markdown, Shell commands, Configuration files, Guidance]
 
-**Output Format:** [Code and file changes, shell commands, and Markdown review reports or guidance]
+**Output Format:** [Code and project file changes, Markdown reports, and shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May modify project files in iteration mode; review-only/dry-run mode is read-only.]
+**Other Properties Related to Output:** [Onboarding may create ITERATE.md and iterate.config.yaml in the project.]
 
 ## Skill Version(s):
 
-0.0.7 (source: frontmatter, release metadata)
+0.0.9 (source: release evidence and frontmatter)
 
 ## Ethical Considerations:
 

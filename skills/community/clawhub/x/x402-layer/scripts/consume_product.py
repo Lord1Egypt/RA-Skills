@@ -1,333 +1,215 @@
 #!/usr/bin/env python3
 """
-consume_product.py - Purchase and download digital products from x402 Singularity Layer
+consume_product.py - Purchase and optionally download digital products from x402 Singularity Layer.
 
-This script enables agents to buy digital goods (files, assets, etc.) from the x402 marketplace.
-After payment verification, a temporary signed download URL is returned.
+Products are sold at https://api.x402layer.cc/p/<slug> with a standard x402 402 challenge.
+Pays with USDC on Base or Solana (X402_PREFER_NETWORK picks when both are offered), speaking
+x402 v2 when the 402 carries a PAYMENT-REQUIRED header and v1 otherwise (X402_WIRE=v1 forces v1).
 
 Usage:
-    python consume_product.py <product-slug-or-url>
-    
+    python consume_product.py <product-slug-or-url> [--download]
+
 Examples:
-    python consume_product.py pussio
-    python consume_product.py https://studio.x402layer.cc/pay/pussio
-    python consume_product.py https://api.x402layer.cc/storage/product/abc123-uuid
-    
-Environment Variables:
-    PRIVATE_KEY - Your EVM wallet private key (Base network)
-    WALLET_ADDRESS - Your EVM wallet address
-    
-Returns:
-    JSON with downloadUrl and fileName on success
+    python consume_product.py my-product-slug
+    python consume_product.py https://studio.x402layer.cc/pay/my-product-slug
+    python consume_product.py https://api.x402layer.cc/p/my-product-slug --download
+
+Credentials (explicit environment only, never a .env file):
+    Base:   PRIVATE_KEY + WALLET_ADDRESS, or AWAL mode
+    Solana: SOLANA_SECRET_KEY
+
+Safer defaults:
+- accepts only platform-hosted product URLs
+- downloads only from trusted storage hosts
+- after a payment is sent, a timeout / 202 / 5xx is reported as pending: never pay again for it
 """
 
-import os
-import sys
+import argparse
 import json
-import time
-import secrets
+import os
+import re
+from typing import Any, Dict, Optional
+from urllib.parse import quote, urlparse
+
 import requests
-from typing import Optional, Tuple
 
-# Constants
+import x402_wire
+from awal_bridge import awal_pay_url
+from network_selection import pick_payment_option
+from solana_signing import create_solana_payment_header, load_solana_wallet_address
+from wallet_signing import is_awal_mode
+
 API_BASE = "https://api.x402layer.cc"
-STUDIO_BASE = "https://studio.x402layer.cc"
-
-# USDC on Base
-USDC_ADDRESS = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
-USDC_NAME = "USD Coin"
-USDC_VERSION = "2"
-
-
-def _print_usage() -> None:
-    print("Usage: python consume_product.py <product-slug-or-url> [--download]")
-    print("\nExamples:")
-    print("  python consume_product.py pussio")
-    print("  python consume_product.py https://studio.x402layer.cc/pay/pussio")
-    print("  python consume_product.py pussio --download")
+TRUSTED_PRODUCT_HOSTS = {
+    "api.x402layer.cc",
+    "studio.x402layer.cc",
+}
+TRUSTED_DOWNLOAD_SUFFIXES = (
+    ".supabase.co",
+    ".supabase.in",
+    ".supabase.net",
+)
+_SLUG_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
 
 
-def load_credentials() -> Tuple[str, str]:
-    """Load wallet credentials from environment."""
-    private_key = os.getenv("PRIVATE_KEY")
-    wallet = os.getenv("WALLET_ADDRESS")
-
-    if not private_key or not wallet:
-        print("Error: Set PRIVATE_KEY and WALLET_ADDRESS environment variables")
-        sys.exit(1)
-    
-    return private_key, wallet
+def _product_url(slug: str) -> str:
+    slug = slug.strip().strip("/")
+    if not _SLUG_RE.match(slug):
+        raise ValueError(f"Not a valid product slug: {slug!r}")
+    return f"{API_BASE}/p/{quote(slug, safe='')}"
 
 
 def resolve_product_url(product_input: str) -> str:
-    """
-    Resolve various product input formats to the API URL.
-    
-    Accepts:
-        - Product slug: "pussio"
-        - Studio URL: "https://studio.x402layer.cc/pay/pussio"
-        - API URL: "https://api.x402layer.cc/storage/product/{uuid}"
-    """
-    # Already an API URL
-    if product_input.startswith(f"{API_BASE}/storage/product/"):
-        return product_input
-    
-    # Studio URL - extract slug
-    if product_input.startswith(f"{STUDIO_BASE}/pay/"):
-        slug = product_input.replace(f"{STUDIO_BASE}/pay/", "").strip("/")
-        # Need to resolve slug to product ID
-        return resolve_slug_to_api_url(slug)
-    
-    # Just a slug
+    """Slug, Studio pay link, or API product link -> https://api.x402layer.cc/p/<slug>."""
     if not product_input.startswith("http"):
-        return resolve_slug_to_api_url(product_input)
-    
-    raise ValueError(f"Unknown product URL format: {product_input}")
+        return _product_url(product_input)
+
+    parsed = urlparse(product_input)
+    if parsed.scheme != "https" or parsed.netloc not in TRUSTED_PRODUCT_HOSTS:
+        raise ValueError("Product URL must be an https link on api.x402layer.cc or studio.x402layer.cc")
+    path = parsed.path
+    if parsed.netloc == "studio.x402layer.cc" and path.startswith("/pay/"):
+        return _product_url(path[len("/pay/"):])
+    if parsed.netloc == "api.x402layer.cc" and path.startswith("/p/"):
+        return _product_url(path[len("/p/"):])
+    if parsed.netloc == "api.x402layer.cc" and path.startswith("/storage/product/"):
+        # Legacy link format: the product route accepts the product id too.
+        return _product_url(path[len("/storage/product/"):])
+    raise ValueError("Unknown product URL format (expected /pay/<slug> or /p/<slug>)")
 
 
-def resolve_slug_to_api_url(slug: str) -> str:
-    """Resolve a product slug to the API download URL by looking up the product ID."""
-    # Query marketplace for the product
-    response = requests.get(
-        f"{API_BASE}/marketplace",
-        params={"type": "product", "search": slug}
-    )
-    
-    if response.status_code != 200:
-        raise ValueError(f"Failed to query marketplace: {response.status_code}")
-    
-    data = response.json()
-    items = data.get("items", [])
-    
-    # Find exact slug match
-    product = next((item for item in items if item.get("slug") == slug), None)
-    
-    if not product:
-        # Try to find by partial match
-        product = next((item for item in items if slug.lower() in item.get("slug", "").lower()), None)
-    
-    if not product:
-        raise ValueError(f"Product not found: {slug}")
-    
-    product_id = product.get("id")
-    if not product_id:
-        raise ValueError(f"Product ID not found for slug: {slug}")
-    
-    return f"{API_BASE}/storage/product/{product_id}"
+def _is_trusted_download_url(url: str) -> bool:
+    parsed = urlparse(url)
+    if parsed.scheme != "https":
+        return False
+    host = parsed.netloc.lower()
+    if host in TRUSTED_PRODUCT_HOSTS:
+        return True
+    return any(host.endswith(suffix) for suffix in TRUSTED_DOWNLOAD_SUFFIXES)
 
 
-def create_eip712_signature(
-    private_key: str,
-    wallet: str,
-    pay_to: str,
-    amount: int,
-    nonce: str,
-    valid_after: int,
-    valid_before: int
-) -> dict:
-    """Create EIP-712 TransferWithAuthorization signature."""
-    from eth_account import Account
-    from eth_account.messages import encode_typed_data
-    
-    typed_data = {
-        "types": {
-            "EIP712Domain": [
-                {"name": "name", "type": "string"},
-                {"name": "version", "type": "string"},
-                {"name": "chainId", "type": "uint256"},
-                {"name": "verifyingContract", "type": "address"}
-            ],
-            "TransferWithAuthorization": [
-                {"name": "from", "type": "address"},
-                {"name": "to", "type": "address"},
-                {"name": "value", "type": "uint256"},
-                {"name": "validAfter", "type": "uint256"},
-                {"name": "validBefore", "type": "uint256"},
-                {"name": "nonce", "type": "bytes32"}
-            ]
-        },
-        "primaryType": "TransferWithAuthorization",
-        "domain": {
-            "name": USDC_NAME,
-            "version": USDC_VERSION,
-            "chainId": 8453,  # Base mainnet
-            "verifyingContract": USDC_ADDRESS
-        },
-        "message": {
-            "from": wallet,
-            "to": pay_to,
-            "value": amount,
-            "validAfter": valid_after,
-            "validBefore": valid_before,
-            "nonce": nonce
-        }
-    }
-    
-    encoded = encode_typed_data(full_message=typed_data)
-    signed = Account.sign_message(encoded, private_key=private_key)
-
-    # Ensure 0x prefix on signature for EVM compatibility
-    sig = signed.signature.hex()
-    if not sig.startswith("0x"):
-        sig = "0x" + sig
-
-    return {
-        "signature": sig,
-        "nonce": nonce,
-        "validAfter": valid_after,
-        "validBefore": valid_before
-    }
+def _request_product(url: str, headers: Optional[Dict[str, str]] = None) -> requests.Response:
+    merged_headers = {"Accept": "application/json"}
+    if headers:
+        merged_headers.update(headers)
+    return requests.get(url, headers=merged_headers, timeout=45)
 
 
-def consume_product(product_input: str, download_file: bool = False) -> dict:
-    """
-    Purchase and retrieve a digital product.
-    
-    Args:
-        product_input: Product slug, studio URL, or API URL
-        download_file: If True, also download the file to current directory
-        
-    Returns:
-        dict with downloadUrl and fileName
-    """
-    private_key, wallet = load_credentials()
-    
-    # Resolve to API URL
+def _download_url(result: Dict[str, Any]) -> Optional[str]:
+    return result.get("download_url") or result.get("downloadUrl")
+
+
+def _download_file(result: Dict[str, Any]) -> None:
+    download_url = _download_url(result)
+    if not download_url:
+        print("No download URL returned")
+        return
+    if not _is_trusted_download_url(download_url):
+        raise ValueError("Refusing to download from a non-trusted host")
+
+    raw_filename = result.get("file_name") or result.get("fileName") or "downloaded_product"
+    filename = os.path.basename(str(raw_filename))
+    if not filename or filename in {".", ".."}:
+        filename = "downloaded_product"
+
+    print(f"\nDownloading file to: {filename}")
+    file_response = requests.get(download_url, timeout=60)
+    if file_response.status_code != 200:
+        raise ValueError(f"Download failed: {file_response.status_code}")
+
+    with open(filename, "wb") as handle:
+        handle.write(file_response.content)
+    print(f"Downloaded: {filename} ({len(file_response.content)} bytes)")
+
+
+def _pay_with_local_keys(api_url: str) -> Dict[str, Any]:
+    response = _request_product(api_url)
+    if response.status_code == 200:
+        return response.json()
+    if response.status_code != 402:
+        raise ValueError(f"Unexpected response: {response.status_code} - {response.text[:500]}")
+
+    # v2 PAYMENT-REQUIRED header first, v1 JSON body otherwise (x402_wire).
+    challenge = x402_wire.read_challenge(response)
+    network, option, signer = pick_payment_option(challenge, context="product purchase")
+    amount = int(option["maxAmountRequired"])
+
+    print("Payment required:")
+    print(f"  Network:   {network}")
+    print(f"  Amount:    {amount} atomic units ({amount / 1_000_000:.6f} USDC)")
+    print(f"  Recipient: {option.get('payTo')}")
+
+    if network == "base":
+        if signer is None:
+            raise ValueError("Internal error: missing Base signer")
+        header_name, payment = signer.create_payment_header(challenge, option)
+        wallet = signer.wallet
+    else:
+        header_name, payment = create_solana_payment_header(challenge, option)
+        wallet = load_solana_wallet_address() or ""
+
+    print("\nSubmitting payment and requesting the product...")
+    headers = {header_name: payment}
+    if wallet:
+        headers["x-wallet-address"] = wallet
+    # From here the payment is SENT. A timeout, 202 or 5xx is pending, never a reason to pay again.
+    try:
+        paid = _request_product(api_url, headers=headers)
+    except requests.RequestException as exc:
+        return x402_wire.pending_result(None, exc)
+    if x402_wire.is_ambiguous_status(paid.status_code):
+        return x402_wire.pending_result(paid.status_code, paid.text)
+    if paid.status_code != 200:
+        raise ValueError(f"Payment failed: {paid.status_code} - {paid.text[:500]}")
+
+    settlement = x402_wire.read_payment_response(paid)
+    if settlement and settlement.get("transaction"):
+        print(f"Settled: {settlement.get('transaction')} on {settlement.get('network')}")
+    return paid.json()
+
+
+def consume_product(product_input: str, download_file: bool = False) -> Dict[str, Any]:
     print(f"Resolving product: {product_input}")
     api_url = resolve_product_url(product_input)
     print(f"API URL: {api_url}")
-    
-    # Step 1: Request without payment to get 402 response
-    print("\nStep 1: Fetching product payment requirements...")
-    response = requests.get(api_url, headers={"Accept": "application/json"})
-    
-    if response.status_code == 200:
-        # Product is free or already paid
-        print("Product is free or already authorized!")
-        return response.json()
-    
-    if response.status_code != 402:
-        raise ValueError(f"Unexpected response: {response.status_code} - {response.text}")
-    
-    # Parse 402 payment requirements
-    payment_info = response.json().get("payment", {})
-    
-    recipient = payment_info.get("recipient")
-    price = payment_info.get("amount")
-    currency = payment_info.get("currency", "USDC")
-    network = payment_info.get("network", "base")
-    
-    print(f"Payment required:")
-    print(f"  Recipient: {recipient}")
-    print(f"  Amount: {price} {currency}")
-    print(f"  Network: {network}")
-    
-    if network != "base":
-        raise ValueError(f"This script only supports Base network. Product requires: {network}")
-    
-    if currency not in ["USDC", "USD"]:
-        raise ValueError(f"This script only supports USDC. Product requires: {currency}")
-    
-    # Step 2: Create EIP-712 signature
-    print("\nStep 2: Signing payment with EIP-712...")
-    
-    # Convert price to atomic units (6 decimals for USDC)
-    amount = int(float(price) * 1e6)
-    
-    # Nonce must be bytes32 (0x + 64 hex chars = 32 bytes)
-    nonce = "0x" + secrets.token_hex(32)
-    valid_after = 0
-    valid_before = int(time.time()) + 3600  # 1 hour validity
-    
-    sig_data = create_eip712_signature(
-        private_key=private_key,
-        wallet=wallet,
-        pay_to=recipient,
-        amount=amount,
-        nonce=nonce,
-        valid_after=valid_after,
-        valid_before=valid_before
-    )
-    
-    # Step 3: Build X-Payment payload
-    payment_payload = {
-        "x402Version": 1,
-        "scheme": "exact",
-        "network": "base",
-        "payload": {
-            "signature": sig_data["signature"],
-            "authorization": {
-                "from": wallet,
-                "to": recipient,
-                "value": str(amount),
-                "validAfter": str(valid_after),
-                "validBefore": str(valid_before),
-                "nonce": nonce
-            }
-        }
-    }
-    
-    # Step 4: Make request with payment
-    print("\nStep 3: Submitting payment and requesting download...")
-    
-    response = requests.get(
-        api_url,
-        headers={
-            "X-Payment": json.dumps(payment_payload),
-            "Accept": "application/json"
-        }
-    )
-    
-    if response.status_code != 200:
-        raise ValueError(f"Payment failed: {response.status_code} - {response.text}")
-    
-    result = response.json()
-    
-    print(f"\n✅ Product purchased successfully!")
-    print(f"Download URL: {result.get('downloadUrl', 'N/A')}")
-    print(f"File Name: {result.get('fileName', 'N/A')}")
-    
-    # Optional: Download the file
-    if download_file and result.get("downloadUrl"):
-        # Sanitize filename to prevent path traversal attacks
-        raw_filename = result.get("fileName", "downloaded_product")
-        filename = os.path.basename(raw_filename)
-        # Additional safety: reject empty or dangerous filenames
-        if not filename or filename in ('.', '..'):
-            filename = "downloaded_product"
-        print(f"\nDownloading file to: {filename}")
-        
-        file_response = requests.get(result["downloadUrl"])
-        if file_response.status_code == 200:
-            with open(filename, "wb") as f:
-                f.write(file_response.content)
-            print(f"✅ Downloaded: {filename} ({len(file_response.content)} bytes)")
-        else:
-            print(f"❌ Download failed: {file_response.status_code}")
-    
+
+    if is_awal_mode():
+        print("Using AWAL to authorize the product purchase")
+        result = awal_pay_url(api_url, method="GET", headers={"Accept": "application/json"})
+        if result.get("error"):
+            raise ValueError(result["error"])
+    else:
+        result = _pay_with_local_keys(api_url)
+
+    if result.get("pending"):
+        print("\nPayment sent but not confirmed yet. Do NOT pay again.")
+        return result
+
+    print("\nProduct purchased successfully")
+    print(f"Download URL: {_download_url(result) or 'N/A'}")
+    print(f"File Name: {result.get('file_name') or result.get('fileName') or 'N/A'}")
+
+    if download_file:
+        _download_file(result)
+
     return result
 
 
-def main():
-    if len(sys.argv) >= 2 and sys.argv[1] in {"-h", "--help"}:
-        _print_usage()
-        sys.exit(0)
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Purchase a product from x402 Singularity Layer")
+    parser.add_argument("product", help="Product slug, Studio pay link, or api.x402layer.cc/p/<slug> link")
+    parser.add_argument("--download", action="store_true", help="Download the returned file after purchase")
+    args = parser.parse_args()
 
-    if len(sys.argv) < 2:
-        _print_usage()
-        sys.exit(1)
-    
-    product_input = sys.argv[1]
-    download_file = "--download" in sys.argv
-    
     try:
-        result = consume_product(product_input, download_file=download_file)
+        result = consume_product(args.product, download_file=args.download)
         print("\nResult:")
         print(json.dumps(result, indent=2))
-    except Exception as e:
-        print(f"\n❌ Error: {e}")
-        sys.exit(1)
+        return 2 if result.get("pending") else 0
+    except Exception as exc:
+        print(f"\nError: {exc}")
+        return 1
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

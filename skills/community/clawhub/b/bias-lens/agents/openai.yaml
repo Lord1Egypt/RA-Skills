@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bias lens"
+  short_description: "Highlight reasoning that resembles a catalog bias"
+  default_prompt: "Use $bias-lens to highlight possible cognitive-bias patterns in this text."

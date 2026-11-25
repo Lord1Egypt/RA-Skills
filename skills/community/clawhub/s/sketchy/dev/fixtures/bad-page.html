@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Fixture: a page with document-level problems. No <title>, no lang, a font that is never declared. -->
+<style>
+  body { margin: 0; padding: 24px; font-family: 'Caveat', cursive; font-size: 14px; background: #c3c8d1; color: #4a4a4a; }
+  .wide { width: 900px; font-size: 24px; }
+</style>
+</head>
+<body>
+  <p class="wide">A page whose handwriting font was never embedded, so it falls back to whatever the machine has.</p>
+  <p>Small print at fourteen pixels on a page.</p>
+  <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="40" height="40">
+  <figure class="sk-chart" data-chart='{"type":"bar","data":[["A",1],["B",2]]}'></figure>
+  <img src="missing-picture.png" alt="a picture that is not there">
+</body>
+</html>

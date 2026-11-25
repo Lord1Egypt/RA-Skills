@@ -18,8 +18,12 @@
     doc_lint.py FILE [FILE ...]
     doc_lint.py --pairs "经办窗口,社保窗口,政务中心" FILE
     doc_lint.py --json FILE
+    doc_lint.py --json --require-limitations README.md   # 技术文档必须含 Limitations 章节
 
 退出码：有硬错误 = 1；否则 = 0。
+
+--require-limitations 为 opt-in：仅在显式传入时于 JSON 增加 limitations_warning 字段
+（缺章节时为告警串，有章节时为 null），默认调用（含下游 --json + stdin）结构不变。
 """
 
 import argparse
@@ -44,6 +48,18 @@ ALIAS_RE = re.compile(r"(?:简称|又称|也称|亦称|或称|称为|称)\s*[“
 
 ID_RE = re.compile(r"(?<![0-9])[1-9]\d{5}(?:19|20)\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])\d{3}[0-9Xx](?![0-9])")
 MOBILE_RE = re.compile(r"(?<![0-9])1[3-9]\d{9}(?![0-9])")
+
+# 技术文档的 Limitations 章节：标题含 limitations / 局限性 / 已知限制 / 限制与不足。
+LIMITATIONS_RE = re.compile(r"^#{1,6}\s+.*(?:limitations|局限性|已知限制|限制与不足|限制)", re.IGNORECASE)
+LIMITATIONS_WARN = "缺少 Limitations 章节（技术文档须列出未测试平台、已知限制、不做的功能）"
+
+
+def limitations_warning(text):
+    """技术文档缺 Limitations 章节时返回告警串，否则 None。围栏内标题不算。"""
+    for line in strip_fences(text.splitlines()):
+        if LIMITATIONS_RE.match(line):
+            return None
+    return LIMITATIONS_WARN
 
 
 def split_row(line):
@@ -225,6 +241,19 @@ def selftest():
         good = got == expect
         ok = ok and good
         print(f"  [{'PASS' if good else 'FAIL'}] {name}（期望告警 {expect}，实际 {got}）")
+
+    # Limitations 必查：有章节不告警；缺章节告警；围栏内不算章节。
+    limitations_cases = [
+        ("有 Limitations", "# README\n\n## Limitations\n\n- macOS only\n", False),
+        ("缺 Limitations", "# README\n\n## 安装\n\npip install x\n", True),
+        ("围栏内不算", "# README\n\n```\n## Limitations\n```\n", True),
+    ]
+    for name, text, expect_warn in limitations_cases:
+        got = limitations_warning(text) is not None
+        good = got == expect_warn
+        ok = ok and good
+        print(f"  [{'PASS' if good else 'FAIL'}] {name}（期望告警 {expect_warn}，实际 {got}）")
+
     print("selftest:", "全部通过" if ok else "有失败项")
     return 0 if ok else 1
 
@@ -235,6 +264,8 @@ def main(argv=None):
     ap.add_argument("--pairs", action="append", default=[],
                     help='追加同义词组，格式 "概念:词1,词2,词3"，可多次')
     ap.add_argument("--json", action="store_true", help="JSON 输出")
+    ap.add_argument("--require-limitations", action="store_true",
+                    help="技术文档必须含 Limitations 章节（仅 --json 时新增告警字段）")
     ap.add_argument("--selftest", action="store_true", help="运行内置自测")
     args = ap.parse_args(argv)
 
@@ -282,6 +313,11 @@ def main(argv=None):
             "semicolon_density": round(density, 2),
             "pending_markers": len(markers),
         }
+        # opt-in：仅在显式 --require-limitations 时追加字段，默认结构逐字节不变。
+        lim_warn = None
+        if args.require_limitations:
+            lim_warn = limitations_warning(text)
+            res["limitations_warning"] = lim_warn
         all_results.append(res)
 
         if not args.json:
@@ -291,11 +327,13 @@ def main(argv=None):
                 print("【硬错误】")
                 for e in hard:
                     print("  ✗ " + e)
-            if res["warnings"]:
+            if res["warnings"] or lim_warn:
                 print("【告警】")
                 for w in res["warnings"]:
                     print("  ! " + w)
-            if not hard and not res["warnings"]:
+                if lim_warn:
+                    print("  ! " + lim_warn)
+            if not hard and not res["warnings"] and not lim_warn:
                 print("✅ 无硬错误、无告警。")
             print()
 

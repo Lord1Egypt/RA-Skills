@@ -1,7 +1,7 @@
 ---
 name: yotta-skills
 slug: yotta-skills
-version: 0.30.14
+version: 0.30.16
 displayName: 元阁 yotta-skills
 summary: YuanGe (yotta-skills) is the YottaMeta skill family orchestration router, inventory and one-command installer: route which skills to combine for a task, then install the published yotta-* skills into any agent or directory with a single npx line.
 description: 'YuanGe (yotta-skills) is the orchestration and installation layer for the YottaMeta skill family - a router, an inventory and a one-command installer. Given a task summary, `--route` suggests which skills to combine, in what order and why; `install` / `update` place the published yotta-* skills into any agent or directory (idempotent, `--dry-run`, `--pin`); `hub` keeps one local source of truth and links it into every verified host; `--inventory` / `--reindex` scan what is installed; `doctor` / `rollback` keep it healthy. Zero dependencies, Node.js 18+. This package contains no skill bodies - only a manifest, a downloader, a placer and a summary. 中文：元阁 / 技能编排 / 路由建议 / 一键安装 / 技能盘点 / 技能 Hub / 装前门禁。'
@@ -286,8 +286,8 @@ npx -y @yottameta/yotta-skills hub remove my-skill --dry-run
 `hub unlink` 清理），`hub hosts include` 恢复接管；`hub hosts set <agentId> --dir <目录>`
 用户级覆盖内置映射（被覆盖旧目录不再进入默认发现 / 链接），`--clear` 恢复默认。
 面板「宿主矩阵」提供等价动作（不接管 / 恢复接管 / 编辑目录 / 标记可用 / 隐藏标记 / 重命名（自定义注册）），
-写操作均写 Hub 审计。**YottaCode 不纳入接管**（自带三层技能管理；`.yottacode` 与
-`YOTTACODE_HOME` 在映射 / 扫描 / 注册 / 标记 / 链接全部排除）。未核实映射显示
+写操作均写 Hub 审计。**YottaWeave 不纳入接管**（自带三层技能管理；`.yottaweave` 与
+`YOTTAWEAVE_HOME` 在映射 / 扫描 / 注册 / 标记 / 链接全部排除）。未核实映射显示
 「映射·未核实」，「自动发现」只用于文件系统扫描结果。
 
 宿主发现兼容 `agentskills.io` 技能格式与 Vercel Labs `skills` CLI 的
@@ -596,7 +596,7 @@ npx -y @yottameta/yotta-skills usage reset --yes
 | Node.js 18+ | 必需（CLI 本体） | 明确提示 + 按平台给安装命令 |
 | npm | 拉包**回退通道** | 不影响：内置拉包为主 |
 | 系统 tar | 解包**回退通道** | 不影响：内置解包为主 |
-| Python 3.8+ | 元信装前扫描 | 门禁阻断；优先用 `--python` / `YOTTA_SKILLS_PYTHON` 指向宿主自带 Python（如 YottaCode），确实没有时用 `--skip-scan` 应急（`explicit-unverified`） |
+| Python 3.8+ | 元信装前扫描 | 门禁阻断；优先用 `--python` / `YOTTA_SKILLS_PYTHON` 指向宿主自带 Python（如 YottaWeave），确实没有时用 `--skip-scan` 应急（`explicit-unverified`） |
 
 缺依赖时按需给出「需要什么 / 为什么 / 一条修复命令 / 不影响使用」人话提示，不常驻提醒；
 `doctor` 的依赖自检块只告警不失败。

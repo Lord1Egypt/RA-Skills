@@ -1,7 +1,7 @@
 ---
 name: douyin-batch-to-text
 description: "抖音批量视频转文字 / Douyin batch video to text. 用户要把一个博主的一整套抖音视频、或一批抖音链接，逐条提取口播文案（逐字稿）并各存成一个 Markdown 文件时使用：对标账号整理、选题库、口播稿备份、喂给 AI 写稿。默认只要口播文案（最省的读法），可改成带画面文字的完整读取。附一张索引表（标题、作者、发布日期、点赞、文件名）。不登录抖音、不要 Cookie。需要 LinkDigest API Key（注册送 10 积分，不用绑卡）。"
-version: 1.0.0
+version: 1.0.1
 homepage: https://linkdigest.dev/zh/douyin-wenan-piliang-tiqu?ref=skill-douyin-batch-to-text
 metadata: {"openclaw":{"requires":{"anyBins":["python3"]},"primaryEnv":"LINKDIGEST_API_KEY","envVars":[{"name":"LINKDIGEST_API_KEY","required":true,"description":"LinkDigest API Key（ld_live_ 开头），在 https://linkdigest.dev/signin?ref=skill-douyin-batch-to-text&next=/app/keys 创建，注册送 10 积分"}],"homepage":"https://linkdigest.dev/zh/douyin-wenan-piliang-tiqu?ref=skill-douyin-batch-to-text"}}
 required_environment_variables:

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to create Python libraries and command-line tools, configure projects with pyproject.toml and entry points, manage dependencies with uv, and prepare packages for PyPI distribution.
+Developers use this skill to create and maintain distributable Python libraries and command-line tools. It provides guidance for project configuration, dependencies, entry points, build workflows, CI, and PyPI publishing.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Publishing steps can make uploaded artifacts public.
+Risk: Publishing to PyPI makes the built package contents public.
 
-Mitigation: Review the package contents and destination before running publishing steps.
+Mitigation: Review the built package contents before publishing; use TestPyPI when you need to verify a release first.
 
-Risk: The recursive cleanup command removes the build and distribution directories.
+Risk: The cleanup example removes the build/ and dist/ directories.
 
-Mitigation: Confirm the working directory and intended directories before running the cleanup command.
+Mitigation: Check those directories and confirm their contents are disposable before running the cleanup command.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-parseltongue-python-packaging)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/parseltongue)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+**Output Type(s):** [Guidance, Code, Configuration, Shell commands]
 
-**Output Format:** [Markdown with Python, TOML, YAML, and shell examples]
+**Output Format:** [Markdown with Python, TOML, YAML, and shell code blocks]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Examples and step-by-step packaging workflows]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, server-resolved release)
+1.10.4 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

@@ -1,0 +1,32 @@
+{
+  "name": "实时新闻热点",
+  "slug": "tencent-news-hotspot",
+  "version": "1.0.0",
+  "installedAt": 1793082191620,
+  "source": "marketplace",
+  "examples_zh": [
+    "聚合近期财经股票热点新闻",
+    "帮我汇总下今天的体育热点新闻",
+    "整理下本周科技领域的重要新闻"
+  ],
+  "examples_en": [
+    "Aggregate recent finance and stock hotspot news",
+    "Summarize today's sports hotspot news for me",
+    "Round up this week's important tech news"
+  ],
+  "description_zh": "按领域或频道汇总腾讯新闻热点精选内容，输出今日、本周或近期的精选文章清单与摘要。",
+  "description_en": "Summarize Tencent News featured articles by channel or domain for today, this week or a recent range.",
+  "tag_zh": [
+    "热点精选",
+    "频道",
+    "资讯汇总",
+    "腾讯新闻"
+  ],
+  "tag_en": [
+    "hotspot",
+    "channel",
+    "news digest",
+    "tencent"
+  ],
+  "iconSource": "tencent-news-hotspot"
+}

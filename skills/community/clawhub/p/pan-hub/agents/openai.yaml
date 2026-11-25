@@ -1,0 +1,4 @@
+interface:
+  display_name: "网盘通"
+  short_description: "把百度、阿里、夸克、天翼、迅雷等网盘分享链接或直链，统一下载到本机、Windows、NAS 或 WebDAV/SMB/S3 私人存储；自动判断免费/会员调度，凭据只存系统凭据库。"
+  default_prompt: "使用 $pan-hub 识别我提供的网盘链接，先输出 dry-run 计划，再把文件下载到我指定的目录；需要登录时只引导我用官方方式完成，不要把密码或 Cookie 放进聊天。"

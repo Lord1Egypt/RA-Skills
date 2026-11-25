@@ -1,6 +1,6 @@
 ## Description:
 
-Manage VMware vSphere and ESXi VM lifecycles, deployments, guest operations, clusters, alarms, datastore images, and read-only infrastructure investigations through agent tools and CLI commands.
+Manages VMware vSphere and ESXi virtual machine lifecycle, deployments, guest operations, clusters, alarms, and infrastructure investigations.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and infrastructure engineers use this skill to inspect VMware environments and manage VM, cluster, deployment, guest-operation, and alarm workflows. It can make changes in connected environments, so its permissions depend on the configured vCenter/ESXi and guest accounts.
+VMware administrators and infrastructure engineers use the skill to inspect VMware environments and manage VM lifecycle, deployments, clusters, alarms, and guest operations through an agent.
 
 ### Deployment Geography for Use:
 
@@ -22,45 +22,43 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates this release suspicious with medium confidence and notes that some referenced material was not fully inspected.
+Risk: The skill can make broad VMware changes, and some operations act on their first call.
 
-Mitigation: Before installing, review project-rule changes, the exposed MCP service and write permissions, guest command limits, and any requests to share diagnostics.
+Mitigation: Use a dedicated least-privilege vCenter or ESXi account and review the target and scope before state-changing operations.
 
-Risk: The skill can change VMware state, and some create, clone, deploy, power-on, and reconfigure operations act on their first call; access follows the connected account's permissions.
+Risk: Guest commands run with the supplied guest account and may affect the guest system.
 
-Mitigation: Use a dedicated least-privilege vCenter/ESXi account, review operation parameters and any available blast-radius preview, and approve state changes deliberately.
+Mitigation: Use a least-privilege guest account and review each command and its target before execution.
 
-Risk: Guest commands run with the supplied guest account, and guest file upload can read files available to the server process.
+Risk: When configured, webhooks can send issue and alarm details that may contain infrastructure identifiers.
 
-Mitigation: Use a least-privilege guest account and restrict which local files the server process can access; review commands and transfer paths before execution.
+Mitigation: Keep webhooks disabled unless needed; use approved endpoints and check what infrastructure details they receive.
 
-Risk: When configured, diagnostic webhooks can share alarm, event, and host-log details, including entity names and potentially host, IP, or user identifiers.
+Risk: Setup changes, external model examples, or support-sharing guidance may expose configuration or environment details.
 
-Mitigation: Keep webhooks disabled unless needed, use destinations you control, and review the diagnostic data sent before enabling them.
+Mitigation: Review configuration changes before applying them, and remove secrets and sensitive infrastructure details before sharing or sending examples externally.
 
 ## Reference(s):
 
-- [Setup and security guide](references/setup-guide.md)
-- [Tool capabilities and limits](references/capabilities.md)
-- [Agent guardrails](references/agent-guardrails.md)
-- [CLI reference](references/cli-reference.md)
-- [Investigation protocol](references/investigation-protocol.md)
-- [Project homepage (skill metadata)](https://github.com/vmware-skills/VMware-AIops)
-- [ClawHub release page](https://clawhub.ai/zw008/skills/vmware-aiops)
+- [VMware AIops project homepage](https://github.com/vmware-skills/VMware-AIops)
+- [Capabilities and operation boundaries](artifact/references/capabilities.md)
+- [Setup guide](artifact/references/setup-guide.md)
+- [Agent guardrails](artifact/references/agent-guardrails.md)
+- [Investigation protocol](artifact/references/investigation-protocol.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, API Calls, Shell commands, Configuration instructions, Files]
+**Output Type(s):** [API Calls, Shell commands, Guidance, Configuration instructions]
 
-**Output Format:** [Structured tool calls and text summaries, with CLI commands and configuration guidance in Markdown]
+**Output Format:** [Natural-language guidance and structured VMware tool calls or shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May initiate read or write operations against connected VMware targets; available actions and results depend on configured permissions and environment.]
+**Other Properties Related to Output:** [May initiate state-changing VMware operations and guest commands when requested.]
 
 ## Skill Version(s):
 
-2.5.2 (source: server release metadata)
+2.5.3 (source: server-resolved release)
 
 ## Ethical Considerations:
 

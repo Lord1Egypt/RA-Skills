@@ -1,0 +1,9 @@
+{
+  "status": "draft_ready",
+  "browserId": "easybr-xianyu-a",
+  "accountAlias": "闲鱼主店",
+  "filledFields": ["title", "description", "price", "category", "images"],
+  "missingFields": [],
+  "imageCount": 2,
+  "nextAction": "用户检查发布页后自行确认"
+}

@@ -2,7 +2,7 @@
 name: anzhuang-suanliang
 slug: anzhuang-suanliang
 displayName: 安装算量 · 概算底稿与物资计划双口径
-version: 0.4.38
+version: 0.4.39
 platforms: [macos, windows, linux]
 author: lis
 license: CC-BY-NC-SA-4.0

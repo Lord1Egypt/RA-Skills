@@ -6,7 +6,7 @@
 
 接口分四组：
   A. 定位     — find_transcript / resolve_session
-  B. 消息判定 — is_user_message / is_assistant_message / get_text / get_request_id
+  B. 消息判定 — is_user_message / is_human_turn / is_assistant_message / get_text / get_request_id
   C. 读写     — read_lines / write_branch / rewrite_ids / extract_title_hint
   D. 注册     — load_session_meta / register_branch / list_branches / is_branch_name
 
@@ -262,6 +262,24 @@ class TranscriptionAdapter:
     def is_user_message(self, obj: dict) -> bool:
         """该行是否是 user 消息。"""
         raise NotImplementedError
+
+    def is_human_turn(self, obj: dict) -> bool:
+        """该行是否是**本轮由"人"发起的一条指令**（= 找本轮边界的判据）。
+
+        ⚠️ **只用于找本轮边界，不用于完整性校验。** 两者判据不同，混用会互相破坏：
+          · 找边界要回答"用户的指令落在哪一行"——产品把同一句话落成什么形态是**产品细节**
+            （Claude Code 在回合运行中提交的输入不写成 `type:"user"`，而是
+            `type:"attachment"` + `attachment.type:"queued_command"`，见
+            `adapter_claude_code.is_human_turn`）；只认 `type:"user"` 会让锚点跳过它、
+            落到**再上一轮**的 user 行 ⇒ 切点前移一整轮，静默少一段上下文。
+          · 完整性校验（`verify_branch` / `locate_split_point` 的边界校验）要回答"这一行的
+            形态是否满足写出与复读的契约"——那里**必须**用窄口径（`is_user_message` 等），
+            放宽会让"切在工具结果行前面"这类形态被当成合法边界。
+
+        默认实现 = `is_user_message`（产品没有更精确的判据时，行为与旧版**完全一致**）。
+        产品若存在"人的指令不以 user 行落盘"的官方路径，应覆盖本方法。
+        """
+        return self.is_user_message(obj)
 
     def is_assistant_message(self, obj: dict) -> bool:
         """该行是否是 assistant 消息。"""

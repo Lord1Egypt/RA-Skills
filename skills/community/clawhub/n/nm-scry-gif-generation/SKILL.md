@@ -1,8 +1,7 @@
 ---
 name: gif-generation
-description: |
-  Converts webm/mp4 video files to optimized GIFs via ffmpeg with configurable quality settings
-version: 1.9.8
+description: Converts webm/mp4 to optimized GIFs with ffmpeg
+version: 1.10.3
 triggers:
   - gif
   - ffmpeg
@@ -15,28 +14,7 @@ source: claude-night-market
 source_plugin: scry
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/scry](https://github.com/athola/claude-night-market/tree/master/plugins/scry). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Overview](#overview)
-- [Required TodoWrite Items](#required-todowrite-items)
-- [Process](#process)
-- [Step 1: Validate Input File](#step-1:-validate-input-file)
-- [Step 2: Check ffmpeg Installation](#step-2:-check-ffmpeg-installation)
-- [Step 3: Execute Conversion](#step-3:-execute-conversion)
-- [Basic Conversion (Fast, Larger File)](#basic-conversion-(fast,-larger-file))
-- [High Quality with Palette Generation (Recommended)](#high-quality-with-palette-generation-(recommended))
-- [Maximum Quality with Dithering](#maximum-quality-with-dithering)
-- [Optimization Options](#optimization-options)
-- [Common Presets](#common-presets)
-- [Step 4: Verify Output](#step-4:-verify-output)
-- [Exit Criteria](#exit-criteria)
-- [Troubleshooting](#troubleshooting)
-- [Large Output File](#large-output-file)
-- [Color Banding](#color-banding)
-- [Slow Conversion](#slow-conversion)
+> **Night Market Skill**: ported from [claude-night-market/scry](https://github.com/athola/claude-night-market/tree/master/plugins/scry). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # GIF Generation Skill
@@ -58,7 +36,7 @@ Post-process video files (webm/mp4) and generate optimized GIF output with confi
 
 This skill handles the conversion of video recordings (typically from browser automation) to GIF format. It provides multiple quality presets and optimization options to balance file size with visual quality.
 
-## Required TodoWrite Items
+## Required Progress Items
 
 ```
 - Validate input video file exists

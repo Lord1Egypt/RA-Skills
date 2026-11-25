@@ -1,0 +1,75 @@
+#code=936
+//每个窗口都可以定义自己的托盘
+
+ENVI &::WM_TRAYNOTIFY=1109  //tray 通知消息
+
+SET  ::WM_LBUTTONDOWN                  =0x0201
+SET  ::WM_LBUTTONUP                    =0x0202
+SET  ::WM_LBUTTONDBLCLK                =0x0203
+SET  ::WM_RBUTTONDOWN                  =0x0204
+SET  ::WM_RBUTTONUP                    =0x0205
+SET  ::WM_RBUTTONDBLCLK                =0x0206
+
+SET  ::WM_SIZE=0x0005
+SET  &SIZE_MINIMIZED=1  //最小化 
+
+ENVI$  &&NL=0d 0a
+WIN1
+_SUB WIN1,W355H170,托盘示例，支持最小化和关闭小按钮,CALL OnClose,,,,  -trap      
+    ENVI &&WID=%&&__WINID%
+    CHEK &X2TRAY,L29T59W100H30,[X]则进入托盘,,1
+    ENVI @this.MSG=_%&::WM_TRAYNOTIFY%::&&wp,&&lp, CALL DoMenu %&wp% %&lp%   
+    ENVI @this.MSG=_%&::WM_SIZE%::&&wp,&&lp, CALL OnSize %&wp% %&lp%   
+    ITEM ITEM1,L31T24W60H30,进入托盘,CALL OnHide,
+    TIME &T1,0, CALL UpdateTray 
+    MEMO MEMO1,L174T9W156H123,,,
+    ITEM ITEM1,L30T99W60H30,立即退出, KILL \,
+_END
+_SUB OnClose
+    IFEX $1=%&X2TRAY.Check%, CALL OnHide! KILL \   
+_END
+
+
+_SUB OnSize 
+    IFEX $%&SIZE_MINIMIZED%=%1, OnHide
+_END
+
+_SUB OnHide
+    ENVI @this.Visable=0 
+    TIPS* 我的应用,开始,,,#2
+    ENVI @&T1=1000
+_END
+
+_SUB UpdateTray 
+    DATE  &&CurTime 
+    TIPS* 我的应用,%&&CurTime%,,,#2  //实时更新时间 
+_END
+
+
+_SUB OnShow
+    ENVI @&T1=0
+    TIPS*  //删除
+    ENVI @@Visable=%&WID%:2  
+_END
+_SUB OnExit
+    KILL  \  
+_END
+
+
+
+_SUB DoMenu
+    IFEX $%&::WM_LBUTTONDOWN%=%2,!!  TEAM CALL  OnShow | EXIT
+    IFEX $%&::WM_LBUTTONDOWN%=%2,!  IFEX $%&::WM_RBUTTONDOWN%=%2,!  EXIT BLOCK
+    CALL @--popmenu       MyMenu1
+    EXIT _SIB
+_END
+
+_SUB MyMenu1
+    CALC #&I=%&I% + 1
+    CALC #&&N= %&I% % 2
+    MENU Menu1,还原,  CALL  OnShow
+    IFEX $ 1 = %&N%, MENU Menu3,分辨率1024X768 颜色16位 刷新率60, DISP W1024H768B16F60  //动态菜单
+    MENU -
+    MENU Menu2,退出, CALl OnExit
+_END
+

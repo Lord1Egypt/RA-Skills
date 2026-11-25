@@ -1,6 +1,6 @@
 ## Description:
 
-17TRACK (17track.net). Use this skill for ANY 17TRACK request — reading, creating, and updating data. Whenever a task involves 17TRACK, use this skill instead of calling the API directly.
+Use the OOMOL-connected 17TRACK service to read shipment data and create or update tracking records.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Users with an OOMOL-connected 17TRACK account use this skill to check tracking quotas, list and inspect shipments, and register tracking numbers.
+External users and developers use this skill to query shipment status and manage tracking records through their connected 17TRACK account. It covers reads as well as registration, updates, and other tracking changes.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Automatic setup can execute remote code without a clear approval step.
+Risk: The security assessment marks the skill suspicious because it instructs downloading and running a remote installer whose necessity is unclear; the scan was partial and the installer contents were unavailable.
 
-Mitigation: Review and install a specific CLI release yourself, require approval for setup changes, and check the CLI's automatic skill-synchronization settings.
-
-Risk: Registering tracking numbers changes the connected 17TRACK account.
-
-Mitigation: Connect only the intended 17TRACK account and confirm the exact registration payload and effect with the user before running it.
+Mitigation: Do not install until the remote installer is independently verified and its necessity is explained; its behavior remains incompletely assessed.
 
 ## Reference(s):
 
-- [17TRACK](https://www.17track.net/)
-- [17TRACK API Documentation](https://api.17track.net/en/doc)
-- [oo CLI](https://github.com/oomol-lab/oo-cli)
-- [oo CLI Command Reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+- [17TRACK homepage](https://www.17track.net/)
+- [17TRACK API documentation](https://api.17track.net/en/doc)
+- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Guidance]
+**Output Type(s):** [JSON, Text, Guidance]
 
-**Output Format:** [Text summaries and JSON tracking data, with Markdown usage guidance]
+**Output Format:** [JSON data and concise text summaries]
 
-**Output Parameters:** [1D]
+**Output Parameters:** [Varies by action; supported batch actions handle up to 40 tracking numbers.]
 
-**Other Properties Related to Output:** [Shipment registration changes account data and requires user confirmation.]
+**Other Properties Related to Output:** [Action-dependent shipment, quota, and tracking information.]
 
 ## Skill Version(s):
 
-1.0.4 (source: ClawHub release metadata and skill frontmatter)
+1.0.5 (source: skill frontmatter and release evidence)
 
 ## Ethical Considerations:
 

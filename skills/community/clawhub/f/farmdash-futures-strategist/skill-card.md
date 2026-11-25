@@ -1,6 +1,6 @@
 ## Description:
 
-Hyperliquid perps strategist: market scans, funding rates, position sizing, and user-signed EIP-712 order execution & cancellation with drawdown guardrails.
+Hyperliquid perps strategist: market scans, funding rates, position sizing, and user-signed EIP-712 order execution and cancellation with drawdown guardrails.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Traders and agent developers use it to research Hyperliquid perpetual markets, compare setups, size exposure, and manage locally signed orders or cancellations under the selected execution policy.
+AI trading agents use this skill to scan Hyperliquid perpetual markets, analyze funding and market conditions, size positions, prepare or cancel orders, and reconcile venue outcomes under approval and risk controls.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Trading can lose funds despite local signing and risk checks.
+Risk: Optional onboarding can send a public agent wallet address to FarmDash, and bounded autonomous mode can trade without per-order confirmation when enabled.
 
-Mitigation: Review each order and the disclosed 0.001% builder fee, keep private keys local, and review policy limits, expiry, and revocation before enabling autonomy.
-
-Risk: Server-side safeguards were not independently verified because their implementation is unbundled.
-
-Mitigation: Check the publisher's deployment status before execution.
+Mitigation: Skip onboarding unless willing to share the public address. Use USER_SIGNED mode for fresh approval on each order or cancellation; before enabling bounded mode, review the owner-signed policy and verify live authority and runtime gates.
 
 ## Reference(s):
 
-- [FarmDash Agents](https://www.farmdash.one/agents)
-- [FarmDash Security and Authority Boundaries](https://www.farmdash.one/security)
-- [FarmDash Deployment Status](https://www.farmdash.one/api/v1/agent/status)
+- [FarmDash Agent Hub](https://www.farmdash.one/agents)
+- [Futures Strategist manual](https://www.farmdash.one/agents/skills/farmdash-futures-strategist)
+- [FarmDash OpenAPI contract](https://www.farmdash.one/agents/openapi.yaml)
+- [FarmDash MCP endpoint](https://www.farmdash.one/api/mcp)
+- [Security and authority boundaries](https://www.farmdash.one/security)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Guidance, API Calls]
+**Output Type(s):** [Market analysis, Trading guidance, API calls, JSON]
 
-**Output Format:** [Structured strategy data and concise explanatory text]
+**Output Format:** [Markdown summaries and structured JSON/API payloads]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Market scans, position sizing, strategy recommendations, and order preparation or execution results; no profit or loss-limit guarantee.]
+**Other Properties Related to Output:** [Tool-dependent; order payloads require local EIP-712 signing.]
 
 ## Skill Version(s):
 
-1.0.29 (source: release evidence)
+1.0.31 (source: ClawHub release metadata)
 
 ## Ethical Considerations:
 

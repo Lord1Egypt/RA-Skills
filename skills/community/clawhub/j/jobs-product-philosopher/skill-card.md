@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Product managers, founders, and brand builders use this skill to explore product direction, prioritize or remove features, and improve user experience through Steve Jobs-inspired frameworks. Its output is advisory and requires human review before real-world decisions.
+产品经理、创业者和品牌建设者可用此技能梳理产品方向、功能取舍、用户体验与创新策略，并生成供人工复核的方法论草稿。
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill's primarily Chinese responses may not suit every user.
+Risk: Security scan coverage was partial because a local reference could not be resolved, so the benign verdict does not establish that all referenced material was reviewed.
 
-Mitigation: Check language fit before use and request a suitable response language when needed.
+Mitigation: Review referenced material before relying on it, and check time-sensitive policy or market claims against current official sources.
 
-Risk: The security evidence is incomplete because a local path-like reference could not be resolved.
+Risk: The skill produces Chinese-primary output, which may not suit every intended audience.
 
-Mitigation: Review the available source material and scan evidence before relying on the guidance.
-
-Risk: Policy, market, and industry updates in the skill may become outdated.
-
-Mitigation: Verify time-sensitive claims against current official sources; treat financial or other professional decisions as requiring qualified human review.
+Mitigation: Confirm that Chinese-first responses fit the intended users before applying the framework.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/gechengling/jobs-product-philosopher)
+- [Jobs Product Philosophy on ClawHub](https://clawhub.ai/gechengling/skills/jobs-product-philosopher)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Markdown text, primarily in Chinese]
+**Output Format:** [Chinese-first advisory text in structured Markdown, including prompts, checklists, and comparison tables]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Advisory drafts for human review; no executable code or system actions.]
+**Other Properties Related to Output:** [Educational product-philosophy drafts for human review; no executable code or system actions.]
 
 ## Skill Version(s):
 
-2.0.6 (source: frontmatter)
+2.0.7 (source: frontmatter)
 
 ## Ethical Considerations:
 

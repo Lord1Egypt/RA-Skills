@@ -1,6 +1,6 @@
 ## Description:
 
-Helps agents store local secrets and scripts, run stored workflows, and delegate sealed packages between trusted devices.
+Local encrypted execution base for multi-agent, cross-node, privacy-preserving task execution, with storage for secrets and scripts and sealed packages for cross-device delegation.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agent operators use this skill to manage local credentials and scripts, execute stored workflows, and transfer sealed scripts or packages between trusted devices.
+Developers and agent runtime operators use MGC Blackbox to store sensitive values and scripts locally, run them through MGC, and delegate sealed scripts or workflows across trusted nodes.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Local secret storage and script execution grant broad credential and execution authority; the stated plaintext protection boundaries may be overstated.
+Risk: The security evidence reports token access and local service calls as expected behaviors, while scan coverage is partial and some local references could not be resolved.
 
-Mitigation: Review carefully before installation; use only trusted agents and scripts on a protected local account, and avoid highly sensitive production credentials until access scope and rotation are clear.
+Mitigation: Protect the MGC token file, review examples before running them, and inspect unresolved references before relying on the security assessment.
 
-Risk: A local access token can provide access to the vault.
+Risk: The weather example sends the supplied city to wttr.in.
 
-Mitigation: Protect the .mgc_token file as a vault credential and restrict local account access.
-
-Risk: Reading secrets, running stored or sealed scripts, importing packages, or exporting plaintext archives can expose data or execute untrusted code.
-
-Mitigation: Require explicit approval for each sensitive operation and inspect the source and destination before proceeding.
+Mitigation: Avoid using sensitive location details in the city value, or review and change the example before running it.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/zkeviny/skills/mgc-meta-skill)
-- [Project homepage (listed in manifest; import provenance unavailable)](https://github.com/zkeviny/MGC-Blackbox)
-- [Project issue tracker (listed in manifest)](https://github.com/zkeviny/MGC-Blackbox/issues)
+- [ClawHub Skill Listing](https://clawhub.ai/zkeviny/skills/mgc-meta-skill)
+- [MGC Blackbox Project Homepage](https://github.com/zkeviny/MGC-Blackbox)
+- [MGC Blackbox Issue Tracker](https://github.com/zkeviny/MGC-Blackbox/issues)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Code]
+**Output Type(s):** [Guidance, Code, API calls, Shell commands, Configuration instructions]
 
-**Output Format:** [Text and Markdown with inline commands and configuration examples]
+**Output Format:** [Markdown with Python, JSON, and shell examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May guide agents to invoke local tools that store or read secrets, execute scripts, and package workflows.]
+**Other Properties Related to Output:** [Includes MCP and REST API usage, installation steps, and security guidance.]
 
 ## Skill Version(s):
 
-1.5.3 (source: server release and skill frontmatter)
+1.5.5 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

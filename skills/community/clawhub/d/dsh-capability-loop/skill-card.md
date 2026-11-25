@@ -1,6 +1,6 @@
 ## Description:
 
-Guides DSH audits and upgrades through a repeatable governance loop spanning runtime fixes, requirements, design, testing, handoffs, acceptance gates, and documented iteration.
+A governance workflow for auditing, improving, validating, and iterating DSH skills, plugins, projects, and handoffs.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and DSH operators use this skill to audit and improve a DSH environment, then coordinate project work across requirements, design, testing, handoff, and acceptance.
+Developers using DSH use this skill to audit and improve their environment, guide projects from intake through acceptance, and prepare checked handoff materials.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review marks the skill suspicious due to reported potentially destructive cleanup, unsafe package contents, and advice to weaken antivirus protection.
+Risk: ClawScan marks the release suspicious for risky command execution, injected agent instructions, and state-changing actions. Scan coverage was partial: 54 of 63 components were fully inspected, and some content could not be fully parsed.
 
-Mitigation: Review directory-deletion behavior and package contents and assess the antivirus guidance before installation; consider avoiding installation until those checks are complete.
-
-Risk: Coverage was partial: 37 of 40 components were fully inspected, and the scan does not establish that all behavior is safe.
-
-Mitigation: Review the three partially inspected components before relying on the release.
+Mitigation: Consider avoiding installation until the command-execution path, instruction injection, state-changing actions, and antivirus guidance have been reviewed. Treat the partially inspected content as unevaluated.
 
 ## Reference(s):
 
-- [Quickstart](QUICKSTART.md)
-- [Capability audit workflow](references/10-audit.md)
-- [Runtime fixes](references/20-runtime-fix.md)
-- [Design and team workflow](references/50-design-team.md)
-- [Handoff workflow](references/60-handoff.md)
 - [ClawHub release page](https://clawhub.ai/linboomboom/skills/dsh-capability-loop)
+- [Project takeover and state guidance](references/02-takeover.md)
+- [Audit guidance](references/10-audit.md)
+- [Handoff guidance](references/60-handoff.md)
+- [Review and evolution guidance](references/75-grill.md)
+- [Store publishing guidance](references/95-store-publish.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown, Shell commands, Code]
+**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration]
 
-**Output Format:** [Markdown guidance, reports, checklists, and handoff documents with PowerShell and Python command examples]
+**Output Format:** [Markdown reports and checklists, shell commands, code examples, and JSON or YAML templates]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May use the included templates and scripts; environment-specific checks require the user's DSH and project paths.]
+**Other Properties Related to Output:** [May include audit findings, gate criteria, and handoff materials.]
 
 ## Skill Version(s):
 
-2.9.5 (source: SKILL.md frontmatter)
+2.15.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

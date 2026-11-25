@@ -1,6 +1,6 @@
 ## Description:
 
-帮助招投标从业者搜索招标公告、采购意向和临期项目，并查询项目详情与企业情报。
+面向招投标与采购场景，搜索公告、采购意向和临期项目，并按需查询企业情报、项目详情、正文、附件及进展。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-Proprietary
+MIT-0
 
 ## Use Case:
 
-面向招投标从业者，按关键词、地区和时间查找招标与采购机会，并整理项目进展、公告资料及企业信息。
+面向投标团队、采购人员和市场分析人员，用于发现中国招标与采购机会、跟进公告，并查询企业及项目资料。
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,38 @@ China
 
 ## Known Risks and Mitigations:
 
-Risk: The server security assessment flags credential handling and undeclared tool capabilities; it reports a suspicious result with medium confidence and notes that its inspection was partial.
+Risk: The skill supports account access that may involve entering SMS login codes or API keys through chat.
 
-Mitigation: Review the skill's enabled actions and credential flow before use, and limit access to what the task requires.
+Mitigation: Use account and credential features only if you are comfortable entering those values in chat, and only for a trusted service.
 
-Risk: Account setup can involve SMS verification and API credentials, which could expose access to an account if disclosed.
+Risk: The security review flags unclear tool scope and advises checking the configured API destination.
 
-Mitigation: Use a trusted private configuration for credentials, keep verification codes and API keys out of ordinary chat and result text, and use account setup only when requested.
+Mitigation: Review the requested operations and confirm that any configured API destination is trusted before use.
 
-Risk: Some detailed queries use account points, so an authenticated request may have an account cost.
+Risk: The security scan was partial: one of 103 components was not scanned, and one static analysis was limited.
 
-Mitigation: Explain when a requested operation uses points and follow the user's stated authorization before making it.
+Mitigation: Review the unscanned portions before installation or use.
 
 ## Reference(s):
 
-- [项目搜索说明](references/capabilities/project-search.md)
-- [账号接入说明](references/account-access.md)
-- [凭据配置说明](references/credential-configuration.md)
-- [千里马 AI 数据平台](https://ai.qianlima.com/?source=bb3b4102f584028c3830df37)
-- [ClawHub 技能页面](https://clawhub.ai/qianlima-creator/skills/qianlima-bidding-search)
+- [千里马账号平台](https://ai.qianlima.com/?source=bb3b4102f584028c3830df37)
+- [项目查询与使用说明](artifact/SKILL.md)
+- [账号接入与凭据配置](artifact/references/account-access.md)
+- [游客查询与免费访问说明](artifact/references/guest-access.md)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Chinese natural-language summaries and structured project lists]
+**Output Format:** [Chinese natural-language responses with structured project and company information]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Reports only information returned by the service and follows the account's access and entitlement limits.]
+**Other Properties Related to Output:** [Results depend on query coverage and account entitlements; basic tender listings may be available without registration, while some details use account credits.]
 
 ## Skill Version(s):
 
-1.0.1 (source: ClawHub release metadata, artifact manifest)
+1.0.2 (source: ClawHub release evidence, artifact/manifest.json)
 
 ## Ethical Considerations:
 

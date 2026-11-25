@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "toolkit_version": "1.0.0",
+  "toolkit_version": "1.1.0",
   "paths": {
     "sources": "素材",
     "projects": "作品",
@@ -27,6 +27,11 @@
     "follow_links": false,
     "progressive_montage_requires_explicit_request": true,
     "automatic_publication": false,
-    "automatic_deletion": false
+    "automatic_deletion": false,
+    "story_outline_confirmation_required": true,
+    "story_confirmation_explicit_skip_allowed": true,
+    "story_policy_scope": "agent_workflow_not_renderer_enforcement",
+    "storyboard_review_tool": "tools/review_board.py",
+    "storyboard_and_html_share_revision": true
   }
 }

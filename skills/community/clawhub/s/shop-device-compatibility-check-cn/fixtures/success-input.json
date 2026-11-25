@@ -1,0 +1,8 @@
+{
+  "devices": [{"model":"X2"},{"model":"X1"},{"model":"X2 Pro"}],
+  "accessories": [{"specification":"配件A"}],
+  "compatibility_rules": [
+    {"device_model":"X2","accessory_specification":"配件A","status":"确认适配","evidence":"厂家适配表（2026-01）列明：X2 支持配件A。"},
+    {"device_model":"X1","accessory_specification":"配件A","status":"明确不适配","evidence":"厂家排除表（2026-01）列明：X1 不支持配件A。"}
+  ]
+}

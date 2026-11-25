@@ -1,6 +1,6 @@
 ## Description:
 
-Unofficial Go client for the W&B Weave trace server API, generated with oapi-codegen. `weave.NewClientWithResponses(baseURL, auth)` from `github.com/psyb0t/go-weave` gives typed methods for every endpoint of the Weave trace server, with HTTP Basic authentication set in a request editor.
+Provides a typed Go client for recording and querying traces and related resources through the W&B Weave API.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Developers use this skill to add the go-weave client to Go projects and to record, query, and manage W&B Weave traces and related resources. It provides setup guidance, endpoint references, and Go usage examples.
+Developers use this skill to add Go code that records, queries, and manages traces and related resources in a W&B Weave trace server.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Trace inputs and outputs sent through the client may contain sensitive data and are uploaded to the configured trace server.
+Risk: Weave credentials could be exposed if they are hardcoded, committed, or logged.
 
-Mitigation: Verify the destination server and ensure trace inputs and outputs are appropriate to upload; use a dedicated or self-hosted W&B instance when needed.
+Mitigation: Read the username and API key from environment variables, and keep credentials out of source control, logs, and printed request headers.
 
-Risk: Delete and purge endpoints can remove project data.
+Risk: Trace inputs and outputs are sent to the configured trace server, which may contain sensitive data.
 
-Mitigation: Use these endpoints only for data created by the task or specifically named by the user, and only when the user asked for deletion.
+Mitigation: Review the data being sent and confirm the configured server is the intended W&B, dedicated, or self-hosted endpoint.
 
-Risk: The external Go dependency and publisher provenance have not been independently verified.
+Risk: Delete and purge methods can remove project data.
 
-Mitigation: Pin and review the Go dependency before use.
+Mitigation: Use these methods only for data created by the task or specifically named by the user, and only when requested.
 
 ## Reference(s):
 
-- [Setup and endpoint reference](references/setup.md)
+- [ClawHub skill page](https://clawhub.ai/psyb0t/skills/go-weave)
+- [Project repository](https://github.com/psyb0t/go-weave)
 - [Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-weave)
-- [Project homepage (declared in skill metadata)](https://github.com/psyb0t/go-weave)
+- [Setup and reference](references/setup.md)
 
 ## Skill Output:
 
 **Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown guidance with Go code and inline shell commands]
+**Output Format:** [Go code and Markdown guidance with shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include credential setup and trace server configuration instructions.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-0.3.0 (source: server-resolved release metadata)
+0.3.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

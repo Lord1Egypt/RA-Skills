@@ -1,0 +1,13 @@
+issue,date,tool_type,hours_finding_tool,hours_using_tool,hours_writing,hours_editing,hours_formatting_and_images,total_hours,sent_to,opened,replies,new_subscribers,format
+1,2026-08-02,cli,1.0,2.0,2.5,1.0,1.5,8.0,210,118,3,22,close look
+2,2026-08-09,note app,2.5,2.0,2.0,1.0,2.0,9.5,232,121,2,18,close look
+3,2026-08-16,cli,0.5,2.5,2.5,1.0,1.5,8.0,250,140,6,31,close look
+4,2026-08-23,design tool,3.0,1.5,2.0,1.5,2.5,10.5,281,135,1,15,close look
+5,2026-08-30,cli,0.5,2.0,2.0,0.5,1.5,6.5,296,165,7,44,close look
+6,2026-09-06,roundup,1.5,0.0,2.5,1.0,3.0,8.0,340,150,0,9,roundup of five tools
+7,2026-09-13,database,3.5,2.0,2.5,1.0,2.0,11.0,349,171,2,20,close look
+8,2026-09-20,cli,0.5,2.5,2.0,1.0,1.5,7.5,369,205,9,52,close look
+9,2026-09-27,note app,2.0,2.0,2.5,1.0,2.5,10.0,421,196,2,19,close look
+10,2026-10-04,interview,1.0,0.5,3.5,2.0,1.5,8.5,440,251,12,63,interview with a maker
+11,2026-10-11,design tool,3.0,2.0,2.0,1.5,3.0,11.5,503,231,1,24,close look
+12,2026-10-18,cli,0.5,2.0,2.0,1.0,1.5,7.0,527,292,8,48,close look

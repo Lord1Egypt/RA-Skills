@@ -1,0 +1,190 @@
+﻿//原作者：无忧::hhh333
+ENVI CFG=CFG.INI
+//原作者：无忧::hhh333
+ENVI CFG=CFG.INI
+ENVI^  EnviMode=1 //防止灵异事件!!
+_SUB CancelButt        //窗体共用的计时退出代码
+        CALC #Result=%TT%-1
+        ENVI TT=%Result%
+        ENVI @Button1=确定(%TT%秒)
+        IFEX $%TT%<1, TEAM ENVI @Timer1=0| KILL \
+_END
+
+_SUB ManulSetLoadMode,W450H450,请选定维护模式(外置位置：%IniDiskType% %IniDir%),,SHELL32.DLL#21
+        ENVI TT=30        //TT为窗口停留时间
+        ENVI V0=0--纯内核          128MB
+        ENVI V1=1--基本维护        256MB
+        ENVI V2=2--网络维护        512MB
+        ENVI V3=3--影音播放        768MB
+        ENVI V4=4--办公系统        1024MB
+        ENVI VREM0=模式0：进行基本的文件操作。
+        ENVI VREM1=模式1：系统分区、安装、克隆、破密、数据救援。
+        ENVI VREM2=模式2：局域网维护、IE、迅雷、QQ，请驱动网卡！
+        ENVI VREM3=模式3：影音播放、图形处理，推荐驱动显、声、网卡。
+        ENVI VREM4=模式4：WPS2009、附加输入法，推荐启用三卡和打印机驱动。
+        ENVI VREMNEWWIM=W7/8驱动：支持多媒体，但要占与未压缩前等量内存。
+        ENVI VREMOLDWIM=XP03驱动：播放器可能异常，但总不占内存。
+
+        TEAM ENVI $-CM_NET=0|ENVI RM_LAN=1|ENVI RM_PPP=0|ENVI RM_WAN=0|
+            \ ENVI RM_RLT=1|ENVI RM_VBE=0|ENVI CM_PRT=0|ENVI CM_DX9=0
+
+        //按记忆值设置选定的单选按钮        
+        IFEX $%OLDMODE%<1,TEAM ENVI VREM=%VREM0%|ENVI R0=1!ENVI R0=0
+        IFEX $%OLDMODE%=1,TEAM ENVI VREM=%VREM1%|ENVI R1=1!ENVI R1=0
+        IFEX $%OLDMODE%=2,TEAM ENVI VREM=%VREM2%|ENVI R2=1!ENVI R2=0
+        IFEX $%OLDMODE%=3,TEAM ENVI VREM=%VREM3%|ENVI R3=1!ENVI R3=0
+        IFEX $%OLDMODE%=4,TEAM ENVI VREM=%VREM4%|ENVI R4=1!ENVI R4=0
+
+        //Wim驱动版本选择参数设定
+        IFEX $%OldNewWim%=1,TEAM ENVI RM_NEW=1|ENVI RM_OLD=0!TEAM ENVI RM_NEW=0|ENVI RM_OLD=1
+        IFEX $%ISNT6%=0,TEAM CALC #RM_NEW=%RM_NEW%-2|CALC #RM_OLD=%RM_OLD%-2
+        IFEX $%OLDMODE%<0,!TEAM CALC #RM_NEW=%RM_NEW%-2|CALC #RM_OLD=%RM_OLD%-2
+        
+        //文件不存在按钮变灰
+        IFEX $%ExistWIMDRV%<0,TEAM ENVI $-CM_NET=-2|ENVIG $CM_SND=-2|ENVIG $CM_DSP=-2|
+            \ ENVIG $CM_PRT=-2|ENVIG $CM_DX9=-2|ENVI RM_LAN=-1|ENVI RM_PPP=-2|ENVI RM_WAN=-2|
+            \ ENVI RM_RLT=-1| ENVI RM_VBE=-2|ENVI CM_PRT=-2|ENVI CM_DX9=-2
+        IFEX $%ExistWIM1%<0,ENVI R1=-2
+        IFEX $%ExistWIM2%<0,ENVI R2=-2
+        IFEX $%ExistWIM3%<0,ENVI R3=-2
+        IFEX $%ExistWIM4%<0,ENVI R4=-2
+        ENVI CM2=%ExistWIMUOP%
+        IFEX $%IniReadOnly%>0,ENVI CM3=-2!ENVI CM3=0
+
+        //已驱动过一次则三卡按钮变灰
+        IFEX %WinDir%\LD_NET_WAN.OK,ENVI RM_WAN=-2
+        IFEX %WinDir%\LD_NET_LAN.OK,ENVI RM_LAN=-2
+        IFEX %WinDir%\LD_NET_PPP.OK,ENVI RM_PPP=-2
+        IFEX $%RM_WAN%=-2,IFEX $%RM_LAN%=-2,IFEX $%RM_PPP%=-2,ENVI $-CM_NET=-2
+        IFEX %WinDir%\LD_SND.OK,ENVI CM_SND=-2
+        IFEX %WinDir%\LD_DSP.OK,TEAM ENVI CM_DSP=-2|ENVI RM_RLT=-1|ENVI RM_VBE=-2
+        IFEX %WinDir%\LD_PRT.OK,ENVI CM_PRT=-2
+        IFEX %WinDir%\LD_DX9.OK,ENVI CM_DX9=-2
+        IFEX $%ISNT6%=1,ENVI RM_VBE=-2
+
+        GROU Group0,L12T2W420H215,模式选择
+        LABE ,L45T18W80H16,装载模式
+        LABE ,L150T18W80H16,推荐内存
+        LABE ,L300T18W80H16,驱动支撑
+
+        //LABE ,L32T30W390H17,-----------------------------------------------------------------
+        LABE+ ,L32T36W390H1,  //LABE+ 划线
+        RADI RadioButton0,L32T40W200H20,%V0%,TEAM ENVI @Timer1=0|ENVI @lblVREM=%VREM0%|
+            \ ENVI @Check_NET.Check=0|ENVI @Check_DSP.Check=0|ENVI @Check_SND.Check=0|
+            \ ENVI @Check_PRT.Check=0,%R0%
+        CHEK Check_NET,L240T40W80H20,驱动网卡→,ENVI @Timer1=0,%CM_NET%        
+        RADI RadioNetLAN,L330T40W40H16,有线,ENVI @Timer1=0,%RM_LAN%,1
+        RADI RadioPPPOE,L377T40W42H16,宽带,ENVI @Timer1=0,%RM_PPP%,1
+        RADI RadioNetWAN,L330T55W80H16,无线,ENVI @Timer1=0,%RM_WAN%,1
+
+        RADI RadioButton1,L32T70W200H20,%V1%,TEAM ENVI @Timer1=0|ENVI @lblVREM=%VREM1%|
+            \ ENVI @Check_NET.Check=0|ENVI @Check_DSP.Check=0|ENVI @Check_SND.Check=0|
+            \ ENVI @Check_PRT.Check=0,%R1%
+        CHEK Check_DSP,L240T70W80H20,驱动显卡→,TEAM ENVI @Timer1=0,%CM_DSP%        
+        RADI RadioDSPRLT,L330T70W80H16,真实驱动,ENVI @Timer1=0,%RM_RLT%,2
+        RADI RadioDSPVBE,L330T85W80H16,万能驱动,ENVI @Timer1=0,%RM_VBE%,2
+
+        RADI RadioButton2,L32T100W200H20,%V2%,TEAM ENVI @Timer1=0|ENVI @lblVREM=%VREM2%|
+            \ ENVI @Check_NET.Check=1|ENVI @Check_DSP.Check=0|ENVI @Check_SND.Check=0|
+            \ ENVI @Check_PRT.Check=0,%R2%
+        CHEK Check_SND,L240T100W80H20,驱动声卡,ENVI @Timer1=0,%CM_SND%        
+
+        RADI RadioButton3,L32T130W200H20,%V3%,TEAM ENVI @Timer1=0|ENVI @lblVREM=%VREM3%|
+            \ ENVI @Check_NET.Check=0|ENVI @Check_DSP.Check=1|ENVI @Check_SND.Check=1|
+            \ ENVI @Check_PRT.Check=0,%R3%
+        CHEK Check_PRT,L240T130W80H20,驱动打印机,ENVI @Timer1=0,%CM_PRT%        
+        ENVI DXV=DX9支持
+        FIND $%BootOS%=W7,ENVI DXV=DX11支持
+        FIND $%BootOS%=W8,ENVI DXV=DX11.1支持
+        RADI RadioButton4,L32T160W200H20,%V4%,TEAM ENVI @Timer1=0|ENVI @lblVREM=%VREM4%|
+            \ ENVI @Check_NET.Check=1|ENVI @Check_DSP.Check=1|ENVI @Check_SND.Check=1|
+            \ ENVI @Check_PRT.Check=1,%R4%
+        CHEK Check_DX9,L240T160W80H20,%DXV%,,%CM_DX9%        
+
+        GROU Group3,L325T110W100H70,选择Wim驱动
+        RADI RadioNewWim,L330T130W90H16,W7/8驱动,TEAM ENVI @Timer1=0|
+            \ ENVI @lblVREM=%VREMNEWWIM%,%RM_NEW%,3
+        RADI RadioOldWim,L330T160W90H16,XP03驱动,TEAM ENVI @Timer1=0|
+            \ ENVI @lblVREM=%VREMOLDWIM%,%RM_OLD%,3
+        
+        //LABE ,L32T180W390H17,-----------------------------------------------------------------
+        LABE+ ,L32T187W390H1,   //LABE+ 划线
+        LABE lblVREM,L32T195W385H17,%VREM%
+        
+        GROU Group2,L12T210W420H110
+        LABE ,L32T232W190H20,设置临时文件目录TEMP所在盘为
+        FDRV AllDrive= 
+        FDRV CurTmpDrv=%TEMP%
+        LIST ListDrv,L212T230W100H120,%AllDrive%,ENVI @Timer1=0,%CurTmpDrv%
+        ITEM Button3,L317T230W30H22,...,TEAM ENVI sMSG=请选择临时文件存放的盘：|CALL SelectDrv
+        CHEK Check2,L32T260W330H20,装载用户自制工具程序．．【由\H3PE下的 UOP.WIM 定义】,
+            \ ENVI @Timer1=0,%CM2%
+        CHEK Check3,L32T290W330H20,重启后按以上方式操作．．【不选则清除上次保存的配置】,
+            \ ENVI @Timer1=0,%CM3%
+        LABE ,L20T330W400H35,提示1.选择后面的模式自动包括前面的程序，退出则由程序根据以
+            \上推荐内存容量自动选择装载模式。
+        LABE ,L20T360W400H35,　　2.保存配置后，下次启动将取消按Ctrl键呼出本选单功能，进
+            \PE系统后重新装载本选单，通过清除配置可恢复Ctrl键功能。
+        
+        TEAM ENVI V0=|ENVI V1=|ENVI V2=|ENVI V3=|ENVI V4=
+        TEAM ENVI R0=|ENVI R1=|ENVI R2=|ENVI R3=|ENVI R4=|ENVI R4=|ENVI CM2=|ENVI CM3=
+        TEAM ENVI VREM0=|ENVI VREM1=|ENVI VREM2=|ENVI VREM3=|ENVI VREM4=|ENVI VREM=
+        TEAM ENVI AllDrive=|ENVI CurTmpDrv=
+        ITEM Button1,L320T395W88H24,确定,CALL CheckMode
+        TIME Timer1,1000,CALL CancelButt
+_END
+
+_SUB CheckMode        //上述“确定”按钮
+        ENVI SELECTMODE=手动选择
+        IFEX $%RadioButton0.Check%=1,ENVI $-LOADMODE=0
+        IFEX $%RadioButton1.Check%=1,ENVI $-LOADMODE=1
+        IFEX $%RadioButton2.Check%=1,ENVI $-LOADMODE=2
+        IFEX $%RadioButton3.Check%=1,ENVI $-LOADMODE=3
+        IFEX $%RadioButton4.Check%=1,ENVI $-LOADMODE=4
+        ENVI LOADUOP=%Check2.Check%
+        ENVI TMPDRV=%ListDrv%
+        ENVI $-CM_SND=%Check_SND.Check%
+        ENVI $-CM_PRT=%Check_PRT.Check%
+        ENVI $-CM_DX9=%Check_DX9.Check%
+
+        IFEX $%RadioNetLAN.Check%=1,ENVI $-CM_NET=1
+        IFEX $%RadioPPPOE.Check%=1,ENVI $-CM_NET=2
+        IFEX $%RadioNetWAN.Check%=1,ENVI $-CM_NET=3
+        IFEX $%RadioDSPRLT.Check%=1,ENVI $-CM_DSP=1
+        IFEX $%RadioDSPVBE.Check%=1,ENVI $-CM_DSP=2
+        IFEX $%Check_NET.Check%=0,ENVI $-CM_NET=0
+        IFEX $%Check_DSP.Check%=0,ENVI $-CM_DSP=0
+
+        IFEX $%RadioNewWim.Enable%>0,IFEX $%RadioNewWim.Check%=1,IFEX $%OldNewWim%=0,
+            \ ENVI CurNewWim=1
+        IFEX $%RadioOldWim.Enable%>0,IFEX $%RadioOldWim.Check%=1,IFEX $%OldNewWim%=1,
+            \ ENVI CurNewWim=0
+
+        //如果复选框为灰色则置贮存Check状态值的变量为0
+        IFEX $%Check_NET.Enable%=0,ENVI $-CM_NET=0
+        IFEX $%Check_SND.Enable%=0,ENVI $-CM_SND=0
+        IFEX $%Check_DSP.Enable%=0,ENVI $-CM_DSP=0
+        IFEX $%Check_PRT.Enable%=0,ENVI $-CM_PRT=0
+        IFEX $%Check_DX9.Enable%=0,ENVI $-CM_DX9=0
+
+        //保存配置
+        IFEX $%Check3.Check%=1,
+        {
+            ENVI^  EnviMode=1 //必须的！！！ 
+            FIND $%CFG%=,!!  EXIT -
+            PUTF -dd -len=0 %CFG%,0,zero  //清0长度
+            WRIT %CFG%,$+0,ENVI $-LOADMODE=%LOADMODE%
+            WRIT %CFG%,$+0,ENVI $-LOADUOP=%LOADUOP%
+            WRIT %CFG%,$+0,ENVI $-TMPDRV=%TMPDRV%
+            WRIT %CFG%,$+0,ENVI $-CM_NET=%CM_NET%
+            WRIT %CFG%,$+0,ENVI $-CM_SND=%CM_SND%
+            WRIT %CFG%,$+0,ENVI $-CM_DSP=%CM_DSP%
+            WRIT %CFG%,$+0,ENVI $-CM_PRT=%CM_PRT%
+            WRIT %CFG%,$+0,ENVI $-CM_DX9=%CM_DX9%
+        }!
+        {
+            IFEX %CFG%, FILE %CFG%
+        }
+        KILL \
+_END
+CALL ManulSetLoadMode

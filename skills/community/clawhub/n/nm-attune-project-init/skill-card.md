@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to initialize new Python, Rust, or TypeScript projects, or update existing project tooling. It gathers project settings and guides creation of source structure, configuration, Git setup, CI workflows, and pre-commit hooks.
+Developers use this skill to initialize or update Python, Rust, and TypeScript projects with version control, CI/CD, pre-commit hooks, build configuration, and project journals.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The broad Rust trigger may start the project setup workflow for unrelated Rust questions.
+Risk: ClawScan rates the skill suspicious, citing behavior that may not match its project-scaffolding purpose and a concern that template output could be written outside the project. Its analysis was partial because referenced local paths were missing.
 
-Mitigation: Review the trigger scope and inspect the referenced initialization script before installing; consider whether setup actions are appropriate for the Rust questions it may match.
+Mitigation: Review the intended destination and planned file paths before execution, confirm the write scope, and inspect generated files afterward.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-attune-project-init)
-- [Declared project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/attune)
+- [Attune plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/attune)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-attune-project-init)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Files]
+**Output Type(s):** [Configuration files, Shell commands, Guidance]
 
-**Output Format:** [Interactive Markdown guidance with shell commands and project scaffold files]
+**Output Format:** [Markdown instructions with shell commands and project configuration files]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Project-specific values determine the language and files to create; existing files are reviewed before overwrite.]
+**Other Properties Related to Output:** [Scaffolds files in the selected project directory, collects language and project metadata, and asks before overwriting existing configuration.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter, release evidence)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

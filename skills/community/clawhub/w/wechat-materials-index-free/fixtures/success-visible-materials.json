@@ -1,0 +1,19 @@
+{
+  "fixture_notice": "离线页面资料模拟；不是在线采集结果。",
+  "page_title": "素材管理（模拟页面）",
+  "theme": "秋季活动",
+  "visible_items": [
+    {"name": "秋日上新头图", "type": "图片", "visible_date": "2026-09-28", "source": "模拟页面/第1项"},
+    {"name": "会员日提醒", "type": "图文", "visible_date": "2026-09-30", "source": "模拟页面/第2项"}
+  ],
+  "expected_output": {
+    "title": "素材库目录草稿",
+    "scope_declaration": "仅覆盖模拟页面当前可见的2/20条；历史或分页未显示内容未盘点。",
+    "theme": "秋季活动",
+    "items": [
+      {"name": "秋日上新头图", "type": "图片", "theme": "秋季活动", "visible_date": "2026-09-28", "usage_todo": "确认是否用于秋季上新推文头图", "source": "模拟页面/第1项"},
+      {"name": "会员日提醒", "type": "图文", "theme": "秋季活动", "visible_date": "2026-09-30", "usage_todo": "确认会员日活动时间后安排复用", "source": "模拟页面/第2项"}
+    ],
+    "gaps": ["历史或分页未显示内容未盘点", "素材详情页未打开，尺寸与授权状态未显示"]
+  }
+}

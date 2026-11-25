@@ -1,6 +1,6 @@
 ## Description:
 
-Generates terminal recordings using VHS tape scripts and produces GIF outputs
+Generates terminal recordings using VHS tape scripts and produces GIF outputs.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use the skill to create terminal-session recordings for documentation and demos by validating VHS tape files and generating GIFs.
+Developers use this skill to create terminal demo recordings for documentation and tutorials. It guides them through preparing and running VHS tape scripts and checking the resulting recording.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Tape commands execute with the user's host permissions.
+Risk: Tape scripts can run commands in the recording environment.
 
-Mitigation: Review tape contents and commands before running; only execute tapes you trust on the current host.
+Mitigation: Review the tape commands before execution and run them in a restricted environment when appropriate.
 
-Risk: The guide includes a public publishing option, and recordings may contain sensitive content.
+Risk: The optional --publish flag makes recordings public.
 
-Mitigation: Use public publishing only when intended, and inspect recordings for sensitive content before publishing.
+Mitigation: Use --publish only when public sharing is intended, and check recordings for sensitive content before publishing.
 
 ## Reference(s):
 
-- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/scry)
-- [ClawHub release](https://clawhub.ai/athola/skills/nm-scry-vhs-recording)
+- [Scry plugin project](https://github.com/athola/claude-night-market/tree/master/plugins/scry)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-scry-vhs-recording)
 
 ## Skill Output:
 
-**Output Type(s):** [Files, Shell commands, Guidance]
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [GIF terminal recordings, with VHS tape instructions and shell commands in Markdown]
+**Output Format:** [VHS tape files and terminal recordings, typically GIFs, with Markdown guidance and inline shell commands.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [The tape file specifies the output path; VHS also supports MP4 and WebM.]
+**Other Properties Related to Output:** [Recording output format and appearance depend on the VHS tape directives.]
 
 ## Skill Version(s):
 
-1.10.3 (source: artifact frontmatter, ClawHub release)
+1.10.4 (source: server-resolved release)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Copy Studio guides marketing copy from brief through strategy, drafting, polishing, de-AI editing, and optional localization, with an approval gate after every stage.
+Copy Studio guides marketing copy from brief to finished landing page, website, email, ad, or social copy, pausing for approval at each stage.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Marketing teams and copywriters use Copy Studio to take a brief through strategy, an outline, drafting, editing, and de-AI review, with user approval between stages. It can optionally localize approved copy for a channel's language.
+External users and copywriters use Copy Studio to take a marketing brief through strategy, an outline, drafting, polishing, and de-AI editing, with approval at each stage. It can add localization when a suitable localization skill is available.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Security scan coverage is partial because a local path-like reference in SKILL.md could not be resolved.
+Risk: One local reference could not be resolved, so the security review is incomplete.
 
-Mitigation: Review the unresolved reference and its target before installing; the scan reported no findings but noted incomplete coverage.
+Mitigation: Check that reference and confirm the skill’s purpose fits your needs before relying on it.
 
 ## Reference(s):
 
-- [Channel calibration template](references/channel-calibration-template.md)
 - [Copy Studio on ClawHub](https://clawhub.ai/ekko237/skills/copy-studio)
-- [Publisher profile: ekko237](https://clawhub.ai/user/ekko237)
+- [Channel calibration and fact base template](references/channel-calibration-template.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Marketing copy, Text, Markdown, Guidance]
 
-**Output Format:** [Copy briefs, structured outlines, and polished marketing copy with working-language notes]
+**Output Format:** [Channel-appropriate marketing copy and workflow guidance in plain text or Markdown]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Interactive staged workflow; pauses for approval after each stage.]
+**Other Properties Related to Output:** [Pauses for user approval after each stage; localization is optional.]
 
 ## Skill Version(s):
 
-3.0.0 (source: release metadata and frontmatter)
+3.0.1 (source: frontmatter)
 
 ## Ethical Considerations:
 

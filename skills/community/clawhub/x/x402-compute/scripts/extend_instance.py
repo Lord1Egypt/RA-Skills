@@ -22,20 +22,17 @@ from typing import Dict
 
 import requests
 
-from solana_signing import create_solana_xpayment_from_accept, ensure_solana_destination_ready
-from wallet_signing import create_compute_auth_headers, load_compute_chain, load_payment_signer
+import x402_wire
+from solana_signing import create_solana_payment_header, ensure_solana_destination_ready
+from wallet_signing import EVM_ASSETS, create_compute_auth_headers, load_compute_chain, load_payment_signer
 
 BASE_URL = "https://compute.x402layer.cc"
 
 
 def _find_accept_option(challenge: dict, requested_network: str) -> dict:
+    # Exact network match (v1 name or exact-case CAIP-2). Unknown networks never match.
     for option in challenge.get("accepts", []):
-        network = str(option.get("network", "")).lower()
-        if requested_network == "base" and (network == "base" or "8453" in network):
-            return option
-        if requested_network == "solana" and (network == "solana" or network.startswith("solana:")):
-            return option
-        if requested_network == "robinhood" and (network == "robinhood" or "4663" in network):
+        if x402_wire.network_name(option.get("network")) == requested_network:
             return option
     raise ValueError(f"No {requested_network} payment option found in 402 challenge")
 
@@ -78,7 +75,8 @@ def extend_instance(instance_id: str, hours: int = 720, network: str = "base", s
     if response.status_code != 402:
         return {"error": f"Unexpected status {response.status_code}", "response": response.text[:500]}
 
-    challenge = response.json()
+    # v2 PAYMENT-REQUIRED header first, v1 JSON body otherwise (x402_wire).
+    challenge = x402_wire.read_challenge(response)
 
     option = _find_accept_option(challenge, network)
 
@@ -103,32 +101,40 @@ def extend_instance(instance_id: str, hours: int = 720, network: str = "base", s
         if confirm not in ("y", "yes"):
             return {"error": "Payment cancelled by user"}
 
-    if network in ("base", "robinhood"):
+    if network in EVM_ASSETS:
         # Both EVM EIP-3009 transferWithAuthorization; only the EIP-712 domain differs.
         try:
             signer = load_payment_signer()
         except Exception as exc:
             return {"error": str(exc)}
-        x_payment = signer.create_x402_payment_header(pay_to=pay_to, amount=amount, network=network)
+        header_name, x_payment = signer.create_payment_header(challenge, option, network)
     else:
         ensure_solana_destination_ready(option)
-        x_payment = create_solana_xpayment_from_accept(option)
+        header_name, x_payment = create_solana_payment_header(challenge, option)
 
     # Step 2: Pay and extend
     # NOTE: Do NOT send compute auth headers here.
     # The x402 X-Payment header authenticates the payer via on-chain payment.
     # Sending auth headers causes 401 (nonce already consumed from step 1).
-    response = requests.post(
-        f"{BASE_URL}/compute/instances/{instance_id}/extend",
-        data=body_json,
-        headers={
-            "Content-Type": "application/json",
-            "X-Payment": x_payment,
-        },
-        timeout=60,
-    )
+    # From here the payment is SENT. A timeout or 5xx is pending, never a reason to pay again.
+    try:
+        response = requests.post(
+            f"{BASE_URL}/compute/instances/{instance_id}/extend",
+            data=body_json,
+            headers={
+                "Content-Type": "application/json",
+                header_name: x_payment,
+            },
+            timeout=60,
+        )
+    except requests.RequestException as exc:
+        return x402_wire.pending_result(None, exc)
 
     print(f"Response: {response.status_code}")
+
+    if response.status_code >= 500:
+        print("Payment outcome unknown (server error after paying). Do NOT pay again.")
+        return x402_wire.pending_result(response.status_code, response.text)
 
     if response.status_code in (200, 201):
         data = response.json()

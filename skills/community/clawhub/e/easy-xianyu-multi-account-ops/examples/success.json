@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "1.0",
+  "mode": "draft-only",
+  "accounts": [
+    {"id": "shop-a", "browserId": "easybr-xianyu-a", "alias": "主店", "status": "completed", "results": ["draft-listing"]},
+    {"id": "shop-b", "browserId": "easybr-xianyu-b", "alias": "副店", "status": "completed", "results": ["message-summary"]}
+  ],
+  "summary": {"completed": 2, "needsUserAction": 0}
+}

@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { ALLOWED_MODELS } from "./contract.mjs";
+import { ALLOWED_MODELS, TOP_UP_URL } from "./contract.mjs";
 
 const skillRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const repoRoot = resolve(skillRoot, "..");
@@ -58,6 +58,11 @@ assert.match(
   "Skill client version drifted from package.json",
 );
 
+assert.ok(
+  modelCatalog.includes(`"${TOP_UP_URL}"`),
+  "Skill top-up link drifted from the link the API returns to skill callers",
+);
+
 for (const document of [skill, skillCard, apiReference, examples]) {
   assert.match(document, /\bminimax\b/i, "Public skill documentation must include MiniMax H3");
 }
@@ -79,9 +84,9 @@ const locales = ["en", "zh", "fr", "es", "de", "ja", "pt", "ar"];
 for (const locale of locales) {
   const localeText = await readFile(resolve(repoRoot, `apps/web/locales/${locale}.json`), "utf8");
   assert.match(
-    localeText,
-    new RegExp(`v${version.replaceAll(".", "\\.")}`),
-    `${locale} page version drifted`,
+    JSON.parse(localeText).skill.api.install.download,
+    /\{version\}/,
+    `${locale} download label must interpolate the shared skill version`,
   );
 }
 

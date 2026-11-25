@@ -2063,7 +2063,7 @@ def _compute_failed_automation_cost(
 ):
     """按 automation_id 聚合失败自动化的浪费成本。
 
-    数据模型说明：automation_runs.thread_id 是「run-{ts}-{n}」格式的内部 run ID，
+    数据模型说明：每条自动化运行记录带一个内部运行标识（形如运行序列号），
     与 sessions.id（UUID）不是同一套标识系统，因此无法直接 1:1 关联。本函数采用
     cwd 作为桥接键：每个 automation 涉及一组唯一 source_cwd，匹配 sessions.cwd 后
     累加这些会话的有效成本，再除以运行次数得到「平均单次成本」。

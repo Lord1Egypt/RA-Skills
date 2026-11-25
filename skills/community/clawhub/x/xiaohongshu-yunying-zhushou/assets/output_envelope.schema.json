@@ -20,7 +20,7 @@
         },
         "error_code": {
             "type": "string",
-            "description": "OK、NO_MATCH、INVALID_KEYWORD、INVALID_URL、INVALID_ARGS、AUTH_REQUIRED、AUTH_ERROR、PLAN_LIMIT、TIMEOUT、NETWORK_ERROR、HTTP_5xx、HTTP_429、API_ERROR，或接口 errcode 的十进制字符串"
+            "description": "OK、NO_MATCH、INVALID_KEYWORD、INVALID_URL、INVALID_ARGS、AUTH_REQUIRED、AUTH_ERROR、PLAN_LIMIT、INSUFFICIENT_BALANCE、RATE_LIMITED、DAILY_LIMIT、TIMEOUT、NETWORK_ERROR、HTTP_5xx、HTTP_429、API_ERROR，或接口 errcode 的十进制字符串。按 errmsg 判别：详情 14 多为余额不足；搜索/作品 14、评论 16 多为包月条数；15/17 多为余额；2 为短时限流；18 为日消费上限"
         },
         "message": {
             "type": "string",
@@ -95,6 +95,10 @@
                     "description": "本次执行耗时，毫秒。未捕获异常时为 0"
                 }
             }
+        },
+        "cost": {
+            "type": "number",
+            "description": "可选。取数成功或 empty 时，后端返回的本次花费估算（estimate）：包月固定为 1，按次为计费条数×单价。处理中、错误、或上游未返回时省略该字段；创建任务阶段不会有 cost"
         },
         "results": {
             "description": "error 与 empty 时为 null。搜索、评论成功时为数组，条目见 search_cli_resp、comment_cli_resp。详情成功时为对象，见 detail_cli_resp。作品成功时为对象，见 post_cli_resp",

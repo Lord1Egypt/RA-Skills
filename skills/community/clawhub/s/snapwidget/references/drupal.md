@@ -10,7 +10,7 @@ Paste your SnapWidget code into the body of a Drupal page where you want the wid
 
 > [!NOTE]
 >
-> You need the **Full HTML** text format. On a standard Drupal site, only administrators can use it. The **Basic HTML** format removes the `<iframe>` tag when you save.
+> You need the **Full HTML** text format. On a standard Drupal site, only administrators can use it. The **Basic HTML** format removes the code when you save.
 
 ### In SnapWidget
 

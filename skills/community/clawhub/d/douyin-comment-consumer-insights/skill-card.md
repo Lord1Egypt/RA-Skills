@@ -1,6 +1,6 @@
 ## Description:
 
-从抖音公开内容中检索视频、图文、作品详情、创作者作品、评论和热榜，并输出结构化数据以支持评论洞察与用户反馈分析。
+Summarizes public Douyin comments and related content into user questions, purchase concerns, usage feedback, demand themes, and sentiment evidence for product improvement and customer support preparation.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-内容运营、市场研究和客服团队可用它追踪热点、比较公开作品，并从评论中归纳用户问题、购买顾虑和反馈，供内部分析与报告使用。
+External users, analysts, and developers can search public Douyin videos, profiles, trends, and comments, then summarize feedback and demand themes for content planning, product decisions, and customer support.
 
 ### Deployment Geography for Use:
 
@@ -22,31 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Queries and Douyin links are sent to the third-party guaikei.com API using an API token.
+Risk: The security review flags account discovery and identifiable lead-generation capabilities, with partial scan coverage.
 
-Mitigation: Review the provider’s pricing and privacy terms before use, keep GUAIKEI_API_TOKEN private, and remove saved logs when they are no longer needed; provider retention behavior has not been verified.
+Mitigation: Review the package and confirm those capabilities fit the intended use before deployment; limit collection and retention to what the task needs.
+
+Risk: Supplied links or identifiers are sent to the Guaikei third-party service, and collected comments or profile data may be identifying.
+
+Mitigation: Review the service's data handling before submitting identifiers, and follow applicable privacy rules when storing or sharing results.
 
 ## Reference(s):
 
-- [需求挖掘指南](artifact/references/demand-mining.md)
-- [命令参数说明](artifact/references/options.md)
-- [更新日志](artifact/references/changelog.md)
-- [服务与令牌信息](https://www.guaikei.com)
-- [ClawHub 技能页面](https://clawhub.ai/why20261/skills/douyin-comment-consumer-insights)
+- [Comment demand analysis guide](artifact/references/demand-mining.md)
+- [Public comment research guide](artifact/references/customer-acquisition.md)
+- [Output contract](artifact/references/contract.md)
+- [Release page](https://clawhub.ai/why20261/skills/douyin-comment-consumer-insights)
+- [Guaikei API service](https://www.guaikei.com)
 
 ## Skill Output:
 
 **Output Type(s):** [JSON, Analysis, Guidance]
 
-**Output Format:** [结构化 JSON 数据与简洁的文本分析总结]
+**Output Format:** [Structured JSON data with concise natural-language analysis]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [可供后续分析的抖音公开内容、作品互动和评论数据；痛点归纳须遵循样本说明与证据要求。]
+**Other Properties Related to Output:** [Public Douyin data only; query results may be saved as local JSON logs.]
 
 ## Skill Version(s):
 
-1.4.2 (source: frontmatter, changelog released 2026-11-04, package.json)
+1.5.0 (source: server-resolved release, artifact/SKILL.md, artifact/package.json)
 
 ## Ethical Considerations:
 

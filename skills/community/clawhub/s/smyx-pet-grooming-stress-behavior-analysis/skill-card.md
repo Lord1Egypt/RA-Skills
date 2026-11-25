@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes pet grooming videos for visible stress behaviors such as struggling, panting, and tail tucking, then summarizes observed signals and stress levels for groomers and veterinary teams.
+Analyzes pet grooming videos for observable stress signals and produces a stress level with behavior observations and intervention suggestions.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External pet groomers, veterinary teams, and pet care providers can use the skill to review visible stress signals during grooming and consult analysis reports. Results are behavior observations, not medical diagnoses.
+Groomers, veterinary clinics, and pet care teams use it to review grooming videos, identify observable stress behaviors, and decide when to pause or adjust handling.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates the skill suspicious for credential and identity risks, behavior beyond video analysis, and a mode that may submit video despite saying it will not. Scanner coverage was partial because a referenced local path was missing.
+Risk: The security assessment is suspicious with medium confidence and incomplete evidence; it reports remote footage processing, account and profile handling, and an undeclared report-history feature.
 
-Mitigation: Consider avoiding installation unless comfortable with the reported risks. If proceeding, do not provide sensitive footage or credentials until the receiving service, its privacy practices, and its account and saved-data handling have been verified.
+Mitigation: Avoid installation unless you can accept these reported behaviors. Review the unresolved component and service data practices before sending footage.
+
+Risk: Grooming footage may contain identifiable or sensitive material and is reported to be processed remotely.
+
+Mitigation: Use only footage you are authorized to share, and remove identifying or sensitive content where practical.
 
 ## Reference(s):
 
 - [API interface documentation](references/api_doc.md)
-- [Skill demonstration](https://lifeemergence.com/sample.html)
-- [ClawHub skill release](https://clawhub.ai/18072937735/skills/smyx-pet-grooming-stress-behavior-analysis)
+- [Skill demo](https://lifeemergence.com/sample.html)
+- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-pet-grooming-stress-behavior-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Markdown, Guidance]
+**Output Type(s):** [JSON, Markdown, Text]
 
-**Output Format:** [Structured behavior analysis with observed stress signals, a stress level, and report links; available as JSON or Markdown.]
+**Output Format:** [Structured behavior analysis with a stress level, observations, suggestions, and report link; history results are presented as a Markdown table.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Behavior observation only; does not provide medical diagnosis or behavior modification plans.]
+**Other Properties Related to Output:** [Behavior observations for reference; no medical diagnosis or behavior modification plan.]
 
 ## Skill Version(s):
 
-1.0.17 (source: server-resolved release metadata)
+1.0.19 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

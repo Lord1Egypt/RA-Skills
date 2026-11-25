@@ -1,6 +1,6 @@
 ## Description:
 
-Helps an agent perform a zero-downtime OpenClaw self-upgrade using release-note review, backup, npm installation, restart health checks, and rollback handling.
+Guides OpenClaw upgrades by checking release information and Node.js compatibility, creating a backup, installing the update, and checking or rolling back the service.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and operators use this skill when they want an agent to check and apply an OpenClaw runtime upgrade while preserving service availability. It is intended for npm-global OpenClaw installations with systemd user services, backup, health-check, and rollback workflows.
+Developers and OpenClaw operators use this skill to plan and carry out an OpenClaw upgrade on a supported Linux installation, including compatibility checks and service recovery steps.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill can modify the local OpenClaw runtime and installed service during a real self-upgrade.
+Risk: Upgrade or rollback steps can delete or replace files before they are safely validated or approved.
 
-Mitigation: Require explicit manual approval before execution, confirm release notes, and pin the exact OpenClaw version and npm registry before installing.
-
-Risk: The security evidence reports that the script can modify the installed service without the user-confirmation gate promised in the instructions.
-
-Mitigation: Treat approval as a required external control and review the generated command sequence before allowing the upgrade script to run.
-
-Risk: Rollback restores service availability but does not protect against a compromised npm package.
-
-Mitigation: Use trusted registry settings, verify the package/version before install, and treat rollback only as availability recovery.
+Mitigation: Review the commands before execution, confirm the target version, and verify that a recoverable backup exists before allowing installation or rollback steps to change files.
 
 ## Reference(s):
 
-- [ClawHub Skill Page](https://clawhub.ai/luffertlu/skills/self-update-zero-downtime)
-- [Publisher Profile](https://clawhub.ai/user/luffertlu)
-- [npm registry](https://registry.npmjs.org)
-- [OpenClaw GitHub releases API](https://api.github.com/repos/openclaw/openclaw/releases)
+- [ClawHub skill release](https://clawhub.ai/luffertlu/skills/self-update-zero-downtime)
+- [OpenClaw GitHub releases](https://github.com/openclaw/openclaw/releases)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Configuration]
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown guidance with shell commands and operational status text]
+**Output Format:** [Markdown with inline shell commands and code blocks]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May write upgrade logs to disk and propose or run service-management commands during the upgrade workflow.]
+**Other Properties Related to Output:** [Step-by-step upgrade guidance and a Bash script for supported installations.]
 
 ## Skill Version(s):
 
-1.0.3 (source: server release metadata and package.json)
+1.1.0 (source: evidence.json release.version, package.json)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Generates multilingual ElevenLabs eleven_v3 speech from text with curated voices and adjustable stability, similarity, and style controls.
+ElevenLabs eleven_v3 text-to-speech with 12 curated multilingual voices and stability, similarity, and style controls.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers can turn written scripts into multilingual speech for dubbing, audiobooks, and character dialogue, choosing a voice and adjusting stability, similarity, and style.
+Developers and content creators use the skill to generate multilingual speech for dubbing, audiobooks, and character dialogue, with configurable voice and delivery controls.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill advertises ElevenLabs speech generation but uses dLazy login and authentication commands, and the scan does not establish how that authentication relates to the advertised purpose.
+Risk: The security review is partial: referenced paths were missing and the dLazy CLI package was not inspected.
 
-Mitigation: Review the complete instructions and CLI help, and use the skill only if you trust dLazy and intend to authenticate through its account and API flow.
+Mitigation: Before installing, review the CLI package and confirm its authentication and ElevenLabs TTS behavior match the intended use.
 
-Risk: Prompts are sent to dLazy-hosted services, and local media supplied to the CLI is uploaded to dLazy media storage.
+Risk: The security guidance notes a purpose mismatch and a hidden-content concern in the Chinese-language file.
 
-Mitigation: Do not submit sensitive text or files unless they are appropriate to share with dLazy; use only content you are authorized to provide.
+Mitigation: Compare the English and Chinese skill files and confirm the described purpose and authentication commands before use.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-elevenlabs-tts)
-- [dLazy CLI on npm](https://www.npmjs.com/package/@dlazy/cli)
-- [dLazy service](https://dlazy.com)
+- [dLazy CLI project page](https://github.com/dlazy-ai/cli)
+- [dLazy CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy](https://dlazy.com)
 
 ## Skill Output:
 
 **Output Type(s):** [Audio, JSON]
 
-**Output Format:** [Generated speech audio with JSON result metadata and hosted asset URLs]
+**Output Format:** [JSON result envelope with hosted media URLs]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Can return an asynchronous task ID or save a generated asset to a local path.]
+**Other Properties Related to Output:** [Asynchronous generation may return a task ID before completion.]
 
 ## Skill Version(s):
 
-1.3.42 (source: server-resolved release metadata)
+1.3.45 (source: server-resolved release metadata; artifact frontmatter lists 1.3.4)
 
 ## Ethical Considerations:
 

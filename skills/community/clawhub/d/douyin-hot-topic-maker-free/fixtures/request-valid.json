@@ -1,0 +1,13 @@
+{
+  "runtime": "easy-webbridge",
+  "accountAlias": "fixture-tech-account",
+  "accountProfile": {
+    "niche": "AI 工具实测",
+    "audience": "希望提高效率的上班族",
+    "contentPillars": ["工具上手", "工作流"],
+    "tone": "自然专业"
+  },
+  "keywords": ["AI工具"],
+  "planCount": 5,
+  "searchLimitPerKeyword": 12
+}

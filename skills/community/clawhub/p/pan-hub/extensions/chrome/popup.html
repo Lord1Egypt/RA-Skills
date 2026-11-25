@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>网盘通</title>
+  <style>
+    body { width: 340px; font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; margin: 0; padding: 12px; }
+    h1 { font-size: 15px; margin: 0 0 8px; }
+    label { display: block; margin: 6px 0 2px; font-size: 12px; color: #555; }
+    input, select { width: 100%; box-sizing: border-box; padding: 5px; font-size: 13px; }
+    textarea { width: 100%; box-sizing: border-box; padding: 5px; font-size: 13px; height: 60px; }
+    button { margin-top: 10px; width: 100%; padding: 7px; font-size: 13px; cursor: pointer; }
+    .status { margin-top: 8px; font-size: 12px; min-height: 16px; color: #333; }
+    .ok { color: #0a7a0a; }
+    .err { color: #c00; }
+    .tbox { border: 1px dashed #bbb; border-radius: 6px; padding: 8px; margin-top: 8px; }
+    .tbox h2 { font-size: 12px; margin: 0 0 4px; }
+    .tbox pre { background: #f6f6f6; border-radius: 4px; padding: 6px; font-size: 11px; margin: 6px 0 0; white-space: pre-wrap; word-break: break-all; max-height: 90px; overflow: auto; }
+    .row { display: flex; gap: 6px; }
+    .row > div { flex: 1; }
+  </style>
+</head>
+<body>
+  <h1>网盘通</h1>
+  <label>链接（可粘贴多个，取第一个）</label>
+  <textarea id="url"></textarea>
+  <div class="row">
+    <div><label>提取码</label><input id="pwd" placeholder="可选"></div>
+    <div><label>目标目录</label><input id="to" placeholder="可选"></div>
+  </div>
+  <div class="row">
+    <div><label>引擎</label><select id="engine">
+      <option value="">自动</option><option>alist</option><option>rclone</option><option>curl</option>
+    </select></div>
+    <div><label>档次</label><select id="tier">
+      <option value="">自动</option><option value="free">免费</option><option value="vip">会员</option>
+    </select></div>
+  </div>
+  <button id="start">开始下载</button>
+  <div class="status" id="status">就绪：本机 pan serve 需在 127.0.0.1:17890 运行。</div>
+  <div class="tbox">
+    <h2>测试连接（只读，不下载）</h2>
+    <div class="row">
+      <div style="flex:1"><label>提取码</label><input id="tpwd" placeholder="可选"></div>
+      <div style="width:90px;align-self:flex-end"><button id="tstart" style="padding:5px">测试</button></div>
+    </div>
+    <div id="tres" style="font-size:12px;margin-top:6px"></div>
+  </div>
+  <p style="font-size:11px;color:#888">扩展只连接本机，不读取网盘页面登录态。</p>
+  <script src="popup.js"></script>
+</body>
+</html>

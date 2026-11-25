@@ -39,6 +39,27 @@ python cli.py --db ../data/finance.db categorize
 python cli.py --db ../data/finance.db stats-summary
 ```
 
+## Account Balances
+
+Bank exports that include a `Saldo` column (Nordea and ICA both do) are stored per transaction, so the account's actual cash position is available without reconstructing it from running totals.
+
+```bash
+# Latest known balance for every account
+python cli.py --db ../data/finance.db balances
+
+# Balance as of a specific date (end of that day)
+python cli.py --db ../data/finance.db balances --date 2026-01-31
+```
+
+How it behaves:
+
+- `Saldo` is the balance *after* the posting, so an account's balance is the one on its most recent balance-carrying row.
+- Pending reservations (`Reserverat`) carry no balance — the money has not left the account yet — and are skipped.
+- Exports without a `Saldo` column import normally and leave the balance empty.
+- Re-importing an export fills balances on rows that were stored before balance parsing existed. It only fills empty balances and never overwrites an existing one.
+- Reservations (`Reserverat`) carry no date of their own. They are imported only from an export that reaches back to today (reservations are stored with the export's date), so replaying an old export cannot create a pending charge dated today.
+- An account with no balance data yet prints `n/a` rather than an inferred figure.
+
 ## Data Storage Pattern
 
 **User data lives OUTSIDE the skill directory.** Recommended structure:
@@ -93,6 +114,7 @@ The following commands require confirmation:
 |---------|-------------|
 | `import <files>` | Import bank CSV transactions |
 | `accounts` | List all registered bank accounts |
+| `balances [--date <YYYY-MM-DD>]` | Latest known account balance, parsed from the CSV `Saldo` column |
 | `add-account <name>` | Create a new bank account |
 | `update-account <id>` | Update account ownership ratio, type, name, etc. |
 | `delete-account <id> [--yes]` | Delete a bank account (requires confirmation or `-y`) |

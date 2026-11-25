@@ -1,6 +1,6 @@
 ## Description:
 
-TaskFuel lets agents discover and call paid services for media generation, transcription, research, data enrichment, document utilities, and user-approved external actions.
+Gives the agent capabilities it lacks, billed per call from the user's taskfuel.ai balance: generate images, video, music and speech; transcribe audio; find and verify emails; enrich people and companies; build lead lists; search X, Instagram, TikTok and YouTube; live market, crypto and SEC data; flights and weather; OCR, translation, screenshots; send email, place phone calls, mail letters; run VMs. Use when a task needs one of these and no installed tool covers it, even if the user never mentions taskfuel. Also use when the user names taskfuel.ai or asks to call a paid API. Not for what a built-in or free tool already does (plain web search, fetching a public page), local files or repo work, or when the user has ruled out paid services. Catalog search is free. Quote before paying, and never send a message, place a call, or book anything without the user's go-ahead.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Agents use TaskFuel when a task needs a paid capability not already available through installed or free tools, such as generating media, transcribing audio, researching people or markets, processing documents, or carrying out an explicitly approved external action.
+Agents use TaskFuel when a task needs a capability unavailable through installed tools, including media generation, transcription, data lookup, travel information, document utilities, or user-authorized outbound actions. The skill describes how to discover endpoints, check prices, cap paid calls, and retrieve results.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review marked the release suspicious due to an unverified remote installer, endpoint-rating commands outside the stated purpose, and paid calls that may proceed without explicit user approval.
+Risk: Setup runs a remote installer directly, and the security review rates the skill suspicious.
 
-Mitigation: Review or verify the installer before installation, and clarify endpoint-rating behavior and paid-use approval rules.
+Mitigation: Review the installation steps before use.
+
+Risk: The security review reports endpoint ratings and feedback, and paid calls that may proceed without user approval.
+
+Mitigation: Review the skill's spending steps and explicitly approve installations and paid calls; require approval before any paid operation.
 
 ## Reference(s):
 
-- [TaskFuel on ClawHub](https://clawhub.ai/taskfuel.ai/skills/taskfuel)
+- [TaskFuel ClawHub release](https://clawhub.ai/taskfuel.ai/skills/taskfuel)
 
 ## Skill Output:
 
-**Output Type(s):** [API results, Text, Files]
+**Output Type(s):** [Guidance, API Calls, Shell commands, Text]
 
-**Output Format:** [Provider-dependent response data or generated files]
+**Output Format:** [Markdown instructions with inline shell commands and JSON request bodies]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Varies by selected service; paid calls use the user's TaskFuel balance.]
+**Other Properties Related to Output:** [May initiate paid API calls; the skill requires user approval before sending messages, placing calls, mailing letters, or booking.]
 
 ## Skill Version(s):
 
-0.6.1 (source: evidence.json release metadata and artifact frontmatter)
+0.6.2 (source: evidence.json release, artifact frontmatter)
 
 ## Ethical Considerations:
 

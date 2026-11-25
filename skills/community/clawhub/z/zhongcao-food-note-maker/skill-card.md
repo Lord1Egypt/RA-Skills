@@ -1,6 +1,6 @@
 ## Description:
 
-Creates a coordinated vertical 3:4 Xiaohongshu/REDnote food post from a dish photo or visit concept, with image prompts, caption ideas, and optional platform research.
+Creates a coordinated vertical food-image sequence and REDnote post plan from a dish photo or restaurant-visit concept, with optional Xiaohongshu research.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External creators use this skill to plan a food-led REDnote or Xiaohongshu post, coordinate a four-image restaurant or dish story, and draft its title, captions, and tags. They can optionally request platform research to inform the post.
+Creators and restaurant marketers use this skill to turn a dish photo or visit concept into a coordinated REDnote food post, including a food image sequence and supporting title, caption, and tag ideas. It can also perform optional, separately priced Xiaohongshu lookups for topic notes, comments, or an account's recent notes.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,41 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review marks the skill suspicious because scanner reports flag broad account permissions, automatic installation, runtime data reporting, and shared-authorization risks beyond its food-post and research purpose.
+Risk: The requested shared account permissions may extend beyond food-post creation.
 
-Mitigation: Before installation, review and narrow permissions to the requested work, disclose runtime reporting and offer a meaningful choice, and clarify how shared credentials and uninstalling work. The review describes a suspicious verdict, not a finding of malicious intent.
+Mitigation: Review the authorization scopes and account access described in the installation guidance before connecting; do not authorize if the access is broader than you accept.
+
+Risk: Installation registration automatically reports coarse installation and runtime information to Beatra.
+
+Mitigation: Review the registration fields and privacy terms in the installation guidance before installing, and avoid installing if this reporting is not acceptable.
+
+Risk: Uninstall cleanup may affect shared Beatra connection data when the local installation inventory is malformed or incomplete.
+
+Mitigation: Check the installation inventory and whether other Beatra skills remain before disconnecting or uninstalling.
 
 ## Reference(s):
 
-- [Food-note planning](artifact/references/food-note-planning.md)
-- [REDnote Food Note workflow](artifact/references/workflow.md)
-- [Reading Xiaohongshu](artifact/references/note-lookup.md)
-- [Updates and security](artifact/references/updates-and-security.md)
+- [Food-note planning](references/food-note-planning.md)
+- [Food-note workflow](references/workflow.md)
+- [Xiaohongshu note lookup](references/note-lookup.md)
+- [Installation, authentication, and permissions](references/installation-and-auth.md)
+- [Updates and security](references/updates-and-security.md)
+- [Beatra skill page](https://beatra.ai/skills/zhongcao-food-note-maker)
+- [ClawHub release page](https://clawhub.ai/beatra-ai/skills/zhongcao-food-note-maker)
 
 ## Skill Output:
 
 **Output Type(s):** [Images, Text, Markdown, Guidance]
 
-**Output Format:** [Coordinated vertical 3:4 image sequence with a Markdown post plan containing title ideas, caption beats, and tags]
+**Output Format:** [A coordinated food-image sequence with title ideas, caption beats, and tags; optional Xiaohongshu lookup summaries]
 
-**Output Parameters:** [1D]
+**Output Parameters:** [Typically four vertical 3:4 images at 2K when the live model supports the requested sequence]
 
-**Other Properties Related to Output:** [Typically a four-image sequence; optional Xiaohongshu research is reported with its source and read time.]
+**Other Properties Related to Output:** [Food and restaurant claims are grounded in user-provided facts; optional platform lookups are separately priced and require confirmation.]
 
 ## Skill Version(s):
 
-0.2.4 (source: server-resolved release evidence)
+0.2.5 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Creates original instrumental background music and sound effects tailored to scene descriptions for short videos and other media.
+Describe the footage and get an original instrumental track written for it, yours to keep and use commercially.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Content creators and small media teams use it to generate original instrumental music and transition, stinger, or ambient sound effects from scene descriptions for short videos, vlogs, product clips, tutorials, livestreams, and similar content.
+External creators use the skill to turn a video or scene description into original instrumental background music for short videos, vlogs, product clips, livestreams, podcasts, and similar media.
 
 ### Deployment Geography for Use:
 
@@ -22,44 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review flags broad account permissions for the music task.
+Risk: ClawScan rates the skill suspicious because of broad permissions, installation-linked data collection, and a shared credential with a reported uninstall risk; the scan does not establish malicious intent.
 
-Mitigation: Review the requested access before authorizing the connection.
+Mitigation: Before installing, review the requested permissions, installation-linked data collection, and shared-credential and uninstall behavior; proceed only if the scope is acceptable.
 
-Risk: Installation registration collects recurring installation and runtime information.
+Risk: The security review is partial: some references were unresolved and the binary icon was outside analyzer coverage.
 
-Mitigation: Review the registration details and applicable privacy terms before installation.
-
-Risk: Removing shared connection data during uninstall could disrupt other installed skills.
-
-Mitigation: Use the uninstall workflow's shared-skill check before removing connection data.
-
-Risk: The security scan has partial coverage because some references were unresolved and the binary icon was not analyzed.
-
-Mitigation: Treat the scan as incomplete and review the unresolved components before installation.
+Mitigation: Manually review unresolved references and uncovered assets before relying on the scan.
 
 ## Reference(s):
 
-- [Beatra skill page](https://beatra.ai/skills/short-video-bgm-studio)
-- [Short-video BGM workflow](references/workflow.md)
-- [Music editing and audio](references/music-editing-and-audio.md)
-- [Billing, errors, and recovery](references/billing-errors-and-recovery.md)
-- [Installation registration](references/installation-registration.md)
-- [Uninstall and disconnect](references/uninstall-and-disconnect.md)
+- [Short Video BGM Studio](https://beatra.ai/skills/short-video-bgm-studio)
+- [BGM workflow](artifact/references/workflow.md)
+- [Music editing and audio](artifact/references/music-editing-and-audio.md)
+- [Tasks and results](artifact/references/tasks-and-results.md)
+- [Updates and security](artifact/references/updates-and-security.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Audio files, Text]
+**Output Type(s):** [Audio files, Markdown, Text]
 
-**Output Format:** [Generated audio clips with text delivery details]
+**Output Format:** [Original instrumental audio (MP3; optional WAV), with a Markdown production card and delivery summary.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Background music and sound effects are delivered as separate clips.]
+**Other Properties Related to Output:** [Optional cuts, loops, WAV versions, and separate sound effects; paid work requires user confirmation.]
 
 ## Skill Version(s):
 
-0.3.1 (source: server-resolved release metadata, manifest)
+0.3.2 (source: server release evidence and artifact manifest)
 
 ## Ethical Considerations:
 

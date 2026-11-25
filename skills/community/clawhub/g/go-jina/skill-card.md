@@ -1,6 +1,6 @@
 ## Description:
 
-Unofficial Go client for the Jina AI APIs, generated with oapi-codegen. Package `jina` (`github.com/psyb0t/go-jina`) calls api.jina.ai for embeddings, reranking, the model list, chat completions (document OCR) and batch embedding jobs; package `jinareader` (`github.com/psyb0t/go-jina/reader`) calls r.jina.ai to read a web page as markdown, text, HTML or JSON. Every endpoint is a typed `...WithResponse` method on `ClientWithResponses`, auth is a bearer API key set through `WithRequestEditorFn`, and responses decode into `JSON200` and per-status error fields. Use when Go code needs Jina embeddings, a reranker or the Reader API, or already imports go-jina.
+Typed Go clients for Jina AI embeddings, reranking, chat completions, batch jobs, model discovery, and web page reading.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-Go developers can use this skill to add typed clients for Jina AI embeddings, reranking, model discovery, chat completions, batch jobs, and web page reading. It guides API setup, bearer key handling, request construction, and response/error handling.
+Go developers use this skill to add typed clients for Jina AI's embedding, reranking, chat, batch, model-list, and Reader APIs to a Go project.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Text, images, documents, and URLs used with the clients are sent to Jina AI.
+Risk: Text, images, documents, and URLs sent through the clients are processed by Jina AI's hosted services.
 
-Mitigation: Send only content approved for sharing with Jina AI.
+Mitigation: Send only data that is approved for sharing with Jina AI.
 
-Risk: Batch embedding jobs can incur charges, and cancellation affects a job.
+Risk: API credentials and batch-job operations can expose access or incur charges.
 
-Mitigation: Authorize paid jobs explicitly and cancel only jobs owned by the task.
+Mitigation: Read the API key from the environment, do not log credentials or Authorization headers, and create or cancel only jobs the task owns when requested.
 
-Risk: The external Go dependency is not bundled or audited here.
+Risk: The security review is partial, and setup details and the listed API operations need review before installation.
 
-Mitigation: Review and pin the dependency before use.
+Mitigation: Review the setup reference and confirm that the API operations fit the intended use before installing.
 
 ## Reference(s):
 
-- [go-jina source repository](https://github.com/psyb0t/go-jina)
-- [go-jina package documentation](https://pkg.go.dev/github.com/psyb0t/go-jina)
-- [setup and API reference](references/setup.md)
-- [ClawHub skill release](https://clawhub.ai/psyb0t/skills/go-jina)
+- [Setup and API reference](references/setup.md)
+- [Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-jina)
+- [Project homepage](https://github.com/psyb0t/go-jina)
+- [ClawHub release page](https://clawhub.ai/psyb0t/skills/go-jina)
 
 ## Skill Output:
 
 **Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown guidance with Go code examples and shell commands]
+**Output Format:** [Markdown with Go and shell code examples]
 
 **Output Parameters:** [1D]
 
@@ -53,7 +53,7 @@ Mitigation: Review and pin the dependency before use.
 
 ## Skill Version(s):
 
-0.6.0 (source: server-resolved release metadata)
+0.6.1 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

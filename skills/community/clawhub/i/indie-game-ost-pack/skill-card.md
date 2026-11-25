@@ -1,6 +1,6 @@
 ## Description:
 
-Build an original indie game OST pack of 8 to 15 instrumental tracks for title, explore, battle, shop, and victory.
+Plans and generates a labeled pack of 8 to 15 original instrumental tracks for an indie game soundtrack.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Game developers use this skill to plan and create a labeled set of original instrumental tracks for an indie game's title, exploration, battle, shop, and victory scenes, with optional ambience and sound effects.
+Indie game developers use this skill to plan and produce original instrumental tracks for scenes such as title, exploration, combat, shops, and victory.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,41 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment reports permissions broader than soundtrack creation.
+Risk: The skill requests broad permissions and reports recurring telemetry.
 
-Mitigation: Review the requested permissions and proceed only if their scope is acceptable for the intended use.
+Mitigation: Before authorizing it, review the requested permissions and data sent; use it only if needed and limit permissions or disable registration where possible.
 
-Risk: The security assessment reports recurring installation-linked telemetry.
+Risk: Optional voice enrollment may involve sending additional data.
 
-Mitigation: Review the skill's updates and security guidance before installation and disconnect if the reporting behavior is not acceptable.
+Mitigation: Review what enrollment data is sent and skip enrollment when it is not needed.
 
-Risk: The security assessment notes a potential uninstall problem and incomplete scan coverage.
+Risk: A malformed uninstall inventory could affect other installed skills.
 
-Mitigation: Review removal guidance and manually inspect unresolved references; do not treat the scan as a safety clearance.
+Mitigation: Review the uninstall inventory before removal and consider its possible effect on other installed skills.
+
+Risk: The security scan was partial and did not establish that every artifact detail was assessed.
+
+Mitigation: Review the files and permissions relevant to your use before authorizing the service.
 
 ## Reference(s):
 
-- [ClawHub skill listing](https://clawhub.ai/beatra-ai/skills/indie-game-ost-pack)
+- [Indie game OST workflow](references/workflow.md)
+- [Music editing and audio](references/music-editing-and-audio.md)
 - [Beatra skill page](https://beatra.ai/skills/indie-game-ost-pack)
-- [Indie game OST workflow](artifact/references/workflow.md)
-- [Music editing and audio](artifact/references/music-editing-and-audio.md)
-- [Updates and security](artifact/references/updates-and-security.md)
 
 ## Skill Output:
 
 **Output Type(s):** [Audio files, Text, Markdown]
 
-**Output Format:** [Labeled instrumental soundtrack files with a Markdown delivery summary]
+**Output Format:** [Labeled instrumental tracks with a Markdown delivery summary and track details.]
 
-**Output Parameters:** [Variable-length tracks, with optional ambience and sound effects]
+**Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Loop-friendly arrangements; optional OGG finishing and editable variations when supported]
+**Other Properties Related to Output:** [Track labels, actual durations, file formats, and delivery identifiers; optional sound effects and OGG exports.]
 
 ## Skill Version(s):
 
-0.2.7 (source: server-resolved release metadata)
+0.2.8 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

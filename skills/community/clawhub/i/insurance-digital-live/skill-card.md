@@ -1,6 +1,6 @@
 ## Description:
 
-AI assistant for China insurance live streaming that generates compliant scripts, explains products, engages audiences, and optimizes sales conversion.
+AI-powered assistant for drafting China insurance livestream scripts, product explanations, audience responses, compliance checks, and sales follow-up content.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,41 +14,43 @@ MIT-0
 
 ## Use Case:
 
-China-based insurance companies and agents use the skill to draft live-stream scripts, product explanations, audience responses, compliance reminders, and social content for insurance marketing.
+Insurance agents and company teams use it to draft livestream and social media sales scripts, product explanations, audience replies, identity disclosures, and compliance self-checks for mainland China. Outputs are working drafts that require current-source checks and review by qualified institutional compliance staff before use.
 
 ### Deployment Geography for Use:
 
-China
+Mainland China
 
 ## Known Risks and Mitigations:
 
-Risk: The security review found no issues in the scanned results, but only half of the two listed components were fully scanned because the manifest could not be parsed.
+Risk: The supplied security review found no reported issues, but the inspection was incomplete, so unreviewed content could still contain issues.
 
-Mitigation: Review the skill files and any supplied dependencies before installation, as recommended by the security guidance.
+Mitigation: Have a qualified reviewer inspect the full skill and any referenced materials before deployment.
 
-Risk: Generated insurance product explanations or regulatory claims may be inaccurate or outdated when used in customer-facing sales content.
+Risk: Regulatory claims, product examples, or sales wording may be stale, incomplete, or unsuitable for a specific product or customer.
 
-Mitigation: Check product terms and current requirements against official sources, and have a qualified compliance reviewer approve content before publication.
+Mitigation: Verify against current official sources, contract terms, and institutional rules; require qualified compliance review before use.
+
+Risk: Customer identifiers or screenshots can expose sensitive information if included in prompts.
+
+Mitigation: Use placeholders and anonymized examples; handle customer material only through authorized channels with required consent.
 
 ## Reference(s):
 
-- [Server-resolved source repository](https://github.com/gechengling/insurance-digital-live)
-- [ClawHub skill release](https://clawhub.ai/gechengling/skills/insurance-digital-live)
-- [Publisher profile](https://clawhub.ai/user/gechengling)
+- [ClawHub release page](https://clawhub.ai/gechengling/skills/insurance-digital-live)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Chinese and English scripts, product explanations, interaction prompts, checklists, and social content]
+**Output Format:** [Markdown and structured text]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Templates contain placeholders for product terms, figures, and customer details; verify and complete them before use.]
+**Other Properties Related to Output:** [Drafts for user review; no publishing, customer-data access, sales decisions, or regulatory approvals.]
 
 ## Skill Version(s):
 
-5.0.4 (source: server-resolved release metadata; artifact frontmatter lists 5.0.0)
+5.0.5 (source: frontmatter, server-resolved release)
 
 ## Ethical Considerations:
 

@@ -1,7 +1,7 @@
 ---
 name: "AI Test Strategy Architect"
 description: "AI-powered test strategy and automation assistant — design comprehensive testing frameworks, generate unit/integration/e2e test cases, implement test automation for web/mobile/API, and build CI/CD testing pipelines. Covers Test-Driven Development (TDD), Behavior-Driven Development (BDD), property-based testing, and AI-augmented test generation. Built for QA engineers, software developers, test leads, and DevOps teams shipping reliable software. Keywords: test automation, unit testing, integration testing, e2e testing, TDD, BDD, CI/CD testing, Selenium, Playwright, Pytest, Jest, testing framework, test strategy, quality assurance, 测试自动化, 单元测试, 集成测试, 端到端测试, 测试策略, 质量保障."
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # AI Test Strategy Architect
@@ -753,7 +753,7 @@ ETL 的测试重点不是"函数对不对"，而是"数据对不对"。分四层
 4. **Set quality gates:** Block releases below thresholds
 5. **Monitor trends:** Track flakiness over time
 
-## Ecosystem Status (as of 2026-11-17 / 截至 2026-11-17)
+## Ecosystem Status (as of 2026-11-25 / 截至 2026-11-25)
 
 Tool versions and best practice shift quickly. Verify against official release
 notes before committing to a stack.
@@ -766,7 +766,7 @@ notes before committing to a stack.
 | 视觉回归方案 | SaaS 还是自托管 | 涉及截图是否出网（受监管行业敏感） |
 | AI 生成测试的合入政策 | 本单位对生成代码的评审要求 | 决定人工检查点设在哪里 |
 
-**最近动态（截至 2026-11-17，以官方发布为准）**
+**最近动态（截至 2026-11-25，以官方发布为准）**
 1. 变异测试与"断言强度"指标正从学术研究走向工程实践，部分团队已用它替代
    单纯的覆盖率门禁。
 2. 视觉回归的自托管方案受关注度上升，主要驱动是数据驻留与合规要求。
@@ -833,7 +833,7 @@ notes before committing to a stack.
   - E2E test patterns (Playwright)
   - CI/CD integration guidance
 
-**Last Updated**: 2026-11-17
+**Last Updated**: 2026-11-25
 
 ## 本轮增量（2026-11-13）：复核维度与举例补充
 
@@ -911,4 +911,46 @@ notes before committing to a stack.
 ### 时效性说明
 
 - 本期时效性核查：**截至 2026-11-17**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
+- 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。
+
+## 本轮增量（2026-11-25）：复核维度与举例补充
+
+> 本节为 2026-11-25 例行轮转的净增量记录：新增举例与复核维度均为本期首次出现，与既有条目不重复；仅作方法论参考，需具备相应资质的人员复核后使用。
+
+### 补充举例（按模块，本期新增）
+
+**Features**：
+
+- 能力清单补一条「断言强度是否单列核对」的占位标注位，由使用者圈选并留白说明，草稿不预置分数。
+- 为测试用例生成新增一张纸面对照：左列列场景标签，右列留白记录需人工补强的边界条件，不预置期望值。
+
+**Best Practices**：
+
+- 实践清单补一条「门禁是否按模块风险分层」的占位检查项，分层结论留白由人员确认。
+- 为集成环节新增一行「变更范围联动」占位：标注需人工确认的影响范围标签，具体范围留白。
+
+### 新增复核维度表（2026-11-25）
+
+> 本表新增「由谁执行 / 数据来源 / 复核要点 / 风险等级 / 适用边界」等维度列，把口径责任、数据来源与人工复核要求落到具体条目。
+
+| 复核维度 | 由谁执行 | 数据来源 | 复核要点 | 风险等级 | 适用边界 |
+| --- | --- | --- | --- | --- | --- |
+| 断言强度单列 | 测试架构师 + 复核人 | 能力清单草稿 | 是否圈选与留白、未预置分数 | 中 | 纸面对照，结论需人工确认 |
+| 门禁分层留白 | 测试架构师 | 实践占位表 | 是否标注按风险分层、阈值留白待人工确认 | 中 | 文档记录，不构成上线门禁 |
+
+### 适用边界 / 数据最小化 / 执行边界（本期复核与补齐）
+
+**适用边界**：本技能仅用于测试策略与质量门禁的方法论草稿的方法论参考与纸面草稿，输出为供使用者自行判断的参考文本；不构成正式结论、专业意见或对外发布内容。涉及正式上线门禁、发布决定与对外发布的场景不适用，应由具备相应资质的人员按既有制度独立完成。
+
+**数据最小化**：本期补齐：示例、清单与提问只保留占位标签与抽象情境描述，不写入可识别个人、客户或机构的信息；草稿阶段即标注需人工复核后再补充任何具体背景。
+
+**执行边界**：本期复核：文中「生成 / 输出 / 形成」均指生成待确认的纸面草稿，由使用者自行决定是否采用；不代为发布、提交、保存或进行任何系统操作。
+
+### 参考同类公开框架的补强（2026-11-25）
+
+> 参考同类公开框架把「覆盖率与断言质量分开看」「增量核对只覆盖变更代码」「按模块风险设差异化门禁且先报告后阻断」「存活项按等价 / 死代码 / 弱断言分诊」「影响分析与变更范围联动」整理为方向性核对维度；强调评分只作观测、阻断与否由具备资质的人员判定。仅吸收为文档化清单与占位项，不写入具体阈值、工具名或自动执行动作。
+
+### 时效性说明
+
+- 本期时效性核查：**截至 2026-11-25**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
 - 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。

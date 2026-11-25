@@ -1,6 +1,6 @@
 ## Description:
 
-Delegates to the MiniMax CLI (mmx)
+Delegates to the MiniMax CLI (mmx).
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill when the shared delegation core selects MiniMax, including for large-context batch processing, summarization, and multi-file analysis. It helps prepare and run authenticated mmx requests and save the resulting response.
+Developers use this skill when delegation-core selects MiniMax, or when a large-context MiniMax task is appropriate, to run batch processing, summarization, and multi-file analysis through an authenticated mmx CLI.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Selected file contents may be sent to MiniMax during delegation.
+Risk: Selected local file contents may be sent to MiniMax during delegation.
 
-Mitigation: Review requested files for sensitive content before sending them.
+Mitigation: Review the files and their contents before delegating, and exclude secrets or data you are not comfortable sending to the service.
 
-Risk: The security scan was partial, and behavior in unresolved references was not established.
+Risk: The security scan was partial and could not resolve several local path-like references, leaving the evidence incomplete.
 
-Mitigation: Review the referenced delegation components before relying on their behavior.
+Mitigation: Inspect unresolved referenced files and confirm their behavior before enabling the skill.
+
+Risk: Model choices may affect account usage limits.
+
+Mitigation: Choose a model that fits the task and check the applicable MiniMax account limits and pricing before large delegations.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-conjure-minimax-delegation)
-- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/conjure)
-- [MiniMax CLI](https://github.com/MiniMax-AI/cli)
-- [MiniMax documentation](https://platform.minimax.io/docs)
-- [MiniMax pricing](https://platform.minimax.io/docs/pricing/overview)
+- [MiniMax CLI documentation](https://platform.minimax.io/docs)
+- [MiniMax pricing documentation](https://platform.minimax.io/docs/pricing/overview)
+- [MiniMax CLI project (metadata link)](https://github.com/MiniMax-AI/cli)
+- [Conjure project (skill metadata homepage)](https://github.com/athola/claude-night-market/tree/master/plugins/conjure)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-conjure-minimax-delegation)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+**Output Type(s):** [Text, Markdown, JSON]
 
-**Output Format:** [MiniMax response as text or JSON, with Markdown output and shell command examples]
+**Output Format:** [MiniMax CLI response in the format requested by the user]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requested file contents are included in the prompt (up to 96 KiB); delegated output can be saved as a timestamped Markdown file.]
+**Other Properties Related to Output:** [Requested file contents may be truncated at 96 KiB, with any remainder reported; delegated results are saved as timestamped Markdown files.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

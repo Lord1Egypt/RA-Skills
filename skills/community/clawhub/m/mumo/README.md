@@ -4,9 +4,9 @@
 
 ## What's in the box
 
-- **`SKILL.md`** — the canonical skill teaching OpenClaw how to use mumo: when to invoke, the deliberation loop (create → wait → read → snippet → append/stop), how to read claim maps, snippet doctrine, and when to verify session creation.
+- **`SKILL.md`** — the canonical skill teaching OpenClaw how to use mumo: when to invoke, the deliberation loop (create → wait → read → summarize → append/stop), how to read the reactions, how to write your own, and when to verify session creation.
 - **`playbooks/`** — four cognitive-shape playbooks loaded on demand: `contested-decision`, `design-review`, `uncertainty-expansion`, `red-team`.
-- **`references/`** — five reference docs: `claim-maps`, `snippets`, `model-selection`, `synthesis`, `operating-notes`.
+- **`references/`** — six reference docs: `reading-reactions`, `writing-reactions`, `model-selection`, `synthesis`, `takeaway`, `operating-notes`.
 - **`config/mumo.example.json`** — the MCP server config payload to paste into `openclaw mcp set mumo` (reference only; OpenClaw does not auto-load this file).
 
 ## Install
@@ -66,11 +66,11 @@ If you'd rather pull directly from the source repo (e.g., to track `main` ahead 
 git clone https://github.com/mumo-chat/mumo-openclaw ~/.openclaw/skills/mumo
 ```
 
-Either way, the skill ships the canonical `SKILL.md`, four cognitive-shape playbooks (contested decision, design review, uncertainty expansion, red team), and reference docs for claim-map reading, snippet doctrine, model selection, and synthesis.
+Either way, the skill ships the canonical `SKILL.md`, four cognitive-shape playbooks (contested decision, design review, uncertainty expansion, red team), and reference docs for reading the reactions, writing your own, model selection, and synthesis.
 
 ### 4. Restart OpenClaw
 
-Fully exit and restart OpenClaw so it picks up both the new MCP server registration and the new skill. After restart, the eight mumo tools become available to the agent as `mumo__create_deliberation`, `mumo__wait_for_round`, `mumo__append_round`, `mumo__get_session`, `mumo__list_sessions`, `mumo__list_models`, `mumo__share_session`, `mumo__get_credit`.
+Fully exit and restart OpenClaw so it picks up both the new MCP server registration and the new skill. After restart, the mumo tools become available to the agent as `mumo__create_deliberation`, `mumo__ask_a_model`, `mumo__wait_for_round`, `mumo__append_round`, `mumo__get_session`, `mumo__list_sessions`, `mumo__list_models`, `mumo__share_session`, `mumo__get_credit`.
 
 The `coding` and `messaging` tool profiles expose configured MCP servers by default. If you're on the `minimal` profile, MCP tools are hidden — switch to `coding` or add an explicit override.
 
@@ -84,13 +84,13 @@ That runs `mumo__list_models`, which authenticates against the server and costs 
 
 ### 6. Run your first deliberation
 
-Name `mumo` explicitly the first time so OpenClaw routes through the panel. The skill will guide the agent through the create→wait→read→snippet loop and teach it to verify the session actually fired.
+Name `mumo` explicitly the first time so OpenClaw routes through the panel. The skill will guide the agent through the create→wait→read→summarize loop and teach it to verify the session actually fired.
 
 > Ask mumo to compare Postgres and MongoDB for our event store given 50k events/day, a Postgres-experienced team, and a 3-month runway. What would we regret 6 months in?
 
 ## Using the panel
 
-OpenClaw calls `mumo__create_deliberation`, then `mumo__wait_for_round`. The completed round returns each model's prose plus a cross-model claim map showing where the panel agrees and where it splits. The skill teaches OpenClaw to read the claim map first, then react with typed snippets (KEEP / EXPLORE / CHALLENGE / CORE / SHIFT) and either append a follow-up round or stop and synthesize for you.
+OpenClaw calls `mumo__create_deliberation`, then `mumo__wait_for_round`. The completed round returns each model's response plus the models' reactions to each other's claims, showing where the panel agrees and where it splits. The skill teaches OpenClaw to read the reactions first and summarize the round for you, then, if you want another round, append one steered with its own typed reactions (KEEP / EXPLORE / CHALLENGE / CORE / SHIFT).
 
 ## When mumo is worth the latency tax
 

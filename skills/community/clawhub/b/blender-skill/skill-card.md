@@ -1,6 +1,6 @@
 ## Description:
 
-Connect an agent to a running Blender instance through Blender MCP to inspect scenes, render images, search documentation, or run Blender Python code.
+Connects an agent to Blender through MCP and guides a spec-driven art production workflow from scene work and modeling through export and quality checks.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and Blender users use this skill to connect an agent to Blender for scene inspection, viewport screenshots, rendering, documentation lookup, and Python-based scene operations.
+Developers and 3D artists use this skill to inspect and control Blender scenes, create production assets, prepare game-engine exports, and run asset quality checks.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The unpinned `uvx quick` reference flagged by ClawScan can make the resolved package version less predictable, and some local path-like references were not resolved during scanning.
+Risk: Code run through Blender's MCP interface can execute Python with access to files and network resources, and can alter Blender project data.
 
-Mitigation: Use an explicitly version-pinned package command and check referenced local files before following their instructions.
+Mitigation: Review code before execution, prefer scoped built-in tools where practical, and keep backups of important .blend files.
 
-Risk: The Blender MCP code execution tool can run arbitrary Python through `bpy`, including operations that read, modify, or delete files and make network requests; this can also alter Blender project data.
+Risk: The release security assessment notes an unpinned tool reference and incomplete analysis.
 
-Mitigation: Keep the server bound to localhost, review code before execution, prefer scoped tools where suitable, and back up important `.blend` files.
+Mitigation: Check the referenced tool's source and version before installation, and do not treat the assessment as a guarantee of safety.
 
 ## Reference(s):
 
-- [Blender MCP product page](https://www.blender.org/lab/mcp-server/)
-- [Blender platform requirements](https://www.blender.org/download/requirements/)
-- [Blender MCP tools](artifact/references/tools.md)
-- [Blender MCP communication protocol](artifact/references/protocol.md)
-- [Blender API compatibility notes](artifact/references/api.md)
-- [Blender MCP troubleshooting](artifact/references/troubleshooting.md)
+- [Blender Lab MCP Server](https://www.blender.org/lab/mcp-server/)
+- [Blender Lab MCP add-on release v1.0.3](https://projects.blender.org/lab/blender_mcp/releases/download/v1.0.3/mcp-1.0.3.zip)
+- [Blender system requirements](https://www.blender.org/download/requirements/)
+- [Blender Python API notes](artifact/references/api.md)
+- [Art production pipeline](artifact/references/art-pipeline.md)
+- [Asset quality checks](artifact/references/art-qa.md)
+- [Export and optimization guidance](artifact/references/art-optimize-export.md)
+- [Source material noted for art production guidance](https://github.com/arjun988/blender-skills)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, JSON, Python code, Shell commands, Configuration instructions, Images]
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Files]
 
-**Output Format:** [Markdown guidance with Python, shell, JSON, and configuration examples; Blender tool results may be text, JSON, screenshots, or rendered image files.]
+**Output Format:** [Markdown guidance, Python code, shell commands, configuration snippets, and Blender project or export files]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Results depend on the connected Blender scene and the requested tool; render tools write image files to a path.]
+**Other Properties Related to Output:** [Actions through Blender may change scene data or files; review code before execution and back up important projects.]
 
 ## Skill Version(s):
 
-3.7.3 (source: frontmatter)
+4.0.0 (source: SKILL.md frontmatter, README.md)
 
 ## Ethical Considerations:
 

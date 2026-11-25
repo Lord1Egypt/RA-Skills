@@ -4,6 +4,8 @@ Use this reference only when the preferred `mcporter` MCP workflow is unavailabl
 
 Before using REST, verify one supported authentication path: `DEVELOPERKNOWLEDGE_API_KEY`, or both `DEVELOPERKNOWLEDGE_OAUTH_ACCESS_TOKEN` and `GOOGLE_CLOUD_QUOTA_PROJECT`. If neither is available, do not issue a REST request; use the relevant public Google documentation and state that the REST fallback was unavailable.
 
+The MCP and REST response fields are not interchangeable. These examples use REST v1; the live smoke tests exercised MCP only. Use approved credentials from the environment, never literal keys in files or chat. Do not echo authenticated commands or enable shell tracing.
+
 ## Authentication
 
 The Developer Knowledge REST API uses an API key in the `key` query parameter.
@@ -36,10 +38,10 @@ The quota project must be permitted to consume Developer Knowledge API quota. A 
 
 ## AnswerQuery
 
-Use this for direct grounded generation.
+Use this for direct grounded generation. The current endpoint is `POST /v1:answerQuery` (not the old `v1alpha` example). If it returns 429 / `RESOURCE_EXHAUSTED`, switch to document search instead of retrying the generative endpoint.
 
 ```bash
-curl -X POST "https://developerknowledge.googleapis.com/v1alpha:answerQuery?key=$DEVELOPERKNOWLEDGE_API_KEY" \
+curl -X POST "https://developerknowledge.googleapis.com/v1:answerQuery?key=$DEVELOPERKNOWLEDGE_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"query":"How do I create a BigQuery dataset?"}'
 ```
@@ -48,7 +50,7 @@ Response shape:
 
 - `answer.answerText`
 - `answer.citations[]`
-- `answer.references[]`
+- `answer.references[]` is an array of objects, unlike MCP’s array of resource-name strings. Use `answer.references[].documentReference.documentChunk.parent` for full-document lookup. REST accepts an optional `filter` in the request body.
 
 MCP equivalent:
 
@@ -69,8 +71,8 @@ curl "https://developerknowledge.googleapis.com/v1/documents:searchDocumentChunk
 Useful query parameters:
 
 - `query`: raw search query.
-- `pageSize`: limit results per page.
-- `pageToken`: retrieve later pages.
+- `pageSize`: defaults to at most 5 results and accepts up to 100.
+- `pageToken`: use the preceding response’s `nextPageToken` with the same query and filter.
 - `filter`: strict metadata filter.
 
 Filterable fields:
@@ -78,6 +80,7 @@ Filterable fields:
 - `data_source`, for example `docs.cloud.google.com`.
 - `update_time`, using RFC 3339 timestamps.
 - `uri`, for exact document URI matches.
+- `content_length_bytes`, for document size.
 
 Filtered example:
 
@@ -87,9 +90,9 @@ curl "https://developerknowledge.googleapis.com/v1/documents:searchDocumentChunk
 
 Response shape:
 
-- `documentChunks[].parent`
-- `documentChunks[].content`
-- `documentChunks[].document.uri`
+- `results[].parent`
+- `results[].content`
+- `results[].document.uri`
 
 MCP equivalent:
 
@@ -104,22 +107,16 @@ mcporter call "$gdk_server.$gdk_search_tool" \
 Use this to retrieve a single full Markdown document from a search result parent.
 
 ```bash
-export DOC_NAME="documents/docs.cloud.google.com/bigquery/docs/datasets"
+: "${DOC_NAME:?Set DOC_NAME to an exact parent returned by search or answer}"
 
 curl "https://developerknowledge.googleapis.com/v1/$DOC_NAME?key=$DEVELOPERKNOWLEDGE_API_KEY"
-```
-
-Alternative form from the how-to docs:
-
-```bash
-curl "https://developerknowledge.googleapis.com/v1/documents:get?name=$DOC_NAME&key=$DEVELOPERKNOWLEDGE_API_KEY"
 ```
 
 MCP equivalent:
 
 ```bash
 mcporter call "$gdk_server.$gdk_get_tool" \
-  --args '{"names":["documents/docs.cloud.google.com/bigquery/docs/datasets"]}' \
+  --args "$(jq -nc --arg name "$DOC_NAME" '{names:[$name]}')" \
   --output json
 ```
 
@@ -131,7 +128,7 @@ Use this to retrieve multiple documents directly through REST.
 curl "https://developerknowledge.googleapis.com/v1/documents:batchGet?names=documents/DOCUMENT_ID_1&names=documents/DOCUMENT_ID_2&key=$DEVELOPERKNOWLEDGE_API_KEY"
 ```
 
-The REST batch method can retrieve up to 100 documents. The MCP `get_documents` tool retrieves up to 20 documents in one call.
+Use exact resource names returned by the corpus, not the example placeholders. Both current REST `batchGet` and MCP `get_documents` are limited to 20 documents per call, in request order. The skill’s default research budget is three. The 100 limit applies to REST search page size, not batch retrieval.
 
 ## Fallback Decision
 
@@ -153,5 +150,9 @@ After a REST fallback succeeds, keep the same source-backed answering rules:
 
 - Developer Knowledge API: `https://developers.google.com/knowledge/api`
 - Quickstart: `https://developers.google.com/knowledge/quickstart`
-- Search and retrieve documents: `https://developers.google.com/knowledge/howto`
+- Search and retrieve documents: `https://developers.google.com/knowledge/search-retrieve`
+- REST search schema: `https://developers.google.com/knowledge/reference/rest/v1/documents/searchDocumentChunks`
+- REST batch get schema: `https://developers.google.com/knowledge/reference/rest/v1/documents/batchGet`
+- REST answer schema: `https://developers.google.com/knowledge/reference/rest/v1/TopLevel/answerQuery`
 - AnswerQuery guide: `https://developers.google.com/knowledge/answer-query`
+

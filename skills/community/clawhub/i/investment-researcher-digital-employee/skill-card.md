@@ -1,6 +1,6 @@
 ## Description:
 
-Provides reusable frameworks for 34 financial research report types across macroeconomics, fixed income, companies and industries, investment strategy, and quantitative research.
+Provides frameworks for macro, fixed-income, sector, company, strategy, and quantitative investment research, with source and methodology checks for human-reviewed report drafts.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Financial research professionals use the skill to structure reports and analysis from data available through their own authorized sources. Its outputs are research drafts that require qualified human review and do not constitute investment advice.
+Investment researchers use the skill to structure report drafts across macro, fixed-income, company, strategy, and quantitative topics, and to check source and metric definitions. Outputs require review by a qualified professional before real-world use.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,35 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Research drafts may be misleading if the supplied data is stale, unsupported, or compared using inconsistent definitions.
+Risk: Research conclusions may be inaccurate or stale when source dates, metric definitions, or data revisions are not checked.
 
-Mitigation: Use authorized sources, state the data source and period, check definitions for consistency, and obtain qualified human review before applying conclusions.
+Mitigation: Record source and data dates, reconcile metric definitions against primary disclosures, and obtain qualified human review before relying on conclusions.
 
-Risk: The security scan reported benign findings but could not fully inspect one security-relevant expression.
+Risk: Research drafts may expose sensitive client, account, holdings, or material nonpublic information.
 
-Mitigation: Consider the stated review gap when deciding whether to install, and inspect the skill before use.
+Mitigation: Use only the minimum necessary data, anonymize or aggregate sensitive inputs, and exclude credentials and material nonpublic information.
+
+Risk: The security assessment has medium confidence because one static analysis was incomplete.
+
+Mitigation: Review the skill before installation and consider the scan evidence incomplete when deciding whether to install.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/gechengling/skills/investment-researcher-digital-employee)
-- [Publisher profile](https://clawhub.ai/user/gechengling)
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/investment-researcher-digital-employee)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Markdown]
+**Output Type(s):** [Analysis, Guidance, Markdown]
 
-**Output Format:** [Markdown research report outlines, analysis frameworks, and review checklists]
+**Output Format:** [Markdown report outlines, analytical frameworks, and review checklists]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Drafts should identify data sources and time periods and receive qualified human review before use.]
+**Other Properties Related to Output:** [Human-reviewed reference drafts; no automatic data retrieval or scheduled execution]
 
 ## Skill Version(s):
 
-2.0.9 (source: frontmatter)
+2.0.10 (source: frontmatter)
 
 ## Ethical Considerations:
 

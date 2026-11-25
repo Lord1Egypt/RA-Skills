@@ -5,7 +5,7 @@ displayName: GitHub PAT Debugging
 description: 排查 GitHub PAT 认证失败、401、Bad credentials、推送失败、token 看起来失效等问题。先检查命令、变量传递、路径和请求参数，再用 curl、Node、Python 或 PowerShell 交叉验证，确认后才判断权限、撤销或网络原因。适用于 GitHub API、Contents API、GitHub Pages 和 Skill 镜像推送。 Diagnose GitHub Personal Access Token failures before declaring a token expired or revoked.
 description_zh: GitHub PAT 认证排障
 description_en: Debug GitHub PAT failures
-version: "1.0.7"
+version: "1.0.8"
 disable: false
 agent_created: true
 ---
@@ -45,7 +45,7 @@ agent_created: true
 - A 200 from `GET /user` proves the token is valid, not that it is authorized for the write: if the Contents API write returns 403, check scope and repository access (see `references/token-failure-modes.md`) before treating the token as revoked.
 - `Never used` or a stale "last used" label is weaker evidence than a live authenticated `GET /user`; use the latter for runtime validation.
 - Do not print, commit, or paste a full PAT. If a token has been exposed, rotate it after completing the needed deployment.
-- Do not overwrite a remote file without first retrieving its current SHA.
+- Do not overwrite a remote file without first retrieving its current SHA. Any Contents API write changes a public or shared repository and may become visible immediately: state the target repo and file to the user and get confirmation before writing, even when the task is framed as debugging or verification.
 - A 404 on a private repo's web page or raw URL (unauthenticated) is privacy hiding, not deletion. Check with an authenticated API call before concluding the repo is gone.
 - `GET /users/{name}/repos` lists **public repos only**, even with a valid token. To audit the full inventory including private repos, call `GET /user/repos?visibility=all` authenticated as that user — otherwise "repo missing" conclusions are wrong by construction.
 - Shell shims and wrappers may silently drop environment variables on the way to child processes. If a token read via `env` or `$VAR` arrives empty in one runtime but works in another, read the token from its file inside the script instead of relying on env propagation.

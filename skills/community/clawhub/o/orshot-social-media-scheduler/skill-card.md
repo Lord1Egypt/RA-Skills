@@ -1,6 +1,6 @@
 ## Description:
 
-Social media scheduler and social media automation for AI agents. Schedule posts, post to Instagram, post to LinkedIn, post to X (Twitter), TikTok, Facebook, Pinterest, Threads, Bluesky, Reddit, YouTube, Telegram, Snapchat and Google Business with Orshot, with the image, carousel or video rendered from a template in the same call. Use to schedule a social post, run a weekly content calendar, cross-post to every platform, queue drafts for review, read post analytics and follower growth, find the best time to post, or build an agent that posts and learns. Everything runs over the hosted Orshot MCP server (OAuth, no key); REST with an API key for headless jobs.
+Helps an agent create social media drafts from templates, review them with the user, schedule or cross-post approved content, and read post analytics through Orshot MCP or REST.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and social media teams can use the skill to connect social accounts, prepare and review posts, render media from templates, schedule or publish approved content across platforms, and review analytics. It also guides setup of the Orshot MCP server or REST access for automated jobs.
+Developers and social media teams can use the skill to prepare, review, schedule, and track social posts across connected accounts. It supports template-rendered media and posts prepared from existing public media URLs.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Publishing to connected social accounts can send unintended content or target the wrong account.
+Risk: The skill sends post content and media through Orshot's hosted MCP service or REST API; the supplied scan did not fully resolve how external requests handle data.
 
-Mitigation: Review OAuth permissions and the exact accounts, caption, and schedule; obtain explicit approval before publishing.
-
-Risk: REST publishing may publish immediately if the request omits its status, and content is sent to Orshot.
-
-Mitigation: For REST drafts, explicitly set status to draft; review content and schedules before approval.
-
-Risk: Media links used for publishing must be publicly accessible, and connecting accounts may incur paid-plan charges.
-
-Mitigation: Use intended public media links and check plan costs before connecting accounts.
+Mitigation: Review Orshot's data handling information and decide what account, post, and media data to send before connecting accounts or publishing.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/orshot/skills/orshot-social-media-scheduler)
-- [Orshot agent documentation](https://orshot.com/agents/openclaw)
-- [Orshot social publishing API](https://orshot.com/docs/api-reference/social-publish.md)
-- [Orshot social posts API](https://orshot.com/docs/api-reference/social-posts-list.md)
-- [Orshot publishing introduction](https://orshot.com/docs/publish/introduction.md)
+- [Orshot publishing overview](https://orshot.com/docs/publish/introduction.md)
+- [Orshot MCP server setup](https://orshot.com/docs/integrations/mcp-server.md)
+- [Social posting guidelines and platform limits](https://orshot.com/docs/publish/social-posting-guidelines.md)
+- [Social account connection guide](https://orshot.com/docs/publish/connect-account.md)
+- [Orshot publishing pricing](https://orshot.com/docs/publish/pricing.md)
+- [Publish from the Orshot API](https://orshot.com/docs/publish/publish-from-api.md)
+- [Post approval flows](https://orshot.com/docs/approval-flows/introduction.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Social media post drafts, Rendered image, carousel, or video media, Analytics summaries, Shell commands, Configuration instructions, API request examples, Operational guidance]
+**Output Type(s):** [Guidance, Text, Markdown, API Calls]
 
-**Output Format:** [Markdown guidance, social post content, media outputs, shell commands, and JSON or REST request examples]
+**Output Format:** [Natural language guidance, social post drafts, and structured MCP or REST API arguments]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Can prepare, schedule, or publish content to connected accounts; publishing should follow explicit user approval.]
+**Other Properties Related to Output:** [May include captions, draft and schedule details, and analytics summaries. Posts are held for user review unless the user explicitly asks to publish.]
 
 ## Skill Version(s):
 
-1.0.0 (source: server-resolved release and metadata)
+1.3.2 (source: frontmatter)
 
 ## Ethical Considerations:
 

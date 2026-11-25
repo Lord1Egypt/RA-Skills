@@ -1,162 +1,163 @@
 # Mobile App Testing Checklist
 
-## Gesture Operations (15 items)
-- [ ] Tap operation testing
-- [ ] Double-tap operation testing
-- [ ] Long-press operation testing
-- [ ] Swipe operation testing
-- [ ] Pinch-to-zoom operation testing
-- [ ] Drag operation testing
-- [ ] Pull-to-refresh testing
-- [ ] Pull-up-to-load-more testing
-- [ ] Multi-finger gesture testing
-- [ ] Gesture conflict testing
-- [ ] Gesture feedback testing
-- [ ] Gesture disabling testing
-- [ ] Special gesture testing
-- [ ] Accessibility gesture testing
-- [ ] Gaming gesture testing
+> The sections of this checklist correspond one-to-one with `references/platform/mobile-app.md` and are used for item-by-item self-checking after test case design.
 
-## Screen Adaptation (12 items)
-- [ ] Small screen device testing
-- [ ] Medium screen device testing
-- [ ] Large screen device testing
-- [ ] Tablet device testing
-- [ ] Tall screen device testing
-- [ ] Notch screen testing
-- [ ] Foldable screen testing
-- [ ] Landscape mode testing
-- [ ] Portrait mode testing
-- [ ] Portrait-landscape rotation testing
-- [ ] Resolution adaptation testing
-- [ ] System font size testing
+## Gestures
+- [ ] Tap
+- [ ] Double tap
+- [ ] Long press
+- [ ] Swipe
+- [ ] Pinch to zoom
+- [ ] Drag
+- [ ] Pull to refresh
+- [ ] Load more on scroll
+- [ ] Multi-finger gestures
+- [ ] Gesture conflicts
+- [ ] Gesture feedback
+- [ ] Disabled gestures
+- [ ] Special gestures
+- [ ] Accessibility gestures
 
-## Interruption Recovery (14 items)
-- [ ] Incoming call interruption testing
-- [ ] SMS interruption testing
-- [ ] Push notification interruption testing
-- [ ] Alarm interruption testing
-- [ ] Low battery alert testing
-- [ ] System update notification testing
-- [ ] Background-and-return testing
-- [ ] Multi-task switching testing
-- [ ] Extended background time testing
-- [ ] Process-killed restart testing
-- [ ] Form-filling interruption testing
-- [ ] Payment flow interruption testing
-- [ ] Playback interruption testing
-- [ ] Network request interruption testing
+## Screen Adaptation
+- [ ] Small-screen devices
+- [ ] Medium-screen devices
+- [ ] Large-screen devices
+- [ ] Tablets
+- [ ] Tall-screen devices
+- [ ] Notched screens
+- [ ] Foldables
+- [ ] Landscape mode
+- [ ] Portrait mode
+- [ ] Switching between portrait and landscape
+- [ ] Resolution adaptation
+- [ ] System font size
 
-## Network Switching (16 items)
-- [ ] WiFi network testing
-- [ ] 4G/5G network testing
-- [ ] WiFi ↔ 4G/5G switching testing
-- [ ] Weak network - high latency testing
-- [ ] Weak network - low bandwidth testing
-- [ ] Weak network - high packet loss testing
-- [ ] Network disconnection detection testing
-- [ ] Reconnection after disconnection testing
-- [ ] Airplane mode testing
-- [ ] Offline mode testing
-- [ ] Network switch during submission testing
-- [ ] Network switch during download testing
-- [ ] Network switch during upload testing
-- [ ] Network switch during video playback testing
-- [ ] Network permission disabled testing
-- [ ] DNS resolution failure testing
+## Interruption Recovery
+- [ ] Incoming call interruption
+- [ ] SMS interruption
+- [ ] Push notification interruption
+- [ ] Alarm interruption
+- [ ] Low battery pop-up
+- [ ] System update prompt
+- [ ] Switching to the background and back
+- [ ] Multitasking switching
+- [ ] Long time in the background
+- [ ] Restart after the process is killed
+- [ ] Interruption while filling in a form
+- [ ] Interruption during payment
+- [ ] Playback interruption
+- [ ] Network request interruption
 
-## Device Compatibility (10 items)
-- [ ] Latest iOS version testing
-- [ ] Older iOS version testing
-- [ ] Latest Android version testing
-- [ ] Older Android version testing
-- [ ] Different manufacturer ROM testing
-- [ ] Different screen resolution testing
-- [ ] Different hardware configuration testing
-- [ ] iPad tablet testing
-- [ ] Foldable device testing
-- [ ] Emulator testing
+## Network Switching
+- [ ] WiFi network
+- [ ] 4G/5G network
+- [ ] Switching between WiFi and 4G/5G
+- [ ] Weak network - high latency
+- [ ] Weak network - low bandwidth
+- [ ] Weak network - high packet loss
+- [ ] Offline detection
+- [ ] Reconnection after going offline
+- [ ] Airplane mode
+- [ ] Offline mode
+- [ ] Network switch during submission
+- [ ] Network switch during download
+- [ ] Network switch during upload
+- [ ] Network switch during video playback
+- [ ] Network permission disabled
+- [ ] DNS resolution failure
 
-## Permission Management (12 items)
-- [ ] Camera permission testing
-- [ ] Photo library permission testing
-- [ ] Location permission testing
-- [ ] Notification permission testing
-- [ ] Microphone permission testing
-- [ ] Storage permission testing
-- [ ] Contacts permission testing
-- [ ] Bluetooth permission testing
-- [ ] Function degradation after permission denial testing
-- [ ] Permission settings page guidance testing
-- [ ] Permission revocation testing
-- [ ] Permission state persistence testing
+## Permission Management
+- [ ] Camera permission
+- [ ] Photo album permission
+- [ ] Location permission
+- [ ] Notification permission
+- [ ] Microphone permission
+- [ ] Storage permission
+- [ ] Contacts permission
+- [ ] Bluetooth permission
+- [ ] Feature degradation after permission denial
+- [ ] Guidance to the permission settings page
+- [ ] Permission revocation
+- [ ] Permission state persistence
 
-## Push Notifications (8 items)
-- [ ] Notification permission request timing
-- [ ] Foreground push display
-- [ ] Background push display
-- [ ] Cold start navigation via notification tap
-- [ ] Warm start navigation via notification tap
+## Push Notifications
+- [ ] Timing of the notification permission request
+- [ ] Push display in the foreground
+- [ ] Push display in the background
+- [ ] Navigation on cold start from a notification tap
+- [ ] Navigation on hot start from a notification tap
 - [ ] Notification parameter passing and page routing
-- [ ] Degradation prompt when notification permission is off
-- [ ] iOS/Android notification mechanism differences
+- [ ] Degradation prompt after notification permission is turned off
+- [ ] Differences between iOS and Android notification mechanisms
 
-## System Interaction (10 items)
-- [ ] System sharing testing
-- [ ] Copy-paste testing
-- [ ] System keyboard testing
-- [ ] Screenshot functionality testing
-- [ ] Screen recording functionality testing
-- [ ] System browser open testing
-- [ ] Phone call testing
-- [ ] SMS sending testing
-- [ ] Email sending testing
-- [ ] Map open testing
+## Device Compatibility
+- [ ] Latest iOS version
+- [ ] Older iOS versions
+- [ ] Latest Android version
+- [ ] Older Android versions
+- [ ] Different vendor ROMs
+- [ ] Different screen resolutions
+- [ ] Different hardware configurations
+- [ ] iPad tablets
+- [ ] Foldable devices
+- [ ] Emulators
 
-## Performance Experience (12 items)
-- [ ] Cold start time testing
-- [ ] Warm start time testing
-- [ ] First-screen load time testing
-- [ ] Page load time testing
-- [ ] Scroll smoothness testing
-- [ ] Animation smoothness testing
-- [ ] Memory usage testing
-- [ ] CPU usage testing
-- [ ] Battery consumption testing
-- [ ] Thermal control testing
-- [ ] Data usage testing
-- [ ] Storage space testing
+## System Interaction
+- [ ] System sharing
+- [ ] Copy and paste
+- [ ] System keyboard
+- [ ] Screenshots
+- [ ] Screen recording
+- [ ] Opening the system browser
+- [ ] Making phone calls
+- [ ] Sending SMS
+- [ ] Sending email
+- [ ] Opening maps
 
-## Accessibility (8 items)
-- [ ] Screen reader compatibility (VoiceOver/TalkBack)
-- [ ] All images have alt text or descriptions
+## Storage and Data
+- [ ] SharedPreferences / Keychain read and write work
+- [ ] SQLite / Room / CoreData database operations work
+- [ ] Image cache strategy takes effect
+- [ ] API data cache strategy takes effect
+- [ ] Expired cache is cleaned automatically
+- [ ] Manual cache cleanup works
+- [ ] Offline data is stored locally
+- [ ] Offline data syncs online without conflicts
+- [ ] Login state is consistent after clearing the cache
+- [ ] Sensitive data (tokens / passwords) is stored encrypted
+
+## Updates and Versions
+- [ ] Forced update pop-up can be triggered
+- [ ] Optional update pop-up can be closed
+- [ ] Update download progress is shown correctly
+- [ ] Failed update downloads can be retried
+- [ ] Update package integrity check passes
+- [ ] Data migration after update works
+- [ ] Hot updates (React Native / Flutter) load correctly
+- [ ] Failed hot updates roll back automatically
+- [ ] Gradual rollout by percentage works
+- [ ] Data compatibility after downgrading to an old version
+
+## Performance Experience
+- [ ] Cold start time
+- [ ] Hot start time
+- [ ] First-screen load time
+- [ ] Page load time
+- [ ] Scrolling smoothness
+- [ ] Animation smoothness
+- [ ] Memory usage
+- [ ] CPU usage
+- [ ] Battery consumption
+- [ ] Heat control
+- [ ] Data usage
+- [ ] Storage space
+
+## Accessibility
+- [ ] Screen reader compatibility (VoiceOver / TalkBack)
+- [ ] All images and icons have contentDescription (Android) / accessibilityLabel (iOS)
 - [ ] Font size is adjustable
-- [ ] High contrast mode supported
-- [ ] Touch targets are large enough (≥ 44×44px)
-- [ ] All functions operable by gesture + voice
+- [ ] High-contrast mode is supported
+- [ ] Touch areas are large enough (iOS ≥ 44×44pt, Android ≥ 48×48dp)
+- [ ] All features can be operated by gesture + voice
 - [ ] Videos have captions
 - [ ] Important information has haptic feedback
-
-## Storage & Data (10 items)
-- [ ] SharedPreferences/Keychain read/write works correctly
-- [ ] SQLite/Room/CoreData database operations work correctly
-- [ ] Image caching strategy takes effect
-- [ ] API data caching strategy takes effect
-- [ ] Cache expiration auto-cleanup works
-- [ ] Manual cache clearing works correctly
-- [ ] Offline data local storage works correctly
-- [ ] Offline-to-online sync has no conflicts
-- [ ] Login state remains consistent after cache clearing
-- [ ] Sensitive data (Token/password) is stored encrypted
-
-## Updates & Versioning (10 items)
-- [ ] Mandatory update dialog triggers correctly
-- [ ] Optional update dialog can be dismissed
-- [ ] Update download progress displays correctly
-- [ ] Update download failure can retry
-- [ ] Update package integrity verification passes
-- [ ] Data migration after update works correctly
-- [ ] Hot update (React Native/Flutter) loads correctly
-- [ ] Hot update failure auto-rollback works
-- [ ] Phased rollout scales correctly by percentage
-- [ ] Downgrade to old version has data compatibility

@@ -1,6 +1,6 @@
 ## Description:
 
-Converts a specification into a phased, dependency-ordered implementation plan. Use after specification is complete and before execution begins.
+Converts a specification into a phased, dependency-ordered implementation plan. Use after specification is complete and before execution begins
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and project teams use this skill after completing a specification to shape architecture, break work into dependency-ordered tasks, estimate effort, and check plan quality before execution.
+Developers and project teams use this skill after requirements are specified to organize architecture decisions and work into dependency-ordered implementation tasks before execution.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The scanner reports that the workflow may proceed from planning to execution without user approval.
+Risk: The workflow directs the agent to continue automatically from planning into execution, which may begin implementation without affirmative user approval.
 
-Mitigation: Review the proposed plan and require explicit user approval before starting the execution phase.
+Mitigation: Review the continuation instructions and ensure the execution skill and its tools have suitable approval controls before use.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-attune-project-planning)
-- [Project homepage (Clawdis metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/attune)
+- [ClawHub release](https://clawhub.ai/athola/skills/nm-attune-project-planning)
 
 ## Skill Output:
 
-**Output Type(s):** [Markdown, Guidance]
+**Output Type(s):** [Markdown, Planning guidance]
 
-**Output Format:** [Markdown implementation plans with architecture notes, dependency-ordered tasks, acceptance criteria, estimates, and risks]
+**Output Format:** [Structured implementation plan with architecture notes, tasks, dependencies, acceptance criteria, and estimates]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Plan contents depend on the supplied specification and project scope.]
+**Other Properties Related to Output:** [Dependency-ordered phases; may identify a critical path and risks when supported by the specification.]
 
 ## Skill Version(s):
 
-1.10.3 (source: server-resolved release and frontmatter)
+1.10.4 (source: server-resolved release)
 
 ## Ethical Considerations:
 

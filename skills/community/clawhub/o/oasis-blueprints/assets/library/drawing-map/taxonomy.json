@@ -1,0 +1,955 @@
+{
+ "schema": "oasis-blueprints/taxonomy/0.1",
+ "_about": [
+  "How sets are sorted into project types and variants. Edit this file, then run `build` again (no need to `scan` again).",
+  "Patterns are regular expressions, case-insensitive. `path` is tested against the set's path below the root, file name included.",
+  "`title` is tested against the big title on the cover. `sheets` is tested against each sheet name.",
+  "A path match scores 100, a title match 50, sheet-name matches 10 each (up to 30). The best score wins; on a tie the type listed first wins.",
+  "`when` limits a type or variant to sets with certain attributes: stories_min, stories_max, or an attribute name with a value or a list of values.",
+  "A variant with no `match` takes whatever the variants above it did not. Types marked origin `yours` come from the engineer's own list; `catalog` ones were added from a plan catalog. Site-specific ignores go in _state/local.json."
+ ],
+ "tiers": {
+  "core": 60,
+  "common": 25
+ },
+ "ignore": [
+  "(^|/)_",
+  "(^|/)RENDERINGS?(/|$)"
+ ],
+ "attributes": {
+  "_about": "Read from names only (path, cover title, sheet names, view and detail titles), never from note text. Rules are listed strongest first.",
+  "walls": [
+   {
+    "value": "cmu",
+    "any": [
+     "(?<![a-z])cmu(?![a-z])",
+     "masonry wall",
+     "block wall",
+     "concrete block"
+    ]
+   },
+   {
+    "value": "wood",
+    "any": [
+     "stud",
+     "wall[ _-]*wood",
+     "wood[ _-]*wall",
+     "wall framing",
+     "wood fram"
+    ]
+   }
+  ],
+  "stories": [
+   {
+    "value": 4,
+    "any": [
+     "fourth floor",
+     "4th floor"
+    ]
+   },
+   {
+    "value": 3,
+    "any": [
+     "third floor",
+     "3rd floor"
+    ]
+   },
+   {
+    "value": 2,
+    "any": [
+     "second floor",
+     "2nd floor",
+     "upper floor",
+     "upper level",
+     "(?<![a-z])loft(?![a-z])"
+    ]
+   },
+   {
+    "value": 1,
+    "any": [
+     "floor plan"
+    ]
+   }
+  ],
+  "flood": [
+   {
+    "value": true,
+    "any": [
+     "flood",
+     "(?<![a-z])bfe(?![a-z])",
+     "breakaway",
+     "v[- ]zone",
+     "piling",
+     "pile foundation"
+    ]
+   }
+  ],
+  "roof": [
+   {
+    "value": "gambrel",
+    "any": [
+     "gambrel"
+    ]
+   },
+   {
+    "value": "monoslope",
+    "any": [
+     "mono[ -]?slope",
+     "lean[- ]to",
+     "shed roof"
+    ]
+   },
+   {
+    "value": "gable",
+    "any": [
+     "gable"
+    ]
+   },
+   {
+    "value": "hip",
+    "any": [
+     "(?<![a-z])hip(?![a-z])"
+    ]
+   },
+   {
+    "value": "flat",
+    "any": [
+     "flat roof"
+    ]
+   }
+  ],
+  "foundation": [
+   {
+    "value": "piles",
+    "any": [
+     "piling",
+     "(?<![a-z])piles?(?![a-z])"
+    ]
+   },
+   {
+    "value": "crawl space",
+    "any": [
+     "crawl"
+    ]
+   },
+   {
+    "value": "slab",
+    "any": [
+     "slab"
+    ]
+   },
+   {
+    "value": "piers or footings",
+    "any": [
+     "pier",
+     "footing",
+     "deck block"
+    ]
+   }
+  ],
+  "style": [
+   {
+    "value": "farmhouse",
+    "any": [
+     "farmhouse",
+     "homestead"
+    ]
+   },
+   {
+    "value": "barndominium",
+    "any": [
+     "barndominium"
+    ]
+   },
+   {
+    "value": "a-frame",
+    "any": [
+     "a[- ]frame"
+    ]
+   },
+   {
+    "value": "bungalow or cottage",
+    "any": [
+     "bungalow",
+     "cottage"
+    ]
+   }
+  ]
+ },
+ "types": [
+  {
+   "key": "garage-conversion",
+   "name": "Garage conversion",
+   "origin": "yours",
+   "match": {
+    "path": [
+     "garage conversion"
+    ],
+    "title": [
+     "garage conversion"
+    ]
+   },
+   "variants": [
+    {
+     "key": "cmu-walls",
+     "name": "CMU walls",
+     "match": {
+      "path": [
+       "wall[ _-]*cmu",
+       "cmu[ _-]*wall"
+      ]
+     }
+    },
+    {
+     "key": "wood-walls",
+     "name": "Wood walls",
+     "match": {
+      "path": [
+       "wall[ _-]*wood",
+       "wood[ _-]*wall"
+      ]
+     }
+    },
+    {
+     "key": "cmu-walls",
+     "name": "CMU walls",
+     "when": {
+      "walls": [
+       "cmu",
+       "cmu+wood"
+      ]
+     }
+    },
+    {
+     "key": "general",
+     "name": "Not stated"
+    }
+   ]
+  },
+  {
+   "key": "interior-remodel",
+   "name": "Interior remodel",
+   "origin": "yours",
+   "match": {
+    "path": [
+     "interior remodel",
+     "(?<![a-z])remodel",
+     "renovation",
+     "alteration",
+     "(?<![a-z])remo(?![a-z])",
+     "plansremo"
+    ],
+    "title": [
+     "^(?!.*addition).*(remodel|renovation|alteration)"
+    ]
+   },
+   "variants": [
+    {
+     "key": "cmu-house-wood-interior",
+     "name": "CMU block house walls, interior wood frame",
+     "when": {
+      "walls": [
+       "cmu",
+       "cmu+wood"
+      ]
+     }
+    },
+    {
+     "key": "wood-frame",
+     "name": "Wood frame"
+    }
+   ]
+  },
+  {
+   "key": "patio-lanai-addition",
+   "name": "Patio / lanai addition",
+   "origin": "yours",
+   "match": {
+    "path": [
+     "cover(ed)? patio",
+     "cover(ed)? porch",
+     "porch roof over",
+     "sunroom",
+     "lanai",
+     "screen(ed)?[ _-]*(enclosure|porch|room)",
+     "roof mounted pergola",
+     "awning"
+    ],
+    "title": [
+     "cover(ed)? patio",
+     "cover(ed)? porch",
+     "sunroom",
+     "lanai",
+     "screen(ed)?[ _-]*(enclosure|porch|room)"
+    ]
+   },
+   "variants": [
+    {
+     "key": "sunroom-gable",
+     "name": "Sunroom, gable roof",
+     "match": {
+      "path": [
+       "gable sunroom"
+      ]
+     }
+    },
+    {
+     "key": "sunroom-monoslope",
+     "name": "Sunroom, monoslope roof",
+     "match": {
+      "path": [
+       "mono ?slope sunroom"
+      ]
+     }
+    },
+    {
+     "key": "sunroom",
+     "name": "Sunroom",
+     "match": {
+      "path": [
+       "sunroom"
+      ],
+      "title": [
+       "sunroom"
+      ]
+     }
+    },
+    {
+     "key": "roof-mounted-pergola",
+     "name": "Roof-mounted pergola",
+     "match": {
+      "path": [
+       "roof mounted pergola"
+      ]
+     }
+    },
+    {
+     "key": "covered-porch",
+     "name": "Covered porch",
+     "match": {
+      "path": [
+       "cover(ed)? porch",
+       "porch roof over"
+      ],
+      "title": [
+       "cover(ed)? porch"
+      ]
+     }
+    },
+    {
+     "key": "covered-patio",
+     "name": "Covered patio",
+     "match": {
+      "path": [
+       "cover(ed)? patio",
+       "awning"
+      ],
+      "title": [
+       "cover(ed)? patio"
+      ]
+     }
+    },
+    {
+     "key": "screen-enclosure",
+     "name": "Screen enclosure / lanai",
+     "match": {
+      "path": [
+       "lanai",
+       "screen"
+      ],
+      "title": [
+       "lanai",
+       "screen"
+      ]
+     }
+    },
+    {
+     "key": "general",
+     "name": "Other"
+    }
+   ]
+  },
+  {
+   "key": "deck",
+   "name": "Deck",
+   "origin": "catalog",
+   "match": {
+    "path": [
+     "(?<![a-z])deck(?![a-z])",
+     "balcony",
+     "mezzanine",
+     "oval pool",
+     "diameter \\d+ feet",
+     "(^|/)\\d+ rectangular \\d"
+    ],
+    "title": [
+     "(?<![a-z])deck(?![a-z])",
+     "balcony"
+    ]
+   },
+   "variants": [
+    {
+     "key": "pool-deck-container",
+     "name": "Pool deck, shipping container pool",
+     "match": {
+      "path": [
+       "shipping container pool deck"
+      ]
+     }
+    },
+    {
+     "key": "pool-deck-round",
+     "name": "Pool deck, round pool",
+     "match": {
+      "path": [
+       "diameter \\d+ feet"
+      ]
+     }
+    },
+    {
+     "key": "pool-deck-oval",
+     "name": "Pool deck, oval pool",
+     "match": {
+      "path": [
+       "oval pool"
+      ]
+     }
+    },
+    {
+     "key": "pool-deck-rectangular",
+     "name": "Pool deck, rectangular pool",
+     "match": {
+      "path": [
+       "(^|/)\\d+ rectangular \\d"
+      ]
+     }
+    },
+    {
+     "key": "pool-deck-stock",
+     "name": "Pool deck, stock",
+     "match": {
+      "path": [
+       "stock pool deck",
+       "pool deck"
+      ]
+     }
+    },
+    {
+     "key": "attached-with-porch-roof",
+     "name": "Attached deck with porch roof",
+     "match": {
+      "path": [
+       "attached deck with mono ?slope porch",
+       "deck with gable porch"
+      ]
+     }
+    },
+    {
+     "key": "attached-with-pergola",
+     "name": "Attached deck with pergola",
+     "match": {
+      "path": [
+       "attached deck with pergola"
+      ]
+     }
+    },
+    {
+     "key": "freestanding-corner",
+     "name": "Freestanding corner deck",
+     "match": {
+      "path": [
+       "freestanding corner deck"
+      ]
+     }
+    },
+    {
+     "key": "wraparound",
+     "name": "Wraparound deck",
+     "match": {
+      "path": [
+       "wraparound"
+      ]
+     }
+    },
+    {
+     "key": "freestanding",
+     "name": "Freestanding deck",
+     "match": {
+      "path": [
+       "freestanding deck"
+      ]
+     }
+    },
+    {
+     "key": "attached",
+     "name": "Attached deck",
+     "match": {
+      "path": [
+       "attached deck"
+      ]
+     }
+    },
+    {
+     "key": "balcony",
+     "name": "Balcony",
+     "match": {
+      "path": [
+       "balcony"
+      ]
+     }
+    },
+    {
+     "key": "mezzanine",
+     "name": "Freestanding mezzanine",
+     "match": {
+      "path": [
+       "mezzanine"
+      ]
+     }
+    },
+    {
+     "key": "general",
+     "name": "Other deck"
+    }
+   ]
+  },
+  {
+   "key": "dock",
+   "name": "Dock",
+   "origin": "catalog",
+   "match": {
+    "path": [
+     "(?<![a-z])dock(?![a-z])"
+    ],
+    "title": [
+     "(?<![a-z])dock(?![a-z])"
+    ]
+   },
+   "variants": [
+    {
+     "key": "general",
+     "name": "Dock"
+    }
+   ]
+  },
+  {
+   "key": "new-sfr-container",
+   "name": "New single family, container",
+   "origin": "yours",
+   "match": {
+    "path": [
+     "container[ _-]*(home|house|residence)"
+    ],
+    "title": [
+     "container[ _-]*(home|house|residence)"
+    ]
+   },
+   "variants": [
+    {
+     "key": "general",
+     "name": "Container home"
+    }
+   ]
+  },
+  {
+   "key": "adu-tiny-house",
+   "name": "ADU / tiny house",
+   "origin": "catalog",
+   "match": {
+    "path": [
+     "(?<![a-z])adu(?![a-z])",
+     "tiny[ _-]*house",
+     "guest[ _-]*house",
+     "garage apartment",
+     "carriage house"
+    ],
+    "title": [
+     "(?<![a-z])adu(?![a-z])",
+     "tiny house",
+     "guest house",
+     "accessory dwelling"
+    ]
+   },
+   "variants": [
+    {
+     "key": "garage-apartment",
+     "name": "Garage apartment / carriage house",
+     "match": {
+      "path": [
+       "garage apartment",
+       "carriage house"
+      ]
+     }
+    },
+    {
+     "key": "tiny-house",
+     "name": "Tiny house",
+     "match": {
+      "path": [
+       "tiny[ _-]*house"
+      ],
+      "title": [
+       "tiny house"
+      ]
+     }
+    },
+    {
+     "key": "guest-house",
+     "name": "Guest house",
+     "match": {
+      "path": [
+       "guest[ _-]*house"
+      ],
+      "title": [
+       "guest house"
+      ]
+     }
+    },
+    {
+     "key": "adu",
+     "name": "ADU"
+    }
+   ]
+  },
+  {
+   "key": "addition",
+   "name": "Addition",
+   "origin": "yours",
+   "match": {
+    "path": [
+     "(?<![a-z])addition(?![a-z])"
+    ],
+    "title": [
+     "(?<![a-z])addition(?![a-z])"
+    ]
+   },
+   "variants": [
+    {
+     "key": "cmu",
+     "name": "CMU",
+     "when": {
+      "walls": [
+       "cmu",
+       "cmu+wood"
+      ]
+     }
+    },
+    {
+     "key": "wood-frame",
+     "name": "Wood frame"
+    }
+   ]
+  },
+  {
+   "key": "new-sfr-2-4-story",
+   "name": "New single family, 2 to 4 story",
+   "origin": "yours",
+   "when": {
+    "stories_min": 2
+   },
+   "match": {
+    "path": [
+     "farmhouse",
+     "barndominium",
+     "a[ -]frame",
+     "single family",
+     "(?<![a-z])sfh(?![a-z])",
+     "bungalow",
+     "cottage",
+     "homestead",
+     "estate",
+     "(?<![a-z])house(?![a-z])",
+     "\\d{3,5} ?s\\.?f(?![a-z])"
+    ],
+    "title": [
+     "residence",
+     "single family",
+     "(?<![a-z])house(?![a-z])",
+     "new construction",
+     "pole barn house"
+    ],
+    "sheets": [
+     "floor plan"
+    ]
+   },
+   "variants": [
+    {
+     "key": "flood-zone",
+     "name": "Flood zone",
+     "when": {
+      "flood": true
+     }
+    },
+    {
+     "key": "all-cmu",
+     "name": "All CMU",
+     "when": {
+      "walls": "cmu"
+     }
+    },
+    {
+     "key": "cmu-lower-wood-above",
+     "name": "CMU lower level, wood above",
+     "when": {
+      "walls": "cmu+wood"
+     }
+    },
+    {
+     "key": "wood",
+     "name": "Wood framing"
+    }
+   ]
+  },
+  {
+   "key": "new-sfr-1-story",
+   "name": "New single family, 1 story",
+   "origin": "yours",
+   "when": {
+    "stories_max": 1
+   },
+   "match": {
+    "path": [
+     "farmhouse",
+     "barndominium",
+     "a[ -]frame",
+     "single family",
+     "(?<![a-z])sfh(?![a-z])",
+     "bungalow",
+     "cottage",
+     "homestead",
+     "estate",
+     "(?<![a-z])house(?![a-z])",
+     "\\d{3,5} ?s\\.?f(?![a-z])"
+    ],
+    "title": [
+     "residence",
+     "single family",
+     "(?<![a-z])house(?![a-z])",
+     "new construction",
+     "pole barn house"
+    ],
+    "sheets": [
+     "floor plan"
+    ]
+   },
+   "variants": [
+    {
+     "key": "cmu",
+     "name": "CMU",
+     "when": {
+      "walls": [
+       "cmu",
+       "cmu+wood"
+      ]
+     }
+    },
+    {
+     "key": "wood",
+     "name": "Wood framing"
+    }
+   ]
+  },
+  {
+   "key": "detached-accessory",
+   "name": "Detached accessory structure",
+   "origin": "yours",
+   "match": {
+    "path": [
+     "(?<![a-z])shed(?![a-z])",
+     "(?<![a-z])garages?(?![a-z])",
+     "carport",
+     "gazebo",
+     "pavilion",
+     "pergola",
+     "outdoor bar",
+     "hot tub",
+     "horse",
+     "paddock",
+     "(?<![a-z])barn(?![a-z])",
+     "workshop",
+     "accessory[ _-]*struct",
+     "storage[ _-]*plans?",
+     "wide[ _-]*shed",
+     "shed[ _-]*plans"
+    ],
+    "title": [
+     "(?<![a-z])shed(?![a-z])",
+     "(?<![a-z])garage(?![a-z])",
+     "carport",
+     "gazebo",
+     "pavilion",
+     "pergola"
+    ]
+   },
+   "variants": [
+    {
+     "key": "carport-with-shed",
+     "name": "Carport with shed",
+     "match": {
+      "path": [
+       "carport with shed"
+      ]
+     }
+    },
+    {
+     "key": "rv-carport",
+     "name": "RV carport",
+     "match": {
+      "path": [
+       "rv carport"
+      ]
+     }
+    },
+    {
+     "key": "carport",
+     "name": "Carport",
+     "match": {
+      "path": [
+       "carport"
+      ],
+      "title": [
+       "carport"
+      ]
+     }
+    },
+    {
+     "key": "golf-cart-shed",
+     "name": "Golf cart shed",
+     "match": {
+      "path": [
+       "golf cart shed"
+      ]
+     }
+    },
+    {
+     "key": "shed-gambrel-with-porch",
+     "name": "Gambrel shed with porch",
+     "match": {
+      "path": [
+       "gambrel roof shed with porch"
+      ]
+     }
+    },
+    {
+     "key": "shed",
+     "name": "Shed",
+     "match": {
+      "path": [
+       "(?<![a-z])shed(?![a-z])",
+       "wide[ _-]*shed",
+       "shed[ _-]*plans"
+      ],
+      "title": [
+       "(?<![a-z])shed(?![a-z])"
+      ]
+     }
+    },
+    {
+     "key": "garage",
+     "name": "Detached garage",
+     "match": {
+      "path": [
+       "(?<![a-z])garages?(?![a-z])"
+      ],
+      "title": [
+       "(?<![a-z])garage(?![a-z])"
+      ]
+     }
+    },
+    {
+     "key": "gazebo",
+     "name": "Gazebo",
+     "match": {
+      "path": [
+       "gazebo"
+      ],
+      "title": [
+       "gazebo"
+      ]
+     }
+    },
+    {
+     "key": "pavilion",
+     "name": "Pavilion",
+     "match": {
+      "path": [
+       "pavilion"
+      ],
+      "title": [
+       "pavilion"
+      ]
+     }
+    },
+    {
+     "key": "pergola",
+     "name": "Pergola",
+     "match": {
+      "path": [
+       "pergola"
+      ],
+      "title": [
+       "pergola"
+      ]
+     }
+    },
+    {
+     "key": "outdoor-bar",
+     "name": "Outdoor bar",
+     "match": {
+      "path": [
+       "outdoor bar"
+      ]
+     }
+    },
+    {
+     "key": "hot-tub-enclosure",
+     "name": "Hot tub enclosure",
+     "match": {
+      "path": [
+       "hot tub"
+      ]
+     }
+    },
+    {
+     "key": "horse-shelter",
+     "name": "Horse paddock / shelter",
+     "match": {
+      "path": [
+       "horse",
+       "paddock"
+      ]
+     }
+    },
+    {
+     "key": "general",
+     "name": "Other"
+    }
+   ]
+  },
+  {
+   "key": "pool",
+   "name": "Pool drawings",
+   "origin": "yours",
+   "match": {
+    "path": [
+     "swimming pool",
+     "pool[ _-]*(shell|structural)",
+     "gunite",
+     "shotcrete"
+    ],
+    "title": [
+     "swimming pool",
+     "pool[ _-]*(shell|structural|plan)",
+     "gunite",
+     "shotcrete"
+    ]
+   },
+   "variants": [
+    {
+     "key": "general",
+     "name": "Pool"
+    }
+   ]
+  }
+ ]
+}

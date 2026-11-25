@@ -1,8 +1,14 @@
 [
   {
     "protocol": "tcp",
-    "host_regex": "^(api\\.openai\\.com|api\\.telegram\\.org)$",
-    "port": 443
+    "host": "api.openai.com",
+    "port": 443,
+    "comment": "Model provider (example). Replace with the provider you use."
+  },
+  {
+    "protocol": "tcp",
+    "host": "api.telegram.org",
+    "port": 443,
+    "comment": "Telegram channel (example). Remove if not applicable."
   }
 ]
-

@@ -1,0 +1,69 @@
+//函数：SHOW_PART_TP
+//参数1：磁盘
+//参数2：类型
+//参数3：X为排除选取，否则一般选取
+//参数4：H为隐藏，否则显示
+_SUB  SHOW_PART_TP 
+    ENVI^ EnviMode=1 //避免讨厌的空变量问题
+    ENVI &&磁盘=%1
+    ENVI &&tp0=%2
+    ENVI &&X=%3  //排除
+    ENVI &&op=%4 //隐藏
+    ENVI &&全部分区=
+    ENVI &&分区=
+    ENVI &&分区信息=
+    ENVI &&tp=
+    ENVI &&ntp=
+    forx * 1 2 3 4,&分区,    //目前实际只操作 1－4 ，4个主分区
+    {
+        PART -hextp -phy list part %&磁盘%#%&分区%,&分区信息
+        MSTR &tp=<2>%&分区信息%
+        FIND $=%&tp%,!   //过滤空分区
+        {
+            FIND $H=%&op%,!   CALC -base=16 #&ntp=0xEF & %&tp%   //显示 
+            FIND $H=%&op%,!!  CALC -base=16 #&ntp=0x10 | %&tp%   //隐藏
+            IFEX $0=%&ntp%,!   //不能变成空分区
+            {
+                ENVI &&OK=0
+                FIND $X=%&X%,!  IFEX $%&tp%=%&tp0%,!!   ENVI &&OK=1  
+                FIND $X=%&X%,!! IFEX $%&tp%=%&tp0%,!    ENVI &&OK=1   //排除
+              //FIND $1=%&OK%, MESS PART -super %&磁盘%#%分区%    %&ntp%  @调试信息#OK
+                FIND $1=%&OK%,      PART -super %&磁盘%#%分区%    %&ntp% 
+            }
+        }
+    }
+_END
+
+//调用示例:
+//SHOW_PART_TP  0 0x5  X H //隐藏除0x05外全部
+//SHOW_PART_TP  0 0x15 X   //显示除0x15外全部
+//SHOW_PART_TP  0 0x15     //显示全部 0x15
+
+
+
+//1:  PART list part %&磁盘%,&全部分区
+//获得该磁盘所有分区的列表， 存于变量 &全部分区
+
+//2：forx * 1 2 3 4,&分区,
+//   一个一个分区地处理， 分区号存于变量 &分区
+   
+//3： PART -hextp -phy list part %&磁盘%#%分区%,&分区信息 
+//    获得该分区的详细信息。
+    
+//4： MSTR &tp=<2>%&分区信息%
+//    其中第二列为 分区类型
+
+//5.1：  CALC  #&ntp=0xEF & %&tp%       //类型转成显示 类型  
+
+//5.2：  CALC  #&ntp=0x10 | %&tp%       //类型转成隐藏 类型  
+
+//6：
+//  FIND $=%&tp%,! 
+//  原来不为空
+
+//  IFEX $0=%&ntp%,! 
+//  不能变成0类型
+
+//7.  PART -super %&磁盘%#%分区%    %&ntp%
+//    设置新类型
+    

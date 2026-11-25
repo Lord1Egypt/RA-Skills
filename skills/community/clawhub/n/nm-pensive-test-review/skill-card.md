@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to review test suites before releases or after test failures. It helps identify framework constraints, coverage gaps, weak scenarios, and concrete test improvement actions.
+Developers use this skill to review test suites for framework coverage, scenario quality, invariant preservation, and practical remediation before releases or after test failures.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: One scanner reported incomplete coverage because three local references could not be resolved.
+Risk: The partial security review could not resolve three local references, so it may not cover all referenced material.
 
-Mitigation: Review the skill and the unresolved references before installation, accounting for the scanner coverage gap.
+Mitigation: Check unresolved references before relying on their guidance, and treat the medium-confidence benign verdict as a signal rather than a safety guarantee.
 
 ## Reference(s):
 
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-pensive-test-review)
+- [Project homepage (Clawdis metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
 
 ## Skill Output:
 
 **Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [Markdown test review with framework findings, coverage gaps, quality issues, and a remediation plan]
+**Output Format:** [Structured Markdown review with coverage findings, quality issues, remediation steps, and a recommendation.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Recommendations are tied to test behavior and should include source locations and evidence where available.]
+**Other Properties Related to Output:** [May include illustrative shell commands and framework-specific test guidance.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

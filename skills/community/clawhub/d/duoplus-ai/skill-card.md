@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External developers and operators use this agent skill to manage DuoPlus cloud-phone lifecycle and perform explicitly authorized Android UI automation on running phones.
+Developers and agents use this skill to manage authorized DuoPlus cloud phones and complete requested Android UI tasks through DuoPlus services. It provides lifecycle, status, proxy, UI automation, and explicitly authorized device-shell workflows.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: API keys may be exposed when supplied in conversation or command-line arguments.
+Risk: A configured API endpoint could receive an API key or bearer token.
 
-Mitigation: Use a protected credential method when available, and do not echo or persist the key.
+Mitigation: Use the documented DuoPlus production endpoint and review any DUOPLUS_API_BASE override before sending credentials.
 
-Risk: The security scan is partial, flags broad environment and network capabilities, and could not resolve three local references.
+Risk: Passing an API key as a command-line argument may expose it in process listings or logs.
 
-Mitigation: Review the unresolved references before installation and limit use to explicitly requested phone operations.
+Mitigation: Use secure DUOPLUS_API_KEY injection or a private key file with --api-key-file; do not pass the key as an argument or paste it into chat.
 
 ## Reference(s):
 
-- [Automation actions](references/automation-actions.md)
+- [Credential setup](references/credentials.md)
+- [HTTP Gateway automation actions](references/automation-actions.md)
 - [DuoPlus control API and routing](references/control-api.md)
 - [DuoPlus interface introduction](https://help.duoplus.cn/docs/introduction)
-- [DuoPlus cloud phone list API](https://help.duoplus.cn/docs/cloud-phone-list)
-- [DuoPlus cloud phone status API](https://help.duoplus.cn/docs/cloud-phone-status)
-- [DuoPlus proxy initialization](https://help.duoplus.cn/docs/proxy-init)
+- [DuoPlus cloud phone API documentation](https://help.duoplus.cn/docs/cloud-phone-list)
+- [DuoPlus execute command documentation](https://help.duoplus.cn/docs/execute-the-adb-command)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, API calls, Shell commands, JSON, UI observations and screenshots]
+**Output Type(s):** [API Calls, JSON, Shell commands, Configuration instructions, Screenshots]
 
-**Output Format:** [Command-line invocations, JSON responses, and Android UI observations]
+**Output Format:** [JSON responses, screenshots, and shell command examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include screenshots when requested for visual verification.]
+**Other Properties Related to Output:** [May perform cloud phone lifecycle or UI actions when explicitly requested; actions return status and result data.]
 
 ## Skill Version(s):
 
-1.0.7 (source: SKILL.md frontmatter, server-resolved release)
+1.0.8 (source: frontmatter)
 
 ## Ethical Considerations:
 

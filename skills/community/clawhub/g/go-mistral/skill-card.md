@@ -1,6 +1,6 @@
 ## Description:
 
-Guides Go developers in using the unofficial typed Go client for the Mistral AI REST API.
+Provides Go developers with a typed client for calling the Mistral AI REST API.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Developers use this skill to add and call the Go Mistral client for chat completions, embeddings, model listing, and other Mistral AI API operations. It provides setup, authentication, request, and response guidance.
+Go developers use this skill to add and call the go-mistral client from a Go project, including chat completion, embeddings, and other Mistral API operations.
 
 ### Deployment Geography for Use:
 
@@ -22,42 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Requests can send prompts and files to Mistral AI for processing.
+Risk: Security analysis was partial: two path-like references in SKILL.md did not resolve to bundled files.
 
-Mitigation: Send only data you intend Mistral AI to process.
+Mitigation: Review the complete skill materials and resolve the missing references before installation; the available scan reported no findings with medium confidence.
 
-Risk: A bearer API key could be exposed through source code or logs.
+Risk: Requests send prompts or files to Mistral AI, and batch or delete operations can have cost or data-removal consequences.
 
-Mitigation: Read the key from MISTRAL_API_KEY, keep it out of source control, and do not log or print request headers.
+Mitigation: Check what data will be sent and confirm the intended cost or deletion before making those API calls.
 
-Risk: Batch jobs can incur charges, and delete operations remove data.
+Risk: A Mistral API key is used for bearer authentication.
 
-Mitigation: Run batch or delete operations only when the user explicitly requests them.
-
-Risk: The downloaded third-party dependency implementation was outside the documented security review scope.
-
-Mitigation: Review and pin the third-party dependency version.
+Mitigation: Read the key from an environment variable, keep it out of source control and logs, and avoid printing request headers.
 
 ## Reference(s):
 
-- [Setup and reference](artifact/references/setup.md)
-- [Project repository](https://github.com/psyb0t/go-mistral)
-- [Go package documentation](https://pkg.go.dev/github.com/psyb0t/go-mistral)
-- [ClawHub release page](https://clawhub.ai/psyb0t/skills/go-mistral)
+- [Setup and reference](references/setup.md)
+- [go-mistral package documentation](https://pkg.go.dev/github.com/psyb0t/go-mistral)
+- [Project page](https://github.com/psyb0t/go-mistral)
 
 ## Skill Output:
 
 **Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
 
-**Output Format:** [Markdown with Go code examples and shell commands]
+**Output Format:** [Markdown with Go and shell code blocks]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Single-stream guidance for integrating and using the client.]
+**Other Properties Related to Output:** [Integration guidance and examples; the skill describes edits to the current Go project.]
 
 ## Skill Version(s):
 
-0.3.0 (source: server-resolved release metadata)
+0.4.0 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-AI-powered TikTok & Facebook Adspy and Ad Library research for ads, products, stores, landing pages, advertisers, and competitors.
+AI-powered TikTok & Facebook Adspy and Ad Library research for ads, products, stores, landing pages, advertisers, and competitors. Find trending ads, analyze creative hooks, discover winning products, monitor campaigns, and perform image-based search.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and developers use this skill to research TikTok and Facebook advertising intelligence, including ads, products, stores, advertisers, competitors, and campaign trends through PipiAds. It also supports monitoring workflows and image-based searches when the user explicitly requests them.
+Marketers, ecommerce researchers, and competitor analysts use this skill to research TikTok and Facebook ads, products, stores, advertisers, apps, and campaign trends through PipiAds. They can also track specified advertisers or find similar ads and products from an image.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill installs and runs a third-party npm package that receives the configured PipiAds API key.
+Risk: Search queries and optional images are sent to the external PipiAds service.
 
-Mitigation: Install only if the npm package is trusted, prefer an isolated environment, and use a limited, revocable API key where possible.
+Mitigation: Do not submit sensitive personal, customer, or confidential campaign information; send images only when they are safe to share with a third party.
 
-Risk: Search queries and optional image inputs are sent to the external PipiAds service.
+Risk: The documented npm package runs locally, and installation scripts may execute during installation.
 
-Mitigation: Avoid sending sensitive personal data, confidential customer information, private campaign assets, or unnecessary images.
+Mitigation: Review the package and its publisher before installation, and use an isolated environment when stronger supply-chain controls are needed.
 
-Risk: Broad searches and detail requests can consume PipiAds account credits.
+Risk: API searches and detail requests can consume account credits.
 
-Mitigation: Clarify platform, region, time range, category, and target object before running expensive or broad queries.
+Mitigation: Narrow searches before expanding scope, and consider the documented per-result and per-request credit costs.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/fanyanggod/skills/pipiads)
-- [PipiAds homepage](https://www.pipiads.com)
-- [PipiAds API portal](https://www.pipispy.com/)
+- [PipiAds](https://www.pipiads.com)
+- [PipiSpy API portal](https://www.pipispy.com/)
+- [PipiAds skill release on ClawHub](https://clawhub.ai/fanyanggod/skills/pipiads)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance]
+**Output Type(s):** [Analysis, Text, Markdown]
 
-**Output Format:** [Markdown with concise analysis, tool-selection guidance, and inline shell or configuration snippets]
+**Output Format:** [Markdown summaries of advertising intelligence and research findings]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May return ad, product, store, advertiser, ranking, monitor, or image-search results from the configured PipiAds MCP server.]
+**Other Properties Related to Output:** [May include ad, product, store, advertiser, app, ranking, monitoring, or image-similarity findings, depending on the request.]
 
 ## Skill Version(s):
 
-1.0.6 (source: server release evidence)
+1.0.7 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -1,7 +1,7 @@
 ---
 name: "smyx-crop-specific-disease-analysis"
 description: "Expands the disease identification library to cover economic-crop-specific diseases (corn northern/southern leaf blight, potato late blight, peanut leaf spot, tomato viral disease, etc.) for precise leaf-disease recognition. | 扩充病害识别库至经济作物专属病害（玉米大斑病/小斑病、土豆晚疫病、花生叶斑病、番茄病毒病等），实现叶片病害的精准识别。"
-version: "1.0.19"
+version: "1.0.22"
 license: "MIT-0"
 ---
 

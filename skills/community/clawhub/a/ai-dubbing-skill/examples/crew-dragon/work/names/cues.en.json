@@ -1,0 +1,173 @@
+{
+ "language": "en",
+ "cues": [
+  {
+   "start": 0.0,
+   "end": 5.157,
+   "tokens": [
+    "I",
+    "think",
+    "one",
+    "of",
+    "the",
+    "ways",
+    "to",
+    "describe",
+    "it",
+    "for",
+    "both",
+    "Doug",
+    "and",
+    "I",
+    "is",
+    "that",
+    "we're",
+    "hopeful"
+   ],
+   "i": 1,
+   "text": "I think one of the ways to describe it for both Doug and I is that we're hopeful"
+  },
+  {
+   "start": 5.24,
+   "end": 11.177,
+   "tokens": [
+    "that",
+    "future",
+    "crews",
+    "on",
+    "Dragon",
+    "vehicles",
+    "headed",
+    "to",
+    "NASA",
+    "space",
+    "stations"
+   ],
+   "i": 2,
+   "text": "that future crews on Dragon vehicles headed to NASA space stations"
+  },
+  {
+   "start": 11.26,
+   "end": 16.297,
+   "tokens": [
+    "aren't",
+    "cursing",
+    "our",
+    "names",
+    "because",
+    "we",
+    "accepted",
+    "some",
+    "feature",
+    "that",
+    "was",
+    "complicated"
+   ],
+   "i": 3,
+   "text": "aren't cursing our names because we accepted some feature that was complicated"
+  },
+  {
+   "start": 16.38,
+   "end": 17.857000000000003,
+   "tokens": [
+    "and",
+    "hard",
+    "to",
+    "train,",
+    "and",
+    "in",
+    "the",
+    "end,"
+   ],
+   "i": 4,
+   "text": "and hard to train, and in the end,"
+  },
+  {
+   "start": 17.94,
+   "end": 19.257,
+   "tokens": [
+    "hard",
+    "to",
+    "operate."
+   ],
+   "i": 5,
+   "text": "hard to operate."
+  },
+  {
+   "start": 19.34,
+   "end": 21.297,
+   "tokens": [
+    "They're",
+    "like,",
+    "yeah,",
+    "I",
+    "can't",
+    "understand."
+   ],
+   "i": 6,
+   "text": "They're like, yeah, I can't understand."
+  },
+  {
+   "start": 21.38,
+   "end": 22.917,
+   "tokens": [
+    "I",
+    "don't",
+    "even",
+    "remember",
+    "why",
+    "that's",
+    "so",
+    "easy,"
+   ],
+   "i": 7,
+   "text": "I don't even remember why that's so easy,"
+  },
+  {
+   "start": 23.0,
+   "end": 24.237000000000002,
+   "tokens": [
+    "but",
+    "it",
+    "is",
+    "so",
+    "easy."
+   ],
+   "i": 8,
+   "text": "but it is so easy."
+  },
+  {
+   "start": 24.32,
+   "end": 26.037000000000003,
+   "tokens": [
+    "And",
+    "so",
+    "that",
+    "they",
+    "forget",
+    "about",
+    "us,"
+   ],
+   "i": 9,
+   "text": "And so that they forget about us,"
+  },
+  {
+   "start": 26.12,
+   "end": 29.1,
+   "tokens": [
+    "because",
+    "they",
+    "don't",
+    "have",
+    "anything",
+    "to",
+    "curse",
+    "our",
+    "names",
+    "over."
+   ],
+   "i": 10,
+   "text": "because they don't have anything to curse our names over."
+  }
+ ]
+}

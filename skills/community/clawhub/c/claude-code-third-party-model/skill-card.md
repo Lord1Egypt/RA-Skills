@@ -1,6 +1,6 @@
 ## Description:
 
-Helps developers connect Claude Code and WorkBuddy to third-party model providers, troubleshoot configuration, and use a local gateway when protocol conversion is needed.
+帮助开发者将 Claude Code 连接到第三方 Anthropic 或 OpenAI 兼容模型端点，并排查模型、配置和连接性能问题。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-Developers use this skill to configure Claude Code or WorkBuddy for third-party models, switch provider profiles, and diagnose connection or response problems.
+Developers use this skill to connect Claude Code or WorkBuddy to third-party model endpoints, select and switch model profiles, and diagnose configuration or connection issues.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Changing local Claude Code or WorkBuddy settings may overwrite working provider configuration.
+Risk: The security review reports an unauthenticated route to a tool-capable agent.
 
-Mitigation: Review proposed settings changes and keep a backup before applying them.
+Mitigation: Keep the bridge limited to a trusted local environment, do not expose it to untrusted networks, and require client-token authentication wherever the gateway supports it.
 
-Risk: Third-party providers may receive prompts, project context, and credentials sent through configured endpoints.
+Risk: Credentials and sensitive diagnostic information may be exposed through gateway configuration or logs.
 
-Mitigation: Check the provider before use and avoid sensitive projects with anonymous or unclear providers.
+Mitigation: Use dedicated credentials with limited access, protect configuration and diagnostic files, and inspect or disable request dumps before sending sensitive prompts.
 
-Risk: The local gateway may write failed request bodies to a local debugging file.
+Risk: Gateway process management may affect other running processes.
 
-Mitigation: Review local gateway logs and limit access to or remove files containing sensitive request data.
+Mitigation: Review startup and shutdown behavior, run the gateway with least privilege, and verify which processes it may start or stop.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/oracis/skills/claude-code-third-party-model)
+- [ClawHub release](https://clawhub.ai/oracis/skills/claude-code-third-party-model)
+- [Project repository linked in the skill](https://github.com/oracis/claude-code-third-party-model)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Configuration instructions, Shell commands, Code]
+**Output Type(s):** [Guidance, Configuration, Shell commands, Code]
 
-**Output Format:** [Markdown with configuration and shell examples]
+**Output Format:** [Markdown with shell commands, JSON configuration, and code examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May guide edits to local settings and use of a local model gateway.]
+**Other Properties Related to Output:** [None]
 
 ## Skill Version(s):
 
-1.3.0 (source: release evidence and skill frontmatter)
+1.6.0 (source: server-resolved release evidence and skill frontmatter)
 
 ## Ethical Considerations:
 

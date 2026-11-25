@@ -1,6 +1,6 @@
 ## Description:
 
-Helps an OpenClaw agent owner install, verify, configure, monitor, and manage InnerWarden protections.
+Helps OpenClaw owners install, verify, and manage InnerWarden protections for agent tool calls and MCP servers.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-OpenClaw users and developers use this skill to install and verify InnerWarden, check active protections and command verdicts, and manage monitoring or enforcement.
+OpenClaw owners and developers use this skill to install and verify InnerWarden, understand what it protects, review commands for safety, and manage its configuration or removal.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The scan flagged install instructions that pipe a changing internet script directly into a shell as a serious supply-chain risk.
+Risk: ClawScan marks the skill suspicious because its installer pipes code downloaded from the internet directly into a shell.
 
-Mitigation: Before installing, review the installer independently and verify its authenticity through a trusted source; do not install until the unverified download-and-run method is addressed.
+Mitigation: Review the installer and independently verify what it downloads before running it; consider whether listed elevated commands are necessary.
 
-Risk: The scan was partial because three referenced local paths were missing and could not be resolved.
+Risk: The security scan is partial and does not resolve three local references.
 
-Mitigation: Resolve and review the missing paths before relying on the scan as a complete assessment.
+Mitigation: Review those references before relying on the scan result.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/maiconburn/skills/innerwarden-security)
-- [InnerWarden documentation](https://github.com/InnerWarden/innerwarden-skill)
-- [InnerWarden Pro server guide](https://github.com/InnerWarden/innerwarden-skill/blob/master/docs/pro-on-a-server.md)
-- [InnerWarden Pro management guide](https://github.com/InnerWarden/innerwarden-skill/blob/master/docs/managing-pro.md)
+- [InnerWarden skill documentation](https://github.com/InnerWarden/innerwarden-skill)
+- [Pro installation guide](https://github.com/InnerWarden/innerwarden-skill/blob/master/docs/pro-on-a-server.md)
+- [Managing InnerWarden Pro](https://github.com/InnerWarden/innerwarden-skill/blob/master/docs/managing-pro.md)
+- [InnerWarden Pro pricing](https://innerwarden.com/pricing)
 
 ## Skill Output:
 
 **Output Type(s):** [Guidance, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown with inline shell commands and configuration examples]
+**Output Format:** [Markdown with command examples and procedural instructions]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [None]
+**Other Properties Related to Output:** [Commands for installation and security-mode changes are presented for owner review.]
 
 ## Skill Version(s):
 
-1.0.10 (source: server-resolved release metadata)
+1.0.12 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Read, search and send in the owner's personal WhatsApp through wa, and link it. Use when a question could be answered from the owner's WhatsApp chats (what someone said, agreed, promised or sent, a document, a date, who owes a reply), when asked to find a WhatsApp chat, person or group, read or summarise a conversation, prepare for a meeting from chats, draft or send a reply, or link or connect WhatsApp.
+Read, search and send in the owner's personal WhatsApp through wa, and link it.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users use this skill to answer questions from the owner's WhatsApp chats, find and summarize conversations, and prepare meeting context. It can also draft or send a reply or help link the account when asked.
+People using their own WhatsApp account can search and review stored chats, find messages and follow-ups, prepare summaries or replies, and connect the account when requested.
 
 ### Deployment Geography for Use:
 
@@ -22,43 +22,41 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Account and chat administration and message writes may be available without explicit owner approval; the security review was incomplete for one component.
+Risk: The release is rated suspicious because administrative and destructive messaging commands were reported beyond the stated scope, and the sending guide was only partially inspected.
 
-Mitigation: Review command and MCP permissions before installation, enable only needed capabilities, and confirm writes through a trusted approval process.
+Mitigation: Review the complete sending guide and command permission list before installation; restrict administrative and destructive commands or require explicit owner approval.
 
-Risk: Use of the unofficial client or bulk and unsolicited messages may put the owner's WhatsApp account at risk.
+Risk: The skill can read private chat content and perform external writes such as sending or deleting messages; its documentation also warns of account restriction or ban risk from unofficial or bulk use.
 
-Mitigation: Avoid bulk or unsolicited messages and send only the exact content to the exact recipient the owner requested.
+Mitigation: Use minimal permissions, require the owner's explicit request for each write, and avoid bulk or unsolicited messages.
 
 ## Reference(s):
 
-- [Commands reference](references/commands.md)
-- [Connection reference](references/connection.md)
-- [Groups reference](references/groups.md)
-- [History reference](references/history.md)
-- [Local store reference](references/local-store.md)
-- [Search reference](references/search.md)
-- [Sending reference](references/sending.md)
-- [Setup reference](references/setup.md)
-- [ClawHub release page](https://clawhub.ai/wirecat/skills/wirecat-whatsapp)
-- [CLI contract documentation](https://github.com/WireCatLabs/whatsapp-cli/blob/main/docs/cli-contract.md)
-- [Search documentation](https://github.com/WireCatLabs/whatsapp-cli/blob/main/docs/search.md)
-- [Query language documentation](https://github.com/WireCatLabs/whatsapp-cli/blob/main/docs/query-language.md)
-- [MCP documentation](https://github.com/WireCatLabs/whatsapp-cli/blob/main/docs/mcp.md)
+- [Setup and installation](references/setup.md)
+- [Command reference](references/commands.md)
+- [Search and chat evidence](references/search.md)
+- [History and coverage](references/history.md)
+- [Sending safeguards](references/sending.md)
+- [Connection lifecycle](references/connection.md)
+- [Groups and account controls](references/groups.md)
+- [CLI contract](https://github.com/WireCatLabs/whatsapp-cli/blob/main/docs/cli-contract.md)
+- [Search guide](https://github.com/WireCatLabs/whatsapp-cli/blob/main/docs/search.md)
+- [Query language](https://github.com/WireCatLabs/whatsapp-cli/blob/main/docs/query-language.md)
+- [MCP guide](https://github.com/WireCatLabs/whatsapp-cli/blob/main/docs/mcp.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-**Output Format:** [Natural-language answers, conversation summaries, and reply drafts with message locators when available]
+**Output Format:** [Text or Markdown, with shell command examples where useful]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Answers may contain sensitive chat details, and completeness depends on the account's locally stored history.]
+**Other Properties Related to Output:** [Chat answers reflect locally stored history and may be incomplete.]
 
 ## Skill Version(s):
 
-1.0.5 (source: server-resolved ClawHub release metadata)
+1.0.6 (source: server-resolved release)
 
 ## Ethical Considerations:
 

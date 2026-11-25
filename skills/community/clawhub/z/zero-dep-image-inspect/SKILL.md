@@ -2,7 +2,7 @@
 name: zero-dep-image-inspect
 slug: zero-dep-image-inspect
 displayName: 零依赖图片诊断与并排对照（无 Pillow）
-version: 1.0.1
+version: 1.0.2
 license: MIT
 platforms: [windows, macos, linux]
 visibility: public

@@ -1,9 +1,15 @@
 ---
 name: stockpile
-version: 2.0.1
-description: Autonomous e-commerce storefront operations, catalog curation, collectible appraisals, and order fulfillment via Stockpile MCP.
+version: "2.4.0"
+description: Autonomous e-commerce storefront operations, store inventory curation, collectible valuations, and order fulfillment via Stockpile MCP.
 homepage: https://stockpile.market
-author: @casualbrooks
+author: "@casualbrooks"
+slug: stockpile-market-mcp
+category: "Integrations & Connectors"
+framework: "Multi-Framework"
+verification: listed
+license: MIT
+source: "https://github.com/casualbrooks/mcp-stockpile"
 metadata:
   openclaw:
     emoji: "🏪"
@@ -22,62 +28,101 @@ metadata:
         label: Run Stockpile MCP server via uvx
 ---
 
-# Stockpile Market — OpenClaw Skill
+# Stockpile Market MCP
 
-Operate autonomous e-commerce storefronts, curate product catalogs, appraise collectibles, and fulfill customer orders through the [mcp-stockpile](https://github.com/casualbrooks/mcp-stockpile) MCP server.
+Autonomous e-commerce storefront operations, inventory tracking, collectible appraisals, automated maintenance sweeps, and order fulfillment via the [Stockpile Market](https://stockpile.market) Model Context Protocol (MCP) server.
 
-## Overview
+Provides 23 tools for autonomous agents operating across Claude Code, Cursor, OpenClaw, Codex, and OpenAI ecosystems:
+- **Inventory Control**: Add, update, batch-import collections, and delist catalog items with pricing and delivery guarantees (`add_store_item`, `update_store_item`, `delete_store_item`, `inventory_collection_batch`).
+- **Storefront & Fleet Management**: Inspect merchant stores, query catalog limits, and manage communication routing or agent webhooks (`list_my_stores`, `get_store_limits`, `set_store_message_receiver`, `get_store_message_receiver`).
+- **Appraisals & Valuation**: Automated rarity appraisals (1–100 scale), collector desirability tiers, and market comp searches (`evaluate_item_collectibility`, `search_collection_matches`).
+- **Storefront Bulletin Boards**: Post and manage customer-facing notices, announcements, and restocking alerts (`get_bulletin_board`, `post_bulletin_note`, `delete_bulletin_note`).
+- **Automation & Sourcing**: Inspect weekly auto-credit quotas, execute inventory link audits, trigger pricing audits, and scout items (`get_store_automation_credits`, `run_inventory_sweep`, `run_pricing_audit`, `scout_store_items`, `audit_source_urls`).
+- **Order Fulfillment**: Track paid customer orders and submit carrier tracking numbers to complete shipments and release escrow payouts (`get_pending_orders`, `fulfill_order`).
+- **Account Upgrades**: Generate payment intents for catalog capacity (Large Store Pass) and store fleet limits (`checkout_large_store_tier`, `checkout_store_fleet_tier`).
 
-Stockpile gives OpenClaw agents direct access to:
-- 🛒 **Storefront Creation & Management**: Spin up customizable merchant stores.
-- 📦 **Inventory Management**: Create, edit, and delist inventory items with pricing and attributes.
-- 🔍 **Marketplace Search**: Discover comps, categories, and listed products across the platform.
-- 💎 **Collectible Appraisals**: Calculate value estimates based on real comps and condition grading.
-- 🚚 **Order Fulfillment & Escrow**: Manage buyer orders, shipping tracking codes, and refunds.
+## Store Provisioning & Agent Workflow
 
-## Configuration & Auth
+The MCP server is designed for autonomous runtime operations across existing merchant stores. Initial storefront creation is handled via the Stockpile platform:
 
-Set your API key in your environment or OpenClaw config:
+1. **Create Your Storefront**:
+   - **Agent Studio**: Visit [stockpile.market/agents](https://stockpile.market/agents) to generate a custom curator persona, define target markups, and deploy a new storefront.
+   - **Merchant Dashboard**: Or create stores manually at [stockpile.market/stores](https://stockpile.market/stores).
+2. **Retrieve API Key**: Generate your agent key under the [Agent Hub API Tab](https://stockpile.market/agents/?tab=api).
+3. **Discover Stores in Agent Runtime**: Call `list_my_stores` to obtain your assigned `store_id` values.
+4. **Autonomous Management**: Pass the `store_id` to manage inventory, run maintenance sweeps, pin bulletin announcements, and fulfill orders.
+
+## Operational Safety & Confirmation Boundaries
+
+To protect merchant operations, finances, and buyer trust, autonomous agents using this skill **MUST prompt for explicit user confirmation** immediately before executing consequential actions:
+
+1. **Inventory Writes & Deletions**: Always present item title, price, quantity, and store ID before calling `add_store_item`, `update_store_item`, `delete_store_item`, or `inventory_collection_batch`.
+2. **Routing & Webhook Changes**: Confirm destination address or webhook URL with the user before calling `set_store_message_receiver`.
+3. **Bulletin Board Updates**: Show note title, message, and target store before executing `post_bulletin_note` or `delete_bulletin_note`.
+4. **Auto-Credit Consumption**: Clearly warn that `run_inventory_sweep`, `run_pricing_audit`, `scout_store_items`, and `audit_source_urls` consume 1 weekly auto-credit, and confirm the action before invoking.
+5. **Billing & Upgrades**: Present the plan name, monthly price ($19.99/mo), and scope before calling `checkout_large_store_tier` or `checkout_store_fleet_tier`.
+6. **Order Fulfillment**: Display order ID, carrier name, tracking number, and remind the user that `fulfill_order` finalizes shipping and initiates escrow payout release before proceeding.
+
+## Installation & Setup
+
+### Claude Code
+
+Add the MCP server to Claude Code via CLI:
 
 ```bash
-export STOCKPILE_API_KEY="stk_live_xxxxxxxxxxxxxxxxxxxxxxxx"
-export STOCKPILE_API_URL="https://stockpile.market/api"  # optional, defaults to production (https://stockpile.market/api)
+claude mcp add stockpile uvx mcp-stockpile
 ```
 
-Keys can be generated directly from the [Agent Hub](https://stockpile.market/agents?tab=api).
+Or configure in `claude_desktop_config.json`:
 
-## Running with OpenClaw MCP (`mcporter`)
+```json
+{
+  "mcpServers": {
+    "stockpile": {
+      "command": "uvx",
+      "args": ["mcp-stockpile"],
+      "env": {
+        "STOCKPILE_API_KEY": "YOUR_STOCKPILE_API_KEY"
+      }
+    }
+  }
+}
+```
 
-Connect `mcp-stockpile` to your OpenClaw agent session:
+### Cursor
+
+1. Open **Cursor Settings** (`Ctrl+,` or `Cmd+,`).
+2. Navigate to **Features** -> **MCP**.
+3. Click **Add New MCP Server**:
+   - **Name**: `stockpile`
+   - **Type**: `command`
+   - **Command**: `uvx mcp-stockpile`
+
+### OpenClaw
+
+Add to your OpenClaw session using `mcporter`:
 
 ```bash
 mcporter config add stockpile --command "uvx" --args "mcp-stockpile" --env STOCKPILE_API_KEY="$STOCKPILE_API_KEY"
 ```
 
 Verify available tools:
-
 ```bash
 mcporter list stockpile --schema
 ```
 
-Or call any tool directly:
+### Direct Execution via `uvx` / Docker
 
+Run directly with uv:
 ```bash
-mcporter call stockpile.search_catalog query="mechanical keyboard"
+uvx mcp-stockpile
 ```
 
-## Available Tool Actions (23 Tools)
+Or with Docker:
+```bash
+docker run -i --rm -e STOCKPILE_API_KEY="$STOCKPILE_API_KEY" casualbrooks/mcp-stockpile
+```
 
-| Category | Key Tools |
-|---|---|
-| **Catalog** | `search_catalog`, `get_item`, `get_market_categories` |
-| **Stores** | `list_my_stores`, `get_store_details`, `create_store`, `update_store_settings` |
-| **Inventory** | `list_store_inventory`, `create_inventory_item`, `update_inventory_item`, `delete_inventory_item` |
-| **Appraisal** | `get_item_appraisal`, `verify_item_authenticity` |
-| **Fulfillment** | `list_orders`, `get_order_details`, `fulfill_order`, `refund_order` |
+### API Key Generation
 
-## Safety & Moderation Rules
-
-Stockpile implements automated content moderation:
-- Listings containing illegal narcotics, regulated pharmaceuticals, or prohibited services are automatically rejected (`status: REJECTED`).
-- Escrow releases occur upon confirmed tracking carrier delivery.
+Get your agent credentials at [https://stockpile.market/agents/?tab=api](https://stockpile.market/agents/?tab=api).

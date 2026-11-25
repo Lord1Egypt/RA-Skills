@@ -1,6 +1,6 @@
 ## Description:
 
-Generates Seedream 5.0 e-commerce images from text prompts or reference images for product listings and campaign graphics.
+Creates Seedream 5.0 Pro product and marketing images from text prompts and optional reference images for ecommerce listings and campaigns.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,45 +14,40 @@ MIT-0
 
 ## Use Case:
 
-External e-commerce designers, product photographers, brand teams, and marketing operators use this skill to create product images and campaign graphics from text prompts or reference photos.
+External ecommerce marketers, product photographers, and brand teams use the skill to create product images, listing artwork, and promotional visuals from prompts or reference images.
 
 ### Deployment Geography for Use:
 
-Global
+China (the documented setup targets the domestic iqinghu.com service).
 
 ## Known Risks and Mitigations:
 
-Risk: Setup guidance requests an API key in chat, which could expose the credential.
+Risk: Reference images may be uploaded to an external service, and setup instructions ask the user for an API key in chat.
 
-Mitigation: Configure the key locally with qhkit or an environment variable; do not post it in chat, and rotate it if it has already been shared.
+Mitigation: Review the data-sharing and setup instructions first; do not share sensitive images or API keys through chat.
 
-Risk: The workflow installs and upgrades external software, whose package code and publisher provenance were not independently verified.
+Risk: Package execution paths are not pinned to reviewed versions.
 
-Mitigation: Use reviewed package versions and controlled updates before installing or upgrading.
-
-Risk: Product images and details may be sent to an external service, including during prompt polishing.
-
-Mitigation: Provide only images and product details that you are authorized to share with that service.
+Mitigation: Review package sources and versions before installation, and prefer reviewed, pinned versions where practical.
 
 ## Reference(s):
 
-- [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-seedream-5-pro)
+- [ClawHub skill page](https://clawhub.ai/autoagc/skills/linkpix-seedream-5-pro)
 - [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
-- [API key setup guide](https://xcnzsfe4uxrw.feishu.cn/wiki/KJ0Ywsyw8iAXmRkz5l4cddDbn6g)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Guidance]
+**Output Type(s):** [Images, Shell commands, Guidance]
 
-**Output Format:** [Generated image files or image URLs, with text guidance]
+**Output Format:** [Generated image files, with command-line JSON responses and Markdown guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Supports text prompts and optional reference images; image count, model, and size depend on the available service options.]
+**Other Properties Related to Output:** [Image count, size, and optional reference images are selected per request.]
 
 ## Skill Version(s):
 
-0.1.4 (source: server-resolved release metadata)
+0.1.5 (source: server-resolved release)
 
 ## Ethical Considerations:
 

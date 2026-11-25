@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes multi-person thermal-camera footage for relative skin-temperature differences and suggests follow-up measurement.
+Analyzes thermal-camera imagery of a group, compares each person's estimated skin-surface temperature with the group average, and reports relative anomalies for follow-up measurement.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Families and organizations can use the skill to review multi-person thermal-camera footage, flag relative surface-temperature differences, and receive a prompt to confirm readings with a thermometer. It provides screening cues rather than medical diagnoses.
+Households and operators of group settings can use this skill to screen thermal-camera footage for people whose measured skin-surface temperature differs from the group average, then arrange a follow-up measurement with a calibrated thermometer. It provides directional screening alerts rather than a medical diagnosis.
 
 ### Deployment Geography for Use:
 
@@ -22,33 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security summary reports unexpected identity and credential handling, external data transmission, and behavior beyond the stated screening purpose.
+Risk: The security review flags unclear account and credential handling, external data transmission, and video analysis that may occur despite an export-only option; the scan was partial and does not establish intent.
 
-Mitigation: Review identity and credential handling, video processing destinations, and the reported export-only behavior before installation; avoid sending sensitive footage until these behaviors are understood.
+Mitigation: Avoid installation until account handling, credential transmission, and video processing are clearly explained and the export-only behavior is corrected; review the partial scan before use.
 
-Risk: Thermal footage can contain sensitive health and personal information.
+Risk: Thermal video and related health screening reports may contain sensitive personal information.
 
-Mitigation: Obtain participants' informed consent and protect footage and reports with appropriate access controls and encryption.
+Mitigation: Obtain participants' informed consent and protect video and reports with appropriate access controls and encryption.
 
 ## Reference(s):
 
-- [API documentation](references/api_doc.md)
-- [Skill demo](https://lifeemergence.com/sample.html)
-- [ClawHub release page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-thermal-fever-screening-analysis)
+- [Thermal Screening API Reference](references/api_doc.md)
+- [Skill Demonstration](https://lifeemergence.com/sample.html)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, text, Markdown]
+**Output Type(s):** [Analysis, JSON, Markdown, Recommendations]
 
-**Output Format:** [Structured analysis results, text alerts, and Markdown report lists]
+**Output Format:** [Structured analysis results and report summaries with alert text and report links]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Per-person surface-temperature estimates and group-relative differences; screening cues only, not diagnoses.]
+**Other Properties Related to Output:** [Reports relative temperature differences and suggests follow-up measurement; it does not provide a medical diagnosis.]
 
 ## Skill Version(s):
 
-1.0.12 (source: server-resolved release metadata)
+1.0.14 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

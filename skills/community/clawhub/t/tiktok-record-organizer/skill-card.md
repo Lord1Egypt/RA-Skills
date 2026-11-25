@@ -1,6 +1,6 @@
 ## Description:
 
-Retrieves public TikTok search results, creator posts, and video comments as structured data for content and engagement analysis.
+Retrieve public TikTok videos, creator posts, and comments as structured data with engagement metrics for comparison and analysis.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Creators, marketers, and research teams use this skill to review public TikTok videos, creator activity, and comments for content planning, competitor tracking, and audience analysis.
+Social media researchers and marketers use the skill to find public TikTok videos, review creator posts and comments, and compare engagement for content planning, competitor analysis, and audience research.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search keywords and TikTok targets are sent to the GUAIKEI service, and API use may incur fees.
+Risk: The security scan rates the skill benign with medium confidence, but some files were only partly inspected, so its evidence is incomplete.
 
-Mitigation: Use a dedicated GUAIKEI token and review the provider's fees and handling of submitted queries and targets.
+Mitigation: Review the skill source and decide whether you trust it before installing.
 
-Risk: When optional logging is enabled, queries and public profile or comment data are saved locally.
+Risk: The skill sends the requested TikTok keyword or link to the GUAIKEI service to retrieve data.
 
-Mitigation: Leave logging disabled unless local copies are needed, and protect any generated log files.
+Mitigation: Use requests for public TikTok content and avoid putting sensitive information in search terms or links.
 
 ## Reference(s):
 
 - [GUAIKEI service](https://www.guaikei.com)
 - [ClawHub skill release](https://clawhub.ai/why20261/skills/tiktok-record-organizer)
-- [Command options](artifact/references/options.md)
-- [Changelog](artifact/references/changelog.md)
+- [Options and parameter reference](references/options.md)
+- [Changelog](references/changelog.md)
 
 ## Skill Output:
 
 **Output Type(s):** [JSON, Data]
 
-**Output Format:** [Structured JSON output envelope containing TikTok search, creator-post, or comment results]
+**Output Format:** [Structured JSON status envelope containing arrays of video, post, or comment records]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Read-only public data; results depend on availability and the token plan's request limits.]
+**Other Properties Related to Output:** [Public TikTok records and engagement metrics; missing or zero-valued fields may be omitted.]
 
 ## Skill Version(s):
 
-1.1.1 (source: release evidence, SKILL.md frontmatter, package.json, changelog 2026-11-04)
+1.1.2 (source: frontmatter, package.json)
 
 ## Ethical Considerations:
 

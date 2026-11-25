@@ -1,5 +1,24 @@
 # 抖音竞品洞察分析 更新日志
 
+## 1.5.0 - 2026-11-10
+
+- 补齐 `CheckDayMoney` 日消费上限：`errcode 18` / 对应文案 → 稳定 `DAILY_LIMIT`（禁止同参重试）。
+- 收口：统一「errmsg 优先」映射（`PLAN_LIMIT` / `INSUFFICIENT_BALANCE` / `RATE_LIMITED` / `DAILY_LIMIT`）。
+- 分层披露：`SKILL.md` 压缩为执行卡（保留价值与场景）；NL 映射 / 输出契约 / 错误全表 / 追问 / FAQ 下沉到 `references/`，SKILL 保留入口总表；命令参数详表对调到 `readme.md`（GitHub 默认页）。
+- 抽出 `validate/aweme.js`（`parseDouyinAweme`）；`detail-cli` 改为依赖 aweme，不再挂靠 `validate/comment`；`comment.js` 保留 re-export 兼容。
+- 成功与错误共用 `writeJson` drain；`finishSuccess` 先落盘再刷 stdout，再 stderr 提示后 `exit(0)`，降低管道截断与崩溃丢日志风险。
+- 分享文案抽链补齐中文引号/书名号等停止符与尾部清理，避免 `「」『』“”‘’` 污染 URL。
+- `references/contract.md` 信封 `timestamp` 示例与 `time.js` 对齐：`YYYY/M/D HH:mm:ss`（`/` 分隔、月日不补零）。
+
+## 1.4.3 - 2026-11-08
+
+- 新增用户搜索命令 `user-search-cli.js`：按关键词搜抖音用户/达人/账号，返回 `sec_uid`、昵称、粉丝、获赞、作品数等；有 `sec_uid` 时补 `author_url`。
+- 意图路由：关键词找对标账号 → 用户搜索；已有主页链接/`sec_uid` → 作品命令；搜视频/图文仍用 `search-cli.js`。
+- 包月 Token 用户搜索上限 30，超限为 `PLAN_LIMIT`。
+- 文档并入公域获客剧本 `references/customer-acquisition.md`（search→comment 线索流水线）；SKILL 增加获客触发与路由。与需求挖掘同时出现时先追问；不编造隐私联系方式。
+- 校验修复：后端 errcode 映射改为按 `errmsg` 判别——包月条数→`PLAN_LIMIT`，余额不足（含详情接口的 14）→`INSUFFICIENT_BALANCE`，短时过多→`RATE_LIMITED`；避免详情余额错误被误标为套餐超限。
+- 评论结果对 `reply_comment` 同步补 `create_time_str` / `user_url`，与需求挖掘剧本字段约定对齐。
+
 ## 1.4.2 - 2026-11-04
 
 - 明确套餐双上限：技能硬上限仍为 10000（按量）；包月 Token 搜索/作品最多 30、评论最多 50。

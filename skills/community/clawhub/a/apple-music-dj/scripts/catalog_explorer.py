@@ -18,9 +18,9 @@ Requires: APPLE_MUSIC_DEV_TOKEN and APPLE_MUSIC_USER_TOKEN env vars.
 """
 
 import sys
-if sys.version_info < (3, 10):
+if sys.version_info < (3, 11):
     sys.exit(
-        f"ERROR: Python 3.10+ is required (you have "
+        f"ERROR: Python 3.11+ is required (you have "
         f"{sys.version_info.major}.{sys.version_info.minor}). Please upgrade."
     )
 
@@ -327,7 +327,8 @@ def plan_missing_albums(gap_result: dict, count: int) -> list[dict]:
 
 def add_albums_to_library(albums: list[dict]) -> dict:
     """Add albums to the user's library in small batches. This WRITES to the account."""
-    added, failed = [], []
+    added: list[dict] = []
+    failed: list[dict] = []
     for i in range(0, len(albums), ADD_BATCH_SIZE):
         batch = albums[i:i + ADD_BATCH_SIZE]
         # raw=True: Apple answers 202 with an empty body, which isn't JSON.

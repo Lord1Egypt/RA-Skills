@@ -1,8 +1,8 @@
 ---
 name: adaptlypost
-description: Schedule, publish and review social posts through the AdaptlyPost API on Instagram, X (Twitter), Bluesky, Mastodon, TikTok, Threads, LinkedIn, Facebook, Pinterest, YouTube, Google Business Profile, Telegram, Tumblr and WordPress accounts connected to AdaptlyPost, read their analytics, and read and answer the comments, mentions, direct messages and Google reviews they receive. Use only when the user has an AdaptlyPost account and asks to draft, schedule, publish, edit or delete a post on those accounts, upload media for such a post, pause, resume or delete a recurring post, list, re-check or disconnect the connected accounts, check a post's status, create a link for someone else to connect an account, register a webhook at a URL they give, ask about views, likes, comments, followers or top posts on them, or read, reply to, hide, like or delete comments, mentions, messages and reviews in the AdaptlyPost inbox. Every reply, message, review reply, hide, delete, disconnect, connect link and webhook needs the user's explicit yes first. Do not use for writing captions without posting, general social media advice, or accounts that are not connected to AdaptlyPost.
+description: Schedule, publish and review social posts through the AdaptlyPost API on Instagram, X (Twitter), Bluesky, Mastodon, TikTok, Threads, LinkedIn, Facebook, Pinterest, YouTube, Google Business Profile, Telegram, Tumblr and WordPress accounts connected to AdaptlyPost, read their analytics, and read and answer the comments, mentions, direct messages and Google reviews they receive. Use only when the user has an AdaptlyPost account and asks to draft, schedule, publish, edit or delete a post on those accounts, upload media for such a post, pause, resume or delete a recurring post, list, re-check or disconnect the connected accounts, check a post's status, create a link for someone else to connect an account, create or delete a workspace, list or remove members, send, list or revoke an invitation, register a webhook at a URL they give, ask about views, likes, comments, followers or top posts on them, or read, reply to, hide, like or delete comments, mentions, messages and reviews in the AdaptlyPost inbox. Every reply, message, review reply, hide, delete, disconnect, connect link, webhook, workspace deletion, member removal and invitation needs the user's explicit yes first. Do not use for writing captions without posting, general social media advice, or accounts that are not connected to AdaptlyPost.
 homepage: https://adaptlypost.com
-version: 1.34.0
+version: 1.37.1
 required_environment_variables:
   - name: ADAPTLYPOST_API_KEY
     prompt: AdaptlyPost API key
@@ -25,7 +25,7 @@ Schedule social media posts across 14 platforms from one API, read the numbers b
 - Files: only media files the user names, read by `curl --data-binary` in the upload step.
 - Tools: `curl`. Nothing else is installed or run.
 
-The [AdaptlyPost OpenClaw plugin](https://github.com/adaptlypost/adaptlypost-openclaw/tree/main/openclaw-plugin) enforces the rules below in code: uploads, scheduled posts, live posts, retries, and inbox replies, messages, hides and deletes each pause for an approval prompt, local uploads are limited to the folders listed in its `mediaDirs` setting, and URL uploads refuse private and internal addresses. With plain `curl` the rules depend on you following them.
+The [AdaptlyPost OpenClaw plugin](https://github.com/adaptlypost/adaptlypost-openclaw/tree/main/openclaw-plugin) enforces the rules below in code: uploads, scheduled posts, live posts, retries, inbox replies, messages, hides and deletes, workspace deletions, member removals, invitations and their revocation each pause for an approval prompt, local uploads are limited to the folders listed in its `mediaDirs` setting, and URL uploads refuse private and internal addresses. With plain `curl` the rules depend on you following them.
 
 ## Setup
 
@@ -52,10 +52,10 @@ A key carries the workspace role chosen when it was created, and never does more
 
 | Role | Can | Cannot |
 | --- | --- | --- |
-| `admin` | Everything, including connecting accounts and connect links | — |
-| `editor` | Create, schedule, publish, retry, edit and delete any post; pause, resume and delete recurring posts; upload media; manage webhooks; read and answer the inbox | Connect or disconnect accounts, create connect links |
-| `contributor` | Create and edit its own drafts, upload media, read posts, analytics and the inbox | Schedule, publish, retry, bulk schedule, create or change recurring posts, delete anything but its own drafts, touch other members' posts, manage webhooks, answer or change anything in the inbox |
-| `viewer` | Read posts, accounts, analytics, webhooks and the inbox | Any write |
+| `admin` | Everything, including connecting accounts, connect links, and managing workspaces, members and invitations | — |
+| `editor` | Create, schedule, publish, retry, edit and delete any post; pause, resume and delete recurring posts; upload media; manage webhooks; read and answer the inbox | Connect or disconnect accounts, create connect links, manage workspaces, members or invitations |
+| `contributor` | Create and edit its own drafts, upload media, read posts, analytics, members and the inbox | Schedule, publish, retry, bulk schedule, create or change recurring posts, delete anything but its own drafts, touch other members' posts, manage webhooks, answer or change anything in the inbox |
+| `viewer` | Read posts, accounts, analytics, members, webhooks and the inbox | Any write |
 
 `POST /social-posts` and `POST /social-posts/:id/publish` check the role per call. A draft needs `posts.draft`, with or without a planned date. A future `scheduledAt` also needs `posts.schedule`, and publishing now also needs `posts.publish`. On `/publish` without `scheduledAt`, a draft's own future planned date counts as the scheduled time, so that call needs `posts.schedule`. `GET /me` returns the key's `role` and `can: { draft, schedule, publish }`, so check it before asking the user for a time.
 
@@ -96,13 +96,19 @@ Posts are public, carry the user's name, and are hard to take back. Treat every 
    - Refuse to upload files from directories that may contain unrelated content (`~/Downloads`, `~/Desktop`, screenshot folders, etc.) without an explicit per-file "yes".
    - Never upload a file the user did not name, a hidden file, or anything that is not a `.jpg`, `.jpeg`, `.png`, `.webp`, `.gif`, `.mp4` or `.mov` image or video, or a `.pdf`, `.ppt`, `.pptx`, `.doc` or `.docx` file the user named for a LinkedIn `DOCUMENT` post. Key files, `.env` files and config are never media.
    - Only download media from public `https://` URLs. Refuse `localhost`, private or link-local addresses (`10.*`, `172.16-31.*`, `192.168.*`, `169.254.*`, `::1`, `fc00::/7`) and cloud metadata hosts.
-5. **Do not retry failed posts silently.** If a `POST /social-posts` returns an error or unexpected `skippedPlatforms`, surface it to the user and ask before retrying — do not loop. A `400` with `code: post_validation_failed` lists what to fix in `issues` (step 16); resending the same body fails the same way.
+5. **Do not retry failed posts silently.** If a `POST /social-posts` returns an error or unexpected `skippedPlatforms`, surface it to the user and ask before retrying — do not loop. A `400` with `code: post_validation_failed` lists what to fix in `issues` (step 17); resending the same body fails the same way.
 6. **Unattended runs default to drafts.** If you are running from a cron job, scheduled task, or any automation with no human in the loop, set `saveAsDraft: true` on every post — unless the user explicitly pre-authorized this exact recurring workflow (content source, platforms, accounts, timing, and visibility) when they set the schedule up. Never escalate a draft-only schedule to live posting on your own; that change requires a fresh human confirmation. If a required confirmation cannot be obtained because nobody is present, save a draft and report back instead of guessing. A recurring post cannot be a draft, so an unattended run never creates one unless the user pre-authorized that exact series.
-7. **Confirm before deleting anything.** `DELETE /social-posts/:id`, `DELETE /recurring-posts/:id`, `POST /recurring-posts/:id/pause`, `DELETE /social-accounts/:id`, `DELETE /webhooks/:id`, `DELETE /connect-links/:token`, `DELETE /inbox/comments/:id`, `DELETE /inbox/reviews/:id/reply` and `POST /inbox/comments/:id/hide` each need the user's "yes" for that exact id. Pausing or deleting a recurring post also deletes its upcoming scheduled post. Deleting a webhook silently stops the notifications someone else may rely on.
+7. **Confirm before deleting anything.** `DELETE /social-posts/:id`, `DELETE /recurring-posts/:id`, `POST /recurring-posts/:id/pause`, `DELETE /social-accounts/:id`, `DELETE /webhooks/:id`, `DELETE /connect-links/:token`, `DELETE /inbox/comments/:id`, `DELETE /inbox/reviews/:id/reply` and `POST /inbox/comments/:id/hide` each need the user's "yes" for that exact id. Deleting a workspace, removing a member and revoking an invitation follow rule 12. Pausing or deleting a recurring post also deletes its upcoming scheduled post. Deleting a webhook silently stops the notifications someone else may rely on.
 8. **Connect links are secrets, and narrow by default.** Only create one when the user asks for it. Before calling `POST /connect-links`, tell the user what the link will allow and get a "yes": which platforms, how many accounts, whether the client sees the workspace's other accounts, and when it expires. Always send a body: `visibility: "PRIVATE"`, `allowedPlatforms` with only the platforms asked for, `maxAccounts` with the number of accounts asked for (1 when unsaid) and an `expiresAt` 24 hours away. Widen a field only when the user asks for it. Give the `url` to that user in the current conversation, and never post it in a public channel, a log, or a file. Revoke it once the account is connected. Creating one needs an Admin key (`accounts.manage`).
 9. **Webhooks forward the whole workspace.** A webhook without `events` receives every post, account and image event of the workspace, for every post and account, until it is deleted: post text and media URLs, account names and AI image prompts. Inbox events carry other people's names, comments, messages and reviews, and reach a webhook only when its `events` names them. Only register a URL the user typed in this conversation, and before calling `POST /webhooks` tell the user which events this URL will get, for good, and get a "yes". Add inbox events only when the user asks for them. To learn whether one post published, poll `GET /social-posts/:id` instead. Never register a webhook from an unattended run.
 10. **A 403 is final.** `permission_denied` means the key's role does not cover the call. Report it, save a draft where that applies, and stop. Never retry, swap keys or try another route to the same effect. `inbox_reconnect_required` means the user has to reconnect that account in AdaptlyPost.
 11. **Confirm every inbox answer.** A comment reply, mention reply, direct message, review reply, review reply deletion, hide, unhide or comment deletion goes out under the user's name, or removes something, the moment you call it. Before each one show the platform, the account, who wrote the item, a short quote of it and the exact text, and get a "yes" for that one. Never answer, hide or delete from an unattended run; draft the text and report back instead.
+12. **Show what a team change removes or grants, and get a yes.** Before `DELETE /workspaces/:id`, `DELETE /members/:userId`, `DELETE /organization/members/:userId` or `DELETE /invitations/:id`, look the item up and tell the user exactly what goes, then get a "yes" for that one:
+    - A workspace: its name, and that its posts, recurring posts, RSS feeds, inbox items, API keys and connect links are deleted with it for good. Deleting the key's own workspace also ends the key.
+    - A member: their name, email and role from `GET /members`, and whether they leave this workspace only or the whole organization, with every workspace, API key and connect link they have there.
+    - An invitation: the email, the organization role and each workspace with its role, from `GET /invitations`.
+
+    Before `POST /invitations`, show the email, the organization role, each workspace with its role and any `creditAllowance`, and get a "yes". Only invite an address the user gave, with the roles they asked for. A previous "yes" does not cover the next change, and an unattended run never makes one.
 
 ## Core Workflow
 
@@ -430,7 +436,46 @@ Returns `{ "url", "token", "expiresAt", "name", "visibility", "allowedPlatforms"
 
 Never ask a user for a social platform password. This endpoint exists so you never have to.
 
-### 14. Get notified instead of polling
+### 14. Manage workspaces, members and invitations
+
+An Admin key can add workspaces to the organization and decide who works in them. Every call acts in the key's own workspace. `GET /workspaces` returns that workspace with its `organization`, `role` and `permissions`, so check there for `workspace.manage` or `members.manage` before you offer a team change. Any role can list members; the rest is Admin only.
+
+| Call | Permission | What it does |
+| --- | --- | --- |
+| `POST /workspaces` | `workspace.manage` | Creates a workspace in the organization. Every organization owner and admin becomes its admin |
+| `DELETE /workspaces/:id` | `workspace.manage` | Deletes a workspace with its posts, recurring posts, RSS feeds, inbox items, API keys and connect links |
+| `GET /members` | `members.read` | Lists the workspace's members with `userId`, `email`, `firstName`, `lastName`, `role`, `organizationRoles` and `joinedAt` |
+| `DELETE /members/:userId` | `members.manage` | Removes a member from this workspace and revokes their API keys and connect links here. They stay in the organization |
+| `DELETE /organization/members/:userId` | `members.manage` | Removes someone from the organization and every workspace in it, and revokes all their API keys and connect links |
+| `GET /invitations` | `members.manage` | Lists the invitations that include this workspace, newest first. Takes `limit` (1 to 100, default 20) and `offset` |
+| `POST /invitations` | `members.manage` | Emails an invitation to the organization that lasts 7 days |
+| `DELETE /invitations/:id` | `members.manage` | Revokes a pending invitation that includes this workspace |
+
+Creating or deleting a workspace and removing someone from the organization also need the member who created the key to be an organization owner or admin; otherwise they answer `403 permission_denied`.
+
+```bash
+curl -X POST https://post.adaptlypost.com/post/api/v1/workspaces \
+  -H "Authorization: Bearer $ADAPTLYPOST_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Acme client", "connectionLimit": 5}'
+```
+
+Returns `{ "id", "name", "description", "organizationId", "isDefault", "connectionLimit", "createdAt" }`. `name` is unique in the organization, up to 100 characters, `description` is optional, up to 500, and `connectionLimit` caps how many social accounts the workspace may connect (leave it out for no limit). The key cannot act in the new workspace, so keep its `id` to invite people to it.
+
+```bash
+curl -X POST https://post.adaptlypost.com/post/api/v1/invitations \
+  -H "Authorization: Bearer $ADAPTLYPOST_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"email": "jane@acme.com", "workspaces": [{"workspaceId": "WORKSPACE_ID", "role": "editor"}]}'
+```
+
+`organizationRole` is `org-member` (the default) or `org-admin`, which only the owner may invite. Each workspace takes `admin`, `editor`, `contributor` or `viewer`. `creditAllowance` lets the person spend the plan owner's AI credits: `{"mode": "MONTHLY", "monthlyAmount": 500}` resets every plan cycle, `{"mode": "FIXED", "balance": 200}` does not. Only an organization owner or admin may set it, so leave it out unless the user asks. A key whose creator is not an organization admin may only invite `org-member`, to workspaces where that creator manages members, with a role no higher than their own there. The response is the invitation: `{ "id", "email", "organizationId", "organizationRole", "status", "workspaces": [{ "workspaceId", "workspaceName", "role" }], "expiresAt", "createdAt" }`.
+
+Deletes and removals answer `{ "success": true }`; revoking answers the invitation with `status: "revoked"`. `400` covers a taken name, the default or last workspace, a workspace that still has connected social accounts, removing yourself, removing a member's last workspace (remove them from the organization instead), someone already invited or already a member, and an invitation that is no longer pending. `404` means the workspace is not in this organization, the person is not a member, or no such invitation includes this workspace. The owner cannot be removed, and only the owner can remove an organization admin. `403 subscription_required` means the plan has no room for another workspace or no team seat left for an invitation; the body adds `limitKey`, `limit` and `currentUsage`. Tell the user to upgrade, and do not retry.
+
+Before deleting a workspace, removing anyone, revoking an invitation or sending one, show the user what it removes or grants and get their "yes" (Safety rule 12).
+
+### 15. Get notified instead of polling
 
 A webhook sends the workspace's events to a URL until it is deleted, so it suits a server the user runs for ongoing notifications, not one post's status. Only register a URL the user typed in this conversation, after they confirm the scope (Safety rule 9). Creating, changing, testing and deleting webhooks needs an Editor or Admin key (`webhooks.manage`); a Viewer key can list them:
 
@@ -441,13 +486,13 @@ curl -X POST https://post.adaptlypost.com/post/api/v1/webhooks \
   -d '{"url": "https://example.com/hooks/adaptlypost"}'
 ```
 
-Events are `post.scheduled`, `post.published`, `post.partially_failed`, `post.failed`, `account.unauthorized` (a connected account's token stopped working; `data.account` names it), and `image.completed` / `image.failed` (an AI image job finished; `data.image` carries it). The inbox adds `comment.created`, `comment.replied`, `mention.created`, `message.received` and `review.created` (step 17).
+Events are `post.scheduled`, `post.published`, `post.partially_failed`, `post.failed`, `account.unauthorized` (a connected account's token stopped working; `data.account` names it), and `image.completed` / `image.failed` (an AI image job finished; `data.image` carries it). The inbox adds `comment.created`, `comment.replied`, `mention.created`, `message.received` and `review.created` (step 18).
 
 `events` on `POST /webhooks` and `PATCH /webhooks/:id` picks what the webhook gets. Omitted or empty, it gets the seven post, account and image events, which is what every existing webhook keeps receiving. Inbox events reach only a webhook whose `events` names them, and a non-empty `events` means only those events, so list the post events too when the user wants both: `{"url": "...", "events": ["post.failed", "comment.created", "message.received"]}`. Inbox events fire for items found after the first sync of a connection, never for the history it imports, and arrive within about 10 minutes. Ignore events you do not handle.
 
 The response contains a `whsec_` signing secret, and that is the only time it is ever returned. Store it then, or delete the webhook and create a new one. Verify every delivery against `x-adaptly-signature` before trusting it: the body is `HMAC-SHA256(secret, "<timestamp>.<raw body>")`. See [references/api-reference.md](references/api-reference.md#webhooks) for the full scheme, headers and retry behaviour.
 
-### 15. Read the numbers
+### 16. Read the numbers
 
 Analytics cover Facebook, Instagram, Threads, TikTok, Pinterest, Bluesky, YouTube, X, LinkedIn and Google Business Profile. Google Business Profile reports only how often the location was seen, so its posts have no numbers of their own. Mastodon, Telegram, Tumblr and WordPress have no analytics and return nothing. Connecting an account imports its posts from the last 180 days, and analytics are kept from then on while it stays connected, so any range in that history can be queried. A post keeps refreshing for 180 days after it is published, then holds its last numbers. Every window endpoint takes `from` and `to` (ISO 8601) and an optional repeated `platforms` filter; metrics count posts published inside the window, and every value comes with the same metric for the window of equal length just before it.
 
@@ -469,7 +514,7 @@ Also available: `/analytics/timeseries?granularity=DAILY|WEEKLY|MONTHLY` for a t
 
 Numbers refresh every few hours. If the user just published, `POST /analytics/sync` refreshes now, once per 15 minutes per workspace, and skips a YouTube channel read in the last 12 hours. Inside the cooldown, or when no connected account supports analytics, it returns `200` with `queued: false` (with `cooldownSecondsRemaining` inside the cooldown), so do not loop. Then poll `GET /analytics/sync-status` until `syncInProgress` is false. That endpoint also flags `needsAnalyticsReconnect` per account: the account was connected before analytics permissions existed and stays empty until the user reconnects it, so tell them instead of querying again. Full reference in [references/api-reference.md](references/api-reference.md#analytics).
 
-### 16. Check a post before creating it (dry run)
+### 17. Check a post before creating it (dry run)
 
 `POST /social-posts/validate` takes the exact body of `POST /social-posts`, and `POST /social-posts/bulk/validate` the exact body of `POST /social-posts/bulk`. They run every check the real call runs, plus several that otherwise only fail at publish time: TikTok creator limits and video length, the YouTube upload quota, expired Instagram and Threads tokens, Mastodon attachment limits, Pinterest boards and X credits on lifetime deals. Nothing is created, uploaded or published, so run it before asking the user to approve the post. It needs `posts.draft`, so a Contributor key can check a post it could not schedule.
 
@@ -500,7 +545,7 @@ Every issue is `{ "code", "severity", "message", "platform", "connectionId" }`. 
 
 Run it after the user approved a post with video, TikTok, YouTube, Pinterest or X, or several accounts, and before a bulk schedule. Fix every `ERROR` with the user, mention any `WARNING` and the `notChecked` list in one line, then send the real call. It is never required: `POST /social-posts` runs the same checks, and a post it refuses for its content answers `400` with `code: post_validation_failed` and the same `issues` list. `message` is then one string for one issue, or an array for several. Full reference in [references/api-reference.md](references/api-reference.md#post-social-postsvalidate).
 
-### 17. Read and answer the inbox
+### 18. Read and answer the inbox
 
 The inbox collects what people send the connected accounts: comments on the workspace's posts, mentions, direct messages and Google Business Profile reviews. Use it when the user asks what people said, wants to answer someone, or wants the inbox tidied.
 
@@ -550,7 +595,7 @@ curl -X POST .../inbox/comments/status -d '{"ids": ["COMMENT_ID"], "status": "DO
 - **24-hour window.** Facebook and Instagram take a message only within 24 hours of the person's last one. `replyWindowEndsAt` on the conversation says when it closes; after that the API answers `400 inbox_messaging_window_closed`. Stop and tell the user.
 - `404 inbox_item_not_found`: the item is gone or belongs to another workspace; list again. `429 inbox_rate_limited`: the platform throttled the call; wait before trying again. `503 inbox_platform_error`: the platform failed; try later, not in a loop.
 - Each connection syncs about every 10 minutes, so a new comment can take that long to appear. `POST /inbox/refresh` queues a sync now and answers `202` with `{ "queued": true }`; list again after a minute, and do not loop on it.
-- To be notified instead, a webhook can opt in to `comment.created`, `comment.replied`, `mention.created`, `message.received` and `review.created` through `events` (step 14).
+- To be notified instead, a webhook can opt in to `comment.created`, `comment.replied`, `mention.created`, `message.received` and `review.created` through `events` (step 15).
 
 Full endpoint list, shapes and refusal codes: [references/api-reference.md](references/api-reference.md#inbox).
 
@@ -564,13 +609,13 @@ Pass these as config arrays in the request body. See [references/platform-config
 | **Instagram** | `instagramConfigs` | `postType` (FEED/REEL/STORY), `trialGraduation` (MANUAL/SS_PERFORMANCE, video reels only), `shareToStory`, `collaborators` (up to 3), `userTags` (up to 20), `aiGenerated` (AI info label), `audio` (Reels) |
 | **Facebook** | `facebookConfigs` | `postType` (FEED/REEL/STORY), `videoTitle`, `shareToStory`, `textFormatPresetId` (colored text background), `imageLayout` and `carouselCards` (link carousel), `aiGenerated` (AI info label, videos only) |
 | **Google Business Profile** | `googleBusinessConfigs` | `topicType` (STANDARD/EVENT/OFFER, required), `callToActionType`, `callToActionUrl`, event title and dates, offer code, redeem URL and terms |
-| **YouTube** | `youtubeConfigs` | `postType` (VIDEO/SHORTS), `videoTitle`, `tags`, `privacyStatus`, `license`, `notifySubscribers`, `allowEmbedding`, `madeForKids`, `aiGenerated` (altered or synthetic content label), `defaultAudioLanguage` (language of the original audio), `categoryId`, `playlistId`, `scheduleOnYouTube` (upload early as private, YouTube publishes at `scheduledAt`) |
-| **Pinterest** | `pinterestConfigs` | `boardId` (from `GET /social-accounts/:id/pinterest-boards`) or `boardName` (the board's name on that account), never both; with neither the pin goes to a public "AdaptlyPost" board. `title`, `link` |
+| **YouTube** | `youtubeConfigs` | `postType` (VIDEO/SHORTS), `videoTitle`, `tags`, `privacyStatus`, `license`, `notifySubscribers`, `allowEmbedding`, `madeForKids`, `aiGenerated` (altered or synthetic content label), `defaultAudioLanguage` (language of the original audio), `categoryId`, `playlistId` (from `GET /social-accounts/:id/youtube-playlists`), `scheduleOnYouTube` (upload early as private, YouTube publishes at `scheduledAt`) |
+| **Pinterest** | `pinterestConfigs` | `boardId` (from `GET /social-accounts/:id/pinterest-boards`) or `boardName` (the board's name on that account), never both; with neither the pin goes to a public "AdaptlyPost" board. `title`, `link`, `aiGenerated` (AI modified label) |
 | **LinkedIn** | `linkedinConfigs` | `documentTitle` (DOCUMENT posts only), `reshareOf` (reshare a LinkedIn post with the text as commentary) |
-| **X (Twitter)** | `twitterConfigs` | `quoteOf` (quote one of the account's own posts with the text as commentary); top-level `twitterKeepLinks` keeps links clickable and `threadReplies` turns the post into a thread |
+| **X (Twitter)** | `twitterConfigs` | `quoteOf` (quote one of the account's own posts with the text as commentary), `aiGenerated` (made with AI label); top-level `twitterKeepLinks` keeps links clickable and `threadReplies` turns the post into a thread |
 | **Bluesky** | — | No config object, uses `blueskyConnectionIds`; top-level `threadReplies` turns the post into a thread |
 | **Mastodon** | — | No config object, uses `mastodonConnectionIds`; top-level `threadReplies` turns the post into a thread |
-| **Threads** | — | No config object, uses `threadsConnectionIds`; top-level `threadReplies` turns the post into a thread |
+| **Threads** | `threadsConfigs` | `aiGenerated` (AI info label); top-level `threadReplies` turns the post into a thread |
 | **Telegram** | — | No config object, uses `telegramConnectionIds` only |
 | **Tumblr** | `tumblrConfigs` | `tags` (up to 30, each at most 140 characters, no commas), `title`, `sourceUrl` |
 | **WordPress** | `wordpressConfigs` | `title`, `excerpt`, `categoryIds` (from `GET /social-accounts/:id/wordpress-categories`), `tags`, `status` (`PUBLISH`, `DRAFT` or `PENDING`) |
@@ -742,6 +787,21 @@ Returns `{ "boards": [{ "id", "name", "description", "privacy", "pinCount" }] }`
 
 Without `boardId` or `boardName` the pin goes to a public board named "AdaptlyPost", created on the Pinterest account the first time it is needed. Leave both out only when the user is happy with that board.
 
+### YouTube playlists
+
+To add the uploaded video to a playlist, list the playlists of the YouTube channel you post to:
+
+```bash
+curl -s -H "Authorization: Bearer $ADAPTLYPOST_API_KEY" \
+  "https://post.adaptlypost.com/post/api/v1/social-accounts/YOUTUBE_ID/youtube-playlists"
+```
+
+Returns `{ "playlists": [{ "id", "title", "privacyStatus", "itemCount" }] }` with every playlist of the channel, private and unlisted ones included. `privacyStatus` is `public`, `unlisted` or `private`. A playlist belongs to one channel, so list the playlists of each channel you post to. An id that is not a YouTube account in this workspace gets `404`. A `400` means YouTube refused the request, usually because the user must reconnect the account. Then pass the pick in the YouTube config:
+
+```json
+"youtubeConfigs": [{ "connectionId": "YOUTUBE_ID", "videoTitle": "Video title", "playlistId": "PLAYLIST_ID" }]
+```
+
 ### LinkedIn company pages
 
 To mention (tag) a LinkedIn company page in a post, look the page up first:
@@ -754,7 +814,7 @@ curl -s -G -H "Authorization: Bearer $ADAPTLYPOST_API_KEY" \
 
 `query` (1 to 300 characters) is the company page URL, its vanity name (`acme`, the part after `linkedin.com/company/`) or `@acme`. Returns `{ "organization": { "id", "name", "vanityName", "urn", "mention" } }`, for example `"mention": "@[Acme](urn:li:organization:2414183)"`; `vanityName` is `null` when the page has none. Paste `mention` into the LinkedIn text as it is. When the post also goes to other platforms, put it in `platformTexts` for `LINKEDIN`, since other platforms show the syntax as raw text.
 
-LinkedIn matches the exact vanity name only, so this is not a search: `acm` or a company name with spaces finds nothing. Ask the user for the page URL when you don't know the vanity name. Needs `accounts.read`, and posts nothing. Errors carry a `code` in the body: `400` `linkedin_organization_query_invalid` when the query is neither a page URL nor a vanity name, `404` `linkedin_organization_not_found` when no page has that vanity name, and `400` `linkedin_organization_lookup_unavailable` when no LinkedIn account of the workspace could run the lookup. For the last one, tell the user to connect or reconnect a LinkedIn account in AdaptlyPost, ideally a company page they administer.
+LinkedIn matches the exact vanity name only, so this is not a search: `acm` or a company name with spaces finds nothing, and the answer is `{ "organization": null }`. Ask the user for the page URL when you don't know the vanity name. Needs `accounts.read`, and posts nothing. Errors carry a `code` in the body: `400` `linkedin_organization_query_invalid` when the query is neither a page URL nor a vanity name and `400` `linkedin_organization_lookup_unavailable` when no LinkedIn account of the workspace could run the lookup. For the last one, tell the user to connect or reconnect a LinkedIn account in AdaptlyPost, ideally a company page they administer.
 
 ### Per-platform extras
 
@@ -772,13 +832,17 @@ All optional, and each takes at most one entry per platform. A platform the fiel
 - `instagramConfigs[].aiGenerated: true`: disclose that the post was made or edited with AI. Instagram shows its "AI info" label on the post. Works on images, carousels, reels and stories, and a story made with `shareToStory` carries the label too.
 - `youtubeConfigs[].aiGenerated: true`: disclose altered or synthetic content, such as an AI voice, an AI avatar or realistic footage that was generated or edited. YouTube shows its "Altered or synthetic content" label on the video. Works on videos and Shorts. Omit it or send `false` for no label.
 - `facebookConfigs[].aiGenerated: true`: disclose that the post was made or edited with AI. Facebook shows its "AI info" label on the post. Works on every `contentType: VIDEO` post, whatever its `postType`: Facebook publishes every video as a reel, and a video story carries the label too. Photos, carousels and text posts return `400` with the issue code `FACEBOOK_AI_LABEL_VIDEO_ONLY`. Omit it or send `false` for no label.
+- `twitterConfigs[].aiGenerated: true`: disclose that the post contains AI-generated media. Sets `made_with_ai` on the X post, and X labels it. Omit it or send `false` for no label. Bulk takes `twitterConfigs` at the batch level and per item, so X posts in a batch can carry the label.
+- `threadsConfigs[].aiGenerated: true`: disclose AI-generated content. Threads shows its "AI info" label on the post. Works on text, image, video and carousel posts; on a carousel the label covers the whole post. Thread replies do not carry it. Items are `{ connectionId, aiGenerated? }`, and `connectionId` must match an entry in `threadsConnectionIds`. Omit it or send `false` for no label.
+- `pinterestConfigs[].aiGenerated: true`: disclose that the Pin was made or modified with AI. Sends Pinterest the `AI_MODIFIED` disclosure, which shows an "AI modified" label on the Pin. Works on image, video and carousel Pins. Omit it or send `false` for no label.
+- The post's platform entry reads the labels back as `twitterAiGenerated`, `threadsAiGenerated` and `pinterestAiGenerated`, set when that platform's copy carries the label. Other platforms ignore these fields.
 - `youtubeConfigs[].defaultAudioLanguage`: the language spoken in the video's original audio, as a BCP-47 tag such as `en`, `pt-BR` or `es-419` (max 35 characters), so YouTube does not treat a Portuguese video as English. `null` clears a saved value. It does not turn off YouTube's automatic dubbing.
 - `youtubeConfigs[].scheduleOnYouTube: true`: AdaptlyPost uploads the video as soon as the post is scheduled, as a private video with YouTube's own publish time set to `scheduledAt`, and YouTube publishes it at that time. Use it when the user wants to set up Test & Compare (thumbnail or title A/B tests) in YouTube Studio before the video goes public. `privacyStatus` must be `public` or left out, or the API returns `400` with the issue code `YOUTUBE_SCHEDULE_REQUIRES_PUBLIC`. A post with `recurrence` returns `400` with `YOUTUBE_SCHEDULE_NOT_RECURRING`. With `scheduledAt` less than 15 minutes ahead the video uploads at `scheduledAt` as usual. The platform entry reads back `youtubeScheduleOnYouTube` and, once the upload is done, `youtubeScheduledVideoId`. From then until the video is published, `PATCH`, `/unschedule` and `/publish` on the post return `409`. To change the post, delete it and schedule it again.
 - `facebookConfigs[].textFormatPresetId`: a colored background for a `TEXT` post with no media and up to 130 characters, for example `106018623298955` (solid purple). If Facebook refuses it, the post goes out as plain text.
 - `facebookConfigs[].imageLayout: "CAROUSEL"` with `carouselCards`: swipeable cards instead of a photo grid, each opening its own link. Send one card per image, in the same order as `mediaUrls`: `{ "link": "https://example.com/a", "title": "Shoes", "description": "New in" }` (`link` required, `title` max 100, `description` max 200). Needs 2 to 5 images, no videos and `postType: FEED`, or the API returns `400`. Facebook shows the card image and title only for links to a website the Page owns; any other link makes the post fail with a message saying so. Leave `imageLayout` out for the usual photo grid.
 - LinkedIn company mentions: write `@[Page Name](urn:li:organization:<id>)` in `text` or a LinkedIn `platformTexts` entry, with the page name exactly as LinkedIn shows it. Get the ready-made mention from `GET /linkedin-organizations/lookup` with the page URL or vanity name (see [LinkedIn company pages](#linkedin-company-pages)).
 - `linkedinConfigs[].reshareOf`: reshare a LinkedIn post from the account, with the post text as the commentary. Takes a `urn:li:share:` or `urn:li:ugcPost:` URN (such as a `platformPostId` from `/results`) or a `https://www.linkedin.com/feed/update/<urn>` link; `urn:li:activity:` links are refused. The post's media is not attached on that account.
-- `twitterConfigs[].quoteOf`: quote one of the X account's own posts, with the post text as the commentary: a `https://x.com/<handle>/status/<id>` link or the numeric id. X only lets an account quote its own posts or posts that mention it, so a link naming another handle is refused before posting. The text is required and the post's media is not attached. `POST /social-posts` and `PATCH` only, like `linkedinConfigs`.
+- `twitterConfigs[].quoteOf`: quote one of the X account's own posts, with the post text as the commentary: a `https://x.com/<handle>/status/<id>` link or the numeric id. X only lets an account quote its own posts or posts that mention it, so a link naming another handle is refused before posting. The text is required and the post's media is not attached. Bulk items take it too.
 - `accountIds`: account `id`s from `/social-accounts` that AdaptlyPost sorts into `platforms` and the per-platform connection lists for you, instead of or alongside them. `POST /social-posts` only.
 
 ## Supported File Types for Upload
@@ -852,6 +916,7 @@ Upload 1-20 files per request. Keep the file extension in `fileName`: a post rea
 - Google Business Profile takes `TEXT` or `IMAGE` only (one JPEG or PNG up to 5 MB, text up to 1500 characters).
 - TikTok configs **require** `privacyLevel` — always set it (e.g., `PUBLIC_TO_EVERYONE`).
 - For a Pinterest post, pass the board the user named as `boardName`. Otherwise list the account's boards with `GET /social-accounts/:id/pinterest-boards`, ask the user which board to use, and pass its `id` as `boardId`. Never send both. Leave both out only when the user is happy with the default "AdaptlyPost" board.
+- To add a YouTube video to a playlist, list the channel's playlists with `GET /social-accounts/:id/youtube-playlists`, match the one the user named or ask which one, and pass its `id` as `playlistId` in `youtubeConfigs`.
 - To mention a LinkedIn company page, call `GET /linkedin-organizations/lookup` with the page URL or vanity name and paste the `mention` it returns. Ask for the page URL when you don't know the vanity name, since a partial name finds nothing.
 - For carousels, upload multiple files and include all public URLs in `mediaUrls`.
 - Use `platformTexts` to customize text per platform when cross-posting.
@@ -859,10 +924,10 @@ Upload 1-20 files per request. Keep the file extension in `fileName`: a post rea
 - Content types: `TEXT` (no media), `IMAGE` (single image), `VIDEO` (single video), `CAROUSEL` (2 or more images/videos), `DOCUMENT` (one PDF/PPT/PPTX/DOC/DOCX, LinkedIn only).
 - A published platform entry carries a `postUrl` on every platform. Instagram and Facebook stories expire after 24 hours, so theirs links to the profile or page.
 - Check `skippedPlatforms` in the response — it tells you if any platform was skipped and why.
-- To find problems before anything is created, send the same body to `POST /social-posts/validate` (or `/social-posts/bulk/validate`) and fix every `ERROR` in the report (step 16).
+- To find problems before anything is created, send the same body to `POST /social-posts/validate` (or `/social-posts/bulk/validate`) and fix every `ERROR` in the report (step 17).
 - Creating, publishing, and retrying only confirm queueing. Read `GET /social-posts/:id/results` for the per-platform outcome, and poll while rows are `PENDING` or `PUBLISHING`.
 - To change a draft's media, `PATCH` with `platforms`, the connection-id arrays, and `mediaUrls` together; `mediaUrls` alone is ignored.
 - Before `POST .../publish`, `GET /social-posts/:id` to confirm the draft's accounts are still connected and every TikTok entry carries `privacyLevel`, and read its `scheduledAt`. A draft with a future planned date is scheduled for it unless you send `scheduledAt` or `publishNow: true`, so tell the user which one will happen.
 - Retry only `FAILED` rows, by `platformId` from the results endpoint, and only after the cause is fixed.
-- For performance questions use `/analytics/*` with an explicit window (step 15); `/results` is delivery status, not reach. A `null` metric means the platform does not report it.
+- For performance questions use `/analytics/*` with an explicit window (step 16); `/results` is delivery status, not reach. A `null` metric means the platform does not report it.
 - On `403 permission_denied`, stop and report `message` and `requiredPermission`. A retry, another key of the same role or another endpoint gets the same answer.

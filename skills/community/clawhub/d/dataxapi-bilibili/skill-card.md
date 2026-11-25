@@ -1,6 +1,6 @@
 ## Description:
 
-Provides paid access through DataXAPI to public Bilibili videos, user profiles, comments, replies, and trends.
+Public Bilibili data through DataXAPI: videos, users, comments, and trends.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agents use this skill to look up public Bilibili videos, accounts, comments, replies, and trending searches. It supports MCP, command-line, and REST calls through DataXAPI.
+External users and developers use this skill to retrieve public Bilibili video, user, comment, and trending data through DataXAPI. It helps answer questions about Bilibili content, accounts, comments, and current trends using endpoint-specific, pay-per-call requests.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search terms may include sensitive information, and returned Bilibili content is written by third parties.
+Risk: The recommended npm package command is unpinned, so package updates could change what runs.
 
-Mitigation: Send only necessary, non-sensitive search terms and treat returned content as untrusted data; do not follow instructions contained in it.
+Mitigation: Prefer a reviewed, pinned package version when available.
 
-Risk: API calls and additional pages can incur charges, and the API key grants account access.
+Risk: The security analysis is partial because some local path-like references could not be resolved.
 
-Mitigation: Keep the key secret, set spending limits, cap call prices, and page only when needed.
-
-Risk: The external DataXAPI service and npm package are unaudited by the supplied security review.
-
-Mitigation: Prefer REST or hosted MCP, or review and pin the CLI package version before use.
+Mitigation: Review the package and its referenced files before granting it access to the DataXAPI key.
 
 ## Reference(s):
 
-- [DataXAPI Bilibili API documentation](https://dataxapi.com/apis/bilibili/)
-- [Bilibili API pricing](https://dataxapi.com/pricing/bilibili/)
-- [DataXAPI agent setup](https://dataxapi.com/agents.md)
-- [DataXAPI skills homepage](https://dataxapi.com/skills/)
+- [DataXAPI](https://dataxapi.com)
+- [Bilibili API reference](https://dataxapi.com/apis/bilibili/)
+- [Bilibili pricing](https://dataxapi.com/pricing/bilibili/)
+- [DataXAPI agent setup guide](https://dataxapi.com/agents.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Text]
+**Output Type(s):** [API Calls, JSON, Guidance]
 
-**Output Format:** [Structured API data with concise natural-language summaries]
+**Output Format:** [Structured JSON API data with concise text or Markdown summaries]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Public Bilibili data; endpoint calls are typically $0.0020 each, and additional pages are separate calls.]
+**Other Properties Related to Output:** [Paged results; each API request incurs the endpoint's listed charge.]
 
 ## Skill Version(s):
 
-1.0.0 (source: frontmatter)
+1.0.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

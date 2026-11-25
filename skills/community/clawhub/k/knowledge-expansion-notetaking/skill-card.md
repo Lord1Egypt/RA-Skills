@@ -1,6 +1,6 @@
 ## Description:
 
-知识拓展笔记术 (Knowledge Expansion Notetaking, KEN) turns a newly shared concept, method, or piece of knowledge into a structured deep-note with source context, concept analysis, applicability boundaries, ambiguity checks, follow-up questions, AI continuation, and synchronized archiving.
+当用户分享新学到的知识、概念或方法时，帮助其追溯来源、解析概念与适用边界、生成结构化深度笔记，并归档到 Get笔记 和飞书。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and personal knowledge workers use this skill to convert newly encountered knowledge into reusable notes with definitions, limits, misunderstandings, deeper questions, and concise AI-written expansion. It also prepares archive outputs for Get notes, Feishu Knowledge Base, Feishu Docs, and local fallback storage.
+Individuals use this skill to turn newly learned ideas into structured notes with source context, concept analysis, limits, follow-up questions, and practical applications, then archive them to Get笔记 and Feishu.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The workflow can archive user-provided note content to Get notes, Feishu Knowledge Base, Feishu Docs, and local storage.
+Risk: Automatic cloud archiving and full-access sharing with a fixed account may expose private notes or grant unintended access.
 
-Mitigation: Use it only when that sync is intended, require confirmation before external archive actions, and restrict activation triggers to deliberate user requests.
-
-Risk: Created Feishu documents grant full_access to a fixed user account.
-
-Mitigation: Remove or parameterize the fixed recipient before use and grant only the minimum permission needed for the intended workspace.
-
-Risk: Generated titles, filenames, and XML document content are derived from user-supplied knowledge text.
-
-Mitigation: Sanitize titles and filenames and XML-escape generated content before writing files or executing Feishu update commands.
+Mitigation: Before enabling sync, confirm which notes are uploaded, review destination access controls, and adjust fixed-account sharing if it is not intended.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/binhuatochina/skills/knowledge-expansion-notetaking)
-- [Feishu knowledge base configuration](references/feishu-kb-config.md)
+- [ClawHub release page](https://clawhub.ai/binhuatochina/skills/knowledge-expansion-notetaking)
+- [Feishu knowledge-base configuration](references/feishu-kb-config.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+**Output Type(s):** [Markdown, Guidance]
 
-**Output Format:** [Markdown note content with Feishu XML update guidance, shell command snippets, archive status links, and a short finding summary.]
+**Output Format:** [Structured Markdown knowledge notes]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [AI continuation is capped at 800 Chinese characters; archive behavior targets configured Get and Feishu destinations plus local fallback storage.]
+**Other Properties Related to Output:** [Includes concept analysis, applicability boundaries, follow-up questions, and an AI continuation of up to 800 Chinese characters; can be archived to Get笔记 and Feishu.]
 
 ## Skill Version(s):
 
-0.4.5 (source: frontmatter and server release metadata)
+0.4.15 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

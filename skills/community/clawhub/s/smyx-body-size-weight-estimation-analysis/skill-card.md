@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Livestock producers and operations teams can use side-view images or videos to estimate an animal’s body dimensions, weight, and fattening stage, and to review historical estimation reports. The estimates are intended as progress references rather than feeding or sale recommendations.
+Livestock producers and farm operators use the skill to estimate body measurements, weight, and fattening stage from side-view images or videos, and to track growth without handling animals. Results are estimates for progress tracking and are not feeding or slaughter recommendations.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates the skill suspicious with high confidence, citing account and credential handling, remote actions, and side effects beyond the stated livestock-estimation purpose.
+Risk: ClawScan rates the release suspicious with medium confidence, citing account and credential handling, remote requests, and behavior outside the stated livestock-estimation purpose; the scan is partial, so the evidence is incomplete and does not establish malicious intent.
 
-Mitigation: Consider not installing until the publisher explains the account, credential, upload, and remote-action behavior and how user data is protected. The scan was partial, so the available evidence does not establish that every referenced component was reviewed.
+Mitigation: Before installation, verify the publisher account and identity/token handling, confirm where local videos are sent, and review whether the export-only option and report lookup behave as intended.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-body-size-weight-estimation-analysis)
-- [Skill demonstration](https://lifeemergence.com/sample.html)
-- [API reference](artifact/references/api_doc.md)
-- [Analysis API reference](artifact/skills/smyx_analysis/references/api_doc.md)
+- [ClawHub release page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-body-size-weight-estimation-analysis)
+- [Livestock estimation API reference](artifact/references/api_doc.md)
+- [API formats and error codes](artifact/skills/smyx_analysis/references/api_doc.md)
+- [Skill introduction video](https://lifeemergence.com/sample.html)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Text, JSON, Markdown]
+**Output Type(s):** [Analysis, JSON, Markdown]
 
-**Output Format:** [Structured estimation report; historical reports are presented as a Markdown table]
+**Output Format:** [Structured JSON analysis report; historical reports are presented as a Markdown table.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include estimated body length, height, girth or width, weight, fattening stage, confidence or usability notes, and report links.]
+**Other Properties Related to Output:** [May include estimated body length, height, chest girth, weight, fattening stage, confidence or usability notes, and a report link. Estimates are for reference.]
 
 ## Skill Version(s):
 
-1.0.16 (source: server-resolved release metadata)
+1.0.17 (source: server-resolved release)
 
 ## Ethical Considerations:
 

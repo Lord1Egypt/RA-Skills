@@ -14,7 +14,7 @@ class Skill(SkillParent):
         super().__init__()
 
     def get_output_analysis_content_head(self, result=None):
-        return f"📊 儿童情绪识别分析结构化结果"
+        return f"📊 儿童情绪波动识别（哭闹/暴躁/低落）结构化结果"
 
     def get_output_analysis_content_foot(self, result):
         pass

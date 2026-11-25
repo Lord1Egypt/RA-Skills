@@ -14,51 +14,35 @@ MIT-0
 
 ## Use Case:
 
-电商运营人员和设计师可用此技能为促销、节日和折扣活动制作营销海报及多版位视觉素材，并根据确认过的活动信息安排版面。
+电商运营人员和营销设计者可用此技能规划促销海报、编写出图提示词，并在 CLI 与密钥可用且报价获确认后生成图片；无法生成时会提供可直接提交的方案。
 
 ### Deployment Geography for Use:
 
-China (the workflow uses Qinghu's CN service).
+Global
 
 ## Known Risks and Mitigations:
 
-Risk: Reference images are uploaded to Qinghu during generation.
+Risk: 安全扫描将此版本评为可疑：CLI 版本未固定，安装流程可能在未获批准时进行全局安装或升级；扫描未能解析三个本地引用，证据不完整。
 
-Mitigation: Use only reference images you are comfortable uploading.
-
-Risk: Generation can incur charges and depends on the active account and service address.
-
-Mitigation: Verify the account and service address, review the quoted cost, and confirm sufficient balance before generation.
-
-Risk: The API key could be exposed if included in task data or replies.
-
-Mitigation: Protect the key and provide it through the process environment; do not include it in task JSON or replies.
-
-Risk: The workflow may install the latest qhkit CLI globally, and that external dependency was outside the artifact review.
-
-Mitigation: Review the external package and release before installing it.
-
-Risk: Generated artwork may render exact prices, long terms, or QR codes inaccurately or illegibly.
-
-Mitigation: Leave space for these elements, add confirmed copy and assets locally, and check dates, discounts, and readability.
+Mitigation: 安装前核对包来源和版本，并在执行全局安装或升级前审查和批准；对未解析的本地引用保持审查。
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/autoagc/skills/linkpix-gpt-image-2-6-promo-poster)
+- [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-gpt-image-2-6-promo-poster)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Text, Guidance, Configuration, Shell commands]
+**Output Type(s):** [Images, Markdown, Configuration]
 
-**Output Format:** [Generated image files with Markdown guidance and JSON parameter examples]
+**Output Format:** [图片文件；无法生成时提供 Markdown 出图方案和 JSON 参数]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Image count, size, and quality depend on the model options returned at runtime; prompts are limited to 5,000 characters.]
+**Other Properties Related to Output:** [生成图片需要可用的 CLI 和密钥，并在生成前确认报价；否则提供可直接提交的方案。]
 
 ## Skill Version(s):
 
-0.1.0 (source: ClawHub release metadata)
+0.1.1 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

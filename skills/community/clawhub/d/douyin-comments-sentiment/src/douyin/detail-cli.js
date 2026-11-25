@@ -4,12 +4,13 @@ const detail = require("../api/detail");
 const log = require("../utils/log");
 const token = require("../utils/token");
 const utils = require("../utils/utils");
-const validator = require("../validate/comment");
+const validator = require("../validate/aweme");
 const { parseArgs, buildHelp } = require("../utils/args");
 const {
   emitError,
   emitEmpty,
-  printSuccessEnvelope,
+  buildSuccessEnvelope,
+  finishSuccess,
   emitUncaught,
 } = require("../utils/output");
 
@@ -135,18 +136,16 @@ async function main() {
     return;
   }
 
-  const finalOutput = printSuccessEnvelope(
+  const finalOutput = buildSuccessEnvelope(
     "获取作品详情任务完成",
     startTime,
     detailRequest,
     detailResult,
   );
-  utils.printSuccess("获取作品详情任务完成");
-
-  await log.writeResultLog(
-    `${startTime}_${log.resourceId(url)}_detail.json`,
-    JSON.stringify(finalOutput, null, 2),
-  );
+  await finishSuccess(finalOutput, {
+    logFilename: `${startTime}_${log.resourceId(url)}_detail.json`,
+    stderrMessage: "获取作品详情任务完成",
+  });
 }
 
 main().catch((error) => {

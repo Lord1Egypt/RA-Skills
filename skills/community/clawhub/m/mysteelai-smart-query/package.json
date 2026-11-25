@@ -1,0 +1,6 @@
+{
+  "name": "mysteelai-smart-query",
+  "version": "1.0.0",
+  "displayName": "MysteelAI-智能问数",
+  "description": "基于钢联/隆众数据平台的大宗商品价格行情数据查询技能，支持期货/现货价格、基准价、行情走势、多维度价格对比及宏观经济、产业链、金融数据查询。"
+}

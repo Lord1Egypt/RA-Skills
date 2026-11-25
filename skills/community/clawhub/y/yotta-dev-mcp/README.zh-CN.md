@@ -67,15 +67,15 @@ dispatch 是否漂移、写 / 执行闸门是否仍 fail-closed，并用临时�
 ### 启动 MCP server
 
 ```bash
-npx -y @yottameta/yotta-dev-mcp@0.2.8
+npx -y @yottameta/yotta-dev-mcp@0.2.9
 ```
 
 ### 安装技能载荷
 
 ```bash
-npx -y @yottameta/yotta-dev-mcp@0.2.8 --agent codex
-npx -y @yottameta/yotta-dev-mcp@0.2.8 --dir <技能目录>
-npx -y @yottameta/yotta-dev-mcp@0.2.8 --list
+npx -y @yottameta/yotta-dev-mcp@0.2.9 --agent codex
+npx -y @yottameta/yotta-dev-mcp@0.2.9 --dir <技能目录>
+npx -y @yottameta/yotta-dev-mcp@0.2.9 --list
 ```
 
 安装器只写入显式目标。`-g/--global` 会装到所有已识别的用户级目录；`--yes` 仅为兼容保留，不再强制。`npx -y` 是 npx 的自动安装开关，不是安装器的 `--yes`；`--dry-run` 只预览不写入。

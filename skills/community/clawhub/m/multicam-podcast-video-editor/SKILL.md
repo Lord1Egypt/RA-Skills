@@ -1,7 +1,7 @@
 ---
 name: multicam-podcast-video-editor
-description: "Synchronize multi-camera podcast recordings by audio waveform and switch camera angles on the active speaker."
-version: 1.0.4
+description: "Edit podcasts, interviews, and multi-camera recordings (播客): waveform audio sync, active-speaker camera switching, split-screen layouts, podcast clips, and Descript/Opus Clip style transcript editing."
+version: 1.0.8
 author: brajendrak00068
 license: MIT
 ---
@@ -28,7 +28,7 @@ This skill calls the Levea (livecore.ai) editing service, which requires a Levea
 
 ## Tool interface
 
-Use the registered `ai-video-editor` (OpenClaw plugin) or `autonomous_edit` (MCP server) tool to run edits against a project timeline.
+Use the registered `ai-video-editor` (OpenClaw plugin) or `autonomous_edit` (MCP server) tool, or call `search_skills` / `load_skill` + `execute_action` / `execute_batch` for direct canonical control.
 
 ### Tool parameters
 
@@ -45,6 +45,8 @@ Use the registered `ai-video-editor` (OpenClaw plugin) or `autonomous_edit` (MCP
 - `editedPlan` (object, optional): The user's edited version of a plan returned by an approval pause.
 - `planDecision` (string, optional): Set to `"approve"` to approve the plan from an approval pause; resend it with that response's `workingMemory`.
 - `attachedImages` (array, optional): Reference image URLs for planning (style, branding).
+- `style_reference_url` (string, optional): A reference video whose editing style the result should match (pacing, captions, framing, zooms, transitions, grade).
+- `skills` (array, optional): Your own saved skills (save_skill) to apply to this edit, as "user/<slug>" ids. Skills saved with apply: always are applied to every edit without being named.
 - `flaggedIssues` (array, optional): Specific problems the user flagged that this run must fix.
 - `brandId` (string, optional): Brand kit to apply to this call.
 - `projectBrandId` (string, optional): Default brand kit for the project; persists across calls.

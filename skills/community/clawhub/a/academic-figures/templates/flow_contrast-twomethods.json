@@ -1,0 +1,100 @@
+{
+ "_command": "python3 scripts/gen_figure.py -t flow -d templates/flow_contrast-twomethods.json --gate strict -o flow_twomethods.png",
+ "layout": "layered",
+ "title": "Two-arm sample processing comparison",
+ "nodes": [
+  {
+   "id": "sample",
+   "label": "Paired biopsy",
+   "sublabel": "same lesion, split"
+  },
+  {
+   "id": "fixa",
+   "label": "Arm A: FFPE",
+   "sublabel": "formalin 24 h",
+   "shape": "io"
+  },
+  {
+   "id": "fixb",
+   "label": "Arm B: snap-frozen",
+   "sublabel": "liquid N₂",
+   "shape": "io"
+  },
+  {
+   "id": "xa",
+   "label": "Sectioning",
+   "sublabel": "4 µm, charged slides"
+  },
+  {
+   "id": "xb",
+   "label": "Cryosectioning",
+   "sublabel": "8 µm, OCT"
+  },
+  {
+   "id": "stain",
+   "label": "Concurrent H&E + IHC",
+   "sublabel": "same antibody lot",
+   "shape": "predefined"
+  },
+  {
+   "id": "scan",
+   "label": "Digital scanning",
+   "sublabel": "40×, same scanner"
+  },
+  {
+   "id": "score",
+   "label": "Blinded scoring",
+   "sublabel": "two pathologists, κ"
+  },
+  {
+   "id": "stats",
+   "label": "Paired analysis",
+   "sublabel": "Wilcoxon signed-rank",
+   "shape": "terminal"
+  }
+ ],
+ "edges": [
+  {
+   "from": "sample",
+   "to": "fixa"
+  },
+  {
+   "from": "sample",
+   "to": "fixb"
+  },
+  {
+   "from": "fixa",
+   "to": "xa"
+  },
+  {
+   "from": "fixb",
+   "to": "xb"
+  },
+  {
+   "from": "xa",
+   "to": "stain"
+  },
+  {
+   "from": "xb",
+   "to": "stain"
+  },
+  {
+   "from": "stain",
+   "to": "scan"
+  },
+  {
+   "from": "scan",
+   "to": "score"
+  },
+  {
+   "from": "score",
+   "to": "stats",
+   "thick": true
+  }
+ ],
+ "_chart_type": "flow",
+ "_scene": "",
+ "_description": "",
+ "_caption_template": "",
+ "_note": "双臂样本处理对照：同源分叉两列 + 中段汇合同一处理——方法对照范式"
+}

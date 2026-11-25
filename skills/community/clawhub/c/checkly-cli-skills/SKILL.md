@@ -1,6 +1,6 @@
 ---
 name: checkly-cli-skills
-description: Comprehensive Checkly CLI command reference and Monitoring as Code workflows. Use when user mentions Checkly CLI, monitoring as code, synthetic monitoring, API checks, browser checks, Playwright testing, gRPC/SSL/traceroute monitors, check deployment, account plans, entitlements, organization usage, credits, or npx checkly commands. Routes to specialized sub-skills for auth, config, checks, monitors, testing, deployment, imports, account plan and usage, constructs, and advanced patterns. Triggers on checkly, monitoring as code, synthetic monitoring, checkly cli, npx checkly.
+description: Comprehensive Checkly CLI command reference and Monitoring as Code workflows. Use when user mentions Checkly CLI, monitoring as code, synthetic monitoring, API checks, browser checks, Playwright testing, GitHub Check re-runs, gRPC/SSL/traceroute monitors, check deployment, account plans, entitlements, organization usage, credits, spending caps, or npx checkly commands. Routes to specialized sub-skills for auth, config, checks, monitors, testing, deployment, imports, account plan and usage, constructs, and advanced patterns. Triggers on checkly, GitHub Check Re-run button, repository_dispatch, monitoring as code, synthetic monitoring, checkly cli, npx checkly.
 metadata:
   {
     "openclaw":
@@ -29,7 +29,7 @@ metadata:
         "notes":
           [
             "Requires Node.js 22.13.0 or later, plus a Checkly account and API key (signup at checklyhq.com/signup or via 'npx checkly login').",
-            "Credentials can be set via environment variables (CHECKLY_API_KEY, CHECKLY_ACCOUNT_ID) or stored in ~/.config/@checkly/cli/config.json via 'npx checkly login'.",
+            "Credentials can be set via environment variables (CHECKLY_API_KEY, CHECKLY_ACCOUNT_ID) or stored in platform-specific Checkly CLI configuration via 'npx checkly login'.",
             "Config stored in checkly.config.ts and auth credentials in system config.",
             "Browser checks optionally require playwright binary and @playwright/test dependency.",
           ],
@@ -42,6 +42,21 @@ metadata:
 Comprehensive Checkly CLI command reference and Monitoring as Code (MaC) workflows.
 
 The current Checkly CLI requires Node.js 22.13.0 or later. Verify `node --version` before install, init, test, or deploy workflows; upgrading only the project dependency does not bypass the CLI's host-runtime floor.
+
+## Process and output contract
+
+For source-backed details on reporter streams, validation, crash reporting, and error diagnosis, read [runtime contracts](references/runtime-contracts.md).
+
+Commands return results on stdout and progress, warnings, human-readable errors, hints and prompts on stderr. Keep streams separate for JSON parsing. Exit codes: 0 success, 1 failure, 2 invalid flags/arguments, 3 confirmation required. A second Ctrl+C terminates with SIGINT (shell status 130).
+
+Deploy plans by default and schedules no immediate checks unless `--schedule-on-deploy` is set. No-change plans need no confirmation. `test` and `pw-test` fail on an empty selection; only `test --no-fail-on-no-matching` opts out. See `checkly-deploy` and `checkly-test` for the full contracts.
+
+When no reporter is configured, CI and agent runs use `ci`, other runs use `list`. Jenkins, TeamCity and AWS CodeBuild are detected; `CI=false`, `0`, `no` or `off` disables CI mode even on GitHub/GitLab hosts. Login/logout/switch/create-checkly prompt only when stdin and stderr are terminals: piping stdout preserves prompts, redirecting stderr disables them.
+
+A global CLI, `pnpm dlx checkly`, or version-qualified `npx checkly` delegates to the project's installed CLI. A version mismatch prints which version actually runs. `CHECKLY_NO_DELEGATION=1` opts out; a failed delegation warns and falls back to the invoking CLI. If construct creation reports two installations, align resolution and run the project dependency rather than mixing construct identities.
+
+`init` can initialize an empty directory in CI/agent mode, including creating package.json. Agent output uses `status: "success"` or `status: "error"` with `message`; failures exit 1. `api` preserves binary bytes and JSON string/null responses; `--jq` requires JSON.
+
 
 ## Choose CLI or MCP first
 
@@ -65,7 +80,7 @@ Run `npx checkly skills` before choosing a live CLI action. It loads the current
 # Create new Checkly project
 npm create checkly@latest
 
-# Test checks locally
+# Test project checks in the Checkly runtime
 npx checkly test
 
 # Deploy to Checkly cloud
@@ -94,7 +109,7 @@ This skill routes to specialized sub-skills by Checkly domain:
 - `checkly-auth` - Authentication setup and login
 - `checkly-config` - Configuration files (checkly.config.ts) and project structure
 - `checkly-members` - Account member and pending-invite listing, role updates, and removals
-- `checkly-usage` - Account plan/entitlements plus organization contract terms, credit usage, projections, and grouped usage series
+- `checkly-usage` - Account plans, contract/self-service usage and projections, grouped series, and authorized spending-cap changes
 
 **Core Workflows:**
 - `checkly-test` - Local testing workflow with npx checkly test
@@ -109,11 +124,11 @@ This skill routes to specialized sub-skills by Checkly domain:
 **Advanced:**
 - `checkly-constructs` - Constructs system and resource management
 - `checkly-playwright` - Playwright test suites and configuration
-- `checkly-advanced` - Retry strategies, reporters, environment variables, bundling
+- `checkly-advanced` - Retry strategies, reporters, GitHub Check Re-run button and repository-dispatch handler setup, environment variables, bundling
 
 **Operations:**
 - `checkly-members` - Audit and manage Checkly account access with `npx checkly members`
-- `checkly-usage` - Route account questions precisely: `npx checkly account plan` for plans, entitlements, feature limits, or private-location availability; `npx checkly account usage terms/summary/series` for organization contract credits and consumption
+- `checkly-usage` - Route account questions precisely: `npx checkly account plan` for plans, entitlements, feature limits, or private-location availability; `npx checkly account usage terms/term/summary/series/projections` for contract/self-service consumption; `npx checkly account spending-cap` for overage limits, requiring explicit exact-account/value or removal authorization before writes
 - `checkly-test` - Also covers `npx checkly test-sessions` for recorded test-session drilldown and RCA context
 - `checkly-checks` - Inspect, run, and delete deployed checks with `npx checkly checks`; confirm live-run targets before `checks run`, and use `checks delete --dry-run` before destructive deletes
 - `checkly-assets` - List/download result assets such as logs, traces, videos, screenshots, pcap, reports, and files for failure investigation
@@ -148,7 +163,7 @@ cd my-checkly-project
 # Authenticate
 npx checkly login
 
-# Test locally
+# Test in the Checkly runtime
 npx checkly test
 
 # Deploy to cloud
@@ -175,7 +190,7 @@ new ApiCheck('api-status-check', {
 })
 EOF
 
-# Test locally
+# Test in the Checkly runtime
 npx checkly test
 
 # Deploy when ready
@@ -230,7 +245,7 @@ Do not deploy generated import code before applying its plan: that can create du
 
 ### Agent-mode confirmation protocol
 
-Write commands such as `deploy`, `destroy`, `import commit`, and `import cancel` return exit code 2 with `status: "confirmation_required"` in agent mode. Present the returned `changes` to the user, then run the returned `confirmCommand` verbatim only after explicit approval. Do not append `--force` yourself, remove flags that appear in the returned command, or assume parser-default flags are user intent.
+Write commands such as `deploy`, `destroy`, `import commit`, and `import cancel` return exit code 3 with `status: "confirmation_required"` in agent mode. Present the returned `changes` to the user, then run the returned `confirmCommand` verbatim only after explicit approval. Do not append `--force` yourself, remove flags that appear in the returned command, or assume parser-default flags are user intent.
 
 ### Inspect deployed check failures
 
@@ -249,6 +264,8 @@ npx checkly checks get <check-id> --result <result-id>
 
 When investigating a deployed failure, look for `errorGroups`, `rootCause`, or `RCA` fields in the output. If Checkly already surfaced Rocky AI root-cause analysis, reuse that context before suggesting additional debugging steps.
 
+If `rca run` reports `Rocky AI is disabled for this account.` (exit 1; JSON `code: "ERR_ROCKY_AI_DISABLED"`), an account owner must enable Rocky AI using the account-settings link in the error. Do not retry or edit checks to fix this account setting. This code identifies the disabled-feature condition, not every HTTP 403.
+
 To trigger deployed checks rather than test local project definitions, route to `checkly-checks` for `npx checkly checks run`. This creates live check sessions using deployed locations and alerting rules, so confirm the intended check IDs or tags before running it; omitting selectors targets all deployed checks.
 
 For alerting questions, use read-only JSON/API evidence before table output:
@@ -259,7 +276,7 @@ npx checkly api /v1/checks/<check-id>
 npx checkly alert-channels list --output json --limit 100
 ```
 
-Only fetch alert-channel details for channel IDs referenced by the selected check or matching group. If the check has a `groupId`, inspect groups once with `npx checkly api /v1/check-groups` and locate the matching group. Do not probe guessed account/global alerting endpoints; if output only shows `useGlobalAlertSettings: true`, say global alert settings are selected but their policy details were not available in the inspected CLI/API output.
+Only fetch alert-channel details for channel IDs referenced by the selected check or matching group. If the raw REST check payload has a non-null `groupId`, inspect groups once with `npx checkly api /v1/check-groups` and match that ID. Inspect returned `doubleCheck` and `retryStrategy` for retry behavior; removing `groupId` and `doubleCheck` from construct inputs did not remove those REST fields. Do not probe guessed account/global alerting endpoints; if output only shows `useGlobalAlertSettings: true`, say global alert settings are selected but their policy details were not available in the inspected CLI/API output.
 
 ## Decision Trees
 
@@ -269,12 +286,12 @@ Only fetch alert-channel details for channel IDs referenced by the selected chec
 What are you monitoring?
 ├─ REST API / HTTP endpoint
 │  ├─ Simple availability → API Check (request + status assertion)
-│  ├─ Complex validation → API Check (request + multiple assertions + scripts)
+│  ├─ Complex validation → API Check; sequential API flows → Multi-Step Check
 │  └─ Just uptime/ping → URL Monitor (simpler, faster)
 │
 ├─ Web application / User flow
 │  ├─ Single page → Browser Check (one .spec.ts file)
-│  ├─ Multiple steps → Browser Check or Multi-Step Check
+│  ├─ Multiple browser steps → Browser Check
 │  └─ Full test suite → Playwright Check Suite (playwright.config.ts)
 │
 └─ Service health / Infrastructure
@@ -290,7 +307,7 @@ What are you monitoring?
 **Quick reference:**
 - **API Check**: HTTP requests with assertions (status, headers, body, response time)
 - **Browser Check**: Single Playwright spec file for web testing
-- **Multi-Step Check**: Complex browser workflows (legacy, use Browser Check instead)
+- **Multi-Step Check**: Sequential API workflows using Playwright request APIs
 - **Playwright Check Suite**: Multiple Playwright tests with projects/parallelization
 - **Monitors**: Simple health checks without code execution
 
@@ -375,7 +392,7 @@ my-monitoring-project/
 
 ## Checkly bundled agent references
 
-`npx checkly rules` is deprecated; use `npx checkly skills` instead when you need Checkly's bundled AI-agent documentation, actions, or reference snippets:
+Migration warning: `checkly rules` is removed and exits 127; use `npx checkly skills` instead when you need Checkly's bundled AI-agent documentation, actions, or reference snippets:
 
 ```bash
 npx checkly skills
@@ -384,7 +401,7 @@ npx checkly skills configure api-checks
 npx checkly skills install
 ```
 
-This repository is an external multi-skill package for agent clients. Do not rely on the deprecated `checkly rules` command when refreshing or installing these skills.
+This repository is an external multi-skill package for agent clients. Use the bundled `skills` command when inspecting or installing upstream guidance. File read/write failures exit 1. In CLI **10.3.0+**, upstream installer targets also include `kiro` (`.kiro/skills/checkly`) and `antigravity`, `devin`, `mistral-vibe`, `zed`, `kilo-code` (each `.agents/skills/checkly`). These are upstream single-skill destinations, separate from this repository's selective installation. Installation or overwrite requires user authorization; this reference does not authorize either. [Immutable target map](https://github.com/checkly/checkly-cli/blob/c58d58c171152336dfc87f2e7b77e742f9b4ffa5/packages/cli/src/services/skills.ts).
 
 ## Installation methods
 
@@ -425,7 +442,7 @@ checkly test
 - See `checkly-auth` for authentication setup
 - See `checkly-config` for project configuration
 - See `checkly-test` for local testing workflow
-- See `checkly-usage` for account plans, entitlements, contract credits, and usage reporting
+- See `checkly-usage` for account plans, entitlements, contract credits, self-service USD usage, usage reporting, and spending caps
 
 **Creating checks:**
 - See `checkly-checks` for API and browser checks
@@ -435,7 +452,7 @@ checkly test
 **Advanced workflows:**
 - See `checkly-deploy` for deployment strategies
 - See `checkly-constructs` for understanding the object model
-- See `checkly-advanced` for retry strategies and reporters
+- See `checkly-advanced` for retry strategies, reporters, and opt-in GitHub Check re-runs
 
 **Import existing:**
 - See `checkly-import` to migrate from web UI to code

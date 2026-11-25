@@ -1,6 +1,6 @@
 ## Description:
 
-用于抖音数据分析、抖音作品详情、图文详情、作品数据、互动指标、内容调研和内容分析。覆盖 Douyin work details，来自 SocialDataX 社媒数据助手。
+用于抖音数据分析、抖音作品详情、图文详情、作品数据、互动指标、内容调研和内容分析。覆盖 Douyin work details，来自社媒数据助手 SocialDataX。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers, analysts, and content researchers use this skill to retrieve structured details for a Douyin work, including available content and interaction metrics.
+External users and content analysts use this skill to retrieve and review details for Douyin video and image/text posts, including available descriptions and engagement metrics.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment flags repeated installation of an unpinned latest CLI, creating supply-chain risk for commands that may handle credentials.
+Risk: The automatically installed CLI package could change or be compromised before installation, and the available scan was partial.
 
-Mitigation: Review and pin the CLI version before installation, especially before entering an API key, and follow the skill's credential-handling guidance.
+Mitigation: Review the CLI package before installing it and repeat the security scan against the complete package and its local references.
 
 ## Reference(s):
 
 - [SocialDataX API access](https://socialdatax.com/ai?from=clawhub)
+- [ClawHub release](https://clawhub.ai/devinchen2014/skills/socialdatax-douyin-detail)
 
 ## Skill Output:
 
-**Output Type(s):** [API Calls, JSON]
+**Output Type(s):** [Analysis, JSON]
 
-**Output Format:** [JSON containing Douyin work details and available engagement metrics]
+**Output Format:** [Structured JSON containing available Douyin work details and interaction metrics]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Returned fields depend on the Douyin work and the platform response.]
+**Other Properties Related to Output:** [Read-only detail data; available fields depend on the source response.]
 
 ## Skill Version(s):
 
-0.1.22 (source: server-resolved ClawHub release metadata)
+0.1.23 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

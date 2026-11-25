@@ -1,8 +1,8 @@
 ## Description:
 
-Produces preliminary MEP quantity takeoff working papers and material plan drafts from drawing contracts or scan indexes; it does not provide pricing or settlement quantities.
+Produces rough installation quantity estimates and material plan drafts from drawing-reader contracts, without providing pricing or settlement quantities.
 
-This skill is for research and development only.
+This skill is ready for commercial/non-commercial use.
 
 ## Publisher:
 
@@ -10,11 +10,11 @@ This skill is for research and development only.
 
 ### License/Terms of Use:
 
-CC BY-NC-SA 4.0
+CC-BY-NC-SA-4.0
 
 ## Use Case:
 
-MEP engineers, quantity surveyors, and project teams use this skill to turn drawing-derived contracts or scan indexes into preliminary installation quantity schedules and material plan drafts for budgeting and review. The results require human checking and do not replace professional detailing, pricing, or settlement work.
+MEP engineers and quantity surveyors use this skill to turn drawing-reader contracts or scan indexes into draft quantity takeoffs and material plans for budgeting, procurement planning, drawing review, and cross-checking with professional software.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Security evidence flags a mismatch between the estimating purpose and some reported capabilities, as well as dependency-install and integrity concerns. The scan is partial and does not establish clear malicious intent.
+Risk: The security report rates the release suspicious and cites automatic installation and execution of a separate skill, an environment-selected validator, and behavior that may not match the stated quantity-planning purpose; the scan is partial because a referenced path was missing.
 
-Mitigation: Before installing, review the unexpected capabilities and dependency-install behavior, verify that they fit your needs, and do not treat the partial scan or completed AIG scan as proof of safety.
+Mitigation: Review the install and execution paths, the environment-selected validator, and the missing referenced path before running; use only trusted dependency locations and check outputs against the drawings and professional software.
 
 ## Reference(s):
 
-- [Input contract and integration boundaries](references/base-contract.md)
-- [Quantity takeoff methods and limits](references/on-demand.md)
-- [Standard quantity rules](references/standard_rules.json)
-- [Loss and ordering rules](references/loss_rules.json)
+- [ClawHub skill page](https://clawhub.ai/lisong2003-lgtm/skills/anzhuang-suanliang)
+- [Quantity rules and workflow](references/on-demand.md)
+- [Input contract requirements](references/base-contract.md)
+- [Loss rules](references/loss_rules.json)
+- [Standard rules](references/standard_rules.json)
+- [Bus integration guide](docs/bus-integration.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Files, JSON]
+**Output Type(s):** [Files, JSON, Markdown, Analysis]
 
-**Output Format:** [Multi-sheet XLSX quantity and material planning workbook, with JSON scan and contract data]
+**Output Format:** [XLSX workbook, JSON, Markdown, and CSV reports]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Draft quantities with evidence, confidence, and review notes; excludes prices and monetary amounts.]
+**Other Properties Related to Output:** [Draft quantity and material planning outputs; no pricing or settlement quantities. Human review is required for flagged assumptions and drawing ambiguities.]
 
 ## Skill Version(s):
 
-0.4.38 (source: frontmatter)
+0.4.39 (source: frontmatter, CHANGELOG released 2026-11-18)
 
 ## Ethical Considerations:
 

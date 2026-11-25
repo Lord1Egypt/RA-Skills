@@ -1,6 +1,6 @@
 ## Description:
 
-explainer video, explainer video generator, animated explainer, training video — turn a document, topic, or brief into a narrated explainer video: outline, storyboard, voiceover, build, validate. Use when the user wants an explainer, courseware, or training video.
+Turn a document, topic, or brief into a narrated explainer video through outlining, storyboarding, voiceover, production, and validation.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users and teams use this skill to turn documents, topics, or briefs into narrated explainer, courseware, or training videos. It guides an agent through outlining, storyboarding, voiceover, video creation, and validation.
+External users and developers can use this skill to turn documents, topics, or briefs into narrated explainer, courseware, or training videos.
 
 ### Deployment Geography for Use:
 
@@ -22,30 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review found a mismatch between the video-making description and commands for login and organization project listing; the partial scan did not establish what those commands access.
+Risk: The security scan rates the skill suspicious because login and project-listing actions, and a broad report-interpretation trigger, may extend beyond its stated video-generation purpose.
 
-Mitigation: Before installing, review the CLI and its access details, and confirm that login and organization project listing fit your needs.
+Mitigation: Review the complete skill and its data-handling details before installing; confirm you want its authentication, project-listing, and hosted-processing behavior.
+
+Risk: Prompts and attached files are sent to dLazy's hosted API and media storage.
+
+Mitigation: Check your organization's data-handling requirements before sending documents or other sensitive material.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/dlazyai/skills/dlazy-explainer-video)
-- [dLazy CLI source repository (linked by the skill; provenance unavailable)](https://github.com/dlazy-ai/cli)
-- [dLazy CLI on npm](https://www.npmjs.com/package/@dlazy/cli)
 - [dLazy](https://dlazy.com)
+- [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
 
 ## Skill Output:
 
-**Output Type(s):** [Video files, Text, Shell commands]
+**Output Type(s):** [Video files, Text, Markdown]
 
-**Output Format:** [Narrated explainer video files with text responses and project guidance]
+**Output Format:** [Narrated explainer video with supporting outline and storyboard text]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Video content, outline, storyboard, and voiceover depend on the supplied document, topic, or brief.]
+**Other Properties Related to Output:** [Content depends on the supplied document, topic, or brief.]
 
 ## Skill Version(s):
 
-1.0.39 (source: server release metadata)
+1.0.42 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

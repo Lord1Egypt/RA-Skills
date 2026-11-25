@@ -1,6 +1,6 @@
 ## Description:
 
-Moves an existing test suite to e2e one slice at a time while keeping both suites running until each port is proven.
+Guides developers through migrating an existing automated test suite to e2e one tested slice at a time while keeping the source suite running and tracking progress in `MIGRATION.md`.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to migrate existing browser and mobile test suites to e2e incrementally. It helps preserve coverage by keeping the source suite in place and recording migration progress until each port is proven.
+Developers and test engineers use this skill to move an existing Playwright, Cypress, Selenium, Appium, Detox, Maestro, or TesterArmy suite to e2e in small, verified slices while keeping both suites running during migration.
 
 ### Deployment Geography for Use:
 
@@ -22,32 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Setup instructions include unpinned package downloads, so the installed versions may change.
+Risk: Unpinned `npx` installers may resolve to changed packages, and the scan reports incomplete reference coverage.
 
-Mitigation: Review package sources and pin versions before running setup commands.
-
-Risk: Screenshots or other observations from model-backed tests may contain sensitive information, and scan coverage is partial because referenced material is missing.
-
-Mitigation: Review the referenced material before enabling model-backed tests and avoid sending sensitive observations to a model; use sanitized test data where possible.
+Mitigation: Review installer commands and package sources, pin e2e to a reviewed version, and verify referenced documentation before installing or running commands.
 
 ## Reference(s):
 
-- [e2e migration documentation](https://e2e.com/docs/migrate)
-- [ClawHub skill page](https://clawhub.ai/e2e/skills/migrate-to-e2e)
+- [e2e migration guide](https://e2e.com/docs/migrate)
+- [Playwright migration guide](https://e2e.com/docs/migrate/playwright.md)
+- [Cypress migration guide](https://e2e.com/docs/migrate/cypress.md)
+- [Selenium migration guide](https://e2e.com/docs/migrate/selenium.md)
+- [Appium migration guide](https://e2e.com/docs/migrate/appium.md)
+- [Detox migration guide](https://e2e.com/docs/migrate/detox.md)
+- [Maestro migration guide](https://e2e.com/docs/migrate/maestro.md)
+- [TesterArmy migration guide](https://e2e.com/docs/migrate/testerarmy.md)
+- [e2e web guide](https://e2e.com/docs/web.md)
+- [e2e mobile guide](https://e2e.com/docs/mobile.md)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Code, Configuration instructions, Shell commands, Markdown]
+**Output Type(s):** [Code, Shell commands, Markdown, Guidance]
 
-**Output Format:** [Migration guidance, code and configuration changes, shell commands, and a MIGRATION.md progress file.]
+**Output Format:** [Markdown with code snippets and shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Works through one test-suite slice at a time and may include an optional defect check.]
+**Other Properties Related to Output:** [Varies with the source suite; includes migrated test slices and a MIGRATION.md progress record.]
 
 ## Skill Version(s):
 
-1.0.3 (source: server-resolved release metadata)
+1.0.4 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

@@ -1,0 +1,4 @@
+collected_at,metrics_collected_at,campaign,post,account,platform,url,views,likes,comments,shares,engagement,published_at,submission_id,geo_share,source
+2026-11-21T15:00:00Z,,example-orbit-app,orbit-tiktok,TikTok,TIKTOK,https://www.tiktok.com/@example.creator/video/7000000000000000001,18400,,,,,2026-11-18T14:02:10Z,EX-101,0.52,EXAMPLE ONLY: made-up number
+2026-11-21T15:00:00Z,,example-orbit-app,orbit-reels,Reels,INSTAGRAM,https://www.instagram.com/reel/EXAMPLEorbit1/?igsh=abc,6100,,,,,2026-11-18T14:02:40Z,EX-102,0.47,EXAMPLE ONLY: made-up number
+2026-11-21T15:00:00Z,,example-orbit-app,orbit-shorts,Shorts,YOUTUBE,https://www.youtube.com/shorts/EXAMPLEorb01,2300,,,,,2026-11-18T14:12:00Z,EX-103,0.31,EXAMPLE ONLY: made-up number

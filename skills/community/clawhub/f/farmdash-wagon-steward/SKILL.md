@@ -61,7 +61,7 @@ No other fields are collected by skill logic.
 
 | Tier | Cost | Limits | Capabilities |
 |---|---|---|---|
-| **Scout** | Free | 30 req / 24h | Public FarmDash discovery only; wallet portfolio endpoints require Pioneer because they consume portfolio API credits |
+| **Scout** | Free | 30 req / 24h | Public FarmDash discovery only; wallet portfolio endpoints (`wallet_portfolio` policy) require Pioneer or a published 0.02 USDC Base x402 one-off because they consume portfolio API credits |
 | **Pioneer** | $39.99/mo | 1,500 req / day | Wallet balances, portfolio summary, idle capital, token prices, position/performance health |
 | **Syndicate** | $199/mo | 50k req / day | Higher-rate portfolio loops, webhooks through Signal Architect, unrestricted CORS, and advanced session/control tooling for teams and serious agents |
 
@@ -98,7 +98,7 @@ Top-level snapshot. Use this first — it grounds every other recommendation.
 
 It does not currently identify protocol positions, liabilities, LP composition, locked/vesting balances, lending debt, perp exposure, cost basis, or cross-chain balances outside the requested/default network set. Treat `totalValueUsd` as a partial observable-wallet estimate, not net asset value.
 
-**Agent posture:** Start a wagon-aware conversation with this tool when the user has Pioneer access. If the call returns 402, explain that wallet portfolio reads require Pioneer and continue with non-wallet public research instead of fabricating balances. Do not narrate the entire response; surface the totals plus any flags Wagon Steward returns or that you derive (over-concentration, large idle capital, stale positions).
+**Agent posture:** Start a wagon-aware conversation with this tool when the user has Pioneer access (or opts into the route's published 0.02 USDC Base x402 one-off). If the call returns 402, explain clearly that wallet portfolio reads require Pioneer (`https://www.farmdash.one/agents`) or a one-off x402 payment, and continue with non-wallet public research instead of fabricating balances. Note the **chain boundary**: `get_wallet_balances` and `get_portfolio_summary` are EVM-only — Solana addresses fail closed with `solana_balances_unsupported`; never zero or invent Solana balances (use Signal Architect's native Solana quote/preparation tools when acting on Solana). Do not narrate the entire response; surface the totals plus any flags Wagon Steward returns or that you derive (over-concentration, large idle capital, stale positions).
 
 ---
 
@@ -238,7 +238,7 @@ Trail Intelligence  →  Wagon Steward  →  Signal Architect / Futures Strategi
 | **Signal Architect** | When the rebalance plan needs to actually move tokens | WS produces the plan, SA quotes + executes each swap with user confirmation |
 | **Futures Strategist** | When the user wants to hedge observable spot exposure | WS passes partial spot context; Hedge Warden/FS plan a candidate hedge and post-fill reconciliation measures residual delta |
 
-**Important:** Wagon Steward never auto-calls another skill. It produces analysis; the user (or an orchestrator like Trail Marshal) decides what to do with it.
+**Important:** Wagon Steward never auto-calls another skill. It produces analysis; the user (or an orchestrator like Trail Marshal) decides what to do with it. Before handing off any rebalance, swap, or hedge to **Signal Architect**, **Futures Strategist**, or **Autonomous Operator**, explicitly prompt the user to choose between FarmDash's zero-custody default **Standard FarmDash (`USER_SIGNED`)** (per-trade local signing) and opt-in **Autonomous FarmDash (`BOUNDED_AUTONOMOUS`)** (owner-signed, revocable delegation grant), grounded in `execution_mode_selection` from `GET /api/v1/agent/status` and `POST /api/v1/agent/authority`.
 
 ### Report-Back Template — State / Risks / Invalidation / Costs
 Report: address + timestamp/asOf + queried networks; totalValueUsd as partial observable-wallet estimate; topConcentrationPct vs 40% gate; idleCapitalUsd as candidate reserves; priced/unpriced counts; overConcentrated / idleDrag / staleData / routeNeeded flags; invalidation (missing chains, unpriced assets, unavailable debt/perp data blocks net-exposure claims); costs; nextBestAction (hold / monitor / research / quote_swap / reduce / rebalance) + handoff (none / trail_intelligence / trail_marshal / signal_architect / futures_strategist).

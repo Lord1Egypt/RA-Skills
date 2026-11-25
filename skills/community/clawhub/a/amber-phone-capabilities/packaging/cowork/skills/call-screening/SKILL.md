@@ -30,10 +30,7 @@ Privacy: screening can process caller audio/metadata through your configured pro
 Enable inbound call screening on the configured Twilio number.
 
 ### stop_screening
-Disable screening (calls ring through normally).
-
-### get_screening_status
-Check whether screening is currently active.
+Pause screening. Amber declines new inbound calls as busy until you resume screening. Calls already connected and outbound calling remain available.
 
 ## Customization
 

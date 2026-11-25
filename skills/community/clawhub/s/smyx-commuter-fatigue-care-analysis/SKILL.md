@@ -1,7 +1,7 @@
 ---
 name: "smyx-commuter-fatigue-care-analysis"
 description: "Through a fixed camera in a smart-home living room, the system analyzes office worker behavior in the first 30 minutes after coming home, detecting slumped sitting / reclining (relaxed posture, back-to-sofa angle > 120°), facial fatigue features (visible eye bags, downturned mouth corners, frequent blinking), and sighing frequency (rapid chest/abdomen rise-fall with audible exhale). | 通过智能家居客厅的固定摄像头，分析上班族回家后30分钟内的行为，检测瘫坐/斜躺（姿态放松、背部与沙发夹角>120°）、面部疲惫特征（眼袋明显、嘴角下垂、频繁眨眼）、叹气频次（胸腹快速起伏伴呼气声）。当疲劳指数超过阈值时，通过智能音箱主动播报关怀语音（如'辛苦了，喝杯水休息一下'），并播放舒缓音乐。"
-version: "1.0.22"
+version: "1.0.24"
 license: "MIT-0"
 ---
 

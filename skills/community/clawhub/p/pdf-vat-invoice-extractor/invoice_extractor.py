@@ -339,6 +339,10 @@ def extract_train_ticket_info(text, page_words=None):
         note_parts.append(f"车次{result['train_no']}")
     result['note'] = '，'.join(note_parts)
     
+    # v2.4.7：铁路客票特殊规则（退票费价外费用 + 销方口径标注）
+    from train_ticket_rules import apply_train_ticket_rules
+    result = apply_train_ticket_rules(result, text)
+    
     return result
 
 
@@ -458,7 +462,8 @@ def get_page_info(page, text, page_num):
         return {
             'invoice_id': inv, 'date': date_str,
             'buyer': info['buyer'], 'buyer_code': info['buyer_code'],
-            'seller': None, 'seller_code': None,
+            # v2.4.7：铁路电子客票无销售方栏，填承运人作口径标注
+            'seller': '中国铁路（铁路客运服务）', 'seller_code': None,
             'amount': info['amount'], 'tax': info['tax'], 'total': info['total'],
             'rate': info['rate'], 'item_name': info['item_name'],
             'note': info['note'],

@@ -1,6 +1,6 @@
 ## Description:
 
-Screens DefiLlama yield pools by exact asset exposure, chain, TVL, and return type, then checks the history of shortlisted pools.
+Screen DefiLlama yield pools by exact asset exposure, chain, TVL and base versus reward APY, then investigate shortlisted pool history.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT
 
 ## Use Case:
 
-Researchers and developers use this skill to compare public stablecoin or lending yields, separate base returns from incentives, and prepare a shortlist for further due diligence.
+Developers and analysts use this skill to compare DeFi yield pools for a requested token and chain, inspect base and reward returns, and prepare a shortlist with historical context and unresolved exit checks.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Public APY and TVL data do not establish protocol safety, withdrawable capacity, or realizable returns.
+Risk: The security scan was benign with medium confidence, but one referenced local path was unresolved, leaving part of the analysis incomplete.
 
-Mitigation: Check the protocol's withdrawal conditions, caps, pause state, and net yield separately before any user-directed transaction.
+Mitigation: Review the unresolved reference and the related source material before relying on the affected guidance.
 
-Risk: Incentive-heavy or stale headline APY can mislead comparisons.
+Risk: A yield shortlist does not establish available withdrawal capacity, protocol safety, or returns a user can realize.
 
-Mitigation: Distinguish base from reward APY, preserve missing values, report retrieval time, and inspect recent pool history.
+Mitigation: Check the specific protocol's caps, pause state, withdrawals, and net yield after costs before any execution decision.
 
 ## Reference(s):
 
-- [Yield retrieval recipe](references/requests.md)
-- [Official sources](references/sources.md)
+- [Bounded yield retrieval](artifact/references/requests.md)
+- [Official sources and methodology links](artifact/references/sources.md)
 - [DefiLlama API documentation](https://api-docs.defillama.com/)
-- [DefiLlama yield adapter methodology](https://github.com/DefiLlama/yield-server)
+- [DefiLlama yield adapter schema and methodology](https://github.com/DefiLlama/yield-server)
+- [Circle USDC contract addresses](https://developers.circle.com/stablecoins/usdc-contract-addresses)
+- [DefiLlama provider update cadence FAQ](https://docs.llama.fi/faqs/frequently-asked-questions)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Guidance]
+**Output Type(s):** [Analysis, Markdown, JSON, Guidance]
 
-**Output Format:** [Markdown shortlist with ranked pool data, exclusions, and caveats]
+**Output Format:** [Markdown shortlist with evidence notes; optional JSON screening results]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Up to five pools; includes source, timestamps when available, and unresolved exit or capacity checks.]
+**Other Properties Related to Output:** [Up to five ranked pools and up to three history checks; preserves missing APY decomposition and exclusion reasons.]
 
 ## Skill Version(s):
 
-0.6.1 (source: release metadata and skill frontmatter)
+0.8.0 (source: frontmatter)
 
 ## Ethical Considerations:
 

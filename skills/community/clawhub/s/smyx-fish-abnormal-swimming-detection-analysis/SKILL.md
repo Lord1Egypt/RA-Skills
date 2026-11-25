@@ -1,7 +1,7 @@
 ---
 name: "smyx-fish-abnormal-swimming-detection-analysis"
 description: "Through fixed cameras on aquariums, the system analyzes fish swimming videos and computes the angle between the fish body axis and the horizontal plane (normal fish bodies stay nearly horizontal). | 通过鱼缸固定摄像头，分析鱼类的游动视频，检测鱼体轴线与水平面的夹角（正常鱼体基本保持水平），当鱼体倾斜角度超过阈值（默认 > 30°）或出现倒立（头部向下 > 45°）、旋转（绕自身纵轴连续翻转）等异常游姿时，标记为异常，并记录异常时长占观察总时长的比例。该技能有助于早期发现鱼鳔失调、神经系统疾病或水质中毒等健康问题，提醒养鱼爱好者及时干预。"
-version: "1.0.21"
+version: "1.0.23"
 license: "MIT-0"
 ---
 

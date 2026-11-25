@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers use this skill to browse categorized pre-built hookify rules, choose rules for common Git, Python, security, workflow, and performance tasks, and install them into a project or adapt them as templates.
+Developers using hookify can browse ready-made rules by category and choose rules to add to a project. The skill provides agent-assisted or Python-based installation guidance.
 
 ### Deployment Geography for Use:
 
@@ -22,28 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Installation behavior is only partly verified because referenced installer and rule files were not included in the scanned release.
+Risk: Installation concerns were flagged, and the scan could not inspect missing referenced files.
 
-Mitigation: Review the installation steps and verify the referenced installer and rule files before installing.
+Mitigation: Before installing, check the trigger for conflicts with built-in commands and verify referenced files are present and understood.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-hookify-rule-catalog)
-- [Project homepage (listed in skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/hookify)
+- [Hookify project page](https://github.com/athola/claude-night-market/tree/master/plugins/hookify)
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-hookify-rule-catalog)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+**Output Type(s):** [Markdown, Shell commands, Configuration files]
 
-**Output Format:** [Markdown with inline shell commands and rule configuration examples]
+**Output Format:** [Markdown guidance, shell command examples, and YAML rule configuration]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Catalog and installation guidance; referenced installer and rule files were not included in the scanned release.]
+**Other Properties Related to Output:** [Rule-specific guidance and configuration based on the selected rule and installation method.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

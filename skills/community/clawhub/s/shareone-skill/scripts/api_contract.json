@@ -180,6 +180,30 @@
       "hint": "Edit at remote_url and refresh the original share. Unbind only when explicitly replacing the source.",
       "retryable": false
     },
+    "REMOTE_SOURCE_ACCESS_DENIED": {
+      "status": 403,
+      "category": "permission",
+      "hint": "Restore the registered repository credential or project access. Keep the ShareOne identity and accepted cache unchanged.",
+      "retryable": false
+    },
+    "REMOTE_SOURCE_UNAVAILABLE": {
+      "status": 502,
+      "category": "transient",
+      "hint": "Check the registered source endpoint, credential configuration and egress reachability. Retry the source fetch after recovery; keep the accepted cache.",
+      "retryable": true
+    },
+    "REMOTE_SOURCE_INVALID": {
+      "status": 400,
+      "category": "validation",
+      "hint": "Check the pinned commit, artifact path, size, UTF-8 and digest at the source. Keep the accepted cache unchanged.",
+      "retryable": false
+    },
+    "REMOTE_SOURCE_BUSY": {
+      "status": 409,
+      "category": "conflict",
+      "hint": "Another request changed or refreshed the source. Read the current binding, then retry refresh.",
+      "retryable": true
+    },
     "CONTENT_REVIEW_REQUIRED": {
       "status": 409,
       "category": "permission",
@@ -244,6 +268,15 @@
     "in_progress",
     "resolved",
     "dismissed"
+  ],
+  "viewer_scopes": [
+    "link",
+    "owner_and_collaborators"
+  ],
+  "publication_pending_statuses": [
+    "automatic_pending",
+    "manual_required",
+    "rejected"
   ],
   "idempotency_operations": [
     {

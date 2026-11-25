@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Editors and creators use this skill to plan and generate reusable original music beds for vertical short-drama episodes or seasons, with optional dramatic hits, transitions, and room tone.
+Short-drama producers and editors use this skill to plan and create labeled instrumental mood beds for an episode or season, then audition the score before editing.
 
 ### Deployment Geography for Use:
 
@@ -22,42 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security review flags broad account permissions and sharing linked installation and runtime details.
+Risk: The security review rates the skill suspicious because it reports broad permissions and installation telemetry beyond its music-generation purpose.
 
-Mitigation: Review the requested access and the installation and runtime details shared before authorizing the skill.
+Mitigation: Install only if needed and review what account access and metadata are shared before use.
 
-Risk: Uninstalling may disrupt credentials shared with other skills.
+Risk: The security review flags uninstall behavior that could disrupt other installed skills.
 
-Mitigation: Check which skills use the shared connection and follow the uninstall guidance before removing it.
+Mitigation: Review the uninstall behavior and check what else it may affect before removing the skill.
 
-Risk: The security review is partial and does not establish that all behavior is covered.
+Risk: The security review was partial, with some references unresolved and the binary icon outside analyzer coverage.
 
-Mitigation: Review the release contents and permission requests before authorization.
+Mitigation: Review the outstanding references and binary icon separately before installation.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/beatra-ai/skills/short-drama-score-pack)
-- [Beatra skill page](https://beatra.ai/skills/short-drama-score-pack)
 - [Short-drama score workflow](references/workflow.md)
 - [Music editing and audio](references/music-editing-and-audio.md)
-- [Billing, errors, and recovery](references/billing-errors-and-recovery.md)
-- [Installation and authentication](references/installation-and-auth.md)
 - [Updates and security](references/updates-and-security.md)
-- [Uninstall and disconnect](references/uninstall-and-disconnect.md)
+- [Beatra skill page](https://beatra.ai/skills/short-drama-score-pack)
+- [ClawHub release page](https://clawhub.ai/beatra-ai/skills/short-drama-score-pack)
 
 ## Skill Output:
 
-**Output Type(s):** [Audio files, Markdown, Guidance]
+**Output Type(s):** [Markdown, Guidance, Audio files]
 
-**Output Format:** [Labeled instrumental audio beds and an accompanying Markdown score summary]
+**Output Format:** [Labeled score plans and production details in Markdown, with generated instrumental audio deliverables or links when available.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Typically 8 to 15 music beds, with optional sound effects or room tone; reports actual durations and task results.]
+**Other Properties Related to Output:** [A score normally contains 8 to 15 instrumental beds with mood labels and actual duration and file details when available.]
 
 ## Skill Version(s):
 
-0.2.7 (source: server-resolved release metadata, artifact/manifest.json)
+0.2.8 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

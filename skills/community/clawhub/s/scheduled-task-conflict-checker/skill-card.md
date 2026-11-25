@@ -1,47 +1,61 @@
-## Description: <br>
-Checks proposed LUI/Claw scheduled tasks for duplicates, semantic overlap, execution conflicts, and blocking authorization or platform conditions before task creation is confirmed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks proposed LUI/Claw scheduled tasks against existing tasks and account constraints before confirmation, then recommends whether to proceed, reuse, merge, ask for confirmation, block, partially create, or warn.
 
-## Publisher: <br>
-[1688aiinfra](https://clawhub.ai/user/1688aiinfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-Developers and operations teams use this skill to validate scheduled-task requests before creating or updating LUI/Claw tasks. It helps decide whether to proceed, reuse or merge an existing task, ask for confirmation, block creation, partially create, or warn before proceeding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The checker needs structured scheduled-task and shop authorization context for accurate pre-creation decisions. <br>
-Mitigation: Provide only the fields needed for conflict and permission checks, and do not include credentials, tokens, full order data, or unnecessary shop-sensitive details. <br>
-Risk: Local run logs are written by default for script-level events. <br>
-Mitigation: Set SCHEDULED_TASK_CONFLICT_CHECKER_TRACKING=0 to disable local tracking, or set SCHEDULED_TASK_CONFLICT_CHECKER_TRACK_PATH to control the log location. <br>
-Risk: Missing or stale task, shop, authorization, platform, or notification context can lead to an incorrect creation recommendation. <br>
-Mitigation: Use current structured task and user-context data, and follow the documented conservative decisions for missing context, authorization failures, unsupported platforms, and high-risk write overlaps. <br>
+## Use Case:
 
+Developers and operators using LUI/Claw scheduled-task workflows use this skill to normalize a proposed task, compare it with current tasks, and surface duplicate tasks, execution conflicts, permission blocks, and confirmation prompts before task creation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1688aiinfra/scheduled-task-conflict-checker) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/1688aiinfra) <br>
-- [Scheduled task conflict rule matrix](artifact/references/rule-matrix.md) <br>
-- [Permission SQL reference](artifact/references/permission-sql.md) <br>
-- [Benchmark execution report](artifact/benchmarks/lui_conflict_50_cases/benchmark_execution_report.md) <br>
-- [Benchmark results](artifact/benchmarks/lui_conflict_50_cases/results/benchmark_results.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [JSON decision payloads and optional Markdown summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a decision, prompt requirement, normalized proposed task, findings, and optional user prompt; script input errors use exit code 2.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The security review flags unsafe integration guidance in SQL examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require bound parameters in SQL integration examples before broad publishing or production installation.
+
+Risk: The benchmark runner is reported as capable of executing code outside the package.
+
+Mitigation: Constrain benchmark execution to the packaged checker script or avoid running benchmark tools in trusted environments until fixed.
+
+Risk: The skill records local run events by default.
+
+Mitigation: Disable local tracking with SCHEDULED_TASK_CONFLICT_CHECKER_TRACKING=0 or set an approved SCHEDULED_TASK_CONFLICT_CHECKER_TRACK_PATH.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1688aiinfra/skills/scheduled-task-conflict-checker)
+- [Scheduled task conflict rule matrix](artifact/references/rule-matrix.md)
+- [LUI scheduled-task third-party permission SQL checks](artifact/references/permission-sql.md)
+- [Benchmark execution report](artifact/benchmarks/lui_conflict_50_cases/benchmark_execution_report.md)
+- [Benchmark results](artifact/benchmarks/lui_conflict_50_cases/results/benchmark_results.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [JSON decision payload or Markdown summary with user-facing prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires structured proposed_task, existing_tasks, and user_context input; JSON output includes decision, prompt_required, normalized_proposed_task, findings, and user_prompt.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

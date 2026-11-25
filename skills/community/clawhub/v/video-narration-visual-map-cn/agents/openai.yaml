@@ -1,0 +1,8 @@
+interface:
+  display_name: "旁白与既有镜头对应表"
+  short_description: "逐句核对既定旁白、既有镜头主张和可见证据是否真正对应"
+  default_prompt: "使用 $video-narration-visual-map-cn：根据已批准旁白、编号镜头/素材说明、目标观看收益和必须展示的证据，输出逐句旁白→镜头编号→可见证据对应表；标出有声无画、画不支撑话及需补素材项。不要改写旁白或编造镜头。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

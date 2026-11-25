@@ -67,6 +67,69 @@ def scale12(hexes):
     return steps
 
 
+# -- Radix 12 角色(0.29 对齐官方 docs/palette-composition/understanding-the-scale) --
+# 每步绑定一个具体 UI 角色;11/12(文字)对 step-2 底保证 APCA Lc 60/90(APCA 0.1.9;
+# Radix 官方口径——检索层曾传"WCAG 4.5:1",以官方页为准)。黄/琥珀/橙阶在 Radix
+# 本身存在例外(社区 issue),我们由派生器调墨强制达标,不留例外。
+STEP_ROLES = ["app-bg", "sub-bg", "el-bg", "el-hover-bg", "el-active-bg",
+              "border-subtle", "border", "border-hover",
+              "solid", "solid-hover", "text-low", "text-high"]
+APCA_TARGET = {"text-low": 60.0, "text-high": 90.0}   # 对 step-2 底
+
+
+def _apca_lc(txt_hex, bg_hex):
+    """APCA 0.1.9 Lc(|幅度|)。常数取 APCA-W3 公开算法(软钳 0.022/幂 0.56-0.62/×1.14)。"""
+    def y(h):
+        r, g, b = (int(h[i:i + 2], 16) / 255.0 for i in (0, 2, 4))
+        return 0.2126 * r ** 2.4 + 0.7152 * g ** 2.4 + 0.0722 * b ** 2.4
+
+    def soft(v):
+        return v + (0.022 - v) ** 1.414 if v < 0.022 else v
+
+    yt, yb = soft(y(txt_hex)), soft(y(bg_hex))
+    if yb > yt:                                  # 常规极性:深字浅底
+        lc = (yb ** 0.56 - yt ** 0.57) * 1.14
+    else:                                        # 逆极性:浅字深底
+        lc = (yt ** 0.57 - yb ** 0.62) * 1.14
+    return abs(lc) * 100.0
+
+
+def tune_text_steps(steps, targets=None, floors=None):
+    """0.29 文字步对比保证:step 11/12 对 step-2 底调墨到位(APCA Lc≥target)。
+    方向=向黑加压(scale12 恒 1 最浅 12 最深,常规极性)。
+    targets=理想值(可因底色物理上限不可达——Lc 上限由底色亮度决定);
+    floors=硬底线(默认 APCA_TARGET=60/90),到纯黑仍低于硬底线=拒绝产出。
+    返回 (steps, {role: 实测Lc})。"""
+    targets = targets or dict(APCA_TARGET)
+    floors = floors or dict(APCA_TARGET)
+    out = dict(steps)
+
+    def shade(h, k):
+        r, g, b = (int(h[i:i + 2], 16) for i in (0, 2, 4))
+        return "".join(f"{round(v * (1 - k)):02X}" for v in (r, g, b))
+
+    step2 = out[2]
+    measured = {}
+    for role, want in targets.items():
+        idx = STEP_ROLES.index(role) + 1
+        floor = floors.get(role, APCA_TARGET.get(role, 60.0))
+        h = out[idx]
+        lc = _apca_lc(h, step2)
+        for k in range(1, 25):
+            if lc >= want:
+                break
+            h = shade(h, k / 24.0)
+            lc = _apca_lc(h, step2)
+        if lc < floor:
+            raise ValueError(
+                "token_sheet: 文字步 %s 调墨到纯黑仍 Lc %.1f < 硬底线 %.0f(对 step-2 #%s)"
+                " —— 派生器拒绝产出(0.29 保证:文字步不达底线不发货)"
+                % (role, lc, floor, step2))
+        out[idx] = h
+        measured[role] = round(lc, 1)
+    return out, measured
+
+
 def _tune_text(hex_fg, hex_bg, need=4.5):
     """把前景调到达标:按明度关系选向黑压或向白提,逐级混合,返回(达标色, 实测比)。"""
     r = _contrast(hex_fg, hex_bg)
@@ -93,8 +156,9 @@ def _ratio(t):
     return "%.2f" % t if t < 10 else "%.1f" % t
 
 
-def build_tokens(hexes, name="", brand="", dark=False):
-    """色板 → (tokens dict, ratios dict, problems list)。全部墨色自动调墨到位。"""
+def build_tokens(hexes, name="", brand="", dark=False, need=4.5):
+    """色板 → (tokens dict, ratios dict, problems list)。全部墨色自动调墨到位。
+    need=调墨目标(0.29 --contrast:standard 4.5 / high 7.0,AAA 向)。"""
     d = derive({"hexes": hexes}, brand or name or "Brand", "", "")
     night, pale = d["NIGHT"], d["PALE"]
     card, ink2, mist = d["CARD"], d["INK2"], d["MIST"]
@@ -116,13 +180,13 @@ def build_tokens(hexes, name="", brand="", dark=False):
         line_c = line
         paper, on_paper = night, pale
 
-    ink, r_ink = _tune_text(ink, bg, 4.5)
-    ink_muted = _tune_text(ink_muted, bg, 4.5)[0]
-    ink_muted = _tune_text(ink_muted, bg_raised, 4.5)[0]
-    on_paper = _tune_text(on_paper, paper, 4.5)[0]
-    accent_ink, r_acc = _tune_text(accent, bg, 4.5)
-    on_night = pale
-    on_night_muted = mist
+    ink, r_ink = _tune_text(ink, bg, need)
+    ink_muted = _tune_text(ink_muted, bg, need)[0]
+    ink_muted = _tune_text(ink_muted, bg_raised, need)[0]
+    on_paper = _tune_text(on_paper, paper, need)[0]
+    accent_ink, r_acc = _tune_text(accent, bg, need)
+    on_night = _tune_text(pale, night, need)[0]
+    on_night_muted = _tune_text(mist, night, need)[0]
 
     t = {
         "bg": bg, "bg_raised": bg_raised, "ink": ink, "ink_muted": ink_muted,
@@ -144,14 +208,17 @@ def build_tokens(hexes, name="", brand="", dark=False):
     problems = []
     for k in ("ink/bg", "ink_muted/bg", "ink_muted/bg_raised",
               "on_paper/paper", "on_night/night", "on_night_muted/night", "accent_ink/bg"):
-        if ratios[k] < 4.5:
-            problems.append(f"{k} = {ratios[k]:.2f} < 4.5")
+        if ratios[k] < need:
+            problems.append(f"{k} = {ratios[k]:.2f} < {need}")
     return t, ratios, problems
 
 
-def emit(hexes, name="", brand="", dark=False, out_base="tokens"):
-    """生成 tokens.css + tokens.json;返回(dict 摘要, 退出码)。"""
-    t, ratios, problems = build_tokens(hexes, name, brand, dark)
+def emit(hexes, name="", brand="", dark=False, out_base="tokens", contrast="standard"):
+    """生成 tokens.css + tokens.json;返回(dict 摘要, 退出码)。
+    contrast(0.29 --contrast 旋钮):standard=APCA Lc 60/90;high=75/95(AAA 向,
+    Linear 式"对比度即无障碍旋钮")。"""
+    need = 7.0 if contrast == "high" else 4.5
+    t, ratios, problems = build_tokens(hexes, name, brand, dark, need=need)
     verdict = "PASS" if not problems else "FAIL"
 
     def c(k):
@@ -210,19 +277,38 @@ def emit(hexes, name="", brand="", dark=False, out_base="tokens"):
 
     with open(out_base + ".css", "w", encoding="utf-8", newline="\n") as f:
         f.write(css)
-    # 12 步语义阶(Radix 式):五色全阶映射,浅暗双模式共用语义
+    # 12 步语义阶(0.29 对齐 Radix 官方角色;文字步 APCA Lc 保证;OKLCH 注释+color-mix 派生)
     try:
-        steps12 = scale12([h.lstrip("#").upper() for h in hexes])
-        sem = ["app-bg", "sub-bg", "el-bg", "el-hover", "el-active", "border",
-               "border-strong", "solid", "solid-hover", "text-low", "text-high", "ink-deep"]
-        payload["scale12"] = {sem[i - 1]: steps12.get(i) for i in range(1, 13)}
-        block = "\n/* 12 步语义阶(浅暗双模式共用语义) */\n:root{\n"
-        for i, name in enumerate(sem, 1):
-            block += f"  --step-{i:02d}-{name}: #{steps12.get(i, 'CCCCCC')};\n"
+        raw12 = scale12([h.lstrip("#").upper() for h in hexes])
+        lc_targets = {"text-low": 75.0, "text-high": 92.0} if contrast == "high" \
+            else dict(APCA_TARGET)
+        steps12, lc_measured = tune_text_steps(raw12, lc_targets,
+                                               floors=dict(APCA_TARGET))
+        payload["scale12"] = {STEP_ROLES[i - 1]: steps12.get(i) for i in range(1, 13)}
+        payload["scale12_apca"] = lc_measured
+        payload["scale12_contrast"] = contrast
+        try:
+            from palette_forge import oklch_from_hex
+            okl = lambda hx: "oklch(%.3f %.3f %.1f)" % oklch_from_hex("#" + hx)
+        except Exception:
+            okl = lambda hx: ""
+        block = ("\n/* 12 步语义阶(0.29 对齐 Radix 角色;文字步对 step-02-sub-bg 保证 "
+                 "APCA Lc %s;OKLCH 注释=感知坐标,color-mix 派生透明变体) */\n:root{\n"
+                 % ("/".join("%.0f" % v for v in lc_targets.values())))
+        for i, role in enumerate(STEP_ROLES, 1):
+            hx = steps12.get(i, "CCCCCC")
+            o = okl(hx)
+            block += f"  --step-{i:02d}-{role}: #{hx};" + (f"  /* {o} */" if o else "") + "\n"
+        for i in (2, 3, 4, 5):                      # 面态步的 12% 透明变体(hover/柔底)
+            role = STEP_ROLES[i - 1]
+            hx = steps12.get(i, "CCCCCC")
+            block += (f"  --step-{i:02d}-{role}-a12: color-mix(in oklab, #{hx} 12%, transparent);\n")
         block += "}\n"
         css = css + block
         with open(out_base + ".css", "w", encoding="utf-8", newline="\n") as f2:
             f2.write(css)
+    except ValueError as e:
+        raise
     except Exception:
         payload["scale12"] = {}
     with open(out_base + ".json", "w", encoding="utf-8", newline="\n") as f:

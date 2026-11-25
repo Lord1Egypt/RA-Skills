@@ -1,6 +1,6 @@
 ## Description:
 
-Guides AI teams in designing agent evaluation suites, interpreting benchmarks, comparing frameworks, analyzing failures, and drafting evaluation reports.
+Provides advisory guidance for designing AI agent evaluations, interpreting benchmarks, comparing frameworks, and drafting evaluation reports.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-AI engineers, ML platform teams, product managers, and QA teams use this skill to design evaluation suites, interpret benchmarks, diagnose failures, compare agent frameworks, and draft reviewable reports.
+AI engineers, ML teams, product managers, and QA engineers use the skill to design evaluation suites, interpret benchmark results, compare agent frameworks, analyze failures, and draft reports. Its guidance is advisory and does not execute agents or approve releases.
 
 ### Deployment Geography for Use:
 
@@ -22,17 +22,21 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security scan was partial because two local path-like references could not be resolved.
+Risk: The security assessment is benign but has medium confidence because inspection was incomplete and some static checks were degraded.
 
-Mitigation: Check those references and confirm flagged phrases are evaluation material before installing.
+Mitigation: Treat the clean verdict as limited assurance; review the skill and consider the stated inspection uncertainty before installing.
 
-Risk: Raw agent transcripts may contain personal or regulated data.
+Risk: Illustrative thresholds, benchmark comparisons, and generated go/no-go drafts could be mistaken for validated release decisions.
 
-Mitigation: Anonymize transcripts and remove identifying or regulated details before sharing them for analysis.
+Mitigation: Calibrate criteria to the target use case and have qualified ML and security reviewers assess results before release decisions.
 
-Risk: Evaluation results or draft recommendations could be mistaken for release approval.
+Risk: Agent logs or transcripts supplied for analysis may contain personal, customer, or regulated information.
 
-Mitigation: Have qualified ML engineers review the results; treat the skill's output as advisory and not as certification or security sign-off.
+Mitigation: Share only necessary, anonymized material and remove credentials, identifying details, and regulated data.
+
+Risk: Red-team test ideas could be misapplied to systems without authorization.
+
+Mitigation: Use defensive probes only on systems the user owns or is authorized to test, in a controlled environment.
 
 ## Reference(s):
 
@@ -42,15 +46,15 @@ Mitigation: Have qualified ML engineers review the results; treat the skill's ou
 
 **Output Type(s):** [Analysis, Guidance, Markdown]
 
-**Output Format:** [Markdown with tables, checklists, scorecards, and report drafts]
+**Output Format:** [Conversational text with Markdown tables, scorecards, checklists, and report drafts]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Advisory drafts for human review; does not execute agents, run code, call APIs, or connect to systems.]
+**Other Properties Related to Output:** [Advisory drafts for human review; does not run agents, execute code, call APIs, access systems, or save files.]
 
 ## Skill Version(s):
 
-3.0.5 (source: frontmatter)
+3.0.6 (source: artifact/SKILL.md frontmatter, evidence.release.version)
 
 ## Ethical Considerations:
 

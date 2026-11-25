@@ -1,42 +1,54 @@
-## Description: <br>
-Organizes public Postcat product and documentation pages into concise feature, version, open-source link, and documentation summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Postcat helps agents organize information from public Postcat product and documentation pages into concise summaries and link collections.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users and developers use this skill to review public Postcat product pages, documentation, release information, and open-source entry points without account actions or project writes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public product and documentation pages may change, causing summaries or version notes to become stale. <br>
-Mitigation: Verify important details against the linked public Postcat pages before relying on the output. <br>
-Risk: Automated page access can exceed a site's expected usage if run too frequently. <br>
-Mitigation: Use lightweight requests, wait for dynamic pages to load, and apply rate limiting as described by the artifact. <br>
-Risk: Users may accidentally provide sensitive or private project data while asking for summaries. <br>
-Mitigation: Use the skill only with public pages and avoid storing or outputting sensitive information. <br>
+## Use Case:
 
+External users and developers use this skill to summarize public Postcat product pages and documentation, including features, version notes, documentation indexes, deployment guide entry points, and open-source links. It is not intended for account actions, project writes, private data access, or API reverse engineering.
 
-## Reference(s): <br>
-- [Postcat homepage](https://postcat.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or concise text summaries with link lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries should be based on publicly accessible, lightweight content only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Generated summaries may be incomplete or stale when Postcat pages change or load content dynamically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important summaries and links against the live Postcat site before relying on them.
+
+Risk: Requests involving private accounts, credentials, non-public project data, project writes, or API reverse engineering are outside the skill boundary.
+
+Mitigation: Use the skill only for public Postcat research and documentation summarization, and avoid providing sensitive data.
+
+## Reference(s):
+
+- [Postcat homepage](https://postcat.com/)
+- [ClawHub Postcat skill page](https://clawhub.ai/mike47512/skills/postcat)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries and structured link lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be based only on publicly accessible Postcat pages and documentation.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

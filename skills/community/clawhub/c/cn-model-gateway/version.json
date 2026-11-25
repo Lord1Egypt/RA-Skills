@@ -1,1 +1,1 @@
-{"version": "1.9.0", "homepage": "https://skillhub.cn/skill/cn-model-gateway", "notes": "v1.9.0：新增每日健康晨报 + 厂商变更雷达（3σ 异常检测）；统一错误映射扩容（429/451/余额不足/内容审查 + 中文处置建议）；错误映射表 YAML 外置"}
+{"version": "2.1.0", "homepage": "https://skillhub.cn/skill/cn-model-gateway", "notes": "v2.1.0 网关 2.0：新增 models://catalog + usage://summary 标准资源与订阅变更；采样级策略路由（auto/cheap/quality，llm_core 单源）；Key 池（多 Key 轮询 + 429 自动换 Key）；局域网多租户（成员用量分摊）；config 兼容单值/数组零迁移；Function Calling 归一（6 厂商 OpenAI 风格 + 多轮链路）"}

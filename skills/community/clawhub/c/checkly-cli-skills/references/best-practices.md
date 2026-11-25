@@ -108,7 +108,7 @@ assertions: [
   AssertionBuilder.statusCode().equals(200),
   AssertionBuilder.responseTime().lessThan(500),
   AssertionBuilder.jsonBody('$.status').equals('ok'),
-  AssertionBuilder.jsonBody('$.data').isArray(),
+  AssertionBuilder.jsonBody('$.data[0]').isNotNull(),
 ]
 
 // ❌ Limited
@@ -140,6 +140,12 @@ await page.click('button')
 ```
 
 ## Testing
+
+### Review deploy plans and test gates
+
+Use `deploy --preview` for property-level review or `deploy --dry-run` for JSON. Apply the reviewed token with `--plan-token`; use `--fail-on-drift` when automation must refuse web edits. Omission resets deployment-owned properties, so encode intended values in code. See `checkly-deploy` for the reset table and baseline writes.
+
+Immediate post-deploy runs require `--schedule-on-deploy`; recurring check schedules remain configured. Empty test selections fail by default. Keep this failure in test gates, and leave reporters unset to select `ci` automatically in CI/agent runs.
 
 ### Test Locally First
 

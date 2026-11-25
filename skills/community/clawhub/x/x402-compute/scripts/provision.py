@@ -33,20 +33,17 @@ from typing import Dict, Optional
 
 import requests
 
-from solana_signing import create_solana_xpayment_from_accept, ensure_solana_destination_ready
-from wallet_signing import create_compute_auth_headers, load_compute_chain, load_payment_signer
+import x402_wire
+from solana_signing import create_solana_payment_header, ensure_solana_destination_ready
+from wallet_signing import EVM_ASSETS, create_compute_auth_headers, load_compute_chain, load_payment_signer
 
 BASE_URL = "https://compute.x402layer.cc"
 
 
 def _find_accept_option(challenge: dict, requested_network: str) -> dict:
+    # Exact network match (v1 name or exact-case CAIP-2). Unknown networks never match.
     for option in challenge.get("accepts", []):
-        network = str(option.get("network", "")).lower()
-        if requested_network == "base" and (network == "base" or "8453" in network):
-            return option
-        if requested_network == "solana" and (network == "solana" or network.startswith("solana:")):
-            return option
-        if requested_network == "robinhood" and (network == "robinhood" or "4663" in network):
+        if x402_wire.network_name(option.get("network")) == requested_network:
             return option
     raise ValueError(f"No {requested_network} payment option found in 402 challenge")
 
@@ -66,6 +63,7 @@ def provision_instance(
     model_id: Optional[str] = None,
     mode: Optional[str] = None,
     skip_confirm: bool = False,
+    hours: int = 0,
 ) -> dict:
     """Provision a compute instance with x402 payment.
 
@@ -77,7 +75,12 @@ def provision_instance(
                         Sent as the nested deploy_node object {model_id}.
     ai_machine and deploy_node are mutually exclusive.
     """
-    if days > 0:
+    if hours > 0:
+        # By the hour: only when GET /compute/plans shows "hourly": {"enabled": true}. Under 24
+        # hours costs the hourly price +15% (machines) or +20% (GPUs); the 402 shows the total.
+        prepaid_hours = hours
+        duration_label = f"{hours} hour(s)"
+    elif days > 0:
         prepaid_hours = days * 24
         duration_label = f"{days} day(s)"
     else:
@@ -133,7 +136,8 @@ def provision_instance(
     if response.status_code != 402:
         return {"error": f"Unexpected status {response.status_code}", "response": response.text[:500]}
 
-    challenge = response.json()
+    # v2 PAYMENT-REQUIRED header first, v1 JSON body otherwise (x402_wire).
+    challenge = x402_wire.read_challenge(response)
 
     option = _find_accept_option(challenge, network)
     pay_to = option["payTo"]
@@ -160,32 +164,40 @@ def provision_instance(
         if confirm not in ("y", "yes"):
             return {"error": "Payment cancelled by user"}
 
-    if network in ("base", "robinhood"):
+    if network in EVM_ASSETS:
         # Both are EVM EIP-3009 transferWithAuthorization; only the EIP-712 domain differs.
         try:
             signer = load_payment_signer()
         except Exception as exc:
             return {"error": str(exc)}
-        x_payment = signer.create_x402_payment_header(pay_to=pay_to, amount=amount, network=network)
+        header_name, x_payment = signer.create_payment_header(challenge, option, network)
     else:
         ensure_solana_destination_ready(option)
-        x_payment = create_solana_xpayment_from_accept(option)
+        header_name, x_payment = create_solana_payment_header(challenge, option)
 
     # Step 2: Pay and provision
     # NOTE: Do NOT send compute auth headers here.
     # The x402 X-Payment header authenticates the payer via on-chain payment.
     # Sending auth headers causes 401 (nonce already consumed from step 1).
-    response = requests.post(
-        f"{BASE_URL}/compute/provision",
-        data=body_json,
-        headers={
-            "Content-Type": "application/json",
-            "X-Payment": x_payment,
-        },
-        timeout=120,
-    )
+    # From here the payment is SENT. A timeout or 5xx is pending, never a reason to pay again.
+    try:
+        response = requests.post(
+            f"{BASE_URL}/compute/provision",
+            data=body_json,
+            headers={
+                "Content-Type": "application/json",
+                header_name: x_payment,
+            },
+            timeout=120,
+        )
+    except requests.RequestException as exc:
+        return x402_wire.pending_result(None, exc)
 
     print(f"Response: {response.status_code}")
+
+    if response.status_code >= 500:
+        print("Payment outcome unknown (server error after paying). Do NOT pay again.")
+        return x402_wire.pending_result(response.status_code, response.text)
 
     if response.status_code == 202:
         # PAID, delivery not yet confirmed. The order exists and the machine is provisioning;
@@ -249,6 +261,7 @@ if __name__ == "__main__":
     duration = parser.add_mutually_exclusive_group()
     duration.add_argument("--months", type=int, default=0, help="Duration in months (default: 1 if --days not set)")
     duration.add_argument("--days", type=int, default=0, help="Duration in days (minimum: 1)")
+    duration.add_argument("--hours", type=int, default=0, help="Duration in hours when hourly rentals are on: machines from 1, GPUs and AI machines from 2; under 24h costs +15%% machines / +20%% GPUs")
     parser.add_argument("--os-id", type=int, default=2284, help="OS image ID (default: 2284 = Ubuntu 24.04)")
     parser.add_argument("--label", default="x402-instance", help="Instance label")
     parser.add_argument("--network", default="base", choices=["base", "solana", "robinhood", "arc"], help="Payment network (base/solana/arc = USDC, robinhood = USDG; direct arc payments min $5)")
@@ -276,8 +289,8 @@ if __name__ == "__main__":
             print(f"Failed to read SSH key file: {exc}")
             sys.exit(1)
 
-    # Default to 1 month if neither --days nor --months specified
-    months = args.months if args.months > 0 else (0 if args.days > 0 else 1)
+    # Default to 1 month if none of --hours, --days, --months is specified
+    months = args.months if args.months > 0 else (0 if (args.days > 0 or args.hours > 0) else 1)
     days = args.days
 
     result = provision_instance(
@@ -292,6 +305,7 @@ if __name__ == "__main__":
         model_id=args.model_id,
         mode=args.mode,
         skip_confirm=args.yes,
+        hours=args.hours,
     )
     if "error" in result:
         print(json.dumps(result, indent=2))

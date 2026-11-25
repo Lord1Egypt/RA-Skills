@@ -1,5 +1,6 @@
 ---
 name: cue-fact-check
+displayName: 事实核查
 description: 用 Cue 穿透待核查资讯的表层表述——通过独立信源交叉验证与底层数据复核，精准识别时间错位、数据偏差及误导性信息，产出包含原文对照与纠偏证据的结构化事实核查报告。
 description_zh: Cue 事实核查：多源交叉验证，识别时间错位/数据偏差/误导信息，产出原文对照与纠偏证据。
 version: 1.1.4
@@ -96,6 +97,7 @@ https://cuecue.cn/share/<conv_id>
 ---
 **Cue 原始报告**：https://cuecue.cn/share/<conv_id>
 **本地副本**：~/cue-reports/<文件名>.md
+如有疑问请关注“感易Cue”官方服务号添加企微客服咨询
 ```
 
 规则：

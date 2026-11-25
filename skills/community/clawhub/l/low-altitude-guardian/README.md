@@ -3,7 +3,7 @@
 > 低空设备危机应急响应技能包 — OpenClaw / ClawHub Skill
 
 [![ClawHub](https://img.shields.io/badge/ClawHub-low--altitude--guardian-blue)](https://clawhub.com/skills/low-altitude-guardian)
-[![Version](https://img.shields.io/badge/version-0.2.0-brightgreen)]()
+[![Version](https://img.shields.io/badge/version-0.3.1-brightgreen)]()
 [![Stage](https://img.shields.io/badge/stage-alpha-red)]()
 [![License](https://img.shields.io/badge/license-MIT-green)]()
 
@@ -71,13 +71,16 @@
 
 ### 危机等级体系
 
-| 等级 | 名称 | 响应时限 | 人工介入 |
+| 等级 | 名称 | 建议响应时限 | 人工介入 |
 |------|------|---------|---------|
-| **L5** | 灾难性 | < 3秒 | 自主执行，事后通知 |
-| **L4** | 严重 | < 10秒 | 自主执行，同步通知 |
-| **L3** | 重大 | < 30秒 | 推荐方案，5秒超时自动执行 |
+| **L5** | 灾难性 | < 3秒 | 输出建议并立即通知，由持证操作员决策 |
+| **L4** | 严重 | < 10秒 | 输出建议并同步通知，由持证操作员决策 |
+| **L3** | 重大 | < 30秒 | 推荐方案，等待确认；超时只升级通知 |
 | **L2** | 一般 | < 2分钟 | 等待操作员确认 |
 | **L1** | 注意 | < 5分钟 | 仅提醒，操作员决策 |
+
+> **执行边界**：响应时限是给人的目标，不是自动执行触发器。本技能所有输出均为建议，
+> 不包含飞控指令，不得接入飞控、调度自动化或任何执行机构。
 
 ### 决策评分公式
 
@@ -166,7 +169,8 @@ python3 scripts/enterprise_kb_manager.py --ingest \
 | 通信链路断开 | `communication_failure.link_lost` | L2-L3 | 95% |
 | 极端天气 | `environment_threat.severe_weather` | L2-L4 | 90% |
 
-知识库无匹配时自动启动**应急推理**（分解子问题 + 组合策略 + 第一性原理），新方案验证有效后自动入库。
+知识库无匹配时启动**应急推理**（分解子问题 + 组合策略 + 第一性原理）。新方案必须经人工批准
+（`--approved-by` + `--apply`）才会写入知识库，写前自动备份原模板，且只接受白名单字段。
 
 ---
 
@@ -175,7 +179,12 @@ python3 scripts/enterprise_kb_manager.py --ingest \
 ```
 low-altitude-guardian/
 ├── SKILL.md                                  # 技能定义（ClawHub 入口）
+├── CHANGELOG.md                              # 版本变更记录
+├── examples/                                 # 可复现演练输入
+│   ├── single_motor_low_battery.json         #   单电机失效 + 低电量
+│   └── gps_loss_over_crowd.json              #   GPS 丢失 + 地面人群
 ├── scripts/
+│   ├── path_safety.py                        # [v0.3.1] 路径与标识符白名单校验
 │   ├── crisis_engine.py                      # 核心引擎（分级/匹配/监控/学习）
 │   ├── situation_awareness.py                # 态势感知
 │   ├── decision_manager.py                   # 决策管理
@@ -231,7 +240,64 @@ low-altitude-guardian/
 
 ---
 
+## 演练样例（可复现）
+
+### 样例 1：单电机失效 + 低电量（复合故障）
+
+输入：`examples/single_motor_low_battery.json`（高度 120m、电量 34%、左前电机转速下降 30%、下方有行人）
+
+```bash
+python3 scripts/crisis_engine.py --match --input examples/single_motor_low_battery.json
+```
+
+实际输出：
+
+```
+[推荐1] 单电机失效应对方案 (得分: 82.45, 置信度: 0.92)
+[否决] 全部动力丧失应对方案 (得分: 61.65, 置信度: 0.45)
+  原因: 人员安全评分 60 < 80，方案被否决
+```
+
+边界：识别出 `degraded_power_critical` 复合故障，建议"就近安全区域降落"。这只是建议，具体动作由持证操作员决定。
+
+### 样例 2：GPS 丢失 + 居民区
+
+输入：`examples/gps_loss_over_crowd.json`（高度 80m、电量 45%、GPS 丢失、下方居民区有行人）
+
+```bash
+python3 scripts/crisis_engine.py --match --input examples/gps_loss_over_crowd.json
+```
+
+实际输出：
+
+```
+[推荐1] GPS信号丢失应对方案 (得分: 84.85, 置信度: 0.88)
+```
+
+边界：任何 `S0 < 80` 的方案会被硬否决；输出为人工评审材料，不是执行授权。
+
+### 样例 3：学习流程的批准门
+
+```bash
+python3 scripts/crisis_engine.py --learn --feedback feedback.json                    # 拒绝：缺少批准人
+python3 scripts/crisis_engine.py --learn --feedback feedback.json --approved-by 张三  # dry-run，不写文件
+python3 scripts/crisis_engine.py --learn --feedback feedback.json --approved-by 张三 --apply  # 备份后写入
+```
+
+反馈里的 `incident_id` 若为 `../../etc/passwd` 会被拒绝（`path_safety.py`）。
+只允许更新 `confidence_adjustment` 与 `notes` 两个白名单字段，写前自动备份模板。
+
+---
+
 ## 更新日志
+
+### v0.3.1 — 安全边界与可信度修订
+
+- 删除所有"自主执行 / 超时自动执行"表述，统一为仅建议、由持证操作员决策
+- 新增 `scripts/path_safety.py`，用户可控路径全部白名单校验
+- `--learn` 加人工批准门 + dry-run 默认 + 字段白名单 + 备份 + 原子替换
+- 修正 0.3.0 changelog 中误贴的无关条目与 SKILL.md 中不存在的脚本引用
+- 新增 3 个可复现演练样例
 
 ### v0.2.0 — 企业级功能
 

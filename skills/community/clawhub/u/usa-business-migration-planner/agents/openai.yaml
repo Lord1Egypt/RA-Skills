@@ -1,7 +1,7 @@
 interface:
   display_name: "USA Business Migration Planner"
   short_description: "Helps with People repeatedly need a practical, repeatable way..."
-  default_prompt: "Use $usa-business-migration-planner to help me People repeatedly need a practical, repeatable way to handle Vercel should fork and maintain Deno."
+  default_prompt: "Use $usa-business-migration-planner to help me People repeatedly need a practical, repeatable way to handle vl: 在终端里用 VS Code 风格的界面和 Vim 键位审阅和编辑代码， 10 mb 大小."
 
 policy:
   allow_implicit_invocation: true

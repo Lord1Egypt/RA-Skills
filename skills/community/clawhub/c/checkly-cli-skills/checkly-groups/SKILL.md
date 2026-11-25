@@ -7,6 +7,10 @@ description: Organize checks with CheckGroups for shared configuration, settings
 
 Organize checks with shared configuration.
 
+## Location validation
+
+Group `locations` cannot contain retired `me-south-1` (Bahrain). Remove or replace it, including in inherited `checks.locations` and the project test run location `cli.runLocation`; imports filter it from generated groups.
+
 ## Basic check group
 
 ```typescript
@@ -38,6 +42,12 @@ new ApiCheck('status-check', {
   },
 })
 ```
+
+## Suite grouping and defaults
+
+Use `group` for check membership, including Playwright suites. A `playwrightChecks` config entry can refer to a config-declared `CheckGroupV2` or `CheckGroupV2.fromId()`. Removing a suite's group also removes its deployed membership. Migration warning: `groupId` and `groupName` are removed construct/config properties.
+
+For `CheckGroupV1` (also exported as `CheckGroup`), omitted retry strategy resolves to one immediate retry in another region. Declare `RetryStrategyBuilder.noRetries()` when no retries are intended. Migration warning: `doubleCheck` is removed. Group local-script properties remain supported; the removed local-script properties on `ApiCheck` must migrate to `setupScript` and `tearDownScript`.
 
 ## Hierarchical configuration
 

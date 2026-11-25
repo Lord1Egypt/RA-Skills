@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and technical teams use this skill to verify cloud and AI platform details against the relevant vendor's current official documentation, then provide cited answers with preview status and documentation gaps.
+Developers and cloud practitioners use this skill to verify current service limits, APIs, SDKs, CLI commands, and regional availability against official documentation for Microsoft, AWS, Google Cloud, Cloudflare, OpenAI, and Anthropic. It returns sourced answers and identifies preview status and documentation gaps.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,33 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Search terms and requested documentation URLs are sent to the vendor-hosted service being queried.
+Risk: Queries and requested documentation URLs are sent to the selected vendor; available security results do not establish what data a live request sends.
 
-Mitigation: Keep secrets, account or customer identifiers, and proprietary code out of queries.
+Mitigation: Keep queries generic and omit secrets, account or customer identifiers, and proprietary code.
 
-Risk: The security scan was partial and left some local references unresolved, so its evidence is incomplete.
+Risk: The security scan was marked partial because several references in SKILL.md could not be resolved.
 
-Mitigation: Review unresolved references and scan the skill before installation.
+Mitigation: Review the skill and its linked references before installation; the benign verdict is not a guarantee of safety.
 
 ## Reference(s):
 
 - [Setup and recovery](references/setup.md)
-- [Microsoft Learn MCP Server](https://github.com/MicrosoftDocs/mcp)
-- [AWS Knowledge MCP](https://awslabs.github.io/mcp/servers/aws-knowledge-mcp-server)
-- [Google Developer Knowledge MCP](https://developers.google.com/knowledge/mcp)
-- [Cloudflare MCP servers](https://developers.cloudflare.com/agents/model-context-protocol/mcp-servers-for-cloudflare)
-- [OpenAI Docs MCP](https://developers.openai.com/api/docs/docs-mcp)
-- [Claude Platform docs MCP](https://platform.claude.com/docs/mcp)
+- [Multi-cloud Docs on ClawHub](https://clawhub.ai/ricardodpalmeida/skills/multicloud-docs-mcp)
+- [Project homepage](https://github.com/Ricardodpalmeida/multicloud-docs)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Guidance]
+**Output Type(s):** [Text, Markdown, Guidance, Citations]
 
-**Output Format:** [Markdown with Answer, Sources, Status, and Gaps sections]
+**Output Format:** [Four-part Markdown response with source titles and URLs]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Cites vendor documentation; searches first and reads up to three pages per vendor unless excerpts lack needed evidence.]
+**Other Properties Related to Output:** [Answers, sources, feature status, and documentation gaps; page reads are limited to three per vendor unless excerpts lack needed evidence.]
 
 ## Skill Version(s):
 
-1.0.4 (source: release metadata and CHANGELOG.md; released 2026-11-16)
+1.0.5 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

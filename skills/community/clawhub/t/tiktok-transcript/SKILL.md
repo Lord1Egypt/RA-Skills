@@ -1,7 +1,7 @@
 ---
 name: tiktok-transcript
 description: "TikTok video to transcript: the spoken words with timestamps, on-screen captions, title, hashtags, key points and like/comment counts. Use when the user shares a tiktok.com or vm.tiktok.com link and wants the transcript, the captions, a summary or a translation. Works without a key for one free summary a day; with a free API key (10 credits on sign-up, no card) you get the full transcript, 2 credits per minute of video. No download, no TikTok account or cookie needed."
-version: 1.0.3
+version: 1.0.5
 homepage: https://linkdigest.dev/zh/docs?ref=skill-tiktok-transcript
 metadata: {"openclaw":{"requires":{"anyBins":["python3"]},"primaryEnv":"LINKDIGEST_API_KEY","envVars":[{"name":"LINKDIGEST_API_KEY","required":false,"description":"可选。LinkDigest API Key（ld_live_ 开头），在 https://linkdigest.dev/signin?ref=skill-tiktok-transcript&next=/app/keys 创建，注册送 10 积分；没有 Key 时每天可免费看 1 条摘要"}],"homepage":"https://linkdigest.dev/zh/docs?ref=skill-tiktok-transcript"}}
 required_environment_variables:

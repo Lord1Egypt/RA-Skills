@@ -2,12 +2,18 @@
 
 Default behavior: omit `models` and let mumo select the panel. mumo's defaults evolve as model quality and pricing change. Hardcoded model strategy in the skill will go stale.
 
+## Family names
+
+A family name works wherever a model ID does: `"claude"`, `"gpt"`, `"gemini"`, `"grok"`, and so on. It resolves to that family's default model on the user's plan. The ack names the model it chose and, when the plan has another model in that family, one alternative. Use a family name when the user names a lab but not a model.
+
 ## When to call `list_models`
 
-- The user names specific models.
+`list_models` sorts models by what the caller can use: available on their plan, available on a higher plan, and unavailable right now, grouped by family, with each family's default marked.
+
+- The user names one specific model.
 - The user asks for a cheap gut-check or a premium panel.
 - A previous call failed because a model was unavailable.
-- You need to confirm model IDs.
+- The user asks what their plan includes.
 
 ## Selection principles
 
@@ -20,7 +26,7 @@ When selecting yourself:
 
 ## Cost awareness
 
-`get_credit` is useful when balance is uncertain or the user asks about cost.
+`wait_for_round`'s status line shows what the round cost and, when it could be read, the current balance (`get_session` shows cost only). `get_credit` is useful when balance is uncertain or the user asks about cost.
 
 Don't make cost preflight a default ritual before every deliberation — it creates friction and can bias agents away from using mumo when the task genuinely warrants a panel.
 

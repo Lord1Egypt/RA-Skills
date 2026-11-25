@@ -1,0 +1,21 @@
+{
+  "fixture_type": "offline visible-page simulation; not an online collection result",
+  "playlist_url": "https://www.youtube.com/playlist?list=PL_DEMO_RESTRICTED",
+  "daily_minutes": 30,
+  "visible_items": [
+    {"position": 1, "title": "Visible lesson", "duration": "12:34", "source": "https://www.youtube.com/watch?v=demo001"},
+    {"position": 2, "title": "Private video", "duration": null, "source": null}
+  ],
+  "stop_reason": "Playlist contains a restricted item; duration is not visible. Do not infer a complete budget.",
+  "expected_business_output": {
+    "budget_status": "incomplete_due_to_missing_duration",
+    "known_total_duration": "12:34",
+    "daily_batches": [
+      {"day": 1, "positions": [1], "planned_duration": "12:34", "remaining_minutes": "17:26"}
+    ],
+    "pending_confirmation": [
+      {"position": 2, "missing": ["duration", "source"], "reason": "restricted item; not visible on the page"}
+    ],
+    "complete_budget": null
+  }
+}

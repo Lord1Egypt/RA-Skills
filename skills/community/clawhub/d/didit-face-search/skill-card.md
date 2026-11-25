@@ -1,6 +1,6 @@
 ## Description:
 
-Integrate Didit Face Search standalone API to perform 1:N facial search against previously verified sessions, helping detect duplicate accounts, matching faces, blocklist hits, and facial deduplication results with ranked similarity percentages.
+Integrates Didit's Face Search API to search submitted face images against an application's enrolled faces for duplicate detection and blocklist screening.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,10 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
+MIT-0
 
 ## Use Case:
 
-Developers and identity-platform operators use this skill to integrate Didit's face-search API into account registration, duplicate-account detection, blocklist review, and verification workflows. The skill provides API usage guidance, example requests, and a CLI utility for submitting face images and reviewing returned match data.
+Developers use this skill to integrate Didit Face Search into backend applications for duplicate account detection and face blocklist screening. It provides API usage guidance and example code for submitting images and interpreting matches and warnings.
 
 ### Deployment Geography for Use:
 
@@ -21,46 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill sends face images to Didit and may return sensitive identity and biometric match data.
+Risk: Face images and biometric match results are sent to an external face-search service, and saved requests enroll the submitted face by default.
 
-Mitigation: Install and use only with a lawful basis and user consent; limit storage to necessary fields such as session IDs and similarity scores.
+Mitigation: Send images only when authorized, apply your privacy and retention requirements, and set save_api_request=false when saving and enrollment are not wanted.
 
-Risk: CLI and API examples can expose full face-search responses in logs or terminal history.
+Risk: The integration requires a Didit API key, and responses may contain match details and time-limited image URLs.
 
-Mitigation: Avoid logging full responses, redact identity fields, and handle returned match details as sensitive identity data.
+Mitigation: Keep DIDIT_API_KEY in a secret store, restrict its access, and limit retention and access to returned match data and image URLs.
 
-Risk: The DIDIT_API_KEY grants access to Didit API operations.
+Risk: Similarity matches can affect duplicate-account or blocklist decisions, while the API does not provide a liveness verdict.
 
-Mitigation: Store DIDIT_API_KEY in a managed secret store, restrict access, rotate it when exposed, and never commit it to source control.
-
-Risk: The Face Search API documentation lists saved API requests as enabled by default.
-
-Mitigation: Disable saved API requests in code or API parameters unless retention is explicitly required and approved.
-
-Risk: Free-form vendor_data can contain directly identifying user information.
-
-Mitigation: Use pseudonymous vendor_data values and keep mappings in systems with appropriate access controls.
+Mitigation: Review match details and warnings before consequential decisions, and use a separate liveness check when liveness evidence is required.
 
 ## Reference(s):
 
-- [Didit Documentation](https://docs.didit.me)
 - [Didit Face Search API Reference](https://docs.didit.me/standalone-apis/face-search)
 - [Didit Face Search Feature Guide](https://docs.didit.me/core-technology/face-search/overview)
-- [ClawHub Skill Page](https://clawhub.ai/rosasalberto/skills/didit-face-search)
+- [Didit Pricing](https://docs.didit.me/getting-started/pricing)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions]
 
-**Output Format:** [Markdown with code blocks, shell commands, and JSON API examples]
+**Output Format:** [Markdown with Python and TypeScript examples, shell commands, and JSON response examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Requires DIDIT_API_KEY; outputs may include sensitive face-search match metadata and API JSON.]
+**Other Properties Related to Output:** [Examples cover API authentication, face search requests, and response handling.]
 
 ## Skill Version(s):
 
-1.1.0 (source: ClawHub release metadata; artifact frontmatter lists 1.0.0)
+1.4.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

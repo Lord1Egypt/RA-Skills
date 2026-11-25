@@ -1,0 +1,4 @@
+interface:
+  display_name: "免费抖音直播间监控"
+  short_description: "监控多个公开抖音直播间状态并生成时间快照与变化报告"
+  default_prompt: "使用 $douyin-live-monitor-free 监控这些抖音直播间并整理状态变化。"

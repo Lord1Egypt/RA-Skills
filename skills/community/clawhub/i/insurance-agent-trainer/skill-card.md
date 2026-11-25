@@ -1,8 +1,8 @@
 ## Description:
 
-Coaches insurance agents through product document analysis, question banks, skill assessments, personalized training plans, and interactive role-play practice.
+Provides an educational coaching framework for insurance agents, with illustrative product analysis, practice questions, role-play, assessments, and training-plan templates.
 
-This skill is ready for commercial/non-commercial use.
+This skill is for demonstration purposes and not for production usage.
 
 ## Publisher:
 
@@ -14,40 +14,39 @@ MIT-0
 
 ## Use Case:
 
-Insurance agents use this skill to practice product knowledge, customer conversations, and sales compliance through tailored drills and assessments.
+Insurance agents and training staff can use the framework to draft practice scenarios, question sets, skill assessments, and training plans. Its examples are educational references and require qualified human review before real-world use.
 
 ### Deployment Geography for Use:
 
-China (the examples and regulatory references focus on Chinese insurance practice)
+China
 
 ## Known Risks and Mitigations:
 
-Risk: Generic training requests may be routed into insurance coaching even when the user means another subject.
+Risk: Training examples or records may expose personal or client information.
 
-Mitigation: Confirm that the request concerns insurance before applying insurance-specific coaching.
+Mitigation: Use anonymized descriptions and placeholder identifiers; minimize retained records and obtain consent before keeping conversation details.
 
-Risk: Product and regulatory examples in training materials may not reflect current policy terms or rules.
+Risk: Product, regulatory, or sales guidance may be inaccurate or out of date if used as real-world advice.
 
-Mitigation: Verify product details and current requirements with official sources and licensed insurance professionals before using them with clients.
+Mitigation: Check current official product terms and regulatory sources, and have qualified insurance and compliance professionals review materials before use with customers.
 
 ## Reference(s):
 
-- [Imported source repository](https://github.com/gechengling/insurance-agent-trainer)
-- [ClawHub skill release](https://clawhub.ai/gechengling/skills/insurance-agent-trainer)
+- [ClawHub release page](https://clawhub.ai/gechengling/skills/insurance-agent-trainer)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, JSON, Guidance]
+**Output Type(s):** [Guidance, Text, Markdown, JSON]
 
-**Output Format:** [Conversational text, Markdown reports, and structured JSON]
+**Output Format:** [Markdown and text guidance with illustrative JSON examples and templates]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include question banks, training plans, role-play feedback, and assessment reports.]
+**Other Properties Related to Output:** [Draft training materials; review by qualified insurance and compliance professionals before real-world use.]
 
 ## Skill Version(s):
 
-5.2.8 (source: server-resolved release metadata)
+5.2.9 (source: frontmatter)
 
 ## Ethical Considerations:
 

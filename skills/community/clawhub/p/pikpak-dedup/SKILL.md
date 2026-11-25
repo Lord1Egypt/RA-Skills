@@ -1,9 +1,7 @@
 ---
 name: pikpak-dedup
-description: |
-  只读分析 PikPak 重复/多版本媒体候选，适用于查重、重复文件、保留最新/最高清、find duplicates、compare versions。
-  名称候选不等于精确内容重复；先人工确认，按冻结报告逐 ID 批准，只打印命令，绝不自动删除。
-  Use when finding duplicate or multiple releases of the same movie or episode in PikPak: same title, different resolution, keep newest or highest quality. Name similarity is not proof of identical content; you approve each ID from a frozen report and commands are only printed, never executed.
+description: >-
+  Find duplicate and multi-version files in a PikPak drive by size, duration and resolution, then report before anything is moved. 查重只出报告，不动文件。
 ---
 
 # PikPak 重复候选分析

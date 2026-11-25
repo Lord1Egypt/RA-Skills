@@ -1,6 +1,6 @@
 ## Description:
 
-Creates TikTok Shop product images, carousel sets, detail pages, and campaign graphics from product photos through Qinghu AI.
+Creates TikTok Shop product image sets, detail images, video covers, and promotional graphics through LinkPix.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-TikTok Shop sellers and social commerce teams use the skill to create product image sets, detail page visuals, and campaign graphics from product photos.
+TikTok Shop sellers, social commerce teams, and creators use this skill to turn product images and campaign copy into platform-oriented main image sets, detail graphics, video covers, and promotional posters.
 
 ### Deployment Geography for Use:
 
@@ -22,36 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Setup guidance asks users to share a reusable API key in chat.
+Risk: The setup guidance asks users to share an API key in chat, which could expose credentials.
 
-Mitigation: Configure the key locally through protected secret storage, never paste it into chat, and rotate it if it has already been shared.
+Mitigation: Do not share API keys in chat; configure credentials locally and review setup instructions before installing.
 
-Risk: Product images are uploaded to the image service, and generation consumes credits.
+Risk: The install guidance uses unpinned package installs.
 
-Mitigation: Upload only images intended to be shared with the provider and confirm the estimated cost before submitting generation.
-
-Risk: External package behavior and credential storage have not been verified.
-
-Mitigation: Use reviewed dependency versions and control package updates.
+Mitigation: Prefer reviewed, pinned package versions and use installation approval.
 
 ## Reference(s):
 
-- [qhkit package](https://www.npmjs.com/package/@iqinghu/qhkit)
-- [LinkPix skill release on ClawHub](https://clawhub.ai/autoagc/skills/linkpix-tiktok-shop-image)
+- [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-tiktok-shop-image)
+- [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [Images, Shell commands, Guidance]
 
-**Output Format:** [Generated image assets delivered as URLs, with Markdown usage guidance and inline shell commands.]
+**Output Format:** [Generated image files or result URLs, with setup and usage guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Image count, model, size, quality, and visual content depend on the selected options and user-provided product images or copy.]
+**Other Properties Related to Output:** [Image model and generation options are selected from the available CLI options.]
 
 ## Skill Version(s):
 
-0.1.4 (source: server-resolved release evidence)
+0.1.5 (source: server-resolved release)
 
 ## Ethical Considerations:
 

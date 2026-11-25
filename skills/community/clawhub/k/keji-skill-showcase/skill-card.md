@@ -1,6 +1,6 @@
 ## Description:
 
-科研技能鉴赏 routes users to a curated set of 13 Chinese academic workflow skills for literature search, citation checking, research integrity review, paper meetings, defense practice, methodology support, and skill improvement.
+A curated entry point that routes research requests to one of 20 specialized research skills and explains each skill’s scope and limits.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Students, researchers, and agent users use this skill as a lightweight router for choosing the right Chinese academic workflow skill before starting a research task. It helps select specialized skills for literature retrieval, knowledge-base management, citation validation, integrity checks, meeting preparation, defense rehearsal, methodology guidance, and skill authoring.
+External researchers and AI agents use this guide to choose a suitable skill for literature search, writing, citation checks, research planning, meetings, or patent workflows. It provides navigation and scope guidance; specialized skills perform the underlying tasks.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Users may expect this router skill to perform retrieval, checking, conversion, or knowledge-base work directly.
+Risk: The security scan rated the skill benign with medium confidence, but was incomplete because a referenced SKILL.ai-readable.md file was unavailable.
 
-Mitigation: State that the skill is an entry point only and hand off concrete tasks to the matching specialized skill.
-
-Risk: A routing mistake could send a research task to a neighboring skill with a different scope.
-
-Mitigation: Compare the request against the quick routing table and the listed boundaries before recommending a skill.
-
-Risk: Recommended SmartLib-dependent skills may share the same wallet quota.
-
-Mitigation: Tell users that SmartLib search, download, and verification skills share quota under the same email.
+Mitigation: Review the skill instructions and any generated outputs before relying on them, as advised by the security evidence.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/j-levee/skills/keji-skill-showcase)
-- [SkillHub installation guide](https://skillhub.cn/install/skillhub.md)
+- [Clawhub skill listing](https://clawhub.ai/j-levee/skills/keji-skill-showcase)
 - [SkillHub skill listing](https://skillhub.cloud.tencent.com/skills/keji-skill-showcase)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Markdown]
+**Output Type(s):** [Guidance, Text, Markdown]
 
-**Output Format:** [Markdown text with routing recommendations and installation prompts]
+**Output Format:** [Concise routing guidance and skill descriptions in Markdown or plain text]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Does not execute retrieval, checking, conversion, or code-running tasks itself.]
+**Other Properties Related to Output:** [Routes users to a relevant specialized skill; does not perform the routed research task.]
 
 ## Skill Version(s):
 
-1.2.0 (source: frontmatter and server release evidence)
+1.3.1 (source: frontmatter and server-resolved release metadata)
 
 ## Ethical Considerations:
 

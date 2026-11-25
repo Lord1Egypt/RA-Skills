@@ -1,8 +1,16 @@
 # B-roll and overlays
 
+For recorded or previously generated footage, use [material reuse](../resources/materials.md) to search the action/scene supporting the script, read detail and inspect the adopted interval. Trim suitable footage directly; generate a shot only when the candidate serves as a reference or leaves a gap. Map source intervals onto the adopted main audio, not directly onto its subtitle timeline.
+
+B-roll can come directly from the material library. Use [Agent semantic mixcut](semantic-mixcut.md) to compare candidates against the visual need and inspect actions, product identity, and usable intervals. Search supplies candidates; the Agent makes the final decision. Full-video assembly defaults to cloud editing, continuing the primary speech across picture changes and routing source sound separately. A B-roll-only request ends with the selected clip.
+
 Use this for supporting shots, charts, numbers, cards, interface animation, and annotations. A complete video can keep these in one project without forced intermediate clips.
 
 Record the element's purpose, real data/media, duration, ratio, audio, insertion point, and whether it replaces the full frame or overlays it. B-roll need not be newly generated video.
+
+Standalone B-roll discovery and adding inserts to an avatar both use the library directly, without reference analysis or a saved viral template. Fetch detail for selected assets; otherwise retrieve candidates within the allowed pool by media type, group, name/tags, or content. The Agent inspects subjects, actions, product variants, and usable intervals. A suitable still can be used directly without forced video generation.
+
+For avatar inserts, retain adopted audio, valid transcripts, and generated performance, mapping chosen pictures to actual speech timing. Default to cloud picture replacement while continuing the voice; mute incidental B-roll speech and declare any wanted source sound separately. Changing inserts does not regenerate speech or the avatar. Generate authorized gaps when the pool is insufficient, while honoring explicit requests for newly generated visuals. For discovery-only requests, deliver usable media, IDs, source intervals, and selection reasons without full-video composition. Reuse only the relevant selection/timing steps of [Agent semantic mixcut](semantic-mixcut.md).
 
 | Visual need | Production route |
 | --- | --- |

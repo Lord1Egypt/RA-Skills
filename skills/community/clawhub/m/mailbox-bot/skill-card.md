@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External developers and AI agents use mailbox.bot through REST or MCP to send physical mail, read inbound mail context, and propose mailbox actions such as scanning, forwarding, or discarding. Humans review costs and approve funded sends or inbound mailbox actions.
+External users and developers use this agent skill to send outbound physical mail, manage inbound mail proposals with human approval, and connect mailbox workflows through REST or MCP.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security evidence marks the skill suspicious because the README recommends an installation command that is not pinned to a fixed version; the scan was partial and its result is incomplete.
+Risk: The installer is unpinned, and the partial scan could not resolve some referenced content.
 
-Mitigation: Review the installation instructions and verify the intended release before installing; treat the partial scan as incomplete.
-
-Risk: Live outbound mail can create postage and service charges, and mailbox actions can affect physical mail.
-
-Mitigation: Use dry-run quotes and a cost cap, show the human review details, and require owner approval for funded sends and scan, forward, or discard actions.
-
-Risk: API credentials can authorize account operations if exposed.
-
-Mitigation: Keep keys out of URLs, command-line arguments, copied prompts, and logs; use sandbox keys for testing.
+Mitigation: Review the install source and unresolved references before connecting, and proceed only if you trust the mailbox service and its instructions.
 
 ## Reference(s):
 
-- [MCP Install Guide](https://mailbox.bot/mcp-install)
 - [API Documentation](https://mailbox.bot/api-docs)
-- [OpenAPI Specification](https://mailbox.bot/openapi.json)
+- [MCP Install Guide](https://mailbox.bot/mcp-install)
 - [Public MCP Tool Catalog](https://mailbox.bot/api/mcp/tools-public)
+- [OpenAPI Specification](https://mailbox.bot/openapi.json)
+- [Sandbox and Test Keys](https://mailbox.bot/api-docs#sandbox)
+- [Pricing](https://mailbox.bot/pricing)
 
 ## Skill Output:
 
-**Output Type(s):** [API calls, Shell commands, Configuration instructions, Guidance]
+**Output Type(s):** [API Calls, Configuration instructions, Shell commands, Guidance]
 
-**Output Format:** [Markdown guidance with JSON and shell examples, plus REST or MCP requests]
+**Output Format:** [REST or MCP requests and responses, JSON configuration, and shell commands]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Actions can send physical mail or incur charges; the skill documents dry runs, cost caps, and human approval steps.]
+**Other Properties Related to Output:** [Human approval is required for inbound mail actions and can be required for outbound mail.]
 
 ## Skill Version(s):
 
-5.3.2 (source: frontmatter, changelog released 2026-11-10)
+5.3.4 (source: frontmatter, CHANGELOG released 2026-11-20)
 
 ## Ethical Considerations:
 

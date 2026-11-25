@@ -9,8 +9,9 @@ description: >-
   mentioning "火山引擎" or "火山" (e.g., "火山引擎上有哪些 ECS"、"查一下我火山的云服务器"、
   "火山引擎创建一个 VPC"、"火山的 Redis 实例列一下"). Also trigger when the user encounters
   errors from `ve` commands and needs troubleshooting help. Also use for TOS bucket/object operations,
-  tosutil (sometimes written tosutils), and Ark CLI / arkcli model discovery, inference, generation,
-  endpoints, fine-tuning, plans, or usage through `ve tosutil` and `ve arkcli`.
+  tosutil (sometimes written tosutils), Ark CLI / arkcli model discovery, inference, generation,
+  endpoints, fine-tuning, plans, or usage, and TLS (日志服务) / volclog log search, analysis, ingest,
+  export, or LogCollector collection, through `ve tosutil`, `ve arkcli` and `ve volclog`.
 license: MIT
 metadata:
   openclaw:
@@ -82,12 +83,12 @@ metadata:
 
 # Volcengine CLI Skill
 
-Use `ve` as the unified entry point for Volcengine OpenAPIs, TOS object operations, and Ark product workflows.
+Use `ve` as the unified entry point for Volcengine OpenAPIs, TOS object operations, Ark product workflows, and TLS log service workflows.
 
 ## Agent caller metadata (mandatory)
 
 Every `ve` process launched by an Agent must receive these environment variables, including
-help/version checks, authentication, API calls, retries, polling, and `ve tosutil` / `ve arkcli`:
+help/version checks, authentication, API calls, retries, polling, and `ve tosutil` / `ve arkcli` / `ve volclog`:
 
 | Variable | Required value |
 | --- | --- |
@@ -107,7 +108,8 @@ Supply all three through the tool's process environment or command-local assignm
 execution**. A new tool call may start a fresh shell, so an earlier `export` is not sufficient.
 For a multi-command shell block, export all three at the beginning of that block and update the
 skill name before switching workflows. Put assignments before the executable; these are not CLI
-flags, API parameters, or fields to add to a request body.
+flags, API parameters, or fields to add to a request body. Never add the `VOLCENGINE_SAFETY_*`
+variables to this prefix (§2).
 For pipelines and `$(...)`, set the variables on the `ve` process itself or export them in that
 same shell before running the pipeline or expanding the command substitution.
 
@@ -153,14 +155,13 @@ Standalone `arkcli ...` calls continue to follow the upstream Ark skill's enviro
 
 ## Product CLI routing
 
-**Version requirement:** Before any skill uses `ve` to delegate to another CLI, including
-`ve tosutil` or `ve arkcli`, run `ve version` and require **`ve >= 1.1.9`** (stable releases
-`1.1.9` or newer). If the version is older than `1.1.9`, or cannot be verified, install/upgrade
-as described in §0 and check again before delegation. The presence of a proxy command in
-`--help` alone does not satisfy this requirement.
+**Version requirement:** The [§0 minimum version](#0-install-or-upgrade-the-ve-cli) (`ve >= 1.1.11`)
+also gates delegation to another CLI, including `ve tosutil`, `ve arkcli` and `ve volclog`. Verify
+it before delegation. The presence of a proxy command in `--help` alone does not satisfy this
+requirement.
 
-When `ve` is available, prefer **`ve tosutil`** and **`ve arkcli`**, even when a standalone
-`tosutil` or `arkcli` is also installed. The TOS command is spelled `tosutil`; `toscli` is a
+When `ve` is available, prefer **`ve tosutil`**, **`ve arkcli`** and **`ve volclog`**, even when a
+standalone `tosutil`, `arkcli` or `volclog` is also installed. The TOS command is spelled `tosutil`; `toscli` is a
 compatibility alias. The existing TOS skill is named `volcengine-tosutil` (not `volcengine-tosutils`).
 
 | Task | Entry point | Read before use |
@@ -168,10 +169,17 @@ compatibility alias. The existing TOS skill is named `volcengine-tosutil` (not `
 | General cloud resource OpenAPIs | `ve <service> <Action>` | Native API workflow in §§1–5 |
 | TOS buckets, objects and transfers | `ve tosutil <command>` | Use `volcengine-find-skills` to find `volcengine-tosutil`, install it if missing, and read its instructions |
 | Ark models, inference, generation, Endpoints, fine-tuning, plans and usage | `ve arkcli <command>` | Download and read the relevant [official Ark skills](https://github.com/volcengine/ark-cli/tree/main/skills) as below |
+| TLS (日志服务) log search, analysis, ingest, export, Project/Topic and LogCollector collection | `ve volclog <command>` | Use `volcengine-find-skills` to find `volcengine-tls` (or `volcengine-tls-logcollector` for collection), install it if missing, and read its instructions |
 
 For TOS, follow the finder's `list` → select exact `volcengine-tosutil` → install if missing →
 verify installation flow. Load the installed skill and the references it selects before executing.
 Use its native tosutil command examples, replacing `tosutil ...` with `ve tosutil ...`.
+
+For TLS, follow the same finder flow with exact `volcengine-tls`, or `volcengine-tls-logcollector`
+for LogCollector collection. Those skills write native `volclog ...` examples; run them as
+`ve volclog ...`. `ve` has no native `tls` OpenAPI command: if `ve volclog` reports an unknown
+service or suggests `--force`, the `ve` build is older than the version requirement above, so
+upgrade `ve` instead of adding `--force`.
 
 For Ark, select the task skill from the official repository above and install it with
 `arkcli-shared` and the dependencies its instructions require. These upstream `arkcli-*` names
@@ -191,15 +199,17 @@ execution. If the host cannot load newly installed skills, start a new conversat
 the original task and completed context, as the finder instructs. Keep product instructions in
 those skills; this skill only routes to them.
 
-`arkcli` and `tosutil` are transparent delegated CLIs: replace only the executable prefix in
+`arkcli`, `tosutil` and `volclog` are transparent delegated CLIs: replace only the executable prefix in
 their examples, keeping all later arguments unchanged. They retain their own authentication,
 profile, parameters, output, and exit codes. Native API rules such as `--output`, `--query`,
-`--force`, `--detail`, PascalCase parameters and `--DryRun` do **not** carry over.
+`--force`, `--detail`, PascalCase parameters and `--DryRun` do **not** carry over. Neither do the
+local safety policy and its `--yes` retry (§2); the product skill's own confirmation rules apply.
 
 - Put supported child flags after the child command. `ve --profile <name> arkcli ...` is invalid;
   `ve arkcli ... --profile <name>` selects an **Ark** profile, not a `ve` profile.
 - Follow the product skill's authentication, flags, and output handling. Change `tosutil ...` /
-  `arkcli ...` into `ve tosutil ...` / `ve arkcli ...` while keeping all child arguments unchanged.
+  `arkcli ...` / `volclog ...` into `ve tosutil ...` / `ve arkcli ...` / `ve volclog ...` while
+  keeping all child arguments unchanged.
   For `ve arkcli`, use only the `VE_*` caller metadata as described in
   [Ark delegation](#ark-delegation-one-set-of-caller-variables); do not copy the standalone Ark
   caller/notifier prefix. Keep any required product environment assignments before `ve`.
@@ -220,9 +230,13 @@ ve tosutil version
 ve tosutil help
 ve arkcli --version
 ve arkcli --help
+ve volclog --version
+ve volclog --help
 ```
 
-Upgrade a managed child with `ve proxycli upgrade tosutil` or `ve proxycli upgrade arkcli`.
+Upgrade a managed child with `ve proxycli upgrade tosutil`, `ve proxycli upgrade arkcli` or
+`ve proxycli upgrade tls-cli`. Management commands take the product ID (`tls-cli` for TLS),
+while invocation uses the native command name (`ve volclog`).
 These commands leave external installations on `PATH` to their original package manager;
 upgrading `ve` alone does not upgrade them. If a child command is missing from `ve --help`,
 upgrade `ve` first. Product flags and available capabilities follow the resolved child's help.
@@ -232,6 +246,8 @@ upgrade `ve` first. Product flags and available capabilities follow the resolved
 ## 0. Install or upgrade the ve CLI
 
 Always run the latest release. This skill assumes the current `ve`: device-code `ve login`, `--output`/`--query`, `--force`, `--detail`, and double-dash system flags. There is no support path for older builds — upgrade instead.
+
+**Minimum version (mandatory):** Before the first other `ve` command in a task — native OpenAPI calls, login, or product CLI delegation — run `ve version` and require **`ve >= 1.1.11`** (stable releases `1.1.11` or newer). If `ve` is missing, older than `1.1.11`, or its version cannot be verified, install or upgrade with one of the options below and run `ve version` again before continuing. If npm still installs an older version, the configured npm mirror may lag behind; use the CDN installer or GitHub Releases instead.
 
 **Option 1: npm (preferred)**
 
@@ -251,7 +267,7 @@ The same script ships as `scripts/install_ve.sh`. It reads the latest version fr
 
 **Option 3: GitHub Releases** — https://github.com/volcengine/volcengine-cli/releases
 
-**Native OpenAPI capability checks:** `ve login --help` must list `--no-browser`, and `ve ecs DescribeInstances --help` must list `--output` under *System Flags*. If either is missing, upgrade with `npm i -g @volcengine/cli@latest` or rerun the CDN installer, then continue. These checks do not replace the version requirement in [Product CLI routing](#product-cli-routing).
+**Native OpenAPI capability checks:** `ve login --help` must list `--no-browser`, and `ve ecs DescribeInstances --help` must list `--output` under *System Flags*. If either is missing, upgrade with `npm i -g @volcengine/cli@latest` or rerun the CDN installer, then continue. These checks do not replace the minimum version requirement above.
 
 ---
 
@@ -372,7 +388,40 @@ Then `ve sso login --sso-session <session-name>` (use `--no-browser` on headless
 
 ## 2. Safety Rules (mandatory)
 
-### Read/Write Classification
+These apply in every conversation:
+
+1. **Default to read-only** — unless the user explicitly requests a change, execute in read-only mode
+2. **Protect credentials** — never read `~/.volcengine/config.json`; never expose access-key, secret-key, or session-token in output
+3. **Leave the safety policy alone** — unless the user explicitly asks to change the policy itself, never run `ve configure safety-policy enable|disable|add|remove`, never read or edit `~/.volcengine/safety-policy.json`, and never set, unset or override `VOLCENGINE_SAFETY_POLICY_ENABLED`, `VOLCENGINE_SAFETY_POLICY_RULES` or `VOLCENGINE_SAFETY_SKIP_CONFIRM` in a command prefix, script or environment
+
+Approval to execute or retry an operation does not authorize changing the safety policy. A policy change requires an explicit request to change the policy itself.
+
+For native OpenAPI calls, use exactly one confirmation source: the CLI when the safety policy is enabled and its rules are non-empty, otherwise this skill's built-in rules. Never apply both to the same operation.
+
+### Choose the confirmation mode
+
+Before the first native `ve <service> <Action>` call of a conversation, including `ve sts GetCallerIdentity`, run this with the same caller metadata and environment as the later calls:
+
+```bash
+ve configure safety-policy show
+```
+
+Decide from stdout and the message text, not the exit code. A `ve` without safety policy support has no `safety-policy` command: it prints `ve configure` usage to stderr, nothing to stdout, and still exits 0.
+
+| Output | Mode |
+| --- | --- |
+| stdout is JSON with `"enabled": true` and a non-empty `rules` list | **Safety policy** — let the CLI enforce it; do not apply the skill's built-in confirmation rules |
+| stdout is JSON with `"enabled": false` or an empty `rules` list | **Built-in rules** — follow [Built-in rules](#built-in-rules) only |
+| The output contains `load effective safety policy:` | Neither. `ve` refuses every API call until the policy is fixed; report the error to the user and stop. |
+| Anything else: empty stdout, `ve configure` usage, an unknown-command error, or other non-JSON output, whatever the exit code | **Built-in rules** — the `ve` does not support a safety policy |
+
+Read only `enabled` and whether `rules` is empty to choose the mode. Do not interpret, match, or cache individual policy rules to decide whether an operation may run; the CLI makes that decision.
+
+Keep the mode for the conversation. Run `show` again only when the user says the policy changed, or when a call in built-in mode is blocked or asks for confirmation — then continue in the mode the new output selects.
+
+### Built-in rules
+
+Apply these to native calls only in built-in mode. Extension-helper calls retain these built-in confirmation rules.
 
 | Level | Operation Types | Behavior |
 |-------|----------------|----------|
@@ -380,12 +429,27 @@ Then `ve sso login --sso-session <session-name>` (use `--no-browser` on headless
 | **Write** | Create\* / Run\* / Allocate\* / Attach\* / Associate\* / Authorize\* | Show the full command and wait for user confirmation |
 | **Destructive** | Delete\* / Terminate\* / Release\* / Revoke\* / Modify\* / Stop\* / Detach\* | Show command + impact summary; **require** user confirmation |
 
-### Core Principles
+1. **DryRun first** — if a write/destructive operation supports `--DryRun true`, run a DryRun to preview the plan, then confirm before executing
+2. **Confirm before executing** — show the full command for write operations and wait for approval
 
-1. **Default to read-only** — unless the user explicitly requests a change, execute in read-only mode
-2. **DryRun first** — if a write/destructive operation supports `--DryRun true`, run a DryRun to preview the plan, then confirm before executing
-3. **Confirm before executing** — show the full command for write operations and wait for approval
-4. **Protect credentials** — never read `~/.volcengine/config.json`; never expose access-key, secret-key, or session-token in output
+Confirmation notes in the references ("confirm with the user first", "require explicit confirmation") belong to these rules.
+
+### Local safety policy
+
+For native calls in safety-policy mode, do not apply the built-in rules above or the confirmation notes in the references. `ve` checks every native call, including `--force` calls, so run the command the task needs and act on the CLI's result:
+
+| `ve` result | Policy decision | Action |
+| --- | --- | --- |
+| API response or API error | No safety-policy block | Handle the normal API result or error; do not add another confirmation step. |
+| `operation blocked by safety policy: <service> <Action> (rule: <pattern>)` / `操作被安全策略拒绝：...` | `deny`; no request was sent | Stop and tell the user the operation was denied and cannot continue under the current policy. Ask whether they want to adjust the policy, then end the turn and wait. Do not retry or change the policy on your own. |
+| `safety policy requires confirmation for: <service> <Action>` / `安全策略要求确认以下操作：...` | `confirm`; no request was sent | Briefly explain the target and impact, ask whether to continue, and end the turn. After a new explicit approval, re-run the identical command once with `--yes` added. The approval is then used up, even if that call fails. |
+
+- Start every operation without `--yes` (or `-y`); add it only for the single approved retry. Approvals from earlier in the conversation, including for the same command, do not count.
+- If `ve` waits at `Type 'yes' to proceed` / `输入 'yes' 继续`, never answer it or pipe input into `ve`; other messages are in [references/common-errors.md](references/common-errors.md#local-safety-policy).
+- Run one write or destructive operation per tool call and check its result before the next; a blocked command inside a multi-command shell block does not stop the commands after it. Reads can be held for confirmation too: stop a polling loop when a call is intercepted.
+- When several operations need confirmation, run each once without `--yes`, list every intercepted command for the user, and retry with `--yes` only the commands the user explicitly approves, once each.
+- Do not reach a denied or held operation another way: no other spelling or version of the service, `--force`, Cloud Control, the extension helper, a product CLI, an SDK or raw HTTP. `ve` applies a rule to every spelling of a service (`rds_mysql`, `rdsmysql` and `rdsmysqlv2`; `cloudtrail` and `cloudtrail20180101`).
+- The policy does not cover delegated product CLIs (`ve tosutil`, `ve arkcli`, `ve volclog`); follow their product skill.
 
 ### DryRun Notes
 
@@ -457,7 +521,8 @@ ve newservice DescribeNewResource \
 - `--method POST` for POST APIs (default GET); `--body '{...}'` for a JSON body (cannot be mixed with `--Param` values); `--region` when the service signs in a fixed region.
 - `--force` is a presence flag: `--force`, not `--force true`.
 - Parameters are unvalidated: take them from the user's material, the `volcengine-api` skill, or [references/extend-apis.md](references/extend-apis.md) — never guess them. `find_api.py` only locates Service/Action/Version; it does not return parameters, method, or endpoint.
-- The read/write/destructive rules in §2 apply exactly as for a listed action.
+- §2 applies exactly as for a listed action; a local safety policy checks `--force` calls too.
+- Do not use `--force` for TLS (日志服务); `ve` has no `tls` OpenAPI command, so route TLS tasks to `ve volclog` through the Product CLI routing table instead.
 
 [references/extend-apis.md](references/extend-apis.md) carries the service-code / version / endpoint / signing-region recipes for the extension services that were previously wrapped by a helper script (CDN, DCDN, domain, Flink, GA, IoT, Live, MCDN, Metrics, sec_agent, trademark, VEEN, VKE).
 
@@ -473,6 +538,8 @@ python3 scripts/call_extend_api.py --api QueryMetrics --params '{"workspace":"<i
 After upgrading `ve`, run `python3 scripts/audit_extend_apis.py` — it lists which recipes/helper entries the new metadata now covers natively, so they can be dropped.
 
 It also has a free mode (`--service/--version/--query-keys`) for unregistered APIs with the same shape. Credentials, options and the registered list are in [references/extend-apis.md](references/extend-apis.md). Do not pass `--profile` unless the user has explicitly selected one for this conversation.
+
+Extension helpers retain the built-in confirmation rules (§2). They are outside this native-CLI safety-policy integration.
 
 ---
 
@@ -549,14 +616,16 @@ Rules of thumb:
 
 ### Error Handling
 
-Whenever a native `ve <service> <Action>` command or extension helper fails, or a response contains `ResponseMetadata.Error`, read [references/common-errors.md](references/common-errors.md) completely before diagnosing the error or responding to the user. Partial searches, matched lines, or excerpts do not satisfy this requirement. For `ve tosutil` / `ve arkcli` failures, follow the selected product skill and native child error format.
+A safety-policy block or confirmation request (§2) means no request was sent. Handle it as §2 describes; it is neither a permission error nor a CLI anomaly, so it does not start permission diagnosis or a feedback invitation.
+
+Whenever a native `ve <service> <Action>` command or extension helper fails, or a response contains `ResponseMetadata.Error`, read [references/common-errors.md](references/common-errors.md) completely before diagnosing the error or responding to the user. Partial searches, matched lines, or excerpts do not satisfy this requirement. For `ve tosutil` / `ve arkcli` / `ve volclog` failures, follow the selected product skill and native child error format.
 
 First classify the error as request-format, missing dependency, account state, service activation, real-name verification, purchase qualification, or permission related. For product-specific errors, also read the matching service note below. For permission errors (`AccessDenied`, `NoPermission`, `RoleNotExist`, `Forbidden`, or STS-related failures), activate the `volcengine-troubleshooting` skill and use its account-permission diagnosis capability to locate the root cause and guide the user through remediation.
 
 For CLI anomalies or an incompletely solved task, follow the **non-blocking feedback** guidance in
 `volcengine-troubleshooting`: continue the main task and reserve any optional invitation for a natural
 summary. User-requested feedback belongs to `volcengine-feedback`; when unavailable, use the
-[feedback form](https://github.com/volcengine/volcengine-skills/issues/new?template=feedback.yml)
+[feedback form](https://github.com/volcengine/volcengine-agent-toolkit/issues/new?template=feedback.yml)
 in the current conversation rather than installing a skill or restarting the task for feedback.
 
 ### Async Resource Creation Requires Polling
@@ -589,13 +658,14 @@ done
 ## 5. Native OpenAPI Execution Flow (Summary)
 
 ```text
-1. Set caller metadata for this execution -> verify credentials -> GetCallerIdentity -> confirm region
+1. Set caller metadata for this execution -> choose the confirmation mode (§2) -> verify credentials -> GetCallerIdentity -> confirm region
 2. Understand the task: is the user querying or making changes?
 3. Locate the API: ve --help first -> find_api.py as fallback -> --force if the metadata lacks it
 4. Retrieve parameters: --help, then --help --detail for write/destructive actions
 5. Query dependent resources: use Describe*/List* (with --query to pick IDs) to obtain required IDs
 6. Read operation -> execute directly and display results (--output table for lists)
-   Write operation -> show command -> DryRun (if supported) -> user confirmation -> execute
+   Write operation, built-in rules -> show command -> DryRun (if supported) -> user confirmation -> execute
+   Write operation, safety policy  -> execute -> if blocked or held for confirmation, follow §2
 7. Parse the response and report results to the user
 ```
 

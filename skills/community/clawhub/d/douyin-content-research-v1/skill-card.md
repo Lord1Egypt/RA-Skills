@@ -1,6 +1,6 @@
 ## Description:
 
-为内容运营、品牌调研与创作者检索抖音公开视频和图文、热榜、博主作品、作品详情及评论，并返回结构化数据以支持内容研究。
+Provides public Douyin search, creator, post, comment, and trending data for content research and trend analysis.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-面向内容运营人员、品牌调研者和创作者，用于发现抖音内容与热点、比较公开账号和作品表现，并整理评论观点以辅助选题和趋势分析。
+Content teams, brand researchers, and creators use this skill to explore Douyin posts and trends, compare creators or competitors, and summarize public comment themes for planning and monitoring.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: 查询会将用户提供的关键词、链接或内容 ID 发送给第三方 API。
+Risk: Queries send supplied keywords and Douyin links or IDs to a third-party API.
 
-Mitigation: 查询前确认用户接受此数据共享，并仅提交获准分析的公开内容。
+Mitigation: Use only public content you intend to share, and avoid sending sensitive or private links or identifiers.
 
-Risk: 安全扫描结论为 benign，但仅完整扫描了部分组件，证据覆盖不完整。
+Risk: ClawScan reports medium confidence and incomplete scan coverage, and says some account-search behavior is not fully described.
 
-Mitigation: 安装前阅读技能的数据共享说明，并审阅本次发布内容。
+Mitigation: Review the current capability and data-sharing disclosures before use if those details matter to you.
 
 ## Reference(s):
 
-- [ClawHub 技能页面](https://clawhub.ai/why20261/skills/douyin-content-research-v1)
-- [服务与令牌配置](https://www.guaikei.com)
-- [参数说明](artifact/references/options.md)
-- [评论需求挖掘指南](artifact/references/demand-mining.md)
-- [更新日志](artifact/references/changelog.md)
+- [ClawHub release page](https://clawhub.ai/why20261/skills/douyin-content-research-v1)
+- [Douyin Content Research service and token portal](https://www.guaikei.com)
+- [Output contract](references/contract.md)
+- [Demand mining guide](references/demand-mining.md)
+- [Customer acquisition guide](references/customer-acquisition.md)
+- [Query options](references/options.md)
+- [Error handling](references/errors.md)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis, Tables, Markdown]
+**Output Type(s):** [JSON, Analysis, Markdown]
 
-**Output Format:** [结构化 JSON；按需整理为简短分析、比较表或报告。]
+**Output Format:** [Structured JSON query results with concise Markdown research summaries and tables when requested]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [仅处理公开内容；运行需要 GUAIKEI_API_TOKEN；查询使用的关键词或链接会发送至第三方 API，部分分享或播放链接可能过期。]
+**Other Properties Related to Output:** [Public post, creator, trend, and comment data; results depend on the requested query and API access.]
 
 ## Skill Version(s):
 
-1.4.2 (source: frontmatter, package.json)
+1.5.0 (source: SKILL.md frontmatter, package.json)
 
 ## Ethical Considerations:
 

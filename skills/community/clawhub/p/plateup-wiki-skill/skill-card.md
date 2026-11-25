@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External players can use the skill to look up PlateUp! recipes, appliances, cards, automation, achievements, customer rules, and English-Chinese terminology. It gives practical gameplay guidance in the language of the question.
+PlateUp! players use this skill to look up recipes, ingredients, appliances, automation, cards, achievements, customer rules, and English-Chinese game terminology. It provides concise answers in Chinese or English based on the question.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Bundled game information may become outdated or conflict with later game updates.
+Risk: ClawScan rates the skill benign with high confidence, but notes that benign does not mean risk-free and that alerts concerned wording and installation setup.
 
-Mitigation: Check the linked official wiki or release notes for current-version behavior, recent patches, exact numerical rules, and conflicting sources; state the supporting source or version.
-
-Risk: Some Chinese item names are community translations or suggestions rather than official localizations.
-
-Mitigation: Follow the glossary status and clearly label suggested translations instead of presenting them as official names.
+Mitigation: Review the skill and its setup commands before installing, and install only if you trust the source.
 
 ## Reference(s):
 
-- [Server-resolved source repository](https://github.com/syh31/plateup-wiki-skill)
 - [PlateUp! Official Wiki](https://wiki.plateupgame.com/)
-- [PlateUp! recipes](https://wiki.plateupgame.com/recipes)
-- [PlateUp! appliances and automation](https://wiki.plateupgame.com/appliances)
-- [PlateUp! official updates](https://www.plateupgame.com/updates/)
-- [Bilingual terminology reference](https://www.bilibili.com/opus/709028087756488743)
-- [Community achievement guide](https://steamcommunity.com/sharedfiles/filedetails/?id=3267294764)
+- [PlateUp! Recipes](https://wiki.plateupgame.com/recipes)
+- [PlateUp! Appliances and Automation](https://wiki.plateupgame.com/appliances)
+- [PlateUp! Cards](https://wiki.plateupgame.com/Cards)
+- [PlateUp! Achievements](https://wiki.plateupgame.com/Achievements)
+- [PlateUp! Official Updates](https://www.plateupgame.com/updates/)
+- [Bilibili terminology reference](https://www.bilibili.com/opus/709028087756488743)
+- [Steam community achievement guide](https://steamcommunity.com/sharedfiles/filedetails/?id=3267294764)
+- [Reference index](artifact/references/index.md)
+- [Structured data conventions](artifact/references/data-schema.md)
 
 ## Skill Output:
 
 **Output Type(s):** [Text, Guidance]
 
-**Output Format:** [Concise natural-language answers in English or Chinese, with game terms and structured reference facts as needed]
+**Output Format:** [Concise natural-language answers, with lists or step-by-step Markdown when useful]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Match the user's language; identify assumptions and source/version context when relevant.]
+**Other Properties Related to Output:** [Chinese or English, following the question's language unless another language is requested]
 
 ## Skill Version(s):
 
-0.1.0 (source: server-resolved ClawHub release metadata)
+0.1.1 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

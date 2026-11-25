@@ -1,0 +1,8 @@
+{
+  "display_name": "会话交接与增量记忆 v3（一会话一文件）",
+  "display_name_en": "Incremental Memory & Handoff v3 (Per-Session)",
+  "description_zh": "跨 agent 的会话增量记忆与交接。每轮把新产生的决策/约束/待办/否决/原始材料增量追加到 $LIB/memory/mem_<agent>_<会话>.md（一会话一文件，天然溯源到唯一会话记录；带时间戳与原文引用；$LIB 默认项目内 .handoff3/，可由 .handoff3/root.txt 指向外部记忆库）。会话记录被删除或归档后该文件自动转为只读沉淀，条目原样保留。所有行为固定为规则、无配置层；时间格式固定 YYYY-MM-DD HH:MM，不带时区后缀。agent 私有协议（会话 id 格式、记录位置与格式、token 读数取法）全部收进 references/adapters/ 解耦，主流程不硬编码任何一家产品。零脚本、各写各的免加锁、跨 agent、省 token。",
+  "description_en": "Cross-agent incremental session memory and handoff. Each turn appends new decisions/constraints/todos/rejects/code to $LIB/memory/mem_<agent>_<session>.md — one file per session, so every entry traces to exactly one session record; timestamps and verbatim quotes included; $LIB defaults to the project's .handoff3/, redirectable to an external library via .handoff3/root.txt. When the session record is deleted or archived, the file freezes read-only and entries stay as-is. All behavior is fixed by rules with no configuration layer; timestamps use YYYY-MM-DD HH:MM with no timezone suffix. Host-private protocols (session id format, record location and format, token readout) live in references/adapters/ so the main flow hardcodes no vendor. Zero scripts, per-session files need no locking, cross-agent, token-efficient.",
+  "languages": ["context-inference"],
+  "language_default": "context-inference"
+}

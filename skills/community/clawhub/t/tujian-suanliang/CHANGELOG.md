@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.9.45 (2026-11-18) — 底座修复同步
+
+- contract_guard.py 全族统一到 shizheng v1.1.1 版：空 coordinate_unit 误入非 mm 分支修复；
+  新增 `hash_chain_status` 机器可读状态（verified/unverified_no_embedded_hash/require_hash_off）；
+  新增 `--strict-hash`（require_hash=True 且缺内嵌哈希时硬失败 exit 2），默认行为不变。
+- 经 sync_base.py 同步，5 文件×6 skill 一致校验 PASS，self-test 6/6。
+
 ## 0.9.44 · 2026-11-10 · S9 发布准备：版本收口
 
 - 版本 patch bump；同步套件最低版本。s9 发布准备。

@@ -1,0 +1,1253 @@
+{
+ "schema": "oasis-blueprints/detail-library/0.1",
+ "origin": "https://github.com/oasiseng/Oasis-Blueprints",
+ "license": "MIT License, Copyright (c) 2026 Oasis Engineering, LLC",
+ "collection": "typical",
+ "name": "Typical details",
+ "made": "2026-11-13",
+ "count": 72,
+ "details": [
+  {
+   "id": "62d7e973",
+   "title": "(N) FOUNDATION TO (E) FOUNDATION",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    7.42,
+    3.83
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "7fd7c8dc",
+   "title": "CMU WALL FOUNDATION DETAIL",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    7.8,
+    6.06
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "74e3c3bb",
+   "title": "CONCRETE SLAB-ON-GRADE",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    6.84,
+    3.01
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "cde3eaaa",
+   "title": "CONCRETE SLAB-ON-GRADE",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "3/4''=1'-0\"",
+   "den": 16,
+   "not_to_scale": false,
+   "paper_in": [
+    5.45,
+    3.51
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "1c6c3f53",
+   "title": "FOUNDATION DETAIL",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "3/4''=1'-0\"",
+   "den": 16,
+   "not_to_scale": false,
+   "paper_in": [
+    6.01,
+    4.02
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "6d083ed4",
+   "title": "FOUNDATION DETAIL",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1 1/2\"=1'-0\"",
+   "den": 8,
+   "not_to_scale": false,
+   "paper_in": [
+    8.06,
+    18.46
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "bc6f0581",
+   "title": "FOUNDATION DETAIL",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1 1/2\"=1'-0\"",
+   "den": 8,
+   "not_to_scale": false,
+   "paper_in": [
+    11.76,
+    16.07
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "c837f3b5",
+   "title": "FOUNDATION DETAIL",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    6.87,
+    5.77
+   ],
+   "hardware": [
+    "CB812"
+   ],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "e0f1541c",
+   "title": "FOUNDATION DETAIL",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    6.5,
+    5.41
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "0e1c1c7b",
+   "title": "HOLDOWN ANCHORAGE AT FOUNDATION",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    12.86,
+    12.64
+   ],
+   "hardware": [
+    "SDS14-F"
+   ],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "8da3620f",
+   "title": "MONOLITHIC ECCENTRIC STRIP FOOTING SLAB-ON-GRADE MASONRY WALL",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "3/4''=1'-0\"",
+   "den": 16,
+   "not_to_scale": false,
+   "paper_in": [
+    6.71,
+    4.02
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "8de7e595",
+   "title": "MONOLITHIC ECCENTRIC STRIP FOOTING SLAB-ON-GRADE MASONRY WALL",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "3/4''=1'-0\"",
+   "den": 16,
+   "not_to_scale": false,
+   "paper_in": [
+    6.72,
+    4.02
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "df824626",
+   "title": "NEW SLAB TO EXISTING FOUNDATION DETAIL",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    6.96,
+    2.58
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "842009f3",
+   "title": "NEW TO EXISTING FOUNDATION DETAIL",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    7.66,
+    3.62
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "63d80e90",
+   "title": "PIPE SLEEVE THROUGH CONCRETE FOOTING OR STEM WALL",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    7.14,
+    8.85
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "b410cd52",
+   "title": "PLAN VIEW OF CONCRETE FOOTINGS",
+   "category": "Foundation",
+   "kind": "plan",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    6.21,
+    2.36
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "f74b5a43",
+   "title": "POST AT SPREAD FOOTING",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    5.18,
+    3.14
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "ce0bbc73",
+   "title": "POST FOOTING DETAIL",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    5.93,
+    5.97
+   ],
+   "hardware": [],
+   "lumber": [
+    "8x8"
+   ],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "e7fac14a",
+   "title": "STUD WALL TO SLAB EDGE",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    6.23,
+    3.91
+   ],
+   "hardware": [],
+   "lumber": [
+    "2x8"
+   ],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "fb6b2fa5",
+   "title": "TYPICAL CONTROL JOINT ON CONCRETE SLAB",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    5.14,
+    1.95
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "66a4f048",
+   "title": "TYPICAL HORIZONTAL REINFORCING CONCRETE FOOTINGS",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "3/4''=1'-0\"",
+   "den": 16,
+   "not_to_scale": false,
+   "paper_in": [
+    7.02,
+    3.76
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "8afda42b",
+   "title": "TYPICAL PIER FOOTING",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    5.38,
+    6.47
+   ],
+   "hardware": [
+    "SDS.25X4.5-F"
+   ],
+   "lumber": [
+    "25x4"
+   ],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "5270bae9",
+   "title": "TYPICAL SLAB ON GRADE",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    5.54,
+    2.1
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "97a9b3ba",
+   "title": "TYPICAL SLAB ON GRADE",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    7.72,
+    3.01
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "acbb4f00",
+   "title": "TYPICAL SLAB ON GRND OPTIONAL",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "3/4\"=1'-0\"",
+   "den": 16,
+   "not_to_scale": false,
+   "paper_in": [
+    6.79,
+    4.73
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "307167c8",
+   "title": "TYPICAL THICKENED SLAB EDGE",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    4.98,
+    1.89
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "79d4258d",
+   "title": "HOLES & NOTCHES IN SILL PLATES",
+   "category": "Wall",
+   "kind": "detail",
+   "scale": "N.T.S.",
+   "den": 12,
+   "not_to_scale": true,
+   "paper_in": [
+    5.69,
+    2.18
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "7afa61cc",
+   "title": "HOLES & NOTCHES IN STUDS",
+   "category": "Wall",
+   "kind": "detail",
+   "scale": "N.T.S.",
+   "den": 12,
+   "not_to_scale": true,
+   "paper_in": [
+    6.44,
+    4.8
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "9ace72b6",
+   "title": "SHEAR WALL SCHEDULE",
+   "category": "Wall",
+   "kind": "notes",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    11.12,
+    6.66
+   ],
+   "hardware": [],
+   "lumber": [
+    "2x4"
+   ],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "bdd52af6",
+   "title": "SILL PLATE BOLTING",
+   "category": "Wall",
+   "kind": "detail",
+   "scale": "N.T.S.",
+   "den": 12,
+   "not_to_scale": true,
+   "paper_in": [
+    5.07,
+    3.06
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "b759977e",
+   "title": "TOP PLATE SPLICE",
+   "category": "Wall",
+   "kind": "detail",
+   "scale": "N.T.S.",
+   "den": 12,
+   "not_to_scale": true,
+   "paper_in": [
+    6.66,
+    3.49
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "188587ed",
+   "title": "TYPICAL MASONRY WALL CONSTRUCTION",
+   "category": "Wall",
+   "kind": "detail",
+   "scale": "N.T.S.",
+   "den": 12,
+   "not_to_scale": true,
+   "paper_in": [
+    7.14,
+    4.31
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "d3c48102",
+   "title": "TYPICAL MASONRY WALL CONSTRUCTION",
+   "category": "Wall",
+   "kind": "detail",
+   "scale": "3/4''=1'-0\"",
+   "den": 16,
+   "not_to_scale": false,
+   "paper_in": [
+    7.36,
+    7.32
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "3883bbc0",
+   "title": "TYPICAL MASONRY WALL REINFORCING",
+   "category": "Wall",
+   "kind": "detail",
+   "scale": "N.T.S.",
+   "den": 12,
+   "not_to_scale": true,
+   "paper_in": [
+    7.88,
+    3.55
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "14f78936",
+   "title": "TYPICAL OPENING IN STUD WALL",
+   "category": "Wall",
+   "kind": "detail",
+   "scale": "N.T.S.",
+   "den": 12,
+   "not_to_scale": true,
+   "paper_in": [
+    7.66,
+    6.22
+   ],
+   "hardware": [
+    "A34",
+    "A35",
+    "A35-R"
+   ],
+   "lumber": [
+    "2x4",
+    "2x6"
+   ],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "d266197f",
+   "title": "TYPICAL OPENING IN STUD WALL",
+   "category": "Wall",
+   "kind": "detail",
+   "scale": "3/4\"=1'-0\"",
+   "den": 16,
+   "not_to_scale": false,
+   "paper_in": [
+    12.17,
+    6.55
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "3321c7a2",
+   "title": "TYPICAL SHEAR WALL FRAMING",
+   "category": "Wall",
+   "kind": "detail",
+   "scale": "1/2\"=1'-0\"",
+   "den": 24,
+   "not_to_scale": false,
+   "paper_in": [
+    15.03,
+    10.83
+   ],
+   "hardware": [
+    "CS16",
+    "SP2",
+    "HDU5-R",
+    "SDS.25X4-F",
+    "SDS.25X3-F",
+    "SDS.25X3.5-F"
+   ],
+   "lumber": [
+    "25x4",
+    "25x3"
+   ],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "f30cc509",
+   "title": "TYPICAL SHEAR WALL FRAMING",
+   "category": "Wall",
+   "kind": "detail",
+   "scale": "1/2\"=1'-0\"",
+   "den": 24,
+   "not_to_scale": false,
+   "paper_in": [
+    15.03,
+    10.83
+   ],
+   "hardware": [
+    "CS16",
+    "HDU5-R",
+    "SDS.25X4-F",
+    "SDS.25X3-F",
+    "SDS.25X3.5-F"
+   ],
+   "lumber": [
+    "25x4",
+    "25x3"
+   ],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "2932f86a",
+   "title": "BEAM TO WALL",
+   "category": "Beam",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    3.36,
+    4.14
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "16d2ab1d",
+   "title": "TYPICAL CMU BOND BEAM DETAIL",
+   "category": "Beam",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    3.8,
+    2.45
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "bfe0d84d",
+   "title": "TYPICAL HORIZONTAL REINFORCING MASONRY BOND BEAMS",
+   "category": "Beam",
+   "kind": "detail",
+   "scale": "3/4''=1'-0\"",
+   "den": 16,
+   "not_to_scale": false,
+   "paper_in": [
+    5.01,
+    3.02
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "23bc244a",
+   "title": "TYPICAL JOIST & BEAM HANGER SCHEDULE",
+   "category": "Beam",
+   "kind": "notes",
+   "scale": "N.T.S.",
+   "den": 12,
+   "not_to_scale": true,
+   "paper_in": [
+    5.98,
+    8.35
+   ],
+   "hardware": [
+    "HU210",
+    "HU210TF",
+    "HU212",
+    "HU212TF",
+    "HU26",
+    "HU26TF",
+    "HU28",
+    "HU28TF",
+    "HU36",
+    "HU36TF",
+    "HU412",
+    "HU46"
+   ],
+   "lumber": [
+    "(2)2x12",
+    "2x10",
+    "2x12",
+    "2x6",
+    "2x8",
+    "3x6",
+    "4x10",
+    "4x12",
+    "4x6",
+    "4x8"
+   ],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "6f31a461",
+   "title": "BEAM TO COLUMN CMU",
+   "category": "Post-Column",
+   "kind": "detail",
+   "scale": "1/2\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    5.37,
+    4.67
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "9007860d",
+   "title": "CORNER PORCH POST DETAIL",
+   "category": "Post-Column",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    6.34,
+    5.36
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "fd2a2257",
+   "title": "DROP BEAM TO POST CONNECTION",
+   "category": "Post-Column",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    5.84,
+    3.81
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "b707e39c",
+   "title": "HOLES & NOTCHES IN SAWN LUMBER JOISTS",
+   "category": "Joist-Floor",
+   "kind": "detail",
+   "scale": "N.T.S.",
+   "den": 12,
+   "not_to_scale": true,
+   "paper_in": [
+    6.53,
+    3.32
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "fe96eae3",
+   "title": "TYPICAL TEE BLOCKING DETAIL",
+   "category": "Joist-Floor",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    3.92,
+    3.04
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "0fcc2854",
+   "title": "CRICKET ROOF DETAIL",
+   "category": "Roof",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    6.66,
+    2.92
+   ],
+   "hardware": [],
+   "lumber": [
+    "2x6"
+   ],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "680dd459",
+   "title": "FRAMING AT ROOF RAFTERS",
+   "category": "Roof",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    7.12,
+    4.48
+   ],
+   "hardware": [
+    "H2.5A",
+    "A35-R"
+   ],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "738adfa3",
+   "title": "FRAMING AT ROOF RAFTERS",
+   "category": "Roof",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    7.12,
+    3.89
+   ],
+   "hardware": [
+    "HTSM20",
+    "A35-R"
+   ],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "b65380c8",
+   "title": "RIDGE BEAM TO KING POST",
+   "category": "Roof",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    4.83,
+    5.32
+   ],
+   "hardware": [
+    "A35Z",
+    "PC66-FRONT",
+    "A35-F"
+   ],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "26d43a33",
+   "title": "ROOF FRAMING AT EXTERIOR WALL",
+   "category": "Roof",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    4.69,
+    2.74
+   ],
+   "hardware": [
+    "H2.5A"
+   ],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "03539570",
+   "title": "ROOF FRAMING AT RIDGE",
+   "category": "Roof",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    5.31,
+    2.42
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "57331eeb",
+   "title": "ROOF FRAMING AT RIDGE BOARD",
+   "category": "Roof",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    7.17,
+    2.49
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "fff21c7f",
+   "title": "TRUSS TO CMU WALL",
+   "category": "Roof",
+   "kind": "detail",
+   "scale": "N.T.S.",
+   "den": 12,
+   "not_to_scale": true,
+   "paper_in": [
+    7.19,
+    6.06
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "52d7338b",
+   "title": "TYPICAL WOOD TRUSS AT DROP BEAM",
+   "category": "Roof",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    4.82,
+    3.01
+   ],
+   "hardware": [
+    "H2.5A"
+   ],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "53841420",
+   "title": "TYPICAL WOOD TRUSS AT WALL",
+   "category": "Roof",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    4.82,
+    2.8
+   ],
+   "hardware": [
+    "H2.5A"
+   ],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "05a90a9c",
+   "title": "STAGGERED PANEL EDGE NAILING",
+   "category": "Connection",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    23.06,
+    4.28
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "507bc4f7",
+   "title": "TYPICAL MASONRY OPENING",
+   "category": "Door-Window",
+   "kind": "detail",
+   "scale": "N.T.S.",
+   "den": 12,
+   "not_to_scale": true,
+   "paper_in": [
+    4.3,
+    5.03
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "1d2e96b5",
+   "title": "TYPICAL SIDEWALL FLASHING DETAIL",
+   "category": "Ledger",
+   "kind": "detail",
+   "scale": "N.T.S.",
+   "den": 12,
+   "not_to_scale": true,
+   "paper_in": [
+    3.36,
+    4.84
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "789c2f44",
+   "title": "FIBERGLASS STAIR TIE DOWN DETAIL",
+   "category": "Stairs",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    4.5,
+    3.56
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "834a9cf6",
+   "title": "CHIMNEY CAP DETAIL",
+   "category": "Other",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    6.89,
+    10.76
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "9ed793cc",
+   "title": "HOLES & NOTCHES IN LSL/LVL/PSL",
+   "category": "Other",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    6.53,
+    3.45
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "b7d9a6d1",
+   "title": "REBAR DEVELOPMENT LENGTHS",
+   "category": "Other",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    7.19,
+    4.75
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "44f030d6",
+   "title": "TYPICAL HORIZONTAL DIAPHRAGMS",
+   "category": "Other",
+   "kind": "detail",
+   "scale": "N.T.S.",
+   "den": 12,
+   "not_to_scale": true,
+   "paper_in": [
+    7.48,
+    4.09
+   ],
+   "hardware": [],
+   "lumber": [
+    "2x4"
+   ],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "9e78ec51",
+   "title": "TYPICAL HORIZONTAL DIAPHRAGMS",
+   "category": "Other",
+   "kind": "detail",
+   "scale": "N.T.S.",
+   "den": 12,
+   "not_to_scale": true,
+   "paper_in": [
+    7.48,
+    3.89
+   ],
+   "hardware": [],
+   "lumber": [
+    "3x4"
+   ],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "6b1e5c26",
+   "title": "TYPICAL LINTEL ASSEMBLY",
+   "category": "Other",
+   "kind": "detail",
+   "scale": "3/4''=1'-0\"",
+   "den": 16,
+   "not_to_scale": false,
+   "paper_in": [
+    8.56,
+    6.23
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "23226033",
+   "title": "TYPICAL PIPE & TRENCH DETAIL",
+   "category": "Other",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    8.17,
+    6.93
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "088c3281",
+   "title": "TYPICAL PIPE EXCAVATION",
+   "category": "Other",
+   "kind": "detail",
+   "scale": "3/4\"=1'-0\"",
+   "den": 16,
+   "not_to_scale": false,
+   "paper_in": [
+    8.23,
+    8.11
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "671f2130",
+   "title": "TYPICAL REBAR BENDS",
+   "category": "Other",
+   "kind": "detail",
+   "scale": "3\"=1'-0\"",
+   "den": 4,
+   "not_to_scale": false,
+   "paper_in": [
+    7.41,
+    8.42
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "0bcac0b0",
+   "title": "TYPICAL S.W AT CORNER",
+   "category": "Other",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    5.14,
+    3.32
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "0fe85c4a",
+   "title": "VAULTED CEILING",
+   "category": "Other",
+   "kind": "detail",
+   "scale": "1/2\"=1'-0\"",
+   "den": 24,
+   "not_to_scale": false,
+   "paper_in": [
+    14.93,
+    6.02
+   ],
+   "hardware": [
+    "H2.5A",
+    "A35Z",
+    "A35-F"
+   ],
+   "lumber": [],
+   "checked_by_engineer": false
+  }
+ ]
+}

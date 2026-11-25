@@ -12,10 +12,8 @@
     ⚠️ 切勿把图片直接作为 `cover`/`icon` multipart 字段 —— 服务端会**静默忽略**，
     发布照样返回 201 但 iconAuditStatus 恒为 null（2026-09-19 实测）。
   * 429 限流：指数退避重试（30s 起、翻倍、封顶 600s、最多 7 次）。
-  * slug 冲突自愈：409/500「已被占用」时自动追加后缀重试，并回写 SKILL.md。
-  * **WAF 566 判定（本脚本独有）**：区分「被腾讯云 WAF 按内容拦」与「业务校验失败」。
-    判据：同一份 multipart 发过去，401=已到应用层（内容安全），566=WAF 拦截。
-    这是官方 CLI 报「提交失败」时唯一能定位根因的手段 —— 见 scripts/waf_bisect.py。
+  * slug 冲突明确失败：409/500「已被占用」时直接报错并提示换名，
+    不自动改 slug、不回写本地文件（自动改名发布会被平台安全扫描判可疑，见 references/path-traps.md 坑 2）。
   * **发布后状态回读（本脚本独有）**：`status` 命令从 /api/v1/search 读线上版本、
     下载量、更新时间，自动判断审核是否通过 —— 不用再开浏览器看 Dashboard。
   * **版本递增硬卡点（本脚本独有）**：发布前比对「本地版本 vs 线上版本」，
@@ -829,9 +827,10 @@ def judge_failure(status, body):
     """把失败状态归类，并给出**正确的**下一步动作。"""
     msg = json.dumps(body, ensure_ascii=False).lower()
     if status == 566 or "566" in msg:
-        return ("WAF拦截",
-                "腾讯云 WAF 按内容拦截（不是结构问题，也不是网络问题）。"
-                "跑 scripts/waf_bisect.py --step check 确认，再用 --step bisect 二分出触发行。")
+        return ("安全拒绝",
+                "平台安全过滤拒绝了这次提交（HTTP 566）。停止发布：不要反复重试，"
+                "不要试探或绕过过滤规则；请按平台规则整改内容，"
+                "或通过官方支持/申诉渠道解决。")
     if status == 401 or status == 403:
         return ("未授权", "登录态失效，重跑 check-login 或 skillhub login")
     if status == 400 and ("不允许的文件类型" in msg or "file type" in msg):
@@ -839,7 +838,7 @@ def judge_failure(status, body):
     if status == 400:
         return ("字段/内容校验", "检查 frontmatter 必填字段与 payload，跑 validate 命令")
     if status == 409 or (status == 500 and ("exist" in msg or "占用" in msg or "another user" in msg)):
-        return ("slug 冲突", "slug 已被占用，换一个（本脚本会自动重试后备 slug）")
+        return ("slug 冲突", "slug 已被占用，换一个（本脚本不会自动改名或回写文件）")
     if status == 429:
         return ("限流", "触发限流，本脚本会自动退避重试")
     return ("未知", "把完整响应贴出来再排查")
@@ -1053,7 +1052,7 @@ def publish(skill_dir, version="", changelog="", icon=None, slug_override="",
 
 def main():
     ap = argparse.ArgumentParser(
-        description="SkillHub 发布器（含 WAF 566 定位、状态回读、版本卡点、清点清理）")
+        description="SkillHub 发布器（含状态回读、版本卡点、清点清理）")
     sub = ap.add_subparsers(dest="cmd", required=True)
 
     sub.add_parser("check-login", help="检查登录态").add_argument("--host", default=None)

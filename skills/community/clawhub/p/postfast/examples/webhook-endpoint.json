@@ -1,0 +1,37 @@
+{
+  "_description": "Request body for POST /webhook-endpoints: registers an HTTPS receiver for signed events. The response carries the signing secret, the only time it is returned.",
+  "url": "https://example.com/webhooks/postfast",
+  "events": [
+    "post.published",
+    "post.failed",
+    "account.connected",
+    "account.disconnected"
+  ],
+  "description": "Production receiver",
+  "_exampleResponse": {
+    "id": "ENDPOINT_ID",
+    "workspaceId": "WORKSPACE_ID",
+    "url": "https://example.com/webhooks/postfast",
+    "events": [
+      "post.published",
+      "post.failed",
+      "account.connected",
+      "account.disconnected"
+    ],
+    "description": "Production receiver",
+    "active": true,
+    "disabledReason": null,
+    "lastSuccessAt": null,
+    "lastFailureAt": null,
+    "createdAt": "2026-11-10T09:00:00.000Z",
+    "updatedAt": "2026-11-10T09:00:00.000Z",
+    "secret": "RETURNED_ONCE_STORE_IT_NOW"
+  },
+  "_notes": [
+    "url: https on port 443 with a public hostname; events: 1 to 4 of the four names, each once; description: optional, max 255 characters",
+    "Store the secret from this response: no other route returns it. If it is lost, delete the endpoint and create a new one",
+    "Then send a sample to the receiver: POST /webhook-endpoints/{id}/test with { \"sampleEvent\": \"post.published\" }",
+    "The receiver verifies the signature on the raw body (Standard Webhooks), deduplicates on the event id, and answers 2xx within 15 seconds",
+    "A workspace can have 5 active endpoints; the sixth returns 400 webhook.limitReached"
+  ]
+}

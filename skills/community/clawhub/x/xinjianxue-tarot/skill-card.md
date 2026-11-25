@@ -1,6 +1,6 @@
 ## Description:
 
-Guides a tarot reading by choosing from 50 spreads, collecting the user's card numbers, and interpreting the returned cards.
+Guides users through one of 50 tarot spreads, collects their chosen card numbers, and provides an interpretation using the returned cards.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-External users use the skill for reflective tarot readings about personal questions. It guides spread and card selection, interprets the results, and offers a practical next step.
+External users can use the skill for reflective tarot readings about relationships, work, interpersonal situations, or choices. It selects a suitable spread, obtains the user's card numbers, and explains the returned cards; the skill excludes medical, legal, investment, and life-or-death conclusions.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Each successful reading costs ¥6 and requires buyer-side Alipay payment authorization.
+Risk: The security assessment flags unexpected payment-wallet setup and paid-service steps, including installation of unpinned payment software, as outside the skill's stated tarot purpose.
 
-Mitigation: Tell the user the merchant and amount before payment, require their authorization, and stop if they decline or payment fails.
-
-Risk: Users could treat tarot interpretations as professional advice for high-stakes matters.
-
-Mitigation: Do not answer medical, legal, investment, or life-and-death questions with tarot; direct users to appropriate professional support.
+Mitigation: Explain the payment requirement, wallet setup, package source and version, and fee before installation or authorization; independently verify those details before proceeding.
 
 ## Reference(s):
 
-- [ClawHub Skill Page](https://clawhub.ai/weixin97676414/skills/xinjianxue-tarot)
-- [Tarot Service API](https://api.xinjianxue.com/api/xinjianxue/aipay/tarot)
-- [Spread Catalog](artifact/references/spreads.md)
-- [Reading Guidance](artifact/references/reading.md)
-- [Payment Instructions](artifact/references/payment.md)
+- [ClawHub skill page](https://clawhub.ai/weixin97676414/skills/xinjianxue-tarot)
+- [API contract](artifact/references/api.md)
+- [Payment flow](artifact/references/payment.md)
+- [Reading framework](artifact/references/reading.md)
+- [Spread list](artifact/references/spreads.md)
+- [Tarot service endpoint](https://api.xinjianxue.com/api/xinjianxue/aipay/tarot)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Guidance]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Conversational tarot reading with spread-position interpretations and practical suggestions]
+**Output Format:** [Markdown tarot reading with card positions, interpretations, a conclusion, and an actionable suggestion]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Does not provide readings for medical, legal, investment, or life-and-death questions.]
+**Other Properties Related to Output:** [Card names and orientations follow the returned result. A successful reading costs CNY 6 and uses a payment flow.]
 
 ## Skill Version(s):
 
-1.0.0 (source: ClawHub release evidence)
+2.0.0 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

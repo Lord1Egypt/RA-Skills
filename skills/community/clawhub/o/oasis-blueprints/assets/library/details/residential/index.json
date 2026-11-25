@@ -1,0 +1,171 @@
+{
+ "schema": "oasis-blueprints/detail-library/0.1",
+ "origin": "https://github.com/oasiseng/Oasis-Blueprints",
+ "license": "MIT License, Copyright (c) 2026 Oasis Engineering, LLC",
+ "collection": "residential",
+ "name": "Residential set details",
+ "made": "2026-11-19",
+ "count": 10,
+ "details": [
+  {
+   "id": "0896e416",
+   "title": "TYPICAL SLAB ON GRADE",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    6.83,
+    3.02
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "08aa7b42",
+   "title": "TYPICAL SLAB ON GRADE AT GARAGE",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    5.46,
+    2.1
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "7d803492",
+   "title": "TYPICAL CONTROL JOINT ON CONCRETE SLAB",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    5.15,
+    1.95
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "ce2d19aa",
+   "title": "FOOTING AT INTERIOR BEARING WALL",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    6.26,
+    6.53
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "c7adcc87",
+   "title": "FOOTING WITH STEM WALL DETAIL",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    6.71,
+    6.53
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "00698c39",
+   "title": "FOOTING WITH STEM WALL AT LANAI / PATIO EDGE",
+   "category": "Foundation",
+   "kind": "detail",
+   "scale": "1\"=1'-0\"",
+   "den": 12,
+   "not_to_scale": false,
+   "paper_in": [
+    6.56,
+    5.47
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "030df78f",
+   "title": "WINDOW NON - LOAD BEARING, SINGLE TRACK HEADER BOXED JAMB",
+   "category": "Door-Window",
+   "kind": "detail",
+   "scale": "N.T.S.",
+   "den": 12,
+   "not_to_scale": true,
+   "paper_in": [
+    4.8,
+    4.91
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "87d92b05",
+   "title": "WINDOW LOAD BEARING, BACK TO BACK HEADER BOXED JAMB",
+   "category": "Door-Window",
+   "kind": "detail",
+   "scale": "N.T.S.",
+   "den": 12,
+   "not_to_scale": true,
+   "paper_in": [
+    5.0,
+    5.05
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "c704dab6",
+   "title": "DOOR NON - LOAD BEARING, SINGLE TRACK HEADER BOXED JAMB",
+   "category": "Door-Window",
+   "kind": "detail",
+   "scale": "N.T.S.",
+   "den": 12,
+   "not_to_scale": true,
+   "paper_in": [
+    4.72,
+    4.82
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  },
+  {
+   "id": "fb64bf7e",
+   "title": "DOOR LOAD BEARING, BACK TO BACK HEADER BOXED JAMB",
+   "category": "Door-Window",
+   "kind": "detail",
+   "scale": "N.T.S.",
+   "den": 12,
+   "not_to_scale": true,
+   "paper_in": [
+    4.83,
+    4.84
+   ],
+   "hardware": [],
+   "lumber": [],
+   "checked_by_engineer": false
+  }
+ ]
+}

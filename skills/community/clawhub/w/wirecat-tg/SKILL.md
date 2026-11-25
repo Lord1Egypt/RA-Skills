@@ -1,7 +1,7 @@
 ---
 name: tg-cli
 description: >-
-  Answer questions from the owner's Telegram history, and read or send messages in their personal account, through tg. Use for any question their chats could answer, even when it does not say Telegram: who said, advised or sent what, a past message, link, file, price or decision. Also to set up Telegram, find a chat or person, read a conversation or send a message. For a question, start with tg <profile> search conversations "<the question>".
+  Answer questions from the owner's Telegram history, and read or send messages in their personal account, through tg. Use for any question their chats could answer, even when it does not say Telegram: who said, advised or sent what, a past message, link, file, price or decision. Also to set up Telegram, find a chat or person, read a conversation or send a message. For a question, read this skill first, then start with tg <profile> search conversations "<the question>" --like "<a reply that would answer it>"; read around a hit with tg <profile> messages context <hit ref>.
 metadata:
   openclaw:
     requires:
@@ -17,7 +17,6 @@ metadata:
 `tg` works with the owner's **real personal account**. A mistake here does not fail a test; it
 writes to a living person. One call, one action: connect, do it, print, exit.
 
-This is the core; the [references](#more-when-the-task-needs-it) at the end hold the rest.
 `tg commands <path> --json` describes one command (arguments, options, exit codes, `effects.remote: "write"`
 for a write to Telegram); `tg <command> --help` is shorter; `tg guide` lists scenarios.
 
@@ -30,19 +29,21 @@ unless the task or `TG_PROFILE` says. `personal` below stands for the profile th
 
 ## Answer a question from the chats
 
-Choose a path from the user's task rather than reading recent messages by default.
-
-1. **Start with `tg personal search conversations "<the question>" --json`**: it searches by meaning and
-   words. Pass the question as the owner wrote it (a sentence, unsure wording, a misspelled name, no chat
-   named); do not cut it to one word. When the owner says "I advised / I wrote", add `from:me`.
+1. **Start with `tg personal search conversations "<the question>" --like "<a reply that would answer it>"
+   --json`**: it searches by meaning and words. Pass the question as the owner wrote it (unsure wording, a
+   misspelled name, no chat named); do not cut it to one word. The reply is your one-sentence guess, worded like a
+   chat message. Read the `lines` of every hit, `from_owner` ones too: the owner's own conversations come last.
+   When the owner says "I advised / I wrote", add `--filter 'from:me'`.
 2. Then `tg personal search messages "<question>" --discover --json`, then key words with
-   `tg personal search messages "<words>"` (this machine's copy plus Telegram's own search). Add
-   `--backend archive` when the owner wants nothing to leave the machine.
+   `tg personal search messages "<words>"` (this machine's copy plus Telegram's own search). It takes no `--like`,
+   `--chat` or `--filter`: write `from:me` and `chat:<chat>` in its query. Add
+   `--backend archive` when the owner wants nothing to leave the machine. Every word must match; unsure which
+   word the message uses, join the variants with a capital OR: `invoice OR счёт`, `colour OR color`.
 3. **Never filter the results yourself** (`grep -v`, `jq select`) by chat or sender: a hit in a chat you did
    not expect is often the answer. The first result and its score do not establish an answer.
-4. **Read around a hit:** `tg personal messages context <hit ref>`. `messages show` and `messages context`
-   need the chat and the message id, or a `msg:` locator from a search; the message asked for carries
-   `"anchor": true`. Every search answers `items[].ref`; more hits are a `page.next` step.
+4. **Read around a hit:** `tg personal messages context <hit ref>`; it and `messages show` also take
+   `<chat> <message id>`. The message asked for carries `"anchor": true`. Every search answers `items[].ref`;
+   more hits are a `page.next` step.
 5. **Cite each message by its locator.** Check dates: a later message can correct an earlier one.
 6. **Nothing relevant: search again in other words before saying it is not there.** Try the words the answer
    would contain, one or two key words, a synonym, the other language. A search that stops at its time limit

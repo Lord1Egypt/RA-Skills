@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes publicly disclosed holdings of Chinese public mutual funds to identify stock overlap, sector concentration, and style exposure.
+用 Cue 穿透你的基金组合持仓——你以为分散了，其实买了一篮子同样的东西。逐层拆解股票/行业/风格暴露，检测重复配置与集中度风险，逐只排雷。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,49 +14,40 @@ MIT-0
 
 ## Use Case:
 
-Individual investors, fund advisers, and portfolio researchers use it to compare public mutual fund holdings, find duplicated exposures, and assess diversification using periodic disclosure data.
+Individual fund investors and financial advisers use the skill to review public A-share fund holdings, find overlap and concentration across a portfolio, and consider diversification adjustments.
 
 ### Deployment Geography for Use:
 
-Global
+China
 
 ## Known Risks and Mitigations:
 
-Risk: Security review flags an unpinned remote runner and remote code execution, with only partial scanner coverage.
+Risk: The security assessment flags potential API-key exposure and remote runner or code sources that are not pinned.
 
-Mitigation: Review the runner source and pin a trusted version before use; treat scan results as incomplete until the missing-path coverage issue is resolved.
+Mitigation: Review the current skill and remote sources before execution, and keep API credentials private and securely configured.
 
-Risk: The skill asks users to paste an API key into chat.
+Risk: The security assessment reports behavior that does not clearly match the fund-analysis purpose, with partial scan coverage.
 
-Mitigation: Provide credentials through a secure local configuration or environment variable instead of chat, and avoid exposing the key in prompts or reports.
-
-Risk: The skill includes promotional credit and sharing prompts unrelated to portfolio analysis.
-
-Mitigation: Omit promotional steps unless the user explicitly asks for credit or account guidance.
-
-Risk: Portfolio conclusions are based on periodically disclosed top-ten holdings and can be stale or incomplete.
-
-Mitigation: State the disclosure date and coverage limits, and treat the report as decision support rather than live holdings or a forecast.
+Mitigation: Review the skill's requested actions and outputs before use; treat unreviewed behavior as unverified.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/panting09266-ai/skills/cue-fund-penetration)
-- [Cue service](https://cuecue.cn)
-- [Runner repository referenced by the skill documentation](https://github.com/sensedeal/cue-skills)
+- [Cue](https://cuecue.cn)
+- [ClawHub skill page](https://clawhub.ai/panting09266-ai/skills/cue-fund-penetration)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Guidance]
+**Output Type(s):** [Text, Markdown, Guidance]
 
-**Output Format:** [Structured Markdown report with holdings overlap, sector concentration, style exposure, and source links]
+**Output Format:** [Structured Markdown portfolio analysis report]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Uses disclosed top-ten holdings; reported positions may lag current portfolios by one to two months.]
+**Other Properties Related to Output:** [Summarizes fund holdings, overlap, industry concentration, style exposure, risk observations, and portfolio adjustment suggestions.]
 
 ## Skill Version(s):
 
-1.0.14 (source: server-resolved release evidence)
+1.0.15 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

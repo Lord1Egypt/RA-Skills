@@ -34,7 +34,7 @@ function parse(argv) {
   return o;
 }
 
-function runProcess(bin, args, cwd, limitMs = 60000) {
+function runProcess(bin, args, cwd, limitMs = 60000, details = false) {
   return new Promise((resolve, reject) => {
     const child = spawn(bin, args, { cwd, stdio: [STDIO_DISCARD, STDIO_PIPE, STDIO_PIPE], shell: false });
     let stdout = '', stderr = '', timedOut = false;
@@ -49,8 +49,8 @@ function runProcess(bin, args, cwd, limitMs = 60000) {
     child.on('close', code => {
       clearTimeout(timer); clearTimeout(killTimer);
       if (timedOut) reject(new Error((bin) + " timeout after " + (limitMs) + "ms"));
-      else if (code !== 0) reject(new Error((bin) + " exited " + (code) + ": " + (stderr || stdout)));
-      else resolve(stdout);
+      else if (code !== 0) reject(new Error((bin) + " exited " + (code) + ": " + (stderr + "\n" + stdout)));
+      else resolve(details ? { stdout, stderr } : stdout);
     });
   });
 }
@@ -70,6 +70,37 @@ async function mediaFiles(root) {
     else if (entry.isFile() && /\.(png|jpe?g|webp|gif|bmp|heic|mp4|mov)$/i.test(p)) files.push(p);
   }
   return files;
+}
+
+export function grokModeFromEnv(env = process.env) {
+  const mode = (env.IMAGE_GEN_GROK_MODE || "").trim();
+  if (mode === "scoped" || mode === "legacy") return mode;
+  return "auto";
+}
+
+export function grokCliArgs(tool, instruction, mode) {
+  const denials = ["--deny", "Bash", "--deny", "WebFetch", "--deny", "WebSearch"];
+  if (mode === "legacy") {
+    return ["-p", instruction, "--output-format", "json", "--always-approve", "--sandbox", "workspace", ...denials];
+  }
+  return ["-p", instruction, "--output-format", "json", "--permission-mode", "dontAsk", "--sandbox", "workspace",
+    "--tools", (tool) + ",Write", "--allow", tool, "--allow", "Write", ...denials];
+}
+
+export function grokLooksDenied(text) {
+  const t = String(text || "").toLowerCase();
+  return /not available|unavailable|permission denied|not allowed|not permitted|unknown tool|disallowed|tool .*denied|not in the (allowed )?tool/.test(t);
+}
+
+export function grokModeLabel(mode) {
+  return mode === "legacy" ? "legacy-always-approve" : "scoped";
+}
+
+async function runGrokJob(tool, instruction, work, limitMs) {
+  const setting = grokModeFromEnv();
+  const mode = setting === "legacy" ? "legacy" : "scoped";
+  const { stdout, stderr } = await runProcess("grok", grokCliArgs(tool, instruction, mode), work, limitMs, true);
+  return { reply: stdout, stderr, grok_mode: grokModeLabel(mode) };
 }
 
 async function main() {
@@ -106,20 +137,10 @@ async function main() {
       ((!o.ref || o.video) ? "aspect_ratio=" + (JSON.stringify(o.ratio)) + "。\n" : '') +
       "生成成功后将本次工具产物保存到 " + (JSON.stringify(output)) + "。" + (o.video ? '保留原始 MP4，不要重编码。' : '原样保存，不要转换格式。') + "\n" +
       '不得复制历史图片、参考图或伪造图片。工具失败就报告原因并停止，不换引擎。最后只返回 JSON，含 status、path、原始产物 source_path。';
-    // Scoped to this job's imagine tool plus Write inside the workspace sandbox.
-    // Shell and web tools are denied.
-    const reply = await runProcess('grok', [
-      '-p', instruction,
-      '--output-format', 'json',
-      '--permission-mode', 'dontAsk',
-      '--sandbox', 'workspace',
-      '--tools', (tool) + ",Write",
-      '--allow', tool,
-      '--allow', 'Write',
-      '--deny', 'Bash',
-      '--deny', 'WebFetch',
-      '--deny', 'WebSearch',
-    ], work, o.timeout);
+    // Scoped allowlist in the workspace sandbox. A tool refusal fails closed.
+    // IMAGE_GEN_GROK_MODE=legacy opts in to --always-approve, still denying Bash and web tools.
+    const grokRun = await runGrokJob(tool, instruction, work, o.timeout);
+    const reply = grokRun.reply;
     // 原始产物以本轮会话目录里新出现的文件为准，由脚本自己转换，不信任 Grok 转好的副本
     const result = JSON.parse(reply), sessionId = result.sessionId;
     // Grok 按指令最后回一段 JSON；它自己报失败时直接转述原因
@@ -138,7 +159,7 @@ async function main() {
     else await runProcess(PY, [IMGTOOL, 'png', source, o.out], work);
     const data = await readFile(o.out);
     if (o.video ? data.toString('ascii', 4, 8) !== 'ftyp' : !data.subarray(0, 8).equals(Buffer.from('89504e470d0a1a0a', 'hex'))) throw new Error('invalid output media signature');
-    console.log(JSON.stringify({ status: 'ok', path: o.out, engine: 'grok', source_path: source, bytes: (await stat(o.out)).size, elapsed_seconds: Math.round((Date.now() - start) / 1000) }));
+    console.log(JSON.stringify({ status: 'ok', path: o.out, engine: 'grok', source_path: source, bytes: (await stat(o.out)).size, elapsed_seconds: Math.round((Date.now() - start) / 1000), grok_mode: grokRun.grok_mode }));
   } finally {
     await rm(work, { recursive: true, force: true });
   }

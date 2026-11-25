@@ -1,6 +1,6 @@
 ## Description:
 
-Provides a Chinese-first framework for evaluating product direction, user experience, and feature priorities through Zhang Xiaolong-inspired product minimalism.
+Applies a minimalist product thinking framework inspired by Zhang Xiaolong to help assess product direction, user experience, and feature priorities.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Product managers, founders, and app developers use the skill to reflect on product direction and feature tradeoffs with structured questions and examples. Its output is a decision aid, not a final product plan or a substitute for user research, usability testing, or compliance review.
+Product managers, founders, and app developers use it to examine user needs, simplify product experiences, prioritize features, and plan small validation steps. Its frameworks support human judgment and do not replace user research or qualified review.
 
 ### Deployment Geography for Use:
 
@@ -22,35 +22,34 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Chinese-first responses may not match every user's language preference.
+Risk: Responses may default to Chinese when another language is preferred.
 
-Mitigation: Confirm the preferred language and request translation or English terminology when useful.
+Mitigation: Specify the preferred response language and review important terminology.
 
-Risk: Framework-based suggestions or time-sensitive claims could be mistaken for validated product or professional advice.
+Risk: Product frameworks or illustrative examples could be mistaken for validated findings or formal decisions.
 
-Mitigation: Treat outputs as prompts for judgment, verify current claims against official sources, and use qualified review, user research, usability testing, and compliance review before acting.
+Mitigation: Treat outputs as analysis prompts; validate assumptions with user research and qualified reviewers before acting.
 
-Risk: Product discussions could expose identifiable user data or confidential business information.
+Risk: Discussion of real customers or business performance could expose sensitive information.
 
-Mitigation: Share only the minimum necessary context and anonymize or aggregate user, customer, and business data; do not provide credentials or secrets.
+Mitigation: Use anonymized or aggregated details and do not include credentials, secrets, or identifiable customer data.
 
 ## Reference(s):
 
-- [ClawHub skill listing](https://clawhub.ai/gechengling/skills/zhangxiaolong-product-way)
 
 ## Skill Output:
 
-**Output Type(s):** [Guidance, Analysis, Markdown]
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
 
-**Output Format:** [Chinese-first prose with structured questions, checklists, and tables]
+**Output Format:** [Chinese-first text or Markdown with product decision frameworks, checklists, and illustrative examples.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Decision prompts and draft analysis; not a final product specification.]
+**Other Properties Related to Output:** [Advisory drafts for human review; not implementation-ready product plans or formal product, legal, or investment decisions.]
 
 ## Skill Version(s):
 
-2.1.4 (source: server-resolved release evidence and artifact/SKILL.md)
+2.1.5 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

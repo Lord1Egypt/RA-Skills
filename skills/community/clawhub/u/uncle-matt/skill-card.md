@@ -1,6 +1,6 @@
 ## Description:
 
-Uncle Matt is an OpenClaw security skill that lets agents use approved API actions through a hardened local Broker without seeing secrets, calling arbitrary URLs, or becoming an open proxy.
+Uncle Matt lets agents use approved API actions through a hardened local Broker without seeing secrets, calling arbitrary URLs, or becoming an open proxy.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and operators use Uncle Matt to route approved external API actions through a local Broker that keeps secrets out of the agent context and blocks arbitrary URL calls.
+OpenClaw users and operators use the skill to let an agent make approved external API calls through a local Broker while keeping API credentials out of the agent's reach. Operators define the allowed actions and their limits.
 
 ### Deployment Geography for Use:
 
@@ -22,40 +22,28 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Installation depends on unpinned external installer scripts and a Docker build that were not included in the reviewed artifact.
+Risk: The scan was partial and did not review several referenced documents, configuration paths, and installer scripts. The skill package also does not include the Broker or installers required to use the action tool.
 
-Mitigation: Review the external repository at a pinned commit before installing, inspect installer scripts and Docker configuration, and prefer checksum or signature verification.
-
-Risk: The skill package does not include the Broker or installer scripts required for the advertised action tool to work.
-
-Mitigation: Do not treat the artifact alone as a complete installation; validate the full Broker setup and action configuration before enabling the skill.
-
-Risk: Optional voice packs use a rude refusal style that may be unsuitable for some users or organizations.
-
-Mitigation: Keep voice packs disabled unless that tone is explicitly acceptable for the deployment context.
-
-Risk: Misconfigured actions could weaken the intended no-secrets and no-arbitrary-URL boundary.
-
-Mitigation: Keep the Broker on loopback, avoid secrets in JSON config, restrict actions to approved host and path pairs, and validate action configuration before restart.
+Mitigation: Review the full project documentation, Broker configuration, and installer scripts before setup; verify the allowed actions and keep the Broker bound to loopback.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/uncmatteth/skills/uncle-matt)
-- [Project homepage](https://bobsturtletank.fun)
+- [Uncle Matt project and operator guides](https://github.com/uncmatteth/UNCLEMATTCLAWBOT)
+- [Uncle Matt homepage](https://bobsturtletank.fun)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+**Output Type(s):** [API Calls, Text, Guidance]
 
-**Output Format:** [Markdown with inline JSON and shell commands]
+**Output Format:** [Action-ID API requests with JSON arguments and returned API data; Markdown guidance for allowed and blocked requests.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Optional voice-pack lines may prefix refusal or warning responses only when enabled.]
+**Other Properties Related to Output:** [Calls are limited to operator-approved action IDs; optional voice packs apply only to refusals and warnings.]
 
 ## Skill Version(s):
 
-5.420.70 (source: server release metadata; artifact frontmatter reports 6.420.69)
+6.420.69 (source: frontmatter)
 
 ## Ethical Considerations:
 

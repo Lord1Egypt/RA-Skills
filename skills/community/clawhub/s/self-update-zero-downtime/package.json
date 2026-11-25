@@ -1,6 +1,6 @@
 {
   "name": "self-update-zero-downtime",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Zero-downtime OpenClaw upgrade with backup/rollback, release notes check, user confirmation. Auto-detects install type (npm vs git), path consistency check, prefix writability check.",
   "keywords": ["openclaw", "update", "upgrade", "zero-downtime", "blue-green"],
   "license": "MIT-0",

@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Filmmakers, advertisers, short-video creators, and educators use it to turn creative briefs into a planned storyboard with character references, shot-by-shot prompts, and delivery guidance.
+Creators, filmmakers, advertisers, and educators use the skill to turn a creative brief into a structured storyboard plan, character references, and image-generation prompts. It guides a staged workflow for reviewing requirements and scripts before generating and assembling storyboard visuals.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,30 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The scanner review was partial and did not establish what credentials the CLI accesses or how it uses them.
+Risk: The workflow depends on an external dLazy CLI and API key authentication; the available scan did not establish the CLI's internal behavior or credential handling.
 
-Mitigation: Review the CLI login and setup behavior before installing, and use a revocable dLazy API key.
-
-Risk: Storyboard prompts and supplied local media are sent to dLazy-hosted services for generation.
-
-Mitigation: Send only prompts and media that are appropriate to share with that service.
+Mitigation: Review and trust the CLI package before installing it, and use the dLazy account controls to rotate or revoke the API key if needed.
 
 ## Reference(s):
 
 - [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-image-storyboard)
-- [dLazy CLI source reference](https://github.com/dlazy-ai/cli)
+- [dLazy CLI repository (linked in skill metadata)](https://github.com/dlazy-ai/cli)
 - [dLazy CLI on npm](https://www.npmjs.com/package/@dlazy/cli)
-- [dLazy](https://dlazy.com)
+- [dLazy website](https://dlazy.com)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+**Output Type(s):** [Guidance, Markdown, Text, Shell commands, Images, PDF]
 
-**Output Format:** [Markdown storyboard plans, character and shot prompts, with inline CLI commands]
+**Output Format:** [Structured storyboard plans, character and panel descriptions, image-generation prompts, and generated image links; final storyboard layouts are specified for PDF export.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May include image-generation result URLs and print/PDF delivery guidance.]
+**Other Properties Related to Output:** [Uses staged review gates for requirements, character design, and script approval before image generation.]
 
 ## Skill Version(s):
 
-1.3.43 (source: server-resolved release evidence)
+1.3.46 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

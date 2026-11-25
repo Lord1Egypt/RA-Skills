@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes aquarium plant images and videos for visible color and shape changes, then provides a health assessment and care suggestions.
+Analyzes aquarium plant images and videos for visible health symptoms and provides a health assessment with care guidance.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Aquarium owners, aquascapers, and aquarium shops can use plant images or videos to review visible signs of stress and receive possible causes and care guidance.
+Aquarium owners, aquascapers, and aquarium shops can use it to assess visible plant health issues from images or video and receive possible causes and care suggestions. Results are visual guidance and may be uncertain; combine them with water tests or expert advice for important care decisions.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The security assessment marks the skill suspicious and reports account and token handling, possible credential or media transmission, and unclear export-only behavior; its evidence is incomplete.
+Risk: ClawScan marks this release suspicious due to reported account and credential handling, remote media submission without a clear consent step, and shared-account report access risks.
 
-Mitigation: Before installing, ask the publisher to explain account registration, persistent profile and token storage, external media uploads, and export-only behavior; avoid sharing sensitive credentials or media until clarified.
+Mitigation: Avoid installation or sending media until the publisher clarifies identity and credential handling, remote processing and consent, and report access, as the security guidance advises.
+
+Risk: Overlapping plant symptoms and image quality or reflections can make visual assessments uncertain.
+
+Mitigation: Use clear images, treat results as guidance, and confirm important care decisions with water tests or an aquarium expert.
 
 ## Reference(s):
 
-- [ClawHub release page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-aquarium-plant-health-monitor-analysis)
-- [API documentation](references/api_doc.md)
-- [Skill introduction](https://lifeemergence.com/sample.html)
+- [ClawHub skill release](https://clawhub.ai/smyx-sunjinhui/skills/smyx-aquarium-plant-health-monitor-analysis)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
+**Output Type(s):** [Analysis, Text, Markdown, JSON, Guidance]
 
-**Output Format:** [Structured analysis reports in JSON and report listings in Markdown]
+**Output Format:** [Structured plant health assessment, possible causes, care suggestions, and report links; historical reports can be presented as a Markdown table.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Includes a health assessment, possible symptoms and causes, care suggestions, and report links; visual findings may be uncertain.]
+**Other Properties Related to Output:** [Visual assessment only; findings may be uncertain and do not provide specific water parameter adjustments.]
 
 ## Skill Version(s):
 
-1.0.16 (source: server-resolved release evidence)
+1.0.18 (source: server-resolved release metadata)
 
 ## Ethical Considerations:
 

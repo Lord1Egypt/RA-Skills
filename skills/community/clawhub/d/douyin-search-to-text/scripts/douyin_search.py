@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Search Douyin by topic, then read the videos you pick (LinkDigest API).
 
-    python3 douyin_search.py "露营装备"                 # list the videos (free)
+    python3 douyin_search.py "露营装备"                 # list the videos (4 credits when found)
     python3 douyin_search.py "露营装备" --read 2        # also read the first 2
     python3 douyin_search.py "camping gear" --limit 8 --format json
 
@@ -49,6 +49,9 @@ def main(argv: list[str] | None = None) -> int:
     if status == 401:
         ld.log(f"Key 无效（401）。在 {ld.KEYS_URL} 重新创建。")
         return ld.EXIT_AUTH
+    if status == 402:
+        ld.log(f"积分不够这次搜索（402，未扣费）：{ld.field(payload, 'error', '')} 付款链接：{ld.field(payload, 'starter_url', '') or ld.field(payload, 'buy_url', '')}")
+        return ld.EXIT_PAYMENT
     if status == 429:
         ld.log(f"搜索太频繁或今天的免费搜索额度用完了（429）：{ld.field(payload, 'error', '')}")
         return ld.EXIT_RATE_LIMITED
@@ -60,7 +63,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.format == "json" and not args.read:
         print(json.dumps(payload, ensure_ascii=False, indent=2))
     else:
-        print(f"## 抖音搜索：{args.query}（{len(results)} 条，搜索 0 积分）\n")
+        print(f"## 抖音搜索：{args.query}（{len(results)} 条，搜索 {ld.field(payload, 'credits', 0)} 积分）\n")
         for i, r in enumerate(results, 1):
             print(f"{i}. {r.get('title') or '(无标题)'}\n   {r.get('url')}")
     if not results:

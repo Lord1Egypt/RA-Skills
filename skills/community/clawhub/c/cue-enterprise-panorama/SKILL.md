@@ -1,5 +1,6 @@
 ---
 name: cue-enterprise-panorama
+displayName: 企业全景画像
 description: 用 Cue 一键穿透企业的工商、股权、财务与经营全维基本面——评估业务模式与合作适配性，挖掘供应链金融与产业债机会，产出可用于内部决策的尽调底稿。
 description_zh: Cue 企业全景画像：一键穿透工商/股权/财务/经营全维度，产出尽调底稿。
 version: 1.1.4
@@ -96,6 +97,7 @@ https://cuecue.cn/share/<conv_id>
 ---
 **Cue 原始报告**：https://cuecue.cn/share/<conv_id>
 **本地副本**：~/cue-reports/<文件名>.md
+如有疑问请关注“感易Cue”官方服务号添加企微客服咨询
 ```
 
 规则：

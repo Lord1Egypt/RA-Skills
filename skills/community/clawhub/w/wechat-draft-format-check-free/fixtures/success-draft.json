@@ -1,0 +1,13 @@
+{
+  "fixture_type": "offline page material simulation; not online collection",
+  "status": "complete",
+  "source": {"title": "秋日城市散步（离线模拟）", "location": "编辑器可见正文，第 1—6 段"},
+  "target_style": "二级标题清晰；段落不超过 4 行；图片有说明",
+  "issues": [
+    {"type": "标题层级", "location": "第 2 段", "evidence": "“路线推荐”以普通正文显示", "suggestion": "改为二级标题", "source": "编辑器可见正文，第 2 段"},
+    {"type": "长段落", "location": "第 4 段", "evidence": "连续 7 行文本", "suggestion": "按转折处拆成两段", "source": "编辑器可见正文，第 4 段"},
+    {"type": "图片说明", "location": "第 5 段图片", "evidence": "图片后无说明", "suggestion": "补充地点与拍摄说明", "source": "编辑器可见正文，第 5 段"}
+  ],
+  "missing": [],
+  "actions_not_taken": ["未改稿", "未发送", "未发布"]
+}

@@ -1,0 +1,49 @@
+{
+  "fixture_notice": "合成离线页面资料；不对应真实店铺或真实订单，不是在线采集结果。",
+  "filters": {
+    "date_range": "2026-09-01 至 2026-09-30",
+    "status": "全部状态",
+    "confirmed": true
+  },
+  "source": {
+    "page": "订单列表",
+    "visible_location": "第 1 页／第 1–4 行"
+  },
+  "orders": [
+    {
+      "order_id": "DEMO-ORDER-001",
+      "created_at": "2026-09-03",
+      "status": "待发货",
+      "buyer": "示例买家1",
+      "action_needed": "核对库存后发货",
+      "evidence": "第1行：状态标签“待发货”"
+    },
+    {
+      "order_id": "DEMO-ORDER-002",
+      "created_at": "2026-09-05",
+      "status": "已发货",
+      "buyer": "示例买家2",
+      "action_needed": null,
+      "evidence": "第2行：状态标签“已发货”"
+    },
+    {
+      "order_id": "DEMO-ORDER-003",
+      "created_at": "2026-09-08",
+      "status": "退款中",
+      "buyer": "示例买家3",
+      "action_needed": "查看退款申请",
+      "evidence": "第3行：状态标签“退款中”"
+    },
+    {
+      "order_id": "DEMO-ORDER-004",
+      "created_at": "2026-09-09",
+      "status": "已完成",
+      "buyer": "示例买家4",
+      "action_needed": null,
+      "evidence": "第4行：状态标签“已完成"
+    }
+  ],
+  "authorization": {
+    "explicit_in_current_request": true
+  }
+}

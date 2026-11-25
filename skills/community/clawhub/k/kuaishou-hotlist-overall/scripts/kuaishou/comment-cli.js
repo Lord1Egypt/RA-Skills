@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 
-const log = require("../utils/log");
 const comment = require("../api/comment");
 const token = require("../utils/token");
 const utils = require("../utils/utils");
 const validator = require("../validate/url");
 const { assertIntegerRange } = require("../validate/keyword");
-const { parseArgs, buildHelp } = require("../utils/args");
+const { parseCliArgs, buildHelp } = require("../utils/args");
 const {
   emitError,
   emitEmpty,
-  printSuccessEnvelope,
+  buildSuccessEnvelope,
+  finishSuccess,
   emitUncaught,
 } = require("../utils/output");
 
@@ -31,6 +31,12 @@ const SCHEMA = {
       transform: (v) => Number(v),
       desc: "评论数量, 1-10000；包月 Token 实际最多 60",
     },
+    "--save": {
+      key: "save",
+      type: "boolean",
+      default: false,
+      desc: "将完整结果写入本地日志（也可设 GUAIKEI_ENABLE_LOG=1）",
+    },
   },
   positionalKey: "url",
 };
@@ -46,6 +52,7 @@ function printHelp() {
       [
         'node scripts/kuaishou/comment-cli.js --url "https://www.kuaishou.com/short-video/3xabc" --limit 40',
         "node scripts/kuaishou/comment-cli.js --url 3xabc --limit 40",
+        `node scripts/kuaishou/comment-cli.js --json-args "{\"url\":\"https://www.kuaishou.com/short-video/3xabc\",\"limit\":40}"`,
       ],
     ) +
       "\n\n注意:\n" +
@@ -66,7 +73,7 @@ async function main() {
 
   let parsed;
   try {
-    parsed = parseArgs(args, SCHEMA);
+    parsed = parseCliArgs(args, SCHEMA);
   } catch (error) {
     utils.printError(`参数解析错误: ${error.message}`);
     printHelp();
@@ -132,10 +139,11 @@ async function main() {
     limit,
   };
   let commentTask = null;
+  let cost;
   try {
     await comment.createCommentTask(tokenValue, url, limit);
     utils.printSuccess("获取评论任务创建成功, 正在查询中...");
-    commentTask = await comment.getCommentTask(tokenValue, url, limit);
+    ({ results: commentTask, cost } = await comment.getCommentTask(tokenValue, url, limit));
   } catch (error) {
     utils.printError(`获取评论失败: ${error.message}`);
     emitError(
@@ -151,22 +159,22 @@ async function main() {
 
   if (!Array.isArray(commentTask) || commentTask.length === 0) {
     utils.printInfo("没有找到匹配的评论");
-    emitEmpty("没有找到匹配的评论", startTime, commentRequest);
+    emitEmpty("没有找到匹配的评论", startTime, commentRequest, cost);
     return;
   }
 
-  const { text } = printSuccessEnvelope(
+  const finalOutput = buildSuccessEnvelope(
     "获取评论任务完成",
     startTime,
     commentRequest,
     commentTask,
+    cost,
   );
-  utils.printSuccess(`获取评论任务完成, 共获取 ${commentTask.length} 条评论`);
-
-  await log.taskWrite(
-    `${startTime}_${validator.url2Name(url)}_comment.json`,
-    text,
-  );
+  await finishSuccess(finalOutput, {
+    logFilename: `${startTime}_${validator.url2Name(url)}_comment.json`,
+    stderrMessage: `获取评论任务完成, 共获取 ${commentTask.length} 条评论`,
+    save: parsed.save === true,
+  });
 }
 
 main().catch((error) => {

@@ -34,6 +34,7 @@ Quietly check the person's Candor workspace.
 3. If attention is none, finish silently, unless the person asked for a report every time: then send a short all-clear with what changed.
 4. Otherwise run `candor open`, look into what it raises, record what came of each review area with reviews.update, and run open.acknowledge when offered.
 5. Tell the person only about a real finding, a changed outcome, or something that needs their answer.
+6. If Candor got in the way and the opening's product_reports setting is send, the default, send the Candor team a report and tell the person in this run's message, even when nothing else needs saying. With ask or off, send none: there is nobody to ask during this run.
 ```
 
 The pulse says whether anything needs a look; it does not replace a specific

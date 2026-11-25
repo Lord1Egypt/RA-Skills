@@ -23,6 +23,13 @@ This skill runs shell commands (`gh`, `git`, `bundle exec rspec`) and pushes cod
 
 ## GH_TOKEN Scoping
 
+This skill never reads, prints, or embeds a credential value. The token is
+supplied by the environment as `GH_TOKEN` and is referenced by name only - no
+literal token string appears anywhere in this skill, and none should ever be
+pasted into a prompt, a commit message, or a CI log.
+
+
+
 Use a **fine-grained personal access token** scoped to the specific repo:
 - Grant: `contents: write` (push to feature branches), `actions: read` (view CI logs)
 - Do NOT grant org-wide or admin permissions

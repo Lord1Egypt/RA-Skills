@@ -1,44 +1,55 @@
-## Description: <br>
-Get AI-ranked exhibitors matching an ICP and shortlist the top accounts worth outreach at trade shows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lensmor Recommendations helps agents fetch and present AI-ranked trade-show exhibitors that match a user's ICP, using event IDs and filters such as company size, location, category, and tech stack.
 
-## Publisher: <br>
-[weilun88313](https://clawhub.ai/user/weilun88313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weilun88313](https://clawhub.ai/user/weilun88313)
 
-## Use Case: <br>
-External B2B sales and event teams use this skill to rank exhibitors for a specific trade show against their ICP, then focus pre-show outreach on the strongest-fit accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Company profile, ICP filters, target-account names, and prospecting criteria may be sent to Lensmor. <br>
-Mitigation: Confirm Lensmor is approved for this data, minimize confidential customer or internal sales strategy details, and avoid sending data outside approved vendor processes. <br>
-Risk: The skill requires a Lensmor API key. <br>
-Mitigation: Store LENSMOR_API_KEY in an approved secret mechanism and never include the key value in prompts, logs, or generated output. <br>
-Risk: Returned ranking and funding fields may be stale or incomplete for outreach decisions. <br>
-Mitigation: Review the ranked shortlist and treat funding data as a budget proxy rather than a verified current fact before acting on recommendations. <br>
+## Use Case:
 
+External B2B sales and event marketing teams use this skill before trade shows to turn exhibitor lists into prioritized outreach shortlists with ICP match rationale. It is suited for pre-show account prioritization when the user has a Lensmor API key and event targeting criteria.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/weilun88313/lensmor-recommendations) <br>
-- [Lensmor API Documentation](https://api.lensmor.com/) <br>
-- [Lensmor Platform](https://platform.lensmor.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown tables and prose with inline shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ranks returned exhibitors in API order and grounds ICP rationale in returned company fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and release evidence) <br>
+Risk: The skill sends trade-show targeting details, ICP criteria, company profile information, and account shortlists to Lensmor's hosted API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only when the organization has approved Lensmor for that data, and avoid confidential, regulated, or highly sensitive sales strategy data unless approved.
+
+Risk: Returned recommendations and business signals can become stale or incomplete.
+
+Mitigation: Review the ranked results before outreach and treat fields such as funding stage as planning signals rather than current verified facts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weilun88313/skills/lensmor-recommendations)
+- [Lensmor API documentation](https://api.lensmor.com/)
+- [Lensmor](https://www.lensmor.com/?utm_source=github&utm_medium=skill&utm_campaign=trade-show-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown recommendations with ranked tables, ICP match rationale, and concise follow-up guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should not expose API key values; exhibitor rationale should be grounded in returned company fields.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

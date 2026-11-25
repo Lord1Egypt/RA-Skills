@@ -93,7 +93,7 @@ When the user explicitly chooses an AIDAP engine from the console choices, prese
 
 #### AIDAP database workspace
 
-Use `volcengine-db-supabase` when `database_product=aidap`. Do not duplicate AIDAP workspace provisioning in `volcengine-deploy`; read `../../volcengine-db-supabase/references/deploy-provider.md`, then return with `DATABASE_URL` and any engine-specific AIDAP/Supabase values such as `SUPABASE_URL`, `SUPABASE_ANON_KEY`, and server-only `SUPABASE_SERVICE_ROLE_KEY` wired into the deploy env/Secret path.
+Use `volcengine-db-supabase` when `database_product=aidap`. Do not duplicate AIDAP workspace provisioning or use a cross-plugin relative path in `volcengine-deploy`; activate that skill and let it follow its own `references/deploy-provider.md`. If it is unavailable, use `volcengine-find-skills` to install `volcengine-db-supabase`, then resume in a new thread. Return with `DATABASE_URL` and any engine-specific AIDAP/Supabase values such as `SUPABASE_URL`, `SUPABASE_ANON_KEY`, and server-only `SUPABASE_SERVICE_ROLE_KEY` wired into the deploy env/Secret path.
 
 ### SQL Server
 **Detection keywords**:

@@ -1,0 +1,57 @@
+{
+  "changelog": "Each platform gets its own cover ratio and, on video feeds, a spoken clip from that cover.",
+  "display_name": "Multi-platform Rewrite",
+  "entry": "SKILL.md",
+  "homepage": "https://beatra.ai/skills/multi-platform-rewrite",
+  "icon": "https://beatra.ai/textures/icons/oral-seeding-video-maker-0.2.8.png",
+  "localized": {
+    "en": {
+      "description": "Rewrite one finished article, script, or post into versions for Douyin, Xiaohongshu, WeChat Channels, TikTok, and Reels, each with a cover, plus an optional short clip for the feeds that take them. This multi-platform rewrite keeps the same offer and changes the hook, length, and picture for each feed. Use it when one source should go out on several platforms the same day, including a reuse pass over a piece you already published.",
+      "display_name": "Multi-platform Rewrite",
+      "summary": "One source rewritten for several feeds, each with a cover and an optional clip.",
+      "tags": [
+        "multi-platform rewrite",
+        "repurpose a post",
+        "one source many feeds",
+        "platform cover",
+        "short clip per platform"
+      ],
+      "title": "Multi-platform Rewrite"
+    },
+    "ja": {
+      "description": "記事、台本、または公開済みの一本を、Douyin、Xiaohongshu、WeChat Channels、TikTok、Reels 向けに書き換えて再利用します。売りは同じまま、書き出しと長さと絵を変えます。各版に表紙を付け、必要な版だけ短い動画にします。",
+      "display_name": "複数プラットフォーム向け書き換え",
+      "summary": "一つの原稿を複数の配信向けに書き換え、表紙と任意の短い動画を付ける。",
+      "tags": [
+        "書き換え",
+        "再利用",
+        "表紙",
+        "短い動画"
+      ],
+      "title": "複数プラットフォーム向け書き換え"
+    },
+    "zh": {
+      "description": "把一篇文章、一条脚本或一条已经发过的内容做成多平台改写分发：一稿多发，抖音、小红书、视频号、TikTok 和 Reels 各一版。做一次内容复用：保留同一个卖点，只改开头、长度和画面。每一版先给可发的文字和一张封面，确认后再决定要不要出短片。",
+      "display_name": "多平台改写分发",
+      "summary": "一篇成稿改成几个平台的版本，每个版本一张封面，需要时再加一条短片。",
+      "tags": [
+        "多平台改写分发",
+        "内容复用",
+        "一稿多发",
+        "封面",
+        "短片"
+      ],
+      "title": "多平台改写分发"
+    }
+  },
+  "mcp": {
+    "authentication": "device-bearer",
+    "credential_file": "~/.beatra/credentials.json",
+    "name": "beatra",
+    "transport": "streamable-http",
+    "url": "https://mcp.beatra.ai/mcp"
+  },
+  "name": "multi-platform-rewrite",
+  "schema_version": 1,
+  "version": "0.1.2"
+}

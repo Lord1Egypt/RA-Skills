@@ -14,11 +14,9 @@ Validated demand: Backend and platform teams need practical help generating, imp
 
 ## 来源证据
 
-- github-issues：[Quotation final sign-off: exact Lovely two-page PDF, legal terms and protected private R2 upload](https://github.com/adinosassist-stack/botswana-compliance-platform/issues/2542)
-- csdn-search：[OpenAPI 规范：RESTful API设计](https://blog.csdn.net/2501_94476825/article/details/159013081?ops_request_misc=elastic_search_misc&request_id=de5acec3897146389b60434d946575e3&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-5-159013081-null-null.142^v102^control&utm_term=OpenAPI%20%E6%96%87%E6%A1%A3)
-- github-issues：[feat(contracts,m10): build OpenAPI specification generator from Zod schemas and add CI drift check](https://github.com/VarshithReddy2006/DevTrack/issues/354)
-- github-issues：[security: enforce SERVICE_API_KEY on all protected AI endpoints](https://github.com/Deen-Bridge/dnb-ai/issues/748)
-- github-issues：[Refresh archived Gmail labels with an explicit full-sync option](https://github.com/turian/msgvault/issues/2)
+- csdn-search：[OpenAPI 规范：RESTful API设计](https://blog.csdn.net/2501_94476825/article/details/159013081?ops_request_misc=elastic_search_misc&request_id=1a71755f433c454a957e29537eeebdf8&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-5-159013081-null-null.142^v102^pc_search_result_base2&utm_term=OpenAPI%20%E6%96%87%E6%A1%A3)
+- github-issues：[Research: the EU crowdfunding licence (ECSPR) as a route](https://github.com/forever8896/dvdnd/issues/19)
+- github-issues：[Feature request: Support integration with self-hosted recipe systems (Mealie / Tandoor)](https://github.com/Wuki60/MrCuisineVibeConnect/issues/107)
 - segmentfault-search：[HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
 - segmentfault-search：[javascript](https://segmentfault.com/t/javascript)
 - segmentfault-search：[typescript](https://segmentfault.com/t/typescript)
@@ -26,6 +24,8 @@ Validated demand: Backend and platform teams need practical help generating, imp
 - segmentfault-search：[答： swagger发请求的时候如何自动添加Bearer](https://segmentfault.com/q/1010000017381307/a-1020000017382712)
 - segmentfault-search：[OpenAPI接口规范：为你的应用程序带来更好的性能与可维护性](https://segmentfault.com/a/1190000043968971)
 - segmentfault-search：[答： 如何为 swagger 2.8.0 做友好的基本 url](https://segmentfault.com/q/1010000042921070/a-1020000042921072)
+- github-issues：[Backend roadmap: subnet checks, marketplace intelligence and history](https://github.com/subregator/subregator-backend/issues/2)
+- github-issues：[BE-08: Add subnet abuse observations](https://github.com/subregator/subregator-backend/issues/10)
 
 ## 这个技能如何满足需求
 

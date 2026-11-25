@@ -3,7 +3,7 @@ name: private-github-repo-upload
 description: "Safely initialize, sanitize, commit, create, and push a local project with private runtime data to a separate private GitHub repository. Use when the user asks to back up or upload a local data-bearing project to a private GitHub repo while keeping public Skills separate. Never uploads credentials, environments, caches, or public Skill source."
 description_zh: "安全上传私有项目到 GitHub"
 description_en: "Secure private GitHub upload"
-version: "1.1.0"
+version: "1.1.1"
 disable: false
 agent_created: true
 read_when:
@@ -76,7 +76,7 @@ Use `git/blobs` → `git/trees` → `git/commits` → `PATCH git/refs/heads/<bra
 
 After creating the commit, assert `remote_commit.sha === local_head_sha` before advancing the ref. If they differ, do not push — fix the metadata first.
 
-If a divergent commit was already pushed, recover in this order: (a) rebuild the remote commit locally from API metadata and `git reset --soft` to it; (b) only if that fails, `ROLLBACK=<last-good-sha>` with `force: true` to undo a commit that you yourself created minutes earlier and that nobody else is based on. Never force-reset over someone else's history.
+If a divergent commit was already pushed, **do not force-reset or force-push to rewrite the remote** — Hard Rule 5 forbids it regardless of who created the commit. Recover without rewriting history: rebuild the intended tree from API metadata and advance the branch with a new forward commit (a `git revert` of the bad change, or a corrected commit through the normal PATCH-ref path with `force: false`). If the remote tip is not the one you expect, or the commit may be shared, **stop and report** the divergence for explicit user approval — never assume nobody else is based on it. Any exception requires explicit approval, preserving the current remote tip and an atomic expected-SHA check that aborts if the remote changed.
 
 ### Step 7: [Deterministic] Verify remote state
 - Read the remote branch SHA and compare it with the local commit SHA. **Get the remote SHA from the API (`GET /repos/{owner}/{repo}/branches/main`), not `git ls-remote`**: a private repo makes ls-remote require authentication too, and without the same askpass/credential setup used for the push it silently waits on a username/password prompt and hangs (auto-backgrounding, no error). The push itself having succeeded does not make a later bare ls-remote safe.

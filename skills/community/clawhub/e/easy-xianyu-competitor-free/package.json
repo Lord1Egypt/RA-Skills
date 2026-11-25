@@ -1,0 +1,11 @@
+{
+  "name": "easy-xianyu-competitor-free",
+  "version": "1.1.1",
+  "private": false,
+  "type": "module",
+  "description": "读取闲鱼公开搜索结果并整理竞品价格带与卖点。",
+  "scripts": {
+    "test": "node scripts/run.mjs --self-test && node --test scripts/collect-current-sample.test.mjs"
+  },
+  "license": "MIT-0"
+}

@@ -119,13 +119,17 @@ python3 $S/review_prompt.py \
   --current CURRENT_SCREENSHOTS \
   --round ROUND_DIR \
   [--best BEST_SCREENSHOTS] \
-  [--live-best BEST_URL]
+  [--live-best BEST_URL] \
+  [--reviewers N]
 ```
 
 Copies the screenshot sets into the round directory under names that do not
 reveal their source, randomly assigns A/B and C/D per reviewer, and writes
-`prompt-r1.md`, `prompt-r2.md`, and the mapping `blind.json`. The config is
-copied from `templates/review.json`. The template is
+the prompts and the mapping `blind.json`. By default, `--reviewers` is 2 and
+the two-reviewer workflow uses `prompt-r1.md` and `prompt-r2.md`. Counts below
+2 are rejected. For higher counts, the script writes one prompt per reviewer,
+from `prompt-r1.md` through `prompt-rN.md`. The config is copied from
+`templates/review.json`. The template is
 `templates/REVIEW_PROMPT.md`, and review rules change only there.
 
 ## Scoring: calibrate.py

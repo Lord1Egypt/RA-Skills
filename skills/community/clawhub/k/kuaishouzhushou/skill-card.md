@@ -1,6 +1,6 @@
 ## Description:
 
-搜索快手公开视频、获取博主公开作品与视频评论，并返回结构化数据供内容调研与分析。
+Searches public Kuaishou videos by keyword, retrieves creators’ public posts, and fetches video comments and engagement data as structured results.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-快手内容创作者、运营人员和品牌营销者可用它搜索公开视频、查看博主公开作品与评论，并将结构化结果用于选题、竞品和舆情分析。
+External content creators, social media operators, brand marketers, and analysts use it to find Kuaishou content, review public creator posts, and inspect video comments and engagement metrics for content planning and market research.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,31 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Keywords and links are sent to www.guaikei.com to retrieve public Kuaishou data.
+Risk: Security inspection was incomplete: 12 of 32 components were only partially inspected, so the benign verdict has medium confidence.
 
-Mitigation: Avoid confidential query terms or links, and use only inputs you are authorized to share.
-
-Risk: The security review was partial: 20 of 32 components were fully scanned, with 12 only partially inspected.
-
-Mitigation: Review the partially inspected scripts before installation if their behavior is material to your use.
+Mitigation: Review the partially inspected components before installation; the scan does not establish that the artifact is risk-free.
 
 ## Reference(s):
 
-- [参数选项说明](references/options.md)
-- [更新日志](references/changelog.md)
+- [Usage options](references/options.md)
+- [Release changelog](references/changelog.md)
 - [快手运营助手官网](https://www.guaikei.com)
-- [ClawHub 技能页面](https://clawhub.ai/why20261/skills/kuaishouzhushou)
+- [ClawHub skill page](https://clawhub.ai/why20261/skills/kuaishouzhushou)
+- [Publisher profile](https://clawhub.ai/user/why20261)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis]
+**Output Type(s):** [JSON, Structured data]
 
-**Output Format:** [Structured JSON records for video search results, creator posts, or video comments]
+**Output Format:** [JSON envelope containing public video search results, creator posts, or video comments and engagement fields.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Fields and interaction metrics vary by command; results are limited to public Kuaishou data.]
+**Other Properties Related to Output:** [Public Kuaishou data only; requires GUAIKEI_API_TOKEN; result limits depend on the account plan.]
 
 ## Skill Version(s):
 
-1.1.1 (source: SKILL.md frontmatter, package.json, changelog, released 2026-11-04)
+1.1.2 (source: server release metadata, frontmatter, changelog, package.json)
 
 ## Ethical Considerations:
 

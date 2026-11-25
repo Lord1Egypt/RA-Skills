@@ -1,7 +1,7 @@
 ---
 name: "qubrics-cli"
 description: "Use the Qubrics CLI for durable agent inbox registration, owner invites, profiles, and terminal-driven Management, Mailbox, and Sending workflows."
-version: "2.0.4"
+version: "2.0.8"
 metadata:
   openclaw:
     skillKey: "qubrics-cli"

@@ -1,0 +1,151 @@
+{
+  "schema_version": "1.1",
+  "source_manifest": {
+    "type": "markdown",
+    "filename": "resume.template.md",
+    "backend": "utf-8",
+    "pages": null,
+    "images": 0,
+    "text_chars": 620,
+    "sha256": "EXAMPLE_ONLY",
+    "warnings": []
+  },
+  "parse_warnings": [],
+  "sections": [
+    "education",
+    "experience",
+    "projects",
+    "skills"
+  ],
+  "industry_detection": {
+    "registry_contract_version": "1.0",
+    "detection_strategy": "keyword_score_v1",
+    "status": "detected",
+    "primary_industry": "cybersecurity",
+    "display_name": "网络安全",
+    "confidence": "high",
+    "needs_confirmation": false,
+    "matched_keywords": [
+      "MITRE ATT&CK",
+      "SOC",
+      "SIEM",
+      "EDR",
+      "Python"
+    ],
+    "evidence_dimensions": [
+      "授权或职责边界",
+      "场景与规模",
+      "个人动作",
+      "方法和工具",
+      "结果与复测",
+      "敏感信息脱敏"
+    ],
+    "question_dimensions": [
+      "个人责任",
+      "环境规模",
+      "授权边界",
+      "验证证据",
+      "结果口径"
+    ],
+    "role_map_ref": "security-role-map.json",
+    "reason": "基于简历明确关键词命中识别，未使用受保护个人属性。",
+    "candidates": [
+      {
+        "id": "cybersecurity",
+        "display_name": "网络安全",
+        "matched_count": 5,
+        "matched_keywords": [
+          "MITRE ATT&CK",
+          "SOC",
+          "SIEM",
+          "EDR",
+          "Python"
+        ],
+        "evidence_dimensions": [
+          "授权或职责边界",
+          "场景与规模",
+          "个人动作",
+          "方法和工具",
+          "结果与复测",
+          "敏感信息脱敏"
+        ],
+        "question_dimensions": [
+          "个人责任",
+          "环境规模",
+          "授权边界",
+          "验证证据",
+          "结果口径"
+        ],
+        "role_map_ref": "security-role-map.json"
+      }
+    ]
+  },
+  "stats": {
+    "bullet_count": 5,
+    "metric_bullets": 2,
+    "metric_ratio": 40,
+    "issue_count": 2
+  },
+  "issues": [
+    {
+      "id": "YS-001",
+      "code": "weak_claim",
+      "section": "experience",
+      "heading": "示例科技 | 安全运营工程师",
+      "original": "参与每日告警研判，记录处置依据并升级高风险事件。",
+      "reason": "职责描述缺少结果或个人边界。",
+      "severity": "medium",
+      "source_type": "rule",
+      "needs_confirmation": false
+    }
+  ],
+  "questions": [
+    {
+      "question": "告警规则覆盖的 20 个业务系统中，你独立负责哪些系统？",
+      "why": "确认个人边界，避免把团队成果写成个人主导。"
+    }
+  ],
+  "suggestions": [
+    {
+      "code": "rewrite_weak_claim",
+      "finding_id": "YS-001",
+      "original": "参与每日告警研判。",
+      "suggestion": "说明个人负责的告警类型、日均规模、方法和结果。",
+      "priority": "high"
+    }
+  ],
+  "jd_match": {
+    "matched": [
+      "SOC",
+      "SIEM",
+      "Python",
+      "SQL",
+      "Linux",
+      "MITRE ATT&CK",
+      "漏洞管理",
+      "应急响应"
+    ],
+    "missing": [
+      "EDR",
+      "OWASP"
+    ],
+    "coverage": 80.0,
+    "status": "matched",
+    "note": "",
+    "lexicon_version": "2026-11-21.2",
+    "limitations": "固定关键词词表只检查明确术语，不做语义匹配、岗位排名或招聘竞争力判断；未收录的同义表达可能漏检。"
+  },
+  "readiness": {
+    "score": 55,
+    "score_type": "structure_rule_score",
+    "label": "结构准备度（规则分）",
+    "level": "部分完整",
+    "not_market_fit": true,
+    "metric_ratio": 40,
+    "guidance": "该分数只反映章节、量化证据、文本清洁度和可选的 JD 关键词覆盖，不代表招聘竞争力；不得改写为其他数值。"
+  },
+  "unknowns": [
+    "规则引擎无法判断招聘竞争力、面试通过率或 Offer 结果，需人工复核。"
+  ],
+  "disclaimer": "分析仅识别结构、证据与岗位匹配度，不承诺 ATS、面试或 Offer 结果，也不替代人工判断。"
+}

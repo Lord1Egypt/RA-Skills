@@ -16,10 +16,15 @@ regen: python3 scripts/make_exemplars.py(勿手改本文件)
   --card:#FAF4EC;--line:#C8A56D;
   --serif:'Noto Serif SC','Source Han Serif SC','Songti SC',Georgia,serif;
   --sans:-apple-system,'PingFang SC','Microsoft YaHei','Segoe UI',sans-serif;
+  --sans-display:-apple-system,'SF Pro Display','Segoe UI Display','PingFang SC','Microsoft YaHei',sans-serif;
   --display:var(--sans);
   --mono:ui-monospace,'SF Mono',Consolas,monospace;
+  --track-display:-0.011em; /* 0.28 展示级紧字距纪律(Linear 式克制;CJK 靠 palt 收标点,此值只动 display 级) */
 }
 :lang(zh){text-autospace:normal;line-break:strict}
+@supports (text-spacing-trim: space-all){
+  :lang(zh){text-spacing-trim:space-all} /* 0.28:全角标点挤压渐进增强(Chrome 123+;不支持则原样,clreq 口径) */
+}
 h1,h2{text-wrap:balance}
 p{text-wrap:pretty}
 :lang(zh) :is(h1,h2,h3){font-feature-settings:"palt" 1}
@@ -43,7 +48,7 @@ img{max-width:100%;display:block}
 .cross{position:absolute;width:11px;height:11px;pointer-events:none}
 .cross::before{content:"";position:absolute;left:5px;top:0;width:1px;height:11px;background:var(--ink2);opacity:.5}
 .cross::after{content:"";position:absolute;top:5px;left:0;width:11px;height:1px;background:var(--ink2);opacity:.5}
-.side-label{position:absolute;writing-mode:vertical-rl;font:600 11px/1.8 var(--mono);
+.side-label{position:absolute;writing-mode:vertical-rl;font:600 12.5px/1.8 var(--mono);
              letter-spacing:.3em;color:var(--ink2);opacity:.55;pointer-events:none}
 .bg-motif{position:absolute;pointer-events:none;opacity:.07}
 .dark .bg-motif{opacity:.12}
@@ -54,12 +59,22 @@ th{background:var(--surface);text-align:left;padding:12px 18px;font-weight:700}
 td{padding:12px 18px;border-top:1px solid var(--line)}
 .num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
 .lift{transition:transform .22s ease,box-shadow .22s ease}
-.lift:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(17,22,30,.12)}
+.lift:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(88,91,86,.12)}
 @media (prefers-reduced-motion:reduce){.lift,.lift:hover{transform:none;box-shadow:none;transition:none}}
 figcaption{font:400 12px/1.6 var(--mono);letter-spacing:.05em;color:var(--ink2);margin-top:10px}
 @supports (initial-letter:3){.dropcap>p:first-of-type::first-letter{initial-letter:3 2;
   font:700 1em var(--serif);color:var(--accent-ink,var(--accent));margin-right:10px}}
 @media (max-width:900px){.grid>*{grid-column:1/-1!important}section{padding:64px 0}.wrap{padding:0 24px}}
+/* ── 动效底座(0.21,M1/M2,渲染实证 _motionlab):终态=无动效版 ── */
+/* 0.25 教训:此注释曾漏写关闭符,导致 CSS 注释吞掉其后全部配方规则,产物全裸
+   (测试方视觉终审抓出;静态闸只看文本不看样式所以此前测试全绿);
+   test_v01400 已加 css 注释与花括号平衡闸防复发 */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.09s}.reveal.d2{transition-delay:.18s}
+.btn{transition:transform .18s ease,box-shadow .18s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(88,91,86,.14)}
+@media (prefers-reduced-motion:reduce){.reveal,.btn,.lift{opacity:1;transform:none;transition:none}.reveal:hover{transform:none}}
 
 .bleed{height:60vh;background:var(--night);position:relative;overflow:hidden;
         display:flex;align-items:flex-end}
@@ -79,24 +94,24 @@ figcaption{font:400 12px/1.6 var(--mono);letter-spacing:.05em;color:var(--ink2);
 </style></head><body>
 <div style='display:flex;height:5px' aria-hidden='true'><span style='flex:1;background:#585B56'></span><span style='flex:1;background:#4F4335'></span><span style='flex:1;background:#EA526F'></span><span style='flex:1;background:#EE959C'></span><span style='flex:1;background:#F3E7D4'></span></div>
 <div class="bleed">
-  <span class="meta mono">ISSUE 01 — MORNPASTEL — 三代手作</span>
-  <div class="art"><svg width='420' height='420' viewBox='0 0 420 420' aria-hidden='true' style='display:block'><g fill='none' stroke='#EE959C' stroke-width='3'><circle cx='210.0' cy='210.0' r='190.20000000000002'/><circle cx='210.0' cy='210.0' r='138.6'/><circle cx='210.0' cy='210.0' r='84.0'/></g><g fill='none' stroke='#EA526F' stroke-width='3'><circle cx='210.0' cy='210.0' r='29.400000000000002'/></g><circle cx='210.0' cy='210.0' r='10.4' fill='#585B56'/></svg></div>
+  <span class="meta mono">ISSUE 01 — MORNPASTEL — 器物与生活</span>
+  <div class="art"><svg width='420' height='420' viewBox='0 0 420 420' aria-hidden='true' style='display:block'><g fill='none' stroke='#EE959C' stroke-width='3'><circle cx='210.0' cy='210.0' r='190.20000000000002' stroke-opacity=''/><circle cx='210.0' cy='210.0' r='160.8' stroke-opacity='.5'/><circle cx='210.0' cy='210.0' r='135.6' stroke-opacity=''/><circle cx='210.0' cy='210.0' r='110.4' stroke-opacity='.5'/><circle cx='210.0' cy='210.0' r='81.0' stroke-opacity=''/></g><g fill='none' stroke='#EA526F' stroke-width='3'><circle cx='210.0' cy='210.0' r='29.400000000000002'/></g><circle cx='210.0' cy='210.0' r='10.4' fill='#585B56'/></svg></div>
   <div class="cap">
-    <h1 style="font:900 clamp(34px,5vw,64px)/1.15 var(--serif);color:var(--pale);max-width:20ch">开篇大标,像杂志封面一样说话。(替换)</h1>
-    <p style="margin-top:14px;font-size:14.5px;max-width:44ch">副题一行:本期给读者什么。(替换)</p></div></div>
+    <h1 class="reveal" style="font:900 clamp(34px,5vw,64px)/1.15 var(--serif);color:var(--pale);max-width:20ch">开卷:一只碗的来路。</h1>
+    <p class="reveal d1" style="margin-top:14px;font-size:14.5px;max-width:44ch">三位匠人、一间工作室、一只碗的完整来路。</p></div></div>
 <div class="narrow dropcap" style="position:relative">
-  <div class="bg-motif" style="right:-80px;top:-40px"><svg width='280' height='280' viewBox='0 0 280 280' aria-hidden='true' style='display:block'><g fill='none' stroke='#EE959C' stroke-width='2'><circle cx='140.0' cy='140.0' r='126.80000000000001'/><circle cx='140.0' cy='140.0' r='92.4'/><circle cx='140.0' cy='140.0' r='56.0'/></g><g fill='none' stroke='#EA526F' stroke-width='2'><circle cx='140.0' cy='140.0' r='19.6'/></g><circle cx='140.0' cy='140.0' r='7.6000000000000005' fill='#585B56'/></svg></div>
+  <div class="bg-motif" style="right:-80px;top:-40px"><svg width='280' height='280' viewBox='0 0 280 280' aria-hidden='true' style='display:block'><g fill='none' stroke='#EE959C' stroke-width='2'><circle cx='140.0' cy='140.0' r='126.80000000000001' stroke-opacity=''/><circle cx='140.0' cy='140.0' r='107.2' stroke-opacity='.5'/><circle cx='140.0' cy='140.0' r='90.4' stroke-opacity=''/><circle cx='140.0' cy='140.0' r='73.60000000000001' stroke-opacity='.5'/><circle cx='140.0' cy='140.0' r='54.0' stroke-opacity=''/></g><g fill='none' stroke='#EA526F' stroke-width='2'><circle cx='140.0' cy='140.0' r='19.6'/></g><circle cx='140.0' cy='140.0' r='7.6000000000000005' fill='#585B56'/></svg></div>
   <div style="display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);
        border-bottom:1px solid var(--line);padding:10px 2px;margin-bottom:26px">
-    <span class="mono">VOL.01 — 手作特辑(替换)</span><span class="mono">MORNPASTEL</span></div>
+    <span class="mono">VOL.01 — 器物特辑</span><span class="mono">MORNPASTEL</span></div>
   <p class="kicker" style="position:relative">导语</p>
-  <h2 style="position:relative">窄文节:66ch 的阅读宽度。(替换)</h2>
-  <p style="color:var(--ink2)">导语两行,说清本期给读者什么。图像主导的页面里,文字节是呼吸点——一节只做一件事。(替换)</p>
+  <h2 style="position:relative">窄文节:一行一次呼吸的宽度。</h2>
+  <p style="color:var(--ink2)">本期从一只碗开始:三位匠人,两窑釉色,一段与泥土相处的时间。</p>
 </div>
 <div class="wrap"><section style="padding-top:0"><div class="offset">
   <div style="background:var(--pale);border-radius:14px;padding:36px 32px">
     <p class="kicker">主理人手记</p>
-    <p style="font:700 19px/1.7 var(--serif)">「甜点的分寸,和做人的分寸一样——<br>多一分则腻,少一分则寡。」</p>
+    <p style="font:700 19px/1.7 var(--serif)">「器物的分寸,和日子的分寸一样——<br>多一分则满,少一分则空。」</p>
     <footer style="margin-top:16px;font-size:12.5px;color:var(--ink2)">—— 主理人 · 每周手记</footer></div>
   <div class="drop" style="background:var(--card);border-radius:14px;padding:36px 32px">
     <p class="kicker">到店信息</p>
@@ -108,17 +123,17 @@ figcaption{font:400 12px/1.6 var(--mono);letter-spacing:.05em;color:var(--ink2);
       <span>预约</span><b>建议提前 48 小时</b></div></div>
 </div></section>
 <section class="sub"><div class="grid"><div class="pull">
-  <p><span style="color:var(--sage);font-size:1.3em">「</span>跨栏大引文,3+9 的留白就是它的音量。<span style="color:var(--sage);font-size:1.3em">」</span>(替换)</p>
-  <footer class="mono" style="margin-top:14px">—— 署名 · 年份</footer></div></div></section>
+  <p><span style="color:var(--sage);font-size:1.3em">「</span>好的器物不说话,它只是等你用旧它。<span style="color:var(--sage);font-size:1.3em">」</span></p>
+  <footer class="mono" style="margin-top:14px">—— 卷首 · 编辑部</footer></div></div></section>
 <section class="sub"><div class="tri">
-  <figure style="margin:0"><div style='aspect-ratio:4/5;background:var(--surface);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px'><svg width='96' height='96' viewBox='0 0 96 96' aria-hidden='true' style='display:block'><g fill='none' stroke='#EE959C' stroke-width='2'><circle cx='48.0' cy='48.0' r='42.160000000000004'/><circle cx='48.0' cy='48.0' r='31.68'/><circle cx='48.0' cy='48.0' r='19.200000000000003'/></g><g fill='none' stroke='#EA526F' stroke-width='2'><circle cx='48.0' cy='48.0' r='6.720000000000001'/></g><circle cx='48.0' cy='48.0' r='3.92' fill='#585B56'/></svg><span class='mono' style='color:var(--ink2)'>4:5(替换)</span></div><figcaption>图 01 — 木纹研究(替换)</figcaption></figure>
-  <figure style="margin:0"><div style='aspect-ratio:4/5;background:var(--surface);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px'><svg width='96' height='96' viewBox='0 0 96 96' aria-hidden='true' style='display:block'><g fill='none' stroke='#EE959C' stroke-width='2'><circle cx='48.0' cy='48.0' r='42.160000000000004'/><circle cx='48.0' cy='48.0' r='31.68'/><circle cx='48.0' cy='48.0' r='19.200000000000003'/></g><g fill='none' stroke='#EA526F' stroke-width='2'><circle cx='48.0' cy='48.0' r='6.720000000000001'/></g><circle cx='48.0' cy='48.0' r='3.92' fill='#585B56'/></svg><span class='mono' style='color:var(--ink2)'>4:5(替换)</span></div><figcaption>图 02 — 榫卯细节(替换)</figcaption></figure>
-  <figure style="margin:0"><div style='aspect-ratio:4/5;background:var(--surface);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px'><svg width='96' height='96' viewBox='0 0 96 96' aria-hidden='true' style='display:block'><g fill='none' stroke='#EE959C' stroke-width='2'><circle cx='48.0' cy='48.0' r='42.160000000000004'/><circle cx='48.0' cy='48.0' r='31.68'/><circle cx='48.0' cy='48.0' r='19.200000000000003'/></g><g fill='none' stroke='#EA526F' stroke-width='2'><circle cx='48.0' cy='48.0' r='6.720000000000001'/></g><circle cx='48.0' cy='48.0' r='3.92' fill='#585B56'/></svg><span class='mono' style='color:var(--ink2)'>4:5(替换)</span></div><figcaption>图 03 — 成品全貌(替换)</figcaption></figure>
+  <figure style="margin:0"><div style='aspect-ratio:4/5;background:var(--surface);border-radius:14px;position:relative;display:flex;align-items:center;justify-content:center'><svg width='140' height='140' viewBox='0 0 140 140' aria-hidden='true' style='display:block'><g fill='none' stroke='#EE959C' stroke-width='2'><circle cx='70.0' cy='70.0' r='62.400000000000006' stroke-opacity=''/><circle cx='70.0' cy='70.0' r='52.6' stroke-opacity='.5'/><circle cx='70.0' cy='70.0' r='44.2' stroke-opacity=''/><circle cx='70.0' cy='70.0' r='35.800000000000004' stroke-opacity='.5'/><circle cx='70.0' cy='70.0' r='26.0' stroke-opacity=''/></g><g fill='none' stroke='#EA526F' stroke-width='2'><circle cx='70.0' cy='70.0' r='9.8'/></g><circle cx='70.0' cy='70.0' r='4.800000000000001' fill='#585B56'/></svg><span class='mono' style='position:absolute;left:14px;bottom:12px;color:var(--ink2)'>拉坯 · 湿坯定形</span></div><figcaption>图 01 — 拉坯 · 湿坯定形</figcaption></figure>
+  <figure style="margin:0"><div style='aspect-ratio:4/5;background:var(--surface);border-radius:14px;position:relative;display:flex;align-items:center;justify-content:center'><svg width='140' height='140' viewBox='0 0 140 140' aria-hidden='true' style='display:block'><g fill='none' stroke='#EE959C' stroke-width='2'><circle cx='70.0' cy='70.0' r='62.400000000000006' stroke-opacity=''/><circle cx='70.0' cy='70.0' r='52.6' stroke-opacity='.5'/><circle cx='70.0' cy='70.0' r='44.2' stroke-opacity=''/><circle cx='70.0' cy='70.0' r='35.800000000000004' stroke-opacity='.5'/><circle cx='70.0' cy='70.0' r='26.0' stroke-opacity=''/></g><g fill='none' stroke='#EA526F' stroke-width='2'><circle cx='70.0' cy='70.0' r='9.8'/></g><circle cx='70.0' cy='70.0' r='4.800000000000001' fill='#585B56'/></svg><span class='mono' style='position:absolute;left:14px;bottom:12px;color:var(--ink2)'>施釉 · 前后对照</span></div><figcaption>图 02 — 施釉 · 前后对照</figcaption></figure>
+  <figure style="margin:0"><div style='aspect-ratio:4/5;background:var(--surface);border-radius:14px;position:relative;display:flex;align-items:center;justify-content:center'><svg width='140' height='140' viewBox='0 0 140 140' aria-hidden='true' style='display:block'><g fill='none' stroke='#EE959C' stroke-width='2'><circle cx='70.0' cy='70.0' r='62.400000000000006' stroke-opacity=''/><circle cx='70.0' cy='70.0' r='52.6' stroke-opacity='.5'/><circle cx='70.0' cy='70.0' r='44.2' stroke-opacity=''/><circle cx='70.0' cy='70.0' r='35.800000000000004' stroke-opacity='.5'/><circle cx='70.0' cy='70.0' r='26.0' stroke-opacity=''/></g><g fill='none' stroke='#EA526F' stroke-width='2'><circle cx='70.0' cy='70.0' r='9.8'/></g><circle cx='70.0' cy='70.0' r='4.800000000000001' fill='#585B56'/></svg><span class='mono' style='position:absolute;left:14px;bottom:12px;color:var(--ink2)'>成器 · 晨光下</span></div><figcaption>图 03 — 成器 · 晨光下</figcaption></figure>
 </div></section></div>
 <section class="close-bar" id="cta"><div class="wrap" style="text-align:center;padding:96px 24px">
-  <h2 style="font:800 clamp(28px,3.8vw,46px)/1.22 var(--serif)">出血收尾 + 一句 CTA。(替换)</h2>
+  <h2 style="font:800 clamp(28px,3.8vw,46px)/1.22 var(--serif)">下期预告:市集专辑。</h2>
   <p style="color:var(--mist);margin:12px 0 24px;font-size:14.5px">颗粒在暗幕上,故事在亮处讲完。</p>
-  <a class="btn" style="background:var(--pale);color:var(--night)" href="#">主行动(替换)</a></div></section>
+  <a class="btn" style="background:var(--pale);color:var(--night)" href="#">订阅月刊</a></div></section>
 <footer><div class="wrap" style="padding:22px 0 36px;font-size:12.5px;color:var(--ink2);display:flex;justify-content:space-between">
-  <span>© 2026 晨柔手帖</span><span>aesthete-agent 配方 EDITORIAL-MAG</span></div></footer>
-</body></html>
+  <span>© 2026 晨柔手帖</span><!-- 0.30:引擎署名撤出可见页脚(配方 EDITORIAL-MAG) --><span>晨柔手帖 · 月刊</span></div></footer>
+<script>const __io=new IntersectionObserver((es)=>{es.forEach((e)=>{if(e.isIntersecting){e.target.classList.add("in");__io.unobserve(e.target)}})},{threshold:.12});document.querySelectorAll(".reveal").forEach((el)=>__io.observe(el));</script></body></html>

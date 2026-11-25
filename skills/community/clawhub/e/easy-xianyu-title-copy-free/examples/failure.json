@@ -1,0 +1,6 @@
+{
+  "status": "needs_user_input",
+  "titleVariants": [],
+  "missingFacts": ["商品名称", "成色", "价格或待议说明"],
+  "flaggedPhrases": []
+}

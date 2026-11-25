@@ -1,7 +1,7 @@
 ---
 name: magneta-contract-risk
 description: Check a smart contract's risk before trading, approving, bridging or integrating it, using the Magneta Contract Risk x402 service (0-100 score, proxy/owner/mint/blacklist/fee flags, verified-source and static-analysis findings, 20 EVM chains). Free bytecode-only quick flags need only curl; the full report costs $0.01 USDC on Base per call and is paid only with explicit user approval. Use when about to sign a transaction involving an unfamiliar token or contract, or when asked whether a token looks like a rug or honeypot. Not an audit.
-version: 0.1.1
+version: 0.1.2
 metadata:
   openclaw:
     emoji: "\U0001F6E1"
@@ -43,7 +43,7 @@ Do not use it for externally-owned accounts (the API returns 422 `not_a_contract
 - **Free tier first, no credentials.** `curl -s https://x402.magneta.finance/v1/flags/<chainId>/<address>` needs no key, no wallet, no account. Most go/no-go decisions can stop here.
 - **This skill never asks for a key in chat and never stores one.** The only secret is the optional `BUYER_PRIVATE_KEY` environment variable, read by the x402 client code you run. Do not paste a key into the conversation, a file, a command line argument or a log. Never print, echo or log it (log the settlement tx hash instead).
 - **No autonomous spending.** Before the first paid call of a session, tell the user the price ($0.01 USDC on Base, one report) and get an explicit yes. Do not loop, retry-buy or batch paid calls without a fresh yes. At most one paid report per contract per decision.
-- **Hard spending cap in code.** Every paid client must set a per-payment cap of `$0.05` (see Spend control). The service price is fixed at $0.01; refuse any 402 asking for more.
+- **Hard spending cap in code, equal to the approved price.** Every paid client caps each payment at exactly `$0.01` USDC on Base (`eip155:8453`), the price the user approved. A 402 asking for more, another asset or another network is refused (see Spend control).
 - **Dedicated wallet only.** Use a throwaway buyer wallet funded with a few dollars of USDC on Base, never a treasury or personal wallet.
 - **Nothing is executed on your behalf.** The skill only issues HTTPS GETs to `x402.magneta.finance` (and an MCP endpoint on the same host). It installs nothing by itself; the optional npm packages in the examples must be installed by you, with exact versions, using `--ignore-scripts`.
 - **External cost disclosed:** the paid report costs $0.01 USDC per call, settled on-chain via x402 (EIP-3009 `exact`). ClawHub itself is free; this charge is for the external Magneta service only.
@@ -82,8 +82,8 @@ import { privateKeyToAccount } from "viem/accounts";
 
 const account = privateKeyToAccount(process.env.BUYER_PRIVATE_KEY as `0x${string}`); // holds USDC on Base
 const client = new x402Client();
-client.setSpendControls({ maxAmountPerPayment: "$0.05" });
-client.register("eip155:*", new ExactEvmScheme(account));
+client.setSpendControls({ maxAmountPerPayment: "$0.01" }); // exactly the approved price; a higher 402 is rejected
+client.register("eip155:8453", new ExactEvmScheme(account)); // Base mainnet only
 const fetchWithPayment = wrapFetchWithPayment(fetch, client);
 const httpClient = new x402HTTPClient(client);
 
@@ -94,7 +94,7 @@ const report = await res.json();
 console.error("paid tx", settle.transaction, "payer", settle.payer);
 ```
 
-The same wrapper is packaged as `@magnetafinance/contract-risk` (published on npm: `npm i --ignore-scripts @magnetafinance/contract-risk @x402/core@2.28.0 @x402/evm@2.28.0 @x402/fetch@2.28.0 viem@2.57.7`)` (`createContractRiskClient({ privateKey })` with `risk()`, `quickFlags()`, LangChain and AI SDK adapters).
+The same wrapper is packaged as `@magnetafinance/contract-risk` (published on npm: `npm i --ignore-scripts @magnetafinance/contract-risk@0.1.2 @x402/core@2.28.0 @x402/evm@2.28.0 @x402/fetch@2.28.0 viem@2.57.7`) (`createContractRiskClient({ privateKey })` with `risk()`, `quickFlags()`, LangChain and AI SDK adapters).
 
 ### (b) MCP with `@x402/mcp`
 
@@ -105,18 +105,23 @@ import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/
 import { privateKeyToAccount } from "viem/accounts";
 
 const account = privateKeyToAccount(process.env.BUYER_PRIVATE_KEY as `0x${string}`);
-const MAX_ATOMIC = 50_000n; // $0.05 in USDC base units (6 decimals)
+const USDC_BASE = "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913";
+const APPROVED_ATOMIC = 10_000n; // exactly $0.01 in USDC base units (6 decimals), the price the user approved
 const mcp = createx402MCPClient({
   name: "my-agent", version: "0.1.0",
   schemes: [{ network: "eip155:8453", client: new ExactEvmScheme(account) }], // X402_NETWORK=eip155:8453
   autoPayment: true,
-  onPaymentRequested: async (ctx) => BigInt(ctx.paymentRequired.accepts[0].amount) <= MAX_ATOMIC, // refuse above the cap
+  // Approve only a USDC-on-Base option at or below the approved price; anything else is refused.
+  onPaymentRequested: async ({ paymentRequired }) => {
+    const base = paymentRequired.accepts.filter((a) => a.network === "eip155:8453" && a.asset.toLowerCase() === USDC_BASE);
+    return base.length > 0 && base.every((a) => BigInt(a.amount) <= APPROVED_ATOMIC);
+  },
 });
 await mcp.connect(new StreamableHTTPClientTransport(new URL("https://x402.magneta.finance/mcp")));
 try {
   const r = await mcp.callTool("contract_risk_summary", { chainId: 8453, address: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913" });
   if (r.isError) throw new Error((r.content[0] as { text?: string }).text);
-  const report = JSON.parse((r.content[0] as { text: string }).text);
+  const report = JSON.parse((r.content[0] as { text?: string }).text ?? "{}");
   console.error("paid:", r.paymentMade, r.paymentResponse?.transaction);
 } finally { await mcp.close(); }
 ```
@@ -164,7 +169,7 @@ Caveats (from the service's own rubric, also served by `scoring_rubric`):
 
 ## Spend control
 
-- Cap every payment at `$0.05` (the call costs $0.01): `setSpendControls({ maxAmountPerPayment: "$0.05" })` or the `onPaymentRequested` check above.
+- Cap every payment at exactly `$0.01`, the price of one report and the amount the user approved: `setSpendControls({ maxAmountPerPayment: "$0.01" })` over HTTP, the `onPaymentRequested` check above over MCP. If the service ever asks for more, the payment is refused and the user is asked again.
 - Use a dedicated buyer wallet with a small USDC balance; never reuse a treasury key. Never print or log the key.
 - The service's `payTo` address cannot be the payer (the facilitator rejects `self_send_not_allowed`).
 - Budget per task: free preview first, at most one paid report per contract per decision.
@@ -180,4 +185,4 @@ Caveats (from the service's own rubric, also served by `scoring_rubric`):
 | 504 | analysis timeout (24 s hard deadline) |
 
 x402 settles only successful responses, so every non-2xx above costs nothing. MCP failures come back as `isError: true` and are not settled either.
-A `402` that survives the client wrapper usually means: wallet has no USDC on Base, the cap is below $0.01, or the scheme network is not `eip155:8453`/`eip155:*`.
+A `402` that survives the client wrapper usually means: wallet has no USDC on Base, the cap is below $0.01, or the scheme network is not `eip155:8453`.

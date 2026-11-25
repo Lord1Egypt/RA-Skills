@@ -1,6 +1,6 @@
 ## Description:
 
-Submits snake mouth images, videos, or URLs for cloud-based stomatitis-risk analysis and returns reports with suggested follow-up actions.
+Analyzes clear images or video of a snake's open mouth for visible signs associated with stomatitis and produces a structured risk report.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Snake keepers, breeders, and reptile-care professionals can submit mouth images or videos for a preliminary stomatitis-risk report and retrieve earlier reports. The results are not a veterinary diagnosis.
+Snake keepers, reptile care teams, and reptile veterinarians can use the skill to review clear images or video of an open snake mouth for visible oral changes and receive a structured risk report or retrieve prior reports.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,29 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Snake images, videos, or URLs are submitted to LifeEmergence cloud services.
+Risk: The security assessment rates the release suspicious, citing account and credential handling, persistent user data, and external media processing beyond the stated analysis purpose. The partial scan does not establish that the artifact is safe.
 
-Mitigation: Review media handling, retention, deletion, and account linkage with the publisher before use.
-
-Risk: The skill creates or reuses an account and persists session tokens in a local workspace database.
-
-Mitigation: Restrict access to the workspace and review token storage and cleanup before installing.
-
-Risk: A visual risk assessment could be mistaken for a veterinary diagnosis.
-
-Mitigation: Treat reports as screening information only and consult a reptile veterinarian for diagnosis and treatment.
+Mitigation: Wait to install until the publisher explains these behaviors and how export-only mode works; avoid supplying credentials or uploading animal media until clarified.
 
 ## Reference(s):
 
-- [ClawHub skill listing](https://clawhub.ai/18072937735/skills/smyx-snake-stomatitis-detection-analysis)
-- [API documentation](references/api_doc.md)
+- [API interface and report fields](artifact/references/api_doc.md)
 - [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-snake-stomatitis-detection-analysis)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, JSON]
+**Output Type(s):** [JSON, Markdown, Guidance]
 
-**Output Format:** [Structured risk report or Markdown table with report links]
+**Output Format:** [Structured analysis report; historical reports can be presented as a Markdown table.]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Supports historical report lookup and optional file export.]
+**Other Properties Related to Output:** [May include visible findings, a risk level, suggested next steps, and report links.]
 
 ## Skill Version(s):
 
-1.0.13 (source: server-resolved ClawHub release; bundled frontmatter says 1.0.18)
+1.0.14 (source: server-resolved release)
 
 ## Ethical Considerations:
 

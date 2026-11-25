@@ -1,0 +1,107 @@
+{
+  "_meta": {
+    "note": "公开仓只含免费档 V2。付费色板在 edition/scripts/palettes.paid.json（不进主仓 git）；build.py 本机有 edition 时合并。共享阅读指标仍在 tokens.json。",
+    "source": "~/.claude/skills/hekouwang-content-skill/assets/themes/*.css"
+  },
+  "themes": [
+    {
+      "id": "v2",
+      "slug_suffix": "",
+      "menu": "Hekouwang",
+      "label": "V2 编辑 · 素白/墨绿（免费默认）",
+      "tier": "free",
+      "color": {
+        "bg": "#ffffff",
+        "bg_raised": "#ffffff",
+        "sidebar_bg": "#fafaf7",
+        "hover": "#f2f3ef",
+        "sunken": "#f7f8f3",
+        "ink": "#141a17",
+        "text": "#37413c",
+        "text_soft": "#4c554f",
+        "text_muted": "#59635d",
+        "text_faint": "#636e68",
+        "control_border": "#858d87",
+        "accent": "#2e6f5e",
+        "accent_deep": "#235647",
+        "code_text": "#37413c",
+        "link": "#2e6f5e",
+        "border_base": "#141a17",
+        "shadow_base": "#141a17",
+        "code_bg_base": "#141a17",
+        "code_bg_alpha": "0.04"
+      },
+      "syntax": {
+        "light": {
+          "syn_comment": "#5f6a64",
+          "syn_keyword": "#7c3aed",
+          "syn_string": "#147239",
+          "syn_number": "#9c5405",
+          "syn_def": "#0b5f92",
+          "syn_error": "#c81d25"
+        },
+        "dark": {
+          "syn_comment": "#9aa39c",
+          "syn_keyword": "#b9a3d6",
+          "syn_string": "#8fc9a0",
+          "syn_number": "#d9b07a",
+          "syn_def": "#8fb8d9",
+          "syn_error": "#e08f86"
+        }
+      },
+      "shape": {
+        "radius_sm": "0",
+        "radius": "0",
+        "radius_lg": "0",
+        "radius_pill": "999px"
+      },
+      "paper": {
+        "enabled": true,
+        "highlight": "#ffffff",
+        "mid": "#ffffff",
+        "shade": "#fbfbf8",
+        "gutter": "#f8f8f5",
+        "grain_opacity": "0",
+        "inset_alpha": "0.04",
+        "dark": {
+          "enabled": true,
+          "highlight": "#1a1e1a",
+          "mid": "#151816",
+          "shade": "#111411",
+          "gutter": "#0c0e0d",
+          "grain_opacity": "0.015",
+          "inset_alpha": "0.14"
+        }
+      },
+      "dark": {
+        "color": {
+          "bg": "#151816",
+          "bg_raised": "#1b1f1c",
+          "sidebar_bg": "#0c0e0d",
+          "hover": "#1e221e",
+          "sunken": "#101311",
+          "ink": "#eef2ee",
+          "text": "#c2c8c2",
+          "text_soft": "#a9b1ab",
+          "text_muted": "#9aa39c",
+          "text_faint": "#878f88",
+          "control_border": "#7f8781",
+          "accent": "#74b7a2",
+          "accent_deep": "#9ad2bd",
+          "code_text": "#c2c8c2",
+          "link": "#86c7b2",
+          "border_base": "#ffffff",
+          "shadow_base": "#000000",
+          "code_bg_base": "#ffffff",
+          "code_bg_alpha": "0.06"
+        },
+        "alpha": {
+          "hairline": "0.09",
+          "line": "0.13",
+          "divider": "0.20",
+          "strong": "0.40"
+        }
+      }
+    }
+  ]
+}

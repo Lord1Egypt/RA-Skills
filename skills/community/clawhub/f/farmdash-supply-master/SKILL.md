@@ -10,7 +10,7 @@ env:
   FARMDASH_API_KEY:
     description: "Optional Bearer token for higher FarmDash limits."
     required: false
-metadata: {"openclaw":{"homepage":"https://www.farmdash.one/agents","skillKey":"farmdash-supply-master","primaryEnv":"FARMDASH_API_KEY","execution":"read-only-yield-selection"}}
+metadata: {"openclaw":{"homepage":"https://www.farmdash.one/agents","skillKey":"farmdash-supply-master","primaryEnv":"FARMDASH_API_KEY","apiKeyRequired":false,"freeScoutKeyless":true,"freeScoutKey":"fd_scout_free","execution":"read-only-yield-selection"}}
 ---
 
 # FarmDash Supply Master
@@ -81,14 +81,14 @@ For idle stables found via Wagon Steward: run `compare_yields` three times with 
 6. Use Camp Guard before any approval or deposit route.
 
 ### Deposit Handoff Checklist
-Hand every selected pool to Camp Guard with its chain, protocol, asset, bridge, and jurisdiction limits already filtered, plus the holding-period net edge and downside case (reward APY to zero, stablecoin depeg, withdrawal friction). Proceed only to Signal Architect `resolve_defi_intent` when a supported adapter can produce real calldata.
+Hand every selected pool to Camp Guard with its chain, protocol, asset, bridge, and jurisdiction limits already filtered, plus the holding-period net edge and downside case (reward APY to zero, stablecoin depeg, withdrawal friction). After Camp Guard returns `pass`, prompt the user to select FarmDash's zero-custody execution mode via `execution_mode_selection` (`GET /api/v1/agent/status` or `POST /api/v1/agent/authority`): **Standard FarmDash (`USER_SIGNED`, default)** for per-trade local signing, or **Autonomous FarmDash (`BOUNDED_AUTONOMOUS`, opt-in)** via Autonomous Operator under an owner-signed delegation grant. Proceed to Signal Architect (`get_swap_quote` / `prepare_solana_swap` to acquire the deposit token, and `resolve_defi_intent` only when a supported adapter can produce real calldata). When pointing the user to a safe, passing FarmDash-tracked protocol UI, identify the canonical protocol domain alongside any optional FarmDash `https://www.farmdash.one/go/{slug}` partner route with mandatory commercial disclosure and `https://www.farmdash.one/fees` — never include a partner route on rejected, speculative-unverified, or `halt` pools.
 7. Use Signal Architect's `resolve_defi_intent` only when a supported adapter can produce real calldata.
 
 ## Disclaimers
 
 Yield changes constantly. APY is not guaranteed, rewards may dilute, smart contracts can fail, and stablecoins can depeg. Supply Master provides ranking data, not financial advice.
 
-**Install:** Copy this file into your OpenClaw workspace, or fetch `https://www.farmdash.one/openclaw-skills/farmdash-supply-master/SKILL.md`.
+**Install:** Copy this file into your OpenClaw workspace, or fetch `https://www.farmdash.one/agents/skills/farmdash-supply-master`.
 
 **Companion skills:** FarmDash Wagon Steward, FarmDash Camp Guard, FarmDash Signal Architect, FarmDash Trail Marshal.
 
@@ -105,13 +105,33 @@ Yield changes constantly. APY is not guaranteed, rewards may dilute, smart contr
 
 - [FarmDash DeFi intelligence website](https://www.farmdash.one/)
 - [FarmDash Agent Hub](https://www.farmdash.one/agents)
-- [Canonical FarmDash Supply Master skill manual](https://www.farmdash.one/openclaw-skills/farmdash-supply-master/SKILL.md)
+- [Canonical FarmDash Supply Master skill manual](https://www.farmdash.one/agents/skills/farmdash-supply-master)
 - [Agent integration documentation](https://www.farmdash.one/docs)
 - [Live agent capability status](https://www.farmdash.one/api/v1/agent/status)
 - [OpenAPI contract](https://www.farmdash.one/agents/openapi.yaml)
+- [Hosted Streamable HTTP MCP endpoint](https://www.farmdash.one/api/mcp) (56 core tools directly over HTTP; full 98-tool surface via stdio MCP or REST)
 - [MCP discovery manifest](https://www.farmdash.one/.well-known/mcp.json)
+- [Multi-skill workflow catalog](https://www.farmdash.one/api/v1/agent/workflows)
+- [FarmDash Agent Operating Model](https://www.farmdash.one/openclaw-skills/FARMDASH_AGENT_OPERATING_MODEL.md)
 - [Fees and commercial terms](https://www.farmdash.one/fees)
 - [Security and authority boundaries](https://www.farmdash.one/security)
+
+### Connected FarmDash Skill Ecosystem
+
+All 10 FarmDash OpenClaw skills compose as one zero-custody pipeline over the shared FarmDash REST API, the hosted Streamable HTTP MCP endpoint (`https://www.farmdash.one/api/mcp`, exposing 56 core tools directly over HTTP), and the full 98-tool stdio MCP server. Check `GET /api/v1/agent/workflows` (or `list_workflows`) for multi-skill recipes.
+
+| Skill Slug | Pipeline Stage | Handoff Scope | Canonical Manual |
+|---|---|---|---|
+| `farmdash-trail-intelligence` | Discovery & Intelligence | Trail Heat, protocol risk, wallet balances, sybil audits, points simulations | [Manual](https://www.farmdash.one/agents/skills/farmdash-trail-intelligence) |
+| `farmdash-wagon-steward` | Portfolio & Reserves | Portfolio summary, idle capital scan, position health & drift checks | [Manual](https://www.farmdash.one/agents/skills/farmdash-wagon-steward) |
+| `farmdash-supply-master` *(this skill)* | Yield Sustainability | Organic vs emission APY ranking (yield_quality_v3) & ERC-4626 verification | [Manual](https://www.farmdash.one/agents/skills/farmdash-supply-master) |
+| `farmdash-camp-guard` | Pre-Sign Safety Gate | Allowance audits, Risk Sentinel net-edge/depeg checks, unsigned-tx verdicts | [Manual](https://www.farmdash.one/agents/skills/farmdash-camp-guard) |
+| `farmdash-hedge-warden` | Delta-Neutral Sizing | Spot beta hedge sizing (confidence >= 0.60 gate) handing off to Futures Strategist | [Manual](https://www.farmdash.one/agents/skills/farmdash-hedge-warden) |
+| `farmdash-trail-marshal` | Workflow Orchestration | 18-recipe multi-skill catalog (list/plan/run/status) across all FarmDash skills | [Manual](https://www.farmdash.one/agents/skills/farmdash-trail-marshal) |
+| `farmdash-signal-architect` | Spot & Swap Execution | EVM (LI.FI & Relay; 0x paused) & Solana (Jupiter) quote, simulation, prep & confirm | [Manual](https://www.farmdash.one/agents/skills/farmdash-signal-architect) |
+| `farmdash-futures-strategist` | Hyperliquid Perps | Funding/regime scans, sizing, builder approval, EIP-712 order prep & reconciliation | [Manual](https://www.farmdash.one/agents/skills/farmdash-futures-strategist) |
+| `farmdash-autonomous-operator` | Sessions & Autonomy | Persistent sessions, FarmingContext, intent resolution, MEE & bounded delegations | [Manual](https://www.farmdash.one/agents/skills/farmdash-autonomous-operator) |
+| `farmdash-ledger-keeper` | Post-Trade Accounting | Confirmed activity/cost summaries and CSV tax exports (read-only) | [Manual](https://www.farmdash.one/agents/skills/farmdash-ledger-keeper) |
 
 ### Canonical capability readiness
 
@@ -125,9 +145,9 @@ Generated from shared/capability-truth.ts; read live status for deployment and p
 | futures.BOUNDED_AUTONOMOUS | operational | Authenticated owner-bound futures policy, authorized local API-wallet signature, durable nonce/budget/order controls. |
 | solana.USER_SIGNED | operational | Native Jupiter/RPC route, durable preparation and finality store; customer signs and broadcasts. |
 | solana.BOUNDED_AUTONOMOUS | operational | Native owner-signed Solana policy; local key must be an actual required transaction signer. Policy creates no on-chain authority. |
-| ERC4337_SERVER_SUBMISSION | preparation_only | Qualified tenant/account authorization and session-key policy enforcement on public forwarding, configured bundler, durable claims and verified receipt integration. |
-| GENERIC_SERVER_INTENT_EXECUTION | preparation_only | Trusted executable adapter, exact signed-transaction binding and canonical receipt verifier. |
-| MEE | preparation_only | Production coordinator and authoritative source/destination receipt verifier. |
+| ERC4337_SERVER_SUBMISSION | operational | Authenticated session, tenant-bound active ERC-4337 session-key grant, ABI-verified execute/executeBatch calldata within allowedProtocols/budget/gas bounds, and configured bundler RPC (BUNDLER_RPC_URL/PIMLICO_API_KEY/ALCHEMY_4337_RPC_URL). |
+| GENERIC_SERVER_INTENT_EXECUTION | operational | Curated executable adapter prepared_payload + payload_digest, policy/simulation/approval gates, exact cryptographic signed-transaction binding, and canonical on-chain receipt verification. |
+| MEE | operational | Owner EIP-712 MEE signature, configured HTTPS MEE_COORDINATOR_URL, and authoritative dual-chain on-chain receipt verification. |
 | ACP | deployment_prerequisite | AcpReadinessService paidWorkflowReady, evaluator/client identities, migrations, funding/finality workers and Base RPC. |
 
 <!-- farmdash-canonical-links:end -->

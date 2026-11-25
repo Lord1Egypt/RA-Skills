@@ -1,6 +1,6 @@
 ## Description:
 
-分析抖音公开视频、达人作品、评论和热榜数据，帮助运营、营销和分析人员识别市场趋势、机会与风险。
+查询抖音公开视频、图文、达人作品、作品详情、评论和热榜数据，为市场趋势、选题与舆情分析提供结构化信息。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT
+MIT-0
 
 ## Use Case:
 
-External users, operators, marketers, and analysts use this skill to query public Douyin data for topic research, competitor monitoring, creator analysis, comment review, and real-time trend tracking.
+内容运营、品牌与数据分析团队可用此技能检索抖音公开内容和账号数据，追踪热点、比较内容表现，并整理选题或舆情分析所需的信息。
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,39 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The skill sends Douyin keywords or links and the GUAIKEI_API_TOKEN to www.guaikei.com.
+Risk: Search terms and video or account identifiers are sent to a third-party API.
 
-Mitigation: Install and run it only when that third-party data transfer is acceptable, and keep the token in a protected environment variable.
+Mitigation: Avoid submitting sensitive terms or identifiers and confirm the service is approved for the data.
 
-Risk: Some command results are saved under the skill's logs folder and may contain retained analytics data from comments or competitor research.
+Risk: Account discovery and identifiable prospect collection can extend beyond market trend analysis.
 
-Mitigation: Delete or protect generated logs on shared machines and avoid storing sensitive internal research in shared workspaces.
+Mitigation: Limit collection to the stated task, review the intended use, and handle results only within approved internal workflows.
+
+Risk: The security scan had medium confidence and only partial inspection of executable files.
+
+Mitigation: Review the source and security posture before installing or using the skill.
 
 ## Reference(s):
 
-- [ClawHub Skill Page](https://clawhub.ai/why20261/skills/douyin-market-insight)
-- [Options Reference](references/options.md)
-- [Changelog](references/changelog.md)
-- [Guaikei API Token and Help](https://www.guaikei.com)
+- [使用指南](readme.md)
+- [输出契约](references/contract.md)
+- [错误处理](references/errors.md)
+- [需求挖掘指南](references/demand-mining.md)
+- [服务与 API 访问](https://www.guaikei.com)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+**Output Type(s):** [JSON, Analysis, Tables, Guidance]
 
-**Output Format:** [Markdown guidance with shell commands and JSON command output from the skill tools.]
+**Output Format:** [Structured JSON with concise prose or tables for derived insights]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Commands require Node.js 16.14.0+ and GUAIKEI_API_TOKEN; successful CLI calls emit structured JSON envelopes for search, hot list, creator posts, and comments.]
+**Other Properties Related to Output:** [Uses public content; results depend on available data and API plan limits. Requires Node.js and GUAIKEI_API_TOKEN.]
 
 ## Skill Version(s):
 
-1.3.0 (source: frontmatter, package.json, changelog, server release metadata)
+1.5.0 (source: server-resolved release, frontmatter, package.json)
 
 ## Ethical Considerations:
 

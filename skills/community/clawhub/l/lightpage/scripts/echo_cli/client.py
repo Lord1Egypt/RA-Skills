@@ -347,6 +347,9 @@ class API:
                 wechat_application=wechat_application,
             )
 
+    def prepare_login_body(self, body):
+        return body
+
     def _native_login(
         self,
         device_name,
@@ -400,6 +403,7 @@ class API:
                         "registration_token": token_urlsafe(48),
                     },
                 }
+                pending["body"] = self.prepare_login_body(pending["body"])
                 with self.store.lock():
                     atomic_json(self.store.pending_path, pending)
             value = self.safe_post("/v1/auth/anonymous", json=pending["body"])
@@ -410,11 +414,13 @@ class API:
                     "POST",
                     path,
                     authenticated=binding,
-                    json={
-                        "device_name": device_name,
-                        "persistent": True,
-                        "wechat_application": wechat_application,
-                    },
+                    json=self.prepare_login_body(
+                        {
+                            "device_name": device_name,
+                            "persistent": True,
+                            "wechat_application": wechat_application,
+                        }
+                    ),
                 )
                 pending = {"mode": mode, "authorization": authorization}
                 with self.store.lock():

@@ -80,7 +80,7 @@ function validateManifest(data: Record<string, any>, skillDir: string): AmberSki
 
   // Defaults
   if (typeof amber.timeout_ms !== 'number') amber.timeout_ms = 5000;
-  if (typeof amber.confirmation_required !== 'boolean') amber.confirmation_required = false;
+  if (typeof amber.confirmation_required !== 'boolean') amber.confirmation_required = amber.capabilities.includes('act');
   if (!amber.permissions) amber.permissions = {};
 
   return { name, version, description, amber };
@@ -98,7 +98,7 @@ function validateManifest(data: Record<string, any>, skillDir: string): AmberSki
  * To add a new skill: add its directory name to the approvedSkills array
  * in amber-skills/SKILL_MANIFEST.json and restart the runtime.
  */
-function loadApprovedSkills(skillsDir: string): Set<string> {
+export function loadApprovedSkills(skillsDir: string): Set<string> {
   const manifestPath = path.join(skillsDir, 'SKILL_MANIFEST.json');
   if (!fs.existsSync(manifestPath)) {
     console.warn('[skills] No SKILL_MANIFEST.json found — no skills will be loaded');
@@ -108,7 +108,6 @@ function loadApprovedSkills(skillsDir: string): Set<string> {
     const raw = fs.readFileSync(manifestPath, 'utf8');
     const data = JSON.parse(raw);
     const approved: string[] = Array.isArray(data.approvedSkills) ? data.approvedSkills : [];
-    console.log(`[skills] Approved skill allowlist: [${approved.join(', ')}]`);
     return new Set(approved);
   } catch (e) {
     console.error('[skills] Failed to parse SKILL_MANIFEST.json — no skills loaded:', e);
@@ -121,7 +120,10 @@ function loadApprovedSkills(skillsDir: string): Set<string> {
  * Only skills listed in amber-skills/SKILL_MANIFEST.json are loaded.
  * Returns array of loaded skills ready for registration.
  */
-export function loadSkills(skillsDir: string): LoadedSkill[] {
+export function loadSkills(
+  skillsDir: string,
+  isEnabled: (manifest: AmberSkillManifest, directoryName: string) => boolean = () => true,
+): LoadedSkill[] {
   const loaded: LoadedSkill[] = [];
 
   if (!fs.existsSync(skillsDir)) {
@@ -131,6 +133,7 @@ export function loadSkills(skillsDir: string): LoadedSkill[] {
 
   // Enforce allowlist — only load skills explicitly approved in SKILL_MANIFEST.json
   const approvedSkills = loadApprovedSkills(skillsDir);
+  console.log(`[skills] Approved skill allowlist: [${[...approvedSkills].join(', ')}]`);
   if (approvedSkills.size === 0) return loaded;
 
   const entries = fs.readdirSync(skillsDir, { withFileTypes: true });
@@ -164,7 +167,7 @@ export function loadSkills(skillsDir: string): LoadedSkill[] {
       const data = parseFrontmatter(content);
       const manifest = validateManifest(data, entry.name);
 
-      if (!manifest) continue;
+      if (!manifest || !isEnabled(manifest, entry.name)) continue;
 
       // Load handler — only reaches here if skill is in the approved allowlist
       // eslint-disable-next-line @typescript-eslint/no-var-requires

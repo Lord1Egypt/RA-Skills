@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/YottaMeta/yotta-resume/data/evidence-ledger.schema.json",
+  "title": "yotta-resume evidence ledger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_version",
+    "generated_at",
+    "entries"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "contract_version": {
+      "const": "1.0"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "evidence_id",
+          "section",
+          "claim",
+          "scenario",
+          "goal",
+          "responsibility",
+          "actions",
+          "methods",
+          "scale",
+          "result",
+          "supporting_artifacts",
+          "boundaries",
+          "user_confirmed",
+          "source_refs",
+          "sensitivity",
+          "export_allowed"
+        ],
+        "properties": {
+          "evidence_id": {
+            "type": "string",
+            "pattern": "^EV-[A-Za-z0-9-]+$"
+          },
+          "section": {
+            "type": "string",
+            "minLength": 1
+          },
+          "claim": {
+            "type": "string",
+            "minLength": 1
+          },
+          "scenario": {
+            "type": "string"
+          },
+          "goal": {
+            "type": "string"
+          },
+          "responsibility": {
+            "enum": [
+              "lead",
+              "co_owner",
+              "assist",
+              "participate",
+              "unknown"
+            ]
+          },
+          "actions": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "methods": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "scale": {
+            "type": "string"
+          },
+          "result": {
+            "type": "string"
+          },
+          "supporting_artifacts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "boundaries": {
+            "type": "string"
+          },
+          "user_confirmed": {
+            "type": "boolean"
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "sensitivity": {
+            "enum": [
+              "public",
+              "internal",
+              "confidential",
+              "restricted"
+            ]
+          },
+          "export_allowed": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

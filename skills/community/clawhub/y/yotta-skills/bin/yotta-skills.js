@@ -62,7 +62,7 @@ const { COPY_SKIP, copyDir } = require('../lib/copy-tree');
 const { versionRelation } = require('../lib/skills-scan');
 
 const PKG_ROOT = path.join(__dirname, '..');
-let VERSION = '0.30.14';
+let VERSION = '0.30.16';
 try { VERSION = require(path.join(PKG_ROOT, 'package.json')).version; } catch (_) { /* keep fallback */ }
 
 // @generated view-html:start
@@ -979,7 +979,7 @@ function ensureGate(context) {
     const engine = path.join(extractedVerifier.pkgDir, 'scripts', 'yotta_verify.py');
     if (!fs.existsSync(engine)) return { ok: false, error: '元信包内缺少 scripts/yotta_verify.py' };
 
-    // 0.29.5 S4：自举落点改为运行时缓存（不污染目标目录；如 yottacode 的 skill-inventory）。
+    // 0.29.5 S4：自举落点改为运行时缓存（不污染目标目录；如 yottaweave 的 skill-inventory）。
     // 安全边界不变：目标目录里未受信记录的元信副本一律不用（v0.19.13 反劫持模型），
     // 受信记录匹配（含记录指向目标目录副本）时才直接使用。
     const runtimeDir = verifierRuntimeRoot();
@@ -2053,9 +2053,9 @@ function hubTargetDirs(opts, discovery) {
   if (opts.dir) {
     // Bridge dirs are never link targets, but `unlink --dir` stays available:
     // it is the explicit cleanup path for historical out-of-scope links.
-    if (!cleanupOnly && agentDirsLib.isYottaCodeDir(opts.dir)) {
-      die('YottaCode 自带三层技能管理（skill-inventory / skill / user-skills），不纳入元阁接管', 2,
-        'YottaCode 目录由它自己管理，元阁不链接其目录。');
+    if (!cleanupOnly && agentDirsLib.isYottaWeaveDir(opts.dir)) {
+      die('YottaWeave 自带三层技能管理（skill-inventory / skill / user-skills），不纳入元阁接管', 2,
+        'YottaWeave 目录由它自己管理，元阁不链接其目录。');
     }
     if (!cleanupOnly && excludedEntry({ dir: opts.dir })) {
       die('该目录在「不接管」名单：' + path.resolve(opts.dir), 2,
@@ -2075,9 +2075,9 @@ function hubTargetDirs(opts, discovery) {
       die('未收录智能体: ' + opts.agent + '。可用: ' + Object.keys(AGENT_DIRS).join(', ') + '；或改用 --dir <路径>。',
         2, '先运行 yotta-skills hub hosts 查看本机实际技能目录。');
     }
-    if (!cleanupOnly && (info.neverLink || agentDirsLib.isYottaCodeDir(resolveUserDir(info.dirs[0])))) {
-      die('YottaCode 自带三层技能管理（skill-inventory / skill / user-skills），不纳入元阁接管', 2,
-        'YottaCode 目录由它自己管理，元阁不链接其目录。');
+    if (!cleanupOnly && (info.neverLink || agentDirsLib.isYottaWeaveDir(resolveUserDir(info.dirs[0])))) {
+      die('YottaWeave 自带三层技能管理（skill-inventory / skill / user-skills），不纳入元阁接管', 2,
+        'YottaWeave 目录由它自己管理，元阁不链接其目录。');
     }
     if (!cleanupOnly && excludedEntry({ agentId: opts.agent })) {
       die('该智能体在「不接管」名单：' + opts.agent, 2,
@@ -3315,7 +3315,7 @@ function runHostsExclude(opts) {
   const registryOpts = hostRegistryOptions(opts);
   const result = hostsRegistryLib.excludeHost(registryOpts, { target });
   if (!result.ok) {
-    die(result.error, 2, '目标可以是已收录 agentId，或技能目录（非 Hub / 非锁桥接 / 非 YottaCode）。');
+    die(result.error, 2, '目标可以是已收录 agentId，或技能目录（非 Hub / 非锁桥接 / 非 YottaWeave）。');
   }
   auditHostEvent(opts, {
     event: 'hosts.exclude',
@@ -3382,7 +3382,7 @@ function runHostsSet(opts) {
   }
   const result = hostsRegistryLib.setHostOverride(registryOpts, { agentId, dir: opts.dir, label: opts.label });
   if (!result.ok) {
-    die(result.error, 2, '目录需已存在，且不是 Hub / 锁桥接 / YottaCode 目录。');
+    die(result.error, 2, '目录需已存在，且不是 Hub / 锁桥接 / YottaWeave 目录。');
   }
   auditHostEvent(opts, { event: 'hosts.set', agentId, dir: result.entry.dir, label: result.entry.label });
   if (opts.json) {

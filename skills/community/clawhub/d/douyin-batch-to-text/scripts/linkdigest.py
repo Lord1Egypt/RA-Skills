@@ -205,7 +205,7 @@ def fail(status: int, payload, headers) -> int:
         return EXIT_PAYMENT
     if status == 422:
         log(f"这条链接读不了 (422)，不扣费: {message}")
-        log("常见原因：已删除、私密、需要登录，或平台不支持（B站不支持）。")
+        log("常见原因：已删除、私密，或需要登录才能看。上面一行是平台或 LinkDigest 给出的具体原因。")
         return EXIT_UNREADABLE
     if status == 429:
         if field(payload, "error_code") == "quota_exceeded":

@@ -1,82 +1,86 @@
-# Mini-Program Testing Checklist
+# Mini Program Testing Checklist
 
-## Lifecycle (10 items)
+> The sections of this checklist correspond one-to-one with `references/platform/mini-program.md` and are used for item-by-item self-checking after test case design.
+
+## Lifecycle
 - [ ] Cold start
-- [ ] Warm start
+- [ ] Hot start
 - [ ] Page onLoad
 - [ ] Page onShow
 - [ ] Page onReady
 - [ ] Page onHide
 - [ ] Page onUnload
-- [ ] Switch to background
-- [ ] Return to foreground
-- [ ] Destruction after extended background
+- [ ] Switching to the background
+- [ ] Returning to the foreground
+- [ ] Destroyed after a long time in the background
 
-## Authorization Management (12 items)
-- [ ] User info authorization
+## Authorization Management
+- [ ] Privacy protection guidelines pop-up is triggered
+- [ ] Agreeing to the privacy protection guidelines
+- [ ] Rejecting the privacy protection guidelines
+- [ ] Undeclared privacy APIs cannot be called
+- [ ] Avatar and nickname filling
 - [ ] Phone number authorization
 - [ ] Location authorization
 - [ ] Camera authorization
-- [ ] Photo library authorization
+- [ ] Photo album authorization
 - [ ] Bluetooth authorization
 - [ ] Recording authorization
 - [ ] Authorization granted
 - [ ] Authorization denied
-- [ ] Re-prompt after denial
-- [ ] Enable permission via settings page
+- [ ] Re-guidance after denial
+- [ ] Enabling permissions on the settings page
 - [ ] Authorization state persistence
 
-## Sharing Functionality (14 items)
-- [ ] Share via top-right menu
-- [ ] Share via share button
+## Sharing
+- [ ] Sharing from the top-right menu
+- [ ] Sharing via a share button
 - [ ] Share title
 - [ ] Share description
 - [ ] Share cover image
 - [ ] Share path
-- [ ] Share to friend
-- [ ] Share to group chat
-- [ ] Share to Moments
+- [ ] Sharing to a friend
+- [ ] Sharing to a group chat
+- [ ] Sharing to Moments
 - [ ] Share success callback
 - [ ] Share failure handling
-- [ ] Open from share card
+- [ ] Opening from a share card
 - [ ] Share parameter passing
-- [ ] Share opens specified page
+- [ ] Share opens the specified page
 
-## Platform Difference Adaptation (10 items)
-- [ ] WeChat Mini-Program API
-- [ ] Alipay Mini-Program API
-- [ ] Baidu Mini-Program API
-- [ ] Douyin Mini-Program API
-- [ ] Component compatibility
-- [ ] Style compatibility
-- [ ] Login differences
-- [ ] Payment differences
-- [ ] Sharing differences
-- [ ] Review guideline differences
+## Payment
+- [ ] WeChat Pay
+- [ ] Alipay
+- [ ] Payment callback
+- [ ] Payment success page
+- [ ] Payment failure handling
+- [ ] Order status sync
+- [ ] Refund flow
+- [ ] Payment security
 
-## Subscription & Template Messages (8 items)
+## Mini Program Navigation
+- [ ] Navigating to other mini programs
+- [ ] Navigating with parameters
+- [ ] Returning from another mini program
+- [ ] Opening H5 via web-view
+- [ ] H5 navigating to the mini program
+- [ ] Opening the mini program from an app
+- [ ] Opening an app from the mini program
+- [ ] Navigation count limits
+- [ ] Half-screen mini programs
+- [ ] Mutual navigation between mini programs
+
+## Subscription Messages
 - [ ] Subscription message authorization
-- [ ] Subscription message sending
-- [ ] Subscription message open
-- [ ] Template message sending
-- [ ] Template message open
-- [ ] Subscription count limit
-- [ ] Subscription permission revocation
+- [ ] Distinguishing one-time and long-term subscriptions
+- [ ] Long-term subscriptions limited to specific categories
+- [ ] Sending subscription messages
+- [ ] Opening subscription messages
+- [ ] Subscription count limits
+- [ ] Revoking subscription permission
 - [ ] Message push settings
 
-## Mini-Program Navigation (10 items)
-- [ ] Navigate to another mini-program
-- [ ] Navigate with parameters
-- [ ] Return from another mini-program
-- [ ] web-view opens H5
-- [ ] H5 navigates to mini-program
-- [ ] Open mini-program from App
-- [ ] Open App from mini-program
-- [ ] Navigation count limit
-- [ ] Half-screen mini-program
-- [ ] Inter-mini-program navigation
-
-## Local Storage (8 items)
+## Storage and Cache
 - [ ] Storage write
 - [ ] Storage read
 - [ ] Storage clear
@@ -86,23 +90,24 @@
 - [ ] Temporary file storage
 - [ ] File system management
 
-## Map & Location (8 items)
+## Maps and Location
 - [ ] Map component loading
-- [ ] Multi-marker rendering performance
-- [ ] Region zoom smoothness
-- [ ] Location accuracy (GPS/WiFi/cell tower)
-- [ ] Degradation after location permission denial
+- [ ] Rendering performance with many markers
+- [ ] Zoom smoothness
+- [ ] Location accuracy (GPS / WiFi / cell tower)
+- [ ] Degradation after location permission is denied
 - [ ] Nearby POI search accuracy
-- [ ] Map layer (traffic/satellite) switching
+- [ ] Map layer (traffic / satellite) switching
 - [ ] Background location restrictions
 
-## Payment Functionality (8 items)
-- [ ] WeChat Pay
-- [ ] Alipay
-- [ ] Payment callback
-- [ ] Payment success page
-- [ ] Payment failure handling
-- [ ] Order status synchronization
-- [ ] Refund flow
-- [ ] Payment security
-
+## Platform Difference Adaptation
+- [ ] WeChat Mini Program APIs
+- [ ] Alipay Mini Program APIs
+- [ ] Baidu Smart Program APIs
+- [ ] Douyin Mini Program APIs
+- [ ] Component compatibility
+- [ ] Style compatibility
+- [ ] Login differences
+- [ ] Payment differences
+- [ ] Sharing differences
+- [ ] Review guideline differences

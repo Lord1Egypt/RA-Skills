@@ -1,6 +1,6 @@
 {
   "name": "kuaishou-comment-consumer-insights",
-  "version": "1.0.0",
+  "version": "1.1.3",
   "description": "从快手评论和相关内容中归纳用户问题、消费者问题、购买顾虑、使用反馈、需求词和情绪证据，用于评论区洞察、用户反馈总结、产品改进和客服话术准备。",
   "keywords": [
     "快手",

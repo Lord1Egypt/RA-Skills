@@ -64,6 +64,8 @@ curl https://api.x402layer.cc/e/my-endpoint
 
 ### 2. Parse 402 Challenge
 
+The v1 JSON body is shown below. Servers that also send a `PAYMENT-REQUIRED` header (x402 v2) are answered with `PAYMENT-SIGNATURE`; see [payment-signing.md](payment-signing.md#x402-v2-payment-required--payment-signature). The bundled scripts handle both.
+
 ```json
 {
   "x402Version": 1,

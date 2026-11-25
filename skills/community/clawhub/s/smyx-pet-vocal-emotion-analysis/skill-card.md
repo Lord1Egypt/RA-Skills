@@ -1,6 +1,6 @@
 ## Description:
 
-Analyzes cat and dog vocalizations and reports likely emotions and behavioral intentions in human-readable form.
+Analyzes cat and dog vocalizations to infer emotions and behavioral intentions and returns a structured report.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Pet owners use the skill to submit a cat or dog vocal recording and receive a structured estimate of the animal’s emotion and likely intent. They can also request a list of earlier analysis reports.
+Pet owners use it to analyze cat or dog audio and video and receive an interpretation of possible emotions and behavior, or retrieve earlier reports. Results are for entertainment and interaction, not definitive assessments.
 
 ### Deployment Geography for Use:
 
@@ -22,29 +22,32 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: ClawScan rates the skill suspicious and reports account creation, credential storage or exposure risks, and possible media or credential transfers; scanner coverage is partial.
+Risk: Audio and video submitted for analysis are uploaded to the service and may contain private or identifying information.
 
-Mitigation: Review the reported behavior before installation, and avoid use unless you are comfortable with account creation, credential storage, and potential media or credential transfers.
+Mitigation: Submit only media you are comfortable sharing with the service, and avoid clips containing people or sensitive surroundings.
+
+Risk: The workflow may store local identity and token information or automatically register an account.
+
+Mitigation: Review the local profile and token storage and account-registration behavior before use; avoid identities or credentials you do not want associated with the service.
 
 ## Reference(s):
 
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-pet-vocal-emotion-analysis)
-- [Skill API reference](references/api_doc.md)
-- [Skill demo](https://lifeemergence.com/sample.html)
+- [API interface documentation](references/api_doc.md)
+- [Skill introduction](https://lifeemergence.com/sample.html)
 
 ## Skill Output:
 
-**Output Type(s):** [Text, Markdown, JSON]
+**Output Type(s):** [Text, JSON, Markdown]
 
-**Output Format:** [Structured analysis report; Markdown table for report lists; JSON detail when requested]
+**Output Format:** [Structured analysis report; Markdown table for report lists]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Emotion and intent are estimates for entertainment; recording clarity and background noise can affect results.]
+**Other Properties Related to Output:** [Emotion and behavior estimates; accuracy can vary with audio clarity and background noise.]
 
 ## Skill Version(s):
 
-1.0.19 (source: server-resolved release evidence)
+1.0.20 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

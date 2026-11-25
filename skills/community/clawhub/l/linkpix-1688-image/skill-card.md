@@ -1,6 +1,6 @@
 ## Description:
 
-帮助 1688 批发商、源头工厂和 B2B 运营通过青虎 AI 生成商品主图套图、详情图和活动图。
+为1688批发商、源头工厂和B2B运营人员提供商品主图套图、详情图及活动图的生成工作流。
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,44 +14,44 @@ MIT-0
 
 ## Use Case:
 
-1688 sellers, source factories, and B2B commerce operators use this skill to create product main-image sets, detail-page images, and promotional posters from product photos and brief copy.
+1688卖家、源头工厂和B2B运营人员可使用此技能，根据商品素材制作平台主图套图、详情图和促销活动图。
 
 ### Deployment Geography for Use:
 
-China
+China (1688 marketplace focus)
 
 ## Known Risks and Mitigations:
 
-Risk: Setup guidance asks users to share an API key in chat.
+Risk: The package dependency may change after review because its version is not pinned in the installation guidance.
 
-Mitigation: Keep the key in local configuration or an environment variable; do not send it in chat.
+Mitigation: Review the package and selected version before installation; use a pinned version when the deployment supports it.
 
-Risk: The workflow permits automatic installation and updating of external software whose dependencies were not inspected.
+Risk: The workflow may request an API key in chat.
 
-Mitigation: Review the package and dependency versions before installing or upgrading, and install only when trusted.
+Mitigation: Configure the key through a secure local configuration or environment variable, and avoid sending the secret in chat.
 
-Risk: Product images are uploaded to Qinghu AI and generation consumes credits.
+Risk: Reference product images may be uploaded to an external service without a clear privacy warning.
 
-Mitigation: Use only product images approved for upload, and review the selected generation settings and estimate before submitting.
+Mitigation: Confirm the user is comfortable sharing each image with the service and remove confidential material before upload.
 
 ## Reference(s):
 
 - [qhkit npm package](https://www.npmjs.com/package/@iqinghu/qhkit)
-- [LinkPix ClawHub release page](https://clawhub.ai/autoagc/skills/linkpix-1688-image)
+- [ClawHub skill release](https://clawhub.ai/autoagc/skills/linkpix-1688-image)
 
 ## Skill Output:
 
-**Output Type(s):** [Images, Image generation guidance]
+**Output Type(s):** [Images, Text, Shell commands, Guidance]
 
-**Output Format:** [Generated product image files returned as image URLs]
+**Output Format:** [Generated product images with Markdown guidance and inline shell or JSON examples]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Main-image sets, detail-page images, and promotional posters based on supplied product images and copy.]
+**Other Properties Related to Output:** [Image requests can use product references, copy, platform settings, and available model choices.]
 
 ## Skill Version(s):
 
-0.1.4 (source: server-resolved release metadata)
+0.1.5 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

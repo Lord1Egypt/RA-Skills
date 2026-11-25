@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and engineers use the skill to identify architectural clusters, module boundaries, and coupling patterns in a codebase while exploring refactoring targets.
+Developers and engineers use this skill to identify codebase module groupings, coupling boundaries, and possible refactoring targets.
 
 ### Deployment Geography for Use:
 
@@ -22,27 +22,27 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: The graph-based workflow may not be available as described; fallback directory and import summaries may not provide graph-based community results, and a local tool reference is unresolved.
+Risk: Results may rely on directory and import summaries even though the skill describes graph-based community detection; one referenced path was not assessed.
 
-Mitigation: Confirm the gauntlet graph tool and graph data are available, and review fallback summaries before using results to guide refactoring.
+Mitigation: Confirm graph data is available, review the evidence for clusters and coupling, and inspect unresolved local-path references before relying on refactoring suggestions.
 
 ## Reference(s):
 
-- [Cartograph plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph)
+- [Cartograph project page (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph)
 
 ## Skill Output:
 
-**Output Type(s):** [Analysis, Markdown, Mermaid diagram, Refactoring guidance]
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-**Output Format:** [Markdown with a community table, coupling warnings, a Mermaid flowchart, and improvement suggestions]
+**Output Format:** [Markdown with community tables, Mermaid diagrams, and improvement suggestions]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Graph-based results require gauntlet graph data; otherwise the skill uses directory and import summaries.]
+**Other Properties Related to Output:** [Requires gauntlet graph data for graph-based clustering; otherwise falls back to directory and import analysis.]
 
 ## Skill Version(s):
 
-1.10.3 (source: frontmatter)
+1.10.4 (source: server-resolved release evidence)
 
 ## Ethical Considerations:
 

@@ -1,6 +1,6 @@
 ## Description:
 
-Searches public Douyin videos and posts, retrieves trending lists, creator works, item details, and comments, and returns structured engagement data for content analysis.
+Searches public Douyin videos and accounts, retrieves trending lists, creator posts, video details, and comments, and supports analysis of engagement and audience themes.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -10,11 +10,11 @@ This skill is ready for commercial/non-commercial use.
 
 ### License/Terms of Use:
 
-MIT-0
+MIT
 
 ## Use Case:
 
-Content analysts, creators, and marketing teams use the skill to find public Douyin content, monitor creator posts and trends, and review engagement or comments for planning and internal analysis.
+Content, marketing, and research teams use the skill to discover trending public Douyin content, review creator and post metrics, and analyze comments for content planning or internal audience insights. It returns structured results for follow-up analysis.
 
 ### Deployment Geography for Use:
 
@@ -22,34 +22,36 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Queries and supplied Douyin links are sent to the third-party Guaikei API.
+Risk: The security review reports a benign verdict with medium confidence and partial inspection (31 of 53 components fully inspected); its summary flags keyword-based account search as a possible scope mismatch.
 
-Mitigation: Use only public data and authorized queries, and review the service terms and privacy practices before sending queries.
+Mitigation: Review account-search behavior before use in sensitive workflows and limit queries to public data for authorized internal analysis.
 
-Risk: The security review was benign but had medium confidence because analysis coverage was incomplete and the tool-misuse analyzer was degraded.
+Risk: The skill sends search terms and supplied Douyin links or IDs to the Guaikei third-party API, and some results may be saved locally.
 
-Mitigation: Review the available security results and coverage limits before deployment, and keep the skill's read-only, public-data scope.
+Mitigation: Do not include sensitive information in queries, protect the API token, and review or redact saved results before sharing.
 
 ## Reference(s):
 
-- [Guaikei service and help](https://www.guaikei.com)
-- [Command options](references/options.md)
-- [Comment analysis guidance](references/demand-mining.md)
-- [Changelog](references/changelog.md)
+- [Usage guide](readme.md)
+- [Output contract](references/contract.md)
+- [Comment demand analysis guide](references/demand-mining.md)
+- [Public data and service FAQ](references/faq.md)
+- [Guaikei service](https://www.guaikei.com)
+- [Douyin](https://www.douyin.com)
 
 ## Skill Output:
 
-**Output Type(s):** [JSON, Analysis, Shell commands, Guidance]
+**Output Type(s):** [JSON, Analysis, Guidance]
 
-**Output Format:** [Structured JSON results with concise content and engagement analysis; shell commands for requesting data.]
+**Output Format:** [Structured JSON results with concise natural-language summaries or comment analysis when requested]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Result fields vary by command. Query limits depend on the token plan, and returned media links may expire.]
+**Other Properties Related to Output:** [Results vary by query; the skill can save result files locally. Queries may include public user-generated content.]
 
 ## Skill Version(s):
 
-1.4.2 (source: changelog, released 2026-11-04)
+1.5.0 (source: SKILL.md frontmatter, package.json, changelog released 2026-11-10)
 
 ## Ethical Considerations:
 
